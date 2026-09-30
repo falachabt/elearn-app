@@ -21,6 +21,46 @@ concurrency:
 jobs:
   ota:
     runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - name: Jeton Expo absent
+        if: ${{ env.EXPO_TOKEN == '' }}
+        run: echo "::warning::Secret EXPO_TOKEN absent, publication OTA ignorée."
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: actions/checkout@v4
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        run: npm ci
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        run: npm test -- --ci
+      - name: Publier la mise à jour OTA
+        if: ${{ env.EXPO_TOKEN != '' }}
+        env:
+          MESSAGE: ${{ github.event.head_commit.message || 'manuel' }}
+        run: eas update --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
+
+  build:
+        description: "Lancer aussi un build Android (APK) de prévisualisation"
+        type: boolean
+        default: false
+
+concurrency:
+  group: eas-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ota:
+    runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
@@ -37,19 +77,3 @@ jobs:
       - name: Publier la mise à jour OTA
         run: eas update --channel preview --environment preview --message "${{ github.event.head_commit.message || 'manuel' }}" --non-interactive
 
-  build:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - run: npm ci
-      - name: Build Android de prévisualisation
-        run: eas build --platform android --profile preview --non-interactive --no-wait
