@@ -15,13 +15,13 @@ import { espace, typo } from '@/theme/theme';
 // Écran provisoire : vitrine des composants, remplacée par le parcours « premier lancement » (phase 2).
 export default function Accueil() {
   const { theme } = useTheme();
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
   const [choix, setChoix] = useState<string | null>(null);
 
   return (
     <ScrollView
-      style={{ backgroundColor: theme.fond.app }}
-      contentContainerStyle={[styles.contenu, { paddingTop: top + espace[7], paddingBottom: bottom + espace[7] }]}
+      style={{ flex: 1, backgroundColor: theme.fond.app }}
+      contentContainerStyle={[styles.contenu, { paddingTop: top + espace[7], paddingBottom: espace[7] }]}
     >
       <Etiquette texte="Version 3 · socle" jaune />
       <Text style={[typo.affiche, { color: theme.texte.principal }]}>{t.accueil.titre}</Text>
