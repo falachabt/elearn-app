@@ -124,6 +124,12 @@ export async function lireLues(): Promise<Record<string, number>> {
   return brut ? (JSON.parse(brut) as Record<string, number>) : {};
 }
 
+/** Leçon validée : au moins deux tiers de ses questions justes (2 sur 3). */
+export function quizReussi(score: number, total: number): boolean {
+  return total > 0 && score >= Math.ceil((total * 2) / 3);
+}
+
+/** Marque la leçon comme validée : elle compte alors dans la progression (questions réussies, ou leçon sans questions). */
 export async function marquerLue(lecon: number, cours: number): Promise<void> {
   const lues = await lireLues();
   if (lues[lecon] === cours) return;

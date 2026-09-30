@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import type { QuestionTiree } from '@/services/miniTest';
-import { lireQuizLecon } from '@/services/reviser';
+import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -26,11 +26,15 @@ type Etat =
   | { statut: 'quiz'; questions: QuestionTiree[] }
   | { statut: 'fini'; score: number; total: number };
 
-/** 3 questions pour vérifier une leçon (M5-01) : même lecteur que la mission, score à la fin. */
+/**
+ * 3 questions pour valider une leçon (M5-01) : même lecteur que la mission. 2 bonnes réponses sur 3 valident la
+ * leçon (elle compte dans la progression) ; sinon, relire ou réessayer. Une leçon sans questions est validée d'office.
+ */
 export function QuizLecon() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { cours, lecon } = useLocalSearchParams<{ cours: string; lecon: string }>();
+  const { cours, lecon, suivante, matiere } = useLocalSearchParams<{ cours: string; lecon: string; suivante?: string; matiere?: string }>();
+  const [essai, setEssai] = useState(0);
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const pret = useSessionPrete();
 
@@ -38,14 +42,17 @@ export function QuizLecon() {
     if (!pret) return;
     let actif = true;
     lireQuizLecon(getSupabase(), { cours: Number(cours), lecon: Number(lecon), vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } })
-      .then((questions) => actif && setEtat(questions.length ? { statut: 'quiz', questions } : { statut: 'vide' }))
+      .then(async (questions) => {
+        if (!questions.length) await marquerLue(Number(lecon), Number(cours));
+        if (actif) setEtat(questions.length ? { statut: 'quiz', questions } : { statut: 'vide' });
+      })
       .catch(() => actif && setEtat({ statut: 'erreur' }));
     return () => {
       actif = false;
     };
     // Libellés Vrai/Faux figés au tirage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cours, lecon, pret]);
+  }, [cours, lecon, pret, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
@@ -56,19 +63,33 @@ export function QuizLecon() {
         libelleFin={t('reviser.quizTerminer')}
         libelleFermer={t('reviser.quizFermer')}
         onFermer={retour}
-        onTermine={({ questions, reponses }) => {
+        onTermine={async ({ questions, reponses }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
+          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours));
           setEtat({ statut: 'fini', score, total: questions.length });
         }}
       />
     );
   }
 
-  const reussi = etat.statut === 'fini' && etat.score === etat.total;
+  const reussi = etat.statut === 'fini' && quizReussi(etat.score, etat.total);
+  const valide = reussi || etat.statut === 'vide';
+  const allerSuivante = () => router.replace({ pathname: '/cours/lecon', params: { id: String(suivante), cours: String(cours), matiere: matiere ?? '' } });
+  const reessayer = () => {
+    setEtat({ statut: 'chargement' });
+    setEssai((n) => n + 1);
+  };
+  const pied =
+    etat.statut === 'chargement' ? undefined : (
+      <View style={styles.pied}>
+        {valide && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
+        {etat.statut === 'fini' && !reussi ? <Bouton libelle={t('reviser.quizReessayer')} onPress={reessayer} /> : null}
+        <Bouton variante={valide && suivante ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
+      </View>
+    );
   return (
-    <Ecran pied={etat.statut === 'chargement' ? undefined : <Bouton libelle={t('reviser.quizRetour')} onPress={retour} retour />}>
-      <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
+    <Ecran pied={pied} entete={<BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}>
       {etat.statut === 'chargement' ? <Text style={[typo.texte, styles.centre, { color: theme.texte.secondaire }]}>{t('reviser.quizChargement')}</Text> : null}
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('reviser.quizErreur')} /> : null}
       {etat.statut === 'vide' ? <Banniere ton="info" titre={t('reviser.quizVide')} /> : null}
@@ -81,7 +102,7 @@ export function QuizLecon() {
               </View>
             </Rebond>
             <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.quizScore', { score: etat.score, total: etat.total })}</Text>
-            <Text style={[typo.texte, styles.texte, { color: theme.texte.secondaire }]}>{t(reussi ? 'reviser.quizBravo' : 'reviser.quizRelire')}</Text>
+            <Text style={[typo.texte, styles.texte, { color: theme.texte.secondaire }]}>{t(reussi ? 'reviser.quizValidee' : 'reviser.quizNonValidee')}</Text>
           </View>
         </Apparition>
       ) : null}
@@ -94,4 +115,5 @@ const styles = StyleSheet.create({
   resultat: { alignItems: 'center', gap: espace[4], marginTop: espace[7] },
   pastille: { width: 72, height: 72, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   texte: { textAlign: 'center' },
+  pied: { gap: espace[3] },
 });

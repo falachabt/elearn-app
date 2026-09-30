@@ -7,7 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { enregistrerProfil } from '@/services/profil';
-import { lireLues } from '@/services/reviser';
+import { lireLues, marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Chapitre } from '../Chapitre';
@@ -27,6 +27,10 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
+jest.mock('@gorhom/bottom-sheet', () => {
+  const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+});
 let mockPret: string | null = 'u1';
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
@@ -127,15 +131,40 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
   });
 
-  it('leçon : contenu, formule, marquée lue, leçon suivante', async () => {
+  it('leçon : contenu, formule ; pas validée à l’ouverture, feuille avant la leçon suivante', async () => {
     mockParams = { id: '11', cours: '1', matiere: 'Maths' };
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByText('Objectif')).toBeTruthy());
     expect(screen.getByText('2/3')).toBeTruthy();
     expect(screen.getByText(new RegExp(x.reviser.leconN.replace('{{n}}', '1').replace('{{total}}', '2')))).toBeTruthy();
-    await waitFor(async () => expect(await lireLues()).toEqual({ 11: 1 }));
+    expect(await lireLues()).toEqual({});
+    expect(screen.queryByText(x.reviser.invitationTitre)).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.suivante }));
+    expect(router.replace).not.toHaveBeenCalled();
+    expect(screen.getByText(x.reviser.invitationTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.invitationPasser }));
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
+    expect(await lireLues()).toEqual({});
+  });
+
+  it('leçon déjà validée : leçon suivante directe', async () => {
+    await marquerLue(11, 1);
+    mockParams = { id: '11', cours: '1', matiere: 'Maths' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByText('Objectif')).toBeTruthy());
+    expect(screen.queryByRole('button', { name: x.reviser.quiz })).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.suivante }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
+  });
+
+  it('feuille : répondre aux questions ouvre le quiz', async () => {
+    mockParams = { id: '11', cours: '1' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByText('Objectif')).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.suivante }));
+    const boutons = screen.getAllByRole('button', { name: x.reviser.quiz });
+    await fireEvent.press(boutons[boutons.length - 1]);
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/quiz', params: { cours: '1', lecon: '11', suivante: '12', matiere: '' } });
   });
 
   it('chapitre avec fiche : ouverture de la fiche', async () => {
@@ -171,7 +200,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.quiz })).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.quiz }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/quiz', params: { cours: '1', lecon: '11' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/quiz', params: { cours: '1', lecon: '11', suivante: '12', matiere: '' } });
   });
 
   it('quiz de leçon : 3 questions puis score', async () => {
@@ -186,13 +215,31 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
       await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.reviser.quizTerminer : x.miniTest.suivant }));
     }
     await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
-    expect(screen.getByText(x.reviser.quizRelire)).toBeTruthy();
+    expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy();
+    expect(await lireLues()).toEqual({ 11: 1 });
+  });
+
+  it('quiz de leçon raté : pas validée, réessayer', async () => {
+    mockParams = { cours: '1', lecon: '11', suivante: '12' };
+    await monter(<QuizLecon />);
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 1 ? `Bonne ${i}` : `Fausse ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.reviser.quizTerminer : x.miniTest.suivant }));
+    }
+    await waitFor(() => expect(screen.getByText(x.reviser.quizNonValidee)).toBeTruthy());
+    expect(await lireLues()).toEqual({});
+    expect(screen.queryByRole('button', { name: x.reviser.quizSuivante })).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.quizReessayer }));
+    await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
   });
 
   it('quiz de leçon sans questions', async () => {
     mockParams = { cours: '2', lecon: '21' };
     await monter(<QuizLecon />);
     await waitFor(() => expect(screen.getByText(x.reviser.quizVide)).toBeTruthy());
+    expect(await lireLues()).toEqual({ 21: 2 });
   });
 
   it('dernière leçon : terminer le chapitre', async () => {
