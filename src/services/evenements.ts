@@ -21,6 +21,7 @@ export type Evenements = {
   guardian_contact_withdrawn: Record<string, never>;
   account_deletion_requested: Record<string, never>;
   summary_opened: { cours: number };
+  connexion_echec: { cle: string; code: string | null; message: string };
   legal_opened: { page: 'cgu' | 'confidentialite' };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };

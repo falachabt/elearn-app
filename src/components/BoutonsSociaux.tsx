@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { appleAffiche, depsApple, depsOAuth, facebookAffiche } from '@/services/authNatif';
 import { cleErreur, connecterApple, connecterFacebook, connecterGoogle } from '@/services/compte';
 import { getSupabase } from '@/services/supabase';
@@ -32,7 +33,10 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       await action();
       onSucces();
     } catch (e) {
-      onErreur(cleErreur(e));
+      const cle = cleErreur(e);
+      const x = e as { code?: string; message?: string } | null;
+      suivre('connexion_echec', { cle, code: x?.code ?? null, message: (x?.message ?? '').slice(0, 200) });
+      onErreur(cle);
     } finally {
       setEnCours(false);
     }

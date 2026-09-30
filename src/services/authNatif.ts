@@ -13,6 +13,10 @@ export function depsOAuth(): DepsOAuth {
   return {
     urlRedirection: Linking.createURL('auth/callback'),
     ouvrirNavigateur: (url, redirection) => WebBrowser.openAuthSessionAsync(url, redirection),
+    pause: async () => {
+      await Promise.resolve(WebBrowser.dismissBrowser()).catch(() => undefined);
+      await new Promise((fin) => setTimeout(fin, 800));
+    },
   };
 }
 

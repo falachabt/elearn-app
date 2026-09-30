@@ -104,6 +104,8 @@ export async function deconnecter(client: Client): Promise<void> {
 export type DepsOAuth = {
   ouvrirNavigateur: (url: string, redirection: string) => Promise<{ type: string; url?: string }>;
   urlRedirection: string;
+  /** Laisse la fenêtre d'authentification précédente se fermer avant d'en rouvrir une (Android). */
+  pause?: () => Promise<void>;
 };
 
 /**
@@ -123,6 +125,7 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     if (!conversionInvite || mode.rattacher || (code !== 'identity_already_exists' && code !== 'manual_linking_disabled')) throw e;
     suivre('oauth_repli_connexion', { methode: fournisseur, raison: code });
     rattachement = false;
+    await deps.pause?.();
     await parcoursOAuth(client, fournisseur, deps, false);
   }
   const avecCode = await rattacherCode(client, codeParrainage);

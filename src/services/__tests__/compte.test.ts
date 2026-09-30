@@ -157,7 +157,10 @@ describe('Google', () => {
       .fn()
       .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists&error_description=x' })
       .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?code=g2' });
-    await connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur });
+    const pause = jest.fn(async () => undefined);
+    await connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur, pause });
+    expect(pause).toHaveBeenCalledTimes(1);
+    expect(pause.mock.invocationCallOrder[0]).toBeLessThan(ouvrirNavigateur.mock.invocationCallOrder[1]);
     expect(c.auth.linkIdentity).toHaveBeenCalled();
     expect(c.auth.signInWithOAuth).toHaveBeenCalled();
     expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('g2');
