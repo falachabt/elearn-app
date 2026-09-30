@@ -1,0 +1,55 @@
+name: EAS preview
+
+# Mises à jour OTA du canal « preview » à chaque push sur main ou sur la branche de travail,
+# et build Android de prévisualisation à la demande (Actions > EAS preview > Run workflow).
+# Nécessite le secret de dépôt EXPO_TOKEN (jeton d'accès Expo).
+
+on:
+  push:
+    branches: [main, claude/project-thread-cvknuk]
+  workflow_dispatch:
+    inputs:
+      build:
+        description: "Lancer aussi un build Android (APK) de prévisualisation"
+        type: boolean
+        default: false
+
+concurrency:
+  group: eas-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ota:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - run: npm test -- --ci
+      - name: Publier la mise à jour OTA
+        run: eas update --channel preview --environment preview --message "${{ github.event.head_commit.message || 'manuel' }}" --non-interactive
+
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.build }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - name: Build Android de prévisualisation
+        run: eas build --platform android --profile preview --non-interactive --no-wait

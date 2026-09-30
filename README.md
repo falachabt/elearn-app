@@ -46,3 +46,11 @@ Les images de l'app sont dans `assets/images/` (icône iOS 1024 opaque, icône a
 Règle de Benny : quand un dossier (`src/services`, `src/session`, `src/components`, …) contient beaucoup de fichiers, les tests vont dans un sous-dossier `__tests__` du même dossier, nommés `<fichier>.test.ts(x)`, et importent le code avec `../`. Jest ne lance que `**/__tests__/**/*.test.[jt]s(x)` (voir `jest.testMatch` dans `package.json`) ; un test placé ailleurs est donc ignoré. Pas de test dans `src/app/` (uniquement des routes).
 
 Les écrans n'utilisent que `theme.*` et les composants, jamais une couleur en dur. Plan de développement : phases 0 à 6, voir le document du projet.
+
+## Prévisualisation et mises à jour OTA (EAS)
+
+Le projet Expo est `@ezardive/elearn_mobile` (celui de l'ancienne app, identifiant `com.ezadrive.elearn`). Canal de la nouvelle app : `preview` (la prod reste sur `production`). Les variables `EXPO_PUBLIC_*` viennent de l'environnement EAS `preview`.
+
+- Chaque push sur `main` ou `claude/project-thread-cvknuk` publie une mise à jour OTA sur le canal `preview` (workflow `eas-preview.yml`).
+- Premier build installable : Actions > EAS preview > Run workflow, cocher « build ». Installer l'APK, puis les mises à jour arrivent seules.
+- Prérequis : secret de dépôt `EXPO_TOKEN`.

@@ -9,7 +9,8 @@
       "channel": "preview",
       "android": {
         "buildType": "apk"
-      }
+      },
+      "environment": "preview"
     },
     "development": {
       "developmentClient": true,
@@ -17,14 +18,16 @@
       "channel": "development",
       "android": {
         "buildType": "apk"
-      }
+      },
+      "environment": "development"
     },
     "production": {
       "autoIncrement": true,
       "channel": "production",
       "android": {
         "image": "latest"
-      }
+      },
+      "environment": "production"
     }
   },
   "submit": {
