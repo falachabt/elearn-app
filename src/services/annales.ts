@@ -84,3 +84,51 @@ export async function lireSujet(client: Client, id: number): Promise<DetailSujet
   if (!l) throw new Error('sujet introuvable');
   return { id: l.paper_id, titre: titreSujet(l.title), urlSujet: l.subject_url, urlCorrection: l.correction_url, correctionVerrouillee: l.correction_locked };
 }
+
+export type Concours = { id: string; nom: string; sigle: string; sujets: number };
+export type Dossier = { id: string; nom: string; sousDossiers: number; documents: number };
+export type Document = { id: string; nom: string; url: string | null; urlCorrection: string | null };
+
+/** Concours du catalogue, du plus fourni au moins fourni : chaque concours est un dossier d'annales. */
+export function concoursDuCatalogue(sujets: readonly Sujet[]): Concours[] {
+  const parId = new Map<string, Concours>();
+  for (const s of sujets) {
+    const c = parId.get(s.concoursId) ?? { id: s.concoursId, nom: s.concours, sigle: s.sigle, sujets: 0 };
+    c.sujets++;
+    parId.set(s.concoursId, c);
+  }
+  return [...parId.values()].sort((a, b) => b.sujets - a.sujets || a.sigle.localeCompare(b.sigle));
+}
+
+/**
+ * Nom lisible d'un document de classe : accents décomposés mal décodés (« Colle╠Çge » → « Collège »), extension et
+ * tirets bas retirés.
+ */
+export function nomDocument(nom: string): string {
+  return nom
+    .replace(/╠Ç/g, '̀')
+    .replace(/╠ü/g, '́')
+    .replace(/╠é/g, '̂')
+    .replace(/╠ê/g, '̈')
+    .replace(/╠º/g, '̧')
+    .normalize('NFC')
+    .replace(/\.(pdf|docx?|pptx?|jpe?g|png)$/i, '')
+    .replace(/_+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** Dossiers d'annales de la classe (racines, ou sous-dossiers de `parent`). */
+export async function lireDossiers(client: Client, p: { niveau: string; pays: string; parent?: string | null }): Promise<Dossier[]> {
+  const { data, error } = await client.rpc('class_document_folders', { p_level: p.niveau, p_country: p.pays, p_parent: p.parent ?? null });
+  if (error) throw error;
+  type Ligne = { folder_id: string; name: string; subfolders: number; documents: number };
+  return ((data ?? []) as Ligne[]).filter((l) => l.documents > 0).map((l) => ({ id: l.folder_id, nom: nomDocument(l.name), sousDossiers: l.subfolders, documents: l.documents }));
+}
+
+export async function lireDocuments(client: Client, dossier: string): Promise<Document[]> {
+  const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
+  if (error) throw error;
+  type Ligne = { document_id: string; name: string; url: string | null; correction_url: string | null };
+  return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: nomDocument(l.name), url: l.url, urlCorrection: l.correction_url }));
+}

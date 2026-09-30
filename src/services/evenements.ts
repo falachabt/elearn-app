@@ -23,6 +23,7 @@ export type Evenements = {
   summary_opened: { cours: number };
   connexion_echec: { cle: string; code: string | null; message: string };
   lesson_quiz_invited: { lecon: number };
+  class_document_opened: { correction: boolean };
   legal_opened: { page: 'cgu' | 'confidentialite' };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
