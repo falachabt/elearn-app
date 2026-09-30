@@ -1,5 +1,7 @@
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 
+import { suivre } from './analytics';
+
 type ClientAuth = Pick<SupabaseClient, 'auth'>;
 
 /**
@@ -15,5 +17,6 @@ export async function assurerSessionInvite(client: ClientAuth): Promise<Session>
   const { data: connexion, error: erreurConnexion } = await client.auth.signInAnonymously();
   if (erreurConnexion) throw erreurConnexion;
   if (!connexion.session) throw new Error('La connexion anonyme n’a pas renvoyé de session.');
+  suivre('session_invite_creee', {});
   return connexion.session;
 }

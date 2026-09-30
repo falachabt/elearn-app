@@ -2,6 +2,7 @@ import type { Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
 import { assurerSessionInvite } from '@/services/session';
+import { identifier } from '@/services/analytics';
 import { getSupabase } from '@/services/supabase';
 
 type Etat =
@@ -25,8 +26,12 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         const session = await assurerSessionInvite(client);
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
+        identifier(session.user.id);
         const { data } = client.auth.onAuthStateChange((_evenement, nouvelle) => {
-          if (actif && nouvelle) setEtat({ statut: 'pret', session: nouvelle, erreur: null });
+          if (actif && nouvelle) {
+            setEtat({ statut: 'pret', session: nouvelle, erreur: null });
+            identifier(nouvelle.user.id);
+          }
         });
         desabonner = () => data.subscription.unsubscribe();
       } catch (e) {

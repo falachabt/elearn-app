@@ -3,11 +3,17 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { Platform } from 'react-native';
 
+import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { initAnalytics, suivre } from '@/services/analytics';
+import { installerHandlerGlobal } from '@/services/erreurs';
 import { SessionProvider } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 
 SplashScreen.preventAutoHideAsync();
+initAnalytics();
+installerHandlerGlobal();
 
 function Navigation() {
   const { theme, sombre } = useTheme();
@@ -30,6 +36,10 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
+    suivre('app_opened', { plateforme: Platform.OS });
+  }, []);
+
+  useEffect(() => {
     if (pretes || erreur) SplashScreen.hideAsync();
   }, [pretes, erreur]);
 
@@ -37,9 +47,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <SessionProvider>
-        <Navigation />
-      </SessionProvider>
+      <ErrorBoundary>
+        <SessionProvider>
+          <Navigation />
+        </SessionProvider>
+      </ErrorBoundary>
     </ThemeProvider>
   );
 }
