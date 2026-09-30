@@ -22,6 +22,7 @@ export type Evenements = {
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
   connexion_reussie: { methode: 'email' | 'google' | 'apple' | 'facebook' | 'telephone' };
+  oauth_repli_connexion: { methode: 'google' | 'facebook'; raison: string };
   identite_rattachee: { methode: 'google' | 'apple' | 'facebook' };
   deconnexion: Record<string, never>;
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };

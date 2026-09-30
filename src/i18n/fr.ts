@@ -317,6 +317,7 @@ export const fr = {
       emailNonConfirme: 'Confirme d’abord ton adresse avec le lien reçu par e-mail.',
       tropDeTentatives: 'Trop d’essais. Attends quelques minutes puis réessaie.',
       reseau: 'Pas de connexion. Vérifie ton réseau puis réessaie.',
+      dejaLie: 'Ce compte est déjà lié à un autre profil Elearn. Connecte-toi directement avec lui.',
       annule: 'Connexion annulée. Tu peux réessayer quand tu veux.',
       methodeIndisponible: 'Cette méthode n’est pas encore disponible. Utilise ton e-mail.',
       appleIndisponible: 'Apple n’est pas disponible sur cet appareil.',

@@ -316,6 +316,7 @@ export const en: Textes = {
       emailNonConfirme: 'Confirm your address first with the link sent by email.',
       tropDeTentatives: 'Too many attempts. Wait a few minutes and try again.',
       reseau: 'No connection. Check your network and try again.',
+      dejaLie: 'This account is already linked to another Elearn profile. Sign in with it directly.',
       annule: 'Sign-in cancelled. You can try again whenever you like.',
       methodeIndisponible: 'This method isn’t available yet. Use your email.',
       appleIndisponible: 'Apple isn’t available on this device.',

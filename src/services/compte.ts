@@ -113,8 +113,28 @@ export type DepsOAuth = {
 export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<void> {
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
+  let rattachement = conversionInvite || !!mode.rattacher;
+  try {
+    await parcoursOAuth(client, fournisseur, deps, rattachement);
+  } catch (e) {
+    // Invité dont le compte Google existe déjà (ancien compte), ou rattachement désactivé côté Supabase :
+    // on ouvre directement ce compte. La progression gardée sur le téléphone reste ; celle du serveur n'est pas fusionnée.
+    const code = (e as { code?: string }).code;
+    if (!conversionInvite || mode.rattacher || (code !== 'identity_already_exists' && code !== 'manual_linking_disabled')) throw e;
+    suivre('oauth_repli_connexion', { methode: fournisseur, raison: code });
+    rattachement = false;
+    await parcoursOAuth(client, fournisseur, deps, false);
+  }
+  const avecCode = await rattacherCode(client, codeParrainage);
+  if (rattachement && conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
+  else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
+  else suivre('connexion_reussie', { methode: fournisseur });
+}
+
+/** Ouvre la page du fournisseur puis installe la session renvoyée sur `elearnprepa://auth/callback`. */
+async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, rattachement: boolean): Promise<void> {
   const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
-  const { data, error } = conversionInvite || mode.rattacher
+  const { data, error } = rattachement
     ? await client.auth.linkIdentity({ provider: fournisseur, options })
     : await client.auth.signInWithOAuth({ provider: fournisseur, options });
   if (error) throw error;
@@ -123,7 +143,8 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
   const resultat = await deps.ouvrirNavigateur(data.url, deps.urlRedirection);
   if (resultat.type !== 'success' || !resultat.url) throw new ErreurCompte('compte.erreurs.annule');
 
-  const { code, accessToken, refreshToken, erreur } = lireRetourOAuth(resultat.url);
+  const { code, accessToken, refreshToken, erreur, codeErreur } = lireRetourOAuth(resultat.url);
+  if (codeErreur === 'identity_already_exists' || codeErreur === 'manual_linking_disabled') throw Object.assign(new ErreurCompte('compte.erreurs.dejaLie'), { code: codeErreur });
   if (erreur) throw new ErreurCompte('compte.erreurs.annule');
   if (code) {
     const { error: e } = await client.auth.exchangeCodeForSession(code);
@@ -134,10 +155,6 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
   } else {
     throw new ErreurCompte('compte.erreurs.inconnue');
   }
-  const avecCode = await rattacherCode(client, codeParrainage);
-  if (conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
-  else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
-  else suivre('connexion_reussie', { methode: fournisseur });
 }
 
 /** `rattacher` : ajoute le fournisseur au compte connecté (ancien compte, A7) au lieu d'ouvrir une autre session. */
@@ -168,6 +185,7 @@ export function lireRetourOAuth(url: string) {
     accessToken: fragment.get('access_token'),
     refreshToken: fragment.get('refresh_token'),
     erreur: requete.get('error') ?? fragment.get('error'),
+    codeErreur: requete.get('error_code') ?? fragment.get('error_code'),
   };
 }
 

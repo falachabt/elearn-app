@@ -151,6 +151,34 @@ describe('Google', () => {
     expect(c.auth.updateUser).not.toHaveBeenCalled();
   });
 
+  it('invité dont le compte Google existe déjà : connexion directe à ce compte', async () => {
+    const c = faux();
+    const ouvrirNavigateur = jest
+      .fn()
+      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists&error_description=x' })
+      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?code=g2' });
+    await connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur });
+    expect(c.auth.linkIdentity).toHaveBeenCalled();
+    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
+    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('g2');
+    expect(suivre).toHaveBeenCalledWith('connexion_reussie', { methode: 'google' });
+  });
+
+  it('rattachement désactivé côté Supabase : connexion directe', async () => {
+    const c = faux(invite, { linkIdentity: jest.fn().mockResolvedValue({ data: {}, error: { code: 'manual_linking_disabled' } }) });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g3' }));
+    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
+    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('g3');
+  });
+
+  it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {
+    const c = faux(membre);
+    await expect(
+      connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists' }), null, { rattacher: true }),
+    ).rejects.toMatchObject({ cle: 'compte.erreurs.dejaLie' });
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
   it('navigateur fermé ou retour en erreur : message « annulé »', async () => {
     await expect(connecterGoogle(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
     await expect(connecterGoogle(faux(), deps({ type: 'success', url: 'elearnprepa://auth/callback?error=access_denied' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
