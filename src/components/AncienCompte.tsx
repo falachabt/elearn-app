@@ -9,12 +9,13 @@ import { cleErreur } from '@/services/compte';
 import { lireProfil, type Pays } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
 import { BoutonsSociaux } from './BoutonsSociaux';
 import { Champ } from './Champ';
+import { ChoixIndicatif } from './ChoixIndicatif';
 import { Ecran } from './Ecran';
 import { terminerParcoursArrivee } from './ParcoursArrivee';
 import { Rebond } from './Rebond';
@@ -117,24 +118,18 @@ export function AncienCompte() {
       <Secousse declencheur={secousse}>
         <View style={styles.groupe}>
           {erreurServeur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={t(erreurServeur)} /> : null}
-          <View style={styles.ligne}>
-            <View style={[styles.indicatif, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`+${indicatif}`}</Text>
-            </View>
-            <View style={styles.champ}>
-              <Champ
-                libelle={t('ancien.telephone')}
-                value={telephone}
-                onChangeText={setTelephone}
-                erreur={erreurs.telephone ? t(erreurs.telephone) : undefined}
-                placeholder={t('ancien.telephoneAide')}
-                keyboardType="phone-pad"
-                autoComplete="tel"
-                textContentType="telephoneNumber"
-                returnKeyType="next"
-              />
-            </View>
-          </View>
+          <Champ
+            libelle={t('ancien.telephone')}
+            value={telephone}
+            onChangeText={setTelephone}
+            erreur={erreurs.telephone ? t(erreurs.telephone) : undefined}
+            placeholder={t('ancien.telephoneAide')}
+            keyboardType="phone-pad"
+            autoComplete="tel"
+            textContentType="telephoneNumber"
+            returnKeyType="next"
+            prefixe={<ChoixIndicatif valeur={indicatif} onChange={setIndicatif} />}
+          />
           <Champ
             libelle={t('ancien.motDePasse')}
             value={motDePasse}
@@ -156,8 +151,6 @@ export function AncienCompte() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
-  ligne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },
   champ: { flex: 1 },
-  indicatif: { minHeight: cibleMin, paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, justifyContent: 'center' },
   pastille: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
 });

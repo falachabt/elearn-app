@@ -11,11 +11,12 @@ import { lireProfil, type Pays } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
+import { ChoixIndicatif } from '../ChoixIndicatif';
 import { Ecran } from '../Ecran';
 import { Interrupteur } from '../Interrupteur';
 import { Secousse } from '../Secousse';
@@ -64,7 +65,7 @@ export function ContactParent() {
   const enregistrer = async () => {
     const e: Erreurs = {
       nom: nom.trim() ? undefined : 'tuteur.erreurs.nom',
-      telephone: validerTelephone(telephone, indicatif) ?? undefined,
+      telephone: validerTelephone(telephone, indicatif) ? (telephone.trim() ? 'tuteur.erreurs.telephoneInvalide' : 'tuteur.erreurs.telephoneVide') : undefined,
       accord: accord ? undefined : 'tuteur.erreurs.accord',
     };
     setErreurs(e);
@@ -133,23 +134,17 @@ export function ContactParent() {
         <Secousse declencheur={secousse}>
           <View style={styles.groupe}>
             <Champ libelle={t('tuteur.nom')} value={nom} onChangeText={setNom} erreur={erreurs.nom ? t(erreurs.nom) : undefined} autoCapitalize="words" maxLength={60} returnKeyType="next" />
-            <View style={styles.ligne}>
-              <View style={[styles.indicatif, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`+${indicatif}`}</Text>
-              </View>
-              <View style={styles.flex}>
-                <Champ
-                  libelle={t('tuteur.telephone')}
-                  value={telephone}
-                  onChangeText={setTelephone}
-                  erreur={erreurs.telephone ? t(erreurs.telephone) : undefined}
-                  placeholder={t('tuteur.telephoneAide')}
-                  keyboardType="phone-pad"
-                  autoComplete="tel"
-                  textContentType="telephoneNumber"
-                />
-              </View>
-            </View>
+            <Champ
+              libelle={t('tuteur.telephone')}
+              value={telephone}
+              onChangeText={setTelephone}
+              erreur={erreurs.telephone ? t(erreurs.telephone) : undefined}
+              placeholder={t('tuteur.telephoneAide')}
+              keyboardType="phone-pad"
+              autoComplete="tel"
+              textContentType="telephoneNumber"
+              prefixe={<ChoixIndicatif valeur={indicatif} onChange={setIndicatif} />}
+            />
             <Interrupteur libelle={t('tuteur.accord')} aide={t('tuteur.accordAide')} valeur={accord} onChange={setAccord} />
             {erreurs.accord ? <Text style={[typo.petit, { color: theme.etat.erreur }]}>{t(erreurs.accord)}</Text> : null}
           </View>
@@ -161,8 +156,6 @@ export function ContactParent() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
-  ligne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },
   flex: { flex: 1 },
-  indicatif: { minHeight: cibleMin, paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, justifyContent: 'center' },
   fiche: { gap: espace[2], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
 });

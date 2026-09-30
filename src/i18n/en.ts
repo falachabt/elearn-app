@@ -303,6 +303,12 @@ export const en: Textes = {
     trop: 'You created many links today. Try again tomorrow or use the last one sent.',
   },
   pays: { CM: 'Cameroon', CI: 'Côte d’Ivoire', SN: 'Senegal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'DR Congo', FR: 'France' },
+  indicatifs: {
+    titre: 'Country code',
+    changer: 'Change the country code, currently +{{code}}',
+    fermer: 'Close',
+    pays: { CM: 'Cameroon', CI: 'Côte d’Ivoire', SN: 'Senegal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'DR Congo', CG: 'Congo', BJ: 'Benin', TG: 'Togo', ML: 'Mali', NE: 'Niger', GN: 'Guinea', TD: 'Chad', CF: 'Central African Republic', GQ: 'Equatorial Guinea', NG: 'Nigeria', FR: 'France', BE: 'Belgium', CH: 'Switzerland', CA: 'Canada', US: 'United States', GB: 'United Kingdom', DE: 'Germany' },
+  },
   compte: {
     ancienGoogle: 'Had an Elearn account? Sign in with the same Google account.',
     titreCreer: 'Keep your score and progress',
@@ -397,6 +403,8 @@ export const en: Textes = {
     invite: 'Create your account first to add a parent or guardian.',
     erreur: 'Saving failed. Check your connection.',
     erreurs: {
+      telephoneVide: 'Enter their WhatsApp number.',
+      telephoneInvalide: 'This number looks incomplete. Check it.',
       nom: 'Enter their first or last name.',
       accord: 'Your parent or guardian must agree.',
     },

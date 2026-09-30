@@ -114,41 +114,44 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
               {entete}
             </View>
           ) : null}
-          {defilement ? (
-            <ScrollView
-              ref={defileur}
-              testID="ecran-defilement"
-              style={styles.racine}
-              contentContainerStyle={[styles.contenu, padding, contenuStyle]}
-              keyboardShouldPersistTaps="handled"
-              keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
-              automaticallyAdjustKeyboardInsets
-              showsVerticalScrollIndicator={false}
-              onScroll={suivreDefilement}
-              scrollEventThrottle={64}
-            >
-              {children}
-            </ScrollView>
-          ) : (
-            <View style={[styles.racine, styles.contenu, padding, contenuStyle]}>{children}</View>
-          )}
-          {defile.haut ? (
-            <View style={[styles.haut, { bottom: (pied ? 96 : insetBas ? insets.bottom : 0) + espace[5] }]}>
-              <Appui
-                accessibilityRole="button"
-                accessibilityLabel={t('ecrans.retourHaut')}
-                onPress={() => defileur.current?.scrollTo({ y: 0, animated: true })}
-                rayon={rayon.pilule}
-                ombre={3}
-                decalage={2}
-                couleurOmbre={theme.ombre}
+          {/* Le bouton « Revenir en haut » est posé sur la zone qui défile : il reste au-dessus du pied. */}
+          <View style={styles.racine}>
+            {defilement ? (
+              <ScrollView
+                ref={defileur}
+                testID="ecran-defilement"
+                style={styles.racine}
+                contentContainerStyle={[styles.contenu, padding, contenuStyle]}
+                keyboardShouldPersistTaps="handled"
+                keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+                automaticallyAdjustKeyboardInsets
+                showsVerticalScrollIndicator={false}
+                onScroll={suivreDefilement}
+                scrollEventThrottle={64}
               >
-                <View style={[styles.hautBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  <Ionicons name="arrow-up" size={22} color={theme.texte.principal} />
-                </View>
-              </Appui>
-            </View>
-          ) : null}
+                {children}
+              </ScrollView>
+            ) : (
+              <View style={[styles.racine, styles.contenu, padding, contenuStyle]}>{children}</View>
+            )}
+            {defile.haut ? (
+              <View style={styles.haut}>
+                <Appui
+                  accessibilityRole="button"
+                  accessibilityLabel={t('ecrans.retourHaut')}
+                  onPress={() => defileur.current?.scrollTo({ y: 0, animated: true })}
+                  rayon={rayon.pilule}
+                  ombre={3}
+                  decalage={2}
+                  couleurOmbre={theme.ombre}
+                >
+                  <View style={[styles.hautBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                    <Ionicons name="arrow-up" size={22} color={theme.texte.principal} />
+                  </View>
+                </Appui>
+              </View>
+            ) : null}
+          </View>
           {pied ? <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View> : null}
         </View>
       </KeyboardAvoidingView>
@@ -160,7 +163,7 @@ const styles = StyleSheet.create({
   racine: { flex: 1 },
   contenu: { flexGrow: 1, paddingHorizontal: espace[6], gap: espace[6] },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4], paddingHorizontal: espace[6], paddingTop: espace[4], paddingBottom: espace[3], borderBottomWidth: bord.fin },
-  haut: { position: 'absolute', right: espace[6] },
+  haut: { position: 'absolute', right: espace[6], bottom: espace[5] },
   hautBouton: { width: 48, height: 48, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   pied: { paddingHorizontal: espace[6], paddingTop: espace[4], gap: espace[4] },
 });

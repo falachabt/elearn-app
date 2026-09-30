@@ -304,6 +304,12 @@ export const fr = {
     trop: 'Tu as créé beaucoup de liens aujourd’hui. Réessaie demain ou utilise le dernier envoyé.',
   },
   pays: { CM: 'Cameroun', CI: 'Côte d’Ivoire', SN: 'Sénégal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'RD Congo', FR: 'France' },
+  indicatifs: {
+    titre: 'Indicatif du pays',
+    changer: 'Changer l’indicatif, actuellement +{{code}}',
+    fermer: 'Fermer',
+    pays: { CM: 'Cameroun', CI: 'Côte d’Ivoire', SN: 'Sénégal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'RD Congo', CG: 'Congo', BJ: 'Bénin', TG: 'Togo', ML: 'Mali', NE: 'Niger', GN: 'Guinée', TD: 'Tchad', CF: 'Centrafrique', GQ: 'Guinée équatoriale', NG: 'Nigeria', FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada', US: 'États-Unis', GB: 'Royaume-Uni', DE: 'Allemagne' },
+  },
   compte: {
     ancienGoogle: 'Tu avais un compte Elearn ? Connecte-toi avec le même compte Google.',
     titreCreer: 'Garde ton score et ta progression',
@@ -398,6 +404,8 @@ export const fr = {
     invite: 'Crée d’abord ton compte pour ajouter un parent ou tuteur.',
     erreur: 'L’enregistrement a échoué. Vérifie ta connexion.',
     erreurs: {
+      telephoneVide: 'Entre son numéro WhatsApp.',
+      telephoneInvalide: 'Ce numéro semble incomplet. Vérifie-le.',
       nom: 'Entre son prénom ou son nom.',
       accord: 'Il faut l’accord de ton parent ou tuteur.',
     },
