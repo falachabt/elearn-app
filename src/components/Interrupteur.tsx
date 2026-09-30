@@ -15,9 +15,7 @@ export function Interrupteur({ libelle, aide, valeur, onChange }: Props) {
         {aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text> : null}
       </View>
       <Switch
-        accessibilityRole="switch"
         accessibilityLabel={libelle}
-        accessibilityState={{ checked: valeur }}
         value={valeur}
         onValueChange={onChange}
         trackColor={{ false: theme.bord.doux, true: theme.marque.principale }}
