@@ -1,17 +1,6 @@
-import { useEffect, useState } from 'react';
-import { AccessibilityInfo } from 'react-native';
+import { useFeedback } from './useFeedback';
 
-/** Vrai quand l'utilisateur a demandé « Réduire les animations » dans les réglages du système. */
+/** Vrai quand l'utilisateur a demandé de réduire les animations (réglage du système ou interrupteur de l'app). */
 export function useReduireAnimations(): boolean {
-  const [reduit, setReduit] = useState(false);
-  useEffect(() => {
-    let actif = true;
-    AccessibilityInfo.isReduceMotionEnabled().then((v) => actif && setReduit(v)).catch(() => {});
-    const abo = AccessibilityInfo.addEventListener('reduceMotionChanged', setReduit);
-    return () => {
-      actif = false;
-      abo.remove();
-    };
-  }, []);
-  return reduit;
+  return useFeedback().reduit;
 }

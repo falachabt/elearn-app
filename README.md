@@ -73,6 +73,16 @@ Règle : **tout écran qui contient un `Champ` (ou un `TextInput`) passe par le 
 
 `BarresSysteme` (racine) règle la barre d'état (`expo-status-bar`, icônes selon le thème) et le fond racine via `expo-system-ui` (visible sous la barre de navigation Android transparente en edge-to-edge). Quand le réglage de thème est manuel, `ThemeProvider` aligne le mode nuit du système (`Appearance.setColorScheme`) pour que les icônes de la barre de navigation gardent le contraste. Non vérifiable sans appareil : le comportement réel du clavier et des icônes de la barre de navigation Android ; les tests couvrent le rendu, les réglages par thème et les insets.
 
+## Retours d'interaction (M16) : sons, vibrations, animations
+
+Aucun écran n'appelle un son ou une vibration en direct : tout passe par `useFeedback()` (`src/components/useFeedback.ts`) qui expose `declencher('success' | 'error' | 'select' | 'reward' | 'celebrate')`, `reduit` (animations réduites : réglage du système OU interrupteur de l'app) et `durees` (`mouvement` du thème : appui 120, standard 200, feuille 300 ms). Le service `src/services/retours.ts` fait le travail : `expo-haptics` (notification succès/erreur, sélection, impact ; repli `Vibration.vibrate(25)` sur Android sans haptique fin) et `expo-audio` (5 sons préchargés au démarrage par `precharger()`, `playsInSilentMode: false`, `interruptionMode: 'mixWithOthers'` pour ne pas couper la musique de l'élève).
+
+- Préférences (Sons, Vibrations, Animations réduites) mémorisées dans AsyncStorage (`retours.preferences`, aussi en invité), par défaut sons et vibrations activés, animations complètes. Écran `src/app/parametres.tsx` : trois interrupteurs (`Interrupteur`) + aperçu de chaque moment ; effet immédiat.
+- Composants branchés : `Secousse` (erreur : haptique + son d'échec ; le mouvement visuel est supprimé si animations réduites, le retour reste selon les préférences), `Rebond` (`moment` : `success` par défaut, `reward`, `celebrate`), `Appui`/`Bouton` (`retour` : léger `select`, désactivé par défaut).
+- Sons : `assets/sounds/{succes,echec,tap,recompense,celebration}.wav`, synthétisés par `python3 scripts/fabriquer-sons.py` (originaux, sans droits tiers, 133 Ko au total, < 400 ms, attaque et extinction en cosinus pour éviter tout clic, pic à -6 dB). `notification.wav` (notifications) n'est pas préchargé. Les assets voyagent en OTA.
+- Analytics : `feedback_setting_changed` et `celebration_seen` (propriétés `sound_on`, `haptics_on`, `reduced_motion`).
+- Limites : sur Android, `expo-audio` ne sait pas détecter le mode vibreur/silencieux (le volume média est indépendant de la sonnerie) : le son suit le volume média ; seule la règle iOS (`playsInSilentMode: false`) est appliquée par la bibliothèque. Synchronisation des préférences avec le profil à l'inscription : à faire avec le compte (M16-03). Rien de tout cela n'est vérifiable sans appareil (son réel, haptique).
+
 Les écrans n'utilisent que `theme.*` et les composants, jamais une couleur en dur. Plan de développement : phases 0 à 6, voir le document du projet.
 
 ## Prévisualisation et mises à jour OTA (EAS)

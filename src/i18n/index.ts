@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getLocales } from 'expo-localization';
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -51,7 +52,26 @@ void i18n.use(initReactI18next).init({
   returnNull: false,
 });
 
-/** Change la langue de l'interface ; une langue inconnue retombe sur le français. */
-export function changerLangue(code: string) {
-  return i18n.changeLanguage(langueSupportee(code) ?? LANGUE_PAR_DEFAUT);
+export const CLE_LANGUE = 'langue';
+
+/** Change la langue de l'interface ; une langue inconnue retombe sur le français. Le choix est mémorisé. */
+export async function changerLangue(code: string) {
+  const langue = langueSupportee(code) ?? LANGUE_PAR_DEFAUT;
+  await i18n.changeLanguage(langue);
+  try {
+    await AsyncStorage.setItem(CLE_LANGUE, langue);
+  } catch {
+    // Non mémorisé : la langue reste appliquée pour cette session.
+  }
+}
+
+/** Au démarrage : applique la langue choisie à la main lors d'une session précédente (sinon celle de l'appareil). */
+export async function restaurerLangue(): Promise<Langue | undefined> {
+  try {
+    const memorisee = langueSupportee(await AsyncStorage.getItem(CLE_LANGUE));
+    if (memorisee && memorisee !== i18n.language) await i18n.changeLanguage(memorisee);
+    return memorisee;
+  } catch {
+    return undefined;
+  }
 }

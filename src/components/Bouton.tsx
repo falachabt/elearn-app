@@ -13,6 +13,8 @@ type Props = {
   variante?: Variante;
   petit?: boolean;
   desactive?: boolean;
+  /** Léger retour (vibration de sélection + tap) à l'appui. */
+  retour?: boolean;
 };
 
 const DECALAGE = 4;
@@ -33,7 +35,7 @@ export function couleursBouton(theme: Theme, variante: Variante, desactive = fal
 }
 
 /** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
-export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive }: Props) {
+export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour }: Props) {
   const { theme } = useTheme();
   const { fond, texte, bord: couleurBord, ombre } = couleursBouton(theme, variante, desactive);
   const plat = variante === 'texte';
@@ -43,6 +45,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
       accessibilityRole="button"
       accessibilityState={{ disabled: !!desactive }}
       disabled={desactive}
+      retour={retour}
       onPress={onPress}
       decalage={plat ? 0 : DECALAGE}
       ombre={plat ? 0 : DECALAGE}

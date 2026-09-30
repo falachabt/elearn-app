@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, View, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
-import { useReduireAnimations } from './useReduireAnimations';
+import { useFeedback } from './useFeedback';
 
 type Props = Omit<PressableProps, 'style' | 'children'> & {
   children: React.ReactNode;
@@ -12,13 +12,15 @@ type Props = Omit<PressableProps, 'style' | 'children'> & {
   ombre?: number;
   couleurOmbre?: string;
   rayon?: number;
+  /** Léger retour (vibration de sélection et tap) à l'appui. Désactivé par défaut. */
+  retour?: boolean;
 };
 
 const RESSORT = { damping: 14, stiffness: 600, mass: 0.6 } as const;
 
 /** Wrapper pressable néo-brutal : le contenu s'enfonce de `decalage` px, retour sec en ressort. Sans animation si « Réduire les animations ». */
-export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, disabled, onPressIn, onPressOut, ...reste }: Props) {
-  const reduit = useReduireAnimations();
+export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, retour, disabled, onPressIn, onPressOut, ...reste }: Props) {
+  const { reduit, declencher } = useFeedback();
   const d = Math.max(0, decalage);
   const enfonce = useSharedValue(0);
   const anime = useAnimatedStyle(() => ({ transform: [{ translateX: enfonce.value * d }, { translateY: enfonce.value * d }] }));
@@ -32,6 +34,7 @@ export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, 
       disabled={disabled}
       onPressIn={(e) => {
         vers(1);
+        if (retour) declencher('select');
         onPressIn?.(e);
       }}
       onPressOut={(e) => {

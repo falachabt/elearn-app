@@ -38,5 +38,18 @@ export const en: Textes = {
     obligatoireTitre: 'Update required',
     obligatoireTexte: 'This version is no longer supported. Update to keep using Elearn Prepa.',
   },
+  parametres: {
+    titre: 'Sounds and vibrations',
+    retour: 'Back',
+    sons: 'Sounds',
+    sonsAide: 'Sounds stay off when your phone is on silent.',
+    vibrations: 'Vibrations',
+    vibrationsAide: 'A light touch response for successes, errors and choices.',
+    animationsReduites: 'Reduced motion',
+    animationsReduitesAide: 'Removes large movements. Also follows your phone setting.',
+    apercuTitre: 'Preview',
+    apercuAide: 'Tap a moment to try it with your settings.',
+    moments: { success: 'Success', error: 'Error', select: 'Selection', reward: 'Reward', celebrate: 'Celebration' },
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

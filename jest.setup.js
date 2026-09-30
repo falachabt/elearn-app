@@ -10,3 +10,16 @@ jest.mock('expo-localization', () => ({
 // Reanimated 4 / Worklets : modules natifs absents sous Jest, on utilise leurs mocks officiels.
 jest.mock('react-native-worklets', () => require('react-native-worklets/src/mock'));
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
+
+// expo-audio et expo-haptics : modules natifs absents sous Jest (les tests du service les remplacent par leurs propres mocks).
+jest.mock('expo-audio', () => ({
+  createAudioPlayer: jest.fn(() => ({ seekTo: jest.fn(() => Promise.resolve()), play: jest.fn() })),
+  setAudioModeAsync: jest.fn(() => Promise.resolve()),
+}));
+jest.mock('expo-haptics', () => ({
+  notificationAsync: jest.fn(() => Promise.resolve()),
+  selectionAsync: jest.fn(() => Promise.resolve()),
+  impactAsync: jest.fn(() => Promise.resolve()),
+  NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
+  ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
+}));

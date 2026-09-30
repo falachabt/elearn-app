@@ -9,6 +9,8 @@ import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
+import { restaurerLangue } from '@/i18n';
+import { precharger } from '@/services/retours';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { SessionProvider } from '@/session/SessionProvider';
@@ -40,6 +42,12 @@ export default function RootLayout() {
 
   useEffect(() => {
     suivre('app_opened', { plateforme: Platform.OS });
+  }, []);
+
+  useEffect(() => {
+    // Langue choisie à la main, préférences de retours et sons préchargés (jamais bloquant).
+    void restaurerLangue();
+    void precharger();
   }, []);
 
   useEffect(() => {
