@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, rayon, typo, type Theme } from '@/theme/theme';
 
 import { Appui } from './Appui';
 
-type Variante = 'primaire' | 'secondaire' | 'accent' | 'danger' | 'texte';
+export type Variante = 'primaire' | 'secondaire' | 'accent' | 'danger' | 'texte';
 
 type Props = {
   libelle: string;
@@ -17,16 +17,25 @@ type Props = {
 
 const DECALAGE = 4;
 
-/** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
-export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive }: Props) {
-  const { theme } = useTheme();
+/** Couleurs d'une variante (texte, fond, bord, ombre), toutes issues des jetons du thème. Testées en contraste WCAG AA. */
+export function couleursBouton(theme: Theme, variante: Variante, desactive = false) {
+  if (desactive) {
+    return { fond: theme.fond.creux, texte: theme.texte.secondaire, bord: theme.bord.doux, ombre: theme.bord.doux };
+  }
   const fond =
     variante === 'primaire' ? theme.marque.principale
     : variante === 'accent' ? theme.accent.soleil
     : variante === 'danger' ? theme.etat.erreur
     : variante === 'secondaire' ? theme.fond.surface
     : 'transparent';
-  const couleurTexte = variante === 'texte' ? theme.texte.lien : variante === 'secondaire' ? theme.texte.principal : theme.texte.surCouleur;
+  const texte = variante === 'texte' ? theme.texte.lien : variante === 'secondaire' ? theme.texte.principal : theme.texte.surCouleur;
+  return { fond, texte, bord: variante === 'texte' ? 'transparent' : theme.bord.fort, ombre: theme.ombre };
+}
+
+/** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
+export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive }: Props) {
+  const { theme } = useTheme();
+  const { fond, texte, bord: couleurBord, ombre } = couleursBouton(theme, variante, desactive);
   const plat = variante === 'texte';
 
   return (
@@ -37,17 +46,17 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
       onPress={onPress}
       decalage={plat ? 0 : DECALAGE}
       ombre={plat ? 0 : DECALAGE}
-      couleurOmbre={theme.ombre}
+      couleurOmbre={ombre}
       rayon={rayon.m}
-      style={[styles.zone, { opacity: desactive ? 0.4 : 1 }]}
+      style={styles.zone}
     >
       <View
         style={[
           styles.corps,
-          { minHeight: petit ? cibleMin - 8 : 52, backgroundColor: fond, borderColor: plat ? 'transparent' : theme.bord.fort },
+          { minHeight: petit ? cibleMin - 8 : 52, backgroundColor: fond, borderColor: couleurBord },
         ]}
       >
-        <Text style={[petit ? typo.boutonPetit : typo.bouton, { color: couleurTexte }]}>{libelle}</Text>
+        <Text style={[petit ? typo.boutonPetit : typo.bouton, { color: texte }]}>{libelle}</Text>
       </View>
     </Appui>
   );

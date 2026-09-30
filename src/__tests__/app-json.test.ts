@@ -114,3 +114,29 @@ describe('app.json : configuration native', () => {
     for (const s of plugin[1].sounds) expect(existsSync(join(racine, s))).toBe(true);
   });
 });
+
+describe('app.config.ts : mise à jour obligatoire', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const configurer = require('../../app.config').default as (c: { config: unknown }) => { extra: Record<string, unknown>; runtimeVersion: unknown; plugins: unknown };
+  const avec = (valeur?: string) => {
+    const avant = process.env.UPDATE_OBLIGATOIRE;
+    if (valeur === undefined) delete process.env.UPDATE_OBLIGATOIRE; else process.env.UPDATE_OBLIGATOIRE = valeur;
+    try { return configurer({ config: expo }); } finally { if (avant === undefined) delete process.env.UPDATE_OBLIGATOIRE; else process.env.UPDATE_OBLIGATOIRE = avant; }
+  };
+
+  it('extra.obligatoire vaut true seulement avec UPDATE_OBLIGATOIRE=1', () => {
+    expect(avec('1').extra.obligatoire).toBe(true);
+    for (const v of [undefined, '0', '', 'true']) expect(avec(v).extra.obligatoire).toBe(false);
+  });
+
+  it('conserve extra.eas, runtimeVersion et plugins d’app.json (aucun changement natif)', () => {
+    const c = avec('1');
+    expect(c.extra.eas).toEqual(expo.extra.eas);
+    expect(c.runtimeVersion).toEqual(expo.runtimeVersion);
+    expect(c.plugins).toEqual(expo.plugins);
+  });
+
+  it('app.json ne porte plus le drapeau (il vient de l’environnement)', () => {
+    expect(expo.extra).not.toHaveProperty('obligatoire');
+  });
+});
