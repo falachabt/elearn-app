@@ -1,0 +1,146 @@
+{
+  "expo": {
+    "name": "Elearn Prepa",
+    "slug": "elearn_mobile",
+    "version": "3.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ezadrive.elearn",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSCameraUsageDescription": "Elearn Prepa utilise la caméra pour photographier une question ou un exercice et obtenir de l'aide.",
+        "NSPhotoLibraryUsageDescription": "Elearn Prepa accède à tes photos uniquement pour que tu choisisses l'image d'une question ou d'un exercice.",
+        "NSPhotoLibraryAddUsageDescription": "Elearn Prepa enregistre dans tes photos les images que tu choisis d'exporter.",
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
+      },
+      "usesAppleSignIn": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#10B981",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.ezadrive.elearn",
+      "permissions": [
+        "CAMERA",
+        "POST_NOTIFICATIONS",
+        "VIBRATE"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFF7E3",
+          "dark": {
+            "image": "./assets/images/splash-icon.png",
+            "backgroundColor": "#141614"
+          }
+        }
+      ],
+      "expo-status-bar",
+      "expo-localization",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Elearn Prepa utilise la caméra pour photographier une question ou un exercice et obtenir de l'aide.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Elearn Prepa accède à tes photos uniquement pour que tu choisisses l'image d'une question ou d'un exercice.",
+          "cameraPermission": "Elearn Prepa utilise la caméra pour photographier une question ou un exercice et obtenir de l'aide.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/notification-icon.png",
+          "color": "#10B981",
+          "defaultChannel": "default",
+          "sounds": [
+            "./assets/sounds/notification.wav"
+          ]
+        }
+      ],
+      "expo-secure-store",
+      "expo-web-browser",
+      "expo-apple-authentication",
+      [
+        "expo-video",
+        {
+          "supportsBackgroundPlayback": false,
+          "supportsPictureInPicture": true
+        }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false
+        }
+      ],
+      "expo-image",
+      "expo-sharing",
+      "expo-document-picker",
+      [
+        "@react-native-community/datetimepicker",
+        {}
+      ],
+      "./plugins/withAndroid16KBPageSize.js",
+      "./plugins/withBlockMediaPermissions.js",
+      "expo-asset"
+    ],
+    "scheme": "elearnprepa",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "owner": "ezardive",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7d5dd0db-20aa-4d48-8efe-e66031ebf960"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7d5dd0db-20aa-4d48-8efe-e66031ebf960"
+      }
+    }
+  }
+}

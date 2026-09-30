@@ -1,0 +1,96 @@
+name: EAS preview
+
+# Mises à jour OTA du canal « preview » à chaque push sur main ou sur la branche de travail,
+# et build Android de prévisualisation à la demande (Actions > EAS preview > Run workflow,
+# ou un commit dont le message contient [build]).
+# Un commit dont le message contient [obligatoire] publie une mise à jour obligatoire.
+# Nécessite le secret de dépôt EXPO_TOKEN (jeton d'accès Expo).
+
+on:
+  push:
+    branches: [main, claude/project-thread-cvknuk]
+  workflow_dispatch:
+    inputs:
+      build:
+        description: "Lancer aussi un build Android (APK) de prévisualisation"
+        type: boolean
+        default: false
+
+concurrency:
+  group: eas-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Tests Jest (dont garde-fou des appels natifs dangereux)
+        run: npm test -- --ci
+      - name: Typage
+        run: npm run typecheck
+      - name: Export Android (bundle Metro + compilation Hermes, comme l'OTA)
+        run: npx expo export --platform android --output-dir "$RUNNER_TEMP/export-android"
+      - name: Le bundle Hermes existe et n'est pas vide
+        run: |
+          f=$(find "$RUNNER_TEMP/export-android/_expo/static/js/android" -name '*.hbc' | head -n1)
+          test -n "$f" && test "$(stat -c %s "$f")" -gt 1000000 || { echo "::error::Bundle Android absent ou trop petit"; exit 1; }
+          ls -l "$f"
+
+  ota:
+    needs: verifier
+    runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+    steps:
+      - name: Jeton Expo absent
+        if: ${{ env.EXPO_TOKEN == '' }}
+        run: echo "::warning::Secret EXPO_TOKEN absent, publication OTA ignorée."
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: actions/checkout@v4
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - if: ${{ env.EXPO_TOKEN != '' }}
+        run: npm ci
+      - name: Publier la mise à jour OTA
+        if: ${{ env.EXPO_TOKEN != '' }}
+        env:
+          MESSAGE: ${{ github.event.head_commit.message || 'manuel' }}
+        run: |
+          # Le message arrive par variable d'environnement (jamais interpolé dans le script).
+          # [obligatoire] n'importe où (titre ou corps) => mise à jour obligatoire (extra.obligatoire dans app.config.ts).
+          if printf '%s' "$MESSAGE" | grep -qiF '[obligatoire]'; then UPDATE_OBLIGATOIRE=1; else UPDATE_OBLIGATOIRE=0; fi
+          export UPDATE_OBLIGATOIRE
+          echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
+          eas update --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
+
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.build) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[build]')) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: npm ci
+      - name: Build Android de prévisualisation
+        run: eas build --platform android --profile preview --non-interactive --no-wait
