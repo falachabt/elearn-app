@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
-import { SessionProvider, useSession } from './SessionProvider';
+import { SessionProvider, useSession } from '../SessionProvider';
 
 const mockAssurer = jest.fn();
 const mockGetSupabase = jest.fn();

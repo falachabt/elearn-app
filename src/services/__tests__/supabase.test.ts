@@ -1,4 +1,4 @@
-import { ConfigSupabaseManquante, getSupabase, reinitialiserClientPourTests } from './supabase';
+import { ConfigSupabaseManquante, getSupabase, reinitialiserClientPourTests } from '../supabase';
 
 afterEach(() => reinitialiserClientPourTests());
 

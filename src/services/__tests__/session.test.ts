@@ -1,4 +1,4 @@
-import { assurerSessionInvite } from './session';
+import { assurerSessionInvite } from '../session';
 
 const session = { access_token: 'a', user: { id: 'u1', is_anonymous: true } } as never;
 

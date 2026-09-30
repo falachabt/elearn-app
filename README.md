@@ -31,4 +31,8 @@ Le script exporte l'app web, la sert en statique, l'ouvre dans Chromium (Playwri
 - `src/theme/` : jetons de design (`theme.ts`, issu du guide de design) et `ThemeProvider` (Clair, Sombre, Système).
 - `src/i18n/` : tous les textes de l'interface, en français pour l'instant.
 
+## Rangement des tests
+
+Règle de Benny : quand un dossier (`src/services`, `src/session`, `src/components`, …) contient beaucoup de fichiers, les tests vont dans un sous-dossier `__tests__` du même dossier, nommés `<fichier>.test.ts(x)`, et importent le code avec `../`. Jest ne lance que `**/__tests__/**/*.test.[jt]s(x)` (voir `jest.testMatch` dans `package.json`) ; un test placé ailleurs est donc ignoré. Pas de test dans `src/app/` (uniquement des routes).
+
 Les écrans n'utilisent que `theme.*` et les composants, jamais une couleur en dur. Plan de développement : phases 0 à 6, voir le document du projet.

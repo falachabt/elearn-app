@@ -1,5 +1,5 @@
-import { analyticsActif, identifier, initAnalytics, reinitialiserAnalyticsPourTests, suivre } from './analytics';
-import type { Evenements } from './evenements';
+import { analyticsActif, identifier, initAnalytics, reinitialiserAnalyticsPourTests, suivre } from '../analytics';
+import type { Evenements } from '../evenements';
 
 const mockCapture = jest.fn();
 const mockIdentify = jest.fn();
