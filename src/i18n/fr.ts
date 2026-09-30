@@ -278,6 +278,7 @@ export const fr = {
   },
   pays: { CM: 'Cameroun', CI: 'Côte d’Ivoire', SN: 'Sénégal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'RD Congo', FR: 'France' },
   compte: {
+    ancienGoogle: 'Tu avais un compte Elearn ? Connecte-toi avec le même compte Google.',
     titreCreer: 'Garde ton score et ta progression',
     texteCreer: 'Crée ton compte en un appui. C’est gratuit et sans carte bancaire.',
     titreConnexion: 'Content de te revoir',

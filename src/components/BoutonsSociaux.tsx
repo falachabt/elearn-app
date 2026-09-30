@@ -9,6 +9,7 @@ import type { CleTexte } from '@/i18n';
 import { espace } from '@/theme/theme';
 
 import { Bouton } from './Bouton';
+import { LogoGoogle } from './LogoGoogle';
 
 type Props = {
   codeParrainage?: string | null;
@@ -39,7 +40,7 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
 
   return (
     <View style={styles.groupe}>
-      <Bouton variante="secondaire" libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, mode))} />
+      <Bouton variante="secondaire" icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, mode))} />
       {appleAffiche ? (
         <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, mode))} />
       ) : null}

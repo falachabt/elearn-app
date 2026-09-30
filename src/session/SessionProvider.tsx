@@ -28,13 +28,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         const session = await assurerSessionInvite(client);
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
-        identifier(session.user.id);
+        identifier(session.user.id, { email: session.user.email, invite: session.user.is_anonymous ?? false });
         synchroniserReglages(client, session.user).catch(() => {});
         const arreterSuivi = suivreModifications(client);
         const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
           if (actif && nouvelle) {
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
-            identifier(nouvelle.user.id);
+            identifier(nouvelle.user.id, { email: nouvelle.user.email, invite: nouvelle.user.is_anonymous ?? false });
             // M1-04 : le score d'invité suit le compte, même quand la connexion change d'utilisateur (Apple, ancien compte).
             // Différé : ne jamais appeler Supabase depuis le rappel lui-même (verrou de session).
             if (evenement === 'SIGNED_IN') {

@@ -107,6 +107,9 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
     mockConnecter.mockResolvedValue({});
     await monter(<FormulaireCompte mode="connexion" />);
     expect(screen.queryByLabelText(x.code)).toBeNull();
+    // Connexion par numéro coupée : les anciens comptes passent par Google.
+    expect(screen.getByText(langue === 'fr' ? /même compte Google/ : /same Google account/)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: langue === 'fr' ? 'J’avais un compte avec mon numéro' : /phone number/ })).toBeNull();
     await fireEvent.changeText(screen.getByLabelText(x.email), 'amina@exemple.com');
     await fireEvent.changeText(screen.getByLabelText(x.mdp), 'motdepasse1');
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Me connecter' : 'Sign in' }));

@@ -277,6 +277,7 @@ export const en: Textes = {
   },
   pays: { CM: 'Cameroon', CI: 'Côte d’Ivoire', SN: 'Senegal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'DR Congo', FR: 'France' },
   compte: {
+    ancienGoogle: 'Had an Elearn account? Sign in with the same Google account.',
     titreCreer: 'Keep your score and progress',
     texteCreer: 'Create your account in one tap. It’s free and needs no bank card.',
     titreConnexion: 'Good to see you again',

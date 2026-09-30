@@ -31,9 +31,11 @@ describe('analytics', () => {
     expect(initAnalytics({ cle: 'phc_test', hote: 'https://h.example' })).toBe(true);
     suivre('session_invite_creee', {});
     identifier('u1');
+    identifier('u2', { email: 'a@b.c', invite: false });
     expect(mockConstructeur).toHaveBeenCalledWith('phc_test', { host: 'https://h.example' });
     expect(mockCapture).toHaveBeenCalledWith('session_invite_creee', {});
-    expect(mockIdentify).toHaveBeenCalledWith('u1');
+    expect(mockIdentify).toHaveBeenCalledWith('u1', {});
+    expect(mockIdentify).toHaveBeenCalledWith('u2', { email: 'a@b.c', invite: false });
   });
 
   it('type le dictionnaire d’événements', () => {
