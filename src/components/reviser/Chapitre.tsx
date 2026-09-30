@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireLecons, lireLues, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -22,9 +23,11 @@ export function Chapitre() {
   const { id, nom, matiere } = useLocalSearchParams<{ id: string; nom?: string; matiere?: string }>();
   const [lecons, setLecons] = useState<Lecon[] | null | undefined>(undefined);
   const [lues, setLues] = useState<Record<string, number>>({});
+  const pret = useSessionPrete();
 
   useFocusEffect(
     useCallback(() => {
+      if (!pret) return;
       let actif = true;
       void Promise.all([lireLecons(getSupabase(), Number(id)), lireLues()])
         .then(([l, lu]) => {
@@ -36,7 +39,7 @@ export function Chapitre() {
       return () => {
         actif = false;
       };
-    }, [id]),
+    }, [id, pret]),
   );
 
   return (

@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
 import { lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -22,9 +23,11 @@ export function MatiereCours() {
   const { nom } = useLocalSearchParams<{ nom: string }>();
   const [matiere, setMatiere] = useState<Matiere | null | undefined>(undefined);
   const [lues, setLues] = useState<Record<string, number>>({});
+  const pret = useSessionPrete();
 
   useFocusEffect(
     useCallback(() => {
+      if (!pret) return;
       let actif = true;
       void (async () => {
         try {
@@ -40,7 +43,7 @@ export function MatiereCours() {
       return () => {
         actif = false;
       };
-    }, [nom]),
+    }, [nom, pret]),
   );
 
   return (

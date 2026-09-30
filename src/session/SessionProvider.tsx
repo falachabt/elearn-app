@@ -65,3 +65,14 @@ export function SessionProvider({ children }: { children: ReactNode }) {
 }
 
 export const useSession = () => useContext(ContexteSession);
+
+/**
+ * Clé à mettre dans les dépendances des chargements qui appellent Supabase : null tant que la session invité n'est pas
+ * prête (sinon l'appel partirait en « anon » et serait refusé), puis l'identifiant de l'utilisateur, ou « hors-ligne »
+ * si la session n'a pas pu être créée (les écrans utilisent alors leurs copies locales).
+ */
+export function useSessionPrete(): string | null {
+  const { statut, session } = useContext(ContexteSession);
+  if (statut === 'chargement') return null;
+  return session?.user.id ?? 'hors-ligne';
+}

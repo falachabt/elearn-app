@@ -2,6 +2,7 @@
 // Captures du parcours d'arrivée A4 à A7 en clair et en sombre : arrivee-<ecran>-<clair|sombre>.png.
 // Export web avec le Supabase local (clé publique de démo) : lancer `npx supabase start` dans elearn-supabase avant.
 // --parcours mission : accueil (C1), mission (C2) et fin de mission (C3) : mission-<ecran>-<clair|sombre>.png.
+// --parcours reviser : onglet Réviser (D1), chapitres, leçon (D2) : reviser-<ecran>-<clair|sombre>.png (contenu local à semer).
 // --parcours pass : écrans Offres (E1) et « Envoyer à mon parent » (E6) : pass-<ecran>-<clair|sombre>.png.
 // Usage : node scripts/apercu-arrivee.mjs [--parcours arrivee|pass] [--sortie dossier] [--port 4175] [--sans-build]
 import { execFileSync } from 'node:child_process';
@@ -73,6 +74,22 @@ try {
       await page.screenshot({ path: join(sortie, `${parcours}-${nom}-${suffixe}.png`) });
       console.log(`Capture : ${parcours}-${nom}-${suffixe}.png`);
     };
+
+    if (parcours === 'reviser') {
+      await page.goto(`http://127.0.0.1:${port}/reviser`);
+      await page.getByText('Maths', { exact: true }).waitFor({ timeout: 30000 });
+      await capture('d1-matieres');
+      await page.getByText('Maths', { exact: true }).click();
+      await page.getByText('Statistiques').waitFor({ timeout: 15000 });
+      await page.getByText('Statistiques').click();
+      await page.getByText('Regroupement en classes').waitFor({ timeout: 15000 });
+      await capture('chapitre');
+      await page.getByText('Regroupement en classes').click();
+      await page.getByText('Leçon suivante').waitFor({ timeout: 15000 });
+      await capture('d2-lecon');
+      await contexte.close();
+      continue;
+    }
 
     if (parcours === 'mission') {
       await page.goto(`http://127.0.0.1:${port}/`);

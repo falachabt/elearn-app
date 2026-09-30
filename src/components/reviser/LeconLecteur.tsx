@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireLecon, lireLecons, marquerLue, type ContenuLecon, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -23,8 +24,10 @@ export function LeconLecteur() {
   const { theme } = useTheme();
   const { id, cours, matiere } = useLocalSearchParams<{ id: string; cours?: string; matiere?: string }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const pret = useSessionPrete();
 
   useEffect(() => {
+    if (!pret) return;
     let actif = true;
     const client = getSupabase();
     void (async () => {
@@ -41,7 +44,7 @@ export function LeconLecteur() {
     return () => {
       actif = false;
     };
-  }, [id, cours]);
+  }, [id, cours, pret]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const position = etat.statut === 'pret' ? etat.lecons.findIndex((l) => l.id === etat.lecon.id) : -1;

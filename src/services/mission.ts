@@ -83,7 +83,8 @@ export async function chargerMission(
     if (questions.length < 3) throw new Error('mission trop courte');
     mission = { jour, source: 'serveur', questions };
   } catch {
-    mission = { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
+    // Pas gardée : au prochain affichage, on retente le serveur.
+    return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
   await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau }));
   return mission;

@@ -7,6 +7,7 @@ import { suivre } from '@/services/analytics';
 import { chargerMission, terminerMission, type Mission as MissionDuJour } from '@/services/mission';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { typo } from '@/theme/theme';
 
@@ -21,8 +22,10 @@ export function Mission() {
   const { theme } = useTheme();
   const [mission, setMission] = useState<MissionDuJour | null>(null);
   const [niveau, setNiveau] = useState('3e');
+  const pret = useSessionPrete();
 
   useEffect(() => {
+    if (!pret || mission) return;
     let actif = true;
     void (async () => {
       const profil = await lireProfil();
@@ -38,7 +41,7 @@ export function Mission() {
     };
     // Les libellés Vrai/Faux sont figés au tirage : pas de nouveau tirage si la langue change pendant la mission.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pret]);
 
   if (!mission) {
     return (

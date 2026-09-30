@@ -66,6 +66,7 @@ describe('chargerMission', () => {
     const m = await chargerMission(clientFaux({ data: [ligne(1)] }) as never, { niveau: '1re', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
     expect(m.source).toBe('locale');
     expect(m.questions.length).toBe(5);
+    expect(await AsyncStorage.getItem(CLE_MISSION)).toBeNull();
   });
 
   it('nouveau jour ou nouvelle classe : nouvelle mission', async () => {

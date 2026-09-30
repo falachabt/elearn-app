@@ -58,6 +58,7 @@ export function nomCourt(nom: string): string {
   if (/^mathematique$/.test(n)) return 'Maths';
   if (/^english language/.test(n)) return 'English';
   if (/^sciences physiques et technologie$/.test(n)) return 'Physique et techno';
+  if (/^[A-Z]{2,4}$/.test(nom)) return nom;
   return nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase().replace(/ & /g, ' et ');
 }
 

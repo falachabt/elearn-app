@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
 import { lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, matiere as couleurs, rayon, typo } from '@/theme/theme';
 
@@ -51,15 +52,17 @@ export function Reviser() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const pret = useSessionPrete();
 
   useFocusEffect(
     useCallback(() => {
+      if (!pret) return;
       let actif = true;
       void charger().then((e) => actif && setEtat(e));
       return () => {
         actif = false;
       };
-    }, []),
+    }, [pret]),
   );
 
   return (

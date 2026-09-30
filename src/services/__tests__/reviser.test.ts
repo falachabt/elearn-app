@@ -47,6 +47,7 @@ describe('reviser', () => {
     ['Philosophie', 'philo', 'Philosophie'],
     ['Espagnol', 'anglais', 'Espagnol'],
     ['Informatique', null, 'Informatique'],
+    ['SVT', 'svt', 'SVT'],
   ])('%s', (nom, couleur, court) => {
     expect(couleurMatiere(nom)).toBe(couleur);
     expect(nomCourt(nom)).toBe(court);

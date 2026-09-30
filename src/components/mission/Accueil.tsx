@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -29,6 +30,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [etat, setEtat] = useState<Etat>({ mission: null, serie: 0, faite: null });
+  const pret = useSessionPrete();
 
   useFocusEffect(
     useCallback(() => {
@@ -39,6 +41,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
         if (actif) setEtat((e) => ({ ...e, serie, faite }));
+        if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
         const mission = await chargerMission(getSupabase(), {
           niveau: profil?.niveau ?? '3e',
@@ -51,7 +54,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       return () => {
         actif = false;
       };
-    }, [maintenant, t]),
+    }, [maintenant, t, pret]),
   );
 
   const heure = (maintenant ?? new Date()).getHours();

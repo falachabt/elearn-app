@@ -25,6 +25,8 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
+let mockPret: string | null = 'u1';
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 
 const COURS = [
@@ -61,6 +63,7 @@ const T = { fr, en };
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  mockPret = 'u1';
   await AsyncStorage.clear();
   mockParams = {};
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
@@ -131,4 +134,13 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByText(x.reviser.leconErreur)).toBeTruthy());
   });
+});
+
+it('attend la session avant de lire les cours', async () => {
+  mockPret = null;
+  const { rerender } = await monter(<Reviser />);
+  expect(mockRpc).not.toHaveBeenCalled();
+  mockPret = 'u1';
+  await rerender(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair"><Reviser /></ThemeProvider></SafeAreaProvider>);
+  await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('revision_courses', { p_level: '3e', p_country: 'CM' }));
 });

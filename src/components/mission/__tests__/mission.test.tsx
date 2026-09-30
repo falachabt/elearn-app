@@ -25,6 +25,8 @@ jest.mock('expo-router', () => ({
   },
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+let mockPret: string | null = 'u1';
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a), from: () => ({ insert: mockInsert }) }) }));
 
 const ligne = (i: number, sujet = 'Maths'): LigneMission => ({
@@ -51,6 +53,7 @@ const SOIR = new Date(2026, 9, 1, 20, 0);
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  mockPret = 'u1';
   await AsyncStorage.clear();
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockRpc.mockResolvedValue({ data: LIGNES, error: null });
