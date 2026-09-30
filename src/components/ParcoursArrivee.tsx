@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { CLASSES, CONCOURS, PAYS, enregistrerProfil, lireProfil, paysParDefaut, type Pays } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
@@ -85,6 +86,7 @@ export function ChoixClasse() {
 
   const continuer = async () => {
     await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: false });
+    suivre('onboarding_choice_made', { profil: concours ? 'concours' : 'eleve', niveau, pays });
     router.push('/premier-resultat');
   };
 
@@ -151,11 +153,11 @@ async function terminer(): Promise<void> {
   await enregistrerProfil({ type: p?.type ?? 'eleve', niveau: p?.niveau, pays: p?.pays, termine: true });
 }
 
-/** A3 · Premier résultat : deux portes (photo ou mini-test) ou explorer (M1-03). Les deux portes mènent aux onglets en attendant leurs écrans. */
+/** A3 · Premier résultat : deux portes (photo ou mini-test) ou explorer (M1-03). La photo mène à l'onglet Photo en attendant le parcours B. */
 export function PremierResultat() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const aller = (route: '/photo' | '/reviser' | '/') => async () => {
+  const aller = (route: '/photo' | '/') => async () => {
     await terminer();
     router.replace(route);
   };
@@ -164,7 +166,7 @@ export function PremierResultat() {
       <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} />
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('premier.titre')}</Text>
       <ChoixCarte plein="marque" icone="camera-outline" etiquette={t('premier.photoEtiquette')} titre={t('premier.photoTitre')} aide={t('premier.photoTexte')} onPress={aller('/photo')} />
-      <ChoixCarte plein="soleil" icone="flash-outline" etiquette={t('premier.testEtiquette')} titre={t('premier.testTitre')} aide={t('premier.testTexte')} onPress={aller('/reviser')} />
+      <ChoixCarte plein="soleil" icone="flash-outline" etiquette={t('premier.testEtiquette')} titre={t('premier.testTitre')} aide={t('premier.testTexte')} onPress={() => router.push('/mini-test')} />
     </Ecran>
   );
 }

@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
+import { synchroniserResultat } from '@/services/miniTest';
 import { getSupabase } from '@/services/supabase';
 
 type Etat =
@@ -27,10 +28,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
         identifier(session.user.id);
-        const { data } = client.auth.onAuthStateChange((_evenement, nouvelle) => {
+        const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
           if (actif && nouvelle) {
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
             identifier(nouvelle.user.id);
+            // M1-04 : le score d'invité suit le compte, même quand la connexion change d'utilisateur (Apple, ancien compte).
+            // Différé : ne jamais appeler Supabase depuis le rappel lui-même (verrou de session).
+            if (evenement === 'SIGNED_IN') setTimeout(() => synchroniserResultat(client).catch(() => {}), 0);
           }
         });
         desabonner = () => data.subscription.unsubscribe();
