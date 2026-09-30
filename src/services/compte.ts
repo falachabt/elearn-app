@@ -110,11 +110,11 @@ export type DepsOAuth = {
  * Google ou Facebook via OAuth Supabase. Un invité garde son compte : `linkIdentity` rattache le fournisseur à
  * l'utilisateur anonyme (nécessite `enable_manual_linking` côté Supabase) ; sinon connexion classique.
  */
-export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null): Promise<void> {
+export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<void> {
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
   const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
-  const { data, error } = conversionInvite
+  const { data, error } = conversionInvite || mode.rattacher
     ? await client.auth.linkIdentity({ provider: fournisseur, options })
     : await client.auth.signInWithOAuth({ provider: fournisseur, options });
   if (error) throw error;
@@ -136,11 +136,15 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
   }
   const avecCode = await rattacherCode(client, codeParrainage);
   if (conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
+  else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
   else suivre('connexion_reussie', { methode: fournisseur });
 }
 
-export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null) => connecterOAuth(client, 'google', deps, codeParrainage);
-export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null) => connecterOAuth(client, 'facebook', deps, codeParrainage);
+/** `rattacher` : ajoute le fournisseur au compte connecté (ancien compte, A7) au lieu d'ouvrir une autre session. */
+export type ModeSocial = { rattacher?: boolean };
+
+export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'google', deps, codeParrainage, mode);
+export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
 async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
@@ -174,7 +178,7 @@ export type DepsApple = {
 };
 
 /** Apple (iOS seulement) : jeton d'identité natif échangé contre une session Supabase. */
-export async function connecterApple(client: Client, deps: DepsApple, codeParrainage?: string | null): Promise<void> {
+export async function connecterApple(client: Client, deps: DepsApple, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<void> {
   if (!(await deps.disponible())) throw new ErreurCompte('compte.erreurs.appleIndisponible');
   let jeton: { identityToken: string | null; nonce: string };
   try {
@@ -184,8 +188,9 @@ export async function connecterApple(client: Client, deps: DepsApple, codeParrai
     throw e;
   }
   if (!jeton.identityToken) throw new ErreurCompte('compte.erreurs.inconnue');
-  const { error } = await client.auth.signInWithIdToken({ provider: 'apple', token: jeton.identityToken, nonce: jeton.nonce });
+  const identifiants = { provider: 'apple', token: jeton.identityToken, nonce: jeton.nonce };
+  const { error } = mode.rattacher ? await client.auth.linkIdentity(identifiants) : await client.auth.signInWithIdToken(identifiants);
   if (error) throw error;
   await rattacherCode(client, codeParrainage);
-  suivre('connexion_reussie', { methode: 'apple' });
+  suivre(mode.rattacher ? 'identite_rattachee' : 'connexion_reussie', { methode: 'apple' });
 }

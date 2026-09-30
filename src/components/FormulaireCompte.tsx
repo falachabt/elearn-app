@@ -171,6 +171,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
             libelle={t(creation ? 'compte.dejaUnCompte' : 'compte.pasDeCompte')}
             onPress={() => router.replace(creation ? '/compte/connexion' : '/compte/creer')}
           />
+          {creation ? null : <Bouton variante="texte" libelle={t('ancien.lienAncien')} onPress={() => router.push('/compte/ancien')} />}
           <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.conditions')}</Text>
         </>
       )}

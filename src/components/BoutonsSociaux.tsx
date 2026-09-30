@@ -15,10 +15,13 @@ type Props = {
   onErreur: (cle: CleTexte) => void;
   onSucces: () => void;
   desactive?: boolean;
+  /** Ajoute le fournisseur au compte déjà connecté (A7, ancien compte). */
+  rattacher?: boolean;
 };
 
 /** Google et Facebook (OAuth Supabase) et Apple (iOS seulement). Les deux ne ferment jamais l'écran sur erreur : `onErreur` affiche un message lisible. */
-export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive }: Props) {
+export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, rattacher }: Props) {
+  const mode = { rattacher };
   const { t } = useTraduction();
   const [enCours, setEnCours] = useState(false);
 
@@ -36,12 +39,12 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive }
 
   return (
     <View style={styles.groupe}>
-      <Bouton variante="secondaire" libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage))} />
+      <Bouton variante="secondaire" libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, mode))} />
       {appleAffiche ? (
-        <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage))} />
+        <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, mode))} />
       ) : null}
       {facebookAffiche ? (
-        <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage))} />
+        <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, mode))} />
       ) : null}
     </View>
   );

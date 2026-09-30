@@ -168,6 +168,13 @@ describe('Google', () => {
     await expect(connecterFacebook(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
   });
 
+  it('rattacher (ancien compte connecté) : linkIdentity même hors invité', async () => {
+    const c = faux(membre);
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g1' }), null, { rattacher: true });
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith(expect.objectContaining({ provider: 'google' }));
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
   it('lireRetourOAuth', () => {
     expect(lireRetourOAuth('x://cb?code=1')).toMatchObject({ code: '1', accessToken: null });
     expect(lireRetourOAuth('x://cb#access_token=a&refresh_token=b')).toMatchObject({ accessToken: 'a', refreshToken: 'b' });
@@ -186,6 +193,13 @@ describe('Apple', () => {
   it('indisponible (Android, web) : message dédié, aucun appel Supabase', async () => {
     const c = faux(null);
     await expect(connecterApple(c, deps({ disponible: jest.fn().mockResolvedValue(false) }))).rejects.toMatchObject({ cle: 'compte.erreurs.appleIndisponible' });
+    expect(c.auth.signInWithIdToken).not.toHaveBeenCalled();
+  });
+
+  it('rattacher (ancien compte) : linkIdentity avec le jeton Apple, pas de nouvelle session', async () => {
+    const c = faux(membre);
+    await connecterApple(c, deps(), null, { rattacher: true });
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith({ provider: 'apple', token: 'jwt', nonce: 'n1' });
     expect(c.auth.signInWithIdToken).not.toHaveBeenCalled();
   });
 
