@@ -1,18 +1,26 @@
+import { useRef } from 'react';
 import { StyleSheet, Text, TextInput, View, type TextInputProps } from 'react-native';
 
+import { useRendreVisible } from '@/components/Ecran';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 type Props = TextInputProps & { libelle: string; erreur?: string };
 
 /** Libellé toujours visible au-dessus du champ. L'erreur dit comment corriger. */
-export function Champ({ libelle, erreur, style, ...reste }: Props) {
+export function Champ({ libelle, erreur, style, onFocus, ...reste }: Props) {
   const { theme } = useTheme();
+  const rendreVisible = useRendreVisible();
+  const zone = useRef<View>(null);
   return (
-    <View style={styles.zone}>
+    <View ref={zone} style={styles.zone}>
       <Text style={[typo.petit, { color: theme.texte.principal }]}>{libelle}</Text>
       <TextInput
         {...reste}
+        onFocus={(e) => {
+          rendreVisible?.(zone.current);
+          onFocus?.(e);
+        }}
         accessibilityLabel={libelle}
         placeholderTextColor={theme.texte.secondaire}
         style={[

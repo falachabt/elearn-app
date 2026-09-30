@@ -1,11 +1,11 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
@@ -19,10 +19,10 @@ initAnalytics();
 installerHandlerGlobal();
 
 function Navigation() {
-  const { theme, sombre } = useTheme();
+  const { theme } = useTheme();
   return (
     <>
-      <StatusBar style={sombre ? 'light' : 'dark'} />
+      <BarresSysteme />
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.fond.app } }} />
     </>
   );

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { Apparition } from '@/components/Apparition';
 import { Banniere } from '@/components/Banniere';
 import { Bouton } from '@/components/Bouton';
 import { Carte } from '@/components/Carte';
 import { Champ } from '@/components/Champ';
+import { Ecran } from '@/components/Ecran';
 import { Etiquette } from '@/components/Etiquette';
 import { Logo } from '@/components/Logo';
 import { OptionReponse } from '@/components/OptionReponse';
@@ -18,14 +18,10 @@ import { espace, typo } from '@/theme/theme';
 export default function Accueil() {
   const { theme } = useTheme();
   const { t } = useTraduction();
-  const { top } = useSafeAreaInsets();
   const [choix, setChoix] = useState<string | null>(null);
 
   return (
-    <ScrollView
-      style={{ flex: 1, backgroundColor: theme.fond.app }}
-      contentContainerStyle={[styles.contenu, { paddingTop: top + espace[7], paddingBottom: espace[7] }]}
-    >
+    <Ecran insetBas={false}>
       <Apparition delai={0}>
         <Logo variante="horizontal" hauteur={72} />
       </Apparition>
@@ -66,11 +62,10 @@ export default function Accueil() {
       <Apparition delai={480}>
         <Bouton libelle={t('actions.plusTard')} variante="texte" onPress={() => setChoix(null)} />
       </Apparition>
-    </ScrollView>
+    </Ecran>
   );
 }
 
 const styles = StyleSheet.create({
-  contenu: { paddingHorizontal: espace[6], gap: espace[6] },
   groupe: { gap: espace[4] },
 });

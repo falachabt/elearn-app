@@ -67,6 +67,12 @@ Les images de l'app sont dans `assets/images/` (icône iOS 1024 carrée pleine s
 
 Règle de Benny : quand un dossier (`src/services`, `src/session`, `src/components`, …) contient beaucoup de fichiers, les tests vont dans un sous-dossier `__tests__` du même dossier, nommés `<fichier>.test.ts(x)`, et importent le code avec `../`. Jest ne lance que `**/__tests__/**/*.test.[jt]s(x)` (voir `jest.testMatch` dans `package.json`) ; un test placé ailleurs est donc ignoré. Pas de test dans `src/app/` (uniquement des routes).
 
+## Écrans avec saisie, clavier et barres système
+
+Règle : **tout écran qui contient un `Champ` (ou un `TextInput`) passe par le conteneur `Ecran`** (`src/components/Ecran.tsx`). Il combine `KeyboardAvoidingView` (comportement `padding`, y compris sur Android : en edge-to-edge SDK 57 `adjustResize` ne redimensionne plus la fenêtre), un `ScrollView` (`keyboardShouldPersistTaps="handled"`, `automaticallyAdjustKeyboardInsets`), le défilement automatique vers le champ actif (`Champ` s'enregistre au focus), le fond du thème et les insets haut et bas (`insetBas={false}` dans les onglets, dont la barre gère le bas ; `pied` pour un bouton fixe au-dessus du clavier). `react-native-keyboard-controller` n'est pas installé et n'est pas ajouté (module natif). `android.softwareKeyboardLayoutMode` reste `resize` (config native figée).
+
+`BarresSysteme` (racine) règle la barre d'état (`expo-status-bar`, icônes selon le thème) et le fond racine via `expo-system-ui` (visible sous la barre de navigation Android transparente en edge-to-edge). Quand le réglage de thème est manuel, `ThemeProvider` aligne le mode nuit du système (`Appearance.setColorScheme`) pour que les icônes de la barre de navigation gardent le contraste. Non vérifiable sans appareil : le comportement réel du clavier et des icônes de la barre de navigation Android ; les tests couvrent le rendu, les réglages par thème et les insets.
+
 Les écrans n'utilisent que `theme.*` et les composants, jamais une couleur en dur. Plan de développement : phases 0 à 6, voir le document du projet.
 
 ## Prévisualisation et mises à jour OTA (EAS)
