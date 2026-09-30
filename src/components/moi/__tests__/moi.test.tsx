@@ -127,3 +127,14 @@ it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubli
   expect(await lireProfil()).toEqual({ type: 'eleve', niveau: 'Tle', pays: 'CM', termine: true });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
 });
+
+it('changer de statut depuis Moi : élève vers concours', async () => {
+  await act(() => changerLangue('fr'));
+  mockParams = { modifier: '1' };
+  await monter(<ChoixClasse />);
+  await fireEvent.press(await screen.findByText(fr.bienvenue.concours));
+  expect(screen.getByText(fr.classe.titreConcours)).toBeTruthy();
+  await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
+  await waitFor(() => expect(router.back).toHaveBeenCalled());
+  expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'ens', pays: 'CM', termine: true });
+});

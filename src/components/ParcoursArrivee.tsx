@@ -107,7 +107,7 @@ export function ChoixClasse() {
       await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: true });
       // La mission du jour gardée en cache était tirée pour l'ancienne classe.
       await AsyncStorage.removeItem('mission.jour');
-      suivre('profile_class_changed', { niveau, pays });
+      suivre('profile_class_changed', { niveau, pays, statut: concours ? 'concours' : 'eleve' });
       if (router.canGoBack()) router.back();
       else router.replace('/moi');
       return;
@@ -121,6 +121,23 @@ export function ChoixClasse() {
     <Ecran pied={<Bouton libelle={t(modifier ? 'classe.enregistrer' : 'classe.continuer')} onPress={continuer} retour />}>
       <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} />
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t(concours ? 'classe.titreConcours' : 'classe.titreEleve')}</Text>
+      {modifier ? (
+        // Depuis Moi : on peut aussi changer de statut (élève ou candidat à un concours).
+        <View accessibilityRole="radiogroup" accessibilityLabel={t('classe.statut')} style={styles.pastilles}>
+          {(['eleve', 'concours'] as const).map((s) => (
+            <Pastille
+              key={s}
+              libelle={t(s === 'eleve' ? 'bienvenue.eleve' : 'bienvenue.concours')}
+              actif={(s === 'concours') === concours}
+              onPress={() => {
+                if ((s === 'concours') === concours) return;
+                setType(s);
+                setNiveau(s === 'concours' ? 'ens' : '3e');
+              }}
+            />
+          ))}
+        </View>
+      ) : null}
       <View style={styles.pastilles}>
         {options.map((o) => (
           <Pastille key={o} libelle={concours ? t(`classe.concoursListe.${o as 'ens'}`) : o} actif={niveau === o} onPress={() => setNiveau(o)} />

@@ -66,6 +66,7 @@ export const en: Textes = {
     dejaCompte: 'I already have an account',
   },
   classe: {
+    statut: 'Status',
     enregistrer: 'Save',
     titreEleve: 'Which class are you in?',
     titreConcours: 'Which exam are you preparing?',
@@ -351,7 +352,7 @@ export const en: Textes = {
     bonjour: 'Hi {{nom}}',
     bonjourSansNom: 'Hi!',
     classePays: '{{classe}} · {{pays}}',
-    changerClasse: 'Change class',
+    changerClasse: 'Class or status',
     serie: 'days in a row',
     missions: 'missions done',
     lecons: 'lessons read',

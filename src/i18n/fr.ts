@@ -67,6 +67,7 @@ export const fr = {
     dejaCompte: 'J’ai déjà un compte',
   },
   classe: {
+    statut: 'Statut',
     enregistrer: 'Enregistrer',
     titreEleve: 'En quelle classe es-tu ?',
     titreConcours: 'Quel concours prépares-tu ?',
@@ -352,7 +353,7 @@ export const fr = {
     bonjour: 'Salut {{nom}}',
     bonjourSansNom: 'Salut !',
     classePays: '{{classe}} · {{pays}}',
-    changerClasse: 'Changer de classe',
+    changerClasse: 'Classe ou statut',
     serie: 'jours de suite',
     missions: 'missions faites',
     lecons: 'leçons lues',
