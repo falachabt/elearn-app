@@ -7,6 +7,7 @@ import { Bouton } from '@/components/Bouton';
 import { Carte } from '@/components/Carte';
 import { Champ } from '@/components/Champ';
 import { Etiquette } from '@/components/Etiquette';
+import { Logo } from '@/components/Logo';
 import { OptionReponse } from '@/components/OptionReponse';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -24,6 +25,7 @@ export default function Accueil() {
       style={{ flex: 1, backgroundColor: theme.fond.app }}
       contentContainerStyle={[styles.contenu, { paddingTop: top + espace[7], paddingBottom: espace[7] }]}
     >
+      <Logo variante="horizontal" hauteur={72} />
       <Etiquette texte={t('accueil.etiquette')} jaune />
       <Text style={[typo.affiche, { color: theme.texte.principal }]}>{t('accueil.titre')}</Text>
       <Text style={[typo.texteGrand, { color: theme.texte.secondaire }]}>{t('accueil.accroche')}</Text>

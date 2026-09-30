@@ -37,6 +37,10 @@ Français par défaut, anglais disponible (i18next + react-i18next + expo-locali
 
 Dans un composant : `const { t } = useTraduction();` (alias `useT`) puis `t('accueil.titre')` ; les clés sont typées (`CleTexte`). Jamais de texte d'interface en dur. `changerLangue('en')` bascule à chaud. Ajouter une langue : créer `<code>.ts` typé `Textes`, l'inscrire dans `src/i18n/index.ts`. Le choix manuel de la langue n'est pas encore mémorisé (écran Moi, plus tard).
 
+## Images et logo
+
+Les images de l'app sont dans `assets/images/` (icône iOS 1024 opaque, icône adaptative Android avant-plan + monochrome sur fond émeraude `#10B981` défini dans `app.json`, splash clair/sombre, favicon, logos). Elles sont fabriquées depuis le kit de marque par `node scripts/fabriquer-assets.mjs [--kit dossier]` (Chromium via Playwright, le kit n'est jamais modifié). Dans l'app, utiliser le composant `Logo` (`variante` symbole ou horizontal ; la version horizontale suit le thème clair/sombre).
+
 ## Rangement des tests
 
 Règle de Benny : quand un dossier (`src/services`, `src/session`, `src/components`, …) contient beaucoup de fichiers, les tests vont dans un sous-dossier `__tests__` du même dossier, nommés `<fichier>.test.ts(x)`, et importent le code avec `../`. Jest ne lance que `**/__tests__/**/*.test.[jt]s(x)` (voir `jest.testMatch` dans `package.json`) ; un test placé ailleurs est donc ignoré. Pas de test dans `src/app/` (uniquement des routes).
