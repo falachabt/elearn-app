@@ -11,6 +11,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
+import { MentionsLegales } from '../MentionsLegales';
 import { Bouton } from '../Bouton';
 import { BoutonsSociaux } from '../BoutonsSociaux';
 
@@ -49,7 +50,7 @@ export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: 
         }}
       />
       <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
-      <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('sauvegarde.conditions')}</Text>
+      <MentionsLegales />
     </View>
   );
 }

@@ -119,12 +119,18 @@ export const fr = {
     continuer: 'Continuer',
     sauvegarde: 'Score sauvegardé dans ton compte.',
   },
+  legal: {
+    avant: 'En continuant, tu acceptes les ',
+    cgu: 'conditions d’utilisation',
+    et: ' et la ',
+    confidentialite: 'politique de confidentialité',
+    apres: '.',
+  },
   sauvegarde: {
     titre: 'Garde ton score et ta progression',
     texte: 'Crée ton compte en un appui. C’est gratuit et sans mot de passe.',
     email: 'Avec mon e-mail',
     plusTard: 'Plus tard',
-    conditions: 'En continuant, tu acceptes les conditions d’utilisation et la politique de confidentialité.',
   },
   ancien: {
     entete: 'Retrouver mon compte',
@@ -299,7 +305,6 @@ export const fr = {
     facebook: 'Continuer avec Facebook',
     ou: 'ou avec ton e-mail',
     plusTard: 'Plus tard',
-    conditions: 'En continuant, tu acceptes les conditions d’utilisation et la politique de confidentialité.',
     enCours: 'Un instant…',
     confirmationTitre: 'Vérifie tes e-mails',
     confirmationTexte: 'Nous t’avons envoyé un lien pour confirmer {{email}}. Ta progression est gardée.',

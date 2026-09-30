@@ -118,12 +118,18 @@ export const en: Textes = {
     continuer: 'Continue',
     sauvegarde: 'Score saved to your account.',
   },
+  legal: {
+    avant: 'By continuing, you accept the ',
+    cgu: 'terms of use',
+    et: ' and the ',
+    confidentialite: 'privacy policy',
+    apres: '.',
+  },
   sauvegarde: {
     titre: 'Keep your score and progress',
     texte: 'Create your account in one tap. It’s free, no password needed.',
     email: 'With my email',
     plusTard: 'Later',
-    conditions: 'By continuing, you accept the terms of use and the privacy policy.',
   },
   ancien: {
     entete: 'Find my account',
@@ -298,7 +304,6 @@ export const en: Textes = {
     facebook: 'Continue with Facebook',
     ou: 'or with your email',
     plusTard: 'Later',
-    conditions: 'By continuing, you accept the terms of use and the privacy policy.',
     enCours: 'One moment…',
     confirmationTitre: 'Check your email',
     confirmationTexte: 'We sent you a link to confirm {{email}}. Your progress is kept.',

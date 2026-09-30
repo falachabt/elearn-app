@@ -19,6 +19,7 @@ import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from './Banniere';
 import { BoutonsSociaux } from './BoutonsSociaux';
+import { MentionsLegales } from './MentionsLegales';
 import { Bouton } from './Bouton';
 import { Champ } from './Champ';
 import { Ecran } from './Ecran';
@@ -173,7 +174,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
           />
           {/* Connexion par numéro coupée (décision de Benny, 30/09) : les anciens comptes utilisent Google. L'écran A7 reste en place. */}
           {creation ? null : <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.ancienGoogle')}</Text>}
-          <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.conditions')}</Text>
+          <MentionsLegales />
         </>
       )}
     </Ecran>
