@@ -11,6 +11,7 @@ import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, matiere as couleurs, rayon, typo } from '@/theme/theme';
 
+import { Annales } from '../annales/Annales';
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
@@ -47,10 +48,33 @@ function Tuile({ m, vu, onPress }: { m: Matiere; vu: number; onPress: () => void
   );
 }
 
-/** D1 · Réviser (M5-01) : les matières de la classe en couleur, avec la part déjà lue. */
+type Onglet = 'cours' | 'annales';
+
+/** Sélecteur Cours / Annales en haut de l'onglet Réviser. */
+function Selecteur({ valeur, onChange }: { valeur: Onglet; onChange: (o: Onglet) => void }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  return (
+    <View accessibilityRole="tablist" style={[styles.selecteur, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+      {(['cours', 'annales'] as const).map((o) => {
+        const actif = valeur === o;
+        return (
+          <Appui key={o} style={styles.flex} accessibilityRole="tab" accessibilityState={{ selected: actif }} onPress={() => onChange(o)} decalage={0} rayon={rayon.s}>
+            <View style={[styles.segment, actif && { backgroundColor: theme.texte.principal }]}>
+              <Text style={[typo.boutonPetit, { color: actif ? theme.fond.app : theme.texte.principal }]}>{t(o === 'cours' ? 'annales.ongletCours' : 'annales.onglet')}</Text>
+            </View>
+          </Appui>
+        );
+      })}
+    </View>
+  );
+}
+
+/** D1 · Réviser (M5-01) : les matières de la classe en couleur, avec la part déjà lue ; les annales à côté (M6-01). */
 export function Reviser() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const [onglet, setOnglet] = useState<Onglet>('cours');
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const pret = useSessionPrete();
 
@@ -68,8 +92,10 @@ export function Reviser() {
   return (
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
-      {etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('reviser.chargement')}</Text> : null}
-      {etat.statut === 'erreur' ? (
+      <Selecteur valeur={onglet} onChange={setOnglet} />
+      {onglet === 'annales' ? <Annales /> : null}
+      {onglet === 'cours' && etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('reviser.chargement')}</Text> : null}
+      {onglet === 'cours' && etat.statut === 'erreur' ? (
         <View style={styles.groupe}>
           <Banniere ton="erreur" titre={t('reviser.erreur')} />
           <Bouton
@@ -82,8 +108,8 @@ export function Reviser() {
           />
         </View>
       ) : null}
-      {etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
-      {etat.statut === 'pret' && etat.matieres.length ? (
+      {onglet === 'cours' && etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
+      {onglet === 'cours' && etat.statut === 'pret' && etat.matieres.length ? (
         <View style={styles.grille}>
           {etat.matieres.map((m) => (
             <Tuile key={m.nom} m={m} vu={pourcentageVu(m.cours, etat.lues)} onPress={() => router.push({ pathname: '/cours/matiere', params: { nom: m.nom } })} />
@@ -96,6 +122,9 @@ export function Reviser() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
+  flex: { flex: 1 },
+  selecteur: { flexDirection: 'row', padding: espace[1], gap: espace[1], borderWidth: bord.normal, borderRadius: rayon.m },
+  segment: { alignItems: 'center', justifyContent: 'center', paddingVertical: espace[3], borderRadius: rayon.s },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },
   moitie: { width: '47%', flexGrow: 1 },
   tuile: { minHeight: 110, padding: espace[5], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'flex-end' },
