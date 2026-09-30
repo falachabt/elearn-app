@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
+import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -138,10 +138,12 @@ export function Offres() {
 
       {etat.statut === 'pret' && offres.length ? (
         <>
-          <View style={[styles.repere, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-            <Ionicons name="person-outline" size={18} color={theme.texte.principal} />
-            <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
-          </View>
+          {estFcfa(devise) ? (
+            <View style={[styles.repere, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
+              <Ionicons name="person-outline" size={18} color={theme.texte.principal} />
+              <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
+            </View>
+          ) : null}
           <View accessibilityRole="radiogroup" style={styles.groupe}>
             <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix={formaterMontant(0, devise)} choisie={choix === 'free'} onPress={() => choisir('free')} />
             {offres.map((o) => (

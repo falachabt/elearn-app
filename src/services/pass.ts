@@ -5,14 +5,45 @@ import { suivre } from './analytics';
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
 export type CodeOffre = 'week' | 'month' | 'contest';
-export type Offre = { code: CodeOffre; montant: number; devise: string; recommandee: boolean; dureeJours: number | null; finSaison: string | null };
+export type Offre = { code: CodeOffre; montant: number; devise: string; recommandee: boolean; dureeJours: number | null; finSaison: string | null; converti?: boolean };
 export type Acces = { offre: CodeOffre; fin: string; source: string } | null;
 
 /** Repère affiché en haut des offres (M8-01) : un répétiteur à la maison, par mois. */
 export const PRIX_REPETITEUR = 20000;
 
-/** Offres disponibles dans le pays (M8-01, M14), dans l'ordre d'affichage. Vide si aucun prix pour ce pays. */
+type LigneOffre = {
+  product_code: CodeOffre;
+  amount: number;
+  currency: string;
+  converted: boolean;
+  recommended: boolean;
+  sort_order: number;
+  duration_days: number | null;
+  season_ends_on: string | null;
+};
+
+/**
+ * Offres disponibles dans le pays (M8-01, M14), dans l'ordre d'affichage. Vide si aucun prix pour ce pays.
+ * Le serveur (pass_offers) prend le prix saisi, sinon convertit le prix camerounais dans la devise du pays.
+ */
 export async function lireOffres(client: Client, pays: string): Promise<Offre[]> {
+  const { data, error } = await client.rpc('pass_offers', { p_country: pays.toUpperCase() });
+  if (!error && Array.isArray(data)) {
+    return (data as LigneOffre[]).map((l) => ({
+      code: l.product_code,
+      montant: l.amount,
+      devise: l.currency,
+      recommandee: l.recommended,
+      dureeJours: l.duration_days,
+      finSaison: l.season_ends_on,
+      converti: l.converted,
+    }));
+  }
+  return lirePrixSaisis(client, pays);
+}
+
+/** Repli tant que pass_offers n'est pas en production : seulement les prix saisis. */
+async function lirePrixSaisis(client: Client, pays: string): Promise<Offre[]> {
   const { data, error } = await client
     .from('pass_prices')
     .select('product_code, amount, currency, pass_products!inner(recommended, sort_order, duration_days, season_ends_on)')
@@ -53,10 +84,13 @@ export async function creerLienParent(client: Client, p: { offre: CodeOffre; pay
   return { jeton: l.token, url: `${URL_PAIEMENT_PARENT}${l.token}`, montant: l.amount, devise: l.currency, expire: l.expires_at };
 }
 
+/** XAF et XOF s'affichent « FCFA ». */
+export const estFcfa = (devise: string) => devise === 'XAF' || devise === 'XOF';
+
 /** « 2 500 FCFA » : espaces insécables, FCFA pour XAF et XOF. */
 export function formaterMontant(montant: number, devise: string): string {
   const nombre = String(Math.round(montant)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  const unite = devise === 'XAF' || devise === 'XOF' ? 'FCFA' : devise;
+  const unite = estFcfa(devise) ? 'FCFA' : devise;
   return `${nombre} ${unite}`;
 }
 

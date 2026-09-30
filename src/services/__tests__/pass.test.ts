@@ -31,6 +31,19 @@ describe('pass', () => {
     expect(offres.find((o) => o.recommandee)?.code).toBe('month');
   });
 
+  it('lit les offres du serveur, prix converti compris', async () => {
+    const serveur = [
+      { product_code: 'week', amount: 2000, currency: 'CDF', converted: true, recommended: false, sort_order: 1, duration_days: 7, season_ends_on: null },
+      { product_code: 'month', amount: 10000, currency: 'CDF', converted: true, recommended: true, sort_order: 2, duration_days: 30, season_ends_on: null },
+    ];
+    const c = clientFaux({ rpc: serveur });
+    const offres = await lireOffres(c as never, 'cd');
+    expect(c.rpc).toHaveBeenCalledWith('pass_offers', { p_country: 'CD' });
+    expect(c.from).not.toHaveBeenCalled();
+    expect(offres[1]).toEqual({ code: 'month', montant: 10000, devise: 'CDF', recommandee: true, dureeJours: 30, finSaison: null, converti: true });
+    expect(formaterMontant(offres[1].montant, offres[1].devise)).toBe('10\u202f000\u00a0CDF');
+  });
+
   it("remonte l'erreur de lecture", async () => {
     await expect(lireOffres(clientFaux({ erreur: new Error('x') }) as never, 'CM')).rejects.toThrow('x');
   });

@@ -101,6 +101,13 @@ describe.each(['fr', 'en'] as const)('E1 · offres (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(new RegExp(langue === 'fr' ? 'actif jusqu' : 'active until'))).toBeTruthy());
   });
 
+  it('prix converti dans la devise du pays, sans repère en FCFA', async () => {
+    mockOffres.mockResolvedValueOnce(OFFRES.map((o) => ({ ...o, montant: o.montant * 4, devise: 'CDF', converti: true })));
+    await monter(<Offres />);
+    await waitFor(() => expect(screen.getByRole('button', { name: /10.000 CDF/ })).toBeTruthy());
+    expect(screen.queryByText(/20.000/)).toBeNull();
+  });
+
   it('pays sans prix', async () => {
     mockOffres.mockResolvedValueOnce([]);
     await monter(<Offres />);
