@@ -25,8 +25,9 @@ function Navigation() {
   const { theme } = useTheme();
   return (
     <>
-      <BarresSysteme />
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.fond.app } }} />
+      {/* Après la pile : les bandes de la variante « vert » passent au-dessus des écrans. */}
+      <BarresSysteme />
     </>
   );
 }

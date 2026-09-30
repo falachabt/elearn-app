@@ -32,6 +32,8 @@ const lightValeurs = {
     info: p.bleu[500], infoDoux: p.bleu[100], infoTexte: p.bleu[700],
   },
   focus: p.bleu[500],
+  // Variante « vert » des barres système (essai du 30/09/2026) : icônes noires sur émeraude 500.
+  barreVert: p.emeraude[500],
 };
 
 export type Theme = Elargi<typeof lightValeurs>;
@@ -51,6 +53,8 @@ const dark: Theme = {
     info: p.bleu[400], infoDoux: p.bleu[900], infoTexte: p.bleu[300],
   },
   focus: p.bleu[300],
+  // En sombre, Android dessine les boutons de navigation en blanc : émeraude 700 garde un contraste suffisant.
+  barreVert: p.emeraude[700],
 };
 
 // Couleurs de matières : identiques dans les deux thèmes, texte toujours en encre dessus.

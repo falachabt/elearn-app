@@ -41,6 +41,10 @@ export const fr = {
   },
   parametres: {
     titre: 'Sons et vibrations',
+    barres: 'Couleur des barres du téléphone',
+    barresAide: 'Essai : barre du haut et boutons du bas en vert Elearn.',
+    barresTheme: 'Comme l’écran',
+    barresVert: 'Vert Elearn',
     retour: 'Retour',
     sons: 'Sons',
     sonsAide: 'Les sons restent coupés quand ton téléphone est en silencieux.',

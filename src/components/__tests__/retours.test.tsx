@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Parametres from '@/app/parametres';
 import { changerLangue } from '@/i18n';
+import { CLE_BARRES, lireVarianteBarres } from '@/services/barres';
 import { jouerMoment, lirePreferences, moments, reinitialiserRetoursPourTests } from '@/services/retours';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -94,10 +95,21 @@ describe.each([['fr', 'Sons et vibrations', 'Animations réduites'], ['en', 'Sou
     expect(JSON.parse((await AsyncStorage.getItem('retours.preferences'))!)).toMatchObject({ sons: false, animationsReduites: true });
   });
 
+  it('choisit la couleur des barres du téléphone et la mémorise', async () => {
+    await act(() => changerLangue(langue));
+    await render(enveloppe(<Parametres />));
+    await fireEvent.press(screen.getByText(langue === 'fr' ? 'Vert Elearn' : 'Elearn green'));
+    expect(lireVarianteBarres()).toBe('vert');
+    expect(await AsyncStorage.getItem(CLE_BARRES)).toBe('vert');
+    await fireEvent.press(screen.getByText(langue === 'fr' ? 'Comme l’écran' : 'Like the screen'));
+    expect(lireVarianteBarres()).toBe('theme');
+  });
+
   it('l’aperçu joue chaque moment', async () => {
     await act(() => changerLangue(langue));
     await render(enveloppe(<Parametres />));
-    const boutons = screen.getAllByRole('button').slice(0, 12); // le 13e est « Retour »
+    // Les 2 premiers boutons choisissent la couleur des barres, le dernier est « Retour ».
+    const boutons = screen.getAllByRole('button').slice(2, 14);
     for (const b of boutons) await fireEvent.press(b);
     expect(boutons).toHaveLength(12);
     expect((jouerMoment as jest.Mock).mock.calls.map((c) => c[0]).sort()).toEqual([...moments].sort());
