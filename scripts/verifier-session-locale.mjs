@@ -83,7 +83,7 @@ let echec = false;
 try {
   for (const schema of ['light', 'dark']) {
     const suffixe = schema === 'light' ? 'clair' : 'sombre';
-    const contexte = await navigateur.newContext({ colorScheme: schema, viewport: { width: 390, height: 844 } });
+    const contexte = await navigateur.newContext({ locale: 'fr-FR', colorScheme: schema, viewport: { width: 390, height: 844 } });
     const page = await contexte.newPage();
     page.on('pageerror', (e) => erreursConsole.push(e.message));
     page.on('console', (m) => m.type() === 'error' && erreursConsole.push(m.text()));

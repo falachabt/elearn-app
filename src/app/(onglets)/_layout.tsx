@@ -2,6 +2,7 @@ import { TabList, TabSlot, TabTrigger, Tabs } from 'expo-router/ui';
 import { StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord } from '@/theme/theme';
@@ -10,6 +11,7 @@ import { bord } from '@/theme/theme';
 export default function LayoutOnglets() {
   const { theme } = useTheme();
   const { bottom } = useSafeAreaInsets();
+  const { t } = useTraduction();
 
   return (
     <Tabs style={styles.racine}>
@@ -17,19 +19,19 @@ export default function LayoutOnglets() {
       <TabList asChild>
         <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
           <TabTrigger name="index" href="/" asChild>
-            <Onglet libelle="Accueil" icone="home-outline" iconeActive="home" />
+            <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
           </TabTrigger>
           <TabTrigger name="reviser" href="/reviser" asChild>
-            <Onglet libelle="Réviser" icone="book-outline" iconeActive="book" />
+            <Onglet libelle={t('onglets.reviser')} icone="book-outline" iconeActive="book" />
           </TabTrigger>
           <TabTrigger name="photo" href="/photo" asChild>
-            <Onglet libelle="Photo" icone="camera" central />
+            <Onglet libelle={t('onglets.photo')} icone="camera" central />
           </TabTrigger>
           <TabTrigger name="questions" href="/questions" asChild>
-            <Onglet libelle="Questions" icone="chatbubbles-outline" iconeActive="chatbubbles" />
+            <Onglet libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
           </TabTrigger>
           <TabTrigger name="moi" href="/moi" asChild>
-            <Onglet libelle="Moi" icone="person-outline" iconeActive="person" />
+            <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
           </TabTrigger>
         </View>
       </TabList>

@@ -1,5 +1,7 @@
 import { EcranVide } from '@/components/EcranVide';
+import { useTraduction } from '@/i18n/useTraduction';
 
 export default function EcranMoi() {
-  return <EcranVide titre="Moi" phrase="Ton profil, tes classes et ton pass." />;
+  const { t } = useTraduction();
+  return <EcranVide titre={t('onglets.moi')} phrase={t('ecrans.moi')} />;
 }

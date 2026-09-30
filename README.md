@@ -29,7 +29,13 @@ Le script exporte l'app web, la sert en statique, l'ouvre dans Chromium (Playwri
 - `src/app/` : écrans (Expo Router). Uniquement des routes.
 - `src/components/` : composants du design system (Bouton, Carte, Bannière, Étiquette, OptionRéponse, Champ).
 - `src/theme/` : jetons de design (`theme.ts`, issu du guide de design) et `ThemeProvider` (Clair, Sombre, Système).
-- `src/i18n/` : tous les textes de l'interface, en français pour l'instant.
+- `src/i18n/` : tous les textes de l'interface (voir « Langues » ci-dessous).
+
+## Langues
+
+Français par défaut, anglais disponible (i18next + react-i18next + expo-localization). `src/i18n/fr.ts` est la référence et définit le type `Textes` ; `en.ts` doit avoir exactement les mêmes clés (un test compare les deux arbres). La langue de l'appareil est détectée au démarrage, avec repli sur `fr` pour toute langue non prise en charge, et toute clé manquante retombe sur le français.
+
+Dans un composant : `const { t } = useTraduction();` (alias `useT`) puis `t('accueil.titre')` ; les clés sont typées (`CleTexte`). Jamais de texte d'interface en dur. `changerLangue('en')` bascule à chaud. Ajouter une langue : créer `<code>.ts` typé `Textes`, l'inscrire dans `src/i18n/index.ts`. Le choix manuel de la langue n'est pas encore mémorisé (écran Moi, plus tard).
 
 ## Rangement des tests
 

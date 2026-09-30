@@ -1,5 +1,7 @@
 import { EcranVide } from '@/components/EcranVide';
+import { useTraduction } from '@/i18n/useTraduction';
 
 export default function EcranReviser() {
-  return <EcranVide titre="Réviser" phrase="Leçons courtes et annales, hors ligne." />;
+  const { t } = useTraduction();
+  return <EcranVide titre={t('onglets.reviser')} phrase={t('ecrans.reviser')} />;
 }

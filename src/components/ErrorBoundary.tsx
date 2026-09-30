@@ -3,18 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { Banniere } from '@/components/Banniere';
 import { Bouton } from '@/components/Bouton';
-import { t } from '@/i18n/fr';
+import { useTraduction } from '@/i18n/useTraduction';
 import { journaliserErreur } from '@/services/erreurs';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 function Repli({ reessayer }: { reessayer: () => void }) {
   const { theme } = useTheme();
+  const { t } = useTraduction();
   return (
     <View style={[styles.zone, { backgroundColor: theme.fond.app }]}>
-      <Text style={[typo.h1, { color: theme.texte.principal }]}>{t.erreur.titre}</Text>
-      <Banniere ton="erreur" titre={t.erreur.banniere} texte={t.erreur.texte} />
-      <Bouton libelle={t.erreur.reessayer} onPress={reessayer} />
+      <Text style={[typo.h1, { color: theme.texte.principal }]}>{t('erreur.titre')}</Text>
+      <Banniere ton="erreur" titre={t('erreur.banniere')} texte={t('erreur.texte')} />
+      <Bouton libelle={t('erreur.reessayer')} onPress={reessayer} />
     </View>
   );
 }
@@ -22,7 +23,7 @@ function Repli({ reessayer }: { reessayer: () => void }) {
 type Props = { children: ReactNode };
 type Etat = { erreur: Error | null };
 
-/** Dernier filet de sécurité : écran de repli en français et journalisation. */
+/** Dernier filet de sécurité : écran de repli traduit et journalisation. */
 export class ErrorBoundary extends Component<Props, Etat> {
   state: Etat = { erreur: null };
 

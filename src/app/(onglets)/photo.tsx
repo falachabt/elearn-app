@@ -1,5 +1,7 @@
 import { EcranVide } from '@/components/EcranVide';
+import { useTraduction } from '@/i18n/useTraduction';
 
 export default function EcranPhoto() {
-  return <EcranVide titre="Photo" phrase="Photographie un exercice, reçois la correction pas à pas." />;
+  const { t } = useTraduction();
+  return <EcranVide titre={t('onglets.photo')} phrase={t('ecrans.photo')} />;
 }
