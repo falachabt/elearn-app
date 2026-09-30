@@ -76,3 +76,5 @@ Le projet Expo est `@ezardive/elearn_mobile` (celui de l'ancienne app, identifia
 - Chaque push sur `main` ou `claude/project-thread-cvknuk` publie une mise à jour OTA sur le canal `preview` (workflow `eas-preview.yml`).
 - Premier build installable : Actions > EAS preview > Run workflow, cocher « build ». Installer l'APK, puis les mises à jour arrivent seules.
 - Prérequis : secret de dépôt `EXPO_TOKEN`.
+
+Premier build de prévisualisation (Android, APK, canal `preview`) lancé le 30/09/2026.
