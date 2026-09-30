@@ -4,7 +4,12 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { questionsPour, type Matiere, type Question } from '@/contenu/miniTest';
 
 /** Question prête à afficher : choix mélangés, `bonne` recalculé sur l'ordre affiché. */
-export type QuestionTiree = Omit<Question, 'choix' | 'bonne'> & { choix: string[]; bonne: number };
+export type QuestionTiree = Omit<Question, 'choix' | 'bonne'> & {
+  choix: string[];
+  bonne: number;
+  /** Nom de matière venu du contenu (mission du jour) ; sinon celui de `matiere`. */
+  libelleMatiere?: string | null;
+};
 
 /** Mélange de Fisher-Yates ; `aleatoire` injectable pour les tests. */
 export function melanger<T>(liste: readonly T[], aleatoire: () => number = Math.random): T[] {
