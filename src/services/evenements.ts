@@ -25,6 +25,11 @@ export type Evenements = {
   lesson_quiz_invited: { lecon: number };
   class_document_opened: { correction: boolean };
   legal_opened: { page: 'cgu' | 'confidentialite' };
+  notification_prompt_shown: { source: 'fin_mission' };
+  notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
+  notification_opened: { type: string };
+  account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' };
+  account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
   connexion_reussie: { methode: 'email' | 'google' | 'apple' | 'facebook' | 'telephone' };

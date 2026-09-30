@@ -9,6 +9,7 @@ import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
 import { CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
 import { enregistrerProfil } from '@/services/profil';
+import { CLE_PREMIERE_OUVERTURE, CLE_RAPPEL } from '@/services/rappels';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Accueil, titreMission } from '../Accueil';
@@ -27,7 +28,23 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 let mockPret: string | null = 'u1';
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
+let mockInvite = false;
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
+jest.mock('@gorhom/bottom-sheet', () => {
+  const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+});
+const mockPermission = jest.fn();
+const mockProgrammer = jest.fn();
+jest.mock('expo-notifications', () => ({
+  getPermissionsAsync: jest.fn(async () => ({ granted: false })),
+  requestPermissionsAsync: () => mockPermission(),
+  setNotificationChannelAsync: jest.fn(),
+  cancelAllScheduledNotificationsAsync: jest.fn(),
+  scheduleNotificationAsync: (...a: unknown[]) => mockProgrammer(...a),
+  AndroidImportance: { DEFAULT: 3 },
+  SchedulableTriggerInputTypes: { DAILY: 'daily' },
+}));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a), from: () => ({ insert: mockInsert }) }) }));
 
 const ligne = (i: number, sujet = 'Maths'): LigneMission => ({
@@ -55,7 +72,10 @@ const SOIR = new Date(2026, 9, 1, 20, 0);
 beforeEach(async () => {
   jest.clearAllMocks();
   mockPret = 'u1';
+  mockInvite = false;
+  mockPermission.mockResolvedValue({ granted: true });
   await AsyncStorage.clear();
+  await AsyncStorage.setItem(CLE_RAPPEL, JSON.stringify({ statut: 'actif', le: '2026-09-01T00:00:00Z' }));
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockRpc.mockResolvedValue({ data: LIGNES, error: null });
 });
@@ -145,6 +165,46 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await AsyncStorage.setItem(CLE_ERREURS, JSON.stringify([q]));
     await monter(<RefaireErreurs />);
     await waitFor(() => expect(screen.getByText('Question 7 ?')).toBeTruthy());
+  });
+
+  it('fin de la première mission : explique le rappel puis demande la permission', async () => {
+    await AsyncStorage.removeItem(CLE_RAPPEL);
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
+    await monter(<FinMission />);
+    await waitFor(() => expect(screen.getByText(x.rappel.titre)).toBeTruthy());
+    expect(suivre).toHaveBeenCalledWith('notification_prompt_shown', { source: 'fin_mission' });
+    await fireEvent.press(screen.getByRole('button', { name: x.rappel.oui }));
+    await waitFor(() => expect(screen.queryByText(x.rappel.titre)).toBeNull());
+    expect(mockProgrammer).toHaveBeenCalledWith(expect.objectContaining({ content: expect.objectContaining({ title: x.rappel.notifTitre }), trigger: expect.objectContaining({ hour: 19 }) }));
+    expect(suivre).toHaveBeenCalledWith('notification_prompt_answered', { choix: 'accepte' });
+  });
+
+  it('rappel refusé par le système : explication, rien de programmé', async () => {
+    await AsyncStorage.removeItem(CLE_RAPPEL);
+    mockPermission.mockResolvedValue({ granted: false });
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
+    await monter(<FinMission />);
+    await waitFor(() => expect(screen.getByText(x.rappel.titre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.rappel.oui }));
+    await waitFor(() => expect(screen.getByText(x.rappel.refuse)).toBeTruthy());
+    expect(mockProgrammer).not.toHaveBeenCalled();
+  });
+
+  it('accueil : invité depuis quelques jours avec une série, rappel de créer son compte', async () => {
+    mockInvite = true;
+    await AsyncStorage.setItem(CLE_PREMIERE_OUVERTURE, '2026-09-27T08:00:00Z');
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-30']));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText(x.compteRequis.rappelTitre)).toBeTruthy());
+    expect(suivre).toHaveBeenCalledWith('account_prompt_shown', { raison: 'rappel' });
+  });
+
+  it('accueil : pas de rappel de compte le premier jour', async () => {
+    mockInvite = true;
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-30']));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
+    expect(screen.queryByText(x.compteRequis.rappelTitre)).toBeNull();
   });
 
   it('refaire mes erreurs : rien à refaire', async () => {

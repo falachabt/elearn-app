@@ -26,6 +26,12 @@ jest.mock('expo-router', () => ({
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(async () => true) }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
+jest.mock('@gorhom/bottom-sheet', () => {
+  const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+});
+let mockInvite = false;
+jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
 jest.mock('@/services/pass', () => ({
   ...jest.requireActual('@/services/pass'),
   lireOffres: (...a: unknown[]) => mockOffres(...a),
@@ -49,6 +55,7 @@ beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
   mockParams = {};
+  mockInvite = false;
   mockOffres.mockResolvedValue(OFFRES);
   mockAcces.mockResolvedValue(null);
 });
@@ -106,6 +113,21 @@ describe.each(['fr', 'en'] as const)('E1 · offres (%s)', (langue) => {
     await monter(<Offres />);
     await waitFor(() => expect(screen.getByRole('button', { name: /10.000 CDF/ })).toBeTruthy());
     expect(screen.queryByText(/20.000/)).toBeNull();
+  });
+
+  it('invité : créer son compte avant de payer ou d’envoyer au parent', async () => {
+    mockInvite = true;
+    await monter(<Offres />);
+    await waitFor(() => expect(screen.getByText(x.offres.conseille)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: /2.500/ }));
+    expect(screen.getByText(x.compteRequis.paiementTitre)).toBeTruthy();
+    expect(screen.queryByText(x.offres.bientot)).toBeNull();
+    expect(suivre).toHaveBeenCalledWith('account_prompt_shown', { raison: 'paiement' });
+    await fireEvent.press(screen.getByRole('button', { name: x.sauvegarde.plusTard }));
+    expect(screen.queryByText(x.compteRequis.paiementTitre)).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.offres.parent }));
+    expect(screen.getByText(x.compteRequis.parentTitre)).toBeTruthy();
+    expect(router.push).not.toHaveBeenCalled();
   });
 
   it('pays sans prix', async () => {

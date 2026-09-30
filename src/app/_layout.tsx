@@ -12,6 +12,7 @@ import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
 import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
+import { suivreOuvertures } from '@/services/rappels';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { SessionProvider } from '@/session/SessionProvider';
@@ -50,7 +51,12 @@ export default function RootLayout() {
     // Langue choisie à la main, préférences de retours et sons préchargés (jamais bloquant).
     void restaurerLangue();
     void precharger();
-    return ecouterLiensParrainage();
+    const arreterNotifications = suivreOuvertures();
+    const arreterLiens = ecouterLiensParrainage();
+    return () => {
+      arreterNotifications();
+      arreterLiens?.();
+    };
   }, []);
 
   useEffect(() => {

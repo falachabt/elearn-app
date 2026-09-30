@@ -425,6 +425,24 @@ export const fr = {
     invite: 'Tu n’as pas de compte : tes données sont seulement sur ce téléphone. Désinstaller l’app les efface.',
     erreur: 'La demande a échoué. Vérifie ta connexion.',
   },
+  rappel: {
+    titre: 'Je te rappelle ta mission ?',
+    texte: 'Chaque soir vers 19 h, une seule notification pour garder ta série. Tu peux l’arrêter quand tu veux dans les réglages de ton téléphone.',
+    oui: 'Oui, me rappeler',
+    pasMaintenant: 'Pas maintenant',
+    refuse: 'Les notifications sont bloquées. Tu peux les activer dans les réglages de ton téléphone.',
+    notifTitre: 'Ta mission du jour t’attend',
+    notifCorps: '5 minutes pour garder ta série.',
+    canal: 'Rappels de mission',
+  },
+  compteRequis: {
+    paiementTitre: 'Crée ton compte avant de payer',
+    paiementTexte: 'Ton pass sera lié à ton compte : tu le retrouves même si tu changes de téléphone.',
+    parentTitre: 'Crée ton compte avant d’envoyer le lien',
+    parentTexte: 'Quand ton parent paie, le pass arrive sur ton compte, même si tu changes de téléphone.',
+    rappelTitre: 'Ne perds pas ta progression',
+    rappelTexte: 'Tu utilises l’app en invité. Si tu changes de téléphone ou supprimes l’app, ta série et tes résultats sont perdus. Crée ton compte en un appui, c’est gratuit.',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

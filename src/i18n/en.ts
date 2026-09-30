@@ -424,5 +424,23 @@ export const en: Textes = {
     invite: 'You have no account: your data is only on this phone. Uninstalling the app erases it.',
     erreur: 'The request failed. Check your connection.',
   },
+  rappel: {
+    titre: 'Want a reminder for your mission?',
+    texte: 'Every evening around 7 pm, one notification to keep your streak. You can turn it off anytime in your phone settings.',
+    oui: 'Yes, remind me',
+    pasMaintenant: 'Not now',
+    refuse: 'Notifications are blocked. You can turn them on in your phone settings.',
+    notifTitre: 'Your daily mission is waiting',
+    notifCorps: '5 minutes to keep your streak.',
+    canal: 'Mission reminders',
+  },
+  compteRequis: {
+    paiementTitre: 'Create your account before paying',
+    paiementTexte: 'Your pass is linked to your account, so you keep it even if you change phones.',
+    parentTitre: 'Create your account before sending the link',
+    parentTexte: 'When your parent pays, the pass goes to your account, even if you change phones.',
+    rappelTitre: 'Don’t lose your progress',
+    rappelTexte: 'You are using the app as a guest. If you change phones or delete the app, your streak and results are lost. Create your account in one tap, it’s free.',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

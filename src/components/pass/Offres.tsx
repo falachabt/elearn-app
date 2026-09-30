@@ -16,6 +16,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
+import { useCompteRequis } from '../FeuilleCompte';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 type Choix = CodeOffre | 'free';
@@ -72,6 +73,7 @@ export function Offres() {
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [choix, setChoix] = useState<Choix>('month');
   const [bientot, setBientot] = useState(false);
+  const { exiger, feuille } = useCompteRequis();
 
   const charger = useCallback(() => {
     void chargerOffres().then((e) => {
@@ -101,12 +103,12 @@ export function Offres() {
     etat.statut === 'pret' && offres.length ? (
       <View style={styles.groupe}>
         {choisie ? (
-          <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => setBientot(true)} retour />
+          <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => exiger('paiement', () => setBientot(true))} retour />
         ) : (
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
         {choisie ? (
-          <Bouton variante="secondaire" libelle={t('offres.parent')} onPress={() => router.push({ pathname: '/offres/parent', params: { offre: choisie.code } })} />
+          <Bouton variante="secondaire" libelle={t('offres.parent')} onPress={() => exiger('parent', () => router.push({ pathname: '/offres/parent', params: { offre: choisie.code } }))} />
         ) : null}
       </View>
     ) : undefined;
@@ -114,6 +116,7 @@ export function Offres() {
   const dateFin = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   return (
+    <>
     <Ecran pied={pied}>
       <View style={styles.entete}>
         <BoutonFermer libelle={t('offres.fermer')} onPress={fermer} />
@@ -163,6 +166,8 @@ export function Offres() {
         </>
       ) : null}
     </Ecran>
+    {feuille}
+    </>
   );
 }
 

@@ -24,10 +24,9 @@ type Props = {
   onFermee?: () => void;
 };
 
-/** Contenu de A6 (séparé de la feuille pour les tests) : Google, Apple, Facebook, e-mail, « Plus tard » (M2-05). */
-export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: () => void; onPlusTard: () => void }) {
+/** Choix de connexion pour créer son compte : Google, Apple, Facebook, e-mail, « Plus tard », mentions (M2-05). */
+export function OptionsCompte({ onSauvegarde, onPlusTard }: { onSauvegarde: () => void; onPlusTard: () => void }) {
   const { t } = useTraduction();
-  const { theme } = useTheme();
   const [erreur, setErreur] = useState<CleTexte | null>(null);
   const [code, setCode] = useState<string | null>(null);
   useEffect(() => {
@@ -37,8 +36,6 @@ export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: 
   }, []);
   return (
     <View style={styles.contenu}>
-      <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('sauvegarde.titre')}</Text>
-      <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('sauvegarde.texte')}</Text>
       {erreur ? <Banniere ton="erreur" titre={t(erreur)} /> : null}
       <BoutonsSociaux codeParrainage={code} onErreur={setErreur} onSucces={onSauvegarde} />
       <Bouton
@@ -51,6 +48,19 @@ export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: 
       />
       <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
       <MentionsLegales />
+    </View>
+  );
+}
+
+/** Contenu de A6 (séparé de la feuille pour les tests). */
+export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: () => void; onPlusTard: () => void }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  return (
+    <View style={styles.contenu}>
+      <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('sauvegarde.titre')}</Text>
+      <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('sauvegarde.texte')}</Text>
+      <OptionsCompte onSauvegarde={onSauvegarde} onPlusTard={onPlusTard} />
     </View>
   );
 }

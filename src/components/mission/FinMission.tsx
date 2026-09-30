@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireDernierResultat, type ResultatMission } from '@/services/mission';
+import { doitProposerRappel } from '@/services/rappels';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -13,6 +14,7 @@ import { Apparition } from '../Apparition';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { FeuilleRappel } from '../FeuilleRappel';
 import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
@@ -34,10 +36,19 @@ export function FinMission() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [r, setR] = useState<ResultatMission | null>(null);
+  const [rappel, setRappel] = useState(false);
 
   useEffect(() => {
     let actif = true;
     lireDernierResultat().then((x) => actif && setR(x));
+    // Après une mission réussie à son terme : moment où le rappel du soir a le plus de sens (M9-01).
+    doitProposerRappel()
+      .then((oui) => {
+        if (!actif || !oui) return;
+        suivre('notification_prompt_shown', { source: 'fin_mission' });
+        setRappel(true);
+      })
+      .catch(() => {});
     return () => {
       actif = false;
     };
@@ -47,6 +58,7 @@ export function FinMission() {
   if (!r) return <Ecran>{null}</Ecran>;
 
   return (
+    <>
     <Ecran pied={<Bouton libelle={t('mission.fin')} onPress={terminer} />}>
       <BoutonFermer libelle={t('mission.fin')} onPress={terminer} />
       <Apparition>
@@ -111,6 +123,8 @@ export function FinMission() {
         <Text style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>{t(r.graceUtilisee ? 'mission.graceUtilisee' : 'mission.grace')}</Text>
       </View>
     </Ecran>
+    <FeuilleRappel ouverte={rappel} onFermer={() => setRappel(false)} />
+    </>
   );
 }
 

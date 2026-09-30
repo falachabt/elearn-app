@@ -6,6 +6,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
 import { lireProfil } from '@/services/profil';
+import { suivre } from '@/services/analytics';
+import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -16,6 +18,7 @@ import { Apparition } from '../Apparition';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
@@ -31,6 +34,26 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const { theme } = useTheme();
   const [etat, setEtat] = useState<Etat>({ mission: null, serie: 0, faite: null });
   const pret = useSessionPrete();
+  const invite = useInvite();
+  const [rappelCompte, setRappelCompte] = useState(false);
+
+  // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
+  useFocusEffect(
+    useCallback(() => {
+      if (!pret || pret === 'hors-ligne') return;
+      let actif = true;
+      void (async () => {
+        const historique = await lireHistorique();
+        if (!(await doitRappelerCompte({ invite, aProgression: historique.length > 0 }, maintenant)) || !actif) return;
+        await noterRappelCompte(maintenant);
+        suivre('account_prompt_shown', { raison: 'rappel' });
+        setRappelCompte(true);
+      })().catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, [pret, invite, maintenant]),
+  );
 
   useFocusEffect(
     useCallback(() => {
@@ -62,6 +85,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const surVert = theme.texte.surCouleur;
 
   return (
+    <>
     <Ecran insetBas={false}>
       <Apparition>
         <View style={styles.entete}>
@@ -124,6 +148,8 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Appui>
       </Apparition>
     </Ecran>
+    <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
+    </>
   );
 }
 
