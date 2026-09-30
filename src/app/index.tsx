@@ -1,0 +1,56 @@
+import { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { Banniere } from '@/components/Banniere';
+import { Bouton } from '@/components/Bouton';
+import { Carte } from '@/components/Carte';
+import { Champ } from '@/components/Champ';
+import { Etiquette } from '@/components/Etiquette';
+import { OptionReponse } from '@/components/OptionReponse';
+import { t } from '@/i18n/fr';
+import { useTheme } from '@/theme/ThemeProvider';
+import { espace, typo } from '@/theme/theme';
+
+// Écran provisoire : vitrine des composants, remplacée par le parcours « premier lancement » (phase 2).
+export default function Accueil() {
+  const { theme } = useTheme();
+  const { top, bottom } = useSafeAreaInsets();
+  const [choix, setChoix] = useState<string | null>(null);
+
+  return (
+    <ScrollView
+      style={{ backgroundColor: theme.fond.app }}
+      contentContainerStyle={[styles.contenu, { paddingTop: top + espace[7], paddingBottom: bottom + espace[7] }]}
+    >
+      <Etiquette texte="Version 3 · socle" jaune />
+      <Text style={[typo.affiche, { color: theme.texte.principal }]}>{t.accueil.titre}</Text>
+      <Text style={[typo.texteGrand, { color: theme.texte.secondaire }]}>{t.accueil.accroche}</Text>
+
+      <Carte>
+        <View style={styles.groupe}>
+          <Text style={[typo.h3, { color: theme.texte.principal }]}>x + 2 = 5, donc x = ?</Text>
+          {['2', '3', '4'].map((valeur, i) => (
+            <OptionReponse
+              key={valeur}
+              lettre={'ABC'[i]}
+              texte={valeur}
+              etat={choix === valeur ? (valeur === '3' ? 'bonne' : 'fausse') : 'neutre'}
+              onPress={() => setChoix(valeur)}
+            />
+          ))}
+        </View>
+      </Carte>
+
+      <Banniere ton="info" titre="Astuce" texte="Cadre bien tout l'exercice." />
+      <Champ libelle="Numéro Mobile Money" placeholder="6 12 34 56 78" keyboardType="phone-pad" />
+      <Bouton libelle={t.actions.commencer} onPress={() => setChoix(null)} />
+      <Bouton libelle={t.actions.plusTard} variante="texte" onPress={() => setChoix(null)} />
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  contenu: { paddingHorizontal: espace[6], gap: espace[6] },
+  groupe: { gap: espace[4] },
+});
