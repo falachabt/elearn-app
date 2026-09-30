@@ -53,10 +53,15 @@ export function BoutonFermer({ libelle, onPress }: { libelle: string; onPress: (
 type Props = {
   /** Injectable pour les tests ; sinon tiré de la classe du profil. */
   questions?: QuestionTiree[];
+  /** Mission du jour : fin, libellés et sortie propres ; sinon parcours du mini-test d'arrivée. */
+  onTermine?: (p: { questions: QuestionTiree[]; reponses: number[]; dureeS: number }) => Promise<void> | void;
+  onFermer?: () => void;
+  libelleFin?: string;
+  libelleFermer?: string;
 };
 
 /** A4 · Mini-test : une question par écran, on choisit puis on valide (M1-03). */
-export function MiniTest({ questions: fournies }: Props) {
+export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin, libelleFermer }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const debut = useRef<number | null>(null);
@@ -104,7 +109,12 @@ export function MiniTest({ questions: fournies }: Props) {
       setValidee(false);
       return;
     }
-    const resultat = calculerResultat(questions, reponses, { niveau: niveau ?? '3e', dureeS: (Date.now() - (debut.current ?? Date.now())) / 1000 });
+    const dureeS = (Date.now() - (debut.current ?? Date.now())) / 1000;
+    if (onTermine) {
+      await onTermine({ questions, reponses, dureeS });
+      return;
+    }
+    const resultat = calculerResultat(questions, reponses, { niveau: niveau ?? '3e', dureeS });
     await enregistrerResultat(resultat);
     router.replace('/score');
   };
@@ -119,7 +129,7 @@ export function MiniTest({ questions: fournies }: Props) {
   );
 
   const pied = validee ? (
-    <Bouton libelle={derniere ? t('miniTest.voirScore') : t('miniTest.suivant')} onPress={suivant} />
+    <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} />
   ) : (
     <Bouton libelle={t('miniTest.valider')} onPress={valider} desactive={choix === null} />
   );
@@ -127,12 +137,15 @@ export function MiniTest({ questions: fournies }: Props) {
   return (
     <Ecran pied={q ? pied : undefined}>
       <View style={styles.entete}>
-        <BoutonFermer libelle={t('miniTest.fermer')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/premier-resultat'))} />
+        <BoutonFermer
+          libelle={libelleFermer ?? t('miniTest.fermer')}
+          onPress={onFermer ?? (() => (router.canGoBack() ? router.back() : router.replace('/premier-resultat')))}
+        />
         <Progression faites={index + (validee ? 1 : 0)} total={total} libelle={t('miniTest.progression', { n: index + 1, total })} />
       </View>
       {q ? (
         <>
-          <Etiquette texte={`${t(`miniTest.matieres.${q.matiere}`)} · ${q.chapitre}`} />
+          <Etiquette texte={[q.libelleMatiere ?? t(`miniTest.matieres.${q.matiere}`), q.chapitre].filter(Boolean).join(' · ')} />
           <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{q.enonce}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('miniTest.consigne')}</Text>
           <Secousse declencheur={erreurs} style={styles.options}>
