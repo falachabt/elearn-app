@@ -41,3 +41,7 @@ Docs: https://docs.expo.dev/eas/index.md
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
 
 - Tout écran avec saisie (`Champ`, `TextInput`) passe par le conteneur `Ecran` (`src/components/Ecran.tsx`) : clavier, défilement, insets et fond du thème. Ne jamais poser un `TextInput` directement dans une `View`/`ScrollView` d'écran. Voir README, « Écrans avec saisie ».
+
+## Mode concis (skill caveman)
+
+Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'applique aux échanges internes et aux journaux des agents. Les messages à Benny (clairs, en français), le code, les commits, les descriptions de PR et le README restent normaux.
