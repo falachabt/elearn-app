@@ -38,13 +38,13 @@ export function Progression({ faites, total, libelle }: { faites: number; total:
   );
 }
 
-/** Bouton carré « fermer » des en-têtes A4 et A5. */
-export function BoutonFermer({ libelle, onPress }: { libelle: string; onPress: () => void }) {
+/** Bouton carré « fermer » (ou « retour » avec icone="chevron-back") des en-têtes. */
+export function BoutonFermer({ libelle, onPress, icone = 'close' }: { libelle: string; onPress: () => void; icone?: 'close' | 'chevron-back' }) {
   const { theme } = useTheme();
   return (
     <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.m}>
       <View style={[styles.fermer, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-        <Ionicons name="close" size={20} color={theme.texte.principal} />
+        <Ionicons name={icone} size={20} color={theme.texte.principal} />
       </View>
     </Appui>
   );
