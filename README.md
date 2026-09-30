@@ -9,7 +9,10 @@ npm install
 npx expo start        # puis a (Android), i (iOS) ou w (web)
 npm run typecheck
 npm run lint
+npm test
 ```
+
+Configuration Supabase : copier `.env.example` vers `.env.local` et renseigner `EXPO_PUBLIC_SUPABASE_URL` et `EXPO_PUBLIC_SUPABASE_ANON_KEY` (clé anon uniquement). Sans elles, l'app démarre et la session invité signale une erreur claire.
 
 ## Organisation
 

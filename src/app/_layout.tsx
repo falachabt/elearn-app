@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
+import { SessionProvider } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 
 SplashScreen.preventAutoHideAsync();
@@ -36,7 +37,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <Navigation />
+      <SessionProvider>
+        <Navigation />
+      </SessionProvider>
     </ThemeProvider>
   );
 }
