@@ -82,7 +82,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
               <View style={[styles.pastille, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
                 <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('mission.etiquette')}</Text>
               </View>
-              <Text style={[typo.legende, styles.droite, { color: surVert }]}>{t('mission.duree')}</Text>
+              <Text style={[typo.legende, styles.droite, { color: surVert }]}>{etat.mission ? t('mission.duree', { n: etat.mission.questions.length }) : ''}</Text>
             </View>
             {etat.faite ? (
               <>

@@ -7,13 +7,14 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
-import { CLE_DERNIER, CLE_HISTORIQUE, jourLocal, type LigneMission } from '@/services/mission';
+import { CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
 import { enregistrerProfil } from '@/services/profil';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Accueil, titreMission } from '../Accueil';
 import { FinMission } from '../FinMission';
 import { Mission } from '../Mission';
+import { RefaireErreurs } from '../RefaireErreurs';
 
 const mockRpc = jest.fn();
 const mockInsert = jest.fn(() => Promise.resolve({ error: null }));
@@ -76,7 +77,7 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.getByText('Chimie')).toBeTruthy();
     expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy();
-    expect(mockRpc).toHaveBeenCalledWith('daily_mission', expect.objectContaining({ p_level: '3e', p_country: 'CM', p_day: '2026-10-01' }));
+    expect(mockRpc).toHaveBeenCalledWith('daily_mission_lessons', expect.objectContaining({ p_level: '3e', p_country: 'CM', p_day: '2026-10-01' }));
     await fireEvent.press(screen.getByRole('button', { name: x.mission.commencer }));
     expect(router.push).toHaveBeenCalledWith('/mission');
   });
@@ -122,6 +123,33 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     expect(screen.getByText(x.mission.grace)).toBeTruthy();
     await fireEvent.press(screen.getAllByRole('button', { name: x.mission.fin })[1]);
     expect(router.replace).toHaveBeenCalledWith('/');
+    expect(screen.queryByText(x.mission.revoirTitre)).toBeNull();
+  });
+
+  it('fin avec erreurs : revoir les leçons ratées et refaire mes erreurs', async () => {
+    await AsyncStorage.setItem(
+      CLE_DERNIER,
+      JSON.stringify({ jour: '2026-10-01', score: 1, total: 3, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [], erreurs: 2, coursRates: [{ id: 42, nom: 'Forces', erreurs: 2 }] }),
+    );
+    await monter(<FinMission />);
+    await waitFor(() => expect(screen.getByText(x.mission.revoirTitre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: `Forces. ${x.mission.erreursN.replace('{{n}}', '2')}` }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '42', nom: 'Forces' } });
+    expect(suivre).toHaveBeenCalledWith('mission_lesson_review_opened', { cours: 42 });
+    await fireEvent.press(screen.getByRole('button', { name: x.mission.refaireErreurs.replace('{{n}}', '2') }));
+    expect(router.push).toHaveBeenCalledWith('/mission/erreurs');
+  });
+
+  it('refaire mes erreurs : rejoue les questions ratées', async () => {
+    const q = convertir(ligne(7), { vrai: 'Vrai', faux: 'Faux' }, () => 0)!;
+    await AsyncStorage.setItem(CLE_ERREURS, JSON.stringify([q]));
+    await monter(<RefaireErreurs />);
+    await waitFor(() => expect(screen.getByText('Question 7 ?')).toBeTruthy());
+  });
+
+  it('refaire mes erreurs : rien à refaire', async () => {
+    await monter(<RefaireErreurs />);
+    await waitFor(() => expect(screen.getByText(x.mission.aucuneErreur)).toBeTruthy());
   });
 });
 

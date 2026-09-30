@@ -9,6 +9,8 @@ export type QuestionTiree = Omit<Question, 'choix' | 'bonne'> & {
   bonne: number;
   /** Nom de matière venu du contenu (mission du jour) ; sinon celui de `matiere`. */
   libelleMatiere?: string | null;
+  /** Cours du chapitre (mission du jour) : « Revoir les leçons ratées » y renvoie. */
+  cours?: { id: number; nom: string } | null;
 };
 
 /** Mélange de Fisher-Yates ; `aleatoire` injectable pour les tests. */

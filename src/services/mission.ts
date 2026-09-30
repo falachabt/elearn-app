@@ -6,7 +6,7 @@ import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type Res
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
-/** Ligne renvoyée par daily_mission (M4-01). */
+/** Ligne renvoyée par daily_mission_lessons (M4-01) ; course_* absents avec l'ancienne daily_mission. */
 export type LigneMission = {
   question_id: number;
   quiz_id: string;
@@ -17,15 +17,23 @@ export type LigneMission = {
   options: { id: string; text: string }[];
   correct: string[];
   explanation: string | null;
+  course_id?: number | null;
+  course_name?: string | null;
 };
 
 export type Mission = { jour: string; source: 'serveur' | 'locale'; questions: QuestionTiree[] };
-export type ResultatMission = ResultatMiniTest & { jour: string; serie: number; graceUtilisee: boolean };
+/** Cours dont au moins une question a été ratée, à revoir après la mission. */
+export type CoursRate = { id: number; nom: string; erreurs: number };
+export type ResultatMission = ResultatMiniTest & { jour: string; serie: number; graceUtilisee: boolean; coursRates?: CoursRate[]; erreurs?: number };
 
+/** 5 chapitres de 2 ou 3 questions (10 à 15). */
+export const LECONS_MISSION = 5;
+/** Ancienne fonction serveur, gardée tant que daily_mission_lessons n'est pas en production. */
 export const TAILLE_MISSION = 5;
 export const CLE_MISSION = 'mission.jour';
 export const CLE_HISTORIQUE = 'mission.historique';
 export const CLE_DERNIER = 'mission.dernier';
+export const CLE_ERREURS = 'mission.erreurs';
 
 /** Jour local au format AAAA-MM-JJ : la mission change à minuit, heure du téléphone. */
 export function jourLocal(date: Date = new Date()): string {
@@ -55,6 +63,7 @@ export function convertir(l: LigneMission, vraiFaux: { vrai: string; faux: strin
     matiere: 'logique',
     libelleMatiere: l.subject,
     chapitre: l.chapter?.trim() || l.subject || '',
+    cours: l.course_id ? { id: l.course_id, nom: l.course_name?.trim() || l.chapter?.trim() || '' } : null,
     enonce: l.prompt.trim(),
     choix: options.map((o) => o.text.trim()),
     bonne,
@@ -77,7 +86,8 @@ export async function chargerMission(
 
   let mission: Mission;
   try {
-    const { data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION });
+    let { data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION });
+    if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION }));
     if (error) throw error;
     const questions = ((data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
     if (questions.length < 3) throw new Error('mission trop courte');
@@ -137,10 +147,12 @@ export async function terminerMission(
   const base = calculerResultat(p.questions, p.reponses, { niveau: p.niveau, dureeS: p.dureeS });
   const historique = [...new Set([...(await lireHistorique()), jour])].sort().slice(-400);
   const { serie, graceUtilisee } = calculerSerie(historique, jour);
-  const resultat: ResultatMission = { ...base, jour, serie, graceUtilisee };
+  const ratees = p.questions.filter((q, i) => p.reponses[i] !== q.bonne);
+  const resultat: ResultatMission = { ...base, jour, serie, graceUtilisee, coursRates: coursRates(ratees), erreurs: ratees.length };
   await AsyncStorage.multiSet([
     [CLE_HISTORIQUE, JSON.stringify(historique)],
     [CLE_DERNIER, JSON.stringify(resultat)],
+    [CLE_ERREURS, JSON.stringify(ratees)],
   ]);
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
   void client
@@ -148,4 +160,22 @@ export async function terminerMission(
     .insert({ day: jour, level: p.niveau, score: resultat.score, total: resultat.total, duration_s: resultat.dureeS, details: { chapitres: resultat.chapitres } })
     .then(() => undefined, () => undefined);
   return resultat;
+}
+
+/** Cours des questions ratées, du plus d'erreurs au moins, sans doublon. */
+export function coursRates(ratees: readonly QuestionTiree[]): CoursRate[] {
+  const parCours = new Map<number, CoursRate>();
+  for (const q of ratees) {
+    if (!q.cours) continue;
+    const c = parCours.get(q.cours.id) ?? { id: q.cours.id, nom: q.cours.nom, erreurs: 0 };
+    c.erreurs++;
+    parCours.set(q.cours.id, c);
+  }
+  return [...parCours.values()].sort((a, b) => b.erreurs - a.erreurs);
+}
+
+/** Questions ratées à la dernière mission, pour « Refaire mes erreurs ». */
+export async function lireErreurs(): Promise<QuestionTiree[]> {
+  const brut = await AsyncStorage.getItem(CLE_ERREURS);
+  return brut ? (JSON.parse(brut) as QuestionTiree[]) : [];
 }

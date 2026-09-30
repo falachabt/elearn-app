@@ -16,9 +16,9 @@ import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
-import { Appui } from './Appui';
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
+import { LigneLien as Ligne } from './LigneLien';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
@@ -198,29 +198,12 @@ export function EcranMoi() {
   );
 }
 
-function Ligne({ icone, titre, detail, onPress }: { icone: keyof typeof Ionicons.glyphMap; titre: string; detail?: string; onPress: () => void }) {
-  const { theme } = useTheme();
-  return (
-    <Appui accessibilityRole="button" accessibilityLabel={detail ? `${titre}. ${detail}` : titre} onPress={onPress} rayon={rayon.l} ombre={3} decalage={2} couleurOmbre={theme.ombre}>
-      <View style={[styles.entree, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-        <Ionicons name={icone} size={22} color={theme.texte.principal} />
-        <View style={styles.flex}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
-          {detail ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text> : null}
-        </View>
-        <Ionicons name="chevron-forward" size={20} color={theme.texte.secondaire} />
-      </View>
-    </Appui>
-  );
-}
-
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
   flex: { flex: 1 },
   identite: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   chiffre: { flex: 1, gap: espace[1], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
-  entree: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', gap: espace[4] },
   moitie: { flex: 1 },
 });

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { lireDernierResultat, type ResultatMission } from '@/services/mission';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -12,6 +13,7 @@ import { Apparition } from '../Apparition';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
@@ -84,6 +86,26 @@ export function FinMission() {
           </View>
         </Carte>
       </Apparition>
+      {r.erreurs ? (
+        <Apparition delai={240}>
+          <View style={styles.groupe}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('mission.revoirTitre')}</Text>
+            {(r.coursRates ?? []).map((c) => (
+              <LigneLien
+                key={c.id}
+                icone="book-outline"
+                titre={c.nom}
+                detail={t(c.erreurs > 1 ? 'mission.erreursN' : 'mission.erreur1', { n: c.erreurs })}
+                onPress={() => {
+                  suivre('mission_lesson_review_opened', { cours: c.id });
+                  router.push({ pathname: '/cours/chapitre', params: { id: String(c.id), nom: c.nom } });
+                }}
+              />
+            ))}
+            <Bouton variante="secondaire" libelle={t('mission.refaireErreurs', { n: r.erreurs })} onPress={() => router.push('/mission/erreurs')} />
+          </View>
+        </Apparition>
+      ) : null}
       <View style={styles.info}>
         <Ionicons name="information-circle-outline" size={18} color={theme.texte.secondaire} />
         <Text style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>{t(r.graceUtilisee ? 'mission.graceUtilisee' : 'mission.grace')}</Text>

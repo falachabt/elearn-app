@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { suivre } from '../analytics';
-import { calculerSerie, chargerMission, CLE_MISSION, convertir, jourLocal, lireDernierResultat, lireHistorique, terminerMission, type LigneMission } from '../mission';
+import { calculerSerie, chargerMission, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
 
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 
@@ -55,11 +55,23 @@ describe('chargerMission', () => {
   it('tire la mission du serveur puis la garde pour la journée', async () => {
     const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3), ligne(4), ligne(5)] });
     const m = await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
-    expect(c.rpc).toHaveBeenCalledWith('daily_mission', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_size: 5 });
+    expect(c.rpc).toHaveBeenCalledWith('daily_mission_lessons', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_lessons: 5 });
     expect(m).toMatchObject({ source: 'serveur', jour: '2026-10-01' });
     expect(m.questions).toHaveLength(5);
     const encore = await chargerMission(clientFaux({ error: new Error('hors ligne') }) as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
     expect(encore.questions.map((q) => q.id)).toEqual(m.questions.map((q) => q.id));
+  });
+
+  it("serveur sans daily_mission_lessons : ancienne daily_mission", async () => {
+    const rpc = jest.fn(async (nom: string) => (nom === 'daily_mission_lessons' ? { data: null, error: { code: 'PGRST202' } } : { data: [ligne(1), ligne(2), ligne(3)], error: null }));
+    const m = await chargerMission({ rpc, from: jest.fn() } as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
+    expect(rpc).toHaveBeenLastCalledWith('daily_mission', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_size: 5 });
+    expect(m).toMatchObject({ source: 'serveur' });
+    expect(m.questions[0].cours).toBeNull();
+  });
+
+  it('garde le cours de chaque question', () => {
+    expect(convertir(ligne(1, { course_id: 42, course_name: ' Forces ' }), VF)!.cours).toEqual({ id: 42, nom: 'Forces' });
   });
 
   it('hors ligne ou trop peu de questions : questions embarquées de la classe', async () => {
@@ -125,6 +137,23 @@ describe('terminerMission', () => {
     expect(c.from).toHaveBeenCalledWith('mission_runs');
     expect(c.insert).toHaveBeenCalledWith(expect.objectContaining({ day: '2026-10-01', level: '3e', score: 1, total: 2, duration_s: 61 }));
     expect(suivre).toHaveBeenCalledWith('mission_completed', { score: 1, total: 2, duree_s: 61, serie: 2 });
+  });
+
+  it('garde les erreurs et les cours à revoir', async () => {
+    const questions = [1, 2, 3].map((i) => convertir(ligne(i, { course_id: i === 3 ? 7 : 5, course_name: `Cours ${i === 3 ? 7 : 5}` }), VF, () => 0)!);
+    const faux = (q: (typeof questions)[number]) => (q.bonne === 0 ? 1 : 0);
+    const r = await terminerMission(clientFaux({}) as never, { questions, reponses: [faux(questions[0]), faux(questions[1]), questions[2].bonne], niveau: '3e', dureeS: 30, jour: '2026-10-01' });
+    expect(r.erreurs).toBe(2);
+    expect(r.coursRates).toEqual([{ id: 5, nom: 'Cours 5', erreurs: 2 }]);
+    expect((await lireErreurs()).map((q) => q.id)).toEqual(['1', '2']);
+  });
+
+  it('coursRates : trie par erreurs, ignore les questions sans cours', () => {
+    const q = (id: string, cours: { id: number; nom: string } | null) => ({ ...convertir(ligne(1), VF)!, id, cours });
+    expect(coursRates([q('a', { id: 1, nom: 'A' }), q('b', { id: 2, nom: 'B' }), q('c', { id: 2, nom: 'B' }), q('d', null)])).toEqual([
+      { id: 2, nom: 'B', erreurs: 2 },
+      { id: 1, nom: 'A', erreurs: 1 },
+    ]);
   });
 
   it('jour local AAAA-MM-JJ', () => {
