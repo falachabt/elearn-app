@@ -6,6 +6,7 @@ import { Platform, Vibration } from 'react-native';
 import { retours } from '@/theme/theme';
 
 import { suivre } from './analytics';
+import { signalerModification } from './reglagesLocaux';
 
 /** Les moments clés de l'app (carte `retours` du thème : moment -> son + haptique). Les écrans n'appellent jamais un son ou une vibration en direct : ils passent par `useFeedback`. */
 export type Moment = keyof typeof retours;
@@ -76,11 +77,27 @@ export async function definirPreference<C extends keyof Preferences>(cle: C, val
   preferences = { ...preferences, [cle]: valeur };
   notifier();
   suivre('feedback_setting_changed', { setting: NOM_REGLAGE[cle], value: valeur, ...proprietes() });
+  await memoriser();
+  await signalerModification();
+}
+
+async function memoriser() {
   try {
     await AsyncStorage.setItem(CLE_PREFERENCES, JSON.stringify(preferences));
   } catch {
     // Le réglage reste actif pour cette session.
   }
+}
+
+/** Réglages venus du compte (synchronisation) : appliqués et mémorisés, sans événement d'analytics. */
+export async function appliquerPreferences(p: Partial<Preferences>): Promise<void> {
+  preferences = {
+    sons: typeof p.sons === 'boolean' ? p.sons : preferences.sons,
+    vibrations: typeof p.vibrations === 'boolean' ? p.vibrations : preferences.vibrations,
+    animationsReduites: typeof p.animationsReduites === 'boolean' ? p.animationsReduites : preferences.animationsReduites,
+  };
+  notifier();
+  await memoriser();
 }
 
 async function poserModeAudio() {

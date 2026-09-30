@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { signalerModification } from './reglagesLocaux';
+
 export const CLE_PROFIL = 'profil.arrivee';
 
 export type Profil = { type: 'eleve' | 'concours'; niveau?: string; pays?: string; termine: boolean };
@@ -22,6 +24,7 @@ export async function enregistrerProfil(profil: Profil): Promise<void> {
   } catch {
     // Non mémorisé : le parcours sera reproposé.
   }
+  await signalerModification();
 }
 
 export const PAYS = ['CM', 'CI', 'SN', 'GA', 'BF', 'CD', 'FR'] as const;

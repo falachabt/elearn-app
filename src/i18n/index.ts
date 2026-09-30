@@ -3,6 +3,8 @@ import { getLocales } from 'expo-localization';
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+import { signalerModification } from '@/services/reglagesLocaux';
+
 import { en } from './en';
 import { fr, type Textes } from './fr';
 
@@ -63,6 +65,7 @@ export async function changerLangue(code: string) {
   } catch {
     // Non mémorisé : la langue reste appliquée pour cette session.
   }
+  await signalerModification();
 }
 
 /** Au démarrage : applique la langue choisie à la main lors d'une session précédente (sinon celle de l'appareil). */
