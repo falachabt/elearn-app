@@ -14,6 +14,16 @@ npm test
 
 Configuration Supabase : copier `.env.example` vers `.env.local` et renseigner `EXPO_PUBLIC_SUPABASE_URL` et `EXPO_PUBLIC_SUPABASE_ANON_KEY` (clé anon uniquement). Sans elles, l'app démarre et la session invité signale une erreur claire.
 
+## Vérifier la session invité contre Supabase local
+
+Avec le Supabase local de `elearn-supabase` démarré (`npx supabase start`, `enable_anonymous_sign_ins = true` dans `supabase/config.toml`) et un `.env.local` pointant vers `http://127.0.0.1:54321` avec la clé anon locale (`npx supabase status -o env`) :
+
+```bash
+node scripts/verifier-session-locale.mjs [--sortie dossier] [--port 4173] [--sans-build]
+```
+
+Le script exporte l'app web, la sert en statique, l'ouvre dans Chromium (Playwright, navigateur déjà installé, `PW_CHROMIUM` pour le chemin), vérifie via `docker exec psql` qu'un utilisateur `is_anonymous = true` est créé dans `auth.users`, puis capture Accueil, Réviser et Moi en clair et en sombre (`local-<ecran>-<clair|sombre>.png`, par défaut dans `/mnt/project-files/app/apercus/`). Il refuse de tourner si l'URL Supabase n'est pas locale.
+
 ## Organisation
 
 - `src/app/` : écrans (Expo Router). Uniquement des routes.
