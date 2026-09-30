@@ -253,7 +253,7 @@ export const en: Textes = {
     month: 'Month pass',
     monthAide: 'Everything unlimited · offline · parent summary · 30 days',
     contest: 'Exam pass',
-    contestAide: 'Corrected past papers + mock exams · whole season',
+    contestAide: 'Corrected past papers + mock exams · 6 months of access',
     conseille: 'Recommended',
     sansAbonnement: 'No hidden subscription: the pass simply stops at the end.',
     payer: 'Pay {{montant}}',

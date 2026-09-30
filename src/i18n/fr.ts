@@ -254,7 +254,7 @@ export const fr = {
     month: 'Pass mois',
     monthAide: 'Tout illimité · hors ligne · résumé parent · 30 jours',
     contest: 'Pass concours',
-    contestAide: 'Annales corrigées + concours blancs · toute la saison',
+    contestAide: 'Annales corrigées + concours blancs · 6 mois d’accès',
     conseille: 'Conseillé',
     sansAbonnement: 'Pas d’abonnement caché : le pass s’arrête tout seul à la fin.',
     payer: 'Payer {{montant}}',
