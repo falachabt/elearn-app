@@ -1,7 +1,3 @@
-import { EcranVide } from '@/components/EcranVide';
-import { useTraduction } from '@/i18n/useTraduction';
+import { EcranMoi } from '@/components/EcranMoi';
 
-export default function EcranMoi() {
-  const { t } = useTraduction();
-  return <EcranVide titre={t('onglets.moi')} phrase={t('ecrans.moi')} />;
-}
+export default EcranMoi;

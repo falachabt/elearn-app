@@ -10,6 +10,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
+import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
@@ -48,6 +49,7 @@ export default function RootLayout() {
     // Langue choisie à la main, préférences de retours et sons préchargés (jamais bloquant).
     void restaurerLangue();
     void precharger();
+    return ecouterLiensParrainage();
   }, []);
 
   useEffect(() => {
