@@ -1,7 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, rayon, typo } from '@/theme/theme';
+
+import { Appui } from './Appui';
 
 type Variante = 'primaire' | 'secondaire' | 'accent' | 'danger' | 'texte';
 
@@ -28,32 +30,30 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
   const plat = variante === 'texte';
 
   return (
-    <Pressable
+    <Appui
       accessibilityRole="button"
       accessibilityState={{ disabled: !!desactive }}
       disabled={desactive}
       onPress={onPress}
-      style={({ pressed }) => [styles.zone, { opacity: desactive ? 0.4 : 1, transform: [{ translateY: pressed && !plat ? DECALAGE : 0 }] }]}
+      decalage={plat ? 0 : DECALAGE}
+      ombre={plat ? 0 : DECALAGE}
+      couleurOmbre={theme.ombre}
+      rayon={rayon.m}
+      style={[styles.zone, { opacity: desactive ? 0.4 : 1 }]}
     >
-      {({ pressed }) => (
-        <View>
-          {!plat && <View style={[styles.ombre, { backgroundColor: theme.ombre, opacity: pressed ? 0 : 1 }]} />}
-          <View
-            style={[
-              styles.corps,
-              { minHeight: petit ? cibleMin - 8 : 52, backgroundColor: fond, borderColor: plat ? 'transparent' : theme.bord.fort },
-            ]}
-          >
-            <Text style={[petit ? typo.boutonPetit : typo.bouton, { color: couleurTexte }]}>{libelle}</Text>
-          </View>
-        </View>
-      )}
-    </Pressable>
+      <View
+        style={[
+          styles.corps,
+          { minHeight: petit ? cibleMin - 8 : 52, backgroundColor: fond, borderColor: plat ? 'transparent' : theme.bord.fort },
+        ]}
+      >
+        <Text style={[petit ? typo.boutonPetit : typo.bouton, { color: couleurTexte }]}>{libelle}</Text>
+      </View>
+    </Appui>
   );
 }
 
 const styles = StyleSheet.create({
-  zone: { alignSelf: 'stretch', paddingBottom: DECALAGE, paddingRight: DECALAGE },
-  ombre: { position: 'absolute', left: DECALAGE, top: DECALAGE, right: -DECALAGE, bottom: -DECALAGE, borderRadius: rayon.m },
+  zone: { alignSelf: 'stretch' },
   corps: { borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
 });

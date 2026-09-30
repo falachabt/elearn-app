@@ -3,7 +3,8 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { VisiteProvider } from '@/components/Visite';
@@ -47,14 +48,18 @@ export default function RootLayout() {
   if (!pretes && !erreur) return null;
 
   return (
-    <ThemeProvider>
-      <ErrorBoundary>
-        <SessionProvider>
-          <VisiteProvider>
-            <Navigation />
-          </VisiteProvider>
-        </SessionProvider>
-      </ErrorBoundary>
-    </ThemeProvider>
+    <GestureHandlerRootView style={styles.racine}>
+      <ThemeProvider>
+        <ErrorBoundary>
+          <SessionProvider>
+            <VisiteProvider>
+              <Navigation />
+            </VisiteProvider>
+          </SessionProvider>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({ racine: { flex: 1 } });
