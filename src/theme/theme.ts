@@ -32,7 +32,7 @@ const lightValeurs = {
     info: p.bleu[500], infoDoux: p.bleu[100], infoTexte: p.bleu[700],
   },
   focus: p.bleu[500],
-  // Variante « vert » des barres système (essai du 30/09/2026) : icônes noires sur émeraude 500.
+  // Barres système (vert Elearn validé le 30/09/2026) : icônes noires sur émeraude 500.
   barreVert: p.emeraude[500],
 };
 

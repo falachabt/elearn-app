@@ -40,10 +40,6 @@ export const en: Textes = {
   },
   parametres: {
     titre: 'Sounds and vibrations',
-    barres: 'Phone bar colour',
-    barresAide: 'Trial: top bar and bottom buttons in Elearn green.',
-    barresTheme: 'Like the screen',
-    barresVert: 'Elearn green',
     retour: 'Back',
     sons: 'Sounds',
     sonsAide: 'Sounds stay off when your phone is on silent.',

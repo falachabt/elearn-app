@@ -7,7 +7,6 @@ import { Ecran } from '@/components/Ecran';
 import { Interrupteur } from '@/components/Interrupteur';
 import { useFeedback } from '@/components/useFeedback';
 import { useTraduction } from '@/i18n/useTraduction';
-import { definirVarianteBarres, useVarianteBarres, type VarianteBarres } from '@/services/barres';
 import { definirPreference, moments } from '@/services/retours';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -17,11 +16,6 @@ export default function Parametres() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { preferences, declencher, reduit } = useFeedback();
-  const barres = useVarianteBarres();
-  const variantes: { valeur: VarianteBarres; libelle: string }[] = [
-    { valeur: 'theme', libelle: t('parametres.barresTheme') },
-    { valeur: 'vert', libelle: t('parametres.barresVert') },
-  ];
 
   return (
     <Ecran>
@@ -36,27 +30,6 @@ export default function Parametres() {
             valeur={reduit}
             onChange={(v) => definirPreference('animationsReduites', v)}
           />
-        </View>
-      </Carte>
-      <Carte>
-        <View style={styles.groupe}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('parametres.barres')}</Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('parametres.barresAide')}</Text>
-          <View accessibilityRole="radiogroup" style={styles.moments}>
-            {variantes.map((v) => (
-              <View key={v.valeur} style={styles.moment}>
-                <Bouton
-                  petit
-                  variante={barres === v.valeur ? 'primaire' : 'secondaire'}
-                  libelle={v.libelle}
-                  onPress={() => {
-                    declencher('select');
-                    definirVarianteBarres(v.valeur);
-                  }}
-                />
-              </View>
-            ))}
-          </View>
         </View>
       </Carte>
       <View style={styles.groupe}>

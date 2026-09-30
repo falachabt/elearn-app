@@ -1,9 +1,8 @@
-import { act, render, screen } from '@testing-library/react-native';
+import { render, screen } from '@testing-library/react-native';
 import * as SystemUI from 'expo-system-ui';
 import { Appearance, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { definirVarianteBarres } from '@/services/barres';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { themes, type Theme } from '@/theme/theme';
 
@@ -31,29 +30,19 @@ const contraste = (a: string, b: string) => {
 };
 
 describe('BarresSysteme', () => {
-  beforeEach(async () => {
-    jest.clearAllMocks();
-    await definirVarianteBarres('theme');
-  });
+  beforeEach(() => jest.clearAllMocks());
 
-  it('thème clair : icônes sombres, fond racine du thème clair', async () => {
-    await rendre('clair');
-    expect(mockStyle).toBe('dark');
-    expect(SystemUI.setBackgroundColorAsync).toHaveBeenLastCalledWith(themes.light.fond.app);
-    expect(screen.queryByTestId('bande-haut')).toBeNull();
-  });
-
-  it('thème sombre : icônes claires, fond racine du thème sombre', async () => {
+  it('thème sombre : émeraude 700, icônes claires', async () => {
     await rendre('sombre');
     expect(mockStyle).toBe('light');
-    expect(SystemUI.setBackgroundColorAsync).toHaveBeenLastCalledWith(themes.dark.fond.app);
+    expect(SystemUI.setBackgroundColorAsync).toHaveBeenLastCalledWith(themes.dark.barreVert);
+    expect(screen.getByTestId('bande-haut')).toHaveStyle({ backgroundColor: themes.dark.barreVert });
   });
 
-  it('variante vert : bandes émeraude en haut et en bas (Android), fond racine vert', async () => {
+  it('thème clair : bandes émeraude en haut et en bas (Android), icônes noires, fond racine vert', async () => {
     const os = Platform.OS;
     Platform.OS = 'android';
     try {
-      await definirVarianteBarres('vert');
       await rendre('clair');
       expect(mockStyle).toBe('dark');
       expect(SystemUI.setBackgroundColorAsync).toHaveBeenLastCalledWith(themes.light.barreVert);
@@ -62,13 +51,6 @@ describe('BarresSysteme', () => {
     } finally {
       Platform.OS = os;
     }
-  });
-
-  it('bascule sans redémarrer : le choix est appliqué tout de suite', async () => {
-    await rendre('clair');
-    expect(screen.queryByTestId('bande-haut')).toBeNull();
-    await act(() => definirVarianteBarres('vert'));
-    expect(screen.getByTestId('bande-haut')).toBeTruthy();
   });
 
   it('réglage manuel : aligne le mode nuit du système ; « système » le libère', async () => {
@@ -83,8 +65,8 @@ describe('BarresSysteme', () => {
 });
 
 describe.each([['clair', themes.light, false], ['sombre', themes.dark, true]] as [string, Theme, boolean][])('contraste des icônes système (%s)', (_nom, theme, sombre) => {
-  it.each(['theme', 'vert'] as const)('%s : icônes / fond >= 4.5', (variante) => {
-    const { fond, icones } = couleursBarres(theme, sombre, variante);
+  it('icônes / fond >= 4.5', () => {
+    const { fond, icones } = couleursBarres(theme, sombre);
     // Icônes Android : blanches ou quasi noires.
     const couleurIcones = icones === 'light' ? '#FFFFFF' : '#0A0A0A';
     expect(contraste(couleurIcones, fond)).toBeGreaterThanOrEqual(4.5);
