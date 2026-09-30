@@ -6,6 +6,9 @@ Liste décidée par Benny (30/09/2026) : le nettoyage sécurité est **différé
 - [ ] **Révoquer les clés secrètes** restées dans l'historique git des anciens dépôts (fournisseurs de paiement, IA, vidéo, e-mail, mot de passe de base, jeton Vercel, secret de pont d'authentification, deux comptes de service Google). Les retirer des fichiers ne suffit pas.
 - [ ] **Supabase de prod** : activer `enable_manual_linking` et la redirection `elearnprepa://auth/callback` pour la liaison Google ; configurer les fournisseurs Google, Apple et Facebook.
 - [ ] **Appliquer en prod, après relecture** : `20260930120000_auth_insert_trigger_security_definer`, `20260930130000_referrals_capture`, `20260930150000_first_results` (et les suivantes).
+- [ ] **Facebook** : créer l'app Meta, activer le fournisseur dans Supabase prod, puis `EXPO_PUBLIC_FACEBOOK=1` au build/OTA.
+- [ ] Vérifier que la connexion téléphone + mot de passe reste activée en prod (reprise des anciens comptes A7).
+- [ ] Appliquer aussi `20260930150000_first_results` (déjà listée plus haut) avec les deux autres.
 - [ ] Trancher le bug suspect `refresh_secondary_daily_content_for_date` contre le trigger de validation.
 - [ ] **Paiements** : webhook pawaPay comme **seule** source du statut, événement `payment_succeeded`, aucune écriture de statut depuis l'app ; règle Apple pour l'achat sur iOS (M8-13) validée.
 - [ ] **Liens universels / App Links** et domaine configurés avec un prochain build ; projets Vercel de l'ancienne app qui échouent au build.
