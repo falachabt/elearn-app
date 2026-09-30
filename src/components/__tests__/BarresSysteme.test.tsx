@@ -31,6 +31,8 @@ describe('BarresSysteme', () => {
     await render(<ThemeProvider reglage="sombre"><BarresSysteme /></ThemeProvider>);
     expect(espion).toHaveBeenLastCalledWith('dark');
     await render(<ThemeProvider reglage="systeme"><BarresSysteme /></ThemeProvider>);
-    expect(espion).toHaveBeenLastCalledWith(null);
+    expect(espion).toHaveBeenLastCalledWith('unspecified');
+    // Régression : le natif Android plante si on lui passe null.
+    expect(espion).not.toHaveBeenCalledWith(null);
   });
 });

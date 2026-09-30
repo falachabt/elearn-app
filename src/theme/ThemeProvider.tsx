@@ -16,8 +16,8 @@ export function ThemeProvider({ reglage = 'systeme', children }: { reglage?: Reg
   // Réglage manuel : aligne aussi le mode nuit du système sur l'app (icônes de la barre de navigation Android, clavier).
   useEffect(() => {
     try {
-      // @ts-expect-error `null` rend la main au système (accepté à l'exécution, absent des types de RN 0.86).
-      Appearance.setColorScheme(reglage === 'systeme' ? null : sombre ? 'dark' : 'light');
+      // 'unspecified' rend la main au système. Jamais `null` : le module natif Android le refuse (NullPointerException, crash au démarrage).
+      Appearance.setColorScheme(reglage === 'systeme' ? 'unspecified' : sombre ? 'dark' : 'light');
     } catch {
       // Non disponible (web, tests) : sans effet.
     }
