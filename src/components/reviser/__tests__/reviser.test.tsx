@@ -123,6 +123,16 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions', matiere: 'Maths' } });
   });
 
+  it('chapitre terminé : en bas de la liste et marqué', async () => {
+    await AsyncStorage.setItem('reviser.lues', JSON.stringify({ 11: 1, 12: 1 }));
+    mockParams = { nom: 'Maths' };
+    await monter(<MatiereCours />);
+    await waitFor(() => expect(screen.getByTestId('chapitre-fini-1')).toBeTruthy());
+    const noms = screen.getAllByRole('button').map((b) => b.props.accessibilityLabel as string).filter((l) => /Fractions|Pythagore/.test(l ?? ''));
+    expect(noms[0]).toMatch(/^Pythagore/);
+    expect(noms[1]).toMatch(new RegExp(`^Fractions.*${x.reviser.termine}`));
+  });
+
   it('leçons d’un chapitre dans l’ordre', async () => {
     mockParams = { id: '1', nom: 'Fractions', matiere: 'Maths' };
     await monter(<Chapitre />);

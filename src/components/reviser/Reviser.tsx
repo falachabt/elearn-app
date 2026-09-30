@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { iconeMatiere, lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -39,7 +39,7 @@ function Tuile({ m, vu, onPress }: { m: Matiere; vu: number; onPress: () => void
     <View style={styles.moitie}>
       <Appui accessibilityRole="button" accessibilityLabel={`${m.nom}, ${t('reviser.vu', { n: vu })}`} onPress={onPress} rayon={rayon.l} ombre={4} decalage={3} couleurOmbre={theme.ombre} retour>
         <View style={[styles.tuile, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-          <Ionicons name="book-outline" size={18} color={encre} />
+          <Ionicons name={iconeMatiere(m.nom)} size={20} color={encre} />
           <Text numberOfLines={2} style={[typo.texteFort, { color: encre }]}>{m.nom}</Text>
           <Text style={[typo.donnee, { color: encre }]}>{t('reviser.vu', { n: vu })}</Text>
         </View>

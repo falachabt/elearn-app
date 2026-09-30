@@ -196,7 +196,8 @@ export const en: Textes = {
   },
   reviser: {
     titre: 'Study',
-    vu: '{{n}}% seen',
+    termine: 'Done',
+    vu: '{{n}}% completed',
     cours: '{{n}} courses',
     lecons: '{{n}} lessons',
     lecon: '1 lesson',
@@ -207,7 +208,7 @@ export const en: Textes = {
     retour: 'Back',
     leconN: 'Lesson {{n}}/{{total}}',
     minutes: '{{n}} min',
-    lue: 'Read',
+    lue: 'Completed',
     suivante: 'Next lesson',
     finChapitre: 'Finish the chapter',
     leconErreur: 'This lesson could not be opened. Check your connection.',

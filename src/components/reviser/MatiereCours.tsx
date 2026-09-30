@@ -56,31 +56,37 @@ export function MatiereCours() {
       }
     >
       {matiere === null ? <Banniere ton="erreur" titre={t('reviser.erreur')} /> : null}
-      {matiere?.cours.map((c) => {
-        const vu = pourcentageVu([c], lues);
-        return (
-          <Appui
-            key={c.id}
-            accessibilityRole="button"
-            accessibilityLabel={`${c.nom}, ${c.lecons > 1 ? t('reviser.lecons', { n: c.lecons }) : t('reviser.lecon')}, ${t('reviser.vu', { n: vu })}`}
-            onPress={() => router.push({ pathname: '/cours/chapitre', params: { id: String(c.id), nom: c.nom, matiere: nom } })}
-            rayon={rayon.l}
-            ombre={4}
-            decalage={3}
-            couleurOmbre={theme.ombre}
-          >
-            <View style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <View style={styles.flex}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{c.nom}</Text>
-                <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                  {`${c.lecons > 1 ? t('reviser.lecons', { n: c.lecons }) : t('reviser.lecon')} · ${t('reviser.vu', { n: vu })}`}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} />
-            </View>
-          </Appui>
-        );
-      })}
+      {matiere
+        ? // Chapitres terminés (100 %) en bas de la liste, marqués comme tels.
+          [...matiere.cours]
+            .map((c) => ({ c, vu: pourcentageVu([c], lues) }))
+            .sort((a, b) => Number(a.vu === 100) - Number(b.vu === 100))
+            .map(({ c, vu }) => {
+              const fini = vu === 100;
+              const details = `${c.lecons > 1 ? t('reviser.lecons', { n: c.lecons }) : t('reviser.lecon')} · ${fini ? t('reviser.termine') : t('reviser.vu', { n: vu })}`;
+              return (
+                <Appui
+                  key={c.id}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${c.nom}, ${details}`}
+                  onPress={() => router.push({ pathname: '/cours/chapitre', params: { id: String(c.id), nom: c.nom, matiere: nom } })}
+                  rayon={rayon.l}
+                  ombre={4}
+                  decalage={3}
+                  couleurOmbre={theme.ombre}
+                >
+                  <View testID={fini ? `chapitre-fini-${c.id}` : undefined} style={[styles.ligne, { backgroundColor: fini ? theme.marque.douce : theme.fond.surface, borderColor: theme.bord.fort }]}>
+                    {fini ? <Ionicons name="checkmark-circle" size={22} color={theme.marque.principale} /> : null}
+                    <View style={styles.flex}>
+                      <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{c.nom}</Text>
+                      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{details}</Text>
+                    </View>
+                    <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} />
+                  </View>
+                </Appui>
+              );
+            })
+        : null}
     </Ecran>
   );
 }

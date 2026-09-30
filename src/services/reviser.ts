@@ -55,6 +55,24 @@ export function couleurMatiere(nom: string): Matiere['couleur'] {
   return null;
 }
 
+/** Icône de la matière sur sa tuile ; les matières sans règle gardent la bibliothèque. */
+export function iconeMatiere(nom: string): 'calculator-outline' | 'leaf-outline' | 'flask-outline' | 'create-outline' | 'language-outline' | 'earth-outline' | 'bulb-outline' | 'laptop-outline' | 'trending-up-outline' | 'football-outline' | 'color-palette-outline' | 'people-outline' | 'library-outline' {
+  const n = nom.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+  if (/math|algebr|geometr|statisti/.test(n)) return 'calculator-outline';
+  if (/svt|vie et de la terre|biolog/.test(n)) return 'leaf-outline';
+  if (/sport|\beps\b/.test(n)) return 'football-outline';
+  if (/physique|chimie|technolog|pct/.test(n)) return 'flask-outline';
+  if (/informatique|numerique|tic\b/.test(n)) return 'laptop-outline';
+  if (/francais|litterature|redaction|grammaire/.test(n)) return 'create-outline';
+  if (/anglais|english|allemand|espagnol|langue|chinois|arabe/.test(n)) return 'language-outline';
+  if (/histoire|geograph/.test(n)) return 'earth-outline';
+  if (/citoyen|civique|morale|ecm|social|religion/.test(n)) return 'people-outline';
+  if (/philo|culture generale|logique/.test(n)) return 'bulb-outline';
+  if (/econom|gestion|compta|commerce/.test(n)) return 'trending-up-outline';
+  if (/\barts?\b|dessin|musique/.test(n)) return 'color-palette-outline';
+  return 'library-outline';
+}
+
 /** Nom court affiché sur la tuile (« Sciences de la Vie et de la Terre, … » → « SVT »). */
 export function nomCourt(nom: string): string {
   const n = nom.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();

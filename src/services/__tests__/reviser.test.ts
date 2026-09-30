@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { couleurMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere } from '../reviser';
+import { couleurMatiere, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -51,6 +51,22 @@ describe('reviser', () => {
   ])('%s', (nom, couleur, court) => {
     expect(couleurMatiere(nom)).toBe(couleur);
     expect(nomCourt(nom)).toBe(court);
+  });
+
+  it.each([
+    ['Mathématique', 'calculator-outline'],
+    ['Sciences de la Vie et de la Terre', 'leaf-outline'],
+    ['Physique-Chimie', 'flask-outline'],
+    ['Éducation Physique et Sportive', 'football-outline'],
+    ['Langue française', 'create-outline'],
+    ['English Language', 'language-outline'],
+    ['Histoire-Géographie', 'earth-outline'],
+    ['Informatique', 'laptop-outline'],
+    ['Philosophie', 'bulb-outline'],
+    ['Économie', 'trending-up-outline'],
+    ['Particularités', 'library-outline'],
+  ])('icône de %s', (nom, icone) => {
+    expect(iconeMatiere(nom)).toBe(icone);
   });
 
   it('leçons dans l’ordre et contenu décodé', async () => {

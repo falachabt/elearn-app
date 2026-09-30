@@ -197,7 +197,8 @@ export const fr = {
   },
   reviser: {
     titre: 'Réviser',
-    vu: '{{n}} % vu',
+    termine: 'Terminé',
+    vu: '{{n}} % validé',
     cours: '{{n}} cours',
     lecons: '{{n}} leçons',
     lecon: '1 leçon',
@@ -208,7 +209,7 @@ export const fr = {
     retour: 'Retour',
     leconN: 'Leçon {{n}}/{{total}}',
     minutes: '{{n}} min',
-    lue: 'Lue',
+    lue: 'Validée',
     suivante: 'Leçon suivante',
     finChapitre: 'Terminer le chapitre',
     leconErreur: 'Cette leçon n’a pas pu être ouverte. Vérifie ta connexion.',
