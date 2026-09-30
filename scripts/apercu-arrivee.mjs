@@ -83,10 +83,26 @@ try {
       await page.getByText('Statistiques').waitFor({ timeout: 15000 });
       await page.getByText('Statistiques').click();
       await page.getByText('Regroupement en classes').waitFor({ timeout: 15000 });
+      await page.getByText('Fiche résumé').waitFor({ timeout: 15000 });
       await capture('chapitre');
+      await page.getByText('Fiche résumé').click();
+      await page.getByText('À retenir').waitFor({ timeout: 15000 });
+      await capture('fiche');
+      await page.goBack();
       await page.getByText('Regroupement en classes').click();
       await page.getByText('Leçon suivante').waitFor({ timeout: 15000 });
       await capture('d2-lecon');
+      await page.getByRole('button', { name: 'Répondre aux 3 questions' }).click();
+      await page.getByText('Choisis une réponse.').waitFor({ timeout: 15000 });
+      for (let i = 0; i < 3; i++) {
+        await page.getByText('A', { exact: true }).click();
+        await page.getByRole('button', { name: 'Valider' }).click();
+        if (i === 0) await capture('quiz-lecon');
+        await page.getByRole('button', { name: i === 2 ? 'Voir mon score' : 'Question suivante' }).click();
+        if (i < 2) await page.getByText('Choisis une réponse.').waitFor();
+      }
+      await page.getByText(/^Score : /).waitFor({ timeout: 15000 });
+      await capture('quiz-score');
       await page.goto(`http://127.0.0.1:${port}/reviser`);
       await page.getByRole('tab', { name: 'Annales' }).click();
       await page.getByText('ENSPY 2024 · Mathématiques').waitFor({ timeout: 15000 });
