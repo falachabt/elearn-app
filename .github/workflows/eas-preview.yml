@@ -21,7 +21,30 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Tests Jest (dont garde-fou des appels natifs dangereux)
+        run: npm test -- --ci
+      - name: Typage
+        run: npm run typecheck
+      - name: Export Android (bundle Metro + compilation Hermes, comme l'OTA)
+        run: npx expo export --platform android --output-dir "$RUNNER_TEMP/export-android"
+      - name: Le bundle Hermes existe et n'est pas vide
+        run: |
+          f=$(find "$RUNNER_TEMP/export-android/_expo/static/js/android" -name '*.hbc' | head -n1)
+          test -n "$f" && test "$(stat -c %s "$f")" -gt 1000000 || { echo "::error::Bundle Android absent ou trop petit"; exit 1; }
+          ls -l "$f"
+
   ota:
+    needs: verifier
     runs-on: ubuntu-latest
     env:
       EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
@@ -43,8 +66,6 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - if: ${{ env.EXPO_TOKEN != '' }}
         run: npm ci
-      - if: ${{ env.EXPO_TOKEN != '' }}
-        run: npm test -- --ci
       - name: Publier la mise à jour OTA
         if: ${{ env.EXPO_TOKEN != '' }}
         env:
