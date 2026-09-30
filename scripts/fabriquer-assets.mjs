@@ -51,10 +51,10 @@ function carre({ fond, part, corps }) {
 }
 const symbole = (taille) => `<svg xmlns="http://www.w3.org/2000/svg" width="${taille}" height="${taille}" viewBox="0 0 64 64">${interieur}</svg>`;
 // Monochrome Android : silhouette opaque du livre, courbe évidée (seul le canal alpha compte).
-const monochrome = (part) => carre({
+const monochrome = (part, couleur = '#000') => carre({
   part,
   corps: `<mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/>${courbes.replace(/#047857/g, '#000')}</mask>` +
-    `<g mask="url(#m)">${livre.replace(/fill="#fff"/, 'fill="#000"').replace(/stroke="#0A0A0A"/, 'stroke="#000"')}</g>`,
+    `<g mask="url(#m)">${livre.replace(/fill="#fff"/, `fill="${couleur}"`).replace(/stroke="#0A0A0A"/, `stroke="${couleur}"`)}</g>`,
 });
 
 const rendus = [
@@ -63,9 +63,12 @@ const rendus = [
   // Android adaptative : avant-plan transparent dans la zone sûre (66 %), fond émeraude uni posé par app.json (backgroundColor).
   ['android-icon-foreground.png', 1024, carre({ part: 0.4, corps: glyphe }), true],
   ['android-icon-monochrome.png', 1024, monochrome(0.4), true],
-  // Splash : symbole complet sur transparent, fond posé par app.json (clair / sombre).
-  ['splash-icon.png', 1024, symbole(1024), true],
-  ['favicon.png', 96, symbole(96), true],
+  // Icône de notification Android : silhouette blanche 96x96 sur transparent (Android ne garde que l'alpha).
+  ['notification-icon.png', 96, monochrome(0.8, '#fff'), true],
+  // Splash : logo plat (sans tuile arrondie) sur transparent, fond posé par app.json (clair / sombre).
+  ['splash-icon.png', 1024, carre({ part: 0.9, corps: glyphe }), true],
+  // Favicon : carré plein cadre émeraude (le navigateur l'affiche tel quel).
+  ['favicon.png', 96, carre({ fond: EMERAUDE, part: 0.66, corps: glyphe }), false],
   ['logo-symbole.png', 512, symbole(512), true],
 ];
 
@@ -85,4 +88,42 @@ try {
 for (const nom of ['logo-horizontal-blanc.png', 'logo-horizontal-noir.png']) {
   copyFileSync(join(kit, nom), join(sortie, nom));
   console.log(`assets/images/${nom} (copie du kit)`);
+}
+
+// Aperçu : --apercu [fichier.png] pose les icônes sous un masque rond et un masque squircle (et en carré brut),
+// avec le cercle de sécurité Android (66 %) ; le splash sur fond clair et sombre ; l'icône de notification.
+if (args.includes('--apercu')) {
+  const suivant = args[args.indexOf('--apercu') + 1];
+  const fichier = resolve(suivant && !suivant.startsWith('--') ? suivant : '/mnt/project-files/app/apercus/icones-apercu.png');
+  mkdirSync(join(fichier, '..'), { recursive: true });
+  const b64 = (n) => `data:image/png;base64,${readFileSync(join(sortie, n)).toString('base64')}`;
+  const squircle = 'border-radius:22.37%'; // iOS ; superellipse approchée
+  const tuile = (contenu, forme, extra = '') => `<div class="t" style="${forme};${extra}">${contenu}</div>`;
+  const img = (n) => `<img src="${b64(n)}">`;
+  const adaptative = `<div class="fond">${img('android-icon-foreground.png')}<div class="sur"></div></div>`;
+  const mono = `<div class="fond" style="background:#d9e4dd">${`<img style="filter:brightness(0) saturate(100%) invert(22%) sepia(40%) saturate(900%) hue-rotate(110deg)" src="${b64('android-icon-monochrome.png')}">`}</div>`;
+  const ligne = (titre, cellules) => `<section><h3>${titre}</h3><div class="l">${cellules.join('')}</div></section>`;
+  const html = `<style>
+    body{margin:0;padding:24px;background:#f3f4f6;font:14px system-ui;width:1260px}
+    h3{margin:14px 0 8px}.l{display:flex;gap:20px;align-items:center}
+    .t{width:180px;height:180px;overflow:hidden;position:relative;box-shadow:0 2px 6px #0004}
+    .t img,.fond img{width:100%;height:100%;display:block}
+    .fond{width:100%;height:100%;background:#10B981;position:relative}
+    .sur{position:absolute;left:17%;top:17%;width:66%;height:66%;border:2px dashed #ff2d55;border-radius:50%}
+    .s{width:240px;height:380px;display:flex;align-items:center;justify-content:center;border-radius:12px}
+    .s img{width:200px;height:200px;flex:none}.n{width:96px;height:96px;background:#374151;border-radius:12px}
+  </style>
+  ${ligne('iOS icon.png : carré brut, masque squircle, masque rond', [tuile(img('icon.png'), 'border-radius:0'), tuile(img('icon.png'), squircle), tuile(img('icon.png'), 'border-radius:50%')])}
+  ${ligne('Android adaptative (fond émeraude + avant-plan) : cercle, squircle, carré arrondi ; pointillé rouge = zone de sécurité 66 %', [tuile(adaptative, 'border-radius:50%'), tuile(adaptative, squircle), tuile(adaptative, 'border-radius:12%'), tuile(adaptative, 'border-radius:0')])}
+  ${ligne('Android 13+ monochrome (thème), favicon, icône de notification (blanc sur gris)', [tuile(mono, 'border-radius:50%'), tuile(img('favicon.png'), 'width:96px;height:96px;border-radius:0'), `<div class="n"><img src="${b64('notification-icon.png')}"></div>`])}
+  ${ligne('Splash clair et sombre (image 200 px posée sur le fond)', [`<div class="s" style="background:#FFF7E3"><img src="${b64('splash-icon.png')}"></div>`, `<div class="s" style="background:#141614"><img src="${b64('splash-icon.png')}"></div>`])}`;
+  const nav2 = await chargerPlaywright().chromium.launch({ executablePath: trouverChromium(), args: ['--no-sandbox'] });
+  try {
+    const page = await nav2.newPage({ viewport: { width: 1310, height: 900 } });
+    await page.setContent(html);
+    await page.screenshot({ path: fichier, fullPage: true });
+    console.log(`aperçu : ${fichier}`);
+  } finally {
+    await nav2.close();
+  }
 }

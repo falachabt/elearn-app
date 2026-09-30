@@ -37,9 +37,29 @@ Français par défaut, anglais disponible (i18next + react-i18next + expo-locali
 
 Dans un composant : `const { t } = useTraduction();` (alias `useT`) puis `t('accueil.titre')` ; les clés sont typées (`CleTexte`). Jamais de texte d'interface en dur. `changerLangue('en')` bascule à chaud. Ajouter une langue : créer `<code>.ts` typé `Textes`, l'inscrire dans `src/i18n/index.ts`. Le choix manuel de la langue n'est pas encore mémorisé (écran Moi, plus tard).
 
+## Modules natifs
+
+Tout le natif est embarqué dès le premier build EAS ; les mises à jour OTA suivantes ne touchent que le JavaScript. Ajouter un module natif plus tard impose un nouveau build. Versions posées par `npx expo install` (SDK 57).
+
+- Caméra et photo de question : `expo-camera`, `expo-image-picker`, `expo-image`, `expo-image-manipulator`. Micro bloqué (`RECORD_AUDIO`).
+- Notifications : `expo-notifications` (icône blanche 96x96, couleur émeraude `#10B981`, son `assets/sounds/notification.wav`, canal `default`), `@react-native-community/datetimepicker` (heure des rappels).
+- Connexion : `expo-secure-store`, `expo-web-browser`, `expo-auth-session`, `expo-crypto`, `expo-apple-authentication`. Auth Supabase, Google via `expo-auth-session` + `expo-web-browser` (OAuth Supabase) : `@react-native-firebase/*` n'est pas ajouté (pas nécessaire ; si un jour les notifications push passent par FCM natif, les clés `google-services.json` se gèrent côté EAS).
+- Partage et retours : `expo-sharing`, `expo-clipboard`, `expo-haptics`.
+- Médias : `expo-video`, `expo-audio` (sons de bonne/mauvaise réponse ; remplace `expo-av`, déprécié), `expo-asset` (pair d'`expo-audio`).
+- Documents : `expo-document-picker`, `expo-file-system`, `react-native-pdf` + `react-native-blob-util` (lecteur PDF natif uniquement : à charger dans un fichier `.native.tsx`, prévoir un `.web.tsx` avec `<iframe>` pour ne pas casser le web).
+- Animations, gestes, rendu : `react-native-reanimated` 4, `react-native-worklets` (prérequis de Reanimated 4), `react-native-gesture-handler`, `react-native-svg`, `expo-linear-gradient`, `expo-blur`, `expo-system-ui`, `@gorhom/bottom-sheet`.
+- Contenu : `react-native-webview` (formules mathématiques).
+- Sécurité : `expo-screen-capture` (l'ancienne app bloquait la capture sur les manuels payants).
+- Build : `expo-build-properties` (SDK 36, réduction de code en release), plugins locaux `plugins/withAndroid16KBPageSize.js` (Google Play, pages de 16 Ko) et `plugins/withBlockMediaPermissions.js` (retire `READ_MEDIA_*`, refusé par Google Play : le sélecteur de photos système suffit).
+- Déjà présents : `expo-linking` (schéma `elearnprepa`), `expo-updates`, `expo-dev-client`, `expo-localization`, etc.
+
+Écartés (redondants ou remplacés) : `antd` / `@ant-design/icons-react-native` (design system maison), `nativewind` (thème maison), `axios` (fetch), `swr` (état serveur à venir via Supabase), `@amplitude/*` (PostHog), `@react-navigation/*` direct (Expo Router), `firebase` / `@react-native-firebase/*` (Supabase), `expo-av` (→ expo-video + expo-audio), `react-native-video` (→ expo-video), `react-native-modal` (→ bottom-sheet), `react-native-animatable`, `react-native-swipe-gestures` (→ gesture-handler), `react-pdf`, `mathlive`, `react-native-katex` (→ webview), `expo-random` (→ expo-crypto), `expo-symbols`, `lottie-react-native` et `@wrack/react-native-tour-guide` (non prévus au plan : à ajouter avec un build si besoin), `@google/generative-ai`, `@legendapp/state`.
+
+Limites : le lien de domaine (Universal Links / App Links) n'est pas configuré faute de domaine connu : à ajouter (`ios.associatedDomains`, `android.intentFilters`) avec un build. `react-native-pdf` et `@gorhom/bottom-sheet` n'ont pas été exercés sur appareil avec RN 0.86 ; l'export Android ne vérifie que les modules importés par le code. `npm ci` passe sans `.npmrc` (pas de `legacy-peer-deps`).
+
 ## Images et logo
 
-Les images de l'app sont dans `assets/images/` (icône iOS 1024 opaque, icône adaptative Android avant-plan + monochrome sur fond émeraude `#10B981` défini dans `app.json`, splash clair/sombre, favicon, logos). Elles sont fabriquées depuis le kit de marque par `node scripts/fabriquer-assets.mjs [--kit dossier]` (Chromium via Playwright, le kit n'est jamais modifié). Dans l'app, utiliser le composant `Logo` (`variante` symbole ou horizontal ; la version horizontale suit le thème clair/sombre).
+Les images de l'app sont dans `assets/images/` (icône iOS 1024 carrée pleine sans coins arrondis (le système applique le masque), icône adaptative Android avant-plan + monochrome dans la zone de sécurité de 66 % sur fond émeraude `#10B981` défini dans `app.json`, splash logo plat clair/sombre, favicon, icône de notification blanche 96x96, logos). Elles sont fabriquées depuis le kit de marque par `node scripts/fabriquer-assets.mjs [--kit dossier] [--apercu [fichier.png]]` (`--apercu` écrit l'aperçu sous masques rond et squircle, par défaut `/mnt/project-files/app/apercus/icones-apercu.png`) (Chromium via Playwright, le kit n'est jamais modifié). Dans l'app, utiliser le composant `Logo` (`variante` symbole ou horizontal ; la version horizontale suit le thème clair/sombre).
 
 ## Rangement des tests
 
