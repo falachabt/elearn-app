@@ -143,7 +143,7 @@ export function Offres() {
             <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
           </View>
           <View accessibilityRole="radiogroup" style={styles.groupe}>
-            <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix="0" choisie={choix === 'free'} onPress={() => choisir('free')} />
+            <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix={formaterMontant(0, devise)} choisie={choix === 'free'} onPress={() => choisir('free')} />
             {offres.map((o) => (
               <LigneOffre
                 key={o.code}

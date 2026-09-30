@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Captures du parcours d'arrivée A4 à A7 en clair et en sombre : arrivee-<ecran>-<clair|sombre>.png.
 // Export web avec le Supabase local (clé publique de démo) : lancer `npx supabase start` dans elearn-supabase avant.
-// Usage : node scripts/apercu-arrivee.mjs [--sortie dossier] [--port 4175] [--sans-build]
+// --parcours pass : écrans Offres (E1) et « Envoyer à mon parent » (E6) : pass-<ecran>-<clair|sombre>.png.
+// Usage : node scripts/apercu-arrivee.mjs [--parcours arrivee|pass] [--sortie dossier] [--port 4175] [--sans-build]
 import { execFileSync } from 'node:child_process';
 import { createReadStream, existsSync, readdirSync, mkdirSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -13,6 +14,7 @@ const args = process.argv.slice(2);
 const option = (nom, defaut) => (args.includes(nom) ? args[args.indexOf(nom) + 1] : defaut);
 const sortie = resolve(option('--sortie', '/mnt/project-files/app/apercus'));
 const port = Number(option('--port', '4175'));
+const parcours = option('--parcours', 'arrivee');
 const dossierExport = join(racine, 'dist-arrivee');
 
 function trouverChromium() {
@@ -58,7 +60,7 @@ mkdirSync(sortie, { recursive: true });
 const serveur = await servir(dossierExport);
 const { chromium } = chargerPlaywright();
 const navigateur = await chromium.launch({ executablePath: trouverChromium(), args: ['--no-sandbox'] });
-const profil = JSON.stringify({ type: 'eleve', niveau: '3e', pays: 'CM', termine: false });
+const profil = JSON.stringify({ type: 'eleve', niveau: parcours === 'pass' ? 'Tle' : '3e', pays: 'CM', termine: parcours === 'pass' });
 try {
   for (const schema of ['light', 'dark']) {
     const suffixe = schema === 'light' ? 'clair' : 'sombre';
@@ -67,9 +69,26 @@ try {
     const page = await contexte.newPage();
     const capture = async (nom) => {
       await page.waitForTimeout(900);
-      await page.screenshot({ path: join(sortie, `arrivee-${nom}-${suffixe}.png`) });
-      console.log(`Capture : arrivee-${nom}-${suffixe}.png`);
+      await page.screenshot({ path: join(sortie, `${parcours}-${nom}-${suffixe}.png`) });
+      console.log(`Capture : ${parcours}-${nom}-${suffixe}.png`);
     };
+
+    if (parcours === 'pass') {
+      await page.goto(`http://127.0.0.1:${port}/offres`);
+      await page.getByText('Conseillé').waitFor({ timeout: 30000 });
+      await capture('e1-offres');
+      await page.getByRole('button', { name: /^Payer/ }).click();
+      await capture('e1-bientot');
+      await page.getByRole('button', { name: 'Envoyer à mon parent' }).click();
+      await page.getByText('Aperçu du message').waitFor({ timeout: 30000 });
+      await page.getByLabel('Ton prénom (vu par ton parent)').fill('Aïcha');
+      await capture('e6-parent');
+      await page.getByRole('button', { name: 'Copier le lien' }).click();
+      await page.getByText(/Lien valable jusqu/).waitFor({ timeout: 15000 });
+      await capture('e6-lien-cree');
+      await contexte.close();
+      continue;
+    }
 
     await page.goto(`http://127.0.0.1:${port}/mini-test`);
     await page.getByText('Choisis une réponse.').waitFor({ timeout: 30000 });
