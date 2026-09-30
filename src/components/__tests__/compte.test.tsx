@@ -21,6 +21,10 @@ const mockFacebook = jest.fn();
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => false },
   useLocalSearchParams: () => ({ type: 'eleve' }),
+  useFocusEffect: (f: () => void | (() => void)) => {
+    const { useEffect } = jest.requireActual('react');
+    useEffect(f, [f]);
+  },
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));

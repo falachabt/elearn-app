@@ -1,16 +1,22 @@
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { router, useFocusEffect } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { languesDisponibles, type Langue } from '@/i18n';
 import { cleErreur, deconnecter, estInvite } from '@/services/compte';
+import { calculerSerie, lireHistorique } from '@/services/mission';
+import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
 import { lireAcces, type Acces } from '@/services/pass';
+import { lireProfil, type Profil } from '@/services/profil';
+import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Appui } from './Appui';
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
 import { Carte } from './Carte';
@@ -27,11 +33,39 @@ export function EcranMoi() {
   const [erreur, setErreur] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
   const [acces, setAcces] = useState<Acces>(null);
+  const [profil, setProfil] = useState<Profil | null>(null);
+  const [stats, setStats] = useState({ serie: 0, missions: 0, lecons: 0 });
+  const [parent, setParent] = useState<string | null>(null);
+  const [suppression, setSuppression] = useState(false);
 
   const user = session?.user;
   const invite = estInvite(user);
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
+  const nom = (user?.user_metadata?.full_name as string | undefined)?.trim() || (user?.user_metadata?.name as string | undefined)?.trim() || null;
+  const prenom = nom?.split(/\s+/)[0] ?? null;
+
+  // Relu à chaque retour sur l'onglet : classe changée, mission faite, leçon lue, contact ajouté.
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      void (async () => {
+        const [p, jours, lues] = await Promise.all([lireProfil(), lireHistorique(), lireLues()]);
+        if (!actif) return;
+        setProfil(p);
+        setStats({ serie: calculerSerie(jours).serie, missions: jours.length, lecons: Object.keys(lues).length });
+        if (!connecte) return;
+        const client = getSupabase();
+        const [c, d] = await Promise.all([lireContactParent(client).catch(() => null), lireDemandeSuppression(client).catch(() => null)]);
+        if (!actif) return;
+        setParent(c?.telephone ? c.nom : null);
+        setSuppression(!!d);
+      })();
+      return () => {
+        actif = false;
+      };
+    }, [connecte]),
+  );
 
   useEffect(() => {
     if (!idUtilisateur) return;
@@ -59,6 +93,44 @@ export function EcranMoi() {
   return (
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('moi.titre')}</Text>
+
+      <Carte>
+        <View style={styles.groupe}>
+          <View style={styles.identite}>
+            <View style={[styles.avatar, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              {prenom ? (
+                <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{prenom.charAt(0).toUpperCase()}</Text>
+              ) : (
+                <Ionicons name="person" size={28} color={theme.texte.surCouleur} />
+              )}
+            </View>
+            <View style={styles.flex}>
+              <Text style={[typo.h3, { color: theme.texte.principal }]}>{prenom ? t('moi.bonjour', { nom: prenom }) : t('moi.bonjourSansNom')}</Text>
+              {profil?.niveau ? (
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                  {t('moi.classePays', {
+                    classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : profil.niveau,
+                    pays: profil.pays ? t(`pays.${profil.pays as 'CM'}`) : '',
+                  })}
+                </Text>
+              ) : null}
+            </View>
+          </View>
+          <View style={styles.ligne}>
+            {([
+              ['serie', stats.serie],
+              ['missions', stats.missions],
+              ['lecons', stats.lecons],
+            ] as const).map(([cle, valeur]) => (
+              <View key={cle} style={[styles.chiffre, { borderColor: theme.bord.fort, backgroundColor: cle === 'serie' ? theme.accent.soleil : theme.fond.creux }]}>
+                <Text style={[typo.chiffreL, { color: cle === 'serie' ? theme.texte.surCouleur : theme.texte.principal }]}>{String(valeur)}</Text>
+                <Text style={[typo.legende, { color: cle === 'serie' ? theme.texte.surCouleur : theme.texte.secondaire }]}>{t(`moi.${cle}`)}</Text>
+              </View>
+            ))}
+          </View>
+          <Bouton petit variante="secondaire" libelle={t('moi.changerClasse')} onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })} />
+        </View>
+      </Carte>
 
       {statut === 'erreur' ? <Banniere ton="erreur" titre={t('erreur.banniere')} texte={t('moi.sessionErreur')} /> : null}
 
@@ -110,6 +182,14 @@ export function EcranMoi() {
 
       {connecte ? (
         <View style={styles.groupe}>
+          <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('moi.monCompte')}</Text>
+          <Ligne icone="people-outline" titre={t('moi.parent')} detail={parent ? t('moi.parentAjoute', { nom: parent }) : t('moi.parentAucun')} onPress={() => router.push('/profil/parent')} />
+          <Ligne icone="trash-outline" titre={t('moi.supprimer')} detail={suppression ? t('moi.supprimerDemande') : undefined} onPress={() => router.push('/profil/supprimer')} />
+        </View>
+      ) : null}
+
+      {connecte ? (
+        <View style={styles.groupe}>
           {erreur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={erreur} /> : null}
           <Bouton variante="danger" libelle={enCours ? t('compte.enCours') : t('moi.deconnexion')} desactive={enCours} onPress={sortir} />
         </View>
@@ -118,8 +198,29 @@ export function EcranMoi() {
   );
 }
 
+function Ligne({ icone, titre, detail, onPress }: { icone: keyof typeof Ionicons.glyphMap; titre: string; detail?: string; onPress: () => void }) {
+  const { theme } = useTheme();
+  return (
+    <Appui accessibilityRole="button" accessibilityLabel={detail ? `${titre}. ${detail}` : titre} onPress={onPress} rayon={rayon.l} ombre={3} decalage={2} couleurOmbre={theme.ombre}>
+      <View style={[styles.entree, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+        <Ionicons name={icone} size={22} color={theme.texte.principal} />
+        <View style={styles.flex}>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+          {detail ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text> : null}
+        </View>
+        <Ionicons name="chevron-forward" size={20} color={theme.texte.secondaire} />
+      </View>
+    </Appui>
+  );
+}
+
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
+  flex: { flex: 1 },
+  identite: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
+  avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  chiffre: { flex: 1, gap: espace[1], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
+  entree: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', gap: espace[4] },
   moitie: { flex: 1 },
 });

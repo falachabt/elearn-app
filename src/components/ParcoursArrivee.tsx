@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { getLocales } from 'expo-localization';
-import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -77,21 +78,47 @@ export function Bienvenue() {
 export function ChoixClasse() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { type } = useLocalSearchParams<{ type?: string }>();
+  const params = useLocalSearchParams<{ type?: string; modifier?: string }>();
+  // H1 : depuis Moi, « Changer de classe » rouvre cet écran avec le profil actuel et revient à Moi.
+  const modifier = params.modifier === '1';
+  const [type, setType] = useState(params.type);
   const concours = type === 'concours';
   const [niveau, setNiveau] = useState<string>(concours ? 'ens' : '3e');
   const [pays, setPays] = useState<Pays>(() => paysParDefaut(safeRegion()));
   const [changerPays, setChangerPays] = useState(false);
   const options: readonly string[] = concours ? CONCOURS : CLASSES;
 
+  useEffect(() => {
+    if (!modifier) return;
+    let actif = true;
+    lireProfil().then((p) => {
+      if (!actif || !p) return;
+      setType(p.type);
+      if (p.niveau) setNiveau(p.niveau);
+      if (p.pays && (PAYS as readonly string[]).includes(p.pays)) setPays(p.pays as Pays);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [modifier]);
+
   const continuer = async () => {
+    if (modifier) {
+      await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: true });
+      // La mission du jour gardée en cache était tirée pour l'ancienne classe.
+      await AsyncStorage.removeItem('mission.jour');
+      suivre('profile_class_changed', { niveau, pays });
+      if (router.canGoBack()) router.back();
+      else router.replace('/moi');
+      return;
+    }
     await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: false });
     suivre('onboarding_choice_made', { profil: concours ? 'concours' : 'eleve', niveau, pays });
     router.push('/premier-resultat');
   };
 
   return (
-    <Ecran pied={<Bouton libelle={t('classe.continuer')} onPress={continuer} retour />}>
+    <Ecran pied={<Bouton libelle={t(modifier ? 'classe.enregistrer' : 'classe.continuer')} onPress={continuer} retour />}>
       <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} />
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t(concours ? 'classe.titreConcours' : 'classe.titreEleve')}</Text>
       <View style={styles.pastilles}>

@@ -2,6 +2,7 @@
 // Captures du parcours d'arrivée A4 à A7 en clair et en sombre : arrivee-<ecran>-<clair|sombre>.png.
 // Export web avec le Supabase local (clé publique de démo) : lancer `npx supabase start` dans elearn-supabase avant.
 // --parcours mission : accueil (C1), mission (C2) et fin de mission (C3) : mission-<ecran>-<clair|sombre>.png.
+// --parcours profil : onglet Moi (H1) et changement de classe : profil-<ecran>-<clair|sombre>.png.
 // --parcours reviser : onglet Réviser (D1), chapitres, leçon (D2) : reviser-<ecran>-<clair|sombre>.png (contenu local à semer).
 // --parcours pass : écrans Offres (E1) et « Envoyer à mon parent » (E6) : pass-<ecran>-<clair|sombre>.png.
 // Usage : node scripts/apercu-arrivee.mjs [--parcours arrivee|pass] [--sortie dossier] [--port 4175] [--sans-build]
@@ -74,6 +75,21 @@ try {
       await page.screenshot({ path: join(sortie, `${parcours}-${nom}-${suffixe}.png`) });
       console.log(`Capture : ${parcours}-${nom}-${suffixe}.png`);
     };
+
+    if (parcours === 'profil') {
+      await contexte.addInitScript(() => {
+        localStorage.setItem('mission.historique', JSON.stringify(['2026-09-28', '2026-09-29', '2026-09-30']));
+        localStorage.setItem('reviser.lues', JSON.stringify({ 1: 1, 2: 1, 3: 1, 4: 2, 5: 2 }));
+      });
+      await page.goto(`http://127.0.0.1:${port}/moi`);
+      await page.getByText('Changer de classe').waitFor({ timeout: 30000 });
+      await capture('h1-moi');
+      await page.getByText('Changer de classe').click();
+      await page.getByRole('button', { name: 'Enregistrer' }).waitFor({ timeout: 15000 });
+      await capture('h1-classe');
+      await contexte.close();
+      continue;
+    }
 
     if (parcours === 'reviser') {
       await page.goto(`http://127.0.0.1:${port}/reviser`);
