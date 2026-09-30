@@ -57,13 +57,14 @@ export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: 
 /** A6 · Sauvegarder : feuille par-dessus le score, fermable d'un glissement ou par « Plus tard ». */
 export const FeuilleSauvegarde = forwardRef<BottomSheet, Props>(function FeuilleSauvegarde({ onSauvegarde, onFermee }, ref) {
   const { theme } = useTheme();
-  const { bottom } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
   const fermer = () => (ref && 'current' in ref ? ref.current?.close() : undefined);
   return (
     <BottomSheet
       ref={ref}
       index={-1}
       enableDynamicSizing
+      topInset={top}
       enablePanDownToClose
       backdropComponent={Fond}
       onClose={onFermee}

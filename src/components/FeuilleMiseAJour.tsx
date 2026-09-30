@@ -95,7 +95,7 @@ function EcranObligatoire(props: PropsMiseAJour) {
 /** Feuille « mise à jour disponible » (bottom sheet) ; plein écran sans « Plus tard » si `obligatoire`. */
 export function FeuilleMiseAJour({ etat, obligatoire = false, onInstaller, onPlusTard }: PropsMiseAJour) {
   const { theme } = useTheme();
-  const { bottom } = useSafeAreaInsets();
+  const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheet>(null);
 
   if (etat === 'aucune') return null;
@@ -107,6 +107,7 @@ export function FeuilleMiseAJour({ etat, obligatoire = false, onInstaller, onPlu
       ref={feuille}
       index={0}
       enableDynamicSizing
+      topInset={top}
       enablePanDownToClose={fermable}
       enableContentPanningGesture={fermable}
       enableHandlePanningGesture={fermable}

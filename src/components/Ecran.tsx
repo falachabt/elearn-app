@@ -42,7 +42,8 @@ type Props = {
  * Règle : tout écran qui contient un `Champ` passe par `Ecran`.
  * - Le clavier ne recouvre jamais le champ : `KeyboardAvoidingView` (comportement `padding`, y compris sur Android
  *   en edge-to-edge où `adjustResize` ne redimensionne plus la fenêtre) + défilement + défilement automatique au focus.
- * - Le fond et les zones système (haut et bas) prennent la couleur du thème.
+ * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
+ *   barre d'état ni sous la barre de navigation, même en défilant.
  */
 export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, pied, style, contenuStyle }: Props) {
   const { theme } = useTheme();
@@ -69,7 +70,10 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
   }, []);
   const contexte = useMemo(() => rendreVisible, [rendreVisible]);
 
-  const padding = { paddingTop: insetHaut ? insets.top + espace[5] : espace[5], paddingBottom: pied ? espace[5] : (insetBas ? insets.bottom : 0) + espace[7] };
+  // Les insets sont posés sur un cadre fixe, hors du défilement : le contenu qui défile est coupé sous la barre
+  // d'état et au-dessus de la barre de navigation, au lieu de passer derrière l'heure et la batterie (edge-to-edge).
+  const cadre = { paddingTop: insetHaut ? insets.top : 0, paddingBottom: !pied && insetBas ? insets.bottom : 0 };
+  const padding = { paddingTop: espace[5], paddingBottom: pied ? espace[5] : espace[7] };
 
   return (
     <ContexteEcran.Provider value={contexte}>
@@ -78,23 +82,25 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
         behavior={COMPORTEMENT_CLAVIER}
         style={[styles.racine, { backgroundColor: theme.fond.app }, style]}
       >
-        {defilement ? (
-          <ScrollView
-            ref={defileur}
-            testID="ecran-defilement"
-            style={styles.racine}
-            contentContainerStyle={[styles.contenu, padding, contenuStyle]}
-            keyboardShouldPersistTaps="handled"
-            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
-            automaticallyAdjustKeyboardInsets
-            showsVerticalScrollIndicator={false}
-          >
-            {children}
-          </ScrollView>
-        ) : (
-          <View style={[styles.racine, styles.contenu, padding, contenuStyle]}>{children}</View>
-        )}
-        {pied ? <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View> : null}
+        <View testID="ecran-cadre" style={[styles.racine, cadre]}>
+          {defilement ? (
+            <ScrollView
+              ref={defileur}
+              testID="ecran-defilement"
+              style={styles.racine}
+              contentContainerStyle={[styles.contenu, padding, contenuStyle]}
+              keyboardShouldPersistTaps="handled"
+              keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+              automaticallyAdjustKeyboardInsets
+              showsVerticalScrollIndicator={false}
+            >
+              {children}
+            </ScrollView>
+          ) : (
+            <View style={[styles.racine, styles.contenu, padding, contenuStyle]}>{children}</View>
+          )}
+          {pied ? <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View> : null}
+        </View>
       </KeyboardAvoidingView>
     </ContexteEcran.Provider>
   );

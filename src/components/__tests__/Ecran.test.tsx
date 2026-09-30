@@ -26,17 +26,30 @@ describe('Ecran', () => {
     expect(screen.getByText('contenu')).toBeTruthy();
   });
 
-  it('dégage la barre d’état en haut et la barre de navigation système en bas (edge-to-edge)', async () => {
+  it('dégage la barre d’état et la barre de navigation sur un cadre fixe, hors du défilement (edge-to-edge)', async () => {
     await render(avecTheme('clair', <Ecran><Text>a</Text></Ecran>));
-    const style = StyleSheet.flatten(screen.getByTestId('ecran-defilement').props.contentContainerStyle);
-    expect(style.paddingTop).toBeGreaterThanOrEqual(47);
-    expect(style.paddingBottom).toBeGreaterThanOrEqual(34);
+    const cadre = StyleSheet.flatten(screen.getByTestId('ecran-cadre').props.style);
+    expect(cadre.paddingTop).toBe(47);
+    expect(cadre.paddingBottom).toBe(34);
+    // Régression (30/09) : l'inset du haut était dans le contenu défilant, qui passait alors sous l'heure et la batterie.
+    const contenu = StyleSheet.flatten(screen.getByTestId('ecran-defilement').props.contentContainerStyle);
+    expect(contenu.paddingTop).toBeLessThan(47);
+  });
+
+  it('le défileur est à l’intérieur du cadre : rien ne défile sous la barre d’état', async () => {
+    await render(avecTheme('clair', <Ecran><Text>a</Text></Ecran>));
+    const cadre = screen.getByTestId('ecran-cadre');
+    expect(cadre).toContainElement(screen.getByTestId('ecran-defilement'));
   });
 
   it('dans les onglets (insetBas faux), la barre d’onglets gère le bas', async () => {
     await render(avecTheme('clair', <Ecran insetBas={false}><Text>a</Text></Ecran>));
-    const style = StyleSheet.flatten(screen.getByTestId('ecran-defilement').props.contentContainerStyle);
-    expect(style.paddingBottom).toBeLessThan(34);
+    expect(StyleSheet.flatten(screen.getByTestId('ecran-cadre').props.style).paddingBottom).toBe(0);
+  });
+
+  it('avec un pied, l’inset du bas passe sous le pied (pas deux fois)', async () => {
+    await render(avecTheme('clair', <Ecran pied={<Text>pied</Text>}><Text>a</Text></Ecran>));
+    expect(StyleSheet.flatten(screen.getByTestId('ecran-cadre').props.style).paddingBottom).toBe(0);
   });
 
   it('prend le fond du thème clair et sombre', async () => {
