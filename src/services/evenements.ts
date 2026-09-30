@@ -13,6 +13,8 @@ export type Evenements = {
   parent_link_sent: { canal: 'whatsapp' | 'copie' };
   mission_started: { source: 'serveur' | 'locale'; total: number };
   mission_completed: { score: number; total: number; duree_s: number; serie: number };
+  lesson_quiz_completed: { score: number; total: number };
+  summary_opened: { cours: number };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
   connexion_reussie: { methode: 'email' | 'google' | 'apple' | 'facebook' | 'telephone' };

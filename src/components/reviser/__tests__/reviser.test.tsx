@@ -11,8 +11,10 @@ import { lireLues } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Chapitre } from '../Chapitre';
+import { FicheCours } from '../FicheCours';
 import { LeconLecteur } from '../LeconLecteur';
 import { MatiereCours } from '../MatiereCours';
+import { QuizLecon } from '../QuizLecon';
 import { Reviser } from '../Reviser';
 
 const mockRpc = jest.fn();
@@ -49,9 +51,23 @@ const CONTENU = (id: number) => ({
   content_compressed: null,
 });
 
+const QUIZ = [1, 2, 3].map((i) => ({
+  question_id: i,
+  quiz_id: 'q',
+  chapter: 'Fractions',
+  subject: 'Mathématique',
+  kind: 'select',
+  prompt: `Question ${i} ?`,
+  options: [{ id: 'a', text: `Bonne ${i}` }, { id: 'b', text: `Fausse ${i}` }],
+  correct: ['a'],
+  explanation: 'Parce que.',
+}));
+
 function repondre(nom: string, args: Record<string, number>) {
   if (nom === 'revision_courses') return { data: COURS, error: null };
   if (nom === 'course_lessons') return { data: LECONS, error: null };
+  if (nom === 'course_summary') return { data: args.p_course === 1 ? [{ summary_id: 5, name: 'Fiche Fractions', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'À retenir' }] }] }] : [], error: null };
+  if (nom === 'lesson_quiz') return { data: args.p_course === 1 ? QUIZ : [], error: null };
   if (nom === 'lesson_content') return { data: [CONTENU(args.p_lesson)], error: null };
   return { data: null, error: new Error(nom) };
 }
@@ -120,6 +136,63 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(async () => expect(await lireLues()).toEqual({ 11: 1 }));
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.suivante }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
+  });
+
+  it('chapitre avec fiche : ouverture de la fiche', async () => {
+    mockParams = { id: '1', nom: 'Fractions', matiere: 'Maths' };
+    await monter(<Chapitre />);
+    await waitFor(() => expect(screen.getByText(x.reviser.fiche)).toBeTruthy());
+    await fireEvent.press(screen.getByText(x.reviser.fiche));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/fiche', params: { cours: '1', nom: 'Fractions', matiere: 'Maths' } });
+  });
+
+  it('chapitre sans fiche : pas d’entrée', async () => {
+    mockParams = { id: '2', nom: 'Pythagore' };
+    await monter(<Chapitre />);
+    await waitFor(() => expect(screen.getByText('Définition')).toBeTruthy());
+    expect(screen.queryByText(x.reviser.fiche)).toBeNull();
+  });
+
+  it('fiche résumé : contenu, ou message si absente', async () => {
+    mockParams = { cours: '1', nom: 'Fractions', matiere: 'Maths' };
+    await monter(<FicheCours />);
+    await waitFor(() => expect(screen.getByText('À retenir')).toBeTruthy());
+    expect(mockRpc).toHaveBeenCalledWith('course_summary', { p_course: 1 });
+  });
+
+  it('fiche absente', async () => {
+    mockParams = { cours: '2' };
+    await monter(<FicheCours />);
+    await waitFor(() => expect(screen.getByText(x.reviser.ficheVide)).toBeTruthy());
+  });
+
+  it('leçon : répondre aux 3 questions', async () => {
+    mockParams = { id: '11', cours: '1' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.quiz })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.quiz }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/quiz', params: { cours: '1', lecon: '11' } });
+  });
+
+  it('quiz de leçon : 3 questions puis score', async () => {
+    mockParams = { cours: '1', lecon: '11' };
+    await monter(<QuizLecon />);
+    await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
+    expect(mockRpc).toHaveBeenCalledWith('lesson_quiz', { p_course: 1, p_lesson: 11, p_size: 3 });
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 2 ? `Fausse ${i}` : `Bonne ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.reviser.quizTerminer : x.miniTest.suivant }));
+    }
+    await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
+    expect(screen.getByText(x.reviser.quizRelire)).toBeTruthy();
+  });
+
+  it('quiz de leçon sans questions', async () => {
+    mockParams = { cours: '2', lecon: '21' };
+    await monter(<QuizLecon />);
+    await waitFor(() => expect(screen.getByText(x.reviser.quizVide)).toBeTruthy());
   });
 
   it('dernière leçon : terminer le chapitre', async () => {

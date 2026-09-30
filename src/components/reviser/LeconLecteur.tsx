@@ -51,13 +51,19 @@ export function LeconLecteur() {
   const suivante = etat.statut === 'pret' && position >= 0 ? etat.lecons[position + 1] : undefined;
   const courante = etat.statut === 'pret' && position >= 0 ? etat.lecons[position] : undefined;
 
+  const quiz = etat.statut === 'pret' ? (
+    <Bouton variante="secondaire" libelle={t('reviser.quiz')} onPress={() => router.push({ pathname: '/cours/quiz', params: { cours: String(etat.lecon.coursId), lecon: String(etat.lecon.id) } })} />
+  ) : null;
   const pied =
     etat.statut === 'pret' ? (
-      suivante ? (
-        <Bouton libelle={t('reviser.suivante')} onPress={() => router.replace({ pathname: '/cours/lecon', params: { id: String(suivante.id), cours: String(etat.lecon.coursId), matiere: matiere ?? '' } })} retour />
-      ) : (
-        <Bouton libelle={t('reviser.finChapitre')} onPress={retour} retour />
-      )
+      <View style={styles.pied}>
+        {quiz}
+        {suivante ? (
+          <Bouton libelle={t('reviser.suivante')} onPress={() => router.replace({ pathname: '/cours/lecon', params: { id: String(suivante.id), cours: String(etat.lecon.coursId), matiere: matiere ?? '' } })} retour />
+        ) : (
+          <Bouton libelle={t('reviser.finChapitre')} onPress={retour} retour />
+        )}
+      </View>
     ) : undefined;
 
   const details =
@@ -88,5 +94,6 @@ export function LeconLecteur() {
 const styles = StyleSheet.create({
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
+  pied: { gap: espace[3] },
   meta: { flexDirection: 'row', alignItems: 'center', gap: espace[3], flexWrap: 'wrap' },
 });

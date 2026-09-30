@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireLecons, lireLues, type Lecon } from '@/services/reviser';
+import { lireFiche, lireLecons, lireLues, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -23,6 +23,7 @@ export function Chapitre() {
   const { id, nom, matiere } = useLocalSearchParams<{ id: string; nom?: string; matiere?: string }>();
   const [lecons, setLecons] = useState<Lecon[] | null | undefined>(undefined);
   const [lues, setLues] = useState<Record<string, number>>({});
+  const [fiche, setFiche] = useState(false);
   const pret = useSessionPrete();
 
   useFocusEffect(
@@ -36,6 +37,9 @@ export function Chapitre() {
           setLues(lu);
         })
         .catch(() => actif && setLecons(null));
+      lireFiche(getSupabase(), Number(id))
+        .then((f) => actif && setFiche(f !== null))
+        .catch(() => undefined);
       return () => {
         actif = false;
       };
@@ -49,6 +53,26 @@ export function Chapitre() {
         <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{nom}</Text>
       </View>
       {matiere ? <Etiquette texte={matiere} /> : null}
+      {fiche ? (
+        <Appui
+          accessibilityRole="button"
+          accessibilityLabel={`${t('reviser.fiche')}. ${t('reviser.ficheTexte')}`}
+          onPress={() => router.push({ pathname: '/cours/fiche', params: { cours: id, nom: nom ?? '', matiere: matiere ?? '' } })}
+          rayon={rayon.l}
+          ombre={4}
+          decalage={3}
+          couleurOmbre={theme.ombre}
+        >
+          <View style={[styles.ligne, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+            <Ionicons name="document-text-outline" size={22} color={theme.texte.surCouleur} />
+            <View style={styles.flex}>
+              <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t('reviser.fiche')}</Text>
+              <Text style={[typo.legende, { color: theme.texte.surCouleur }]}>{t('reviser.ficheTexte')}</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={theme.texte.surCouleur} />
+          </View>
+        </Appui>
+      ) : null}
       {lecons === null ? <Banniere ton="erreur" titre={t('reviser.erreur')} /> : null}
       {lecons?.map((l, i) => {
         const lue = lues[l.id] !== undefined;

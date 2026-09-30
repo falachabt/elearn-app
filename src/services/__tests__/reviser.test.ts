@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { couleurMatiere, lireCours, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere } from '../reviser';
+import { couleurMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -67,5 +67,23 @@ describe('reviser', () => {
     expect(await lireLues()).toEqual({ 7: 1, 8: 1, 9: 2 });
     expect(pourcentageVu([{ id: 1, nom: 'A', matiere: 'M', lecons: 4 }], await lireLues())).toBe(50);
     expect(pourcentageVu([], {})).toBe(0);
+  });
+
+  it('fiche : blocs non compressés, gardée hors ligne ; null si vide', async () => {
+    const c = client([{ summary_id: 1, name: ' Fiche ', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Clé' }] }] }]);
+    const f = await lireFiche(c as never, 7);
+    expect(c.rpc).toHaveBeenCalledWith('course_summary', { p_course: 7 });
+    expect(f?.nom).toBe('Fiche');
+    expect(f?.blocs).toHaveLength(1);
+    expect(await lireFiche(client(null, new Error('hors ligne')) as never, 7)).toEqual(f);
+    expect(await lireFiche(client([]) as never, 8)).toBeNull();
+  });
+
+  it('quiz de leçon : questions converties, invalides écartées', async () => {
+    const ligne = (id: number, correct: string) => ({ question_id: id, quiz_id: 'q', chapter: 'C', subject: 'Maths', kind: 'select', prompt: 'Q ?', options: [{ id: 'a', text: 'A' }, { id: 'b', text: 'B' }], correct: [correct], explanation: null });
+    const c = client([ligne(1, 'a'), ligne(2, 'z')]);
+    const q = await lireQuizLecon(c as never, { cours: 3, lecon: 4, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } });
+    expect(c.rpc).toHaveBeenCalledWith('lesson_quiz', { p_course: 3, p_lesson: 4, p_size: 3 });
+    expect(q.map((x) => x.id)).toEqual(['1']);
   });
 });

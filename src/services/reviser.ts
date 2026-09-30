@@ -4,6 +4,8 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { matiere as couleursMatieres } from '@/theme/theme';
 
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
+import type { QuestionTiree } from './miniTest';
+import { convertir, type LigneMission } from './mission';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -11,10 +13,13 @@ export type Cours = { id: number; nom: string; matiere: string; lecons: number }
 export type Matiere = { nom: string; couleur: keyof typeof couleursMatieres | null; cours: Cours[]; lecons: number };
 export type Lecon = { id: number; nom: string; minutes: number | null };
 export type ContenuLecon = { id: number; coursId: number; nom: string; blocs: Bloc[] };
+export type Fiche = { nom: string; blocs: Bloc[] };
 
 const CLE_COURS = (niveau: string, pays: string) => `reviser.cours.${niveau}.${pays.toUpperCase()}`;
 const CLE_LECONS = (cours: number) => `reviser.lecons.${cours}`;
 const CLE_LECON = (lecon: number) => `reviser.lecon.${lecon}`;
+const CLE_FICHE = (cours: number) => `reviser.fiche.${cours}`;
+export const TAILLE_QUIZ_LECON = 3;
 export const CLE_LUES = 'reviser.lues';
 export const AUTRES = 'Autres';
 
@@ -95,6 +100,22 @@ export async function lireLecon(client: Client, lecon: number): Promise<ContenuL
     if (!l) throw new Error('leçon introuvable');
     return { id: l.lesson_id, coursId: l.course_id, nom: l.name?.trim() || '', blocs: normaliserBlocs(decoderContenu({ compresse: l.content_compressed, brut: l.content })) };
   });
+}
+
+/** Fiche résumé du cours (M5-02) ; null si le cours n'en a pas. */
+export async function lireFiche(client: Client, cours: number): Promise<Fiche | null> {
+  return avecCopie(CLE_FICHE(cours), async () => {
+    const [f] = await rpc<{ name: string | null; content: unknown }>(client, 'course_summary', { p_course: cours });
+    if (!f) return null;
+    const blocs = normaliserBlocs(decoderContenu({ brut: f.content }));
+    return blocs.length ? { nom: f.name?.trim() || '', blocs } : null;
+  });
+}
+
+/** 3 questions pour vérifier une leçon, tirées des quiz du cours (M5-01) ; en ligne seulement. */
+export async function lireQuizLecon(client: Client, p: { cours: number; lecon: number; vraiFaux: { vrai: string; faux: string } }): Promise<QuestionTiree[]> {
+  const lignes = await rpc<LigneMission>(client, 'lesson_quiz', { p_course: p.cours, p_lesson: p.lecon, p_size: TAILLE_QUIZ_LECON });
+  return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
 }
 
 /** Leçons lues : identifiant de leçon → identifiant de cours, pour le « % vu » par matière. */
