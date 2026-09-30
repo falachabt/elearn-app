@@ -4,6 +4,7 @@ import {
   cleErreur,
   connecterApple,
   connecterEmail,
+  connecterFacebook,
   connecterGoogle,
   creerCompteEmail,
   deconnecter,
@@ -153,6 +154,18 @@ describe('Google', () => {
   it('navigateur fermé ou retour en erreur : message « annulé »', async () => {
     await expect(connecterGoogle(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
     await expect(connecterGoogle(faux(), deps({ type: 'success', url: 'elearnprepa://auth/callback?error=access_denied' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
+  });
+
+  it('Facebook : même flux OAuth avec le fournisseur facebook (invité rattaché, non invité connecté)', async () => {
+    const c = faux();
+    await connecterFacebook(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb1' }), 'abc123');
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('fb1');
+    expect(c.auth.updateUser).toHaveBeenCalledWith({ data: { referral_code: 'ABC123' } });
+    const d = faux(null);
+    await connecterFacebook(d, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb2' }));
+    expect(d.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    await expect(connecterFacebook(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
   });
 
   it('lireRetourOAuth', () => {

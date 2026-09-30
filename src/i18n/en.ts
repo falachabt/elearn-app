@@ -107,6 +107,7 @@ export const en: Textes = {
     pasDeCompte: 'Create an account',
     google: 'Continue with Google',
     apple: 'Continue with Apple',
+    facebook: 'Continue with Facebook',
     ou: 'or with your email',
     plusTard: 'Later',
     conditions: 'By continuing, you accept the terms of use and the privacy policy.',

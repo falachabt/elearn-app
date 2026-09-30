@@ -33,3 +33,9 @@ export function depsApple(): DepsApple {
 }
 
 export const appleAffiche = Platform.OS === 'ios';
+
+/**
+ * Facebook n'apparaît que lorsque le fournisseur est activé côté Supabase (app Meta créée, `EXPO_PUBLIC_FACEBOOK=1`
+ * au build ou dans l'OTA) : sinon la page OAuth de Supabase afficherait une erreur brute dans le navigateur.
+ */
+export const facebookAffiche = process.env.EXPO_PUBLIC_FACEBOOK === '1';

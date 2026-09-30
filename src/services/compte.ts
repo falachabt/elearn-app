@@ -8,7 +8,10 @@ import { assurerSessionInvite } from './session';
 
 type Client = Pick<SupabaseClient, 'auth'>;
 
-export type Methode = 'email' | 'google' | 'apple';
+export type Methode = 'email' | 'google' | 'apple' | 'facebook';
+
+/** Fournisseurs passant par la page OAuth de Supabase dans le navigateur. */
+export type FournisseurOAuth = 'google' | 'facebook';
 
 /** Erreur que l'écran sait traduire : `cle` est une clé de texte. */
 export class ErreurCompte extends Error {
@@ -104,16 +107,16 @@ export type DepsOAuth = {
 };
 
 /**
- * Google via OAuth Supabase. Un invité garde son compte : `linkIdentity` rattache Google à l'utilisateur anonyme
- * (nécessite `enable_manual_linking` côté Supabase) ; sinon connexion classique.
+ * Google ou Facebook via OAuth Supabase. Un invité garde son compte : `linkIdentity` rattache le fournisseur à
+ * l'utilisateur anonyme (nécessite `enable_manual_linking` côté Supabase) ; sinon connexion classique.
  */
-export async function connecterGoogle(client: Client, deps: DepsOAuth, codeParrainage?: string | null): Promise<void> {
+export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null): Promise<void> {
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
   const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
   const { data, error } = conversionInvite
-    ? await client.auth.linkIdentity({ provider: 'google', options })
-    : await client.auth.signInWithOAuth({ provider: 'google', options });
+    ? await client.auth.linkIdentity({ provider: fournisseur, options })
+    : await client.auth.signInWithOAuth({ provider: fournisseur, options });
   if (error) throw error;
   if (!data.url) throw new ErreurCompte('compte.erreurs.inconnue');
 
@@ -132,9 +135,12 @@ export async function connecterGoogle(client: Client, deps: DepsOAuth, codeParra
     throw new ErreurCompte('compte.erreurs.inconnue');
   }
   const avecCode = await rattacherCode(client, codeParrainage);
-  if (conversionInvite) suivre('compte_cree', { methode: 'google', conversion_invite: true, avec_parrainage: avecCode });
-  else suivre('connexion_reussie', { methode: 'google' });
+  if (conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
+  else suivre('connexion_reussie', { methode: fournisseur });
 }
+
+export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null) => connecterOAuth(client, 'google', deps, codeParrainage);
+export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null) => connecterOAuth(client, 'facebook', deps, codeParrainage);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
 async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {

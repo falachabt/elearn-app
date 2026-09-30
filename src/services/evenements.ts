@@ -5,8 +5,8 @@ export type Evenements = {
   feedback_setting_changed: { setting: 'sounds' | 'haptics' | 'reduced_motion'; value: boolean; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   celebration_seen: { sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   referral_code_captured: { source: 'lien' | 'saisie' };
-  compte_cree: { methode: 'email' | 'google' | 'apple'; conversion_invite: boolean; avec_parrainage: boolean };
-  connexion_reussie: { methode: 'email' | 'google' | 'apple' };
+  compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
+  connexion_reussie: { methode: 'email' | 'google' | 'apple' | 'facebook' };
   deconnexion: Record<string, never>;
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };
 };

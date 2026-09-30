@@ -108,6 +108,7 @@ export const fr = {
     pasDeCompte: 'Créer un compte',
     google: 'Continuer avec Google',
     apple: 'Continuer avec Apple',
+    facebook: 'Continuer avec Facebook',
     ou: 'ou avec ton e-mail',
     plusTard: 'Plus tard',
     conditions: 'En continuant, tu acceptes les conditions d’utilisation et la politique de confidentialité.',

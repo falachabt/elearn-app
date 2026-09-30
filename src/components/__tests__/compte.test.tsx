@@ -16,6 +16,7 @@ const mockSession = jest.fn();
 const mockCreer = jest.fn();
 const mockConnecter = jest.fn();
 const mockDeconnecter = jest.fn();
+const mockFacebook = jest.fn();
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => false },
@@ -23,7 +24,7 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
-jest.mock('@/services/authNatif', () => ({ appleAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
+jest.mock('@/services/authNatif', () => ({ appleAffiche: true, facebookAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/services/compte', () => ({
   ...jest.requireActual('@/services/compte'),
@@ -31,6 +32,7 @@ jest.mock('@/services/compte', () => ({
   connecterEmail: (...a: unknown[]) => mockConnecter(...a),
   deconnecter: (...a: unknown[]) => mockDeconnecter(...a),
   connecterGoogle: jest.fn(),
+  connecterFacebook: (...a: unknown[]) => mockFacebook(...a),
   connecterApple: jest.fn(),
 }));
 
@@ -111,10 +113,13 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
     await waitFor(() => expect(mockConnecter).toHaveBeenCalledWith({}, { email: 'amina@exemple.com', motDePasse: 'motdepasse1' }));
   });
 
-  it('Google et Apple sont proposés (Apple : iOS)', async () => {
+  it('Google, Apple (iOS) et Facebook (une fois activé) sont proposés', async () => {
+    mockFacebook.mockResolvedValue(undefined);
     await monter(<FormulaireCompte mode="creer" />);
     expect(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' })).toBeTruthy();
     expect(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Apple' : 'Continue with Apple' })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Facebook' : 'Continue with Facebook' }));
+    await waitFor(() => expect(mockFacebook).toHaveBeenCalled());
   });
 });
 
