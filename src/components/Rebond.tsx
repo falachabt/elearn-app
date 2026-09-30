@@ -13,7 +13,7 @@ type Props = {
   /** Échelle atteinte au sommet du pop (overshoot). */
   echelle?: number;
   /** Retour joué avec le pop : `success` (bonne réponse), `reward` ou `celebrate`. */
-  moment?: Extract<Moment, 'success' | 'reward' | 'celebrate'>;
+  moment?: Extract<Moment, 'success' | 'reward' | 'celebrate' | 'streak' | 'paid'>;
   style?: StyleProp<ViewStyle>;
 };
 

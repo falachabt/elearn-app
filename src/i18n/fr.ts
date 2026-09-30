@@ -50,7 +50,7 @@ export const fr = {
     animationsReduitesAide: 'Supprime les mouvements amples. Suit aussi le réglage de ton téléphone.',
     apercuTitre: 'Aperçu',
     apercuAide: 'Touche un moment pour l’essayer avec tes réglages.',
-    moments: { success: 'Réussite', error: 'Erreur', select: 'Sélection', reward: 'Récompense', celebrate: 'Célébration' },
+    moments: { select: 'Appui', success: 'Bonne réponse', error: 'Erreur', confirm: 'Validation', arrive: 'Correction prête', celebrate: 'Fin de mission', streak: 'Série', reward: 'Récompense', paid: 'Paiement réussi', problem: 'Problème', timerWarning: 'Alerte du chrono', timerEnd: 'Fin d’épreuve' },
   },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;

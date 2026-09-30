@@ -87,4 +87,22 @@ export const typo = {
 
 export const mouvement = { appui: 120, standard: 200, feuille: 300 } as const; // ms ; couper si « réduire les animations »
 
+// Retours (M16) : un seul service appelle ces moments ; aucun écran ne joue un son en direct.
+// Sons dans assets/sounds (CC0, voir README). haptique = expo-haptics : 'selection' | 'success' | 'warning' | 'error' | 'light'.
+// Source : design/theme.ts du projet.
+export const retours = {
+  select: { son: 'clic', haptique: 'selection', sonParDefaut: false },
+  success: { son: 'bonne-reponse', haptique: 'success' },
+  error: { son: 'erreur', haptique: 'error' },
+  confirm: { son: 'validation', haptique: 'selection' },
+  arrive: { son: 'correction-prete', haptique: 'light' },
+  celebrate: { son: 'fin-mission', haptique: 'success' },
+  streak: { son: 'serie', haptique: 'success' },
+  reward: { son: 'recompense', haptique: 'success' },
+  paid: { son: 'paiement-reussi', haptique: 'success' },
+  problem: { son: null, haptique: 'warning' }, // réseau, paiement échoué, quota : bannière seulement
+  timerWarning: { son: 'alerte-chrono', haptique: 'light' },
+  timerEnd: { son: 'fin-epreuve', haptique: 'light' },
+} as const;
+
 export const themes = { light, dark };

@@ -3,28 +3,38 @@ import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-aud
 import * as Haptics from 'expo-haptics';
 import { Platform, Vibration } from 'react-native';
 
+import { retours } from '@/theme/theme';
+
 import { suivre } from './analytics';
 
-/** Les moments clés de l'app. Les écrans n'appellent jamais un son ou une vibration en direct : ils passent par `useFeedback`. */
-export type Moment = 'success' | 'error' | 'select' | 'reward' | 'celebrate';
-export const moments: readonly Moment[] = ['success', 'error', 'select', 'reward', 'celebrate'];
+/** Les moments clés de l'app (carte `retours` du thème : moment -> son + haptique). Les écrans n'appellent jamais un son ou une vibration en direct : ils passent par `useFeedback`. */
+export type Moment = keyof typeof retours;
+export const moments = Object.keys(retours) as Moment[];
 
 export type Preferences = { sons: boolean; vibrations: boolean; animationsReduites: boolean };
 export const PREFERENCES_PAR_DEFAUT: Preferences = { sons: true, vibrations: true, animationsReduites: false };
 export const CLE_PREFERENCES = 'retours.preferences';
 
-/** Sons originaux synthétisés par `scripts/fabriquer-sons.py` (licence : projet, pas de droits tiers). 133 Ko au total. */
-const SONS: Record<Moment, number> = {
-  success: require('../../assets/sounds/succes.wav'),
-  error: require('../../assets/sounds/echec.wav'),
-  select: require('../../assets/sounds/tap.wav'),
-  reward: require('../../assets/sounds/recompense.wav'),
-  celebrate: require('../../assets/sounds/celebration.wav'),
+type NomSon = NonNullable<(typeof retours)[Moment]['son']>;
+
+/** Sons originaux CC0 (assets/sounds, 56 Ko au total). `require` doit être statique pour Metro. */
+const SONS: Record<NomSon, number> = {
+  clic: require('../../assets/sounds/clic.mp3'),
+  'bonne-reponse': require('../../assets/sounds/bonne-reponse.mp3'),
+  erreur: require('../../assets/sounds/erreur.mp3'),
+  validation: require('../../assets/sounds/validation.mp3'),
+  'correction-prete': require('../../assets/sounds/correction-prete.mp3'),
+  'fin-mission': require('../../assets/sounds/fin-mission.mp3'),
+  serie: require('../../assets/sounds/serie.mp3'),
+  recompense: require('../../assets/sounds/recompense.mp3'),
+  'paiement-reussi': require('../../assets/sounds/paiement-reussi.mp3'),
+  'alerte-chrono': require('../../assets/sounds/alerte-chrono.mp3'),
+  'fin-epreuve': require('../../assets/sounds/fin-epreuve.mp3'),
 };
 
 let preferences: Preferences = { ...PREFERENCES_PAR_DEFAUT };
 const ecouteurs = new Set<() => void>();
-const lecteurs = new Map<Moment, AudioPlayer>();
+const lecteurs = new Map<NomSon, AudioPlayer>();
 let modeAudioPose = false;
 let charge = false;
 
@@ -84,12 +94,12 @@ async function poserModeAudio() {
   }
 }
 
-function lecteur(moment: Moment): AudioPlayer | null {
-  let l = lecteurs.get(moment);
+function lecteur(son: NomSon): AudioPlayer | null {
+  let l = lecteurs.get(son);
   if (!l) {
     try {
-      l = createAudioPlayer(SONS[moment]);
-      lecteurs.set(moment, l);
+      l = createAudioPlayer(SONS[son]);
+      lecteurs.set(son, l);
     } catch {
       return null;
     }
@@ -97,18 +107,20 @@ function lecteur(moment: Moment): AudioPlayer | null {
   return l;
 }
 
-/** Précharge les 5 sons au démarrage : aucun décalage audible entre l'appui et le son. Ne lève jamais. */
+/** Précharge les 11 sons au démarrage : aucun décalage audible entre l'appui et le son. Ne lève jamais. */
 export async function precharger(): Promise<void> {
   if (!charge) await chargerPreferences();
   await poserModeAudio();
-  moments.forEach(lecteur);
+  (Object.keys(SONS) as NomSon[]).forEach(lecteur);
 }
 
 async function vibrer(moment: Moment) {
   try {
-    if (moment === 'error') await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-    else if (moment === 'select') await Haptics.selectionAsync();
-    else if (moment === 'reward') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    const h = retours[moment].haptique as string;
+    if (h === 'selection') await Haptics.selectionAsync();
+    else if (h === 'light') await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    else if (h === 'warning') await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+    else if (h === 'error') await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
     else await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
   } catch {
     // Téléphone sans moteur haptique fin : vibration courte de repli (≤ 30 ms), jamais sur le web.
@@ -116,9 +128,9 @@ async function vibrer(moment: Moment) {
   }
 }
 
-async function sonner(moment: Moment) {
+async function sonner(son: NomSon) {
   await poserModeAudio();
-  const l = lecteur(moment);
+  const l = lecteur(son);
   if (!l) return;
   try {
     await l.seekTo(0);
@@ -132,10 +144,13 @@ async function sonner(moment: Moment) {
  * Joue le retour d'un moment clé selon les préférences (son et vibration séparés). Ne lève jamais.
  * Le visuel (animation) est géré par les composants via `useFeedback().reduit`.
  */
-export async function jouerMoment(moment: Moment): Promise<void> {
+export async function jouerMoment(moment: Moment, options: { apercu?: boolean } = {}): Promise<void> {
   const { sons, vibrations } = preferences;
+  const carte = retours[moment];
   if (moment === 'celebrate') suivre('celebration_seen', proprietes());
-  await Promise.all([vibrations ? vibrer(moment) : null, sons ? sonner(moment) : null]);
+  // Le son de sélection est désactivé par défaut (haptique seule) ; l'aperçu des réglages le fait entendre.
+  const sonAutorise = carte.son && (options.apercu || !('sonParDefaut' in carte) || carte.sonParDefaut);
+  await Promise.all([vibrations ? vibrer(moment) : null, sons && sonAutorise ? sonner(carte.son as NomSon) : null]);
 }
 
 /** Pour les tests uniquement. */

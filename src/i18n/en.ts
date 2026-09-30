@@ -49,7 +49,7 @@ export const en: Textes = {
     animationsReduitesAide: 'Removes large movements. Also follows your phone setting.',
     apercuTitre: 'Preview',
     apercuAide: 'Tap a moment to try it with your settings.',
-    moments: { success: 'Success', error: 'Error', select: 'Selection', reward: 'Reward', celebrate: 'Celebration' },
+    moments: { select: 'Tap', success: 'Correct answer', error: 'Error', confirm: 'Confirmation', arrive: 'Correction ready', celebrate: 'Mission complete', streak: 'Streak', reward: 'Reward', paid: 'Payment successful', problem: 'Problem', timerWarning: 'Timer warning', timerEnd: 'End of exam' },
   },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

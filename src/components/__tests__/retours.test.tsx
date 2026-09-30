@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import Parametres from '@/app/parametres';
 import { changerLangue } from '@/i18n';
-import { jouerMoment, lirePreferences, reinitialiserRetoursPourTests } from '@/services/retours';
+import { jouerMoment, lirePreferences, moments, reinitialiserRetoursPourTests } from '@/services/retours';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Appui } from '../Appui';
@@ -97,8 +97,10 @@ describe.each([['fr', 'Sons et vibrations', 'Animations réduites'], ['en', 'Sou
   it('l’aperçu joue chaque moment', async () => {
     await act(() => changerLangue(langue));
     await render(enveloppe(<Parametres />));
-    const boutons = screen.getAllByRole('button').filter((b) => !/Retour|Back/.test(String(b.props.accessibilityLabel ?? '')));
-    for (const b of boutons.slice(0, 5)) await fireEvent.press(b);
-    expect((jouerMoment as jest.Mock).mock.calls.map((c) => c[0]).sort()).toEqual(['celebrate', 'error', 'reward', 'select', 'success']);
+    const boutons = screen.getAllByRole('button').slice(0, 12); // le 13e est « Retour »
+    for (const b of boutons) await fireEvent.press(b);
+    expect(boutons).toHaveLength(12);
+    expect((jouerMoment as jest.Mock).mock.calls.map((c) => c[0]).sort()).toEqual([...moments].sort());
+    expect(jouerMoment).toHaveBeenCalledWith('select', { apercu: true });
   });
 });

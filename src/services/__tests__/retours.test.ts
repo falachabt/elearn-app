@@ -20,8 +20,8 @@ jest.mock('expo-haptics', () => ({
   notificationAsync: jest.fn(() => Promise.resolve()),
   selectionAsync: jest.fn(() => Promise.resolve()),
   impactAsync: jest.fn(() => Promise.resolve()),
-  NotificationFeedbackType: { Success: 'success', Error: 'error' },
-  ImpactFeedbackStyle: { Medium: 'medium' },
+  NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
+  ImpactFeedbackStyle: { Light: 'light', Medium: 'medium' },
 }));
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 
@@ -64,13 +64,30 @@ describe('jouerMoment', () => {
     expect(mockJoueur.play).toHaveBeenCalledTimes(1);
   });
 
-  it('erreur : haptique d’erreur ; sélection : selectionAsync ; récompense : impact', async () => {
+  it('suit la carte retours : haptique et son de chaque moment', async () => {
     await jouerMoment('error');
-    expect(Haptics.notificationAsync).toHaveBeenCalledWith('error');
+    expect(Haptics.notificationAsync).toHaveBeenLastCalledWith('error');
+    await jouerMoment('arrive');
+    expect(Haptics.impactAsync).toHaveBeenLastCalledWith('light');
+    await jouerMoment('confirm');
+    expect(Haptics.selectionAsync).toHaveBeenCalledTimes(1);
+    expect(mockJoueur.play).toHaveBeenCalledTimes(3);
+    const sources = (createAudioPlayer as jest.Mock).mock.calls.length;
+    expect(sources).toBe(3); // un lecteur par son utilisé, réutilisé ensuite
+  });
+
+  it('sélection : haptique seule par défaut (sonParDefaut faux), son dans l’aperçu', async () => {
     await jouerMoment('select');
-    expect(Haptics.selectionAsync).toHaveBeenCalled();
-    await jouerMoment('reward');
-    expect(Haptics.impactAsync).toHaveBeenCalledWith('medium');
+    expect(Haptics.selectionAsync).toHaveBeenCalledTimes(1);
+    expect(mockJoueur.play).not.toHaveBeenCalled();
+    await jouerMoment('select', { apercu: true });
+    expect(mockJoueur.play).toHaveBeenCalledTimes(1);
+  });
+
+  it('problème : vibration d’avertissement, aucun son', async () => {
+    await jouerMoment('problem');
+    expect(Haptics.notificationAsync).toHaveBeenCalledWith('warning');
+    expect(mockJoueur.play).not.toHaveBeenCalled();
   });
 
   it('sons coupés : vibration seule', async () => {
@@ -101,7 +118,7 @@ describe('jouerMoment', () => {
   });
 
   it('respecte le silencieux et ne coupe pas la musique (mode audio)', async () => {
-    await jouerMoment('select');
+    await jouerMoment('success');
     expect(setAudioModeAsync).toHaveBeenCalledWith(expect.objectContaining({ playsInSilentMode: false, interruptionMode: 'mixWithOthers' }));
   });
 
@@ -122,9 +139,9 @@ describe('jouerMoment', () => {
 });
 
 describe('precharger', () => {
-  it('crée un lecteur par moment, une seule fois', async () => {
+  it('crée un lecteur par son (11), une seule fois', async () => {
     await precharger();
     await precharger();
-    expect(createAudioPlayer).toHaveBeenCalledTimes(5);
+    expect(createAudioPlayer).toHaveBeenCalledTimes(11);
   });
 });

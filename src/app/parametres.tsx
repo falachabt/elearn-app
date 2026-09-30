@@ -38,7 +38,7 @@ export default function Parametres() {
         <View style={styles.moments}>
           {moments.map((m) => (
             <View key={m} style={styles.moment}>
-              <Bouton petit variante="secondaire" libelle={t(`parametres.moments.${m}`)} onPress={() => declencher(m)} />
+              <Bouton petit variante="secondaire" libelle={t(`parametres.moments.${m}`)} onPress={() => declencher(m, { apercu: true })} />
             </View>
           ))}
         </View>
