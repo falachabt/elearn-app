@@ -1,17 +1,24 @@
-import { createContext, useCallback, useContext, useMemo, useRef, type ReactNode } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
   View,
+  useWindowDimensions,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useTraduction } from '@/i18n/useTraduction';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace } from '@/theme/theme';
+import { bord, espace, rayon } from '@/theme/theme';
+
+import { Appui } from './Appui';
 
 /** `padding` partout : en edge-to-edge (Android SDK 57) `adjustResize` ne redimensionne plus la fenêtre. */
 export const COMPORTEMENT_CLAVIER = 'padding';
@@ -31,6 +38,10 @@ type Props = {
   insetHaut?: boolean;
   /** Ajoute l'inset du bas (barre de navigation système). Faux dans les onglets, dont la barre s'en charge. */
   insetBas?: boolean;
+  /** En-tête fixe (retour + titre) : reste visible pendant le défilement. */
+  entete?: ReactNode;
+  /** Bouton « Revenir en haut » après un long défilement (vrai par défaut). */
+  retourHaut?: boolean;
   /** Bouton ou zone fixe collée en bas, au-dessus du clavier. */
   pied?: ReactNode;
   style?: StyleProp<ViewStyle>;
@@ -45,8 +56,11 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, pied, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, retourHaut = true, pied, style, contenuStyle }: Props) {
   const { theme } = useTheme();
+  const { t } = useTraduction();
+  const { height } = useWindowDimensions();
+  const [defile, setDefile] = useState({ separateur: false, haut: false });
   const insets = useSafeAreaInsets();
   const defileur = useRef<ScrollView>(null);
 
@@ -70,6 +84,15 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
   }, []);
   const contexte = useMemo(() => rendreVisible, [rendreVisible]);
 
+  const suivreDefilement = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const y = e.nativeEvent.contentOffset.y;
+      const suivant = { separateur: y > 4, haut: retourHaut && y > height };
+      setDefile((d) => (d.separateur === suivant.separateur && d.haut === suivant.haut ? d : suivant));
+    },
+    [height, retourHaut],
+  );
+
   // Les insets sont posés sur un cadre fixe, hors du défilement : le contenu qui défile est coupé sous la barre
   // d'état et au-dessus de la barre de navigation, au lieu de passer derrière l'heure et la batterie (edge-to-edge).
   const cadre = { paddingTop: insetHaut ? insets.top : 0, paddingBottom: !pied && insetBas ? insets.bottom : 0 };
@@ -83,6 +106,14 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
         style={[styles.racine, { backgroundColor: theme.fond.app }, style]}
       >
         <View testID="ecran-cadre" style={[styles.racine, cadre]}>
+          {entete ? (
+            <View
+              testID="ecran-entete"
+              style={[styles.entete, { backgroundColor: theme.fond.app, borderBottomColor: defile.separateur ? theme.bord.fort : 'transparent' }]}
+            >
+              {entete}
+            </View>
+          ) : null}
           {defilement ? (
             <ScrollView
               ref={defileur}
@@ -93,12 +124,31 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
               keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
               automaticallyAdjustKeyboardInsets
               showsVerticalScrollIndicator={false}
+              onScroll={suivreDefilement}
+              scrollEventThrottle={64}
             >
               {children}
             </ScrollView>
           ) : (
             <View style={[styles.racine, styles.contenu, padding, contenuStyle]}>{children}</View>
           )}
+          {defile.haut ? (
+            <View style={[styles.haut, { bottom: (pied ? 96 : insetBas ? insets.bottom : 0) + espace[5] }]}>
+              <Appui
+                accessibilityRole="button"
+                accessibilityLabel={t('ecrans.retourHaut')}
+                onPress={() => defileur.current?.scrollTo({ y: 0, animated: true })}
+                rayon={rayon.pilule}
+                ombre={3}
+                decalage={2}
+                couleurOmbre={theme.ombre}
+              >
+                <View style={[styles.hautBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <Ionicons name="arrow-up" size={22} color={theme.texte.principal} />
+                </View>
+              </Appui>
+            </View>
+          ) : null}
           {pied ? <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View> : null}
         </View>
       </KeyboardAvoidingView>
@@ -109,5 +159,8 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
 const styles = StyleSheet.create({
   racine: { flex: 1 },
   contenu: { flexGrow: 1, paddingHorizontal: espace[6], gap: espace[6] },
+  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4], paddingHorizontal: espace[6], paddingTop: espace[4], paddingBottom: espace[3], borderBottomWidth: bord.fin },
+  haut: { position: 'absolute', right: espace[6] },
+  hautBouton: { width: 48, height: 48, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   pied: { paddingHorizontal: espace[6], paddingTop: espace[4], gap: espace[4] },
 });

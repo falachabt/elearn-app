@@ -47,11 +47,14 @@ export function MatiereCours() {
   );
 
   return (
-    <Ecran>
-      <View style={styles.entete}>
-        <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/reviser'))} />
-        <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{nom}</Text>
-      </View>
+    <Ecran
+      entete={
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/reviser'))} />
+          <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{nom}</Text>
+        </>
+      }
+    >
       {matiere === null ? <Banniere ton="erreur" titre={t('reviser.erreur')} /> : null}
       {matiere?.cours.map((c) => {
         const vu = pourcentageVu([c], lues);
@@ -83,7 +86,6 @@ export function MatiereCours() {
 }
 
 const styles = StyleSheet.create({
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
 });

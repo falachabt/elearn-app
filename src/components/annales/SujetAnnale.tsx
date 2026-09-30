@@ -59,8 +59,10 @@ export function SujetAnnale() {
 
   const s = etat.statut === 'pret' ? etat.sujet : null;
   return (
-    <Ecran pied={pied}>
-      <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
+    <Ecran
+      pied={pied}
+      entete={<BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}
+    >
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('annales.sujetErreur')} /> : null}
       {etat.statut === 'pret' ? (
         <>

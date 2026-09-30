@@ -20,6 +20,7 @@ export const fr = {
   },
   onglets: { accueil: 'Accueil', reviser: 'Réviser', photo: 'Photo', questions: 'Questions', moi: 'Moi' },
   ecrans: {
+    retourHaut: 'Revenir en haut',
     reviser: 'Leçons courtes et annales, hors ligne.',
     photo: 'Photographie un exercice, reçois la correction pas à pas.',
     questions: 'Pose ta question, l\'IA répond d\'abord.',
@@ -252,7 +253,7 @@ export const fr = {
   offres: {
     titre: 'Choisis ton pass',
     fermer: 'Fermer',
-    repere: 'Un répétiteur à la maison : ≈ {{prix}} par mois.',
+    repere: 'Moins cher qu’un répétiteur (≈ {{prix}} par mois), et là tous les soirs.',
     gratuit: 'Gratuit',
     gratuitAide: '3 corrections/jour · missions · 1 sujet par concours',
     week: 'Pass semaine',

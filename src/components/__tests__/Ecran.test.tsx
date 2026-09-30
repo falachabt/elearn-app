@@ -77,4 +77,34 @@ describe('Ecran', () => {
     await render(avecTheme('clair', <Champ libelle="Code" />));
     await fireEvent(screen.getByLabelText('Code'), 'focus');
   });
+
+  it('en-tête fixe : hors du défilement, séparateur dès que le contenu défile', async () => {
+    await render(avecTheme('clair', <Ecran entete={<Text>Titre</Text>}><Text>corps</Text></Ecran>));
+    const entete = screen.getByTestId('ecran-entete');
+    const defilement = screen.getByTestId('ecran-defilement');
+    expect(screen.getByText('Titre')).toBeTruthy();
+    expect(defilement).not.toContainElement(entete);
+    expect(StyleSheet.flatten(entete.props.style).borderBottomColor).toBe('transparent');
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 40 } } });
+    expect(StyleSheet.flatten(screen.getByTestId('ecran-entete').props.style).borderBottomColor).toBe(themes.light.bord.fort);
+  });
+
+  it('retour en haut : apparaît après un long défilement et remonte', async () => {
+    await render(avecTheme('clair', <Ecran><Text>long</Text></Ecran>));
+    const defilement = screen.getByTestId('ecran-defilement');
+    expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 300 } } });
+    expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 2000 } } });
+    const bouton = screen.getByRole('button', { name: 'Revenir en haut' });
+    await fireEvent.press(bouton);
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 0 } } });
+    expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
+  });
+
+  it('retour en haut désactivable', async () => {
+    await render(avecTheme('clair', <Ecran retourHaut={false}><Text>long</Text></Ecran>));
+    await fireEvent.scroll(screen.getByTestId('ecran-defilement'), { nativeEvent: { contentOffset: { y: 2000 } } });
+    expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
+  });
 });

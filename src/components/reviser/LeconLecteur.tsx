@@ -72,11 +72,15 @@ export function LeconLecteur() {
       : null;
 
   return (
-    <Ecran pied={pied}>
-      <View style={styles.entete}>
-        <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
-        <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{etat.statut === 'pret' ? etat.lecon.nom : ''}</Text>
-      </View>
+    <Ecran
+      pied={pied}
+      entete={
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
+          <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{etat.statut === 'pret' ? etat.lecon.nom : ''}</Text>
+        </>
+      }
+    >
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('reviser.leconErreur')} /> : null}
       {etat.statut === 'pret' ? (
         <>
@@ -92,7 +96,6 @@ export function LeconLecteur() {
 }
 
 const styles = StyleSheet.create({
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
   pied: { gap: espace[3] },
   meta: { flexDirection: 'row', alignItems: 'center', gap: espace[3], flexWrap: 'wrap' },

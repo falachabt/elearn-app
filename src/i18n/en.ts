@@ -19,6 +19,7 @@ export const en: Textes = {
   },
   onglets: { accueil: 'Home', reviser: 'Study', photo: 'Photo', questions: 'Questions', moi: 'Me' },
   ecrans: {
+    retourHaut: 'Back to top',
     reviser: 'Short lessons and past papers, offline.',
     photo: 'Snap an exercise, get a step-by-step correction.',
     questions: 'Ask your question, the AI answers first.',
@@ -251,7 +252,7 @@ export const en: Textes = {
   offres: {
     titre: 'Choose your pass',
     fermer: 'Close',
-    repere: 'A home tutor: ≈ {{prix}} per month.',
+    repere: 'Cheaper than a home tutor (≈ {{prix}} a month), and there every evening.',
     gratuit: 'Free',
     gratuitAide: '3 corrections/day · missions · 1 paper per exam',
     week: 'Week pass',

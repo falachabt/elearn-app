@@ -110,11 +110,15 @@ export function ContactParent() {
   );
 
   return (
-    <Ecran pied={pied}>
-      <View style={styles.entete}>
-        <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={fermer} />
-        <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('tuteur.titre')}</Text>
-      </View>
+    <Ecran
+      pied={pied}
+      entete={
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={fermer} />
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('tuteur.titre')}</Text>
+        </>
+      }
+    >
       <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('tuteur.texte')}</Text>
       {message ? <Banniere ton={message.ton} titre={t(message.cle)} /> : null}
       {!connecte ? <Banniere ton="info" titre={t('tuteur.invite')} /> : null}
@@ -156,7 +160,6 @@ export function ContactParent() {
 }
 
 const styles = StyleSheet.create({
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   groupe: { gap: espace[4] },
   ligne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },
   flex: { flex: 1 },

@@ -81,11 +81,15 @@ export function SuppressionCompte() {
   );
 
   return (
-    <Ecran pied={pied}>
-      <View style={styles.entete}>
-        <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={fermer} />
-        <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('suppression.titre')}</Text>
-      </View>
+    <Ecran
+      pied={pied}
+      entete={
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={fermer} />
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('suppression.titre')}</Text>
+        </>
+      }
+    >
       {message ? <Banniere ton={message.ton} titre={t(message.cle)} /> : null}
       {!connecte ? <Banniere ton="info" titre={t('suppression.invite')} /> : null}
       {connecte && demande ? <Banniere ton="alerte" titre={t('suppression.demande')} texte={t('suppression.demandeTexte', { date: date(dateEffacement(demande)) })} /> : null}
@@ -101,6 +105,5 @@ export function SuppressionCompte() {
 }
 
 const styles = StyleSheet.create({
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   groupe: { gap: espace[4] },
 });

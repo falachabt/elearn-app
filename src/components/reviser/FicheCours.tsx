@@ -44,11 +44,14 @@ export function FicheCours() {
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
   return (
-    <Ecran>
-      <View style={styles.entete}>
-        <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
-        <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('reviser.fiche')}</Text>
-      </View>
+    <Ecran
+      entete={
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
+          <Text accessibilityRole="header" numberOfLines={2} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('reviser.fiche')}</Text>
+        </>
+      }
+    >
       <View style={styles.meta}>
         {matiere ? <Etiquette texte={matiere} /> : null}
         {nom ? <Text style={[typo.texteFort, { color: theme.texte.secondaire }]}>{nom}</Text> : null}
@@ -61,7 +64,6 @@ export function FicheCours() {
 }
 
 const styles = StyleSheet.create({
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
   meta: { gap: espace[3] },
 });
