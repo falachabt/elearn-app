@@ -25,6 +25,7 @@ export const fr = {
     questions: 'Pose ta question, l\'IA répond d\'abord.',
     moi: 'Ton profil, tes classes et ton pass.',
   },
+  visite: { suivant: 'Suivant', precedent: 'Retour', passer: 'Passer', termine: 'Terminé' },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

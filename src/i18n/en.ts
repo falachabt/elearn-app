@@ -24,5 +24,6 @@ export const en: Textes = {
     questions: 'Ask your question, the AI answers first.',
     moi: 'Your profile, your classes and your pass.',
   },
+  visite: { suivant: 'Next', precedent: 'Back', passer: 'Skip', termine: 'Done' },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

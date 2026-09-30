@@ -27,7 +27,7 @@ Le script exporte l'app web, la sert en statique, l'ouvre dans Chromium (Playwri
 ## Organisation
 
 - `src/app/` : écrans (Expo Router). Uniquement des routes.
-- `src/components/` : composants du design system (Bouton, Carte, Bannière, Étiquette, OptionRéponse, Champ).
+- `src/components/` : composants du design system (Bouton, Carte, Bannière, Étiquette, OptionRéponse, Champ, Animation, Visite).
 - `src/theme/` : jetons de design (`theme.ts`, issu du guide de design) et `ThemeProvider` (Clair, Sombre, Système).
 - `src/i18n/` : tous les textes de l'interface (voir « Langues » ci-dessous).
 
@@ -48,12 +48,14 @@ Tout le natif est embarqué dès le premier build EAS ; les mises à jour OTA su
 - Médias : `expo-video`, `expo-audio` (sons de bonne/mauvaise réponse ; remplace `expo-av`, déprécié), `expo-asset` (pair d'`expo-audio`).
 - Documents : `expo-document-picker`, `expo-file-system`, `react-native-pdf` + `react-native-blob-util` (lecteur PDF natif uniquement : à charger dans un fichier `.native.tsx`, prévoir un `.web.tsx` avec `<iframe>` pour ne pas casser le web).
 - Animations, gestes, rendu : `react-native-reanimated` 4, `react-native-worklets` (prérequis de Reanimated 4), `react-native-gesture-handler`, `react-native-svg`, `expo-linear-gradient`, `expo-blur`, `expo-system-ui`, `@gorhom/bottom-sheet`.
+- Animations Lottie : `lottie-react-native` (composant `src/components/Animation.tsx` ; respecte « Réduire les animations » du système et affiche alors une image fixe ; le web ne le charge pas : `Animation.web.tsx` est un repli vide, car `lottie-react-native` exige `@lottiefiles/dotlottie-react` côté web et casserait `expo export --platform web`).
+- Visite guidée : `@wrack/react-native-tour-guide` 2.x (composants `VisiteProvider` à la racine et hook `useVisite().demarrer(etapes)` dans `src/components/Visite.tsx`, couleurs du thème clair/sombre et textes traduits). Choisie parce que c'est celle de l'ancienne app (mêmes habitudes), la seule des candidates encore maintenue (publiée en août 2026, contre 2024-2025 pour `react-native-copilot`, `rn-tourguide`, `react-native-spotlight-tour`, `react-native-walkthrough-tooltip`), sans module natif propre (JS pur, seul pair requis : `react-native-svg`, déjà là ; les autres pairs sont optionnels), compatible Nouvelle Architecture / RN 0.86 et web, avec thèmes (`createTheme`) et `expo-doctor` propre.
 - Contenu : `react-native-webview` (formules mathématiques).
 - Sécurité : `expo-screen-capture` (l'ancienne app bloquait la capture sur les manuels payants).
 - Build : `expo-build-properties` (SDK 36, réduction de code en release), plugins locaux `plugins/withAndroid16KBPageSize.js` (Google Play, pages de 16 Ko) et `plugins/withBlockMediaPermissions.js` (retire `READ_MEDIA_*`, refusé par Google Play : le sélecteur de photos système suffit).
 - Déjà présents : `expo-linking` (schéma `elearnprepa`), `expo-updates`, `expo-dev-client`, `expo-localization`, etc.
 
-Écartés (redondants ou remplacés) : `antd` / `@ant-design/icons-react-native` (design system maison), `nativewind` (thème maison), `axios` (fetch), `swr` (état serveur à venir via Supabase), `@amplitude/*` (PostHog), `@react-navigation/*` direct (Expo Router), `firebase` / `@react-native-firebase/*` (Supabase), `expo-av` (→ expo-video + expo-audio), `react-native-video` (→ expo-video), `react-native-modal` (→ bottom-sheet), `react-native-animatable`, `react-native-swipe-gestures` (→ gesture-handler), `react-pdf`, `mathlive`, `react-native-katex` (→ webview), `expo-random` (→ expo-crypto), `expo-symbols`, `lottie-react-native` et `@wrack/react-native-tour-guide` (non prévus au plan : à ajouter avec un build si besoin), `@google/generative-ai`, `@legendapp/state`.
+Écartés (redondants ou remplacés) : `antd` / `@ant-design/icons-react-native` (design system maison), `nativewind` (thème maison), `axios` (fetch), `swr` (état serveur à venir via Supabase), `@amplitude/*` (PostHog), `@react-navigation/*` direct (Expo Router), `firebase` / `@react-native-firebase/*` (Supabase), `expo-av` (→ expo-video + expo-audio), `react-native-video` (→ expo-video), `react-native-modal` (→ bottom-sheet), `react-native-animatable`, `react-native-swipe-gestures` (→ gesture-handler), `react-pdf`, `mathlive`, `react-native-katex` (→ webview), `expo-random` (→ expo-crypto), `expo-symbols`, `@google/generative-ai`, `@legendapp/state`.
 
 Limites : le lien de domaine (Universal Links / App Links) n'est pas configuré faute de domaine connu : à ajouter (`ios.associatedDomains`, `android.intentFilters`) avec un build. `react-native-pdf` et `@gorhom/bottom-sheet` n'ont pas été exercés sur appareil avec RN 0.86 ; l'export Android ne vérifie que les modules importés par le code. `npm ci` passe sans `.npmrc` (pas de `legacy-peer-deps`).
 

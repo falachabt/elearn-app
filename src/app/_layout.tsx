@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { Platform } from 'react-native';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { VisiteProvider } from '@/components/Visite';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { SessionProvider } from '@/session/SessionProvider';
@@ -49,7 +50,9 @@ export default function RootLayout() {
     <ThemeProvider>
       <ErrorBoundary>
         <SessionProvider>
-          <Navigation />
+          <VisiteProvider>
+            <Navigation />
+          </VisiteProvider>
         </SessionProvider>
       </ErrorBoundary>
     </ThemeProvider>
