@@ -170,7 +170,7 @@ export const en: Textes = {
     vrai: 'True',
     faux: 'False',
     finTitre: 'Mission complete!',
-    finSousTitre: '{{score}} correct answers out of {{total}}',
+    finSousTitre: 'Score: {{score}}/{{total}}',
     joursDeSuite: 'days in a row',
     jourDeSuite: 'day in a row',
     minutes: '{{n}} min',

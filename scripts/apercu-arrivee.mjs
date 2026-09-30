@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Captures du parcours d'arrivée A4 à A7 en clair et en sombre : arrivee-<ecran>-<clair|sombre>.png.
 // Export web avec le Supabase local (clé publique de démo) : lancer `npx supabase start` dans elearn-supabase avant.
+// --parcours mission : accueil (C1), mission (C2) et fin de mission (C3) : mission-<ecran>-<clair|sombre>.png.
 // --parcours pass : écrans Offres (E1) et « Envoyer à mon parent » (E6) : pass-<ecran>-<clair|sombre>.png.
 // Usage : node scripts/apercu-arrivee.mjs [--parcours arrivee|pass] [--sortie dossier] [--port 4175] [--sans-build]
 import { execFileSync } from 'node:child_process';
@@ -60,7 +61,7 @@ mkdirSync(sortie, { recursive: true });
 const serveur = await servir(dossierExport);
 const { chromium } = chargerPlaywright();
 const navigateur = await chromium.launch({ executablePath: trouverChromium(), args: ['--no-sandbox'] });
-const profil = JSON.stringify({ type: 'eleve', niveau: parcours === 'pass' ? 'Tle' : '3e', pays: 'CM', termine: parcours === 'pass' });
+const profil = JSON.stringify({ type: 'eleve', niveau: parcours === 'pass' ? 'Tle' : '3e', pays: 'CM', termine: parcours !== 'arrivee' });
 try {
   for (const schema of ['light', 'dark']) {
     const suffixe = schema === 'light' ? 'clair' : 'sombre';
@@ -72,6 +73,28 @@ try {
       await page.screenshot({ path: join(sortie, `${parcours}-${nom}-${suffixe}.png`) });
       console.log(`Capture : ${parcours}-${nom}-${suffixe}.png`);
     };
+
+    if (parcours === 'mission') {
+      await page.goto(`http://127.0.0.1:${port}/`);
+      await page.getByRole('button', { name: 'Commencer' }).waitFor({ timeout: 30000 });
+      await capture('c1-accueil');
+      await page.getByRole('button', { name: 'Commencer' }).click();
+      await page.getByText('Choisis une réponse.').waitFor({ timeout: 30000 });
+      for (let i = 0; i < 5; i++) {
+        await page.getByText(['A', 'B', 'C', 'D', 'A'][i], { exact: true }).click();
+        await page.getByRole('button', { name: 'Valider' }).click();
+        if (i === 0) await capture('c2-correction');
+        await page.getByRole('button', { name: i === 4 ? 'Terminer la mission' : 'Question suivante' }).click();
+        if (i < 4) await page.getByText('Choisis une réponse.').waitFor();
+      }
+      await page.getByText('Mission terminée !').waitFor({ timeout: 15000 });
+      await capture('c3-fin');
+      await page.getByRole('button', { name: 'Terminer' }).last().click();
+      await page.getByText('Mission du jour faite !').waitFor({ timeout: 15000 });
+      await capture('c1-faite');
+      await contexte.close();
+      continue;
+    }
 
     if (parcours === 'pass') {
       await page.goto(`http://127.0.0.1:${port}/offres`);

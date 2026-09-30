@@ -171,7 +171,7 @@ export const fr = {
     vrai: 'Vrai',
     faux: 'Faux',
     finTitre: 'Mission terminée !',
-    finSousTitre: '{{score}} bonnes réponses sur {{total}}',
+    finSousTitre: 'Score : {{score}}/{{total}}',
     joursDeSuite: 'jours de suite',
     jourDeSuite: 'jour de suite',
     minutes: '{{n}} min',
