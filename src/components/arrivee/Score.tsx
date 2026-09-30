@@ -123,6 +123,7 @@ export function Score({ resultat: fourni }: { resultat?: ResultatMiniTest }) {
           </Carte>
         </Apparition>
         {sauvegarde ? <Banniere ton="succes" titre={t('score.sauvegarde')} /> : null}
+        <Bouton variante="texte" libelle={t('score.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'score' } })} />
       </Ecran>
       {invite ? (
         <FeuilleSauvegarde

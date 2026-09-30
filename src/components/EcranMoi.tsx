@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { languesDisponibles, type Langue } from '@/i18n';
 import { cleErreur, deconnecter, estInvite } from '@/services/compte';
+import { lireAcces, type Acces } from '@/services/pass';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -25,10 +26,23 @@ export function EcranMoi() {
   const { session, statut } = useSession();
   const [erreur, setErreur] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
+  const [acces, setAcces] = useState<Acces>(null);
 
   const user = session?.user;
   const invite = estInvite(user);
   const connecte = !!user && !invite;
+  const idUtilisateur = user?.id;
+
+  useEffect(() => {
+    if (!idUtilisateur) return;
+    let actif = true;
+    lireAcces(getSupabase())
+      .then((a) => actif && setAcces(a))
+      .catch(() => {});
+    return () => {
+      actif = false;
+    };
+  }, [idUtilisateur]);
 
   const sortir = async () => {
     setEnCours(true);
@@ -80,6 +94,16 @@ export function EcranMoi() {
             </View>
           ))}
         </View>
+      </View>
+
+      <View style={styles.groupe}>
+        <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('moi.pass')}</Text>
+        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+          {acces
+            ? t('moi.passActif', { offre: t(`offres.${acces.offre}`), date: new Date(acces.fin).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' }) })
+            : t('moi.passGratuit')}
+        </Text>
+        <Bouton variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
       </View>
 
       <Bouton variante="secondaire" libelle={t('moi.parametres')} onPress={() => router.push('/parametres')} />
