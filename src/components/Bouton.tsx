@@ -26,7 +26,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
     : variante === 'danger' ? theme.etat.erreur
     : variante === 'secondaire' ? theme.fond.surface
     : 'transparent';
-  const couleurTexte = variante === 'texte' ? theme.texte.lien : theme.texte.surCouleur;
+  const couleurTexte = variante === 'texte' ? theme.texte.lien : variante === 'secondaire' ? theme.texte.principal : theme.texte.surCouleur;
   const plat = variante === 'texte';
 
   return (

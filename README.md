@@ -78,3 +78,11 @@ Le projet Expo est `@ezardive/elearn_mobile` (celui de l'ancienne app, identifia
 - Prérequis : secret de dépôt `EXPO_TOKEN`.
 
 Premier build de prévisualisation (Android, APK, canal `preview`) lancé le 30/09/2026.
+
+## Mise à jour OTA (feuille de mise à jour)
+
+`src/services/miseAJour.ts` (hook `useMiseAJour()`) vérifie `Updates.checkForUpdateAsync` au démarrage et à chaque retour au premier plan (désactivé en `__DEV__`, sur le web et si `expo-updates` est inactif ; une erreur de simple vérification reste silencieuse). États : `aucune`, `disponible`, `telechargement`, `prete`, `erreur`. `installer()` télécharge (`fetchUpdateAsync`) puis redémarre (`reloadAsync`) ; en cas d'échec, l'état `erreur` propose « Réessayer ». `plusTard()` masque la proposition jusqu'à la prochaine ouverture de l'app. Le composant `MiseAJour` (monté dans `src/app/_layout.tsx`) affiche `FeuilleMiseAJour` : un bottom sheet (`@gorhom/bottom-sheet`) avec « Mettre à jour » / « Plus tard » et une barre de téléchargement. Textes : clés `miseAJour.*` (fr et en).
+
+**Mise à jour obligatoire.** Convention : l'update est obligatoire si son manifeste porte un drapeau `obligatoire`, soit `expo.extra.obligatoire: true` dans `app.json` au moment du `eas update` (le client le lit dans `manifest.extra.expoClient.extra.obligatoire`), soit un message d'update commençant par `[obligatoire]` quand le serveur le fournit dans les métadonnées du manifeste. Dans ce cas, plus de « Plus tard » : un écran plein écran reste affiché jusqu'à l'installation. Pour publier une mise à jour obligatoire : passer `obligatoire` à `true` dans `app.json`, publier, puis le remettre à `false` (sinon toutes les mises à jour suivantes le seraient aussi). Le message EAS seul n'est pas fiable (EAS ne le renvoie pas au client) : préférer le drapeau `extra`.
+
+Aperçu sans appareil : route cachée `src/app/(dev)/mise-a-jour.tsx` (`/mise-a-jour?etat=disponible|telechargement|erreur|prete&obligatoire=1`), accessible seulement si `__DEV__` ou `EXPO_PUBLIC_APERCU=1` (sinon redirection vers l'accueil). `node scripts/apercu-mise-a-jour.mjs [--sortie dossier] [--port 4174] [--sans-build]` exporte le web avec `EXPO_PUBLIC_APERCU=1` dans `dist-apercu/` et capture chaque état en clair et en sombre (`maj-<etat>-<clair|sombre>.png`, par défaut dans `/mnt/project-files/app/apercus/`).

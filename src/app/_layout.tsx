@@ -7,6 +7,7 @@ import { Platform, StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
@@ -54,6 +55,7 @@ export default function RootLayout() {
           <SessionProvider>
             <VisiteProvider>
               <Navigation />
+              <MiseAJour />
             </VisiteProvider>
           </SessionProvider>
         </ErrorBoundary>

@@ -26,6 +26,19 @@ export const fr = {
     moi: 'Ton profil, tes classes et ton pass.',
   },
   visite: { suivant: 'Suivant', precedent: 'Retour', passer: 'Passer', termine: 'Terminé' },
+  miseAJour: {
+    titre: 'Mise à jour disponible',
+    texte: 'Une nouvelle version d’Elearn Prepa est prête. Elle ne prend que quelques secondes.',
+    mettreAJour: 'Mettre à jour',
+    plusTard: 'Plus tard',
+    telechargement: 'Téléchargement en cours…',
+    prete: 'Mise à jour prête, redémarrage…',
+    erreurTitre: 'La mise à jour a échoué',
+    erreurTexte: 'Vérifie ta connexion puis réessaie.',
+    reessayer: 'Réessayer',
+    obligatoireTitre: 'Mise à jour obligatoire',
+    obligatoireTexte: 'Cette version n’est plus prise en charge. Mets à jour pour continuer à utiliser Elearn Prepa.',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

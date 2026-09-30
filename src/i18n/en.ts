@@ -25,5 +25,18 @@ export const en: Textes = {
     moi: 'Your profile, your classes and your pass.',
   },
   visite: { suivant: 'Next', precedent: 'Back', passer: 'Skip', termine: 'Done' },
+  miseAJour: {
+    titre: 'Update available',
+    texte: 'A new version of Elearn Prepa is ready. It only takes a few seconds.',
+    mettreAJour: 'Update now',
+    plusTard: 'Later',
+    telechargement: 'Downloading…',
+    prete: 'Update ready, restarting…',
+    erreurTitre: 'The update failed',
+    erreurTexte: 'Check your connection and try again.',
+    reessayer: 'Try again',
+    obligatoireTitre: 'Update required',
+    obligatoireTexte: 'This version is no longer supported. Update to keep using Elearn Prepa.',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };
