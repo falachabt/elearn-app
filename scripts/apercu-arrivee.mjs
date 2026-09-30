@@ -87,6 +87,13 @@ try {
       await page.getByText('Regroupement en classes').click();
       await page.getByText('Leçon suivante').waitFor({ timeout: 15000 });
       await capture('d2-lecon');
+      await page.goto(`http://127.0.0.1:${port}/reviser`);
+      await page.getByRole('tab', { name: 'Annales' }).click();
+      await page.getByText('ENSPY 2024 · Mathématiques').waitFor({ timeout: 15000 });
+      await capture('d3-annales');
+      await page.getByText('ENSPY 2023 · Physique').click();
+      await page.getByText('Correction détaillée').waitFor({ timeout: 15000 });
+      await capture('d4-sujet');
       await contexte.close();
       continue;
     }
