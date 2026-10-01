@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { appliquerVote, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, signaler, TAILLE_PAGE, versQuestion } from '../questions';
+import { ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSortiesEnAttente, lireSorties, masquerNumeros, parentPourReponse, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, signaler, TAILLE_PAGE, versQuestion } from '../questions';
 
 const ligne = (id: string, p: Record<string, unknown> = {}) => ({
   id, author_id: 'u1', author_name: 'Awa', has_ai: true, content: `Question ${id}`, media_urls: null, subject: 'Maths', class_level: '3e',
@@ -104,5 +104,30 @@ describe('questions', () => {
   it.each([[30, 'maintenant', 0], [12 * 60000, 'minutes', 12], [3 * 3600000, 'heures', 3], [2 * 86400000, 'jours', 2]])('il y a %#', (ecart, cle, n) => {
     const now = Date.parse('2026-10-01T12:00:00Z');
     expect(ilYa(new Date(now - ecart).toISOString(), now)).toEqual({ cle, n });
+  });
+
+  it('détecte et masque un numéro, sans toucher aux petits nombres', () => {
+    expect(contientNumero('appelle le 6 94 05 18 93')).toBe(true);
+    expect(contientNumero('page 345 en 2024')).toBe(false);
+    expect(masquerNumeros('au +237 694-05-18-93 stp')).toBe('au ••• ••• ••• stp');
+  });
+
+  it('un seul niveau : répondre à une suite rattache au parent', () => {
+    const r = [{ id: 'a', parentId: null }, { id: 'b', parentId: 'a' }] as Reponse[];
+    expect(parentPourReponse(r, null)).toBeNull();
+    expect(parentPourReponse(r, 'a')).toBe('a');
+    expect(parentPourReponse(r, 'b')).toBe('a');
+  });
+
+  it('file de sortie : gardée en cas d’échec, retirée après envoi, reprise à la reconnexion', async () => {
+    const s = await ajouterSortie({ questionId: 'p1', texte: ' Salut ', parentId: 'a', photo: null });
+    expect(await lireSorties('p1')).toHaveLength(1);
+    const insert = jest.fn().mockResolvedValueOnce({ error: new Error('hors ligne') }).mockResolvedValueOnce({ error: null });
+    const client = { from: jest.fn(() => ({ insert })), storage: {} };
+    expect(await envoyerSortie(client as never, s, 'u1')).toBe(false);
+    expect((await lireSorties('p1'))[0]).toMatchObject({ statut: 'echec', texte: ' Salut ' });
+    expect(await envoyerSortiesEnAttente(client as never, 'p1', 'u1')).toBe(1);
+    expect(insert).toHaveBeenLastCalledWith({ post_id: 'p1', content: 'Salut', parent_comment_id: 'a', media_urls: [] });
+    expect(await lireSorties('p1')).toHaveLength(0);
   });
 });

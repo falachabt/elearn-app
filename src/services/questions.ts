@@ -183,3 +183,85 @@ export function ilYa(iso: string, maintenant: number = Date.now()): { cle: 'main
   if (min < 1440) return { cle: 'heures', n: Math.floor(min / 60) };
   return { cle: 'jours', n: Math.floor(min / 1440) };
 }
+
+/** Même règle que le serveur (8 chiffres ou plus, séparés ou non) : sert à prévenir avant l'envoi. */
+const NUMERO = /\+?\d(?:[ .-]?\d){7,}/g;
+export const contientNumero = (texte: string): boolean => new RegExp(NUMERO.source).test(texte);
+export const masquerNumeros = (texte: string): string => texte.replace(NUMERO, '••• ••• •••');
+
+/** Un seul niveau d'imbrication : répondre à une réponse imbriquée rattache la réponse à son parent. */
+export function parentPourReponse(reponses: readonly Reponse[], cibleId: string | null): string | null {
+  if (!cibleId) return null;
+  const cible = reponses.find((r) => r.id === cibleId);
+  return cible?.parentId ?? cibleId;
+}
+
+export type Sortie = { cle: string; questionId: string; texte: string; parentId: string | null; photo: string | null; statut: 'envoi' | 'echec' };
+const CLE_SORTIE = 'questions.sortie';
+
+async function lireToutesSorties(): Promise<Sortie[]> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_SORTIE);
+    return brut ? (JSON.parse(brut) as Sortie[]) : [];
+  } catch {
+    return [];
+  }
+}
+const ecrireSorties = (s: Sortie[]) => AsyncStorage.setItem(CLE_SORTIE, JSON.stringify(s));
+
+/** Réponses pas encore parties (envoi en cours ou échec) : le texte n'est jamais perdu. */
+export async function lireSorties(questionId: string): Promise<Sortie[]> {
+  return (await lireToutesSorties()).filter((s) => s.questionId === questionId);
+}
+
+export async function ajouterSortie(s: Omit<Sortie, 'cle' | 'statut'>): Promise<Sortie> {
+  const sortie: Sortie = { ...s, cle: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`, statut: 'envoi' };
+  await ecrireSorties([...(await lireToutesSorties()), sortie]);
+  return sortie;
+}
+
+export async function retirerSortie(cle: string): Promise<void> {
+  await ecrireSorties((await lireToutesSorties()).filter((s) => s.cle !== cle));
+}
+
+async function marquerSortie(cle: string, statut: Sortie['statut']): Promise<void> {
+  await ecrireSorties((await lireToutesSorties()).map((s) => (s.cle === cle ? { ...s, statut } : s)));
+}
+
+type ClientReponse = Pick<SupabaseClient, 'from' | 'storage'>;
+
+async function envoyerPhoto(client: ClientReponse, uri: string, userId: string): Promise<string> {
+  const octets = await (await fetch(uri)).arrayBuffer();
+  const chemin = `${userId}/${Date.now()}.jpg`;
+  const { error } = await client.storage.from('feed-media').upload(chemin, octets, { contentType: 'image/jpeg' });
+  if (error) throw error;
+  return client.storage.from('feed-media').getPublicUrl(chemin).data.publicUrl;
+}
+
+/**
+ * Envoie une réponse en attente. Succès : elle quitte la file. Échec : elle reste, marquée « echec », prête pour
+ * « Réessayer ». Les numéros sont masqués par le serveur (M7-05) ; le client prévient avant (`contientNumero`).
+ */
+export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: string): Promise<boolean> {
+  try {
+    const photos = s.photo ? [await envoyerPhoto(client, s.photo, userId)] : [];
+    const { error } = await client
+      .from('post_comments')
+      .insert({ post_id: s.questionId, content: s.texte.trim(), parent_comment_id: s.parentId, media_urls: photos });
+    if (error) throw error;
+    await retirerSortie(s.cle);
+    return true;
+  } catch {
+    await marquerSortie(s.cle, 'echec');
+    return false;
+  }
+}
+
+/** À la reconnexion (retour sur l'écran) : renvoie les réponses de cette question restées en file. */
+export async function envoyerSortiesEnAttente(client: ClientReponse, questionId: string, userId: string): Promise<number> {
+  let envoyees = 0;
+  for (const s of await lireSorties(questionId)) {
+    if (await envoyerSortie(client, s, userId)) envoyees += 1;
+  }
+  return envoyees;
+}
