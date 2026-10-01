@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
-import { useEffect, useSyncExternalStore } from 'react';
-import { StyleSheet, Text, View, type TextStyle } from 'react-native';
+import { useEffect, useState, useSyncExternalStore } from 'react';
+import { ScrollView, StyleSheet, Text, useWindowDimensions, View, type TextStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import type { Bloc, Segment } from '@/services/blocs';
@@ -42,42 +42,117 @@ export function useRenduFormules(): boolean {
 /** Hauteur d'x de MathJax rapportée à la taille du texte. */
 const EX = 0.442;
 
-/**
- * Formule dessinée dans la ligne : une vue de taille fixe dans le Text, abaissée de sa descente pour que la ligne de
- * base de la formule tombe sur celle du texte. Sans SVG (formule non comprise), le texte converti reste.
- */
-function Formule({ s, taille, couleur }: { s: Segment; taille: number; couleur: string }) {
-  const f = s.latex ? formuleSvg(s.latex) : null;
-  if (!f) return <Text style={{ color: couleur }}>{s.texte}</Text>;
-  const ex = taille * EX;
+const formuleDessinee = (rendu: boolean, s: Segment) => rendu && !!s.math && !!s.latex && estComplexe(s.latex);
+
+/** Vue SVG de la formule, à l'échelle du texte qui l'entoure. */
+function Dessin({ f, ex, couleur, libelle }: { f: NonNullable<ReturnType<typeof formuleSvg>>; ex: number; couleur: string; libelle: string }) {
   return (
-    <View accessible accessibilityLabel={s.texte} style={{ width: f.largeurEx * ex, height: f.hauteurEx * ex, transform: [{ translateY: f.descenteEx * ex }] }}>
+    <View accessible accessibilityLabel={libelle} style={{ width: f.largeurEx * ex, height: f.hauteurEx * ex }}>
       <SvgXml xml={f.xml} width={f.largeurEx * ex} height={f.hauteurEx * ex} color={couleur} />
+    </View>
+  );
+}
+
+const styleSegment = (s: Segment, lien: string): TextStyle[] => [
+  ...(s.gras ? [styles.gras] : []),
+  ...(s.italique ? [styles.italique] : []),
+  ...(s.souligne ? [styles.souligne] : []),
+  ...(s.code || s.math ? [{ fontFamily: s.code ? typo.donnee.fontFamily : undefined, color: s.math ? lien : undefined }] : []),
+];
+
+type Jeton = { mot: string; segment: Segment; espace: boolean } | { formule: NonNullable<ReturnType<typeof formuleSvg>>; segment: Segment; espace: boolean };
+
+/** Découpe en mots et formules, en gardant la trace des espaces (une ponctuation collée à une formule reste collée). */
+function jetons(segments: Segment[]): Jeton[] {
+  const sortie: Jeton[] = [];
+  let espace = false;
+  for (const s of segments) {
+    const f = s.latex && s.math ? formuleSvg(s.latex) : null;
+    if (f && estComplexe(s.latex ?? '')) {
+      sortie.push({ formule: f, segment: s, espace });
+      espace = false;
+      continue;
+    }
+    for (const morceau of s.texte.split(/(\s+)/)) {
+      if (!morceau) continue;
+      if (/^\s+$/.test(morceau)) espace = true;
+      else {
+        sortie.push({ mot: morceau, segment: s, espace });
+        espace = false;
+      }
+    }
+  }
+  return sortie;
+}
+
+/**
+ * Paragraphe avec formules hautes ou larges : mots et formules posés en flux (retour à la ligne par éléments), pour
+ * que chaque ligne prenne la hauteur de ses formules. Une formule plus large que l'écran défile à l'horizontale sur
+ * sa propre ligne au lieu d'être coupée.
+ */
+function Flux({ segments, style, lien }: { segments: Segment[]; style: TextStyle; lien: string }) {
+  const { flex, ...texte } = style;
+  const taille = style.fontSize ?? 16;
+  const ex = taille * EX;
+  const { width } = useWindowDimensions();
+  const [largeur, setLargeur] = useState(width - 2 * espace[5]);
+  return (
+    <View style={[styles.flux, flex !== undefined && { flex }]} onLayout={(e) => setLargeur(e.nativeEvent.layout.width)}>
+      {jetons(segments).map((j, i) => {
+        const marge = j.espace ? taille * 0.28 : 0;
+        if ('formule' in j) {
+          const large = j.formule.largeurEx * ex > largeur;
+          const dessin = <Dessin f={j.formule} ex={ex} couleur={lien} libelle={j.segment.texte} />;
+          return large ? (
+            <ScrollView key={i} testID="formule-defilante" horizontal showsHorizontalScrollIndicator={false} style={styles.defile} contentContainerStyle={styles.defileContenu}>
+              {dessin}
+            </ScrollView>
+          ) : (
+            <View key={i} style={{ marginLeft: marge }}>
+              {dessin}
+            </View>
+          );
+        }
+        return (
+          <Text key={i} style={[texte, styleSegment(j.segment, lien), { marginLeft: marge }]}>
+            {j.mot}
+          </Text>
+        );
+      })}
     </View>
   );
 }
 
 function Segments({ segments, style, lien }: { segments: Segment[]; style: TextStyle; lien: string }) {
   const rendu = useRenduFormules();
+  const { width } = useWindowDimensions();
+  const taille = style.fontSize ?? 16;
+  const interligne = style.lineHeight ?? taille * 1.4;
+  // Une formule qui tient dans la ligne reste dans le texte, justifié comme avant ; sinon, mise en flux.
+  const hors = rendu && segments.some((s) => {
+    if (!formuleDessinee(rendu, s)) return false;
+    const f = formuleSvg(s.latex!);
+    return !!f && (f.hauteurEx * taille * EX > interligne * 1.15 || f.largeurEx * taille * EX > width * 0.6);
+  });
+  if (hors) return <Flux segments={segments} style={style} lien={lien} />;
   return (
     <Text style={style}>
-      {segments.map((s, i) =>
-        rendu && s.math && s.latex && estComplexe(s.latex) ? (
-          <Formule key={i} s={s} taille={style.fontSize ?? 16} couleur={lien} />
-        ) : (
-        <Text
-          key={i}
-          style={[
-            s.gras && styles.gras,
-            s.italique && styles.italique,
-            s.souligne && styles.souligne,
-            (s.code || s.math) && { fontFamily: s.code ? typo.donnee.fontFamily : undefined, color: s.math ? lien : undefined },
-          ]}
-        >
-          {s.texte}
-        </Text>
-        ),
-      )}
+      {segments.map((s, i) => {
+        const f = formuleDessinee(rendu, s) ? formuleSvg(s.latex!) : null;
+        if (f) {
+          const ex = taille * EX;
+          return (
+            <View key={i} style={{ transform: [{ translateY: f.descenteEx * ex }] }}>
+              <Dessin f={f} ex={ex} couleur={lien} libelle={s.texte} />
+            </View>
+          );
+        }
+        return (
+          <Text key={i} style={styleSegment(s, lien)}>
+            {s.texte}
+          </Text>
+        );
+      })}
     </Text>
   );
 }
@@ -151,6 +226,9 @@ export function Blocs({ blocs, surJaune }: { blocs: Bloc[]; surJaune?: boolean }
 
 const styles = StyleSheet.create({
   pile: { gap: espace[4] },
+  flux: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
+  defile: { width: '100%', flexGrow: 0 },
+  defileContenu: { paddingVertical: espace[2] },
   gras: { fontFamily: typo.texteFort.fontFamily },
   italique: { fontStyle: 'italic' },
   souligne: { textDecorationLine: 'underline' },
