@@ -12,7 +12,7 @@ const MOTS: Record<string, string> = {
   bilingue: 'bilingue', evaluation: 'évaluation', epreuve: 'épreuve', examen: 'examen', ecole: 'école', concours: 'concours', session: 'session',
   de: 'de', du: 'du', des: 'des', la: 'la', le: 'le', les: 'les', et: 'et', en: 'en', sujet: 'sujet', corrige: 'corrigé', classique: 'classique',
   catholique: 'catholique', protestant: 'protestant', protestante: 'protestante', islamique: 'islamique', trimestre: 'trimestre', devoir: 'devoir',
-  harmonise: 'harmonisé', mathematiques: 'mathématiques', physique: 'physique', chimie: 'chimie', francais: 'français', anglais: 'anglais',
+  harmonise: 'harmonisé', prevoyance: 'Prévoyance', mathematiques: 'mathématiques', physique: 'physique', chimie: 'chimie', francais: 'français', anglais: 'anglais',
 };
 
 const SIGLES = new Set(['BAC', 'BEPC', 'CEP', 'GCE', 'BTS', 'IUT', 'ENS', 'ENSP', 'ENSPD', 'ENSET', 'FMSB', 'CAP', 'SVT', 'TP', 'TD', 'QCM', 'PCT', 'TIC', 'ECM']);
@@ -32,6 +32,10 @@ export function recaser(titre: string): string {
     if (/^[IVX]+$/.test(m) || /^[A-Z]{1,2}\d*$/.test(m) || SIGLES.has(m.replace(/[^\p{L}]/gu, ''))) return m; // sigles et chiffres romains
     return majuscule(m.toLowerCase());
   });
+  // Un article juste après le type d'établissement fait partie du nom propre : « Collège La Prévoyance ».
+  for (let i = 1; i < sortie.length; i++) {
+    if (/^(?:collège|lycée|école|institut|complexe)$/.test(sortie[i - 1]) && /^(?:la|le|les)$/.test(sortie[i]) && enCapitales(mots[i])) sortie[i] = majuscule(sortie[i]);
+  }
   let texte = sortie.join(' ');
   texte = texte.replace(/^(\p{L}+ \d+) (\p{L})/u, (_, a: string, b: string) => `${a} · ${b.toUpperCase()}`);
   return majuscule(texte);
@@ -81,4 +85,23 @@ export function titreQuiz(nom: string, chapitre: string, numero?: number): { cor
 export function titreExercice(titre: string, chapitre: string): string {
   const { reste } = morceaux(titre, chapitre);
   return reste.length ? recaser(reste.join(' · ')) : '';
+}
+
+/** Titre d'un document à partir du nom de fichier : « -3e-Sequence-4 COLLEGE LA PREVOYANCE » → « 3e · Séquence 4 · Collège La Prévoyance ». */
+export function titreDocument(nom: string): string {
+  const brut = nom
+    .replace(/\.(pdf|docx?|pptx?|jpe?g|png)$/i, '')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!brut) return nom.trim();
+  const mots = brut.split(' ');
+  const capitales = mots.filter((m) => m.length > 1 && /\p{L}/u.test(m) && m === m.toUpperCase() && !/^\d/.test(m)).length;
+  let texte = capitales >= 2 ? recaser(brut) : majuscule(brut);
+  texte = texte
+    .replace(/^(\d+(?:e|ème|eme)) (?!·)/iu, '$1 · ')
+    .replace(/\b((?:séquence|sequence|trimestre|devoir|évaluation) \d+) (?!·)(?=\p{L})/iu, '$1 · ')
+    .replace(/ · (\p{L})/gu, (_, l: string) => ` · ${l.toUpperCase()}`)
+    .replace(/(^|· )sequence\b/giu, '$1Séquence');
+  return texte;
 }

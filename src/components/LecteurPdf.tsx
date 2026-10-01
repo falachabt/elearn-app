@@ -7,6 +7,7 @@ import Pdf from 'react-native-pdf';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
+import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -70,7 +71,7 @@ export function LecteurPdf() {
       entete={
         <>
           <BoutonFermer petit icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
-          <Text accessibilityRole="header" numberOfLines={1} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titre}</Text>
+          <Text accessibilityRole="header" numberOfLines={1} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titreDocument(titre ?? '')}</Text>
           {page.total ? (
             <View style={[styles.page, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
               <Text accessibilityLabel={t('document.page', { n: page.n, total: page.total })} style={[typo.donnee, { color: theme.texte.principal }]}>{`${page.n} / ${page.total}`}</Text>
@@ -83,7 +84,7 @@ export function LecteurPdf() {
         <View style={styles.centre}>
           <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
             <View style={styles.ligne}>
-              <Text numberOfLines={2} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('document.ouverture', { titre: titre ?? '' })}</Text>
+              <Text numberOfLines={2} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('document.ouverture', { titre: titreDocument(titre ?? '') })}</Text>
               <BoutonFermer petit libelle={t('document.annuler')} onPress={retour} />
             </View>
             <View style={[styles.barre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>

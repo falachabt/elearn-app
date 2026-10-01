@@ -128,13 +128,13 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
   it('dossier de classe : sous-dossiers et documents, sujet et corrigé', async () => {
     mockParams = { id: 'f1', nom: 'Maths' };
     await monter(<AnnalesDossier />);
-    await waitFor(() => expect(screen.getByText('Sequence 3 Collège Privé')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy());
     expect(screen.getByText('Séquence 1')).toBeTruthy();
     // Lecteur dans l'app, jamais le navigateur.
-    await fireEvent.press(screen.getByText('Sequence 3 Collège Privé'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/d1.pdf', titre: 'Sequence 3 Collège Privé' } });
+    await fireEvent.press(screen.getByText('Séquence 3 · Collège Privé'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/d1.pdf', titre: 'Séquence 3 · Collège Privé' } });
     await fireEvent.press(screen.getByText(x.annales.ouvrirCorrection));
-    expect(router.push).toHaveBeenLastCalledWith({ pathname: '/document', params: { url: 'https://r2/d1c.pdf', titre: `Sequence 3 Collège Privé · ${x.annales.correctionTitre}` } });
+    expect(router.push).toHaveBeenLastCalledWith({ pathname: '/document', params: { url: 'https://r2/d1c.pdf', titre: `Séquence 3 · Collège Privé · ${x.annales.correctionTitre}` } });
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('Séquence 1'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'f2', nom: 'Séquence 1' } });

@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireDocuments, PLAFOND_OCTETS, retirerTousDocuments, supprimerDocument, type DocumentGarde } from '@/services/documents';
+import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -87,7 +88,7 @@ export function MesDocuments() {
           <CarteListe
             key={d.url}
             gauche={<PastilleType type="annale" />}
-            titre={d.titre}
+            titre={titreDocument(d.titre)}
             sousTitre={details(d)}
             droite={
               <Appui accessibilityRole="button" accessibilityLabel={t('document.retirer', { titre: d.titre })} onPress={() => void retirer(d.url)} rayon={rayon.s} decalage={0} hitSlop={8}>

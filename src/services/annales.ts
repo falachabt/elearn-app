@@ -1,3 +1,4 @@
+import { titreDocument } from './titres';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
@@ -136,5 +137,5 @@ export async function lireDocuments(client: Client, dossier: string): Promise<Do
   const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
   if (error) throw error;
   type Ligne = { document_id: string; name: string; url: string | null; correction_url: string | null };
-  return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: nomDocument(l.name), url: l.url, urlCorrection: l.correction_url }));
+  return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), url: l.url, urlCorrection: l.correction_url }));
 }

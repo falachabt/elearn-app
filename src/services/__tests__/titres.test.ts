@@ -1,4 +1,4 @@
-import { recaser, titreExercice, titreQuiz } from '../titres';
+import { recaser, titreDocument, titreExercice, titreQuiz } from '../titres';
 
 describe('titres (revue design, règle 6)', () => {
   const thermo = 'Thermodynamique pour concours polytechnique L3';
@@ -30,4 +30,12 @@ describe('titres (revue design, règle 6)', () => {
     expect(recaser('Analyse de texte')).toBe('Analyse de texte');
     expect(recaser('EPREUVE DE MATHEMATIQUES BEPC 2024')).toBe('Épreuve de mathématiques BEPC 2024');
   });
+});
+
+describe('titreDocument', () => {
+  it.each([
+    ['-3e-Sequence-4 COLLEGE LA PREVOYANCE', '3e · Séquence 4 · Collège La Prévoyance'],
+    ['Séquence 5 COLLEGE MONGO BETI.pdf', 'Séquence 5 · Collège Mongo Beti'],
+    ['Maths', 'Maths'],
+  ])('« %s »', (nom, attendu) => expect(titreDocument(nom)).toBe(attendu));
 });
