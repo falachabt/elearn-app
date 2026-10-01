@@ -7,7 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { lireCorrection, statuts } from '@/services/correction';
-import { CLE_SCORES, enregistrerSession, finChapitreVue, lireSessions, lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
+import { CLE_SCORES, enregistrerSession, finChapitreVue, lireEntrainement, lireSessions, lireExercicesFaits, lireMeilleursScores, noterDernier } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
@@ -86,16 +86,30 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Fractions')).toBeTruthy());
     expect(mockRpc).toHaveBeenCalledWith('practice_counts', { p_courses: [1, 2, 3] });
     expect(screen.queryByText('Pythagore')).toBeNull();
-    // Deux cartes par chapitre : Quiz et Exercices ; le chapitre « Le conte » n'a qu'un exercice.
-    expect(screen.getAllByText(x.entrainement.carteQuiz.replace('{{n}}', '2'))).toHaveLength(1);
-    expect(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '2'))).toBeTruthy();
-    expect(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '1'))).toBeTruthy();
+    // Une carte par chapitre, avec ses compteurs quiz et exercices.
+    expect(screen.getByLabelText(x.entrainement.compteurQuiz.replace('{{n}}', '0').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.getByLabelText(x.entrainement.compteurExercices.replace('{{n}}', '0').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.getByText('Le conte')).toBeTruthy();
+    expect(screen.queryByText(x.entrainement.reprendre)).toBeNull();
     // Puces de matière.
     await fireEvent.press(screen.getByRole('button', { name: 'Français' }));
     expect(screen.queryByText('Fractions')).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.toutes }));
-    await fireEvent.press(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '2')));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions', onglet: 'exercices' } });
+    await fireEvent.press(screen.getByText('Fractions'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
+  });
+
+  it('S’entraîner : carte « Reprendre » sur le dernier quiz joué', async () => {
+    await lireEntrainement({ rpc: (...args: unknown[]) => mockRpc(...args) } as never, 1);
+    await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ qz2: 75 }));
+    await noterDernier({ type: 'quiz', id: 'qz2', cours: 1, chapitre: 'Fractions' });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.onglet }));
+    await waitFor(() => expect(screen.getByText(x.entrainement.reprendre)).toBeTruthy());
+    expect(screen.getByText(x.entrainement.reprendreMeilleur.replace('{{chapitre}}', 'Fractions').replace('{{n}}', '75'))).toBeTruthy();
+    expect(screen.getByLabelText(x.entrainement.compteurQuiz.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    await fireEvent.press(screen.getByText(x.entrainement.reprendre));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz2', cours: '1', nom: 'Fractions' } });
   });
 
   it('chapitre : onglets Tout, Quiz, Exercices ; cartes reconnaissables', async () => {

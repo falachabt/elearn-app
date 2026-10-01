@@ -48,21 +48,53 @@ export async function lireEntrainement(client: Client, cours: number): Promise<{
 }
 
 /** Progrès d'un chapitre sans réseau : meilleur score de ses quiz et exercices faits, tirés de la copie du chapitre (il a forcément été ouvert pour jouer). */
-export async function lireProgresChapitres(cours: readonly number[]): Promise<Record<number, { meilleur?: number; faits: number }>> {
+export type ProgresChapitre = { meilleur?: number; faits: number; quizFaits: number };
+
+export async function lireProgresChapitres(cours: readonly number[]): Promise<Record<number, ProgresChapitre>> {
   if (!cours.length) return {};
   const [copies, scores, faits] = await Promise.all([AsyncStorage.multiGet(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
-  const sortie: Record<number, { meilleur?: number; faits: number }> = {};
+  const sortie: Record<number, ProgresChapitre> = {};
   copies.forEach(([, brut], k) => {
     if (!brut) return;
     try {
       const e = JSON.parse(brut) as { quiz: QuizLibre[]; exercices: Exercice[] };
       const notes = e.quiz.map((q) => scores[q.id]).filter((n): n is number => n !== undefined);
-      sortie[cours[k]] = { meilleur: notes.length ? Math.max(...notes) : undefined, faits: e.exercices.filter((x) => faits[x.id]).length };
+      sortie[cours[k]] = { meilleur: notes.length ? Math.max(...notes) : undefined, faits: e.exercices.filter((x) => faits[x.id]).length, quizFaits: notes.length };
     } catch {
       // copie illisible : on l'ignore
     }
   });
   return sortie;
+}
+
+export const CLE_DERNIER = 'entrainement.dernier';
+/** Dernier quiz ou exercice ouvert : carte « Reprendre » en tête de S'entraîner. */
+export type Dernier = { type: 'quiz' | 'exercice'; id: string; cours: number; chapitre: string };
+
+export async function noterDernier(d: Dernier): Promise<void> {
+  await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify(d)).catch(() => {});
+}
+
+/** Le dernier entraînement avec son titre et le meilleur score, lus dans la copie du chapitre ; null s'il n'y en a pas. */
+export async function lireDernier(): Promise<(Dernier & { nom: string; numero?: number; meilleur?: number; rang: number }) | null> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_DERNIER);
+    if (!brut) return null;
+    const d = JSON.parse(brut) as Dernier;
+    const copie = await AsyncStorage.getItem(`entrainement.cours.${d.cours}`);
+    if (!copie) return null;
+    const e = JSON.parse(copie) as { quiz: QuizLibre[]; exercices: Exercice[] };
+    if (d.type === 'quiz') {
+      const q = e.quiz.find((x) => x.id === d.id);
+      if (!q) return null;
+      const scores = await lireMeilleursScores();
+      return { ...d, nom: q.nom, numero: q.numero, meilleur: scores[q.id], rang: e.quiz.indexOf(q) + 1 };
+    }
+    const k = e.exercices.findIndex((x) => x.id === d.id);
+    return k < 0 ? null : { ...d, nom: e.exercices[k].titre, rang: k + 1 };
+  } catch {
+    return null;
+  }
 }
 
 /** Une partie d'un quiz : ses questions mélangées, 20 au plus. En ligne seulement. */

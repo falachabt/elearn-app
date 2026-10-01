@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { basculerExerciceFait, lireEntrainement, lireExercice, lireExercicesFaits, type DetailExercice, type Exercice } from '@/services/entrainement';
+import { basculerExerciceFait, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -44,6 +44,7 @@ export function ExerciceLibre() {
         const resume = e.exercices.find((x) => x.id === id);
         // Sans le détail (ancienne base, hors ligne jamais ouvert), l'énoncé court de la liste suffit.
         const detail = resume ? await lireExercice(getSupabase(), resume.id, resume.enonce).catch(() => null) : null;
+        if (resume) void noterDernier({ type: 'exercice', id: resume.id, cours: Number(cours), chapitre: '' });
         if (actif) setEtat({ statut: 'pret', exercices: e.exercices, faits, detail });
       })
       .catch(() => actif && setEtat({ statut: 'erreur' }));

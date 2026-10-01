@@ -8,7 +8,7 @@ import { lireCours, programmeDu, pourcentageVu, synchroniserLues, regrouperParMa
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, matiere as couleurs, matiereSecours, ombre, palette, rayon, typo } from '@/theme/theme';
+import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Annales } from '../annales/Annales';
 import { Entrainement } from '../entrainement/Entrainement';
@@ -18,6 +18,7 @@ import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
+import { couleursTuiles } from './couleurs';
 import { IconeMatiere } from './IconeMatiere';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; matieres: Matiere[]; lues: Record<string, number>; cle: string };
@@ -31,21 +32,6 @@ async function charger(): Promise<Etat> {
   } catch {
     return { statut: 'erreur' };
   }
-}
-
-/** Couleur de chaque tuile : celle de la matière, sinon une couleur de secours différente de la voisine de gauche. Jamais de tuile blanche. */
-export function couleursTuiles(matieres: readonly Matiere[]): string[] {
-  const sortie: string[] = [];
-  let k = 0;
-  matieres.forEach((m, i) => {
-    if (m.couleur) return void sortie.push(couleurs[m.couleur]);
-    const voisine = i % 2 ? sortie[i - 1] : undefined;
-    let c: string = matiereSecours[k % matiereSecours.length];
-    if (c === voisine) c = matiereSecours[++k % matiereSecours.length];
-    k++;
-    sortie.push(c);
-  });
-  return sortie;
 }
 
 /** Tuile de matière (revue design, Réviser · Cours) : pastille blanche avec l'icône, nom sur 2 lignes, pourcentage et barre. Texte toujours noir. */

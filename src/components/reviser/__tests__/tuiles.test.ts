@@ -1,6 +1,6 @@
 import { matiere, matiereSecours } from '@/theme/theme';
 
-import { couleursTuiles } from '../Reviser';
+import { couleursTuiles } from '../couleurs';
 
 const m = (nom: string, couleur?: keyof typeof matiere) => ({ nom, couleur, cours: [] }) as never;
 

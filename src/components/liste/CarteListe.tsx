@@ -12,6 +12,8 @@ type Props = {
   sousTitre?: string;
   /** Pastille de type ou icône, à gauche. */
   gauche?: ReactNode;
+  /** Contenu sous le titre à la place du sous-titre (compteurs). */
+  bas?: ReactNode;
   /** Pastille d'état à droite ; sinon un chevron. */
   droite?: ReactNode;
   /** Élément fini : fond vert doux, sans ombre, même place dans la liste. */
@@ -20,7 +22,7 @@ type Props = {
 };
 
 /** Carte de liste (revue design, règle 2) : 78 px fixes, titre sur 2 lignes, ombre `carte`. Une seule structure pour quiz, exercices, sujets… */
-export function CarteListe({ titre, sousTitre, gauche, droite, fini, onPress }: Props) {
+export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, onPress }: Props) {
   const { theme } = useTheme();
   return (
     <Appui
@@ -37,6 +39,7 @@ export function CarteListe({ titre, sousTitre, gauche, droite, fini, onPress }: 
         <View style={styles.flex}>
           <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{titre}</Text>
           {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>{sousTitre}</Text> : null}
+          {bas}
         </View>
         {droite ?? <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />}
       </View>
