@@ -17,7 +17,7 @@ export type Sujet = {
   gratuit: boolean;
 };
 export type DetailSujet = { id: number; titre: string; urlSujet: string; urlCorrection: string | null; correctionVerrouillee: boolean };
-export type Filtres = { sigle?: string | null; annee?: number | null };
+export type Filtres = { sigle?: string | null; annee?: number | null; matiere?: string | null };
 
 export const CLE_CATALOGUE = 'annales.catalogue';
 
@@ -64,16 +64,22 @@ export async function lireCatalogue(client: Client): Promise<Sujet[]> {
 }
 
 export function filtrer(sujets: readonly Sujet[], f: Filtres): Sujet[] {
-  return sujets.filter((s) => (!f.sigle || s.sigle === f.sigle) && (!f.annee || s.annee === f.annee));
+  return sujets.filter((s) => (!f.sigle || s.sigle === f.sigle) && (!f.annee || s.annee === f.annee) && (!f.matiere || s.matiere === f.matiere));
 }
 
 /** Valeurs proposées dans les filtres : écoles par nombre de sujets, années de la plus récente à la plus ancienne. */
-export function optionsFiltres(sujets: readonly Sujet[], f: Filtres = {}): { sigles: string[]; annees: number[] } {
+export function optionsFiltres(sujets: readonly Sujet[], f: Filtres = {}): { sigles: string[]; annees: number[]; matieres: string[] } {
   const compte = new Map<string, number>();
   for (const s of sujets) if (s.sigle) compte.set(s.sigle, (compte.get(s.sigle) ?? 0) + 1);
   const sigles = [...compte.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([s]) => s);
   const annees = [...new Set(filtrer(sujets, { sigle: f.sigle }).map((s) => s.annee).filter((a): a is number => !!a))].sort((a, b) => b - a);
-  return { sigles, annees };
+  const matieres = [...new Set(sujets.map((s) => s.matiere).filter((m): m is string => !!m))].sort((a, b) => a.localeCompare(b, 'fr'));
+  return { sigles, annees, matieres };
+}
+
+/** Ordre de la liste des sujets : année la plus récente d'abord, puis matière. */
+export function trierSujets(sujets: readonly Sujet[]): Sujet[] {
+  return [...sujets].sort((a, b) => (b.annee ?? 0) - (a.annee ?? 0) || (a.matiere ?? a.titre).localeCompare(b.matiere ?? b.titre, 'fr'));
 }
 
 /** Liens du sujet et, si le droit est ouvert (sujet gratuit ou pass), de la correction (M6-02, M6-04). */

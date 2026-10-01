@@ -47,7 +47,7 @@ export function SujetAnnale() {
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   // Lecteur dans l'app : le PDF reste sur le téléphone pour le hors ligne, jamais ouvert dans le navigateur.
-  const ouvrir = (url: string, titre: string) => router.push({ pathname: '/document', params: { url, titre } });
+  const ouvrir = (url: string, titre: string) => router.push({ pathname: '/document', params: { url, titre, sujet: String(id) } });
 
   const pied =
     etat.statut === 'pret' ? (

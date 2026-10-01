@@ -28,7 +28,8 @@ export const CLE_INDEX = 'documents.index';
 /** Au-delà, les documents ouverts le moins récemment quittent le téléphone (M6-08). */
 export const PLAFOND_OCTETS = 500 * 1024 * 1024;
 
-export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number };
+/** `sujet` : identifiant de l'annale, pour marquer « Hors ligne » dans la liste des sujets. */
+export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number; sujet?: number };
 
 async function lireIndex(): Promise<Record<string, DocumentGarde>> {
   try {
@@ -87,7 +88,7 @@ export function adresseEncodee(url: string): string {
 }
 
 /** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). Note l'ouverture. */
-export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS): Promise<string> {
+export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS, sujet?: number): Promise<string> {
   let uri = documentLocal(url);
   if (!uri) {
     const d = dossier();
@@ -96,7 +97,7 @@ export async function ouvrirDocument(url: string, titre = '', maintenant = new D
   }
   const index = await lireIndex();
   const taille = new File(dossier(), nomFichier(url)).size;
-  index[url] = { ...index[url], url, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString() };
+  index[url] = { ...index[url], url, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}) };
   await respecterPlafond(index, url, plafond);
   await ecrireIndex(index);
   return uri;

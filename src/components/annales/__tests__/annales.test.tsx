@@ -85,12 +85,20 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await monter(<Reviser />);
     await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
     await waitFor(() => expect(screen.getByText('ENSPY · Concours 1re année')).toBeTruthy());
-    expect(screen.getByText('2024 · Maths')).toBeTruthy();
+    expect(screen.getByText('Maths 2024')).toBeTruthy();
     expect(screen.queryByText(/Biologie/)).toBeNull();
     expect(screen.queryByText(x.annales.autresConcours)).toBeNull();
+    expect(screen.getByText(x.annales.sujets.replace('{{n}}', '2'))).toBeTruthy();
+    // Filtre Matière, puis « Effacer les filtres » quand rien ne correspond.
+    await fireEvent.press(screen.getByRole('button', { name: 'Physique' }));
+    expect(screen.queryByText('Maths 2024')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: '2024' }));
+    expect(screen.getByText(x.annales.videFiltres)).toBeTruthy();
+    await fireEvent.press(screen.getByText(x.annales.effacerFiltres));
+    expect(screen.getByText('Maths 2024')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: '2023' }));
-    expect(screen.queryByText('2024 · Maths')).toBeNull();
-    await fireEvent.press(screen.getByText('2023 · Physique'));
+    expect(screen.queryByText('Maths 2024')).toBeNull();
+    await fireEvent.press(screen.getByText('Physique 2023'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '2' } });
   });
 
@@ -106,14 +114,14 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
   it('un concours : ses sujets, badges, filtre par année seulement', async () => {
     mockParams = { id: 'c1', nom: 'ENSPY' };
     await monter(<AnnalesConcours />);
-    await waitFor(() => expect(screen.getByText('2024 · Maths')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('Maths 2024')).toBeTruthy());
     expect(screen.queryByText(/Biologie/)).toBeNull();
     expect(screen.queryByRole('button', { name: 'ENSPY' })).toBeNull();
     expect(screen.getByText(x.annales.gratuit)).toBeTruthy();
     expect(screen.getByText(x.annales.pass)).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: '2023' }));
-    expect(screen.queryByText('2024 · Maths')).toBeNull();
-    await fireEvent.press(screen.getByText('2023 · Physique'));
+    expect(screen.queryByText('Maths 2024')).toBeNull();
+    await fireEvent.press(screen.getByText('Physique 2023'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '2' } });
   });
 
@@ -139,9 +147,9 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await waitFor(() => expect(screen.getByRole('button', { name: x.annales.ouvrirCorrection })).toBeTruthy());
     expect(screen.getByText(x.annales.source.replace('{{ecole}}', 'Polytechnique Yaoundé'))).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirSujet }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/s1.pdf', titre: 'Maths' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/s1.pdf', titre: 'Maths', sujet: '1' } });
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirCorrection }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: `Maths · ${x.annales.correctionTitre}` } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: `Maths · ${x.annales.correctionTitre}`, sujet: '1' } });
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
   });
 

@@ -23,7 +23,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { url, titre } = useLocalSearchParams<{ url: string; titre?: string }>();
+  const { url, titre, sujet } = useLocalSearchParams<{ url: string; titre?: string; sujet?: string }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [essai, setEssai] = useState(0);
   const [page, setPage] = useState({ n: 1, total: 0 });
@@ -34,7 +34,7 @@ export function LecteurPdf() {
       const horsLigne = !!documentLocal(String(url));
       try {
         // Copie gardée : affichée sans réseau ; sinon téléchargée une fois. Reprise à la dernière page lue.
-        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? ''), pageDocument(String(url))]);
+        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? '', new Date(), undefined, sujet ? Number(sujet) : undefined), pageDocument(String(url))]);
         suivre('document_opened', { hors_ligne: horsLigne });
         if (actif) setEtat({ statut: 'pret', uri, horsLigne, depart });
       } catch {
@@ -44,7 +44,7 @@ export function LecteurPdf() {
     return () => {
       actif = false;
     };
-  }, [url, titre, essai]);
+  }, [url, titre, sujet, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   return (

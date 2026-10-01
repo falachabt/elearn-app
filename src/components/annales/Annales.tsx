@@ -13,6 +13,8 @@ import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { LigneLien } from '../LigneLien';
+import { EcranErreur } from '../liste/EcranErreur';
+import { Squelettes } from '../liste/Squelettes';
 import { ListeSujets } from './ListeSujets';
 
 type Etat =
@@ -32,6 +34,7 @@ export function Annales({ tous = false }: { tous?: boolean }) {
   const pret = useSessionPrete();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [gardes, setGardes] = useState(0);
+  const [essai, setEssai] = useState(0);
 
   useEffect(() => {
     if (!pret) return;
@@ -60,20 +63,26 @@ export function Annales({ tous = false }: { tous?: boolean }) {
     return () => {
       actif = false;
     };
-  }, [pret, tous]);
+  }, [pret, tous, essai]);
 
   // Documents gardés sur le téléphone : en tête, accessibles même hors ligne.
   const mesDocuments =
     gardes && !tous ? (
       <LigneLien icone="download-outline" titre={t('document.mesDocuments')} detail={t('document.mesDocumentsDetail', { n: gardes })} onPress={() => router.push('/documents')} />
     ) : null;
-  if (etat.statut === 'chargement') return <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('annales.chargement')}</Text>;
+  if (etat.statut === 'chargement') return <Squelettes />;
   if (etat.statut === 'erreur') {
     return (
-      <View style={styles.section}>
-        {mesDocuments}
-        <Banniere ton="erreur" titre={t('annales.erreur')} />
-      </View>
+      <EcranErreur
+        titre={t('annales.erreurTitre')}
+        phrase={t('annales.erreurPhrase')}
+        reessayer={t('annales.reessayer')}
+        onReessayer={() => {
+          setEtat({ statut: 'chargement' });
+          setEssai((n) => n + 1);
+        }}
+        secours={gardes ? { libelle: t('document.mesDocuments'), onPress: () => router.push('/documents') } : undefined}
+      />
     );
   }
   if (etat.statut === 'concours') {
@@ -81,9 +90,12 @@ export function Annales({ tous = false }: { tous?: boolean }) {
       <View style={styles.section}>
         {mesDocuments}
         {etat.concours ? (
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
-            {etat.concours.sigle && etat.concours.sigle !== etat.concours.nom ? `${etat.concours.sigle} · ${etat.concours.nom}` : etat.concours.nom}
-          </Text>
+          <View>
+            <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
+              {etat.concours.sigle && etat.concours.sigle !== etat.concours.nom ? `${etat.concours.sigle} · ${etat.concours.nom}` : etat.concours.nom}
+            </Text>
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(etat.sujets.length > 1 ? 'annales.sujets' : 'annales.sujet', { n: etat.sujets.length })}</Text>
+          </View>
         ) : null}
         {etat.sujets.length ? <ListeSujets sujets={etat.sujets} /> : <Banniere ton="info" titre={t('annales.vide')} />}
       </View>

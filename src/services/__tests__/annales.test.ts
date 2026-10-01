@@ -40,7 +40,7 @@ describe('annales', () => {
       { id: 3, sigle: 'B', annee: 2023 },
       { id: 4, sigle: 'A', annee: null },
     ] as Sujet[];
-    expect(optionsFiltres(s)).toEqual({ sigles: ['A', 'B'], annees: [2023, 2021] });
+    expect(optionsFiltres(s)).toEqual({ sigles: ['A', 'B'], annees: [2023, 2021], matieres: [] });
     expect(optionsFiltres(s, { sigle: 'B' }).annees).toEqual([2023]);
     expect(filtrer(s, { sigle: 'A', annee: 2023 }).map((x) => x.id)).toEqual([1]);
     expect(filtrer(s, {}).length).toBe(4);

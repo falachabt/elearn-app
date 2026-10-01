@@ -103,7 +103,7 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
   });
 
   it('mes documents : liste, ouvrir, retirer', async () => {
-    await ouvrirDocument(URL_SUJET, 'Sujet Maths 2024', new Date('2026-09-30T10:00:00Z'));
+    await ouvrirDocument(URL_SUJET, 'Sujet Maths 2024', new Date('2026-09-30T10:00:00Z'), undefined, 7);
     await ouvrirDocument('https://r2/c1.pdf', 'Correction', new Date('2026-10-01T10:00:00Z'));
     await monter(<MesDocuments />);
     await waitFor(() => expect(screen.getByText('Correction')).toBeTruthy());
@@ -112,7 +112,7 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: URL_SUJET, titre: 'Sujet Maths 2024' } });
     await fireEvent.press(screen.getByRole('button', { name: x.document.retirer.replace('{{titre}}', 'Correction') }));
     await waitFor(() => expect(screen.queryByText('Correction')).toBeNull());
-    expect((await lireDocuments()).map((d) => d.titre)).toEqual(['Sujet Maths 2024']);
+    expect((await lireDocuments()).map((d) => [d.titre, d.sujet])).toEqual([['Sujet Maths 2024', 7]]);
   });
 
   it('hors ligne et jamais ouvert : erreur, puis réessayer', async () => {

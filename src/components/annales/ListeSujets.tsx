@@ -1,227 +1,112 @@
-import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
-import { useMemo, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { router, useFocusEffect } from 'expo-router';
+import { useCallback, useMemo, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { useTraduction } from "@/i18n/useTraduction";
-import {
-  filtrer,
-  optionsFiltres,
-  type Sujet,
-} from "@/services/annales";
-import { useTheme } from "@/theme/ThemeProvider";
-import { bord, espace, matiere as couleurs, rayon, typo } from "@/theme/theme";
+import { useTraduction } from '@/i18n/useTraduction';
+import { filtrer, optionsFiltres, trierSujets, type Sujet } from '@/services/annales';
+import { lireDocuments } from '@/services/documents';
+import { recaser } from '@/services/titres';
+import { useTheme } from '@/theme/ThemeProvider';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
-import { Appui } from "../Appui";
-import { Banniere } from "../Banniere";
-import { Bouton } from "../Bouton";
+import { Appui } from '../Appui';
+import { Bouton } from '../Bouton';
+import { CarteListe } from '../liste/CarteListe';
+import { Pastille } from '../liste/Pastille';
+import { PastilleType } from '../liste/PastilleType';
 
-export function Puce({
-  libelle,
-  choisie,
-  onPress,
-}: {
-  libelle: string;
-  choisie: boolean;
-  onPress: () => void;
-}) {
+export function Puce({ libelle, choisie, onPress }: { libelle: string; choisie: boolean; onPress: () => void }) {
   const { theme } = useTheme();
   return (
-    <Appui
-      accessibilityRole="button"
-      accessibilityState={{ selected: choisie }}
-      accessibilityLabel={libelle}
-      onPress={onPress}
-      rayon={rayon.pilule}
-      decalage={0}
-    >
-      <View
-        style={[
-          styles.puce,
-          {
-            borderColor: theme.bord.fort,
-            backgroundColor: choisie
-              ? theme.texte.principal
-              : theme.fond.surface,
-          },
-        ]}
-      >
-        <Text
-          style={[
-            typo.boutonPetit,
-            { color: choisie ? theme.fond.app : theme.texte.principal },
-          ]}
-        >
-          {libelle}
-        </Text>
+    <Appui accessibilityRole="button" accessibilityState={{ selected: choisie }} accessibilityLabel={libelle} onPress={onPress} rayon={rayon.pilule} decalage={0}>
+      <View style={[styles.puce, { borderColor: theme.bord.fort, backgroundColor: choisie ? theme.fond.inverse : theme.fond.surface }]}>
+        <Text style={[typo.boutonPetit, { color: choisie ? theme.texte.inverse : theme.texte.principal }]}>{libelle}</Text>
       </View>
     </Appui>
   );
 }
 
-/** Sujets d'un concours (M6-01, M6-02) : filtre par année, un sujet gratuit par concours, les autres avec le pass. */
+/** Une rangée de puces par critère, qui commence par « Toutes » et défile à l'horizontale. */
+function Rangee<T extends string | number>({ libelle, valeurs, valeur, onChange, toutes }: { libelle: string; valeurs: T[]; valeur: T | null; onChange: (v: T | null) => void; toutes: string }) {
+  return (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.puces} accessibilityLabel={libelle}>
+      <Puce libelle={toutes} choisie={valeur === null} onPress={() => onChange(null)} />
+      {valeurs.map((v) => (
+        <Puce key={v} libelle={String(v)} choisie={valeur === v} onPress={() => onChange(v)} />
+      ))}
+    </ScrollView>
+  );
+}
+
+/**
+ * Sujets d'un concours (M6-01, revue design écran 8) : filtres Année et Matière, une carte par sujet
+ * « Matière Année », une seule pastille d'état (hors ligne, gratuit ou pass). Tri : année décroissante, puis matière.
+ */
 export function ListeSujets({ sujets }: { sujets: Sujet[] }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [annee, setAnnee] = useState<number | null>(null);
+  const [matiere, setMatiere] = useState<string | null>(null);
+  const [gardes, setGardes] = useState<Set<number>>(new Set());
   const options = useMemo(() => optionsFiltres(sujets), [sujets]);
-  const liste = useMemo(() => filtrer(sujets, { annee }), [sujets, annee]);
+  const liste = useMemo(() => trierSujets(filtrer(sujets, { annee, matiere })), [sujets, annee, matiere]);
+
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      lireDocuments()
+        .then((d) => actif && setGardes(new Set(d.map((x) => x.sujet).filter((x): x is number => !!x))))
+        .catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, []),
+  );
 
   return (
     <View style={styles.groupe}>
-      {options.annees.length > 1 ? (
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.puces}
-        >
-          <Puce
-            libelle={t("annales.tous")}
-            choisie={!annee}
-            onPress={() => setAnnee(null)}
+      {options.annees.length > 1 ? <Rangee libelle={t('annales.filtreAnnee')} toutes={t('annales.toutes')} valeurs={options.annees} valeur={annee} onChange={setAnnee} /> : null}
+      {options.matieres.length > 1 ? <Rangee libelle={t('annales.filtreMatiere')} toutes={t('annales.toutes')} valeurs={options.matieres} valeur={matiere} onChange={setMatiere} /> : null}
+      {!liste.length ? (
+        <View style={styles.vide}>
+          <Text style={[typo.texte, styles.centre, { color: theme.texte.secondaire }]}>{t('annales.videFiltres')}</Text>
+          <Bouton
+            variante="texte"
+            libelle={t('annales.effacerFiltres')}
+            onPress={() => {
+              setAnnee(null);
+              setMatiere(null);
+            }}
           />
-          {options.annees.map((a) => (
-            <Puce
-              key={a}
-              libelle={String(a)}
-              choisie={annee === a}
-              onPress={() => setAnnee(a)}
-            />
-          ))}
-        </ScrollView>
+        </View>
       ) : null}
-      {!liste.length ? <Banniere ton="info" titre={t("annales.vide")} /> : null}
-      {liste.map((s) => {
-        const entete = s.annee ? `${s.annee} · ${s.titre}` : s.titre;
-        const details = [
-          s.corrige ? t("annales.sujetCorrige") : t("annales.sujetSeul"),
-          s.dureeMin ? t("annales.duree", { n: s.dureeMin }) : null,
-        ]
-          .filter(Boolean)
-          .join(" · ");
-        return (
-          <Appui
-            key={s.id}
-            accessibilityRole="button"
-            accessibilityLabel={`${entete}. ${details}. ${s.gratuit ? t("annales.gratuit") : t("annales.pass")}`}
-            onPress={() =>
-              router.push({
-                pathname: "/annales/sujet",
-                params: { id: String(s.id) },
-              })
-            }
-            rayon={rayon.l}
-            ombre={4}
-            decalage={3}
-            couleurOmbre={theme.ombre}
-          >
-            <View
-              style={[
-                styles.carte,
-                {
-                  backgroundColor: theme.fond.surface,
-                  borderColor: theme.bord.fort,
-                },
-              ]}
-            >
-              <View
-                style={[
-                  styles.icone,
-                  {
-                    backgroundColor: couleurs.maths,
-                    borderColor: theme.bord.fort,
-                  },
-                ]}
-              >
-                <Ionicons
-                  name="document-text-outline"
-                  size={18}
-                  color={theme.texte.surCouleur}
-                />
-              </View>
-              <View style={styles.flex}>
-                <Text
-                  style={[typo.texteFort, { color: theme.texte.principal }]}
-                >{entete}</Text>
-                <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                  {details}
-                </Text>
-              </View>
-              <View
-                style={[
-                  styles.badge,
-                  {
-                    borderColor: theme.bord.fort,
-                    backgroundColor: s.gratuit
-                      ? theme.marque.principale
-                      : theme.accent.soleil,
-                  },
-                ]}
-              >
-                {s.gratuit ? null : (
-                  <Ionicons
-                    name="lock-closed"
-                    size={11}
-                    color={theme.texte.surCouleur}
-                  />
-                )}
-                <Text
-                  style={[typo.etiquette, { color: theme.texte.surCouleur }]}
-                >
-                  {s.gratuit ? t("annales.gratuit") : t("annales.pass")}
-                </Text>
-              </View>
-            </View>
-          </Appui>
-        );
-      })}
-      <Bouton
-        variante="texte"
-        libelle={t("annales.voirPass")}
-        onPress={() =>
-          router.push({
-            pathname: "/offres",
-            params: { declencheur: "limite" },
-          })
-        }
-      />
+      <View style={styles.cartes}>
+        {liste.map((s) => {
+          const titre = s.matiere ? [recaser(s.matiere), s.annee].filter(Boolean).join(' ') : [recaser(s.titre), s.annee].filter(Boolean).join(' ');
+          const sousTitre = [s.corrige ? t('annales.sujetCorrige') : t('annales.sujetSeul'), s.dureeMin ? t('annales.duree', { n: s.dureeMin }) : null].filter(Boolean).join(' · ');
+          const etat = gardes.has(s.id) ? <Pastille vert texte={t('annales.horsLigne')} /> : s.gratuit ? <Pastille vert texte={t('annales.gratuit')} /> : <Pastille texte={t('annales.pass')} />;
+          return (
+            <CarteListe
+              key={s.id}
+              gauche={<PastilleType type="annale" />}
+              titre={titre}
+              sousTitre={sousTitre}
+              droite={etat}
+              onPress={() => router.push({ pathname: '/annales/sujet', params: { id: String(s.id) } })}
+            />
+          );
+        })}
+      </View>
+      <Bouton variante="texte" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
+  cartes: { gap: espace[4] },
   puces: { gap: espace[3], paddingRight: espace[4] },
-  puce: {
-    paddingHorizontal: espace[5],
-    paddingVertical: espace[3],
-    borderWidth: bord.normal,
-    borderRadius: rayon.pilule,
-  },
-  carte: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: espace[4],
-    padding: espace[5],
-    borderWidth: bord.normal,
-    borderRadius: rayon.l,
-  },
-  icone: {
-    width: 36,
-    height: 36,
-    borderRadius: rayon.m,
-    borderWidth: bord.normal,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  flex: { flex: 1 },
-  badge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: espace[1],
-    paddingHorizontal: espace[3],
-    paddingVertical: espace[1],
-    borderWidth: bord.normal,
-    borderRadius: rayon.s,
-  },
+  puce: { height: 36, justifyContent: 'center', paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.pilule },
+  vide: { gap: espace[3], paddingVertical: espace[6] },
+  centre: { textAlign: 'center' },
 });
