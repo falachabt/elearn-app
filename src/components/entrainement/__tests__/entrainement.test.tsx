@@ -193,7 +193,10 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     mockParams = { id: 'qz1', cours: '1', nom: 'Fractions', titre: 'Quiz Fractions', questions: '12', numero: '' };
     await monter(<DetailQuiz />);
     await waitFor(() => expect(screen.getByText(x.entrainement.detailSessions)).toBeTruthy());
-    expect(screen.getByText(`Fractions · ${x.entrainement.questions.replace('{{n}}', '12')} · ${x.entrainement.meilleur.replace('{{n}}', '100')}`)).toBeTruthy();
+    expect(screen.getByText(x.entrainement.quizChapitre)).toBeTruthy();
+    expect(screen.getByText('12')).toBeTruthy();
+    expect(screen.getByText('100 %')).toBeTruthy();
+    expect(screen.getAllByTestId('mini-grille')).toHaveLength(2);
     const sessions = screen.getAllByText(new RegExp(`^[01]/1`));
     expect(sessions.map((e) => e.props.children)).toEqual([
       x.entrainement.detailSession.replace('{{score}}', '1').replace('{{total}}', '1').replace('{{pct}}', '100'),
@@ -220,14 +223,13 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(mockRpc).toHaveBeenCalledWith('exercise_detail', { p_exercise: 'e1' });
     expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
     expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
+    expect(screen.getByText(x.entrainement.exerciceRang.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.getByText(x.entrainement.contexte)).toBeTruthy();
+    // Ouvrir le corrigé marque l'exercice « Fait ».
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.marquerFait }));
-    await waitFor(() => expect(screen.getByRole('button', { name: x.entrainement.annulerFait })).toBeTruthy());
-    expect(await lireExercicesFaits()).toEqual({ e1: true });
-    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.annulerFait }));
-    await waitFor(() => expect(screen.getByRole('button', { name: x.entrainement.marquerFait })).toBeTruthy());
-    expect(await lireExercicesFaits()).toEqual({});
+    await waitFor(async () => expect(await lireExercicesFaits()).toEqual({ e1: true }));
+    expect(screen.queryByRole('button', { name: x.entrainement.voirCorrige })).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } });
   });
@@ -236,7 +238,14 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     mockParams = { id: 'e2', cours: '1' };
     await monter(<ExerciceLibre />);
     await waitFor(() => expect(screen.getByText('Comparer 1/2 et 2/3.')).toBeTruthy());
-    expect(screen.getByText(x.entrainement.pasDeCorrige)).toBeTruthy();
+    expect(screen.getByText(x.entrainement.corrigeBientot)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: x.entrainement.voirCorrige })).toBeNull();
+    // Sans corrigé, on marque l'exercice soi-même ; dernier exercice : retour au chapitre.
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.marquerFait }));
+    await waitFor(() => expect(screen.getByRole('button', { name: x.entrainement.annulerFait })).toBeTruthy());
+    expect(await lireExercicesFaits()).toEqual({ e2: true });
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.retourChapitre }));
+    expect(router.replace).toHaveBeenCalledWith('/reviser');
   });
 
   it('fin de chapitre complète : quiz du chapitre et exercices', async () => {

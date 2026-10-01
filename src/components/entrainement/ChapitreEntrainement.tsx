@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireEntrainement, lireExercicesFaits, lireMeilleursScores, type Exercice, type QuizLibre } from '@/services/entrainement';
 import { getSupabase } from '@/services/supabase';
-import { titreExercice, titreQuiz } from '@/services/titres';
+import { titreExercice } from '@/services/titres';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -19,6 +19,7 @@ import { EcranErreur } from '../liste/EcranErreur';
 import { Pastille } from '../liste/Pastille';
 import { PastilleType } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
+import { libelleQuiz } from './libelles';
 import { ouvrirQuiz } from './ouvrirQuiz';
 
 type Filtre = 'tout' | 'quiz' | 'exercices';
@@ -69,11 +70,7 @@ export function ChapitreEntrainement() {
       ? t('entrainement.progression', { n: etat.quiz.filter((q) => quizFini(etat, q)).length + etat.exercices.filter((e) => etat.faits[e.id]).length, total: etat.quiz.length + etat.exercices.length })
       : null;
 
-  const nomQuiz = (q: QuizLibre) => {
-    const { corps, numero } = titreQuiz(q.nom, chapitre, q.numero);
-    if (corps) return numero ? t('entrainement.titreQuizN', { n: numero, titre: corps }) : t('entrainement.titreQuiz', { titre: corps });
-    return numero ? t('entrainement.etiquetteQuizN', { n: numero }) : t('entrainement.quizChapitre');
-  };
+  const nomQuiz = (q: QuizLibre) => libelleQuiz(t, q.nom, chapitre, q.numero);
 
   const liste = etat.statut === 'pret' ? melanger(filtre === 'exercices' ? [] : etat.quiz, filtre === 'quiz' ? [] : etat.exercices) : [];
 

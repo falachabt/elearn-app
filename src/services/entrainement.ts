@@ -124,7 +124,7 @@ export async function apresDerniereLecon(cours: number, aller: () => void, retou
 }
 
 /** Une partie de quiz libre terminée, gardée pour la revoir depuis la page du quiz. */
-export type SessionQuiz = { le: string; score: number; total: number; questions: QuestionTiree[]; reponses: (number | null)[] };
+export type SessionQuiz = { le: string; score: number; total: number; questions: QuestionTiree[]; reponses: (number | null)[]; dureeS?: number };
 export const CLE_SESSIONS = 'entrainement.sessions';
 export const MAX_SESSIONS = 10;
 

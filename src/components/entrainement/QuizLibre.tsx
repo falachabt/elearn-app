@@ -50,9 +50,9 @@ export function QuizLibreEcran() {
         libelleFin={t('entrainement.quizTerminer')}
         libelleFermer={t('entrainement.quizFermer')}
         onFermer={retour}
-        onTermine={async ({ questions: q, reponses }) => {
+        onTermine={async ({ questions: q, reponses, dureeS }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
-          const record = await enregistrerSession(String(id), { questions: q, reponses });
+          const record = await enregistrerSession(String(id), { questions: q, reponses, dureeS });
           suivre('practice_quiz_completed', { score, total: q.length, record });
           await enregistrerCorrection({ source: 'libre', questions: q, reponses });
           router.replace('/quiz/resultats');
