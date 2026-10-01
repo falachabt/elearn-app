@@ -6,7 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { bornerTaille, enregistrerRythme, PAS_TAILLE, RYTHMES, TAILLE_DEFAUT, TAILLE_MAX, TAILLE_MIN } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 import { Feuille } from './Feuille';

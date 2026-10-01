@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireExercicesFaits, lireMeilleursScores, lireProgresChapitres } from '../entrainement';
+import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireExercicesFaits, lireMeilleursScores, lireProgresChapitres, separerMeta } from '../entrainement';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -58,5 +58,22 @@ describe('lireProgresChapitres', () => {
     await AsyncStorage.setItem('entrainement.scores', JSON.stringify({ a: 40, b: 75 }));
     await AsyncStorage.setItem('entrainement.exercicesFaits', JSON.stringify({ e2: true }));
     await expect(lireProgresChapitres([5, 6])).resolves.toEqual({ 5: { meilleur: 75, faits: 1, quizFaits: 2 } });
+  });
+});
+
+describe('separerMeta', () => {
+  const p = (texte: string) => ({ type: 'paragraphe' as const, segments: [{ texte }], retrait: 0 });
+
+  it('retire Titre et Difficulté, garde la description comme question, lit la difficulté', () => {
+    const r = separerMeta([p('Titre : Définition'), p('Description : Définissez en une phrase.'), p('Difficulté : facile'), p('Un graphe suit.')]);
+    expect(r.difficulte).toBe('facile');
+    expect(r.enonce).toEqual([p('Définissez en une phrase.'), p('Un graphe suit.')]);
+  });
+
+  it('reconnaît moyen et difficile, laisse un énoncé sans étiquettes intact', () => {
+    expect(separerMeta([p('Difficulté : Moyenne')]).difficulte).toBe('moyen');
+    expect(separerMeta([p('DIFFICULTE: difficile')]).difficulte).toBe('difficile');
+    const brut = [p('Calcule 2 + 2.')];
+    expect(separerMeta(brut)).toEqual({ enonce: brut, difficulte: undefined });
   });
 });

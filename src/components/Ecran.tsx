@@ -1,5 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from 'react';
+import { ArrowUp } from 'lucide-react-native';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -44,6 +44,8 @@ type Props = {
   retourHaut?: boolean;
   /** Bouton ou zone fixe collée en bas, au-dessus du clavier. */
   pied?: ReactNode;
+  /** Revient en haut du défilement chaque fois que cette valeur change (ex. bascule énoncé / corrigé). */
+  remonterSur?: unknown;
   style?: StyleProp<ViewStyle>;
   contenuStyle?: StyleProp<ViewStyle>;
 };
@@ -56,7 +58,7 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, retourHaut = true, pied, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, retourHaut = true, pied, remonterSur, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
@@ -83,11 +85,14 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
     }, 120);
   }, []);
   const contexte = useMemo(() => rendreVisible, [rendreVisible]);
+  useEffect(() => {
+    defileur.current?.scrollTo?.({ y: 0, animated: false });
+  }, [remonterSur]);
 
   const suivreDefilement = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const y = e.nativeEvent.contentOffset.y;
-      const suivant = { separateur: y > 4, haut: retourHaut && y > height };
+      const suivant = { separateur: y > 4, haut: retourHaut && y > height * 1.5 };
       setDefile((d) => (d.separateur === suivant.separateur && d.haut === suivant.haut ? d : suivant));
     },
     [height, retourHaut],
@@ -140,13 +145,13 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
                   accessibilityRole="button"
                   accessibilityLabel={t('ecrans.retourHaut')}
                   onPress={() => defileur.current?.scrollTo({ y: 0, animated: true })}
-                  rayon={rayon.pilule}
+                  rayon={rayon.m}
                   ombre={3}
                   decalage={2}
                   couleurOmbre={theme.ombre}
                 >
                   <View style={[styles.hautBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                    <Ionicons name="arrow-up" size={22} color={theme.texte.principal} />
+                    <ArrowUp size={20} strokeWidth={2.25} color={theme.texte.principal} />
                   </View>
                 </Appui>
               </View>
@@ -163,7 +168,7 @@ const styles = StyleSheet.create({
   racine: { flex: 1 },
   contenu: { flexGrow: 1, paddingHorizontal: espace[6], gap: espace[6] },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4], paddingHorizontal: espace[6], paddingTop: espace[4], paddingBottom: espace[3], borderBottomWidth: bord.fin },
-  haut: { position: 'absolute', right: espace[6], bottom: espace[5] },
-  hautBouton: { width: 48, height: 48, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  haut: { position: 'absolute', right: espace[4], bottom: espace[4] },
+  hautBouton: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   pied: { paddingHorizontal: espace[6], paddingTop: espace[4], gap: espace[4] },
 });

@@ -64,7 +64,7 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('onglet Annales : dossiers de la classe puis concours', async () => {
+  it('onglet Annales : dossiers de la classe seulement', async () => {
     await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
     await monter(<Reviser />);
     await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
@@ -72,12 +72,11 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(mockRpc).toHaveBeenCalledWith('class_document_folders', { p_level: '3e', p_country: 'CM', p_parent: null });
     expect(screen.getByText('Maths')).toBeTruthy();
     expect(screen.queryByText('Vide')).toBeNull();
-    // Les concours ne sont pas mélangés à la classe : ils sont rangés dans « Autres concours ».
+    // L'élève ne voit que sa classe : ni concours, ni carte « Autres concours ».
     expect(screen.queryByText('ENSPY · Concours 1re année')).toBeNull();
+    expect(screen.queryByText(x.annales.autresConcours)).toBeNull();
     await fireEvent.press(screen.getByText('Maths'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'f1', nom: 'Maths' } });
-    await fireEvent.press(screen.getByText(x.annales.autresConcours));
-    expect(router.push).toHaveBeenCalledWith('/annales/autres');
   });
 
   it('candidat avec son concours : ses sujets directement, filtrables, sans les autres concours', async () => {

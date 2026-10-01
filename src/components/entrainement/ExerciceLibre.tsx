@@ -13,21 +13,27 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { Onglets } from '../Onglets';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
-import { PastilleType } from '../liste/PastilleType';
+import { Pastille } from '../liste/Pastille';
 import { Squelettes } from '../liste/Squelettes';
 import { Blocs } from '../reviser/Blocs';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; exercices: Exercice[]; faits: Record<string, true>; detail: DetailExercice | null };
 
-/** Un exercice du chapitre (M5-09) : l'énoncé, puis « fait » ; l'exercice suivant enchaîne sans repasser par la liste. */
+/**
+ * Un exercice du chapitre (M5-09) : l'énoncé, puis « fait » ; l'exercice suivant enchaîne sans repasser par la liste.
+ * Énoncé et corrigé ne s'empilent pas : le bouton du pied bascule de l'un à l'autre (demande de Benny, 01/10).
+ */
 export function ExerciceLibre() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { id, cours } = useLocalSearchParams<{ id: string; cours: string }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
-  const [corrige, setCorrige] = useState(false);
+  // Exercice dont le corrigé est affiché : repasse à l'énoncé quand on enchaîne sur l'exercice suivant.
+  const [corrigeDe, setCorrigeDe] = useState<string | null>(null);
+  const corrige = corrigeDe === id;
   const pret = useSessionPrete();
 
   const [essai, setEssai] = useState(0);
@@ -67,33 +73,49 @@ export function ExerciceLibre() {
   };
   // Ouvrir le corrigé marque l'exercice « Fait » (revue design, écran 5).
   const voirCorrige = async () => {
-    setCorrige(true);
+    setCorrigeDe(id);
     if (!fait) await basculer();
   };
   const aCorrige = etat.statut === 'pret' && !!etat.detail?.corrige.length;
 
+  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
+  // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
-      {aCorrige && !corrige ? <Bouton variante="secondaire" libelle={t('entrainement.voirCorrige')} onPress={() => void voirCorrige()} /> : null}
-      {!aCorrige ? <Bouton variante="texte" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void basculer()} /> : null}
-      {suivant ? (
-        <Bouton libelle={t('entrainement.exerciceSuivant')} onPress={() => router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } })} retour />
-      ) : (
-        <Bouton libelle={t('entrainement.retourChapitre')} onPress={retour} />
-      )}
+      <View style={styles.flex}>
+        {aCorrige ? (
+          <Bouton variante="secondaire" libelle={t(corrige ? 'entrainement.voirEnonce' : 'entrainement.voirCorrige')} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
+        ) : (
+          <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void basculer()} />
+        )}
+      </View>
+      <View style={styles.flex}>
+        {suivant ? (
+          <Bouton
+            libelle={`${t('entrainement.suivant')} ›`}
+            accessibilityLabel={t('entrainement.exerciceSuivant')}
+            onPress={() => router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } })}
+            retour
+          />
+        ) : (
+          <Bouton libelle={t('entrainement.retourChapitre')} onPress={retour} />
+        )}
+      </View>
     </View>
   ) : undefined;
+  const difficulte = etat.statut === 'pret' ? etat.detail?.difficulte : undefined;
 
   return (
     <Ecran
       pied={pied}
+      remonterSur={`${id}:${corrige}`}
       entete={
         <>
           <BoutonFermer petit libelle={t('entrainement.fermerExercice')} onPress={retour} />
           <Text style={[typo.texteFort, styles.rang, { color: theme.texte.principal }]}>
             {exercice && etat.statut === 'pret' ? t('entrainement.exerciceRang', { n: position + 1, total: etat.exercices.length }) : ''}
           </Text>
-          <PastilleType type="exercice" taille={28} />
+          {difficulte ? <Pastille texte={t(`entrainement.difficulte.${difficulte}`)} /> : <View style={styles.vide} />}
         </>
       }
     >
@@ -104,19 +126,30 @@ export function ExerciceLibre() {
       {exercice && etat.statut === 'pret' ? (
         <>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{titreExercice(exercice.titre, '') || t('entrainement.exerciceN', { n: position + 1 })}</Text>
-          {etat.detail?.contexte.length ? (
-            <View style={[styles.bloc, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('entrainement.contexte')}</Text>
-              <Blocs blocs={etat.detail.contexte} />
-            </View>
+          {aCorrige ? (
+            <Onglets
+              valeurs={[
+                { valeur: 'enonce', libelle: t('entrainement.enonce') },
+                { valeur: 'corrige', libelle: t('entrainement.corrige') },
+              ]}
+              valeur={corrige ? 'corrige' : 'enonce'}
+              onChange={basculerVue}
+            />
           ) : null}
-          {etat.detail?.enonce.length ? <Blocs blocs={etat.detail.enonce} /> : <Text selectable style={[typo.texte, { color: theme.texte.principal }]}>{exercice.enonce}</Text>}
-          {aCorrige && corrige && etat.detail ? (
-            <View style={[styles.bloc, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <Text accessibilityRole="header" style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('entrainement.corrige')}</Text>
-              <Blocs blocs={etat.detail.corrige} />
-            </View>
-          ) : null}
+          {corrige && etat.detail ? (
+            <Blocs blocs={etat.detail.corrige} />
+          ) : (
+            <>
+              {etat.detail?.contexte.length ? (
+                <View style={[styles.bloc, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('entrainement.contexte')}</Text>
+                  <Blocs blocs={etat.detail.contexte} />
+                </View>
+              ) : null}
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('entrainement.question')}</Text>
+              {etat.detail?.enonce.length ? <Blocs blocs={etat.detail.enonce} /> : <Text selectable style={[typo.texte, { color: theme.texte.principal }]}>{exercice.enonce}</Text>}
+            </>
+          )}
           {!aCorrige ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('entrainement.corrigeBientot')}</Text> : null}
         </>
       ) : null}
@@ -125,7 +158,9 @@ export function ExerciceLibre() {
 }
 
 const styles = StyleSheet.create({
-  pied: { gap: espace[3] },
+  pied: { flexDirection: 'row', gap: espace[3] },
+  flex: { flex: 1 },
+  vide: { width: 28 },
   rang: { flex: 1, textAlign: 'center' },
   bloc: { padding: espace[4], gap: espace[3], borderWidth: bord.normal, borderRadius: rayon.l },
 });

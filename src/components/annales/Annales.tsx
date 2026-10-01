@@ -24,8 +24,8 @@ type Etat =
   | { statut: 'concours'; concours: Concours | null; sujets: Sujet[] };
 
 /**
- * D3 · Annales (M6-01, v1.8) : l'élève voit les dossiers de sa classe, les concours étant rangés dans « Autres
- * concours ». Le candidat qui a choisi son concours voit directement ses sujets, filtrables par année, et rien d'autre.
+ * D3 · Annales (M6-01, v1.8) : l'élève voit les dossiers de sa classe ; plus de carte « Autres concours » (demande
+ * de Benny, 01/10). Le candidat qui a choisi son concours voit directement ses sujets, filtrables par année, et rien d'autre.
  * `tous` : la liste complète des concours.
  */
 export function Annales({ tous = false }: { tous?: boolean }) {
@@ -127,20 +127,8 @@ export function Annales({ tous = false }: { tous?: boolean }) {
           ))}
         </View>
       ) : null}
-      {tous ? (
-        etat.autres.map((c) => <LigneConcours key={c.id} c={c} />)
-      ) : etat.autres.length ? (
-        <View style={styles.section}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.autres')}</Text>
-          <LigneLien
-            icone="folder-outline"
-            titre={t('annales.autresConcours')}
-            detail={t(etat.autres.length > 1 ? 'concours.nombre' : 'concours.nombre1', { n: etat.autres.length })}
-            onPress={() => router.push('/annales/autres')}
-          />
-        </View>
-      ) : null}
-      {!etat.dossiers.length && !etat.mien.length && !etat.autres.length ? <Banniere ton="info" titre={t('annales.vide')} /> : null}
+      {tous ? etat.autres.map((c) => <LigneConcours key={c.id} c={c} />) : null}
+      {!etat.dossiers.length && !etat.mien.length && !(tous && etat.autres.length) ? <Banniere ton="info" titre={t('annales.vide')} /> : null}
     </View>
   );
 }

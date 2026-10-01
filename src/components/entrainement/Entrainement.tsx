@@ -122,8 +122,8 @@ export function Entrainement({ matieres, cle }: Props) {
                 titre={c.nom}
                 bas={
                   <View style={styles.compteurs}>
-                    {n.quiz ? <Compteur type="quiz" faits={p.quizFaits} total={n.quiz} fini={fini} /> : null}
-                    {n.exercices ? <Compteur type="exercice" faits={p.faits} total={n.exercices} fini={fini} /> : null}
+                    {n.quiz ? <PiluleCompteur type="quiz" faits={p.quizFaits} total={n.quiz} fini={fini} /> : null}
+                    {n.exercices ? <PiluleCompteur type="exercice" faits={p.faits} total={n.exercices} fini={fini} /> : null}
                   </View>
                 }
                 droite={<ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />}
@@ -138,7 +138,7 @@ export function Entrainement({ matieres, cle }: Props) {
 }
 
 /** Compteur en pilule : quiz (bleu) ou exercices (orange), faits / total. */
-function Compteur({ type, faits, total, fini }: { type: 'quiz' | 'exercice'; faits: number; total: number; fini: boolean }) {
+function PiluleCompteur({ type, faits, total, fini }: { type: 'quiz' | 'exercice'; faits: number; total: number; fini: boolean }) {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const fond = fini ? theme.marque.douce : type === 'quiz' ? (sombre ? palette.bleu[900] : palette.bleu[100]) : sombre ? palette.orange[900] : palette.orange[100];

@@ -95,7 +95,7 @@ describe('Ecran', () => {
     expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
     await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 300 } } });
     expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
-    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 2000 } } });
+    await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 3000 } } });
     const bouton = screen.getByRole('button', { name: 'Revenir en haut' });
     await fireEvent.press(bouton);
     await fireEvent.scroll(defilement, { nativeEvent: { contentOffset: { y: 0 } } });
@@ -104,7 +104,7 @@ describe('Ecran', () => {
 
   it('retour en haut désactivable', async () => {
     await render(avecTheme('clair', <Ecran retourHaut={false}><Text>long</Text></Ecran>));
-    await fireEvent.scroll(screen.getByTestId('ecran-defilement'), { nativeEvent: { contentOffset: { y: 2000 } } });
+    await fireEvent.scroll(screen.getByTestId('ecran-defilement'), { nativeEvent: { contentOffset: { y: 3000 } } });
     expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
   });
 });

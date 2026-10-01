@@ -3,6 +3,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -33,6 +34,8 @@ export function LecteurPdf() {
   const [page, setPage] = useState({ n: 1, total: 0 });
   const [zoom, setZoom] = useState(1);
   const [reprise, setReprise] = useState(false);
+  // Le PDF descend jusqu'au bord de l'écran ; les boutons de zoom restent au-dessus de la barre de navigation.
+  const { bottom } = useSafeAreaInsets();
 
   useEffect(() => {
     let actif = true;
@@ -134,7 +137,7 @@ export function LecteurPdf() {
               <Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{t('document.reprise', { n: etat.depart })}</Text>
             </View>
           ) : null}
-          <View style={[styles.zoom, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
+          <View style={[styles.zoom, { bottom: bottom + espace[5], backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
             <BoutonZoom libelle={t('document.zoomMoins')} onPress={() => setZoom((z) => Math.max(1, z - 0.5))}>
               <Minus size={18} strokeWidth={2} color={theme.texte.principal} />
             </BoutonZoom>
@@ -150,7 +153,7 @@ export function LecteurPdf() {
 
 function BoutonZoom({ libelle, onPress, children }: { libelle: string; onPress: () => void; children: React.ReactNode }) {
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.pilule} hitSlop={4}>
+    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={7} hitSlop={4}>
       <View style={styles.boutonZoom}>{children}</View>
     </Appui>
   );
@@ -171,10 +174,11 @@ const styles = StyleSheet.create({
   zoom: {
     position: 'absolute',
     right: espace[5],
-    bottom: espace[6],
     flexDirection: 'row',
+    gap: 2,
+    padding: 2,
     borderWidth: bord.normal,
-    borderRadius: rayon.pilule,
+    borderRadius: rayon.m,
     shadowOffset: { width: ombre.carte, height: ombre.carte },
     shadowOpacity: 1,
     shadowRadius: 0,

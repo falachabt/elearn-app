@@ -233,7 +233,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.entrainement.quizErreur)).toBeTruthy());
   });
 
-  it('exercice : contexte, énoncé, corrigé caché puis montré, fait, exercice suivant', async () => {
+  it('exercice : contexte, énoncé, bascule énoncé/corrigé, fait, exercice suivant', async () => {
     mockParams = { id: 'e1', cours: '1' };
     await monter(<ExerciceLibre />);
     await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
@@ -246,7 +246,12 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
     await waitFor(async () => expect(await lireExercicesFaits()).toEqual({ e1: true }));
-    expect(screen.queryByRole('button', { name: x.entrainement.voirCorrige })).toBeNull();
+    // Le corrigé remplace l'énoncé ; « Voir l'énoncé » revient en arrière.
+    expect(screen.queryByText('Rappel : diviser par le PGCD.')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirEnonce }));
+    expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
+    expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
+    expect(screen.getByRole('button', { name: x.entrainement.voirCorrige })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } });
   });

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { couleurMatiere, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
+import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -128,5 +128,19 @@ describe('reviser', () => {
     await marquerLue(5, 50);
     const client = { rpc: jest.fn(), from: () => ({ select: async () => ({ data: null, error: new Error('réseau') }) }) };
     expect(await synchroniserLues(client as never)).toEqual({ '5': 50 });
+  });
+});
+
+describe('avecCopie', () => {
+  beforeEach(() => AsyncStorage.clear());
+
+  it('sert la copie fraîche sans requête, relit le réseau après 12 h, garde la copie hors ligne', async () => {
+    const lire = jest.fn().mockResolvedValueOnce(['v1']).mockResolvedValueOnce(['v2']).mockRejectedValueOnce(new Error('hors ligne'));
+    expect(await avecCopie('test.cle', lire, 1000)).toEqual(['v1']);
+    expect(await avecCopie('test.cle', lire, 1000 + FRAICHEUR_COPIE_MS - 1)).toEqual(['v1']);
+    expect(lire).toHaveBeenCalledTimes(1);
+    expect(await avecCopie('test.cle', lire, 1000 + FRAICHEUR_COPIE_MS)).toEqual(['v2']);
+    expect(await avecCopie('test.cle', lire, 1000 + 3 * FRAICHEUR_COPIE_MS)).toEqual(['v2']);
+    expect(lire).toHaveBeenCalledTimes(3);
   });
 });

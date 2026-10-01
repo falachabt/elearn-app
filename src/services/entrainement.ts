@@ -174,9 +174,45 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
 }
 
 /** Exercice complet : contexte, énoncé et corrigé en blocs (même format que les leçons). */
-export type DetailExercice = { id: string; titre: string; contexte: Bloc[]; enonce: Bloc[]; corrige: Bloc[] };
+export type DetailExercice = { id: string; titre: string; contexte: Bloc[]; enonce: Bloc[]; corrige: Bloc[]; difficulte?: Difficulte };
+export type Difficulte = 'facile' | 'moyen' | 'difficile';
+
+const texteBloc = (b: Bloc) => ('segments' in b ? b.segments.map((x) => x.texte).join('') : '');
+const META = /^\s*(titre|description|difficult[ée])\s*:\s*/i;
+
+/**
+ * Beaucoup d'énoncés commencent par des lignes brutes « Titre : … », « Description : … », « Difficulté : … »
+ * (revue design, écran 5 v2). Le titre est déjà en en-tête, la difficulté passe en pastille ; la description reste
+ * comme question, sans son étiquette.
+ */
+export function separerMeta(blocs: readonly Bloc[]): { enonce: Bloc[]; difficulte?: Difficulte } {
+  let difficulte: Difficulte | undefined;
+  const enonce: Bloc[] = [];
+  for (const b of blocs) {
+    const m = (b.type === 'paragraphe' || b.type === 'puce') && META.exec(texteBloc(b));
+    if (!m) {
+      enonce.push(b);
+      continue;
+    }
+    const valeur = texteBloc(b).slice(m[0].length).trim();
+    const cle = m[1].toLowerCase();
+    if (cle.startsWith('difficult')) {
+      const v = valeur.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+      difficulte = /diffic/.test(v) ? 'difficile' : /moyen|interm/.test(v) ? 'moyen' : /facile|simple/.test(v) ? 'facile' : difficulte;
+    } else if (cle === 'description' && valeur) {
+      enonce.push({ type: 'paragraphe', segments: [{ texte: valeur }], retrait: 0 });
+    }
+  }
+  return { enonce, difficulte };
+}
 
 export async function lireExercice(client: Client, exercice: string, description = ''): Promise<DetailExercice> {
+  const detail = await lireExerciceBrut(client, exercice, description);
+  const { enonce, difficulte } = separerMeta(detail.enonce);
+  return { ...detail, enonce, difficulte };
+}
+
+async function lireExerciceBrut(client: Client, exercice: string, description: string): Promise<DetailExercice> {
   return avecCopie(`entrainement.exercice.${exercice}`, async () => {
     type Ligne = {
       exercise_id: string;

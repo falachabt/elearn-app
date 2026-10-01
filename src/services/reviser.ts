@@ -23,14 +23,34 @@ export const TAILLE_QUIZ_LECON = 3;
 export const CLE_LUES = 'reviser.lues';
 export const AUTRES = 'Autres';
 
-/** Lecture réseau d'abord, puis copie locale : l'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert (M5-03). */
-export async function avecCopie<T>(cle: string, lire: () => Promise<T>): Promise<T> {
+/** Durée pendant laquelle une copie locale est servie sans requête : le contenu des cours change rarement. */
+export const FRAICHEUR_COPIE_MS = 12 * 60 * 60 * 1000;
+const CLE_DATE = (cle: string) => `${cle}@date`;
+
+/**
+ * Copie locale d'abord si elle a moins de 12 h (pas de requête à chaque changement d'onglet), sinon le réseau, avec
+ * la copie en secours : l'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert (M5-03).
+ */
+export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
+  const [[, copie], [, date]] = await AsyncStorage.multiGet([cle, CLE_DATE(cle)]).catch(() => [
+    [cle, null],
+    [CLE_DATE(cle), null],
+  ]);
+  if (copie && date && maintenant - Number(date) < FRAICHEUR_COPIE_MS) {
+    try {
+      return JSON.parse(copie) as T;
+    } catch {
+      // copie illisible : on relit le réseau
+    }
+  }
   try {
     const valeur = await lire();
-    await AsyncStorage.setItem(cle, JSON.stringify(valeur));
+    await AsyncStorage.multiSet([
+      [cle, JSON.stringify(valeur)],
+      [CLE_DATE(cle), String(maintenant)],
+    ]);
     return valeur;
   } catch (e) {
-    const copie = await AsyncStorage.getItem(cle);
     if (copie) return JSON.parse(copie) as T;
     throw e;
   }
