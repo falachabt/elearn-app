@@ -81,7 +81,7 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.tuteur.enregistrer }));
     expect(screen.getByText(x.tuteur.erreurs.accord)).toBeTruthy();
     expect(mockRpc).not.toHaveBeenCalled();
-    await fireEvent(screen.getByLabelText(x.tuteur.accord), 'valueChange', true);
+    await fireEvent.press(screen.getByRole('switch', { name: x.tuteur.accord }));
     await fireEvent.press(screen.getByRole('button', { name: x.tuteur.enregistrer }));
     await waitFor(() => expect(screen.getByText(x.tuteur.enregistre)).toBeTruthy());
     expect(mockRpc).toHaveBeenCalledWith('save_guardian_contact', { p_name: 'Maman', p_phone: '+237677123456', p_consent: true });

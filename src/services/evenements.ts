@@ -2,7 +2,7 @@
 export type Evenements = {
   app_opened: { plateforme: string };
   session_invite_creee: Record<string, never>;
-  feedback_setting_changed: { setting: 'sounds' | 'haptics' | 'reduced_motion'; value: boolean; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
+  feedback_setting_changed: { setting: 'sounds' | 'haptics' | 'reduced_motion' | 'volume'; value: boolean | 'faible' | 'normal'; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   celebration_seen: { sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string };
   first_result_seen: { type: 'mini_test' | 'photo'; duree_s: number; score?: number; total?: number };
@@ -33,6 +33,9 @@ export type Evenements = {
   notification_prompt_shown: { source: 'fin_mission' };
   notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
   notification_opened: { type: string };
+  notification_setting_changed: { rappel: boolean };
+  display_setting_changed: { theme?: 'clair' | 'sombre' | 'systeme'; taille?: number };
+  settings_opened: { source: 'moi' };
   contest_chosen: { filiere: string; concours: string };
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
   account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
