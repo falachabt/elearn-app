@@ -264,7 +264,15 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
     expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
     expect(screen.getByText(x.entrainement.exerciceRang.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
-    expect(screen.getByText(x.entrainement.contexte)).toBeTruthy();
+    expect(screen.getByText(x.entrainement.contexte.toUpperCase())).toBeTruthy();
+    // Le contexte arrive replié (début du texte sur une ligne) ; un appui le déplie, un autre le referme.
+    const contexte = () => screen.getByRole('button', { name: x.entrainement.contexte });
+    expect(contexte().props.accessibilityState).toMatchObject({ expanded: false });
+    await fireEvent.press(contexte());
+    expect(contexte().props.accessibilityState).toMatchObject({ expanded: true });
+    expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
+    await fireEvent.press(contexte());
+    expect(contexte().props.accessibilityState).toMatchObject({ expanded: false });
     // Ouvrir le corrigé ne marque plus rien.
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
