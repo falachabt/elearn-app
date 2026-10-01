@@ -35,10 +35,11 @@ jest.mock('react-native-pdf', () => {
   const { createElement, useEffect } = jest.requireActual('react');
   const { View } = jest.requireActual('react-native');
   const Pdf = (props) => {
+    globalThis.rendusPdf = (globalThis.rendusPdf ?? 0) + 1;
     useEffect(() => {
       props.onLoadComplete?.(3, props.source?.uri, { width: 1, height: 1 });
     }, []);
-    return createElement(View, { testID: 'lecteur-pdf', accessibilityLabel: props.source?.uri });
+    return createElement(View, { testID: 'lecteur-pdf', accessibilityLabel: props.source?.uri, pdf: props });
   };
   return { __esModule: true, default: Pdf };
 });

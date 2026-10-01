@@ -1,6 +1,6 @@
 import { Minus, Plus } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -113,24 +113,18 @@ export function LecteurPdf() {
       ) : null}
       {etat.statut === 'pret' ? (
         <View style={[styles.cadre, { borderColor: theme.bord.fort }]}>
-          <Pdf
-            source={{ uri: etat.uri }}
-            style={[styles.flex, { backgroundColor: theme.fond.app }]}
-            trustAllCerts={false}
-            enableAntialiasing
-            fitPolicy={0}
-            spacing={8}
-            scale={zoom}
-            minScale={1}
-            maxScale={ZOOM_MAX}
-            onScaleChanged={setZoom}
-            page={etat.depart}
-            onLoadComplete={(total) => setPage((p) => ({ n: Math.min(Math.max(p.n, etat.depart), total), total }))}
-            onPageChanged={(n, total) => {
+          <VuePdf
+            uri={etat.uri}
+            depart={etat.depart}
+            zoom={zoom}
+            fond={theme.fond.app}
+            onZoom={setZoom}
+            onTotal={(total) => setPage((p) => ({ n: Math.min(Math.max(p.n, etat.depart), total), total }))}
+            onPage={(n, total) => {
               setPage({ n, total });
               void noterPage(String(url), n);
             }}
-            onError={() => setEtat({ statut: 'erreur' })}
+            onErreur={() => setEtat({ statut: 'erreur' })}
           />
           {reprise ? (
             <View pointerEvents="none" style={[styles.toast, { backgroundColor: theme.fond.inverse }]}>
@@ -150,6 +144,56 @@ export function LecteurPdf() {
     </Ecran>
   );
 }
+
+type PropsVue = {
+  uri: string;
+  depart: number;
+  zoom: number;
+  fond: string;
+  onZoom: (z: number) => void;
+  onTotal: (total: number) => void;
+  onPage: (n: number, total: number) => void;
+  onErreur: () => void;
+};
+
+/**
+ * Le PDF natif ne reçoit de nouvelles props que quand le document ou le zoom change. Sur Android, chaque nouvelle
+ * prop (objet `source` recréé à chaque changement de page) relance le rendu : sur un document court, la dernière
+ * page restait vide après un défilement jusqu'en bas (retour de Benny, 01/10).
+ */
+const VuePdf = memo(
+  function VuePdf({ uri, depart, zoom, fond, onZoom, onTotal, onPage, onErreur }: PropsVue) {
+    const rappels = useRef({ onZoom, onTotal, onPage, onErreur });
+    useLayoutEffect(() => {
+      rappels.current = { onZoom, onTotal, onPage, onErreur };
+    });
+    const source = useMemo(() => ({ uri }), [uri]);
+    const style = useMemo(() => [styles.flex, { backgroundColor: fond }], [fond]);
+    const zoomer = useCallback((z: number) => rappels.current.onZoom(z), []);
+    const charge = useCallback((total: number) => rappels.current.onTotal(total), []);
+    const changePage = useCallback((n: number, total: number) => rappels.current.onPage(n, total), []);
+    const erreur = useCallback(() => rappels.current.onErreur(), []);
+    return (
+      <Pdf
+        source={source}
+        style={style}
+        trustAllCerts={false}
+        enableAntialiasing
+        fitPolicy={0}
+        spacing={8}
+        scale={zoom}
+        minScale={1}
+        maxScale={ZOOM_MAX}
+        onScaleChanged={zoomer}
+        page={depart}
+        onLoadComplete={charge}
+        onPageChanged={changePage}
+        onError={erreur}
+      />
+    );
+  },
+  (a, b) => a.uri === b.uri && a.depart === b.depart && a.zoom === b.zoom && a.fond === b.fond,
+);
 
 function BoutonZoom({ libelle, onPress, children }: { libelle: string; onPress: () => void; children: React.ReactNode }) {
   return (

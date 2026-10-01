@@ -92,6 +92,15 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     expect(screen.getByLabelText(x.document.page.replace('{{n}}', '1').replace('{{total}}', '3'))).toBeTruthy();
   });
 
+  it('changer de page ne redonne pas de props au PDF natif (page vide en bas d’un document court)', async () => {
+    await monter();
+    await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+    const avant = (globalThis as { rendusPdf?: number }).rendusPdf;
+    await act(async () => screen.getByTestId('lecteur-pdf').props.pdf.onPageChanged(2, 2));
+    expect(screen.getByLabelText(x.document.page.replace('{{n}}', '2').replace('{{total}}', '2'))).toBeTruthy();
+    expect((globalThis as { rendusPdf?: number }).rendusPdf).toBe(avant);
+  });
+
   it('déjà gardé : ouvert sans réseau, à la dernière page lue', async () => {
     await ouvrirDocument(URL_SUJET, 'Sujet Maths 2024');
     await noterPage(URL_SUJET, 2);
