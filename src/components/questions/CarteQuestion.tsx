@@ -26,7 +26,7 @@ export function useIlYa() {
 }
 
 /** Carte de question du fil (G1) : auteur, extrait sur 2 lignes, miniature, réponses, réponse IA, état résolue. */
-export function CarteQuestion({ q, onPress }: { q: Question; onPress: () => void }) {
+export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: () => void; onPhoto?: (uri: string) => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const couleur = useCouleurMatiere();
@@ -59,7 +59,11 @@ export function CarteQuestion({ q, onPress }: { q: Question; onPress: () => void
           ) : null}
         </View>
         <View style={styles.corps}>
-          {q.photos[0] ? <Image source={{ uri: q.photos[0] }} style={[styles.miniature, { borderColor: theme.bord.fort }]} accessibilityIgnoresInvertColors /> : null}
+          {q.photos[0] ? (
+            <Appui accessibilityRole="imagebutton" accessibilityLabel={t('questions.agrandirPhoto')} onPress={() => onPhoto?.(q.photos[0])} decalage={0} rayon={rayon.s}>
+              <Image source={{ uri: q.photos[0] }} style={[styles.miniature, { borderColor: theme.bord.fort }]} accessibilityIgnoresInvertColors />
+            </Appui>
+          ) : null}
           <Text numberOfLines={2} style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{q.texte}</Text>
         </View>
         <View style={styles.pied}>
