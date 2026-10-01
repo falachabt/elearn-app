@@ -247,11 +247,16 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await waitFor(() => expect(screen.getByText(x.rythme.titre)).toBeTruthy());
     // Onglet « Questions » : réglage par pas de 5.
     await fireEvent.press(screen.getByRole('button', { name: x.rythme.moins }));
-    expect(screen.getByText(x.rythme.questions.replace('{{n}}', '15'))).toBeTruthy();
+    expect(screen.getByText('15')).toBeTruthy();
+    // Curseur à crans : un appui choisit la valeur.
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.questions.replace('{{n}}', '25') }));
+    expect(screen.getByText('25')).toBeTruthy();
+    expect(screen.getByText(x.rythme.mention)).toBeTruthy();
     // Onglet « Temps » : 10 à 45 minutes.
     await fireEvent.press(screen.getByRole('tab', { name: x.rythme.ongletTemps }));
     expect(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '45') })).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '20') }));
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '15') }));
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.plusTemps }));
     expect(screen.getByText(x.rythme.environ.replace('{{n}}', '30'))).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.rythme.valider.replace('{{n}}', '30') }));
     await waitFor(() => expect(screen.queryByText(x.rythme.titre)).toBeNull());

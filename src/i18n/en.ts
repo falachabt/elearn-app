@@ -565,6 +565,11 @@ export const en: Textes = {
     rappelTexte: 'You are using the app as a guest. If you change phones or delete the app, your streak and results are lost. Create your account in one tap, it’s free.',
   },
   rythme: {
+    unite: 'questions',
+    uniteMin: 'minutes',
+    moinsTemps: 'Less time',
+    plusTemps: 'More time',
+    mention: 'You can change it in Settings › My daily mission.',
     titre: 'Your mission, at your pace',
     texte: 'We match the number of questions to your pace. You can change it later in the settings.',
     ongletQuestions: 'Questions',

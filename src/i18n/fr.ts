@@ -566,6 +566,11 @@ export const fr = {
     rappelTexte: 'Tu utilises l’app en invité. Si tu changes de téléphone ou supprimes l’app, ta série et tes résultats sont perdus. Crée ton compte en un appui, c’est gratuit.',
   },
   rythme: {
+    unite: 'questions',
+    uniteMin: 'minutes',
+    moinsTemps: 'Moins de temps',
+    plusTemps: 'Plus de temps',
+    mention: 'Modifiable dans Paramètres › Ma mission du jour.',
     titre: 'Ta mission, à ton rythme',
     texte: 'On adapte le nombre de questions à ton rythme. Tu pourras le changer plus tard dans les réglages.',
     ongletQuestions: 'Questions',

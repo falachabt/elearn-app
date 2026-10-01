@@ -19,6 +19,8 @@ type Props = {
   titre: string;
   texte?: string;
   actions: ActionFeuille[];
+  /** Petite mention sous les boutons. */
+  mention?: string;
   children?: ReactNode;
 };
 
@@ -30,7 +32,7 @@ function Fond(props: BottomSheetBackdropProps) {
  * Feuille du bas générique (invitation, confirmation, explication avant une permission) : pastille, titre, texte,
  * une action principale et des actions secondaires. À rendre à côté de l'écran, pas dans son défilement.
  */
-export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, children }: Props) {
+export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, children }: Props) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheet>(null);
@@ -62,6 +64,7 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, child
               <Bouton key={a.libelle} variante={a.variante === 'secondaire' ? 'secondaire' : undefined} libelle={a.libelle} onPress={a.onPress} />
             ))}
           </View>
+          {mention ? <Text style={[typo.legende, styles.mention, { color: theme.texte.secondaire }]}>{mention}</Text> : null}
         </View>
       </BottomSheetView>
     </BottomSheet>
@@ -73,4 +76,5 @@ const styles = StyleSheet.create({
   pastille: { width: 48, height: 48, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   corps: { gap: espace[4] },
   actions: { gap: espace[3] },
+  mention: { textAlign: 'center' },
 });
