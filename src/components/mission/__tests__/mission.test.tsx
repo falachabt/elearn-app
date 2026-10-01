@@ -10,6 +10,7 @@ import { suivre } from '@/services/analytics';
 import { CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
 import { enregistrerProfil } from '@/services/profil';
 import { CLE_PREMIERE_OUVERTURE, CLE_RAPPEL } from '@/services/rappels';
+import { CLE_RYTHME } from '@/services/rythme';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Accueil, titreMission } from '../Accueil';
@@ -76,6 +77,7 @@ beforeEach(async () => {
   mockPermission.mockResolvedValue({ granted: true });
   await AsyncStorage.clear();
   await AsyncStorage.setItem(CLE_RAPPEL, JSON.stringify({ statut: 'actif', le: '2026-09-01T00:00:00Z' }));
+  await AsyncStorage.setItem(CLE_RYTHME, '20');
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockRpc.mockResolvedValue({ data: LIGNES, error: null });
 });
@@ -97,7 +99,7 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.getByText('Chimie')).toBeTruthy();
     expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy();
-    expect(mockRpc).toHaveBeenCalledWith('daily_mission_lessons', expect.objectContaining({ p_level: '3e', p_country: 'CM', p_day: '2026-10-01' }));
+    expect(mockRpc).toHaveBeenCalledWith('daily_mission_sized', expect.objectContaining({ p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_questions: 20 }));
     await fireEvent.press(screen.getByRole('button', { name: x.mission.commencer }));
     expect(router.push).toHaveBeenCalledWith('/mission');
   });
@@ -205,6 +207,26 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await monter(<Accueil maintenant={SOIR} />);
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.queryByText(x.compteRequis.rappelTitre)).toBeNull();
+  });
+
+  it('fin de la première mission : choisir son rythme', async () => {
+    await AsyncStorage.removeItem(CLE_RYTHME);
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
+    await monter(<FinMission />);
+    await waitFor(() => expect(screen.getByText(x.rythme.titre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '20') }));
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.moins }));
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.valider.replace('{{n}}', '25') }));
+    await waitFor(() => expect(screen.queryByText(x.rythme.titre)).toBeNull());
+    expect(await AsyncStorage.getItem(CLE_RYTHME)).toBe('25');
+    expect(suivre).toHaveBeenCalledWith('mission_size_chosen', { questions: 25, source: 'fin_mission' });
+  });
+
+  it('accueil : un résultat d’une autre mission ne compte pas comme faite', async () => {
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 0, total: 3, chapitres: [], serie: 1 }));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
+    expect(screen.queryByText(x.mission.faite)).toBeNull();
   });
 
   it('refaire mes erreurs : rien à refaire', async () => {

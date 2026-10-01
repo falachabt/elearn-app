@@ -1,13 +1,16 @@
 import { router } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Bouton } from '@/components/Bouton';
 import { Carte } from '@/components/Carte';
 import { Ecran } from '@/components/Ecran';
+import { FeuilleRythme } from '@/components/FeuilleRythme';
 import { Interrupteur } from '@/components/Interrupteur';
 import { useFeedback } from '@/components/useFeedback';
 import { useTraduction } from '@/i18n/useTraduction';
 import { definirPreference, moments } from '@/services/retours';
+import { lireRythme, TAILLE_DEFAUT } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -16,10 +19,17 @@ export default function Parametres() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { preferences, declencher, reduit } = useFeedback();
+  const [taille, setTaille] = useState<number | null>(null);
+  const [rythme, setRythme] = useState(false);
+  useEffect(() => {
+    lireRythme().then(setTaille).catch(() => {});
+  }, []);
 
   return (
+    <>
     <Ecran>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('parametres.titre')}</Text>
+      <Bouton variante="secondaire" libelle={t('rythme.reglage', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setRythme(true)} />
       <Carte>
         <View style={styles.groupe}>
           <Interrupteur libelle={t('parametres.sons')} aide={t('parametres.sonsAide')} valeur={preferences.sons} onChange={(v) => definirPreference('sons', v)} />
@@ -45,6 +55,8 @@ export default function Parametres() {
       </View>
       <Bouton variante="texte" libelle={t('parametres.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
     </Ecran>
+    <FeuilleRythme ouverte={rythme} onFermer={() => setRythme(false)} actuelle={taille} source="parametres" onChoisi={setTaille} />
+    </>
   );
 }
 

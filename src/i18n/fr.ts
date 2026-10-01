@@ -443,6 +443,16 @@ export const fr = {
     rappelTitre: 'Ne perds pas ta progression',
     rappelTexte: 'Tu utilises l’app en invité. Si tu changes de téléphone ou supprimes l’app, ta série et tes résultats sont perdus. Crée ton compte en un appui, c’est gratuit.',
   },
+  rythme: {
+    titre: 'Combien de temps pour ta mission chaque jour ?',
+    texte: 'On adapte le nombre de questions à ton rythme. Tu peux l’ajuster ici et le changer plus tard dans les réglages.',
+    minutes: '{{n}} min',
+    questions: '{{n}} questions',
+    moins: 'Moins de questions',
+    plus: 'Plus de questions',
+    valider: 'Valider ({{n}} questions)',
+    reglage: 'Mission du jour : {{n}} questions',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

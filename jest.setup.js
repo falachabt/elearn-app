@@ -23,3 +23,9 @@ jest.mock('expo-haptics', () => ({
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
   ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
 }));
+
+// Feuilles du bas : rendues à plat (le module natif d'animation n'existe pas sous Jest).
+jest.mock('@gorhom/bottom-sheet', () => {
+  const passe = ({ children }) => children ?? null;
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+});

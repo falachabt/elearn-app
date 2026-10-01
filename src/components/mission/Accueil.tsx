@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
+import { lireRythme } from '@/services/rythme';
 import { lireProfil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
@@ -60,7 +61,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       let actif = true;
       void (async () => {
         const jour = jourLocal(maintenant);
-        const [profil, historique, dernier] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat()]);
+        const [profil, historique, dernier, taille] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat(), lireRythme()]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
         if (actif) setEtat((e) => ({ ...e, serie, faite }));
@@ -71,8 +72,11 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           pays: profil?.pays ?? 'CM',
           vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') },
           jour,
+          taille: taille ?? undefined,
         }).catch(() => null);
-        if (actif) setEtat((e) => ({ ...e, mission }));
+        // Un résultat d'une autre mission du jour (taille changée, nouvelle version) ne compte pas comme faite.
+        const aJour = faite && mission && faite.total !== mission.questions.length ? null : faite;
+        if (actif) setEtat((e) => ({ ...e, mission, faite: aJour }));
       })();
       return () => {
         actif = false;

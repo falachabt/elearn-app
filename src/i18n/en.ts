@@ -442,5 +442,15 @@ export const en: Textes = {
     rappelTitre: 'Don’t lose your progress',
     rappelTexte: 'You are using the app as a guest. If you change phones or delete the app, your streak and results are lost. Create your account in one tap, it’s free.',
   },
+  rythme: {
+    titre: 'How much time for your mission each day?',
+    texte: 'We fit the number of questions to your pace. Adjust it here and change it later in settings.',
+    minutes: '{{n}} min',
+    questions: '{{n}} questions',
+    moins: 'Fewer questions',
+    plus: 'More questions',
+    valider: 'Confirm ({{n}} questions)',
+    reglage: 'Daily mission: {{n}} questions',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

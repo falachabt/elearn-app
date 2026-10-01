@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { suivre } from './analytics';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
+import { TAILLE_DEFAUT } from './rythme';
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
@@ -77,16 +78,19 @@ export function convertir(l: LigneMission, vraiFaux: { vrai: string; faux: strin
  */
 export async function chargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number },
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
+  const taille = p.taille ?? TAILLE_DEFAUT;
   const brut = await AsyncStorage.getItem(CLE_MISSION);
-  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string }) : null;
-  if (garde?.jour === jour && garde.niveau === p.niveau) return garde;
+  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number }) : null;
+  if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille) return garde;
 
   let mission: Mission;
   try {
-    let { data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION });
+    // Du plus récent au plus ancien : la fonction peut ne pas encore être déployée en production.
+    let { data, error } = await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille });
+    if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION }));
     if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION }));
     if (error) throw error;
     const questions = ((data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
@@ -96,7 +100,7 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau }));
+  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille }));
   return mission;
 }
 

@@ -55,15 +55,25 @@ describe('chargerMission', () => {
   it('tire la mission du serveur puis la garde pour la journée', async () => {
     const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3), ligne(4), ligne(5)] });
     const m = await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
-    expect(c.rpc).toHaveBeenCalledWith('daily_mission_lessons', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_lessons: 5 });
+    expect(c.rpc).toHaveBeenCalledWith('daily_mission_sized', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_questions: 20 });
     expect(m).toMatchObject({ source: 'serveur', jour: '2026-10-01' });
     expect(m.questions).toHaveLength(5);
     const encore = await chargerMission(clientFaux({ error: new Error('hors ligne') }) as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
     expect(encore.questions.map((q) => q.id)).toEqual(m.questions.map((q) => q.id));
   });
 
-  it("serveur sans daily_mission_lessons : ancienne daily_mission", async () => {
-    const rpc = jest.fn(async (nom: string) => (nom === 'daily_mission_lessons' ? { data: null, error: { code: 'PGRST202' } } : { data: [ligne(1), ligne(2), ligne(3)], error: null }));
+  it('taille choisie par l’élève, et nouvelle mission si elle change', async () => {
+    const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3)] });
+    await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', taille: 30 });
+    expect(c.rpc).toHaveBeenCalledWith('daily_mission_sized', expect.objectContaining({ p_questions: 30 }));
+    await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', taille: 30 });
+    expect(c.rpc).toHaveBeenCalledTimes(1);
+    await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', taille: 15 });
+    expect(c.rpc).toHaveBeenCalledTimes(2);
+  });
+
+  it('serveur sans les nouvelles fonctions : ancienne daily_mission', async () => {
+    const rpc = jest.fn(async (nom: string) => (nom !== 'daily_mission' ? { data: null, error: { code: 'PGRST202' } } : { data: [ligne(1), ligne(2), ligne(3)], error: null }));
     const m = await chargerMission({ rpc, from: jest.fn() } as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01' });
     expect(rpc).toHaveBeenLastCalledWith('daily_mission', { p_level: '3e', p_country: 'CM', p_day: '2026-10-01', p_size: 5 });
     expect(m).toMatchObject({ source: 'serveur' });

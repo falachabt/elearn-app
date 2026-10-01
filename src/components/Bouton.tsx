@@ -18,6 +18,8 @@ type Props = {
   retour?: boolean;
   /** Pictogramme à gauche du libellé (logo d'un fournisseur de connexion). */
   icone?: ReactNode;
+  /** Nom lu par les lecteurs d'écran quand le libellé est un symbole (« + », « − »). */
+  accessibilityLabel?: string;
 };
 
 const DECALAGE = 4;
@@ -38,7 +40,7 @@ export function couleursBouton(theme: Theme, variante: Variante, desactive = fal
 }
 
 /** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
-export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour, icone }: Props) {
+export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour, icone, accessibilityLabel }: Props) {
   const { theme } = useTheme();
   const { fond, texte, bord: couleurBord, ombre } = couleursBouton(theme, variante, desactive);
   const plat = variante === 'texte';
@@ -46,6 +48,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
   return (
     <Appui
       accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled: !!desactive }}
       disabled={desactive}
       retour={retour}

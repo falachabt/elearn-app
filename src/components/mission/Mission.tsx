@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { chargerMission, terminerMission, type Mission as MissionDuJour } from '@/services/mission';
+import { lireRythme } from '@/services/rythme';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -30,7 +31,7 @@ export function Mission() {
     void (async () => {
       const profil = await lireProfil();
       const n = profil?.niveau ?? '3e';
-      const m = await chargerMission(getSupabase(), { niveau: n, pays: profil?.pays ?? 'CM', vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } });
+      const m = await chargerMission(getSupabase(), { niveau: n, pays: profil?.pays ?? 'CM', vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') }, taille: (await lireRythme()) ?? undefined });
       if (!actif) return;
       setNiveau(n);
       setMission(m);

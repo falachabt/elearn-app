@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireDernierResultat, type ResultatMission } from '@/services/mission';
 import { doitProposerRappel } from '@/services/rappels';
+import { lireRythme } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -15,6 +16,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { FeuilleRappel } from '../FeuilleRappel';
+import { FeuilleRythme } from '../FeuilleRythme';
 import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
@@ -37,18 +39,21 @@ export function FinMission() {
   const { theme } = useTheme();
   const [r, setR] = useState<ResultatMission | null>(null);
   const [rappel, setRappel] = useState(false);
+  const [rythme, setRythme] = useState(false);
 
   useEffect(() => {
     let actif = true;
     lireDernierResultat().then((x) => actif && setR(x));
-    // Après une mission réussie à son terme : moment où le rappel du soir a le plus de sens (M9-01).
-    doitProposerRappel()
-      .then((oui) => {
-        if (!actif || !oui) return;
-        suivre('notification_prompt_shown', { source: 'fin_mission' });
-        setRappel(true);
-      })
-      .catch(() => {});
+    // Une feuille à la fois : d'abord le rythme (s'il n'a jamais été choisi), sinon le rappel du soir (M9-01).
+    void (async () => {
+      if ((await lireRythme()) === null) {
+        if (actif) setRythme(true);
+        return;
+      }
+      if (!(await doitProposerRappel()) || !actif) return;
+      suivre('notification_prompt_shown', { source: 'fin_mission' });
+      setRappel(true);
+    })().catch(() => {});
     return () => {
       actif = false;
     };
@@ -123,6 +128,7 @@ export function FinMission() {
         <Text style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>{t(r.graceUtilisee ? 'mission.graceUtilisee' : 'mission.grace')}</Text>
       </View>
     </Ecran>
+    <FeuilleRythme ouverte={rythme} onFermer={() => setRythme(false)} source="fin_mission" />
     <FeuilleRappel ouverte={rappel} onFermer={() => setRappel(false)} />
     </>
   );
