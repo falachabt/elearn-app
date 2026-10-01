@@ -47,6 +47,7 @@
     "expo-web-browser": "~57.0.3",
     "fflate": "^0.8.3",
     "i18next": "^26.4.2",
+    "lucide-react-native": "^1.49.0",
     "posthog-react-native": "^4.78.2",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -87,7 +88,8 @@
   "jest": {
     "preset": "jest-expo",
     "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "^lucide-react-native$": "<rootDir>/node_modules/lucide-react-native/dist/cjs/lucide-react-native.js"
     },
     "setupFiles": [
       "./jest.setup.js"

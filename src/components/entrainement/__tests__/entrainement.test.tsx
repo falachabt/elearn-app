@@ -97,22 +97,26 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await AsyncStorage.setItem('entrainement.exercicesFaits', JSON.stringify({ e2: true }));
     mockParams = { cours: '1', nom: 'Fractions' };
     await monter(<ChapitreEntrainement />);
-    await waitFor(() => expect(screen.getByText('Quiz Fractions')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(x.entrainement.quizChapitre)).toBeTruthy());
     // Tout : quiz et exercices dans une seule liste, chacun avec son étiquette.
     expect(screen.getByText('Simplifier')).toBeTruthy();
-    expect(screen.getByText(x.entrainement.etiquetteQuizN.replace('{{n}}', '10'))).toBeTruthy();
-    expect(screen.getByText('Mouvement dans les champs')).toBeTruthy();
-    expect(screen.getByText(`${x.entrainement.questions.replace('{{n}}', '12')} · ${x.entrainement.meilleur.replace('{{n}}', '80')}`)).toBeTruthy();
+    expect(screen.getByText(x.entrainement.titreQuizN.replace('{{n}}', '10').replace('{{titre}}', 'Mouvement dans les champs'))).toBeTruthy();
+    expect(screen.getByText(x.entrainement.questions.replace('{{n}}', '12'))).toBeTruthy();
+    expect(screen.getByText('80 %')).toBeTruthy();
+    expect(screen.getAllByTestId('pastille-quiz')).toHaveLength(2);
+    expect(screen.getAllByTestId('pastille-exercice')).toHaveLength(2);
+    // Progression du chapitre : quiz à 80 % et exercice fait.
+    expect(screen.getByText(x.entrainement.progression.replace('{{n}}', '2').replace('{{total}}', '4'))).toBeTruthy();
     expect(screen.getByText(x.entrainement.fait)).toBeTruthy();
     await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.quiz }));
     expect(screen.queryByText('Simplifier')).toBeNull();
     await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.exercices }));
-    expect(screen.queryByText('Quiz Fractions')).toBeNull();
+    expect(screen.queryByText(x.entrainement.quizChapitre)).toBeNull();
     await fireEvent.press(screen.getByText('Simplifier'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e1', cours: '1' } });
     await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.tout }));
     // Jamais joué : la session démarre directement.
-    await fireEvent.press(screen.getByText('Quiz Fractions'));
+    await fireEvent.press(screen.getByText(x.entrainement.quizChapitre));
     await waitFor(() => expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } }));
   });
 
@@ -120,11 +124,23 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await enregistrerSession('qz1', { questions: [], reponses: [] }, new Date('2026-09-30T10:00:00Z'));
     mockParams = { cours: '1', nom: 'Fractions' };
     await monter(<ChapitreEntrainement />);
-    await waitFor(() => expect(screen.getByText('Quiz Fractions')).toBeTruthy());
-    await fireEvent.press(screen.getByText('Quiz Fractions'));
+    await waitFor(() => expect(screen.getByText(x.entrainement.quizChapitre)).toBeTruthy());
+    await fireEvent.press(screen.getByText(x.entrainement.quizChapitre));
     await waitFor(() =>
       expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/detail', params: { id: 'qz1', cours: '1', nom: 'Fractions', titre: 'Quiz Fractions', questions: '12', numero: '' } }),
     );
+  });
+
+  it('chapitre : erreur plein écran et « Réessayer »', async () => {
+    mockRpc.mockImplementation(async () => ({ data: null, error: { message: 'hors ligne' } }));
+    mockParams = { cours: '1', nom: 'Fractions', onglet: 'exercices' };
+    await monter(<ChapitreEntrainement />);
+    await waitFor(() => expect(screen.getByText(x.entrainement.erreurTitre)).toBeTruthy());
+    mockRpc.mockImplementation(async (nom: string, args: Record<string, unknown>) => repondre(nom, args));
+    await fireEvent.press(screen.getByText(x.entrainement.reessayer));
+    await waitFor(() => expect(screen.getByText('Simplifier')).toBeTruthy());
+    // Ouvert sur l'onglet Exercices : pas de quiz.
+    expect(screen.queryByText(x.entrainement.quizChapitre)).toBeNull();
   });
 
   it('chapitre sans entraînement', async () => {

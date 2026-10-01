@@ -39,11 +39,11 @@ export function Progression({ faites, total, libelle }: { faites: number; total:
 }
 
 /** Bouton carré « fermer » (ou « retour » avec icone="chevron-back") des en-têtes. */
-export function BoutonFermer({ libelle, onPress, icone = 'close' }: { libelle: string; onPress: () => void; icone?: 'close' | 'chevron-back' }) {
+export function BoutonFermer({ libelle, onPress, icone = 'close', petit }: { libelle: string; onPress: () => void; icone?: 'close' | 'chevron-back'; petit?: boolean }) {
   const { theme } = useTheme();
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.m}>
-      <View style={[styles.fermer, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.m} hitSlop={petit ? 6 : undefined}>
+      <View style={[styles.fermer, petit && styles.fermerPetit, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
         <Ionicons name={icone} size={20} color={theme.texte.principal} />
       </View>
     </Appui>
@@ -164,6 +164,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
 
 const styles = StyleSheet.create({
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
+  fermerPetit: { width: 36, height: 36 },
   fermer: { width: cibleMin - 4, height: cibleMin - 4, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   progression: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   piste: { flex: 1, height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
