@@ -23,9 +23,19 @@ import { QuizLibreEcran } from '../QuizLibre';
 
 const mockRpc = jest.fn();
 let mockParams: Record<string, string> = {};
+// Navigation : la sortie de l'écran (✕, retour Android, geste) passe par « beforeRemove ».
+let mockSortie: ((e: { preventDefault: () => void; data: { action: object } }) => void) | null = null;
+const mockDispatch = jest.fn();
 jest.mock('expo-router', () => ({
   router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
+  useNavigation: () => ({
+    addListener: (_: string, f: typeof mockSortie) => {
+      mockSortie = f;
+      return () => undefined;
+    },
+    dispatch: (...a: unknown[]) => mockDispatch(...a),
+  }),
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
     useEffect(f, [f]);
@@ -67,6 +77,7 @@ const monter = (el: React.ReactElement) =>
   render(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair">{el}</ThemeProvider></SafeAreaProvider>);
 const T = { fr, en };
 
+afterEach(() => jest.restoreAllMocks());
 beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
@@ -233,7 +244,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.entrainement.quizErreur)).toBeTruthy());
   });
 
-  it('exercice : contexte, énoncé, bascule énoncé/corrigé, fait, exercice suivant', async () => {
+  it('exercice : contexte, énoncé, bascule énoncé/corrigé ; « fait » seulement sur demande, au Suivant', async () => {
     mockParams = { id: 'e1', cours: '1' };
     await monter(<ExerciceLibre />);
     await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
@@ -242,20 +253,63 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
     expect(screen.getByText(x.entrainement.exerciceRang.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
     expect(screen.getByText(x.entrainement.contexte)).toBeTruthy();
-    // Ouvrir le corrigé marque l'exercice « Fait ».
+    // Ouvrir le corrigé ne marque plus rien.
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
-    // Corrigé dans sa carte jaune, étiquetée.
     expect(screen.getByText(`✓ ${x.entrainement.corrige.toUpperCase()}`)).toBeTruthy();
-    await waitFor(async () => expect(await lireExercicesFaits()).toEqual({ e1: true }));
-    // Le corrigé remplace l'énoncé ; « Voir l'énoncé » revient en arrière.
+    expect(await lireExercicesFaits()).toEqual({});
     expect(screen.queryByText('Rappel : diviser par le PGCD.')).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirEnonce }));
     expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
-    expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
-    expect(screen.getByRole('button', { name: x.entrainement.voirCorrige })).toBeTruthy();
+    // « Suivant » : « Tu as fini cet exercice ? » ; « Oui » marque fait puis enchaîne.
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
+    expect(screen.getByText(x.entrainement.finiTitre)).toBeTruthy();
+    expect(router.replace).not.toHaveBeenCalled();
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.finiOui }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } }));
+    expect(await lireExercicesFaits()).toEqual({ e1: true });
+  });
+
+  it('exercice : « Pas encore » enchaîne sans marquer ; un exercice fait ne demande rien', async () => {
+    mockParams = { id: 'e1', cours: '1' };
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.finiPasEncore }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } });
+    expect(await lireExercicesFaits()).toEqual({});
+    await AsyncStorage.setItem('entrainement.exercicesFaits', JSON.stringify({ e1: true }));
+    (router.replace as jest.Mock).mockClear();
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText(x.entrainement.fait)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
+    expect(screen.queryByText(x.entrainement.finiTitre)).toBeNull();
+    expect(router.replace).toHaveBeenCalled();
+  });
+
+  it('exercice : en quittant après plus de 10 s, « Tu t’arrêtes là ? »', async () => {
+    const maintenant = jest.spyOn(Date, 'now').mockReturnValue(1_000_000);
+    mockParams = { id: 'e1', cours: '1' };
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    const quitter = async () => {
+      const e = { preventDefault: jest.fn(), data: { action: { type: 'GO_BACK' } } };
+      await act(async () => mockSortie?.(e));
+      return e;
+    };
+    // Moins de 10 s : on sort sans rien demander.
+    expect((await quitter()).preventDefault).not.toHaveBeenCalled();
+    maintenant.mockReturnValue(1_000_000 + 11_000);
+    expect((await quitter()).preventDefault).toHaveBeenCalled();
+    expect(screen.getByText(x.entrainement.arretTitre)).toBeTruthy();
+    // « Rester » referme ; « Le finir plus tard » sort sans marquer.
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.arretRester }));
+    expect(screen.queryByText(x.entrainement.arretTitre)).toBeNull();
+    await quitter();
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.arretPlusTard }));
+    expect(mockDispatch).toHaveBeenCalledWith({ type: 'GO_BACK' });
+    expect(await lireExercicesFaits()).toEqual({});
+    maintenant.mockRestore();
   });
 
   it('exercice sans corrigé ni énoncé structuré : la description, et le dit', async () => {
@@ -264,11 +318,11 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Comparer 1/2 et 2/3.')).toBeTruthy());
     expect(screen.getByText(x.entrainement.corrigeBientot)).toBeTruthy();
     expect(screen.queryByRole('button', { name: x.entrainement.voirCorrige })).toBeNull();
-    // Sans corrigé, on marque l'exercice soi-même ; dernier exercice : retour au chapitre.
+    // Sans corrigé, on marque l'exercice soi-même, sans feuille ; dernier exercice : « Terminer », retour au chapitre.
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.marquerFait }));
     await waitFor(() => expect(screen.getByRole('button', { name: x.entrainement.annulerFait })).toBeTruthy());
     expect(await lireExercicesFaits()).toEqual({ e2: true });
-    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.retourChapitre }));
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.terminer }));
     expect(router.replace).toHaveBeenCalledWith('/reviser');
   });
 

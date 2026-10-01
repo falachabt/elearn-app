@@ -1,5 +1,5 @@
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -13,18 +13,32 @@ import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
+import { useFeedback } from '../useFeedback';
 import { Onglets } from '../Onglets';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Pastille } from '../liste/Pastille';
+import { PastilleType } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
 import { Blocs } from '../reviser/Blocs';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; exercices: Exercice[]; faits: Record<string, true>; detail: DetailExercice | null };
 
+/** Temps passé sur l'exercice au-delà duquel on demande, en quittant, s'il est fini (choix du design, spec 5). */
+export const SEUIL_SORTIE_MS = 10_000;
+
+type ActionNavigation = object;
+/** Ce qu'on utilise de la navigation : intercepter la sortie de l'écran, puis la rejouer. */
+type NavigationSortie = {
+  addListener: (evenement: 'beforeRemove', rappel: (e: { preventDefault: () => void; data: { action: ActionNavigation } }) => void) => () => void;
+  dispatch: (action: ActionNavigation) => void;
+};
+
 /**
  * Un exercice du chapitre (M5-09) : l'énoncé, puis « fait » ; l'exercice suivant enchaîne sans repasser par la liste.
  * Énoncé et corrigé ne s'empilent pas : le bouton du pied bascule de l'un à l'autre (demande de Benny, 01/10).
+ * « Fait » n'est jamais automatique : on le demande sur « Suivant » et en quittant (D11e, D11f).
  */
 export function ExerciceLibre() {
   const { t } = useTraduction();
@@ -35,6 +49,14 @@ export function ExerciceLibre() {
   const [corrigeDe, setCorrigeDe] = useState<string | null>(null);
   const corrige = corrigeDe === id;
   const pret = useSessionPrete();
+  const navigation = useNavigation() as unknown as NavigationSortie;
+  const { declencher } = useFeedback();
+  const [demande, setDemande] = useState<'suivant' | 'sortie' | null>(null);
+  // Navigation voulue (après une réponse à la feuille) : ne pas redemander.
+  const passer = useRef(false);
+  const debut = useRef(0);
+  const sortie = useRef<ActionNavigation | null>(null);
+  const aDemander = useRef(false);
 
   const [essai, setEssai] = useState(0);
   const recharger = () => {
@@ -71,11 +93,44 @@ export function ExerciceLibre() {
     suivre('practice_exercise_done', { fait: maintenant });
     setEtat({ ...etat, faits: maintenant ? { ...etat.faits, [exercice.id]: true } : Object.fromEntries(Object.entries(etat.faits).filter(([k]) => k !== exercice.id)) });
   };
-  // Ouvrir le corrigé marque l'exercice « Fait » (revue design, écran 5).
-  const voirCorrige = async () => {
-    setCorrigeDe(id);
+  const marquer = async () => {
+    declencher('confirm');
     if (!fait) await basculer();
   };
+  const voirCorrige = () => setCorrigeDe(id);
+
+  useEffect(() => {
+    debut.current = Date.now();
+    passer.current = false;
+  }, [id]);
+  useEffect(() => {
+    aDemander.current = etat.statut === 'pret' && !!exercice && !fait;
+  }, [etat.statut, exercice, fait]);
+  // ✕, retour Android et geste retour : « Tu t'arrêtes là ? » si l'exercice n'est pas fait et a duré plus de 10 s.
+  useEffect(
+    () =>
+      navigation.addListener('beforeRemove', (e) => {
+        if (passer.current || !aDemander.current || Date.now() - debut.current <= SEUIL_SORTIE_MS) return;
+        e.preventDefault();
+        sortie.current = e.data.action;
+        setDemande('sortie');
+      }),
+    [navigation],
+  );
+
+  const allerSuivant = () => {
+    setDemande(null);
+    passer.current = true;
+    if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } });
+    else retour();
+  };
+  const quitter = () => {
+    setDemande(null);
+    passer.current = true;
+    if (sortie.current) navigation.dispatch(sortie.current);
+    else retour();
+  };
+  const surSuivant = () => (fait ? allerSuivant() : setDemande('suivant'));
   const aCorrige = etat.statut === 'pret' && !!etat.detail?.corrige.length;
 
   const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
@@ -86,26 +141,34 @@ export function ExerciceLibre() {
         {aCorrige ? (
           <Bouton variante="secondaire" libelle={t(corrige ? 'entrainement.voirEnonce' : 'entrainement.voirCorrige')} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
         ) : (
-          <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void basculer()} />
+          <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void (fait ? basculer() : marquer())} />
         )}
       </View>
       <View style={styles.flex}>
-        {suivant ? (
-          <Bouton
-            libelle={`${t('entrainement.suivant')} ›`}
-            accessibilityLabel={t('entrainement.exerciceSuivant')}
-            onPress={() => router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } })}
-            retour
-          />
-        ) : (
-          <Bouton libelle={t('entrainement.retourChapitre')} onPress={retour} />
-        )}
+        <Bouton
+          libelle={suivant ? `${t('entrainement.suivant')} ›` : t('entrainement.terminer')}
+          accessibilityLabel={suivant ? t('entrainement.exerciceSuivant') : t('entrainement.terminer')}
+          onPress={surSuivant}
+          retour
+        />
       </View>
     </View>
   ) : undefined;
   const difficulte = etat.statut === 'pret' ? etat.detail?.difficulte : undefined;
 
+  const rappel =
+    exercice && etat.statut === 'pret' ? (
+      <View style={styles.rappel}>
+        <PastilleType type="exercice" />
+        <View style={styles.flex}>
+          <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{titreExercice(exercice.titre, '') || t('entrainement.exerciceN', { n: position + 1 })}</Text>
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('entrainement.exerciceRang', { n: position + 1, total: etat.exercices.length })}</Text>
+        </View>
+      </View>
+    ) : null;
+
   return (
+    <>
     <Ecran
       pied={pied}
       remonterSur={`${id}:${corrige}`}
@@ -115,7 +178,10 @@ export function ExerciceLibre() {
           <Text style={[typo.texteFort, styles.rang, { color: theme.texte.principal }]}>
             {exercice && etat.statut === 'pret' ? t('entrainement.exerciceRang', { n: position + 1, total: etat.exercices.length }) : ''}
           </Text>
-          {difficulte ? <Pastille texte={t(`entrainement.difficulte.${difficulte}`)} /> : <View style={styles.vide} />}
+          <View style={styles.pastilles}>
+            {fait ? <Pastille vert texte={t('entrainement.fait')} /> : null}
+            {difficulte ? <Pastille texte={t(`entrainement.difficulte.${difficulte}`)} /> : !fait ? <View style={styles.vide} /> : null}
+          </View>
         </>
       }
     >
@@ -159,13 +225,52 @@ export function ExerciceLibre() {
         </>
       ) : null}
     </Ecran>
+    <Feuille
+      ouverte={demande === 'suivant'}
+      onFermer={() => setDemande(null)}
+      illustration={rappel}
+      titre={t('entrainement.finiTitre')}
+      texte={t('entrainement.finiTexte')}
+      actions={[
+        {
+          libelle: t('entrainement.finiOui'),
+          onPress: () =>
+            void marquer()
+              .catch(() => {})
+              .then(allerSuivant),
+        },
+        { libelle: t('entrainement.finiPasEncore'), variante: 'secondaire', onPress: allerSuivant },
+      ]}
+      mention={suivant ? t('entrainement.finiNote', { n: position + 2 }) : t('entrainement.finiNoteDernier')}
+    />
+    <Feuille
+      ouverte={demande === 'sortie'}
+      onFermer={() => setDemande(null)}
+      illustration={rappel}
+      titre={t('entrainement.arretTitre')}
+      texte={t('entrainement.arretTexte')}
+      actions={[
+        {
+          libelle: t('entrainement.arretMarquer'),
+          onPress: () =>
+            void marquer()
+              .catch(() => {})
+              .then(quitter),
+        },
+        { libelle: t('entrainement.arretPlusTard'), variante: 'secondaire', onPress: quitter },
+        { libelle: t('entrainement.arretRester'), variante: 'texte', onPress: () => setDemande(null) },
+      ]}
+    />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   pied: { flexDirection: 'row', gap: espace[3] },
+  rappel: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
   vide: { width: 28 },
+  pastilles: { flexDirection: 'row', gap: espace[2] },
   rang: { flex: 1, textAlign: 'center' },
   corrige: {
     padding: espace[4],
