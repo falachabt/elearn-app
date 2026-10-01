@@ -9,7 +9,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from './Bouton';
 
-export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' };
+export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' | 'texte' };
 
 type Props = {
   ouverte: boolean;
@@ -21,6 +21,12 @@ type Props = {
   actions: ActionFeuille[];
   /** Petite mention sous les boutons. */
   mention?: string;
+  /** Au-dessus du titre, sous la poignée (indicateur d'étape). */
+  avant?: ReactNode;
+  /** Contenu au-dessus du titre (illustration). */
+  illustration?: ReactNode;
+  /** Titre et texte centrés (feuille d'explication). */
+  centre?: boolean;
   children?: ReactNode;
 };
 
@@ -32,7 +38,7 @@ function Fond(props: BottomSheetBackdropProps) {
  * Feuille du bas générique (invitation, confirmation, explication avant une permission) : pastille, titre, texte,
  * une action principale et des actions secondaires. À rendre à côté de l'écran, pas dans son défilement.
  */
-export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, children }: Props) {
+export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, avant, illustration, centre, children }: Props) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheet>(null);
@@ -51,17 +57,19 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
     >
       <BottomSheetView style={[styles.contenu, { paddingBottom: bottom + espace[5] }]}>
         <View accessibilityViewIsModal style={styles.corps}>
+          {avant}
+          {illustration}
           {icone ? (
             <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
               <Ionicons name={icone} size={24} color={theme.texte.surCouleur} />
             </View>
           ) : null}
-          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{titre}</Text>
+          <Text accessibilityRole="header" style={[typo.h2, centre && styles.mention, { color: theme.texte.principal }]}>{titre}</Text>
           {texte ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{texte}</Text> : null}
           {children}
           <View style={styles.actions}>
             {actions.map((a) => (
-              <Bouton key={a.libelle} variante={a.variante === 'secondaire' ? 'secondaire' : undefined} libelle={a.libelle} onPress={a.onPress} />
+              <Bouton key={a.libelle} variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} libelle={a.libelle} onPress={a.onPress} />
             ))}
           </View>
           {mention ? <Text style={[typo.legende, styles.mention, { color: theme.texte.secondaire }]}>{mention}</Text> : null}

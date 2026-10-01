@@ -10,16 +10,14 @@ export const TAILLE_MIN = 5;
 export const TAILLE_MAX = 50;
 export const PAS_TAILLE = 5;
 
-/** Temps qu'on est prêt à donner chaque jour, et la taille de mission proposée (environ 30 s par question). */
-export const RYTHMES = [
-  { minutes: 10, questions: 15 },
-  { minutes: 15, questions: 20 },
-  { minutes: 20, questions: 30 },
-  { minutes: 30, questions: 40 },
-  { minutes: 45, questions: 50 },
-] as const;
+/** Temps qu'on est prêt à donner chaque jour : 10 à 45 min par pas de 5 (spec 11 v2). */
+export const MINUTES_RYTHME = [10, 15, 20, 25, 30, 35, 40, 45] as const;
+/** Environ 35 secondes par question. */
+export const SECONDES_PAR_QUESTION = 35;
 
 export const bornerTaille = (n: number) => Math.min(TAILLE_MAX, Math.max(TAILLE_MIN, Math.round(n / PAS_TAILLE) * PAS_TAILLE));
+/** Questions proposées pour un temps donné : minutes × 60 / 35, arrondi au pas de 5, borné entre 5 et 50. */
+export const questionsPour = (minutes: number) => bornerTaille(Math.round((minutes * 60) / SECONDES_PAR_QUESTION));
 
 /** null tant que l'élève n'a pas choisi : on lui proposera de le faire à la fin d'une mission. */
 export async function lireRythme(): Promise<number | null> {

@@ -140,7 +140,7 @@ export function FinMission() {
         <Text style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>{t(r.graceUtilisee ? 'mission.graceUtilisee' : 'mission.grace')}</Text>
       </View>
     </Ecran>
-    <FeuilleRythme ouverte={rythme} onFermer={() => setRythme(false)} source="fin_mission" />
+    <FeuilleRythme ouverte={rythme} onFermer={() => setRythme(false)} source="fin_mission" intro />
     <FeuilleRappel ouverte={rappel} onFermer={() => setRappel(false)} />
     </>
   );
