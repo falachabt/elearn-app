@@ -1,15 +1,16 @@
-import { router, useFocusEffect } from 'expo-router';
+import { router } from 'expo-router';
 import { Flag, Share2 } from 'lucide-react-native';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Share, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import {
-  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, lireCompteur, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
-  signalerCorrection, texteDePartage, type Cadre, type Compteur, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
+  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
+  signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
 import { getSupabase } from '@/services/supabase';
+import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige, espace, matiere as couleursMatiere, rayon, typo } from '@/theme/theme';
 
@@ -24,6 +25,7 @@ import { OptionReponse } from '../OptionReponse';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Blocs } from '../reviser/Blocs';
 import { useFeedback } from '../useFeedback';
+import { FeuilleEpuise, PuceCout } from '../credits';
 import { Camera, type PhotoPrise } from './Camera';
 import { CadreRecadrage, CADRE_INITIAL } from './CadreRecadrage';
 
@@ -35,7 +37,6 @@ type Etat =
   | { ecran: 'signaler'; id: string; correction: CorrectionPhoto }
   | { ecran: 'illisible'; raison: string }
   | { ecran: 'erreur'; type: 'hors-ligne' | 'erreur' }
-  | { ecran: 'credits' }
   | { ecran: 'limite' };
 
 const COULEUR: Record<string, string> = { maths: couleursMatiere.maths, physique: couleursMatiere.physique, chimie: couleursMatiere.physique, svt: couleursMatiere.svt, francais: couleursMatiere.francais, anglais: couleursMatiere.anglais };
@@ -48,7 +49,9 @@ export function Photo() {
   const [etat, setEtat] = useState<Etat>({ ecran: 'camera' });
   const [cadre, setCadre] = useState<Cadre>(CADRE_INITIAL);
   const [matiere, setMatiere] = useState<MatierePhoto>('maths');
-  const [compteur, setCompteur] = useState<Compteur | null>(null);
+  const { solde, couts, rafraichir } = useCredits();
+  const [epuise, setEpuise] = useState(false);
+  const derniereRecadrage = useRef<PhotoPrise | null>(null);
   const derniere = useRef<{ base64: string; source: 'camera' | 'galerie' } | null>(null);
   const annule = useRef<AbortController | null>(null);
   const [motif, setMotif] = useState<MotifPhoto | null>(null);
@@ -60,13 +63,6 @@ export function Photo() {
   useEffect(() => {
     void lireMatiere().then(setMatiere);
   }, []);
-  // Retour sur l'onglet : on repart de l'appareil photo (sauf analyse en cours).
-  useFocusEffect(
-    useCallback(() => {
-      lireCompteur(getSupabase()).then(setCompteur).catch(() => {});
-      return () => {};
-    }, []),
-  );
   useEffect(() => () => annule.current?.abort(), []);
 
   const quitter = () => (router.canGoBack() ? router.back() : router.replace('/'));
@@ -86,7 +82,7 @@ export function Photo() {
         signal: ctrl.signal,
         surEtape: (e) => setEtat((s) => (s.ecran === 'analyse' && !s.etapes.includes(e) ? { ecran: 'analyse', etapes: [...s.etapes, e] } : s)),
       });
-      lireCompteur(getSupabase()).then(setCompteur).catch(() => {});
+      void rafraichir();
       if (issue.type === 'fin') {
         declencher('arrive');
         suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: Math.round((Date.now() - debut) / 1000), etapes: issue.correction.etapes.length });
@@ -96,7 +92,8 @@ export function Photo() {
         setEtat({ ecran: 'illisible', raison: issue.raison });
       } else if (issue.type === 'credits') {
         declencher('problem');
-        setEtat({ ecran: 'credits' });
+        setEpuise(true);
+        setEtat({ ecran: 'recadrage', photo: derniereRecadrage.current!, source: image.source });
       } else if (issue.type === 'quota') {
         declencher('problem');
         setEtat({ ecran: 'limite' });
@@ -111,6 +108,7 @@ export function Photo() {
   };
 
   const envoyer = async (photo: PhotoPrise, source: 'camera' | 'galerie') => {
+    derniereRecadrage.current = photo;
     setOccupe(true);
     try {
       const prep = await preparerImage(photo.uri, cadre, photo.largeur, photo.hauteur);
@@ -165,8 +163,6 @@ export function Photo() {
   // ---- B2 recadrage
   if (etat.ecran === 'recadrage') {
     const { photo, source } = etat;
-    const cout = compteur?.cout;
-    const libelleEnvoi = compteur?.illimite ? t('photo.envoyerPass') : cout ? t('photo.envoyerCout', { cout }) : t('photo.envoyer');
     return (
       <Ecran
         defilement={false}
@@ -177,7 +173,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.recadrer')}</Text>
           </>
         }
-        pied={<Bouton libelle={libelleEnvoi} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
+        pied={<BoutonEnvoi libelle={t('photo.demanderIa')} cout={couts.ai_question} illimite={!!solde?.illimite} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
       >
         <CadreRecadrage uri={photo.uri} largeur={photo.largeur} hauteur={photo.hauteur} onChange={setCadre} />
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.matiereDevinee')}</Text>
@@ -187,6 +183,7 @@ export function Photo() {
           ))}
         </View>
         {occupe ? <ActivityIndicator color={theme.marque.principale} /> : null}
+        <FeuilleEpuise ouverte={epuise} onFermer={() => setEpuise(false)} />
       </Ecran>
     );
   }
@@ -333,8 +330,7 @@ export function Photo() {
       </Ecran>
     );
   }
-  // B6 : crédits épuisés ou limite du jour du pass, sans blocage agressif
-  const credits = etat.ecran === 'credits';
+  // B6 : limite du jour du pass (garde-fou), sans blocage agressif
   return (
     <Ecran
       entete={
@@ -343,20 +339,26 @@ export function Photo() {
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
         </>
       }
-      pied={
-        <>
-          {credits ? <Bouton variante="accent" libelle={t('photo.voirPass')} onPress={() => router.push('/offres?declencheur=limite')} /> : null}
-          <Bouton variante={credits ? 'secondaire' : 'primaire'} libelle={t('photo.faireMission')} onPress={() => router.replace('/')} />
-        </>
-      }
+      pied={<Bouton libelle={t('photo.faireMission')} onPress={() => router.replace('/')} />}
     >
       <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-        <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{t(credits ? 'photo.creditsTitre' : 'photo.limiteTitre')}</Text>
+        <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{t('photo.limiteTitre')}</Text>
       </View>
-      <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
-        {credits ? t('photo.creditsPhrase', { cout: compteur?.cout ?? 5 }) : t('photo.limitePhrase')}
-      </Text>
+      <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('photo.limitePhrase')}</Text>
     </Ecran>
+  );
+}
+
+/** K2b : « Demander à l'IA » avec la puce du coût à droite (inclus avec un pass). La dépense se fait côté serveur à l'envoi. */
+function BoutonEnvoi({ libelle, cout, illimite, desactive, onPress }: { libelle: string; cout?: number; illimite: boolean; desactive?: boolean; onPress: () => void }) {
+  const { theme } = useTheme();
+  return (
+    <Appui accessibilityRole="button" accessibilityState={{ disabled: !!desactive }} disabled={desactive} onPress={onPress} decalage={4} ombre={4} couleurOmbre={theme.ombre} rayon={rayon.m}>
+      <View style={[styles.envoi, { backgroundColor: desactive ? theme.fond.creux : theme.marque.principale, borderColor: theme.bord.fort }]}>
+        <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{libelle}</Text>
+        {illimite ? <PuceCout cout={0} etat="inclus" /> : cout ? <PuceCout cout={cout} /> : null}
+      </View>
+    </Appui>
   );
 }
 
@@ -375,5 +377,6 @@ const styles = StyleSheet.create({
   resultat: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[5], gap: espace[3] },
   avis: { flexDirection: 'row', gap: espace[4] },
   options: { gap: espace[3] },
+  envoi: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[4], minHeight: 52, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: 20 },
   iconeBouton: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
 });

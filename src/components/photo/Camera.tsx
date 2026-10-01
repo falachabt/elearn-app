@@ -7,8 +7,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireCompteur, type Compteur } from '@/services/photo';
-import { getSupabase } from '@/services/supabase';
+import { useCredits } from '@/session/CreditsProvider';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
@@ -30,13 +29,6 @@ function BoutonCarre({ libelle, onPress, children, desactive }: { libelle: strin
   );
 }
 
-/** Compteur toujours visible (M3-01, K1) : « ⚡ 18 crédits », ou « Inclus dans ton pass ». */
-export function libelleCompteur(t: ReturnType<typeof useTraduction>['t'], c: Compteur | null): string | null {
-  if (!c) return null;
-  if (c.illimite) return t('photo.inclusPass');
-  return t('photo.credits', { solde: c.solde });
-}
-
 /** B1 · Appareil photo : ouvert depuis le bouton central ; compteur du jour visible ; galerie, flash, caméra avant/arrière. */
 export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
   const { t } = useTraduction();
@@ -48,18 +40,11 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
   const [cote, setCote] = useState<CameraType>('back');
   const [prete, setPrete] = useState(false);
   const [prise, setPrise] = useState(false);
-  const [compteur, setCompteur] = useState<Compteur | null>(null);
+  const { solde } = useCredits();
 
   useFocusEffect(
     useCallback(() => {
-      let actif = true;
       setPrise(false);
-      lireCompteur(getSupabase())
-        .then((c) => actif && setCompteur(c))
-        .catch(() => {});
-      return () => {
-        actif = false;
-      };
     }, []),
   );
 
@@ -84,7 +69,7 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
     if (a?.uri) onPhoto({ uri: a.uri, largeur: a.width, hauteur: a.height });
   };
 
-  const libelle = libelleCompteur(t, compteur);
+  const libelle = !solde ? null : solde.illimite ? t('photo.inclusPass') : t('photo.credits', { solde: solde.total });
   const autorisee = !!permission?.granted;
 
   return (
