@@ -115,6 +115,7 @@ export const en: Textes = {
     equipe: 'Team',
     aVote: '✓ You voted',
     nVotes: '{{n}} votes',
+    photoLourde: 'A photo is too large (20 MB maximum). Remove it or use a lighter one.',
     introuvable: 'This question is no longer available.',
   },
   onglets: { accueil: 'Home', reviser: 'Study', photo: 'Photo', questions: 'Questions', moi: 'Me' },
