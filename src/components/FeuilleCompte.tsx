@@ -7,7 +7,7 @@ import { useSession } from '@/session/SessionProvider';
 import { OptionsCompte } from './arrivee/FeuilleSauvegarde';
 import { Feuille } from './Feuille';
 
-export type RaisonCompte = 'paiement' | 'parent' | 'rappel';
+export type RaisonCompte = 'paiement' | 'parent' | 'rappel' | 'question';
 
 type Props = {
   raison: RaisonCompte | null;

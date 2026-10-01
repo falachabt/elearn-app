@@ -34,8 +34,8 @@ export type Evenements = {
   notification_opened: { type: string };
   contest_chosen: { filiere: string; concours: string };
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
-  account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' };
-  account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' };
+  account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
+  account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
   connexion_reussie: { methode: 'email' | 'google' | 'apple' | 'facebook' | 'telephone' };
