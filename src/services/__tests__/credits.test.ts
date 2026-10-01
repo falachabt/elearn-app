@@ -3,7 +3,7 @@ import * as Application from 'expo-application';
 import { Platform } from 'react-native';
 
 import { suivre } from '../analytics';
-import { appliquerTempsReel, CLE_APPAREIL, depenser, identifiantAppareil, lireCouts, lireSolde, peutVoir, suivreSolde } from '../credits';
+import { appliquerTempsReel, CLE_APPAREIL, delaiJusqua, depenser, identifiantAppareil, lireCouts, lireSemaine, lireSolde, peutVoir, suivreSolde } from '../credits';
 
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 jest.mock('expo-application', () => ({ getAndroidId: jest.fn(), getIosIdForVendorAsync: jest.fn() }));
@@ -131,5 +131,27 @@ describe('crédits', () => {
     expect(premiere).toMatch(/^local:/);
     expect(await AsyncStorage.getItem(CLE_APPAREIL)).toBe(premiere);
     expect(await identifiantAppareil()).toBe(premiere);
+  });
+});
+
+describe('affichage des crédits', () => {
+  it('découpe le délai jusqu’à lundi', () => {
+    const maintenant = new Date('2026-10-02T18:00:00Z');
+    expect(delaiJusqua('2026-10-04T23:00:00Z', maintenant)).toEqual({ jours: 2, heures: 5, minutes: 0 });
+    expect(delaiJusqua('2026-10-02T21:20:00Z', maintenant)).toEqual({ jours: 0, heures: 3, minutes: 20 });
+    expect(delaiJusqua('2026-10-01T00:00:00Z', maintenant)).toEqual({ jours: 0, heures: 0, minutes: 0 });
+  });
+
+  it('répartit la semaine depuis le journal', async () => {
+    const gte = jest.fn(async () => ({
+      data: [
+        { delta: 25, kind: 'weekly' }, { delta: 5, kind: 'reward' }, { delta: -2, kind: 'spend' },
+        { delta: -5, kind: 'spend' }, { delta: 5, kind: 'refund' }, { delta: 40, kind: 'welcome' },
+      ],
+      error: null,
+    }));
+    const c = { from: jest.fn(() => ({ select: jest.fn(() => ({ gte })) })) };
+    expect(await lireSemaine(c as never, '2026-10-04T23:00:00.000Z')).toEqual({ recharge: 25, bienvenue: 40, recompenses: 5, depenses: 2 });
+    expect(gte).toHaveBeenCalledWith('created_at', '2026-09-27T23:00:00.000Z');
   });
 });
