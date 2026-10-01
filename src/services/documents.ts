@@ -74,13 +74,25 @@ async function respecterPlafond(index: Record<string, DocumentGarde>, garder: st
   }
 }
 
+/**
+ * Adresse prête pour le téléchargeur natif : les fichiers R2 ont des espaces et des accents bruts (« Séquence 5
+ * COLLEGE….pdf ») que le navigateur tolère mais pas le téléchargeur. Une adresse déjà encodée n'est pas ré-encodée.
+ */
+export function adresseEncodee(url: string): string {
+  try {
+    return encodeURI(decodeURI(url));
+  } catch {
+    return encodeURI(url);
+  }
+}
+
 /** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). Note l'ouverture. */
 export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS): Promise<string> {
   let uri = documentLocal(url);
   if (!uri) {
     const d = dossier();
     if (!d.exists) d.create({ intermediates: true, idempotent: true });
-    uri = (await File.downloadFileAsync(url, new File(d, nomFichier(url)), { idempotent: true })).uri;
+    uri = (await File.downloadFileAsync(adresseEncodee(url), new File(d, nomFichier(url)), { idempotent: true })).uri;
   }
   const index = await lireIndex();
   const taille = new File(dossier(), nomFichier(url)).size;

@@ -7,7 +7,7 @@ import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument } from '@/services/documents';
+import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument } from '@/services/documents';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { LecteurPdf } from '../LecteurPdf';
@@ -131,6 +131,14 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await ouvrirDocument('https://r2/c.pdf', 'C', new Date('2026-09-30T10:00:00Z'), 2500);
     expect((await lireDocuments()).map((d) => d.titre)).toEqual(['C', 'B']);
     expect(await pageDocument('https://r2/c.pdf')).toBe(1);
+  });
+
+  it('adresse avec espaces et accents : encodée pour le téléchargement, une seule fois', async () => {
+    const brute = 'https://r2/docs/Séquence 5 COLLEGE.pdf';
+    expect(adresseEncodee(brute)).toBe('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf');
+    expect(adresseEncodee(adresseEncodee(brute))).toBe('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf');
+    await ouvrirDocument(brute, 'Séquence 5');
+    expect(mockTelecharger).toHaveBeenCalledWith('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf', expect.anything());
   });
 
   it('déconnexion : les documents sont effacés', () => {
