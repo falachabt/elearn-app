@@ -43,7 +43,7 @@ export function QuizLecon() {
     let actif = true;
     lireQuizLecon(getSupabase(), { cours: Number(cours), lecon: Number(lecon), vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } })
       .then(async (questions) => {
-        if (!questions.length) await marquerLue(Number(lecon), Number(cours));
+        if (!questions.length) await marquerLue(Number(lecon), Number(cours), getSupabase());
         if (actif) setEtat(questions.length ? { statut: 'quiz', questions } : { statut: 'vide' });
       })
       .catch(() => actif && setEtat({ statut: 'erreur' }));
@@ -66,7 +66,7 @@ export function QuizLecon() {
         onTermine={async ({ questions, reponses }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
-          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours));
+          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
           setEtat({ statut: 'fini', score, total: questions.length });
         }}
       />

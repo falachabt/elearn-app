@@ -147,11 +147,44 @@ export function quizReussi(score: number, total: number): boolean {
   return total > 0 && score >= Math.ceil((total * 2) / 3);
 }
 
-/** Marque la leçon comme validée : elle compte alors dans la progression (questions réussies, ou leçon sans questions). */
-export async function marquerLue(lecon: number, cours: number): Promise<void> {
+/**
+ * Marque la leçon comme validée : elle compte alors dans la progression (questions réussies, ou leçon sans questions).
+ * Enregistrée sur le téléphone tout de suite, puis envoyée au serveur sans bloquer quand un client est donné.
+ */
+export async function marquerLue(lecon: number, cours: number, client?: ClientSynchro, resultat?: { score: number; total: number }): Promise<void> {
   const lues = await lireLues();
-  if (lues[lecon] === cours) return;
-  await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ ...lues, [lecon]: cours }));
+  if (lues[lecon] !== cours) await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ ...lues, [lecon]: cours }));
+  if (client) {
+    void client.rpc('validate_lessons', { p_items: [{ lesson_id: lecon, course_id: cours, ...resultat }] }).then(
+      () => undefined,
+      () => undefined,
+    );
+  }
+}
+
+type ClientSynchro = Pick<SupabaseClient, 'rpc' | 'from'>;
+
+/**
+ * Met en commun les leçons validées du téléphone et du compte : celles du compte reviennent sur le téléphone (autre
+ * appareil, après une déconnexion), celles faites hors ligne partent au serveur. Sans réseau, rien ne change.
+ */
+export async function synchroniserLues(client: ClientSynchro): Promise<Record<string, number>> {
+  const locales = await lireLues();
+  try {
+    const { data, error } = await client.from('lesson_validations').select('lesson_id, course_id');
+    if (error) throw error;
+    const serveur = (data ?? []) as { lesson_id: number; course_id: number }[];
+    const connues = new Set(serveur.map((l) => String(l.lesson_id)));
+    const aEnvoyer = Object.entries(locales)
+      .filter(([id]) => !connues.has(id))
+      .map(([id, cours]) => ({ lesson_id: Number(id), course_id: cours }));
+    if (aEnvoyer.length) await client.rpc('validate_lessons', { p_items: aEnvoyer });
+    const fusion = { ...locales, ...Object.fromEntries(serveur.map((l) => [String(l.lesson_id), l.course_id])) };
+    await AsyncStorage.setItem(CLE_LUES, JSON.stringify(fusion));
+    return fusion;
+  } catch {
+    return locales;
+  }
 }
 
 /** Part des leçons lues (0 à 100) pour une liste de cours. */

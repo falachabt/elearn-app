@@ -1,5 +1,5 @@
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -53,6 +53,19 @@ export function LeconLecteur() {
       actif = false;
     };
   }, [id, cours, pret]);
+
+  // Au retour du quiz de la leçon : elle est peut-être validée maintenant.
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      lireLues()
+        .then((lues) => actif && lues[Number(id)] !== undefined && setValidee(true))
+        .catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, [id]),
+  );
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const position = etat.statut === 'pret' ? etat.lecons.findIndex((l) => l.id === etat.lecon.id) : -1;

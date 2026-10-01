@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { iconeMatiere, lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { iconeMatiere, lireCours, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -22,7 +22,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 async function charger(): Promise<Etat> {
   try {
     const profil = await lireProfil();
-    const [cours, lues] = await Promise.all([lireCours(getSupabase(), { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }), lireLues()]);
+    const [cours, lues] = await Promise.all([lireCours(getSupabase(), { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }), synchroniserLues(getSupabase())]);
     return { statut: 'pret', matieres: regrouperParMatiere(cours), lues };
   } catch {
     return { statut: 'erreur' };

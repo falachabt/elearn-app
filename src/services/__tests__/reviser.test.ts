@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { couleurMatiere, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere } from '../reviser';
+import { couleurMatiere, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -101,5 +101,23 @@ describe('reviser', () => {
     const q = await lireQuizLecon(c as never, { cours: 3, lecon: 4, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } });
     expect(c.rpc).toHaveBeenCalledWith('lesson_quiz', { p_course: 3, p_lesson: 4, p_size: 3 });
     expect(q.map((x) => x.id)).toEqual(['1']);
+  });
+  it('leçons validées : envoie celles du téléphone et récupère celles du compte', async () => {
+    await AsyncStorage.clear();
+    const rpc = jest.fn(async () => ({ data: 1, error: null }));
+    const client = { rpc, from: () => ({ select: async () => ({ data: [{ lesson_id: 7, course_id: 70 }], error: null }) }) };
+    await marquerLue(5, 50, client as never, { score: 2, total: 3 });
+    expect(rpc).toHaveBeenCalledWith('validate_lessons', { p_items: [{ lesson_id: 5, course_id: 50, score: 2, total: 3 }] });
+    rpc.mockClear();
+    expect(await synchroniserLues(client as never)).toEqual({ '5': 50, '7': 70 });
+    expect(rpc).toHaveBeenCalledWith('validate_lessons', { p_items: [{ lesson_id: 5, course_id: 50 }] });
+    expect(await lireLues()).toEqual({ '5': 50, '7': 70 });
+  });
+
+  it('leçons validées hors ligne : la copie du téléphone reste', async () => {
+    await AsyncStorage.clear();
+    await marquerLue(5, 50);
+    const client = { rpc: jest.fn(), from: () => ({ select: async () => ({ data: null, error: new Error('réseau') }) }) };
+    expect(await synchroniserLues(client as never)).toEqual({ '5': 50 });
   });
 });
