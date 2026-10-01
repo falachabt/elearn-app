@@ -22,6 +22,7 @@ import { LigneLien as Ligne } from './LigneLien';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
+import { Feuille } from './Feuille';
 
 const NOM_LANGUE: Record<Langue, 'moi.francais' | 'moi.anglais'> = { fr: 'moi.francais', en: 'moi.anglais' };
 
@@ -32,6 +33,7 @@ export function EcranMoi() {
   const { session, statut } = useSession();
   const [erreur, setErreur] = useState<string | null>(null);
   const [enCours, setEnCours] = useState(false);
+  const [confirmer, setConfirmer] = useState(false);
   const [acces, setAcces] = useState<Acces>(null);
   const [profil, setProfil] = useState<Profil | null>(null);
   const [stats, setStats] = useState({ serie: 0, missions: 0, lecons: 0 });
@@ -79,10 +81,12 @@ export function EcranMoi() {
   }, [idUtilisateur]);
 
   const sortir = async () => {
+    setConfirmer(false);
     setEnCours(true);
     setErreur(null);
     try {
       await deconnecter(getSupabase());
+      router.replace('/bienvenue');
     } catch (e) {
       setErreur(t(cleErreur(e) === 'compte.erreurs.reseau' ? 'compte.erreurs.reseau' : 'moi.deconnexionErreur'));
     } finally {
@@ -91,6 +95,7 @@ export function EcranMoi() {
   };
 
   return (
+    <>
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('moi.titre')}</Text>
 
@@ -191,10 +196,22 @@ export function EcranMoi() {
       {connecte ? (
         <View style={styles.groupe}>
           {erreur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={erreur} /> : null}
-          <Bouton variante="danger" libelle={enCours ? t('compte.enCours') : t('moi.deconnexion')} desactive={enCours} onPress={sortir} />
+          <Bouton variante="danger" libelle={enCours ? t('compte.enCours') : t('moi.deconnexion')} desactive={enCours} onPress={() => setConfirmer(true)} />
         </View>
       ) : null}
     </Ecran>
+    <Feuille
+      ouverte={confirmer}
+      onFermer={() => setConfirmer(false)}
+      icone="log-out-outline"
+      titre={t('moi.deconnexionTitre')}
+      texte={t('moi.deconnexionTexte')}
+      actions={[
+        { libelle: t('moi.deconnexion'), onPress: () => void sortir() },
+        { libelle: t('moi.deconnexionAnnuler'), onPress: () => setConfirmer(false), variante: 'secondaire' },
+      ]}
+    />
+    </>
   );
 }
 

@@ -3,7 +3,9 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
+import { restaurerHistorique } from '@/services/donneesLocales';
 import { synchroniserResultat } from '@/services/miniTest';
+import { synchroniserLues } from '@/services/reviser';
 import { suivreModifications, synchroniserReglages } from '@/services/synchroReglages';
 import { getSupabase } from '@/services/supabase';
 
@@ -41,6 +43,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
               setTimeout(() => {
                 synchroniserResultat(client).catch(() => {});
                 synchroniserReglages(client, nouvelle.user).catch(() => {});
+                // M2-14 : après une connexion (ou reconnexion), la série et les leçons validées reviennent du compte.
+                restaurerHistorique(client).catch(() => {});
+                synchroniserLues(client).catch(() => {});
               }, 0);
             }
           }

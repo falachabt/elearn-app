@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { en } from '@/i18n/en';
+import { fr } from '@/i18n/fr';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { changerLangue, i18n, restaurerLangue } from '@/i18n';
@@ -149,7 +151,12 @@ describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
     expect(screen.getByText(x.connecte)).toBeTruthy();
     expect(screen.getByText(/amina@exemple\.com/)).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.lien }));
+    expect(screen.getByText((langue === 'fr' ? fr : en).moi.deconnexionTitre)).toBeTruthy();
+    expect(mockDeconnecter).not.toHaveBeenCalled();
+    const boutons = screen.getAllByRole('button', { name: x.lien });
+    await fireEvent.press(boutons[boutons.length - 1]);
     await waitFor(() => expect(mockDeconnecter).toHaveBeenCalled());
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/bienvenue'));
   });
 });
 

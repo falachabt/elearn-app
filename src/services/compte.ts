@@ -3,6 +3,7 @@ import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 import type { CleTexte } from '@/i18n';
 
 import { suivre } from './analytics';
+import { effacerDonneesLocales } from './donneesLocales';
 import { normaliserCode } from './parrainage';
 import { assurerSessionInvite } from './session';
 
@@ -92,11 +93,12 @@ export async function connecterEmail(client: Client, p: { email: string; motDePa
   return data.session;
 }
 
-/** Déconnexion, puis nouvelle session invité pour que l'app reste utilisable. */
+/** Déconnexion : données du téléphone effacées (M2-14), puis nouvelle session invité pour que l'app reste utilisable. */
 export async function deconnecter(client: Client): Promise<void> {
   const { error } = await client.auth.signOut();
   if (error) throw error;
   suivre('deconnexion', {});
+  await effacerDonneesLocales();
   await assurerSessionInvite(client);
 }
 
