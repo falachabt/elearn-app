@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Directory, File, Paths } from 'expo-file-system';
+import { uniformiserPages } from './pdfPages';
 
 /**
  * Documents PDF (annales, documents de classe) lus dans l'app : téléchargés une fois dans le stockage privé de l'app,
@@ -29,7 +30,7 @@ export const CLE_INDEX = 'documents.index';
 export const PLAFOND_OCTETS = 500 * 1024 * 1024;
 
 /** `sujet` : identifiant de l'annale, pour marquer « Hors ligne » dans la liste des sujets. */
-export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number; sujet?: number };
+export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number; sujet?: number; uniforme?: boolean };
 
 async function lireIndex(): Promise<Record<string, DocumentGarde>> {
   try {
@@ -87,6 +88,17 @@ export function adresseEncodee(url: string): string {
   }
 }
 
+/** Pages de même taille (voir `uniformiserPages`) : refait une fois par copie gardée, sans bloquer l'ouverture si ça échoue. */
+async function uniformiserFichier(fichier: File): Promise<boolean> {
+  try {
+    const corrige = await uniformiserPages(new Uint8Array(await fichier.arrayBuffer()));
+    if (corrige) fichier.write(corrige);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). Note l'ouverture. */
 export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS, sujet?: number): Promise<string> {
   let uri = documentLocal(url);
@@ -96,8 +108,9 @@ export async function ouvrirDocument(url: string, titre = '', maintenant = new D
     uri = (await File.downloadFileAsync(adresseEncodee(url), new File(d, nomFichier(url)), { idempotent: true })).uri;
   }
   const index = await lireIndex();
+  const uniforme = index[url]?.uniforme || (await uniformiserFichier(new File(dossier(), nomFichier(url))));
   const taille = new File(dossier(), nomFichier(url)).size;
-  index[url] = { ...index[url], url, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}) };
+  index[url] = { ...index[url], url, uniforme, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}) };
   await respecterPlafond(index, url, plafond);
   await ecrireIndex(index);
   return uri;
