@@ -62,11 +62,19 @@ describe('formules hautes ou larges', () => {
     expect(screen.getByText('solution.')).toBeTruthy();
   });
 
-  it('une formule plus large que l’écran défile à l’horizontale au lieu d’être coupée', async () => {
+  it('une formule plus large que l’écran passe à la ligne par morceaux, sans défilement', async () => {
     await act(() => definirRenduFormules(true));
     const r = await render(<ThemeProvider><Blocs blocs={large} /></ThemeProvider>);
     expect(r.getByLabelText('système')).toBeTruthy();
-    expect(r.getByTestId('formule-defilante')).toBeTruthy();
+    expect(r.queryByTestId('formule-defilante')).toBeNull();
+    expect(r.getAllByTestId('formule-morceau').length).toBeGreaterThan(5);
+  });
+
+  it('les lignes d’un système (\\\\) sont dessinées une par ligne', async () => {
+    await act(() => definirRenduFormules(true));
+    const systeme: Bloc[] = [{ type: 'paragraphe', retrait: 0, segments: [{ texte: 'a x + b y = c \\ d x + e y = f', math: true, latex: '\\frac{a}{b} x + y = 1 \\\\ \\frac{c}{d} x - y = 3' }] }];
+    const r = await render(<ThemeProvider><Blocs blocs={systeme} /></ThemeProvider>);
+    expect(r.getAllByTestId('formule-morceau').length).toBeGreaterThanOrEqual(4);
   });
 });
 

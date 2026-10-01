@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { CLE_FORMULES, chargerRenduFormules, definirRenduFormules, estComplexe, formuleSvg, lireRenduFormules } from '../formules';
+import { CLE_FORMULES, chargerRenduFormules, decouper, definirRenduFormules, estComplexe, formuleSvg, lireRenduFormules } from '../formules';
 
 describe('estComplexe', () => {
   it('ne dessine que les formules à deux étages', () => {
@@ -37,5 +37,28 @@ describe('réglage', () => {
     expect(await AsyncStorage.getItem(CLE_FORMULES)).toBe('rendu');
     await definirRenduFormules(false);
     expect(await chargerRenduFormules()).toBe(false);
+  });
+});
+
+describe('decouper', () => {
+  it('ne coupe pas ce qui tient sur une ligne sans relation', () => {
+    expect(decouper('\\frac{a}{b}', 1)).toEqual([['\\frac{a}{b}']]);
+  });
+
+  it('coupe aux relations, en gardant l’opérateur en tête de chaque morceau', () => {
+    expect(decouper('\\frac{2+8-1}{3} = \\frac{9}{3} = 3', 1)).toEqual([['\\frac{2+8-1}{3}', '= \\frac{9}{3}', '= 3']]);
+  });
+
+  it('au niveau 2, coupe aussi aux + et −, mais pas dans les accolades ni après un opérateur', () => {
+    expect(decouper('a + b - \\frac{c+d}{e} = -f', 2)).toEqual([['a', '+ b', '- \\frac{c+d}{e}', '= -f']]);
+  });
+
+  it('les \\\\ du premier niveau font des lignes, pas ceux d’un tableau', () => {
+    expect(decouper('x + y = 1 \\\\ x - y = 3', 1)).toEqual([['x + y', '= 1'], ['x - y', '= 3']]);
+    expect(decouper('\\begin{array}{l} a = 1 \\\\ b = 2 \\end{array}', 2)).toEqual([['\\begin{array}{l} a = 1 \\\\ b = 2 \\end{array}']]);
+  });
+
+  it('ne coupe pas dans \\left … \\right', () => {
+    expect(decouper('\\left( a + b = c \\right) = d', 2)).toEqual([['\\left( a + b = c \\right)', '= d']]);
   });
 });

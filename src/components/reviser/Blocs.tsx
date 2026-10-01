@@ -1,10 +1,10 @@
 import { Image } from 'expo-image';
-import { useEffect, useState, useSyncExternalStore } from 'react';
-import { ScrollView, StyleSheet, Text, useWindowDimensions, View, type TextStyle } from 'react-native';
+import { Fragment, useEffect, useState, useSyncExternalStore } from 'react';
+import { StyleSheet, Text, useWindowDimensions, View, type TextStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import type { Bloc, Segment } from '@/services/blocs';
-import { abonnerRenduFormules, chargerRenduFormules, estComplexe, formuleSvg, lireRenduFormules } from '@/services/formules';
+import { abonnerRenduFormules, chargerRenduFormules, decouper, estComplexe, formuleSvg, lireRenduFormules } from '@/services/formules';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige, espace, palette, rayon, typo } from '@/theme/theme';
 
@@ -50,7 +50,7 @@ const formuleDessinee = (rendu: boolean, s: Segment) => rendu && !!s.math && !!s
 /** Vue SVG de la formule, à l'échelle du texte qui l'entoure. */
 function Dessin({ f, ex, couleur, libelle }: { f: NonNullable<ReturnType<typeof formuleSvg>>; ex: number; couleur: string; libelle: string }) {
   return (
-    <View accessible accessibilityLabel={libelle} style={{ width: f.largeurEx * ex, height: f.hauteurEx * ex }}>
+    <View testID="formule-morceau" accessible={!!libelle} accessibilityLabel={libelle || undefined} style={{ width: f.largeurEx * ex, height: f.hauteurEx * ex }}>
       <SvgXml xml={f.xml} width={f.largeurEx * ex} height={f.hauteurEx * ex} color={couleur} />
     </View>
   );
@@ -88,10 +88,38 @@ function jetons(segments: Segment[]): Jeton[] {
   return sortie;
 }
 
+type Morceau = { f: NonNullable<ReturnType<typeof formuleSvg>>; echelle: number };
+
+/** Réduction maximale d'un morceau qui reste plus large que l'écran, en dernier recours. */
+const ECHELLE_MIN = 0.55;
+
+/**
+ * Une formule trop large passe à la ligne au lieu de défiler : coupée aux `\\`, puis aux relations (=, ≤…), puis aux
+ * + et − ; chaque morceau est dessiné à part et se place comme un mot. Un morceau encore trop large est réduit.
+ * Renvoie une seule ligne d'un seul morceau quand la formule tient.
+ */
+function morceaux(latex: string, entiere: NonNullable<ReturnType<typeof formuleSvg>>, ex: number, largeur: number): Morceau[][] {
+  const reduire = (f: Morceau['f']): Morceau => ({ f, echelle: Math.min(1, Math.max(ECHELLE_MIN, largeur / (f.largeurEx * ex))) });
+  const lignes = decouper(latex, 1);
+  if (lignes.length === 1 && lignes[0].length === 1 && entiere.largeurEx * ex <= largeur) return [[{ f: entiere, echelle: 1 }]];
+  const sortie: Morceau[][] = [];
+  for (const ligne of lignes) {
+    const atomes = ligne.flatMap((a) => {
+      const f = formuleSvg(a);
+      return f && f.largeurEx * ex > largeur ? decouper(a, 2).flat() : [a];
+    });
+    const dessins = atomes.map((a) => formuleSvg(a));
+    // Un morceau que MathJax ne comprend pas seul (coupe malheureuse) : on garde la formule entière, réduite.
+    if (dessins.some((f) => !f)) return [[reduire(entiere)]];
+    sortie.push((dessins as Morceau['f'][]).map(reduire));
+  }
+  return sortie;
+}
+
 /**
  * Paragraphe avec formules hautes ou larges : mots et formules posés en flux (retour à la ligne par éléments), pour
- * que chaque ligne prenne la hauteur de ses formules. Une formule plus large que l'écran défile à l'horizontale sur
- * sa propre ligne au lieu d'être coupée.
+ * que chaque ligne prenne la hauteur de ses formules. Une formule plus large que l'écran passe à la ligne
+ * (voir `morceaux`) au lieu d'être coupée ou de défiler.
  */
 function Flux({ segments, style, lien }: { segments: Segment[]; style: TextStyle; lien: string }) {
   const { flex, ...texte } = style;
@@ -104,16 +132,20 @@ function Flux({ segments, style, lien }: { segments: Segment[]; style: TextStyle
       {jetons(segments).map((j, i) => {
         const marge = j.espace ? taille * 0.28 : 0;
         if ('formule' in j) {
-          const large = j.formule.largeurEx * ex > largeur;
-          const dessin = <Dessin f={j.formule} ex={ex} couleur={lien} libelle={j.segment.texte} />;
-          return large ? (
-            <ScrollView key={i} testID="formule-defilante" horizontal showsHorizontalScrollIndicator={false} style={styles.defile} contentContainerStyle={styles.defileContenu}>
-              {dessin}
-            </ScrollView>
-          ) : (
-            <View key={i} style={{ marginLeft: marge }}>
-              {dessin}
-            </View>
+          const lignes = morceaux(j.segment.latex ?? '', j.formule, ex, largeur);
+          return (
+            <Fragment key={i}>
+              {lignes.map((ligne, l) => (
+                <Fragment key={l}>
+                  {l > 0 ? <View style={styles.saut} /> : null}
+                  {ligne.map((m, k) => (
+                    <View key={k} style={{ marginLeft: k === 0 ? (l === 0 ? marge : 0) : taille * 0.12 }}>
+                      <Dessin f={m.f} ex={ex * m.echelle} couleur={lien} libelle={k === 0 && l === 0 ? j.segment.texte : ''} />
+                    </View>
+                  ))}
+                </Fragment>
+              ))}
+            </Fragment>
           );
         }
         return (
@@ -135,7 +167,7 @@ function Segments({ segments, style, lien }: { segments: Segment[]; style: TextS
   const hors = rendu && segments.some((s) => {
     if (!formuleDessinee(rendu, s)) return false;
     const f = formuleSvg(s.latex!);
-    return !!f && (f.hauteurEx * taille * EX > interligne * 1.15 || f.largeurEx * taille * EX > width * 0.6);
+    return !!f && (f.hauteurEx * taille * EX > interligne * 1.15 || f.largeurEx * taille * EX > width * 0.6 || decouper(s.latex!, 1).length > 1);
   });
   if (hors) return <Flux segments={segments} style={style} lien={lien} />;
   return (
@@ -230,8 +262,7 @@ export function Blocs({ blocs, surJaune }: { blocs: Bloc[]; surJaune?: boolean }
 const styles = StyleSheet.create({
   pile: { gap: espace[4] },
   flux: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
-  defile: { width: '100%', flexGrow: 0 },
-  defileContenu: { paddingVertical: espace[2] },
+  saut: { width: '100%', height: 0 },
   gras: { fontFamily: typo.texteFort.fontFamily },
   italique: { fontStyle: 'italic' },
   souligne: { textDecorationLine: 'underline' },

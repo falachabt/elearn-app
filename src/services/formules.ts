@@ -55,6 +55,69 @@ export function formuleSvg(latex: string): FormuleSvg | null {
   return r;
 }
 
+/** Opérateurs devant lesquels une formule trop large peut passer à la ligne : relations d'abord, puis + et −. */
+const RELATIONS = /^(=|<|>|\\(?:leq?|geq?|neq|approx|Rightarrow|Leftrightarrow|iff|implies|to|equiv|sim)(?![a-zA-Z]))/;
+
+/**
+ * Coupe un LaTeX en lignes (`\\` au premier niveau) puis en morceaux aux relations (niveau 1) ou aux relations et
+ * aux + / − (niveau 2). Rien n'est coupé dans des accolades, un `\left…\right` ou un `\begin…\end` ; chaque morceau
+ * garde son opérateur en tête, il se lit donc seul. Sans coupure possible, renvoie la formule entière.
+ */
+export function decouper(latex: string, niveau: 1 | 2): string[][] {
+  const lignes: string[][] = [];
+  let ligne: string[] = [];
+  let courant = '';
+  let profondeur = 0;
+  const ferme = () => {
+    if (courant.trim()) ligne.push(courant.trim());
+    courant = '';
+  };
+  for (let i = 0; i < latex.length; ) {
+    const reste = latex.slice(i);
+    const c = latex[i];
+    const commande = /^\\([a-zA-Z]+)/.exec(reste)?.[1];
+    if (commande === 'left' || commande === 'begin') profondeur++;
+    else if (commande === 'right' || commande === 'end') profondeur--;
+    if (c === '{') profondeur++;
+    else if (c === '}') profondeur--;
+    if (profondeur === 0) {
+      if (reste.startsWith('\\\\')) {
+        ferme();
+        if (ligne.length) lignes.push(ligne);
+        ligne = [];
+        i += 2;
+        continue;
+      }
+      const avant = courant.trim();
+      const operande = avant !== '' && !/[=+\-*/(,{^_<>]$/.test(avant) && !/\\(?:cdot|times|left|pm|mp|div)$/.test(avant);
+      const relation = RELATIONS.exec(reste)?.[0];
+      if (relation && avant !== '') {
+        ferme();
+        courant = relation;
+        i += relation.length;
+        continue;
+      }
+      if (niveau === 2 && (c === '+' || c === '-') && operande) {
+        ferme();
+        courant = c;
+        i++;
+        continue;
+      }
+    }
+    // Une commande (\frac, \left…) est avalée d'un bloc : seule son entrée compte pour la profondeur.
+    if (commande) {
+      courant += `\\${commande}`;
+      i += commande.length + 1;
+    } else {
+      courant += c;
+      i++;
+    }
+  }
+  ferme();
+  if (ligne.length) lignes.push(ligne);
+  return lignes.length ? lignes : [[latex]];
+}
+
 // Réglage d'essai : texte (par défaut) ou rendu mathématique.
 export const CLE_FORMULES = 'affichage.formules';
 let rendu = false;
