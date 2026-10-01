@@ -5,14 +5,14 @@ import { jourLocal } from './mission';
 type Client = Pick<SupabaseClient, 'from'>;
 
 /** Ligne de `mission_runs` utile à la progression. */
-export type Passage = { jour: string; dureeS: number | null; chapitres: { matiere: string; bonnes: number; total: number }[] };
+export type Passage = { jour: string; dureeS: number | null; questions: number; chapitres: { matiere: string; bonnes: number; total: number }[] };
 
 /** Une colonne du graphique « Cette semaine » : lundi à dimanche. */
 export type JourSemaine = { jour: string; minutes: number };
 
 export type NiveauMatiere = { matiere: string; pourcentage: number; questions: number };
 
-export type Progression = { semaine: JourSemaine[]; minutesSemaine: number; matieres: NiveauMatiere[] };
+export type Progression = { semaine: JourSemaine[]; minutesSemaine: number; questionsSemaine: number; matieres: NiveauMatiere[] };
 
 /** Jours pris en compte pour le niveau par matière. */
 export const FENETRE_NIVEAU_JOURS = 30;
@@ -52,19 +52,22 @@ export function calculerProgression(passages: readonly Passage[], maintenant = n
   const matieres = [...parMatiere.entries()]
     .map(([matiere, m]) => ({ matiere, pourcentage: Math.round((m.bonnes / m.total) * 100), questions: m.total }))
     .sort((a, b) => b.questions - a.questions || a.matiere.localeCompare(b.matiere));
-  return { semaine, minutesSemaine: semaine.reduce((n, j) => n + j.minutes, 0), matieres };
+  const jours = new Set(semaine.map((j) => j.jour));
+  const questionsSemaine = passages.filter((p) => jours.has(p.jour)).reduce((n, p) => n + p.questions, 0);
+  return { semaine, minutesSemaine: semaine.reduce((n, j) => n + j.minutes, 0), questionsSemaine, matieres };
 }
 
-type LigneRun = { day: string; duration_s: number | null; details: { chapitres?: { libelleMatiere?: string; bonnes?: number; total?: number }[] } | null };
+type LigneRun = { day: string; duration_s: number | null; total: number; details: { chapitres?: { libelleMatiere?: string; bonnes?: number; total?: number }[] } | null };
 
 /** Missions faites des 30 derniers jours (et de la semaine en cours), lues sur le compte (invité compris). */
 export async function lirePassages(client: Client, maintenant = new Date()): Promise<Passage[]> {
   const debut = new Date(Math.min(lundiDe(maintenant).getTime(), maintenant.getTime() - FENETRE_NIVEAU_JOURS * 86_400_000));
-  const { data, error } = await client.from('mission_runs').select('day, duration_s, details').gte('day', jourLocal(debut)).order('day');
+  const { data, error } = await client.from('mission_runs').select('day, duration_s, total, details').gte('day', jourLocal(debut)).order('day');
   if (error) throw error;
   return ((data ?? []) as LigneRun[]).map((l) => ({
     jour: l.day,
     dureeS: l.duration_s,
+    questions: l.total,
     // Les missions jouées avant le 01/10 n'ont pas le nom de la matière : elles comptent dans le temps, pas dans le niveau.
     chapitres: (l.details?.chapitres ?? []).map((c) => ({ matiere: c.libelleMatiere ?? '', bonnes: c.bonnes ?? 0, total: c.total ?? 0 })),
   }));
