@@ -449,6 +449,7 @@ export const en: Textes = {
     questions: '{{n}} questions',
     moins: 'Fewer questions',
     plus: 'More questions',
+    conseil: 'Recommended: 15 to 30 questions.',
     valider: 'Confirm ({{n}} questions)',
     reglage: 'Daily mission: {{n}} questions',
   },

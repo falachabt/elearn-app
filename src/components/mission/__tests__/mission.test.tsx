@@ -219,7 +219,7 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await fireEvent.press(screen.getByRole('button', { name: x.rythme.valider.replace('{{n}}', '25') }));
     await waitFor(() => expect(screen.queryByText(x.rythme.titre)).toBeNull());
     expect(await AsyncStorage.getItem(CLE_RYTHME)).toBe('25');
-    expect(suivre).toHaveBeenCalledWith('mission_size_chosen', { questions: 25, source: 'fin_mission' });
+    expect(suivre).toHaveBeenCalledWith('mission_goal_set', { minutes: null, questions: 25, origine: 'fin_mission' });
   });
 
   it('accueil : un résultat d’une autre mission ne compte pas comme faite', async () => {

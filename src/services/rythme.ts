@@ -3,8 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 /** Taille de la mission du jour choisie par l'élève (rythme), en nombre de questions. */
 export const CLE_RYTHME = 'mission.rythme';
 export const TAILLE_DEFAUT = 20;
-export const TAILLE_MIN = 15;
-export const TAILLE_MAX = 30;
+/** Bornes du réglage (M4-08) ; 15 à 30 est la fourchette conseillée. */
+export const TAILLE_MIN = 5;
+export const TAILLE_MAX = 50;
 export const PAS_TAILLE = 5;
 
 /** Temps qu'on est prêt à donner chaque jour, et la taille de mission proposée (environ 30 s par question). */

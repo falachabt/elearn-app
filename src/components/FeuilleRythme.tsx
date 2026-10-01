@@ -36,7 +36,7 @@ export function FeuilleRythme({ ouverte, onFermer, actuelle, source, onChoisi }:
 
   const valider = async () => {
     const n = await enregistrerRythme(taille);
-    suivre('mission_size_chosen', { questions: n, source });
+    suivre('mission_goal_set', { minutes: RYTHMES.find((r) => r.questions === n)?.minutes ?? null, questions: n, origine: source });
     onChoisi?.(n);
     onFermer();
   };
@@ -67,6 +67,7 @@ export function FeuilleRythme({ ouverte, onFermer, actuelle, source, onChoisi }:
         <Text accessibilityLiveRegion="polite" style={[typo.h3, styles.nombre, { color: theme.texte.principal }]}>{t('rythme.questions', { n: taille })}</Text>
         <Bouton petit variante="secondaire" libelle="+" accessibilityLabel={t('rythme.plus')} desactive={taille >= TAILLE_MAX} onPress={() => setTaille(bornerTaille(taille + PAS_TAILLE))} />
       </View>
+      <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('rythme.conseil')}</Text>
     </Feuille>
   );
 }
@@ -76,4 +77,5 @@ const styles = StyleSheet.create({
   choix: { flex: 1 },
   reglage: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   nombre: { flex: 1, textAlign: 'center' },
+  centre: { textAlign: 'center' },
 });

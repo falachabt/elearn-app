@@ -450,6 +450,7 @@ export const fr = {
     questions: '{{n}} questions',
     moins: 'Moins de questions',
     plus: 'Plus de questions',
+    conseil: 'Conseillé : 15 à 30 questions.',
     valider: 'Valider ({{n}} questions)',
     reglage: 'Mission du jour : {{n}} questions',
   },
