@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, palette, rayon, typo } from '@/theme/theme';
+import { bord, corrige, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 
@@ -15,7 +15,8 @@ type Props<T extends string> = {
 
 /** Sélecteur segmenté (revue design, écran 1) : coins 10/6 (Benny préfère moins arrondi), segment actif en `fond.inverse`, 40 px. Réviser, rythme, entraînement d'un chapitre. */
 export function Onglets<T extends string>({ valeurs, valeur, onChange, jaune }: Props<T>) {
-  const { theme } = useTheme();
+  const { theme, sombre } = useTheme();
+  const doux = sombre ? corrige.dark : corrige.light;
   return (
     <View accessibilityRole="tablist" style={[styles.cadre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
       {valeurs.map((o) => {
@@ -23,8 +24,8 @@ export function Onglets<T extends string>({ valeurs, valeur, onChange, jaune }: 
         const enJaune = actif && o.valeur === jaune;
         return (
           <Appui key={o.valeur} style={styles.flex} accessibilityRole="tab" accessibilityState={{ selected: actif }} onPress={() => onChange(o.valeur)} decalage={0} rayon={rayon.s}>
-            <View style={[styles.segment, actif && { backgroundColor: enJaune ? palette.soleil[400] : theme.fond.inverse }]}>
-              <Text style={[typo.boutonPetit, { color: enJaune ? palette.encre[1000] : actif ? theme.texte.inverse : theme.texte.principal }]}>{o.libelle}</Text>
+            <View style={[styles.segment, actif && (enJaune ? { backgroundColor: doux.fond, borderWidth: bord.normal, borderColor: theme.bord.fort } : { backgroundColor: theme.fond.inverse })]}>
+              <Text style={[typo.boutonPetit, { color: enJaune ? doux.texte : actif ? theme.texte.inverse : theme.texte.principal }]}>{o.libelle}</Text>
             </View>
           </Appui>
         );

@@ -3,6 +3,7 @@ import { act, render, screen } from '@testing-library/react-native';
 import type { Bloc } from '@/services/blocs';
 import { definirRenduFormules } from '@/services/formules';
 import { ThemeProvider } from '@/theme/ThemeProvider';
+import { corrige } from '@/theme/theme';
 
 import { Blocs } from '../Blocs';
 
@@ -66,5 +67,18 @@ describe('formules hautes ou larges', () => {
     const r = await render(<ThemeProvider><Blocs blocs={large} /></ThemeProvider>);
     expect(r.getByLabelText('système')).toBeTruthy();
     expect(r.getByTestId('formule-defilante')).toBeTruthy();
+  });
+});
+
+describe('corrigé en jaune doux', () => {
+  it('formules en bleu du thème clair, texte en encre', async () => {
+    await act(() => definirRenduFormules(false));
+    const r = await render(<ThemeProvider reglage="clair"><Blocs blocs={blocs} surJaune /></ThemeProvider>);
+    expect(r.getByText('x²')).toHaveStyle({ color: corrige.light.formule });
+  });
+
+  it('formules en bleu clair en sombre', async () => {
+    const r = await render(<ThemeProvider reglage="sombre"><Blocs blocs={blocs} surJaune /></ThemeProvider>);
+    expect(r.getByText('x²')).toHaveStyle({ color: corrige.dark.formule });
   });
 });

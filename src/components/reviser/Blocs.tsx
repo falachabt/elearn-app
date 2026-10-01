@@ -6,27 +6,30 @@ import { SvgXml } from 'react-native-svg';
 import type { Bloc, Segment } from '@/services/blocs';
 import { abonnerRenduFormules, chargerRenduFormules, estComplexe, formuleSvg, lireRenduFormules } from '@/services/formules';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, palette, rayon, typo } from '@/theme/theme';
+import { bord, corrige, espace, palette, rayon, typo } from '@/theme/theme';
 
 type Couleurs = { texte: string; lien: string; note: string; bord: string; fondCode: string; enteteTableau: string; citation: string };
 
 /**
- * Corrigé dans sa carte jaune (spec 5 v3) : couleurs forcées, identiques en clair et en sombre. Formules en bleu 700,
- * notes en encre 600, jamais de vert ni de corail (contraste insuffisant sur le jaune).
+ * Corrigé dans sa carte jaune doux (spec 5, révision du 01/10) : couleurs forcées selon le thème (`corrige`), formules en
+ * bleu, notes en gris, jamais de vert ni de corail en petit texte (contraste insuffisant).
  */
-const SUR_JAUNE: Couleurs = {
-  texte: palette.encre[1000],
-  lien: palette.bleu[700],
-  note: palette.encre[600],
-  bord: palette.encre[1000],
-  fondCode: palette.papier[0],
-  enteteTableau: palette.papier[0],
-  citation: palette.encre[1000],
-};
+function couleursCorrige(sombre: boolean): Couleurs {
+  const k = sombre ? corrige.dark : corrige.light;
+  return {
+    texte: k.texte,
+    lien: k.formule,
+    note: k.note,
+    bord: k.texte,
+    fondCode: sombre ? palette.encre[1000] : palette.papier[0],
+    enteteTableau: sombre ? palette.encre[1000] : palette.papier[0],
+    citation: k.texte,
+  };
+}
 
 function useCouleurs(surJaune?: boolean): Couleurs {
-  const { theme } = useTheme();
-  if (surJaune) return SUR_JAUNE;
+  const { theme, sombre } = useTheme();
+  if (surJaune) return couleursCorrige(sombre);
   return { texte: theme.texte.principal, lien: theme.texte.lien, note: theme.texte.secondaire, bord: theme.bord.fort, fondCode: theme.fond.creux, enteteTableau: theme.marque.douce, citation: theme.marque.principale };
 }
 

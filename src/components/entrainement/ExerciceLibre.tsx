@@ -9,7 +9,7 @@ import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
+import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
@@ -42,7 +42,8 @@ type NavigationSortie = {
  */
 export function ExerciceLibre() {
   const { t } = useTraduction();
-  const { theme } = useTheme();
+  const { theme, sombre } = useTheme();
+  const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
   const { id, cours } = useLocalSearchParams<{ id: string; cours: string }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   // Exercice dont le corrigé est affiché : repasse à l'énoncé quand on enchaîne sur l'exercice suivant.
@@ -204,9 +205,11 @@ export function ExerciceLibre() {
             />
           ) : null}
           {corrige && etat.detail ? (
-            // Corrigé toujours dans sa carte jaune, couleurs forcées en clair comme en sombre (spec 5 v3, demande de Benny).
-            <View style={[styles.corrige, { borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
-              <Text accessibilityRole="header" style={[typo.etiquette, { color: palette.encre[1000] }]}>{`✓ ${t('entrainement.corrige').toUpperCase()}`}</Text>
+            // Corrigé dans sa carte jaune doux ; seule la pastille garde le jaune vif (spec 5, révision du 01/10).
+            <View style={[styles.corrige, { backgroundColor: couleursCorrige.fond, borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
+              <View style={[styles.pastilleCorrige, { backgroundColor: couleursCorrige.pastille, borderColor: theme.bord.fort }]}>
+                <Text accessibilityRole="header" style={[typo.etiquette, { color: palette.encre[1000] }]}>{`✓ ${t('entrainement.corrige').toUpperCase()}`}</Text>
+              </View>
               <Blocs blocs={etat.detail.corrige} surJaune />
             </View>
           ) : (
@@ -275,12 +278,12 @@ const styles = StyleSheet.create({
   corrige: {
     padding: espace[4],
     gap: espace[3],
-    backgroundColor: palette.soleil[400],
     borderWidth: bord.normal,
     borderRadius: rayon.l,
     shadowOffset: { width: ombre.carte, height: ombre.carte },
     shadowOpacity: 1,
     shadowRadius: 0,
   },
+  pastilleCorrige: { alignSelf: 'flex-start', paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.pilule },
   bloc: { padding: espace[4], gap: espace[3], borderWidth: bord.normal, borderRadius: rayon.l },
 });

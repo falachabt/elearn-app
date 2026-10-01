@@ -69,6 +69,11 @@ export const matiereSecours = [p.menthe[400], p.rose[400], p.herbe[400], p.corai
 // Type de contenu : pastille 34 px avec icône Lucide. Ne pas utiliser de couleur de matière pour un type.
 export const typeContenu = { quiz: p.bleu[400], exercice: p.orange[400], lecon: p.emeraude[500], annale: p.soleil[400] } as const;
 
+export const corrige = {
+  light: { fond: p.soleil[100], texte: p.encre[1000], formule: p.bleu[700], note: p.encre[600], pastille: p.soleil[400] },
+  dark: { fond: p.soleil[900], texte: p.papier[50], formule: p.bleu[300], note: p.encre[300], pastille: p.soleil[400] },
+} as const; // carte du corrigé : jaune doux, pastille « Corrigé » en jaune vif (contrastes AA vérifiés)
+
 export const espace = { 0: 0, 1: 2, 2: 4, 3: 8, 4: 12, 5: 16, 6: 20, 7: 24, 8: 32, 9: 40, 10: 48, 11: 64 } as const;
 export const rayon = { aucun: 0, s: 6, m: 10, l: 14, pilule: 999 } as const;
 export const bord = { fin: 1.5, normal: 2, epais: 3 } as const;
