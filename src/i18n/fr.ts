@@ -236,6 +236,13 @@ export const fr = {
     quizRetour: 'Retour à la leçon',
   },
   entrainement: {
+    detailNouvelle: 'Nouvelle session',
+    detailSessions: 'Mes sessions',
+    detailSession: '{{score}}/{{total}} · {{pct}} %',
+    detailAide: 'Touche une session pour revoir ses réponses et la correction.',
+    tout: 'Tout',
+    etiquetteQuiz: 'Quiz',
+    etiquetteQuizN: 'Quiz {{n}}',
     onglet: 'S’entraîner',
     intro: 'Quiz et exercices libres, à refaire autant que tu veux.',
     chargement: 'Chargement de l’entraînement…',

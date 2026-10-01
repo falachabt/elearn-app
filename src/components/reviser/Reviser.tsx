@@ -17,6 +17,7 @@ import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { Onglets } from '../Onglets';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; matieres: Matiere[]; lues: Record<string, number>; cle: string };
 
@@ -54,26 +55,6 @@ type Onglet = 'cours' | 'entrainement' | 'annales';
 
 const LIBELLES = { cours: 'annales.ongletCours', entrainement: 'entrainement.onglet', annales: 'annales.onglet' } as const;
 
-/** Sélecteur Cours / S'entraîner / Annales en haut de l'onglet Réviser. */
-function Selecteur({ valeur, onChange }: { valeur: Onglet; onChange: (o: Onglet) => void }) {
-  const { t } = useTraduction();
-  const { theme } = useTheme();
-  return (
-    <View accessibilityRole="tablist" style={[styles.selecteur, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-      {(['cours', 'entrainement', 'annales'] as const).map((o) => {
-        const actif = valeur === o;
-        return (
-          <Appui key={o} style={styles.flex} accessibilityRole="tab" accessibilityState={{ selected: actif }} onPress={() => onChange(o)} decalage={0} rayon={rayon.s}>
-            <View style={[styles.segment, actif && { backgroundColor: theme.texte.principal }]}>
-              <Text style={[typo.boutonPetit, { color: actif ? theme.fond.app : theme.texte.principal }]}>{t(LIBELLES[o])}</Text>
-            </View>
-          </Appui>
-        );
-      })}
-    </View>
-  );
-}
-
 /** D1 · Réviser (M5-01) : les matières de la classe en couleur, avec la part déjà lue ; l'entraînement libre (M5-09) et les annales (M6-01) à côté. */
 export function Reviser() {
   const { t } = useTraduction();
@@ -96,7 +77,7 @@ export function Reviser() {
   return (
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
-      <Selecteur valeur={onglet} onChange={setOnglet} />
+      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={onglet} onChange={setOnglet} />
       {onglet === 'annales' ? <Annales /> : null}
       {onglet !== 'annales' && etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('reviser.chargement')}</Text> : null}
       {onglet !== 'annales' && etat.statut === 'erreur' ? (
@@ -127,9 +108,6 @@ export function Reviser() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
-  flex: { flex: 1 },
-  selecteur: { flexDirection: 'row', padding: espace[1], gap: espace[1], borderWidth: bord.normal, borderRadius: rayon.m },
-  segment: { alignItems: 'center', justifyContent: 'center', paddingVertical: espace[3], borderRadius: rayon.s },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },
   moitie: { width: '47%', flexGrow: 1 },
   tuile: { height: 132, padding: espace[5], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'flex-end' },

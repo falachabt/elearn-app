@@ -11,17 +11,33 @@ import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
+import { Onglets } from '../Onglets';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Ligne } from './Ligne';
+import { ouvrirQuiz } from './ouvrirQuiz';
+
+type Filtre = 'tout' | 'quiz' | 'exercices';
+type Element = { type: 'quiz'; q: QuizLibre } | { type: 'exercice'; e: Exercice; i: number };
+
+/** « Tout » : quiz et exercices alternés dans une seule liste, chacun reconnaissable à sa pastille. */
+function melanger(quiz: QuizLibre[], exercices: Exercice[]): Element[] {
+  const liste: Element[] = [];
+  for (let k = 0; k < Math.max(quiz.length, exercices.length); k++) {
+    if (quiz[k]) liste.push({ type: 'quiz', q: quiz[k] });
+    if (exercices[k]) liste.push({ type: 'exercice', e: exercices[k], i: k });
+  }
+  return liste;
+}
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; quiz: QuizLibre[]; exercices: Exercice[]; scores: Record<string, number>; faits: Record<string, true> };
 
-/** Entraînement d'un chapitre (M5-09) : ses quiz avec le meilleur score, ses exercices avec ceux déjà faits. */
+/** Entraînement d'un chapitre (M5-09) : onglets Tout / Quiz / Exercices ; quiz avec le meilleur score, exercices faits cochés. */
 export function ChapitreEntrainement() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { cours, nom } = useLocalSearchParams<{ cours: string; nom?: string }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [filtre, setFiltre] = useState<Filtre>('tout');
   const pret = useSessionPrete();
 
   useFocusEffect(
@@ -49,34 +65,42 @@ export function ChapitreEntrainement() {
       {etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('entrainement.chargement')}</Text> : null}
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('entrainement.erreur')} /> : null}
       {etat.statut === 'pret' && !etat.quiz.length && !etat.exercices.length ? <Banniere ton="info" titre={t('entrainement.videChapitre')} /> : null}
-      {etat.statut === 'pret' && etat.quiz.length ? (
-        <View style={styles.groupe}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('entrainement.quiz')}</Text>
-          {etat.quiz.map((q) => (
-            <Ligne
-              key={q.id}
-              icone="help-circle-outline"
-              titre={q.nom}
-              details={[t('entrainement.questions', { n: q.questions }), etat.scores[q.id] !== undefined ? t('entrainement.meilleur', { n: etat.scores[q.id] }) : null].filter(Boolean).join(' · ')}
-              fait={etat.scores[q.id] === 100}
-              onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id, cours: String(cours), nom: nom ?? '' } })}
-            />
-          ))}
-        </View>
+      {etat.statut === 'pret' && etat.quiz.length && etat.exercices.length ? (
+        <Onglets
+          valeurs={[
+            { valeur: 'tout', libelle: t('entrainement.tout') },
+            { valeur: 'quiz', libelle: t('entrainement.quiz') },
+            { valeur: 'exercices', libelle: t('entrainement.exercices') },
+          ]}
+          valeur={filtre}
+          onChange={setFiltre}
+        />
       ) : null}
-      {etat.statut === 'pret' && etat.exercices.length ? (
+      {etat.statut === 'pret' ? (
         <View style={styles.groupe}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('entrainement.exercices')}</Text>
-          {etat.exercices.map((e, i) => (
-            <Ligne
-              key={e.id}
-              icone="create-outline"
-              titre={e.titre}
-              details={[t('entrainement.exercice', { n: i + 1, total: etat.exercices.length }), etat.faits[e.id] ? t('entrainement.fait') : null].filter(Boolean).join(' · ')}
-              fait={!!etat.faits[e.id]}
-              onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: e.id, cours: String(cours) } })}
-            />
-          ))}
+          {melanger(filtre === 'exercices' ? [] : etat.quiz, filtre === 'quiz' ? [] : etat.exercices).map((el) =>
+            el.type === 'quiz' ? (
+              <Ligne
+                key={el.q.id}
+                icone="help-circle-outline"
+                genre={{ type: 'quiz', libelle: el.q.numero ? t('entrainement.etiquetteQuizN', { n: el.q.numero }) : t('entrainement.etiquetteQuiz') }}
+                titre={el.q.nom}
+                details={[t('entrainement.questions', { n: el.q.questions }), etat.scores[el.q.id] !== undefined ? t('entrainement.meilleur', { n: etat.scores[el.q.id] }) : null].filter(Boolean).join(' · ')}
+                fait={etat.scores[el.q.id] === 100}
+                onPress={() => void ouvrirQuiz(el.q, String(cours), nom ?? '')}
+              />
+            ) : (
+              <Ligne
+                key={el.e.id}
+                icone="create-outline"
+                genre={{ type: 'exercice', libelle: t('entrainement.exercice', { n: el.i + 1, total: etat.exercices.length }) }}
+                titre={el.e.titre}
+                details={etat.faits[el.e.id] ? t('entrainement.fait') : undefined}
+                fait={!!etat.faits[el.e.id]}
+                onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours) } })}
+              />
+            ),
+          )}
         </View>
       ) : null}
     </Ecran>

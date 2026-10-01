@@ -5,7 +5,7 @@ import { StyleSheet, Text } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { enregistrerCorrection } from '@/services/correction';
-import { enregistrerScore, lireQuizLibre } from '@/services/entrainement';
+import { enregistrerSession, lireQuizLibre } from '@/services/entrainement';
 import type { QuestionTiree } from '@/services/miniTest';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -52,7 +52,7 @@ export function QuizLibreEcran() {
         onFermer={retour}
         onTermine={async ({ questions: q, reponses }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
-          const record = await enregistrerScore(String(id), score, q.length);
+          const record = await enregistrerSession(String(id), { questions: q, reponses });
           suivre('practice_quiz_completed', { score, total: q.length, record });
           await enregistrerCorrection({ source: 'libre', questions: q, reponses });
           router.replace('/quiz/resultats');

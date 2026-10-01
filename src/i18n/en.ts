@@ -235,6 +235,13 @@ export const en: Textes = {
     quizRetour: 'Back to the lesson',
   },
   entrainement: {
+    detailNouvelle: 'New session',
+    detailSessions: 'My sessions',
+    detailSession: '{{score}}/{{total}} · {{pct}}%',
+    detailAide: 'Tap a session to review your answers and the corrections.',
+    tout: 'All',
+    etiquetteQuiz: 'Quiz',
+    etiquetteQuizN: 'Quiz {{n}}',
     onglet: 'Practice',
     intro: 'Free quizzes and exercises, as many times as you like.',
     chargement: 'Loading practice…',

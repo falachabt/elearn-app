@@ -8,11 +8,19 @@ import { avecCopie, rpc } from './reviser';
 type Client = Pick<SupabaseClient, 'rpc'>;
 
 /** Entraînement libre (M5-09) : les quiz et les exercices d'un chapitre, à refaire à volonté. */
-export type QuizLibre = { id: string; nom: string; questions: number };
+export type QuizLibre = { id: string; nom: string; questions: number; numero?: number };
 export type Exercice = { id: string; titre: string; enonce: string };
 export type Compteur = { quiz: number; exercices: number };
 
 export const TAILLE_QUIZ_LIBRE = 20;
+
+/** « 10mouvement dans… » → numéro 10 et « Mouvement dans… » : les quiz sont souvent numérotés collés au titre. */
+export function nettoyerNomQuiz(brut: string): { nom: string; numero?: number } {
+  const nom = brut.trim();
+  const m = /^(\d{1,3})\s*[-.:)]?\s*(\p{L}.*)$/u.exec(nom);
+  if (!m) return { nom };
+  return { nom: m[2].charAt(0).toUpperCase() + m[2].slice(1), numero: Number(m[1]) };
+}
 export const CLE_SCORES = 'entrainement.scores';
 export const CLE_EXERCICES_FAITS = 'entrainement.exercicesFaits';
 
@@ -32,7 +40,7 @@ export async function lireEntrainement(client: Client, cours: number): Promise<{
       rpc<{ exercise_id: string; title: string; statement: string }>(client, 'course_exercises', { p_course: cours }),
     ]);
     return {
-      quiz: quiz.map((q) => ({ id: q.quiz_id, nom: q.name.trim(), questions: q.questions })),
+      quiz: quiz.map((q) => ({ id: q.quiz_id, ...nettoyerNomQuiz(q.name), questions: q.questions })),
       exercices: exercices.map((e) => ({ id: e.exercise_id, titre: e.title.trim(), enonce: e.statement.trim() })),
     };
   });
@@ -94,4 +102,22 @@ export async function noterFinChapitreVue(cours: number): Promise<void> {
 export async function apresDerniereLecon(cours: number, aller: () => void, retour: () => void): Promise<void> {
   if (await finChapitreVue(cours)) retour();
   else aller();
+}
+
+/** Une partie de quiz libre terminée, gardée pour la revoir depuis la page du quiz. */
+export type SessionQuiz = { le: string; score: number; total: number; questions: QuestionTiree[]; reponses: (number | null)[] };
+export const CLE_SESSIONS = 'entrainement.sessions';
+export const MAX_SESSIONS = 10;
+
+export async function lireSessions(quiz: string): Promise<SessionQuiz[]> {
+  return (await lireObjet<SessionQuiz[]>(CLE_SESSIONS))[quiz] ?? [];
+}
+
+/** Garde la session en tête de liste (10 au plus par quiz) et met à jour le meilleur score ; true si c'est un record. */
+export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le' | 'score' | 'total'>, maintenant = new Date()): Promise<boolean> {
+  const score = s.questions.filter((q, i) => s.reponses[i] === q.bonne).length;
+  const toutes = await lireObjet<SessionQuiz[]>(CLE_SESSIONS);
+  const session: SessionQuiz = { le: maintenant.toISOString(), score, total: s.questions.length, ...s };
+  await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) }));
+  return enregistrerScore(quiz, score, s.questions.length);
 }

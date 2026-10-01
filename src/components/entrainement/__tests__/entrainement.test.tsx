@@ -7,7 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { lireCorrection, statuts } from '@/services/correction';
-import { CLE_SCORES, finChapitreVue, lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
+import { CLE_SCORES, enregistrerSession, finChapitreVue, lireSessions, lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
@@ -16,6 +16,7 @@ import { EcranResultats } from '../../quiz/EcranResultats';
 import { Chapitre } from '../../reviser/Chapitre';
 import { Reviser } from '../../reviser/Reviser';
 import { ChapitreEntrainement } from '../ChapitreEntrainement';
+import { DetailQuiz } from '../DetailQuiz';
 import { ExerciceLibre } from '../ExerciceLibre';
 import { FinChapitre } from '../FinChapitre';
 import { QuizLibreEcran } from '../QuizLibre';
@@ -38,7 +39,7 @@ const COURS = [
   { course_id: 2, name: 'Pythagore', subject: 'Mathématique', lessons: 1 },
   { course_id: 3, name: 'Le conte', subject: 'Français', lessons: 1 },
 ];
-const QUIZ = [{ quiz_id: 'qz1', name: 'Quiz Fractions', questions: 12 }, { quiz_id: 'qz2', name: 'Quiz défi', questions: 4 }];
+const QUIZ = [{ quiz_id: 'qz1', name: 'Quiz Fractions', questions: 12 }, { quiz_id: 'qz2', name: '10mouvement dans les champs', questions: 4 }];
 const EXERCICES = [{ exercise_id: 'e1', title: 'Simplifier', statement: 'Simplifier 6/8.' }, { exercise_id: 'e2', title: 'Comparer', statement: 'Comparer 1/2 et 2/3.' }];
 const QUESTIONS = [1, 2, 3].map((i) => ({
   question_id: i, quiz_id: 'qz1', chapter: 'Fractions', subject: 'Mathématique', kind: 'select',
@@ -85,18 +86,39 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
   });
 
-  it('chapitre : quiz avec meilleur score, exercices faits', async () => {
+  it('chapitre : onglets Tout, Quiz, Exercices ; cartes reconnaissables', async () => {
     await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ qz1: 80 }));
     await AsyncStorage.setItem('entrainement.exercicesFaits', JSON.stringify({ e2: true }));
     mockParams = { cours: '1', nom: 'Fractions' };
     await monter(<ChapitreEntrainement />);
     await waitFor(() => expect(screen.getByText('Quiz Fractions')).toBeTruthy());
+    // Tout : quiz et exercices dans une seule liste, chacun avec son étiquette.
+    expect(screen.getByText('Simplifier')).toBeTruthy();
+    expect(screen.getByText(x.entrainement.etiquetteQuizN.replace('{{n}}', '10'))).toBeTruthy();
+    expect(screen.getByText('Mouvement dans les champs')).toBeTruthy();
     expect(screen.getByText(`${x.entrainement.questions.replace('{{n}}', '12')} · ${x.entrainement.meilleur.replace('{{n}}', '80')}`)).toBeTruthy();
-    expect(screen.getByText(`${x.entrainement.exercice.replace('{{n}}', '2').replace('{{total}}', '2')} · ${x.entrainement.fait}`)).toBeTruthy();
-    await fireEvent.press(screen.getByText('Quiz Fractions'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } });
+    expect(screen.getByText(x.entrainement.fait)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.quiz }));
+    expect(screen.queryByText('Simplifier')).toBeNull();
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.exercices }));
+    expect(screen.queryByText('Quiz Fractions')).toBeNull();
     await fireEvent.press(screen.getByText('Simplifier'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e1', cours: '1' } });
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.tout }));
+    // Jamais joué : la session démarre directement.
+    await fireEvent.press(screen.getByText('Quiz Fractions'));
+    await waitFor(() => expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } }));
+  });
+
+  it('quiz déjà joué : page du quiz avec les sessions passées', async () => {
+    await enregistrerSession('qz1', { questions: [], reponses: [] }, new Date('2026-09-30T10:00:00Z'));
+    mockParams = { cours: '1', nom: 'Fractions' };
+    await monter(<ChapitreEntrainement />);
+    await waitFor(() => expect(screen.getByText('Quiz Fractions')).toBeTruthy());
+    await fireEvent.press(screen.getByText('Quiz Fractions'));
+    await waitFor(() =>
+      expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/detail', params: { id: 'qz1', cours: '1', nom: 'Fractions', titre: 'Quiz Fractions', questions: '12', numero: '' } }),
+    );
   });
 
   it('chapitre sans entraînement', async () => {
@@ -125,6 +147,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     }
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
     expect(await lireMeilleursScores()).toEqual({ qz1: 67 });
+    expect((await lireSessions('qz1'))[0]).toMatchObject({ score: 2, total: 3 });
     // Résultats : une erreur, un seul chapitre → « Relire le cours ».
     await monter(<EcranResultats />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.correction.relireCours })).toBeTruthy());
@@ -133,6 +156,26 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     const c = await lireCorrection();
     expect(c?.source).toBe('libre');
     expect(statuts(c!)).toEqual(['juste', 'faux', 'juste']);
+  });
+
+  it('page du quiz : meilleur score, revoir une session, nouvelle session', async () => {
+    const q = [{ id: 'a', matiere: 'maths' as const, chapitre: 'Fractions', enonce: 'Q ?', choix: ['Un', 'Deux'], bonne: 1, explication: '' }];
+    await enregistrerSession('qz1', { questions: q as never, reponses: [0] }, new Date('2026-09-29T10:00:00Z'));
+    await enregistrerSession('qz1', { questions: q as never, reponses: [1] }, new Date('2026-09-30T10:00:00Z'));
+    mockParams = { id: 'qz1', cours: '1', nom: 'Fractions', titre: 'Quiz Fractions', questions: '12', numero: '' };
+    await monter(<DetailQuiz />);
+    await waitFor(() => expect(screen.getByText(x.entrainement.detailSessions)).toBeTruthy());
+    expect(screen.getByText(`Fractions · ${x.entrainement.questions.replace('{{n}}', '12')} · ${x.entrainement.meilleur.replace('{{n}}', '100')}`)).toBeTruthy();
+    const sessions = screen.getAllByText(new RegExp(`^[01]/1`));
+    expect(sessions.map((e) => e.props.children)).toEqual([
+      x.entrainement.detailSession.replace('{{score}}', '1').replace('{{total}}', '1').replace('{{pct}}', '100'),
+      x.entrainement.detailSession.replace('{{score}}', '0').replace('{{total}}', '1').replace('{{pct}}', '0'),
+    ]);
+    await fireEvent.press(sessions[1]);
+    await waitFor(() => expect(router.push).toHaveBeenCalledWith('/quiz/resultats'));
+    expect((await lireCorrection())?.reponses).toEqual([0]);
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.detailNouvelle }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } });
   });
 
   it('quiz libre indisponible', async () => {
@@ -167,8 +210,8 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.getByText(x.entrainement.vaPlusLoin)).toBeTruthy();
     expect(await finChapitreVue(1)).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.faireQuiz }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } });
-    await fireEvent.press(screen.getByText(x.entrainement.exercices));
+    await waitFor(() => expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } }));
+    await fireEvent.press(screen.getByText(x.entrainement.nExercices.replace('{{n}}', '2')));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
   });
 

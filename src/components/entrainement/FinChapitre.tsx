@@ -20,6 +20,7 @@ import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { decrireCompteur } from './compter';
 import { Ligne } from './Ligne';
+import { ouvrirQuiz } from './ouvrirQuiz';
 
 type Etat = { lecons: number; validees: number; quiz: QuizLibre[]; exercices: Exercice[] };
 
@@ -57,7 +58,7 @@ export function FinChapitre() {
   const premierQuiz = etat.quiz[0];
   const pied = (
     <View style={styles.pied}>
-      {premierQuiz ? <Bouton libelle={t('entrainement.faireQuiz')} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: premierQuiz.id, cours: String(cours), nom: nom ?? '' } })} retour /> : null}
+      {premierQuiz ? <Bouton libelle={t('entrainement.faireQuiz')} onPress={() => void ouvrirQuiz(premierQuiz, String(cours), nom ?? '')} retour /> : null}
       <Bouton variante={premierQuiz ? 'secondaire' : undefined} libelle={t('entrainement.retourChapitre')} onPress={retour} />
     </View>
   );
@@ -82,13 +83,13 @@ export function FinChapitre() {
         <View style={styles.groupe}>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('entrainement.vaPlusLoin')}</Text>
           {etat.quiz.map((q) => (
-            <Ligne key={q.id} icone="help-circle-outline" titre={q.nom} details={t('entrainement.questions', { n: q.questions })} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id, cours: String(cours), nom: nom ?? '' } })} />
+            <Ligne key={q.id} icone="help-circle-outline" genre={{ type: 'quiz', libelle: q.numero ? t('entrainement.etiquetteQuizN', { n: q.numero }) : t('entrainement.etiquetteQuiz') }} titre={q.nom} details={t('entrainement.questions', { n: q.questions })} onPress={() => void ouvrirQuiz(q, String(cours), nom ?? '')} />
           ))}
           {etat.exercices.length ? (
             <Ligne
               icone="create-outline"
-              titre={t('entrainement.exercices')}
-              details={decrireCompteur(t, { quiz: 0, exercices: etat.exercices.length })}
+              genre={{ type: 'exercice', libelle: t('entrainement.exercices') }}
+              titre={decrireCompteur(t, { quiz: 0, exercices: etat.exercices.length })}
               onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '' } })}
             />
           ) : null}

@@ -5,11 +5,11 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { bornerTaille, enregistrerRythme, PAS_TAILLE, RYTHMES, TAILLE_DEFAUT, TAILLE_MAX, TAILLE_MIN } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { espace, typo } from '@/theme/theme';
 
-import { Appui } from './Appui';
 import { Bouton } from './Bouton';
 import { Feuille } from './Feuille';
+import { Onglets } from './Onglets';
 
 type Props = {
   ouverte: boolean;
@@ -63,18 +63,14 @@ export function FeuilleRythme({ ouverte, onFermer, actuelle, source, onChoisi }:
       texte={t('rythme.texte')}
       actions={[{ libelle: t('rythme.valider', { n: taille }), onPress: () => void valider() }]}
     >
-      <View accessibilityRole="tablist" style={[styles.onglets, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-        {(['questions', 'temps'] as const).map((o) => {
-          const actif = onglet === o;
-          return (
-            <Appui key={o} style={styles.flex} accessibilityRole="tab" accessibilityState={{ selected: actif }} onPress={() => setOnglet(o)} decalage={0} rayon={rayon.s}>
-              <View style={[styles.segment, actif && { backgroundColor: theme.texte.principal }]}>
-                <Text style={[typo.boutonPetit, { color: actif ? theme.fond.app : theme.texte.principal }]}>{t(o === 'questions' ? 'rythme.ongletQuestions' : 'rythme.ongletTemps')}</Text>
-              </View>
-            </Appui>
-          );
-        })}
-      </View>
+      <Onglets
+        valeurs={[
+          { valeur: 'questions', libelle: t('rythme.ongletQuestions') },
+          { valeur: 'temps', libelle: t('rythme.ongletTemps') },
+        ]}
+        valeur={onglet}
+        onChange={setOnglet}
+      />
       <Text style={[typo.texteFort, styles.centre, { color: theme.texte.principal }]}>{t(onglet === 'questions' ? 'rythme.combien' : 'rythme.combienTemps')}</Text>
       {onglet === 'questions' ? (
         <View style={styles.reglage}>
@@ -109,8 +105,6 @@ export function FeuilleRythme({ ouverte, onFermer, actuelle, source, onChoisi }:
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  onglets: { flexDirection: 'row', padding: espace[1], gap: espace[1], borderWidth: bord.normal, borderRadius: rayon.m },
-  segment: { alignItems: 'center', justifyContent: 'center', paddingVertical: espace[3], borderRadius: rayon.s },
   choix: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   puce: { width: '30%', flexGrow: 1 },
   reglage: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
