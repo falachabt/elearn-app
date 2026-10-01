@@ -245,6 +245,8 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     // Ouvrir le corrigé marque l'exercice « Fait ».
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
+    // Corrigé dans sa carte jaune, étiquetée.
+    expect(screen.getByText(`✓ ${x.entrainement.corrige.toUpperCase()}`)).toBeTruthy();
     await waitFor(async () => expect(await lireExercicesFaits()).toEqual({ e1: true }));
     // Le corrigé remplace l'énoncé ; « Voir l'énoncé » revient en arrière.
     expect(screen.queryByText('Rappel : diviser par le PGCD.')).toBeNull();

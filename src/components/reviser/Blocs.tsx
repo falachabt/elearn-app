@@ -3,10 +3,31 @@ import { StyleSheet, Text, View, type TextStyle } from 'react-native';
 
 import type { Bloc, Segment } from '@/services/blocs';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
-function Segments({ segments, style }: { segments: Segment[]; style: TextStyle }) {
+type Couleurs = { texte: string; lien: string; note: string; bord: string; fondCode: string; enteteTableau: string; citation: string };
+
+/**
+ * Corrigé dans sa carte jaune (spec 5 v3) : couleurs forcées, identiques en clair et en sombre. Formules en bleu 700,
+ * notes en encre 600, jamais de vert ni de corail (contraste insuffisant sur le jaune).
+ */
+const SUR_JAUNE: Couleurs = {
+  texte: palette.encre[1000],
+  lien: palette.bleu[700],
+  note: palette.encre[600],
+  bord: palette.encre[1000],
+  fondCode: palette.papier[0],
+  enteteTableau: palette.papier[0],
+  citation: palette.encre[1000],
+};
+
+function useCouleurs(surJaune?: boolean): Couleurs {
   const { theme } = useTheme();
+  if (surJaune) return SUR_JAUNE;
+  return { texte: theme.texte.principal, lien: theme.texte.lien, note: theme.texte.secondaire, bord: theme.bord.fort, fondCode: theme.fond.creux, enteteTableau: theme.marque.douce, citation: theme.marque.principale };
+}
+
+function Segments({ segments, style, lien }: { segments: Segment[]; style: TextStyle; lien: string }) {
   return (
     <Text style={style}>
       {segments.map((s, i) => (
@@ -16,7 +37,7 @@ function Segments({ segments, style }: { segments: Segment[]; style: TextStyle }
             s.gras && styles.gras,
             s.italique && styles.italique,
             s.souligne && styles.souligne,
-            (s.code || s.math) && { fontFamily: s.code ? typo.donnee.fontFamily : undefined, color: s.math ? theme.texte.lien : undefined },
+            (s.code || s.math) && { fontFamily: s.code ? typo.donnee.fontFamily : undefined, color: s.math ? lien : undefined },
           ]}
         >
           {s.texte}
@@ -26,49 +47,50 @@ function Segments({ segments, style }: { segments: Segment[]; style: TextStyle }
   );
 }
 
-/** Affichage des leçons (D2) : titres, paragraphes, listes, tableaux, images, formules en ligne. */
-export function Blocs({ blocs }: { blocs: Bloc[] }) {
+/** Affichage des leçons (D2) : titres, paragraphes, listes, tableaux, images, formules en ligne. `surJaune` : corrigé d'exercice. */
+export function Blocs({ blocs, surJaune }: { blocs: Bloc[]; surJaune?: boolean }) {
   const { theme } = useTheme();
-  const texte = { ...typo.texte, color: theme.texte.principal };
+  const c = useCouleurs(surJaune);
+  const texte = { ...typo.texte, color: c.texte };
   return (
     <View style={styles.pile}>
       {blocs.map((b, i) => {
         switch (b.type) {
           case 'titre':
-            return <Segments key={i} segments={b.segments} style={{ ...(b.niveau === 1 ? typo.h1 : b.niveau === 2 ? typo.h2 : typo.h3), color: theme.texte.principal }} />;
+            return <Segments key={i} lien={c.lien} segments={b.segments} style={{ ...(b.niveau === 1 ? typo.h1 : b.niveau === 2 ? typo.h2 : typo.h3), color: c.texte }} />;
           case 'paragraphe':
             return (
               <View key={i} style={{ marginLeft: b.retrait * espace[5] }}>
-                <Segments segments={b.segments} style={texte} />
+                <Segments lien={c.lien} segments={b.segments} style={texte} />
               </View>
             );
           case 'puce':
             return (
               <View key={i} style={[styles.puce, { marginLeft: b.retrait * espace[5] }]}>
                 <Text style={[texte, styles.marque]}>{b.numero ? `${b.numero}.` : b.coche !== undefined ? (b.coche ? '☑' : '☐') : '•'}</Text>
-                <Segments segments={b.segments} style={{ ...texte, flex: 1 }} />
+                <Segments lien={c.lien} segments={b.segments} style={{ ...texte, flex: 1 }} />
               </View>
             );
           case 'citation':
             return (
-              <View key={i} style={[styles.citation, { borderColor: theme.marque.principale }]}>
-                <Segments segments={b.segments} style={{ ...texte, fontStyle: 'italic' }} />
+              <View key={i} style={[styles.citation, { borderColor: c.citation }]}>
+                <Segments lien={c.lien} segments={b.segments} style={{ ...texte, fontStyle: 'italic' }} />
               </View>
             );
           case 'code':
             return (
-              <View key={i} style={[styles.encadre, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.donnee, { color: theme.texte.principal }]}>{b.texte}</Text>
+              <View key={i} style={[styles.encadre, { backgroundColor: c.fondCode, borderColor: c.bord }]}>
+                <Text style={[typo.donnee, { color: c.texte }]}>{b.texte}</Text>
               </View>
             );
           case 'tableau':
             return (
-              <View key={i} style={[styles.tableau, { borderColor: theme.bord.fort }]}>
+              <View key={i} style={[styles.tableau, { borderColor: c.bord }]}>
                 {b.lignes.map((ligne, l) => (
-                  <View key={l} style={[styles.ligne, l > 0 && { borderTopWidth: bord.fin, borderColor: theme.bord.fort }, l === 0 && { backgroundColor: theme.marque.douce }]}>
-                    {ligne.map((cellule, c) => (
-                      <View key={c} style={[styles.cellule, c > 0 && { borderLeftWidth: bord.fin, borderColor: theme.bord.fort }]}>
-                        <Segments segments={cellule} style={{ ...typo.petit, color: theme.texte.principal, fontFamily: l === 0 ? typo.texteFort.fontFamily : typo.petit.fontFamily }} />
+                  <View key={l} style={[styles.ligne, l > 0 && { borderTopWidth: bord.fin, borderColor: c.bord }, l === 0 && { backgroundColor: c.enteteTableau }]}>
+                    {ligne.map((cellule, k) => (
+                      <View key={k} style={[styles.cellule, k > 0 && { borderLeftWidth: bord.fin, borderColor: c.bord }]}>
+                        <Segments lien={c.lien} segments={cellule} style={{ ...typo.petit, color: c.texte, fontFamily: l === 0 ? typo.texteFort.fontFamily : typo.petit.fontFamily }} />
                       </View>
                     ))}
                   </View>
@@ -78,12 +100,12 @@ export function Blocs({ blocs }: { blocs: Bloc[] }) {
           case 'image':
             return (
               <View key={i} style={styles.pile}>
-                <Image source={{ uri: b.url }} style={[styles.image, { borderColor: theme.bord.fort }]} contentFit="contain" accessibilityLabel={b.legende} />
-                {b.legende ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{b.legende}</Text> : null}
+                <Image source={{ uri: b.url }} style={[styles.image, { borderColor: c.bord }, surJaune && styles.imageJaune]} contentFit="contain" accessibilityLabel={b.legende} />
+                {b.legende ? <Text style={[typo.legende, { color: c.note }]}>{b.legende}</Text> : null}
               </View>
             );
           case 'separateur':
-            return <View key={i} style={[styles.separateur, { backgroundColor: theme.bord.doux }]} />;
+            return <View key={i} style={[styles.separateur, { backgroundColor: surJaune ? c.note : theme.bord.doux }]} />;
           default:
             return null;
         }
@@ -104,6 +126,7 @@ const styles = StyleSheet.create({
   tableau: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden' },
   ligne: { flexDirection: 'row' },
   cellule: { flex: 1, padding: espace[3] },
+  imageJaune: { backgroundColor: palette.papier[0], borderWidth: bord.fin },
   image: { width: '100%', aspectRatio: 16 / 10, borderWidth: bord.normal, borderRadius: rayon.m },
   separateur: { height: bord.normal, marginVertical: espace[3] },
 });

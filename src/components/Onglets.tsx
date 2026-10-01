@@ -1,23 +1,30 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 
-type Props<T extends string> = { valeurs: readonly { valeur: T; libelle: string }[]; valeur: T; onChange: (v: T) => void };
+type Props<T extends string> = {
+  valeurs: readonly { valeur: T; libelle: string }[];
+  valeur: T;
+  onChange: (v: T) => void;
+  /** Valeur dont le segment actif est jaune (onglet « Corrigé » d'un exercice). */
+  jaune?: T;
+};
 
 /** Sélecteur segmenté (revue design, écran 1) : coins 10/6 (Benny préfère moins arrondi), segment actif en `fond.inverse`, 40 px. Réviser, rythme, entraînement d'un chapitre. */
-export function Onglets<T extends string>({ valeurs, valeur, onChange }: Props<T>) {
+export function Onglets<T extends string>({ valeurs, valeur, onChange, jaune }: Props<T>) {
   const { theme } = useTheme();
   return (
     <View accessibilityRole="tablist" style={[styles.cadre, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
       {valeurs.map((o) => {
         const actif = valeur === o.valeur;
+        const enJaune = actif && o.valeur === jaune;
         return (
           <Appui key={o.valeur} style={styles.flex} accessibilityRole="tab" accessibilityState={{ selected: actif }} onPress={() => onChange(o.valeur)} decalage={0} rayon={rayon.s}>
-            <View style={[styles.segment, actif && { backgroundColor: theme.fond.inverse }]}>
-              <Text style={[typo.boutonPetit, { color: actif ? theme.texte.inverse : theme.texte.principal }]}>{o.libelle}</Text>
+            <View style={[styles.segment, actif && { backgroundColor: enJaune ? palette.soleil[400] : theme.fond.inverse }]}>
+              <Text style={[typo.boutonPetit, { color: enJaune ? palette.encre[1000] : actif ? theme.texte.inverse : theme.texte.principal }]}>{o.libelle}</Text>
             </View>
           </Appui>
         );

@@ -9,7 +9,7 @@ import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
@@ -133,11 +133,16 @@ export function ExerciceLibre() {
                 { valeur: 'corrige', libelle: t('entrainement.corrige') },
               ]}
               valeur={corrige ? 'corrige' : 'enonce'}
+              jaune="corrige"
               onChange={basculerVue}
             />
           ) : null}
           {corrige && etat.detail ? (
-            <Blocs blocs={etat.detail.corrige} />
+            // Corrigé toujours dans sa carte jaune, couleurs forcées en clair comme en sombre (spec 5 v3, demande de Benny).
+            <View style={[styles.corrige, { borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
+              <Text accessibilityRole="header" style={[typo.etiquette, { color: palette.encre[1000] }]}>{`✓ ${t('entrainement.corrige').toUpperCase()}`}</Text>
+              <Blocs blocs={etat.detail.corrige} surJaune />
+            </View>
           ) : (
             <>
               {etat.detail?.contexte.length ? (
@@ -162,5 +167,15 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   vide: { width: 28 },
   rang: { flex: 1, textAlign: 'center' },
+  corrige: {
+    padding: espace[4],
+    gap: espace[3],
+    backgroundColor: palette.soleil[400],
+    borderWidth: bord.normal,
+    borderRadius: rayon.l,
+    shadowOffset: { width: ombre.carte, height: ombre.carte },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+  },
   bloc: { padding: espace[4], gap: espace[3], borderWidth: bord.normal, borderRadius: rayon.l },
 });
