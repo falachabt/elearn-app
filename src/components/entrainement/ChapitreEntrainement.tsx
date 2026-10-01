@@ -19,7 +19,7 @@ import { EcranErreur } from '../liste/EcranErreur';
 import { Pastille } from '../liste/Pastille';
 import { PastilleType } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
-import { libelleQuiz } from './libelles';
+import { libelleQuiz, rangsSansNom } from './libelles';
 import { ouvrirQuiz } from './ouvrirQuiz';
 
 type Filtre = 'tout' | 'quiz' | 'exercices';
@@ -70,7 +70,8 @@ export function ChapitreEntrainement() {
       ? t('entrainement.progression', { n: etat.quiz.filter((q) => quizFini(etat, q)).length + etat.exercices.filter((e) => etat.faits[e.id]).length, total: etat.quiz.length + etat.exercices.length })
       : null;
 
-  const nomQuiz = (q: QuizLibre) => libelleQuiz(t, q.nom, chapitre, q.numero);
+  const rangs = etat.statut === 'pret' ? rangsSansNom(etat.quiz, chapitre) : {};
+  const nomQuiz = (q: QuizLibre) => libelleQuiz(t, q.nom, chapitre, q.numero, rangs[q.id]);
 
   const liste = etat.statut === 'pret' ? melanger(filtre === 'exercices' ? [] : etat.quiz, filtre === 'quiz' ? [] : etat.exercices) : [];
 

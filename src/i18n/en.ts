@@ -287,6 +287,7 @@ export const en: Textes = {
     titreQuizN: 'Quiz {{n}} · {{titre}}',
     titreQuiz: 'Quiz · {{titre}}',
     quizChapitre: 'Chapter quiz',
+    quizChapitreN: 'Chapter quiz {{n}}',
     exerciceN: 'Exercise {{n}}',
     exerciceRang: 'Exercise {{n}} / {{total}}',
     videQuiz: 'No quiz for this chapter yet.',

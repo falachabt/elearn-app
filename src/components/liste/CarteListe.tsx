@@ -19,7 +19,7 @@ type Props = {
   onPress: () => void;
 };
 
-/** Carte de liste (revue design, règle 2) : 64 à 72 px, titre sur 2 lignes, ombre `carte`. Une seule structure pour quiz, exercices, sujets… */
+/** Carte de liste (revue design, règle 2) : 78 px fixes, titre sur 2 lignes, ombre `carte`. Une seule structure pour quiz, exercices, sujets… */
 export function CarteListe({ titre, sousTitre, gauche, droite, fini, onPress }: Props) {
   const { theme } = useTheme();
   return (
@@ -45,8 +45,8 @@ export function CarteListe({ titre, sousTitre, gauche, droite, fini, onPress }: 
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1, gap: 2 },
-  // Deux lignes réservées partout : toutes les cartes d'une liste ont la même hauteur (retour de Benny, 01/10).
-  titre: { fontSize: 15, lineHeight: 20, minHeight: 40, textAlignVertical: 'center' },
-  carte: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  flex: { flex: 1, gap: 2, justifyContent: 'center' },
+  titre: { fontSize: 15, lineHeight: 20 },
+  // Hauteur fixe de 78 px (décision design du 01/10) : titres d'une ou deux lignes, cartes de même taille, bloc texte centré.
+  carte: { height: 78, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
 });

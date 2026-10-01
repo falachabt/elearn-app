@@ -288,6 +288,7 @@ export const fr = {
     titreQuizN: 'Quiz {{n}} · {{titre}}',
     titreQuiz: 'Quiz · {{titre}}',
     quizChapitre: 'Quiz du chapitre',
+    quizChapitreN: 'Quiz du chapitre {{n}}',
     exerciceN: 'Exercice {{n}}',
     exerciceRang: 'Exercice {{n}} / {{total}}',
     videQuiz: 'Pas encore de quiz pour ce chapitre.',
