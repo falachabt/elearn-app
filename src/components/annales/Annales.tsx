@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { concoursDuCatalogue, lireCatalogue, lireDossiers, type Concours, type Dossier, type Sujet } from '@/services/annales';
+import { lireDocuments } from '@/services/documents';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -30,10 +31,12 @@ export function Annales({ tous = false }: { tous?: boolean }) {
   const { theme } = useTheme();
   const pret = useSessionPrete();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [gardes, setGardes] = useState(0);
 
   useEffect(() => {
     if (!pret) return;
     let actif = true;
+    void lireDocuments().then((d) => actif && setGardes(d.length));
     void (async () => {
       const client = getSupabase();
       const profil = await lireProfil();
@@ -59,11 +62,24 @@ export function Annales({ tous = false }: { tous?: boolean }) {
     };
   }, [pret, tous]);
 
+  // Documents gardés sur le téléphone : en tête, accessibles même hors ligne.
+  const mesDocuments =
+    gardes && !tous ? (
+      <LigneLien icone="download-outline" titre={t('document.mesDocuments')} detail={t('document.mesDocumentsDetail', { n: gardes })} onPress={() => router.push('/documents')} />
+    ) : null;
   if (etat.statut === 'chargement') return <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('annales.chargement')}</Text>;
-  if (etat.statut === 'erreur') return <Banniere ton="erreur" titre={t('annales.erreur')} />;
+  if (etat.statut === 'erreur') {
+    return (
+      <View style={styles.section}>
+        {mesDocuments}
+        <Banniere ton="erreur" titre={t('annales.erreur')} />
+      </View>
+    );
+  }
   if (etat.statut === 'concours') {
     return (
       <View style={styles.section}>
+        {mesDocuments}
         {etat.concours ? (
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
             {etat.concours.sigle && etat.concours.sigle !== etat.concours.nom ? `${etat.concours.sigle} · ${etat.concours.nom}` : etat.concours.nom}
@@ -76,6 +92,7 @@ export function Annales({ tous = false }: { tous?: boolean }) {
 
   return (
     <View style={styles.groupe}>
+      {mesDocuments}
       {etat.dossiers.length ? (
         <View style={styles.section}>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.maClasse')}</Text>

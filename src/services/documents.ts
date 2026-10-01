@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Directory, File, Paths } from 'expo-file-system';
 
 /**
@@ -23,14 +24,82 @@ export function documentLocal(url: string): string | null {
   }
 }
 
-/** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). */
-export async function ouvrirDocument(url: string): Promise<string> {
-  const local = documentLocal(url);
-  if (local) return local;
-  const d = dossier();
-  if (!d.exists) d.create({ intermediates: true, idempotent: true });
-  const f = await File.downloadFileAsync(url, new File(d, nomFichier(url)), { idempotent: true });
-  return f.uri;
+export const CLE_INDEX = 'documents.index';
+/** Au-delà, les documents ouverts le moins récemment quittent le téléphone (M6-08). */
+export const PLAFOND_OCTETS = 500 * 1024 * 1024;
+
+export type DocumentGarde = { url: string; titre: string; taille: number; le: string; page?: number };
+
+async function lireIndex(): Promise<Record<string, DocumentGarde>> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_INDEX);
+    return brut ? (JSON.parse(brut) as Record<string, DocumentGarde>) : {};
+  } catch {
+    return {};
+  }
+}
+
+const ecrireIndex = (index: Record<string, DocumentGarde>) => AsyncStorage.setItem(CLE_INDEX, JSON.stringify(index)).catch(() => {});
+
+/** Documents gardés sur le téléphone, le plus récemment ouvert d'abord. */
+export async function lireDocuments(): Promise<DocumentGarde[]> {
+  const index = await lireIndex();
+  return Object.values(index)
+    .filter((d) => documentLocal(d.url))
+    .sort((a, b) => b.le.localeCompare(a.le));
+}
+
+export async function supprimerDocument(url: string): Promise<void> {
+  try {
+    const f = new File(dossier(), nomFichier(url));
+    if (f.exists) f.delete();
+  } catch {
+    // Déjà absent.
+  }
+  const index = await lireIndex();
+  delete index[url];
+  await ecrireIndex(index);
+}
+
+/** Retire les documents ouverts le moins récemment tant que le total dépasse le plafond (jamais `garder`). */
+async function respecterPlafond(index: Record<string, DocumentGarde>, garder: string, plafond: number): Promise<void> {
+  const tries = Object.values(index).sort((a, b) => a.le.localeCompare(b.le));
+  let total = tries.reduce((n, d) => n + d.taille, 0);
+  for (const d of tries) {
+    if (total <= plafond) break;
+    if (d.url === garder) continue;
+    await supprimerDocument(d.url);
+    delete index[d.url];
+    total -= d.taille;
+  }
+}
+
+/** Chemin local du document : la copie gardée, sinon téléchargée maintenant (réseau requis). Note l'ouverture. */
+export async function ouvrirDocument(url: string, titre = '', maintenant = new Date(), plafond = PLAFOND_OCTETS): Promise<string> {
+  let uri = documentLocal(url);
+  if (!uri) {
+    const d = dossier();
+    if (!d.exists) d.create({ intermediates: true, idempotent: true });
+    uri = (await File.downloadFileAsync(url, new File(d, nomFichier(url)), { idempotent: true })).uri;
+  }
+  const index = await lireIndex();
+  const taille = new File(dossier(), nomFichier(url)).size;
+  index[url] = { ...index[url], url, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString() };
+  await respecterPlafond(index, url, plafond);
+  await ecrireIndex(index);
+  return uri;
+}
+
+/** Page où l'élève s'est arrêté, pour reprendre la lecture au même endroit. */
+export async function pageDocument(url: string): Promise<number> {
+  return (await lireIndex())[url]?.page ?? 1;
+}
+
+export async function noterPage(url: string, page: number): Promise<void> {
+  const index = await lireIndex();
+  if (!index[url] || index[url].page === page) return;
+  index[url] = { ...index[url], page };
+  await ecrireIndex(index);
 }
 
 /** À la déconnexion : les documents (dont les corrections réservées au pass) quittent le téléphone. */

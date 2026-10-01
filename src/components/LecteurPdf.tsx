@@ -5,7 +5,7 @@ import Pdf from 'react-native-pdf';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { documentLocal, ouvrirDocument } from '@/services/documents';
+import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -14,7 +14,7 @@ import { Bouton } from './Bouton';
 import { Ecran } from './Ecran';
 import { BoutonFermer } from './arrivee/MiniTest';
 
-type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; uri: string; horsLigne: boolean };
+type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; uri: string; horsLigne: boolean; depart: number };
 
 /**
  * Lecteur PDF dans l'app (annales, documents de classe) : le document est gardé sur le téléphone à la première
@@ -24,26 +24,27 @@ export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { url, titre } = useLocalSearchParams<{ url: string; titre?: string }>();
-  const [etat, setEtat] = useState<Etat>(() => {
-    const local = documentLocal(String(url));
-    return local ? { statut: 'pret', uri: local, horsLigne: true } : { statut: 'chargement' };
-  });
+  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [essai, setEssai] = useState(0);
   const [page, setPage] = useState({ n: 1, total: 0 });
 
   useEffect(() => {
-    if (etat.statut !== 'chargement') return;
     let actif = true;
-    ouvrirDocument(String(url))
-      .then((uri) => {
-        suivre('document_opened', { hors_ligne: false });
-        if (actif) setEtat({ statut: 'pret', uri, horsLigne: false });
-      })
-      .catch(() => actif && setEtat({ statut: 'erreur' }));
+    void (async () => {
+      const horsLigne = !!documentLocal(String(url));
+      try {
+        // Copie gardée : affichée sans réseau ; sinon téléchargée une fois. Reprise à la dernière page lue.
+        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? ''), pageDocument(String(url))]);
+        suivre('document_opened', { hors_ligne: horsLigne });
+        if (actif) setEtat({ statut: 'pret', uri, horsLigne, depart });
+      } catch {
+        if (actif) setEtat({ statut: 'erreur' });
+      }
+    })();
     return () => {
       actif = false;
     };
-  }, [url, etat.statut, essai]);
+  }, [url, titre, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   return (
@@ -91,11 +92,12 @@ export function LecteurPdf() {
             enableAntialiasing
             fitPolicy={0}
             spacing={8}
-            onLoadComplete={(total) => {
-              setPage({ n: 1, total });
-              if (etat.horsLigne) suivre('document_opened', { hors_ligne: true });
+            page={etat.depart}
+            onLoadComplete={(total) => setPage((p) => ({ n: Math.min(Math.max(p.n, etat.depart), total), total }))}
+            onPageChanged={(n, total) => {
+              setPage({ n, total });
+              void noterPage(String(url), n);
             }}
-            onPageChanged={(n, total) => setPage({ n, total })}
             onError={() => setEtat({ statut: 'erreur' })}
           />
         </View>

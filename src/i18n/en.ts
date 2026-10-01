@@ -279,6 +279,12 @@ export const en: Textes = {
     retourChapitre: 'Back to the chapter',
   },
   document: {
+    mesDocuments: 'My documents',
+    mesDocumentsDetail: '{{n}} kept on the phone, readable offline',
+    espace: '{{n}} MB used out of {{max}} MB. Beyond that, the oldest are removed.',
+    aucun: 'No documents kept yet. The ones you open stay here, readable offline.',
+    details: '{{mo}} MB · opened on {{date}}',
+    retirer: 'Remove {{titre}} from the phone',
     telechargement: 'Downloading the document… It will stay available offline.',
     erreur: 'The document could not be opened. Check your connection: once opened, it stays readable offline.',
     page: 'Page {{n}} of {{total}}',

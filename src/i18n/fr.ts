@@ -280,6 +280,12 @@ export const fr = {
     retourChapitre: 'Retour au chapitre',
   },
   document: {
+    mesDocuments: 'Mes documents',
+    mesDocumentsDetail: '{{n}} gardés sur le téléphone, lisibles hors ligne',
+    espace: '{{n}} Mo utilisés sur {{max}} Mo. Au-delà, les plus anciens sont retirés.',
+    aucun: 'Aucun document gardé. Ceux que tu ouvres restent ici, lisibles hors ligne.',
+    details: '{{mo}} Mo · ouvert le {{date}}',
+    retirer: 'Retirer {{titre}} du téléphone',
     telechargement: 'Téléchargement du document… Il restera disponible hors ligne.',
     erreur: 'Le document n’a pas pu être ouvert. Vérifie ta connexion : une fois ouvert, il reste lisible hors ligne.',
     page: 'Page {{n}} sur {{total}}',
