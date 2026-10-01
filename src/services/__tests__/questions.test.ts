@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSortiesEnAttente, lireSorties, masquerNumeros, parentPourReponse, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, signaler, TAILLE_PAGE, versQuestion } from '../questions';
+import { abonnerNouvelles, actualiserNouvelles, choixFaux, lireNouvelles, lireSondage, marquerVues, pourcentage, texteBadge, voterSondage, ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSortiesEnAttente, lireSorties, masquerNumeros, parentPourReponse, choisirMeilleure, curseurSuivant, erreurTexte, fil, ilYa, lireReponses, voter, type Reponse, lireCopieFil, lireFil, poserQuestion, signaler, TAILLE_PAGE, versQuestion } from '../questions';
 
 const ligne = (id: string, p: Record<string, unknown> = {}) => ({
   id, author_id: 'u1', author_name: 'Awa', has_ai: true, content: `Question ${id}`, media_urls: null, subject: 'Maths', class_level: '3e',
@@ -135,5 +135,53 @@ describe('questions', () => {
     const single = jest.fn(async () => ({ data: { id: 'p2' }, error: null }));
     const c = { from: jest.fn(() => ({ insert: jest.fn(() => ({ select: () => ({ single }) })) })) };
     expect(await poserQuestion(c as never, { texte: '', matiere: 'Maths', photos: ['https://x/y.jpg'] })).toBe('p2');
+  });
+});
+
+describe('sondages et pastille', () => {
+  const l = (id: string, p: Record<string, unknown> = {}) => ({ option_id: id, label: `Option ${id}`, votes: null, mine: false, correct: null, voted: false, revealed: false, total: null, explanation: null, reveal_at: null, ...p });
+
+  it('avant le vote : pas de résultats ; après : répartition et choix', async () => {
+    const avant = await lireSondage(clientRpc([l('a'), l('b')]) as never, 'p1');
+    expect(avant).toMatchObject({ aVote: false, revele: false, total: 0 });
+    expect(avant.options.every((o) => o.votes === null)).toBe(true);
+    const apres = await lireSondage(clientRpc([l('a', { votes: 3, mine: true, voted: true, total: 4 }), l('b', { votes: 1, voted: true, total: 4 })]) as never, 'p1');
+    expect(apres.aVote).toBe(true);
+    expect(pourcentage(apres.options[0].votes, apres.total)).toBe(75);
+    expect(pourcentage(null, 0)).toBe(0);
+  });
+
+  it('bonne réponse révélée : choix faux détecté', async () => {
+    const s = await lireSondage(clientRpc([l('a', { votes: 3, mine: true, voted: true, total: 4, revealed: true, correct: false, explanation: 'Parce que' }), l('b', { votes: 1, voted: true, total: 4, revealed: true, correct: true })]) as never, 'p1');
+    expect(choixFaux(s)).toBe(true);
+    expect(s.explication).toBe('Parce que');
+    expect(choixFaux({ ...s, options: s.options.map((o) => ({ ...o, monChoix: o.correcte === true })) })).toBe(false);
+  });
+
+  it('hors ligne : copie du sondage', async () => {
+    const s = await lireSondage(clientRpc([l('a')]) as never, 'p9');
+    expect(await lireSondage(clientRpc(null, new Error('x')) as never, 'p9')).toEqual(s);
+  });
+
+  it('vote définitif passe par vote_poll', async () => {
+    const c = clientRpc(null);
+    await voterSondage(c as never, 'p1', 'o1');
+    expect(c.rpc).toHaveBeenCalledWith('vote_poll', { p_post: 'p1', p_option: 'o1' });
+  });
+
+  it('pastille : valeur du serveur, effacée à l’ouverture, « 9+ » au-delà', async () => {
+    const vu = jest.fn();
+    const off = abonnerNouvelles(vu);
+    expect(await actualiserNouvelles(clientRpc(12) as never, '3e')).toBe(12);
+    expect(lireNouvelles()).toBe(12);
+    expect(texteBadge(12)).toBe('9+');
+    expect(texteBadge(4)).toBe('4');
+    const c = clientRpc(null);
+    await marquerVues(c as never);
+    expect(lireNouvelles()).toBe(0);
+    expect(c.rpc).toHaveBeenCalledWith('mark_questions_seen');
+    expect(vu).toHaveBeenCalled();
+    expect(await actualiserNouvelles(clientRpc(null, new Error('hors ligne')) as never, null)).toBe(0);
+    off();
   });
 });

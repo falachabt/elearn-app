@@ -19,6 +19,7 @@ import { useCompteRequis } from '../FeuilleCompte';
 import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
+import { CarteSondage } from './CarteSondage';
 import { Composeur } from './Composeur';
 import { PhotoCarte } from './PhotoCarte';
 import { PhotoPleine } from './PhotoPleine';
@@ -151,6 +152,7 @@ export function FicheQuestion() {
           ) : (
             <Text style={[typo.texteGrand, { color: theme.texte.principal }]}>{q.texte}</Text>
           )}
+          {q.sondage && !q.masquee ? <CarteSondage postId={id} /> : null}
           {q.masquee || masques.has(id) ? null : q.photos.map((u) => <PhotoCarte key={u} uri={u} onAgrandir={setPhotoGrande} />)}
         </View>
       ) : null}
