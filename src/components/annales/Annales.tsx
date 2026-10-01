@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { concoursDuCatalogue, lireCatalogue, lireDossiers, type Concours, type Dossier } from '@/services/annales';
+import { concoursDuCatalogue, lireCatalogue, lireDossiers, type Concours, type Dossier, type Sujet } from '@/services/annales';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -12,12 +12,18 @@ import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { LigneLien } from '../LigneLien';
+import { ListeSujets } from './ListeSujets';
 
-type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; dossiers: Dossier[]; mien: Concours[]; autres: Concours[]; eleve: boolean };
+type Etat =
+  | { statut: 'chargement' }
+  | { statut: 'erreur' }
+  | { statut: 'pret'; dossiers: Dossier[]; mien: Concours[]; autres: Concours[]; eleve: boolean }
+  | { statut: 'concours'; concours: Concours | null; sujets: Sujet[] };
 
 /**
- * D3 · Annales (M6-01, v1.8) : rangées en dossiers. L'élève voit les dossiers de sa classe, le candidat les sujets de
- * son concours ; tout le reste est rangé dans « Autres concours ». `tous` : la liste complète des concours.
+ * D3 · Annales (M6-01, v1.8) : l'élève voit les dossiers de sa classe, les concours étant rangés dans « Autres
+ * concours ». Le candidat qui a choisi son concours voit directement ses sujets, filtrables par année, et rien d'autre.
+ * `tous` : la liste complète des concours.
  */
 export function Annales({ tous = false }: { tous?: boolean }) {
   const { t } = useTraduction();
@@ -40,6 +46,9 @@ export function Annales({ tous = false }: { tous?: boolean }) {
       if (!sujets && !dossiers.length) return setEtat({ statut: 'erreur' });
       const concours = concoursDuCatalogue(sujets ?? []);
       const monId = profil?.type === 'concours' ? profil.concours?.id : undefined;
+      if (monId && !tous) {
+        return setEtat({ statut: 'concours', concours: concours.find((c) => c.id === monId) ?? null, sujets: (sujets ?? []).filter((x) => x.concoursId === monId) });
+      }
       // Sans concours choisi, un candidat voit tous les concours, comme avant le choix.
       const mien = tous ? [] : eleve ? [] : monId ? concours.filter((c) => c.id === monId) : concours;
       const autres = tous ? concours : concours.filter((c) => !mien.includes(c));
@@ -52,6 +61,18 @@ export function Annales({ tous = false }: { tous?: boolean }) {
 
   if (etat.statut === 'chargement') return <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('annales.chargement')}</Text>;
   if (etat.statut === 'erreur') return <Banniere ton="erreur" titre={t('annales.erreur')} />;
+  if (etat.statut === 'concours') {
+    return (
+      <View style={styles.section}>
+        {etat.concours ? (
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
+            {etat.concours.sigle && etat.concours.sigle !== etat.concours.nom ? `${etat.concours.sigle} · ${etat.concours.nom}` : etat.concours.nom}
+          </Text>
+        ) : null}
+        {etat.sujets.length ? <ListeSujets sujets={etat.sujets} /> : <Banniere ton="info" titre={t('annales.vide')} />}
+      </View>
+    );
+  }
 
   return (
     <View style={styles.groupe}>

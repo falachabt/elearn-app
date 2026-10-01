@@ -80,15 +80,18 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/annales/autres');
   });
 
-  it('candidat avec son concours : ce concours d’abord, les autres dans un dossier', async () => {
+  it('candidat avec son concours : ses sujets directement, filtrables, sans les autres concours', async () => {
     await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENSPY', nom: 'Concours 1re année' }, termine: true });
     await monter(<Reviser />);
     await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
-    await waitFor(() => expect(screen.getByText(x.annales.monConcours)).toBeTruthy());
-    expect(screen.getByText('ENSPY · Concours 1re année')).toBeTruthy();
-    expect(screen.getByText(x.annales.sujets.replace('{{n}}', '2'))).toBeTruthy();
-    await fireEvent.press(screen.getByText('ENSPY · Concours 1re année'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/concours', params: { id: 'c1', nom: 'ENSPY' } });
+    await waitFor(() => expect(screen.getByText('ENSPY · Concours 1re année')).toBeTruthy());
+    expect(screen.getByText('2024 · Maths')).toBeTruthy();
+    expect(screen.queryByText(/Biologie/)).toBeNull();
+    expect(screen.queryByText(x.annales.autresConcours)).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: '2023' }));
+    expect(screen.queryByText('2024 · Maths')).toBeNull();
+    await fireEvent.press(screen.getByText('2023 · Physique'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '2' } });
   });
 
   it('candidat aux concours : pas de dossiers de classe', async () => {
