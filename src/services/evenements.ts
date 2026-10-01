@@ -18,6 +18,7 @@ export type Evenements = {
   lesson_quiz_completed: { score: number; total: number };
   practice_quiz_completed: { score: number; total: number; record: boolean };
   practice_exercise_done: { fait: boolean };
+  document_opened: { hors_ligne: boolean };
   chapter_end_shown: { complet: boolean; quiz: number; exercices: number };
   guardian_contact_saved: Record<string, never>;
   profile_class_changed: { niveau: string; pays: string; statut: 'eleve' | 'concours' };

@@ -277,6 +277,11 @@ export const fr = {
     faireQuiz: 'Faire le quiz du chapitre',
     retourChapitre: 'Retour au chapitre',
   },
+  document: {
+    telechargement: 'Téléchargement du document… Il restera disponible hors ligne.',
+    erreur: 'Le document n’a pas pu être ouvert. Vérifie ta connexion : une fois ouvert, il reste lisible hors ligne.',
+    page: 'Page {{n}} sur {{total}}',
+  },
   annales: {
     monConcours: 'Mon concours',
     autres: 'Autres',

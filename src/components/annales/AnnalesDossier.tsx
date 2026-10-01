@@ -1,5 +1,4 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -53,7 +52,7 @@ export function AnnalesDossier() {
     const url = correction ? d.urlCorrection : d.url;
     if (!url) return;
     suivre('class_document_opened', { correction });
-    void WebBrowser.openBrowserAsync(url);
+    router.push({ pathname: '/document', params: { url, titre: correction ? `${d.nom} · ${t('annales.correctionTitre')}` : d.nom } });
   };
 
   return (

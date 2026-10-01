@@ -29,3 +29,16 @@ jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }) => children ?? null;
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
 });
+
+// Lecteur PDF natif : une vue qui annonce 3 pages au montage.
+jest.mock('react-native-pdf', () => {
+  const { createElement, useEffect } = jest.requireActual('react');
+  const { View } = jest.requireActual('react-native');
+  const Pdf = (props) => {
+    useEffect(() => {
+      props.onLoadComplete?.(3, props.source?.uri, { width: 1, height: 1 });
+    }, []);
+    return createElement(View, { testID: 'lecteur-pdf', accessibilityLabel: props.source?.uri });
+  };
+  return { __esModule: true, default: Pdf };
+});

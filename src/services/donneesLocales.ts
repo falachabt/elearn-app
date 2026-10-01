@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+import { effacerDocuments } from './documents';
 import { CLE_HISTORIQUE } from './mission';
 
 /**
@@ -10,6 +11,7 @@ import { CLE_HISTORIQUE } from './mission';
 export async function effacerDonneesLocales(): Promise<void> {
   const cles = await AsyncStorage.getAllKeys();
   await AsyncStorage.multiRemove(cles.filter((c) => !c.startsWith('sb-')));
+  effacerDocuments();
 }
 
 /** Après une connexion : les jours de mission du compte reviennent sur le téléphone, pour retrouver sa série. */

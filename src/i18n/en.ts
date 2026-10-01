@@ -276,6 +276,11 @@ export const en: Textes = {
     faireQuiz: 'Take the chapter quiz',
     retourChapitre: 'Back to the chapter',
   },
+  document: {
+    telechargement: 'Downloading the document… It will stay available offline.',
+    erreur: 'The document could not be opened. Check your connection: once opened, it stays readable offline.',
+    page: 'Page {{n}} of {{total}}',
+  },
   annales: {
     monConcours: 'My exam',
     autres: 'Others',

@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import * as WebBrowser from 'expo-web-browser';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -47,13 +46,14 @@ export function SujetAnnale() {
   }, [id, pret]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
-  const ouvrir = (url: string) => void WebBrowser.openBrowserAsync(url);
+  // Lecteur dans l'app : le PDF reste sur le téléphone pour le hors ligne, jamais ouvert dans le navigateur.
+  const ouvrir = (url: string, titre: string) => router.push({ pathname: '/document', params: { url, titre } });
 
   const pied =
     etat.statut === 'pret' ? (
       <View style={styles.groupe}>
-        <Bouton libelle={t('annales.ouvrirSujet')} onPress={() => ouvrir(etat.detail.urlSujet)} retour />
-        {etat.detail.urlCorrection ? <Bouton variante="secondaire" libelle={t('annales.ouvrirCorrection')} onPress={() => ouvrir(etat.detail.urlCorrection!)} /> : null}
+        <Bouton libelle={t('annales.ouvrirSujet')} onPress={() => ouvrir(etat.detail.urlSujet, etat.detail.titre)} retour />
+        {etat.detail.urlCorrection ? <Bouton variante="secondaire" libelle={t('annales.ouvrirCorrection')} onPress={() => ouvrir(etat.detail.urlCorrection!, `${etat.detail.titre} · ${t('annales.correctionTitre')}`)} /> : null}
       </View>
     ) : undefined;
 
