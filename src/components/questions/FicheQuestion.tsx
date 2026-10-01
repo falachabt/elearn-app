@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { EyeOff, Flag } from 'lucide-react-native';
+import { Check, EyeOff, Flag } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -231,7 +231,7 @@ function CarteReponse({ r, onVote, onMenu, onRepondre, masquee, onPhoto }: { r: 
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{r.ia ? 'Elearn Prepa' : r.auteur}</Text>
         {r.ia ? <Badge texte={t('questions.badgeIa')} fond={typeContenu.quiz} /> : null}
         {r.enseignant ? <Badge texte={t('questions.badgeEnseignant')} fond={theme.accent.soleil} /> : null}
-        {r.meilleure ? <Badge texte={t('questions.meilleure')} fond={theme.marque.principale} /> : null}
+        {r.meilleure ? <Badge texte={t('questions.meilleure')} fond={theme.marque.principale} coche /> : null}
         <View style={styles.flex} />
         {onMenu && !r.miennes && !r.ia ? (
           <Appui accessibilityRole="button" accessibilityLabel={t('questions.choisirMeilleure')} onPress={() => onMenu(r)} decalage={0}>
@@ -286,10 +286,11 @@ function Masque({ titre, texte }: { titre: string; texte?: string }) {
   );
 }
 
-function Badge({ texte, fond }: { texte: string; fond: string }) {
+function Badge({ texte, fond, coche }: { texte: string; fond: string; coche?: boolean }) {
   const { theme } = useTheme();
   return (
     <View style={[styles.badge, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+      {coche ? <Check size={11} strokeWidth={3} color={theme.texte.surCouleur} /> : null}
       <Text style={[styles.badgeTexte, { color: theme.texte.surCouleur }]}>{texte}</Text>
     </View>
   );
@@ -297,7 +298,7 @@ function Badge({ texte, fond }: { texte: string; fond: string }) {
 
 
 const styles = StyleSheet.create({
-  badge: { borderWidth: bord.fin, borderRadius: 6, paddingHorizontal: espace[2], paddingVertical: 1 },
+  badge: { flexDirection: 'row', alignItems: 'center', gap: 3, borderWidth: bord.fin, borderRadius: 6, paddingHorizontal: espace[2], paddingVertical: 1 },
   badgeTexte: { fontFamily: 'SpaceMono-Bold', fontSize: 10 },
   carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   filet: { width: 4, borderRadius: 2 },
