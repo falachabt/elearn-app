@@ -17,7 +17,7 @@ jest.mock('@/services/retours', () => {
   const vrai = jest.requireActual('@/services/retours');
   return { ...vrai, jouerMoment: jest.fn(() => Promise.resolve()) };
 });
-jest.mock('expo-router', () => ({ router: { canGoBack: () => false, back: jest.fn(), replace: jest.fn() } }));
+jest.mock('expo-router', () => ({ router: { canGoBack: () => false, back: jest.fn(), replace: jest.fn(), push: jest.fn() } }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
@@ -97,10 +97,17 @@ describe.each([['fr', 'Sons et vibrations', 'Animations réduites'], ['en', 'Sou
   it('l’aperçu joue chaque moment', async () => {
     await act(() => changerLangue(langue));
     await render(enveloppe(<Parametres />));
-    const boutons = screen.getAllByRole('button').slice(1, 13); // le 1er est la taille de mission, le dernier « Retour »
+    const boutons = screen.getAllByRole('button').slice(2, 14); // les 2 premiers sont la taille de mission et Mes documents, le dernier « Retour »
     for (const b of boutons) await fireEvent.press(b);
     expect(boutons).toHaveLength(12);
     expect((jouerMoment as jest.Mock).mock.calls.map((c) => c[0]).sort()).toEqual([...moments].sort());
     expect(jouerMoment).toHaveBeenCalledWith('select', { apercu: true });
+  });
+
+  it('ouvre Mes documents', async () => {
+    await act(() => changerLangue(langue));
+    await render(enveloppe(<Parametres />));
+    await fireEvent.press(screen.getAllByRole('button')[1]);
+    expect(jest.requireMock('expo-router').router.push).toHaveBeenCalledWith('/documents');
   });
 });

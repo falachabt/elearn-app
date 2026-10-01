@@ -30,6 +30,7 @@ export default function Parametres() {
     <Ecran>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('parametres.titre')}</Text>
       <Bouton variante="secondaire" libelle={t('rythme.reglage', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setRythme(true)} />
+      <Bouton variante="secondaire" libelle={t('document.mesDocuments')} onPress={() => router.push('/documents')} />
       <Carte>
         <View style={styles.groupe}>
           <Interrupteur libelle={t('parametres.sons')} aide={t('parametres.sonsAide')} valeur={preferences.sons} onChange={(v) => definirPreference('sons', v)} />
