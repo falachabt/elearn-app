@@ -236,6 +236,8 @@ export const fr = {
     quizRetour: 'Retour à la leçon',
   },
   entrainement: {
+    voirCorrige: 'Voir le corrigé',
+    corrige: 'Corrigé',
     detailNouvelle: 'Nouvelle session',
     detailSessions: 'Mes sessions',
     detailSession: '{{score}}/{{total}} · {{pct}} %',
@@ -265,7 +267,7 @@ export const fr = {
     quizFermer: 'Quitter le quiz',
     exercice: 'Exercice {{n}}/{{total}}',
     exerciceErreur: 'Cet exercice n’a pas pu être ouvert. Vérifie ta connexion.',
-    pasDeCorrige: 'Pas encore de corrigé pour cet exercice : rédige ta réponse sur ta feuille, puis marque-le comme fait.',
+    pasDeCorrige: 'Pas de corrigé pour cet exercice : rédige ta réponse sur ta feuille, puis marque-le comme fait.',
     marquerFait: 'J’ai fait cet exercice',
     annulerFait: 'Marquer comme non fait',
     exerciceSuivant: 'Exercice suivant',

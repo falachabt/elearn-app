@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { avecCopie, rpc } from './reviser';
@@ -120,4 +121,36 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
   const session: SessionQuiz = { le: maintenant.toISOString(), score, total: s.questions.length, ...s };
   await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) }));
   return enregistrerScore(quiz, score, s.questions.length);
+}
+
+/** Exercice complet : contexte, énoncé et corrigé en blocs (même format que les leçons). */
+export type DetailExercice = { id: string; titre: string; contexte: Bloc[]; enonce: Bloc[]; corrige: Bloc[] };
+
+export async function lireExercice(client: Client, exercice: string, description = ''): Promise<DetailExercice> {
+  return avecCopie(`entrainement.exercice.${exercice}`, async () => {
+    type Ligne = {
+      exercise_id: string;
+      title: string;
+      statement: string | null;
+      context: unknown;
+      context_compressed: string | null;
+      content: unknown;
+      content_compressed: string | null;
+      correction: unknown;
+      correction_compressed: string | null;
+    };
+    const [l] = await rpc<Ligne>(client, 'exercise_detail', { p_exercise: exercice });
+    if (!l) throw new Error('exercice introuvable');
+    const blocs = (compresse: string | null, brut: unknown) => normaliserBlocs(decoderContenu({ compresse, brut }));
+    const enonce = blocs(l.content_compressed, l.content);
+    const texte = (l.statement ?? description).trim();
+    return {
+      id: l.exercise_id,
+      titre: l.title.trim(),
+      contexte: blocs(l.context_compressed, l.context),
+      // Sans énoncé structuré, la description en sert.
+      enonce: enonce.length ? enonce : texte ? [{ type: 'paragraphe', segments: [{ texte }], retrait: 0 }] : [],
+      corrige: blocs(l.correction_compressed, l.correction),
+    };
+  });
 }

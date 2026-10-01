@@ -53,6 +53,12 @@ function repondre(nom: string, args: Record<string, unknown>) {
   if (nom === 'course_exercises') return { data: args.p_course === 1 ? EXERCICES : [], error: null };
   if (nom === 'course_lessons') return { data: [{ lesson_id: 11, name: 'Définition', reading_minutes: 5 }, { lesson_id: 12, name: 'Additionner', reading_minutes: 8 }], error: null };
   if (nom === 'practice_quiz') return { data: QUESTIONS, error: null };
+  if (nom === 'exercise_detail') {
+    const para = (texte: string) => [{ type: 'paragraph', content: [{ type: 'text', text: texte }] }];
+    return args.p_exercise === 'e1'
+      ? { data: [{ exercise_id: 'e1', title: 'Simplifier', statement: 'Simplifier 6/8.', context: para('Rappel : diviser par le PGCD.'), context_compressed: null, content: para('Simplifie la fraction 6/8.'), content_compressed: null, correction: para('6/8 = 3/4.'), correction_compressed: null }], error: null }
+      : { data: [{ exercise_id: 'e2', title: 'Comparer', statement: 'Comparer 1/2 et 2/3.', context: null, context_compressed: null, content: null, content_compressed: null, correction: null, correction_compressed: null }], error: null };
+  }
   return { data: [], error: null };
 }
 
@@ -185,11 +191,15 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.entrainement.quizErreur)).toBeTruthy());
   });
 
-  it('exercice : énoncé, marqué fait, exercice suivant', async () => {
+  it('exercice : contexte, énoncé, corrigé caché puis montré, fait, exercice suivant', async () => {
     mockParams = { id: 'e1', cours: '1' };
     await monter(<ExerciceLibre />);
-    await waitFor(() => expect(screen.getByText('Simplifier 6/8.')).toBeTruthy());
-    expect(screen.getByText(x.entrainement.pasDeCorrige)).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    expect(mockRpc).toHaveBeenCalledWith('exercise_detail', { p_exercise: 'e1' });
+    expect(screen.getByText('Rappel : diviser par le PGCD.')).toBeTruthy();
+    expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
+    expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.marquerFait }));
     await waitFor(() => expect(screen.getByRole('button', { name: x.entrainement.annulerFait })).toBeTruthy());
     expect(await lireExercicesFaits()).toEqual({ e1: true });
@@ -198,6 +208,13 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(await lireExercicesFaits()).toEqual({});
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.exerciceSuivant }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } });
+  });
+
+  it('exercice sans corrigé ni énoncé structuré : la description, et le dit', async () => {
+    mockParams = { id: 'e2', cours: '1' };
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Comparer 1/2 et 2/3.')).toBeTruthy());
+    expect(screen.getByText(x.entrainement.pasDeCorrige)).toBeTruthy();
   });
 
   it('fin de chapitre complète : quiz du chapitre et exercices', async () => {

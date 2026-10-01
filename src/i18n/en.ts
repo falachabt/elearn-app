@@ -235,6 +235,8 @@ export const en: Textes = {
     quizRetour: 'Back to the lesson',
   },
   entrainement: {
+    voirCorrige: 'Show the worked solution',
+    corrige: 'Worked solution',
     detailNouvelle: 'New session',
     detailSessions: 'My sessions',
     detailSession: '{{score}}/{{total}} · {{pct}}%',
