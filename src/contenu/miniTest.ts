@@ -92,6 +92,10 @@ export const BANQUE: Banque = {
 };
 
 /** Questions du mini-test pour une classe ou un concours ; la 3e sert de repli (niveau inconnu). */
+/** Filières de concours du serveur → banque embarquée la plus proche. */
+const ALIAS: Record<string, string> = { sante: 'medecine', agro: 'medecine', commerce: 'ingenieurs', arts: 'ens', autres: 'ens' };
+
 export function questionsPour(niveau?: string | null): readonly Question[] {
-  return (niveau && BANQUE[niveau]) || BANQUE['3e'];
+  const cle = niveau ? (ALIAS[niveau] ?? niveau) : null;
+  return (cle && BANQUE[cle]) || BANQUE['3e'];
 }

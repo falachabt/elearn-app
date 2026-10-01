@@ -5,6 +5,7 @@ import { changerLangue, i18n, langueSupportee, type Langue } from '@/i18n';
 import { enregistrerProfil, lireProfil, type Profil } from './profil';
 import { abonnerModifications, ecrireMajReglages, lireMajReglages, sansSignaler } from './reglagesLocaux';
 import { appliquerPreferences, lirePreferences, type Preferences } from './retours';
+import { enregistrerRythme, lireRythme } from './rythme';
 
 type Client = Pick<SupabaseClient, 'auth'>;
 
@@ -12,7 +13,9 @@ type Client = Pick<SupabaseClient, 'auth'>;
 export type Reglages = {
   preferences: Preferences;
   langue: Langue;
-  profil?: Pick<Profil, 'type' | 'niveau' | 'pays'>;
+  profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'concours'>;
+  /** Taille de la mission du jour choisie (M4-08). */
+  rythme?: number | null;
   maj: string;
 };
 
@@ -21,7 +24,8 @@ export async function construireReglages(maj?: string | null): Promise<Reglages>
   return {
     preferences: { ...lirePreferences() },
     langue: langueSupportee(i18n.language) ?? 'fr',
-    ...(profil && { profil: { type: profil.type, niveau: profil.niveau, pays: profil.pays } }),
+    ...(profil && { profil: { type: profil.type, niveau: profil.niveau, pays: profil.pays, concours: profil.concours ?? null } }),
+    rythme: await lireRythme(),
     maj: maj ?? (await lireMajReglages()) ?? new Date().toISOString(),
   };
 }
@@ -51,8 +55,9 @@ export async function appliquerReglages(r: Reglages): Promise<void> {
     const langue = langueSupportee(r.langue);
     if (langue && langue !== i18n.language) await changerLangue(langue);
     if (r.profil?.type === 'eleve' || r.profil?.type === 'concours') {
-      await enregistrerProfil({ type: r.profil.type, niveau: r.profil.niveau, pays: r.profil.pays, termine: true });
+      await enregistrerProfil({ type: r.profil.type, niveau: r.profil.niveau, pays: r.profil.pays, concours: r.profil.concours ?? null, termine: true });
     }
+    if (typeof r.rythme === 'number') await enregistrerRythme(r.rythme);
   });
   await ecrireMajReglages(r.maj);
 }

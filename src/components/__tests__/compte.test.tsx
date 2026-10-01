@@ -193,7 +193,7 @@ describe.each(['fr', 'en'] as const)('parcours d’arrivée (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: '5e' }));
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer' : 'Continue' }));
     await waitFor(() => expect(router.push).toHaveBeenCalledWith('/premier-resultat'));
-    expect(await lireProfil()).toEqual({ type: 'eleve', niveau: '5e', pays: 'CM', termine: false });
+    expect(await lireProfil()).toEqual({ type: 'eleve', niveau: '5e', pays: 'CM', concours: null, termine: false });
   });
 
   it('A3 : explorer termine le parcours et ouvre les onglets', async () => {

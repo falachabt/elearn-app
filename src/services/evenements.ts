@@ -28,6 +28,7 @@ export type Evenements = {
   notification_prompt_shown: { source: 'fin_mission' };
   notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
   notification_opened: { type: string };
+  contest_chosen: { filiere: string; concours: string };
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
   account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' };
   account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' };

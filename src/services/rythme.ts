@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { signalerModification } from './reglagesLocaux';
+
 /** Taille de la mission du jour choisie par l'élève (rythme), en nombre de questions. */
 export const CLE_RYTHME = 'mission.rythme';
 export const TAILLE_DEFAUT = 20;
@@ -27,5 +29,6 @@ export async function lireRythme(): Promise<number | null> {
 export async function enregistrerRythme(n: number): Promise<number> {
   const taille = bornerTaille(n);
   await AsyncStorage.setItem(CLE_RYTHME, String(taille));
+  await signalerModification();
   return taille;
 }

@@ -479,6 +479,21 @@ export const fr = {
     vide: 'Rien à revoir',
     videTexte: 'Termine un quiz pour revoir ses questions ici.',
   },
+  concours: {
+    etape: '{{n}} / 2',
+    filiereTitre: 'Quelle filière vises-tu ?',
+    concoursTitre: 'Quel concours ?',
+    nombre1: '1 concours',
+    nombre: '{{n}} concours',
+    suivant: 'Suivant',
+    chercher: 'Chercher une école ou une ville',
+    choisir: 'Choisir {{sigle}}',
+    choisirVide: 'Choisis ton concours',
+    aide: 'Ton programme et tes annales suivent ce concours. Tu peux changer quand tu veux.',
+    erreur: 'Impossible de charger les concours. Vérifie ta connexion.',
+    monConcours: 'Mon concours',
+    aucun: 'Pas encore choisi',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

@@ -1,13 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { CLASSES, CONCOURS, PAYS, enregistrerProfil, lireProfil, paysParDefaut, type Pays } from '@/services/profil';
+import { CLASSES, CONCOURS, PAYS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Pays } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -83,10 +83,24 @@ export function ChoixClasse() {
   const modifier = params.modifier === '1';
   const [type, setType] = useState(params.type);
   const concours = type === 'concours';
-  const [niveau, setNiveau] = useState<string>(concours ? 'ens' : '3e');
+  const [niveau, setNiveau] = useState<string>(concours ? CONCOURS[0] : '3e');
+  const [monConcours, setMonConcours] = useState<ConcoursChoisi | null>(null);
   const [pays, setPays] = useState<Pays>(() => paysParDefaut(safeRegion()));
   const [changerPays, setChangerPays] = useState(false);
-  const options: readonly string[] = concours ? CONCOURS : CLASSES;
+  // Le concours se choisit sur son propre écran (filière puis concours), qui l'enregistre dans le profil.
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      lireProfil().then((p) => {
+        if (!actif || p?.type !== 'concours' || !p.concours) return;
+        setMonConcours(p.concours);
+        if (p.niveau) setNiveau(p.niveau);
+      });
+      return () => {
+        actif = false;
+      };
+    }, []),
+  );
 
   useEffect(() => {
     if (!modifier) return;
@@ -103,8 +117,16 @@ export function ChoixClasse() {
   }, [modifier]);
 
   const continuer = async () => {
+    if (concours && !monConcours) {
+      // Les deux étapes du concours écrivent d'abord un profil de candidat avec ce pays.
+      const p = await lireProfil();
+      await enregistrerProfil({ type: 'concours', niveau, pays, concours: null, termine: p?.termine ?? false });
+      router.push('/concours');
+      return;
+    }
+    const choix = concours ? monConcours : null;
     if (modifier) {
-      await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: true });
+      await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: true });
       // La mission du jour gardée en cache était tirée pour l'ancienne classe.
       await AsyncStorage.removeItem('mission.jour');
       suivre('profile_class_changed', { niveau, pays, statut: concours ? 'concours' : 'eleve' });
@@ -112,7 +134,7 @@ export function ChoixClasse() {
       else router.replace('/moi');
       return;
     }
-    await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, termine: false });
+    await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: false });
     suivre('onboarding_choice_made', { profil: concours ? 'concours' : 'eleve', niveau, pays });
     router.push('/premier-resultat');
   };
@@ -132,17 +154,30 @@ export function ChoixClasse() {
               onPress={() => {
                 if ((s === 'concours') === concours) return;
                 setType(s);
-                setNiveau(s === 'concours' ? 'ens' : '3e');
+                setNiveau(s === 'concours' ? CONCOURS[0] : '3e');
               }}
             />
           ))}
         </View>
       ) : null}
-      <View style={styles.pastilles}>
-        {options.map((o) => (
-          <Pastille key={o} libelle={concours ? t(`classe.concoursListe.${o as 'ens'}`) : o} actif={niveau === o} onPress={() => setNiveau(o)} />
-        ))}
-      </View>
+      {concours ? (
+        <Carte>
+          <View style={styles.ligne}>
+            <View style={styles.choixTexte}>
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('concours.monConcours')}</Text>
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{monConcours ? [monConcours.sigle, monConcours.ville].filter(Boolean).join(' · ') : t('concours.aucun')}</Text>
+              {monConcours?.nom ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{monConcours.nom}</Text> : null}
+            </View>
+            <Bouton petit variante="texte" libelle={t('classe.changer')} onPress={() => router.push('/concours')} />
+          </View>
+        </Carte>
+      ) : (
+        <View style={styles.pastilles}>
+          {CLASSES.map((o) => (
+            <Pastille key={o} libelle={o} actif={niveau === o} onPress={() => setNiveau(o)} />
+          ))}
+        </View>
+      )}
       <Carte>
         <View style={styles.groupe}>
           <View style={styles.ligne}>

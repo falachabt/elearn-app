@@ -27,7 +27,9 @@ beforeEach(async () => {
 });
 
 describe('banque du mini-test', () => {
-  it.each([...CLASSES, ...CONCOURS])('%s : 5 questions, 4 choix distincts, bonne réponse valable, ids uniques', (niveau) => {
+  it.each(CONCOURS)('filière %s : une banque embarquée existe', (f) => expect(questionsPour(f)).toHaveLength(5));
+
+  it.each([...CLASSES, 'ens', 'medecine', 'ingenieurs'])('%s : 5 questions, 4 choix distincts, bonne réponse valable, ids uniques', (niveau) => {
     const qs = BANQUE[niveau];
     expect(qs).toHaveLength(5);
     for (const q of qs) {

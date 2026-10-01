@@ -124,7 +124,7 @@ it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubli
   await fireEvent.press(await screen.findByText('Tle'));
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
   await waitFor(() => expect(router.back).toHaveBeenCalled());
-  expect(await lireProfil()).toEqual({ type: 'eleve', niveau: 'Tle', pays: 'CM', termine: true });
+  expect(await lireProfil()).toEqual({ type: 'eleve', niveau: 'Tle', pays: 'CM', concours: null, termine: true });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
 });
 
@@ -135,6 +135,7 @@ it('changer de statut depuis Moi : élève vers concours', async () => {
   await fireEvent.press(await screen.findByText(fr.bienvenue.concours));
   expect(screen.getByText(fr.classe.titreConcours)).toBeTruthy();
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
-  await waitFor(() => expect(router.back).toHaveBeenCalled());
-  expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'ens', pays: 'CM', termine: true });
+  // Sans concours choisi, on passe d'abord par les deux étapes (filière, concours).
+  await waitFor(() => expect(router.push).toHaveBeenCalledWith('/concours'));
+  expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: null, termine: true });
 });

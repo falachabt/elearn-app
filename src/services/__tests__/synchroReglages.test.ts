@@ -35,7 +35,7 @@ it('compte vide : les réglages du téléphone sont copiés dans le compte', asy
   const c = client();
   expect(await synchroniserReglages(c as never, { user_metadata: {} })).toBe('envoye');
   expect(c.auth.updateUser).toHaveBeenCalledWith({
-    data: { reglages: expect.objectContaining({ preferences: expect.objectContaining({ vibrations: false }), langue: 'fr', profil: { type: 'eleve', niveau: '4e', pays: 'SN' } }) },
+    data: { reglages: expect.objectContaining({ preferences: expect.objectContaining({ vibrations: false }), langue: 'fr', profil: { type: 'eleve', niveau: '4e', pays: 'SN', concours: null } }) },
   });
 });
 
@@ -51,7 +51,7 @@ it('compte plus récent (autre téléphone) : appliqué ici sans être renvoyé,
   expect(await synchroniserReglages(c as never, { user_metadata: { reglages: distants } })).toBe('applique');
   expect(lirePreferences()).toEqual(distants.preferences);
   expect(i18n.language).toBe('en');
-  expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'medecine', pays: 'CM', termine: true });
+  expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'medecine', pays: 'CM', concours: null, termine: true });
   expect(await lireMajReglages()).toBe(distants.maj);
   expect(c.auth.updateUser).not.toHaveBeenCalled();
 });
