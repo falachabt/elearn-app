@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { BookOpen, Check } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -13,18 +13,16 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Apparition } from '../Apparition';
-import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
-import { decrireCompteur } from './compter';
-import { Ligne } from './Ligne';
-import { ouvrirQuiz } from './ouvrirQuiz';
+import { CarteListe } from '../liste/CarteListe';
+import { PastilleType } from '../liste/PastilleType';
 
 type Etat = { lecons: number; validees: number; quiz: QuizLibre[]; exercices: Exercice[] };
 
-/** Fin de chapitre (M5-11) : après la dernière leçon, les leçons validées puis le quiz et les exercices du chapitre. */
+/** Fin de chapitre (M5-11, revue design écran 6) : écran centré, deux cartes Quiz et Exercices, « S'entraîner sur ce chapitre ». */
 export function FinChapitre() {
   const { t } = useTraduction();
   const { theme } = useTheme();
@@ -55,44 +53,35 @@ export function FinChapitre() {
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   if (!etat) return <Ecran>{null}</Ecran>;
   const complet = etat.lecons > 0 && etat.validees === etat.lecons;
-  const premierQuiz = etat.quiz[0];
+  const ouvrir = (onglet?: 'quiz' | 'exercices') => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '', ...(onglet ? { onglet } : {}) } });
+  const aEntrainement = etat.quiz.length > 0 || etat.exercices.length > 0;
   const pied = (
     <View style={styles.pied}>
-      {premierQuiz ? <Bouton libelle={t('entrainement.faireQuiz')} onPress={() => void ouvrirQuiz(premierQuiz, String(cours), nom ?? '')} retour /> : null}
-      <Bouton variante={premierQuiz ? 'secondaire' : undefined} libelle={t('entrainement.retourChapitre')} onPress={retour} />
+      {aEntrainement ? <Bouton libelle={t('entrainement.ouvrir')} onPress={() => ouvrir()} retour /> : null}
+      <Bouton variante={aEntrainement ? 'texte' : undefined} libelle={t(aEntrainement ? 'entrainement.plusTard' : 'entrainement.retourChapitre')} onPress={retour} />
     </View>
   );
 
   return (
-    <Ecran pied={pied} entete={<BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}>
+    <Ecran pied={pied} entete={<BoutonFermer petit icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}>
       <Apparition>
         <View style={styles.resultat}>
           <Rebond declencheur={1} echelle={1.08} moment={complet ? 'celebrate' : 'success'}>
             <View style={[styles.pastille, { backgroundColor: complet ? theme.marque.principale : theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <Ionicons name={complet ? 'checkmark' : 'book-outline'} size={34} color={theme.texte.surCouleur} />
+              {complet ? <Check size={36} strokeWidth={3} color={theme.texte.surCouleur} /> : <BookOpen size={32} strokeWidth={2} color={theme.texte.surCouleur} />}
             </View>
           </Rebond>
           <Text accessibilityRole="header" style={[typo.h1, styles.centre, { color: theme.texte.principal }]}>{t(complet ? 'entrainement.finTitre' : 'entrainement.finTitrePartiel')}</Text>
           <Text style={[typo.texte, styles.centre, { color: theme.texte.secondaire }]}>
             {[nom || null, etat.lecons ? t('entrainement.finLecons', { n: etat.validees, total: etat.lecons }) : null].filter(Boolean).join(' · ')}
           </Text>
+          {!complet && etat.lecons ? <Text style={[typo.petit, styles.centre, { color: theme.texte.secondaire }]}>{t('entrainement.finAValider')}</Text> : null}
         </View>
       </Apparition>
-      {!complet && etat.lecons ? <Banniere ton="info" titre={t('entrainement.finAValider')} /> : null}
-      {etat.quiz.length || etat.exercices.length ? (
+      {aEntrainement ? (
         <View style={styles.groupe}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('entrainement.vaPlusLoin')}</Text>
-          {etat.quiz.map((q) => (
-            <Ligne key={q.id} icone="help-circle-outline" genre={{ type: 'quiz', libelle: q.numero ? t('entrainement.etiquetteQuizN', { n: q.numero }) : t('entrainement.etiquetteQuiz') }} titre={q.nom} details={t('entrainement.questions', { n: q.questions })} onPress={() => void ouvrirQuiz(q, String(cours), nom ?? '')} />
-          ))}
-          {etat.exercices.length ? (
-            <Ligne
-              icone="create-outline"
-              genre={{ type: 'exercice', libelle: t('entrainement.exercices') }}
-              titre={decrireCompteur(t, { quiz: 0, exercices: etat.exercices.length })}
-              onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '' } })}
-            />
-          ) : null}
+          {etat.quiz.length ? <CarteListe gauche={<PastilleType type="quiz" />} titre={t('entrainement.carteQuiz', { n: etat.quiz.length })} onPress={() => ouvrir('quiz')} /> : null}
+          {etat.exercices.length ? <CarteListe gauche={<PastilleType type="exercice" />} titre={t('entrainement.carteExercices', { n: etat.exercices.length })} onPress={() => ouvrir('exercices')} /> : null}
         </View>
       ) : null}
     </Ecran>

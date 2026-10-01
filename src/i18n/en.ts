@@ -270,6 +270,7 @@ export const en: Textes = {
     marquerFait: 'I did this exercise',
     annulerFait: 'Mark as not done',
     exerciceSuivant: 'Next exercise',
+    plusTard: 'Later',
     contexte: 'Context',
     corrigeBientot: 'Worked solution coming soon.',
     fermerExercice: 'Close the exercise',

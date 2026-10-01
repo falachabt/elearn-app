@@ -255,12 +255,15 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await monter(<FinChapitre />);
     await waitFor(() => expect(screen.getByText(x.entrainement.finTitre)).toBeTruthy());
     expect(screen.getByText(`Fractions · ${x.entrainement.finLecons.replace('{{n}}', '2').replace('{{total}}', '2')}`)).toBeTruthy();
-    expect(screen.getByText(x.entrainement.vaPlusLoin)).toBeTruthy();
     expect(await finChapitreVue(1)).toBe(true);
-    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.faireQuiz }));
-    await waitFor(() => expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } }));
-    await fireEvent.press(screen.getByText(x.entrainement.nExercices.replace('{{n}}', '2')));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
+    await fireEvent.press(screen.getByText(x.entrainement.carteQuiz.replace('{{n}}', '2')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions', onglet: 'quiz' } });
+    await fireEvent.press(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '2')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions', onglet: 'exercices' } });
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.ouvrir }));
+    expect(router.push).toHaveBeenLastCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.plusTard }));
+    expect(router.replace).toHaveBeenCalledWith('/reviser');
   });
 
   it('fin de chapitre avec des leçons à valider', async () => {

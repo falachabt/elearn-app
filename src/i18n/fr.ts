@@ -271,6 +271,7 @@ export const fr = {
     marquerFait: 'J’ai fait cet exercice',
     annulerFait: 'Marquer comme non fait',
     exerciceSuivant: 'Exercice suivant',
+    plusTard: 'Plus tard',
     contexte: 'Contexte',
     corrigeBientot: 'Corrigé bientôt disponible.',
     fermerExercice: 'Fermer l’exercice',
