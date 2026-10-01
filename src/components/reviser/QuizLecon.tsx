@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { enregistrerCorrection, statuts as statutsDe, type StatutQuestion } from '@/services/correction';
 import type { QuestionTiree } from '@/services/miniTest';
 import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -18,13 +19,14 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Rebond } from '../Rebond';
 import { BoutonFermer, MiniTest } from '../arrivee/MiniTest';
+import { ResultatsQuiz } from '../quiz/ResultatsQuiz';
 
 type Etat =
   | { statut: 'chargement' }
   | { statut: 'erreur' }
   | { statut: 'vide' }
   | { statut: 'quiz'; questions: QuestionTiree[] }
-  | { statut: 'fini'; score: number; total: number };
+  | { statut: 'fini'; score: number; total: number; statuts: StatutQuestion[] };
 
 /**
  * 3 questions pour valider une leçon (M5-01) : même lecteur que la mission. 2 bonnes réponses sur 3 valident la
@@ -67,7 +69,8 @@ export function QuizLecon() {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
           if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
-          setEtat({ statut: 'fini', score, total: questions.length });
+          await enregistrerCorrection({ source: 'lecon', questions, reponses });
+          setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
         }}
       />
     );
@@ -104,6 +107,7 @@ export function QuizLecon() {
             <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.quizScore', { score: etat.score, total: etat.total })}</Text>
             <Text style={[typo.texte, styles.texte, { color: theme.texte.secondaire }]}>{t(reussi ? 'reviser.quizValidee' : 'reviser.quizNonValidee')}</Text>
           </View>
+          <ResultatsQuiz statuts={etat.statuts} />
         </Apparition>
       ) : null}
     </Ecran>

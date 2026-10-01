@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireDernierResultat, type ResultatMission } from '@/services/mission';
+import { lireCorrection, statuts, type Correction } from '@/services/correction';
 import { doitProposerRappel } from '@/services/rappels';
 import { lireRythme } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -20,6 +21,7 @@ import { FeuilleRythme } from '../FeuilleRythme';
 import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
+import { ResultatsQuiz } from '../quiz/ResultatsQuiz';
 
 function Chiffre({ valeur, legende, jaune }: { valeur: string; legende: string; jaune?: boolean }) {
   const { theme } = useTheme();
@@ -40,10 +42,18 @@ export function FinMission() {
   const [r, setR] = useState<ResultatMission | null>(null);
   const [rappel, setRappel] = useState(false);
   const [rythme, setRythme] = useState(false);
+  const [correction, setCorrection] = useState<Correction | null>(null);
+  const [leconsOuvertes, setLeconsOuvertes] = useState(false);
 
   useEffect(() => {
     let actif = true;
-    lireDernierResultat().then((x) => actif && setR(x));
+    void Promise.all([lireDernierResultat(), lireCorrection()]).then(([x, c]) => {
+      if (!actif) return;
+      setR(x);
+      // La grille n'a de sens que si la correction gardée est bien celle de cette mission.
+      setCorrection(x && c?.source === 'mission' && c.questions.length === x.total ? c : null);
+      setLeconsOuvertes(!c);
+    });
     // Une feuille à la fois : d'abord le rythme (s'il n'a jamais été choisi), sinon le rappel du soir (M9-01).
     void (async () => {
       if ((await lireRythme()) === null) {
@@ -79,6 +89,11 @@ export function FinMission() {
           </View>
         </View>
       </Apparition>
+      {correction ? (
+        <Apparition delai={40}>
+          <ResultatsQuiz statuts={statuts(correction)} leconsRatees={{ nombre: r.coursRates?.length ?? 0, onPress: () => setLeconsOuvertes(true) }} />
+        </Apparition>
+      ) : null}
       <Apparition delai={80}>
         <View style={styles.ligne}>
           <Chiffre jaune valeur={String(r.serie)} legende={t(r.serie > 1 ? 'mission.joursDeSuite' : 'mission.jourDeSuite')} />
@@ -103,25 +118,22 @@ export function FinMission() {
           </View>
         </Carte>
       </Apparition>
-      {r.erreurs ? (
-        <Apparition delai={240}>
-          <View style={styles.groupe}>
-            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('mission.revoirTitre')}</Text>
-            {(r.coursRates ?? []).map((c) => (
-              <LigneLien
-                key={c.id}
-                icone="book-outline"
-                titre={c.nom}
-                detail={t(c.erreurs > 1 ? 'mission.erreursN' : 'mission.erreur1', { n: c.erreurs })}
-                onPress={() => {
-                  suivre('mission_lesson_review_opened', { cours: c.id });
-                  router.push({ pathname: '/cours/chapitre', params: { id: String(c.id), nom: c.nom } });
-                }}
-              />
-            ))}
-            <Bouton variante="secondaire" libelle={t('mission.refaireErreurs', { n: r.erreurs })} onPress={() => router.push('/mission/erreurs')} />
-          </View>
-        </Apparition>
+      {r.coursRates?.length && leconsOuvertes ? (
+        <View style={styles.groupe}>
+          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('mission.revoirTitre')}</Text>
+          {r.coursRates.map((c) => (
+            <LigneLien
+              key={c.id}
+              icone="book-outline"
+              titre={c.nom}
+              detail={t(c.erreurs > 1 ? 'mission.erreursN' : 'mission.erreur1', { n: c.erreurs })}
+              onPress={() => {
+                suivre('mission_lesson_review_opened', { cours: c.id });
+                router.push({ pathname: '/cours/chapitre', params: { id: String(c.id), nom: c.nom } });
+              }}
+            />
+          ))}
+        </View>
       ) : null}
       <View style={styles.info}>
         <Ionicons name="information-circle-outline" size={18} color={theme.texte.secondaire} />

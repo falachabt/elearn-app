@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { enregistrerCorrection, lireCorrection, statuts } from '@/services/correction';
 import { lireErreurs } from '@/services/mission';
 import type { QuestionTiree } from '@/services/miniTest';
 
@@ -11,14 +12,19 @@ import { MiniTest } from '../arrivee/MiniTest';
 
 const retour = () => (router.canGoBack() ? router.back() : router.replace('/'));
 
-/** « Refaire mes erreurs » (M4-03) : les questions ratées de la dernière mission, sans toucher à la série. */
+/** « Refaire mes erreurs » (M4-03, M5-10) : les questions ratées du dernier quiz, sans toucher à la série. */
 export function RefaireErreurs() {
   const { t } = useTraduction();
   const [questions, setQuestions] = useState<QuestionTiree[] | null>(null);
 
   useEffect(() => {
     let actif = true;
-    lireErreurs().then((q) => actif && setQuestions(q));
+    // Les questions ratées du dernier quiz terminé, quel qu'il soit ; sinon celles de la dernière mission.
+    void (async () => {
+      const c = await lireCorrection();
+      const ratees = c ? c.questions.filter((_, i) => statuts(c)[i] !== 'juste') : await lireErreurs();
+      if (actif) setQuestions(ratees);
+    })();
     return () => {
       actif = false;
     };
@@ -33,9 +39,10 @@ export function RefaireErreurs() {
       libelleFin={t('mission.fin')}
       libelleFermer={t('mission.fermer')}
       onFermer={retour}
-      onTermine={({ questions: q, reponses }) => {
+      onTermine={async ({ questions: q, reponses }) => {
         suivre('mission_errors_retried', { score: q.filter((x, i) => reponses[i] === x.bonne).length, total: q.length });
-        retour();
+        await enregistrerCorrection({ source: 'erreurs', questions: q, reponses });
+        router.replace('/quiz/resultats');
       }}
     />
   );

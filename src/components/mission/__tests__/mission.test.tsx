@@ -9,6 +9,7 @@ import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
 import { CLE_DERNIER, CLE_ERREURS, CLE_HISTORIQUE, convertir, jourLocal, type LigneMission } from '@/services/mission';
 import { enregistrerProfil } from '@/services/profil';
+import { CLE_CORRECTION } from '@/services/correction';
 import { CLE_PREMIERE_OUVERTURE, CLE_RAPPEL } from '@/services/rappels';
 import { CLE_RYTHME } from '@/services/rythme';
 import { ThemeProvider } from '@/theme/ThemeProvider';
@@ -17,11 +18,13 @@ import { Accueil, titreMission } from '../Accueil';
 import { FinMission } from '../FinMission';
 import { Mission } from '../Mission';
 import { RefaireErreurs } from '../RefaireErreurs';
+import { RevoirCorrection } from '../../quiz/RevoirCorrection';
 
 const mockRpc = jest.fn();
 const mockInsert = jest.fn(() => Promise.resolve({ error: null }));
 jest.mock('expo-router', () => ({
   router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
+  useLocalSearchParams: () => ({}),
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect: effet } = jest.requireActual('react');
     effet(f, [f]);
@@ -148,18 +151,46 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     expect(screen.queryByText(x.mission.revoirTitre)).toBeNull();
   });
 
-  it('fin avec erreurs : revoir les leçons ratées et refaire mes erreurs', async () => {
+  it('fin avec erreurs : grille, refaire mes erreurs en premier, puis leçons ratées', async () => {
+    const qs = [1, 2, 3].map((i) => convertir(ligne(i), { vrai: 'Vrai', faux: 'Faux' }, () => 0)!);
+    await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify({ source: 'mission', questions: qs, reponses: [qs[0].bonne, 1 - qs[1].bonne, null] }));
     await AsyncStorage.setItem(
       CLE_DERNIER,
       JSON.stringify({ jour: '2026-10-01', score: 1, total: 3, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [], erreurs: 2, coursRates: [{ id: 42, nom: 'Forces', erreurs: 2 }] }),
     );
     await monter(<FinMission />);
-    await waitFor(() => expect(screen.getByText(x.mission.revoirTitre)).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(x.correction.aide)).toBeTruthy());
+    const refaire = x.mission.refaireErreurs.replace('{{n}}', '2');
+    expect(screen.getByRole('button', { name: x.correction.case.replace('{{n}}', '3').replace('{{statut}}', x.correction.passe) })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: refaire }));
+    expect(router.push).toHaveBeenCalledWith('/mission/erreurs');
+    await fireEvent.press(screen.getByRole('button', { name: x.correction.case.replace('{{n}}', '2').replace('{{statut}}', x.correction.faux) }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/quiz/correction', params: { i: '1' } });
+    expect(screen.queryByText(x.mission.revoirTitre)).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.correction.leconsRatees.replace('{{n}}', '1') }));
     await fireEvent.press(screen.getByRole('button', { name: `Forces. ${x.mission.erreursN.replace('{{n}}', '2')}` }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '42', nom: 'Forces' } });
     expect(suivre).toHaveBeenCalledWith('mission_lesson_review_opened', { cours: 42 });
-    await fireEvent.press(screen.getByRole('button', { name: x.mission.refaireErreurs.replace('{{n}}', '2') }));
-    expect(router.push).toHaveBeenCalledWith('/mission/erreurs');
+  });
+
+  it('revoir la correction : question, réponse donnée, explication, navigation', async () => {
+    const qs = [1, 2].map((i) => convertir(ligne(i), { vrai: 'Vrai', faux: 'Faux' }, () => 0)!);
+    await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify({ source: 'lecon', questions: qs, reponses: [qs[0].bonne, null] }));
+    await monter(<RevoirCorrection />);
+    await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
+    expect(screen.getByText(x.correction.titre.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.getByText('Explication.')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.correction.suivante }));
+    expect(screen.getByText('Question 2 ?')).toBeTruthy();
+    expect(screen.getByText(x.correction.sansReponse)).toBeTruthy();
+  });
+
+  it('refaire mes erreurs du dernier quiz, puis résultats', async () => {
+    const qs = [7, 8].map((i) => convertir(ligne(i), { vrai: 'Vrai', faux: 'Faux' }, () => 0)!);
+    await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify({ source: 'lecon', questions: qs, reponses: [qs[0].bonne, 1 - qs[1].bonne] }));
+    await monter(<RefaireErreurs />);
+    await waitFor(() => expect(screen.getByText('Question 8 ?')).toBeTruthy());
+    expect(screen.queryByText('Question 7 ?')).toBeNull();
   });
 
   it('refaire mes erreurs : rejoue les questions ratées', async () => {
