@@ -40,6 +40,8 @@ export const en: Textes = {
     obligatoireTexte: 'This version is no longer supported. Update to keep using Elearn Prepa.',
   },
   parametres: {
+    formules: 'Drawn formulas (trial)',
+    formulesAide: 'Shows fractions, roots and limits as in a textbook. Off: formulas as text.',
     titre: 'Sounds and vibrations',
     retour: 'Back',
     sons: 'Sounds',

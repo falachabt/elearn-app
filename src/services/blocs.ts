@@ -5,7 +5,7 @@ import { gunzipSync, strFromU8 } from 'fflate';
  * Le back-office stocke le contenu compressé : {"v":1,"f":"gzip+shortkeys","d":"<base64>"} (clés type/props/content/
  * styles/children raccourcies en t/p/c/s/ch, voir elearn/src/lib/blocknote-codec.ts).
  */
-export type Segment = { texte: string; gras?: boolean; italique?: boolean; souligne?: boolean; code?: boolean; math?: boolean };
+export type Segment = { texte: string; gras?: boolean; italique?: boolean; souligne?: boolean; code?: boolean; math?: boolean; latex?: string };
 export type Bloc =
   | { type: 'titre'; niveau: 1 | 2 | 3; segments: Segment[] }
   | { type: 'paragraphe'; segments: Segment[]; retrait: number }
@@ -157,7 +157,10 @@ function segments(contenu: unknown): Segment[] {
       return n.text ? [{ texte: n.text, gras: !!st.bold || undefined, italique: !!st.italic || undefined, souligne: !!st.underline || undefined, code: !!st.code || undefined }] : [];
     }
     if (n.type === 'link') return segments(n.content).map((s) => ({ ...s, souligne: true }));
-    if (n.type === 'inlineMath' || n.type === 'math') return [{ texte: latexVersTexte(String(n.props?.latex ?? '')), math: true }];
+    if (n.type === 'inlineMath' || n.type === 'math') {
+      const latex = String(n.props?.latex ?? '');
+      return [{ texte: latexVersTexte(latex), math: true, latex }];
+    }
     return [];
   });
 }

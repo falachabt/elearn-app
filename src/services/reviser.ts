@@ -25,7 +25,8 @@ export const AUTRES = 'Autres';
 
 /** Durée pendant laquelle une copie locale est servie sans requête : le contenu des cours change rarement. */
 export const FRAICHEUR_COPIE_MS = 12 * 60 * 60 * 1000;
-const CLE_DATE = (cle: string) => `${cle}@date`;
+// « v2 » : les copies sans le LaTeX des formules (avant le 01/10 après-midi) sont relues une fois.
+const CLE_DATE = (cle: string) => `${cle}@v2`;
 
 /**
  * Copie locale d'abord si elle a moins de 12 h (pas de requête à chaque changement d'onglet), sinon le réseau, avec

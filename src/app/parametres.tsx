@@ -7,8 +7,10 @@ import { Carte } from '@/components/Carte';
 import { Ecran } from '@/components/Ecran';
 import { FeuilleRythme } from '@/components/FeuilleRythme';
 import { Interrupteur } from '@/components/Interrupteur';
+import { useRenduFormules } from '@/components/reviser/Blocs';
 import { useFeedback } from '@/components/useFeedback';
 import { useTraduction } from '@/i18n/useTraduction';
+import { definirRenduFormules } from '@/services/formules';
 import { definirPreference, moments } from '@/services/retours';
 import { lireRythme, TAILLE_DEFAUT } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -21,6 +23,7 @@ export default function Parametres() {
   const { preferences, declencher, reduit } = useFeedback();
   const [taille, setTaille] = useState<number | null>(null);
   const [rythme, setRythme] = useState(false);
+  const formules = useRenduFormules();
   useEffect(() => {
     lireRythme().then(setTaille).catch(() => {});
   }, []);
@@ -41,6 +44,7 @@ export default function Parametres() {
             valeur={reduit}
             onChange={(v) => definirPreference('animationsReduites', v)}
           />
+          <Interrupteur libelle={t('parametres.formules')} aide={t('parametres.formulesAide')} valeur={formules} onChange={(v) => void definirRenduFormules(v)} />
         </View>
       </Carte>
       <View style={styles.groupe}>

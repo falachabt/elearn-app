@@ -81,11 +81,11 @@ describe('Interrupteur', () => {
 });
 
 describe.each([['fr', 'Sons et vibrations', 'Animations réduites'], ['en', 'Sounds and vibrations', 'Reduced motion']])('écran Paramètres (%s)', (langue, titre, reduites) => {
-  it('affiche trois interrupteurs qui prennent effet immédiatement et sont mémorisés', async () => {
+  it('affiche quatre interrupteurs qui prennent effet immédiatement et sont mémorisés', async () => {
     await act(() => changerLangue(langue));
     await render(enveloppe(<Parametres />));
     expect(screen.getByText(titre)).toBeTruthy();
-    expect(screen.getAllByRole('switch')).toHaveLength(3);
+    expect(screen.getAllByRole('switch')).toHaveLength(4);
     await fireEvent(screen.getAllByRole('switch')[0], 'valueChange', false);
     expect(lirePreferences().sons).toBe(false);
     await fireEvent(screen.getByRole('switch', { name: reduites }), 'valueChange', true);

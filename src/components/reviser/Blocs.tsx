@@ -1,7 +1,10 @@
 import { Image } from 'expo-image';
+import { useEffect, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View, type TextStyle } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 import type { Bloc, Segment } from '@/services/blocs';
+import { abonnerRenduFormules, chargerRenduFormules, estComplexe, formuleSvg, lireRenduFormules } from '@/services/formules';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
@@ -27,10 +30,41 @@ function useCouleurs(surJaune?: boolean): Couleurs {
   return { texte: theme.texte.principal, lien: theme.texte.lien, note: theme.texte.secondaire, bord: theme.bord.fort, fondCode: theme.fond.creux, enteteTableau: theme.marque.douce, citation: theme.marque.principale };
 }
 
+/** Réglage d'essai « formules dessinées » (Paramètres), lu une fois au premier affichage. */
+export function useRenduFormules(): boolean {
+  const rendu = useSyncExternalStore(abonnerRenduFormules, lireRenduFormules, lireRenduFormules);
+  useEffect(() => {
+    void chargerRenduFormules();
+  }, []);
+  return rendu;
+}
+
+/** Hauteur d'x de MathJax rapportée à la taille du texte. */
+const EX = 0.442;
+
+/**
+ * Formule dessinée dans la ligne : une vue de taille fixe dans le Text, abaissée de sa descente pour que la ligne de
+ * base de la formule tombe sur celle du texte. Sans SVG (formule non comprise), le texte converti reste.
+ */
+function Formule({ s, taille, couleur }: { s: Segment; taille: number; couleur: string }) {
+  const f = s.latex ? formuleSvg(s.latex) : null;
+  if (!f) return <Text style={{ color: couleur }}>{s.texte}</Text>;
+  const ex = taille * EX;
+  return (
+    <View accessible accessibilityLabel={s.texte} style={{ width: f.largeurEx * ex, height: f.hauteurEx * ex, transform: [{ translateY: f.descenteEx * ex }] }}>
+      <SvgXml xml={f.xml} width={f.largeurEx * ex} height={f.hauteurEx * ex} color={couleur} />
+    </View>
+  );
+}
+
 function Segments({ segments, style, lien }: { segments: Segment[]; style: TextStyle; lien: string }) {
+  const rendu = useRenduFormules();
   return (
     <Text style={style}>
-      {segments.map((s, i) => (
+      {segments.map((s, i) =>
+        rendu && s.math && s.latex && estComplexe(s.latex) ? (
+          <Formule key={i} s={s} taille={style.fontSize ?? 16} couleur={lien} />
+        ) : (
         <Text
           key={i}
           style={[
@@ -42,7 +76,8 @@ function Segments({ segments, style, lien }: { segments: Segment[]; style: TextS
         >
           {s.texte}
         </Text>
-      ))}
+        ),
+      )}
     </Text>
   );
 }

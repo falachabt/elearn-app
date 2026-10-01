@@ -65,7 +65,7 @@ describe('normaliserBlocs', () => {
     expect(blocs[1]).toEqual({
       type: 'paragraphe',
       retrait: 0,
-      segments: [{ texte: 'L’' }, { texte: 'amplitude', gras: true }, { texte: ' vaut ' }, { texte: 'a = (xₘₐₓ - xₘᵢₙ)/k', math: true }],
+      segments: [{ texte: 'L’' }, { texte: 'amplitude', gras: true }, { texte: ' vaut ' }, { texte: 'a = (xₘₐₓ - xₘᵢₙ)/k', math: true, latex: 'a = \\frac{x_{max} - x_{min}}{k}' }],
     });
     expect(blocs.filter((b) => b.type === 'paragraphe')).toHaveLength(1);
   });

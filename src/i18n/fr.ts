@@ -41,6 +41,8 @@ export const fr = {
     obligatoireTexte: 'Cette version n’est plus prise en charge. Mets à jour pour continuer à utiliser Elearn Prepa.',
   },
   parametres: {
+    formules: 'Formules dessinées (essai)',
+    formulesAide: 'Affiche les fractions, racines et limites comme dans un manuel. Désactivé : formules en texte.',
     titre: 'Sons et vibrations',
     retour: 'Retour',
     sons: 'Sons',
