@@ -14,6 +14,7 @@ import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { CarteListe } from '../liste/CarteListe';
+import { Progressive } from '../liste/Progressive';
 import { PiluleCompteur } from '../liste/PiluleCompteur';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Puce } from '../liste/Puce';
@@ -103,7 +104,11 @@ export function Entrainement({ matieres, cle }: Props) {
         </ScrollView>
       ) : null}
       {dernier ? <Reprendre d={dernier} chapitre={nomChapitre(dernier.cours) || dernier.chapitre} /> : null}
-      {visibles.map((m) => (
+      <Progressive
+        items={visibles}
+        initial={2}
+        pas={2}
+        rendu={(m) => (
         <View key={m.nom} style={styles.matiere}>
           <View style={styles.entete}>
             <View style={[styles.icone, { backgroundColor: couleurs[m.nom], borderColor: theme.bord.fort }]}>
@@ -138,7 +143,8 @@ export function Entrainement({ matieres, cle }: Props) {
             );
           })}
         </View>
-      ))}
+        )}
+      />
     </View>
   );
 }

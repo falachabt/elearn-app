@@ -18,6 +18,7 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { CarteListe } from '../liste/CarteListe';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Pastille } from '../liste/Pastille';
+import { Progressive } from '../liste/Progressive';
 import { PastilleType } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
 import { libelleQuiz, rangsSansNom } from './libelles';
@@ -116,7 +117,11 @@ export function ChapitreEntrainement() {
       ) : null}
       {etat.statut === 'pret' && liste.length ? (
         <View style={styles.groupe}>
-          {liste.map((el) => {
+          <Progressive
+            items={liste}
+            initial={10}
+            pas={10}
+            rendu={(el) => {
             if (el.type === 'quiz') {
               const score = etat.scores[el.q.id];
               return (
@@ -143,7 +148,8 @@ export function ChapitreEntrainement() {
                 onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours) } })}
               />
             );
-          })}
+            }}
+          />
         </View>
       ) : null}
     </Ecran>

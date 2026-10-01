@@ -12,6 +12,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Puce } from '../liste/Puce';
 import { CarteListe } from '../liste/CarteListe';
+import { Progressive } from '../liste/Progressive';
 import { Pastille } from '../liste/Pastille';
 import { PastilleType } from '../liste/PastilleType';
 
@@ -70,7 +71,11 @@ export function ListeSujets({ sujets }: { sujets: Sujet[] }) {
         </View>
       ) : null}
       <View style={styles.cartes}>
-        {liste.map((s) => {
+        <Progressive
+          items={liste}
+          initial={12}
+          pas={12}
+          rendu={(s) => {
           const titre = s.matiere ? [recaser(s.matiere), s.annee].filter(Boolean).join(' ') : [recaser(s.titre), s.annee].filter(Boolean).join(' ');
           const sousTitre = [s.corrige ? t('annales.sujetCorrige') : t('annales.sujetSeul'), s.dureeMin ? t('annales.duree', { n: s.dureeMin }) : null].filter(Boolean).join(' · ');
           const etat = gardes.has(s.id) ? <Pastille vert texte={t('annales.horsLigne')} /> : s.gratuit ? <Pastille vert texte={t('annales.gratuit')} /> : <Pastille texte={t('annales.pass')} />;
@@ -84,7 +89,8 @@ export function ListeSujets({ sujets }: { sujets: Sujet[] }) {
               onPress={() => router.push({ pathname: '/annales/sujet', params: { id: String(s.id) } })}
             />
           );
-        })}
+          }}
+        />
       </View>
       <Bouton variante="texte" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} />
     </View>
