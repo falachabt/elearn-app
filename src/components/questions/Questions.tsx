@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -17,7 +18,9 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { useCompteRequis } from '../FeuilleCompte';
 import { EcranErreur } from '../liste/EcranErreur';
+import { Onglets } from '../Onglets';
 import { Puce } from '../liste/Puce';
+import { PhotoPleine } from './PhotoPleine';
 import { Squelettes } from '../liste/Squelettes';
 import { CarteQuestion } from './CarteQuestion';
 
@@ -26,7 +29,7 @@ type Etat =
   | { statut: 'erreur' }
   | { statut: 'pret'; questions: Question[]; suivant: string | null; copie: boolean };
 
-type Classe = 'maClasse' | 'toutes' | 'resolues';
+type Classe = 'maClasse' | 'toutes';
 
 /** G1 · Fil des questions (M7-01) : filtres matière et classe, cartes de questions, copie locale au retour et hors ligne. */
 export function Questions() {
@@ -37,10 +40,13 @@ export function Questions() {
   const [niveau, setNiveau] = useState<string | null>(null);
   const [matiere, setMatiere] = useState<string | null>(null);
   const [classe, setClasse] = useState<Classe>('maClasse');
+  const [resolues, setResolues] = useState(false);
+  const [photo, setPhoto] = useState<string | null>(null);
+  const { bottom } = useSafeAreaInsets();
   const [essai, setEssai] = useState(0);
   const [plus, setPlus] = useState(false);
-  const filtres: FiltresFil = { matiere, classe: classe === 'maClasse' ? niveau : null, resolues: classe === 'resolues' };
-  const cle = `questions.${filtres.classe ?? '*'}.${matiere ?? '*'}.${classe}`;
+  const filtres: FiltresFil = { matiere, classe: classe === 'maClasse' ? niveau : null, resolues };
+  const cle = `questions.${filtres.classe ?? '*'}.${matiere ?? '*'}.${classe}.${resolues}`;
   const [etat, setEtat] = useEtatMemorise<Etat>(cle, { statut: 'chargement' });
 
   useEffect(() => {
@@ -58,7 +64,7 @@ export function Questions() {
     };
     // `filtres` dérive de niveau, matiere et classe.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pret, niveau, matiere, classe, essai, setEtat]);
+  }, [pret, niveau, matiere, classe, resolues, essai, setEtat]);
 
   const voirPlus = useCallback(async () => {
     if (etat.statut !== 'pret' || !etat.suivant || plus) return;
@@ -75,20 +81,31 @@ export function Questions() {
   }, [etat, plus]);
 
   return (
-    <Ecran insetBas={false} pied={<Bouton libelle={`+ ${t('questions.poserCourt')}`} desactive={etat.statut === 'pret' && etat.copie} onPress={() => exiger('question', () => router.push('/question/poser'))} />}>
+    <View style={styles.racine}>
+    <Ecran insetBas={false} contenuStyle={styles.contenu}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('questions.titre')}</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.puces}>
-        <Puce libelle={t('questions.toutes')} choisie={!matiere} onPress={() => setMatiere(null)} />
-        {MATIERES_FIL.map((m) => {
-          const c = couleurMatiere(m);
-          return <Puce key={m} libelle={m} choisie={matiere === m} onPress={() => setMatiere(m)} pastille={c ? couleursMatiere[c] : undefined} />;
-        })}
-      </ScrollView>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.puces}>
-        <Puce libelle={niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes')} choisie={classe === 'maClasse'} onPress={() => setClasse('maClasse')} />
-        <Puce libelle={t('questions.toutesClasses')} choisie={classe === 'toutes'} onPress={() => setClasse('toutes')} />
-        <Puce libelle={t('questions.resolues')} choisie={classe === 'resolues'} onPress={() => setClasse('resolues')} />
-      </ScrollView>
+      <View style={styles.filtres}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.bordABord} contentContainerStyle={styles.puces}>
+          <Puce libelle={t('questions.toutes')} choisie={!matiere} onPress={() => setMatiere(null)} />
+          {MATIERES_FIL.map((m) => {
+            const c = couleurMatiere(m);
+            return <Puce key={m} libelle={m} choisie={matiere === m} onPress={() => setMatiere(m)} pastille={c ? couleursMatiere[c] : undefined} />;
+          })}
+        </ScrollView>
+        <View style={styles.rangeeClasse}>
+          <View style={styles.flex}>
+            <Onglets
+              valeurs={[
+                { valeur: 'maClasse' as Classe, libelle: niveau ? t('questions.maClasse', { classe: niveau }) : t('questions.toutes') },
+                { valeur: 'toutes' as Classe, libelle: t('questions.toutesClasses') },
+              ]}
+              valeur={classe}
+              onChange={setClasse}
+            />
+          </View>
+          <Puce libelle={t('questions.resolues')} choisie={resolues} onPress={() => setResolues((r) => !r)} />
+        </View>
+      </View>
       {etat.statut === 'chargement' ? <Squelettes nombre={3} /> : null}
       {etat.statut === 'erreur' ? (
         <EcranErreur
@@ -113,21 +130,34 @@ export function Questions() {
       {etat.statut === 'pret' ? (
         <View style={styles.liste}>
           {etat.questions.map((q) => (
-            <CarteQuestion key={q.id} q={q} onPress={() => router.push({ pathname: '/question', params: { id: q.id } })} />
+            <CarteQuestion key={q.id} q={q} onPhoto={setPhoto} onPress={() => router.push({ pathname: '/question', params: { id: q.id } })} />
           ))}
           {etat.suivant && !etat.copie ? <Bouton variante="secondaire" libelle={t('questions.voirPlus')} onPress={voirPlus} desactive={plus} /> : null}
           {etat.copie ? <Banniere ton="info" titre={t('questions.horsLigne')} /> : null}
         </View>
       ) : null}
+      <PhotoPleine uri={photo} onFermer={() => setPhoto(null)} />
       {feuille}
     </Ecran>
+    <View pointerEvents="box-none" style={[styles.flottant, { bottom: bottom + 62 }]}>
+      <Bouton petit libelle={`+ ${t('questions.poserCourt')}`} desactive={etat.statut === 'pret' && etat.copie} onPress={() => exiger('question', () => router.push('/question/poser'))} />
+    </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  // Les rangées de filtres ne s'étirent pas (pas de flex) : la liste démarre juste dessous.
+  bordABord: { flexGrow: 0, marginHorizontal: -espace[6] },
   centre: { textAlign: 'center' },
-  liste: { gap: espace[4] },
-  puces: { gap: espace[3], paddingRight: espace[5] },
+  contenu: { gap: espace[4], paddingBottom: 96 },
+  filtres: { gap: espace[3] },
+  flex: { flex: 1 },
+  flottant: { position: 'absolute', right: espace[5] },
+  liste: { gap: 10 },
+  puces: { gap: espace[3], paddingHorizontal: espace[6] },
+  racine: { flex: 1 },
+  rangeeClasse: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   rond: { width: 56, height: 56, borderRadius: 28, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
   vide: { alignItems: 'center', gap: espace[4], paddingVertical: espace[8] },
 });

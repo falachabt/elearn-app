@@ -1,6 +1,7 @@
 import { ArrowUp } from 'lucide-react-native';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import {
+  Keyboard,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -46,6 +47,8 @@ type Props = {
   retourHaut?: boolean;
   /** Bouton ou zone fixe collée en bas, au-dessus du clavier. */
   pied?: ReactNode;
+  /** Pied pleine largeur, bord à bord, collé au clavier (barre de saisie) : sans marge, et sans inset du bas quand le clavier est ouvert. */
+  piedPleineLargeur?: boolean;
   /** Revient en haut du défilement chaque fois que cette valeur change (ex. bascule énoncé / corrigé). */
   remonterSur?: unknown;
   style?: StyleProp<ViewStyle>;
@@ -60,13 +63,23 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, remonterSur, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedPleineLargeur, remonterSur, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
   const [defile, setDefile] = useState({ separateur: false, haut: false });
   const insets = useSafeAreaInsets();
   const defileur = useRef<ScrollView>(null);
+  const [clavier, setClavier] = useState(false);
+  useEffect(() => {
+    if (!piedPleineLargeur) return;
+    const a = Keyboard.addListener('keyboardDidShow', () => setClavier(true));
+    const b = Keyboard.addListener('keyboardDidHide', () => setClavier(false));
+    return () => {
+      a.remove();
+      b.remove();
+    };
+  }, [piedPleineLargeur]);
 
   const rendreVisible = useCallback<Visible>((cible) => {
     const vue = defileur.current;
@@ -159,7 +172,13 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
               </View>
             ) : null}
           </View>
-          {pied ? <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View> : null}
+          {pied ? (
+            piedPleineLargeur ? (
+              <View testID="ecran-pied-large" style={{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }}>{pied}</View>
+            ) : (
+              <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View>
+            )
+          ) : null}
         </View>
       </KeyboardAvoidingView>
     </ContexteEcran.Provider>

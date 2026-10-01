@@ -89,8 +89,8 @@ export function Composeur({ repondA, onAnnulerCible, onEnvoyer, horsLigne }: Pro
 }
 
 const styles = StyleSheet.create({
-  barre: { gap: espace[3], paddingHorizontal: espace[5], paddingVertical: espace[3], borderTopWidth: bord.normal },
-  champ: { flex: 1, minHeight: cibleMin, maxHeight: 5 * 22 + 24, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[3] },
+  barre: { gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3], borderTopWidth: bord.normal },
+  champ: { flex: 1, minHeight: 2 * 22 + 24, maxHeight: 5 * 22 + 24, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[3], textAlignVertical: 'top' },
   cible: { flexDirection: 'row', alignItems: 'center', gap: espace[3], borderWidth: bord.fin, borderRadius: rayon.m, paddingHorizontal: espace[4], paddingVertical: espace[2] },
   flex: { flex: 1 },
   ligne: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[3] },

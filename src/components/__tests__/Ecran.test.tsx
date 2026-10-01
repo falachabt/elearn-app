@@ -108,3 +108,13 @@ describe('Ecran', () => {
     expect(screen.queryByRole('button', { name: 'Revenir en haut' })).toBeNull();
   });
 });
+
+describe('Ecran, pied pleine largeur', () => {
+  it('pose le pied bord à bord, sans marge latérale, avec l’inset du bas quand le clavier est fermé', async () => {
+    await render(avecTheme('clair', <Ecran piedPleineLargeur pied={<Text>barre</Text>}><Text>contenu</Text></Ecran>));
+    const pied = screen.getByTestId('ecran-pied-large');
+    const style = StyleSheet.flatten(pied.props.style);
+    expect(style.paddingBottom).toBe(34);
+    expect(style.paddingHorizontal).toBeUndefined();
+  });
+});

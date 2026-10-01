@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { EyeOff, Flag } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { useEtatMemorise } from '@/services/memoire';
@@ -20,6 +20,8 @@ import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
 import { Composeur } from './Composeur';
+import { PhotoCarte } from './PhotoCarte';
+import { PhotoPleine } from './PhotoPleine';
 import { FeuilleSignalement, type CibleSignalement } from './FeuilleSignalement';
 import { useCouleurMatiere, useIlYa } from './CarteQuestion';
 
@@ -40,6 +42,7 @@ export function FicheQuestion() {
   const [signal, setSignal] = useState<CibleSignalement | null>(null);
   const [masques, setMasques] = useState<Set<string>>(new Set());
   const [merci, setMerci] = useState(false);
+  const [photoGrande, setPhotoGrande] = useState<string | null>(null);
   const [sorties, setSorties] = useState<Sortie[]>([]);
   const { session } = useSession();
   const userId = session?.user.id ?? '';
@@ -116,6 +119,7 @@ export function FicheQuestion() {
 
   return (
     <Ecran
+      piedPleineLargeur
       pied={q ? <Composeur repondA={cible ? cible.auteur : null} onAnnulerCible={() => setCible(null)} onEnvoyer={envoyerReponse} /> : undefined}
       entete={
         <>
@@ -147,9 +151,7 @@ export function FicheQuestion() {
           ) : (
             <Text style={[typo.texteGrand, { color: theme.texte.principal }]}>{q.texte}</Text>
           )}
-          {q.masquee || masques.has(id) ? null : q.photos.map((u) => (
-            <Image key={u} source={{ uri: u }} style={[styles.photo, { borderColor: theme.bord.fort }]} resizeMode="cover" accessibilityIgnoresInvertColors />
-          ))}
+          {q.masquee || masques.has(id) ? null : q.photos.map((u) => <PhotoCarte key={u} uri={u} onAgrandir={setPhotoGrande} />)}
         </View>
       ) : null}
       {merci ? <Banniere ton="succes" titre={t('questions.signalementMerci')} texte={t('questions.signalementMerciTexte')} /> : null}
@@ -159,12 +161,12 @@ export function FicheQuestion() {
       ) : null}
       {reponses.map(({ reponse, suites }) => (
         <View key={reponse.id} style={styles.groupe}>
-          <CarteReponse r={reponse} onVote={voterPour} onMenu={setMenu} onRepondre={setCible} masquee={masques.has(reponse.id)} />
+          <CarteReponse r={reponse} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} masquee={masques.has(reponse.id)} />
           {suites.map((s) => (
             <View key={s.id} style={styles.suite}>
               <View style={[styles.filet, { backgroundColor: theme.bord.doux }]} />
               <View style={styles.flex}>
-                <CarteReponse r={s} onVote={voterPour} onMenu={setMenu} onRepondre={setCible} masquee={masques.has(s.id)} />
+                <CarteReponse r={s} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} masquee={masques.has(s.id)} />
               </View>
             </View>
           ))}
@@ -204,12 +206,13 @@ export function FicheQuestion() {
           setMerci(true);
         }}
       />
+      <PhotoPleine uri={photoGrande} onFermer={() => setPhotoGrande(null)} />
       {feuille}
     </Ecran>
   );
 }
 
-function CarteReponse({ r, onVote, onMenu, onRepondre, masquee }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void; masquee: boolean }) {
+function CarteReponse({ r, onVote, onMenu, onRepondre, masquee, onPhoto }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void; masquee: boolean; onPhoto: (uri: string) => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const ilYa = useIlYa();
@@ -235,7 +238,8 @@ function CarteReponse({ r, onVote, onMenu, onRepondre, masquee }: { r: Reponse; 
         ) : null}
       </View>
       {r.ia ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.repondEnPremier')}</Text> : null}
-      <Text style={[typo.texte, { color: theme.texte.principal }]}>{r.texte}</Text>
+      {r.texte ? <Text style={[typo.texte, { color: theme.texte.principal }]}>{r.texte}</Text> : null}
+      {r.photos.map((u) => <PhotoCarte key={u} uri={u} onAgrandir={onPhoto} />)}
       <View style={styles.haut}>
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{ilYa(r.creeLe)}</Text>
         <Appui accessibilityRole="button" accessibilityLabel={t('questions.repondreA', { nom: r.ia ? 'Elearn Prepa' : r.auteur })} onPress={() => onRepondre(r)} decalage={0}>
