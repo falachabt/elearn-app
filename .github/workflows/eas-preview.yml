@@ -76,7 +76,7 @@ jobs:
           if printf '%s' "$MESSAGE" | grep -qiF '[obligatoire]'; then UPDATE_OBLIGATOIRE=1; else UPDATE_OBLIGATOIRE=0; fi
           export UPDATE_OBLIGATOIRE
           echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
-          eas update --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
+          eas update --platform android --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
 
   build:
     runs-on: ubuntu-latest
