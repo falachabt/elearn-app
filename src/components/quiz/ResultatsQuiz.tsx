@@ -33,9 +33,9 @@ export function ResultatsQuiz({ statuts, leconsRatees }: Props) {
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('correction.aide')}</Text>
       <GrilleQuestions statuts={statuts} onChoisir={revoirQuestion} />
       <View style={styles.legende}>
-        <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('correction.justes', { n: nb('juste') })}</Text>
-        <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('correction.fausses', { n: nb('faux') })}</Text>
-        {nb('passe') ? <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('correction.passees', { n: nb('passe') })}</Text> : null}
+        <Legende couleur={theme.marque.principale} texte={t('correction.justes', { n: nb('juste') })} />
+        <Legende couleur={theme.etat.erreur} texte={t('correction.fausses', { n: nb('faux') })} />
+        {nb('passe') ? <Legende couleur={theme.etat.alerte} texte={t('correction.passees', { n: nb('passe') })} /> : null}
       </View>
       {erreurs ? <Bouton libelle={t('mission.refaireErreurs', { n: erreurs })} onPress={() => router.push('/mission/erreurs')} /> : null}
       <Bouton variante="secondaire" libelle={t('correction.revoir')} onPress={() => revoirQuestion(erreurs ? premiere : 0)} />
@@ -44,7 +44,20 @@ export function ResultatsQuiz({ statuts, leconsRatees }: Props) {
   );
 }
 
+/** Légende avec le même carré que la grille. */
+function Legende({ couleur, texte }: { couleur: string; texte: string }) {
+  const { theme } = useTheme();
+  return (
+    <View style={styles.item}>
+      <View style={[styles.carre, { backgroundColor: couleur, borderColor: theme.bord.fort }]} />
+      <Text style={[typo.legende, { color: theme.texte.principal }]}>{texte}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  item: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  carre: { width: 12, height: 12, borderRadius: 3, borderWidth: 1.5 },
   groupe: { gap: espace[4] },
   legende: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[5] },
 });

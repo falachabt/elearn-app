@@ -8,10 +8,11 @@ import { suivre } from '@/services/analytics';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
-import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
-import { Ligne } from '../entrainement/Ligne';
+import { CarteListe } from '../liste/CarteListe';
+import { PastilleType } from '../liste/PastilleType';
 import { ResultatsQuiz } from './ResultatsQuiz';
 
 /** Cours des questions ratées, sans doublon, dans l'ordre du quiz. */
@@ -48,19 +49,32 @@ export function EcranResultats() {
   if (!c) return <Ecran>{null}</Ecran>;
   const s = statuts(c);
   const rates = coursRates(c, s);
+  const justes = s.filter((x) => x === 'juste').length;
+  const taux = s.length ? justes / s.length : 0;
+  const message = t(taux >= 0.8 ? 'correction.bravo' : taux >= 0.5 ? 'correction.bienJoue' : 'correction.onContinue');
   return (
-    <Ecran pied={<Bouton libelle={t('correction.terminer')} onPress={fermer} />} entete={<BoutonFermer libelle={t('correction.terminer')} onPress={fermer} />}>
-      <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('correction.score', { score: s.filter((x) => x === 'juste').length, total: s.length })}</Text>
-      <ResultatsQuiz statuts={s} leconsRatees={{ nombre: rates.length, unCours: rates.length === 1, onPress: () => (rates.length === 1 ? relire(rates[0]) : setListe(true)) }} />
-      {liste ? (
+    <>
+      <Ecran entete={<BoutonFermer petit libelle={t('correction.terminer')} onPress={fermer} />}>
+        <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('correction.titreScore', { score: justes, total: s.length, message })}</Text>
+        <ResultatsQuiz statuts={s} leconsRatees={{ nombre: rates.length, unCours: rates.length === 1, onPress: () => (rates.length === 1 ? relire(rates[0]) : setListe(true)) }} />
+      </Ecran>
+      <Feuille ouverte={liste} onFermer={() => setListe(false)} titre={t('correction.leconsTitre')} actions={[{ libelle: t('correction.fermer'), onPress: () => setListe(false), variante: 'secondaire' }]}>
         <View style={styles.groupe}>
           {rates.map((r) => (
-            <Ligne key={r.id} icone="book-outline" titre={r.nom} onPress={() => relire(r)} />
+            <CarteListe
+              key={r.id}
+              gauche={<PastilleType type="lecon" />}
+              titre={r.nom}
+              onPress={() => {
+                setListe(false);
+                relire(r);
+              }}
+            />
           ))}
         </View>
-      ) : null}
-    </Ecran>
+      </Feuille>
+    </>
   );
 }
 
-const styles = StyleSheet.create({ groupe: { gap: espace[4] } });
+const styles = StyleSheet.create({ groupe: { gap: espace[3] } });

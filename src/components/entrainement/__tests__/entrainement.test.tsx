@@ -179,6 +179,9 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     // Résultats : une erreur, un seul chapitre → « Relire le cours ».
     await monter(<EcranResultats />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.correction.relireCours })).toBeTruthy());
+    // 2/3 : « bien joué ».
+    expect(screen.getByText(x.correction.titreScore.replace('{{score}}', '2').replace('{{total}}', '3').replace('{{message}}', x.correction.bienJoue))).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: x.correction.terminer })).toHaveLength(1); // seulement le ✕ en haut
     await fireEvent.press(screen.getByRole('button', { name: x.correction.relireCours }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions' } });
     const c = await lireCorrection();
