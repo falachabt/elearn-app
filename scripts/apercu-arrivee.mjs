@@ -96,6 +96,7 @@ try {
       await page.goto(`http://127.0.0.1:${port}/parametres`);
       await page.getByText('Taille du texte').waitFor({ timeout: 30000 });
       await capture('h2-haut');
+      await page.mouse.move(195, 420);
       await page.mouse.wheel(0, 3000);
       await capture('h2-bas');
       await page.goto(`http://127.0.0.1:${port}/parametres/sons`);
