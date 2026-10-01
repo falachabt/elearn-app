@@ -20,6 +20,11 @@ export type Question = {
   miennes: boolean;
   /** Signalée : masquée en attente d'examen (visible seulement par son auteur). */
   masquee: boolean;
+  /** Sondage (post de l'équipe) : options à choisir, résultats après le vote. */
+  sondage: boolean;
+  equipe: boolean;
+  votes: number;
+  aVote: boolean;
 };
 export type FiltresFil = { matiere?: string | null; classe?: string | null; resolues?: boolean };
 
@@ -43,12 +48,14 @@ export const cleFil = (f: FiltresFil) => `questions.fil.${f.classe ?? '*'}.${f.m
 type Ligne = {
   id: string; author_id: string; author_name: string | null; has_ai: boolean; content: string; media_urls: string[] | null; subject: string | null; class_level: string | null;
   created_at: string; answers_count: number | string; resolved: boolean; mine: boolean; hidden: boolean;
+  is_poll?: boolean; is_team?: boolean; poll_votes?: number | string; poll_voted?: boolean;
 };
 
 export function versQuestion(l: Ligne): Question {
   return {
     id: l.id, auteurId: l.author_id, auteur: l.author_name ?? '', ia: l.has_ai, texte: l.content, photos: l.media_urls ?? [], matiere: l.subject, classe: l.class_level,
     creeLe: l.created_at, reponses: Number(l.answers_count), resolue: l.resolved, miennes: l.mine, masquee: !!l.hidden,
+    sondage: !!l.is_poll, equipe: !!l.is_team, votes: Number(l.poll_votes ?? 0), aVote: !!l.poll_voted,
   };
 }
 
@@ -275,3 +282,88 @@ export async function envoyerSortiesEnAttente(client: ClientReponse, questionId:
   }
   return envoyees;
 }
+
+export type OptionSondage = { id: string; libelle: string; votes: number | null; monChoix: boolean; correcte: boolean | null };
+export type Sondage = { options: OptionSondage[]; aVote: boolean; revele: boolean; total: number; reveleLe: string | null; explication: string | null };
+type LigneSondage = {
+  option_id: string; label: string; votes: number | string | null; mine: boolean; correct: boolean | null; voted: boolean; revealed: boolean;
+  total: number | string | null; explanation: string | null; reveal_at: string | null;
+};
+
+export const cleSondage = (id: string) => `questions.sondage.${id}`;
+
+/** Sondage : les résultats n'arrivent qu'après le vote ; la bonne réponse seulement une fois révélée (G6). */
+export async function lireSondage(client: ClientFil, id: string): Promise<Sondage> {
+  try {
+    const { data, error } = await client.rpc('poll_state', { p_post: id });
+    if (error) throw error;
+    const l = (data ?? []) as LigneSondage[];
+    const sondage: Sondage = {
+      options: l.map((o) => ({ id: o.option_id, libelle: o.label, votes: o.votes === null ? null : Number(o.votes), monChoix: !!o.mine, correcte: o.correct })),
+      aVote: !!l[0]?.voted,
+      revele: !!l[0]?.revealed,
+      total: Number(l[0]?.total ?? 0),
+      reveleLe: l[0]?.reveal_at ?? null,
+      explication: l[0]?.explanation ?? null,
+    };
+    await AsyncStorage.setItem(cleSondage(id), JSON.stringify(sondage));
+    return sondage;
+  } catch (e) {
+    const copie = await AsyncStorage.getItem(cleSondage(id));
+    if (copie) return JSON.parse(copie) as Sondage;
+    throw e;
+  }
+}
+
+/** Un vote est définitif (G6b). */
+export async function voterSondage(client: ClientFil, id: string, optionId: string): Promise<void> {
+  const { error } = await client.rpc('vote_poll', { p_post: id, p_option: optionId });
+  if (error) throw error;
+}
+
+/** Part d'une option en % (entier), 0 sans vote. */
+export const pourcentage = (votes: number | null, total: number): number => (!votes || !total ? 0 : Math.round((votes / total) * 100));
+
+/** Le choix de l'élève était faux : seulement une fois la bonne réponse révélée. */
+export const choixFaux = (s: Sondage): boolean => s.revele && s.options.some((o) => o.monChoix && o.correcte === false);
+
+// --- Pastille de nouveautés de l'onglet Questions (état « lu » enregistré côté serveur) ---
+let nouvelles = 0;
+const abonnes = new Set<() => void>();
+const noter = (n: number) => {
+  if (n === nouvelles) return;
+  nouvelles = n;
+  abonnes.forEach((f) => f());
+};
+export const abonnerNouvelles = (f: () => void) => {
+  abonnes.add(f);
+  return () => {
+    abonnes.delete(f);
+  };
+};
+export const lireNouvelles = () => nouvelles;
+
+/** Nombre de questions arrivées depuis la dernière ouverture de l'onglet ; silencieux hors ligne. */
+export async function actualiserNouvelles(client: ClientFil, classe: string | null): Promise<number> {
+  try {
+    const { data, error } = await client.rpc('questions_unseen', { p_class: classe });
+    if (error) throw error;
+    noter(Number(data ?? 0));
+  } catch {
+    // hors ligne : on garde la dernière valeur connue
+  }
+  return nouvelles;
+}
+
+/** Ouverture de l'onglet : la pastille s'efface tout de suite, puis le serveur retient la visite. */
+export async function marquerVues(client: ClientFil): Promise<void> {
+  noter(0);
+  try {
+    await client.rpc('mark_questions_seen');
+  } catch {
+    // la prochaine ouverture réessaie
+  }
+}
+
+/** « 9+ » au-delà de 9. */
+export const texteBadge = (n: number): string => (n > 9 ? '9+' : String(n));

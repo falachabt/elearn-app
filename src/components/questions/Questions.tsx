@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
-import { curseurSuivant, lireFil, MATIERES_FIL, type FiltresFil, type Question } from '@/services/questions';
+import { curseurSuivant, lireFil, marquerVues, MATIERES_FIL, type FiltresFil, type Question } from '@/services/questions';
 import { couleurMatiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -48,6 +48,13 @@ export function Questions() {
   const filtres: FiltresFil = { matiere, classe: classe === 'maClasse' ? niveau : null, resolues };
   const cle = `questions.${filtres.classe ?? '*'}.${matiere ?? '*'}.${classe}.${resolues}`;
   const [etat, setEtat] = useEtatMemorise<Etat>(cle, { statut: 'chargement' });
+
+  // Ouvrir l'onglet efface la pastille de nouveautés, sur tous les appareils.
+  useFocusEffect(
+    useCallback(() => {
+      if (pret) void marquerVues(getSupabase());
+    }, [pret]),
+  );
 
   useEffect(() => {
     void lireProfil().then((p) => setNiveau(p?.niveau ?? null));
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
   // Les rangées de filtres ne s'étirent pas (pas de flex) : la liste démarre juste dessous.
   bordABord: { flexGrow: 0, marginHorizontal: -espace[6] },
   centre: { textAlign: 'center' },
-  contenu: { gap: espace[4], paddingBottom: 96 },
+  contenu: { gap: espace[4], paddingBottom: 96, flexGrow: 1 },
   filtres: { gap: espace[3] },
   flex: { flex: 1 },
   flottant: { position: 'absolute', right: espace[5] },
@@ -159,5 +166,6 @@ const styles = StyleSheet.create({
   racine: { flex: 1 },
   rangeeClasse: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   rond: { width: 56, height: 56, borderRadius: 28, borderWidth: 2, alignItems: 'center', justifyContent: 'center' },
-  vide: { alignItems: 'center', gap: espace[4], paddingVertical: espace[8] },
+  // Seul le message est centré dans l'espace restant ; les filtres restent collés en haut.
+  vide: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: espace[4], paddingBottom: 96 },
 });

@@ -16,6 +16,7 @@ import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { useFeedback } from '../useFeedback';
 import { Onglets } from '../Onglets';
+import { ContexteRepliable } from './ContexteRepliable';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Pastille } from '../liste/Pastille';
@@ -214,12 +215,7 @@ export function ExerciceLibre() {
             </View>
           ) : (
             <>
-              {etat.detail?.contexte.length ? (
-                <View style={[styles.bloc, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-                  <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('entrainement.contexte')}</Text>
-                  <Blocs blocs={etat.detail.contexte} />
-                </View>
-              ) : null}
+              {etat.detail?.contexte.length ? <ContexteRepliable key={id} blocs={etat.detail.contexte} /> : null}
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('entrainement.question')}</Text>
               {etat.detail?.enonce.length ? <Blocs blocs={etat.detail.enonce} /> : <Text selectable style={[typo.texte, { color: theme.texte.principal }]}>{exercice.enonce}</Text>}
             </>

@@ -46,6 +46,8 @@ export type Evenements = {
   oauth_repli_connexion: { methode: 'google' | 'facebook'; raison: string };
   identite_rattachee: { methode: 'google' | 'apple' | 'facebook' };
   deconnexion: Record<string, never>;
+  credits_spent: { action: string; cout: number; solde: number };
+  credits_exhausted: { action: string; cout: number; solde: number };
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };
 };
 

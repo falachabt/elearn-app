@@ -49,9 +49,14 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
             <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{(q.auteur || '?').charAt(0).toUpperCase()}</Text>
           </View>
           <View style={styles.flex}>
-            <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{q.auteur}{q.classe ? ` · ${q.classe}` : ''}</Text>
+            <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{q.equipe ? 'Elearn Prépa' : q.auteur}{q.classe ? ` · ${q.classe}` : ''}</Text>
             <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{ilYaTexte(q.creeLe)}</Text>
           </View>
+          {q.equipe ? (
+            <View style={[styles.pastille, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.equipe')}</Text>
+            </View>
+          ) : null}
           {q.matiere ? (
             <View style={[styles.pastille, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
               <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{q.matiere}</Text>
@@ -67,6 +72,12 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
           <Text numberOfLines={2} style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{q.texte}</Text>
         </View>
         <View style={styles.pied}>
+          {q.sondage ? (
+            <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.sondage')}</Text>
+            </View>
+          ) : null}
+          {q.sondage ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{q.aVote ? t('questions.aVote') : t('questions.nVotes', { n: q.votes })}</Text> : null}
           <MessageCircle size={16} strokeWidth={2} color={theme.texte.secondaire} />
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{reponses}</Text>
           {q.ia ? (

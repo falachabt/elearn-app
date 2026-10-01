@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
+import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord } from '@/theme/theme';
@@ -15,6 +16,7 @@ export default function LayoutOnglets() {
   const { theme } = useTheme();
   const { bottom } = useSafeAreaInsets();
   const { t } = useTraduction();
+  const nouvelles = useNouvellesQuestions();
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
   useEffect(() => {
@@ -42,7 +44,7 @@ export default function LayoutOnglets() {
             <Onglet libelle={t('onglets.photo')} icone="camera" central />
           </TabTrigger>
           <TabTrigger name="questions" href="/questions" asChild>
-            <Onglet libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
+            <Onglet badge={nouvelles} libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
           </TabTrigger>
           <TabTrigger name="moi" href="/moi" asChild>
             <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
