@@ -7,7 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { calculerResultat, enregistrerResultat, tirerMiniTest, type QuestionTiree } from '@/services/miniTest';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -39,12 +39,15 @@ export function Progression({ faites, total, libelle }: { faites: number; total:
 }
 
 /** Bouton carré « fermer » (ou « retour » avec icone="chevron-back") des en-têtes. */
-export function BoutonFermer({ libelle, onPress, icone = 'close', petit }: { libelle: string; onPress: () => void; icone?: 'close' | 'chevron-back'; petit?: boolean }) {
+export function BoutonFermer({ libelle, onPress, icone = 'close', petit, surCouleur }: { libelle: string; onPress: () => void; icone?: 'close' | 'chevron-back'; petit?: boolean; surCouleur?: boolean }) {
   const { theme } = useTheme();
+  // Sur un bandeau de couleur (matière) : fond blanc et icône noire, dans les deux thèmes.
+  const fond = surCouleur ? palette.papier[0] : theme.fond.surface;
+  const encre = surCouleur ? palette.encre[1000] : theme.texte.principal;
   return (
     <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.m} hitSlop={petit ? 6 : undefined}>
-      <View style={[styles.fermer, petit && styles.fermerPetit, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-        <Ionicons name={icone} size={20} color={theme.texte.principal} />
+      <View style={[styles.fermer, petit && styles.fermerPetit, { borderColor: surCouleur ? palette.encre[1000] : theme.bord.fort, backgroundColor: fond }]}>
+        <Ionicons name={icone} size={20} color={encre} />
       </View>
     </Appui>
   );

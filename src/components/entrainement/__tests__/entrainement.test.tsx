@@ -172,8 +172,8 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
   it('chapitre de cours : accès à l’entraînement', async () => {
     mockParams = { id: '1', nom: 'Fractions' };
     await monter(<Chapitre />);
-    await waitFor(() => expect(screen.getByText(x.entrainement.ouvrir)).toBeTruthy());
-    await fireEvent.press(screen.getByText(x.entrainement.ouvrir));
+    await waitFor(() => expect(screen.getByText(x.reviser.entrainerCours)).toBeTruthy());
+    await fireEvent.press(screen.getByText(x.reviser.entrainerCours));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
   });
 

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { apresDerniereLecon } from '@/services/entrainement';
-import { lireLecon, lireLecons, lireLues, type ContenuLecon, type Lecon } from '@/services/reviser';
+import { lireLecon, lireLecons, lireLues, noterDerniereLecon, type ContenuLecon, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -46,6 +46,8 @@ export function LeconLecteur() {
         if (!actif) return;
         setValidee(lues[lecon.id] !== undefined);
         setEtat({ statut: 'pret', lecon, lecons });
+        const k = lecons.findIndex((l) => l.id === lecon.id);
+        void noterDerniereLecon({ id: lecon.id, cours: Number(cours ?? lecon.coursId), nom: lecon.nom, numero: k + 1, minutes: k >= 0 ? lecons[k].minutes : null });
       } catch {
         if (actif) setEtat({ statut: 'erreur' });
       }

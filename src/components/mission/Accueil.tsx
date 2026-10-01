@@ -20,6 +20,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
+import { Reprise } from './Reprise';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
@@ -137,6 +138,8 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           </View>
         </Carte>
       </Apparition>
+
+      <Reprise />
 
       <Apparition delai={120}>
         <Appui accessibilityRole="button" accessibilityLabel={`${t('mission.photoTitre')}. ${t('mission.photoTexte')}`} onPress={() => router.push('/photo')} rayon={rayon.l} ombre={4} decalage={3} couleurOmbre={theme.ombre}>

@@ -166,6 +166,23 @@ export async function lireQuizLecon(client: Client, p: { cours: number; lecon: n
   return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
 }
 
+export const CLE_DERNIERE_LECON = 'reviser.derniereLecon';
+/** Dernière leçon ouverte : « Reprendre » de l'accueil et leçon en cours sur la page du cours. */
+export type DerniereLecon = { id: number; cours: number; nom: string; numero: number; minutes: number | null; quand: number };
+
+export async function noterDerniereLecon(l: Omit<DerniereLecon, 'quand'>, maintenant = Date.now()): Promise<void> {
+  await AsyncStorage.setItem(CLE_DERNIERE_LECON, JSON.stringify({ ...l, quand: maintenant })).catch(() => {});
+}
+
+export async function lireDerniereLecon(): Promise<DerniereLecon | null> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_DERNIERE_LECON);
+    return brut ? (JSON.parse(brut) as DerniereLecon) : null;
+  } catch {
+    return null;
+  }
+}
+
 /** Leçons lues : identifiant de leçon → identifiant de cours, pour le « % vu » par matière. */
 export async function lireLues(): Promise<Record<string, number>> {
   const brut = await AsyncStorage.getItem(CLE_LUES);

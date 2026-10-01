@@ -122,7 +122,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Fractions')).toBeTruthy());
     expect(screen.queryByText('Le conte')).toBeNull();
     await fireEvent.press(screen.getByText('Fractions'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions', matiere: 'Maths' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions', matiere: 'Maths', couleur: expect.any(String) } });
   });
 
   it('candidat : les chapitres de la matière viennent de son concours', async () => {
@@ -133,14 +133,25 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(mockRpc).toHaveBeenCalledWith('contest_courses', { p_contest: 'c1' });
   });
 
-  it('chapitre terminé : en bas de la liste et marqué', async () => {
+  it('cours terminé : à sa place, marqué Terminé ; cours commencé : Continuer sur la leçon suivante', async () => {
     await AsyncStorage.setItem('reviser.lues', JSON.stringify({ 11: 1, 12: 1 }));
     mockParams = { nom: 'Maths' };
     await monter(<MatiereCours />);
     await waitFor(() => expect(screen.getByTestId('chapitre-fini-1')).toBeTruthy());
     const noms = screen.getAllByRole('button').map((b) => b.props.accessibilityLabel as string).filter((l) => /Fractions|Pythagore/.test(l ?? ''));
-    expect(noms[0]).toMatch(/^Pythagore/);
-    expect(noms[1]).toMatch(new RegExp(`^Fractions.*${x.reviser.termine}`));
+    expect(noms[0]).toMatch(/^Fractions/);
+    expect(screen.getByText(x.reviser.termine)).toBeTruthy();
+    // Un cours fini n'a rien à continuer.
+    expect(screen.queryByText(new RegExp(x.reviser.continuerLecon.split(' ')[0]))).toBeNull();
+  });
+
+  it('cours commencé : carte Continuer sur la leçon non validée', async () => {
+    await AsyncStorage.setItem('reviser.lues', JSON.stringify({ 11: 1 }));
+    mockParams = { nom: 'Maths' };
+    await monter(<MatiereCours />);
+    await waitFor(() => expect(screen.getByText(x.reviser.continuerLecon.replace('{{n}}', '2'))).toBeTruthy());
+    await fireEvent.press(screen.getByText(x.reviser.continuerLecon.replace('{{n}}', '2')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
   });
 
   it('leçons d’un chapitre dans l’ordre', async () => {
@@ -149,6 +160,15 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Définition')).toBeTruthy());
     await fireEvent.press(screen.getByText('Additionner'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '12', cours: '1', matiere: 'Maths' } });
+  });
+
+  it('leçon en cours : la première non validée d’un cours commencé, avec Continuer', async () => {
+    await AsyncStorage.setItem('reviser.lues', JSON.stringify({ 11: 1 }));
+    mockParams = { id: '1', nom: 'Fractions', matiere: 'Maths' };
+    await monter(<Chapitre />);
+    await waitFor(() => expect(screen.getByText(x.reviser.continuer)).toBeTruthy());
+    expect(screen.getByText(x.reviser.leconsEtiquette.replace('{{n}}', '1').replace('{{total}}', '2'))).toBeTruthy();
+    expect(screen.getByText('50 %')).toBeTruthy();
   });
 
   it('leçon : contenu, formule ; pas validée à l’ouverture, feuille avant la leçon suivante', async () => {

@@ -18,11 +18,15 @@ type Props = {
   droite?: ReactNode;
   /** Élément fini : fond vert doux, sans ombre, même place dans la liste. */
   fini?: boolean;
+  /** Élément en cours : contour vert de 3 px (leçon à continuer). */
+  enCours?: boolean;
+  /** Fond particulier (fiche de révision en soleil doux, carte « Continuer »). */
+  fond?: string;
   onPress: () => void;
 };
 
 /** Carte de liste (revue design, règle 2) : 78 px fixes, titre sur 2 lignes, ombre `carte`. Une seule structure pour quiz, exercices, sujets… */
-export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, onPress }: Props) {
+export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, enCours, fond, onPress }: Props) {
   const { theme } = useTheme();
   return (
     <Appui
@@ -34,7 +38,7 @@ export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, onPres
       decalage={fini ? 0 : 2}
       couleurOmbre={theme.ombre}
     >
-      <View style={[styles.carte, { backgroundColor: fini ? theme.marque.douce : theme.fond.surface, borderColor: theme.bord.fort }]}>
+      <View style={[styles.carte, { backgroundColor: fond ?? (fini ? theme.marque.douce : theme.fond.surface), borderColor: enCours ? theme.marque.principale : theme.bord.fort }, enCours && styles.enCours]}>
         {gauche}
         <View style={styles.flex}>
           <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{titre}</Text>
@@ -48,6 +52,7 @@ export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, onPres
 }
 
 const styles = StyleSheet.create({
+  enCours: { borderWidth: 3 },
   flex: { flex: 1, gap: 2, justifyContent: 'center' },
   titre: { fontSize: 15, lineHeight: 20 },
   // Hauteur fixe de 78 px (décision design du 01/10) : titres d'une ou deux lignes, cartes de même taille, bloc texte centré.

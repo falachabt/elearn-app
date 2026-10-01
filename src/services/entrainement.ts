@@ -68,17 +68,24 @@ export async function lireProgresChapitres(cours: readonly number[]): Promise<Re
 }
 
 export const CLE_DERNIER = 'entrainement.dernier';
-/** Dernier quiz ou exercice ouvert : carte « Reprendre » en tête de S'entraîner. */
-export type Dernier = { type: 'quiz' | 'exercice'; id: string; cours: number; chapitre: string };
+/** Dernier quiz ou exercice ouvert : carte « Reprendre » en tête de S'entraîner, et une copie par type pour l'accueil. */
+export type Dernier = { type: 'quiz' | 'exercice'; id: string; cours: number; chapitre: string; quand?: number };
+export type DernierLu = Dernier & { nom: string; numero?: number; meilleur?: number; rang: number; total: number; fait?: boolean };
 
-export async function noterDernier(d: Dernier): Promise<void> {
-  await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify(d)).catch(() => {});
+export async function noterDernier(d: Dernier, maintenant = Date.now()): Promise<void> {
+  const brut = JSON.stringify({ ...d, quand: maintenant });
+  await AsyncStorage.multiSet([
+    [CLE_DERNIER, brut],
+    [`${CLE_DERNIER}.${d.type}`, brut],
+  ]).catch(() => {});
 }
 
 /** Le dernier entraînement avec son titre et le meilleur score, lus dans la copie du chapitre ; null s'il n'y en a pas. */
-export async function lireDernier(): Promise<(Dernier & { nom: string; numero?: number; meilleur?: number; rang: number }) | null> {
+export const lireDernier = (type?: Dernier['type']) => lireDernierDe(type ? `${CLE_DERNIER}.${type}` : CLE_DERNIER);
+
+async function lireDernierDe(cle: string): Promise<DernierLu | null> {
   try {
-    const brut = await AsyncStorage.getItem(CLE_DERNIER);
+    const brut = await AsyncStorage.getItem(cle);
     if (!brut) return null;
     const d = JSON.parse(brut) as Dernier;
     const copie = await AsyncStorage.getItem(`entrainement.cours.${d.cours}`);
@@ -88,10 +95,12 @@ export async function lireDernier(): Promise<(Dernier & { nom: string; numero?: 
       const q = e.quiz.find((x) => x.id === d.id);
       if (!q) return null;
       const scores = await lireMeilleursScores();
-      return { ...d, nom: q.nom, numero: q.numero, meilleur: scores[q.id], rang: e.quiz.indexOf(q) + 1 };
+      return { ...d, nom: q.nom, numero: q.numero, meilleur: scores[q.id], rang: e.quiz.indexOf(q) + 1, total: e.quiz.length };
     }
     const k = e.exercices.findIndex((x) => x.id === d.id);
-    return k < 0 ? null : { ...d, nom: e.exercices[k].titre, rang: k + 1 };
+    if (k < 0) return null;
+    const faits = await lireExercicesFaits();
+    return { ...d, nom: e.exercices[k].titre, rang: k + 1, total: e.exercices.length, fait: !!faits[d.id] };
   } catch {
     return null;
   }

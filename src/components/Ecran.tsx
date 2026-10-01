@@ -40,6 +40,8 @@ type Props = {
   insetBas?: boolean;
   /** En-tête fixe (retour + titre) : reste visible pendant le défilement. */
   entete?: ReactNode;
+  /** Style de l'en-tête (bandeau de couleur d'une matière). */
+  enteteStyle?: StyleProp<ViewStyle>;
   /** Bouton « Revenir en haut » après un long défilement (vrai par défaut). */
   retourHaut?: boolean;
   /** Bouton ou zone fixe collée en bas, au-dessus du clavier. */
@@ -58,7 +60,7 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, retourHaut = true, pied, remonterSur, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, remonterSur, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
@@ -114,7 +116,7 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
           {entete ? (
             <View
               testID="ecran-entete"
-              style={[styles.entete, { backgroundColor: theme.fond.app, borderBottomColor: defile.separateur ? theme.bord.fort : 'transparent' }]}
+              style={[styles.entete, { backgroundColor: theme.fond.app, borderBottomColor: defile.separateur ? theme.bord.fort : 'transparent' }, enteteStyle]}
             >
               {entete}
             </View>

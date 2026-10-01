@@ -1,4 +1,4 @@
-import { Check, ChevronRight, CircleHelp, PencilLine, Play } from 'lucide-react-native';
+import { Check, ChevronRight, Play } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -13,6 +13,7 @@ import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { CarteListe } from '../liste/CarteListe';
+import { PiluleCompteur } from '../liste/PiluleCompteur';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Puce } from '../liste/Puce';
 import { Squelettes } from '../liste/Squelettes';
@@ -137,23 +138,6 @@ export function Entrainement({ matieres, cle }: Props) {
   );
 }
 
-/** Compteur en pilule : quiz (bleu) ou exercices (orange), faits / total. */
-function PiluleCompteur({ type, faits, total, fini }: { type: 'quiz' | 'exercice'; faits: number; total: number; fini: boolean }) {
-  const { t } = useTraduction();
-  const { theme, sombre } = useTheme();
-  const fond = fini ? theme.marque.douce : type === 'quiz' ? (sombre ? palette.bleu[900] : palette.bleu[100]) : sombre ? palette.orange[900] : palette.orange[100];
-  const Icone = type === 'quiz' ? CircleHelp : PencilLine;
-  return (
-    <View
-      accessibilityLabel={t(type === 'quiz' ? 'entrainement.compteurQuiz' : 'entrainement.compteurExercices', { n: Math.min(faits, total), total })}
-      style={[styles.compteur, { backgroundColor: fond, borderColor: theme.bord.fort }]}
-    >
-      <Icone size={11} strokeWidth={2.5} color={theme.texte.principal} />
-      <Text style={[typo.donnee, styles.compteurTexte, { color: theme.texte.principal }]}>{`${Math.min(faits, total)}/${total}`}</Text>
-    </View>
-  );
-}
-
 /** Carte « Reprendre » : le dernier quiz ou exercice, relancé d'un appui. */
 function Reprendre({ d, chapitre }: { d: Dernier; chapitre: string }) {
   const { t } = useTraduction();
@@ -190,8 +174,6 @@ const styles = StyleSheet.create({
   numero: { width: 34, height: 34, borderRadius: 9, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   chiffre: { fontFamily: 'SpaceMono-Bold' },
   compteurs: { flexDirection: 'row', gap: espace[2], marginTop: espace[1] },
-  compteur: { flexDirection: 'row', alignItems: 'center', gap: 3, paddingHorizontal: espace[2], paddingVertical: 1, borderWidth: 1.5, borderRadius: rayon.pilule },
-  compteurTexte: { fontFamily: 'SpaceMono-Bold', fontSize: 11, lineHeight: 14 },
   reprendre: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   play: { width: 44, height: 44, borderRadius: 22, borderWidth: bord.normal, backgroundColor: palette.papier[0], alignItems: 'center', justifyContent: 'center' },
 });

@@ -107,6 +107,17 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     expect(router.push).toHaveBeenCalledWith('/mission');
   });
 
+  it('accueil : Reprendre la dernière leçon commencée, rien quand tout est fini', async () => {
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
+    expect(screen.queryByText(x.mission.reprendre)).toBeNull();
+    await AsyncStorage.setItem('reviser.derniereLecon', JSON.stringify({ id: 11, cours: 1, nom: 'Définition', numero: 3, minutes: 8, quand: 1 }));
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText(x.mission.reprendre)).toBeTruthy());
+    await fireEvent.press(screen.getByText(x.mission.repriseLecon.replace('{{n}}', '3').replace('{{nom}}', 'Définition')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '11', cours: '1', matiere: '' } });
+  });
+
   it('accueil : mission déjà faite aujourd’hui', async () => {
     await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 4, total: 5, chapitres: [], serie: 1 }));
     await monter(<Accueil maintenant={SOIR} />);
