@@ -64,6 +64,7 @@ export function LecteurPdf() {
   return (
     <Ecran
       defilement={false}
+      insetBas={false}
       retourHaut={false}
       contenuStyle={styles.contenu}
       entete={
@@ -156,7 +157,7 @@ function BoutonZoom({ libelle, onPress, children }: { libelle: string; onPress: 
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  contenu: { paddingHorizontal: 0, gap: 0 },
+  contenu: { paddingHorizontal: 0, paddingTop: 0, paddingBottom: 0, gap: 0 },
   centre: { flex: 1, justifyContent: 'center', padding: espace[6] },
   carte: { gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },

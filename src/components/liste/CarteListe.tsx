@@ -46,6 +46,7 @@ export function CarteListe({ titre, sousTitre, gauche, droite, fini, onPress }: 
 
 const styles = StyleSheet.create({
   flex: { flex: 1, gap: 2 },
-  titre: { fontSize: 15, lineHeight: 20 },
+  // Deux lignes réservées partout : toutes les cartes d'une liste ont la même hauteur (retour de Benny, 01/10).
+  titre: { fontSize: 15, lineHeight: 20, minHeight: 40, textAlignVertical: 'center' },
   carte: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
 });
