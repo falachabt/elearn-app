@@ -77,3 +77,21 @@ export async function basculerExerciceFait(exercice: string): Promise<boolean> {
   await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite));
   return fait;
 }
+
+export const CLE_FINS_VUES = 'entrainement.finsVues';
+
+/** La fin d'un chapitre terminé ne s'affiche qu'une fois (M5-11) ; l'entraînement reste ouvert depuis le chapitre. */
+export async function finChapitreVue(cours: number): Promise<boolean> {
+  return !!(await lireObjet<true>(CLE_FINS_VUES))[cours];
+}
+
+export async function noterFinChapitreVue(cours: number): Promise<void> {
+  const vues = await lireObjet<true>(CLE_FINS_VUES);
+  if (!vues[cours]) await AsyncStorage.setItem(CLE_FINS_VUES, JSON.stringify({ ...vues, [cours]: true }));
+}
+
+/** Après la dernière leçon : la fin de chapitre si elle n'a pas encore été vue, sinon le retour habituel. */
+export async function apresDerniereLecon(cours: number, aller: () => void, retour: () => void): Promise<void> {
+  if (await finChapitreVue(cours)) retour();
+  else aller();
+}

@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { lireEntrainement, type Exercice, type QuizLibre } from '@/services/entrainement';
+import { lireEntrainement, noterFinChapitreVue, type Exercice, type QuizLibre } from '@/services/entrainement';
 import { lireLecons, lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -42,6 +42,7 @@ export function FinChapitre() {
         lireEntrainement(getSupabase(), id).catch(() => ({ quiz: [], exercices: [] })),
       ]);
       const validees = lecons.filter((l) => lues[l.id] !== undefined).length;
+      if (lecons.length && validees === lecons.length) await noterFinChapitreVue(id);
       suivre('chapter_end_shown', { complet: !!lecons.length && validees === lecons.length, quiz: entrainement.quiz.length, exercices: entrainement.exercices.length });
       if (actif) setEtat({ lecons: lecons.length, validees, ...entrainement });
     })();

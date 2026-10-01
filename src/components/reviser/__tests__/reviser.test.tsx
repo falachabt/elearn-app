@@ -7,6 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { enregistrerProfil } from '@/services/profil';
+import { noterFinChapitreVue } from '@/services/entrainement';
 import { lireLues, marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -229,7 +230,18 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(await lireLues()).toEqual({ 11: 1 });
     // Pas de leçon suivante : la fin de chapitre (M5-11).
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } });
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+  });
+
+  it('fin de chapitre déjà vue : simple retour', async () => {
+    await marquerLue(12, 1);
+    await noterFinChapitreVue(1);
+    mockParams = { id: '12', cours: '1' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/reviser'));
+    expect(router.replace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/cours/fin' }));
   });
 
   it('quiz de leçon raté : pas validée, réessayer', async () => {
@@ -261,7 +273,18 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } });
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+  });
+
+  it('fin de chapitre déjà vue : simple retour', async () => {
+    await marquerLue(12, 1);
+    await noterFinChapitreVue(1);
+    mockParams = { id: '12', cours: '1' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/reviser'));
+    expect(router.replace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/cours/fin' }));
   });
 
   it('leçon introuvable', async () => {

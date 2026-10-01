@@ -7,7 +7,7 @@ import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { lireCorrection, statuts } from '@/services/correction';
-import { CLE_SCORES, lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
+import { CLE_SCORES, finChapitreVue, lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
@@ -159,6 +159,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.entrainement.finTitre)).toBeTruthy());
     expect(screen.getByText(`Fractions · ${x.entrainement.finLecons.replace('{{n}}', '2').replace('{{total}}', '2')}`)).toBeTruthy();
     expect(screen.getByText(x.entrainement.vaPlusLoin)).toBeTruthy();
+    expect(await finChapitreVue(1)).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.faireQuiz }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1' } });
     await fireEvent.press(screen.getByText(x.entrainement.exercices));
@@ -171,5 +172,6 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await monter(<FinChapitre />);
     await waitFor(() => expect(screen.getByText(x.entrainement.finTitrePartiel)).toBeTruthy());
     expect(screen.getByText(x.entrainement.finAValider)).toBeTruthy();
+    expect(await finChapitreVue(1)).toBe(false);
   });
 });
