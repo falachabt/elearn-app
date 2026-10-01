@@ -4,19 +4,21 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { useEtatMemorise } from '@/services/memoire';
-import { appliquerVote, choisirMeilleure, fil, lireQuestion, lireReponses, voter, type Question, type Reponse } from '@/services/questions';
+import { ajouterSortie, appliquerVote, choisirMeilleure, envoyerSortie, envoyerSortiesEnAttente, fil, lireQuestion, lireReponses, lireSorties, parentPourReponse, retirerSortie, voter, type Question, type Reponse, type Sortie } from '@/services/questions';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typeContenu, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
+import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { useCompteRequis } from '../FeuilleCompte';
 import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
+import { Composeur } from './Composeur';
 import { useCouleurMatiere, useIlYa } from './CarteQuestion';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; question: Question | null; reponses: Reponse[] };
@@ -32,6 +34,10 @@ export function FicheQuestion() {
   const { exiger, feuille } = useCompteRequis();
   const [etat, setEtat] = useEtatMemorise<Etat>(`question.${id}`, { statut: 'chargement' });
   const [menu, setMenu] = useState<Reponse | null>(null);
+  const [cible, setCible] = useState<Reponse | null>(null);
+  const [sorties, setSorties] = useState<Sortie[]>([]);
+  const { session } = useSession();
+  const userId = session?.user.id ?? '';
 
   const charger = useCallback(async () => {
     const client = getSupabase();
@@ -52,6 +58,17 @@ export function FicheQuestion() {
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/questions'));
 
+  const rafraichirSorties = useCallback(() => lireSorties(id).then(setSorties), [id]);
+
+  useEffect(() => {
+    if (!pret || !userId) return;
+    // Au retour sur l'écran : renvoie les réponses restées en file (hors ligne ou échec).
+    void envoyerSortiesEnAttente(getSupabase(), id, userId).then(async (n) => {
+      await rafraichirSorties();
+      if (n) await charger().then((r) => setEtat({ statut: 'pret', ...r })).catch(() => undefined);
+    });
+  }, [pret, userId, id, charger, rafraichirSorties, setEtat]);
+
   const rafraichir = () => charger().then((r) => setEtat({ statut: 'pret', ...r })).catch(() => undefined);
 
   const voterPour = (r: Reponse, vote: 1 | -1) =>
@@ -67,12 +84,34 @@ export function FicheQuestion() {
     choisirMeilleure(getSupabase(), id, retirer ? null : r.id).then(rafraichir, rafraichir);
   };
 
+  const envoyerReponse = (texte: string, photo: string | null) =>
+    exiger('question', async () => {
+      const reponses = etat.statut === 'pret' ? etat.reponses : [];
+      const sortie = await ajouterSortie({ questionId: id, texte, parentId: parentPourReponse(reponses, cible?.id ?? null), photo });
+      setCible(null);
+      await rafraichirSorties();
+      await envoyerSortie(getSupabase(), sortie, userId);
+      await rafraichirSorties();
+      void rafraichir();
+    });
+
+  const reessayer = async (s: Sortie) => {
+    await envoyerSortie(getSupabase(), s, userId);
+    await rafraichirSorties();
+    void rafraichir();
+  };
+  const supprimer = async (s: Sortie) => {
+    await retirerSortie(s.cle);
+    await rafraichirSorties();
+  };
+
   const q = etat.statut === 'pret' ? etat.question : null;
   const reponses = etat.statut === 'pret' ? fil(etat.reponses) : [];
   const humaines = etat.statut === 'pret' ? etat.reponses.filter((r) => !r.ia).length : 0;
 
   return (
     <Ecran
+      pied={q ? <Composeur repondA={cible ? cible.auteur : null} onAnnulerCible={() => setCible(null)} onEnvoyer={envoyerReponse} /> : undefined}
       entete={
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
@@ -105,15 +144,27 @@ export function FicheQuestion() {
       ) : null}
       {reponses.map(({ reponse, suites }) => (
         <View key={reponse.id} style={styles.groupe}>
-          <CarteReponse r={reponse} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} />
+          <CarteReponse r={reponse} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} onRepondre={setCible} />
           {suites.map((s) => (
             <View key={s.id} style={styles.suite}>
               <View style={[styles.filet, { backgroundColor: theme.bord.doux }]} />
               <View style={styles.flex}>
-                <CarteReponse r={s} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} />
+                <CarteReponse r={s} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} onRepondre={setCible} />
               </View>
             </View>
           ))}
+        </View>
+      ))}
+      {sorties.map((s) => (
+        <View key={s.cle} style={[styles.reponse, { backgroundColor: theme.fond.surface, borderColor: s.statut === 'echec' ? theme.etat.erreur : theme.bord.fort, borderWidth: bord.normal }]}>
+          <Text style={[typo.legende, { color: s.statut === 'echec' ? theme.etat.erreurTexte : theme.texte.secondaire }]}>{s.statut === 'echec' ? t('questions.nonEnvoyee') : t('questions.envoiEnCours')}</Text>
+          <Text style={[typo.texte, { color: theme.texte.principal }]}>{s.texte}</Text>
+          {s.statut === 'echec' ? (
+            <View style={styles.haut}>
+              <Bouton petit libelle={t('questions.reessayerEnvoi')} onPress={() => void reessayer(s)} />
+              <Bouton petit variante="secondaire" libelle={t('questions.supprimer')} onPress={() => void supprimer(s)} />
+            </View>
+          ) : null}
         </View>
       ))}
       <Feuille
@@ -127,7 +178,7 @@ export function FicheQuestion() {
   );
 }
 
-function CarteReponse({ r, onVote, onMenu }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void }) {
+function CarteReponse({ r, onVote, onMenu, onRepondre }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const ilYa = useIlYa();
@@ -154,7 +205,11 @@ function CarteReponse({ r, onVote, onMenu }: { r: Reponse; onVote: (r: Reponse, 
       {r.ia ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.repondEnPremier')}</Text> : null}
       <Text style={[typo.texte, { color: theme.texte.principal }]}>{r.texte}</Text>
       <View style={styles.haut}>
-        <Text style={[typo.legende, styles.flex, { color: theme.texte.secondaire }]}>{ilYa(r.creeLe)}</Text>
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{ilYa(r.creeLe)}</Text>
+        <Appui accessibilityRole="button" accessibilityLabel={t('questions.repondreA', { nom: r.ia ? 'Elearn Prepa' : r.auteur })} onPress={() => onRepondre(r)} decalage={0}>
+          <Text style={[typo.boutonPetit, { color: theme.texte.lien }]}>{t('questions.repondre')}</Text>
+        </Appui>
+        <View style={styles.flex} />
         {!r.miennes && !r.ia ? <Vote r={r} onVote={onVote} /> : null}
       </View>
     </View>
