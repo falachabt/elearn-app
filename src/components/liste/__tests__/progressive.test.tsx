@@ -14,10 +14,10 @@ describe('Progressive', () => {
     await render(<Progressive items={ITEMS} initial={10} pas={10} rendu={rendus} />);
     expect(screen.getByText('Carte 10')).toBeTruthy();
     expect(screen.queryByText('Carte 11')).toBeNull();
-    await act(() => jest.advanceTimersByTimeAsync(20));
+    await act(() => jest.advanceTimersByTimeAsync(100));
     expect(screen.getByText('Carte 20')).toBeTruthy();
     expect(screen.queryByText('Carte 21')).toBeNull();
-    await act(() => jest.advanceTimersByTimeAsync(20));
+    await act(() => jest.advanceTimersByTimeAsync(100));
     expect(screen.getByText('Carte 25')).toBeTruthy();
     // Chaque carte n'est dessinée qu'une fois, pas à chaque paquet.
     expect(rendus).toHaveBeenCalledTimes(25);

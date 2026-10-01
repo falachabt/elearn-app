@@ -110,6 +110,18 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
   });
 
+  it('changer d’onglet ne remonte rien : l’onglet quitté reste monté, son chargement n’est pas relancé', async () => {
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.onglet }));
+    await waitFor(() => expect(screen.getByText('Fractions')).toBeTruthy());
+    const appels = () => mockRpc.mock.calls.filter((c) => c[0] === 'practice_counts').length;
+    expect(appels()).toBe(1);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.ongletCours }));
+    await fireEvent.press(screen.getByRole('tab', { name: x.entrainement.onglet }));
+    expect(screen.getByText('Fractions')).toBeTruthy();
+    expect(appels()).toBe(1);
+  });
+
   it('S’entraîner : carte « Reprendre » sur le dernier quiz joué', async () => {
     await lireEntrainement({ rpc: (...args: unknown[]) => mockRpc(...args) } as never, 1);
     await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ qz2: 75 }));

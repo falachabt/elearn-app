@@ -68,6 +68,12 @@ export function Reviser() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [onglet, setOnglet] = useState<Onglet>('cours');
+  // Un onglet visité reste monté (caché) : y revenir ne redessine rien, ni ne relance son chargement.
+  const [vus, setVus] = useState<ReadonlySet<Onglet>>(() => new Set<Onglet>(['cours']));
+  const choisir = (o: Onglet) => {
+    setOnglet(o);
+    setVus((v) => (v.has(o) ? v : new Set([...v, o])));
+  };
   const [etat, setEtat] = useEtatMemorise<Etat>('reviser', { statut: 'chargement' });
   const pret = useSessionPrete();
 
@@ -86,30 +92,42 @@ export function Reviser() {
     }, [pret, setEtat]),
   );
 
+  const reessayer = () => {
+    setEtat({ statut: 'chargement' });
+    void charger().then(setEtat);
+  };
+
   return (
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
-      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={onglet} onChange={setOnglet} />
-      {onglet === 'annales' ? <Annales /> : null}
-      {onglet !== 'annales' && etat.statut === 'chargement' ? <Squelettes /> : null}
-      {onglet !== 'annales' && etat.statut === 'erreur' ? (
-        <EcranErreur
-          titre={t('entrainement.erreurTitre')}
-          phrase={t('reviser.erreur')}
-          reessayer={t('reviser.reessayer')}
-          onReessayer={() => {
-            setEtat({ statut: 'chargement' });
-            void charger().then(setEtat);
-          }}
-        />
-      ) : null}
-      {onglet === 'entrainement' && etat.statut === 'pret' ? <Entrainement matieres={etat.matieres} cle={etat.cle} /> : null}
-      {onglet === 'cours' && etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
-      {onglet === 'cours' && etat.statut === 'pret' && etat.matieres.length ? (
-        <GrilleMatieres matieres={etat.matieres} lues={etat.lues} />
-      ) : null}
+      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={onglet} onChange={choisir} />
+      <Panneau actif={onglet === 'annales'} monte={vus.has('annales')}>
+        <Annales />
+      </Panneau>
+      <Panneau actif={onglet === 'cours'} monte={vus.has('cours')}>
+        {etat.statut === 'chargement' ? <Squelettes /> : null}
+        {etat.statut === 'erreur' ? <ErreurChargement onReessayer={reessayer} /> : null}
+        {etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
+        {etat.statut === 'pret' && etat.matieres.length ? <GrilleMatieres matieres={etat.matieres} lues={etat.lues} /> : null}
+      </Panneau>
+      <Panneau actif={onglet === 'entrainement'} monte={vus.has('entrainement')}>
+        {etat.statut === 'chargement' ? <Squelettes /> : null}
+        {etat.statut === 'erreur' ? <ErreurChargement onReessayer={reessayer} /> : null}
+        {etat.statut === 'pret' ? <Entrainement matieres={etat.matieres} cle={etat.cle} /> : null}
+      </Panneau>
     </Ecran>
   );
+}
+
+function ErreurChargement({ onReessayer }: { onReessayer: () => void }) {
+  const { t } = useTraduction();
+  return <EcranErreur titre={t('entrainement.erreurTitre')} phrase={t('reviser.erreur')} reessayer={t('reviser.reessayer')} onReessayer={onReessayer} />;
+}
+
+/** Contenu d'un onglet : monté à la première visite, puis seulement caché quand on le quitte. */
+function Panneau({ actif, monte, children }: { actif: boolean; monte: boolean; children: React.ReactNode }) {
+  if (!monte) return null;
+  return <View style={actif ? styles.panneau : styles.cache}>{children}</View>;
 }
 
 /** Matières commencées d'abord, puis l'ordre du programme. */
@@ -127,6 +145,8 @@ function GrilleMatieres({ matieres, lues }: { matieres: Matiere[]; lues: Record<
 }
 
 const styles = StyleSheet.create({
+  panneau: { gap: espace[6] },
+  cache: { display: 'none' },
   groupe: { gap: espace[4] },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },
   moitie: { width: '47%', flexGrow: 1 },

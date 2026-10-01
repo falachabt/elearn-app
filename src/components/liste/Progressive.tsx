@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from 'react';
+import { InteractionManager } from 'react-native';
 
 type Props<T> = {
   items: readonly T[];
@@ -24,8 +25,19 @@ export function Progressive<T>({ items, initial = 8, pas = 8, rendu }: Props<T>)
   const [n, setN] = useState(initial);
   useEffect(() => {
     if (n >= items.length) return;
-    const minuterie = setTimeout(() => setN((x) => x + pas), 16);
-    return () => clearTimeout(minuterie);
+    let annule = false;
+    let attente: { cancel: () => void } | null = null;
+    // Le paquet suivant attend la fin d'un appui ou d'un défilement en cours.
+    const minuterie = setTimeout(() => {
+      attente = InteractionManager.runAfterInteractions(() => {
+        if (!annule) setN((x) => x + pas);
+      });
+    }, 30);
+    return () => {
+      annule = true;
+      clearTimeout(minuterie);
+      attente?.cancel();
+    };
   }, [n, items.length, pas]);
   return (
     <>
