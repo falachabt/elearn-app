@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -45,15 +45,25 @@ export function FinMission() {
   const [correction, setCorrection] = useState<Correction | null>(null);
   const [leconsOuvertes, setLeconsOuvertes] = useState(false);
 
+  // Relu à chaque retour sur l'écran : « Refaire mes erreurs » met à jour le résultat et la grille.
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      void Promise.all([lireDernierResultat(), lireCorrection()]).then(([x, c]) => {
+        if (!actif) return;
+        setR(x);
+        // La grille n'a de sens que si la correction gardée est bien celle de cette mission.
+        setCorrection(x && c?.source === 'mission' && c.questions.length === x.total ? c : null);
+        setLeconsOuvertes(!c);
+      });
+      return () => {
+        actif = false;
+      };
+    }, []),
+  );
+
   useEffect(() => {
     let actif = true;
-    void Promise.all([lireDernierResultat(), lireCorrection()]).then(([x, c]) => {
-      if (!actif) return;
-      setR(x);
-      // La grille n'a de sens que si la correction gardée est bien celle de cette mission.
-      setCorrection(x && c?.source === 'mission' && c.questions.length === x.total ? c : null);
-      setLeconsOuvertes(!c);
-    });
     // Une feuille à la fois : d'abord le rythme (s'il n'a jamais été choisi), sinon le rappel du soir (M9-01).
     void (async () => {
       if ((await lireRythme()) === null) {

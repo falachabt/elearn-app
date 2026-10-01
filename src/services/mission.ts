@@ -162,7 +162,7 @@ export async function terminerMission(
     [CLE_DERNIER, JSON.stringify(resultat)],
     [CLE_ERREURS, JSON.stringify(ratees)],
   ]);
-  await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses] });
+  await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
   void client
     .from('mission_runs')

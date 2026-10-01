@@ -1,5 +1,5 @@
-import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -38,13 +38,16 @@ export function EcranResultats() {
   const { theme } = useTheme();
   const [c, setC] = useState<Correction | null>(null);
   const [liste, setListe] = useState(false);
-  useEffect(() => {
-    let actif = true;
-    lireCorrection().then((x) => actif && setC(x));
-    return () => {
-      actif = false;
-    };
-  }, []);
+  // Relu au retour de « Refaire mes erreurs », qui met à jour cette correction.
+  useFocusEffect(
+    useCallback(() => {
+      let actif = true;
+      lireCorrection().then((x) => actif && setC(x));
+      return () => {
+        actif = false;
+      };
+    }, []),
+  );
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/'));
   if (!c) return <Ecran>{null}</Ecran>;
   const s = statuts(c);

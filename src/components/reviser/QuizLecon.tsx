@@ -1,12 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { apresDerniereLecon } from '@/services/entrainement';
-import { enregistrerCorrection, statuts as statutsDe, type StatutQuestion } from '@/services/correction';
+import { enregistrerCorrection, lireCorrection, statuts as statutsDe, type StatutQuestion } from '@/services/correction';
 import type { QuestionTiree } from '@/services/miniTest';
 import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -57,6 +57,25 @@ export function QuizLecon() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cours, lecon, pret, essai]);
 
+  // Au retour de « Refaire mes erreurs » : la correction de cette leçon a été mise à jour (score, grille, validation).
+  const fini = etat.statut === 'fini';
+  useFocusEffect(
+    useCallback(() => {
+      if (!fini) return;
+      let actif = true;
+      lireCorrection()
+        .then((c) => {
+          if (!actif || c?.contexte?.type !== 'lecon' || c.contexte.lecon !== Number(lecon)) return;
+          const s = statutsDe(c);
+          setEtat({ statut: 'fini', score: s.filter((x) => x === 'juste').length, total: s.length, statuts: s });
+        })
+        .catch(() => {});
+      return () => {
+        actif = false;
+      };
+    }, [fini, lecon]),
+  );
+
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
   if (etat.statut === 'quiz') {
@@ -70,7 +89,7 @@ export function QuizLecon() {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
           if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
-          await enregistrerCorrection({ source: 'lecon', questions, reponses });
+          await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
           setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
         }}
       />

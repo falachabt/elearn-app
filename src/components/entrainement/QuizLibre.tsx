@@ -52,10 +52,11 @@ export function QuizLibreEcran() {
         onFermer={retour}
         onTermine={async ({ questions: q, reponses, dureeS }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
-          const record = await enregistrerSession(String(id), { questions: q, reponses, dureeS });
+          const le = new Date();
+          const record = await enregistrerSession(String(id), { questions: q, reponses, dureeS }, le);
           await noterDernier({ type: 'quiz', id: String(id), cours: Number(cours), chapitre: String(nom ?? '') });
           suivre('practice_quiz_completed', { score, total: q.length, record });
-          await enregistrerCorrection({ source: 'libre', questions: q, reponses });
+          await enregistrerCorrection({ source: 'libre', questions: q, reponses, contexte: { type: 'libre', quiz: String(id), le: le.toISOString() } });
           router.replace('/quiz/resultats');
         }}
       />

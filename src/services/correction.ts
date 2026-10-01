@@ -3,7 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { QuestionTiree } from './miniTest';
 
 /** Dernier quiz terminé (mission, leçon, erreurs, quiz libre) : de quoi revoir chaque question hors ligne (M5-10). */
-export type Correction = { source: 'mission' | 'lecon' | 'erreurs' | 'libre'; questions: QuestionTiree[]; reponses: (number | null)[] };
+export type Correction = { source: 'mission' | 'lecon' | 'erreurs' | 'libre'; questions: QuestionTiree[]; reponses: (number | null)[]; contexte?: ContexteCorrection };
+/** D'où vient le quiz : « Refaire mes erreurs » met à jour cette session (leçon validée, résultat de mission, session du quiz). */
+export type ContexteCorrection = { type: 'lecon'; lecon: number; cours: number } | { type: 'mission' } | { type: 'libre'; quiz: string; le: string };
 export type StatutQuestion = 'juste' | 'faux' | 'passe';
 
 export const CLE_CORRECTION = 'quiz.correction';

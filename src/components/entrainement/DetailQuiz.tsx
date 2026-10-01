@@ -40,7 +40,7 @@ export function DetailQuiz() {
   const quand = (iso: string) => new Date(iso).toLocaleString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
   const duree = (s?: number) => (s === undefined ? null : s < 60 ? t('entrainement.dureeS', { n: s }) : t('entrainement.dureeMin', { n: Math.round(s / 60) }));
   const revoir = async (s: SessionQuiz) => {
-    await enregistrerCorrection({ source: 'libre', questions: s.questions, reponses: s.reponses });
+    await enregistrerCorrection({ source: 'libre', questions: s.questions, reponses: s.reponses, contexte: { type: 'libre', quiz: String(id), le: s.le } });
     router.push('/quiz/resultats');
   };
   const nouvelle = () => router.push({ pathname: '/entrainement/quiz', params: { id: String(id), cours: String(cours), nom: nom ?? '' } });

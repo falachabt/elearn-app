@@ -202,6 +202,17 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await monter(<RefaireErreurs />);
     await waitFor(() => expect(screen.getByText('Question 8 ?')).toBeTruthy());
     expect(screen.queryByText('Question 7 ?')).toBeNull();
+    // Erreur corrigée : la session d'origine est mise à jour, puis on y revient.
+    (router.canGoBack as jest.Mock).mockReturnValue(true);
+    await fireEvent.press(screen.getByText('Bonne 8'));
+    await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+    await fireEvent.press(screen.getByRole('button', { name: x.mission.fin }));
+    await waitFor(() => expect(router.back).toHaveBeenCalled());
+    expect(router.replace).not.toHaveBeenCalledWith('/quiz/resultats');
+    const c = JSON.parse((await AsyncStorage.getItem(CLE_CORRECTION))!);
+    expect(c.source).toBe('lecon');
+    expect(c.reponses).toEqual([qs[0].bonne, qs[1].bonne]);
+    (router.canGoBack as jest.Mock).mockReturnValue(false);
   });
 
   it('refaire mes erreurs : rejoue les questions ratées', async () => {
