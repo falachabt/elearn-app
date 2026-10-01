@@ -247,12 +247,42 @@ async function marquerSortie(cle: string, statut: Sortie['statut']): Promise<voi
 
 type ClientReponse = Pick<SupabaseClient, 'from' | 'storage'>;
 
-export async function envoyerPhoto(client: ClientReponse, uri: string, userId: string): Promise<string> {
+export const PHOTOS_MAX = 3;
+/** Limite du bucket `feed-media` (20 Mo) : au-delà, le serveur refuse. */
+export const PHOTO_OCTETS_MAX = 20 * 1024 * 1024;
+
+/**
+ * Nom unique d'un fichier. Bug du 01/10 : le nom ne contenait que `Date.now()`, identique pour trois photos envoyées
+ * en même temps → « fichier déjà existant » sur les deux dernières et la question ne partait pas.
+ */
+export function nomPhoto(userId: string, rang: number): string {
+  const alea = Math.random().toString(36).slice(2, 10);
+  return `${userId}/${Date.now()}-${rang}-${alea}.jpg`;
+}
+
+export async function envoyerPhoto(client: ClientReponse, uri: string, userId: string, rang = 0): Promise<{ url: string; chemin: string }> {
   const octets = await (await fetch(uri)).arrayBuffer();
-  const chemin = `${userId}/${Date.now()}.jpg`;
-  const { error } = await client.storage.from('feed-media').upload(chemin, octets, { contentType: 'image/jpeg' });
+  if (octets.byteLength > PHOTO_OCTETS_MAX) throw new Error('photo_trop_lourde');
+  const chemin = nomPhoto(userId, rang);
+  const { error } = await client.storage.from('feed-media').upload(chemin, octets, { contentType: 'image/jpeg', upsert: false });
   if (error) throw error;
-  return client.storage.from('feed-media').getPublicUrl(chemin).data.publicUrl;
+  return { url: client.storage.from('feed-media').getPublicUrl(chemin).data.publicUrl, chemin };
+}
+
+/**
+ * Envoie jusqu'à 3 photos, l'une après l'autre. Si l'une échoue, celles déjà parties sont supprimées (pas de fichiers
+ * orphelins) et l'erreur remonte : la question n'est pas publiée à moitié.
+ */
+export async function envoyerPhotos(client: ClientReponse, uris: readonly string[], userId: string): Promise<string[]> {
+  const gardees = uris.slice(0, PHOTOS_MAX);
+  const envoyees: { url: string; chemin: string }[] = [];
+  try {
+    for (const [rang, uri] of gardees.entries()) envoyees.push(await envoyerPhoto(client, uri, userId, rang));
+  } catch (e) {
+    if (envoyees.length) await client.storage.from('feed-media').remove(envoyees.map((p) => p.chemin)).catch(() => undefined);
+    throw e;
+  }
+  return envoyees.map((p) => p.url);
 }
 
 /**
@@ -261,7 +291,7 @@ export async function envoyerPhoto(client: ClientReponse, uri: string, userId: s
  */
 export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: string): Promise<boolean> {
   try {
-    const photos = s.photo ? [await envoyerPhoto(client, s.photo, userId)] : [];
+    const photos = s.photo ? await envoyerPhotos(client, [s.photo], userId) : [];
     const { error } = await client
       .from('post_comments')
       .insert({ post_id: s.questionId, content: s.texte.trim(), parent_comment_id: s.parentId, media_urls: photos });

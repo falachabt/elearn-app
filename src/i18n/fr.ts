@@ -116,6 +116,7 @@ export const fr = {
     equipe: 'Équipe',
     aVote: '✓ Tu as voté',
     nVotes: '{{n}} votes',
+    photoLourde: 'Une photo est trop lourde (20 Mo maximum). Retire-la ou prends-en une plus légère.',
     introuvable: 'Cette question n’est plus disponible.',
   },
   onglets: { accueil: 'Accueil', reviser: 'Réviser', photo: 'Photo', questions: 'Questions', moi: 'Moi' },
