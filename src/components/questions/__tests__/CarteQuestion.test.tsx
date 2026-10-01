@@ -6,7 +6,7 @@ import { CarteQuestion } from '../CarteQuestion';
 
 const q: Question = {
   id: 'p1', auteurId: 'u1', auteur: 'Awa', ia: true, texte: 'Comment résoudre x² = 4 ?', photos: [], matiere: 'Maths', classe: '3e',
-  creeLe: new Date().toISOString(), reponses: 2, resolue: true, miennes: false,
+  creeLe: new Date().toISOString(), reponses: 2, resolue: true, miennes: false, masquee: false,
 };
 
 describe('CarteQuestion', () => {

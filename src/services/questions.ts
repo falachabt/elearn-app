@@ -18,11 +18,19 @@ export type Question = {
   reponses: number;
   resolue: boolean;
   miennes: boolean;
+  /** Signalée : masquée en attente d'examen (visible seulement par son auteur). */
+  masquee: boolean;
 };
 export type FiltresFil = { matiere?: string | null; classe?: string | null; resolues?: boolean };
 
 /** Matières proposées dans le fil et à la saisie ; le libellé est stocké tel quel sur la question. */
 export const MATIERES_FIL = ['Maths', 'Physique-Chimie', 'SVT', 'Français', 'Anglais', 'Histoire-Géo', 'Philo'] as const;
+/** Motifs proposés dans la feuille de signalement (G4) → motif enregistré. */
+export const MOTIFS_SIGNALEMENT = [
+  { cle: 'deplace', motif: 'inapproprie' },
+  { cle: 'donnees', motif: 'numero_personnel' },
+  { cle: 'horsSujet', motif: 'hors_sujet' },
+] as const;
 export type MotifSignalement = 'inapproprie' | 'harcelement' | 'numero_personnel' | 'hors_sujet' | 'autre';
 
 export const TAILLE_PAGE = 20;
@@ -34,13 +42,13 @@ export const cleFil = (f: FiltresFil) => `questions.fil.${f.classe ?? '*'}.${f.m
 
 type Ligne = {
   id: string; author_id: string; author_name: string | null; has_ai: boolean; content: string; media_urls: string[] | null; subject: string | null; class_level: string | null;
-  created_at: string; answers_count: number | string; resolved: boolean; mine: boolean;
+  created_at: string; answers_count: number | string; resolved: boolean; mine: boolean; hidden: boolean;
 };
 
 export function versQuestion(l: Ligne): Question {
   return {
     id: l.id, auteurId: l.author_id, auteur: l.author_name ?? '', ia: l.has_ai, texte: l.content, photos: l.media_urls ?? [], matiere: l.subject, classe: l.class_level,
-    creeLe: l.created_at, reponses: Number(l.answers_count), resolue: l.resolved, miennes: l.mine,
+    creeLe: l.created_at, reponses: Number(l.answers_count), resolue: l.resolved, miennes: l.mine, masquee: !!l.hidden,
   };
 }
 
@@ -120,11 +128,12 @@ export type Reponse = {
   score: number;
   monVote: -1 | 0 | 1;
   miennes: boolean;
+  masquee: boolean;
   creeLe: string;
 };
 type LigneReponse = {
   id: string; parent_id: string | null; author_name: string | null; is_ai: boolean; is_teacher: boolean; is_best: boolean;
-  content: string; media_urls: string[] | null; score: number; my_vote: number | null; mine: boolean; created_at: string;
+  content: string; media_urls: string[] | null; score: number; my_vote: number | null; mine: boolean; hidden: boolean; created_at: string;
 };
 
 export const cleReponses = (id: string) => `questions.reponses.${id}`;
@@ -137,7 +146,7 @@ export async function lireReponses(client: ClientFil, id: string): Promise<Repon
     const reponses = ((data ?? []) as LigneReponse[]).map(
       (l): Reponse => ({
         id: l.id, parentId: l.parent_id, auteur: l.author_name ?? '', ia: l.is_ai, enseignant: l.is_teacher, meilleure: l.is_best,
-        texte: l.content, photos: l.media_urls ?? [], score: l.score, monVote: (l.my_vote ?? 0) as -1 | 0 | 1, miennes: l.mine, creeLe: l.created_at,
+        texte: l.content, photos: l.media_urls ?? [], score: l.score, monVote: (l.my_vote ?? 0) as -1 | 0 | 1, miennes: l.mine, masquee: !!l.hidden, creeLe: l.created_at,
       }),
     );
     await AsyncStorage.setItem(cleReponses(id), JSON.stringify(reponses));

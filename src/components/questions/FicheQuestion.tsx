@@ -1,4 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { EyeOff, Flag } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -19,6 +20,7 @@ import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
 import { Composeur } from './Composeur';
+import { FeuilleSignalement, type CibleSignalement } from './FeuilleSignalement';
 import { useCouleurMatiere, useIlYa } from './CarteQuestion';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; question: Question | null; reponses: Reponse[] };
@@ -35,6 +37,9 @@ export function FicheQuestion() {
   const [etat, setEtat] = useEtatMemorise<Etat>(`question.${id}`, { statut: 'chargement' });
   const [menu, setMenu] = useState<Reponse | null>(null);
   const [cible, setCible] = useState<Reponse | null>(null);
+  const [signal, setSignal] = useState<CibleSignalement | null>(null);
+  const [masques, setMasques] = useState<Set<string>>(new Set());
+  const [merci, setMerci] = useState(false);
   const [sorties, setSorties] = useState<Sortie[]>([]);
   const { session } = useSession();
   const userId = session?.user.id ?? '';
@@ -116,6 +121,11 @@ export function FicheQuestion() {
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
           <Text accessibilityRole="header" style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('questions.question')}</Text>
+          {q && !q.miennes && !q.masquee ? (
+            <Appui accessibilityRole="button" accessibilityLabel={t('questions.signalerQuestion')} onPress={() => exiger('question', () => setSignal({ type: 'post', id }))} decalage={0}>
+              <Flag size={22} strokeWidth={2} color={theme.texte.principal} />
+            </Appui>
+          ) : null}
         </>
       }
     >
@@ -132,24 +142,29 @@ export function FicheQuestion() {
               </View>
             ) : null}
           </View>
-          <Text style={[typo.texteGrand, { color: theme.texte.principal }]}>{q.texte}</Text>
-          {q.photos.map((u) => (
+          {q.masquee || masques.has(id) ? (
+            <Masque titre={q.miennes ? t('questions.masqueQuestionAuteur') : t('questions.masque')} texte={q.miennes ? undefined : t('questions.masqueTexte')} />
+          ) : (
+            <Text style={[typo.texteGrand, { color: theme.texte.principal }]}>{q.texte}</Text>
+          )}
+          {q.masquee || masques.has(id) ? null : q.photos.map((u) => (
             <Image key={u} source={{ uri: u }} style={[styles.photo, { borderColor: theme.bord.fort }]} resizeMode="cover" accessibilityIgnoresInvertColors />
           ))}
         </View>
       ) : null}
+      {merci ? <Banniere ton="succes" titre={t('questions.signalementMerci')} texte={t('questions.signalementMerciTexte')} /> : null}
       {q && !humaines && !reponses.some((x) => x.reponse.ia) ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('questions.iaReflechit')}</Text> : null}
       {q && etat.statut === 'pret' && !humaines && reponses.some((x) => x.reponse.ia) ? (
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.aucuneReponse')}</Text>
       ) : null}
       {reponses.map(({ reponse, suites }) => (
         <View key={reponse.id} style={styles.groupe}>
-          <CarteReponse r={reponse} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} onRepondre={setCible} />
+          <CarteReponse r={reponse} onVote={voterPour} onMenu={setMenu} onRepondre={setCible} masquee={masques.has(reponse.id)} />
           {suites.map((s) => (
             <View key={s.id} style={styles.suite}>
               <View style={[styles.filet, { backgroundColor: theme.bord.doux }]} />
               <View style={styles.flex}>
-                <CarteReponse r={s} onVote={voterPour} onMenu={q?.miennes ? setMenu : undefined} onRepondre={setCible} />
+                <CarteReponse r={s} onVote={voterPour} onMenu={setMenu} onRepondre={setCible} masquee={masques.has(s.id)} />
               </View>
             </View>
           ))}
@@ -171,18 +186,35 @@ export function FicheQuestion() {
         ouverte={!!menu}
         onFermer={() => setMenu(null)}
         titre={t('questions.question')}
-        actions={menu ? [{ libelle: menu.meilleure ? t('questions.retirerMeilleure') : t('questions.choisirMeilleure'), onPress: () => choisir(menu) }] : []}
+        actions={
+          menu
+            ? [
+                ...(q?.miennes ? [{ libelle: menu.meilleure ? t('questions.retirerMeilleure') : t('questions.choisirMeilleure'), onPress: () => choisir(menu) }] : []),
+                { libelle: t('questions.signaler'), variante: 'secondaire' as const, onPress: () => { const m = menu; setMenu(null); exiger('question', () => setSignal({ type: 'comment', id: m.id })); } },
+              ]
+            : []
+        }
+      />
+      <FeuilleSignalement
+        cible={signal}
+        onFermer={() => setSignal(null)}
+        onEnvoye={(c) => {
+          setSignal(null);
+          setMasques((m) => new Set(m).add(c.id));
+          setMerci(true);
+        }}
       />
       {feuille}
     </Ecran>
   );
 }
 
-function CarteReponse({ r, onVote, onMenu, onRepondre }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void }) {
+function CarteReponse({ r, onVote, onMenu, onRepondre, masquee }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void; masquee: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const ilYa = useIlYa();
   const fond = r.meilleure ? theme.marque.douce : theme.fond.surface;
+  if (r.masquee || masquee) return <Masque titre={r.miennes ? t('questions.masqueReponseAuteur') : t('questions.masque')} texte={r.miennes ? undefined : t('questions.masqueTexte')} />;
   return (
     <View
       style={[
@@ -196,7 +228,7 @@ function CarteReponse({ r, onVote, onMenu, onRepondre }: { r: Reponse; onVote: (
         {r.enseignant ? <Badge texte={t('questions.badgeEnseignant')} fond={theme.accent.soleil} /> : null}
         {r.meilleure ? <Badge texte={t('questions.meilleure')} fond={theme.marque.principale} /> : null}
         <View style={styles.flex} />
-        {onMenu && !r.miennes ? (
+        {onMenu && !r.miennes && !r.ia ? (
           <Appui accessibilityRole="button" accessibilityLabel={t('questions.choisirMeilleure')} onPress={() => onMenu(r)} decalage={0}>
             <Text style={[typo.h3, { color: theme.texte.secondaire }]}>⋯</Text>
           </Appui>
@@ -235,6 +267,19 @@ function Vote({ r, onVote }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => vo
   );
 }
 
+function Masque({ titre, texte }: { titre: string; texte?: string }) {
+  const { theme } = useTheme();
+  return (
+    <View style={[styles.masque, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+      <EyeOff size={20} strokeWidth={2} color={theme.texte.secondaire} />
+      <View style={styles.flex}>
+        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+        {texte ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{texte}</Text> : null}
+      </View>
+    </View>
+  );
+}
+
 function Badge({ texte, fond }: { texte: string; fond: string }) {
   const { theme } = useTheme();
   return (
@@ -253,6 +298,7 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   groupe: { gap: espace[3] },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  masque: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderStyle: 'dashed', borderRadius: rayon.l },
   photo: { width: '100%', height: 200, borderRadius: 8, borderWidth: bord.normal },
   reponse: { gap: espace[3], padding: espace[4], borderRadius: rayon.l },
   suite: { flexDirection: 'row', gap: espace[3], marginLeft: 18 },
