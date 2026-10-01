@@ -11,7 +11,7 @@ import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier,
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { LecteurPdf } from '../LecteurPdf';
-import { MesDocuments } from '../MesDocuments';
+import { MesDocuments, quandOuvert } from '../MesDocuments';
 
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
@@ -100,6 +100,10 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
     expect(mockTelecharger).not.toHaveBeenCalled();
     expect(screen.getByLabelText(x.document.page.replace('{{n}}', '2').replace('{{total}}', '3'))).toBeTruthy();
+    expect(screen.getByText(x.document.reprise.replace('{{n}}', '2'))).toBeTruthy();
+    // Zoom par les boutons − / + (pas de bouton télécharger ni partager).
+    await fireEvent.press(screen.getByRole('button', { name: x.document.zoomPlus }));
+    expect(screen.getByRole('button', { name: x.document.zoomMoins })).toBeTruthy();
   });
 
   it('mes documents : liste, ouvrir, retirer', async () => {
@@ -113,13 +117,18 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.document.retirer.replace('{{titre}}', 'Correction') }));
     await waitFor(() => expect(screen.queryByText('Correction')).toBeNull());
     expect((await lireDocuments()).map((d) => [d.titre, d.sujet])).toEqual([['Sujet Maths 2024', 7]]);
+    // Tout supprimer, après confirmation.
+    await fireEvent.press(screen.getByRole('button', { name: x.document.toutSupprimer }));
+    await fireEvent.press(screen.getByRole('button', { name: x.document.confirmer }));
+    await waitFor(() => expect(screen.getByText(x.document.aucunCourt)).toBeTruthy());
+    expect(await lireDocuments()).toEqual([]);
   });
 
   it('hors ligne et jamais ouvert : erreur, puis réessayer', async () => {
     mockTelecharger.mockRejectedValueOnce(new Error('hors ligne'));
     await monter();
-    await waitFor(() => expect(screen.getByText(x.document.erreur)).toBeTruthy());
-    await fireEvent.press(screen.getByRole('button', { name: x.reviser.reessayer }));
+    await waitFor(() => expect(screen.getByText(x.document.erreurTitre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.document.reessayer }));
     await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.retour }));
     expect(router.back).toHaveBeenCalled();
@@ -145,5 +154,14 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     mockFichiers.set(LOCAL, 1000);
     effacerDocuments();
     expect(mockFichiers.size).toBe(0);
+  });
+});
+
+describe('quandOuvert', () => {
+  it('aujourd’hui, hier, sinon la date', () => {
+    const maintenant = new Date('2026-10-01T09:00:00');
+    expect(quandOuvert('2026-10-01T07:00:00', maintenant)).toBe('aujourdhui');
+    expect(quandOuvert('2026-09-30T22:00:00', maintenant)).toBe('hier');
+    expect(quandOuvert('2026-09-28T10:00:00', maintenant)).toBeNull();
   });
 });

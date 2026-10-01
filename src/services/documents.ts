@@ -124,3 +124,9 @@ export function effacerDocuments(): void {
     // Rien à effacer.
   }
 }
+
+/** « Tout supprimer » de Mes documents : les fichiers et leur index. */
+export async function retirerTousDocuments(): Promise<void> {
+  effacerDocuments();
+  await AsyncStorage.removeItem(CLE_INDEX).catch(() => {});
+}
