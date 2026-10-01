@@ -1,23 +1,24 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { iconeMatiere, lireCours, programmeDu, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { lireCours, programmeDu, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, matiere as couleurs, rayon, typo } from '@/theme/theme';
+import { bord, espace, matiere as couleurs, matiereSecours, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Annales } from '../annales/Annales';
 import { Entrainement } from '../entrainement/Entrainement';
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
-import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
+import { EcranErreur } from '../liste/EcranErreur';
+import { Squelettes } from '../liste/Squelettes';
+import { IconeMatiere } from './IconeMatiere';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; matieres: Matiere[]; lues: Record<string, number>; cle: string };
 
@@ -32,19 +33,38 @@ async function charger(): Promise<Etat> {
   }
 }
 
-/** Tuile de matière : couleur constante de la matière, texte toujours noir (guide, couleurs des matières). */
-function Tuile({ m, vu, onPress }: { m: Matiere; vu: number; onPress: () => void }) {
+/** Couleur de chaque tuile : celle de la matière, sinon une couleur de secours différente de la voisine de gauche. Jamais de tuile blanche. */
+export function couleursTuiles(matieres: readonly Matiere[]): string[] {
+  const sortie: string[] = [];
+  let k = 0;
+  matieres.forEach((m, i) => {
+    if (m.couleur) return void sortie.push(couleurs[m.couleur]);
+    const voisine = i % 2 ? sortie[i - 1] : undefined;
+    let c: string = matiereSecours[k % matiereSecours.length];
+    if (c === voisine) c = matiereSecours[++k % matiereSecours.length];
+    k++;
+    sortie.push(c);
+  });
+  return sortie;
+}
+
+/** Tuile de matière (revue design, Réviser · Cours) : pastille blanche avec l'icône, nom sur 2 lignes, pourcentage et barre. Texte toujours noir. */
+function Tuile({ m, vu, fond, onPress }: { m: Matiere; vu: number; fond: string; onPress: () => void }) {
   const { theme } = useTheme();
   const { t } = useTraduction();
-  const fond = m.couleur ? couleurs[m.couleur] : theme.fond.surface;
-  const encre = m.couleur ? theme.texte.surCouleur : theme.texte.principal;
+  const encre = theme.texte.surCouleur;
   return (
     <View style={styles.moitie}>
-      <Appui accessibilityRole="button" accessibilityLabel={`${m.nom}, ${t('reviser.vu', { n: vu })}`} onPress={onPress} rayon={rayon.l} ombre={4} decalage={3} couleurOmbre={theme.ombre} retour>
+      <Appui accessibilityRole="button" accessibilityLabel={`${m.nom}, ${t('reviser.vu', { n: vu })}`} onPress={onPress} rayon={rayon.l} ombre={ombre.carte} decalage={2} couleurOmbre={theme.ombre} retour>
         <View style={[styles.tuile, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-          <Ionicons name={iconeMatiere(m.nom)} size={20} color={encre} />
-          <Text numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} style={[typo.texteFort, { color: encre }]}>{m.nom}</Text>
-          <Text style={[typo.donnee, { color: encre }]}>{t('reviser.vu', { n: vu })}</Text>
+          <View style={[styles.icone, { borderColor: theme.bord.fort }]}>
+            <IconeMatiere nom={m.nom} couleur={palette.encre[1000]} />
+          </View>
+          <Text numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} style={[typo.texteFort, styles.nom, { color: encre }]}>{m.nom}</Text>
+          <Text style={[typo.donnee, { color: encre }]}>{vu} %</Text>
+          <View style={[styles.barre, { borderColor: theme.bord.fort }]}>
+            <View style={[styles.rempli, { width: `${Math.min(100, Math.max(0, vu))}%`, backgroundColor: palette.encre[1000] }]} />
+          </View>
         </View>
       </Appui>
     </View>
@@ -79,30 +99,38 @@ export function Reviser() {
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
       <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={onglet} onChange={setOnglet} />
       {onglet === 'annales' ? <Annales /> : null}
-      {onglet !== 'annales' && etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('reviser.chargement')}</Text> : null}
+      {onglet !== 'annales' && etat.statut === 'chargement' ? <Squelettes /> : null}
       {onglet !== 'annales' && etat.statut === 'erreur' ? (
-        <View style={styles.groupe}>
-          <Banniere ton="erreur" titre={t('reviser.erreur')} />
-          <Bouton
-            variante="secondaire"
-            libelle={t('reviser.reessayer')}
-            onPress={() => {
-              setEtat({ statut: 'chargement' });
-              void charger().then(setEtat);
-            }}
-          />
-        </View>
+        <EcranErreur
+          titre={t('entrainement.erreurTitre')}
+          phrase={t('reviser.erreur')}
+          reessayer={t('reviser.reessayer')}
+          onReessayer={() => {
+            setEtat({ statut: 'chargement' });
+            void charger().then(setEtat);
+          }}
+        />
       ) : null}
       {onglet === 'entrainement' && etat.statut === 'pret' ? <Entrainement matieres={etat.matieres} cle={etat.cle} /> : null}
       {onglet === 'cours' && etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
       {onglet === 'cours' && etat.statut === 'pret' && etat.matieres.length ? (
-        <View style={styles.grille}>
-          {etat.matieres.map((m) => (
-            <Tuile key={m.nom} m={m} vu={pourcentageVu(m.cours, etat.lues)} onPress={() => router.push({ pathname: '/cours/matiere', params: { nom: m.nom } })} />
-          ))}
-        </View>
+        <GrilleMatieres matieres={etat.matieres} lues={etat.lues} />
       ) : null}
     </Ecran>
+  );
+}
+
+/** Matières commencées d'abord, puis l'ordre du programme. */
+function GrilleMatieres({ matieres, lues }: { matieres: Matiere[]; lues: Record<string, number> }) {
+  const avecVu = matieres.map((m, i) => ({ m, i, vu: pourcentageVu(m.cours, lues) }));
+  const ordre = [...avecVu].sort((a, b) => Number(b.vu > 0) - Number(a.vu > 0) || a.i - b.i);
+  const fonds = couleursTuiles(ordre.map((x) => x.m));
+  return (
+    <View style={styles.grille}>
+      {ordre.map(({ m, vu }, k) => (
+        <Tuile key={m.nom} m={m} vu={vu} fond={fonds[k]} onPress={() => router.push({ pathname: '/cours/matiere', params: { nom: m.nom } })} />
+      ))}
+    </View>
   );
 }
 
@@ -110,5 +138,9 @@ const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },
   moitie: { width: '47%', flexGrow: 1 },
-  tuile: { height: 132, padding: espace[5], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'flex-end' },
+  tuile: { height: 140, padding: espace[4], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'space-between' },
+  icone: { width: 32, height: 32, borderRadius: rayon.m, borderWidth: bord.normal, backgroundColor: palette.papier[0], alignItems: 'center', justifyContent: 'center' },
+  nom: { fontSize: 15, lineHeight: 19 },
+  barre: { height: 6, borderRadius: rayon.pilule, borderWidth: 1, overflow: 'hidden', backgroundColor: palette.papier[0] },
+  rempli: { height: '100%' },
 });

@@ -7,24 +7,13 @@ import { filtrer, optionsFiltres, trierSujets, type Sujet } from '@/services/ann
 import { lireDocuments } from '@/services/documents';
 import { recaser } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { espace, typo } from '@/theme/theme';
 
-import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
+import { Puce } from '../liste/Puce';
 import { CarteListe } from '../liste/CarteListe';
 import { Pastille } from '../liste/Pastille';
 import { PastilleType } from '../liste/PastilleType';
-
-export function Puce({ libelle, choisie, onPress }: { libelle: string; choisie: boolean; onPress: () => void }) {
-  const { theme } = useTheme();
-  return (
-    <Appui accessibilityRole="button" accessibilityState={{ selected: choisie }} accessibilityLabel={libelle} onPress={onPress} rayon={rayon.pilule} decalage={0}>
-      <View style={[styles.puce, { borderColor: theme.bord.fort, backgroundColor: choisie ? theme.fond.inverse : theme.fond.surface }]}>
-        <Text style={[typo.boutonPetit, { color: choisie ? theme.texte.inverse : theme.texte.principal }]}>{libelle}</Text>
-      </View>
-    </Appui>
-  );
-}
 
 /** Une rangée de puces par critère, qui commence par « Toutes » et défile à l'horizontale. */
 function Rangee<T extends string | number>({ libelle, valeurs, valeur, onChange, toutes }: { libelle: string; valeurs: T[]; valeur: T | null; onChange: (v: T | null) => void; toutes: string }) {
@@ -106,7 +95,6 @@ const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
   cartes: { gap: espace[4] },
   puces: { gap: espace[3], paddingRight: espace[4] },
-  puce: { height: 36, justifyContent: 'center', paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.pilule },
   vide: { gap: espace[3], paddingVertical: espace[6] },
   centre: { textAlign: 'center' },
 });

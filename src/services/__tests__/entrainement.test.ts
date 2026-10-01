@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireExercicesFaits, lireMeilleursScores } from '../entrainement';
+import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireExercicesFaits, lireMeilleursScores, lireProgresChapitres } from '../entrainement';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -49,5 +49,14 @@ describe('entrainement', () => {
     expect(s).toHaveLength(MAX_SESSIONS);
     expect(s[0]).toMatchObject({ score: 1, total: 1, le: new Date(2026, 8, 12).toISOString() });
     expect(await lireSessions('autre')).toEqual([]);
+  });
+});
+
+describe('lireProgresChapitres', () => {
+  it('meilleur score et exercices faits, à partir de la copie du chapitre', async () => {
+    await AsyncStorage.setItem('entrainement.cours.5', JSON.stringify({ quiz: [{ id: 'a', nom: 'A', questions: 5 }, { id: 'b', nom: 'B', questions: 5 }], exercices: [{ id: 'e1', titre: '', enonce: '' }, { id: 'e2', titre: '', enonce: '' }] }));
+    await AsyncStorage.setItem('entrainement.scores', JSON.stringify({ a: 40, b: 75 }));
+    await AsyncStorage.setItem('entrainement.exercicesFaits', JSON.stringify({ e2: true }));
+    await expect(lireProgresChapitres([5, 6])).resolves.toEqual({ 5: { meilleur: 75, faits: 1 } });
   });
 });

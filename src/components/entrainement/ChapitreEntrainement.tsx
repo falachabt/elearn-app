@@ -47,23 +47,21 @@ export function ChapitreEntrainement() {
   const { cours, nom, onglet } = useLocalSearchParams<{ cours: string; nom?: string; onglet?: Filtre }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [filtre, setFiltre] = useState<Filtre>(onglet === 'quiz' || onglet === 'exercices' ? onglet : 'tout');
-  const [essai, setEssai] = useState(0);
   const pret = useSessionPrete();
   const chapitre = nom ?? '';
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
-  useFocusEffect(
-    useCallback(() => {
-      if (!pret) return;
-      let actif = true;
-      Promise.all([lireEntrainement(getSupabase(), Number(cours)), lireMeilleursScores(), lireExercicesFaits()])
-        .then(([e, scores, faits]) => actif && setEtat({ statut: 'pret', ...e, scores, faits }))
-        .catch(() => actif && setEtat({ statut: 'erreur' }));
-      return () => {
-        actif = false;
-      };
-    }, [cours, pret, essai]),
-  );
+  const charger = useCallback(() => {
+    if (!pret) return;
+    let actif = true;
+    Promise.all([lireEntrainement(getSupabase(), Number(cours)), lireMeilleursScores(), lireExercicesFaits()])
+      .then(([e, scores, faits]) => actif && setEtat({ statut: 'pret', ...e, scores, faits }))
+      .catch(() => actif && setEtat({ statut: 'erreur' }));
+    return () => {
+      actif = false;
+    };
+  }, [cours, pret]);
+  useFocusEffect(charger);
 
   const quizFini = (e: Extract<Etat, { statut: 'pret' }>, q: QuizLibre) => (e.scores[q.id] ?? -1) >= SEUIL_FINI;
   const progression =
@@ -97,7 +95,7 @@ export function ChapitreEntrainement() {
           reessayer={t('entrainement.reessayer')}
           onReessayer={() => {
             setEtat({ statut: 'chargement' });
-            setEssai((n) => n + 1);
+            charger();
           }}
           secours={{ libelle: t('entrainement.retourChapitre'), onPress: retour }}
         />

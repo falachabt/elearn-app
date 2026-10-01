@@ -47,6 +47,24 @@ export async function lireEntrainement(client: Client, cours: number): Promise<{
   });
 }
 
+/** Progrès d'un chapitre sans réseau : meilleur score de ses quiz et exercices faits, tirés de la copie du chapitre (il a forcément été ouvert pour jouer). */
+export async function lireProgresChapitres(cours: readonly number[]): Promise<Record<number, { meilleur?: number; faits: number }>> {
+  if (!cours.length) return {};
+  const [copies, scores, faits] = await Promise.all([AsyncStorage.multiGet(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
+  const sortie: Record<number, { meilleur?: number; faits: number }> = {};
+  copies.forEach(([, brut], k) => {
+    if (!brut) return;
+    try {
+      const e = JSON.parse(brut) as { quiz: QuizLibre[]; exercices: Exercice[] };
+      const notes = e.quiz.map((q) => scores[q.id]).filter((n): n is number => n !== undefined);
+      sortie[cours[k]] = { meilleur: notes.length ? Math.max(...notes) : undefined, faits: e.exercices.filter((x) => faits[x.id]).length };
+    } catch {
+      // copie illisible : on l'ignore
+    }
+  });
+  return sortie;
+}
+
 /** Une partie d'un quiz : ses questions mélangées, 20 au plus. En ligne seulement. */
 export async function lireQuizLibre(client: Client, p: { quiz: string; vraiFaux: { vrai: string; faux: string } }): Promise<QuestionTiree[]> {
   const lignes = await rpc<LigneMission>(client, 'practice_quiz', { p_quiz: p.quiz, p_size: TAILLE_QUIZ_LIBRE });

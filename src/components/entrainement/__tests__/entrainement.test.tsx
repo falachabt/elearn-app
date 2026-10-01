@@ -86,10 +86,16 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Fractions')).toBeTruthy());
     expect(mockRpc).toHaveBeenCalledWith('practice_counts', { p_courses: [1, 2, 3] });
     expect(screen.queryByText('Pythagore')).toBeNull();
-    expect(screen.getByText(`${x.entrainement.nQuiz.replace('{{n}}', '2')} · ${x.entrainement.nExercices.replace('{{n}}', '2')}`)).toBeTruthy();
-    expect(screen.getByText(x.entrainement.unExercice)).toBeTruthy();
-    await fireEvent.press(screen.getByText('Fractions'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
+    // Deux cartes par chapitre : Quiz et Exercices ; le chapitre « Le conte » n'a qu'un exercice.
+    expect(screen.getAllByText(x.entrainement.carteQuiz.replace('{{n}}', '2'))).toHaveLength(1);
+    expect(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '2'))).toBeTruthy();
+    expect(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '1'))).toBeTruthy();
+    // Puces de matière.
+    await fireEvent.press(screen.getByRole('button', { name: 'Français' }));
+    expect(screen.queryByText('Fractions')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.toutes }));
+    await fireEvent.press(screen.getByText(x.entrainement.carteExercices.replace('{{n}}', '2')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions', onglet: 'exercices' } });
   });
 
   it('chapitre : onglets Tout, Quiz, Exercices ; cartes reconnaissables', async () => {
