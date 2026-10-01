@@ -9,6 +9,7 @@ import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
+import { useContenuPayant } from '@/session/useContenuPayant';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -49,11 +50,13 @@ export function AnnalesDossier() {
   }, [id, pret, setEtat]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
-  const ouvrir = (d: Document, correction = false) => {
-    const url = correction ? d.urlCorrection : d.url;
-    if (!url) return;
+  // L'adresse du PDF ne vient que de depenser_credits (M18-04) ; un PDF déjà ouvert ne coûte plus rien.
+  const payant = useContenuPayant();
+  const ouvrir = async (d: Document, correction = false) => {
+    const contenu = await payant.ouvrir<{ url?: string | null }>('document_pdf', correction && d.correctionId ? d.correctionId : d.id);
+    if (!contenu?.url) return;
     suivre('class_document_opened', { correction });
-    router.push({ pathname: '/document', params: { url, titre: correction ? `${d.nom} · ${t('annales.correctionTitre')}` : d.nom } });
+    router.push({ pathname: '/document', params: { url: contenu.url, titre: correction ? `${d.nom} · ${t('annales.correctionTitre')}` : d.nom } });
   };
 
   return (
@@ -67,6 +70,7 @@ export function AnnalesDossier() {
     >
       {etat.statut === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('annales.chargement')}</Text> : null}
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('annales.erreur')} /> : null}
+      {payant.refus ? <Banniere ton="erreur" titre={payant.refus.raison === 'erreur' ? t('payant.erreur') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })} /> : null}
       {etat.statut === 'pret' ? (
         <>
           {etat.dossiers.map((d) => (
@@ -80,8 +84,8 @@ export function AnnalesDossier() {
           ))}
           {etat.documents.map((d) => (
             <View key={d.id} style={styles.document}>
-              <LigneLien icone="document-text-outline" titre={d.nom} detail={d.urlCorrection ? t('annales.sujetCorrige') : undefined} onPress={() => ouvrir(d)} />
-              {d.urlCorrection ? <LigneLien icone="checkmark-done-outline" titre={t('annales.ouvrirCorrection')} onPress={() => ouvrir(d, true)} /> : null}
+              <LigneLien icone="document-text-outline" titre={d.nom} detail={d.correctionId ? t('annales.sujetCorrige') : undefined} onPress={() => void ouvrir(d)} />
+              {d.correctionId ? <LigneLien icone="checkmark-done-outline" titre={t('annales.ouvrirCorrection')} onPress={() => void ouvrir(d, true)} /> : null}
             </View>
           ))}
           {!etat.dossiers.length && !etat.documents.length ? <Banniere ton="info" titre={t('annales.dossierVide')} /> : null}

@@ -183,7 +183,8 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
 }
 
 /** Exercice complet : contexte, énoncé et corrigé en blocs (même format que les leçons). */
-export type DetailExercice = { id: string; titre: string; contexte: Bloc[]; enonce: Bloc[]; corrige: Bloc[]; difficulte?: Difficulte };
+/** `aCorrige` : un corrigé existe ; il ne s'ouvre qu'avec `ouvrirCorrige` (crédits, M18-04). */
+export type DetailExercice = { id: string; titre: string; contexte: Bloc[]; enonce: Bloc[]; aCorrige: boolean; difficulte?: Difficulte };
 export type Difficulte = 'facile' | 'moyen' | 'difficile';
 
 const texteBloc = (b: Bloc) => ('segments' in b ? b.segments.map((x) => x.texte).join('') : '');
@@ -231,8 +232,7 @@ async function lireExerciceBrut(client: Client, exercice: string, description: s
       context_compressed: string | null;
       content: unknown;
       content_compressed: string | null;
-      correction: unknown;
-      correction_compressed: string | null;
+      has_correction: boolean | null;
     };
     const [l] = await rpc<Ligne>(client, 'exercise_detail', { p_exercise: exercice });
     if (!l) throw new Error('exercice introuvable');
@@ -245,7 +245,13 @@ async function lireExerciceBrut(client: Client, exercice: string, description: s
       contexte: blocs(l.context_compressed, l.context),
       // Sans énoncé structuré, la description en sert.
       enonce: enonce.length ? enonce : texte ? [{ type: 'paragraphe', segments: [{ texte }], retrait: 0 }] : [],
-      corrige: blocs(l.correction_compressed, l.correction),
+      aCorrige: !!l.has_correction,
     };
   });
+}
+
+/** Blocs du corrigé renvoyés par `depenser_credits('exercise_solution')`. */
+export function blocsCorrige(contenu: { correction?: unknown; correction_compressed?: string | null } | null): Bloc[] {
+  if (!contenu) return [];
+  return normaliserBlocs(decoderContenu({ compresse: contenu.correction_compressed ?? null, brut: contenu.correction ?? null }));
 }

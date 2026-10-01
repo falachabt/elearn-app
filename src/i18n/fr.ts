@@ -729,6 +729,16 @@ export const fr = {
     valider: 'Valider ({{n}} questions)',
     reglage: 'Mission du jour : {{n}} questions',
   },
+  payant: {
+    cout: '{{libelle}} · {{n}} crédit{{s}}',
+    inclus: 'Inclus dans ton pass',
+    insuffisant: 'Il te faut {{n}} crédits, il t’en reste {{solde}}. Ta recharge arrive lundi.',
+    limite: 'Tu as atteint la limite du jour avec ton pass.',
+    erreur: 'Impossible d’ouvrir ce contenu pour le moment. Vérifie ta connexion.',
+    voirExplication: 'Voir l’explication',
+    voirCorrige: 'Voir le corrigé',
+    voirPass: 'Voir les pass',
+  },
   correction: {
     titreScore: '{{score}} / {{total}} · {{message}}',
     bravo: 'bravo',

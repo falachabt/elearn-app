@@ -18,7 +18,7 @@ export type Sujet = {
   dureeMin: number | null;
   gratuit: boolean;
 };
-export type DetailSujet = { id: number; titre: string; urlSujet: string; urlCorrection: string | null; correctionVerrouillee: boolean };
+export type DetailSujet = { id: number; titre: string; urlSujet: string; aCorrection: boolean; correctionGratuite: boolean };
 export type Filtres = { sigle?: string | null; annee?: number | null; matiere?: string | null };
 
 export const CLE_CATALOGUE = 'annales.catalogue';
@@ -83,14 +83,15 @@ export function trierSujets(sujets: readonly Sujet[]): Sujet[] {
 export async function lireSujet(client: Client, id: number): Promise<DetailSujet> {
   const { data, error } = await client.rpc('exam_paper', { p_paper: id });
   if (error) throw error;
-  const l = (data as { paper_id: number; title: string; subject_url: string; correction_url: string | null; correction_locked: boolean }[] | null)?.[0];
+  const l = (data as { paper_id: number; title: string; subject_url: string; has_correction: boolean; correction_free: boolean }[] | null)?.[0];
   if (!l) throw new Error('sujet introuvable');
-  return { id: l.paper_id, titre: titreSujet(l.title), urlSujet: l.subject_url, urlCorrection: l.correction_url, correctionVerrouillee: l.correction_locked };
+  return { id: l.paper_id, titre: titreSujet(l.title), urlSujet: l.subject_url, aCorrection: !!l.has_correction, correctionGratuite: !!l.correction_free };
 }
 
 export type Concours = { id: string; nom: string; sigle: string; sujets: number };
 export type Dossier = { id: string; nom: string; sousDossiers: number; documents: number };
-export type Document = { id: string; nom: string; url: string | null; urlCorrection: string | null };
+/** Les adresses des PDF ne sont plus listées : `depenser_credits('document_pdf')` les donne (M18-04). */
+export type Document = { id: string; nom: string; correctionId: string | null };
 
 /** Concours du catalogue, du plus fourni au moins fourni : chaque concours est un dossier d'annales. */
 export function concoursDuCatalogue(sujets: readonly Sujet[]): Concours[] {
@@ -135,7 +136,7 @@ export async function lireDocuments(client: Client, dossier: string): Promise<Do
   return avecCopie(`annales.documents.${dossier}`, async () => {
     const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
     if (error) throw error;
-    type Ligne = { document_id: string; name: string; url: string | null; correction_url: string | null };
-    return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), url: l.url, urlCorrection: l.correction_url }));
+    type Ligne = { document_id: string; name: string; correction_id: string | null };
+    return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), correctionId: l.correction_id }));
   });
 }

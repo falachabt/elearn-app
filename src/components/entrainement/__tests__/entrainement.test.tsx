@@ -22,6 +22,10 @@ import { FinChapitre } from '../FinChapitre';
 import { QuizLibreEcran } from '../QuizLibre';
 
 const mockRpc = jest.fn();
+const mockDepenser = jest.fn();
+jest.mock('@/session/CreditsProvider', () => ({
+  useCredits: () => ({ solde: null, couts: {}, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
+}));
 let mockParams: Record<string, string> = {};
 // Navigation : la sortie de l'écran (✕, retour Android, geste) passe par « beforeRemove ».
 let mockSortie: ((e: { preventDefault: () => void; data: { action: object } }) => void) | null = null;
@@ -66,8 +70,8 @@ function repondre(nom: string, args: Record<string, unknown>) {
   if (nom === 'exercise_detail') {
     const para = (texte: string) => [{ type: 'paragraph', content: [{ type: 'text', text: texte }] }];
     return args.p_exercise === 'e1'
-      ? { data: [{ exercise_id: 'e1', title: 'Simplifier', statement: 'Simplifier 6/8.', context: para('Rappel : diviser par le PGCD.'), context_compressed: null, content: para('Simplifie la fraction 6/8.'), content_compressed: null, correction: para('6/8 = 3/4.'), correction_compressed: null }], error: null }
-      : { data: [{ exercise_id: 'e2', title: 'Comparer', statement: 'Comparer 1/2 et 2/3.', context: null, context_compressed: null, content: null, content_compressed: null, correction: null, correction_compressed: null }], error: null };
+      ? { data: [{ exercise_id: 'e1', title: 'Simplifier', statement: 'Simplifier 6/8.', context: para('Rappel : diviser par le PGCD.'), context_compressed: null, content: para('Simplifie la fraction 6/8.'), content_compressed: null, has_correction: true }], error: null }
+      : { data: [{ exercise_id: 'e2', title: 'Comparer', statement: 'Comparer 1/2 et 2/3.', context: null, context_compressed: null, content: null, content_compressed: null, has_correction: false }], error: null };
   }
   return { data: [], error: null };
 }
@@ -83,6 +87,7 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   mockParams = {};
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
+  mockDepenser.mockResolvedValue({ statut: 'spent', cout: 2, solde: 9, contenu: { correction: [{ type: 'paragraph', content: [{ type: 'text', text: '6/8 = 3/4.' }] }] } });
   mockRpc.mockImplementation(async (nom: string, args: Record<string, unknown>) => repondre(nom, args));
 });
 afterAll(() => changerLangue('fr'));
@@ -275,7 +280,8 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(contexte().props.accessibilityState).toMatchObject({ expanded: false });
     // Ouvrir le corrigé ne marque plus rien.
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
-    expect(screen.getByText('6/8 = 3/4.')).toBeTruthy();
+    expect(mockDepenser).toHaveBeenCalledWith('exercise_solution', 'e1');
+    await waitFor(() => expect(screen.getByText('6/8 = 3/4.')).toBeTruthy());
     expect(screen.getByText(`✓ ${x.entrainement.corrige.toUpperCase()}`)).toBeTruthy();
     expect(await lireExercicesFaits()).toEqual({});
     expect(screen.queryByText('Rappel : diviser par le PGCD.')).toBeNull();

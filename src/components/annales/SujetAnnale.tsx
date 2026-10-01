@@ -7,6 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { CLE_CATALOGUE, lireSujet, type DetailSujet, type Sujet } from '@/services/annales';
 import { useSessionPrete } from '@/session/SessionProvider';
+import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
 import { useEtatMemorise } from '@/services/memoire';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -46,15 +47,29 @@ export function SujetAnnale() {
     };
   }, [id, pret, setEtat]);
 
+  const payant = useContenuPayant();
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   // Lecteur dans l'app : le PDF reste sur le téléphone pour le hors ligne, jamais ouvert dans le navigateur.
   const ouvrir = (url: string, titre: string) => router.push({ pathname: '/document', params: { url, titre, sujet: String(id) } });
+
+  // La correction ne vient que de depenser_credits (M18-04) : le premier sujet de chaque concours est gratuit.
+  const voirCorrection = async (d: DetailSujet) => {
+    const contenu = await payant.ouvrir<{ url?: string | null }>('exam_correction', d.id);
+    if (contenu?.url) ouvrir(contenu.url, `${d.titre} · ${t('annales.correctionTitre')}`);
+  };
 
   const pied =
     etat.statut === 'pret' ? (
       <View style={styles.groupe}>
         <Bouton libelle={t('annales.ouvrirSujet')} onPress={() => ouvrir(etat.detail.urlSujet, etat.detail.titre)} retour />
-        {etat.detail.urlCorrection ? <Bouton variante="secondaire" libelle={t('annales.ouvrirCorrection')} onPress={() => ouvrir(etat.detail.urlCorrection!, `${etat.detail.titre} · ${t('annales.correctionTitre')}`)} /> : null}
+        {etat.detail.aCorrection ? (
+          <Bouton
+            variante="secondaire"
+            libelle={etat.detail.correctionGratuite ? t('annales.ouvrirCorrection') : libelleAvecPrix(t, t('annales.ouvrirCorrection'), payant.prix('exam_correction'))}
+            desactive={payant.encours}
+            onPress={() => void voirCorrection(etat.detail)}
+          />
+        ) : null}
       </View>
     ) : undefined;
 
@@ -79,19 +94,21 @@ export function SujetAnnale() {
               <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.duree', { n: s.dureeMin })}</Text>
             </View>
           ) : null}
-          {etat.detail.correctionVerrouillee ? (
+          {payant.refus ? (
             <Carte style={{ backgroundColor: theme.accent.soleil }}>
               <View style={styles.groupe}>
                 <View style={styles.meta}>
                   <Ionicons name="lock-closed" size={16} color={theme.texte.surCouleur} />
                   <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t('annales.correctionTitre')}</Text>
                 </View>
-                <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('annales.correctionTexte')}</Text>
+                <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>
+                  {payant.refus.raison === 'erreur' ? t('payant.erreur') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })}
+                </Text>
                 <Bouton variante="secondaire" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} />
               </View>
             </Carte>
           ) : null}
-          {!etat.detail.urlCorrection && !etat.detail.correctionVerrouillee ? <Banniere ton="info" titre={t('annales.pasDeCorrection')} /> : null}
+          {!etat.detail.aCorrection ? <Banniere ton="info" titre={t('annales.pasDeCorrection')} /> : null}
           {s?.ecole ? (
             <View style={[styles.source, { borderColor: theme.bord.doux }]}>
               <Ionicons name="document-outline" size={14} color={theme.texte.secondaire} />

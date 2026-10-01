@@ -46,9 +46,9 @@ describe('annales', () => {
     expect(filtrer(s, {}).length).toBe(4);
   });
 
-  it('détail : liens et verrou de la correction', async () => {
-    const d = await lireSujet(client([{ paper_id: 2, title: 'Sujet Maths 2022', subject_url: 'https://s', correction_url: null, correction_locked: true }]) as never, 2);
-    expect(d).toEqual({ id: 2, titre: 'Maths', urlSujet: 'https://s', urlCorrection: null, correctionVerrouillee: true });
+  it('détail : lien du sujet, jamais celui de la correction', async () => {
+    const d = await lireSujet(client([{ paper_id: 2, title: 'Sujet Maths 2022', subject_url: 'https://s', has_correction: true, correction_free: false }]) as never, 2);
+    expect(d).toEqual({ id: 2, titre: 'Maths', urlSujet: 'https://s', aCorrection: true, correctionGratuite: false });
     await expect(lireSujet(client([]) as never, 9)).rejects.toThrow();
   });
 });
@@ -73,8 +73,8 @@ describe('annales rangées en dossiers', () => {
     expect(c.rpc).toHaveBeenCalledWith('class_document_folders', { p_level: '3e', p_country: 'CM', p_parent: null });
   });
 
-  it('lireDocuments : sujet et corrigé', async () => {
-    const c = client([{ document_id: 'd', name: 'Sujet_1.pdf', url: 'u', correction_url: null }]);
-    expect(await lireDocuments(c as never, 'a')).toEqual([{ id: 'd', nom: 'Sujet 1', url: 'u', urlCorrection: null }]);
+  it('lireDocuments : identifiants seulement, pas d’adresse de PDF', async () => {
+    const c = client([{ document_id: 'd', name: 'Sujet_1.pdf', correction_id: 'c' }]);
+    expect(await lireDocuments(c as never, 'a')).toEqual([{ id: 'd', nom: 'Sujet 1', correctionId: 'c' }]);
   });
 });

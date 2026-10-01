@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireCorrection, statuts, type Correction } from '@/services/correction';
+import { enregistrerCorrection, lireCorrection, statuts, type Correction } from '@/services/correction';
+import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
+import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { EcranVide } from '../EcranVide';
@@ -31,6 +33,18 @@ export function RevoirCorrection() {
       actif = false;
     };
   }, []);
+
+  const payant = useContenuPayant();
+  // L'explication d'une question du serveur ne vient que de depenser_credits (M18-04) ; on la garde avec la correction.
+  const voirExplication = async (k: number) => {
+    if (!c) return;
+    const contenu = await payant.ouvrir<{ explanation?: string | null }>('quiz_explanation', c.questions[k].id);
+    const texte = contenu?.explanation?.trim();
+    if (!texte) return;
+    const suite = { ...c, questions: c.questions.map((x, j) => (j === k ? { ...x, explication: texte } : x)) };
+    setC(suite);
+    void enregistrerCorrection(suite);
+  };
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/'));
   if (c === undefined) return null;
@@ -72,6 +86,12 @@ export function RevoirCorrection() {
           <OptionReponse key={k} lettre={LETTRES[k] ?? String(k + 1)} texte={choix} etat={etat(k)} />
         ))}
       </View>
+      {!q.explication && /^\d+$/.test(q.id) ? (
+        <View style={styles.options}>
+          <Bouton variante="secondaire" libelle={libelleAvecPrix(t, t('payant.voirExplication'), payant.prix('quiz_explanation'))} desactive={payant.encours} onPress={() => void voirExplication(n)} />
+          {payant.refus ? <Banniere ton="erreur" titre={payant.refus.raison === 'erreur' ? t('payant.erreur') : payant.refus.raison === 'limite' ? t('payant.limite') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })} /> : null}
+        </View>
+      ) : null}
       {q.explication ? (
         <View style={[styles.explication, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('correction.explication')}</Text>

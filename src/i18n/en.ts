@@ -728,6 +728,16 @@ export const en: Textes = {
     valider: 'Confirm ({{n}} questions)',
     reglage: 'Daily mission: {{n}} questions',
   },
+  payant: {
+    cout: '{{libelle}} · {{n}} credit{{s}}',
+    inclus: 'Included in your pass',
+    insuffisant: 'You need {{n}} credits, you have {{solde}} left. Your refill arrives on Monday.',
+    limite: 'You reached today’s limit with your pass.',
+    erreur: 'Could not open this content right now. Check your connection.',
+    voirExplication: 'See the explanation',
+    voirCorrige: 'See the solution',
+    voirPass: 'See the passes',
+  },
   correction: {
     titreScore: '{{score}} / {{total}} · {{message}}',
     bravo: 'well done',

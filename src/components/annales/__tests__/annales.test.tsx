@@ -18,6 +18,10 @@ import { AnnalesDossier } from '../AnnalesDossier';
 import { SujetAnnale } from '../SujetAnnale';
 
 const mockRpc = jest.fn();
+const mockDepenser = jest.fn();
+jest.mock('@/session/CreditsProvider', () => ({
+  useCredits: () => ({ solde: null, couts: { exam_correction: 5, document_pdf: 3 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
+}));
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
   router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
@@ -36,7 +40,7 @@ const CATALOGUE = [
   { paper_id: 2, contest_id: 'c1', school: 'Polytechnique Yaoundé', school_code: 'ENSPY', contest: 'Concours 1re année', subject: 'Physique', title: 'Sujet Physique 2023', year: 2023, has_correction: true, duration_min: null, free: false },
   { paper_id: 3, contest_id: 'c2', school: 'Faculté de médecine', school_code: 'FMSB', contest: 'Concours 1re année', subject: null, title: 'Sujet_BIOLOGIE_2022', year: 2022, has_correction: false, duration_min: null, free: true },
 ];
-const DETAIL = (id: number, verrou: boolean, correction: string | null) => ({ data: [{ paper_id: id, title: CATALOGUE[id - 1].title, subject_url: `https://r2/s${id}.pdf`, correction_url: correction, correction_locked: verrou }], error: null });
+const DETAIL = (id: number, aCorrection: boolean, gratuite: boolean) => ({ data: [{ paper_id: id, title: CATALOGUE[id - 1].title, subject_url: `https://r2/s${id}.pdf`, has_correction: aCorrection, correction_free: gratuite }], error: null });
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
 const monter = (el: React.ReactElement) =>
@@ -47,14 +51,20 @@ beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
   mockParams = {};
+  mockDepenser.mockImplementation(async (action: string, objet: string) => ({
+    statut: 'spent',
+    cout: 3,
+    solde: 20,
+    contenu: { url: action === 'exam_correction' ? `https://r2/c${objet}.pdf` : `https://r2/${objet}.pdf` },
+  }));
   mockRpc.mockImplementation(async (nom: string, args?: { p_paper: number }) => {
     if (nom === 'exam_catalog') return { data: CATALOGUE, error: null };
     if (nom === 'class_document_folders')
       return (args as unknown as { p_parent: string | null }).p_parent
         ? { data: [{ folder_id: 'f2', name: 'Séquence 1', subfolders: 0, documents: 1 }], error: null }
         : { data: [{ folder_id: 'f1', name: 'Maths ', subfolders: 1, documents: 3 }, { folder_id: 'f0', name: 'Vide', subfolders: 0, documents: 0 }], error: null };
-    if (nom === 'class_documents') return { data: [{ document_id: 'd1', name: 'Sequence 3 Colle╠Çge Prive╠ü.pdf', url: 'https://r2/d1.pdf', correction_url: 'https://r2/d1c.pdf' }], error: null };
-    if (nom === 'exam_paper') return args!.p_paper === 1 ? DETAIL(1, false, 'https://r2/c1.pdf') : args!.p_paper === 2 ? DETAIL(2, true, null) : DETAIL(3, false, null);
+    if (nom === 'class_documents') return { data: [{ document_id: 'd1', name: 'Sequence 3 Colle╠Çge Prive╠ü.pdf', correction_id: 'd1c' }], error: null };
+    if (nom === 'exam_paper') return args!.p_paper === 1 ? DETAIL(1, true, true) : args!.p_paper === 2 ? DETAIL(2, true, false) : DETAIL(3, false, false);
     return { data: [], error: null };
   });
 });
@@ -132,8 +142,10 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     // Lecteur dans l'app, jamais le navigateur.
     await fireEvent.press(screen.getByText('Séquence 3 · Collège Privé'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/d1.pdf', titre: 'Séquence 3 · Collège Privé' } });
+    expect(mockDepenser).toHaveBeenCalledWith('document_pdf', 'd1');
     await fireEvent.press(screen.getByText(x.annales.ouvrirCorrection));
     expect(router.push).toHaveBeenLastCalledWith({ pathname: '/document', params: { url: 'https://r2/d1c.pdf', titre: `Séquence 3 · Collège Privé · ${x.annales.correctionTitre}` } });
+    expect(mockDepenser).toHaveBeenLastCalledWith('document_pdf', 'd1c');
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('Séquence 1'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'f2', nom: 'Séquence 1' } });
@@ -148,15 +160,20 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirSujet }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/s1.pdf', titre: 'Maths', sujet: '1' } });
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirCorrection }));
+    expect(mockDepenser).toHaveBeenCalledWith('exam_correction', 1);
     expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: `Maths · ${x.annales.correctionTitre}`, sujet: '1' } });
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
   });
 
-  it('sujet réservé au pass : correction verrouillée, vers les offres', async () => {
+  it('sujet payant : prix sur le bouton, crédits insuffisants, vers les offres', async () => {
     mockParams = { id: '2' };
+    mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 5, solde: 2, contenu: null });
     await monter(<SujetAnnale />);
-    await waitFor(() => expect(screen.getByText(x.annales.correctionTitre)).toBeTruthy());
-    expect(screen.queryByRole('button', { name: x.annales.ouvrirCorrection })).toBeNull();
+    await waitFor(() => expect(screen.getByRole('button', { name: /5 /})).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: /5 / }));
+    expect(mockDepenser).toHaveBeenCalledWith('exam_correction', 2);
+    expect(router.push).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/document' }));
+    await waitFor(() => expect(screen.getByRole('button', { name: x.annales.voirPass })).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.annales.voirPass }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/offres', params: { declencheur: 'limite' } });
   });

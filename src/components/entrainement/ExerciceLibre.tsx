@@ -4,13 +4,16 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { basculerExerciceFait, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
+import type { Bloc } from '@/services/blocs';
+import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
+import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
+import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
@@ -99,7 +102,17 @@ export function ExerciceLibre() {
     declencher('confirm');
     if (!fait) await basculer();
   };
-  const voirCorrige = () => setCorrigeDe(id);
+  const payant = useContenuPayant();
+  const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
+  // Le corrigé ne vient que de depenser_credits (M18-04) ; une fois ouvert, il reste sous la main pour la session.
+  const voirCorrige = async () => {
+    if (!corriges[id]) {
+      const contenu = await payant.ouvrir<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id);
+      if (!contenu) return;
+      setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
+    }
+    setCorrigeDe(id);
+  };
 
   useEffect(() => {
     debut.current = Date.now();
@@ -133,15 +146,15 @@ export function ExerciceLibre() {
     else retour();
   };
   const surSuivant = () => (fait ? allerSuivant() : setDemande('suivant'));
-  const aCorrige = etat.statut === 'pret' && !!etat.detail?.corrige.length;
+  const aCorrige = etat.statut === 'pret' && !!etat.detail?.aCorrige;
 
-  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
+  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : (payant.effacerRefus(), setCorrigeDe(null)));
   // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
       <View style={styles.flex}>
         {aCorrige ? (
-          <Bouton variante="secondaire" libelle={t(corrige ? 'entrainement.voirEnonce' : 'entrainement.voirCorrige')} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
+          <Bouton variante="secondaire" libelle={corrige ? t('entrainement.voirEnonce') : libelleAvecPrix(t, t('entrainement.voirCorrige'), payant.prix('exercise_solution'))} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
         ) : (
           <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void (fait ? basculer() : marquer())} />
         )}
@@ -211,7 +224,7 @@ export function ExerciceLibre() {
               <View style={[styles.pastilleCorrige, { backgroundColor: couleursCorrige.pastille, borderColor: theme.bord.fort }]}>
                 <Text accessibilityRole="header" style={[typo.etiquette, { color: palette.encre[1000] }]}>{`✓ ${t('entrainement.corrige').toUpperCase()}`}</Text>
               </View>
-              <Blocs blocs={etat.detail.corrige} surJaune />
+              <Blocs blocs={corriges[id] ?? []} surJaune />
             </View>
           ) : (
             <>
@@ -220,6 +233,7 @@ export function ExerciceLibre() {
               {etat.detail?.enonce.length ? <Blocs blocs={etat.detail.enonce} /> : <Text selectable style={[typo.texte, { color: theme.texte.principal }]}>{exercice.enonce}</Text>}
             </>
           )}
+          {payant.refus ? <Banniere ton="erreur" titre={payant.refus.raison === 'erreur' ? t('payant.erreur') : payant.refus.raison === 'limite' ? t('payant.limite') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })} /> : null}
           {!aCorrige ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('entrainement.corrigeBientot')}</Text> : null}
         </>
       ) : null}
