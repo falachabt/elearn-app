@@ -245,12 +245,18 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
     await monter(<FinMission />);
     await waitFor(() => expect(screen.getByText(x.rythme.titre)).toBeTruthy());
-    await fireEvent.press(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '20') }));
+    // Onglet « Questions » : réglage par pas de 5.
     await fireEvent.press(screen.getByRole('button', { name: x.rythme.moins }));
-    await fireEvent.press(screen.getByRole('button', { name: x.rythme.valider.replace('{{n}}', '25') }));
+    expect(screen.getByText(x.rythme.questions.replace('{{n}}', '15'))).toBeTruthy();
+    // Onglet « Temps » : 10 à 45 minutes.
+    await fireEvent.press(screen.getByRole('tab', { name: x.rythme.ongletTemps }));
+    expect(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '45') })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.minutes.replace('{{n}}', '20') }));
+    expect(screen.getByText(x.rythme.environ.replace('{{n}}', '30'))).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.rythme.valider.replace('{{n}}', '30') }));
     await waitFor(() => expect(screen.queryByText(x.rythme.titre)).toBeNull());
-    expect(await AsyncStorage.getItem(CLE_RYTHME)).toBe('25');
-    expect(suivre).toHaveBeenCalledWith('mission_goal_set', { minutes: null, questions: 25, origine: 'fin_mission' });
+    expect(await AsyncStorage.getItem(CLE_RYTHME)).toBe('30');
+    expect(suivre).toHaveBeenCalledWith('mission_goal_set', { minutes: 20, questions: 30, origine: 'fin_mission' });
   });
 
   it('accueil : un résultat d’une autre mission ne compte pas comme faite', async () => {

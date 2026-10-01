@@ -15,6 +15,8 @@ export const RYTHMES = [
   { minutes: 10, questions: 15 },
   { minutes: 15, questions: 20 },
   { minutes: 20, questions: 30 },
+  { minutes: 30, questions: 40 },
+  { minutes: 45, questions: 50 },
 ] as const;
 
 export const bornerTaille = (n: number) => Math.min(TAILLE_MAX, Math.max(TAILLE_MIN, Math.round(n / PAS_TAILLE) * PAS_TAILLE));
