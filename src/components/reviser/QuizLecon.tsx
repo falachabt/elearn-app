@@ -87,8 +87,9 @@ export function QuizLecon() {
     etat.statut === 'chargement' ? undefined : (
       <View style={styles.pied}>
         {valide && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
+        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => router.replace({ pathname: '/cours/fin', params: { cours: String(cours) } })} retour /> : null}
         {etat.statut === 'fini' && !reussi ? <Bouton libelle={t('reviser.quizReessayer')} onPress={reessayer} /> : null}
-        <Bouton variante={valide && suivante ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
+        <Bouton variante={valide ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
       </View>
     );
   return (

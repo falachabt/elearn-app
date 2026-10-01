@@ -81,7 +81,8 @@ export function LeconLecteur() {
     if (etat.statut !== 'pret') return;
     setInvitation(false);
     if (suivante) router.replace({ pathname: '/cours/lecon', params: { id: String(suivante.id), cours: String(etat.lecon.coursId), matiere: matiere ?? '' } });
-    else retour();
+    // Dernière leçon : la fin de chapitre propose le quiz et les exercices du chapitre (M5-11).
+    else router.replace({ pathname: '/cours/fin', params: { cours: String(etat.lecon.coursId) } });
   };
   const avancer = () => {
     if (validee) return continuer();

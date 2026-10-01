@@ -16,6 +16,9 @@ export type Evenements = {
   mission_lesson_review_opened: { cours: number };
   mission_errors_retried: { score: number; total: number };
   lesson_quiz_completed: { score: number; total: number };
+  practice_quiz_completed: { score: number; total: number; record: boolean };
+  practice_exercise_done: { fait: boolean };
+  chapter_end_shown: { complet: boolean; quiz: number; exercices: number };
   guardian_contact_saved: Record<string, never>;
   profile_class_changed: { niveau: string; pays: string; statut: 'eleve' | 'concours' };
   guardian_contact_withdrawn: Record<string, never>;

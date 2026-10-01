@@ -24,7 +24,7 @@ export const CLE_LUES = 'reviser.lues';
 export const AUTRES = 'Autres';
 
 /** Lecture réseau d'abord, puis copie locale : l'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert (M5-03). */
-async function avecCopie<T>(cle: string, lire: () => Promise<T>): Promise<T> {
+export async function avecCopie<T>(cle: string, lire: () => Promise<T>): Promise<T> {
   try {
     const valeur = await lire();
     await AsyncStorage.setItem(cle, JSON.stringify(valeur));
@@ -36,7 +36,7 @@ async function avecCopie<T>(cle: string, lire: () => Promise<T>): Promise<T> {
   }
 }
 
-async function rpc<T>(client: Client, nom: string, args: Record<string, unknown>): Promise<T[]> {
+export async function rpc<T>(client: Client, nom: string, args: Record<string, unknown>): Promise<T[]> {
   const { data, error } = await client.rpc(nom, args);
   if (error) throw error;
   return (data ?? []) as T[];

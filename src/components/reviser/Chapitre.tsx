@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { lireEntrainement, type Compteur } from '@/services/entrainement';
 import { lireFiche, lireLecons, lireLues, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -15,6 +16,8 @@ import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
 import { BoutonFermer } from '../arrivee/MiniTest';
+import { decrireCompteur } from '../entrainement/compter';
+import { Ligne } from '../entrainement/Ligne';
 
 /** Leçons d'un chapitre, dans l'ordre, avec leur durée et une coche pour celles déjà lues. */
 export function Chapitre() {
@@ -24,6 +27,7 @@ export function Chapitre() {
   const [lecons, setLecons] = useState<Lecon[] | null | undefined>(undefined);
   const [lues, setLues] = useState<Record<string, number>>({});
   const [fiche, setFiche] = useState(false);
+  const [entrainement, setEntrainement] = useState<Compteur | null>(null);
   const pret = useSessionPrete();
 
   useFocusEffect(
@@ -39,6 +43,9 @@ export function Chapitre() {
         .catch(() => actif && setLecons(null));
       lireFiche(getSupabase(), Number(id))
         .then((f) => actif && setFiche(f !== null))
+        .catch(() => undefined);
+      lireEntrainement(getSupabase(), Number(id))
+        .then((e) => actif && setEntrainement(e.quiz.length || e.exercices.length ? { quiz: e.quiz.length, exercices: e.exercices.length } : null))
         .catch(() => undefined);
       return () => {
         actif = false;
@@ -101,6 +108,14 @@ export function Chapitre() {
           </Appui>
         );
       })}
+      {entrainement ? (
+        <Ligne
+          icone="barbell-outline"
+          titre={t('entrainement.ouvrir')}
+          details={decrireCompteur(t, entrainement)}
+          onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: id, nom: nom ?? '' } })}
+        />
+      ) : null}
     </Ecran>
   );
 }

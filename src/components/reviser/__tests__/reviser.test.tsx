@@ -227,6 +227,9 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
     expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy();
     expect(await lireLues()).toEqual({ 11: 1 });
+    // Pas de leçon suivante : la fin de chapitre (M5-11).
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } });
   });
 
   it('quiz de leçon raté : pas validée, réessayer', async () => {
@@ -253,9 +256,12 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
   });
 
   it('dernière leçon : terminer le chapitre', async () => {
+    await marquerLue(12, 1);
     mockParams = { id: '12', cours: '1' };
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } });
   });
 
   it('leçon introuvable', async () => {
