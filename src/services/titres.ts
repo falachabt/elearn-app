@@ -63,6 +63,7 @@ function morceaux(titre: string, contexte: string): { reste: string[]; numero?: 
       numero ??= Number(colle[1]);
       m = m.slice(colle[0].length);
     }
+    if (/^(?:quiz|qcm)(?: du chapitre)?$/.test(cle(m))) continue;
     const k = cle(m).replace(/^(?:quiz|qcm) /, '');
     if (ctx && k.length >= 4 && ctx.includes(k)) continue;
     reste.push(m);

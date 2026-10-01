@@ -10,6 +10,7 @@ describe('titres (revue design, règle 6)', () => {
     ['Quiz 3/3 - Logique et théorie des ensembles - Approfondissement des démonstrations', 'Logique et theorie des ensembles pour concours polytechnique L3', { corps: 'Approfondissement des démonstrations', numero: 3 }],
     ['10mouvement dans un champ', 'Mouvement dans un champ', { corps: '', numero: 10 }],
     ['Module 2', 'Optique', { corps: 'Module 2', numero: undefined }],
+    ['Quiz', 'Actions mécaniques', { corps: '', numero: undefined }],
   ])('quiz « %s »', (nom, chapitre, attendu) => {
     expect(titreQuiz(nom, chapitre)).toEqual(attendu);
   });

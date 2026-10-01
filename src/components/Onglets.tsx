@@ -29,5 +29,6 @@ export function Onglets<T extends string>({ valeurs, valeur, onChange }: Props<T
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   cadre: { height: 40, flexDirection: 'row', padding: 3, gap: espace[1], borderWidth: bord.normal, borderRadius: rayon.pilule },
-  segment: { flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: rayon.pilule },
+  // Hauteur fixe : sur Android, un segment en flex dans le corps animé d'Appui s'écrase à 0 et son texte est rogné.
+  segment: { height: 30, alignItems: 'center', justifyContent: 'center', borderRadius: rayon.pilule },
 });
