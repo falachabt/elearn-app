@@ -15,6 +15,7 @@ import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
+import { CreditsProvider } from '@/session/CreditsProvider';
 import { SessionProvider } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 
@@ -70,10 +71,12 @@ export default function RootLayout() {
       <ThemeProvider>
         <ErrorBoundary>
           <SessionProvider>
-            <VisiteProvider>
-              <Navigation />
-              <MiseAJour />
-            </VisiteProvider>
+            <CreditsProvider>
+              <VisiteProvider>
+                <Navigation />
+                <MiseAJour />
+              </VisiteProvider>
+            </CreditsProvider>
           </SessionProvider>
         </ErrorBoundary>
       </ThemeProvider>

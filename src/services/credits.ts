@@ -1,0 +1,142 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { SupabaseClient } from '@supabase/supabase-js';
+import * as Application from 'expo-application';
+import { Platform } from 'react-native';
+
+import { suivre } from './analytics';
+
+type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel'>;
+
+/** Actions payantes en crédits (M18). Les coûts viennent du serveur (credit_actions), jamais de l'app. */
+export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question';
+
+export type Solde = {
+  total: number;
+  semaine: number;
+  recompenses: number;
+  /** Montant de la recharge du lundi (jauge « 7 / 25 »). */
+  recharge: number;
+  prochaineRecharge: string;
+  /** Faux pour un invité ou un compte au-delà de la limite par appareil. */
+  rechargeHebdo: boolean;
+  illimite: boolean;
+  illimiteJusqua: string | null;
+  expirationRecompenses: string | null;
+};
+
+/**
+ * Résultat de `depenser_credits` :
+ * - unlimited : pass en cours, rien n'est débité ; already : déjà débloqué ; free : gratuit ; spent : débité ;
+ * - insufficient : solde trop bas (contenu null) ; limit : limite de questions à l'IA du pass atteinte (contenu null).
+ */
+export type StatutDepense = 'unlimited' | 'already' | 'free' | 'spent' | 'insufficient' | 'limit';
+export type Depense<C = Record<string, unknown>> = { statut: StatutDepense; cout: number; solde: number; contenu: C | null };
+
+export const CLE_APPAREIL = 'credits.appareil';
+
+/**
+ * Identifiant de l'appareil pour le bonus de bienvenue (une fois par appareil) et la limite de comptes par appareil
+ * (M18-03). Le serveur le hache. Android : ANDROID_ID ; iOS : identifiant fournisseur ; sinon un tirage gardé en local.
+ */
+export async function identifiantAppareil(): Promise<string> {
+  try {
+    const natif = Platform.OS === 'android' ? Application.getAndroidId() : Platform.OS === 'ios' ? await Application.getIosIdForVendorAsync() : null;
+    if (natif) return `${Platform.OS}:${natif}`;
+  } catch {
+    // Repli ci-dessous.
+  }
+  const garde = await AsyncStorage.getItem(CLE_APPAREIL).catch(() => null);
+  if (garde) return garde;
+  const tire = `local:${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`;
+  await AsyncStorage.setItem(CLE_APPAREIL, tire).catch(() => {});
+  return tire;
+}
+
+type LigneSolde = {
+  balance: number;
+  weekly_left: number;
+  reward_left: number;
+  weekly_amount: number;
+  next_refill_at: string;
+  weekly_refill: boolean;
+  unlimited: boolean;
+  unlimited_until: string | null;
+  next_reward_expiry: string | null;
+};
+
+/** Solde de l'élève connecté. Le serveur fait la recharge du lundi et le bonus de bienvenue au passage. */
+export async function lireSolde(client: Client, appareil: string | null): Promise<Solde> {
+  const { data, error } = await client.rpc('my_credits', { p_device: appareil });
+  if (error) throw error;
+  const l = (data as LigneSolde[] | null)?.[0];
+  if (!l) throw new Error('solde introuvable');
+  return {
+    total: l.balance,
+    semaine: l.weekly_left,
+    recompenses: l.reward_left,
+    recharge: l.weekly_amount,
+    prochaineRecharge: l.next_refill_at,
+    rechargeHebdo: l.weekly_refill,
+    illimite: l.unlimited,
+    illimiteJusqua: l.unlimited_until,
+    expirationRecompenses: l.next_reward_expiry,
+  };
+}
+
+/** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */
+export async function lireCouts(client: Client): Promise<Partial<Record<ActionCredit, number>>> {
+  const { data, error } = await client.from('credit_actions').select('code, cost');
+  if (error) throw error;
+  return Object.fromEntries(((data ?? []) as { code: ActionCredit; cost: number }[]).map((l) => [l.code, l.cost]));
+}
+
+/**
+ * M18-04 : seule porte vers un contenu payant (explication, corrigé, adresse de PDF). Le serveur vérifie le pass, un
+ * déblocage existant puis le solde, débite une seule fois et renvoie le contenu. `objet` : identifiant de l'élément.
+ */
+export async function depenser<C = Record<string, unknown>>(client: Client, action: ActionCredit, objet: string | number): Promise<Depense<C>> {
+  const { data, error } = await client.rpc('depenser_credits', { p_action: action, p_ref: String(objet) });
+  if (error) throw error;
+  const l = (data as { status: StatutDepense; cost: number; balance: number; content: C | null }[] | null)?.[0];
+  if (!l) throw new Error('réponse vide');
+  if (l.status === 'spent') suivre('credits_spent', { action, cout: l.cost, solde: l.balance });
+  if (l.status === 'insufficient') suivre('credits_exhausted', { action, cout: l.cost, solde: l.balance });
+  return { statut: l.status, cout: l.cost, solde: l.balance, contenu: l.content };
+}
+
+/** Le contenu est-il déjà ouvert pour cet élève (pass, déjà débloqué, gratuit) ? Ne dépense rien. */
+export async function peutVoir(client: Client, action: ActionCredit, objet: string | number): Promise<boolean> {
+  const { data, error } = await client.rpc('can_view', { p_action: action, p_ref: String(objet) });
+  if (error) throw error;
+  return data === true;
+}
+
+type LigneTempsReel = { weekly_left: number; reward_left: number; next_refill_at: string; unlimited_until: string | null };
+
+/** Applique une ligne credit_balances reçue en temps réel au solde connu (M18-06). */
+export function appliquerTempsReel(solde: Solde, ligne: LigneTempsReel, maintenant = new Date()): Solde {
+  const illimite = !!ligne.unlimited_until && new Date(ligne.unlimited_until) > maintenant;
+  return {
+    ...solde,
+    total: ligne.weekly_left + ligne.reward_left,
+    semaine: ligne.weekly_left,
+    recompenses: ligne.reward_left,
+    prochaineRecharge: ligne.next_refill_at,
+    illimite,
+    illimiteJusqua: illimite ? ligne.unlimited_until : null,
+  };
+}
+
+/** S'abonne aux changements du solde de l'élève. Renvoie la fonction d'arrêt. */
+export function suivreSolde(client: Client, utilisateur: string, surChangement: (ligne: LigneTempsReel) => void): () => void {
+  const canal = client
+    .channel(`credits:${utilisateur}`)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'credit_balances', filter: `user_id=eq.${utilisateur}` }, (charge) => {
+      const ligne = charge.new as Partial<LigneTempsReel> | undefined;
+      if (ligne && typeof ligne.weekly_left === 'number' && typeof ligne.reward_left === 'number') surChangement(ligne as LigneTempsReel);
+    })
+    .subscribe();
+  return () => {
+    client.removeChannel(canal);
+  };
+}
