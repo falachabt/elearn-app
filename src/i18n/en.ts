@@ -511,6 +511,7 @@ export const en: Textes = {
     fausses: '✕ Wrong: {{n}}',
     passees: '– Unanswered: {{n}}',
     revoir: 'Review the answers',
+    relireCours: 'Reread the lesson',
     leconsRatees: 'Review missed lessons ({{n}})',
     titre: 'Question {{n}} / {{total}}',
     retour: 'Back to results',

@@ -70,6 +70,7 @@ const QUIZ = [1, 2, 3].map((i) => ({
 
 function repondre(nom: string, args: Record<string, number>) {
   if (nom === 'revision_courses') return { data: COURS, error: null };
+  if (nom === 'contest_courses') return { data: [{ course_id: 8, name: 'Mécanique', subject: 'Physique', lessons: 3 }], error: null };
   if (nom === 'course_lessons') return { data: LECONS, error: null };
   if (nom === 'course_summary') return { data: args.p_course === 1 ? [{ summary_id: 5, name: 'Fiche Fractions', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'À retenir' }] }] }] : [], error: null };
   if (nom === 'lesson_quiz') return { data: args.p_course === 1 ? QUIZ : [], error: null };
@@ -122,6 +123,14 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(screen.queryByText('Le conte')).toBeNull();
     await fireEvent.press(screen.getByText('Fractions'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions', matiere: 'Maths' } });
+  });
+
+  it('candidat : les chapitres de la matière viennent de son concours', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENSPD', nom: 'ENSPD' }, termine: true });
+    mockParams = { nom: 'Physique' };
+    await monter(<MatiereCours />);
+    await waitFor(() => expect(screen.getByText('Mécanique')).toBeTruthy());
+    expect(mockRpc).toHaveBeenCalledWith('contest_courses', { p_contest: 'c1' });
   });
 
   it('chapitre terminé : en bas de la liste et marqué', async () => {

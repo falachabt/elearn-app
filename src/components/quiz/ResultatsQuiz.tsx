@@ -14,8 +14,8 @@ export const revoirQuestion = (i: number) => router.push({ pathname: '/quiz/corr
 
 type Props = {
   statuts: StatutQuestion[];
-  /** « Revoir les leçons ratées (n) » : seulement quand le quiz connaît les cours des questions ratées. */
-  leconsRatees?: { nombre: number; onPress: () => void };
+  /** « Revoir les leçons ratées (n) » : seulement quand le quiz connaît les cours des questions ratées. Un seul cours : « Relire le cours ». */
+  leconsRatees?: { nombre: number; onPress: () => void; unCours?: boolean };
 };
 
 /**
@@ -39,7 +39,7 @@ export function ResultatsQuiz({ statuts, leconsRatees }: Props) {
       </View>
       {erreurs ? <Bouton libelle={t('mission.refaireErreurs', { n: erreurs })} onPress={() => router.push('/mission/erreurs')} /> : null}
       <Bouton variante="secondaire" libelle={t('correction.revoir')} onPress={() => revoirQuestion(erreurs ? premiere : 0)} />
-      {leconsRatees?.nombre ? <Bouton variante="secondaire" libelle={t('correction.leconsRatees', { n: leconsRatees.nombre })} onPress={leconsRatees.onPress} /> : null}
+      {erreurs && leconsRatees?.nombre ? <Bouton variante="secondaire" libelle={leconsRatees.unCours ? t('correction.relireCours') : t('correction.leconsRatees', { n: leconsRatees.nombre })} onPress={leconsRatees.onPress} /> : null}
     </View>
   );
 }

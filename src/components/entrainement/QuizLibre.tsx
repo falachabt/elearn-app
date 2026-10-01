@@ -22,7 +22,7 @@ const retour = () => (router.canGoBack() ? router.back() : router.replace('/revi
 export function QuizLibreEcran() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, cours, nom } = useLocalSearchParams<{ id: string; cours?: string; nom?: string }>();
   const [questions, setQuestions] = useState<QuestionTiree[] | null | undefined>(undefined);
   const pret = useSessionPrete();
 
@@ -30,14 +30,18 @@ export function QuizLibreEcran() {
     if (!pret) return;
     let actif = true;
     lireQuizLibre(getSupabase(), { quiz: String(id), vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } })
-      .then((q) => actif && setQuestions(q.length ? q : null))
+      .then((q) => {
+        // Le chapitre du quiz, pour « Relire le cours » sur l'écran de résultats.
+        const chapitre = cours ? { id: Number(cours), nom: nom ?? '' } : null;
+        if (actif) setQuestions(q.length ? q.map((x) => ({ ...x, cours: x.cours ?? chapitre })) : null);
+      })
       .catch(() => actif && setQuestions(null));
     return () => {
       actif = false;
     };
     // Libellés Vrai/Faux figés au tirage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, pret]);
+  }, [id, cours, pret]);
 
   if (questions) {
     return (

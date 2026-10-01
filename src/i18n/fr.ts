@@ -512,6 +512,7 @@ export const fr = {
     fausses: '✕ Faux : {{n}}',
     passees: '– Sans réponse : {{n}}',
     revoir: 'Revoir la correction',
+    relireCours: 'Relire le cours',
     leconsRatees: 'Revoir les leçons ratées ({{n}})',
     titre: 'Question {{n}} / {{total}}',
     retour: 'Retour aux résultats',

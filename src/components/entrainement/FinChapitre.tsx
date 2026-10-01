@@ -57,7 +57,7 @@ export function FinChapitre() {
   const premierQuiz = etat.quiz[0];
   const pied = (
     <View style={styles.pied}>
-      {premierQuiz ? <Bouton libelle={t('entrainement.faireQuiz')} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: premierQuiz.id } })} retour /> : null}
+      {premierQuiz ? <Bouton libelle={t('entrainement.faireQuiz')} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: premierQuiz.id, cours: String(cours), nom: nom ?? '' } })} retour /> : null}
       <Bouton variante={premierQuiz ? 'secondaire' : undefined} libelle={t('entrainement.retourChapitre')} onPress={retour} />
     </View>
   );
@@ -82,7 +82,7 @@ export function FinChapitre() {
         <View style={styles.groupe}>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('entrainement.vaPlusLoin')}</Text>
           {etat.quiz.map((q) => (
-            <Ligne key={q.id} icone="help-circle-outline" titre={q.nom} details={t('entrainement.questions', { n: q.questions })} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id } })} />
+            <Ligne key={q.id} icone="help-circle-outline" titre={q.nom} details={t('entrainement.questions', { n: q.questions })} onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id, cours: String(cours), nom: nom ?? '' } })} />
           ))}
           {etat.exercices.length ? (
             <Ligne

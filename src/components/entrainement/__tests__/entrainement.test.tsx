@@ -12,6 +12,7 @@ import { enregistrerProfil } from '@/services/profil';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
+import { EcranResultats } from '../../quiz/EcranResultats';
 import { Chapitre } from '../../reviser/Chapitre';
 import { Reviser } from '../../reviser/Reviser';
 import { ChapitreEntrainement } from '../ChapitreEntrainement';
@@ -93,7 +94,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.getByText(`${x.entrainement.questions.replace('{{n}}', '12')} · ${x.entrainement.meilleur.replace('{{n}}', '80')}`)).toBeTruthy();
     expect(screen.getByText(`${x.entrainement.exercice.replace('{{n}}', '2').replace('{{total}}', '2')} · ${x.entrainement.fait}`)).toBeTruthy();
     await fireEvent.press(screen.getByText('Quiz Fractions'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } });
     await fireEvent.press(screen.getByText('Simplifier'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e1', cours: '1' } });
   });
@@ -113,7 +114,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
   });
 
   it('quiz libre : questions, meilleur score et correction commune', async () => {
-    mockParams = { id: 'qz1' };
+    mockParams = { id: 'qz1', cours: '1', nom: 'Fractions' };
     await monter(<QuizLibreEcran />);
     expect(mockRpc).toHaveBeenCalledWith('practice_quiz', { p_quiz: 'qz1', p_size: 20 });
     for (const i of [1, 2, 3]) {
@@ -124,6 +125,11 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     }
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
     expect(await lireMeilleursScores()).toEqual({ qz1: 67 });
+    // Résultats : une erreur, un seul chapitre → « Relire le cours ».
+    await monter(<EcranResultats />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.correction.relireCours })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.correction.relireCours }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions' } });
     const c = await lireCorrection();
     expect(c?.source).toBe('libre');
     expect(statuts(c!)).toEqual(['juste', 'faux', 'juste']);
@@ -161,7 +167,7 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.getByText(x.entrainement.vaPlusLoin)).toBeTruthy();
     expect(await finChapitreVue(1)).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.faireQuiz }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'qz1', cours: '1', nom: 'Fractions' } });
     await fireEvent.press(screen.getByText(x.entrainement.exercices));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
   });

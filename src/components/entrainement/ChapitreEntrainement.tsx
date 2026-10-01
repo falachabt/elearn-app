@@ -59,7 +59,7 @@ export function ChapitreEntrainement() {
               titre={q.nom}
               details={[t('entrainement.questions', { n: q.questions }), etat.scores[q.id] !== undefined ? t('entrainement.meilleur', { n: etat.scores[q.id] }) : null].filter(Boolean).join(' · ')}
               fait={etat.scores[q.id] === 100}
-              onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id } })}
+              onPress={() => router.push({ pathname: '/entrainement/quiz', params: { id: q.id, cours: String(cours), nom: nom ?? '' } })}
             />
           ))}
         </View>

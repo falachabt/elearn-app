@@ -85,6 +85,11 @@ export function nomCourt(nom: string): string {
   return nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase().replace(/ & /g, ' et ');
 }
 
+/** Ce que lit Réviser pour un profil : le programme du concours choisi, sinon celui de la classe. */
+export function programmeDu(profil: { type?: string | null; niveau?: string | null; pays?: string | null; concours?: { id: string } | null } | null) {
+  return { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', concours: profil?.type === 'concours' ? (profil.concours?.id ?? null) : null };
+}
+
 export async function lireCours(client: Client, p: { niveau: string; pays: string; concours?: string | null }): Promise<Cours[]> {
   // Un concours choisi se comporte comme une classe : son programme remplace celui de la classe.
   const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays);

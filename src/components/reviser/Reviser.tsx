@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { iconeMatiere, lireCours, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { iconeMatiere, lireCours, programmeDu, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -23,7 +23,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 async function charger(): Promise<Etat> {
   try {
     const profil = await lireProfil();
-    const p = { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', concours: profil?.type === 'concours' ? profil.concours?.id : null };
+    const p = programmeDu(profil);
     const [cours, lues] = await Promise.all([lireCours(getSupabase(), p), synchroniserLues(getSupabase())]);
     return { statut: 'pret', matieres: regrouperParMatiere(cours), lues, cle: p.concours ?? `${p.niveau}.${p.pays}` };
   } catch {
@@ -42,7 +42,7 @@ function Tuile({ m, vu, onPress }: { m: Matiere; vu: number; onPress: () => void
       <Appui accessibilityRole="button" accessibilityLabel={`${m.nom}, ${t('reviser.vu', { n: vu })}`} onPress={onPress} rayon={rayon.l} ombre={4} decalage={3} couleurOmbre={theme.ombre} retour>
         <View style={[styles.tuile, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
           <Ionicons name={iconeMatiere(m.nom)} size={20} color={encre} />
-          <Text numberOfLines={2} style={[typo.texteFort, { color: encre }]}>{m.nom}</Text>
+          <Text numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} style={[typo.texteFort, { color: encre }]}>{m.nom}</Text>
           <Text style={[typo.donnee, { color: encre }]}>{t('reviser.vu', { n: vu })}</Text>
         </View>
       </Appui>
@@ -132,5 +132,5 @@ const styles = StyleSheet.create({
   segment: { alignItems: 'center', justifyContent: 'center', paddingVertical: espace[3], borderRadius: rayon.s },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },
   moitie: { width: '47%', flexGrow: 1 },
-  tuile: { minHeight: 110, padding: espace[5], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'flex-end' },
+  tuile: { height: 132, padding: espace[5], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.l, justifyContent: 'flex-end' },
 });

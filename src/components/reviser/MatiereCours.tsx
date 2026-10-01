@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { lireCours, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { lireCours, programmeDu, lireLues, pourcentageVu, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -32,7 +32,7 @@ export function MatiereCours() {
       void (async () => {
         try {
           const profil = await lireProfil();
-          const [cours, l] = await Promise.all([lireCours(getSupabase(), { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }), lireLues()]);
+          const [cours, l] = await Promise.all([lireCours(getSupabase(), programmeDu(profil)), lireLues()]);
           if (!actif) return;
           setLues(l);
           setMatiere(regrouperParMatiere(cours).find((m) => m.nom === nom) ?? null);
