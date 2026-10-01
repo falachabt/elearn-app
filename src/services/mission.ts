@@ -79,18 +79,21 @@ export function convertir(l: LigneMission, vraiFaux: { vrai: string; faux: strin
  */
 export async function chargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number; concours?: string | null },
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
   const brut = await AsyncStorage.getItem(CLE_MISSION);
-  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number }) : null;
-  if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille) return garde;
+  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
+  if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
 
   let mission: Mission;
   try {
-    // Du plus récent au plus ancien : la fonction peut ne pas encore être déployée en production.
-    let { data, error } = await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille });
+    // Candidat : les quiz des cours de son concours. Élève : du plus récent au plus ancien, la fonction peut ne pas
+    // encore être déployée en production.
+    let { data, error } = p.concours
+      ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: jour, p_questions: taille })
+      : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille });
     if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION }));
     if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION }));
     if (error) throw error;
@@ -101,7 +104,7 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille }));
+  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, concours: p.concours ?? null }));
   return mission;
 }
 

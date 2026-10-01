@@ -85,9 +85,14 @@ export function nomCourt(nom: string): string {
   return nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase().replace(/ & /g, ' et ');
 }
 
-export async function lireCours(client: Client, p: { niveau: string; pays: string }): Promise<Cours[]> {
-  return avecCopie(CLE_COURS(p.niveau, p.pays), async () => {
-    const lignes = await rpc<{ course_id: number; name: string; subject: string | null; lessons: number }>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays });
+export async function lireCours(client: Client, p: { niveau: string; pays: string; concours?: string | null }): Promise<Cours[]> {
+  // Un concours choisi se comporte comme une classe : son programme remplace celui de la classe.
+  const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays);
+  return avecCopie(cle, async () => {
+    type Ligne = { course_id: number; name: string; subject: string | null; lessons: number };
+    const lignes = p.concours
+      ? await rpc<Ligne>(client, 'contest_courses', { p_contest: p.concours })
+      : await rpc<Ligne>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays });
     return lignes.map((l) => ({ id: l.course_id, nom: l.name.trim(), matiere: l.subject?.trim() || AUTRES, lecons: l.lessons }));
   });
 }

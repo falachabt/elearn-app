@@ -73,6 +73,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') },
           jour,
           taille: taille ?? undefined,
+          concours: profil?.type === 'concours' ? profil.concours?.id : null,
         }).catch(() => null);
         // Un résultat d'une autre mission du jour (taille changée, nouvelle version) ne compte pas comme faite.
         const aJour = faite && mission && faite.total !== mission.questions.length ? null : faite;

@@ -21,6 +21,15 @@ describe('reviser', () => {
     expect(await lireCours(client(null, new Error('hors ligne')) as never, { niveau: '3e', pays: 'CM' })).toEqual(cours);
   });
 
+  it('candidat : les cours de son concours, gardés à part', async () => {
+    const c = client([{ course_id: 7, name: 'Analyse', subject: 'Mathématique', lessons: 4 }]);
+    const cours = await lireCours(c as never, { niveau: 'ingenieurs', pays: 'CM', concours: 'c1' });
+    expect(c.rpc).toHaveBeenCalledWith('contest_courses', { p_contest: 'c1' });
+    expect(cours).toEqual([{ id: 7, nom: 'Analyse', matiere: 'Mathématique', lecons: 4 }]);
+    expect(await lireCours(client(null, new Error('hors ligne')) as never, { niveau: 'ingenieurs', pays: 'CM', concours: 'c1' })).toEqual(cours);
+    await expect(lireCours(client(null, new Error('hors ligne')) as never, { niveau: 'ingenieurs', pays: 'CM', concours: 'c2' })).rejects.toThrow('hors ligne');
+  });
+
   it('hors ligne sans copie : erreur', async () => {
     await expect(lireCours(client(null, new Error('hors ligne')) as never, { niveau: '1re', pays: 'CM' })).rejects.toThrow('hors ligne');
   });

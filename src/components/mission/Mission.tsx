@@ -31,7 +31,7 @@ export function Mission() {
     void (async () => {
       const profil = await lireProfil();
       const n = profil?.niveau ?? '3e';
-      const m = await chargerMission(getSupabase(), { niveau: n, pays: profil?.pays ?? 'CM', vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') }, taille: (await lireRythme()) ?? undefined });
+      const m = await chargerMission(getSupabase(), { niveau: n, pays: profil?.pays ?? 'CM', vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') }, taille: (await lireRythme()) ?? undefined, concours: profil?.type === 'concours' ? profil.concours?.id : null });
       if (!actif) return;
       setNiveau(n);
       setMission(m);

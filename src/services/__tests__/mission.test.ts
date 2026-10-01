@@ -62,6 +62,16 @@ describe('chargerMission', () => {
     expect(encore.questions.map((q) => q.id)).toEqual(m.questions.map((q) => q.id));
   });
 
+  it('candidat : la mission vient des cours de son concours, et change avec le concours', async () => {
+    const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3)] });
+    await chargerMission(c as never, { niveau: 'ingenieurs', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', concours: 'c1' });
+    expect(c.rpc).toHaveBeenCalledWith('daily_mission_contest', { p_contest: 'c1', p_day: '2026-10-01', p_questions: 20 });
+    await chargerMission(c as never, { niveau: 'ingenieurs', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', concours: 'c1' });
+    expect(c.rpc).toHaveBeenCalledTimes(1);
+    await chargerMission(c as never, { niveau: 'ingenieurs', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', concours: 'c2' });
+    expect(c.rpc).toHaveBeenLastCalledWith('daily_mission_contest', expect.objectContaining({ p_contest: 'c2' }));
+  });
+
   it('taille choisie par l’élève, et nouvelle mission si elle change', async () => {
     const c = clientFaux({ data: [ligne(1), ligne(2), ligne(3)] });
     await chargerMission(c as never, { niveau: '3e', pays: 'CM', vraiFaux: VF, jour: '2026-10-01', taille: 30 });

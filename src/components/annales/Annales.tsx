@@ -13,13 +13,13 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { LigneLien } from '../LigneLien';
 
-type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; dossiers: Dossier[]; concours: Concours[] };
+type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; dossiers: Dossier[]; mien: Concours[]; autres: Concours[]; eleve: boolean };
 
 /**
- * D3 · Annales (M6-01, v1.4) : rangées en dossiers. Un élève du secondaire voit d'abord les dossiers de sa classe,
- * puis les concours ; un candidat aux concours voit les concours. Chaque concours ouvre ses sujets.
+ * D3 · Annales (M6-01, v1.8) : rangées en dossiers. L'élève voit les dossiers de sa classe, le candidat les sujets de
+ * son concours ; tout le reste est rangé dans « Autres concours ». `tous` : la liste complète des concours.
  */
-export function Annales() {
+export function Annales({ tous = false }: { tous?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const pret = useSessionPrete();
@@ -33,17 +33,22 @@ export function Annales() {
       const profil = await lireProfil();
       const eleve = profil?.type !== 'concours';
       const [dossiers, sujets] = await Promise.all([
-        eleve ? lireDossiers(client, { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }).catch(() => []) : Promise.resolve([]),
+        eleve && !tous ? lireDossiers(client, { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }).catch(() => []) : Promise.resolve([]),
         lireCatalogue(client).catch(() => null),
       ]);
       if (!actif) return;
       if (!sujets && !dossiers.length) return setEtat({ statut: 'erreur' });
-      setEtat({ statut: 'pret', dossiers, concours: concoursDuCatalogue(sujets ?? []) });
+      const concours = concoursDuCatalogue(sujets ?? []);
+      const monId = profil?.type === 'concours' ? profil.concours?.id : undefined;
+      // Sans concours choisi, un candidat voit tous les concours, comme avant le choix.
+      const mien = tous ? [] : eleve ? [] : monId ? concours.filter((c) => c.id === monId) : concours;
+      const autres = tous ? concours : concours.filter((c) => !mien.includes(c));
+      setEtat({ statut: 'pret', dossiers, mien, autres, eleve });
     })();
     return () => {
       actif = false;
     };
-  }, [pret]);
+  }, [pret, tous]);
 
   if (etat.statut === 'chargement') return <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('annales.chargement')}</Text>;
   if (etat.statut === 'erreur') return <Banniere ton="erreur" titre={t('annales.erreur')} />;
@@ -64,22 +69,41 @@ export function Annales() {
           ))}
         </View>
       ) : null}
-      {etat.concours.length ? (
+      {etat.mien.length ? (
         <View style={styles.section}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.concours')}</Text>
-          {etat.concours.map((c) => (
-            <LigneLien
-              key={c.id}
-              icone="trophy-outline"
-              titre={c.sigle && c.sigle !== c.nom ? `${c.sigle} · ${c.nom}` : c.nom}
-              detail={t(c.sujets > 1 ? 'annales.sujets' : 'annales.sujet', { n: c.sujets })}
-              onPress={() => router.push({ pathname: '/annales/concours', params: { id: c.id, nom: c.sigle || c.nom } })}
-            />
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t(etat.mien.length > 1 ? 'annales.concours' : 'annales.monConcours')}</Text>
+          {etat.mien.map((c) => (
+            <LigneConcours key={c.id} c={c} />
           ))}
         </View>
       ) : null}
-      {!etat.dossiers.length && !etat.concours.length ? <Banniere ton="info" titre={t('annales.vide')} /> : null}
+      {tous ? (
+        etat.autres.map((c) => <LigneConcours key={c.id} c={c} />)
+      ) : etat.autres.length ? (
+        <View style={styles.section}>
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.autres')}</Text>
+          <LigneLien
+            icone="folder-outline"
+            titre={t('annales.autresConcours')}
+            detail={t(etat.autres.length > 1 ? 'concours.nombre' : 'concours.nombre1', { n: etat.autres.length })}
+            onPress={() => router.push('/annales/autres')}
+          />
+        </View>
+      ) : null}
+      {!etat.dossiers.length && !etat.mien.length && !etat.autres.length ? <Banniere ton="info" titre={t('annales.vide')} /> : null}
     </View>
+  );
+}
+
+function LigneConcours({ c }: { c: Concours }) {
+  const { t } = useTraduction();
+  return (
+    <LigneLien
+      icone="trophy-outline"
+      titre={c.sigle && c.sigle !== c.nom ? `${c.sigle} · ${c.nom}` : c.nom}
+      detail={t(c.sujets > 1 ? 'annales.sujets' : 'annales.sujet', { n: c.sujets })}
+      onPress={() => router.push({ pathname: '/annales/concours', params: { id: c.id, nom: c.sigle || c.nom } })}
+    />
   );
 }
 

@@ -22,7 +22,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 async function charger(): Promise<Etat> {
   try {
     const profil = await lireProfil();
-    const [cours, lues] = await Promise.all([lireCours(getSupabase(), { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }), synchroniserLues(getSupabase())]);
+    const [cours, lues] = await Promise.all([lireCours(getSupabase(), { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', concours: profil?.type === 'concours' ? profil.concours?.id : null }), synchroniserLues(getSupabase())]);
     return { statut: 'pret', matieres: regrouperParMatiere(cours), lues };
   } catch {
     return { statut: 'erreur' };

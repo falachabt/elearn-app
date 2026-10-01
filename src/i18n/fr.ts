@@ -236,6 +236,9 @@ export const fr = {
     quizRetour: 'Retour à la leçon',
   },
   annales: {
+    monConcours: 'Mon concours',
+    autres: 'Autres',
+    autresConcours: 'Autres concours',
     maClasse: 'Ma classe',
     concours: 'Concours',
     document: '1 document',

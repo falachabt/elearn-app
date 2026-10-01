@@ -235,6 +235,9 @@ export const en: Textes = {
     quizRetour: 'Back to the lesson',
   },
   annales: {
+    monConcours: 'My exam',
+    autres: 'Others',
+    autresConcours: 'Other exams',
     maClasse: 'My class',
     concours: 'Competitive exams',
     document: '1 document',
