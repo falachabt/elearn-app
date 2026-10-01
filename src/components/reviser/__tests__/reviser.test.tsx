@@ -229,6 +229,17 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(mockRpc).toHaveBeenCalledWith('course_summary', { p_course: 1 });
   });
 
+  it('retour sur une fiche déjà vue : contenu tout de suite, sans chargement ni nouvelle requête', async () => {
+    mockParams = { cours: '1', nom: 'Fractions', matiere: 'Maths' };
+    const premiere = await monter(<FicheCours />);
+    await waitFor(() => expect(screen.getByText('À retenir')).toBeTruthy());
+    await premiere.unmount();
+    mockRpc.mockClear();
+    const retour = await monter(<FicheCours />);
+    expect(retour.getByText('À retenir')).toBeTruthy();
+    expect(mockRpc).not.toHaveBeenCalled();
+  });
+
   it('fiche absente', async () => {
     mockParams = { cours: '2' };
     await monter(<FicheCours />);

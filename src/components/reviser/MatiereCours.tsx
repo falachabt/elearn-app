@@ -1,9 +1,10 @@
 import { Check, Play } from 'lucide-react-native';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { lireCours, lireDerniereLecon, lireLecons, lireLues, programmeDu, pourcentageVu, regrouperParMatiere, type Cours, type Lecon, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -50,7 +51,7 @@ export function MatiereCours() {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const { nom } = useLocalSearchParams<{ nom: string }>();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`matiere.${nom}`, { statut: 'chargement' });
   const pret = useSessionPrete();
 
   useFocusEffect(
@@ -73,7 +74,7 @@ export function MatiereCours() {
       return () => {
         actif = false;
       };
-    }, [nom, pret]),
+    }, [nom, pret, setEtat]),
   );
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));

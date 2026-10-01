@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireCompteurs, lireDernier, lireProgresChapitres, type Compteur, type ProgresChapitre } from '@/services/entrainement';
+import { useEtatMemorise } from '@/services/memoire';
 import type { Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
@@ -37,32 +38,36 @@ export function couleurDouce(couleur: string, surface: string, sombre: boolean):
  * D7 v2 · S'entraîner (M5-09, revue design écran 2 du 01/10 10 h 55) : puces de matière, carte « Reprendre », puis un
  * groupe par matière (icône une seule fois en tête) avec une carte par chapitre : numéro, titre, compteurs quiz et exercices.
  */
+type EtatCompteurs =
+  | { statut: 'chargement' }
+  | { statut: 'erreur' }
+  | { statut: 'pret'; compteurs: Record<number, Compteur>; progres: Record<number, ProgresChapitre>; dernier: Dernier | null };
+
 export function Entrainement({ matieres, cle }: Props) {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
-  const [compteurs, setCompteurs] = useState<Record<number, Compteur> | null | undefined>(undefined);
-  const [progres, setProgres] = useState<Record<number, ProgresChapitre>>({});
-  const [dernier, setDernier] = useState<Dernier | null>(null);
+  const [etat, setEtat] = useEtatMemorise<EtatCompteurs>(`entrainement.${cle}`, { statut: 'chargement' });
+  const compteurs = etat.statut === 'pret' ? etat.compteurs : etat.statut === 'erreur' ? null : undefined;
+  const [progres, setProgres] = useState<Record<number, ProgresChapitre>>(() => (etat.statut === 'pret' ? etat.progres : {}));
+  const [dernier, setDernier] = useState<Dernier | null>(() => (etat.statut === 'pret' ? etat.dernier : null));
   const [choisie, setChoisie] = useState<string | null>(null);
   const cleIds = matieres.flatMap((m) => m.cours.map((c) => c.id)).join(',');
 
   const charger = useCallback(() => {
     let actif = true;
     const cours = cleIds ? cleIds.split(',').map(Number) : [];
-    lireCompteurs(getSupabase(), cours, cle)
-      .then((c) => actif && setCompteurs(c))
-      .catch(() => actif && setCompteurs(null));
-    Promise.all([lireProgresChapitres(cours), lireDernier()])
-      .then(([p, d]) => {
+    Promise.all([lireCompteurs(getSupabase(), cours, cle), Promise.all([lireProgresChapitres(cours), lireDernier()]).catch(() => [{}, null] as const)])
+      .then(([c, [p, d]]) => {
         if (!actif) return;
         setProgres(p);
         setDernier(d);
+        setEtat({ statut: 'pret', compteurs: c, progres: p, dernier: d });
       })
-      .catch(() => {});
+      .catch(() => actif && setEtat({ statut: 'erreur' }));
     return () => {
       actif = false;
     };
-  }, [cleIds, cle]);
+  }, [cleIds, cle, setEtat]);
   useFocusEffect(charger);
 
   if (compteurs === undefined) return <Squelettes />;
@@ -73,7 +78,7 @@ export function Entrainement({ matieres, cle }: Props) {
         phrase={t('entrainement.erreur')}
         reessayer={t('entrainement.reessayer')}
         onReessayer={() => {
-          setCompteurs(undefined);
+          setEtat({ statut: 'chargement' });
           charger();
         }}
       />

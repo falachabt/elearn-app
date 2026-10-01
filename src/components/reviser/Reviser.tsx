@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProfil } from '@/services/profil';
-import { lireCours, programmeDu, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
+import { useEtatMemorise } from '@/services/memoire';
+import { lireCours, lireLues, programmeDu, pourcentageVu, synchroniserLues, regrouperParMatiere, type Matiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -27,7 +28,8 @@ async function charger(): Promise<Etat> {
   try {
     const profil = await lireProfil();
     const p = programmeDu(profil);
-    const [cours, lues] = await Promise.all([lireCours(getSupabase(), p), synchroniserLues(getSupabase())]);
+    // Leçons validées du téléphone d'abord ; la mise en commun avec le compte suit sans faire attendre l'écran.
+    const [cours, lues] = await Promise.all([lireCours(getSupabase(), p), lireLues()]);
     return { statut: 'pret', matieres: regrouperParMatiere(cours), lues, cle: p.concours ?? `${p.niveau}.${p.pays}` };
   } catch {
     return { statut: 'erreur' };
@@ -66,18 +68,22 @@ export function Reviser() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [onglet, setOnglet] = useState<Onglet>('cours');
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>('reviser', { statut: 'chargement' });
   const pret = useSessionPrete();
 
   useFocusEffect(
     useCallback(() => {
       if (!pret) return;
       let actif = true;
-      void charger().then((e) => actif && setEtat(e));
+      void charger().then((e) => {
+        if (!actif) return;
+        setEtat(e);
+        if (e.statut === 'pret') void synchroniserLues(getSupabase()).then((lues) => actif && setEtat({ ...e, lues }), () => {});
+      });
       return () => {
         actif = false;
       };
-    }, [pret]),
+    }, [pret, setEtat]),
   );
 
   return (

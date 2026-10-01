@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireEntrainement, lireExercicesFaits, lireMeilleursScores, type Exercice, type QuizLibre } from '@/services/entrainement';
+import { useEtatMemorise } from '@/services/memoire';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -46,7 +47,7 @@ export function ChapitreEntrainement() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { cours, nom, onglet } = useLocalSearchParams<{ cours: string; nom?: string; onglet?: Filtre }>();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`entrainement.chapitre.${cours}`, { statut: 'chargement' });
   const [filtre, setFiltre] = useState<Filtre>(onglet === 'quiz' || onglet === 'exercices' ? onglet : 'tout');
   const pret = useSessionPrete();
   const chapitre = nom ?? '';
@@ -61,7 +62,7 @@ export function ChapitreEntrainement() {
     return () => {
       actif = false;
     };
-  }, [cours, pret]);
+  }, [cours, pret, setEtat]);
   useFocusEffect(charger);
 
   const quizFini = (e: Extract<Etat, { statut: 'pret' }>, q: QuizLibre) => (e.scores[q.id] ?? -1) >= SEUIL_FINI;

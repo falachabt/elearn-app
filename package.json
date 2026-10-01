@@ -101,6 +101,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/dist/"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.apres.js"
     ]
   }
 }

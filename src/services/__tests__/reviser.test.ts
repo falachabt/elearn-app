@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
+import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -134,13 +134,34 @@ describe('reviser', () => {
 describe('avecCopie', () => {
   beforeEach(() => AsyncStorage.clear());
 
-  it('sert la copie fraîche sans requête, relit le réseau après 12 h, garde la copie hors ligne', async () => {
+  it('sert la copie fraîche sans requête ; plus ancienne, la sert tout de suite et la relit en arrière-plan', async () => {
     const lire = jest.fn().mockResolvedValueOnce(['v1']).mockResolvedValueOnce(['v2']).mockRejectedValueOnce(new Error('hors ligne'));
     expect(await avecCopie('test.cle', lire, 1000)).toEqual(['v1']);
     expect(await avecCopie('test.cle', lire, 1000 + FRAICHEUR_COPIE_MS - 1)).toEqual(['v1']);
     expect(lire).toHaveBeenCalledTimes(1);
+    expect(await avecCopie('test.cle', lire, 1000 + FRAICHEUR_COPIE_MS)).toEqual(['v1']);
+    expect(lire).toHaveBeenCalledTimes(2);
+    await new Promise((r) => setTimeout(r, 0));
     expect(await avecCopie('test.cle', lire, 1000 + FRAICHEUR_COPIE_MS)).toEqual(['v2']);
+    // Hors ligne : la copie reste servie.
     expect(await avecCopie('test.cle', lire, 1000 + 3 * FRAICHEUR_COPIE_MS)).toEqual(['v2']);
     expect(lire).toHaveBeenCalledTimes(3);
+  });
+
+  it('sans copie, attend le réseau ; une copie déjà lue ne relit pas le téléphone', async () => {
+    const lire = jest.fn().mockResolvedValue(['v']);
+    expect(await avecCopie('test.memoire', lire, 1000)).toEqual(['v']);
+    const multiGet = jest.spyOn(AsyncStorage, 'multiGet');
+    multiGet.mockClear();
+    expect(await avecCopie('test.memoire', lire, 2000)).toEqual(['v']);
+    expect(multiGet).not.toHaveBeenCalled();
+  });
+
+  it('reprend la copie du téléphone après un redémarrage, sans réseau', async () => {
+    await avecCopie('test.redemarrage', async () => ['v'], 1000);
+    oublierCopiesEnMemoire();
+    const lire = jest.fn().mockRejectedValue(new Error('hors ligne'));
+    expect(await avecCopie('test.redemarrage', lire, 2000)).toEqual(['v']);
+    expect(lire).not.toHaveBeenCalled();
   });
 });

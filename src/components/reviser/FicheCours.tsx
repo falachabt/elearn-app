@@ -1,9 +1,10 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { useEtatMemorise } from '@/services/memoire';
 import { lireFiche, type Fiche } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -23,7 +24,7 @@ export function FicheCours() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { cours, nom, matiere } = useLocalSearchParams<{ cours: string; nom?: string; matiere?: string }>();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`fiche.${cours}`, { statut: 'chargement' });
   const pret = useSessionPrete();
 
   useEffect(() => {
@@ -39,7 +40,7 @@ export function FicheCours() {
     return () => {
       actif = false;
     };
-  }, [cours, pret]);
+  }, [cours, pret, setEtat]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 

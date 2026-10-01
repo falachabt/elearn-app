@@ -1,6 +1,7 @@
-import { titreDocument } from './titres';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
+
+import { avecCopie } from './reviser';
+import { titreDocument } from './titres';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -38,7 +39,7 @@ export function titreSujet(nom: string): string {
 
 /** Catalogue des annales (M6-01), gardé sur le téléphone pour la consultation hors ligne. */
 export async function lireCatalogue(client: Client): Promise<Sujet[]> {
-  try {
+  return avecCopie(CLE_CATALOGUE, async () => {
     const { data, error } = await client.rpc('exam_catalog');
     if (error) throw error;
     type Ligne = { paper_id: number; contest_id: string; school: string | null; school_code: string | null; contest: string; subject: string | null; title: string; year: number | null; has_correction: boolean; duration_min: number | null; free: boolean };
@@ -55,13 +56,8 @@ export async function lireCatalogue(client: Client): Promise<Sujet[]> {
       dureeMin: l.duration_min,
       gratuit: l.free,
     }));
-    await AsyncStorage.setItem(CLE_CATALOGUE, JSON.stringify(sujets));
     return sujets;
-  } catch (e) {
-    const copie = await AsyncStorage.getItem(CLE_CATALOGUE);
-    if (copie) return JSON.parse(copie) as Sujet[];
-    throw e;
-  }
+  });
 }
 
 export function filtrer(sujets: readonly Sujet[], f: Filtres): Sujet[] {
@@ -127,15 +123,19 @@ export function nomDocument(nom: string): string {
 
 /** Dossiers d'annales de la classe (racines, ou sous-dossiers de `parent`). */
 export async function lireDossiers(client: Client, p: { niveau: string; pays: string; parent?: string | null }): Promise<Dossier[]> {
-  const { data, error } = await client.rpc('class_document_folders', { p_level: p.niveau, p_country: p.pays, p_parent: p.parent ?? null });
-  if (error) throw error;
-  type Ligne = { folder_id: string; name: string; subfolders: number; documents: number };
-  return ((data ?? []) as Ligne[]).filter((l) => l.documents > 0).map((l) => ({ id: l.folder_id, nom: nomDocument(l.name), sousDossiers: l.subfolders, documents: l.documents }));
+  return avecCopie(`annales.dossiers.${p.niveau}.${p.pays}.${p.parent ?? ''}`, async () => {
+    const { data, error } = await client.rpc('class_document_folders', { p_level: p.niveau, p_country: p.pays, p_parent: p.parent ?? null });
+    if (error) throw error;
+    type Ligne = { folder_id: string; name: string; subfolders: number; documents: number };
+    return ((data ?? []) as Ligne[]).filter((l) => l.documents > 0).map((l) => ({ id: l.folder_id, nom: nomDocument(l.name), sousDossiers: l.subfolders, documents: l.documents }));
+  });
 }
 
 export async function lireDocuments(client: Client, dossier: string): Promise<Document[]> {
-  const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
-  if (error) throw error;
-  type Ligne = { document_id: string; name: string; url: string | null; correction_url: string | null };
-  return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), url: l.url, urlCorrection: l.correction_url }));
+  return avecCopie(`annales.documents.${dossier}`, async () => {
+    const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
+    if (error) throw error;
+    type Ligne = { document_id: string; name: string; url: string | null; correction_url: string | null };
+    return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), url: l.url, urlCorrection: l.correction_url }));
+  });
 }

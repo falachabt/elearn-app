@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { apresDerniereLecon } from '@/services/entrainement';
+import { useEtatMemorise } from '@/services/memoire';
 import { lireLecon, lireLecons, lireLues, noterDerniereLecon, type ContenuLecon, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -29,7 +30,7 @@ export function LeconLecteur() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { id, cours, matiere } = useLocalSearchParams<{ id: string; cours?: string; matiere?: string }>();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`lecon.${id}`, { statut: 'chargement' });
   const [validee, setValidee] = useState(false);
   const [invitation, setInvitation] = useState(false);
   const pret = useSessionPrete();
@@ -55,7 +56,7 @@ export function LeconLecteur() {
     return () => {
       actif = false;
     };
-  }, [id, cours, pret]);
+  }, [id, cours, pret, setEtat]);
 
   // Au retour du quiz de la leçon : elle est peut-être validée maintenant.
   useFocusEffect(

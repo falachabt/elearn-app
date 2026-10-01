@@ -1,10 +1,11 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireDocuments, lireDossiers, type Document, type Dossier } from '@/services/annales';
+import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -24,7 +25,7 @@ export function AnnalesDossier() {
   const { theme } = useTheme();
   const { id, nom } = useLocalSearchParams<{ id: string; nom?: string }>();
   const pret = useSessionPrete();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`annales.dossier.${id}`, { statut: 'chargement' });
 
   useEffect(() => {
     if (!pret) return;
@@ -45,7 +46,7 @@ export function AnnalesDossier() {
     return () => {
       actif = false;
     };
-  }, [id, pret]);
+  }, [id, pret, setEtat]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const ouvrir = (d: Document, correction = false) => {

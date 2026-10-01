@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { CLE_CATALOGUE, lireSujet, type DetailSujet, type Sujet } from '@/services/annales';
 import { useSessionPrete } from '@/session/SessionProvider';
+import { useEtatMemorise } from '@/services/memoire';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -26,7 +27,7 @@ export function SujetAnnale() {
   const { theme } = useTheme();
   const { id } = useLocalSearchParams<{ id: string }>();
   const pret = useSessionPrete();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`annales.sujet.${id}`, { statut: 'chargement' });
 
   useEffect(() => {
     if (!pret) return;
@@ -43,7 +44,7 @@ export function SujetAnnale() {
     return () => {
       actif = false;
     };
-  }, [id, pret]);
+  }, [id, pret, setEtat]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   // Lecteur dans l'app : le PDF reste sur le téléphone pour le hors ligne, jamais ouvert dans le navigateur.

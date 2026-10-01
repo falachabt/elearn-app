@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { concoursDuCatalogue, lireCatalogue, lireDossiers, type Concours, type Dossier, type Sujet } from '@/services/annales';
 import { lireDocuments } from '@/services/documents';
+import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -32,7 +33,7 @@ export function Annales({ tous = false }: { tous?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const pret = useSessionPrete();
-  const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
+  const [etat, setEtat] = useEtatMemorise<Etat>(`annales.${tous}`, { statut: 'chargement' });
   const [gardes, setGardes] = useState(0);
   const [essai, setEssai] = useState(0);
 
@@ -63,7 +64,7 @@ export function Annales({ tous = false }: { tous?: boolean }) {
     return () => {
       actif = false;
     };
-  }, [pret, tous, essai]);
+  }, [pret, tous, essai, setEtat]);
 
   // Documents gardés sur le téléphone : en tête, accessibles même hors ligne.
   const mesDocuments =

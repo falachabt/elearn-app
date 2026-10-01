@@ -28,33 +28,55 @@ export const FRAICHEUR_COPIE_MS = 12 * 60 * 60 * 1000;
 // « v2 » : les copies sans le LaTeX des formules (avant le 01/10 après-midi) sont relues une fois.
 const CLE_DATE = (cle: string) => `${cle}@v2`;
 
+/** Copies déjà lues pendant cette session de l'application : servies sans relire le téléphone. */
+const copiesEnMemoire = new Map<string, { valeur: unknown; date: number }>();
+const relecturesEnCours = new Set<string>();
+
+/** Vide les copies en mémoire (tests, changement de compte). */
+export function oublierCopiesEnMemoire() {
+  copiesEnMemoire.clear();
+  relecturesEnCours.clear();
+}
+
+async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant: number): Promise<T> {
+  const valeur = await lire();
+  copiesEnMemoire.set(cle, { valeur, date: maintenant });
+  await AsyncStorage.multiSet([
+    [cle, JSON.stringify(valeur)],
+    [CLE_DATE(cle), String(maintenant)],
+  ]).catch(() => {});
+  return valeur;
+}
+
 /**
- * Copie locale d'abord si elle a moins de 12 h (pas de requête à chaque changement d'onglet), sinon le réseau, avec
- * la copie en secours : l'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert (M5-03).
+ * Copie locale d'abord (M5-03) : rien n'attend le réseau dès qu'une copie existe. Moins de 12 h : servie telle quelle.
+ * Plus ancienne : servie tout de suite, et relue en arrière-plan pour la visite suivante. Sans copie : le réseau.
+ * L'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert.
  */
 export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
-  const [[, copie], [, date]] = await AsyncStorage.multiGet([cle, CLE_DATE(cle)]).catch(() => [
-    [cle, null],
-    [CLE_DATE(cle), null],
-  ]);
-  if (copie && date && maintenant - Number(date) < FRAICHEUR_COPIE_MS) {
-    try {
-      return JSON.parse(copie) as T;
-    } catch {
-      // copie illisible : on relit le réseau
+  let copie = copiesEnMemoire.get(cle);
+  if (!copie) {
+    const [[, texte], [, date]] = await AsyncStorage.multiGet([cle, CLE_DATE(cle)]).catch(() => [
+      [cle, null],
+      [CLE_DATE(cle), null],
+    ]);
+    if (texte && date) {
+      try {
+        copie = { valeur: JSON.parse(texte), date: Number(date) };
+        copiesEnMemoire.set(cle, copie);
+      } catch {
+        // copie illisible : on relit le réseau
+      }
     }
   }
-  try {
-    const valeur = await lire();
-    await AsyncStorage.multiSet([
-      [cle, JSON.stringify(valeur)],
-      [CLE_DATE(cle), String(maintenant)],
-    ]);
-    return valeur;
-  } catch (e) {
-    if (copie) return JSON.parse(copie) as T;
-    throw e;
+  if (!copie) return relireEtGarder(cle, lire, maintenant);
+  if (maintenant - copie.date >= FRAICHEUR_COPIE_MS && !relecturesEnCours.has(cle)) {
+    relecturesEnCours.add(cle);
+    void relireEtGarder(cle, lire, maintenant)
+      .catch(() => {})
+      .finally(() => relecturesEnCours.delete(cle));
   }
+  return copie.valeur as T;
 }
 
 export async function rpc<T>(client: Client, nom: string, args: Record<string, unknown>): Promise<T[]> {
