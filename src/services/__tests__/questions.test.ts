@@ -130,4 +130,10 @@ describe('questions', () => {
     expect(insert).toHaveBeenLastCalledWith({ post_id: 'p1', content: 'Salut', parent_comment_id: 'a', media_urls: [] });
     expect(await lireSorties('p1')).toHaveLength(0);
   });
+
+  it('une photo seule suffit pour poser une question', async () => {
+    const single = jest.fn(async () => ({ data: { id: 'p2' }, error: null }));
+    const c = { from: jest.fn(() => ({ insert: jest.fn(() => ({ select: () => ({ single }) })) })) };
+    expect(await poserQuestion(c as never, { texte: '', matiere: 'Maths', photos: ['https://x/y.jpg'] })).toBe('p2');
+  });
 });

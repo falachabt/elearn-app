@@ -25,6 +25,7 @@ export type Evenements = {
   guardian_contact_withdrawn: Record<string, never>;
   account_deletion_requested: Record<string, never>;
   summary_opened: { cours: number };
+  question_posted: { matiere: string; photos: number };
   connexion_echec: { cle: string; code: string | null; message: string };
   lesson_quiz_invited: { lecon: number };
   class_document_opened: { correction: boolean };

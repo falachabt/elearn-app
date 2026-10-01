@@ -94,7 +94,8 @@ export function erreurTexte(texte: string): 'trop_court' | 'trop_long' | null {
 
 /** Publie une question. Les numéros de téléphone sont masqués côté serveur (M7-05). */
 export async function poserQuestion(client: ClientPoster, q: { texte: string; matiere?: string | null; classe?: string | null; photos?: string[] }): Promise<string> {
-  const erreur = erreurTexte(q.texte);
+  // Une photo seule suffit (G2) ; sans photo, le texte doit être valide.
+  const erreur = q.photos?.length && !q.texte.trim() ? null : erreurTexte(q.texte);
   if (erreur) throw new Error(erreur);
   const { data, error } = await client
     .from('feed_posts')
@@ -239,7 +240,7 @@ async function marquerSortie(cle: string, statut: Sortie['statut']): Promise<voi
 
 type ClientReponse = Pick<SupabaseClient, 'from' | 'storage'>;
 
-async function envoyerPhoto(client: ClientReponse, uri: string, userId: string): Promise<string> {
+export async function envoyerPhoto(client: ClientReponse, uri: string, userId: string): Promise<string> {
   const octets = await (await fetch(uri)).arrayBuffer();
   const chemin = `${userId}/${Date.now()}.jpg`;
   const { error } = await client.storage.from('feed-media').upload(chemin, octets, { contentType: 'image/jpeg' });
