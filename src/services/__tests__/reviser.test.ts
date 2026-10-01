@@ -110,6 +110,10 @@ describe('reviser', () => {
     const q = await lireQuizLecon(c as never, { cours: 3, lecon: 4, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } });
     expect(c.rpc).toHaveBeenCalledWith('lesson_quiz', { p_course: 3, p_lesson: 4, p_size: 3 });
     expect(q.map((x) => x.id)).toEqual(['1']);
+    // Même leçon le même jour : copie locale, sans nouvelle requête.
+    c.rpc.mockClear();
+    expect((await lireQuizLecon(c as never, { cours: 3, lecon: 4, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } })).map((x) => x.id)).toEqual(['1']);
+    expect(c.rpc).not.toHaveBeenCalled();
   });
   it('leçons validées : envoie celles du téléphone et récupère celles du compte', async () => {
     await AsyncStorage.clear();

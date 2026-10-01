@@ -2,7 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { effacerDocuments } from './documents';
+import { oublierEtatsMemorises } from './memoire';
 import { CLE_HISTORIQUE } from './mission';
+import { oublierCopiesEnMemoire } from './reviser';
 
 /**
  * Efface du téléphone tout ce qui appartient à l'élève (progression, profil, mission, réglages, copies hors ligne) pour
@@ -12,6 +14,8 @@ export async function effacerDonneesLocales(): Promise<void> {
   const cles = await AsyncStorage.getAllKeys();
   await AsyncStorage.multiRemove(cles.filter((c) => !c.startsWith('sb-')));
   effacerDocuments();
+  oublierEtatsMemorises();
+  oublierCopiesEnMemoire();
 }
 
 /** Après une connexion : les jours de mission du compte reviennent sur le téléphone, pour retrouver sa série. */

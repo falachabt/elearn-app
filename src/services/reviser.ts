@@ -185,8 +185,12 @@ export async function lireFiche(client: Client, cours: number): Promise<Fiche | 
 
 /** 3 questions pour vérifier une leçon, tirées des quiz du cours (M5-01) ; en ligne seulement. */
 export async function lireQuizLecon(client: Client, p: { cours: number; lecon: number; vraiFaux: { vrai: string; faux: string } }): Promise<QuestionTiree[]> {
-  const lignes = await rpc<LigneMission>(client, 'lesson_quiz', { p_course: p.cours, p_lesson: p.lecon, p_size: TAILLE_QUIZ_LECON });
-  return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
+  // Le tirage est stable par leçon et par jour côté serveur : la copie du jour s'ouvre sans attente.
+  const jour = new Date().toISOString().slice(0, 10);
+  return avecCopie(`reviser.quiz.${p.lecon}.${jour}`, async () => {
+    const lignes = await rpc<LigneMission>(client, 'lesson_quiz', { p_course: p.cours, p_lesson: p.lecon, p_size: TAILLE_QUIZ_LECON });
+    return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
+  });
 }
 
 export const CLE_DERNIERE_LECON = 'reviser.derniereLecon';

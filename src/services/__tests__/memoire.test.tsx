@@ -2,7 +2,8 @@ import { render } from '@testing-library/react-native';
 import { useEffect } from 'react';
 import { Text } from 'react-native';
 
-import { useEtatMemorise } from '../memoire';
+import { effacerDonneesLocales } from '../donneesLocales';
+import { garderMemorise, lireMemorise, useEtatMemorise } from '../memoire';
 
 type E = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; v: string };
 
@@ -43,5 +44,13 @@ describe('useEtatMemorise', () => {
     await render(<Ecran cle="c" envoyer={UN} />);
     const r = await render(<Ecran cle="d" />);
     expect(r.getByText('chargement')).toBeTruthy();
+  });
+});
+
+describe('changement de compte', () => {
+  it('effacerDonneesLocales vide aussi les contenus gardés en mémoire', async () => {
+    garderMemorise('accueil.reprise', [1]);
+    await effacerDonneesLocales();
+    expect(lireMemorise('accueil.reprise', [])).toEqual([]);
   });
 });

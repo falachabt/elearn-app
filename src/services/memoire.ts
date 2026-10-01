@@ -11,6 +11,10 @@ export function oublierEtatsMemorises() {
   etats.clear();
 }
 
+/** Valeur gardée pour un écran sans statut de chargement (cartes de l'accueil), ou `defaut`. */
+export const lireMemorise = <T,>(cle: string, defaut: T): T => (etats.has(cle) ? (etats.get(cle) as T) : defaut);
+export const garderMemorise = (cle: string, valeur: unknown) => void etats.set(cle, valeur);
+
 type AvecStatut = { statut: string };
 const ATTENTE = new Set(['chargement', 'erreur']);
 

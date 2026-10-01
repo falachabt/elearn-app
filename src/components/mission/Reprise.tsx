@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTraduction } from "@/i18n/useTraduction";
 import { lireProfil } from "@/services/profil";
 import { lireReprise, type ElementReprise } from "@/services/reprise";
+import { garderMemorise, lireMemorise } from "@/services/memoire";
 import { lireCours, programmeDu } from "@/services/reviser";
 import { getSupabase } from "@/services/supabase";
 import { titreExercice } from "@/services/titres";
@@ -22,7 +23,7 @@ export function Reprise() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const pret = useSessionPrete();
-  const [elements, setElements] = useState<ElementReprise[]>([]);
+  const [elements, setElements] = useState<ElementReprise[]>(() => lireMemorise('accueil.reprise', []));
 
   useFocusEffect(
     useCallback(() => {
@@ -36,6 +37,7 @@ export function Reprise() {
             ).catch(() => [])
           : [];
         const e = await lireReprise(cours).catch(() => []);
+        garderMemorise('accueil.reprise', e);
         if (actif) setElements(e);
       })();
       return () => {
