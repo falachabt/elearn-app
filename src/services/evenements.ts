@@ -25,6 +25,13 @@ export type Evenements = {
   guardian_contact_withdrawn: Record<string, never>;
   account_deletion_requested: Record<string, never>;
   summary_opened: { cours: number };
+  photo_sent: { matiere: string; source: 'camera' | 'galerie' };
+  photo_corrected: { matiere: string; duree_s: number; etapes: number };
+  photo_unreadable: Record<string, never>;
+  photo_failed: { type: string };
+  photo_rated: { avis: 'clair' | 'pas_compris' };
+  photo_reported: { motif: string };
+  photo_shared: Record<string, never>;
   question_posted: { matiere: string; photos: number };
   connexion_echec: { cle: string; code: string | null; message: string };
   lesson_quiz_invited: { lecon: number };
