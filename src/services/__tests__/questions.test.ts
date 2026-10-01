@@ -4,7 +4,7 @@ import { ajouterSortie, appliquerVote, contientNumero, envoyerSortie, envoyerSor
 
 const ligne = (id: string, p: Record<string, unknown> = {}) => ({
   id, author_id: 'u1', author_name: 'Awa', has_ai: true, content: `Question ${id}`, media_urls: null, subject: 'Maths', class_level: '3e',
-  created_at: `2026-10-01T10:0${id}:00Z`, answers_count: '2', resolved: false, mine: false, ...p,
+  created_at: `2026-10-01T10:0${id}:00Z`, answers_count: '2', resolved: false, mine: false, hidden: false, ...p,
 });
 const clientRpc = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -71,11 +71,11 @@ describe('questions', () => {
   });
 
   it('lit les réponses et les garde hors ligne', async () => {
-    const l = { id: 'r1', parent_id: null, author_name: 'Paul', is_ai: false, is_teacher: true, is_best: true, content: 'Oui', media_urls: null, score: 3, my_vote: 1, mine: false, created_at: '2026-10-01T10:00:00Z' };
+    const l = { id: 'r1', parent_id: null, author_name: 'Paul', is_ai: false, is_teacher: true, is_best: true, content: 'Oui', media_urls: null, score: 3, my_vote: 1, mine: false, hidden: true, created_at: '2026-10-01T10:00:00Z' };
     const c = clientRpc([l]);
     const r = await lireReponses(c as never, 'p1');
     expect(c.rpc).toHaveBeenCalledWith('question_replies', { p_post: 'p1' });
-    expect(r[0]).toMatchObject({ id: 'r1', enseignant: true, meilleure: true, score: 3, monVote: 1 });
+    expect(r[0]).toMatchObject({ id: 'r1', masquee: true, enseignant: true, meilleure: true, score: 3, monVote: 1 });
     expect(await lireReponses(clientRpc(null, new Error('x')) as never, 'p1')).toEqual(r);
     await expect(lireReponses(clientRpc(null, new Error('x')) as never, 'autre')).rejects.toThrow();
   });
@@ -129,5 +129,11 @@ describe('questions', () => {
     expect(await envoyerSortiesEnAttente(client as never, 'p1', 'u1')).toBe(1);
     expect(insert).toHaveBeenLastCalledWith({ post_id: 'p1', content: 'Salut', parent_comment_id: 'a', media_urls: [] });
     expect(await lireSorties('p1')).toHaveLength(0);
+  });
+
+  it('une photo seule suffit pour poser une question', async () => {
+    const single = jest.fn(async () => ({ data: { id: 'p2' }, error: null }));
+    const c = { from: jest.fn(() => ({ insert: jest.fn(() => ({ select: () => ({ single }) })) })) };
+    expect(await poserQuestion(c as never, { texte: '', matiere: 'Maths', photos: ['https://x/y.jpg'] })).toBe('p2');
   });
 });

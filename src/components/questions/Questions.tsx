@@ -15,6 +15,7 @@ import { matiere as couleursMatiere, espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { useCompteRequis } from '../FeuilleCompte';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Puce } from '../liste/Puce';
 import { Squelettes } from '../liste/Squelettes';
@@ -32,6 +33,7 @@ export function Questions() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const pret = useSessionPrete();
+  const { exiger, feuille } = useCompteRequis();
   const [niveau, setNiveau] = useState<string | null>(null);
   const [matiere, setMatiere] = useState<string | null>(null);
   const [classe, setClasse] = useState<Classe>('maClasse');
@@ -73,7 +75,7 @@ export function Questions() {
   }, [etat, plus]);
 
   return (
-    <Ecran insetBas={false}>
+    <Ecran insetBas={false} pied={<Bouton libelle={`+ ${t('questions.poserCourt')}`} desactive={etat.statut === 'pret' && etat.copie} onPress={() => exiger('question', () => router.push('/question/poser'))} />}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('questions.titre')}</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.puces}>
         <Puce libelle={t('questions.toutes')} choisie={!matiere} onPress={() => setMatiere(null)} />
@@ -117,6 +119,7 @@ export function Questions() {
           {etat.copie ? <Banniere ton="info" titre={t('questions.horsLigne')} /> : null}
         </View>
       ) : null}
+      {feuille}
     </Ecran>
   );
 }
