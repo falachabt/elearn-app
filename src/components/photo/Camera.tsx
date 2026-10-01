@@ -70,6 +70,7 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
   };
 
   const libelle = !solde ? null : solde.illimite ? t('photo.inclusPass') : t('photo.credits', { solde: solde.total });
+  const faible = !!solde && !solde.illimite && solde.total <= 5;
   const autorisee = !!permission?.granted;
 
   return (
@@ -79,7 +80,8 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
           <X size={20} strokeWidth={2.5} color={NOIR} />
         </BoutonCarre>
         {libelle ? (
-          <View testID="photo-compteur" style={styles.compteur}>
+          <View testID="photo-compteur" style={[styles.compteur, faible && { backgroundColor: palette.corail[400] }]}>
+            <Zap size={14} strokeWidth={2.5} color={NOIR} />
             <Text numberOfLines={1} style={[typo.etiquette, { color: NOIR }]}>{libelle}</Text>
           </View>
         ) : (
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
   haut: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], gap: espace[4] },
   carre: { width: 44, height: 44, borderRadius: rayon.m, borderWidth: bord.normal, borderColor: NOIR, backgroundColor: BLANC, alignItems: 'center', justifyContent: 'center' },
   desactive: { opacity: 0.45 },
-  compteur: { flexShrink: 1, backgroundColor: palette.soleil[400], borderWidth: bord.normal, borderColor: NOIR, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[2] },
+  compteur: { flexShrink: 1, flexDirection: 'row', alignItems: 'center', gap: espace[2], backgroundColor: palette.soleil[400], borderWidth: bord.normal, borderColor: NOIR, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[2] },
   vide: { flex: 1 },
   vue: { flex: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
   consigne: { position: 'absolute', bottom: espace[5], alignSelf: 'center', backgroundColor: BLANC, borderWidth: bord.normal, borderColor: NOIR, borderRadius: rayon.m, paddingHorizontal: espace[5], paddingVertical: espace[3] },

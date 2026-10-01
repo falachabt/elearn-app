@@ -275,7 +275,7 @@ export function Photo() {
         </View>
         <View style={[styles.resultat, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
           <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('photo.resultat')}</Text>
-          <Blocs surJaune blocs={blocsDepuisTexte(c.resultat)} />
+          <Blocs surCouleur blocs={blocsDepuisTexte(c.resultat)} />
         </View>
         {c.a_retenir ? (
           <View style={[styles.carte, { backgroundColor: k.fond, borderColor: theme.bord.fort }]}>

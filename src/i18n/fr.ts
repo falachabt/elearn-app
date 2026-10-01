@@ -127,7 +127,7 @@ export const fr = {
     prendre: 'Prendre la photo',
     retourner: 'Changer de caméra',
     consigne: 'Cadre un seul exercice, bien éclairé.',
-    credits: '⚡ {{solde}} crédits',
+    credits: '{{solde}} crédits',
     inclusPass: 'Inclus dans ton pass',
     permissionTitre: 'Autorise l’appareil photo',
     permissionTexte: 'Pour photographier un exercice et recevoir la correction. Tu peux aussi choisir une photo dans ta galerie.',

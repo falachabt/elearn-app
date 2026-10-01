@@ -126,7 +126,7 @@ export const en: Textes = {
     prendre: 'Take the photo',
     retourner: 'Switch camera',
     consigne: 'Frame one exercise, well lit.',
-    credits: '⚡ {{solde}} credits',
+    credits: '{{solde}} credits',
     inclusPass: 'Included in your pass',
     permissionTitre: 'Allow the camera',
     permissionTexte: 'To photograph an exercise and get the correction. You can also pick a photo from your gallery.',
