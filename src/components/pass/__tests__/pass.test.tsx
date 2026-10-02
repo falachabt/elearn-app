@@ -31,7 +31,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 let mockInvite = false;
-jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
+jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { id: 'eleve-1', is_anonymous: mockInvite } } }) }));
 jest.mock('@/services/pass', () => ({
   ...jest.requireActual('@/services/pass'),
   lireOffres: (...a: unknown[]) => mockOffres(...a),

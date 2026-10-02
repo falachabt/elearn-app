@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
 import { CircleHelp, FileText, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -11,7 +11,7 @@ import { identiteDe } from '@/services/identite';
 import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
 import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
-import { lireAcces, type Acces } from '@/services/pass';
+import { useAcces } from '@/session/useAcces';
 import { lireProfil, type Profil } from '@/services/profil';
 import { joursAvant } from '@/services/quand';
 import { getSupabase } from '@/services/supabase';
@@ -40,7 +40,6 @@ export function EcranMoi() {
   const { theme } = useTheme();
   const { session, statut } = useSession();
   const { solde } = useCredits();
-  const [acces, setAcces] = useState<Acces>(null);
   const [profil, setProfil] = useState<Profil | null>(null);
   const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
@@ -49,6 +48,7 @@ export function EcranMoi() {
   const invite = estInvite(user);
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
+  const { acces } = useAcces(idUtilisateur ?? null);
   const { nom, photo } = identiteDe(user);
   const initiale = (nom ?? '').charAt(0).toUpperCase();
 
@@ -78,17 +78,6 @@ export function EcranMoi() {
       };
     }, [connecte]),
   );
-
-  useEffect(() => {
-    if (!idUtilisateur) return;
-    let actif = true;
-    lireAcces(getSupabase())
-      .then((a) => actif && setAcces(a))
-      .catch(() => {});
-    return () => {
-      actif = false;
-    };
-  }, [idUtilisateur]);
 
   const classePays = profil?.niveau
     ? t('profil.classeSous', {
