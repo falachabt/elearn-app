@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import BottomSheet, { BottomSheetBackdrop, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
-import { useRef, type ReactNode } from 'react';
+import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -36,22 +36,35 @@ function Fond(props: BottomSheetBackdropProps) {
 
 /**
  * Feuille du bas générique (invitation, confirmation, explication avant une permission) : pastille, titre, texte,
- * une action principale et des actions secondaires. À rendre à côté de l'écran, pas dans son défilement.
+ * une action principale et des actions secondaires. Rendue en modale (`BottomSheetModalProvider` à la racine) : elle
+ * part du bas de l'écran du téléphone, au-dessus de la barre d'onglets, quel que soit l'endroit où on la déclare
+ * (dans un défilement, sous un en-tête...).
  */
 export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, avant, illustration, centre, children }: Props) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
-  const feuille = useRef<BottomSheet>(null);
+  const feuille = useRef<BottomSheetModal>(null);
+  // Retirée par le parent (ouverte passe à faux) : ce n'est pas une fermeture de l'élève, on ne rappelle pas onFermer.
+  const retiree = useRef(false);
+  useEffect(() => {
+    if (!ouverte) return;
+    retiree.current = false;
+    feuille.current?.present();
+    return () => {
+      retiree.current = true;
+    };
+  }, [ouverte]);
   if (!ouverte) return null;
   return (
-    <BottomSheet
+    <BottomSheetModal
       ref={feuille}
-      index={0}
       enableDynamicSizing
       topInset={top}
       enablePanDownToClose
       backdropComponent={Fond}
-      onClose={onFermer}
+      onDismiss={() => {
+        if (!retiree.current) onFermer();
+      }}
       handleIndicatorStyle={{ backgroundColor: theme.bord.fort }}
       backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
     >
@@ -75,7 +88,7 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
           {mention ? <Text style={[typo.legende, styles.mention, { color: theme.texte.secondaire }]}>{mention}</Text> : null}
         </View>
       </BottomSheetView>
-    </BottomSheet>
+    </BottomSheetModal>
   );
 }
 

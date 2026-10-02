@@ -10,7 +10,7 @@ import { FeuilleMiseAJour } from '../FeuilleMiseAJour';
 // Le mock officiel n'expose pas de BottomSheetView rendu : composants simples qui rendent leurs enfants.
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
-  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 

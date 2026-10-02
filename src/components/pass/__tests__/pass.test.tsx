@@ -28,7 +28,7 @@ jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
-  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetBackdrop: () => null };
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 let mockInvite = false;
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));

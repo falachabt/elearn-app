@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { Platform, StyleSheet } from 'react-native';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { BarresSysteme } from '@/components/BarresSysteme';
@@ -73,7 +74,9 @@ export default function RootLayout() {
           <SessionProvider>
             <CreditsProvider>
               <VisiteProvider>
-                <Navigation />
+                <BottomSheetModalProvider>
+                  <Navigation />
+                </BottomSheetModalProvider>
                 <MiseAJour />
               </VisiteProvider>
             </CreditsProvider>

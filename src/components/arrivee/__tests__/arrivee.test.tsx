@@ -24,7 +24,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   const passe = forwardRef(function Feuille({ children }: { children?: React.ReactNode }, _ref: unknown) {
     return children ?? null;
   });
-  return { __esModule: true, default: passe, BottomSheetView: ({ children }: { children?: React.ReactNode }) => children ?? null, BottomSheetBackdrop: () => null };
+  return { __esModule: true, default: passe, BottomSheetView: ({ children }: { children?: React.ReactNode }) => children ?? null, BottomSheetModal: passe, BottomSheetModalProvider: ({ children }: { children?: React.ReactNode }) => children ?? null, BottomSheetBackdrop: () => null };
 });
 jest.mock('react-native-safe-area-context', () => {
   const actuel = jest.requireActual('react-native-safe-area-context');
