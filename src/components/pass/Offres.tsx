@@ -5,10 +5,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
+import { estFcfa, formaterMontant, lireOffres, PRIX_REPETITEUR, type CodeOffre, type Offre } from '@/services/pass';
 import { paiementPossible } from '@/services/plateforme';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
+import { useAcces } from '@/session/useAcces';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -21,7 +23,7 @@ import { useCompteRequis } from '../FeuilleCompte';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 type Choix = CodeOffre | 'free';
-type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; offres: Offre[]; acces: Acces; pays: string };
+type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; offres: Offre[]; pays: string };
 
 /** Ligne d'offre : pastille radio, nom, aide, prix. La couleur n'est pas le seul signal (coche dans la pastille). */
 function LigneOffre({ titre, aide, prix, choisie, conseille, onPress }: { titre: string; aide: string; prix: string; choisie: boolean; conseille?: string; onPress: () => void }) {
@@ -59,8 +61,8 @@ async function chargerOffres(): Promise<Etat> {
   try {
     const pays = (await lireProfil())?.pays ?? 'CM';
     const client = getSupabase();
-    const [offres, acces] = await Promise.all([lireOffres(client, pays), lireAcces(client).catch(() => null)]);
-    return { statut: 'pret', offres, acces, pays };
+    const offres = await lireOffres(client, pays);
+    return { statut: 'pret', offres, pays };
   } catch {
     return { statut: 'erreur' };
   }
@@ -74,6 +76,9 @@ export function Offres() {
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [choix, setChoix] = useState<Choix>('month');
   const { exiger, feuille } = useCompteRequis();
+  // Pass relu au montage et à chaque retour dans l'app (paiement parent sur le web entre-temps).
+  const { session } = useSession();
+  const { acces } = useAcces(session?.user?.id ?? null);
 
   const charger = useCallback(() => {
     void chargerOffres().then((e) => {
@@ -135,8 +140,8 @@ export function Offres() {
         </View>
       ) : null}
 
-      {etat.statut === 'pret' && etat.acces ? (
-        <Banniere ton="succes" titre={t('offres.actif', { offre: t(`offres.${etat.acces.offre}`), date: dateFin(etat.acces.fin) })} />
+      {etat.statut === 'pret' && acces ? (
+        <Banniere ton="succes" titre={t('offres.actif', { offre: t(`offres.${acces.offre}`), date: dateFin(acces.fin) })} />
       ) : null}
 
       {etat.statut === 'pret' && !offres.length ? <Banniere ton="info" titre={t('offres.indisponible')} /> : null}
