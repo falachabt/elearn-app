@@ -34,7 +34,7 @@ jest.mock('@/services/paiementPass', () => {
 const CM = {
   payable: true, country: 'CM', countryName: 'Cameroun', prefix: '237', currency: 'XAF',
   offers: [{ code: 'month', amount: 2500, currency: 'XAF', converted: false, recommended: true, durationDays: 30 }],
-  providers: [{ provider: 'MTN_MOMO_CMR', name: 'MTN MoMo', logo: 'https://x/mtn.png', currency: 'XAF', min: 100, max: 1000000, authType: 'PROVIDER_AUTH', pinPrompt: 'AUTOMATIC', delayed: false }],
+  providers: [{ provider: 'MTN_MOMO_CMR', name: 'MTN MoMo', logo: 'https://x/mtn.png', available: true, currency: 'XAF', min: 100, max: 1000000, authType: 'PROVIDER_AUTH', pinPrompt: 'AUTOMATIC', delayed: false }],
 };
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
 const monter = () => render(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair"><PayerPass /></ThemeProvider></SafeAreaProvider>);
@@ -49,7 +49,7 @@ beforeEach(async () => {
 describe('paiement du pass par Mobile Money', () => {
   it('prix dans la devise du pays, opérateur unique présélectionné, paiement direct puis attente et succès', async () => {
     mockPayer.mockResolvedValue({ statut: 'en_attente', commande: 'c1', pinPrompt: 'AUTOMATIC' });
-    mockSuivre.mockResolvedValue({ statut: 'reussi', commande: 'c1', recu: 'EP-AB12-0001' });
+    mockSuivre.mockResolvedValue({ statut: 'reussi', commande: 'c1', recu: 'EP-AB12-0001', finPass: '2026-11-30T00:00:00Z' });
     await monter();
     expect((await screen.findAllByText(/2.500 FCFA/)).length).toBeGreaterThan(0);
     expect(screen.getByText('MTN MoMo')).toBeTruthy();
@@ -57,10 +57,12 @@ describe('paiement du pass par Mobile Money', () => {
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
     await waitFor(() => expect(mockPayer).toHaveBeenCalled());
     expect(mockPayer.mock.calls[0][1]).toMatchObject({ offre: 'month', pays: 'CM', telephone: '6 53 45 67 89', operateur: 'MTN_MOMO_CMR' });
-    expect(await screen.findByText(fr.paiement.reussiTitre)).toBeTruthy();
-    expect(screen.getByText(fr.paiement.reussiTexte.replace('{{recu}}', 'EP-AB12-0001'))).toBeTruthy();
+    // E4 : titre, durée du pass, reçu avec référence.
+    expect(await screen.findByText(fr.paiement.reussiTitre.replace('{{offre}}', 'pass mois'))).toBeTruthy();
+    expect(screen.getByText('EP-AB12-0001')).toBeTruthy();
+    expect(screen.getByText(fr.paiement.reussiTexte.replace('{{date}}', new Date('2026-11-30T00:00:00Z').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })))).toBeTruthy();
     expect(mockRafraichir).toHaveBeenCalled();
-    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.continuer }));
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.reprendre }));
     expect(router.replace).toHaveBeenCalledWith('/');
   });
 
@@ -72,14 +74,63 @@ describe('paiement du pass par Mobile Money', () => {
     expect(mockPayer).not.toHaveBeenCalled();
   });
 
-  it('refus de pawaPay : le message du serveur s’affiche, on peut corriger', async () => {
-    mockPayer.mockRejectedValue(new ErreurPaiement('refuse', 'Solde insuffisant sur ton compte Mobile Money.'));
+  it('solde insuffisant : écran d’échec avec « aucun montant retiré » et l’astuce du proche', async () => {
+    mockPayer.mockRejectedValue(new ErreurPaiement('refuse', 'Solde insuffisant', 'c9', 'INSUFFICIENT_BALANCE'));
     await monter();
     await screen.findByText('MTN MoMo');
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '653456789');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
-    expect(await screen.findByText('Solde insuffisant sur ton compte Mobile Money.')).toBeTruthy();
+    expect(await screen.findByText(fr.paiement.echecs.solde.titre)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.echecs.solde.texte)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.echecs.solde.astuce)).toBeTruthy();
+  });
+
+  it('numéro refusé par l’opérateur : « Changer de numéro » revient au formulaire', async () => {
+    mockPayer.mockRejectedValue(new ErreurPaiement('refuse', '', 'c9', 'PAYER_NOT_FOUND'));
+    await monter();
+    await screen.findByText('MTN MoMo');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '653456789');
+    await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
+    expect(await screen.findByText(fr.paiement.echecs.numero.titre)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerNumero }));
     expect(screen.getByLabelText(fr.paiement.numero)).toBeTruthy();
+  });
+
+  it('panne réseau : message dans le formulaire, rien n’est parti', async () => {
+    mockPayer.mockRejectedValue(new ErreurPaiement('reseau'));
+    await monter();
+    await screen.findByText('MTN MoMo');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '653456789');
+    await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
+    expect(await screen.findByText(fr.paiement.erreurs.reseau)).toBeTruthy();
+  });
+
+  it('opérateur indisponible : carte grisée « Indisponible » et bandeau qui l’explique, non sélectionnable', async () => {
+    mockMethodes.mockResolvedValue({ ...CM, providers: [CM.providers[0], { ...CM.providers[0], provider: 'ORANGE_CMR', name: 'Orange Money', available: false }] });
+    await monter();
+    await screen.findByText('Orange Money');
+    expect(screen.getByText(fr.paiement.indisponible)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.indisponibleBandeau.replace('{{operateur}}', 'Orange Money').replace('{{autre}}', 'MTN MoMo'))).toBeTruthy();
+    expect(screen.getByRole('radio', { name: /Orange Money/ }).props.accessibilityState).toMatchObject({ disabled: true });
+  });
+
+  it('attente : trois étapes, compte à rebours, annulation confirmée, lien « demander à quelqu’un de payer »', async () => {
+    mockPayer.mockResolvedValue({ statut: 'en_attente', commande: 'c1', pinPrompt: 'AUTOMATIC' });
+    mockSuivre.mockReturnValue(new Promise(() => {}));
+    await monter();
+    await screen.findByText('MTN MoMo');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '653456789');
+    await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
+    expect(await screen.findByText(fr.paiement.attenteTitre)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.etape1.replace('{{operateur}}', 'MTN MoMo'))).toBeTruthy();
+    expect(screen.getByText(fr.paiement.etape2)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.etape3)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.attenteExpire.replace('{{temps}}', '10:00'))).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.demanderPayer })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.annuler }));
+    expect(screen.getByText(fr.paiement.annulerTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByText(fr.paiement.annulerOui));
+    await waitFor(() => expect(screen.getByLabelText(fr.paiement.numero)).toBeTruthy());
   });
 
   it('paiement expiré : on le dit et on propose de réessayer', async () => {
@@ -89,8 +140,12 @@ describe('paiement du pass par Mobile Money', () => {
     await screen.findByText('MTN MoMo');
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '653456789');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
-    expect(await screen.findByText(fr.paiement.expireTitre)).toBeTruthy();
+    // E5 : « Le délai est dépassé », réessayer, demander à quelqu'un de payer, changer de numéro.
+    expect(await screen.findByText(fr.paiement.echecs.delai.titre)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.echecs.delai.texte)).toBeTruthy();
     expect(screen.getByRole('button', { name: fr.paiement.reessayer })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.demanderPayer })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.changerNumero })).toBeTruthy();
   });
 
   it('pays sans pawaPay : on le dit et on propose de faire payer un parent', async () => {

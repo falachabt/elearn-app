@@ -22,11 +22,30 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
+import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
+/** Une demande de paiement vit 10 minutes côté serveur. */
+const DUREE_DEMANDE_S = 600;
 
 type Etape = 'saisie' | 'envoi' | 'attente' | 'fin';
+type Motif = 'solde' | 'refus' | 'delai' | 'numero' | 'operateur' | 'autre';
+
+/** Motif d'échec affiché (maquette E5) d'après le code pawaPay ; l'expiration est le « délai dépassé ». */
+export function motifEchec(r: Pick<ResultatPaiement, 'statut' | 'echec'>): Motif {
+  if (r.statut === 'expire') return 'delai';
+  switch (r.echec) {
+    case 'INSUFFICIENT_BALANCE': return 'solde';
+    case 'PAYMENT_NOT_APPROVED': case 'PAYER_LIMIT_REACHED': case 'WALLET_LIMIT_REACHED': case 'PAYMENT_IN_PROGRESS': return 'refus';
+    case 'INVALID_PHONE_NUMBER': case 'PAYER_NOT_FOUND': return 'numero';
+    case 'PROVIDER_TEMPORARILY_UNAVAILABLE': case 'DEPOSITS_NOT_ALLOWED': case 'INVALID_PROVIDER': return 'operateur';
+    default: return 'autre';
+  }
+}
+
+const mmss = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
 /** Logo de l'opérateur (celui de pawaPay) ; une pastille à l'initiale prend le relais s'il manque ou ne charge pas. */
 function Logo({ nom, uri }: { nom: string; uri: string | null }) {
@@ -44,9 +63,10 @@ function Logo({ nom, uri }: { nom: string; uri: string | null }) {
 }
 
 /**
- * Paiement d'un pass par Mobile Money (pawaPay, direct charge) : pays (prix dans sa devise), opérateurs du pays avec
- * leur logo, numéro, puis attente de la validation sur le téléphone et résultat. Les pays où pawaPay n'existe pas
- * proposent de faire payer un parent. Le prix, la devise et le format du numéro sont décidés par le serveur.
+ * Paiement d'un pass par Mobile Money (pawaPay, direct charge), selon les maquettes E2 à E5 : récapitulatif du pass,
+ * opérateurs du pays avec leur logo (un opérateur en panne reste là, grisé « Indisponible »), numéro, attente de la
+ * validation sur le téléphone (étapes et compte à rebours), reçu, ou échec par motif. « Demander à quelqu'un de payer »
+ * est visible à chaque étape. Le prix, la devise et le format du numéro sont décidés par le serveur ; Android seulement.
  */
 export function PayerPass() {
   const { t, langue } = useTraduction();
@@ -67,6 +87,8 @@ export function PayerPass() {
   const [erreur, setErreur] = useState<string | null>(null);
   const [champErreur, setChampErreur] = useState<'numero' | 'code' | null>(null);
   const [essai, setEssai] = useState(0);
+  const [confirmerAnnulation, setConfirmerAnnulation] = useState(false);
+  const [restant, setRestant] = useState(DUREE_DEMANDE_S);
   const arret = useRef({ annule: false });
 
   // Pays de départ : celui du profil.
@@ -81,7 +103,9 @@ export function PayerPass() {
       .then((m) => {
         if (!actif) return;
         setMethodes(m);
-        if (m.providers.length === 1) setOperateur(m.providers[0].provider);
+        const libres = m.providers.filter((p) => p.available);
+        // Un seul opérateur disponible : choisi d'office.
+        if (libres.length === 1) setOperateur(libres[0].provider);
       })
       .catch(() => actif && setMethodes('erreur'));
     return () => {
@@ -97,10 +121,13 @@ export function PayerPass() {
   const m = typeof methodes === 'object' ? methodes : null;
   const offreChoisie = m?.offers.find((o) => o.code === offre) ?? null;
   const montant = offreChoisie ? formaterMontant(offreChoisie.amount, offreChoisie.currency) : '';
-  const op: Operateur | null = m?.providers.find((p) => p.provider === operateur) ?? null;
+  const op: Operateur | null = m?.providers.find((p) => p.provider === operateur && p.available) ?? null;
+  const nomOffre = t(`offres.${offre}`);
+  const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const texteErreur = (e: unknown) => {
-    if (e instanceof ErreurPaiement) return e.message || t(`paiement.erreurs.${e.code in { reseau: 1, indisponible: 1, auth: 1, sandbox: 1, offre: 1, pays: 1, numero_operateur: 1 } ? e.code : 'indisponible'}` as CleTexte);
+    const connus = ['reseau', 'indisponible', 'auth', 'sandbox', 'offre', 'pays', 'numero_operateur'];
+    if (e instanceof ErreurPaiement) return connus.includes(e.code) ? t(`paiement.erreurs.${e.code}` as CleTexte) : e.message || t('paiement.erreurs.indisponible');
     return t('paiement.erreurs.indisponible');
   };
 
@@ -124,6 +151,7 @@ export function PayerPass() {
     if (etape !== 'attente' || !commande) return;
     const stop = { annule: false };
     arret.current = stop;
+    const horloge = setInterval(() => setRestant((s) => Math.max(0, s - 1)), 1000);
     suivreCommande(getSupabase(), commande, langue, { arret: stop })
       .then((r) => {
         if (stop.annule) return;
@@ -136,6 +164,7 @@ export function PayerPass() {
       });
     return () => {
       stop.annule = true;
+      clearInterval(horloge);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [etape, commande, langue, terminer]);
@@ -144,94 +173,189 @@ export function PayerPass() {
     if (!pays || !op) return;
     setErreur(null);
     setChampErreur(null);
-    if (telephone.replace(/\D/g, '').length < 6) return setChampErreur('numero');
+    if (telephone.replace(/\D/g, '').length < 8) return setChampErreur('numero');
     if (op.authType === 'PREAUTH' && !code.trim()) return setChampErreur('code');
     setEtape('envoi');
     try {
       const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue });
       if (r.statut === 'en_attente') {
         setResultat(r);
+        setRestant(DUREE_DEMANDE_S);
         setEtape('attente');
       } else {
         terminer(r);
       }
     } catch (e) {
-      setErreur(texteErreur(e));
-      setEtape('saisie');
+      // Refus de pawaPay avec un code : l'écran d'échec par motif (E5). Sinon un message dans le formulaire.
+      if (e instanceof ErreurPaiement && e.echec) {
+        terminer({ statut: 'echoue', commande: e.commande ?? '', echec: e.echec, message: e.message });
+      } else {
+        setErreur(texteErreur(e));
+        setEtape('saisie');
+      }
     }
   };
 
   const abandonner = async () => {
+    setConfirmerAnnulation(false);
     arret.current.annule = true;
     if (commande) await annulerCommande(getSupabase(), commande).catch(() => {});
     setResultat(null);
     setEtape('saisie');
   };
+  // « Renvoyer la demande » : on abandonne la commande en cours et on en relance une (nouvelle demande chez l'opérateur).
+  const renvoyer = async () => {
+    arret.current.annule = true;
+    if (commande) await annulerCommande(getSupabase(), commande).catch(() => {});
+    setResultat(null);
+    await payer();
+  };
 
+  const parent = () => router.replace({ pathname: '/offres/parent', params: { offre } });
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const entete = (
     <View style={styles.entete}>
       <BoutonFermer libelle={t('paiement.fermer')} onPress={fermer} />
-      <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('paiement.titre')}</Text>
+      <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('paiement.entete')}</Text>
     </View>
   );
+  const lienParent = <Bouton variante="texte" libelle={t('paiement.demanderPayer')} onPress={parent} />;
 
-  // Résultat
-  if (etape === 'fin' && resultat) {
-    const ok = resultat.statut === 'reussi';
-    const expire = resultat.statut === 'expire';
+  // E4 · Succès : reçu
+  if (etape === 'fin' && resultat?.statut === 'reussi') {
+    const lignes: [string, string][] = [];
+    const montantRecu = montant || (resultat.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : '');
+    if (montantRecu) lignes.push([t('paiement.montant'), montantRecu]);
+    if (op) lignes.push([t('paiement.operateurRecu'), op.name]);
+    if (resultat.finPass) lignes.push([t('paiement.valable'), date(resultat.finPass)]);
+    if (resultat.recu) lignes.push([t('paiement.reference'), resultat.recu]);
     return (
-      <Ecran
-        pied={
-          ok ? (
-            <Bouton libelle={t('paiement.continuer')} onPress={() => router.replace('/')} retour />
-          ) : (
-            <View style={styles.groupe}>
-              <Bouton libelle={t('paiement.reessayer')} onPress={() => { setResultat(null); setEtape('saisie'); }} />
-              <Bouton variante="secondaire" libelle={t('paiement.fermer')} onPress={fermer} />
+      <Ecran pied={<Bouton libelle={t('paiement.reprendre')} onPress={() => router.replace('/')} retour />}>
+        {entete}
+        <View style={styles.centre}>
+          <Rebond declencheur moment="paid">
+            <View style={[styles.grandeCoche, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.h1, { color: theme.texte.surCouleur }]}>✓</Text>
             </View>
-          )
-        }
-      >
-        {entete}
-        <Banniere
-          ton={ok ? 'succes' : 'erreur'}
-          titre={t(ok ? 'paiement.reussiTitre' : expire ? 'paiement.expireTitre' : 'paiement.echecTitre')}
-          texte={ok ? (resultat.recu ? t('paiement.reussiTexte', { recu: resultat.recu }) : t('paiement.reussiTexteSansRecu')) : resultat.message || t(expire ? 'paiement.expireTexte' : 'paiement.echecTexte')}
-        />
-      </Ecran>
-    );
-  }
-
-  // Attente de la validation sur le téléphone
-  if (etape === 'attente' && resultat) {
-    const manuel = resultat.pinPrompt === 'MANUAL';
-    return (
-      <Ecran pied={<Bouton variante="secondaire" libelle={t('paiement.annuler')} onPress={() => void abandonner()} />}>
-        {entete}
-        <View style={styles.attente}>
-          <ActivityIndicator size="large" color={theme.marque.principale} />
-          <Text accessibilityRole="header" style={[typo.h2, styles.centre, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
-          <Text style={[typo.texte, styles.centre, { color: theme.texte.secondaire }]}>{t('paiement.attenteTexte', { operateur: op?.name ?? '', montant })}</Text>
-          {manuel ? <Text style={[typo.petit, styles.centre, { color: theme.texte.secondaire }]}>{t('paiement.attenteManuel')}</Text> : null}
-          {resultat.urlAutorisation ? (
-            <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
-          ) : null}
-          <Text style={[typo.petit, styles.centre, { color: theme.texte.secondaire }]}>{t('paiement.attenteReste')}</Text>
+          </Rebond>
+          <Text accessibilityRole="header" style={[typo.h2, styles.texteCentre, { color: theme.texte.principal }]}>{t('paiement.reussiTitre', { offre: nomOffre.toLowerCase() })}</Text>
+          <Text style={[typo.texte, styles.texteCentre, { color: theme.texte.secondaire }]}>
+            {resultat.finPass ? t('paiement.reussiTexte', { date: date(resultat.finPass) }) : t('paiement.reussiTexteSansDate')}
+          </Text>
+        </View>
+        <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.recu').toUpperCase()}</Text>
+          {lignes.map(([nom, valeur]) => (
+            <View key={nom} style={styles.ligne}>
+              <Text style={[typo.texte, styles.flex, { color: theme.texte.secondaire }]}>{nom}</Text>
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{valeur}</Text>
+            </View>
+          ))}
         </View>
       </Ecran>
     );
   }
 
+  // E5 · Échec, un seul écran, six motifs
+  if (etape === 'fin' && resultat) {
+    const motif = motifEchec(resultat);
+    const jaune = motif === 'delai' || motif === 'operateur' || motif === 'autre';
+    const bloc = (cle: 'titre' | 'texte') => t(`paiement.echecs.${motif}.${cle}` as CleTexte);
+    return (
+      <Ecran
+        pied={
+          <View style={styles.groupe}>
+            {motif === 'operateur' ? (
+              <Bouton libelle={t('paiement.changerOperateur')} onPress={() => { setResultat(null); setEtape('saisie'); }} />
+            ) : motif === 'numero' ? (
+              <Bouton libelle={t('paiement.changerNumero')} onPress={() => { setTelephone(''); setResultat(null); setEtape('saisie'); }} />
+            ) : (
+              <Bouton libelle={t('paiement.reessayer')} onPress={() => { setResultat(null); setEtape('saisie'); }} />
+            )}
+            <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />
+            {motif === 'solde' || motif === 'refus' || motif === 'delai' ? <Bouton variante="texte" libelle={t('paiement.changerNumero')} onPress={() => { setTelephone(''); setResultat(null); setEtape('saisie'); }} /> : null}
+          </View>
+        }
+      >
+        {entete}
+        <Banniere ton={jaune ? 'alerte' : 'erreur'} titre={bloc('titre')} texte={bloc('texte')} />
+        {motif === 'solde' ? (
+          <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('paiement.echecs.solde.astuce')}</Text>
+          </View>
+        ) : null}
+      </Ecran>
+    );
+  }
+
+  // E3 · Attente de confirmation
+  if (etape === 'attente' && resultat) {
+    const manuel = resultat.pinPrompt === 'MANUAL';
+    const etapes = [t(manuel ? 'paiement.etape1Manuel' : 'paiement.etape1', { operateur: op?.name ?? '' }), t('paiement.etape2'), t('paiement.etape3')];
+    return (
+      <Ecran
+        pied={
+          <View style={styles.groupe}>
+            <Bouton variante="secondaire" libelle={t('paiement.renvoyer')} onPress={() => void renvoyer()} />
+            <Bouton variante="secondaire" libelle={t('paiement.annuler')} onPress={() => setConfirmerAnnulation(true)} />
+            {lienParent}
+          </View>
+        }
+      >
+        {entete}
+        <View style={styles.groupe}>
+          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
+          {etapes.map((texte, i) => (
+            <View key={texte} style={styles.ligne}>
+              <View style={[styles.numero, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+              </View>
+              <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{texte}</Text>
+            </View>
+          ))}
+          {resultat.urlAutorisation ? (
+            <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
+          ) : null}
+        </View>
+        <View style={styles.ligne}>
+          <ActivityIndicator color={theme.marque.principale} />
+          <Text accessibilityLiveRegion="polite" style={[typo.petit, styles.flex, { color: theme.texte.secondaire }]}>{t('paiement.attenteExpire', { temps: mmss(restant) })}</Text>
+        </View>
+        <Feuille
+          ouverte={confirmerAnnulation}
+          onFermer={() => setConfirmerAnnulation(false)}
+          titre={t('paiement.annulerTitre')}
+          texte={t('paiement.annulerTexte')}
+          actions={[
+            { libelle: t('paiement.annulerOui'), onPress: () => void abandonner() },
+            { libelle: t('paiement.annulerNon'), variante: 'secondaire', onPress: () => setConfirmerAnnulation(false) },
+          ]}
+        />
+      </Ecran>
+    );
+  }
+
+  // E2 · Pays, opérateur, numéro
   const envoi = etape === 'envoi';
   const pret = !!m && m.payable && !!offreChoisie && !!op;
+  const indisponibles = m?.providers.filter((p) => !p.available) ?? [];
+  const disponibles = m?.providers.filter((p) => p.available) ?? [];
   return (
-    <Ecran pied={pret ? <Bouton libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })} onPress={() => void payer()} desactive={envoi} retour /> : undefined}>
+    <Ecran
+      pied={
+        pret ? (
+          <View style={styles.groupe}>
+            <Bouton libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })} onPress={() => void payer()} desactive={envoi} retour />
+            {lienParent}
+          </View>
+        ) : undefined
+      }
+    >
       {entete}
       {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
 
       <View style={styles.groupe}>
-        <Text style={[typo.texteFort, { color: theme.texte.secondaire }]}>{t('paiement.pays')}</Text>
+        <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.pays').toUpperCase()}</Text>
         <View style={styles.ligne}>
           <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? pays ?? ''}</Text>
           <Bouton petit variante="secondaire" libelle={t('paiement.changerPays')} onPress={ouvrirPays} />
@@ -240,7 +364,7 @@ export function PayerPass() {
           <View style={styles.groupe}>
             {(liste ?? []).map((p) => (
               <Appui key={p.alpha2} accessibilityRole="button" onPress={() => { setMethodes('chargement'); setOperateur(null); setPays(p.alpha2); setChoixPays(false); }} rayon={rayon.m} decalage={2}>
-                <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: p.alpha2 === pays ? theme.marque.principale : theme.bord.fort }]}>
+                <View style={[styles.carteLigne, { backgroundColor: theme.fond.surface, borderColor: p.alpha2 === pays ? theme.marque.principale : theme.bord.fort }]}>
                   <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{p.name}</Text>
                   <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{p.currencies.join(' · ')}</Text>
                 </View>
@@ -262,30 +386,54 @@ export function PayerPass() {
       {m && !m.payable ? (
         <View style={styles.groupe}>
           <Banniere ton="info" titre={t('paiement.indisponibleTitre')} texte={t('paiement.indisponibleTexte')} />
-          <Bouton libelle={t('paiement.demanderPayer')} onPress={() => router.replace({ pathname: '/offres/parent', params: { offre } })} />
+          <Bouton libelle={t('paiement.demanderPayer')} onPress={parent} />
         </View>
       ) : null}
 
       {m?.payable && offreChoisie ? (
         <>
-          <View style={[styles.recap, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('paiement.prix', { offre: t(`offres.${offre}`), montant })}</Text>
-            {offreChoisie.converted ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('paiement.prixConverti', { devise: offreChoisie.currency })}</Text> : null}
+          <View style={[styles.carte, styles.recap, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            <View style={styles.flex}>
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
+                {offreChoisie.durationDays ? t('paiement.recapDuree', { offre: nomOffre, n: offreChoisie.durationDays }) : nomOffre}
+              </Text>
+              {offreChoisie.converted ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('paiement.prixConverti', { devise: offreChoisie.currency })}</Text> : null}
+            </View>
+            <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
           </View>
 
           <View style={styles.groupe}>
-            <Text style={[typo.texteFort, { color: theme.texte.secondaire }]}>{t('paiement.operateur')}</Text>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.operateur').toUpperCase()}</Text>
             {m.providers.map((p) => {
-              const choisi = p.provider === operateur;
+              const choisi = p.provider === operateur && p.available;
               return (
-                <Appui key={p.provider} accessibilityRole="radio" accessibilityState={{ checked: choisi }} onPress={() => setOperateur(p.provider)} rayon={rayon.m} ombre={ombre.s} decalage={2} couleurOmbre={theme.ombre}>
-                  <View style={[styles.carte, { backgroundColor: choisi ? theme.marque.douce : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: choisi ? 3 : bord.normal }]}>
+                <Appui
+                  key={p.provider}
+                  accessibilityRole="radio"
+                  accessibilityState={{ checked: choisi, disabled: !p.available }}
+                  disabled={!p.available}
+                  onPress={() => setOperateur(p.provider)}
+                  rayon={rayon.m}
+                  ombre={p.available ? ombre.s : 0}
+                  decalage={2}
+                  couleurOmbre={theme.ombre}
+                >
+                  <View
+                    style={[
+                      styles.carteLigne,
+                      { backgroundColor: choisi ? theme.marque.douce : p.available ? theme.fond.surface : theme.fond.creux, borderColor: p.available ? theme.bord.fort : theme.bord.doux, borderWidth: choisi ? 3 : bord.normal, borderStyle: p.available ? 'solid' : 'dashed', opacity: p.available ? 1 : 0.7 },
+                    ]}
+                  >
                     <Logo nom={p.name} uri={p.logo} />
-                    <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{p.name}</Text>
+                    <Text style={[typo.texteFort, styles.flex, { color: p.available ? theme.texte.principal : theme.texte.secondaire }]}>{p.name}</Text>
+                    {!p.available ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.indisponible')}</Text> : null}
                   </View>
                 </Appui>
               );
             })}
+            {indisponibles.length && disponibles.length ? (
+              <Banniere ton="alerte" titre={t('paiement.indisponibleBandeau', { operateur: indisponibles[0].name, autre: disponibles[0].name })} />
+            ) : null}
           </View>
 
           {op ? (
@@ -319,13 +467,16 @@ export function PayerPass() {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  centre: { textAlign: 'center' },
+  centre: { alignItems: 'center', gap: espace[4], paddingTop: espace[5] },
+  texteCentre: { textAlign: 'center' },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   groupe: { gap: espace[3] },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
-  attente: { alignItems: 'center', gap: espace[4], paddingTop: espace[7] },
-  recap: { gap: espace[1], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
-  carte: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
+  carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
+  recap: { flexDirection: 'row', alignItems: 'center' },
+  carteLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
+  numero: { width: 28, height: 28, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  grandeCoche: { width: 88, height: 88, borderRadius: rayon.l, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   logo: { width: 48, height: 48, borderWidth: bord.fin, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   logoImage: { width: 40, height: 40 },
 });

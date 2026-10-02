@@ -102,3 +102,29 @@ Retour de Benny sur photo : trop d'espace noir sous le déclencheur. Même cause
 - **Bonus de bienvenue (K3c) :** `BienvenueCredits`, à la racine : écran « Tu as gagné N crédits » une seule fois (clé `credits.bienvenueVue.<id>`), si le registre serveur contient un bonus de moins de 24 h. Couvre la création d'un compte et la liaison d'un ancien compte.
 - **Serveur :** migration `20261002030000_credits_bienvenue_notification` (trigger sur `credit_ledger` qui appelle `notify_student` au bonus de bienvenue). **Pas encore appliquée en production** : sans elle, l'écran K3c marche mais aucune notification n'est envoyée.
 - **Pas fait :** K3d (bonus déjà pris sur ce téléphone), « Gagner des crédits » (la page Parrainage n'existe pas), la pastille en haut de Réviser, la cloche N0.
+
+---
+
+# Suite, 2 octobre 2026 (midi) : paiement des pass par Mobile Money (pawaPay), Android seulement
+
+## Architecture (on passe par le back-office, pas par les Edge Functions Supabase)
+- **Pourquoi :** les jetons pawaPay (`PAWAPAY_API_TOKEN`, `PAWAPAY_SANDBOX_API_TOKEN`) sont dans les variables d'environnement du back-office (projet Vercel `elearn`, domaine `staff.elearnprepa.com`, dépôt `falachabt/elearn`). Il n'y en a aucun dans Supabase. Les cinq Edge Functions `payment-*` / `pawapay-webhook` du dépôt `elearn-supabase` ne sont **pas déployées** et ne servent pas (code gardé, utile pour la page web du parent F1 plus tard).
+- **Base (Supabase prod) :** migration `20261002000000_paiements_pawapay` appliquée : `create_order` (prix du pays via `pass_offers`, conversion de devise), `record_deposit_result` (accès, reçu `EP-XXXX-0000`, notification « Paiement confirmé », idempotent), `expire_pending_orders` (cron chaque minute, 10 min), `cancel_my_order`, `refund_order`.
+- **Back-office (branche `ccr-c5a410c9-uqry2j`, à fusionner dans `main` pour être en ligne) :**
+  - `GET /api/pass/pawapay/methods?country=CM&locale=fr&sandbox=true` : sans `country`, les pays où pawaPay marche (config active, drapeaux) ; avec, les offres au prix dans la devise du pays et les opérateurs avec **leurs vrais logos** (venus de pawaPay), `available:false` pour un opérateur fermé ou exclu.
+  - `POST /api/pass/pawapay/pay` (Bearer jeton Supabase de l'élève) : **direct charge**. Crée la commande, vérifie que l'opérateur accepte la **devise** du prix (sinon `INVALID_CURRENCY`) et les bornes, met le numéro au format international (le 0 de tête essayé avec et sans, confirmé par `predict-provider`), appelle `POST /v2/deposits`. Gère `PREAUTH` (code d'autorisation) et renvoie `authorizationUrl` pour `REDIRECT_AUTH`.
+  - `GET /api/pass/pawapay/status/{orderId}` : relit le dépôt chez pawaPay, enregistre le résultat, renvoie le statut, le reçu et la fin du pass.
+  - **Rappel pawaPay (`/api/payments/pawapay/callback`) :** une seule ligne ajoutée au début : si le dépôt est une de nos commandes de pass (`orders`), on l'enregistre et on s'arrête. Sinon le chemin d'avant est **inchangé** (paiements existants, puis transmission à **Mining Connect** via `MINING_CONNECT_PAWAPAY_WEBHOOK_URL`). Ne pas casser ça.
+  - Variables : `PAWAPAY_SANDBOX_TESTERS` (e-mails autorisés à payer en sandbox, défaut : les deux comptes de Benny ; sans ça n'importe qui aurait un pass gratuit), `PAWAPAY_PASS_EXCLUDED_PROVIDERS` (défaut `ORANGE_CMR`, géré à part par GeniusPay).
+- **App :** `services/paiementPass.ts` (client du back-office), `components/pass/PayerPass.tsx` (route `/offres/payer`), bouton « Payer » des offres. Suit les maquettes E2 à E5 : récapitulatif du pass, opérateurs (indisponible grisé en pointillé + bandeau), numéro avec indicatif, attente en trois étapes avec compte à rebours 10 min, annulation confirmée, reçu (montant, opérateur, validité, référence), échec par motif (solde, refus, délai, numéro, opérateur, autre). « Demander à quelqu'un de payer » est visible à chaque étape.
+- **Sandbox :** l'app envoie `sandbox: true` en développement et sur le canal EAS `preview`. Numéros de test pawaPay : MTN Cameroun `237653456789` (réussi), `237653456129` (en attente). Config active du compte sandbox : BEN, BFA, CIV, CMR, COD, COG, GHA, KEN, MOZ, MWI, RWA, SEN, SLE, TZA, UGA, ZMB (pas de Gabon ni de Togo). La config de production peut différer.
+
+## iOS : aucun paiement, aucun pass, aucun prix, aucun Mobile Money
+- **Règle :** `services/plateforme.ts` → `paiementPossible()` n'est vrai que sur **Android**. Sur iOS l'App Store n'accepte pas un paiement hors de ses achats intégrés, ni les renvois vers un paiement externe.
+- **Masqué sur iOS :** routes `/offres`, `/offres/parent`, `/offres/payer` (redirigent vers l'accueil), boutons « Voir les pass » (Moi, détail des crédits, score, annales), feuilles de crédits (épuisé, coût, détail, « Recharger » : on dit seulement « tes crédits reviennent lundi »), bandeau « Illimité avec le pass », mentions « avec le pass », « t'aide à payer » (parent), note de paiement de l'aide. Les crédits gratuits, le compte, la progression marchent pareil. Test : `credits/__tests__/iosSansPaiement.test.tsx` (aucune occurrence de pass / FCFA / payer / paiement / Mobile Money).
+- **Chantier Apple à part (non fait, pour l'autre agent) :** achats intégrés (StoreKit / RevenueCat) pour vendre les pass sur iOS, reçus Apple côté serveur (validation, `entitlements`), prix en devise de l'App Store, restauration des achats, textes de la fiche App Store. À faire avant de proposer un pass sur iOS ; d'ici là, iOS reste 100 % gratuit (crédits du lundi).
+
+## Pas encore fait
+- E7 (feuille « Paiement en cours » à la réouverture de l'app), code promo, parrainage (−15 %), reçu par SMS, page web du parent F1 à brancher sur le back-office, « Renvoyer la demande » = annuler puis relancer (nouvelle commande), animation de succès au-delà du rebond.
+- Orange Cameroun reste indisponible (GeniusPay).
+- Test réel bout en bout : impossible avant la fusion du back-office dans `main` (la préversion Vercel n'a pas la même base).

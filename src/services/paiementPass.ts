@@ -18,6 +18,8 @@ export type Operateur = {
   provider: string;
   name: string;
   logo: string | null;
+  /** Faux : opérateur en panne ou fermé, affiché grisé « Indisponible » (jamais payable). */
+  available: boolean;
   currency: string;
   min: number | null;
   max: number | null;
@@ -50,6 +52,8 @@ export type ResultatPaiement = {
   recu?: string;
   montant?: number;
   devise?: string;
+  /** Fin du pass (ISO), une fois le paiement réussi. */
+  finPass?: string;
   authType?: Operateur['authType'];
   pinPrompt?: Operateur['pinPrompt'];
   /** REDIRECT_AUTH : adresse de l'opérateur où l'élève valide. */
@@ -124,6 +128,7 @@ function resultat(c: Corps): ResultatPaiement {
     recu: c.receipt_no as string | undefined,
     montant: c.amount as number | undefined,
     devise: c.currency as string | undefined,
+    finPass: c.ends_at as string | undefined,
     authType: c.authType as ResultatPaiement['authType'],
     pinPrompt: c.pinPrompt as ResultatPaiement['pinPrompt'],
     urlAutorisation: (c.authorizationUrl as string | null | undefined) ?? null,
