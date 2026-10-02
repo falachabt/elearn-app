@@ -73,7 +73,7 @@ describe('récapitulatif d’activation du pass', () => {
     expect(screen.getByText(fr.passActivation.quiz)).toBeTruthy();
     expect(screen.getByText(fr.passActivation.corrections)).toBeTruthy();
     expect(screen.getByText(fr.passActivation.documents)).toBeTruthy();
-    expect(screen.getByText(fr.passActivation.offre.replace('{{detail}}', fr.offres.monthAide))).toBeTruthy();
+    expect(screen.getByText(fr.offres.monthAide)).toBeTruthy();
     expect(screen.getByText(fr.passActivation.valable.replace('{{date}}', new Date('2026-11-30T00:00:00Z').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })))).toBeTruthy();
 
     await fireEvent.press(screen.getByRole('button', { name: fr.passActivation.continuer }));
