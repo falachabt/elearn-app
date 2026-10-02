@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { estInvite } from '@/services/compte';
+import { paiementPossible } from '@/services/plateforme';
 import { identiteDe } from '@/services/identite';
 import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
@@ -181,7 +182,7 @@ export function EcranMoi() {
       <Groupe>
         <LigneGroupe icone={RefreshCw} titre={t('profil.classe')} sousTitre={classePays ?? undefined} onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })} />
         {connecte ? (
-          <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t('profil.parentAucun')} onPress={() => router.push('/profil/parent')} />
+          <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t(paiementPossible() ? 'profil.parentAucun' : 'profil.parentAucunSansPaiement')} onPress={() => router.push('/profil/parent')} />
         ) : null}
         <LigneGroupe icone={CircleHelp} titre={t('profil.aide')} onPress={() => router.push('/aide')} />
       </Groupe>

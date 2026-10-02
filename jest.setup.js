@@ -2,6 +2,9 @@ jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'),
 );
 
+// Paiement : possible (Android) par défaut ; un test iOS le passe à false.
+jest.mock('@/services/plateforme', () => ({ paiementPossible: jest.fn(() => true) }));
+
 // Appareil de test en français par défaut ; un test peut surcharger `getLocales`.
 jest.mock('expo-localization', () => ({
   getLocales: jest.fn(() => [{ languageTag: 'fr-FR', languageCode: 'fr' }]),

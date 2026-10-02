@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { paiementPossible } from '@/services/plateforme';
 import { CLE_CATALOGUE, lireSujet, type DetailSujet, type Sujet } from '@/services/annales';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
@@ -104,7 +105,7 @@ export function SujetAnnale() {
                 <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>
                   {payant.refus.raison === 'erreur' ? t('payant.erreur') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })}
                 </Text>
-                <Bouton variante="secondaire" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} />
+                {paiementPossible() ? <Bouton variante="secondaire" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} /> : null}
               </View>
             </Carte>
           ) : null}

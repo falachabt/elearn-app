@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -26,6 +27,30 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
     router.push(chemin as never);
   };
   const recharge = solde?.recharge ?? 0;
+  // iOS : aucun pass ni paiement. On dit simplement que les crédits reviennent lundi (et, pour un invité, on propose le compte).
+  if (!paiementPossible()) {
+    return (
+      <Feuille
+        ouverte={ouverte}
+        onFermer={onFermer}
+        titre={t(invite ? 'credits.epuiseInviteTitre' : rechargeSimple ? 'credits.rechargeTitre' : 'credits.epuiseTitre')}
+        texte={invite ? undefined : t('credits.epuiseTexteSansPass', { delai: delai(solde?.prochaineRecharge ?? new Date().toISOString()) })}
+        actions={[
+          ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer') }] : []),
+          { libelle: invite ? t('credits.plusTard') : t('credits.compris'), onPress: onFermer, variante: invite ? ('texte' as const) : undefined },
+        ]}
+      >
+        {invite ? (
+          <View style={[styles.cadeau, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
+            <View style={styles.flex}>
+              <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{reglages ? t('credits.epuiseInviteCarte', { n: reglages.bienvenue }) : t('credits.epuiseInvite', { n: recharge })}</Text>
+              <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('credits.epuiseInviteSauvegarde')}</Text>
+            </View>
+          </View>
+        ) : null}
+      </Feuille>
+    );
+  }
   if (invite) {
     return (
       <Feuille

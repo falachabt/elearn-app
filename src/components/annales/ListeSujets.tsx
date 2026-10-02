@@ -3,6 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { paiementPossible } from '@/services/plateforme';
 import { filtrer, optionsFiltres, trierSujets, type Sujet } from '@/services/annales';
 import { lireDocuments } from '@/services/documents';
 import { recaser } from '@/services/titres';
@@ -92,7 +93,7 @@ export function ListeSujets({ sujets }: { sujets: Sujet[] }) {
           }}
         />
       </View>
-      <Bouton variante="texte" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} />
+      {paiementPossible() ? <Bouton variante="texte" libelle={t('annales.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'limite' } })} /> : null}
     </View>
   );
 }

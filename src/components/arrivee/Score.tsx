@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { paiementPossible } from '@/services/plateforme';
 import { suivre } from '@/services/analytics';
 import { estInvite } from '@/services/compte';
 import { appreciation, invitationDejaVue, lireResultat, marquerInvitationVue, synchroniserResultat, type ResultatMiniTest } from '@/services/miniTest';
@@ -123,7 +124,7 @@ export function Score({ resultat: fourni }: { resultat?: ResultatMiniTest }) {
           </Carte>
         </Apparition>
         {sauvegarde ? <Banniere ton="succes" titre={t('score.sauvegarde')} /> : null}
-        <Bouton variante="texte" libelle={t('score.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'score' } })} />
+        {paiementPossible() ? <Bouton variante="texte" libelle={t('score.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'score' } })} /> : null}
       </Ecran>
       {invite ? (
         <FeuilleSauvegarde
