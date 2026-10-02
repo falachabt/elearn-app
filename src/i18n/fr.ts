@@ -481,6 +481,8 @@ export const fr = {
     repriseExercice: 'exercice {{n}} / {{total}}',
     bonjour: 'Bonjour',
     bonsoir: 'Bonsoir',
+    bonjourNom: 'Bonjour {{prenom}}',
+    bonsoirNom: 'Bonsoir {{prenom}}',
     serie: '{{n}} j',
     serieLibelle: 'Série : {{n}} jours de suite',
     etiquette: 'Mission du jour',

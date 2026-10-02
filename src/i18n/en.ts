@@ -480,6 +480,8 @@ export const en: Textes = {
     repriseExercice: 'exercise {{n}} / {{total}}',
     bonjour: 'Hello',
     bonsoir: 'Good evening',
+    bonjourNom: 'Hello {{prenom}}',
+    bonsoirNom: 'Good evening {{prenom}}',
     serie: '{{n}} d',
     serieLibelle: 'Streak: {{n}} days in a row',
     etiquette: 'Today’s mission',

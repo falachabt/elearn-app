@@ -8,7 +8,9 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { creerLienParent, formaterMontant, lienWhatsApp, lireOffres, URL_PAIEMENT_PARENT, type CodeOffre, type LienParent as Lien, type Offre } from '@/services/pass';
 import { lireProfil } from '@/services/profil';
+import { identiteDe } from '@/services/identite';
 import { getSupabase } from '@/services/supabase';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -41,7 +43,9 @@ export function LienParent() {
   const [offre, setOffre] = useState<Offre | null>(null);
   const [pays, setPays] = useState('CM');
   const [objectif, setObjectif] = useState<Objectif>('examens');
-  const [prenom, setPrenom] = useState('');
+  // Prénom pré-rempli depuis le compte (Google, etc.) : l'élève n'a rien à saisir, il peut le corriger.
+  const { session } = useSession();
+  const [prenom, setPrenom] = useState(() => identiteDe(session?.user).prenom ?? '');
   const [lien, setLien] = useState<Lien | null>(null);
   const [envoi, setEnvoi] = useState(false);
   const [erreur, setErreur] = useState<'erreur' | 'trop' | null>(null);

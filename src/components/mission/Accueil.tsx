@@ -10,7 +10,8 @@ import { lireProfil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { identiteDe } from '@/services/identite';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -29,6 +30,19 @@ type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | n
 export function titreMission(m: Mission | null): string | null {
   const chapitres = [...new Set(m?.questions.map((q) => q.chapitre).filter(Boolean) ?? [])];
   return chapitres.length ? chapitres.slice(0, 2).join(', ') : null;
+}
+
+/** « Bonjour Aïcha » : le prénom vient du compte (Google, etc.) ; sans prénom, « Bonjour » seul. */
+function Salutation({ heure }: { heure: number }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const { session } = useSession();
+  const prenom = identiteDe(session?.user).prenom;
+  return (
+    <Text accessibilityRole="header" numberOfLines={1} style={[typo.h1, styles.flex, { color: theme.texte.principal }]}>
+      {prenom ? t(heure >= 17 ? 'mission.bonsoirNom' : 'mission.bonjourNom', { prenom }) : t(heure >= 17 ? 'mission.bonsoir' : 'mission.bonjour')}
+    </Text>
+  );
 }
 
 /** C1 · Accueil (M4-01) : la mission du jour en 1 appui, la série, l'aide par photo. */
@@ -96,7 +110,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     <Ecran insetBas={false}>
       <Apparition>
         <View style={styles.entete}>
-          <Text accessibilityRole="header" style={[typo.h1, styles.flex, { color: theme.texte.principal }]}>{t(heure >= 17 ? 'mission.bonsoir' : 'mission.bonjour')}</Text>
+          <Salutation heure={heure} />
           {etat.serie > 0 ? (
             <View accessible accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })} style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
               <Ionicons name="flame" size={14} color={surVert} />

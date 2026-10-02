@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
 import { CircleHelp, FileText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
@@ -5,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { estInvite } from '@/services/compte';
+import { identiteDe } from '@/services/identite';
 import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
 import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
@@ -46,7 +48,7 @@ export function EcranMoi() {
   const invite = estInvite(user);
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
-  const nom = (user?.user_metadata?.full_name as string | undefined)?.trim() || (user?.user_metadata?.name as string | undefined)?.trim() || null;
+  const { nom, photo } = identiteDe(user);
   const initiale = (nom ?? '').charAt(0).toUpperCase();
 
   // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté.
@@ -112,7 +114,11 @@ export function EcranMoi() {
 
       <View style={styles.identite}>
         <View style={[styles.avatar, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{initiale || '?'}</Text>
+          {photo ? (
+            <Image source={{ uri: photo }} style={styles.photo} contentFit="cover" accessibilityLabel={nom ?? undefined} accessibilityIgnoresInvertColors />
+          ) : (
+            <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{initiale || '?'}</Text>
+          )}
         </View>
         <View style={styles.flex}>
           <Text style={[typo.h2, { color: theme.texte.principal }]}>{nom ?? t('profil.invite')}</Text>
@@ -188,7 +194,8 @@ const styles = StyleSheet.create({
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   roue: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   identite: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
-  avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  photo: { width: '100%', height: '100%' },
   carteJaune: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', alignItems: 'center' },
   jours: { borderWidth: bord.normal, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[1] },
