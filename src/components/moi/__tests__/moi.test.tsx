@@ -72,6 +72,8 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/profil/parent');
     await fireEvent.press(screen.getByRole('button', { name: x.profil.aide }));
     expect(router.push).toHaveBeenCalledWith('/aide');
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profil.paiements}`) }));
+    expect(router.push).toHaveBeenCalledWith('/paiements');
   });
 
   it('parent ou tuteur : accord obligatoire, puis enregistré avec l’indicatif', async () => {
