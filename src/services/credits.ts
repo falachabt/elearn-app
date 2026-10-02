@@ -95,21 +95,21 @@ export async function lireReglages(client: Client): Promise<ReglagesCredits> {
 }
 
 /**
- * Bonus de bienvenue reçu depuis `depuis` (ISO) : montant, ou null s'il n'y en a pas (compte déjà ancien, bonus déjà
+ * Bonus de bienvenue reçu depuis `depuis` (ISO) : identifiant de la ligne et montant, ou null s'il n'y en a pas (compte déjà ancien, bonus déjà
  * pris sur ce téléphone). Lu dans le registre de l'élève (lecture limitée à ses lignes).
  */
-export async function lireBienvenueRecente(client: Client, depuis: string): Promise<number | null> {
+export async function lireBienvenueRecente(client: Client, depuis: string): Promise<{ id: string; montant: number } | null> {
   const { data, error } = await client
     .from('credit_ledger')
-    .select('delta')
+    .select('id, delta')
     .eq('kind', 'welcome')
     .gt('delta', 0)
     .gte('created_at', depuis)
     .order('created_at', { ascending: false })
     .limit(1);
   if (error) throw error;
-  const l = (data as { delta: number }[] | null)?.[0];
-  return l ? l.delta : null;
+  const l = (data as { id: number | string; delta: number }[] | null)?.[0];
+  return l ? { id: String(l.id), montant: l.delta } : null;
 }
 
 /** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */

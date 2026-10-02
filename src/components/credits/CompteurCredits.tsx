@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { FeuilleDetailCredits } from './FeuilleDetailCredits';
@@ -46,13 +46,13 @@ export function CompteurCredits() {
         accessibilityRole="button"
         accessibilityLabel={accessibilite}
         onPress={() => setDetail(true)}
-        rayon={rayon.pilule}
+        rayon={rayon.s}
         decalage={2}
         style={styles.zone}
       >
         <View style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
           <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
-          <Text numberOfLines={1} style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+          <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
         </View>
       </Appui>
       <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
@@ -63,15 +63,16 @@ export function CompteurCredits() {
 const styles = StyleSheet.create({
   // Ne se rétrécit jamais : le titre « Bonjour » cède la place, la pastille garde sa forme.
   zone: { flexShrink: 0 },
+  // Même gabarit que la pastille de série à côté : petit, rectangle arrondi, à la taille de son contenu.
   puce: {
     flexShrink: 0,
-    minHeight: cibleMin - 4,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: espace[1],
+    gap: espace[2],
     paddingHorizontal: espace[3],
-    borderWidth: 2,
-    borderRadius: rayon.pilule,
+    paddingVertical: espace[2],
+    borderWidth: bord.normal,
+    borderRadius: rayon.s,
   },
   squelette: { width: 22, height: 10, borderRadius: 4 },
 });

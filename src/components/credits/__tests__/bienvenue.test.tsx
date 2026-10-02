@@ -28,7 +28,7 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   mockSession.mockReturnValue(compte);
   mockCredits.mockReturnValue({ solde: { total: 40 }, reglages: { bienvenue: 40, invite: 5, recharge: 25 } });
-  mockLigne.mockReturnValue([{ delta: 40 }]);
+  mockLigne.mockReturnValue([{ id: 7, delta: 40 }]);
 });
 
 describe('K3c · Tu as gagné N crédits', () => {
@@ -39,7 +39,7 @@ describe('K3c · Tu as gagné N crédits', () => {
     expect(screen.getByText('+25')).toBeTruthy();
     await fireEvent.press(screen.getByText('Récupérer mes crédits'));
     await waitFor(() => expect(screen.queryByText('Tu as gagné 40 crédits')).toBeNull());
-    expect(await AsyncStorage.getItem(`${CLE_BIENVENUE_VUE}.u1`)).toBe('1');
+    expect(await AsyncStorage.getItem(`${CLE_BIENVENUE_VUE}.u1`)).toBe('7');
   });
 
   it('rien pour un invité', async () => {
@@ -50,10 +50,16 @@ describe('K3c · Tu as gagné N crédits', () => {
   });
 
   it('rien si déjà vu', async () => {
-    await AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.u1`, '1');
+    await AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.u1`, '7');
     await monter();
     await new Promise((r) => setTimeout(r, 20));
     expect(screen.queryByText('Tu as gagné 40 crédits')).toBeNull();
+  });
+
+  it('un nouveau bonus (autre ligne) réaffiche l’écran', async () => {
+    await AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.u1`, '6');
+    await monter();
+    expect(await screen.findByText('Tu as gagné 40 crédits')).toBeTruthy();
   });
 
   it('rien sans bonus récent (bonus déjà pris sur ce téléphone)', async () => {

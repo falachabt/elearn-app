@@ -29,7 +29,7 @@ export function BienvenueCredits() {
   const { session } = useSession();
   const { solde, reglages } = useCredits();
   const { top, bottom } = useSafeAreaInsets();
-  const [gain, setGain] = useState<number | null>(null);
+  const [bonus, setBonus] = useState<{ id: string; montant: number } | null>(null);
   const verifie = useRef<string | null>(null);
 
   const utilisateur = session?.user.id ?? null;
@@ -42,10 +42,10 @@ export function BienvenueCredits() {
     verifie.current = utilisateur;
     let actif = true;
     void (async () => {
-      const cle = `${CLE_BIENVENUE_VUE}.${utilisateur}`;
-      if (await AsyncStorage.getItem(cle)) return;
-      const montant = await lireBienvenueRecente(getSupabase(), new Date(Date.now() - FENETRE_BIENVENUE_MS).toISOString());
-      if (montant && actif) setGain(montant);
+      const b = await lireBienvenueRecente(getSupabase(), new Date(Date.now() - FENETRE_BIENVENUE_MS).toISOString());
+      // « Vu » se retient par ligne de bonus : un nouveau bonus affiche de nouveau l'écran.
+      if (!b || (await AsyncStorage.getItem(`${CLE_BIENVENUE_VUE}.${utilisateur}`)) === b.id) return;
+      if (actif) setBonus(b);
     })().catch(() => {});
     return () => {
       actif = false;
@@ -53,11 +53,12 @@ export function BienvenueCredits() {
   }, [utilisateur, connecte, pret]);
 
   const recuperer = () => {
-    if (utilisateur) void AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.${utilisateur}`, '1').catch(() => {});
-    setGain(null);
+    if (utilisateur && bonus) void AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.${utilisateur}`, bonus.id).catch(() => {});
+    setBonus(null);
   };
 
-  if (gain === null) return null;
+  if (!bonus) return null;
+  const gain = bonus.montant;
   return (
     <Modal visible animationType="fade" onRequestClose={recuperer} statusBarTranslucent>
       <View style={[styles.fond, { backgroundColor: theme.fond.app, paddingTop: top + espace[6], paddingBottom: bottom + espace[6] }]}>
