@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerResultat, enregistrerResultat, tirerMiniTest, type QuestionTiree } from '@/services/miniTest';
@@ -10,7 +10,6 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
-import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { BoutonCredits } from '../credits/BoutonCredits';
 import { Ecran } from '../Ecran';
@@ -136,8 +135,42 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
     [validee, choix, q],
   );
 
-  const pied = validee ? (
-    <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} />
+  const suite = <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} />;
+  const explicationOuverte = q ? q.explication || ouvertes[q.id] || '' : '';
+  const payante = !!q && !q.explication && !ouvertes[q.id] && /^\d+$/.test(q.id);
+  // Résultat, justification et « Question suivante » restent groupés en bas de l'écran (guide K2b) : visibles même
+  // quand l'énoncé ou les options sont longs, sans avoir à défiler jusqu'au bouton.
+  const pied = validee && q ? (
+    <View style={[styles.retour, { backgroundColor: theme.etat[juste ? 'succesDoux' : 'erreurDoux'], borderColor: theme.bord.fort }]}>
+      <View accessibilityRole="alert" style={styles.retourTitre}>
+        <View style={[styles.pastille, { backgroundColor: theme.etat[juste ? 'succes' : 'erreur'], borderColor: theme.bord.fort }]}>
+          <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{juste ? '✓' : '!'}</Text>
+        </View>
+        <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{juste ? t('miniTest.bravo') : t('miniTest.rate')}</Text>
+      </View>
+      {explicationOuverte ? (
+        <ScrollView style={styles.explication} nestedScrollEnabled>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{explicationOuverte}</Text>
+        </ScrollView>
+      ) : null}
+      {payante ? (
+        <View style={styles.actionsRetour}>
+          <BoutonCredits<{ explanation?: string | null }>
+            key={q.id}
+            action="quiz_explanation"
+            objet={q.id}
+            onOuvert={(r) => {
+              setHorsLigne(false);
+              const texte = r.contenu?.explanation?.trim();
+              if (texte) setOuvertes((o) => ({ ...o, [q.id]: texte }));
+            }}
+            onErreur={() => setHorsLigne(true)}
+          />
+          {horsLigne ? <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{t('credits.explicationHorsLigne')}</Text> : null}
+        </View>
+      ) : null}
+      {suite}
+    </View>
   ) : (
     <Bouton libelle={t('miniTest.valider')} onPress={valider} desactive={choix === null} />
   );
@@ -163,23 +196,6 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
               ))}
             </Rebond>
           </Secousse>
-          {validee ? <Banniere ton={juste ? 'succes' : 'erreur'} titre={juste ? t('miniTest.bravo') : t('miniTest.rate')} texte={q.explication || ouvertes[q.id] || undefined} /> : null}
-          {validee && !q.explication && !ouvertes[q.id] && /^\d+$/.test(q.id) ? (
-            <View style={styles.options}>
-              <BoutonCredits<{ explanation?: string | null }>
-                key={q.id}
-                action="quiz_explanation"
-                objet={q.id}
-                onOuvert={(r) => {
-                  setHorsLigne(false);
-                  const texte = r.contenu?.explanation?.trim();
-                  if (texte) setOuvertes((o) => ({ ...o, [q.id]: texte }));
-                }}
-                onErreur={() => setHorsLigne(true)}
-              />
-              {horsLigne ? <Banniere ton="erreur" titre={t('credits.explicationHorsLigne')} /> : null}
-            </View>
-          ) : null}
         </>
       ) : null}
     </Ecran>
@@ -194,4 +210,10 @@ const styles = StyleSheet.create({
   piste: { flex: 1, height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
   rempli: { height: '100%' },
   options: { gap: espace[4] },
+  actionsRetour: { gap: espace[2] },
+  flex: { flex: 1 },
+  retour: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
+  retourTitre: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  pastille: { width: 24, height: 24, borderRadius: rayon.pilule, borderWidth: bord.fin, alignItems: 'center', justifyContent: 'center' },
+  explication: { maxHeight: 160 },
 });
