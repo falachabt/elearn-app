@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { Check, X } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -75,8 +76,9 @@ export function CarteSondage({ postId }: { postId: string }) {
             <View style={[styles.option, { backgroundColor: fond, borderColor: theme.bord.fort, borderWidth: choisie ? bord.epais : bord.normal }]}>
               {sondage.aVote && !sondage.revele ? <View style={[styles.barre, { width: `${pct}%`, backgroundColor: theme.fond.creux }]} /> : null}
               {!sondage.aVote ? <View style={[styles.cercle, { borderColor: theme.bord.fort, backgroundColor: choisie ? theme.bord.fort : 'transparent' }]} /> : null}
+              {juste ? <Check size={16} strokeWidth={3} color={theme.texte.surCouleur} /> : faux ? <X size={16} strokeWidth={3} color={theme.texte.surCouleur} /> : null}
               <Text style={[typo.texte, styles.flex, { color: juste || faux ? theme.texte.surCouleur : theme.texte.principal }]}>
-                {juste ? '✓ ' : faux ? '✕ ' : ''}{o.libelle}{sondage.aVote && o.monChoix ? ` · ${t('questions.tonChoix')}` : ''}
+                {o.libelle}{sondage.aVote && o.monChoix ? ` · ${t('questions.tonChoix')}` : ''}
               </Text>
               {sondage.aVote ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{pct} %</Text> : null}
             </View>
@@ -93,7 +95,10 @@ export function CarteSondage({ postId }: { postId: string }) {
       ) : null}
       {sondage.revele && bonne ? (
         <View style={[styles.explication, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('questions.bonneReponseDetail', { option: bonne.libelle })}</Text>
+          <View style={styles.ligneJuste}>
+            <Check size={18} strokeWidth={3} color={theme.texte.principal} />
+            <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('questions.bonneReponseDetail', { option: bonne.libelle })}</Text>
+          </View>
           {sondage.explication ? <Text style={[typo.texte, { color: theme.texte.principal }]}>{sondage.explication}</Text> : null}
           {choixFaux(sondage) ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.tonChoixFaux')}</Text> : null}
         </View>
@@ -108,6 +113,7 @@ const styles = StyleSheet.create({
   cercle: { width: 20, height: 20, borderRadius: 10, borderWidth: bord.normal },
   explication: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   flex: { flex: 1 },
+  ligneJuste: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
   option: { minHeight: 48, flexDirection: 'row', alignItems: 'center', gap: espace[4], paddingHorizontal: espace[4], paddingVertical: espace[3], borderRadius: rayon.m, overflow: 'hidden' },
   zone: { gap: espace[3] },
 });

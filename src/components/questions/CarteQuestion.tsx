@@ -1,4 +1,4 @@
-import { Bot, MessageCircle } from 'lucide-react-native';
+import { BarChart3, Bot, Check, MessageCircle } from 'lucide-react-native';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -74,9 +74,11 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
         <View style={styles.pied}>
           {q.sondage ? (
             <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              <BarChart3 size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
               <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.sondage')}</Text>
             </View>
           ) : null}
+          {q.sondage && q.aVote ? <Check size={14} strokeWidth={3} color={theme.texte.secondaire} /> : null}
           {q.sondage ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{q.aVote ? t('questions.aVote') : t('questions.nVotes', { n: q.votes })}</Text> : null}
           <MessageCircle size={16} strokeWidth={2} color={theme.texte.secondaire} />
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{reponses}</Text>
@@ -89,6 +91,7 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
           <View style={styles.flex} />
           {q.resolue ? (
             <View style={[styles.pastille, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Check size={14} strokeWidth={3} color={theme.texte.surCouleur} />
               <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.resolue')}</Text>
             </View>
           ) : null}
@@ -105,6 +108,6 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   miniature: { width: 44, height: 44, borderRadius: rayon.s, borderWidth: bord.normal },
-  pastille: { borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
+  pastille: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
   pied: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
 });

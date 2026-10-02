@@ -16,14 +16,14 @@ describe('CarteQuestion', () => {
     expect(screen.getByText('Comment résoudre x² = 4 ?')).toBeTruthy();
     expect(screen.getByText('2 réponses')).toBeTruthy();
     expect(screen.getByText('réponse IA')).toBeTruthy();
-    expect(screen.getByText('✓ Résolue')).toBeTruthy();
+    expect(screen.getByText('Résolue')).toBeTruthy();
   });
 
   it('n’affiche ni IA ni résolue quand ce n’est pas le cas, et ouvre la question', async () => {
     const onPress = jest.fn();
     await render(<CarteQuestion q={{ ...q, ia: false, resolue: false, reponses: 1 }} onPress={onPress} />);
     expect(screen.queryByText('réponse IA')).toBeNull();
-    expect(screen.queryByText('✓ Résolue')).toBeNull();
+    expect(screen.queryByText('Résolue')).toBeNull();
     expect(screen.getByText('1 réponse')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button'));
     expect(onPress).toHaveBeenCalledTimes(1);
