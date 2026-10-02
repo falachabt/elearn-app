@@ -15,7 +15,7 @@ import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -23,6 +23,7 @@ import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { FeuillePays } from './FeuillePays';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
@@ -114,7 +115,7 @@ export function PayerPass() {
   }, [pays, langue, essai]);
 
   const ouvrirPays = () => {
-    setChoixPays((o) => !o);
+    setChoixPays(true);
     if (!liste) void lirePaysPaiement(langue).then(setListe).catch(() => setListe([]));
   };
 
@@ -219,7 +220,8 @@ export function PayerPass() {
       <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('paiement.entete')}</Text>
     </View>
   );
-  const lienParent = <Bouton variante="texte" libelle={t('paiement.demanderPayer')} onPress={parent} />;
+  // Bouton à bordure (pas un simple lien) : c'est l'alternative à mettre en évidence quand l'élève n'a pas de Mobile Money.
+  const lienParent = <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />;
 
   // E4 · Succès : reçu
   if (etape === 'fin' && resultat?.statut === 'reussi') {
@@ -355,24 +357,23 @@ export function PayerPass() {
       {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
 
       <View style={styles.groupe}>
+        <FeuillePays
+          ouverte={choixPays}
+          pays={liste}
+          choisi={pays}
+          onFermer={() => setChoixPays(false)}
+          onChoisir={(a2) => {
+            setMethodes('chargement');
+            setOperateur(null);
+            setPays(a2);
+            setChoixPays(false);
+          }}
+        />
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.pays').toUpperCase()}</Text>
         <View style={styles.ligne}>
           <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? pays ?? ''}</Text>
           <Bouton petit variante="secondaire" libelle={t('paiement.changerPays')} onPress={ouvrirPays} />
         </View>
-        {choixPays ? (
-          <View style={styles.groupe}>
-            {(liste ?? []).map((p) => (
-              <Appui key={p.alpha2} accessibilityRole="button" onPress={() => { setMethodes('chargement'); setOperateur(null); setPays(p.alpha2); setChoixPays(false); }} rayon={rayon.m} decalage={2}>
-                <View style={[styles.carteLigne, { backgroundColor: theme.fond.surface, borderColor: p.alpha2 === pays ? theme.marque.principale : theme.bord.fort }]}>
-                  <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{p.name}</Text>
-                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{p.currencies.join(' · ')}</Text>
-                </View>
-              </Appui>
-            ))}
-            {liste === null ? <ActivityIndicator color={theme.marque.principale} /> : null}
-          </View>
-        ) : null}
       </View>
 
       {methodes === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('paiement.chargement')}</Text> : null}
@@ -446,7 +447,17 @@ export function PayerPass() {
                 autoComplete="tel"
                 maxLength={20}
                 erreur={champErreur === 'numero' ? t('paiement.numeroInvalide') : undefined}
-                prefixe={m.prefix ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`+${m.prefix}`}</Text> : undefined}
+                prefixe={
+                  m.prefix ? (
+                    // L'indicatif vient du pays choisi : il ne s'écrit pas à la main, un appui rouvre le choix du pays.
+                    <Appui accessibilityRole="button" accessibilityLabel={`+${m.prefix}, ${t('paiement.changerPays')}`} onPress={ouvrirPays} rayon={rayon.m} decalage={2} style={styles.prefixeZone}>
+                      <View style={[styles.prefixe, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+                        {m.flag ? <Image source={{ uri: m.flag }} style={styles.drapeau} contentFit="cover" accessibilityIgnoresInvertColors /> : null}
+                        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`+${m.prefix}`}</Text>
+                      </View>
+                    </Appui>
+                  ) : undefined
+                }
               />
               <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('paiement.numeroAide')}</Text>
               {op.authType === 'PREAUTH' ? (
@@ -477,6 +488,9 @@ const styles = StyleSheet.create({
   carteLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
   numero: { width: 28, height: 28, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   grandeCoche: { width: 88, height: 88, borderRadius: rayon.l, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  prefixeZone: { alignSelf: 'stretch' },
+  prefixe: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2], minHeight: cibleMin, paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
+  drapeau: { width: 24, height: 16, borderRadius: 3 },
   logo: { width: 48, height: 48, borderWidth: bord.fin, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   logoImage: { width: 40, height: 40 },
 });

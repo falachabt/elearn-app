@@ -46,6 +46,23 @@ beforeEach(async () => {
   mockMethodes.mockResolvedValue(CM);
 });
 
+describe('choix du pays dans une feuille avec recherche', () => {
+  it('« Changer » ouvre la feuille ; la recherche ignore accents et majuscules ; choisir recharge le pays', async () => {
+    await monter();
+    await screen.findByText('MTN MoMo');
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
+    expect(await screen.findByText(fr.paiement.choisirPays)).toBeTruthy();
+    expect(screen.getByLabelText('Sénégal')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'SENEG');
+    expect(screen.getByLabelText('Sénégal')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'zzz');
+    expect(screen.getByText(fr.paiement.aucunPays)).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'sen');
+    await fireEvent.press(screen.getByLabelText('Sénégal'));
+    await waitFor(() => expect(mockMethodes).toHaveBeenLastCalledWith('SN', 'fr'));
+  });
+});
+
 describe('paiement du pass par Mobile Money', () => {
   it('prix dans la devise du pays, opérateur unique présélectionné, paiement direct puis attente et succès', async () => {
     mockPayer.mockResolvedValue({ statut: 'en_attente', commande: 'c1', pinPrompt: 'AUTOMATIC' });

@@ -70,16 +70,18 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
   const [defile, setDefile] = useState({ separateur: false, haut: false });
   const insets = useSafeAreaInsets();
   const defileur = useRef<ScrollView>(null);
+  // Clavier ouvert : plus d'inset du bas ni de grande marge sous le pied. Le clavier couvre déjà la barre système ; garder
+  // ces marges laissait un vide entre le contenu (ou le bouton) et le clavier.
   const [clavier, setClavier] = useState(false);
   useEffect(() => {
-    if (!piedPleineLargeur) return;
-    const a = Keyboard.addListener('keyboardDidShow', () => setClavier(true));
-    const b = Keyboard.addListener('keyboardDidHide', () => setClavier(false));
+    const ios = Platform.OS === 'ios';
+    const a = Keyboard.addListener(ios ? 'keyboardWillShow' : 'keyboardDidShow', () => setClavier(true));
+    const b = Keyboard.addListener(ios ? 'keyboardWillHide' : 'keyboardDidHide', () => setClavier(false));
     return () => {
       a.remove();
       b.remove();
     };
-  }, [piedPleineLargeur]);
+  }, []);
 
   const rendreVisible = useCallback<Visible>((cible) => {
     const vue = defileur.current;
@@ -115,7 +117,7 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
 
   // Les insets sont posés sur un cadre fixe, hors du défilement : le contenu qui défile est coupé sous la barre
   // d'état et au-dessus de la barre de navigation, au lieu de passer derrière l'heure et la batterie (edge-to-edge).
-  const cadre = { paddingTop: insetHaut ? insets.top : 0, paddingBottom: !pied && insetBas ? insets.bottom : 0 };
+  const cadre = { paddingTop: insetHaut ? insets.top : 0, paddingBottom: !pied && insetBas && !clavier ? insets.bottom : 0 };
   const padding = { paddingTop: espace[5], paddingBottom: pied ? espace[5] : espace[7] };
 
   return (
@@ -176,7 +178,7 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
             piedPleineLargeur ? (
               <View testID="ecran-pied-large" style={{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }}>{pied}</View>
             ) : (
-              <View style={[styles.pied, { paddingBottom: (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View>
+              <View testID="ecran-pied" style={[styles.pied, { paddingBottom: clavier ? espace[3] : (insetBas ? insets.bottom : 0) + espace[5] }]}>{pied}</View>
             )
           ) : null}
         </View>

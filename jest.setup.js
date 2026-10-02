@@ -30,7 +30,17 @@ jest.mock('expo-haptics', () => ({
 // Feuilles du bas : rendues à plat (le module natif d'animation n'existe pas sous Jest).
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }) => children ?? null;
-  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
+  const { FlatList, TextInput } = require('react-native');
+  return {
+    __esModule: true,
+    default: passe,
+    BottomSheetView: passe,
+    BottomSheetModal: passe,
+    BottomSheetModalProvider: passe,
+    BottomSheetBackdrop: () => null,
+    BottomSheetFlatList: FlatList,
+    BottomSheetTextInput: TextInput,
+  };
 });
 
 // Lecteur PDF natif : une vue qui annonce 3 pages au montage.
