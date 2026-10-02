@@ -26,8 +26,9 @@ import { Reprise } from './Reprise';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
-/** Titre de la carte : deux lignes au plus (une leçon au titre très long ne pousse plus le reste de l'écran vers le bas). */
-const LIGNES_TITRE = 2;
+/** Titre de la carte : trois lignes au plus (une leçon au titre très long ne pousse plus le reste de l'écran vers le bas). */
+const LIGNES_TITRE = 3;
+const HAUTEUR_ETIQUETTE = 32;
 
 /** Titre de la carte : les deux premiers chapitres de la mission. */
 export function titreMission(m: Mission | null): string | null {
@@ -187,9 +188,9 @@ const styles = StyleSheet.create({
   serie: { flexDirection: 'row', alignItems: 'center', gap: espace[2], paddingHorizontal: espace[3], paddingVertical: espace[2], borderWidth: bord.normal, borderRadius: rayon.s },
   groupe: { gap: espace[4] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
-  // Étiquettes de matières sur une seule ligne : chacune se raccourcit (…) plutôt que de passer à la ligne.
-  tags: { flexDirection: 'row', flexWrap: 'nowrap', gap: espace[3], overflow: 'hidden' },
-  tag: { flexShrink: 1, paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
+  // Étiquettes de matières : deux lignes au plus (hauteur fixe par étiquette, le reste est rogné) ; un nom trop long se raccourcit (…).
+  tags: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3], maxHeight: HAUTEUR_ETIQUETTE * 2 + espace[3], overflow: 'hidden' },
+  tag: { height: HAUTEUR_ETIQUETTE, maxWidth: '100%', justifyContent: 'center', paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.s },
   photo: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
 });
