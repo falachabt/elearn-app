@@ -5,10 +5,11 @@ import { ActivityIndicator, Share, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import {
-  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
+  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
   signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
+import { texteAvecFormules } from '@/services/blocs';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -165,6 +166,7 @@ export function Photo() {
     const { photo, source } = etat;
     return (
       <Ecran
+        insetBas={false}
         defilement={false}
         retourHaut={false}
         entete={
@@ -190,9 +192,11 @@ export function Photo() {
 
   // ---- B3 analyse
   if (etat.ecran === 'analyse') {
-    const noms: Record<Progression, string> = { enonce: t('photo.etapeEnonce'), methode: t('photo.etapeMethode'), redaction: t('photo.etapeRedaction') };
+    const noms: Record<Progression, string> = { enonce: t('photo.etapeEnonce'), methode: t('photo.etapeMethode'), redaction: t('photo.etapeRedaction'), resultat: t('photo.etapeResultat') };
+    const etats = etatsEtapes(etat.etapes);
     return (
       <Ecran
+        insetBas={false}
         entete={
           <>
             <BoutonFermer libelle={t('photo.annuler')} onPress={annuler} />
@@ -202,14 +206,15 @@ export function Photo() {
       >
         <View accessibilityLiveRegion="polite" style={[styles.carteJaune, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
           <Text style={[typo.h2, { color: theme.texte.principal }]}>{t('photo.analyseTitre')}</Text>
-          {PROGRESSIONS.map((p) => {
-            const fait = etat.etapes.includes(p);
+          {PROGRESSIONS.map((p, i) => {
+            const fait = etats[i] === 'fait';
+            const enCours = etats[i] === 'en_cours';
             return (
-              <View key={p} style={styles.ligneEtape}>
+              <View key={p} accessibilityLabel={`${noms[p]}${fait ? `, ${t('photo.etapeFaite')}` : enCours ? `, ${t('photo.etapeEnCours')}` : ''}`} style={styles.ligneEtape}>
                 <View style={[styles.coche, { borderColor: theme.bord.fort, backgroundColor: fait ? theme.etat.succes : 'transparent' }]}>
-                  <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{fait ? '✓' : ''}</Text>
+                  {enCours ? <ActivityIndicator size="small" color={theme.marque.principale} /> : <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{fait ? '✓' : ''}</Text>}
                 </View>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{noms[p]}</Text>
+                <Text style={[typo.texteFort, { color: theme.texte.principal, opacity: fait || enCours ? 1 : 0.55 }]}>{noms[p]}</Text>
               </View>
             );
           })}
@@ -229,6 +234,7 @@ export function Photo() {
     const deja = signale.has(id);
     return (
       <Ecran
+        insetBas={false}
         entete={
           <>
             <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={quitter} />
@@ -267,7 +273,7 @@ export function Photo() {
             <View key={i} style={styles.etape}>
               <View style={[styles.numero, { backgroundColor: theme.fond.inverse }]}><Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{i + 1}</Text></View>
               <View style={styles.flex}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{e.titre}</Text>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{texteAvecFormules(e.titre)}</Text>
                 {e.detail ? <Blocs blocs={blocsDepuisTexte(e.detail)} /> : null}
               </View>
             </View>
@@ -293,6 +299,7 @@ export function Photo() {
     const { id, correction } = etat;
     return (
       <Ecran
+        insetBas={false}
         entete={
           <>
             <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={() => setEtat({ ecran: 'correction', id, correction })} />
@@ -317,7 +324,7 @@ export function Photo() {
   const reprendre = () => (derniere.current ? void lancer(derniere.current) : recommencer());
   if (etat.ecran === 'illisible') {
     return (
-      <Ecran>
+      <Ecran insetBas={false}>
         <EcranErreur titre={t('photo.illisibleTitre')} phrase={`${etat.raison} ${t('photo.illisibleConseil')}`.trim()} reessayer={t('photo.reprendre')} onReessayer={recommencer} />
       </Ecran>
     );
@@ -325,7 +332,7 @@ export function Photo() {
   if (etat.ecran === 'erreur') {
     const hors = etat.type === 'hors-ligne';
     return (
-      <Ecran>
+      <Ecran insetBas={false}>
         <EcranErreur titre={t(hors ? 'photo.horsLigneTitre' : 'photo.erreurTitre')} phrase={t(hors ? 'photo.horsLignePhrase' : 'photo.erreurPhrase')} reessayer={t('photo.reessayer')} onReessayer={reprendre} secours={{ libelle: t('photo.nouvelle'), onPress: recommencer }} />
       </Ecran>
     );
@@ -333,6 +340,7 @@ export function Photo() {
   // B6 : limite du jour du pass (garde-fou), sans blocage agressif
   return (
     <Ecran
+        insetBas={false}
       entete={
         <>
           <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={recommencer} />

@@ -1,4 +1,5 @@
-import { blocsDepuisTexte, cadrePixels, issueDe, lireLignes, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
+import { texteAvecFormules } from '../blocs';
+import { blocsDepuisTexte, cadrePixels, etatsEtapes, issueDe, lireLignes, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
 
 const c: CorrectionPhoto = {
   matiere: 'maths',
@@ -56,5 +57,28 @@ describe('photo : texte', () => {
     expect(m).toContain('*Résultat* : x=4');
     expect(m).not.toContain('$');
     expect(m.endsWith('Elearn Prépa')).toBe(true);
+  });
+});
+
+describe('photo : étapes de l’analyse', () => {
+  it('la première étape tourne dès l’envoi', () => {
+    expect(etatsEtapes([])).toEqual(['en_cours', 'attente', 'attente', 'attente']);
+    expect(etatsEtapes(['enonce'])).toEqual(['en_cours', 'attente', 'attente', 'attente']);
+  });
+  it('une étape se termine quand la suivante démarre', () => {
+    expect(etatsEtapes(['enonce', 'methode'])).toEqual(['fait', 'en_cours', 'attente', 'attente']);
+    expect(etatsEtapes(['enonce', 'methode', 'redaction'])).toEqual(['fait', 'fait', 'en_cours', 'attente']);
+  });
+  it('la dernière étape tourne jusqu’à la correction', () => {
+    expect(etatsEtapes(['enonce', 'methode', 'redaction', 'resultat'])).toEqual(['fait', 'fait', 'fait', 'en_cours']);
+  });
+  it('un signal manquant ne bloque pas les étapes déjà passées', () => {
+    expect(etatsEtapes(['redaction'])).toEqual(['fait', 'fait', 'en_cours', 'attente']);
+  });
+});
+
+describe('photo : titre d’étape', () => {
+  it('convertit les formules du titre comme celles du détail', () => {
+    expect(texteAvecFormules('Équation 1 : $x^2 - 5x + 6 = 0$')).toBe('Équation 1 : x² - 5x + 6 = 0');
   });
 });

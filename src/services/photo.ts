@@ -26,9 +26,21 @@ export type CorrectionPhoto = {
   notion: string;
 };
 
-/** Étapes de l'écran d'analyse (B3), dans l'ordre. */
-export type Progression = 'enonce' | 'methode' | 'redaction';
-export const PROGRESSIONS: Progression[] = ['enonce', 'methode', 'redaction'];
+/** Étapes de l'écran d'analyse (B3), dans l'ordre. Le serveur signale chaque étape quand l'IA commence à l'écrire. */
+export type Progression = 'enonce' | 'methode' | 'redaction' | 'resultat';
+export const PROGRESSIONS: Progression[] = ['enonce', 'methode', 'redaction', 'resultat'];
+
+export type EtatEtape = 'attente' | 'en_cours' | 'fait';
+
+/**
+ * État de chaque étape d'après les signaux reçus : une étape tourne dès que le serveur la signale (la première tourne
+ * dès l'envoi, la photo est en cours de lecture) et devient terminée quand la suivante démarre. La dernière tourne
+ * jusqu'à la correction. Un serveur qui ne signale pas la dernière étape la laisse en attente (jamais de faux « fait »).
+ */
+export function etatsEtapes(recues: readonly Progression[]): EtatEtape[] {
+  const atteinte = PROGRESSIONS.reduce((n, p, i) => (recues.includes(p) ? i : n), 0);
+  return PROGRESSIONS.map((p, i) => (i < atteinte ? 'fait' : i === atteinte ? 'en_cours' : 'attente'));
+}
 
 export type Evenement =
   | { t: 'etape'; etape: Progression }
