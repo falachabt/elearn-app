@@ -60,18 +60,18 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('Moi : prénom, classe, série et entrées du compte', async () => {
-    await AsyncStorage.setItem('mission.historique', JSON.stringify(['2026-09-29', '2026-09-30']));
-    await AsyncStorage.setItem('reviser.lues', JSON.stringify({ 11: 1, 12: 1, 13: 2 }));
+  it('Moi : nom, classe et pays, lignes du menu et réglages', async () => {
     await monter(<EcranMoi />);
-    await waitFor(() => expect(screen.getByText(x.moi.bonjour.replace('{{nom}}', 'Amina'))).toBeTruthy());
-    expect(screen.getByText(new RegExp(`^3e · `))).toBeTruthy();
-    await waitFor(() => expect(screen.getByText('3')).toBeTruthy());
-    expect(screen.getByText(x.moi.lecons)).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: x.moi.changerClasse }));
+    await waitFor(() => expect(screen.getByText('Amina Nkolo')).toBeTruthy());
+    expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
+    await fireEvent.press(screen.getByRole('button', { name: x.profil.reglagesLibelle }));
+    expect(router.push).toHaveBeenCalledWith('/parametres');
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profil.classe}`) }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
-    await fireEvent.press(screen.getByRole('button', { name: `${x.moi.parent}. ${x.moi.parentAucun}` }));
+    await fireEvent.press(screen.getByRole('button', { name: `${x.moi.parent}. ${x.profil.parentAucun}` }));
     expect(router.push).toHaveBeenCalledWith('/profil/parent');
+    await fireEvent.press(screen.getByRole('button', { name: x.profil.aide }));
+    expect(router.push).toHaveBeenCalledWith('/aide');
   });
 
   it('parent ou tuteur : accord obligatoire, puis enregistré avec l’indicatif', async () => {

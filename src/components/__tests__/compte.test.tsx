@@ -11,6 +11,7 @@ import { lireProfil } from '@/services/profil';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { EcranMoi } from '../EcranMoi';
+import { Parametres } from '../parametres/Parametres';
 import { FormulaireCompte } from '../FormulaireCompte';
 import { Bienvenue, ChoixClasse, PremierResultat } from '../ParcoursArrivee';
 
@@ -133,27 +134,28 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
 });
 
 describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
-  const x = T[langue];
+  const x = langue === 'fr' ? fr : en;
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('invité : état du compte et actions de création ou connexion', async () => {
+  it('invité : carte « Crée ton compte », création et connexion', async () => {
     await monter(<EcranMoi />);
-    expect(screen.getByText(x.invite)).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Créer un compte' : 'Create an account' }));
+    expect(screen.getByText(x.profil.invite)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.profil.creerCompte }));
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
-    expect(screen.queryByRole('button', { name: x.lien })).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: x.profil.dejaCompte }));
+    expect(router.push).toHaveBeenCalledWith('/compte/connexion');
   });
 
-  it('compte sauvegardé : e-mail affiché et déconnexion', async () => {
+  it('compte sauvegardé : pas de carte de création, déconnexion dans Paramètres', async () => {
     mockSession.mockReturnValue(membre);
     mockDeconnecter.mockResolvedValue(undefined);
     await monter(<EcranMoi />);
-    expect(screen.getByText(x.connecte)).toBeTruthy();
-    expect(screen.getByText(/amina@exemple\.com/)).toBeTruthy();
-    await fireEvent.press(screen.getByRole('button', { name: x.lien }));
-    expect(screen.getByText((langue === 'fr' ? fr : en).moi.deconnexionTitre)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: x.profil.creerCompte })).toBeNull();
+    await monter(<Parametres />);
+    await fireEvent.press(screen.getByRole('button', { name: x.reglages.deconnexion }));
+    expect(screen.getByText(x.moi.deconnexionTitre)).toBeTruthy();
     expect(mockDeconnecter).not.toHaveBeenCalled();
-    const boutons = screen.getAllByRole('button', { name: x.lien });
+    const boutons = screen.getAllByRole('button', { name: x.moi.deconnexion });
     await fireEvent.press(boutons[boutons.length - 1]);
     await waitFor(() => expect(mockDeconnecter).toHaveBeenCalled());
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/bienvenue'));
@@ -161,11 +163,13 @@ describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
 });
 
 describe('langue fr/en mémorisée', () => {
-  it('le choix dans Moi est enregistré et restauré au redémarrage', async () => {
-    await monter(<EcranMoi />);
-    await fireEvent.press(screen.getByRole('button', { name: 'English' }));
+  it('le choix dans Paramètres est enregistré et restauré au redémarrage', async () => {
+    await act(() => changerLangue('fr'));
+    await monter(<Parametres />);
+    await fireEvent.press(screen.getByRole('button', { name: `${fr.reglages.langue}. Français` }));
+    await fireEvent.press(screen.getByText('English'));
     await waitFor(async () => expect(await AsyncStorage.getItem('langue')).toBe('en'));
-    expect(screen.getByText('Guest')).toBeTruthy();
+    expect(screen.getByText(en.reglages.titre)).toBeTruthy();
     await act(() => i18n.changeLanguage('fr'));
     let restauree;
     await act(async () => {
