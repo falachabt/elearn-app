@@ -18,6 +18,7 @@ import { Appui } from '../Appui';
 import { Apparition } from '../Apparition';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
+import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Reprise } from './Reprise';
@@ -102,6 +103,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
               <Text style={[typo.etiquette, { color: surVert }]}>{t('mission.serie', { n: etat.serie })}</Text>
             </View>
           ) : null}
+          <CompteurCredits />
         </View>
       </Apparition>
 

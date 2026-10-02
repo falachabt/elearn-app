@@ -116,7 +116,9 @@ describe.each(['fr', 'en'] as const)('H1 · Moi par état (%s)', (langue) => {
     expect(screen.getByText('18 / 25')).toBeTruthy();
     expect(screen.queryByText(x.profil.pass)).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: `${x.profil.mesCredits}. 18 / 25` }));
-    expect(router.push).toHaveBeenCalledWith('/credits');
+    // Le détail s'ouvre en feuille du bas : pas de changement de page.
+    expect(router.push).not.toHaveBeenCalled();
+    expect(screen.getByTestId('credits-total')).toBeTruthy();
   });
 
   it('avec pass : carte jaune, jours restants, pas de jauge', async () => {

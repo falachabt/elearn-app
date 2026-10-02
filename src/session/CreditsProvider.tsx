@@ -5,7 +5,9 @@ import {
   depenser as depenserServeur,
   identifiantAppareil,
   lireCouts,
+  lireReglages,
   lireSolde,
+  type ReglagesCredits,
   suivreSolde,
   type ActionCredit,
   type Depense,
@@ -19,6 +21,8 @@ type Credits = {
   /** null tant que le solde n'est pas chargé (ou hors ligne). */
   solde: Solde | null;
   couts: Partial<Record<ActionCredit, number>>;
+  /** Montants du back-office (bienvenue, invité, recharge) ; null tant qu'ils ne sont pas lus. */
+  reglages: ReglagesCredits | null;
   /** Dépense côté serveur ; le solde se met à jour aussitôt, puis par le temps réel. */
   depenser: <C = Record<string, unknown>>(action: ActionCredit, objet: string | number) => Promise<Depense<C>>;
   rafraichir: () => Promise<void>;
@@ -27,6 +31,7 @@ type Credits = {
 const ContexteCredits = createContext<Credits>({
   solde: null,
   couts: {},
+  reglages: null,
   depenser: () => Promise.reject(new Error('CreditsProvider absent')),
   rafraichir: async () => {},
 });
@@ -49,23 +54,26 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     [],
   );
   const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>({});
+  const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
 
   const rafraichir = useCallback(async () => {
     if (!utilisateur) return;
     const client = getSupabase();
-    const [s, c] = await Promise.all([lireSolde(client, await identifiantAppareil()), lireCouts(client)]);
+    const [s, c, r] = await Promise.all([lireSolde(client, await identifiantAppareil()), lireCouts(client), lireReglages(client).catch(() => null)]);
     majSolde(utilisateur, () => s);
     setCouts(c);
+    if (r) setReglages(r);
   }, [utilisateur, majSolde]);
 
   useEffect(() => {
     if (!utilisateur) return;
     const client = getSupabase();
     identifiantAppareil()
-      .then((appareil) => Promise.all([lireSolde(client, appareil), lireCouts(client)]))
-      .then(([s, c]) => {
+      .then((appareil) => Promise.all([lireSolde(client, appareil), lireCouts(client), lireReglages(client).catch(() => null)]))
+      .then(([s, c, r]) => {
         majSolde(utilisateur, () => s);
         setCouts(c);
+        if (r) setReglages(r);
       })
       .catch(() => {});
     return suivreSolde(getSupabase(), utilisateur, (ligne) => majSolde(utilisateur, (s) => (s ? appliquerTempsReel(s, ligne) : s)));
@@ -80,7 +88,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     [utilisateur, majSolde],
   );
 
-  const valeur = useMemo(() => ({ solde, couts, depenser, rafraichir }), [solde, couts, depenser, rafraichir]);
+  const valeur = useMemo(() => ({ solde, couts, reglages, depenser, rafraichir }), [solde, couts, reglages, depenser, rafraichir]);
   return <ContexteCredits.Provider value={valeur}>{children}</ContexteCredits.Provider>;
 }
 

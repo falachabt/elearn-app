@@ -4,12 +4,12 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { enregistrerCorrection, lireCorrection, statuts, type Correction } from '@/services/correction';
-import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
+import { BoutonCredits } from '../credits/BoutonCredits';
 import { Ecran } from '../Ecran';
 import { EcranVide } from '../EcranVide';
 import { OptionReponse } from '../OptionReponse';
@@ -34,13 +34,12 @@ export function RevoirCorrection() {
     };
   }, []);
 
-  const payant = useContenuPayant();
+  const [horsLigne, setHorsLigne] = useState(false);
   // L'explication d'une question du serveur ne vient que de depenser_credits (M18-04) ; on la garde avec la correction.
-  const voirExplication = async (k: number) => {
-    if (!c) return;
-    const contenu = await payant.ouvrir<{ explanation?: string | null }>('quiz_explanation', c.questions[k].id);
+  const garderExplication = (k: number, contenu: { explanation?: string | null } | null) => {
+    setHorsLigne(false);
     const texte = contenu?.explanation?.trim();
-    if (!texte) return;
+    if (!c || !texte) return;
     const suite = { ...c, questions: c.questions.map((x, j) => (j === k ? { ...x, explication: texte } : x)) };
     setC(suite);
     void enregistrerCorrection(suite);
@@ -88,8 +87,8 @@ export function RevoirCorrection() {
       </View>
       {!q.explication && /^\d+$/.test(q.id) ? (
         <View style={styles.options}>
-          <Bouton variante="secondaire" libelle={libelleAvecPrix(t, t('payant.voirExplication'), payant.prix('quiz_explanation'))} desactive={payant.encours} onPress={() => void voirExplication(n)} />
-          {payant.refus ? <Banniere ton="erreur" titre={payant.refus.raison === 'erreur' ? t('payant.erreur') : payant.refus.raison === 'limite' ? t('payant.limite') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })} /> : null}
+          <BoutonCredits<{ explanation?: string | null }> key={q.id} action="quiz_explanation" objet={q.id} onOuvert={(r) => garderExplication(n, r.contenu)} onErreur={() => setHorsLigne(true)} />
+          {horsLigne ? <Banniere ton="erreur" titre={t('credits.explicationHorsLigne')} /> : null}
         </View>
       ) : null}
       {q.explication ? (

@@ -90,3 +90,15 @@ Retour de Benny sur photo : trop d'espace noir sous le déclencheur. Même cause
 - **Fonction `photo-correction` v3 déployée** (`verify_jwt` désactivé, authentification interne) : stockage R2 si les secrets existent, action `urls`, notification `photo_ready` quand l'élève a quitté l'écran.
 - **App :** la branche d'historique via la fonction est fusionnée (`photoHistorique.ts` demande les adresses signées à `photo-correction`).
 - **Pas encore actif :** R2 (bucket privé, jeton limité au bucket et 4 secrets Supabase `R2_*` à créer : tant qu'ils manquent, les photos restent dans Supabase Storage) ; push Android (variable EAS `GOOGLE_SERVICES_JSON`, clé FCM v1, nouveau build).
+
+---
+
+# Suite, 2 octobre 2026 (matin, 09 h 30 et après) : crédits selon le guide de design (§20, §23)
+
+- **Moi (H1/H1b/H1c) :** fusion de la branche `claude/project-thread-qfj767` (profil selon le guide v27, Aide et contact, Ma progression). Elle est déjà dans cette branche.
+- **Pastille de crédits (K1/K1c) :** `CompteurCredits` à côté de la série sur l'accueil. Jaune (texte noir), corail à 5 crédits ou moins, verte « ∞ » avec un pass, « 5 · Invité » pour un invité, squelette pendant le chargement. Un appui ouvre le détail **dans une feuille du bas** (`FeuilleDetailCredits`, K1b), comme la carte « Mes crédits » de Moi. La page `/credits` reste pour les liens existants.
+- **Explications de quiz (K2b) :** pendant le quiz (`MiniTest`) et dans « Revoir » (`RevoirCorrection`), les questions du serveur n'embarquent plus l'explication : le bouton « Voir l'explication » avec la puce du coût (`BoutonCredits`) la remplace. Le texte ouvert est gardé pour l'écran de correction. Hors ligne : « Aucun crédit n'a été retiré ».
+- **Invité sans crédits (K3b) :** `FeuilleEpuise` devient « Tes crédits d'essai sont épuisés » pour un invité : carte « Crée ton compte : +40 crédits tout de suite », « Créer mon compte », pass semaine, « Plus tard ». Le 40 vient de `credit_settings` (lu par `lireReglages`), pas du code.
+- **Bonus de bienvenue (K3c) :** `BienvenueCredits`, à la racine : écran « Tu as gagné N crédits » une seule fois (clé `credits.bienvenueVue.<id>`), si le registre serveur contient un bonus de moins de 24 h. Couvre la création d'un compte et la liaison d'un ancien compte.
+- **Serveur :** migration `20261002030000_credits_bienvenue_notification` (trigger sur `credit_ledger` qui appelle `notify_student` au bonus de bienvenue). **Pas encore appliquée en production** : sans elle, l'écran K3c marche mais aucune notification n'est envoyée.
+- **Pas fait :** K3d (bonus déjà pris sur ce téléphone), « Gagner des crédits » (la page Parrainage n'existe pas), la pastille en haut de Réviser, la cloche N0.

@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 import type { Solde } from '@/services/credits';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
-import { BandeauCadenas, BoutonCredits, CompteurCredits } from '..';
+import { BandeauCadenas, BoutonCredits, CompteurCredits, FeuilleEpuise } from '..';
 
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn(), canGoBack: () => true } }));
@@ -12,6 +12,8 @@ jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn(), ca
 const mockDepenser = jest.fn();
 const mockCredits = jest.fn();
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => mockCredits() }));
+const mockSession = jest.fn();
+jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 
 const soldeBase: Solde = {
   total: 18, semaine: 18, recompenses: 0, recharge: 25, prochaineRecharge: new Date(Date.now() + 3 * 86400000 + 60000).toISOString(),
@@ -20,33 +22,57 @@ const soldeBase: Solde = {
 const couts = { quiz_explanation: 1, exercise_solution: 2, document_pdf: 3, exam_correction: 5, ai_question: 5 };
 
 function donner(solde: Partial<Solde> | null = {}) {
-  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, couts, depenser: mockDepenser, rafraichir: jest.fn() });
+  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, couts, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, depenser: mockDepenser, rafraichir: jest.fn() });
 }
 
 const avecTheme = (n: React.ReactNode) => render(<ThemeProvider>{n}</ThemeProvider>);
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockSession.mockReturnValue({ session: { user: { id: 'u1', is_anonymous: false } } });
   donner();
 });
 
 describe('K1 compteur', () => {
-  it('affiche le solde et ouvre le détail', async () => {
+  it('affiche le solde et ouvre le détail en feuille, sans changer de page', async () => {
     await avecTheme(<CompteurCredits />);
-    fireEvent.press(screen.getByText('18 crédits'));
-    expect(router.push).toHaveBeenCalledWith('/credits');
+    await fireEvent.press(screen.getByRole('button', { name: '18 crédits disponibles. Voir le détail.' }));
+    expect(router.push).not.toHaveBeenCalled();
+    expect(screen.getByTestId('credits-total').props.children).toBe('18');
+    expect(screen.getByText('+25')).toBeTruthy();
   });
 
-  it('illimité avec un pass', async () => {
+  it('illimité avec un pass : ∞', async () => {
     donner({ illimite: true, illimiteJusqua: '2026-11-12T00:00:00Z' });
     await avecTheme(<CompteurCredits />);
-    expect(screen.getByText('Illimité')).toBeTruthy();
+    expect(screen.getByText('∞')).toBeTruthy();
   });
 
-  it('rien tant que le solde n’est pas chargé', async () => {
+  it('invité : « 5 · Invité »', async () => {
+    mockSession.mockReturnValue({ session: { user: { id: 'u1', is_anonymous: true } } });
+    donner({ total: 5, semaine: 5, rechargeHebdo: false });
+    await avecTheme(<CompteurCredits />);
+    expect(screen.getByText('5 · Invité')).toBeTruthy();
+  });
+
+  it('squelette tant que le solde n’est pas chargé', async () => {
     donner(null);
     await avecTheme(<CompteurCredits />);
-    expect(screen.toJSON()).toBeNull();
+    expect(screen.getByTestId('compteur-chargement', { includeHiddenElements: true })).toBeTruthy();
+  });
+});
+
+describe('K3b invité sans crédits', () => {
+  it('« Crée ton compte : +40 crédits », créer le compte, pass semaine, plus tard', async () => {
+    mockSession.mockReturnValue({ session: { user: { id: 'u1', is_anonymous: true } } });
+    donner({ total: 0, semaine: 0, rechargeHebdo: false });
+    await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
+    expect(screen.getByText('Tes crédits d’essai sont épuisés')).toBeTruthy();
+    expect(screen.getByText('Crée ton compte : +40 crédits tout de suite.')).toBeTruthy();
+    expect(screen.getByText('Et ta progression est sauvegardée.')).toBeTruthy();
+    expect(screen.getByText('Prendre le pass semaine · 500 FCFA')).toBeTruthy();
+    fireEvent.press(screen.getByText('Créer mon compte'));
+    expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });
 });
 

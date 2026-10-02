@@ -12,6 +12,7 @@ import { bord, cibleMin, espace, palette, rayon, typo } from '@/theme/theme';
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
+import { BoutonCredits } from '../credits/BoutonCredits';
 import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
 import { OptionReponse } from '../OptionReponse';
@@ -76,6 +77,9 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   const [reponses, setReponses] = useState<number[]>([]);
   const [reussites, setReussites] = useState(0);
   const [erreurs, setErreurs] = useState(0);
+  // Explications ouvertes avec des crédits pendant le quiz (K2b) : gardées pour l'écran de correction.
+  const [ouvertes, setOuvertes] = useState<Record<string, string>>({});
+  const [horsLigne, setHorsLigne] = useState(false);
 
   useEffect(() => {
     debut.current = Date.now();
@@ -110,11 +114,12 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
       setIndex((i) => i + 1);
       setChoix(null);
       setValidee(false);
+      setHorsLigne(false);
       return;
     }
     const dureeS = (Date.now() - (debut.current ?? Date.now())) / 1000;
     if (onTermine) {
-      await onTermine({ questions, reponses, dureeS });
+      await onTermine({ questions: questions.map((x) => (ouvertes[x.id] ? { ...x, explication: ouvertes[x.id] } : x)), reponses, dureeS });
       return;
     }
     const resultat = calculerResultat(questions, reponses, { niveau: niveau ?? '3e', dureeS });
@@ -158,7 +163,23 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
               ))}
             </Rebond>
           </Secousse>
-          {validee ? <Banniere ton={juste ? 'succes' : 'erreur'} titre={juste ? t('miniTest.bravo') : t('miniTest.rate')} texte={q.explication} /> : null}
+          {validee ? <Banniere ton={juste ? 'succes' : 'erreur'} titre={juste ? t('miniTest.bravo') : t('miniTest.rate')} texte={q.explication || ouvertes[q.id] || undefined} /> : null}
+          {validee && !q.explication && !ouvertes[q.id] && /^\d+$/.test(q.id) ? (
+            <View style={styles.options}>
+              <BoutonCredits<{ explanation?: string | null }>
+                key={q.id}
+                action="quiz_explanation"
+                objet={q.id}
+                onOuvert={(r) => {
+                  setHorsLigne(false);
+                  const texte = r.contenu?.explanation?.trim();
+                  if (texte) setOuvertes((o) => ({ ...o, [q.id]: texte }));
+                }}
+                onErreur={() => setHorsLigne(true)}
+              />
+              {horsLigne ? <Banniere ton="erreur" titre={t('credits.explicationHorsLigne')} /> : null}
+            </View>
+          ) : null}
         </>
       ) : null}
     </Ecran>

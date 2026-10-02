@@ -9,7 +9,7 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
-import { useQuand } from './CarteCredits';
+import { useQuand } from './useQuand';
 
 /**
  * K1b · Détail du compteur (un appui sur la carte Crédits) : solde en grand, jauge, recharge du lundi, récompenses,

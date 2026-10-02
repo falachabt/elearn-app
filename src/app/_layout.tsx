@@ -8,6 +8,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
@@ -77,6 +78,7 @@ export default function RootLayout() {
                 <BottomSheetModalProvider>
                   <Navigation />
                 </BottomSheetModalProvider>
+                <BienvenueCredits />
                 <MiseAJour />
               </VisiteProvider>
             </CreditsProvider>

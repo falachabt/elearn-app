@@ -83,6 +83,35 @@ export async function lireSolde(client: Client, appareil: string | null): Promis
   };
 }
 
+export type ReglagesCredits = { bienvenue: number; invite: number; recharge: number };
+
+/** Montants du back-office (bienvenue, invité, recharge du lundi) : lisibles sans compte, jamais écrits en dur dans les textes. */
+export async function lireReglages(client: Client): Promise<ReglagesCredits> {
+  const { data, error } = await client.from('credit_settings').select('welcome_amount, guest_amount, weekly_amount').limit(1).maybeSingle();
+  if (error) throw error;
+  const l = data as { welcome_amount: number; guest_amount: number; weekly_amount: number } | null;
+  if (!l) throw new Error('réglages introuvables');
+  return { bienvenue: l.welcome_amount, invite: l.guest_amount, recharge: l.weekly_amount };
+}
+
+/**
+ * Bonus de bienvenue reçu depuis `depuis` (ISO) : montant, ou null s'il n'y en a pas (compte déjà ancien, bonus déjà
+ * pris sur ce téléphone). Lu dans le registre de l'élève (lecture limitée à ses lignes).
+ */
+export async function lireBienvenueRecente(client: Client, depuis: string): Promise<number | null> {
+  const { data, error } = await client
+    .from('credit_ledger')
+    .select('delta')
+    .eq('kind', 'welcome')
+    .gt('delta', 0)
+    .gte('created_at', depuis)
+    .order('created_at', { ascending: false })
+    .limit(1);
+  if (error) throw error;
+  const l = (data as { delta: number }[] | null)?.[0];
+  return l ? l.delta : null;
+}
+
 /** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */
 export async function lireCouts(client: Client): Promise<Partial<Record<ActionCredit, number>>> {
   const { data, error } = await client.from('credit_actions').select('code, cost');

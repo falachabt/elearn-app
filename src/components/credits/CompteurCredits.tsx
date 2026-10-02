@@ -1,43 +1,66 @@
-import { router } from 'expo-router';
-import { Infinity as Infini, Zap } from 'lucide-react-native';
-import { StyleSheet, Text } from 'react-native';
+import { Zap } from 'lucide-react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useCredits } from '@/session/CreditsProvider';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { FeuilleDetailCredits } from './FeuilleDetailCredits';
 import { useTextesCredits } from './textes';
 
+/** Solde à partir duquel la pastille passe au corail (K1c) : 5 crédits ou moins. */
+export const SEUIL_SOLDE_BAS = 5;
+
 /**
- * K1 compteur : pastille « ⚡ 18 crédits » en haut de l'accueil et de Réviser ; « ∞ Illimité » avec un pass.
- * Suit le solde en temps réel. Un appui ouvre le détail (K1b, /credits). Rien tant que le solde n'est pas chargé.
+ * K1 compteur (guide §20, K1c) : pastille « ⚡ 18 » à côté de la série, sur l'accueil et Réviser. Jaune (texte noir) ;
+ * corail à 5 crédits ou moins et à 0 ; verte « ∞ » avec un pass ; « 5 · Invité » pour un invité ; squelette tant que
+ * le solde se charge. Suit le solde en temps réel. Un appui ouvre le détail (K1b) dans une feuille du bas.
  */
-export function CompteurCredits({ onPress }: { onPress?: () => void }) {
+export function CompteurCredits() {
   const { solde } = useCredits();
+  const { session } = useSession();
   const { theme } = useTheme();
   const { t } = useTextesCredits();
-  if (!solde) return null;
-  const libelle = solde.illimite ? t('credits.illimite') : solde.total === 1 ? t('credits.compteurUn') : t('credits.compteur', { n: solde.total });
-  const Icone = solde.illimite ? Infini : Zap;
+  const [detail, setDetail] = useState(false);
+  const invite = !!session?.user.is_anonymous;
+
+  if (!solde) {
+    return (
+      <View testID="compteur-chargement" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.puce, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+        <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+        <View style={[styles.squelette, { backgroundColor: theme.fond.creux }]} />
+      </View>
+    );
+  }
+
+  const bas = !solde.illimite && solde.total <= SEUIL_SOLDE_BAS && !invite;
+  const fond = solde.illimite ? theme.marque.principale : bas ? theme.etat.erreur : theme.accent.soleil;
+  const valeur = solde.illimite ? '∞' : invite ? t('credits.compteurInvite', { n: solde.total }) : String(solde.total);
+  const accessibilite = solde.illimite ? t('credits.illimiteA11y') : invite ? t('credits.compteurInviteA11y', { n: solde.total }) : t('credits.compteurA11y', { n: solde.total });
   return (
-    <Appui
-      accessibilityRole="button"
-      accessibilityLabel={solde.illimite ? t('credits.illimiteA11y') : t('credits.compteurA11y', { n: solde.total })}
-      onPress={onPress ?? (() => router.push('/credits'))}
-      rayon={rayon.pilule}
-      decalage={2}
-      style={[styles.puce, { backgroundColor: solde.illimite ? theme.marque.douce : theme.accent.soleilDoux, borderColor: theme.bord.fort }]}
-    >
-      <Icone size={14} strokeWidth={2.5} color={theme.texte.principal} />
-      <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{libelle}</Text>
-    </Appui>
+    <>
+      <Appui
+        accessibilityRole="button"
+        accessibilityLabel={accessibilite}
+        onPress={() => setDetail(true)}
+        rayon={rayon.pilule}
+        decalage={2}
+        style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}
+      >
+        <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+        <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+      </Appui>
+      <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   puce: {
-    minHeight: cibleMin,
+    minHeight: cibleMin - 4,
     flexDirection: 'row',
     alignItems: 'center',
     gap: espace[1],
@@ -45,4 +68,5 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: rayon.pilule,
   },
+  squelette: { width: 22, height: 10, borderRadius: 4 },
 });

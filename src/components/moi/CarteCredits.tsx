@@ -1,15 +1,17 @@
 import { Zap } from 'lucide-react-native';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { joursAvant } from '@/services/quand';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
+import { useQuand } from './useQuand';
+import { FeuilleDetailCredits } from '../credits/FeuilleDetailCredits';
 
 /** Pastille PASS jaune (profil, carte de crédits). */
 export function PastillePass() {
@@ -22,15 +24,6 @@ export function PastillePass() {
   );
 }
 
-/** « aujourd'hui », « demain », « dans 3 jours ». */
-export function useQuand() {
-  const { t } = useTraduction();
-  return (iso: string) => {
-    const n = joursAvant(iso);
-    return n === 0 ? t('profil.quand0') : n === 1 ? t('profil.quand1') : t('profil.quandN', { n });
-  };
-}
-
 /**
  * K1 · Carte « Crédits » de l'onglet Moi : jauge solde / recharge et jour de la recharge, ou « ∞ Crédits illimités »
  * avec la date de fin du pass. Un appui ouvre le détail (K1b). Les montants viennent du serveur (M18-12), jamais d'ici.
@@ -40,7 +33,8 @@ export function CarteCredits() {
   const { theme } = useTheme();
   const { solde } = useCredits();
   const quand = useQuand();
-  const ouvrir = () => router.push('/credits');
+  const [detail, setDetail] = useState(false);
+  const ouvrir = () => setDetail(true);
   const fin = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
   if (!solde) {
@@ -54,6 +48,7 @@ export function CarteCredits() {
   const max = Math.max(solde.recharge, solde.total, 1);
   const rempli = Math.min(1, solde.total / max);
   return (
+    <>
     <Appui
       accessibilityRole="button"
       accessibilityLabel={solde.illimite ? t('profil.illimites') : `${t('profil.mesCredits')}. ${t('profil.jauge', { n: solde.total, max })}`}
@@ -90,6 +85,8 @@ export function CarteCredits() {
         )}
       </View>
     </Appui>
+    <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
+    </>
   );
 }
 
