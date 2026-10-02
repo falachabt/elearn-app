@@ -9,3 +9,4 @@ export { FeuilleEpuise } from './FeuilleEpuise';
 export { PuceCout } from './PuceCout';
 export { useDepenseCredits } from './useDepenseCredits';
 export { useOuverts } from './useOuverts';
+export { useOuverturePass } from './useOuverturePass';

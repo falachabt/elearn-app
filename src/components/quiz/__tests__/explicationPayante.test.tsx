@@ -10,10 +10,11 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 import { RevoirCorrection } from '../RevoirCorrection';
 
 const mockDepenser = jest.fn();
+let mockPass = false;
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn(), replace: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ i: '0' }) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/session/CreditsProvider', () => ({
-  useCredits: () => ({ solde: { illimite: false, total: 0, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString() }, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, couts: { quiz_explanation: 1 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
+  useCredits: () => ({ solde: { illimite: mockPass, total: 0, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString() }, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, couts: { quiz_explanation: 1 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
 }));
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
@@ -21,6 +22,7 @@ const monter = () => render(<SafeAreaProvider initialMetrics={metriques}><ThemeP
 
 beforeEach(async () => {
   jest.clearAllMocks();
+  mockPass = false;
   await AsyncStorage.clear();
   await AsyncStorage.setItem(
     CLE_CORRECTION,
@@ -57,5 +59,14 @@ describe('explication de quiz payante (M18-04)', () => {
     await monter();
     await fireEvent.press(await screen.findByRole('button', { name: /1 crédit/ }));
     await waitFor(() => expect(screen.getByText(fr.credits.explicationHorsLigne)).toBeTruthy());
+  });
+
+  it('avec un pass : la justification s’ouvre automatiquement', async () => {
+    mockPass = true;
+    mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 0, contenu: { explanation: 'Parce que B.' } });
+    await monter();
+    expect(mockDepenser).toHaveBeenCalledWith('quiz_explanation', '42');
+    expect(await screen.findByText('Parce que B.')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /crédit/ })).toBeNull();
   });
 });

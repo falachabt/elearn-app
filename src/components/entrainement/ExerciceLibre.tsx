@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -17,6 +17,7 @@ import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo }
 import { Bouton } from '../Bouton';
 import { useDepenseCredits } from '../credits/useDepenseCredits';
 import { useOuverts } from '../credits/useOuverts';
+import { useOuverturePass } from '../credits/useOuverturePass';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { useFeedback } from '../useFeedback';
@@ -164,6 +165,16 @@ export function ExerciceLibre() {
   };
   const surSuivant = () => (fait ? allerSuivant() : setDemande('suivant'));
   const aCorrige = etat.statut === 'pret' && !!etat.detail?.aCorrige;
+  const ouverturePass = useOuverturePass<{ correction?: unknown; correction_compressed?: string | null }>({
+    action: 'exercise_solution',
+    objet: id,
+    active: aCorrige && !corriges[id],
+    onOuvert: (contenu, objet) => {
+      const reference = String(objet);
+      setCorriges((c) => ({ ...c, [reference]: blocsCorrige(contenu) }));
+      setCorrigeDe(reference);
+    },
+  });
 
   const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
   // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
@@ -171,7 +182,15 @@ export function ExerciceLibre() {
     <View style={styles.pied}>
       <View style={styles.flex}>
         {aCorrige ? (
-          <Bouton variante="secondaire" libelle={corrige ? t('entrainement.voirEnonce') : libelleAvecPrix(t, t('entrainement.voirCorrige'), prix)} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
+          ouverturePass.passActif && !corrige && !ouverturePass.erreur ? (
+            <View style={styles.chargement}><ActivityIndicator accessibilityLabel={t('profil.chargement')} color={theme.texte.principal} /></View>
+          ) : (
+            <Bouton
+              variante="secondaire"
+              libelle={corrige ? t('entrainement.voirEnonce') : ouverturePass.passActif ? t('entrainement.voirCorrige') : libelleAvecPrix(t, t('entrainement.voirCorrige'), prix)}
+              onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')}
+            />
+          )
         ) : (
           <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void (fait ? basculer() : marquer())} />
         )}
@@ -307,6 +326,7 @@ const styles = StyleSheet.create({
   pied: { flexDirection: 'row', gap: espace[3] },
   rappel: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   flex: { flex: 1 },
+  chargement: { minHeight: 48, alignItems: 'center', justifyContent: 'center' },
   vide: { width: 28 },
   pastilles: { flexDirection: 'row', gap: espace[2] },
   rang: { flex: 1, textAlign: 'center' },

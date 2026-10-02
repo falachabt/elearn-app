@@ -120,11 +120,11 @@ describe('K2b bouton payant', () => {
     expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite&offre=week');
   });
 
-  it('avec un pass : « Inclus dans ton pass », sans feuille', async () => {
+  it('avec un pass : action simple sans étiquette de péage ni feuille', async () => {
     donner({ illimite: true });
     mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 18, contenu: {} });
     await avecTheme(<BoutonCredits action="exam_correction" objet={3} onOuvert={jest.fn()} />);
-    expect(screen.getByText('Inclus dans ton pass')).toBeTruthy();
+    expect(screen.queryByText('Inclus dans ton pass')).toBeNull();
     await act(async () => { fireEvent.press(screen.getByText('Voir la correction')); });
     expect(mockDepenser).toHaveBeenCalled();
   });

@@ -8,11 +8,12 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 import { MiniTest } from '../MiniTest';
 
 const mockDepenser = jest.fn();
+let mockPass = false;
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn(), replace: jest.fn(), canGoBack: () => true } }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/session/CreditsProvider', () => ({
   useCredits: () => ({
-    solde: { illimite: false, total: 12, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString() },
+    solde: { illimite: mockPass, total: 12, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString() },
     reglages: { bienvenue: 40, invite: 5, recharge: 25 },
     couts: { quiz_explanation: 1 },
     depenser: (...a: unknown[]) => mockDepenser(...a),
@@ -25,7 +26,10 @@ const question = (id: string, explication = ''): QuestionTiree => ({ id, matiere
 const monter = (questions: QuestionTiree[], onTermine = jest.fn()) =>
   render(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair"><MiniTest questions={questions} onTermine={onTermine} /></ThemeProvider></SafeAreaProvider>);
 
-beforeEach(() => jest.clearAllMocks());
+beforeEach(() => {
+  jest.clearAllMocks();
+  mockPass = false;
+});
 
 describe('K2b · explication payante pendant le quiz', () => {
   it('après la réponse : bouton « Voir l’explication » avec son coût, texte rendu après la dépense, gardé pour la correction', async () => {
@@ -49,6 +53,17 @@ describe('K2b · explication payante pendant le quiz', () => {
     await fireEvent.press(screen.getByText(fr.miniTest.valider));
     await fireEvent.press(await screen.findByRole('button', { name: new RegExp(fr.credits.actions.quiz_explanation) }));
     await waitFor(() => expect(screen.getByText(fr.credits.explicationHorsLigne)).toBeTruthy());
+  });
+
+  it('avec un pass : la justification s’affiche automatiquement, sans bouton de crédit', async () => {
+    mockPass = true;
+    mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 12, contenu: { explanation: 'On met sur 6.' } });
+    await monter([question('42')]);
+    await fireEvent.press(screen.getByText('3/9'));
+    await fireEvent.press(screen.getByText(fr.miniTest.valider));
+    expect(mockDepenser).toHaveBeenCalledWith('quiz_explanation', '42');
+    expect(await screen.findByText('On met sur 6.')).toBeTruthy();
+    expect(screen.queryByRole('button', { name: new RegExp(fr.credits.actions.quiz_explanation) })).toBeNull();
   });
 
   it('question du mini-test d’arrivée (explication locale) : pas de bouton payant', async () => {

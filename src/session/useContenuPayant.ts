@@ -40,8 +40,8 @@ export function useContenuPayant() {
   return { ouvrir, refus, effacerRefus: () => setRefus(null), encours, prix };
 }
 
-/** Libellé de bouton avec son prix : « Voir le corrigé · 2 crédits », ou « … · Inclus dans ton pass » (K2b). */
+/** Libellé d'une action payante pour les crédits ; avec un pass, l'action reste un libellé simple. */
 export function libelleAvecPrix(t: (cle: any, opts?: any) => string, libelle: string, p: { cout: number | null; illimite: boolean }): string {
-  if (p.illimite) return `${libelle} · ${t('payant.inclus')}`;
+  if (p.illimite) return libelle;
   return p.cout ? t('payant.cout', { libelle, n: p.cout, s: p.cout > 1 ? 's' : '' }) : libelle;
 }

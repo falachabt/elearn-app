@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerResultat, enregistrerResultat, tirerMiniTest, type QuestionTiree } from '@/services/miniTest';
@@ -12,6 +12,7 @@ import { bord, cibleMin, espace, palette, rayon, typo } from '@/theme/theme';
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
 import { BoutonCredits } from '../credits/BoutonCredits';
+import { useOuverturePass } from '../credits/useOuverturePass';
 import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
 import { OptionReponse } from '../OptionReponse';
@@ -138,6 +139,16 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   const suite = <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} />;
   const explicationOuverte = q ? q.explication || ouvertes[q.id] || '' : '';
   const payante = !!q && !q.explication && !ouvertes[q.id] && /^\d+$/.test(q.id);
+  const ouverturePass = useOuverturePass<{ explanation?: string | null }>({
+    action: 'quiz_explanation',
+    objet: q?.id ?? '',
+    active: payante && validee,
+    onOuvert: (contenu, objet) => {
+      setHorsLigne(false);
+      const texte = contenu.explanation?.trim();
+      if (texte) setOuvertes((o) => ({ ...o, [String(objet)]: texte }));
+    },
+  });
   // Résultat, justification et « Question suivante » restent groupés en bas de l'écran (guide K2b) : visibles même
   // quand l'énoncé ou les options sont longs, sans avoir à défiler jusqu'au bouton.
   const pied = validee && q ? (
@@ -153,7 +164,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
           <Text style={[typo.petit, { color: theme.texte.principal }]}>{explicationOuverte}</Text>
         </ScrollView>
       ) : null}
-      {payante ? (
+      {payante && !ouverturePass.passActif ? (
         <View style={styles.actionsRetour}>
           <BoutonCredits<{ explanation?: string | null }>
             key={q.id}
@@ -169,6 +180,8 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
           {horsLigne ? <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{t('credits.explicationHorsLigne')}</Text> : null}
         </View>
       ) : null}
+      {payante && ouverturePass.passActif && ouverturePass.enCours ? <ActivityIndicator accessibilityLabel={t('profil.chargement')} color={theme.texte.principal} /> : null}
+      {payante && ouverturePass.passActif && ouverturePass.erreur ? <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{t('credits.explicationHorsLigne')}</Text> : null}
       {suite}
     </View>
   ) : (

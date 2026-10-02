@@ -8,6 +8,7 @@ import { lireDocuments, lireDossiers, type Document, type Dossier } from '@/serv
 import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
+import { useCredits } from '@/session/CreditsProvider';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -27,6 +28,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function AnnalesDossier() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { solde } = useCredits();
   const { id, nom } = useLocalSearchParams<{ id: string; nom?: string }>();
   const pret = useSessionPrete();
   const [etat, setEtat] = useEtatMemorise<Etat>(`annales.dossier.${id}`, { statut: 'chargement' });
@@ -75,7 +77,7 @@ export function AnnalesDossier() {
     suivre('class_document_opened', { correction });
     router.push({ pathname: '/document', params: { url, titre: correction ? `${d.nom} · ${t('annales.correctionTitre')}` : d.nom } });
   };
-  const puce = (ref: string | number) => <PuceCout cout={acces.cout} etat={acces.etat(String(ref))} />;
+  const puce = (ref: string | number) => solde?.illimite ? null : <PuceCout cout={acces.cout} etat={acces.etat(String(ref))} />;
 
   return (
     <>

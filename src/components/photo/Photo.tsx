@@ -200,7 +200,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.recadrer')}</Text>
           </>
         }
-        pied={<BoutonEnvoi libelle={t('photo.demanderIa')} cout={couts.ai_question} illimite={!!solde?.illimite} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
+        pied={<BoutonEnvoi libelle={t('photo.demanderIa')} cout={solde?.illimite ? undefined : couts.ai_question} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
       >
         <CadreRecadrage uri={photo.uri} largeur={photo.largeur} hauteur={photo.hauteur} onChange={setCadre} />
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.matiereDevinee')}</Text>
@@ -388,14 +388,14 @@ export function Photo() {
   );
 }
 
-/** K2b : « Demander à l'IA » avec la puce du coût à droite (inclus avec un pass). La dépense se fait côté serveur à l'envoi. */
-function BoutonEnvoi({ libelle, cout, illimite, desactive, onPress }: { libelle: string; cout?: number; illimite: boolean; desactive?: boolean; onPress: () => void }) {
+/** « Demander à l'IA » garde son coût pour les crédits ; avec un pass, le bouton reste une action simple. */
+function BoutonEnvoi({ libelle, cout, desactive, onPress }: { libelle: string; cout?: number; desactive?: boolean; onPress: () => void }) {
   const { theme } = useTheme();
   return (
     <Appui accessibilityRole="button" accessibilityState={{ disabled: !!desactive }} disabled={desactive} onPress={onPress} decalage={4} ombre={4} couleurOmbre={theme.ombre} rayon={rayon.m}>
       <View style={[styles.envoi, { backgroundColor: desactive ? theme.fond.creux : theme.marque.principale, borderColor: theme.bord.fort }]}>
         <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{libelle}</Text>
-        {illimite ? <PuceCout cout={0} etat="inclus" /> : cout ? <PuceCout cout={cout} /> : null}
+        {cout ? <PuceCout cout={cout} /> : null}
       </View>
     </Appui>
   );

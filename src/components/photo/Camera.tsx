@@ -83,7 +83,7 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
     if (a?.uri) onPhoto({ uri: a.uri, largeur: a.width, hauteur: a.height });
   };
 
-  const libelle = !solde ? null : solde.illimite ? t('photo.inclusPass') : t('photo.credits', { solde: solde.total });
+  const libelle = !solde ? null : solde.illimite ? t('credits.illimite') : t('photo.credits', { solde: solde.total });
   const faible = !!solde && !solde.illimite && solde.total <= 5;
   const autorisee = !!permission?.granted;
 

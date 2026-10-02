@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { enregistrerCorrection, lireCorrection, statuts, type Correction } from '@/services/correction';
@@ -10,6 +10,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { BoutonCredits } from '../credits/BoutonCredits';
+import { useOuverturePass } from '../credits/useOuverturePass';
 import { Ecran } from '../Ecran';
 import { EcranVide } from '../EcranVide';
 import { OptionReponse } from '../OptionReponse';
@@ -25,6 +26,8 @@ export function RevoirCorrection() {
   const { i } = useLocalSearchParams<{ i?: string }>();
   const [c, setC] = useState<Correction | null | undefined>(undefined);
   const [n, setN] = useState(Number(i) || 0);
+  const total = c?.questions.length ?? 0;
+  const q = c && total ? c.questions[Math.min(n, total - 1)] : null;
 
   useEffect(() => {
     let actif = true;
@@ -39,18 +42,25 @@ export function RevoirCorrection() {
   const garderExplication = (k: number, contenu: { explanation?: string | null } | null) => {
     setHorsLigne(false);
     const texte = contenu?.explanation?.trim();
-    if (!c || !texte) return;
+    if (!c || k < 0 || !texte) return;
     const suite = { ...c, questions: c.questions.map((x, j) => (j === k ? { ...x, explication: texte } : x)) };
     setC(suite);
     void enregistrerCorrection(suite);
   };
 
+  const payante = !!q && !q.explication && /^\d+$/.test(q.id);
+  const ouverturePass = useOuverturePass<{ explanation?: string | null }>({
+    action: 'quiz_explanation',
+    objet: q?.id ?? '',
+    active: payante,
+    onOuvert: (contenu, objet) => garderExplication(c?.questions.findIndex((question) => question.id === String(objet)) ?? -1, contenu),
+  });
+
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/'));
   if (c === undefined) return null;
   if (!c || !c.questions.length) return <EcranVide titre={t('correction.vide')} phrase={t('correction.videTexte')} />;
 
-  const total = c.questions.length;
-  const q = c.questions[Math.min(n, total - 1)];
+  if (!q) return <EcranVide titre={t('correction.vide')} phrase={t('correction.videTexte')} />;
   const reponse = c.reponses[n];
   const etat = (k: number) => (k === q.bonne ? 'bonne' : k === reponse ? 'fausse' : 'neutre');
   const pied = (
@@ -85,12 +95,14 @@ export function RevoirCorrection() {
           <OptionReponse key={k} lettre={LETTRES[k] ?? String(k + 1)} texte={choix} etat={etat(k)} />
         ))}
       </View>
-      {!q.explication && /^\d+$/.test(q.id) ? (
+      {payante && !ouverturePass.passActif ? (
         <View style={styles.options}>
           <BoutonCredits<{ explanation?: string | null }> key={q.id} action="quiz_explanation" objet={q.id} onOuvert={(r) => garderExplication(n, r.contenu)} onErreur={() => setHorsLigne(true)} />
           {horsLigne ? <Banniere ton="erreur" titre={t('credits.explicationHorsLigne')} /> : null}
         </View>
       ) : null}
+      {payante && ouverturePass.passActif && ouverturePass.enCours ? <ActivityIndicator accessibilityLabel={t('profil.chargement')} color={theme.texte.principal} /> : null}
+      {payante && ouverturePass.passActif && ouverturePass.erreur ? <Banniere ton="erreur" titre={t('credits.explicationHorsLigne')} /> : null}
       {q.explication ? (
         <View style={[styles.explication, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('correction.explication')}</Text>

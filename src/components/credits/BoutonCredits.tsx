@@ -26,8 +26,9 @@ type Props<C> = {
 };
 
 /**
- * K2b bouton payant : libellé et puce du coût à droite (« 2 crédits ») ; avec un pass « Inclus dans ton pass » ;
- * « Déjà ouvert » si débloqué. Gère seul l'accord (dès 3 crédits), la dépense serveur et « Crédits épuisés ».
+ * K2b bouton payant : libellé et puce du coût à droite (« 2 crédits ») pour les crédits ;
+ * avec un pass, l'action reste simple, sans étiquette de péage. Gère seul l'accord (dès 3 crédits),
+ * la dépense serveur et « Crédits épuisés ».
  */
 export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOuvert, onErreur, deja, libelle }: Props<C>) {
   const { solde, couts } = useCredits();
@@ -36,7 +37,7 @@ export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOu
   const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: action === 'quiz_explanation' });
   const [enCours, setEnCours] = useState(false);
   const cout = couts[action] ?? 0;
-  const etat: EtatCout = deja ? 'deja' : solde?.illimite ? 'inclus' : 'payant';
+  const etat: EtatCout = deja ? 'deja' : 'payant';
 
   const appuyer = async () => {
     if (enCours) return;
@@ -67,7 +68,7 @@ export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOu
       >
         <View style={[styles.bouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{libelle ?? libelleAction(action)}</Text>
-          {enCours ? <ActivityIndicator size="small" color={theme.texte.principal} /> : <PuceCout cout={cout} etat={etat} />}
+          {enCours ? <ActivityIndicator size="small" color={theme.texte.principal} /> : solde?.illimite ? null : <PuceCout cout={cout} etat={etat} />}
         </View>
       </Appui>
       <View>{feuilles}</View>

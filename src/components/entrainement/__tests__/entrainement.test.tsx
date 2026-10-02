@@ -23,8 +23,9 @@ import { QuizLibreEcran } from '../QuizLibre';
 
 const mockRpc = jest.fn();
 const mockDepenser = jest.fn();
+let mockPass = false;
 jest.mock('@/session/CreditsProvider', () => ({
-  useCredits: () => ({ solde: null, couts: {}, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
+  useCredits: () => ({ solde: mockPass ? { illimite: true, total: 0, semaine: 0, recompenses: 0, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString(), illimiteJusqua: null, expirationRecompenses: null } : null, couts: mockPass ? { exercise_solution: 2 } : {}, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
 }));
 let mockParams: Record<string, string> = {};
 // Navigation : la sortie de l'écran (✕, retour Android, geste) passe par « beforeRemove ».
@@ -84,6 +85,7 @@ const T = { fr, en };
 afterEach(() => jest.restoreAllMocks());
 beforeEach(async () => {
   jest.clearAllMocks();
+  mockPass = false;
   await AsyncStorage.clear();
   mockParams = {};
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
@@ -306,6 +308,16 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
     await fireEvent.press(screen.getByText(x.credits.recharger));
     expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
+  });
+
+  it('exercice avec un pass : le corrigé s’ouvre automatiquement', async () => {
+    mockPass = true;
+    mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 0, contenu: { correction: [{ type: 'paragraph', content: [{ type: 'text', text: '6/8 = 3/4.' }] }] } });
+    mockParams = { id: 'e1', cours: '1' };
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('6/8 = 3/4.')).toBeTruthy());
+    expect(mockDepenser).toHaveBeenCalledWith('exercise_solution', 'e1');
+    expect(screen.queryByText(/Inclus dans ton pass/)).toBeNull();
   });
 
   it('exercice : « Pas encore » enchaîne sans marquer ; un exercice fait ne demande rien', async () => {
