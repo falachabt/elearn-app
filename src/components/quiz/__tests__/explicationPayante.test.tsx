@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
+import { router } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -9,7 +10,7 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 import { RevoirCorrection } from '../RevoirCorrection';
 
 const mockDepenser = jest.fn();
-jest.mock('expo-router', () => ({ router: { back: jest.fn(), replace: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ i: '0' }) }));
+jest.mock('expo-router', () => ({ router: { push: jest.fn(), back: jest.fn(), replace: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ i: '0' }) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/session/CreditsProvider', () => ({
   useCredits: () => ({ solde: { illimite: false, total: 0, recharge: 25, rechargeHebdo: true, prochaineRecharge: new Date(Date.now() + 86400000).toISOString() }, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, couts: { quiz_explanation: 1 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {} }),
@@ -43,8 +44,11 @@ describe('explication de quiz payante (M18-04)', () => {
     mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 1, solde: 0, contenu: null });
     await monter();
     await fireEvent.press(await screen.findByRole('button', { name: /1 crédit/ }));
-    // Plus de crédits : la feuille « Crédits épuisés » s'ouvre (K3).
-    await waitFor(() => expect(screen.getByText(fr.credits.epuiseTitre)).toBeTruthy());
+    // Plus de crédits : on le dit simplement et « Recharger » ouvre les pass.
+    await waitFor(() => expect(screen.getByText(fr.credits.rechargeTitre)).toBeTruthy());
+    expect(screen.getByText(fr.credits.rechargeTexte)).toBeTruthy();
+    await fireEvent.press(screen.getByText(fr.credits.recharger));
+    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
     expect(screen.queryByText('Parce que B.')).toBeNull();
   });
 

@@ -8,13 +8,14 @@ import type { Bloc } from '@/services/blocs';
 import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
-import { libelleAvecPrix, useContenuPayant } from '@/session/useContenuPayant';
+import { useCredits } from '@/session/CreditsProvider';
+import { libelleAvecPrix } from '@/session/useContenuPayant';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
-import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
+import { useDepenseCredits } from '../credits/useDepenseCredits';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { useFeedback } from '../useFeedback';
@@ -102,13 +103,24 @@ export function ExerciceLibre() {
     declencher('confirm');
     if (!fait) await basculer();
   };
-  const payant = useContenuPayant();
+  // Plus de crédits : une feuille du bas (« Recharger ») s'ouvre tout de suite, jamais un message au bout d'un long énoncé.
+  const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: true });
+  const { couts, solde } = useCredits();
+  const prix = { cout: couts.exercise_solution || null, illimite: !!solde?.illimite };
+  const [reseau, setReseau] = useState(false);
   const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
   // Le corrigé ne vient que de depenser_credits (M18-04) ; une fois ouvert, il reste sous la main pour la session.
   const voirCorrige = async () => {
     if (!corriges[id]) {
-      const contenu = await payant.ouvrir<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id);
-      if (!contenu) return;
+      let r;
+      try {
+        r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id);
+      } catch {
+        setReseau(true);
+        return;
+      }
+      if (!r?.contenu) return;
+      const contenu = r.contenu;
       setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     }
     setCorrigeDe(id);
@@ -148,13 +160,13 @@ export function ExerciceLibre() {
   const surSuivant = () => (fait ? allerSuivant() : setDemande('suivant'));
   const aCorrige = etat.statut === 'pret' && !!etat.detail?.aCorrige;
 
-  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : (payant.effacerRefus(), setCorrigeDe(null)));
+  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
   // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
       <View style={styles.flex}>
         {aCorrige ? (
-          <Bouton variante="secondaire" libelle={corrige ? t('entrainement.voirEnonce') : libelleAvecPrix(t, t('entrainement.voirCorrige'), payant.prix('exercise_solution'))} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
+          <Bouton variante="secondaire" libelle={corrige ? t('entrainement.voirEnonce') : libelleAvecPrix(t, t('entrainement.voirCorrige'), prix)} onPress={() => basculerVue(corrige ? 'enonce' : 'corrige')} />
         ) : (
           <Bouton variante="secondaire" libelle={t(fait ? 'entrainement.annulerFait' : 'entrainement.marquerFait')} onPress={() => void (fait ? basculer() : marquer())} />
         )}
@@ -233,11 +245,19 @@ export function ExerciceLibre() {
               {etat.detail?.enonce.length ? <Blocs blocs={etat.detail.enonce} /> : <Text selectable style={[typo.texte, { color: theme.texte.principal }]}>{exercice.enonce}</Text>}
             </>
           )}
-          {payant.refus ? <Banniere ton="erreur" titre={payant.refus.raison === 'erreur' ? t('payant.erreur') : payant.refus.raison === 'limite' ? t('payant.limite') : t('payant.insuffisant', { n: payant.refus.cout, solde: payant.refus.solde ?? 0 })} /> : null}
           {!aCorrige ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('entrainement.corrigeBientot')}</Text> : null}
         </>
       ) : null}
     </Ecran>
+    {feuilles}
+    <Feuille
+      ouverte={reseau}
+      onFermer={() => setReseau(false)}
+      icone="cloud-offline-outline"
+      titre={t('payant.erreur')}
+      texte={t('credits.explicationHorsLigne')}
+      actions={[{ libelle: t('credits.fermer'), onPress: () => setReseau(false) }]}
+    />
     <Feuille
       ouverte={demande === 'suivant'}
       onFermer={() => setDemande(null)}

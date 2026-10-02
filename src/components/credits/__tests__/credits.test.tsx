@@ -110,10 +110,10 @@ describe('K2b bouton payant', () => {
   });
 
   it('solde insuffisant : feuille « Crédits épuisés » avec le pass semaine en premier', async () => {
-    mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 1, solde: 0, contenu: null });
+    mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 2, solde: 0, contenu: null });
     const onOuvert = jest.fn();
-    await avecTheme(<BoutonCredits action="quiz_explanation" objet={7} onOuvert={onOuvert} />);
-    await act(async () => { fireEvent.press(screen.getByText('Voir l’explication')); });
+    await avecTheme(<BoutonCredits action="exercise_solution" objet="ex-1" onOuvert={onOuvert} />);
+    await act(async () => { fireEvent.press(screen.getByText('Voir le corrigé')); });
     expect(onOuvert).not.toHaveBeenCalled();
     expect(screen.getByText('Crédits épuisés')).toBeTruthy();
     fireEvent.press(screen.getByText('Prendre le pass semaine'));

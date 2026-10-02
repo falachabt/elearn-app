@@ -45,7 +45,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1' }));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 
 const COURS = [
@@ -294,6 +294,18 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.finiOui }));
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'e2', cours: '1' } }));
     expect(await lireExercicesFaits()).toEqual({ e1: true });
+  });
+
+  it('exercice : plus de crédits → feuille du bas « Recharger », visible sans défiler', async () => {
+    mockParams = { id: 'e1', cours: '1' };
+    mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 2, solde: 0, contenu: null });
+    await monter(<ExerciceLibre />);
+    await waitFor(() => expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
+    await waitFor(() => expect(screen.getByText(x.credits.rechargeTitre)).toBeTruthy());
+    expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
+    await fireEvent.press(screen.getByText(x.credits.recharger));
+    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
   });
 
   it('exercice : « Pas encore » enchaîne sans marquer ; un exercice fait ne demande rien', async () => {

@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { SEUIL_CONFIRMATION, type ActionCredit, type Depense } from '@/services/credits';
 import { useCredits } from '@/session/CreditsProvider';
+import { useSession } from '@/session/SessionProvider';
 
 import { Feuille } from '../Feuille';
 import { FeuilleCout } from './FeuilleCout';
@@ -18,8 +19,10 @@ type Options = { deja?: boolean };
  * si le solde manque (la feuille « Crédits épuisés » s'ouvre) ou si la limite IA du pass est atteinte.
  * Lève l'erreur réseau : à l'écran d'afficher `credits.horsLigne`.
  */
-export function useDepenseCredits() {
+export function useDepenseCredits({ rechargeSimple = false }: { rechargeSimple?: boolean } = {}) {
   const { solde, couts, depenser } = useCredits();
+  const { session } = useSession();
+  const invite = !!session?.user.is_anonymous;
   const { t } = useTextesCredits();
   const [confirmation, setConfirmation] = useState<{ action: ActionCredit; cout: number } | null>(null);
   const [epuise, setEpuise] = useState(false);
@@ -61,7 +64,7 @@ export function useDepenseCredits() {
       {confirmation ? (
         <FeuilleCout ouverte action={confirmation.action} cout={confirmation.cout} onValider={() => repondre(true)} onFermer={() => repondre(false)} />
       ) : null}
-      <FeuilleEpuise ouverte={epuise} onFermer={() => setEpuise(false)} />
+      <FeuilleEpuise ouverte={epuise} onFermer={() => setEpuise(false)} recharge={rechargeSimple && !invite} />
       <Feuille
         ouverte={limite}
         onFermer={() => setLimite(false)}

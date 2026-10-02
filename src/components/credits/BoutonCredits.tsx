@@ -33,7 +33,7 @@ export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOu
   const { solde, couts } = useCredits();
   const { theme } = useTheme();
   const { action: libelleAction } = useTextesCredits();
-  const { lancer, feuilles } = useDepenseCredits();
+  const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: action === 'quiz_explanation' });
   const [enCours, setEnCours] = useState(false);
   const cout = couts[action] ?? 0;
   const etat: EtatCout = deja ? 'deja' : solde?.illimite ? 'inclus' : 'payant';
@@ -58,14 +58,17 @@ export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOu
         accessibilityState={{ busy: enCours }}
         onPress={appuyer}
         disabled={enCours}
-        ombre={ombre.m}
+        ombre={ombre.s}
+        decalage={2}
         couleurOmbre={theme.ombre}
         rayon={rayon.m}
         retour
-        style={[styles.bouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}
+        style={styles.zone}
       >
-        <Text style={[typo.bouton, styles.flex, { color: theme.texte.principal }]}>{libelle ?? libelleAction(action)}</Text>
-        {enCours ? <ActivityIndicator color={theme.texte.principal} /> : <PuceCout cout={cout} etat={etat} />}
+        <View style={[styles.bouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>{libelle ?? libelleAction(action)}</Text>
+          {enCours ? <ActivityIndicator size="small" color={theme.texte.principal} /> : <PuceCout cout={cout} etat={etat} />}
+        </View>
       </Appui>
       <View>{feuilles}</View>
     </>
@@ -73,15 +76,16 @@ export function BoutonCredits<C = Record<string, unknown>>({ action, objet, onOu
 }
 
 const styles = StyleSheet.create({
+  // Petit bouton à gauche, sous le message de réponse : le libellé et la puce du coût sur une ligne.
+  zone: { alignSelf: 'flex-start' },
   bouton: {
-    minHeight: cibleMin,
+    minHeight: cibleMin - 4,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: espace[2],
+    gap: espace[3],
     paddingHorizontal: espace[4],
-    paddingVertical: espace[2],
+    paddingVertical: espace[1],
     borderWidth: bord.normal,
     borderRadius: rayon.m,
   },
-  flex: { flex: 1 },
 });

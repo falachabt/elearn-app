@@ -15,7 +15,7 @@ import { useTextesCredits } from './textes';
  * compte », le pass semaine et « Plus tard ». K3 « Crédits épuisés » (M18-08) : compte à rebours jusqu'à lundi, pass semaine en premier, puis « Demander à
  * quelqu'un de payer ». « Gagner des crédits » viendra avec la page parrainage. On peut la fermer et continuer le gratuit.
  */
-export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA' }: { ouverte: boolean; onFermer: () => void; prixSemaine?: string }) {
+export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', recharge: rechargeSimple }: { ouverte: boolean; onFermer: () => void; prixSemaine?: string; recharge?: boolean }) {
   const { solde, reglages } = useCredits();
   const { session } = useSession();
   const { theme } = useTheme();
@@ -50,6 +50,22 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA' }: {
           </View>
         </View>
       </Feuille>
+    );
+  }
+  // Petite action payante (justification d'un quiz) : on dit d'abord qu'il n'y a plus de crédits, puis « Recharger » ouvre les pass.
+  if (rechargeSimple) {
+    return (
+      <Feuille
+        ouverte={ouverte}
+        onFermer={onFermer}
+        icone="flash-outline"
+        titre={t('credits.rechargeTitre')}
+        texte={t('credits.rechargeTexte')}
+        actions={[
+          { libelle: t('credits.recharger'), onPress: aller('/offres?declencheur=limite') },
+          { libelle: t('credits.plusTard'), onPress: onFermer, variante: 'secondaire' },
+        ]}
+      />
     );
   }
   return (
