@@ -357,7 +357,7 @@ export const fr = {
     note: 'L’app ne coupe jamais ta musique. Pour le silence complet, coupe les sons ici.',
   },
   parametres: {
-    formules: 'Formules dessinées (essai)',
+    formules: 'Formules dessinées',
     formulesAide: 'Affiche les fractions, racines et limites comme dans un manuel. Désactivé : formules en texte.',
     titre: 'Sons et vibrations',
     retour: 'Retour',
