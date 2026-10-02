@@ -142,7 +142,9 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   const ouverturePass = useOuverturePass<{ explanation?: string | null }>({
     action: 'quiz_explanation',
     objet: q?.id ?? '',
-    active: payante && validee,
+    // Le pass précharge la justification dès que la question est connue. Elle
+    // reste masquée jusqu'à la validation de la réponse.
+    active: payante,
     onOuvert: (contenu, objet) => {
       setHorsLigne(false);
       const texte = contenu.explanation?.trim();

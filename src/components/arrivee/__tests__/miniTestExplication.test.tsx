@@ -59,9 +59,11 @@ describe('K2b · explication payante pendant le quiz', () => {
     mockPass = true;
     mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 12, contenu: { explanation: 'On met sur 6.' } });
     await monter([question('42')]);
+    // Le pass ouvre la justification en arrière-plan avant la réponse.
+    await waitFor(() => expect(mockDepenser).toHaveBeenCalledWith('quiz_explanation', '42'));
+    expect(screen.queryByText('On met sur 6.')).toBeNull();
     await fireEvent.press(screen.getByText('3/9'));
     await fireEvent.press(screen.getByText(fr.miniTest.valider));
-    expect(mockDepenser).toHaveBeenCalledWith('quiz_explanation', '42');
     expect(await screen.findByText('On met sur 6.')).toBeTruthy();
     expect(screen.queryByRole('button', { name: new RegExp(fr.credits.actions.quiz_explanation) })).toBeNull();
   });

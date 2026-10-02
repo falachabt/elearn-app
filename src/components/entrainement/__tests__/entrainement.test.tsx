@@ -310,13 +310,23 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
   });
 
-  it('exercice avec un pass : le corrigé s’ouvre automatiquement', async () => {
+  it('exercice avec un pass : le corrigé est préchargé sans changer d’onglet', async () => {
     mockPass = true;
     mockDepenser.mockResolvedValue({ statut: 'unlimited', cout: 0, solde: 0, contenu: { correction: [{ type: 'paragraph', content: [{ type: 'text', text: '6/8 = 3/4.' }] }] } });
     mockParams = { id: 'e1', cours: '1' };
     await monter(<ExerciceLibre />);
+    await waitFor(() => expect(mockDepenser).toHaveBeenCalledWith('exercise_solution', 'e1'));
+    expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy();
+    expect(screen.getByRole('button', { name: x.entrainement.voirCorrige })).toBeTruthy();
+    expect(screen.queryByText('6/8 = 3/4.')).toBeNull();
+    expect(screen.queryByLabelText(fr.profil.chargement)).toBeNull();
+    // L'action explicite ouvre ensuite le corrigé déjà chargé.
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirCorrige }));
     await waitFor(() => expect(screen.getByText('6/8 = 3/4.')).toBeTruthy());
-    expect(mockDepenser).toHaveBeenCalledWith('exercise_solution', 'e1');
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.voirEnonce }));
+    expect(screen.getByText('Simplifie la fraction 6/8.')).toBeTruthy();
+    expect(screen.getByRole('button', { name: x.entrainement.voirCorrige })).toBeTruthy();
+    expect(screen.queryByLabelText(fr.profil.chargement)).toBeNull();
     expect(screen.queryByText(/Inclus dans ton pass/)).toBeNull();
   });
 

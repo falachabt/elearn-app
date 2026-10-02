@@ -19,7 +19,11 @@ type Props<C> = {
 export function useOuverturePass<C = Record<string, unknown>>({ action, objet, active, onOuvert }: Props<C>) {
   const { solde, depenser } = useCredits();
   const passActif = !!solde?.illimite;
-  const cle = `${action}:${String(objet)}:${active ? 'actif' : 'inactif'}:${passActif ? 'pass' : 'credits'}`;
+  // `active` décrit si le contenu doit être demandé, pas l'identité du contenu.
+  // Quand la réponse arrive, l'écran peut justement passer de l'énoncé à la
+  // correction (ou marquer la question comme expliquée) : ce changement ne
+  // doit pas invalider le résultat et relancer une ouverture.
+  const cle = `${action}:${String(objet)}:${passActif ? 'pass' : 'credits'}`;
   const [resultat, setResultat] = useState<{ cle: string; etat: 'termine' | 'erreur' } | null>(null);
   const depenserRef = useRef(depenser);
   const onOuvertRef = useRef(onOuvert);

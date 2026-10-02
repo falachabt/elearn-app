@@ -65,6 +65,10 @@ export function ExerciceLibre() {
   const debut = useRef(0);
   const sortie = useRef<ActionNavigation | null>(null);
   const aDemander = useRef(false);
+  // Un pass précharge le corrigé, mais ne doit pas changer d'onglet sans une
+  // action explicite de l'élève. La ref permet de terminer une bascule demandée
+  // pendant que le préchargement est encore en cours.
+  const correctionDemandeeRef = useRef<string | null>(null);
 
   const [essai, setEssai] = useState(0);
   const recharger = () => {
@@ -114,6 +118,7 @@ export function ExerciceLibre() {
   const prix = { cout: dejaOuvert ? null : couts.exercise_solution || null, illimite: !!solde?.illimite };
   const [reseau, setReseau] = useState(false);
   const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
+  const [correctionDemandeePour, setCorrectionDemandeePour] = useState<string | null>(null);
   // Le corrigé ne vient que de depenser_credits (M18-04) ; une fois ouvert, il reste sous la main pour la session.
   const voirCorrige = async () => {
     if (!corriges[id]) {
@@ -172,17 +177,36 @@ export function ExerciceLibre() {
     onOuvert: (contenu, objet) => {
       const reference = String(objet);
       setCorriges((c) => ({ ...c, [reference]: blocsCorrige(contenu) }));
-      setCorrigeDe(reference);
+      if (correctionDemandeeRef.current === reference) setCorrigeDe(reference);
     },
   });
 
-  const basculerVue = (vue: 'enonce' | 'corrige') => (vue === 'corrige' ? void voirCorrige() : setCorrigeDe(null));
+  const basculerVue = (vue: 'enonce' | 'corrige') => {
+    if (vue === 'enonce') {
+      correctionDemandeeRef.current = null;
+      setCorrectionDemandeePour(null);
+      setCorrigeDe(null);
+      return;
+    }
+    if (corriges[id]) {
+      correctionDemandeeRef.current = id;
+      setCorrectionDemandeePour(id);
+      setCorrigeDe(id);
+      return;
+    }
+    if (ouverturePass.passActif) {
+      correctionDemandeeRef.current = id;
+      setCorrectionDemandeePour(id);
+      return;
+    }
+    void voirCorrige();
+  };
   // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
       <View style={styles.flex}>
         {aCorrige ? (
-          ouverturePass.passActif && !corrige && !ouverturePass.erreur ? (
+          ouverturePass.passActif && correctionDemandeePour === id && !corrige && ouverturePass.enCours ? (
             <View style={styles.chargement}><ActivityIndicator accessibilityLabel={t('profil.chargement')} color={theme.texte.principal} /></View>
           ) : (
             <Bouton
