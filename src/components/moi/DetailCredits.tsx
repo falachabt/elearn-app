@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
@@ -74,7 +73,7 @@ export function DetailCredits() {
               </View>
             </>
           )}
-          {paiementPossible() ? <Bouton libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} /> : null}
+          <Bouton libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
         </>
       ) : null}
     </Ecran>

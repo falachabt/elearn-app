@@ -190,3 +190,23 @@ describe.each(['fr', 'en'] as const)('E6 · envoyer à mon parent (%s)', (langue
     await waitFor(() => expect(screen.getByText(x.parent.erreur)).toBeTruthy());
   });
 });
+
+describe('E1 · offres sur iOS', () => {
+  beforeEach(() => {
+    jest.requireMock('@/services/plateforme').paiementPossible.mockReturnValue(false);
+    return act(() => changerLangue('fr'));
+  });
+
+  it('les pass sont présentés, sans prix ni paiement Mobile Money ni lien parent', async () => {
+    await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CI', termine: true });
+    mockParams = { declencheur: 'moi' };
+    await monter(<Offres />);
+    await waitFor(() => expect(screen.getByText(T.fr.offres.conseille)).toBeTruthy());
+    expect(screen.getByText(T.fr.offres.month)).toBeTruthy();
+    expect(screen.queryByText(/FCFA/)).toBeNull();
+    expect(screen.queryByRole('button', { name: /Payer/ })).toBeNull();
+    expect(screen.queryByRole('button', { name: T.fr.offres.parent })).toBeNull();
+    expect(screen.getByText(T.fr.offres.achatBientot)).toBeTruthy();
+    expect(screen.getByRole('button', { name: T.fr.offres.continuerGratuit })).toBeTruthy();
+  });
+});

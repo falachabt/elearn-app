@@ -27,30 +27,8 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
     router.push(chemin as never);
   };
   const recharge = solde?.recharge ?? 0;
-  // iOS : aucun pass ni paiement. On dit simplement que les crédits reviennent lundi (et, pour un invité, on propose le compte).
-  if (!paiementPossible()) {
-    return (
-      <Feuille
-        ouverte={ouverte}
-        onFermer={onFermer}
-        titre={t(invite ? 'credits.epuiseInviteTitre' : rechargeSimple ? 'credits.rechargeTitre' : 'credits.epuiseTitre')}
-        texte={invite ? undefined : t('credits.epuiseTexteSansPass', { delai: delai(solde?.prochaineRecharge ?? new Date().toISOString()) })}
-        actions={[
-          ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer') }] : []),
-          { libelle: invite ? t('credits.plusTard') : t('credits.compris'), onPress: onFermer, variante: invite ? ('texte' as const) : undefined },
-        ]}
-      >
-        {invite ? (
-          <View style={[styles.cadeau, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-            <View style={styles.flex}>
-              <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{reglages ? t('credits.epuiseInviteCarte', { n: reglages.bienvenue }) : t('credits.epuiseInvite', { n: recharge })}</Text>
-              <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('credits.epuiseInviteSauvegarde')}</Text>
-            </View>
-          </View>
-        ) : null}
-      </Feuille>
-    );
-  }
+  // iOS : pas de prix ni de paiement par Mobile Money (achat intégré Apple à venir) ; les pass restent présentés.
+  const mm = paiementPossible();
   if (invite) {
     return (
       <Feuille
@@ -59,7 +37,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
         titre={t('credits.epuiseInviteTitre')}
         actions={[
           { libelle: t('credits.creerCompte'), onPress: aller('/compte/creer') },
-          { libelle: t('credits.prendrePassSemainePrix', { prix: prixSemaine }), onPress: aller('/offres?declencheur=limite&offre=week'), variante: 'secondaire' },
+          { libelle: mm ? t('credits.prendrePassSemainePrix', { prix: prixSemaine }) : t('credits.voirPass'), onPress: aller('/offres?declencheur=limite&offre=week'), variante: 'secondaire' },
           { libelle: t('credits.plusTard'), onPress: onFermer, variante: 'texte' },
         ]}
       >
@@ -106,7 +84,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
       }
       actions={[
         { libelle: t('credits.prendrePassSemaine'), onPress: aller('/offres?declencheur=limite&offre=week') },
-        { libelle: t('credits.demanderPayer'), onPress: aller('/offres/parent?offre=week'), variante: 'secondaire' },
+        ...(mm ? [{ libelle: t('credits.demanderPayer'), onPress: aller('/offres/parent?offre=week'), variante: 'secondaire' as const }] : []),
         { libelle: t('credits.autresPass'), onPress: aller('/offres?declencheur=limite'), variante: 'texte' },
         ...(solde?.rechargeHebdo ? [{ libelle: t('credits.attendreLundi'), onPress: onFermer, variante: 'texte' as const }] : []),
       ]}
@@ -114,7 +92,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
       <View style={[styles.carte, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
         <View style={styles.ligne}>
           <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('credits.passSemaine')}</Text>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prixSemaine}</Text>
+          {mm ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prixSemaine}</Text> : null}
         </View>
         <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('credits.passSemaineTexte')}</Text>
       </View>

@@ -746,6 +746,7 @@ export const fr = {
     payer: 'Payer {{montant}}',
     continuerGratuit: 'Continuer gratuitement',
     parent: 'Envoyer à mon parent',
+    achatBientot: 'Tu pourras bientôt choisir ton pass directement dans l’application.',
     bientot: 'Le paiement Mobile Money arrive très bientôt.',
     bientotTexte: 'En attendant, tu peux déjà préparer le lien pour ton parent ou tuteur.',
     actif: 'Ton {{offre}} est actif jusqu’au {{date}}.',

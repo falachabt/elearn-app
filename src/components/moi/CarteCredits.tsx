@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
@@ -82,9 +81,9 @@ export function CarteCredits() {
               <View testID="credits-jauge" style={{ width: `${rempli * 100}%`, height: '100%', backgroundColor: theme.marque.principale }} />
             </View>
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-              {solde.rechargeHebdo ? t(paiementPossible() ? 'profil.rechargeInfo' : 'profil.rechargeInfoSansPass', { n: solde.recharge, quand: quand(solde.prochaineRecharge) }) : t('profil.rechargeAucune')}
+              {solde.rechargeHebdo ? t('profil.rechargeInfo', { n: solde.recharge, quand: quand(solde.prochaineRecharge) }) : t('profil.rechargeAucune')}
             </Text>
-            {paiementPossible() ? <Bouton petit variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} /> : null}
+            <Bouton petit variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
           </>
         )}
       </View>

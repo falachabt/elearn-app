@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import type { ActionCredit } from '@/services/credits';
-import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -41,7 +40,7 @@ export function BandeauCadenas({ action, titre, texte, deja, children }: Props) 
           <PuceCout cout={couts[action] ?? 0} etat={deja ? 'deja' : 'payant'} />
         </View>
         {texte ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{texte}</Text> : null}
-        {paiementPossible() ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('credits.illimiteBandeau')}</Text> : null}
+        <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('credits.illimiteBandeau')}</Text>
       </View>
       {children}
     </View>

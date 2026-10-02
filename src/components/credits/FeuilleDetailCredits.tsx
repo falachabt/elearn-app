@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -45,7 +44,7 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
       onFermer={onFermer}
       titre={t('profil.detailTitre')}
       actions={[
-        paiementPossible() ? { libelle: t('moi.voirPass'), onPress: aller('/offres?declencheur=moi') } : { libelle: t('credits.fermer'), onPress: onFermer },
+        { libelle: t('moi.voirPass'), onPress: aller('/offres?declencheur=moi') },
         ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer'), variante: 'secondaire' as const }] : []),
       ]}
     >

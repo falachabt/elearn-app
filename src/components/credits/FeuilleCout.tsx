@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
 import type { ActionCredit } from '@/services/credits';
-import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -24,20 +23,16 @@ export function FeuilleCout({ action, cout, ouverte, onValider, onFermer }: { ac
       actions={[
         { libelle: t('credits.feuilleValider', { action: libelle(action), n: cout }), onPress: onValider },
         { libelle: t('credits.pasMaintenant'), onPress: onFermer, variante: 'secondaire' },
-        ...(paiementPossible()
-          ? [
-              {
-                libelle: t('credits.voirPass'),
-                variante: 'texte' as const,
-                onPress: () => {
-                  onFermer();
-                  router.push('/offres?declencheur=limite');
-                },
-              },
-            ]
-          : []),
+        {
+          libelle: t('credits.voirPass'),
+          variante: 'texte',
+          onPress: () => {
+            onFermer();
+            router.push('/offres?declencheur=limite');
+          },
+        },
       ]}
-      mention={paiementPossible() ? t('credits.illimiteAvecPass') : undefined}
+      mention={t('credits.illimiteAvecPass')}
     >
       <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>⚡ {t('credits.feuilleCout', { n: cout })}</Text>

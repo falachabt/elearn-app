@@ -41,7 +41,7 @@ export function Aide() {
       <Groupe>
         <LigneGroupe icone={MessageCircle} titre={t('profil.aideWhatsapp')} sousTitre={t('profil.aideWhatsappSous')} onPress={() => ouvrir(lienSupport(t('profil.aideMessage')))} />
         <LigneGroupe icone={Mail} titre={t('profil.aideMail')} sousTitre={ADRESSE_SUPPORT} onPress={() => ouvrir(`mailto:${ADRESSE_SUPPORT}`)} />
-        <LigneGroupe icone={CircleHelp} titre={t('profil.aideFaq')} sousTitre={t(paiementPossible() ? 'profil.aideFaqSous' : 'profil.aideFaqSousSansPaiement')} onPress={() => ouvrir(URL_FAQ)} />
+        <LigneGroupe icone={CircleHelp} titre={t('profil.aideFaq')} sousTitre={t('profil.aideFaqSous')} onPress={() => ouvrir(URL_FAQ)} />
       </Groupe>
       {erreur ? <Banniere ton="erreur" titre={t('profil.aideErreur')} /> : null}
       {paiementPossible() ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('profil.aidePaiement')}</Text> : null}

@@ -6,7 +6,7 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { BandeauCadenas, FeuilleCout, FeuilleDetailCredits, FeuilleEpuise } from '..';
 
-// Sur iOS (App Store) : aucune trace de pass à acheter, de prix, de Mobile Money ni de paiement.
+// Sur iOS (App Store) : aucune trace de pawaPay, de Mobile Money, de prix en FCFA ni de paiement externe. Les pass restent présentés.
 const paiementPossibleReel = jest.requireActual('@/services/plateforme').paiementPossible as (os: string) => boolean;
 const mockPaiement = jest.requireMock('@/services/plateforme').paiementPossible as jest.Mock;
 jest.mock('react-native-safe-area-context', () => ({ useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
@@ -21,7 +21,7 @@ const solde: Solde = {
   rechargeHebdo: true, illimite: false, illimiteJusqua: null, expirationRecompenses: null,
 };
 const avecTheme = (n: React.ReactNode) => render(<ThemeProvider>{n}</ThemeProvider>);
-const INTERDITS = [/pass/i, /FCFA/, /mobile money/i, /payer/i, /paiement/i, /recharger/i];
+const INTERDITS = [/FCFA/, /mobile money/i, /pawa/i, /payer/i, /paiement/i];
 const aucune = () => INTERDITS.forEach((motif) => expect(screen.queryByText(motif)).toBeNull());
 
 beforeEach(() => {
@@ -38,16 +38,17 @@ describe('iOS : pas de paiement', () => {
     expect(paiementPossibleReel('web')).toBe(false);
   });
 
-  it('crédits épuisés : on dit seulement que la recharge arrive lundi', async () => {
+  it('crédits épuisés : les pass sont présentés, sans prix ni paiement externe', async () => {
     await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
     expect(screen.getByText('Crédits épuisés')).toBeTruthy();
-    expect(screen.getByText(/Tes crédits reviennent lundi/)).toBeTruthy();
+    expect(screen.getByText('Prendre le pass semaine')).toBeTruthy();
+    expect(screen.getByText('Pass semaine')).toBeTruthy();
     aucune();
   });
 
-  it('plus de crédits (justification, corrigé) : même chose, sans « Recharger »', async () => {
+  it('plus de crédits (justification, corrigé) : « Recharger » mène aux pass', async () => {
     await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} recharge />);
-    expect(screen.getByText(/Tes crédits reviennent lundi/)).toBeTruthy();
+    expect(screen.getByText('Recharger')).toBeTruthy();
     aucune();
   });
 
@@ -60,21 +61,22 @@ describe('iOS : pas de paiement', () => {
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });
 
-  it('confirmation de dépense : pas de « Voir les pass » ni d’« illimité avec un pass »', async () => {
+  it('confirmation de dépense : « Voir les pass » reste proposé', async () => {
     await avecTheme(<FeuilleCout ouverte action="exam_correction" cout={5} onValider={jest.fn()} onFermer={jest.fn()} />);
+    expect(screen.getByText('Voir les pass')).toBeTruthy();
     aucune();
   });
 
-  it('détail des crédits : « Fermer » à la place de « Voir les pass »', async () => {
+  it('détail des crédits : « Voir les pass »', async () => {
     mockCredits.mockReturnValue({ ...mockCredits(), solde: { ...solde, total: 12, semaine: 12 } });
     await avecTheme(<FeuilleDetailCredits ouverte onFermer={jest.fn()} />);
-    expect(screen.getByText('Fermer')).toBeTruthy();
+    expect(screen.getByText('Voir les pass')).toBeTruthy();
     aucune();
   });
 
-  it('bandeau cadenas : pas de « Illimité avec le pass »', async () => {
+  it('bandeau cadenas : « Illimité avec le pass » reste affiché', async () => {
     await avecTheme(<BandeauCadenas action="exam_correction" titre="Correction détaillée" />);
-    expect(screen.getByText('Correction détaillée')).toBeTruthy();
+    expect(screen.getByText('Illimité avec le pass.')).toBeTruthy();
     aucune();
   });
 });

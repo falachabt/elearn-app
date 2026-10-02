@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
+import { paiementPossible } from '@/services/plateforme';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -29,7 +30,7 @@ function LigneOffre({ titre, aide, prix, choisie, conseille, onPress }: { titre:
     <Appui
       accessibilityRole="radio"
       accessibilityState={{ checked: choisie }}
-      accessibilityLabel={`${titre}, ${prix}. ${aide}`}
+      accessibilityLabel={prix ? `${titre}, ${prix}. ${aide}` : `${titre}. ${aide}`}
       onPress={onPress}
       decalage={3}
       ombre={choisie ? ombre.m : ombre.s}
@@ -90,6 +91,8 @@ export function Offres() {
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const offres = etat.statut === 'pret' ? etat.offres : [];
   const choisie = offres.find((o) => o.code === choix);
+  // iOS : pas de prix ni de paiement Mobile Money ici (l'achat intégré Apple viendra) ; les pass restent présentés.
+  const mm = paiementPossible();
   const devise = offres[0]?.devise ?? 'XAF';
 
   const choisir = (c: Choix) => {
@@ -100,12 +103,13 @@ export function Offres() {
   const pied =
     etat.statut === 'pret' && offres.length ? (
       <View style={styles.groupe}>
-        {choisie ? (
+        {choisie && mm ? (
           <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => exiger('paiement', () => router.push({ pathname: '/offres/payer', params: { offre: choisie.code } }))} retour />
         ) : (
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
-        {choisie ? (
+        {!mm ? <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('offres.achatBientot')}</Text> : null}
+        {choisie && mm ? (
           <Bouton variante="secondaire" libelle={t('offres.parent')} onPress={() => exiger('parent', () => router.push({ pathname: '/offres/parent', params: { offre: choisie.code } }))} />
         ) : null}
       </View>
@@ -139,20 +143,20 @@ export function Offres() {
 
       {etat.statut === 'pret' && offres.length ? (
         <>
-          {estFcfa(devise) ? (
+          {mm && estFcfa(devise) ? (
             <View style={[styles.repere, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
               <Ionicons name="person-outline" size={18} color={theme.texte.principal} />
               <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
             </View>
           ) : null}
           <View accessibilityRole="radiogroup" style={styles.groupe}>
-            <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix={formaterMontant(0, devise)} choisie={choix === 'free'} onPress={() => choisir('free')} />
+            <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix={mm ? formaterMontant(0, devise) : ''} choisie={choix === 'free'} onPress={() => choisir('free')} />
             {offres.map((o) => (
               <LigneOffre
                 key={o.code}
                 titre={t(`offres.${o.code}`)}
                 aide={t(`offres.${o.code}Aide`)}
-                prix={formaterMontant(o.montant, o.devise)}
+                prix={mm ? formaterMontant(o.montant, o.devise) : ''}
                 choisie={choix === o.code}
                 conseille={o.recommandee ? t('offres.conseille') : undefined}
                 onPress={() => choisir(o.code)}

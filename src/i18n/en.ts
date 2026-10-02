@@ -745,6 +745,7 @@ export const en: Textes = {
     payer: 'Pay {{montant}}',
     continuerGratuit: 'Continue for free',
     parent: 'Send to my parent',
+    achatBientot: 'You will soon be able to choose your pass right in the app.',
     bientot: 'Mobile Money payment is coming very soon.',
     bientotTexte: 'Meanwhile, you can already prepare the link for your parent or guardian.',
     actif: 'Your {{offre}} is active until {{date}}.',
