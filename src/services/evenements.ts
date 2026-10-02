@@ -11,6 +11,7 @@ export type Evenements = {
   offer_selected: { offre: 'week' | 'month' | 'contest' };
   parent_link_created: { offre: 'week' | 'month' | 'contest'; montant: number };
   parent_link_sent: { canal: 'whatsapp' | 'copie' };
+  payment_initiated: { offre: 'week' | 'month' | 'contest'; pays: string; mode?: string };
   mission_started: { source: 'serveur' | 'locale'; total: number };
   mission_completed: { score: number; total: number; duree_s: number; serie: number };
   mission_lesson_review_opened: { cours: number };
