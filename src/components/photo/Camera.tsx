@@ -34,7 +34,7 @@ function BoutonCarre({ libelle, onPress, children, desactive }: { libelle: strin
 export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => void; onHistorique: () => void }) {
   const { t } = useTraduction();
   const { declencher } = useFeedback();
-  const { top, bottom } = useSafeAreaInsets();
+  const { top } = useSafeAreaInsets();
   const [permission, demanderPermission] = useCameraPermissions();
   const camera = useRef<CameraView>(null);
   const [flash, setFlash] = useState(false);
@@ -87,8 +87,9 @@ export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => 
   const faible = !!solde && !solde.illimite && solde.total <= 5;
   const autorisee = !!permission?.granted;
 
+  // Pas d'inset du bas : l'écran est dans les onglets, dont la barre le porte déjà. Le déclencheur est donc collé à la barre.
   return (
-    <View style={[styles.racine, { paddingTop: top + espace[3], paddingBottom: bottom + espace[5] }]}>
+    <View style={[styles.racine, { paddingTop: top + espace[3], paddingBottom: espace[3] }]}>
       <View style={styles.haut}>
         <BoutonCarre libelle={t('photo.fermer')} onPress={fermer}>
           <X size={20} strokeWidth={2.5} color={NOIR} />

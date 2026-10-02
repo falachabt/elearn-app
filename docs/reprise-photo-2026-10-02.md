@@ -62,3 +62,22 @@ Dans **Supabase Storage** (bucket privé `photo-corrections`, JPEG, 2 Mo max, do
 
 ## Vérifications
 `tsc`, `expo lint` et toute la suite Jest passent (73 suites, 751 tests). Rien n'a été testé sur téléphone.
+
+---
+
+# Suite, 2 octobre 2026 (09 h 30) : espace de la caméra, push, R2
+
+## Caméra : le déclencheur collé à la barre
+Retour de Benny sur photo : trop d'espace noir sous le déclencheur. Même cause que l'écran Correction : `Camera.tsx` ajoutait l'inset du bas du téléphone alors que la barre d'onglets le porte déjà. Il est retiré (`paddingBottom: espace[3]`) : le déclencheur est tout en bas, juste au-dessus du libellé « Photo », à la place visuelle du rond de la barre (masqué tant que la caméra est prête).
+
+## Push Android (préparé, pas actif)
+- `app.config.ts` : `android.googleServicesFile` est lu dans la variable EAS **de type fichier** `GOOGLE_SERVICES_JSON` (jamais committé : ce dépôt est public). Absente, rien n'est ajouté. C'est une config **native** : elle ne prend effet qu'avec un **nouveau build**, jamais par OTA.
+- `services/push.ts` : après permission, `getExpoPushTokenAsync` puis `register_push_token`. Appelé au démarrage de session (`SessionProvider`) et au premier envoi d'une photo. Tant que le build n'a pas Firebase, l'appel échoue sans bruit et les rappels locaux de `photoNotification.ts` restent la seule voie. Un jeton enregistré (flag `push.jetonEnregistre`) désactive le rappel local programmé.
+- Côté serveur (dépôt `elearn-supabase`) : migration `20261002020000_photo_notification` (type `photo_ready`) et appel de `notify_student` par `photo-correction` quand l'élève a quitté le flux.
+- **Reste à faire :** la variable EAS `GOOGLE_SERVICES_JSON` (fichier du projet Firebase `elearn5`, package `com.ezadrive.elearn`), la clé FCM v1 dans les identifiants EAS, puis un build (`[build]` dans le message du commit).
+- **Sécurité :** le dépôt `elearn_mobile` contient `fcm.json` et `gs.json` (clés privées de comptes de service Firebase `elearn5`) et `elear-445209-*.json` : à révoquer et à ne jamais réutiliser.
+
+## Photos dans R2 (code prêt, pas actif)
+- `elearn-supabase`, `photo-correction/r2.ts` : bucket R2 **privé** par l'API S3 (`aws4fetch`), clés `photos/{élève}/{id}.jpg`, secrets `R2_ENDPOINT`, `R2_PHOTOS_BUCKET`, `R2_PHOTOS_ACCESS_KEY_ID`, `R2_PHOTOS_SECRET_ACCESS_KEY` (noms propres aux photos : le bucket du back-office est public). **Sans ces secrets, la fonction continue d'écrire dans Supabase Storage.** Un préfixe `photos/` distingue R2 de l'ancien stockage.
+- La fonction répond aussi à `POST {action:'urls', ids}` (adresses signées de lecture, R2 ou ancien stockage) ; la purge de 30 jours efface dans les deux.
+- **Changement d'app volontairement à part** (branche `ccr-c5a410c9-uqry2j`) : `photoHistorique.ts` demande les adresses signées à cette fonction au lieu du stockage Supabase. À fusionner **après** le redéploiement de la fonction, sinon l'historique perd ses miniatures.

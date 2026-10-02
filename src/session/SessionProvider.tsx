@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
 import { restaurerHistorique } from '@/services/donneesLocales';
+import { enregistrerJetonPush } from '@/services/push';
 import { synchroniserResultat } from '@/services/miniTest';
 import { synchroniserLues } from '@/services/reviser';
 import { suivreModifications, synchroniserReglages } from '@/services/synchroReglages';
@@ -32,6 +33,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         setEtat({ statut: 'pret', session, erreur: null });
         identifier(session.user.id, { email: session.user.email, invite: session.user.is_anonymous ?? false });
         synchroniserReglages(client, session.user).catch(() => {});
+        void enregistrerJetonPush(client);
         const arreterSuivi = suivreModifications(client);
         const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
           if (actif && nouvelle) {
@@ -46,6 +48,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 // M2-14 : après une connexion (ou reconnexion), la série et les leçons validées reviennent du compte.
                 restaurerHistorique(client).catch(() => {});
                 synchroniserLues(client).catch(() => {});
+                // Nouveau compte sur ce téléphone : son jeton push lui est donné (si la permission l'est déjà).
+                void enregistrerJetonPush(client);
               }, 0);
             }
           }

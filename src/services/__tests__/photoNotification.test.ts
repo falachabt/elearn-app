@@ -2,6 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLE_REFUS_NOTIFICATION, DELAI_NOTIFICATION_S, annulerCorrectionPrete, notifierCorrectionPrete, programmerCorrectionPrete } from '../photoNotification';
 
+const mockJeton = jest.fn();
+const mockEnregistrer = jest.fn();
+jest.mock('../push', () => ({ jetonPushActif: () => mockJeton(), enregistrerJetonPush: () => mockEnregistrer() }));
+jest.mock('../supabase', () => ({ getSupabase: () => ({}) }));
+
 const mockPermission = jest.fn();
 const mockDemander = jest.fn();
 const mockProgrammer = jest.fn();
@@ -22,6 +27,8 @@ beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
   mockProgrammer.mockResolvedValue('id-1');
+  mockJeton.mockResolvedValue(false);
+  mockEnregistrer.mockResolvedValue(false);
 });
 
 describe('photoNotification', () => {
@@ -31,6 +38,20 @@ describe('photoNotification', () => {
     const demande = mockProgrammer.mock.calls[0][0];
     expect(demande.trigger).toMatchObject({ type: 'timeInterval', seconds: DELAI_NOTIFICATION_S });
     expect(demande.content.data).toEqual({ type: 'photo_ready' });
+  });
+
+  it('push actif (jeton déjà enregistré) : pas de rappel local de secours', async () => {
+    mockJeton.mockResolvedValue(true);
+    mockPermission.mockResolvedValue({ granted: true });
+    expect(await programmerCorrectionPrete(textes)).toBeNull();
+    expect(mockProgrammer).not.toHaveBeenCalled();
+  });
+
+  it('permission donnée et jeton enregistré à l’instant : le serveur prévient, pas de rappel local', async () => {
+    mockPermission.mockResolvedValue({ granted: true });
+    mockEnregistrer.mockResolvedValue(true);
+    expect(await programmerCorrectionPrete(textes)).toBeNull();
+    expect(mockProgrammer).not.toHaveBeenCalled();
   });
 
   it('demande la permission une seule fois : un refus est retenu', async () => {
