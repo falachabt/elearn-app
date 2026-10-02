@@ -7,6 +7,7 @@ import {
   identifiantAppareil,
   lireCouts,
   lireReglages,
+  lireSemaine,
   lireSolde,
   type ReglagesCredits,
   suivreSolde,
@@ -24,6 +25,8 @@ type Credits = {
   couts: Partial<Record<ActionCredit, number>>;
   /** Montants du back-office (bienvenue, invité, recharge) ; null tant qu'ils ne sont pas lus. */
   reglages: ReglagesCredits | null;
+  /** Crédits dépensés depuis lundi (registre) : la jauge se vide d'autant. 0 tant que non lu. */
+  depensesSemaine: number;
   /** Dépense côté serveur ; le solde se met à jour aussitôt, puis par le temps réel. */
   depenser: <C = Record<string, unknown>>(action: ActionCredit, objet: string | number) => Promise<Depense<C>>;
   rafraichir: () => Promise<void>;
@@ -33,6 +36,7 @@ const ContexteCredits = createContext<Credits>({
   solde: null,
   couts: {},
   reglages: null,
+  depensesSemaine: 0,
   depenser: () => Promise.reject(new Error('CreditsProvider absent')),
   rafraichir: async () => {},
 });
@@ -56,6 +60,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   );
   const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>({});
   const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
+  const [depenses, setDepenses] = useState<{ pour: string; n: number } | null>(null);
 
   const rafraichir = useCallback(async () => {
     if (!utilisateur) return;
@@ -80,6 +85,21 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     return suivreSolde(getSupabase(), utilisateur, (ligne) => majSolde(utilisateur, (s) => (s ? appliquerTempsReel(s, ligne) : s)));
   }, [utilisateur, invite, majSolde]);
 
+  // Dépenses de la semaine : relues quand le solde bouge (une dépense, un bonus) ou que la semaine change.
+  const total = solde?.total;
+  const prochaine = solde?.prochaineRecharge;
+  useEffect(() => {
+    if (!utilisateur || total === undefined || !prochaine) return;
+    let actif = true;
+    lireSemaine(getSupabase(), prochaine)
+      .then((sem) => actif && setDepenses({ pour: utilisateur, n: sem.depenses }))
+      .catch(() => {});
+    return () => {
+      actif = false;
+    };
+  }, [utilisateur, total, prochaine]);
+  const depensesSemaine = depenses && depenses.pour === utilisateur ? Math.max(0, depenses.n) : 0;
+
   // Retour dans l'app : le solde a pu changer sans que le temps réel ne passe (bonus, récompense, recharge du lundi).
   useEffect(() => {
     if (!utilisateur) return;
@@ -98,7 +118,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     [utilisateur, majSolde],
   );
 
-  const valeur = useMemo(() => ({ solde, couts, reglages, depenser, rafraichir }), [solde, couts, reglages, depenser, rafraichir]);
+  const valeur = useMemo(() => ({ solde, couts, reglages, depensesSemaine, depenser, rafraichir }), [solde, couts, reglages, depensesSemaine, depenser, rafraichir]);
   return <ContexteCredits.Provider value={valeur}>{children}</ContexteCredits.Provider>;
 }
 

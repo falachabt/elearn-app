@@ -53,6 +53,7 @@ const dans = (jours: number) => new Date(Date.now() + jours * 86_400_000).toISOS
 const solde = (surcharge = {}) => ({
   solde: { total: 18, semaine: 18, recompenses: 0, recharge: 25, prochaineRecharge: dans(3), rechargeHebdo: true, illimite: false, illimiteJusqua: null, expirationRecompenses: null, ...surcharge },
   couts: {},
+  depensesSemaine: 0,
   depenser: jest.fn(),
   rafraichir: jest.fn(),
 });
@@ -163,7 +164,7 @@ describe('K1b · détail des crédits', () => {
   beforeEach(() => act(() => changerLangue('fr')));
 
   it('solde, recharge, récompenses et dépenses de la semaine', async () => {
-    mockCredits.mockReturnValue(solde({ total: 18, semaine: 13, recompenses: 5 }));
+    mockCredits.mockReturnValue({ ...solde({ total: 18, semaine: 13, recompenses: 5 }), depensesSemaine: 12 });
     await monter(<DetailCredits />);
     expect(screen.getByTestId('credits-total').props.children).toBe('18');
     expect(screen.getByText('+25')).toBeTruthy();
@@ -171,6 +172,14 @@ describe('K1b · détail des crédits', () => {
     expect(screen.getByText('−12')).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: fr.moi.voirPass }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/offres', params: { declencheur: 'moi' } });
+  });
+
+  it('la jauge de la carte part du total de la semaine et se vide à chaque dépense', async () => {
+    // 35 crédits après 5 dépensés : « 35 / 40 », pas « 35 / 35 ».
+    mockCredits.mockReturnValue({ ...solde({ total: 35, semaine: 35, recharge: 25 }), depensesSemaine: 5 });
+    await monter(<CarteCredits />);
+    expect(screen.getByText('35 / 40')).toBeTruthy();
+    expect(screen.getByTestId('credits-jauge').props.style.width).toBe('87.5%');
   });
 
   it('pass illimité : ∞ sans détail', async () => {

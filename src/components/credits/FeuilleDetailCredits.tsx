@@ -18,7 +18,7 @@ import { useQuand } from '../moi/useQuand';
 export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; onFermer: () => void }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { solde, reglages } = useCredits();
+  const { solde, reglages, depensesSemaine } = useCredits();
   const { session } = useSession();
   const quand = useQuand();
   const invite = !!session?.user.is_anonymous;
@@ -26,8 +26,8 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
     onFermer();
     router.push(chemin as never);
   };
-  const max = solde ? Math.max(solde.recharge, solde.total, 1) : 1;
-  const depenses = solde ? Math.max(0, solde.recharge - solde.semaine) : 0;
+  const max = solde ? Math.max(solde.recharge, solde.total + depensesSemaine, 1) : 1;
+  const depenses = depensesSemaine;
   const lignes: [string, string][] =
     solde && !solde.illimite && !invite
       ? [

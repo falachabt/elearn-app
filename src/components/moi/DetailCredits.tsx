@@ -19,12 +19,12 @@ import { useQuand } from './useQuand';
 export function DetailCredits() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { solde } = useCredits();
+  const { solde, depensesSemaine } = useCredits();
   const quand = useQuand();
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/moi'));
 
-  const max = solde ? Math.max(solde.recharge, solde.total, 1) : 1;
-  const depenses = solde ? Math.max(0, solde.recharge - solde.semaine) : 0;
+  const max = solde ? Math.max(solde.recharge, solde.total + depensesSemaine, 1) : 1;
+  const depenses = depensesSemaine;
   const lignes: [string, string][] = solde
     ? [
         [t('profil.rechargeLundi'), `+${solde.recharge}`],

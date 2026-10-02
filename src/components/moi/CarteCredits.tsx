@@ -31,7 +31,7 @@ export function PastillePass() {
 export function CarteCredits() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { solde } = useCredits();
+  const { solde, depensesSemaine } = useCredits();
   const quand = useQuand();
   const [detail, setDetail] = useState(false);
   const ouvrir = () => setDetail(true);
@@ -45,11 +45,11 @@ export function CarteCredits() {
     );
   }
 
-  // Au-delà de la recharge du lundi (bonus, récompenses, parrainage) il n'y a pas de plafond : on n'écrit plus « 40 / 25 ».
-  const max = Math.max(solde.recharge, solde.total, 1);
+  // La jauge part du total de la semaine (solde + dépenses depuis lundi, au moins la recharge) et se vide à chaque dépense ;
+  // un bonus ou une récompense reçu en cours de semaine l'agrandit. Pas de plafond : le solde peut dépasser la recharge.
+  const max = Math.max(solde.recharge, solde.total + depensesSemaine, 1);
   const rempli = Math.min(1, solde.total / max);
-  const dessus = solde.total > solde.recharge;
-  const etiquette = dessus ? String(solde.total) : t('profil.jauge', { n: solde.total, max });
+  const etiquette = t('profil.jauge', { n: solde.total, max });
   return (
     <>
     <Appui
