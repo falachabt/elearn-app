@@ -16,6 +16,7 @@ import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo }
 
 import { Bouton } from '../Bouton';
 import { useDepenseCredits } from '../credits/useDepenseCredits';
+import { useOuverts } from '../credits/useOuverts';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { useFeedback } from '../useFeedback';
@@ -106,7 +107,10 @@ export function ExerciceLibre() {
   // Plus de crédits : une feuille du bas (« Recharger ») s'ouvre tout de suite, jamais un message au bout d'un long énoncé.
   const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: true });
   const { couts, solde } = useCredits();
-  const prix = { cout: couts.exercise_solution || null, illimite: !!solde?.illimite };
+  // Corrigé déjà ouvert : plus de prix ni d'accord demandé, l'élève le rouvre quand il veut.
+  const acces = useOuverts('exercise_solution', [id]);
+  const dejaOuvert = acces.deja(id);
+  const prix = { cout: dejaOuvert ? null : couts.exercise_solution || null, illimite: !!solde?.illimite };
   const [reseau, setReseau] = useState(false);
   const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
   // Le corrigé ne vient que de depenser_credits (M18-04) ; une fois ouvert, il reste sous la main pour la session.
@@ -114,7 +118,7 @@ export function ExerciceLibre() {
     if (!corriges[id]) {
       let r;
       try {
-        r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id);
+        r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id, { deja: dejaOuvert });
       } catch {
         setReseau(true);
         return;
@@ -123,6 +127,7 @@ export function ExerciceLibre() {
       const contenu = r.contenu;
       setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     }
+    void acces.relire();
     setCorrigeDe(id);
   };
 

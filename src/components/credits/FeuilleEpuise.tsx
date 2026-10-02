@@ -65,6 +65,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
           { libelle: t('credits.recharger'), onPress: aller('/offres?declencheur=limite') },
           { libelle: t('credits.plusTard'), onPress: onFermer, variante: 'secondaire' },
         ]}
+        mention={t('credits.rechargePass')}
       />
     );
   }

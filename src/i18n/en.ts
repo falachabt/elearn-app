@@ -1050,6 +1050,8 @@ export const en: Textes = {
     rechargeTitre: 'Out of credits',
     rechargeTexte: 'You don’t have enough credits left. Top up to keep going.',
     recharger: 'Top up',
+    gratuit: 'Free',
+    rechargePass: 'With a pass, everything is unlimited: justifications, solutions and documents.',
     compteurInvite: '{{n}} · Guest',
     compteurInviteA11y: '{{n}} trial credits. See the details.',
     compteurHorsLigneA11y: '{{n}} credits, last known balance. See the details.',

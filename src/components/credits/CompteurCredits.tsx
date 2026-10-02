@@ -48,10 +48,12 @@ export function CompteurCredits() {
         onPress={() => setDetail(true)}
         rayon={rayon.pilule}
         decalage={2}
-        style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}
+        style={styles.zone}
       >
-        <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
-        <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+        <View style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+          <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+          <Text numberOfLines={1} style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+        </View>
       </Appui>
       <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
     </>
@@ -59,7 +61,10 @@ export function CompteurCredits() {
 }
 
 const styles = StyleSheet.create({
+  // Ne se rétrécit jamais : le titre « Bonjour » cède la place, la pastille garde sa forme.
+  zone: { flexShrink: 0 },
   puce: {
+    flexShrink: 0,
     minHeight: cibleMin - 4,
     flexDirection: 'row',
     alignItems: 'center',

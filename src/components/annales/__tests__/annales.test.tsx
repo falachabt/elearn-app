@@ -32,7 +32,7 @@ jest.mock('expo-router', () => ({
   },
 }));
 jest.mock('expo-web-browser', () => ({ openBrowserAsync: jest.fn(async () => ({ type: 'opened' })) }));
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1' }));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 
 const CATALOGUE = [
@@ -64,6 +64,8 @@ beforeEach(async () => {
         ? { data: [{ folder_id: 'f2', name: 'Séquence 1', subfolders: 0, documents: 1 }], error: null }
         : { data: [{ folder_id: 'f1', name: 'Maths ', subfolders: 1, documents: 3 }, { folder_id: 'f0', name: 'Vide', subfolders: 0, documents: 0 }], error: null };
     if (nom === 'class_documents') return { data: [{ document_id: 'd1', name: 'Sequence 3 Colle╠Çge Prive╠ü.pdf', correction_id: 'd1c' }], error: null };
+    if (nom === 'my_free_documents_left') return { data: 2, error: null };
+    if (nom === 'my_unlocked_refs') return { data: ['d1c'], error: null };
     if (nom === 'exam_paper') return args!.p_paper === 1 ? DETAIL(1, true, true) : args!.p_paper === 2 ? DETAIL(2, true, false) : DETAIL(3, false, false);
     return { data: [], error: null };
   });
@@ -139,6 +141,9 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await monter(<AnnalesDossier />);
     await waitFor(() => expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy());
     expect(screen.getByText('Séquence 1')).toBeTruthy();
+    // Pastilles : documents gratuits restants pour le sujet, « Déjà ouvert » pour la correction déjà consultée.
+    expect(screen.getByText(x.credits.gratuit)).toBeTruthy();
+    expect(screen.getByText(x.credits.dejaOuvert)).toBeTruthy();
     // Lecteur dans l'app, jamais le navigateur.
     await fireEvent.press(screen.getByText('Séquence 3 · Collège Privé'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/d1.pdf', titre: 'Séquence 3 · Collège Privé' } });

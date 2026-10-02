@@ -1051,6 +1051,8 @@ export const fr = {
     rechargeTitre: 'Plus de crédits',
     rechargeTexte: 'Tu n’as plus assez de crédits. Recharge-les pour continuer à en profiter.',
     recharger: 'Recharger',
+    gratuit: 'Gratuit',
+    rechargePass: 'Avec un pass, tout est illimité : justifications, corrigés et documents.',
     compteurInvite: '{{n}} · Invité',
     compteurInviteA11y: '{{n}} crédits d’essai. Voir le détail.',
     compteurHorsLigneA11y: '{{n}} crédits, dernier solde connu. Voir le détail.',

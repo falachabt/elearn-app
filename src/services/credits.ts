@@ -140,6 +140,21 @@ export async function peutVoir(client: Client, action: ActionCredit, objet: stri
   return data === true;
 }
 
+/** Parmi `refs`, ceux déjà ouverts par l'élève (jamais redemandés) : exercice, document, PDF de correction. */
+export async function lireOuverts(client: Client, action: ActionCredit, refs: string[]): Promise<Set<string>> {
+  if (!refs.length) return new Set();
+  const { data, error } = await client.rpc('my_unlocked_refs', { p_action: action, p_refs: refs });
+  if (error) throw error;
+  return new Set(((data ?? []) as string[]).map(String));
+}
+
+/** Documents gratuits qu'il reste à l'élève (credit_settings.free_documents moins ceux déjà ouverts gratuitement). */
+export async function lireDocumentsGratuits(client: Client): Promise<number> {
+  const { data, error } = await client.rpc('my_free_documents_left');
+  if (error) throw error;
+  return typeof data === 'number' ? data : 0;
+}
+
 type LigneTempsReel = { weekly_left: number; reward_left: number; next_refill_at: string; unlimited_until: string | null };
 
 /** Applique une ligne credit_balances reçue en temps réel au solde connu (M18-06). */

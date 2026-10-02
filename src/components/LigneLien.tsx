@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
@@ -7,7 +8,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Appui } from './Appui';
 
 /** Ligne cliquable : icône, titre, détail éventuel et chevron. */
-export function LigneLien({ icone, titre, detail, onPress }: { icone: keyof typeof Ionicons.glyphMap; titre: string; detail?: string; onPress: () => void }) {
+export function LigneLien({ icone, titre, detail, droite, onPress }: { icone: keyof typeof Ionicons.glyphMap; titre: string; detail?: string; /** Pastille à droite du titre (coût, « Déjà ouvert »). */ droite?: ReactNode; onPress: () => void }) {
   const { theme } = useTheme();
   return (
     <Appui accessibilityRole="button" accessibilityLabel={detail ? `${titre}. ${detail}` : titre} onPress={onPress} rayon={rayon.l} ombre={3} decalage={2} couleurOmbre={theme.ombre}>
@@ -17,6 +18,7 @@ export function LigneLien({ icone, titre, detail, onPress }: { icone: keyof type
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
           {detail ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text> : null}
         </View>
+        {droite}
         <Ionicons name="chevron-forward" size={20} color={theme.texte.secondaire} />
       </View>
     </Appui>
