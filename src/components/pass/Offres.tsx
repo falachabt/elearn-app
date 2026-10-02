@@ -72,7 +72,6 @@ export function Offres() {
   const { declencheur } = useLocalSearchParams<{ declencheur?: 'score' | 'moi' | 'limite' }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [choix, setChoix] = useState<Choix>('month');
-  const [bientot, setBientot] = useState(false);
   const { exiger, feuille } = useCompteRequis();
 
   const charger = useCallback(() => {
@@ -95,7 +94,6 @@ export function Offres() {
 
   const choisir = (c: Choix) => {
     setChoix(c);
-    setBientot(false);
     if (c !== 'free') suivre('offer_selected', { offre: c });
   };
 
@@ -103,7 +101,7 @@ export function Offres() {
     etat.statut === 'pret' && offres.length ? (
       <View style={styles.groupe}>
         {choisie ? (
-          <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => exiger('paiement', () => setBientot(true))} retour />
+          <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => exiger('paiement', () => router.push({ pathname: '/offres/payer', params: { offre: choisie.code } }))} retour />
         ) : (
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
@@ -162,7 +160,6 @@ export function Offres() {
             ))}
           </View>
           <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('offres.sansAbonnement')}</Text>
-          {bientot ? <Banniere ton="info" titre={t('offres.bientot')} texte={t('offres.bientotTexte')} /> : null}
         </>
       ) : null}
     </Ecran>

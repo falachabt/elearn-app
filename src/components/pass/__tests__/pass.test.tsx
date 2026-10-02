@@ -82,7 +82,8 @@ describe.each(['fr', 'en'] as const)('E1 · offres (%s)', (langue) => {
     expect(suivre).toHaveBeenCalledWith('paywall_viewed', { declencheur: 'score' });
     expect(screen.getByRole('radio', { name: new RegExp(x.offres.month) }).props.accessibilityState.checked).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: /2.500/ }));
-    expect(screen.getByText(x.offres.bientot)).toBeTruthy();
+    // Le paiement Mobile Money s'ouvre sur son écran, au pass choisi.
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/offres/payer', params: { offre: 'month' } });
   });
 
   it('choisir une offre puis l’envoyer au parent', async () => {
@@ -121,7 +122,7 @@ describe.each(['fr', 'en'] as const)('E1 · offres (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.offres.conseille)).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: /2.500/ }));
     expect(screen.getByText(x.compteRequis.paiementTitre)).toBeTruthy();
-    expect(screen.queryByText(x.offres.bientot)).toBeNull();
+    expect(router.push).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/offres/payer' }));
     expect(suivre).toHaveBeenCalledWith('account_prompt_shown', { raison: 'paiement' });
     await fireEvent.press(screen.getByRole('button', { name: x.sauvegarde.plusTard }));
     expect(screen.queryByText(x.compteRequis.paiementTitre)).toBeNull();
