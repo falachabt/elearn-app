@@ -8,7 +8,7 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireProfil, CLASSES } from '@/services/profil';
-import { contientNumero, envoyerPhoto, masquerNumeros, MATIERES_FIL, poserQuestion } from '@/services/questions';
+import { contientNumero, envoyerPhotos, masquerNumeros, MATIERES_FIL, poserQuestion } from '@/services/questions';
 import { couleurMatiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
@@ -39,7 +39,7 @@ export function PoserQuestion() {
   const [classe, setClasse] = useState<string | null>(null);
   const [photos, setPhotos] = useState<string[]>([]);
   const [envoi, setEnvoi] = useState(false);
-  const [erreur, setErreur] = useState(false);
+  const [erreur, setErreur] = useState<'lourde' | 'autre' | null>(null);
   const [toast, setToast] = useState(false);
   const [quitter, setQuitter] = useState(false);
 
@@ -81,7 +81,7 @@ export function PoserQuestion() {
   const publier = async () => {
     if (!peutPublier || !session) return;
     setEnvoi(true);
-    setErreur(false);
+    setErreur(null);
     try {
       const client = getSupabase();
       let propre = texte;
@@ -91,13 +91,13 @@ export function PoserQuestion() {
         setToast(true);
         setTimeout(() => setToast(false), 2500);
       }
-      const urls = await Promise.all(photos.map((u) => envoyerPhoto(client, u, session.user.id)));
+      const urls = await envoyerPhotos(client, photos, session.user.id);
       const id = await poserQuestion(client, { texte: propre, matiere, classe, photos: urls });
       suivre('question_posted', { matiere: matiere ?? '', photos: urls.length });
       await oublier();
       router.replace({ pathname: '/question', params: { id } });
-    } catch {
-      setErreur(true);
+    } catch (e) {
+      setErreur(e instanceof Error && e.message === 'photo_trop_lourde' ? 'lourde' : 'autre');
     } finally {
       setEnvoi(false);
     }
@@ -152,7 +152,7 @@ export function PoserQuestion() {
         <AlertTriangle size={18} strokeWidth={2} color={theme.texte.principal} />
         <Text style={[typo.legende, styles.flex, { color: theme.texte.principal }]}>{t('questions.avertissementNumeros')}</Text>
       </View>
-      {erreur ? <Banniere ton="erreur" titre={t('questions.publierErreur')} /> : null}
+      {erreur ? <Banniere ton="erreur" titre={t(erreur === 'lourde' ? 'questions.photoLourde' : 'questions.publierErreur')} /> : null}
       {toast ? <Banniere ton="info" titre={t('questions.numeroMasque')} /> : null}
       <Feuille
         ouverte={quitter}

@@ -126,10 +126,14 @@ export function Parametres() {
           <BlocGroupe>
             <ReglageTailleTexte />
           </BlocGroupe>
-          <LigneGroupe icone={Volume2} titre={t('reglages.sons')} sousTitre={t('reglages.sonsDetail')} onPress={() => router.push('/parametres/sons')} />
           <BlocGroupe>
             <Interrupteur libelle={t('parametres.formules')} aide={t('parametres.formulesAide')} valeur={formules} onChange={(x) => void definirRenduFormules(x)} />
           </BlocGroupe>
+        </Groupe>
+
+        <Groupe>
+          <LigneGroupe icone={Volume2} titre={t('reglages.sons')} sousTitre={t('reglages.sonsDetail')} onPress={() => router.push('/parametres/sons')} />
+          <LigneGroupe titre={t('reglages.mission')} valeur={t('reglages.missionValeur', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setFeuille('rythme')} />
         </Groupe>
 
         <TitreSection texte={t('reglages.rappelsDonnees')} />
@@ -142,7 +146,6 @@ export function Parametres() {
               onChange={(x) => void changerRappel(x)}
             />
           </BlocGroupe>
-          <LigneGroupe titre={t('reglages.mission')} valeur={t('reglages.missionValeur', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setFeuille('rythme')} />
           <BlocGroupe>
             <Interrupteur libelle={t('reglages.wifi')} aide={t('reglages.wifiAide')} valeur={wifi} onChange={changerWifi} />
           </BlocGroupe>
