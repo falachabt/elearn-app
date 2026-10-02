@@ -1,12 +1,13 @@
 import { CameraView, useCameraPermissions, type CameraType } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import { router, useFocusEffect } from 'expo-router';
-import { Camera as IconeCamera, Image as IconeImage, RefreshCw, X, Zap, ZapOff } from 'lucide-react-native';
-import { useCallback, useRef, useState } from 'react';
+import { Camera as IconeCamera, History, Image as IconeImage, RefreshCw, X, Zap, ZapOff } from 'lucide-react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { definirDeclencheur } from '@/services/obturateur';
 import { useCredits } from '@/session/CreditsProvider';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
@@ -30,7 +31,7 @@ function BoutonCarre({ libelle, onPress, children, desactive }: { libelle: strin
 }
 
 /** B1 · Appareil photo : ouvert depuis le bouton central ; compteur du jour visible ; galerie, flash, caméra avant/arrière. */
-export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
+export function Camera({ onPhoto, onHistorique }: { onPhoto: (p: PhotoPrise) => void; onHistorique: () => void }) {
   const { t } = useTraduction();
   const { declencher } = useFeedback();
   const { top, bottom } = useSafeAreaInsets();
@@ -63,6 +64,19 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
     }
   };
 
+  // Le bouton Photo de la barre d'onglets prend la photo quand l'appareil est prêt (pas de second bouton dans l'écran).
+  const prendre = useRef(photographier);
+  useEffect(() => {
+    prendre.current = photographier;
+  });
+  const declenchable = !!permission?.granted && prete && !prise;
+  useFocusEffect(
+    useCallback(() => {
+      definirDeclencheur(declenchable ? () => void prendre.current() : null);
+      return () => definirDeclencheur(null);
+    }, [declenchable]),
+  );
+
   const galerie = async () => {
     const r = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.9, allowsEditing: false });
     const a = r.canceled ? null : r.assets[0];
@@ -87,6 +101,9 @@ export function Camera({ onPhoto }: { onPhoto: (p: PhotoPrise) => void }) {
         ) : (
           <View style={styles.vide} />
         )}
+        <BoutonCarre libelle={t('photo.historique')} onPress={onHistorique}>
+          <History size={20} strokeWidth={2.5} color={NOIR} />
+        </BoutonCarre>
         <BoutonCarre libelle={t(flash ? 'photo.flashCoupe' : 'photo.flash')} onPress={() => setFlash((f) => !f)} desactive={!autorisee || cote === 'front'}>
           {flash ? <Zap size={20} strokeWidth={2.5} color={NOIR} fill={palette.soleil[400]} /> : <ZapOff size={20} strokeWidth={2.5} color={NOIR} />}
         </BoutonCarre>

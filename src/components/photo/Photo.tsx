@@ -1,7 +1,8 @@
-import { router } from 'expo-router';
+import { Image } from 'expo-image';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Flag, Share2 } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Share, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, AppState, Share, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import {
@@ -10,6 +11,7 @@ import {
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
 import { texteAvecFormules } from '@/services/blocs';
+import { annulerCorrectionPrete, notifierCorrectionPrete, programmerCorrectionPrete } from '@/services/photoNotification';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -29,12 +31,14 @@ import { useFeedback } from '../useFeedback';
 import { FeuilleEpuise, PuceCout } from '../credits';
 import { Camera, type PhotoPrise } from './Camera';
 import { CadreRecadrage, CADRE_INITIAL } from './CadreRecadrage';
+import { HistoriquePhoto } from './HistoriquePhoto';
 
 type Etat =
   | { ecran: 'camera' }
   | { ecran: 'recadrage'; photo: PhotoPrise; source: 'camera' | 'galerie' }
   | { ecran: 'analyse'; etapes: Progression[] }
-  | { ecran: 'correction'; id: string; correction: CorrectionPhoto; avis?: 'clair' | 'pas_compris' }
+  | { ecran: 'correction'; id: string; correction: CorrectionPhoto; avis?: 'clair' | 'pas_compris'; depuis?: 'historique'; urlPhoto?: string | null }
+  | { ecran: 'historique' }
   | { ecran: 'signaler'; id: string; correction: CorrectionPhoto }
   | { ecran: 'illisible'; raison: string }
   | { ecran: 'erreur'; type: 'hors-ligne' | 'erreur' }
@@ -65,6 +69,16 @@ export function Photo() {
     void lireMatiere().then(setMatiere);
   }, []);
   useEffect(() => () => annule.current?.abort(), []);
+  // Ouverture depuis la notification « correction prête » : /photo?historique=1.
+  const { historique } = useLocalSearchParams<{ historique?: string }>();
+  const [paramVu, setParamVu] = useState(false);
+  if (!!historique !== paramVu) {
+    setParamVu(!!historique);
+    if (historique) setEtat({ ecran: 'historique' });
+  }
+  useEffect(() => {
+    if (historique) router.setParams({ historique: '' });
+  }, [historique]);
 
   const quitter = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const recommencer = () => setEtat({ ecran: 'camera' });
@@ -76,6 +90,8 @@ export function Photo() {
     annule.current = ctrl;
     setEtat({ ecran: 'analyse', etapes: [] });
     suivre('photo_sent', { matiere, source: image.source });
+    // Rappel local si l'élève quitte l'application pendant l'analyse ; annulé dès que la correction arrive devant lui.
+    const rappel = programmerCorrectionPrete({ titre: t('photo.notifTitreProbable'), corps: t('photo.notifCorps'), canal: t('photo.notifCanal') });
     try {
       const issue = await envoyerPhoto(getSupabase(), {
         image: image.base64,
@@ -84,6 +100,9 @@ export function Photo() {
         surEtape: (e) => setEtat((s) => (s.ecran === 'analyse' && !s.etapes.includes(e) ? { ecran: 'analyse', etapes: [...s.etapes, e] } : s)),
       });
       void rafraichir();
+      void rappel.then(annulerCorrectionPrete);
+      // Application en arrière-plan quand la correction arrive : on prévient tout de suite plutôt qu'au délai prévu.
+      if (issue.type === 'fin' && AppState.currentState !== 'active') void notifierCorrectionPrete({ titre: t('photo.notifTitre'), corps: t('photo.notifCorps'), canal: t('photo.notifCanal') });
       if (issue.type === 'fin') {
         declencher('arrive');
         suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: Math.round((Date.now() - debut) / 1000), etapes: issue.correction.etapes.length });
@@ -105,6 +124,7 @@ export function Photo() {
       }
     } catch {
       // Annulé par l'élève : retour au recadrage géré par annuler().
+      void rappel.then(annulerCorrectionPrete);
     }
   };
 
@@ -127,7 +147,7 @@ export function Photo() {
   };
 
   const noter = async (id: string, correction: CorrectionPhoto, avis: 'clair' | 'pas_compris') => {
-    setEtat({ ecran: 'correction', id, correction, avis });
+    setEtat((s) => (s.ecran === 'correction' ? { ...s, avis } : { ecran: 'correction', id, correction, avis }));
     suivre('photo_rated', { avis });
     void noterCorrection(getSupabase(), id, avis).catch(() => {});
     if (avis === 'pas_compris') setEtat({ ecran: 'signaler', id, correction });
@@ -159,7 +179,12 @@ export function Photo() {
   };
 
   // ---- B1 appareil photo
-  if (etat.ecran === 'camera') return <Camera onPhoto={(p) => { setEtat({ ecran: 'recadrage', photo: p, source: 'camera' }); setCadre(CADRE_INITIAL); }} />;
+  if (etat.ecran === 'camera') return <Camera onPhoto={(p) => { setEtat({ ecran: 'recadrage', photo: p, source: 'camera' }); setCadre(CADRE_INITIAL); }} onHistorique={() => setEtat({ ecran: 'historique' })} />;
+
+  // ---- Historique des corrections
+  if (etat.ecran === 'historique') {
+    return <HistoriquePhoto onFermer={recommencer} onOuvrir={(e) => setEtat({ ecran: 'correction', id: e.id, correction: e.correction, avis: e.avis ?? undefined, depuis: 'historique', urlPhoto: e.urlPhoto })} />;
+  }
 
   // ---- B2 recadrage
   if (etat.ecran === 'recadrage') {
@@ -229,7 +254,7 @@ export function Photo() {
 
   // ---- B4 correction
   if (etat.ecran === 'correction') {
-    const { id, correction: c, avis } = etat;
+    const { id, correction: c, avis, depuis, urlPhoto } = etat;
     const k = sombre ? corrige.dark : corrige.light;
     const deja = signale.has(id);
     return (
@@ -237,7 +262,7 @@ export function Photo() {
         insetBas={false}
         entete={
           <>
-            <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={quitter} />
+            <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={depuis ? () => setEtat({ ecran: 'historique' }) : quitter} />
             <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('photo.analyse')}</Text>
             <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c)} decalage={0} rayon={rayon.m}>
               <View style={[styles.iconeBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}><Share2 size={18} strokeWidth={2.25} color={theme.texte.principal} /></View>
@@ -258,6 +283,12 @@ export function Photo() {
           )
         }
       >
+        {urlPhoto ? (
+          <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.taPhoto')}</Text>
+            <Image source={{ uri: urlPhoto }} style={[styles.photoEnvoyee, { borderColor: theme.bord.fort }]} contentFit="contain" accessibilityIgnoresInvertColors />
+          </View>
+        ) : null}
         <View style={[styles.carte, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.chercheEtiquette')}</Text>
           <Blocs blocs={blocsDepuisTexte(c.enonce)} />
@@ -382,6 +413,7 @@ const styles = StyleSheet.create({
   etiquetteJaune: { alignSelf: 'flex-start', borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[1] },
   etape: { flexDirection: 'row', gap: espace[4] },
   numero: { width: 28, height: 28, borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
+  photoEnvoyee: { width: '100%', height: 220, borderWidth: bord.fin, borderRadius: rayon.m },
   resultat: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[5], gap: espace[3] },
   avis: { flexDirection: 'row', gap: espace[4] },
   options: { gap: espace[3] },

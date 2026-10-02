@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { forwardRef } from 'react';
 import { Pressable, StyleSheet, Text, View, type PressableProps } from 'react-native';
 
+import { declencherPhoto, useDeclencheurActif } from '@/services/obturateur';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, typo } from '@/theme/theme';
 
@@ -24,10 +25,14 @@ export const Onglet = forwardRef<View, Props>(function Onglet(
 ) {
   const { theme } = useTheme();
   const couleur = isFocused ? theme.marque.forte : theme.texte.secondaire;
+  // Appareil photo affiché et prêt : ce bouton prend la photo, son rond est remplacé par le déclencheur de l'écran.
+  const declencheurActif = useDeclencheurActif();
+  const prise = !!central && !!isFocused && declencheurActif;
 
   return (
     <Pressable
       {...reste}
+      onPress={prise ? () => void declencherPhoto() : reste.onPress}
       ref={ref}
       accessibilityRole="tab"
       accessibilityLabel={badge ? `${libelle}, ${badge}` : libelle}
@@ -35,7 +40,7 @@ export const Onglet = forwardRef<View, Props>(function Onglet(
       style={styles.onglet}
     >
       {central ? (
-        <View style={[styles.photo, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+        <View style={[styles.photo, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }, prise && styles.photoMasque]}>
           <Ionicons name={icone} size={26} color={theme.texte.surCouleur} />
         </View>
       ) : (
@@ -61,5 +66,6 @@ const styles = StyleSheet.create({
   badge: { position: 'absolute', top: -6, right: -12, minWidth: 18, height: 18, paddingHorizontal: 4, borderRadius: 9, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   badgeTexte: { fontSize: 10, lineHeight: 12 },
   onglet: { flex: 1, minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'flex-end', paddingVertical: 6, gap: 2 },
+  photoMasque: { opacity: 0 },
   photo: { width: 52, height: 52, borderRadius: 26, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', marginTop: -22 },
 });

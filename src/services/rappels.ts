@@ -1,8 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
+import { router } from 'expo-router';
 import { Platform } from 'react-native';
 
 import { suivre } from './analytics';
+import { TYPE_CORRECTION_PRETE } from './photoNotification';
 
 /** Heure du rappel quotidien par défaut (M9-01 : 19 h–21 h, heure locale). */
 export const HEURE_RAPPEL = 19;
@@ -93,6 +95,8 @@ export function suivreOuvertures(): () => void {
   const abonnement = Notifications.addNotificationResponseReceivedListener((r) => {
     const type = r.notification.request.content.data?.type;
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
+    // Correction par photo prête : l'historique s'ouvre sur l'onglet Photo.
+    if (type === TYPE_CORRECTION_PRETE) router.push({ pathname: '/photo', params: { historique: '1' } });
   });
   return () => abonnement.remove();
 }
