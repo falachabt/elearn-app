@@ -19,38 +19,44 @@ type Props<C> = {
 export function useOuverturePass<C = Record<string, unknown>>({ action, objet, active, onOuvert }: Props<C>) {
   const { solde, depenser } = useCredits();
   const passActif = !!solde?.illimite;
-  const [etat, setEtat] = useState<'inactif' | 'chargement' | 'erreur'>('inactif');
+  const cle = `${action}:${String(objet)}:${active ? 'actif' : 'inactif'}:${passActif ? 'pass' : 'credits'}`;
+  const [resultat, setResultat] = useState<{ cle: string; etat: 'termine' | 'erreur' } | null>(null);
   const depenserRef = useRef(depenser);
   const onOuvertRef = useRef(onOuvert);
-  depenserRef.current = depenser;
-  onOuvertRef.current = onOuvert;
+
+  // Les callbacks peuvent être recréés à chaque rendu par les écrans appelants.
+  // On les synchronise dans un effet pour garder une seule requête par contenu,
+  // sans lire ni modifier une ref pendant le rendu.
+  useEffect(() => {
+    depenserRef.current = depenser;
+    onOuvertRef.current = onOuvert;
+  }, [depenser, onOuvert]);
 
   useEffect(() => {
     if (!active || !passActif) {
-      setEtat('inactif');
       return;
     }
 
     let actif = true;
-    setEtat('chargement');
     void depenserRef.current<C>(action, objet)
       .then((r: Depense<C>) => {
         if (!actif) return;
         if (!r.contenu) {
-          setEtat('erreur');
+          setResultat({ cle, etat: 'erreur' });
           return;
         }
         onOuvertRef.current(r.contenu, objet);
-        setEtat('inactif');
+        setResultat({ cle, etat: 'termine' });
       })
       .catch(() => {
-        if (actif) setEtat('erreur');
+        if (actif) setResultat({ cle, etat: 'erreur' });
       });
 
     return () => {
       actif = false;
     };
-  }, [action, active, objet, passActif]);
+  }, [action, active, objet, passActif, cle]);
 
-  return { passActif, enCours: etat === 'chargement', erreur: etat === 'erreur' };
+  const etat = resultat?.cle === cle ? resultat.etat : null;
+  return { passActif, enCours: active && passActif && etat === null, erreur: etat === 'erreur' };
 }
