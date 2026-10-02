@@ -81,3 +81,12 @@ Retour de Benny sur photo : trop d'espace noir sous le déclencheur. Même cause
 - `elearn-supabase`, `photo-correction/r2.ts` : bucket R2 **privé** par l'API S3 (`aws4fetch`), clés `photos/{élève}/{id}.jpg`, secrets `R2_ENDPOINT`, `R2_PHOTOS_BUCKET`, `R2_PHOTOS_ACCESS_KEY_ID`, `R2_PHOTOS_SECRET_ACCESS_KEY` (noms propres aux photos : le bucket du back-office est public). **Sans ces secrets, la fonction continue d'écrire dans Supabase Storage.** Un préfixe `photos/` distingue R2 de l'ancien stockage.
 - La fonction répond aussi à `POST {action:'urls', ids}` (adresses signées de lecture, R2 ou ancien stockage) ; la purge de 30 jours efface dans les deux.
 - **Changement d'app volontairement à part** (branche `ccr-c5a410c9-uqry2j`) : `photoHistorique.ts` demande les adresses signées à cette fonction au lieu du stockage Supabase. À fusionner **après** le redéploiement de la fonction, sinon l'historique perd ses miniatures.
+
+---
+
+# Suite, 2 octobre 2026 (fin de matinée) : mise en production
+
+- **Base de production :** migration `20261002020000_photo_notification` appliquée (type `photo_ready` accepté), historique de migrations aligné.
+- **Fonction `photo-correction` v3 déployée** (`verify_jwt` désactivé, authentification interne) : stockage R2 si les secrets existent, action `urls`, notification `photo_ready` quand l'élève a quitté l'écran.
+- **App :** la branche d'historique via la fonction est fusionnée (`photoHistorique.ts` demande les adresses signées à `photo-correction`).
+- **Pas encore actif :** R2 (bucket privé, jeton limité au bucket et 4 secrets Supabase `R2_*` à créer : tant qu'ils manquent, les photos restent dans Supabase Storage) ; push Android (variable EAS `GOOGLE_SERVICES_JSON`, clé FCM v1, nouveau build).
