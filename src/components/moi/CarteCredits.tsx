@@ -45,13 +45,16 @@ export function CarteCredits() {
     );
   }
 
+  // Au-delà de la recharge du lundi (bonus, récompenses, parrainage) il n'y a pas de plafond : on n'écrit plus « 40 / 25 ».
   const max = Math.max(solde.recharge, solde.total, 1);
   const rempli = Math.min(1, solde.total / max);
+  const dessus = solde.total > solde.recharge;
+  const etiquette = dessus ? String(solde.total) : t('profil.jauge', { n: solde.total, max });
   return (
     <>
     <Appui
       accessibilityRole="button"
-      accessibilityLabel={solde.illimite ? t('profil.illimites') : `${t('profil.mesCredits')}. ${t('profil.jauge', { n: solde.total, max })}`}
+      accessibilityLabel={solde.illimite ? t('profil.illimites') : `${t('profil.mesCredits')}. ${etiquette}`}
       onPress={ouvrir}
       rayon={rayon.l}
       ombre={ombre.m}
@@ -66,7 +69,7 @@ export function CarteCredits() {
           ) : (
             <View style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
               <Zap size={14} strokeWidth={2.5} color={theme.texte.principal} />
-              <Text style={[typo.donnee, { color: theme.texte.principal }]}>{t('profil.jauge', { n: solde.total, max })}</Text>
+              <Text style={[typo.donnee, { color: theme.texte.principal }]}>{etiquette}</Text>
             </View>
           )}
         </View>

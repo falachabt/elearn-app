@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { AppState } from 'react-native';
 
 import {
   appliquerTempsReel,
@@ -78,6 +79,15 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       .catch(() => {});
     return suivreSolde(getSupabase(), utilisateur, (ligne) => majSolde(utilisateur, (s) => (s ? appliquerTempsReel(s, ligne) : s)));
   }, [utilisateur, invite, majSolde]);
+
+  // Retour dans l'app : le solde a pu changer sans que le temps réel ne passe (bonus, récompense, recharge du lundi).
+  useEffect(() => {
+    if (!utilisateur) return;
+    const abonnement = AppState.addEventListener('change', (etat) => {
+      if (etat === 'active') void rafraichir().catch(() => {});
+    });
+    return () => abonnement.remove();
+  }, [utilisateur, rafraichir]);
 
   const depenser = useCallback(
     async <C,>(action: ActionCredit, objet: string | number) => {

@@ -27,7 +27,7 @@ beforeEach(async () => {
   jest.clearAllMocks();
   await AsyncStorage.clear();
   mockSession.mockReturnValue(compte);
-  mockCredits.mockReturnValue({ solde: { total: 40 }, reglages: { bienvenue: 40, invite: 5, recharge: 25 } });
+  mockCredits.mockReturnValue({ solde: { total: 40 }, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, rafraichir: jest.fn(async () => {}) });
   mockLigne.mockReturnValue([{ id: 7, delta: 40 }]);
 });
 

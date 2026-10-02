@@ -27,7 +27,7 @@ export function BienvenueCredits() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
-  const { solde, reglages } = useCredits();
+  const { solde, reglages, rafraichir } = useCredits();
   const { top, bottom } = useSafeAreaInsets();
   const [bonus, setBonus] = useState<{ id: string; montant: number } | null>(null);
   const verifie = useRef<string | null>(null);
@@ -55,6 +55,7 @@ export function BienvenueCredits() {
   const recuperer = () => {
     if (utilisateur && bonus) void AsyncStorage.setItem(`${CLE_BIENVENUE_VUE}.${utilisateur}`, bonus.id).catch(() => {});
     setBonus(null);
+    void rafraichir().catch(() => {});
   };
 
   if (!bonus) return null;
