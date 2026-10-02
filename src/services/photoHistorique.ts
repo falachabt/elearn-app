@@ -5,8 +5,7 @@ import type { CorrectionPhoto } from './photo';
 /** Historique des corrections par photo (M3) : lu dans `photo_corrections`, dont la RLS ne montre que les lignes de l'élève. */
 export const PAGE_HISTORIQUE = 20;
 /** Les adresses signées des photos durent une heure : on les demande à l'ouverture de l'écran, jamais en copie. */
-export const DUREE_URL_PHOTO_S = 3600;
-const BUCKET = 'photo-corrections';
+export const FONCTION_PHOTO = 'photo-correction';
 
 export type EntreeHistorique = {
   id: string;
@@ -17,7 +16,7 @@ export type EntreeHistorique = {
   urlPhoto: string | null;
 };
 
-type Client = Pick<SupabaseClient, 'from' | 'storage'>;
+type Client = Pick<SupabaseClient, 'from' | 'functions'>;
 
 type Ligne = { id: string; created_at: string; result: unknown; feedback: string | null; image_path: string | null };
 
@@ -55,12 +54,13 @@ export async function lireHistorique(client: Client, avant?: string): Promise<{ 
   const lignes = (data ?? []) as Ligne[];
   const page = lignes.slice(0, PAGE_HISTORIQUE);
 
-  const chemins = page.map((l) => l.image_path).filter((c): c is string => !!c);
-  const urls = new Map<string, string>();
-  if (chemins.length) {
+  // La fonction signe les adresses (Cloudflare R2, ou l'ancien stockage Supabase) pour les photos de l'élève seulement.
+  const ids = page.filter((l) => !!l.image_path).map((l) => l.id);
+  let urls: Record<string, string> = {};
+  if (ids.length) {
     try {
-      const { data: signees } = await client.storage.from(BUCKET).createSignedUrls(chemins, DUREE_URL_PHOTO_S);
-      for (const s of signees ?? []) if (s.path && s.signedUrl) urls.set(s.path, s.signedUrl);
+      const { data: reponse } = await client.functions.invoke(FONCTION_PHOTO, { body: { action: 'urls', ids } });
+      if (reponse?.urls && typeof reponse.urls === 'object') urls = reponse.urls as Record<string, string>;
     } catch {
       // Photos illisibles pour l'instant : les corrections restent consultables sans la photo.
     }
@@ -75,7 +75,7 @@ export async function lireHistorique(client: Client, avant?: string): Promise<{ 
         creeLe: l.created_at,
         correction,
         avis: l.feedback === 'clair' || l.feedback === 'pas_compris' ? l.feedback : null,
-        urlPhoto: l.image_path ? (urls.get(l.image_path) ?? null) : null,
+        urlPhoto: urls[l.id] ?? null,
       },
     ];
   });
