@@ -71,6 +71,23 @@ export async function activerRappel(textes: TextesRappel, heure = HEURE_RAPPEL, 
   return true;
 }
 
+/** État du rappel quotidien pour Paramètres (H2) : actif ou non, et son heure. */
+export async function lireRappel(): Promise<{ actif: boolean; heure: number }> {
+  const etat = await lireJson<EtatRappel>(CLE_RAPPEL);
+  return { actif: etat?.statut === 'actif', heure: etat?.heure ?? HEURE_RAPPEL };
+}
+
+/** Coupe le rappel quotidien depuis Paramètres : plus de notification programmée, et on ne le repropose plus. */
+export async function desactiverRappel(maintenant = new Date()): Promise<void> {
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync();
+  } catch {
+    // Rien de programmé (web, permission jamais donnée).
+  }
+  await AsyncStorage.setItem(CLE_RAPPEL, JSON.stringify({ statut: 'refuse', le: maintenant.toISOString() } satisfies EtatRappel));
+  suivre('notification_setting_changed', { rappel: false });
+}
+
 /** Suit l'ouverture des notifications (M9, `notification_opened`). Renvoie la fonction d'arrêt. */
 export function suivreOuvertures(): () => void {
   const abonnement = Notifications.addNotificationResponseReceivedListener((r) => {

@@ -140,3 +140,30 @@ export function suivreSolde(client: Client, utilisateur: string, surChangement: 
     client.removeChannel(canal);
   };
 }
+
+/** Seuil de confirmation : à partir de ce coût, une feuille demande l'accord avant de dépenser (M18-07). */
+export const SEUIL_CONFIRMATION = 3;
+
+/** Délai jusqu'à une date, découpé pour l'affichage du compte à rebours (« 2 j 5 h », « 3 h 20 min »). */
+export function delaiJusqua(cible: string, maintenant = new Date()): { jours: number; heures: number; minutes: number } {
+  const ms = Math.max(0, new Date(cible).getTime() - maintenant.getTime());
+  const minutesTotales = Math.ceil(ms / 60000);
+  return { jours: Math.floor(minutesTotales / 1440), heures: Math.floor((minutesTotales % 1440) / 60), minutes: minutesTotales % 60 };
+}
+
+export type Semaine = { recharge: number; bienvenue: number; recompenses: number; depenses: number };
+
+/** Répartition de la semaine en cours (K1b) : recharges, bonus, récompenses et dépenses depuis lundi. */
+export async function lireSemaine(client: Client, prochaineRecharge: string): Promise<Semaine> {
+  const debut = new Date(new Date(prochaineRecharge).getTime() - 7 * 24 * 3600 * 1000).toISOString();
+  const { data, error } = await client.from('credit_ledger').select('delta, kind').gte('created_at', debut);
+  if (error) throw error;
+  const s: Semaine = { recharge: 0, bienvenue: 0, recompenses: 0, depenses: 0 };
+  for (const l of (data ?? []) as { delta: number; kind: string }[]) {
+    if (l.kind === 'weekly' || l.kind === 'guest') s.recharge += l.delta;
+    else if (l.kind === 'welcome') s.bienvenue += l.delta;
+    else if (l.kind === 'reward') s.recompenses += l.delta;
+    else if (l.kind === 'spend' || l.kind === 'refund') s.depenses -= l.delta;
+  }
+  return s;
+}

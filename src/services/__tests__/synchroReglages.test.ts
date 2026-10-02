@@ -49,7 +49,7 @@ it('compte plus récent (autre téléphone) : appliqué ici sans être renvoyé,
   };
   const c = client();
   expect(await synchroniserReglages(c as never, { user_metadata: { reglages: distants } })).toBe('applique');
-  expect(lirePreferences()).toEqual(distants.preferences);
+  expect(lirePreferences()).toEqual({ ...distants.preferences, volume: 'normal' }); // réglages d’une ancienne version : volume inchangé
   expect(i18n.language).toBe('en');
   expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'medecine', pays: 'CM', concours: null, termine: true });
   expect(await lireMajReglages()).toBe(distants.maj);

@@ -31,7 +31,8 @@ export function tirerMiniTest(niveau?: string | null, aleatoire: () => number = 
   });
 }
 
-export type BilanChapitre = { chapitre: string; matiere: Matiere; bonnes: number; total: number };
+/** `libelleMatiere` : nom de la matière venu du contenu (mission du jour), lu par Ma progression (C5). */
+export type BilanChapitre = { chapitre: string; matiere: Matiere; libelleMatiere?: string; bonnes: number; total: number };
 
 export type ResultatMiniTest = {
   niveau: string;
@@ -53,7 +54,7 @@ export function calculerResultat(questions: readonly QuestionTiree[], reponses: 
   questions.forEach((q, i) => {
     const juste = reponses[i] === q.bonne;
     if (juste) score++;
-    const b = parChapitre.get(q.chapitre) ?? { chapitre: q.chapitre, matiere: q.matiere, bonnes: 0, total: 0 };
+    const b = parChapitre.get(q.chapitre) ?? { chapitre: q.chapitre, matiere: q.matiere, ...(q.libelleMatiere ? { libelleMatiere: q.libelleMatiere } : {}), bonnes: 0, total: 0 };
     b.total++;
     if (juste) b.bonnes++;
     parChapitre.set(q.chapitre, b);

@@ -33,7 +33,7 @@ beforeEach(async () => {
 
 describe('préférences', () => {
   it('sons, vibrations activés et animations complètes par défaut', async () => {
-    expect(await chargerPreferences()).toEqual({ sons: true, vibrations: true, animationsReduites: false });
+    expect(await chargerPreferences()).toEqual({ sons: true, vibrations: true, animationsReduites: false, volume: 'normal' });
   });
 
   it('mémorise un réglage et le retrouve après redémarrage, sans compte', async () => {

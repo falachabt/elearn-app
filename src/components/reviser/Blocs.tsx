@@ -27,8 +27,12 @@ function couleursCorrige(sombre: boolean): Couleurs {
   };
 }
 
-function useCouleurs(surJaune?: boolean): Couleurs {
+/** Carte de couleur vive (émeraude) : tout en encre, formules comprises (le bleu manque de contraste, guide v27). */
+const couleursEncre = (): Couleurs => ({ texte: palette.encre[1000], lien: palette.encre[1000], note: palette.encre[1000], bord: palette.encre[1000], fondCode: palette.papier[0], enteteTableau: palette.papier[0], citation: palette.encre[1000] });
+
+function useCouleurs(surJaune?: boolean, surCouleur?: boolean): Couleurs {
   const { theme, sombre } = useTheme();
+  if (surCouleur) return couleursEncre();
   if (surJaune) return couleursCorrige(sombre);
   return { texte: theme.texte.principal, lien: theme.texte.lien, note: theme.texte.secondaire, bord: theme.bord.fort, fondCode: theme.fond.creux, enteteTableau: theme.marque.douce, citation: theme.marque.principale };
 }
@@ -193,9 +197,9 @@ function Segments({ segments, style, lien }: { segments: Segment[]; style: TextS
 }
 
 /** Affichage des leçons (D2) : titres, paragraphes, listes, tableaux, images, formules en ligne. `surJaune` : corrigé d'exercice. */
-export function Blocs({ blocs, surJaune }: { blocs: Bloc[]; surJaune?: boolean }) {
+export function Blocs({ blocs, surJaune, surCouleur }: { blocs: Bloc[]; surJaune?: boolean; surCouleur?: boolean }) {
   const { theme } = useTheme();
-  const c = useCouleurs(surJaune);
+  const c = useCouleurs(surJaune, surCouleur);
   const texte = { ...typo.texte, color: c.texte };
   return (
     <View style={styles.pile}>
