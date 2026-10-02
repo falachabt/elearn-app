@@ -37,7 +37,7 @@ function useCouleurs(surJaune?: boolean, surCouleur?: boolean): Couleurs {
   return { texte: theme.texte.principal, lien: theme.texte.lien, note: theme.texte.secondaire, bord: theme.bord.fort, fondCode: theme.fond.creux, enteteTableau: theme.marque.douce, citation: theme.marque.principale };
 }
 
-/** Réglage d'essai « formules dessinées » (Paramètres), lu une fois au premier affichage. */
+/** Réglage « formules dessinées » (Paramètres), lu une fois au premier affichage. */
 export function useRenduFormules(): boolean {
   const rendu = useSyncExternalStore(abonnerRenduFormules, lireRenduFormules, lireRenduFormules);
   useEffect(() => {
