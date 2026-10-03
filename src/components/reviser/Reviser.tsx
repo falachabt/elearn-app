@@ -1,4 +1,4 @@
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -66,14 +66,17 @@ const LIBELLES = { cours: 'annales.ongletCours', entrainement: 'entrainement.ong
 /** D1 · Réviser (M5-01) : les matières de la classe en couleur, avec la part déjà lue ; l'entraînement libre (M5-09) et les annales (M6-01) à côté. */
 export function Reviser() {
   const { t } = useTraduction();
+  const { onglet: ongletParam } = useLocalSearchParams<{ onglet?: string }>();
   const { theme } = useTheme();
-  const [onglet, setOnglet] = useState<Onglet>('cours');
+  const [onglet, setOnglet] = useState<Onglet>(() => ongletParam === 'entrainement' ? 'entrainement' : 'cours');
   // Un onglet visité reste monté (caché) : y revenir ne redessine rien, ni ne relance son chargement.
-  const [vus, setVus] = useState<ReadonlySet<Onglet>>(() => new Set<Onglet>(['cours']));
-  const choisir = (o: Onglet) => {
+  const [vus, setVus] = useState<ReadonlySet<Onglet>>(() => new Set<Onglet>(['cours', ...(ongletParam === 'entrainement' ? ['entrainement' as const] : [])]));
+  const choisir = useCallback((o: Onglet) => {
+    if (ongletParam) router.setParams({ onglet: '' });
     setOnglet(o);
     setVus((v) => (v.has(o) ? v : new Set([...v, o])));
-  };
+  }, [ongletParam]);
+  const ongletVisible: Onglet = ongletParam === 'cours' || ongletParam === 'entrainement' ? ongletParam : onglet;
   const [etat, setEtat] = useEtatMemorise<Etat>('reviser', { statut: 'chargement' });
   const pret = useSessionPrete();
 
@@ -100,17 +103,17 @@ export function Reviser() {
   return (
     <Ecran insetBas={false}>
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
-      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={onglet} onChange={choisir} />
-      <Panneau actif={onglet === 'annales'} monte={vus.has('annales')}>
+      <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={ongletVisible} onChange={choisir} />
+      <Panneau actif={ongletVisible === 'annales'} monte={vus.has('annales')}>
         <Annales />
       </Panneau>
-      <Panneau actif={onglet === 'cours'} monte={vus.has('cours')}>
+      <Panneau actif={ongletVisible === 'cours'} monte={vus.has('cours')}>
         {etat.statut === 'chargement' ? <Squelettes /> : null}
         {etat.statut === 'erreur' ? <ErreurChargement onReessayer={reessayer} /> : null}
         {etat.statut === 'pret' && !etat.matieres.length ? <Banniere ton="info" titre={t('reviser.vide')} /> : null}
         {etat.statut === 'pret' && etat.matieres.length ? <GrilleMatieres matieres={etat.matieres} lues={etat.lues} /> : null}
       </Panneau>
-      <Panneau actif={onglet === 'entrainement'} monte={vus.has('entrainement')}>
+      <Panneau actif={ongletVisible === 'entrainement'} monte={vus.has('entrainement') || ongletVisible === 'entrainement'}>
         {etat.statut === 'chargement' ? <Squelettes /> : null}
         {etat.statut === 'erreur' ? <ErreurChargement onReessayer={reessayer} /> : null}
         {etat.statut === 'pret' ? <Entrainement matieres={etat.matieres} cle={etat.cle} /> : null}

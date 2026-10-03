@@ -1,4 +1,4 @@
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2 } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -36,6 +36,7 @@ const NOM_LANGUE: Record<Langue, string> = { fr: 'Français', en: 'English' };
  */
 export function Parametres() {
   const { t, langue, changerLangue } = useTraduction();
+  const { assistant } = useLocalSearchParams<{ assistant?: string }>();
   const { theme } = useTheme();
   const { session, statut } = useSession();
   const formules = useRenduFormules();
@@ -48,7 +49,7 @@ export function Parametres() {
   const [wifi, setWifi] = useState(false);
   const [taille, setTaille] = useState<number | null>(null);
   const [suppression, setSuppression] = useState(false);
-  const [feuille, setFeuille] = useState<'langue' | 'rythme' | 'deconnexion' | null>(null);
+  const [feuille, setFeuille] = useState<'langue' | 'rythme' | 'deconnexion' | null>(assistant === 'mission' ? 'rythme' : null);
   const [enCours, setEnCours] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
 
@@ -70,6 +71,12 @@ export function Parametres() {
         actif = false;
       };
     }, [connecte]),
+  );
+
+  useFocusEffect(
+    useCallback(() => {
+      if (assistant === 'mission') router.setParams({ assistant: '' });
+    }, [assistant]),
   );
 
   const changerRappel = async (v: boolean) => {

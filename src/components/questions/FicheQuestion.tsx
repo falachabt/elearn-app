@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { useEtatMemorise } from '@/services/memoire';
 import { ajouterSortie, appliquerVote, choisirMeilleure, envoyerSortie, envoyerSortiesEnAttente, fil, lireQuestion, lireReponses, lireSorties, parentPourReponse, retirerSortie, voter, type Question, type Reponse, type Sortie } from '@/services/questions';
 import { getSupabase } from '@/services/supabase';
@@ -74,7 +75,10 @@ export function FicheQuestion() {
     // Au retour sur l'écran : renvoie les réponses restées en file (hors ligne ou échec).
     void envoyerSortiesEnAttente(getSupabase(), id, userId).then(async (n) => {
       await rafraichirSorties();
-      if (n) await charger().then((r) => setEtat({ statut: 'pret', ...r })).catch(() => undefined);
+      if (n) {
+        await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
+        await charger().then((r) => setEtat({ statut: 'pret', ...r })).catch(() => undefined);
+      }
     });
   }, [pret, userId, id, charger, rafraichirSorties, setEtat]);
 
@@ -99,13 +103,15 @@ export function FicheQuestion() {
       const sortie = await ajouterSortie({ questionId: id, texte, parentId: parentPourReponse(reponses, cible?.id ?? null), photo });
       setCible(null);
       await rafraichirSorties();
-      await envoyerSortie(getSupabase(), sortie, userId);
+      const envoyee = await envoyerSortie(getSupabase(), sortie, userId);
+      if (envoyee) await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
       await rafraichirSorties();
       void rafraichir();
     });
 
   const reessayer = async (s: Sortie) => {
-    await envoyerSortie(getSupabase(), s, userId);
+    const envoyee = await envoyerSortie(getSupabase(), s, userId);
+    if (envoyee) await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
     await rafraichirSorties();
     void rafraichir();
   };

@@ -3,6 +3,7 @@ import { Check, X } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { choixFaux, lireSondage, pourcentage, voterSondage, type Sondage } from '@/services/questions';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -40,6 +41,7 @@ export function CarteSondage({ postId }: { postId: string }) {
       setEnvoi(true);
       try {
         await voterSondage(getSupabase(), postId, choix);
+        await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
         await charger();
       } catch {
         setErreur(true);

@@ -21,7 +21,8 @@ import { cranPour } from '../TailleTexte';
 
 const mockSession = jest.fn();
 jest.mock('expo-router', () => ({
-  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
+  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), setParams: jest.fn(), canGoBack: jest.fn(() => true) },
+  useLocalSearchParams: () => ({}),
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
     useEffect(f, [f]);

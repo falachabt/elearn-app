@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Share, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import {
   MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
   signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
@@ -106,6 +107,7 @@ export function Photo() {
       if (issue.type === 'fin') {
         declencher('arrive');
         suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: Math.round((Date.now() - debut) / 1000), etapes: issue.correction.etapes.length });
+        await noterActionConfiguration('correction').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
         setEtat({ ecran: 'correction', id: issue.id, correction: issue.correction });
       } else if (issue.type === 'illisible') {
         suivre('photo_unreadable', {});

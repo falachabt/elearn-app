@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { suivre } from '@/services/analytics';
 import { apresDerniereLecon } from '@/services/entrainement';
 import { enregistrerCorrection, lireCorrection, statuts as statutsDe, type StatutQuestion } from '@/services/correction';
@@ -88,6 +89,7 @@ export function QuizLecon() {
         onTermine={async ({ questions, reponses }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
+          await noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
           if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
           await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
           setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });

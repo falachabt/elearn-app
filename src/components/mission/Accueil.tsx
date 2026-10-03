@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -11,14 +11,6 @@ import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
 import { identiteDe } from '@/services/identite';
-import {
-  aVuInvitationHorsLigne,
-  ecouterHorsLigne,
-  lireEtatHorsLigne,
-  modeHorsLigneActif,
-  noterInvitationHorsLigneVue,
-  type EtatHorsLigne,
-} from '@/services/horsLigne';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -30,6 +22,7 @@ import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
+import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
@@ -65,34 +58,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
-  const [horsLigne, setHorsLigne] = useState<EtatHorsLigne | null>(null);
-  const propositionLancee = useRef(false);
-
-  useFocusEffect(
-    useCallback(() => {
-      if (!pret || pret === 'hors-ligne') return;
-      let actif = true;
-      void (async () => {
-        const [vue, actifHorsLigne, etatHorsLigne] = await Promise.all([
-          aVuInvitationHorsLigne(),
-          modeHorsLigneActif(),
-          lireEtatHorsLigne(),
-        ]);
-        if (!actif) return;
-        setHorsLigne(etatHorsLigne);
-        if (!vue && !actifHorsLigne && !propositionLancee.current) {
-          propositionLancee.current = true;
-          await noterInvitationHorsLigneVue();
-          router.push({ pathname: '/hors-ligne', params: { source: 'accueil' } });
-        }
-      })();
-      const arreter = ecouterHorsLigne((e) => actif && setHorsLigne(e));
-      return () => {
-        actif = false;
-        arreter();
-      };
-    }, [pret]),
-  );
 
   // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
   useFocusEffect(
@@ -146,7 +111,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const surVert = theme.texte.surCouleur;
 
   return (
-    <>
+    <View style={styles.racine}>
     <Ecran insetBas={false}>
       <Apparition>
         <View style={styles.entete}>
@@ -195,12 +160,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Carte>
       </Apparition>
 
-      {horsLigne ? (
-        <Apparition delai={90}>
-          <CarteHorsLigne etat={horsLigne} />
-        </Apparition>
-      ) : null}
-
       <Reprise />
 
       <Apparition delai={120}>
@@ -218,38 +177,14 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Appui>
       </Apparition>
     </Ecran>
+    <AssistantConfiguration />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
-    </>
-  );
-}
-
-function CarteHorsLigne({ etat }: { etat: EtatHorsLigne }) {
-  const { t } = useTraduction();
-  const { theme } = useTheme();
-  const etapes = Object.values(etat.progression);
-  const total = etapes.reduce((n, e) => n + e.total, 0);
-  const fait = etapes.reduce((n, e) => n + e.faites + e.echecs, 0);
-  const pourcentage = total ? Math.floor(fait * 100 / total) : 100;
-  return (
-    <Appui accessibilityRole="button" accessibilityLabel={t('horsLigne.titre')} onPress={() => router.push('/hors-ligne')} rayon={rayon.l} ombre={4} decalage={3} couleurOmbre={theme.ombre}>
-      <View style={[styles.horsLigne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-        <View style={[styles.horsLigneIcone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
-          <Ionicons name={etat.statut === 'termine' ? 'checkmark' : 'cloud-download-outline'} size={20} color={theme.marque.forte} />
-        </View>
-        <View style={styles.flex}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t(etat.statut === 'termine' ? 'horsLigne.termineTitre' : 'horsLigne.carteTitre')}</Text>
-          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{`${pourcentage}% · ${t('horsLigne.carteDetail')}`}</Text>
-          <View style={[styles.horsLigneRail, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-            <View style={[styles.horsLigneRemplissage, { width: `${pourcentage}%`, backgroundColor: theme.marque.principale }]} />
-          </View>
-        </View>
-        <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} />
-      </View>
-    </Appui>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  racine: { flex: 1 },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   flex: { flex: 1 },
   droite: { marginLeft: 'auto' },
@@ -261,8 +196,4 @@ const styles = StyleSheet.create({
   tag: { height: HAUTEUR_ETIQUETTE, maxWidth: '100%', justifyContent: 'center', paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.s },
   photo: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
-  horsLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
-  horsLigneIcone: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
-  horsLigneRail: { height: 10, borderWidth: bord.fin, borderRadius: rayon.pilule, overflow: 'hidden', marginTop: espace[2] },
-  horsLigneRemplissage: { height: '100%', borderRadius: rayon.pilule },
 });

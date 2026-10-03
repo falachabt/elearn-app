@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { suivre } from '@/services/analytics';
 import { lireProfil, CLASSES } from '@/services/profil';
 import { contientNumero, envoyerPhotos, masquerNumeros, MATIERES_FIL, poserQuestion } from '@/services/questions';
@@ -94,6 +95,7 @@ export function PoserQuestion() {
       const urls = await envoyerPhotos(client, photos, session.user.id);
       const id = await poserQuestion(client, { texte: propre, matiere, classe, photos: urls });
       suivre('question_posted', { matiere: matiere ?? '', photos: urls.length });
+      await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
       await oublier();
       router.replace({ pathname: '/question', params: { id } });
     } catch (e) {
