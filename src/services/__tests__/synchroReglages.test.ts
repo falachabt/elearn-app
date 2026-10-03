@@ -82,11 +82,11 @@ it('synchronise aussi le thème, la taille du texte et le mode Wi-Fi', async () 
 it('remplace les styles partagés quand la taille du texte change pour redessiner les titres', async () => {
   const styleAvant = typo.h1;
 
-  await definirTaille(90);
+  await definirTaille(100);
 
   expect(typo.h1).not.toBe(styleAvant);
-  expect(typo.h1.fontSize).toBe(23.4);
-  expect(typo.h1.lineHeight).toBe(29);
+  expect(typo.h1.fontSize).toBe(26);
+  expect(typo.h1.lineHeight).toBe(32);
 });
 
 it('sans session : rien n’est envoyé', async () => {
