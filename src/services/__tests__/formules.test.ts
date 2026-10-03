@@ -29,9 +29,9 @@ describe('formuleSvg', () => {
 });
 
 describe('réglage', () => {
-  it('désactivé par défaut, mémorisé', async () => {
+  it('activé par défaut, mémorisé', async () => {
     await AsyncStorage.clear();
-    expect(await chargerRenduFormules()).toBe(false);
+    expect(await chargerRenduFormules()).toBe(true);
     await definirRenduFormules(true);
     expect(lireRenduFormules()).toBe(true);
     expect(await AsyncStorage.getItem(CLE_FORMULES)).toBe('rendu');
