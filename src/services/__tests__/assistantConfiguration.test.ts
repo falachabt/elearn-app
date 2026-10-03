@@ -17,7 +17,7 @@ jest.mock('../supabase', () => ({
 beforeEach(async () => {
   await AsyncStorage.clear();
   jest.clearAllMocks();
-  mockGetSession.mockResolvedValue({ data: { session: { user: { id: 'user-1' } } }, error: null });
+  mockGetSession.mockResolvedValue({ data: { session: { user: { id: 'user-1', is_anonymous: false } } }, error: null });
   mockFrom.mockImplementation(() => {
     const query = {
       select: () => query,
@@ -46,7 +46,14 @@ it('reflète les actions réellement terminées', async () => {
     exercice: true,
     correction: true,
     fil: true,
+    sauvegarde: true,
   });
+});
+
+it('ne marque pas la progression comme sauvegardée pour un compte invité', async () => {
+  mockGetSession.mockResolvedValue({ data: { session: { user: { id: 'guest-1', is_anonymous: true } } }, error: null });
+
+  await expect(lireProgressionAssistant()).resolves.toMatchObject({ sauvegarde: false });
 });
 
 it('reconnaît les corrections IA et la participation au fil effectuées avant cet assistant', async () => {

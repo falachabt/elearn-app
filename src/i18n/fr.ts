@@ -28,6 +28,7 @@ export const fr = {
       exercice: 'Terminer un exercice',
       correction: 'Demander une correction à l’IA',
       fil: 'Participer au fil des questions',
+      sauvegarde: 'Sauvegarder ma progression',
     },
   },
   erreur: {
@@ -1120,6 +1121,8 @@ export const fr = {
     questionTexte: 'Pour protéger les élèves, il faut un compte pour poser une question ou répondre. Lire est libre.',
     rappelTitre: 'Ne perds pas ta progression',
     rappelTexte: 'Tu utilises l’app en invité. Si tu changes de téléphone ou supprimes l’app, ta série et tes résultats sont perdus. Crée ton compte en un appui, c’est gratuit.',
+    configurationTitre: 'Sauvegarde ta progression',
+    configurationTexte: 'Crée ou connecte un compte pour retrouver ta progression si tu changes de téléphone ou réinstalles l’application.',
   },
   rythme: {
     introTitre: 'Ta mission revient chaque jour',

@@ -27,6 +27,7 @@ export const en: Textes = {
       exercice: 'Finish an exercise',
       correction: 'Ask AI to correct an exercise',
       fil: 'Join the questions feed',
+      sauvegarde: 'Save my progress',
     },
   },
   erreur: {
@@ -1119,6 +1120,8 @@ export const en: Textes = {
     questionTexte: 'To protect students, you need an account to ask or answer questions. Reading is free.',
     rappelTitre: 'Don’t lose your progress',
     rappelTexte: 'You are using the app as a guest. If you change phones or delete the app, your streak and results are lost. Create your account in one tap, it’s free.',
+    configurationTitre: 'Save your progress',
+    configurationTexte: 'Create or connect an account to keep your progress if you change phones or reinstall the app.',
   },
   rythme: {
     introTitre: 'Your mission comes back every day',

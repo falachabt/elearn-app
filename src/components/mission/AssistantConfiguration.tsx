@@ -12,11 +12,12 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { FeuilleCompte } from '../FeuilleCompte';
 import { useFeedback } from '../useFeedback';
 
 type Etape = keyof ProgressionAssistant;
 
-const ETAPES: Etape[] = ['mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil'];
+const ETAPES: Etape[] = ['mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'sauvegarde'];
 const LIBELLES: Record<Etape, CleTexte> = {
   mission: 'configuration.etapes.mission',
   lecon: 'configuration.etapes.lecon',
@@ -24,6 +25,7 @@ const LIBELLES: Record<Etape, CleTexte> = {
   exercice: 'configuration.etapes.exercice',
   correction: 'configuration.etapes.correction',
   fil: 'configuration.etapes.fil',
+  sauvegarde: 'configuration.etapes.sauvegarde',
 };
 
 function Fond(props: BottomSheetBackdropProps) {
@@ -37,8 +39,10 @@ export function AssistantConfiguration() {
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
   const [ouverte, setOuverte] = useState(false);
+  const [sauvegardeOuverte, setSauvegardeOuverte] = useState(false);
   const feuille = useRef<BottomSheetModal>(null);
   const presente = useRef(false);
+  const apresFermeture = useRef<(() => void) | null>(null);
   const deplacement = useSharedValue(0);
 
   const actualiser = useCallback(() => {
@@ -85,6 +89,11 @@ export function AssistantConfiguration() {
   const animation = useAnimatedStyle(() => ({ transform: [{ translateY: deplacement.value }] }));
 
   const ouvrirEtape = (etape: Etape) => {
+    if (etape === 'sauvegarde' && !progression?.sauvegarde) {
+      apresFermeture.current = () => setSauvegardeOuverte(true);
+      fermerFeuille();
+      return;
+    }
     fermerFeuille();
     switch (etape) {
       case 'mission':
@@ -102,6 +111,10 @@ export function AssistantConfiguration() {
         break;
       case 'fil':
         router.push('/questions');
+        break;
+      case 'sauvegarde':
+        if (progression?.sauvegarde) router.push('/moi');
+        else setSauvegardeOuverte(true);
         break;
     }
   };
@@ -140,6 +153,9 @@ export function AssistantConfiguration() {
         onDismiss={() => {
           presente.current = false;
           setOuverte(false);
+          const action = apresFermeture.current;
+          apresFermeture.current = null;
+          action?.();
         }}
         handleIndicatorStyle={{ backgroundColor: theme.bord.fort }}
         backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
@@ -204,12 +220,22 @@ export function AssistantConfiguration() {
           </BottomSheetScrollView>
         </BottomSheetView>
       </BottomSheetModal>
+      <FeuilleCompte
+        raison={sauvegardeOuverte ? 'configuration' : null}
+        onFermer={() => setSauvegardeOuverte(false)}
+        onCompte={() => {
+          setSauvegardeOuverte(false);
+          void lireProgressionAssistant().then(setProgression).catch((erreur: unknown) => {
+            console.warn('Impossible d’actualiser la sauvegarde du compte.', erreur);
+          });
+        }}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  position: { position: 'absolute', alignItems: 'flex-end', right: espace[5], bottom: espace[2] },
+  position: { position: 'absolute', alignItems: 'flex-end', right: espace[5], bottom: espace[5] },
   bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   badge: { minWidth: 32, height: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   feuille: { flex: 1, paddingHorizontal: espace[5], paddingBottom: espace[3], gap: espace[4] },

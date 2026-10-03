@@ -49,7 +49,7 @@ export function Parametres() {
   const [wifi, setWifi] = useState(false);
   const [taille, setTaille] = useState<number | null>(null);
   const [suppression, setSuppression] = useState(false);
-  const [feuille, setFeuille] = useState<'langue' | 'rythme' | 'deconnexion' | null>(assistant === 'mission' ? 'rythme' : null);
+  const [feuille, setFeuille] = useState<'langue' | 'rythme' | 'deconnexion' | null>(null);
   const [enCours, setEnCours] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
 
@@ -61,6 +61,10 @@ export function Parametres() {
         setRappel(r);
         setWifi(w);
         setTaille(n);
+        if (assistant === 'mission') {
+          setFeuille('rythme');
+          router.setParams({ assistant: '' });
+        }
       });
       if (connecte) {
         lireDemandeSuppression(getSupabase())
@@ -70,13 +74,7 @@ export function Parametres() {
       return () => {
         actif = false;
       };
-    }, [connecte]),
-  );
-
-  useFocusEffect(
-    useCallback(() => {
-      if (assistant === 'mission') router.setParams({ assistant: '' });
-    }, [assistant]),
+    }, [assistant, connecte]),
   );
 
   const changerRappel = async (v: boolean) => {

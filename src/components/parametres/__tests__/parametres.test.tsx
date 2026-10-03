@@ -11,6 +11,7 @@ import { fr } from '@/i18n/fr';
 import { appliquerTaille, CLE_TAILLE, CLE_THEME, lireAffichage, reinitialiserAffichage } from '@/services/affichage';
 import { CLE_WIFI_SEULEMENT } from '@/services/donnees';
 import { CLE_RAPPEL } from '@/services/rappels';
+import { CLE_RYTHME } from '@/services/rythme';
 import { jouerMoment, lirePreferences, reinitialiserRetoursPourTests } from '@/services/retours';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { themes, typo } from '@/theme/theme';
@@ -20,9 +21,10 @@ import { SonsVibrations } from '../SonsVibrations';
 import { cranPour } from '../TailleTexte';
 
 const mockSession = jest.fn();
+const mockParams = jest.fn(() => ({}));
 jest.mock('expo-router', () => ({
   router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), setParams: jest.fn(), canGoBack: jest.fn(() => true) },
-  useLocalSearchParams: () => ({}),
+  useLocalSearchParams: () => mockParams(),
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
     useEffect(f, [f]);
@@ -77,6 +79,7 @@ beforeEach(async () => {
   reinitialiserAffichage();
   await AsyncStorage.clear();
   mockSession.mockReturnValue(membre);
+  mockParams.mockReturnValue({});
   jest.spyOn(AccessibilityInfo, 'isReduceMotionEnabled').mockResolvedValue(false);
 });
 afterAll(async () => {
@@ -151,6 +154,17 @@ describe('H2 · réglages', () => {
     await flush();
     expect(screen.getByTestId('temoin').props.children).toBe('sombre:sombre');
     expect(lireAffichage().taille).toBe(120);
+  });
+
+  it('ouvre la mission depuis Bien démarrer avec la dernière valeur enregistrée', async () => {
+    await AsyncStorage.setItem(CLE_RYTHME, '35');
+    mockParams.mockReturnValue({ assistant: 'mission' });
+
+    await monter(<Parametres />);
+    await flush();
+
+    expect(screen.getByText('35')).toBeTruthy();
+    expect(router.setParams).toHaveBeenCalledWith({ assistant: '' });
   });
 
   it('rappel de mission : activé avec la permission, coupé ensuite', async () => {

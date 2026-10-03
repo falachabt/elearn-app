@@ -16,6 +16,7 @@ export type ProgressionAssistant = {
   exercice: boolean;
   correction: boolean;
   fil: boolean;
+  sauvegarde: boolean;
 };
 
 export async function noterActionConfiguration(action: ActionSuivie): Promise<void> {
@@ -26,16 +27,17 @@ export async function noterActionConfiguration(action: ActionSuivie): Promise<vo
 }
 
 export async function lireProgressionAssistant(): Promise<ProgressionAssistant> {
-  const [rythme, lecons, entrainement, actionsBrut] = await Promise.all([
+  const [rythme, lecons, entrainement, actionsBrut, compte] = await Promise.all([
     lireRythme(),
     lireLues(),
     lireProgressionEntrainement(),
     AsyncStorage.getItem(CLE_ACTIONS),
+    lireEtatCompte(),
   ]);
   const actions = actionsBrut ? (JSON.parse(actionsBrut) as Partial<Record<ActionSuivie, boolean>>) : {};
   const [correctionDistante, filDistant] = await Promise.all([
-    actions.correction ? Promise.resolve(false) : actionDistante('correction'),
-    actions.fil ? Promise.resolve(false) : actionDistante('fil'),
+    actions.correction ? Promise.resolve(false) : actionDistante('correction', compte.id),
+    actions.fil ? Promise.resolve(false) : actionDistante('fil', compte.id),
   ]);
 
   return {
@@ -45,17 +47,27 @@ export async function lireProgressionAssistant(): Promise<ProgressionAssistant> 
     exercice: Object.values(entrainement.exercises_done).some(Boolean),
     correction: !!actions.correction || correctionDistante,
     fil: !!actions.fil || filDistant,
+    sauvegarde: compte.sauvegarde,
   };
 }
 
-async function actionDistante(action: 'correction' | 'fil'): Promise<boolean> {
+async function lireEtatCompte(): Promise<{ id: string | null; sauvegarde: boolean }> {
   try {
     const client = getSupabase();
     const { data: session, error: erreurSession } = await client.auth.getSession();
     if (erreurSession) throw erreurSession;
-    const userId = session.session?.user.id;
-    if (!userId) return false;
+    const user = session.session?.user;
+    return { id: user?.id ?? null, sauvegarde: !!user && !user.is_anonymous };
+  } catch (erreur) {
+    console.warn('Impossible de vérifier si la progression est sauvegardée sur un compte.', erreur);
+    return { id: null, sauvegarde: false };
+  }
+}
 
+async function actionDistante(action: 'correction' | 'fil', userId: string | null): Promise<boolean> {
+  try {
+    if (!userId) return false;
+    const client = getSupabase();
     if (action === 'correction') {
       const { data, error } = await client
         .from('photo_corrections')
