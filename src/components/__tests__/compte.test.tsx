@@ -18,6 +18,7 @@ import { Bienvenue, ChoixClasse, PremierResultat } from '../ParcoursArrivee';
 const mockSession = jest.fn();
 const mockCreer = jest.fn();
 const mockConnecter = jest.fn();
+const mockGoogle = jest.fn();
 const mockDeconnecter = jest.fn();
 const mockFacebook = jest.fn();
 
@@ -38,10 +39,37 @@ jest.mock('@/services/compte', () => ({
   creerCompteEmail: (...a: unknown[]) => mockCreer(...a),
   connecterEmail: (...a: unknown[]) => mockConnecter(...a),
   deconnecter: (...a: unknown[]) => mockDeconnecter(...a),
-  connecterGoogle: jest.fn(),
+  connecterGoogle: (...a: unknown[]) => mockGoogle(...a),
   connecterFacebook: (...a: unknown[]) => mockFacebook(...a),
   connecterApple: jest.fn(),
 }));
+jest.mock('../Feuille', () => {
+  const React = jest.requireActual<typeof import('react')>('react');
+  const { Text, View } = jest.requireActual<typeof import('react-native')>('react-native');
+  return {
+    Feuille: ({
+      ouverte,
+      titre,
+      texte,
+      mention,
+      actions,
+    }: {
+      ouverte: boolean;
+      titre: string;
+      texte?: string;
+      mention?: string;
+      actions: { libelle: string; onPress: () => void }[];
+    }) =>
+      ouverte
+        ? React.createElement(View, null, [
+            React.createElement(Text, { key: 'titre' }, titre),
+            texte ? React.createElement(Text, { key: 'texte' }, texte) : null,
+            mention ? React.createElement(Text, { key: 'mention' }, mention) : null,
+            ...actions.map((action) => React.createElement(Text, { key: action.libelle, accessibilityRole: 'button', onPress: action.onPress }, action.libelle)),
+          ])
+        : null,
+  };
+});
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
 const monter = (n: React.ReactElement) =>
@@ -123,6 +151,28 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
     await waitFor(() => expect(mockConnecter).toHaveBeenCalledWith({}, { email: 'amina@exemple.com', motDePasse: 'motdepasse1' }));
   });
 
+  it('connexion Google depuis l’écran de connexion : demande une connexion directe, même avec une session invitée', async () => {
+    mockGoogle.mockResolvedValue(undefined);
+    await monter(<FormulaireCompte mode="connexion" />);
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' }));
+    await waitFor(() => expect(mockGoogle).toHaveBeenCalledWith({}, {}, null, { rattacher: undefined, connexionDirecte: true }));
+  });
+
+  it('doublon Google en création : propose la connexion dans une feuille, sans la lancer automatiquement', async () => {
+    mockGoogle.mockRejectedValueOnce({ code: 'identity_already_exists' }).mockResolvedValueOnce(undefined);
+    await monter(<FormulaireCompte mode="creer" />);
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' }));
+
+    const titre = langue === 'fr' ? 'Tu as déjà un compte Elearn' : 'You already have an Elearn account';
+    await waitFor(() => expect(screen.getByText(titre)).toBeTruthy());
+    expect(mockGoogle).toHaveBeenCalledTimes(1);
+
+    const connexion = langue === 'fr' ? 'Se connecter avec Google' : 'Sign in with Google';
+    await fireEvent.press(screen.getByText(connexion));
+    await waitFor(() => expect(mockGoogle).toHaveBeenCalledTimes(2));
+    expect(mockGoogle).toHaveBeenLastCalledWith({}, {}, '', { connexionDirecte: true });
+  });
+
   it('Google, Apple (iOS) et Facebook (une fois activé) sont proposés', async () => {
     mockFacebook.mockResolvedValue(undefined);
     await monter(<FormulaireCompte mode="creer" />);
@@ -194,10 +244,19 @@ describe.each(['fr', 'en'] as const)('parcours d’arrivée (%s)', (langue) => {
   it('A2 : classe 3e et pays présélectionnés, enregistrés à Continuer', async () => {
     await monter(<ChoixClasse />);
     expect(screen.getByRole('button', { name: '3e' }).props.accessibilityState.selected).toBe(true);
+    expect(screen.getByRole('button', { name: langue === 'fr' ? 'Français' : 'English' }).props.accessibilityState.selected).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: '5e' }));
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer' : 'Continue' }));
     await waitFor(() => expect(router.push).toHaveBeenCalledWith('/premier-resultat'));
     expect(await lireProfil()).toEqual({ type: 'eleve', niveau: '5e', pays: 'CM', concours: null, termine: false });
+  });
+
+  it('A2 : changer la langue met à jour et mémorise la préférence', async () => {
+    await monter(<ChoixClasse />);
+    await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'English' : 'Français' }));
+    await waitFor(() => expect(screen.getByRole('button', { name: langue === 'fr' ? 'English' : 'Français' }).props.accessibilityState.selected).toBe(true));
+    expect(screen.getByRole('button', { name: langue === 'fr' ? 'Continue' : 'Continuer' })).toBeTruthy();
+    expect(await AsyncStorage.getItem('langue')).toBe(langue === 'fr' ? 'en' : 'fr');
   });
 
   it('A3 : explorer termine le parcours et ouvre les onglets', async () => {

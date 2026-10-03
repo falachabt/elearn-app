@@ -76,7 +76,7 @@ export function Bienvenue() {
 
 /** A2 · Classe (ou concours) et pays, avec valeurs par défaut (M1-01, M1-02). */
 export function ChoixClasse() {
-  const { t } = useTraduction();
+  const { t, langue, changerLangue } = useTraduction();
   const { theme } = useTheme();
   const params = useLocalSearchParams<{ type?: string; modifier?: string }>();
   // H1 : depuis Moi, « Changer de classe » rouvre cet écran avec le profil actuel et revient à Moi.
@@ -196,6 +196,19 @@ export function ChoixClasse() {
           ) : null}
         </View>
       </Carte>
+      {!modifier ? (
+        <View style={styles.groupe}>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('classe.langueQuestion')}</Text>
+          <View accessibilityRole="radiogroup" accessibilityLabel={t('classe.langueQuestion')} style={styles.pastilles}>
+            {([
+              ['fr', 'Français'],
+              ['en', 'English'],
+            ] as const).map(([code, nom]) => (
+              <Pastille key={code} libelle={nom} actif={langue === code} onPress={() => void changerLangue(code)} />
+            ))}
+          </View>
+        </View>
+      ) : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('classe.aide')}</Text>
     </Ecran>
   );

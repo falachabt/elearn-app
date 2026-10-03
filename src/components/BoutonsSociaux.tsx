@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import type { FournisseurOAuth } from '@/services/compte';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { appleAffiche, depsApple, depsOAuth, facebookAffiche } from '@/services/authNatif';
@@ -10,6 +11,7 @@ import type { CleTexte } from '@/i18n';
 import { espace } from '@/theme/theme';
 
 import { Bouton } from './Bouton';
+import { Feuille } from './Feuille';
 import { LogoGoogle } from './LogoGoogle';
 
 type Props = {
@@ -19,20 +21,27 @@ type Props = {
   desactive?: boolean;
   /** Ajoute le fournisseur au compte déjà connecté (A7, ancien compte). */
   rattacher?: boolean;
+  /** Ouvre directement une session existante au lieu de lier le fournisseur au compte invité courant. */
+  connexionDirecte?: boolean;
 };
 
 /** Google et Facebook (OAuth Supabase) et Apple (iOS seulement). Les deux ne ferment jamais l'écran sur erreur : `onErreur` affiche un message lisible. */
-export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, rattacher }: Props) {
+export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, rattacher, connexionDirecte }: Props) {
   const mode = { rattacher };
   const { t } = useTraduction();
   const [enCours, setEnCours] = useState(false);
+  const [compteExistant, setCompteExistant] = useState<FournisseurOAuth | null>(null);
 
-  const lancer = (action: () => Promise<void>) => async () => {
+  const lancer = (action: () => Promise<void>, fournisseur?: FournisseurOAuth) => async () => {
     setEnCours(true);
     try {
       await action();
       onSucces();
     } catch (e) {
+      if (!rattacher && !connexionDirecte && fournisseur && (e as { code?: string } | null)?.code === 'identity_already_exists') {
+        setCompteExistant(fournisseur);
+        return;
+      }
       const cle = cleErreur(e);
       const x = e as { code?: string; message?: string } | null;
       suivre('connexion_echec', { cle, code: x?.code ?? null, message: (x?.message ?? '').slice(0, 200) });
@@ -43,15 +52,40 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
   };
 
   return (
-    <View style={styles.groupe}>
-      <Bouton variante="secondaire" icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, mode))} />
-      {appleAffiche ? (
-        <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, mode))} />
-      ) : null}
-      {facebookAffiche ? (
-        <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, mode))} />
-      ) : null}
-    </View>
+    <>
+      <View style={styles.groupe}>
+        <Bouton variante="secondaire" icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
+        {appleAffiche ? (
+          <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
+        ) : null}
+        {facebookAffiche ? (
+          <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'facebook')} />
+        ) : null}
+      </View>
+      <Feuille
+        ouverte={compteExistant !== null}
+        onFermer={() => setCompteExistant(null)}
+        icone="person-circle-outline"
+        titre={t('compte.compteExistantTitre')}
+        texte={t('compte.compteExistantTexte')}
+        mention={t('compte.compteExistantMention')}
+        actions={[
+          {
+            libelle: t(compteExistant === 'facebook' ? 'compte.connecterFacebook' : 'compte.connecterGoogle'),
+            onPress: () => {
+              const fournisseur = compteExistant;
+              setCompteExistant(null);
+              if (fournisseur === 'facebook') {
+                void lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { connexionDirecte: true }))();
+              } else if (fournisseur === 'google') {
+                void lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { connexionDirecte: true }))();
+              }
+            },
+          },
+          { libelle: t('compte.continuerInvite'), variante: 'texte', onPress: () => setCompteExistant(null) },
+        ]}
+      />
+    </>
   );
 }
 

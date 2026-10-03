@@ -164,6 +164,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
           <BoutonsSociaux
             codeParrainage={creation ? code : null}
             desactive={enCours}
+            connexionDirecte={!creation}
             onErreur={surErreurSociale}
             onSucces={() => void fini()}
           />

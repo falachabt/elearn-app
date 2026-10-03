@@ -151,27 +151,31 @@ describe('Google', () => {
     expect(c.auth.updateUser).not.toHaveBeenCalled();
   });
 
-  it('invité dont le compte Google existe déjà : connexion directe à ce compte', async () => {
+  it('invité dont le compte Google existe déjà : signale le doublon sans ouvrir une seconde authentification', async () => {
     const c = faux();
     const ouvrirNavigateur = jest
       .fn()
-      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists&error_description=x' })
-      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?code=g2' });
-    const pause = jest.fn(async () => undefined);
-    await connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur, pause });
-    expect(pause).toHaveBeenCalledTimes(1);
-    expect(pause.mock.invocationCallOrder[0]).toBeLessThan(ouvrirNavigateur.mock.invocationCallOrder[1]);
+      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists&error_description=x' });
+    await expect(connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur })).rejects.toMatchObject({
+      cle: 'compte.erreurs.dejaLie',
+      code: 'identity_already_exists',
+    });
+    expect(ouvrirNavigateur).toHaveBeenCalledTimes(1);
     expect(c.auth.linkIdentity).toHaveBeenCalled();
-    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
-    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('g2');
-    expect(suivre).toHaveBeenCalledWith('connexion_reussie', { methode: 'google' });
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
   });
 
-  it('rattachement désactivé côté Supabase : connexion directe', async () => {
+  it('rattachement désactivé côté Supabase : remonte une erreur sans changer de compte', async () => {
     const c = faux(invite, { linkIdentity: jest.fn().mockResolvedValue({ data: {}, error: { code: 'manual_linking_disabled' } }) });
-    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g3' }));
-    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
-    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('g3');
+    await expect(connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g3' }))).rejects.toMatchObject({ code: 'manual_linking_disabled' });
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
+  it('connexion depuis l’écran « déjà un compte » : signInWithOAuth même si une session invitée existe', async () => {
+    const c = faux();
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g4' }), null, { connexionDirecte: true });
+    expect(c.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'google', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    expect(c.auth.linkIdentity).not.toHaveBeenCalled();
   });
 
   it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {

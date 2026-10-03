@@ -16,10 +16,13 @@ export type FournisseurOAuth = 'google' | 'facebook';
 
 /** Erreur que l'écran sait traduire : `cle` est une clé de texte. */
 export class ErreurCompte extends Error {
-  constructor(readonly cle: CleTexte, options?: { cause?: unknown }) {
+  constructor(readonly cle: CleTexte, options?: { cause?: unknown; code?: string }) {
     super(cle, options);
     this.name = 'ErreurCompte';
+    this.code = options?.code;
   }
+
+  readonly code?: string;
 }
 
 export const MOT_DE_PASSE_MIN = 8;
@@ -106,30 +109,17 @@ export async function deconnecter(client: Client): Promise<void> {
 export type DepsOAuth = {
   ouvrirNavigateur: (url: string, redirection: string) => Promise<{ type: string; url?: string }>;
   urlRedirection: string;
-  /** Laisse la fenêtre d'authentification précédente se fermer avant d'en rouvrir une (Android). */
-  pause?: () => Promise<void>;
 };
 
 /**
- * Google ou Facebook via OAuth Supabase. Un invité garde son compte : `linkIdentity` rattache le fournisseur à
- * l'utilisateur anonyme (nécessite `enable_manual_linking` côté Supabase) ; sinon connexion classique.
+ * Google ou Facebook via OAuth Supabase. Par défaut un invité rattache le fournisseur à son compte pour garder sa
+ * progression. L'écran de connexion peut demander une connexion directe au compte existant.
  */
 export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<void> {
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
-  let rattachement = conversionInvite || !!mode.rattacher;
-  try {
-    await parcoursOAuth(client, fournisseur, deps, rattachement);
-  } catch (e) {
-    // Invité dont le compte Google existe déjà (ancien compte), ou rattachement désactivé côté Supabase :
-    // on ouvre directement ce compte. La progression gardée sur le téléphone reste ; celle du serveur n'est pas fusionnée.
-    const code = (e as { code?: string }).code;
-    if (!conversionInvite || mode.rattacher || (code !== 'identity_already_exists' && code !== 'manual_linking_disabled')) throw e;
-    suivre('oauth_repli_connexion', { methode: fournisseur, raison: code });
-    rattachement = false;
-    await deps.pause?.();
-    await parcoursOAuth(client, fournisseur, deps, false);
-  }
+  const rattachement = !mode.connexionDirecte && (conversionInvite || !!mode.rattacher);
+  await parcoursOAuth(client, fournisseur, deps, rattachement);
   const avecCode = await rattacherCode(client, codeParrainage);
   if (rattachement && conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
   else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
@@ -149,7 +139,8 @@ async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps
   if (resultat.type !== 'success' || !resultat.url) throw new ErreurCompte('compte.erreurs.annule');
 
   const { code, accessToken, refreshToken, erreur, codeErreur } = lireRetourOAuth(resultat.url);
-  if (codeErreur === 'identity_already_exists' || codeErreur === 'manual_linking_disabled') throw Object.assign(new ErreurCompte('compte.erreurs.dejaLie'), { code: codeErreur });
+  if (codeErreur === 'identity_already_exists') throw new ErreurCompte('compte.erreurs.dejaLie', { code: codeErreur });
+  if (codeErreur === 'manual_linking_disabled') throw new ErreurCompte('compte.erreurs.methodeIndisponible', { code: codeErreur });
   if (erreur) throw new ErreurCompte('compte.erreurs.annule');
   if (code) {
     const { error: e } = await client.auth.exchangeCodeForSession(code);
@@ -162,8 +153,8 @@ async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps
   }
 }
 
-/** `rattacher` : ajoute le fournisseur au compte connecté (ancien compte, A7) au lieu d'ouvrir une autre session. */
-export type ModeSocial = { rattacher?: boolean };
+/** `rattacher` lie le fournisseur au compte courant ; `connexionDirecte` ouvre une session existante. */
+export type ModeSocial = { rattacher?: boolean; connexionDirecte?: boolean };
 
 export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'google', deps, codeParrainage, mode);
 export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
