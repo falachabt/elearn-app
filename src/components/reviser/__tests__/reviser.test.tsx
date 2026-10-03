@@ -175,7 +175,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     mockParams = { id: '11', cours: '1', matiere: 'Maths' };
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByText('Objectif')).toBeTruthy());
-    expect(screen.getByText('2/3')).toBeTruthy();
+    expect(screen.getByLabelText('2/3')).toBeTruthy();
     expect(screen.getByText(new RegExp(x.reviser.leconN.replace('{{n}}', '1').replace('{{total}}', '2')))).toBeTruthy();
     expect(await lireLues()).toEqual({});
     expect(screen.queryByText(x.reviser.invitationTitre)).toBeNull();
