@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Stack, usePathname, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { Platform, StyleSheet } from 'react-native';
@@ -19,8 +19,9 @@ import { suivreOuvertures } from '@/services/rappels';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { CreditsProvider } from '@/session/CreditsProvider';
-import { SessionProvider } from '@/session/SessionProvider';
+import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
+import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 
 SplashScreen.preventAutoHideAsync();
 initAnalytics();
@@ -28,6 +29,17 @@ installerHandlerGlobal();
 
 function Navigation() {
   const { theme } = useTheme();
+  const { statut } = useSession();
+  const repriseEnCours = useRepriseInviteEnCours();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (statut === 'pret' && repriseEnCours && pathname !== '/compte/reprise') {
+      router.replace('/compte/reprise');
+    }
+  }, [pathname, repriseEnCours, router, statut]);
+
   return (
     <>
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.fond.app } }} />

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { questionsPour, type Matiere, type Question } from '@/contenu/miniTest';
+import { repriseInviteEnCours } from './repriseInvite';
 
 /** Question prête à afficher : choix mélangés, `bonne` recalculé sur l'ordre affiché. */
 export type QuestionTiree = Omit<Question, 'choix' | 'bonne'> & {
@@ -111,7 +112,8 @@ type Client = Pick<SupabaseClient, 'auth' | 'from'>;
  * L'invité qui crée son compte garde le même identifiant : rien à refaire. Si le compte change (connexion Apple ou
  * ancien compte), le résultat est renvoyé pour le nouvel utilisateur (M1-04). Ne lève jamais : réessayé plus tard.
  */
-export async function synchroniserResultat(client: Client): Promise<boolean> {
+export async function synchroniserResultat(client: Client, forcer = false): Promise<boolean> {
+  if (!forcer && repriseInviteEnCours()) return false;
   try {
     const brut = await AsyncStorage.getItem(CLE_RESULTAT);
     if (!brut) return false;
@@ -135,6 +137,20 @@ export async function synchroniserResultat(client: Client): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+export async function reprendreResultatApresTransfert(client: Client, inviteId: string, utilisateur: string): Promise<void> {
+  const brut = await AsyncStorage.getItem(CLE_RESULTAT);
+  if (!brut) return;
+  const resultat = JSON.parse(brut) as Stocke;
+  if (resultat.synchronisePour === utilisateur) return;
+  const { data } = await client.auth.getSession();
+  if (data.session?.user.id !== utilisateur) throw new Error('Le compte connecté a changé pendant la reprise.');
+  if (resultat.synchronisePour === inviteId) {
+    await AsyncStorage.setItem(CLE_RESULTAT, JSON.stringify({ ...resultat, synchronisePour: utilisateur }));
+    return;
+  }
+  if (!(await synchroniserResultat(client, true))) throw new Error('Le mini-test invité n’a pas pu être ajouté au compte.');
 }
 
 export const CLE_INVITATION = 'invitation.sauvegarde.vue';

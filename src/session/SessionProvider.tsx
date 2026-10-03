@@ -7,6 +7,8 @@ import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { synchroniserResultat } from '@/services/miniTest';
 import { synchroniserLues } from '@/services/reviser';
+import { repriseInviteEnCours, reprendreApresRedemarrage } from '@/services/repriseInvite';
+import { suivreProgressionEntrainement, synchroniserEntrainement } from '@/services/synchroEntrainement';
 import { suivreModifications, synchroniserReglages } from '@/services/synchroReglages';
 import { getSupabase } from '@/services/supabase';
 
@@ -29,12 +31,17 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       try {
         const client = getSupabase();
         const session = await assurerSessionInvite(client);
+        const reprise = await reprendreApresRedemarrage(session.user.id);
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
         identifier(session.user.id, { email: session.user.email, invite: session.user.is_anonymous ?? false });
-        synchroniserReglages(client, session.user).catch(() => {});
-        void enregistrerJetonPush(client);
+        if (!reprise) {
+          synchroniserReglages(client, session.user).catch(() => {});
+          synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
+          void enregistrerJetonPush(client);
+        }
         const arreterSuivi = suivreModifications(client);
+        const arreterSuiviEntrainement = suivreProgressionEntrainement(client);
         const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
           if (actif && nouvelle) {
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
@@ -43,8 +50,10 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             // Différé : ne jamais appeler Supabase depuis le rappel lui-même (verrou de session).
             if (evenement === 'SIGNED_IN') {
               setTimeout(() => {
+                if (repriseInviteEnCours()) return;
                 synchroniserResultat(client).catch(() => {});
                 synchroniserReglages(client, nouvelle.user).catch(() => {});
+                synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
                 // M2-14 : après une connexion (ou reconnexion), la série et les leçons validées reviennent du compte.
                 restaurerHistorique(client).catch(() => {});
                 synchroniserLues(client).catch(() => {});
@@ -57,6 +66,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         desabonner = () => {
           data.subscription.unsubscribe();
           arreterSuivi();
+          arreterSuiviEntrainement();
         };
       } catch (e) {
         if (actif) setEtat({ statut: 'erreur', session: null, erreur: e instanceof Error ? e : new Error(String(e)) });

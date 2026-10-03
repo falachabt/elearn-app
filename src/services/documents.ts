@@ -26,6 +26,7 @@ export function documentLocal(url: string): string | null {
 }
 
 export const CLE_INDEX = 'documents.index';
+const CLE_PRECHARGES = 'documents.precharges';
 /** Au-delà, les documents ouverts le moins récemment quittent le téléphone (M6-08). */
 export const PLAFOND_OCTETS = 500 * 1024 * 1024;
 
@@ -42,6 +43,42 @@ async function lireIndex(): Promise<Record<string, DocumentGarde>> {
 }
 
 const ecrireIndex = (index: Record<string, DocumentGarde>) => AsyncStorage.setItem(CLE_INDEX, JSON.stringify(index)).catch(() => {});
+
+async function lirePrecharges(): Promise<Record<string, { url: string; titre: string; taille: number; le: string }>> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_PRECHARGES);
+    return brut ? (JSON.parse(brut) as Record<string, { url: string; titre: string; taille: number; le: string }>) : {};
+  } catch {
+    return {};
+  }
+}
+
+async function respecterPlafondPrecharges(index: Record<string, { url: string; titre: string; taille: number; le: string }>): Promise<void> {
+  const gardes = await lireIndex();
+  const totalGarde = Object.values(gardes).reduce((n, d) => n + d.taille, 0);
+  let total = totalGarde + Object.values(index).reduce((n, d) => n + d.taille, 0);
+  for (const entree of Object.values(index).sort((a, b) => a.le.localeCompare(b.le))) {
+    if (total <= PLAFOND_OCTETS) break;
+    const fichier = new File(dossier(), nomFichier(entree.url));
+    if (fichier.exists) fichier.delete();
+    delete index[entree.url];
+    total -= entree.taille;
+  }
+  await AsyncStorage.setItem(CLE_PRECHARGES, JSON.stringify(index));
+}
+
+/** Précharge un fichier déjà autorisé sans l'ajouter à « Mes documents » avant sa première ouverture. */
+export async function prechargerDocument(url: string, titre: string): Promise<void> {
+  if (documentLocal(url)) return;
+  const d = dossier();
+  if (!d.exists) d.create({ intermediates: true, idempotent: true });
+  const fichier = await File.downloadFileAsync(adresseEncodee(url), new File(d, nomFichier(url)), { idempotent: true });
+  if (fichier.size <= 0) throw new Error('téléchargement du document vide');
+  const precharges = await lirePrecharges();
+  precharges[url] = { url, titre, taille: fichier.size, le: new Date().toISOString() };
+  await respecterPlafondPrecharges(precharges);
+  if (!documentLocal(url)) throw new Error('espace insuffisant pour garder le document');
+}
 
 /** Documents gardés sur le téléphone, le plus récemment ouvert d'abord. */
 export async function lireDocuments(): Promise<DocumentGarde[]> {
@@ -111,6 +148,9 @@ export async function ouvrirDocument(url: string, titre = '', maintenant = new D
   const uniforme = index[url]?.uniforme || (await uniformiserFichier(new File(dossier(), nomFichier(url))));
   const taille = new File(dossier(), nomFichier(url)).size;
   index[url] = { ...index[url], url, uniforme, titre: titre || index[url]?.titre || '', taille, le: maintenant.toISOString(), ...(sujet ? { sujet } : {}) };
+  const precharges = await lirePrecharges();
+  delete precharges[url];
+  await AsyncStorage.setItem(CLE_PRECHARGES, JSON.stringify(precharges));
   await respecterPlafond(index, url, plafond);
   await ecrireIndex(index);
   return uri;

@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { typo } from '@/theme/theme';
 
 import { suivre } from './analytics';
+import { signalerModification } from './reglagesLocaux';
 
 /**
  * Réglages d'affichage (H2 Paramètres › Apparence) : thème Clair / Sombre / Système et taille du texte.
@@ -79,6 +80,7 @@ export async function definirTheme(theme: ReglageTheme): Promise<void> {
   publier({ ...etat, theme });
   suivre('display_setting_changed', { theme });
   await AsyncStorage.setItem(CLE_THEME, theme).catch(() => {});
+  await signalerModification();
 }
 
 export async function definirTaille(taille: TailleTexte): Promise<void> {
@@ -86,6 +88,15 @@ export async function definirTaille(taille: TailleTexte): Promise<void> {
   publier({ ...etat, taille });
   suivre('display_setting_changed', { taille });
   await AsyncStorage.setItem(CLE_TAILLE, String(taille)).catch(() => {});
+  await signalerModification();
+}
+
+/** Réglage d'affichage reçu d'un compte : applique et mémorise sans événement utilisateur. */
+export async function appliquerAffichage(reglage: Partial<Etat>): Promise<void> {
+  const theme = estTheme(reglage.theme) ? reglage.theme : etat.theme;
+  const taille = estTaille(reglage.taille) ? reglage.taille : etat.taille;
+  publier({ theme, taille });
+  await AsyncStorage.multiSet([[CLE_THEME, theme], [CLE_TAILLE, String(taille)]]);
 }
 
 /** Pour les tests : revient aux valeurs par défaut. */

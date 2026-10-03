@@ -36,6 +36,8 @@ export const CLE_MISSION = 'mission.jour';
 export const CLE_HISTORIQUE = 'mission.historique';
 export const CLE_DERNIER = 'mission.dernier';
 export const CLE_ERREURS = 'mission.erreurs';
+const cleMissionHorsLigne = (p: { niveau: string; pays: string; concours?: string | null; taille?: number }, jour: string) =>
+  `mission.horsLigne.${p.niveau}.${p.pays}.${p.concours ?? 'classe'}.${p.taille ?? TAILLE_DEFAUT}.${jour}`;
 
 /** Jour local au format AAAA-MM-JJ : la mission change à minuit, heure du téléphone. */
 export function jourLocal(date: Date = new Date()): string {
@@ -83,6 +85,8 @@ export async function chargerMission(
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
+  const missionHorsLigne = await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour));
+  if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
   const brut = await AsyncStorage.getItem(CLE_MISSION);
   const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
   if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
@@ -105,6 +109,29 @@ export async function chargerMission(
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
   await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, concours: p.concours ?? null }));
+  return mission;
+}
+
+/** Prépare une journée future sans écraser la mission courante ni la progression de l'élève. */
+export async function prechargerMission(
+  client: Client,
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour: string; taille?: number; concours?: string | null },
+): Promise<Mission> {
+  const taille = p.taille ?? TAILLE_DEFAUT;
+  const cle = cleMissionHorsLigne({ ...p, taille }, p.jour);
+  const garde = await AsyncStorage.getItem(cle);
+  if (garde) return JSON.parse(garde) as Mission;
+
+  let resultat = p.concours
+    ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: p.jour, p_questions: taille })
+    : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_questions: taille });
+  if (resultat.error) resultat = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_lessons: LECONS_MISSION });
+  if (resultat.error) resultat = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_size: TAILLE_MISSION });
+  if (resultat.error) throw resultat.error;
+  const questions = ((resultat.data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
+  if (questions.length < 3) throw new Error('mission trop courte');
+  const mission: Mission = { jour: p.jour, source: 'serveur', questions };
+  await AsyncStorage.setItem(cle, JSON.stringify(mission));
   return mission;
 }
 

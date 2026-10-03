@@ -90,13 +90,35 @@ export async function desactiverRappel(maintenant = new Date()): Promise<void> {
   suivre('notification_setting_changed', { rappel: false });
 }
 
+/** Efface uniquement le rappel local de l'invité sans annuler les autres notifications programmées. */
+export async function effacerRappelInvite(): Promise<void> {
+  if (Platform.OS !== 'web') {
+    const programmees = await Notifications.getAllScheduledNotificationsAsync();
+    const rappels = programmees.filter((n) => n.content.data?.type === 'rappel_mission');
+    await Promise.all(rappels.map((n) => Notifications.cancelScheduledNotificationAsync(n.identifier)));
+  }
+  await AsyncStorage.removeItem(CLE_RAPPEL);
+}
+
 /** Suit l'ouverture des notifications (M9, `notification_opened`). Renvoie la fonction d'arrêt. */
 export function suivreOuvertures(): () => void {
   const abonnement = Notifications.addNotificationResponseReceivedListener((r) => {
     const type = r.notification.request.content.data?.type;
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
-    // Correction par photo prête : l'historique s'ouvre sur l'onglet Photo.
-    if (type === TYPE_CORRECTION_PRETE) router.push({ pathname: '/photo', params: { historique: '1' } });
+    
+    if (type === TYPE_CORRECTION_PRETE) {
+      // Correction par photo prête : l'historique s'ouvre sur l'onglet Photo.
+      router.push({ pathname: '/photo', params: { historique: '1' } });
+    } else if (type === 'credits_refilled') {
+      // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
+      router.push('/moi');
+    } else if (type === 'mission') {
+      // Mission du jour (à faire pointer vers la mission)
+      router.push('/');
+    } else if (type === 'feed_reply' || type === 'feed_post') {
+      // Fil d'actualité (sondage, réponse...)
+      router.push('/questions');
+    }
   });
   return () => abonnement.remove();
 }

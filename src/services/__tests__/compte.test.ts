@@ -1,4 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { suivre } from '../analytics';
+import { effacerRepriseInvite, lireRepriseInvite, repriseInviteEnCours } from '../repriseInvite';
 import {
   ErreurCompte,
   cleErreur,
@@ -16,7 +18,14 @@ import {
 
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 
-const invite = { access_token: 'a', user: { id: 'u1', is_anonymous: true } };
+const mockSecureStore = new Map<string, string>();
+jest.mock('expo-secure-store', () => ({
+  setItemAsync: jest.fn(async (cle: string, valeur: string) => mockSecureStore.set(cle, valeur)),
+  getItemAsync: jest.fn(async (cle: string) => mockSecureStore.get(cle) ?? null),
+  deleteItemAsync: jest.fn(async (cle: string) => void mockSecureStore.delete(cle)),
+}));
+
+const invite = { access_token: 'a', refresh_token: 'refresh-invite', user: { id: 'u1', is_anonymous: true } };
 const membre = { access_token: 'b', user: { id: 'u2', is_anonymous: false, email: 'a@b.cc' } };
 
 function faux(session: unknown = invite, surcharges: Record<string, jest.Mock> = {}) {
@@ -34,10 +43,21 @@ function faux(session: unknown = invite, surcharges: Record<string, jest.Mock> =
     signInWithIdToken: jest.fn().mockResolvedValue({ error: null }),
     ...surcharges,
   };
-  return { auth } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth };
+  const functions = {
+    invoke: jest.fn().mockResolvedValue({
+      data: { ok: true, has_progress: true, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    }),
+  };
+  return { auth, functions } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth; functions: typeof functions };
 }
 
-beforeEach(() => jest.clearAllMocks());
+beforeEach(async () => {
+  jest.clearAllMocks();
+  await AsyncStorage.clear();
+  mockSecureStore.clear();
+  await effacerRepriseInvite();
+});
 
 describe('validation', () => {
   it('e-mail', () => {
@@ -114,6 +134,8 @@ describe('connexion et déconnexion', () => {
     const c = faux();
     await expect(connecterEmail(c, { email: ' a@b.cc ', motDePasse: 'x' })).resolves.toBe(membre);
     expect(c.auth.signInWithPassword).toHaveBeenCalledWith({ email: 'a@b.cc', password: 'x' });
+    expect(repriseInviteEnCours()).toBe(true);
+    expect(await lireRepriseInvite()).toMatchObject({ inviteId: 'u1', compteId: 'u2' });
   });
 
   it('identifiants refusés : l’erreur remonte', async () => {
@@ -172,10 +194,31 @@ describe('Google', () => {
   });
 
   it('connexion depuis l’écran « déjà un compte » : signInWithOAuth même si une session invitée existe', async () => {
-    const c = faux();
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
     await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g4' }), null, { connexionDirecte: true });
     expect(c.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'google', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
     expect(c.auth.linkIdentity).not.toHaveBeenCalled();
+    expect(repriseInviteEnCours()).toBe(true);
+    expect(c.functions.invoke).toHaveBeenCalledWith('transfer-guest-progress', expect.objectContaining({ body: expect.objectContaining({ action: 'verifier' }) }));
+  });
+
+  it('n’ouvre pas la reprise lorsque la session invitée ne contient aucune donnée', async () => {
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    c.functions.invoke.mockResolvedValueOnce({
+      data: { ok: true, has_progress: false, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g5' }), null, { connexionDirecte: true });
+    expect(repriseInviteEnCours()).toBe(false);
+    expect(await lireRepriseInvite()).toBeNull();
   });
 
   it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {

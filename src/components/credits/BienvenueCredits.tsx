@@ -9,6 +9,7 @@ import { lireBienvenueRecente } from '@/services/credits';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
+import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -27,6 +28,7 @@ export function BienvenueCredits() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
+  const repriseEnCours = useRepriseInviteEnCours();
   const { solde, reglages, rafraichir } = useCredits();
   const { top, bottom } = useSafeAreaInsets();
   const [bonus, setBonus] = useState<{ id: string; montant: number } | null>(null);
@@ -58,7 +60,7 @@ export function BienvenueCredits() {
     void rafraichir().catch(() => {});
   };
 
-  if (!bonus) return null;
+  if (!bonus || repriseEnCours) return null;
   const gain = bonus.montant;
   return (
     <Modal visible animationType="fade" onRequestClose={recuperer} statusBarTranslucent>

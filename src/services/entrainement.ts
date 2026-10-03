@@ -4,6 +4,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
+import { signalerProgressionLocale } from './progressionLocale';
 import { avecCopie, rpc } from './reviser';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
@@ -131,6 +132,7 @@ export async function enregistrerScore(quiz: string, score: number, total: numbe
   const pct = Math.round((score / total) * 100);
   if ((scores[quiz] ?? -1) >= pct) return false;
   await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ ...scores, [quiz]: pct }));
+  signalerProgressionLocale();
   return true;
 }
 
@@ -143,6 +145,7 @@ export async function basculerExerciceFait(exercice: string): Promise<boolean> {
   if (fait) suite[exercice] = true;
   else delete suite[exercice];
   await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite));
+  signalerProgressionLocale();
   return fait;
 }
 
@@ -179,7 +182,42 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
   const toutes = await lireObjet<SessionQuiz[]>(CLE_SESSIONS);
   const session: SessionQuiz = { le: maintenant.toISOString(), score, total: s.questions.length, ...s };
   await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) }));
+  signalerProgressionLocale();
   return enregistrerScore(quiz, score, s.questions.length);
+}
+
+export type ProgressionEntrainement = {
+  quiz_scores: Record<string, number>;
+  exercises_done: Record<string, true>;
+  quiz_sessions: Record<string, SessionQuiz[]>;
+};
+
+export async function lireProgressionEntrainement(): Promise<ProgressionEntrainement> {
+  return {
+    quiz_scores: await lireMeilleursScores(),
+    exercises_done: await lireExercicesFaits(),
+    quiz_sessions: await lireObjet<SessionQuiz[]>(CLE_SESSIONS),
+  };
+}
+
+export async function appliquerProgressionEntrainement(distante: ProgressionEntrainement): Promise<void> {
+  const locale = await lireProgressionEntrainement();
+  const scores = { ...locale.quiz_scores };
+  for (const [quiz, score] of Object.entries(distante.quiz_scores)) {
+    scores[quiz] = Math.max(scores[quiz] ?? 0, score);
+  }
+  const faits = { ...locale.exercises_done, ...distante.exercises_done };
+  const sessions = { ...locale.quiz_sessions };
+  for (const [quiz, tentatives] of Object.entries(distante.quiz_sessions)) {
+    const parDate = new Map<string, SessionQuiz>();
+    for (const session of [...(sessions[quiz] ?? []), ...tentatives]) parDate.set(session.le, session);
+    sessions[quiz] = [...parDate.values()].sort((a, b) => b.le.localeCompare(a.le)).slice(0, MAX_SESSIONS);
+  }
+  await AsyncStorage.multiSet([
+    [CLE_SCORES, JSON.stringify(scores)],
+    [CLE_EXERCICES_FAITS, JSON.stringify(faits)],
+    [CLE_SESSIONS, JSON.stringify(sessions)],
+  ]);
 }
 
 /** Exercice complet : contexte, énoncé et corrigé en blocs (même format que les leçons). */

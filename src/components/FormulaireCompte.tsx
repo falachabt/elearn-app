@@ -14,6 +14,7 @@ import {
 } from '@/services/compte';
 import { conserverCode, effacerCode, lireCodeValide, normaliserCode } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
+import { repriseInviteEnCours } from '@/services/repriseInvite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -89,6 +90,10 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
         }
       } else {
         await connecterEmail(client, { email, motDePasse });
+        if (repriseInviteEnCours()) {
+          router.replace('/compte/reprise');
+          return;
+        }
       }
       await fini();
     } catch (err) {

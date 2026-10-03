@@ -6,6 +6,7 @@ import type { matiere as couleursMatieres } from '@/theme/theme';
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
+import { repriseInviteEnCours } from './repriseInvite';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -242,8 +243,9 @@ type ClientSynchro = Pick<SupabaseClient, 'rpc' | 'from'>;
  * Met en commun les leçons validées du téléphone et du compte : celles du compte reviennent sur le téléphone (autre
  * appareil, après une déconnexion), celles faites hors ligne partent au serveur. Sans réseau, rien ne change.
  */
-export async function synchroniserLues(client: ClientSynchro): Promise<Record<string, number>> {
+export async function synchroniserLues(client: ClientSynchro, forcer = false): Promise<Record<string, number>> {
   const locales = await lireLues();
+  if (!forcer && repriseInviteEnCours()) return locales;
   try {
     const { data, error } = await client.from('lesson_validations').select('lesson_id, course_id');
     if (error) throw error;

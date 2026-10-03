@@ -9,6 +9,7 @@ import { lireAcces, type CodeOffre } from '@/services/pass';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
+import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -40,6 +41,7 @@ export function BienvenuePass() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
+  const repriseEnCours = useRepriseInviteEnCours();
   const { solde } = useCredits();
   const [activation, setActivation] = useState<Activation | null>(null);
 
@@ -67,7 +69,7 @@ export function BienvenuePass() {
     };
   }, [actif, connecte, solde?.illimiteJusqua, utilisateur]);
 
-  if (!activation || !utilisateur || activation.utilisateur !== utilisateur || !connecte || !actif) return null;
+  if (repriseEnCours || !activation || !utilisateur || activation.utilisateur !== utilisateur || !connecte || !actif) return null;
 
   const date = activation.fin
     ? new Date(activation.fin).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })

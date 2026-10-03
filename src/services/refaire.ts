@@ -6,6 +6,7 @@ import { CLE_SESSIONS, enregistrerScore, type SessionQuiz } from './entrainement
 import { calculerResultat, type QuestionTiree } from './miniTest';
 import { CLE_DERNIER, CLE_ERREURS, coursRates, lireDernierResultat, type ResultatMission } from './mission';
 import { marquerLue, quizReussi } from './reviser';
+import { signalerProgressionLocale } from './progressionLocale';
 
 type Refaites = { questions: readonly QuestionTiree[]; reponses: readonly (number | null)[] };
 
@@ -39,6 +40,7 @@ export async function appliquerRefaire(r: Refaites, client?: Pick<SupabaseClient
     const toutes = JSON.parse((await AsyncStorage.getItem(CLE_SESSIONS)) ?? '{}') as Record<string, SessionQuiz[]>;
     const liste = (toutes[ctx.quiz] ?? []).map((s) => (s.le === ctx.le ? { ...s, reponses: c.reponses, score } : s));
     await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [ctx.quiz]: liste }));
+    signalerProgressionLocale();
     await enregistrerScore(ctx.quiz, score, total);
   }
   return c;

@@ -209,7 +209,6 @@ export function ChoixClasse() {
           </View>
         </View>
       ) : null}
-      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('classe.aide')}</Text>
     </Ecran>
   );
 }
