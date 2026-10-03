@@ -6,13 +6,18 @@ import { Platform, Vibration } from 'react-native';
 import { retours } from '@/theme/theme';
 
 import { suivre } from './analytics';
+import { signalerModification } from './reglagesLocaux';
 
 /** Les moments clés de l'app (carte `retours` du thème : moment -> son + haptique). Les écrans n'appellent jamais un son ou une vibration en direct : ils passent par `useFeedback`. */
 export type Moment = keyof typeof retours;
 export const moments = Object.keys(retours) as Moment[];
 
-export type Preferences = { sons: boolean; vibrations: boolean; animationsReduites: boolean };
-export const PREFERENCES_PAR_DEFAUT: Preferences = { sons: true, vibrations: true, animationsReduites: false };
+/** Volume des sons (H2b) : « faible » joue à moitié du volume du téléphone. */
+export type Volume = 'faible' | 'normal';
+export type Preferences = { sons: boolean; vibrations: boolean; animationsReduites: boolean; volume: Volume };
+export const PREFERENCES_PAR_DEFAUT: Preferences = { sons: true, vibrations: true, animationsReduites: false, volume: 'normal' };
+export const NIVEAU_VOLUME: Record<Volume, number> = { faible: 0.5, normal: 1 };
+const estVolume = (v: unknown): v is Volume => v === 'faible' || v === 'normal';
 export const CLE_PREFERENCES = 'retours.preferences';
 
 type NomSon = NonNullable<(typeof retours)[Moment]['son']>;
@@ -57,6 +62,7 @@ export async function chargerPreferences(): Promise<Preferences> {
         sons: typeof lu.sons === 'boolean' ? lu.sons : true,
         vibrations: typeof lu.vibrations === 'boolean' ? lu.vibrations : true,
         animationsReduites: typeof lu.animationsReduites === 'boolean' ? lu.animationsReduites : false,
+        volume: estVolume(lu.volume) ? lu.volume : 'normal',
       };
     }
   } catch {
@@ -67,7 +73,7 @@ export async function chargerPreferences(): Promise<Preferences> {
   return preferences;
 }
 
-const NOM_REGLAGE = { sons: 'sounds', vibrations: 'haptics', animationsReduites: 'reduced_motion' } as const;
+const NOM_REGLAGE = { sons: 'sounds', vibrations: 'haptics', animationsReduites: 'reduced_motion', volume: 'volume' } as const;
 
 const proprietes = () => ({ sound_on: preferences.sons, haptics_on: preferences.vibrations, reduced_motion: preferences.animationsReduites });
 
@@ -76,11 +82,28 @@ export async function definirPreference<C extends keyof Preferences>(cle: C, val
   preferences = { ...preferences, [cle]: valeur };
   notifier();
   suivre('feedback_setting_changed', { setting: NOM_REGLAGE[cle], value: valeur, ...proprietes() });
+  await memoriser();
+  await signalerModification();
+}
+
+async function memoriser() {
   try {
     await AsyncStorage.setItem(CLE_PREFERENCES, JSON.stringify(preferences));
   } catch {
     // Le réglage reste actif pour cette session.
   }
+}
+
+/** Réglages venus du compte (synchronisation) : appliqués et mémorisés, sans événement d'analytics. */
+export async function appliquerPreferences(p: Partial<Preferences>): Promise<void> {
+  preferences = {
+    sons: typeof p.sons === 'boolean' ? p.sons : preferences.sons,
+    vibrations: typeof p.vibrations === 'boolean' ? p.vibrations : preferences.vibrations,
+    animationsReduites: typeof p.animationsReduites === 'boolean' ? p.animationsReduites : preferences.animationsReduites,
+    volume: estVolume(p.volume) ? p.volume : preferences.volume,
+  };
+  notifier();
+  await memoriser();
 }
 
 async function poserModeAudio() {
@@ -133,6 +156,7 @@ async function sonner(son: NomSon) {
   const l = lecteur(son);
   if (!l) return;
   try {
+    l.volume = NIVEAU_VOLUME[preferences.volume];
     await l.seekTo(0);
     l.play();
   } catch {

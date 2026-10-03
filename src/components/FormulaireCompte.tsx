@@ -14,11 +14,13 @@ import {
 } from '@/services/compte';
 import { conserverCode, effacerCode, lireCodeValide, normaliserCode } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
+import { repriseInviteEnCours } from '@/services/repriseInvite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from './Banniere';
 import { BoutonsSociaux } from './BoutonsSociaux';
+import { MentionsLegales } from './MentionsLegales';
 import { Bouton } from './Bouton';
 import { Champ } from './Champ';
 import { Ecran } from './Ecran';
@@ -88,6 +90,10 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
         }
       } else {
         await connecterEmail(client, { email, motDePasse });
+        if (repriseInviteEnCours()) {
+          router.replace('/compte/reprise');
+          return;
+        }
       }
       await fini();
     } catch (err) {
@@ -163,6 +169,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
           <BoutonsSociaux
             codeParrainage={creation ? code : null}
             desactive={enCours}
+            connexionDirecte={!creation}
             onErreur={surErreurSociale}
             onSucces={() => void fini()}
           />
@@ -171,7 +178,9 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
             libelle={t(creation ? 'compte.dejaUnCompte' : 'compte.pasDeCompte')}
             onPress={() => router.replace(creation ? '/compte/connexion' : '/compte/creer')}
           />
-          <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.conditions')}</Text>
+          {/* Connexion par numéro coupée (décision de Benny, 30/09) : les anciens comptes utilisent Google. L'écran A7 reste en place. */}
+          {creation ? null : <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.ancienGoogle')}</Text>}
+          <MentionsLegales />
         </>
       )}
     </Ecran>

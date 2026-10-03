@@ -1,9 +1,12 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { suivre } from '../analytics';
+import { effacerRepriseInvite, lireRepriseInvite, repriseInviteEnCours } from '../repriseInvite';
 import {
   ErreurCompte,
   cleErreur,
   connecterApple,
   connecterEmail,
+  connecterFacebook,
   connecterGoogle,
   creerCompteEmail,
   deconnecter,
@@ -15,7 +18,14 @@ import {
 
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 
-const invite = { access_token: 'a', user: { id: 'u1', is_anonymous: true } };
+const mockSecureStore = new Map<string, string>();
+jest.mock('expo-secure-store', () => ({
+  setItemAsync: jest.fn(async (cle: string, valeur: string) => mockSecureStore.set(cle, valeur)),
+  getItemAsync: jest.fn(async (cle: string) => mockSecureStore.get(cle) ?? null),
+  deleteItemAsync: jest.fn(async (cle: string) => void mockSecureStore.delete(cle)),
+}));
+
+const invite = { access_token: 'a', refresh_token: 'refresh-invite', user: { id: 'u1', is_anonymous: true } };
 const membre = { access_token: 'b', user: { id: 'u2', is_anonymous: false, email: 'a@b.cc' } };
 
 function faux(session: unknown = invite, surcharges: Record<string, jest.Mock> = {}) {
@@ -33,10 +43,21 @@ function faux(session: unknown = invite, surcharges: Record<string, jest.Mock> =
     signInWithIdToken: jest.fn().mockResolvedValue({ error: null }),
     ...surcharges,
   };
-  return { auth } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth };
+  const functions = {
+    invoke: jest.fn().mockResolvedValue({
+      data: { ok: true, has_progress: true, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    }),
+  };
+  return { auth, functions } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth; functions: typeof functions };
 }
 
-beforeEach(() => jest.clearAllMocks());
+beforeEach(async () => {
+  jest.clearAllMocks();
+  await AsyncStorage.clear();
+  mockSecureStore.clear();
+  await effacerRepriseInvite();
+});
 
 describe('validation', () => {
   it('e-mail', () => {
@@ -113,6 +134,8 @@ describe('connexion et déconnexion', () => {
     const c = faux();
     await expect(connecterEmail(c, { email: ' a@b.cc ', motDePasse: 'x' })).resolves.toBe(membre);
     expect(c.auth.signInWithPassword).toHaveBeenCalledWith({ email: 'a@b.cc', password: 'x' });
+    expect(repriseInviteEnCours()).toBe(true);
+    expect(await lireRepriseInvite()).toMatchObject({ inviteId: 'u1', compteId: 'u2' });
   });
 
   it('identifiants refusés : l’erreur remonte', async () => {
@@ -150,9 +173,84 @@ describe('Google', () => {
     expect(c.auth.updateUser).not.toHaveBeenCalled();
   });
 
+  it('invité dont le compte Google existe déjà : signale le doublon sans ouvrir une seconde authentification', async () => {
+    const c = faux();
+    const ouvrirNavigateur = jest
+      .fn()
+      .mockResolvedValueOnce({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists&error_description=x' });
+    await expect(connecterGoogle(c, { urlRedirection: 'elearnprepa://auth/callback', ouvrirNavigateur })).rejects.toMatchObject({
+      cle: 'compte.erreurs.dejaLie',
+      code: 'identity_already_exists',
+    });
+    expect(ouvrirNavigateur).toHaveBeenCalledTimes(1);
+    expect(c.auth.linkIdentity).toHaveBeenCalled();
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
+  it('rattachement désactivé côté Supabase : remonte une erreur sans changer de compte', async () => {
+    const c = faux(invite, { linkIdentity: jest.fn().mockResolvedValue({ data: {}, error: { code: 'manual_linking_disabled' } }) });
+    await expect(connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g3' }))).rejects.toMatchObject({ code: 'manual_linking_disabled' });
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
+  it('connexion depuis l’écran « déjà un compte » : signInWithOAuth même si une session invitée existe', async () => {
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g4' }), null, { connexionDirecte: true });
+    expect(c.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'google', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    expect(c.auth.linkIdentity).not.toHaveBeenCalled();
+    expect(repriseInviteEnCours()).toBe(true);
+    expect(c.functions.invoke).toHaveBeenCalledWith('transfer-guest-progress', expect.objectContaining({ body: expect.objectContaining({ action: 'verifier' }) }));
+  });
+
+  it('n’ouvre pas la reprise lorsque la session invitée ne contient aucune donnée', async () => {
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    c.functions.invoke.mockResolvedValueOnce({
+      data: { ok: true, has_progress: false, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    });
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g5' }), null, { connexionDirecte: true });
+    expect(repriseInviteEnCours()).toBe(false);
+    expect(await lireRepriseInvite()).toBeNull();
+  });
+
+  it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {
+    const c = faux(membre);
+    await expect(
+      connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?error=server_error&error_code=identity_already_exists' }), null, { rattacher: true }),
+    ).rejects.toMatchObject({ cle: 'compte.erreurs.dejaLie' });
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
+  });
+
   it('navigateur fermé ou retour en erreur : message « annulé »', async () => {
     await expect(connecterGoogle(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
     await expect(connecterGoogle(faux(), deps({ type: 'success', url: 'elearnprepa://auth/callback?error=access_denied' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
+  });
+
+  it('Facebook : même flux OAuth avec le fournisseur facebook (invité rattaché, non invité connecté)', async () => {
+    const c = faux();
+    await connecterFacebook(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb1' }), 'abc123');
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('fb1');
+    expect(c.auth.updateUser).toHaveBeenCalledWith({ data: { referral_code: 'ABC123' } });
+    const d = faux(null);
+    await connecterFacebook(d, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb2' }));
+    expect(d.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
+    await expect(connecterFacebook(faux(), deps({ type: 'cancel' }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
+  });
+
+  it('rattacher (ancien compte connecté) : linkIdentity même hors invité', async () => {
+    const c = faux(membre);
+    await connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g1' }), null, { rattacher: true });
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith(expect.objectContaining({ provider: 'google' }));
+    expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
   });
 
   it('lireRetourOAuth', () => {
@@ -173,6 +271,13 @@ describe('Apple', () => {
   it('indisponible (Android, web) : message dédié, aucun appel Supabase', async () => {
     const c = faux(null);
     await expect(connecterApple(c, deps({ disponible: jest.fn().mockResolvedValue(false) }))).rejects.toMatchObject({ cle: 'compte.erreurs.appleIndisponible' });
+    expect(c.auth.signInWithIdToken).not.toHaveBeenCalled();
+  });
+
+  it('rattacher (ancien compte) : linkIdentity avec le jeton Apple, pas de nouvelle session', async () => {
+    const c = faux(membre);
+    await connecterApple(c, deps(), null, { rattacher: true });
+    expect(c.auth.linkIdentity).toHaveBeenCalledWith({ provider: 'apple', token: 'jwt', nonce: 'n1' });
     expect(c.auth.signInWithIdToken).not.toHaveBeenCalled();
   });
 

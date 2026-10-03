@@ -2,7 +2,8 @@ import PostHog from 'posthog-react-native';
 
 import type { Evenements, NomEvenement } from './evenements';
 
-const HOTE_PAR_DEFAUT = 'https://eu.i.posthog.com';
+// Projet PostHog d'Elearn (région US), comme l'ancienne app.
+const HOTE_PAR_DEFAUT = 'https://us.i.posthog.com';
 
 type Config = { cle?: string; hote?: string };
 
@@ -11,7 +12,8 @@ let initialise = false;
 
 function configDepuisEnv(): Config {
   // Accès statiques obligatoires : Expo remplace EXPO_PUBLIC_* au build.
-  return { cle: process.env.EXPO_PUBLIC_POSTHOG_KEY, hote: process.env.EXPO_PUBLIC_POSTHOG_HOST };
+  // EAS fournit EXPO_PUBLIC_POSTHOG_API_KEY (nom hérité de l'ancienne app) ; EXPO_PUBLIC_POSTHOG_KEY reste accepté.
+  return { cle: process.env.EXPO_PUBLIC_POSTHOG_API_KEY || process.env.EXPO_PUBLIC_POSTHOG_KEY, hote: process.env.EXPO_PUBLIC_POSTHOG_HOST };
 }
 
 /** Initialise PostHog une seule fois. Sans clé : analytics désactivé, sans erreur. */
@@ -42,10 +44,13 @@ export function suivre<E extends NomEvenement>(evenement: E, proprietes: Eveneme
 }
 
 /** Lie les événements à l'identifiant de la session Supabase. */
-export function identifier(idUtilisateur: string): void {
+export function identifier(idUtilisateur: string, proprietes?: { email?: string | null; invite?: boolean }): void {
   if (!client) return;
   try {
-    client.identify(idUtilisateur);
+    const p: Record<string, string | boolean> = {};
+    if (proprietes?.email) p.email = proprietes.email;
+    if (proprietes?.invite !== undefined) p.invite = proprietes.invite;
+    client.identify(idUtilisateur, p);
   } catch {
     // ignoré
   }

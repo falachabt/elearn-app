@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
@@ -15,6 +16,10 @@ type Props = {
   desactive?: boolean;
   /** Léger retour (vibration de sélection + tap) à l'appui. */
   retour?: boolean;
+  /** Pictogramme à gauche du libellé (logo d'un fournisseur de connexion). */
+  icone?: ReactNode;
+  /** Nom lu par les lecteurs d'écran quand le libellé est un symbole (« + », « − »). */
+  accessibilityLabel?: string;
 };
 
 const DECALAGE = 4;
@@ -35,7 +40,7 @@ export function couleursBouton(theme: Theme, variante: Variante, desactive = fal
 }
 
 /** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
-export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour }: Props) {
+export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour, icone, accessibilityLabel }: Props) {
   const { theme } = useTheme();
   const { fond, texte, bord: couleurBord, ombre } = couleursBouton(theme, variante, desactive);
   const plat = variante === 'texte';
@@ -43,6 +48,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
   return (
     <Appui
       accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
       accessibilityState={{ disabled: !!desactive }}
       disabled={desactive}
       retour={retour}
@@ -59,6 +65,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
           { minHeight: petit ? cibleMin - 8 : 52, backgroundColor: fond, borderColor: couleurBord },
         ]}
       >
+        {icone}
         <Text style={[petit ? typo.boutonPetit : typo.bouton, { color: texte }]}>{libelle}</Text>
       </View>
     </Appui>
@@ -67,5 +74,5 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
 
 const styles = StyleSheet.create({
   zone: { alignSelf: 'stretch' },
-  corps: { borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  corps: { flexDirection: 'row', gap: 12, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
 });

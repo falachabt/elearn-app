@@ -32,6 +32,8 @@ const lightValeurs = {
     info: p.bleu[500], infoDoux: p.bleu[100], infoTexte: p.bleu[700],
   },
   focus: p.bleu[500],
+  // Barres système (vert Elearn validé le 30/09/2026) : icônes noires sur émeraude 500.
+  barreVert: p.emeraude[500],
 };
 
 export type Theme = Elargi<typeof lightValeurs>;
@@ -51,6 +53,8 @@ const dark: Theme = {
     info: p.bleu[400], infoDoux: p.bleu[900], infoTexte: p.bleu[300],
   },
   focus: p.bleu[300],
+  // En sombre, Android dessine les boutons de navigation en blanc : émeraude 700 garde un contraste suffisant.
+  barreVert: p.emeraude[700],
 };
 
 // Couleurs de matières : identiques dans les deux thèmes, texte toujours en encre dessus.
@@ -59,11 +63,22 @@ export const matiere = {
   anglais: p.rose[400], histoireGeo: p.soleil[400], philo: p.menthe[400],
 } as const;
 
+// Matière sans couleur prévue (Informatique, Géographie…) : prendre la suivante de cette liste,
+// en sautant la couleur de la tuile voisine. Jamais de tuile blanche. (Revue du 01/10)
+export const matiereSecours = [p.menthe[400], p.rose[400], p.herbe[400], p.corail[300], p.bleu[300], p.lilas[400], p.orange[400], p.soleil[400]] as const;
+// Type de contenu : pastille 34 px avec icône Lucide. Ne pas utiliser de couleur de matière pour un type.
+export const typeContenu = { quiz: p.bleu[400], exercice: p.orange[400], lecon: p.emeraude[500], annale: p.soleil[400] } as const;
+
+export const corrige = {
+  light: { fond: p.soleil[100], texte: p.encre[1000], formule: p.bleu[700], note: p.encre[600], pastille: p.soleil[400] },
+  dark: { fond: p.soleil[900], texte: p.papier[50], formule: p.bleu[300], note: p.encre[300], pastille: p.soleil[400] },
+} as const; // carte du corrigé : jaune doux, pastille « Corrigé » en jaune vif (contrastes AA vérifiés)
+
 export const espace = { 0: 0, 1: 2, 2: 4, 3: 8, 4: 12, 5: 16, 6: 20, 7: 24, 8: 32, 9: 40, 10: 48, 11: 64 } as const;
 export const rayon = { aucun: 0, s: 6, m: 10, l: 14, pilule: 999 } as const;
 export const bord = { fin: 1.5, normal: 2, epais: 3 } as const;
 // Ombres dures sans flou. Sur Android, `elevation` floute : dessiner l'ombre avec une vue décalée derrière l'élément.
-export const ombre = { s: 2, m: 4, l: 6 } as const;
+export const ombre = { s: 2, carte: 3, m: 4, l: 6 } as const; // carte = cartes de liste ; m = boutons
 export const cibleMin = 48;
 
 // Polices (SIL OFL) à charger avec expo-font : ArchivoBlack_400Regular, SpaceGrotesk_400/500/700, SpaceMono_400/700.

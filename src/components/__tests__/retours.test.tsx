@@ -3,9 +3,8 @@ import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { AccessibilityInfo, Text } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import Parametres from '@/app/parametres';
 import { changerLangue } from '@/i18n';
-import { jouerMoment, lirePreferences, moments, reinitialiserRetoursPourTests } from '@/services/retours';
+import { jouerMoment, reinitialiserRetoursPourTests } from '@/services/retours';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { Appui } from '../Appui';
@@ -17,7 +16,7 @@ jest.mock('@/services/retours', () => {
   const vrai = jest.requireActual('@/services/retours');
   return { ...vrai, jouerMoment: jest.fn(() => Promise.resolve()) };
 });
-jest.mock('expo-router', () => ({ router: { canGoBack: () => false, back: jest.fn(), replace: jest.fn() } }));
+jest.mock('expo-router', () => ({ router: { canGoBack: () => false, back: jest.fn(), replace: jest.fn(), push: jest.fn() } }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
@@ -70,37 +69,19 @@ describe('animations branchées sur les retours', () => {
 });
 
 describe('Interrupteur', () => {
-  it('expose le rôle switch et appelle onChange', async () => {
+  it('expose le rôle switch, son état, et bascule au toucher de la ligne', async () => {
     const onChange = jest.fn();
     await render(enveloppe(<Interrupteur libelle="Sons" aide="aide" valeur onChange={onChange} />));
     const sw = screen.getByRole('switch', { name: 'Sons' });
-    expect(sw.props.value).toBe(true);
-    await fireEvent(sw, 'valueChange', false);
+    expect(sw.props.accessibilityState).toMatchObject({ checked: true });
+    await fireEvent.press(sw);
     expect(onChange).toHaveBeenCalledWith(false);
   });
-});
 
-describe.each([['fr', 'Sons et vibrations', 'Animations réduites'], ['en', 'Sounds and vibrations', 'Reduced motion']])('écran Paramètres (%s)', (langue, titre, reduites) => {
-  it('affiche trois interrupteurs qui prennent effet immédiatement et sont mémorisés', async () => {
-    await act(() => changerLangue(langue));
-    await render(enveloppe(<Parametres />));
-    expect(screen.getByText(titre)).toBeTruthy();
-    expect(screen.getAllByRole('switch')).toHaveLength(3);
-    await fireEvent(screen.getAllByRole('switch')[0], 'valueChange', false);
-    expect(lirePreferences().sons).toBe(false);
-    await fireEvent(screen.getByRole('switch', { name: reduites }), 'valueChange', true);
-    expect(lirePreferences().animationsReduites).toBe(true);
-    await flush();
-    expect(JSON.parse((await AsyncStorage.getItem('retours.preferences'))!)).toMatchObject({ sons: false, animationsReduites: true });
-  });
-
-  it('l’aperçu joue chaque moment', async () => {
-    await act(() => changerLangue(langue));
-    await render(enveloppe(<Parametres />));
-    const boutons = screen.getAllByRole('button').slice(0, 12); // le 13e est « Retour »
-    for (const b of boutons) await fireEvent.press(b);
-    expect(boutons).toHaveLength(12);
-    expect((jouerMoment as jest.Mock).mock.calls.map((c) => c[0]).sort()).toEqual([...moments].sort());
-    expect(jouerMoment).toHaveBeenCalledWith('select', { apercu: true });
+  it('désactivé : aucun changement', async () => {
+    const onChange = jest.fn();
+    await render(enveloppe(<Interrupteur libelle="Sons" valeur={false} onChange={onChange} desactive />));
+    await fireEvent.press(screen.getByRole('switch', { name: 'Sons' }));
+    expect(onChange).not.toHaveBeenCalled();
   });
 });

@@ -1,7 +1,5 @@
-import { EcranVide } from '@/components/EcranVide';
-import { useTraduction } from '@/i18n/useTraduction';
+import { Questions } from '@/components/questions/Questions';
 
 export default function EcranQuestions() {
-  const { t } = useTraduction();
-  return <EcranVide titre={t('onglets.questions')} phrase={t('ecrans.questions')} />;
+  return <Questions />;
 }

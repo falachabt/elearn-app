@@ -1,0 +1,113 @@
+import { BarChart3, Bot, Check, MessageCircle } from 'lucide-react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+
+import { useTraduction } from '@/i18n/useTraduction';
+import { couleurMatiere } from '@/services/reviser';
+import { ilYa, type Question } from '@/services/questions';
+import { useTheme } from '@/theme/ThemeProvider';
+import { bord, espace, matiere as couleursMatiere, ombre, rayon, typo } from '@/theme/theme';
+
+import { Appui } from '../Appui';
+
+export function useCouleurMatiere() {
+  const { theme } = useTheme();
+  return (nom: string | null) => {
+    const c = nom ? couleurMatiere(nom) : null;
+    return c ? couleursMatiere[c] : theme.fond.creux;
+  };
+}
+
+export function useIlYa() {
+  const { t } = useTraduction();
+  return (iso: string) => {
+    const { cle, n } = ilYa(iso);
+    return t(`questions.${cle}`, { n });
+  };
+}
+
+/** Carte de question du fil (G1) : auteur, extrait sur 2 lignes, miniature, réponses, réponse IA, état résolue. */
+export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: () => void; onPhoto?: (uri: string) => void }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  const couleur = useCouleurMatiere();
+  const ilYaTexte = useIlYa();
+  const fond = couleur(q.matiere);
+  const reponses = q.reponses === 1 ? t('questions.reponse') : t('questions.reponses', { n: q.reponses });
+  return (
+    <Appui
+      accessibilityRole="button"
+      accessibilityLabel={`${q.auteur}. ${q.texte}. ${reponses}`}
+      onPress={onPress}
+      rayon={rayon.l}
+      ombre={ombre.carte}
+      decalage={2}
+      couleurOmbre={theme.ombre}
+    >
+      <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+        <View style={styles.haut}>
+          <View style={[styles.avatar, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{(q.auteur || '?').charAt(0).toUpperCase()}</Text>
+          </View>
+          <View style={styles.flex}>
+            <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{q.equipe ? 'Elearn Prépa' : q.auteur}{q.classe ? ` · ${q.classe}` : ''}</Text>
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{ilYaTexte(q.creeLe)}</Text>
+          </View>
+          {q.equipe ? (
+            <View style={[styles.pastille, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.equipe')}</Text>
+            </View>
+          ) : null}
+          {q.matiere ? (
+            <View style={[styles.pastille, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{q.matiere}</Text>
+            </View>
+          ) : null}
+        </View>
+        <View style={styles.corps}>
+          {q.photos[0] ? (
+            <Appui accessibilityRole="imagebutton" accessibilityLabel={t('questions.agrandirPhoto')} onPress={() => onPhoto?.(q.photos[0])} decalage={0} rayon={rayon.s}>
+              <Image source={{ uri: q.photos[0] }} style={[styles.miniature, { borderColor: theme.bord.fort }]} accessibilityIgnoresInvertColors />
+            </Appui>
+          ) : null}
+          <Text numberOfLines={2} style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{q.texte}</Text>
+        </View>
+        <View style={styles.pied}>
+          {q.sondage ? (
+            <View style={[styles.pastille, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              <BarChart3 size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.sondage')}</Text>
+            </View>
+          ) : null}
+          {q.sondage && q.aVote ? <Check size={14} strokeWidth={3} color={theme.texte.secondaire} /> : null}
+          {q.sondage ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{q.aVote ? t('questions.aVote') : t('questions.nVotes', { n: q.votes })}</Text> : null}
+          <MessageCircle size={16} strokeWidth={2} color={theme.texte.secondaire} />
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{reponses}</Text>
+          {q.ia ? (
+            <>
+              <Bot size={16} strokeWidth={2} color={theme.texte.secondaire} />
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.reponseIa')}</Text>
+            </>
+          ) : null}
+          <View style={styles.flex} />
+          {q.resolue ? (
+            <View style={[styles.pastille, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Check size={14} strokeWidth={3} color={theme.texte.surCouleur} />
+              <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('questions.resolue')}</Text>
+            </View>
+          ) : null}
+        </View>
+      </View>
+    </Appui>
+  );
+}
+
+const styles = StyleSheet.create({
+  avatar: { width: 28, height: 28, borderRadius: 14, borderWidth: bord.fin, alignItems: 'center', justifyContent: 'center' },
+  carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  corps: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  flex: { flex: 1 },
+  haut: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  miniature: { width: 44, height: 44, borderRadius: rayon.s, borderWidth: bord.normal },
+  pastille: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
+  pied: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+});

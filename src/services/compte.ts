@@ -3,19 +3,34 @@ import type { Session, SupabaseClient, User } from '@supabase/supabase-js';
 import type { CleTexte } from '@/i18n';
 
 import { suivre } from './analytics';
+import { effacerDonneesLocales } from './donneesLocales';
 import { normaliserCode } from './parrainage';
+import {
+  annulerOAuthRepriseInvite,
+  effacerRepriseInvite,
+  preparerRepriseInvite,
+  progressionInviteeLocalePresente,
+  terminerOAuthRepriseInvite,
+  verifierRepriseInvitee,
+} from './repriseInvite';
 import { assurerSessionInvite } from './session';
 
-type Client = Pick<SupabaseClient, 'auth'>;
+type Client = Pick<SupabaseClient, 'auth' | 'functions'>;
 
-export type Methode = 'email' | 'google' | 'apple';
+export type Methode = 'email' | 'google' | 'apple' | 'facebook';
+
+/** Fournisseurs passant par la page OAuth de Supabase dans le navigateur. */
+export type FournisseurOAuth = 'google' | 'facebook';
 
 /** Erreur que l'écran sait traduire : `cle` est une clé de texte. */
 export class ErreurCompte extends Error {
-  constructor(readonly cle: CleTexte, options?: { cause?: unknown }) {
+  constructor(readonly cle: CleTexte, options?: { cause?: unknown; code?: string }) {
     super(cle, options);
     this.name = 'ErreurCompte';
+    this.code = options?.code;
   }
+
+  readonly code?: string;
 }
 
 export const MOT_DE_PASSE_MIN = 8;
@@ -55,6 +70,19 @@ export function cleErreur(erreur: unknown): CleTexte {
 
 export const estInvite = (user?: Pick<User, 'is_anonymous'> | null) => !!user?.is_anonymous;
 
+async function confirmerBesoinReprise(client: Client, inviteId: string, compteId: string): Promise<boolean> {
+  if (!(await terminerOAuthRepriseInvite(inviteId, compteId))) return false;
+  try {
+    const progressionLocale = await progressionInviteeLocalePresente();
+    if (progressionLocale || await verifierRepriseInvitee(client, false)) return true;
+    await effacerRepriseInvite();
+    return false;
+  } catch (e) {
+    console.warn('Impossible de vérifier la progression invitée avant son rattachement.', e);
+    return true;
+  }
+}
+
 type ResultatCreation = { etat: 'cree' | 'confirmation'; conversionInvite: boolean };
 
 /**
@@ -83,17 +111,34 @@ export async function creerCompteEmail(client: Client, p: { email: string; motDe
 }
 
 export async function connecterEmail(client: Client, p: { email: string; motDePasse: string }): Promise<Session> {
-  const { data, error } = await client.auth.signInWithPassword({ email: p.email.trim(), password: p.motDePasse });
-  if (error) throw error;
-  suivre('connexion_reussie', { methode: 'email' });
-  return data.session;
+  const { data: courante } = await client.auth.getSession();
+  const sessionInvite = estInvite(courante.session?.user) ? courante.session : null;
+  if (sessionInvite) {
+    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
+    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+  }
+  try {
+    const { data, error } = await client.auth.signInWithPassword({ email: p.email.trim(), password: p.motDePasse });
+    if (error) throw error;
+    if (sessionInvite) {
+      const sessionCible = data.session ?? (await client.auth.getSession()).data.session;
+      if (!sessionCible) throw new ErreurCompte('compte.erreurs.inconnue');
+      await confirmerBesoinReprise(client, sessionInvite.user.id, sessionCible.user.id);
+    }
+    suivre('connexion_reussie', { methode: 'email' });
+    return data.session;
+  } catch (e) {
+    if (sessionInvite) await annulerOAuthRepriseInvite();
+    throw e;
+  }
 }
 
-/** Déconnexion, puis nouvelle session invité pour que l'app reste utilisable. */
+/** Déconnexion : données du téléphone effacées (M2-14), puis nouvelle session invité pour que l'app reste utilisable. */
 export async function deconnecter(client: Client): Promise<void> {
   const { error } = await client.auth.signOut();
   if (error) throw error;
   suivre('deconnexion', {});
+  await effacerDonneesLocales();
   await assurerSessionInvite(client);
 }
 
@@ -104,23 +149,52 @@ export type DepsOAuth = {
 };
 
 /**
- * Google via OAuth Supabase. Un invité garde son compte : `linkIdentity` rattache Google à l'utilisateur anonyme
- * (nécessite `enable_manual_linking` côté Supabase) ; sinon connexion classique.
+ * Google ou Facebook via OAuth Supabase. Par défaut un invité rattache le fournisseur à son compte pour garder sa
+ * progression. L'écran de connexion peut demander une connexion directe au compte existant.
  */
-export async function connecterGoogle(client: Client, deps: DepsOAuth, codeParrainage?: string | null): Promise<void> {
+export async function connecterOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<boolean> {
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
+  const rattachement = !mode.connexionDirecte && (conversionInvite || !!mode.rattacher);
+  const sessionInvite = mode.connexionDirecte && conversionInvite ? courante.session : null;
+  if (sessionInvite) {
+    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
+    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+  }
+  try {
+    await parcoursOAuth(client, fournisseur, deps, rattachement);
+    let reprise = false;
+    if (sessionInvite) {
+      const { data: connexion } = await client.auth.getSession();
+      if (!connexion.session) throw new ErreurCompte('compte.erreurs.inconnue');
+      reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+    }
+    const avecCode = await rattacherCode(client, codeParrainage);
+    if (rattachement && conversionInvite) suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
+    else if (mode.rattacher) suivre('identite_rattachee', { methode: fournisseur });
+    else suivre('connexion_reussie', { methode: fournisseur });
+    return reprise;
+  } catch (e) {
+    if (sessionInvite) await annulerOAuthRepriseInvite();
+    throw e;
+  }
+}
+
+/** Ouvre la page du fournisseur puis installe la session renvoyée sur `elearnprepa://auth/callback`. */
+async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, rattachement: boolean): Promise<void> {
   const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
-  const { data, error } = conversionInvite
-    ? await client.auth.linkIdentity({ provider: 'google', options })
-    : await client.auth.signInWithOAuth({ provider: 'google', options });
+  const { data, error } = rattachement
+    ? await client.auth.linkIdentity({ provider: fournisseur, options })
+    : await client.auth.signInWithOAuth({ provider: fournisseur, options });
   if (error) throw error;
   if (!data.url) throw new ErreurCompte('compte.erreurs.inconnue');
 
   const resultat = await deps.ouvrirNavigateur(data.url, deps.urlRedirection);
   if (resultat.type !== 'success' || !resultat.url) throw new ErreurCompte('compte.erreurs.annule');
 
-  const { code, accessToken, refreshToken, erreur } = lireRetourOAuth(resultat.url);
+  const { code, accessToken, refreshToken, erreur, codeErreur } = lireRetourOAuth(resultat.url);
+  if (codeErreur === 'identity_already_exists') throw new ErreurCompte('compte.erreurs.dejaLie', { code: codeErreur });
+  if (codeErreur === 'manual_linking_disabled') throw new ErreurCompte('compte.erreurs.methodeIndisponible', { code: codeErreur });
   if (erreur) throw new ErreurCompte('compte.erreurs.annule');
   if (code) {
     const { error: e } = await client.auth.exchangeCodeForSession(code);
@@ -131,10 +205,13 @@ export async function connecterGoogle(client: Client, deps: DepsOAuth, codeParra
   } else {
     throw new ErreurCompte('compte.erreurs.inconnue');
   }
-  const avecCode = await rattacherCode(client, codeParrainage);
-  if (conversionInvite) suivre('compte_cree', { methode: 'google', conversion_invite: true, avec_parrainage: avecCode });
-  else suivre('connexion_reussie', { methode: 'google' });
 }
+
+/** `rattacher` lie le fournisseur au compte courant ; `connexionDirecte` ouvre une session existante. */
+export type ModeSocial = { rattacher?: boolean; connexionDirecte?: boolean };
+
+export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'google', deps, codeParrainage, mode);
+export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
 async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
@@ -158,6 +235,7 @@ export function lireRetourOAuth(url: string) {
     accessToken: fragment.get('access_token'),
     refreshToken: fragment.get('refresh_token'),
     erreur: requete.get('error') ?? fragment.get('error'),
+    codeErreur: requete.get('error_code') ?? fragment.get('error_code'),
   };
 }
 
@@ -168,7 +246,7 @@ export type DepsApple = {
 };
 
 /** Apple (iOS seulement) : jeton d'identité natif échangé contre une session Supabase. */
-export async function connecterApple(client: Client, deps: DepsApple, codeParrainage?: string | null): Promise<void> {
+export async function connecterApple(client: Client, deps: DepsApple, codeParrainage?: string | null, mode: ModeSocial = {}): Promise<boolean> {
   if (!(await deps.disponible())) throw new ErreurCompte('compte.erreurs.appleIndisponible');
   let jeton: { identityToken: string | null; nonce: string };
   try {
@@ -178,8 +256,27 @@ export async function connecterApple(client: Client, deps: DepsApple, codeParrai
     throw e;
   }
   if (!jeton.identityToken) throw new ErreurCompte('compte.erreurs.inconnue');
-  const { error } = await client.auth.signInWithIdToken({ provider: 'apple', token: jeton.identityToken, nonce: jeton.nonce });
-  if (error) throw error;
-  await rattacherCode(client, codeParrainage);
-  suivre('connexion_reussie', { methode: 'apple' });
+  const identifiants = { provider: 'apple', token: jeton.identityToken, nonce: jeton.nonce };
+  const { data: courante } = await client.auth.getSession();
+  const sessionInvite = mode.connexionDirecte && estInvite(courante.session?.user) ? courante.session : null;
+  if (sessionInvite) {
+    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
+    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+  }
+  try {
+    const { error } = mode.rattacher ? await client.auth.linkIdentity(identifiants) : await client.auth.signInWithIdToken(identifiants);
+    if (error) throw error;
+    let reprise = false;
+    if (sessionInvite) {
+      const { data: connexion } = await client.auth.getSession();
+      if (!connexion.session) throw new ErreurCompte('compte.erreurs.inconnue');
+      reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+    }
+    await rattacherCode(client, codeParrainage);
+    suivre(mode.rattacher ? 'identite_rattachee' : 'connexion_reussie', { methode: 'apple' });
+    return reprise;
+  } catch (e) {
+    if (sessionInvite) await annulerOAuthRepriseInvite();
+    throw e;
+  }
 }

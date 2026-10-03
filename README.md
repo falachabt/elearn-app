@@ -97,7 +97,7 @@ Les écrans n'utilisent que `theme.*` et les composants, jamais une couleur en d
 
 Le projet Expo est `@ezardive/elearn_mobile` (celui de l'ancienne app, identifiant `com.ezadrive.elearn`). Canal de la nouvelle app : `preview` (la prod reste sur `production`). Les variables `EXPO_PUBLIC_*` viennent de l'environnement EAS `preview`.
 
-- Chaque push sur `main` ou `claude/project-thread-cvknuk` publie une mise à jour OTA sur le canal `preview` (workflow `eas-preview.yml`).
+- Chaque push sur `main` ou `claude/project-thread-cvknuk` ou `claude/project-thread-kw792g` publie une mise à jour OTA sur le canal `preview` (workflow `eas-preview.yml`).
 - Premier build installable : Actions > EAS preview > Run workflow, cocher « build ». Installer l'APK, puis les mises à jour arrivent seules.
 - Prérequis : secret de dépôt `EXPO_TOKEN`.
 - **Barrière avant OTA** : le job `verifier` (dont dépend `ota`) lance Jest, `tsc` et `expo export --platform android` (bundle Metro + Hermes) ; s'il échoue, aucune OTA n'est publiée. `src/__tests__/garde-natif.test.tsx` rejoue le contrat natif d'`Appearance.setColorScheme` (jamais `null`/`undefined`) et scanne le code source pour ces appels.
