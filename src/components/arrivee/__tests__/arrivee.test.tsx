@@ -108,22 +108,21 @@ describe.each(['fr', 'en'] as const)('A5 · score et A6 · sauvegarder (%s)', (l
     }
   });
 
-  it('invité : Sauvegarder, Google, Apple, Facebook, e-mail, Plus tard', async () => {
+  it('invité : proposer Google en premier ou continuer sans compte', async () => {
     await monter(<Score resultat={resultat} />);
     expect(screen.getByRole('button', { name: x.score.sauvegarder })).toBeTruthy();
-    expect(screen.getAllByRole('button', { name: x.score.continuer })).toHaveLength(2);
+    expect(screen.queryByRole('button', { name: x.score.continuer })).toBeNull();
     expect(screen.getByText(x.sauvegarde.titre)).toBeTruthy();
-    for (const l of [x.compte.google, x.compte.apple, x.compte.facebook, x.sauvegarde.email, x.sauvegarde.plusTard]) {
-      expect(screen.getByRole('button', { name: l })).toBeTruthy();
-    }
+    expect(screen.getByRole('button', { name: x.compte.google })).toBeTruthy();
+    expect(screen.getByRole('button', { name: x.score.continuerSansCompte })).toBeTruthy();
+    for (const l of [x.compte.apple, x.compte.facebook, x.sauvegarde.email, x.sauvegarde.plusTard]) expect(screen.queryByRole('button', { name: l })).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.score.voirLecon }));
     expect(router.replace).toHaveBeenCalledWith('/reviser');
   });
 
-  it('invité : Continuer depuis l’invitation ferme le parcours et revient à l’accueil', async () => {
+  it('invité : continuer sans compte ferme l’invitation et revient à l’accueil', async () => {
     await monter(<Score resultat={resultat} />);
-    const continuer = screen.getAllByRole('button', { name: x.score.continuer });
-    await fireEvent.press(continuer[1]);
+    await fireEvent.press(screen.getByRole('button', { name: x.score.continuerSansCompte }));
     expect(router.replace).toHaveBeenCalledWith('/');
   });
 

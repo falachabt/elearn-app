@@ -11,8 +11,8 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
-import { MentionsLegales } from '../MentionsLegales';
 import { Bouton } from '../Bouton';
+import { MentionsLegales } from '../MentionsLegales';
 import { BoutonsSociaux } from '../BoutonsSociaux';
 
 function Fond(props: BottomSheetBackdropProps) {
@@ -26,7 +26,7 @@ type Props = {
 };
 
 /** Choix de connexion pour créer son compte : Google, Apple, Facebook, e-mail, « Plus tard », mentions (M2-05). */
-export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void }) {
+export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer, scoreInvite }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void; scoreInvite?: boolean }) {
   const { t } = useTraduction();
   const [erreur, setErreur] = useState<CleTexte | null>(null);
   const [code, setCode] = useState<string | null>(null);
@@ -38,31 +38,36 @@ export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer }: { onSau
   return (
     <View style={styles.contenu}>
       {erreur ? <Banniere ton="erreur" titre={t(erreur)} /> : null}
-      {onContinuer ? <Bouton variante="secondaire" libelle={t('score.continuer')} onPress={onContinuer} /> : null}
-      <BoutonsSociaux codeParrainage={code} onErreur={setErreur} onSucces={onSauvegarde} />
-      <Bouton
-        variante="texte"
-        libelle={t('sauvegarde.email')}
-        onPress={() => {
-          onPlusTard();
-          router.push('/compte/creer');
-        }}
-      />
-      <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
+      <BoutonsSociaux codeParrainage={code} onErreur={setErreur} onSucces={onSauvegarde} connexionDirecte={scoreInvite} googleSeul={scoreInvite} />
+      {scoreInvite ? (
+        <Bouton variante="texte" libelle={t('score.continuerSansCompte')} onPress={onContinuer ?? onPlusTard} />
+      ) : (
+        <>
+          <Bouton
+            variante="texte"
+            libelle={t('sauvegarde.email')}
+            onPress={() => {
+              onPlusTard();
+              router.push('/compte/creer');
+            }}
+          />
+          <Bouton variante="texte" libelle={t('sauvegarde.plusTard')} onPress={onPlusTard} />
+        </>
+      )}
       <MentionsLegales />
     </View>
   );
 }
 
 /** Contenu de A6 (séparé de la feuille pour les tests). */
-export function ContenuSauvegarde({ onSauvegarde, onPlusTard, onContinuer }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void }) {
+export function ContenuSauvegarde({ onSauvegarde, onPlusTard, onContinuer, scoreInvite }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void; scoreInvite?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   return (
     <View style={styles.contenu}>
       <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('sauvegarde.titre')}</Text>
       <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('sauvegarde.texte')}</Text>
-      <OptionsCompte onSauvegarde={onSauvegarde} onPlusTard={onPlusTard} onContinuer={onContinuer} />
+      <OptionsCompte onSauvegarde={onSauvegarde} onPlusTard={onPlusTard} onContinuer={onContinuer} scoreInvite={scoreInvite} />
     </View>
   );
 }
@@ -87,6 +92,7 @@ export const FeuilleSauvegarde = forwardRef<BottomSheet, Props>(function Feuille
       <BottomSheetView style={{ paddingBottom: bottom + espace[5], paddingHorizontal: espace[5] }}>
         <ContenuSauvegarde
           onPlusTard={fermer}
+          scoreInvite
           onContinuer={() => {
             fermer();
             onContinuer();
