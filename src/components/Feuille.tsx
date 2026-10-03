@@ -9,7 +9,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from './Bouton';
 
-export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' | 'texte' };
+export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' | 'texte'; icone?: ReactNode };
 
 type Props = {
   ouverte: boolean;
@@ -82,7 +82,7 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
           {children}
           <View style={styles.actions}>
             {actions.map((a) => (
-              <Bouton key={a.libelle} variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} libelle={a.libelle} onPress={a.onPress} />
+              <Bouton key={a.libelle} variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} icone={a.icone} libelle={a.libelle} onPress={a.onPress} />
             ))}
           </View>
           {mention ? <Text style={[typo.legende, styles.mention, { color: theme.texte.secondaire }]}>{mention}</Text> : null}

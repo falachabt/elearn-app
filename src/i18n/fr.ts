@@ -393,6 +393,7 @@ export const fr = {
     programme: 'programme francophone',
     changer: 'Changer',
     langueQuestion: 'Tu préfères quelle langue pour l’application ?',
+    aide: 'Déduit de la région de ton téléphone. Tu peux le changer à tout moment.',
     continuer: 'Continuer',
     retour: 'Retour',
     concoursListe: { ens: 'ENS', medecine: 'Médecine', ingenieurs: 'Écoles d’ingénieurs' },

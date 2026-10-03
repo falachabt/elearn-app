@@ -392,6 +392,7 @@ export const en: Textes = {
     programme: 'francophone curriculum',
     changer: 'Change',
     langueQuestion: 'Which language would you prefer for the app?',
+    aide: 'Guessed from your phone’s region. You can change it at any time.',
     continuer: 'Continue',
     retour: 'Back',
     concoursListe: { ens: 'ENS', medecine: 'Medicine', ingenieurs: 'Engineering schools' },
