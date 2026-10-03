@@ -145,7 +145,7 @@ export function AssistantConfiguration() {
 
       <BottomSheetModal
         ref={feuille}
-        snapPoints={['90%']}
+        snapPoints={['100%']}
         enableDynamicSizing={false}
         topInset={0}
         bottomInset={bottomInset}
@@ -214,7 +214,8 @@ export function AssistantConfiguration() {
               );
             }}
             style={styles.liste}
-            contentContainerStyle={[styles.contenuListe, { paddingBottom: espace[8] + bottomInset }]}
+            contentContainerStyle={styles.contenuListe}
+            ListFooterComponent={<View testID="configuration-fin-liste" style={{ height: bottomInset + espace[5] }} />}
             nestedScrollEnabled
             showsVerticalScrollIndicator
           />
@@ -232,8 +233,8 @@ const styles = StyleSheet.create({
   entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2] },
   titres: { flex: 1, gap: espace[2] },
   fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
-  liste: { flex: 1 },
-  contenuListe: { gap: espace[3] },
+  liste: { flex: 1, minHeight: 0 },
+  contenuListe: { gap: espace[3], paddingBottom: espace[3] },
   ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
   numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   libelle: { flex: 1 },

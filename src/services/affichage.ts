@@ -38,12 +38,16 @@ const base = Object.fromEntries(
  */
 export function appliquerTaille(taille: number): void {
   const f = taille / 100;
-  for (const k of Object.keys(base) as CleTypo[]) {
-    const cible = typo[k] as { fontSize: number; lineHeight: number; letterSpacing?: number };
-    cible.fontSize = Math.round(base[k].fontSize * f * 10) / 10;
-    cible.lineHeight = Math.round(base[k].lineHeight * f);
-    if (base[k].letterSpacing !== undefined) cible.letterSpacing = base[k].letterSpacing;
-  }
+  const styles = Object.fromEntries((Object.keys(base) as CleTypo[]).map((k) => [
+    k,
+    {
+      ...typo[k],
+      fontSize: Math.round(base[k].fontSize * f * 10) / 10,
+      lineHeight: Math.round(base[k].lineHeight * f),
+      ...(base[k].letterSpacing !== undefined ? { letterSpacing: base[k].letterSpacing } : {}),
+    },
+  ]));
+  Object.assign(typo, styles);
 }
 
 const estTheme = (v: unknown): v is ReglageTheme => v === 'clair' || v === 'sombre' || v === 'systeme';
