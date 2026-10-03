@@ -3,6 +3,7 @@ import { router, useFocusEffect } from 'expo-router';
 import { Check, ChevronRight, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from 'react-native-reanimated';
 
 import type { CleTexte } from '@/i18n';
@@ -35,6 +36,7 @@ function Fond(props: BottomSheetBackdropProps) {
 export function AssistantConfiguration() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { bottom: bottomInset } = useSafeAreaInsets();
   const { reduit } = useFeedback();
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
@@ -146,6 +148,7 @@ export function AssistantConfiguration() {
         snapPoints={['90%']}
         enableDynamicSizing={false}
         topInset={0}
+        bottomInset={bottomInset}
         enablePanDownToClose
         backdropComponent={Fond}
         onDismiss={() => {
@@ -176,7 +179,7 @@ export function AssistantConfiguration() {
           <BottomSheetScrollView
             testID="configuration-etapes"
             style={styles.liste}
-            contentContainerStyle={styles.contenuListe}
+            contentContainerStyle={[styles.contenuListe, { paddingBottom: espace[4] + bottomInset }]}
             nestedScrollEnabled
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator

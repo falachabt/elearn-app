@@ -29,7 +29,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   const { ScrollView, View } = jest.requireActual('react-native') as typeof import('react-native');
   const mockPresent = jest.fn();
   const mockDismiss = jest.fn();
-  const Modal = React.forwardRef(({ children, onDismiss }: { children?: React.ReactNode; onDismiss?: () => void }, ref: React.ForwardedRef<{ present: () => void; dismiss: () => void }>) => {
+  const Modal = React.forwardRef(({ children, onDismiss, bottomInset }: { children?: React.ReactNode; onDismiss?: () => void; bottomInset?: number }, ref: React.ForwardedRef<{ present: () => void; dismiss: () => void }>) => {
     React.useImperativeHandle(ref, () => ({
       present: mockPresent,
       dismiss: () => {
@@ -37,7 +37,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
         onDismiss?.();
       },
     }));
-    return <View>{children}</View>;
+    return <View testID="configuration-sheet-mock" style={{ paddingBottom: bottomInset }}>{children}</View>;
   });
   Modal.displayName = 'MockBottomSheetModal';
   const Scrollable = ({ children, ...props }: React.ComponentProps<typeof ScrollView>) => <ScrollView {...props}>{children}</ScrollView>;
@@ -58,7 +58,7 @@ jest.mock('@/services/assistantConfiguration', () => ({
 }));
 const mockPush = jest.requireMock('expo-router').router.push as jest.Mock;
 const { mockDismiss, mockPresent } = jest.requireMock('@gorhom/bottom-sheet') as { mockDismiss: jest.Mock; mockPresent: jest.Mock };
-const metrics = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
+const metrics = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 24, left: 0, right: 0 } };
 
 async function monter() {
   return render(
@@ -82,8 +82,10 @@ it('ouvre une liste claire de huit étapes, coche le compte et les actions déj�
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
   expect(vue.getAllByRole('checkbox')).toHaveLength(8);
+  expect(vue.getByTestId('configuration-sheet-mock').props.style.paddingBottom).toBe(24);
   const liste = vue.getByTestId('configuration-etapes');
   expect(liste.props.nestedScrollEnabled).toBe(true);
+  expect(liste.props.contentContainerStyle[1].paddingBottom).toBeGreaterThan(24);
   expect(within(liste).queryByText(fr.configuration.titre)).toBeNull();
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.lecon}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
