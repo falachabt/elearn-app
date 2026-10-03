@@ -36,16 +36,22 @@ type Tache = {
   pays?: string;
   concours?: string | null;
   taille?: number;
+  tailleOctets?: number;
   erreur?: string;
 };
 
 export type ProgressionCategorie = { total: number; faites: number; echecs: number };
+export type EstimationCategorie = { total: number; octets: number };
+export type EstimationTelechargement = Pick<EtatHorsLigne, 'profil' | 'taches' | 'progression' | 'estimationOctets' | 'espaceDisponible'> & {
+  estimationCategories: Record<CategorieHorsLigne, EstimationCategorie>;
+};
 export type EtatHorsLigne = {
   statut: 'pret' | 'telechargement' | 'termine' | 'partiel';
   profil: Pick<Profil, 'niveau' | 'pays' | 'concours'>;
   taches: Tache[];
   progression: Record<CategorieHorsLigne, ProgressionCategorie>;
   estimationOctets: number;
+  estimationCategories?: Record<CategorieHorsLigne, EstimationCategorie>;
   espaceDisponible: number;
   notification?: 'autorisee' | 'refusee' | 'echec';
   actualiseLe: string;
@@ -105,41 +111,72 @@ function progression(taches: Tache[]): EtatHorsLigne['progression'] {
   })) as EtatHorsLigne['progression'];
 }
 
+const OCTETS_PAR_TACHE: Record<CategorieHorsLigne, number> = {
+  missions: 32 * 1024,
+  cours: 96 * 1024,
+  quiz: 48 * 1024,
+  exercices: 40 * 1024,
+  pdf: 1_500 * 1024,
+};
+
+function tailleTache(tache: Tache): number {
+  return tache.tailleOctets ?? OCTETS_PAR_TACHE[tache.categorie];
+}
+
+function estimerCategories(taches: Tache[]): Record<CategorieHorsLigne, EstimationCategorie> {
+  return Object.fromEntries(CATEGORIES_HORS_LIGNE.map((categorie) => {
+    const ressources = taches.filter((tache) => tache.categorie === categorie);
+    return [categorie, {
+      total: ressources.length,
+      octets: ressources.reduce((total, tache) => total + tailleTache(tache), 0),
+    }];
+  })) as Record<CategorieHorsLigne, EstimationCategorie>;
+}
+
 function octetsEstimes(taches: Tache[]): number {
-  const tailles: Record<CategorieHorsLigne, number> = {
-    missions: 32 * 1024,
-    cours: 96 * 1024,
-    quiz: 48 * 1024,
-    exercices: 40 * 1024,
-    pdf: 1_500 * 1024,
-  };
-  return taches.reduce((total, tache) => total + tailles[tache.categorie], 0);
+  return taches.reduce((total, tache) => total + tailleTache(tache), 0);
+}
+
+function documentsEstimes(taches: Tache[], documents: { id: string; titre: string; correctionId: string | null; tailleOctets?: number }[]): void {
+  const tailles = new Map(documents.flatMap((d) => d.tailleOctets ? [[d.id, d.tailleOctets] as const] : []));
+  for (const tache of taches) {
+    if (tache.categorie === 'pdf' && tache.document?.id) tache.tailleOctets = tailles.get(tache.document.id);
+  }
 }
 
 async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, profil: Profil): Promise<{ id: string; titre: string; correctionId: string | null }[]> {
-  const documents: { id: string; titre: string; correctionId: string | null }[] = [];
-  const visiter = async (parent: string | null) => {
+  const visiter = async (parent: string | null): Promise<{ id: string; titre: string; correctionId: string | null; tailleOctets?: number }[]> => {
     const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', parent });
-    for (const dossier of dossiers) {
-      if (dossier.sousDossiers > 0) await visiter(dossier.id);
-      const fichiers = await lireDocuments(client, dossier.id);
-      documents.push(...fichiers.map((f) => ({ id: f.id, titre: f.nom, correctionId: f.correctionId })));
-    }
+    const contenus = await Promise.all(dossiers.map(async (dossier) => {
+      const [fichiers, enfants] = await Promise.all([
+        lireDocuments(client, dossier.id),
+        dossier.sousDossiers > 0 ? visiter(dossier.id) : Promise.resolve([]),
+      ]);
+      return [
+        ...fichiers.map((f) => ({ id: f.id, titre: f.nom, correctionId: f.correctionId, tailleOctets: f.tailleOctets })),
+        ...enfants,
+      ];
+    }));
+    return contenus.flat();
   };
-  await visiter(null);
-  return documents;
+  return visiter(null);
 }
 
-export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'profil' | 'taches' | 'progression' | 'estimationOctets' | 'espaceDisponible'>> {
+async function lireRefsOuvertes(client: ReturnType<typeof getSupabase>, action: 'exercise_solution' | 'document_pdf', refs: string[]): Promise<Set<string>> {
+  const lots: string[][] = [];
+  for (let i = 0; i < refs.length; i += 200) lots.push(refs.slice(i, i + 200));
+  const ouverts = await Promise.all(lots.map((lot) => lireOuverts(client, action, lot)));
+  return new Set(ouverts.flatMap((lot) => [...lot]));
+}
+
+export async function estimerTelechargement(): Promise<EstimationTelechargement> {
   const client = getSupabase();
   const profil = await lireProfil();
   if (!profil) throw new Error('profil de formation introuvable');
   const programme = { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', concours: profil.concours?.id ?? null };
-  const acces = await lireAcces(client);
-  const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();
-  const cours = await lireCours(client, programme);
   const taches: Tache[] = [];
-  const rythme = await lireRythme();
+  const [acces, cours, rythme] = await Promise.all([lireAcces(client), lireCours(client, programme), lireRythme()]);
+  const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();
   const aujourdHui = new Date();
   for (let i = 0; i < 7; i++) {
     const jour = aujourdhuiPlus(
@@ -149,13 +186,16 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
     ajouterTache(taches, 'missions', jour, { jour, niveau: programme.niveau, pays: programme.pays, concours: programme.concours, taille: rythme ?? undefined });
   }
 
-  const leconsParCours = await Promise.all(cours.map(async (c) => ({ cours: c.id, lecons: await lireLecons(client, c.id), activites: await lireEntrainement(client, c.id) })));
+  const [leconsParCours, documents] = await Promise.all([
+    Promise.all(cours.map(async (c) => ({ cours: c.id, lecons: await lireLecons(client, c.id), activites: await lireEntrainement(client, c.id) }))),
+    profil.type === 'eleve' ? lireDocumentsProgramme(client, profil) : Promise.resolve([]),
+  ]);
   const exercices = leconsParCours.flatMap((c) => c.activites.exercices.map((x) => x.id));
-  const exercicesOuverts = new Set<string>();
-  for (let i = 0; i < exercices.length; i += 200) {
-    const ouverts = await lireOuverts(client, 'exercise_solution', exercices.slice(i, i + 200));
-    for (const ref of ouverts) exercicesOuverts.add(ref);
-  }
+  const refsDocuments = documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]);
+  const [exercicesOuverts, refsOuverts] = await Promise.all([
+    passActif ? Promise.resolve(new Set<string>()) : lireRefsOuvertes(client, 'exercise_solution', exercices),
+    passActif ? Promise.resolve(new Set<string>()) : lireRefsOuvertes(client, 'document_pdf', refsDocuments),
+  ]);
   for (const [i, c] of cours.entries()) {
     ajouterTache(taches, 'cours', `fiche-${c.id}`, { cours: c.id });
     for (const lecon of leconsParCours[i].lecons) {
@@ -173,13 +213,6 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
     }
   }
 
-  const documents = profil.type === 'eleve' ? await lireDocumentsProgramme(client, profil) : [];
-  const refs = documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]);
-  const refsOuverts = new Set<string>();
-  for (let i = 0; i < refs.length; i += 200) {
-    const ouverts = await lireOuverts(client, 'document_pdf', refs.slice(i, i + 200));
-    for (const ref of ouverts) refsOuverts.add(ref);
-  }
   for (const document of documents) {
     if (passActif || refsOuverts.has(document.id)) {
       ajouterTache(taches, 'pdf', `pdf-${document.id}`, { document });
@@ -190,13 +223,28 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
       });
     }
   }
+  documentsEstimes(taches, documents);
 
+  const estimationCategories = estimerCategories(taches);
   return {
     profil: { niveau: profil.niveau, pays: profil.pays, concours: profil.concours },
     taches,
     progression: progression(taches),
     estimationOctets: octetsEstimes(taches),
+    estimationCategories,
     espaceDisponible: Math.max(0, Paths.availableDiskSpace || 0),
+  };
+}
+
+export function selectionnerCategories(estimation: EstimationTelechargement, categories: readonly CategorieHorsLigne[]): EstimationTelechargement {
+  const choisies = new Set(categories);
+  const taches = estimation.taches.filter((tache) => choisies.has(tache.categorie));
+  return {
+    ...estimation,
+    taches,
+    progression: progression(taches),
+    estimationOctets: octetsEstimes(taches),
+    estimationCategories: estimerCategories(taches),
   };
 }
 
@@ -242,7 +290,7 @@ async function executerTache(tache: Tache): Promise<void> {
   }
 }
 
-export async function lancerTelechargement(estimation?: Awaited<ReturnType<typeof estimerTelechargement>>): Promise<void> {
+export async function lancerTelechargement(estimation?: EstimationTelechargement | EtatHorsLigne): Promise<void> {
   await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   const calculee = estimation ?? await estimerTelechargement();
   let notification: EtatHorsLigne['notification'] = 'refusee';
@@ -262,6 +310,8 @@ export async function lancerTelechargement(estimation?: Awaited<ReturnType<typeo
     ...calculee,
     taches,
     progression: progression(taches),
+    estimationOctets: octetsEstimes(taches),
+    estimationCategories: estimerCategories(taches),
     statut: 'telechargement',
     notification,
     actualiseLe: new Date().toISOString(),

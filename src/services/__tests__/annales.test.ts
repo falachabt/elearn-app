@@ -74,7 +74,7 @@ describe('annales rangées en dossiers', () => {
   });
 
   it('lireDocuments : identifiants seulement, pas d’adresse de PDF', async () => {
-    const c = client([{ document_id: 'd', name: 'Sujet_1.pdf', correction_id: 'c' }]);
-    expect(await lireDocuments(c as never, 'a')).toEqual([{ id: 'd', nom: 'Sujet 1', correctionId: 'c' }]);
+    const c = client([{ document_id: 'd', name: 'Sujet_1.pdf', correction_id: 'c', size_bytes: '1200000000' }]);
+    expect(await lireDocuments(c as never, 'a')).toEqual([{ id: 'd', nom: 'Sujet 1', correctionId: 'c', tailleOctets: 1_200_000_000 }]);
   });
 });

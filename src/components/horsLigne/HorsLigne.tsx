@@ -12,7 +12,9 @@ import {
   estimerTelechargement,
   lancerTelechargement,
   lireEtatHorsLigne,
+  selectionnerCategories,
   type CategorieHorsLigne,
+  type EstimationTelechargement,
   type EtatHorsLigne,
 } from '@/services/horsLigne';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -22,8 +24,10 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
+import { Interrupteur } from '../Interrupteur';
 
-type Phase = 'choix' | 'confirmation' | 'progression';
+type Phase = 'selection' | 'progression';
+const SEUIL_PDF_DEFAUT = 200 * 1024 ** 2;
 
 const CLE_CATEGORIE: Record<CategorieHorsLigne, CleTexte> = {
   missions: 'horsLigne.missions',
@@ -34,7 +38,9 @@ const CLE_CATEGORIE: Record<CategorieHorsLigne, CleTexte> = {
 };
 
 function tailleLisible(octets: number): string {
+  if (octets <= 0) return '0 Ko';
   if (octets >= 1024 ** 3) return `${(octets / 1024 ** 3).toFixed(1)} Go`;
+  if (octets < 1024 ** 2) return `${Math.max(1, Math.round(octets / 1024))} Ko`;
   return `${Math.max(1, Math.round(octets / 1024 ** 2))} Mo`;
 }
 
@@ -56,19 +62,39 @@ export function HorsLigne() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { source } = useLocalSearchParams<{ source?: string }>();
-  const [phase, setPhase] = useState<Phase>('choix');
+  const [phase, setPhase] = useState<Phase>('selection');
   const [etat, setEtat] = useState<EtatHorsLigne | null>(null);
-  const [estimation, setEstimation] = useState<Awaited<ReturnType<typeof estimerTelechargement>> | null>(null);
-  const [chargement, setChargement] = useState(false);
+  const [estimation, setEstimation] = useState<EstimationTelechargement | null>(null);
+  const [selection, setSelection] = useState<Partial<Record<CategorieHorsLigne, boolean>>>({});
+  const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState(false);
 
   useEffect(() => {
     let actif = true;
-    lireEtatHorsLigne().then((e) => {
-      if (!actif) return;
-      setEtat(e);
-      if (e && (e.statut === 'telechargement' || e.statut === 'partiel' || e.statut === 'termine')) setPhase('progression');
-    });
+    void (async () => {
+      try {
+        const e = await lireEtatHorsLigne();
+        if (!actif) return;
+        setEtat(e);
+        if (e && (e.statut === 'telechargement' || e.statut === 'partiel' || e.statut === 'termine')) {
+          setPhase('progression');
+          return;
+        }
+        const resultat = await estimerTelechargement();
+        if (!actif) return;
+        setEstimation(resultat);
+        setSelection(Object.fromEntries(
+          CATEGORIES_HORS_LIGNE.map((categorie) => [
+            categorie,
+            categorie !== 'pdf' || resultat.estimationCategories.pdf.octets <= SEUIL_PDF_DEFAUT,
+          ]),
+        ) as Record<CategorieHorsLigne, boolean>);
+      } catch {
+        if (actif) setErreur(true);
+      } finally {
+        if (actif) setChargement(false);
+      }
+    })();
     const arreter = ecouterHorsLigne((e) => actif && setEtat(e));
     return () => {
       actif = false;
@@ -77,16 +103,24 @@ export function HorsLigne() {
   }, []);
 
   const retour = async () => {
-    if (phase === 'choix' && source === 'accueil') await declinerModeHorsLigne();
+    if (phase === 'selection' && source === 'accueil') await declinerModeHorsLigne();
     router.back();
   };
 
-  const demanderEstimation = async () => {
+  const actualiserEstimation = async () => {
     setChargement(true);
     setErreur(false);
     try {
-      setEstimation(await estimerTelechargement());
-      setPhase('confirmation');
+      const resultat = await estimerTelechargement();
+      setEstimation(resultat);
+      if (!estimation) {
+        setSelection(Object.fromEntries(
+          CATEGORIES_HORS_LIGNE.map((categorie) => [
+            categorie,
+            categorie !== 'pdf' || resultat.estimationCategories.pdf.octets <= SEUIL_PDF_DEFAUT,
+          ]),
+        ) as Record<CategorieHorsLigne, boolean>);
+      }
     } catch {
       setErreur(true);
     } finally {
@@ -99,13 +133,23 @@ export function HorsLigne() {
     setErreur(false);
     setPhase('progression');
     try {
-      await lancerTelechargement(estimation);
+      await lancerTelechargement(selectionnerCategories(
+        estimation,
+        CATEGORIES_HORS_LIGNE.filter((categorie) => selection[categorie] !== false),
+      ));
       setEtat(await lireEtatHorsLigne());
     } catch {
       setErreur(true);
-      setPhase('confirmation');
+      setPhase('selection');
     }
   };
+
+  const estimationChoisie = useMemo(
+    () => estimation && selectionnerCategories(estimation, CATEGORIES_HORS_LIGNE.filter((categorie) => selection[categorie] !== false)),
+    [estimation, selection],
+  );
+  const ressourcesChoisies = CATEGORIES_HORS_LIGNE.some((categorie) => selection[categorie] !== false && !!estimation?.estimationCategories[categorie].total);
+  const pdfDecochesParDefaut = !!estimation && estimation.estimationCategories.pdf.octets > SEUIL_PDF_DEFAUT && selection.pdf === false;
 
   const pourcentage = useMemo(() => {
     if (!etat) return 0;
@@ -114,16 +158,10 @@ export function HorsLigne() {
     return total ? Math.floor(p.reduce((n, x) => n + x.faites + x.echecs, 0) * 100 / total) : 100;
   }, [etat]);
 
-  const pied =
-    phase === 'choix' ? (
+  const pied = phase === 'selection' ? (
       <View style={styles.actions}>
-        <Bouton libelle={chargement ? t('horsLigne.preparation') : t('horsLigne.oui')} desactive={chargement} onPress={() => void demanderEstimation()} />
-        <Bouton variante="secondaire" libelle={t('horsLigne.non')} onPress={() => void retour()} />
-      </View>
-    ) : phase === 'confirmation' ? (
-      <View style={styles.actions}>
-        <Bouton libelle={t('horsLigne.telecharger')} onPress={() => void commencer()} />
-        <Bouton variante="secondaire" libelle={t('horsLigne.retour')} onPress={() => setPhase('choix')} />
+        <Bouton libelle={t('horsLigne.telecharger')} desactive={chargement || !estimation || !ressourcesChoisies} onPress={() => void commencer()} />
+        {erreur ? <Bouton variante="secondaire" libelle={t('horsLigne.reessayerEstimation')} onPress={() => void actualiserEstimation()} /> : null}
       </View>
     ) : (
       <Bouton variante="secondaire" libelle={t(etat?.statut === 'partiel' ? 'horsLigne.reessayer' : 'horsLigne.fermer')} onPress={() => {
@@ -145,23 +183,46 @@ export function HorsLigne() {
           {phase === 'progression' && etat?.statut === 'termine' ? t('horsLigne.termineTitre') : t('horsLigne.titre')}
         </Text>
         <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
-          {phase === 'choix' ? t('horsLigne.intro') : phase === 'confirmation' ? t('horsLigne.confirmation') : t('horsLigne.travail')}
+          {phase === 'selection' ? t('horsLigne.intro') : t('horsLigne.travail')}
         </Text>
       </View>
 
       {erreur ? <Banniere ton="erreur" titre={t('horsLigne.erreur')} /> : null}
 
-      {phase === 'confirmation' && estimation ? (
+      {phase === 'selection' ? (
         <View style={[styles.estimation, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('horsLigne.estimationTitre')}</Text>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('horsLigne.estimationTaille', { taille: tailleLisible(estimation.estimationOctets) })}</Text>
-          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-            {estimation.espaceDisponible > 0
-              ? t('horsLigne.espaceDisponible', { taille: tailleLisible(estimation.espaceDisponible) })
-              : t('horsLigne.espaceInconnu')}
-          </Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('horsLigne.estimationIndicative')}</Text>
-          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.droitsPdf')}</Text>
+          {chargement ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('horsLigne.preparation')}</Text> : null}
+          {estimation && estimationChoisie ? (
+            <>
+              {CATEGORIES_HORS_LIGNE.map((categorie) => {
+                const detail = estimation.estimationCategories[categorie];
+                return (
+                  <View key={categorie} style={[styles.selectionCategorie, { borderBottomColor: theme.bord.doux }]}>
+                    <Interrupteur
+                      libelle={t(CLE_CATEGORIE[categorie])}
+                      aide={t('horsLigne.ressourcesTaille', { n: detail.total, taille: tailleLisible(detail.octets) })}
+                      valeur={selection[categorie] !== false}
+                      onChange={(valeur) => setSelection((actuelle) => ({ ...actuelle, [categorie]: valeur }))}
+                      desactive={!detail.total}
+                    />
+                  </View>
+                );
+              })}
+              {pdfDecochesParDefaut ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.pdfLourd')}</Text> : null}
+              <View style={[styles.total, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('horsLigne.estimationTaille', { taille: tailleLisible(estimationChoisie.estimationOctets) })}</Text>
+                <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('horsLigne.consommeraInternet')}</Text>
+              </View>
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
+                {estimation.espaceDisponible > 0
+                  ? t('horsLigne.espaceDisponible', { taille: tailleLisible(estimation.espaceDisponible) })
+                  : t('horsLigne.espaceInconnu')}
+              </Text>
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('horsLigne.estimationIndicative')}</Text>
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('horsLigne.droitsPdf')}</Text>
+            </>
+          ) : null}
         </View>
       ) : null}
 
@@ -200,6 +261,8 @@ const styles = StyleSheet.create({
   icone: { width: 56, height: 56, borderWidth: bord.normal, borderRadius: rayon.m, justifyContent: 'center', alignItems: 'center' },
   actions: { gap: espace[3] },
   estimation: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  selectionCategorie: { paddingVertical: espace[2], borderBottomWidth: bord.fin },
+  total: { gap: espace[2], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
   progression: { gap: espace[5] },
   resume: { flexDirection: 'row', alignItems: 'baseline', gap: espace[3] },
   ligneProgression: { gap: espace[2] },

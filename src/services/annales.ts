@@ -91,7 +91,7 @@ export async function lireSujet(client: Client, id: number): Promise<DetailSujet
 export type Concours = { id: string; nom: string; sigle: string; sujets: number };
 export type Dossier = { id: string; nom: string; sousDossiers: number; documents: number };
 /** Les adresses des PDF ne sont plus listées : `depenser_credits('document_pdf')` les donne (M18-04). */
-export type Document = { id: string; nom: string; correctionId: string | null };
+export type Document = { id: string; nom: string; correctionId: string | null; tailleOctets?: number };
 
 /** Concours du catalogue, du plus fourni au moins fourni : chaque concours est un dossier d'annales. */
 export function concoursDuCatalogue(sujets: readonly Sujet[]): Concours[] {
@@ -136,7 +136,16 @@ export async function lireDocuments(client: Client, dossier: string): Promise<Do
   return avecCopie(`annales.documents.${dossier}`, async () => {
     const { data, error } = await client.rpc('class_documents', { p_folder: dossier });
     if (error) throw error;
-    type Ligne = { document_id: string; name: string; correction_id: string | null };
-    return ((data ?? []) as Ligne[]).map((l) => ({ id: l.document_id, nom: titreDocument(nomDocument(l.name)), correctionId: l.correction_id }));
+    type Ligne = { document_id: string; name: string; correction_id: string | null; size_bytes?: number | string | null };
+    const tailleOctets = (taille: number | string | null | undefined): number | undefined => {
+      const n = typeof taille === 'number' || typeof taille === 'string' ? Number(taille) : NaN;
+      return Number.isFinite(n) && n > 0 ? n : undefined;
+    };
+    return ((data ?? []) as Ligne[]).map((l) => ({
+      id: l.document_id,
+      nom: titreDocument(nomDocument(l.name)),
+      correctionId: l.correction_id,
+      ...(tailleOctets(l.size_bytes) ? { tailleOctets: tailleOctets(l.size_bytes) } : {}),
+    }));
   });
 }
