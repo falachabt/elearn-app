@@ -12,20 +12,20 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
-import { FeuilleCompte } from '../FeuilleCompte';
 import { useFeedback } from '../useFeedback';
 
-type Etape = keyof ProgressionAssistant;
+type Etape = keyof ProgressionAssistant | 'compte';
 
-const ETAPES: Etape[] = ['mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'sauvegarde'];
+const ETAPES: Etape[] = ['compte', 'mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'horsLigne'];
 const LIBELLES: Record<Etape, CleTexte> = {
+  compte: 'configuration.etapes.compte',
   mission: 'configuration.etapes.mission',
   lecon: 'configuration.etapes.lecon',
   quiz: 'configuration.etapes.quiz',
   exercice: 'configuration.etapes.exercice',
   correction: 'configuration.etapes.correction',
   fil: 'configuration.etapes.fil',
-  sauvegarde: 'configuration.etapes.sauvegarde',
+  horsLigne: 'configuration.etapes.horsLigne',
 };
 
 function Fond(props: BottomSheetBackdropProps) {
@@ -39,10 +39,8 @@ export function AssistantConfiguration() {
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
   const [ouverte, setOuverte] = useState(false);
-  const [sauvegardeOuverte, setSauvegardeOuverte] = useState(false);
   const feuille = useRef<BottomSheetModal>(null);
   const presente = useRef(false);
-  const apresFermeture = useRef<(() => void) | null>(null);
   const deplacement = useSharedValue(0);
 
   const actualiser = useCallback(() => {
@@ -71,7 +69,10 @@ export function AssistantConfiguration() {
     }
   }, [ouverte]);
 
-  const faites = useMemo(() => (progression ? ETAPES.filter((etape) => progression[etape]).length : 0), [progression]);
+  const faites = useMemo(
+    () => ETAPES.filter((etape) => etape === 'compte' || !!progression?.[etape]).length,
+    [progression],
+  );
   const fermerFeuille = () => {
     presente.current = false;
     feuille.current?.dismiss();
@@ -89,13 +90,11 @@ export function AssistantConfiguration() {
   const animation = useAnimatedStyle(() => ({ transform: [{ translateY: deplacement.value }] }));
 
   const ouvrirEtape = (etape: Etape) => {
-    if (etape === 'sauvegarde' && !progression?.sauvegarde) {
-      apresFermeture.current = () => setSauvegardeOuverte(true);
-      fermerFeuille();
-      return;
-    }
     fermerFeuille();
     switch (etape) {
+      case 'compte':
+        router.push('/moi');
+        break;
       case 'mission':
         router.push({ pathname: '/parametres', params: { assistant: 'mission' } });
         break;
@@ -112,9 +111,8 @@ export function AssistantConfiguration() {
       case 'fil':
         router.push('/questions');
         break;
-      case 'sauvegarde':
-        if (progression?.sauvegarde) router.push('/moi');
-        else setSauvegardeOuverte(true);
+      case 'horsLigne':
+        router.push('/hors-ligne');
         break;
     }
   };
@@ -153,9 +151,6 @@ export function AssistantConfiguration() {
         onDismiss={() => {
           presente.current = false;
           setOuverte(false);
-          const action = apresFermeture.current;
-          apresFermeture.current = null;
-          action?.();
         }}
         handleIndicatorStyle={{ backgroundColor: theme.bord.fort }}
         backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
@@ -184,7 +179,7 @@ export function AssistantConfiguration() {
             showsVerticalScrollIndicator
           >
             {ETAPES.map((etape, index) => {
-              const fait = !!progression?.[etape];
+              const fait = etape === 'compte' || !!progression?.[etape];
               const libelle = t(LIBELLES[etape]);
               return (
                 <Appui
@@ -220,16 +215,6 @@ export function AssistantConfiguration() {
           </BottomSheetScrollView>
         </BottomSheetView>
       </BottomSheetModal>
-      <FeuilleCompte
-        raison={sauvegardeOuverte ? 'configuration' : null}
-        onFermer={() => setSauvegardeOuverte(false)}
-        onCompte={() => {
-          setSauvegardeOuverte(false);
-          void lireProgressionAssistant().then(setProgression).catch((erreur: unknown) => {
-            console.warn('Impossible d’actualiser la sauvegarde du compte.', erreur);
-          });
-        }}
-      />
     </View>
   );
 }

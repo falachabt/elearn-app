@@ -14,7 +14,7 @@ const progression = {
   exercice: false,
   correction: true,
   fil: false,
-  sauvegarde: false,
+  horsLigne: false,
 };
 
 jest.mock('expo-router', () => {
@@ -56,14 +56,6 @@ jest.mock('@gorhom/bottom-sheet', () => {
 jest.mock('@/services/assistantConfiguration', () => ({
   lireProgressionAssistant: jest.fn(),
 }));
-jest.mock('../../FeuilleCompte', () => {
-  const React = jest.requireActual('react') as typeof import('react');
-  const { Text } = jest.requireActual('react-native') as typeof import('react-native');
-  return {
-    FeuilleCompte: ({ raison }: { raison: string | null }) => raison ? React.createElement(Text, null, raison) : null,
-  };
-});
-
 const mockPush = jest.requireMock('expo-router').router.push as jest.Mock;
 const { mockDismiss, mockPresent } = jest.requireMock('@gorhom/bottom-sheet') as { mockDismiss: jest.Mock; mockPresent: jest.Mock };
 const metrics = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
@@ -81,15 +73,16 @@ beforeEach(() => {
   jest.mocked(lireProgressionAssistant).mockResolvedValue(progression);
 });
 
-it('ouvre une liste claire de sept actions, coche les actions déjà faites et permet de fermer la feuille', async () => {
+it('ouvre une liste claire de huit étapes, coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
   const vue = await monter();
 
-  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '7') });
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') });
   fireEvent.press(ouvrir);
 
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
-  expect(vue.getAllByRole('checkbox')).toHaveLength(7);
+  expect(vue.getAllByRole('checkbox')).toHaveLength(8);
+  expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.lecon}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.mission}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
 
@@ -99,7 +92,7 @@ it('ouvre une liste claire de sept actions, coche les actions déjà faites et p
 
 it('ferme la feuille et ouvre la page correspondant à l’action choisie', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '7') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.correction}. ${fr.configuration.fait}` }));
 
@@ -107,22 +100,21 @@ it('ferme la feuille et ouvre la page correspondant à l’action choisie', asyn
   expect(mockDismiss).toHaveBeenCalled();
 });
 
-it('ouvre le parcours de sauvegarde sur la septième étape', async () => {
+it('ouvre le parcours hors ligne sur la dernière étape', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '7') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
 
-  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.sauvegarde}. ${fr.configuration.aFaire}` }));
+  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.horsLigne}. ${fr.configuration.aFaire}` }));
 
-  expect(await vue.findByText('configuration')).toBeTruthy();
+  expect(mockPush).toHaveBeenCalledWith('/hors-ligne');
   expect(mockDismiss).toHaveBeenCalled();
 });
 
-it('envoie vers le compte quand la progression est déjà sauvegardée', async () => {
-  jest.mocked(lireProgressionAssistant).mockResolvedValue({ ...progression, sauvegarde: true });
+it('ouvre le compte depuis la première étape fictive', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '7') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
 
-  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.sauvegarde}. ${fr.configuration.fait}` }));
+  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }));
 
   expect(mockPush).toHaveBeenCalledWith('/moi');
   expect(mockDismiss).toHaveBeenCalled();

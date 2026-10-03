@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { lireProgressionEntrainement } from './entrainement';
+import { lireEtatHorsLigne } from './horsLigne';
 import { lireLues } from './reviser';
 import { lireRythme } from './rythme';
 import { getSupabase } from './supabase';
@@ -16,7 +17,7 @@ export type ProgressionAssistant = {
   exercice: boolean;
   correction: boolean;
   fil: boolean;
-  sauvegarde: boolean;
+  horsLigne: boolean;
 };
 
 export async function noterActionConfiguration(action: ActionSuivie): Promise<void> {
@@ -27,17 +28,18 @@ export async function noterActionConfiguration(action: ActionSuivie): Promise<vo
 }
 
 export async function lireProgressionAssistant(): Promise<ProgressionAssistant> {
-  const [rythme, lecons, entrainement, actionsBrut, compte] = await Promise.all([
+  const [rythme, lecons, entrainement, actionsBrut, userId, etatHorsLigne] = await Promise.all([
     lireRythme(),
     lireLues(),
     lireProgressionEntrainement(),
     AsyncStorage.getItem(CLE_ACTIONS),
-    lireEtatCompte(),
+    lireUserId(),
+    lireEtatHorsLigne(),
   ]);
   const actions = actionsBrut ? (JSON.parse(actionsBrut) as Partial<Record<ActionSuivie, boolean>>) : {};
   const [correctionDistante, filDistant] = await Promise.all([
-    actions.correction ? Promise.resolve(false) : actionDistante('correction', compte.id),
-    actions.fil ? Promise.resolve(false) : actionDistante('fil', compte.id),
+    actions.correction ? Promise.resolve(false) : actionDistante('correction', userId),
+    actions.fil ? Promise.resolve(false) : actionDistante('fil', userId),
   ]);
 
   return {
@@ -47,20 +49,19 @@ export async function lireProgressionAssistant(): Promise<ProgressionAssistant> 
     exercice: Object.values(entrainement.exercises_done).some(Boolean),
     correction: !!actions.correction || correctionDistante,
     fil: !!actions.fil || filDistant,
-    sauvegarde: compte.sauvegarde,
+    horsLigne: etatHorsLigne?.statut === 'termine',
   };
 }
 
-async function lireEtatCompte(): Promise<{ id: string | null; sauvegarde: boolean }> {
+async function lireUserId(): Promise<string | null> {
   try {
     const client = getSupabase();
     const { data: session, error: erreurSession } = await client.auth.getSession();
     if (erreurSession) throw erreurSession;
-    const user = session.session?.user;
-    return { id: user?.id ?? null, sauvegarde: !!user && !user.is_anonymous };
+    return session.session?.user.id ?? null;
   } catch (erreur) {
-    console.warn('Impossible de vérifier si la progression est sauvegardée sur un compte.', erreur);
-    return { id: null, sauvegarde: false };
+    console.warn('Impossible de vérifier l’historique des actions du compte.', erreur);
+    return null;
   }
 }
 

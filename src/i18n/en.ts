@@ -21,13 +21,14 @@ export const en: Textes = {
     fait: 'Complete',
     aFaire: 'To do',
     etapes: {
+      compte: 'Connect my account',
       mission: 'Set up my daily mission',
       lecon: 'Finish a first lesson',
       quiz: 'Finish a quiz',
       exercice: 'Finish an exercise',
       correction: 'Ask AI to correct an exercise',
       fil: 'Join the questions feed',
-      sauvegarde: 'Save my progress',
+      horsLigne: 'Download content for offline use',
     },
   },
   erreur: {

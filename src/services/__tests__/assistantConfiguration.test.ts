@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLE_EXERCICES_FAITS, CLE_SESSIONS } from '../entrainement';
 import { CLE_LUES } from '../reviser';
 import { CLE_RYTHME } from '../rythme';
-import { selectionnerCategories, type EstimationTelechargement } from '../horsLigne';
+import { CLE_ETAT_HORS_LIGNE, selectionnerCategories, type EstimationTelechargement } from '../horsLigne';
 import { lireProgressionAssistant, noterActionConfiguration } from '../assistantConfiguration';
 
 const mockGetSession = jest.fn();
@@ -46,14 +46,16 @@ it('reflète les actions réellement terminées', async () => {
     exercice: true,
     correction: true,
     fil: true,
-    sauvegarde: true,
+    horsLigne: false,
   });
 });
 
-it('ne marque pas la progression comme sauvegardée pour un compte invité', async () => {
-  mockGetSession.mockResolvedValue({ data: { session: { user: { id: 'guest-1', is_anonymous: true } } }, error: null });
+it('marque le contenu hors ligne comme terminé uniquement après la fin du téléchargement', async () => {
+  await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify({ statut: 'telechargement' }));
+  await expect(lireProgressionAssistant()).resolves.toMatchObject({ horsLigne: false });
 
-  await expect(lireProgressionAssistant()).resolves.toMatchObject({ sauvegarde: false });
+  await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify({ statut: 'termine' }));
+  await expect(lireProgressionAssistant()).resolves.toMatchObject({ horsLigne: true });
 });
 
 it('reconnaît les corrections IA et la participation au fil effectuées avant cet assistant', async () => {

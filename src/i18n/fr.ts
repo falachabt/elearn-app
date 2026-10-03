@@ -22,13 +22,14 @@ export const fr = {
     fait: 'Terminé',
     aFaire: 'À faire',
     etapes: {
+      compte: 'Connecter mon compte',
       mission: 'Configurer ma mission du jour',
       lecon: 'Terminer une première leçon',
       quiz: 'Terminer un quiz',
       exercice: 'Terminer un exercice',
       correction: 'Demander une correction à l’IA',
       fil: 'Participer au fil des questions',
-      sauvegarde: 'Sauvegarder ma progression',
+      horsLigne: 'Télécharger le contenu hors ligne',
     },
   },
   erreur: {

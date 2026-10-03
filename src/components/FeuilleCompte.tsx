@@ -7,7 +7,7 @@ import { useSession } from '@/session/SessionProvider';
 import { OptionsCompte } from './arrivee/FeuilleSauvegarde';
 import { Feuille } from './Feuille';
 
-export type RaisonCompte = 'paiement' | 'parent' | 'rappel' | 'question' | 'configuration';
+export type RaisonCompte = 'paiement' | 'parent' | 'rappel' | 'question';
 
 type Props = {
   raison: RaisonCompte | null;
@@ -16,7 +16,7 @@ type Props = {
   onCompte: () => void;
 };
 
-/** Feuille de création/liaison de compte : avant une action liée au compte ou pour sauvegarder sa progression. */
+/** Feuille « compte requis » : avant une action liée au compte ou pour rappeler à l'invité. */
 export function FeuilleCompte({ raison, onFermer, onCompte }: Props) {
   const { t } = useTraduction();
   if (!raison) return null;
