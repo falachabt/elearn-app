@@ -118,9 +118,9 @@ export function decouper(latex: string, niveau: 1 | 2): string[][] {
   return lignes.length ? lignes : [[latex]];
 }
 
-// Réglage d'essai : texte (par défaut) ou rendu mathématique.
+// Réglage d'essai : texte ou rendu mathématique. Par défaut, affichage rendu.
 export const CLE_FORMULES = 'affichage.formules';
-let rendu = false;
+let rendu = true;
 const abonnes = new Set<() => void>();
 export const lireRenduFormules = () => rendu;
 export function abonnerRenduFormules(f: () => void): () => void {
@@ -128,7 +128,8 @@ export function abonnerRenduFormules(f: () => void): () => void {
   return () => abonnes.delete(f);
 }
 export async function chargerRenduFormules(): Promise<boolean> {
-  rendu = (await AsyncStorage.getItem(CLE_FORMULES).catch(() => null)) === 'rendu';
+  const value = await AsyncStorage.getItem(CLE_FORMULES).catch(() => null);
+  rendu = value === null ? true : value === 'rendu';
   abonnes.forEach((f) => f());
   return rendu;
 }

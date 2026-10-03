@@ -146,7 +146,7 @@ export function Questions() {
       <PhotoPleine uri={photo} onFermer={() => setPhoto(null)} />
       {feuille}
     </Ecran>
-    <View pointerEvents="box-none" style={[styles.flottant, { bottom: bottom + 62 }]}>
+    <View pointerEvents="box-none" style={[styles.flottant, { bottom: bottom + 50 }]}>
       <Bouton petit libelle={`+ ${t('questions.poserCourt')}`} desactive={etat.statut === 'pret' && etat.copie} onPress={() => exiger('question', () => router.push('/question/poser'))} />
     </View>
     </View>
