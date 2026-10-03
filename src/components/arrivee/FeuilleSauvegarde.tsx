@@ -21,11 +21,12 @@ function Fond(props: BottomSheetBackdropProps) {
 
 type Props = {
   onSauvegarde: () => void;
+  onContinuer: () => void;
   onFermee?: () => void;
 };
 
 /** Choix de connexion pour créer son compte : Google, Apple, Facebook, e-mail, « Plus tard », mentions (M2-05). */
-export function OptionsCompte({ onSauvegarde, onPlusTard }: { onSauvegarde: () => void; onPlusTard: () => void }) {
+export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void }) {
   const { t } = useTraduction();
   const [erreur, setErreur] = useState<CleTexte | null>(null);
   const [code, setCode] = useState<string | null>(null);
@@ -37,6 +38,7 @@ export function OptionsCompte({ onSauvegarde, onPlusTard }: { onSauvegarde: () =
   return (
     <View style={styles.contenu}>
       {erreur ? <Banniere ton="erreur" titre={t(erreur)} /> : null}
+      {onContinuer ? <Bouton variante="secondaire" libelle={t('score.continuer')} onPress={onContinuer} /> : null}
       <BoutonsSociaux codeParrainage={code} onErreur={setErreur} onSucces={onSauvegarde} />
       <Bouton
         variante="texte"
@@ -53,20 +55,20 @@ export function OptionsCompte({ onSauvegarde, onPlusTard }: { onSauvegarde: () =
 }
 
 /** Contenu de A6 (séparé de la feuille pour les tests). */
-export function ContenuSauvegarde({ onSauvegarde, onPlusTard }: { onSauvegarde: () => void; onPlusTard: () => void }) {
+export function ContenuSauvegarde({ onSauvegarde, onPlusTard, onContinuer }: { onSauvegarde: () => void; onPlusTard: () => void; onContinuer?: () => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   return (
     <View style={styles.contenu}>
       <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('sauvegarde.titre')}</Text>
       <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('sauvegarde.texte')}</Text>
-      <OptionsCompte onSauvegarde={onSauvegarde} onPlusTard={onPlusTard} />
+      <OptionsCompte onSauvegarde={onSauvegarde} onPlusTard={onPlusTard} onContinuer={onContinuer} />
     </View>
   );
 }
 
 /** A6 · Sauvegarder : feuille par-dessus le score, fermable d'un glissement ou par « Plus tard ». */
-export const FeuilleSauvegarde = forwardRef<BottomSheet, Props>(function FeuilleSauvegarde({ onSauvegarde, onFermee }, ref) {
+export const FeuilleSauvegarde = forwardRef<BottomSheet, Props>(function FeuilleSauvegarde({ onSauvegarde, onContinuer, onFermee }, ref) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const fermer = () => (ref && 'current' in ref ? ref.current?.close() : undefined);
@@ -85,6 +87,10 @@ export const FeuilleSauvegarde = forwardRef<BottomSheet, Props>(function Feuille
       <BottomSheetView style={{ paddingBottom: bottom + espace[5], paddingHorizontal: espace[5] }}>
         <ContenuSauvegarde
           onPlusTard={fermer}
+          onContinuer={() => {
+            fermer();
+            onContinuer();
+          }}
           onSauvegarde={() => {
             fermer();
             onSauvegarde();

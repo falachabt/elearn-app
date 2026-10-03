@@ -71,7 +71,10 @@ export function Score({ resultat: fourni }: { resultat?: ResultatMiniTest }) {
   const accueil = () => router.replace('/');
 
   const pied = invite && !sauvegarde ? (
-    <Bouton libelle={t('score.sauvegarder')} onPress={() => feuille.current?.snapToIndex(0)} />
+    <View style={styles.pied}>
+      <Bouton variante="secondaire" libelle={t('score.continuer')} onPress={accueil} />
+      <Bouton libelle={t('score.sauvegarder')} onPress={() => feuille.current?.snapToIndex(0)} />
+    </View>
   ) : (
     <Bouton libelle={t('score.continuer')} onPress={accueil} />
   );
@@ -128,6 +131,7 @@ export function Score({ resultat: fourni }: { resultat?: ResultatMiniTest }) {
       {invite ? (
         <FeuilleSauvegarde
           ref={feuille}
+          onContinuer={accueil}
           onSauvegarde={() => {
             setSauvegarde(true);
             synchroniserResultat(getSupabase()).catch(() => {});
@@ -144,4 +148,5 @@ const styles = StyleSheet.create({
   centre: { textAlign: 'center' },
   groupe: { gap: espace[3] },
   bouton: { alignSelf: 'flex-start' },
+  pied: { gap: espace[3] },
 });
