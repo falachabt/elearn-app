@@ -39,7 +39,7 @@ let mockInvite = false;
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
-  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetScrollView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetFlatList: passe, BottomSheetScrollView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 const mockPermission = jest.fn();
 const mockProgrammer = jest.fn();
