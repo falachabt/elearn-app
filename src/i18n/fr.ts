@@ -13,14 +13,14 @@ export const fr = {
     logoLibelle: 'Logo Elearn Prepa',
   },
   configuration: {
-    bouton: 'Mes étapes',
-    ouvrir: 'Ouvrir mes étapes de configuration, {{faits}} sur {{total}} terminées',
-    ouvrirAide: 'Affiche les actions proposées pour configurer ton espace.',
-    titre: 'Ton espace, étape par étape',
-    intro: 'Choisis une étape. Tu peux revenir ici quand tu veux.',
+    bouton: 'Bien démarrer',
+    ouvrir: 'Découvrir l’application, {{faits}} sur {{total}} actions terminées',
+    ouvrirAide: 'Découvre les principales fonctions et configure ton espace.',
+    titre: 'Découvrir l’application',
+    intro: 'Réalise ces actions pour configurer ton espace et découvrir les fonctions principales.',
+    fermer: 'Fermer les actions pour bien démarrer',
     fait: 'Terminé',
     aFaire: 'À faire',
-    progressionHorsLigne: '{{pourcentage}} % téléchargé',
     etapes: {
       mission: 'Configurer ma mission du jour',
       lecon: 'Terminer une première leçon',
@@ -28,7 +28,6 @@ export const fr = {
       exercice: 'Terminer un exercice',
       correction: 'Demander une correction à l’IA',
       fil: 'Participer au fil des questions',
-      horsLigne: 'Configurer le mode hors ligne',
     },
   },
   erreur: {

@@ -31,12 +31,15 @@ jest.mock('expo-router', () => ({
   },
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/assistantConfiguration', () => ({
+  lireProgressionAssistant: jest.fn(async () => ({ mission: false, lecon: false, quiz: false, exercice: false, correction: false, fil: false })),
+}));
 let mockPret: string | null = 'u1';
 let mockInvite = false;
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
-  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
+  return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetScrollView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 const mockPermission = jest.fn();
 const mockProgrammer = jest.fn();
@@ -315,4 +318,3 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await waitFor(() => expect(screen.getByText(x.mission.aucuneErreur)).toBeTruthy());
   });
 });
-

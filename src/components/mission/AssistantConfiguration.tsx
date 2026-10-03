@@ -1,24 +1,22 @@
+import { BottomSheetBackdrop, BottomSheetModal, BottomSheetScrollView, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { router, useFocusEffect } from 'expo-router';
-import { Check, ChevronRight, Circle, CloudDownload, ListChecks } from 'lucide-react-native';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Check, ChevronRight, X } from 'lucide-react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from 'react-native-reanimated';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lireProgressionAssistant, type ProgressionAssistant } from '@/services/assistantConfiguration';
-import { ecouterHorsLigne } from '@/services/horsLigne';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
-import { Feuille } from '../Feuille';
 import { useFeedback } from '../useFeedback';
 
-type Etape = keyof Pick<ProgressionAssistant, 'mission' | 'lecon' | 'quiz' | 'exercice' | 'correction' | 'fil' | 'horsLigne'>;
+type Etape = keyof ProgressionAssistant;
 
-const ETAPES: Etape[] = ['mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'horsLigne'];
+const ETAPES: Etape[] = ['mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil'];
 const LIBELLES: Record<Etape, CleTexte> = {
   mission: 'configuration.etapes.mission',
   lecon: 'configuration.etapes.lecon',
@@ -26,53 +24,55 @@ const LIBELLES: Record<Etape, CleTexte> = {
   exercice: 'configuration.etapes.exercice',
   correction: 'configuration.etapes.correction',
   fil: 'configuration.etapes.fil',
-  horsLigne: 'configuration.etapes.horsLigne',
 };
+
+function Fond(props: BottomSheetBackdropProps) {
+  return <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} pressBehavior="close" opacity={0.45} />;
+}
 
 export function AssistantConfiguration() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { bottom } = useSafeAreaInsets();
   const { reduit } = useFeedback();
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
   const [ouverte, setOuverte] = useState(false);
+  const feuille = useRef<BottomSheetModal>(null);
+  const presente = useRef(false);
   const deplacement = useSharedValue(0);
 
-  useFocusEffect(
-    useCallback(() => {
-      let actif = true;
-      void lireProgressionAssistant().then((p) => {
-        if (!actif) return;
-        setProgression(p);
-        setChargee(true);
-      }).catch((erreur: unknown) => {
-        console.warn('Impossible de lire la progression de l’assistant de configuration.', erreur);
-      });
-      return () => {
-        actif = false;
-      };
-    }, []),
-  );
-
-  useEffect(() => {
+  const actualiser = useCallback(() => {
     let actif = true;
-    const arreter = ecouterHorsLigne(() => {
-      void lireProgressionAssistant().then((p) => {
-        if (!actif) return;
-        setProgression(p);
-        setChargee(true);
-      }).catch((erreur: unknown) => {
-        console.warn('Impossible d’actualiser la progression hors ligne.', erreur);
-      });
+    void lireProgressionAssistant().then((p) => {
+      if (!actif) return;
+      setProgression(p);
+      setChargee(true);
+    }).catch((erreur: unknown) => {
+      console.warn('Impossible de lire la progression de l’assistant de configuration.', erreur);
     });
     return () => {
       actif = false;
-      arreter();
     };
   }, []);
 
+  useFocusEffect(actualiser);
+
+  useEffect(() => {
+    if (ouverte && !presente.current) {
+      feuille.current?.present();
+      presente.current = true;
+    } else if (!ouverte && presente.current) {
+      feuille.current?.dismiss();
+      presente.current = false;
+    }
+  }, [ouverte]);
+
   const faites = useMemo(() => (progression ? ETAPES.filter((etape) => progression[etape]).length : 0), [progression]);
+  const fermerFeuille = () => {
+    presente.current = false;
+    feuille.current?.dismiss();
+    setOuverte(false);
+  };
 
   useEffect(() => {
     if (reduit || !chargee) {
@@ -85,7 +85,7 @@ export function AssistantConfiguration() {
   const animation = useAnimatedStyle(() => ({ transform: [{ translateY: deplacement.value }] }));
 
   const ouvrirEtape = (etape: Etape) => {
-    setOuverte(false);
+    fermerFeuille();
     switch (etape) {
       case 'mission':
         router.push({ pathname: '/parametres', params: { assistant: 'mission' } });
@@ -103,15 +103,12 @@ export function AssistantConfiguration() {
       case 'fil':
         router.push('/questions');
         break;
-      case 'horsLigne':
-        router.push('/hors-ligne');
-        break;
     }
   };
 
   return (
     <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <View pointerEvents="box-none" style={[styles.position, { right: espace[5], bottom: bottom + 72 }]}>
+      <View pointerEvents="box-none" style={styles.position}>
         <Animated.View style={reduit ? undefined : animation}>
           <Appui
             accessibilityRole="button"
@@ -124,7 +121,6 @@ export function AssistantConfiguration() {
             couleurOmbre={theme.ombre}
           >
             <View style={[styles.bouton, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <ListChecks size={21} strokeWidth={2.5} color={theme.texte.surCouleur} />
               <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{t('configuration.bouton')}</Text>
               <View style={[styles.badge, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
                 <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{`${faites}/${ETAPES.length}`}</Text>
@@ -134,53 +130,95 @@ export function AssistantConfiguration() {
         </Animated.View>
       </View>
 
-      <Feuille
-        ouverte={ouverte}
-        onFermer={() => setOuverte(false)}
-        titre={t('configuration.titre')}
-        texte={t('configuration.intro')}
-        actions={[]}
+      <BottomSheetModal
+        ref={feuille}
+        snapPoints={['90%']}
+        enableDynamicSizing={false}
+        topInset={0}
+        enablePanDownToClose
+        backdropComponent={Fond}
+        onDismiss={() => {
+          presente.current = false;
+          setOuverte(false);
+        }}
+        handleIndicatorStyle={{ backgroundColor: theme.bord.fort }}
+        backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
       >
-        <ScrollView style={styles.liste} nestedScrollEnabled showsVerticalScrollIndicator={false}>
-          {ETAPES.map((etape) => {
-            const fait = !!progression?.[etape];
-            const horsLigneEnCours = etape === 'horsLigne' && progression?.progressionHorsLigne !== null && progression?.progressionHorsLigne !== undefined && !fait;
-            const libelle = t(LIBELLES[etape]);
-            const detail = horsLigneEnCours
-              ? t('configuration.progressionHorsLigne', { pourcentage: progression?.progressionHorsLigne ?? 0 })
-              : t(fait ? 'configuration.fait' : 'configuration.aFaire');
-            return (
-              <Appui
-                key={etape}
-                accessibilityRole="button"
-                accessibilityLabel={`${libelle}. ${detail}`}
-                accessibilityState={{ selected: fait }}
-                onPress={() => ouvrirEtape(etape)}
-                decalage={0}
-                rayon={rayon.m}
-              >
-                <View style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  {fait ? <Check size={20} strokeWidth={3} color={theme.marque.forte} /> : etape === 'horsLigne' ? <CloudDownload size={20} strokeWidth={2.25} color={theme.texte.secondaire} /> : <Circle size={20} strokeWidth={2} color={theme.texte.secondaire} />}
-                  <View style={styles.flex}>
-                    <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{libelle}</Text>
-                    <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text>
+        <BottomSheetView style={styles.feuille}>
+          <View style={styles.entete}>
+            <View style={styles.titres}>
+              <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('configuration.titre')}</Text>
+              <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('configuration.intro')}</Text>
+            </View>
+            <Appui
+              accessibilityRole="button"
+              accessibilityLabel={t('configuration.fermer')}
+              onPress={fermerFeuille}
+              decalage={1}
+              rayon={rayon.pilule}
+            >
+              <View style={[styles.fermer, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                <X size={22} color={theme.texte.principal} />
+              </View>
+            </Appui>
+          </View>
+          <BottomSheetScrollView
+            style={styles.liste}
+            contentContainerStyle={styles.contenuListe}
+            showsVerticalScrollIndicator
+          >
+            {ETAPES.map((etape, index) => {
+              const fait = !!progression?.[etape];
+              const libelle = t(LIBELLES[etape]);
+              return (
+                <Appui
+                  key={etape}
+                  accessibilityRole="checkbox"
+                  accessibilityLabel={`${libelle}. ${t(fait ? 'configuration.fait' : 'configuration.aFaire')}`}
+                  accessibilityState={{ checked: fait }}
+                  onPress={() => ouvrirEtape(etape)}
+                  ombre={fait ? 0 : 3}
+                  decalage={2}
+                  rayon={rayon.l}
+                  couleurOmbre={theme.ombre}
+                >
+                  <View style={[styles.ligne, {
+                    backgroundColor: fait ? theme.marque.douce : theme.fond.surface,
+                    borderColor: theme.bord.fort,
+                    borderWidth: fait ? bord.epais : bord.normal,
+                  }]}>
+                    <View style={[styles.numero, {
+                      backgroundColor: fait ? theme.marque.principale : theme.fond.surface,
+                      borderColor: theme.bord.fort,
+                    }]}>
+                      {fait
+                        ? <Check size={20} strokeWidth={3} color={theme.texte.surCouleur} />
+                        : <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{index + 1}</Text>}
+                    </View>
+                    <Text style={[typo.texteFort, styles.libelle, { color: theme.texte.principal }]}>{libelle}</Text>
+                    <ChevronRight size={20} color={theme.texte.secondaire} />
                   </View>
-                  <ChevronRight size={18} color={theme.texte.secondaire} />
-                </View>
-              </Appui>
-            );
-          })}
-        </ScrollView>
-      </Feuille>
+                </Appui>
+              );
+            })}
+          </BottomSheetScrollView>
+        </BottomSheetView>
+      </BottomSheetModal>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  position: { position: 'absolute', alignItems: 'flex-end' },
+  position: { position: 'absolute', alignItems: 'flex-end', right: espace[5], bottom: espace[2] },
   bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   badge: { minWidth: 32, height: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
-  liste: { maxHeight: 380 },
-  ligne: { minHeight: 58, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
-  flex: { flex: 1 },
+  feuille: { flex: 1, paddingHorizontal: espace[5], paddingBottom: espace[3], gap: espace[4] },
+  entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2] },
+  titres: { flex: 1, gap: espace[2] },
+  fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
+  liste: { flex: 1 },
+  contenuListe: { gap: espace[3], paddingBottom: espace[4] },
+  ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
+  numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
+  libelle: { flex: 1 },
 });

@@ -12,14 +12,14 @@ export const en: Textes = {
     logoLibelle: 'Elearn Prepa logo',
   },
   configuration: {
-    bouton: 'My steps',
-    ouvrir: 'Open my setup steps, {{faits}} of {{total}} complete',
-    ouvrirAide: 'Shows the suggested actions for setting up your space.',
-    titre: 'Set up your space, step by step',
-    intro: 'Choose a step. You can come back here any time.',
+    bouton: 'Get started',
+    ouvrir: 'Discover the app, {{faits}} of {{total}} actions complete',
+    ouvrirAide: 'Explore key features and set up your learning space.',
+    titre: 'Discover the app',
+    intro: 'Complete these actions to set up your space and explore the main features.',
+    fermer: 'Close the getting started actions',
     fait: 'Complete',
     aFaire: 'To do',
-    progressionHorsLigne: '{{pourcentage}}% downloaded',
     etapes: {
       mission: 'Set up my daily mission',
       lecon: 'Finish a first lesson',
@@ -27,7 +27,6 @@ export const en: Textes = {
       exercice: 'Finish an exercise',
       correction: 'Ask AI to correct an exercise',
       fil: 'Join the questions feed',
-      horsLigne: 'Set up offline mode',
     },
   },
   erreur: {

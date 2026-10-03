@@ -1,31 +1,40 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLE_EXERCICES_FAITS, CLE_SESSIONS } from '../entrainement';
-import { CLE_ETAT_HORS_LIGNE } from '../horsLigne';
 import { CLE_LUES } from '../reviser';
 import { CLE_RYTHME } from '../rythme';
 import { selectionnerCategories, type EstimationTelechargement } from '../horsLigne';
 import { lireProgressionAssistant, noterActionConfiguration } from '../assistantConfiguration';
 
+const mockGetSession = jest.fn();
+const mockFrom = jest.fn();
+
 jest.mock('expo-notifications', () => ({}));
+jest.mock('../supabase', () => ({
+  getSupabase: () => ({ auth: { getSession: mockGetSession }, from: (table: string) => mockFrom(table) }),
+}));
 
 beforeEach(async () => {
   await AsyncStorage.clear();
+  jest.clearAllMocks();
+  mockGetSession.mockResolvedValue({ data: { session: { user: { id: 'user-1' } } }, error: null });
+  mockFrom.mockImplementation(() => {
+    const query = {
+      select: () => query,
+      eq: () => query,
+      limit: () => query,
+      maybeSingle: async () => ({ data: null, error: null }),
+    };
+    return query;
+  });
 });
 
-it('reflète les actions réellement terminées et le téléchargement hors ligne achevé', async () => {
+it('reflète les actions réellement terminées', async () => {
   await AsyncStorage.multiSet([
     [CLE_RYTHME, '20'],
     [CLE_LUES, JSON.stringify({ 12: 4 })],
     [CLE_SESSIONS, JSON.stringify({ quiz1: [{ le: '2026-10-01', score: 2, total: 3 }] })],
     [CLE_EXERCICES_FAITS, JSON.stringify({ exercice1: true })],
-    [
-      CLE_ETAT_HORS_LIGNE,
-      JSON.stringify({
-        statut: 'termine',
-        progression: Object.fromEntries(['missions', 'cours', 'quiz', 'exercices', 'pdf'].map((categorie) => [categorie, { total: 1, faites: 1, echecs: 0 }])),
-      }),
-    ],
   ]);
   await noterActionConfiguration('correction');
   await noterActionConfiguration('fil');
@@ -37,21 +46,25 @@ it('reflète les actions réellement terminées et le téléchargement hors lign
     exercice: true,
     correction: true,
     fil: true,
-    horsLigne: true,
-    progressionHorsLigne: 100,
   });
 });
 
-it('ne marque pas le mode hors ligne terminé avant la fin du téléchargement', async () => {
-  await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify({
-    statut: 'telechargement',
-    progression: { missions: { total: 2, faites: 1, echecs: 0 } },
-  }));
-
-  await expect(lireProgressionAssistant()).resolves.toMatchObject({
-    horsLigne: false,
-    progressionHorsLigne: 50,
+it('reconnaît les corrections IA et la participation au fil effectuées avant cet assistant', async () => {
+  mockFrom.mockImplementation((table: string) => {
+    const query = {
+      select: () => query,
+      eq: () => query,
+      limit: () => query,
+      maybeSingle: async () => ({ data: table === 'photo_corrections' || table === 'post_comments' ? { id: table } : null, error: null }),
+    };
+    return query;
   });
+
+  await expect(lireProgressionAssistant()).resolves.toMatchObject({ correction: true, fil: true });
+  expect(mockFrom).toHaveBeenCalledWith('photo_corrections');
+  expect(mockFrom).toHaveBeenCalledWith('feed_posts');
+  expect(mockFrom).toHaveBeenCalledWith('post_comments');
+  expect(mockFrom).toHaveBeenCalledWith('poll_votes');
 });
 
 it('reconnaît aussi un quiz de validation de leçon terminé', async () => {
