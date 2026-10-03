@@ -1,4 +1,4 @@
-import { BottomSheetBackdrop, BottomSheetModal, BottomSheetScrollView, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop, BottomSheetFlatList, BottomSheetModal, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { router, useFocusEffect } from 'expo-router';
 import { Check, ChevronRight, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -176,20 +176,15 @@ export function AssistantConfiguration() {
               </View>
             </Appui>
           </View>
-          <BottomSheetScrollView
+          <BottomSheetFlatList
             testID="configuration-etapes"
-            style={styles.liste}
-            contentContainerStyle={[styles.contenuListe, { paddingBottom: espace[4] + bottomInset }]}
-            nestedScrollEnabled
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator
-          >
-            {ETAPES.map((etape, index) => {
+            data={ETAPES}
+            keyExtractor={(etape) => etape}
+            renderItem={({ item: etape, index }) => {
               const fait = etape === 'compte' || !!progression?.[etape];
               const libelle = t(LIBELLES[etape]);
               return (
                 <Appui
-                  key={etape}
                   accessibilityRole="checkbox"
                   accessibilityLabel={`${libelle}. ${t(fait ? 'configuration.fait' : 'configuration.aFaire')}`}
                   accessibilityState={{ checked: fait }}
@@ -217,8 +212,12 @@ export function AssistantConfiguration() {
                   </View>
                 </Appui>
               );
-            })}
-          </BottomSheetScrollView>
+            }}
+            style={styles.liste}
+            contentContainerStyle={[styles.contenuListe, { paddingBottom: espace[8] + bottomInset }]}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator
+          />
         </BottomSheetView>
       </BottomSheetModal>
     </View>
@@ -234,7 +233,7 @@ const styles = StyleSheet.create({
   titres: { flex: 1, gap: espace[2] },
   fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
   liste: { flex: 1 },
-  contenuListe: { gap: espace[3], paddingBottom: espace[4] },
+  contenuListe: { gap: espace[3] },
   ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
   numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   libelle: { flex: 1 },

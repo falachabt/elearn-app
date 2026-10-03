@@ -40,14 +40,19 @@ jest.mock('@gorhom/bottom-sheet', () => {
     return <View testID="configuration-sheet-mock" style={{ paddingBottom: bottomInset }}>{children}</View>;
   });
   Modal.displayName = 'MockBottomSheetModal';
-  const Scrollable = ({ children, ...props }: React.ComponentProps<typeof ScrollView>) => <ScrollView {...props}>{children}</ScrollView>;
+  const Scrollable = ({ data, renderItem, ...props }: {
+    data: string[];
+    renderItem: (info: { item: string; index: number }) => React.ReactNode;
+  } & React.ComponentProps<typeof ScrollView>) => (
+    <ScrollView {...props}>{data.map((item, index) => <React.Fragment key={item}>{renderItem({ item, index })}</React.Fragment>)}</ScrollView>
+  );
   Scrollable.displayName = 'MockBottomSheetScrollView';
   const SheetView = ({ children, ...props }: React.ComponentProps<typeof View>) => <View {...props}>{children}</View>;
   SheetView.displayName = 'MockBottomSheetView';
   return {
     BottomSheetBackdrop: () => null,
+    BottomSheetFlatList: Scrollable,
     BottomSheetModal: Modal,
-    BottomSheetScrollView: Scrollable,
     BottomSheetView: SheetView,
     mockDismiss,
     mockPresent,
