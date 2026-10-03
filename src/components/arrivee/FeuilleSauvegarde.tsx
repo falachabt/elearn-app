@@ -40,7 +40,7 @@ export function OptionsCompte({ onSauvegarde, onPlusTard, onContinuer, scoreInvi
       {erreur ? <Banniere ton="erreur" titre={t(erreur)} /> : null}
       <BoutonsSociaux codeParrainage={code} onErreur={setErreur} onSucces={onSauvegarde} connexionDirecte={scoreInvite} googleSeul={scoreInvite} />
       {scoreInvite ? (
-        <Bouton variante="texte" libelle={t('score.continuerSansCompte')} onPress={onContinuer ?? onPlusTard} />
+        <Bouton variante="secondaire" libelle={t('score.continuerSansCompte')} onPress={onContinuer ?? onPlusTard} />
       ) : (
         <>
           <Bouton
