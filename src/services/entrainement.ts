@@ -109,8 +109,10 @@ async function lireDernierDe(cle: string): Promise<DernierLu | null> {
 
 /** Une partie d'un quiz : ses questions mélangées, 20 au plus. En ligne seulement. */
 export async function lireQuizLibre(client: Client, p: { quiz: string; vraiFaux: { vrai: string; faux: string } }): Promise<QuestionTiree[]> {
-  const lignes = await rpc<LigneMission>(client, 'practice_quiz', { p_quiz: p.quiz, p_size: TAILLE_QUIZ_LIBRE });
-  return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
+  return avecCopie(`entrainement.quiz.${p.quiz}`, async () => {
+    const lignes = await rpc<LigneMission>(client, 'practice_quiz', { p_quiz: p.quiz, p_size: TAILLE_QUIZ_LIBRE });
+    return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
+  });
 }
 
 async function lireObjet<T>(cle: string): Promise<Record<string, T>> {

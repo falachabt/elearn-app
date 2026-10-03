@@ -188,10 +188,16 @@ export async function lireFiche(client: Client, cours: number): Promise<Fiche | 
 export async function lireQuizLecon(client: Client, p: { cours: number; lecon: number; vraiFaux: { vrai: string; faux: string } }): Promise<QuestionTiree[]> {
   // Le tirage est stable par leçon et par jour côté serveur : la copie du jour s'ouvre sans attente.
   const jour = new Date().toISOString().slice(0, 10);
-  return avecCopie(`reviser.quiz.${p.lecon}.${jour}`, async () => {
-    const lignes = await rpc<LigneMission>(client, 'lesson_quiz', { p_course: p.cours, p_lesson: p.lecon, p_size: TAILLE_QUIZ_LECON });
-    return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
-  });
+  try {
+    return await avecCopie(`reviser.quiz.${p.lecon}.${jour}`, async () => {
+      const lignes = await rpc<LigneMission>(client, 'lesson_quiz', { p_course: p.cours, p_lesson: p.lecon, p_size: TAILLE_QUIZ_LECON });
+      return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
+    });
+  } catch (erreur) {
+    const horsLigne = await AsyncStorage.getItem(`reviser.quiz.horsLigne.${p.lecon}`);
+    if (horsLigne) return JSON.parse(horsLigne) as QuestionTiree[];
+    throw erreur;
+  }
 }
 
 export const CLE_DERNIERE_LECON = 'reviser.derniereLecon';

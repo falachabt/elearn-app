@@ -114,14 +114,14 @@ function octetsEstimes(taches: Tache[]): number {
   return taches.reduce((total, tache) => total + tailles[tache.categorie], 0);
 }
 
-async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, profil: Profil): Promise<{ id: string; titre: string }[]> {
-  const documents: { id: string; titre: string }[] = [];
+async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, profil: Profil): Promise<{ id: string; titre: string; correctionId: string | null }[]> {
+  const documents: { id: string; titre: string; correctionId: string | null }[] = [];
   const visiter = async (parent: string | null) => {
     const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', parent });
     for (const dossier of dossiers) {
       if (dossier.sousDossiers > 0) await visiter(dossier.id);
       const fichiers = await lireDocuments(client, dossier.id);
-      documents.push(...fichiers.map((f) => ({ id: f.id, titre: f.nom })));
+      documents.push(...fichiers.map((f) => ({ id: f.id, titre: f.nom, correctionId: f.correctionId })));
     }
   };
   await visiter(null);
@@ -161,12 +161,18 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
   }
 
   const documents = profil.type === 'eleve' ? await lireDocumentsProgramme(client, profil) : [];
-  const refsOuverts = await lireOuverts(client, 'document_pdf', documents.map((d) => d.id));
+  const refs = documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]);
+  const refsOuverts = await lireOuverts(client, 'document_pdf', refs);
   const acces = await lireAcces(client);
   const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();
   for (const document of documents) {
     if (passActif || refsOuverts.has(document.id)) {
       ajouterTache(taches, 'pdf', `pdf-${document.id}`, { document });
+    }
+    if (document.correctionId && (passActif || refsOuverts.has(document.correctionId))) {
+      ajouterTache(taches, 'pdf', `pdf-${document.correctionId}`, {
+        document: { id: document.correctionId, titre: `${document.titre} · correction` },
+      });
     }
   }
 
@@ -200,9 +206,10 @@ async function executerTache(tache: Tache): Promise<void> {
     if (tache.lecon) await lireLecon(client, tache.lecon);
     else await lireFiche(client, tache.cours);
   } else if (tache.categorie === 'quiz' && tache.cours && tache.lecon) {
-    await lireQuizLecon(client, { cours: tache.cours, lecon: tache.lecon, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } });
+    const quiz = await lireQuizLecon(client, { cours: tache.cours, lecon: tache.lecon, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
+    await AsyncStorage.setItem(`reviser.quiz.horsLigne.${tache.lecon}`, JSON.stringify(quiz));
   } else if (tache.categorie === 'quiz' && tache.quiz) {
-    await lireQuizLibre(client, { quiz: tache.quiz, vraiFaux: { vrai: 'Vrai', faux: 'Faux' } });
+    await lireQuizLibre(client, { quiz: tache.quiz, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
   } else if (tache.categorie === 'exercices' && tache.exercice) {
     await lireExercice(client, tache.exercice);
   } else if (tache.categorie === 'pdf' && tache.document) {
