@@ -1,13 +1,15 @@
 import { Redirect } from 'expo-router';
 import { TabList, TabSlot, TabTrigger, Tabs } from 'expo-router/ui';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { AppState, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
 import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
+import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { lireProfil } from '@/services/profil';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord } from '@/theme/theme';
 
@@ -16,6 +18,7 @@ export default function LayoutOnglets() {
   const { theme } = useTheme();
   const { bottom } = useSafeAreaInsets();
   const { t } = useTraduction();
+  const sessionPrete = useSessionPrete();
   const nouvelles = useNouvellesQuestions();
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
@@ -26,6 +29,19 @@ export default function LayoutOnglets() {
       actif = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (!sessionPrete || sessionPrete === 'hors-ligne') return;
+    const reprendre = () => {
+      if (AppState.currentState !== 'active') return;
+      void reprendreTelechargementHorsLigne().catch((erreur: unknown) => console.warn('La préparation hors ligne n’a pas repris.', erreur));
+    };
+    reprendre();
+    const abonnement = AppState.addEventListener('change', (etat) => {
+      if (etat === 'active') reprendre();
+    });
+    return () => abonnement.remove();
+  }, [sessionPrete]);
   if (arrivee === 'inconnu') return <View style={[styles.racine, { backgroundColor: theme.fond.app }]} />;
   if (arrivee === 'a-faire') return <Redirect href="/bienvenue" />;
 

@@ -30,6 +30,7 @@ type Tache = {
   lecon?: number;
   quiz?: string;
   exercice?: string;
+  corrige?: boolean;
   document?: { id: string; titre: string };
   niveau?: string;
   pays?: string;
@@ -46,6 +47,7 @@ export type EtatHorsLigne = {
   progression: Record<CategorieHorsLigne, ProgressionCategorie>;
   estimationOctets: number;
   espaceDisponible: number;
+  notification?: 'autorisee' | 'refusee' | 'echec';
   actualiseLe: string;
 };
 
@@ -133,6 +135,8 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
   const profil = await lireProfil();
   if (!profil) throw new Error('profil de formation introuvable');
   const programme = { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', concours: profil.concours?.id ?? null };
+  const acces = await lireAcces(client);
+  const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();
   const cours = await lireCours(client, programme);
   const taches: Tache[] = [];
   const rythme = await lireRythme();
@@ -146,6 +150,12 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
   }
 
   const leconsParCours = await Promise.all(cours.map(async (c) => ({ cours: c.id, lecons: await lireLecons(client, c.id), activites: await lireEntrainement(client, c.id) })));
+  const exercices = leconsParCours.flatMap((c) => c.activites.exercices.map((x) => x.id));
+  const exercicesOuverts = new Set<string>();
+  for (let i = 0; i < exercices.length; i += 200) {
+    const ouverts = await lireOuverts(client, 'exercise_solution', exercices.slice(i, i + 200));
+    for (const ref of ouverts) exercicesOuverts.add(ref);
+  }
   for (const [i, c] of cours.entries()) {
     ajouterTache(taches, 'cours', `fiche-${c.id}`, { cours: c.id });
     for (const lecon of leconsParCours[i].lecons) {
@@ -157,14 +167,19 @@ export async function estimerTelechargement(): Promise<Pick<EtatHorsLigne, 'prof
     }
     for (const exercice of leconsParCours[i].activites.exercices) {
       ajouterTache(taches, 'exercices', `exercice-${exercice.id}`, { exercice: exercice.id });
+      if (passActif || exercicesOuverts.has(exercice.id)) {
+        ajouterTache(taches, 'exercices', `corrige-${exercice.id}`, { exercice: exercice.id, corrige: true });
+      }
     }
   }
 
   const documents = profil.type === 'eleve' ? await lireDocumentsProgramme(client, profil) : [];
   const refs = documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]);
-  const refsOuverts = await lireOuverts(client, 'document_pdf', refs);
-  const acces = await lireAcces(client);
-  const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();
+  const refsOuverts = new Set<string>();
+  for (let i = 0; i < refs.length; i += 200) {
+    const ouverts = await lireOuverts(client, 'document_pdf', refs.slice(i, i + 200));
+    for (const ref of ouverts) refsOuverts.add(ref);
+  }
   for (const document of documents) {
     if (passActif || refsOuverts.has(document.id)) {
       ajouterTache(taches, 'pdf', `pdf-${document.id}`, { document });
@@ -211,7 +226,14 @@ async function executerTache(tache: Tache): Promise<void> {
   } else if (tache.categorie === 'quiz' && tache.quiz) {
     await lireQuizLibre(client, { quiz: tache.quiz, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
   } else if (tache.categorie === 'exercices' && tache.exercice) {
-    await lireExercice(client, tache.exercice);
+    if (!tache.corrige) {
+      await lireExercice(client, tache.exercice);
+    } else {
+      const acces = await depenser<{ correction?: unknown; correction_compressed?: string | null }>(client, 'exercise_solution', tache.exercice);
+      if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('corrigé non débloqué : aucun crédit n’a été dépensé');
+      if (!acces.contenu) throw new Error('corrigé indisponible');
+      await AsyncStorage.setItem(`entrainement.exercice.corrige.${tache.exercice}`, JSON.stringify(acces.contenu));
+    }
   } else if (tache.categorie === 'pdf' && tache.document) {
     const acces = await depenser<{ url?: string }>(client, 'document_pdf', tache.document.id);
     if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('document non débloqué : aucun crédit n’a été dépensé');
@@ -223,6 +245,15 @@ async function executerTache(tache: Tache): Promise<void> {
 export async function lancerTelechargement(estimation?: Awaited<ReturnType<typeof estimerTelechargement>>): Promise<void> {
   await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   const calculee = estimation ?? await estimerTelechargement();
+  let notification: EtatHorsLigne['notification'] = 'refusee';
+  try {
+    const permission = await Notifications.getPermissionsAsync();
+    const reponse = permission.granted ? permission : await Notifications.requestPermissionsAsync();
+    notification = reponse.granted ? 'autorisee' : 'refusee';
+  } catch (erreur) {
+    notification = 'echec';
+    console.warn('Impossible de vérifier l’autorisation des notifications hors ligne.', erreur);
+  }
   const precedent = await lireEtatHorsLigne();
   const taches = precedent?.statut === 'partiel'
     ? precedent.taches.map((t) => t.statut === 'echec' ? { ...t, statut: 'a-faire' as const } : t)
@@ -232,6 +263,7 @@ export async function lancerTelechargement(estimation?: Awaited<ReturnType<typeo
     taches,
     progression: progression(taches),
     statut: 'telechargement',
+    notification,
     actualiseLe: new Date().toISOString(),
   };
   await enregistrer(etat);
@@ -258,12 +290,21 @@ async function executerFile(): Promise<void> {
     etat.statut = etat.taches.some((t) => t.statut === 'echec') ? 'partiel' : 'termine';
     await enregistrer(etat);
     if (etat.statut === 'termine') {
-      const permission = await Notifications.getPermissionsAsync();
-      if (permission.granted) {
-        await Notifications.scheduleNotificationAsync({
-          content: { title: 'Elearn Prepa', body: 'Tout le contenu de ta formation est disponible hors ligne.', data: { type: 'telechargement_hors_ligne_termine' } },
-          trigger: null,
-        });
+      if (etat.notification === 'autorisee') {
+        try {
+          await Notifications.scheduleNotificationAsync({
+            content: {
+              title: i18n.t('horsLigne.notificationTitre'),
+              body: i18n.t('horsLigne.notificationTexte'),
+              data: { type: 'telechargement_hors_ligne_termine' },
+            },
+            trigger: null,
+          });
+        } catch (erreur) {
+          etat.notification = 'echec';
+          await enregistrer(etat);
+          console.warn('La notification de préparation hors ligne n’a pas pu être programmée.', erreur);
+        }
       }
     }
   })().finally(() => { execution = null; });

@@ -1,5 +1,6 @@
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -109,28 +110,55 @@ export function ExerciceLibre() {
     declencher('confirm');
     if (!fait) await basculer();
   };
+  const [reseau, setReseau] = useState(false);
+  const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
+  const [correctionDemandeePour, setCorrectionDemandeePour] = useState<string | null>(null);
   // Plus de crédits : une feuille du bas (« Recharger ») s'ouvre tout de suite, jamais un message au bout d'un long énoncé.
   const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: true });
   const { couts, solde } = useCredits();
   // Corrigé déjà ouvert : plus de prix ni d'accord demandé, l'élève le rouvre quand il veut.
   const acces = useOuverts('exercise_solution', [id]);
-  const dejaOuvert = acces.deja(id);
+  const dejaOuvert = acces.deja(id) || !!corriges[id];
   const prix = { cout: dejaOuvert ? null : couts.exercise_solution || null, illimite: !!solde?.illimite };
-  const [reseau, setReseau] = useState(false);
-  const [corriges, setCorriges] = useState<Record<string, Bloc[]>>({});
-  const [correctionDemandeePour, setCorrectionDemandeePour] = useState<string | null>(null);
+  useEffect(() => {
+    let actif = true;
+    void AsyncStorage.getItem(`entrainement.exercice.corrige.${id}`).then((copie) => {
+      if (!copie || !actif) return;
+      try {
+        const contenu = JSON.parse(copie) as { correction?: unknown; correction_compressed?: string | null };
+        setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
+      } catch {
+        console.warn('Le corrigé hors ligne est illisible.', id);
+      }
+    });
+    return () => {
+      actif = false;
+    };
+  }, [id]);
   // Le corrigé ne vient que de depenser_credits (M18-04) ; une fois ouvert, il reste sous la main pour la session.
   const voirCorrige = async () => {
     if (!corriges[id]) {
-      let r;
-      try {
-        r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id, { deja: dejaOuvert });
-      } catch {
-        setReseau(true);
-        return;
+      let contenu: { correction?: unknown; correction_compressed?: string | null } | null = null;
+      const copie = await AsyncStorage.getItem(`entrainement.exercice.corrige.${id}`);
+      if (copie) {
+        try {
+          contenu = JSON.parse(copie) as { correction?: unknown; correction_compressed?: string | null };
+        } catch {
+          console.warn('Le corrigé hors ligne est illisible.', id);
+        }
       }
-      if (!r?.contenu) return;
-      const contenu = r.contenu;
+      if (!contenu) {
+        try {
+          const r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id, { deja: dejaOuvert });
+          contenu = r?.contenu ?? null;
+        } catch {
+          setReseau(true);
+          return;
+        }
+      }
+      if (!contenu) return;
+      await AsyncStorage.setItem(`entrainement.exercice.corrige.${id}`, JSON.stringify(contenu))
+        .catch((erreur: unknown) => console.warn('Le corrigé débloqué ne peut pas être gardé hors ligne.', erreur));
       setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     }
     void acces.relire();

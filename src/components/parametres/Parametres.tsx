@@ -1,5 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
-import { FileText, LogIn, LogOut, Trash2, UserPlus, Volume2 } from 'lucide-react-native';
+import { Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2 } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -149,6 +149,7 @@ export function Parametres() {
           <BlocGroupe>
             <Interrupteur libelle={t('reglages.wifi')} aide={t('reglages.wifiAide')} valeur={wifi} onChange={changerWifi} />
           </BlocGroupe>
+          <LigneGroupe icone={Download} titre={t('reglages.horsLigne')} sousTitre={t('reglages.horsLigneAide')} onPress={() => router.push('/hors-ligne')} />
           <LigneGroupe icone={FileText} titre={t('reglages.documents')} sousTitre={t('reglages.documentsAide')} onPress={() => router.push('/documents')} />
           <LigneGroupe titre={t('reglages.langue')} valeur={NOM_LANGUE[langue]} onPress={() => setFeuille('langue')} />
         </Groupe>
