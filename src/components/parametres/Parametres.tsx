@@ -10,6 +10,7 @@ import { definirWifiSeulement, lireWifiSeulement } from '@/services/donnees';
 import { definirRenduFormules } from '@/services/formules';
 import { lireDemandeSuppression } from '@/services/moi';
 import { activerRappel, desactiverRappel, HEURE_RAPPEL, lireRappel } from '@/services/rappels';
+import { diagnostiquerEtEnregistrerPush, jetonPushActif, type DiagnosticPush } from '@/services/push';
 import { lireRythme, TAILLE_DEFAUT } from '@/services/rythme';
 import { getSupabase } from '@/services/supabase';
 import { lireVersion } from '@/services/version';
@@ -46,6 +47,8 @@ export function Parametres() {
 
   const [rappel, setRappel] = useState<{ actif: boolean; heure: number }>({ actif: false, heure: HEURE_RAPPEL });
   const [rappelRefuse, setRappelRefuse] = useState(false);
+  const [pushActif, setPushActif] = useState(false);
+  const [pushDiag, setPushDiag] = useState<DiagnosticPush | null>(null);
   const [wifi, setWifi] = useState(false);
   const [taille, setTaille] = useState<number | null>(null);
   const [suppression, setSuppression] = useState(false);
@@ -56,11 +59,12 @@ export function Parametres() {
   useFocusEffect(
     useCallback(() => {
       let actif = true;
-      void Promise.all([lireRappel(), lireWifiSeulement(), lireRythme()]).then(([r, w, n]) => {
+      void Promise.all([lireRappel(), lireWifiSeulement(), lireRythme(), jetonPushActif()]).then(([r, w, n, p]) => {
         if (!actif) return;
         setRappel(r);
         setWifi(w);
         setTaille(n);
+        setPushActif(p);
         if (assistant === 'mission') {
           setFeuille('rythme');
           router.setParams({ assistant: '' });
@@ -76,6 +80,17 @@ export function Parametres() {
       };
     }, [assistant, connecte]),
   );
+
+  const changerPush = async (v: boolean) => {
+    setPushDiag(null);
+    if (!v) {
+      setPushActif(false);
+      return;
+    }
+    const diag = await diagnostiquerEtEnregistrerPush(getSupabase());
+    setPushActif(diag.actif);
+    setPushDiag(diag);
+  };
 
   const changerRappel = async (v: boolean) => {
     setRappelRefuse(false);
@@ -145,6 +160,14 @@ export function Parametres() {
         <Groupe>
           <BlocGroupe>
             <Interrupteur
+              libelle={t('reglages.push')}
+              aide={pushActif ? t('reglages.pushAideActif') : t('reglages.pushAideCoupe')}
+              valeur={pushActif}
+              onChange={(x) => void changerPush(x)}
+            />
+          </BlocGroupe>
+          <BlocGroupe>
+            <Interrupteur
               libelle={t('reglages.rappel')}
               aide={rappel.actif ? t('reglages.rappelAide', { heure: rappel.heure }) : t('reglages.rappelCoupe')}
               valeur={rappel.actif}
@@ -158,6 +181,7 @@ export function Parametres() {
           <LigneGroupe icone={FileText} titre={t('reglages.documents')} sousTitre={t('reglages.documentsAide')} onPress={() => router.push('/documents')} />
           <LigneGroupe titre={t('reglages.langue')} valeur={NOM_LANGUE[langue]} onPress={() => setFeuille('langue')} />
         </Groupe>
+        {pushDiag?.erreur ? <Banniere ton="info" titre={t('reglages.pushErreurPreview', { raison: pushDiag.erreur })} /> : null}
         {rappelRefuse ? <Banniere ton="info" titre={t('reglages.rappelRefuse')} /> : null}
 
         {statut === 'pret' ? (

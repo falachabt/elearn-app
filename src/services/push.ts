@@ -25,27 +25,70 @@ export async function jetonPushActif(): Promise<boolean> {
   }
 }
 
+export type DiagnosticPush = {
+  actif: boolean;
+  permissionAccordee: boolean;
+  jeton: string | null;
+  erreur: string | null;
+};
+
+/**
+ * Diagnostic complet et enregistrement du jeton push (avec messages d'erreur clairs en Preview/Dev).
+ */
+export async function diagnostiquerEtEnregistrerPush(client: Client): Promise<DiagnosticPush> {
+  if (Platform.OS === 'web') {
+    return { actif: false, permissionAccordee: false, jeton: null, erreur: 'Push indisponible sur Web' };
+  }
+  try {
+    let permission = await Notifications.getPermissionsAsync();
+    if (!permission.granted) {
+      if (permission.canAskAgain) {
+        permission = await Notifications.requestPermissionsAsync();
+      }
+    }
+    if (!permission.granted) {
+      return { actif: false, permissionAccordee: false, jeton: null, erreur: 'Permission refusée dans les réglages du téléphone' };
+    }
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;
+    if (!projectId) {
+      return { actif: false, permissionAccordee: true, jeton: null, erreur: 'EAS projectId non configuré' };
+    }
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync(CANAL_PAR_DEFAUT, { name: CANAL_PAR_DEFAUT, importance: Notifications.AndroidImportance.DEFAULT });
+    }
+    let jeton: string | null = null;
+    try {
+      const res = await Notifications.getExpoPushTokenAsync({ projectId });
+      jeton = res.data;
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      return {
+        actif: false,
+        permissionAccordee: true,
+        jeton: null,
+        erreur: `Firebase/FCM manquant sur Android (${msg}). google-services.json requis dans le build.`,
+      };
+    }
+    if (!jeton) {
+      return { actif: false, permissionAccordee: true, jeton: null, erreur: 'Aucun jeton push renvoyé par Expo' };
+    }
+    const { data: ok, error } = await client.rpc('register_push_token', { p_token: jeton });
+    if (error || ok === false) {
+      return { actif: false, permissionAccordee: true, jeton, erreur: `RPC Supabase échoué: ${error?.message ?? 'inconnu'}` };
+    }
+    await AsyncStorage.setItem(CLE_JETON_PUSH, jeton);
+    return { actif: true, permissionAccordee: true, jeton, erreur: null };
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    return { actif: false, permissionAccordee: false, jeton: null, erreur: `Erreur inattendue: ${msg}` };
+  }
+}
+
 /**
  * Enregistre le jeton push du téléphone sur le compte, sans jamais demander la permission (elle se demande au bon
  * moment, ailleurs). Ne lève jamais ; renvoie true quand le jeton est enregistré.
  */
 export async function enregistrerJetonPush(client: Client): Promise<boolean> {
-  if (Platform.OS === 'web') return false;
-  try {
-    const permission = await Notifications.getPermissionsAsync();
-    if (!permission.granted) return false;
-    const projectId = Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;
-    if (!projectId) return false;
-    if (Platform.OS === 'android') {
-      await Notifications.setNotificationChannelAsync(CANAL_PAR_DEFAUT, { name: CANAL_PAR_DEFAUT, importance: Notifications.AndroidImportance.DEFAULT });
-    }
-    const { data: jeton } = await Notifications.getExpoPushTokenAsync({ projectId });
-    if (!jeton) return false;
-    const { data: ok, error } = await client.rpc('register_push_token', { p_token: jeton });
-    if (error || ok === false) return false;
-    await AsyncStorage.setItem(CLE_JETON_PUSH, jeton);
-    return true;
-  } catch {
-    return false;
-  }
+  const diag = await diagnostiquerEtEnregistrerPush(client);
+  return diag.actif;
 }
