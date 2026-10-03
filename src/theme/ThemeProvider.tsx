@@ -7,7 +7,7 @@ import { themes, type Theme } from './theme';
 
 type Valeur = { theme: Theme; sombre: boolean; reglage: ReglageTheme; taille: number };
 
-const ThemeContext = createContext<Valeur>({ theme: themes.light, sombre: false, reglage: 'systeme', taille: 100 });
+const ThemeContext = createContext<Valeur>({ theme: themes.light, sombre: false, reglage: 'systeme', taille: 90 });
 
 /**
  * Le thème suit le réglage Clair / Sombre / Système de Paramètres (Système par défaut). `reglage` force une valeur

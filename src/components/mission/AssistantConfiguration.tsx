@@ -145,11 +145,12 @@ export function AssistantConfiguration() {
 
       <BottomSheetModal
         ref={feuille}
-        snapPoints={['100%']}
+        snapPoints={['93%']}
         enableDynamicSizing={false}
         topInset={0}
         bottomInset={bottomInset}
         enablePanDownToClose
+        enableContentPanningGesture={false}
         backdropComponent={Fond}
         onDismiss={() => {
           presente.current = false;

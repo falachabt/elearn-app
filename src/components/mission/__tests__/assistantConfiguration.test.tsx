@@ -91,7 +91,7 @@ it('ouvre une liste claire de huit étapes, coche le compte et les actions déj�
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
   expect(vue.getAllByRole('checkbox')).toHaveLength(8);
-  expect(mockSnapPoints).toHaveBeenCalledWith(['100%']);
+  expect(mockSnapPoints).toHaveBeenCalledWith(['93%']);
   expect(vue.getByTestId('configuration-sheet-mock').props.style.paddingBottom).toBe(24);
   const liste = vue.getByTestId('configuration-etapes');
   expect(liste.props.nestedScrollEnabled).toBe(true);

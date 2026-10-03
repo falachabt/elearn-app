@@ -15,9 +15,9 @@ export const CLE_THEME = 'affichage.theme';
 export const CLE_TAILLE = 'affichage.taille';
 
 /** Tailles proposées, en pour cent de la taille de base. 130 % au plus (consigne d'accessibilité du guide). */
-export const TAILLES = [90, 100, 110, 120, 130] as const;
+export const TAILLES = [80, 90, 100, 110, 120, 130] as const;
 export type TailleTexte = (typeof TAILLES)[number];
-export const TAILLE_DEFAUT: TailleTexte = 100;
+export const TAILLE_DEFAUT: TailleTexte = 90;
 
 type Etat = { theme: ReglageTheme; taille: TailleTexte };
 

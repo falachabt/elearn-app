@@ -129,21 +129,20 @@ describe('H2 · réglages', () => {
   });
 
   it('taille du texte : un cran plus grand agrandit les styles partagés et se garde', async () => {
-    const base = typo.texte.fontSize;
     await monter(<Parametres />);
     await act(() => fireEvent(screen.getByRole('adjustable'), 'accessibilityAction', { nativeEvent: { actionName: 'increment' } }));
-    expect(lireAffichage().taille).toBe(110);
-    expect(typo.texte.fontSize).toBeCloseTo(base * 1.1);
-    expect(screen.getByText('110 %')).toBeTruthy();
-    expect(await AsyncStorage.getItem(CLE_TAILLE)).toBe('110');
-    appliquerTaille(100);
-    expect(typo.texte.fontSize).toBe(base);
+    expect(lireAffichage().taille).toBe(100);
+    expect(typo.texte.fontSize).toBe(16);
+    expect(screen.getByText('100 %')).toBeTruthy();
+    expect(await AsyncStorage.getItem(CLE_TAILLE)).toBe('100');
+    appliquerTaille(90);
+    expect(typo.texte.fontSize).toBeCloseTo(14.4);
   });
 
   it('rail : la position touchée donne le cran le plus proche', () => {
     expect(cranPour(0, 200)).toBe(0);
     expect(cranPour(95, 200)).toBe(2);
-    expect(cranPour(260, 200)).toBe(4);
+    expect(cranPour(260, 200)).toBe(5);
     expect(cranPour(-10, 200)).toBe(0);
     expect(cranPour(10, 0)).toBe(0);
   });
