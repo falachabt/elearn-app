@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import { act, fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -86,6 +86,7 @@ it('affiche la page sans attendre l’estimation et présente les tailles par ca
   );
 
   expect(vue.getByText(fr.horsLigne.titre)).toBeTruthy();
+  expect(within(vue.getByTestId('ecran-entete')).getByText(fr.horsLigne.titre)).toBeTruthy();
   expect(vue.getByText(fr.horsLigne.preparation)).toBeTruthy();
   await act(async () => terminer(estimation()));
 

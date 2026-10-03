@@ -174,8 +174,11 @@ export function AssistantConfiguration() {
             </Appui>
           </View>
           <BottomSheetScrollView
+            testID="configuration-etapes"
             style={styles.liste}
             contentContainerStyle={styles.contenuListe}
+            nestedScrollEnabled
+            keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator
           >
             {ETAPES.map((etape, index) => {

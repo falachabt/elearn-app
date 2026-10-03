@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render, waitFor, within } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -82,6 +82,9 @@ it('ouvre une liste claire de huit étapes, coche le compte et les actions déj�
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
   expect(vue.getAllByRole('checkbox')).toHaveLength(8);
+  const liste = vue.getByTestId('configuration-etapes');
+  expect(liste.props.nestedScrollEnabled).toBe(true);
+  expect(within(liste).queryByText(fr.configuration.titre)).toBeNull();
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.lecon}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.mission}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);

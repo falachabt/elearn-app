@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, regrouperParMatiere, synchroniserLues } from '../reviser';
+import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, programmeDu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -28,6 +28,19 @@ describe('reviser', () => {
     expect(cours).toEqual([{ id: 7, nom: 'Analyse', matiere: 'Mathématique', lecons: 4 }]);
     expect(await lireCours(client(null, new Error('hors ligne')) as never, { niveau: 'ingenieurs', pays: 'CM', concours: 'c1' })).toEqual(cours);
     await expect(lireCours(client(null, new Error('hors ligne')) as never, { niveau: 'ingenieurs', pays: 'CM', concours: 'c2' })).rejects.toThrow('hors ligne');
+  });
+
+  it('utilise le programme sélectionné, sans appliquer un ancien concours au profil élève', () => {
+    expect(programmeDu({ type: 'eleve', niveau: 'Tle', pays: 'CM', concours: { id: 'ancien-concours' } })).toEqual({
+      niveau: 'Tle',
+      pays: 'CM',
+      concours: null,
+    });
+    expect(programmeDu({ type: 'concours', niveau: 'ingenieurs', concours: { id: 'concours-actuel' } })).toEqual({
+      niveau: 'ingenieurs',
+      pays: 'CM',
+      concours: 'concours-actuel',
+    });
   });
 
   it('hors ligne sans copie : erreur', async () => {

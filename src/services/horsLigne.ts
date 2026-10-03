@@ -11,7 +11,7 @@ import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
 import { lireAcces } from './pass';
 import { lireProfil, type Profil } from './profil';
-import { lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours } from './reviser';
+import { lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
 import { lireRythme } from './rythme';
 import { getSupabase } from './supabase';
 
@@ -173,7 +173,7 @@ export async function estimerTelechargement(): Promise<EstimationTelechargement>
   const client = getSupabase();
   const profil = await lireProfil();
   if (!profil) throw new Error('profil de formation introuvable');
-  const programme = { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', concours: profil.concours?.id ?? null };
+  const programme = programmeDu(profil);
   const taches: Tache[] = [];
   const [acces, cours, rythme] = await Promise.all([lireAcces(client), lireCours(client, programme), lireRythme()]);
   const passActif = !!acces && new Date(acces.fin).getTime() > Date.now();

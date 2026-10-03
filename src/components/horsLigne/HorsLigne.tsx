@@ -172,16 +172,20 @@ export function HorsLigne() {
 
   return (
     <Ecran
-      entete={<BoutonFermer icone="chevron-back" libelle={t('horsLigne.retour')} onPress={() => void retour()} />}
+      entete={(
+        <>
+          <BoutonFermer icone="chevron-back" libelle={t('horsLigne.retour')} onPress={() => void retour()} />
+          <Text accessibilityRole="header" style={[typo.h3, styles.titreEntete, { color: theme.texte.principal }]}>
+            {phase === 'progression' && etat?.statut === 'termine' ? t('horsLigne.termineTitre') : t('horsLigne.titre')}
+          </Text>
+        </>
+      )}
       pied={pied}
     >
       <View style={styles.intro}>
         <View style={[styles.icone, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
           <Ionicons name="cloud-download-outline" size={26} color={theme.marque.forte} />
         </View>
-        <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>
-          {phase === 'progression' && etat?.statut === 'termine' ? t('horsLigne.termineTitre') : t('horsLigne.titre')}
-        </Text>
         <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
           {phase === 'selection' ? t('horsLigne.intro') : t('horsLigne.travail')}
         </Text>
@@ -258,6 +262,7 @@ export function HorsLigne() {
 
 const styles = StyleSheet.create({
   intro: { alignItems: 'flex-start', gap: espace[4] },
+  titreEntete: { flex: 1 },
   icone: { width: 56, height: 56, borderWidth: bord.normal, borderRadius: rayon.m, justifyContent: 'center', alignItems: 'center' },
   actions: { gap: espace[3] },
   estimation: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
