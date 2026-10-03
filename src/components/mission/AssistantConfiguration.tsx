@@ -150,7 +150,6 @@ export function AssistantConfiguration() {
         topInset={0}
         bottomInset={bottomInset}
         enablePanDownToClose
-        enableContentPanningGesture={false}
         backdropComponent={Fond}
         onDismiss={() => {
           presente.current = false;
@@ -159,68 +158,68 @@ export function AssistantConfiguration() {
         handleIndicatorStyle={{ backgroundColor: theme.bord.fort }}
         backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
       >
-        <BottomSheetView style={styles.feuille}>
-          <View style={styles.entete}>
-            <View style={styles.titres}>
-              <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('configuration.titre')}</Text>
-              <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('configuration.intro')}</Text>
-            </View>
-            <Appui
-              accessibilityRole="button"
-              accessibilityLabel={t('configuration.fermer')}
-              onPress={fermerFeuille}
-              decalage={1}
-              rayon={rayon.pilule}
-            >
-              <View style={[styles.fermer, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                <X size={22} color={theme.texte.principal} />
+        <BottomSheetFlatList
+          testID="configuration-etapes"
+          data={ETAPES}
+          keyExtractor={(etape) => etape}
+          ListHeaderComponent={
+            <View style={styles.entete}>
+              <View style={styles.titres}>
+                <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('configuration.titre')}</Text>
+                <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('configuration.intro')}</Text>
               </View>
-            </Appui>
-          </View>
-          <BottomSheetFlatList
-            testID="configuration-etapes"
-            data={ETAPES}
-            keyExtractor={(etape) => etape}
-            renderItem={({ item: etape, index }) => {
-              const fait = etape === 'compte' || !!progression?.[etape];
-              const libelle = t(LIBELLES[etape]);
-              return (
-                <Appui
-                  accessibilityRole="checkbox"
-                  accessibilityLabel={`${libelle}. ${t(fait ? 'configuration.fait' : 'configuration.aFaire')}`}
-                  accessibilityState={{ checked: fait }}
-                  onPress={() => ouvrirEtape(etape)}
-                  ombre={fait ? 0 : 3}
-                  decalage={2}
-                  rayon={rayon.l}
-                  couleurOmbre={theme.ombre}
-                >
-                  <View style={[styles.ligne, {
-                    backgroundColor: fait ? theme.marque.douce : theme.fond.surface,
+              <Appui
+                accessibilityRole="button"
+                accessibilityLabel={t('configuration.fermer')}
+                onPress={fermerFeuille}
+                decalage={1}
+                rayon={rayon.pilule}
+              >
+                <View style={[styles.fermer, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <X size={22} color={theme.texte.principal} />
+                </View>
+              </Appui>
+            </View>
+          }
+          renderItem={({ item: etape, index }) => {
+            const fait = etape === 'compte' || !!progression?.[etape];
+            const libelle = t(LIBELLES[etape]);
+            return (
+              <Appui
+                accessibilityRole="checkbox"
+                accessibilityLabel={`${libelle}. ${t(fait ? 'configuration.fait' : 'configuration.aFaire')}`}
+                accessibilityState={{ checked: fait }}
+                onPress={() => ouvrirEtape(etape)}
+                ombre={fait ? 0 : 3}
+                decalage={2}
+                rayon={rayon.l}
+                couleurOmbre={theme.ombre}
+              >
+                <View style={[styles.ligne, {
+                  backgroundColor: fait ? theme.marque.douce : theme.fond.surface,
+                  borderColor: theme.bord.fort,
+                  borderWidth: fait ? bord.epais : bord.normal,
+                }]}>
+                  <View style={[styles.numero, {
+                    backgroundColor: fait ? theme.marque.principale : theme.fond.surface,
                     borderColor: theme.bord.fort,
-                    borderWidth: fait ? bord.epais : bord.normal,
                   }]}>
-                    <View style={[styles.numero, {
-                      backgroundColor: fait ? theme.marque.principale : theme.fond.surface,
-                      borderColor: theme.bord.fort,
-                    }]}>
-                      {fait
-                        ? <Check size={20} strokeWidth={3} color={theme.texte.surCouleur} />
-                        : <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{index + 1}</Text>}
-                    </View>
-                    <Text style={[typo.texteFort, styles.libelle, { color: theme.texte.principal }]}>{libelle}</Text>
-                    <ChevronRight size={20} color={theme.texte.secondaire} />
+                    {fait
+                      ? <Check size={20} strokeWidth={3} color={theme.texte.surCouleur} />
+                      : <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{index + 1}</Text>}
                   </View>
-                </Appui>
-              );
-            }}
-            style={styles.liste}
-            contentContainerStyle={styles.contenuListe}
-            ListFooterComponent={<View testID="configuration-fin-liste" style={{ height: bottomInset + espace[5] }} />}
-            nestedScrollEnabled
-            showsVerticalScrollIndicator
-          />
-        </BottomSheetView>
+                  <Text style={[typo.texteFort, styles.libelle, { color: theme.texte.principal }]}>{libelle}</Text>
+                  <ChevronRight size={20} color={theme.texte.secondaire} />
+                </View>
+              </Appui>
+            );
+          }}
+          style={styles.liste}
+          contentContainerStyle={styles.contenuListe}
+          ListFooterComponent={<View testID="configuration-fin-liste" style={{ height: bottomInset + espace[5] }} />}
+          nestedScrollEnabled
+          showsVerticalScrollIndicator
+        />
       </BottomSheetModal>
     </View>
   );
@@ -231,11 +230,11 @@ const styles = StyleSheet.create({
   bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   badge: { minWidth: 32, height: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   feuille: { flex: 1, paddingHorizontal: espace[5], paddingBottom: espace[3], gap: espace[4] },
-  entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2] },
+  entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2], paddingBottom: espace[3] },
   titres: { flex: 1, gap: espace[2] },
   fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
-  liste: { flex: 1, minHeight: 0 },
-  contenuListe: { gap: espace[3], paddingBottom: espace[3] },
+  liste: { flex: 1 },
+  contenuListe: { gap: espace[3], paddingHorizontal: espace[5], paddingBottom: espace[3] },
   ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
   numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   libelle: { flex: 1 },

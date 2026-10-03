@@ -42,12 +42,13 @@ jest.mock('@gorhom/bottom-sheet', () => {
     return <View testID="configuration-sheet-mock" style={{ paddingBottom: bottomInset }}>{children}</View>;
   });
   Modal.displayName = 'MockBottomSheetModal';
-  const Scrollable = ({ data, renderItem, ListFooterComponent, ...props }: {
+  const Scrollable = ({ data, renderItem, ListHeaderComponent, ListFooterComponent, ...props }: {
     data: string[];
     renderItem: (info: { item: string; index: number }) => React.ReactNode;
+    ListHeaderComponent?: React.ReactNode;
     ListFooterComponent?: React.ReactNode;
   } & React.ComponentProps<typeof ScrollView>) => (
-    <ScrollView {...props}>{data.map((item, index) => <React.Fragment key={item}>{renderItem({ item, index })}</React.Fragment>)}{ListFooterComponent}</ScrollView>
+    <ScrollView {...props}>{ListHeaderComponent}{data.map((item, index) => <React.Fragment key={item}>{renderItem({ item, index })}</React.Fragment>)}{ListFooterComponent}</ScrollView>
   );
   Scrollable.displayName = 'MockBottomSheetScrollView';
   const SheetView = ({ children, ...props }: React.ComponentProps<typeof View>) => <View {...props}>{children}</View>;
@@ -96,7 +97,7 @@ it('ouvre une liste claire de huit étapes, coche le compte et les actions déj�
   const liste = vue.getByTestId('configuration-etapes');
   expect(liste.props.nestedScrollEnabled).toBe(true);
   expect(vue.getByTestId('configuration-fin-liste').props.style.height).toBe(24 + 16);
-  expect(within(liste).queryByText(fr.configuration.titre)).toBeNull();
+  expect(within(liste).getByText(fr.configuration.titre)).toBeTruthy();
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.lecon}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.mission}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
