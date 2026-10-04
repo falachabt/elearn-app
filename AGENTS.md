@@ -29,3 +29,15 @@
 ## 7. Règles de Build Web (`elearn-site`)
 - **Vercel très strict (ESLint)** : Le compilateur Next.js sur Vercel bloque le déploiement au moindre avertissement ESLint grave (apostrophes non échappées comme `l'accès` au lieu de `l&apos;accès`, variables non utilisées dans les `catch`, etc.).
 - **Vérification avant Push** : Toujours exécuter `npm run build` ou `npx tsc --noEmit` en local dans le dossier `elearn-site` pour corriger les erreurs TS/ESLint avant de pousser sur `main`.
+
+## 8. Génération d'Images Open Graph (OG)
+- **Outil** : Utiliser `next/og` (`ImageResponse`) dans Next.js.
+- **Design System** :
+  - Fond : Crème `#FFF7E3`.
+  - Textes principaux : Encre `#0A0A0A` (extrablold pour les titres).
+  - Couleur de marque : Émeraude `#10B981` (pour le logo et les accents).
+  - Surlignage (Highlight) : Jaune Soleil `#FFD83D`.
+  - **Bordure** : Toujours encadrer l'image complète avec une bordure noire de 8px (`border: '8px solid #0A0A0A'`).
+- **Logo** : Utiliser la structure SVG exacte du symbole `Elearn Prepa` (le livre avec la courbe et le point), sans texte additionnel dans le carré vert.
+- **Positionnement des éléments flottants** : Les badges/tags d'information (ex: "Paiement sécurisé" ou "Code Promo") doivent être placés en **Haut à Droite** (`top: 80px, right: 80px`) pour éviter que WhatsApp ou d'autres messageries ne les coupent avec leurs interfaces superposées en bas de l'aperçu.
+- **Limitation technique (Satori)** : Satori ne supporte pas bien les balises `<span>` en ligne (inline) avec des `margin` ou `padding` à l'intérieur d'un `<p>`, surtout quand le texte est multiligne. Cela crée des chevauchements de texte (bugs de rendu). **Solution** : Toujours utiliser des colonnes et des conteneurs Flex (`display: 'flex'`) propres pour séparer les éléments visuels, sans abuser des marges internes dans les textes continus.
