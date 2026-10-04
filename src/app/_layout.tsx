@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Stack, usePathname, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Platform, StyleSheet } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -23,7 +23,7 @@ import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {});
 initAnalytics();
 installerHandlerGlobal();
 
@@ -59,6 +59,13 @@ export default function RootLayout() {
     'SpaceMono-Bold': require('../../assets/fonts/SpaceMono-Bold.ttf'),
   });
 
+  const [delaiDepasse, setDelaiDepasse] = useState(false);
+
+  useEffect(() => {
+    const min = setTimeout(() => setDelaiDepasse(true), 1500);
+    return () => clearTimeout(min);
+  }, []);
+
   useEffect(() => {
     suivre('app_opened', { plateforme: Platform.OS });
   }, []);
@@ -75,11 +82,15 @@ export default function RootLayout() {
     };
   }, []);
 
-  useEffect(() => {
-    if (pretes || erreur) SplashScreen.hideAsync();
-  }, [pretes, erreur]);
+  const pret = pretes || erreur !== null || delaiDepasse;
 
-  if (!pretes && !erreur) return null;
+  useEffect(() => {
+    if (pret) {
+      SplashScreen.hideAsync().catch(() => {});
+    }
+  }, [pret]);
+
+  if (!pret) return null;
 
   return (
     <GestureHandlerRootView style={styles.racine}>

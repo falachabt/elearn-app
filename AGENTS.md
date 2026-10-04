@@ -8,6 +8,10 @@
 - **NE JAMAIS pusher directement sur la branche `main` de `elearn-supabase`**.
 - Un workflow GitHub Actions applique automatiquement en production tout commit arrivant sur `main`.
 - Toujours travailler sur une branche de fonctionnalité (ex: `claude/...`) et soumettre une Pull Request (PR) pour validation.
+- **TOUJOURS exécuter les tests pgTAP en local** via `npx supabase test db` (ou `supabase test db`) avant de commiter ou d'ouvrir une PR afin d'éviter de faire échouer le CI GitHub Actions.
+
+## 3. Tests Locaux Obligatoires Frontend (`elearn-app`)
+- Toujours exécuter `npm test` en local avant de pousser du code frontend afin d'assurer un taux de réussite de 100% sur la suite de tests Jest.
 
 ## 3. Design System & Interfaces (UI)
 - Avant de créer ou de mettre à jour une interface utilisateur, tu **dois obligatoirement te référer** aux fichiers du Design System présents dans le dossier docs/ (notamment docs/Design system Elearn Prepa.md).

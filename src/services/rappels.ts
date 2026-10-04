@@ -187,10 +187,11 @@ export async function planifierNotificationRappelHebdo(): Promise<void> {
         data: { type: 'credits_refilled' },
       },
       trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
+        type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
         weekday: 2, // Lundi
         hour: 8,
         minute: 0,
+        repeats: true,
         channelId: 'credits',
       },
     });
