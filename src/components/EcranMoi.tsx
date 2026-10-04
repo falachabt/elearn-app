@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
-import { CircleHelp, FileText, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
+import { CircleHelp, FileText, Gift, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -176,6 +176,12 @@ export function EcranMoi() {
           titre={t('profil.documents')}
           sousTitre={resume.documents ? (resume.documents.n ? t('profil.docsSous', { n: resume.documents.n, mo: enMo(resume.documents.octets) }) : t('profil.docsAucun')) : undefined}
           onPress={() => router.push('/documents')}
+        />
+        <LigneGroupe
+          icone={Gift}
+          titre={t('profil.parrainage')}
+          sousTitre={t('profil.parrainageSous')}
+          onPress={() => router.push(connecte ? '/parrainage' : '/parrainage/recompenses')}
         />
         {connecte && paiementPossible() ? (
           <LigneGroupe icone={ReceiptText} titre={t('profil.paiements')} sousTitre={t('profil.paiementsSous')} onPress={() => router.push('/paiements')} />
