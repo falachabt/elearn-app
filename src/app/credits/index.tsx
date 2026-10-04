@@ -41,10 +41,9 @@ export default function EcranCredits() {
   const [actionEnCours, setActionEnCours] = useState<ActionQuotidienne | null>(null);
 
   const charger = useCallback(async () => {
-    await Promise.resolve();
-    const et = await lireEtatActionsQuotidiennes();
-    setEtatActions(et);
     try {
+      const et = await lireEtatActionsQuotidiennes();
+      setEtatActions(et);
       const h = await lireHistoriqueCredits(getSupabase());
       setHistorique(h);
     } catch {
@@ -55,9 +54,25 @@ export default function EcranCredits() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    void charger();
-  }, [charger]);
+    let actif = true;
+    void (async () => {
+      try {
+        const et = await lireEtatActionsQuotidiennes();
+        if (!actif) return;
+        setEtatActions(et);
+        const h = await lireHistoriqueCredits(getSupabase());
+        if (!actif) return;
+        setHistorique(h);
+      } catch {
+        // Fallback si pas encore d'historique en base
+      } finally {
+        if (actif) setChargementHist(false);
+      }
+    })();
+    return () => {
+      actif = false;
+    };
+  }, []);
 
   const executer = async (action: ActionQuotidienne) => {
     setActionEnCours(action);

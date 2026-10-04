@@ -76,25 +76,40 @@ export function Photo() {
   const [paramVu, setParamVu] = useState<string | null>(null);
 
   useEffect(() => {
+    let actif = true;
     const cleParam = id ? `id:${id}` : historique ? `hist:${historique}` : null;
-    if (cleParam && cleParam !== paramVu) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setParamVu(cleParam);
-      if (id) {
-        setEtat({ ecran: 'analyse', etapes: [] });
-        lireCorrectionParId(getSupabase(), id)
-          .then((entree) => {
-            if (entree) {
-              setEtat({ ecran: 'correction', id: entree.id, correction: entree.correction, avis: entree.avis ?? undefined, depuis: 'historique', urlPhoto: entree.urlPhoto });
-            } else {
-              setEtat({ ecran: 'historique' });
-            }
-          })
-          .catch(() => setEtat({ ecran: 'historique' }));
-      } else if (historique) {
-        setEtat({ ecran: 'historique' });
-      }
+    if (!cleParam || cleParam === paramVu) return;
+
+    if (id) {
+      Promise.resolve().then(() => {
+        if (actif) setEtat({ ecran: 'analyse', etapes: [] });
+      });
+      lireCorrectionParId(getSupabase(), id)
+        .then((entree) => {
+          if (!actif) return;
+          setParamVu(cleParam);
+          if (entree) {
+            setEtat({ ecran: 'correction', id: entree.id, correction: entree.correction, avis: entree.avis ?? undefined, depuis: 'historique', urlPhoto: entree.urlPhoto });
+          } else {
+            setEtat({ ecran: 'historique' });
+          }
+        })
+        .catch(() => {
+          if (!actif) return;
+          setParamVu(cleParam);
+          setEtat({ ecran: 'historique' });
+        });
+    } else if (historique) {
+      Promise.resolve().then(() => {
+        if (actif) {
+          setParamVu(cleParam);
+          setEtat({ ecran: 'historique' });
+        }
+      });
     }
+    return () => {
+      actif = false;
+    };
   }, [id, historique, paramVu]);
 
   useEffect(() => {

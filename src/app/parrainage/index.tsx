@@ -30,18 +30,19 @@ export default function EcranParrainage() {
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [copie, setCopie] = useState(false);
 
-  const rafraichir = async () => {
-    try {
-      const stats = await chargerStatsParrainage(getSupabase());
-      setEtat({ statut: 'pret', stats });
-    } catch {
-      setEtat({ statut: 'erreur' });
-    }
-  };
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    void rafraichir();
+    let actif = true;
+    void (async () => {
+      try {
+        const stats = await chargerStatsParrainage(getSupabase());
+        if (actif) setEtat({ statut: 'pret', stats });
+      } catch {
+        if (actif) setEtat({ statut: 'erreur' });
+      }
+    })();
+    return () => {
+      actif = false;
+    };
   }, []);
 
   const copierCode = async (code: string) => {
