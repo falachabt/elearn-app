@@ -14,6 +14,7 @@ import { suivre } from '@/services/analytics';
 import { texteAvecFormules } from '@/services/blocs';
 import { annulerCorrectionPrete, notifierCorrectionPrete, programmerCorrectionPrete } from '@/services/photoNotification';
 import { getSupabase } from '@/services/supabase';
+import { lireCorrectionParId } from '@/services/photoHistorique';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige, espace, matiere as couleursMatiere, rayon, typo } from '@/theme/theme';
@@ -70,16 +71,34 @@ export function Photo() {
     void lireMatiere().then(setMatiere);
   }, []);
   useEffect(() => () => annule.current?.abort(), []);
-  // Ouverture depuis la notification « correction prête » : /photo?historique=1.
-  const { historique } = useLocalSearchParams<{ historique?: string }>();
-  const [paramVu, setParamVu] = useState(false);
-  if (!!historique !== paramVu) {
-    setParamVu(!!historique);
-    if (historique) setEtat({ ecran: 'historique' });
-  }
+  // Ouverture depuis la notification « correction prête » : /photo?historique=1 ou /photo?id=XXX.
+  const { historique, id } = useLocalSearchParams<{ historique?: string; id?: string }>();
+  const [paramVu, setParamVu] = useState<string | null>(null);
+
   useEffect(() => {
-    if (historique) router.setParams({ historique: '' });
-  }, [historique]);
+    const cleParam = id ? `id:${id}` : historique ? `hist:${historique}` : null;
+    if (cleParam && cleParam !== paramVu) {
+      setParamVu(cleParam);
+      if (id) {
+        setEtat({ ecran: 'analyse', etapes: [] });
+        lireCorrectionParId(getSupabase(), id)
+          .then((entree) => {
+            if (entree) {
+              setEtat({ ecran: 'correction', id: entree.id, correction: entree.correction, avis: entree.avis ?? undefined, depuis: 'historique', urlPhoto: entree.urlPhoto });
+            } else {
+              setEtat({ ecran: 'historique' });
+            }
+          })
+          .catch(() => setEtat({ ecran: 'historique' }));
+      } else if (historique) {
+        setEtat({ ecran: 'historique' });
+      }
+    }
+  }, [id, historique, paramVu]);
+
+  useEffect(() => {
+    if (id || historique) router.setParams({ id: '', historique: '' });
+  }, [id, historique]);
 
   const quitter = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const recommencer = () => setEtat({ ecran: 'camera' });

@@ -103,12 +103,21 @@ export async function effacerRappelInvite(): Promise<void> {
 /** Suit l'ouverture des notifications (M9, `notification_opened`). Renvoie la fonction d'arrêt. */
 export function suivreOuvertures(): () => void {
   const abonnement = Notifications.addNotificationResponseReceivedListener((r) => {
-    const type = r.notification.request.content.data?.type;
+    const data = r.notification.request.content.data as Record<string, unknown> | undefined;
+    const type = data?.type;
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
     
     if (type === TYPE_CORRECTION_PRETE) {
-      // Correction par photo prête : l'historique s'ouvre sur l'onglet Photo.
-      router.push({ pathname: '/photo', params: { historique: '1' } });
+      // Correction par photo prête : ouvre directement la correction spécifique si l'id est transmis, sinon l'historique.
+      const photoId = (typeof data?.photoId === 'string' && data.photoId)
+        || (typeof data?.id === 'string' && data.id)
+        || (typeof data?.photo_id === 'string' && data.photo_id)
+        || undefined;
+      if (photoId) {
+        router.push({ pathname: '/photo', params: { id: photoId } });
+      } else {
+        router.push({ pathname: '/photo', params: { historique: '1' } });
+      }
     } else if (type === 'credits_refilled') {
       // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
       router.push('/moi');

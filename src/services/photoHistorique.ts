@@ -81,3 +81,36 @@ export async function lireHistorique(client: Client, avant?: string): Promise<{ 
   });
   return { entrees, fin: lignes.length <= PAGE_HISTORIQUE };
 }
+
+/** Charge une seule correction par son identifiant unique pour l'afficher directement lors du clic sur une notification. */
+export async function lireCorrectionParId(client: Client, id: string): Promise<EntreeHistorique | null> {
+  const { data, error } = await client
+    .from('photo_corrections')
+    .select('id, created_at, result, feedback, image_path')
+    .eq('id', id)
+    .maybeSingle();
+  if (error || !data) return null;
+  const l = data as Ligne;
+  const correction = correctionDepuisResultat(l.result);
+  if (!correction) return null;
+
+  let urlPhoto: string | null = null;
+  if (l.image_path) {
+    try {
+      const { data: reponse } = await client.functions.invoke(FONCTION_PHOTO, { body: { action: 'urls', ids: [id] } });
+      if (reponse?.urls && typeof reponse.urls === 'object') {
+        urlPhoto = (reponse.urls as Record<string, string>)[id] ?? null;
+      }
+    } catch {
+      // Photo optionnelle
+    }
+  }
+
+  return {
+    id: l.id,
+    creeLe: l.created_at,
+    correction,
+    avis: l.feedback === 'clair' || l.feedback === 'pas_compris' ? l.feedback : null,
+    urlPhoto,
+  };
+}

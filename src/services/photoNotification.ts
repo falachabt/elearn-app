@@ -23,7 +23,7 @@ export type TextesNotification = { titre: string; corps: string; canal: string }
  * Programme le rappel. Demande la permission au premier envoi seulement ; un refus est retenu (on ne redemande pas).
  * Renvoie l'identifiant à annuler, ou null (refus, web, erreur : jamais bloquant pour l'envoi).
  */
-export async function programmerCorrectionPrete(textes: TextesNotification): Promise<string | null> {
+export async function programmerCorrectionPrete(textes: TextesNotification, photoId?: string): Promise<string | null> {
   try {
     if (await jetonPushActif()) return null;
     if (await AsyncStorage.getItem(CLE_REFUS_NOTIFICATION)) return null;
@@ -42,7 +42,7 @@ export async function programmerCorrectionPrete(textes: TextesNotification): Pro
       await Notifications.setNotificationChannelAsync(CANAL_CORRECTIONS, { name: textes.canal, importance: Notifications.AndroidImportance.DEFAULT });
     }
     return await Notifications.scheduleNotificationAsync({
-      content: { title: textes.titre, body: textes.corps, data: { type: TYPE_CORRECTION_PRETE } },
+      content: { title: textes.titre, body: textes.corps, data: { type: TYPE_CORRECTION_PRETE, ...(photoId ? { photoId } : {}) } },
       trigger: { type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL, seconds: DELAI_NOTIFICATION_S, channelId: CANAL_CORRECTIONS },
     });
   } catch {
@@ -61,7 +61,7 @@ export async function annulerCorrectionPrete(id: string | null): Promise<void> {
 }
 
 /** Prévient tout de suite : la correction vient d'arriver pendant que l'application était en arrière-plan. Ne lève jamais. */
-export async function notifierCorrectionPrete(textes: TextesNotification): Promise<void> {
+export async function notifierCorrectionPrete(textes: TextesNotification, photoId?: string): Promise<void> {
   try {
     const permission = await Notifications.getPermissionsAsync();
     if (!permission.granted) return;
@@ -69,7 +69,7 @@ export async function notifierCorrectionPrete(textes: TextesNotification): Promi
       await Notifications.setNotificationChannelAsync(CANAL_CORRECTIONS, { name: textes.canal, importance: Notifications.AndroidImportance.DEFAULT });
     }
     await Notifications.scheduleNotificationAsync({
-      content: { title: textes.titre, body: textes.corps, data: { type: TYPE_CORRECTION_PRETE } },
+      content: { title: textes.titre, body: textes.corps, data: { type: TYPE_CORRECTION_PRETE, ...(photoId ? { photoId } : {}) } },
       trigger: null,
     });
   } catch {
