@@ -18,34 +18,34 @@ describe('M15 · Services de Parrainage', () => {
 
   it('sauvegarderCodeInvite et lireCodeInvite en local', async () => {
     expect(await lireCodeInvite()).toBeNull();
-    await sauvegarderCodeInvite('elearn-7x9p');
-    expect(await lireCodeInvite()).toBe('ELEARN-7X9P');
-    expect(await AsyncStorage.getItem(CLE_CODE_PARRAIN_INVITE)).toBe('ELEARN-7X9P');
+    await sauvegarderCodeInvite('x79pa');
+    expect(await lireCodeInvite()).toBe('X79PA');
+    expect(await AsyncStorage.getItem(CLE_CODE_PARRAIN_INVITE)).toBe('X79PA');
   });
 
   it('partagerLienWhatsApp ouvre le menu de partage avec le bon message', async () => {
     const spy = jest.spyOn(Share, 'share').mockImplementation(async () => ({ action: Share.sharedAction }));
-    await partagerLienWhatsApp('ELEARN-ABC123', 'Aïcha');
+    await partagerLienWhatsApp('X79PA', 'Aïcha');
     expect(spy).toHaveBeenCalledWith(
       expect.objectContaining({
         message: expect.stringContaining('Aïcha t’invite sur Elearn Prepa !'),
-        url: 'https://elearnprepa.com/r/ELEARN-ABC123',
+        url: 'https://elearnprepa.com/r/X79PA',
       }),
     );
     spy.mockRestore();
   });
 
   it('obtenirMonCode appelle le RPC Supabase get_my_referral_code', async () => {
-    const mockRpc = jest.fn().mockResolvedValue({ data: 'ELEARN-TEST99', error: null });
+    const mockRpc = jest.fn().mockResolvedValue({ data: 'X79PA', error: null });
     const client = { rpc: mockRpc };
     const code = await obtenirMonCode(client as any);
     expect(mockRpc).toHaveBeenCalledWith('get_my_referral_code');
-    expect(code).toBe('ELEARN-TEST99');
+    expect(code).toBe('X79PA');
   });
 
   it('chargerStatsParrainage structure correctement les données retournées', async () => {
     const mockData = {
-      code: 'ELEARN-123',
+      code: 'X79PA',
       liens_cliques: 5,
       comptes_crees: 3,
       pass_achetes: 1,
@@ -57,7 +57,7 @@ describe('M15 · Services de Parrainage', () => {
     const mockRpc = jest.fn().mockResolvedValue({ data: mockData, error: null });
     const client = { rpc: mockRpc };
     const stats = await chargerStatsParrainage(client as any);
-    expect(stats.code).toBe('ELEARN-123');
+    expect(stats.code).toBe('X79PA');
     expect(stats.liensCliques).toBe(5);
     expect(stats.comptesCrees).toBe(3);
     expect(stats.passAchetes).toBe(1);
