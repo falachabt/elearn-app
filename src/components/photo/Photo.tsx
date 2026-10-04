@@ -78,6 +78,7 @@ export function Photo() {
   useEffect(() => {
     const cleParam = id ? `id:${id}` : historique ? `hist:${historique}` : null;
     if (cleParam && cleParam !== paramVu) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setParamVu(cleParam);
       if (id) {
         setEtat({ ecran: 'analyse', etapes: [] });

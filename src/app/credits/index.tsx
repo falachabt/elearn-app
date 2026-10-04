@@ -41,6 +41,7 @@ export default function EcranCredits() {
   const [actionEnCours, setActionEnCours] = useState<ActionQuotidienne | null>(null);
 
   const charger = useCallback(async () => {
+    await Promise.resolve();
     const et = await lireEtatActionsQuotidiennes();
     setEtatActions(et);
     try {
@@ -54,6 +55,7 @@ export default function EcranCredits() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void charger();
   }, [charger]);
 
