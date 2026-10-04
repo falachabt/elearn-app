@@ -13,6 +13,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
+import { useInvite } from '../FeuilleCompte';
 import { useFeedback } from '../useFeedback';
 
 type Etape = keyof ProgressionAssistant | 'compte';
@@ -38,6 +39,8 @@ export function AssistantConfiguration() {
   const { theme } = useTheme();
   const { bottom: bottomInset } = useSafeAreaInsets();
   const { reduit } = useFeedback();
+  const invite = useInvite();
+  const compteFait = !invite;
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
   const [ouverte, setOuverte] = useState(false);
@@ -72,8 +75,8 @@ export function AssistantConfiguration() {
   }, [ouverte]);
 
   const faites = useMemo(
-    () => ETAPES.filter((etape) => etape === 'compte' || !!progression?.[etape]).length,
-    [progression],
+    () => ETAPES.filter((etape) => (etape === 'compte' ? compteFait : !!progression?.[etape])).length,
+    [compteFait, progression],
   );
   const fermerFeuille = () => {
     presente.current = false;
@@ -182,7 +185,7 @@ export function AssistantConfiguration() {
             </View>
           }
           renderItem={({ item: etape, index }) => {
-            const fait = etape === 'compte' || !!progression?.[etape];
+            const fait = etape === 'compte' ? compteFait : !!progression?.[etape];
             const libelle = t(LIBELLES[etape]);
             return (
               <Appui

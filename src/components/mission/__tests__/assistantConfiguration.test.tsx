@@ -63,6 +63,10 @@ jest.mock('@gorhom/bottom-sheet', () => {
     mockSnapPoints,
   };
 });
+const mockUseInvite = jest.fn(() => false);
+jest.mock('@/components/FeuilleCompte', () => ({
+  useInvite: () => mockUseInvite(),
+}));
 jest.mock('@/services/assistantConfiguration', () => ({
   lireProgressionAssistant: jest.fn(),
 }));
@@ -80,6 +84,7 @@ async function monter() {
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockUseInvite.mockReturnValue(false);
   jest.mocked(lireProgressionAssistant).mockResolvedValue(progression);
 });
 
@@ -104,6 +109,16 @@ it('ouvre une liste claire de huit étapes, coche le compte et les actions déj�
 
   fireEvent.press(vue.getByRole('button', { name: fr.configuration.fermer }));
   await waitFor(() => expect(mockDismiss).toHaveBeenCalled());
+});
+
+it('décoche l’étape du compte pour un invité sans compte', async () => {
+  mockUseInvite.mockReturnValue(true);
+  const vue = await monter();
+
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '8') });
+  fireEvent.press(ouvrir);
+
+  expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
 });
 
 it('ferme la feuille et ouvre la page correspondant à l’action choisie', async () => {
