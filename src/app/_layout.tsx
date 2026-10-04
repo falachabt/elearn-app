@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { Stack, usePathname, useRouter } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import { AppState, Platform, StyleSheet } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -18,6 +18,7 @@ import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
 import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
+import { lirePaiementAttente } from '@/services/reprisePaiement';
 import { CreditsProvider } from '@/session/CreditsProvider';
 import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
@@ -39,6 +40,25 @@ function Navigation() {
       router.replace('/compte/reprise');
     }
   }, [pathname, repriseEnCours, router, statut]);
+
+  useEffect(() => {
+    if (statut !== 'pret' || repriseEnCours) return;
+
+    const verifier = () => {
+      lirePaiementAttente().then((p) => {
+        if (p) {
+          router.navigate({ pathname: '/offres/payer', params: { reprise: p.commande, offre: p.offre } });
+        }
+      });
+    };
+
+    verifier();
+
+    const sub = AppState.addEventListener('change', (etat) => {
+      if (etat === 'active') verifier();
+    });
+    return () => sub.remove();
+  }, [statut, repriseEnCours, router]);
 
   return (
     <>

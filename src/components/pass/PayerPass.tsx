@@ -12,6 +12,7 @@ import {
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
 } from '@/services/paiementPass';
 import { lireProfil } from '@/services/profil';
+import { effacerPaiementAttente, lirePaiementAttente, sauverPaiementAttente } from '@/services/reprisePaiement';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -73,7 +74,7 @@ export function PayerPass() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { rafraichir } = useCredits();
-  const params = useLocalSearchParams<{ offre?: string }>();
+  const params = useLocalSearchParams<{ offre?: string; reprise?: string }>();
   const offre: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
 
   const [pays, setPays] = useState<string | null>(null);
@@ -96,6 +97,23 @@ export function PayerPass() {
   useEffect(() => {
     void lireProfil().then((p) => setPays((p?.pays ?? 'CM').toUpperCase()));
   }, []);
+
+  // Reprise automatique d'un paiement en attente
+  useEffect(() => {
+    if (params.reprise) {
+      lirePaiementAttente().then((p) => {
+        if (p && p.commande === params.reprise) {
+          setPays(p.pays);
+          setTelephone(p.telephone);
+          setOperateur(p.operateur);
+          setResultat({ statut: 'en_attente', commande: p.commande, devise: p.devise, montant: p.montant });
+          const ecoule = Math.floor((Date.now() - p.timestamp) / 1000);
+          setRestant(Math.max(0, DUREE_DEMANDE_S - ecoule));
+          setEtape('attente');
+        }
+      });
+    }
+  }, [params.reprise]);
 
   useEffect(() => {
     if (!pays) return;
@@ -134,6 +152,7 @@ export function PayerPass() {
 
   const terminer = useCallback(
     (r: ResultatPaiement) => {
+      effacerPaiementAttente().catch(() => {});
       setResultat(r);
       setEtape('fin');
       if (r.statut === 'reussi') {
@@ -182,6 +201,7 @@ export function PayerPass() {
       if (r.statut === 'en_attente') {
         setResultat(r);
         setRestant(DUREE_DEMANDE_S);
+        sauverPaiementAttente({ commande: r.commande, offre, pays, telephone, operateur: op.provider, devise: r.devise, montant: r.montant }).catch(() => {});
         setEtape('attente');
       } else {
         terminer(r);
