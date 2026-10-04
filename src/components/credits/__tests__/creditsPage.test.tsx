@@ -39,6 +39,16 @@ jest.mock('@/session/SessionProvider', () => ({
   useSession: () => mockSession(),
 }));
 
+jest.mock('@/services/actionsCredits', () => ({
+  ...jest.requireActual('@/services/actionsCredits'),
+  lireEtatActionsQuotidiennes: jest.fn().mockResolvedValue({
+    site_web: false,
+    facebook: false,
+    instagram: false,
+    parrainage: false,
+  }),
+}));
+
 jest.mock('@/services/credits', () => ({
   ...jest.requireActual('@/services/credits'),
   lireHistoriqueCredits: jest.fn().mockResolvedValue([
