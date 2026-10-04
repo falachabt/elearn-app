@@ -80,10 +80,10 @@ describe('Page /credits (EcranCredits)', () => {
 
   it('affiche les cartes des 4 actions quotidiennes', async () => {
     renderComponent(<EcranCredits />);
-    await waitFor(() => expect(screen.getByText('Visiter le site Elearn Prepa')).toBeTruthy());
-    expect(screen.getByText('Rejoindre notre page Facebook')).toBeTruthy();
-    expect(screen.getByText('Suivre notre page Instagram')).toBeTruthy();
-    expect(screen.getByText('Inviter des amis (Parrainage)')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Visiter le site web')).toBeTruthy());
+    expect(screen.getByText('Facebook')).toBeTruthy();
+    expect(screen.getByText('Instagram')).toBeTruthy();
+    expect(screen.getByText('Inviter des amis')).toBeTruthy();
   });
 
   it('affiche l’historique des transactions', async () => {
@@ -95,8 +95,8 @@ describe('Page /credits (EcranCredits)', () => {
 
   it('clic sur parrainage redirige vers /parrainage', async () => {
     renderComponent(<EcranCredits />);
-    await waitFor(() => expect(screen.getByText('Inviter des amis (Parrainage)')).toBeTruthy());
-    const parrainageBtn = screen.getByText('Inviter des amis (Parrainage)');
+    await waitFor(() => expect(screen.getByText('Inviter des amis')).toBeTruthy());
+    const parrainageBtn = screen.getByText('Inviter des amis');
     fireEvent.press(parrainageBtn);
     await waitFor(() => {
       expect(router.push).toHaveBeenCalledWith('/parrainage');

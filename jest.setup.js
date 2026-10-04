@@ -61,3 +61,21 @@ jest.mock('react-native-pdf', () => {
   };
   return { __esModule: true, default: Pdf };
 });
+
+// Icons lucide-react-native
+jest.mock('lucide-react-native', () => {
+  const React = require('react');
+  const { View } = require('react-native');
+  return new Proxy(
+    {},
+    {
+      get: (target, prop) => {
+        if (prop === '__esModule') return true;
+        const Icon = (props) => React.createElement(View, props);
+        Icon.displayName = String(prop);
+        return Icon;
+      },
+    }
+  );
+});
+

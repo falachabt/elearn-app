@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { aDesActionsDisponibles } from '@/services/actionsCredits';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
@@ -21,6 +23,12 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
   const { solde, reglages, depensesSemaine } = useCredits();
   const { session } = useSession();
   const quand = useQuand();
+  const [actionsDispos, setActionsDispos] = useState(false);
+  
+  useEffect(() => {
+    void aDesActionsDisponibles(solde).then(setActionsDispos);
+  }, [solde]);
+
   const invite = !!session?.user.is_anonymous;
   const aller = (chemin: string) => () => {
     onFermer();
@@ -44,7 +52,7 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
       onFermer={onFermer}
       titre={t('profil.detailTitre')}
       actions={[
-        { libelle: t('credits.gagnerCredits'), onPress: aller('/credits') },
+        { libelle: t('credits.gagnerCredits'), onPress: aller('/credits'), badge: actionsDispos },
         { libelle: t('moi.voirPass'), onPress: aller('/offres?declencheur=moi'), variante: 'secondaire' },
         ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer'), variante: 'texte' as const }] : []),
       ]}

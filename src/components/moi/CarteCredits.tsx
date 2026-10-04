@@ -92,10 +92,6 @@ export function CarteCredits() {
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
               {solde.rechargeHebdo ? t('profil.rechargeInfo', { n: solde.recharge, quand: quand(solde.prochaineRecharge) }) : t('profil.rechargeAucune')}
             </Text>
-            <View style={styles.rangeeBoutons}>
-              <Bouton petit variante="primaire" libelle={t('credits.gagnerCredits')} onPress={() => router.push('/credits')} />
-              <Bouton petit variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
-            </View>
           </>
         )}
       </View>
@@ -114,5 +110,4 @@ const styles = StyleSheet.create({
   iconeWrapper: { position: 'relative', alignItems: 'center', justifyContent: 'center' },
   badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1, borderColor: '#FFFFFF' },
   jauge: { height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
-  rangeeBoutons: { flexDirection: 'row', gap: espace[2], flexWrap: 'wrap' },
 });

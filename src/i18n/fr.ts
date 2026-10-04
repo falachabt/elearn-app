@@ -1310,14 +1310,14 @@ export const fr = {
     actionsQuotidiennesDescription: 'Reviens chaque jour effectuer ces actions pour recharger tes crédits gratuitement.',
     historiqueTitre: 'Historique des transactions',
     historiqueVide: 'Aucune transaction de crédit enregistrée.',
-    actionFait: 'Accompli ✓',
+    actionFait: 'Fait',
     actionGagner: 'Gagner +{{gain}}',
     actionVoir: 'Voir',
     actionsLabels: {
-      site_web: 'Visiter le site Elearn Prepa',
-      facebook: 'Rejoindre notre page Facebook',
-      instagram: 'Suivre notre page Instagram',
-      parrainage: 'Inviter des amis (Parrainage)',
+      site_web: 'Visiter le site web',
+      facebook: 'Facebook',
+      instagram: 'Instagram',
+      parrainage: 'Inviter des amis',
     },
     actionsSousTitres: {
       site_web: 'Gagne 10 crédits en visitant notre site en ligne',
@@ -1328,10 +1328,11 @@ export const fr = {
     transactionKinds: {
       weekly: 'Recharge hebdomadaire du lundi',
       welcome: 'Bonus de bienvenue',
-      reward: 'Récompense quotidienne',
+      reward: 'Récompense',
       guest: 'Solde d’essai invité',
-      spend: 'Consommation d’action',
+      spend: 'Consommation',
       refund: 'Remboursement de crédit',
+      included: 'Inclus dans le pass',
     },
   },
   parrainage: {

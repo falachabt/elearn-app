@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Globe, Users } from 'lucide-react-native';
 
 import { Bouton } from '@/components/Bouton';
 import { Carte } from '@/components/Carte';
@@ -38,20 +39,42 @@ export default function EcranCredits() {
   });
   const [historique, setHistorique] = useState<LigneHistorique[]>([]);
   const [chargementHist, setChargementHist] = useState(true);
+  const [chargementPlus, setChargementPlus] = useState(false);
+  const [page, setPage] = useState(0);
+  const [aPlus, setAPlus] = useState(true);
   const [actionEnCours, setActionEnCours] = useState<ActionQuotidienne | null>(null);
+
+  const TAILLE_PAGE = 30;
 
   const charger = useCallback(async () => {
     try {
       const et = await lireEtatActionsQuotidiennes();
       setEtatActions(et);
-      const h = await lireHistoriqueCredits(getSupabase());
+      const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
       setHistorique(h);
+      setPage(1);
+      setAPlus(h.length === TAILLE_PAGE);
     } catch {
-      // Fallback si pas encore d'historique en base
+      // Fallback
     } finally {
       setChargementHist(false);
     }
   }, []);
+
+  const chargerPlus = async () => {
+    if (chargementPlus || !aPlus) return;
+    setChargementPlus(true);
+    try {
+      const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, page * TAILLE_PAGE);
+      setHistorique((prev) => [...prev, ...h]);
+      setPage((p) => p + 1);
+      setAPlus(h.length === TAILLE_PAGE);
+    } catch {
+      // Erreur silencieuse
+    } finally {
+      setChargementPlus(false);
+    }
+  };
 
   useEffect(() => {
     let actif = true;
@@ -60,11 +83,13 @@ export default function EcranCredits() {
         const et = await lireEtatActionsQuotidiennes();
         if (!actif) return;
         setEtatActions(et);
-        const h = await lireHistoriqueCredits(getSupabase());
+        const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
         if (!actif) return;
         setHistorique(h);
+        setPage(1);
+        setAPlus(h.length === TAILLE_PAGE);
       } catch {
-        // Fallback si pas encore d'historique en base
+        // Fallback
       } finally {
         if (actif) setChargementHist(false);
       }
@@ -93,18 +118,11 @@ export default function EcranCredits() {
   const recharge = solde?.recharge ?? 25;
   const compteARebours = solde?.prochaineRecharge ? delai(solde.prochaineRecharge) : '';
 
-  const ICONES: Record<ActionQuotidienne, keyof typeof Ionicons.glyphMap> = {
-    site_web: 'globe-outline',
-    facebook: 'logo-facebook',
-    instagram: 'logo-instagram',
-    parrainage: 'people-outline',
-  };
-
-  const COULEURS: Record<ActionQuotidienne, string> = {
-    site_web: '#2563EB',
-    facebook: '#1877F2',
-    instagram: '#E4405F',
-    parrainage: '#10B981',
+  const ICONES: Record<ActionQuotidienne, React.ReactNode> = {
+    site_web: <Globe size={22} color={theme.texte.principal} />,
+    facebook: <Ionicons name="logo-facebook" size={22} color={theme.texte.principal} />,
+    instagram: <Ionicons name="logo-instagram" size={22} color={theme.texte.principal} />,
+    parrainage: <Users size={22} color={theme.texte.principal} />,
   };
 
   return (
@@ -119,37 +137,39 @@ export default function EcranCredits() {
       }
     >
       {/* Carte Solde & Synthèse */}
-      <Carte style={[styles.carteSolde, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
-        <View style={styles.ligneSolde}>
-          <View>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('credits.detailSemaine')}</Text>
-            <Text style={[typo.h1, { color: theme.texte.principal }]}>
-              {solde?.illimite ? '∞' : `${solde?.total ?? 0} crédits`}
-            </Text>
-          </View>
-          {solde?.illimite ? (
-            <View style={[styles.badgePass, { backgroundColor: theme.accent.soleil }]}>
-              <Text style={[typo.petit, typo.texteFort, { color: theme.texte.surCouleur }]}>Pass Illimité</Text>
-            </View>
-          ) : (
-            <View style={styles.jaugePill}>
-              <Ionicons name="flash" size={16} color={theme.marque.principale} />
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
-                {solde?.semaine ?? 0} / {recharge}
+      <View style={{ marginBottom: espace[5] }}>
+        <Carte style={[styles.carteSolde, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]}>
+          <View style={styles.ligneSolde}>
+            <View>
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('credits.detailSemaine')}</Text>
+              <Text style={[typo.h1, { color: theme.texte.principal }]}>
+                {solde?.illimite ? '∞' : `${solde?.total ?? 0} crédits`}
               </Text>
             </View>
-          )}
-        </View>
-
-        {compteARebours && !solde?.illimite ? (
-          <View style={styles.ligneRecharge}>
-            <Ionicons name="time-outline" size={16} color={theme.texte.secondaire} />
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-              {t('credits.epuiseTexteSansPass', { delai: compteARebours })}
-            </Text>
+            {solde?.illimite ? (
+              <View style={[styles.badgePass, { backgroundColor: theme.accent.soleil }]}>
+                <Text style={[typo.petit, typo.texteFort, { color: theme.texte.surCouleur }]}>Pass Illimité</Text>
+              </View>
+            ) : (
+              <View style={styles.jaugePill}>
+                <Ionicons name="flash" size={16} color={theme.marque.principale} />
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
+                  {solde?.semaine ?? 0} / {recharge}
+                </Text>
+              </View>
+            )}
           </View>
-        ) : null}
-      </Carte>
+
+          {compteARebours && !solde?.illimite ? (
+            <View style={styles.ligneRecharge}>
+              <Ionicons name="time-outline" size={16} color={theme.texte.secondaire} />
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                {t('credits.epuiseTexteSansPass', { delai: compteARebours })}
+              </Text>
+            </View>
+          ) : null}
+        </Carte>
+      </View>
 
       {/* Actions quotidiennes pour gagner des crédits */}
       <View style={styles.section}>
@@ -181,15 +201,15 @@ export default function EcranCredits() {
                   },
                 ]}
               >
-                <View style={[styles.iconeAction, { backgroundColor: COULEURS[actKey] }]}>
-                  <Ionicons name={ICONES[actKey]} size={22} color="#FFFFFF" />
+                <View style={[styles.iconeAction, { backgroundColor: theme.fond.creux }]}>
+                  {ICONES[actKey]}
                 </View>
 
                 <View style={styles.flex}>
                   <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
                     {t(`credits.actionsLabels.${actKey}` as never)}
                   </Text>
-                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                  <Text numberOfLines={3} style={[typo.petit, styles.texteDescription, { color: theme.texte.secondaire }]}>
                     {t(`credits.actionsSousTitres.${actKey}` as never)}
                   </Text>
                 </View>
@@ -235,48 +255,79 @@ export default function EcranCredits() {
           </Carte>
         ) : (
           <View style={styles.listeHistorique}>
-            {historique.map((item) => {
-              const positif = item.delta > 0;
-              const labelKind = t(`credits.transactionKinds.${item.kind}` as never) || item.kind;
+            {(() => {
+              // Grouper par jour (YYYY-MM-DD local)
+              const groupes = historique.reduce((acc, item) => {
+                const dateLoc = new Date(item.createdAt);
+                const cle = `${dateLoc.getFullYear()}-${String(dateLoc.getMonth() + 1).padStart(2, '0')}-${String(dateLoc.getDate()).padStart(2, '0')}`;
+                if (!acc[cle]) acc[cle] = [];
+                acc[cle].push(item);
+                return acc;
+              }, {} as Record<string, LigneHistorique[]>);
 
-              return (
-                <View key={item.id} style={[styles.itemHistorique, { borderColor: theme.bord.doux }]}>
-                  <View
-                    style={[
-                      styles.iconeHistorique,
-                      { backgroundColor: positif ? theme.accent.soleilDoux : theme.bord.doux },
-                    ]}
-                  >
-                    <Ionicons
-                      name={positif ? 'arrow-down-circle-outline' : 'arrow-up-circle-outline'}
-                      size={20}
-                      color={positif ? theme.texte.surCouleur : theme.texte.secondaire}
-                    />
+              return Object.entries(groupes).map(([jour, items]) => {
+                const [y, m, d] = jour.split('-');
+                const libelleJour = new Date(Number(y), Number(m) - 1, Number(d)).toLocaleDateString('fr-FR', {
+                  day: '2-digit',
+                  month: 'short',
+                  year: 'numeric'
+                });
+
+                return (
+                  <View key={jour} style={styles.groupeJour}>
+                    <Text style={[typo.etiquette, styles.titreJour, { color: theme.texte.secondaire }]}>{libelleJour}</Text>
+                    {items.map((item) => {
+                      const positif = item.delta > 0;
+                      const labelKind = t(`credits.transactionKinds.${item.kind}` as never) || item.kind;
+
+                      return (
+                        <View key={item.id} style={[styles.itemHistorique, { borderColor: theme.bord.doux }]}>
+                          <View
+                            style={[
+                              styles.iconeHistorique,
+                              { backgroundColor: positif ? theme.accent.soleilDoux : theme.bord.doux },
+                            ]}
+                          >
+                            <Ionicons
+                              name={positif ? 'arrow-down-circle-outline' : 'arrow-up-circle-outline'}
+                              size={20}
+                              color={positif ? theme.texte.surCouleur : theme.texte.secondaire}
+                            />
+                          </View>
+
+                          <View style={styles.flex}>
+                            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{labelKind}</Text>
+                            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
+                              {new Date(item.createdAt).toLocaleTimeString('fr-FR', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                              })}
+                            </Text>
+                          </View>
+
+                          <Text
+                            style={[
+                              typo.texteFort,
+                              { color: positif ? theme.marque.principale : theme.texte.secondaire },
+                            ]}
+                          >
+                            {positif ? `+${item.delta}` : `${item.delta}`}
+                          </Text>
+                        </View>
+                      );
+                    })}
                   </View>
+                );
+              });
+            })()}
 
-                  <View style={styles.flex}>
-                    <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{labelKind}</Text>
-                    <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                      {new Date(item.createdAt).toLocaleDateString('fr-FR', {
-                        day: 'numeric',
-                        month: 'short',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}
-                    </Text>
-                  </View>
-
-                  <Text
-                    style={[
-                      typo.texteFort,
-                      { color: positif ? theme.marque.principale : theme.texte.secondaire },
-                    ]}
-                  >
-                    {positif ? `+${item.delta}` : `${item.delta}`}
-                  </Text>
-                </View>
-              );
-            })}
+            {aPlus ? (
+              <Bouton
+                libelle={chargementPlus ? 'Chargement...' : 'Voir plus'}
+                variante="secondaire"
+                onPress={() => void chargerPlus()}
+              />
+            ) : null}
           </View>
         )}
       </View>
@@ -288,7 +339,6 @@ const styles = StyleSheet.create({
   carteSolde: {
     padding: espace[5],
     gap: espace[4],
-    marginBottom: espace[5],
   },
   ligneSolde: {
     flexDirection: 'row',
@@ -328,7 +378,7 @@ const styles = StyleSheet.create({
   },
   carteAction: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     gap: espace[3],
     padding: espace[4],
     borderRadius: rayon.m,
@@ -340,6 +390,9 @@ const styles = StyleSheet.create({
     borderRadius: rayon.m,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  texteDescription: {
+    minHeight: 50,
   },
   badgeAccompli: {
     paddingHorizontal: espace[3],
@@ -356,7 +409,14 @@ const styles = StyleSheet.create({
     padding: espace[5],
   },
   listeHistorique: {
+    gap: espace[4],
+  },
+  groupeJour: {
     gap: espace[2],
+  },
+  titreJour: {
+    textTransform: 'capitalize',
+    marginTop: espace[2],
   },
   itemHistorique: {
     flexDirection: 'row',

@@ -1309,14 +1309,14 @@ export const en: Textes = {
     actionsQuotidiennesDescription: 'Come back daily to complete these actions and get free credits.',
     historiqueTitre: 'Transaction History',
     historiqueVide: 'No credit transactions recorded.',
-    actionFait: 'Completed ✓',
+    actionFait: 'Done',
     actionGagner: 'Earn +{{gain}}',
     actionVoir: 'View',
     actionsLabels: {
-      site_web: 'Visit Elearn Prepa Website',
-      facebook: 'Join our Facebook Page',
-      instagram: 'Follow our Instagram Account',
-      parrainage: 'Invite Friends (Referral)',
+      site_web: 'Visit website',
+      facebook: 'Facebook',
+      instagram: 'Instagram',
+      parrainage: 'Invite Friends',
     },
     actionsSousTitres: {
       site_web: 'Earn 10 credits by visiting our website',
@@ -1327,10 +1327,11 @@ export const en: Textes = {
     transactionKinds: {
       weekly: 'Monday Weekly Refill',
       welcome: 'Welcome Bonus',
-      reward: 'Daily Action Reward',
+      reward: 'Reward',
       guest: 'Guest Trial Balance',
-      spend: 'Action Usage',
+      spend: 'Usage',
       refund: 'Credit Refund',
+      included: 'Included in pass',
     },
   },
   parrainage: {
