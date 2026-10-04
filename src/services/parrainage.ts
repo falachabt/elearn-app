@@ -39,10 +39,10 @@ export function normaliserCode(brut?: string | null): string | null {
   return /^[A-Z0-9]{4,12}$/.test(code) ? code : null;
 }
 
-/** Lit le code d'un lien profond : `elearnprepa://rejoindre/<code>`, `https://…/rejoindre/<code>` ou `?ref=<code>`. */
+/** Lit le code d'un lien profond : `elearnprepa://r/<code>`, `https://…/r/<code>` ou `?ref=<code>`. */
 export function extraireCodeDepuisUrl(url?: string | null): string | null {
   if (!url) return null;
-  const chemin = /\/rejoindre\/([^/?#]+)/i.exec(url);
+  const chemin = /\/r\/([^/?#]+)/i.exec(url);
   const ref = /[?&]ref=([^&#]+)/i.exec(url);
   const brut = chemin?.[1] ?? ref?.[1];
   if (!brut) return null;
