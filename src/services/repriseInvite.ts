@@ -93,8 +93,6 @@ export async function preparerRepriseInvite(inviteId: string, jetonRafraichissem
     await SecureStore.deleteItemAsync(CLE_JETON_INVITE);
     throw e;
   }
-  repriseActive = true;
-  notifier();
 }
 
 export async function terminerOAuthRepriseInvite(inviteId: string, compteId: string): Promise<boolean> {
