@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { estInvite } from '@/services/compte';
 import { paiementPossible } from '@/services/plateforme';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
@@ -21,7 +22,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
   const { session } = useSession();
   const { theme } = useTheme();
   const { t, delai } = useTextesCredits();
-  const invite = !!session?.user.is_anonymous;
+  const invite = estInvite(session?.user);
   const aller = (chemin: string) => () => {
     onFermer();
     router.push(chemin as never);
@@ -80,7 +81,7 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
       texte={
         solde?.rechargeHebdo
           ? t('credits.epuiseTexte', { n: recharge, delai: delai(solde.prochaineRecharge) })
-          : t('credits.epuiseInvite', { n: recharge })
+          : t('credits.rechargeTexte')
       }
       actions={[
         { libelle: t('credits.prendrePassSemaine'), onPress: aller('/offres?declencheur=limite&offre=week') },
