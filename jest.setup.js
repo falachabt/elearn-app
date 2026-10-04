@@ -26,6 +26,11 @@ jest.mock('expo-haptics', () => ({
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
   ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
 }));
+jest.mock('expo-notifications', () => ({
+  scheduleNotificationAsync: jest.fn(() => Promise.resolve('mock-id')),
+  setNotificationHandler: jest.fn(),
+  addPushTokenListener: jest.fn(),
+}));
 
 // Feuilles du bas : rendues à plat (le module natif d'animation n'existe pas sous Jest).
 jest.mock('@gorhom/bottom-sheet', () => {
