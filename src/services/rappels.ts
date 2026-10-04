@@ -3,13 +3,15 @@ import * as Notifications from 'expo-notifications';
 import { router } from 'expo-router';
 import { Platform } from 'react-native';
 
-Notifications.setNotificationHandler({
+if (Notifications.setNotificationHandler) {
+  Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
+}
 
 
 import { suivre } from './analytics';
