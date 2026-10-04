@@ -223,12 +223,12 @@ export type LigneHistorique = {
 /**
  * Historique chronologique récent des crédits (recharges, actions quotidiennes, consommations).
  */
-export async function lireHistoriqueCredits(client: Client, limite = 30): Promise<LigneHistorique[]> {
+export async function lireHistoriqueCredits(client: Client, limite = 30, decalage = 0): Promise<LigneHistorique[]> {
   const { data, error } = await client
     .from('credit_ledger')
     .select('id, delta, kind, reason, created_at')
     .order('created_at', { ascending: false })
-    .limit(limite);
+    .range(decalage, decalage + limite - 1);
   if (error) return [];
   return ((data ?? []) as { id: string | number; delta: number; kind: string; reason?: string | null; created_at: string }[]).map((l) => ({
     id: String(l.id),

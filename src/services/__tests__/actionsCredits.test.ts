@@ -72,7 +72,7 @@ describe('actionsCredits service', () => {
     });
 
     expect(res).toBe(true);
-    expect(Linking.openURL).toHaveBeenCalledWith('https://elearnprepa.online/reclamer-credits?token=user-123');
+    expect(Linking.openURL).toHaveBeenCalledWith('https://elearnprepa.com?token=user-123');
     expect(onSucces).toHaveBeenCalledWith(10);
 
     const etat = await lireEtatActionsQuotidiennes(dateMock);

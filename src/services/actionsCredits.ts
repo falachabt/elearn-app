@@ -22,7 +22,7 @@ export const ACTIONS_QUOTIDIENNES: Record<ActionQuotidienne, ConfigActionQuotidi
   site_web: {
     id: 'site_web',
     gain: 10,
-    url: 'https://elearnprepa.online/reclamer-credits',
+    url: 'https://elearnprepa.com',
   },
   facebook: {
     id: 'facebook',

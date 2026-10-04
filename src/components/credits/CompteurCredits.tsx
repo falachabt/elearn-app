@@ -56,12 +56,14 @@ export function CompteurCredits() {
         decalage={2}
         style={styles.zone}
       >
-        <View style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-          <View style={styles.iconeWrapper}>
-            <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
-            {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur }]} /> : null}
+        <View style={styles.relatif}>
+          <View style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+            <View style={styles.iconeWrapper}>
+              <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+            </View>
+            <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
           </View>
-          <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+          {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.alerte }]} /> : null}
         </View>
       </Appui>
       <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
@@ -71,6 +73,7 @@ export function CompteurCredits() {
 
 const styles = StyleSheet.create({
   zone: { flexShrink: 0 },
+  relatif: { position: 'relative' },
   puce: {
     flexShrink: 0,
     flexDirection: 'row',
@@ -82,18 +85,17 @@ const styles = StyleSheet.create({
     borderRadius: rayon.s,
   },
   iconeWrapper: {
-    position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
   },
   badgeDispo: {
     position: 'absolute',
-    top: -3,
-    right: -3,
-    width: 7,
-    height: 7,
-    borderRadius: 4,
-    borderWidth: 1,
+    top: -4,
+    right: -4,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    borderWidth: 1.5,
     borderColor: '#FFFFFF',
   },
   squelette: { width: 22, height: 10, borderRadius: 4 },

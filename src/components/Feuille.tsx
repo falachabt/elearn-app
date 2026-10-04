@@ -9,7 +9,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from './Bouton';
 
-export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' | 'texte'; icone?: ReactNode };
+export type ActionFeuille = { libelle: string; onPress: () => void; variante?: 'principal' | 'secondaire' | 'texte'; icone?: ReactNode; badge?: boolean };
 
 type Props = {
   ouverte: boolean;
@@ -82,7 +82,12 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
           {children}
           <View style={styles.actions}>
             {actions.map((a) => (
-              <Bouton key={a.libelle} variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} icone={a.icone} libelle={a.libelle} onPress={a.onPress} />
+              <View key={a.libelle} style={{ position: 'relative' }}>
+                <Bouton variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} icone={a.icone} libelle={a.libelle} onPress={a.onPress} />
+                {a.badge && (
+                  <View style={[styles.badge, { backgroundColor: theme.etat.alerte }]} />
+                )}
+              </View>
             ))}
           </View>
           {mention ? <Text style={[typo.legende, styles.mention, { color: theme.texte.secondaire }]}>{mention}</Text> : null}
@@ -98,4 +103,14 @@ const styles = StyleSheet.create({
   corps: { gap: espace[4] },
   actions: { gap: espace[3] },
   mention: { textAlign: 'center' },
+  badge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: '#FFFFFF',
+  },
 });

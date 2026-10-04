@@ -20,5 +20,8 @@
 ## 4. Mise à jour des consignes
 - Si je te donne de nouvelles règles ou consignes de travail en cours de session, **tu as la consigne de mettre à jour ce fichier AGENTS.md** toi-même pour t'en souvenir lors de nos futures sessions.
 
-## 5. Mémoire Globale du Projet
+## 5. Liens importants
+- **Site web officiel** : https://elearnprepa.com (à utiliser pour toutes les redirections ou actions "site web").
+
+## 6. Mémoire Globale du Projet
 - Pour le contexte global, l'avancement et l'historique, réfère-toi au fichier central : docs/MEMOIRE_PROJET.md.
