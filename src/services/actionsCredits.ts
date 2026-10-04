@@ -92,22 +92,11 @@ export async function aDesActionsDisponibles(solde: Solde | null, maintenant = n
 /**
  * Crédite les récompenses en base de données Supabase si possible (table credit_ledger et credit_balances via RPC ou fallback).
  */
-export async function crediterRecompenseServeur(client: Client, utilisateurId: string, montant: number, motif: string): Promise<boolean> {
+export async function crediterRecompenseServeur(client: Client, actionCode: string): Promise<boolean> {
   try {
-    const { data, error } = await client.rpc('add_reward_credits', { p_amount: montant, p_reason: motif });
-    if (!error && data !== false) return true;
-  } catch {
-    // Si la RPC n'existe pas en DB, fallback d'insertion directe ledger/balance
-  }
-  try {
-    const { error: errLedger } = await client.from('credit_ledger').insert({
-      user_id: utilisateurId,
-      delta: montant,
-      kind: 'reward',
-      reason: motif,
-    });
-    if (errLedger) return false;
-    return true;
+    const { data, error } = await client.rpc('claim_daily_action', { p_action_code: actionCode });
+    if (!error && data > 0) return true;
+    return false;
   } catch {
     return false;
   }
@@ -143,18 +132,20 @@ export async function executerActionQuotidienne(
     await Linking.openURL(targetUrl).catch(() => {});
   }
 
-  // Si déjà réclamée aujourd'hui, on ouvre juste le lien sans ré-attribuer de crédits.
+  // Si dj rclame aujourd'hui, on ouvre juste le lien sans r-attribuer de crdits.
   if (etat[action]) return false;
-
-  await enregistrerActionQuotidienne(action, maintenant);
 
   if (config.gain > 0) {
     const client = options.client ?? getSupabase();
     if (options.utilisateurId) {
-      await crediterRecompenseServeur(client, options.utilisateurId, config.gain, action);
+      const succes = await crediterRecompenseServeur(client, action);
+      if (!succes) return false; // Dj rclam sur un autre appareil ou erreur serveur
     }
+    await enregistrerActionQuotidienne(action, maintenant);
     await mefierNotificationReward(action, config.gain);
     options.onSucces?.(config.gain);
+  } else {
+    await enregistrerActionQuotidienne(action, maintenant);
   }
 
   return true;
