@@ -7,6 +7,8 @@ if (Notifications.setNotificationHandler) {
   Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),
@@ -243,4 +245,5 @@ export async function mefierNotificationReward(action: string, gain: number): Pr
     // Ignorer si non disponible
   }
 }
+
 
