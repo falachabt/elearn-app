@@ -42,6 +42,8 @@ export function normaliserCode(brut?: string | null): string | null {
 /** Lit le code d'un lien profond : `elearnprepa://r/<code>`, `https://…/r/<code>` ou `?ref=<code>`. */
 export function extraireCodeDepuisUrl(url?: string | null): string | null {
   if (!url) return null;
+  // `/r/<code>` uniquement : `/rejoindre/<code>` est reserve aux invitations de classe
+  // (voir 663c4d8) ; l'accepter ici ferait capturer un code de parrainage inexistant.
   const chemin = /\/r\/([^/?#]+)/i.exec(url);
   const ref = /[?&]ref=([^&#]+)/i.exec(url);
   const brut = chemin?.[1] ?? ref?.[1];

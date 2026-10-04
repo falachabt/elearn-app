@@ -9,7 +9,7 @@ import { capturerDepuisUrl, extraireCodeDepuisUrl } from './parrainage';
  */
 export function ecouterLiensParrainage(): () => void {
   const traiter = (url: string | null) => {
-    if (url && !/\/rejoindre\//i.test(url) && extraireCodeDepuisUrl(url)) void capturerDepuisUrl(url);
+    if (url && !/\/(?:r|rejoindre)\//i.test(url) && extraireCodeDepuisUrl(url)) void capturerDepuisUrl(url);
   };
   Linking.getInitialURL().then(traiter).catch(() => {});
   const abo = Linking.addEventListener('url', (e) => traiter(e.url));
