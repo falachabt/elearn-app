@@ -25,3 +25,7 @@
 
 ## 6. Mémoire Globale du Projet
 - Pour le contexte global, l'avancement et l'historique, réfère-toi au fichier central : docs/MEMOIRE_PROJET.md.
+
+## 7. Règles de Build Web (`elearn-site`)
+- **Vercel très strict (ESLint)** : Le compilateur Next.js sur Vercel bloque le déploiement au moindre avertissement ESLint grave (apostrophes non échappées comme `l'accès` au lieu de `l&apos;accès`, variables non utilisées dans les `catch`, etc.).
+- **Vérification avant Push** : Toujours exécuter `npm run build` ou `npx tsc --noEmit` en local dans le dossier `elearn-site` pour corriger les erreurs TS/ESLint avant de pousser sur `main`.
