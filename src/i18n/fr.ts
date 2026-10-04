@@ -1364,6 +1364,14 @@ export const fr = {
     retour: 'Retour',
     erreur: 'Erreur',
   },
+  lienParrainage: {
+    succesTitre: 'Code parrain activé',
+    succesTexte: 'Le code {{code}} a été pris en compte. Crée ton compte pour bénéficier de tes crédits offerts et de -15% sur ton premier Pass !',
+    dejaTitre: 'Information parrainage',
+    dejaTexte: 'Tu es déjà connecté(e) avec un compte permanent ({{email}}). Les codes de parrainage s\'appliquent lors de la création d\'un nouveau compte.',
+    creerCompte: 'Créer mon compte',
+    continuer: 'Continuer',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

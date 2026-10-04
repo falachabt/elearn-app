@@ -1363,5 +1363,13 @@ export const en: Textes = {
     retour: 'Back',
     erreur: 'Error',
   },
+  lienParrainage: {
+    succesTitre: 'Referral code activated',
+    succesTexte: 'Code {{code}} has been applied. Create your account to claim your free credits and a 15% discount on your first Pass!',
+    dejaTitre: 'Referral information',
+    dejaTexte: 'You are already logged in with a permanent account ({{email}}). Referral codes apply when creating a new account.',
+    creerCompte: 'Create my account',
+    continuer: 'Continue',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

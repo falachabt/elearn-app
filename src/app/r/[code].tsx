@@ -1,14 +1,20 @@
-import { Redirect, useLocalSearchParams } from 'expo-router';
+import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
 
+import { Ecran } from '@/components/Ecran';
+import { Feuille } from '@/components/Feuille';
+import { useTraduction } from '@/i18n/useTraduction';
 import { conserverCode } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
 
-/** Lien `elearnprepa://r/<code>` : enregistre le code de parrainage pendant 7 jours puis redirige vers la création de compte ou l'accueil. */
 export default function ParrainageDeepLink() {
   const { code } = useLocalSearchParams<{ code?: string }>();
-  const [fini, setFini] = useState(false);
+  const router = useRouter();
+  const { t } = useTraduction();
+
+  const [etat, setEtat] = useState<'chargement' | 'succes' | 'deja_connecte' | 'fini'>('chargement');
+  const [email, setEmail] = useState('');
+  const [codeValide, setCodeValide] = useState('');
   const [estInvite, setEstInvite] = useState(true);
 
   useEffect(() => {
@@ -18,36 +24,76 @@ export default function ParrainageDeepLink() {
         const client = getSupabase();
         const { data } = await client.auth.getSession();
         const invite = !data.session?.user || data.session.user.is_anonymous === true;
-        if (actif) setEstInvite(invite);
-
+        
         if (code) {
-          const codeValide = await conserverCode(String(code), 'lien');
-          if (actif && codeValide) {
+          const resCode = await conserverCode(String(code), 'lien');
+          if (actif && resCode) {
+            setCodeValide(resCode);
+            setEstInvite(invite);
             if (invite) {
-              Alert.alert(
-                '🎁 Code parrain activé !',
-                `Le code ${codeValide} a été pris en compte. Crée ton compte pour bénéficier de tes crédits offerts et de -15% sur ton premier Pass !`
-              );
+              setEtat('succes');
             } else {
-              Alert.alert(
-                'Information parrainage',
-                `Tu es déjà connecté(e) avec un compte permanent (${data.session?.user.email ?? ''}). Les codes de parrainage s'appliquent lors de la création d'un nouveau compte.`
-              );
+              setEmail(data.session?.user.email ?? '');
+              setEtat('deja_connecte');
             }
+            return; // on attend que l'utilisateur ferme la feuille
           }
         }
       } catch {
-        // En cas d'erreur réseau, on ne bloque pas
+        // Erreur réseau, on continue
       } finally {
-        if (actif) setFini(true);
+        if (actif && etat === 'chargement') setEtat('fini');
       }
     })();
 
     return () => {
       actif = false;
     };
-  }, [code]);
+  }, [code, etat]);
 
-  if (!fini) return null;
-  return estInvite ? <Redirect href="/compte/creer" /> : <Redirect href="/" />;
+  if (etat === 'chargement') return <Ecran defilement={false}><></></Ecran>;
+  if (etat === 'fini') return <Redirect href={estInvite ? "/compte/creer" : "/"} />;
+
+  return (
+    <Ecran defilement={false}>
+      <Feuille
+        ouverte={etat === 'succes'}
+        titre={t('lienParrainage.succesTitre')}
+        texte={t('lienParrainage.succesTexte', { code: codeValide })}
+        icone="gift"
+        actions={[
+          {
+            libelle: t('lienParrainage.creerCompte'),
+            onPress: () => {
+              setEtat('fini');
+              router.replace('/compte/creer');
+            },
+          },
+        ]}
+        onFermer={() => {
+          setEtat('fini');
+          router.replace('/');
+        }}
+      />
+      <Feuille
+        ouverte={etat === 'deja_connecte'}
+        titre={t('lienParrainage.dejaTitre')}
+        texte={t('lienParrainage.dejaTexte', { email })}
+        icone="information-circle"
+        actions={[
+          {
+            libelle: t('lienParrainage.continuer'),
+            onPress: () => {
+              setEtat('fini');
+              router.replace('/');
+            },
+          },
+        ]}
+        onFermer={() => {
+          setEtat('fini');
+          router.replace('/');
+        }}
+      />
+    </Ecran>
+  );
 }
