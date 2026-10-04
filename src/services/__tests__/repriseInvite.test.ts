@@ -6,6 +6,7 @@ import {
   preparerRepriseInvite,
   reprendreApresRedemarrage,
   repriseInviteEnCours,
+  progressionInviteeLocalePresente,
   terminerOAuthRepriseInvite,
   transfererProgressionInvitee,
   verifierRepriseInvitee,
@@ -66,4 +67,14 @@ it('efface un marqueur illisible au redémarrage plutôt que de bloquer les sync
   expect(await reprendreApresRedemarrage('compte-2')).toBe(false);
   expect(repriseInviteEnCours()).toBe(false);
   expect(await AsyncStorage.getItem('compte.repriseInvite')).toBeNull();
+});
+
+it('ignore les réglages système par défaut et détecte les vraies avancées d’apprentissage', async () => {
+  await AsyncStorage.setItem('affichage.theme', 'sombre');
+  await AsyncStorage.setItem('retours.preferences', '{}');
+  await AsyncStorage.setItem('reglages.maj', '2026-10-04T00:00:00Z');
+  expect(await progressionInviteeLocalePresente()).toBe(false);
+
+  await AsyncStorage.setItem('mission.historique', '[]');
+  expect(await progressionInviteeLocalePresente()).toBe(true);
 });

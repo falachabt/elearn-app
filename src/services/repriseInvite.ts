@@ -41,13 +41,6 @@ export async function progressionInviteeLocalePresente(): Promise<boolean> {
     'entrainement.exercicesFaits',
     'entrainement.sessions',
     'profil.arrivee',
-    'retours.preferences',
-    'affichage.theme',
-    'affichage.taille',
-    'donnees.wifiSeulement',
-    'mission.rythme',
-    'rappel.notification',
-    'reglages.maj',
   ].some((cle) => cles.has(cle));
 }
 
