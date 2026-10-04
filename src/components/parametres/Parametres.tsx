@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { languesDisponibles, type Langue } from '@/i18n';
+import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { cleErreur, deconnecter, estInvite } from '@/services/compte';
 import { definirWifiSeulement, lireWifiSeulement } from '@/services/donnees';
 import { definirRenduFormules } from '@/services/formules';
@@ -59,6 +60,7 @@ export function Parametres() {
   useFocusEffect(
     useCallback(() => {
       let actif = true;
+      void noterActionConfiguration('parametres');
       void Promise.all([lireRappel(), lireWifiSeulement(), lireRythme(), jetonPushActif()]).then(([r, w, n, p]) => {
         if (!actif) return;
         setRappel(r);

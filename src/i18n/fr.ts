@@ -29,6 +29,7 @@ export const fr = {
       exercice: 'Terminer un exercice',
       correction: 'Demander une correction à l’IA',
       fil: 'Participer au fil des questions',
+      parametres: 'Personnaliser l’application',
       horsLigne: 'Télécharger le contenu hors ligne',
     },
   },

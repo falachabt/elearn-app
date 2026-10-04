@@ -8,7 +8,7 @@ import { getSupabase } from './supabase';
 
 const CLE_ACTIONS = 'accueil.assistantConfiguration.actions';
 
-export type ActionSuivie = 'quiz' | 'correction' | 'fil';
+export type ActionSuivie = 'quiz' | 'correction' | 'fil' | 'parametres';
 
 export type ProgressionAssistant = {
   mission: boolean;
@@ -17,6 +17,7 @@ export type ProgressionAssistant = {
   exercice: boolean;
   correction: boolean;
   fil: boolean;
+  parametres: boolean;
   horsLigne: boolean;
 };
 
@@ -49,6 +50,7 @@ export async function lireProgressionAssistant(): Promise<ProgressionAssistant> 
     exercice: Object.values(entrainement.exercises_done).some(Boolean),
     correction: !!actions.correction || correctionDistante,
     fil: !!actions.fil || filDistant,
+    parametres: !!actions.parametres,
     horsLigne: etatHorsLigne?.statut === 'termine',
   };
 }

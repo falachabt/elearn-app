@@ -38,6 +38,7 @@ it('reflète les actions réellement terminées', async () => {
   ]);
   await noterActionConfiguration('correction');
   await noterActionConfiguration('fil');
+  await noterActionConfiguration('parametres');
 
   await expect(lireProgressionAssistant()).resolves.toMatchObject({
     mission: true,
@@ -46,6 +47,7 @@ it('reflète les actions réellement terminées', async () => {
     exercice: true,
     correction: true,
     fil: true,
+    parametres: true,
     horsLigne: false,
   });
 });

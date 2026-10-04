@@ -18,7 +18,7 @@ import { useFeedback } from '../useFeedback';
 
 type Etape = keyof ProgressionAssistant | 'compte';
 
-const ETAPES: Etape[] = ['compte', 'mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'horsLigne'];
+const ETAPES: Etape[] = ['compte', 'mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'parametres', 'horsLigne'];
 const LIBELLES: Record<Etape, CleTexte> = {
   compte: 'configuration.etapes.compte',
   mission: 'configuration.etapes.mission',
@@ -27,6 +27,7 @@ const LIBELLES: Record<Etape, CleTexte> = {
   exercice: 'configuration.etapes.exercice',
   correction: 'configuration.etapes.correction',
   fil: 'configuration.etapes.fil',
+  parametres: 'configuration.etapes.parametres',
   horsLigne: 'configuration.etapes.horsLigne',
 };
 
@@ -115,6 +116,9 @@ export function AssistantConfiguration() {
         break;
       case 'fil':
         router.push('/questions');
+        break;
+      case 'parametres':
+        router.push('/parametres');
         break;
       case 'horsLigne':
         router.push('/hors-ligne');

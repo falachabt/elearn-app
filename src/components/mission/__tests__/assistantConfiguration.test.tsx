@@ -14,6 +14,7 @@ const progression = {
   exercice: false,
   correction: true,
   fil: false,
+  parametres: false,
   horsLigne: false,
 };
 
@@ -88,15 +89,15 @@ beforeEach(() => {
   jest.mocked(lireProgressionAssistant).mockResolvedValue(progression);
 });
 
-it('ouvre une liste claire de huit étapes, coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
+it('ouvre une liste claire de neuf étapes, coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
   const vue = await monter();
 
-  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') });
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') });
   fireEvent.press(ouvrir);
 
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
-  expect(vue.getAllByRole('checkbox')).toHaveLength(8);
+  expect(vue.getAllByRole('checkbox')).toHaveLength(9);
   expect(mockSnapPoints).toHaveBeenCalledWith(['93%']);
   expect(vue.getByTestId('configuration-sheet-mock').props.style.paddingBottom).toBe(24);
   const liste = vue.getByTestId('configuration-etapes');
@@ -115,7 +116,7 @@ it('décoche l’étape du compte pour un invité sans compte', async () => {
   mockUseInvite.mockReturnValue(true);
   const vue = await monter();
 
-  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '8') });
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '9') });
   fireEvent.press(ouvrir);
 
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
@@ -123,7 +124,7 @@ it('décoche l’étape du compte pour un invité sans compte', async () => {
 
 it('ferme la feuille et ouvre la page correspondant à l’action choisie', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.correction}. ${fr.configuration.fait}` }));
 
@@ -131,9 +132,19 @@ it('ferme la feuille et ouvre la page correspondant à l’action choisie', asyn
   expect(mockDismiss).toHaveBeenCalled();
 });
 
+it('ouvre la page des paramètres depuis l’étape de personnalisation', async () => {
+  const vue = await monter();
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
+
+  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.parametres}. ${fr.configuration.aFaire}` }));
+
+  expect(mockPush).toHaveBeenCalledWith('/parametres');
+  expect(mockDismiss).toHaveBeenCalled();
+});
+
 it('ouvre le parcours hors ligne sur la dernière étape', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.horsLigne}. ${fr.configuration.aFaire}` }));
 
@@ -143,7 +154,7 @@ it('ouvre le parcours hors ligne sur la dernière étape', async () => {
 
 it('ouvre le compte depuis la première étape fictive', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '8') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }));
 

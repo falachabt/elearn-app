@@ -28,6 +28,7 @@ export const en: Textes = {
       exercice: 'Finish an exercise',
       correction: 'Ask AI to correct an exercise',
       fil: 'Join the questions feed',
+      parametres: 'Customize the app',
       horsLigne: 'Download content for offline use',
     },
   },
