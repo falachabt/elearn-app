@@ -15,7 +15,7 @@ import {
   type ActionQuotidienne,
   type EtatActionsQuotidiennes,
 } from '@/services/actionsCredits';
-import { delaiJusqua, lireHistoriqueCredits, type LigneHistorique } from '@/services/credits';
+import { lireHistoriqueCredits, type LigneHistorique } from '@/services/credits';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
@@ -43,7 +43,6 @@ export default function EcranCredits() {
   const charger = useCallback(async () => {
     const et = await lireEtatActionsQuotidiennes();
     setEtatActions(et);
-    setChargementHist(true);
     try {
       const h = await lireHistoriqueCredits(getSupabase());
       setHistorique(h);
