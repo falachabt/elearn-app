@@ -1,7 +1,8 @@
 import { Zap } from 'lucide-react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { aDesActionsDisponibles } from '@/services/actionsCredits';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -25,7 +26,12 @@ export function CompteurCredits() {
   const { theme } = useTheme();
   const { t } = useTextesCredits();
   const [detail, setDetail] = useState(false);
+  const [actionsDispos, setActionsDispos] = useState(false);
   const invite = !!session?.user.is_anonymous;
+
+  useEffect(() => {
+    void aDesActionsDisponibles(solde).then(setActionsDispos);
+  }, [solde]);
 
   if (!solde) {
     return (
@@ -51,7 +57,10 @@ export function CompteurCredits() {
         style={styles.zone}
       >
         <View style={[styles.puce, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-          <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+          <View style={styles.iconeWrapper}>
+            <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
+            {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur }]} /> : null}
+          </View>
           <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
         </View>
       </Appui>
@@ -61,9 +70,7 @@ export function CompteurCredits() {
 }
 
 const styles = StyleSheet.create({
-  // Ne se rétrécit jamais : le titre « Bonjour » cède la place, la pastille garde sa forme.
   zone: { flexShrink: 0 },
-  // Même gabarit que la pastille de série à côté : petit, rectangle arrondi, à la taille de son contenu.
   puce: {
     flexShrink: 0,
     flexDirection: 'row',
@@ -73,6 +80,21 @@ const styles = StyleSheet.create({
     paddingVertical: espace[2],
     borderWidth: bord.normal,
     borderRadius: rayon.s,
+  },
+  iconeWrapper: {
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeDispo: {
+    position: 'absolute',
+    top: -3,
+    right: -3,
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: '#FFFFFF',
   },
   squelette: { width: 22, height: 10, borderRadius: 4 },
 });

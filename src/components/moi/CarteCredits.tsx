@@ -1,8 +1,9 @@
 import { Zap } from 'lucide-react-native';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { aDesActionsDisponibles } from '@/services/actionsCredits';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -34,8 +35,13 @@ export function CarteCredits() {
   const { solde, depensesSemaine } = useCredits();
   const quand = useQuand();
   const [detail, setDetail] = useState(false);
+  const [actionsDispos, setActionsDispos] = useState(false);
   const ouvrir = () => setDetail(true);
   const fin = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
+
+  useEffect(() => {
+    void aDesActionsDisponibles(solde).then(setActionsDispos);
+  }, [solde]);
 
   if (!solde) {
     return (
@@ -68,7 +74,10 @@ export function CarteCredits() {
             <PastillePass />
           ) : (
             <View style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-              <Zap size={14} strokeWidth={2.5} color={theme.texte.principal} />
+              <View style={styles.iconeWrapper}>
+                <Zap size={14} strokeWidth={2.5} color={theme.texte.principal} />
+                {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur }]} /> : null}
+              </View>
               <Text style={[typo.donnee, { color: theme.texte.principal }]}>{etiquette}</Text>
             </View>
           )}
@@ -83,7 +92,10 @@ export function CarteCredits() {
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
               {solde.rechargeHebdo ? t('profil.rechargeInfo', { n: solde.recharge, quand: quand(solde.prochaineRecharge) }) : t('profil.rechargeAucune')}
             </Text>
-            <Bouton petit variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
+            <View style={styles.rangeeBoutons}>
+              <Bouton petit variante="primaire" libelle={t('credits.gagnerCredits')} onPress={() => router.push('/credits')} />
+              <Bouton petit variante="secondaire" libelle={t('moi.voirPass')} onPress={() => router.push({ pathname: '/offres', params: { declencheur: 'moi' } })} />
+            </View>
           </>
         )}
       </View>
@@ -99,5 +111,8 @@ const styles = StyleSheet.create({
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   pass: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[1] },
   compteur: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
+  iconeWrapper: { position: 'relative', alignItems: 'center', justifyContent: 'center' },
+  badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1, borderColor: '#FFFFFF' },
   jauge: { height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
+  rangeeBoutons: { flexDirection: 'row', gap: espace[2], flexWrap: 'wrap' },
 });

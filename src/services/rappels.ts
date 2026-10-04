@@ -158,3 +158,77 @@ export async function noterRappelCompte(maintenant = new Date()): Promise<void> 
   const etat = await lireJson<EtatRappelCompte>(CLE_RAPPEL_COMPTE);
   await AsyncStorage.setItem(CLE_RAPPEL_COMPTE, JSON.stringify({ vus: (etat?.vus ?? 0) + 1, le: maintenant.toISOString() } satisfies EtatRappelCompte));
 }
+
+export const CLE_RAPPEL_HEBDO = 'rappel.rechargeHebdo';
+
+/**
+ * Notification récurrente chaque lundi matin à 08h00 pour rappeler à l'élève que sa recharge de 25 crédits est là.
+ */
+export async function planifierNotificationRappelHebdo(): Promise<void> {
+  if (Platform.OS === 'web') return;
+  try {
+    const permissions = await Notifications.getPermissionsAsync();
+    if (!permissions.granted) return;
+    const programmees = await Notifications.getAllScheduledNotificationsAsync();
+    const dejaFait = programmees.some((n) => n.content.data?.type === 'recharge_hebdo');
+    if (dejaFait) return;
+
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('credits', {
+        name: 'Crédits et recharges',
+        importance: Notifications.AndroidImportance.DEFAULT,
+      });
+    }
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: '25 crédits rechargés ! ⚡',
+        body: 'Tes crédits de la semaine sont arrivés ! Prêt pour continuer à réviser ?',
+        data: { type: 'credits_refilled' },
+      },
+      trigger: {
+        type: Notifications.SchedulableTriggerInputTypes.WEEKLY,
+        weekday: 2, // Lundi
+        hour: 8,
+        minute: 0,
+        channelId: 'credits',
+      },
+    });
+  } catch {
+    // Ignorer si les notifications sont indisponibles
+  }
+}
+
+/**
+ * Notification locale immédiate confirmant le gain de crédits suite à une action quotidienne.
+ */
+export async function mefierNotificationReward(action: string, gain: number): Promise<void> {
+  if (Platform.OS === 'web') return;
+  try {
+    const titres: Record<string, string> = {
+      site_web: `+${gain} crédits gagnés ! 🌐`,
+      facebook: `+${gain} crédits gagnés ! 👍`,
+      instagram: `+${gain} crédits gagnés ! 📸`,
+    };
+    const corps: Record<string, string> = {
+      site_web: 'Merci d’avoir visité le site Elearn Prepa ! Tes crédits sont ajoutés à ton solde.',
+      facebook: 'Merci d’avoir visité notre page Facebook ! Tes crédits sont ajoutés à ton solde.',
+      instagram: 'Merci d’avoir visité notre compte Instagram ! Tes crédits sont ajoutés à ton solde.',
+    };
+
+    const titre = titres[action] ?? `+${gain} crédits gagnés ! 🎉`;
+    const message = corps[action] ?? 'Tes crédits ont été ajoutés avec succès à ton solde.';
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: titre,
+        body: message,
+        data: { type: 'credits_reward', action },
+      },
+      trigger: null,
+    });
+  } catch {
+    // Ignorer si non disponible
+  }
+}
+

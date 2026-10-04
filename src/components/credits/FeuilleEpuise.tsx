@@ -84,7 +84,8 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
           : t('credits.rechargeTexte')
       }
       actions={[
-        { libelle: t('credits.prendrePassSemaine'), onPress: aller('/offres?declencheur=limite&offre=week') },
+        { libelle: t('credits.gagnerCredits'), onPress: aller('/credits') },
+        { libelle: t('credits.prendrePassSemaine'), onPress: aller('/offres?declencheur=limite&offre=week'), variante: 'secondaire' },
         ...(mm ? [{ libelle: t('credits.demanderPayer'), onPress: aller('/offres/parent?offre=week'), variante: 'secondaire' as const }] : []),
         { libelle: t('credits.autresPass'), onPress: aller('/offres?declencheur=limite'), variante: 'texte' },
         ...(solde?.rechargeHebdo ? [{ libelle: t('credits.attendreLundi'), onPress: onFermer, variante: 'texte' as const }] : []),

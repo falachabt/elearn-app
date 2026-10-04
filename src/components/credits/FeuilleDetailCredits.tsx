@@ -44,8 +44,9 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
       onFermer={onFermer}
       titre={t('profil.detailTitre')}
       actions={[
-        { libelle: t('moi.voirPass'), onPress: aller('/offres?declencheur=moi') },
-        ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer'), variante: 'secondaire' as const }] : []),
+        { libelle: t('credits.gagnerCredits'), onPress: aller('/credits') },
+        { libelle: t('moi.voirPass'), onPress: aller('/offres?declencheur=moi'), variante: 'secondaire' },
+        ...(invite ? [{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer'), variante: 'texte' as const }] : []),
       ]}
     >
       {solde ? (
