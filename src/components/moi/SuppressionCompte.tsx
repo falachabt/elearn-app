@@ -60,6 +60,19 @@ export function SuppressionCompte() {
     }
   };
 
+  
+  const modeDevOuPreview = __DEV__ || process.env.EXPO_PUBLIC_APERCU === '1';
+
+  const supprimerMaintenant = async () => {
+    setEnCours(true);
+    try {
+      await getSupabase().rpc('delete_my_account_immediately');
+      await getSupabase().auth.signOut();
+    } catch (e) {
+      setEnCours(false);
+    }
+  };
+
   const annuler = async () => {
     setEnCours(true);
     setMessage(null);
@@ -75,9 +88,19 @@ export function SuppressionCompte() {
   };
 
   const pied = !connecte ? undefined : demande ? (
-    <Bouton libelle={t('suppression.annuler')} desactive={enCours} onPress={() => void annuler()} />
+    <View style={{ gap: 8 }}>
+      <Bouton libelle={t('suppression.annuler')} desactive={enCours} onPress={() => void annuler()} />
+      {modeDevOuPreview && (
+        <Bouton variante="danger" libelle="[DEV] Supprimer immédiatement" desactive={enCours} onPress={() => void supprimerMaintenant()} />
+      )}
+    </View>
   ) : (
-    <Bouton variante="danger" libelle={enCours ? t('suppression.enCours') : t('suppression.confirmer')} desactive={enCours} onPress={() => void supprimer()} />
+    <View style={{ gap: 8 }}>
+      <Bouton variante="danger" libelle={enCours ? t('suppression.enCours') : t('suppression.confirmer')} desactive={enCours} onPress={() => void supprimer()} />
+      {modeDevOuPreview && (
+        <Bouton variante="danger" libelle="[DEV] Supprimer immédiatement" desactive={enCours} onPress={() => void supprimerMaintenant()} />
+      )}
+    </View>
   );
 
   return (
@@ -107,3 +130,5 @@ export function SuppressionCompte() {
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
 });
+
+
