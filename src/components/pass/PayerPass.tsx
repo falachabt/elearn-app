@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Linking, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
@@ -92,6 +92,7 @@ export function PayerPass() {
   const [confirmerAnnulation, setConfirmerAnnulation] = useState(false);
   const [restant, setRestant] = useState(DUREE_DEMANDE_S);
   const arret = useRef({ annule: false });
+  const champNumeroRef = useRef<TextInput>(null);
 
   // Pays de départ : celui du profil.
   useEffect(() => {
@@ -193,7 +194,10 @@ export function PayerPass() {
     if (!pays || !op) return;
     setErreur(null);
     setChampErreur(null);
-    if (telephone.replace(/\D/g, '').length < 8) return setChampErreur('numero');
+    if (telephone.replace(/\D/g, '').length < 8) {
+      champNumeroRef.current?.focus();
+      return setChampErreur('numero');
+    }
     if (op.authType === 'PREAUTH' && !code.trim()) return setChampErreur('code');
     setEtape('envoi');
     try {
@@ -433,7 +437,10 @@ export function PayerPass() {
                   accessibilityRole="radio"
                   accessibilityState={{ checked: choisi, disabled: !p.available }}
                   disabled={!p.available}
-                  onPress={() => setOperateur(p.provider)}
+                  onPress={() => {
+                    setOperateur(p.provider);
+                    setTimeout(() => champNumeroRef.current?.focus(), 50);
+                  }}
                   rayon={rayon.m}
                   ombre={p.available ? ombre.s : 0}
                   decalage={2}
@@ -460,6 +467,7 @@ export function PayerPass() {
           {op ? (
             <View style={styles.groupe}>
               <Champ
+                ref={champNumeroRef}
                 libelle={t('paiement.numero')}
                 value={telephone}
                 onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}

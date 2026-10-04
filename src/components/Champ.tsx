@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react';
+import { forwardRef, useRef, type ReactNode } from 'react';
 import { StyleSheet, Text, TextInput, View, type TextInputProps } from 'react-native';
 
 import { useRendreVisible } from '@/components/Ecran';
@@ -9,7 +9,7 @@ import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 type Props = TextInputProps & { libelle: string; erreur?: string; prefixe?: ReactNode };
 
 /** Libellé toujours visible au-dessus du champ. L'erreur dit comment corriger. */
-export function Champ({ libelle, erreur, prefixe, style, onFocus, ...reste }: Props) {
+export const Champ = forwardRef<TextInput, Props>(({ libelle, erreur, prefixe, style, onFocus, ...reste }, ref) => {
   const { theme } = useTheme();
   const rendreVisible = useRendreVisible();
   const zone = useRef<View>(null);
@@ -20,6 +20,7 @@ export function Champ({ libelle, erreur, prefixe, style, onFocus, ...reste }: Pr
         {prefixe}
         <TextInput
           {...reste}
+          ref={ref}
           onFocus={(e) => {
             rendreVisible?.(zone.current);
             onFocus?.(e);
@@ -38,7 +39,7 @@ export function Champ({ libelle, erreur, prefixe, style, onFocus, ...reste }: Pr
       {erreur ? <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{erreur}</Text> : null}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   zone: { gap: espace[2] },
