@@ -66,7 +66,7 @@ export function SuppressionCompte() {
   const supprimerMaintenant = async () => {
     setEnCours(true);
     try {
-      await getSupabase().rpc('delete_user_safely', { user_id: user?.id });
+      await getSupabase().rpc('delete_user_safely', { user_id: session?.user?.id });
       await getSupabase().auth.signOut();
     } catch (e) {
       setEnCours(false);
@@ -130,3 +130,4 @@ export function SuppressionCompte() {
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
 });
+
