@@ -26,6 +26,7 @@ import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { FeuillePays } from './FeuillePays';
 import { Rebond } from '../Rebond';
+import { Secousse } from '../Secousse';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
@@ -88,6 +89,7 @@ export function PayerPass() {
   const [resultat, setResultat] = useState<ResultatPaiement | null>(null);
   const [erreur, setErreur] = useState<string | null>(null);
   const [champErreur, setChampErreur] = useState<'numero' | 'code' | null>(null);
+  const [secousse, setSecousse] = useState(0);
   const [essai, setEssai] = useState(0);
   const [confirmerAnnulation, setConfirmerAnnulation] = useState(false);
   const [restant, setRestant] = useState(DUREE_DEMANDE_S);
@@ -196,9 +198,13 @@ export function PayerPass() {
     setChampErreur(null);
     if (telephone.replace(/\D/g, '').length < 8) {
       champNumeroRef.current?.focus();
+      setSecousse((n) => n + 1);
       return setChampErreur('numero');
     }
-    if (op.authType === 'PREAUTH' && !code.trim()) return setChampErreur('code');
+    if (op.authType === 'PREAUTH' && !code.trim()) {
+      setSecousse((n) => n + 1);
+      return setChampErreur('code');
+    }
     setEtape('envoi');
     try {
       const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue });
@@ -465,7 +471,8 @@ export function PayerPass() {
           </View>
 
           {op ? (
-            <View style={styles.groupe}>
+            <Secousse declencheur={secousse}>
+              <View style={styles.groupe}>
               <Champ
                 ref={champNumeroRef}
                 libelle={t('paiement.numero')}
@@ -495,6 +502,7 @@ export function PayerPass() {
                 </>
               ) : null}
             </View>
+            </Secousse>
           ) : null}
         </>
       ) : null}
