@@ -73,14 +73,14 @@ beforeEach(() => {
 describe('Page /credits (EcranCredits)', () => {
   it('affiche la synthèse du solde et la jauge', async () => {
     renderComponent(<EcranCredits />);
-    expect(await screen.findByText('Crédits & Récompenses')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Crédits & Récompenses')).toBeTruthy());
     expect(screen.getByText('18 crédits')).toBeTruthy();
     expect(screen.getByText('18 / 25')).toBeTruthy();
   });
 
   it('affiche les cartes des 4 actions quotidiennes', async () => {
     renderComponent(<EcranCredits />);
-    expect(await screen.findByText('Visiter le site Elearn Prepa')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Visiter le site Elearn Prepa')).toBeTruthy());
     expect(screen.getByText('Rejoindre notre page Facebook')).toBeTruthy();
     expect(screen.getByText('Suivre notre page Instagram')).toBeTruthy();
     expect(screen.getByText('Inviter des amis (Parrainage)')).toBeTruthy();
@@ -88,14 +88,15 @@ describe('Page /credits (EcranCredits)', () => {
 
   it('affiche l’historique des transactions', async () => {
     renderComponent(<EcranCredits />);
-    expect(await screen.findByText('Recharge hebdomadaire du lundi')).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('Recharge hebdomadaire du lundi')).toBeTruthy());
     expect(screen.getByText('+25')).toBeTruthy();
     expect(screen.getByText('-5')).toBeTruthy();
   });
 
   it('clic sur parrainage redirige vers /parrainage', async () => {
     renderComponent(<EcranCredits />);
-    const parrainageBtn = await screen.findByText('Inviter des amis (Parrainage)');
+    await waitFor(() => expect(screen.getByText('Inviter des amis (Parrainage)')).toBeTruthy());
+    const parrainageBtn = screen.getByText('Inviter des amis (Parrainage)');
     fireEvent.press(parrainageBtn);
     await waitFor(() => {
       expect(router.push).toHaveBeenCalledWith('/parrainage');
