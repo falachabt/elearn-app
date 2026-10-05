@@ -35,14 +35,26 @@ export type EtatConnectivite = {
 };
 
 /** Délai au-delà duquel une sonde est considérée en échec (réseau instable : on ne bloque pas l'élève). */
-export const DELAI_SONDE_MS = 6000;
+export const DELAI_SONDE_MS = 4000;
 
-/** Espacement entre deux sondes automatiques pendant que l'app est au premier plan. */
-export const PERIODE_SONDE_MS = 15000;
+/**
+ * Cadence de sondage pendant une coupure : rapide au début (le retour du réseau se voit tout de suite), puis
+ * dégressive. Mesuré sur le projet : une sonde coûte ~1,6 Ko (dont le handshake TLS), donc une cadence fixe de
+ * quelques secondes coûterait plus de 1 Mo par heure — inacceptable sur un forfait mobile. On paie la rapidité
+ * seulement pendant la première minute de coupure, et seulement si l'app est au premier plan.
+ */
+export const DELAIS_REESSAI_MS = [2000, 4000, 8000, 15000, 30000, 60000] as const;
+
+/** Cadence quand tout va bien : rien à surveiller, on ne consomme presque rien. */
+export const INTERVALLE_EN_LIGNE_MS = 45000;
 
 let etat: EtatConnectivite = { connecte: true, internet: true, backend: null, enVerification: false, actualiseLe: new Date().toISOString() };
 let arret: (() => void) | null = null;
-let minuterie: ReturnType<typeof setInterval> | null = null;
+let minuterie: ReturnType<typeof setTimeout> | null = null;
+/** Le cycle périodique est-il actif ? Une sonde lancée à la main ne doit pas en démarrer un. */
+let minuterieActif = false;
+/** Index courant dans `DELAIS_REESSAI_MS` : avance à chaque échec, revient à 0 sur succès ou sur signe de vie. */
+let essai = 0;
 let sondeEnCours: Promise<boolean> | null = null;
 const ecouteurs = new Set<(e: EtatConnectivite) => void>();
 
@@ -95,14 +107,26 @@ export function definirConnectivitePourTest(partiel: Partial<EtatConnectivite>):
 /**
  * Une action serveur vient d'échouer pour cause de réseau : on le retient tout de suite, sans attendre la sonde.
  * L'indicateur passe hors ligne immédiatement, ce qui évite de présenter l'échec comme une erreur de l'élève.
+ * La cadence repart au plus rapide : l'utilisateur est actif, c'est le moment où il attend le retour.
  */
 export function signalerEchec(maintenant = new Date()): void {
   maj({ backend: false }, maintenant);
+  relancerCadence(0);
 }
 
 /** Une action serveur a répondu : le serveur est joignable, la dernière sonde en échec est périmée. */
 export function signalerSucces(maintenant = new Date()): void {
   maj({ connecte: true, internet: true, backend: true }, maintenant);
+  relancerCadence(0);
+}
+
+/**
+ * Signe de vie de l'utilisateur (ouverture d'un écran, retour au premier plan, action lancée) : la cadence
+ * repart au plus rapide. C'est ce qui permet de rester réactif sans sonder vite en permanence : on paie la
+ * rapidité seulement quand quelqu'un regarde.
+ */
+export function signalerActivite(): void {
+  relancerCadence(0);
 }
 
 /** Reconnaît une erreur de réseau (et non un refus métier du serveur, qui prouve au contraire qu'il répond). */
@@ -116,14 +140,14 @@ export function estErreurReseau(erreur: unknown): boolean {
 }
 
 /**
- * Interroge le serveur pour savoir s'il répond vraiment. `fetchTete` est injectable pour les tests ; par défaut
- * une requête HEAD légère sur l'adresse Supabase, sans en-tête d'authentification.
+ * Interroge le serveur pour savoir s'il répond vraiment. `fetchTete` est injectable pour les tests ; par défaut un
+ * `GET` sur la route de santé de l'authentification, avec la clé publique : le serveur répond alors un vrai 200.
  */
 export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Date.now()): Promise<boolean> {
   const appel = fetchTete ?? sondeParDefaut;
   maj({ enVerification: true }, new Date(maintenant));
+  let joignable = false;
   const enCours = (async () => {
-    let joignable = false;
     try {
       await appel();
       joignable = true;
@@ -139,19 +163,31 @@ export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Da
     return await enCours;
   } finally {
     if (sondeEnCours === enCours) sondeEnCours = null;
+    // Un succès remet la cadence au plus court ; un échec laisse le compteur tel quel, c'est le réveil de la
+    // minuterie qui l'avance (sinon le premier échec sauterait directement le délai le plus court).
+    if (joignable) essai = 0;
+    if (minuterieActif) planifierProchaineSonde();
   }
 }
 
 async function sondeParDefaut(): Promise<unknown> {
   const base = process.env.EXPO_PUBLIC_SUPABASE_URL;
   if (!base) throw new Error('adresse Supabase absente');
+  const cle = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
   let minuterieDelai: ReturnType<typeof setTimeout> | undefined;
   const delai = new Promise<never>((_, rejeter) => {
     minuterieDelai = setTimeout(() => rejeter(new Error('délai de sonde dépassé')), DELAI_SONDE_MS);
   });
   try {
     // `fetch` n'accepte pas d'annulation ici : la minuterie borne l'attente et est toujours nettoyée.
-    return await Promise.race([fetch(`${base.replace(/\/+$/, '')}/auth/v1/health`, { method: 'HEAD' }), delai]);
+    // La clé publique évite un 401 sans signification : on veut un 200, réponse explicite du serveur.
+    return await Promise.race([
+      fetch(`${base.replace(/\/+$/, '')}/auth/v1/health`, {
+        method: 'GET',
+        headers: cle ? { apikey: cle } : undefined,
+      }),
+      delai,
+    ]);
   } finally {
     clearTimeout(minuterieDelai);
   }
@@ -163,14 +199,46 @@ export function sonderSiBesoin(): void {
   void sonder().catch(() => {});
 }
 
+/** Délai courant : court pendant une coupure, long quand le serveur répond. */
+function delaiCourant(): number {
+  if (etat.backend !== false) return INTERVALLE_EN_LIGNE_MS;
+  return DELAIS_REESSAI_MS[Math.min(essai, DELAIS_REESSAI_MS.length - 1)];
+}
+
+/**
+ * (Re)planifie la prochaine sonde selon l'état connu. `setTimeout` chaîné plutôt que `setInterval` : la cadence
+ * change après chaque résultat, et une sonde lente ne décale pas les suivantes.
+ *
+ * Seule la fin d'une sonde rappelle cette fonction (voir `sonder`) : la minuterie ne se ré-arme pas elle-même,
+ * sinon deux planifications concurrentes feraient sonder deux fois par cycle.
+ */
+function planifierProchaineSonde() {
+  if (minuterie) clearTimeout(minuterie);
+  const delai = delaiCourant();
+  minuterie = setTimeout(() => {
+    // C'est ici qu'on avance dans la dégressivité : le délai qui vient de s'écouler est consommé.
+    if (etat.backend === false) essai += 1;
+    sonderSiBesoin();
+  }, delai);
+}
+
+/** Repart d'une cadence rapide (signe de vie) puis replanifie. */
+function relancerCadence(nouvelEssai: number) {
+  essai = nouvelEssai;
+  if (minuterieActif) planifierProchaineSonde();
+}
+
 function demarrerMinuterie() {
-  if (minuterie) return;
-  minuterie = setInterval(() => sonderSiBesoin(), PERIODE_SONDE_MS);
+  if (minuterieActif) return;
+  minuterieActif = true;
+  // Une sonde est peut-être déjà en vol : son résultat armera la minuterie. Sinon on arme tout de suite.
+  if (!sondeEnCours) planifierProchaineSonde();
 }
 
 function arreterMinuterie() {
+  minuterieActif = false;
   if (!minuterie) return;
-  clearInterval(minuterie);
+  clearTimeout(minuterie);
   minuterie = null;
 }
 
@@ -186,6 +254,8 @@ export function demarrerConnectivite({ sonderAuDemarrage = true }: { sonderAuDem
 
   const app = AppState.addEventListener('change', (statut) => {
     if (statut === 'active') {
+      // Retour au premier plan : l'état a pu changer pendant l'absence. Cadence rapide, puis sonde immédiate.
+      signalerActivite();
       sonderSiBesoin();
       demarrerMinuterie();
     } else {
@@ -195,8 +265,14 @@ export function demarrerConnectivite({ sonderAuDemarrage = true }: { sonderAuDem
 
   // On sonde sauf si l'app est explicitement en arrière-plan. Comparer à 'active' serait trop strict :
   // `AppState.currentState` vaut `undefined` au tout premier rendu (et sous Jest), et l'app est alors au premier plan.
-  if (AppState.currentState !== 'background') demarrerMinuterie();
-  if (sonderAuDemarrage) sonderSiBesoin();
+  //
+  // L'ordre compte : la sonde d'abord, le cycle ensuite. Le résultat de cette première sonde décide de la cadence
+  // (rapide si le serveur est muet), et `demarrerMinuterie` s'appuie dessus plutôt que d'armer un délai « en ligne »
+  // avant de savoir.
+  if (AppState.currentState !== 'background') {
+    if (sonderAuDemarrage) sonderSiBesoin();
+    demarrerMinuterie();
+  }
 
   arret = () => {
     app.remove();

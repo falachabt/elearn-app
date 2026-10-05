@@ -129,20 +129,83 @@ describe('connectivite : reconnaissance des erreurs réseau', () => {
 });
 
 describe('connectivite : sondage périodique', () => {
-  it('sonde au démarrage puis à intervalle régulier', async () => {
+  /** Laisse se vider les micro-tâches : la sonde, son rattrapage d'échec et sa replanification sont asynchrones. */
+  const vider = async () => {
+    for (let i = 0; i < 10; i += 1) await Promise.resolve();
+    if (jest.isMockFunction(setTimeout)) await jest.advanceTimersByTimeAsync(0);
+  };
+
+  it('sonde au démarrage puis espacée quand le serveur répond', async () => {
     jest.useFakeTimers();
     const c = charger();
     const arret = c.demarrerConnectivite();
 
-    await Promise.resolve();
-    await Promise.resolve();
+    await vider();
     expect(appels).toBe(1);
 
-    await jest.advanceTimersByTimeAsync(c.PERIODE_SONDE_MS);
+    // Serveur joignable : cadence lente, rien à surveiller.
+    await jest.advanceTimersByTimeAsync(c.INTERVALLE_EN_LIGNE_MS);
+    await vider();
     expect(appels).toBe(2);
 
-    await jest.advanceTimersByTimeAsync(c.PERIODE_SONDE_MS);
+    await jest.advanceTimersByTimeAsync(c.INTERVALLE_EN_LIGNE_MS);
+    await vider();
     expect(appels).toBe(3);
+
+    arret();
+  });
+
+  it('accélère la cadence quand le serveur ne répond pas, puis ralentit', async () => {
+    jest.useFakeTimers();
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() => {
+      appels += 1;
+      return Promise.reject(new Error('serveur muet'));
+    });
+    const c = charger();
+    const arret = c.demarrerConnectivite();
+
+    await vider();
+    expect(appels).toBe(1);
+
+    // Premier échec : le délai suivant est le plus court, pour voir le retour du réseau tout de suite.
+    await jest.advanceTimersByTimeAsync(c.DELAIS_REESSAI_MS[0]);
+    await vider();
+    expect(appels).toBe(2);
+
+    await jest.advanceTimersByTimeAsync(c.DELAIS_REESSAI_MS[1]);
+    await vider();
+    expect(appels).toBe(3);
+
+    // Beaucoup plus tard : la cadence s'est relâchée, on ne martèle plus le serveur.
+    await jest.advanceTimersByTimeAsync(c.DELAIS_REESSAI_MS[c.DELAIS_REESSAI_MS.length - 1] * 3);
+    const apresRelachement = appels;
+    expect(apresRelachement).toBeLessThan(12);
+
+    arret();
+  });
+
+  it('un signe de vie ramène la cadence au plus court', async () => {
+    jest.useFakeTimers();
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() => {
+      appels += 1;
+      return Promise.reject(new Error('serveur muet'));
+    });
+    const c = charger();
+    const arret = c.demarrerConnectivite();
+    await vider();
+
+    // On laisse la cadence se relâcher jusqu'au plafond.
+    for (let i = 0; i < c.DELAIS_REESSAI_MS.length; i += 1) {
+      await jest.advanceTimersByTimeAsync(c.DELAIS_REESSAI_MS[i]);
+      await vider();
+    }
+    const avant = appels;
+
+    // L'utilisateur agit : on repart au plus rapide, donc une sonde arrive au premier délai court.
+    c.signalerActivite();
+    await jest.advanceTimersByTimeAsync(c.DELAIS_REESSAI_MS[0]);
+    await vider();
+    expect(appels).toBe(avant + 1);
 
     arret();
   });
@@ -154,8 +217,7 @@ describe('connectivite : sondage périodique', () => {
     c.sonderSiBesoin();
     c.sonderSiBesoin();
     c.sonderSiBesoin();
-    await Promise.resolve();
-    await Promise.resolve();
+    await vider();
     expect(appels).toBe(1);
 
     arret();
@@ -165,17 +227,16 @@ describe('connectivite : sondage périodique', () => {
     jest.useFakeTimers();
     const c = charger();
     const arret = c.demarrerConnectivite();
-    await Promise.resolve();
-    await Promise.resolve();
+    await vider();
     const apresDemarrage = appels;
 
     app?.('background');
-    await jest.advanceTimersByTimeAsync(c.PERIODE_SONDE_MS * 3);
+    await jest.advanceTimersByTimeAsync(c.INTERVALLE_EN_LIGNE_MS * 3);
+    await vider();
     expect(appels).toBe(apresDemarrage);
 
     app?.('active');
-    await Promise.resolve();
-    await Promise.resolve();
+    await vider();
     expect(appels).toBe(apresDemarrage + 1);
 
     arret();
@@ -185,12 +246,12 @@ describe('connectivite : sondage périodique', () => {
     jest.useFakeTimers();
     const c = charger();
     const arret = c.demarrerConnectivite();
-    await Promise.resolve();
-    await Promise.resolve();
+    await vider();
     const apresDemarrage = appels;
 
     arret();
-    await jest.advanceTimersByTimeAsync(c.PERIODE_SONDE_MS * 3);
+    await jest.advanceTimersByTimeAsync(c.INTERVALLE_EN_LIGNE_MS * 3);
+    await vider();
     expect(appels).toBe(apresDemarrage);
   });
 });
