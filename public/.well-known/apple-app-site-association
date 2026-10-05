@@ -1,16 +1,17 @@
 {
   "_commentaires": [
     "Association de domaine pour les liens universels iOS.",
-    "Le fichier doit rester accessible sur https://app.elearnprepa.com/.well-known/apple-app-site-association",
-    "sans redirection et sans authentification.",
-    "Remplacer TEAM_ID_A_REMPLACER par l'Apple Team ID (10 caracteres, ex. QQ57RJ5UTD).",
-    "Le format 'appIDs' + 'components' couvre iOS 13 et superieur ; 'appID' + 'paths' couvre les versions anterieures."
+    "Doit rester accessible sur https://app.elearnprepa.com/.well-known/apple-app-site-association",
+    "en HTTPS, sans redirection et sans authentification.",
+    "Apple Team ID : 6KATV2T6TV (compte Apple Developer, personne physique).",
+    "Le format 'appIDs' + 'components' couvre iOS 13 et superieur ; 'appID' + 'paths' couvre les versions anterieures.",
+    "Une seule association couvre les builds preview et production : le fichier est identifie par le bundle, pas par le canal."
   ],
   "applinks": {
     "apps": [],
     "details": [
       {
-        "appIDs": ["TEAM_ID_A_REMPLACER.com.ezadrive.elearn"],
+        "appIDs": ["6KATV2T6TV.com.ezadrive.elearn"],
         "components": [
           {
             "/": "/r/*",
@@ -23,12 +24,12 @@
         ]
       },
       {
-        "appID": "TEAM_ID_A_REMPLACER.com.ezadrive.elearn",
+        "appID": "6KATV2T6TV.com.ezadrive.elearn",
         "paths": ["/r/*", "/rejoindre/*"]
       }
     ]
   },
   "webcredentials": {
-    "apps": ["TEAM_ID_A_REMPLACER.com.ezadrive.elearn"]
+    "apps": ["6KATV2T6TV.com.ezadrive.elearn"]
   }
 }

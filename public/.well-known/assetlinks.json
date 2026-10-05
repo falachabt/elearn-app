@@ -2,17 +2,20 @@
   {
     "_commentaires": [
       "Association de domaine pour les App Links Android.",
-      "Le fichier doit rester accessible sur https://app.elearnprepa.com/.well-known/assetlinks.json",
+      "Doit rester accessible sur https://app.elearnprepa.com/.well-known/assetlinks.json",
       "en HTTPS, avec le type de contenu application/json et sans redirection.",
-      "Remplacer SHA256_A_REMPLACER par l'empreinte du certificat de signature",
-      "(eas credentials -p android, ou Google Play Console > Release > Setup > App Signing).",
-      "Ajouter une deuxieme empreinte si l'app est signee par Google Play App Signing."
+      "Empreinte ci-dessous : cle de signature geree par EAS (profils preview et development).",
+      "Google Play App Signing re-signe l'application publiee avec une AUTRE cle : ajouter",
+      "son empreinte dans ce tableau le jour de la publication (Play Console >",
+      "Release > Setup > App Signing > Digital Asset Links JSON). Les deux peuvent coexister."
     ],
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
       "package_name": "com.ezadrive.elearn",
-      "sha256_cert_fingerprints": ["SHA256_A_REMPLACER"]
+      "sha256_cert_fingerprints": [
+        "3B:18:5A:09:66:6A:DE:76:B5:5F:BE:82:33:8F:55:6B:CA:9A:CA:77:74:8E:5A:D4:2D:7F:A9:EB:51:0D:A4:55"
+      ]
     }
   }
 ]
