@@ -95,6 +95,8 @@ it('titre de la carte : deux premiers chapitres', () => {
 });
 
 describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue) => {
+  beforeAll(() => { jest.useFakeTimers().setSystemTime(new Date('2026-10-01T12:00:00Z')); });
+  afterAll(() => { jest.useRealTimers(); });
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
