@@ -1377,7 +1377,9 @@ export const fr = {
     horsLigneTexte: 'Tu peux continuer ce qui est déjà téléchargé. Le reste revient au retour du réseau.',
     necessite: 'Connexion nécessaire',
     necessiteTexte: 'Cette action demande internet. Réessaie dès que le réseau revient.',
-    revenu: 'Connexion revenue',
+    voir: 'Voir l’état de la connexion',
+    verification: 'Vérification de la connexion…',
+    compris: 'Compris',
   },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;

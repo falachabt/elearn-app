@@ -50,6 +50,9 @@ export default function LayoutOnglets() {
     <View style={styles.racine}>
       <Tabs style={styles.racine}>
         <TabSlot style={styles.ecran} />
+        {/* Hors ligne seulement : la barre fine se pose juste au-dessus de la tabbar (la pastille flotte au-dessus).
+            Placé entre le contenu et la barre, donc dans le flux : aucune superposition avec les écrans. */}
+        <EtatReseau />
         <TabList asChild>
           <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
             <TabTrigger name="index" href="/" asChild>
@@ -70,8 +73,6 @@ export default function LayoutOnglets() {
           </View>
         </TabList>
       </Tabs>
-      {/* Hors ligne seulement, au-dessus des onglets : la perte et le retour du réseau s'y voient tout de suite. */}
-      <EtatReseau />
     </View>
   );
 }

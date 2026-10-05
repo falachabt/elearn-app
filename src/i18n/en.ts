@@ -1376,7 +1376,9 @@ export const en: Textes = {
     horsLigneTexte: 'You can keep using what is already downloaded. The rest comes back when the network does.',
     necessite: 'Connection needed',
     necessiteTexte: 'This action needs the internet. Try again as soon as the network is back.',
-    revenu: 'Back online',
+    voir: 'See connection status',
+    verification: 'Checking the connection…',
+    compris: 'Got it',
   },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

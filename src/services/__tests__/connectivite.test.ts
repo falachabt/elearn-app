@@ -196,18 +196,34 @@ describe('connectivite : sondage périodique', () => {
 });
 
 describe('connectivite : observation', () => {
-  it('prévient les abonnés et se retire proprement', async () => {
+  it('prévient les abonnés à chaque changement et se retire proprement', async () => {
     const c = charger();
-    const vus: boolean[] = [];
-    const desabonner = c.ecouterConnectivite((e) => vus.push(e.backend === true));
+    const vus: (boolean | null)[] = [];
+    const desabonner = c.ecouterConnectivite((e) => vus.push(e.backend));
 
     const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    // La sonde annonce son départ (`enVerification`), puis son échec (`backend` à false).
     await c.sonder(() => Promise.reject(new Error('muet')));
     c.signalerSucces();
 
-    expect(vus).toEqual([false, true]);
+    // Plusieurs publications pour une même transition sont permises (départ de sonde) : l'état final compte.
+    expect(vus.length).toBeGreaterThanOrEqual(2);
+    expect(vus).toContain(false);
+    expect(c.lireConnectivite().backend).toBe(true);
     arret();
     desabonner();
+  });
+
+  it('annonce le départ et la fin d’une vérification', async () => {
+    const c = charger();
+    const vus: boolean[] = [];
+    c.ecouterConnectivite((e) => vus.push(e.enVerification));
+
+    await c.sonder(() => Promise.resolve());
+
+    expect(vus[0]).toBe(true);
+    expect(vus[vus.length - 1]).toBe(false);
+    expect(c.lireConnectivite().enVerification).toBe(false);
   });
 
   it('le mode test force l’état', () => {

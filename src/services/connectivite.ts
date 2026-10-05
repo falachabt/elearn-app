@@ -28,6 +28,8 @@ export type EtatConnectivite = {
   internet: boolean;
   /** Dernière réponse connue de la sonde serveur ; null tant qu'aucune sonde n'a abouti. */
   backend: boolean | null;
+  /** Une sonde est en vol : anime l'indicateur sans mentir sur l'état connu. */
+  enVerification: boolean;
   /** Dernier changement d'état connu, en ISO. */
   actualiseLe: string;
 };
@@ -38,7 +40,7 @@ export const DELAI_SONDE_MS = 6000;
 /** Espacement entre deux sondes automatiques pendant que l'app est au premier plan. */
 export const PERIODE_SONDE_MS = 15000;
 
-let etat: EtatConnectivite = { connecte: true, internet: true, backend: null, actualiseLe: new Date().toISOString() };
+let etat: EtatConnectivite = { connecte: true, internet: true, backend: null, enVerification: false, actualiseLe: new Date().toISOString() };
 let arret: (() => void) | null = null;
 let minuterie: ReturnType<typeof setInterval> | null = null;
 let sondeEnCours: Promise<boolean> | null = null;
@@ -51,7 +53,13 @@ function publier(suivant: EtatConnectivite) {
 
 function maj(partiel: Partial<Omit<EtatConnectivite, 'actualiseLe'>>, maintenant = new Date()) {
   const suivant: EtatConnectivite = { ...etat, ...partiel, actualiseLe: maintenant.toISOString() };
-  if (suivant.connecte === etat.connecte && suivant.internet === etat.internet && suivant.backend === etat.backend) return;
+  if (
+    suivant.connecte === etat.connecte &&
+    suivant.internet === etat.internet &&
+    suivant.backend === etat.backend &&
+    suivant.enVerification === etat.enVerification
+  )
+    return;
   publier(suivant);
 }
 
@@ -113,6 +121,7 @@ export function estErreurReseau(erreur: unknown): boolean {
  */
 export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Date.now()): Promise<boolean> {
   const appel = fetchTete ?? sondeParDefaut;
+  maj({ enVerification: true }, new Date(maintenant));
   const enCours = (async () => {
     let joignable = false;
     try {
@@ -122,7 +131,7 @@ export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Da
       joignable = false;
     }
     // Une sonde réussie prouve l'interface et le serveur ; une sonde ratée ne prouve que le serveur.
-    maj({ internet: joignable || etat.internet, backend: joignable }, new Date(maintenant));
+    maj({ internet: joignable || etat.internet, backend: joignable, enVerification: false }, new Date(maintenant));
     return joignable;
   })();
   sondeEnCours = enCours;
