@@ -22,12 +22,16 @@ type Props = {
   enCours?: boolean;
   /** Fond particulier (fiche de révision en soleil doux, carte « Continuer »). */
   fond?: string;
+  /** `fond` est un aplat vif (jaune soleil) : titre, sous-titre et chevron passent en encre noire. */
+  surCouleur?: boolean;
   onPress: () => void;
 };
 
 /** Carte de liste (revue design, règle 2) : 78 px fixes, titre sur 2 lignes, ombre `carte`. Une seule structure pour quiz, exercices, sujets… */
-export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, enCours, fond, onPress }: Props) {
+export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, enCours, fond, surCouleur, onPress }: Props) {
   const { theme } = useTheme();
+  const encre = surCouleur ? theme.texte.surCouleur : theme.texte.principal;
+  const encreDouce = surCouleur ? theme.texte.surCouleur : theme.texte.secondaire;
   return (
     <Appui
       accessibilityRole="button"
@@ -41,11 +45,11 @@ export function CarteListe({ titre, sousTitre, gauche, bas, droite, fini, enCour
       <View style={[styles.carte, { backgroundColor: fond ?? (fini ? theme.marque.douce : theme.fond.surface), borderColor: enCours ? theme.marque.principale : theme.bord.fort }, enCours && styles.enCours]}>
         {gauche}
         <View style={styles.flex}>
-          <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{titre}</Text>
-          {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>{sousTitre}</Text> : null}
+          <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: encre }]}>{titre}</Text>
+          {sousTitre ? <Text numberOfLines={1} style={[typo.legende, { color: encreDouce }]}>{sousTitre}</Text> : null}
           {bas}
         </View>
-        {droite ?? <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />}
+        {droite ?? <ChevronRight size={20} strokeWidth={2} color={encreDouce} />}
       </View>
     </Appui>
   );

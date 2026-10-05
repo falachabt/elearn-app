@@ -31,6 +31,7 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { Blocs } from '../reviser/Blocs';
 import { useFeedback } from '../useFeedback';
 import { FeuilleEpuise, PuceCout } from '../credits';
+import { useReseau } from '../reseau/useReseau';
 import { Camera, type PhotoPrise } from './Camera';
 import { CadreRecadrage, CADRE_INITIAL } from './CadreRecadrage';
 import { HistoriquePhoto } from './HistoriquePhoto';
@@ -57,6 +58,7 @@ export function Photo() {
   const [cadre, setCadre] = useState<Cadre>(CADRE_INITIAL);
   const [matiere, setMatiere] = useState<MatierePhoto>('maths');
   const { solde, couts, rafraichir } = useCredits();
+  const horsLigne = !useReseau().estEnLigne;
   const [epuise, setEpuise] = useState(false);
   const derniereRecadrage = useRef<PhotoPrise | null>(null);
   const derniere = useRef<{ base64: string; source: 'camera' | 'galerie' } | null>(null);
@@ -121,6 +123,12 @@ export function Photo() {
 
   const lancer = async (image: { base64: string; source: 'camera' | 'galerie' }) => {
     derniere.current = image;
+    // Garde réseau (issue #25) : la correction demande une réponse du serveur. Hors ligne on s'arrête avant l'envoi,
+    // l'élève revoit son recadrage et peut relancer au retour du réseau sans rien avoir perdu.
+    if (horsLigne) {
+      setEtat({ ecran: 'erreur', type: 'hors-ligne' });
+      return;
+    }
     const debut = Date.now();
     const ctrl = new AbortController();
     annule.current = ctrl;
@@ -431,7 +439,7 @@ function BoutonEnvoi({ libelle, cout, desactive, onPress }: { libelle: string; c
   return (
     <Appui accessibilityRole="button" accessibilityState={{ disabled: !!desactive }} disabled={desactive} onPress={onPress} decalage={4} ombre={4} couleurOmbre={theme.ombre} rayon={rayon.m}>
       <View style={[styles.envoi, { backgroundColor: desactive ? theme.fond.creux : theme.marque.principale, borderColor: theme.bord.fort }]}>
-        <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{libelle}</Text>
+        <Text style={[typo.bouton, { color: desactive ? theme.texte.secondaire : theme.texte.surCouleur }]}>{libelle}</Text>
         {cout ? <PuceCout cout={cout} /> : null}
       </View>
     </Appui>

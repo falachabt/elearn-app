@@ -63,7 +63,7 @@ export function CompteurCredits() {
             </View>
             <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
           </View>
-          {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.alerte }]} /> : null}
+          {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.alerte, borderColor: theme.fond.surface }]} /> : null}
         </View>
       </Appui>
       <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
@@ -96,7 +96,6 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     borderWidth: 1.5,
-    borderColor: '#FFFFFF',
   },
   squelette: { width: 22, height: 10, borderRadius: 4 },
 });

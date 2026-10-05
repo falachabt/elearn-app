@@ -82,7 +82,7 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
           ) : null}
           {!solde.illimite ? (
             <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>
+              <Text style={[typo.petit, { color: theme.texte.principal }]}>
                 {invite
                   ? t('credits.sansRecharge', { n: reglages?.recharge ?? solde.recharge })
                   : `${solde.rechargeHebdo ? `${t('profil.prochaine', { quand: quand(solde.prochaineRecharge) })} ` : ''}${t('profil.nonCumul')}`}

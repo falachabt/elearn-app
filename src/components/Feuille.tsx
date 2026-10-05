@@ -85,7 +85,7 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
               <View key={a.libelle} style={{ position: 'relative' }}>
                 <Bouton variante={a.variante === 'secondaire' || a.variante === 'texte' ? a.variante : undefined} icone={a.icone} libelle={a.libelle} onPress={a.onPress} />
                 {a.badge && (
-                  <View style={[styles.badge, { backgroundColor: theme.etat.alerte }]} />
+                  <View style={[styles.badge, { backgroundColor: theme.etat.alerte, borderColor: theme.fond.surface }]} />
                 )}
               </View>
             ))}
@@ -111,6 +111,5 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: '#FFFFFF',
   },
 });

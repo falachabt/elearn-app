@@ -151,8 +151,8 @@ export default function EcranCredits() {
                 <Text style={[typo.petit, typo.texteFort, { color: theme.texte.surCouleur }]}>Pass Illimité</Text>
               </View>
             ) : (
-              <View style={styles.jaugePill}>
-                <Ionicons name="flash" size={16} color={theme.marque.principale} />
+              <View style={[styles.jaugePill, { backgroundColor: theme.fond.surface }]}>
+                <Ionicons name="flash" size={16} color={theme.marque.forte} />
                 <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
                   {solde?.semaine ?? 0} / {recharge}
                 </Text>
@@ -291,7 +291,7 @@ export default function EcranCredits() {
                             <Ionicons
                               name={positif ? 'arrow-down-circle-outline' : 'arrow-up-circle-outline'}
                               size={20}
-                              color={positif ? theme.texte.surCouleur : theme.texte.secondaire}
+                              color={positif ? theme.texte.principal : theme.texte.secondaire}
                             />
                           </View>
 
@@ -357,7 +357,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: espace[3],
     paddingVertical: espace[2],
     borderRadius: rayon.m,
-    backgroundColor: 'rgba(255,255,255,0.6)',
   },
   ligneRecharge: {
     flexDirection: 'row',

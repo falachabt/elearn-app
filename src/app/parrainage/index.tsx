@@ -92,8 +92,8 @@ export default function EcranParrainage() {
                 rayon={rayon.m}
               >
                 <View style={[styles.boutonCopier, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  {copie ? <Check size={18} color="#10B981" /> : <Copy size={18} color="#0A0A0A" />}
-                  <Text style={[typo.boutonPetit, { color: '#0A0A0A' }]}>
+                  {copie ? <Check size={18} color={theme.marque.forte} /> : <Copy size={18} color={theme.texte.principal} />}
+                  <Text style={[typo.boutonPetit, { color: theme.texte.principal }]}>
                     {copie ? t('parrainage.copieSucces') : t('parrainage.copier')}
                   </Text>
                 </View>
@@ -102,7 +102,7 @@ export default function EcranParrainage() {
 
             <Bouton
               libelle={t('parrainage.partagerWhatsApp')}
-              icone={<Share2 size={20} color="#0A0A0A" />}
+              icone={<Share2 size={20} color={theme.texte.principal} />}
               variante="secondaire"
               onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
             />
@@ -154,8 +154,8 @@ export default function EcranParrainage() {
                 </View>
 
                 {j.unlocked ? (
-                  <View style={[styles.badgeUnlock, { backgroundColor: '#10B981', borderColor: theme.bord.fort }]}>
-                    <Text style={[typo.boutonPetit, { color: '#FFFFFF' }]}>{t('parrainage.reclame')}</Text>
+                  <View style={[styles.badgeUnlock, { backgroundColor: theme.etat.succes, borderColor: theme.bord.fort }]}>
+                    <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('parrainage.reclame')}</Text>
                   </View>
                 ) : (
                   <View style={[styles.badgeUnlock, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]}>

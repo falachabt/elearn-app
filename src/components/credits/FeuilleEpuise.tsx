@@ -47,10 +47,10 @@ export function FeuilleEpuise({ ouverte, onFermer, prixSemaine = '500 FCFA', rec
             <Ionicons name="gift-outline" size={20} color={theme.texte.surCouleur} />
           </View>
           <View style={styles.flex}>
-            <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
               {reglages ? t('credits.epuiseInviteCarte', { n: reglages.bienvenue }) : t('credits.epuiseInvite', { n: recharge })}
             </Text>
-            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('credits.epuiseInviteSauvegarde')}</Text>
+            <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('credits.epuiseInviteSauvegarde')}</Text>
           </View>
         </View>
       </Feuille>

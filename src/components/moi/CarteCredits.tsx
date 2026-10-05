@@ -76,7 +76,7 @@ export function CarteCredits() {
             <View style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
               <View style={styles.iconeWrapper}>
                 <Zap size={14} strokeWidth={2.5} color={theme.texte.principal} />
-                {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur }]} /> : null}
+                {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur, borderColor: theme.fond.surface }]} /> : null}
               </View>
               <Text style={[typo.donnee, { color: theme.texte.principal }]}>{etiquette}</Text>
             </View>
@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
   pass: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[1] },
   compteur: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
   iconeWrapper: { position: 'relative', alignItems: 'center', justifyContent: 'center' },
-  badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1, borderColor: '#FFFFFF' },
+  badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1 },
   jauge: { height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
 });

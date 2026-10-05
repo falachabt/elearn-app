@@ -27,6 +27,7 @@ import { Feuille } from '../Feuille';
 import { FeuillePays } from './FeuillePays';
 import { Rebond } from '../Rebond';
 import { Secousse } from '../Secousse';
+import { useReseau } from '../reseau/useReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
@@ -75,6 +76,7 @@ export function PayerPass() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { rafraichir } = useCredits();
+  const horsLigne = !useReseau().estEnLigne;
   const params = useLocalSearchParams<{ offre?: string; reprise?: string }>();
   const offre: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
 
@@ -205,6 +207,9 @@ export function PayerPass() {
       setSecousse((n) => n + 1);
       return setChampErreur('code');
     }
+    // Garde réseau (issue #25) : une demande de paiement hors ligne doit être refusée avant tout appel, sinon
+    // l'élève croit avoir payé alors que rien n'est parti. Le message est celui du refus réseau existant.
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
     setEtape('envoi');
     try {
       const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue });
@@ -313,7 +318,7 @@ export function PayerPass() {
         <Banniere ton={jaune ? 'alerte' : 'erreur'} titre={bloc('titre')} texte={bloc('texte')} />
         {motif === 'solde' ? (
           <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('paiement.echecs.solde.astuce')}</Text>
+            <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('paiement.echecs.solde.astuce')}</Text>
           </View>
         ) : null}
       </Ecran>

@@ -65,8 +65,8 @@ export default function EcranRecompensesParrainage() {
 
         {/* Étape 3 */}
         <View style={[styles.carteEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <View style={[styles.numero, { backgroundColor: '#FF5A4F', borderColor: theme.bord.fort }]}>
-            <Sparkles size={20} color="#FFFFFF" />
+          <View style={[styles.numero, { backgroundColor: theme.etat.erreur, borderColor: theme.bord.fort }]}>
+            <Sparkles size={20} color={theme.texte.surCouleur} />
           </View>
           <View style={styles.flex}>
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
