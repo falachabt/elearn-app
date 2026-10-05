@@ -86,7 +86,9 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "test": "jest"
+    "test": "jest",
+    "export:android": "expo export --platform android --output-dir .export-android",
+    "valider": "npm run typecheck && npm test -- --runInBand --silent && npm run export:android"
   },
   "private": true,
   "jest": {

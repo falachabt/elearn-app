@@ -63,8 +63,10 @@ if ! npm run --silent typecheck; then
   exit 1
 fi
 
-echo "[pre-push] 2/2 Tests Jest (npm test -- --ci)"
-if ! npm test --silent -- --ci; then
+echo "[pre-push] 2/2 Tests Jest (npm test -- --runInBand --ci)"
+# --runInBand : les workers de Jest passent par des pipes, interdits dans certains environnements
+# (bac à sable Windows) qui echouent alors sur « spawn EPERM ». En serie, le resultat est identique.
+if ! npm test --silent -- --runInBand --ci; then
   echo "" >&2
   echo "[pre-push] ECHEC de la suite Jest. Push annule : le workflow EAS preview refuserait de publier l'OTA." >&2
   echo "[pre-push] Corrige les tests ci-dessus, ou force avec : SKIP_PRE_PUSH=1 git push" >&2

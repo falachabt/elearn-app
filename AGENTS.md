@@ -11,7 +11,10 @@
 - **TOUJOURS exécuter les tests pgTAP en local** via `npx supabase test db` (ou `supabase test db`) avant de commiter ou d'ouvrir une PR afin d'éviter de faire échouer le CI GitHub Actions.
 
 ## 3. Tests Locaux Obligatoires Frontend (`elearn-app`)
-- Toujours exécuter `npm test` en local avant de pousser du code frontend afin d'assurer un taux de réussite de 100% sur la suite de tests Jest.
+- **La validation se fait en local, pas sur le CI.** Les runners distants sont mis en file d'attente et ne servent plus de retour rapide : on valide tout ici, puis on déploie.
+- **Une seule commande** : `npm run valider` enchaîne le typage, Jest en série et l'export Android + Hermes. Elle reproduit exactement le job `verifier` du workflow `EAS preview`, qui est la barrière avant toute publication OTA.
+- Équivalent manuel, dans cet ordre : `npm run typecheck`, puis `npm test -- --runInBand`, puis `npm run export:android`.
+- Le hook `.githooks/pre-push` rejoue typage + Jest (`--runInBand`) avant chaque push. L'activer une fois par clone : `git config core.hooksPath .githooks`.
 
 ## 4. Design System & Interfaces (UI)
 - Avant de créer ou de mettre à jour une interface utilisateur, tu **dois obligatoirement te référer** aux fichiers du Design System présents dans le dossier docs/ (notamment docs/Design system Elearn Prepa.md).
@@ -74,7 +77,8 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 
 ## 16. Connectivité et mode hors ligne (issue #25, issue #13)
 - L'état de connexion est centralisé dans `src/services/connectivite.ts` : `lireConnectivite()` pour les services, `ecouterConnectivite()` pour l'interface, `sonder()` pour vérifier que le serveur répond vraiment.
-- **Aucun module natif pour la connectivité.** La détection repose sur la sonde du serveur (HEAD sur `/auth/v1/health`), sondée toutes les 15 s au premier plan, plus `signalerEchec()` / `signalerSucces()` qu'une action appelle selon le résultat réel de sa requête. Ne pas réintroduire `expo-network` : voir la section 17.
+- **Aucun module natif pour la connectivité.** La détection repose sur la sonde du serveur (`GET /auth/v1/health` **avec la clé publique**, pour obtenir un vrai 200 et non un 401 trompeur), plus `signalerEchec()` / `signalerSucces()` / `signalerActivite()` qu'une action ou un écran appelle selon le résultat réel de sa requête. Ne pas réintroduire `expo-network` : voir la section 17.
+- **La cadence de sonde est dégressive, jamais fixe et rapide.** `DELAIS_REESSAI_MS` (2 s → 60 s) pendant une coupure, `INTERVALLE_EN_LIGNE_MS` (45 s) quand tout va bien, et retour au plus rapide sur un signe de vie (`signalerActivite`). Une sonde coûte ~1,6 Ko : une cadence rapide permanente dépasserait 1 Mo par heure, inacceptable sur un forfait mobile. Ne pas « simplifier » en `setInterval` fixe.
 - Ne jamais déduire « en ligne » de la seule interface réseau : `navigator.onLine` et `isConnected` sont faux avec un portail captif ou un backend éteint, donc seule la sonde prouve que le serveur est joignable.
 - Toute action qui exige une réponse du serveur passe par la garde réseau (`useGardeReseau`) et affiche un message clair plutôt que d'échouer silencieusement.
 
