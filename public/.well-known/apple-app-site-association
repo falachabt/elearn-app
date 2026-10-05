@@ -1,0 +1,34 @@
+{
+  "_commentaires": [
+    "Association de domaine pour les liens universels iOS.",
+    "Le fichier doit rester accessible sur https://app.elearnprepa.com/.well-known/apple-app-site-association",
+    "sans redirection et sans authentification.",
+    "Remplacer TEAM_ID_A_REMPLACER par l'Apple Team ID (10 caracteres, ex. QQ57RJ5UTD).",
+    "Le format 'appIDs' + 'components' couvre iOS 13 et superieur ; 'appID' + 'paths' couvre les versions anterieures."
+  ],
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["TEAM_ID_A_REMPLACER.com.ezadrive.elearn"],
+        "components": [
+          {
+            "/": "/r/*",
+            "comment": "Liens de parrainage : /r/<code>."
+          },
+          {
+            "/": "/rejoindre/*",
+            "comment": "Anciens liens d'invitation conserves pour ne pas casser les partages deja diffuses."
+          }
+        ]
+      },
+      {
+        "appID": "TEAM_ID_A_REMPLACER.com.ezadrive.elearn",
+        "paths": ["/r/*", "/rejoindre/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["TEAM_ID_A_REMPLACER.com.ezadrive.elearn"]
+  }
+}

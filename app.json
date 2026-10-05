@@ -9,6 +9,9 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.ezadrive.elearn",
+      "associatedDomains": [
+        "applinks:app.elearnprepa.com"
+      ],
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "NSCameraUsageDescription": "Elearn Prepa utilise la caméra pour photographier une question ou un exercice et obtenir de l'aide.",
@@ -28,6 +31,28 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.ezadrive.elearn",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "app.elearnprepa.com",
+              "pathPrefix": "/r"
+            },
+            {
+              "scheme": "https",
+              "host": "app.elearnprepa.com",
+              "pathPrefix": "/rejoindre"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
       "permissions": [
         "CAMERA",
         "POST_NOTIFICATIONS",
