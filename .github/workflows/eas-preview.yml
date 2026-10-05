@@ -8,7 +8,7 @@ name: EAS preview
 
 on:
   push:
-    branches: [main, claude/project-thread-cvknuk, claude/project-thread-kw792g]
+    branches: [main, wk, claude/project-thread-cvknuk, claude/project-thread-kw792g]
   workflow_dispatch:
     inputs:
       build:
@@ -16,9 +16,12 @@ on:
         type: boolean
         default: false
 
+# Un seul run à la fois, mais sans annulation : une OTA annulée en cours de route
+# laisse la branche sans mise à jour publiée, ce qui explique des « OTA qui ne
+# partent plus » alors que le workflow est correctement déclenché.
 concurrency:
-  group: eas-preview-${{ github.ref }}
-  cancel-in-progress: true
+  group: eas-preview
+  cancel-in-progress: false
 
 jobs:
   # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.

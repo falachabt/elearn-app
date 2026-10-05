@@ -17,6 +17,12 @@ if [ "${SKIP_PRE_PUSH:-0}" = "1" ]; then
   exit 0
 fi
 
+# Git pour Windows lance les hooks avec un PATH qui n'inclut pas ses propres outils
+# Unix : sans cette ligne, grep/sed/find sont introuvables et les controles
+# seraient silencieusement ignores. Les doublons sont sans effet.
+PATH="/usr/bin:/bin:/mingw64/bin:$PATH"
+export PATH
+
 # Plage de commits poussee : SHA local, SHA distant (zero si nouvelle branche), ref distante.
 local_sha="$1"
 remote_sha="$2"
@@ -38,13 +44,16 @@ if [ -z "$touches" ]; then
   exit 0
 fi
 
-echo "[pre-push] Fichiers applicatifs pousses sur ${remote_ref#refs/heads/} :"
-printf '%s\n' "$touches" | sed 's/^/  - /'
-
 if ! command -v npm >/dev/null 2>&1; then
   echo "[pre-push] npm introuvable dans le PATH : controles locaux ignores."
   exit 0
 fi
+
+echo "[pre-push] Fichiers applicatifs pousses sur ${remote_ref#refs/heads/} :"
+# Lecture sans pipe : en POSIX sh, le corps d'un pipe s'execute dans un sous-shell.
+printf '%s\n' "$touches" | while IFS= read -r fichier; do
+  [ -n "$fichier" ] && printf '  - %s\n' "$fichier"
+done
 
 echo "[pre-push] 1/2 Typage TypeScript (npm run typecheck)"
 if ! npm run --silent typecheck; then
