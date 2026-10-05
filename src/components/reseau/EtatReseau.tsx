@@ -78,20 +78,22 @@ export function EtatReseau() {
 }
 
 const styles = StyleSheet.create({
-  zone: { width: '100%' },
-  // Pastille posée au-dessus de la barre : agrandie pour se voir et se toucher (le `hitSlop` complète),
-  // sans masquer la liste derrière grâce à une ombre qui la détache du contenu.
+  // `zIndex` : la zone est dessinée après le contenu des onglets, mais la pastille doit rester visible
+  // au-dessus de lui (listes, cartes) — sinon elle disparaît derrière le premier élément venu.
+  zone: { width: '100%', zIndex: 10 },
+  // Pastille posée juste au-dessus de la barre, décalée vers le haut pour ne plus être recouverte,
+  // et détachée du contenu par l'ombre dure du Design System.
   pastille: {
     position: 'absolute',
     left: espace[5],
-    top: -(PASTILLE - 8),
+    top: -(PASTILLE - 2),
     width: PASTILLE,
     height: PASTILLE,
     borderRadius: rayon.pilule,
     borderWidth: bord.fin,
     alignItems: 'center',
     justifyContent: 'center',
-    // Ombre dure du Design System (sans flou) : detache la pastille du contenu qu'elle recouvre.
+    elevation: 6,
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 0,
