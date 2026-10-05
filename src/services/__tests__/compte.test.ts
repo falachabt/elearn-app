@@ -49,7 +49,8 @@ function faux(session: unknown = invite, surcharges: Record<string, jest.Mock> =
       error: null,
     }),
   };
-  return { auth, functions } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth; functions: typeof functions };
+  const rpc = jest.fn().mockResolvedValue({ data: { ok: true }, error: null });
+  return { auth, functions, rpc } as never as Parameters<typeof creerCompteEmail>[0] & { auth: typeof auth; functions: typeof functions; rpc: typeof rpc };
 }
 
 beforeEach(async () => {
@@ -99,7 +100,8 @@ describe('creerCompteEmail', () => {
     const c = faux();
     const r = await creerCompteEmail(c, { email: ' amina@exemple.com ', motDePasse: 'motdepasse1', codeParrainage: 'abc123' });
     expect(r).toEqual({ etat: 'cree', conversionInvite: true });
-    expect(c.auth.updateUser).toHaveBeenCalledWith({ email: 'amina@exemple.com', password: 'motdepasse1', data: { referral_code: 'ABC123' } });
+    expect(c.auth.updateUser).toHaveBeenCalledWith({ email: 'amina@exemple.com', password: 'motdepasse1' });
+    expect(c.rpc).toHaveBeenCalledWith('apply_referral_on_signup', { p_code: 'ABC123' });
     expect(c.auth.signUp).not.toHaveBeenCalled();
     expect(suivre).toHaveBeenCalledWith('compte_cree', { methode: 'email', conversion_invite: true, avec_parrainage: true });
   });
@@ -119,7 +121,8 @@ describe('creerCompteEmail', () => {
     const c = faux(null);
     const r = await creerCompteEmail(c, { email: 'a@b.cc', motDePasse: 'motdepasse1', codeParrainage: 'xyz789' });
     expect(r).toEqual({ etat: 'cree', conversionInvite: false });
-    expect(c.auth.signUp).toHaveBeenCalledWith({ email: 'a@b.cc', password: 'motdepasse1', options: { data: { referral_code: 'XYZ789' } } });
+    expect(c.auth.signUp).toHaveBeenCalledWith({ email: 'a@b.cc', password: 'motdepasse1' });
+    expect(c.rpc).toHaveBeenCalledWith('apply_referral_on_signup', { p_code: 'XYZ789' });
   });
 
   it('propage l’erreur Supabase (e-mail déjà pris)', async () => {
@@ -162,7 +165,7 @@ describe('Google', () => {
     expect(c.auth.signInWithOAuth).not.toHaveBeenCalled();
     expect(d.ouvrirNavigateur).toHaveBeenCalledWith('https://auth/x', 'elearnprepa://auth/callback');
     expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('pkce1');
-    expect(c.auth.updateUser).toHaveBeenCalledWith({ data: { referral_code: 'ABC123' } });
+    expect(c.rpc).toHaveBeenCalledWith('apply_referral_on_signup', { p_code: 'ABC123' });
   });
 
   it('non invité : signInWithOAuth et jetons du fragment (flux implicite)', async () => {
@@ -239,7 +242,7 @@ describe('Google', () => {
     await connecterFacebook(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb1' }), 'abc123');
     expect(c.auth.linkIdentity).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
     expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('fb1');
-    expect(c.auth.updateUser).toHaveBeenCalledWith({ data: { referral_code: 'ABC123' } });
+    expect(c.rpc).toHaveBeenCalledWith('apply_referral_on_signup', { p_code: 'ABC123' });
     const d = faux(null);
     await connecterFacebook(d, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=fb2' }));
     expect(d.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'facebook', options: { redirectTo: 'elearnprepa://auth/callback', skipBrowserRedirect: true } });
