@@ -4,9 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
-import { estInvite } from '@/services/compte';
+import { deconnecter, estInvite } from '@/services/compte';
 import { annulerSuppression, dateEffacement, demanderSuppression, lireDemandeSuppression } from '@/services/moi';
 import { getSupabase } from '@/services/supabase';
+import { lireVersion } from '@/services/version';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -61,13 +62,15 @@ export function SuppressionCompte() {
   };
 
   
-  const modeDevOuPreview = __DEV__ || process.env.EXPO_PUBLIC_APERCU === '1';
+  const modeDevOuPreview = __DEV__ || process.env.EXPO_PUBLIC_APERCU === '1' || lireVersion().canal === 'preview';
 
   const supprimerMaintenant = async () => {
     setEnCours(true);
     try {
       await getSupabase().rpc('delete_my_account_immediately');
-      await getSupabase().auth.signOut();
+      await deconnecter(getSupabase()).catch(() => {});
+      router.dismissAll();
+      router.replace('/bienvenue');
     } catch (e) {
       setEnCours(false);
     }

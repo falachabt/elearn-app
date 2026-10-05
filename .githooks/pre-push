@@ -1,0 +1,66 @@
+#!/bin/sh
+# Garde-fou local avant tout push (regle AGENTS.md section 3) : le workflow GitHub
+# « EAS preview » refuse de publier une OTA si le typage TypeScript ou la suite Jest
+# echoue. On execute donc exactement ces deux controles ici, pour les attraper en
+# quelques secondes au lieu de laisser un run CI rouge et une OTA non publiee.
+#
+# Activation (une seule fois par clone) :
+#   git config core.hooksPath .githooks
+#
+# Contournement exceptionnel, a utiliser en connaissance de cause :
+#   SKIP_PRE_PUSH=1 git push
+#
+# Le hook ne se declenche pas pour un push qui ne touche aucun fichier du frontend.
+
+if [ "${SKIP_PRE_PUSH:-0}" = "1" ]; then
+  echo "[pre-push] SKIP_PRE_PUSH=1 : controles locaux ignores."
+  exit 0
+fi
+
+# Plage de commits poussee : SHA local, SHA distant (zero si nouvelle branche), ref distante.
+local_sha="$1"
+remote_sha="$2"
+remote_ref="$3"
+
+zero="0000000000000000000000000000000000000000"
+
+if [ "$remote_sha" = "$zero" ] || ! git cat-file -e "$remote_sha^{commit}" 2>/dev/null; then
+  range="$local_sha"
+else
+  range="$remote_sha..$local_sha"
+fi
+
+# Seuls les fichiers applicatifs comptent : docs, README et outillage ne cassent pas le CI.
+touches=$(git diff --name-only "$range" -- 2>/dev/null | grep -E '^(src/|assets/|app\.config\.ts|app\.json|package\.json|package-lock\.json|tsconfig\.json|babel\.config\.js|jest\.setup\.js|jest\.apres\.js)' || true)
+
+if [ -z "$touches" ]; then
+  echo "[pre-push] Aucun fichier applicatif modifie : controles locaux ignores."
+  exit 0
+fi
+
+echo "[pre-push] Fichiers applicatifs pousses sur ${remote_ref#refs/heads/} :"
+printf '%s\n' "$touches" | sed 's/^/  - /'
+
+if ! command -v npm >/dev/null 2>&1; then
+  echo "[pre-push] npm introuvable dans le PATH : controles locaux ignores."
+  exit 0
+fi
+
+echo "[pre-push] 1/2 Typage TypeScript (npm run typecheck)"
+if ! npm run --silent typecheck; then
+  echo "" >&2
+  echo "[pre-push] ECHEC du typage TypeScript. Push annule." >&2
+  echo "[pre-push] Corrige les erreurs ci-dessus, ou force avec : SKIP_PRE_PUSH=1 git push" >&2
+  exit 1
+fi
+
+echo "[pre-push] 2/2 Tests Jest (npm test -- --ci)"
+if ! npm test --silent -- --ci; then
+  echo "" >&2
+  echo "[pre-push] ECHEC de la suite Jest. Push annule : le workflow EAS preview refuserait de publier l'OTA." >&2
+  echo "[pre-push] Corrige les tests ci-dessus, ou force avec : SKIP_PRE_PUSH=1 git push" >&2
+  exit 1
+fi
+
+echo "[pre-push] Typage et tests OK : push autorise."
+exit 0
