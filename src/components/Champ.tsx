@@ -9,7 +9,7 @@ import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 type Props = TextInputProps & { libelle: string; erreur?: string; prefixe?: ReactNode };
 
 /** Libellé toujours visible au-dessus du champ. L'erreur dit comment corriger. */
-export const Champ = forwardRef<TextInput, Props>(({ libelle, erreur, prefixe, style, onFocus, ...reste }, ref) => {
+export const Champ = forwardRef<TextInput, Props>(function Champ({ libelle, erreur, prefixe, style, onFocus, ...reste }, ref) {
   const { theme } = useTheme();
   const rendreVisible = useRendreVisible();
   const zone = useRef<View>(null);
