@@ -66,3 +66,23 @@
 
 ## 14. Mode concis (skill caveman)
 Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'applique aux échanges internes et aux journaux des agents. Les messages à Benny (clairs, en français), le code, les commits, les descriptions de PR et le README restent normaux.
+
+## 15. Contraintes d'exécution (session sandbox Windows)
+- **Jest doit tourner avec `--runInBand`** : sans ce drapeau, les workers de Jest échouent avec `spawn EPERM` (le bac à sable interdit les pipes nommés). `npm test -- --runInBand`.
+- Ne pas faire passer la sortie de `npx jest` par un pipe PowerShell (`| Select-Object`) : le pipe ne se ferme qu'à la fin du run et masque le résultat pendant plusieurs minutes. Lire la sortie directement.
+- Le bac à sable refuse `Remove-Item`, `Set-Content` et `Move-Item` dans le dépôt (accès refusé) : utiliser les outils d'édition de fichiers, et vider un fichier plutôt que le supprimer.
+
+## 16. Connectivité et mode hors ligne (issue #25, issue #13)
+- L'état de connexion est centralisé dans `src/services/connectivite.ts` : `lireConnectivite()` pour les services, `ecouterConnectivite()` pour l'interface, `sonder()` pour vérifier que le serveur répond vraiment.
+- **Aucun module natif pour la connectivité.** La détection repose sur la sonde du serveur (HEAD sur `/auth/v1/health`), sondée toutes les 15 s au premier plan, plus `signalerEchec()` / `signalerSucces()` qu'une action appelle selon le résultat réel de sa requête. Ne pas réintroduire `expo-network` : voir la section 17.
+- Ne jamais déduire « en ligne » de la seule interface réseau : `navigator.onLine` et `isConnected` sont faux avec un portail captif ou un backend éteint, donc seule la sonde prouve que le serveur est joignable.
+- Toute action qui exige une réponse du serveur passe par la garde réseau (`useGardeReseau`) et affiche un message clair plutôt que d'échouer silencieusement.
+
+## 17. Modules natifs : interdiction d'en ajouter sans nouvel APK
+- **Un module natif importé par le JS doit être compilé dans l'APK installé.** Sinon `requireNativeModule` lève à l'évaluation du module, donc **au démarrage de l'app, avant tout rendu** : aucun `try/catch` autour de l'appel ne peut l'attraper.
+- Le garde-fou `src/__tests__/garde-module-natif.test.ts` fait échouer le CI dans ce cas. Si ce test échoue, la correction n'est **pas** d'ignorer le test :
+  - soit c'est un ajout natif légitime : produire un nouvel APK (commit contenant `[build]`), l'installer, **puis** ajouter le paquet à `NATIFS_EMBARQUES` ;
+  - soit le paquet ne contient aucun code natif : le déclarer dans `PURS_JS` avec sa justification.
+- Un nouvel APK ne suffit pas à lui seul : `app.config.ts` ne définit pas de `runtimeVersion`, donc Expo prend `appVersion`. Sans incrément de version, l'OTA partirait aussi vers les anciens APK et les casserait.
+- Incident de référence (5 octobre 2026) : `expo-network` ajouté pour la détection réseau. Le natif était absent de l'APK de prévisualisation en circulation ; une publication OTA aurait planté l'app au démarrage chez tous les testeurs. Aucun test ne l'a vu, car Jest ne charge jamais le natif, et le test en Expo Go ou en development build ne le révèle pas non plus (le natif y est précompilé).
+

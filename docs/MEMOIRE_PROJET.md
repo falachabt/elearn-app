@@ -14,6 +14,15 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **En cours d'implémentation** : **Système de Parrainage (M15)**.
   - *Règles métier parrainage* : 3 étapes (1. Clic, 2. Création compte, 3. Achat Pass). Le parrain gagne à chaque étape + reçoit une notification. Le filleul gagne à l'étape 2.
 
+### Mode hors ligne (issue #25 puis issue #13)
+
+- **Fait, issue #25 (branche `claude/project-thread-kw792g`)** : `src/services/connectivite.ts` centralise l'état réseau. **Aucun module natif** : la détection repose sur une sonde du serveur (HEAD sur `/auth/v1/health`) toutes les 15 s au premier plan, plus `signalerEchec()` / `signalerSucces()` appelés selon le résultat réel d'une requête. `useReseau` pour l'interface, `EtatReseau` (indicateur, visible hors ligne seulement), `useGardeReseau` pour bloquer une action qui exige le serveur. Garde branchée sur la correction photo, publier/répondre dans Questions et le paiement de pass.
+- **Incident évité (5 octobre 2026)** : `expo-network` avait d'abord été ajouté pour la détection réseau. C'est un module natif absent de l'APK de prévisualisation en circulation : `requireNativeModule` lève à l'évaluation du module, donc **l'app aurait planté au démarrage**, avant tout rendu, chez tous les testeurs — et `app.config.ts` ne définit pas de `runtimeVersion`, donc l'OTA aurait bien été servie. Aucun test ne le voit (Jest ne charge pas le natif) et le test en Expo Go ou en development build ne le révèle pas non plus. `expo-network` a été retiré, et le garde-fou `src/__tests__/garde-module-natif.test.ts` interdit désormais ce cas (voir AGENTS.md section 17).
+- **Découverte utile** : l'échafaudage existait déjà en partie. `Composeur` acceptait une prop `horsLigne` jamais transmise, et les textes `questions.horsLigneQuestion`, `questions.horsLigneReponse`, `photo.horsLignePhrase` n'étaient utilisés nulle part. La file d'attente des réponses (`ajouterSortie` / `envoyerSortiesEnAttente` dans `src/services/questions.ts`) était déjà hors ligne.
+- **Fait, issue #13 côté backend (PR #41 sur `elearn-supabase`)** : `depenser_credits` accepte un identifiant d'opération et devient idempotente (statut `replay`), avec la table `credit_operations` verrouillée. À merger avant tout envoi d'identifiant depuis l'app.
+- **Reste à faire, issue #13 côté app** : solde local confirmé, file des dépenses hors ligne, réconciliation et état « à synchroniser ».
+- **Piège à retenir** : remplacer une fonction PostgreSQL en ajoutant un paramètre par défaut ne supprime pas l'ancienne signature ; les deux surcharges coexistent et un appel à deux littéraux devient ambigu (`is not unique`). Il faut un `drop function if exists` explicite.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).
