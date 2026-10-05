@@ -13,8 +13,10 @@ import { useReseau } from './useReseau';
 
 /** Durée d'un passage du reflet : assez lent pour rester discret. */
 const DUREE_REFLE = 1400;
-/** Marge de touche autour de la pastille (22 px visuels, ~34 px touchables). */
+/** Marge de touche autour de la pastille (34 px visuels, ~46 px touchables). */
 const MARGE_TOUCHE = 6;
+/** Diamètre de la pastille : assez grand pour se voir et se toucher, sans masquer la liste dessous. */
+const PASTILLE = 34;
 
 /**
  * Indicateur hors ligne (issue #25). Version discrète, posée juste au-dessus de la barre d'onglets :
@@ -54,9 +56,9 @@ export function EtatReseau() {
           accessibilityLabel={t('reseau.voir')}
           hitSlop={MARGE_TOUCHE}
           onPress={() => setOuverte(true)}
-          style={[styles.pastille, { backgroundColor: theme.etat.alerteDoux, borderColor: teinte }]}
+          style={[styles.pastille, { backgroundColor: theme.etat.alerteDoux, borderColor: teinte, shadowColor: theme.ombre }]}
         >
-          <Ionicons name="cloud-offline-outline" size={16} color={teinte} />
+          <Ionicons name="cloud-offline-outline" size={20} color={teinte} />
         </Pressable>
         <View accessibilityLabel={t('reseau.horsLigne')} style={[styles.barre, { backgroundColor: teinte }]}>
           {enVerification && !reduit ? <Animated.View style={[styles.reflet, { backgroundColor: theme.fond.surface }, anime]} /> : null}
@@ -77,17 +79,22 @@ export function EtatReseau() {
 
 const styles = StyleSheet.create({
   zone: { width: '100%' },
-  // Pastille de 22 px posée au-dessus de la barre : discrète, agrandie au toucher par `hitSlop`.
+  // Pastille posée au-dessus de la barre : agrandie pour se voir et se toucher (le `hitSlop` complète),
+  // sans masquer la liste derrière grâce à une ombre qui la détache du contenu.
   pastille: {
     position: 'absolute',
     left: espace[5],
-    top: -26,
-    width: 22,
-    height: 22,
+    top: -(PASTILLE - 8),
+    width: PASTILLE,
+    height: PASTILLE,
     borderRadius: rayon.pilule,
     borderWidth: bord.fin,
     alignItems: 'center',
     justifyContent: 'center',
+    // Ombre dure du Design System (sans flou) : detache la pastille du contenu qu'elle recouvre.
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
   },
   barre: { height: 3, width: '100%', overflow: 'hidden' },
   reflet: { position: 'absolute', top: 0, bottom: 0, width: 60, opacity: 0.55 },

@@ -1,6 +1,5 @@
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -42,7 +41,6 @@ export function Questions() {
   const [classe, setClasse] = useState<Classe>('maClasse');
   const [resolues, setResolues] = useState(false);
   const [photo, setPhoto] = useState<string | null>(null);
-  const { bottom } = useSafeAreaInsets();
   const [essai, setEssai] = useState(0);
   const [plus, setPlus] = useState(false);
   const filtres: FiltresFil = { matiere, classe: classe === 'maClasse' ? niveau : null, resolues };
@@ -146,7 +144,7 @@ export function Questions() {
       <PhotoPleine uri={photo} onFermer={() => setPhoto(null)} />
       {feuille}
     </Ecran>
-    <View pointerEvents="box-none" style={[styles.flottant, { bottom: bottom + 50 }]}>
+    <View pointerEvents="box-none" style={styles.flottant}>
       <Bouton petit libelle={`+ ${t('questions.poserCourt')}`} desactive={etat.statut === 'pret' && etat.copie} onPress={() => exiger('question', () => router.push('/question/poser'))} />
     </View>
     </View>
@@ -160,7 +158,9 @@ const styles = StyleSheet.create({
   contenu: { gap: espace[4], paddingBottom: 96, flexGrow: 1 },
   filtres: { gap: espace[3] },
   flex: { flex: 1 },
-  flottant: { position: 'absolute', right: espace[5] },
+  // Même niveau que le bouton « Bien démarrer » de l'accueil (`AssistantConfiguration`) : les deux
+  // conteneurs couvrent le même écran d'onglets, donc la même valeur de `bottom` les aligne.
+  flottant: { position: 'absolute', right: espace[5], bottom: espace[5] },
   liste: { gap: 10 },
   puces: { gap: espace[3], paddingHorizontal: espace[6] },
   racine: { flex: 1 },
