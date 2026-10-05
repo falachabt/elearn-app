@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { randomUUID } from 'expo-crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { estEnLigne, estErreurReseau } from './connectivite';
@@ -36,6 +37,11 @@ export type SoldeLocal = {
 export type OperationHorsLigne = {
   /** Identifiant local de l'opération, pour ne jamais la rejouer deux fois. */
   id: string;
+  /**
+   * Identifiant d'opération envoyé au serveur (`p_operation`, issue #13). C'est lui qui rend la dépense
+   * idempotente : le serveur renvoie le résultat enregistré au lieu de débiter une seconde fois.
+   */
+  operationId: string;
   action: ActionCredit;
   /** Référence du contenu (identifiant d'exercice, de document…). */
   objet: string;
@@ -237,14 +243,20 @@ export async function depenserAvecRepli<C = Record<string, unknown>>(p: {
   objet: string | number;
   illimite?: boolean;
   maintenant?: number;
+  /** Identifiant d'opération, injectable pour les tests. */
+  operationId?: string;
 }): Promise<Depense<C>> {
   const { client, utilisateur, action, objet, cout } = p;
   const maintenant = p.maintenant ?? Date.now();
+  // L'identifiant est engendré AVANT la tentative en ligne, et réutilisé tel quel pour le rejeu : c'est la seule
+  // façon pour le serveur de reconnaître un rejeu. S'il était créé au moment de la mise en file, la tentative en
+  // ligne et le rejeu porteraient deux identifiants différents et le débit serait appliqué deux fois.
+  const operationId = p.operationId ?? randomUUID();
 
-  if (!estEnLigne()) return depenserHorsLigne<C>(p);
+  if (!estEnLigne()) return depenserHorsLigne<C>({ ...p, operationId, maintenant });
 
   try {
-    const { data, error } = await client.rpc('depenser_credits', { p_action: action, p_ref: String(objet) });
+    const { data, error } = await client.rpc('depenser_credits', { p_action: action, p_ref: String(objet), p_operation: operationId });
     if (error) throw error;
     const ligne = (data as ReponseDepense<C>[] | null)?.[0];
     if (!ligne) throw new Error('réponse vide');
@@ -255,7 +267,7 @@ export async function depenserAvecRepli<C = Record<string, unknown>>(p: {
   } catch (erreur) {
     // La requête a pu échouer pour un autre motif qu'un problème réseau : on ne dépense pas localement à l'aveugle.
     if (!estErreurReseau(erreur)) throw erreur;
-    return depenserHorsLigne<C>({ ...p, maintenant });
+    return depenserHorsLigne<C>({ ...p, operationId, maintenant });
   }
 }
 
@@ -268,9 +280,11 @@ async function depenserHorsLigne<C>(p: {
   objet: string | number;
   illimite?: boolean;
   maintenant?: number;
+  operationId?: string;
 }): Promise<Depense<C>> {
   const { utilisateur, action, objet, cout } = p;
   const maintenant = p.maintenant ?? Date.now();
+  const operationId = p.operationId ?? randomUUID();
   if (!p.soldeLocal) throw new ContenuIndisponibleHorsLigne(action);
 
   const enCache = await lireContenuEnCache<C>(action, objet);
@@ -293,6 +307,7 @@ async function depenserHorsLigne<C>(p: {
 
   await ajouterDepenseEnAttente(utilisateur, {
     id: identifiantOperation(action, objet, maintenant),
+    operationId,
     action,
     objet: String(objet),
     cout: decision.cout,
@@ -308,9 +323,12 @@ export type ResultatRejeuOperation = { operation: OperationHorsLigne; statut: St
 /**
  * Rejoue les opérations en attente, dans l'ordre, et met à jour le solde local avec le dernier solde serveur.
  *
- * Idempotence : c'est le serveur qui l'assure. Il renvoie `already` quand le contenu était déjà débloqué, donc une
- * opération rejouée après un déblocage en ligne ne débite pas une seconde fois. Une opération en échec réseau reste
- * en file et le solde reste marqué non confirmé.
+ * Idempotence : elle vient de `p_operation`, transmis avec l'identifiant enregistré au moment de la dépense. Le
+ * serveur reconnaît alors le rejeu et renvoie le résultat qu'il avait déjà calculé (statut `replay`), sans débiter.
+ *
+ * Ne pas compter sur le statut `already` pour ça : il n'est renvoyé que pour les contenus déblocables une fois.
+ * `quiz_explanation` est facturée à chaque consultation, donc un rejeu sans identifiant d'opération la débiterait
+ * une seconde fois.
  */
 export async function synchroniserDepensesHorsLigne(p: { client: ClientCredits; utilisateur: string; soldeLocal: Solde | null }): Promise<{
   envoyees: number;
@@ -333,11 +351,16 @@ export async function synchroniserDepensesHorsLigne(p: { client: ClientCredits; 
     // Après un échec réseau, inutile d'insister sur les suivantes : elles partiront au prochain essai.
     if (echecReseau) break;
     try {
-      const { data, error } = await client.rpc('depenser_credits', { p_action: operation.action, p_ref: operation.objet });
+      const { data, error } = await client.rpc('depenser_credits', {
+        p_action: operation.action,
+        p_ref: operation.objet,
+        // `null` explicite et non `undefined` : ainsi l'absence d'identifiant est intentionnelle et visible.
+        p_operation: operation.operationId ?? null,
+      });
       if (error) throw error;
       const ligne = (data as ReponseDepense<unknown>[] | null)?.[0];
       if (!ligne) throw new Error('réponse vide');
-      // `already` signifie que le contenu était déjà débloqué : le solde renvoyé fait foi, aucun double débit.
+      // `replay` : le serveur a reconnu l'opération et renvoie son résultat sans débiter. Le solde renvoyé fait foi.
       if (solde) {
         solde = { ...solde, total: ligne.balance };
         await garderSoldeLocal(utilisateur, solde);
