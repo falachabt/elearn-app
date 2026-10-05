@@ -15,7 +15,7 @@ import {
 } from './repriseInvite';
 import { assurerSessionInvite } from './session';
 
-type Client = Pick<SupabaseClient, 'auth' | 'functions'>;
+type Client = Pick<SupabaseClient, 'auth' | 'functions' | 'rpc'>;
 
 export type Methode = 'email' | 'google' | 'apple' | 'facebook';
 
@@ -93,19 +93,22 @@ type ResultatCreation = { etat: 'cree' | 'confirmation'; conversionInvite: boole
 export async function creerCompteEmail(client: Client, p: { email: string; motDePasse: string; codeParrainage?: string | null }): Promise<ResultatCreation> {
   const email = p.email.trim();
   const code = normaliserCode(p.codeParrainage);
-  const data = code ? { referral_code: code } : undefined;
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
 
   if (conversionInvite) {
-    const { data: maj, error } = await client.auth.updateUser({ email, password: p.motDePasse, ...(data && { data }) });
+    const { data: maj, error } = await client.auth.updateUser({ email, password: p.motDePasse });
     if (error) throw error;
+    await rattacherCode(client, p.codeParrainage);
     suivre('compte_cree', { methode: 'email', conversion_invite: true, avec_parrainage: !!code });
     return { etat: maj.user?.new_email ? 'confirmation' : 'cree', conversionInvite };
   }
 
-  const { data: nouveau, error } = await client.auth.signUp({ email, password: p.motDePasse, options: { data } });
+  const { data: nouveau, error } = await client.auth.signUp({ email, password: p.motDePasse });
   if (error) throw error;
+  if (nouveau.session) {
+    await rattacherCode(client, p.codeParrainage);
+  }
   suivre('compte_cree', { methode: 'email', conversion_invite: false, avec_parrainage: !!code });
   return { etat: nouveau.session ? 'cree' : 'confirmation', conversionInvite };
 }
@@ -218,8 +221,9 @@ async function rattacherCode(client: Client, codeParrainage?: string | null): Pr
   const code = normaliserCode(codeParrainage);
   if (!code) return false;
   try {
-    const { error } = await client.auth.updateUser({ data: { referral_code: code } });
-    return !error;
+    const { data, error } = await client.rpc('apply_referral_on_signup', { p_code: code });
+    if (error) return false;
+    return data?.ok === true;
   } catch {
     return false;
   }
