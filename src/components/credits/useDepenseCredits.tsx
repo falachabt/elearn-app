@@ -1,6 +1,8 @@
 import { useCallback, useRef, useState } from 'react';
 
+import { ContenuIndisponibleHorsLigne } from '@/services/creditsHorsLigne';
 import { SEUIL_CONFIRMATION, type ActionCredit, type Depense } from '@/services/credits';
+import { useTraduction } from '@/i18n/useTraduction';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 
@@ -15,18 +17,23 @@ type Options = { deja?: boolean };
  * Parcours complet d'une action payante (M18-04, M18-07, M18-08) pour n'importe quel écran :
  * `const { lancer, feuilles } = useDepenseCredits();` puis `const r = await lancer('exercise_solution', id);`
  * et rendre `{feuilles}` à côté de l'écran. `lancer` demande l'accord à partir de 3 crédits (pas avec un pass ni pour
- * un contenu déjà ouvert), dépense côté serveur et renvoie le résultat avec le contenu ; null si l'élève renonce,
- * si le solde manque (la feuille « Crédits épuisés » s'ouvre) ou si la limite IA du pass est atteinte.
- * Lève l'erreur réseau : à l'écran d'afficher `credits.horsLigne`.
+ * un contenu déjà ouvert), dépense et renvoie le résultat avec le contenu ; null si l'élève renonce, si le solde
+ * manque (la feuille « Crédits épuisés » s'ouvre) ou si la limite IA du pass est atteinte.
+ *
+ * Hors ligne (issue #13) : si le contenu est déjà sur l'appareil, la dépense est débitée du dernier solde confirmé et
+ * mise en file pour la reconnexion — `enAttente` est alors vrai, à signaler à l'écran. Sinon la feuille « Connexion
+ * nécessaire » s'ouvre, car le serveur est seul à pouvoir fournir le contenu.
  */
 export function useDepenseCredits({ rechargeSimple = false }: { rechargeSimple?: boolean } = {}) {
-  const { solde, couts, depenser } = useCredits();
+  const { solde, couts, depenser, depensesEnAttente } = useCredits();
   const { session } = useSession();
   const invite = !!session?.user.is_anonymous;
   const { t } = useTextesCredits();
+  const { t: traduire } = useTraduction();
   const [confirmation, setConfirmation] = useState<{ action: ActionCredit; cout: number } | null>(null);
   const [epuise, setEpuise] = useState(false);
   const [limite, setLimite] = useState(false);
+  const [connexionRequise, setConnexionRequise] = useState(false);
   const reponse = useRef<((oui: boolean) => void) | null>(null);
 
   const demanderAccord = (action: ActionCredit, cout: number) =>
@@ -45,7 +52,17 @@ export function useDepenseCredits({ rechargeSimple = false }: { rechargeSimple?:
       const cout = couts[action] ?? 0;
       const sansAccord = options.deja || solde?.illimite || cout < SEUIL_CONFIRMATION;
       if (!sansAccord && !(await demanderAccord(action, cout))) return null;
-      const r = await depenser<C>(action, objet);
+      let r: Depense<C>;
+      try {
+        r = await depenser<C>(action, objet);
+      } catch (erreur) {
+        // Le contenu n'est pas sur l'appareil et le serveur est injoignable : seule une reconnexion peut le donner.
+        if (erreur instanceof ContenuIndisponibleHorsLigne) {
+          setConnexionRequise(true);
+          return null;
+        }
+        throw erreur;
+      }
       if (r.statut === 'insufficient') {
         setEpuise(true);
         return null;
@@ -56,7 +73,7 @@ export function useDepenseCredits({ rechargeSimple = false }: { rechargeSimple?:
       }
       return r;
     },
-    [couts, solde?.illimite, depenser],
+    [couts, solde, depenser],
   );
 
   const feuilles = (
@@ -72,8 +89,16 @@ export function useDepenseCredits({ rechargeSimple = false }: { rechargeSimple?:
         texte={t('credits.limiteTexte')}
         actions={[{ libelle: t('credits.compris'), onPress: () => setLimite(false) }]}
       />
+      <Feuille
+        ouverte={connexionRequise}
+        onFermer={() => setConnexionRequise(false)}
+        icone="cloud-offline-outline"
+        titre={traduire('reseau.necessite')}
+        texte={traduire('reseau.necessiteTexte')}
+        actions={[{ libelle: traduire('reseau.compris'), onPress: () => setConnexionRequise(false) }]}
+      />
     </>
   );
 
-  return { lancer, feuilles };
+  return { lancer, feuilles, enAttente: depensesEnAttente > 0 };
 }
