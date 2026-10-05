@@ -32,7 +32,14 @@ yarn-error.*
 *.pem
 
 # local env files
+.env
 .env*.local
+!.env.example
+
+# scripts jetables laisses par les agents
+*.py
+debug.py
+fix.py
 
 # typescript
 *.tsbuildinfo
