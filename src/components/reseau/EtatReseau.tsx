@@ -13,10 +13,10 @@ import { useReseau } from './useReseau';
 
 /** Durée d'un passage du reflet : assez lent pour rester discret. */
 const DUREE_REFLE = 1400;
-/** Marge de touche autour de la pastille (34 px visuels, ~46 px touchables). */
+/** Marge de touche autour de la pastille (42 px visuels, ~54 px touchables). */
 const MARGE_TOUCHE = 6;
 /** Diamètre de la pastille : assez grand pour se voir et se toucher, sans masquer la liste dessous. */
-const PASTILLE = 34;
+const PASTILLE = 42;
 
 /**
  * Indicateur hors ligne (issue #25). Version discrète, posée juste au-dessus de la barre d'onglets :
@@ -78,11 +78,11 @@ export function EtatReseau() {
 }
 
 const styles = StyleSheet.create({
-  // `zIndex` : la zone est dessinée après le contenu des onglets, mais la pastille doit rester visible
-  // au-dessus de lui (listes, cartes) — sinon elle disparaît derrière le premier élément venu.
-  zone: { width: '100%', zIndex: 10 },
-  // Pastille posée juste au-dessus de la barre, décalée vers le haut pour ne plus être recouverte,
-  // et détachée du contenu par l'ombre dure du Design System.
+  // Aucun `zIndex` ni `elevation` ici : la zone est dessinée avant la barre d'onglets, donc l'ordre naturel suffit.
+  // Avec un `zIndex`, la barre passait au-dessus du bouton central (appareil photo) de la barre d'onglets.
+  zone: { width: '100%' },
+  // Pastille posée juste au-dessus de la barre, décalée vers le haut pour ne plus être recouverte.
+  // Pas d'ombre portée non plus : `elevation` la ferait repasser devant la barre d'onglets sur Android.
   pastille: {
     position: 'absolute',
     left: espace[5],
@@ -93,10 +93,6 @@ const styles = StyleSheet.create({
     borderWidth: bord.fin,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 6,
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 1,
-    shadowRadius: 0,
   },
   barre: { height: 3, width: '100%', overflow: 'hidden' },
   reflet: { position: 'absolute', top: 0, bottom: 0, width: 60, opacity: 0.55 },

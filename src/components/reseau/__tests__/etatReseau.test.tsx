@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
-import { definirConnectivitePourTest, demarrerConnectivite, type EtatConnectivite } from '@/services/connectivite';
+import { definirConnectivitePourTest, type EtatConnectivite } from '@/services/connectivite';
 
 import { EtatReseau } from '../EtatReseau';
 
@@ -82,10 +82,5 @@ describe('indicateur réseau', () => {
 
     await etat({ connecte: true, internet: true, backend: true, enVerification: false });
     await waitFor(() => expect(screen.queryByLabelText(fr.reseau.horsLigne)).toBeNull());
-  });
-
-  it('arrête l’observation réseau au démontage', () => {
-    const arret = demarrerConnectivite({ sonderAuDemarrage: false });
-    expect(() => arret()).not.toThrow();
   });
 });

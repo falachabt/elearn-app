@@ -1,3 +1,4 @@
+import { requireOptionalNativeModule } from 'expo-modules-core';
 import { AppState, Platform } from 'react-native';
 
 /**
@@ -45,8 +46,19 @@ export const DELAI_SONDE_MS = 4000;
  */
 export const DELAIS_REESSAI_MS = [2000, 4000, 8000, 15000, 30000, 60000] as const;
 
-/** Cadence quand tout va bien : rien à surveiller, on ne consomme presque rien. */
-export const INTERVALLE_EN_LIGNE_MS = 45000;
+/**
+ * Cadence quand tout va bien, **sans évènement réseau système** (repli). Avec un binaire qui embarque
+ * `expo-network`, la perte de réseau est signalée par le système en moins d'une seconde et cette cadence ne sert
+ * plus que de filet de sécurité — elle reste donc lente. Voir `DEMI_TOUR_MS` pour la réaction à un évènement.
+ */
+export const INTERVALLE_EN_LIGNE_MS = 10000;
+
+/**
+ * Après un évènement réseau du système, on sonde tout de suite. Ce court délai laisse l'interface se stabiliser :
+ * Android signale souvent « connecté » avant que la route soit réellement utilisable, et sonder trop tôt donnerait
+ * un faux « hors ligne ».
+ */
+export const DEMI_TOUR_MS = 400;
 
 let etat: EtatConnectivite = { connecte: true, internet: true, backend: null, enVerification: false, actualiseLe: new Date().toISOString() };
 let arret: (() => void) | null = null;
@@ -56,7 +68,36 @@ let minuterieActif = false;
 /** Index courant dans `DELAIS_REESSAI_MS` : avance à chaque échec, revient à 0 sur succès ou sur signe de vie. */
 let essai = 0;
 let sondeEnCours: Promise<boolean> | null = null;
+let demiTour: ReturnType<typeof setTimeout> | null = null;
 const ecouteurs = new Set<(e: EtatConnectivite) => void>();
+
+type ModuleReseau = {
+  /** Écouteur brut du module natif : `expo-network` le nomme `addListener` sur le module natif lui-même. */
+  addListener: (nom: string, ecouteur: (e: { isConnected?: boolean; isInternetReachable?: boolean }) => void) => { remove: () => void };
+};
+
+/** Nom de l'évènement émis par le module natif `ExpoNetwork` à chaque changement d'interface. */
+const EVENEMENT_RESEAU = 'onNetworkStateChanged';
+
+/**
+ * Module natif de réseau, chargé **paresseusement et sans erreur**. Il n'est pas indispensable : la sonde suffit.
+ *
+ * `requireOptionalNativeModule` plutôt que `requireNativeModule` : ce dernier **lève** quand le module est absent,
+ * donc une OTA partie vers un binaire qui ne l'embarque pas planterait l'app au démarrage — c'est l'incident
+ * `expo-network` du 5 octobre 2026. Ici, un binaire sans le module se contente du sondage périodique.
+ *
+ * On n'importe pas `expo-network` : son point d'entrée appelle `requireNativeModule` au chargement du module, donc
+ * l'importer suffirait à faire planter un binaire qui ne l'embarque pas.
+ */
+function moduleReseau(): ModuleReseau | null {
+  try {
+    const module = requireOptionalNativeModule<ModuleReseau>('ExpoNetwork');
+    return typeof module?.addListener === 'function' ? module : null;
+  } catch {
+    return null;
+  }
+}
+
 
 function publier(suivant: EtatConnectivite) {
   etat = suivant;
@@ -243,9 +284,9 @@ function arreterMinuterie() {
 }
 
 /**
- * Démarre l'observation : sonde initiale, puis sondage périodique **au premier plan uniquement** (au retour dans
- * l'app, on sonde tout de suite ; en arrière-plan on s'arrête, pour ne pas consommer de batterie ni de données).
- * Renvoie la fonction d'arrêt.
+ * Démarre l'observation : évènements réseau du système (si le binaire embarque le module), sonde initiale, puis
+ * sondage périodique **au premier plan uniquement** (au retour dans l'app, on sonde tout de suite ; en arrière-plan
+ * on s'arrête, pour ne pas consommer de batterie ni de données). Renvoie la fonction d'arrêt.
  *
  * `sonderAuDemarrage` à false laisse l'appelant piloter la première sonde : un test mesure ainsi ses propres sondes.
  */
@@ -263,6 +304,12 @@ export function demarrerConnectivite({ sonderAuDemarrage = true }: { sonderAuDem
     }
   });
 
+  const abonnementReseau = ecouterReseau();
+  if (!abonnementReseau) {
+    // Sans module natif, seul le sondage périodique peut voir la perte de réseau : c'est le repli, et il est plus lent.
+    console.warn('Module réseau absent : la perte de connexion ne sera vue qu’au prochain sondage.');
+  }
+
   // On sonde sauf si l'app est explicitement en arrière-plan. Comparer à 'active' serait trop strict :
   // `AppState.currentState` vaut `undefined` au tout premier rendu (et sous Jest), et l'app est alors au premier plan.
   //
@@ -276,10 +323,39 @@ export function demarrerConnectivite({ sonderAuDemarrage = true }: { sonderAuDem
 
   arret = () => {
     app.remove();
+    abonnementReseau?.remove();
+    if (demiTour) clearTimeout(demiTour);
+    demiTour = null;
     arreterMinuterie();
     arret = null;
   };
   return arret;
+}
+
+/**
+ * Le système signale un changement d'interface réseau : on sonde tout de suite, au lieu d'attendre le prochain
+ * cycle (jusqu'à `INTERVALLE_EN_LIGNE_MS`). Renvoie `null` quand le module natif est absent.
+ *
+ * L'évènement ne décide **pas** de l'état : « connecté » veut seulement dire qu'une interface est active, ce qui est
+ * faux avec un portail captif ou un serveur éteint. Il sert uniquement à déclencher la sonde, seule source de vérité.
+ */
+function ecouterReseau(): { remove: () => void } | null {
+  const module = moduleReseau();
+  if (!module) return null;
+  try {
+    return module.addListener(EVENEMENT_RESEAU, () => {
+      if (demiTour) clearTimeout(demiTour);
+      demiTour = setTimeout(() => {
+        demiTour = null;
+        // L'interface est peut-être déjà coupée : on ne sonde pas dans le vide.
+        if (etat.connecte === false) return;
+        signalerActivite();
+        sonderSiBesoin();
+      }, DEMI_TOUR_MS);
+    });
+  } catch {
+    return null;
+  }
 }
 
 /** Plateforme web : utile aux écrans qui adaptent leur message. */

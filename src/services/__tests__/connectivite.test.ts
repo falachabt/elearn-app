@@ -2,9 +2,16 @@ import { AppState } from 'react-native';
 
 import type { EtatConnectivite } from '../connectivite';
 
+// Aucun mock de `expo-modules-core` : le preset Jest d'Expo fournit déjà `ExpoNetwork` comme module mocké (avec
+// `addListener`), ce qui suffit à piloter les évènements réseau. Remplacer tout `expo-modules-core` casserait les
+// autres paquets natifs (expo-linking, expo-secure-store).
+
 type EcouteurApp = (s: string) => void;
+type EcouteurReseau = (e: { isConnected?: boolean; isInternetReachable?: boolean }) => void;
 
 let app: EcouteurApp | null = null;
+let reseau: EcouteurReseau | null = null;
+let retires = 0;
 let appels = 0;
 
 /** Recharge le service : son état est un singleton de module, chaque test doit repartir de zéro. */
@@ -17,10 +24,39 @@ function charger(): typeof import('../connectivite') {
   return module;
 }
 
+/**
+ * Le preset d'Expo fournit `ExpoNetwork` comme module mocké. On remplace son `addListener` pour capturer l'écouteur
+ * enregistré par le service, et pour compter les retraits.
+ */
+function avecModuleReseau() {
+  const core = jest.requireActual('expo-modules-core') as { requireOptionalNativeModule: (nom: string) => unknown };
+  const module = core.requireOptionalNativeModule('ExpoNetwork') as { addListener: unknown } | null;
+  if (!module) throw new Error('ExpoNetwork absent du preset Jest');
+  module.addListener = (nom: string, ecouteur: EcouteurReseau) => {
+    if (nom === 'onNetworkStateChanged') reseau = ecouteur;
+    return {
+      remove: () => {
+        retires += 1;
+        reseau = null;
+      },
+    };
+  };
+}
+
+/** Fait croire que le binaire n'embarque pas le module de réseau. */
+function sansModuleReseau() {
+  const core = jest.requireActual('expo-modules-core') as { requireOptionalNativeModule: (nom: string) => unknown };
+  const module = core.requireOptionalNativeModule('ExpoNetwork') as { addListener: unknown } | null;
+  if (module) module.addListener = undefined;
+}
+
 beforeEach(() => {
   app = null;
+  reseau = null;
+  retires = 0;
   appels = 0;
   process.env.EXPO_PUBLIC_SUPABASE_URL = 'https://exemple.test';
+  avecModuleReseau();
 
   jest.spyOn(AppState, 'addEventListener').mockImplementation(((type: string, ecouteur: EcouteurApp) => {
     if (type === 'change') app = ecouteur;
@@ -293,5 +329,93 @@ describe('connectivite : observation', () => {
     expect(c.estEnLigne()).toBe(false);
     c.definirConnectivitePourTest({ connecte: true, internet: true, backend: true });
     expect(c.estEnLigne()).toBe(true);
+  });
+});
+
+describe('connectivite : évènements réseau du système', () => {
+  it('un changement d’interface déclenche une sonde sans attendre le cycle', async () => {
+    jest.useFakeTimers();
+    avecModuleReseau();
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    expect(appels).toBe(0);
+
+    // Le système signale un changement : c'est le cas « mode avion » et « réseau retrouvé ».
+    reseau?.({ isConnected: false, isInternetReachable: false });
+    expect(appels).toBe(0);
+    await jest.advanceTimersByTimeAsync(c.DEMI_TOUR_MS);
+    await Promise.resolve();
+    expect(appels).toBe(1);
+
+    arret();
+  });
+
+  it('plusieurs évènements rapprochés ne sondent qu’une fois', async () => {
+    jest.useFakeTimers();
+    avecModuleReseau();
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+
+    reseau?.({ isConnected: false });
+    reseau?.({ isConnected: true });
+    reseau?.({ isConnected: false });
+    await jest.advanceTimersByTimeAsync(c.DEMI_TOUR_MS);
+    await Promise.resolve();
+
+    expect(appels).toBe(1);
+    arret();
+  });
+
+  it('l’évènement ne décide pas de l’état : c’est la sonde qui tranche', async () => {
+    jest.useFakeTimers();
+    avecModuleReseau();
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+
+    // Le système annonce « connecté », mais le serveur est muet : l'app doit rester hors ligne.
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() => Promise.reject(new Error('serveur muet')));
+    reseau?.({ isConnected: true, isInternetReachable: true });
+    await jest.advanceTimersByTimeAsync(c.DEMI_TOUR_MS);
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(c.lireConnectivite().backend).toBe(false);
+    expect(c.estEnLigne()).toBe(false);
+    arret();
+  });
+
+  it('sans module natif, le repli par sondage continue de fonctionner', async () => {
+    jest.useFakeTimers();
+    // C'est le cas d'un APK construit avant l'ajout d'expo-network : aucun évènement, mais aucun plantage.
+    sansModuleReseau();
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    expect(reseau).toBeNull();
+
+    c.signalerActivite();
+    // Sans évènement réseau, seul le cycle périodique peut déclencher : on avance d'un intervalle complet.
+    await jest.advanceTimersByTimeAsync(c.INTERVALLE_EN_LIGNE_MS);
+    await Promise.resolve();
+
+    expect(appels).toBeGreaterThanOrEqual(1);
+    arret();
+  });
+
+  it('retire l’écouteur au démontage', () => {
+    avecModuleReseau();
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    expect(typeof reseau).toBe('function');
+
+    arret();
+    expect(retires).toBe(1);
+  });
+
+  it('le démontage ne lève pas et peut être appelé deux fois', () => {
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    expect(() => arret()).not.toThrow();
+    // Un second appel ne doit pas lever : React peut démonter deux fois en mode strict.
+    expect(() => arret()).not.toThrow();
   });
 });

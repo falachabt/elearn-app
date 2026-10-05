@@ -59,6 +59,7 @@ const NATIFS_EMBARQUES = new Set([
   'expo-linear-gradient',
   'expo-linking',
   'expo-localization',
+  'expo-network',
   'expo-notifications',
   'expo-router',
   'expo-screen-capture',
@@ -158,11 +159,18 @@ describe('garde-fou module natif', () => {
     expect(communs).toEqual([]);
   });
 
-  it('expo-network n’est ni embarqué ni importé, tant qu’aucun APK ne le contient', () => {
-    // Le paquet a été retiré : le natif n'est dans aucun binaire publié. Le réintroduire exige un nouvel APK.
-    expect(NATIFS_EMBARQUES.has('expo-network')).toBe(false);
+  it('expo-network est chargé paresseusement, jamais importé directement', () => {
+    // Le module est revenu pour détecter la perte de réseau instantanément, mais **jamais** par un import direct :
+    // `expo-network/build/ExpoNetwork.js` appelle `requireNativeModule` au chargement du module, ce qui lève au
+    // démarrage de l'app sur un binaire qui ne l'embarque pas. On passe par `requireOptionalNativeModule`, qui
+    // renvoie null : un ancien APK se contente alors du sondage périodique, sans planter.
+    expect(NATIFS_EMBARQUES.has('expo-network')).toBe(true);
 
-    const importateurs = fichiersSource(RACINE).filter((f) => /['"]expo-network['"]/.test(fs.readFileSync(f, 'utf8')));
+    const importateurs = fichiersSource(RACINE).filter((f) => /from\s+['"]expo-network['"]|require\(\s*['"]expo-network['"]\s*\)/.test(fs.readFileSync(f, 'utf8')));
     expect(importateurs).toEqual([]);
+
+    // Le seul accès autorisé est le chargement optionnel, par nom de module.
+    const source = fs.readFileSync(path.join(RACINE, 'services', 'connectivite.ts'), 'utf8');
+    expect(source).toContain("requireOptionalNativeModule<ModuleReseau>('ExpoNetwork')");
   });
 });
