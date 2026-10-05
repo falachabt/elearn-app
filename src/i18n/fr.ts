@@ -1372,6 +1372,13 @@ export const fr = {
     creerCompte: 'Créer mon compte',
     continuer: 'Continuer',
   },
+  reseau: {
+    horsLigne: 'Hors ligne',
+    horsLigneTexte: 'Tu peux continuer ce qui est déjà téléchargé. Le reste revient au retour du réseau.',
+    necessite: 'Connexion nécessaire',
+    necessiteTexte: 'Cette action demande internet. Réessaie dès que le réseau revient.',
+    revenu: 'Connexion revenue',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

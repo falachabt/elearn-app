@@ -1371,5 +1371,12 @@ export const en: Textes = {
     creerCompte: 'Create my account',
     continuer: 'Continue',
   },
+  reseau: {
+    horsLigne: 'Offline',
+    horsLigneTexte: 'You can keep using what is already downloaded. The rest comes back when the network does.',
+    necessite: 'Connection needed',
+    necessiteTexte: 'This action needs the internet. Try again as soon as the network is back.',
+    revenu: 'Back online',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

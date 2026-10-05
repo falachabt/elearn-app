@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
 import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
+import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { lireProfil } from '@/services/profil';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -46,28 +47,32 @@ export default function LayoutOnglets() {
   if (arrivee === 'a-faire') return <Redirect href="/bienvenue" />;
 
   return (
-    <Tabs style={styles.racine}>
-      <TabSlot style={styles.ecran} />
-      <TabList asChild>
-        <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
-          <TabTrigger name="index" href="/" asChild>
-            <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
-          </TabTrigger>
-          <TabTrigger name="reviser" href="/reviser" asChild>
-            <Onglet libelle={t('onglets.reviser')} icone="book-outline" iconeActive="book" />
-          </TabTrigger>
-          <TabTrigger name="photo" href="/photo" asChild>
-            <Onglet libelle={t('onglets.photo')} icone="camera" central />
-          </TabTrigger>
-          <TabTrigger name="questions" href="/questions" asChild>
-            <Onglet badge={nouvelles} libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
-          </TabTrigger>
-          <TabTrigger name="moi" href="/moi" asChild>
-            <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
-          </TabTrigger>
-        </View>
-      </TabList>
-    </Tabs>
+    <View style={styles.racine}>
+      <Tabs style={styles.racine}>
+        <TabSlot style={styles.ecran} />
+        <TabList asChild>
+          <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
+            <TabTrigger name="index" href="/" asChild>
+              <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
+            </TabTrigger>
+            <TabTrigger name="reviser" href="/reviser" asChild>
+              <Onglet libelle={t('onglets.reviser')} icone="book-outline" iconeActive="book" />
+            </TabTrigger>
+            <TabTrigger name="photo" href="/photo" asChild>
+              <Onglet libelle={t('onglets.photo')} icone="camera" central />
+            </TabTrigger>
+            <TabTrigger name="questions" href="/questions" asChild>
+              <Onglet badge={nouvelles} libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
+            </TabTrigger>
+            <TabTrigger name="moi" href="/moi" asChild>
+              <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
+            </TabTrigger>
+          </View>
+        </TabList>
+      </Tabs>
+      {/* Hors ligne seulement, au-dessus des onglets : la perte et le retour du réseau s'y voient tout de suite. */}
+      <EtatReseau />
+    </View>
   );
 }
 

@@ -13,6 +13,7 @@ import { BienvenuePass } from '@/components/pass/BienvenuePass';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
+import { demarrerConnectivite } from '@/services/connectivite';
 import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
@@ -96,9 +97,12 @@ export default function RootLayout() {
     void precharger();
     const arreterNotifications = suivreOuvertures();
     const arreterLiens = ecouterLiensParrainage();
+    // Observation du réseau : la garde des actions serveur et l'indicateur en dépendent (issue #25).
+    const arreterReseau = demarrerConnectivite();
     return () => {
       arreterNotifications();
       arreterLiens?.();
+      arreterReseau();
     };
   }, []);
 
