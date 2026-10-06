@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming } from 'react-native-reanimated';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { contenuHorsLigneValide } from '@/services/connectivite';
+import { contenuHorsLigneValide, ecouterSimulation } from '@/services/connectivite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon } from '@/theme/theme';
 
@@ -36,9 +36,16 @@ export function EtatReseau() {
   const [ouverte, setOuverte] = useState(false);
   /** Vrai quand le contenu hors ligne a dépassé sa durée de validité (7 jours sans contact serveur). */
   const [expire, setExpire] = useState(false);
+  /** Incrémenté à chaque changement de simulation (page développeur) : force le recalcul ci-dessous. */
+  const [versionSimulation, setVersionSimulation] = useState(0);
+
+  useEffect(() => ecouterSimulation(() => setVersionSimulation((n) => n + 1)), []);
 
   // Issue #13 (option A) : le contenu gardé sur l'appareil ne vaut que 7 jours. Passé ce délai sans contact serveur,
   // on le dit et on demande une reconnexion — c'est ce passage qui synchronise les crédits en attente.
+  //
+  // L'expiration ne dépend pas que de l'état réseau : elle dépend aussi du temps simulé. Se contenter de
+  // `[estEnLigne]` ferait manquer le cas « déjà hors ligne, puis +8 jours », qui est justement le parcours de test.
   //
   // Le `setState` est posé dans le callback de la promesse, jamais dans le corps de l'effet (règle
   // `react-hooks/set-state-in-effect` : un état posé synchroniquement enchaîne les rendus).
@@ -50,7 +57,7 @@ export function EtatReseau() {
     return () => {
       actif = false;
     };
-  }, [estEnLigne]);
+  }, [estEnLigne, versionSimulation]);
 
   const reflet = useSharedValue(-1);
   useEffect(() => {

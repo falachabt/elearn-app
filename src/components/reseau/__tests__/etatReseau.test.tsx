@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
-import { definirConnectivitePourTest, type EtatConnectivite } from '@/services/connectivite';
+import { definirConnectivitePourTest, definirDernierContactPourTest, simulerJoursEcoules, type EtatConnectivite } from '@/services/connectivite';
 
 import { EtatReseau } from '../EtatReseau';
 
@@ -82,5 +82,34 @@ describe('indicateur réseau', () => {
 
     await etat({ connecte: true, internet: true, backend: true, enVerification: false });
     await waitFor(() => expect(screen.queryByLabelText(fr.reseau.horsLigne)).toBeNull());
+  });
+
+  it('affiche l’expiration quand le temps simulé avance APRÈS la coupure', async () => {
+    // Parcours réel de vérification : « forcer hors ligne », PUIS « +8 jours ». L'état réseau ne change pas entre
+    // les deux, donc se fier au seul `estEnLigne` manquerait le cas et la feuille ne s'ouvrirait jamais.
+    const JOUR = 24 * 3600 * 1000;
+    definirDernierContactPourTest(Date.now() - 2 * JOUR);
+    await rendre();
+    await horsLigne();
+
+    // Encore valable : la feuille parle du mode hors ligne, pas de l'expiration.
+    fireEvent.press(screen.getByLabelText(fr.reseau.voir));
+    await waitFor(() => expect(screen.getByText(fr.reseau.horsLigneTexte)).toBeTruthy());
+    fireEvent.press(screen.getByText(fr.reseau.compris));
+    await waitFor(() => expect(screen.queryByText(fr.reseau.horsLigneTexte)).toBeNull());
+
+    // Le temps avance sans que l'état réseau bouge : la pastille doit recalculer.
+    await act(async () => {
+      simulerJoursEcoules(8);
+    });
+
+    fireEvent.press(screen.getByLabelText(fr.reseau.voir));
+    await waitFor(() => expect(screen.getByText(fr.reseau.expireTexte)).toBeTruthy());
+
+    // On remet le temps réel et l'absence de contact pour ne pas polluer les autres tests.
+    await act(async () => {
+      simulerJoursEcoules(0);
+    });
+    definirDernierContactPourTest(null);
   });
 });

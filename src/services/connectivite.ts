@@ -203,10 +203,26 @@ let dernierContact: string | null = null;
  */
 let joursSimules = 0;
 let connexionForcee: boolean | null = null;
+/** Abonnés aux changements de simulation : la pastille doit recalculer l'expiration sans attendre un changement réseau. */
+const ecouteursSimulation = new Set<() => void>();
+
+function notifierSimulation() {
+  for (const ecouteur of ecouteursSimulation) ecouteur();
+}
+
+/**
+ * S'abonne aux changements de simulation. Sans cela, régler « +8 jours » alors qu'on est **déjà** hors ligne ne
+ * recalculerait rien : l'expiration ne dépend pas que de l'état réseau, mais aussi du temps simulé.
+ */
+export function ecouterSimulation(ecouteur: () => void): () => void {
+  ecouteursSimulation.add(ecouteur);
+  return () => ecouteursSimulation.delete(ecouteur);
+}
 
 /** Décale la date « maintenant » de N jours, pour simuler l'expiration du contenu sans attendre une semaine. */
 export function simulerJoursEcoules(jours: number): void {
   joursSimules = Number.isFinite(jours) ? jours : 0;
+  notifierSimulation();
 }
 
 /** Décalage simulé en cours, en jours. */
@@ -217,7 +233,10 @@ export function joursSimulesActuels(): number {
 /** Force l'état en ligne (true) ou hors ligne (false) ; `null` rend la main au comportement réel. */
 export function forcerConnexion(valeur: boolean | null): void {
   connexionForcee = valeur;
-  if (valeur === null) return;
+  if (valeur === null) {
+    notifierSimulation();
+    return;
+  }
   maj({ connecte: valeur, internet: valeur, backend: valeur });
 }
 
@@ -225,6 +244,7 @@ export function forcerConnexion(valeur: boolean | null): void {
 export async function oublierDernierContact(): Promise<void> {
   dernierContact = null;
   await AsyncStorage.removeItem(CLE_DERNIER_CONTACT).catch(() => {});
+  notifierSimulation();
 }
 
 /**
