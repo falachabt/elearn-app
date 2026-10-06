@@ -1383,7 +1383,7 @@ export const fr = {
     verification: 'Vérification de la connexion…',
     compris: 'Compris',
     expireTitre: 'Contenu hors ligne expiré',
-    expireTexte: 'Ton contenu hors ligne date de plus de 7 jours. Reconnecte-toi pour l’actualiser et synchroniser tes crédits.',
+    expireTexte: 'La validité de ce contenu a expiré. Reconnecte-toi pour actualiser ton contenu.',
   },
   dev: {
     titre: 'Paramètres développeur',

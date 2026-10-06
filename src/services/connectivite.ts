@@ -240,6 +240,15 @@ export function forcerConnexion(valeur: boolean | null): void {
   maj({ connecte: valeur, internet: valeur, backend: valeur });
 }
 
+/**
+ * La simulation « hors ligne » est-elle active ? C'est le point unique que la couche réseau consulte pour **couper
+ * réellement** les lectures serveur, et pas seulement l'indicateur. Sans cette coupure, « forcer hors ligne » mentait :
+ * la pastille s'affichait, mais le contenu se chargeait quand même depuis le serveur qui répondait.
+ */
+export function simulationHorsLigneActive(): boolean {
+  return connexionForcee === false;
+}
+
 /** Oublie le dernier contact serveur : le contenu redevient valable, comme sur une installation neuve. */
 export async function oublierDernierContact(): Promise<void> {
   dernierContact = null;

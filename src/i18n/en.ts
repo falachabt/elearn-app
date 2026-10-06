@@ -1382,7 +1382,7 @@ export const en: Textes = {
     verification: 'Checking the connection…',
     compris: 'Got it',
     expireTitre: 'Offline content expired',
-    expireTexte: 'Your offline content is more than 7 days old. Reconnect to refresh it and sync your credits.',
+    expireTexte: 'This content has expired. Reconnect to refresh it.',
   },
   dev: {
     titre: 'Developer settings',
