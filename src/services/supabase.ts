@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-import { simulationHorsLigneActive } from './connectivite';
+import { signalerSucces, simulationHorsLigneActive } from './connectivite';
 
 /** Levée quand la configuration Supabase est absente : message clair, jamais au build. */
 export class ConfigSupabaseManquante extends Error {
@@ -47,20 +47,32 @@ function envelopperPourSimulation(base: SupabaseClient): SupabaseClient {
   const rejetSiHorsLigne = (): Promise<never> | null =>
     simulationHorsLigneActive() ? Promise.reject(erreurReseauSimulee()) : null;
 
+  // Toute réponse serveur réussie rafraîchit le « dernier contact » (via `signalerSucces`) : une preuve aussi directe
+  // qu'une sonde. C'est ce qui permet à un téléchargement fraîchement terminé de ne pas être jugé « expiré » dès qu'on
+  // coupe le réseau.
+  const signaler = <R>(promesse: Promise<R>): Promise<R> => {
+    void promesse.then(
+      () => signalerSucces(),
+      () => undefined,
+    );
+    return promesse;
+  };
+
   return new Proxy(base, {
     get(cible, prop, receveur) {
       const valeur = Reflect.get(cible, prop, receveur);
       if (prop === 'rpc') {
         return (...args: unknown[]) => {
           const rejet = rejetSiHorsLigne();
-          return rejet ?? (valeur as (...a: unknown[]) => unknown).apply(cible, args);
+          if (rejet) return rejet;
+          return signaler((valeur as (...a: unknown[]) => Promise<unknown>).apply(cible, args) as Promise<unknown>) as unknown;
         };
       }
       if (prop === 'from') {
         // `from` renvoie un constructeur de requête : on ne coupe qu'à l'exécution, pas à la construction.
         return (...args: unknown[]) => {
           const constructeur = (valeur as (...a: unknown[]) => unknown).apply(cible, args);
-          return envelopperRequete(constructeur, rejetSiHorsLigne);
+          return envelopperRequete(constructeur, rejetSiHorsLigne, signaler);
         };
       }
       return valeur;
@@ -68,14 +80,15 @@ function envelopperPourSimulation(base: SupabaseClient): SupabaseClient {
   });
 }
 
-function envelopperRequete<T>(constructeur: T, rejet: () => Promise<never> | null): T {
+function envelopperRequete<T>(constructeur: T, rejet: () => Promise<never> | null, signaler: <R>(p: Promise<R>) => Promise<R>): T {
   return new Proxy(constructeur as object, {
     get(cible, prop, receveur) {
       const valeur = Reflect.get(cible, prop, receveur);
       if (typeof valeur === 'function') {
         return (...args: unknown[]) => {
           const promesse = rejet();
-          return promesse ?? (valeur as (...a: unknown[]) => unknown).apply(cible, args);
+          if (promesse) return promesse;
+          return signaler((valeur as (...a: unknown[]) => Promise<unknown>).apply(cible, args) as Promise<unknown>) as unknown;
         };
       }
       return valeur;

@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
-import { definirConnectivitePourTest, definirDernierContactPourTest, simulerJoursEcoules, type EtatConnectivite } from '@/services/connectivite';
+import { definirConnectivitePourTest, definirDernierContactPourTest, forcerConnexion, simulerJoursEcoules, type EtatConnectivite } from '@/services/connectivite';
 
 import { EtatReseau } from '../EtatReseau';
 
@@ -90,7 +90,11 @@ describe('indicateur réseau', () => {
     const JOUR = 24 * 3600 * 1000;
     definirDernierContactPourTest(Date.now() - 2 * JOUR);
     await rendre();
-    await horsLigne();
+    // Le bouton de la page développeur force la connexion : c'est ce qui rend la simulation active.
+    await act(async () => {
+      forcerConnexion(false);
+    });
+    await waitFor(() => expect(screen.getByLabelText(fr.reseau.horsLigne)).toBeTruthy());
 
     // Encore valable : la feuille parle du mode hors ligne, pas de l'expiration.
     fireEvent.press(screen.getByLabelText(fr.reseau.voir));
@@ -106,9 +110,10 @@ describe('indicateur réseau', () => {
     fireEvent.press(screen.getByLabelText(fr.reseau.voir));
     await waitFor(() => expect(screen.getByText(fr.reseau.expireTexte)).toBeTruthy());
 
-    // On remet le temps réel et l'absence de contact pour ne pas polluer les autres tests.
+    // On remet le temps réel, la connexion et l'absence de contact pour ne pas polluer les autres tests.
     await act(async () => {
       simulerJoursEcoules(0);
+      forcerConnexion(null);
     });
     definirDernierContactPourTest(null);
   });

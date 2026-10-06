@@ -160,6 +160,10 @@ export function signalerEchec(maintenant = new Date()): void {
 /** Une action serveur a répondu : le serveur est joignable, la dernière sonde en échec est périmée. */
 export function signalerSucces(maintenant = new Date()): void {
   maj({ connecte: true, internet: true, backend: true }, maintenant);
+  // Toute réponse serveur rafraîchit le « dernier contact » : c'est une preuve aussi directe qu'une sonde. Sans cela,
+  // un téléchargement hors ligne fraîchement terminé pouvait rester jugé « expiré » si la dernière sonde datait, et
+  // l'écran de révision affichait « impossible à charger » jusqu'au redémarrage.
+  enregistrerContact(maintenant);
   relancerCadence(0);
 }
 
@@ -257,13 +261,14 @@ export async function oublierDernierContact(): Promise<void> {
 }
 
 /**
- * Note un contact réussi avec le serveur. Écrit au plus une fois par heure : la sonde passe souvent, et réécrire le
- * stockage à chaque fois serait du gaspillage.
+ * Note un contact réussi avec le serveur. Le **mémoire** est mis à jour à chaque contact (c'est lui qui décide de la
+ * validité du contenu hors ligne) ; le **stockage** n'est réécrit qu'au plus une fois par heure, pour ne pas gaspiller
+ * d'écritures sur une sonde qui passe souvent.
  */
 export function enregistrerContact(maintenant = new Date()): void {
   const precedent = dernierContact ? new Date(dernierContact).getTime() : 0;
-  if (maintenant.getTime() - precedent < 3600 * 1000) return;
   dernierContact = maintenant.toISOString();
+  if (maintenant.getTime() - precedent < 3600 * 1000) return;
   void AsyncStorage.setItem(CLE_DERNIER_CONTACT, dernierContact).catch(() => {});
 }
 
@@ -289,8 +294,11 @@ export async function lireDernierContact(): Promise<number | null> {
 export async function contenuHorsLigneValide(maintenant = Date.now()): Promise<boolean> {
   const contact = await lireDernierContact();
   if (contact === null) return true;
-  // Le décalage simulé (page développeur) permet de vérifier l'expiration sans attendre une semaine.
-  const decalage = joursSimules * 24 * 3600 * 1000;
+  // Le décalage simulé (page développeur) n'a de sens QUE pendant une simulation active (connexion forcée). Sans ce
+  // garde, régler « +8 jours » puis couper réellement la connexion faisait expirer tout le cache téléchargé, alors que
+  // l'élève n'avait rien simulé — il fallait relancer l'app pour retrouver son contenu.
+  const simulationActive = connexionForcee === false;
+  const decalage = simulationActive ? joursSimules * 24 * 3600 * 1000 : 0;
   // Comparaison inclusive : à exactement 7 jours, le contenu est encore valable. Il expire au-delà.
   return maintenant + decalage - contact <= DUREE_VALIDITE_HORS_LIGNE_MS;
 }

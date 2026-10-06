@@ -89,9 +89,12 @@ export function QuizLecon() {
         onTermine={async ({ questions, reponses }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
-          await noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
-          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
+          // La correction est enregistrée AVANT tout le reste : c'est elle que « Refaire mes erreurs » relit. Si une
+          // écriture suivante échouait (stockage hors ligne), elle ne doit pas empêcher ce relecture — sans quoi
+          // l'écran de reprise annoncerait « aucune erreur » alors qu'il y en a.
           await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
+          void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
+          if (quizReussi(score, questions.length)) void marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
           setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
         }}
       />

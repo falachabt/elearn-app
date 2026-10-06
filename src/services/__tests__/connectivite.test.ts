@@ -466,22 +466,27 @@ describe('connectivite : validité du contenu hors ligne (7 jours)', () => {
 describe('connectivite : leviers de développement', () => {
   const JOUR = 24 * 3600 * 1000;
 
-  it('le décalage simulé fait expirer un contenu encore valable', async () => {
+  it('le décalage simulé fait expirer un contenu encore valable, pendant une simulation active', async () => {
     const c = charger();
     const maintenant = Date.UTC(2026, 9, 5, 12);
     c.definirDernierContactPourTest(maintenant - 2 * JOUR);
 
-    // Sans décalage : le contenu est valable.
+    // Sans décalage ni simulation : le contenu est valable.
     expect(c.joursSimulesActuels()).toBe(0);
     await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
 
-    // Avec 8 jours simulés, la même situation devient expirée : c'est ce qui évite d'attendre une semaine.
+    // Un décalage SANS simulation active ne doit rien changer : c'est la protection contre la fuite du réglage
+    // « +8 jours » dans le hors ligne réel (il fallait relancer l'app pour retrouver son contenu).
     c.simulerJoursEcoules(8);
-    expect(c.joursSimulesActuels()).toBe(8);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+
+    // Simulation active (hors ligne forcé) : le décalage s'applique alors.
+    c.forcerConnexion(false);
     await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(false);
 
     // Retour au comportement réel.
     c.simulerJoursEcoules(0);
+    c.forcerConnexion(null);
     await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
   });
 

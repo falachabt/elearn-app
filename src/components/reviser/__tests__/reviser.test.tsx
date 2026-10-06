@@ -8,6 +8,7 @@ import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { enregistrerProfil } from '@/services/profil';
 import { noterFinChapitreVue } from '@/services/entrainement';
+import { lireCorrection } from '@/services/correction';
 import { lireLues, marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -296,6 +297,13 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.reviser.quizNonValidee)).toBeTruthy());
     expect(await lireLues()).toEqual({});
     expect(screen.queryByRole('button', { name: x.reviser.quizSuivante })).toBeNull();
+    // La correction est enregistrée AVEC les 2 fautes : c'est elle que « Refaire mes erreurs » relit. Si elle était
+    // perdue, l'écran de reprise annoncerait « aucune erreur » alors que l'élève vient d'en faire.
+    const correction = await lireCorrection();
+    expect(correction?.source).toBe('lecon');
+    expect(correction?.contexte).toEqual({ type: 'lecon', lecon: 11, cours: 1 });
+    expect(correction?.questions).toHaveLength(3);
+    expect(correction?.reponses.filter((r, i) => r !== correction.questions[i].bonne)).toHaveLength(2);
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.quizReessayer }));
     await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
   });
