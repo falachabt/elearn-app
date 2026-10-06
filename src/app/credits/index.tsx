@@ -48,7 +48,7 @@ export default function EcranCredits() {
 
   const charger = useCallback(async () => {
     try {
-      const et = await lireEtatActionsQuotidiennes();
+      const et = await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId: session?.user?.id });
       setEtatActions(et);
       const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
       setHistorique(h);
@@ -59,7 +59,7 @@ export default function EcranCredits() {
     } finally {
       setChargementHist(false);
     }
-  }, []);
+  }, [session?.user?.id]);
 
   const chargerPlus = async () => {
     if (chargementPlus || !aPlus) return;
@@ -80,7 +80,7 @@ export default function EcranCredits() {
     let actif = true;
     void (async () => {
       try {
-        const et = await lireEtatActionsQuotidiennes();
+        const et = await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId: session?.user?.id });
         if (!actif) return;
         setEtatActions(et);
         const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
@@ -97,7 +97,7 @@ export default function EcranCredits() {
     return () => {
       actif = false;
     };
-  }, []);
+  }, [session?.user?.id]);
 
   const executer = async (action: ActionQuotidienne) => {
     setActionEnCours(action);
@@ -109,6 +109,8 @@ export default function EcranCredits() {
           void rafraichir();
           void charger();
         },
+        // Déjà réclamée (autre appareil, session précédente) : l'écran passe l'action à « faite ».
+        onDejaFait: () => void charger(),
       });
     } finally {
       setActionEnCours(null);
