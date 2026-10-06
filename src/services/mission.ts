@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { suivre } from './analytics';
+import { contenuHorsLigneValide } from './connectivite';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
 import { enregistrerCorrection } from './correction';
 import { TAILLE_DEFAUT } from './rythme';
@@ -85,9 +86,13 @@ export async function chargerMission(
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
-  const missionHorsLigne = await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour));
+  // Expiration (issue #13) : hors ligne, une mission gardée au-delà de la durée de validité n'est plus servie. On
+  // repart alors du serveur, qui échoue sans connexion, et l'écran retombe sur la mission embarquée. Sans ce
+  // contrôle, la mission préchargée contournerait l'expiration puisqu'elle ne passe pas par `avecCopie`.
+  const copieEncoreValable = await contenuHorsLigneValide();
+  const missionHorsLigne = copieEncoreValable ? await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
   if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
-  const brut = await AsyncStorage.getItem(CLE_MISSION);
+  const brut = copieEncoreValable ? await AsyncStorage.getItem(CLE_MISSION) : null;
   const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
   if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
 

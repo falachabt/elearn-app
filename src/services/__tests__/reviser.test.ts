@@ -2,9 +2,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, programmeDu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
+// Les tests passent des dates factices (époque 1000 ms) : le contrôle d'expiration réel conclurait « périmé » à
+// chaque fois. On le neutralise ici, et le test dédié le force à `false` pour vérifier le blocage.
+jest.mock('../connectivite', () => ({ contenuHorsLigneValide: jest.fn(async () => true) }));
+
+const { contenuHorsLigneValide } = jest.requireMock('../connectivite') as { contenuHorsLigneValide: jest.Mock };
+
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
-beforeEach(() => AsyncStorage.clear());
+beforeEach(() => {
+  AsyncStorage.clear();
+  contenuHorsLigneValide.mockResolvedValue(true);
+});
 
 describe('reviser', () => {
   it('lit les cours de la classe et les garde pour le hors ligne', async () => {
@@ -180,5 +189,20 @@ describe('avecCopie', () => {
     const lire = jest.fn().mockRejectedValue(new Error('hors ligne'));
     expect(await avecCopie('test.redemarrage', lire, 2000)).toEqual(['v']);
     expect(lire).not.toHaveBeenCalled();
+  });
+
+  it('ne sert PAS une copie périmée : le contenu expiré est bien bloqué', async () => {
+    // Issue #13 : au-delà de la durée de validité hors ligne, la copie locale ne doit plus être servie. `avecCopie`
+    // est le point de passage unique des contenus (missions, cours, quiz, exercices, annales).
+    await avecCopie('test.expire', async () => ['v'], 1000);
+    oublierCopiesEnMemoire();
+    contenuHorsLigneValide.mockResolvedValue(false);
+
+    const lire = jest.fn().mockRejectedValue(new Error('hors ligne'));
+    await expect(avecCopie('test.expire', lire, 2000)).rejects.toThrow('hors ligne');
+    // La copie a bien été ignorée : on est parti du réseau.
+    expect(lire).toHaveBeenCalledTimes(1);
+
+    contenuHorsLigneValide.mockResolvedValue(true);
   });
 });

@@ -4,6 +4,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { matiere as couleursMatieres } from '@/theme/theme';
 
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
+import { contenuHorsLigneValide } from './connectivite';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
@@ -53,6 +54,11 @@ async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant
  * Copie locale d'abord (M5-03) : rien n'attend le réseau dès qu'une copie existe. Moins de 12 h : servie telle quelle.
  * Plus ancienne : servie tout de suite, et relue en arrière-plan pour la visite suivante. Sans copie : le réseau.
  * L'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert.
+ *
+ * **Expiration (issue #13)** : hors ligne, une copie plus vieille que la durée de validité hors ligne n'est **pas**
+ * servie. On tente alors le réseau, qui échoue sans connexion : l'élève voit un message de connexion au lieu de
+ * consulter indéfiniment du contenu périmé. C'est le point de passage unique de tous les contenus, donc le seul
+ * endroit où cette règle doit vivre — la poser ailleurs la laisserait contournable.
  */
 export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
   let copie = copiesEnMemoire.get(cle);
@@ -69,6 +75,11 @@ export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintena
         // copie illisible : on relit le réseau
       }
     }
+  }
+  if (copie && !(await contenuHorsLigneValide(maintenant))) {
+    // Copie périmée : on la refuse et on repart du réseau. La copie reste en mémoire pour la relecture d'arrière-plan,
+    // qui la remplacera si la connexion est revenue.
+    return relireEtGarder(cle, lire, maintenant);
   }
   if (!copie) return relireEtGarder(cle, lire, maintenant);
   if (maintenant - copie.date >= FRAICHEUR_COPIE_MS && !relecturesEnCours.has(cle)) {
