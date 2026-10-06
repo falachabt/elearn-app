@@ -46,9 +46,14 @@ describe('toucher d’une notification push du serveur', () => {
     expect(router.push).toHaveBeenLastCalledWith('/credits');
   });
 
-  it('un paiement confirmé renvoie vers Moi', () => {
+  it('un paiement confirmé sans identifiant de commande ouvre la liste des paiements', () => {
     toucher({ type: 'payment_confirmed', notificationId: 'n4' });
-    expect(router.push).toHaveBeenCalledWith('/moi');
+    expect(router.push).toHaveBeenCalledWith('/paiements');
+  });
+
+  it('un paiement confirmé avec son identifiant ouvre ce paiement', () => {
+    toucher({ type: 'payment_confirmed', notificationId: 'n4', order_id: 'o-9' });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/paiements/[id]', params: { id: 'o-9' } });
   });
 
   it('sans identifiant de notification, ouvre l’écran sans rien marquer', () => {

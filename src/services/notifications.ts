@@ -47,9 +47,13 @@ export async function compterNonLues(client: Client): Promise<number> {
   return typeof data === 'number' ? data : 0;
 }
 
-/** Marque une notification lue (idempotent : une notification déjà lue garde sa date). */
+/**
+ * Marque une notification lue (idempotent : une notification déjà lue garde sa date). Passe par la fonction serveur
+ * `mark_notification_read` (déjà en base, migration du fil) : la table n'a qu'une règle de lecture, un `update` direct est ignoré sans erreur (0 ligne)
+ * et la notification redevenait non lue à la relecture.
+ */
 export async function marquerLue(client: Client, id: string): Promise<void> {
-  const { error } = await client.from('notifications').update({ read_at: new Date().toISOString() }).eq('id', id).is('read_at', null);
+  const { error } = await client.rpc('mark_notification_read', { p_notification_id: id });
   if (error) throw error;
 }
 
@@ -172,6 +176,11 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   const postId = typeof data?.post_id === 'string' && data.post_id ? data.post_id : null;
   const ecran = typeof data?.screen === 'string' && data.screen.startsWith('/') ? data.screen : null;
   const categorie = categorieDe(type);
+  // Paiement confirmé : le détail de celui-ci quand la notification porte son identifiant, sinon la liste (Moi › Paiements).
+  if (type === 'payment_confirmed') {
+    const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;
+    return commande ? { pathname: '/paiements/[id]', params: { id: commande } } : { pathname: '/paiements' };
+  }
   if ((categorie === 'answers' || categorie === 'polls') && postId) return { pathname: '/question', params: { id: postId } };
   if (ecran && ecran !== '/') return { pathname: ecran };
   if (categorie === 'answers' || categorie === 'polls') return { pathname: '/questions' };
@@ -179,7 +188,7 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   // Recharge du lundi : même écran que le toucher d'un push local de recharge (Moi montre le solde).
   if (type === 'credits_refilled') return { pathname: '/moi' };
   if (categorie === 'credits') return { pathname: '/credits' };
-  if (type === 'payment_confirmed' || type === 'pass_ending') return { pathname: '/moi' };
+  if (type === 'pass_ending') return { pathname: '/moi' };
   return { pathname: '/' };
 }
 

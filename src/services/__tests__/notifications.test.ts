@@ -71,15 +71,18 @@ describe('lectures et écritures serveur', () => {
     expect(await compterNonLues({ rpc: async () => ({ data: null, error: null }), from: jest.fn() } as never)).toBe(0);
   });
 
-  it('marque une notification lue seulement si elle ne l’était pas', async () => {
-    const is = jest.fn(async () => ({ error: null }));
-    const eq = jest.fn(() => ({ is }));
-    const update = jest.fn(() => ({ eq }));
-    await marquerLue({ from: () => ({ update }), rpc: jest.fn() } as never, 'n1');
-    expect(update).toHaveBeenCalledWith({ read_at: expect.any(String) });
-    expect(eq).toHaveBeenCalledWith('id', 'n1');
-    expect(is).toHaveBeenCalledWith('read_at', null);
+  it('marque une notification lue par la fonction serveur (la table n’accepte pas d’update direct)', async () => {
+    const rpc = jest.fn(async () => ({ data: true, error: null }));
+    const from = jest.fn();
+    await marquerLue({ from, rpc } as never, 'n1');
+    expect(rpc).toHaveBeenCalledWith('mark_notification_read', { p_notification_id: 'n1' });
+    expect(from).not.toHaveBeenCalled();
   });
+
+  it('remonte l’échec du serveur pour que l’écran revienne à l’état réel', async () => {
+    await expect(marquerLue({ rpc: async () => ({ data: null, error: new Error('refusé') }), from: jest.fn() } as never, 'n1')).rejects.toThrow('refusé');
+  });
+
 
   it('« tout lire » renvoie le nombre de notifications marquées', async () => {
     const rpc = jest.fn(async () => ({ data: 3, error: null }));
@@ -191,13 +194,20 @@ describe('catégories et destinations', () => {
     expect(destinationDe('poll_revealed', { post_id: 'q2', screen: '/credits' })).toEqual({ pathname: '/question', params: { id: 'q2' } });
   });
 
+  it('un paiement confirmé ouvre ce paiement quand la notification porte son identifiant, sinon la liste', () => {
+    expect(destinationDe('payment_confirmed', { order_id: 'o-1', receipt_no: 'R1' })).toEqual({ pathname: '/paiements/[id]', params: { id: 'o-1' } });
+    expect(destinationDe('payment_confirmed', { order_id: 'o-1', screen: '/moi' })).toEqual({ pathname: '/paiements/[id]', params: { id: 'o-1' } });
+    expect(destinationDe('payment_confirmed', undefined)).toEqual({ pathname: '/paiements' });
+  });
+
   it('retombe sur l’écran donné par le serveur, puis sur celui de la catégorie', () => {
     expect(destinationDe('reward', { screen: '/parrainage/recompenses' })).toEqual({ pathname: '/parrainage/recompenses' });
     expect(destinationDe('post_comment', {})).toEqual({ pathname: '/questions' });
     expect(destinationDe('credits_refilled', { screen: '/' })).toEqual({ pathname: '/moi' });
     expect(destinationDe('reward', { screen: '/' })).toEqual({ pathname: '/credits' });
     expect(destinationDe('referral', undefined)).toEqual({ pathname: '/parrainage' });
-    expect(destinationDe('payment_confirmed', {})).toEqual({ pathname: '/moi' });
+    expect(destinationDe('payment_confirmed', {})).toEqual({ pathname: '/paiements' });
+    expect(destinationDe('payment_confirmed', { screen: '/moi', order_id: '' })).toEqual({ pathname: '/paiements' });
     expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/moi' });
   });
 
