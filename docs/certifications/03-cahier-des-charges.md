@@ -11,13 +11,13 @@ Références : `01-etude-certifications.md` (format, données), `02-etude-ecoles
 - Prix des pass inchangés : 500 / 2 500 / 7 500 FCFA.
 - Migrations additives, schéma édité dans `supabase/schemas/` puis `supabase db diff`, tests pgTAP, PR vers `elearn-supabase` (jamais `main` directement).
 - Tests Jest et pgTAP pour toute fonctionnalité ; états de chaque écran (squelette, vide, erreur, hors ligne, succès), clair et sombre, évènements PostHog.
-- Contenu : originaux uniquement, aucun sujet officiel copié ; mention de non-affiliation visible.
+- Contenu : banque existante importée après contrôle des droits ; aucun sujet officiel de l'éditeur publié sans autorisation ; mention de non-affiliation visible.
 
 ## 2. Périmètre par lot
 
 | Lot | Contenu | Prérequis |
 | --- | --- | --- |
-| C0 | Contenu TOEIC : cahier de style, banque de départ (§4.1), chaîne de production, relecture | Aucun code |
+| C0 | Contenu TOEIC : import de la banque de sujets existante (§4.1), contrôle des droits, compléments, relecture | Aucun code d'app ; accès à la banque |
 | C1 | App : profil Certification, objectif, diagnostic, entraînement par partie, mission du jour, score estimé | C0 (diagnostic et 800 items), lancement de janvier 2027 passé |
 | C2 | Tests blancs chronométrés, packs hors ligne, bilan par compétence, plan de révision, crédits des tests | C1 |
 | C3 | TOEIC Speaking and Writing : rédaction et enregistrement corrigés par IA | C2, coût IA mesuré |
@@ -48,17 +48,18 @@ Si « skills » désigne aussi des **skills d'agent** (instructions réutilisabl
 Format : identifiant, exigence, critère de réception. M = indispensable au lot, S = souhaitable.
 
 ### 4.1 Contenu (lot C0)
-- CERT-C0-1 (M) Cahier de style par partie du TOEIC (nombre de questions, thèmes, types de questions, longueur des textes, débit audio). *Réception* : un test blanc généré a 200 questions réparties 6 / 25 / 39 / 30 / 30 / 16 / 54.
-- CERT-C0-2 (M) Banque de départ : 1 diagnostic, 3 tests blancs, environ 800 items d'entraînement, 600 cartes de vocabulaire, explications en français partout.
-- CERT-C0-3 (M) Relecture humaine de chaque item avant publication (statut `reviewed`).
-- CERT-C0-4 (M) Voix : quatre accents, deux voix par dialogue.
-- CERT-C0-5 (S) Calibrage de difficulté à partir des réponses réelles.
+- CERT-C0-1 (M) **Inventaire et contrôle des droits** de la banque de sujets existante (provenance, licence de publication) avant tout import. *Réception* : réponse écrite de Benny sur l'origine et le droit de publier.
+- CERT-C0-2 (M) Import de la banque en base : chaque test conforme au gabarit (200 questions réparties 6 / 25 / 39 / 30 / 30 / 16 / 54, audio présent pour les parties 1 à 4) ; les tests non conformes sont découpés en séries d'entraînement.
+- CERT-C0-3 (M) Complément par modèle de langage : étiquettes de compétence, explications en français, transcriptions manquantes ; relecture par échantillon avant publication (statut `reviewed`).
+- CERT-C0-4 (M) Transcodage audio léger (mono, faible débit), poids par test mesuré.
+- CERT-C0-5 (S) Voix de synthèse et items générés uniquement pour combler un manque de la banque ; 600 cartes de vocabulaire à produire.
+- CERT-C0-6 (S) Calibrage de difficulté à partir des réponses réelles.
 
 ### 4.2 Arrivée et objectif (lot C1)
 - CERT-1 (M) La carte « Certification » apparaît sur l'écran d'arrivée à côté de Élève et Candidat concours. *Réception* : choix mémorisé, retour possible sans le perdre.
 - CERT-2 (M) Choix de l'examen dans une liste servie par le serveur (`cert_exams`) ; seul le TOEIC est actif au lot C1.
 - CERT-3 (M) Objectif : score visé (paliers servis par le serveur) et date du test facultative ; modifiables dans Moi.
-- CERT-4 (M) Un compte peut avoir un profil scolaire et un objectif de certification ; le profil actif se change dans Moi.
+- CERT-4 (M) Le profil Certification est choisi une fois à l'arrivée et sert uniquement à la certification ; aucune bascule depuis un profil élève ou concours n'est à construire (décision de Benny, 7 octobre). Un utilisateur rattaché par le code d'une université arrive directement dans ce profil.
 - CERT-5 (S) Lien « J'ai un code de mon école » (lot E1).
 
 ### 4.3 Diagnostic (lot C1)
@@ -146,7 +147,7 @@ Rappel : ajuster les parcours A (arrivée), C (accueil), D (réviser), E (offres
 | M-C12 | Feuille de coût d'un test blanc | K3 et voisines |
 | M-C13 | Téléchargement des packs hors ligne | hors ligne existant |
 | M-C14 | Plan de révision et compte à rebours | C ou H |
-| M-C15 | Moi : objectif et changement de profil | H1 |
+| M-C15 | Moi : objectif et date du test | H1 |
 
 **App mobile, écoles**
 | Réf. | Écran | Parcours à ajuster |

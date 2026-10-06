@@ -2,7 +2,7 @@
 
 Date : 7 octobre 2026. Étude seulement, aucun code d'app. Les valeurs de crédits et de prix sont des propositions pour la configuration serveur, jamais des constantes de l'app.
 
-Ce document couvre : les certifications à viser, le format exact à reproduire, les types d'exercices, les mini-exercices, le contenu à produire, le modèle de données Supabase, l'impact sur l'app. Le cahier des charges est dans `03-cahier-des-charges.md`, le business model dans `04-business-model-certifications-ecoles.md`, l'axe écoles dans `02-etude-ecoles.md`.
+Ce document couvre : les certifications à viser, le format exact à reproduire, les types d'exercices, les mini-exercices, le contenu à produire, le modèle de données Supabase, l'impact sur l'app. Le cahier des charges est dans `03-cahier-des-charges.md`, les tarifs dans `04-tarifs-et-modele.md`, l'axe écoles dans `02-etude-ecoles.md`.
 
 Niveau de certitude : le format du TOEIC Listening and Reading est confirmé par les sources citées en fin de document. Les formats TCF, TEF et IELTS sont écrits de mémoire et marqués « à confirmer » : à vérifier sur les sites officiels avant de les inscrire au cahier des charges.
 
@@ -112,28 +112,37 @@ Chaque question a une explication courte **en français** (pourquoi la bonne ré
 
 ## 6. Contenu à produire
 
-### Règle juridique
-« TOEIC » est une marque de l'éditeur du test. Ne jamais copier de sujets officiels : tous les items sont **originaux**. L'app dit « préparation au TOEIC » et affiche une mention de non-affiliation, par exemple : « Elearn Prepa n'est pas affilié au propriétaire du TOEIC. Les scores affichés sont des estimations. » Texte exact à valider (décision 4 du rapport).
+### Point de départ : une banque de sujets audio existe déjà
+Benny (7 octobre) : une bonne banque de sujets, audio compris, existe quelque part et peut être mise dans l'app. Le lot C0 devient donc un travail d'**import et de mise en forme**, pas de fabrication : cela supprime l'essentiel du coût et du délai de production.
 
-### Banque d'items originale
+Avant l'import, trois contrôles, dans cet ordre :
+1. **Provenance et droits** : d'où vient la banque, qui l'a produite, a-t-on le droit de la publier dans une app payante ? Si les sujets reprennent des tests officiels de l'éditeur ou des livres sous licence, c'est un risque juridique sérieux pour une app qui les vend (« TOEIC » est une marque de l'éditeur). Réponse à obtenir de Benny avant tout import.
+2. **Conformité au format** : chaque test importé doit avoir 200 questions réparties 6 / 25 / 39 / 30 / 30 / 16 / 54, audio présent pour les parties 1 à 4.
+3. **Qualité** : réponse unique, explications. Les explications en français et les étiquettes de compétence manquantes peuvent être générées par modèle de langage puis relues.
+
+L'app dit « préparation au TOEIC » et affiche une mention de non-affiliation, par exemple : « Elearn Prepa n'est pas affilié au propriétaire du TOEIC. Les scores affichés sont des estimations. » Texte exact à valider.
+
+### Chaîne d'import proposée
+1. Inventaire de la banque : nombre de tests complets, d'items par partie, formats audio, transcriptions disponibles ou non.
+2. Transcodage de l'audio en voix mono à faible débit (de l'ordre de 8 Mo pour un Listening complet de 45 minutes, à mesurer).
+3. Import en base : scripts qui remplissent `cert_stimuli`, `cert_items`, `cert_mocks` ; statut `draft`.
+4. Complément par modèle de langage : étiquettes de compétence, explications en français, transcriptions manquantes, résumé de piège.
+5. **Relecture par échantillon**, puis publication (`reviewed`, `published`).
+6. Calibrage de la difficulté après usage : taux de réussite réel par item.
+7. Voix de synthèse et génération d'items **seulement** pour combler un manque (une partie sous-représentée) ou renouveler.
+
+### Objectifs de contenu (à ajuster à l'inventaire)
 | Élément | Objectif au lancement du lot | Objectif à 6 mois |
 | --- | --- | --- |
 | Diagnostic | 1 | 2 |
-| Tests blancs complets (200 questions) | 3 | 9 |
-| Items d'entraînement par partie | environ 800 | environ 2 500 |
-| Cartes de vocabulaire des affaires | 600 | 1 500 |
+| Tests blancs complets (200 questions) | selon la banque, au moins 3 | selon la banque |
+| Items d'entraînement par partie | tirés des tests de la banque, découpés par partie | idem, plus compléments |
+| Cartes de vocabulaire des affaires | à produire (600) | 1 500 |
 | Explications en français | toutes | toutes |
-
-### Chaîne de production proposée
-1. Génération du texte et des questions par modèle de langage, selon un cahier de style par partie (nombre et répartition des questions du test réel).
-2. Voix de synthèse pour les accents nord-américain, britannique, australien, canadien ; deux voix par dialogue ; débit proche du test.
-3. Images de la partie 1 : banque libre de droits ou générées (bureau, voyage, commerce).
-4. **Relecture humaine obligatoire** (responsable contenu ou relecteur anglophone) : une seule réponse correcte, pas d'ambiguïté, niveau, naturel de l'audio.
-5. Calibrage de la difficulté après usage : taux de réussite réel par item.
 
 Poids : l'audio d'un Listening complet de 45 minutes, en voix mono à faible débit, pèse de l'ordre de 8 Mo (estimation à mesurer). Les packs se téléchargent par test et par partie, utilisables sept jours hors ligne comme le reste de l'app.
 
-Coût par test blanc : voir `04-business-model-certifications-ecoles.md`.
+Coût du lot C0 : faible tant que la banque existante est exploitable (import, relecture, compléments) ; chiffres dans l'annexe privée.
 
 ## 7. Modèle de données Supabase (conception, pas de migration)
 
@@ -180,7 +189,7 @@ cert_item_stats      item_id, answered_count, correct_count   -- calibrage, tâc
 Plus tard (expression) : `cert_productions` (utilisateur, item, type, fichier, statut, retour IA, coût).
 
 ### Profil, droits, crédits : ce qui change dans l'existant
-- **Profil** : l'arrivée distingue aujourd'hui `eleve` et `concours`. Ajouter `certification`, de façon additive. Un utilisateur peut cumuler parcours scolaire et objectif de certification : le profil actif est un choix de présentation, modifiable dans Moi.
+- **Profil** : l'arrivée distingue aujourd'hui `eleve` et `concours`. Ajouter `certification`, de façon additive. Hypothèse de Benny (7 octobre) : les utilisateurs de certification arrivent **uniquement pour la certification**, et on ne compte pas sur des élèves déjà dans l'app qui changeraient de profil. Le profil est donc choisi une fois à l'arrivée ; pas de bascule ni de cumul à construire. Les tables `user_cert_goals` ne servent qu'à ce profil. Conséquence : l'audience certification est à acquérir séparément (écoles, universités, communication ciblée), voir `04`.
 - **Droits** : les pass existants (`pass_products`) donnent l'accès illimité aux contenus de certification. Le pass « concours » actuel a une fin de saison fixe (`season_ends_on`) : un pass jusqu'à la date du test demanderait une date par achat (décision 2 du rapport).
 - **Crédits** : nouvelles lignes dans `credit_actions`, sans changement de schéma :
 
@@ -206,7 +215,7 @@ Principe de Benny : ajuster l'existant, ne pas redessiner. Aucun écran sans maq
 | Réviser | Cours, S'entraîner, Annales | Profil certification : Méthode (fiches de stratégie), Parties (entraînement), Tests blancs (à la place des Annales) |
 | Photo | Correction d'un exercice | Garde, utile pour une question de grammaire ; correction d'écrit plus tard |
 | Questions | Entraide | Inchangé ; étiquette « Anglais / TOEIC » |
-| Moi | Progression, documents, paiements | Courbe du score estimé, mon objectif, changement de profil |
+| Moi | Progression, documents, paiements | Courbe du score estimé, mon objectif (pas de changement de profil) |
 | Crédits et pass | Feuilles K3, offres | Mêmes feuilles ; nouvelles actions avec leur coût lu du serveur |
 | Hors ligne | Préparation limitée au programme | Téléchargement par pack (diagnostic, test, partie), poids en Mo affiché |
 | Notifications | Rappel du soir | Rappel et compte à rebours avant la date du test |

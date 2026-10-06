@@ -6,10 +6,11 @@ Date : 7 octobre 2026. Étude seulement. Entreprises : hors périmètre, non pri
 
 Une école veut (a) donner l'accès à Elearn Prepa à tous ses élèves ou étudiants sans que chacun paie, (b) créer et organiser ses classes, (c) voir qui travaille et qui progresse.
 
-Trois types de clients, dans cet ordre de priorité :
-1. **Établissements privés du secondaire** (collèges et lycées) : programme, annales, mission du jour, aide IA plafonnée. Profil existant « élève ».
-2. **Universités, instituts et grandes écoles** : préparation à une certification (TOEIC d'abord) pour des promotions entières. Profil « certification ».
-3. **Centres de langues et de préparation aux concours** : mêmes besoins, plus petits groupes.
+Deux types de clients seulement, selon Benny (7 octobre) : **les universités** et **les écoles privées**. Les centres de langues et autres établissements ne sont pas ciblés pour l'instant.
+1. **Universités** (et instituts, grandes écoles) : préparation à une certification (TOEIC d'abord) pour des promotions entières. Profil « certification ». Les étudiants concernés viennent pour la certification et rien d'autre : ils sont rattachés dès l'arrivée, sans passer par un autre profil.
+2. **Écoles privées** : programme, annales, mission du jour, aide IA plafonnée pour les élèves du secondaire (profil existant « élève »), et éventuellement une classe de certification pour les terminales.
+
+Prix et durées : voir `04`. Le prix de référence est 7 500 FCFA par personne (décision de principe de Benny le 7 octobre : « pas mal »).
 
 Ce qui fait vendre : le suivi (le directeur ou l'enseignant voit la progression), l'absence de paiement individuel, et un coût par élève très inférieur à un répétiteur.
 
@@ -66,13 +67,13 @@ Application **web** (pas dans l'app mobile), dans `elearn-site` (Next.js), sous 
 Nouveau fichier de schéma proposé : `f_ecoles.sql`. Tables préfixées `org_`.
 
 ```
-organizations      id, name, kind ('secondaire','superieur','centre'), country, city,
+organizations      id, name, kind ('ecole_privee','universite'), country, city,
                    contact_name, contact_phone, contact_email, status ('pilot','active','expired'), created_at
 org_members        org_id, user_id, role ('admin','teacher','student'), joined_at, left_at
 org_classes        id, org_id, name, level_or_goal, exam_code nullable, created_by
 org_class_members  class_id, user_id, role ('teacher','student'), joined_at
 org_invites        id, org_id, class_id nullable, code (unique, court), role, max_uses, uses, expires_at, created_by
-org_licenses       id, org_id, product ('school_secondary','school_certification'),
+org_licenses       id, org_id, product ('school_year','certification_cohort'),
                    seats, starts_at, ends_at, price_amount, currency, status, order_id nullable
 org_seat_usage     (vue) licence, places occupées, places libres
 ```
@@ -102,5 +103,10 @@ Droits : `entitlements` accepte aujourd'hui `source in ('purchase','reward','man
 | Vente longue | Pilote gratuit de soixante jours sur un nombre de places limité, puis licence |
 | iOS | Une licence achetée hors de l'app par une école n'est pas un achat dans l'app ; vérifier la règle de la plateforme avant publication |
 
-## 7. Ce qu'il faut valider avec de vrais directeurs
-Aucun directeur d'école n'a encore été interrogé. Avant le lot E1, cinq entretiens courts : que regardent-ils, quel budget par élève, qui décide, quel moyen de paiement. Les prix du document `04` sont des hypothèses jusqu'à ces entretiens.
+## 7. Ce qu'il faut valider avec de vrais interlocuteurs
+Benny a déjà des universités et des écoles privées en vue. Avant le lot E1, cinq entretiens courts avec elles : que regardent-elles, quel budget par personne, qui décide, quel moyen de paiement. Les prix du document `04` sont des hypothèses jusqu'à ces entretiens.
+
+## 8. Pour les universités : particularités
+- La cohorte est souvent une promotion entière avec une date de test commune (par exemple avant un examen d'établissement) : prévoir une **date de fin de cohorte** et un compte à rebours partagé.
+- L'établissement veut un **rapport de promotion** (score estimé moyen, répartition par niveau) plus que le détail de chaque étudiant : prévoir un tableau de bord agrégé dès E1.
+- Beaucoup d'étudiants sont majeurs : le sujet de l'accord des parents se pose surtout pour les écoles privées.
