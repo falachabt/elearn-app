@@ -290,6 +290,7 @@ export const fr = {
     minutes: '{{n}} min',
     niveauParMatiere: 'Niveau par matière',
     sansMission: 'Fais ta première mission du jour pour voir ta progression ici.',
+    niveauHorsLigne: 'Le niveau par matière ne peut pas être affiché hors ligne. Reconnecte-toi pour le voir.',
     sansMatiere: 'Le niveau par matière apparaît après quelques missions.',
     horsLigne: 'Impossible de charger ta progression. Vérifie ta connexion.',
     initiales: 'L,M,M,J,V,S,D',

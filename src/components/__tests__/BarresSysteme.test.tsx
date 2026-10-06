@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react-native';
+import { act, render, screen } from '@testing-library/react-native';
 import * as SystemUI from 'expo-system-ui';
 import { Appearance, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -61,6 +61,34 @@ describe('BarresSysteme', () => {
     expect(espion).toHaveBeenLastCalledWith('unspecified');
     // Régression : le natif Android plante si on lui passe null.
     expect(espion).not.toHaveBeenCalledWith(null);
+  });
+});
+
+describe('barres système hors ligne : elles suivent la pastille', () => {
+  it.each([['clair', themes.light, false], ['sombre', themes.dark, true]] as [string, Theme, boolean][])('thème %s : en ligne vert, hors ligne orange, expiré corail', (_nom, theme, sombre) => {
+    expect(couleursBarres(theme, sombre).fond).toBe(theme.barreVert);
+    expect(couleursBarres(theme, sombre, 'enLigne').fond).toBe(theme.barreVert);
+    expect(couleursBarres(theme, sombre, 'horsLigne').fond).toBe(theme.etat.alerte);
+    expect(couleursBarres(theme, sombre, 'expire').fond).toBe(theme.etat.erreur);
+  });
+
+  it.each([['clair', themes.light, false], ['sombre', themes.dark, true]] as [string, Theme, boolean][])('thème %s : icônes lisibles sur orange et corail (>= 4.5)', (_nom, theme, sombre) => {
+    for (const etat of ['horsLigne', 'expire'] as const) {
+      const { fond, icones } = couleursBarres(theme, sombre, etat);
+      expect(contraste(icones === 'light' ? '#FFFFFF' : '#0A0A0A', fond)).toBeGreaterThanOrEqual(4.5);
+    }
+  });
+
+  it('la bande du haut devient orange quand la connexion est forcée hors ligne, puis revient verte', async () => {
+    const { forcerConnexion } = jest.requireActual('@/services/connectivite') as typeof import('@/services/connectivite');
+    await rendre('clair');
+    expect(screen.getByTestId('bande-haut')).toHaveStyle({ backgroundColor: themes.light.barreVert });
+    await act(async () => forcerConnexion(false));
+    expect(screen.getByTestId('bande-haut')).toHaveStyle({ backgroundColor: themes.light.etat.alerte });
+    expect(SystemUI.setBackgroundColorAsync).toHaveBeenLastCalledWith(themes.light.etat.alerte);
+    await act(async () => forcerConnexion(true));
+    await act(async () => forcerConnexion(null));
+    expect(screen.getByTestId('bande-haut')).toHaveStyle({ backgroundColor: themes.light.barreVert });
   });
 });
 

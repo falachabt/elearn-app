@@ -289,6 +289,7 @@ export const en: Textes = {
     minutes: '{{n}} min',
     niveauParMatiere: 'Level by subject',
     sansMission: 'Do your first daily mission to see your progress here.',
+    niveauHorsLigne: 'Your level by subject can’t be shown offline. Reconnect to see it.',
     sansMatiere: 'Your level by subject appears after a few missions.',
     horsLigne: 'Could not load your progress. Check your connection.',
     initiales: 'M,T,W,T,F,S,S',
