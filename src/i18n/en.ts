@@ -266,6 +266,8 @@ export const en: Textes = {
     illimitesCourt: '∞ unlimited',
     passJusqu: 'Pass until {{date}}',
     chargement: 'Loading your balance…',
+    aSynchroniser: 'Balance to confirm',
+    aSynchroniserTexte: 'Spends made offline are not yet confirmed by the server. The balance shown will be adjusted on reconnection.',
     detailTitre: 'My credits',
     disponibles: 'credits available',
     rechargeLundi: 'Monday refill',
@@ -1379,6 +1381,8 @@ export const en: Textes = {
     voir: 'See connection status',
     verification: 'Checking the connection…',
     compris: 'Got it',
+    expireTitre: 'Offline content expired',
+    expireTexte: 'Your offline content is more than 7 days old. Reconnect to refresh it and sync your credits.',
   },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

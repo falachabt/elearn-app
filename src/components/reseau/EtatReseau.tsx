@@ -4,6 +4,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { cancelAnimation, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming } from 'react-native-reanimated';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { contenuHorsLigneValide } from '@/services/connectivite';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon } from '@/theme/theme';
 
@@ -33,6 +34,23 @@ export function EtatReseau() {
   const { theme } = useTheme();
   const reduit = useReduireAnimations();
   const [ouverte, setOuverte] = useState(false);
+  /** Vrai quand le contenu hors ligne a dépassé sa durée de validité (7 jours sans contact serveur). */
+  const [expire, setExpire] = useState(false);
+
+  // Issue #13 (option A) : le contenu gardé sur l'appareil ne vaut que 7 jours. Passé ce délai sans contact serveur,
+  // on le dit et on demande une reconnexion — c'est ce passage qui synchronise les crédits en attente.
+  //
+  // Le `setState` est posé dans le callback de la promesse, jamais dans le corps de l'effet (règle
+  // `react-hooks/set-state-in-effect` : un état posé synchroniquement enchaîne les rendus).
+  useEffect(() => {
+    let actif = true;
+    void contenuHorsLigneValide().then((valide) => {
+      if (actif) setExpire(!valide);
+    });
+    return () => {
+      actif = false;
+    };
+  }, [estEnLigne]);
 
   const reflet = useSharedValue(-1);
   useEffect(() => {
@@ -46,7 +64,8 @@ export function EtatReseau() {
   const anime = useAnimatedStyle(() => ({ transform: [{ translateX: reflet.value * 160 }] }));
 
   if (estEnLigne) return null;
-  const teinte = theme.etat.alerte;
+  const teinte = expire ? theme.etat.erreur : theme.etat.alerte;
+  const fond = expire ? theme.etat.erreurDoux : theme.etat.alerteDoux;
 
   return (
     <>
@@ -56,9 +75,9 @@ export function EtatReseau() {
           accessibilityLabel={t('reseau.voir')}
           hitSlop={MARGE_TOUCHE}
           onPress={() => setOuverte(true)}
-          style={[styles.pastille, { backgroundColor: theme.etat.alerteDoux, borderColor: teinte, shadowColor: theme.ombre }]}
+          style={[styles.pastille, { backgroundColor: fond, borderColor: teinte }]}
         >
-          <Ionicons name="cloud-offline-outline" size={20} color={teinte} />
+          <Ionicons name={expire ? 'alert-circle-outline' : 'cloud-offline-outline'} size={20} color={teinte} />
         </Pressable>
         <View accessibilityLabel={t('reseau.horsLigne')} style={[styles.barre, { backgroundColor: teinte }]}>
           {enVerification && !reduit ? <Animated.View style={[styles.reflet, { backgroundColor: theme.fond.surface }, anime]} /> : null}
@@ -67,10 +86,10 @@ export function EtatReseau() {
       <Feuille
         ouverte={ouverte}
         onFermer={() => setOuverte(false)}
-        icone="cloud-offline-outline"
-        titre={t('reseau.horsLigne')}
-        texte={t('reseau.horsLigneTexte')}
-        mention={enVerification ? t('reseau.verification') : undefined}
+        icone={expire ? 'alert-circle-outline' : 'cloud-offline-outline'}
+        titre={expire ? t('reseau.expireTitre') : t('reseau.horsLigne')}
+        texte={expire ? t('reseau.expireTexte') : t('reseau.horsLigneTexte')}
+        mention={!expire && enVerification ? t('reseau.verification') : undefined}
         actions={[{ libelle: t('reseau.compris'), onPress: () => setOuverte(false) }]}
       />
     </>

@@ -419,3 +419,46 @@ describe('connectivite : évènements réseau du système', () => {
     expect(() => arret()).not.toThrow();
   });
 });
+
+describe('connectivite : validité du contenu hors ligne (7 jours)', () => {
+  const JOUR = 24 * 3600 * 1000;
+
+  it('sans contact connu, le contenu reste valable', async () => {
+    const c = charger();
+    c.definirDernierContactPourTest(null);
+    // Un appareil qui n'a jamais joint le serveur n'a rien à synchroniser : le bloquer serait injuste.
+    await expect(c.contenuHorsLigneValide()).resolves.toBe(true);
+  });
+
+  it('un contact récent garde le contenu valable', async () => {
+    const c = charger();
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+    c.definirDernierContactPourTest(maintenant - 6 * JOUR);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+  });
+
+  it('au-delà de 7 jours, le contenu expire', async () => {
+    const c = charger();
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+    c.definirDernierContactPourTest(maintenant - 8 * JOUR);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(false);
+  });
+
+  it('la limite exacte de 7 jours est encore valable', async () => {
+    const c = charger();
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+    c.definirDernierContactPourTest(maintenant - 7 * JOUR);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+  });
+
+  it('une sonde réussie enregistre le contact et repart la validité', async () => {
+    const c = charger();
+    c.definirDernierContactPourTest(null);
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+
+    await c.sonder(() => Promise.resolve(), maintenant);
+    // Le contact est désormais daté : une semaine plus tard, le contenu sera expiré.
+    await expect(c.contenuHorsLigneValide(maintenant + 6 * JOUR)).resolves.toBe(true);
+    await expect(c.contenuHorsLigneValide(maintenant + 8 * JOUR)).resolves.toBe(false);
+  });
+});

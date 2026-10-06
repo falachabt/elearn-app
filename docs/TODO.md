@@ -6,43 +6,34 @@ Points identifiés, vérifiés, et volontairement **non traités**. Chacun dit q
 
 ## 1. Option A : télécharger le contenu payant sans le débiter (issue #13)
 
-**Décision d'architecture prise, implémentation reportée.** L'élève doit pouvoir télécharger un corrigé ou un PDF
-**sans consommer de crédits** : le fichier est présent sur l'appareil, mais l'accès reste **verrouillé** localement
-tant que les crédits n'ont pas été consommés. S'il consomme, on débite ; s'il a épuisé ses crédits théoriques, il est
-limité et doit se reconnecter.
+**Décision prise, serveur FAIT, client à brancher.** L'élève peut télécharger un corrigé ou un PDF **sans consommer
+de crédits** : le fichier est présent sur l'appareil, mais l'accès reste **verrouillé** localement tant que les
+crédits n'ont pas été consommés.
 
-### Le blocage à résoudre
+### Ce qui est fait (serveur, en production)
 
-Le serveur ne livre **jamais** de contenu payant hors de la transaction de débit. C'est une décision explicite du
-projet (« seule porte vers le contenu payant ») :
+Migration `20261005233000_credits_contenu_hors_ligne.sql` :
 
-| Fonction | Ce qu'elle expose | Ce qu'elle cache |
-| --- | --- | --- |
-| `exercise_detail` | `has_correction: bool` | le corrigé |
-| `class_documents` | nom, type, taille, `correction_id` | l'adresse du PDF et celle du corrigé |
-| `exam_paper` | sujet, `has_correction`, `correction_free` | la correction |
-| `depenser_credits` | **le contenu**, mais débite et marque le déblocage | — |
+- `credit_content_for_download(p_action, p_ref)` sert le contenu **sans débiter et sans marquer le déblocage** ;
+- elle ne sert que ce à quoi l'élève a droit : coût nul, **déjà débloqué**, **premier sujet gratuit du concours**, ou
+  **couvert par un pass**. Elle n'ouvre donc pas le contenu inconnu ;
+- `depenser_credits` reste la seule porte du débit.
 
-Donc « télécharger sans payer » exige une **lecture seule côté serveur** qui n'existe pas encore.
+### Ce qui reste (client)
 
-### Piste retenue
+`creditsHorsLigne` doit appeler `credit_content_for_download` pendant la préparation, **au lieu de** `depenser`, et
+poser un drapeau « payé » à côté du contenu en cache. Tant que ce drapeau est faux, l'écran ne montre pas le contenu :
+il propose de le débloquer (en ligne, ou hors ligne via la file de rejeu).
 
-Ajouter une fonction de lecture seule, par exemple `credit_content_for_download(p_action, p_ref)`, qui renvoie le
-contenu **sans débiter et sans marquer le déblocage**. Côté app, `enregistrerContenuEnCache` gagnerait un drapeau
-« payé » à côté du contenu, et `creditsHorsLigne` refuserait d'afficher un contenu dont le drapeau est faux tant que
-la dépense n'a pas eu lieu.
+### Contrepartie assumée
 
-### Ce qu'il faut accepter en connaissance de cause
-
-Cette voie **affaiblit la protection actuelle** : aujourd'hui, il est impossible d'obtenir un corrigé sans payer.
-Avec A, le contenu transite vers l'appareil sans paiement, et la seule barrière devient le code client. Une
-réinstallation remet le verrou local à zéro. C'est un choix de produit assumé, pas un oubli.
+Le contenu transite vers l'appareil sans paiement : la barrière devient le code client. La borne de **7 jours** (déjà
+en place) limite l'exposition, puisqu'au-delà il faut se reconnecter, ce qui synchronise les crédits en attente.
 
 ### État actuel (à ne pas confondre)
 
-Le mode hors ligne **fonctionne** aujourd'hui, mais avec une autre règle : le débit a lieu **au téléchargement**
-(`src/services/horsLigne.ts`, appels `depenser('exercise_solution', …)` et `depenser('document_pdf', …)`). C'est ce
-comportement que l'option A remplacera.
+Aujourd'hui, la préparation **débite au téléchargement** (`src/services/horsLigne.ts`, appels `depenser(...)`). C'est
+ce comportement que le branchement client remplacera.
 
 ---
 

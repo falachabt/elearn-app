@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { randomUUID } from 'expo-crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { estEnLigne, estErreurReseau } from './connectivite';
+import { estEnLigne, estErreurReseau, DUREE_VALIDITE_HORS_LIGNE_MS } from './connectivite';
 import type { ActionCredit, Depense, Solde, StatutDepense } from './credits';
 
 /**
@@ -76,6 +76,28 @@ export async function lireContenuEnCache<C>(action: ActionCredit, objet: string 
   }
 }
 
+/**
+ * Contenu gardé **et encore valable** (issue #13, option A). Un contenu plus vieux que la durée de validité hors
+ * ligne est retiré au passage et n'est plus servi : c'est le pendant local de la règle des 7 jours, et cela libère
+ * l'espace occupé par des contenus remplacés ou périmés sans toucher aux éléments que l'élève garde volontairement
+ * (ceux de « Mes téléchargements », gérés par `documents.ts`).
+ */
+export async function lireContenuEnCacheValide<C>(action: ActionCredit, objet: string | number, maintenant = Date.now()): Promise<C | null> {
+  try {
+    const brut = await AsyncStorage.getItem(cleCache(action, objet));
+    if (!brut) return null;
+    const enveloppe = JSON.parse(brut) as { contenu?: C; le?: string };
+    const le = enveloppe?.le ? new Date(enveloppe.le).getTime() : null;
+    if (le !== null && Number.isFinite(le) && maintenant - le > DUREE_VALIDITE_HORS_LIGNE_MS) {
+      await oublierContenuEnCache(action, objet);
+      return null;
+    }
+    return enveloppe?.contenu ?? null;
+  } catch {
+    return null;
+  }
+}
+
 /** Retire un contenu du cache (espace à libérer, contenu remplacé). */
 export async function oublierContenuEnCache(action: ActionCredit, objet: string | number): Promise<void> {
   await AsyncStorage.removeItem(cleCache(action, objet)).catch(() => {});
@@ -126,10 +148,17 @@ async function ecrireDepensesEnAttente(pour: string, operations: OperationHorsLi
   await AsyncStorage.setItem(CLE_FILE(pour), JSON.stringify(operations)).catch(() => {});
 }
 
-/** Ajoute une opération à la file. Un même contenu n'y est jamais deux fois : la seconde dépense serait un doublon. */
+/**
+ * Ajoute une opération à la file. Seul le même **identifiant** est refusé, pour ne jamais rejouer deux fois la même
+ * opération.
+ *
+ * On ne déduplique pas sur `(action, objet)` : ce serait faux pour `quiz_explanation`, facturée **à chaque
+ * consultation**. Deux consultations légitimes du même justificatif doivent produire deux opérations. Ce qui protège
+ * du double débit, c'est l'identifiant d'opération envoyé au serveur, pas la file.
+ */
 export async function ajouterDepenseEnAttente(pour: string, operation: OperationHorsLigne): Promise<OperationHorsLigne[]> {
   const operations = await lireDepensesEnAttente(pour);
-  if (operations.some((o) => o.action === operation.action && o.objet === operation.objet)) return operations;
+  if (operations.some((o) => o.id === operation.id)) return operations;
   const suivantes = [...operations, operation];
   await ecrireDepensesEnAttente(pour, suivantes);
   return suivantes;
@@ -246,7 +275,7 @@ export async function depenserAvecRepli<C = Record<string, unknown>>(p: {
   /** Identifiant d'opération, injectable pour les tests. */
   operationId?: string;
 }): Promise<Depense<C>> {
-  const { client, utilisateur, action, objet, cout } = p;
+  const { client, action, objet } = p;
   const maintenant = p.maintenant ?? Date.now();
   // L'identifiant est engendré AVANT la tentative en ligne, et réutilisé tel quel pour le rejeu : c'est la seule
   // façon pour le serveur de reconnaître un rejeu. S'il était créé au moment de la mise en file, la tentative en
@@ -287,7 +316,8 @@ async function depenserHorsLigne<C>(p: {
   const operationId = p.operationId ?? randomUUID();
   if (!p.soldeLocal) throw new ContenuIndisponibleHorsLigne(action);
 
-  const enCache = await lireContenuEnCache<C>(action, objet);
+  // Contenu périmé (plus de 7 jours sans contact serveur) : on ne le sert pas, on demande une reconnexion.
+  const enCache = await lireContenuEnCacheValide<C>(action, objet, maintenant);
   const decision = deciderDepenseHorsLigne({
     solde: p.soldeLocal.total,
     cout,

@@ -10,6 +10,7 @@ import {
   garderSoldeLocal,
   identifiantOperation,
   lireContenuEnCache,
+  lireContenuEnCacheValide,
   lireDepensesEnAttente,
   lireSoldeLocal,
   oublierContenuEnCache,
@@ -23,6 +24,7 @@ import {
 jest.mock('../connectivite', () => ({
   estEnLigne: jest.fn(() => true),
   estErreurReseau: jest.fn(() => false),
+  DUREE_VALIDITE_HORS_LIGNE_MS: 7 * 24 * 3600 * 1000,
 }));
 
 const { estEnLigne, estErreurReseau } = jest.requireMock('../connectivite') as { estEnLigne: jest.Mock; estErreurReseau: jest.Mock };
@@ -105,6 +107,29 @@ describe('credits hors ligne : solution gardée localement', () => {
     await AsyncStorage.setItem(cleCache('exercise_solution', 'ex-1'), 'pas du json');
     expect(await lireContenuEnCache('exercise_solution', 'ex-1')).toBeNull();
   });
+
+  it('ne sert pas un contenu périmé et le retire', async () => {
+    const JOUR = 24 * 3600 * 1000;
+    const maintenant = Date.UTC(2026, 9, 20, 12);
+    // Contenu rangé il y a plus de 7 jours : il ne doit plus être servi, et doit libérer l'espace.
+    await AsyncStorage.setItem(
+      cleCache('exercise_solution', 'ex-vieux'),
+      JSON.stringify({ contenu: { correction: 'x' }, le: new Date(maintenant - 8 * JOUR).toISOString() }),
+    );
+    const lu = await AsyncStorage.getItem(cleCache('exercise_solution', 'ex-vieux'));
+    expect(lu).not.toBeNull();
+
+    expect(await lireContenuEnCacheValide('exercise_solution', 'ex-vieux', maintenant)).toBeNull();
+    // Retiré au passage : il ne réapparaîtra pas au prochain essai.
+    expect(await AsyncStorage.getItem(cleCache('exercise_solution', 'ex-vieux'))).toBeNull();
+  });
+
+  it('sert un contenu encore valable', async () => {
+    const JOUR = 24 * 3600 * 1000;
+    const maintenant = Date.UTC(2026, 9, 20, 12);
+    await enregistrerContenuEnCache('exercise_solution', 'ex-neuf', { correction: 'ok' }, new Date(maintenant - 2 * JOUR));
+    expect(await lireContenuEnCacheValide('exercise_solution', 'ex-neuf', maintenant)).toEqual({ correction: 'ok' });
+  });
 });
 
 describe('credits hors ligne : solde local', () => {
@@ -143,10 +168,19 @@ describe('credits hors ligne : file des opérations', () => {
     expect(file.map((o) => o.id)).toEqual(['op1', 'op2']);
   });
 
-  it('n’empile pas deux fois le même contenu', async () => {
-    // Deux dépenses du même contenu seraient un double débit au rejeu.
+  it('garde deux consultations du même justificatif de quiz', async () => {
+    // `quiz_explanation` est facturée à CHAQUE consultation : deux consultations légitimes doivent produire deux
+    // opérations. Dédupliquer sur (action, objet) en perdait une, donc un crédit n'était jamais débité.
+    const quiz = (id: string): OperationHorsLigne => ({ id, operationId: `uuid-${id}`, action: 'quiz_explanation', objet: '970001', cout: 1, le: new Date().toISOString() });
+    await ajouterDepenseEnAttente('u1', quiz('op1'));
+    await ajouterDepenseEnAttente('u1', quiz('op2'));
+    expect(await lireDepensesEnAttente('u1')).toHaveLength(2);
+  });
+
+  it('n’empile pas deux fois la même opération', async () => {
+    // Même identifiant = même opération : la rejouer deux fois serait un double débit.
     await ajouterDepenseEnAttente('u1', operation('op1'));
-    await ajouterDepenseEnAttente('u1', operation('op2'));
+    await ajouterDepenseEnAttente('u1', operation('op1'));
     expect(await lireDepensesEnAttente('u1')).toHaveLength(1);
   });
 

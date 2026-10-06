@@ -267,6 +267,8 @@ export const fr = {
     illimitesCourt: '∞ illimités',
     passJusqu: 'Pass jusqu’au {{date}}',
     chargement: 'Chargement du solde…',
+    aSynchroniser: 'Solde à confirmer',
+    aSynchroniserTexte: 'Des dépenses faites hors ligne ne sont pas encore confirmées par le serveur. Le solde affiché sera ajusté à la reconnexion.',
     detailTitre: 'Mes crédits',
     disponibles: 'crédits disponibles',
     rechargeLundi: 'Recharge du lundi',
@@ -1380,6 +1382,8 @@ export const fr = {
     voir: 'Voir l’état de la connexion',
     verification: 'Vérification de la connexion…',
     compris: 'Compris',
+    expireTitre: 'Contenu hors ligne expiré',
+    expireTexte: 'Ton contenu hors ligne date de plus de 7 jours. Reconnecte-toi pour l’actualiser et synchroniser tes crédits.',
   },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;

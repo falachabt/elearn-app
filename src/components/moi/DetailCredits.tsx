@@ -7,6 +7,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
+import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { useQuand } from './useQuand';
@@ -19,7 +20,7 @@ import { useQuand } from './useQuand';
 export function DetailCredits() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { solde, depensesSemaine } = useCredits();
+  const { solde, depensesSemaine, depensesEnAttente } = useCredits();
   const quand = useQuand();
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/moi'));
 
@@ -44,6 +45,11 @@ export function DetailCredits() {
       }
     >
       {!solde ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('profil.chargement')}</Text> : null}
+      {/*
+        Issue #13 : un solde local n'est jamais présenté comme confirmé par le serveur. Tant que des dépenses
+        faites hors ligne n'ont pas été confirmées, on le dit — sinon l'élève lit un solde que le serveur ignore.
+      */}
+      {depensesEnAttente > 0 ? <Banniere ton="alerte" titre={t('profil.aSynchroniser')} texte={t('profil.aSynchroniserTexte')} /> : null}
       {solde ? (
         <>
           <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>

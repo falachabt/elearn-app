@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { requireOptionalNativeModule } from 'expo-modules-core';
 import { AppState, Platform } from 'react-native';
 
@@ -180,6 +181,62 @@ export function estErreurReseau(erreur: unknown): boolean {
   return /network|failed to fetch|fetch failed|timeout|timed out|econnrefused|enotfound|délai/.test(message);
 }
 
+/** Clé du dernier contact réussi avec le serveur. */
+export const CLE_DERNIER_CONTACT = 'reseau.dernierContact';
+
+/**
+ * Durée de validité du contenu gardé sur l'appareil : au-delà, l'élève doit se reconnecter (issue #13, option A).
+ *
+ * Sans cette borne, un élève pourrait préparer du contenu, rester hors ligne indéfiniment, et ne jamais synchroniser
+ * les crédits qu'il doit — la file de rejeu ne partirait jamais. La borne force le passage : on se reconnecte, on
+ * synchronise, et les dépenses en attente sont appliquées.
+ */
+export const DUREE_VALIDITE_HORS_LIGNE_MS = 7 * 24 * 3600 * 1000;
+
+let dernierContact: string | null = null;
+
+/**
+ * Note un contact réussi avec le serveur. Écrit au plus une fois par heure : la sonde passe souvent, et réécrire le
+ * stockage à chaque fois serait du gaspillage.
+ */
+export function enregistrerContact(maintenant = new Date()): void {
+  const precedent = dernierContact ? new Date(dernierContact).getTime() : 0;
+  if (maintenant.getTime() - precedent < 3600 * 1000) return;
+  dernierContact = maintenant.toISOString();
+  void AsyncStorage.setItem(CLE_DERNIER_CONTACT, dernierContact).catch(() => {});
+}
+
+/** Dernier contact connu avec le serveur, en ms, ou null si aucun n'a jamais été enregistré. */
+export async function lireDernierContact(): Promise<number | null> {
+  if (dernierContact) return new Date(dernierContact).getTime();
+  try {
+    const brut = await AsyncStorage.getItem(CLE_DERNIER_CONTACT);
+    if (!brut) return null;
+    const t = new Date(brut).getTime();
+    dernierContact = Number.isFinite(t) ? brut : null;
+    return Number.isFinite(t) ? t : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Le contenu gardé sur l'appareil est-il encore valable ? Faux au-delà de `DUREE_VALIDITE_HORS_LIGNE_MS` sans
+ * contact serveur. Un appareil qui n'a jamais contacté le serveur est considéré comme valable : il n'a rien à
+ * synchroniser, et bloquer un premier usage hors ligne serait injuste.
+ */
+export async function contenuHorsLigneValide(maintenant = Date.now()): Promise<boolean> {
+  const contact = await lireDernierContact();
+  if (contact === null) return true;
+  // Comparaison inclusive : à exactement 7 jours, le contenu est encore valable. Il expire au-delà.
+  return maintenant - contact <= DUREE_VALIDITE_HORS_LIGNE_MS;
+}
+
+/** Force l'état du dernier contact (tests uniquement). */
+export function definirDernierContactPourTest(valeur: number | null): void {
+  dernierContact = valeur === null ? null : new Date(valeur).toISOString();
+}
+
 /**
  * Interroge le serveur pour savoir s'il répond vraiment. `fetchTete` est injectable pour les tests ; par défaut un
  * `GET` sur la route de santé de l'authentification, avec la clé publique : le serveur répond alors un vrai 200.
@@ -196,6 +253,7 @@ export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Da
       joignable = false;
     }
     // Une sonde réussie prouve l'interface et le serveur ; une sonde ratée ne prouve que le serveur.
+    if (joignable) enregistrerContact(new Date(maintenant));
     maj({ internet: joignable || etat.internet, backend: joignable, enVerification: false }, new Date(maintenant));
     return joignable;
   })();
