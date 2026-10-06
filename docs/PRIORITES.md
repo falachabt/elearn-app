@@ -6,14 +6,14 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 
 Étiquettes : P0 = avant tout autre chantier, P1 = chemin critique du lancement, P2 = avant les stores, P3 = lot 2 (après le lancement de janvier 2027).
 
+## Fait (6 octobre 2026, recette de Benny sur téléphone)
+- #31, #25 et #13 fermées : mode hors ligne complet validé. Espace occupé et retrait des contenus périmés : non retenus.
+
 ## En cours
 - Recette du 6 octobre sur #31 (2e lot : bouton Terminer sur le bilan, texte « sujets de ta classe », solde simulé en mode développeur, mission terminée hors ligne gardée et envoyée au retour du réseau, progression lisible hors ligne) : points 1 à 6 validés par Benny ; corrigés ensuite : progression en direct, fin de correction, refaire mes erreurs durci, retour à la liste des chapitres, message de contenu expiré, bouton Publier. #13 point 5 : « Tout supprimer » ne supprime plus les documents préchargés.
 - Feuille de crédits épuisés K3 (Recharger, Gagner, Plus tard) : maquette `docs/maquettes/k3-credits-epuises.html` validée par Benny le 6 octobre, code et tests faits ; reste à voir sur téléphone.
-- #25 Détection de connexion : code fait, validation sur téléphone dans #31.
-- #13 Mode hors ligne complet : code fait en grande partie (voir le commentaire du 6 octobre sur l'issue).
 
 ## P0
-- #31 Valider les correctifs hors ligne sur téléphone, OTA obligatoire (code durci le 6 octobre : écritures locales des quiz attendues, case cochée protégée de la synchro ; reste la recette sur appareil).
 - #36 Révoquer les clés exposées dans l'historique du dépôt public (Benny, consoles des services).
 - elearn-supabase #44 Signature du webhook pawaPay, avant tout paiement réel.
 
@@ -35,7 +35,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 #38 classes et classement, #29 WhatsApp Business, #12 partage d'une correction photo, #16 classement candidat annales, elearn-supabase #13, #14, #16, back-office elearn #17 à #22.
 
 ## Trois priorités suivantes
-1. Valider les correctifs hors ligne (#31), publier l'OTA obligatoire, fermer #25 puis #13.
+1. Mode hors ligne : fait (#31, #25, #13 fermées).
 2. Paiement pawaPay en sandbox de bout en bout (#35, supabase #44, #3, #4), puis entonnoir PostHog (#17).
 3. Révoquer les clés exposées (#36), puis la sécurité RLS avant les stores.
 
