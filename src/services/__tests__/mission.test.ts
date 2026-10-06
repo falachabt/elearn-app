@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { suivre } from '../analytics';
-import { calculerSerie, chargerMission, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
+import { calculerSerie, chargerMission, envoyerPassages, lirePassagesLocaux, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
 
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
 
@@ -157,6 +157,33 @@ describe('terminerMission', () => {
     expect(c.from).toHaveBeenCalledWith('mission_runs');
     expect(c.insert).toHaveBeenCalledWith(expect.objectContaining({ day: '2026-10-01', level: '3e', score: 1, total: 2, duration_s: 61 }));
     expect(suivre).toHaveBeenCalledWith('mission_completed', { score: 1, total: 2, duree_s: 61, serie: 2 });
+  });
+
+  it('hors ligne : la mission est gardée sur le téléphone puis envoyée UNE fois au retour du réseau', async () => {
+    const insert = jest.fn().mockResolvedValueOnce({ error: new Error('hors ligne') }).mockResolvedValue({ error: null });
+    const c = { rpc: jest.fn(), from: jest.fn(() => ({ insert })) };
+    const questions = [convertir(ligne(1), VF, () => 0)!];
+    await terminerMission(c as never, { questions, reponses: [questions[0].bonne], niveau: '3e', dureeS: 90, jour: '2026-10-01' });
+    await envoyerPassages(c as never).catch(() => {});
+    // Premier envoi refusé : le passage reste en attente, rien n'est perdu.
+    let passages = await lirePassagesLocaux();
+    expect(passages).toHaveLength(1);
+    // Retour du réseau : il part, et un second appel n'envoie rien de plus.
+    await envoyerPassages(c as never);
+    await envoyerPassages(c as never);
+    passages = await lirePassagesLocaux();
+    expect(passages).toHaveLength(1);
+    expect(passages[0].envoye).toBe(true);
+    expect(insert).toHaveBeenCalledTimes(2);
+    expect(insert).toHaveBeenLastCalledWith(expect.objectContaining({ day: '2026-10-01', level: '3e', score: 1, total: 1, duration_s: 90 }));
+  });
+
+  it('un échec réseau qui lève une exception ne perd pas non plus le passage', async () => {
+    const c = { rpc: jest.fn(), from: jest.fn(() => ({ insert: jest.fn().mockRejectedValue(new Error('coupé')) })) };
+    const questions = [convertir(ligne(1), VF, () => 0)!];
+    await terminerMission(c as never, { questions, reponses: [0], niveau: '3e', dureeS: 30, jour: '2026-10-01' });
+    await envoyerPassages(c as never);
+    expect((await lirePassagesLocaux()).map((p) => p.envoye)).toEqual([false]);
   });
 
   it('garde les erreurs et les cours à revoir', async () => {

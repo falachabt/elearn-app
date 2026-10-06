@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { AppState } from 'react-native';
 
 import {
@@ -22,6 +22,7 @@ import {
   synchroniserDepensesHorsLigne,
 } from '@/services/creditsHorsLigne';
 import { ecouterConnectivite, estEnLigne } from '@/services/connectivite';
+import { definirSoldeSimule, ecouterSoldeSimule, soldeSimule } from '@/services/creditsDev';
 import { getSupabase } from '@/services/supabase';
 
 import { useSession } from './SessionProvider';
@@ -59,7 +60,13 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const invite = session?.user.is_anonymous ?? null;
   // Le solde est rangé avec son propriétaire : à un changement de compte, l'ancien ne s'affiche plus.
   const [etat, setEtat] = useState<{ pour: string; solde: Solde } | null>(null);
-  const solde = etat && etat.pour === utilisateur ? etat.solde : null;
+  const soldeReel = etat && etat.pour === utilisateur ? etat.solde : null;
+  // Solde simulé (page développeur) : remplace l'affichage, jamais le registre du serveur.
+  const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
+  const solde = useMemo<Solde | null>(
+    () => (soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel),
+    [soldeReel, simule],
+  );
   const majSolde = useCallback(
     (pour: string, f: (s: Solde | null) => Solde | null) =>
       setEtat((e) => {
@@ -171,6 +178,10 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
 
   const depenser = useCallback(
     async <C,>(action: ActionCredit, objet: string | number) => {
+      // Solde simulé trop bas : refus immédiat, sans appel serveur (permet de tester la feuille « Crédits épuisés »).
+      const simulation = soldeSimule();
+      const prix = couts[action] ?? 0;
+      if (simulation !== null && simulation < prix) return { statut: 'insufficient', cout: prix, solde: simulation, contenu: null } as Depense<C>;
       // Hors ligne, la dépense se fait sur le dernier solde connu, adossée au contenu déjà présent sur l'appareil.
       const garde = utilisateur ? await lireSoldeLocal(utilisateur) : null;
       const r = await depenserAvecRepli<C>({
@@ -182,6 +193,8 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
         objet,
       });
       if (utilisateur) majSolde(utilisateur, (s) => (s ? { ...s, total: r.solde } : s));
+      // La dépense réelle a eu lieu : le solde simulé baisse du même prix, pour que la suite du test reste cohérente.
+      if (simulation !== null && r.statut !== 'insufficient') definirSoldeSimule(simulation - prix);
       return r;
     },
     [utilisateur, majSolde, couts],

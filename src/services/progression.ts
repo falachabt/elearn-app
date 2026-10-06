@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { jourLocal } from './mission';
+import { envoyerPassages, jourLocal, lirePassagesLocaux } from './mission';
 
 type Client = Pick<SupabaseClient, 'from'>;
 
@@ -62,13 +62,28 @@ type LigneRun = { day: string; duration_s: number | null; total: number; details
 /** Missions faites des 30 derniers jours (et de la semaine en cours), lues sur le compte (invité compris). */
 export async function lirePassages(client: Client, maintenant = new Date()): Promise<Passage[]> {
   const debut = new Date(Math.min(lundiDe(maintenant).getTime(), maintenant.getTime() - FENETRE_NIVEAU_JOURS * 86_400_000));
-  const { data, error } = await client.from('mission_runs').select('day, duration_s, total, details').gte('day', jourLocal(debut)).order('day');
-  if (error) throw error;
-  return ((data ?? []) as LigneRun[]).map((l) => ({
+  const limite = jourLocal(debut);
+  // Les missions terminées hors ligne partent maintenant (sans attendre ni bloquer si le réseau manque).
+  await envoyerPassages(client).catch(() => {});
+  const locaux = (await lirePassagesLocaux()).filter((p) => p.day >= limite);
+  const depuisLigne = (l: LigneRun): Passage => ({
     jour: l.day,
     dureeS: l.duration_s,
     questions: l.total,
     // Les missions jouées avant le 01/10 n'ont pas le nom de la matière : elles comptent dans le temps, pas dans le niveau.
     chapitres: (l.details?.chapitres ?? []).map((c) => ({ matiere: c.libelleMatiere ?? '', bonnes: c.bonnes ?? 0, total: c.total ?? 0 })),
-  }));
+  });
+  const { data, error } = await client.from('mission_runs').select('day, duration_s, total, details').gte('day', limite).order('day').then(
+    (r) => r,
+    (e: unknown) => ({ data: null, error: e ?? new Error('réseau') }),
+  );
+  if (error) {
+    // Hors ligne : la progression se calcule sur les missions gardées sur le téléphone, plutôt que de rester vide.
+    if (locaux.length) return locaux.map((p) => depuisLigne({ day: p.day, duration_s: p.duration_s, total: p.total, details: p.details as LigneRun['details'] }));
+    throw error;
+  }
+  const serveur = ((data ?? []) as LigneRun[]).map(depuisLigne);
+  // Seules les missions pas encore reçues par le serveur s'ajoutent : jamais de doublon avec celles qu'il renvoie.
+  const enAttente = locaux.filter((p) => !p.envoye).map((p) => depuisLigne({ day: p.day, duration_s: p.duration_s, total: p.total, details: p.details as LigneRun['details'] }));
+  return [...serveur, ...enAttente];
 }

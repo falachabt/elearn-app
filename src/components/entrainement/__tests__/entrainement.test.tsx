@@ -226,7 +226,11 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByRole('button', { name: x.correction.relireCours })).toBeTruthy());
     // 2/3 : « bien joué ».
     expect(screen.getByText(x.correction.titreScore.replace('{{score}}', '2').replace('{{total}}', '3').replace('{{message}}', x.correction.bienJoue))).toBeTruthy();
-    expect(screen.getAllByRole('button', { name: x.correction.terminer })).toHaveLength(1); // seulement le ✕ en haut
+    // Le ✕ en haut ET le bouton « Terminer » du bilan : même action.
+    expect(screen.getAllByRole('button', { name: x.correction.terminer })).toHaveLength(2);
+    (router.back as jest.Mock).mockClear();
+    await fireEvent.press(screen.getAllByRole('button', { name: x.correction.terminer })[1]);
+    expect(router.replace).toHaveBeenCalledWith('/');
     await fireEvent.press(screen.getByRole('button', { name: x.correction.relireCours }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions' } });
     const c = await lireCorrection();

@@ -1,5 +1,5 @@
 import { Redirect, router } from 'expo-router';
-import { useState } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
@@ -14,7 +14,9 @@ import {
   oublierDernierContact,
   simulerJoursEcoules,
 } from '@/services/connectivite';
+import { ajusterSoldeSimule, definirSoldeSimule, ecouterSoldeSimule, soldeSimule } from '@/services/creditsDev';
 import { modeDeveloppement } from '@/services/developpement';
+import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -34,6 +36,8 @@ export default function ParametresDeveloppeur() {
   const [jours, setJours] = useState(joursSimulesActuels());
   const [connexion, setConnexion] = useState<boolean | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const { solde } = useCredits();
+  const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
 
   if (!modeDeveloppement()) return <Redirect href="/" />;
 
@@ -73,6 +77,18 @@ export default function ParametresDeveloppeur() {
         <Bouton libelle={t('dev.enLigne')} variante={connexion === true ? undefined : 'secondaire'} onPress={() => basculerConnexion(true)} />
         <Bouton libelle={t('dev.horsLigne')} variante={connexion === false ? undefined : 'secondaire'} onPress={() => basculerConnexion(false)} />
         <Bouton libelle={t('dev.reel')} variante={connexion === null ? undefined : 'secondaire'} onPress={() => basculerConnexion(null)} />
+      </View>
+
+      <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionCredits')}</Text>
+      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('dev.creditsAide')}</Text>
+      <Text accessibilityLiveRegion="polite" style={[typo.texteFort, { color: theme.texte.principal }]}>
+        {simule === null ? t('dev.creditsReel', { n: solde?.total ?? 0 }) : t('dev.creditsSimule', { n: simule })}
+      </Text>
+      <View style={styles.lignes}>
+        <Bouton libelle={t('dev.creditsVider')} variante="secondaire" onPress={() => definirSoldeSimule(0)} />
+        <Bouton libelle={t('dev.creditsMoins')} variante="secondaire" onPress={() => ajusterSoldeSimule(-5, solde?.total ?? 0)} />
+        <Bouton libelle={t('dev.creditsPlus')} variante="secondaire" onPress={() => ajusterSoldeSimule(5, solde?.total ?? 0)} />
+        <Bouton libelle={t('dev.creditsReelBouton')} variante={simule === null ? undefined : 'secondaire'} onPress={() => definirSoldeSimule(null)} />
       </View>
 
       <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionDonnees')}</Text>
