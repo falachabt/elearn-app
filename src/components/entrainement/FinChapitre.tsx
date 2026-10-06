@@ -19,6 +19,7 @@ import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { CarteListe } from '../liste/CarteListe';
 import { PastilleType } from '../liste/PastilleType';
+import { versListeChapitres } from '../reviser/versListeChapitres';
 
 type Etat = { lecons: number; validees: number; quiz: QuizLibre[]; exercices: Exercice[] };
 
@@ -26,7 +27,7 @@ type Etat = { lecons: number; validees: number; quiz: QuizLibre[]; exercices: Ex
 export function FinChapitre() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { cours, nom } = useLocalSearchParams<{ cours: string; nom?: string }>();
+  const { cours, nom, matiere } = useLocalSearchParams<{ cours: string; nom?: string; matiere?: string }>();
   const [etat, setEtat] = useState<Etat | null>(null);
   const pret = useSessionPrete();
 
@@ -50,7 +51,8 @@ export function FinChapitre() {
     };
   }, [cours, pret]);
 
-  const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+  // « Retour au chapitre » ramène à la liste des chapitres de la matière, pas à la dernière leçon lue.
+  const retour = () => versListeChapitres(matiere);
   if (!etat) return <Ecran>{null}</Ecran>;
   const complet = etat.lecons > 0 && etat.validees === etat.lecons;
   const ouvrir = (onglet?: 'quiz' | 'exercices') => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '', ...(onglet ? { onglet } : {}) } });

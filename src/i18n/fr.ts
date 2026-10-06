@@ -116,6 +116,9 @@ export const fr = {
     classe: 'Classe',
     autre: 'Autre',
     avertissementNumeros: 'Ne partage pas ton numéro, ton adresse ni ceux des autres : on les masque automatiquement.',
+    erreurTexte: 'Écris au moins {{n}} caractères, ou ajoute une photo.',
+    erreurMatiere: 'Choisis une matière.',
+    minCaracteres: 'Au moins {{n}} caractères, ou une photo.',
     publierErreur: 'La question n’a pas pu être publiée. Vérifie ta connexion et réessaie.',
     numeroMasque: 'Numéro masqué',
     garderBrouillon: 'Garder ton brouillon ?',
@@ -1385,6 +1388,7 @@ export const fr = {
     compris: 'Compris',
     expireTitre: 'Contenu hors ligne expiré',
     expireTexte: 'La validité de ce contenu a expiré. Reconnecte-toi pour actualiser ton contenu.',
+    expireErreur: 'Ton contenu hors ligne a expiré (plus de 7 jours sans connexion). Connecte-toi à Internet pour l’actualiser.',
   },
   dev: {
     titre: 'Paramètres développeur',

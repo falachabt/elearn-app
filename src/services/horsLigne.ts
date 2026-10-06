@@ -82,7 +82,9 @@ export async function lireEtatHorsLigne(): Promise<EtatHorsLigne | null> {
 async function enregistrer(etat: EtatHorsLigne): Promise<void> {
   etat.actualiseLe = new Date().toISOString();
   await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
-  notifier(etat);
+  // Copie : la file mute le même objet d'une tâche à l'autre, et React ignore un `setEtat` qui reçoit la même référence
+  // (les barres ne bougeaient qu'en quittant puis en rouvrant la page, qui relisait le disque).
+  notifier({ ...etat, progression: { ...etat.progression }, taches: [...etat.taches] });
 }
 
 export async function aVuInvitationHorsLigne(): Promise<boolean> {

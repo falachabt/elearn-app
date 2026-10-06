@@ -69,7 +69,12 @@ export function RevoirCorrection() {
         <Bouton variante="secondaire" libelle={t('correction.precedente')} desactive={n === 0} onPress={() => setN(n - 1)} />
       </View>
       <View style={styles.flex}>
-        <Bouton variante="secondaire" libelle={t('correction.suivante')} desactive={n >= total - 1} onPress={() => setN(n + 1)} />
+        {n >= total - 1 ? (
+          // Dernière question : plus de « Suivante » bloqué, on peut quitter la correction.
+          <Bouton libelle={t('correction.terminer')} onPress={retour} />
+        ) : (
+          <Bouton variante="secondaire" libelle={t('correction.suivante')} onPress={() => setN(n + 1)} />
+        )}
       </View>
     </View>
   );

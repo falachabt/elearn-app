@@ -115,6 +115,9 @@ export const en: Textes = {
     classe: 'Class',
     autre: 'Other',
     avertissementNumeros: 'Do not share your number, your address or anyone else’s: we hide them automatically.',
+    erreurTexte: 'Write at least {{n}} characters, or add a photo.',
+    erreurMatiere: 'Pick a subject.',
+    minCaracteres: 'At least {{n}} characters, or a photo.',
     publierErreur: 'The question could not be posted. Check your connection and try again.',
     numeroMasque: 'Number hidden',
     garderBrouillon: 'Keep your draft?',
@@ -1384,6 +1387,7 @@ export const en: Textes = {
     compris: 'Got it',
     expireTitre: 'Offline content expired',
     expireTexte: 'This content has expired. Reconnect to refresh it.',
+    expireErreur: 'Your offline content has expired (more than 7 days without a connection). Connect to the internet to refresh it.',
   },
   dev: {
     titre: 'Developer settings',

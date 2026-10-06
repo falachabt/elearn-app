@@ -46,7 +46,8 @@ export function RefaireErreurs() {
         // La session d'origine est mise à jour, puis on y revient : grille, score et compteurs recalculés.
         const misAJour = await appliquerRefaire({ questions: q, reponses }, getSupabase()).catch(() => null);
         if (misAJour && router.canGoBack()) return router.back();
-        if (!misAJour) await enregistrerCorrection({ source: 'erreurs', questions: q, reponses });
+        // Session à part seulement quand il n'y a vraiment aucune session d'origine à mettre à jour.
+        if (!misAJour && !(await lireCorrection())) await enregistrerCorrection({ source: 'erreurs', questions: q, reponses });
         router.replace('/quiz/resultats');
       }}
     />

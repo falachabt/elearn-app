@@ -22,6 +22,7 @@ import { Ecran } from '../Ecran';
 import { Rebond } from '../Rebond';
 import { BoutonFermer, MiniTest } from '../arrivee/MiniTest';
 import { ResultatsQuiz } from '../quiz/ResultatsQuiz';
+import { versListeChapitres } from './versListeChapitres';
 
 type Etat =
   | { statut: 'chargement' }
@@ -113,7 +114,7 @@ export function QuizLecon() {
     etat.statut === 'chargement' ? undefined : (
       <View style={styles.pied}>
         {valide && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
-        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours) } }), retour)} retour /> : null}
+        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours), matiere: matiere ?? '' } }), () => versListeChapitres(matiere))} retour /> : null}
         {etat.statut === 'fini' && !reussi ? <Bouton libelle={t('reviser.quizReessayer')} onPress={reessayer} /> : null}
         <Bouton variante={valide ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
       </View>

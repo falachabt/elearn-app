@@ -34,14 +34,21 @@ export async function appliquerRefaire(r: Refaites, client?: Pick<SupabaseClient
   const score = scoreDe(c);
   const total = c.questions.length;
   const ctx = c.contexte;
-  if (ctx?.type === 'lecon' && quizReussi(score, total)) await marquerLue(ctx.lecon, ctx.cours, client, { score, total });
-  if (ctx?.type === 'mission' || (!ctx && c.source === 'mission')) await mettreAJourMission(c);
-  if (ctx?.type === 'libre') {
-    const toutes = JSON.parse((await AsyncStorage.getItem(CLE_SESSIONS)) ?? '{}') as Record<string, SessionQuiz[]>;
-    const liste = (toutes[ctx.quiz] ?? []).map((s) => (s.le === ctx.le ? { ...s, reponses: c.reponses, score } : s));
-    await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [ctx.quiz]: liste }));
-    signalerProgressionLocale();
-    await enregistrerScore(ctx.quiz, score, total);
+  // La session fusionnée est déjà enregistrée : un échec d'une mise à jour dépendante (leçon, mission, session libre)
+  // ne doit jamais faire croire que la session d'origine n'existe pas, sinon l'écran retomberait sur une « session à
+  // part » qui ne contient que les questions refaites, et le prochain « Refaire mes erreurs » serait vide.
+  try {
+    if (ctx?.type === 'lecon' && quizReussi(score, total)) await marquerLue(ctx.lecon, ctx.cours, client, { score, total });
+    if (ctx?.type === 'mission' || (!ctx && c.source === 'mission')) await mettreAJourMission(c);
+    if (ctx?.type === 'libre') {
+      const toutes = JSON.parse((await AsyncStorage.getItem(CLE_SESSIONS)) ?? '{}') as Record<string, SessionQuiz[]>;
+      const liste = (toutes[ctx.quiz] ?? []).map((s) => (s.le === ctx.le ? { ...s, reponses: c.reponses, score } : s));
+      await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [ctx.quiz]: liste }));
+      signalerProgressionLocale();
+      await enregistrerScore(ctx.quiz, score, total);
+    }
+  } catch (erreur) {
+    console.warn('Impossible de répercuter « Refaire mes erreurs » sur la progression.', erreur);
   }
   return c;
 }

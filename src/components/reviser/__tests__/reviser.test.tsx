@@ -22,7 +22,7 @@ import { Reviser } from '../Reviser';
 const mockRpc = jest.fn();
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
-  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
+  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), dismissTo: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
@@ -271,7 +271,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(await lireLues()).toEqual({ 11: 1 });
     // Pas de leçon suivante : la fin de chapitre (M5-11).
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: '' } }));
   });
 
   it('fin de chapitre déjà vue : simple retour', async () => {
@@ -340,6 +340,26 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
   });
 
+  it('fin de chapitre déjà vue, matière connue : retour à la liste des chapitres, pas à la dernière leçon', async () => {
+    await marquerLue(12, 1);
+    await noterFinChapitreVue(1);
+    mockParams = { id: '12', cours: '1', matiere: 'Maths' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } }));
+    expect(router.back).not.toHaveBeenCalled();
+  });
+
+  it('terminer le chapitre depuis le quiz de la dernière leçon : la fin de chapitre garde la matière', async () => {
+    mockParams = { cours: '1', lecon: '12', matiere: 'Maths' };
+    await monter(<QuizLecon />);
+    await jouerQuizLecon();
+    await waitFor(() => expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: 'Maths' } }));
+  });
+
   it('quiz de leçon sans questions', async () => {
     mockParams = { cours: '2', lecon: '21' };
     await monter(<QuizLecon />);
@@ -353,7 +373,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: '' } }));
   });
 
   it('fin de chapitre déjà vue : simple retour', async () => {

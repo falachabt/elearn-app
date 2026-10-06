@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { apresDerniereLecon } from '@/services/entrainement';
+import { versListeChapitres } from './versListeChapitres';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireLecon, lireLecons, lireLues, noterDerniereLecon, type ContenuLecon, type Lecon } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -88,7 +89,7 @@ export function LeconLecteur() {
     // Dernière leçon : la fin de chapitre propose le quiz et les exercices du chapitre (M5-11).
     else {
       const coursId = etat.lecon.coursId;
-      void apresDerniereLecon(coursId, () => router.replace({ pathname: '/cours/fin', params: { cours: String(coursId) } }), retour);
+      void apresDerniereLecon(coursId, () => router.replace({ pathname: '/cours/fin', params: { cours: String(coursId), matiere: matiere ?? '' } }), () => versListeChapitres(matiere));
     }
   };
   const avancer = () => {

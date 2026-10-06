@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { estimerTelechargement } from '../horsLigne';
+import { ecouterHorsLigne, estimerTelechargement, lancerTelechargement } from '../horsLigne';
 
 /**
  * Prouve que le téléchargement hors ligne est bien scopé au programme actif : il ne prend que les cours renvoyés par
@@ -79,4 +79,29 @@ it('ne crée aucune tâche de cours quand le programme n’en a pas', async () =
   expect(est.taches.filter((t) => t.categorie === 'cours')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'quiz')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'exercices')).toHaveLength(0);
+});
+
+describe('progression du téléchargement', () => {
+  it('chaque tâche terminée envoie un NOUVEL état aux écouteurs : les barres avancent sans quitter la page', async () => {
+    const recus: { ref: unknown; faites: number }[] = [];
+    let termine: () => void = () => {};
+    const fini = new Promise<void>((resolve) => { termine = resolve; });
+    const arreter = ecouterHorsLigne((etat) => {
+      if (!etat) return;
+      recus.push({ ref: etat, faites: Object.values(etat.progression).reduce((n, p) => n + p.faites, 0) });
+      if (etat.statut !== 'telechargement') termine();
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: estimation.taches.filter((t) => t.categorie === 'cours' || t.categorie === 'quiz') });
+    await fini;
+    arreter();
+    // Au moins l'état initial, une mise à jour par tâche, et l'état final.
+    expect(recus.length).toBeGreaterThanOrEqual(4);
+    // Jamais deux fois la même référence : React ignorerait la seconde et la barre resterait figée.
+    expect(new Set(recus.map((r) => r.ref)).size).toBe(recus.length);
+    // Et la progression grandit au fil des notifications.
+    const faites = recus.map((r) => r.faites);
+    expect(faites).toEqual([...faites].sort((a, b) => a - b));
+    expect(faites[faites.length - 1]).toBeGreaterThan(faites[0]);
+  });
 });
