@@ -9,6 +9,8 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 ## Fait (6 octobre 2026, recette de Benny sur téléphone)
 - #31, #25 et #13 fermées : mode hors ligne complet validé. Espace occupé et retrait des contenus périmés : non retenus.
 
+- #32 fermée : cloche, centre et réglages de notifications validés par Benny sur téléphone (7 octobre 2026), avec « lu » conservé après relance et routage des notifications de paiement et de correction prête.
+
 ## En cours
 - Recette du 6 octobre sur #31 (2e lot : bouton Terminer sur le bilan, texte « sujets de ta classe », solde simulé en mode développeur, mission terminée hors ligne gardée et envoyée au retour du réseau, progression lisible hors ligne) : points 1 à 6 validés par Benny ; corrigés ensuite : progression en direct, fin de correction, refaire mes erreurs durci, retour à la liste des chapitres, message de contenu expiré, bouton Publier. #13 point 5 : « Tout supprimer » ne supprime plus les documents préchargés.
 - Feuille de crédits épuisés K3 (Recharger, Gagner, Plus tard) : maquette `docs/maquettes/k3-credits-epuises.html` validée par Benny le 6 octobre, code et tests faits ; reste à voir sur téléphone.
@@ -21,7 +23,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout ; elearn-supabase #3 et #4 ; elearn #15.
 - #7 Codes promo Pass.
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
-- #32 Cloche, centre et réglages de notifications ; #33 compteur de crédits sur Accueil et Réviser.
+- #33 compteur de crédits sur Accueil et Réviser.
 - #37 App Links servis en JSON (hébergement par Benny).
 - elearn-supabase #43 Aligner le dépôt sur la production (PR #42, mot de passe de déploiement).
 
