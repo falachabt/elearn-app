@@ -22,6 +22,7 @@ import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
+import { Cloche } from '../notifications/Cloche';
 import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
 
@@ -123,6 +124,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
             </View>
           ) : null}
           <CompteurCredits />
+          <Cloche />
         </View>
       </Apparition>
 

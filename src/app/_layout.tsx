@@ -21,6 +21,7 @@ import { initAnalytics, suivre } from '@/services/analytics';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { lirePaiementAttente } from '@/services/reprisePaiement';
 import { CreditsProvider } from '@/session/CreditsProvider';
+import { NotificationsProvider } from '@/session/NotificationsProvider';
 import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
@@ -122,14 +123,16 @@ export default function RootLayout() {
         <ErrorBoundary>
           <SessionProvider>
             <CreditsProvider>
-              <VisiteProvider>
-                <BottomSheetModalProvider>
-                  <Navigation />
-                </BottomSheetModalProvider>
-                <BienvenueCredits />
-                <BienvenuePass />
-                <MiseAJour />
-              </VisiteProvider>
+              <NotificationsProvider>
+                <VisiteProvider>
+                  <BottomSheetModalProvider>
+                    <Navigation />
+                  </BottomSheetModalProvider>
+                  <BienvenueCredits />
+                  <BienvenuePass />
+                  <MiseAJour />
+                </VisiteProvider>
+              </NotificationsProvider>
             </CreditsProvider>
           </SessionProvider>
         </ErrorBoundary>

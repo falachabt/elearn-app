@@ -17,7 +17,9 @@ if (Notifications.setNotificationHandler) {
 
 
 import { suivre } from './analytics';
+import { destinationDe, marquerLue } from './notifications';
 import { TYPE_CORRECTION_PRETE } from './photoNotification';
+import { getSupabase } from './supabase';
 
 /** Heure du rappel quotidien par défaut (M9-01 : 19 h–21 h, heure locale). */
 export const HEURE_RAPPEL = 19;
@@ -140,6 +142,13 @@ export function suivreOuvertures(): () => void {
     } else if (type === 'feed_reply' || type === 'feed_post') {
       // Fil d'actualité (sondage, réponse...)
       router.push('/questions');
+    } else if (typeof type === 'string') {
+      // Notification du serveur (réponse, sondage, crédits, parrainage, paiement…) : l'écran vient de son type et de
+      // ses données ; la notification est marquée lue pour que la cloche suive (issue #32).
+      const d = destinationDe(type, data);
+      router.push(d.params ? { pathname: d.pathname, params: d.params } : d.pathname);
+      const id = data?.notificationId;
+      if (typeof id === 'string' && id) void marquerLue(getSupabase(), id).catch(() => {});
     }
   });
   return () => abonnement.remove();
