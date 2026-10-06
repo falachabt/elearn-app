@@ -176,6 +176,12 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   const postId = typeof data?.post_id === 'string' && data.post_id ? data.post_id : null;
   const ecran = typeof data?.screen === 'string' && data.screen.startsWith('/') ? data.screen : null;
   const categorie = categorieDe(type);
+  // Correction par photo prête : cette correction quand l'identifiant est là (`correction_id` du serveur, `photoId` d'un
+  // rappel local), sinon l'historique des corrections.
+  if (type === 'photo_ready') {
+    const correction = [data?.correction_id, data?.photoId, data?.photo_id, data?.id].find((v): v is string => typeof v === 'string' && v !== '');
+    return { pathname: '/photo', params: correction ? { id: correction } : { historique: '1' } };
+  }
   // Paiement confirmé : le détail de celui-ci quand la notification porte son identifiant, sinon la liste (Moi › Paiements).
   if (type === 'payment_confirmed') {
     const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;

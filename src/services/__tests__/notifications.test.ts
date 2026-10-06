@@ -194,6 +194,12 @@ describe('catégories et destinations', () => {
     expect(destinationDe('poll_revealed', { post_id: 'q2', screen: '/credits' })).toEqual({ pathname: '/question', params: { id: 'q2' } });
   });
 
+  it('une correction prête ouvre cette correction quand son identifiant est donné, sinon l’historique', () => {
+    expect(destinationDe('photo_ready', { correction_id: 'c-1' })).toEqual({ pathname: '/photo', params: { id: 'c-1' } });
+    expect(destinationDe('photo_ready', { photoId: 'p-2' })).toEqual({ pathname: '/photo', params: { id: 'p-2' } });
+    expect(destinationDe('photo_ready', {})).toEqual({ pathname: '/photo', params: { historique: '1' } });
+  });
+
   it('un paiement confirmé ouvre ce paiement quand la notification porte son identifiant, sinon la liste', () => {
     expect(destinationDe('payment_confirmed', { order_id: 'o-1', receipt_no: 'R1' })).toEqual({ pathname: '/paiements/[id]', params: { id: 'o-1' } });
     expect(destinationDe('payment_confirmed', { order_id: 'o-1', screen: '/moi' })).toEqual({ pathname: '/paiements/[id]', params: { id: 'o-1' } });

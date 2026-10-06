@@ -18,7 +18,6 @@ if (Notifications.setNotificationHandler) {
 
 import { suivre } from './analytics';
 import { destinationDe, marquerLue } from './notifications';
-import { TYPE_CORRECTION_PRETE } from './photoNotification';
 import { getSupabase } from './supabase';
 
 /** Heure du rappel quotidien par défaut (M9-01 : 19 h–21 h, heure locale). */
@@ -122,18 +121,8 @@ export function suivreOuvertures(): () => void {
     const type = data?.type;
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
     
-    if (type === TYPE_CORRECTION_PRETE) {
-      // Correction par photo prête : ouvre directement la correction spécifique si l'id est transmis, sinon l'historique.
-      const photoId = (typeof data?.photoId === 'string' && data.photoId)
-        || (typeof data?.id === 'string' && data.id)
-        || (typeof data?.photo_id === 'string' && data.photo_id)
-        || undefined;
-      if (photoId) {
-        router.push({ pathname: '/photo', params: { id: photoId } });
-      } else {
-        router.push({ pathname: '/photo', params: { historique: '1' } });
-      }
-    } else if (type === 'credits_refilled') {
+    // Correction par photo prête (`photo_ready`, serveur ou rappel local) : `destinationDe` ouvre la correction ou l'historique.
+    if (type === 'credits_refilled') {
       // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
       router.push('/moi');
     } else if (type === 'mission') {

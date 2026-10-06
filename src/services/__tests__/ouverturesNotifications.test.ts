@@ -46,6 +46,12 @@ describe('toucher d’une notification push du serveur', () => {
     expect(router.push).toHaveBeenLastCalledWith('/credits');
   });
 
+  it('une correction prête du serveur ouvre cette correction et se marque lue', () => {
+    toucher({ type: 'photo_ready', notificationId: 'n5', correction_id: 'c-1' });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/photo', params: { id: 'c-1' } });
+    expect(marquerLue).toHaveBeenCalledWith(expect.anything(), 'n5');
+  });
+
   it('un paiement confirmé sans identifiant de commande ouvre la liste des paiements', () => {
     toucher({ type: 'payment_confirmed', notificationId: 'n4' });
     expect(router.push).toHaveBeenCalledWith('/paiements');
