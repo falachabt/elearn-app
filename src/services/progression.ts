@@ -1,6 +1,17 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+import { estEnLigne } from './connectivite';
 import { envoyerPassages, jourLocal, lirePassagesLocaux } from './mission';
+
+/** Au-delà, la lecture de la progression sur le serveur est abandonnée au profit des missions gardées sur le téléphone. */
+const DELAI_LECTURE_MS = 5000;
+const DELAI_ENVOI_MS = 2000;
+
+/** Attend `promesse` au plus `ms` millisecondes, sans jamais lever ni laisser de minuteur derrière soi. */
+async function avecDelai(promesse: Promise<unknown>, ms: number): Promise<void> {
+  let minuteur: ReturnType<typeof setTimeout> | undefined;
+  await Promise.race([promesse, new Promise((resolve) => { minuteur = setTimeout(resolve, ms); })]).finally(() => clearTimeout(minuteur));
+}
 
 type Client = Pick<SupabaseClient, 'from'>;
 
@@ -63,8 +74,11 @@ type LigneRun = { day: string; duration_s: number | null; total: number; details
 export async function lirePassages(client: Client, maintenant = new Date()): Promise<Passage[]> {
   const debut = new Date(Math.min(lundiDe(maintenant).getTime(), maintenant.getTime() - FENETRE_NIVEAU_JOURS * 86_400_000));
   const limite = jourLocal(debut);
-  // Les missions terminées hors ligne partent maintenant (sans attendre ni bloquer si le réseau manque).
-  await envoyerPassages(client).catch(() => {});
+  const enLigne = estEnLigne();
+  // Les missions terminées hors ligne partent maintenant. L'attente est BORNÉE : hors ligne, une requête peut rester
+  // suspendue jusqu'au délai réseau, et la page restait blanche jusqu'au retour de la connexion. Attendre un peu évite
+  // aussi de compter deux fois une mission que le serveur vient de recevoir.
+  if (enLigne) await avecDelai(envoyerPassages(client).catch(() => {}), DELAI_ENVOI_MS);
   const locaux = (await lirePassagesLocaux()).filter((p) => p.day >= limite);
   const depuisLigne = (l: LigneRun): Passage => ({
     jour: l.day,
@@ -73,10 +87,20 @@ export async function lirePassages(client: Client, maintenant = new Date()): Pro
     // Les missions jouées avant le 01/10 n'ont pas le nom de la matière : elles comptent dans le temps, pas dans le niveau.
     chapitres: (l.details?.chapitres ?? []).map((c) => ({ matiere: c.libelleMatiere ?? '', bonnes: c.bonnes ?? 0, total: c.total ?? 0 })),
   });
-  const { data, error } = await client.from('mission_runs').select('day, duration_s, total, details').gte('day', limite).order('day').then(
-    (r) => r,
-    (e: unknown) => ({ data: null, error: e ?? new Error('réseau') }),
-  );
+  // Hors ligne (ou serveur muet au-delà de 5 s) : pas de requête qui pend, on retombe tout de suite sur le téléphone.
+  let minuteur: ReturnType<typeof setTimeout> | undefined;
+  const lecture = enLigne
+    ? Promise.race([
+        client.from('mission_runs').select('day, duration_s, total, details').gte('day', limite).order('day').then(
+          (r) => r,
+          (e: unknown) => ({ data: null, error: e ?? new Error('réseau') }),
+        ),
+        new Promise<{ data: null; error: Error }>((resolve) => {
+          minuteur = setTimeout(() => resolve({ data: null, error: new Error('délai dépassé') }), DELAI_LECTURE_MS);
+        }),
+      ])
+    : Promise.resolve({ data: null, error: new Error('hors ligne') });
+  const { data, error } = await lecture.finally(() => clearTimeout(minuteur));
   if (error) {
     // Hors ligne : la progression se calcule sur les missions gardées sur le téléphone, plutôt que de rester vide.
     if (locaux.length) return locaux.map((p) => depuisLigne({ day: p.day, duration_s: p.duration_s, total: p.total, details: p.details as LigneRun['details'] }));

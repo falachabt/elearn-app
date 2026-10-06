@@ -1,5 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+let mockEnLigne = true;
+jest.mock('../connectivite', () => ({ estEnLigne: () => mockEnLigne }));
+
 import { CLE_PASSAGES, jourLocal, type PassageLocal } from '../mission';
 import { calculerProgression, lirePassages } from '../progression';
 
@@ -22,7 +25,10 @@ function client(lecture: { data?: unknown[]; erreur?: boolean }, insertion: () =
   return { from: jest.fn((table: string) => (table === 'mission_runs' ? { select, insert: insertion } : {})) };
 }
 
-beforeEach(() => AsyncStorage.clear());
+beforeEach(() => {
+  mockEnLigne = true;
+  return AsyncStorage.clear();
+});
 
 describe('progression hors ligne', () => {
   it('hors ligne : la progression se calcule sur les missions gardées sur le téléphone, jamais vide', async () => {
@@ -57,5 +63,31 @@ describe('progression hors ligne', () => {
     const passages = await lirePassages(client({ data: serveur }, async () => ({ error: new Error('encore hors ligne') })) as never);
     expect(passages).toHaveLength(2);
     expect(calculerProgression(passages).minutesSemaine).toBe(15);
+  });
+});
+
+describe('progression : jamais bloquée par le réseau', () => {
+  it('hors ligne déclaré : aucune requête serveur, réponse immédiate depuis le téléphone', async () => {
+    mockEnLigne = false;
+    await AsyncStorage.setItem(CLE_PASSAGES, JSON.stringify([passage()]));
+    const c = client({ data: [] });
+    const passages = await lirePassages(c as never);
+    expect(c.from).not.toHaveBeenCalled();
+    expect(calculerProgression(passages).minutesSemaine).toBe(10);
+  });
+
+  it('serveur muet (requête qui ne répond jamais) : abandon au bout du délai, la progression locale s’affiche', async () => {
+    jest.useFakeTimers();
+    try {
+      await AsyncStorage.setItem(CLE_PASSAGES, JSON.stringify([passage({ envoye: true })]));
+      const pendante = { from: jest.fn(() => ({ select: () => ({ gte: () => ({ order: () => new Promise(() => {}) }) }), insert: () => new Promise(() => {}) })) };
+      const attente = lirePassages(pendante as never);
+      // 2 s d'attente bornée pour l'envoi, puis 5 s pour la lecture : jamais plus.
+      await jest.advanceTimersByTimeAsync(7100);
+      const passages = await attente;
+      expect(calculerProgression(passages).minutesSemaine).toBe(10);
+    } finally {
+      jest.useRealTimers();
+    }
   });
 });
