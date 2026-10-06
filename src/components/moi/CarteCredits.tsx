@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { aDesActionsDisponibles } from '@/services/actionsCredits';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useCredits } from '@/session/CreditsProvider';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -33,6 +34,7 @@ export function CarteCredits() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { solde, depensesSemaine } = useCredits();
+  const { session } = useSession();
   const quand = useQuand();
   const [detail, setDetail] = useState(false);
   const [actionsDispos, setActionsDispos] = useState(false);
@@ -40,8 +42,8 @@ export function CarteCredits() {
   const fin = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   if (!solde) {
     return (

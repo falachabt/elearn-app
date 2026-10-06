@@ -30,8 +30,8 @@ export function CompteurCredits() {
   const invite = !!session?.user.is_anonymous;
 
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   if (!solde) {
     return (

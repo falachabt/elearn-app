@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react-nativ
 import { router } from 'expo-router';
 
 import EcranCredits from '@/app/credits/index';
+import { executerActionQuotidienne, lireEtatActionsQuotidiennes } from '@/services/actionsCredits';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 jest.mock('expo-router', () => ({
@@ -47,6 +48,8 @@ jest.mock('@/services/actionsCredits', () => ({
     instagram: false,
     parrainage: false,
   }),
+  // Par défaut la vraie action ; un test la remplace pour simuler la réponse du serveur.
+  executerActionQuotidienne: jest.fn((...a: unknown[]) => (jest.requireActual('@/services/actionsCredits').executerActionQuotidienne as (...x: unknown[]) => unknown)(...a)),
 }));
 
 jest.mock('@/services/credits', () => ({
@@ -91,6 +94,25 @@ describe('Page /credits (EcranCredits)', () => {
     await waitFor(() => expect(screen.getByText('Recharge hebdomadaire du lundi')).toBeTruthy());
     expect(screen.getByText('+25')).toBeTruthy();
     expect(screen.getByText('-5')).toBeTruthy();
+  });
+
+  it('lit l’état des actions du jour pour le compte connecté (le serveur fait foi)', async () => {
+    renderComponent(<EcranCredits />);
+    await waitFor(() => expect(screen.getByText('Visiter le site web')).toBeTruthy());
+    expect(lireEtatActionsQuotidiennes).toHaveBeenCalledWith(expect.any(Date), expect.objectContaining({ utilisateurId: 'user-1' }));
+  });
+
+  it('une action déjà réclamée côté serveur recharge l’état au lieu de rester « à faire »', async () => {
+    (executerActionQuotidienne as jest.Mock).mockImplementationOnce(async (_a: string, options: { onDejaFait?: () => void }) => {
+      options.onDejaFait?.();
+      return false;
+    });
+    renderComponent(<EcranCredits />);
+    await waitFor(() => expect(screen.getByText('Facebook')).toBeTruthy());
+    const avant = (lireEtatActionsQuotidiennes as jest.Mock).mock.calls.length;
+    fireEvent.press(screen.getByText('Facebook'));
+    await waitFor(() => expect((lireEtatActionsQuotidiennes as jest.Mock).mock.calls.length).toBeGreaterThan(avant));
+    expect(executerActionQuotidienne).toHaveBeenCalledWith('facebook', expect.objectContaining({ utilisateurId: 'user-1' }));
   });
 
   it('clic sur parrainage redirige vers /parrainage', async () => {
