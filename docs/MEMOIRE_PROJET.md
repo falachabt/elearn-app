@@ -23,6 +23,12 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **Reste à faire, issue #13 côté app** : solde local confirmé, file des dépenses hors ligne, réconciliation et état « à synchroniser ».
 - **Piège à retenir** : remplacer une fonction PostgreSQL en ajoutant un paramètre par défaut ne supprime pas l'ancienne signature ; les deux surcharges coexistent et un appel à deux littéraux devient ambigu (`is not unique`). Il faut un `drop function if exists` explicite.
 
+### Notifications : cloche, centre et réglages (issue #32)
+
+- **Serveur (déjà en production, aucune migration côté app)** : migration `20261001192000_notifications_eleve` : table `notifications`, RPC `unread_notifications_count`, `mark_all_notifications_read`, `my_notification_preferences`, `set_notification_preferences`, `register_push_token`, Realtime sur la table.
+- **App** : `src/services/notifications.ts` (lectures, marquage, réglages, temps réel, groupes, destinations), `src/session/NotificationsProvider.tsx` (un seul abonnement temps réel, monté dans `_layout`, réservé aux comptes : rien pour un invité), `src/components/notifications/` (`Cloche` dans l'en-tête de l'Accueil, `CentreNotifications` sur `/notifications`, `ReglagesNotifications` sur `/parametres/notifications`).
+- **Règles à retenir** : la liste est gardée sur l'appareil pour le hors ligne (jamais celle d'un autre compte) ; la pastille est relue au serveur après chaque évènement temps réel, car la liste est tronquée à 50 ; le type d'une notification décide de l'écran ouvert (`destinationDe`), au toucher dans le centre comme sur un push (`suivreOuvertures` dans `rappels.ts`, qui marque aussi la notification lue) ; le jeton push était déjà enregistré par `SessionProvider`, rien n'a changé de ce côté. Aucun module natif ajouté.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).

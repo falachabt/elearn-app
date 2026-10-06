@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2, Wrench } from 'lucide-react-native';
+import { Bell, Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2, Wrench } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -156,6 +156,7 @@ export function Parametres() {
 
         <Groupe>
           <LigneGroupe icone={Volume2} titre={t('reglages.sons')} sousTitre={t('reglages.sonsDetail')} onPress={() => router.push('/parametres/sons')} />
+          <LigneGroupe icone={Bell} titre={t('reglages.notifications')} sousTitre={t('reglages.notificationsDetail')} onPress={() => router.push('/parametres/notifications')} />
           <LigneGroupe titre={t('reglages.mission')} valeur={t('reglages.missionValeur', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setFeuille('rythme')} />
         </Groupe>
 
