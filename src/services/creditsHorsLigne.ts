@@ -59,43 +59,112 @@ export function cleCache(action: ActionCredit, objet: string | number): string {
   return `${PREFIXE_CACHE}${action}.${String(objet)}`;
 }
 
-/** Contenu débloqué conservé localement, avec sa date de mise en cache. */
-export async function enregistrerContenuEnCache<C>(action: ActionCredit, objet: string | number, contenu: C, maintenant = new Date()): Promise<void> {
-  await AsyncStorage.setItem(cleCache(action, objet), JSON.stringify({ contenu, le: maintenant.toISOString() })).catch(() => {});
-}
+/** Enveloppe rangée sur l'appareil pour un contenu payant. */
+type EnveloppeContenu<C> = {
+  contenu?: C;
+  le?: string;
+  /**
+   * Le crédit a-t-il été consommé ? `false` = contenu **téléchargé mais verrouillé** (issue #13, option A) : il est
+   * présent sur l'appareil, mais ne doit pas être montré tant que l'élève n'a pas payé. Absent = `true`, pour que les
+   * contenus rangés par l'ancien chemin (qui débitait au téléchargement) restent lisibles.
+   */
+  paye?: boolean;
+};
 
-/** Contenu déjà présent sur l'appareil, ou null. C'est ce qui autorise une dépense hors ligne. */
-export async function lireContenuEnCache<C>(action: ActionCredit, objet: string | number): Promise<C | null> {
+async function lireEnveloppe<C>(action: ActionCredit, objet: string | number): Promise<EnveloppeContenu<C> | null> {
   try {
     const brut = await AsyncStorage.getItem(cleCache(action, objet));
-    if (!brut) return null;
-    const enveloppe = JSON.parse(brut) as { contenu?: C };
-    return enveloppe?.contenu ?? null;
+    return brut ? (JSON.parse(brut) as EnveloppeContenu<C>) : null;
   } catch {
     return null;
   }
 }
 
 /**
- * Contenu gardé **et encore valable** (issue #13, option A). Un contenu plus vieux que la durée de validité hors
- * ligne est retiré au passage et n'est plus servi : c'est le pendant local de la règle des 7 jours, et cela libère
- * l'espace occupé par des contenus remplacés ou périmés sans toucher aux éléments que l'élève garde volontairement
- * (ceux de « Mes téléchargements », gérés par `documents.ts`).
+ * Contenu conservé localement, avec sa date et son état de paiement.
+ *
+ * `paye` est **défaut à vrai** : un contenu rangé avant l'introduction du drapeau l'a forcément été par le chemin qui
+ * débitait, donc il est payé. Sans ce défaut, tous les contenus déjà sur les appareils deviendraient subitement
+ * inaccessibles.
+ */
+export async function enregistrerContenuEnCache<C>(
+  action: ActionCredit,
+  objet: string | number,
+  contenu: C,
+  maintenant = new Date(),
+  paye = true,
+): Promise<void> {
+  const enveloppe: EnveloppeContenu<C> = { contenu, le: maintenant.toISOString(), paye };
+  await AsyncStorage.setItem(cleCache(action, objet), JSON.stringify(enveloppe)).catch(() => {});
+}
+
+/** Contenu déjà présent sur l'appareil, ou null. C'est ce qui autorise une dépense hors ligne. */
+export async function lireContenuEnCache<C>(action: ActionCredit, objet: string | number): Promise<C | null> {
+  const enveloppe = await lireEnveloppe<C>(action, objet);
+  return enveloppe?.contenu ?? null;
+}
+
+/** Le crédit de ce contenu a-t-il été consommé ? Vrai si rien n'est rangé (il n'y a alors rien à verrouiller). */
+export async function contenuPaye(action: ActionCredit, objet: string | number): Promise<boolean> {
+  const enveloppe = await lireEnveloppe(action, objet);
+  return enveloppe?.paye !== false;
+}
+
+/** Marque un contenu téléchargé comme payé, sans retoucher le contenu ni sa date (qui borne la validité). */
+export async function marquerContenuPaye(action: ActionCredit, objet: string | number): Promise<void> {
+  const enveloppe = await lireEnveloppe(action, objet);
+  if (!enveloppe) return;
+  await AsyncStorage.setItem(cleCache(action, objet), JSON.stringify({ ...enveloppe, paye: true })).catch(() => {});
+}
+
+/**
+ * **Télécharge** un contenu payant sans le débiter (issue #13, option A) : le serveur le sert, l'app le range
+ * verrouillé. Le crédit sera consommé à la première consultation.
+ *
+ * Le contenu est rangé avec `paye: false` : il est présent mais **l'écran ne doit pas le montrer** tant que la
+ * dépense n'a pas eu lieu. C'est la contrepartie de la décision produit (voir la migration serveur).
+ */
+export async function telechargerContenuPayant<C>(client: ClientCredits, action: ActionCredit, objet: string | number, maintenant = new Date()): Promise<boolean> {
+  try {
+    const { data, error } = await client.rpc('credit_content_for_download', { p_action: action, p_ref: String(objet) });
+    if (error) throw error;
+    if (data === null || data === undefined) return false;
+    await enregistrerContenuEnCache<C>(action, objet, data as C, maintenant, false);
+    return true;
+  } catch {
+    // Pas de réseau, ou contenu absent : la préparation continue, l'élément restera simplement verrouillé.
+    return false;
+  }
+}
+
+/**
+ * Contenu gardé **et encore valable**, avec son état de paiement. C'est la lecture utilisée pour décider d'une
+ * dépense hors ligne : elle seule permet de distinguer « téléchargé et payé » (lisible) de « téléchargé mais
+ * verrouillé » (option A, à débiter avant d'afficher).
+ */
+export async function lireContenuEnCacheAvecEtat<C>(
+  action: ActionCredit,
+  objet: string | number,
+  maintenant = Date.now(),
+): Promise<{ contenu: C | null; paye: boolean }> {
+  const enveloppe = await lireEnveloppe<C>(action, objet);
+  if (!enveloppe) return { contenu: null, paye: false };
+  const le = enveloppe.le ? new Date(enveloppe.le).getTime() : null;
+  if (le !== null && Number.isFinite(le) && maintenant - le > DUREE_VALIDITE_HORS_LIGNE_MS) {
+    await oublierContenuEnCache(action, objet);
+    return { contenu: null, paye: false };
+  }
+  return { contenu: enveloppe.contenu ?? null, paye: enveloppe.paye !== false };
+}
+
+/**
+ * Contenu gardé **et encore valable** (issue #13). Un contenu plus vieux que la durée de validité hors ligne est
+ * retiré au passage et n'est plus servi : c'est le pendant local de la règle des 7 jours, et cela libère l'espace
+ * occupé par des contenus remplacés ou périmés sans toucher aux éléments que l'élève garde volontairement (ceux de
+ * « Mes téléchargements », gérés par `documents.ts`).
  */
 export async function lireContenuEnCacheValide<C>(action: ActionCredit, objet: string | number, maintenant = Date.now()): Promise<C | null> {
-  try {
-    const brut = await AsyncStorage.getItem(cleCache(action, objet));
-    if (!brut) return null;
-    const enveloppe = JSON.parse(brut) as { contenu?: C; le?: string };
-    const le = enveloppe?.le ? new Date(enveloppe.le).getTime() : null;
-    if (le !== null && Number.isFinite(le) && maintenant - le > DUREE_VALIDITE_HORS_LIGNE_MS) {
-      await oublierContenuEnCache(action, objet);
-      return null;
-    }
-    return enveloppe?.contenu ?? null;
-  } catch {
-    return null;
-  }
+  return (await lireContenuEnCacheAvecEtat<C>(action, objet, maintenant)).contenu;
 }
 
 /** Retire un contenu du cache (espace à libérer, contenu remplacé). */
@@ -199,7 +268,9 @@ export type ResultatDepenseHorsLigne = {
  * règle soit testable sans appareil.
  *
  * - contenu absent du cache : impossible, l'écran proposera de réessayer au retour du réseau (`contenu` null) ;
- * - solde connu insuffisant : même refus qu'en ligne (`insufficient`) ;
+ * - contenu présent mais **non payé** (téléchargé sans débiter, option A) : il est **verrouillé**, mais un solde
+ *   suffisant le débloque. C'est le parcours voulu : on télécharge sans payer, on paie en le consultant ;
+ * - solde connu insuffisant : même refus qu'en ligne, contenu verrouillé comme non téléchargé ;
  * - sinon : débit local et opération à rejouer (`spent`, `enAttente` vrai).
  */
 export function deciderDepenseHorsLigne(p: {
@@ -316,22 +387,44 @@ async function depenserHorsLigne<C>(p: {
   const operationId = p.operationId ?? randomUUID();
   if (!p.soldeLocal) throw new ContenuIndisponibleHorsLigne(action);
 
-  // Contenu périmé (plus de 7 jours sans contact serveur) : on ne le sert pas, on demande une reconnexion.
-  const enCache = await lireContenuEnCacheValide<C>(action, objet, maintenant);
+  // Contenu périmé (plus de 7 jours sans contact serveur) : écarté. Sinon on sait s'il est payé ou verrouillé.
+  const etat = await lireContenuEnCacheAvecEtat<C>(action, objet, maintenant);
+  // Un contenu verrouillé est traité comme « téléchargé mais pas encore acquis » : s'il y a du solde, la dépense
+  // locale le débloque ; sinon on demande une reconnexion, pas un affichage gratuit.
   const decision = deciderDepenseHorsLigne({
     solde: p.soldeLocal.total,
     cout,
-    contenuEnCache: enCache,
+    contenuEnCache: etat.paye ? etat.contenu : null,
     illimite: p.illimite ?? p.soldeLocal.illimite,
   });
 
   if (decision.statut === 'unlimited') {
-    return { statut: 'unlimited', cout: 0, solde: p.soldeLocal.total, contenu: enCache };
+    // Pass : rien à débiter, mais le contenu doit devenir lisible.
+    if (etat.contenu !== null) await marquerContenuPaye(action, objet);
+    return { statut: 'unlimited', cout: 0, solde: p.soldeLocal.total, contenu: etat.contenu };
   }
+
+  // Contenu téléchargé mais jamais payé (option A) : il est **verrouillé**, pas absent. Avec assez de crédits, la
+  // dépense locale le débloque ; sinon on refuse comme un solde insuffisant, sans jamais l'afficher gratuitement.
+  if (!etat.paye && etat.contenu !== null) {
+    if (p.soldeLocal.total < cout) return { statut: 'insufficient', cout, solde: p.soldeLocal.total, contenu: null };
+    await ajouterDepenseEnAttente(utilisateur, {
+      id: identifiantOperation(action, objet, maintenant),
+      operationId,
+      action,
+      objet: String(objet),
+      cout,
+      le: new Date(maintenant).toISOString(),
+    });
+    await garderSoldeLocal(utilisateur, soldeDebite(p.soldeLocal, cout), new Date(maintenant));
+    await marquerContenuPaye(action, objet);
+    return { statut: 'spent', cout, solde: Math.max(0, p.soldeLocal.total - cout), contenu: etat.contenu as C };
+  }
+
   if (!decision.enAttente) {
     // Refus : soit le solde connu est insuffisant, soit le contenu n'est pas sur l'appareil. Le second cas est un
     // manque de réseau, pas un manque de crédits : l'écran doit pouvoir le distinguer.
-    if (decision.contenu === null && enCache === null) throw new ContenuIndisponibleHorsLigne(action);
+    if (etat.contenu === null) throw new ContenuIndisponibleHorsLigne(action);
     return versDepense<C>(decision);
   }
 
@@ -396,6 +489,8 @@ export async function synchroniserDepensesHorsLigne(p: { client: ClientCredits; 
         await garderSoldeLocal(utilisateur, solde);
       }
       await enregistrerContenuEnCache(operation.action, operation.objet, ligne.content);
+      // L'opération est confirmée : le contenu est acquis, il devient lisible.
+      await marquerContenuPaye(operation.action, operation.objet);
       confirmees.push(operation.id);
     } catch (erreur) {
       if (!estErreurReseau(erreur)) throw erreur;

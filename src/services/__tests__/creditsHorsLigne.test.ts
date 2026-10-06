@@ -4,6 +4,7 @@ import type { Solde } from '../credits';
 import {
   ajouterDepenseEnAttente,
   cleCache,
+  contenuPaye,
   deciderDepenseHorsLigne,
   depenserAvecRepli,
   enregistrerContenuEnCache,
@@ -18,6 +19,7 @@ import {
   retirerDepensesEnAttente,
   soldeDebite,
   synchroniserDepensesHorsLigne,
+  telechargerContenuPayant,
   type OperationHorsLigne,
 } from '../creditsHorsLigne';
 
@@ -129,6 +131,68 @@ describe('credits hors ligne : solution gardée localement', () => {
     const maintenant = Date.UTC(2026, 9, 20, 12);
     await enregistrerContenuEnCache('exercise_solution', 'ex-neuf', { correction: 'ok' }, new Date(maintenant - 2 * JOUR));
     expect(await lireContenuEnCacheValide('exercise_solution', 'ex-neuf', maintenant)).toEqual({ correction: 'ok' });
+  });
+});
+
+describe('credits hors ligne : contenu telecharge mais non paye (option A)', () => {
+  const clientTelechargement = (contenu: unknown) => ({ rpc: jest.fn(async () => ({ data: contenu, error: null })) }) as never;
+
+  it('le telechargement ne debite RIEN et verrouille le contenu', async () => {
+    const client = clientTelechargement({ correction_compressed: 'H4sIcorr' });
+    await telechargerContenuPayant(client, 'exercise_solution', 'ex-1');
+
+    // Le contenu est bien range…
+    expect(await lireContenuEnCache('exercise_solution', 'ex-1')).toEqual({ correction_compressed: 'H4sIcorr' });
+    // …mais marque NON paye : c'est ce qui le verrouille.
+    expect(await contenuPaye('exercise_solution', 'ex-1')).toBe(false);
+  });
+
+  it('un contenu non paye ne s’affiche pas sans solde suffisant', async () => {
+    const client = clientTelechargement({ correction: 'x' });
+    await telechargerContenuPayant(client, 'exercise_solution', 'ex-1');
+    // La requête échoue pour cause de réseau : c'est ce qui autorise le repli hors ligne.
+    estErreurReseau.mockReturnValue(true);
+
+    const r = await depenserAvecRepli({
+      client: { rpc: jest.fn(async () => Promise.reject(new Error('Network request failed'))) } as never,
+      utilisateur: 'u1',
+      soldeLocal: { ...SOLDE, total: 1 },
+      cout: 2,
+      action: 'exercise_solution',
+      objet: 'ex-1',
+      operationId: 'op-uuid-1',
+    });
+
+    expect(r.statut).toBe('insufficient');
+    expect(r.contenu).toBeNull();
+    // Toujours verrouille : rien n'a ete debite.
+    expect(await contenuPaye('exercise_solution', 'ex-1')).toBe(false);
+    estErreurReseau.mockReturnValue(false);
+  });
+
+  it('un contenu non paye s’ouvre apres debit local, et devient lisible', async () => {
+    const client = clientTelechargement({ correction: 'la reponse' });
+    await telechargerContenuPayant(client, 'exercise_solution', 'ex-1');
+    estEnLigne.mockReturnValue(false);
+
+    const r = await depenserAvecRepli({
+      client: { rpc: jest.fn() } as never,
+      utilisateur: 'u1',
+      soldeLocal: SOLDE,
+      cout: 2,
+      action: 'exercise_solution',
+      objet: 'ex-1',
+      operationId: 'op-uuid-2',
+    });
+
+    expect(r.statut).toBe('spent');
+    expect(r.contenu).toEqual({ correction: 'la reponse' });
+    expect(r.solde).toBe(18);
+    // Le credit est consomme localement : le contenu est desormais lisible.
+    expect(await contenuPaye('exercise_solution', 'ex-1')).toBe(true);
+    // Et l'operation attend la reconnexion.
+    expect(await lireDepensesEnAttente('u1')).toHaveLength(1);
+    estEnLigne.mockReturnValue(true);
   });
 });
 

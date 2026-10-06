@@ -5,7 +5,8 @@ import { Paths } from 'expo-file-system';
 import { i18n } from '@/i18n';
 
 import { prechargerDocument } from './documents';
-import { depenser, lireOuverts } from './credits';
+import { lireOuverts } from './credits';
+import { lireContenuEnCache, telechargerContenuPayant } from './creditsHorsLigne';
 import { lireEntrainement, lireExercice, lireQuizLibre } from './entrainement';
 import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
@@ -277,16 +278,18 @@ async function executerTache(tache: Tache): Promise<void> {
     if (!tache.corrige) {
       await lireExercice(client, tache.exercice);
     } else {
-      const acces = await depenser<{ correction?: unknown; correction_compressed?: string | null }>(client, 'exercise_solution', tache.exercice);
-      if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('corrigé non débloqué : aucun crédit n’a été dépensé');
-      if (!acces.contenu) throw new Error('corrigé indisponible');
-      await AsyncStorage.setItem(`entrainement.exercice.corrige.${tache.exercice}`, JSON.stringify(acces.contenu));
+      // Option A (issue #13) : on télécharge le corrigé SANS débiter. Il est rangé verrouillé, et le crédit est
+      // consommé à la première consultation. On n'appelle donc plus `depenser` ici : préparer ne doit rien coûter.
+      const prepare = await telechargerContenuPayant(client, 'exercise_solution', tache.exercice);
+      if (!prepare) throw new Error('corrigé non téléchargé : le contenu n’est pas disponible');
     }
   } else if (tache.categorie === 'pdf' && tache.document) {
-    const acces = await depenser<{ url?: string }>(client, 'document_pdf', tache.document.id);
-    if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('document non débloqué : aucun crédit n’a été dépensé');
-    if (!acces.contenu?.url) throw new Error('adresse du document indisponible');
-    await prechargerDocument(acces.contenu.url, tache.document.titre);
+    // Même règle pour les PDF : téléchargés sans débiter, verrouillés jusqu'à la consultation.
+    const prepare = await telechargerContenuPayant<{ url?: string }>(client, 'document_pdf', tache.document.id);
+    if (!prepare) throw new Error('document non téléchargé : le contenu n’est pas disponible');
+    const contenu = await lireContenuEnCache<{ url?: string }>('document_pdf', tache.document.id);
+    if (!contenu?.url) throw new Error('adresse du document indisponible');
+    await prechargerDocument(contenu.url, tache.document.titre);
   }
 }
 
