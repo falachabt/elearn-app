@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import type { Bloc } from '@/services/blocs';
 import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
+import { lireLocalHorsLigne } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useCredits } from '@/session/CreditsProvider';
@@ -122,14 +123,10 @@ export function ExerciceLibre() {
   const prix = { cout: dejaOuvert ? null : couts.exercise_solution || null, illimite: !!solde?.illimite };
   useEffect(() => {
     let actif = true;
-    void AsyncStorage.getItem(`entrainement.exercice.corrige.${id}`).then((copie) => {
-      if (!copie || !actif) return;
-      try {
-        const contenu = JSON.parse(copie) as { correction?: unknown; correction_compressed?: string | null };
-        setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
-      } catch {
-        console.warn('Le corrigé hors ligne est illisible.', id);
-      }
+    // `lireLocalHorsLigne` soumet la copie à l'expiration (issue #13) : un corrigé périmé n'est pas chargé.
+    void lireLocalHorsLigne<{ correction?: unknown; correction_compressed?: string | null }>(`entrainement.exercice.corrige.${id}`).then((contenu) => {
+      if (!contenu || !actif) return;
+      setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     });
     return () => {
       actif = false;
@@ -139,14 +136,8 @@ export function ExerciceLibre() {
   const voirCorrige = async () => {
     if (!corriges[id]) {
       let contenu: { correction?: unknown; correction_compressed?: string | null } | null = null;
-      const copie = await AsyncStorage.getItem(`entrainement.exercice.corrige.${id}`);
-      if (copie) {
-        try {
-          contenu = JSON.parse(copie) as { correction?: unknown; correction_compressed?: string | null };
-        } catch {
-          console.warn('Le corrigé hors ligne est illisible.', id);
-        }
-      }
+      // Copie locale soumise à l'expiration : périmée, elle est ignorée et on repart du serveur.
+      contenu = await lireLocalHorsLigne<{ correction?: unknown; correction_compressed?: string | null }>(`entrainement.exercice.corrige.${id}`);
       if (!contenu) {
         try {
           const r = await lancer<{ correction?: unknown; correction_compressed?: string | null }>('exercise_solution', id, { deja: dejaOuvert });

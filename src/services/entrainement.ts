@@ -5,7 +5,7 @@ import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { signalerProgressionLocale } from './progressionLocale';
-import { avecCopie, rpc } from './reviser';
+import { avecCopie, lireLocalHorsLigne, rpc } from './reviser';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -89,9 +89,9 @@ async function lireDernierDe(cle: string): Promise<DernierLu | null> {
     const brut = await AsyncStorage.getItem(cle);
     if (!brut) return null;
     const d = JSON.parse(brut) as Dernier;
-    const copie = await AsyncStorage.getItem(`entrainement.cours.${d.cours}`);
-    if (!copie) return null;
-    const e = JSON.parse(copie) as { quiz: QuizLibre[]; exercices: Exercice[] };
+    // Copie du chapitre soumise à l'expiration (issue #13) : périmée, la carte « Reprendre » ne s'affiche pas.
+    const e = await lireLocalHorsLigne<{ quiz: QuizLibre[]; exercices: Exercice[] }>(`entrainement.cours.${d.cours}`);
+    if (!e) return null;
     if (d.type === 'quiz') {
       const q = e.quiz.find((x) => x.id === d.id);
       if (!q) return null;

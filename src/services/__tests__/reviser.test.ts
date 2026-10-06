@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, programmeDu, regrouperParMatiere, synchroniserLues } from '../reviser';
+import { avecCopie, couleurMatiere, FRAICHEUR_COPIE_MS, iconeMatiere, lireCours, lireFiche, lireLocalHorsLigne, lireQuizLecon, lireLecon, lireLecons, lireLues, marquerLue, nomCourt, oublierCopiesEnMemoire, pourcentageVu, programmeDu, regrouperParMatiere, synchroniserLues } from '../reviser';
 
 // Les tests passent des dates factices (époque 1000 ms) : le contrôle d'expiration réel conclurait « périmé » à
 // chaque fois. On le neutralise ici, et le test dédié le force à `false` pour vérifier le blocage.
@@ -193,7 +193,7 @@ describe('avecCopie', () => {
 
   it('ne sert PAS une copie périmée : le contenu expiré est bien bloqué', async () => {
     // Issue #13 : au-delà de la durée de validité hors ligne, la copie locale ne doit plus être servie. `avecCopie`
-    // est le point de passage unique des contenus (missions, cours, quiz, exercices, annales).
+    // est le point de passage des contenus mis en cache par ce chemin (cours, leçons, fiches, exercices, annales).
     await avecCopie('test.expire', async () => ['v'], 1000);
     oublierCopiesEnMemoire();
     contenuHorsLigneValide.mockResolvedValue(false);
@@ -204,5 +204,71 @@ describe('avecCopie', () => {
     expect(lire).toHaveBeenCalledTimes(1);
 
     contenuHorsLigneValide.mockResolvedValue(true);
+  });
+});
+
+/**
+ * Le cache hors ligne est éparpillé en plusieurs clés rangées par la préparation, chacune avec son propre chemin de
+ * lecture : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`. Ces tests vérifient
+ * que CHAQUE porte est bien soumise à l'expiration — c'est ce qui manquait, et deux annonces de correction se sont
+ * révélées fausses faute de les couvrir toutes.
+ */
+describe('clés locales hors ligne : toutes soumises à l’expiration', () => {
+  const maintenant = Date.UTC(2026, 9, 20, 12);
+
+  beforeEach(async () => {
+    await AsyncStorage.clear();
+    contenuHorsLigneValide.mockResolvedValue(true);
+  });
+
+  it('quiz de leçon : la copie est servie quand le contenu est valable', async () => {
+    await AsyncStorage.setItem('reviser.quiz.horsLigne.7', JSON.stringify([{ id: 1 }]));
+    expect(await lireLocalHorsLigne('reviser.quiz.horsLigne.7', maintenant)).toEqual([{ id: 1 }]);
+  });
+
+  it('quiz de leçon : la copie est refusée quand le contenu est périmé', async () => {
+    await AsyncStorage.setItem('reviser.quiz.horsLigne.7', JSON.stringify([{ id: 1 }]));
+    contenuHorsLigneValide.mockResolvedValue(false);
+
+    const lire = jest.fn().mockRejectedValue(new Error('hors ligne'));
+    // Le repli de `lireQuizLecon` passe par ici : refusé, donc l'erreur réseau remonte.
+    expect(await lireLocalHorsLigne('reviser.quiz.horsLigne.7', maintenant)).toBeNull();
+    await expect(lire()).rejects.toThrow('hors ligne');
+  });
+
+  it('corrigé d’exercice : servi quand valable, refusé quand périmé', async () => {
+    await AsyncStorage.setItem('entrainement.exercice.corrige.ex-1', JSON.stringify({ correction: 'x' }));
+
+    expect(await lireLocalHorsLigne('entrainement.exercice.corrige.ex-1', maintenant)).toEqual({ correction: 'x' });
+
+    contenuHorsLigneValide.mockResolvedValue(false);
+    expect(await lireLocalHorsLigne('entrainement.exercice.corrige.ex-1', maintenant)).toBeNull();
+  });
+
+  it('mission préchargée : refusée quand périmé', async () => {
+    await AsyncStorage.setItem('mission.horsLigne.1re.CM.classe.5.2026-10-20', JSON.stringify({ jour: '2026-10-20' }));
+    expect(await lireLocalHorsLigne('mission.horsLigne.1re.CM.classe.5.2026-10-20', maintenant)).toEqual({ jour: '2026-10-20' });
+
+    contenuHorsLigneValide.mockResolvedValue(false);
+    expect(await lireLocalHorsLigne('mission.horsLigne.1re.CM.classe.5.2026-10-20', maintenant)).toBeNull();
+  });
+
+  it('un contenu redevenu valable est relu (pas de blocage définitif en mémoire)', async () => {
+    await AsyncStorage.setItem('reviser.quiz.horsLigne.9', JSON.stringify([{ id: 2 }]));
+    contenuHorsLigneValide.mockResolvedValue(false);
+    expect(await lireLocalHorsLigne('reviser.quiz.horsLigne.9', maintenant)).toBeNull();
+
+    // Retour en ligne : le contenu doit redevenir lisible sans redémarrer l'app.
+    contenuHorsLigneValide.mockResolvedValue(true);
+    expect(await lireLocalHorsLigne('reviser.quiz.horsLigne.9', maintenant)).toEqual([{ id: 2 }]);
+  });
+
+  it('la leçon quiz de bout en bout : le repli ne sert pas une copie périmée', async () => {
+    // On vérifie le chemin réel : `lireQuizLecon` échoue sur le réseau, puis refuse la copie périmée.
+    await AsyncStorage.setItem('reviser.quiz.horsLigne.7', JSON.stringify([{ id: 1 }]));
+    contenuHorsLigneValide.mockResolvedValue(false);
+    const c = client(null, new Error('hors ligne'));
+
+    await expect(lireQuizLecon(c as never, { cours: 1, lecon: 7, vraiFaux: { vrai: 'V', faux: 'F' } })).rejects.toThrow('hors ligne');
   });
 });

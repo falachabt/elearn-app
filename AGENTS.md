@@ -84,6 +84,14 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 - Ne jamais déduire « en ligne » de la seule interface réseau : `navigator.onLine` et `isConnected` sont faux avec un portail captif ou un backend éteint, donc seule la sonde prouve que le serveur est joignable.
 - Toute action qui exige une réponse du serveur passe par la garde réseau (`useGardeReseau`) et affiche un message clair plutôt que d'échouer silencieusement.
 
+### 16 bis. Expiration du contenu hors ligne : passer par `lireLocalHorsLigne`
+
+- **Le cache hors ligne est éparpillé en plusieurs clés**, chacune rangée par la préparation et lue par son propre chemin : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`. Les contenus rangés par `avecCopie` (cours, leçons, fiches, exercices, quiz libres, annales) passent par ce même point.
+- **Toute lecture d'une clé locale de contenu doit passer par `lireLocalHorsLigne()`** (`src/services/reviser.ts`), qui applique l'expiration. Un `AsyncStorage.getItem()` direct **contourne la règle** — c'est l'erreur commise deux fois, en annonçant à tort que l'expiration bloquait le contenu alors que quiz et corrigés restaient accessibles.
+- Ne pas recopier `contenuHorsLigneValide()` au cas par cas : le contrôle vit dans `lireLocalHorsLigne` et `avecCopie`. Une nouvelle clé locale de contenu doit être ajoutée à la liste ci-dessus **et** couverte par un test.
+- `src/services/__tests__/reviser.test.ts` contient le bloc « clés locales hors ligne : toutes soumises à l'expiration », qui couvre chaque clé. **Toute nouvelle clé de contenu local doit y ajouter son test.**
+- Les clés qui ne sont **pas** du contenu (index de téléchargements, réglages, scores, historique) ne sont pas concernées : ne pas les soumettre à l'expiration.
+
 ## 17. Modules natifs : interdiction d'en ajouter sans nouvel APK
 - **Un module natif importé par le JS doit être compilé dans l'APK installé.** Sinon `requireNativeModule` lève à l'évaluation du module, donc **au démarrage de l'app, avant tout rendu** : aucun `try/catch` autour de l'appel ne peut l'attraper.
 - Le garde-fou `src/__tests__/garde-module-natif.test.ts` fait échouer le CI dans ce cas. Si ce test échoue, la correction n'est **pas** d'ignorer le test :

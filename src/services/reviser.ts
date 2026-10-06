@@ -50,6 +50,45 @@ async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant
   return valeur;
 }
 
+/** Clés locales chargées pendant la session, quand le contenu est encore valable. */
+const localesEnMemoire = new Map<string, unknown>();
+
+/**
+ * Ce contenu local peut-il encore être servi ? Faux hors ligne au-delà de la durée de validité (issue #13).
+ *
+ * **C'est le contrôle unique de l'expiration.** Le cache hors ligne est éparpillé en plusieurs clés rangées par la
+ * préparation (`reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`), et chacune a
+ * son propre chemin de lecture. Les garder séparément a laissé passer des contenus : toute lecture d'une clé locale
+ * doit passer par ici, et non par un `contenuHorsLigneValide()` recopié au cas par cas.
+ */
+export async function localServable(maintenant = Date.now()): Promise<boolean> {
+  return contenuHorsLigneValide(maintenant);
+}
+
+/**
+ * Lit une clé locale (rangée par la préparation hors ligne) en la soumettant à l'expiration. Renvoie `null` quand le
+ * contenu est périmé : l'appelant retombe alors sur son erreur réseau, donc sur le message de connexion.
+ *
+ * `sansExpiration` sert aux clés qui ne sont pas du contenu (index, réglages locaux) — à n'utiliser qu'en connaissance
+ * de cause.
+ */
+export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()): Promise<T | null> {
+  if (!(await localServable(maintenant))) {
+    localesEnMemoire.delete(cle);
+    return null;
+  }
+  if (localesEnMemoire.has(cle)) return localesEnMemoire.get(cle) as T;
+  try {
+    const brut = await AsyncStorage.getItem(cle);
+    if (!brut) return null;
+    const valeur = JSON.parse(brut) as T;
+    localesEnMemoire.set(cle, valeur);
+    return valeur;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Copie locale d'abord (M5-03) : rien n'attend le réseau dès qu'une copie existe. Moins de 12 h : servie telle quelle.
  * Plus ancienne : servie tout de suite, et relue en arrière-plan pour la visite suivante. Sans copie : le réseau.
@@ -205,8 +244,9 @@ export async function lireQuizLecon(client: Client, p: { cours: number; lecon: n
       return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
     });
   } catch (erreur) {
-    const horsLigne = await AsyncStorage.getItem(`reviser.quiz.horsLigne.${p.lecon}`);
-    if (horsLigne) return JSON.parse(horsLigne) as QuestionTiree[];
+    // Repli hors ligne : la copie rangée par la préparation, soumise à l'expiration (voir `lireLocalHorsLigne`).
+    const horsLigne = await lireLocalHorsLigne<QuestionTiree[]>(`reviser.quiz.horsLigne.${p.lecon}`);
+    if (horsLigne) return horsLigne;
     throw erreur;
   }
 }
