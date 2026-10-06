@@ -92,3 +92,29 @@ npx --yes supabase@2.118.0 db push
 Deux pièges à retenir : la CLI locale (1.226.4) est trop ancienne pour le `config.toml` du dépôt — utiliser la
 version du CI (2.118.0) ; et **ne pas exporter `SUPABASE_PROJECT_ID`** pour les commandes locales, car la CLI nomme
 alors le réseau Docker d'après ce ref et échoue.
+
+---
+
+## 6. App Links cassés : `assetlinks.json` n'est pas servi (vérifié le 5 octobre 2026)
+
+Les fichiers existent dans `public/.well-known/` (`assetlinks.json` et `apple-app-site-association`) et sont bien
+versionnés, mais **ils ne sont pas servis** — or c'est par le réseau qu'Android et iOS les vérifient, pas depuis
+l'APK. Les embarquer dans le binaire ne sert donc à rien.
+
+Constat mesuré :
+
+| URL | Réponse |
+| --- | --- |
+| `app.elearnprepa.com/.well-known/assetlinks.json` | 200, mais **`text/html`** — c'est le fallback SPA de l'app web Expo |
+| `app.elearnprepa.com/.well-known/apple-app-site-association` | 200, mais **`text/html`** |
+| `elearnprepa.com/.well-known/assetlinks.json` | **404** |
+
+Conséquence : la vérification des App Links échoue, donc les liens `https://app.elearnprepa.com/…` s'ouvrent dans le
+navigateur au lieu de l'application. Les commits `974f671` et `5d8996e` (« ouvrir les liens https de
+app.elearnprepa.com dans l'application ») ne peuvent pas produire leur effet.
+
+Exigences à satisfaire : HTTPS, type `application/json`, **sans redirection**, contenu JSON. Le domaine
+`app.elearnprepa.com` sert aujourd'hui l'app web Expo, qui répond son HTML pour tout chemin inconnu : il faut servir
+`/.well-known/*` **avant** le fallback. `elearn-site` (le site Next.js) n'a aucun dossier `.well-known`.
+
+**Hébergement : pris en charge par Benny, ne pas y toucher depuis le code.**
