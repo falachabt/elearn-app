@@ -278,15 +278,17 @@ async function executerTache(tache: Tache): Promise<void> {
     if (!tache.corrige) {
       await lireExercice(client, tache.exercice);
     } else {
-      // Option A (issue #13) : on télécharge le corrigé SANS débiter. Il est rangé verrouillé, et le crédit est
-      // consommé à la première consultation. On n'appelle donc plus `depenser` ici : préparer ne doit rien coûter.
+      // Option A : on TÉLÉCHARGE le corrigé sans débiter. Le serveur vérifie le droit d'accès (gratuit, déjà payé, ou
+      // pass) et ne sert donc jamais un corrigé qui n'a pas été acquis : le socle sécurisé reste la référence.
       const prepare = await telechargerContenuPayant(client, 'exercise_solution', tache.exercice);
-      if (!prepare) throw new Error('corrigé non téléchargé : le contenu n’est pas disponible');
+      if (!prepare) throw new Error('corrigé non téléchargé : il n’est pas encore débloqué');
     }
   } else if (tache.categorie === 'pdf' && tache.document) {
     // Même règle pour les PDF : téléchargés sans débiter, verrouillés jusqu'à la consultation.
+    // À NOTER : les fichiers sont sur un bucket R2 **public**, donc l'adresse ne protège rien par elle-même — voir
+    // docs/TODO.md §6. Le verrouillage de l'adresse reste fait ici, côté app.
     const prepare = await telechargerContenuPayant<{ url?: string }>(client, 'document_pdf', tache.document.id);
-    if (!prepare) throw new Error('document non téléchargé : le contenu n’est pas disponible');
+    if (!prepare) throw new Error('document non téléchargé : il n’est pas encore débloqué');
     const contenu = await lireContenuEnCache<{ url?: string }>('document_pdf', tache.document.id);
     if (!contenu?.url) throw new Error('adresse du document indisponible');
     await prechargerDocument(contenu.url, tache.document.titre);

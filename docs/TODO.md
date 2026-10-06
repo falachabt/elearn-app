@@ -4,36 +4,36 @@ Points identifiés, vérifiés, et volontairement **non traités**. Chacun dit q
 
 ---
 
-## 1. Option A : télécharger le contenu payant sans le débiter (issue #13)
+## 1. Option A : télécharger le contenu payant sans le débiter (issue #13) — FAIT
 
-**Décision prise, serveur FAIT, client à brancher.** L'élève peut télécharger un corrigé ou un PDF **sans consommer
-de crédits** : le fichier est présent sur l'appareil, mais l'accès reste **verrouillé** localement tant que les
-crédits n'ont pas été consommés.
+**Fait côté serveur et côté app.** Préparer le hors ligne ne coûte plus rien : le contenu est téléchargé, rangé
+**verrouillé**, et le crédit est consommé à la première consultation.
 
-### Ce qui est fait (serveur, en production)
+### Serveur (migration `20261005233000`, en production)
 
-Migration `20261005233000_credits_contenu_hors_ligne.sql` :
+`credit_content_for_download(p_action, p_ref)` sert le contenu **sans débiter et sans marquer le déblocage**, et
+**vérifie le droit d'accès** : coût nul, déjà débloqué, premier sujet gratuit du concours, ou couvert par un pass.
+`depenser_credits` reste la seule porte du débit.
 
-- `credit_content_for_download(p_action, p_ref)` sert le contenu **sans débiter et sans marquer le déblocage** ;
-- elle ne sert que ce à quoi l'élève a droit : coût nul, **déjà débloqué**, **premier sujet gratuit du concours**, ou
-  **couvert par un pass**. Elle n'ouvre donc pas le contenu inconnu ;
-- `depenser_credits` reste la seule porte du débit.
+**Décision du 6 octobre 2026 : la vérification d'accès est CONSERVÉE.** Une variante qui l'aurait retirée (le serveur
+servant tout, le client facturant) a été écrite puis abandonnée : elle transformait la protection en simple code
+client. La vérification serveur est le socle sécurisé, on ne le contourne pas.
 
-### Ce qui reste (client)
+### App
 
-`creditsHorsLigne` doit appeler `credit_content_for_download` pendant la préparation, **au lieu de** `depenser`, et
-poser un drapeau « payé » à côté du contenu en cache. Tant que ce drapeau est faux, l'écran ne montre pas le contenu :
-il propose de le débloquer (en ligne, ou hors ligne via la file de rejeu).
+- `telechargerContenuPayant()` appelle `credit_content_for_download` et range le contenu avec **`paye: false`** ;
+- `horsLigne.ts` n'appelle plus `depenser` pour les corrigés et les PDF ;
+- à la consultation, un contenu verrouillé est débité du solde local (opération mise en file) puis marqué payé ;
+  sans solde suffisant il est refusé, jamais affiché gratuitement ;
+- avec un pass, il devient lisible sans débit ;
+- `paye` est **défaut à vrai**, pour que les contenus rangés par l'ancien chemin (qui débitait) restent lisibles.
 
-### Contrepartie assumée
+### Limite connue
 
-Le contenu transite vers l'appareil sans paiement : la barrière devient le code client. La borne de **7 jours** (déjà
-en place) limite l'exposition, puisqu'au-delà il faut se reconnecter, ce qui synchronise les crédits en attente.
+Un contenu **payant jamais débloqué** n'est pas téléchargeable : le serveur le refuse, et c'est voulu. La préparation
+ne rapatrie donc que ce à quoi l'élève a déjà droit, plus ce que couvre un pass. Les PDF restent par ailleurs sur un
+bucket public — voir §6.
 
-### État actuel (à ne pas confondre)
-
-Aujourd'hui, la préparation **débite au téléchargement** (`src/services/horsLigne.ts`, appels `depenser(...)`). C'est
-ce comportement que le branchement client remplacera.
 
 ---
 
@@ -86,7 +86,29 @@ alors le réseau Docker d'après ce ref et échoue.
 
 ---
 
-## 6. App Links cassés : `assetlinks.json` n'est pas servi (vérifié le 5 octobre 2026)
+## 6. PDF payants : protégés par rien (constaté le 5 octobre 2026)
+
+**Décision de Benny : on laisse les documents comme ils sont.** Constat gardé pour mémoire, aucune action prévue.
+
+Les PDF ne sont pas dans Supabase Storage : ils sont sur **Cloudflare R2, dans un bucket public** (`pub-…r2.dev`).
+Vérifié empiriquement : l'adresse d'un document réellement servi répond **200 sans aucun identifiant**, 155 710 octets
+téléchargés.
+
+Conséquence : l'adresse d'un PDF payant n'est pas un secret. `credit_content_for_download` peut la retenir tant que
+l'élève n'a pas payé, mais dès qu'elle est servie elle est publique — présente dans le bundle, les journaux réseau, le
+cache. Par ailleurs Cloudflare indique que les domaines `r2.dev` sont limités en débit et **ne doivent pas servir du
+trafic de production**.
+
+Remédiation possible si le sujet devient sensible : rendre le bucket privé et servir les fichiers par **URL signée**
+(il faudrait alors migrer les fichiers et invalider les adresses stockées dans `secondary_documents.download_url`).
+C'est un chantier d'hébergement, pas de code d'app.
+
+**À ne pas confondre avec les corrigés d'exercices** : leur texte est en base et passe par `credit_content_for_download`,
+qui **vérifie le droit d'accès** côté serveur. Ceux-là sont réellement protégés.
+
+---
+
+## 7. App Links cassés : `assetlinks.json` n'est pas servi (vérifié le 5 octobre 2026)
 
 Les fichiers existent dans `public/.well-known/` (`assetlinks.json` et `apple-app-site-association`) et sont bien
 versionnés, mais **ils ne sont pas servis** — or c'est par le réseau qu'Android et iOS les vérifient, pas depuis
