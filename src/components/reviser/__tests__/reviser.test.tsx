@@ -285,6 +285,38 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(router.replace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/cours/fin' }));
   });
 
+  async function jouerQuizLecon() {
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 2 ? `Fausse ${i}` : `Bonne ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.reviser.quizTerminer : x.miniTest.suivant }));
+    }
+  }
+
+  it('quiz de leçon réussi : la leçon est déjà cochée quand le score s’affiche (aucune course avec le retour au chapitre)', async () => {
+    mockParams = { cours: '1', lecon: '11', suivante: '12' };
+    await monter(<QuizLecon />);
+    await jouerQuizLecon();
+    await waitFor(() => expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy());
+    // Écrite AVANT l'écran de score, pas en arrière-plan : le chapitre, rouvert aussitôt, affiche la case cochée.
+    expect(await AsyncStorage.getItem('reviser.lues')).toBe(JSON.stringify({ 11: 1 }));
+  });
+
+  it('quiz de leçon avec stockage local en échec : le score s’affiche, l’élève n’est pas bloqué', async () => {
+    const setItem = jest.mocked(AsyncStorage.setItem);
+    const original = setItem.getMockImplementation();
+    setItem.mockRejectedValue(new Error('stockage plein'));
+    try {
+      mockParams = { cours: '1', lecon: '11', suivante: '12' };
+      await monter(<QuizLecon />);
+      await jouerQuizLecon();
+      await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
+    } finally {
+      if (original) setItem.mockImplementation(original);
+    }
+  });
+
   it('quiz de leçon raté : pas validée, réessayer', async () => {
     mockParams = { cours: '1', lecon: '11', suivante: '12' };
     await monter(<QuizLecon />);

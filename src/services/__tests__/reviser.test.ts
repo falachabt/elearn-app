@@ -149,6 +149,23 @@ describe('reviser', () => {
     expect(await lireLues()).toEqual({ '5': 50, '7': 70 });
   });
 
+  it('leçon validée pendant la synchronisation : la case cochée n’est pas écrasée', async () => {
+    await AsyncStorage.clear();
+    await marquerLue(5, 50);
+    const client = {
+      rpc: jest.fn(async () => ({ data: 1, error: null })),
+      from: () => ({
+        select: async () => {
+          // Le serveur répond lentement : l'élève réussit un quiz de leçon entre-temps.
+          await marquerLue(9, 90);
+          return { data: [{ lesson_id: 7, course_id: 70 }], error: null };
+        },
+      }),
+    };
+    expect(await synchroniserLues(client as never)).toEqual({ '5': 50, '7': 70, '9': 90 });
+    expect(await lireLues()).toEqual({ '5': 50, '7': 70, '9': 90 });
+  });
+
   it('leçons validées hors ligne : la copie du téléphone reste', async () => {
     await AsyncStorage.clear();
     await marquerLue(5, 50);

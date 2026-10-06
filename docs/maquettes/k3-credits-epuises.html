@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K3 · Crédits épuisés (proposition)</title>
+<style>
+  :root { --app:#FFF7E3; --surface:#FFFFFF; --txt:#0A0A0A; --txt2:#5C5C5C; --bord:#0A0A0A; --vert:#10B981; --soleil:#FFD83D; --soleildoux:#FFF1B8; --ombre:#0A0A0A; }
+  .sombre { --app:#141614; --surface:#1F221F; --txt:#F6F1E4; --txt2:#9E998C; --bord:#EDE6D3; --vert:#34D399; --soleil:#FFD83D; --soleildoux:#3D3514; --ombre:#0A0A0A; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/24px "Space Grotesk",system-ui,sans-serif; background:#e9e4d4; color:#0A0A0A; padding:24px; }
+  h1 { font-size:20px; margin:0 0 4px; } p.note { margin:0 0 20px; max-width:760px; color:#3D3D3D; }
+  .grille { display:flex; flex-wrap:wrap; gap:28px; }
+  .tel { width:360px; } .tel h2 { font-size:14px; margin:0 0 8px; color:#0A0A0A; }
+  .ecran { position:relative; height:640px; background:var(--app); color:var(--txt); border:2px solid #0A0A0A; border-radius:14px; overflow:hidden; }
+  .derriere { padding:20px; opacity:.55; } .derriere .l { height:78px; border:2px solid var(--bord); border-radius:10px; background:var(--surface); margin-bottom:12px; }
+  .voile { position:absolute; inset:0; background:rgba(0,0,0,.45); }
+  .feuille { position:absolute; left:0; right:0; bottom:0; background:var(--surface); border:2px solid var(--bord); border-bottom:0; border-radius:14px 14px 0 0; padding:12px 20px 24px; display:flex; flex-direction:column; gap:14px; }
+  .poignee { width:40px; height:4px; border-radius:2px; background:var(--bord); align-self:center; }
+  .pastille { width:48px; height:48px; border-radius:50%; border:2px solid var(--bord); background:var(--soleil); display:flex; align-items:center; justify-content:center; color:#0A0A0A; }
+  h3 { margin:0; font-size:24px; line-height:30px; } .texte { margin:0; color:var(--txt2); }
+  .cadeau { display:flex; align-items:center; gap:12px; background:var(--soleildoux); border:2px solid var(--bord); border-radius:10px; padding:12px; }
+  .cadeau .pastille { width:40px; height:40px; border-radius:10px; flex:none; } .cadeau b { display:block; color:var(--txt); } .cadeau span { color:var(--txt); font-size:14px; line-height:20px; }
+  .btn { min-height:48px; border:2px solid var(--bord); border-radius:10px; display:flex; align-items:center; justify-content:center; gap:8px; font-weight:700; background:var(--surface); color:var(--txt); }
+  .btn.vert { background:var(--vert); color:#0A0A0A; box-shadow:4px 4px 0 var(--ombre); }
+  .btn.texte { border-color:transparent; }
+  svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+</style>
+</head>
+<body>
+<h1>K3 · Crédits épuisés : proposition du 6 octobre</h1>
+<p class="note">Ajuste la feuille K3 / K3b existante. Une seule feuille, sur la même page, trois choix : <b>Recharger</b> (seul bouton vert), <b>Gagner des crédits</b>, <b>Plus tard</b>. « Demander à quelqu’un de payer » et les autres pass passent dans la page Recharger (parcours E) au lieu de s’empiler dans la feuille. L’invité voit en plus la carte « Crée ton compte : +40 crédits » (valeur issue de la configuration serveur). Icônes Lucide, pas d’emoji, cibles de 48 px, texte noir sur surface colorée.</p>
+<div class="grille">
+
+<div class="tel"><h2>1 · Compte connecté, clair</h2>
+<div class="ecran"><div class="derriere"><div class="l"></div><div class="l"></div><div class="l"></div></div><div class="voile"></div>
+<div class="feuille"><div class="poignee"></div>
+  <div class="pastille"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+  <h3>Crédits épuisés</h3>
+  <p class="texte">Tes 25 crédits reviennent lundi, dans 2 j 5 h. Les cours et les quiz restent gratuits.</p>
+  <div class="btn vert"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Recharger</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>Gagner des crédits</div>
+  <div class="btn texte">Plus tard</div>
+</div></div></div>
+
+<div class="tel sombre"><h2>2 · Compte connecté, sombre</h2>
+<div class="ecran"><div class="derriere"><div class="l"></div><div class="l"></div><div class="l"></div></div><div class="voile"></div>
+<div class="feuille"><div class="poignee"></div>
+  <div class="pastille"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+  <h3>Crédits épuisés</h3>
+  <p class="texte">Tes 25 crédits reviennent lundi, dans 2 j 5 h. Les cours et les quiz restent gratuits.</p>
+  <div class="btn vert"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Recharger</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>Gagner des crédits</div>
+  <div class="btn texte">Plus tard</div>
+</div></div></div>
+
+<div class="tel"><h2>3 · Invité (K3b), clair</h2>
+<div class="ecran"><div class="derriere"><div class="l"></div><div class="l"></div><div class="l"></div></div><div class="voile"></div>
+<div class="feuille"><div class="poignee"></div>
+  <h3>Tes crédits d’essai sont épuisés</h3>
+  <div class="cadeau"><div class="pastille"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></div><div><b>Crée ton compte : +40 crédits tout de suite.</b><span>Et ta progression est sauvegardée.</span></div></div>
+  <div class="btn vert">Créer mon compte</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>Recharger</div>
+  <div class="btn"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9M7.5 8a2.5 2.5 0 1 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>Gagner des crédits</div>
+  <div class="btn texte">Plus tard</div>
+</div></div></div>
+
+</div>
+<p class="note" style="margin-top:20px"><b>Décision à valider (invité)</b> : « Créer mon compte » est l’unique bouton vert (déclencheur de conversion), « Recharger » passe en blanc.<br><b>Autres états à coder et tester</b> : hors ligne (« Recharger » désactivé, « Connecte-toi à Internet pour recharger »), iOS (sans prix ni Mobile Money, « Recharger » ouvre les pass), chargement du solde (squelette), erreur.</p>
+</body>
+</html>

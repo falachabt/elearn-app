@@ -312,7 +312,9 @@ export async function synchroniserLues(client: ClientSynchro, forcer = false): P
       .filter(([id]) => !connues.has(id))
       .map(([id, cours]) => ({ lesson_id: Number(id), course_id: cours }));
     if (aEnvoyer.length) await client.rpc('validate_lessons', { p_items: aEnvoyer });
-    const fusion = { ...locales, ...Object.fromEntries(serveur.map((l) => [String(l.lesson_id), l.course_id])) };
+    // Relecture juste avant d'écrire : une leçon validée pendant l'attente du serveur ne doit pas être écrasée par la
+    // photo prise au début (la case cochée disparaîtrait).
+    const fusion = { ...locales, ...(await lireLues()), ...Object.fromEntries(serveur.map((l) => [String(l.lesson_id), l.course_id])) };
     await AsyncStorage.setItem(CLE_LUES, JSON.stringify(fusion));
     return fusion;
   } catch {

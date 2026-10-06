@@ -94,7 +94,8 @@ export function QuizLecon() {
           // l'écran de reprise annoncerait « aucune erreur » alors qu'il y en a.
           await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
           void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
-          if (quizReussi(score, questions.length)) void marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
+          // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
+          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
           setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
         }}
       />

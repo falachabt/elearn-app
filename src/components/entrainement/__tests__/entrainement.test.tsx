@@ -9,6 +9,7 @@ import { fr } from '@/i18n/fr';
 import { lireCorrection, statuts } from '@/services/correction';
 import { CLE_SCORES, enregistrerSession, finChapitreVue, lireEntrainement, lireSessions, lireExercicesFaits, lireMeilleursScores, noterDernier } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
+import { lireReprise } from '@/services/reprise';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -231,6 +232,40 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     const c = await lireCorrection();
     expect(c?.source).toBe('libre');
     expect(statuts(c!)).toEqual(['juste', 'faux', 'juste']);
+  });
+
+  async function jouerQuizLibre() {
+    mockParams = { id: 'qz1', cours: '1', nom: 'Fractions' };
+    await monter(<QuizLibreEcran />);
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 2 ? `Fausse ${i}` : `Bonne ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.entrainement.quizTerminer : x.miniTest.suivant }));
+    }
+  }
+
+  it('quiz libre fini : la carte « Reprendre » est remplie dès l’arrivée sur les résultats', async () => {
+    await jouerQuizLibre();
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
+    // Écritures attendues avant la navigation : rien à patienter, la carte n'est jamais vide.
+    const reprise = await lireReprise([{ id: 1, nom: 'Fractions', matiere: 'Mathématiques', lecons: 2 }] as never);
+    expect(reprise.map((e) => e.type)).toEqual(['quiz']);
+    expect(reprise[0]).toMatchObject({ chapitre: 'Fractions' });
+  });
+
+  it('quiz libre fini avec stockage local en échec : la navigation vers le score a lieu quand même', async () => {
+    const setItem = jest.mocked(AsyncStorage.setItem);
+    const original = setItem.getMockImplementation();
+    const avertir = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    setItem.mockRejectedValue(new Error('stockage plein'));
+    try {
+      await jouerQuizLibre();
+      await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
+    } finally {
+      if (original) setItem.mockImplementation(original);
+      avertir.mockRestore();
+    }
   });
 
   it('page du quiz : meilleur score, revoir une session, nouvelle session', async () => {
