@@ -16,6 +16,7 @@
 ## 3. Design System & Interfaces (UI)
 - Avant de créer ou de mettre à jour une interface utilisateur, tu **dois obligatoirement te référer** aux fichiers du Design System présents dans le dossier docs/ (notamment docs/Design system Elearn Prepa.md).
 - Respecte scrupuleusement les tokens sémantiques (couleurs, typographie, espacements).
+- Règles de travail design (ajuster l'existant, pas d'emojis, Lucide, thèmes clair et sombre, crédits épuisés, limites Figma) : **docs/design-regles.md**.
 
 ## 4. Mise à jour des consignes
 - Si je te donne de nouvelles règles ou consignes de travail en cours de session, **tu as la consigne de mettre à jour ce fichier AGENTS.md** toi-même pour t'en souvenir lors de nos futures sessions.
