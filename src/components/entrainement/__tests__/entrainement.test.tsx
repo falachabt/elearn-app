@@ -33,7 +33,7 @@ let mockParams: Record<string, string> = {};
 let mockSortie: ((e: { preventDefault: () => void; data: { action: object } }) => void) | null = null;
 const mockDispatch = jest.fn();
 jest.mock('expo-router', () => ({
-  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
+  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), dismissTo: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
   useNavigation: () => ({
     addListener: (_: string, f: typeof mockSortie) => {
@@ -437,6 +437,17 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(router.push).toHaveBeenLastCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.plusTard }));
     expect(router.replace).toHaveBeenCalledWith('/reviser');
+  });
+
+  it('fin de chapitre : « Plus tard » ramène à la liste des chapitres de la matière, pas à la dernière leçon', async () => {
+    await marquerLue(11, 1);
+    await marquerLue(12, 1);
+    mockParams = { cours: '1', nom: 'Fractions', matiere: 'Maths' };
+    await monter(<FinChapitre />);
+    await waitFor(() => expect(screen.getByText(x.entrainement.finTitre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.plusTard }));
+    expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } });
+    expect(router.back).not.toHaveBeenCalled();
   });
 
   it('fin de chapitre avec des leçons à valider', async () => {
