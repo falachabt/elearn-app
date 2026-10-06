@@ -189,11 +189,13 @@ export async function terminerMission(
   const { serie, graceUtilisee } = calculerSerie(historique, jour);
   const ratees = p.questions.filter((q, i) => p.reponses[i] !== q.bonne);
   const resultat: ResultatMission = { ...base, jour, serie, graceUtilisee, coursRates: coursRates(ratees), erreurs: ratees.length };
+  // Une écriture locale ne doit pas faire échouer la fin de mission : hors ligne, `multiSet` qui lèverait laisserait
+  // l'élève bloqué sur la dernière question sans voir son score.
   await AsyncStorage.multiSet([
     [CLE_HISTORIQUE, JSON.stringify(historique)],
     [CLE_DERNIER, JSON.stringify(resultat)],
     [CLE_ERREURS, JSON.stringify(ratees)],
-  ]);
+  ]).catch(() => {});
   await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
   void client

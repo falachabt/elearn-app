@@ -53,10 +53,19 @@ export function QuizLibreEcran() {
         onTermine={async ({ questions: q, reponses, dureeS }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
           const le = new Date();
-          const record = await enregistrerSession(String(id), { questions: q, reponses, dureeS }, le);
-          await noterDernier({ type: 'quiz', id: String(id), cours: Number(cours), chapitre: String(nom ?? '') });
-          suivre('practice_quiz_completed', { score, total: q.length, record });
-          await enregistrerCorrection({ source: 'libre', questions: q, reponses, contexte: { type: 'libre', quiz: String(id), le: le.toISOString() } });
+          suivre('practice_quiz_completed', { score, total: q.length, record: false });
+          // La correction est attendue : l'écran de score la lit au focus, et sans elle il afficherait du vide. La
+          // session et la carte « Reprendre » sont, elles, enregistrées en arrière-plan : un échec local ne doit jamais
+          // laisser l'élève bloqué sur la dernière question.
+          try {
+            await enregistrerCorrection({ source: 'libre', questions: q, reponses, contexte: { type: 'libre', quiz: String(id), le: le.toISOString() } });
+          } catch {
+            // Sans correction, l'écran de score resterait vide : on navigue quand même, la grille s'affichera vide.
+          }
+          void Promise.all([
+            enregistrerSession(String(id), { questions: q, reponses, dureeS }, le),
+            noterDernier({ type: 'quiz', id: String(id), cours: Number(cours), chapitre: String(nom ?? '') }),
+          ]).catch((erreur: unknown) => console.warn('Impossible d’enregistrer la session du quiz hors ligne.', erreur));
           router.replace('/quiz/resultats');
         }}
       />

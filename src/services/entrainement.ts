@@ -133,7 +133,7 @@ export async function enregistrerScore(quiz: string, score: number, total: numbe
   const scores = await lireMeilleursScores();
   const pct = Math.round((score / total) * 100);
   if ((scores[quiz] ?? -1) >= pct) return false;
-  await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ ...scores, [quiz]: pct }));
+  await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ ...scores, [quiz]: pct })).catch(() => {});
   signalerProgressionLocale();
   return true;
 }
@@ -146,7 +146,9 @@ export async function basculerExerciceFait(exercice: string): Promise<boolean> {
   const suite = { ...faits };
   if (fait) suite[exercice] = true;
   else delete suite[exercice];
-  await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite));
+  // Une écriture locale ne doit pas faire échouer l'action : hors ligne, `setItem` qui lèverait empêcherait la carte
+  // de changer d'état, et le bouton « fait » semblerait mort.
+  await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite)).catch(() => {});
   signalerProgressionLocale();
   return fait;
 }
@@ -183,7 +185,7 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
   const score = s.questions.filter((q, i) => s.reponses[i] === q.bonne).length;
   const toutes = await lireObjet<SessionQuiz[]>(CLE_SESSIONS);
   const session: SessionQuiz = { le: maintenant.toISOString(), score, total: s.questions.length, ...s };
-  await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) }));
+  await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) })).catch(() => {});
   signalerProgressionLocale();
   return enregistrerScore(quiz, score, s.questions.length);
 }
