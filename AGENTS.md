@@ -63,7 +63,7 @@
 ## 13. Git & Déploiement (`elearn-app`)
 - **NE JAMAIS PUSHER DIRECTEMENT SUR LA BRANCHE `main`**.
 - La branche de travail et de déploiement EAS Update de l'app mobile est **`claude/project-thread-kw792g`**. Toutes les fonctionnalités et modifications de l'app mobile y sont poussées (ou font l'objet d'une PR).
-- Un push sur cette branche déclenche le workflow `EAS preview` (`.github/workflows/eas-preview.yml`) : contrôles Jest, typage et export Hermes, puis publication OTA sur le canal `preview` uniquement si tous les contrôles passent.
+- Un push sur cette branche déclenche le workflow `Contrôles et EAS preview` (`.github/workflows/eas-preview.yml`, un seul job) : typage, ESLint, tests Jest et export Hermes, puis publication OTA sur le canal `preview` uniquement si tous les contrôles passent.
 - **Quand les runners GitHub sont indisponibles** (file d'attente), on déclenche l'OTA et le build **depuis cette machine** : `npx --yes eas-cli@latest update --platform android --channel preview --environment preview --non-interactive` pour l'OTA, et `... build --platform android --profile preview --non-interactive` pour l'APK. La session EAS est déjà valide dans cet espace de travail. Valider en local (`npm run valider`) **avant**, puisque plus rien ne sert de barrière distante.
 - **Après l'ajout d'un module natif**, incrémenter `version` dans `app.json` : `runtimeVersion` en dérive (aucun n'est défini explicitement), donc les binaires plus anciens ne reçoivent pas l'OTA qui les casserait. Un nouveau build natif reste nécessaire pour que le module existe.
 - **Ne jamais committer de fichier `.env`** : les secrets de ce dépôt public ont déjà fuité une fois. Utiliser `.env.local` (ignoré) ou les secrets EAS.
