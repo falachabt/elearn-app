@@ -85,7 +85,8 @@ export function NotificationsProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!utilisateur || !actif) return;
-    void rafraichir();
+    // Lecture de départ hors du corps de l'effet : l'état se met à jour quand le serveur répond.
+    void Promise.resolve().then(rafraichir);
     // Le nombre de non lues se relit après chaque évènement : la liste est tronquée, le serveur compte tout.
     return suivreNotifications(getSupabase(), utilisateur, (e) => {
       majListe(utilisateur, (liste) => appliquerEvenement(liste, e));

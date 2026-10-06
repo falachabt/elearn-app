@@ -23,17 +23,22 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
 
-/** Icône du type (réponse, sondage, crédits, parrainage, rappel, paiement, message de l'équipe). */
-export function iconeDe(type: string): LucideIcon {
+const ICONES = { reponse: MessageCircle, sondage: ListChecks, cadeau: Gift, credits: Zap, rappel: Clock, paiement: BadgeCheck, equipe: Megaphone } satisfies Record<string, LucideIcon>;
+
+/** Famille d'icône du type (réponse, sondage, crédits, parrainage, rappel, paiement, message de l'équipe). */
+function familleIcone(type: string): keyof typeof ICONES {
   const c = categorieDe(type);
-  if (c === 'answers') return MessageCircle;
-  if (c === 'polls') return ListChecks;
-  if (type === 'referral' || type === 'reward') return Gift;
-  if (c === 'credits') return Zap;
-  if (c === 'reminders') return Clock;
-  if (type === 'payment_confirmed' || type === 'pass_ending') return BadgeCheck;
-  return Megaphone;
+  if (c === 'answers') return 'reponse';
+  if (c === 'polls') return 'sondage';
+  if (type === 'referral' || type === 'reward') return 'cadeau';
+  if (c === 'credits') return 'credits';
+  if (c === 'reminders') return 'rappel';
+  if (type === 'payment_confirmed' || type === 'pass_ending') return 'paiement';
+  return 'equipe';
 }
+
+/** Icône du type, prise dans une table fixe (jamais créée pendant le rendu). */
+export const iconeDe = (type: string): LucideIcon => ICONES[familleIcone(type)];
 
 /** Couleur de la pastille d'icône : jamais la palette brute, seulement les tokens d'état et d'accent. */
 function fondIcone(type: string, theme: Theme): string {
@@ -48,7 +53,7 @@ function fondIcone(type: string, theme: Theme): string {
 function Ligne({ n, onPress }: { n: Notification; onPress: () => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const Icone = iconeDe(n.type);
+  const Icone = ICONES[familleIcone(n.type)];
   const d = delaiEcoule(n.creeLe);
   const delai = d.unite === 'maintenant' ? t('notifications.maintenant') : t(`notifications.${d.unite}`, { n: d.n });
   return (
