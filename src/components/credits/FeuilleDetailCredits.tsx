@@ -26,8 +26,8 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
   const [actionsDispos, setActionsDispos] = useState(false);
   
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   const invite = !!session?.user.is_anonymous;
   const aller = (chemin: string) => () => {
