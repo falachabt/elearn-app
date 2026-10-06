@@ -36,7 +36,8 @@ jest.mock('@/services/assistantConfiguration', () => ({
 }));
 let mockPret: string | null = 'u1';
 let mockInvite = false;
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { is_anonymous: mockInvite } } }) }));
+let mockMetadata: Record<string, unknown> = {};
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { is_anonymous: mockInvite, user_metadata: mockMetadata } } }) }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetFlatList: passe, BottomSheetScrollView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
@@ -99,6 +100,18 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
   afterAll(() => { jest.useRealTimers(); });
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
+
+  it('accueil : la salutation reste « Bonsoir » seul (le prénom ne tronque plus la ligne), le prénom reste lu par l’accessibilité', async () => {
+    mockMetadata = { given_name: 'Aïcha' };
+    try {
+      await monter(<Accueil maintenant={SOIR} />);
+      expect(screen.getByText(x.mission.bonsoir)).toBeTruthy();
+      expect(screen.queryByText(/Aïcha/)).toBeNull();
+      expect(screen.getByLabelText(x.mission.bonsoirNom.replace('{{prenom}}', 'Aïcha'))).toBeTruthy();
+    } finally {
+      mockMetadata = {};
+    }
+  });
 
   it('accueil : salutation du soir, chapitres et matières de la mission, commencer en 1 appui', async () => {
     await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
