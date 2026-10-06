@@ -41,8 +41,7 @@ describe('iOS : pas de paiement', () => {
   it('crédits épuisés : les pass sont présentés, sans prix ni paiement externe', async () => {
     await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
     expect(screen.getByText('Crédits épuisés')).toBeTruthy();
-    expect(screen.getByText('Prendre le pass semaine')).toBeTruthy();
-    expect(screen.getByText('Pass semaine')).toBeTruthy();
+    expect(screen.getByText('Recharger')).toBeTruthy();
     aucune();
   });
 

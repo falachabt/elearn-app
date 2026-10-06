@@ -1306,6 +1306,7 @@ export const en: Textes = {
       ai_question: 'Ask the AI',
     },
     gagnerCredits: 'Earn Credits & History',
+    gagnerBouton: 'Earn credits',
     pageTitre: 'Credits & Rewards',
     actionsQuotidiennesTitre: 'Earn credits today',
     actionsQuotidiennesDescription: 'Come back daily to complete these actions and get free credits.',

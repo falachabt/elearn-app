@@ -1307,6 +1307,7 @@ export const fr = {
       ai_question: 'Demander à l’IA',
     },
     gagnerCredits: 'Gagner des crédits & Historique',
+    gagnerBouton: 'Gagner des crédits',
     pageTitre: 'Crédits & Récompenses',
     actionsQuotidiennesTitre: 'Gagner des crédits aujourd’hui',
     actionsQuotidiennesDescription: 'Reviens chaque jour effectuer ces actions pour recharger tes crédits gratuitement.',

@@ -7,11 +7,12 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 Étiquettes : P0 = avant tout autre chantier, P1 = chemin critique du lancement, P2 = avant les stores, P3 = lot 2 (après le lancement de janvier 2027).
 
 ## En cours
+- Feuille de crédits épuisés K3 (Recharger, Gagner, Plus tard) : maquette `docs/maquettes/k3-credits-epuises.html` validée par Benny le 6 octobre, code et tests faits ; reste à voir sur téléphone.
 - #25 Détection de connexion : code fait, validation sur téléphone dans #31.
 - #13 Mode hors ligne complet : code fait en grande partie (voir le commentaire du 6 octobre sur l'issue).
 
 ## P0
-- #31 Valider les correctifs hors ligne sur téléphone, OTA obligatoire.
+- #31 Valider les correctifs hors ligne sur téléphone, OTA obligatoire (code durci le 6 octobre : écritures locales des quiz attendues, case cochée protégée de la synchro ; reste la recette sur appareil).
 - #36 Révoquer les clés exposées dans l'historique du dépôt public (Benny, consoles des services).
 - elearn-supabase #44 Signature du webhook pawaPay, avant tout paiement réel.
 
