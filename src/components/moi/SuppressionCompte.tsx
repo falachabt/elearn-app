@@ -5,9 +5,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import { deconnecter, estInvite } from '@/services/compte';
+import { modeDeveloppement } from '@/services/developpement';
 import { annulerSuppression, dateEffacement, demanderSuppression, lireDemandeSuppression } from '@/services/moi';
 import { getSupabase } from '@/services/supabase';
-import { lireVersion } from '@/services/version';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -62,7 +62,7 @@ export function SuppressionCompte() {
   };
 
   
-  const modeDevOuPreview = __DEV__ || process.env.EXPO_PUBLIC_APERCU === '1' || lireVersion().canal === 'preview';
+  const modeDevOuPreview = modeDeveloppement();
 
   const supprimerMaintenant = async () => {
     setEnCours(true);

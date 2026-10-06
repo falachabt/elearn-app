@@ -133,6 +133,7 @@ export function ecouterConnectivite(ecouteur: (e: EtatConnectivite) => void): ()
  * Une sonde en échec suffit à répondre non, même si l'appareil a une interface réseau.
  */
 export function estEnLigne(): boolean {
+  if (connexionForcee !== null) return connexionForcee;
   return etat.connecte && etat.backend !== false;
 }
 
@@ -196,6 +197,37 @@ export const DUREE_VALIDITE_HORS_LIGNE_MS = 7 * 24 * 3600 * 1000;
 let dernierContact: string | null = null;
 
 /**
+ * Leviers de développement (page « Paramètres développeur »). Ils ne sont actifs que sur un build de développement
+ * ou « preview » : c'est à l'écran qui les appelle de vérifier `modeDeveloppement()`. Valeurs neutres par défaut
+ * (aucun décalage, aucun forçage), donc le comportement réel est intact en production.
+ */
+let joursSimules = 0;
+let connexionForcee: boolean | null = null;
+
+/** Décale la date « maintenant » de N jours, pour simuler l'expiration du contenu sans attendre une semaine. */
+export function simulerJoursEcoules(jours: number): void {
+  joursSimules = Number.isFinite(jours) ? jours : 0;
+}
+
+/** Décalage simulé en cours, en jours. */
+export function joursSimulesActuels(): number {
+  return joursSimules;
+}
+
+/** Force l'état en ligne (true) ou hors ligne (false) ; `null` rend la main au comportement réel. */
+export function forcerConnexion(valeur: boolean | null): void {
+  connexionForcee = valeur;
+  if (valeur === null) return;
+  maj({ connecte: valeur, internet: valeur, backend: valeur });
+}
+
+/** Oublie le dernier contact serveur : le contenu redevient valable, comme sur une installation neuve. */
+export async function oublierDernierContact(): Promise<void> {
+  dernierContact = null;
+  await AsyncStorage.removeItem(CLE_DERNIER_CONTACT).catch(() => {});
+}
+
+/**
  * Note un contact réussi avec le serveur. Écrit au plus une fois par heure : la sonde passe souvent, et réécrire le
  * stockage à chaque fois serait du gaspillage.
  */
@@ -228,8 +260,10 @@ export async function lireDernierContact(): Promise<number | null> {
 export async function contenuHorsLigneValide(maintenant = Date.now()): Promise<boolean> {
   const contact = await lireDernierContact();
   if (contact === null) return true;
+  // Le décalage simulé (page développeur) permet de vérifier l'expiration sans attendre une semaine.
+  const decalage = joursSimules * 24 * 3600 * 1000;
   // Comparaison inclusive : à exactement 7 jours, le contenu est encore valable. Il expire au-delà.
-  return maintenant - contact <= DUREE_VALIDITE_HORS_LIGNE_MS;
+  return maintenant + decalage - contact <= DUREE_VALIDITE_HORS_LIGNE_MS;
 }
 
 /** Force l'état du dernier contact (tests uniquement). */
@@ -242,6 +276,8 @@ export function definirDernierContactPourTest(valeur: number | null): void {
  * `GET` sur la route de santé de l'authentification, avec la clé publique : le serveur répond alors un vrai 200.
  */
 export async function sonder(fetchTete?: () => Promise<unknown>, maintenant = Date.now()): Promise<boolean> {
+  // Connexion forcée hors ligne (page développeur) : aucune requête ne part, et aucun contact n'est enregistré.
+  if (connexionForcee === false) return false;
   const appel = fetchTete ?? sondeParDefaut;
   maj({ enVerification: true }, new Date(maintenant));
   let joignable = false;

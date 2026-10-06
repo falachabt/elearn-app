@@ -462,3 +462,66 @@ describe('connectivite : validité du contenu hors ligne (7 jours)', () => {
     await expect(c.contenuHorsLigneValide(maintenant + 8 * JOUR)).resolves.toBe(false);
   });
 });
+
+describe('connectivite : leviers de développement', () => {
+  const JOUR = 24 * 3600 * 1000;
+
+  it('le décalage simulé fait expirer un contenu encore valable', async () => {
+    const c = charger();
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+    c.definirDernierContactPourTest(maintenant - 2 * JOUR);
+
+    // Sans décalage : le contenu est valable.
+    expect(c.joursSimulesActuels()).toBe(0);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+
+    // Avec 8 jours simulés, la même situation devient expirée : c'est ce qui évite d'attendre une semaine.
+    c.simulerJoursEcoules(8);
+    expect(c.joursSimulesActuels()).toBe(8);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(false);
+
+    // Retour au comportement réel.
+    c.simulerJoursEcoules(0);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+  });
+
+  it('la connexion forcée décide de l’état, puis rend la main', () => {
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+
+    c.forcerConnexion(false);
+    expect(c.estEnLigne()).toBe(false);
+    expect(c.serveurJoignable()).toBe(false);
+
+    c.forcerConnexion(true);
+    expect(c.estEnLigne()).toBe(true);
+
+    // Retour au réel : aucune sonde n'a échoué, donc l'app reste optimiste.
+    c.forcerConnexion(null);
+    expect(c.estEnLigne()).toBe(true);
+    arret();
+  });
+
+  it('hors ligne forcé, la sonde ne part pas et n’enregistre aucun contact', async () => {
+    const c = charger();
+    c.definirDernierContactPourTest(null);
+    c.forcerConnexion(false);
+
+    await expect(c.sonder(() => Promise.resolve())).resolves.toBe(false);
+    expect(appels).toBe(0);
+    // Aucun contact enregistré : le contenu n'est pas rajeuni artificiellement.
+    await expect(c.contenuHorsLigneValide()).resolves.toBe(true);
+
+    c.forcerConnexion(null);
+  });
+
+  it('oublier le dernier contact rend le contenu valable', async () => {
+    const c = charger();
+    const maintenant = Date.UTC(2026, 9, 5, 12);
+    c.definirDernierContactPourTest(maintenant - 8 * JOUR);
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(false);
+
+    await c.oublierDernierContact();
+    await expect(c.contenuHorsLigneValide(maintenant)).resolves.toBe(true);
+  });
+});
