@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Globe, Users } from 'lucide-react-native';
 
@@ -13,6 +13,7 @@ import {
   ACTIONS_QUOTIDIENNES,
   executerActionQuotidienne,
   lireEtatActionsQuotidiennes,
+  lireEtatLocal,
   type ActionQuotidienne,
   type EtatActionsQuotidiennes,
 } from '@/services/actionsCredits';
@@ -22,7 +23,7 @@ import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 
 export default function EcranCredits() {
   const { t } = useTraduction();
@@ -42,14 +43,28 @@ export default function EcranCredits() {
   const [chargementPlus, setChargementPlus] = useState(false);
   const [page, setPage] = useState(0);
   const [aPlus, setAPlus] = useState(true);
+  const [verification, setVerification] = useState(true);
   const [actionEnCours, setActionEnCours] = useState<ActionQuotidienne | null>(null);
 
   const TAILLE_PAGE = 30;
 
-  const charger = useCallback(async () => {
+  // L'état local s'affiche tout de suite, puis le serveur (qui fait foi) le corrige : sans cela, les actions déjà
+  // réclamées restent « à faire » pendant toute la requête réseau.
+  const chargerActions = useCallback(async () => {
+    const utilisateurId = session?.user?.id;
+    setVerification(true);
     try {
-      const et = await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId: session?.user?.id });
-      setEtatActions(et);
+      if (utilisateurId) setEtatActions(await lireEtatLocal(new Date(), utilisateurId));
+      setEtatActions(await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId }));
+    } catch {
+      // On garde ce qui est affiché.
+    } finally {
+      setVerification(false);
+    }
+  }, [session?.user?.id]);
+
+  const chargerHistorique = useCallback(async () => {
+    try {
       const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
       setHistorique(h);
       setPage(1);
@@ -59,7 +74,11 @@ export default function EcranCredits() {
     } finally {
       setChargementHist(false);
     }
-  }, [session?.user?.id]);
+  }, []);
+
+  const charger = useCallback(async () => {
+    await Promise.all([chargerActions(), chargerHistorique()]);
+  }, [chargerActions, chargerHistorique]);
 
   const chargerPlus = async () => {
     if (chargementPlus || !aPlus) return;
@@ -76,28 +95,12 @@ export default function EcranCredits() {
     }
   };
 
-  useEffect(() => {
-    let actif = true;
-    void (async () => {
-      try {
-        const et = await lireEtatActionsQuotidiennes(new Date(), { client: getSupabase(), utilisateurId: session?.user?.id });
-        if (!actif) return;
-        setEtatActions(et);
-        const h = await lireHistoriqueCredits(getSupabase(), TAILLE_PAGE, 0);
-        if (!actif) return;
-        setHistorique(h);
-        setPage(1);
-        setAPlus(h.length === TAILLE_PAGE);
-      } catch {
-        // Fallback
-      } finally {
-        if (actif) setChargementHist(false);
-      }
-    })();
-    return () => {
-      actif = false;
-    };
-  }, [session?.user?.id]);
+  // À l'ouverture et au retour sur l'écran (après un lien ouvert), le serveur est relu.
+  useFocusEffect(
+    useCallback(() => {
+      void charger();
+    }, [charger]),
+  );
 
   const executer = async (action: ActionQuotidienne) => {
     setActionEnCours(action);
@@ -192,7 +195,7 @@ export default function EcranCredits() {
               <TouchableOpacity
                 key={actKey}
                 activeOpacity={0.8}
-                disabled={enCours || (accompli && actKey !== 'parrainage')}
+                disabled={enCours || (accompli && actKey !== 'parrainage') || (verification && !accompli && actKey !== 'parrainage')}
                 onPress={() => void executer(actKey)}
                 style={[
                   styles.carteAction,
@@ -216,7 +219,7 @@ export default function EcranCredits() {
                   </Text>
                 </View>
 
-                {enCours ? (
+                {enCours || (verification && !accompli && actKey !== 'parrainage') ? (
                   <ActivityIndicator color={theme.marque.principale} />
                 ) : accompli && actKey !== 'parrainage' ? (
                   <View style={[styles.badgeAccompli, { backgroundColor: theme.bord.doux }]}>

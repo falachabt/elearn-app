@@ -56,9 +56,12 @@ export type EtatActionsQuotidiennes = Record<ActionQuotidienne, boolean>;
 /** Ce qu'il faut pour interroger le serveur : le client et l'élève connecté (sans compte, l'état reste local). */
 export type SourceServeur = { client?: Client; utilisateurId?: string };
 
+/** Au-delà, on s'en tient à l'état du téléphone : un réseau qui traîne ne doit pas bloquer l'affichage. */
+const DELAI_SERVEUR_MS = 6000;
+
 const ETAT_VIDE: EtatActionsQuotidiennes = { site_web: false, facebook: false, instagram: false, parrainage: false };
 
-async function lireEtatLocal(maintenant: Date, utilisateurId?: string): Promise<EtatActionsQuotidiennes> {
+export async function lireEtatLocal(maintenant: Date, utilisateurId?: string): Promise<EtatActionsQuotidiennes> {
   try {
     const brut = await AsyncStorage.getItem(cleJour(maintenant, utilisateurId));
     if (!brut) return { ...ETAT_VIDE };
@@ -93,7 +96,10 @@ export async function lireEtatActionsQuotidiennes(maintenant = new Date(), sourc
   if (!source.utilisateurId) return local;
   try {
     // Sans client donné, celui de l'app : s'il n'est pas configuré, on reste sur l'état du téléphone.
-    const reclamees = await lireActionsReclameesServeur(source.client ?? getSupabase(), maintenant);
+    const reclamees = await Promise.race([
+      lireActionsReclameesServeur(source.client ?? getSupabase(), maintenant),
+      new Promise<never>((_, rejeter) => setTimeout(() => rejeter(new Error('delai')), DELAI_SERVEUR_MS)),
+    ]);
     if (reclamees.every((a) => local[a])) return local;
     const fusion = { ...local };
     for (const a of reclamees) fusion[a] = true;

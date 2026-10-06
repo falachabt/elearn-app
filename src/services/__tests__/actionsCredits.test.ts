@@ -143,6 +143,19 @@ describe('actions du jour : le serveur fait foi', () => {
     expect((await lireEtatActionsQuotidiennes(jour, { client, utilisateurId: 'u1' })).instagram).toBe(true);
   });
 
+  it('serveur qui ne répond pas : on rend l’état du téléphone au lieu d’attendre sans fin', async () => {
+    jest.useFakeTimers();
+    try {
+      await enregistrerActionQuotidienne('facebook', jour, 'u1');
+      const client = { from: () => ({ select: () => ({ eq: () => new Promise(() => {}) }) }), rpc: jest.fn() } as never;
+      const attente = lireEtatActionsQuotidiennes(jour, { client, utilisateurId: 'u1' });
+      await jest.advanceTimersByTimeAsync(6500);
+      expect((await attente).facebook).toBe(true);
+    } finally {
+      jest.useRealTimers();
+    }
+  });
+
   it('ne mélange pas les comptes d’un même téléphone', async () => {
     await enregistrerActionQuotidienne('facebook', jour, 'u1');
     const { client } = clientServeur({ reclamees: [] });
