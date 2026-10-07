@@ -1527,5 +1527,11 @@ export const en: Textes = {
     centreTitre: 'Your week of {{debut}} to {{fin}}',
     centreCorps: 'Tap to see your recap again.',
   },
+  propositionNotifications: {
+    titre: 'Want to be notified?',
+    texte: 'Get your photo correction, answers to your questions and your daily mission. You then choose what you want to receive.',
+    autoriser: 'Allow notifications',
+    plusTard: 'Later',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

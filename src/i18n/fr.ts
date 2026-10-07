@@ -1528,6 +1528,12 @@ export const fr = {
     centreTitre: 'Ta semaine du {{debut}} au {{fin}}',
     centreCorps: 'Touche pour revoir ton récap.',
   },
+  propositionNotifications: {
+    titre: 'Veux-tu être prévenu ?',
+    texte: 'Reçois la correction de ta photo, les réponses à tes questions et ta mission du jour. Tu choisis ensuite ce que tu veux recevoir.',
+    autoriser: 'Autoriser les notifications',
+    plusTard: 'Plus tard',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

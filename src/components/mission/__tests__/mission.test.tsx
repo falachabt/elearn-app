@@ -43,9 +43,10 @@ jest.mock('@gorhom/bottom-sheet', () => {
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetFlatList: passe, BottomSheetScrollView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 const mockPermission = jest.fn();
+const mockLirePermission = jest.fn();
 const mockProgrammer = jest.fn();
 jest.mock('expo-notifications', () => ({
-  getPermissionsAsync: jest.fn(async () => ({ granted: false })),
+  getPermissionsAsync: () => mockLirePermission(),
   requestPermissionsAsync: () => mockPermission(),
   setNotificationChannelAsync: jest.fn(),
   cancelAllScheduledNotificationsAsync: jest.fn(),
@@ -82,6 +83,8 @@ beforeEach(async () => {
   mockPret = 'u1';
   mockInvite = false;
   mockPermission.mockResolvedValue({ granted: true });
+  // Notifications déjà autorisées par défaut : la proposition d'autoriser n'apparaît que dans ses propres tests.
+  mockLirePermission.mockResolvedValue({ granted: true, canAskAgain: true });
   await AsyncStorage.clear();
   await AsyncStorage.setItem(CLE_RAPPEL, JSON.stringify({ statut: 'actif', le: '2026-09-01T00:00:00Z' }));
   await AsyncStorage.setItem(CLE_RYTHME, '20');
@@ -240,7 +243,9 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await waitFor(() => expect(screen.getByText('Question 7 ?')).toBeTruthy());
   });
 
-  it('fin de la première mission : explique le rappel puis demande la permission', async () => {
+  it('fin de la première mission (invité) : explique le rappel puis demande la permission', async () => {
+    mockInvite = true;
+    mockLirePermission.mockResolvedValue({ granted: false, canAskAgain: true });
     await AsyncStorage.removeItem(CLE_RAPPEL);
     await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
     await monter(<FinMission />);
@@ -252,7 +257,9 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     expect(suivre).toHaveBeenCalledWith('notification_prompt_answered', { choix: 'accepte' });
   });
 
-  it('rappel refusé par le système : explication, rien de programmé', async () => {
+  it('rappel refusé par le système (invité) : explication, rien de programmé', async () => {
+    mockInvite = true;
+    mockLirePermission.mockResolvedValue({ granted: false, canAskAgain: true });
     await AsyncStorage.removeItem(CLE_RAPPEL);
     mockPermission.mockResolvedValue({ granted: false });
     await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
@@ -261,6 +268,18 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     await fireEvent.press(screen.getByRole('button', { name: x.rappel.oui }));
     await waitFor(() => expect(screen.getByText(x.rappel.refuse)).toBeTruthy());
     expect(mockProgrammer).not.toHaveBeenCalled();
+  });
+
+  it('fin de la première mission (compte) : propose d’autoriser les notifications, avant le rappel du soir', async () => {
+    mockLirePermission.mockResolvedValue({ granted: false, canAskAgain: true });
+    await AsyncStorage.removeItem(CLE_RAPPEL);
+    await AsyncStorage.setItem(CLE_DERNIER, JSON.stringify({ jour: '2026-10-01', score: 5, total: 5, dureeS: 90, serie: 1, graceUtilisee: false, chapitres: [] }));
+    await monter(<FinMission />);
+    await waitFor(() => expect(screen.getByText(x.propositionNotifications.titre)).toBeTruthy());
+    expect(suivre).toHaveBeenCalledWith('notification_prompt_shown', { source: 'fin_mission' });
+    // Une seule feuille : pas celle du rappel du soir.
+    expect(screen.queryByText(x.rappel.titre)).toBeNull();
+    expect(mockPermission).not.toHaveBeenCalled();
   });
 
   it('accueil : invité depuis quelques jours avec une série, rappel de créer son compte', async () => {

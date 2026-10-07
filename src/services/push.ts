@@ -35,14 +35,16 @@ export type DiagnosticPush = {
 /**
  * Diagnostic complet et enregistrement du jeton push (avec messages d'erreur clairs en Preview/Dev).
  */
-export async function diagnostiquerEtEnregistrerPush(client: Client): Promise<DiagnosticPush> {
+export async function diagnostiquerEtEnregistrerPush(client: Client, options: { demander?: boolean } = {}): Promise<DiagnosticPush> {
+  const demander = options.demander ?? true;
   if (Platform.OS === 'web') {
     return { actif: false, permissionAccordee: false, jeton: null, erreur: 'Push indisponible sur Web' };
   }
   try {
     let permission = await Notifications.getPermissionsAsync();
     if (!permission.granted) {
-      if (permission.canAskAgain) {
+      // Demander seulement quand l'élève vient de le décider (réglages, feuille de proposition) : jamais au démarrage.
+      if (demander && permission.canAskAgain) {
         permission = await Notifications.requestPermissionsAsync();
       }
     }
@@ -89,6 +91,6 @@ export async function diagnostiquerEtEnregistrerPush(client: Client): Promise<Di
  * moment, ailleurs). Ne lève jamais ; renvoie true quand le jeton est enregistré.
  */
 export async function enregistrerJetonPush(client: Client): Promise<boolean> {
-  const diag = await diagnostiquerEtEnregistrerPush(client);
+  const diag = await diagnostiquerEtEnregistrerPush(client, { demander: false });
   return diag.actif;
 }

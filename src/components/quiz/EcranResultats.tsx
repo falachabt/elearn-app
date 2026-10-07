@@ -9,6 +9,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
+import { PropositionNotifications } from '../PropositionNotifications';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { BoutonFermer } from '../arrivee/MiniTest';
@@ -64,6 +65,7 @@ export function EcranResultats() {
         {/* Même action que le ✕ en haut : sans ce bouton, il ne restait que « Revoir la correction » pour continuer. */}
         <Bouton libelle={t('correction.terminer')} onPress={fermer} />
       </Ecran>
+      <PropositionNotifications source="fin_quiz" />
       <Feuille ouverte={liste} onFermer={() => setListe(false)} titre={t('correction.leconsTitre')} actions={[{ libelle: t('correction.fermer'), onPress: () => setListe(false), variante: 'secondaire' }]}>
         <View style={styles.groupe}>
           {rates.map((r) => (

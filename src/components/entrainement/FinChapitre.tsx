@@ -15,6 +15,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Apparition } from '../Apparition';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { PropositionNotifications } from '../PropositionNotifications';
 import { Rebond } from '../Rebond';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { CarteListe } from '../liste/CarteListe';
@@ -65,6 +66,7 @@ export function FinChapitre() {
   );
 
   return (
+    <>
     <Ecran pied={pied} entete={<BoutonFermer petit icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}>
       <Apparition>
         <View style={styles.resultat}>
@@ -87,6 +89,8 @@ export function FinChapitre() {
         </View>
       ) : null}
     </Ecran>
+    <PropositionNotifications source="fin_chapitre" />
+    </>
   );
 }
 

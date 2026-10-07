@@ -40,7 +40,7 @@ export type Evenements = {
   lesson_quiz_invited: { lecon: number };
   class_document_opened: { correction: boolean };
   legal_opened: { page: 'cgu' | 'confidentialite' };
-  notification_prompt_shown: { source: 'fin_mission' };
+  notification_prompt_shown: { source: 'fin_mission' | 'fin_quiz' | 'fin_chapitre' };
   notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
   notification_opened: { type: string };
   notification_setting_changed: { rappel: boolean };
