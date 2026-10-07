@@ -58,13 +58,39 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
 
+      # Sur un push, les contrôles ne sont pas refaits si la pull request qui les a déjà passés
+      # (son dernier commit, parent du commit de fusion) a réussi : l'OTA part sans repayer Jest.
+      # L'export Hermes, lui, est toujours refait sur le code final.
+      - name: Contrôles déjà validés sur la pull request ?
+        if: ${{ github.event_name == 'push' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for c in $(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA" --jq '.sha, .parents[].sha'); do
+            n=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/eas-preview.yml/runs?head_sha=$c&event=pull_request&status=success" --jq .total_count)
+            if [ "$n" -gt 0 ]; then
+              echo "DEJA_VERIFIE=true" >> "$GITHUB_ENV"
+              echo "::notice::Typage, ESLint et Jest déjà réussis sur la pull request (commit $c) : non relancés."
+              break
+            fi
+          done
+
       # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.
-      - name: Typage
-        run: npm run typecheck
-      - name: ESLint
-        run: npm run lint
-      - name: Tests Jest (dont garde-fou des appels natifs dangereux)
-        run: npm test -- --ci
+      # Typage, ESLint et Jest tournent en parallèle dans ce même job (un seul npm ci).
+      - name: Typage, ESLint et tests Jest (dont garde-fou des appels natifs dangereux)
+        if: ${{ env.DEJA_VERIFIE != 'true' }}
+        run: |
+          npm run typecheck > "$RUNNER_TEMP/typage.log" 2>&1 & p1=$!
+          npm run lint > "$RUNNER_TEMP/eslint.log" 2>&1 & p2=$!
+          npm test -- --ci > "$RUNNER_TEMP/jest.log" 2>&1 & p3=$!
+          rc=0
+          for etape in "typage:$p1" "eslint:$p2" "jest:$p3"; do
+            nom=${etape%%:*}; pid=${etape##*:}
+            if wait "$pid"; then ok=OK; else ok=ECHEC; rc=1; fi
+            echo "::group::$nom ($ok)"; cat "$RUNNER_TEMP/$nom.log"; echo "::endgroup::"
+            if [ "$ok" = ECHEC ]; then echo "::error::$nom a échoué"; fi
+          done
+          exit $rc
 
       # Export et publication : uniquement hors pull request.
       - name: Export Android (bundle Metro + compilation Hermes, comme l'OTA)
