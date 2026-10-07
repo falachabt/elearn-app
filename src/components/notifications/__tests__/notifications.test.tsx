@@ -186,6 +186,21 @@ describe('Centre de notifications (N1)', () => {
     expect(router.push).toHaveBeenCalledWith('/credits');
   });
 
+  it.each([
+    ['crédits presque épuisés', { type: 'credits_low', data: { screen: '/credits', balance: 4 } }, '/credits'],
+    ['correction photo remboursée', { type: 'photo_refunded', data: { screen: '/photo', amount: 5 } }, { pathname: '/photo', params: { historique: '1' } }],
+    ['sondage révélé', { type: 'poll_revealed', data: { post_id: 'p7' } }, { pathname: '/question', params: { id: 'p7' } }],
+    ['réponse à ta question', { type: 'post_comment', data: { post_id: 'q3' } }, { pathname: '/question', params: { id: 'q3' } }],
+    ['bienvenue', { type: 'credits_refilled', data: { reason: 'welcome', amount: 40 } }, '/moi'],
+  ])('%s : la ligne s’affiche avec son texte et son appui ouvre le bon écran', async (_nom, extra, attendu) => {
+    mockNotifications.mockReturnValue(etat({ notifications: [notif('t', { ...(extra as Partial<Notification>), lue: true })] }));
+    await monter(<CentreNotifications />);
+    expect(screen.getByText('Titre t')).toBeTruthy();
+    expect(screen.getByText('Corps t')).toBeTruthy();
+    await fireEvent.press(screen.getByText('Titre t'));
+    expect(router.push).toHaveBeenCalledWith(attendu);
+  });
+
   it('résumé du lundi : la ligne dit la semaine et ouvre Ma semaine depuis le centre', async () => {
     const semaine = semainePrecedente();
     const titre = fr.maSemaine.centreTitre.replace('{{debut}}', jourCourt(semaine, 'fr')).replace('{{fin}}', jourCourt(dimancheDe(semaine), 'fr'));
@@ -238,7 +253,7 @@ describe('Centre de notifications (N1)', () => {
   });
 
   it('chaque type a une icône', () => {
-    for (const t of ['post_comment', 'poll_revealed', 'credits_refilled', 'referral', 'reward', 'study_reminder', 'payment_confirmed', 'admin_message', 'marketing']) {
+    for (const t of ['post_comment', 'poll_revealed', 'credits_refilled', 'referral', 'reward', 'study_reminder', 'payment_confirmed', 'admin_message', 'marketing', 'credits_low', 'photo_refunded', 'photo_ready', 'post_reply']) {
       expect(iconeDe(t)).toBeTruthy();
     }
   });

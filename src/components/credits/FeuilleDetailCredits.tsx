@@ -20,7 +20,7 @@ import { useQuand } from '../moi/useQuand';
 export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; onFermer: () => void }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { solde, reglages, depensesSemaine } = useCredits();
+  const { solde, reglages, depensesSemaine, depensesEnAttente } = useCredits();
   const { session } = useSession();
   const quand = useQuand();
   const [actionsDispos, setActionsDispos] = useState(false);
@@ -70,6 +70,9 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
               </View>
             )}
           </View>
+          {depensesEnAttente > 0 && !solde.illimite ? (
+            <Text accessibilityRole="alert" style={[typo.petit, styles.centre, { color: theme.texte.secondaire }]}>{t('profil.aSynchroniserTexte')}</Text>
+          ) : null}
           {lignes.length ? (
             <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
               {lignes.map(([nom, valeur]) => (

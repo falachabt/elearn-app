@@ -182,6 +182,8 @@ describe('catégories et destinations', () => {
   it('range chaque type dans la catégorie du serveur', () => {
     expect(['post_comment', 'post_reply', 'mention', 'post_like', 'profile_like'].map(categorieDe)).toEqual(Array(5).fill('answers'));
     expect(categorieDe('poll_revealed')).toBe('polls');
+    expect(categorieDe('credits_low')).toBe('credits');
+    expect(categorieDe('photo_refunded')).toBeNull();
     expect(['credits_refilled', 'referral', 'reward'].map(categorieDe)).toEqual(['credits', 'credits', 'credits']);
     expect(categorieDe('study_reminder')).toBe('reminders');
     expect(categorieDe('weekly_summary')).toBe('reminders');
@@ -200,6 +202,15 @@ describe('catégories et destinations', () => {
     expect(destinationDe('photo_ready', { correction_id: 'c-1' })).toEqual({ pathname: '/photo', params: { id: 'c-1' } });
     expect(destinationDe('photo_ready', { photoId: 'p-2' })).toEqual({ pathname: '/photo', params: { id: 'p-2' } });
     expect(destinationDe('photo_ready', {})).toEqual({ pathname: '/photo', params: { historique: '1' } });
+    expect(destinationDe('photo_refunded', { screen: '/photo' })).toEqual({ pathname: '/photo', params: { historique: '1' } });
+    expect(destinationDe('credits_low', { screen: '/credits', balance: 4 })).toEqual({ pathname: '/credits' });
+    expect(destinationDe('credits_low', {})).toEqual({ pathname: '/credits' });
+    // Réponse à une question et sondage révélé : la question quand le serveur donne son identifiant.
+    expect(destinationDe('post_reply', { post_id: 'q9' })).toEqual({ pathname: '/question', params: { id: 'q9' } });
+    expect(destinationDe('post_comment', { post_id: 'q8' })).toEqual({ pathname: '/question', params: { id: 'q8' } });
+    expect(destinationDe('poll_revealed', { post_id: 'q7' })).toEqual({ pathname: '/question', params: { id: 'q7' } });
+    // Bienvenue : le solde dans Moi.
+    expect(destinationDe('credits_refilled', { reason: 'welcome', amount: 40 })).toEqual({ pathname: '/moi' });
   });
 
   it('un paiement confirmé ouvre ce paiement quand la notification porte son identifiant, sinon la liste', () => {

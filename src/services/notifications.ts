@@ -159,7 +159,7 @@ export type CategorieReglage = 'answers' | 'polls' | 'credits' | 'reminders' | '
 export function categorieDe(type: string): CategorieReglage | null {
   if (['post_comment', 'post_reply', 'mention', 'post_like', 'profile_like'].includes(type)) return 'answers';
   if (type === 'poll_revealed') return 'polls';
-  if (['credits_refilled', 'referral', 'reward'].includes(type)) return 'credits';
+  if (['credits_refilled', 'referral', 'reward', 'credits_low'].includes(type)) return 'credits';
   if (type === 'study_reminder' || type === 'weekly_summary') return 'reminders';
   if (type === 'marketing') return 'marketing';
   return null;
@@ -182,6 +182,8 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const correction = [data?.correction_id, data?.photoId, data?.photo_id, data?.id].find((v): v is string => typeof v === 'string' && v !== '');
     return { pathname: '/photo', params: correction ? { id: correction } : { historique: '1' } };
   }
+  // Correction photo remboursée : l'écran Photo (l'historique garde la trace), comme `data.screen` du serveur.
+  if (type === 'photo_refunded') return { pathname: '/photo', params: { historique: '1' } };
   // Paiement confirmé : le détail de celui-ci quand la notification porte son identifiant, sinon la liste (Moi › Paiements).
   if (type === 'payment_confirmed') {
     const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;

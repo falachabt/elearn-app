@@ -30,7 +30,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 ## P1 (chemin critique)
 - #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app.
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
-- #33 Compteur de crédits : fait sur l'Accueil, reste Réviser et l'état « à confirmer » hors ligne.
+- #33 Compteur de crédits : fait sur l'Accueil et Réviser, avec l'état « à confirmer » hors ligne (7 octobre) ; reste à voir sur téléphone.
 
 ## P2 (avant les stores)
 - elearn #28 Back-office des codes promo (créer, désactiver, voir les utilisations).
@@ -40,7 +40,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #6 à #12 : RLS, vues SECURITY DEFINER, authentification, limitation de débit ; #5 clés Firebase.
 - #18, #19, #20 Déploiement iOS, Android, OTA et changelog ; #6 achat Apple.
 - #14 performance, #15 chronomètre des annales, #10 limite IA sur Photo, #26 un seul appareil.
-- #34 notifications restantes (routage de « correction prête » et des paiements fait ; restent crédits presque épuisés, remboursement photo, sondage révélé, réponse à ta question), #39 réconcilier les branches, #21 inventaire des tâches oubliées.
+- #34 notifications restantes : routage, icônes et tests faits dans l'app (crédits presque épuisés, remboursement photo, sondage révélé, réponse à ta question, bienvenue) ; la migration serveur `20261007150000_notifs_credits_photo` est sur la branche `claude/b2-notifs-credits-photo` d'elearn-supabase, à déployer par Benny, #39 réconcilier les branches, #21 inventaire des tâches oubliées.
 
 ## P3 (lot 2)
 #38 classes et classement, #12 partage d'une correction photo, #16 classement candidat annales, elearn-supabase #16, back-office elearn #17 à #22.

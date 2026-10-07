@@ -34,7 +34,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 let mockPret: string | null = 'u1';
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 
 const COURS = [
@@ -107,6 +107,12 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(screen.getByRole('button', { name: `Français, ${vu(0)}` })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: `Maths, ${vu(33)}` }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } });
+  });
+
+  it('en-tête : le compteur de crédits est à côté du titre (squelette tant que le solde se charge)', async () => {
+    await monter(<Reviser />);
+    expect(await screen.findByText(x.reviser.titre)).toBeTruthy();
+    expect(screen.getByTestId('compteur-chargement', { includeHiddenElements: true })).toBeTruthy();
   });
 
   it('erreur réseau sans copie, puis nouvel essai', async () => {

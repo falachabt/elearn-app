@@ -1321,6 +1321,8 @@ export const fr = {
     compteur: '{{n}} crédits',
     compteurUn: '1 crédit',
     compteurA11y: '{{n}} crédits disponibles. Voir le détail.',
+    compteurAConfirmerA11y: '{{n}} crédits, à confirmer par le serveur. Voir le détail.',
+    aConfirmerPuce: 'À confirmer',
     illimite: 'Illimité',
     illimiteA11y: 'Crédits illimités avec ton pass. Voir le détail.',
     mesCredits: 'Mes crédits',

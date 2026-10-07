@@ -21,8 +21,8 @@ const soldeBase: Solde = {
 };
 const couts = { quiz_explanation: 1, exercise_solution: 2, document_pdf: 3, exam_correction: 5, ai_question: 5 };
 
-function donner(solde: Partial<Solde> | null = {}) {
-  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, couts, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, depenser: mockDepenser, rafraichir: jest.fn() });
+function donner(solde: Partial<Solde> | null = {}, depensesEnAttente = 0) {
+  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, depensesEnAttente, couts, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, depenser: mockDepenser, rafraichir: jest.fn() });
 }
 
 /** Les choix de la feuille, dans l'ordre : le nom accessible de chaque bouton. */
@@ -59,6 +59,28 @@ describe('K1 compteur', () => {
     donner({ total: 5, semaine: 5, rechargeHebdo: false });
     await avecTheme(<CompteurCredits />);
     expect(screen.getByText('5 · Invité')).toBeTruthy();
+  });
+
+  it('dépenses faites hors ligne en attente : le solde est marqué « à confirmer », sans le présenter comme confirmé', async () => {
+    donner({ total: 14 }, 2);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.getByTestId('compteur-a-confirmer')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: '14 crédits, à confirmer par le serveur. Voir le détail.' }));
+    expect(screen.getByText(/pas encore confirmées par le serveur/)).toBeTruthy();
+  });
+
+  it('rien à confirmer : pas de marque, ni dans la feuille de détail', async () => {
+    donner({ total: 14 }, 0);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.queryByTestId('compteur-a-confirmer')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: '14 crédits disponibles. Voir le détail.' }));
+    expect(screen.queryByText(/pas encore confirmées par le serveur/)).toBeNull();
+  });
+
+  it('avec un pass : jamais « à confirmer »', async () => {
+    donner({ illimite: true, illimiteJusqua: '2026-11-12T00:00:00Z' }, 3);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.queryByTestId('compteur-a-confirmer')).toBeNull();
   });
 
   it('squelette tant que le solde n’est pas chargé', async () => {

@@ -1319,6 +1319,8 @@ export const en: Textes = {
   credits: {
     compteur: '{{n}} credits',
     compteurUn: '1 credit',
+    compteurAConfirmerA11y: '{{n}} credits, to be confirmed by the server. See details.',
+    aConfirmerPuce: 'To confirm',
     compteurA11y: '{{n}} credits available. See details.',
     illimite: 'Unlimited',
     illimiteA11y: 'Unlimited credits with your pass. See details.',

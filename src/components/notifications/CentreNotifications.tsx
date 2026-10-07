@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { BadgeCheck, Clock, Gift, ListChecks, Megaphone, MessageCircle, Zap, type LucideIcon } from 'lucide-react-native';
+import { BadgeCheck, Camera, Clock, Gift, ListChecks, Megaphone, MessageCircle, Zap, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -24,7 +24,7 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
 
-const ICONES = { reponse: MessageCircle, sondage: ListChecks, cadeau: Gift, credits: Zap, rappel: Clock, paiement: BadgeCheck, equipe: Megaphone } satisfies Record<string, LucideIcon>;
+const ICONES = { reponse: MessageCircle, sondage: ListChecks, cadeau: Gift, credits: Zap, rappel: Clock, paiement: BadgeCheck, photo: Camera, equipe: Megaphone } satisfies Record<string, LucideIcon>;
 
 /** Famille d'icône du type (réponse, sondage, crédits, parrainage, rappel, paiement, message de l'équipe). */
 function familleIcone(type: string): keyof typeof ICONES {
@@ -35,6 +35,7 @@ function familleIcone(type: string): keyof typeof ICONES {
   if (c === 'credits') return 'credits';
   if (c === 'reminders') return 'rappel';
   if (type === 'payment_confirmed' || type === 'pass_ending') return 'paiement';
+  if (type === 'photo_ready' || type === 'photo_refunded') return 'photo';
   return 'equipe';
 }
 
