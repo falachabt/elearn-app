@@ -1528,9 +1528,9 @@ export const en: Textes = {
     centreCorps: 'Tap to see your recap again.',
   },
   propositionNotifications: {
-    titre: 'Want to be notified?',
-    texte: 'Get your photo correction, answers to your questions and your daily mission. You then choose what you want to receive.',
-    autoriser: 'Allow notifications',
+    titre: 'Turn on notifications',
+    texte: 'Notifications are small messages that show up on your phone. You are told when your photo correction is ready, when someone answers your questions, and for your daily mission. You then choose what you want to receive.',
+    autoriser: 'Turn on notifications',
     plusTard: 'Later',
   },
   actions: { commencer: 'Get started', plusTard: 'Later' },
