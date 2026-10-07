@@ -52,6 +52,12 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **Bandeau application** : `BandeauApplication` (maquette `docs/maquettes/bandeau-app-web.md`), liens dans `src/config/magasins.ts` (App Store `null` tant que l'app n'y est pas).
 - **Code promo v2** : saisie aussi sur la liste des Pass (RPC `promo_offers`, elearn-supabase #54, un appel pour les trois Pass) ; un seul code partagé entre E1 et E2 (`codePromo.ts`, mémoire de session, revérifié à l'ouverture de chaque écran).
 
+### Support WhatsApp : vérification du compte dans l'application (8 octobre 2026)
+
+- **Principe** : l'agent support (numéro Kapso, voir `elearn-supabase/docs/support-agent.md`) ne lit un compte qu'après accord de l'élève dans l'application. Le client donne son identifiant (Moi, ligne « Mon identifiant », copiable) ou son e-mail ; le serveur envoie une notification `support_auth_request` et crée une demande valable 15 minutes.
+- **App** : `src/services/support.ts` (demandes en attente, réponse), `src/components/support/EcranConfirmerSupport.tsx` (route `/support-confirmer`, spec `docs/maquettes/support-confirmer.md`), `useDemandeSupportAuto` (monté dans `Navigation` : ouvre l'écran à l'ouverture, au retour au premier plan ou à la réception de la notification, une fois par demande, jamais pour un invité). Aucun module natif ajouté (`expo-clipboard` était déjà embarqué).
+- **Pièges** : la réponse passe par la fonction `support-auth-answer` (jeton de l'élève vérifié côté serveur), jamais par une écriture directe en base. Le numéro du client n'est affiché que par ses quatre derniers chiffres. Le typage local avec `.expo/types/router.d.ts` régénéré donne deux erreurs anciennes (`CentreNotifications`, `rappels`) que la CI n'a pas : la CI tape sans ce fichier.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).

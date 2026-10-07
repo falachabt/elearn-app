@@ -70,6 +70,8 @@ export type Evenements = {
   week_recap_card_viewed: { index: number; semaine: string };
   week_recap_cta: { cta: 'refaire_erreurs' | 'aller_reviser' | 'faire_mission' | 'reessayer' | 'fermer'; semaine: string };
   week_recap_closed: { derniere_carte: number; semaine: string };
+  support_confirmation_vue: { demandes: number };
+  support_confirmation_reponse: { reponse: 'accepted' | 'refused' | 'expiree' | 'erreur' };
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };
 };
 

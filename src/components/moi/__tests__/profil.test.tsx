@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import * as Clipboard from 'expo-clipboard';
 import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -33,6 +34,7 @@ jest.mock('expo-router', () => ({
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => mockCredits() }));
+jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(() => Promise.resolve(true)) }));
 jest.mock('expo-application', () => ({ nativeApplicationVersion: '3.0.0', nativeBuildVersion: '42' }));
 jest.mock('expo-updates', () => ({ channel: 'preview', updateId: null, isEmbeddedLaunch: true, createdAt: null }));
 jest.mock('@/services/supabase', () => ({
@@ -147,6 +149,19 @@ describe.each(['fr', 'en'] as const)('H1 · Moi par état (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
     await fireEvent.press(screen.getByRole('button', { name: x.profil.dejaCompte }));
     expect(router.push).toHaveBeenCalledWith('/compte/connexion');
+  });
+
+  it('identifiant : copié pour le support WhatsApp, absent pour un invité', async () => {
+    await monter(<EcranMoi />);
+    await waitFor(() => expect(screen.getByText(x.moi.identifiant)).toBeTruthy());
+    expect(screen.queryByText(x.moi.identifiantCopie)).toBeNull();
+    await fireEvent.press(screen.getByTestId('moi-identifiant'));
+    expect(Clipboard.setStringAsync).toHaveBeenCalledWith('u2');
+    await waitFor(() => expect(screen.getByText(x.moi.identifiantCopie)).toBeTruthy());
+    mockSession.mockReturnValue(invite);
+    await monter(<EcranMoi />);
+    await waitFor(() => expect(screen.getAllByText(x.profil.invite).length).toBeGreaterThan(0));
+    expect(screen.queryByTestId('moi-identifiant')).toBeNull();
   });
 
   it('ma progression : minutes de la semaine dans la ligne', async () => {

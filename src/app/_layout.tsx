@@ -14,6 +14,7 @@ import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapA
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
+import { useDemandeSupportAuto } from '@/components/support/useDemandeSupportAuto';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
 import { demarrerConnectivite } from '@/services/connectivite';
@@ -58,6 +59,7 @@ function Navigation() {
   const router = useRouter();
   const reduit = useReduireAnimations();
   useOuvertureRecapAuto();
+  useDemandeSupportAuto();
   useRetourOAuthWeb();
 
   useEffect(() => {

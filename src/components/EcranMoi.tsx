@@ -1,6 +1,7 @@
+import * as Clipboard from 'expo-clipboard';
 import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
-import { CircleHelp, FileText, Gift, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
+import { CircleHelp, FileText, Gift, IdCard, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -44,6 +45,7 @@ export function EcranMoi() {
   const [profil, setProfil] = useState<Profil | null>(null);
   const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
+  const [identifiantCopie, setIdentifiantCopie] = useState(false);
 
   const user = session?.user;
   const invite = estInvite(user);
@@ -89,6 +91,14 @@ export function EcranMoi() {
       actif = false;
     };
   }, [idUtilisateur]);
+
+  // L'identifiant sert au support WhatsApp : l'élève le copie et le colle dans la conversation (spec : docs/maquettes/support-confirmer.md).
+  const copierIdentifiant = async () => {
+    if (!idUtilisateur) return;
+    await Clipboard.setStringAsync(idUtilisateur).catch(() => {});
+    setIdentifiantCopie(true);
+    setTimeout(() => setIdentifiantCopie(false), 2500);
+  };
 
   const classePays = profil?.niveau
     ? t('profil.classeSous', {
@@ -192,6 +202,16 @@ export function EcranMoi() {
         <LigneGroupe icone={RefreshCw} titre={t('profil.classe')} sousTitre={classePays ?? undefined} onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })} />
         {connecte ? (
           <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t(paiementPossible() ? 'profil.parentAucun' : 'profil.parentAucunSansPaiement')} onPress={() => router.push('/profil/parent')} />
+        ) : null}
+        {connecte ? (
+          <LigneGroupe
+            icone={IdCard}
+            titre={t('moi.identifiant')}
+            sousTitre={t('moi.identifiantSous')}
+            valeur={identifiantCopie ? t('moi.identifiantCopie') : undefined}
+            onPress={() => void copierIdentifiant()}
+            testID="moi-identifiant"
+          />
         ) : null}
         <LigneGroupe icone={CircleHelp} titre={t('profil.aide')} onPress={() => router.push('/aide')} />
       </Groupe>
