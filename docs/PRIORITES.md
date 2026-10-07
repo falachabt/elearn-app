@@ -32,6 +32,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #37 App Links servis en JSON (hébergement par Benny).
 
 ## P2 (avant les stores)
+- #54 PWA installée : ne s'ouvre pas sans internet au démarrage à froid (bug web, constaté le 7 octobre après les commits `c447041` et `ee89d84` ; pistes dans l'issue).
 - elearn-supabase #51 Configurer proprement les réseaux sociaux Elearn Prépa (Benny, portfolio Meta Business, Metricool).
 - elearn-supabase #52 Brancher WhatsApp avec Kapso ; #29 WhatsApp Business (résumé parent, reçus, support) ; elearn-supabase #14 envoi côté serveur ; elearn-site #8 page résumé parent.
 - elearn-supabase #6 à #12 : RLS, vues SECURITY DEFINER, authentification, limitation de débit ; #5 clés Firebase.
