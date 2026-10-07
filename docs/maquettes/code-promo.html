@@ -1,7 +1,7 @@
 <title>Code promo du Pass, maquette</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
-/* Concept : un prototype cliquable de l'écran E2 (Paiement), puis la galerie de tous les états en clair et en sombre, puis la spec.
+/* Concept : un prototype cliquable des écrans E1 (liste des Pass) et E2 (Paiement) qui partagent le code promo, puis la galerie des états en clair et en sombre, puis la spec.
    Les tokens des téléphones reprennent theme.ts ; la page autour suit le thème du viewer. */
 :root{
   --pg-bg:#FFF7E3;--pg-fg:#0A0A0A;--pg-mute:#5C5C5C;--pg-card:#FFFFFF;--pg-line:#0A0A0A;--pg-soft:#F6EEDA;--pg-accent:#047857;
@@ -116,109 +116,172 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke
 .ok{width:64px;height:64px;border:2px solid var(--bord);border-radius:50%;background:var(--marque);display:grid;place-items:center;color:#0A0A0A;box-shadow:3px 3px 0 var(--shadow)}
 .ok svg{width:30px;height:30px}
 .toast{margin-top:8px;font:500 13px var(--f-mono);color:var(--pg-mute)}
+.of{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:10px 12px;display:flex;gap:10px;align-items:center;min-height:68px;cursor:pointer}
+.of.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.of.off{cursor:default}
+.rd{width:22px;height:22px;border:2px solid var(--bord);border-radius:50%;flex:none;display:grid;place-items:center;background:var(--surf);color:#0A0A0A}
+.rd.on{background:var(--marque)}.rd svg{width:14px;height:14px;stroke-width:3}
+.ot{flex:1;min-width:0}.ot b{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font:700 15px var(--f-body)}
+.ot small{display:block;font:400 12px/1.3 var(--f-body);color:var(--txt2)}
+.pr2{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font:700 16px var(--f-body)}
+.pr2 s{font:500 12px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.pr2 .nv{font:500 11px var(--f-body);color:var(--txt2);max-width:92px}
+.pr2 .badge{font-size:11px;padding:1px 8px}
+.cons{background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:6px;padding:0 6px;font:700 10px var(--f-mono);letter-spacing:.5px}
+.rep{border:2px solid var(--bord);border-radius:10px;background:#FFF1B8;color:#0A0A0A;padding:10px 12px;font:500 13px/1.35 var(--f-body);display:flex;gap:8px;align-items:center}
+.ph.dark .rep{background:#3D3514;color:#F6F1E4}
+.note2{font:400 12px/1.4 var(--f-body);color:var(--txt2);text-align:center}
+.warn{border:2px solid var(--bord);border-radius:10px;background:var(--info-d);color:var(--txt);padding:10px 12px;font:500 13px/1.4 var(--f-body);display:flex;gap:8px;align-items:flex-start}
+.phones{display:flex;gap:20px;flex-wrap:wrap}
+.pl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+.blk{margin-top:36px}
 </style>
 
+<style>
+.ot small.no{color:var(--err);display:flex;gap:4px;align-items:flex-start;font-weight:500}
+.ot small.no svg{width:14px;height:14px;margin-top:1px}
+.ctlrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.phones .fr.live{flex:none}
+.of .pr2 span.n{font:700 16px var(--f-body)}
+.btn.sec.pa{box-shadow:3px 3px 0 var(--shadow)}
+.applied.no .ic{background:var(--creux)}
+.ot small.ap{display:flex;gap:6px;align-items:center;margin-top:2px}
+.ot small.ap .badge{font-size:11px;padding:0 8px}
+.of{min-height:60px;padding:8px 12px}
+</style>
+</head>
+<body>
+
 <div class="wrap">
-  <p class="eyebrow">Maquette · parcours E · issue #7</p>
+  <p class="eyebrow">Maquette · parcours E · issue #7 · révision 2</p>
   <h1>Code promo du Pass</h1>
-  <p class="lead">Les états de l'écran E2 (Paiement) quand l'élève a un code promo : saisie, vérification, code appliqué avec prix barré, retrait, erreurs, et paiement à 0 FCFA. E2 ne montrait que le lien « J'ai un code promo » : on garde cet écran et on n'ajoute que ce que le code change. Essaie le prototype ci-dessous.</p>
+  <p class="lead">Le code promo se saisit dès la liste des Pass (E1), juste sous le bandeau du répétiteur, pour voir l'effet sur chaque Pass. Il est repris, déjà appliqué, sur l'écran de paiement (E2), où le lien « J'ai un code promo » remonte juste sous la carte du Pass, avant le choix de l'opérateur. On garde les deux écrans Figma et on n'ajoute que ce que le code change. Essaie le prototype : les deux écrans partagent le même code.</p>
 
   <h2>Prototype cliquable</h2>
-  <div class="demo">
-    <div id="live-wrap"></div>
-    <div class="ctl">
-      <div class="box"><div class="lbl">Offre choisie sur E1</div>
-        <div class="seg2" id="c-offer"></div>
-        <div class="lbl" style="margin-top:14px">Thème</div>
-        <div class="seg2" id="c-theme"></div>
-        <label class="sw"><input type="checkbox" id="c-off"> Simuler « pas de réseau »</label>
-      </div>
-      <div class="box"><div class="lbl">Codes de démonstration</div>
-        <div class="chips" id="c-codes"></div>
-        <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Touche un code pour le copier dans le champ, ou tape-le. Tout autre code est « inconnu ». Cinq essais ratés de suite donnent « Trop d'essais ».</p>
-      </div>
-      <div class="box"><div class="lbl">Ce que l'app enverrait à la commande</div><pre class="cd" id="payload"></pre>
-        <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Le prix n'est jamais envoyé : le serveur le recalcule avec le code.</p></div>
+  <p class="lead" style="margin-top:8px">Touche une carte pour choisir un Pass, « J'ai un code promo » pour ouvrir le champ. Le code appliqué sur l'un des écrans apparaît sur l'autre.</p>
+  <div class="phones" style="margin-top:18px">
+    <div><p class="pl">E1 · Liste des Pass</p><div id="live-e1"></div></div>
+    <div><p class="pl">E2 · Paiement</p><div id="live-e2"></div></div>
+  </div>
+  <p class="toast" id="toast" aria-live="polite"></p>
+  <div class="ctlrow">
+    <div class="box"><div class="lbl">Thème</div>
+      <div class="seg2" id="c-theme"></div>
+      <label class="sw"><input type="checkbox" id="c-off"> Simuler « pas de réseau »</label>
+      <button type="button" class="seg2" id="c-reset" style="margin-top:6px"><span style="font:700 14px var(--f-body);padding:10px 14px;display:block;color:var(--pg-fg)">Tout réinitialiser</span></button>
     </div>
+    <div class="box"><div class="lbl">Codes de démonstration</div>
+      <div class="chips" id="c-codes"></div>
+      <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Touche un code pour le mettre dans le champ ouvert (sur E1 si rien n'est ouvert), ou tape-le. ELEARN20 : -20 % ; BIENVENUE500 : -500 FCFA (le Pass semaine passe à 0) ; CONCOURS : seulement le Pass concours. Cinq essais ratés de suite donnent « Trop d'essais ».</p>
+    </div>
+    <div class="box"><div class="lbl">Ce que l'app enverrait à la commande</div><pre class="cd" id="payload"></pre>
+      <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Le prix n'est jamais envoyé : le serveur le recalcule avec le code.</p></div>
   </div>
 
   <h2>Tous les états</h2>
   <p class="lead">Chaque état existe en clair et en sombre, pour les tests du dev.</p>
+
+  <div class="blk"><h3>E1 · Liste des Pass</h3></div>
   <div class="row-title"><h3>Thème clair</h3><small>Faire défiler vers la droite</small></div>
-  <div class="rail" id="g-clair"></div>
+  <div class="rail" id="g1-clair"></div>
   <div class="row-title"><h3>Thème sombre</h3></div>
-  <div class="rail" id="g-sombre"></div>
+  <div class="rail" id="g1-sombre"></div>
+
+  <div class="blk"><h3>E2 · Paiement et E4 · Reçu</h3></div>
+  <div class="row-title"><h3>Thème clair</h3></div>
+  <div class="rail" id="g2-clair"></div>
+  <div class="row-title"><h3>Thème sombre</h3></div>
+  <div class="rail" id="g2-sombre"></div>
 
   <h2>Spec pour le dev</h2>
   <div class="spec">
+    <div class="box"><h3>Ce qui change par rapport à Figma</h3><ul>
+      <li><b>E1 :</b> un bloc code promo est ajouté juste sous le bandeau « répétiteur », avant les cartes. Aucune carte ne change de place ; seul leur prix change quand un code est appliqué.</li>
+      <li><b>E2 :</b> « J'ai un code promo » quitte le bas de l'écran. Il se place juste sous la carte du Pass (résumé), avant « Ton opérateur ».</li>
+      <li>Le texte du bandeau est celui de Figma E1, à vérifier au codage.</li>
+    </ul></div>
     <div class="box"><h3>Règles retenues</h3><ul>
       <li>Un seul code par paiement. Pour en changer, on retire le code appliqué, puis on en saisit un autre.</li>
-      <li>Valable pour le Pass seulement (semaine, mois, concours). Pas pour les crédits ni les autres achats.</li>
+      <li>Valable pour les Pass payants (semaine, mois, concours), jamais pour « Gratuit », ni pour les crédits ou d'autres achats.</li>
+      <li>Le code est unique pour toute la session de paiement : saisi sur E1, il est déjà appliqué sur E2. Saisi sur E2, il est aussi retrouvé en revenant sur E1. Retiré d'un côté, il l'est des deux.</li>
+      <li>Il reste appliqué quand l'élève revient en arrière ou change de Pass. Il est envoyé à la création de la commande, seulement s'il est valable pour le Pass choisi.</li>
+      <li>À l'ouverture de E2, le code est revérifié sans bruit. S'il n'est plus valable (expiré, épuisé entre-temps) : il est retiré, un message « Ce code n'est plus valable » s'affiche et les prix redeviennent normaux.</li>
       <li>Le prix est toujours recalculé côté serveur : l'app affiche ce que le serveur renvoie et ne l'envoie jamais.</li>
-      <li>Le code est vérifié au toucher sur « Appliquer » ou sur la touche OK du clavier, pas à chaque lettre. Une seule requête à la fois.</li>
-      <li>Le code est mis en majuscules, sans espaces, 20 caractères au plus (lettres, chiffres, tiret).</li>
+      <li>Vérification au toucher sur « Appliquer » ou sur la touche OK du clavier, pas à chaque lettre. Une seule requête à la fois.</li>
+      <li>Majuscules, sans espaces, 20 caractères au plus (lettres, chiffres, tiret).</li>
       <li>La réduction est « réservée » à la commande ; <code>used_count</code> n'augmente qu'au paiement confirmé par le serveur (issue #7).</li>
     </ul></div>
-    <div class="box"><h3>Comportements</h3><ul>
-      <li><b>Ouverture :</b> « J'ai un code promo » remplace le lien par le champ, ouvre le clavier, met le focus. L'écran défile pour garder le champ au-dessus du clavier.</li>
+    <div class="box"><h3>E1 · comportements</h3><ul>
+      <li><b>Ouverture :</b> « J'ai un code promo » remplace le lien par le champ, ouvre le clavier. L'écran défile pour garder le champ et les cartes visibles au-dessus du clavier.</li>
       <li><b>Annuler :</b> referme le champ, efface le texte, rend le lien.</li>
-      <li><b>Appliquer :</b> blanc et grisé tant que le champ est vide ; vert dès qu'il y a du texte. « Payer » passe alors en blanc : un seul bouton vert par écran. Pendant la vérification : « Vérification… », champ figé.</li>
-      <li><b>Appliqué :</b> le résumé affiche l'ancien prix barré, le nouveau prix et le badge « -20 % » ou « -500 FCFA », plus « Tu économises … ». Une ligne montre le code et un bouton « Retirer ».</li>
-      <li><b>Retirer :</b> sans confirmation, le prix d'origine revient, le lien « J'ai un code promo » revient.</li>
-      <li><b>Erreur :</b> le texte reste dans le champ, la bordure et le message passent en corail ; le message est annoncé au lecteur d'écran. Dès que l'élève modifie le texte, l'erreur disparaît. Payer au prix normal reste possible à tout moment.</li>
-      <li><b>Changement d'offre :</b> si l'élève revient sur E1 et choisit une autre offre, le code est revérifié pour cette offre.</li>
+      <li><b>Appliquer :</b> blanc et grisé tant que le champ est vide, vert dès qu'il y a du texte. « Payer » passe alors en blanc : un seul bouton vert par écran. Pendant la vérification : « Vérification », champ figé.</li>
+      <li><b>Appliqué :</b> le champ laisse place à une ligne avec le code, l'effet (« -20 % sur les Pass payants ») et « Retirer ». Chaque carte payante montre l'ancien prix barré, le nouveau prix et un badge (« -20 % » ou « -500 FCFA »).</li>
+      <li><b>Code valable pour un seul Pass :</b> seule cette carte change ; les autres payantes portent « Code non valable pour ce Pass » (texte et icône, pas seulement la couleur) et gardent leur prix.</li>
+      <li><b>Rabais qui couvre tout :</b> la carte affiche 0 FCFA ; si elle est choisie, le bouton devient « Activer mon Pass ».</li>
+      <li><b>Bouton principal :</b> « Payer » suit le Pass choisi et son prix après code. « Envoyer à mon parent » reste en blanc, le code est joint au lien (à confirmer par Benny : le parent voit alors le prix réduit).</li>
+      <li><b>Erreur :</b> le texte reste dans le champ, bordure et message en corail, message annoncé au lecteur d'écran. Dès que l'élève modifie le texte, l'erreur disparaît. Les prix normaux restent affichés et payer reste possible.</li>
+    </ul></div>
+    <div class="box"><h3>E2 · comportements</h3><ul>
+      <li><b>Ordre :</b> résumé du Pass, code promo, opérateur, numéro, aide, bouton « Payer ».</li>
+      <li><b>Code repris de E1 :</b> la ligne « appliqué » est déjà là, le résumé montre prix barré, nouveau prix et badge, plus « Tu économises … ».</li>
+      <li><b>Sans code :</b> le lien « J'ai un code promo » ouvre le champ avec les mêmes états que sur E1.</li>
+      <li><b>Code non applicable au Pass choisi</b> (ex. CONCOURS avec le Pass mois) : la ligne passe en neutre avec « Valable pour le Pass concours seulement », le prix reste normal. Deux choix : « Choisir le Pass concours » (retour sur E1, carte sélectionnée) ou « Retirer ».</li>
+      <li><b>Prix à 0 FCFA :</b> plus d'opérateur ni de numéro. Une carte verte dit « Rien à payer » et le bouton devient « Activer mon Pass ».</li>
+      <li>Aucune demande Mobile Money n'est envoyée à 0 FCFA : le serveur active le Pass directement, dans la même transaction que le code consommé. Le compte connecté reste obligatoire.</li>
+      <li>Le reçu (E4) montre le prix barré, le code, le montant payé (0 FCFA possible).</li>
     </ul></div>
     <div class="box"><h3>Messages d'erreur</h3>
       <div class="tw"><table><tr><th>Cas</th><th>Message</th></tr>
       <tr><td>inconnu</td><td>Ce code n'existe pas. Vérifie les lettres et réessaie.</td></tr>
       <tr><td>expiré</td><td>Ce code a expiré le 30 sept.</td></tr>
       <tr><td>épuisé</td><td>Ce code a déjà été utilisé le maximum de fois.</td></tr>
-      <tr><td>offre</td><td>Ce code est valable pour le Pass concours, pas pour le Pass mois. Bouton « Choisir le Pass concours ».</td></tr>
       <tr><td>réseau</td><td>Pas de réseau. Connecte-toi pour appliquer ton code. Bouton « Réessayer ».</td></tr>
-      <tr><td>trop d'essais</td><td>Trop d'essais. Réessaie dans 1 minute.</td></tr></table></div></div>
-    <div class="box"><h3>Paiement à 0 FCFA</h3><ul>
-      <li>Quand le prix final est 0 : plus d'opérateur ni de numéro. Une carte verte dit « Rien à payer » et le bouton devient « Activer mon Pass ».</li>
-      <li>Aucune demande Mobile Money n'est envoyée : le serveur active le Pass directement, dans la même transaction que le code consommé. Le compte connecté reste obligatoire.</li>
-      <li>Le reçu (E4) montre le montant 0 FCFA et le code utilisé.</li>
-    </ul></div>
+      <tr><td>trop d'essais</td><td>Trop d'essais. Réessaie dans 1 minute.</td></tr>
+      <tr><td>plus valable (revérification E2)</td><td>Ce code n'est plus valable. Le prix normal est rétabli.</td></tr>
+      <tr><td>Pass non couvert</td><td>Pas une erreur : « Code non valable pour ce Pass » sur la carte (E1) ou ligne neutre (E2).</td></tr></table></div></div>
     <div class="box"><h3>Contrat serveur attendu</h3>
-<pre class="cd">apply_promo_code(p_code text, p_product text)
+<pre class="cd">apply_promo_code(p_code text)
 -> {
   "valide": true,
   "code": "ELEARN20",
   "type": "pct" | "fixe",
-  "valeur": 20,            // 20 (%) ou 500 (FCFA)
-  "prix_initial": 2500,
-  "prix_final": 2000,
-  "etiquette": "-20 %"     // texte du badge
+  "valeur": 20,
+  "offres": {                 // une entrée par Pass
+    "pass_semaine": { "valable": true,
+      "prix_initial": 500, "prix_final": 400,
+      "etiquette": "-20 %" },
+    "pass_mois": { ... },
+    "pass_concours": { "valable": false }
+  }
 }
 ou
 { "valide": false,
   "erreur": "inconnu" | "expire" | "epuise"
-          | "offre" | "limite",
-  "expire_le": "2026-09-30",  // si expire
-  "offres_valables": ["pass_concours"] // si offre
+          | "limite",
+  "expire_le": "2026-09-30" // si expire
 }</pre>
-      <p style="margin-top:10px;font-size:14px;color:var(--pg-mute)">La table prévue par l'issue #7 ne connaît que <code>discount_pct</code> : le rabais en FCFA (type « fixe ») et la liste d'offres valables demandent une colonne de plus. Décision à confirmer avec Benny.</p></div>
+      <p style="margin-top:10px;font-size:14px;color:var(--pg-mute)">Le contrat devient « par Pass » : E1 affiche tous les prix d'un coup, en un seul appel, sans produit en paramètre. La table prévue par l'issue #7 ne connaît que <code>discount_pct</code> : le rabais en FCFA et la liste de Pass valables demandent des colonnes de plus. Décision à confirmer avec Benny.</p></div>
     <div class="box"><h3>Évènements PostHog</h3><ul>
-      <li><code>promo_code_opened</code> {offre}</li>
-      <li><code>promo_code_applied</code> {offre, type, gratuit}</li>
-      <li><code>promo_code_failed</code> {offre, raison}</li>
-      <li><code>promo_code_removed</code> {offre}</li>
+      <li><code>promo_code_opened</code> {ecran: e1 | e2}</li>
+      <li><code>promo_code_applied</code> {ecran, type, nb_pass_valables}</li>
+      <li><code>promo_code_failed</code> {ecran, raison}</li>
+      <li><code>promo_code_removed</code> {ecran}</li>
+      <li><code>promo_code_unusable</code> {offre} : code valable ailleurs, pas pour le Pass choisi sur E2</li>
       <li>Ne jamais envoyer le code lui-même à PostHog.</li></ul></div>
     <div class="box"><h3>États à tester</h3><ul>
-      <li>Point de départ, ouvert vide, avec texte, vérification, appliqué en %, appliqué en FCFA, gratuit.</li>
-      <li>Les six erreurs, puis correction du texte qui efface l'erreur.</li>
-      <li>Retrait du code, changement d'offre, double appui sur Appliquer (une seule requête).</li>
+      <li>E1 : départ, champ ouvert vide, avec texte, vérification, appliqué en %, appliqué en FCFA, valable pour un seul Pass, Pass à 0 FCFA.</li>
+      <li>Les cinq erreurs, puis correction du texte qui efface l'erreur.</li>
+      <li>Propagation : code saisi sur E1 présent sur E2 ; saisi sur E2 présent au retour sur E1 ; retrait des deux côtés.</li>
+      <li>Changement de Pass avec un code appliqué ; code non applicable sur E2 ; revérification refusée à l'ouverture de E2.</li>
+      <li>E2 : départ avec lien sous la carte, rien à payer, reçu E4, double appui sur Appliquer (une seule requête).</li>
       <li>Clair et sombre, texte système à 130 %, clavier ouvert sur un petit écran, lecteur d'écran.</li></ul></div>
     <div class="box"><h3>Accessibilité et style</h3><ul>
       <li>Champ avec libellé « Code promo », majuscules automatiques, sans correction automatique, touche clavier « OK » = Appliquer.</li>
-      <li>L'état « appliqué » et les erreurs portent un texte et une icône, jamais la couleur seule.</li>
-      <li>Cibles de 48 px, texte noir sur le jaune du badge, aucun emoji, icônes Lucide.</li>
-      <li>Le résumé annonce « Prix 2 000 FCFA au lieu de 2 500 FCFA ».</li></ul></div>
+      <li>L'état « appliqué », « non valable » et les erreurs portent un texte et une icône, jamais la couleur seule.</li>
+      <li>Cartes de Pass : rôle radio, état « sélectionné » annoncé ; prix annoncé « 2 000 FCFA au lieu de 2 500 FCFA ».</li>
+      <li>Cibles de 48 px, texte noir sur le jaune du badge, aucun emoji, icônes Lucide.</li></ul></div>
   </div>
 </div>
-
 <script>
 const P={
   back:'<path d="m15 18-6-6 6-6"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
@@ -232,119 +295,170 @@ const P={
 };
 const ic=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
 const f=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' FCFA';
-const OFFERS={semaine:{nom:'Pass semaine · 7 jours',court:'Pass semaine',prix:500,id:'pass_semaine'},mois:{nom:'Pass mois · 30 jours',court:'Pass mois',prix:2500,id:'pass_mois'},concours:{nom:'Pass concours · 6 mois',court:'Pass concours',prix:7500,id:'pass_concours'}};
+const OFFERS={
+  gratuit:{court:'Gratuit',sub:'Crédits chaque lundi',prix:0,free:true},
+  semaine:{court:'Pass semaine',sub:'7 jours',prix:500,id:'pass_semaine',nom:'Pass semaine · 7 jours'},
+  mois:{court:'Pass mois',sub:'30 jours',prix:2500,id:'pass_mois',nom:'Pass mois · 30 jours',cons:true},
+  concours:{court:'Pass concours',sub:'6 mois',prix:7500,id:'pass_concours',nom:'Pass concours · 6 mois'}
+};
+const OKEYS=['gratuit','semaine','mois','concours'];
 const CODES={
   ELEARN20:{type:'pct',val:20},
   BIENVENUE500:{type:'fixe',val:500},
   EXPIRE:{err:'expire'},EPUISE:{err:'epuise'},
   CONCOURS:{type:'pct',val:20,seul:'concours'}
 };
-function calc(code,offer){
-  const c=CODES[code]; if(!c) return {err:'inconnu'};
-  if(c.err) return {err:c.err};
-  if(c.seul&&c.seul!==offer) return {err:'offre',valable:c.seul};
-  const p=OFFERS[offer].prix;
-  const fin=c.type==='pct'?Math.round(p*(100-c.val)/100):Math.max(0,p-c.val);
-  return {ok:true,code,type:c.type,val:c.val,initial:p,final:fin,label:c.type==='pct'?`-${c.val} %`:`-${f(c.val)}`};
+const lab=c=>c.type==='pct'?`-${c.val} %`:`-${f(c.val)}`;
+function check(code){const c=CODES[code];if(!c)return{err:'inconnu'};if(c.err)return{err:c.err};return{ok:true,code};}
+function eff(code,key){
+  const c=CODES[code],o=OFFERS[key];
+  if(!c||c.err||o.free)return null;
+  if(c.seul&&c.seul!==key)return{no:true};
+  const fin=c.type==='pct'?Math.round(o.prix*(100-c.val)/100):Math.max(0,o.prix-c.val);
+  return{ok:true,initial:o.prix,final:fin,label:lab(c)};
 }
+const desc=code=>{const c=CODES[code];return c.seul?`${lab(c)} sur le ${OFFERS[c.seul].court} seulement`:`${lab(c)} sur les Pass payants`;};
 const ERR={
-  inconnu:()=>"Ce code n'existe pas. Vérifie les lettres et réessaie.",
-  expire:()=>"Ce code a expiré le 30 sept.",
-  epuise:()=>"Ce code a déjà été utilisé le maximum de fois.",
-  offre:(S)=>`Ce code est valable pour le ${OFFERS[S.valable||'concours'].court}, pas pour le ${OFFERS[S.offer].court}.`,
-  reseau:()=>"Pas de réseau. Connecte-toi pour appliquer ton code.",
-  limite:()=>"Trop d'essais. Réessaie dans 1 minute."
+  inconnu:"Ce code n'existe pas. Vérifie les lettres et réessaie.",
+  expire:"Ce code a expiré le 30 sept.",
+  epuise:"Ce code a déjà été utilisé le maximum de fois.",
+  reseau:"Pas de réseau. Connecte-toi pour appliquer ton code.",
+  limite:"Trop d'essais. Réessaie dans 1 minute.",
+  perime:"Ce code n'est plus valable. Le prix normal est rétabli."
 };
 function keyboard(){
   const r=a=>`<div>${a.split('').map(k=>`<i>${k}</i>`).join('')}</div>`;
   return `<div class="kb" aria-hidden="true">${r('AZERTYUIOP')}${r('QSDFGHJKLM')}${r('WXCVBN')}<div><i class="w">123</i><i class="w" style="width:140px">espace</i><i class="w ok">OK</i></div></div>`;
 }
-/* S : {offer, phase: closed|open|typed|checking|applied|error, text, err, valable, ap, kb, off, live} */
+/* S : {scr:'e1'|'e2', offer, ap:code|null, phase:closed|open|typed|checking|applied|error, text, err, kb, live} */
 function field(S){
-  const foc=S.live?'':(S.phase==='open'||S.phase==='typed'||S.phase==='checking'?'foc':'');
+  const editing=['open','typed','checking'].includes(S.phase);
+  const foc=S.live?'':(editing?'foc':'');
   const errc=S.phase==='error'?'err':'';
   let inner;
-  if(S.live){inner=`<input id="code" type="text" inputmode="text" autocapitalize="characters" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="20" aria-label="Code promo" placeholder="Ton code" value="${S.text}" ${S.phase==='checking'?'disabled':''}>`}
+  if(S.live)inner=`<input id="code" type="text" inputmode="text" autocapitalize="characters" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="20" aria-label="Code promo" placeholder="Ton code" value="${S.text}" ${S.phase==='checking'?'disabled':''}>`;
   else inner=S.text?`<span class="fk">${S.text}${S.phase==='open'||S.phase==='typed'?'<span class="car"></span>':''}</span>`:`<span class="fk ph2">${S.phase==='open'?'<span class="car"></span>':''}Ton code</span>`;
   return `<div class="fld ${foc} ${errc}">${ic('tag')}${inner}</div>`;
 }
 function promo(S){
-  const ap=S.ap;
-  if(S.phase==='applied'&&ap){
-    return `<div class="promo"><div class="applied"><div class="ic">${ic('tag')}</div><div class="ct"><div class="cc">${ap.code}</div><div class="cd2">${ap.label} sur le ${OFFERS[S.offer].court}</div></div><button class="rm" data-act="remove" aria-label="Retirer le code ${ap.code}">${ic('x')}Retirer</button></div></div>`;
+  const d=`data-scr="${S.scr}"`;
+  if(S.phase==='applied'&&S.ap){
+    const e=eff(S.ap,S.offer);
+    if(S.scr==='e2'&&e&&e.no){
+      const c=CODES[S.ap];
+      return `<div class="promo"><div class="applied no"><div class="ic">${ic('alert')}</div><div class="ct"><div class="cc">${S.ap}</div><div class="cd2">Valable pour le ${OFFERS[c.seul].court} seulement</div></div><button class="rm" ${d} data-act="remove" aria-label="Retirer le code ${S.ap}">${ic('x')}Retirer</button></div><button class="btn sec" ${d} data-act="switch">Choisir le ${OFFERS[c.seul].court}</button></div>`;
+    }
+    return `<div class="promo"><div class="applied"><div class="ic">${ic('tag')}</div><div class="ct"><div class="cc">${S.ap}</div><div class="cd2">${desc(S.ap)}</div></div><button class="rm" ${d} data-act="remove" aria-label="Retirer le code ${S.ap}">${ic('x')}Retirer</button></div></div>`;
   }
-  if(S.phase==='closed') return `<button class="lnk" data-act="open">J'ai un code promo</button>`;
-  const typed=S.phase==='typed', chk=S.phase==='checking', empty=!S.text;
+  if(S.phase==='closed')return `<button class="lnk" ${d} data-act="open">${ic('tag')}J'ai un code promo</button>`;
+  const typed=S.phase==='typed',chk=S.phase==='checking',empty=!S.text;
   const aBtn=chk?`<div class="btn sec sm" aria-live="polite">${ic('load','spin')}Vérification</div>`
-    :`<button class="btn sm ${typed?'':(empty?'dis':'sec')}" data-act="apply" ${empty?'aria-disabled="true"':''}>Appliquer</button>`;
+    :`<button class="btn sm ${typed?'':(empty?'dis':'sec')}" ${d} data-act="apply" ${empty?'aria-disabled="true"':''}>Appliquer</button>`;
   let msg='';
   if(S.phase==='error'){
-    msg=`<div class="msg" role="alert">${ic(S.err==='reseau'?'wifi':'alert')}<span>${ERR[S.err](S)}</span></div>`;
-    if(S.err==='offre') msg+=`<button class="btn sec" data-act="switch">Choisir le ${OFFERS[S.valable||'concours'].court}</button>`;
-    if(S.err==='reseau') msg+=`<button class="btn sec" data-act="apply">${ic('load')}Réessayer</button>`;
+    msg=`<div class="msg" role="alert">${ic(S.err==='reseau'?'wifi':'alert')}<span>${ERR[S.err]}</span></div>`;
+    if(S.err==='reseau')msg+=`<button class="btn sec" ${d} data-act="apply">${ic('load')}Réessayer</button>`;
   }
-  return `<div class="promo"><div class="prow">${field(S)}${aBtn}</div>${msg}<button class="lnk cancel" data-act="cancel" style="min-height:44px">Annuler</button></div>`;
+  return `<div class="promo"><div class="prow">${field(S)}${aBtn}</div>${msg}<button class="lnk cancel" ${d} data-act="cancel" style="min-height:44px">Annuler</button></div>`;
 }
-function screen(S,theme){
-  const o=OFFERS[S.offer],ap=S.phase==='applied'?S.ap:null,free=ap&&ap.final===0,kb=S.kb;
-  const sum=`<div class="sum" ${ap?`aria-label="Prix ${f(ap.final)} au lieu de ${f(o.prix)}"`:''}><span class="sn">${o.nom}</span><span class="sp">${ap?`<s>${f(o.prix)}</s><span>${f(ap.final)}</span>`:`<span>${f(o.prix)}</span>`}</span></div>`;
-  const sav=ap?`<div class="sav"><span class="badge">${ap.label}</span><span>Tu économises ${f(ap.initial-ap.final)}</span></div>`:'';
+function stat(){return `<div class="sb"><span>21:04</span><span>4G · 62 %</span></div>`;}
+function e1(S,theme){
+  const sel=OFFERS[S.offer];
+  const ap=S.phase==='applied'?S.ap:null;
+  const cards=OKEYS.map(k=>{
+    const o=OFFERS[k],e=ap?eff(ap,k):null,on=k===S.offer;
+    let price=`<div class="pr2"><span class="n">${f(o.prix)}</span></div>`,sub=`<small>${o.sub}</small>`,aria=`${o.court}, ${f(o.prix)}`;
+    if(e&&e.ok){price=`<div class="pr2"><s>${f(o.prix)}</s><span class="n">${f(e.final)}</span></div>`;sub=`<small class="ap"><span class="badge">${e.label}</span><span>${o.sub}</span></small>`;aria=`${o.court}, ${f(e.final)} au lieu de ${f(o.prix)}`;}
+    else if(e&&e.no){sub=`<small class="no">${ic('alert')}<span>Code non valable pour ce Pass</span></small>`;}
+    return `<div class="of ${on?'on':''}" role="radio" aria-checked="${on}" aria-label="${aria}" data-scr="e1" data-act="pick" data-k="${k}"><span class="rd ${on?'on':''}">${on?ic('check'):''}</span><div class="ot"><b>${o.court}${o.cons?'<span class="cons">CONSEILLÉ</span>':''}</b>${sub}</div>${price}</div>`;
+  }).join('');
+  const se=ap?eff(ap,S.offer):null;
+  const lbl=sel.free?'Continuer gratuitement':(se&&se.ok?(se.final===0?'Activer mon Pass':`Payer ${f(se.final)}`):`Payer ${f(sel.prix)}`);
+  const foot=S.kb?keyboard():`<div class="ft"><button class="btn ${S.phase==='typed'?'sec':''}" data-scr="e1" data-act="pay">${lbl}</button><button class="btn sec pa" data-scr="e1" data-act="parent">Envoyer à mon parent</button></div>`;
+  return `<div class="ph ${theme}" data-scr-wrap="e1">${stat()}<div class="hd"><span class="sq" aria-label="Retour">${ic('back')}</span><span class="t">Choisis ton pass</span></div>
+  <div class="bd"><div class="rep">Un répétiteur : environ 20 000 FCFA par mois.</div>${promo(S)}<div role="radiogroup" aria-label="Pass" style="display:grid;gap:8px">${cards}</div></div>${foot}</div>`;
+}
+function e2(S,theme){
+  const o=OFFERS[S.offer],ap=S.phase==='applied'?S.ap:null,e=ap?eff(ap,S.offer):null,ok=e&&e.ok,free=ok&&e.final===0;
+  const sum=`<div class="sum" ${ok?`aria-label="Prix ${f(e.final)} au lieu de ${f(o.prix)}"`:''}><span class="sn">${o.nom}</span><span class="sp">${ok?`<s>${f(o.prix)}</s><span>${f(e.final)}</span>`:`<span>${f(o.prix)}</span>`}</span></div>`;
+  const sav=ok?`<div class="sav"><span class="badge">${e.label}</span><span>Tu économises ${f(e.initial-e.final)}</span></div>`:'';
   let mid='';
-  if(!kb){
-    if(free) mid=`<div class="free">${ic('gift')}<div><b>Rien à payer</b><span>Ton code couvre tout le ${o.court}. Aucun numéro à saisir.</span></div></div>`;
+  if(!S.kb){
+    if(free)mid=`<div class="free">${ic('gift')}<div><b>Rien à payer</b><span>Ton code couvre tout le ${o.court}. Aucun numéro à saisir.</span></div></div>`;
     else mid=`<div class="lab">Ton opérateur</div><div class="ops"><div class="op on">${ic('wallet')}MTN MoMo</div><div class="op">${ic('wallet')}Orange Money</div></div><div class="lab">Numéro qui va payer</div><div class="num"><b>+237</b><span>677 12 34 56</span></div><p class="hint">Tu vas recevoir une demande de validation sur ce téléphone.</p>`;
   }
-  const pr=S.phase==='open'||S.phase==='typed'||S.phase==='checking'||S.phase==='error';
-  const payLabel=free?'Activer mon Pass':`Payer ${f(ap?ap.final:o.prix)}`;
-  const noteTxt=free?`${ic('lock')}Activation confirmée par Elearn Prepa`:`${ic('lock')}Paiement confirmé par l'opérateur`;
-  const foot=kb?keyboard():`<div class="ft"><button class="btn ${S.phase==='typed'?'sec':''}" data-act="pay">${payLabel}</button><div class="lock">${noteTxt}</div></div>`;
-  return `<div class="ph ${theme}"><div class="sb"><span>21:04</span><span>4G · 62 %</span></div>
-  <div class="hd"><span class="sq" aria-label="Retour">${ic('back')}</span><span class="t">Paiement</span></div>
-  <div class="bd">${sum}${sav}${mid}${promo(S)}</div>${foot}</div>`;
+  const lbl=free?'Activer mon Pass':`Payer ${f(ok?e.final:o.prix)}`;
+  const note=free?`${ic('lock')}Activation confirmée par Elearn Prepa`:`${ic('lock')}Paiement confirmé par l'opérateur`;
+  const foot=S.kb?keyboard():`<div class="ft"><button class="btn ${S.phase==='typed'?'sec':''}" data-scr="e2" data-act="pay">${lbl}</button><div class="lock">${note}</div></div>`;
+  return `<div class="ph ${theme}" data-scr-wrap="e2">${stat()}<div class="hd"><span class="sq" aria-label="Retour">${ic('back')}</span><span class="t">Paiement</span></div>
+  <div class="bd">${sum}${sav}${promo(S)}${mid}</div>${foot}</div>`;
 }
 function recu(theme){
-  return `<div class="ph ${theme}"><div class="sb"><span>21:04</span><span>4G · 62 %</span></div><div class="hd"><span class="sq">${ic('x')}</span></div>
+  return `<div class="ph ${theme}">${stat()}<div class="hd"><span class="sq">${ic('x')}</span></div>
   <div class="bd" style="gap:16px;padding-top:12px"><div class="ok">${ic('check')}</div><div class="big2">C'est bon, ton Pass mois est actif !</div>
-  <div class="rec"><span class="tag2">REÇU</span><div class="rw"><span>Prix</span><span><s>2 500 FCFA</s></span></div><div class="rw"><span>Code ELEARN20</span><span><span class="badge">-20 %</span></span></div><div class="rw"><span>Montant payé</span><b>2 000 FCFA</b></div><div class="rw"><span>Opérateur</span><b>MTN MoMo</b></div><div class="rw"><span>Valable jusqu'au</span><b>6 novembre 2026</b></div></div></div>
+  <div class="rec"><span class="tag2">REÇU</span><div class="rw"><span>Prix</span><span><s>2 500 FCFA</s></span></div><div class="rw"><span>Code ELEARN20</span><span><span class="badge">-20 %</span></span></div><div class="rw"><span>Montant payé</span><b>2 000 FCFA</b></div><div class="rw"><span>Opérateur</span><b>MTN MoMo</b></div><div class="rw"><span>Valable jusqu'au</span><b>6 novembre 2026</b></div></div></div>
   <div class="ft"><div class="btn">Reprendre ma mission</div></div></div>`;
 }
-const AP=(code,offer)=>calc(code,offer);
 const frame=(h,live)=>`<div class="fr ${live?'live':''}">${h}</div>`;
 const cap=t=>`<p class="cap">${t}</p>`;
-const base={offer:'mois',phase:'closed',text:'',kb:false};
-function gallery(t){
+const b1={scr:'e1',offer:'mois',phase:'closed',text:'',ap:null,kb:false};
+const b2={...b1,scr:'e2'};
+const A=(code)=>({phase:'applied',ap:code});
+function gal1(t){
   const g=[
-    [screen({...base},t),'1 · E2 de départ : le lien reste tel quel'],
-    [screen({...base,phase:'open',kb:true},t),'2 · Champ ouvert, clavier ouvert, Annuler'],
-    [screen({...base,phase:'typed',text:'ELEARN20',kb:true},t),'3 · Texte saisi : Appliquer devient le bouton vert'],
-    [screen({...base,phase:'checking',text:'ELEARN20',kb:true},t),'4 · Vérification en cours, champ figé'],
-    [screen({...base,phase:'applied',ap:AP('ELEARN20','mois')},t),'5 · Code appliqué, rabais en pourcentage : prix barré, nouveau prix, badge, Retirer'],
-    [screen({...base,phase:'applied',ap:AP('BIENVENUE500','mois')},t),'6 · Code appliqué, rabais en FCFA'],
-    [screen({...base,offer:'semaine',phase:'applied',ap:AP('BIENVENUE500','semaine')},t),'7 · Le rabais couvre tout : 0 FCFA, plus d\'opérateur, Activer mon Pass'],
-    [screen({...base,phase:'error',err:'inconnu',text:'ELERN20'},t),'8 · Erreur : code inconnu'],
-    [screen({...base,phase:'error',err:'expire',text:'EXPIRE'},t),'9 · Erreur : code expiré'],
-    [screen({...base,phase:'error',err:'epuise',text:'EPUISE'},t),'10 · Erreur : code épuisé'],
-    [screen({...base,phase:'error',err:'offre',valable:'concours',text:'CONCOURS'},t),'11 · Erreur : non valable pour cette offre, avec le bon Pass proposé'],
-    [screen({...base,phase:'error',err:'reseau',text:'ELEARN20'},t),'12 · Erreur : pas de réseau, Réessayer'],
-    [screen({...base,phase:'error',err:'limite',text:'ABCDE'},t),'13 · Erreur : trop d\'essais'],
-    [recu(t),'14 · E4 : le reçu rappelle le code et le rabais']
+    [e1({...b1},t),'1 · Départ : le lien « J\'ai un code promo » sous le bandeau'],
+    [e1({...b1,phase:'open',kb:true},t),'2 · Champ ouvert, clavier ouvert, Annuler'],
+    [e1({...b1,phase:'typed',text:'ELEARN20',kb:true},t),'3 · Texte saisi : Appliquer devient le bouton vert'],
+    [e1({...b1,phase:'checking',text:'ELEARN20',kb:true},t),'4 · Vérification en cours, champ figé'],
+    [e1({...b1,...A('ELEARN20')},t),'5 · Appliqué en pourcentage : chaque Pass payant montre son nouveau prix'],
+    [e1({...b1,...A('BIENVENUE500')},t),'6 · Appliqué en FCFA : le Pass semaine passe à 0 FCFA'],
+    [e1({...b1,offer:'semaine',...A('BIENVENUE500')},t),'7 · Pass à 0 FCFA choisi : le bouton devient « Activer mon Pass »'],
+    [e1({...b1,offer:'concours',...A('CONCOURS')},t),'8 · Code valable pour un seul Pass : les autres cartes le disent'],
+    [e1({...b1,phase:'error',err:'inconnu',text:'ELERN20'},t),'9 · Erreur : code inconnu (l\'écran défile pour voir les cartes)'],
+    [e1({...b1,phase:'error',err:'expire',text:'EXPIRE'},t),'10 · Erreur : code expiré'],
+    [e1({...b1,phase:'error',err:'epuise',text:'EPUISE'},t),'11 · Erreur : code épuisé'],
+    [e1({...b1,phase:'error',err:'reseau',text:'ELEARN20'},t),'12 · Erreur : pas de réseau, Réessayer'],
+    [e1({...b1,phase:'error',err:'limite',text:'ABCDE'},t),'13 · Erreur : trop d\'essais']
   ];
   return g.map(([h,c])=>`<div>${frame(h)}${cap(c)}</div>`).join('');
 }
-document.getElementById('g-clair').innerHTML=gallery('');
-document.getElementById('g-sombre').innerHTML=gallery('dark');
+function gal2(t){
+  const g=[
+    [e2({...b2},t),'1 · Départ : le lien monte juste sous la carte du Pass, avant l\'opérateur'],
+    [e2({...b2,phase:'open',kb:true},t),'2 · Champ ouvert avec clavier'],
+    [e2({...b2,phase:'typed',text:'ELEARN20',kb:true},t),'3 · Texte saisi : Appliquer vert, Payer blanc'],
+    [e2({...b2,...A('ELEARN20')},t),'4 · Code repris de E1, déjà appliqué : prix barré, badge, Retirer'],
+    [e2({...b2,...A('BIENVENUE500')},t),'5 · Même chose avec un rabais en FCFA'],
+    [e2({...b2,offer:'semaine',...A('BIENVENUE500')},t),'6 · Rien à payer : plus d\'opérateur, Activer mon Pass'],
+    [e2({...b2,...A('CONCOURS')},t),'7 · Code non applicable au Pass choisi : Choisir le Pass concours ou Retirer'],
+    [e2({...b2,phase:'error',err:'reseau',text:'ELEARN20'},t),'8 · Erreur : pas de réseau (autres erreurs identiques à E1)'],
+    [e2({...b2,phase:'error',err:'perime',text:''},t),'9 · Revérification à l\'ouverture : le code n\'est plus valable'],
+    [recu(t),'10 · E4 : le reçu rappelle le code et le rabais']
+  ];
+  return g.map(([h,c])=>`<div>${frame(h)}${cap(c)}</div>`).join('');
+}
+document.getElementById('g1-clair').innerHTML=gal1('');
+document.getElementById('g1-sombre').innerHTML=gal1('dark');
+document.getElementById('g2-clair').innerHTML=gal2('');
+document.getElementById('g2-sombre').innerHTML=gal2('dark');
 
-/* prototype */
+/* prototype : E1 et E2 partagent L (code, offre) ; seul l'écran « propriétaire » édite le champ */
 const fine=window.matchMedia&&matchMedia('(pointer:fine)').matches;
-const L={offer:'mois',phase:'closed',text:'',err:null,ap:null,kb:false,live:true,off:false,fails:0,theme:'',pay:null};
+const L={offer:'mois',ap:null,phase:'closed',text:'',err:null,where:'e1',off:false,fails:0,theme:'',pay:''};
 let timer=null;
+function S_of(scr){
+  const own=L.where===scr;
+  const phase=L.ap?'applied':(own?L.phase:'closed');
+  return{scr,offer:L.offer,ap:L.ap,phase,text:own?L.text:'',err:L.err,live:own&&['open','typed','checking','error'].includes(phase),kb:own&&fine&&['open','typed','checking'].includes(phase)};
+}
 function render(keep){
-  const wrap=document.getElementById('live-wrap');
-  L.kb=fine&&['open','typed','checking'].includes(L.phase);
-  wrap.innerHTML=frame(screen(L,L.theme),true)+`<p class="toast" id="toast" aria-live="polite">${L.pay||''}</p>`;
+  document.getElementById('live-e1').innerHTML=frame(e1(S_of('e1'),L.theme),true);
+  document.getElementById('live-e2').innerHTML=frame(e2(S_of('e2'),L.theme),true);
+  document.getElementById('toast').textContent=L.pay;
   const inp=document.getElementById('code');
   if(inp&&keep){inp.focus();const n=inp.value.length;try{inp.setSelectionRange(n,n)}catch(e){}}
-  document.getElementById('payload').textContent=JSON.stringify({produit:OFFERS[L.offer].id,code:L.phase==='applied'?L.ap.code:null,operateur:L.phase==='applied'&&L.ap.final===0?null:'mtn',numero:L.phase==='applied'&&L.ap.final===0?null:'+237677123456'},null,2);
+  const se=L.ap?eff(L.ap,L.offer):null,free=se&&se.ok&&se.final===0;
+  document.getElementById('payload').textContent=JSON.stringify({produit:OFFERS[L.offer].id||null,code:se&&se.ok?L.ap:null,operateur:free?null:'mtn',numero:free?null:'+237677123456'},null,2);
 }
 function doApply(){
   if(!L.text||L.phase==='checking')return;
@@ -352,46 +466,40 @@ function doApply(){
   clearTimeout(timer);
   timer=setTimeout(()=>{
     let r;
-    if(L.off) r={err:'reseau'};
-    else if(L.fails>=5) r={err:'limite'};
-    else r=calc(L.text,L.offer);
-    if(r.ok){L.phase='applied';L.ap=r;L.fails=0;L.err=null;}
-    else{L.phase='error';L.err=r.err;L.valable=r.valable;if(r.err!=='reseau'&&r.err!=='limite')L.fails++;}
+    if(L.off)r={err:'reseau'};else if(L.fails>=5)r={err:'limite'};else r=check(L.text);
+    if(r.ok){L.phase='applied';L.ap=r.code;L.fails=0;L.err=null;L.text='';}
+    else{L.phase='error';L.err=r.err;if(r.err!=='reseau'&&r.err!=='limite')L.fails++;}
     render(false);
   },650);
 }
-document.getElementById('live-wrap').addEventListener('click',e=>{
+const root=document.querySelector('.phones');
+root.addEventListener('click',e=>{
   const b=e.target.closest('[data-act]');if(!b)return;
-  const a=b.dataset.act;
-  if(a==='open'){L.phase='open';L.text='';render(true);}
-  else if(a==='cancel'){L.phase='closed';L.text='';L.err=null;L.pay=null;render(false);}
-  else if(a==='apply'){doApply();}
-  else if(a==='remove'){L.phase='closed';L.ap=null;L.text='';L.pay=null;render(false);}
-  else if(a==='switch'){L.offer=L.valable||'concours';syncOffer();doApply();}
-  else if(a==='pay'){L.pay='Étape suivante : '+(L.phase==='applied'&&L.ap.final===0?'activation du Pass, sans Mobile Money (maquette E4).':'demande Mobile Money (maquette E3).');render(false);}
+  const a=b.dataset.act,scr=b.dataset.scr;
+  if(a==='pick'){L.offer=b.dataset.k;L.pay='';render(false);return;}
+  if(a==='open'){L.where=scr;L.phase='open';L.text='';L.err=null;L.pay='';render(true);}
+  else if(a==='cancel'){L.where=scr;L.phase='closed';L.text='';L.err=null;render(false);}
+  else if(a==='apply'){L.where=scr;doApply();}
+  else if(a==='remove'){L.where=scr;L.ap=null;L.phase='closed';L.text='';L.err=null;L.pay='';render(false);}
+  else if(a==='switch'){L.offer=CODES[L.ap].seul;L.pay='Dans l\'app : retour sur E1 avec le Pass concours sélectionné.';render(false);}
+  else if(a==='parent'){L.pay='Le lien parent joint le code (à confirmer) : la page parent montre le prix réduit.';render(false);}
+  else if(a==='pay'){const se=L.ap?eff(L.ap,L.offer):null;L.pay=scr==='e1'?'Étape suivante : E2, à droite. Le code reste appliqué.':('Étape suivante : '+(se&&se.ok&&se.final===0?'activation du Pass, sans Mobile Money (E4).':'demande Mobile Money (E3).'));render(false);}
 });
-document.getElementById('live-wrap').addEventListener('input',e=>{
+root.addEventListener('input',e=>{
   if(e.target.id!=='code')return;
   L.text=e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,20);
   L.phase=L.text?'typed':'open';L.err=null;
   render(true);
 });
-document.getElementById('live-wrap').addEventListener('keydown',e=>{if(e.target.id==='code'&&e.key==='Enter'){e.preventDefault();doApply();}});
-function seg(id,items,cur,fn){
-  const el=document.getElementById(id);
-  el.innerHTML=items.map(([k,t])=>`<button type="button" aria-pressed="${k===cur}" data-k="${k}">${t}</button>`).join('');
-  el.onclick=e=>{const b=e.target.closest('button');if(b)fn(b.dataset.k)};
-}
-function syncOffer(){
-  seg('c-offer',[['semaine','Semaine 500'],['mois','Mois 2 500'],['concours','Concours 7 500']],L.offer,k=>{
-    L.offer=k;if(L.phase==='applied'){L.ap=calc(L.ap.code,k);if(!L.ap.ok){L.phase='error';L.err=L.ap.err;L.valable=L.ap.valable;L.text=L.text||'';}}
-    syncOffer();render(false);});
-  render(false);
-}
-document.getElementById('c-theme').innerHTML=[['','Clair'],['dark','Sombre']].map(([k,t])=>`<button type="button" aria-pressed="${k===''}" data-k="${k}">${t}</button>`).join('');
-(function(){const el=document.getElementById('c-theme');el.onclick=e=>{const b=e.target.closest('button');if(!b)return;L.theme=b.dataset.k;[...el.children].forEach(x=>x.setAttribute('aria-pressed',x===b));render(false);};})();
+root.addEventListener('keydown',e=>{if(e.target.id==='code'&&e.key==='Enter'){e.preventDefault();doApply();}});
+const th=document.getElementById('c-theme');
+th.innerHTML=[['','Clair'],['dark','Sombre']].map(([k,t])=>`<button type="button" aria-pressed="${k===''}" data-k="${k}">${t}</button>`).join('');
+th.onclick=e=>{const b=e.target.closest('button');if(!b)return;L.theme=b.dataset.k;[...th.children].forEach(x=>x.setAttribute('aria-pressed',x===b));render(false);};
 document.getElementById('c-off').onchange=e=>{L.off=e.target.checked;};
+document.getElementById('c-reset').onclick=()=>{Object.assign(L,{offer:'mois',ap:null,phase:'closed',text:'',err:null,where:'e1',fails:0,pay:''});render(false);};
 document.getElementById('c-codes').innerHTML=['ELEARN20','BIENVENUE500','EXPIRE','EPUISE','CONCOURS'].map(c=>`<span class="chip"><button type="button" data-c="${c}">${c}</button></span>`).join('');
-document.getElementById('c-codes').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.phase='typed';L.text=b.dataset.c;L.err=null;L.ap=null;render(true);};
-syncOffer();
+document.getElementById('c-codes').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.ap=null;L.phase='typed';L.text=b.dataset.c;L.err=null;render(true);};
+render(false);
 </script>
+</body>
+</html>
