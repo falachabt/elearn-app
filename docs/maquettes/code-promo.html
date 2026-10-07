@@ -1,0 +1,397 @@
+<title>Code promo du Pass, maquette</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Concept : un prototype cliquable de l'écran E2 (Paiement), puis la galerie de tous les états en clair et en sombre, puis la spec.
+   Les tokens des téléphones reprennent theme.ts ; la page autour suit le thème du viewer. */
+:root{
+  --pg-bg:#FFF7E3;--pg-fg:#0A0A0A;--pg-mute:#5C5C5C;--pg-card:#FFFFFF;--pg-line:#0A0A0A;--pg-soft:#F6EEDA;--pg-accent:#047857;
+  --f-display:'Archivo Black','Arial Black',sans-serif;--f-body:'Space Grotesk','Segoe UI',system-ui,sans-serif;--f-mono:'Space Mono',ui-monospace,Menlo,monospace;
+  --app:#FFF7E3;--surf:#FFFFFF;--creux:#F6EEDA;--txt:#0A0A0A;--txt2:#5C5C5C;--bord:#0A0A0A;--bord-d:#D9D0BA;--shadow:#0A0A0A;
+  --marque:#10B981;--marque-d:#D1FAE5;--lien:#047857;--soleil:#FFD83D;--err:#C0271C;--err-d:#FFE1DE;--corail:#FF5A4F;--info-d:#DCE9FF;--key:#FFFFFF;--kbbg:#E7E0CC;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}}
+:root[data-theme="dark"]{--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}
+body{background:var(--pg-bg);color:var(--pg-fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.5px}
+h2{font-size:24px;line-height:1.2;margin-top:56px}
+h3{font-family:var(--f-body);font-weight:700;font-size:17px;margin:0}
+p{margin:0}
+.lead{max-width:64ch;margin-top:12px;color:var(--pg-mute);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--pg-accent);font-weight:700}
+.row-title{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin:28px 0 12px}
+.row-title small{color:var(--pg-mute);font-size:14px}
+.rail{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 22px}
+.rail>*{flex:none}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--pg-mute);margin-top:8px;max-width:288px;line-height:1.4}
+.demo{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:28px;align-items:start;margin-top:20px}
+@media (max-width:820px){.demo{grid-template-columns:minmax(0,1fr)}}
+.ctl{display:grid;gap:16px;min-width:0}
+.box{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:16px 18px;min-width:0}
+.box h3{margin-bottom:8px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.seg2{display:inline-flex;border:2px solid var(--pg-line);border-radius:10px;overflow:hidden;background:var(--pg-soft);flex-wrap:wrap}
+.seg2 button{font:700 14px var(--f-body);padding:10px 14px;min-height:44px;border:0;background:none;color:var(--pg-fg);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:#10B981;color:#0A0A0A}
+.seg2 button:focus-visible,.chip button:focus-visible{outline:3px solid #1A75FF;outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip button{font:700 13px var(--f-mono);padding:8px 10px;border:2px solid var(--pg-line);border-radius:10px;background:var(--pg-card);color:var(--pg-fg);cursor:pointer;min-height:40px}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+label.sw{display:flex;gap:10px;align-items:center;font-size:15px;min-height:44px}
+pre.cd{margin:0;overflow-x:auto;background:var(--pg-soft);border-radius:10px;padding:12px 14px;line-height:1.5;font-family:var(--f-mono);font-size:13px}
+.spec{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--pg-soft);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--pg-mute)}
+.tw{overflow-x:auto}
+code{font-family:var(--f-mono);font-size:13px}
+
+/* téléphone 360 x 780 */
+.fr{width:288px;height:624px;position:relative}
+.fr.live{width:324px;height:702px}
+.ph{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(.8);transform-origin:0 0;border:2px solid var(--pg-line);border-radius:30px;overflow:hidden;background:var(--app);color:var(--txt);display:flex;flex-direction:column;font-family:var(--f-body)}
+.fr.live .ph{transform:scale(.9)}
+.ph.dark{--app:#141614;--surf:#1F221F;--creux:#2A2E2A;--txt:#F6F1E4;--txt2:#9E998C;--bord:#EDE6D3;--bord-d:#3A3F3A;--marque:#34D399;--marque-d:#0F3B2E;--lien:#6EE7B7;--err:#FF9F97;--err-d:#401B18;--corail:#FF7A70;--info-d:#14264A;--key:#3A3F3A;--kbbg:#1F221F;color-scheme:dark}
+.sb{height:26px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font:700 12px var(--f-mono)}
+.hd{display:flex;gap:12px;align-items:center;padding:8px 16px 4px;flex:none}
+.hd .t{font:700 18px var(--f-body)}
+.sq{width:48px;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;flex:none;color:var(--txt)}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bd{flex:1;min-height:0;padding:8px 16px 0;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.ft{flex:none;padding:10px 16px 20px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.sum{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px;border:2px solid var(--bord-d);border-radius:10px;background:var(--creux);padding:14px 14px}
+.sum .sn{font:500 14px var(--f-body);color:var(--txt2);white-space:nowrap}
+.sum .sp{margin-left:auto;font:700 18px var(--f-body);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;justify-content:flex-end}
+.sum s{font:500 14px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.sav{display:flex;align-items:center;gap:10px;margin-top:-2px;font:500 14px var(--f-body);color:var(--txt)}
+.badge{display:inline-block;background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:999px;padding:2px 10px;font:700 12px var(--f-mono);letter-spacing:.4px}
+.lab{font:500 14px var(--f-body);color:var(--txt)}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{height:52px;border:2px solid var(--bord);border-radius:10px;display:flex;gap:8px;align-items:center;justify-content:center;font:700 15px var(--f-body);background:var(--surf)}
+.op.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.num{height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:10px;padding:0 12px;font:500 16px var(--f-body)}
+.num b{font-weight:700}
+.hint{font:400 13px/1.4 var(--f-body);color:var(--txt2)}
+.lnk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:48px;display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.promo{display:flex;flex-direction:column;gap:8px}
+.prow{display:flex;gap:8px;align-items:stretch}
+.fld{flex:1;min-width:0;height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--txt)}
+.fld.err{border-color:var(--corail);box-shadow:0 0 0 2px var(--corail)}
+.fld.foc{box-shadow:0 0 0 2px #1A75FF;border-color:#1A75FF}
+.fld input,.fld .fk{flex:1;min-width:0;border:0;background:none;outline:0;font:700 17px var(--f-mono);letter-spacing:1.2px;color:var(--txt);text-transform:uppercase;padding:0;width:100%}
+.fld .fk.ph2{color:var(--txt2);font-weight:400;letter-spacing:.4px}
+.fld .car{display:inline-block;width:2px;height:22px;background:var(--txt);vertical-align:middle;margin-left:1px}
+.btn{height:52px;border:2px solid var(--bord);border-radius:10px;font:700 16px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px;color:#0A0A0A;background:var(--marque);box-shadow:4px 4px 0 var(--shadow);cursor:pointer;padding:0 16px;width:100%}
+.btn.sec{background:var(--surf);color:var(--txt)}
+.btn.dis{background:var(--creux);color:var(--txt2);box-shadow:none;border-color:var(--bord-d)}
+.btn.sm{width:auto;flex:none;font-size:15px;min-width:112px}
+.btn.txt{background:none;border-color:transparent;box-shadow:none;color:var(--txt);text-decoration:underline;text-underline-offset:3px;height:44px}
+.msg{display:flex;gap:8px;align-items:flex-start;font:500 14px/1.4 var(--f-body);color:var(--err)}
+.msg svg{margin-top:1px}
+.msg.info{color:var(--txt)}
+.cancel{align-self:flex-end}
+.applied{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:10px 10px 10px 12px;display:flex;gap:10px;align-items:center}
+.applied .ic{width:40px;height:40px;border:2px solid var(--bord);border-radius:8px;background:var(--soleil);display:grid;place-items:center;color:#0A0A0A;flex:none}
+.applied .ct{flex:1;min-width:0}
+.applied .cc{font:700 15px var(--f-mono);letter-spacing:.8px}
+.applied .cd2{font:400 13px/1.3 var(--f-body);color:var(--txt2)}
+.rm{border:2px solid var(--bord);border-radius:10px;background:var(--surf);color:var(--txt);min-height:48px;padding:0 10px;display:flex;gap:6px;align-items:center;font:700 14px var(--f-body);cursor:pointer;flex:none}
+.free{border:2px solid var(--bord);border-radius:14px;background:var(--marque);color:#0A0A0A;box-shadow:4px 4px 0 var(--shadow);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.free b{display:block;font:700 18px var(--f-body)}
+.free span{font:500 14px/1.4 var(--f-body)}
+.lock{display:flex;gap:6px;align-items:center;justify-content:center;font:400 12px var(--f-body);color:var(--txt2)}
+.kb{flex:none;height:262px;background:var(--kbbg);padding:10px 6px 14px;display:flex;flex-direction:column;gap:9px;border-top:2px solid var(--bord-d)}
+.kb div{display:flex;gap:5px;justify-content:center}
+.kb i{font-style:normal;flex:1;max-width:32px;height:44px;border-radius:6px;background:var(--key);display:grid;place-items:center;font:500 18px var(--f-body);color:var(--txt);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.kb i.w{max-width:none;flex:none;width:96px;font-size:14px}
+.kb i.ok{background:#10B981;color:#0A0A0A;font-weight:700}
+.spin{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+.rec{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:4px 4px 0 var(--shadow);padding:14px;display:grid;gap:8px}
+.rec .rw{display:flex;justify-content:space-between;gap:10px;font:500 14px var(--f-body)}
+.rec .rw span:first-child{color:var(--txt2)}
+.tag2{justify-self:start;border:2px solid var(--bord);border-radius:6px;padding:1px 8px;font:700 12px var(--f-mono);letter-spacing:.6px}
+.big2{font:400 28px/1.1 var(--f-display)}
+.ok{width:64px;height:64px;border:2px solid var(--bord);border-radius:50%;background:var(--marque);display:grid;place-items:center;color:#0A0A0A;box-shadow:3px 3px 0 var(--shadow)}
+.ok svg{width:30px;height:30px}
+.toast{margin-top:8px;font:500 13px var(--f-mono);color:var(--pg-mute)}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Maquette · parcours E · issue #7</p>
+  <h1>Code promo du Pass</h1>
+  <p class="lead">Les états de l'écran E2 (Paiement) quand l'élève a un code promo : saisie, vérification, code appliqué avec prix barré, retrait, erreurs, et paiement à 0 FCFA. E2 ne montrait que le lien « J'ai un code promo » : on garde cet écran et on n'ajoute que ce que le code change. Essaie le prototype ci-dessous.</p>
+
+  <h2>Prototype cliquable</h2>
+  <div class="demo">
+    <div id="live-wrap"></div>
+    <div class="ctl">
+      <div class="box"><div class="lbl">Offre choisie sur E1</div>
+        <div class="seg2" id="c-offer"></div>
+        <div class="lbl" style="margin-top:14px">Thème</div>
+        <div class="seg2" id="c-theme"></div>
+        <label class="sw"><input type="checkbox" id="c-off"> Simuler « pas de réseau »</label>
+      </div>
+      <div class="box"><div class="lbl">Codes de démonstration</div>
+        <div class="chips" id="c-codes"></div>
+        <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Touche un code pour le copier dans le champ, ou tape-le. Tout autre code est « inconnu ». Cinq essais ratés de suite donnent « Trop d'essais ».</p>
+      </div>
+      <div class="box"><div class="lbl">Ce que l'app enverrait à la commande</div><pre class="cd" id="payload"></pre>
+        <p style="font-size:14px;color:var(--pg-mute);margin-top:10px">Le prix n'est jamais envoyé : le serveur le recalcule avec le code.</p></div>
+    </div>
+  </div>
+
+  <h2>Tous les états</h2>
+  <p class="lead">Chaque état existe en clair et en sombre, pour les tests du dev.</p>
+  <div class="row-title"><h3>Thème clair</h3><small>Faire défiler vers la droite</small></div>
+  <div class="rail" id="g-clair"></div>
+  <div class="row-title"><h3>Thème sombre</h3></div>
+  <div class="rail" id="g-sombre"></div>
+
+  <h2>Spec pour le dev</h2>
+  <div class="spec">
+    <div class="box"><h3>Règles retenues</h3><ul>
+      <li>Un seul code par paiement. Pour en changer, on retire le code appliqué, puis on en saisit un autre.</li>
+      <li>Valable pour le Pass seulement (semaine, mois, concours). Pas pour les crédits ni les autres achats.</li>
+      <li>Le prix est toujours recalculé côté serveur : l'app affiche ce que le serveur renvoie et ne l'envoie jamais.</li>
+      <li>Le code est vérifié au toucher sur « Appliquer » ou sur la touche OK du clavier, pas à chaque lettre. Une seule requête à la fois.</li>
+      <li>Le code est mis en majuscules, sans espaces, 20 caractères au plus (lettres, chiffres, tiret).</li>
+      <li>La réduction est « réservée » à la commande ; <code>used_count</code> n'augmente qu'au paiement confirmé par le serveur (issue #7).</li>
+    </ul></div>
+    <div class="box"><h3>Comportements</h3><ul>
+      <li><b>Ouverture :</b> « J'ai un code promo » remplace le lien par le champ, ouvre le clavier, met le focus. L'écran défile pour garder le champ au-dessus du clavier.</li>
+      <li><b>Annuler :</b> referme le champ, efface le texte, rend le lien.</li>
+      <li><b>Appliquer :</b> blanc et grisé tant que le champ est vide ; vert dès qu'il y a du texte. « Payer » passe alors en blanc : un seul bouton vert par écran. Pendant la vérification : « Vérification… », champ figé.</li>
+      <li><b>Appliqué :</b> le résumé affiche l'ancien prix barré, le nouveau prix et le badge « -20 % » ou « -500 FCFA », plus « Tu économises … ». Une ligne montre le code et un bouton « Retirer ».</li>
+      <li><b>Retirer :</b> sans confirmation, le prix d'origine revient, le lien « J'ai un code promo » revient.</li>
+      <li><b>Erreur :</b> le texte reste dans le champ, la bordure et le message passent en corail ; le message est annoncé au lecteur d'écran. Dès que l'élève modifie le texte, l'erreur disparaît. Payer au prix normal reste possible à tout moment.</li>
+      <li><b>Changement d'offre :</b> si l'élève revient sur E1 et choisit une autre offre, le code est revérifié pour cette offre.</li>
+    </ul></div>
+    <div class="box"><h3>Messages d'erreur</h3>
+      <div class="tw"><table><tr><th>Cas</th><th>Message</th></tr>
+      <tr><td>inconnu</td><td>Ce code n'existe pas. Vérifie les lettres et réessaie.</td></tr>
+      <tr><td>expiré</td><td>Ce code a expiré le 30 sept.</td></tr>
+      <tr><td>épuisé</td><td>Ce code a déjà été utilisé le maximum de fois.</td></tr>
+      <tr><td>offre</td><td>Ce code est valable pour le Pass concours, pas pour le Pass mois. Bouton « Choisir le Pass concours ».</td></tr>
+      <tr><td>réseau</td><td>Pas de réseau. Connecte-toi pour appliquer ton code. Bouton « Réessayer ».</td></tr>
+      <tr><td>trop d'essais</td><td>Trop d'essais. Réessaie dans 1 minute.</td></tr></table></div></div>
+    <div class="box"><h3>Paiement à 0 FCFA</h3><ul>
+      <li>Quand le prix final est 0 : plus d'opérateur ni de numéro. Une carte verte dit « Rien à payer » et le bouton devient « Activer mon Pass ».</li>
+      <li>Aucune demande Mobile Money n'est envoyée : le serveur active le Pass directement, dans la même transaction que le code consommé. Le compte connecté reste obligatoire.</li>
+      <li>Le reçu (E4) montre le montant 0 FCFA et le code utilisé.</li>
+    </ul></div>
+    <div class="box"><h3>Contrat serveur attendu</h3>
+<pre class="cd">apply_promo_code(p_code text, p_product text)
+-> {
+  "valide": true,
+  "code": "ELEARN20",
+  "type": "pct" | "fixe",
+  "valeur": 20,            // 20 (%) ou 500 (FCFA)
+  "prix_initial": 2500,
+  "prix_final": 2000,
+  "etiquette": "-20 %"     // texte du badge
+}
+ou
+{ "valide": false,
+  "erreur": "inconnu" | "expire" | "epuise"
+          | "offre" | "limite",
+  "expire_le": "2026-09-30",  // si expire
+  "offres_valables": ["pass_concours"] // si offre
+}</pre>
+      <p style="margin-top:10px;font-size:14px;color:var(--pg-mute)">La table prévue par l'issue #7 ne connaît que <code>discount_pct</code> : le rabais en FCFA (type « fixe ») et la liste d'offres valables demandent une colonne de plus. Décision à confirmer avec Benny.</p></div>
+    <div class="box"><h3>Évènements PostHog</h3><ul>
+      <li><code>promo_code_opened</code> {offre}</li>
+      <li><code>promo_code_applied</code> {offre, type, gratuit}</li>
+      <li><code>promo_code_failed</code> {offre, raison}</li>
+      <li><code>promo_code_removed</code> {offre}</li>
+      <li>Ne jamais envoyer le code lui-même à PostHog.</li></ul></div>
+    <div class="box"><h3>États à tester</h3><ul>
+      <li>Point de départ, ouvert vide, avec texte, vérification, appliqué en %, appliqué en FCFA, gratuit.</li>
+      <li>Les six erreurs, puis correction du texte qui efface l'erreur.</li>
+      <li>Retrait du code, changement d'offre, double appui sur Appliquer (une seule requête).</li>
+      <li>Clair et sombre, texte système à 130 %, clavier ouvert sur un petit écran, lecteur d'écran.</li></ul></div>
+    <div class="box"><h3>Accessibilité et style</h3><ul>
+      <li>Champ avec libellé « Code promo », majuscules automatiques, sans correction automatique, touche clavier « OK » = Appliquer.</li>
+      <li>L'état « appliqué » et les erreurs portent un texte et une icône, jamais la couleur seule.</li>
+      <li>Cibles de 48 px, texte noir sur le jaune du badge, aucun emoji, icônes Lucide.</li>
+      <li>Le résumé annonce « Prix 2 000 FCFA au lieu de 2 500 FCFA ».</li></ul></div>
+  </div>
+</div>
+
+<script>
+const P={
+  back:'<path d="m15 18-6-6 6-6"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  tag:'<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".6" fill="currentColor"/>',
+  alert:'<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
+  wifi:'<path d="M12 20h.01"/><path d="M8.5 16.4a5 5 0 0 1 7 0"/><path d="M2 8.8a15 15 0 0 1 4.2-2.6"/><path d="M22 8.8a15 15 0 0 0-10-3.8"/><path d="M5 12.9a10 10 0 0 1 5.2-2.7"/><path d="M19 12.9a10 10 0 0 0-1.6-1.2"/><path d="m2 2 20 20"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  wallet:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',load:'<path d="M21 12a9 9 0 1 1-6.219-8.56"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/>'
+};
+const ic=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+const f=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' FCFA';
+const OFFERS={semaine:{nom:'Pass semaine · 7 jours',court:'Pass semaine',prix:500,id:'pass_semaine'},mois:{nom:'Pass mois · 30 jours',court:'Pass mois',prix:2500,id:'pass_mois'},concours:{nom:'Pass concours · 6 mois',court:'Pass concours',prix:7500,id:'pass_concours'}};
+const CODES={
+  ELEARN20:{type:'pct',val:20},
+  BIENVENUE500:{type:'fixe',val:500},
+  EXPIRE:{err:'expire'},EPUISE:{err:'epuise'},
+  CONCOURS:{type:'pct',val:20,seul:'concours'}
+};
+function calc(code,offer){
+  const c=CODES[code]; if(!c) return {err:'inconnu'};
+  if(c.err) return {err:c.err};
+  if(c.seul&&c.seul!==offer) return {err:'offre',valable:c.seul};
+  const p=OFFERS[offer].prix;
+  const fin=c.type==='pct'?Math.round(p*(100-c.val)/100):Math.max(0,p-c.val);
+  return {ok:true,code,type:c.type,val:c.val,initial:p,final:fin,label:c.type==='pct'?`-${c.val} %`:`-${f(c.val)}`};
+}
+const ERR={
+  inconnu:()=>"Ce code n'existe pas. Vérifie les lettres et réessaie.",
+  expire:()=>"Ce code a expiré le 30 sept.",
+  epuise:()=>"Ce code a déjà été utilisé le maximum de fois.",
+  offre:(S)=>`Ce code est valable pour le ${OFFERS[S.valable||'concours'].court}, pas pour le ${OFFERS[S.offer].court}.`,
+  reseau:()=>"Pas de réseau. Connecte-toi pour appliquer ton code.",
+  limite:()=>"Trop d'essais. Réessaie dans 1 minute."
+};
+function keyboard(){
+  const r=a=>`<div>${a.split('').map(k=>`<i>${k}</i>`).join('')}</div>`;
+  return `<div class="kb" aria-hidden="true">${r('AZERTYUIOP')}${r('QSDFGHJKLM')}${r('WXCVBN')}<div><i class="w">123</i><i class="w" style="width:140px">espace</i><i class="w ok">OK</i></div></div>`;
+}
+/* S : {offer, phase: closed|open|typed|checking|applied|error, text, err, valable, ap, kb, off, live} */
+function field(S){
+  const foc=S.live?'':(S.phase==='open'||S.phase==='typed'||S.phase==='checking'?'foc':'');
+  const errc=S.phase==='error'?'err':'';
+  let inner;
+  if(S.live){inner=`<input id="code" type="text" inputmode="text" autocapitalize="characters" autocorrect="off" autocomplete="off" spellcheck="false" maxlength="20" aria-label="Code promo" placeholder="Ton code" value="${S.text}" ${S.phase==='checking'?'disabled':''}>`}
+  else inner=S.text?`<span class="fk">${S.text}${S.phase==='open'||S.phase==='typed'?'<span class="car"></span>':''}</span>`:`<span class="fk ph2">${S.phase==='open'?'<span class="car"></span>':''}Ton code</span>`;
+  return `<div class="fld ${foc} ${errc}">${ic('tag')}${inner}</div>`;
+}
+function promo(S){
+  const ap=S.ap;
+  if(S.phase==='applied'&&ap){
+    return `<div class="promo"><div class="applied"><div class="ic">${ic('tag')}</div><div class="ct"><div class="cc">${ap.code}</div><div class="cd2">${ap.label} sur le ${OFFERS[S.offer].court}</div></div><button class="rm" data-act="remove" aria-label="Retirer le code ${ap.code}">${ic('x')}Retirer</button></div></div>`;
+  }
+  if(S.phase==='closed') return `<button class="lnk" data-act="open">J'ai un code promo</button>`;
+  const typed=S.phase==='typed', chk=S.phase==='checking', empty=!S.text;
+  const aBtn=chk?`<div class="btn sec sm" aria-live="polite">${ic('load','spin')}Vérification</div>`
+    :`<button class="btn sm ${typed?'':(empty?'dis':'sec')}" data-act="apply" ${empty?'aria-disabled="true"':''}>Appliquer</button>`;
+  let msg='';
+  if(S.phase==='error'){
+    msg=`<div class="msg" role="alert">${ic(S.err==='reseau'?'wifi':'alert')}<span>${ERR[S.err](S)}</span></div>`;
+    if(S.err==='offre') msg+=`<button class="btn sec" data-act="switch">Choisir le ${OFFERS[S.valable||'concours'].court}</button>`;
+    if(S.err==='reseau') msg+=`<button class="btn sec" data-act="apply">${ic('load')}Réessayer</button>`;
+  }
+  return `<div class="promo"><div class="prow">${field(S)}${aBtn}</div>${msg}<button class="lnk cancel" data-act="cancel" style="min-height:44px">Annuler</button></div>`;
+}
+function screen(S,theme){
+  const o=OFFERS[S.offer],ap=S.phase==='applied'?S.ap:null,free=ap&&ap.final===0,kb=S.kb;
+  const sum=`<div class="sum" ${ap?`aria-label="Prix ${f(ap.final)} au lieu de ${f(o.prix)}"`:''}><span class="sn">${o.nom}</span><span class="sp">${ap?`<s>${f(o.prix)}</s><span>${f(ap.final)}</span>`:`<span>${f(o.prix)}</span>`}</span></div>`;
+  const sav=ap?`<div class="sav"><span class="badge">${ap.label}</span><span>Tu économises ${f(ap.initial-ap.final)}</span></div>`:'';
+  let mid='';
+  if(!kb){
+    if(free) mid=`<div class="free">${ic('gift')}<div><b>Rien à payer</b><span>Ton code couvre tout le ${o.court}. Aucun numéro à saisir.</span></div></div>`;
+    else mid=`<div class="lab">Ton opérateur</div><div class="ops"><div class="op on">${ic('wallet')}MTN MoMo</div><div class="op">${ic('wallet')}Orange Money</div></div><div class="lab">Numéro qui va payer</div><div class="num"><b>+237</b><span>677 12 34 56</span></div><p class="hint">Tu vas recevoir une demande de validation sur ce téléphone.</p>`;
+  }
+  const pr=S.phase==='open'||S.phase==='typed'||S.phase==='checking'||S.phase==='error';
+  const payLabel=free?'Activer mon Pass':`Payer ${f(ap?ap.final:o.prix)}`;
+  const noteTxt=free?`${ic('lock')}Activation confirmée par Elearn Prepa`:`${ic('lock')}Paiement confirmé par l'opérateur`;
+  const foot=kb?keyboard():`<div class="ft"><button class="btn ${S.phase==='typed'?'sec':''}" data-act="pay">${payLabel}</button><div class="lock">${noteTxt}</div></div>`;
+  return `<div class="ph ${theme}"><div class="sb"><span>21:04</span><span>4G · 62 %</span></div>
+  <div class="hd"><span class="sq" aria-label="Retour">${ic('back')}</span><span class="t">Paiement</span></div>
+  <div class="bd">${sum}${sav}${mid}${promo(S)}</div>${foot}</div>`;
+}
+function recu(theme){
+  return `<div class="ph ${theme}"><div class="sb"><span>21:04</span><span>4G · 62 %</span></div><div class="hd"><span class="sq">${ic('x')}</span></div>
+  <div class="bd" style="gap:16px;padding-top:12px"><div class="ok">${ic('check')}</div><div class="big2">C'est bon, ton Pass mois est actif !</div>
+  <div class="rec"><span class="tag2">REÇU</span><div class="rw"><span>Prix</span><span><s>2 500 FCFA</s></span></div><div class="rw"><span>Code ELEARN20</span><span><span class="badge">-20 %</span></span></div><div class="rw"><span>Montant payé</span><b>2 000 FCFA</b></div><div class="rw"><span>Opérateur</span><b>MTN MoMo</b></div><div class="rw"><span>Valable jusqu'au</span><b>6 novembre 2026</b></div></div></div>
+  <div class="ft"><div class="btn">Reprendre ma mission</div></div></div>`;
+}
+const AP=(code,offer)=>calc(code,offer);
+const frame=(h,live)=>`<div class="fr ${live?'live':''}">${h}</div>`;
+const cap=t=>`<p class="cap">${t}</p>`;
+const base={offer:'mois',phase:'closed',text:'',kb:false};
+function gallery(t){
+  const g=[
+    [screen({...base},t),'1 · E2 de départ : le lien reste tel quel'],
+    [screen({...base,phase:'open',kb:true},t),'2 · Champ ouvert, clavier ouvert, Annuler'],
+    [screen({...base,phase:'typed',text:'ELEARN20',kb:true},t),'3 · Texte saisi : Appliquer devient le bouton vert'],
+    [screen({...base,phase:'checking',text:'ELEARN20',kb:true},t),'4 · Vérification en cours, champ figé'],
+    [screen({...base,phase:'applied',ap:AP('ELEARN20','mois')},t),'5 · Code appliqué, rabais en pourcentage : prix barré, nouveau prix, badge, Retirer'],
+    [screen({...base,phase:'applied',ap:AP('BIENVENUE500','mois')},t),'6 · Code appliqué, rabais en FCFA'],
+    [screen({...base,offer:'semaine',phase:'applied',ap:AP('BIENVENUE500','semaine')},t),'7 · Le rabais couvre tout : 0 FCFA, plus d\'opérateur, Activer mon Pass'],
+    [screen({...base,phase:'error',err:'inconnu',text:'ELERN20'},t),'8 · Erreur : code inconnu'],
+    [screen({...base,phase:'error',err:'expire',text:'EXPIRE'},t),'9 · Erreur : code expiré'],
+    [screen({...base,phase:'error',err:'epuise',text:'EPUISE'},t),'10 · Erreur : code épuisé'],
+    [screen({...base,phase:'error',err:'offre',valable:'concours',text:'CONCOURS'},t),'11 · Erreur : non valable pour cette offre, avec le bon Pass proposé'],
+    [screen({...base,phase:'error',err:'reseau',text:'ELEARN20'},t),'12 · Erreur : pas de réseau, Réessayer'],
+    [screen({...base,phase:'error',err:'limite',text:'ABCDE'},t),'13 · Erreur : trop d\'essais'],
+    [recu(t),'14 · E4 : le reçu rappelle le code et le rabais']
+  ];
+  return g.map(([h,c])=>`<div>${frame(h)}${cap(c)}</div>`).join('');
+}
+document.getElementById('g-clair').innerHTML=gallery('');
+document.getElementById('g-sombre').innerHTML=gallery('dark');
+
+/* prototype */
+const fine=window.matchMedia&&matchMedia('(pointer:fine)').matches;
+const L={offer:'mois',phase:'closed',text:'',err:null,ap:null,kb:false,live:true,off:false,fails:0,theme:'',pay:null};
+let timer=null;
+function render(keep){
+  const wrap=document.getElementById('live-wrap');
+  L.kb=fine&&['open','typed','checking'].includes(L.phase);
+  wrap.innerHTML=frame(screen(L,L.theme),true)+`<p class="toast" id="toast" aria-live="polite">${L.pay||''}</p>`;
+  const inp=document.getElementById('code');
+  if(inp&&keep){inp.focus();const n=inp.value.length;try{inp.setSelectionRange(n,n)}catch(e){}}
+  document.getElementById('payload').textContent=JSON.stringify({produit:OFFERS[L.offer].id,code:L.phase==='applied'?L.ap.code:null,operateur:L.phase==='applied'&&L.ap.final===0?null:'mtn',numero:L.phase==='applied'&&L.ap.final===0?null:'+237677123456'},null,2);
+}
+function doApply(){
+  if(!L.text||L.phase==='checking')return;
+  L.phase='checking';render(false);
+  clearTimeout(timer);
+  timer=setTimeout(()=>{
+    let r;
+    if(L.off) r={err:'reseau'};
+    else if(L.fails>=5) r={err:'limite'};
+    else r=calc(L.text,L.offer);
+    if(r.ok){L.phase='applied';L.ap=r;L.fails=0;L.err=null;}
+    else{L.phase='error';L.err=r.err;L.valable=r.valable;if(r.err!=='reseau'&&r.err!=='limite')L.fails++;}
+    render(false);
+  },650);
+}
+document.getElementById('live-wrap').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const a=b.dataset.act;
+  if(a==='open'){L.phase='open';L.text='';render(true);}
+  else if(a==='cancel'){L.phase='closed';L.text='';L.err=null;L.pay=null;render(false);}
+  else if(a==='apply'){doApply();}
+  else if(a==='remove'){L.phase='closed';L.ap=null;L.text='';L.pay=null;render(false);}
+  else if(a==='switch'){L.offer=L.valable||'concours';syncOffer();doApply();}
+  else if(a==='pay'){L.pay='Étape suivante : '+(L.phase==='applied'&&L.ap.final===0?'activation du Pass, sans Mobile Money (maquette E4).':'demande Mobile Money (maquette E3).');render(false);}
+});
+document.getElementById('live-wrap').addEventListener('input',e=>{
+  if(e.target.id!=='code')return;
+  L.text=e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g,'').slice(0,20);
+  L.phase=L.text?'typed':'open';L.err=null;
+  render(true);
+});
+document.getElementById('live-wrap').addEventListener('keydown',e=>{if(e.target.id==='code'&&e.key==='Enter'){e.preventDefault();doApply();}});
+function seg(id,items,cur,fn){
+  const el=document.getElementById(id);
+  el.innerHTML=items.map(([k,t])=>`<button type="button" aria-pressed="${k===cur}" data-k="${k}">${t}</button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('button');if(b)fn(b.dataset.k)};
+}
+function syncOffer(){
+  seg('c-offer',[['semaine','Semaine 500'],['mois','Mois 2 500'],['concours','Concours 7 500']],L.offer,k=>{
+    L.offer=k;if(L.phase==='applied'){L.ap=calc(L.ap.code,k);if(!L.ap.ok){L.phase='error';L.err=L.ap.err;L.valable=L.ap.valable;L.text=L.text||'';}}
+    syncOffer();render(false);});
+  render(false);
+}
+document.getElementById('c-theme').innerHTML=[['','Clair'],['dark','Sombre']].map(([k,t])=>`<button type="button" aria-pressed="${k===''}" data-k="${k}">${t}</button>`).join('');
+(function(){const el=document.getElementById('c-theme');el.onclick=e=>{const b=e.target.closest('button');if(!b)return;L.theme=b.dataset.k;[...el.children].forEach(x=>x.setAttribute('aria-pressed',x===b));render(false);};})();
+document.getElementById('c-off').onchange=e=>{L.off=e.target.checked;};
+document.getElementById('c-codes').innerHTML=['ELEARN20','BIENVENUE500','EXPIRE','EPUISE','CONCOURS'].map(c=>`<span class="chip"><button type="button" data-c="${c}">${c}</button></span>`).join('');
+document.getElementById('c-codes').onclick=e=>{const b=e.target.closest('button');if(!b)return;L.phase='typed';L.text=b.dataset.c;L.err=null;L.ap=null;render(true);};
+syncOffer();
+</script>
