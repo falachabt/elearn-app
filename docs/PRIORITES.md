@@ -18,7 +18,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 ## En cours
 - Recette du 6 octobre sur #31 (2e lot : bouton Terminer sur le bilan, texte « sujets de ta classe », solde simulé en mode développeur, mission terminée hors ligne gardée et envoyée au retour du réseau, progression lisible hors ligne) : points 1 à 6 validés par Benny ; corrigés ensuite : progression en direct, fin de correction, refaire mes erreurs durci, retour à la liste des chapitres, message de contenu expiré, bouton Publier. #13 point 5 : « Tout supprimer » ne supprime plus les documents préchargés.
 - Feuille de crédits épuisés K3 (Recharger, Gagner, Plus tard) : maquette `docs/maquettes/k3-credits-epuises.html` validée par Benny le 6 octobre, code et tests faits ; reste à voir sur téléphone.
-- Résumé hebdomadaire pour les parents (#29 WhatsApp Business) : étude du canal rendue (PR elearn-supabase #50, recommandation WhatsApp d'abord) ; première étape pour Benny : compte Meta Business et numéro dédié, choix Meta en direct ou Kapso.
+- Résumé hebdomadaire pour les parents : décision du 7 octobre, WhatsApp via Kapso ; plan dans la PR elearn-supabase #50. La configuration (comptes, numéro, modèles) est laissée à Benny pour le soir : elearn-supabase #51 (réseaux sociaux) puis #52 (WhatsApp avec Kapso).
 
 ## P0
 - #36 Révoquer les clés exposées dans l'historique du dépôt public (Benny, consoles des services).
@@ -32,7 +32,8 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #37 App Links servis en JSON (hébergement par Benny).
 
 ## P2 (avant les stores)
-- #29 WhatsApp Business (résumé parent, reçus, support) ; elearn-supabase #14 couvre l'envoi côté serveur ; elearn-site #8 page résumé parent.
+- elearn-supabase #51 Configurer proprement les réseaux sociaux Elearn Prépa (Benny, portfolio Meta Business, Metricool).
+- elearn-supabase #52 Brancher WhatsApp avec Kapso ; #29 WhatsApp Business (résumé parent, reçus, support) ; elearn-supabase #14 envoi côté serveur ; elearn-site #8 page résumé parent.
 - elearn-supabase #6 à #12 : RLS, vues SECURITY DEFINER, authentification, limitation de débit ; #5 clés Firebase.
 - #18, #19, #20 Déploiement iOS, Android, OTA et changelog ; #6 achat Apple.
 - #14 performance, #15 chronomètre des annales, #10 limite IA sur Photo, #26 un seul appareil.
