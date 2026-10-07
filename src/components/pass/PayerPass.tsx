@@ -464,7 +464,6 @@ export function PayerPass() {
       }
     >
       {entete}
-      {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
 
       <View style={styles.groupe}>
         <FeuillePays
@@ -626,6 +625,8 @@ export function PayerPass() {
       ) : null}
 
       {erreur ? <Banniere ton="erreur" titre={erreur} /> : null}
+      {/* Mode test : repère discret, tout en bas de la page. */}
+      {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
     </Ecran>
   );
 }
