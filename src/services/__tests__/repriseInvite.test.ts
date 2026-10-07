@@ -78,3 +78,27 @@ it('ignore les réglages système par défaut et détecte les vraies avancées d
   await AsyncStorage.setItem('mission.historique', '[]');
   expect(await progressionInviteeLocalePresente()).toBe(true);
 });
+
+describe('web : connexion Google d’un invité', () => {
+  it('SecureStore absent sur le web : le jeton passe par le stockage du navigateur, sans erreur', async () => {
+    const { Platform } = jest.requireActual('react-native');
+    const avant = Platform.OS;
+    Platform.OS = 'web';
+    const natif = jest.requireMock('expo-secure-store');
+    natif.setItemAsync.mockImplementation(async () => {
+      throw new Error('not available');
+    });
+    natif.getItemAsync.mockImplementation(async () => {
+      throw new Error('not available');
+    });
+    try {
+      await preparerRepriseInvite('invite-1', 'refresh-web');
+      await terminerOAuthRepriseInvite('invite-1', 'compte-2');
+      expect(await lireRepriseInvite()).toMatchObject({ jetonRafraichissementInvite: 'refresh-web' });
+    } finally {
+      Platform.OS = avant;
+      natif.setItemAsync.mockImplementation(async (cle: string, valeur: string) => mockSecureStore.set(cle, valeur));
+      natif.getItemAsync.mockImplementation(async (cle: string) => mockSecureStore.get(cle) ?? null);
+    }
+  });
+});
