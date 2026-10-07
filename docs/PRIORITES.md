@@ -12,6 +12,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #13 fermée : alertes de fin de Pass (J-3, J-1) et résumé du lundi (PR #46 et #47), page « Ma semaine » et routage côté app (PR #46).
 - elearn-supabase #43 fermée : dépôt aligné sur la production (PR #48). Le mot de passe de déploiement manuel reste à corriger avec #36.
 - elearn-supabase #3 et #4 fermées : paiement parent validé de bout en bout en bac à sable par Benny le 7 octobre (fonctions déployées, Pass et notification reçus), avec le routeur back-office elearn #26 et le correctif de la page parent elearn-site #19. Non couverts par un test : lien expiré, limite de cinq échecs par heure.
+- elearn #15 fermée : le rappel pawaPay canonique est celui du back-office (`https://staff.elearnprepa.com/api/payments/pawapay/callback`), qui route vers l'Edge Function `pawapay-webhook` pour la nouvelle app ; l'ancien flux et MineConnect restent inchangés.
 - Coût des Actions réduit : un seul workflow et un seul job, rien ne tourne pour un changement de documentation seule (PR #48).
 
 ## En cours
@@ -23,7 +24,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #44 Signature du webhook pawaPay, avant tout paiement réel.
 
 ## P1 (chemin critique)
-- #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app ; elearn #15.
+- #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app.
 - #7 Codes promo Pass.
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
 - #33 Compteur de crédits : fait sur l'Accueil, reste Réviser et l'état « à confirmer » hors ligne.
