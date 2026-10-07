@@ -33,7 +33,7 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).
 
-- **OTA automatique** : un push sur main, wk, claude/project-thread-cvknuk ou claude/project-thread-kw792g publie une mise a jour OTA Android sur le canal preview, **a condition** que le job verifier passe (Jest + typage + export Hermes non vide). verifier est une barriere : si un controle echoue, rien n'est publie.
+- **OTA automatique** : un push sur main, wk, claude/project-thread-cvknuk ou claude/project-thread-kw792g publie une mise a jour OTA Android sur le canal preview, **a condition** que le job verifier passe (typage + ESLint + Jest + export Hermes non vide ; le meme job publie ensuite, un seul checkout et un seul npm ci). Pas de run si seuls docs/ ou des .md changent, ni sur une PR en brouillon ; une PR dont la branche est deja dans on.push.branches n est pas controlee deux fois ; un nouveau commit sur une PR annule le run precedent de cette PR (les push restent en file, jamais annules) ; typage, ESLint et Jest tournent en parallele dans le job ; sur un push, ils ne sont pas refaits si la PR dont le dernier commit est parent du commit de fusion a deja reussi (l export Hermes est toujours refait). verifier est une barriere : si un controle echoue, rien n'est publie.
 - **Build APK a la demande** : commit contenant [build], ou Actions > EAS preview > Run workflow avec l'option build. Mise a jour obligatoire : commit contenant [obligatoire].
 - **Branche de travail et de preview de reference** : claude/project-thread-kw792g.
 

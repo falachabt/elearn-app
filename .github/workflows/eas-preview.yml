@@ -1,14 +1,28 @@
-name: EAS preview
+name: Contrôles et EAS preview
 
-# Mises à jour OTA du canal « preview » à chaque push sur main ou sur la branche de travail,
-# et build Android de prévisualisation à la demande (Actions > EAS preview > Run workflow,
-# ou un commit dont le message contient [build]).
+# Un seul workflow, un seul job, un seul checkout et un seul npm ci :
+#   1. contrôles (typage, ESLint, tests Jest) sur les push et les pull requests ;
+#   2. sur un push (ou un lancement manuel) : export Hermes, puis mise à jour OTA du canal « preview » ;
+#   3. build Android de prévisualisation à la demande (Actions > Run workflow avec l'option build,
+#      ou un commit dont le message contient [build]).
 # Un commit dont le message contient [obligatoire] publie une mise à jour obligatoire.
 # Nécessite le secret de dépôt EXPO_TOKEN (jeton d'accès Expo).
+#
+# Économie de minutes Actions :
+#   - rien ne tourne si seuls docs/ ou des fichiers .md changent ;
+#   - pas de run sur les pull requests en brouillon ;
+#   - une pull request dont la branche reçoit déjà les push (liste ci-dessous) n'est pas
+#     contrôlée une deuxième fois : le run du push a déjà vérifié le même commit ;
+#   - un nouveau commit sur une pull request annule le run précédent de cette pull request.
 
 on:
   push:
+    # Si cette liste change, mettre à jour aussi la condition « branche déjà couverte par le push » du job.
     branches: [main, wk, claude/project-thread-cvknuk, claude/project-thread-kw792g]
+    paths-ignore: ['docs/**', '**/*.md']
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths-ignore: ['docs/**', '**/*.md']
   workflow_dispatch:
     inputs:
       build:
@@ -16,63 +30,89 @@ on:
         type: boolean
         default: false
 
-# Un seul run à la fois, mais sans annulation : une OTA annulée en cours de route
-# laisse la branche sans mise à jour publiée, ce qui explique des « OTA qui ne
-# partent plus » alors que le workflow est correctement déclenché.
+# Pull request : le run précédent est annulé à chaque nouveau commit.
+# Push : un seul run à la fois, mais sans annulation. Une OTA annulée en cours de route
+# laisse la branche sans mise à jour publiée, ce qui expliquait des « OTA qui ne partent plus »
+# (voir docs/MEMOIRE_PROJET.md). GitHub ne garde qu'un run en attente : le plus récent.
 concurrency:
-  group: eas-preview
-  cancel-in-progress: false
+  group: ${{ github.event_name == 'pull_request' && format('controles-pr-{0}', github.event.pull_request.number) || 'eas-preview' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.
   verifier:
+    # Pas de run pour une PR en brouillon, ni pour une PR dont la branche est déjà contrôlée par son push.
+    if: >-
+      github.event_name != 'pull_request' ||
+      (github.event.pull_request.draft == false &&
+       !contains(fromJSON('["main","wk","claude/project-thread-cvknuk","claude/project-thread-kw792g"]'), github.head_ref))
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      MESSAGE: ${{ github.event.head_commit.message || 'manuel' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - name: Tests Jest (dont garde-fou des appels natifs dangereux)
-        run: npm test -- --ci
-      - name: Typage
-        run: npm run typecheck
+      - run: npm ci --no-audit --no-fund
+
+      # Sur un push, les contrôles ne sont pas refaits si la pull request qui les a déjà passés
+      # (son dernier commit, parent du commit de fusion) a réussi : l'OTA part sans repayer Jest.
+      # L'export Hermes, lui, est toujours refait sur le code final.
+      - name: Contrôles déjà validés sur la pull request ?
+        if: ${{ github.event_name == 'push' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for c in $(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA" --jq '.sha, .parents[].sha'); do
+            n=$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/eas-preview.yml/runs?head_sha=$c&event=pull_request&status=success" --jq .total_count)
+            if [ "$n" -gt 0 ]; then
+              echo "DEJA_VERIFIE=true" >> "$GITHUB_ENV"
+              echo "::notice::Typage, ESLint et Jest déjà réussis sur la pull request (commit $c) : non relancés."
+              break
+            fi
+          done
+
+      # Barrière avant toute OTA : si un de ces contrôles échoue, rien n'est publié.
+      # Typage, ESLint et Jest tournent en parallèle dans ce même job (un seul npm ci).
+      - name: Typage, ESLint et tests Jest (dont garde-fou des appels natifs dangereux)
+        if: ${{ env.DEJA_VERIFIE != 'true' }}
+        run: |
+          npm run typecheck > "$RUNNER_TEMP/typage.log" 2>&1 & p1=$!
+          npm run lint > "$RUNNER_TEMP/eslint.log" 2>&1 & p2=$!
+          npm test -- --ci > "$RUNNER_TEMP/jest.log" 2>&1 & p3=$!
+          rc=0
+          for etape in "typage:$p1" "eslint:$p2" "jest:$p3"; do
+            nom=${etape%%:*}; pid=${etape##*:}
+            if wait "$pid"; then ok=OK; else ok=ECHEC; rc=1; fi
+            echo "::group::$nom ($ok)"; cat "$RUNNER_TEMP/$nom.log"; echo "::endgroup::"
+            if [ "$ok" = ECHEC ]; then echo "::error::$nom a échoué"; fi
+          done
+          exit $rc
+
+      # Export et publication : uniquement hors pull request.
       - name: Export Android (bundle Metro + compilation Hermes, comme l'OTA)
+        if: ${{ github.event_name != 'pull_request' }}
         run: npx expo export --platform android --output-dir "$RUNNER_TEMP/export-android"
       - name: Le bundle Hermes existe et n'est pas vide
+        if: ${{ github.event_name != 'pull_request' }}
         run: |
           f=$(find "$RUNNER_TEMP/export-android/_expo/static/js/android" -name '*.hbc' | head -n1)
           test -n "$f" && test "$(stat -c %s "$f")" -gt 1000000 || { echo "::error::Bundle Android absent ou trop petit"; exit 1; }
           ls -l "$f"
 
-  ota:
-    needs: verifier
-    runs-on: ubuntu-latest
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-    steps:
       - name: Jeton Expo absent
-        if: ${{ env.EXPO_TOKEN == '' }}
+        if: ${{ github.event_name != 'pull_request' && env.EXPO_TOKEN == '' }}
         run: echo "::warning::Secret EXPO_TOKEN absent, publication OTA ignorée."
-      - if: ${{ env.EXPO_TOKEN != '' }}
-        uses: actions/checkout@v4
-      - if: ${{ env.EXPO_TOKEN != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - if: ${{ env.EXPO_TOKEN != '' }}
+      - if: ${{ github.event_name != 'pull_request' && env.EXPO_TOKEN != '' }}
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-      - if: ${{ env.EXPO_TOKEN != '' }}
-        run: npm ci
       - name: Publier la mise à jour OTA
-        if: ${{ env.EXPO_TOKEN != '' }}
-        env:
-          MESSAGE: ${{ github.event.head_commit.message || 'manuel' }}
+        if: ${{ github.event_name != 'pull_request' && env.EXPO_TOKEN != '' }}
         run: |
           # Le message arrive par variable d'environnement (jamais interpolé dans le script).
           # [obligatoire] n'importe où (titre ou corps) => mise à jour obligatoire (extra.obligatoire dans app.config.ts).
@@ -81,19 +121,7 @@ jobs:
           echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
           eas update --platform android --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
 
-  build:
-    runs-on: ubuntu-latest
-    if: ${{ (github.event_name == 'workflow_dispatch' && inputs.build) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[build]')) }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - uses: expo/expo-github-action@v8
-        with:
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-      - run: npm ci
+      # Pas de build natif sans [build] (ou sans l'option du lancement manuel).
       - name: Build Android de prévisualisation
+        if: ${{ env.EXPO_TOKEN != '' && ((github.event_name == 'workflow_dispatch' && inputs.build) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[build]'))) }}
         run: eas build --platform android --profile preview --non-interactive --no-wait
