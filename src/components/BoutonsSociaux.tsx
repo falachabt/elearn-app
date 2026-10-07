@@ -26,16 +26,23 @@ type Props = {
   connexionDirecte?: boolean;
   /** Met en avant Google seul dans le parcours de sauvegarde du score invité. */
   googleSeul?: boolean;
+  /** Début de l'appui sur un bouton social (avant le clic) : le formulaire voisin ignore toute soumission pendant un court instant. */
+  onAppui?: () => void;
+  /** Parcours social lancé : le formulaire voisin se verrouille jusqu'à `onFin`. */
+  onDebut?: () => void;
+  /** Appelé quand le parcours social est terminé (succès, erreur ou abandon). */
+  onFin?: () => void;
 };
 
 /** Google et Facebook (OAuth Supabase) et Apple (iOS seulement). Les deux ne ferment jamais l'écran sur erreur : `onErreur` affiche un message lisible. */
-export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, rattacher, connexionDirecte, googleSeul }: Props) {
+export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, rattacher, connexionDirecte, googleSeul, onAppui, onDebut, onFin }: Props) {
   const mode = { rattacher };
   const { t } = useTraduction();
   const [enCours, setEnCours] = useState(false);
   const [compteExistant, setCompteExistant] = useState<FournisseurOAuth | null>(null);
 
   const lancer = (action: () => Promise<boolean | void>, fournisseur?: FournisseurOAuth) => async () => {
+    onDebut?.();
     setEnCours(true);
     try {
       const reprise = await action();
@@ -55,18 +62,19 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       onErreur(cle);
     } finally {
       setEnCours(false);
+      onFin?.();
     }
   };
 
   return (
     <>
       <View style={styles.groupe}>
-        <Bouton variante={googleSeul ? 'primaire' : 'secondaire'} icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
+        <Bouton variante={googleSeul ? 'primaire' : 'secondaire'} icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
         {!googleSeul && appleAffiche ? (
-          <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
+          <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
         ) : null}
         {!googleSeul && facebookAffiche ? (
-          <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'facebook')} />
+          <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'facebook')} />
         ) : null}
       </View>
       <Feuille

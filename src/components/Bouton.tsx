@@ -20,6 +20,8 @@ type Props = {
   icone?: ReactNode;
   /** Nom lu par les lecteurs d'écran quand le libellé est un symbole (« + », « − »). */
   accessibilityLabel?: string;
+  /** Début de l'appui, avant `onPress` (sert à verrouiller un formulaire voisin). */
+  onPressIn?: () => void;
 };
 
 const DECALAGE = 4;
@@ -40,7 +42,7 @@ export function couleursBouton(theme: Theme, variante: Variante, desactive = fal
 }
 
 /** Un seul bouton primaire par écran, en bas, pleine largeur. Accent (jaune) réservé au pass. */
-export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour, icone, accessibilityLabel }: Props) {
+export function Bouton({ libelle, onPress, variante = 'primaire', petit, desactive, retour, icone, accessibilityLabel, onPressIn }: Props) {
   const { theme } = useTheme();
   const { fond, texte, bord: couleurBord, ombre } = couleursBouton(theme, variante, desactive);
   const plat = variante === 'texte';
@@ -53,6 +55,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
       disabled={desactive}
       retour={retour}
       onPress={onPress}
+      onPressIn={onPressIn}
       decalage={plat ? 0 : DECALAGE}
       ombre={plat ? 0 : DECALAGE}
       couleurOmbre={ombre}

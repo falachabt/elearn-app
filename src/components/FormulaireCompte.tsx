@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -27,6 +27,9 @@ import { Ecran } from './Ecran';
 import { terminerParcoursArrivee } from './ParcoursArrivee';
 import { Secousse } from './Secousse';
 
+/** Marge après un appui sur un bouton social pendant laquelle un évènement de soumission tardif du navigateur est ignoré. */
+const MARGE_SOCIAL_MS = 1500;
+
 type Erreurs = { email?: CleTexte; motDePasse?: CleTexte; code?: CleTexte };
 
 /**
@@ -45,7 +48,12 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
   const [erreurs, setErreurs] = useState<Erreurs>({});
   const [erreurServeur, setErreurServeur] = useState<CleTexte | null>(null);
   const [confirmation, setConfirmation] = useState<string | null>(null);
-  const [enCours, setEnCours] = useState(false);
+  const [enCours, setEnCoursEtat] = useState(false);
+  const enCoursRef = useRef(false);
+  const setEnCours = (v: boolean) => {
+    enCoursRef.current = v;
+    setEnCoursEtat(v);
+  };
   const [secousse, setSecousse] = useState(0);
 
   useEffect(() => {
@@ -59,6 +67,24 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
 
   const echec = () => setSecousse((n) => n + 1);
 
+  // Google, Apple et Facebook ne lancent jamais le formulaire e-mail, et le formulaire ne part que de son bouton ou de la
+  // touche Entrée dans ses champs. Tant qu'un parcours social est commencé (appui compris, avec une marge pour un
+  // évènement tardif du navigateur), toute soumission e-mail est ignorée : rien n'est validé ni envoyé.
+  const socialActif = useRef(false);
+  const dernierSocial = useRef(0);
+  const surAppuiSocial = () => {
+    dernierSocial.current = Date.now();
+  };
+  const surDebutSocial = () => {
+    socialActif.current = true;
+    dernierSocial.current = Date.now();
+  };
+  const surFinSocial = () => {
+    socialActif.current = false;
+    dernierSocial.current = Date.now();
+  };
+  const socialRecent = () => socialActif.current || Date.now() - dernierSocial.current < MARGE_SOCIAL_MS;
+
   const fini = async () => {
     await effacerCode();
     await terminerParcoursArrivee();
@@ -66,6 +92,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
   };
 
   const soumettre = async () => {
+    if (enCoursRef.current || socialRecent()) return;
     const e: Erreurs = {
       email: validerEmail(email) ?? undefined,
       motDePasse: validerMotDePasse(motDePasse) ?? undefined,
@@ -172,6 +199,9 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
             connexionDirecte={!creation}
             onErreur={surErreurSociale}
             onSucces={() => void fini()}
+            onAppui={surAppuiSocial}
+            onDebut={surDebutSocial}
+            onFin={surFinSocial}
           />
           <Bouton
             variante="texte"

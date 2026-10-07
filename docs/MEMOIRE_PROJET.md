@@ -42,6 +42,10 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **App** : `src/services/codePromo.ts` (RPC, normalisation), `useCodePromo` (états fermé, ouvert, vérification, appliqué, erreur), `CodePromo` (champ, carte du code, erreurs), branchés dans `PayerPass` (résumé avec prix barré et badge, bouton Activer mon Pass, reçu avec le code). Le prix n'est jamais calculé ni envoyé par l'app.
 - **Piège** : en test, `act` regroupe le changement d'offre et la réponse du serveur dans un seul rendu ; `cleApplique` empêche une revérification en double.
 
+### Connexion : Google et e-mail séparés (7 octobre 2026)
+
+- Bug signalé sur la version web : « Continuer avec Google » semblait aussi valider le formulaire e-mail et mot de passe. Pas de `<form>` ni de bouton `submit` dans la page (vérifié sur le DOM de app.elearnprepa.com : boutons `type=button`, props React propres à chaque bouton) ; cause exacte non reproduite (clic réel sur Google refusé par le bac à sable de l'agent). Garde-fou ajouté dans `FormulaireCompte` : toute soumission e-mail est ignorée pendant un parcours social et 1,5 s après le début d'un appui sur un bouton social ; l'envoi e-mail grise déjà les boutons sociaux. Tests : `src/components/__tests__/formulaireGoogle.test.tsx`.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).
