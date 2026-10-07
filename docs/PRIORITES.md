@@ -26,7 +26,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 
 ## P1 (chemin critique)
 - #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app.
-- #7 Codes promo Pass.
+- #7 Codes promo Pass : écran et service faits sur `kw792g` (maquette `docs/maquettes/code-promo.md`) ; reste à fusionner elearn-supabase #53 (migration) puis elearn #27 (pass gratuit), et à créer les codes (SQL en attendant le back-office).
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
 - #33 Compteur de crédits : fait sur l'Accueil, reste Réviser et l'état « à confirmer » hors ligne.
 - #37 App Links servis en JSON (hébergement par Benny).

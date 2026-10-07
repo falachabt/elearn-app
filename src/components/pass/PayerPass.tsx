@@ -1,14 +1,16 @@
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Gift, Lock } from 'lucide-react-native';
 import { ActivityIndicator, Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
 import {
-  annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, modeEssai, payerMobileMoney, suivreCommande,
+  activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
 } from '@/services/paiementPass';
 import { lireProfil } from '@/services/profil';
@@ -24,7 +26,9 @@ import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { CodePromo } from './CodePromo';
 import { FeuillePays } from './FeuillePays';
+import { useCodePromo } from './useCodePromo';
 import { Rebond } from '../Rebond';
 import { Secousse } from '../Secousse';
 import { useReseau } from '../reseau/useReseau';
@@ -78,9 +82,13 @@ export function PayerPass() {
   const { rafraichir } = useCredits();
   const horsLigne = !useReseau().estEnLigne;
   const params = useLocalSearchParams<{ offre?: string; reprise?: string }>();
-  const offre: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
+  const offreParam: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
+  // L'offre peut changer ici si un code promo n'est valable que pour une autre (« Choisir le Pass concours »).
+  const [offre, setOffre] = useState<CodeOffre>(offreParam);
 
   const [pays, setPays] = useState<string | null>(null);
+  const promo = useCodePromo({ offre, pays, horsLigne });
+  const [recuPromo, setRecuPromo] = useState<{ code: string; etiquette: string; initial: string; paye: string; gratuit: boolean } | null>(null);
   const [liste, setListe] = useState<PaysPaiement[] | null>(null);
   const [choixPays, setChoixPays] = useState(false);
   const [methodes, setMethodes] = useState<MethodesPays | 'chargement' | 'erreur'>('chargement');
@@ -144,7 +152,15 @@ export function PayerPass() {
 
   const m = typeof methodes === 'object' ? methodes : null;
   const offreChoisie = m?.offers.find((o) => o.code === offre) ?? null;
-  const montant = offreChoisie ? formaterMontant(offreChoisie.amount, offreChoisie.currency) : '';
+  // Code promo appliqué : le prix final vient du serveur (apply_promo_code), jamais calculé ici.
+  const promoActif = promo.phase === 'applique' ? promo.applique : null;
+  const gratuit = !!promoActif?.gratuit;
+  const argent = (n: number) => (offreChoisie ? formaterMontant(n, offreChoisie.currency) : '');
+  const montantInitial = offreChoisie ? argent(offreChoisie.amount) : '';
+  const montant = offreChoisie ? argent(promoActif ? promoActif.prixFinal : offreChoisie.amount) : '';
+  const etiquette = promoActif ? etiquetteRabais(promoActif, argent) : '';
+  const economie = promoActif ? argent(promoActif.prixInitial - promoActif.prixFinal) : '';
+  const resumeRecu = () => (promoActif ? { code: promoActif.code, etiquette, initial: montantInitial, paye: montant, gratuit } : null);
   const op: Operateur | null = m?.providers.find((p) => p.provider === operateur && p.available) ?? null;
   const nomOffre = t(`offres.${offre}`);
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -162,12 +178,13 @@ export function PayerPass() {
       setEtape('fin');
       if (r.statut === 'reussi') {
         suivre('payment_succeeded', { offre, pays: pays ?? '' });
+        promo.oublier();
         void rafraichir().catch(() => {});
       } else {
         suivre('payment_failed', { offre, pays: pays ?? '', motif: r.echec });
       }
     },
-    [offre, pays, rafraichir],
+    [offre, pays, rafraichir, promo.oublier],
   );
 
   // Attente : on suit la commande jusqu'à son issue (le serveur relit pawaPay ; le rappel pawaPay arrive en parallèle).
@@ -212,7 +229,8 @@ export function PayerPass() {
     if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
     setEtape('envoi');
     try {
-      const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue });
+      const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue, promo: promoActif?.code });
+      setRecuPromo(resumeRecu());
       if (r.statut === 'en_attente') {
         setResultat(r);
         setRestant(DUREE_DEMANDE_S);
@@ -222,6 +240,12 @@ export function PayerPass() {
         terminer(r);
       }
     } catch (e) {
+      // Code promo refusé au moment de payer (expiré, épuisé entre-temps) : retour au champ, rien n'est parti chez l'opérateur.
+      if (e instanceof ErreurPaiement && e.code === 'promo') {
+        promo.refuserAuPaiement(motifDepuisServeur(e.motif));
+        setEtape('saisie');
+        return;
+      }
       // Refus de pawaPay avec un code : l'écran d'échec par motif (E5). Sinon un message dans le formulaire.
       if (e instanceof ErreurPaiement && e.echec) {
         terminer({ statut: 'echoue', commande: e.commande ?? '', echec: e.echec, message: e.message });
@@ -229,6 +253,28 @@ export function PayerPass() {
         setErreur(texteErreur(e));
         setEtape('saisie');
       }
+    }
+  };
+
+  // Prix final à 0 : le serveur active le pass sans Mobile Money (maquette code promo, état 7).
+  const activer = async () => {
+    if (!pays || !promoActif?.gratuit) return;
+    setErreur(null);
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
+    setEtape('envoi');
+    try {
+      const r = await activerPassGratuit(getSupabase(), { offre, pays, promo: promoActif.code, langue });
+      setRecuPromo(resumeRecu());
+      // La réponse d'activation ne porte ni la fin du pass ni le numéro de reçu : on les relit.
+      const complet = await lireStatutCommande(getSupabase(), r.commande, langue).catch(() => r);
+      terminer({ ...r, ...complet, statut: 'reussi', montant: 0, devise: promoActif.devise });
+    } catch (e) {
+      if (e instanceof ErreurPaiement && e.code === 'promo') {
+        promo.refuserAuPaiement(motifDepuisServeur(e.motif));
+      } else {
+        setErreur(texteErreur(e));
+      }
+      setEtape('saisie');
     }
   };
 
@@ -260,12 +306,19 @@ export function PayerPass() {
 
   // E4 · Succès : reçu
   if (etape === 'fin' && resultat?.statut === 'reussi') {
-    const lignes: [string, string][] = [];
-    const montantRecu = montant || (resultat.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : '');
-    if (montantRecu) lignes.push([t('paiement.montant'), montantRecu]);
-    if (op) lignes.push([t('paiement.operateurRecu'), op.name]);
-    if (resultat.finPass) lignes.push([t('paiement.valable'), date(resultat.finPass)]);
-    if (resultat.recu) lignes.push([t('paiement.reference'), resultat.recu]);
+    const lignes: { nom: string; valeur: string; barre?: boolean; badge?: boolean }[] = [];
+    const montantRecu = recuPromo?.paye ?? (montant || (resultat.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : ''));
+    if (recuPromo) {
+      // Rappel du code sur le reçu (maquette code promo, état 14) : prix de départ barré, code et rabais, montant payé.
+      lignes.push({ nom: t('paiement.promo.recuPrix'), valeur: recuPromo.initial, barre: true });
+      lignes.push({ nom: t('paiement.promo.recuCode', { code: recuPromo.code }), valeur: recuPromo.etiquette, badge: true });
+      lignes.push({ nom: t('paiement.promo.recuPaye'), valeur: montantRecu });
+    } else if (montantRecu) {
+      lignes.push({ nom: t('paiement.montant'), valeur: montantRecu });
+    }
+    if (op && !recuPromo?.gratuit) lignes.push({ nom: t('paiement.operateurRecu'), valeur: op.name });
+    if (resultat.finPass) lignes.push({ nom: t('paiement.valable'), valeur: date(resultat.finPass) });
+    if (resultat.recu) lignes.push({ nom: t('paiement.reference'), valeur: resultat.recu });
     return (
       <Ecran pied={<Bouton libelle={t('paiement.reprendre')} onPress={() => router.replace('/')} retour />}>
         {entete}
@@ -282,10 +335,16 @@ export function PayerPass() {
         </View>
         <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.recu').toUpperCase()}</Text>
-          {lignes.map(([nom, valeur]) => (
-            <View key={nom} style={styles.ligne}>
-              <Text style={[typo.texte, styles.flex, { color: theme.texte.secondaire }]}>{nom}</Text>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{valeur}</Text>
+          {lignes.map((l) => (
+            <View key={l.nom} style={styles.ligne}>
+              <Text style={[typo.texte, styles.flex, { color: theme.texte.secondaire }]}>{l.nom}</Text>
+              {l.badge ? (
+                <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{l.valeur}</Text>
+                </View>
+              ) : (
+                <Text style={[typo.texteFort, { color: l.barre ? theme.texte.secondaire : theme.texte.principal }, l.barre ? styles.barre : null]}>{l.valeur}</Text>
+              )}
             </View>
           ))}
         </View>
@@ -374,7 +433,9 @@ export function PayerPass() {
 
   // E2 · Pays, opérateur, numéro
   const envoi = etape === 'envoi';
-  const pret = !!m && m.payable && !!offreChoisie && !!op;
+  const pret = !!m && m.payable && !!offreChoisie && (gratuit || !!op);
+  // Un seul bouton vert par écran : tant qu'un code est en cours de saisie, c'est « Appliquer » ; « Payer » passe en blanc.
+  const saisieEnCours = promo.phase === 'ouvert' && promo.texte.length > 0;
   const indisponibles = m?.providers.filter((p) => !p.available) ?? [];
   const disponibles = m?.providers.filter((p) => p.available) ?? [];
   return (
@@ -382,8 +443,22 @@ export function PayerPass() {
       pied={
         pret ? (
           <View style={styles.groupe}>
-            <Bouton libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })} onPress={() => void payer()} desactive={envoi} retour />
-            {lienParent}
+            {gratuit ? (
+              <Bouton libelle={envoi ? t('paiement.promo.activationEnCours') : t('paiement.promo.activer')} onPress={() => void activer()} desactive={envoi} retour />
+            ) : (
+              <Bouton
+                variante={saisieEnCours ? 'secondaire' : 'primaire'}
+                libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })}
+                onPress={() => void payer()}
+                desactive={envoi}
+                retour
+              />
+            )}
+            {gratuit ? null : lienParent}
+            <View style={styles.note}>
+              <Lock size={14} color={theme.texte.secondaire} strokeWidth={2} />
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{gratuit ? t('paiement.promo.activation') : t('paiement.notePaiement')}</Text>
+            </View>
           </View>
         ) : undefined
       }
@@ -435,9 +510,35 @@ export function PayerPass() {
               </Text>
               {offreChoisie.converted ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('paiement.prixConverti', { devise: offreChoisie.currency })}</Text> : null}
             </View>
-            <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+            {promoActif ? (
+              <View style={styles.prix} accessible accessibilityLabel={t('paiement.promo.prixAu', { final: montant, initial: montantInitial })}>
+                <Text style={[typo.texte, styles.barre, { color: theme.texte.secondaire }]}>{montantInitial}</Text>
+                <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+              </View>
+            ) : (
+              <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+            )}
           </View>
+          {promoActif ? (
+            <View style={styles.ligne}>
+              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{etiquette}</Text>
+              </View>
+              <Text style={[typo.petit, styles.flex, { color: theme.texte.principal }]}>{t('paiement.promo.economie', { montant: economie })}</Text>
+            </View>
+          ) : null}
 
+          {gratuit ? (
+            <View style={[styles.gratuit, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Gift size={24} color={theme.texte.surCouleur} strokeWidth={2} />
+              <View style={styles.flex}>
+                <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t('paiement.promo.gratuitTitre')}</Text>
+                <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('paiement.promo.gratuitTexte', { offre: nomOffre })}</Text>
+              </View>
+            </View>
+          ) : null}
+
+          {gratuit ? null : (
           <View style={styles.groupe}>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.operateur').toUpperCase()}</Text>
             {m.providers.map((p) => {
@@ -474,8 +575,9 @@ export function PayerPass() {
               <Banniere ton="alerte" titre={t('paiement.indisponibleBandeau', { operateur: indisponibles[0].name, autre: disponibles[0].name })} />
             ) : null}
           </View>
+          )}
 
-          {op ? (
+          {op && !gratuit ? (
             <Secousse declencheur={secousse}>
               <View style={styles.groupe}>
               <Champ
@@ -509,6 +611,16 @@ export function PayerPass() {
             </View>
             </Secousse>
           ) : null}
+
+          <CodePromo
+            etat={promo}
+            offre={offre}
+            fige={envoi}
+            surChoisirOffre={(o) => {
+              setOffre(o);
+              void promo.appliquer(o);
+            }}
+          />
         </>
       ) : null}
 
@@ -534,4 +646,9 @@ const styles = StyleSheet.create({
   drapeau: { width: 24, height: 16, borderRadius: 3 },
   logo: { width: 48, height: 48, borderWidth: bord.fin, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   logoImage: { width: 40, height: 40 },
+  note: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2] },
+  prix: { alignItems: 'flex-end' },
+  barre: { textDecorationLine: 'line-through' },
+  badge: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: 2 },
+  gratuit: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
 });

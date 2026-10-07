@@ -36,6 +36,12 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **App** : `src/services/maSemaine.ts` (données, semaines, cartes, copie hors ligne), `src/components/maSemaine/MaSemaine.tsx` (écran, route `/ma-semaine`, spec `docs/maquettes/ma-semaine.md`), `useOuvertureRecapAuto` (ouverture au premier lancement de la semaine, sur l'accueil seulement, jamais pour l'invité). Le push du lundi et la ligne du centre ouvrent `/ma-semaine?semaine=AAAA-MM-JJ` ; une notification de paiement ouvre la page des paiements.
 - **Piège** : les montants (solde, recharge du lundi) viennent de `my_week_recap` (configuration des crédits), jamais d'une valeur écrite dans l'app. « Refaire mes erreurs » de la carte 3 rouvre le parcours des erreurs du dernier quiz (`/mission/erreurs`) : à confirmer avec Benny.
 
+### Codes promo du Pass (issue #7, 7 octobre 2026)
+
+- **Serveur (PR elearn-supabase #53, à fusionner par Benny)** : table `promo_codes` (rabais `pct` ou `fixe` en devise du pays, offres visées `product_codes`, plafond, date de fin), `create_order(..., p_promo)` (code refusé : erreur P0004 dont le message est le motif), `apply_promo_code(code, produit, pays)` pour la vérification avant paiement, compteur d'utilisations au premier paiement réussi, prix à 0 : pass activé sans Mobile Money. Le back-office `/api/pass/pawapay/pay` (elearn PR #27) passe `promo` et saute le dépôt si `gratuit`.
+- **App** : `src/services/codePromo.ts` (RPC, normalisation), `useCodePromo` (états fermé, ouvert, vérification, appliqué, erreur), `CodePromo` (champ, carte du code, erreurs), branchés dans `PayerPass` (résumé avec prix barré et badge, bouton Activer mon Pass, reçu avec le code). Le prix n'est jamais calculé ni envoyé par l'app.
+- **Piège** : en test, `act` regroupe le changement d'offre et la réponse du serveur dans un seul rendu ; `cleApplique` empêche une revérification en double.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).

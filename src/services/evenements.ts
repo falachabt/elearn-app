@@ -12,6 +12,10 @@ export type Evenements = {
   parent_link_created: { offre: 'week' | 'month' | 'contest'; montant: number };
   parent_link_sent: { canal: 'whatsapp' | 'copie' };
   payment_initiated: { offre: 'week' | 'month' | 'contest'; pays: string; operateur?: string; mode?: string };
+  promo_code_opened: { offre: 'week' | 'month' | 'contest' };
+  promo_code_applied: { offre: 'week' | 'month' | 'contest'; type: 'pct' | 'fixe'; gratuit: boolean };
+  promo_code_failed: { offre: 'week' | 'month' | 'contest'; raison: string };
+  promo_code_removed: { offre: 'week' | 'month' | 'contest' };
   payment_succeeded: { offre: 'week' | 'month' | 'contest'; pays: string };
   payment_failed: { offre: 'week' | 'month' | 'contest'; pays: string; motif?: string };
   mission_started: { source: 'serveur' | 'locale'; total: number };

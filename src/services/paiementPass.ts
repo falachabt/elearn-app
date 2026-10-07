@@ -62,7 +62,7 @@ export type ResultatPaiement = {
 
 /** Refus avant tout prélèvement (ou panne) : l'écran choisit le texte, `message` vient du serveur quand il existe. */
 export class ErreurPaiement extends Error {
-  constructor(readonly code: string, readonly message: string = '', readonly commande?: string, readonly echec?: string) {
+  constructor(readonly code: string, readonly message: string = '', readonly commande?: string, readonly echec?: string, readonly motif?: string) {
     super(`paiement: ${code}`);
   }
 }
@@ -82,7 +82,7 @@ async function appeler(chemin: string, { methode = 'GET', jeton, corps, appel = 
     });
     const donnees = (await reponse.json().catch(() => ({}))) as Corps;
     if (!reponse.ok) {
-      throw new ErreurPaiement(String(donnees.code ?? 'indisponible'), String(donnees.message ?? ''), donnees.order_id as string | undefined, donnees.failure as string | undefined);
+      throw new ErreurPaiement(String(donnees.code ?? 'indisponible'), String(donnees.message ?? ''), donnees.order_id as string | undefined, donnees.failure as string | undefined, donnees.motif as string | undefined);
     }
     return donnees;
   } catch (e) {
@@ -142,7 +142,7 @@ function resultat(c: Corps): ResultatPaiement {
  */
 export async function payerMobileMoney(
   client: ClientAuth,
-  p: { offre: CodeOffre; pays: string; telephone: string; operateur: string; codePreauth?: string; langue: string },
+  p: { offre: CodeOffre; pays: string; telephone: string; operateur: string; codePreauth?: string; langue: string; promo?: string },
   appel?: Fetch,
 ): Promise<ResultatPaiement> {
   const r = resultat(
@@ -150,10 +150,28 @@ export async function payerMobileMoney(
       methode: 'POST',
       jeton: await jetonDe(client),
       appel,
-      corps: { product: p.offre, country: p.pays, phone: p.telephone, provider: p.operateur, preAuthorisationCode: p.codePreauth || undefined, locale: p.langue === 'en' ? 'en' : 'fr', sandbox: modeEssai() },
+      corps: { product: p.offre, country: p.pays, phone: p.telephone, provider: p.operateur, preAuthorisationCode: p.codePreauth || undefined, promo: p.promo || undefined, locale: p.langue === 'en' ? 'en' : 'fr', sandbox: modeEssai() },
     }),
   );
   suivre('payment_initiated', { offre: p.offre, pays: p.pays, operateur: p.operateur, mode: modeEssai() ? 'sandbox' : 'production' });
+  return r;
+}
+
+/**
+ * Pass à 0 après un code promo : le serveur active le pass tout de suite, sans opérateur ni numéro (aucune demande
+ * Mobile Money). Le code est revérifié par le serveur ; s'il n'efface plus tout le prix, la commande est refusée
+ * (ErreurPaiement `requete`) et rien n'est activé.
+ */
+export async function activerPassGratuit(client: ClientAuth, p: { offre: CodeOffre; pays: string; promo: string; langue: string }, appel?: Fetch): Promise<ResultatPaiement> {
+  const r = resultat(
+    await appeler('/api/pass/pawapay/pay', {
+      methode: 'POST',
+      jeton: await jetonDe(client),
+      appel,
+      corps: { product: p.offre, country: p.pays, promo: p.promo, locale: p.langue === 'en' ? 'en' : 'fr', sandbox: modeEssai() },
+    }),
+  );
+  suivre('payment_initiated', { offre: p.offre, pays: p.pays, operateur: 'promo_gratuit', mode: modeEssai() ? 'sandbox' : 'production' });
   return r;
 }
 
