@@ -464,7 +464,7 @@ export function MaSemaine() {
   }
 
   return (
-    <View style={[styles.racine, { backgroundColor: theme.fond.app, paddingTop: insets.top, paddingBottom: Math.max(insets.bottom, espace[5]) }]}>
+    <View style={[styles.racine, { backgroundColor: theme.fond.app, paddingTop: insets.top + espace[3], paddingBottom: Math.max(insets.bottom, espace[5]) + espace[6] }]}>
       {recap ? <Segments total={cartes.length} courante={index} /> : null}
       <Entete onFermer={() => fermer()} />
       {etat.type === 'pret' && etat.copie ? <BandeHorsLigne /> : null}
@@ -478,14 +478,14 @@ export function MaSemaine() {
 
 const styles = StyleSheet.create({
   racine: { flex: 1 },
-  segments: { flexDirection: 'row', gap: 6, paddingHorizontal: espace[5], paddingTop: espace[2] },
+  segments: { flexDirection: 'row', gap: 6, paddingHorizontal: espace[5], paddingTop: espace[3] },
   segment: { flex: 1, height: 8, borderWidth: bord.normal, borderRadius: rayon.s },
-  entete: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], paddingTop: espace[4], minHeight: cibleMin + espace[4] },
+  entete: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], paddingTop: espace[6], minHeight: cibleMin + espace[4] },
   defile: { flex: 1 },
-  defileContenu: { flexGrow: 1 },
-  corps: { paddingHorizontal: espace[5], paddingTop: espace[2], gap: 14 },
+  defileContenu: { flexGrow: 1, paddingBottom: espace[5] },
+  corps: { paddingHorizontal: espace[5], paddingTop: espace[4], gap: 14 },
   centre: { flex: 1, justifyContent: 'center', paddingBottom: espace[8] },
-  pied: { paddingHorizontal: espace[5], paddingTop: espace[4], gap: espace[4] - 2 },
+  pied: { paddingHorizontal: espace[5], paddingTop: espace[6], gap: espace[4] - 2 },
   ombre: { position: 'absolute', right: 0, bottom: 0, top: 0, left: 0, borderRadius: rayon.l },
   bloc: { borderWidth: bord.normal, borderRadius: rayon.l },
   heroGrand: { paddingHorizontal: espace[6] - 2, paddingTop: espace[6] - 2, paddingBottom: espace[5] },
