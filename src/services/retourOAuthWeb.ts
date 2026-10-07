@@ -3,7 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { lireRetourOAuth, rattacherCode } from './compte';
 import { effacerCode, lireCodeValide } from './parrainage';
 
-type Client = Pick<SupabaseClient, 'auth' | 'rpc'>;
+type Client = Pick<SupabaseClient, 'auth' | 'rpc' | 'functions'>;
 
 /** Adresse de la page au chargement du module, avant tout changement de route : le retour OAuth y est écrit. */
 export const urlAuLancement: string | null = typeof globalThis.location?.href === 'string' ? globalThis.location.href : null;
