@@ -16,11 +16,12 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #36 fermée : clés exposées révoquées par Benny (7 octobre). Reste facultatif : réécriture de l'historique, secret scanning sur les cinq dépôts.
 - #7 fermée : codes promo du Pass testés par Benny le 7 octobre (écran et service sur `kw792g`, elearn-supabase #53 et elearn #27 fusionnées). Les codes se créent par SQL en attendant le back-office : elearn #28.
 - #37 fermée : `assetlinks.json` et `apple-app-site-association` servis en `application/json` sur app.elearnprepa.com (curl du 7 octobre, Vercel suit `kw792g`). Reste à tester les liens sur téléphone avec un build natif.
+- #33 fermée sur décision de Benny (7 octobre) : aucun contenu payant en crédits ne se consomme hors ligne, l'état « à confirmer hors ligne » est hors périmètre. Le compteur de crédits est dans le code sur l'Accueil, Réviser et Moi ; reste à le voir sur téléphone.
 - Nettoyage du 7 octobre : PR obsolètes fermées sans fusion (elearn-app #22 et #3, elearn-supabase #2, elearn-site #6). Gardées ouvertes : elearn-app #43 (étude certifications, mise de côté), elearn-supabase #50 (plan Kapso, lié à #52), elearn #25, #23, #14, #13 (à trier avec Benny).
 - Coût des Actions réduit : un seul workflow et un seul job, rien ne tourne pour un changement de documentation seule (PR #48).
 
 ## En cours
-- #33 (compteur de crédits) et #34 (notifications restantes) : validés par Benny le 7 octobre, repris par la session de développement locale.
+- #34 (notifications restantes) : validée par Benny le 7 octobre, reprise par la session de développement locale.
 - Recette du 6 octobre sur #31 (2e lot : bouton Terminer sur le bilan, texte « sujets de ta classe », solde simulé en mode développeur, mission terminée hors ligne gardée et envoyée au retour du réseau, progression lisible hors ligne) : points 1 à 6 validés par Benny ; corrigés ensuite : progression en direct, fin de correction, refaire mes erreurs durci, retour à la liste des chapitres, message de contenu expiré, bouton Publier. #13 point 5 : « Tout supprimer » ne supprime plus les documents préchargés.
 - Feuille de crédits épuisés K3 (Recharger, Gagner, Plus tard) : maquette `docs/maquettes/k3-credits-epuises.html` validée par Benny le 6 octobre, code et tests faits ; reste à voir sur téléphone.
 - Résumé hebdomadaire pour les parents : décision du 7 octobre, WhatsApp via Kapso ; plan dans la PR elearn-supabase #50. La configuration (comptes, numéro, modèles) est laissée à Benny pour le soir : elearn-supabase #51 (réseaux sociaux) puis #52 (WhatsApp avec Kapso).
@@ -29,9 +30,10 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #44 Signature du webhook pawaPay, avant tout paiement réel.
 
 ## P1 (chemin critique)
+- #55 Quiz de leçon : page blanche à la fin du quiz (bug signalé par Benny le 7 octobre, corrigé par la session de développement).
+- #56 Quiz de leçon : « Revoir mes erreurs » et « Revoir la correction » disent qu'il n'y a rien alors qu'il y a des erreurs (bug signalé le 7 octobre, corrigé par la session de développement).
 - #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app.
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
-- #33 Compteur de crédits : fait sur l'Accueil et Réviser, avec l'état « à confirmer » hors ligne (7 octobre) ; reste à voir sur téléphone.
 
 ## P2 (avant les stores)
 - elearn #28 Back-office des codes promo (créer, désactiver, voir les utilisations).
