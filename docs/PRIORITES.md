@@ -13,6 +13,9 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #43 fermée : dépôt aligné sur la production (PR #48). Le mot de passe de déploiement manuel reste à corriger avec #36.
 - elearn-supabase #3 et #4 fermées : paiement parent validé de bout en bout en bac à sable par Benny le 7 octobre (fonctions déployées, Pass et notification reçus), avec le routeur back-office elearn #26 et le correctif de la page parent elearn-site #19. Non couverts par un test : lien expiré, limite de cinq échecs par heure.
 - elearn #15 fermée : le rappel pawaPay canonique est celui du back-office (`https://staff.elearnprepa.com/api/payments/pawapay/callback`), qui route vers l'Edge Function `pawapay-webhook` pour la nouvelle app ; l'ancien flux et MineConnect restent inchangés.
+- #7 fermée : codes promo du Pass testés par Benny le 7 octobre (écran et service sur `kw792g`, elearn-supabase #53 et elearn #27 fusionnées). Les codes se créent par SQL en attendant le back-office : elearn #28.
+- #37 fermée : `assetlinks.json` et `apple-app-site-association` servis en `application/json` sur app.elearnprepa.com (curl du 7 octobre, Vercel suit `kw792g`). Reste à tester les liens sur téléphone avec un build natif.
+- Nettoyage du 7 octobre : PR obsolètes fermées sans fusion (elearn-app #22 et #3, elearn-supabase #2, elearn-site #6). Gardées ouvertes : elearn-app #43 (étude certifications, mise de côté), elearn-supabase #50 (plan Kapso, lié à #52), elearn #25, #23, #14, #13 (à trier avec Benny).
 - Coût des Actions réduit : un seul workflow et un seul job, rien ne tourne pour un changement de documentation seule (PR #48).
 
 ## En cours
@@ -26,12 +29,11 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 
 ## P1 (chemin critique)
 - #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app.
-- #7 Codes promo Pass : écran et service faits sur `kw792g` (maquette `docs/maquettes/code-promo.md`) ; reste à fusionner elearn-supabase #53 (migration) puis elearn #27 (pass gratuit), et à créer les codes (SQL en attendant le back-office).
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
 - #33 Compteur de crédits : fait sur l'Accueil, reste Réviser et l'état « à confirmer » hors ligne.
-- #37 App Links servis en JSON (hébergement par Benny).
 
 ## P2 (avant les stores)
+- elearn #28 Back-office des codes promo (créer, désactiver, voir les utilisations).
 - #54 PWA installée : ne s'ouvre pas sans internet au démarrage à froid (bug web, constaté le 7 octobre après les commits `c447041` et `ee89d84` ; pistes dans l'issue).
 - elearn-supabase #51 Configurer proprement les réseaux sociaux Elearn Prépa (Benny, portfolio Meta Business, Metricool).
 - elearn-supabase #52 Brancher WhatsApp avec Kapso ; #29 WhatsApp Business (résumé parent, reçus, support) ; elearn-supabase #14 envoi côté serveur ; elearn-site #8 page résumé parent.
