@@ -12,10 +12,14 @@ export type Evenements = {
   parent_link_created: { offre: 'week' | 'month' | 'contest'; montant: number };
   parent_link_sent: { canal: 'whatsapp' | 'copie' };
   payment_initiated: { offre: 'week' | 'month' | 'contest'; pays: string; operateur?: string; mode?: string };
-  promo_code_opened: { offre: 'week' | 'month' | 'contest' };
-  promo_code_applied: { offre: 'week' | 'month' | 'contest'; type: 'pct' | 'fixe'; gratuit: boolean };
-  promo_code_failed: { offre: 'week' | 'month' | 'contest'; raison: string };
-  promo_code_removed: { offre: 'week' | 'month' | 'contest' };
+  promo_code_opened: { ecran: 'e1' | 'e2' };
+  promo_code_applied: { ecran: 'e1' | 'e2'; type: 'pct' | 'fixe'; nb_pass_valables: number };
+  promo_code_failed: { ecran: 'e1' | 'e2'; raison: string };
+  promo_code_removed: { ecran: 'e1' | 'e2' };
+  promo_code_unusable: { offre: 'week' | 'month' | 'contest' };
+  web_app_banner_shown: { plateforme: 'android' | 'ios' | 'bureau' };
+  web_app_banner_clicked: { magasin: 'play' | 'appstore' };
+  web_app_banner_dismissed: Record<string, never>;
   payment_succeeded: { offre: 'week' | 'month' | 'contest'; pays: string };
   payment_failed: { offre: 'week' | 'month' | 'contest'; pays: string; motif?: string };
   mission_started: { source: 'serveur' | 'locale'; total: number };

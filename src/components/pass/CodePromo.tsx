@@ -24,6 +24,8 @@ type Props = {
   surChoisirOffre: (offre: CodeOffre) => void;
   /** Pendant l'envoi du paiement, rien ne bouge. */
   fige?: boolean;
+  /** Texte de la ligne « appliqué » à la place de « -20 % sur le Pass mois » (liste des Pass : « sur les Pass payants »). */
+  resume?: string;
 };
 
 /** Icône qui tourne pendant la vérification ; fixe si « Réduire les animations ». */
@@ -48,19 +50,27 @@ function Rotation({ couleur }: { couleur: string }) {
  * champ avec « Appliquer », vérification, code appliqué avec « Retirer », erreurs avec leur action. Le prix réduit et le
  * badge sont affichés par l'écran de paiement (résumé), pas ici.
  */
-export function CodePromo({ etat, offre, surChoisirOffre, fige }: Props) {
+export function CodePromo({ etat, offre, surChoisirOffre, fige, resume }: Props) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { phase, texte, refus, applique } = etat;
+  const { phase, texte, refus, applique, avis } = etat;
   const nom = (o: CodeOffre) => t(`offres.${o}`);
   const rendreVisible = useRendreVisible();
   const zone = useRef<View>(null);
 
   if (phase === 'ferme') {
     return (
-      <Appui accessibilityRole="button" accessibilityLabel={t('paiement.promo.lien')} onPress={etat.ouvrir} disabled={fige} decalage={0} style={styles.lienZone}>
-        <Text style={[typo.texteFort, styles.lien, { color: theme.texte.lien }]}>{t('paiement.promo.lien')}</Text>
-      </Appui>
+      <View style={styles.groupe}>
+        {avis ? (
+          <View accessibilityRole="alert" accessibilityLiveRegion="polite" style={styles.message}>
+            <AlertCircle size={18} color={theme.etat.erreurTexte} strokeWidth={2} />
+            <Text style={[typo.petit, styles.flex, { color: theme.etat.erreurTexte }]}>{t('paiement.promo.plusValable')}</Text>
+          </View>
+        ) : null}
+        <Appui accessibilityRole="button" accessibilityLabel={t('paiement.promo.lien')} onPress={etat.ouvrir} disabled={fige} decalage={0} style={styles.lienZone}>
+          <Text style={[typo.texteFort, styles.lien, { color: theme.texte.lien }]}>{t('paiement.promo.lien')}</Text>
+        </Appui>
+      </View>
     );
   }
 
@@ -73,7 +83,7 @@ export function CodePromo({ etat, offre, surChoisirOffre, fige }: Props) {
         </View>
         <View style={styles.flex}>
           <Text style={[typo.texteFort, styles.mono, { color: theme.texte.principal }]}>{applique.code}</Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('paiement.promo.rabaisSur', { rabais: etiquetteRabais(applique, montant), offre: nom(offre) })}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{resume ?? t('paiement.promo.rabaisSur', { rabais: etiquetteRabais(applique, montant), offre: nom(offre) })}</Text>
         </View>
         <Appui
           accessibilityRole="button"

@@ -28,7 +28,7 @@ import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { CodePromo } from './CodePromo';
 import { FeuillePays } from './FeuillePays';
-import { useCodePromo } from './useCodePromo';
+import { oublierCodePromo, useCodePromo } from './useCodePromo';
 import { Rebond } from '../Rebond';
 import { Secousse } from '../Secousse';
 import { useReseau } from '../reseau/useReseau';
@@ -87,7 +87,7 @@ export function PayerPass() {
   const [offre, setOffre] = useState<CodeOffre>(offreParam);
 
   const [pays, setPays] = useState<string | null>(null);
-  const promo = useCodePromo({ offre, pays, horsLigne });
+  const promo = useCodePromo({ offre, pays, horsLigne, ecran: 'e2' });
   const [recuPromo, setRecuPromo] = useState<{ code: string; etiquette: string; initial: string; paye: string; gratuit: boolean } | null>(null);
   const [liste, setListe] = useState<PaysPaiement[] | null>(null);
   const [choixPays, setChoixPays] = useState(false);
@@ -178,13 +178,13 @@ export function PayerPass() {
       setEtape('fin');
       if (r.statut === 'reussi') {
         suivre('payment_succeeded', { offre, pays: pays ?? '' });
-        promo.oublier();
+        oublierCodePromo();
         void rafraichir().catch(() => {});
       } else {
         suivre('payment_failed', { offre, pays: pays ?? '', motif: r.echec });
       }
     },
-    [offre, pays, rafraichir, promo.oublier],
+    [offre, pays, rafraichir],
   );
 
   // Attente : on suit la commande jusqu'à son issue (le serveur relit pawaPay ; le rappel pawaPay arrive en parallèle).
@@ -528,6 +528,16 @@ export function PayerPass() {
             </View>
           ) : null}
 
+          <CodePromo
+            etat={promo}
+            offre={offre}
+            fige={envoi}
+            surChoisirOffre={(o) => {
+              setOffre(o);
+              void promo.appliquer(o);
+            }}
+          />
+
           {gratuit ? (
             <View style={[styles.gratuit, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
               <Gift size={24} color={theme.texte.surCouleur} strokeWidth={2} />
@@ -612,15 +622,6 @@ export function PayerPass() {
             </Secousse>
           ) : null}
 
-          <CodePromo
-            etat={promo}
-            offre={offre}
-            fige={envoi}
-            surChoisirOffre={(o) => {
-              setOffre(o);
-              void promo.appliquer(o);
-            }}
-          />
         </>
       ) : null}
 

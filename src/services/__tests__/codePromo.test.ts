@@ -1,4 +1,4 @@
-import { etiquetteRabais, motifDepuisServeur, normaliserCode, verifierCodePromo } from '../codePromo';
+import { etiquetteRabais, lireCodePartage, memoriserCodePartage, motifDepuisServeur, normaliserCode, verifierCodePromo, verifierCodePromoOffres } from '../codePromo';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) }) as never;
 
@@ -59,5 +59,37 @@ describe('code promo : vérification avant paiement', () => {
   it('réponse illisible : traitée comme un code inconnu', async () => {
     expect(await verifierCodePromo(client({ valide: true }), { code: 'X1X', offre: 'month', pays: 'CM' })).toMatchObject({ valide: false, erreur: 'inconnu' });
     expect(await verifierCodePromo(client(null), { code: 'X1X', offre: 'month', pays: 'CM' })).toMatchObject({ valide: false, erreur: 'inconnu' });
+  });
+});
+
+describe('code promo : tous les Pass en un appel', () => {
+  const reponse = {
+    valide: true, code: 'CONC', type: 'pct', valeur: 10, devise: 'XAF',
+    offres: {
+      week: { valable: false },
+      month: { valable: false },
+      contest: { valable: true, prix_initial: 7500, prix_final: 6750, etiquette: '-10 %' },
+      autre: { valable: true, prix_initial: 1, prix_final: 1 },
+    },
+  };
+  it('appelle promo_offers avec le code normalisé et le pays, et lit le prix de chaque Pass', async () => {
+    const c = client(reponse);
+    const r = await verifierCodePromoOffres(c, { code: ' conc ', pays: 'cm' });
+    expect((c as unknown as { rpc: jest.Mock }).rpc).toHaveBeenCalledWith('promo_offers', { p_code: 'CONC', p_country: 'CM' });
+    expect(r).toEqual({
+      valide: true, code: 'CONC', type: 'pct', valeur: 10, devise: 'XAF',
+      offres: { week: { valable: false }, month: { valable: false }, contest: { valable: true, prixInitial: 7500, prixFinal: 6750, etiquette: '-10 %' } },
+    });
+  });
+  it('refus, réseau et réponse illisible', async () => {
+    expect(await verifierCodePromoOffres(client({ valide: false, erreur: 'expire', expire_le: '2026-09-30' }), { code: 'X1X', pays: 'CM' })).toMatchObject({ erreur: 'expire', expireLe: '2026-09-30' });
+    expect(await verifierCodePromoOffres(client(null, { message: 'x' }), { code: 'X1X', pays: 'CM' })).toEqual({ valide: false, erreur: 'reseau' });
+    expect(await verifierCodePromoOffres(client({ valide: true }), { code: 'X1X', pays: 'CM' })).toMatchObject({ valide: false, erreur: 'inconnu' });
+  });
+  it('le code appliqué est partagé en mémoire entre les écrans', () => {
+    memoriserCodePartage('ELEARN20');
+    expect(lireCodePartage()).toBe('ELEARN20');
+    memoriserCodePartage('');
+    expect(lireCodePartage()).toBe('');
   });
 });

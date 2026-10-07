@@ -46,6 +46,12 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 
 - Bug signalé sur la version web : « Continuer avec Google » semblait aussi valider le formulaire e-mail et mot de passe. Pas de `<form>` ni de bouton `submit` dans la page (vérifié sur le DOM de app.elearnprepa.com : boutons `type=button`, props React propres à chaque bouton) ; cause exacte non reproduite (clic réel sur Google refusé par le bac à sable de l'agent). Garde-fou ajouté dans `FormulaireCompte` : toute soumission e-mail est ignorée pendant un parcours social et 1,5 s après le début d'un appui sur un bouton social ; l'envoi e-mail grise déjà les boutons sociaux. Tests : `src/components/__tests__/formulaireGoogle.test.tsx`.
 
+### Web : PWA, barre du navigateur, bandeau application, code promo v2 (7 octobre 2026)
+
+- **PWA** : `public/index.html` (modèle HTML de l'export web, `app/+html.tsx` est ignoré en sortie `single`), `public/manifest.json`, icônes 192/512/180, image de partage 1200x630. Balises `theme-color` clair `#FFF7E3` et sombre `#141614`, remplacées par une seule balise qui suit le thème choisi (`src/services/couleurNavigateur.ts`, branché dans `ThemeProvider`). Les balises Open Graph sont statiques : elles valent pour toutes les routes (les robots ne lisent pas le JavaScript). Les pages de cours, correction et quiz demandent un rendu serveur : à décider.
+- **Bandeau application** : `BandeauApplication` (maquette `docs/maquettes/bandeau-app-web.md`), liens dans `src/config/magasins.ts` (App Store `null` tant que l'app n'y est pas).
+- **Code promo v2** : saisie aussi sur la liste des Pass (RPC `promo_offers`, elearn-supabase #54, un appel pour les trois Pass) ; un seul code partagé entre E1 et E2 (`codePromo.ts`, mémoire de session, revérifié à l'ouverture de chaque écran).
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).

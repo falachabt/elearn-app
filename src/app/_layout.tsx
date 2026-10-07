@@ -6,6 +6,7 @@ import { AppState, Platform, StyleSheet } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import { BandeauApplication } from '@/components/BandeauApplication';
 import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
@@ -134,6 +135,7 @@ export default function RootLayout() {
               <NotificationsProvider>
                 <VisiteProvider>
                   <BottomSheetModalProvider>
+                    <BandeauApplication />
                     <Navigation />
                   </BottomSheetModalProvider>
                   <BienvenueCredits />

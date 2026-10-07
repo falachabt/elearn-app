@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { AlertCircle } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -17,6 +18,9 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
+import { useReseau } from '../reseau/useReseau';
+import { CodePromo } from './CodePromo';
+import { useCodePromo } from './useCodePromo';
 import { useCompteRequis } from '../FeuilleCompte';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
@@ -24,13 +28,13 @@ type Choix = CodeOffre | 'free';
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; offres: Offre[]; acces: Acces; pays: string };
 
 /** Ligne d'offre : pastille radio, nom, aide, prix. La couleur n'est pas le seul signal (coche dans la pastille). */
-function LigneOffre({ titre, aide, prix, choisie, conseille, onPress }: { titre: string; aide: string; prix: string; choisie: boolean; conseille?: string; onPress: () => void }) {
+function LigneOffre({ titre, aide, prix, prixInitial, badge, nonValable, choisie, conseille, onPress }: { titre: string; aide: string; prix: string; prixInitial?: string; badge?: string; nonValable?: string; choisie: boolean; conseille?: string; onPress: () => void }) {
   const { theme } = useTheme();
   return (
     <Appui
       accessibilityRole="radio"
       accessibilityState={{ checked: choisie }}
-      accessibilityLabel={prix ? `${titre}, ${prix}. ${aide}` : `${titre}. ${aide}`}
+      accessibilityLabel={prix ? `${titre}, ${prixInitial ? `${prix} au lieu de ${prixInitial}` : prix}. ${nonValable ? `${nonValable}. ` : ''}${aide}` : `${titre}. ${aide}`}
       onPress={onPress}
       decalage={3}
       ombre={choisie ? ombre.m : ombre.s}
@@ -46,10 +50,24 @@ function LigneOffre({ titre, aide, prix, choisie, conseille, onPress }: { titre:
           <View style={styles.titre}>
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
             {conseille ? <Etiquette texte={conseille} jaune /> : null}
+            {badge ? (
+              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{badge}</Text>
+              </View>
+            ) : null}
           </View>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{aide}</Text>
+          {nonValable ? (
+            <View style={styles.nonValable}>
+              <AlertCircle size={14} color={theme.etat.erreurTexte} strokeWidth={2} />
+              <Text style={[typo.legende, { color: theme.etat.erreurTexte }]}>{nonValable}</Text>
+            </View>
+          ) : null}
         </View>
-        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
+        <View style={styles.prix}>
+          {prixInitial ? <Text style={[typo.legende, styles.barre, { color: theme.texte.secondaire }]}>{prixInitial}</Text> : null}
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
+        </View>
       </View>
     </Appui>
   );
@@ -74,6 +92,7 @@ export function Offres() {
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [choix, setChoix] = useState<Choix>('month');
   const { exiger, feuille } = useCompteRequis();
+  const horsLigne = !useReseau().estEnLigne;
 
   const charger = useCallback(() => {
     void chargerOffres().then((e) => {
@@ -91,6 +110,15 @@ export function Offres() {
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/'));
   const offres = etat.statut === 'pret' ? etat.offres : [];
   const choisie = offres.find((o) => o.code === choix);
+  // Code promo (maquette v2) : saisi ici, repris déjà appliqué sur le paiement. Un appel donne le prix de chaque Pass payant.
+  const promo = useCodePromo({ offre: choisie?.code ?? 'month', pays: etat.statut === 'pret' ? etat.pays : null, horsLigne, tous: true, ecran: 'e1' });
+  const prixPromo = (c: CodeOffre) => promo.applique?.offres?.[c];
+  const choisiePromo = choisie ? prixPromo(choisie.code) : undefined;
+  const montantChoisi = choisie ? (choisiePromo?.valable && choisiePromo.prixFinal !== undefined ? choisiePromo.prixFinal : choisie.montant) : 0;
+  const gratuitAvecCode = !!choisie && choisiePromo?.valable === true && choisiePromo.prixFinal === 0;
+  useEffect(() => {
+    if (choisie && promo.applique?.offres && promo.applique.offres[choisie.code]?.valable === false) suivre('promo_code_unusable', { offre: choisie.code });
+  }, [choisie, promo.applique]);
   // iOS : pas de prix ni de paiement Mobile Money ici (l'achat intégré Apple viendra) ; les pass restent présentés.
   const mm = paiementPossible();
   const devise = offres[0]?.devise ?? 'XAF';
@@ -104,7 +132,7 @@ export function Offres() {
     etat.statut === 'pret' && offres.length ? (
       <View style={styles.groupe}>
         {choisie && mm ? (
-          <Bouton libelle={t('offres.payer', { montant: formaterMontant(choisie.montant, choisie.devise) })} onPress={() => exiger('paiement', () => router.push({ pathname: '/offres/payer', params: { offre: choisie.code } }))} retour />
+          <Bouton libelle={gratuitAvecCode ? t('paiement.promo.activer') : t('offres.payer', { montant: formaterMontant(montantChoisi, choisie.devise) })} onPress={() => exiger('paiement', () => router.push({ pathname: '/offres/payer', params: { offre: choisie.code } }))} retour />
         ) : (
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
@@ -149,6 +177,9 @@ export function Offres() {
               <Text style={[typo.petit, styles.texte, { color: theme.texte.principal }]}>{t('offres.repere', { prix: formaterMontant(PRIX_REPETITEUR, devise) })}</Text>
             </View>
           ) : null}
+          {mm ? (
+            <CodePromo etat={promo} offre={choisie?.code ?? 'month'} surChoisirOffre={() => {}} resume={promo.applique ? t('paiement.promo.sousPassPayants', { rabais: promo.applique.type === 'pct' ? `-${promo.applique.valeur} %` : `-${formaterMontant(promo.applique.valeur, promo.applique.devise)}` }) : undefined} />
+          ) : null}
           <View accessibilityRole="radiogroup" style={styles.groupe}>
             <LigneOffre titre={t('offres.gratuit')} aide={t('offres.gratuitAide')} prix={mm ? formaterMontant(0, devise) : ''} choisie={choix === 'free'} onPress={() => choisir('free')} />
             {offres.map((o) => (
@@ -156,7 +187,10 @@ export function Offres() {
                 key={o.code}
                 titre={t(`offres.${o.code}`)}
                 aide={t(`offres.${o.code}Aide`)}
-                prix={mm ? formaterMontant(o.montant, o.devise) : ''}
+                prix={mm ? formaterMontant(prixPromo(o.code)?.valable && prixPromo(o.code)?.prixFinal !== undefined ? (prixPromo(o.code)?.prixFinal as number) : o.montant, o.devise) : ''}
+                prixInitial={mm && prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : undefined}
+                badge={mm && prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : undefined}
+                nonValable={mm && promo.applique && prixPromo(o.code)?.valable === false ? t('paiement.promo.nonValable') : undefined}
                 choisie={choix === o.code}
                 conseille={o.recommandee ? t('offres.conseille') : undefined}
                 onPress={() => choisir(o.code)}
@@ -181,4 +215,8 @@ const styles = StyleSheet.create({
   titre: { flexDirection: 'row', alignItems: 'center', gap: espace[3], flexWrap: 'wrap' },
   repere: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
   centre: { textAlign: 'center' },
+  prix: { alignItems: 'flex-end' },
+  barre: { textDecorationLine: 'line-through' },
+  badge: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
+  nonValable: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
 });

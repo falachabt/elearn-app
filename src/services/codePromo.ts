@@ -87,3 +87,49 @@ export async function verifierCodePromo(client: Client, p: { code: string; offre
 /** Libellé du badge : « -20 % » ou « -500 FCFA » (le montant est mis en forme par l'appelant). */
 export const etiquetteRabais = (c: Pick<CodePromoAppliquable, 'type' | 'valeur'>, montant: (n: number) => string): string =>
   c.type === 'pct' ? `-${c.valeur} %` : `-${montant(c.valeur)}`;
+
+/** Prix d'un Pass avec le code : `valable: false` pour un Pass hors de la liste du code. */
+export type OffrePromo = { valable: boolean; prixInitial?: number; prixFinal?: number; etiquette?: string };
+export type CodePromoOffres = {
+  valide: true;
+  code: string;
+  type: 'pct' | 'fixe';
+  valeur: number;
+  devise: string;
+  offres: Partial<Record<CodeOffre, OffrePromo>>;
+};
+
+function lireOffres(donnees: unknown): CodePromoOffres | CodePromoRefuse {
+  const d = (donnees ?? {}) as Brut;
+  const brutes = (d.offres ?? null) as Record<string, Brut> | null;
+  if (d.valide === true && brutes && typeof brutes === 'object') {
+    const offres: CodePromoOffres['offres'] = {};
+    for (const o of OFFRES) {
+      const x = brutes[o];
+      if (!x) continue;
+      offres[o] = x.valable === true
+        ? { valable: true, prixInitial: Number(x.prix_initial), prixFinal: Number(x.prix_final), etiquette: typeof x.etiquette === 'string' ? x.etiquette : undefined }
+        : { valable: false };
+    }
+    return { valide: true, code: String(d.code ?? ''), type: d.type === 'fixe' ? 'fixe' : 'pct', valeur: Number(d.valeur ?? 0), devise: String(d.devise ?? ''), offres };
+  }
+  return { valide: false, erreur: motifDepuisServeur(typeof d.erreur === 'string' ? d.erreur : undefined), expireLe: typeof d.expire_le === 'string' ? d.expire_le : undefined };
+}
+
+/** Vérifie un code pour tous les Pass d'un coup (liste des Pass, RPC promo_offers). Même règles d'erreur que `verifierCodePromo`. */
+export async function verifierCodePromoOffres(client: Client, p: { code: string; pays: string }): Promise<CodePromoOffres | CodePromoRefuse> {
+  try {
+    const { data, error } = await client.rpc('promo_offers', { p_code: normaliserCode(p.code), p_country: p.pays.toUpperCase() });
+    if (error) return { valide: false, erreur: 'reseau' };
+    return lireOffres(data);
+  } catch {
+    return { valide: false, erreur: 'reseau' };
+  }
+}
+
+/** Code appliqué, gardé le temps de la session et partagé par la liste des Pass et le paiement. Jamais écrit sur le disque. */
+let codeAppliquePartage = '';
+export const lireCodePartage = () => codeAppliquePartage;
+export const memoriserCodePartage = (code: string) => {
+  codeAppliquePartage = code;
+};

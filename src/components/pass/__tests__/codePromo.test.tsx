@@ -99,7 +99,7 @@ describe('code promo : saisie et vérification', () => {
     expect(screen.getByRole('button', { name: p.appliquer }).props.accessibilityState.disabled).toBe(false);
     await fireEvent.press(screen.getByRole('button', { name: p.annuler }));
     expect(screen.getByRole('button', { name: p.lien })).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('promo_code_opened', { offre: 'month' });
+    expect(suivre).toHaveBeenCalledWith('promo_code_opened', { ecran: 'e2' });
   });
 
   it('le texte est mis en majuscules, sans espace ni caractère interdit, 20 caractères au plus', async () => {
@@ -150,7 +150,7 @@ describe('code promo : appliqué', () => {
     expect(screen.getByLabelText(/Prix 2.000 FCFA au lieu de 2.500 FCFA/)).toBeTruthy();
     expect(screen.getByRole('button', { name: /Payer 2.000 FCFA/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: p.retirerCode.replace('{{code}}', 'ELEARN20') })).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('promo_code_applied', { offre: 'month', type: 'pct', gratuit: false });
+    expect(suivre).toHaveBeenCalledWith('promo_code_applied', { ecran: 'e2', type: 'pct', nb_pass_valables: 1 });
   });
 
   it('montant fixe : badge « -500 FCFA »', async () => {
@@ -170,7 +170,7 @@ describe('code promo : appliqué', () => {
     expect(screen.queryByText('-20 %')).toBeNull();
     expect(screen.getByRole('button', { name: p.lien })).toBeTruthy();
     expect(screen.getByRole('button', { name: /Payer 2.500 FCFA/ })).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('promo_code_removed', { offre: 'month' });
+    expect(suivre).toHaveBeenCalledWith('promo_code_removed', { ecran: 'e2' });
   });
 
   it('le texte du code n’est jamais envoyé à PostHog', async () => {
@@ -253,7 +253,7 @@ describe('code promo : les six erreurs', () => {
     expect(await screen.findByText(message)).toBeTruthy();
     expect(screen.getByLabelText(p.libelle).props.value).toBe('ABCDE');
     expect(screen.getByRole('button', { name: /Payer 2.500 FCFA/ })).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('promo_code_failed', { offre: 'month', raison: expect.any(String) });
+    expect(suivre).toHaveBeenCalledWith('promo_code_failed', { ecran: 'e2', raison: expect.any(String) });
   });
 
   it('l’erreur disparaît dès que le texte change', async () => {
@@ -361,7 +361,7 @@ describe('code promo : pass à 0 FCFA', () => {
     expect(screen.getByRole('button', { name: p.activer })).toBeTruthy();
     expect(screen.queryByRole('button', { name: fr.paiement.demanderPayer })).toBeNull();
     expect(screen.getByText(p.activation)).toBeTruthy();
-    expect(suivre).toHaveBeenCalledWith('promo_code_applied', { offre: 'week', type: 'fixe', gratuit: true });
+    expect(suivre).toHaveBeenCalledWith('promo_code_applied', { ecran: 'e2', type: 'fixe', nb_pass_valables: 1 });
   });
 
   it('« Activer mon Pass » : aucune demande Mobile Money, le pass s’active et le reçu montre 0 FCFA et le code', async () => {
