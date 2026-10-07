@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireExercicesFaits, lireMeilleursScores, lireProgresChapitres, separerMeta } from '../entrainement';
+import { basculerExerciceFait, enregistrerSession, lireSessions, MAX_SESSIONS, nettoyerNomQuiz, enregistrerScore, lireCompteurs, lireEntrainement, lireDatesExercices, lireExercicesFaits, lireMeilleursScores, lireProgresChapitres, separerMeta } from '../entrainement';
 
 const client = (data: unknown, error: unknown = null) => ({ rpc: jest.fn(async () => ({ data, error })) });
 
@@ -33,6 +33,17 @@ describe('entrainement', () => {
     expect(await lireExercicesFaits()).toEqual({ e: true });
     expect(await basculerExerciceFait('e')).toBe(false);
     expect(await lireExercicesFaits()).toEqual({});
+  });
+
+  it('exercice terminé : sa date est gardée, et retirée quand il est défait', async () => {
+    await basculerExerciceFait('e', new Date('2026-10-06T10:00:00.000Z'));
+    await basculerExerciceFait('f', new Date('2026-10-07T08:30:00.000Z'));
+    expect(await lireDatesExercices()).toEqual({ e: '2026-10-06T10:00:00.000Z', f: '2026-10-07T08:30:00.000Z' });
+    await basculerExerciceFait('e');
+    expect(await lireDatesExercices()).toEqual({ f: '2026-10-07T08:30:00.000Z' });
+    // Refaire un exercice défait lui donne la date du moment, pas l'ancienne.
+    await basculerExerciceFait('e', new Date('2026-10-08T12:00:00.000Z'));
+    expect((await lireDatesExercices()).e).toBe('2026-10-08T12:00:00.000Z');
   });
 
   it('nom de quiz : numéro collé séparé', () => {

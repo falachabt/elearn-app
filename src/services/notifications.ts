@@ -160,7 +160,7 @@ export function categorieDe(type: string): CategorieReglage | null {
   if (['post_comment', 'post_reply', 'mention', 'post_like', 'profile_like'].includes(type)) return 'answers';
   if (type === 'poll_revealed') return 'polls';
   if (['credits_refilled', 'referral', 'reward'].includes(type)) return 'credits';
-  if (type === 'study_reminder') return 'reminders';
+  if (type === 'study_reminder' || type === 'weekly_summary') return 'reminders';
   if (type === 'marketing') return 'marketing';
   return null;
 }
@@ -172,7 +172,7 @@ export type Destination = { pathname: string; params?: Record<string, string> };
  * le serveur donne `post_id` ; sinon `data.screen` (chemin interne), sinon l'écran de la catégorie. Une destination
  * inconnue renvoie vers l'accueil, jamais dans le vide.
  */
-export function destinationDe(type: string, data: Record<string, unknown> | undefined): Destination {
+export function destinationDe(type: string, data: Record<string, unknown> | undefined, origine: 'push' | 'inbox' = 'push'): Destination {
   const postId = typeof data?.post_id === 'string' && data.post_id ? data.post_id : null;
   const ecran = typeof data?.screen === 'string' && data.screen.startsWith('/') ? data.screen : null;
   const categorie = categorieDe(type);
@@ -187,6 +187,11 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;
     return commande ? { pathname: '/paiements/[id]', params: { id: commande } } : { pathname: '/paiements' };
   }
+  // Résumé du lundi : la page « Ma semaine » de la semaine concernée (même déjà vue), sinon de la semaine passée.
+  if (type === 'weekly_summary') {
+    const semaine = typeof data?.week_start === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.week_start) ? data.week_start : null;
+    return { pathname: '/ma-semaine', params: { ...(semaine ? { semaine } : {}), source: origine } };
+  }
   if ((categorie === 'answers' || categorie === 'polls') && postId) return { pathname: '/question', params: { id: postId } };
   if (ecran && ecran !== '/') return { pathname: ecran };
   if (categorie === 'answers' || categorie === 'polls') return { pathname: '/questions' };
@@ -194,7 +199,9 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   // Recharge du lundi : même écran que le toucher d'un push local de recharge (Moi montre le solde).
   if (type === 'credits_refilled') return { pathname: '/moi' };
   if (categorie === 'credits') return { pathname: '/credits' };
-  if (type === 'pass_ending') return { pathname: '/moi' };
+  // Fin de Pass : la page des paiements (retour vers Moi) ; résumé hebdomadaire : Moi.
+  if (type === 'pass_ending') return { pathname: '/paiements' };
+  if (type === 'weekly_summary') return { pathname: '/moi' };
   return { pathname: '/' };
 }
 

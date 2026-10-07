@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { dimancheDe, jourCourt, recapExpire } from '@/services/maSemaine';
 import { suivre } from '@/services/analytics';
 import {
   categorieDe,
@@ -50,16 +51,26 @@ function fondIcone(type: string, theme: Theme): string {
   return theme.fond.creux;
 }
 
+/** Semaine (lundi) d'un résumé hebdomadaire lisible, sinon null. */
+function semaineDuRecap(n: Notification): string | null {
+  const s = n.data.week_start;
+  return n.type === 'weekly_summary' && typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s) ? s : null;
+}
+
 function Ligne({ n, onPress }: { n: Notification; onPress: () => void }) {
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const Icone = ICONES[familleIcone(n.type)];
+  // Résumé du lundi : la ligne dit la semaine concernée (le push garde son texte « Ta semaine est prête »).
+  const semaine = semaineDuRecap(n);
+  const titre = semaine ? t('maSemaine.centreTitre', { debut: jourCourt(semaine, langue), fin: jourCourt(dimancheDe(semaine), langue) }) : n.titre;
+  const corps = semaine ? t('maSemaine.centreCorps') : n.corps;
   const d = delaiEcoule(n.creeLe);
   const delai = d.unite === 'maintenant' ? t('notifications.maintenant') : t(`notifications.${d.unite}`, { n: d.n });
   return (
     <Appui
       accessibilityRole="button"
-      accessibilityLabel={`${n.lue ? '' : `${t('notifications.nonLue')}. `}${n.titre}. ${n.corps}. ${delai}`}
+      accessibilityLabel={`${n.lue ? '' : `${t('notifications.nonLue')}. `}${titre}. ${corps}. ${delai}`}
       onPress={onPress}
       rayon={rayon.l}
       ombre={ombre.carte}
@@ -74,8 +85,8 @@ function Ligne({ n, onPress }: { n: Notification; onPress: () => void }) {
           <Icone size={18} strokeWidth={2} color={theme.texte.principal} />
         </View>
         <View style={styles.texte}>
-          <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>{n.titre}</Text>
-          {n.corps ? <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>{n.corps}</Text> : null}
+          <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+          {corps ? <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>{corps}</Text> : null}
         </View>
         <View style={styles.droite}>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{delai}</Text>
@@ -101,7 +112,7 @@ export function CentreNotifications() {
     (n: Notification) => {
       suivre('notification_opened', { type: n.type });
       void marquerLue(n.id);
-      const d = destinationDe(n.type, n.data);
+      const d = destinationDe(n.type, n.data, 'inbox');
       router.push(d.params ? { pathname: d.pathname, params: d.params } : d.pathname);
     },
     [marquerLue],
@@ -113,7 +124,8 @@ export function CentreNotifications() {
     setRelance(false);
   };
 
-  const groupes = notifications ? grouperParJour(notifications) : [];
+  // Un résumé de plus de 8 semaines n'est plus proposé (« Ma semaine » n'existerait plus côté serveur).
+  const groupes = notifications ? grouperParJour(notifications.filter((n) => { const s = semaineDuRecap(n); return !s || !recapExpire(s); })) : [];
   return (
     <Ecran
       entete={

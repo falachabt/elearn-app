@@ -62,6 +62,18 @@ describe('toucher d’une notification push du serveur', () => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/paiements/[id]', params: { id: 'o-9' } });
   });
 
+  it('une alerte de fin de Pass ouvre la page des paiements', () => {
+    toucher({ type: 'pass_ending', days_left: 3, notificationId: 'n6' });
+    expect(router.push).toHaveBeenCalledWith('/paiements');
+    expect(marquerLue).toHaveBeenCalledWith({ id: 'client' }, 'n6');
+  });
+
+  it('le résumé hebdomadaire ouvre la page Ma semaine de cette semaine', () => {
+    toucher({ type: 'weekly_summary', week_start: '2026-09-28', missions: 4, notificationId: 'n7' });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/ma-semaine', params: { semaine: '2026-09-28', source: 'push' } });
+    expect(marquerLue).toHaveBeenCalledWith({ id: 'client' }, 'n7');
+  });
+
   it('sans identifiant de notification, ouvre l’écran sans rien marquer', () => {
     toucher({ type: 'referral' });
     expect(router.push).toHaveBeenCalledWith('/parrainage');
