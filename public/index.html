@@ -42,7 +42,13 @@
     <script>
       // Hors ligne : le service worker garde la coquille de l'app (inactif en développement local).
       if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
-        window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(function () { return navigator.serviceWorker.ready; }).then(function (reg) {
+            // Fichiers déjà chargés par cette visite (JS, polices, images) : confiés au worker pour le démarrage hors ligne.
+            var urls = performance.getEntriesByType('resource').map(function (e) { return new URL(e.name).pathname; }).filter(function (p) { return /^\/(_expo|assets)\//.test(p); });
+            if (reg.active) reg.active.postMessage({ type: 'precache', urls: urls });
+          }).catch(function () {});
+        });
       }
     </script>
   </body>

@@ -3,7 +3,7 @@ import path from 'path';
 
 // Le service worker est un fichier public/ : on le charge dans un faux contexte de worker pour tester ses décisions.
 type Gestionnaire = (event: Record<string, unknown>) => void;
-type Rep = { ok: boolean; corps?: string; clone: () => Rep };
+type Rep = { ok: boolean; corps?: string; clone: () => Rep; text: () => Promise<string> };
 const source = fs.readFileSync(path.join(__dirname, '../../public/sw.js'), 'utf8');
 
 function charger(options: { reseau?: (url: string) => Promise<Rep>; caches?: Map<string, Map<string, unknown>> } = {}) {
@@ -11,7 +11,7 @@ function charger(options: { reseau?: (url: string) => Promise<Rep>; caches?: Map
   const magasins = options.caches ?? new Map<string, Map<string, unknown>>();
   const cle = (r: unknown) => (typeof r === 'string' ? r : (r as { url: string }).url).replace('https://app.test', '') || '/';
   const reponse = (corps: string, ok = true): Rep => {
-    const r: Rep = { ok, corps, clone: () => r };
+    const r: Rep = { ok, corps, clone: () => r, text: async () => corps };
     return r;
   };
   const fetch = jest.fn(async (r: unknown) => {
@@ -60,25 +60,46 @@ describe('service worker de la PWA', () => {
   it('à l’installation, la coquille est mise en cache et le worker prend la main tout de suite', async () => {
     const sw = charger();
     await sw.evenement('install');
-    const cache = sw.magasins.get('elearn-coquille-v1') as Map<string, unknown>;
+    const cache = sw.magasins.get('elearn-coquille-v2') as Map<string, unknown>;
     expect([...cache.keys()]).toEqual(expect.arrayContaining(['/', '/manifest.json', '/icon-192.png', '/icon-512.png']));
     expect(sw.self.skipWaiting).toHaveBeenCalled();
   });
 
   it('un fichier de coquille absent n’empêche pas l’installation', async () => {
     const faux = (u: string): Rep => {
-      const r: Rep = { ok: !u.includes('favicon'), corps: u, clone: () => r };
+      const r: Rep = { ok: !u.includes('favicon'), corps: u, clone: () => r, text: async () => u };
       return r;
     };
     const sw = charger({ reseau: async (u) => faux(u) });
     await expect(sw.evenement('install')).resolves.toBeUndefined();
-    expect((sw.magasins.get('elearn-coquille-v1') as Map<string, unknown>).has('/')).toBe(true);
+    expect((sw.magasins.get('elearn-coquille-v2') as Map<string, unknown>).has('/')).toBe(true);
+  });
+
+  it('à l’installation, les fichiers JS et CSS référencés par la page sont gardés : hors ligne, la page ne reste pas vide', async () => {
+    const html = '<html><link href="/_expo/static/css/app-1.css"><script src="/_expo/static/js/web/entry-9.js" defer></script></html>';
+    const sw = charger({ reseau: async (u) => {
+      const r: Rep = { ok: true, corps: u.endsWith('/') ? html : u, clone: () => r, text: async () => (u.endsWith('/') ? html : u) };
+      return r;
+    } });
+    await sw.evenement('install');
+    const cache = sw.magasins.get('elearn-coquille-v2') as Map<string, unknown>;
+    expect(cache.has('/_expo/static/js/web/entry-9.js')).toBe(true);
+    expect(cache.has('/_expo/static/css/app-1.css')).toBe(true);
+    expect(cache.has('/')).toBe(true);
+  });
+
+  it('la page confie au worker ses fichiers déjà chargés (polices, images) : gardés, et seuls les fichiers de l’app sont acceptés', async () => {
+    const sw = charger();
+    await sw.evenement('message', { data: { type: 'precache', urls: ['/assets/fonts/A.ttf', '/_expo/static/js/web/x.js', '/api/secret', 'https://autre.site/x.js', 42] } });
+    const cache = sw.magasins.get('elearn-coquille-v2') as Map<string, unknown>;
+    expect([...cache.keys()].sort()).toEqual(['/_expo/static/js/web/x.js', '/assets/fonts/A.ttf']);
+    await expect(sw.evenement('message', { data: { type: 'autre' } })).resolves.toBeUndefined();
   });
 
   it('à l’activation, les anciennes versions de la coquille sont supprimées, pas les autres caches', async () => {
-    const sw = charger({ caches: new Map([['elearn-coquille-v0', new Map()], ['elearn-coquille-v1', new Map()], ['autre', new Map()]]) });
+    const sw = charger({ caches: new Map([['elearn-coquille-v1', new Map()], ['elearn-coquille-v2', new Map()], ['autre', new Map()]]) });
     await sw.evenement('activate');
-    expect([...sw.magasins.keys()].sort()).toEqual(['autre', 'elearn-coquille-v1']);
+    expect([...sw.magasins.keys()].sort()).toEqual(['autre', 'elearn-coquille-v2']);
     expect(sw.self.clients.claim).toHaveBeenCalled();
   });
 
@@ -105,10 +126,10 @@ describe('service worker de la PWA', () => {
   });
 
   it('une réponse en erreur n’est pas gardée', async () => {
-    const echec: Rep = { ok: false, clone: () => echec };
+    const echec: Rep = { ok: false, clone: () => echec, text: async () => '' };
     const sw = charger({ reseau: async () => echec });
     await sw.evenement('fetch', { request: sw.requete('/assets/x.png') });
-    expect(sw.magasins.get('elearn-coquille-v1')?.has('/assets/x.png') ?? false).toBe(false);
+    expect(sw.magasins.get('elearn-coquille-v2')?.has('/assets/x.png') ?? false).toBe(false);
   });
 
   it('jamais intercepté : API Supabase (autre domaine), requêtes qui écrivent, le service worker lui-même', async () => {
