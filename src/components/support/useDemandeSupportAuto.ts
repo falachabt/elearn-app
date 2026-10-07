@@ -20,7 +20,9 @@ export function useDemandeSupportAuto() {
   const connecte = !!session?.user && !estInvite(session.user);
   // Le chemin courant se lit sans relancer l'effet : une lecture des demandes par changement d'écran serait du gaspillage.
   const chemin = useRef(pathname);
-  chemin.current = pathname;
+  useEffect(() => {
+    chemin.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
     if (statut !== 'pret' || !connecte) return;

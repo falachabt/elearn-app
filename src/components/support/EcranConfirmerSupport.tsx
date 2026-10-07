@@ -29,16 +29,13 @@ export function EcranConfirmerSupport() {
   const { session, statut } = useSession();
   const user = session?.user;
   const connecte = !!user && !estInvite(user);
+  const pret = statut === 'pret';
   const [etat, setEtat] = useState<Etat>({ phase: 'chargement' });
   const [envoiEn, setEnvoiEn] = useState<string | null>(null);
   const [erreur, setErreur] = useState(false);
 
   useEffect(() => {
-    if (statut !== 'pret') return;
-    if (!connecte) {
-      setEtat({ phase: 'liste', demandes: [] });
-      return;
-    }
+    if (statut !== 'pret' || !connecte) return;
     let actif = true;
     void lireDemandesSupport(getSupabase()).then((demandes) => {
       if (!actif) return;
@@ -72,17 +69,17 @@ export function EcranConfirmerSupport() {
         </>
       }
     >
-      {etat.phase === 'chargement' ? (
-        <View style={styles.centre}>
-          <ActivityIndicator color={theme.texte.secondaire} />
-        </View>
-      ) : null}
-
-      {etat.phase === 'liste' && !connecte ? (
+      {pret && !connecte ? (
         <>
           <Banniere ton="info" titre={t('support.invite')} texte={t('support.inviteSous')} />
           <Bouton libelle={t('profil.dejaCompte')} onPress={() => router.push('/compte/connexion')} />
         </>
+      ) : null}
+
+      {!pret || (connecte && etat.phase === 'chargement') ? (
+        <View style={styles.centre}>
+          <ActivityIndicator color={theme.texte.secondaire} />
+        </View>
       ) : null}
 
       {etat.phase === 'liste' && connecte && etat.demandes.length === 0 ? (
