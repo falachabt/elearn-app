@@ -31,7 +31,7 @@ export function RevoirCorrection() {
 
   useEffect(() => {
     let actif = true;
-    lireCorrection().then((x) => actif && setC(x));
+    lireCorrection().then((x) => actif && setC(x), () => actif && setC(null));
     return () => {
       actif = false;
     };

@@ -93,11 +93,15 @@ export function QuizLecon() {
           // La correction est enregistrée AVANT tout le reste : c'est elle que « Refaire mes erreurs » relit. Si une
           // écriture suivante échouait (stockage hors ligne), elle ne doit pas empêcher ce relecture — sans quoi
           // l'écran de reprise annoncerait « aucune erreur » alors qu'il y en a.
-          await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
-          void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
-          // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
-          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
-          setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
+          try {
+            await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
+            void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
+            // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
+            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
+          } finally {
+            // Quoi qu'il arrive aux écritures ci-dessus, le résultat s'affiche : jamais une page vide à la fin du quiz.
+            setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
+          }
         }}
       />
     );

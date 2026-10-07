@@ -23,8 +23,13 @@ export function RefaireErreurs() {
     let actif = true;
     // Les questions ratées du dernier quiz terminé, quel qu'il soit ; sinon celles de la dernière mission.
     void (async () => {
-      const c = await lireCorrection();
-      const ratees = c ? c.questions.filter((_, i) => statuts(c)[i] !== 'juste') : await lireErreurs();
+      let ratees: QuestionTiree[] = [];
+      try {
+        const c = await lireCorrection();
+        ratees = c ? c.questions.filter((_, i) => statuts(c)[i] !== 'juste') : await lireErreurs();
+      } catch {
+        // Lecture impossible : l'écran « aucune erreur » vaut mieux qu'une page blanche.
+      }
       if (actif) setQuestions(ratees);
     })();
     return () => {

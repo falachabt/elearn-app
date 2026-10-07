@@ -19,11 +19,22 @@ export function statuts(c: Pick<Correction, 'questions' | 'reponses'>): StatutQu
   return c.questions.map((q, i) => statutQuestion(q, c.reponses[i]));
 }
 
+// Copie en mémoire du dernier quiz : si le stockage du téléphone refuse l'écriture (plein) ou la lecture (ligne trop grosse),
+// « Refaire mes erreurs » et « Revoir la correction » doivent quand même voir le quiz qui vient d'être fini.
+let derniereCorrection: Correction | null = null;
+
+export function oublierCorrectionEnMemoire(): void {
+  derniereCorrection = null;
+}
+
 export async function enregistrerCorrection(c: Correction): Promise<void> {
+  derniereCorrection = c;
   await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify(c)).catch(() => {});
 }
 
 export async function lireCorrection(): Promise<Correction | null> {
+  // Le quiz fini pendant cette session passe avant le stockage : c'est toujours le plus récent.
+  if (derniereCorrection) return derniereCorrection;
   try {
     const brut = await AsyncStorage.getItem(CLE_CORRECTION);
     return brut ? (JSON.parse(brut) as Correction) : null;

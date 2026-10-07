@@ -4,4 +4,5 @@
 beforeEach(() => {
   jest.requireActual('./src/services/reviser').oublierCopiesEnMemoire();
   jest.requireActual('./src/services/memoire').oublierEtatsMemorises();
+  jest.requireActual('./src/services/correction').oublierCorrectionEnMemoire();
 });

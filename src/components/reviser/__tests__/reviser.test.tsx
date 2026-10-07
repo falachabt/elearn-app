@@ -318,6 +318,10 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
       await monter(<QuizLecon />);
       await jouerQuizLecon();
       await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
+      // Le stockage a refusé d'écrire la correction : « Refaire mes erreurs » et « Revoir la correction » la lisent quand même.
+      const correction = await lireCorrection();
+      expect(correction?.questions).toHaveLength(3);
+      expect(correction?.reponses.filter((r, i) => r !== correction.questions[i].bonne)).toHaveLength(1);
     } finally {
       if (original) setItem.mockImplementation(original);
     }
