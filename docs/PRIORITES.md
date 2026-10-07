@@ -11,6 +11,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #32 fermée : cloche, centre et réglages de notifications validés par Benny sur téléphone (7 octobre 2026), avec « lu » conservé après relance et routage des notifications de paiement et de correction prête.
 - elearn-supabase #13 fermée : alertes de fin de Pass (J-3, J-1) et résumé du lundi (PR #46 et #47), page « Ma semaine » et routage côté app (PR #46).
 - elearn-supabase #43 fermée : dépôt aligné sur la production (PR #48). Le mot de passe de déploiement manuel reste à corriger avec #36.
+- elearn-supabase #3 et #4 fermées : paiement parent validé de bout en bout en bac à sable par Benny le 7 octobre (fonctions déployées, Pass et notification reçus), avec le routeur back-office elearn #26 et le correctif de la page parent elearn-site #19. Non couverts par un test : lien expiré, limite de cinq échecs par heure.
 - Coût des Actions réduit : un seul workflow et un seul job, rien ne tourne pour un changement de documentation seule (PR #48).
 
 ## En cours
@@ -22,7 +23,7 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - elearn-supabase #44 Signature du webhook pawaPay, avant tout paiement réel.
 
 ## P1 (chemin critique)
-- #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout ; elearn-supabase #3 et #4 ; elearn #15.
+- #35 Écrans pawaPay E2 à E7 (branche `s0j9zh`), jeton sandbox, test de bout en bout depuis l'app ; elearn #15.
 - #7 Codes promo Pass.
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
 - #33 Compteur de crédits : fait sur l'Accueil, reste Réviser et l'état « à confirmer » hors ligne.
@@ -38,8 +39,8 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 #38 classes et classement, #29 WhatsApp Business, #12 partage d'une correction photo, #16 classement candidat annales, elearn-supabase #14, #16, elearn-site #8 résumé parent hebdomadaire, back-office elearn #17 à #22.
 
 ## Trois priorités suivantes
-1. Mode hors ligne et notifications : faits.
-2. Paiement pawaPay en sandbox de bout en bout (#35, supabase #44, #3, #4), puis entonnoir PostHog (#17).
+1. Mode hors ligne, notifications et paiement parent en bac à sable : faits.
+2. Signature du webhook pawaPay (supabase #44), puis paiement depuis l'app (#35) et entonnoir PostHog (#17).
 3. Révoquer les clés exposées (#36), puis la sécurité RLS avant les stores.
 
 ## Changements locaux des anciens agents : verdict
