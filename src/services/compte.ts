@@ -4,7 +4,7 @@ import type { CleTexte } from '@/i18n';
 
 import { suivre } from './analytics';
 import { effacerDonneesLocales } from './donneesLocales';
-import { normaliserCode } from './parrainage';
+import { conserverCode, normaliserCode } from './parrainage';
 import {
   annulerOAuthRepriseInvite,
   effacerRepriseInvite,
@@ -149,6 +149,8 @@ export async function deconnecter(client: Client): Promise<void> {
 export type DepsOAuth = {
   ouvrirNavigateur: (url: string, redirection: string) => Promise<{ type: string; url?: string }>;
   urlRedirection: string;
+  /** Web : l'onglet part chez le fournisseur et revient avec le code ; la session est installée au retour (retourOAuthWeb). */
+  pleinePage?: boolean;
 };
 
 /**
@@ -165,6 +167,8 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
   }
   try {
+    // Page entière : le formulaire est perdu pendant l'aller-retour, le code de parrainage saisi est gardé sur l'appareil.
+    if (deps.pleinePage && codeParrainage) await conserverCode(codeParrainage, 'saisie').catch(() => null);
     await parcoursOAuth(client, fournisseur, deps, rattachement);
     let reprise = false;
     if (sessionInvite) {
@@ -217,7 +221,7 @@ export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?
 export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
-async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
+export async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
   const code = normaliserCode(codeParrainage);
   if (!code) return false;
   try {

@@ -12,7 +12,14 @@ WebBrowser.maybeCompleteAuthSession();
 export function depsOAuth(): DepsOAuth {
   return {
     urlRedirection: Linking.createURL('auth/callback'),
-    ouvrirNavigateur: (url, redirection) => WebBrowser.openAuthSessionAsync(url, redirection),
+    // Web : la fenêtre contextuelle ne rendait jamais la main (invité à jamais) ; on part en page entière et le retour installe la session.
+    pleinePage: Platform.OS === 'web',
+    ouvrirNavigateur: (url, redirection) =>
+      Platform.OS === 'web'
+        ? new Promise<{ type: string; url?: string }>(() => {
+            globalThis.location.assign(url);
+          })
+        : WebBrowser.openAuthSessionAsync(url, redirection),
   };
 }
 

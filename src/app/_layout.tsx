@@ -29,10 +29,26 @@ import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { mouvement } from '@/theme/theme';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
+import { finirRetourOAuthWeb, urlAuLancement } from '@/services/retourOAuthWeb';
+import { getSupabase } from '@/services/supabase';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 initAnalytics();
 installerHandlerGlobal();
+
+/** Web : retour d'une connexion Google en page entière (voir retourOAuthWeb). */
+function useRetourOAuthWeb() {
+  const router = useRouter();
+  useEffect(() => {
+    if (Platform.OS !== 'web') return;
+    void finirRetourOAuthWeb(getSupabase(), urlAuLancement).then((r) => {
+      if (r === 'rien') return;
+      // Adresse nettoyée : le code ne doit pas rester dans l'historique ni être rejoué au rechargement.
+      globalThis.history?.replaceState(null, '', globalThis.location.pathname === '/auth/callback' ? '/' : globalThis.location.pathname);
+      router.replace(r === 'session' ? '/moi' : '/compte/connexion');
+    });
+  }, [router]);
+}
 
 function Navigation() {
   const { theme } = useTheme();
@@ -42,6 +58,7 @@ function Navigation() {
   const router = useRouter();
   const reduit = useReduireAnimations();
   useOuvertureRecapAuto();
+  useRetourOAuthWeb();
 
   useEffect(() => {
     if (statut === 'pret' && repriseEnCours && pathname !== '/compte/reprise') {

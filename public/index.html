@@ -39,5 +39,11 @@
   <body>
     <noscript>Active JavaScript pour utiliser Elearn Prepa.</noscript>
     <div id="root"></div>
+    <script>
+      // Hors ligne : le service worker garde la coquille de l'app (inactif en développement local).
+      if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+        window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+      }
+    </script>
   </body>
 </html>
