@@ -9,7 +9,9 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
+import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
+import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
@@ -24,6 +26,7 @@ import { CreditsProvider } from '@/session/CreditsProvider';
 import { NotificationsProvider } from '@/session/NotificationsProvider';
 import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
+import { mouvement } from '@/theme/theme';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -36,6 +39,8 @@ function Navigation() {
   const repriseEnCours = useRepriseInviteEnCours();
   const pathname = usePathname();
   const router = useRouter();
+  const reduit = useReduireAnimations();
+  useOuvertureRecapAuto();
 
   useEffect(() => {
     if (statut === 'pret' && repriseEnCours && pathname !== '/compte/reprise') {
@@ -64,7 +69,10 @@ function Navigation() {
 
   return (
     <>
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.fond.app } }} />
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.fond.app } }}>
+        {/* « Ma semaine » glisse depuis le bas (300 ms), sans animation si « Réduire les animations ». */}
+        <Stack.Screen name="ma-semaine" options={{ animation: reduit ? 'none' : 'slide_from_bottom', animationDuration: mouvement.feuille, gestureEnabled: false }} />
+      </Stack>
       {/* Après la pile : les bandes de la variante « vert » passent au-dessus des écrans. */}
       <BarresSysteme />
     </>

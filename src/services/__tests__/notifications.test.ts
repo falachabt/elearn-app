@@ -184,6 +184,8 @@ describe('catégories et destinations', () => {
     expect(categorieDe('poll_revealed')).toBe('polls');
     expect(['credits_refilled', 'referral', 'reward'].map(categorieDe)).toEqual(['credits', 'credits', 'credits']);
     expect(categorieDe('study_reminder')).toBe('reminders');
+    expect(categorieDe('weekly_summary')).toBe('reminders');
+    expect(categorieDe('pass_ending')).toBeNull();
     expect(categorieDe('marketing')).toBe('marketing');
     expect(categorieDe('payment_confirmed')).toBeNull();
     expect(categorieDe('admin_message')).toBeNull();
@@ -214,7 +216,11 @@ describe('catégories et destinations', () => {
     expect(destinationDe('referral', undefined)).toEqual({ pathname: '/parrainage' });
     expect(destinationDe('payment_confirmed', {})).toEqual({ pathname: '/paiements' });
     expect(destinationDe('payment_confirmed', { screen: '/moi', order_id: '' })).toEqual({ pathname: '/paiements' });
-    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/moi' });
+    expect(destinationDe('weekly_summary', {})).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
+    expect(destinationDe('weekly_summary', { week_start: '2026-09-28', screen: '/ma-semaine' }, 'inbox')).toEqual({ pathname: '/ma-semaine', params: { semaine: '2026-09-28', source: 'inbox' } });
+    expect(destinationDe('weekly_summary', { week_start: 'pas-une-date' })).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
+    expect(destinationDe('pass_ending', { screen: '/paiements', days_left: 3 })).toEqual({ pathname: '/paiements' });
+    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/paiements' });
   });
 
   it('ne suit jamais une destination qui n’est pas un chemin interne', () => {

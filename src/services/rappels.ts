@@ -134,7 +134,7 @@ export function suivreOuvertures(): () => void {
     } else if (typeof type === 'string') {
       // Notification du serveur (réponse, sondage, crédits, parrainage, paiement…) : l'écran vient de son type et de
       // ses données ; la notification est marquée lue pour que la cloche suive (issue #32).
-      const d = destinationDe(type, data);
+      const d = destinationDe(type, data, 'push');
       router.push(d.params ? { pathname: d.pathname, params: d.params } : d.pathname);
       const id = data?.notificationId;
       if (typeof id === 'string' && id) void marquerLue(getSupabase(), id).catch(() => {});

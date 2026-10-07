@@ -140,15 +140,22 @@ export async function enregistrerScore(quiz: string, score: number, total: numbe
 
 export const lireExercicesFaits = () => lireObjet<true>(CLE_EXERCICES_FAITS);
 
-export async function basculerExerciceFait(exercice: string): Promise<boolean> {
+/** Date (ISO) à laquelle chaque exercice a été terminé sur cet appareil : sert au récap « Ma semaine ». */
+export const CLE_EXERCICES_DATES = 'entrainement.exercicesDates';
+export const lireDatesExercices = () => lireObjet<string>(CLE_EXERCICES_DATES);
+
+export async function basculerExerciceFait(exercice: string, maintenant = new Date()): Promise<boolean> {
   const faits = await lireExercicesFaits();
   const fait = !faits[exercice];
   const suite = { ...faits };
   if (fait) suite[exercice] = true;
   else delete suite[exercice];
+  const dates = await lireDatesExercices();
+  if (fait) dates[exercice] = maintenant.toISOString();
+  else delete dates[exercice];
   // Une écriture locale ne doit pas faire échouer l'action : hors ligne, `setItem` qui lèverait empêcherait la carte
   // de changer d'état, et le bouton « fait » semblerait mort.
-  await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite)).catch(() => {});
+  await AsyncStorage.multiSet([[CLE_EXERCICES_FAITS, JSON.stringify(suite)], [CLE_EXERCICES_DATES, JSON.stringify(dates)]]).catch(() => {});
   signalerProgressionLocale();
   return fait;
 }

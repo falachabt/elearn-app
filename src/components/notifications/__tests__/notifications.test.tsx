@@ -5,6 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
+import { dimancheDe, jourCourt, semainePrecedente } from '@/services/maSemaine';
 import { depuisLigne, type Notification } from '@/services/notifications';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -183,6 +184,30 @@ describe('Centre de notifications (N1)', () => {
     await monter(<CentreNotifications />);
     await fireEvent.press(screen.getByText('Titre c'));
     expect(router.push).toHaveBeenCalledWith('/credits');
+  });
+
+  it('résumé du lundi : la ligne dit la semaine et ouvre Ma semaine depuis le centre', async () => {
+    const semaine = semainePrecedente();
+    const titre = fr.maSemaine.centreTitre.replace('{{debut}}', jourCourt(semaine, 'fr')).replace('{{fin}}', jourCourt(dimancheDe(semaine), 'fr'));
+    const marquerLue = jest.fn(async () => {});
+    const resume = notif('r', { type: 'weekly_summary', titre: 'Ta semaine est prête', corps: '5 missions faites. Découvre ton récap.', data: { week_start: semaine, screen: '/ma-semaine' } });
+    mockNotifications.mockReturnValue(etat({ nonLues: 1, marquerLue, notifications: [resume] }));
+    await monter(<CentreNotifications />);
+    expect(screen.getByText(titre)).toBeTruthy();
+    expect(screen.getByText(fr.maSemaine.centreCorps)).toBeTruthy();
+    expect(screen.queryByText('Ta semaine est prête')).toBeNull();
+    await fireEvent.press(screen.getByText(titre));
+    expect(marquerLue).toHaveBeenCalledWith('r');
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/ma-semaine', params: { semaine, source: 'inbox' } });
+  });
+
+  it('résumé de plus de 8 semaines : la ligne n’est plus proposée', async () => {
+    const vieux = notif('v', { type: 'weekly_summary', data: { week_start: '2020-01-06' } });
+    const recent = notif('n', { type: 'weekly_summary', data: { week_start: semainePrecedente() } });
+    mockNotifications.mockReturnValue(etat({ notifications: [vieux, recent, notif('a')] }));
+    await monter(<CentreNotifications />);
+    expect(screen.queryByText('Ta semaine du 6 janv. au 12 janv.')).toBeNull();
+    expect(screen.getByText('Titre a')).toBeTruthy();
   });
 
   it('« Tout lire » marque tout quand il y a des non lues', async () => {
