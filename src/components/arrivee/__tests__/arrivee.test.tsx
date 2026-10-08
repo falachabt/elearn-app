@@ -108,14 +108,15 @@ describe.each(['fr', 'en'] as const)('A5 · score et A6 · sauvegarder (%s)', (l
     }
   });
 
-  it('invité : proposer Google en premier ou continuer sans compte', async () => {
+  it('invité : proposer Google en premier, Apple (règle 4.8) ou continuer sans compte', async () => {
     await monter(<Score resultat={resultat} />);
     expect(screen.getByRole('button', { name: x.score.sauvegarder })).toBeTruthy();
     expect(screen.queryByRole('button', { name: x.score.continuer })).toBeNull();
     expect(screen.getByText(x.sauvegarde.titre)).toBeTruthy();
     expect(screen.getByRole('button', { name: x.compte.google })).toBeTruthy();
     expect(screen.getByRole('button', { name: x.score.continuerSansCompte })).toBeTruthy();
-    for (const l of [x.compte.apple, x.compte.facebook, x.sauvegarde.email, x.sauvegarde.plusTard]) expect(screen.queryByRole('button', { name: l })).toBeNull();
+    expect(screen.getByRole('button', { name: x.compte.apple })).toBeTruthy();
+    for (const l of [x.compte.facebook, x.sauvegarde.email, x.sauvegarde.plusTard]) expect(screen.queryByRole('button', { name: l })).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: x.score.voirLecon }));
     expect(router.replace).toHaveBeenCalledWith('/reviser');
   });

@@ -105,3 +105,6 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 - La permission des notifications ne se demande **jamais** au lancement de l'app ni à la connexion : enregistrerJetonPush (src/services/push.ts) lit la permission sans la demander.
 - Elle se propose une fois, par la feuille PropositionNotifications (src/components/PropositionNotifications.tsx), à la fin d'une première mission, d'un quiz ou d'un chapitre : « Autoriser » demande au téléphone puis ouvre Paramètres, Notifications ; « Plus tard » ne revient pas avant 7 jours. Jamais pour un invité, ni si la permission est déjà donnée ou refusée pour de bon (src/services/proposerNotifications.ts).
 - Les demandes déclenchées par un geste de l'élève restent permises : réglages des notifications, envoi d'une photo, téléchargement hors ligne, rappel quotidien.
+
+## 19. App Store (iOS)
+- Plan et règles Apple : **docs/app-store.md**. Sur iOS, aucune mention d'Android ni de paiement externe (Mobile Money, pawaPay) ; partout où Google est proposé pour se connecter, Apple l'est aussi (règle 4.8). Achats iOS via RevenueCat.

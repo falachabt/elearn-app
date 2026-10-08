@@ -10,7 +10,10 @@
       "android": {
         "buildType": "apk"
       },
-      "environment": "preview"
+      "environment": "preview",
+      "ios": {
+        "simulator": false
+      }
     },
     "development": {
       "developmentClient": true,
@@ -19,7 +22,10 @@
       "android": {
         "buildType": "apk"
       },
-      "environment": "development"
+      "environment": "development",
+      "ios": {
+        "simulator": false
+      }
     },
     "production": {
       "autoIncrement": true,
@@ -27,13 +33,20 @@
       "android": {
         "image": "latest"
       },
-      "environment": "production"
+      "environment": "production",
+      "ios": {
+        "image": "latest"
+      }
     }
   },
   "submit": {
     "production": {
       "android": {
         "track": "internal"
+      },
+      "ios": {
+        "ascAppId": "A_RENSEIGNER",
+        "appleTeamId": "A_RENSEIGNER"
       }
     }
   }

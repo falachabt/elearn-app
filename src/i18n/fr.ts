@@ -878,6 +878,13 @@ export const fr = {
     actif: 'Ton {{offre}} est actif jusqu’au {{date}}.',
     indisponible: 'Les pass ne sont pas encore proposés dans ton pays.',
     erreur: 'Les offres n’ont pas pu être chargées. Vérifie ta connexion.',
+    acheter: 'Prendre le {{offre}} · {{prix}}',
+    restaurer: 'Restaurer mes achats',
+    achatReussi: 'Ton pass est actif. Bon courage !',
+    achatAttente: 'Ton paiement est bien reçu. L’accès arrive dans quelques instants.',
+    achatErreur: 'L’achat n’a pas abouti. Réessaie dans un instant.',
+    restaureOk: 'Ton pass a été retrouvé.',
+    restaureVide: 'Aucun achat à restaurer sur ce compte Apple.',
     reessayer: 'Réessayer',
   },
   bandeauApp: {

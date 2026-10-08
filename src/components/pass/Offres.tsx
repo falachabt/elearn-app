@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { acheterPass, achatIntegreDisponible, attendreAcces, configurerAchats, lirePrixApple, restaurerAchats, type PrixApple } from '@/services/achatsIntegres';
 import { estFcfa, formaterMontant, lireAcces, lireOffres, PRIX_REPETITEUR, type Acces, type CodeOffre, type Offre } from '@/services/pass';
 import { paiementPossible } from '@/services/plateforme';
 import { lireProfil } from '@/services/profil';
@@ -93,6 +94,11 @@ export function Offres() {
   const [choix, setChoix] = useState<Choix>('month');
   const { exiger, feuille } = useCompteRequis();
   const horsLigne = !useReseau().estEnLigne;
+  // iOS : achat intégré Apple (RevenueCat). Les prix viennent de l'App Store, pas de la base.
+  const achatApple = achatIntegreDisponible();
+  const [prixApple, setPrixApple] = useState<PrixApple>({});
+  const [achatEnCours, setAchatEnCours] = useState(false);
+  const [messageAchat, setMessageAchat] = useState<{ ton: 'succes' | 'erreur' | 'info'; cle: 'offres.achatReussi' | 'offres.achatErreur' | 'offres.achatAttente' | 'offres.restaureOk' | 'offres.restaureVide' } | null>(null);
 
   const charger = useCallback(() => {
     void chargerOffres().then((e) => {
@@ -100,7 +106,56 @@ export function Offres() {
       const conseillee = e.statut === 'pret' ? e.offres.find((o) => o.recommandee) : undefined;
       if (conseillee) setChoix(conseillee.code);
     });
+    if (achatIntegreDisponible()) {
+      void (async () => {
+        try {
+          const { data } = await getSupabase().auth.getSession();
+          await configurerAchats(data.session?.user.id ?? null);
+          setPrixApple(await lirePrixApple());
+        } catch {
+          setPrixApple({});
+        }
+      })();
+    }
   }, []);
+
+  const rafraichirAcces = useCallback(() => attendreAcces(() => lireAcces(getSupabase())), []);
+
+  const acheter = async (code: CodeOffre) => {
+    const paquet = prixApple[code]?.paquet;
+    if (!paquet || achatEnCours) return;
+    setAchatEnCours(true);
+    setMessageAchat(null);
+    try {
+      const pays = etat.statut === 'pret' ? etat.pays : '';
+      suivre('payment_initiated', { offre: code, pays, mode: 'apple' });
+      if ((await acheterPass(paquet)) === 'annule') return;
+      suivre('payment_succeeded', { offre: code, pays });
+      const acces = await rafraichirAcces();
+      setMessageAchat({ ton: acces ? 'succes' : 'info', cle: acces ? 'offres.achatReussi' : 'offres.achatAttente' });
+      charger();
+    } catch {
+      setMessageAchat({ ton: 'erreur', cle: 'offres.achatErreur' });
+    } finally {
+      setAchatEnCours(false);
+    }
+  };
+
+  const restaurer = async () => {
+    if (achatEnCours) return;
+    setAchatEnCours(true);
+    setMessageAchat(null);
+    try {
+      await restaurerAchats();
+      const acces = await rafraichirAcces();
+      setMessageAchat({ ton: acces ? 'succes' : 'info', cle: acces ? 'offres.restaureOk' : 'offres.restaureVide' });
+      charger();
+    } catch {
+      setMessageAchat({ ton: 'erreur', cle: 'offres.achatErreur' });
+    } finally {
+      setAchatEnCours(false);
+    }
+  };
 
   useEffect(() => {
     suivre('paywall_viewed', { declencheur: declencheur ?? 'moi' });
@@ -131,12 +186,15 @@ export function Offres() {
   const pied =
     etat.statut === 'pret' && offres.length ? (
       <View style={styles.groupe}>
-        {choisie && mm ? (
+        {choisie && achatApple && prixApple[choisie.code] ? (
+          <Bouton libelle={t('offres.acheter', { offre: t(`offres.${choisie.code}`), prix: prixApple[choisie.code]?.prix ?? '' })} desactive={achatEnCours} onPress={() => exiger('paiement', () => void acheter(choisie.code))} retour />
+        ) : choisie && mm ? (
           <Bouton libelle={gratuitAvecCode ? t('paiement.promo.activer') : t('offres.payer', { montant: formaterMontant(montantChoisi, choisie.devise) })} onPress={() => exiger('paiement', () => router.push({ pathname: '/offres/payer', params: { offre: choisie.code } }))} retour />
         ) : (
           <Bouton libelle={t('offres.continuerGratuit')} onPress={fermer} />
         )}
-        {!mm ? <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('offres.achatBientot')}</Text> : null}
+        {!mm && !achatApple ? <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('offres.achatBientot')}</Text> : null}
+        {achatApple ? <Bouton variante="texte" libelle={t('offres.restaurer')} desactive={achatEnCours} onPress={() => void restaurer()} /> : null}
         {choisie && mm ? (
           <Bouton variante="secondaire" libelle={t('offres.parent')} onPress={() => exiger('parent', () => router.push({ pathname: '/offres/parent', params: { offre: choisie.code } }))} />
         ) : null}
@@ -167,6 +225,8 @@ export function Offres() {
         <Banniere ton="succes" titre={t('offres.actif', { offre: t(`offres.${etat.acces.offre}`), date: dateFin(etat.acces.fin) })} />
       ) : null}
 
+      {messageAchat ? <Banniere ton={messageAchat.ton} titre={t(messageAchat.cle)} /> : null}
+
       {etat.statut === 'pret' && !offres.length ? <Banniere ton="info" titre={t('offres.indisponible')} /> : null}
 
       {etat.statut === 'pret' && offres.length ? (
@@ -187,7 +247,7 @@ export function Offres() {
                 key={o.code}
                 titre={t(`offres.${o.code}`)}
                 aide={t(`offres.${o.code}Aide`)}
-                prix={mm ? formaterMontant(prixPromo(o.code)?.valable && prixPromo(o.code)?.prixFinal !== undefined ? (prixPromo(o.code)?.prixFinal as number) : o.montant, o.devise) : ''}
+                prix={mm ? formaterMontant(prixPromo(o.code)?.valable && prixPromo(o.code)?.prixFinal !== undefined ? (prixPromo(o.code)?.prixFinal as number) : o.montant, o.devise) : (prixApple[o.code]?.prix ?? '')}
                 prixInitial={mm && prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : undefined}
                 badge={mm && prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : undefined}
                 nonValable={mm && promo.applique && prixPromo(o.code)?.valable === false ? t('paiement.promo.nonValable') : undefined}

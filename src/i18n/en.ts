@@ -877,6 +877,13 @@ export const en: Textes = {
     actif: 'Your {{offre}} is active until {{date}}.',
     indisponible: 'Passes are not offered in your country yet.',
     erreur: 'Offers could not load. Check your connection.',
+    acheter: 'Get {{offre}} · {{prix}}',
+    restaurer: 'Restore purchases',
+    achatReussi: 'Your pass is active. Good luck!',
+    achatAttente: 'Your payment was received. Access will appear in a moment.',
+    achatErreur: 'The purchase did not go through. Try again in a moment.',
+    restaureOk: 'Your pass was restored.',
+    restaureVide: 'No purchase to restore on this Apple account.',
     reessayer: 'Try again',
   },
   bandeauApp: {

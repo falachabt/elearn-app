@@ -24,7 +24,7 @@ type Props = {
   rattacher?: boolean;
   /** Ouvre directement une session existante au lieu de lier le fournisseur au compte invité courant. */
   connexionDirecte?: boolean;
-  /** Met en avant Google seul dans le parcours de sauvegarde du score invité. */
+  /** Parcours de sauvegarde du score invité : Google en avant, sans Facebook. Apple reste proposé sur iOS (règle 4.8 de l'App Store : toute connexion sociale s'accompagne de « Se connecter avec Apple »). */
   googleSeul?: boolean;
   /** Début de l'appui sur un bouton social (avant le clic) : le formulaire voisin ignore toute soumission pendant un court instant. */
   onAppui?: () => void;
@@ -70,7 +70,7 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
     <>
       <View style={styles.groupe}>
         <Bouton variante={googleSeul ? 'primaire' : 'secondaire'} icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
-        {!googleSeul && appleAffiche ? (
+        {appleAffiche ? (
           <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
         ) : null}
         {!googleSeul && facebookAffiche ? (
