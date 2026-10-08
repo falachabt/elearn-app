@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 
 import type { FournisseurOAuth } from '@/services/compte';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { appleAffiche, depsApple, depsOAuth, facebookAffiche } from '@/services/authNatif';
-import { cleErreur, connecterApple, connecterFacebook, connecterGoogle } from '@/services/compte';
+import { cleErreur, connecterApple, connecterAppleWeb, connecterFacebook, connecterGoogle } from '@/services/compte';
 import { getSupabase } from '@/services/supabase';
 import type { CleTexte } from '@/i18n';
 import { espace } from '@/theme/theme';
@@ -71,7 +71,7 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       <View style={styles.groupe}>
         <Bouton variante={googleSeul ? 'primaire' : 'secondaire'} icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
         {appleAffiche ? (
-          <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
+          <Bouton variante="secondaire" libelle={t('compte.apple')} desactive={desactive || enCours} onPressIn={onAppui} onPress={Platform.OS === 'web' ? lancer(() => connecterAppleWeb(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'apple') : lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
         ) : null}
         {!googleSeul && facebookAffiche ? (
           <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'facebook')} />

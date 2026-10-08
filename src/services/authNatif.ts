@@ -39,7 +39,7 @@ export function depsApple(): DepsApple {
   };
 }
 
-export const appleAffiche = Platform.OS === 'ios';
+export const appleAffiche = Platform.OS === 'ios' || Platform.OS === 'web';
 
 /**
  * Facebook n'apparaît que lorsque le fournisseur est activé côté Supabase (app Meta créée, `EXPO_PUBLIC_FACEBOOK=1`

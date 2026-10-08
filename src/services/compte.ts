@@ -20,7 +20,7 @@ type Client = Pick<SupabaseClient, 'auth' | 'functions' | 'rpc'>;
 export type Methode = 'email' | 'google' | 'apple' | 'facebook';
 
 /** Fournisseurs passant par la page OAuth de Supabase dans le navigateur. */
-export type FournisseurOAuth = 'google' | 'facebook';
+export type FournisseurOAuth = 'google' | 'facebook' | 'apple';
 
 /** Erreur que l'écran sait traduire : `cle` est une clé de texte. */
 export class ErreurCompte extends Error {
@@ -222,6 +222,8 @@ export type ModeSocial = { rattacher?: boolean; connexionDirecte?: boolean };
 
 export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'google', deps, codeParrainage, mode);
 export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
+/** Apple sur le web : OAuth Supabase (le natif `connecterApple` reste pour iOS). */
+export const connecterAppleWeb = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'apple', deps, codeParrainage, mode);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
 export async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
