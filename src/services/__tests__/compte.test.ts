@@ -176,6 +176,14 @@ describe('Google', () => {
     expect(c.auth.updateUser).not.toHaveBeenCalled();
   });
 
+  it('web (pleine page) : flux PKCE, sans skipBrowserRedirect', async () => {
+    const c = faux(null);
+    const d = { urlRedirection: 'https://app.elearnprepa.com/auth/callback', pleinePage: true, ouvrirNavigateur: jest.fn().mockResolvedValue({ type: 'success', url: 'https://app.elearnprepa.com/auth/callback?code=web1' }) };
+    await connecterGoogle(c, d);
+    expect(c.auth.signInWithOAuth).toHaveBeenCalledWith({ provider: 'google', options: { redirectTo: 'https://app.elearnprepa.com/auth/callback', skipBrowserRedirect: false } });
+    expect(c.auth.exchangeCodeForSession).toHaveBeenCalledWith('web1');
+  });
+
   it('invité dont le compte Google existe déjà : signale le doublon sans ouvrir une seconde authentification', async () => {
     const c = faux();
     const ouvrirNavigateur = jest

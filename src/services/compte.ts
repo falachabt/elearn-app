@@ -189,7 +189,10 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
 
 /** Ouvre la page du fournisseur puis installe la session renvoyée sur `elearnprepa://auth/callback`. */
 async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, rattachement: boolean): Promise<void> {
-  const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
+  // Web : on veut le flux PKCE (`?code=` échangé contre une vraie session). `skipBrowserRedirect: true` forcerait le
+  // flux implicite (`#access_token=`) dont le `refresh_token` est un leurre (`nyxhb7iejebe`) : la session serait
+  // installée sans jeton de rafraîchissement valable, et l'élève retomberait déconnecté sur l'accueil.
+  const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: !deps.pleinePage };
   const { data, error } = rattachement
     ? await client.auth.linkIdentity({ provider: fournisseur, options })
     : await client.auth.signInWithOAuth({ provider: fournisseur, options });
