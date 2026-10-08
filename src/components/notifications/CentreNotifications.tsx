@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { router, type Href } from 'expo-router';
 import { BadgeCheck, Camera, Clock, Gift, ListChecks, Megaphone, MessageCircle, Zap, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -114,7 +114,7 @@ export function CentreNotifications() {
       suivre('notification_opened', { type: n.type });
       void marquerLue(n.id);
       const d = destinationDe(n.type, n.data, 'inbox');
-      router.push(d.params ? { pathname: d.pathname, params: d.params } : d.pathname);
+      router.push((d.params ? { pathname: d.pathname, params: d.params } : d.pathname) as Href);
     },
     [marquerLue],
   );

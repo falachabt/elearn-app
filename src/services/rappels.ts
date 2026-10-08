@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
-import { router } from 'expo-router';
+import { router, type Href } from 'expo-router';
 import { Platform } from 'react-native';
 
 if (Notifications.setNotificationHandler) {
@@ -135,7 +135,7 @@ export function suivreOuvertures(): () => void {
       // Notification du serveur (réponse, sondage, crédits, parrainage, paiement…) : l'écran vient de son type et de
       // ses données ; la notification est marquée lue pour que la cloche suive (issue #32).
       const d = destinationDe(type, data, 'push');
-      router.push(d.params ? { pathname: d.pathname, params: d.params } : d.pathname);
+      router.push((d.params ? { pathname: d.pathname, params: d.params } : d.pathname) as Href);
       const id = data?.notificationId;
       if (typeof id === 'string' && id) void marquerLue(getSupabase(), id).catch(() => {});
     }
