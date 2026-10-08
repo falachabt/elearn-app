@@ -75,6 +75,7 @@ const NATIFS_EMBARQUES = new Set([
   'react-native-blob-util',
   'react-native-gesture-handler',
   'react-native-pdf',
+  'react-native-purchases',
   'react-native-reanimated',
   'react-native-safe-area-context',
   'react-native-screens',
