@@ -36,6 +36,13 @@ Objectif : que l'app vende. Chemin critique : mode hors ligne validé, paiement 
 - #17 Analytique : 9 évènements manquants, 5 tableaux PostHog.
 
 ## P2 (avant les stores)
+- **Connexion par WhatsApp (code envoyé par WhatsApp), couplée à Supabase Auth** (demande de Benny, 8 octobre 2026, à faire après les premiers tests Kapso) :
+  - Connexion par numéro : l'utilisateur saisit son numéro, reçoit un code par WhatsApp, le saisit, et la session Supabase est créée ou liée au compte. Piste : le « Send SMS Hook » de Supabase Auth appelle une Edge Function qui envoie le code par Kapso (modèle Meta d'authentification, bouton « Copier le code »).
+  - Ajouter un numéro à un compte Google : dans Paramètres, l'utilisateur ajoute son numéro, reçoit le code et le valide. Il peut ensuite se connecter avec Google ou avec le téléphone. Piste : `updateUser({ phone })` puis `verifyOtp` de type changement de numéro.
+  - Lier Google à un compte créé avec le téléphone : l'inverse, depuis Paramètres (`linkIdentity`). Attention aux doublons de compte à la reprise de l'ancienne app.
+  - Tout derrière un drapeau de fonctionnalité PostHog (même principe que `ai_feed_agent_enabled`), pour l'ouvrir progressivement et pouvoir couper.
+  - Prérequis Meta : le modèle d'authentification (`code_connexion`, français, bouton « Copier le code », expiration 10 minutes) a été refusé le 8 octobre (« ce compte WhatsApp Business n'a pas la permission de créer un modèle »). Meta exige une entreprise vérifiée et un palier d'envoi d'au moins 2 000 messages par jour (palier actuel : 250). À faire d'abord : vérification de l'entreprise dans Meta Business.
+  - Coût d'un code (tarif Meta d'octobre 2026, à confirmer sur la grille officielle) : environ 0,004 $ en Afrique hors pays à tarif propre (Cameroun inclus), 0,03 $ pour un numéro français, plus un éventuel renvoi. Kapso compte le message dans son forfait. Soit environ 40 $ pour 10 000 connexions en Afrique.
 - elearn #28 Back-office des codes promo (créer, désactiver, voir les utilisations).
 - #54 PWA installée : ne s'ouvre pas sans internet au démarrage à froid (bug web, constaté le 7 octobre après les commits `c447041` et `ee89d84` ; pistes dans l'issue).
 - elearn-supabase #51 Configurer proprement les réseaux sociaux Elearn Prépa (Benny, portfolio Meta Business, Metricool).
