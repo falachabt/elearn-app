@@ -1605,6 +1605,8 @@ export const en: Textes = {
     invite: 'Sign in to confirm',
     inviteSous: 'Support needs your account to help you with your payments.',
     retour: 'Back',
+    aidePaiement: 'A problem with this payment? Message support',
+    messagePaiement: 'Hello, I have a problem with an Elearn Prepa payment. Reference: {{reference}}',
   },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };

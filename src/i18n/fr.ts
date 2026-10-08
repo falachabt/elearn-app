@@ -1606,6 +1606,8 @@ export const fr = {
     invite: 'Connecte-toi pour confirmer',
     inviteSous: 'Le support a besoin de ton compte pour t’aider avec tes paiements.',
     retour: 'Retour',
+    aidePaiement: 'Un souci avec ce paiement ? Écris au support',
+    messagePaiement: 'Bonjour, j’ai un souci avec un paiement Elearn Prepa. Référence : {{reference}}',
   },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;

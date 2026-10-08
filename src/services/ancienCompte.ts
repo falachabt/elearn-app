@@ -49,7 +49,8 @@ export async function retrouverAncienCompte(client: Client, p: { telephone: stri
   return data.session;
 }
 
-export const SUPPORT_WHATSAPP = '237694051893';
+/** Numéro WhatsApp du support Elearn Prepa (Kapso). Même numéro que sur le site. */
+export const SUPPORT_WHATSAPP = '12015348324';
 
 /** Lien WhatsApp vers le support, message prérempli (mot de passe oublié, M2-06 « rattachement assisté »). */
 export function lienSupport(message: string): string {

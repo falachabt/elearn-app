@@ -22,6 +22,7 @@ import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
+import { LienSupport } from '../support/LienSupport';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
@@ -370,6 +371,7 @@ export function PayerPass() {
             )}
             <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />
             {motif === 'solde' || motif === 'refus' || motif === 'delai' ? <Bouton variante="texte" libelle={t('paiement.changerNumero')} onPress={() => { setTelephone(''); setResultat(null); setEtape('saisie'); }} /> : null}
+            <LienSupport reference={resultat.commande} />
           </View>
         }
       >

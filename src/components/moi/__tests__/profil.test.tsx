@@ -262,7 +262,7 @@ describe('Aide et contact', () => {
     const ouvrir = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
     await monter(<Aide />);
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideWhatsapp}. ${fr.profil.aideWhatsappSous}` }));
-    expect(ouvrir).toHaveBeenLastCalledWith(expect.stringContaining('https://wa.me/237694051893'));
+    expect(ouvrir).toHaveBeenLastCalledWith(expect.stringContaining('https://wa.me/12015348324'));
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideMail}. support@elearnprepa.com` }));
     expect(ouvrir).toHaveBeenLastCalledWith('mailto:support@elearnprepa.com');
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideFaq}. ${fr.profil.aideFaqSous}` }));

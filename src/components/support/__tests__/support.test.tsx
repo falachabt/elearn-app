@@ -1,5 +1,5 @@
 import { act, fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react-native';
-import { AppState } from 'react-native';
+import { AppState, Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -7,6 +7,7 @@ import { marquerMontree, oublierDemandesMontrees, type DemandeSupport } from '@/
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { EcranConfirmerSupport } from '../EcranConfirmerSupport';
+import { LienSupport } from '../LienSupport';
 import { useDemandeSupportAuto } from '../useDemandeSupportAuto';
 
 const mockSession = jest.fn();
@@ -179,5 +180,26 @@ describe('ouverture automatique de l’écran', () => {
     await renderHook(() => useDemandeSupportAuto());
     await act(async () => {});
     expect(mockPush).not.toHaveBeenCalled();
+  });
+});
+
+describe('lien d’aide près des paiements', () => {
+  it('ouvre le support WhatsApp avec un message prérempli contenant la référence', async () => {
+    const ouvrir = jest.spyOn(Linking, 'openURL').mockResolvedValue(true as never);
+    await monter(<LienSupport reference="EP-2026-0001" />);
+    await fireEvent.press(screen.getByRole('button', { name: fr.support.aidePaiement }));
+    expect(ouvrir).toHaveBeenCalledTimes(1);
+    const lien = String(ouvrir.mock.calls[0][0]);
+    expect(lien.startsWith('https://wa.me/12015348324?text=')).toBe(true);
+    expect(decodeURIComponent(lien)).toContain('EP-2026-0001');
+    ouvrir.mockRestore();
+  });
+
+  it('sans référence : message correct quand même, et un échec d’ouverture ne plante pas', async () => {
+    const ouvrir = jest.spyOn(Linking, 'openURL').mockRejectedValue(new Error('aucune application') as never);
+    await monter(<LienSupport />);
+    await fireEvent.press(screen.getByRole('button', { name: fr.support.aidePaiement }));
+    expect(decodeURIComponent(String(ouvrir.mock.calls[0][0]))).toContain('Référence : …');
+    ouvrir.mockRestore();
   });
 });
