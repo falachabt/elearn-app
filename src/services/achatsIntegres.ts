@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 
 import type { CodeOffre } from './pass';
+import { iosSimule } from './plateformeDev';
 
 /**
  * Achats intégrés Apple via RevenueCat (règle 3.1.1 de l'App Store : tout contenu numérique vendu dans l'app iOS passe par
@@ -31,13 +32,30 @@ export type ResultatAchat = 'achete' | 'annule';
 
 const cle = () => process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY?.trim() || '';
 
-export const achatIntegreDisponible = (os: string = Platform.OS): boolean => os === 'ios' && cle().length > 0;
+export const achatIntegreDisponible = (os: string = Platform.OS): boolean => iosSimule() || (os === 'ios' && cle().length > 0);
 
 let sdkCharge: SdkAchats | null = null;
 let configure = false;
 
+/** SDK simulé (page développeur) : mêmes paquets que l'offre réelle, sans module natif ni appel réseau. */
+const paquetSimule = (identifier: string, prix: string, montant: number): Package => ({ identifier, product: { priceString: prix, price: montant, currencyCode: 'EUR' } });
+
+const SDK_SIMULE: SdkAchats = {
+  configure: () => {},
+  logIn: async () => ({}),
+  logOut: async () => ({}),
+  getOfferings: async () => ({
+    current: {
+      availablePackages: [paquetSimule('week', '0,99 €', 0.99), paquetSimule('month', '4,99 €', 4.99), paquetSimule('contest', '14,99 €', 14.99)],
+    },
+  }),
+  purchasePackage: async () => ({}),
+  restorePurchases: async () => ({}),
+};
+
 /** Chargement différé : le module natif n'est jamais importé sur Android, sur le web ni sous Jest. */
 function sdk(): SdkAchats {
+  if (iosSimule()) return SDK_SIMULE;
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   sdkCharge ??= (require('react-native-purchases') as { default: SdkAchats }).default;
   return sdkCharge;

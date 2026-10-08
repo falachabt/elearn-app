@@ -1523,6 +1523,10 @@ export const en: Textes = {
     connexionForceeEnLigne: 'Connection forced online.',
     connexionForceeHorsLigne: 'Connection forced offline: the badge should appear.',
     rappelExpiration: 'Tip: "Force offline" then "Plus 8 day(s)" shows the expiry sheet.',
+    sectionPlateforme: 'Platform (simulation)',
+    plateformeAide: 'Forces the app to behave like on iOS (Apple in-app purchases), even on web or Android. Simulated prices: €0.99 / €4.99 / €14.99.',
+    iosSimuler: 'Simulate iOS',
+    iosReel: 'Back to the real platform',
   },
   maSemaine: {
     etiquette: 'My week',

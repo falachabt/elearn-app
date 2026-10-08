@@ -1524,6 +1524,10 @@ export const fr = {
     connexionForceeEnLigne: 'Connexion forcée en ligne.',
     connexionForceeHorsLigne: 'Connexion forcée hors ligne : la pastille doit apparaître.',
     rappelExpiration: 'Astuce : « Forcer hors ligne » puis « Plus 8 jour(s) » fait apparaître la feuille d’expiration.',
+    sectionPlateforme: 'Plateforme (simulation)',
+    plateformeAide: 'Force l’app à se comporter comme sur iOS (achats intégrés Apple), même sur le web ou Android. Prix simulés : 0,99 € / 4,99 € / 14,99 €.',
+    iosSimuler: 'Simuler iOS',
+    iosReel: 'Revenir à la plateforme réelle',
   },
   maSemaine: {
     etiquette: 'Ma semaine',

@@ -1,4 +1,7 @@
 import { acheterPass, achatIntegreDisponible, attendreAcces, lirePrixApple, restaurerAchats, type Package, type SdkAchats } from '../achatsIntegres';
+import { definirIosSimule } from '../plateformeDev';
+
+jest.mock('../developpement', () => ({ modeDeveloppement: () => true }));
 
 const paquet = (identifier: string, priceString: string): Package => ({ identifier, product: { priceString, price: 1, currencyCode: 'EUR' } });
 const faux = (surcharge: Partial<SdkAchats> = {}): SdkAchats => ({
@@ -14,6 +17,7 @@ const faux = (surcharge: Partial<SdkAchats> = {}): SdkAchats => ({
 describe('achats intégrés Apple', () => {
   const cleOrigine = process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY;
   afterEach(() => {
+    definirIosSimule(false);
     if (cleOrigine === undefined) delete process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY;
     else process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY = cleOrigine;
   });
@@ -67,5 +71,14 @@ describe('achats intégrés Apple', () => {
 
   it('abandonne après les essais', async () => {
     expect(await attendreAcces(async () => null, 2, 1)).toBeNull();
+  });
+
+  it('simulation iOS (page développeur) : disponible partout, prix simulés', async () => {
+    definirIosSimule(true);
+    expect(achatIntegreDisponible('android')).toBe(true);
+    expect(achatIntegreDisponible('web')).toBe(true);
+    const prix = await lirePrixApple();
+    expect(Object.keys(prix).sort()).toEqual(['contest', 'month', 'week']);
+    expect(prix.month?.prix).toBe('4,99 €');
   });
 });

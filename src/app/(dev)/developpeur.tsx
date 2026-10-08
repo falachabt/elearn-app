@@ -16,6 +16,7 @@ import {
 } from '@/services/connectivite';
 import { ajusterSoldeSimule, definirSoldeSimule, ecouterSoldeSimule, soldeSimule } from '@/services/creditsDev';
 import { modeDeveloppement } from '@/services/developpement';
+import { definirIosSimule, iosSimule } from '@/services/plateformeDev';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -38,6 +39,7 @@ export default function ParametresDeveloppeur() {
   const [message, setMessage] = useState<string | null>(null);
   const { solde } = useCredits();
   const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
+  const [ios, setIos] = useState(iosSimule());
 
   if (!modeDeveloppement()) return <Redirect href="/" />;
 
@@ -89,6 +91,13 @@ export default function ParametresDeveloppeur() {
         <Bouton libelle={t('dev.creditsMoins')} variante="secondaire" onPress={() => ajusterSoldeSimule(-5, solde?.total ?? 0)} />
         <Bouton libelle={t('dev.creditsPlus')} variante="secondaire" onPress={() => ajusterSoldeSimule(5, solde?.total ?? 0)} />
         <Bouton libelle={t('dev.creditsReelBouton')} variante={simule === null ? undefined : 'secondaire'} onPress={() => definirSoldeSimule(null)} />
+      </View>
+
+      <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionPlateforme')}</Text>
+      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('dev.plateformeAide')}</Text>
+      <View style={styles.lignes}>
+        <Bouton libelle={t('dev.iosSimuler')} variante={ios ? undefined : 'secondaire'} onPress={() => { definirIosSimule(true); setIos(true); }} />
+        <Bouton libelle={t('dev.iosReel')} variante={ios ? 'secondaire' : undefined} onPress={() => { definirIosSimule(false); setIos(false); }} />
       </View>
 
       <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionDonnees')}</Text>
