@@ -31,14 +31,16 @@ const etapes = option('--etapes', 'brut,habille,banniere').split(',').map((s) =>
 const largeur = 1206;
 const hauteur = 2622;
 
-/** Ecrans captureables : nom de fichier, route, titre de l'habillage. */
+/** Ecrans de la fiche : nom de fichier (numerote = ordre d'upload), route, clics avant capture, titre de l'habillage. */
 const ECRANS = [
-  { nom: '01-accueil', route: '/', titre: ['Ta mission', 'du jour'] },
-  { nom: '02-reviser', route: '/reviser', titre: ['Tous tes cours,', 'bien rangés'] },
-  { nom: '03-mission', route: '/mission', titre: ['Réponds,', 'on corrige'] },
-  { nom: '04-questions', route: '/questions', titre: ['Une question ?', 'On te répond'] },
-  { nom: '05-moi', route: '/moi', titre: ['Ta progression', 'sous les yeux'] },
-  { nom: '06-offres-pass', route: '/offres', titre: ['Choisis ton pass,', 'sans engagement'] },
+  { nom: '1-accueil', route: '/', titre: ['Ta mission', 'du jour'] },
+  { nom: '2-reviser', route: '/reviser', titre: ['Tous tes cours,', 'bien rangés'] },
+  { nom: '3-mission', route: '/mission', titre: ['Réponds,', 'on corrige'] },
+  { nom: '4-moi', route: '/moi', titre: ['Ta progression', 'sous les yeux'] },
+  { nom: '5-offres-pass', route: '/offres', titre: ['Choisis ton pass,', 'sans engagement'] },
+  // Les ecrans de cours n'ont pas d'URL directe (leur identifiant vient de la base) : on y arrive en cliquant.
+  { nom: '6-cours-matiere', route: '/reviser', titre: ['79 cours', 'de Maths'], clics: [/^Maths/i] },
+  { nom: '7-cours-lecons', titre: ['Chapitres', 'et leçons'], clics: [/leçon/i] },
 ];
 
 /** Le profil local termine evite l'ecran d'arrivee ; `standalone` masque le bandeau « installe l'app ». */
@@ -102,9 +104,20 @@ try {
     });
     await contexte.addInitScript(AMORCE);
     const page = await contexte.newPage();
-    for (const { nom, route } of ECRANS) {
-      await page.goto(url + route, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(9000);
+    for (const { nom, route, clics } of ECRANS) {
+      if (route) {
+        await page.goto(url + route, { waitUntil: 'domcontentloaded' });
+        await page.waitForTimeout(9000);
+      }
+      for (const motif of clics ?? []) {
+        const cible = page.getByText(motif).first();
+        if (!(await cible.count())) {
+          console.log('brut     ', nom, 'cible introuvable pour', String(motif));
+          continue;
+        }
+        await cible.click({ timeout: 8000 }).catch((e) => console.log('brut     ', nom, 'clic impossible', String(e).slice(0, 90)));
+        await page.waitForTimeout(8000);
+      }
       await page.screenshot({ path: join(dossier, `${nom}.png`) });
       const bandeau = await page.getByText('meilleure experience', { exact: false }).count();
       console.log('brut     ', nom, bandeau ? 'ATTENTION bandeau web present' : 'ok');
@@ -115,16 +128,24 @@ try {
   if (etapes.includes('habille') || etapes.includes('banniere')) {
     const dossier = join(sortie, etapes.includes('banniere') && !etapes.includes('habille') ? 'banniere' : 'habille');
     mkdirSync(dossier, { recursive: true });
-    const fichier = (nom) => 'file:///' + join(racine, nom).replace(/\\/g, '/');
-    const logo = fichier('assets/images/logo-horizontal-noir.png');
-    const archivo = fichier('assets/fonts/ArchivoBlack.ttf');
-    const grotesk = fichier('assets/fonts/SpaceGrotesk-Medium.ttf');
+    // Polices, logo et captures integres en data URI. Depuis une page construite par setContent (origine
+    // about:blank), Chromium REFUSE de charger une police en file:// (CORS) : le rendu retombe alors
+    // silencieusement sur une police systeme, et tous les textes perdent la typo de la marque.
+    const donnee = (nom, type) => `data:${type};base64,` + readFileSync(join(racine, nom)).toString('base64');
+    const logo = donnee('assets/images/logo-horizontal-noir.png', 'image/png');
+    const archivo = donnee('assets/fonts/ArchivoBlack.ttf', 'font/ttf');
+    const grotesk = donnee('assets/fonts/SpaceGrotesk-Medium.ttf', 'font/ttf');
+    const groteskGras = donnee('assets/fonts/SpaceGrotesk-Bold.ttf', 'font/ttf');
+    const monoGras = donnee('assets/fonts/SpaceMono-Bold.ttf', 'font/ttf');
     const page = await navigateur.newPage();
 
     const rendre = async (html, largeurCible, hauteurCible, chemin) => {
       await page.setViewportSize({ width: largeurCible, height: hauteurCible });
       await page.setContent(html, { waitUntil: 'load' });
       await page.evaluate(() => document.fonts.ready);
+      // Sans ce controle, un echec de chargement de police passe inapercu : le rendu retombe sur une police systeme.
+      const polices = await page.evaluate(() => Array.from(document.fonts).map((f) => `${f.family}:${f.status}`).join(' '));
+      if (/error|unloaded/.test(polices)) console.log('POLICES  ', polices);
       await page.screenshot({ path: chemin });
       console.log('rendu    ', chemin.replace(sortie, '.'));
     };
@@ -164,30 +185,65 @@ try {
     if (etapes.includes('banniere')) {
       const dossierBanniere = join(sortie, 'banniere');
       mkdirSync(dossierBanniere, { recursive: true });
-      for (const [l, h] of [[5244, 2950], [3840, 1646]]) {
-        const lg = Math.round(l * 0.3);
-        const h1 = Math.round(h * 0.085);
-        const h2 = Math.round(h * 0.042);
-        const bande = Math.round(h * 0.1);
-        const bloc = Math.round((lg * 333) / 893) + Math.round(h * 0.05) + Math.round(h1 * 1.15) + Math.round(h * 0.02) + Math.round(h2 * 1.3);
-        const y = Math.round((h - bloc) / 2);
-        const html = `<!doctype html><meta charset="utf-8"><style>
+      // Composition d'inspiration Apple (accroche a gauche, telephone a droite) mais STRICTEMENT dans le design
+      // system : fond papier 50, texte encre, une seule action emeraude et son texte NOIR (jamais de blanc sur
+      // l'emeraude, 3,8:1 insuffisant), bordures franches et ombres dures sans flou.
+      const accueil = join(sortie, 'brut', '1-accueil.png');
+      const ecran = existsSync(accueil) ? 'data:image/png;base64,' + readFileSync(accueil).toString('base64') : '';
+      const L = 5244;
+      const H = 2950;
+      const marge = 380;
+      const phH = 2100; // tient dans la bande centrale : la version 2,33:1 est un recadrage
+      const bezel = 26;
+      const phL = Math.round(((phH - 2 * bezel) * largeur) / hauteur) + 2 * bezel;
+      const style = `
           @font-face{font-family:A;src:url('${archivo}')}
+          @font-face{font-family:B;src:url('${groteskGras}')}
           @font-face{font-family:G;src:url('${grotesk}')}
+          @font-face{font-family:M;src:url('${monoGras}')}
           *{margin:0;padding:0;box-sizing:border-box}
-          body{width:${l}px;height:${h}px;background:#FFF7E3;position:relative;overflow:hidden}
-          .haut,.bas{position:absolute;left:0;width:100%;height:${bande}px;background:#10B981}
-          .haut{top:0}.bas{bottom:0}
-          img.logo{position:absolute;top:${y}px;left:50%;transform:translateX(-50%);width:${lg}px}
-          h1{position:absolute;top:${y + Math.round((lg * 333) / 893) + Math.round(h * 0.05)}px;left:0;width:100%;text-align:center;font-family:A;font-size:${h1}px;font-weight:400;color:#0A0A0A}
-          p{position:absolute;top:${y + Math.round((lg * 333) / 893) + Math.round(h * 0.05) + Math.round(h1 * 1.15) + Math.round(h * 0.02)}px;left:0;width:100%;text-align:center;font-family:G;font-size:${h2}px;color:#5C5C5C}
-        </style>
-        <div class="haut"></div><div class="bas"></div>
-        <img class="logo" src="${logo}">
-        <h1>Réussis ton concours.</h1>
-        <p>Cours, missions et corrigés, au même endroit.</p>`;
-        await rendre(html, l, h, join(dossierBanniere, `entete-${l}x${h}.png`));
-      }
+          body{background:#FFF7E3;overflow:hidden}
+          .scene{position:relative;width:${L}px;height:${H}px;background-color:#FFF7E3;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104'%3E%3Ccircle cx='8' cy='8' r='6' fill='%230A0A0A' fill-opacity='0.14'/%3E%3C/svg%3E");overflow:hidden}
+          .texte{position:absolute;left:${marge}px;top:600px;width:2260px}
+          .logo{display:block;width:1050px}
+          h1{font-family:A;font-weight:400;font-size:250px;line-height:1.1;color:#0A0A0A;margin-top:90px}
+          .surligne{background:#FFD83D;border:8px solid #0A0A0A;border-radius:22px;box-shadow:12px 12px 0 #0A0A0A;padding:0 26px}
+          p{font-family:G;font-size:92px;line-height:1.3;color:#5C5C5C;margin-top:64px}
+          .btn{display:inline-block;background:#10B981;border:10px solid #0A0A0A;border-radius:30px;box-shadow:18px 18px 0 #0A0A0A;padding:34px 70px;font-family:B;font-size:86px;color:#0A0A0A;margin-top:72px}
+          .chips{margin-top:52px}
+          .chips span{display:inline-block;border:8px solid #0A0A0A;border-radius:46px;box-shadow:10px 10px 0 #0A0A0A;padding:14px 44px;font-family:M;font-size:58px;color:#0A0A0A;margin:0 30px 0 0}
+          .panneau{position:absolute;left:3464px;top:375px;width:1400px;height:2200px;background:#10B981;border:10px solid #0A0A0A;border-radius:56px;box-shadow:26px 26px 0 #0A0A0A}
+          .phone{position:absolute;left:3714px;top:525px;width:900px;height:1900px;background:#0A0A0A;border-radius:140px;padding:22px}
+          .phone img{width:100%;height:100%;border-radius:120px;display:block}
+          .note{position:absolute;left:3040px;top:2260px;background:#FFD83D;border:10px solid #0A0A0A;border-radius:30px;box-shadow:18px 18px 0 #0A0A0A;padding:26px 50px}
+          .note b{display:block;font-family:A;font-weight:400;font-size:126px;line-height:1;color:#0A0A0A}
+          .note i{display:block;font-family:M;font-style:normal;font-size:44px;color:#0A0A0A;margin-top:12px}`;
+      const scene = `
+        <div class="panneau"></div>
+        <div class="phone"><img src="${ecran}"></div>
+        <div class="note"><b>17/20</b><i>Mission du jour</i></div>
+        <div class="texte">
+          <img class="logo" src="${logo}">
+          <h1>Réussis ton<br><span class="surligne">concours.</span></h1>
+          <p>Cours, missions et corrigés,<br>au même endroit.</p>
+          <div class="btn">Commencer la mission</div>
+          <div class="chips">
+            <span style="background:#5B9BFF">Maths</span><span style="background:#FF9A3D">Physique</span><span style="background:#7BC74D">SVT</span><span style="background:#FF8FB1">Anglais</span>
+          </div>
+        </div>`;
+
+      await rendre(`<!doctype html><meta charset="utf-8"><style>${style}</style><div class="scene">${scene}</div>`, L, H, join(dossierBanniere, `entete-${L}x${H}.png`));
+
+      // Version large 2,33:1 : meme composition, mise a l'echelle puis recadree au centre (le point focal y est).
+      const grand = 3840;
+      const haut = 1646;
+      const echelle = grand / L;
+      const decalage = Math.round((((H - Math.round(L / (grand / haut))) / 2) * grand) / L);
+      const htmlLarge = `<!doctype html><meta charset="utf-8"><style>${style}
+          body{width:${grand}px;height:${haut}px}
+          .cadre{position:absolute;left:0;top:-${decalage}px;transform:scale(${echelle});transform-origin:0 0}
+        </style><div class="cadre"><div class="scene">${scene}</div></div>`;
+      await rendre(htmlLarge, grand, haut, join(dossierBanniere, `entete-${grand}x${haut}.png`));
     }
 
     await page.close();
