@@ -32,3 +32,20 @@ export async function finirRetourOAuthWeb(client: Client, url: string | null): P
   if (parrainage && (await rattacherCode(client, parrainage))) await effacerCode().catch(() => {});
   return 'session';
 }
+
+let promesse: Promise<'rien' | 'session' | 'erreur'> | null = null;
+
+/**
+ * Le même retour OAuth pour tous les appelants : un code PKCE ne s'échange **qu'une fois**. Le fournisseur de session
+ * l'attend **avant** de créer une session invité (voir `SessionProvider`). Sans cela, au retour d'une connexion web, un
+ * invité était créé, son profil (parcours d'arrivée non terminé) était lu, et l'élève connecté retombait sur « bienvenue ».
+ */
+export function finirRetourOAuthWebUneFois(client: Client): Promise<'rien' | 'session' | 'erreur'> {
+  promesse ??= finirRetourOAuthWeb(client, urlAuLancement);
+  return promesse;
+}
+
+/** Remet le retour OAuth à zéro : réservé aux tests (l'appel réel n'a lieu qu'une fois par chargement de page). */
+export function reinitialiserRetourOAuthWeb(): void {
+  promesse = null;
+}

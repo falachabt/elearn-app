@@ -5,6 +5,7 @@ import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
 import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
+import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { synchroniserResultat } from '@/services/miniTest';
 import { synchroniserLues } from '@/services/reviser';
 import { repriseInviteEnCours, reprendreApresRedemarrage } from '@/services/repriseInvite';
@@ -30,6 +31,10 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     (async () => {
       try {
         const client = getSupabase();
+        // Web : terminer le retour OAuth (Google, Apple) AVANT de créer une session invité. Sinon, au retour d'une
+        // connexion, l'invité était créé d'abord, son profil était lu (parcours d'arrivée non terminé) et l'élève
+        // connecté retombait sur « bienvenue ».
+        await finirRetourOAuthWebUneFois(client);
         const session = await assurerSessionInvite(client);
         const reprise = await reprendreApresRedemarrage(session.user.id);
         if (!actif) return;

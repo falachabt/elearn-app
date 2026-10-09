@@ -30,7 +30,7 @@ import { SessionProvider, useSession } from '@/session/SessionProvider';
 import { ThemeProvider, useTheme } from '@/theme/ThemeProvider';
 import { mouvement } from '@/theme/theme';
 import { useRepriseInviteEnCours } from '@/services/repriseInvite';
-import { finirRetourOAuthWeb, urlAuLancement } from '@/services/retourOAuthWeb';
+import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { getSupabase } from '@/services/supabase';
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
@@ -42,7 +42,7 @@ function useRetourOAuthWeb() {
   const router = useRouter();
   useEffect(() => {
     if (Platform.OS !== 'web') return;
-    void finirRetourOAuthWeb(getSupabase(), urlAuLancement).then((r) => {
+    void finirRetourOAuthWebUneFois(getSupabase()).then((r) => {
       if (r === 'rien') return;
       // Adresse nettoyée : le code ne doit pas rester dans l'historique ni être rejoué au rechargement.
       globalThis.history?.replaceState(null, '', globalThis.location.pathname === '/auth/callback' ? '/' : globalThis.location.pathname);

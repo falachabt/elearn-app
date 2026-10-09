@@ -1,4 +1,4 @@
-import { finirRetourOAuthWeb } from '../retourOAuthWeb';
+import { finirRetourOAuthWeb, finirRetourOAuthWebUneFois, reinitialiserRetourOAuthWeb } from '../retourOAuthWeb';
 
 const mockLireCode = jest.fn();
 const mockEffacer = jest.fn();
@@ -58,5 +58,16 @@ describe('retour de la connexion Google en page entière (web)', () => {
     expect(await finirRetourOAuthWeb(c as never, 'https://app.elearnprepa.com/?code=abc')).toBe('session');
     expect(c.rpc).toHaveBeenCalledWith('apply_referral_on_signup', { p_code: 'ABCD123' });
     expect(mockEffacer).toHaveBeenCalled();
+  });
+});
+
+describe('retour OAuth joué une seule fois (fournisseur de session + navigation)', () => {
+  it('tous les appelants partagent le même échange : un code PKCE ne se rejoue pas', async () => {
+    reinitialiserRetourOAuthWeb();
+    const c = client();
+    const premier = finirRetourOAuthWebUneFois(c as never);
+    const second = finirRetourOAuthWebUneFois(c as never);
+    expect(second).toBe(premier);
+    await premier;
   });
 });

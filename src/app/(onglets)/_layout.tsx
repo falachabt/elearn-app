@@ -24,12 +24,15 @@ export default function LayoutOnglets() {
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
   useEffect(() => {
+    // Le profil se lit APRÈS la session (useSessionPrete) et se relit quand elle change : au retour d'une connexion
+    // web, la session invité précède la session connectée ; lire le profil trop tôt renvoyait l'élève sur l'arrivée.
+    if (!sessionPrete || sessionPrete === 'hors-ligne') return;
     let actif = true;
     lireProfil().then((p) => actif && setArrivee(p?.termine ? 'fait' : 'a-faire'));
     return () => {
       actif = false;
     };
-  }, []);
+  }, [sessionPrete]);
 
   useEffect(() => {
     if (!sessionPrete || sessionPrete === 'hors-ligne') return;
