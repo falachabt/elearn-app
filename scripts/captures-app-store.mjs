@@ -135,8 +135,6 @@ try {
     const logo = donnee('assets/images/logo-horizontal-noir.png', 'image/png');
     const archivo = donnee('assets/fonts/ArchivoBlack.ttf', 'font/ttf');
     const grotesk = donnee('assets/fonts/SpaceGrotesk-Medium.ttf', 'font/ttf');
-    const groteskGras = donnee('assets/fonts/SpaceGrotesk-Bold.ttf', 'font/ttf');
-    const monoGras = donnee('assets/fonts/SpaceMono-Bold.ttf', 'font/ttf');
     const page = await navigateur.newPage();
 
     const rendre = async (html, largeurCible, hauteurCible, chemin) => {
@@ -185,51 +183,28 @@ try {
     if (etapes.includes('banniere')) {
       const dossierBanniere = join(sortie, 'banniere');
       mkdirSync(dossierBanniere, { recursive: true });
-      // Composition d'inspiration Apple (accroche a gauche, telephone a droite) mais STRICTEMENT dans le design
-      // system : fond papier 50, texte encre, une seule action emeraude et son texte NOIR (jamais de blanc sur
-      // l'emeraude, 3,8:1 insuffisant), bordures franches et ombres dures sans flou.
-      const accueil = join(sortie, 'brut', '1-accueil.png');
-      const ecran = existsSync(accueil) ? 'data:image/png;base64,' + readFileSync(accueil).toString('base64') : '';
+      // Tout le contenu reste dans le CENTRE de l'image. App Store Connect affiche cette banniere dans une zone
+      // plus etroite que l'asset et la recadre : un contenu qui va jusqu'aux bords (accroche a gauche, telephone a
+      // droite) se fait couper et disparait. Centre, il survit a n'importe quel recadrage — c'est ce qui marchait
+      // dans la toute premiere version, entierement centree.
       const L = 5244;
       const H = 2950;
-      const marge = 380;
-      const phH = 2100; // tient dans la bande centrale : la version 2,33:1 est un recadrage
-      const bezel = 26;
-      const phL = Math.round(((phH - 2 * bezel) * largeur) / hauteur) + 2 * bezel;
       const style = `
           @font-face{font-family:A;src:url('${archivo}')}
-          @font-face{font-family:B;src:url('${groteskGras}')}
           @font-face{font-family:G;src:url('${grotesk}')}
-          @font-face{font-family:M;src:url('${monoGras}')}
           *{margin:0;padding:0;box-sizing:border-box}
           body{background:#FFF7E3;overflow:hidden}
-          .scene{position:relative;width:${L}px;height:${H}px;background-color:#FFF7E3;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104'%3E%3Ccircle cx='8' cy='8' r='6' fill='%230A0A0A' fill-opacity='0.14'/%3E%3C/svg%3E");overflow:hidden}
-          .texte{position:absolute;left:${marge}px;top:600px;width:2260px}
-          .logo{display:block;width:1050px}
-          h1{font-family:A;font-weight:400;font-size:250px;line-height:1.1;color:#0A0A0A;margin-top:90px}
-          .surligne{background:#FFD83D;border:8px solid #0A0A0A;border-radius:22px;box-shadow:12px 12px 0 #0A0A0A;padding:0 26px}
-          p{font-family:G;font-size:92px;line-height:1.3;color:#5C5C5C;margin-top:64px}
-          .btn{display:inline-block;background:#10B981;border:10px solid #0A0A0A;border-radius:30px;box-shadow:18px 18px 0 #0A0A0A;padding:34px 70px;font-family:B;font-size:86px;color:#0A0A0A;margin-top:72px}
-          .chips{margin-top:52px}
-          .chips span{display:inline-block;border:8px solid #0A0A0A;border-radius:46px;box-shadow:10px 10px 0 #0A0A0A;padding:14px 44px;font-family:M;font-size:58px;color:#0A0A0A;margin:0 30px 0 0}
-          .panneau{position:absolute;left:3464px;top:375px;width:1400px;height:2200px;background:#10B981;border:10px solid #0A0A0A;border-radius:56px;box-shadow:26px 26px 0 #0A0A0A}
-          .phone{position:absolute;left:3714px;top:525px;width:900px;height:1900px;background:#0A0A0A;border-radius:140px;padding:22px}
-          .phone img{width:100%;height:100%;border-radius:120px;display:block}
-          .note{position:absolute;left:3040px;top:2260px;background:#FFD83D;border:10px solid #0A0A0A;border-radius:30px;box-shadow:18px 18px 0 #0A0A0A;padding:26px 50px}
-          .note b{display:block;font-family:A;font-weight:400;font-size:126px;line-height:1;color:#0A0A0A}
-          .note i{display:block;font-family:M;font-style:normal;font-size:44px;color:#0A0A0A;margin-top:12px}`;
+          .scene{position:relative;width:${L}px;height:${H}px;background-color:#FFF7E3;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='104' height='104'%3E%3Ccircle cx='8' cy='8' r='6' fill='%230A0A0A' fill-opacity='0.14'/%3E%3C/svg%3E");display:flex;align-items:center;justify-content:center;overflow:hidden}
+          .centre{width:2400px;text-align:center}
+          .logo{display:block;width:1150px;margin:0 auto}
+          h1{font-family:A;font-weight:400;font-size:286px;line-height:1.1;color:#0A0A0A;margin-top:94px}
+          .surligne{background:#FFD83D;border:10px solid #0A0A0A;border-radius:26px;box-shadow:14px 14px 0 #0A0A0A;padding:0 30px}
+          p{font-family:G;font-size:106px;line-height:1.35;color:#5C5C5C;margin-top:72px}`;
       const scene = `
-        <div class="panneau"></div>
-        <div class="phone"><img src="${ecran}"></div>
-        <div class="note"><b>17/20</b><i>Mission du jour</i></div>
-        <div class="texte">
+        <div class="centre">
           <img class="logo" src="${logo}">
           <h1>Réussis ton<br><span class="surligne">concours.</span></h1>
           <p>Cours, missions et corrigés,<br>au même endroit.</p>
-          <div class="btn">Commencer la mission</div>
-          <div class="chips">
-            <span style="background:#5B9BFF">Maths</span><span style="background:#FF9A3D">Physique</span><span style="background:#7BC74D">SVT</span><span style="background:#FF8FB1">Anglais</span>
-          </div>
         </div>`;
 
       await rendre(`<!doctype html><meta charset="utf-8"><style>${style}</style><div class="scene">${scene}</div>`, L, H, join(dossierBanniere, `entete-${L}x${H}.png`));
