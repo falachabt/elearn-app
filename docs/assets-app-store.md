@@ -32,6 +32,7 @@ Contraintes de format : **PNG/JPG sans canal alpha**, dimensions exactes.
 4. **Les écrans à paramètres rendent vide.** `/cours/chapitre` sans `?id=` ne montre rien. On y arrive en **cliquant** depuis `/reviser`, ou via `/cours/matiere?nom=Maths`.
 5. **Un invité neuf n'a que des états vides** : progression, annales, questions (« Aucune question pour l'instant », « Fais ta première mission »). Ces écrans ne font pas de bonnes captures — à éviter tant qu'aucun compte de démonstration n'est garni.
 6. **`supportsTablet: false`** dans `app.json` : l'app est iPhone uniquement, donc **aucune capture iPad n'est exigée**. Le bloc iPad visible dans App Store Connect vient de l'ancienne app.
+7. **App Store Connect arrondit les coins des captures** (~10 % de la largeur, soit ~120 px sur 1206). Une bordure noire collée au bord de l'image se fait donc **rogner**, ce qui abîme le style néo-brutal. **Solution retenue : aucune bordure au bord de l'image** — le style passe par le titre Archivo Black, le trait émeraude et le châssis noir du téléphone, qui sont tous loin des coins. *(Une variante « carte encadrée » — design rentré de 150 px, bordure conservée et ombre portée dure — avait aussi été produite ; elle tient aussi, mais elle perd 14 % de la surface utile. Benny a choisi la version sans bordure.)*
 
 ## 3. Recette
 
@@ -48,7 +49,7 @@ Le script (`scripts/captures-app-store.mjs`) :
 
 - capture à `402 × 874` avec `deviceScaleFactor: 3` → **1206 × 2622** exactement, sans rééchantillonnage ;
 - amorce la page (`profil.arrivee` + `navigator.standalone`) et **vérifie l'absence du bandeau web** ;
-- habille chaque écran par un **gabarit HTML rendu par Chromium** (fond crème, bordure noire 8 px, logo, titre Archivo Black, trait émeraude, cadre téléphone) — même technique que `scripts/fabriquer-assets.mjs`, donc aucun outil d'image externe ;
+- habille chaque écran par un **gabarit HTML rendu par Chromium** (fond crème **sans bordure au bord**, logo, titre Archivo Black, trait émeraude, cadre téléphone) — même technique que `scripts/fabriquer-assets.mjs`, donc aucun outil d'image externe ;
 - rend la bannière d'en-tête dans les deux tailles.
 
 ## 4. Bannière d'en-tête (page produit)

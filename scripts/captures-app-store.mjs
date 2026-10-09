@@ -140,11 +140,14 @@ try {
           continue;
         }
         const ecran = 'data:image/png;base64,' + readFileSync(brut).toString('base64');
+        // Pas de bordure au bord de l'image : App Store Connect arrondit les coins des captures (~10 % de la
+        // largeur), ce qui rogne une bordure noire collée au bord et abime le style neo-brutal. Le style passe
+        // par le titre, le trait emeraude et le chassis noir du telephone.
         const html = `<!doctype html><meta charset="utf-8"><style>
           @font-face{font-family:A;src:url('${archivo}')}
           @font-face{font-family:G;src:url('${grotesk}')}
           *{margin:0;padding:0;box-sizing:border-box}
-          body{width:${largeur}px;height:${hauteur}px;background:#FFF7E3;border:8px solid #0A0A0A;position:relative;font-family:A}
+          body{width:${largeur}px;height:${hauteur}px;background:#FFF7E3;position:relative;font-family:A}
           img.logo{position:absolute;top:64px;left:50%;transform:translateX(-50%);width:300px}
           h1{position:absolute;top:230px;left:0;width:100%;text-align:center;font-size:108px;line-height:1.06;color:#0A0A0A;font-weight:400}
           .bar{position:absolute;top:${230 + Math.round(108 * 1.06 * titre.length) + 12}px;left:50%;transform:translateX(-50%);width:240px;height:14px;background:#10B981;border-radius:7px}
