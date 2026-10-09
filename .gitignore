@@ -22,6 +22,9 @@ expo-env.d.ts
 *.key
 *.mobileprovision
 
+# clés Apple (Sign in with Apple, In-App Purchase) : ne jamais committer, ce dépôt est public
+credentials/
+
 # Metro
 .metro-health-check*
 

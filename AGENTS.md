@@ -67,6 +67,7 @@
 - **Quand les runners GitHub sont indisponibles** (file d'attente), on déclenche l'OTA et le build **depuis cette machine** : `npx --yes eas-cli@latest update --platform android --channel preview --environment preview --non-interactive` pour l'OTA, et `... build --platform android --profile preview --non-interactive` pour l'APK. La session EAS est déjà valide dans cet espace de travail. Valider en local (`npm run valider`) **avant**, puisque plus rien ne sert de barrière distante.
 - **Après l'ajout d'un module natif**, incrémenter `version` dans `app.json` : `runtimeVersion` en dérive (aucun n'est défini explicitement), donc les binaires plus anciens ne reçoivent pas l'OTA qui les casserait. Un nouveau build natif reste nécessaire pour que le module existe.
 - **Ne jamais committer de fichier `.env`** : les secrets de ce dépôt public ont déjà fuité une fois. Utiliser `.env.local` (ignoré) ou les secrets EAS.
+- **Les clés Apple** (Sign in with Apple, In-App Purchase) vivent dans `credentials/`, un dossier **local ignoré par git** : ce dépôt est public, aucune clé ne doit être committée. Voir `credentials/LISEZ-MOI.md`. La clé **APNs** (push iOS) et la clé **App Store Connect API** sont déjà dans EAS : aucun fichier local n'est nécessaire pour elles.
 
 ## 14. Mode concis (skill caveman)
 Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'applique aux échanges internes et aux journaux des agents. Les messages à Benny (clairs, en français), le code, les commits, les descriptions de PR et le README restent normaux.
