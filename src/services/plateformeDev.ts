@@ -7,8 +7,11 @@ import { modeDeveloppement } from './developpement';
  *
  * Inactif hors développement ou canal « preview » : `iosSimule()` y renvoie toujours `false`. Les prix affichés sont
  * simulés (voir `achatsIntegres.ts`) ; rien n'est écrit sur le serveur ni facturé.
+ *
+ * `EXPO_PUBLIC_SIMULER_IOS=1` la rend active dès le démarrage (captures d'écran, recette) ; l'écran développeur reste
+ * maître ensuite, et peut la couper.
  */
-let actif = false;
+let actif = process.env.EXPO_PUBLIC_SIMULER_IOS === '1';
 
 export function iosSimule(): boolean {
   return modeDeveloppement() && actif;
