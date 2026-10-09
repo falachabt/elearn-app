@@ -98,7 +98,7 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
   beforeEach(() => act(() => changerLangue(langue)));
 
   it('affiche des erreurs lisibles sous chaque champ et n’appelle pas Supabase', async () => {
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     await fireEvent.changeText(screen.getByLabelText(x.email), 'pas-un-email');
     await fireEvent.changeText(screen.getByLabelText(x.mdp), '123');
     await fireEvent.changeText(screen.getByLabelText(x.code), 'a;b');
@@ -110,7 +110,7 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
   });
 
   it('crée le compte (conversion invité) avec le code saisi, le mémorise puis va sur Moi', async () => {
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     await fireEvent.changeText(screen.getByLabelText(x.email), 'amina@exemple.com');
     await fireEvent.changeText(screen.getByLabelText(x.mdp), 'motdepasse1');
     await fireEvent.changeText(screen.getByLabelText(x.code), 'abc123');
@@ -123,13 +123,13 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
 
   it('préremplit le code de parrainage reçu par lien (moins de 7 jours)', async () => {
     await conserverCode('amina24', 'lien');
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     await waitFor(() => expect(screen.getByLabelText(x.code).props.value).toBe('AMINA24'));
   });
 
   it('erreur serveur : message lisible dans une bannière, jamais le texte technique', async () => {
     mockCreer.mockRejectedValue({ code: 'email_exists', message: 'duplicate key value violates' });
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     await fireEvent.changeText(screen.getByLabelText(x.email), 'amina@exemple.com');
     await fireEvent.changeText(screen.getByLabelText(x.mdp), 'motdepasse1');
     await fireEvent.press(screen.getByRole('button', { name: x.creer }));
@@ -140,7 +140,7 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
 
   it('connexion : pas de champ de code, appelle connecterEmail', async () => {
     mockConnecter.mockResolvedValue({});
-    await monter(<FormulaireCompte mode="connexion" />);
+    await monter(<FormulaireCompte mode="connexion" emailActif />);
     expect(screen.queryByLabelText(x.code)).toBeNull();
     // Connexion par numéro coupée : les anciens comptes passent par Google.
     expect(screen.getByText(langue === 'fr' ? /même compte Google/ : /same Google account/)).toBeTruthy();
@@ -153,14 +153,14 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
 
   it('connexion Google depuis l’écran de connexion : demande une connexion directe, même avec une session invitée', async () => {
     mockGoogle.mockResolvedValue(undefined);
-    await monter(<FormulaireCompte mode="connexion" />);
+    await monter(<FormulaireCompte mode="connexion" emailActif />);
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' }));
     await waitFor(() => expect(mockGoogle).toHaveBeenCalledWith({}, {}, null, { rattacher: undefined, connexionDirecte: true }));
   });
 
   it('doublon Google en création : propose la connexion dans une feuille, sans la lancer automatiquement', async () => {
     mockGoogle.mockRejectedValueOnce({ code: 'identity_already_exists' }).mockResolvedValueOnce(undefined);
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' }));
 
     const titre = langue === 'fr' ? 'Tu as déjà un compte Elearn' : 'You already have an Elearn account';
@@ -175,7 +175,7 @@ describe.each(['fr', 'en'] as const)('FormulaireCompte (%s)', (langue) => {
 
   it('Google, Apple (iOS) et Facebook (une fois activé) sont proposés', async () => {
     mockFacebook.mockResolvedValue(undefined);
-    await monter(<FormulaireCompte mode="creer" />);
+    await monter(<FormulaireCompte mode="creer" emailActif />);
     expect(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Google' : 'Continue with Google' })).toBeTruthy();
     expect(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Apple' : 'Continue with Apple' })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: langue === 'fr' ? 'Continuer avec Facebook' : 'Continue with Facebook' }));

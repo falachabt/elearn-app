@@ -22,8 +22,8 @@ jest.mock('@/services/compte', () => ({
 }));
 
 const metriques = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
-const monter = (mode: 'creer' | 'connexion') =>
-  render(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair"><FormulaireCompte mode={mode} /></ThemeProvider></SafeAreaProvider>);
+const monter = (mode: 'creer' | 'connexion', emailActif = true) =>
+  render(<SafeAreaProvider initialMetrics={metriques}><ThemeProvider reglage="clair"><FormulaireCompte mode={mode} emailActif={emailActif} /></ThemeProvider></SafeAreaProvider>);
 
 const google = () => screen.getByRole('button', { name: fr.compte.google });
 const connecter = () => screen.getByRole('button', { name: fr.compte.connecter });
@@ -36,6 +36,14 @@ beforeEach(() => {
 });
 
 describe('formulaire de connexion : Google et e-mail restent séparés', () => {
+  it('par défaut (formulaire e-mail coupé) : seuls les fournisseurs sociaux sont proposés', async () => {
+    await monter('connexion', false);
+    expect(screen.queryByLabelText(fr.compte.email)).toBeNull();
+    expect(screen.queryByLabelText(fr.compte.motDePasse)).toBeNull();
+    expect(screen.queryByRole('button', { name: fr.compte.connecter })).toBeNull();
+    expect(screen.queryByText(fr.compte.ou)).toBeNull();
+    expect(google()).toBeTruthy();
+  });
   it('« Continuer avec Google » ne valide ni n’envoie le formulaire e-mail, champs vides', async () => {
     await monter('connexion');
     await fireEvent.press(google());
