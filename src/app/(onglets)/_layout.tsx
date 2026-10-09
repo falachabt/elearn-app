@@ -24,9 +24,10 @@ export default function LayoutOnglets() {
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
   useEffect(() => {
-    // Le profil se lit APRÈS la session (useSessionPrete) et se relit quand elle change : au retour d'une connexion
-    // web, la session invité précède la session connectée ; lire le profil trop tôt renvoyait l'élève sur l'arrivée.
-    if (!sessionPrete || sessionPrete === 'hors-ligne') return;
+    // Le profil se lit APRÈS que la session soit décidée (useSessionPrete), et se relit quand elle change : après une
+    // connexion, le compte apporte le parcours d'arrivée (voir SessionProvider) et la session invité le précède.
+    // « hors-ligne » passe aussi : le profil est local, il doit s'afficher sans réseau.
+    if (!sessionPrete) return;
     let actif = true;
     lireProfil().then((p) => actif && setArrivee(p?.termine ? 'fait' : 'a-faire'));
     return () => {
