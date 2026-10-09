@@ -41,6 +41,11 @@ Plan établi le 08/10/2026 à partir des App Review Guidelines d'Apple (develope
 - Sign in with Apple : identifiant de service `com.ezadrive.elearn.web` et clé dans Supabase (Authentication > Apple).
 - Clé publique RevenueCat `appl_…` en secret EAS (`production` et `preview`).
 - Build iOS `production` (3.1.0, build 17) construit **et téléversé** sur App Store Connect.
+- **RevenueCat est configuré et vérifié** (clé secrète `sk_…` dans `.env.local`, ignoré) :
+  droit **`pass`** rattaché aux trois produits App Store (`pass_weeks`, `pass_month`, `pass_contest`, tous **consumable**) ;
+  offre **`default`** (`is_current: true`) avec trois packages dont les identifiants sont **exactement** `week`, `month`, `contest`.
+  Vérification faite **sans iPhone**, par l'API v2 : `GET https://api.revenuecat.com/v2/projects/projc8fa6dbf/offerings` (puis `/entitlements`, `/products`, `/offerings/{id}/packages`, `/packages/{id}/products`).
+  ⚠️ Piège rencontré : les packages avaient d'abord les identifiants **standard** (`$rc_monthly`, `$rc_annual`, `$rc_six_month`) que le code ne lit pas, et un identifiant de package **ne peut pas être modifié** — il faut supprimer le package et le recréer avec un identifiant **personnalisé**.
 - **Notifications du serveur de l'App Store** : l'URL RevenueCat
   `https://api.revenuecat.com/v1/incoming-webhooks/apple-server-to-server-notification/vEZpaOVaEoPyGZEnAWoUglTjtEYKaEbV`
   est collée dans **App Store Connect > Informations sur l'app > Notifications du serveur de l'App Store**, dans **Production *et* Sandbox**, **version 2**.
@@ -48,13 +53,10 @@ Plan établi le 08/10/2026 à partir des App Review Guidelines d'Apple (develope
 - Captures et bannière de la fiche App Store : voir `docs/assets-app-store.md`.
 
 ### Par Benny
-1. Produits d'achat intégré : trois produits de type **Consommable** (Apple ne propose pas d'« abonnement sans renouvellement » dans les achats intégrés) — `pass_weeks`, `pass_month`, `pass_contest`.
-2. **RevenueCat**, dans cet ordre :
-   - **Droit** : Product catalog → Entitlements → `pass` ;
-   - **Produits** : Product catalog → Products → les trois identifiants Apple, chacun rattaché au droit `pass` ;
-   - **Offre** : Product catalog → Offerings → `default`, marquée **Current**, avec trois packages dont les identifiants sont **exactement** `week`, `month`, `contest` — c'est ce que lit `src/services/achatsIntegres.ts`. Le piège n°1 est là : un package mal nommé n'affiche aucun prix.
-   - Vérification sans iPhone possible : `GET https://api.revenuecat.com/v1/subscribers/<id>` avec la clé publique `appl_…` renvoie les offres et les droits réellement servis.
-3. Fiche : textes, captures (voir `docs/assets-app-store.md`), URL de confidentialité et de support, questionnaire de confidentialité, classification d'âge, compte de démonstration.
+1. Produits d'achat intégré : trois produits de type **Consommable** (Apple ne propose pas d'« abonnement sans renouvellement » dans les achats intégrés) — `pass_weeks`, `pass_month`, `pass_contest`. *(Fait.)*
+2. **Fiche App Store** : textes, captures (voir `docs/assets-app-store.md`), URL de confidentialité et de support, questionnaire de confidentialité, classification d'âge, compte de démonstration.
+3. **Soumettre à la relecture** : le build 17 est déjà téléversé ; il faut le sélectionner avec les **trois achats intégrés** dans la version et lancer la relecture.
+4. Nettoyage facultatif dans RevenueCat : un second droit `elearn_prepa_pass` (et trois produits Test Store `7jours`/`30jours`/`6mois`) traîne d'une configuration antérieure. Inutilisé par le code, mais à supprimer pour y voir clair.
 
 ### Backend (`elearn-supabase`, une PR, pgTAP avant push)
 - Edge Function `revenuecat-webhook` : authentification par en-tête secret, idempotence par identifiant de transaction, création de l'accès (comme `record_deposit_result`) pour `INITIAL_PURCHASE` et `NON_RENEWING_PURCHASE`, gestion des remboursements (`CANCELLATION`). `app_user_id` = identifiant Supabase.
