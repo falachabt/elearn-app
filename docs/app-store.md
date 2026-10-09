@@ -23,21 +23,30 @@ Plan établi le 08/10/2026 à partir des App Review Guidelines d'Apple (develope
 - Apple dans le parcours de sauvegarde du score invité (règle 4.8) et test.
 - `services/achatsIntegres.ts` : configuration RevenueCat, prix lus chez Apple, achat, restauration, attente de l'accès créé par le serveur. Tests Jest.
 - Écran Offres (E1) sur iOS : bouton « Prendre le pass … · prix Apple », « Restaurer mes achats », messages de résultat. Actif seulement si `EXPO_PUBLIC_REVENUECAT_IOS_KEY` est défini ; sinon l'écran garde « Tu pourras bientôt choisir ton pass… ». Rien ne change pour Android.
-- `eas.json` : profils iOS et `submit.ios` (identifiants à renseigner).
-- Dépendance `react-native-purchases`.
+- `eas.json` : profils iOS et `submit.ios` **renseignés** (`ascAppId` 6744586289, `appleTeamId` 6KATV2T6TV).
+- Dépendance `react-native-purchases`, version `3.1.0`.
+- Sign in with Apple **natif (iOS)** et **web** (OAuth Supabase), bouton Apple partout où Google est proposé.
+- Connexion par e-mail/mot de passe **coupée** (`CONNEXION_EMAIL` dans `FormulaireCompte.tsx`) : seuls Google, Apple et Facebook restent. Le code reste testé derrière la prop `emailActif`.
+- Simulation iOS pour la recette sans iPhone : `EXPO_PUBLIC_SIMULER_IOS=1` ou page « Paramètres développeur ».
+- Captures et bannière de la fiche App Store : `scripts/captures-app-store.mjs`. Tailles exigées et pièges dans **`docs/assets-app-store.md`**.
 
 À valider par Benny : l'écran Offres iOS est une variante de E1 sans maquette (le guide la prévoit, ligne « variante achat intégré »). Même mise en page qu'aujourd'hui, un bouton et un lien texte en plus.
 
 ## 3. Reste à faire
 
-### Par Benny (comptes et consoles)
-1. Compte Apple Developer (99 USD par an), App Store Connect : créer l'app, bundle `com.ezadrive.elearn`, nom, catégorie Éducation.
-2. Produits d'achat intégré : trois « abonnements sans renouvellement » `pass_week`, `pass_month`, `pass_contest`, avec grille de prix Apple (le prix en FCFA n'existe pas : Apple impose ses paliers).
-3. Clé App Store Connect (API) pour EAS et pour RevenueCat.
-4. RevenueCat : projet, app iOS, offre « default » avec packages `week`, `month`, `contest`, droit « pass ». Clé publique iOS dans EAS : `EXPO_PUBLIC_REVENUECAT_IOS_KEY`. Secret du webhook.
-5. `eas credentials` (iOS), puis renseigner `ascAppId` et `appleTeamId` dans `eas.json`.
-6. Sign in with Apple : identifiant de service et clé dans Supabase (Authentication > Apple).
-7. Fiche : textes, captures iPhone 6,9 pouces, URL de confidentialité et de support, questionnaire de confidentialité, classification d'âge, compte de démonstration.
+### Déjà fait (comptes et consoles)
+- Compte Apple Developer, app créée (`com.ezadrive.elearn`, `ascAppId` 6744586289, catégorie Éducation).
+- **Clé In-App Purchase** `9R8XVN8JWB` créée, téléversée dans RevenueCat avec l'Issuer ID `3801ec2e-516c-4c75-a2ad-af63490af2b4`.
+- **Clé APNs** (push iOS) et **clé App Store Connect API** : déjà dans EAS, rien à créer.
+- Sign in with Apple : identifiant de service `com.ezadrive.elearn.web` et clé dans Supabase (Authentication > Apple).
+- Clé publique RevenueCat `appl_…` en secret EAS (`production` et `preview`).
+- Build iOS `production` lancé.
+
+### Par Benny
+1. Produits d'achat intégré : trois produits de type **Consommable** (Apple ne propose pas d'« abonnement sans renouvellement » dans les achats intégrés) — `pass_weeks`, `pass_month`, `pass_contest`.
+2. **Server Notifications** : coller l'URL RevenueCat (`https://api.revenuecat.com/v1/incoming-webhooks/apple-server-to-server-notification/…`) dans App Store Connect > Informations sur l'app, en **Production et Sandbox**, version **2**.
+3. RevenueCat : offre « default » avec les packages **`week`**, **`month`**, **`contest`** (identifiants exacts attendus par le code) et le droit **`pass`**. Les identifiants de produit Apple sont libres.
+4. Fiche : textes, captures (voir `docs/assets-app-store.md`), URL de confidentialité et de support, questionnaire de confidentialité, classification d'âge, compte de démonstration.
 
 ### Backend (`elearn-supabase`, une PR, pgTAP avant push)
 - Edge Function `revenuecat-webhook` : authentification par en-tête secret, idempotence par identifiant de transaction, création de l'accès (comme `record_deposit_result`) pour `INITIAL_PURCHASE` et `NON_RENEWING_PURCHASE`, gestion des remboursements (`CANCELLATION`). `app_user_id` = identifiant Supabase.

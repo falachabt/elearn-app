@@ -63,6 +63,8 @@ Limites : le lien de domaine (Universal Links / App Links) n'est pas configuré 
 
 Les images de l'app sont dans `assets/images/` (icône iOS 1024 carrée pleine sans coins arrondis (le système applique le masque), icône adaptative Android avant-plan + monochrome dans la zone de sécurité de 66 % sur fond émeraude `#10B981` défini dans `app.json`, splash logo plat clair/sombre, favicon, icône de notification blanche 96x96, logos). Elles sont fabriquées depuis le kit de marque par `node scripts/fabriquer-assets.mjs [--kit dossier] [--apercu [fichier.png]]` (`--apercu` écrit l'aperçu sous masques rond et squircle, par défaut `/mnt/project-files/app/apercus/icones-apercu.png`) (Chromium via Playwright, le kit n'est jamais modifié). Dans l'app, utiliser le composant `Logo` (`variante` symbole ou horizontal ; la version horizontale suit le thème clair/sombre).
 
+Les images de la **fiche App Store** (captures, habillage, bannière d'en-tête) se produisent avec `node scripts/captures-app-store.mjs --url <url>` (Chromium, même technique). Les tailles exigées, les pièges (simulation iOS, bandeau web, écrans à paramètres, états vides) et la recette complète sont dans `docs/assets-app-store.md`.
+
 ## Rangement des tests
 
 Règle de Benny : quand un dossier (`src/services`, `src/session`, `src/components`, …) contient beaucoup de fichiers, les tests vont dans un sous-dossier `__tests__` du même dossier, nommés `<fichier>.test.ts(x)`, et importent le code avec `../`. Jest ne lance que `**/__tests__/**/*.test.[jt]s(x)` (voir `jest.testMatch` dans `package.json`) ; un test placé ailleurs est donc ignoré. Pas de test dans `src/app/` (uniquement des routes).
