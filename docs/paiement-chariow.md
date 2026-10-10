@@ -104,3 +104,20 @@ Secrets Supabase posés : `CHARIOW_API_KEY` et `CHARIOW_WEBHOOK_SECRET`.
 1. **Aligner les prix** Chariow sur `pass_prices` (500 / 2 500 / 7 500 FCFA) — l'API Chariow ne fait que lire les
    produits, la modification se fait dans le dashboard.
 2. Rien d'autre : le Pulse est créé (`pulse_x9pevzes33z4`, tous les évènements) et les secrets sont posés.
+
+## Liens universels : ce qui marche dans les builds 3.1.0
+
+Dans les builds **3.1.0 actuellement installés**, seuls `/r/*` et `/rejoindre/*` sont déclarés comme liens
+universels (`app.json` côté Android, `apple-app-site-association` côté iOS). Tout autre chemin ouvre le navigateur.
+
+Pour que le retour de paiement Chariow ramène quand même dans l'application, deux chemins cohabitent :
+
+1. **Le routeur d'appoint** `https://app.elearnprepa.com/r/lien?vers=%2Foffres%2Fretour%3Fcommande%3D…` — le préfixe
+   `/r` étant déjà déclaré, il fonctionne avec les binaires actuels, sans reconstruction. Il n'accepte que des chemins
+   internes connus (`src/app/r/lien.tsx`).
+2. **La page de retour**, qui tente d'ouvrir l'application par son schéma et propose un bouton de secours.
+
+`app.json` déclare désormais aussi `/offres`, `/discussion`, `/compte`, `/parrainage` et `/moi` : ces chemins
+fonctionneront **directement** à partir du prochain build natif. L'`apple-app-site-association` du site devra être
+complété de la même façon, et la version d'`app.json` incrémentée pour que les anciens binaires ne reçoivent pas une
+mise à jour à chaud qui ne leur correspond pas.
