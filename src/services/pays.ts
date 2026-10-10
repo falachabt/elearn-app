@@ -1,0 +1,75 @@
+import type { PaysPaiement } from './paiementPass';
+
+/**
+ * Liste exhaustive des pays proposés au paiement.
+ *
+ * Elle vit dans l'application, pas sur le serveur : c'est ce qui permet de choisir son pays — et donc de payer par
+ * carte avec Chariow — même quand pawaPay ne répond pas. Avant, la liste venait de pawaPay, donc une panne de pawaPay
+ * vidait le sélecteur et bloquait tout le monde, y compris les élèves qui n'allaient pas payer par Mobile Money.
+ *
+ * Le nom est traduit par `Intl.DisplayNames` (aucune table de noms à maintenir) et le drapeau vient d'un CDN public
+ * (`flagcdn.com`, drapeaux du domaine public) : un drapeau par code ISO, sans embarquer 250 images dans l'application.
+ * L'indicatif téléphonique n'est pas ici : il n'est utile qu'au Mobile Money, et c'est pawaPay qui le fournit.
+ */
+
+/** Codes ISO 3166-1 alpha-2, triés : c'est la liste de référence du sélecteur. */
+export const CODES_PAYS: readonly string[] = [
+  'AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AS', 'AT', 'AU', 'AW', 'AX', 'AZ',
+  'BA', 'BB', 'BD', 'BE', 'BF', 'BG', 'BH', 'BI', 'BJ', 'BL', 'BM', 'BN', 'BO', 'BQ', 'BR', 'BS', 'BT', 'BV', 'BW', 'BY', 'BZ',
+  'CA', 'CC', 'CD', 'CF', 'CG', 'CH', 'CI', 'CK', 'CL', 'CM', 'CN', 'CO', 'CR', 'CU', 'CV', 'CW', 'CX', 'CY', 'CZ',
+  'DE', 'DJ', 'DK', 'DM', 'DO', 'DZ', 'EC', 'EE', 'EG', 'EH', 'ER', 'ES', 'ET', 'FI', 'FJ', 'FK', 'FM', 'FO', 'FR',
+  'GA', 'GB', 'GD', 'GE', 'GF', 'GG', 'GH', 'GI', 'GL', 'GM', 'GN', 'GP', 'GQ', 'GR', 'GS', 'GT', 'GU', 'GW', 'GY',
+  'HK', 'HM', 'HN', 'HR', 'HT', 'HU', 'ID', 'IE', 'IL', 'IM', 'IN', 'IO', 'IQ', 'IR', 'IS', 'IT', 'JE', 'JM', 'JO', 'JP',
+  'KE', 'KG', 'KH', 'KI', 'KM', 'KN', 'KP', 'KR', 'KW', 'KY', 'KZ', 'LA', 'LB', 'LC', 'LI', 'LK', 'LR', 'LS', 'LT', 'LU', 'LV', 'LY',
+  'MA', 'MC', 'MD', 'ME', 'MF', 'MG', 'MH', 'MK', 'ML', 'MM', 'MN', 'MO', 'MP', 'MQ', 'MR', 'MS', 'MT', 'MU', 'MV', 'MW', 'MX', 'MY', 'MZ',
+  'NA', 'NC', 'NE', 'NF', 'NG', 'NI', 'NL', 'NO', 'NP', 'NR', 'NU', 'NZ', 'OM',
+  'PA', 'PE', 'PF', 'PG', 'PH', 'PK', 'PL', 'PM', 'PN', 'PR', 'PS', 'PT', 'PW', 'PY', 'QA', 'RE', 'RO', 'RS', 'RU', 'RW',
+  'SA', 'SB', 'SC', 'SD', 'SE', 'SG', 'SH', 'SI', 'SJ', 'SK', 'SL', 'SM', 'SN', 'SO', 'SR', 'SS', 'ST', 'SV', 'SX', 'SY', 'SZ',
+  'TC', 'TD', 'TF', 'TG', 'TH', 'TJ', 'TK', 'TL', 'TM', 'TN', 'TO', 'TR', 'TT', 'TV', 'TW', 'TZ',
+  'UA', 'UG', 'UM', 'US', 'UY', 'UZ', 'VA', 'VC', 'VE', 'VG', 'VI', 'VN', 'VU', 'WF', 'WS', 'YE', 'YT', 'ZA', 'ZM', 'ZW',
+];
+
+/** `Intl.DisplayNames` est présent sur le web et sur Hermes ; on retombe sur le code si l'environnement l'ignore. */
+const Affichage = (Intl as unknown as { DisplayNames?: new (langues: string[], options: { type: string }) => { of(c: string): string | undefined } }).DisplayNames;
+
+/** Pays connus, pour ne pas demander à `Intl` le nom d'un code qui n'existe pas (« région inconnue »). */
+const CONNUS = new Set(CODES_PAYS);
+
+/** Nom du pays dans la langue de l'élève, jamais vide. */
+export function nomPays(code: string | null | undefined, langue: string): string {
+  const propre = (code ?? '').toUpperCase();
+  if (!propre || !CONNUS.has(propre)) return propre;
+  if (!Affichage) return propre;
+  try {
+    return new Affichage([langue === 'en' ? 'en' : 'fr'], { type: 'region' }).of(propre) ?? propre;
+  } catch {
+    return propre;
+  }
+}
+
+/** Drapeau du pays (CDN public, un fichier par code). `null` pour un code inconnu : la ligne reste sans image. */
+export function drapeauPays(code: string | null | undefined): string | null {
+  const propre = (code ?? '').toLowerCase();
+  return /^[a-z]{2}$/.test(propre) ? `https://flagcdn.com/w40/${propre}.png` : null;
+}
+
+/**
+ * Pays du sélecteur, triés par nom dans la langue de l'élève. `indicatifs` (venus du serveur) complètent l'affichage
+ * quand pawaPay répond ; sans lui, la liste reste complète et utilisable.
+ */
+export function listerPays(langue: string, indicatifs: Record<string, string> = {}): PaysPaiement[] {
+  const collateur = (() => {
+    try {
+      return new Intl.Collator(langue === 'en' ? 'en' : 'fr', { sensitivity: 'base' });
+    } catch {
+      return null;
+    }
+  })();
+  return CODES_PAYS.map((alpha2) => ({
+    alpha2,
+    name: nomPays(alpha2, langue) || alpha2,
+    flag: drapeauPays(alpha2),
+    prefix: indicatifs[alpha2] ?? '',
+    currencies: [],
+  })).sort((a, b) => (collateur ? collateur.compare(a.name, b.name) : a.name.localeCompare(b.name)));
+}

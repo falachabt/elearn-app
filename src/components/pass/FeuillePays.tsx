@@ -100,7 +100,8 @@ export function FeuillePays({ ouverte, pays, choisi, onChoisir, onFermer }: { ou
                 <View style={[styles.ligne, { backgroundColor: actuel ? theme.marque.douce : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actuel ? 3 : bord.normal }]}>
                   {item.flag ? <Image source={{ uri: item.flag }} style={styles.drapeau} contentFit="cover" accessibilityIgnoresInvertColors /> : <View style={styles.drapeau} />}
                   <Text style={[typo.texteFort, styles.nom, { color: theme.texte.principal }]}>{item.name}</Text>
-                  <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{`+${item.prefix}`}</Text>
+                  {/* L'indicatif n'est connu que pour les pays du Mobile Money : pas de « + » orphelin ailleurs. */}
+                  {item.prefix ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{`+${item.prefix}`}</Text> : null}
                 </View>
               </Appui>
             );

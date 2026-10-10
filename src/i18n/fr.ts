@@ -920,6 +920,8 @@ export const fr = {
     paiementEnCours: 'On lance le paiement…',
     indisponibleTitre: 'Le Mobile Money n’est pas encore disponible dans ton pays',
     indisponibleTexte: 'Tu peux payer par carte bancaire, ou demander à quelqu’un de payer.',
+    panneTitre: 'Le Mobile Money est momentanément indisponible',
+    panneTexte: 'Ce n’est pas ton pays : le service ne répond pas. Tu peux payer par carte dès maintenant.',
     payerCarte: 'Payer par carte',
     carteNote: 'Paiement sécurisé, dans la monnaie de ton pays.',
     carteNumeroAide: 'Ton numéro, sans l’indicatif du pays.',

@@ -34,6 +34,12 @@ export async function enregistrerProfil(profil: Profil): Promise<void> {
 export const PAYS = ['CM', 'CI', 'SN', 'GA', 'BF', 'CD', 'FR'] as const;
 export type Pays = (typeof PAYS)[number];
 
+/**
+ * Indicatif téléphonique des pays proposés. Il sert au repli quand la liste des pays vient du serveur : sans lui, le
+ * sélecteur afficherait un « + » vide et le numéro Mobile Money partirait sans indicatif.
+ */
+export const INDICATIFS: Record<Pays, string> = { CM: '237', CI: '225', SN: '221', GA: '241', BF: '226', CD: '243', FR: '33' };
+
 /** Pays présélectionné d'après la région du téléphone (M1-02), Cameroun par défaut. */
 export function paysParDefaut(region?: string | null): Pays {
   const r = region?.toUpperCase();

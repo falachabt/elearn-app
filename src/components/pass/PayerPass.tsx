@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Gift, Lock } from 'lucide-react-native';
 import { ActivityIndicator, Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
@@ -10,6 +10,7 @@ import { suivre } from '@/services/analytics';
 import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
+import { drapeauPays, listerPays, nomPays } from '@/services/pays';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -91,9 +92,12 @@ export function PayerPass() {
   const [pays, setPays] = useState<string | null>(null);
   const promo = useCodePromo({ offre, pays, horsLigne, ecran: 'e2' });
   const [recuPromo, setRecuPromo] = useState<{ code: string; etiquette: string; initial: string; paye: string; gratuit: boolean } | null>(null);
-  const [liste, setListe] = useState<PaysPaiement[] | null>(null);
+  /** Indicatifs fournis par pawaPay (pour l'affichage du numéro Mobile Money) ; la liste des pays, elle, est locale. */
+  const [indicatifs, setIndicatifs] = useState<Record<string, string> | null>(null);
   const [choixPays, setChoixPays] = useState(false);
-  const [methodes, setMethodes] = useState<MethodesPays | 'chargement' | 'erreur'>('chargement');
+  const [methodes, setMethodes] = useState<MethodesPays | 'chargement'>('chargement');
+  /** pawaPay peut être momentanément injoignable : on ne bloque jamais l'élève, on lui propose la carte. */
+  const [panneMethodes, setPanneMethodes] = useState(false);
   const [operateur, setOperateur] = useState<string | null>(null);
   const [telephone, setTelephone] = useState('');
   const [code, setCode] = useState('');
@@ -139,12 +143,19 @@ export function PayerPass() {
     lireMethodes(pays, langue)
       .then((m) => {
         if (!actif) return;
+        setPanneMethodes(false);
         setMethodes(m);
         const libres = m.providers.filter((p) => p.available);
         // Un seul opérateur disponible : choisi d'office.
         if (libres.length === 1) setOperateur(libres[0].provider);
       })
-      .catch(() => actif && setMethodes('erreur'));
+      .catch(() => {
+        if (!actif) return;
+        // Mobile Money injoignable (pawaPay indisponible, jeton refusé, coupure) : plutôt qu'un écran sans issue, on
+        // se rabat sur « pas de Mobile Money ici », ce qui laisse le paiement par carte et le choix du pays ouverts.
+        setPanneMethodes(true);
+        setMethodes({ payable: false, country: pays, offers: [], providers: [] } as unknown as MethodesPays);
+      });
     return () => {
       actif = false;
     };
@@ -152,8 +163,14 @@ export function PayerPass() {
 
   const ouvrirPays = () => {
     setChoixPays(true);
-    if (!liste) void lirePaysPaiement(langue).then(setListe).catch(() => setListe([]));
+    // La liste des pays est locale et exhaustive : elle s'ouvre toujours, pawaPay répondant ou non. Le serveur ne sert
+    // qu'à compléter les indicatifs, utiles au seul Mobile Money.
+    if (indicatifs) return;
+    void lirePaysPaiement(langue)
+      .then((p) => setIndicatifs(Object.fromEntries(p.map((x) => [x.alpha2, x.prefix]))))
+      .catch(() => setIndicatifs({}));
   };
+  const listePays = useMemo(() => listerPays(langue, indicatifs ?? {}), [langue, indicatifs]);
 
   const m = typeof methodes === 'object' ? methodes : null;
   const offreChoisie = m?.offers.find((o) => o.code === offre) ?? null;
@@ -517,7 +534,7 @@ export function PayerPass() {
       <View style={styles.groupe}>
         <FeuillePays
           ouverte={choixPays}
-          pays={liste}
+          pays={listePays}
           choisi={pays}
           onFermer={() => setChoixPays(false)}
           onChoisir={(a2) => {
@@ -529,22 +546,26 @@ export function PayerPass() {
         />
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.pays').toUpperCase()}</Text>
         <View style={styles.ligne}>
-          <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? pays ?? ''}</Text>
+          {(m?.flag ?? drapeauPays(pays)) ? <Image source={{ uri: (m?.flag ?? drapeauPays(pays)) as string }} style={styles.drapeau} contentFit="cover" accessibilityIgnoresInvertColors /> : null}
+          <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? nomPays(pays, langue)}</Text>
           <Bouton petit variante="secondaire" libelle={t('paiement.changerPays')} onPress={ouvrirPays} />
         </View>
       </View>
 
       {methodes === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('paiement.chargement')}</Text> : null}
-      {methodes === 'erreur' ? (
-        <View style={styles.groupe}>
-          <Banniere ton="erreur" titre={t('paiement.erreurs.indisponible')} />
-          <Bouton variante="secondaire" libelle={t('paiement.reessayer')} onPress={() => { setMethodes('chargement'); setEssai((n) => n + 1); }} />
-        </View>
-      ) : null}
 
       {m && !m.payable ? (
         <View style={styles.groupe}>
-          <Banniere ton="info" titre={t('paiement.indisponibleTitre')} texte={t('paiement.indisponibleTexte')} />
+          {/* Deux cas bien distincts : le pays n'a jamais eu de Mobile Money, ou pawaPay ne répond pas en ce moment.
+              Le second ne doit pas se faire passer pour le premier, et dans les deux cas la carte reste ouverte. */}
+          <Banniere
+            ton="info"
+            titre={panneMethodes ? t('paiement.panneTitre') : t('paiement.indisponibleTitre')}
+            texte={panneMethodes ? t('paiement.panneTexte') : t('paiement.indisponibleTexte')}
+          />
+          {panneMethodes ? (
+            <Bouton variante="secondaire" libelle={t('paiement.reessayer')} onPress={() => { setPanneMethodes(false); setMethodes('chargement'); setEssai((n) => n + 1); }} />
+          ) : null}
           {/* Paiement international : le serveur décide du produit et du prix, la page s'ouvre chez Chariow. Le numéro
               est demandé car il figure sur le reçu ; le pays choisi fournit l'indicatif. */}
           <Secousse declencheur={secousse}>

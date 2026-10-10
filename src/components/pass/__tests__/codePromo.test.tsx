@@ -190,6 +190,8 @@ describe('code promo : changement de pays', () => {
     await screen.findByText('-20 %');
     mockVerifier.mockResolvedValueOnce({ valide: false, erreur: 'offre' });
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
+    // Liste exhaustive et virtualisée : on cherche le pays avant de le choisir.
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'seneg');
     await fireEvent.press(await screen.findByLabelText('Sénégal'));
     await waitFor(() => expect(mockVerifier).toHaveBeenCalledTimes(2));
     expect(mockVerifier).toHaveBeenLastCalledWith(expect.anything(), { code: 'ELEARN20', offre: 'month', pays: 'SN' });

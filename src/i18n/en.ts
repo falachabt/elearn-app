@@ -919,6 +919,8 @@ export const en: Textes = {
     paiementEnCours: 'Starting the payment…',
     indisponibleTitre: 'Mobile Money is not available in your country yet',
     indisponibleTexte: 'You can pay by card, or ask someone to pay.',
+    panneTitre: 'Mobile Money is temporarily unavailable',
+    panneTexte: 'This is not about your country: the service is not responding. You can pay by card right now.',
     payerCarte: 'Pay by card',
     carteNote: 'Secure payment, in your country’s currency.',
     carteNumeroAide: 'Your number, without the country code.',

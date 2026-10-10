@@ -15,6 +15,7 @@ const mockMethodes = jest.fn();
 const mockPayer = jest.fn();
 const mockSuivre = jest.fn();
 const mockChariow = jest.fn();
+const mockPays = jest.fn();
 const mockRafraichir = jest.fn(async () => {});
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ offre: 'month' }) }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
@@ -36,7 +37,7 @@ jest.mock('@/services/paiementPass', () => {
     ...actuel,
     modeEssai: () => false,
     lireMethodes: (...a: unknown[]) => mockMethodes(...a),
-    lirePaysPaiement: async () => [{ alpha2: 'SN', name: 'Sénégal', flag: null, prefix: '221', currencies: ['XOF'] }],
+    lirePaysPaiement: (...a: unknown[]) => mockPays(...a),
     payerMobileMoney: (...a: unknown[]) => mockPayer(...a),
     suivreCommande: (...a: unknown[]) => mockSuivre(...a),
     annulerCommande: async () => 'echoue',
@@ -56,6 +57,7 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockMethodes.mockResolvedValue(CM);
+  mockPays.mockResolvedValue([{ alpha2: 'SN', name: 'Sénégal', flag: null, prefix: '221', currencies: ['XOF'] }]);
 });
 
 describe('choix du pays dans une feuille avec recherche', () => {
@@ -64,7 +66,7 @@ describe('choix du pays dans une feuille avec recherche', () => {
     await screen.findByText('MTN MoMo');
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
     expect(await screen.findByText(fr.paiement.choisirPays)).toBeTruthy();
-    expect(screen.getByLabelText('Sénégal')).toBeTruthy();
+    // La liste est exhaustive (tous les pays) et virtualisée : la recherche fait apparaître le pays voulu.
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'SENEG');
     expect(screen.getByLabelText('Sénégal')).toBeTruthy();
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'zzz');
@@ -230,5 +232,37 @@ describe('pays hors Mobile Money : paiement par carte (Chariow)', () => {
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
     expect(mockChariow).not.toHaveBeenCalled();
     expect(await screen.findByText(fr.paiement.numeroInvalide)).toBeTruthy();
+  });
+
+  it('pawaPay injoignable : l’élève garde le choix du pays et le paiement par carte', async () => {
+    // Panne réelle du service (502 constaté en production) : l'écran ne doit jamais se retrouver sans issue.
+    mockMethodes.mockRejectedValue(new Error('502'));
+    mockChariow.mockClear();
+    await monter();
+
+    expect(await screen.findByText(fr.paiement.panneTitre)).toBeTruthy();
+    // On ne fait pas passer une panne pour un pays non couvert.
+    expect(screen.queryByText(fr.paiement.indisponibleTitre)).toBeNull();
+    // Le pays reste affiché et changeable, la carte reste proposée, et on peut réessayer.
+    expect(screen.getByRole('button', { name: fr.paiement.changerPays })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.payerCarte })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.reessayer })).toBeTruthy();
+  });
+
+  it('pawaPay injoignable : la feuille des pays n’est pas vide', async () => {
+    mockMethodes.mockRejectedValue(new Error('502'));
+    mockPays.mockRejectedValue(new Error('502'));
+    await monter();
+
+    await screen.findByText(fr.paiement.panneTitre);
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
+    // Repli local : les pays proposés à l'inscription sont là, sinon « Changer » ouvrirait une feuille vide.
+    // On vise le libellé des lignes de la feuille (l'en-tête affiche aussi le pays courant).
+    // Liste locale exhaustive : elle s'ouvre même sans le serveur. On cherche un pays hors Mobile Money qui n'était
+    // même pas dans la liste de l'inscription : c'est ce que Chariow rend possible.
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'seneg');
+    expect(await screen.findByLabelText('Sénégal')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'belgique');
+    expect(screen.getByLabelText('Belgique')).toBeTruthy();
   });
 });
