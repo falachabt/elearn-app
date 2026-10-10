@@ -71,17 +71,15 @@ function LigneOffre({ titre, aide, prix, prixInitial, badge, nonValable, choisie
             </View>
           ) : null}
         </View>
-        {/* La remise vit avec le prix, pas avec le titre : « conseillé » garde sa ligne, et les deux restent lisibles. */}
+        {/* La remise est un badge de coin, comme une pastille de notification : elle ne prend la place de rien. */}
+        {badge ? (
+          <View style={[styles.badgeCoin, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{badge}</Text>
+          </View>
+        ) : null}
         <View style={styles.prix}>
           {prixInitial ? <Text style={[typo.legende, styles.barre, { color: theme.texte.secondaire }]}>{prixInitial}</Text> : null}
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: espace[2] }}>
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
-            {badge ? (
-              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{badge}</Text>
-              </View>
-            ) : null}
-          </View>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
         </View>
       </View>
     </Appui>
@@ -293,5 +291,7 @@ const styles = StyleSheet.create({
   prix: { alignItems: 'flex-end' },
   barre: { textDecorationLine: 'line-through' },
   badge: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
+  // Pastille de coin, légèrement débordante : la ligne garde toute sa place pour le titre, l'aide et le prix.
+  badgeCoin: { position: 'absolute', top: -9, right: -5, zIndex: 2, borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
   nonValable: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
 });
