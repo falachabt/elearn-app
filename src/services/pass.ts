@@ -23,12 +23,15 @@ type LigneOffre = {
 };
 
 /**
- * Offres disponibles dans le pays (M8-01, M14), dans l'ordre d'affichage. Vide si aucun prix pour ce pays.
- * Le serveur (pass_offers) prend le prix saisi, sinon convertit le prix camerounais dans la devise du pays.
+ * Offres disponibles dans le pays (M8-01, M14), dans l'ordre d'affichage.
+ *
+ * Le serveur (pass_offers) prend le prix saisi, sinon convertit le prix camerounais dans la devise du pays. Les pays
+ * que pawaPay ne couvre pas n'ont aucun prix local : le paiement passe alors par Chariow, et on affiche le prix
+ * Chariow — celui que la plateforme prélève réellement — pour que l'élève lise ce qu'il paiera.
  */
 export async function lireOffres(client: Client, pays: string): Promise<Offre[]> {
   const { data, error } = await client.rpc('pass_offers', { p_country: pays.toUpperCase() });
-  if (!error && Array.isArray(data)) {
+  if (!error && Array.isArray(data) && data.length > 0) {
     return (data as LigneOffre[]).map((l) => ({
       code: l.product_code,
       montant: l.amount,
@@ -37,6 +40,19 @@ export async function lireOffres(client: Client, pays: string): Promise<Offre[]>
       dureeJours: l.duration_days,
       finSaison: l.season_ends_on,
       converti: l.converted,
+    }));
+  }
+  // Aucun prix local : la vente se fera par Chariow, donc on montre le prix Chariow.
+  const chariow = await client.rpc('chariow_offers');
+  if (!chariow.error && Array.isArray(chariow.data) && chariow.data.length > 0) {
+    return (chariow.data as Omit<LigneOffre, 'converted'>[]).map((l) => ({
+      code: l.product_code,
+      montant: l.amount,
+      devise: l.currency,
+      recommandee: l.recommended,
+      dureeJours: l.duration_days,
+      finSaison: l.season_ends_on,
+      converti: true,
     }));
   }
   return lirePrixSaisis(client, pays);

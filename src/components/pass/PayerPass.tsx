@@ -18,6 +18,7 @@ import {
 import { lireProfil } from '@/services/profil';
 import { effacerPaiementAttente, lirePaiementAttente, sauverPaiementAttente } from '@/services/reprisePaiement';
 import { getSupabase } from '@/services/supabase';
+import { lireOffres, type Offre } from '@/services/pass';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
@@ -148,10 +149,18 @@ export function PayerPass() {
     if (!pays) return;
     let actif = true;
     lireMethodes(pays, langue)
-      .then((m) => {
+      .then(async (m) => {
         if (!actif) return;
         setPanneMethodes(false);
         setMethodes(m);
+        // Pays que pawaPay ne couvre pas : le serveur ne renvoie aucune offre, et le paiement passe par Chariow. On
+        // affiche donc le prix Chariow (celui que la plateforme prélève), pour que l'élève lise ce qu'il paiera.
+        if (m.offers.length === 0) {
+          const os = await lireOffres(getSupabase(), pays).catch(() => [] as Offre[]);
+          if (actif && os.length > 0) {
+            setMethodes({ ...m, offers: os.map((o) => ({ code: o.code, amount: o.montant, currency: o.devise, converted: !!o.converti, recommended: o.recommandee, durationDays: o.dureeJours })) });
+          }
+        }
         const libres = m.providers.filter((p) => p.available);
         // Un seul opérateur disponible : choisi d'office.
         if (libres.length === 1) setOperateur(libres[0].provider);
