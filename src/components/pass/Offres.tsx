@@ -26,10 +26,17 @@ import { useCompteRequis } from '../FeuilleCompte';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 type Choix = CodeOffre | 'free';
-/** Réduction affichée en permanence sur les pass : le prix plein est 1,5 fois le prix payé. */
-const FACTEUR_PRIX_PLEIN = 1.5;
-const REMISE_PASS_PCT = 33;
-const prixPlein = (montant: number) => Math.round(montant * FACTEUR_PRIX_PLEIN);
+/**
+ * Prix plein affiché par pass, et remise annoncée. Chaque offre a la sienne : semaine 500 → 750 (−33 %), mois
+ * 2 500 → 4 000 (−37 %), concours 7 500 → 15 000 (−50 %). Le facteur s'applique à la devise du pays : la remise
+ * reste donc la même partout, conversion comprise.
+ */
+const PRIX_PLEIN: Record<CodeOffre, { facteur: number; pct: number }> = {
+  week: { facteur: 1.5, pct: 33 },
+  month: { facteur: 1.6, pct: 37 },
+  contest: { facteur: 2, pct: 50 },
+};
+const prixPlein = (code: CodeOffre, montant: number) => Math.round(montant * PRIX_PLEIN[code].facteur);
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; offres: Offre[]; acces: Acces; pays: string };
 
 /** Ligne d'offre : pastille radio, nom, aide, prix. La couleur n'est pas le seul signal (coche dans la pastille). */
@@ -55,11 +62,6 @@ function LigneOffre({ titre, aide, prix, prixInitial, badge, nonValable, choisie
           <View style={styles.titre}>
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
             {conseille ? <Etiquette texte={conseille} jaune /> : null}
-            {badge ? (
-              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{badge}</Text>
-              </View>
-            ) : null}
           </View>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{aide}</Text>
           {nonValable ? (
@@ -69,9 +71,17 @@ function LigneOffre({ titre, aide, prix, prixInitial, badge, nonValable, choisie
             </View>
           ) : null}
         </View>
+        {/* La remise vit avec le prix, pas avec le titre : « conseillé » garde sa ligne, et les deux restent lisibles. */}
         <View style={styles.prix}>
           {prixInitial ? <Text style={[typo.legende, styles.barre, { color: theme.texte.secondaire }]}>{prixInitial}</Text> : null}
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: espace[2] }}>
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{prix}</Text>
+            {badge ? (
+              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{badge}</Text>
+              </View>
+            ) : null}
+          </View>
         </View>
       </View>
     </Appui>
@@ -253,8 +263,8 @@ export function Offres() {
                 aide={t(`offres.${o.code}Aide`)}
                 prix={mm ? formaterMontant(prixPromo(o.code)?.valable && prixPromo(o.code)?.prixFinal !== undefined ? (prixPromo(o.code)?.prixFinal as number) : o.montant, o.devise) : (prixApple[o.code]?.prix ?? '')}
                 // Prix plein barré en permanence (−33 %) ; un code promo remplace cet affichage par le sien.
-                prixInitial={mm ? (prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : formaterMontant(prixPlein(o.montant), o.devise)) : undefined}
-                badge={mm ? (prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : t('paiement.promo.remise', { pct: String(REMISE_PASS_PCT) })) : undefined}
+                prixInitial={mm ? (prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : formaterMontant(prixPlein(o.code, o.montant), o.devise)) : undefined}
+                badge={mm ? (prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : t('paiement.promo.remise', { pct: String(PRIX_PLEIN[o.code].pct) })) : undefined}
                 nonValable={mm && promo.applique && prixPromo(o.code)?.valable === false ? t('paiement.promo.nonValable') : undefined}
                 choisie={choix === o.code}
                 conseille={o.recommandee ? t('offres.conseille') : undefined}

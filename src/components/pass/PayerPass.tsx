@@ -40,9 +40,13 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
 /** Une demande de paiement vit 10 minutes côté serveur. */
 const DUREE_DEMANDE_S = 600;
-/** Réduction affichée sur les pass : le prix plein est 1,5 fois le prix payé. */
-const FACTEUR_PRIX_PLEIN = 1.5;
-const REMISE_PASS_PCT = 33;
+/** Prix plein affiché par pass, et remise annoncée : semaine 500 → 750 (−33 %), mois 2 500 → 4 000 (−37 %),
+ *  concours 7 500 → 15 000 (−50 %). Le facteur suit la devise du pays, la remise reste donc la même partout. */
+const PRIX_PLEIN: Record<CodeOffre, { facteur: number; pct: number }> = {
+  week: { facteur: 1.5, pct: 33 },
+  month: { facteur: 1.6, pct: 37 },
+  contest: { facteur: 2, pct: 50 },
+};
 
 type Etape = 'saisie' | 'envoi' | 'attente' | 'fin';
 type Motif = 'solde' | 'refus' | 'delai' | 'numero' | 'operateur' | 'autre';
@@ -183,7 +187,7 @@ export function PayerPass() {
   const argent = (n: number) => (offreChoisie ? formaterMontant(n, offreChoisie.currency) : '');
   const montantInitial = offreChoisie ? argent(offreChoisie.amount) : '';
   // Prix plein affiché en permanence : 1,5 fois le prix payé, soit −33 %.
-  const prixPlein = offreChoisie ? argent(Math.round(offreChoisie.amount * FACTEUR_PRIX_PLEIN)) : '';
+  const prixPlein = offreChoisie ? argent(Math.round(offreChoisie.amount * PRIX_PLEIN[offre].facteur)) : '';
   const montant = offreChoisie ? argent(promoActif ? promoActif.prixFinal : offreChoisie.amount) : '';
   const etiquette = promoActif ? etiquetteRabais(promoActif, argent) : '';
   const economie = promoActif ? argent(promoActif.prixInitial - promoActif.prixFinal) : '';
@@ -622,7 +626,7 @@ export function PayerPass() {
                 <View style={styles.ligne}>
                   <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
                   <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                    <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('paiement.promo.remise', { pct: String(REMISE_PASS_PCT) })}</Text>
+                    <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('paiement.promo.remise', { pct: String(PRIX_PLEIN[offre].pct) })}</Text>
                   </View>
                 </View>
               </View>

@@ -147,7 +147,7 @@ describe('code promo sur la liste des Pass (E1)', () => {
     await saisirEtAppliquer('concours');
     expect(await screen.findByLabelText(/Pass concours, 6.750 FCFA au lieu de 7.500 FCFA/)).toBeTruthy();
     expect(screen.getAllByText(p.nonValable)).toHaveLength(2);
-    expect(screen.getByLabelText(/Pass mois, 2.500 FCFA au lieu de 3.750 FCFA\. Code non valable pour ce Pass/)).toBeTruthy();
+    expect(screen.getByLabelText(/Pass mois, 2.500 FCFA au lieu de 4.000 FCFA\. Code non valable pour ce Pass/)).toBeTruthy();
     expect(screen.getByRole('button', { name: /Payer 2.500 FCFA/ })).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('promo_code_unusable', { offre: 'month' });
   });
