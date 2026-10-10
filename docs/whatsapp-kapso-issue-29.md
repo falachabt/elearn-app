@@ -22,11 +22,11 @@ Deux autres chantiers restent ouverts : le **template OTP** (refusé par Meta, d
 
 `https://yhznbitjlzeslvudbsil.supabase.co/functions/v1/whatsapp-webhook`, signature `X-Webhook-Signature` vérifiée, idempotence `X-Idempotency-Key`, réponse 200 immédiate et traitement en tâche de fond (`EdgeRuntime.waitUntil`). Statuts `sent` / `delivered` / `read` / `failed` appliqués à `parent_outbox`, `STOP` = désinscription.
 
-### 2.3 Créer l'agent IA et configurer le serveur MCP (lecture DB) — **fait autrement, à confirmer**
+### 2.3 Créer l'agent IA et configurer l'accès en lecture à la base — **fait, sans MCP**
 
 - L'agent est en service : `supabase/functions/_shared/support_agent.ts` (boucle d'outils), `support.ts` (base de connaissances), `whatsapp_ui.ts` (listes, boutons, liens), `support_politesse.ts` (silences, clôtures, accents), `support_jev.ts` (forme de la réponse), fonction `support-auth-answer`, écran `/support-confirmer` dans l'application.
 - **Il n'y a pas de serveur MCP.** L'accès en lecture à la base passe par des fonctions SQL `security definer` exposées au modèle comme outils (`mes_paiements`, `mon_pass`, `support_tool_*`), appelées par `rpc` depuis l'Edge Function. Le résultat est le même — lecture seule, cloisonnée par compte — avec une surface d'attaque plus petite qu'un serveur MCP joignable.
-- **Décision à prendre** : on garde cette approche (recommandé : elle est en production et testée) ou on ouvre un vrai serveur MCP. Tant que ce n'est pas tranché, la case de l'issue reste ambiguë.
+- **Décision de Benny (10 octobre 2026) : pas de serveur MCP.** On garde cette approche. La case de l'issue est donc tranchée.
 
 ### 2.4 Créer les Templates Meta pour factures et rapports — **partiel**
 
@@ -39,21 +39,20 @@ Deux autres chantiers restent ouverts : le **template OTP** (refusé par Meta, d
 | `alerte_equipe_support` | UTILITY | APPROVED | alerte interne à l'équipe | **échoue (131042)** |
 | `rapport_hebdo_parent` | UTILITY | PENDING (créé le 10 octobre) | résumé du lundi enrichi, bouton vers la page web | en revue chez Meta |
 | `demande_paiement_parent` | UTILITY | PENDING (créé le 10 octobre) | demande de paiement au parent, bouton « Payer maintenant » | en revue chez Meta |
-| `code_connexion` | AUTHENTICATION | **refusé à la création** | code de connexion (OTP) | impossible aujourd'hui |
+| `code_connexion` | AUTHENTICATION | **refusé à la création** | code de connexion (OTP) | **abandonné** (décision de Benny, 10 octobre 2026) |
 
 Ce qui manque encore :
 
 - **Facture en pièce jointe** : aucun modèle avec en-tête `DOCUMENT`, et **aucun PDF de facture n'est produit** dans le dépôt (aucune trace de `facture`/`invoice` dans les migrations). Le reçu existe sous forme de texte (`recu_paiement` : produit, montant, devise, numéro de reçu) et le numéro de reçu vient de `orders.receipt_no`.
-- **Modèle OTP** : refusé. Meta exige **deux** conditions, et aucune des deux n'est remplie :
-  1. portefeuille d'entreprise Meta **vérifié** ;
-  2. plafond d'envoi **≥ 2 000** (Tier 1). Le WABA est en `TIER_250`.
+- **Modèle OTP : abandonné pour le moment** (décision de Benny, 10 octobre 2026). Meta exige **deux** conditions, et aucune des deux n'est remplie : portefeuille d'entreprise Meta **vérifié**, et plafond d'envoi **≥ 2 000** (le WABA est en `TIER_250`).
 
   Erreur exacte renvoyée le 10 octobre 2026 :
   `code 10, subcode 2388185 — "This WhatsApp business account does not have permission to create message template"`.
 
   À noter : la création de modèles **UTILITY fonctionne** sur ce même WABA (la preuve : `demande_paiement_parent` a été créé). Le refus est bien propre à la catégorie `AUTHENTICATION`.
 
-- **Résumé hebdomadaire enrichi** (demande de Benny du 10 octobre) : nouveau modèle avec **en-tête image** et **bouton vers une page web** consultable, plus la page elle-même. En chantier.
+- **Résumé hebdomadaire enrichi** : `rapport_hebdo_parent` (en-tête de texte, corps lisible, bouton **Voir le détail** vers `https://elearnprepa.com/parent/<jeton>`), la page web, l'image de marque et le jeton : **livré**. Envoi prévu le **dimanche à 14 h (Douala)**, sur la semaine en cours.
+- **En-tête d'image : écarté** (décision de Benny, 10 octobre 2026). L'API Kapso n'expose pas l'API Resumable Upload de Meta, donc un modèle à en-tête `IMAGE` n'est pas créable par l'API. On envoie **le lien seul, sans image** ; `_image` reste supporté dans le code pour plus tard.
 
 ### 2.5 Intégrer le SDK `@kapso/whatsapp-cloud-api` dans les processus métiers — **fait autrement**
 
@@ -63,26 +62,27 @@ Le SDK n'est pas utilisé. Les Edge Functions appellent l'API REST de Kapso dire
 
 | # | Blocage | Impact | Action |
 | --- | --- | --- | --- |
-| B1 | **Devise du compte WhatsApp Business non configurée** (`131042`) | **Aucun modèle n'est délivré** : résumés parents, reçus, alertes internes, futurs liens de paiement et OTP | Configurer la devise dans Meta Business : <https://business.facebook.com/billing_hub/accounts/details/?business_id=2907923766070747&asset_id=1613624570492818&wizard_name=CHANGE_COUNTRY_CURRENCY&account_type=whatsapp-business-account> |
-| B2 | **Vérification d'entreprise Meta** non faite | Refus de créer le modèle `code_connexion` | Lancer la vérification (gratuite, quelques jours) |
-| B3 | **Plafond d'envoi `TIER_250`** | Bloque aussi les modèles d'authentification (il faut ≥ 2 000) | Monter le palier après vérification |
+| B1 | **Devise du compte WhatsApp Business non configurée** (`131042`) | **Aucun modèle n'est délivré** : résumés parents, reçus, alertes internes, demande de paiement | Configurer la devise dans Meta Business : <https://business.facebook.com/billing_hub/accounts/details/?business_id=2907923766070747&asset_id=1613624570492818&wizard_name=CHANGE_COUNTRY_CURRENCY&account_type=whatsapp-business-account> |
+| B3 | **Plafond d'envoi `TIER_250`** | Suffit pour le volume actuel ; bloquerait un jour un modèle d'authentification | À relever seulement si le besoin revient |
 | B4 | **Numéro américain** (+1 201) pour un public camerounais | Confiance : le message vient d'un numéro étranger inconnu | Décider si on demande un numéro local à Kapso |
-| B5 | **Liste blanche `WHATSAPP_ALLOWLIST`** | Deux clients réels (Manuella Sephora, Kaaga Djongmo) sont restés sans réponse le 8 octobre | Un message de repli est ajouté ; l'ouverture complète reste ta décision |
+| B5 | **Liste blanche `WHATSAPP_ALLOWLIST`** | Les clients hors liste ne reçoivent qu'un message d'attente | Un message de repli est en place ; l'ouverture complète reste ta décision |
+| B6 | **Secrets Vault** `service_role_key` et `whatsapp_mode` à poser une fois (voir `docs/whatsapp-kapso.md` du dépôt `elearn-supabase`) | Sans eux, le cron d'envoi tourne sans rien faire | Deux `select vault.create_secret(...)` |
 
 ## 4. Travail restant, faisable sans Benny
 
 | # | Tâche | État |
 | --- | --- | --- |
-| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron `parent-summary` remplit `parent_outbox` le lundi, mais aucun cron ne vidait la file | **fait** — cron `parent-outbox-send` toutes les 5 minutes, inactif tant que le secret Vault `whatsapp_mode` ne vaut pas `reel` (sinon l'envoi en mode fictif perdrait les messages) |
+| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron remplit `parent_outbox`, aucun cron ne la vidait | **fait** — cron `parent-outbox-send` toutes les 5 minutes, inactif tant que le secret Vault `whatsapp_mode` ne vaut pas `reel` (sinon l'envoi en mode fictif perdrait les messages) |
 | T2 | Modèle `demande_paiement_parent` (demande de paiement au parent, bouton « Payer maintenant ») | **créé** (en revue). Le branchement demande de recueillir le numéro du parent dans l'application : c'est l'issue #14, pas #29 |
-| T3 | Rapport hebdomadaire parent enrichi : page web consultable + image de marque + nouveau modèle | **fait** (PR elearn-supabase #83, elearn-site #20) ; en-tête image impossible par l'API Kapso, voir la section Blocage |
+| T3 | Rapport hebdomadaire parent enrichi : page web consultable, jeton, nouveau modèle, envoi le dimanche à 14 h | **fait** (PR elearn-supabase #83, elearn-site #20). En-tête image écarté par décision : on envoie le lien seul |
 | T4 | Message de repli pour les numéros hors liste blanche | **fait** (secret `SUPPORT_HORS_LISTE`) |
-| T5 | Audit des conversations de l'agent et corrections associées | **fait** : `docs/audit-conversations-support.md`, plus le garde-fou anti-répétition |
+| T5 | Audit des conversations de l'agent et corrections associées | **fait** : `docs/audit-conversations-support.md`, garde-fou anti-répétition, reprise du pays choisi |
 | T6 | Facture en pièce jointe (PDF + modèle `DOCUMENT`) | à décider : utile seulement si la facture est un vrai document attendu |
 | T7 | Corriger la documentation du `phone_number_id` | **fait** |
-| T8 | Décision MCP (voir 2.3) | à trancher |
+| T8 | Décision MCP | **tranchée** : pas de serveur MCP (décision de Benny, 10 octobre 2026) |
 | T9 | Un client hors liste de recette ne reçoit qu'un message d'attente : décider quand ouvrir à tous | à trancher |
-| T10 | Ouvert : reprise d'un changement de parcours interrompu par une panne du modèle | à faire |
+| T10 | Reprise d'un changement de parcours interrompu par une panne du modèle | **fait** — le pays choisi est noté côté serveur (`support_sessions.pending_action`, 30 minutes) et rappelé au modèle, qui ne le redemande plus |
+
 
 ## 5. Fichiers de référence
 
