@@ -73,15 +73,34 @@ En-têtes de chaque livraison :
 
 **Rejeu** : l'onglet *Deliveries* permet de rejouer une livraison (nouvel `x-pulse-delivery-id`, donc retraitée : c'est voulu).
 
-## Intégration prévue (à construire)
+## Intégration (faite)
 
-1. **Migration additive** : `pass_products.chariow_product_id` (le mapping pass ↔ produit Chariow en base, comme `apple_product_id`).
-2. **Edge Function `chariow-checkout`** : reçoit le pass et l'élève connecté, appelle `POST /v1/checkout` avec `custom_metadata = { user_id, product_code }`, renvoie `checkout_url`.
-3. **Edge Function `chariow-webhook`** : vérifie la signature sur le corps brut, déduplique sur `x-pulse-delivery-id`, et sur `successful.sale` crée le droit (`entitlements`) à partir de `custom_metadata` — même logique que `record_apple_purchase`.
-4. **Application web** : proposer Chariow là où pawaPay ne couvre pas le pays.
+Règle produit : **si le pays de l'élève n'est pas payable par pawaPay, on lui propose Chariow**. Sur le web les deux
+sont proposés (les règles d'Apple ne s'y appliquent pas) ; sur Android le Mobile Money reste la voie normale ; sur iOS
+ni l'un ni l'autre (achat intégré Apple).
+
+```
+1. create_order(pays, provider := 'chariow')   → une commande `orders`, comme un dépôt Mobile Money
+2. POST /v1/checkout (Chariow)                 → custom_metadata = { order_id }   ← le lien avec l'élève
+3. l'élève paie sur la page Chariow            → redirect_url vers /offres/retour
+4. Pulse « successful.sale »                   → record_deposit_result(order_id, 'completed')
+                                                 → droit + reçu + notification + historique
+```
+
+1. **Migration `20261009150000_paiement_chariow.sql`** (additive) : `pass_products.chariow_product_id` ;
+   `create_order_base` et son enveloppe `create_order` acceptent `p_provider` (défaut `pawapay`, donc le back-office
+   ne change pas) ; **repli de prix réservé à Chariow** pour un pays hors zone XAF/XOF ; `record_deposit_result`
+   journalise le vrai fournisseur.
+2. **Edge Function `chariow-checkout`** (JWT conservé) : crée la commande, appelle Chariow, renvoie `checkout_url`.
+3. **Edge Function `chariow-webhook`** (publique, `verify_jwt = false`) : vérifie la signature du **corps brut**,
+   déduplique sur la vente, met la commande à jour.
+4. **Application** : `src/services/chariow.ts` appelle la fonction ; `PayerPass` propose « Payer par carte » quand le
+   pays n'est pas payable ; `src/app/offres/retour.tsx` affiche le résultat au retour de Chariow.
+
+Secrets Supabase posés : `CHARIOW_API_KEY` et `CHARIOW_WEBHOOK_SECRET`.
 
 ## À faire côté Benny
 
-1. **Créer un Pulse** (Automations → Pulses) vers `https://yhznbitjlzeslvudbsil.supabase.co/functions/v1/chariow-webhook`, évènement `successful.sale` (au minimum).
-2. Me donner le **secret de signature** du Pulse (`whsec_…`).
-3. **Aligner les prix** Chariow sur `pass_prices` (500 / 2 500 / 7 500 FCFA).
+1. **Aligner les prix** Chariow sur `pass_prices` (500 / 2 500 / 7 500 FCFA) — l'API Chariow ne fait que lire les
+   produits, la modification se fait dans le dashboard.
+2. Rien d'autre : le Pulse est créé (`pulse_x9pevzes33z4`, tous les évènements) et les secrets sont posés.

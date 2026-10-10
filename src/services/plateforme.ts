@@ -8,6 +8,9 @@ import { iosSimule } from './plateformeDev';
  * ni à un paiement externe. Les pass restent présentés ; leur achat intégré (StoreKit) est un chantier à part (voir
  * docs/reprise-photo-2026-10-02.md). Les crédits gratuits fonctionnent partout.
  *
+ * Le **web** est ouvert au paiement : les règles d'Apple ne s'y appliquent pas. Le Mobile Money y fonctionne comme sur
+ * Android (l'élève valide sur son téléphone), et **Chariow** prend le relais pour les pays que pawaPay ne couvre pas.
+ *
  * La simulation « iOS » de la page développeur coupe aussi le Mobile Money, pour reproduire fidèlement l'iPhone.
  */
-export const paiementPossible = (os: string = Platform.OS): boolean => os === 'android' && !iosSimule();
+export const paiementPossible = (os: string = Platform.OS): boolean => !iosSimule() && (os === 'android' || os === 'web');

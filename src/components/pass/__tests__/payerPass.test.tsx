@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -13,9 +14,20 @@ import { PayerPass } from '../PayerPass';
 const mockMethodes = jest.fn();
 const mockPayer = jest.fn();
 const mockSuivre = jest.fn();
+const mockChariow = jest.fn();
 const mockRafraichir = jest.fn(async () => {});
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ offre: 'month' }) }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/chariow', () => {
+  class ErreurChariow extends Error {
+    code: string;
+    constructor(code: string, message = '') {
+      super(message);
+      this.code = code;
+    }
+  }
+  return { ErreurChariow, ouvrirPaiementChariow: (...a: unknown[]) => mockChariow(...a) };
+});
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: jest.fn(async () => ({ data: 'cancelled', error: null })) }) }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => ({ rafraichir: mockRafraichir }) }));
 jest.mock('@/services/paiementPass', () => {
@@ -181,5 +193,42 @@ describe('paiement du pass par Mobile Money', () => {
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
     expect(screen.getByText(fr.paiement.codeRequis)).toBeTruthy();
     expect(mockPayer).not.toHaveBeenCalled();
+  });
+});
+
+describe('pays hors Mobile Money : paiement par carte (Chariow)', () => {
+  const HORS_ZONE = { payable: false, country: 'FR', countryName: 'France', prefix: '33', currency: null, offers: [], providers: [] };
+
+  it('propose la carte, ouvre la page de paiement, puis attend la confirmation', async () => {
+    mockMethodes.mockResolvedValue(HORS_ZONE);
+    mockChariow.mockResolvedValue({ commande: 'ch1', url: 'https://payment.chariow.com/x', montant: 2500, devise: 'XAF' });
+    mockSuivre.mockImplementation(() => new Promise(() => {}));
+    const openURL = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+
+    await monter();
+    expect(await screen.findByText(fr.paiement.payerCarte)).toBeTruthy();
+    expect(screen.getByText(fr.paiement.indisponibleTitre)).toBeTruthy();
+    // Aucun opérateur Mobile Money dans ce pays : la carte remplace le choix d'opérateur.
+    expect(screen.queryByText('MTN MoMo')).toBeNull();
+
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '612345678');
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
+
+    await waitFor(() => expect(mockChariow).toHaveBeenCalled());
+    expect(openURL).toHaveBeenCalledWith('https://payment.chariow.com/x');
+    // L'attente parle de la carte, jamais d'un opérateur à valider sur le téléphone.
+    expect(await screen.findByText(fr.paiement.carteAttenteTitre)).toBeTruthy();
+    expect(screen.queryByText(fr.paiement.attenteTitre)).toBeNull();
+    openURL.mockRestore();
+  });
+
+  it('un numéro trop court est refusé avant tout appel au serveur', async () => {
+    mockMethodes.mockResolvedValue(HORS_ZONE);
+    mockChariow.mockClear();
+    await monter();
+    await screen.findByText(fr.paiement.payerCarte);
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
+    expect(mockChariow).not.toHaveBeenCalled();
+    expect(await screen.findByText(fr.paiement.numeroInvalide)).toBeTruthy();
   });
 });

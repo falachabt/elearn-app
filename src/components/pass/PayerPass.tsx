@@ -7,6 +7,7 @@ import { ActivityIndicator, Linking, StyleSheet, Text, TextInput, View } from 'r
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
 import {
@@ -103,6 +104,9 @@ export function PayerPass() {
   const [secousse, setSecousse] = useState(0);
   const [essai, setEssai] = useState(0);
   const [confirmerAnnulation, setConfirmerAnnulation] = useState(false);
+  const [envoiChariow, setEnvoiChariow] = useState(false);
+  /** Paiement par carte en cours : l'attente ne parle pas d'opérateur Mobile Money, et « Renvoyer » n'a pas de sens. */
+  const [urlCarte, setUrlCarte] = useState<string | null>(null);
   const [restant, setRestant] = useState(DUREE_DEMANDE_S);
   const arret = useRef({ annule: false });
   const champNumeroRef = useRef<TextInput>(null);
@@ -175,6 +179,7 @@ export function PayerPass() {
   const terminer = useCallback(
     (r: ResultatPaiement) => {
       effacerPaiementAttente().catch(() => {});
+      setUrlCarte(null);
       setResultat(r);
       setEtape('fin');
       if (r.statut === 'reussi') {
@@ -257,6 +262,34 @@ export function PayerPass() {
     }
   };
 
+  // Chariow : pays que le Mobile Money ne couvre pas. Le serveur crée la commande et renvoie la page de paiement, que
+  // l'on ouvre dans le navigateur ; au retour, l'écran d'attente (déjà en place) suit la commande jusqu'à son issue.
+  const payerChariow = async () => {
+    if (!pays || envoiChariow) return;
+    setErreur(null);
+    setChampErreur(null);
+    if (telephone.replace(/\D/g, '').length < 6) {
+      setSecousse((n) => n + 1);
+      return setChampErreur('numero');
+    }
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
+    setEnvoiChariow(true);
+    try {
+      const p = await ouvrirPaiementChariow(getSupabase(), { offre, pays, telephone });
+      setResultat({ statut: 'en_attente', commande: p.commande, montant: p.montant, devise: p.devise });
+      setRestant(DUREE_DEMANDE_S);
+      setUrlCarte(p.url);
+      setEtape('attente');
+      await Linking.openURL(p.url);
+    } catch (e) {
+      const code = e instanceof ErreurChariow ? e.code : 'reseau';
+      // « configuration » n'a pas de texte dédié : c'est une indisponibilité vue de l'élève.
+      setErreur(t(code === 'configuration' ? 'paiement.erreurs.indisponible' : (`paiement.erreurs.${code}` as CleTexte)));
+    } finally {
+      setEnvoiChariow(false);
+    }
+  };
+
   // Prix final à 0 : le serveur active le pass sans Mobile Money (maquette code promo, état 7).
   const activer = async () => {
     if (!pays || !promoActif?.gratuit) return;
@@ -283,6 +316,7 @@ export function PayerPass() {
     setConfirmerAnnulation(false);
     arret.current.annule = true;
     if (commande) await annulerCommande(getSupabase(), commande).catch(() => {});
+    setUrlCarte(null);
     setResultat(null);
     setEtape('saisie');
   };
@@ -394,27 +428,40 @@ export function PayerPass() {
       <Ecran
         pied={
           <View style={styles.groupe}>
-            <Bouton variante="secondaire" libelle={t('paiement.renvoyer')} onPress={() => void renvoyer()} />
+            {urlCarte ? (
+              // Paiement par carte : « Renvoyer la demande » n'a pas de sens (aucun opérateur à relancer), on propose
+              // de rouvrir la page de paiement.
+              <Bouton libelle={t('paiement.carteRouvrir')} onPress={() => void Linking.openURL(urlCarte)} />
+            ) : (
+              <Bouton variante="secondaire" libelle={t('paiement.renvoyer')} onPress={() => void renvoyer()} />
+            )}
             <Bouton variante="secondaire" libelle={t('paiement.annuler')} onPress={() => setConfirmerAnnulation(true)} />
-            {lienParent}
+            {urlCarte ? null : lienParent}
           </View>
         }
       >
         {entete}
-        <View style={styles.groupe}>
-          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
-          {etapes.map((texte, i) => (
-            <View key={texte} style={styles.ligne}>
-              <View style={[styles.numero, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+        {urlCarte ? (
+          <View style={styles.groupe}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.carteAttenteTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('paiement.carteAttenteTexte')}</Text>
+          </View>
+        ) : (
+          <View style={styles.groupe}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
+            {etapes.map((texte, i) => (
+              <View key={texte} style={styles.ligne}>
+                <View style={[styles.numero, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+                </View>
+                <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{texte}</Text>
               </View>
-              <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{texte}</Text>
-            </View>
-          ))}
-          {resultat.urlAutorisation ? (
-            <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
-          ) : null}
-        </View>
+            ))}
+            {resultat.urlAutorisation ? (
+              <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
+            ) : null}
+          </View>
+        )}
         <View style={styles.ligne}>
           <ActivityIndicator color={theme.marque.principale} />
           <Text accessibilityLiveRegion="polite" style={[typo.petit, styles.flex, { color: theme.texte.secondaire }]}>{t('paiement.attenteExpire', { temps: mmss(restant) })}</Text>
@@ -498,7 +545,33 @@ export function PayerPass() {
       {m && !m.payable ? (
         <View style={styles.groupe}>
           <Banniere ton="info" titre={t('paiement.indisponibleTitre')} texte={t('paiement.indisponibleTexte')} />
-          <Bouton libelle={t('paiement.demanderPayer')} onPress={parent} />
+          {/* Paiement international : le serveur décide du produit et du prix, la page s'ouvre chez Chariow. Le numéro
+              est demandé car il figure sur le reçu ; le pays choisi fournit l'indicatif. */}
+          <Secousse declencheur={secousse}>
+            <View style={styles.groupe}>
+              <Champ
+                libelle={t('paiement.numero')}
+                value={telephone}
+                onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}
+                keyboardType="phone-pad"
+                autoComplete="tel"
+                maxLength={20}
+                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide') : undefined}
+              />
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('paiement.carteNumeroAide')}</Text>
+            </View>
+          </Secousse>
+          <Bouton
+            libelle={envoiChariow ? t('paiement.paiementEnCours') : t('paiement.payerCarte')}
+            onPress={() => void payerChariow()}
+            desactive={envoiChariow}
+            retour
+          />
+          <View style={styles.note}>
+            <Lock size={14} color={theme.texte.secondaire} strokeWidth={2} />
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('paiement.carteNote')}</Text>
+          </View>
+          <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />
         </View>
       ) : null}
 
