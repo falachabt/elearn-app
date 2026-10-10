@@ -26,6 +26,10 @@ import { useCompteRequis } from '../FeuilleCompte';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 type Choix = CodeOffre | 'free';
+/** Réduction affichée en permanence sur les pass : le prix plein est 1,5 fois le prix payé. */
+const FACTEUR_PRIX_PLEIN = 1.5;
+const REMISE_PASS_PCT = 33;
+const prixPlein = (montant: number) => Math.round(montant * FACTEUR_PRIX_PLEIN);
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; offres: Offre[]; acces: Acces; pays: string };
 
 /** Ligne d'offre : pastille radio, nom, aide, prix. La couleur n'est pas le seul signal (coche dans la pastille). */
@@ -248,8 +252,9 @@ export function Offres() {
                 titre={t(`offres.${o.code}`)}
                 aide={t(`offres.${o.code}Aide`)}
                 prix={mm ? formaterMontant(prixPromo(o.code)?.valable && prixPromo(o.code)?.prixFinal !== undefined ? (prixPromo(o.code)?.prixFinal as number) : o.montant, o.devise) : (prixApple[o.code]?.prix ?? '')}
-                prixInitial={mm && prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : undefined}
-                badge={mm && prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : undefined}
+                // Prix plein barré en permanence (−33 %) ; un code promo remplace cet affichage par le sien.
+                prixInitial={mm ? (prixPromo(o.code)?.valable ? formaterMontant(o.montant, o.devise) : formaterMontant(prixPlein(o.montant), o.devise)) : undefined}
+                badge={mm ? (prixPromo(o.code)?.valable ? prixPromo(o.code)?.etiquette : t('paiement.promo.remise', { pct: String(REMISE_PASS_PCT) })) : undefined}
                 nonValable={mm && promo.applique && prixPromo(o.code)?.valable === false ? t('paiement.promo.nonValable') : undefined}
                 choisie={choix === o.code}
                 conseille={o.recommandee ? t('offres.conseille') : undefined}

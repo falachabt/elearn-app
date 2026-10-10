@@ -10,7 +10,7 @@ import { suivre } from '@/services/analytics';
 import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
-import { drapeauPays, exempleNumero, formaterNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
+import { ajoutEnFin, drapeauPays, exempleNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -577,7 +577,7 @@ export function PayerPass() {
               <Champ
                 libelle={t('paiement.carteNumero')}
                 value={telephone}
-                onChangeText={(v) => { setTelephone(formaterNumero(v, pays)); setChampErreur(null); }}
+                onChangeText={(v) => { setTelephone(ajoutEnFin(v, telephone, pays)); setChampErreur(null); }}
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}
@@ -703,7 +703,7 @@ export function PayerPass() {
                 ref={champNumeroRef}
                 libelle={t('paiement.numero')}
                 value={telephone}
-                onChangeText={(v) => { setTelephone(formaterNumero(v, pays)); setChampErreur(null); }}
+                onChangeText={(v) => { setTelephone(ajoutEnFin(v, telephone, pays)); setChampErreur(null); }}
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}

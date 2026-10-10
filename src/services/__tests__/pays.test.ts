@@ -1,4 +1,4 @@
-import { CODES_PAYS, drapeauPays, exempleNumero, formaterNumero, listerPays, nomPays, numeroPlausible } from '../pays';
+import { ajoutEnFin, CODES_PAYS, drapeauPays, exempleNumero, formaterNumero, listerPays, nomPays, numeroPlausible } from '../pays';
 
 describe('mise en forme du numéro', () => {
   it('espace le numéro selon le pays, au fil de la frappe', () => {
@@ -11,8 +11,16 @@ describe('mise en forme du numéro', () => {
     expect(formaterNumero('657273753', null)).toBe('657273753');
   });
 
-  it('donne un exemple de numéro lisible par pays', () => {
-    expect(exempleNumero('CM')).toBe('6 71 23 45 67');
+  it('ne reformate pas une édition au milieu : le curseur ne doit pas sauter à la fin', () => {
+    // Écrire à la fin : on met en forme.
+    expect(ajoutEnFin('657273753', '', 'CM')).toBe('6 57 27 37 53');
+    expect(ajoutEnFin('6 57 27 37', '6 57 27 3', 'CM')).toBe('6 57 27 37');
+    // Corriger au milieu ou effacer : on laisse la saisie intacte.
+    expect(ajoutEnFin('6 57 2 7 37 53', '6 57 27 37 53', 'CM')).toBe('6 57 2 7 37 53');
+    expect(ajoutEnFin('6 57 27 37 5', '6 57 27 37 53', 'CM')).toBe('6 57 27 37 5');
+  });
+
+  it('donne un exemple de numéro lisible par pays', () => {    expect(exempleNumero('CM')).toBe('6 71 23 45 67');
     expect(exempleNumero('FR')).toBe('6 12 34 56 78');
     expect(exempleNumero(null)).toBe('');
   });

@@ -68,6 +68,19 @@ export function exempleNumero(code: string | null | undefined): string {
 }
 
 /**
+ * Mise en forme à la frappe, sans jamais déplacer le curseur.
+ *
+ * Un champ contrôlé qui réécrit sa valeur pendant une édition au milieu du texte repose le curseur à la fin : c'est le
+ * comportement du champ natif, et c'est très pénible pour corriger un chiffre. On ne remet donc en forme que lorsque
+ * l'élève écrit à la fin (`v` commence par l'ancien texte) ; toute autre modification est laissée telle quelle, espaces
+ * compris, pour que le curseur reste où il est.
+ */
+export function ajoutEnFin(nouveau: string, ancien: string, code: string | null | undefined): string {
+  if (!nouveau.startsWith(ancien)) return nouveau;
+  return formaterNumero(nouveau, code);
+}
+
+/**
  * Met en forme le numéro au fil de la frappe, selon le pays : au Cameroun « 657273753 » s'écrit « 6 57 27 37 53 ».
  * C'est le formateur officiel de libphonenumber qui s'en charge (245 pays). Pays inconnu ou saisie libre : on rend la
  * saisie telle quelle plutôt que de lutter contre l'élève.
