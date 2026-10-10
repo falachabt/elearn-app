@@ -179,19 +179,21 @@ describe('paiement du pass par Mobile Money', () => {
     expect(screen.getByRole('button', { name: fr.paiement.changerNumero })).toBeTruthy();
   });
 
-  it('pays sans pawaPay : on le dit et on propose de faire payer un parent', async () => {
+  it('pays sans pawaPay : on propose le paiement en ligne, sans rien annoncer', async () => {
     mockMethodes.mockResolvedValue({ payable: false, country: 'CM', offers: [], providers: [] });
     await monter();
-    expect(await screen.findByText(fr.paiement.indisponibleTitre)).toBeTruthy();
+    // Un pays qui n'a jamais eu de Mobile Money n'a rien à annoncer : on propose de payer en ligne, simplement.
+    expect(await screen.findByRole('button', { name: fr.paiement.payerCarte })).toBeTruthy();
+    expect(screen.queryByText(fr.paiement.panneTitre)).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.demanderPayer }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/offres/parent', params: { offre: 'month' } });
   });
 
   it('opérateur à code d’autorisation (PREAUTH) : le code est demandé avant de payer', async () => {
-    mockMethodes.mockResolvedValue({ ...CM, providers: [{ ...CM.providers[0], provider: 'ORANGE_SEN', name: 'Orange Money', authType: 'PREAUTH', pinPrompt: 'MANUAL' }] });
+    mockMethodes.mockResolvedValue({ ...CM, providers: [{ ...CM.providers[0], provider: 'ORANGE_CMR', name: 'Orange Money', authType: 'PREAUTH', pinPrompt: 'MANUAL' }] });
     await monter();
     await screen.findByText('Orange Money');
-    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '771234567');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '699887766');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
     expect(screen.getByText(fr.paiement.codeRequis)).toBeTruthy();
     expect(mockPayer).not.toHaveBeenCalled();
@@ -209,11 +211,11 @@ describe('pays hors Mobile Money : paiement par carte (Chariow)', () => {
 
     await monter();
     expect(await screen.findByText(fr.paiement.payerCarte)).toBeTruthy();
-    expect(screen.getByText(fr.paiement.indisponibleTitre)).toBeTruthy();
-    // Aucun opérateur Mobile Money dans ce pays : la carte remplace le choix d'opérateur.
+    // Aucun opérateur Mobile Money dans ce pays, et aucune annonce à faire : la carte remplace le choix d'opérateur.
     expect(screen.queryByText('MTN MoMo')).toBeNull();
+    expect(screen.queryByText(fr.paiement.panneTitre)).toBeNull();
 
-    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '612345678');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.carteNumero), '612345678');
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
 
     await waitFor(() => expect(mockChariow).toHaveBeenCalled());

@@ -10,7 +10,7 @@ import { suivre } from '@/services/analytics';
 import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
-import { drapeauPays, listerPays, nomPays } from '@/services/pays';
+import { drapeauPays, listerPays, nomPays, numeroPlausible } from '@/services/pays';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -238,7 +238,7 @@ export function PayerPass() {
     if (!pays || !op) return;
     setErreur(null);
     setChampErreur(null);
-    if (telephone.replace(/\D/g, '').length < 8) {
+    if (!numeroPlausible(telephone, pays)) {
       champNumeroRef.current?.focus();
       setSecousse((n) => n + 1);
       return setChampErreur('numero');
@@ -285,7 +285,7 @@ export function PayerPass() {
     if (!pays || envoiChariow) return;
     setErreur(null);
     setChampErreur(null);
-    if (telephone.replace(/\D/g, '').length < 6) {
+    if (!numeroPlausible(telephone, pays)) {
       setSecousse((n) => n + 1);
       return setChampErreur('numero');
     }
@@ -556,22 +556,21 @@ export function PayerPass() {
 
       {m && !m.payable ? (
         <View style={styles.groupe}>
-          {/* Deux cas bien distincts : le pays n'a jamais eu de Mobile Money, ou pawaPay ne répond pas en ce moment.
-              Le second ne doit pas se faire passer pour le premier, et dans les deux cas la carte reste ouverte. */}
-          <Banniere
-            ton="info"
-            titre={panneMethodes ? t('paiement.panneTitre') : t('paiement.indisponibleTitre')}
-            texte={panneMethodes ? t('paiement.panneTexte') : t('paiement.indisponibleTexte')}
-          />
+          {/* Un pays sans Mobile Money (France, Belgique…) n'a rien à annoncer : on lui propose simplement de payer en
+              ligne. On ne parle d'indisponibilité que si le Mobile Money existe quelque part et ne répond pas : service
+              injoignable (panneMethodes), ou opérateurs du pays tous fermés. */}
+          {panneMethodes || m.providers.length > 0 ? (
+            <Banniere ton="info" titre={t('paiement.panneTitre')} texte={t('paiement.panneTexte')} />
+          ) : null}
           {panneMethodes ? (
             <Bouton variante="secondaire" libelle={t('paiement.reessayer')} onPress={() => { setPanneMethodes(false); setMethodes('chargement'); setEssai((n) => n + 1); }} />
           ) : null}
-          {/* Paiement international : le serveur décide du produit et du prix, la page s'ouvre chez Chariow. Le numéro
-              est demandé car il figure sur le reçu ; le pays choisi fournit l'indicatif. */}
+          {/* Paiement en ligne (Chariow) : carte bancaire ou Mobile Money selon ce que Chariow propose dans le pays. Le
+              numéro est demandé parce qu'il figure sur le reçu ; le pays choisi fournit l'indicatif. */}
           <Secousse declencheur={secousse}>
             <View style={styles.groupe}>
               <Champ
-                libelle={t('paiement.numero')}
+                libelle={t('paiement.carteNumero')}
                 value={telephone}
                 onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}
                 keyboardType="phone-pad"

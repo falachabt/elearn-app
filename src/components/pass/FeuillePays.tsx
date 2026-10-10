@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import type { PaysPaiement } from '@/services/paiementPass';
+import { ALPHA3, INDICATIFS_MONDE } from '@/services/paysCodes';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
@@ -19,11 +20,38 @@ function Fond(props: BottomSheetBackdropProps) {
 /** Sans accents ni majuscules : « cote d'ivoire » trouve « Côte d’Ivoire ». */
 export const normaliser = (v: string) => v.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase().trim();
 
-/** Pays qui correspondent à la saisie (nom, code ISO, devise). Vide : tous. */
+/**
+ * Pays qui correspondent à la saisie. On doit pouvoir y arriver par le nom (« Cameroun »), le code à deux lettres
+ * (« CM »), le code à trois lettres (« CMR », « CIV ») ou l'indicatif téléphonique (« 237 », « +237 »). Vide : tous.
+ *
+ * Les résultats sont classés : le code exact d'abord (« CI » sort la Côte d'Ivoire avant la Cité du Vatican), puis
+ * l'indicatif exact, puis le nom commençant par la saisie, et enfin les correspondances au milieu du nom.
+ */
 export function filtrerPays(liste: PaysPaiement[], saisie: string): PaysPaiement[] {
   const q = normaliser(saisie);
   if (!q) return liste;
-  return liste.filter((p) => normaliser(p.name).includes(q) || p.alpha2.toLowerCase() === q || p.currencies.some((d) => d.toLowerCase().includes(q)));
+  const chiffres = q.replace(/\D/g, '');
+
+  const rang = (p: PaysPaiement): number => {
+    const code = p.alpha2.toLowerCase();
+    const alpha3 = (ALPHA3[p.alpha2] ?? '').toLowerCase();
+    const indicatif = (p.prefix || INDICATIFS_MONDE[p.alpha2] || '').replace(/\D/g, '');
+    const nom = normaliser(p.name);
+    if (code === q || (!!alpha3 && alpha3 === q)) return 0;
+    if (!!chiffres && !!indicatif && indicatif === chiffres) return 1;
+    if (nom.startsWith(q)) return 2;
+    if (!!chiffres && !!indicatif && indicatif.startsWith(chiffres)) return 3;
+    if (nom.includes(q)) return 4;
+    if (p.currencies.some((d) => d.toLowerCase().includes(q))) return 5;
+    return -1;
+  };
+
+  return liste
+    .map((p) => ({ p, rang: rang(p) }))
+    .filter((x) => x.rang >= 0)
+    // `sort` est stable : à rang égal, l'ordre alphabétique de la liste est conservé.
+    .sort((a, b) => a.rang - b.rang)
+    .map((x) => x.p);
 }
 
 /**

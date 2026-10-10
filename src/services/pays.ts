@@ -1,4 +1,5 @@
 import type { PaysPaiement } from './paiementPass';
+import { INDICATIFS_MONDE, TELEPHONE } from './paysCodes';
 
 /**
  * Liste exhaustive des pays proposés au paiement.
@@ -54,8 +55,39 @@ export function drapeauPays(code: string | null | undefined): string | null {
 }
 
 /**
+ * Le numéro ressemble-t-il à un numéro de ce pays ? On vérifie le motif et les longueurs officiels du pays **avant**
+ * d'envoyer quoi que ce soit à un opérateur ou à Chariow : un numéro trop court partait jusqu'ici sans contrôle.
+ *
+ * Deux tolérances : un indicatif saisi par mégarde est retiré (le champ demande le numéro national), et le zéro de
+ * tête est accepté (il ne fait pas partie du numéro national, mais tout le monde le tape).
+ */
+export function numeroPlausible(numero: string, code: string | null | undefined): boolean {
+  const chiffres = (numero ?? '').replace(/\D/g, '');
+  if (!chiffres) return false;
+  const pays = (code ?? '').toUpperCase();
+  const regle = TELEPHONE[pays];
+  // Pays sans règle connue : on garde la seule borne internationale plausible.
+  if (!regle) return chiffres.length >= 6 && chiffres.length <= 15;
+
+  const indicatif = INDICATIFS_MONDE[pays] ?? '';
+  const national = indicatif && chiffres.startsWith(indicatif) && chiffres.length > indicatif.length
+    ? chiffres.slice(indicatif.length)
+    : chiffres;
+  const candidats = national.startsWith('0') ? [national, national.replace(/^0+/, '')] : [national];
+
+  return candidats.some((n) => {
+    if (!regle.longueurs.includes(n.length)) return false;
+    try {
+      return new RegExp(`^(?:${regle.motif})$`).test(n);
+    } catch {
+      return true; // motif illisible : on ne bloque pas l'élève pour autant
+    }
+  });
+}
+
+/**
  * Pays du sélecteur, triés par nom dans la langue de l'élève. `indicatifs` (venus du serveur) complètent l'affichage
- * quand pawaPay répond ; sans lui, la liste reste complète et utilisable.
+ * quand pawaPay répond ; sinon on utilise l'indicatif international, pour que la recherche par numéro marche partout.
  */
 export function listerPays(langue: string, indicatifs: Record<string, string> = {}): PaysPaiement[] {
   const collateur = (() => {
@@ -69,7 +101,7 @@ export function listerPays(langue: string, indicatifs: Record<string, string> = 
     alpha2,
     name: nomPays(alpha2, langue) || alpha2,
     flag: drapeauPays(alpha2),
-    prefix: indicatifs[alpha2] ?? '',
+    prefix: indicatifs[alpha2] ?? INDICATIFS_MONDE[alpha2] ?? '',
     currencies: [],
   })).sort((a, b) => (collateur ? collateur.compare(a.name, b.name) : a.name.localeCompare(b.name)));
 }
