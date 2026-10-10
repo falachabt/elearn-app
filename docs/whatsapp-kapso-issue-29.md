@@ -37,7 +37,8 @@ Deux autres chantiers restent ouverts : le **template OTP** (refusé par Meta, d
 | `resume_hebdo_parent` | UTILITY | APPROVED | résumé du lundi aux parents | **échoue (131042)** |
 | `recu_paiement` | UTILITY | APPROVED | reçu / confirmation de paiement | **échoue (131042)** |
 | `alerte_equipe_support` | UTILITY | APPROVED | alerte interne à l'équipe | **échoue (131042)** |
-| `lien_paiement_parent` | UTILITY | PENDING (créé le 10 octobre) | lien de paiement au parent | en revue chez Meta |
+| `rapport_hebdo_parent` | UTILITY | PENDING (créé le 10 octobre) | résumé du lundi enrichi, bouton vers la page web | en revue chez Meta |
+| `demande_paiement_parent` | UTILITY | PENDING (créé le 10 octobre) | demande de paiement au parent, bouton « Payer maintenant » | en revue chez Meta |
 | `code_connexion` | AUTHENTICATION | **refusé à la création** | code de connexion (OTP) | impossible aujourd'hui |
 
 Ce qui manque encore :
@@ -50,7 +51,7 @@ Ce qui manque encore :
   Erreur exacte renvoyée le 10 octobre 2026 :
   `code 10, subcode 2388185 — "This WhatsApp business account does not have permission to create message template"`.
 
-  À noter : la création de modèles **UTILITY fonctionne** sur ce même WABA (la preuve : `lien_paiement_parent` a été créé). Le refus est bien propre à la catégorie `AUTHENTICATION`.
+  À noter : la création de modèles **UTILITY fonctionne** sur ce même WABA (la preuve : `demande_paiement_parent` a été créé). Le refus est bien propre à la catégorie `AUTHENTICATION`.
 
 - **Résumé hebdomadaire enrichi** (demande de Benny du 10 octobre) : nouveau modèle avec **en-tête image** et **bouton vers une page web** consultable, plus la page elle-même. En chantier.
 
@@ -72,14 +73,16 @@ Le SDK n'est pas utilisé. Les Edge Functions appellent l'API REST de Kapso dire
 
 | # | Tâche | État |
 | --- | --- | --- |
-| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron `parent-summary` remplit `parent_outbox` le lundi, mais **aucun cron ne vide la file**. Aujourd'hui, elle ne part que sur appel manuel | à faire |
-| T2 | Template `lien_paiement_parent` (créé) puis branchement dans le flux de lien de paiement | créé, branchement à faire |
-| T3 | Rapport hebdomadaire parent enrichi : page web consultable + image de marque + nouveau modèle | en chantier |
-| T4 | Message de repli pour les numéros hors liste blanche | à faire |
-| T5 | Audit des conversations de l'agent et corrections associées | fait : `docs/audit-conversations-support.md` |
+| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron `parent-summary` remplit `parent_outbox` le lundi, mais aucun cron ne vidait la file | **fait** — cron `parent-outbox-send` toutes les 5 minutes, inactif tant que le secret Vault `whatsapp_mode` ne vaut pas `reel` (sinon l'envoi en mode fictif perdrait les messages) |
+| T2 | Modèle `demande_paiement_parent` (demande de paiement au parent, bouton « Payer maintenant ») | **créé** (en revue). Le branchement demande de recueillir le numéro du parent dans l'application : c'est l'issue #14, pas #29 |
+| T3 | Rapport hebdomadaire parent enrichi : page web consultable + image de marque + nouveau modèle | **fait** (PR elearn-supabase #83, elearn-site #20) ; en-tête image impossible par l'API Kapso, voir la section Blocage |
+| T4 | Message de repli pour les numéros hors liste blanche | **fait** (secret `SUPPORT_HORS_LISTE`) |
+| T5 | Audit des conversations de l'agent et corrections associées | **fait** : `docs/audit-conversations-support.md`, plus le garde-fou anti-répétition |
 | T6 | Facture en pièce jointe (PDF + modèle `DOCUMENT`) | à décider : utile seulement si la facture est un vrai document attendu |
-| T7 | Corriger la documentation du `phone_number_id` | à faire |
+| T7 | Corriger la documentation du `phone_number_id` | **fait** |
 | T8 | Décision MCP (voir 2.3) | à trancher |
+| T9 | Un client hors liste de recette ne reçoit qu'un message d'attente : décider quand ouvrir à tous | à trancher |
+| T10 | Ouvert : reprise d'un changement de parcours interrompu par une panne du modèle | à faire |
 
 ## 5. Fichiers de référence
 
