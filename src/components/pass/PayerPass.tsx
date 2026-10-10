@@ -10,7 +10,7 @@ import { suivre } from '@/services/analytics';
 import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
-import { drapeauPays, listerPays, nomPays, numeroPlausible } from '@/services/pays';
+import { drapeauPays, exempleNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -576,7 +576,8 @@ export function PayerPass() {
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}
-                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide') : undefined}
+                placeholder={exempleNumero(pays)}
+                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide', { exemple: exempleNumero(pays) }) : undefined}
               />
               <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('paiement.carteNumeroAide')}</Text>
             </View>
@@ -692,7 +693,8 @@ export function PayerPass() {
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}
-                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide') : undefined}
+                placeholder={exempleNumero(pays)}
+                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide', { exemple: exempleNumero(pays) }) : undefined}
                 prefixe={
                   m.prefix ? (
                     // L'indicatif vient du pays choisi : il ne s'écrit pas à la main, un appui rouvre le choix du pays.

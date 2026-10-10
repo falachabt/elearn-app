@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 
 import type { CleTexte } from '@/i18n';
@@ -17,12 +17,22 @@ import { Ecran } from '../Ecran';
 /** On laisse au webhook le temps d'arriver : Chariow confirme en quelques secondes. */
 const ATTENTE_PAIEMENT_MS = 120_000;
 
+/** Schéma de l'application, déclaré dans app.json : il ramène l'élève dedans depuis la page de retour. */
+const SCHEMA_APP = 'elearnprepa';
+
 type Etat = 'attente' | 'reussi' | 'echec' | 'inconnu';
 
+/** Téléphone ? Inutile de proposer l'application depuis un ordinateur de bureau. */
+function surTelephone(): boolean {
+  const nav = typeof navigator !== 'undefined' ? (navigator as { userAgent?: string }) : null;
+  return !!nav && /android|iphone|ipad|ipod/i.test(nav.userAgent ?? '');
+}
+
 /**
- * Retour de paiement Chariow : Chariow renvoie l'élève ici après le paiement (page web, ou lien universel qui rouvre
- * l'application). On relit la commande — le webhook a normalement déjà accordé le droit — et on affiche le résultat.
- * Rien n'est décidé ici : l'accès vient du serveur, jamais de cette page.
+ * Retour de paiement Chariow. Chariow n'accepte qu'une adresse `https` : il renvoie donc sur cette page, y compris
+ * quand le paiement a été lancé depuis l'application. Sur un téléphone, on tente aussitôt de rouvrir l'application
+ * avec son schéma — le chemin `/offres/retour` n'est pas encore déclaré comme lien universel. Si l'application n'est
+ * pas installée, la page reste affichée et joue exactement le même rôle.
  */
 export function RetourPaiement({ commande }: { commande: string | null }) {
   const { t, langue } = useTraduction();
@@ -32,6 +42,20 @@ export function RetourPaiement({ commande }: { commande: string | null }) {
   const [etat, setEtat] = useState<Etat>(commande ? 'attente' : 'inconnu');
   const [resultat, setResultat] = useState<ResultatPaiement | null>(null);
   const [essai, setEssai] = useState(0);
+
+  const lienApp = commande ? `${SCHEMA_APP}://offres/retour?commande=${encodeURIComponent(commande)}` : null;
+  const ouvrirApp = () => {
+    if (!lienApp) return;
+    const w = globalThis as unknown as { location?: { href: string } };
+    if (w.location) w.location.href = lienApp;
+  };
+
+  useEffect(() => {
+    if (Platform.OS !== 'web' || !lienApp || !surTelephone()) return;
+    const minuteur = setTimeout(ouvrirApp, 600);
+    return () => clearTimeout(minuteur);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lienApp]);
 
   const arret = useRef({ annule: false });
   useEffect(() => {
@@ -61,21 +85,28 @@ export function RetourPaiement({ commande }: { commande: string | null }) {
     setEssai((n) => n + 1);
   };
   const montant = resultat?.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : '';
+  // Sur le web d'un téléphone, on propose aussi le retour dans l'application : certains navigateurs bloquent le
+  // passage automatique au schéma.
+  const ouvrirDansApp = Platform.OS === 'web' && !!lienApp && surTelephone();
 
-  const pied =
-    etat === 'reussi' ? (
-      <Bouton libelle={t('paiement.retourReprendre')} onPress={reprendre} retour />
-    ) : etat === 'attente' ? (
-      <View style={styles.groupe}>
-        <Bouton variante="secondaire" libelle={t('paiement.retourActualiser')} onPress={actualiser} />
-        <Bouton variante="texte" libelle={t('paiement.retourReprendre')} onPress={reprendre} />
-      </View>
-    ) : (
-      <View style={styles.groupe}>
-        <Bouton libelle={t('paiement.retourReessayer')} onPress={reessayer} retour />
-        <Bouton variante="texte" libelle={t('paiement.retourReprendre')} onPress={reprendre} />
-      </View>
-    );
+  const pied = (
+    <View style={styles.groupe}>
+      {ouvrirDansApp ? <Bouton libelle={t('paiement.retourOuvrirApp')} onPress={ouvrirApp} /> : null}
+      {etat === 'reussi' ? (
+        <Bouton libelle={t('paiement.retourReprendre')} onPress={reprendre} retour />
+      ) : etat === 'attente' ? (
+        <>
+          <Bouton variante="secondaire" libelle={t('paiement.retourActualiser')} onPress={actualiser} />
+          <Bouton variante="texte" libelle={t('paiement.retourReprendre')} onPress={reprendre} />
+        </>
+      ) : (
+        <>
+          <Bouton libelle={t('paiement.retourReessayer')} onPress={reessayer} retour />
+          <Bouton variante="texte" libelle={t('paiement.retourReprendre')} onPress={reprendre} />
+        </>
+      )}
+    </View>
+  );
 
   const titre = t(`paiement.retour.${etat}.titre` as CleTexte);
   const texte = t(`paiement.retour.${etat}.texte` as CleTexte);

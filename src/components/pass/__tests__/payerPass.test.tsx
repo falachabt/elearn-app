@@ -101,7 +101,7 @@ describe('paiement du pass par Mobile Money', () => {
     await monter();
     await screen.findByText('MTN MoMo');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
-    expect(screen.getByText(fr.paiement.numeroInvalide)).toBeTruthy();
+    expect(screen.getByText(/Ce numéro ne correspond pas à ton pays/)).toBeTruthy();
     expect(mockPayer).not.toHaveBeenCalled();
   });
 
@@ -233,7 +233,7 @@ describe('pays hors Mobile Money : paiement par carte (Chariow)', () => {
     await screen.findByText(fr.paiement.payerCarte);
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
     expect(mockChariow).not.toHaveBeenCalled();
-    expect(await screen.findByText(fr.paiement.numeroInvalide)).toBeTruthy();
+    expect(await screen.findByText(/Ce numéro ne correspond pas à ton pays/)).toBeTruthy();
   });
 
   it('pawaPay injoignable : l’élève garde le choix du pays et le paiement par carte', async () => {

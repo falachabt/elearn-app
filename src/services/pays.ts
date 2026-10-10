@@ -1,5 +1,5 @@
 import type { PaysPaiement } from './paiementPass';
-import { INDICATIFS_MONDE, TELEPHONE } from './paysCodes';
+import { EXEMPLES, INDICATIFS_MONDE, TELEPHONE } from './paysCodes';
 
 /**
  * Liste exhaustive des pays proposés au paiement.
@@ -52,6 +52,17 @@ export function nomPays(code: string | null | undefined, langue: string): string
 export function drapeauPays(code: string | null | undefined): string | null {
   const propre = (code ?? '').toLowerCase();
   return /^[a-z]{2}$/.test(propre) ? `https://flagcdn.com/w40/${propre}.png` : null;
+}
+
+/**
+ * Exemple de numéro pour ce pays, groupé pour la lecture (« 6 71 23 45 67 »). Il sert d'indication dans le champ et
+ * d'exemple dans le message d'erreur : on montre la forme attendue plutôt que de la décrire. Vide si le pays est inconnu.
+ */
+export function exempleNumero(code: string | null | undefined): string {
+  const chiffres = EXEMPLES[(code ?? '').toUpperCase()] ?? '';
+  if (!chiffres) return '';
+  const paires = chiffres.slice(1).match(/.{1,2}/g) ?? [];
+  return [chiffres.slice(0, 1), ...paires].join(' ');
 }
 
 /**
