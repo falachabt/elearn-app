@@ -39,11 +39,12 @@ Deux autres chantiers restent ouverts : le **template OTP** (refusé par Meta, d
 | `alerte_equipe_support` | UTILITY | APPROVED | alerte interne à l'équipe | **échoue (131042)** |
 | `rapport_hebdo_parent` | UTILITY | PENDING (créé le 10 octobre) | résumé du lundi enrichi, bouton vers la page web | en revue chez Meta |
 | `demande_paiement_parent` | UTILITY | PENDING (créé le 10 octobre) | demande de paiement au parent, bouton « Payer maintenant » | en revue chez Meta |
+| `facture_paiement` | UTILITY | PENDING (créé le 10 octobre) | reçu + bouton « Télécharger la facture » (PDF) | en revue chez Meta |
 | `code_connexion` | AUTHENTICATION | **refusé à la création** | code de connexion (OTP) | **abandonné** (décision de Benny, 10 octobre 2026) |
 
-Ce qui manque encore :
+Points d'attention :
 
-- **Facture en pièce jointe** : aucun modèle avec en-tête `DOCUMENT`, et **aucun PDF de facture n'est produit** dans le dépôt (aucune trace de `facture`/`invoice` dans les migrations). Le reçu existe sous forme de texte (`recu_paiement` : produit, montant, devise, numéro de reçu) et le numéro de reçu vient de `orders.receipt_no`.
+- **Facture** : faite, sous forme de **vrai PDF** rendu par le site sur `/facture/<jeton>` (PR elearn-site #21), avec un bouton dans le message au lieu d'une pièce jointe. Un en-tête `DOCUMENT` dans le modèle aurait demandé l'API Resumable Upload de Meta, que Kapso n'expose pas ; le lien marche et donne le même résultat pour le parent.
 - **Modèle OTP : abandonné pour le moment** (décision de Benny, 10 octobre 2026). Meta exige **deux** conditions, et aucune des deux n'est remplie : portefeuille d'entreprise Meta **vérifié**, et plafond d'envoi **≥ 2 000** (le WABA est en `TIER_250`).
 
   Erreur exacte renvoyée le 10 octobre 2026 :
@@ -62,22 +63,46 @@ Le SDK n'est pas utilisé. Les Edge Functions appellent l'API REST de Kapso dire
 
 | # | Blocage | Impact | Action |
 | --- | --- | --- | --- |
-| B1 | **Devise du compte WhatsApp Business non configurée** (`131042`) | **Aucun modèle n'est délivré** : résumés parents, reçus, alertes internes, demande de paiement | Configurer la devise dans Meta Business : <https://business.facebook.com/billing_hub/accounts/details/?business_id=2907923766070747&asset_id=1613624570492818&wizard_name=CHANGE_COUNTRY_CURRENCY&account_type=whatsapp-business-account> |
+| B1 | **Devise du compte WhatsApp Business non configurée** (`131042`) | **Aucun modèle n'est délivré** : résumés parents, reçus, alertes internes, demande de paiement | Voir la section « Devise » ci-dessous : l'API Kapso refuse, il faut passer par un écran |
 | B3 | **Plafond d'envoi `TIER_250`** | Suffit pour le volume actuel ; bloquerait un jour un modèle d'authentification | À relever seulement si le besoin revient |
-| B4 | **Numéro américain** (+1 201) pour un public camerounais | Confiance : le message vient d'un numéro étranger inconnu | Décider si on demande un numéro local à Kapso |
+| B4 | **Numéro américain** (+1 201) pour un public camerounais | Confiance : le message vient d'un numéro étranger inconnu | **Décision du 10 octobre 2026 : on garde ce numéro pour le moment**, on changera plus tard, sans refaire la tuyauterie |
 | B5 | **Liste blanche `WHATSAPP_ALLOWLIST`** | Les clients hors liste ne reçoivent qu'un message d'attente | Un message de repli est en place ; l'ouverture complète reste ta décision |
-| B6 | **Secrets Vault** `service_role_key` et `whatsapp_mode` à poser une fois (voir `docs/whatsapp-kapso.md` du dépôt `elearn-supabase`) | Sans eux, le cron d'envoi tourne sans rien faire | Deux `select vault.create_secret(...)` |
+
+### Devise : ce qui a été vérifié, et pourquoi l'API ne suffit pas
+
+L'enquête menée le 10 octobre 2026 donne la cause exacte : `GET /platform/v1/whatsapp/accounts/1613624570492818/funding` répond
+`status: not_funded`, `reason: funding_not_started`, **`waba_currency: null`**. Le compte n'a donc aucune devise, et Meta
+refuse tout envoi de modèle.
+
+Deux chemins, tous les deux hors de portée d'un agent :
+
+1. **Carte bancaire chez Meta** (Billing Hub) — c'est Benny qui saisit le moyen de paiement. C'est le chemin recommandé.
+2. **Crédits Kapso** (Kapso paie Meta et débite les crédits du projet) — à activer depuis la carte « WhatsApp billing » du
+   tableau de bord Kapso. L'API refuse : `POST /platform/v1/whatsapp/accounts/{waba}/funding` répond **409
+   « Exactly one active external MPS solution is required »**, ce projet n'ayant pas de solution multi-partenaires externe.
+   Attention : ce mode exige des crédits Kapso positifs, sinon les envois (y compris les réponses du support) sont mis en
+   pause.
+
+Rien n'est à faire dans le dépôt pour ce point.
+
+### Secrets : posés en production le 10 octobre 2026
+
+- `PARENT_SEND_TOKEN` (secret d'Edge Function) et `parent_send_token` (Vault) : jeton dédié de 64 caractères, créé et
+  posé. Le cron `parent-outbox-send` l'utilise ; il ne permet que de vider la file des parents.
+- Le mode fictif n'est plus dupliqué dans le Vault : c'est l'Edge Function qui refuse de vider la file quand l'appel
+  vient du cron et que `WHATSAPP_MODE` n'est pas `reel`.
+
 
 ## 4. Travail restant, faisable sans Benny
 
 | # | Tâche | État |
 | --- | --- | --- |
-| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron remplit `parent_outbox`, aucun cron ne la vidait | **fait** — cron `parent-outbox-send` toutes les 5 minutes, inactif tant que le secret Vault `whatsapp_mode` ne vaut pas `reel` (sinon l'envoi en mode fictif perdrait les messages) |
+| T1 | Planifier l'envoi de la file (`parent-message-send`) : le cron remplit `parent_outbox`, aucun cron ne la vidait | **fait** — cron `parent-outbox-send` toutes les 5 minutes, avec le jeton `PARENT_SEND_TOKEN` posé en production. En mode fictif, l'Edge Function refuse de vider la file (sinon les messages seraient perdus) |
 | T2 | Modèle `demande_paiement_parent` (demande de paiement au parent, bouton « Payer maintenant ») | **créé** (en revue). Le branchement demande de recueillir le numéro du parent dans l'application : c'est l'issue #14, pas #29 |
 | T3 | Rapport hebdomadaire parent enrichi : page web consultable, jeton, nouveau modèle, envoi le dimanche à 14 h | **fait** (PR elearn-supabase #83, elearn-site #20). En-tête image écarté par décision : on envoie le lien seul |
 | T4 | Message de repli pour les numéros hors liste blanche | **fait** (secret `SUPPORT_HORS_LISTE`) |
 | T5 | Audit des conversations de l'agent et corrections associées | **fait** : `docs/audit-conversations-support.md`, garde-fou anti-répétition, reprise du pays choisi |
-| T6 | Facture en pièce jointe (PDF + modèle `DOCUMENT`) | à décider : utile seulement si la facture est un vrai document attendu |
+| T6 | Facture en pièce jointe (PDF) | **fait** — la facture est un **vrai PDF** rendu par le site sur `/facture/<jeton>` (PR elearn-site #21), et le reçu WhatsApp porte un bouton « Télécharger la facture » (modèle `facture_paiement`, PR elearn-supabase #83). Pas d'en-tête `DOCUMENT` dans le modèle : le PDF est derrière un lien, ce que l'API Kapso permet de bout en bout |
 | T7 | Corriger la documentation du `phone_number_id` | **fait** |
 | T8 | Décision MCP | **tranchée** : pas de serveur MCP (décision de Benny, 10 octobre 2026) |
 | T9 | Un client hors liste de recette ne reçoit qu'un message d'attente : décider quand ouvrir à tous | à trancher |
