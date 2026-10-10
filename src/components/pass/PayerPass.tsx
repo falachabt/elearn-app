@@ -10,7 +10,7 @@ import { suivre } from '@/services/analytics';
 import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
 import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
-import { drapeauPays, exempleNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
+import { drapeauPays, exempleNumero, formaterNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
 import {
   activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
@@ -40,6 +40,9 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
 /** Une demande de paiement vit 10 minutes côté serveur. */
 const DUREE_DEMANDE_S = 600;
+/** Réduction affichée sur les pass : le prix plein est 1,5 fois le prix payé. */
+const FACTEUR_PRIX_PLEIN = 1.5;
+const REMISE_PASS_PCT = 33;
 
 type Etape = 'saisie' | 'envoi' | 'attente' | 'fin';
 type Motif = 'solde' | 'refus' | 'delai' | 'numero' | 'operateur' | 'autre';
@@ -179,6 +182,8 @@ export function PayerPass() {
   const gratuit = !!promoActif?.gratuit;
   const argent = (n: number) => (offreChoisie ? formaterMontant(n, offreChoisie.currency) : '');
   const montantInitial = offreChoisie ? argent(offreChoisie.amount) : '';
+  // Prix plein affiché en permanence : 1,5 fois le prix payé, soit −33 %.
+  const prixPlein = offreChoisie ? argent(Math.round(offreChoisie.amount * FACTEUR_PRIX_PLEIN)) : '';
   const montant = offreChoisie ? argent(promoActif ? promoActif.prixFinal : offreChoisie.amount) : '';
   const etiquette = promoActif ? etiquetteRabais(promoActif, argent) : '';
   const economie = promoActif ? argent(promoActif.prixInitial - promoActif.prixFinal) : '';
@@ -572,7 +577,7 @@ export function PayerPass() {
               <Champ
                 libelle={t('paiement.carteNumero')}
                 value={telephone}
-                onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}
+                onChangeText={(v) => { setTelephone(formaterNumero(v, pays)); setChampErreur(null); }}
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}
@@ -611,7 +616,16 @@ export function PayerPass() {
                 <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
               </View>
             ) : (
-              <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+              // Le prix plein reste barré en permanence : l'élève voit la réduction consentie.
+              <View style={styles.prix} accessible accessibilityLabel={t('paiement.promo.prixAu', { final: montant, initial: prixPlein })}>
+                <Text style={[typo.texte, styles.barre, { color: theme.texte.secondaire }]}>{prixPlein}</Text>
+                <View style={styles.ligne}>
+                  <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+                  <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                    <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('paiement.promo.remise', { pct: String(REMISE_PASS_PCT) })}</Text>
+                  </View>
+                </View>
+              </View>
             )}
           </View>
           {promoActif ? (
@@ -689,7 +703,7 @@ export function PayerPass() {
                 ref={champNumeroRef}
                 libelle={t('paiement.numero')}
                 value={telephone}
-                onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}
+                onChangeText={(v) => { setTelephone(formaterNumero(v, pays)); setChampErreur(null); }}
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}

@@ -1,3 +1,5 @@
+import { AsYouType, type CountryCode } from 'libphonenumber-js/min';
+
 import type { PaysPaiement } from './paiementPass';
 import { EXEMPLES, INDICATIFS_MONDE, TELEPHONE } from './paysCodes';
 
@@ -63,6 +65,22 @@ export function exempleNumero(code: string | null | undefined): string {
   if (!chiffres) return '';
   const paires = chiffres.slice(1).match(/.{1,2}/g) ?? [];
   return [chiffres.slice(0, 1), ...paires].join(' ');
+}
+
+/**
+ * Met en forme le numéro au fil de la frappe, selon le pays : au Cameroun « 657273753 » s'écrit « 6 57 27 37 53 ».
+ * C'est le formateur officiel de libphonenumber qui s'en charge (245 pays). Pays inconnu ou saisie libre : on rend la
+ * saisie telle quelle plutôt que de lutter contre l'élève.
+ */
+export function formaterNumero(saisie: string, code: string | null | undefined): string {
+  const pays = (code ?? '').toUpperCase();
+  // Un code inconnu ferait effacer la saisie par le formateur : on ne le lui donne pas.
+  if (!CONNUS.has(pays)) return saisie;
+  try {
+    return new AsYouType(pays as CountryCode).input(saisie);
+  } catch {
+    return saisie;
+  }
 }
 
 /**

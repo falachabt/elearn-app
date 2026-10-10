@@ -1,4 +1,22 @@
-import { CODES_PAYS, drapeauPays, listerPays, nomPays, numeroPlausible } from '../pays';
+import { CODES_PAYS, drapeauPays, exempleNumero, formaterNumero, listerPays, nomPays, numeroPlausible } from '../pays';
+
+describe('mise en forme du numéro', () => {
+  it('espace le numéro selon le pays, au fil de la frappe', () => {
+    expect(formaterNumero('657273753', 'CM')).toBe('6 57 27 37 53');
+    expect(formaterNumero('701234567', 'SN')).toBe('70 123 45 67');
+    // Pays dont le numéro national commence par zéro : c'est l'élève qui le tape, comme chez lui.
+    expect(formaterNumero('0470123456', 'BE')).toBe('0470 12 34 56');
+    // Pays inconnu : on ne touche pas à la saisie.
+    expect(formaterNumero('abc', 'ZZ')).toBe('abc');
+    expect(formaterNumero('657273753', null)).toBe('657273753');
+  });
+
+  it('donne un exemple de numéro lisible par pays', () => {
+    expect(exempleNumero('CM')).toBe('6 71 23 45 67');
+    expect(exempleNumero('FR')).toBe('6 12 34 56 78');
+    expect(exempleNumero(null)).toBe('');
+  });
+});
 
 describe('liste des pays du paiement', () => {
   it('est exhaustive et sans doublon : c’est elle qui permet de payer depuis n’importe où', () => {

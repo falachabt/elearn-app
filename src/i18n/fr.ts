@@ -980,6 +980,7 @@ export const fr = {
       rabaisSur: '{{rabais}} sur le {{offre}}',
       economie: 'Tu économises {{montant}}',
       prixAu: 'Prix {{final}} au lieu de {{initial}}',
+      remise: '-{{pct}} %',
       gratuitTitre: 'Rien à payer',
       gratuitTexte: 'Ton code couvre tout le {{offre}}. Aucun numéro à saisir.',
       activer: 'Activer mon Pass',

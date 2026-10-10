@@ -979,6 +979,7 @@ export const en: Textes = {
       rabaisSur: '{{rabais}} on the {{offre}}',
       economie: 'You save {{montant}}',
       prixAu: 'Price {{final}} instead of {{initial}}',
+      remise: '-{{pct}}%',
       gratuitTitre: 'Nothing to pay',
       gratuitTexte: 'Your code covers the whole {{offre}}. No number to enter.',
       activer: 'Activate my Pass',

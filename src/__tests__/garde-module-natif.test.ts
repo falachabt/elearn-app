@@ -91,6 +91,8 @@ const PURS_JS = new Set([
   '@supabase/supabase-js',
   'fflate',
   'i18next',
+  // Pur JavaScript : mise en forme et contrôle des numéros de téléphone, aucune passerelle native.
+  'libphonenumber-js',
   'lucide-react-native',
   'mathjax-full',
   'pdf-lib',
