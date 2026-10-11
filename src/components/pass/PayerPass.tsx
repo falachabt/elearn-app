@@ -617,6 +617,12 @@ export function PayerPass() {
       {m?.payable && offreChoisie ? (
         <>
           <View style={[styles.carte, styles.recap, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            {/* Badge de coin en haut à droite indiquant le pourcentage de remise */}
+            <View style={[styles.badgeCoin, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>
+                {t('paiement.promo.remise', { pct: String(PRIX_PLEIN[offre].pct) })}
+              </Text>
+            </View>
             <View style={styles.flex}>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
                 {offreChoisie.durationDays ? t('paiement.recapDuree', { offre: nomOffre, n: offreChoisie.durationDays }) : nomOffre}
@@ -632,12 +638,7 @@ export function PayerPass() {
               // Le prix plein reste barré en permanence : l'élève voit la réduction consentie.
               <View style={styles.prix} accessible accessibilityLabel={t('paiement.promo.prixAu', { final: montant, initial: prixPlein })}>
                 <Text style={[typo.texte, styles.barre, { color: theme.texte.secondaire }]}>{prixPlein}</Text>
-                <View style={styles.ligne}>
-                  <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
-                  <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                    <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('paiement.promo.remise', { pct: String(PRIX_PLEIN[offre].pct) })}</Text>
-                  </View>
-                </View>
+                <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
               </View>
             )}
           </View>
@@ -776,5 +777,6 @@ const styles = StyleSheet.create({
   prix: { alignItems: 'flex-end' },
   barre: { textDecorationLine: 'line-through' },
   badge: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: 2 },
+  badgeCoin: { position: 'absolute', top: -9, right: -5, zIndex: 2, borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
   gratuit: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
 });

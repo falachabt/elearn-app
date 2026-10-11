@@ -265,27 +265,18 @@ export function blocsDepuisTexte(texte: string): Bloc[] {
     .map((l) => ({ type: 'paragraphe', segments: segmentsDepuisTexte(l), retrait: 0 }));
 }
 
-/** Correction à partager par WhatsApp (M3-06, B4-Partage), formules en texte lisible, avec la marque et le lien web. */
+/** Message de partage WhatsApp (M3-06, B4-Partage) : message convivial invitant à consulter la solution sur le web. */
 export function texteDePartage(
   c: CorrectionPhoto,
   libelles: { cherche: string; methode: string; resultat: string; retenir: string; signature: string },
   id?: string,
 ): string {
-  const f = texteAvecFormules;
-  const etapes = c.etapes.map((e, i) => `${i + 1}. ${f(e.titre)}${e.detail ? ` : ${f(e.detail)}` : ''}`).join('\n');
   const lien = id ? `https://elearnprepa.com/c/${id}` : 'https://elearnprepa.com';
   return [
-    `🎓 *Elearn Prépa — Correction IA*`,
-    `*${libelles.cherche}* : ${f(c.enonce)}`,
-    c.methode ? `*${libelles.methode}* : ${f(c.methode)}` : '',
-    etapes,
-    `*${libelles.resultat}* : ${f(c.resultat)}`,
-    c.a_retenir ? `*${libelles.retenir}* : ${f(c.a_retenir)}` : '',
-    `🔗 Retrouve l'explication complète sur :\n${lien}`,
-    libelles.signature,
-  ]
-    .filter(Boolean)
-    .join('\n\n');
+    `👋 Salut ! Je te partage la correction de cet exercice (${c.matiere}) faite avec Elearn Prépa.`,
+    `Tu peux appuyer sur ce lien pour la consulter :`,
+    lien,
+  ].join('\n\n');
 }
 
 export type ResultatRecompensePartage = {

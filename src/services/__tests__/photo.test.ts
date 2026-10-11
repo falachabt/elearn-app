@@ -53,11 +53,9 @@ describe('photo : texte', () => {
   });
   it('partage WhatsApp lisible, avec la marque et le lien', () => {
     const m = texteDePartage(c, { cherche: 'Ce qu’on cherche', methode: 'Méthode', resultat: 'Résultat', retenir: 'À retenir', signature: 'Elearn Prépa' }, 'abc-123');
-    expect(m).toContain('1. On retire 3 : 2x=8');
-    expect(m).toContain('*Résultat* : x=4');
+    expect(m).toContain('Je te partage la correction de cet exercice');
     expect(m).toContain('https://elearnprepa.com/c/abc-123');
     expect(m).not.toContain('$');
-    expect(m.endsWith('Elearn Prépa')).toBe(true);
   });
 });
 
