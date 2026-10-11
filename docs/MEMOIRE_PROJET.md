@@ -70,6 +70,25 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **App** : `src/services/support.ts` (demandes en attente, réponse), `src/components/support/EcranConfirmerSupport.tsx` (route `/support-confirmer`, spec `docs/maquettes/support-confirmer.md`), `useDemandeSupportAuto` (monté dans `Navigation` : ouvre l'écran à l'ouverture, au retour au premier plan ou à la réception de la notification, une fois par demande, jamais pour un invité). Aucun module natif ajouté (`expo-clipboard` était déjà embarqué).
 - **Pièges** : la réponse passe par la fonction `support-auth-answer` (jeton de l'élève vérifié côté serveur), jamais par une écriture directe en base. Le numéro du client n'est affiché que par ses quatre derniers chiffres. Le typage local avec `.expo/types/router.d.ts` régénéré donne deux erreurs anciennes (`CentreNotifications`, `rappels`) que la CI n'a pas : la CI tape sans ce fichier.
 
+### Chronomètre, temps d'apprentissage et progression globale (Issue #15, 11 octobre 2026)
+
+- **Mesure du temps éducatif complet** : le temps d'apprentissage ne se limite plus à la seule mission du jour (`mission_runs`). Il est mesuré et cumulé sur l'ensemble des contenus consultés :
+  - Cours et leçons (`FicheCours.tsx`, `LeconLecteur.tsx`)
+  - Quiz de leçons et quiz libres (`QuizLecon.tsx`, `QuizLibre.tsx`)
+  - Exercices libres (`ExerciceLibre.tsx`)
+  - Sujets d'annales (`LecteurPdf.tsx`, `SujetAnnale.tsx`)
+- **Chronomètre d'épreuve (Annales)** :
+  - Choix de la durée au démarrage : durée officielle du sujet, durée personnalisée par l'élève, ou chrono libre montant.
+  - Fiabilité en arrière-plan : calculé sur horodatage absolu `Date.now()` combiné à `AppState` (`pausedAt`) pour ne jamais perdre le décompte lors d'un changement d'application.
+- **Quiz Run & Évolution (Vision produit)** :
+  - Chronomètre montant par défaut sur les quiz réguliers.
+  - Mode *Quiz Run* (prévu au catalogue) : défi contre la montre où les questions ont un temps estimé (facile, moyen, difficile) avec un niveau de difficulté calibré de 0 à 5 (5 étant très difficile, ajusté selon le niveau scolaire / classe de l'élève).
+- **Page « Ma Progression » (Refonte)** :
+  - Deux onglets :
+    1. *Cette semaine* : graphique des 7 jours (L-D) cumulant tout le temps d'apprentissage du jour + niveau par matière combinant les missions ET les quiz.
+    2. *Général / Global* : graphique mensuel du cumul du temps de révision. Si l'élève a plus d'une année d'historique, un sélecteur d'année apparaît, sinon l'année en cours est affichée directement.
+- **Rapport hebdomadaire (dimanche/lundi)** : doit intégrer ces nouvelles statistiques de temps global et de volume éducatif.
+
 ## 3. Processus OTA et Build (canal preview)
 
 Workflow : .github/workflows/eas-preview.yml (secret de depot EXPO_TOKEN requis).
