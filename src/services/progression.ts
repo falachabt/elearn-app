@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
+import type { ActiviteJour } from './activite';
 import { estEnLigne } from './connectivite';
 import { envoyerPassages, jourLocal, lirePassagesLocaux } from './mission';
 
@@ -12,9 +13,6 @@ async function avecDelai(promesse: Promise<unknown>, ms: number): Promise<void> 
   let minuteur: ReturnType<typeof setTimeout> | undefined;
   await Promise.race([promesse, new Promise((resolve) => { minuteur = setTimeout(resolve, ms); })]).finally(() => clearTimeout(minuteur));
 }
-
-import { lireActivitesJours, type ActiviteJour } from './activite';
-import { lireMeilleursScores } from './entrainement';
 
 type Client = Pick<SupabaseClient, 'from'>;
 

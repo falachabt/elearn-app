@@ -82,7 +82,9 @@ export function ExerciceLibre() {
 
   const chrono = useChrono({ actif: true });
   const tempsRef = useRef(0);
-  tempsRef.current = chrono.tempsEcouleS;
+  useEffect(() => {
+    tempsRef.current = chrono.tempsEcouleS;
+  }, [chrono.tempsEcouleS]);
   const exerciceRef = useRef<Exercice | undefined>(undefined);
 
   useEffect(() => {
@@ -119,7 +121,9 @@ export function ExerciceLibre() {
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const position = etat.statut === 'pret' ? etat.exercices.findIndex((e) => e.id === id) : -1;
   const exercice = etat.statut === 'pret' ? etat.exercices[position] : undefined;
-  exerciceRef.current = exercice;
+  useEffect(() => {
+    exerciceRef.current = exercice;
+  }, [exercice]);
   const suivant = etat.statut === 'pret' && position >= 0 ? etat.exercices[position + 1] : undefined;
   const fait = etat.statut === 'pret' && !!exercice && !!etat.faits[exercice.id];
 

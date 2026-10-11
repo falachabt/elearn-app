@@ -1,6 +1,6 @@
 import { Clock } from 'lucide-react-native';
 import React from 'react';
-import { AppState, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';

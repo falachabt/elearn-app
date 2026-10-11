@@ -67,7 +67,9 @@ export function LecteurPdf() {
     dureeInitialeS: dureeChoisieS,
   });
   const tempsRef = useRef(0);
-  tempsRef.current = chrono.tempsEcouleS;
+  useEffect(() => {
+    tempsRef.current = chrono.tempsEcouleS;
+  }, [chrono.tempsEcouleS]);
 
   useEffect(() => {
     return () => {

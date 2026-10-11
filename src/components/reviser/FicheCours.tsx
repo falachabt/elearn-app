@@ -29,7 +29,9 @@ export function FicheCours() {
   const pret = useSessionPrete();
   const { tempsEcouleS } = useChrono({ actif: true });
   const tempsRef = useRef(tempsEcouleS);
-  tempsRef.current = tempsEcouleS;
+  useEffect(() => {
+    tempsRef.current = tempsEcouleS;
+  }, [tempsEcouleS]);
 
   useEffect(() => {
     return () => {
