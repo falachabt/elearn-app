@@ -19,12 +19,20 @@ type Client = Pick<SupabaseClient, 'from'>;
 /** Ligne de `mission_runs` utile à la progression. */
 export type Passage = { jour: string; dureeS: number | null; questions: number; chapitres: { matiere: string; bonnes: number; total: number }[] };
 
+export type RepartitionActivite = {
+  mission: number;
+  cours: number;
+  exercice: number;
+  annale: number;
+  quiz: number;
+};
+
 /** Une colonne du graphique « Cette semaine » : lundi à dimanche. */
-export type JourSemaine = { jour: string; minutes: number };
+export type JourSemaine = { jour: string; minutes: number; repartition: RepartitionActivite };
 
 export type NiveauMatiere = { matiere: string; pourcentage: number; questions: number };
 
-export type MoisProgression = { mois: string; libelle: string; minutes: number };
+export type MoisProgression = { mois: string; libelle: string; minutes: number; repartition: RepartitionActivite };
 
 export type ProgressionGlobale = {
   anneesDisponibles: number[];
@@ -69,10 +77,23 @@ export function calculerProgression(
     d.setDate(lundi.getDate() + i);
     const jour = jourLocal(d);
     // On additionne les secondes des missions ET des autres activités éducatives enregistrées
-    const secMission = passages.filter((p) => p.jour === jour).reduce((n, p) => n + (p.dureeS ?? 0), 0);
-    const secActivite = activites[jour]?.secondes ?? 0;
-    const secondesTotales = secMission + secActivite;
-    return { jour, minutes: Math.round(secondesTotales / 60) };
+    const secMission = passages.filter((p) => p.jour === jour).reduce((n, p) => n + (p.dureeS ?? 0), 0) + (activites[jour]?.parType?.mission ?? 0);
+    const secCours = (activites[jour]?.parType?.cours ?? 0) + (activites[jour]?.parType?.lecon ?? 0);
+    const secExercice = activites[jour]?.parType?.exercice ?? 0;
+    const secAnnale = activites[jour]?.parType?.annale ?? 0;
+    const secQuiz = activites[jour]?.parType?.quiz ?? 0;
+    const secondesTotales = secMission + secCours + secExercice + secAnnale + secQuiz;
+    return {
+      jour,
+      minutes: Math.round(secondesTotales / 60),
+      repartition: {
+        mission: secMission,
+        cours: secCours,
+        exercice: secExercice,
+        annale: secAnnale,
+        quiz: secQuiz,
+      },
+    };
   });
 
   const debut = new Date(maintenant);
@@ -127,14 +148,33 @@ export function calculerProgression(
   const mois: MoisProgression[] = Array.from({ length: 12 }, (_, m) => {
     const prefixe = `${annee}-${String(m + 1).padStart(2, '0')}`;
     const secMission = passages.filter((p) => p.jour.startsWith(prefixe)).reduce((n, p) => n + (p.dureeS ?? 0), 0);
-    let secAct = 0;
+    let secCours = 0;
+    let secExercice = 0;
+    let secAnnale = 0;
+    let secQuiz = 0;
+    let secMissionAct = 0;
     for (const [j, act] of Object.entries(activites)) {
-      if (j.startsWith(prefixe)) secAct += act.secondes;
+      if (j.startsWith(prefixe)) {
+        secCours += (act.parType?.cours ?? 0) + (act.parType?.lecon ?? 0);
+        secExercice += act.parType?.exercice ?? 0;
+        secAnnale += act.parType?.annale ?? 0;
+        secQuiz += act.parType?.quiz ?? 0;
+        secMissionAct += act.parType?.mission ?? 0;
+      }
     }
+    const totMission = secMission + secMissionAct;
+    const totalSecMois = totMission + secCours + secExercice + secAnnale + secQuiz;
     return {
       mois: prefixe,
       libelle: NOMS_MOIS[m],
-      minutes: Math.round((secMission + secAct) / 60),
+      minutes: Math.round(totalSecMois / 60),
+      repartition: {
+        mission: totMission,
+        cours: secCours,
+        exercice: secExercice,
+        annale: secAnnale,
+        quiz: secQuiz,
+      },
     };
   });
 

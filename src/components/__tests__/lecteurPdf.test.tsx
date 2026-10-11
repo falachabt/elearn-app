@@ -21,6 +21,7 @@ jest.mock('expo-router', () => ({
     const { useEffect } = jest.requireActual('react');
     useEffect(f, [f]);
   },
+  useNavigation: () => ({ addListener: jest.fn(() => () => {}), dispatch: jest.fn() }),
 }));
 
 // Système de fichiers en mémoire : chemin → taille.
@@ -71,6 +72,8 @@ beforeEach(async () => {
   jest.clearAllMocks();
   mockFichiers.clear();
   await AsyncStorage.clear();
+  await AsyncStorage.setItem('annales.chrono.onboarding_vu', '1');
+  await AsyncStorage.setItem('annales.chrono.ne_plus_afficher', '1');
   mockParams = { url: URL_SUJET, titre: 'Sujet Maths 2024' };
   mockTelecharger.mockImplementation(async (_url: string, f: { uri: string }) => {
     mockFichiers.set(f.uri, 1000);
@@ -157,6 +160,27 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     expect(adresseEncodee(adresseEncodee(brute))).toBe('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf');
     await ouvrirDocument(brute, 'Séquence 5');
     expect(mockTelecharger).toHaveBeenCalledWith('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf', expect.anything());
+  });
+
+  it('première ouverture sans onboarding : feuille explicative bloquante puis choix du chrono', async () => {
+    await AsyncStorage.removeItem('annales.chrono.onboarding_vu');
+    await AsyncStorage.removeItem('annales.chrono.ne_plus_afficher');
+    await monter();
+    await waitFor(() => expect(screen.getByText(x.annales.onboardingChronoTitre)).toBeTruthy());
+    expect(screen.getByText(x.annales.onboardingChronoLibre)).toBeTruthy();
+    expect(screen.getByText(x.annales.onboardingCompteARebours)).toBeTruthy();
+    const btnCompris = screen.getByRole('button', { name: x.annales.onboardingCompris });
+    await fireEvent.press(btnCompris);
+    expect(await AsyncStorage.getItem('annales.chrono.onboarding_vu')).toBe('1');
+    await waitFor(() => expect(screen.getByText(x.annales.configurerChrono)).toBeTruthy());
+  });
+
+  it('prochaine ouverture : feuille de configuration avec case "Ne plus afficher"', async () => {
+    await AsyncStorage.setItem('annales.chrono.onboarding_vu', '1');
+    await AsyncStorage.removeItem('annales.chrono.ne_plus_afficher');
+    await monter();
+    await waitFor(() => expect(screen.getByText(x.annales.configurerChrono)).toBeTruthy());
+    expect(screen.getByText(x.annales.nePlusAfficher)).toBeTruthy();
   });
 
   it('déconnexion : les documents sont effacés', () => {

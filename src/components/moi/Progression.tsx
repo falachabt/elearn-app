@@ -7,7 +7,7 @@ import { lireActivitesJours, type ActiviteJour } from '@/services/activite';
 import { calculerProgression, lirePassages, type Passage, type Progression as Donnees } from '@/services/progression';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, matiere as couleursMatiere, matiereSecours, ombre, rayon, typo } from '@/theme/theme';
+import { bord, espace, matiere as couleursMatiere, matiereSecours, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -15,6 +15,41 @@ import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { useReseau } from '../reseau/useReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
+
+const TYPES_ACTIVITES = [
+  { cle: 'mission', couleur: palette.emeraude[500], cleI18n: 'profil.legendeMission' },
+  { cle: 'cours', couleur: palette.lilas[400], cleI18n: 'profil.legendeCours' },
+  { cle: 'exercice', couleur: palette.orange[400], cleI18n: 'profil.legendeExercice' },
+  { cle: 'annale', couleur: palette.soleil[400], cleI18n: 'profil.legendeAnnale' },
+  { cle: 'quiz', couleur: palette.bleu[400], cleI18n: 'profil.legendeQuiz' },
+] as const;
+
+function extraireSegments(repartition?: { mission: number; cours: number; exercice: number; annale: number; quiz: number }) {
+  if (!repartition) return [{ cle: 'mission', s: 1, couleur: palette.emeraude[500] }];
+  const liste = [
+    { cle: 'mission', s: repartition.mission, couleur: palette.emeraude[500] },
+    { cle: 'cours', s: repartition.cours, couleur: palette.lilas[400] },
+    { cle: 'exercice', s: repartition.exercice, couleur: palette.orange[400] },
+    { cle: 'annale', s: repartition.annale, couleur: palette.soleil[400] },
+    { cle: 'quiz', s: repartition.quiz, couleur: palette.bleu[400] },
+  ].filter((item) => item.s > 0);
+  return liste.length > 0 ? liste : [{ cle: 'mission', s: 1, couleur: palette.emeraude[500] }];
+}
+
+function LegendeActivites() {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  return (
+    <View style={[styles.legendeConteneur, { borderTopColor: theme.bord.doux }]}>
+      {TYPES_ACTIVITES.map((item) => (
+        <View key={item.cle} style={styles.legendeItem}>
+          <View style={[styles.legendePastille, { backgroundColor: item.couleur, borderColor: theme.bord.fort }]} />
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(item.cleI18n as never)}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
 
 const HAUTEUR_MAX = 96;
 
@@ -103,24 +138,38 @@ export function Progression() {
                   <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{t('profil.minutes', { n: donnees.minutesSemaine })}</Text>
                 </View>
                 <View testID="progression-semaine" style={styles.barres}>
-                  {donnees.semaine.map((j, i) => (
-                    <View key={j.jour} style={styles.colonne}>
-                      <View style={styles.zoneBarre}>
-                        <View
-                          testID={`barre-${i}`}
-                          accessibilityLabel={`${initiales[i]} : ${t('profil.minutes', { n: j.minutes })}`}
-                          style={[
-                            styles.barre,
-                            j.minutes > 0
-                              ? { height: Math.max(6, (j.minutes / maxMinutes) * HAUTEUR_MAX), backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }
-                              : { height: 3, backgroundColor: theme.bord.doux, borderColor: theme.bord.doux },
-                          ]}
-                        />
+                  {donnees.semaine.map((j, i) => {
+                    const segments = extraireSegments(j.repartition);
+                    return (
+                      <View key={j.jour} style={styles.colonne}>
+                        <View style={styles.zoneBarre}>
+                          <View
+                            testID={`barre-${i}`}
+                            accessibilityLabel={`${initiales[i]} : ${t('profil.minutes', { n: j.minutes })}`}
+                            style={[
+                              styles.barre,
+                              j.minutes > 0
+                                ? {
+                                    height: Math.max(6, (j.minutes / maxMinutes) * HAUTEUR_MAX),
+                                    borderColor: theme.bord.fort,
+                                    overflow: 'hidden',
+                                  }
+                                : { height: 3, backgroundColor: theme.bord.doux, borderColor: theme.bord.doux },
+                            ]}
+                          >
+                            {j.minutes > 0
+                              ? segments.map((s) => (
+                                  <View key={s.cle} style={{ flex: s.s, backgroundColor: s.couleur }} />
+                                ))
+                              : null}
+                          </View>
+                        </View>
+                        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{initiales[i]}</Text>
                       </View>
-                      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{initiales[i]}</Text>
-                    </View>
-                  ))}
+                    );
+                  })}
                 </View>
+                <LegendeActivites />
               </View>
 
               <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
@@ -203,29 +252,39 @@ export function Progression() {
                   <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{annee}</Text>
                 </View>
                 <View testID="progression-mois" style={styles.barresMois}>
-                  {donnees.globale?.mois.map((m) => (
-                    <View key={m.mois} style={styles.colonneMois}>
-                      <View style={styles.zoneBarre}>
-                        <View
-                          accessibilityLabel={`${m.libelle} : ${t('profil.minutes', { n: m.minutes })}`}
-                          style={[
-                            styles.barreMois,
-                            m.minutes > 0
-                              ? {
-                                  height: Math.max(6, (m.minutes / maxMinutesMois) * HAUTEUR_MAX),
-                                  backgroundColor: theme.marque.principale,
-                                  borderColor: theme.bord.fort,
-                                }
-                              : { height: 3, backgroundColor: theme.bord.doux, borderColor: theme.bord.doux },
-                          ]}
-                        />
+                  {donnees.globale?.mois.map((m) => {
+                    const segments = extraireSegments(m.repartition);
+                    return (
+                      <View key={m.mois} style={styles.colonneMois}>
+                        <View style={styles.zoneBarre}>
+                          <View
+                            accessibilityLabel={`${m.libelle} : ${t('profil.minutes', { n: m.minutes })}`}
+                            style={[
+                              styles.barreMois,
+                              m.minutes > 0
+                                ? {
+                                    height: Math.max(6, (m.minutes / maxMinutesMois) * HAUTEUR_MAX),
+                                    borderColor: theme.bord.fort,
+                                    overflow: 'hidden',
+                                  }
+                                : { height: 3, backgroundColor: theme.bord.doux, borderColor: theme.bord.doux },
+                            ]}
+                          >
+                            {m.minutes > 0
+                              ? segments.map((s) => (
+                                  <View key={s.cle} style={{ flex: s.s, backgroundColor: s.couleur }} />
+                                ))
+                              : null}
+                          </View>
+                        </View>
+                        <Text numberOfLines={1} style={[typo.legende, styles.etiquetteMois, { color: theme.texte.secondaire }]}>
+                          {m.libelle}
+                        </Text>
                       </View>
-                      <Text numberOfLines={1} style={[typo.legende, styles.etiquetteMois, { color: theme.texte.secondaire }]}>
-                        {m.libelle}
-                      </Text>
-                    </View>
-                  ))}
+                    );
+                  })}
                 </View>
+                <LegendeActivites />
               </View>
             </>
           )}
@@ -254,4 +313,24 @@ const styles = StyleSheet.create({
   kpi: { alignItems: 'center', gap: 2 },
   matiere: { gap: espace[2] },
   rail: { height: 8, borderWidth: bord.fin, borderRadius: rayon.pilule, overflow: 'hidden' },
+  legendeConteneur: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: espace[3],
+    paddingTop: espace[3],
+    borderTopWidth: bord.fin,
+    marginTop: espace[2],
+  },
+  legendeItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[1],
+  },
+  legendePastille: {
+    width: 10,
+    height: 10,
+    borderRadius: 2,
+    borderWidth: 1,
+  },
 });

@@ -112,5 +112,13 @@ describe('progression : jamais bloquée par le réseau', () => {
     expect(p.globale?.totalLecons).toBe(1);
     expect(p.globale?.totalQuiz).toBe(1);
     expect(p.globale?.mois).toHaveLength(12);
+    const jourSemaineAujourdhui = p.semaine.find((s) => s.jour === aujourdHui);
+    expect(jourSemaineAujourdhui?.repartition).toEqual({
+      mission: 600,
+      cours: 600,
+      exercice: 0,
+      annale: 300,
+      quiz: 300,
+    });
   });
 });

@@ -1,5 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Minus, Plus } from 'lucide-react-native';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
@@ -22,6 +23,15 @@ import { BoutonFermer } from './arrivee/MiniTest';
 import { EcranErreur } from './liste/EcranErreur';
 
 const ZOOM_MAX = 3;
+const CLE_ONBOARDING_VU = 'annales.chrono.onboarding_vu';
+const CLE_NE_PLUS_AFFICHER = 'annales.chrono.ne_plus_afficher';
+const CLE_DUREE_DEFAUT = 'annales.chrono.duree_defaut';
+
+type ActionNavigation = object;
+type NavigationSortie = {
+  addListener: (evenement: 'beforeRemove', rappel: (e: { preventDefault: () => void; data: { action: ActionNavigation } }) => void) => () => void;
+  dispatch: (action: ActionNavigation) => void;
+};
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; uri: string; horsLigne: boolean; depart: number };
 
@@ -70,6 +80,78 @@ export function LecteurPdf() {
   useEffect(() => {
     tempsRef.current = chrono.tempsEcouleS;
   }, [chrono.tempsEcouleS]);
+
+  const navigation = useNavigation() as unknown as NavigationSortie | null;
+  const [onboardingOuvert, setOnboardingOuvert] = useState(false);
+  const [demandeSortie, setDemandeSortie] = useState(false);
+  const [nePlusAfficher, setNePlusAfficher] = useState(false);
+  const sortieAction = useRef<ActionNavigation | null>(null);
+  const autoriserSortie = useRef(false);
+  const initialisationChronoFaite = useRef(false);
+
+  useEffect(() => {
+    if (etat.statut !== 'pret' || initialisationChronoFaite.current) return;
+    initialisationChronoFaite.current = true;
+
+    void Promise.all([
+      AsyncStorage.getItem(CLE_ONBOARDING_VU),
+      AsyncStorage.getItem(CLE_NE_PLUS_AFFICHER),
+      AsyncStorage.getItem(CLE_DUREE_DEFAUT),
+    ]).then(([vu, nePlusAfficherStocke, dureeStockee]) => {
+      setNePlusAfficher(nePlusAfficherStocke === '1');
+      if (!vu) {
+        setOnboardingOuvert(true);
+      } else if (nePlusAfficherStocke === '1') {
+        const sec = dureeStockee ? Number(dureeStockee) : undefined;
+        setDureeChoisieS(sec && sec > 0 ? sec : undefined);
+        chrono.demarrer();
+      } else {
+        setMenuChronoOuvert(true);
+      }
+    });
+  }, [etat.statut, chrono]);
+
+  const fermerOnboarding = async () => {
+    await AsyncStorage.setItem(CLE_ONBOARDING_VU, '1');
+    setOnboardingOuvert(false);
+    setMenuChronoOuvert(true);
+  };
+
+  const choisirDuree = async (dureeS: number | undefined) => {
+    setDureeChoisieS(dureeS);
+    chrono.demarrer();
+    setMenuChronoOuvert(false);
+    if (nePlusAfficher) {
+      await AsyncStorage.setItem(CLE_NE_PLUS_AFFICHER, '1');
+      await AsyncStorage.setItem(CLE_DUREE_DEFAUT, dureeS ? String(dureeS) : '0');
+    } else {
+      await AsyncStorage.removeItem(CLE_NE_PLUS_AFFICHER);
+      await AsyncStorage.removeItem(CLE_DUREE_DEFAUT);
+    }
+  };
+
+  useEffect(
+    () =>
+      navigation?.addListener?.('beforeRemove', (e) => {
+        if (autoriserSortie.current || tempsRef.current < 5) return;
+        e.preventDefault();
+        sortieAction.current = e.data.action;
+        setDemandeSortie(true);
+      }),
+    [navigation],
+  );
+
+  const quitterSession = () => {
+    setDemandeSortie(false);
+    autoriserSortie.current = true;
+    if (sortieAction.current && navigation) navigation.dispatch(sortieAction.current);
+    else retour();
+  };
+
+  const annulerSortie = () => {
+    setDemandeSortie(false);
+    sortieAction.current = null;
+  };
 
   useEffect(() => {
     return () => {
@@ -200,6 +282,50 @@ export function LecteurPdf() {
       ) : null}
     </Ecran>
     <Feuille
+      ouverte={onboardingOuvert}
+      onFermer={fermerOnboarding}
+      bloquante
+      icone="time-outline"
+      titre={t('annales.onboardingChronoTitre')}
+      actions={[
+        {
+          libelle: t('annales.onboardingCompris'),
+          onPress: fermerOnboarding,
+          variante: 'principal',
+        },
+      ]}
+    >
+      <View style={styles.onboardingContenu}>
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+          <View style={styles.ligneOnboarding}>
+            <Ionicons name="stopwatch-outline" size={20} color={theme.texte.principal} />
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingChronoLibre')}</Text>
+          </View>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoLibreDesc')}</Text>
+        </View>
+
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+          <View style={styles.ligneOnboarding}>
+            <Ionicons name="hourglass-outline" size={20} color={theme.texte.principal} />
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingCompteARebours')}</Text>
+          </View>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingCompteAReboursDesc')}</Text>
+        </View>
+
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+          <View style={styles.ligneOnboarding}>
+            <Ionicons name="hand-left-outline" size={20} color={theme.texte.principal} />
+            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingChronoEnTete')}</Text>
+          </View>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoEnTeteDesc')}</Text>
+          <View style={styles.demoChrono}>
+            <ChronoPuce secondes={1800} compteARebours />
+          </View>
+        </View>
+      </View>
+    </Feuille>
+
+    <Feuille
       ouverte={menuChronoOuvert}
       onFermer={() => setMenuChronoOuvert(false)}
       icone="time-outline"
@@ -210,50 +336,64 @@ export function LecteurPdf() {
           ? [
               {
                 libelle: `Durée officielle (${dureeOfficielle} min)`,
-                onPress: () => {
-                  setDureeChoisieS(dureeOfficielle * 60);
-                  chrono.demarrer();
-                  setMenuChronoOuvert(false);
-                },
+                onPress: () => void choisirDuree(dureeOfficielle * 60),
                 variante: dureeChoisieS === dureeOfficielle * 60 ? ('principal' as const) : ('secondaire' as const),
               },
             ]
           : []),
         {
           libelle: 'Chrono libre (montant)',
-          onPress: () => {
-            setDureeChoisieS(undefined);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
+          onPress: () => void choisirDuree(undefined),
           variante: dureeChoisieS === undefined ? ('principal' as const) : ('secondaire' as const),
         },
         {
           libelle: '30 minutes',
-          onPress: () => {
-            setDureeChoisieS(30 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
+          onPress: () => void choisirDuree(30 * 60),
           variante: dureeChoisieS === 1800 ? ('principal' as const) : ('secondaire' as const),
         },
         {
           libelle: '1 heure (60 min)',
-          onPress: () => {
-            setDureeChoisieS(60 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
+          onPress: () => void choisirDuree(60 * 60),
           variante: dureeChoisieS === 3600 ? ('principal' as const) : ('secondaire' as const),
         },
         {
           libelle: '2 heures (120 min)',
-          onPress: () => {
-            setDureeChoisieS(120 * 60);
-            chrono.demarrer();
-            setMenuChronoOuvert(false);
-          },
+          onPress: () => void choisirDuree(120 * 60),
           variante: dureeChoisieS === 7200 ? ('principal' as const) : ('secondaire' as const),
+        },
+      ]}
+    >
+      <Appui
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: nePlusAfficher }}
+        accessibilityLabel={t('annales.nePlusAfficher')}
+        onPress={() => setNePlusAfficher((v) => !v)}
+        decalage={0}
+        style={styles.ligneNePlusAfficher}
+      >
+        <View style={[styles.caseCochee, { borderColor: theme.bord.fort, backgroundColor: nePlusAfficher ? theme.marque.principale : theme.fond.surface }]}>
+          {nePlusAfficher ? <Ionicons name="checkmark" size={14} color={theme.texte.surCouleur} /> : null}
+        </View>
+        <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('annales.nePlusAfficher')}</Text>
+      </Appui>
+    </Feuille>
+
+    <Feuille
+      ouverte={demandeSortie}
+      onFermer={annulerSortie}
+      icone="warning-outline"
+      titre={t('annales.sortieTitre')}
+      texte={t('annales.sortieTexte')}
+      actions={[
+        {
+          libelle: t('annales.sortieQuitter'),
+          onPress: quitterSession,
+          variante: 'principal',
+        },
+        {
+          libelle: t('annales.sortieContinuer'),
+          onPress: annulerSortie,
+          variante: 'secondaire',
         },
       ]}
     />
@@ -345,4 +485,38 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   boutonZoom: { width: 44, height: 40, alignItems: 'center', justifyContent: 'center' },
+  onboardingContenu: {
+    gap: espace[3],
+    marginVertical: espace[2],
+  },
+  carteOnboarding: {
+    gap: espace[2],
+    padding: espace[3],
+    borderWidth: bord.fin,
+    borderRadius: rayon.m,
+  },
+  ligneOnboarding: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+  },
+  demoChrono: {
+    alignSelf: 'flex-start',
+    marginTop: espace[1],
+  },
+  ligneNePlusAfficher: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[3],
+    paddingVertical: espace[3],
+    paddingHorizontal: espace[1],
+  },
+  caseCochee: {
+    width: 22,
+    height: 22,
+    borderWidth: bord.normal,
+    borderRadius: rayon.s,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

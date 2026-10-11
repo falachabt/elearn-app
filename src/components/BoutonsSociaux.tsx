@@ -72,7 +72,18 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       <View style={styles.groupe}>
         <Bouton variante={googleSeul ? 'primaire' : 'secondaire'} icone={<LogoGoogle />} libelle={t('compte.google')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterGoogle(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'google')} />
         {appleAffiche ? (
-          <Bouton variante="secondaire" icone={<LogoApple />} libelle={t('compte.apple')} desactive={desactive || enCours} onPressIn={onAppui} onPress={Platform.OS === 'web' ? lancer(() => connecterAppleWeb(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'apple') : lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))} />
+          <Bouton
+            variante="secondaire"
+            icone={<LogoApple />}
+            libelle={t('compte.apple')}
+            desactive={desactive || enCours}
+            onPressIn={onAppui}
+            onPress={
+              Platform.OS === 'ios'
+                ? lancer(() => connecterApple(getSupabase(), depsApple(), codeParrainage, { ...mode, connexionDirecte }))
+                : lancer(() => connecterAppleWeb(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'apple')
+            }
+          />
         ) : null}
         {!googleSeul && facebookAffiche ? (
           <Bouton variante="secondaire" libelle={t('compte.facebook')} desactive={desactive || enCours} onPressIn={onAppui} onPress={lancer(() => connecterFacebook(getSupabase(), depsOAuth(), codeParrainage, { ...mode, connexionDirecte }), 'facebook')} />
