@@ -100,7 +100,7 @@ export const typo = {
   donnee: { fontFamily: 'SpaceMono-Regular', fontSize: 13, lineHeight: 18 },
 } as const;
 
-export const mouvement = { appui: 120, standard: 200, feuille: 300 } as const; // ms ; couper si « réduire les animations »
+export const mouvement = { appui: 120, standard: 200, feuille: 300, fondu: 200 } as const; // ms ; couper si « réduire les animations »
 
 // Retours (M16) : un seul service appelle ces moments ; aucun écran ne joue un son en direct.
 // Sons dans assets/sounds (CC0, voir README). haptique = expo-haptics : 'selection' | 'success' | 'warning' | 'error' | 'light'.
