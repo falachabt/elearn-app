@@ -11,8 +11,20 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **Paiement Parent (/p/[token])** : Fusionné sur site et backend. Permet aux parents de payer via Mobile Money (pawaPay). Liens enrichis dynamiquement pour WhatsApp.
 - **Notifications Push (EAS)** : expo-notifications configuré avec Firebase (google-services.json via EAS Secrets). Routage actif en place dans src/services/rappels.ts pour rediriger les clics de notification.
 - **Synchronisation Hors-Ligne** : Reprise de l'historique invité après inscription fonctionnelle.
-- **En cours d'implémentation** : **Système de Parrainage (M15)**.
-  - *Règles métier parrainage* : 3 étapes (1. Clic, 2. Création compte, 3. Achat Pass). Le parrain gagne à chaque étape + reçoit une notification. Le filleul gagne à l'étape 2.
+- **Parrainage (M15)** : terminé. Trois étapes (1. Clic, 2. Création de compte, 3. Achat d'un pass) ; le parrain gagne à chaque étape et reçoit une notification, le filleul gagne à l'étape 2. Les paliers, les récompenses, les abus et la règle iOS (crédits seulement sur iOS) s'administrent depuis le back-office, page Finance > Parrainage, sans déploiement.
+- **WhatsApp Business (Kapso)** : en service depuis le 11 octobre 2026. L'agent de support répond aux clients, le résumé hebdomadaire part aux parents le dimanche à 14 h (heure de Douala) avec une page web derrière un jeton, et la facture PDF est servie par un lien. La devise du compte a été réglée ce jour-là : c'était le blocage qui empêchait toute livraison. Détail technique dans `elearn-supabase/docs/whatsapp-kapso.md`.
+
+## 2 bis. Règles de travail
+- **Une branche, une PR, et la branche est supprimée à la fusion.** Chaque dépôt garde `main` plus, au plus, une branche de travail vivante (`claude/project-thread-kw792g` pour `elearn-app`). Le ménage du 11 octobre 2026 et la liste des branches supprimées sont dans [menage-depots-2026-10-11.md](menage-depots-2026-10-11.md).
+- **Aucun fichier `.env` suivi par git**, sauf `.env.example` sans valeur. Une clé exposée se révoque, elle ne se contente pas d'être retirée du suivi.
+- **Une migration ne se pose jamais avec un horodatage inférieur à ce que la production a déjà appliqué** : `supabase db push` refuse alors toute la file, y compris les migrations des autres. Vérifier `supabase_migrations.schema_migrations` avant de choisir son préfixe.
+- **Un message à un client ne se perd jamais en silence.** Côté parents, tout échec temporaire de Meta est réessayé six heures plus tard, jusqu'à vingt fois, et un numéro hors zone reste en attente au lieu d'être jeté.
+
+## 2 bis. Regles de travail
+- **Une branche, une PR, et la branche est supprimee a la fusion.** Chaque depot garde main plus, au plus, une branche de travail vivante (claude/project-thread-kw792g pour elearn-app). Le menage du 11 octobre 2026 et la liste des branches supprimees sont dans [menage-depots-2026-10-11.md](menage-depots-2026-10-11.md).
+- **Aucun fichier .env suivi par git**, sauf .env.example sans valeur. Une cle exposee se revoque, elle ne se contente pas d'etre retiree du suivi.
+- **Une migration ne se pose jamais avec un horodatage inferieur a ce que la production a deja applique** : supabase db push refuse alors toute la file, y compris les migrations des autres. Verifier supabase_migrations.schema_migrations avant de choisir son prefixe.
+- **Un message a un client ne se perd jamais en silence.** Cote parents, tout echec temporaire de Meta est reessaye six heures plus tard, jusqu'a vingt fois, et un numero hors zone reste en attente au lieu d'etre jete.
 
 ### Mode hors ligne (issue #25 puis issue #13)
 
