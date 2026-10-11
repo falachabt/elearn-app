@@ -38,23 +38,34 @@ export function titreMission(m: Mission | null): string | null {
 }
 
 /**
- * Libellé court du profil affiché dans le sélecteur d'en-tête (classe actuelle ou sigle du concours).
+ * Libellé court du profil affiché dans le sélecteur d'en-tête :
+ * - élève : classe · pays (ex. 3e · CM)
+ * - concours : sigle · ville si disponible, sinon sigle · pays (ex. ENS · Yaoundé ou ENS · CM)
  */
 export function libelleProfil(profil: Profil | null): string {
-  if (!profil) return '3e';
+  if (!profil) return '3e · CM';
   if (profil.type === 'concours') {
-    if (profil.concours?.sigle) return profil.concours.sigle;
-    if (profil.niveau === 'ens') return 'ENS';
-    if (profil.niveau === 'medecine') return 'Médecine';
-    if (profil.niveau === 'ingenieurs') return 'Écoles d’ingénieurs';
-    return profil.niveau ?? 'Concours';
+    const sigle =
+      profil.concours?.sigle ??
+      (profil.niveau === 'ens'
+        ? 'ENS'
+        : profil.niveau === 'medecine'
+          ? 'Médecine'
+          : profil.niveau === 'ingenieurs'
+            ? 'Ingénieurs'
+            : profil.niveau ?? 'Concours');
+    const precision = profil.concours?.ville?.trim() || profil.pays || '';
+    return [sigle, precision].filter(Boolean).join(' · ');
   }
-  return profil.niveau || '3e';
+  const classe = profil.niveau || '3e';
+  const pays = profil.pays || 'CM';
+  return [classe, pays].filter(Boolean).join(' · ');
 }
 
 /**
  * Sélecteur de classe ou de programme actuel : sous forme de menu select, un appui
  * ouvre l'écran permettant de changer de classe ou de programme.
+ * Même gabarit et hauteur que les pastilles voisines (série, éclair, cloche).
  */
 export function SelecteurClasse({ profil }: { profil: Profil | null }) {
   const { t } = useTraduction();
@@ -68,20 +79,20 @@ export function SelecteurClasse({ profil }: { profil: Profil | null }) {
         accessibilityRole="button"
         accessibilityLabel={t('classe.selecteurA11y', { classe: libelle })}
         onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })}
-        rayon={rayon.m}
+        rayon={rayon.s}
         decalage={2}
         hitSlop={4}
       >
         <View style={[styles.selecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Ionicons
             name={concours ? 'trophy-outline' : 'school-outline'}
-            size={16}
+            size={14}
             color={theme.texte.principal}
           />
-          <Text numberOfLines={1} style={[typo.texteFort, styles.texteSelecteur, { color: theme.texte.principal }]}>
+          <Text numberOfLines={1} style={[styles.texteSelecteur, { color: theme.texte.principal }]}>
             {libelle}
           </Text>
-          <Ionicons name="chevron-down" size={14} color={theme.texte.secondaire} />
+          <Ionicons name="chevron-down" size={12} color={theme.texte.secondaire} />
         </View>
       </Appui>
     </View>
@@ -256,7 +267,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: espace[3],
     paddingVertical: espace[2],
     borderWidth: bord.normal,
-    borderRadius: rayon.m,
+    borderRadius: rayon.s,
   },
-  texteSelecteur: { maxWidth: 160 },
+  texteSelecteur: {
+    fontFamily: 'SpaceGrotesk-Bold',
+    fontSize: 13,
+    lineHeight: 16,
+    maxWidth: 160,
+  },
 });

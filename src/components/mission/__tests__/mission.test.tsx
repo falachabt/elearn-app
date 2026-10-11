@@ -104,23 +104,27 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('accueil : affiche le sélecteur avec la classe actuelle (3e), appui ouvre la page de modification de classe', async () => {
+  it('accueil : affiche le sélecteur avec la classe et pays actuels (3e · CM), appui ouvre la page de modification de classe', async () => {
     await monter(<Accueil maintenant={SOIR} />);
-    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
-    await fireEvent.press(screen.getByText('3e'));
+    await waitFor(() => expect(screen.getByText('3e · CM')).toBeTruthy());
+    await fireEvent.press(screen.getByText('3e · CM'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
   });
 
-  it('accueil : avec un concours choisi, affiche son sigle dans le sélecteur', async () => {
-    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale' }, termine: true });
+  it('accueil : avec un concours choisi, affiche sigle · ville ou sigle · pays', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale', ville: 'Yaoundé' }, termine: true });
     await monter(<Accueil maintenant={SOIR} />);
-    await waitFor(() => expect(screen.getByText('ENS')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('ENS · Yaoundé')).toBeTruthy());
+
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale', ville: null }, termine: true });
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('ENS · CM')).toBeTruthy());
   });
 
   it('accueil : sélecteur de classe, chapitres et matières de la mission, commencer en 1 appui', async () => {
     await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
     await monter(<Accueil maintenant={SOIR} />);
-    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
+    await waitFor(() => expect(screen.getByText('3e · CM')).toBeTruthy());
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.getByText('Chimie')).toBeTruthy();
     expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy();
