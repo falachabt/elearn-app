@@ -502,6 +502,7 @@ export const en: Textes = {
     continuer: 'Continue',
     retour: 'Back',
     concoursListe: { ens: 'ENS', medecine: 'Medicine', ingenieurs: 'Engineering schools' },
+    selecteurA11y: 'Class or program: {{classe}}. Tap to change.',
   },
   premier: {
     titre: 'Where do we start?',

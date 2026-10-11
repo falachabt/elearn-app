@@ -104,22 +104,23 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('accueil : la salutation reste « Bonsoir » seul (le prénom ne tronque plus la ligne), le prénom reste lu par l’accessibilité', async () => {
-    mockMetadata = { given_name: 'Aïcha' };
-    try {
-      await monter(<Accueil maintenant={SOIR} />);
-      expect(screen.getByText(x.mission.bonsoir)).toBeTruthy();
-      expect(screen.queryByText(/Aïcha/)).toBeNull();
-      expect(screen.getByLabelText(x.mission.bonsoirNom.replace('{{prenom}}', 'Aïcha'))).toBeTruthy();
-    } finally {
-      mockMetadata = {};
-    }
+  it('accueil : affiche le sélecteur avec la classe actuelle (3e), appui ouvre la page de modification de classe', async () => {
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
+    await fireEvent.press(screen.getByText('3e'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
   });
 
-  it('accueil : salutation du soir, chapitres et matières de la mission, commencer en 1 appui', async () => {
+  it('accueil : avec un concours choisi, affiche son sigle dans le sélecteur', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENS', nom: 'École Normale' }, termine: true });
+    await monter(<Accueil maintenant={SOIR} />);
+    await waitFor(() => expect(screen.getByText('ENS')).toBeTruthy());
+  });
+
+  it('accueil : sélecteur de classe, chapitres et matières de la mission, commencer en 1 appui', async () => {
     await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
     await monter(<Accueil maintenant={SOIR} />);
-    expect(screen.getByText(x.mission.bonsoir)).toBeTruthy();
+    await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
     await waitFor(() => expect(screen.getByText('Chapitre 1, Chapitre 2')).toBeTruthy());
     expect(screen.getByText('Chimie')).toBeTruthy();
     expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy();

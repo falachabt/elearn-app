@@ -1,17 +1,16 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
-import { lireProfil } from '@/services/profil';
+import { lireProfil, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
-import { identiteDe } from '@/services/identite';
-import { useSession, useSessionPrete } from '@/session/SessionProvider';
+import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -39,24 +38,53 @@ export function titreMission(m: Mission | null): string | null {
 }
 
 /**
- * « Bonjour » ou « Bonsoir » seul : sur la même ligne que la série, l'éclair et la cloche, « Bonsoir Aïcha » ne tient
- * pas et se tronquait. Le prénom reste dans le libellé d'accessibilité, lu par le lecteur d'écran.
+ * Libellé court du profil affiché dans le sélecteur d'en-tête (classe actuelle ou sigle du concours).
  */
-function Salutation({ heure }: { heure: number }) {
+export function libelleProfil(profil: Profil | null): string {
+  if (!profil) return '3e';
+  if (profil.type === 'concours') {
+    if (profil.concours?.sigle) return profil.concours.sigle;
+    if (profil.niveau === 'ens') return 'ENS';
+    if (profil.niveau === 'medecine') return 'Médecine';
+    if (profil.niveau === 'ingenieurs') return 'Écoles d’ingénieurs';
+    return profil.niveau ?? 'Concours';
+  }
+  return profil.niveau || '3e';
+}
+
+/**
+ * Sélecteur de classe ou de programme actuel : sous forme de menu select, un appui
+ * ouvre l'écran permettant de changer de classe ou de programme.
+ */
+export function SelecteurClasse({ profil }: { profil: Profil | null }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { session } = useSession();
-  const prenom = identiteDe(session?.user).prenom;
-  const soir = heure >= 17;
+  const libelle = libelleProfil(profil);
+  const concours = profil?.type === 'concours';
+
   return (
-    <Text
-      accessibilityRole="header"
-      accessibilityLabel={prenom ? t(soir ? 'mission.bonsoirNom' : 'mission.bonjourNom', { prenom }) : undefined}
-      numberOfLines={1}
-      style={[typo.h1, styles.flex, { color: theme.texte.principal }]}
-    >
-      {t(soir ? 'mission.bonsoir' : 'mission.bonjour')}
-    </Text>
+    <View style={styles.zoneSelecteur}>
+      <Appui
+        accessibilityRole="button"
+        accessibilityLabel={t('classe.selecteurA11y', { classe: libelle })}
+        onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })}
+        rayon={rayon.m}
+        decalage={2}
+        hitSlop={4}
+      >
+        <View style={[styles.selecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Ionicons
+            name={concours ? 'trophy-outline' : 'school-outline'}
+            size={16}
+            color={theme.texte.principal}
+          />
+          <Text numberOfLines={1} style={[typo.texteFort, styles.texteSelecteur, { color: theme.texte.principal }]}>
+            {libelle}
+          </Text>
+          <Ionicons name="chevron-down" size={14} color={theme.texte.secondaire} />
+        </View>
+      </Appui>
+    </View>
   );
 }
 
@@ -65,9 +93,20 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [etat, setEtat] = useState<Etat>({ mission: null, serie: 0, faite: null });
+  const [profil, setProfil] = useState<Profil | null>(null);
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
+
+  useEffect(() => {
+    let actif = true;
+    void lireProfil().then((p) => {
+      if (actif && p) setProfil(p);
+    });
+    return () => {
+      actif = false;
+    };
+  }, []);
 
   // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
   useFocusEffect(
@@ -92,19 +131,22 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       let actif = true;
       void (async () => {
         const jour = jourLocal(maintenant);
-        const [profil, historique, dernier, taille] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat(), lireRythme()]);
+        const [p, historique, dernier, taille] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat(), lireRythme()]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
-        if (actif) setEtat((e) => ({ ...e, serie, faite }));
+        if (actif) {
+          setProfil(p);
+          setEtat((e) => ({ ...e, serie, faite }));
+        }
         if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
         const mission = await chargerMission(getSupabase(), {
-          niveau: profil?.niveau ?? '3e',
-          pays: profil?.pays ?? 'CM',
+          niveau: p?.niveau ?? '3e',
+          pays: p?.pays ?? 'CM',
           vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') },
           jour,
           taille: taille ?? undefined,
-          concours: profil?.type === 'concours' ? profil.concours?.id : null,
+          concours: p?.type === 'concours' ? p.concours?.id : null,
         }).catch(() => null);
         // Un résultat d'une autre mission du jour (taille changée, nouvelle version) ne compte pas comme faite.
         const aJour = faite && mission && faite.total !== mission.questions.length ? null : faite;
@@ -116,7 +158,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     }, [maintenant, t, pret]),
   );
 
-  const heure = (maintenant ?? new Date()).getHours();
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
   const surVert = theme.texte.surCouleur;
 
@@ -125,7 +166,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     <Ecran insetBas={false}>
       <Apparition>
         <View style={styles.entete}>
-          <Salutation heure={heure} />
+          <SelecteurClasse profil={profil} />
           {etat.serie > 0 ? (
             <View accessible accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })} style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
               <Ionicons name="flame" size={14} color={surVert} />
@@ -207,4 +248,15 @@ const styles = StyleSheet.create({
   tag: { height: HAUTEUR_ETIQUETTE, maxWidth: '100%', justifyContent: 'center', paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.s },
   photo: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  zoneSelecteur: { flex: 1, flexDirection: 'row', alignItems: 'center' },
+  selecteur: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    paddingHorizontal: espace[3],
+    paddingVertical: espace[2],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+  },
+  texteSelecteur: { maxWidth: 160 },
 });

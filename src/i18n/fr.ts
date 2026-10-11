@@ -503,6 +503,7 @@ export const fr = {
     continuer: 'Continuer',
     retour: 'Retour',
     concoursListe: { ens: 'ENS', medecine: 'Médecine', ingenieurs: 'Écoles d’ingénieurs' },
+    selecteurA11y: 'Classe ou programme : {{classe}}. Appuyer pour changer.',
   },
   premier: {
     titre: 'Par quoi on commence ?',
