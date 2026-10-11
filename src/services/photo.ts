@@ -53,6 +53,7 @@ export type Issue =
   | { type: 'illisible'; raison: string }
   | { type: 'credits' }
   | { type: 'quota' }
+  | { type: 'limite'; minutes: number | null }
   | { type: 'hors-ligne' }
   | { type: 'erreur' };
 
@@ -135,6 +136,15 @@ export async function envoyerPhoto(client: SupabaseClient, { image, matiere, sur
   const { data } = await client.auth.getSession();
   const jeton = data.session?.access_token;
   if (!jeton) return { type: 'erreur' };
+
+  // Simulation mode développeur pour tester l'écran 429 limite de cadence
+  try {
+    const { rateLimitSimule } = await import('./rateLimitDev');
+    if (rateLimitSimule().photo) {
+      return { type: 'limite', minutes: 2 };
+    }
+  } catch {}
+
   const url = `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/photo-correction`;
   let reponse: Awaited<ReturnType<typeof fetchFlux>>;
   try {
@@ -149,7 +159,13 @@ export async function envoyerPhoto(client: SupabaseClient, { image, matiere, sur
     return { type: 'hors-ligne' };
   }
   if (reponse.status === 402) return { type: 'credits' };
-  if (reponse.status === 429) return { type: 'quota' };
+  if (reponse.status === 429) {
+    // Deux 429 : la limite de cadence de la fonction (code "limite", issue #12)
+    // et le quota quotidien du pass (code "quota"). Le corps les distingue.
+    const corps = (await reponse.json().catch(() => ({}))) as { code?: string; reessayez_dans_minutes?: number };
+    if (corps.code === 'limite') return { type: 'limite', minutes: corps.reessayez_dans_minutes ?? null };
+    return { type: 'quota' };
+  }
   if (!reponse.ok) return { type: 'erreur' };
   const id = reponse.headers.get('X-Correction-Id');
   if (id) await AsyncStorage.setItem(CLE_EN_COURS, id).catch(() => {});

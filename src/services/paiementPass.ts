@@ -145,6 +145,16 @@ export async function payerMobileMoney(
   p: { offre: CodeOffre; pays: string; telephone: string; operateur: string; codePreauth?: string; langue: string; promo?: string },
   appel?: Fetch,
 ): Promise<ResultatPaiement> {
+  // Simulation mode développeur pour tester l'écran 429 limite de cadence
+  try {
+    const { rateLimitSimule } = await import('./rateLimitDev');
+    if (rateLimitSimule().paiement) {
+      throw new ErreurPaiement('limite', 'Trop de tentatives de paiement. Réessaie dans quelques minutes.');
+    }
+  } catch (e) {
+    if (e instanceof ErreurPaiement) throw e;
+  }
+
   const r = resultat(
     await appeler('/api/pass/pawapay/pay', {
       methode: 'POST',

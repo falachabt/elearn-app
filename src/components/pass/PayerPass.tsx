@@ -206,7 +206,7 @@ export function PayerPass() {
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const texteErreur = (e: unknown) => {
-    const connus = ['reseau', 'indisponible', 'auth', 'sandbox', 'offre', 'pays', 'numero_operateur'];
+    const connus = ['reseau', 'indisponible', 'auth', 'sandbox', 'offre', 'pays', 'numero_operateur', 'limite'];
     if (e instanceof ErreurPaiement) return connus.includes(e.code) ? t(`paiement.erreurs.${e.code}` as CleTexte) : e.message || t('paiement.erreurs.indisponible');
     return t('paiement.erreurs.indisponible');
   };

@@ -120,6 +120,19 @@ export async function connecterEmail(client: Client, p: { email: string; motDePa
     if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
     await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
   }
+
+  // Simulation mode développeur pour tester l'écran 429 connexion
+  try {
+    const { rateLimitSimule } = await import('./rateLimitDev');
+    if (rateLimitSimule().connexion) {
+      const err = new Error('Too many requests');
+      (err as unknown as { status: number }).status = 429;
+      throw err;
+    }
+  } catch (e) {
+    if (e && (e as { status?: number }).status === 429) throw e;
+  }
+
   try {
     const { data, error } = await client.auth.signInWithPassword({ email: p.email.trim(), password: p.motDePasse });
     if (error) throw error;

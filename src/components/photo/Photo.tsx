@@ -45,7 +45,8 @@ type Etat =
   | { ecran: 'signaler'; id: string; correction: CorrectionPhoto }
   | { ecran: 'illisible'; raison: string }
   | { ecran: 'erreur'; type: 'hors-ligne' | 'erreur' }
-  | { ecran: 'limite' };
+  | { ecran: 'limite' }
+  | { ecran: 'limiteCadence'; minutes: number | null };
 
 const COULEUR: Record<string, string> = { maths: couleursMatiere.maths, physique: couleursMatiere.physique, chimie: couleursMatiere.physique, svt: couleursMatiere.svt, francais: couleursMatiere.francais, anglais: couleursMatiere.anglais };
 
@@ -162,6 +163,9 @@ export function Photo() {
       } else if (issue.type === 'quota') {
         declencher('problem');
         setEtat({ ecran: 'limite' });
+      } else if (issue.type === 'limite') {
+        declencher('problem');
+        setEtat({ ecran: 'limiteCadence', minutes: issue.minutes });
       } else {
         declencher('error');
         suivre('photo_failed', { type: issue.type });
@@ -413,6 +417,30 @@ export function Photo() {
       </Ecran>
     );
   }
+  if (etat.ecran === 'limiteCadence') {
+    const min = etat.minutes ?? 2;
+    return (
+      <Ecran
+        insetBas={false}
+        entete={
+          <>
+            <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={recommencer} />
+            <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
+          </>
+        }
+        pied={<Bouton libelle={t('photo.limiteCadenceBouton')} onPress={recommencer} />}
+      >
+        <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{t('photo.limiteCadenceTitre')}</Text>
+        </View>
+        <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
+          {t('photo.limiteCadencePhrase', { minutes: String(min) })}
+        </Text>
+        <View style={[styles.separateur, { backgroundColor: theme.bord.doux }]} />
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.limiteCadenceNote')}</Text>
+      </Ecran>
+    );
+  }
   // B6 : limite du jour du pass (garde-fou), sans blocage agressif
   return (
     <Ecran
@@ -464,4 +492,5 @@ const styles = StyleSheet.create({
   options: { gap: espace[3] },
   envoi: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[4], minHeight: 52, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: 20 },
   iconeBouton: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  separateur: { height: 1.5, marginVertical: espace[3] },
 });

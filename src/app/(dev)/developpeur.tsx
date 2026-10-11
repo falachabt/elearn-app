@@ -17,6 +17,12 @@ import {
 import { ajusterSoldeSimule, definirSoldeSimule, ecouterSoldeSimule, soldeSimule } from '@/services/creditsDev';
 import { modeDeveloppement } from '@/services/developpement';
 import { definirIosSimule, iosSimule } from '@/services/plateformeDev';
+import {
+  basculerRateLimitSimule,
+  ecouterRateLimitSimule,
+  rateLimitSimule,
+  reinitialiserRateLimitSimule,
+} from '@/services/rateLimitDev';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -39,6 +45,7 @@ export default function ParametresDeveloppeur() {
   const [message, setMessage] = useState<string | null>(null);
   const { solde } = useCredits();
   const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
+  const rateLimit = useSyncExternalStore(ecouterRateLimitSimule, rateLimitSimule, rateLimitSimule);
   const [ios, setIos] = useState(iosSimule());
 
   if (!modeDeveloppement()) return <Redirect href="/" />;
@@ -98,6 +105,45 @@ export default function ParametresDeveloppeur() {
       <View style={styles.lignes}>
         <Bouton libelle={t('dev.iosSimuler')} variante={ios ? undefined : 'secondaire'} onPress={() => { definirIosSimule(true); setIos(true); }} />
         <Bouton libelle={t('dev.iosReel')} variante={ios ? 'secondaire' : undefined} onPress={() => { definirIosSimule(false); setIos(false); }} />
+      </View>
+
+      <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionRateLimit')}</Text>
+      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('dev.rateLimitAide')}</Text>
+      <View style={styles.lignes}>
+        <Bouton
+          libelle={rateLimit.photo ? t('dev.rateLimitPhotoActif') : t('dev.rateLimitPhotoInactif')}
+          variante={rateLimit.photo ? undefined : 'secondaire'}
+          onPress={() => {
+            basculerRateLimitSimule('photo');
+            setMessage(rateLimit.photo ? t('dev.rateLimitDesactive', { nom: 'Photo' }) : t('dev.rateLimitActive', { nom: 'Photo' }));
+          }}
+        />
+        <Bouton
+          libelle={rateLimit.paiement ? t('dev.rateLimitPaiementActif') : t('dev.rateLimitPaiementInactif')}
+          variante={rateLimit.paiement ? undefined : 'secondaire'}
+          onPress={() => {
+            basculerRateLimitSimule('paiement');
+            setMessage(rateLimit.paiement ? t('dev.rateLimitDesactive', { nom: 'Paiement' }) : t('dev.rateLimitActive', { nom: 'Paiement' }));
+          }}
+        />
+        <Bouton
+          libelle={rateLimit.connexion ? t('dev.rateLimitConnexionActif') : t('dev.rateLimitConnexionInactif')}
+          variante={rateLimit.connexion ? undefined : 'secondaire'}
+          onPress={() => {
+            basculerRateLimitSimule('connexion');
+            setMessage(rateLimit.connexion ? t('dev.rateLimitDesactive', { nom: 'Connexion' }) : t('dev.rateLimitActive', { nom: 'Connexion' }));
+          }}
+        />
+        {rateLimit.photo || rateLimit.paiement || rateLimit.connexion ? (
+          <Bouton
+            libelle={t('dev.rateLimitToutCouper')}
+            variante="secondaire"
+            onPress={() => {
+              reinitialiserRateLimitSimule();
+              setMessage(t('dev.rateLimitToutDesactive'));
+            }}
+          />
+        ) : null}
       </View>
 
       <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('dev.sectionDonnees')}</Text>
