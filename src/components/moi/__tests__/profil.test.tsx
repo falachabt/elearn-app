@@ -253,6 +253,21 @@ describe('C5 · Ma progression', () => {
     await monter(<Progression />);
     await waitFor(() => expect(screen.getByText(fr.profil.horsLigne)).toBeTruthy());
   });
+
+  it('onglet général : cumul total et graphique par mois', async () => {
+    const aujourdhui = new Date();
+    const jour = `${aujourdhui.getFullYear()}-${String(aujourdhui.getMonth() + 1).padStart(2, '0')}-${String(aujourdhui.getDate()).padStart(2, '0')}`;
+    mockRuns.mockResolvedValue({ data: [{ day: jour, duration_s: 3600, total: 10, details: { chapitres: [{ libelleMatiere: 'Maths', bonnes: 10, total: 10 }] } }], error: null });
+    await monter(<Progression />);
+    await waitFor(() => expect(screen.getByText('60 min')).toBeTruthy());
+    // Basculer sur l'onglet Général
+    const ongletGeneral = screen.getByRole('tab', { name: fr.profil.general });
+    await act(async () => {
+      fireEvent.press(ongletGeneral);
+    });
+    expect(screen.getByText(fr.profil.tempsGlobal)).toBeTruthy();
+    expect(screen.getByTestId('progression-mois')).toBeTruthy();
+  });
 });
 
 describe('Aide et contact', () => {

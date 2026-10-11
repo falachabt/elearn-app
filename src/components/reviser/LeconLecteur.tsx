@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -8,6 +8,7 @@ import { apresDerniereLecon } from '@/services/entrainement';
 import { versListeChapitres } from './versListeChapitres';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireLecon, lireLecons, lireLues, noterDerniereLecon, type ContenuLecon, type Lecon } from '@/services/reviser';
+import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -35,6 +36,22 @@ export function LeconLecteur() {
   const [validee, setValidee] = useState(false);
   const [invitation, setInvitation] = useState(false);
   const pret = useSessionPrete();
+  const { tempsEcouleS } = useChrono({ actif: true });
+  const tempsRef = useRef(tempsEcouleS);
+  tempsRef.current = tempsEcouleS;
+
+  useEffect(() => {
+    return () => {
+      if (tempsRef.current >= 3) {
+        void enregistrerTempsActivite({
+          type: 'lecon',
+          dureeS: tempsRef.current,
+          matiere: matiere ?? undefined,
+          titre: etat.statut === 'pret' ? etat.lecon.nom : `Leçon ${id}`,
+        });
+      }
+    };
+  }, [id, matiere, etat]);
 
   useEffect(() => {
     if (!pret) return;

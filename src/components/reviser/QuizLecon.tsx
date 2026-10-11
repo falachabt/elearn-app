@@ -10,6 +10,7 @@ import { apresDerniereLecon } from '@/services/entrainement';
 import { enregistrerCorrection, lireCorrection, statuts as statutsDe, type StatutQuestion } from '@/services/correction';
 import type { QuestionTiree } from '@/services/miniTest';
 import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
+import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -87,9 +88,10 @@ export function QuizLecon() {
         libelleFin={t('reviser.quizTerminer')}
         libelleFermer={t('reviser.quizFermer')}
         onFermer={retour}
-        onTermine={async ({ questions, reponses }) => {
+        onTermine={async ({ questions, reponses, dureeS }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
+          void enregistrerTempsActivite({ type: 'quiz', dureeS, matiere: matiere ?? undefined, titre: `Quiz leçon ${lecon}` });
           // La correction est enregistrée AVANT tout le reste : c'est elle que « Refaire mes erreurs » relit. Si une
           // écriture suivante échouait (stockage hors ligne), elle ne doit pas empêcher ce relecture — sans quoi
           // l'écran de reprise annoncerait « aucune erreur » alors qu'il y en a.

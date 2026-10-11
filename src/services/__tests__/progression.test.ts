@@ -90,4 +90,27 @@ describe('progression : jamais bloquée par le réseau', () => {
       jest.useRealTimers();
     }
   });
+
+  it('cumule les minutes des missions et des activites educatives (cours, quiz, annales)', () => {
+    const activites = {
+      [aujourdHui]: {
+        jour: aujourdHui,
+        secondes: 1200, // 20 min
+        parType: { cours: 600, lecon: 0, quiz: 300, exercice: 0, annale: 300, mission: 0 },
+        parMatiere: { Physique: 600, Maths: 600 },
+        sessions: [
+          { type: 'cours' as const, matiere: 'Physique', secondes: 600, quand: new Date().toISOString() },
+          { type: 'quiz' as const, matiere: 'Maths', secondes: 300, quand: new Date().toISOString() },
+          { type: 'annale' as const, matiere: 'Maths', secondes: 300, quand: new Date().toISOString() },
+        ],
+      },
+    };
+
+    const p = calculerProgression([{ jour: aujourdHui, dureeS: 600, questions: 5, chapitres: [{ matiere: 'Maths', bonnes: 3, total: 5 }] }], new Date(), activites);
+    // 10 min de mission + 20 min d'activites = 30 min
+    expect(p.minutesSemaine).toBe(30);
+    expect(p.globale?.totalLecons).toBe(1);
+    expect(p.globale?.totalQuiz).toBe(1);
+    expect(p.globale?.mois).toHaveLength(12);
+  });
 });

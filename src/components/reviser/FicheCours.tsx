@@ -1,11 +1,12 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireFiche, type Fiche } from '@/services/reviser';
+import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -26,6 +27,22 @@ export function FicheCours() {
   const { cours, nom, matiere } = useLocalSearchParams<{ cours: string; nom?: string; matiere?: string }>();
   const [etat, setEtat] = useEtatMemorise<Etat>(`fiche.${cours}`, { statut: 'chargement' });
   const pret = useSessionPrete();
+  const { tempsEcouleS } = useChrono({ actif: true });
+  const tempsRef = useRef(tempsEcouleS);
+  tempsRef.current = tempsEcouleS;
+
+  useEffect(() => {
+    return () => {
+      if (tempsRef.current >= 3) {
+        void enregistrerTempsActivite({
+          type: 'cours',
+          dureeS: tempsRef.current,
+          matiere: matiere ?? undefined,
+          titre: nom ? `Fiche ${nom}` : `Fiche cours ${cours}`,
+        });
+      }
+    };
+  }, [cours, nom, matiere]);
 
   useEffect(() => {
     if (!pret) return;

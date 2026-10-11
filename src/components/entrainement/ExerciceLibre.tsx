@@ -5,6 +5,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import type { Bloc } from '@/services/blocs';
 import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
 import { lireLocalHorsLigne } from '@/services/reviser';
@@ -17,6 +18,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
+import { ChronoPuce } from '../ChronoPuce';
 import { useDepenseCredits } from '../credits/useDepenseCredits';
 import { useOuverts } from '../credits/useOuverts';
 import { useOuverturePass } from '../credits/useOuverturePass';
@@ -78,6 +80,25 @@ export function ExerciceLibre() {
     setEssai((n) => n + 1);
   };
 
+  const chrono = useChrono({ actif: true });
+  const tempsRef = useRef(0);
+  tempsRef.current = chrono.tempsEcouleS;
+  const exerciceRef = useRef<Exercice | undefined>(undefined);
+
+  useEffect(() => {
+    return () => {
+      const dureeS = tempsRef.current;
+      if (dureeS >= 3) {
+        void enregistrerTempsActivite({
+          type: 'exercice',
+          dureeS,
+          matiere: cours ? String(cours) : undefined,
+          titre: exerciceRef.current?.titre,
+        });
+      }
+    };
+  }, [cours, id]);
+
   useEffect(() => {
     if (!pret) return;
     let actif = true;
@@ -98,6 +119,7 @@ export function ExerciceLibre() {
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const position = etat.statut === 'pret' ? etat.exercices.findIndex((e) => e.id === id) : -1;
   const exercice = etat.statut === 'pret' ? etat.exercices[position] : undefined;
+  exerciceRef.current = exercice;
   const suivant = etat.statut === 'pret' && position >= 0 ? etat.exercices[position + 1] : undefined;
   const fait = etat.statut === 'pret' && !!exercice && !!etat.faits[exercice.id];
 
@@ -273,8 +295,9 @@ export function ExerciceLibre() {
             {exercice && etat.statut === 'pret' ? t('entrainement.exerciceRang', { n: position + 1, total: etat.exercices.length }) : ''}
           </Text>
           <View style={styles.pastilles}>
+            <ChronoPuce secondes={chrono.tempsEcouleS} />
             {fait ? <Pastille vert texte={t('entrainement.fait')} /> : null}
-            {difficulte ? <Pastille texte={t(`entrainement.difficulte.${difficulte}`)} /> : !fait ? <View style={styles.vide} /> : null}
+            {difficulte ? <Pastille texte={t(`entrainement.difficulte.${difficulte}`)} /> : null}
           </View>
         </>
       }
