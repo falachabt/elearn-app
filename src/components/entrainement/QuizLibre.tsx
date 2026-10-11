@@ -6,6 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { enregistrerCorrection } from '@/services/correction';
 import { enregistrerSession, lireQuizLibre, noterDernier } from '@/services/entrainement';
+import { enregistrerTempsActivite } from '@/services/activite';
 import type { QuestionTiree } from '@/services/miniTest';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -53,6 +54,7 @@ export function QuizLibreEcran() {
         onTermine={async ({ questions: q, reponses, dureeS }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
           const le = new Date();
+          void enregistrerTempsActivite({ type: 'quiz', dureeS, titre: nom ?? 'Quiz libre' });
           // Les écritures locales sont attendues, une par une, chacune isolée : l'écran de score et la carte « Reprendre »
           // les lisent dès la navigation, et lancées en arrière-plan elles pouvaient arriver après (score ou carte
           // vides). Un échec local est avalé : il ne doit jamais laisser l'élève bloqué sur la dernière question.

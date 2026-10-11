@@ -1,19 +1,23 @@
 import { Minus, Plus } from 'lucide-react-native';
 import { router, useLocalSearchParams } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
 import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
+import { ChronoPuce } from './ChronoPuce';
 import { Ecran } from './Ecran';
+import { Feuille } from './Feuille';
 import { BoutonFermer } from './arrivee/MiniTest';
 import { EcranErreur } from './liste/EcranErreur';
 
@@ -28,12 +32,56 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { url, titre, sujet } = useLocalSearchParams<{ url: string; titre?: string; sujet?: string }>();
+  const { url, titre, sujet, matiere, dureeMin } = useLocalSearchParams<{
+    url: string;
+    titre?: string;
+    sujet?: string;
+    matiere?: string;
+    dureeMin?: string;
+  }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [essai, setEssai] = useState(0);
   const [page, setPage] = useState({ n: 1, total: 0 });
   const [zoom, setZoom] = useState(1);
   const [reprise, setReprise] = useState(false);
+  const [menuChronoOuvert, setMenuChronoOuvert] = useState(false);
+  const [dureeChoisieS, setDureeChoisieS] = useState<number | undefined>(undefined);
+  const [sujetInfo, setSujetInfo] = useState<{ matiere?: string; dureeMin?: number } | null>(null);
+
+  useEffect(() => {
+    if (!sujet) return;
+    void AsyncStorage.getItem('annales.catalogue').then((cat) => {
+      if (!cat) return;
+      try {
+        const liste = JSON.parse(cat) as { id: number; matiere?: string; dureeMin?: number }[];
+        const item = liste.find((s) => s.id === Number(sujet));
+        if (item) setSujetInfo({ matiere: item.matiere, dureeMin: item.dureeMin });
+      } catch {}
+    });
+  }, [sujet]);
+
+  const dureeOfficielle = (dureeMin ? Number(dureeMin) : sujetInfo?.dureeMin) ?? undefined;
+  const matiereEffective = matiere || sujetInfo?.matiere;
+
+  const chrono = useChrono({
+    dureeInitialeS: dureeChoisieS,
+  });
+  const tempsRef = useRef(0);
+  tempsRef.current = chrono.tempsEcouleS;
+
+  useEffect(() => {
+    return () => {
+      const dureeS = tempsRef.current;
+      if (dureeS >= 3) {
+        void enregistrerTempsActivite({
+          type: sujet ? 'annale' : 'cours',
+          dureeS,
+          matiere: matiereEffective || undefined,
+          titre: titre || undefined,
+        });
+      }
+    };
+  }, [url, sujet, matiereEffective, titre]);
   // Le PDF descend jusqu'au bord de l'écran ; les boutons de zoom restent au-dessus de la barre de navigation.
   const { bottom } = useSafeAreaInsets();
 
@@ -66,6 +114,7 @@ export function LecteurPdf() {
   }, [reprise]);
 
   return (
+    <>
     <Ecran
       defilement={false}
       insetBas={false}
@@ -75,6 +124,12 @@ export function LecteurPdf() {
         <>
           <BoutonFermer petit icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
           <Text accessibilityRole="header" numberOfLines={1} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{titreDocument(titre ?? '')}</Text>
+          <ChronoPuce
+            secondes={dureeChoisieS !== undefined ? (chrono.tempsRestantS ?? 0) : chrono.tempsEcouleS}
+            compteARebours={dureeChoisieS !== undefined}
+            alerte={dureeChoisieS !== undefined && (chrono.tempsRestantS ?? 0) <= 300}
+            onPress={() => setMenuChronoOuvert(true)}
+          />
           {page.total ? (
             <View style={[styles.page, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
               <Text accessibilityLabel={t('document.page', { n: page.n, total: page.total })} style={[typo.donnee, { color: theme.texte.principal }]}>{`${page.n} / ${page.total}`}</Text>
@@ -142,6 +197,65 @@ export function LecteurPdf() {
         </View>
       ) : null}
     </Ecran>
+    <Feuille
+      ouverte={menuChronoOuvert}
+      onFermer={() => setMenuChronoOuvert(false)}
+      icone="time-outline"
+      titre={t('annales.configurerChrono')}
+      texte={t('annales.choisirChrono')}
+      actions={[
+        ...(dureeOfficielle && dureeOfficielle > 0
+          ? [
+              {
+                libelle: `Durée officielle (${dureeOfficielle} min)`,
+                onPress: () => {
+                  setDureeChoisieS(dureeOfficielle * 60);
+                  chrono.demarrer();
+                  setMenuChronoOuvert(false);
+                },
+                variante: dureeChoisieS === dureeOfficielle * 60 ? ('principal' as const) : ('secondaire' as const),
+              },
+            ]
+          : []),
+        {
+          libelle: 'Chrono libre (montant)',
+          onPress: () => {
+            setDureeChoisieS(undefined);
+            chrono.demarrer();
+            setMenuChronoOuvert(false);
+          },
+          variante: dureeChoisieS === undefined ? ('principal' as const) : ('secondaire' as const),
+        },
+        {
+          libelle: '30 minutes',
+          onPress: () => {
+            setDureeChoisieS(30 * 60);
+            chrono.demarrer();
+            setMenuChronoOuvert(false);
+          },
+          variante: dureeChoisieS === 1800 ? ('principal' as const) : ('secondaire' as const),
+        },
+        {
+          libelle: '1 heure (60 min)',
+          onPress: () => {
+            setDureeChoisieS(60 * 60);
+            chrono.demarrer();
+            setMenuChronoOuvert(false);
+          },
+          variante: dureeChoisieS === 3600 ? ('principal' as const) : ('secondaire' as const),
+        },
+        {
+          libelle: '2 heures (120 min)',
+          onPress: () => {
+            setDureeChoisieS(120 * 60);
+            chrono.demarrer();
+            setMenuChronoOuvert(false);
+          },
+          variante: dureeChoisieS === 7200 ? ('principal' as const) : ('secondaire' as const),
+        },
+      ]}
+    />
+    </>
   );
 }
 

@@ -18,6 +18,8 @@ import { Etiquette } from '../Etiquette';
 import { OptionReponse } from '../OptionReponse';
 import { Rebond } from '../Rebond';
 import { Secousse } from '../Secousse';
+import { ChronoPuce } from '../ChronoPuce';
+import { useChrono } from '@/services/activite';
 
 const LETTRES = ['A', 'B', 'C', 'D'];
 
@@ -62,13 +64,14 @@ type Props = {
   onFermer?: () => void;
   libelleFin?: string;
   libelleFermer?: string;
+  afficherChrono?: boolean;
 };
 
 /** A4 · Mini-test : une question par écran, on choisit puis on valide (M1-03). */
-export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin, libelleFermer }: Props) {
+export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin, libelleFermer, afficherChrono = true }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const debut = useRef<number | null>(null);
+  const { tempsEcouleS } = useChrono({ actif: true });
   const [niveau, setNiveau] = useState<string | null>(null);
   const [questions, setQuestions] = useState<QuestionTiree[] | null>(fournies ?? null);
   const [index, setIndex] = useState(0);
@@ -82,7 +85,6 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   const [horsLigne, setHorsLigne] = useState(false);
 
   useEffect(() => {
-    debut.current = Date.now();
     let actif = true;
     lireProfil().then((p) => {
       if (!actif) return;
@@ -117,7 +119,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
       setHorsLigne(false);
       return;
     }
-    const dureeS = (Date.now() - (debut.current ?? Date.now())) / 1000;
+    const dureeS = tempsEcouleS;
     if (onTermine) {
       await onTermine({ questions: questions.map((x) => (ouvertes[x.id] ? { ...x, explication: ouvertes[x.id] } : x)), reponses, dureeS });
       return;
@@ -198,6 +200,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
           onPress={onFermer ?? (() => (router.canGoBack() ? router.back() : router.replace('/premier-resultat')))}
         />
         <Progression faites={index + (validee ? 1 : 0)} total={total} libelle={t('miniTest.progression', { n: index + 1, total })} />
+        {afficherChrono ? <ChronoPuce secondes={tempsEcouleS} /> : null}
       </View>
       {q ? (
         <>

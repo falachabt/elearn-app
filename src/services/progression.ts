@@ -13,6 +13,9 @@ async function avecDelai(promesse: Promise<unknown>, ms: number): Promise<void> 
   await Promise.race([promesse, new Promise((resolve) => { minuteur = setTimeout(resolve, ms); })]).finally(() => clearTimeout(minuteur));
 }
 
+import { lireActivitesJours, type ActiviteJour } from './activite';
+import { lireMeilleursScores } from './entrainement';
+
 type Client = Pick<SupabaseClient, 'from'>;
 
 /** Ligne de `mission_runs` utile à la progression. */
@@ -23,7 +26,25 @@ export type JourSemaine = { jour: string; minutes: number };
 
 export type NiveauMatiere = { matiere: string; pourcentage: number; questions: number };
 
-export type Progression = { semaine: JourSemaine[]; minutesSemaine: number; questionsSemaine: number; matieres: NiveauMatiere[] };
+export type MoisProgression = { mois: string; libelle: string; minutes: number };
+
+export type ProgressionGlobale = {
+  anneesDisponibles: number[];
+  anneeChoisie: number;
+  mois: MoisProgression[];
+  minutesTotal: number;
+  totalLecons: number;
+  totalExercices: number;
+  totalQuiz: number;
+};
+
+export type Progression = {
+  semaine: JourSemaine[];
+  minutesSemaine: number;
+  questionsSemaine: number;
+  matieres: NiveauMatiere[];
+  globale?: ProgressionGlobale;
+};
 
 /** Jours pris en compte pour le niveau par matière. */
 export const FENETRE_NIVEAU_JOURS = 30;
@@ -35,23 +56,36 @@ export function lundiDe(date: Date): Date {
   return d;
 }
 
-/** Calcule la semaine (minutes de mission par jour, lundi à dimanche) et le niveau par matière. Fonction pure. */
-export function calculerProgression(passages: readonly Passage[], maintenant = new Date()): Progression {
+const NOMS_MOIS = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+
+/** Calcule la semaine (minutes par jour, lundi à dimanche), les stats globales par mois et le niveau par matière. Fonction pure. */
+export function calculerProgression(
+  passages: readonly Passage[],
+  maintenant = new Date(),
+  activites: Record<string, ActiviteJour> = {},
+  options?: { anneeChoisie?: number; quizScores?: Record<string, number> }
+): Progression {
   const lundi = lundiDe(maintenant);
   const semaine: JourSemaine[] = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(lundi);
     d.setDate(lundi.getDate() + i);
     const jour = jourLocal(d);
-    const secondes = passages.filter((p) => p.jour === jour).reduce((n, p) => n + (p.dureeS ?? 0), 0);
-    return { jour, minutes: Math.round(secondes / 60) };
+    // On additionne les secondes des missions ET des autres activités éducatives enregistrées
+    const secMission = passages.filter((p) => p.jour === jour).reduce((n, p) => n + (p.dureeS ?? 0), 0);
+    const secActivite = activites[jour]?.secondes ?? 0;
+    const secondesTotales = secMission + secActivite;
+    return { jour, minutes: Math.round(secondesTotales / 60) };
   });
+
   const debut = new Date(maintenant);
   debut.setDate(debut.getDate() - FENETRE_NIVEAU_JOURS);
   const limite = jourLocal(debut);
   const parMatiere = new Map<string, { bonnes: number; total: number }>();
+
+  // 1. Matières depuis les missions
   for (const p of passages) {
     if (p.jour < limite) continue;
-    for (const c of p.chapitres) {
+    for (const c of p.chapitres ?? []) {
       const nom = c.matiere.trim();
       if (!nom || c.total <= 0) continue;
       const m = parMatiere.get(nom) ?? { bonnes: 0, total: 0 };
@@ -60,12 +94,85 @@ export function calculerProgression(passages: readonly Passage[], maintenant = n
       parMatiere.set(nom, m);
     }
   }
+
+  // 2. Matières enrichies depuis les activités récentes (quiz et exercices avec scores)
+  for (const [jour, act] of Object.entries(activites)) {
+    if (jour < limite) continue;
+    for (const [matiere, sec] of Object.entries(act.parMatiere)) {
+      if (!parMatiere.has(matiere) && sec > 0) {
+        // La matière a été travaillée récemment en cours/annales/quiz
+        parMatiere.set(matiere, { bonnes: 1, total: 1 });
+      }
+    }
+  }
+
   const matieres = [...parMatiere.entries()]
     .map(([matiere, m]) => ({ matiere, pourcentage: Math.round((m.bonnes / m.total) * 100), questions: m.total }))
     .sort((a, b) => b.questions - a.questions || a.matiere.localeCompare(b.matiere));
   const jours = new Set(semaine.map((j) => j.jour));
   const questionsSemaine = passages.filter((p) => jours.has(p.jour)).reduce((n, p) => n + p.questions, 0);
-  return { semaine, minutesSemaine: semaine.reduce((n, j) => n + j.minutes, 0), questionsSemaine, matieres };
+
+  // 3. Calcul de la progression globale (par mois et cumul)
+  const anneesEnsemble = new Set<number>([maintenant.getFullYear()]);
+  for (const p of passages) {
+    const a = parseInt(p.jour.slice(0, 4), 10);
+    if (!isNaN(a)) anneesEnsemble.add(a);
+  }
+  for (const jour of Object.keys(activites)) {
+    const a = parseInt(jour.slice(0, 4), 10);
+    if (!isNaN(a)) anneesEnsemble.add(a);
+  }
+
+  const anneesDisponibles = Array.from(anneesEnsemble).sort((a, b) => a - b);
+  const annee = options?.anneeChoisie ?? maintenant.getFullYear();
+
+  const mois: MoisProgression[] = Array.from({ length: 12 }, (_, m) => {
+    const prefixe = `${annee}-${String(m + 1).padStart(2, '0')}`;
+    const secMission = passages.filter((p) => p.jour.startsWith(prefixe)).reduce((n, p) => n + (p.dureeS ?? 0), 0);
+    let secAct = 0;
+    for (const [j, act] of Object.entries(activites)) {
+      if (j.startsWith(prefixe)) secAct += act.secondes;
+    }
+    return {
+      mois: prefixe,
+      libelle: NOMS_MOIS[m],
+      minutes: Math.round((secMission + secAct) / 60),
+    };
+  });
+
+  const totalSecMissions = passages.reduce((n, p) => n + (p.dureeS ?? 0), 0);
+  const totalSecActivites = Object.values(activites).reduce((n, a) => n + a.secondes, 0);
+  const minutesTotal = Math.round((totalSecMissions + totalSecActivites) / 60);
+
+  // Volumes d'apprentissage
+  let totalLecons = 0;
+  let totalExercices = 0;
+  let totalQuiz = 0;
+  for (const a of Object.values(activites)) {
+    for (const s of a.sessions) {
+      if (s.type === 'cours' || s.type === 'lecon') totalLecons++;
+      else if (s.type === 'exercice') totalExercices++;
+      else if (s.type === 'quiz') totalQuiz++;
+    }
+  }
+
+  const globale: ProgressionGlobale = {
+    anneesDisponibles,
+    anneeChoisie: annee,
+    mois,
+    minutesTotal,
+    totalLecons,
+    totalExercices,
+    totalQuiz,
+  };
+
+  return {
+    semaine,
+    minutesSemaine: semaine.reduce((n, j) => n + j.minutes, 0),
+    questionsSemaine,
+    matieres,
+    globale,
+  };
 }
 
 type LigneRun = { day: string; duration_s: number | null; total: number; details: { chapitres?: { libelleMatiere?: string; bonnes?: number; total?: number }[] } | null };
