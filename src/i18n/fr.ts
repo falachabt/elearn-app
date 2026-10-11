@@ -1466,6 +1466,8 @@ export const fr = {
     bienvenueBonus: 'Bonus de bienvenue',
     bienvenueRecharge: 'Recharge chaque lundi',
     bienvenueBouton: 'Récupérer mes crédits',
+    toastRechargeHebdo: 'Tes 25 crédits de la semaine sont là !',
+    toastRechargeHebdoTexte: 'Recharge du lundi appliquée. Bonnes révisions !',
     explicationHorsLigne: 'Cette explication s’ouvre avec Internet. Aucun crédit n’a été retiré.',
     reessayer: 'Réessayer',
     fermer: 'Fermer',

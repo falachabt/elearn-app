@@ -10,6 +10,7 @@ import { BandeauApplication } from '@/components/BandeauApplication';
 import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
+import { ToastRechargeCredits } from '@/components/credits/ToastRechargeCredits';
 import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
@@ -158,6 +159,7 @@ export default function RootLayout() {
                     <Navigation />
                   </BottomSheetModalProvider>
                   <BienvenueCredits />
+                  <ToastRechargeCredits />
                   <BienvenuePass />
                   <MiseAJour />
                 </VisiteProvider>

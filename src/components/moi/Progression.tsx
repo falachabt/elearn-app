@@ -328,9 +328,9 @@ const styles = StyleSheet.create({
     gap: espace[1],
   },
   legendePastille: {
-    width: 10,
-    height: 10,
-    borderRadius: 2,
-    borderWidth: 1,
+    width: 12,
+    height: 12,
+    borderRadius: 3,
+    borderWidth: bord.fin,
   },
 });

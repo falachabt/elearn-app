@@ -1,5 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Minus, Plus } from 'lucide-react-native';
+import { Check, Clock, Hourglass, Minus, Plus, Timer, TriangleAlert } from 'lucide-react-native';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,7 +12,7 @@ import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
 import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, espace, ombre, rayon, typeContenu, typo } from '@/theme/theme';
 
 import { Appui } from './Appui';
 import { ChronoPuce } from './ChronoPuce';
@@ -285,7 +284,8 @@ export function LecteurPdf() {
       ouverte={onboardingOuvert}
       onFermer={fermerOnboarding}
       bloquante
-      icone="time-outline"
+      icone={<Clock size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.accent.soleil}
       titre={t('annales.onboardingChronoTitre')}
       actions={[
         {
@@ -296,26 +296,32 @@ export function LecteurPdf() {
       ]}
     >
       <View style={styles.onboardingContenu}>
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <View style={styles.ligneOnboarding}>
-            <Ionicons name="stopwatch-outline" size={20} color={theme.texte.principal} />
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingChronoLibre')}</Text>
+            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.quiz, borderColor: theme.bord.fort }]}>
+              <Timer size={18} strokeWidth={2} color={theme.texte.surCouleur} />
+            </View>
+            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingChronoLibre')}</Text>
           </View>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoLibreDesc')}</Text>
         </View>
 
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <View style={styles.ligneOnboarding}>
-            <Ionicons name="hourglass-outline" size={20} color={theme.texte.principal} />
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingCompteARebours')}</Text>
+            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.exercice, borderColor: theme.bord.fort }]}>
+              <Hourglass size={18} strokeWidth={2} color={theme.texte.surCouleur} />
+            </View>
+            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingCompteARebours')}</Text>
           </View>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingCompteAReboursDesc')}</Text>
         </View>
 
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <View style={styles.ligneOnboarding}>
-            <Ionicons name="hand-left-outline" size={20} color={theme.texte.principal} />
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('annales.onboardingChronoEnTete')}</Text>
+            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.annale, borderColor: theme.bord.fort }]}>
+              <Clock size={18} strokeWidth={2} color={theme.texte.surCouleur} />
+            </View>
+            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingChronoEnTete')}</Text>
           </View>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoEnTeteDesc')}</Text>
           <View style={styles.demoChrono}>
@@ -328,14 +334,15 @@ export function LecteurPdf() {
     <Feuille
       ouverte={menuChronoOuvert}
       onFermer={() => setMenuChronoOuvert(false)}
-      icone="time-outline"
+      icone={<Timer size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.accent.soleil}
       titre={t('annales.configurerChrono')}
       texte={t('annales.choisirChrono')}
       actions={[
         ...(dureeOfficielle && dureeOfficielle > 0
           ? [
               {
-                libelle: `Durée officielle (${dureeOfficielle} min)`,
+                libelle: `Durée officielle (${dureeOfficielle}\u00A0min)`,
                 onPress: () => void choisirDuree(dureeOfficielle * 60),
                 variante: dureeChoisieS === dureeOfficielle * 60 ? ('principal' as const) : ('secondaire' as const),
               },
@@ -352,12 +359,12 @@ export function LecteurPdf() {
           variante: dureeChoisieS === 1800 ? ('principal' as const) : ('secondaire' as const),
         },
         {
-          libelle: '1 heure (60 min)',
+          libelle: '1 heure (60\u00A0min)',
           onPress: () => void choisirDuree(60 * 60),
           variante: dureeChoisieS === 3600 ? ('principal' as const) : ('secondaire' as const),
         },
         {
-          libelle: '2 heures (120 min)',
+          libelle: '2 heures (120\u00A0min)',
           onPress: () => void choisirDuree(120 * 60),
           variante: dureeChoisieS === 7200 ? ('principal' as const) : ('secondaire' as const),
         },
@@ -372,7 +379,7 @@ export function LecteurPdf() {
         style={styles.ligneNePlusAfficher}
       >
         <View style={[styles.caseCochee, { borderColor: theme.bord.fort, backgroundColor: nePlusAfficher ? theme.marque.principale : theme.fond.surface }]}>
-          {nePlusAfficher ? <Ionicons name="checkmark" size={14} color={theme.texte.surCouleur} /> : null}
+          {nePlusAfficher ? <Check size={14} strokeWidth={2.5} color={theme.texte.surCouleur} /> : null}
         </View>
         <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('annales.nePlusAfficher')}</Text>
       </Appui>
@@ -381,18 +388,19 @@ export function LecteurPdf() {
     <Feuille
       ouverte={demandeSortie}
       onFermer={annulerSortie}
-      icone="warning-outline"
+      icone={<TriangleAlert size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.etat.alerte}
       titre={t('annales.sortieTitre')}
       texte={t('annales.sortieTexte')}
       actions={[
         {
-          libelle: t('annales.sortieQuitter'),
-          onPress: quitterSession,
+          libelle: t('annales.sortieContinuer'),
+          onPress: annulerSortie,
           variante: 'principal',
         },
         {
-          libelle: t('annales.sortieContinuer'),
-          onPress: annulerSortie,
+          libelle: t('annales.sortieQuitter'),
+          onPress: quitterSession,
           variante: 'secondaire',
         },
       ]}
@@ -491,24 +499,36 @@ const styles = StyleSheet.create({
   },
   carteOnboarding: {
     gap: espace[2],
-    padding: espace[3],
-    borderWidth: bord.fin,
+    padding: espace[4],
+    borderWidth: bord.normal,
     borderRadius: rayon.m,
   },
   ligneOnboarding: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: espace[2],
+    gap: espace[3],
+  },
+  pastilleIcone: {
+    width: 34,
+    height: 34,
+    borderRadius: 8,
+    borderWidth: bord.normal,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  titreItemOnboarding: {
+    flex: 1,
   },
   demoChrono: {
     alignSelf: 'flex-start',
-    marginTop: espace[1],
+    marginTop: espace[2],
   },
   ligneNePlusAfficher: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: espace[3],
-    paddingVertical: espace[3],
+    minHeight: 48,
+    paddingVertical: espace[2],
     paddingHorizontal: espace[1],
   },
   caseCochee: {

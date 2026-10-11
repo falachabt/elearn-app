@@ -114,6 +114,23 @@ export async function lireBienvenueRecente(client: Client, depuis: string): Prom
   return l ? { id: String(l.id), montant: l.delta } : null;
 }
 
+/**
+ * Recharge hebdomadaire du lundi reçue depuis `depuis` (ISO) : identifiant de la ligne et montant.
+ */
+export async function lireRechargeRecente(client: Client, depuis: string): Promise<{ id: string; montant: number } | null> {
+  const { data, error } = await client
+    .from('credit_ledger')
+    .select('id, delta')
+    .eq('kind', 'weekly')
+    .gt('delta', 0)
+    .gte('created_at', depuis)
+    .order('created_at', { ascending: false })
+    .limit(1);
+  if (error) throw error;
+  const l = (data as { id: number | string; delta: number }[] | null)?.[0];
+  return l ? { id: String(l.id), montant: l.delta } : null;
+}
+
 /** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */
 export async function lireCouts(client: Client): Promise<Partial<Record<ActionCredit, number>>> {
   const { data, error } = await client.from('credit_actions').select('code, cost');

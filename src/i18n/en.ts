@@ -1465,6 +1465,8 @@ export const en: Textes = {
     bienvenueBonus: 'Welcome bonus',
     bienvenueRecharge: 'Refill every Monday',
     bienvenueBouton: 'Collect my credits',
+    toastRechargeHebdo: 'Your 25 weekly credits are here!',
+    toastRechargeHebdoTexte: 'Monday refill applied. Happy studying!',
     explicationHorsLigne: 'This explanation needs the Internet. No credit was taken.',
     reessayer: 'Try again',
     fermer: 'Close',
