@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -84,15 +85,15 @@ export function SelecteurClasse({ profil }: { profil: Profil | null }) {
         hitSlop={4}
       >
         <View style={[styles.selecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <Ionicons
-            name={concours ? 'trophy-outline' : 'school-outline'}
-            size={14}
-            color={theme.texte.principal}
-          />
+          {concours ? (
+            <Trophy size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          ) : (
+            <GraduationCap size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          )}
           <Text numberOfLines={1} style={[styles.texteSelecteur, { color: theme.texte.principal }]}>
             {libelle}
           </Text>
-          <Ionicons name="chevron-down" size={12} color={theme.texte.secondaire} />
+          <ChevronDown size={14} strokeWidth={2.2} color={theme.texte.secondaire} />
         </View>
       </Appui>
     </View>
