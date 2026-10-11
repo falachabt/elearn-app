@@ -1,10 +1,24 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
-import { router } from 'expo-router';
+import { router, type Href } from 'expo-router';
 import { Platform } from 'react-native';
 
+if (Notifications.setNotificationHandler) {
+  Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+}
+
+
 import { suivre } from './analytics';
-import { TYPE_CORRECTION_PRETE } from './photoNotification';
+import { destinationDe, marquerLue } from './notifications';
+import { getSupabase } from './supabase';
 
 /** Heure du rappel quotidien par défaut (M9-01 : 19 h–21 h, heure locale). */
 export const HEURE_RAPPEL = 19;
@@ -107,18 +121,8 @@ export function suivreOuvertures(): () => void {
     const type = data?.type;
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
     
-    if (type === TYPE_CORRECTION_PRETE) {
-      // Correction par photo prête : ouvre directement la correction spécifique si l'id est transmis, sinon l'historique.
-      const photoId = (typeof data?.photoId === 'string' && data.photoId)
-        || (typeof data?.id === 'string' && data.id)
-        || (typeof data?.photo_id === 'string' && data.photo_id)
-        || undefined;
-      if (photoId) {
-        router.push({ pathname: '/photo', params: { id: photoId } });
-      } else {
-        router.push({ pathname: '/photo', params: { historique: '1' } });
-      }
-    } else if (type === 'credits_refilled') {
+    // Correction par photo prête (`photo_ready`, serveur ou rappel local) : `destinationDe` ouvre la correction ou l'historique.
+    if (type === 'credits_refilled') {
       // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
       router.push('/moi');
     } else if (type === 'mission') {
@@ -127,6 +131,13 @@ export function suivreOuvertures(): () => void {
     } else if (type === 'feed_reply' || type === 'feed_post') {
       // Fil d'actualité (sondage, réponse...)
       router.push('/questions');
+    } else if (typeof type === 'string') {
+      // Notification du serveur (réponse, sondage, crédits, parrainage, paiement…) : l'écran vient de son type et de
+      // ses données ; la notification est marquée lue pour que la cloche suive (issue #32).
+      const d = destinationDe(type, data, 'push');
+      router.push((d.params ? { pathname: d.pathname, params: d.params } : d.pathname) as Href);
+      const id = data?.notificationId;
+      if (typeof id === 'string' && id) void marquerLue(getSupabase(), id).catch(() => {});
     }
   });
   return () => abonnement.remove();
@@ -232,4 +243,5 @@ export async function mefierNotificationReward(action: string, gain: number): Pr
     // Ignorer si non disponible
   }
 }
+
 

@@ -46,3 +46,47 @@ describe('refaire mes erreurs', () => {
     expect(JSON.parse((await AsyncStorage.getItem(CLE_SESSIONS))!).qz1).toHaveLength(1);
   });
 });
+
+describe('refaire mes erreurs, plusieurs fois de suite', () => {
+  beforeEach(() => AsyncStorage.clear());
+
+  it('une même session se met à jour à chaque passage, sans devenir une « session à part »', async () => {
+    await enregistrerCorrection({ source: 'lecon', questions: Q, reponses: [1, 1, 1], contexte: { type: 'lecon', lecon: 11, cours: 1 } });
+    // 1er passage : trois erreurs refaites, une seule corrigée.
+    await appliquerRefaire({ questions: [Q[0], Q[1], Q[2]], reponses: [0, 1, 1] });
+    let c = (await lireCorrection())!;
+    expect(c.questions).toHaveLength(3);
+    expect(statuts(c)).toEqual(['juste', 'faux', 'faux']);
+    // 2e passage : seules les deux erreurs restantes sont reproposées (comme RefaireErreurs), l'une corrigée.
+    const restantes = c.questions.filter((_, i) => statuts(c)[i] !== 'juste');
+    expect(restantes.map((x) => x.id)).toEqual(['q2', 'q3']);
+    await appliquerRefaire({ questions: restantes, reponses: [0, 1] });
+    c = (await lireCorrection())!;
+    expect(c.questions).toHaveLength(3);
+    expect(statuts(c)).toEqual(['juste', 'juste', 'faux']);
+    // 3e passage : il reste exactement une erreur, jamais « aucune erreur ».
+    expect(c.questions.filter((_, i) => statuts(c)[i] !== 'juste').map((x) => x.id)).toEqual(['q3']);
+  });
+
+  it('un échec de mise à jour de la progression ne détruit pas la session fusionnée', async () => {
+    await enregistrerCorrection({ source: 'libre', questions: Q, reponses: [1, 1, 0], contexte: { type: 'libre', quiz: 'qz1', le: '2026-10-01T10:00:00.000Z' } });
+    const lecture = jest.mocked(AsyncStorage.getItem);
+    const original = lecture.getMockImplementation()!;
+    const avertir = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    try {
+      // La lecture des sessions libres lève une erreur : la correction fusionnée doit rester entière.
+      lecture.mockImplementation(async (cle: string, callback?: Parameters<typeof AsyncStorage.getItem>[1]) => {
+        if (cle === CLE_SESSIONS) throw new Error('lecture impossible');
+        return original(cle, callback);
+      });
+      const c = await appliquerRefaire({ questions: [Q[0], Q[1]], reponses: [0, 0] });
+      expect(c).not.toBeNull();
+    } finally {
+      lecture.mockImplementation(original);
+      avertir.mockRestore();
+    }
+    const apres = (await lireCorrection())!;
+    expect(apres.questions).toHaveLength(3);
+    expect(statuts(apres)).toEqual(['juste', 'juste', 'juste']);
+  });
+});

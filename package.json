@@ -34,6 +34,7 @@
     "expo-linear-gradient": "~57.0.2",
     "expo-linking": "~57.0.11",
     "expo-localization": "~57.0.2",
+    "expo-network": "~57.0.2",
     "expo-notifications": "~57.0.21",
     "expo-router": "~57.0.24",
     "expo-screen-capture": "~57.0.3",
@@ -47,6 +48,7 @@
     "expo-web-browser": "~57.0.3",
     "fflate": "^0.8.3",
     "i18next": "^26.4.2",
+    "libphonenumber-js": "^1.13.15",
     "lucide-react-native": "^1.49.0",
     "mathjax-full": "^3.2.2",
     "pdf-lib": "^1.17.1",
@@ -58,6 +60,7 @@
     "react-native-blob-util": "^0.25.1",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-pdf": "^7.0.5",
+    "react-native-purchases": "^10.12.0",
     "react-native-reanimated": "4.5.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
@@ -67,6 +70,8 @@
     "react-native-worklets": "0.10.1"
   },
   "devDependencies": {
+    "@emnapi/core": "^1.11.3",
+    "@emnapi/runtime": "^1.11.3",
     "@testing-library/react-native": "^14.0.1",
     "@types/jest": "29.5.14",
     "@types/react": "~19.2.2",
@@ -84,7 +89,9 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
-    "test": "jest"
+    "test": "jest",
+    "export:android": "expo export --platform android --output-dir .export-android",
+    "valider": "npm run typecheck && npm test -- --runInBand --silent && npm run export:android"
   },
   "private": true,
   "jest": {

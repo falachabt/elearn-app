@@ -2,12 +2,16 @@ import * as Updates from 'expo-updates';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Platform } from 'react-native';
 
+import { chargerDernierChangelog, type Changelog } from './changelog';
+
 export type EtatMiseAJour = 'aucune' | 'disponible' | 'telechargement' | 'prete' | 'erreur';
 
 export type InfosMiseAJour = {
   etat: EtatMiseAJour;
   /** Mise à jour obligatoire : pas de « Plus tard », écran plein écran. */
   obligatoire: boolean;
+  /** Notes de version dynamiques chargées depuis Supabase (B9-OTA). */
+  changelog: Changelog | null;
   /** Message d'erreur technique (journal), jamais affiché tel quel à l'élève. */
   erreur: string | null;
 };
@@ -42,7 +46,7 @@ export function miseAJourActivee(): boolean {
   return !__DEV__ && Platform.OS !== 'web' && Updates.isEnabled;
 }
 
-const INITIAL: InfosMiseAJour = { etat: 'aucune', obligatoire: false, erreur: null };
+const INITIAL: InfosMiseAJour = { etat: 'aucune', obligatoire: false, changelog: null, erreur: null };
 
 /**
  * Vérifie au démarrage et au retour au premier plan s'il existe une mise à jour OTA.
@@ -62,9 +66,20 @@ export function useMiseAJour(activee: boolean = miseAJourActivee()) {
     try {
       const res = (await Updates.checkForUpdateAsync()) as ResultatVerification;
       if (!res.isAvailable) return;
-      const obligatoire = estObligatoire(res.manifest);
+      let obligatoire = estObligatoire(res.manifest);
+      let changelog: Changelog | null = null;
+      try {
+        changelog = await chargerDernierChangelog();
+        if (changelog?.obligatoire) obligatoire = true;
+      } catch {
+        // Ignorer si la récupération du changelog échoue
+      }
       obligatoireRef.current = obligatoire;
-      setInfos((cur) => (cur.etat === 'aucune' ? { etat: 'disponible', obligatoire, erreur: null } : { ...cur, obligatoire: cur.obligatoire || obligatoire }));
+      setInfos((cur) =>
+        cur.etat === 'aucune'
+          ? { etat: 'disponible', obligatoire, changelog, erreur: null }
+          : { ...cur, obligatoire: cur.obligatoire || obligatoire, changelog: changelog ?? cur.changelog },
+      );
     } catch {
       // Pas de réseau ou serveur indisponible : on réessaiera au prochain retour au premier plan.
     } finally {

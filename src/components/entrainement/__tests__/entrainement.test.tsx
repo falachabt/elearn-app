@@ -9,6 +9,7 @@ import { fr } from '@/i18n/fr';
 import { lireCorrection, statuts } from '@/services/correction';
 import { CLE_SCORES, enregistrerSession, finChapitreVue, lireEntrainement, lireSessions, lireExercicesFaits, lireMeilleursScores, noterDernier } from '@/services/entrainement';
 import { enregistrerProfil } from '@/services/profil';
+import { lireReprise } from '@/services/reprise';
 import { marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -32,7 +33,7 @@ let mockParams: Record<string, string> = {};
 let mockSortie: ((e: { preventDefault: () => void; data: { action: object } }) => void) | null = null;
 const mockDispatch = jest.fn();
 jest.mock('expo-router', () => ({
-  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
+  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), dismissTo: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
   useNavigation: () => ({
     addListener: (_: string, f: typeof mockSortie) => {
@@ -225,12 +226,50 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     await waitFor(() => expect(screen.getByRole('button', { name: x.correction.relireCours })).toBeTruthy());
     // 2/3 : « bien joué ».
     expect(screen.getByText(x.correction.titreScore.replace('{{score}}', '2').replace('{{total}}', '3').replace('{{message}}', x.correction.bienJoue))).toBeTruthy();
-    expect(screen.getAllByRole('button', { name: x.correction.terminer })).toHaveLength(1); // seulement le ✕ en haut
+    // Le ✕ en haut ET le bouton « Terminer » du bilan : même action.
+    expect(screen.getAllByRole('button', { name: x.correction.terminer })).toHaveLength(2);
+    (router.back as jest.Mock).mockClear();
+    await fireEvent.press(screen.getAllByRole('button', { name: x.correction.terminer })[1]);
+    expect(router.replace).toHaveBeenCalledWith('/');
     await fireEvent.press(screen.getByRole('button', { name: x.correction.relireCours }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/chapitre', params: { id: '1', nom: 'Fractions' } });
     const c = await lireCorrection();
     expect(c?.source).toBe('libre');
     expect(statuts(c!)).toEqual(['juste', 'faux', 'juste']);
+  });
+
+  async function jouerQuizLibre() {
+    mockParams = { id: 'qz1', cours: '1', nom: 'Fractions' };
+    await monter(<QuizLibreEcran />);
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 2 ? `Fausse ${i}` : `Bonne ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.entrainement.quizTerminer : x.miniTest.suivant }));
+    }
+  }
+
+  it('quiz libre fini : la carte « Reprendre » est remplie dès l’arrivée sur les résultats', async () => {
+    await jouerQuizLibre();
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
+    // Écritures attendues avant la navigation : rien à patienter, la carte n'est jamais vide.
+    const reprise = await lireReprise([{ id: 1, nom: 'Fractions', matiere: 'Mathématiques', lecons: 2 }] as never);
+    expect(reprise.map((e) => e.type)).toEqual(['quiz']);
+    expect(reprise[0]).toMatchObject({ chapitre: 'Fractions' });
+  });
+
+  it('quiz libre fini avec stockage local en échec : la navigation vers le score a lieu quand même', async () => {
+    const setItem = jest.mocked(AsyncStorage.setItem);
+    const original = setItem.getMockImplementation();
+    const avertir = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    setItem.mockRejectedValue(new Error('stockage plein'));
+    try {
+      await jouerQuizLibre();
+      await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/quiz/resultats'));
+    } finally {
+      if (original) setItem.mockImplementation(original);
+      avertir.mockRestore();
+    }
   });
 
   it('page du quiz : meilleur score, revoir une session, nouvelle session', async () => {
@@ -402,6 +441,17 @@ describe.each(['fr', 'en'] as const)('D7 · s’entraîner (%s)', (langue) => {
     expect(router.push).toHaveBeenLastCalledWith({ pathname: '/entrainement/chapitre', params: { cours: '1', nom: 'Fractions' } });
     await fireEvent.press(screen.getByRole('button', { name: x.entrainement.plusTard }));
     expect(router.replace).toHaveBeenCalledWith('/reviser');
+  });
+
+  it('fin de chapitre : « Plus tard » ramène à la liste des chapitres de la matière, pas à la dernière leçon', async () => {
+    await marquerLue(11, 1);
+    await marquerLue(12, 1);
+    mockParams = { cours: '1', nom: 'Fractions', matiere: 'Maths' };
+    await monter(<FinChapitre />);
+    await waitFor(() => expect(screen.getByText(x.entrainement.finTitre)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.entrainement.plusTard }));
+    expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } });
+    expect(router.back).not.toHaveBeenCalled();
   });
 
   it('fin de chapitre avec des leçons à valider', async () => {

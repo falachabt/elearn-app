@@ -5,6 +5,8 @@ import Animated, { Easing, useAnimatedStyle, useSharedValue, withRepeat, withTim
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import type { Changelog } from '@/services/changelog';
+import { textesChangelog } from '@/services/changelog';
 import type { EtatMiseAJour } from '@/services/miseAJour';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -19,6 +21,8 @@ import { useReduireAnimations } from './useReduireAnimations';
 export type PropsMiseAJour = {
   etat: EtatMiseAJour;
   obligatoire?: boolean;
+  /** Notes de version dynamiques chargées depuis Supabase (B9-OTA). */
+  changelog?: Changelog | null;
   onInstaller: () => void;
   onPlusTard: () => void;
 };
@@ -43,20 +47,25 @@ function BarreTelechargement({ libelle }: { libelle: string }) {
 }
 
 /** Contenu commun à la feuille et à l'écran obligatoire : titre, texte, état, actions. */
-function Contenu({ etat, obligatoire, onInstaller, onPlusTard }: PropsMiseAJour) {
+function Contenu({ etat, obligatoire, changelog, onInstaller, onPlusTard }: PropsMiseAJour) {
   const { theme } = useTheme();
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const occupe = etat === 'telechargement' || etat === 'prete';
+
+  const notes = changelog ? textesChangelog(changelog, (langue === 'en' ? 'en' : 'fr')) : null;
+  const titreAffiche = notes?.titre || (obligatoire ? t('miseAJour.obligatoireTitre') : t('miseAJour.titre'));
+  const texteAffiche = notes?.contenu || (obligatoire ? t('miseAJour.obligatoireTexte') : t('miseAJour.texte'));
+
   return (
     <View style={styles.contenu}>
       <Rebond declencheur={etat === 'prete'} style={[styles.pastille, { backgroundColor: etat === 'erreur' ? theme.etat.erreur : theme.marque.principale, borderColor: theme.bord.fort }]}>
         <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{etat === 'erreur' ? '!' : etat === 'prete' ? '✓' : '↑'}</Text>
       </Rebond>
       <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>
-        {obligatoire ? t('miseAJour.obligatoireTitre') : t('miseAJour.titre')}
+        {titreAffiche}
       </Text>
       <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
-        {obligatoire ? t('miseAJour.obligatoireTexte') : t('miseAJour.texte')}
+        {texteAffiche}
       </Text>
       {etat === 'erreur' ? <Banniere ton="erreur" titre={t('miseAJour.erreurTitre')} texte={t('miseAJour.erreurTexte')} /> : null}
       {occupe ? <BarreTelechargement libelle={etat === 'prete' ? t('miseAJour.prete') : t('miseAJour.telechargement')} /> : null}
@@ -93,13 +102,13 @@ function EcranObligatoire(props: PropsMiseAJour) {
 }
 
 /** Feuille « mise à jour disponible » (bottom sheet) ; plein écran sans « Plus tard » si `obligatoire`. */
-export function FeuilleMiseAJour({ etat, obligatoire = false, onInstaller, onPlusTard }: PropsMiseAJour) {
+export function FeuilleMiseAJour({ etat, obligatoire = false, changelog, onInstaller, onPlusTard }: PropsMiseAJour) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheet>(null);
 
   if (etat === 'aucune') return null;
-  if (obligatoire) return <EcranObligatoire etat={etat} obligatoire onInstaller={onInstaller} onPlusTard={onPlusTard} />;
+  if (obligatoire) return <EcranObligatoire etat={etat} obligatoire changelog={changelog} onInstaller={onInstaller} onPlusTard={onPlusTard} />;
 
   const fermable = etat === 'disponible' || etat === 'erreur';
   return (
@@ -117,7 +126,7 @@ export function FeuilleMiseAJour({ etat, obligatoire = false, onInstaller, onPlu
       backgroundStyle={{ backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: bord.normal, borderRadius: rayon.l }}
     >
       <BottomSheetView style={{ paddingBottom: bottom + espace[5], paddingHorizontal: espace[5] }}>
-        <Contenu etat={etat} onInstaller={onInstaller} onPlusTard={() => feuille.current?.close()} />
+        <Contenu etat={etat} changelog={changelog} onInstaller={onInstaller} onPlusTard={() => feuille.current?.close()} />
       </BottomSheetView>
     </BottomSheet>
   );

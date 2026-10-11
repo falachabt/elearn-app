@@ -1,4 +1,4 @@
-import { ErreurPaiement, lireMethodes, payerMobileMoney, suivreCommande } from '../paiementPass';
+import { activerPassGratuit, ErreurPaiement, lireMethodes, payerMobileMoney, suivreCommande } from '../paiementPass';
 
 jest.mock('expo-updates', () => ({ channel: 'production' }));
 jest.mock('../analytics', () => ({ suivre: jest.fn() }));
@@ -26,6 +26,29 @@ describe('paiement du pass (back-office)', () => {
     const m = await lireMethodes('FR', 'en', (async () => reponse({ payable: false, country: 'FR', offers: [], providers: [] })) as never);
     expect(m.payable).toBe(false);
     expect(m.providers).toEqual([]);
+  });
+
+  it('payer avec un code promo : le code part, jamais le prix', async () => {
+    const appel = jest.fn(async () => reponse({ order_id: 'c1', status: 'en_attente' }));
+    await payerMobileMoney(client, { offre: 'month', pays: 'CM', telephone: '653456789', operateur: 'MTN_MOMO_CMR', langue: 'fr', promo: 'ELEARN20' }, appel as never);
+    const corps = JSON.parse((appel.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(corps.promo).toBe('ELEARN20');
+    expect(Object.keys(corps)).not.toEqual(expect.arrayContaining(['amount', 'montant', 'price', 'prix']));
+  });
+
+  it('code promo refusé au paiement : l’erreur porte le motif du serveur', async () => {
+    const appel = jest.fn(async () => reponse({ code: 'promo', motif: 'expire', message: 'Ce code a expiré.' }, false));
+    await expect(payerMobileMoney(client, { offre: 'month', pays: 'CM', telephone: '653456789', operateur: 'X', langue: 'fr', promo: 'OLD' }, appel as never)).rejects.toMatchObject({ code: 'promo', motif: 'expire' });
+  });
+
+  it('pass à 0 : ni opérateur ni numéro envoyés, seulement l’offre, le pays et le code', async () => {
+    const appel = jest.fn(async () => reponse({ order_id: 'g1', status: 'reussi', amount: 0, currency: 'XAF' }));
+    const r = await activerPassGratuit(client, { offre: 'week', pays: 'CM', promo: 'OFFERT', langue: 'fr' }, appel as never);
+    const corps = JSON.parse((appel.mock.calls[0] as unknown as [string, RequestInit])[1].body as string);
+    expect(corps).toMatchObject({ product: 'week', country: 'CM', promo: 'OFFERT' });
+    expect(corps.phone).toBeUndefined();
+    expect(corps.provider).toBeUndefined();
+    expect(r).toMatchObject({ statut: 'reussi', commande: 'g1' });
   });
 
   it('payer : jeton de l’élève, offre, pays, numéro, opérateur et langue envoyés au serveur', async () => {

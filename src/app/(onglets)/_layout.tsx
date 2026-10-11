@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
 import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
+import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { lireProfil } from '@/services/profil';
 import { useSessionPrete } from '@/session/SessionProvider';
@@ -23,12 +24,16 @@ export default function LayoutOnglets() {
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
   useEffect(() => {
+    // Le profil se lit APRÈS que la session soit décidée (useSessionPrete), et se relit quand elle change : après une
+    // connexion, le compte apporte le parcours d'arrivée (voir SessionProvider) et la session invité le précède.
+    // « hors-ligne » passe aussi : le profil est local, il doit s'afficher sans réseau.
+    if (!sessionPrete) return;
     let actif = true;
     lireProfil().then((p) => actif && setArrivee(p?.termine ? 'fait' : 'a-faire'));
     return () => {
       actif = false;
     };
-  }, []);
+  }, [sessionPrete]);
 
   useEffect(() => {
     if (!sessionPrete || sessionPrete === 'hors-ligne') return;
@@ -46,28 +51,33 @@ export default function LayoutOnglets() {
   if (arrivee === 'a-faire') return <Redirect href="/bienvenue" />;
 
   return (
-    <Tabs style={styles.racine}>
-      <TabSlot style={styles.ecran} />
-      <TabList asChild>
-        <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
-          <TabTrigger name="index" href="/" asChild>
-            <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
-          </TabTrigger>
-          <TabTrigger name="reviser" href="/reviser" asChild>
-            <Onglet libelle={t('onglets.reviser')} icone="book-outline" iconeActive="book" />
-          </TabTrigger>
-          <TabTrigger name="photo" href="/photo" asChild>
-            <Onglet libelle={t('onglets.photo')} icone="camera" central />
-          </TabTrigger>
-          <TabTrigger name="questions" href="/questions" asChild>
-            <Onglet badge={nouvelles} libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
-          </TabTrigger>
-          <TabTrigger name="moi" href="/moi" asChild>
-            <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
-          </TabTrigger>
-        </View>
-      </TabList>
-    </Tabs>
+    <View style={styles.racine}>
+      <Tabs style={styles.racine}>
+        <TabSlot style={styles.ecran} />
+        {/* Hors ligne seulement : la barre fine se pose juste au-dessus de la tabbar (la pastille flotte au-dessus).
+            Placé entre le contenu et la barre, donc dans le flux : aucune superposition avec les écrans. */}
+        <EtatReseau />
+        <TabList asChild>
+          <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
+            <TabTrigger name="index" href="/" asChild>
+              <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
+            </TabTrigger>
+            <TabTrigger name="reviser" href="/reviser" asChild>
+              <Onglet libelle={t('onglets.reviser')} icone="book-outline" iconeActive="book" />
+            </TabTrigger>
+            <TabTrigger name="photo" href="/photo" asChild>
+              <Onglet libelle={t('onglets.photo')} icone="camera" central />
+            </TabTrigger>
+            <TabTrigger name="questions" href="/questions" asChild>
+              <Onglet badge={nouvelles} libelle={t('onglets.questions')} icone="chatbubbles-outline" iconeActive="chatbubbles" />
+            </TabTrigger>
+            <TabTrigger name="moi" href="/moi" asChild>
+              <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
+            </TabTrigger>
+          </View>
+        </TabList>
+      </Tabs>
+    </View>
   );
 }
 

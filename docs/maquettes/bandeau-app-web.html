@@ -1,0 +1,164 @@
+<title>Bandeau application web, maquette</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{--pg-bg:#FFF7E3;--pg-fg:#0A0A0A;--pg-mute:#5C5C5C;--pg-card:#FFFFFF;--pg-line:#0A0A0A;--pg-soft:#F6EEDA;--pg-accent:#047857;
+--f-display:'Archivo Black','Arial Black',sans-serif;--f-body:'Space Grotesk','Segoe UI',system-ui,sans-serif;--f-mono:'Space Mono',ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}}
+:root[data-theme="dark"]{--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}
+body{background:var(--pg-bg);color:var(--pg-fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:24px 64px;margin:0}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08}h2{font-size:24px;margin-top:52px}
+h3{font-size:17px;margin:0 0 8px}p{margin:0}
+.lead{max-width:66ch;margin-top:12px;color:var(--pg-mute);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--pg-accent);font-weight:700}
+.box{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:16px 18px;min-width:0}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.spec{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px}
+.seg2{display:inline-flex;border:2px solid var(--pg-line);border-radius:10px;overflow:hidden;background:var(--pg-soft);flex-wrap:wrap}
+.seg2 button{font:700 14px var(--f-body);padding:10px 14px;min-height:44px;border:0;background:none;color:var(--pg-fg);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:#10B981;color:#0A0A0A}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin:12px 0 6px}
+.ctl{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;align-items:flex-end}
+.rail{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 22px;align-items:flex-start}.rail>*{flex:none}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--pg-mute);margin-top:8px;max-width:360px;line-height:1.4}
+pre.cd{margin:0;overflow-x:auto;background:var(--pg-soft);border-radius:10px;padding:12px 14px;line-height:1.5;font-family:var(--f-mono);font-size:13px}
+code{font-family:var(--f-mono);font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--pg-soft);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;color:var(--pg-mute)}.tw{overflow-x:auto}
+/* navigateur simulé : tokens de l'app */
+.br{--app:#FFF7E3;--surf:#FFFFFF;--creux:#F6EEDA;--txt:#0A0A0A;--txt2:#5C5C5C;--bord:#0A0A0A;--bord-d:#D9D0BA;--shadow:#0A0A0A;--marque:#10B981;--soleil:#FFD83D;--lien:#047857;
+ border:2px solid var(--pg-line);border-radius:14px;overflow:hidden;background:var(--app);color:var(--txt);font-family:var(--f-body);display:flex;flex-direction:column}
+.br.dark{--app:#141614;--surf:#1F221F;--creux:#2A2E2A;--txt:#F6F1E4;--txt2:#9E998C;--bord:#EDE6D3;--bord-d:#3A3F3A;--marque:#34D399;--lien:#6EE7B7;color-scheme:dark}
+.br.m{width:360px;height:560px}.br.w{width:880px;height:380px}
+.tc{height:28px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 16px;font:700 12px var(--f-mono);background:var(--app);color:var(--txt)}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bn{flex:none;background:var(--soleil);color:#0A0A0A;border-bottom:2px solid var(--bord);display:flex;gap:12px;padding:10px 8px 10px 16px;align-items:center}
+.bn .ic{width:40px;height:40px;border:2px solid #0A0A0A;border-radius:8px;background:#fff;display:grid;place-items:center;flex:none}
+.bn .tx{font:700 14px/1.3 var(--f-body);flex:1;min-width:0}
+.bn .go{display:flex;gap:8px;flex:none}
+.bn .st{height:48px;border:2px solid #0A0A0A;border-radius:10px;background:#fff;color:#0A0A0A;display:flex;gap:8px;align-items:center;padding:0 12px;font:700 14px var(--f-body);box-shadow:3px 3px 0 #0A0A0A;cursor:pointer;text-decoration:none;white-space:nowrap}
+.bn .st small{display:block;font:500 10px/1 var(--f-mono);letter-spacing:.4px}
+.bn .st b{display:block;font:700 14px/1.1 var(--f-body)}
+.bn .x{width:48px;height:48px;border:0;background:none;color:#0A0A0A;display:grid;place-items:center;flex:none;cursor:pointer;border-radius:10px}
+.bn .x:focus-visible,.bn .st:focus-visible{outline:3px solid #1A75FF;outline-offset:2px}
+.bn.stack{flex-wrap:wrap;position:relative;padding:12px 16px 14px}
+.bn.stack .tx{flex:1 1 100%;padding-right:44px}
+.bn.stack .go{flex:1 1 100%}.bn.stack .st{flex:1;justify-content:center}
+.bn.stack .x{position:absolute;right:4px;top:4px}
+.bn.stack .ic{display:none}
+.pg{flex:1;min-height:0;padding:14px 16px;display:grid;gap:12px;align-content:start;overflow:hidden}
+.sk{border:2px solid var(--bord);border-radius:14px;background:var(--surf);height:70px;box-shadow:3px 3px 0 var(--shadow);padding:12px;display:grid;gap:8px;align-content:center}
+.sk i{display:block;height:10px;border-radius:5px;background:var(--creux)}.sk i:first-child{width:50%;background:var(--bord-d)}
+.pgh{font:400 22px var(--f-display)}
+.nav{display:flex;gap:16px;padding:12px 24px;border-bottom:2px solid var(--bord);font:700 14px var(--f-body);align-items:center}.nav span:first-child{font:400 18px var(--f-display);margin-right:auto}
+.gr{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tg{font:500 13px var(--f-mono);color:var(--pg-mute);margin-top:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Maquette · web · demande de Benny du 7 octobre</p>
+  <h1>Bandeau « application » sur le web</h1>
+  <p class="lead">Sur la version web seulement, une bannière en haut de l'écran invite à installer l'application, avec deux boutons : Google Play et App Store. Elle est fermable, discrète et ne s'affiche jamais dans l'application. La spec dit aussi quoi ajouter pour le PWA et les couleurs de la barre d'état du navigateur.</p>
+
+  <h2>Prototype</h2>
+  <div class="ctl">
+    <div><div class="lbl">Appareil</div><div class="seg2" id="c-dev"></div></div>
+    <div><div class="lbl">Thème</div><div class="seg2" id="c-th"></div></div>
+    <div><div class="lbl">Écran</div><div class="seg2" id="c-sz"></div></div>
+  </div>
+  <div id="live" style="margin-top:20px;overflow-x:auto;padding-bottom:6px"></div>
+  <p class="tg" id="tg" aria-live="polite"></p>
+
+  <h2>Tous les états</h2>
+  <p class="lead">Mobile (colonne) et large (une ligne), clair et sombre.</p>
+  <div class="rail" id="g-clair"></div>
+  <div class="rail" id="g-sombre"></div>
+
+  <h2>Spec pour le dev</h2>
+  <div class="spec">
+    <div class="box"><h3>Quand le bandeau s'affiche</h3><ul>
+      <li>Web seulement (<code>Platform.OS === 'web'</code>). Jamais dans l'application ni dans le PWA installé (<code>display-mode: standalone</code>, <code>navigator.standalone</code>).</li>
+      <li>Sur Android : un seul bouton, Google Play. Sur iPhone et iPad : un seul bouton, App Store. Sur ordinateur : les deux.</li>
+      <li>Un bouton n'apparaît que si son lien de magasin est configuré. Tant que l'app n'est pas sur l'App Store (issue #19), seul Google Play s'affiche.</li>
+      <li>Jamais sur les écrans plein cadre : appareil photo, épreuve chronométrée, paiement (E1 à E6).</li>
+      <li>Une fois fermé, il ne revient pas avant 7 jours (même règle que la proposition de notifications). Mémorisé en local, avec repli sans stockage : il s'affiche à chaque visite.</li>
+      <li>Il n'est pas collant : il défile avec la page, pour ne pas manger de hauteur d'écran.</li>
+    </ul></div>
+    <div class="box"><h3>Dessin</h3><ul>
+      <li>Fond jaune soleil, texte noir (identique en clair et en sombre), bordure basse de 2 px. Tokens : <code>accent.soleil</code>, <code>texte.surCouleur</code>.</li>
+      <li>Texte : « Profite d'une meilleure expérience Elearn Prépa sur l'application » (14 px gras).</li>
+      <li>Boutons blancs, bordure 2 px, ombre dure 3 px, hauteur 48 px, icône du magasin puis « Disponible sur » / « Google Play » ou « App Store ». Pas de bouton vert : le bandeau ne prend pas l'action verte de la page.</li>
+      <li>Croix de fermeture de 48 px, libellé « Fermer le bandeau ».</li>
+      <li><b>Mobile (moins de 600 px)</b> : texte sur une ligne ou deux, boutons côte à côte dessous, croix en haut à droite. <b>Large</b> : une seule ligne, texte à gauche, boutons puis croix à droite.</li>
+      <li>Icônes Lucide (<code>Smartphone</code>, <code>X</code>) ; logos des magasins au format officiel fournis par les magasins. Aucun emoji.</li>
+    </ul></div>
+    <div class="box"><h3>Comportements</h3><ul>
+      <li>Toucher un bouton ouvre le magasin dans un nouvel onglet, sans fermer le bandeau.</li>
+      <li>La croix le ferme sans confirmation, avec un fondu court (coupé si « réduire les animations »). Le focus revient sur le contenu de la page.</li>
+      <li>Ordre au clavier : texte, boutons, croix. Rôle <code>region</code> avec libellé « Application Elearn Prépa ».</li>
+      <li>Texte système jusqu'à 130 % : les boutons passent sous le texte, jamais de défilement latéral.</li>
+    </ul></div>
+    <div class="box"><h3>PWA et barre d'état du navigateur</h3><ul>
+      <li><b>Manifeste</b> : <code>name</code> « Elearn Prépa », <code>short_name</code> « Elearn », <code>display: standalone</code>, <code>start_url: /</code>, <code>lang: fr</code>, icônes 192 et 512 px plus une icône maskable 512 px.</li>
+      <li><b><code>theme_color</code> et <code>background_color</code></b> du manifeste : papier <code>#FFF7E3</code> (fond.app clair).</li>
+      <li><b>Balises</b> : deux <code>meta name="theme-color"</code> avec <code>media="(prefers-color-scheme: light)"</code> à <code>#FFF7E3</code> et <code>dark</code> à <code>#141614</code> (fond.app sombre).</li>
+      <li>Quand l'élève change le thème dans les réglages (Clair / Sombre / Système), l'app met à jour la balise <code>theme-color</code> sans recharger.</li>
+      <li><b>iOS</b> : <code>apple-mobile-web-app-capable</code>, <code>apple-mobile-web-app-title</code>, <code>apple-mobile-web-app-status-bar-style</code> à <code>default</code>, <code>apple-touch-icon</code> 180 px, <code>viewport-fit=cover</code> et marges <code>env(safe-area-inset-*)</code>.</li>
+      <li>Dans Expo : section <code>web</code> d'<code>app.json</code> pour le manifeste, et <code>app/+html.tsx</code> pour les balises.</li>
+    </ul></div>
+    <div class="box"><h3>Évènements PostHog</h3><ul>
+      <li><code>web_app_banner_shown</code> {plateforme: android | ios | bureau}</li>
+      <li><code>web_app_banner_clicked</code> {magasin: play | appstore}</li>
+      <li><code>web_app_banner_dismissed</code></li></ul></div>
+    <div class="box"><h3>États à tester</h3><ul>
+      <li>Affichage selon la plateforme (Android, iOS, bureau) et selon les liens configurés.</li>
+      <li>Absent dans l'app, dans le PWA installé et sur les écrans plein cadre.</li>
+      <li>Fermeture, retour après 7 jours, stockage indisponible.</li>
+      <li>Clair et sombre, mobile et large, texte à 130 %, lecteur d'écran.</li>
+      <li>Balise <code>theme-color</code> à jour après un changement de thème.</li></ul></div>
+  </div>
+</div>
+<script>
+const P={phone:'<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',play:'<path d="M6 3 20 12 6 21z"/>',apple:'<path d="M12 7c-3-2-8-1-8 5 0 4 3 9 5 9 1 0 2-1 3-1s2 1 3 1c2 0 5-5 5-8-3-1-4-5-1-7-1-2-4-2-5-1"/>'};
+const ic=(n)=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+const sk=()=>`<div class="sk"><i></i><i></i></div>`;
+function banner(dev,stack,close=true){
+  const play=`<a class="st" href="#" onclick="return false">${ic('play')}<span><small>DISPONIBLE SUR</small><b>Google Play</b></span></a>`;
+  const apl=`<a class="st" href="#" onclick="return false">${ic('apple')}<span><small>TÉLÉCHARGER SUR</small><b>App Store</b></span></a>`;
+  const go=dev==='android'?play:dev==='ios'?apl:play+apl;
+  return `<div class="bn ${stack?'stack':''}" role="region" aria-label="Application Elearn Prépa"><span class="ic">${ic('phone')}</span><div class="tx">Profite d'une meilleure expérience Elearn Prépa sur l'application</div><div class="go">${go}</div>${close?`<button class="x" type="button" data-x aria-label="Fermer le bandeau">${ic('x')}</button>`:''}</div>`;
+}
+function mobile(theme,dev,shown=true){
+  return `<div class="br m ${theme}"><div class="tc"><span>21:04</span><span>4G · 62 %</span></div>${shown?banner(dev,true):''}<div class="pg"><div class="pgh">Bonjour Awa</div>${sk()}${sk()}${sk()}</div></div>`;
+}
+function wide(theme,dev,shown=true){
+  return `<div class="br w ${theme}">${shown?banner(dev,false):''}<div class="nav"><span>Elearn Prépa</span><span>Réviser</span><span>Questions</span><span>Moi</span></div><div class="pg"><div class="pgh">Bonjour Awa</div><div class="gr">${sk()}${sk()}${sk()}</div></div></div>`;
+}
+const cap=t=>`<p class="cap">${t}</p>`;
+function gal(t){
+  return [
+    [mobile(t,'android'),'Mobile Android : texte, un bouton Google Play, croix'],
+    [mobile(t,'ios'),'Mobile iPhone : un bouton App Store'],
+    [mobile(t,'bureau'),'Mobile, deux liens configurés (tablette ou réduit)'],
+    [wide(t,'bureau'),'Large : une ligne, les deux boutons puis la croix'],
+    [mobile(t,'android',false),'Après fermeture : la page reprend toute la hauteur']
+  ].map(([h,c])=>`<div>${h}${cap(c)}</div>`).join('');
+}
+document.getElementById('g-clair').innerHTML=gal('');
+document.getElementById('g-sombre').innerHTML=gal('dark');
+const L={dev:'android',th:'',sz:'m',shown:true};
+function render(){
+  document.getElementById('live').innerHTML=(L.sz==='m'?mobile:wide)(L.th,L.dev,L.shown);
+  document.getElementById('tg').textContent=L.shown?'':'Fermé : il ne revient pas avant 7 jours. Utilise « Réinitialiser » ci-dessous pour le revoir.';
+}
+function seg(id,items,key){const el=document.getElementById(id);const draw=()=>{el.innerHTML=items.map(([k,t])=>`<button type="button" aria-pressed="${L[key]===k}" data-k="${k}">${t}</button>`).join('')};draw();el.onclick=e=>{const b=e.target.closest('button');if(!b)return;L[key]=b.dataset.k;L.shown=true;draw();render()}}
+seg('c-dev',[['android','Android'],['ios','iPhone'],['bureau','Ordinateur']],'dev');
+seg('c-th',[['','Clair'],['dark','Sombre']],'th');
+seg('c-sz',[['m','Mobile'],['w','Large']],'sz');
+document.getElementById('live').addEventListener('click',e=>{if(e.target.closest('[data-x]')){L.shown=false;render();}});
+render();
+</script>
+</body>
+</html>

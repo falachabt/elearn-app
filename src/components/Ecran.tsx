@@ -51,6 +51,8 @@ type Props = {
   piedPleineLargeur?: boolean;
   /** Revient en haut du défilement chaque fois que cette valeur change (ex. bascule énoncé / corrigé). */
   remonterSur?: unknown;
+  /** Écouteur de défilement personnalisé. */
+  onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
   style?: StyleProp<ViewStyle>;
   contenuStyle?: StyleProp<ViewStyle>;
 };
@@ -63,7 +65,7 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedPleineLargeur, remonterSur, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedPleineLargeur, remonterSur, onScroll, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
@@ -108,11 +110,12 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
 
   const suivreDefilement = useCallback(
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      onScroll?.(e);
       const y = e.nativeEvent.contentOffset.y;
       const suivant = { separateur: y > 4, haut: retourHaut && y > height * 1.5 };
       setDefile((d) => (d.separateur === suivant.separateur && d.haut === suivant.haut ? d : suivant));
     },
-    [height, retourHaut],
+    [height, retourHaut, onScroll],
   );
 
   // Les insets sont posés sur un cadre fixe, hors du défilement : le contenu qui défile est coupé sous la barre

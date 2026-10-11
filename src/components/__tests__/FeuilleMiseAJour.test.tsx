@@ -56,6 +56,22 @@ describe('FeuilleMiseAJour', () => {
     expect(screen.getByRole('button', { name: fr.miseAJour.mettreAJour })).toBeTruthy();
   });
 
+  it('affiche le changelog dynamique quand il est fourni', async () => {
+    const changelog = {
+      id: 'cl-1',
+      version: '3.2.0',
+      title_fr: 'Nouveautés de folie',
+      title_en: 'Awesome updates',
+      content_fr: '• Ajout du partage photo récompensé\n• Mises à jour OTA dynamiques',
+      content_en: '• Added rewarded photo share\n• Dynamic OTA updates',
+      obligatoire: false,
+      published_at: '2026-10-11T12:00:00Z',
+    };
+    await rendre({ changelog });
+    expect(screen.getByText('Nouveautés de folie')).toBeTruthy();
+    expect(screen.getByText('• Ajout du partage photo récompensé\n• Mises à jour OTA dynamiques')).toBeTruthy();
+  });
+
   it('ne rend rien sans mise à jour', async () => {
     await rendre({ etat: 'aucune' });
     expect(screen.toJSON()).toBeNull();

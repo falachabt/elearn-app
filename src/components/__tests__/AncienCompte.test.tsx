@@ -81,6 +81,6 @@ describe.each(['fr', 'en'] as const)('A7 · ancien compte (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.ancien.retrouver }));
     await waitFor(() => expect(screen.getByText(x.ancien.erreurs.identifiants)).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.ancien.support }));
-    expect(ouvrir).toHaveBeenCalledWith(expect.stringMatching(/^https:\/\/wa\.me\/237694051893\?text=.*677123456/));
+    expect(ouvrir).toHaveBeenCalledWith(expect.stringMatching(/^https:\/\/wa\.me\/12015348324\?text=.*677123456/));
   });
 });

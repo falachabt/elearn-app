@@ -22,6 +22,7 @@ import { Ecran } from '../Ecran';
 import { Rebond } from '../Rebond';
 import { BoutonFermer, MiniTest } from '../arrivee/MiniTest';
 import { ResultatsQuiz } from '../quiz/ResultatsQuiz';
+import { versListeChapitres } from './versListeChapitres';
 
 type Etat =
   | { statut: 'chargement' }
@@ -89,10 +90,18 @@ export function QuizLecon() {
         onTermine={async ({ questions, reponses }) => {
           const score = questions.filter((q, i) => reponses[i] === q.bonne).length;
           suivre('lesson_quiz_completed', { score, total: questions.length });
-          await noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
-          if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length });
-          await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
-          setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
+          // La correction est enregistrée AVANT tout le reste : c'est elle que « Refaire mes erreurs » relit. Si une
+          // écriture suivante échouait (stockage hors ligne), elle ne doit pas empêcher ce relecture — sans quoi
+          // l'écran de reprise annoncerait « aucune erreur » alors qu'il y en a.
+          try {
+            await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
+            void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
+            // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
+            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
+          } finally {
+            // Quoi qu'il arrive aux écritures ci-dessus, le résultat s'affiche : jamais une page vide à la fin du quiz.
+            setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
+          }
         }}
       />
     );
@@ -109,7 +118,7 @@ export function QuizLecon() {
     etat.statut === 'chargement' ? undefined : (
       <View style={styles.pied}>
         {valide && suivante ? <Bouton libelle={t('reviser.quizSuivante')} onPress={allerSuivante} retour /> : null}
-        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours) } }), retour)} retour /> : null}
+        {valide && !suivante ? <Bouton libelle={t('reviser.finChapitre')} onPress={() => void apresDerniereLecon(Number(cours), () => router.replace({ pathname: '/cours/fin', params: { cours: String(cours), matiere: matiere ?? '' } }), () => versListeChapitres(matiere))} retour /> : null}
         {etat.statut === 'fini' && !reussi ? <Bouton libelle={t('reviser.quizReessayer')} onPress={reessayer} /> : null}
         <Bouton variante={valide ? 'secondaire' : etat.statut === 'fini' && !reussi ? 'secondaire' : undefined} libelle={t('reviser.quizRetour')} onPress={retour} />
       </View>

@@ -1,35 +1,53 @@
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Linking, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Gift, Lock } from 'lucide-react-native';
+import { ActivityIndicator, Linking, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { ErreurChariow, ouvrirPaiementChariow } from '@/services/chariow';
+import { etiquetteRabais, motifDepuisServeur } from '@/services/codePromo';
 import { formaterMontant, type CodeOffre } from '@/services/pass';
+import { ajoutEnFin, drapeauPays, exempleNumero, listerPays, nomPays, numeroPlausible } from '@/services/pays';
 import {
-  annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, modeEssai, payerMobileMoney, suivreCommande,
+  activerPassGratuit, annulerCommande, ErreurPaiement, lireMethodes, lirePaysPaiement, lireStatutCommande, modeEssai, payerMobileMoney, suivreCommande,
   type MethodesPays, type Operateur, type PaysPaiement, type ResultatPaiement,
 } from '@/services/paiementPass';
 import { lireProfil } from '@/services/profil';
+import { effacerPaiementAttente, lirePaiementAttente, sauverPaiementAttente } from '@/services/reprisePaiement';
 import { getSupabase } from '@/services/supabase';
+import { lireOffres, type Offre } from '@/services/pass';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
+import { LienSupport } from '../support/LienSupport';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { CodePromo } from './CodePromo';
 import { FeuillePays } from './FeuillePays';
+import { oublierCodePromo, useCodePromo } from './useCodePromo';
 import { Rebond } from '../Rebond';
+import { Secousse } from '../Secousse';
+import { useReseau } from '../reseau/useReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 const CODES: CodeOffre[] = ['week', 'month', 'contest'];
 /** Une demande de paiement vit 10 minutes côté serveur. */
 const DUREE_DEMANDE_S = 600;
+/** Prix plein affiché par pass, et remise annoncée : semaine 500 → 750 (−33 %), mois 2 500 → 4 000 (−37 %),
+ *  concours 7 500 → 15 000 (−50 %). Le facteur suit la devise du pays, la remise reste donc la même partout. */
+const PRIX_PLEIN: Record<CodeOffre, { facteur: number; pct: number }> = {
+  week: { facteur: 1.5, pct: 33 },
+  month: { facteur: 1.6, pct: 37 },
+  contest: { facteur: 2, pct: 50 },
+};
 
 type Etape = 'saisie' | 'envoi' | 'attente' | 'fin';
 type Motif = 'solde' | 'refus' | 'delai' | 'numero' | 'operateur' | 'autre';
@@ -73,13 +91,21 @@ export function PayerPass() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { rafraichir } = useCredits();
-  const params = useLocalSearchParams<{ offre?: string }>();
-  const offre: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
+  const horsLigne = !useReseau().estEnLigne;
+  const params = useLocalSearchParams<{ offre?: string; reprise?: string }>();
+  const offreParam: CodeOffre = CODES.includes(params.offre as CodeOffre) ? (params.offre as CodeOffre) : 'month';
+  // L'offre peut changer ici si un code promo n'est valable que pour une autre (« Choisir le Pass concours »).
+  const [offre, setOffre] = useState<CodeOffre>(offreParam);
 
   const [pays, setPays] = useState<string | null>(null);
-  const [liste, setListe] = useState<PaysPaiement[] | null>(null);
+  const promo = useCodePromo({ offre, pays, horsLigne, ecran: 'e2' });
+  const [recuPromo, setRecuPromo] = useState<{ code: string; etiquette: string; initial: string; paye: string; gratuit: boolean } | null>(null);
+  /** Indicatifs fournis par pawaPay (pour l'affichage du numéro Mobile Money) ; la liste des pays, elle, est locale. */
+  const [indicatifs, setIndicatifs] = useState<Record<string, string> | null>(null);
   const [choixPays, setChoixPays] = useState(false);
-  const [methodes, setMethodes] = useState<MethodesPays | 'chargement' | 'erreur'>('chargement');
+  const [methodes, setMethodes] = useState<MethodesPays | 'chargement'>('chargement');
+  /** pawaPay peut être momentanément injoignable : on ne bloque jamais l'élève, on lui propose la carte. */
+  const [panneMethodes, setPanneMethodes] = useState(false);
   const [operateur, setOperateur] = useState<string | null>(null);
   const [telephone, setTelephone] = useState('');
   const [code, setCode] = useState('');
@@ -87,28 +113,65 @@ export function PayerPass() {
   const [resultat, setResultat] = useState<ResultatPaiement | null>(null);
   const [erreur, setErreur] = useState<string | null>(null);
   const [champErreur, setChampErreur] = useState<'numero' | 'code' | null>(null);
+  const [secousse, setSecousse] = useState(0);
   const [essai, setEssai] = useState(0);
   const [confirmerAnnulation, setConfirmerAnnulation] = useState(false);
+  const [envoiChariow, setEnvoiChariow] = useState(false);
+  /** Paiement par carte en cours : l'attente ne parle pas d'opérateur Mobile Money, et « Renvoyer » n'a pas de sens. */
+  const [urlCarte, setUrlCarte] = useState<string | null>(null);
   const [restant, setRestant] = useState(DUREE_DEMANDE_S);
   const arret = useRef({ annule: false });
+  const champNumeroRef = useRef<TextInput>(null);
 
   // Pays de départ : celui du profil.
   useEffect(() => {
     void lireProfil().then((p) => setPays((p?.pays ?? 'CM').toUpperCase()));
   }, []);
 
+  // Reprise automatique d'un paiement en attente
+  useEffect(() => {
+    if (params.reprise) {
+      lirePaiementAttente().then((p) => {
+        if (p && p.commande === params.reprise) {
+          setPays(p.pays);
+          setTelephone(p.telephone);
+          setOperateur(p.operateur);
+          setResultat({ statut: 'en_attente', commande: p.commande, devise: p.devise, montant: p.montant });
+          const ecoule = Math.floor((Date.now() - p.timestamp) / 1000);
+          setRestant(Math.max(0, DUREE_DEMANDE_S - ecoule));
+          setEtape('attente');
+        }
+      });
+    }
+  }, [params.reprise]);
+
   useEffect(() => {
     if (!pays) return;
     let actif = true;
     lireMethodes(pays, langue)
-      .then((m) => {
+      .then(async (m) => {
         if (!actif) return;
+        setPanneMethodes(false);
         setMethodes(m);
+        // Pays que pawaPay ne couvre pas : le serveur ne renvoie aucune offre, et le paiement passe par Chariow. On
+        // affiche donc le prix Chariow (celui que la plateforme prélève), pour que l'élève lise ce qu'il paiera.
+        if (m.offers.length === 0) {
+          const os = await lireOffres(getSupabase(), pays).catch(() => [] as Offre[]);
+          if (actif && os.length > 0) {
+            setMethodes({ ...m, offers: os.map((o) => ({ code: o.code, amount: o.montant, currency: o.devise, converted: !!o.converti, recommended: o.recommandee, durationDays: o.dureeJours })) });
+          }
+        }
         const libres = m.providers.filter((p) => p.available);
         // Un seul opérateur disponible : choisi d'office.
         if (libres.length === 1) setOperateur(libres[0].provider);
       })
-      .catch(() => actif && setMethodes('erreur'));
+      .catch(() => {
+        if (!actif) return;
+        // Mobile Money injoignable (pawaPay indisponible, jeton refusé, coupure) : plutôt qu'un écran sans issue, on
+        // se rabat sur « pas de Mobile Money ici », ce qui laisse le paiement par carte et le choix du pays ouverts.
+        setPanneMethodes(true);
+        setMethodes({ payable: false, country: pays, offers: [], providers: [] } as unknown as MethodesPays);
+      });
     return () => {
       actif = false;
     };
@@ -116,28 +179,47 @@ export function PayerPass() {
 
   const ouvrirPays = () => {
     setChoixPays(true);
-    if (!liste) void lirePaysPaiement(langue).then(setListe).catch(() => setListe([]));
+    // La liste des pays est locale et exhaustive : elle s'ouvre toujours, pawaPay répondant ou non. Le serveur ne sert
+    // qu'à compléter les indicatifs, utiles au seul Mobile Money.
+    if (indicatifs) return;
+    void lirePaysPaiement(langue)
+      .then((p) => setIndicatifs(Object.fromEntries(p.map((x) => [x.alpha2, x.prefix]))))
+      .catch(() => setIndicatifs({}));
   };
+  const listePays = useMemo(() => listerPays(langue, indicatifs ?? {}), [langue, indicatifs]);
 
   const m = typeof methodes === 'object' ? methodes : null;
   const offreChoisie = m?.offers.find((o) => o.code === offre) ?? null;
-  const montant = offreChoisie ? formaterMontant(offreChoisie.amount, offreChoisie.currency) : '';
+  // Code promo appliqué : le prix final vient du serveur (apply_promo_code), jamais calculé ici.
+  const promoActif = promo.phase === 'applique' ? promo.applique : null;
+  const gratuit = !!promoActif?.gratuit;
+  const argent = (n: number) => (offreChoisie ? formaterMontant(n, offreChoisie.currency) : '');
+  const montantInitial = offreChoisie ? argent(offreChoisie.amount) : '';
+  // Prix plein affiché en permanence : 1,5 fois le prix payé, soit −33 %.
+  const prixPlein = offreChoisie ? argent(Math.round(offreChoisie.amount * PRIX_PLEIN[offre].facteur)) : '';
+  const montant = offreChoisie ? argent(promoActif ? promoActif.prixFinal : offreChoisie.amount) : '';
+  const etiquette = promoActif ? etiquetteRabais(promoActif, argent) : '';
+  const economie = promoActif ? argent(promoActif.prixInitial - promoActif.prixFinal) : '';
+  const resumeRecu = () => (promoActif ? { code: promoActif.code, etiquette, initial: montantInitial, paye: montant, gratuit } : null);
   const op: Operateur | null = m?.providers.find((p) => p.provider === operateur && p.available) ?? null;
   const nomOffre = t(`offres.${offre}`);
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
   const texteErreur = (e: unknown) => {
-    const connus = ['reseau', 'indisponible', 'auth', 'sandbox', 'offre', 'pays', 'numero_operateur'];
+    const connus = ['reseau', 'indisponible', 'auth', 'sandbox', 'offre', 'pays', 'numero_operateur', 'limite'];
     if (e instanceof ErreurPaiement) return connus.includes(e.code) ? t(`paiement.erreurs.${e.code}` as CleTexte) : e.message || t('paiement.erreurs.indisponible');
     return t('paiement.erreurs.indisponible');
   };
 
   const terminer = useCallback(
     (r: ResultatPaiement) => {
+      effacerPaiementAttente().catch(() => {});
+      setUrlCarte(null);
       setResultat(r);
       setEtape('fin');
       if (r.statut === 'reussi') {
         suivre('payment_succeeded', { offre, pays: pays ?? '' });
+        oublierCodePromo();
         void rafraichir().catch(() => {});
       } else {
         suivre('payment_failed', { offre, pays: pays ?? '', motif: r.echec });
@@ -174,19 +256,37 @@ export function PayerPass() {
     if (!pays || !op) return;
     setErreur(null);
     setChampErreur(null);
-    if (telephone.replace(/\D/g, '').length < 8) return setChampErreur('numero');
-    if (op.authType === 'PREAUTH' && !code.trim()) return setChampErreur('code');
+    if (!numeroPlausible(telephone, pays)) {
+      champNumeroRef.current?.focus();
+      setSecousse((n) => n + 1);
+      return setChampErreur('numero');
+    }
+    if (op.authType === 'PREAUTH' && !code.trim()) {
+      setSecousse((n) => n + 1);
+      return setChampErreur('code');
+    }
+    // Garde réseau (issue #25) : une demande de paiement hors ligne doit être refusée avant tout appel, sinon
+    // l'élève croit avoir payé alors que rien n'est parti. Le message est celui du refus réseau existant.
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
     setEtape('envoi');
     try {
-      const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue });
+      const r = await payerMobileMoney(getSupabase(), { offre, pays, telephone, operateur: op.provider, codePreauth: code.trim() || undefined, langue, promo: promoActif?.code });
+      setRecuPromo(resumeRecu());
       if (r.statut === 'en_attente') {
         setResultat(r);
         setRestant(DUREE_DEMANDE_S);
+        sauverPaiementAttente({ commande: r.commande, offre, pays, telephone, operateur: op.provider, devise: r.devise, montant: r.montant }).catch(() => {});
         setEtape('attente');
       } else {
         terminer(r);
       }
     } catch (e) {
+      // Code promo refusé au moment de payer (expiré, épuisé entre-temps) : retour au champ, rien n'est parti chez l'opérateur.
+      if (e instanceof ErreurPaiement && e.code === 'promo') {
+        promo.refuserAuPaiement(motifDepuisServeur(e.motif));
+        setEtape('saisie');
+        return;
+      }
       // Refus de pawaPay avec un code : l'écran d'échec par motif (E5). Sinon un message dans le formulaire.
       if (e instanceof ErreurPaiement && e.echec) {
         terminer({ statut: 'echoue', commande: e.commande ?? '', echec: e.echec, message: e.message });
@@ -197,10 +297,61 @@ export function PayerPass() {
     }
   };
 
+  // Chariow : pays que le Mobile Money ne couvre pas. Le serveur crée la commande et renvoie la page de paiement, que
+  // l'on ouvre dans le navigateur ; au retour, l'écran d'attente (déjà en place) suit la commande jusqu'à son issue.
+  const payerChariow = async () => {
+    if (!pays || envoiChariow) return;
+    setErreur(null);
+    setChampErreur(null);
+    if (!numeroPlausible(telephone, pays)) {
+      setSecousse((n) => n + 1);
+      return setChampErreur('numero');
+    }
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
+    setEnvoiChariow(true);
+    try {
+      const p = await ouvrirPaiementChariow(getSupabase(), { offre, pays, telephone });
+      setResultat({ statut: 'en_attente', commande: p.commande, montant: p.montant, devise: p.devise });
+      setRestant(DUREE_DEMANDE_S);
+      setUrlCarte(p.url);
+      setEtape('attente');
+      await Linking.openURL(p.url);
+    } catch (e) {
+      const code = e instanceof ErreurChariow ? e.code : 'reseau';
+      // « configuration » n'a pas de texte dédié : c'est une indisponibilité vue de l'élève.
+      setErreur(t(code === 'configuration' ? 'paiement.erreurs.indisponible' : (`paiement.erreurs.${code}` as CleTexte)));
+    } finally {
+      setEnvoiChariow(false);
+    }
+  };
+
+  // Prix final à 0 : le serveur active le pass sans Mobile Money (maquette code promo, état 7).
+  const activer = async () => {
+    if (!pays || !promoActif?.gratuit) return;
+    setErreur(null);
+    if (horsLigne) return setErreur(t('paiement.erreurs.reseau'));
+    setEtape('envoi');
+    try {
+      const r = await activerPassGratuit(getSupabase(), { offre, pays, promo: promoActif.code, langue });
+      setRecuPromo(resumeRecu());
+      // La réponse d'activation ne porte ni la fin du pass ni le numéro de reçu : on les relit.
+      const complet = await lireStatutCommande(getSupabase(), r.commande, langue).catch(() => r);
+      terminer({ ...r, ...complet, statut: 'reussi', montant: 0, devise: promoActif.devise });
+    } catch (e) {
+      if (e instanceof ErreurPaiement && e.code === 'promo') {
+        promo.refuserAuPaiement(motifDepuisServeur(e.motif));
+      } else {
+        setErreur(texteErreur(e));
+      }
+      setEtape('saisie');
+    }
+  };
+
   const abandonner = async () => {
     setConfirmerAnnulation(false);
     arret.current.annule = true;
     if (commande) await annulerCommande(getSupabase(), commande).catch(() => {});
+    setUrlCarte(null);
     setResultat(null);
     setEtape('saisie');
   };
@@ -225,12 +376,19 @@ export function PayerPass() {
 
   // E4 · Succès : reçu
   if (etape === 'fin' && resultat?.statut === 'reussi') {
-    const lignes: [string, string][] = [];
-    const montantRecu = montant || (resultat.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : '');
-    if (montantRecu) lignes.push([t('paiement.montant'), montantRecu]);
-    if (op) lignes.push([t('paiement.operateurRecu'), op.name]);
-    if (resultat.finPass) lignes.push([t('paiement.valable'), date(resultat.finPass)]);
-    if (resultat.recu) lignes.push([t('paiement.reference'), resultat.recu]);
+    const lignes: { nom: string; valeur: string; barre?: boolean; badge?: boolean }[] = [];
+    const montantRecu = recuPromo?.paye ?? (montant || (resultat.montant ? formaterMontant(resultat.montant, resultat.devise ?? '') : ''));
+    if (recuPromo) {
+      // Rappel du code sur le reçu (maquette code promo, état 14) : prix de départ barré, code et rabais, montant payé.
+      lignes.push({ nom: t('paiement.promo.recuPrix'), valeur: recuPromo.initial, barre: true });
+      lignes.push({ nom: t('paiement.promo.recuCode', { code: recuPromo.code }), valeur: recuPromo.etiquette, badge: true });
+      lignes.push({ nom: t('paiement.promo.recuPaye'), valeur: montantRecu });
+    } else if (montantRecu) {
+      lignes.push({ nom: t('paiement.montant'), valeur: montantRecu });
+    }
+    if (op && !recuPromo?.gratuit) lignes.push({ nom: t('paiement.operateurRecu'), valeur: op.name });
+    if (resultat.finPass) lignes.push({ nom: t('paiement.valable'), valeur: date(resultat.finPass) });
+    if (resultat.recu) lignes.push({ nom: t('paiement.reference'), valeur: resultat.recu });
     return (
       <Ecran pied={<Bouton libelle={t('paiement.reprendre')} onPress={() => router.replace('/')} retour />}>
         {entete}
@@ -247,10 +405,16 @@ export function PayerPass() {
         </View>
         <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.recu').toUpperCase()}</Text>
-          {lignes.map(([nom, valeur]) => (
-            <View key={nom} style={styles.ligne}>
-              <Text style={[typo.texte, styles.flex, { color: theme.texte.secondaire }]}>{nom}</Text>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{valeur}</Text>
+          {lignes.map((l) => (
+            <View key={l.nom} style={styles.ligne}>
+              <Text style={[typo.texte, styles.flex, { color: theme.texte.secondaire }]}>{l.nom}</Text>
+              {l.badge ? (
+                <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{l.valeur}</Text>
+                </View>
+              ) : (
+                <Text style={[typo.texteFort, { color: l.barre ? theme.texte.secondaire : theme.texte.principal }, l.barre ? styles.barre : null]}>{l.valeur}</Text>
+              )}
             </View>
           ))}
         </View>
@@ -276,6 +440,7 @@ export function PayerPass() {
             )}
             <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />
             {motif === 'solde' || motif === 'refus' || motif === 'delai' ? <Bouton variante="texte" libelle={t('paiement.changerNumero')} onPress={() => { setTelephone(''); setResultat(null); setEtape('saisie'); }} /> : null}
+            <LienSupport reference={resultat.commande} />
           </View>
         }
       >
@@ -283,7 +448,7 @@ export function PayerPass() {
         <Banniere ton={jaune ? 'alerte' : 'erreur'} titre={bloc('titre')} texte={bloc('texte')} />
         {motif === 'solde' ? (
           <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('paiement.echecs.solde.astuce')}</Text>
+            <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('paiement.echecs.solde.astuce')}</Text>
           </View>
         ) : null}
       </Ecran>
@@ -298,27 +463,40 @@ export function PayerPass() {
       <Ecran
         pied={
           <View style={styles.groupe}>
-            <Bouton variante="secondaire" libelle={t('paiement.renvoyer')} onPress={() => void renvoyer()} />
+            {urlCarte ? (
+              // Paiement par carte : « Renvoyer la demande » n'a pas de sens (aucun opérateur à relancer), on propose
+              // de rouvrir la page de paiement.
+              <Bouton libelle={t('paiement.carteRouvrir')} onPress={() => void Linking.openURL(urlCarte)} />
+            ) : (
+              <Bouton variante="secondaire" libelle={t('paiement.renvoyer')} onPress={() => void renvoyer()} />
+            )}
             <Bouton variante="secondaire" libelle={t('paiement.annuler')} onPress={() => setConfirmerAnnulation(true)} />
-            {lienParent}
+            {urlCarte ? null : lienParent}
           </View>
         }
       >
         {entete}
-        <View style={styles.groupe}>
-          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
-          {etapes.map((texte, i) => (
-            <View key={texte} style={styles.ligne}>
-              <View style={[styles.numero, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+        {urlCarte ? (
+          <View style={styles.groupe}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.carteAttenteTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('paiement.carteAttenteTexte')}</Text>
+          </View>
+        ) : (
+          <View style={styles.groupe}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{t('paiement.attenteTitre')}</Text>
+            {etapes.map((texte, i) => (
+              <View key={texte} style={styles.ligne}>
+                <View style={[styles.numero, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+                </View>
+                <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{texte}</Text>
               </View>
-              <Text style={[typo.texte, styles.flex, { color: theme.texte.principal }]}>{texte}</Text>
-            </View>
-          ))}
-          {resultat.urlAutorisation ? (
-            <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
-          ) : null}
-        </View>
+            ))}
+            {resultat.urlAutorisation ? (
+              <Bouton libelle={t('paiement.ouvrirOperateur', { operateur: op?.name ?? '' })} onPress={() => void Linking.openURL(resultat.urlAutorisation as string)} />
+            ) : null}
+          </View>
+        )}
         <View style={styles.ligne}>
           <ActivityIndicator color={theme.marque.principale} />
           <Text accessibilityLiveRegion="polite" style={[typo.petit, styles.flex, { color: theme.texte.secondaire }]}>{t('paiement.attenteExpire', { temps: mmss(restant) })}</Text>
@@ -339,7 +517,9 @@ export function PayerPass() {
 
   // E2 · Pays, opérateur, numéro
   const envoi = etape === 'envoi';
-  const pret = !!m && m.payable && !!offreChoisie && !!op;
+  const pret = !!m && m.payable && !!offreChoisie && (gratuit || !!op);
+  // Un seul bouton vert par écran : tant qu'un code est en cours de saisie, c'est « Appliquer » ; « Payer » passe en blanc.
+  const saisieEnCours = promo.phase === 'ouvert' && promo.texte.length > 0;
   const indisponibles = m?.providers.filter((p) => !p.available) ?? [];
   const disponibles = m?.providers.filter((p) => p.available) ?? [];
   return (
@@ -347,19 +527,32 @@ export function PayerPass() {
       pied={
         pret ? (
           <View style={styles.groupe}>
-            <Bouton libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })} onPress={() => void payer()} desactive={envoi} retour />
-            {lienParent}
+            {gratuit ? (
+              <Bouton libelle={envoi ? t('paiement.promo.activationEnCours') : t('paiement.promo.activer')} onPress={() => void activer()} desactive={envoi} retour />
+            ) : (
+              <Bouton
+                variante={saisieEnCours ? 'secondaire' : 'primaire'}
+                libelle={envoi ? t('paiement.paiementEnCours') : t('paiement.payer', { montant })}
+                onPress={() => void payer()}
+                desactive={envoi}
+                retour
+              />
+            )}
+            {gratuit ? null : lienParent}
+            <View style={styles.note}>
+              <Lock size={14} color={theme.texte.secondaire} strokeWidth={2} />
+              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{gratuit ? t('paiement.promo.activation') : t('paiement.notePaiement')}</Text>
+            </View>
           </View>
         ) : undefined
       }
     >
       {entete}
-      {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
 
       <View style={styles.groupe}>
         <FeuillePays
           ouverte={choixPays}
-          pays={liste}
+          pays={listePays}
           choisi={pays}
           onFermer={() => setChoixPays(false)}
           onChoisir={(a2) => {
@@ -371,38 +564,114 @@ export function PayerPass() {
         />
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.pays').toUpperCase()}</Text>
         <View style={styles.ligne}>
-          <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? pays ?? ''}</Text>
+          {(m?.flag ?? drapeauPays(pays)) ? <Image source={{ uri: (m?.flag ?? drapeauPays(pays)) as string }} style={styles.drapeau} contentFit="cover" accessibilityIgnoresInvertColors /> : null}
+          <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{m?.countryName ?? nomPays(pays, langue)}</Text>
           <Bouton petit variante="secondaire" libelle={t('paiement.changerPays')} onPress={ouvrirPays} />
         </View>
       </View>
 
       {methodes === 'chargement' ? <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('paiement.chargement')}</Text> : null}
-      {methodes === 'erreur' ? (
-        <View style={styles.groupe}>
-          <Banniere ton="erreur" titre={t('paiement.erreurs.indisponible')} />
-          <Bouton variante="secondaire" libelle={t('paiement.reessayer')} onPress={() => { setMethodes('chargement'); setEssai((n) => n + 1); }} />
-        </View>
-      ) : null}
 
       {m && !m.payable ? (
         <View style={styles.groupe}>
-          <Banniere ton="info" titre={t('paiement.indisponibleTitre')} texte={t('paiement.indisponibleTexte')} />
-          <Bouton libelle={t('paiement.demanderPayer')} onPress={parent} />
+          {/* Un pays sans Mobile Money (France, Belgique…) n'a rien à annoncer : on lui propose simplement de payer en
+              ligne. On ne parle d'indisponibilité que si le Mobile Money existe quelque part et ne répond pas : service
+              injoignable (panneMethodes), ou opérateurs du pays tous fermés. */}
+          {panneMethodes || m.providers.length > 0 ? (
+            <Banniere ton="info" titre={t('paiement.panneTitre')} texte={t('paiement.panneTexte')} />
+          ) : null}
+          {panneMethodes ? (
+            <Bouton variante="secondaire" libelle={t('paiement.reessayer')} onPress={() => { setPanneMethodes(false); setMethodes('chargement'); setEssai((n) => n + 1); }} />
+          ) : null}
+          {/* Paiement en ligne (Chariow) : carte bancaire ou Mobile Money selon ce que Chariow propose dans le pays. Le
+              numéro est demandé parce qu'il figure sur le reçu ; le pays choisi fournit l'indicatif. */}
+          <Secousse declencheur={secousse}>
+            <View style={styles.groupe}>
+              <Champ
+                libelle={t('paiement.carteNumero')}
+                value={telephone}
+                onChangeText={(v) => { setTelephone(ajoutEnFin(v, telephone, pays)); setChampErreur(null); }}
+                keyboardType="phone-pad"
+                autoComplete="tel"
+                maxLength={20}
+                placeholder={exempleNumero(pays)}
+                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide', { exemple: exempleNumero(pays) }) : undefined}
+              />
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('paiement.carteNumeroAide')}</Text>
+            </View>
+          </Secousse>
+          <Bouton
+            libelle={envoiChariow ? t('paiement.paiementEnCours') : t('paiement.payerCarte')}
+            onPress={() => void payerChariow()}
+            desactive={envoiChariow}
+            retour
+          />
+          <View style={styles.note}>
+            <Lock size={14} color={theme.texte.secondaire} strokeWidth={2} />
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('paiement.carteNote')}</Text>
+          </View>
+          <Bouton variante="secondaire" libelle={t('paiement.demanderPayer')} onPress={parent} />
         </View>
       ) : null}
 
       {m?.payable && offreChoisie ? (
         <>
           <View style={[styles.carte, styles.recap, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            {/* Badge de coin en haut à droite indiquant le pourcentage de remise */}
+            <View style={[styles.badgeCoin, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>
+                {t('paiement.promo.remise', { pct: String(PRIX_PLEIN[offre].pct) })}
+              </Text>
+            </View>
             <View style={styles.flex}>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
                 {offreChoisie.durationDays ? t('paiement.recapDuree', { offre: nomOffre, n: offreChoisie.durationDays }) : nomOffre}
               </Text>
               {offreChoisie.converted ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('paiement.prixConverti', { devise: offreChoisie.currency })}</Text> : null}
             </View>
-            <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+            {promoActif ? (
+              <View style={styles.prix} accessible accessibilityLabel={t('paiement.promo.prixAu', { final: montant, initial: montantInitial })}>
+                <Text style={[typo.texte, styles.barre, { color: theme.texte.secondaire }]}>{montantInitial}</Text>
+                <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+              </View>
+            ) : (
+              // Le prix plein reste barré en permanence : l'élève voit la réduction consentie.
+              <View style={styles.prix} accessible accessibilityLabel={t('paiement.promo.prixAu', { final: montant, initial: prixPlein })}>
+                <Text style={[typo.texte, styles.barre, { color: theme.texte.secondaire }]}>{prixPlein}</Text>
+                <Text style={[typo.h3, { color: theme.texte.principal }]}>{montant}</Text>
+              </View>
+            )}
           </View>
+          {promoActif ? (
+            <View style={styles.ligne}>
+              <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{etiquette}</Text>
+              </View>
+              <Text style={[typo.petit, styles.flex, { color: theme.texte.principal }]}>{t('paiement.promo.economie', { montant: economie })}</Text>
+            </View>
+          ) : null}
 
+          <CodePromo
+            etat={promo}
+            offre={offre}
+            fige={envoi}
+            surChoisirOffre={(o) => {
+              setOffre(o);
+              void promo.appliquer(o);
+            }}
+          />
+
+          {gratuit ? (
+            <View style={[styles.gratuit, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+              <Gift size={24} color={theme.texte.surCouleur} strokeWidth={2} />
+              <View style={styles.flex}>
+                <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t('paiement.promo.gratuitTitre')}</Text>
+                <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('paiement.promo.gratuitTexte', { offre: nomOffre })}</Text>
+              </View>
+            </View>
+          ) : null}
+
+          {gratuit ? null : (
           <View style={styles.groupe}>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('paiement.operateur').toUpperCase()}</Text>
             {m.providers.map((p) => {
@@ -413,7 +682,10 @@ export function PayerPass() {
                   accessibilityRole="radio"
                   accessibilityState={{ checked: choisi, disabled: !p.available }}
                   disabled={!p.available}
-                  onPress={() => setOperateur(p.provider)}
+                  onPress={() => {
+                    setOperateur(p.provider);
+                    setTimeout(() => champNumeroRef.current?.focus(), 50);
+                  }}
                   rayon={rayon.m}
                   ombre={p.available ? ombre.s : 0}
                   decalage={2}
@@ -436,17 +708,21 @@ export function PayerPass() {
               <Banniere ton="alerte" titre={t('paiement.indisponibleBandeau', { operateur: indisponibles[0].name, autre: disponibles[0].name })} />
             ) : null}
           </View>
+          )}
 
-          {op ? (
-            <View style={styles.groupe}>
+          {op && !gratuit ? (
+            <Secousse declencheur={secousse}>
+              <View style={styles.groupe}>
               <Champ
+                ref={champNumeroRef}
                 libelle={t('paiement.numero')}
                 value={telephone}
-                onChangeText={(v) => { setTelephone(v); setChampErreur(null); }}
+                onChangeText={(v) => { setTelephone(ajoutEnFin(v, telephone, pays)); setChampErreur(null); }}
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 maxLength={20}
-                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide') : undefined}
+                placeholder={exempleNumero(pays)}
+                erreur={champErreur === 'numero' ? t('paiement.numeroInvalide', { exemple: exempleNumero(pays) }) : undefined}
                 prefixe={
                   m.prefix ? (
                     // L'indicatif vient du pays choisi : il ne s'écrit pas à la main, un appui rouvre le choix du pays.
@@ -467,11 +743,15 @@ export function PayerPass() {
                 </>
               ) : null}
             </View>
+            </Secousse>
           ) : null}
+
         </>
       ) : null}
 
       {erreur ? <Banniere ton="erreur" titre={erreur} /> : null}
+      {/* Mode test : repère discret, tout en bas de la page. */}
+      {modeEssai() ? <Banniere ton="info" titre={t('paiement.essai')} /> : null}
     </Ecran>
   );
 }
@@ -493,4 +773,10 @@ const styles = StyleSheet.create({
   drapeau: { width: 24, height: 16, borderRadius: 3 },
   logo: { width: 48, height: 48, borderWidth: bord.fin, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   logoImage: { width: 40, height: 40 },
+  note: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2] },
+  prix: { alignItems: 'flex-end' },
+  barre: { textDecorationLine: 'line-through' },
+  badge: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: 2 },
+  badgeCoin: { position: 'absolute', top: -9, right: -5, zIndex: 2, borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: 1 },
+  gratuit: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
 });

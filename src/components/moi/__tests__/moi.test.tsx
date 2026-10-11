@@ -17,9 +17,11 @@ import { SuppressionCompte } from '../SuppressionCompte';
 const mockSession = jest.fn();
 const mockRpc = jest.fn();
 const mockLigne = jest.fn();
+/** Canal EAS simule : le bouton [DEV] de suppression immediate n'apparait que sur le canal preview. */
+const mockVersion = { canal: null as string | null };
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
-  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
+  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true), dismissAll: jest.fn() },
   useLocalSearchParams: () => mockParams,
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
@@ -28,10 +30,18 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
+jest.mock('@/services/version', () => ({
+  lireVersion: () => ({ version: '3.0.0', build: '1', canal: mockVersion.canal, miseAJour: null, publiee: null }),
+}));
 jest.mock('@/services/supabase', () => ({
   getSupabase: () => ({
     rpc: (...a: unknown[]) => mockRpc(...a),
     from: (table: string) => ({ select: () => ({ maybeSingle: async () => mockLigne(table) }) }),
+    auth: {
+      signOut: async () => ({ error: null }),
+      getSession: async () => ({ data: { session: null } }),
+      signInAnonymously: async () => ({ data: { session: null }, error: null }),
+    },
   }),
 }));
 
@@ -44,6 +54,7 @@ const T = { fr, en };
 beforeEach(async () => {
   jest.clearAllMocks();
   mockParams = {};
+  mockVersion.canal = 'preview';
   await AsyncStorage.clear();
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockSession.mockReturnValue(membre);
@@ -115,6 +126,31 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
     await monter(<SuppressionCompte />);
     expect(screen.getByText(x.suppression.invite)).toBeTruthy();
     expect(screen.queryByRole('button', { name: x.suppression.confirmer })).toBeNull();
+  });
+
+  it('suppression : bouton [DEV] sur canal preview, suppression immédiate puis retour à l’accueil', async () => {
+    mockVersion.canal = 'preview';
+    await monter(<SuppressionCompte />);
+    await fireEvent.press(screen.getByRole('button', { name: '[DEV] Supprimer immédiatement' }));
+    await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('delete_my_account_immediately'));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/bienvenue'));
+    expect(router.dismissAll).toHaveBeenCalled();
+  });
+
+  it('suppression : bouton [DEV] absent hors canal preview (et hors __DEV__)', async () => {
+    // __DEV__ est vrai sous Jest : on le neutralise pour isoler la condition de canal.
+    const devInitial = (globalThis as { __DEV__?: boolean }).__DEV__;
+    (globalThis as { __DEV__?: boolean }).__DEV__ = false;
+    try {
+      mockVersion.canal = 'production';
+      await monter(<SuppressionCompte />);
+      expect(screen.queryByRole('button', { name: '[DEV] Supprimer immédiatement' })).toBeNull();
+      mockVersion.canal = 'preview';
+      await monter(<SuppressionCompte />);
+      expect(screen.getAllByRole('button', { name: '[DEV] Supprimer immédiatement' }).length).toBeGreaterThan(0);
+    } finally {
+      (globalThis as { __DEV__?: boolean }).__DEV__ = devInitial;
+    }
   });
 });
 

@@ -4,6 +4,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { matiere as couleursMatieres } from '@/theme/theme';
 
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
+import { contenuHorsLigneValide } from './connectivite';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
@@ -49,10 +50,54 @@ async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant
   return valeur;
 }
 
+/** Clés locales chargées pendant la session, quand le contenu est encore valable. */
+const localesEnMemoire = new Map<string, unknown>();
+
+/**
+ * Ce contenu local peut-il encore être servi ? Faux hors ligne au-delà de la durée de validité (issue #13).
+ *
+ * **C'est le contrôle unique de l'expiration.** Le cache hors ligne est éparpillé en plusieurs clés rangées par la
+ * préparation (`reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`), et chacune a
+ * son propre chemin de lecture. Les garder séparément a laissé passer des contenus : toute lecture d'une clé locale
+ * doit passer par ici, et non par un `contenuHorsLigneValide()` recopié au cas par cas.
+ */
+export async function localServable(maintenant = Date.now()): Promise<boolean> {
+  return contenuHorsLigneValide(maintenant);
+}
+
+/**
+ * Lit une clé locale (rangée par la préparation hors ligne) en la soumettant à l'expiration. Renvoie `null` quand le
+ * contenu est périmé : l'appelant retombe alors sur son erreur réseau, donc sur le message de connexion.
+ *
+ * `sansExpiration` sert aux clés qui ne sont pas du contenu (index, réglages locaux) — à n'utiliser qu'en connaissance
+ * de cause.
+ */
+export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()): Promise<T | null> {
+  if (!(await localServable(maintenant))) {
+    localesEnMemoire.delete(cle);
+    return null;
+  }
+  if (localesEnMemoire.has(cle)) return localesEnMemoire.get(cle) as T;
+  try {
+    const brut = await AsyncStorage.getItem(cle);
+    if (!brut) return null;
+    const valeur = JSON.parse(brut) as T;
+    localesEnMemoire.set(cle, valeur);
+    return valeur;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Copie locale d'abord (M5-03) : rien n'attend le réseau dès qu'une copie existe. Moins de 12 h : servie telle quelle.
  * Plus ancienne : servie tout de suite, et relue en arrière-plan pour la visite suivante. Sans copie : le réseau.
  * L'onglet reste utilisable hors ligne pour ce qui a déjà été ouvert.
+ *
+ * **Expiration (issue #13)** : hors ligne, une copie plus vieille que la durée de validité hors ligne n'est **pas**
+ * servie. On tente alors le réseau, qui échoue sans connexion : l'élève voit un message de connexion au lieu de
+ * consulter indéfiniment du contenu périmé. C'est le point de passage unique de tous les contenus, donc le seul
+ * endroit où cette règle doit vivre — la poser ailleurs la laisserait contournable.
  */
 export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
   let copie = copiesEnMemoire.get(cle);
@@ -69,6 +114,11 @@ export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintena
         // copie illisible : on relit le réseau
       }
     }
+  }
+  if (copie && !(await contenuHorsLigneValide(maintenant))) {
+    // Copie périmée : on la refuse et on repart du réseau. La copie reste en mémoire pour la relecture d'arrière-plan,
+    // qui la remplacera si la connexion est revenue.
+    return relireEtGarder(cle, lire, maintenant);
   }
   if (!copie) return relireEtGarder(cle, lire, maintenant);
   if (maintenant - copie.date >= FRAICHEUR_COPIE_MS && !relecturesEnCours.has(cle)) {
@@ -194,8 +244,9 @@ export async function lireQuizLecon(client: Client, p: { cours: number; lecon: n
       return lignes.map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => q !== null);
     });
   } catch (erreur) {
-    const horsLigne = await AsyncStorage.getItem(`reviser.quiz.horsLigne.${p.lecon}`);
-    if (horsLigne) return JSON.parse(horsLigne) as QuestionTiree[];
+    // Repli hors ligne : la copie rangée par la préparation, soumise à l'expiration (voir `lireLocalHorsLigne`).
+    const horsLigne = await lireLocalHorsLigne<QuestionTiree[]>(`reviser.quiz.horsLigne.${p.lecon}`);
+    if (horsLigne) return horsLigne;
     throw erreur;
   }
 }
@@ -261,7 +312,9 @@ export async function synchroniserLues(client: ClientSynchro, forcer = false): P
       .filter(([id]) => !connues.has(id))
       .map(([id, cours]) => ({ lesson_id: Number(id), course_id: cours }));
     if (aEnvoyer.length) await client.rpc('validate_lessons', { p_items: aEnvoyer });
-    const fusion = { ...locales, ...Object.fromEntries(serveur.map((l) => [String(l.lesson_id), l.course_id])) };
+    // Relecture juste avant d'écrire : une leçon validée pendant l'attente du serveur ne doit pas être écrasée par la
+    // photo prise au début (la case cochée disparaîtrait).
+    const fusion = { ...locales, ...(await lireLues()), ...Object.fromEntries(serveur.map((l) => [String(l.lesson_id), l.course_id])) };
     await AsyncStorage.setItem(CLE_LUES, JSON.stringify(fusion));
     return fusion;
   } catch {

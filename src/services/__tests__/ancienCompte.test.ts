@@ -47,5 +47,5 @@ describe('retrouverAncienCompte', () => {
 });
 
 it('lien WhatsApp du support avec message encodé', () => {
-  expect(lienSupport('Bonjour, mon numéro : 677')).toBe('https://wa.me/237694051893?text=Bonjour%2C%20mon%20num%C3%A9ro%20%3A%20677');
+  expect(lienSupport('Bonjour, mon numéro : 677')).toBe('https://wa.me/12015348324?text=Bonjour%2C%20mon%20num%C3%A9ro%20%3A%20677');
 });

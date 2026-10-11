@@ -5,11 +5,12 @@ import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
 import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
+import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { synchroniserResultat } from '@/services/miniTest';
 import { synchroniserLues } from '@/services/reviser';
 import { repriseInviteEnCours, reprendreApresRedemarrage } from '@/services/repriseInvite';
 import { suivreProgressionEntrainement, synchroniserEntrainement } from '@/services/synchroEntrainement';
-import { suivreModifications, synchroniserReglages } from '@/services/synchroReglages';
+import { appliquerReglagesCompteSiPlusRecent, suivreModifications, synchroniserReglages } from '@/services/synchroReglages';
 import { getSupabase } from '@/services/supabase';
 
 type Etat =
@@ -30,8 +31,16 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     (async () => {
       try {
         const client = getSupabase();
+        // Web : terminer le retour OAuth (Google, Apple) AVANT de créer une session invité. Sinon, au retour d'une
+        // connexion, l'invité était créé d'abord, son profil était lu (parcours d'arrivée non terminé) et l'élève
+        // connecté retombait sur « bienvenue ».
+        await finirRetourOAuthWebUneFois(client);
         const session = await assurerSessionInvite(client);
         const reprise = await reprendreApresRedemarrage(session.user.id);
+        // Les réglages du compte portent le parcours d'arrivée (profil) : les appliquer au téléphone AVANT de marquer
+        // la session prête, sinon un élève connecté sur un appareil sans profil local (navigateur web neuf) retombait
+        // sur « bienvenue ». Écritures locales seulement ; l'envoi vers le compte reste en arrière-plan.
+        await appliquerReglagesCompteSiPlusRecent(session.user).catch(() => {});
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
         identifier(session.user.id, { email: session.user.email, invite: session.user.is_anonymous ?? false });

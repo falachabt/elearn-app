@@ -5,7 +5,8 @@ import { Paths } from 'expo-file-system';
 import { i18n } from '@/i18n';
 
 import { prechargerDocument } from './documents';
-import { depenser, lireOuverts } from './credits';
+import { lireOuverts } from './credits';
+import { lireContenuEnCache, telechargerContenuPayant } from './creditsHorsLigne';
 import { lireEntrainement, lireExercice, lireQuizLibre } from './entrainement';
 import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
@@ -81,7 +82,9 @@ export async function lireEtatHorsLigne(): Promise<EtatHorsLigne | null> {
 async function enregistrer(etat: EtatHorsLigne): Promise<void> {
   etat.actualiseLe = new Date().toISOString();
   await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
-  notifier(etat);
+  // Copie : la file mute le même objet d'une tâche à l'autre, et React ignore un `setEtat` qui reçoit la même référence
+  // (les barres ne bougeaient qu'en quittant puis en rouvrant la page, qui relisait le disque).
+  notifier({ ...etat, progression: { ...etat.progression }, taches: [...etat.taches] });
 }
 
 export async function aVuInvitationHorsLigne(): Promise<boolean> {
@@ -277,16 +280,20 @@ async function executerTache(tache: Tache): Promise<void> {
     if (!tache.corrige) {
       await lireExercice(client, tache.exercice);
     } else {
-      const acces = await depenser<{ correction?: unknown; correction_compressed?: string | null }>(client, 'exercise_solution', tache.exercice);
-      if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('corrigé non débloqué : aucun crédit n’a été dépensé');
-      if (!acces.contenu) throw new Error('corrigé indisponible');
-      await AsyncStorage.setItem(`entrainement.exercice.corrige.${tache.exercice}`, JSON.stringify(acces.contenu));
+      // Option A : on TÉLÉCHARGE le corrigé sans débiter. Le serveur vérifie le droit d'accès (gratuit, déjà payé, ou
+      // pass) et ne sert donc jamais un corrigé qui n'a pas été acquis : le socle sécurisé reste la référence.
+      const prepare = await telechargerContenuPayant(client, 'exercise_solution', tache.exercice);
+      if (!prepare) throw new Error('corrigé non téléchargé : il n’est pas encore débloqué');
     }
   } else if (tache.categorie === 'pdf' && tache.document) {
-    const acces = await depenser<{ url?: string }>(client, 'document_pdf', tache.document.id);
-    if (acces.statut !== 'already' && acces.statut !== 'unlimited') throw new Error('document non débloqué : aucun crédit n’a été dépensé');
-    if (!acces.contenu?.url) throw new Error('adresse du document indisponible');
-    await prechargerDocument(acces.contenu.url, tache.document.titre);
+    // Même règle pour les PDF : téléchargés sans débiter, verrouillés jusqu'à la consultation.
+    // À NOTER : les fichiers sont sur un bucket R2 **public**, donc l'adresse ne protège rien par elle-même — voir
+    // docs/TODO.md §6. Le verrouillage de l'adresse reste fait ici, côté app.
+    const prepare = await telechargerContenuPayant<{ url?: string }>(client, 'document_pdf', tache.document.id);
+    if (!prepare) throw new Error('document non téléchargé : il n’est pas encore débloqué');
+    const contenu = await lireContenuEnCache<{ url?: string }>('document_pdf', tache.document.id);
+    if (!contenu?.url) throw new Error('adresse du document indisponible');
+    await prechargerDocument(contenu.url, tache.document.titre);
   }
 }
 

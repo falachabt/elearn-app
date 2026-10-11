@@ -27,9 +27,11 @@ export type Solde = {
 /**
  * Résultat de `depenser_credits` :
  * - unlimited : pass en cours, rien n'est débité ; already : déjà débloqué ; free : gratuit ; spent : débité ;
- * - insufficient : solde trop bas (contenu null) ; limit : limite de questions à l'IA du pass atteinte (contenu null).
+ * - insufficient : solde trop bas (contenu null) ; limit : limite de questions à l'IA du pass atteinte (contenu null) ;
+ * - replay : opération déjà traitée, résultat renvoyé tel quel sans nouveau débit (issue #13, rejeu de la file
+ *   hors ligne). Le solde et le contenu sont ceux enregistrés lors du premier passage.
  */
-export type StatutDepense = 'unlimited' | 'already' | 'free' | 'spent' | 'insufficient' | 'limit';
+export type StatutDepense = 'unlimited' | 'already' | 'free' | 'spent' | 'insufficient' | 'limit' | 'replay';
 export type Depense<C = Record<string, unknown>> = { statut: StatutDepense; cout: number; solde: number; contenu: C | null };
 
 export const CLE_APPAREIL = 'credits.appareil';

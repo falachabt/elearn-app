@@ -53,10 +53,26 @@ export function QuizLibreEcran() {
         onTermine={async ({ questions: q, reponses, dureeS }) => {
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
           const le = new Date();
-          const record = await enregistrerSession(String(id), { questions: q, reponses, dureeS }, le);
-          await noterDernier({ type: 'quiz', id: String(id), cours: Number(cours), chapitre: String(nom ?? '') });
+          // Les écritures locales sont attendues, une par une, chacune isolée : l'écran de score et la carte « Reprendre »
+          // les lisent dès la navigation, et lancées en arrière-plan elles pouvaient arriver après (score ou carte
+          // vides). Un échec local est avalé : il ne doit jamais laisser l'élève bloqué sur la dernière question.
+          let record = false;
+          try {
+            await enregistrerCorrection({ source: 'libre', questions: q, reponses, contexte: { type: 'libre', quiz: String(id), le: le.toISOString() } });
+          } catch (erreur) {
+            console.warn('Impossible d’enregistrer la correction du quiz.', erreur);
+          }
+          try {
+            record = await enregistrerSession(String(id), { questions: q, reponses, dureeS }, le);
+          } catch (erreur) {
+            console.warn('Impossible d’enregistrer la session du quiz.', erreur);
+          }
+          try {
+            await noterDernier({ type: 'quiz', id: String(id), cours: Number(cours), chapitre: String(nom ?? '') });
+          } catch (erreur) {
+            console.warn('Impossible de noter ce quiz pour « Reprendre ».', erreur);
+          }
           suivre('practice_quiz_completed', { score, total: q.length, record });
-          await enregistrerCorrection({ source: 'libre', questions: q, reponses, contexte: { type: 'libre', quiz: String(id), le: le.toISOString() } });
           router.replace('/quiz/resultats');
         }}
       />

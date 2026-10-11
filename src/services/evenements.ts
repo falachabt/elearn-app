@@ -12,6 +12,14 @@ export type Evenements = {
   parent_link_created: { offre: 'week' | 'month' | 'contest'; montant: number };
   parent_link_sent: { canal: 'whatsapp' | 'copie' };
   payment_initiated: { offre: 'week' | 'month' | 'contest'; pays: string; operateur?: string; mode?: string };
+  promo_code_opened: { ecran: 'e1' | 'e2' };
+  promo_code_applied: { ecran: 'e1' | 'e2'; type: 'pct' | 'fixe'; nb_pass_valables: number };
+  promo_code_failed: { ecran: 'e1' | 'e2'; raison: string };
+  promo_code_removed: { ecran: 'e1' | 'e2' };
+  promo_code_unusable: { offre: 'week' | 'month' | 'contest' };
+  web_app_banner_shown: { plateforme: 'android' | 'ios' | 'bureau' };
+  web_app_banner_clicked: { magasin: 'play' | 'appstore' };
+  web_app_banner_dismissed: Record<string, never>;
   payment_succeeded: { offre: 'week' | 'month' | 'contest'; pays: string };
   payment_failed: { offre: 'week' | 'month' | 'contest'; pays: string; motif?: string };
   mission_started: { source: 'serveur' | 'locale'; total: number };
@@ -34,13 +42,14 @@ export type Evenements = {
   photo_failed: { type: string };
   photo_rated: { avis: 'clair' | 'pas_compris' };
   photo_reported: { motif: string };
-  photo_shared: Record<string, never>;
+  photo_shared: { id?: string };
+  share_reward_claimed: { gain: number; type: string };
   question_posted: { matiere: string; photos: number };
   connexion_echec: { cle: string; code: string | null; message: string };
   lesson_quiz_invited: { lecon: number };
   class_document_opened: { correction: boolean };
   legal_opened: { page: 'cgu' | 'confidentialite' };
-  notification_prompt_shown: { source: 'fin_mission' };
+  notification_prompt_shown: { source: 'fin_mission' | 'fin_quiz' | 'fin_chapitre' };
   notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
   notification_opened: { type: string };
   notification_setting_changed: { rappel: boolean };
@@ -58,6 +67,12 @@ export type Evenements = {
   deconnexion: Record<string, never>;
   credits_spent: { action: string; cout: number; solde: number };
   credits_exhausted: { action: string; cout: number; solde: number };
+  week_recap_shown: { source: 'auto' | 'push' | 'inbox'; semaine: string };
+  week_recap_card_viewed: { index: number; semaine: string };
+  week_recap_cta: { cta: 'refaire_erreurs' | 'aller_reviser' | 'faire_mission' | 'reessayer' | 'fermer'; semaine: string };
+  week_recap_closed: { derniere_carte: number; semaine: string };
+  support_confirmation_vue: { demandes: number };
+  support_confirmation_reponse: { reponse: 'accepted' | 'refused' | 'expiree' | 'erreur' };
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };
 };
 

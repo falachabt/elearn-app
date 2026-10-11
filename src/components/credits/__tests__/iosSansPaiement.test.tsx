@@ -32,17 +32,17 @@ beforeEach(() => {
 });
 
 describe('iOS : pas de paiement', () => {
-  it('seul Android propose le paiement', () => {
+  it('Android et web proposent le paiement, jamais iOS', () => {
     expect(paiementPossibleReel('android')).toBe(true);
+    // Le web n'est pas soumis aux règles d'Apple : Mobile Money et paiement par carte (Chariow) y sont proposés.
+    expect(paiementPossibleReel('web')).toBe(true);
     expect(paiementPossibleReel('ios')).toBe(false);
-    expect(paiementPossibleReel('web')).toBe(false);
   });
 
   it('crédits épuisés : les pass sont présentés, sans prix ni paiement externe', async () => {
     await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
     expect(screen.getByText('Crédits épuisés')).toBeTruthy();
-    expect(screen.getByText('Prendre le pass semaine')).toBeTruthy();
-    expect(screen.getByText('Pass semaine')).toBeTruthy();
+    expect(screen.getByText('Recharger')).toBeTruthy();
     aucune();
   });
 

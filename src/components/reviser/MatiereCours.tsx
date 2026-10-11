@@ -116,6 +116,7 @@ export function MatiereCours() {
       {etat.statut === 'pret' && etat.suite ? (
         <CarteListe
           fond={theme.accent.soleil}
+          surCouleur
           gauche={
             <View style={[styles.carre, styles.blanc, { borderColor: encre }]}>
               <Play size={16} strokeWidth={2.5} color={encre} fill={encre} />

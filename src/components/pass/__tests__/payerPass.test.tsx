@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
@@ -13,9 +14,21 @@ import { PayerPass } from '../PayerPass';
 const mockMethodes = jest.fn();
 const mockPayer = jest.fn();
 const mockSuivre = jest.fn();
+const mockChariow = jest.fn();
+const mockPays = jest.fn();
 const mockRafraichir = jest.fn(async () => {});
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => true }, useLocalSearchParams: () => ({ offre: 'month' }) }));
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/chariow', () => {
+  class ErreurChariow extends Error {
+    code: string;
+    constructor(code: string, message = '') {
+      super(message);
+      this.code = code;
+    }
+  }
+  return { ErreurChariow, ouvrirPaiementChariow: (...a: unknown[]) => mockChariow(...a) };
+});
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: jest.fn(async () => ({ data: 'cancelled', error: null })) }) }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => ({ rafraichir: mockRafraichir }) }));
 jest.mock('@/services/paiementPass', () => {
@@ -24,7 +37,7 @@ jest.mock('@/services/paiementPass', () => {
     ...actuel,
     modeEssai: () => false,
     lireMethodes: (...a: unknown[]) => mockMethodes(...a),
-    lirePaysPaiement: async () => [{ alpha2: 'SN', name: 'Sénégal', flag: null, prefix: '221', currencies: ['XOF'] }],
+    lirePaysPaiement: (...a: unknown[]) => mockPays(...a),
     payerMobileMoney: (...a: unknown[]) => mockPayer(...a),
     suivreCommande: (...a: unknown[]) => mockSuivre(...a),
     annulerCommande: async () => 'echoue',
@@ -44,6 +57,7 @@ beforeEach(async () => {
   await AsyncStorage.clear();
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockMethodes.mockResolvedValue(CM);
+  mockPays.mockResolvedValue([{ alpha2: 'SN', name: 'Sénégal', flag: null, prefix: '221', currencies: ['XOF'] }]);
 });
 
 describe('choix du pays dans une feuille avec recherche', () => {
@@ -52,7 +66,7 @@ describe('choix du pays dans une feuille avec recherche', () => {
     await screen.findByText('MTN MoMo');
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
     expect(await screen.findByText(fr.paiement.choisirPays)).toBeTruthy();
-    expect(screen.getByLabelText('Sénégal')).toBeTruthy();
+    // La liste est exhaustive (tous les pays) et virtualisée : la recherche fait apparaître le pays voulu.
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'SENEG');
     expect(screen.getByLabelText('Sénégal')).toBeTruthy();
     await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'zzz');
@@ -87,7 +101,7 @@ describe('paiement du pass par Mobile Money', () => {
     await monter();
     await screen.findByText('MTN MoMo');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
-    expect(screen.getByText(fr.paiement.numeroInvalide)).toBeTruthy();
+    expect(screen.getByText(/Ce numéro ne correspond pas à ton pays/)).toBeTruthy();
     expect(mockPayer).not.toHaveBeenCalled();
   });
 
@@ -165,21 +179,92 @@ describe('paiement du pass par Mobile Money', () => {
     expect(screen.getByRole('button', { name: fr.paiement.changerNumero })).toBeTruthy();
   });
 
-  it('pays sans pawaPay : on le dit et on propose de faire payer un parent', async () => {
+  it('pays sans pawaPay : on propose le paiement en ligne, sans rien annoncer', async () => {
     mockMethodes.mockResolvedValue({ payable: false, country: 'CM', offers: [], providers: [] });
     await monter();
-    expect(await screen.findByText(fr.paiement.indisponibleTitre)).toBeTruthy();
+    // Un pays qui n'a jamais eu de Mobile Money n'a rien à annoncer : on propose de payer en ligne, simplement.
+    expect(await screen.findByRole('button', { name: fr.paiement.payerCarte })).toBeTruthy();
+    expect(screen.queryByText(fr.paiement.panneTitre)).toBeNull();
     await fireEvent.press(screen.getByRole('button', { name: fr.paiement.demanderPayer }));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/offres/parent', params: { offre: 'month' } });
   });
 
   it('opérateur à code d’autorisation (PREAUTH) : le code est demandé avant de payer', async () => {
-    mockMethodes.mockResolvedValue({ ...CM, providers: [{ ...CM.providers[0], provider: 'ORANGE_SEN', name: 'Orange Money', authType: 'PREAUTH', pinPrompt: 'MANUAL' }] });
+    mockMethodes.mockResolvedValue({ ...CM, providers: [{ ...CM.providers[0], provider: 'ORANGE_CMR', name: 'Orange Money', authType: 'PREAUTH', pinPrompt: 'MANUAL' }] });
     await monter();
     await screen.findByText('Orange Money');
-    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '771234567');
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.numero), '699887766');
     await fireEvent.press(screen.getByRole('button', { name: /Payer/ }));
     expect(screen.getByText(fr.paiement.codeRequis)).toBeTruthy();
     expect(mockPayer).not.toHaveBeenCalled();
+  });
+});
+
+describe('pays hors Mobile Money : paiement par carte (Chariow)', () => {
+  const HORS_ZONE = { payable: false, country: 'FR', countryName: 'France', prefix: '33', currency: null, offers: [], providers: [] };
+
+  it('propose la carte, ouvre la page de paiement, puis attend la confirmation', async () => {
+    mockMethodes.mockResolvedValue(HORS_ZONE);
+    mockChariow.mockResolvedValue({ commande: 'ch1', url: 'https://payment.chariow.com/x', montant: 2500, devise: 'XAF' });
+    mockSuivre.mockImplementation(() => new Promise(() => {}));
+    const openURL = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
+
+    await monter();
+    expect(await screen.findByText(fr.paiement.payerCarte)).toBeTruthy();
+    // Aucun opérateur Mobile Money dans ce pays, et aucune annonce à faire : la carte remplace le choix d'opérateur.
+    expect(screen.queryByText('MTN MoMo')).toBeNull();
+    expect(screen.queryByText(fr.paiement.panneTitre)).toBeNull();
+
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.carteNumero), '612345678');
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
+
+    await waitFor(() => expect(mockChariow).toHaveBeenCalled());
+    expect(openURL).toHaveBeenCalledWith('https://payment.chariow.com/x');
+    // L'attente parle de la carte, jamais d'un opérateur à valider sur le téléphone.
+    expect(await screen.findByText(fr.paiement.carteAttenteTitre)).toBeTruthy();
+    expect(screen.queryByText(fr.paiement.attenteTitre)).toBeNull();
+    openURL.mockRestore();
+  });
+
+  it('un numéro trop court est refusé avant tout appel au serveur', async () => {
+    mockMethodes.mockResolvedValue(HORS_ZONE);
+    mockChariow.mockClear();
+    await monter();
+    await screen.findByText(fr.paiement.payerCarte);
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.payerCarte }));
+    expect(mockChariow).not.toHaveBeenCalled();
+    expect(await screen.findByText(/Ce numéro ne correspond pas à ton pays/)).toBeTruthy();
+  });
+
+  it('pawaPay injoignable : l’élève garde le choix du pays et le paiement par carte', async () => {
+    // Panne réelle du service (502 constaté en production) : l'écran ne doit jamais se retrouver sans issue.
+    mockMethodes.mockRejectedValue(new Error('502'));
+    mockChariow.mockClear();
+    await monter();
+
+    expect(await screen.findByText(fr.paiement.panneTitre)).toBeTruthy();
+    // On ne fait pas passer une panne pour un pays non couvert.
+    expect(screen.queryByText(fr.paiement.indisponibleTitre)).toBeNull();
+    // Le pays reste affiché et changeable, la carte reste proposée, et on peut réessayer.
+    expect(screen.getByRole('button', { name: fr.paiement.changerPays })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.payerCarte })).toBeTruthy();
+    expect(screen.getByRole('button', { name: fr.paiement.reessayer })).toBeTruthy();
+  });
+
+  it('pawaPay injoignable : la feuille des pays n’est pas vide', async () => {
+    mockMethodes.mockRejectedValue(new Error('502'));
+    mockPays.mockRejectedValue(new Error('502'));
+    await monter();
+
+    await screen.findByText(fr.paiement.panneTitre);
+    await fireEvent.press(screen.getByRole('button', { name: fr.paiement.changerPays }));
+    // Repli local : les pays proposés à l'inscription sont là, sinon « Changer » ouvrirait une feuille vide.
+    // On vise le libellé des lignes de la feuille (l'en-tête affiche aussi le pays courant).
+    // Liste locale exhaustive : elle s'ouvre même sans le serveur. On cherche un pays hors Mobile Money qui n'était
+    // même pas dans la liste de l'inscription : c'est ce que Chariow rend possible.
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'seneg');
+    expect(await screen.findByLabelText('Sénégal')).toBeTruthy();
+    await fireEvent.changeText(screen.getByLabelText(fr.paiement.rechercherPays), 'belgique');
+    expect(screen.getByLabelText('Belgique')).toBeTruthy();
   });
 });

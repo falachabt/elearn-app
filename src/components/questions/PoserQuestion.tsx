@@ -9,7 +9,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { suivre } from '@/services/analytics';
 import { lireProfil, CLASSES } from '@/services/profil';
-import { contientNumero, envoyerPhotos, masquerNumeros, MATIERES_FIL, poserQuestion } from '@/services/questions';
+import { contientNumero, envoyerPhotos, LONGUEUR_MIN, masquerNumeros, MATIERES_FIL, poserQuestion } from '@/services/questions';
 import { couleurMatiere } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
@@ -22,6 +22,7 @@ import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { Secousse } from '../Secousse';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Puce } from '../liste/Puce';
 
@@ -64,7 +65,13 @@ export function PoserQuestion() {
   }, []);
 
   const vide = !texte.trim() && !photos.length;
-  const peutPublier = !vide && !!matiere && !envoi && (photos.length > 0 || texte.trim().length >= 10);
+  // Ce qui manque pour publier : le bouton reste actif, et un appui incomplet secoue le formulaire en montrant quoi remplir.
+  const texteValide = photos.length > 0 || texte.trim().length >= LONGUEUR_MIN;
+  const peutPublier = !vide && !!matiere && !envoi && texteValide;
+  const [tentative, setTentative] = useState(false);
+  const [secousse, setSecousse] = useState(0);
+  const manqueTexte = tentative && !texteValide;
+  const manqueMatiere = tentative && !matiere;
 
   const sauver = () => AsyncStorage.setItem(CLE_BROUILLON, JSON.stringify({ texte, matiere, classe, photos } satisfies Brouillon)).catch(() => undefined);
   const oublier = () => AsyncStorage.removeItem(CLE_BROUILLON).catch(() => undefined);
@@ -80,7 +87,13 @@ export function PoserQuestion() {
   };
 
   const publier = async () => {
-    if (!peutPublier || !session) return;
+    if (envoi) return;
+    if (!peutPublier) {
+      setTentative(true);
+      setSecousse((n) => n + 1);
+      return;
+    }
+    if (!session) return;
     setEnvoi(true);
     setErreur(null);
     try {
@@ -115,9 +128,24 @@ export function PoserQuestion() {
           <Text accessibilityRole="header" style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('questions.poser')}</Text>
         </>
       }
-      pied={<Bouton libelle={t('questions.publier')} onPress={() => void publier()} desactive={!peutPublier} />}
+      pied={(
+        <Secousse declencheur={secousse}>
+          <Bouton libelle={t('questions.publier')} onPress={() => void publier()} desactive={envoi} />
+        </Secousse>
+      )}
     >
-      <Champ libelle={t('questions.taQuestion')} value={texte} onChangeText={setTexte} multiline maxLength={1000} style={styles.champ} textAlignVertical="top" placeholder={t('questions.placeholder')} />
+      <Champ
+        libelle={t('questions.taQuestion')}
+        value={texte}
+        onChangeText={setTexte}
+        multiline
+        maxLength={1000}
+        style={styles.champ}
+        textAlignVertical="top"
+        placeholder={t('questions.placeholder')}
+        erreur={manqueTexte ? t('questions.erreurTexte', { n: LONGUEUR_MIN }) : undefined}
+      />
+      {!photos.length && !manqueTexte ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('questions.minCaracteres', { n: LONGUEUR_MIN })}</Text> : null}
       <View style={styles.rangee}>
         <Bouton petit variante="secondaire" libelle={t('questions.photo')} icone={<Camera size={18} strokeWidth={2} color={theme.texte.principal} />} onPress={() => void ajouter(true)} desactive={photos.length >= MAX_PHOTOS} />
         <Bouton petit variante="secondaire" libelle={t('questions.galerie')} icone={<IconeImage size={18} strokeWidth={2} color={theme.texte.principal} />} onPress={() => void ajouter(false)} desactive={photos.length >= MAX_PHOTOS} />
@@ -137,6 +165,7 @@ export function PoserQuestion() {
         </View>
       ) : null}
       <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('questions.matiere')}</Text>
+      {manqueMatiere ? <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{t('questions.erreurMatiere')}</Text> : null}
       <View style={styles.puces}>
         {MATIERES_FIL.map((m) => {
           const c = couleurMatiere(m);

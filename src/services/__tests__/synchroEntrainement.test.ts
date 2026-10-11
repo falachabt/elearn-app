@@ -29,11 +29,14 @@ it('fusionne les meilleurs scores, exercices faits et sessions du compte avec le
     ['entrainement.scores', JSON.stringify(locale.quiz_scores)],
     ['entrainement.exercicesFaits', JSON.stringify(locale.exercises_done)],
     ['entrainement.sessions', JSON.stringify(locale.quiz_sessions)],
+    ['entrainement.exercicesDates', JSON.stringify({ exerciceA: '2026-10-01T09:00:00.000Z', exerciceZ: '2026-09-01T09:00:00.000Z' })],
   ]);
   const rpc = jest.fn().mockResolvedValue({ data: distante, error: null });
 
   expect(await synchroniserEntrainement({ rpc } as never)).toBe(true);
-  expect(rpc).toHaveBeenCalledWith('sync_my_practice_progress', { p_progress: locale });
+  expect(rpc).toHaveBeenCalledWith('sync_my_practice_progress', {
+    p_progress: { ...locale, exercise_dates: { exerciceA: '2026-10-01T09:00:00.000Z' } },
+  });
   expect(JSON.parse((await AsyncStorage.getItem('entrainement.scores')) ?? '{}')).toEqual({ quizA: 85, quizB: 60 });
   expect(JSON.parse((await AsyncStorage.getItem('entrainement.exercicesFaits')) ?? '{}')).toEqual({ exerciceA: true, exerciceB: true });
   expect(JSON.parse((await AsyncStorage.getItem('entrainement.sessions')) ?? '{}')).toEqual({

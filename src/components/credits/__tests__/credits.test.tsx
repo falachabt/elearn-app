@@ -21,9 +21,15 @@ const soldeBase: Solde = {
 };
 const couts = { quiz_explanation: 1, exercise_solution: 2, document_pdf: 3, exam_correction: 5, ai_question: 5 };
 
-function donner(solde: Partial<Solde> | null = {}) {
-  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, couts, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, depenser: mockDepenser, rafraichir: jest.fn() });
+function donner(solde: Partial<Solde> | null = {}, depensesEnAttente = 0) {
+  mockCredits.mockReturnValue({ solde: solde ? { ...soldeBase, ...solde } : null, depensesEnAttente, couts, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, depenser: mockDepenser, rafraichir: jest.fn() });
 }
+
+/** Les choix de la feuille, dans l'ordre : le nom accessible de chaque bouton. */
+const choix = (noms: string[]) => {
+  expect(screen.getAllByRole('button')).toHaveLength(noms.length);
+  noms.forEach((nom) => expect(screen.getByRole('button', { name: nom })).toBeTruthy());
+};
 
 const avecTheme = (n: React.ReactNode) => render(<ThemeProvider>{n}</ThemeProvider>);
 
@@ -55,6 +61,28 @@ describe('K1 compteur', () => {
     expect(screen.getByText('5 · Invité')).toBeTruthy();
   });
 
+  it('dépenses faites hors ligne en attente : le solde est marqué « à confirmer », sans le présenter comme confirmé', async () => {
+    donner({ total: 14 }, 2);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.getByTestId('compteur-a-confirmer')).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: '14 crédits, à confirmer par le serveur. Voir le détail.' }));
+    expect(screen.getByText(/pas encore confirmées par le serveur/)).toBeTruthy();
+  });
+
+  it('rien à confirmer : pas de marque, ni dans la feuille de détail', async () => {
+    donner({ total: 14 }, 0);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.queryByTestId('compteur-a-confirmer')).toBeNull();
+    await fireEvent.press(screen.getByRole('button', { name: '14 crédits disponibles. Voir le détail.' }));
+    expect(screen.queryByText(/pas encore confirmées par le serveur/)).toBeNull();
+  });
+
+  it('avec un pass : jamais « à confirmer »', async () => {
+    donner({ illimite: true, illimiteJusqua: '2026-11-12T00:00:00Z' }, 3);
+    await avecTheme(<CompteurCredits />);
+    expect(screen.queryByTestId('compteur-a-confirmer')).toBeNull();
+  });
+
   it('squelette tant que le solde n’est pas chargé', async () => {
     donner(null);
     await avecTheme(<CompteurCredits />);
@@ -62,15 +90,64 @@ describe('K1 compteur', () => {
   });
 });
 
+describe('K3 crédits épuisés (compte connecté) : Recharger, Gagner, Plus tard', () => {
+  beforeEach(() => donner({ total: 0, semaine: 0 }));
+
+  it('trois choix seulement, sans pass ni « demander à payer » empilés dans la feuille', async () => {
+    await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
+    expect(screen.getByText('Crédits épuisés')).toBeTruthy();
+    expect(screen.getByText(/Tes crédits reviennent lundi, dans/)).toBeTruthy();
+    choix(['Recharger', 'Gagner des crédits', 'Plus tard']);
+    expect(screen.queryByText('Prendre le pass semaine')).toBeNull();
+    expect(screen.queryByText('Demander à quelqu’un de payer')).toBeNull();
+  });
+
+  it('Recharger ouvre les pass et ferme la feuille', async () => {
+    const onFermer = jest.fn();
+    await avecTheme(<FeuilleEpuise ouverte onFermer={onFermer} />);
+    fireEvent.press(screen.getByText('Recharger'));
+    expect(onFermer).toHaveBeenCalled();
+    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
+  });
+
+  it('Gagner des crédits ouvre la page des actions', async () => {
+    await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
+    fireEvent.press(screen.getByText('Gagner des crédits'));
+    expect(router.push).toHaveBeenCalledWith('/credits');
+  });
+
+  it('Plus tard ferme sans changer de page', async () => {
+    const onFermer = jest.fn();
+    await avecTheme(<FeuilleEpuise ouverte onFermer={onFermer} />);
+    fireEvent.press(screen.getByText('Plus tard'));
+    expect(onFermer).toHaveBeenCalled();
+    expect(router.push).not.toHaveBeenCalled();
+  });
+
+  it('sans recharge hebdomadaire, pas de compte à rebours', async () => {
+    donner({ total: 0, semaine: 0, rechargeHebdo: false });
+    await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
+    expect(screen.queryByText(/reviennent lundi/)).toBeNull();
+    expect(screen.getByText('Tu n’as plus assez de crédits. Recharge-les pour continuer à en profiter.')).toBeTruthy();
+  });
+
+  it('petite action payante : même trois choix, avec la mention du pass', async () => {
+    await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} recharge />);
+    expect(screen.getByText('Plus de crédits')).toBeTruthy();
+    choix(['Recharger', 'Gagner des crédits', 'Plus tard']);
+    expect(screen.getByText('Avec un pass, tout est illimité : justifications, corrigés et documents.')).toBeTruthy();
+  });
+});
+
 describe('K3b invité sans crédits', () => {
-  it('« Crée ton compte : +40 crédits », créer le compte, pass semaine, plus tard', async () => {
+  it('« Crée ton compte : +40 crédits », créer le compte, puis Recharger, Gagner, Plus tard', async () => {
     mockSession.mockReturnValue({ session: { user: { id: 'u1', is_anonymous: true } } });
     donner({ total: 0, semaine: 0, rechargeHebdo: false });
     await avecTheme(<FeuilleEpuise ouverte onFermer={jest.fn()} />);
     expect(screen.getByText('Tes crédits d’essai sont épuisés')).toBeTruthy();
     expect(screen.getByText('Crée ton compte : +40 crédits tout de suite.')).toBeTruthy();
     expect(screen.getByText('Et ta progression est sauvegardée.')).toBeTruthy();
-    expect(screen.getByText('Prendre le pass semaine · 500 FCFA')).toBeTruthy();
+    choix(['Créer mon compte', 'Recharger', 'Gagner des crédits', 'Plus tard']);
     fireEvent.press(screen.getByText('Créer mon compte'));
     expect(router.push).toHaveBeenCalledWith('/compte/creer');
   });
@@ -109,15 +186,15 @@ describe('K2b bouton payant', () => {
     expect(onOuvert).not.toHaveBeenCalled();
   });
 
-  it('solde insuffisant : feuille « Crédits épuisés » avec le pass semaine en premier', async () => {
+  it('solde insuffisant : feuille « Crédits épuisés » avec Recharger', async () => {
     mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 2, solde: 0, contenu: null });
     const onOuvert = jest.fn();
     await avecTheme(<BoutonCredits action="exercise_solution" objet="ex-1" onOuvert={onOuvert} />);
     await act(async () => { fireEvent.press(screen.getByText('Voir le corrigé')); });
     expect(onOuvert).not.toHaveBeenCalled();
     expect(screen.getByText('Crédits épuisés')).toBeTruthy();
-    fireEvent.press(screen.getByText('Prendre le pass semaine'));
-    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite&offre=week');
+    fireEvent.press(screen.getByText('Recharger'));
+    expect(router.push).toHaveBeenCalledWith('/offres?declencheur=limite');
   });
 
   it('avec un pass : action simple sans étiquette de péage ni feuille', async () => {

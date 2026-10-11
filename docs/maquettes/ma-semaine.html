@@ -1,0 +1,270 @@
+<title>Ma semaine, maquette</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Concept : une page de maquettes (téléphones en rangée défilante) suivie de la spec pour le dev.
+   Les tokens des téléphones reprennent theme.ts (clair et sombre) ; la page autour suit le thème du viewer. */
+:root{
+  --pg-bg:#FFF7E3; --pg-fg:#0A0A0A; --pg-mute:#5C5C5C; --pg-card:#FFFFFF; --pg-line:#0A0A0A; --pg-soft:#F6EEDA; --pg-accent:#047857;
+  --f-display:'Archivo Black','Arial Black',sans-serif; --f-body:'Space Grotesk','Segoe UI',system-ui,sans-serif; --f-mono:'Space Mono',ui-monospace,Menlo,monospace;
+  /* tokens écran, thème clair */
+  --app:#FFF7E3; --surf:#FFFFFF; --creux:#F6EEDA; --ink:#0A0A0A; --txt:#0A0A0A; --txt2:#5C5C5C; --bord:#0A0A0A; --bord-d:#D9D0BA; --shadow:#0A0A0A;
+  --marque:#10B981; --marque-d:#D1FAE5; --bleu:#5B9BFF; --orange:#FF9A3D; --orange-d:#FFE8CF; --soleil:#FFD83D; --corail:#FF5A4F;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}}
+:root[data-theme="dark"]{--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}
+body{background:var(--pg-bg);color:var(--pg-fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.5px}
+h2{font-size:24px;line-height:1.2;margin-top:56px}
+h3{font-family:var(--f-body);font-weight:700;font-size:17px}
+p{margin:0}
+.lead{max-width:62ch;margin-top:14px;color:var(--pg-mute);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--pg-accent);font-weight:700}
+.row-title{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin:28px 0 12px}
+.row-title small{color:var(--pg-mute);font-size:14px}
+.rail{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 22px;scroll-snap-type:x proximity}
+.rail>*{scroll-snap-align:start;flex:none}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--pg-mute);margin-top:8px;max-width:288px;line-height:1.4}
+
+/* téléphone : conçu en 360 x 780, réduit à 80 % */
+.fr{width:288px;height:624px;position:relative}
+.ph{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(.8);transform-origin:0 0;border:2px solid var(--pg-line);border-radius:30px;overflow:hidden;background:var(--app);color:var(--txt);display:flex;flex-direction:column;font-family:var(--f-body)}
+.ph.dark{--app:#141614;--surf:#1F221F;--creux:#2A2E2A;--txt:#F6F1E4;--txt2:#9E998C;--bord:#EDE6D3;--bord-d:#3A3F3A;--marque:#34D399;--marque-d:#0F3B2E;--orange:#FF9A3D;--orange-d:#3D2810;color-scheme:dark}
+.sb{height:26px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font:700 12px var(--f-mono);color:var(--txt)}
+.seg{display:flex;gap:6px;padding:4px 16px 0}
+.seg i{flex:1;height:8px;border:2px solid var(--bord);border-radius:6px;background:var(--creux)}
+.seg i.on{background:var(--txt)}
+.seg i.cur{background:var(--marque)}
+.hd{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 0}
+.hd .tag{font:700 12px var(--f-mono);letter-spacing:.6px;text-transform:uppercase;color:var(--txt2)}
+.xbtn{width:48px;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;color:var(--txt)}
+.bd{flex:1;min-height:0;padding:6px 16px 0;display:flex;flex-direction:column;gap:14px}
+.ft{padding:12px 16px 22px;display:flex;flex-direction:column;gap:10px}
+.eb{font:700 12px var(--f-mono);letter-spacing:.6px;text-transform:uppercase;color:var(--txt2)}
+.t1{font:400 32px/1.08 var(--f-display);letter-spacing:-.4px;color:var(--txt);text-wrap:balance}
+.hero{border:2px solid var(--bord);border-radius:14px;box-shadow:4px 4px 0 var(--shadow);padding:18px 18px 16px;color:#0A0A0A}
+.hero .big{font:400 88px/.95 var(--f-display);letter-spacing:-2px}
+.hero .lab{font:700 19px/1.25 var(--f-body);margin-top:8px}
+.hero.row{display:flex;align-items:center;gap:16px;padding:14px 16px}
+.hero.row .big{font-size:56px;min-width:76px}
+.hero.row .lab{margin:0;font-size:18px}
+.em{background:var(--marque)} .bl{background:var(--bleu)} .or{background:var(--orange)} .so{background:var(--soleil)}
+.card{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:14px 14px 12px;box-shadow:3px 3px 0 var(--shadow)}
+.card .k{font:700 12px var(--f-mono);letter-spacing:.6px;text-transform:uppercase;color:var(--txt2)}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.d{display:flex;flex-direction:column;align-items:center;gap:5px;font:700 12px var(--f-mono);color:var(--txt2)}
+.d b{width:100%;aspect-ratio:1;max-width:40px;border:2px solid var(--bord-d);border-radius:8px;background:var(--creux);display:grid;place-items:center;color:var(--txt2)}
+.d.ok b{background:var(--marque);border-color:var(--bord);color:#0A0A0A}
+.d.ok{color:var(--txt)}
+.note{font:400 15px/1.45 var(--f-body);color:var(--txt)}
+.note.s{font-size:13px;color:var(--txt2)}
+.btn{height:52px;border:2px solid var(--bord);border-radius:10px;font:700 16px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px;color:#0A0A0A;background:var(--marque);box-shadow:4px 4px 0 var(--shadow)}
+.btn.sec{background:var(--surf);color:var(--txt)}
+.btn.txt{background:none;border-color:transparent;box-shadow:none;color:var(--txt);text-decoration:underline;text-underline-offset:3px;height:44px}
+.btn svg,.xbtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.banner{margin:8px 16px 0;border:2px solid var(--bord);border-radius:10px;background:var(--orange-d);color:var(--txt);padding:8px 12px;font:500 14px/1.35 var(--f-body);display:flex;gap:8px;align-items:center}
+.banner svg{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.center{flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;padding-bottom:30px}
+.ico{width:72px;height:72px;border:2px solid var(--bord);border-radius:14px;box-shadow:4px 4px 0 var(--shadow);display:grid;place-items:center;color:#0A0A0A}
+.ico svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sk{border-radius:10px;background:var(--creux);position:relative;overflow:hidden}
+.sk::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(127,127,127,.22),transparent);transform:translateX(-100%);animation:sh 1.3s infinite}
+@keyframes sh{to{transform:translateX(100%)}}
+@media (prefers-reduced-motion:reduce){.sk::after{animation:none}}
+
+/* entrées (notification, centre) */
+.entries{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}
+.ent{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:14px;box-shadow:3px 3px 0 var(--pg-line);min-width:0}
+.ent .e-h{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700}
+.ent .e-t{font-weight:700;margin-top:6px}
+.ent .e-b{color:var(--pg-mute);font-size:15px;margin-top:2px}
+.ent .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#FF7D00;margin-right:6px}
+.ent .num{font-family:var(--f-display);font-size:26px}
+
+/* spec */
+.spec{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px}
+.box{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:16px 18px;min-width:0}
+.box h3{margin-bottom:8px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.box code,.cd{font-family:var(--f-mono);font-size:13px}
+pre.cd{margin:0;overflow-x:auto;background:var(--pg-soft);border-radius:10px;padding:12px 14px;line-height:1.5}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--pg-soft);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--pg-mute)}
+.tw{overflow-x:auto}
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Maquette · mini récap de la semaine</p>
+  <h1>Ma semaine</h1>
+  <p class="lead">Une page plein écran en quatre cartes qui résume la semaine passée de l'élève. Elle s'ouvre toute seule la première fois de la semaine où il ouvre l'app, et on y revient depuis la notification du lundi ou depuis le centre de notifications. Même style que le reste de l'app : bordure 2 px, ombre dure, texte noir sur les couleurs, aucun emoji, icônes Lucide.</p>
+
+  <h2>Parcours principal</h2>
+  <p class="lead" style="margin-top:8px">Quatre cartes : missions, apprentissage, à rattraper, crédits. Les couleurs suivent le design system : vert pour les missions et les leçons, bleu pour les quiz, orange pour les exercices et l'attention, jaune pour les crédits. Exemple de données : semaine du 28 septembre au 4 octobre.</p>
+  <div class="row-title"><h3>Thème clair</h3><small>Faire défiler vers la droite</small></div>
+  <div class="rail" id="r-clair"></div>
+  <div class="row-title"><h3>Thème sombre</h3><small>Les couleurs vives et leur texte noir ne changent pas</small></div>
+  <div class="rail" id="r-sombre"></div>
+
+  <h2>Variantes et états</h2>
+  <p class="lead" style="margin-top:8px">Chaque écran a ses états testables : chargement, première carte quand l'activité est faible, Pass illimité, récap vide, hors ligne avec et sans copie enregistrée.</p>
+  <div class="row-title"><h3>Clair</h3></div>
+  <div class="rail" id="r-etats"></div>
+  <div class="row-title"><h3>Sombre</h3></div>
+  <div class="rail" id="r-etats-s"></div>
+
+  <h2>Trois entrées</h2>
+  <div class="entries">
+    <div class="ent"><div class="e-h">1 · Ouverture de l'app</div><div class="e-t">Première ouverture de la semaine</div><div class="e-b">La page s'affiche par-dessus l'accueil, une seule fois par semaine.</div></div>
+    <div class="ent"><div class="e-h">2 · Notification push, lundi</div><div class="e-t">Ta semaine est prête</div><div class="e-b">5 missions, 14 leçons validées. Découvre ton récap.</div></div>
+    <div class="ent"><div class="e-h"><span class="dot"></span>3 · Centre de notifications</div><div class="e-t">Ta semaine du 28 sept. au 4 oct.</div><div class="e-b">Touche pour revoir ton récap. La ligne reste disponible 8 semaines.</div></div>
+  </div>
+
+  <h2>Spec pour le dev</h2>
+  <div class="spec">
+    <div class="box"><h3>Quand la page s'ouvre toute seule</h3><ul>
+      <li>Au premier passage au premier plan d'une nouvelle semaine (lundi 00 h 00 à dimanche 23 h 59, heure locale de l'appareil), si le récap de la semaine précédente existe et contient de l'activité.</li>
+      <li>Activité = au moins une mission faite, une leçon validée, un quiz terminé ou un exercice fait. Les crédits seuls ne suffisent pas.</li>
+      <li>Page plein écran au-dessus de l'accueil, après le lancement et après une mise à jour obligatoire. Jamais pendant une mission, un quiz, une épreuve chronométrée, l'inscription ou un paiement : on attend le retour sur l'accueil.</li>
+      <li>La semaine est marquée comme vue dès que la carte 1 s'affiche. Un élève qui quitte l'app ne revoit pas la page de lui-même, mais l'entrée du centre de notifications reste là.</li>
+      <li>Invité sans compte : pas de récap (les chiffres viennent du serveur). Décision à confirmer avec Benny.</li>
+    </ul></div>
+    <div class="box"><h3>Entrée par notification</h3><ul>
+      <li>Touche sur le push ou sur la ligne du centre de notifications : lien profond vers <code>/ma-semaine?semaine=2026-09-28</code> (lundi de la semaine concernée).</li>
+      <li>Ouvre cette semaine même si elle a déjà été vue. Marque aussi la semaine comme vue.</li>
+      <li>Récap introuvable, expiré (plus de 8 semaines) ou sans activité : état « vide ».</li>
+      <li>Les alertes de fin de Pass et le résumé sont inactifs tant que la PR serveur #47 n'est pas fusionnée.</li>
+    </ul></div>
+    <div class="box"><h3>Navigation</h3><ul>
+      <li>Appui sur le tiers droit : carte suivante. Tiers gauche : carte précédente. Balayage horizontal : idem.</li>
+      <li>Le bouton « Suivant » est toujours visible : aucun geste n'est obligatoire.</li>
+      <li>Pas de défilement automatique, l'élève lit à son rythme.</li>
+      <li>Bouton retour Android : carte précédente, puis fermeture. Croix en haut à droite : ferme à tout moment.</li>
+      <li>Une carte dont la valeur est 0 est sautée (par exemple aucune question ratée). Il reste toujours au moins une carte. Les segments en haut comptent les cartes affichées.</li>
+    </ul></div>
+    <div class="box"><h3>Boutons de sortie</h3><ul>
+      <li>Cartes 1 et 2 : « Suivant » (vert, un seul bouton vert par écran).</li>
+      <li>Carte 3 : « Refaire mes erreurs » (vert) ouvre le même parcours que le bouton du même nom des résultats de quiz, avec ses règles de crédits ; « Suivant » (blanc).</li>
+      <li>Carte 4 : « Aller réviser » (vert) ouvre l'onglet Réviser ; « Fermer » (texte) ferme la page.</li>
+      <li>Récap vide : « Faire ma mission » (vert) vers l'accueil ; « Fermer ».</li>
+    </ul></div>
+    <div class="box"><h3>Données (une ligne par élève et par semaine)</h3>
+<pre class="cd">{
+  "semaine": "2026-09-28",        // lundi
+  "missions": 5,
+  "missions_par_jour": [1,1,0,1,1,1,0], // facultatif, lun à dim
+  "lecons_validees": 14,
+  "quiz_termines": 6,
+  "exercices_faits": 9,
+  "questions_ratees": 12,
+  "credits_utilises": 38,
+  "pass_actif": false,
+  "solde": 27,
+  "recharge_lundi": 25            // lu dans la config
+}</pre>
+      <p style="margin-top:10px;font-size:14px;color:var(--pg-mute)">Carte 2 : leçons validées, quiz terminés et exercices faits. Une ligne à 0 est masquée. Les chiffres de crédits viennent de la configuration serveur, jamais en dur. Avec un Pass actif, la carte 4 affiche « Crédits illimités » à la place du total.</p></div>
+    <div class="box"><h3>Titre de la carte 1 selon les missions</h3>
+      <div class="tw"><table><tr><th>Missions</th><th>Titre</th></tr>
+        <tr><td>7</td><td>Semaine pleine.</td></tr>
+        <tr><td>4 à 6</td><td>Belle régularité.</td></tr>
+        <tr><td>1 à 3</td><td>Un bon début.</td></tr>
+        <tr><td>0 (leçons, quiz ou exercices seulement)</td><td>Tu as avancé.</td></tr></table></div>
+      <p style="margin-top:10px;font-size:14px;color:var(--pg-mute)">Ton encourageant, jamais culpabilisant : pas de comparaison avec les autres élèves, pas de « tu as fait moins que la semaine dernière ».</p></div>
+    <div class="box"><h3>États à tester</h3><ul>
+      <li>Chargement (squelettes, pas de spinner seul).</li>
+      <li>Une, deux, trois et quatre cartes (cartes à 0 sautées) ; carte 2 avec une, deux ou trois lignes (lignes à 0 masquées).</li>
+      <li>7 missions sur 7, 1 mission, 0 mission avec leçons.</li>
+      <li>Pass actif / sans Pass / crédits à 0.</li>
+      <li>Récap vide ou expiré, hors ligne avec copie, hors ligne sans copie.</li>
+      <li>Texte système à 130 %, thème clair et sombre, « réduire les animations ».</li>
+    </ul></div>
+    <div class="box"><h3>Animations, sons et mesure</h3><ul>
+      <li>Entrée de la page : glissement de bas en haut, 300 ms. Les grands nombres montent de 0 à leur valeur en 600 ms. Tout est coupé avec « réduire les animations ».</li>
+      <li>Retours (M16) via le service unique : <code>arrive</code> à l'ouverture ; <code>streak</code> en plus si 7 missions sur 7.</li>
+      <li>Hors ligne : la dernière copie reçue est gardée sur l'appareil et la page affiche la bande « Hors ligne ».</li>
+      <li>PostHog : <code>week_recap_shown</code> {source: auto | push | inbox, semaine}, <code>week_recap_card_viewed</code> {index}, <code>week_recap_cta</code> {cta}, <code>week_recap_closed</code> {derniere_carte}.</li>
+    </ul></div>
+    <div class="box"><h3>Accessibilité</h3><ul>
+      <li>Chaque carte est une section avec un titre. Le lecteur d'écran annonce « Carte 2 sur 4 ».</li>
+      <li>Les couleurs ne portent jamais seules l'information : chaque chiffre a son libellé. Les jours cochés ont aussi une icône.</li>
+      <li>Cibles de 48 px. Texte noir sur toutes les surfaces colorées. Texte qui suit la taille système jusqu'à 130 %.</li>
+    </ul></div>
+  </div>
+</div>
+
+<script>
+const P={
+  x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  arrow:'<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  redo:'<path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.9 1 6.7 2.7L21 8"/><path d="M21 3v5h-5"/>',
+  book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+  wifi:'<path d="M12 20h.01"/><path d="M8.5 16.4a5 5 0 0 1 7 0"/><path d="M2 8.8a15 15 0 0 1 4.2-2.6"/><path d="M22 8.8a15 15 0 0 0-10-3.8"/><path d="M5 12.9a10 10 0 0 1 5.2-2.7"/><path d="M19 12.9a10 10 0 0 0-1.6-1.2"/><path d="m2 2 20 20"/>'
+};
+const ic=n=>`<svg viewBox="0 0 24 24" aria-hidden="true">${P[n]}</svg>`;
+const JOURS=['L','M','M','J','V','S','D'];
+function seg(n,cur){return `<div class="seg">${Array.from({length:n},(_,i)=>`<i class="${i<cur?'on':i===cur?'cur':''}"></i>`).join('')}</div>`}
+function shell(theme,inner,{n=0,cur=0,tag='Ma semaine',banner=''}={}){
+  return `<div class="fr"><div class="ph ${theme}"><div class="sb"><span>09:41</span><span>4G</span></div>${n?seg(n,cur):''}<div class="hd"><span class="tag">${tag}</span><span class="xbtn" aria-label="Fermer">${ic('x')}</span></div>${banner}${inner}</div></div>`;
+}
+const cap=t=>`<p class="cap">${t}</p>`;
+function days(done){return `<div class="days">${JOURS.map((j,i)=>`<div class="d ${done[i]?'ok':''}"><b>${done[i]?ic('check').replace('<svg','<svg width="18" height="18" style="stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round"'):''}</b>${j}</div>`).join('')}</div>`}
+const SEM='Semaine du 28 sept. au 4 oct.';
+
+function c1(t,{titre='Belle régularité.',m=5,done=[1,1,0,1,1,1,0],cur=0,n=4}={}){
+  return shell(t,`<div class="bd"><div><div class="eb">${SEM}</div><h2 class="t1" style="margin-top:6px">${titre}</h2></div>
+  <div class="hero em"><div class="big">${m}</div><div class="lab">${m>1?'missions faites':'mission faite'} cette semaine</div></div>
+  <div class="card"><div class="k">Tes jours</div>${days(done)}</div>
+  <p class="note">${m} jour${m>1?'s':''} sur 7 : la régularité fait progresser plus que les grosses séances.</p></div>
+  <div class="ft"><div class="btn">Suivant ${ic('arrow')}</div></div>`,{n,cur});
+}
+function c2(t){
+  return shell(t,`<div class="bd"><div><div class="eb">Ce que tu as appris</div><h2 class="t1" style="margin-top:6px">Tu avances.</h2></div>
+  <div class="hero row em"><div class="big">14</div><div class="lab">leçons validées</div></div>
+  <div class="hero row bl"><div class="big">6</div><div class="lab">quiz terminés</div></div>
+  <div class="hero row or"><div class="big">9</div><div class="lab">exercices faits</div></div>
+  <p class="note">Chaque leçon validée et chaque exercice terminé reste dans ta progression.</p></div>
+  <div class="ft"><div class="btn">Suivant ${ic('arrow')}</div></div>`,{n:4,cur:1});
+}
+function c3(t){
+  return shell(t,`<div class="bd"><div><div class="eb">À rattraper</div><h2 class="t1" style="margin-top:6px">Quelques points à revoir.</h2></div>
+  <div class="hero or"><div class="big">12</div><div class="lab">questions ratées cette semaine</div></div>
+  <div class="card"><div class="k">Le bon réflexe</div><p class="note" style="margin-top:6px">Refaire une erreur aide plus à retenir que relire la leçon. Cinq minutes suffisent pour commencer.</p></div></div>
+  <div class="ft"><div class="btn">${ic('redo')} Refaire mes erreurs</div><div class="btn sec">Suivant ${ic('arrow')}</div></div>`,{n:4,cur:2});
+}
+function c4(t,{pass=false}={}){
+  return shell(t,`<div class="bd"><div><div class="eb">Tes crédits</div><h2 class="t1" style="margin-top:6px">${pass?'Tout est ouvert.':'À lundi.'}</h2></div>
+  <div class="hero so">${pass?`<div class="big" style="font-size:52px;line-height:1.02">Crédits illimités</div><div class="lab">avec ton Pass</div>`:`<div class="big">38</div><div class="lab">crédits utilisés cette semaine</div>`}</div>
+  <div class="card"><div class="k">Pour la suite</div><p class="note" style="margin-top:6px">${pass?'Ton Pass couvre explications, corrigés et annales. Pose toutes tes questions.':'Il te reste <b>27 crédits</b>. Lundi, tu recevras <b>25 crédits</b> de recharge.'}</p></div></div>
+  <div class="ft"><div class="btn">${ic('book')} Aller réviser</div><div class="btn txt">Fermer</div></div>`,{n:4,cur:3});
+}
+function chargement(t){
+  return shell(t,`<div class="bd" style="gap:16px;padding-top:20px"><div class="sk" style="height:14px;width:55%"></div><div class="sk" style="height:38px;width:80%"></div><div class="sk" style="height:200px;border-radius:14px"></div><div class="sk" style="height:110px;border-radius:14px"></div><div class="sk" style="height:16px;width:70%"></div></div><div class="ft"><div class="sk" style="height:52px"></div></div>`);
+}
+function vide(t){
+  return shell(t,`<div class="bd"><div class="center"><div class="ico em">${ic('book')}</div><h2 class="t1">Pas encore de récap.</h2><p class="note">Fais une mission cette semaine : ton récap arrive lundi prochain.</p></div></div><div class="ft"><div class="btn">Faire ma mission</div><div class="btn txt">Fermer</div></div>`);
+}
+function offSans(t){
+  return shell(t,`<div class="bd"><div class="center"><div class="ico so">${ic('wifi')}</div><h2 class="t1">Pas de réseau.</h2><p class="note">Ton récap s'affichera dès que tu seras connecté. Le reste de l'app marche toujours.</p></div></div><div class="ft"><div class="btn">${ic('redo')} Réessayer</div><div class="btn txt">Fermer</div></div>`);
+}
+function offAvec(t){
+  const b=`<div class="banner">${ic('wifi')}<span>Hors ligne. Récap enregistré sur ton téléphone.</span></div>`;
+  return shell(t,`<div class="bd"><div><div class="eb">${SEM}</div><h2 class="t1" style="margin-top:6px">Belle régularité.</h2></div>
+  <div class="hero em"><div class="big">5</div><div class="lab">missions faites cette semaine</div></div>
+  <div class="card"><div class="k">Tes jours</div>${days([1,1,0,1,1,1,0])}</div></div>
+  <div class="ft"><div class="btn">Suivant ${ic('arrow')}</div></div>`,{n:4,cur:0,banner:b});
+}
+
+const cards=t=>[c1(t)+cap('Carte 1 · missions (vert)'),c2(t)+cap('Carte 2 · leçons, quiz, exercices (vert, bleu, orange)'),c3(t)+cap('Carte 3 · à rattraper (orange)'),c4(t)+cap('Carte 4 · crédits (jaune)')];
+const etats=t=>[
+  chargement(t)+cap('Chargement : squelettes, la croix reste active'),
+  c1(t,{titre:'Un bon début.',m:2,done:[0,1,0,0,1,0,0],n:3})+cap('Faible activité : « Un bon début. », le titre reste encourageant'),
+  c4(t,{pass:true})+cap('Pass actif : « Crédits illimités » à la place du total'),
+  vide(t)+cap('Récap vide, expiré ou introuvable (entrée par notification)'),
+  offAvec(t)+cap('Hors ligne avec copie enregistrée'),
+  offSans(t)+cap('Hors ligne sans copie : Réessayer')
+];
+const put=(id,arr)=>{document.getElementById(id).innerHTML=arr.map(h=>`<div>${h}</div>`).join('')};
+put('r-clair',cards(''));put('r-sombre',cards('dark'));put('r-etats',etats(''));put('r-etats-s',etats('dark'));
+</script>

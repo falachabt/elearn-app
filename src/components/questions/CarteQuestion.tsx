@@ -5,15 +5,16 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { couleurMatiere } from '@/services/reviser';
 import { ilYa, type Question } from '@/services/questions';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, matiere as couleursMatiere, ombre, rayon, typo } from '@/theme/theme';
+import { bord, espace, matiere as couleursMatiere, matiereSecours, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 
+/** Couleur de la pastille d'une matière. Une matière sans couleur mappée prend un aplat vif de `matiereSecours` :
+ *  jamais une surface du thème, sinon l'encre noire du badge devient illisible en mode sombre. */
 export function useCouleurMatiere() {
-  const { theme } = useTheme();
   return (nom: string | null) => {
     const c = nom ? couleurMatiere(nom) : null;
-    return c ? couleursMatiere[c] : theme.fond.creux;
+    return c ? couleursMatiere[c] : matiereSecours[0];
   };
 }
 

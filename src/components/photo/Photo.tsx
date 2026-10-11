@@ -1,18 +1,20 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Flag, Share2 } from 'lucide-react-native';
-import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Share, StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import {
-  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, retenirMatiere,
+  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, reclamerRecompensePartage, retenirMatiere,
   signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
 import { texteAvecFormules } from '@/services/blocs';
 import { annulerCorrectionPrete, notifierCorrectionPrete, programmerCorrectionPrete } from '@/services/photoNotification';
+import { mefierNotificationReward } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
 import { lireCorrectionParId } from '@/services/photoHistorique';
 import { useCredits } from '@/session/CreditsProvider';
@@ -24,6 +26,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
+import { Feuille } from '../Feuille';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Puce } from '../liste/Puce';
 import { OptionReponse } from '../OptionReponse';
@@ -31,6 +34,7 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { Blocs } from '../reviser/Blocs';
 import { useFeedback } from '../useFeedback';
 import { FeuilleEpuise, PuceCout } from '../credits';
+import { useReseau } from '../reseau/useReseau';
 import { Camera, type PhotoPrise } from './Camera';
 import { CadreRecadrage, CADRE_INITIAL } from './CadreRecadrage';
 import { HistoriquePhoto } from './HistoriquePhoto';
@@ -44,7 +48,8 @@ type Etat =
   | { ecran: 'signaler'; id: string; correction: CorrectionPhoto }
   | { ecran: 'illisible'; raison: string }
   | { ecran: 'erreur'; type: 'hors-ligne' | 'erreur' }
-  | { ecran: 'limite' };
+  | { ecran: 'limite' }
+  | { ecran: 'limiteCadence'; minutes: number | null };
 
 const COULEUR: Record<string, string> = { maths: couleursMatiere.maths, physique: couleursMatiere.physique, chimie: couleursMatiere.physique, svt: couleursMatiere.svt, francais: couleursMatiere.francais, anglais: couleursMatiere.anglais };
 
@@ -57,6 +62,7 @@ export function Photo() {
   const [cadre, setCadre] = useState<Cadre>(CADRE_INITIAL);
   const [matiere, setMatiere] = useState<MatierePhoto>('maths');
   const { solde, couts, rafraichir } = useCredits();
+  const horsLigne = !useReseau().estEnLigne;
   const [epuise, setEpuise] = useState(false);
   const derniereRecadrage = useRef<PhotoPrise | null>(null);
   const derniere = useRef<{ base64: string; source: 'camera' | 'galerie' } | null>(null);
@@ -121,6 +127,12 @@ export function Photo() {
 
   const lancer = async (image: { base64: string; source: 'camera' | 'galerie' }) => {
     derniere.current = image;
+    // Garde réseau (issue #25) : la correction demande une réponse du serveur. Hors ligne on s'arrête avant l'envoi,
+    // l'élève revoit son recadrage et peut relancer au retour du réseau sans rien avoir perdu.
+    if (horsLigne) {
+      setEtat({ ecran: 'erreur', type: 'hors-ligne' });
+      return;
+    }
     const debut = Date.now();
     const ctrl = new AbortController();
     annule.current = ctrl;
@@ -154,6 +166,9 @@ export function Photo() {
       } else if (issue.type === 'quota') {
         declencher('problem');
         setEtat({ ecran: 'limite' });
+      } else if (issue.type === 'limite') {
+        declencher('problem');
+        setEtat({ ecran: 'limiteCadence', minutes: issue.minutes });
       } else {
         declencher('error');
         suivre('photo_failed', { type: issue.type });
@@ -190,11 +205,56 @@ export function Photo() {
     if (avis === 'pas_compris') setEtat({ ecran: 'signaler', id, correction });
   };
 
-  const partager = async (c: CorrectionPhoto) => {
-    suivre('photo_shared', {});
-    await Share.share({
-      message: texteDePartage(c, { cherche: t('photo.chercheEtiquette'), methode: t('photo.methodeEtiquette'), resultat: t('photo.resultat'), retenir: t('photo.retenir'), signature: t('photo.partageSignature') }),
-    }).catch(() => {});
+  const [decouvertePartageOuverte, setDecouvertePartageOuverte] = useState(false);
+  const [partageMessage, setPartageMessage] = useState<string | null>(null);
+  const decouverteVueRef = useRef(false);
+  const CLE_DECOUVERTE_PARTAGE = 'photo.decouverte_partage_vue';
+
+  const surDefilementCorrection = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (decouverteVueRef.current) return;
+    const { layoutMeasurement, contentOffset, contentSize } = e.nativeEvent;
+    const procheDuBas = layoutMeasurement.height + contentOffset.y >= contentSize.height - 120 || contentOffset.y > 160;
+    if (procheDuBas) {
+      decouverteVueRef.current = true;
+      void AsyncStorage.getItem(CLE_DECOUVERTE_PARTAGE).then((vu) => {
+        if (!vu) {
+          setDecouvertePartageOuverte(true);
+          void AsyncStorage.setItem(CLE_DECOUVERTE_PARTAGE, '1');
+        }
+      });
+    }
+  }, []);
+
+  const partager = async (c: CorrectionPhoto, correctionId?: string) => {
+    suivre('photo_shared', { id: correctionId });
+    try {
+      await Share.share({
+        message: texteDePartage(
+          c,
+          {
+            cherche: t('photo.chercheEtiquette'),
+            methode: t('photo.methodeEtiquette'),
+            resultat: t('photo.resultat'),
+            retenir: t('photo.retenir'),
+            signature: t('photo.partageSignature'),
+          },
+          correctionId,
+        ),
+      });
+      // Récompense au partage (B4-Partage, Issue #12)
+      const res = await reclamerRecompensePartage(getSupabase(), correctionId);
+      if (res.ok && res.gain > 0) {
+        declencher('reward');
+        void rafraichir();
+        void mefierNotificationReward('partage_photo', res.gain);
+        setPartageMessage(t('photo.recompensePartageToast'));
+        suivre('share_reward_claimed', { gain: res.gain, type: 'photo' });
+      } else if (!res.ok && res.motif === 'deja_reclame') {
+        setPartageMessage(t('photo.recompensePartageDeja'));
+      }
+    } catch {
+      // Ignorer annulation du partage
+    }
   };
 
   const envoyerSignalement = async (id: string, correction: CorrectionPhoto) => {
@@ -295,70 +355,105 @@ export function Photo() {
     const k = sombre ? corrige.dark : corrige.light;
     const deja = signale.has(id);
     return (
-      <Ecran
-        insetBas={false}
-        entete={
-          <>
-            <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={depuis ? () => setEtat({ ecran: 'historique' }) : quitter} />
-            <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('photo.analyse')}</Text>
-            <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c)} decalage={0} rayon={rayon.m}>
-              <View style={[styles.iconeBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}><Share2 size={18} strokeWidth={2.25} color={theme.texte.principal} /></View>
-            </Appui>
-            <Appui accessibilityRole="button" accessibilityLabel={t('photo.signaler')} onPress={() => setEtat({ ecran: 'signaler', id, correction: c })} decalage={0} rayon={rayon.m}>
-              <View style={[styles.iconeBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}><Flag size={18} strokeWidth={2.25} color={theme.texte.principal} /></View>
-            </Appui>
-          </>
-        }
-        pied={
-          avis ? (
-            <Bouton libelle={t('photo.nouvelle')} onPress={recommencer} />
-          ) : (
-            <View style={styles.avis}>
-              <View style={styles.flex}><Bouton variante="secondaire" libelle={t('photo.pasCompris')} onPress={() => void noter(id, c, 'pas_compris')} /></View>
-              <View style={styles.flex}><Bouton libelle={t('photo.cestClair')} onPress={() => void noter(id, c, 'clair')} /></View>
-            </View>
-          )
-        }
-      >
-        {urlPhoto ? (
-          <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.taPhoto')}</Text>
-            <Image source={{ uri: urlPhoto }} style={[styles.photoEnvoyee, { borderColor: theme.bord.fort }]} contentFit="contain" accessibilityIgnoresInvertColors />
-          </View>
-        ) : null}
-        <View style={[styles.carte, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.chercheEtiquette')}</Text>
-          <Blocs blocs={blocsDepuisTexte(c.enonce)} />
-        </View>
-        {c.methode ? (
-          <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-            <View style={[styles.etiquetteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}><Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('photo.methodeEtiquette')}</Text></View>
-            <Blocs blocs={blocsDepuisTexte(c.methode)} />
-          </View>
-        ) : null}
-        <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          {c.etapes.map((e, i) => (
-            <View key={i} style={styles.etape}>
-              <View style={[styles.numero, { backgroundColor: theme.fond.inverse }]}><Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{i + 1}</Text></View>
-              <View style={styles.flex}>
-                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{texteAvecFormules(e.titre)}</Text>
-                {e.detail ? <Blocs blocs={blocsDepuisTexte(e.detail)} /> : null}
+      <>
+        <Ecran
+          insetBas={false}
+          onScroll={surDefilementCorrection}
+          entete={
+            <>
+              <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={depuis ? () => setEtat({ ecran: 'historique' }) : quitter} />
+              <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('photo.analyse')}</Text>
+              <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={0} rayon={rayon.m}>
+                <View style={[styles.iconeBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}><Share2 size={18} strokeWidth={2.25} color={theme.texte.principal} /></View>
+              </Appui>
+              <Appui accessibilityRole="button" accessibilityLabel={t('photo.signaler')} onPress={() => setEtat({ ecran: 'signaler', id, correction: c })} decalage={0} rayon={rayon.m}>
+                <View style={[styles.iconeBouton, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}><Flag size={18} strokeWidth={2.25} color={theme.texte.principal} /></View>
+              </Appui>
+            </>
+          }
+          pied={
+            avis ? (
+              <View style={styles.piedAvecPartage}>
+                <View style={styles.flex}>
+                  <Bouton libelle={t('photo.nouvelle')} onPress={recommencer} />
+                </View>
+                <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={2} rayon={rayon.m}>
+                  <View style={[styles.boutonCarrePartage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                    <Share2 size={22} strokeWidth={2.25} color={theme.texte.principal} />
+                  </View>
+                </Appui>
               </View>
+            ) : (
+              <View style={styles.avis}>
+                <View style={styles.flex}><Bouton variante="secondaire" libelle={t('photo.pasCompris')} onPress={() => void noter(id, c, 'pas_compris')} /></View>
+                <View style={styles.flex}><Bouton libelle={t('photo.cestClair')} onPress={() => void noter(id, c, 'clair')} /></View>
+              </View>
+            )
+          }
+        >
+          {partageMessage ? <Banniere ton="succes" titre={partageMessage} /> : null}
+          {urlPhoto ? (
+            <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.taPhoto')}</Text>
+              <Image source={{ uri: urlPhoto }} style={[styles.photoEnvoyee, { borderColor: theme.bord.fort }]} contentFit="contain" accessibilityIgnoresInvertColors />
             </View>
-          ))}
-        </View>
-        <View style={[styles.resultat, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('photo.resultat')}</Text>
-          <Blocs surCouleur blocs={blocsDepuisTexte(c.resultat)} />
-        </View>
-        {c.a_retenir ? (
-          <View style={[styles.carte, { backgroundColor: k.fond, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.etiquette, { color: k.note }]}>{t('photo.retenir')}</Text>
-            <Blocs surJaune blocs={blocsDepuisTexte(c.a_retenir)} />
+          ) : null}
+          <View style={[styles.carte, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('photo.chercheEtiquette')}</Text>
+            <Blocs blocs={blocsDepuisTexte(c.enonce)} />
           </View>
-        ) : null}
-        {deja ? <Banniere ton="succes" titre={t('photo.signalementEnvoye')} /> : avis === 'clair' ? <Banniere ton="succes" titre={t('photo.merciAvis')} /> : null}
-      </Ecran>
+          {c.methode ? (
+            <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <View style={[styles.etiquetteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}><Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('photo.methodeEtiquette')}</Text></View>
+              <Blocs blocs={blocsDepuisTexte(c.methode)} />
+            </View>
+          ) : null}
+          <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            {c.etapes.map((e, i) => (
+              <View key={i} style={styles.etape}>
+                <View style={[styles.numero, { backgroundColor: theme.fond.inverse }]}><Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{i + 1}</Text></View>
+                <View style={styles.flex}>
+                  <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{texteAvecFormules(e.titre)}</Text>
+                  {e.detail ? <Blocs blocs={blocsDepuisTexte(e.detail)} /> : null}
+                </View>
+              </View>
+            ))}
+          </View>
+          <View style={[styles.resultat, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('photo.resultat')}</Text>
+            <Blocs surCouleur blocs={blocsDepuisTexte(c.resultat)} />
+          </View>
+          {c.a_retenir ? (
+            <View style={[styles.carte, { backgroundColor: k.fond, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: k.note }]}>{t('photo.retenir')}</Text>
+              <Blocs surJaune blocs={blocsDepuisTexte(c.a_retenir)} />
+            </View>
+          ) : null}
+          {deja ? <Banniere ton="succes" titre={t('photo.signalementEnvoye')} /> : avis === 'clair' ? <Banniere ton="succes" titre={t('photo.merciAvis')} /> : null}
+        </Ecran>
+        <Feuille
+          bloquante
+          ouverte={decouvertePartageOuverte}
+          onFermer={() => setDecouvertePartageOuverte(false)}
+          icone="share-social-outline"
+          titre={t('photo.decouvertePartageTitre')}
+          texte={t('photo.decouvertePartageTexte')}
+          actions={[
+            {
+              libelle: t('photo.decouvertePartageAction'),
+              onPress: () => {
+                setDecouvertePartageOuverte(false);
+                void partager(c, id);
+              },
+            },
+            {
+              libelle: t('photo.decouvertePartageCompris'),
+              variante: 'secondaire',
+              onPress: () => setDecouvertePartageOuverte(false),
+            },
+          ]}
+        />
+      </>
     );
   }
 
@@ -405,6 +500,30 @@ export function Photo() {
       </Ecran>
     );
   }
+  if (etat.ecran === 'limiteCadence') {
+    const min = etat.minutes ?? 2;
+    return (
+      <Ecran
+        insetBas={false}
+        entete={
+          <>
+            <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={recommencer} />
+            <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
+          </>
+        }
+        pied={<Bouton libelle={t('photo.limiteCadenceBouton')} onPress={recommencer} />}
+      >
+        <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{t('photo.limiteCadenceTitre')}</Text>
+        </View>
+        <Text style={[typo.texte, { color: theme.texte.secondaire }]}>
+          {t('photo.limiteCadencePhrase', { minutes: String(min) })}
+        </Text>
+        <View style={[styles.separateur, { backgroundColor: theme.bord.doux }]} />
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.limiteCadenceNote')}</Text>
+      </Ecran>
+    );
+  }
   // B6 : limite du jour du pass (garde-fou), sans blocage agressif
   return (
     <Ecran
@@ -431,7 +550,7 @@ function BoutonEnvoi({ libelle, cout, desactive, onPress }: { libelle: string; c
   return (
     <Appui accessibilityRole="button" accessibilityState={{ disabled: !!desactive }} disabled={desactive} onPress={onPress} decalage={4} ombre={4} couleurOmbre={theme.ombre} rayon={rayon.m}>
       <View style={[styles.envoi, { backgroundColor: desactive ? theme.fond.creux : theme.marque.principale, borderColor: theme.bord.fort }]}>
-        <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{libelle}</Text>
+        <Text style={[typo.bouton, { color: desactive ? theme.texte.secondaire : theme.texte.surCouleur }]}>{libelle}</Text>
         {cout ? <PuceCout cout={cout} /> : null}
       </View>
     </Appui>
@@ -456,4 +575,7 @@ const styles = StyleSheet.create({
   options: { gap: espace[3] },
   envoi: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[4], minHeight: 52, borderWidth: bord.normal, borderRadius: rayon.m, paddingHorizontal: 20 },
   iconeBouton: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  piedAvecPartage: { flexDirection: 'row', gap: espace[3], alignItems: 'center' },
+  boutonCarrePartage: { width: 48, height: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  separateur: { height: 1.5, marginVertical: espace[3] },
 });

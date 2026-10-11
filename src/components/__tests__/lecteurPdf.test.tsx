@@ -7,7 +7,7 @@ import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument } from '@/services/documents';
+import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument, prechargerDocument, retirerTousDocuments } from '@/services/documents';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { LecteurPdf } from '../LecteurPdf';
@@ -163,6 +163,33 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     mockFichiers.set(LOCAL, 1000);
     effacerDocuments();
     expect(mockFichiers.size).toBe(0);
+  });
+});
+
+describe('documents préchargés : cache et « Mes documents » cohérents', () => {
+  const PRECHARGE = 'https://r2/precharge.pdf';
+
+  it('un document préchargé est en cache mais pas dans la liste, jusqu’à sa première ouverture', async () => {
+    await prechargerDocument(PRECHARGE, 'Annale préchargée');
+    expect(mockTelecharger).toHaveBeenCalledTimes(1);
+    expect(await lireDocuments()).toEqual([]);
+    await ouvrirDocument(PRECHARGE, 'Annale préchargée');
+    // Le fichier était déjà là : l'ajout à la liste ne relance aucun téléchargement.
+    expect(mockTelecharger).toHaveBeenCalledTimes(1);
+    expect((await lireDocuments()).map((d) => d.titre)).toEqual(['Annale préchargée']);
+  });
+
+  it('« Tout supprimer » vide la liste mais garde les fichiers préchargés pas encore ouverts', async () => {
+    await prechargerDocument(PRECHARGE, 'Annale préchargée');
+    await ouvrirDocument(URL_SUJET, 'Sujet ouvert');
+    await retirerTousDocuments();
+    expect(await lireDocuments()).toEqual([]);
+    expect(mockFichiers.has(LOCAL)).toBe(false);
+    expect(mockFichiers.has(`file:///doc/documents/${nomFichier(PRECHARGE)}`)).toBe(true);
+    // Et son ouverture hors ligne ne retélécharge rien.
+    mockTelecharger.mockClear();
+    await ouvrirDocument(PRECHARGE, 'Annale préchargée');
+    expect(mockTelecharger).not.toHaveBeenCalled();
   });
 });
 

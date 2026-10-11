@@ -1,8 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as SecureStore from 'expo-secure-store';
+import * as ExpoSecureStore from 'expo-secure-store';
+import { Platform } from 'react-native';
 import { usePathname } from 'expo-router';
 import { useSyncExternalStore } from 'react';
 import type { SupabaseClient } from '@supabase/supabase-js';
+
+/**
+ * Jeton de l'invité : coffre natif sur téléphone. SecureStore n'existe pas sur le web (il lève « not available » et faisait
+ * échouer instantanément la connexion Google d'un invité) : on y retombe sur le stockage du navigateur.
+ */
+export const SecureStore = {
+  getItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.getItem(cle) : ExpoSecureStore.getItemAsync(cle)),
+  setItemAsync: (cle: string, valeur: string) => (Platform.OS === 'web' ? AsyncStorage.setItem(cle, valeur) : ExpoSecureStore.setItemAsync(cle, valeur)),
+  deleteItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.removeItem(cle) : ExpoSecureStore.deleteItemAsync(cle)),
+};
 
 const CLE_REPRISE = 'compte.repriseInvite';
 const CLE_JETON_INVITE = 'compte.repriseInvite.jeton';

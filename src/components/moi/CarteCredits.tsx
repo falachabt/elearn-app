@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { aDesActionsDisponibles } from '@/services/actionsCredits';
 import { useTraduction } from '@/i18n/useTraduction';
 import { useCredits } from '@/session/CreditsProvider';
+import { useSession } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -33,6 +34,7 @@ export function CarteCredits() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { solde, depensesSemaine } = useCredits();
+  const { session } = useSession();
   const quand = useQuand();
   const [detail, setDetail] = useState(false);
   const [actionsDispos, setActionsDispos] = useState(false);
@@ -40,8 +42,8 @@ export function CarteCredits() {
   const fin = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   if (!solde) {
     return (
@@ -76,7 +78,7 @@ export function CarteCredits() {
             <View style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
               <View style={styles.iconeWrapper}>
                 <Zap size={14} strokeWidth={2.5} color={theme.texte.principal} />
-                {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur }]} /> : null}
+                {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.erreur, borderColor: theme.fond.surface }]} /> : null}
               </View>
               <Text style={[typo.donnee, { color: theme.texte.principal }]}>{etiquette}</Text>
             </View>
@@ -108,6 +110,6 @@ const styles = StyleSheet.create({
   pass: { borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[1] },
   compteur: { flexDirection: 'row', alignItems: 'center', gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
   iconeWrapper: { position: 'relative', alignItems: 'center', justifyContent: 'center' },
-  badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1, borderColor: '#FFFFFF' },
+  badgeDispo: { position: 'absolute', top: -3, right: -3, width: 7, height: 7, borderRadius: 4, borderWidth: 1 },
   jauge: { height: 12, borderWidth: bord.normal, borderRadius: rayon.pilule, overflow: 'hidden' },
 });

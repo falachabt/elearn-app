@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import * as Clipboard from 'expo-clipboard';
 import { Linking } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -33,6 +34,7 @@ jest.mock('expo-router', () => ({
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => mockCredits() }));
+jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(() => Promise.resolve(true)) }));
 jest.mock('expo-application', () => ({ nativeApplicationVersion: '3.0.0', nativeBuildVersion: '42' }));
 jest.mock('expo-updates', () => ({ channel: 'preview', updateId: null, isEmbeddedLaunch: true, createdAt: null }));
 jest.mock('@/services/supabase', () => ({
@@ -149,6 +151,19 @@ describe.each(['fr', 'en'] as const)('H1 · Moi par état (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/compte/connexion');
   });
 
+  it('identifiant : copié pour le support WhatsApp, absent pour un invité', async () => {
+    await monter(<EcranMoi />);
+    await waitFor(() => expect(screen.getByText(x.moi.identifiant)).toBeTruthy());
+    expect(screen.queryByText(x.moi.identifiantCopie)).toBeNull();
+    await fireEvent.press(screen.getByTestId('moi-identifiant'));
+    expect(Clipboard.setStringAsync).toHaveBeenCalledWith('u2');
+    await waitFor(() => expect(screen.getByText(x.moi.identifiantCopie)).toBeTruthy());
+    mockSession.mockReturnValue(invite);
+    await monter(<EcranMoi />);
+    await waitFor(() => expect(screen.getAllByText(x.profil.invite).length).toBeGreaterThan(0));
+    expect(screen.queryByTestId('moi-identifiant')).toBeNull();
+  });
+
   it('ma progression : minutes de la semaine dans la ligne', async () => {
     const aujourdhui = new Date();
     const jour = `${aujourdhui.getFullYear()}-${String(aujourdhui.getMonth() + 1).padStart(2, '0')}-${String(aujourdhui.getDate()).padStart(2, '0')}`;
@@ -216,6 +231,23 @@ describe('C5 · Ma progression', () => {
     await waitFor(() => expect(screen.getByText(fr.profil.sansMission)).toBeTruthy());
   });
 
+  it('hors ligne : les minutes viennent du téléphone, le niveau par matière dit qu’il demande internet', async () => {
+    const { forcerConnexion } = jest.requireActual('@/services/connectivite') as typeof import('@/services/connectivite');
+    const aujourdhui = new Date();
+    const jour = `${aujourdhui.getFullYear()}-${String(aujourdhui.getMonth() + 1).padStart(2, '0')}-${String(aujourdhui.getDate()).padStart(2, '0')}`;
+    await AsyncStorage.setItem('mission.passages', JSON.stringify([{ id: 'p1', day: jour, level: '3e', score: 7, total: 10, duration_s: 900, details: { chapitres: [{ libelleMatiere: 'Maths', bonnes: 7, total: 10 }] }, envoye: false }]));
+    try {
+      await act(async () => { forcerConnexion(false); });
+      await monter(<Progression />);
+      await waitFor(() => expect(screen.getByText('15 min')).toBeTruthy());
+      expect(screen.getByText(fr.profil.niveauHorsLigne)).toBeTruthy();
+      expect(screen.queryByText('Maths')).toBeNull();
+    } finally {
+      await act(async () => { forcerConnexion(true); });
+      await act(async () => { forcerConnexion(null); });
+    }
+  });
+
   it('hors ligne : message d’erreur', async () => {
     mockRuns.mockRejectedValue(new Error('réseau'));
     await monter(<Progression />);
@@ -230,7 +262,7 @@ describe('Aide et contact', () => {
     const ouvrir = jest.spyOn(Linking, 'openURL').mockResolvedValue(true);
     await monter(<Aide />);
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideWhatsapp}. ${fr.profil.aideWhatsappSous}` }));
-    expect(ouvrir).toHaveBeenLastCalledWith(expect.stringContaining('https://wa.me/237694051893'));
+    expect(ouvrir).toHaveBeenLastCalledWith(expect.stringContaining('https://wa.me/12015348324'));
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideMail}. support@elearnprepa.com` }));
     expect(ouvrir).toHaveBeenLastCalledWith('mailto:support@elearnprepa.com');
     await fireEvent.press(screen.getByRole('button', { name: `${fr.profil.aideFaq}. ${fr.profil.aideFaqSous}` }));

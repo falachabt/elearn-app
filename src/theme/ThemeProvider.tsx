@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useSyncExternalStore, type ReactNode } from 'react';
 import { Appearance, useColorScheme } from 'react-native';
 
+import { appliquerCouleurNavigateur } from '@/services/couleurNavigateur';
 import { abonnerAffichage, chargerAffichage, lireAffichage, type ReglageTheme } from '@/services/affichage';
 
 import { themes, type Theme } from './theme';
@@ -31,6 +32,10 @@ export function ThemeProvider({ reglage: force, children }: { reglage?: ReglageT
       // Non disponible (web, tests) : sans effet.
     }
   }, [reglage, sombre]);
+  // Web : la barre du navigateur prend le fond de l'app.
+  useEffect(() => {
+    appliquerCouleurNavigateur((sombre ? themes.dark : themes.light).fond.app);
+  }, [sombre]);
   const valeur = useMemo(
     () => ({ theme: sombre ? themes.dark : themes.light, sombre, reglage, taille: affichage.taille }),
     [sombre, reglage, affichage.taille],

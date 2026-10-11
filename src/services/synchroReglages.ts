@@ -106,6 +106,22 @@ export async function synchroniserReglages(client: Client, user: Pick<User, 'use
   return (await envoyerReglages(client)) ? 'envoye' : 'rien';
 }
 
+/**
+ * Applique au téléphone les réglages du compte quand ils sont plus récents. Écritures **locales** seulement, à faire
+ * **avant d'afficher les onglets** : le parcours d'arrivée (profil) est porté par le compte, et un élève connecté sur
+ * un appareil sans profil local (navigateur web neuf) retombait sinon sur « bienvenue ». L'envoi vers le compte
+ * (téléphone plus récent) reste à `synchroniserReglages`, en arrière-plan, pour ne pas retarder l'affichage.
+ */
+export async function appliquerReglagesCompteSiPlusRecent(user: Pick<User, 'user_metadata'>): Promise<boolean> {
+  if (repriseInviteEnCours()) return false;
+  const distants = lireReglagesCompte(user);
+  if (!distants) return false;
+  const locale = await lireMajReglages();
+  if (locale && Date.parse(distants.maj) <= Date.parse(locale)) return false;
+  await appliquerReglages(distants);
+  return true;
+}
+
 /** Chaque changement local est copié dans le compte, regroupé sur `delaiMs`. Renvoie la fonction d'arrêt. */
 export function suivreModifications(client: Client, delaiMs = 800): () => void {
   let minuteur: ReturnType<typeof setTimeout> | undefined;

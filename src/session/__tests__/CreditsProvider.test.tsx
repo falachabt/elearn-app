@@ -1,5 +1,8 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { Pressable, Text } from 'react-native';
+
+import { definirConnectivitePourTest } from '@/services/connectivite';
 
 import { CreditsProvider, useCredits } from '../CreditsProvider';
 
@@ -16,11 +19,15 @@ jest.mock('@/services/credits', () => ({
   identifiantAppareil: async () => 'android:test',
   lireSolde: (...a: unknown[]) => mockLireSolde(...a),
   lireCouts: async () => ({ exercise_solution: 2 }),
-  depenser: (...a: unknown[]) => mockDepenser(...a),
   suivreSolde: (_c: unknown, _u: string, rappel: (l: unknown) => void) => {
     mockTempsReel = rappel;
     return mockArreter;
   },
+}));
+// Le provider passe par la dépense « avec repli hors ligne » (issue #13) : c'est ce point d'entrée qu'on pilote ici.
+jest.mock('@/services/creditsHorsLigne', () => ({
+  ...jest.requireActual('@/services/creditsHorsLigne'),
+  depenserAvecRepli: (...a: unknown[]) => mockDepenser(...a),
 }));
 
 const solde = {
@@ -29,11 +36,12 @@ const solde = {
 };
 
 function Sonde() {
-  const { solde: s, couts, depenser } = useCredits();
+  const { solde: s, couts, depenser, depensesEnAttente } = useCredits();
   return (
     <>
       <Text>{s ? `${s.total}${s.illimite ? ' illimité' : ''}` : 'chargement'}</Text>
       <Text>{`coût ${couts.exercise_solution ?? '-'}`}</Text>
+      <Text>{`attente ${depensesEnAttente}`}</Text>
       <Pressable onPress={() => depenser('exercise_solution', 'ex-1')}><Text>dépenser</Text></Pressable>
     </>
   );
@@ -44,6 +52,8 @@ beforeEach(() => {
   mockTempsReel = null;
   mockSession.mockReturnValue({ session: { user: { id: 'u1', is_anonymous: false } } });
   mockLireSolde.mockResolvedValue(solde);
+  // Par défaut l'app est en ligne : les tests qui veulent le hors ligne le déclarent explicitement.
+  definirConnectivitePourTest({ connecte: true, internet: true, backend: true, enVerification: false });
 });
 
 describe('CreditsProvider', () => {
@@ -66,8 +76,16 @@ describe('CreditsProvider', () => {
     await render(<CreditsProvider><Sonde /></CreditsProvider>);
     await waitFor(() => expect(screen.getByText('40')).toBeTruthy());
     await act(async () => fireEvent.press(screen.getByText('dépenser')));
-    expect(mockDepenser).toHaveBeenCalledWith({}, 'exercise_solution', 'ex-1');
+    // La dépense passe par le repli hors ligne, avec le coût connu et le compte courant.
+    expect(mockDepenser).toHaveBeenCalledWith(expect.objectContaining({ utilisateur: 'u1', action: 'exercise_solution', objet: 'ex-1', cout: 2 }));
     expect(screen.getByText('38')).toBeTruthy();
+  });
+
+  it('signale les dépenses faites hors ligne restées en attente', async () => {
+    // Une opération en file : le solde affiché n'est pas encore confirmé par le serveur.
+    await AsyncStorage.setItem('credits.depensesEnAttente.u1', JSON.stringify([{ id: 'op1', action: 'exercise_solution', objet: 'ex-1', cout: 2, le: '2026-10-05T10:00:00Z' }]));
+    await render(<CreditsProvider><Sonde /></CreditsProvider>);
+    await waitFor(() => expect(screen.getByText('attente 1')).toBeTruthy());
   });
 
   it('sans session : rien n’est chargé', async () => {

@@ -41,23 +41,30 @@ export const ACTIONS_QUOTIDIENNES: Record<ActionQuotidienne, ConfigActionQuotidi
   },
 };
 
-const cleJour = (maintenant = new Date()) => {
-  const a = maintenant.getFullYear();
-  const m = String(maintenant.getMonth() + 1).padStart(2, '0');
-  const j = String(maintenant.getDate()).padStart(2, '0');
-  return `credits.actionsQuotidiennes.${a}-${m}-${j}`;
-};
+/**
+ * Le jour des actions est celui du serveur (Africa/Douala, UTC+1 sans heure d'été) : c'est lui qui décide si une
+ * action est déjà réclamée (`claim_daily_action`). Le jour du téléphone peut différer, donc on ne s'en sert pas.
+ */
+export const jourServeur = (maintenant = new Date()): string => new Date(maintenant.getTime() + 3600000).toISOString().slice(0, 10);
+
+/** Clé locale du jour, rangée par élève : un autre compte sur le même téléphone ne voit pas les actions du premier. */
+const cleJour = (maintenant = new Date(), utilisateurId?: string) =>
+  `credits.actionsQuotidiennes.${utilisateurId ? `${utilisateurId}.` : ''}${jourServeur(maintenant)}`;
 
 export type EtatActionsQuotidiennes = Record<ActionQuotidienne, boolean>;
 
-/**
- * Renvoie l'état des actions effectuées pour le jour courant (true = accomplie aujourd'hui).
- */
-export async function lireEtatActionsQuotidiennes(maintenant = new Date()): Promise<EtatActionsQuotidiennes> {
-  const cle = cleJour(maintenant);
+/** Ce qu'il faut pour interroger le serveur : le client et l'élève connecté (sans compte, l'état reste local). */
+export type SourceServeur = { client?: Client; utilisateurId?: string };
+
+/** Au-delà, on s'en tient à l'état du téléphone : un réseau qui traîne ne doit pas bloquer l'affichage. */
+const DELAI_SERVEUR_MS = 6000;
+
+const ETAT_VIDE: EtatActionsQuotidiennes = { site_web: false, facebook: false, instagram: false, parrainage: false };
+
+export async function lireEtatLocal(maintenant: Date, utilisateurId?: string): Promise<EtatActionsQuotidiennes> {
   try {
-    const brut = await AsyncStorage.getItem(cle);
-    if (!brut) return { site_web: false, facebook: false, instagram: false, parrainage: false };
+    const brut = await AsyncStorage.getItem(cleJour(maintenant, utilisateurId));
+    if (!brut) return { ...ETAT_VIDE };
     const stock = JSON.parse(brut) as Partial<EtatActionsQuotidiennes>;
     return {
       site_web: !!stock.site_web,
@@ -66,51 +73,80 @@ export async function lireEtatActionsQuotidiennes(maintenant = new Date()): Prom
       parrainage: !!stock.parrainage,
     };
   } catch {
-    return { site_web: false, facebook: false, instagram: false, parrainage: false };
+    return { ...ETAT_VIDE };
+  }
+}
+
+/** Actions déjà réclamées aujourd'hui selon le serveur (table `daily_reward_claims`, lisible par l'élève). */
+export async function lireActionsReclameesServeur(client: Client, maintenant = new Date()): Promise<ActionQuotidienne[]> {
+  const { data, error } = await client.from('daily_reward_claims').select('action_code').eq('claim_date', jourServeur(maintenant));
+  if (error) throw error;
+  return ((data ?? []) as { action_code: string }[])
+    .map((l) => l.action_code)
+    .filter((c): c is ActionQuotidienne => c === 'site_web' || c === 'facebook' || c === 'instagram' || c === 'parrainage');
+}
+
+/**
+ * Renvoie l'état des actions effectuées pour le jour courant (true = accomplie aujourd'hui). Avec un compte connecté,
+ * le serveur fait foi : une action déjà réclamée l'est aussi après une déconnexion, sur un autre téléphone ou après
+ * un effacement des données. Hors ligne, on garde ce que le téléphone sait.
+ */
+export async function lireEtatActionsQuotidiennes(maintenant = new Date(), source: SourceServeur = {}): Promise<EtatActionsQuotidiennes> {
+  const local = await lireEtatLocal(maintenant, source.utilisateurId);
+  if (!source.utilisateurId) return local;
+  try {
+    // Sans client donné, celui de l'app : s'il n'est pas configuré, on reste sur l'état du téléphone.
+    const reclamees = await Promise.race([
+      lireActionsReclameesServeur(source.client ?? getSupabase(), maintenant),
+      new Promise<never>((_, rejeter) => setTimeout(() => rejeter(new Error('delai')), DELAI_SERVEUR_MS)),
+    ]);
+    if (reclamees.every((a) => local[a])) return local;
+    const fusion = { ...local };
+    for (const a of reclamees) fusion[a] = true;
+    // Gardé sur le téléphone : l'état reste juste hors ligne.
+    await AsyncStorage.setItem(cleJour(maintenant, source.utilisateurId), JSON.stringify(fusion)).catch(() => {});
+    return fusion;
+  } catch {
+    return local;
   }
 }
 
 /**
  * Enregistre une action comme accomplie pour aujourd'hui.
  */
-export async function enregistrerActionQuotidienne(action: ActionQuotidienne, maintenant = new Date()): Promise<void> {
-  const cle = cleJour(maintenant);
-  const courant = await lireEtatActionsQuotidiennes(maintenant);
-  const maj = { ...courant, [action]: true };
-  await AsyncStorage.setItem(cle, JSON.stringify(maj));
+export async function enregistrerActionQuotidienne(action: ActionQuotidienne, maintenant = new Date(), utilisateurId?: string): Promise<void> {
+  const courant = await lireEtatLocal(maintenant, utilisateurId);
+  await AsyncStorage.setItem(cleJour(maintenant, utilisateurId), JSON.stringify({ ...courant, [action]: true }));
 }
 
 /**
  * Vrai si l'élève n'a pas de pass illimité et qu'au moins une action quotidienne (+5 ou +10) est disponible aujourd'hui.
  */
-export async function aDesActionsDisponibles(solde: Solde | null, maintenant = new Date()): Promise<boolean> {
+export async function aDesActionsDisponibles(solde: Solde | null, maintenant = new Date(), source: SourceServeur = {}): Promise<boolean> {
   if (solde?.illimite) return false;
-  const etat = await lireEtatActionsQuotidiennes(maintenant);
+  const etat = await lireEtatActionsQuotidiennes(maintenant, source);
   return !etat.site_web || !etat.facebook || !etat.instagram;
 }
 
+export type ResultatReclamation = 'credite' | 'deja' | 'erreur';
+
 /**
- * Crédite les récompenses en base de données Supabase si possible (table credit_ledger et credit_balances via RPC ou fallback).
+ * Réclame les crédits d'une action auprès du serveur : `credite` (gain versé), `deja` (le serveur l'a déjà donnée
+ * aujourd'hui, sur cet appareil ou un autre) ou `erreur` (réseau, serveur : on pourra réessayer).
  */
-export async function crediterRecompenseServeur(client: Client, utilisateurId: string, montant: number, motif: string): Promise<boolean> {
+export async function reclamerActionServeur(client: Client, actionCode: string): Promise<ResultatReclamation> {
   try {
-    const { data, error } = await client.rpc('add_reward_credits', { p_amount: montant, p_reason: motif });
-    if (!error && data !== false) return true;
+    const { data, error } = await client.rpc('claim_daily_action', { p_action_code: actionCode });
+    if (error) return 'erreur';
+    return Number(data) > 0 ? 'credite' : 'deja';
   } catch {
-    // Si la RPC n'existe pas en DB, fallback d'insertion directe ledger/balance
+    return 'erreur';
   }
-  try {
-    const { error: errLedger } = await client.from('credit_ledger').insert({
-      user_id: utilisateurId,
-      delta: montant,
-      kind: 'reward',
-      reason: motif,
-    });
-    if (errLedger) return false;
-    return true;
-  } catch {
-    return false;
-  }
+}
+
+/** Version booléenne : vrai seulement si le gain vient d'être versé. */
+export async function crediterRecompenseServeur(client: Client, actionCode: string): Promise<boolean> {
+  return (await reclamerActionServeur(client, actionCode)) === 'credite';
 }
 
 /**
@@ -122,6 +158,8 @@ export async function executerActionQuotidienne(
     client?: Client;
     utilisateurId?: string;
     onSucces?: (gain: number) => void;
+    /** Le serveur dit que l'action a déjà été réclamée aujourd'hui : l'écran doit l'afficher comme faite. */
+    onDejaFait?: () => void;
     maintenant?: Date;
   } = {},
 ): Promise<boolean> {
@@ -133,7 +171,8 @@ export async function executerActionQuotidienne(
     return true;
   }
 
-  const etat = await lireEtatActionsQuotidiennes(maintenant);
+  const client = options.client ?? getSupabase();
+  const etat = await lireEtatActionsQuotidiennes(maintenant, options.utilisateurId ? { client, utilisateurId: options.utilisateurId } : {});
 
   if (config.url) {
     let targetUrl = config.url;
@@ -143,18 +182,26 @@ export async function executerActionQuotidienne(
     await Linking.openURL(targetUrl).catch(() => {});
   }
 
-  // Si déjà réclamée aujourd'hui, on ouvre juste le lien sans ré-attribuer de crédits.
+  // Si dj rclame aujourd'hui, on ouvre juste le lien sans r-attribuer de crdits.
   if (etat[action]) return false;
 
-  await enregistrerActionQuotidienne(action, maintenant);
-
   if (config.gain > 0) {
-    const client = options.client ?? getSupabase();
     if (options.utilisateurId) {
-      await crediterRecompenseServeur(client, options.utilisateurId, config.gain, action);
+      const resultat = await reclamerActionServeur(client, action);
+      // Erreur réseau ou serveur : rien n'est marqué, l'élève pourra réessayer.
+      if (resultat === 'erreur') return false;
+      // Déjà donnée aujourd'hui (autre appareil, session précédente) : l'action est faite, aucun crédit de plus.
+      if (resultat === 'deja') {
+        await enregistrerActionQuotidienne(action, maintenant, options.utilisateurId);
+        options.onDejaFait?.();
+        return false;
+      }
     }
+    await enregistrerActionQuotidienne(action, maintenant, options.utilisateurId);
     await mefierNotificationReward(action, config.gain);
     options.onSucces?.(config.gain);
+  } else {
+    await enregistrerActionQuotidienne(action, maintenant, options.utilisateurId);
   }
 
   return true;

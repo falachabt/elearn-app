@@ -10,6 +10,7 @@ import { bord, espace, matiere as couleursMatiere, matiereSecours, ombre, rayon,
 
 import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
+import { useReseau } from '../reseau/useReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
 const HAUTEUR_MAX = 96;
@@ -33,6 +34,7 @@ export function Progression() {
   const { theme } = useTheme();
   const [donnees, setDonnees] = useState<Donnees | null>(null);
   const [erreur, setErreur] = useState(false);
+  const { estEnLigne } = useReseau();
 
   useFocusEffect(
     useCallback(() => {
@@ -90,7 +92,10 @@ export function Progression() {
 
           <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('profil.niveauParMatiere')}</Text>
-            {donnees.matieres.length ? (
+            {!estEnLigne ? (
+              // Le niveau par matière se calcule avec les missions du compte : il n'est pas affiché hors ligne.
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('profil.niveauHorsLigne')}</Text>
+            ) : donnees.matieres.length ? (
               donnees.matieres.map((m, i) => (
                 <View key={m.matiere} style={styles.matiere}>
                   <View style={styles.ligne}>

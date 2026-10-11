@@ -5,7 +5,7 @@ import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { signalerProgressionLocale } from './progressionLocale';
-import { avecCopie, rpc } from './reviser';
+import { avecCopie, lireLocalHorsLigne, rpc } from './reviser';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -89,9 +89,9 @@ async function lireDernierDe(cle: string): Promise<DernierLu | null> {
     const brut = await AsyncStorage.getItem(cle);
     if (!brut) return null;
     const d = JSON.parse(brut) as Dernier;
-    const copie = await AsyncStorage.getItem(`entrainement.cours.${d.cours}`);
-    if (!copie) return null;
-    const e = JSON.parse(copie) as { quiz: QuizLibre[]; exercices: Exercice[] };
+    // Copie du chapitre soumise à l'expiration (issue #13) : périmée, la carte « Reprendre » ne s'affiche pas.
+    const e = await lireLocalHorsLigne<{ quiz: QuizLibre[]; exercices: Exercice[] }>(`entrainement.cours.${d.cours}`);
+    if (!e) return null;
     if (d.type === 'quiz') {
       const q = e.quiz.find((x) => x.id === d.id);
       if (!q) return null;
@@ -133,20 +133,29 @@ export async function enregistrerScore(quiz: string, score: number, total: numbe
   const scores = await lireMeilleursScores();
   const pct = Math.round((score / total) * 100);
   if ((scores[quiz] ?? -1) >= pct) return false;
-  await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ ...scores, [quiz]: pct }));
+  await AsyncStorage.setItem(CLE_SCORES, JSON.stringify({ ...scores, [quiz]: pct })).catch(() => {});
   signalerProgressionLocale();
   return true;
 }
 
 export const lireExercicesFaits = () => lireObjet<true>(CLE_EXERCICES_FAITS);
 
-export async function basculerExerciceFait(exercice: string): Promise<boolean> {
+/** Date (ISO) à laquelle chaque exercice a été terminé sur cet appareil : sert au récap « Ma semaine ». */
+export const CLE_EXERCICES_DATES = 'entrainement.exercicesDates';
+export const lireDatesExercices = () => lireObjet<string>(CLE_EXERCICES_DATES);
+
+export async function basculerExerciceFait(exercice: string, maintenant = new Date()): Promise<boolean> {
   const faits = await lireExercicesFaits();
   const fait = !faits[exercice];
   const suite = { ...faits };
   if (fait) suite[exercice] = true;
   else delete suite[exercice];
-  await AsyncStorage.setItem(CLE_EXERCICES_FAITS, JSON.stringify(suite));
+  const dates = await lireDatesExercices();
+  if (fait) dates[exercice] = maintenant.toISOString();
+  else delete dates[exercice];
+  // Une écriture locale ne doit pas faire échouer l'action : hors ligne, `setItem` qui lèverait empêcherait la carte
+  // de changer d'état, et le bouton « fait » semblerait mort.
+  await AsyncStorage.multiSet([[CLE_EXERCICES_FAITS, JSON.stringify(suite)], [CLE_EXERCICES_DATES, JSON.stringify(dates)]]).catch(() => {});
   signalerProgressionLocale();
   return fait;
 }
@@ -183,7 +192,7 @@ export async function enregistrerSession(quiz: string, s: Omit<SessionQuiz, 'le'
   const score = s.questions.filter((q, i) => s.reponses[i] === q.bonne).length;
   const toutes = await lireObjet<SessionQuiz[]>(CLE_SESSIONS);
   const session: SessionQuiz = { le: maintenant.toISOString(), score, total: s.questions.length, ...s };
-  await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) }));
+  await AsyncStorage.setItem(CLE_SESSIONS, JSON.stringify({ ...toutes, [quiz]: [session, ...(toutes[quiz] ?? [])].slice(0, MAX_SESSIONS) })).catch(() => {});
   signalerProgressionLocale();
   return enregistrerScore(quiz, score, s.questions.length);
 }

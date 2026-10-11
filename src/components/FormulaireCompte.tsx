@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -27,14 +27,29 @@ import { Ecran } from './Ecran';
 import { terminerParcoursArrivee } from './ParcoursArrivee';
 import { Secousse } from './Secousse';
 
+/** Marge après un appui sur un bouton social pendant laquelle un évènement de soumission tardif du navigateur est ignoré. */
+const MARGE_SOCIAL_MS = 1500;
+
+/**
+ * Connexion et création de compte par **e-mail + mot de passe** : coupées (décision de Benny). Seuls Google, Apple et
+ * Facebook (quand le fournisseur est activé) sont proposés. Le formulaire reste écrit : repasser ce drapeau à `true`
+ * le rallume, sans rien réécrire. Voir aussi `services/compte.ts` (les fonctions e-mail restent en place).
+ */
+const CONNEXION_EMAIL: boolean = false;
+
 type Erreurs = { email?: CleTexte; motDePasse?: CleTexte; code?: CleTexte };
 
 /**
- * Création de compte (`mode="creer"`) ou connexion (`mode="connexion"`) : e-mail + mot de passe, Google, Apple (iOS).
+ * Création de compte (`mode="creer"`) ou connexion (`mode="connexion"`) : Google, Apple (iOS) et Facebook, plus le
+ * formulaire e-mail/mot de passe quand `emailActif` est vrai.
+ *
+ * Le formulaire e-mail est **coupé par défaut** (`CONNEXION_EMAIL`) : les écrans ne proposent que les fournisseurs
+ * sociaux. Il reste écrit et testé (`emailActif`), prêt à être rallumé sans rien réécrire.
+ *
  * Un invité qui crée son compte est converti en compte permanent (même utilisateur : la progression est gardée).
  * Le code de parrainage (facultatif) est prérempli depuis le lien ou la saisie des 7 derniers jours.
  */
-export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
+export function FormulaireCompte({ mode, emailActif = CONNEXION_EMAIL }: { mode: 'creer' | 'connexion'; emailActif?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const creation = mode === 'creer';
@@ -45,7 +60,12 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
   const [erreurs, setErreurs] = useState<Erreurs>({});
   const [erreurServeur, setErreurServeur] = useState<CleTexte | null>(null);
   const [confirmation, setConfirmation] = useState<string | null>(null);
-  const [enCours, setEnCours] = useState(false);
+  const [enCours, setEnCoursEtat] = useState(false);
+  const enCoursRef = useRef(false);
+  const setEnCours = (v: boolean) => {
+    enCoursRef.current = v;
+    setEnCoursEtat(v);
+  };
   const [secousse, setSecousse] = useState(0);
 
   useEffect(() => {
@@ -59,6 +79,24 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
 
   const echec = () => setSecousse((n) => n + 1);
 
+  // Google, Apple et Facebook ne lancent jamais le formulaire e-mail, et le formulaire ne part que de son bouton ou de la
+  // touche Entrée dans ses champs. Tant qu'un parcours social est commencé (appui compris, avec une marge pour un
+  // évènement tardif du navigateur), toute soumission e-mail est ignorée : rien n'est validé ni envoyé.
+  const socialActif = useRef(false);
+  const dernierSocial = useRef(0);
+  const surAppuiSocial = () => {
+    dernierSocial.current = Date.now();
+  };
+  const surDebutSocial = () => {
+    socialActif.current = true;
+    dernierSocial.current = Date.now();
+  };
+  const surFinSocial = () => {
+    socialActif.current = false;
+    dernierSocial.current = Date.now();
+  };
+  const socialRecent = () => socialActif.current || Date.now() - dernierSocial.current < MARGE_SOCIAL_MS;
+
   const fini = async () => {
     await effacerCode();
     await terminerParcoursArrivee();
@@ -66,6 +104,7 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
   };
 
   const soumettre = async () => {
+    if (enCoursRef.current || socialRecent()) return;
     const e: Erreurs = {
       email: validerEmail(email) ?? undefined,
       motDePasse: validerMotDePasse(motDePasse) ?? undefined,
@@ -109,6 +148,21 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
     echec();
   };
 
+  // Le code de parrainage n'a rien à voir avec l'e-mail : il reste proposé même quand le formulaire est coupé.
+  const champParrainage = creation ? (
+    <Champ
+      libelle={t('compte.codeParrainage')}
+      value={code}
+      onChangeText={setCode}
+      erreur={erreurs.code ? t(erreurs.code) : undefined}
+      placeholder={t('compte.codeAide')}
+      autoCapitalize="characters"
+      autoCorrect={false}
+      returnKeyType="done"
+      onSubmitEditing={emailActif ? soumettre : undefined}
+    />
+  ) : null;
+
   return (
     <Ecran>
       <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
@@ -121,57 +175,56 @@ export function FormulaireCompte({ mode }: { mode: 'creer' | 'connexion' }) {
         <Banniere ton="succes" titre={t('compte.confirmationTitre')} texte={t('compte.confirmationTexte', { email: confirmation })} />
       ) : (
         <>
-          <Secousse declencheur={secousse}>
-            <View style={styles.groupe}>
-              {erreurServeur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={t(erreurServeur)} /> : null}
-              <Champ
-                libelle={t('compte.email')}
-                value={email}
-                onChangeText={setEmail}
-                erreur={erreurs.email ? t(erreurs.email) : undefined}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoComplete="email"
-                autoCorrect={false}
-                textContentType="emailAddress"
-                returnKeyType="next"
-              />
-              <Champ
-                libelle={t('compte.motDePasse')}
-                value={motDePasse}
-                onChangeText={setMotDePasse}
-                erreur={erreurs.motDePasse ? t(erreurs.motDePasse) : undefined}
-                placeholder={creation ? t('compte.motDePasseAide') : undefined}
-                secureTextEntry
-                autoCapitalize="none"
-                autoComplete={creation ? 'new-password' : 'current-password'}
-                textContentType={creation ? 'newPassword' : 'password'}
-                returnKeyType={creation ? 'next' : 'done'}
-                onSubmitEditing={creation ? undefined : soumettre}
-              />
-              {creation ? (
-                <Champ
-                  libelle={t('compte.codeParrainage')}
-                  value={code}
-                  onChangeText={setCode}
-                  erreur={erreurs.code ? t(erreurs.code) : undefined}
-                  placeholder={t('compte.codeAide')}
-                  autoCapitalize="characters"
-                  autoCorrect={false}
-                  returnKeyType="done"
-                  onSubmitEditing={soumettre}
-                />
-              ) : null}
-            </View>
-          </Secousse>
-          <Bouton libelle={enCours ? t('compte.enCours') : t(creation ? 'compte.creer' : 'compte.connecter')} desactive={enCours} onPress={soumettre} retour />
-          <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.ou')}</Text>
+          {/* L'erreur vaut pour toutes les méthodes (e-mail comme Google/Apple) : elle est hors du formulaire e-mail,
+              qui peut être coupé. */}
+          {erreurServeur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={t(erreurServeur)} /> : null}
+          {emailActif ? (
+            <>
+              <Secousse declencheur={secousse}>
+                <View style={styles.groupe}>
+                  <Champ
+                    libelle={t('compte.email')}
+                    value={email}
+                    onChangeText={setEmail}
+                    erreur={erreurs.email ? t(erreurs.email) : undefined}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoComplete="email"
+                    autoCorrect={false}
+                    textContentType="emailAddress"
+                    returnKeyType="next"
+                  />
+                  <Champ
+                    libelle={t('compte.motDePasse')}
+                    value={motDePasse}
+                    onChangeText={setMotDePasse}
+                    erreur={erreurs.motDePasse ? t(erreurs.motDePasse) : undefined}
+                    placeholder={creation ? t('compte.motDePasseAide') : undefined}
+                    secureTextEntry
+                    autoCapitalize="none"
+                    autoComplete={creation ? 'new-password' : 'current-password'}
+                    textContentType={creation ? 'newPassword' : 'password'}
+                    returnKeyType={creation ? 'next' : 'done'}
+                    onSubmitEditing={creation ? undefined : soumettre}
+                  />
+                  {champParrainage}
+                </View>
+              </Secousse>
+              <Bouton libelle={enCours ? t('compte.enCours') : t(creation ? 'compte.creer' : 'compte.connecter')} desactive={enCours} onPress={soumettre} retour />
+              <Text style={[typo.legende, styles.centre, { color: theme.texte.secondaire }]}>{t('compte.ou')}</Text>
+            </>
+          ) : (
+            champParrainage
+          )}
           <BoutonsSociaux
             codeParrainage={creation ? code : null}
             desactive={enCours}
             connexionDirecte={!creation}
             onErreur={surErreurSociale}
             onSucces={() => void fini()}
+            onAppui={surAppuiSocial}
+            onDebut={surDebutSocial}
+            onFin={surFinSocial}
           />
           <Bouton
             variante="texte"

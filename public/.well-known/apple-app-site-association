@@ -1,0 +1,35 @@
+{
+  "_commentaires": [
+    "Association de domaine pour les liens universels iOS.",
+    "Doit rester accessible sur https://app.elearnprepa.com/.well-known/apple-app-site-association",
+    "en HTTPS, sans redirection et sans authentification.",
+    "Apple Team ID : 6KATV2T6TV (compte Apple Developer, personne physique).",
+    "Le format 'appIDs' + 'components' couvre iOS 13 et superieur ; 'appID' + 'paths' couvre les versions anterieures.",
+    "Une seule association couvre les builds preview et production : le fichier est identifie par le bundle, pas par le canal."
+  ],
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["6KATV2T6TV.com.ezadrive.elearn"],
+        "components": [
+          {
+            "/": "/r/*",
+            "comment": "Liens de parrainage : /r/<code>."
+          },
+          {
+            "/": "/rejoindre/*",
+            "comment": "Anciens liens d'invitation conserves pour ne pas casser les partages deja diffuses."
+          }
+        ]
+      },
+      {
+        "appID": "6KATV2T6TV.com.ezadrive.elearn",
+        "paths": ["/r/*", "/rejoindre/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["6KATV2T6TV.com.ezadrive.elearn"]
+  }
+}

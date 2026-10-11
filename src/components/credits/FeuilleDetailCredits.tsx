@@ -20,14 +20,14 @@ import { useQuand } from '../moi/useQuand';
 export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; onFermer: () => void }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { solde, reglages, depensesSemaine } = useCredits();
+  const { solde, reglages, depensesSemaine, depensesEnAttente } = useCredits();
   const { session } = useSession();
   const quand = useQuand();
   const [actionsDispos, setActionsDispos] = useState(false);
   
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   const invite = !!session?.user.is_anonymous;
   const aller = (chemin: string) => () => {
@@ -70,6 +70,9 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
               </View>
             )}
           </View>
+          {depensesEnAttente > 0 && !solde.illimite ? (
+            <Text accessibilityRole="alert" style={[typo.petit, styles.centre, { color: theme.texte.secondaire }]}>{t('profil.aSynchroniserTexte')}</Text>
+          ) : null}
           {lignes.length ? (
             <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
               {lignes.map(([nom, valeur]) => (
@@ -82,7 +85,7 @@ export function FeuilleDetailCredits({ ouverte, onFermer }: { ouverte: boolean; 
           ) : null}
           {!solde.illimite ? (
             <View style={[styles.carte, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>
+              <Text style={[typo.petit, { color: theme.texte.principal }]}>
                 {invite
                   ? t('credits.sansRecharge', { n: reglages?.recharge ?? solde.recharge })
                   : `${solde.rechargeHebdo ? `${t('profil.prochaine', { quand: quand(solde.prochaineRecharge) })} ` : ''}${t('profil.nonCumul')}`}

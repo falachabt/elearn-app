@@ -23,8 +23,13 @@ export function RefaireErreurs() {
     let actif = true;
     // Les questions ratées du dernier quiz terminé, quel qu'il soit ; sinon celles de la dernière mission.
     void (async () => {
-      const c = await lireCorrection();
-      const ratees = c ? c.questions.filter((_, i) => statuts(c)[i] !== 'juste') : await lireErreurs();
+      let ratees: QuestionTiree[] = [];
+      try {
+        const c = await lireCorrection();
+        ratees = c ? c.questions.filter((_, i) => statuts(c)[i] !== 'juste') : await lireErreurs();
+      } catch {
+        // Lecture impossible : l'écran « aucune erreur » vaut mieux qu'une page blanche.
+      }
       if (actif) setQuestions(ratees);
     })();
     return () => {
@@ -46,7 +51,8 @@ export function RefaireErreurs() {
         // La session d'origine est mise à jour, puis on y revient : grille, score et compteurs recalculés.
         const misAJour = await appliquerRefaire({ questions: q, reponses }, getSupabase()).catch(() => null);
         if (misAJour && router.canGoBack()) return router.back();
-        if (!misAJour) await enregistrerCorrection({ source: 'erreurs', questions: q, reponses });
+        // Session à part seulement quand il n'y a vraiment aucune session d'origine à mettre à jour.
+        if (!misAJour && !(await lireCorrection())) await enregistrerCorrection({ source: 'erreurs', questions: q, reponses });
         router.replace('/quiz/resultats');
       }}
     />

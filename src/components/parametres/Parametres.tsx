@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2 } from 'lucide-react-native';
+import { Bell, Download, FileText, LogIn, LogOut, Trash2, UserPlus, Volume2, Wrench } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -8,6 +8,7 @@ import { languesDisponibles, type Langue } from '@/i18n';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { cleErreur, deconnecter, estInvite } from '@/services/compte';
 import { definirWifiSeulement, lireWifiSeulement } from '@/services/donnees';
+import { modeDeveloppement } from '@/services/developpement';
 import { definirRenduFormules } from '@/services/formules';
 import { lireDemandeSuppression } from '@/services/moi';
 import { activerRappel, desactiverRappel, HEURE_RAPPEL, lireRappel } from '@/services/rappels';
@@ -155,6 +156,7 @@ export function Parametres() {
 
         <Groupe>
           <LigneGroupe icone={Volume2} titre={t('reglages.sons')} sousTitre={t('reglages.sonsDetail')} onPress={() => router.push('/parametres/sons')} />
+          <LigneGroupe icone={Bell} titre={t('reglages.notifications')} sousTitre={t('reglages.notificationsDetail')} onPress={() => router.push('/parametres/notifications')} />
           <LigneGroupe titre={t('reglages.mission')} valeur={t('reglages.missionValeur', { n: taille ?? TAILLE_DEFAUT })} onPress={() => setFeuille('rythme')} />
         </Groupe>
 
@@ -207,6 +209,16 @@ export function Parametres() {
               </Groupe>
             )}
             {erreur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={erreur} /> : null}
+          </>
+        ) : null}
+
+        {/* Outils de développement : jamais en production (voir services/developpement). */}
+        {modeDeveloppement() ? (
+          <>
+            <TitreSection texte={t('dev.titre')} />
+            <Groupe>
+              <LigneGroupe icone={Wrench} titre={t('dev.titre')} sousTitre={t('dev.avertissement')} onPress={() => router.push('/developpeur')} />
+            </Groupe>
           </>
         ) : null}
 

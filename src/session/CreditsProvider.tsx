@@ -1,9 +1,8 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { AppState } from 'react-native';
 
 import {
   appliquerTempsReel,
-  depenser as depenserServeur,
   identifiantAppareil,
   lireCouts,
   lireReglages,
@@ -15,6 +14,15 @@ import {
   type Depense,
   type Solde,
 } from '@/services/credits';
+import {
+  compterDepensesEnAttente,
+  depenserAvecRepli,
+  garderSoldeLocal,
+  lireSoldeLocal,
+  synchroniserDepensesHorsLigne,
+} from '@/services/creditsHorsLigne';
+import { ecouterConnectivite, estEnLigne } from '@/services/connectivite';
+import { definirSoldeSimule, ecouterSoldeSimule, soldeSimule } from '@/services/creditsDev';
 import { getSupabase } from '@/services/supabase';
 
 import { useSession } from './SessionProvider';
@@ -27,6 +35,8 @@ type Credits = {
   reglages: ReglagesCredits | null;
   /** Crédits dépensés depuis lundi (registre) : la jauge se vide d'autant. 0 tant que non lu. */
   depensesSemaine: number;
+  /** Nombre de dépenses faites hors ligne qui attendent la confirmation du serveur (issue #13). */
+  depensesEnAttente: number;
   /** Dépense côté serveur ; le solde se met à jour aussitôt, puis par le temps réel. */
   depenser: <C = Record<string, unknown>>(action: ActionCredit, objet: string | number) => Promise<Depense<C>>;
   rafraichir: () => Promise<void>;
@@ -37,6 +47,7 @@ const ContexteCredits = createContext<Credits>({
   couts: {},
   reglages: null,
   depensesSemaine: 0,
+  depensesEnAttente: 0,
   depenser: () => Promise.reject(new Error('CreditsProvider absent')),
   rafraichir: async () => {},
 });
@@ -49,7 +60,13 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const invite = session?.user.is_anonymous ?? null;
   // Le solde est rangé avec son propriétaire : à un changement de compte, l'ancien ne s'affiche plus.
   const [etat, setEtat] = useState<{ pour: string; solde: Solde } | null>(null);
-  const solde = etat && etat.pour === utilisateur ? etat.solde : null;
+  const soldeReel = etat && etat.pour === utilisateur ? etat.solde : null;
+  // Solde simulé (page développeur) : remplace l'affichage, jamais le registre du serveur.
+  const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
+  const solde = useMemo<Solde | null>(
+    () => (soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel),
+    [soldeReel, simule],
+  );
   const majSolde = useCallback(
     (pour: string, f: (s: Solde | null) => Solde | null) =>
       setEtat((e) => {
@@ -61,12 +78,19 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>({});
   const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
   const [depenses, setDepenses] = useState<{ pour: string; n: number } | null>(null);
+  // Dépenses hors ligne en attente : tant qu'il en reste, le solde affiché n'est pas confirmé par le serveur.
+  const [attente, setAttente] = useState<{ pour: string; n: number } | null>(null);
+  const depensesEnAttente = attente && attente.pour === utilisateur ? attente.n : 0;
 
   const rafraichir = useCallback(async () => {
     if (!utilisateur) return;
     const client = getSupabase();
-    const [s, c, r] = await Promise.all([lireSolde(client, await identifiantAppareil()), lireCouts(client), lireReglages(client).catch(() => null)]);
+    const appareil = await identifiantAppareil();
+    // Un solde reçu du serveur est confirmé (sauf dépenses en attente) et remplace la copie locale.
+    const s = await lireSolde(client, appareil);
     majSolde(utilisateur, () => s);
+    void garderSoldeLocal(utilisateur, s);
+    const [c, r] = await Promise.all([lireCouts(client), lireReglages(client).catch(() => null)]);
     setCouts(c);
     if (r) setReglages(r);
   }, [utilisateur, majSolde]);
@@ -78,12 +102,55 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       .then((appareil) => Promise.all([lireSolde(client, appareil), lireCouts(client), lireReglages(client).catch(() => null)]))
       .then(([s, c, r]) => {
         majSolde(utilisateur, () => s);
+        void garderSoldeLocal(utilisateur, s);
         setCouts(c);
         if (r) setReglages(r);
       })
-      .catch(() => {});
+      // Hors ligne au démarrage : on affiche le dernier solde confirmé, jamais celui d'un autre compte.
+      .catch(() => {
+        void lireSoldeLocal(utilisateur).then((garde) => {
+          if (garde) majSolde(utilisateur, () => garde.solde);
+        });
+      });
+    // Les dépenses hors ligne laissées par une session précédente restent à signaler dès l'ouverture.
+    void compterDepensesEnAttente(utilisateur).then((n) => setAttente({ pour: utilisateur, n }));
     return suivreSolde(getSupabase(), utilisateur, (ligne) => majSolde(utilisateur, (s) => (s ? appliquerTempsReel(s, ligne) : s)));
   }, [utilisateur, invite, majSolde]);
+
+  /**
+   * Dépenses faites hors ligne : rejouées dès que le réseau revient, puis quand l'app revient au premier plan.
+   * Le solde est repris du serveur au passage, ce qui confirme (ou corrige) le solde local.
+   */
+  const rejouer = useCallback(async () => {
+    if (!utilisateur || !estEnLigne()) return;
+    const garde = await lireSoldeLocal(utilisateur);
+    const r = await synchroniserDepensesHorsLigne({ client: getSupabase(), utilisateur, soldeLocal: garde?.solde ?? null });
+    setAttente({ pour: utilisateur, n: r.restantes });
+    if (garde && r.solde && r.solde.total !== garde.solde.total) majSolde(utilisateur, () => r.solde as Solde);
+    if (r.envoyees) await rafraichir().catch(() => {});
+  }, [utilisateur, majSolde, rafraichir]);
+
+  useEffect(() => {
+    if (!utilisateur) return;
+    let actif = true;
+    // Rejeu immédiat (l'app peut déjà être en ligne), puis à chaque retour du serveur.
+    const rejouerSiActif = () => {
+      void rejouer()
+        .then(() => {
+          if (actif) return compterDepensesEnAttente(utilisateur).then((n) => actif && setAttente({ pour: utilisateur, n }));
+          return undefined;
+        })
+        .catch(() => {});
+    };
+    const arreter = ecouterConnectivite((e) => {
+      if (e.backend === true) rejouerSiActif();
+    });
+    rejouerSiActif();
+    return () => {
+      actif = false;
+      arreter();
+    };
+  }, [utilisateur, rejouer]);
 
   // Dépenses de la semaine : relues quand le solde bouge (une dépense, un bonus) ou que la semaine change.
   const total = solde?.total;
@@ -111,14 +178,32 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
 
   const depenser = useCallback(
     async <C,>(action: ActionCredit, objet: string | number) => {
-      const r = await depenserServeur<C>(getSupabase(), action, objet);
+      // Solde simulé trop bas : refus immédiat, sans appel serveur (permet de tester la feuille « Crédits épuisés »).
+      const simulation = soldeSimule();
+      const prix = couts[action] ?? 0;
+      if (simulation !== null && simulation < prix) return { statut: 'insufficient', cout: prix, solde: simulation, contenu: null } as Depense<C>;
+      // Hors ligne, la dépense se fait sur le dernier solde connu, adossée au contenu déjà présent sur l'appareil.
+      const garde = utilisateur ? await lireSoldeLocal(utilisateur) : null;
+      const r = await depenserAvecRepli<C>({
+        client: getSupabase(),
+        utilisateur: utilisateur ?? '',
+        soldeLocal: garde?.solde ?? null,
+        cout: couts[action] ?? 0,
+        action,
+        objet,
+      });
       if (utilisateur) majSolde(utilisateur, (s) => (s ? { ...s, total: r.solde } : s));
+      // La dépense réelle a eu lieu : le solde simulé baisse du même prix, pour que la suite du test reste cohérente.
+      if (simulation !== null && r.statut !== 'insufficient') definirSoldeSimule(simulation - prix);
       return r;
     },
-    [utilisateur, majSolde],
+    [utilisateur, majSolde, couts],
   );
 
-  const valeur = useMemo(() => ({ solde, couts, reglages, depensesSemaine, depenser, rafraichir }), [solde, couts, reglages, depensesSemaine, depenser, rafraichir]);
+  const valeur = useMemo(
+    () => ({ solde, couts, reglages, depensesSemaine, depensesEnAttente, depenser, rafraichir }),
+    [solde, couts, reglages, depensesSemaine, depensesEnAttente, depenser, rafraichir],
+  );
   return <ContexteCredits.Provider value={valeur}>{children}</ContexteCredits.Provider>;
 }
 

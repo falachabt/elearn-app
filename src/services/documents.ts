@@ -180,6 +180,17 @@ export function effacerDocuments(): void {
 
 /** « Tout supprimer » de Mes documents : les fichiers et leur index. */
 export async function retirerTousDocuments(): Promise<void> {
-  effacerDocuments();
+  // Seuls les documents de la liste partent : les fichiers préchargés par la préparation hors ligne (pas encore
+  // ouverts, donc absents de la liste) restent dans le cache. Effacer tout le dossier les supprimait en silence alors
+  // que leur index (`documents.precharges`) les croyait encore présents.
+  const index = await lireIndex();
+  for (const url of Object.keys(index)) {
+    try {
+      const f = new File(dossier(), nomFichier(url));
+      if (f.exists) f.delete();
+    } catch {
+      // Déjà absent.
+    }
+  }
   await AsyncStorage.removeItem(CLE_INDEX).catch(() => {});
 }

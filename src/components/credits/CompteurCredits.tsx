@@ -1,4 +1,4 @@
-import { Zap } from 'lucide-react-native';
+import { Clock, Zap } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -21,7 +21,7 @@ export const SEUIL_SOLDE_BAS = 5;
  * le solde se charge. Suit le solde en temps réel. Un appui ouvre le détail (K1b) dans une feuille du bas.
  */
 export function CompteurCredits() {
-  const { solde } = useCredits();
+  const { solde, depensesEnAttente } = useCredits();
   const { session } = useSession();
   const { theme } = useTheme();
   const { t } = useTextesCredits();
@@ -30,8 +30,8 @@ export function CompteurCredits() {
   const invite = !!session?.user.is_anonymous;
 
   useEffect(() => {
-    void aDesActionsDisponibles(solde).then(setActionsDispos);
-  }, [solde]);
+    void aDesActionsDisponibles(solde, new Date(), { utilisateurId: session?.user.id }).then(setActionsDispos);
+  }, [solde, session?.user.id]);
 
   if (!solde) {
     return (
@@ -45,7 +45,13 @@ export function CompteurCredits() {
   const bas = !solde.illimite && solde.total <= SEUIL_SOLDE_BAS && !invite;
   const fond = solde.illimite ? theme.marque.principale : bas ? theme.etat.erreur : theme.accent.soleil;
   const valeur = solde.illimite ? '∞' : invite ? t('credits.compteurInvite', { n: solde.total }) : String(solde.total);
-  const accessibilite = solde.illimite ? t('credits.illimiteA11y') : invite ? t('credits.compteurInviteA11y', { n: solde.total }) : t('credits.compteurA11y', { n: solde.total });
+  // Dépenses faites hors ligne qui attendent le serveur : le solde est une estimation, on le dit (jamais d'un pass illimité).
+  const aConfirmer = depensesEnAttente > 0 && !solde.illimite;
+  const accessibilite = solde.illimite
+    ? t('credits.illimiteA11y')
+    : invite
+      ? t('credits.compteurInviteA11y', { n: solde.total })
+      : t(aConfirmer ? 'credits.compteurAConfirmerA11y' : 'credits.compteurA11y', { n: solde.total });
   return (
     <>
       <Appui
@@ -62,8 +68,9 @@ export function CompteurCredits() {
               <Zap size={14} strokeWidth={2.5} color={theme.texte.surCouleur} />
             </View>
             <Text numberOfLines={1} style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{valeur}</Text>
+            {aConfirmer ? <Clock testID="compteur-a-confirmer" size={12} strokeWidth={2.5} color={theme.texte.surCouleur} /> : null}
           </View>
-          {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.alerte }]} /> : null}
+          {actionsDispos ? <View style={[styles.badgeDispo, { backgroundColor: theme.etat.alerte, borderColor: theme.fond.surface }]} /> : null}
         </View>
       </Appui>
       <FeuilleDetailCredits ouverte={detail} onFermer={() => setDetail(false)} />
@@ -96,7 +103,6 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     borderWidth: 1.5,
-    borderColor: '#FFFFFF',
   },
   squelette: { width: 22, height: 10, borderRadius: 4 },
 });

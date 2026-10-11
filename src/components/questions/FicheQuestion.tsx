@@ -18,6 +18,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { useCompteRequis } from '../FeuilleCompte';
 import { Feuille } from '../Feuille';
+import { useGardeReseau } from '../reseau/useGardeReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
 import { CarteSondage } from './CarteSondage';
@@ -38,6 +39,7 @@ export function FicheQuestion() {
   const couleur = useCouleurMatiere();
   const ilYa = useIlYa();
   const { exiger, feuille } = useCompteRequis();
+  const { bloquerReseau, banniere, horsLigne } = useGardeReseau();
   const [etat, setEtat] = useEtatMemorise<Etat>(`question.${id}`, { statut: 'chargement' });
   const [menu, setMenu] = useState<Reponse | null>(null);
   const [cible, setCible] = useState<Reponse | null>(null);
@@ -97,7 +99,9 @@ export function FicheQuestion() {
     choisirMeilleure(getSupabase(), id, retirer ? null : r.id).then(rafraichir, rafraichir);
   };
 
-  const envoyerReponse = (texte: string, photo: string | null) =>
+  const envoyerReponse = (texte: string, photo: string | null) => {
+    // `exiger` ne renvoie rien (feuille de compte) : la garde est un contrôle avant, pas un enrobage.
+    if (horsLigne) return bloquerReseau();
     exiger('question', async () => {
       const reponses = etat.statut === 'pret' ? etat.reponses : [];
       const sortie = await ajouterSortie({ questionId: id, texte, parentId: parentPourReponse(reponses, cible?.id ?? null), photo });
@@ -108,8 +112,11 @@ export function FicheQuestion() {
       await rafraichirSorties();
       void rafraichir();
     });
+  };
 
   const reessayer = async (s: Sortie) => {
+    // Envoi d'une réponse déjà écrite : hors ligne, elle reste « non envoyée » et part au retour du réseau.
+    if (horsLigne) return;
     const envoyee = await envoyerSortie(getSupabase(), s, userId);
     if (envoyee) await noterActionConfiguration('fil').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
     await rafraichirSorties();
@@ -127,7 +134,7 @@ export function FicheQuestion() {
   return (
     <Ecran
       piedPleineLargeur
-      pied={q ? <Composeur repondA={cible ? cible.auteur : null} onAnnulerCible={() => setCible(null)} onEnvoyer={envoyerReponse} /> : undefined}
+      pied={q ? <Composeur repondA={cible ? cible.auteur : null} onAnnulerCible={() => setCible(null)} onEnvoyer={envoyerReponse} horsLigne={horsLigne} /> : undefined}
       entete={
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
@@ -141,6 +148,7 @@ export function FicheQuestion() {
       }
     >
       {etat.statut === 'chargement' ? <Squelettes nombre={2} /> : null}
+      {banniere}
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('questions.erreurTitre')} texte={t('questions.erreurPhrase')} /> : null}
       {etat.statut === 'pret' && !q ? <Banniere ton="info" titre={t('questions.introuvable')} /> : null}
       {q ? (

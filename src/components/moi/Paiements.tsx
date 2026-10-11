@@ -18,6 +18,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Squelettes } from '../liste/Squelettes';
+import { LienSupport } from '../support/LienSupport';
 
 type IconeStatut = ComponentType<{ size?: number; color?: string; strokeWidth?: number }>;
 
@@ -247,6 +248,7 @@ export function DetailPaiement() {
             </View>
             <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{motifPaiement(paiement, t)}</Text>
           </View>
+          <LienSupport reference={formatReference(paiement)} />
         </>
       ) : null}
     </Ecran>

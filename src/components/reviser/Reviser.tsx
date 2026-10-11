@@ -12,6 +12,8 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Annales } from '../annales/Annales';
+import { CompteurCredits } from '../credits/CompteurCredits';
+import { Cloche } from '../notifications/Cloche';
 import { Entrainement } from '../entrainement/Entrainement';
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -102,7 +104,11 @@ export function Reviser() {
 
   return (
     <Ecran insetBas={false}>
-      <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
+      <View style={styles.entete}>
+        <Text accessibilityRole="header" style={[typo.h1, styles.titre, { color: theme.texte.principal }]}>{t('reviser.titre')}</Text>
+        <CompteurCredits />
+        <Cloche />
+      </View>
       <Onglets valeurs={(['cours', 'entrainement', 'annales'] as const).map((o) => ({ valeur: o, libelle: t(LIBELLES[o]) }))} valeur={ongletVisible} onChange={choisir} />
       <Panneau actif={ongletVisible === 'annales'} monte={vus.has('annales')}>
         <Annales />
@@ -149,6 +155,8 @@ function GrilleMatieres({ matieres, lues }: { matieres: Matiere[]; lues: Record<
 
 const styles = StyleSheet.create({
   panneau: { gap: espace[6] },
+  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  titre: { flex: 1 },
   cache: { display: 'none' },
   groupe: { gap: espace[4] },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[4] },

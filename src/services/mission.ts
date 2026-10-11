@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { suivre } from './analytics';
+import { contenuHorsLigneValide } from './connectivite';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
 import { enregistrerCorrection } from './correction';
 import { TAILLE_DEFAUT } from './rythme';
@@ -85,9 +86,13 @@ export async function chargerMission(
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
-  const missionHorsLigne = await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour));
+  // Expiration (issue #13) : hors ligne, une mission gardée au-delà de la durée de validité n'est plus servie. On
+  // repart alors du serveur, qui échoue sans connexion, et l'écran retombe sur la mission embarquée. Sans ce
+  // contrôle, la mission préchargée contournerait l'expiration puisqu'elle ne passe pas par `avecCopie`.
+  const copieEncoreValable = await contenuHorsLigneValide();
+  const missionHorsLigne = copieEncoreValable ? await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
   if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
-  const brut = await AsyncStorage.getItem(CLE_MISSION);
+  const brut = copieEncoreValable ? await AsyncStorage.getItem(CLE_MISSION) : null;
   const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
   if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
 
@@ -184,18 +189,88 @@ export async function terminerMission(
   const { serie, graceUtilisee } = calculerSerie(historique, jour);
   const ratees = p.questions.filter((q, i) => p.reponses[i] !== q.bonne);
   const resultat: ResultatMission = { ...base, jour, serie, graceUtilisee, coursRates: coursRates(ratees), erreurs: ratees.length };
+  // Une écriture locale ne doit pas faire échouer la fin de mission : hors ligne, `multiSet` qui lèverait laisserait
+  // l'élève bloqué sur la dernière question sans voir son score.
   await AsyncStorage.multiSet([
     [CLE_HISTORIQUE, JSON.stringify(historique)],
     [CLE_DERNIER, JSON.stringify(resultat)],
     [CLE_ERREURS, JSON.stringify(ratees)],
-  ]);
+  ]).catch(() => {});
   await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
-  void client
-    .from('mission_runs')
-    .insert({ day: jour, level: p.niveau, score: resultat.score, total: resultat.total, duration_s: resultat.dureeS, details: { chapitres: resultat.chapitres } })
-    .then(() => undefined, () => undefined);
+  // Le passage est gardé sur le téléphone AVANT l'envoi : hors ligne, l'insertion échouait en silence et la mission
+  // n'entrait jamais dans la progression (ni hors ligne, ni au retour du réseau).
+  await ajouterPassageLocal({
+    id: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+    day: jour,
+    level: p.niveau,
+    score: resultat.score,
+    total: resultat.total,
+    duration_s: resultat.dureeS,
+    details: { chapitres: resultat.chapitres },
+    envoye: false,
+  });
+  void envoyerPassages(client);
   return resultat;
+}
+
+export const CLE_PASSAGES = 'mission.passages';
+const MAX_PASSAGES_LOCAUX = 120;
+
+/** Une mission terminée, gardée jusqu'à son envoi au serveur (`envoye`), puis un moment pour la progression hors ligne. */
+export type PassageLocal = {
+  id: string;
+  day: string;
+  level: string;
+  score: number;
+  total: number;
+  duration_s: number | null;
+  details: { chapitres: unknown };
+  envoye: boolean;
+};
+
+export async function lirePassagesLocaux(): Promise<PassageLocal[]> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_PASSAGES);
+    return brut ? (JSON.parse(brut) as PassageLocal[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+async function ecrirePassagesLocaux(passages: PassageLocal[]): Promise<void> {
+  await AsyncStorage.setItem(CLE_PASSAGES, JSON.stringify(passages.slice(-MAX_PASSAGES_LOCAUX))).catch(() => {});
+}
+
+async function ajouterPassageLocal(p: PassageLocal): Promise<void> {
+  await ecrirePassagesLocaux([...(await lirePassagesLocaux()), p]);
+}
+
+let envoiPassagesEnCours: Promise<void> | null = null;
+
+/**
+ * Envoie au serveur les missions terminées pas encore reçues (hors ligne, ou réponse perdue). Un passage n'est marqué
+ * envoyé que sur réponse sans erreur, et jamais deux envois en parallèle : pas de doublon dans la progression.
+ */
+export function envoyerPassages(client: Pick<SupabaseClient, 'from'>): Promise<void> {
+  if (envoiPassagesEnCours) return envoiPassagesEnCours;
+  envoiPassagesEnCours = (async () => {
+    for (const passage of (await lirePassagesLocaux()).filter((x) => !x.envoye)) {
+      try {
+        const { error } = await client
+          .from('mission_runs')
+          .insert({ day: passage.day, level: passage.level, score: passage.score, total: passage.total, duration_s: passage.duration_s, details: passage.details });
+        if (error) break;
+      } catch {
+        break;
+      }
+      const courants = await lirePassagesLocaux();
+      await ecrirePassagesLocaux(courants.map((x) => (x.id === passage.id ? { ...x, envoye: true } : x)));
+    }
+  })().finally(() => {
+    envoiPassagesEnCours = null;
+  });
+  return envoiPassagesEnCours;
 }
 
 /** Cours des questions ratées, du plus d'erreurs au moins, sans doublon. */

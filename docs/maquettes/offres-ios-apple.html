@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maquette — Offres iOS (achat intégré Apple / RevenueCat)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --encre:#0A0A0A;
+    --papier:#FFF7E3;
+    --surface:#FFFFFF;
+    --creux:#F6EEDA;
+    --secondaire:#5C5C5C;
+    --emeraude:#10B981;
+    --emeraudeDouce:#D1FAE5;
+    --emeraudeForte:#047857;
+    --soleil:#FFD83D;
+    --soleilDoux:#FFF1B8;
+    --erreur:#FF5A4F;
+    --erreurDouce:#FFE1DE;
+    --info:#1A75FF;
+    --infoDouce:#DCE9FF;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#EFE9DA;
+    font-family:'Space Grotesk', system-ui, sans-serif;
+    color:var(--encre);
+    padding:40px 20px 60px;
+  }
+  h1.titre{font-family:'Archivo Black',system-ui,sans-serif;font-size:24px;margin:0 0 4px;letter-spacing:-.3px}
+  .sous{color:var(--secondaire);font-size:14px;max-width:760px;margin-bottom:30px}
+  .rangee{display:flex;flex-wrap:wrap;gap:32px;justify-content:flex-start;align-items:flex-start}
+  .col{display:flex;flex-direction:column;gap:18px}
+  .legende-col{font-family:'Space Mono',monospace;font-weight:700;font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--secondaire)}
+  .phone{
+    width:375px;
+    background:var(--papier);
+    border:2px solid var(--encre);
+    border-radius:24px;
+    box-shadow:6px 6px 0 var(--encre);
+    padding:20px 18px 22px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  /* --- header --- */
+  .entete{display:flex;align-items:center;gap:12px}
+  .fermer{font-size:14px;font-weight:700;color:var(--emeraudeForte);cursor:pointer;line-height:20px}
+  .titre-ecran{font-family:'Archivo Black',system-ui,sans-serif;font-size:18px;line-height:24px}
+  /* --- lignes d'offre --- */
+  .ligne{
+    display:flex;align-items:center;gap:12px;
+    background:var(--surface);
+    border:2px solid var(--encre);
+    border-radius:14px;
+    box-shadow:3px 3px 0 var(--encre);
+    padding:16px;cursor:pointer;
+  }
+  .ligne.choisie{border-width:3px;box-shadow:4px 4px 0 var(--encre);background:var(--emeraudeDouce)}
+  .radio{
+    width:22px;height:22px;border-radius:999px;border:2px solid var(--encre);
+    flex:0 0 22px;display:flex;align-items:center;justify-content:center;
+    background:transparent;
+  }
+  .ligne.choisie .radio{background:var(--emeraude)}
+  .radio svg{display:none}
+  .ligne.choisie .radio svg{display:block}
+  .texte-ligne{flex:1;display:flex;flex-direction:column;gap:2px}
+  .titre-ligne{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .titre-ligne .nom{font-weight:700;font-size:16px;line-height:24px}
+  .aide{font-size:13px;color:var(--secondaire);line-height:18px}
+  .prix{font-weight:700;font-size:16px;white-space:nowrap}
+  /* etiquette */
+  .etiquette{
+    font-family:'Space Mono',monospace;font-weight:700;font-size:12px;line-height:16px;
+    letter-spacing:.6px;text-transform:uppercase;
+    background:var(--soleil);border:1.5px solid var(--encre);border-radius:6px;
+    padding:2px 8px;
+  }
+  /* bouton primaire */
+  .btn{
+    display:block;width:100%;
+    text-align:center;font-weight:700;font-size:16px;line-height:20px;
+    background:var(--emeraude);color:var(--encre);
+    border:2px solid var(--encre);border-radius:10px;
+    box-shadow:4px 4px 0 var(--encre);
+    padding:14px 20px;min-height:52px;cursor:pointer;
+  }
+  .btn-texte{
+    display:block;width:100%;text-align:center;
+    font-weight:700;font-size:16px;line-height:20px;color:var(--emeraudeForte);
+    padding:8px 20px;cursor:pointer;
+  }
+  .note{font-size:13px;color:var(--secondaire);text-align:center;line-height:18px}
+  /* banniere */
+  .banniere{
+    display:flex;align-items:flex-start;gap:12px;
+    border:2px solid var(--encre);border-radius:10px;padding:12px;
+  }
+  .banniere .pastille{
+    width:24px;height:24px;border-radius:999px;border:1.5px solid var(--encre);
+    flex:0 0 24px;display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-weight:700;font-size:12px;
+  }
+  .banniere .txt{flex:1;display:flex;flex-direction:column;gap:2px}
+  .banniere .txt b{font-size:16px;font-weight:700;line-height:24px}
+  .banniere .txt span{font-size:14px;line-height:20px}
+  .banniere.succes{background:var(--emeraudeDouce)}
+  .banniere.succes .pastille{background:var(--emeraude)}
+  .banniere.info{background:var(--infoDouce)}
+  .banniere.info .pastille{background:var(--info);color:#fff}
+  .banniere.erreur{background:var(--erreurDouce)}
+  .banniere.erreur .pastille{background:var(--erreur);color:#fff}
+  /* feuille sauvegarde score */
+  .feuille{
+    background:var(--surface);border:2px solid var(--encre);border-radius:20px 20px 0 0;
+    box-shadow:0 -4px 0 var(--encre);padding:22px 18px 26px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .feuille .titre-f{font-family:'Archivo Black',system-ui,sans-serif;font-size:18px;line-height:24px}
+  .feuille .txt-f{font-size:14px;color:var(--secondaire);line-height:20px}
+  .btn-secondaire{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    width:100%;background:var(--surface);color:var(--encre);
+    border:2px solid var(--encre);border-radius:10px;
+    box-shadow:4px 4px 0 var(--encre);
+    padding:13px 20px;font-weight:700;font-size:16px;min-height:52px;cursor:pointer;
+  }
+  .tag{
+    font-family:'Space Mono',monospace;font-weight:700;font-size:11px;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--emeraudeForte);
+  }
+  hr.regle{border:0;border-top:2px solid var(--encre);margin:18px 0}
+  .warning{background:var(--soleilDoux);border:1.5px solid var(--encre);border-radius:10px;padding:10px 12px;font-size:13px;line-height:18px;max-width:760px}
+</style>
+</head>
+<body>
+  <h1 class="titre">Écrans réalisés sur la branche Apple / RevenueCat</h1>
+  <p class="sous">Branche <b>ccr-272c43ba-7382dw</b> (commit <code>c17671d</code>). Reproduit à partir du code réel (<code>src/components/pass/Offres.tsx</code>, <code>src/components/BoutonsSociaux.tsx</code>) et des tokens du thème. Les prix Apple sont des exemples&nbsp;: ils viendront de RevenueCat.</p>
+
+  <div class="rangee">
+
+    <div class="col">
+      <div class="legende-col">E1 · Offres — iOS, achat intégré Apple (état normal)</div>
+      <div class="phone">
+        <div class="entete">
+          <span class="fermer">✕&nbsp;&nbsp;Fermer</span>
+          <span class="titre-ecran">Choisis ton pass</span>
+        </div>
+
+        <!-- liste des offres -->
+        <div class="ligne">
+          <div class="radio"></div>
+          <div class="texte-ligne">
+            <div class="titre-ligne"><span class="nom">Gratuit</span></div>
+            <span class="aide">3 corrections/jour · missions · 1 sujet par concours</span>
+          </div>
+          <span class="prix"></span>
+        </div>
+
+        <div class="ligne">
+          <div class="radio"></div>
+          <div class="texte-ligne">
+            <div class="titre-ligne"><span class="nom">Pass semaine</span></div>
+            <span class="aide">Corrections illimitées · 7 jours</span>
+          </div>
+          <span class="prix">1,99 €</span>
+        </div>
+
+        <div class="ligne choisie">
+          <div class="radio"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="texte-ligne">
+            <div class="titre-ligne"><span class="nom">Pass mois</span><span class="etiquette">Conseillé</span></div>
+            <span class="aide">Tout illimité · hors ligne · résumé parent · 30 jours</span>
+          </div>
+          <span class="prix">4,99 €</span>
+        </div>
+
+        <div class="ligne">
+          <div class="radio"></div>
+          <div class="texte-ligne">
+            <div class="titre-ligne"><span class="nom">Pass concours</span></div>
+            <span class="aide">Annales corrigées + concours blancs · 6 mois d’accès</span>
+          </div>
+          <span class="prix">14,99 €</span>
+        </div>
+
+        <span class="note">Pas d’abonnement caché&nbsp;: le pass s’arrête tout seul à la fin.</span>
+
+        <div class="btn">Prendre le Pass mois · 4,99 €</div>
+        <div class="btn-texte">Restaurer mes achats</div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="legende-col">États des bannières d’achat / restauration</div>
+      <div class="phone">
+        <div class="entete">
+          <span class="fermer">✕&nbsp;&nbsp;Fermer</span>
+          <span class="titre-ecran">Choisis ton pass</span>
+        </div>
+
+        <div class="banniere succes">
+          <div class="pastille">✓</div>
+          <div class="txt"><b>Ton pass est actif. Bon courage&nbsp;!</b></div>
+        </div>
+        <div class="banniere info">
+          <div class="pastille">i</div>
+          <div class="txt"><b>Ton paiement est bien reçu. L’accès arrive dans quelques instants.</b></div>
+        </div>
+        <div class="banniere erreur">
+          <div class="pastille">!</div>
+          <div class="txt"><b>L’achat n’a pas abouti. Réessaie dans un instant.</b></div>
+        </div>
+        <div class="banniere succes">
+          <div class="pastille">✓</div>
+          <div class="txt"><b>Ton pass a été retrouvé.</b></div>
+        </div>
+        <div class="banniere info">
+          <div class="pastille">i</div>
+          <div class="txt"><b>Aucun achat à restaurer sur ce compte Apple.</b></div>
+        </div>
+
+        <span class="tag">Règle App Store 3.1.1 · achat intégré + restauration</span>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="legende-col">Feuille « Sauvegarde du score invité » — Apple ajouté (règle 4.8)</div>
+      <div class="phone" style="padding:0;border-radius:24px;overflow:hidden">
+        <div class="feuille" style="border-radius:20px;box-shadow:none;margin-top:40px">
+          <span class="titre-f">Garde ton score et ta progression</span>
+          <span class="txt-f">Crée ton compte en un appui. C’est gratuit et sans carte bancaire.</span>
+          <div class="btn">Continuer avec Google</div>
+          <div class="btn-secondaire"> Continuer avec Apple</div>
+          <div class="btn-texte">Continuer en invité</div>
+          <span class="tag">Avant&nbsp;: Google seul · Maintenant&nbsp;: Google + Apple (4.8)</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="regle">
+  <div class="warning">
+    <b>Note&nbsp;:</b> le bouton «&nbsp;Prendre le pass · prix&nbsp;» et «&nbsp;Restaurer mes achats&nbsp;» n’apparaissent que si
+    <code>EXPO_PUBLIC_REVENUECAT_IOS_KEY</code> est défini et qu’on est sur iOS. Sans clé, l’écran garde l’ancien message
+    «&nbsp;Tu pourras bientôt choisir ton pass…&nbsp;» (aucun prix). Android et web ne changent pas.
+  </div>
+</body>
+</html>

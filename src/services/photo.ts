@@ -53,6 +53,7 @@ export type Issue =
   | { type: 'illisible'; raison: string }
   | { type: 'credits' }
   | { type: 'quota' }
+  | { type: 'limite'; minutes: number | null }
   | { type: 'hors-ligne' }
   | { type: 'erreur' };
 
@@ -135,6 +136,15 @@ export async function envoyerPhoto(client: SupabaseClient, { image, matiere, sur
   const { data } = await client.auth.getSession();
   const jeton = data.session?.access_token;
   if (!jeton) return { type: 'erreur' };
+
+  // Simulation mode développeur pour tester l'écran 429 limite de cadence
+  try {
+    const { rateLimitSimule } = await import('./rateLimitDev');
+    if (rateLimitSimule().photo) {
+      return { type: 'limite', minutes: 2 };
+    }
+  } catch {}
+
   const url = `${process.env.EXPO_PUBLIC_SUPABASE_URL}/functions/v1/photo-correction`;
   let reponse: Awaited<ReturnType<typeof fetchFlux>>;
   try {
@@ -149,7 +159,13 @@ export async function envoyerPhoto(client: SupabaseClient, { image, matiere, sur
     return { type: 'hors-ligne' };
   }
   if (reponse.status === 402) return { type: 'credits' };
-  if (reponse.status === 429) return { type: 'quota' };
+  if (reponse.status === 429) {
+    // Deux 429 : la limite de cadence de la fonction (code "limite", issue #12)
+    // et le quota quotidien du pass (code "quota"). Le corps les distingue.
+    const corps = (await reponse.json().catch(() => ({}))) as { code?: string; reessayez_dans_minutes?: number };
+    if (corps.code === 'limite') return { type: 'limite', minutes: corps.reessayez_dans_minutes ?? null };
+    return { type: 'quota' };
+  }
   if (!reponse.ok) return { type: 'erreur' };
   const id = reponse.headers.get('X-Correction-Id');
   if (id) await AsyncStorage.setItem(CLE_EN_COURS, id).catch(() => {});
@@ -249,18 +265,47 @@ export function blocsDepuisTexte(texte: string): Bloc[] {
     .map((l) => ({ type: 'paragraphe', segments: segmentsDepuisTexte(l), retrait: 0 }));
 }
 
-/** Correction à partager par WhatsApp (M3-06), formules en texte lisible, avec la marque. */
-export function texteDePartage(c: CorrectionPhoto, libelles: { cherche: string; methode: string; resultat: string; retenir: string; signature: string }): string {
-  const f = texteAvecFormules;
-  const etapes = c.etapes.map((e, i) => `${i + 1}. ${f(e.titre)}${e.detail ? ` : ${f(e.detail)}` : ''}`).join('\n');
+/** Message de partage WhatsApp (M3-06, B4-Partage) : message convivial invitant à consulter la solution sur le web. */
+export function texteDePartage(
+  c: CorrectionPhoto,
+  libelles: { cherche: string; methode: string; resultat: string; retenir: string; signature: string },
+  id?: string,
+): string {
+  const lien = id ? `https://elearnprepa.com/c/${id}` : 'https://elearnprepa.com';
   return [
-    `*${libelles.cherche}* : ${f(c.enonce)}`,
-    c.methode ? `*${libelles.methode}* : ${f(c.methode)}` : '',
-    etapes,
-    `*${libelles.resultat}* : ${f(c.resultat)}`,
-    c.a_retenir ? `*${libelles.retenir}* : ${f(c.a_retenir)}` : '',
-    libelles.signature,
-  ]
-    .filter(Boolean)
-    .join('\n\n');
+    `👋 Salut ! Je te partage la correction de cet exercice (${c.matiere}) faite avec Elearn Prépa.`,
+    `Tu peux appuyer sur ce lien pour la consulter :`,
+    lien,
+  ].join('\n\n');
 }
+
+export type ResultatRecompensePartage = {
+  ok: boolean;
+  gain: number;
+  motif?: string;
+};
+
+/**
+ * Réclame les crédits de récompense accordés pour le partage d'une correction photo auprès de Supabase (B4-Partage).
+ * Anti-abus serveur : max 1 fois par jour via daily_reward_claims.
+ */
+export async function reclamerRecompensePartage(
+  client: SupabaseClient,
+  idCorrection?: string,
+): Promise<ResultatRecompensePartage> {
+  try {
+    const { data, error } = await client.rpc('grant_share_reward', {
+      p_type: 'photo',
+      p_ref: idCorrection ?? null,
+    });
+    if (error || !data) {
+      return { ok: false, gain: 0, motif: error?.message ?? 'erreur' };
+    }
+    const res = data as { ok?: boolean; succes?: boolean; gain?: number; motif?: string };
+    const ok = Boolean(res.ok || res.succes);
+    return { ok, gain: Number(res.gain ?? 0), motif: res.motif };
+  } catch (e) {
+    return { ok: false, gain: 0, motif: e instanceof Error ? e.message : 'erreur' };
+  }
+}
+

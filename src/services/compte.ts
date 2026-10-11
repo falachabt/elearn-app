@@ -4,7 +4,7 @@ import type { CleTexte } from '@/i18n';
 
 import { suivre } from './analytics';
 import { effacerDonneesLocales } from './donneesLocales';
-import { normaliserCode } from './parrainage';
+import { conserverCode, normaliserCode } from './parrainage';
 import {
   annulerOAuthRepriseInvite,
   effacerRepriseInvite,
@@ -15,12 +15,12 @@ import {
 } from './repriseInvite';
 import { assurerSessionInvite } from './session';
 
-type Client = Pick<SupabaseClient, 'auth' | 'functions'>;
+type Client = Pick<SupabaseClient, 'auth' | 'functions' | 'rpc'>;
 
 export type Methode = 'email' | 'google' | 'apple' | 'facebook';
 
 /** Fournisseurs passant par la page OAuth de Supabase dans le navigateur. */
-export type FournisseurOAuth = 'google' | 'facebook';
+export type FournisseurOAuth = 'google' | 'facebook' | 'apple';
 
 /** Erreur que l'écran sait traduire : `cle` est une clé de texte. */
 export class ErreurCompte extends Error {
@@ -93,19 +93,22 @@ type ResultatCreation = { etat: 'cree' | 'confirmation'; conversionInvite: boole
 export async function creerCompteEmail(client: Client, p: { email: string; motDePasse: string; codeParrainage?: string | null }): Promise<ResultatCreation> {
   const email = p.email.trim();
   const code = normaliserCode(p.codeParrainage);
-  const data = code ? { referral_code: code } : undefined;
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
 
   if (conversionInvite) {
-    const { data: maj, error } = await client.auth.updateUser({ email, password: p.motDePasse, ...(data && { data }) });
+    const { data: maj, error } = await client.auth.updateUser({ email, password: p.motDePasse });
     if (error) throw error;
+    await rattacherCode(client, p.codeParrainage);
     suivre('compte_cree', { methode: 'email', conversion_invite: true, avec_parrainage: !!code });
     return { etat: maj.user?.new_email ? 'confirmation' : 'cree', conversionInvite };
   }
 
-  const { data: nouveau, error } = await client.auth.signUp({ email, password: p.motDePasse, options: { data } });
+  const { data: nouveau, error } = await client.auth.signUp({ email, password: p.motDePasse });
   if (error) throw error;
+  if (nouveau.session) {
+    await rattacherCode(client, p.codeParrainage);
+  }
   suivre('compte_cree', { methode: 'email', conversion_invite: false, avec_parrainage: !!code });
   return { etat: nouveau.session ? 'cree' : 'confirmation', conversionInvite };
 }
@@ -117,6 +120,19 @@ export async function connecterEmail(client: Client, p: { email: string; motDePa
     if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
     await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
   }
+
+  // Simulation mode développeur pour tester l'écran 429 connexion
+  try {
+    const { rateLimitSimule } = await import('./rateLimitDev');
+    if (rateLimitSimule().connexion) {
+      const err = new Error('Too many requests');
+      (err as unknown as { status: number }).status = 429;
+      throw err;
+    }
+  } catch (e) {
+    if (e && (e as { status?: number }).status === 429) throw e;
+  }
+
   try {
     const { data, error } = await client.auth.signInWithPassword({ email: p.email.trim(), password: p.motDePasse });
     if (error) throw error;
@@ -146,6 +162,8 @@ export async function deconnecter(client: Client): Promise<void> {
 export type DepsOAuth = {
   ouvrirNavigateur: (url: string, redirection: string) => Promise<{ type: string; url?: string }>;
   urlRedirection: string;
+  /** Web : l'onglet part chez le fournisseur et revient avec le code ; la session est installée au retour (retourOAuthWeb). */
+  pleinePage?: boolean;
 };
 
 /**
@@ -162,6 +180,8 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
   }
   try {
+    // Page entière : le formulaire est perdu pendant l'aller-retour, le code de parrainage saisi est gardé sur l'appareil.
+    if (deps.pleinePage && codeParrainage) await conserverCode(codeParrainage, 'saisie').catch(() => null);
     await parcoursOAuth(client, fournisseur, deps, rattachement);
     let reprise = false;
     if (sessionInvite) {
@@ -182,7 +202,10 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
 
 /** Ouvre la page du fournisseur puis installe la session renvoyée sur `elearnprepa://auth/callback`. */
 async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, rattachement: boolean): Promise<void> {
-  const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: true };
+  // Web : on veut le flux PKCE (`?code=` échangé contre une vraie session). `skipBrowserRedirect: true` forcerait le
+  // flux implicite (`#access_token=`) dont le `refresh_token` est un leurre (`nyxhb7iejebe`) : la session serait
+  // installée sans jeton de rafraîchissement valable, et l'élève retomberait déconnecté sur l'accueil.
+  const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: !deps.pleinePage };
   const { data, error } = rattachement
     ? await client.auth.linkIdentity({ provider: fournisseur, options })
     : await client.auth.signInWithOAuth({ provider: fournisseur, options });
@@ -212,14 +235,17 @@ export type ModeSocial = { rattacher?: boolean; connexionDirecte?: boolean };
 
 export const connecterGoogle = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'google', deps, codeParrainage, mode);
 export const connecterFacebook = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'facebook', deps, codeParrainage, mode);
+/** Apple sur le web : OAuth Supabase (le natif `connecterApple` reste pour iOS). */
+export const connecterAppleWeb = (client: Client, deps: DepsOAuth, codeParrainage?: string | null, mode?: ModeSocial) => connecterOAuth(client, 'apple', deps, codeParrainage, mode);
 
 /** Après une connexion sociale : envoie le code de parrainage au compte (metadata `referral_code`). Ne bloque jamais la connexion. */
-async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
+export async function rattacherCode(client: Client, codeParrainage?: string | null): Promise<boolean> {
   const code = normaliserCode(codeParrainage);
   if (!code) return false;
   try {
-    const { error } = await client.auth.updateUser({ data: { referral_code: code } });
-    return !error;
+    const { data, error } = await client.rpc('apply_referral_on_signup', { p_code: code });
+    if (error) return false;
+    return data?.ok === true;
   } catch {
     return false;
   }

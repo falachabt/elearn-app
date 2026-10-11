@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
-import { estInvite } from '@/services/compte';
+import { deconnecter, estInvite } from '@/services/compte';
+import { modeDeveloppement } from '@/services/developpement';
 import { annulerSuppression, dateEffacement, demanderSuppression, lireDemandeSuppression } from '@/services/moi';
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
@@ -60,6 +61,21 @@ export function SuppressionCompte() {
     }
   };
 
+  
+  const modeDevOuPreview = modeDeveloppement();
+
+  const supprimerMaintenant = async () => {
+    setEnCours(true);
+    try {
+      await getSupabase().rpc('delete_my_account_immediately');
+      await deconnecter(getSupabase()).catch(() => {});
+      router.dismissAll();
+      router.replace('/bienvenue');
+    } catch (e) {
+      setEnCours(false);
+    }
+  };
+
   const annuler = async () => {
     setEnCours(true);
     setMessage(null);
@@ -75,9 +91,19 @@ export function SuppressionCompte() {
   };
 
   const pied = !connecte ? undefined : demande ? (
-    <Bouton libelle={t('suppression.annuler')} desactive={enCours} onPress={() => void annuler()} />
+    <View style={{ gap: 8 }}>
+      <Bouton libelle={t('suppression.annuler')} desactive={enCours} onPress={() => void annuler()} />
+      {modeDevOuPreview && (
+        <Bouton variante="danger" libelle="[DEV] Supprimer immédiatement" desactive={enCours} onPress={() => void supprimerMaintenant()} />
+      )}
+    </View>
   ) : (
-    <Bouton variante="danger" libelle={enCours ? t('suppression.enCours') : t('suppression.confirmer')} desactive={enCours} onPress={() => void supprimer()} />
+    <View style={{ gap: 8 }}>
+      <Bouton variante="danger" libelle={enCours ? t('suppression.enCours') : t('suppression.confirmer')} desactive={enCours} onPress={() => void supprimer()} />
+      {modeDevOuPreview && (
+        <Bouton variante="danger" libelle="[DEV] Supprimer immédiatement" desactive={enCours} onPress={() => void supprimerMaintenant()} />
+      )}
+    </View>
   );
 
   return (
@@ -107,3 +133,5 @@ export function SuppressionCompte() {
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
 });
+
+

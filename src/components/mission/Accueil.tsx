@@ -22,6 +22,7 @@ import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
+import { Cloche } from '../notifications/Cloche';
 import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
 
@@ -37,15 +38,24 @@ export function titreMission(m: Mission | null): string | null {
   return chapitres.length ? chapitres.slice(0, 2).join(', ') : null;
 }
 
-/** « Bonjour Aïcha » : le prénom vient du compte (Google, etc.) ; sans prénom, « Bonjour » seul. */
+/**
+ * « Bonjour » ou « Bonsoir » seul : sur la même ligne que la série, l'éclair et la cloche, « Bonsoir Aïcha » ne tient
+ * pas et se tronquait. Le prénom reste dans le libellé d'accessibilité, lu par le lecteur d'écran.
+ */
 function Salutation({ heure }: { heure: number }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
   const prenom = identiteDe(session?.user).prenom;
+  const soir = heure >= 17;
   return (
-    <Text accessibilityRole="header" numberOfLines={1} style={[typo.h1, styles.flex, { color: theme.texte.principal }]}>
-      {prenom ? t(heure >= 17 ? 'mission.bonsoirNom' : 'mission.bonjourNom', { prenom }) : t(heure >= 17 ? 'mission.bonsoir' : 'mission.bonjour')}
+    <Text
+      accessibilityRole="header"
+      accessibilityLabel={prenom ? t(soir ? 'mission.bonsoirNom' : 'mission.bonjourNom', { prenom }) : undefined}
+      numberOfLines={1}
+      style={[typo.h1, styles.flex, { color: theme.texte.principal }]}
+    >
+      {t(soir ? 'mission.bonsoir' : 'mission.bonjour')}
     </Text>
   );
 }
@@ -123,6 +133,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
             </View>
           ) : null}
           <CompteurCredits />
+          <Cloche />
         </View>
       </Apparition>
 

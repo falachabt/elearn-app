@@ -7,7 +7,9 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { lireDernierResultat, type ResultatMission } from '@/services/mission';
 import { lireCorrection, statuts, type Correction } from '@/services/correction';
+import { doitProposerNotifications } from '@/services/proposerNotifications';
 import { doitProposerRappel } from '@/services/rappels';
+import { useSession } from '@/session/SessionProvider';
 import { lireRythme } from '@/services/rythme';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -17,6 +19,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { FeuilleRappel } from '../FeuilleRappel';
+import { PropositionNotifications } from '../PropositionNotifications';
 import { FeuilleRythme } from '../FeuilleRythme';
 import { LigneLien } from '../LigneLien';
 import { Rebond } from '../Rebond';
@@ -42,6 +45,9 @@ export function FinMission() {
   const [r, setR] = useState<ResultatMission | null>(null);
   const [rappel, setRappel] = useState(false);
   const [rythme, setRythme] = useState(false);
+  const [notifsPretes, setNotifsPretes] = useState(false);
+  const { session } = useSession();
+  const invite = session?.user.is_anonymous ?? true;
   const [correction, setCorrection] = useState<Correction | null>(null);
   const [leconsOuvertes, setLeconsOuvertes] = useState(false);
 
@@ -70,6 +76,9 @@ export function FinMission() {
         if (actif) setRythme(true);
         return;
       }
+      // Une seule feuille de notifications : la proposition d'autoriser les notifications passe avant le rappel du soir.
+      if (actif) setNotifsPretes(true);
+      if (await doitProposerNotifications({ invite })) return;
       if (!(await doitProposerRappel()) || !actif) return;
       suivre('notification_prompt_shown', { source: 'fin_mission' });
       setRappel(true);
@@ -77,7 +86,7 @@ export function FinMission() {
     return () => {
       actif = false;
     };
-  }, []);
+  }, [invite]);
 
   const terminer = () => router.replace('/');
   if (!r) return <Ecran>{null}</Ecran>;
@@ -152,6 +161,7 @@ export function FinMission() {
     </Ecran>
     <FeuilleRythme ouverte={rythme} onFermer={() => setRythme(false)} source="fin_mission" intro />
     <FeuilleRappel ouverte={rappel} onFermer={() => setRappel(false)} />
+    <PropositionNotifications source="fin_mission" actif={notifsPretes} />
     </>
   );
 }

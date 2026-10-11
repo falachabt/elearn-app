@@ -8,6 +8,7 @@ import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
 import { enregistrerProfil } from '@/services/profil';
 import { noterFinChapitreVue } from '@/services/entrainement';
+import { lireCorrection } from '@/services/correction';
 import { lireLues, marquerLue } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -21,7 +22,7 @@ import { Reviser } from '../Reviser';
 const mockRpc = jest.fn();
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
-  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => false) },
+  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), dismissTo: jest.fn(), canGoBack: jest.fn(() => false) },
   useLocalSearchParams: () => mockParams,
   useFocusEffect: (f: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual('react');
@@ -33,7 +34,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   return { __esModule: true, default: passe, BottomSheetView: passe, BottomSheetModal: passe, BottomSheetModalProvider: passe, BottomSheetBackdrop: () => null };
 });
 let mockPret: string | null = 'u1';
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret }));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => mockPret, useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 
 const COURS = [
@@ -106,6 +107,12 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(screen.getByRole('button', { name: `Français, ${vu(0)}` })).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: `Maths, ${vu(33)}` }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } });
+  });
+
+  it('en-tête : le compteur de crédits est à côté du titre (squelette tant que le solde se charge)', async () => {
+    await monter(<Reviser />);
+    expect(await screen.findByText(x.reviser.titre)).toBeTruthy();
+    expect(screen.getByTestId('compteur-chargement', { includeHiddenElements: true })).toBeTruthy();
   });
 
   it('erreur réseau sans copie, puis nouvel essai', async () => {
@@ -270,7 +277,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     expect(await lireLues()).toEqual({ 11: 1 });
     // Pas de leçon suivante : la fin de chapitre (M5-11).
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: '' } }));
   });
 
   it('fin de chapitre déjà vue : simple retour', async () => {
@@ -282,6 +289,42 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
     await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/reviser'));
     expect(router.replace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/cours/fin' }));
+  });
+
+  async function jouerQuizLecon() {
+    for (const i of [1, 2, 3]) {
+      await waitFor(() => expect(screen.getByText(`Question ${i} ?`)).toBeTruthy());
+      await fireEvent.press(screen.getByText(i === 2 ? `Fausse ${i}` : `Bonne ${i}`));
+      await fireEvent.press(screen.getByRole('button', { name: x.miniTest.valider }));
+      await fireEvent.press(screen.getByRole('button', { name: i === 3 ? x.reviser.quizTerminer : x.miniTest.suivant }));
+    }
+  }
+
+  it('quiz de leçon réussi : la leçon est déjà cochée quand le score s’affiche (aucune course avec le retour au chapitre)', async () => {
+    mockParams = { cours: '1', lecon: '11', suivante: '12' };
+    await monter(<QuizLecon />);
+    await jouerQuizLecon();
+    await waitFor(() => expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy());
+    // Écrite AVANT l'écran de score, pas en arrière-plan : le chapitre, rouvert aussitôt, affiche la case cochée.
+    expect(await AsyncStorage.getItem('reviser.lues')).toBe(JSON.stringify({ 11: 1 }));
+  });
+
+  it('quiz de leçon avec stockage local en échec : le score s’affiche, l’élève n’est pas bloqué', async () => {
+    const setItem = jest.mocked(AsyncStorage.setItem);
+    const original = setItem.getMockImplementation();
+    setItem.mockRejectedValue(new Error('stockage plein'));
+    try {
+      mockParams = { cours: '1', lecon: '11', suivante: '12' };
+      await monter(<QuizLecon />);
+      await jouerQuizLecon();
+      await waitFor(() => expect(screen.getByText(x.reviser.quizScore.replace('{{score}}', '2').replace('{{total}}', '3'))).toBeTruthy());
+      // Le stockage a refusé d'écrire la correction : « Refaire mes erreurs » et « Revoir la correction » la lisent quand même.
+      const correction = await lireCorrection();
+      expect(correction?.questions).toHaveLength(3);
+      expect(correction?.reponses.filter((r, i) => r !== correction.questions[i].bonne)).toHaveLength(1);
+    } finally {
+      if (original) setItem.mockImplementation(original);
+    }
   });
 
   it('quiz de leçon raté : pas validée, réessayer', async () => {
@@ -296,8 +339,35 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText(x.reviser.quizNonValidee)).toBeTruthy());
     expect(await lireLues()).toEqual({});
     expect(screen.queryByRole('button', { name: x.reviser.quizSuivante })).toBeNull();
+    // La correction est enregistrée AVEC les 2 fautes : c'est elle que « Refaire mes erreurs » relit. Si elle était
+    // perdue, l'écran de reprise annoncerait « aucune erreur » alors que l'élève vient d'en faire.
+    const correction = await lireCorrection();
+    expect(correction?.source).toBe('lecon');
+    expect(correction?.contexte).toEqual({ type: 'lecon', lecon: 11, cours: 1 });
+    expect(correction?.questions).toHaveLength(3);
+    expect(correction?.reponses.filter((r, i) => r !== correction.questions[i].bonne)).toHaveLength(2);
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.quizReessayer }));
     await waitFor(() => expect(screen.getByText('Question 1 ?')).toBeTruthy());
+  });
+
+  it('fin de chapitre déjà vue, matière connue : retour à la liste des chapitres, pas à la dernière leçon', async () => {
+    await marquerLue(12, 1);
+    await noterFinChapitreVue(1);
+    mockParams = { id: '12', cours: '1', matiere: 'Maths' };
+    await monter(<LeconLecteur />);
+    await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/cours/matiere', params: { nom: 'Maths' } }));
+    expect(router.back).not.toHaveBeenCalled();
+  });
+
+  it('terminer le chapitre depuis le quiz de la dernière leçon : la fin de chapitre garde la matière', async () => {
+    mockParams = { cours: '1', lecon: '12', matiere: 'Maths' };
+    await monter(<QuizLecon />);
+    await jouerQuizLecon();
+    await waitFor(() => expect(screen.getByText(x.reviser.quizValidee)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: 'Maths' } }));
   });
 
   it('quiz de leçon sans questions', async () => {
@@ -313,7 +383,7 @@ describe.each(['fr', 'en'] as const)('D1, D2 · réviser (%s)', (langue) => {
     await monter(<LeconLecteur />);
     await waitFor(() => expect(screen.getByRole('button', { name: x.reviser.finChapitre })).toBeTruthy());
     await fireEvent.press(screen.getByRole('button', { name: x.reviser.finChapitre }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1' } }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/cours/fin', params: { cours: '1', matiere: '' } }));
   });
 
   it('fin de chapitre déjà vue : simple retour', async () => {
