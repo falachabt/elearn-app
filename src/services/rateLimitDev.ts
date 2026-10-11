@@ -16,10 +16,13 @@ let simule: Simulation429 = {
   connexion: false,
 };
 
+let snapshotCourant: Simulation429 = { ...simule };
+const SNAPSHOT_INACTIF: Simulation429 = { photo: false, paiement: false, connexion: false };
+
 const ecouteurs = new Set<() => void>();
 
 export function rateLimitSimule(): Simulation429 {
-  return modeDeveloppement() ? { ...simule } : { photo: false, paiement: false, connexion: false };
+  return modeDeveloppement() ? snapshotCourant : SNAPSHOT_INACTIF;
 }
 
 export function ecouterRateLimitSimule(ecouteur: () => void): () => void {
@@ -32,11 +35,13 @@ export function ecouterRateLimitSimule(ecouteur: () => void): () => void {
 export function basculerRateLimitSimule(cle: keyof Simulation429, valeur?: boolean): void {
   if (!modeDeveloppement()) return;
   simule[cle] = valeur !== undefined ? valeur : !simule[cle];
+  snapshotCourant = { ...simule };
   for (const ecouteur of ecouteurs) ecouteur();
 }
 
 export function reinitialiserRateLimitSimule(): void {
   if (!modeDeveloppement()) return;
   simule = { photo: false, paiement: false, connexion: false };
+  snapshotCourant = { ...simule };
   for (const ecouteur of ecouteurs) ecouteur();
 }
