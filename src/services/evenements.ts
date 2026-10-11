@@ -42,7 +42,8 @@ export type Evenements = {
   photo_failed: { type: string };
   photo_rated: { avis: 'clair' | 'pas_compris' };
   photo_reported: { motif: string };
-  photo_shared: Record<string, never>;
+  photo_shared: { id?: string };
+  share_reward_claimed: { gain: number; type: string };
   question_posted: { matiere: string; photos: number };
   connexion_echec: { cle: string; code: string | null; message: string };
   lesson_quiz_invited: { lecon: number };

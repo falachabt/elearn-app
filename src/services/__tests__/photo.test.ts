@@ -1,5 +1,5 @@
 import { texteAvecFormules } from '../blocs';
-import { blocsDepuisTexte, cadrePixels, etatsEtapes, issueDe, lireLignes, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
+import { blocsDepuisTexte, cadrePixels, etatsEtapes, issueDe, lireLignes, reclamerRecompensePartage, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
 
 const c: CorrectionPhoto = {
   matiere: 'maths',
@@ -51,12 +51,40 @@ describe('photo : texte', () => {
   it('un paragraphe par ligne', () => {
     expect(blocsDepuisTexte('a\n\nb')).toHaveLength(2);
   });
-  it('partage WhatsApp lisible, avec la marque', () => {
-    const m = texteDePartage(c, { cherche: 'Ce qu’on cherche', methode: 'Méthode', resultat: 'Résultat', retenir: 'À retenir', signature: 'Elearn Prépa' });
+  it('partage WhatsApp lisible, avec la marque et le lien', () => {
+    const m = texteDePartage(c, { cherche: 'Ce qu’on cherche', methode: 'Méthode', resultat: 'Résultat', retenir: 'À retenir', signature: 'Elearn Prépa' }, 'abc-123');
     expect(m).toContain('1. On retire 3 : 2x=8');
     expect(m).toContain('*Résultat* : x=4');
+    expect(m).toContain('https://elearnprepa.com/c/abc-123');
     expect(m).not.toContain('$');
     expect(m.endsWith('Elearn Prépa')).toBe(true);
+  });
+});
+
+describe('photo : récompense au partage', () => {
+  it('accorde les crédits si le serveur valide', async () => {
+    const client = {
+      rpc: jest.fn().mockResolvedValue({ data: { ok: true, gain: 5 }, error: null }),
+    };
+    const res = await reclamerRecompensePartage(client as never, 'corr-1');
+    expect(client.rpc).toHaveBeenCalledWith('grant_share_reward', { p_type: 'photo', p_ref: 'corr-1' });
+    expect(res).toEqual({ ok: true, gain: 5, motif: undefined });
+  });
+
+  it('gère le cas déjà réclamé aujourd’hui', async () => {
+    const client = {
+      rpc: jest.fn().mockResolvedValue({ data: { ok: false, motif: 'deja_reclame', gain: 0 }, error: null }),
+    };
+    const res = await reclamerRecompensePartage(client as never, 'corr-1');
+    expect(res).toEqual({ ok: false, gain: 0, motif: 'deja_reclame' });
+  });
+
+  it('gère une erreur serveur ou réseau', async () => {
+    const client = {
+      rpc: jest.fn().mockResolvedValue({ data: null, error: { message: 'Network error' } }),
+    };
+    const res = await reclamerRecompensePartage(client as never, 'corr-1');
+    expect(res).toEqual({ ok: false, gain: 0, motif: 'Network error' });
   });
 });
 

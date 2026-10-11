@@ -27,11 +27,17 @@ type Props = {
   illustration?: ReactNode;
   /** Titre et texte centrés (feuille d'explication). */
   centre?: boolean;
+  /** Feuille bloquante : ne se ferme que via les boutons d'action (pas de swipe bas ni de clic fond). */
+  bloquante?: boolean;
   children?: ReactNode;
 };
 
 function Fond(props: BottomSheetBackdropProps) {
   return <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} pressBehavior="close" opacity={0.45} />;
+}
+
+function FondBloquant(props: BottomSheetBackdropProps) {
+  return <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} pressBehavior="none" opacity={0.45} />;
 }
 
 /**
@@ -40,7 +46,7 @@ function Fond(props: BottomSheetBackdropProps) {
  * part du bas de l'écran du téléphone, au-dessus de la barre d'onglets, quel que soit l'endroit où on la déclare
  * (dans un défilement, sous un en-tête...).
  */
-export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, avant, illustration, centre, children }: Props) {
+export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, mention, avant, illustration, centre, bloquante = false, children }: Props) {
   const { theme } = useTheme();
   const { top, bottom } = useSafeAreaInsets();
   const feuille = useRef<BottomSheetModal>(null);
@@ -60,8 +66,10 @@ export function Feuille({ ouverte, onFermer, icone, titre, texte, actions, menti
       ref={feuille}
       enableDynamicSizing
       topInset={top}
-      enablePanDownToClose
-      backdropComponent={Fond}
+      enablePanDownToClose={!bloquante}
+      enableContentPanningGesture={!bloquante}
+      enableHandlePanningGesture={!bloquante}
+      backdropComponent={bloquante ? FondBloquant : Fond}
       onDismiss={() => {
         if (!retiree.current) onFermer();
       }}

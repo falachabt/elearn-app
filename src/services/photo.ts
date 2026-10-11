@@ -265,18 +265,56 @@ export function blocsDepuisTexte(texte: string): Bloc[] {
     .map((l) => ({ type: 'paragraphe', segments: segmentsDepuisTexte(l), retrait: 0 }));
 }
 
-/** Correction à partager par WhatsApp (M3-06), formules en texte lisible, avec la marque. */
-export function texteDePartage(c: CorrectionPhoto, libelles: { cherche: string; methode: string; resultat: string; retenir: string; signature: string }): string {
+/** Correction à partager par WhatsApp (M3-06, B4-Partage), formules en texte lisible, avec la marque et le lien web. */
+export function texteDePartage(
+  c: CorrectionPhoto,
+  libelles: { cherche: string; methode: string; resultat: string; retenir: string; signature: string },
+  id?: string,
+): string {
   const f = texteAvecFormules;
   const etapes = c.etapes.map((e, i) => `${i + 1}. ${f(e.titre)}${e.detail ? ` : ${f(e.detail)}` : ''}`).join('\n');
+  const lien = id ? `https://elearnprepa.com/c/${id}` : 'https://elearnprepa.com';
   return [
+    `🎓 *Elearn Prépa — Correction IA*`,
     `*${libelles.cherche}* : ${f(c.enonce)}`,
     c.methode ? `*${libelles.methode}* : ${f(c.methode)}` : '',
     etapes,
     `*${libelles.resultat}* : ${f(c.resultat)}`,
     c.a_retenir ? `*${libelles.retenir}* : ${f(c.a_retenir)}` : '',
+    `🔗 Retrouve l'explication complète sur :\n${lien}`,
     libelles.signature,
   ]
     .filter(Boolean)
     .join('\n\n');
 }
+
+export type ResultatRecompensePartage = {
+  ok: boolean;
+  gain: number;
+  motif?: string;
+};
+
+/**
+ * Réclame les crédits de récompense accordés pour le partage d'une correction photo auprès de Supabase (B4-Partage).
+ * Anti-abus serveur : max 1 fois par jour via daily_reward_claims.
+ */
+export async function reclamerRecompensePartage(
+  client: SupabaseClient,
+  idCorrection?: string,
+): Promise<ResultatRecompensePartage> {
+  try {
+    const { data, error } = await client.rpc('grant_share_reward', {
+      p_type: 'photo',
+      p_ref: idCorrection ?? null,
+    });
+    if (error || !data) {
+      return { ok: false, gain: 0, motif: error?.message ?? 'erreur' };
+    }
+    const res = data as { ok?: boolean; succes?: boolean; gain?: number; motif?: string };
+    const ok = Boolean(res.ok || res.succes);
+    return { ok, gain: Number(res.gain ?? 0), motif: res.motif };
+  } catch (e) {
+    return { ok: false, gain: 0, motif: e instanceof Error ? e.message : 'erreur' };
+  }
+}
+
