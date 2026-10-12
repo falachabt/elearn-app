@@ -1700,5 +1700,16 @@ export const en: Textes = {
     aidePaiement: 'A problem with this payment? Message support',
     messagePaiement: 'Hello, I have a problem with an Elearn Prepa payment. Reference: {{reference}}',
   },
+  appareilActif: {
+    deconnecteTitre: 'Session active elsewhere',
+    deconnecteMessage: 'Your account was signed in on another device. Only one device can be active at a time.',
+    deconnecteBouton: 'Sign in again',
+    limiteTitre: 'Device limit reached',
+    limiteMessage: 'You already changed devices 3 times this month. For security reasons, your account stays on your previous device.',
+    limiteConseil: 'The counter resets on the 1st of next month.',
+    contacterSupport: 'Contact support',
+    supportMessage: 'Hello, I reached the 3 device changes limit this month on my Elearn Prepa account and need help transferring my session.',
+    compris: 'Understood',
+  },
   actions: { commencer: 'Get started', plusTard: 'Later' },
 };
