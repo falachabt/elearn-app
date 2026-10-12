@@ -171,7 +171,7 @@ it('changer de statut depuis Moi : élève vers concours', async () => {
   mockParams = { modifier: '1' };
   await monter(<ChoixClasse />);
   await fireEvent.press(await screen.findByText(fr.bienvenue.concours));
-  expect(screen.getByText(fr.classe.titreConcours)).toBeTruthy();
+  expect(screen.getByText(fr.classe.tonConcours)).toBeTruthy();
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
   // Sans concours choisi, on passe d'abord par les deux étapes (filière, concours).
   await waitFor(() => expect(router.push).toHaveBeenCalledWith('/concours'));
