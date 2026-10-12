@@ -70,6 +70,8 @@ jest.mock('@/components/FeuilleCompte', () => ({
 }));
 jest.mock('@/services/assistantConfiguration', () => ({
   lireProgressionAssistant: jest.fn(),
+  estAssistantMasque: jest.fn(),
+  enregistrerCompletionAssistant: jest.fn(),
 }));
 const mockPush = jest.requireMock('expo-router').router.push as jest.Mock;
 const { mockDismiss, mockPresent, mockSnapPoints } = jest.requireMock('@gorhom/bottom-sheet') as { mockDismiss: jest.Mock; mockPresent: jest.Mock; mockSnapPoints: jest.Mock };
@@ -87,6 +89,12 @@ beforeEach(() => {
   jest.clearAllMocks();
   mockUseInvite.mockReturnValue(false);
   jest.mocked(lireProgressionAssistant).mockResolvedValue(progression);
+  const { estAssistantMasque, enregistrerCompletionAssistant } = jest.requireMock('@/services/assistantConfiguration') as {
+    estAssistantMasque: jest.Mock;
+    enregistrerCompletionAssistant: jest.Mock;
+  };
+  estAssistantMasque.mockResolvedValue(false);
+  enregistrerCompletionAssistant.mockResolvedValue(undefined);
 });
 
 it('ouvre une liste claire de neuf étapes, coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
@@ -161,3 +169,33 @@ it('ouvre le compte depuis la première étape fictive', async () => {
   expect(mockPush).toHaveBeenCalledWith('/moi');
   expect(mockDismiss).toHaveBeenCalled();
 });
+
+it('se masque lorsque l’assistant est masqué (dès le lendemain)', async () => {
+  const { estAssistantMasque } = jest.requireMock('@/services/assistantConfiguration') as { estAssistantMasque: jest.Mock };
+  estAssistantMasque.mockResolvedValue(true);
+
+  const vue = await monter();
+  await waitFor(() => {
+    expect(vue.queryByText(fr.configuration.bouton)).toBeNull();
+  });
+});
+
+it('enregistre la complétion lorsque les 9 étapes sont complétées', async () => {
+  const { enregistrerCompletionAssistant } = jest.requireMock('@/services/assistantConfiguration') as { enregistrerCompletionAssistant: jest.Mock };
+  jest.mocked(lireProgressionAssistant).mockResolvedValue({
+    mission: true,
+    lecon: true,
+    quiz: true,
+    exercice: true,
+    correction: true,
+    fil: true,
+    parametres: true,
+    horsLigne: true,
+  });
+
+  await monter();
+  await waitFor(() => {
+    expect(enregistrerCompletionAssistant).toHaveBeenCalledTimes(1);
+  });
+});
+

@@ -1,12 +1,14 @@
-import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { getLocales } from 'expo-localization';
+import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useCallback, useEffect, useState } from 'react';
+import { Camera, ChevronRight, GraduationCap, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { drapeauPays, listerPays, nomPays } from '@/services/pays';
 import { CLASSES, CONCOURS, PAYS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Pays } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
@@ -18,24 +20,39 @@ import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
 import { Logo } from './Logo';
+import { FeuillePays } from './pass/FeuillePays';
 
-/** Grande carte de choix (maquettes A1 et A3) : icône, titre, aide, flèche. */
-function ChoixCarte({ titre, aide, icone, plein, etiquette, onPress }: { titre: string; aide: string; icone: keyof typeof Ionicons.glyphMap; plein?: 'marque' | 'soleil'; etiquette?: string; onPress: () => void }) {
+type ChoixCarteProps = {
+  titre: string;
+  aide: string;
+  icone: LucideIcon;
+  couleurIcone?: string;
+  couleurFondIcone?: string;
+  plein?: 'marque' | 'soleil';
+  etiquette?: string;
+  onPress: () => void;
+};
+
+/** Grande carte de choix (maquettes A1 et A3) : icône Lucide, titre, aide, chevron. */
+function ChoixCarte({ titre, aide, icone: Icone, couleurIcone, couleurFondIcone, plein, etiquette, onPress }: ChoixCarteProps) {
   const { theme } = useTheme();
   const fond = plein === 'marque' ? theme.marque.principale : plein === 'soleil' ? theme.accent.soleil : theme.fond.surface;
-  const texte = plein ? theme.texte.surCouleur : theme.texte.principal;
+  const texte = theme.texte.principal;
+  const fondIcone = couleurFondIcone ?? (plein ? theme.fond.surface : theme.fond.creux);
+  const iconeCouleur = couleurIcone ?? theme.texte.principal;
+
   return (
     <Appui accessibilityRole="button" accessibilityLabel={titre} onPress={onPress} decalage={4} ombre={ombre.m} couleurOmbre={theme.ombre} rayon={rayon.l} retour>
       <View style={[styles.choix, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
-        <View style={[styles.icone, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <Ionicons name={icone} size={22} color={theme.texte.principal} />
+        <View style={[styles.icone, { backgroundColor: fondIcone, borderColor: theme.bord.fort }]}>
+          <Icone size={20} color={iconeCouleur} strokeWidth={2} />
         </View>
         <View style={styles.choixTexte}>
           {etiquette ? <Etiquette texte={etiquette} /> : null}
           <Text style={[typo.texteFort, { color: texte }]}>{titre}</Text>
-          <Text style={[typo.petit, { color: texte }]}>{aide}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text>
         </View>
-        <Ionicons name="chevron-forward" size={20} color={texte} />
+        <ChevronRight size={20} color={theme.texte.secondaire} strokeWidth={2} />
       </View>
     </Appui>
   );
@@ -57,17 +74,31 @@ export function Bienvenue() {
         <Carte style={{ backgroundColor: theme.accent.soleil }}>
           <View style={styles.groupe}>
             <Etiquette texte={t('bienvenue.exempleEtiquette')} />
-            <Text style={[typo.h2, { color: theme.texte.surCouleur }]}>{t('bienvenue.exempleTitre')}</Text>
-            <Text style={[typo.petit, { color: theme.texte.surCouleur }]}>{t('bienvenue.exempleTexte')}</Text>
+            <Text style={[typo.h2, { color: theme.texte.principal }]}>{t('bienvenue.exempleTitre')}</Text>
+            <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('bienvenue.exempleTexte')}</Text>
           </View>
         </Carte>
       </Apparition>
-      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('bienvenue.tuEs')}</Text>
+      <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('bienvenue.tuEs')}</Text>
       <Apparition delai={180}>
-        <ChoixCarte plein="marque" icone="school-outline" titre={t('bienvenue.eleve')} aide={t('bienvenue.eleveAide')} onPress={() => router.push({ pathname: '/classe', params: { type: 'eleve' } })} />
+        <ChoixCarte
+          icone={GraduationCap}
+          couleurIcone={theme.texte.principal}
+          couleurFondIcone={theme.accent.soleilTresDoux}
+          titre={t('bienvenue.eleve')}
+          aide={t('bienvenue.eleveAide')}
+          onPress={() => router.push({ pathname: '/classe', params: { type: 'eleve' } })}
+        />
       </Apparition>
       <Apparition delai={240}>
-        <ChoixCarte icone="trophy-outline" titre={t('bienvenue.concours')} aide={t('bienvenue.concoursAide')} onPress={() => router.push({ pathname: '/classe', params: { type: 'concours' } })} />
+        <ChoixCarte
+          icone={Trophy}
+          couleurIcone={theme.texte.principal}
+          couleurFondIcone={theme.accent.soleilTresDoux}
+          titre={t('bienvenue.concours')}
+          aide={t('bienvenue.concoursAide')}
+          onPress={() => router.push({ pathname: '/classe', params: { type: 'concours' } })}
+        />
       </Apparition>
       <Bouton variante="texte" libelle={t('bienvenue.dejaCompte')} onPress={() => router.push('/compte/connexion')} />
     </Ecran>
@@ -85,8 +116,9 @@ export function ChoixClasse() {
   const concours = type === 'concours';
   const [niveau, setNiveau] = useState<string>(concours ? CONCOURS[0] : '3e');
   const [monConcours, setMonConcours] = useState<ConcoursChoisi | null>(null);
-  const [pays, setPays] = useState<Pays>(() => paysParDefaut(safeRegion()));
-  const [changerPays, setChangerPays] = useState(false);
+  const [pays, setPays] = useState<string>(() => paysParDefaut(safeRegion()));
+  const [choixPays, setChoixPays] = useState(false);
+  const listePays = useMemo(() => listerPays(langue, {}), [langue]);
   // Le concours se choisit sur son propre écran (filière puis concours), qui l'enregistre dans le profil.
   useFocusEffect(
     useCallback(() => {
@@ -109,7 +141,7 @@ export function ChoixClasse() {
       if (!actif || !p) return;
       setType(p.type);
       if (p.niveau) setNiveau(p.niveau);
-      if (p.pays && (PAYS as readonly string[]).includes(p.pays)) setPays(p.pays as Pays);
+      if (p.pays) setPays(p.pays.toUpperCase());
     });
     return () => {
       actif = false;
@@ -160,6 +192,14 @@ export function ChoixClasse() {
           ))}
         </View>
       ) : null}
+      <View style={styles.enteteEtape}>
+        <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.etiquette, { color: theme.texte.principal }]}>1</Text>
+        </View>
+        <Text style={[typo.h3, { color: theme.texte.principal }]}>
+          {concours ? t('classe.tonConcours') : t('classe.taClasse')}
+        </Text>
+      </View>
       {concours ? (
         <Carte>
           <View style={styles.ligne}>
@@ -178,27 +218,48 @@ export function ChoixClasse() {
           ))}
         </View>
       )}
-      <Carte>
-        <View style={styles.groupe}>
-          <View style={styles.ligne}>
-            <View style={styles.choixTexte}>
-              <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('classe.pays')}</Text>
-              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{`${t(`pays.${pays}`)} · ${t('classe.programme')}`}</Text>
-            </View>
-            <Bouton petit variante="texte" libelle={t('classe.changer')} onPress={() => setChangerPays((v) => !v)} />
-          </View>
-          {changerPays ? (
-            <View style={styles.pastilles}>
-              {PAYS.map((p) => (
-                <Pastille key={p} libelle={t(`pays.${p}`)} actif={pays === p} onPress={() => setPays(p)} />
-              ))}
-            </View>
-          ) : null}
+      <FeuillePays
+        ouverte={choixPays}
+        pays={listePays}
+        choisi={pays}
+        onFermer={() => setChoixPays(false)}
+        onChoisir={(a2) => {
+          setPays(a2.toUpperCase());
+          setChoixPays(false);
+        }}
+      />
+      <View style={styles.enteteEtape}>
+        <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
+          <Text style={[typo.etiquette, { color: theme.texte.principal }]}>2</Text>
         </View>
-      </Carte>
+        <Text style={[typo.h3, { color: theme.texte.principal }]}>
+          {t('classe.tonPays')}
+        </Text>
+      </View>
+      <View style={styles.lignePaysEpuree}>
+        {drapeauPays(pays) ? (
+          <Image
+            source={{ uri: drapeauPays(pays)! }}
+            style={[styles.drapeauGrand, { borderColor: theme.bord.doux }]}
+            contentFit="cover"
+            accessibilityIgnoresInvertColors
+          />
+        ) : null}
+        <Text style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>
+          {nomPays(pays, langue)}
+        </Text>
+        <Bouton petit variante="secondaire" libelle={t('classe.changer')} onPress={() => setChoixPays(true)} />
+      </View>
       {!modifier ? (
-        <View style={styles.groupe}>
-          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('classe.langueQuestion')}</Text>
+        <>
+          <View style={styles.enteteEtape}>
+            <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>3</Text>
+            </View>
+            <Text style={[typo.h3, { color: theme.texte.principal }]}>
+              {t('classe.langueApp')}
+            </Text>
+          </View>
           <View accessibilityRole="radiogroup" accessibilityLabel={t('classe.langueQuestion')} style={styles.pastilles}>
             {([
               ['fr', 'Français'],
@@ -207,7 +268,7 @@ export function ChoixClasse() {
               <Pastille key={code} libelle={nom} actif={langue === code} onPress={() => void changerLangue(code)} />
             ))}
           </View>
-        </View>
+        </>
       ) : null}
     </Ecran>
   );
@@ -256,8 +317,26 @@ export function PremierResultat() {
     <Ecran pied={<Bouton variante="texte" libelle={t('premier.explorer')} onPress={aller('/')} />}>
       <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} />
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('premier.titre')}</Text>
-      <ChoixCarte plein="marque" icone="camera-outline" etiquette={t('premier.photoEtiquette')} titre={t('premier.photoTitre')} aide={t('premier.photoTexte')} onPress={aller('/photo')} />
-      <ChoixCarte plein="soleil" icone="flash-outline" etiquette={t('premier.testEtiquette')} titre={t('premier.testTitre')} aide={t('premier.testTexte')} onPress={() => router.push('/mini-test')} />
+      <ChoixCarte
+        plein="marque"
+        icone={Camera}
+        couleurIcone={theme.texte.principal}
+        couleurFondIcone={theme.fond.surface}
+        etiquette={t('premier.photoEtiquette')}
+        titre={t('premier.photoTitre')}
+        aide={t('premier.photoTexte')}
+        onPress={aller('/photo')}
+      />
+      <ChoixCarte
+        plein="soleil"
+        icone={Zap}
+        couleurIcone={theme.texte.principal}
+        couleurFondIcone={theme.fond.surface}
+        etiquette={t('premier.testEtiquette')}
+        titre={t('premier.testTitre')}
+        aide={t('premier.testTexte')}
+        onPress={() => router.push('/mini-test')}
+      />
     </Ecran>
   );
 }
@@ -269,7 +348,13 @@ const styles = StyleSheet.create({
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   choix: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   choixTexte: { flex: 1, gap: espace[2] },
-  icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.fin, alignItems: 'center', justifyContent: 'center' },
+  icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  drapeau: { width: 32, height: 22, borderRadius: 4, borderWidth: bord.fin },
+  drapeauGrand: { width: 36, height: 24, borderRadius: 4, borderWidth: bord.fin },
+  enteteEtape: { flexDirection: 'row', alignItems: 'center', gap: espace[3], marginTop: espace[2] },
+  numeroEtape: { width: 24, height: 24, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  flex: { flex: 1 },
+  lignePaysEpuree: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
   pastilles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   pastille: { minHeight: cibleMin - 6, paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
 });

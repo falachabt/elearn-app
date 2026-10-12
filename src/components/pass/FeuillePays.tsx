@@ -81,7 +81,7 @@ export function FeuillePays({ ouverte, pays, choisi, onChoisir, onFermer }: { ou
   return (
     <BottomSheetModal
       ref={feuille}
-      snapPoints={['80%']}
+      snapPoints={['92%']}
       enableDynamicSizing={false}
       topInset={top}
       enablePanDownToClose

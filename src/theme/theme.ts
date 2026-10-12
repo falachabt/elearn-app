@@ -6,7 +6,7 @@ export const palette = {
   emeraude: { 50: '#ECFDF5', 100: '#D1FAE5', 200: '#A7F3D0', 300: '#6EE7B7', 400: '#34D399', 500: '#10B981', 600: '#059669', 700: '#047857', 800: '#065F46', 900: '#064E3B', 950: '#0F3B2E' },
   encre: { 1000: '#0A0A0A', 900: '#141614', 850: '#1F221F', 800: '#2A2E2A', 700: '#3A3F3A', 600: '#3D3D3D', 500: '#5C5C5C', 400: '#9E998C', 300: '#BDB8AA', 200: '#D9D0BA' },
   papier: { 0: '#FFFFFF', 50: '#FFF7E3', 100: '#F6EEDA', 200: '#EDE6D3', 300: '#F6F1E4' },
-  soleil: { 100: '#FFF1B8', 400: '#FFD83D', 900: '#3D3514' },
+  soleil: { 50: '#FEF9C3', 100: '#FFF1B8', 400: '#FFD83D', 900: '#3D3514' },
   orange: { 100: '#FFE8CF', 400: '#FF9A3D', 500: '#FF7D00', 900: '#3D2810' },
   corail: { 100: '#FFE1DE', 300: '#FF9F97', 400: '#FF7A70', 500: '#FF5A4F', 700: '#C0271C', 900: '#401B18' },
   bleu: { 100: '#DCE9FF', 300: '#7FB0FF', 400: '#5B9BFF', 500: '#1A75FF', 700: '#1455C7', 900: '#14264A' },
@@ -24,7 +24,7 @@ const lightValeurs = {
   bord: { fort: p.encre[1000], doux: p.encre[200] },
   ombre: p.encre[1000],
   marque: { principale: p.emeraude[500], forte: p.emeraude[700], douce: p.emeraude[100] },
-  accent: { soleil: p.soleil[400], soleilDoux: p.soleil[100] },
+  accent: { soleil: p.soleil[400], soleilDoux: p.soleil[100], soleilTresDoux: p.soleil[50] },
   etat: {
     succes: p.emeraude[500], succesDoux: p.emeraude[100],
     alerte: p.orange[500], alerteDoux: p.orange[100],
@@ -45,7 +45,7 @@ const dark: Theme = {
   bord: { fort: p.papier[200], doux: p.encre[700] },
   ombre: p.encre[1000],
   marque: { principale: p.emeraude[400], forte: p.emeraude[300], douce: p.emeraude[950] },
-  accent: { soleil: p.soleil[400], soleilDoux: p.soleil[900] },
+  accent: { soleil: p.soleil[400], soleilDoux: p.soleil[900], soleilTresDoux: p.soleil[900] },
   etat: {
     succes: p.emeraude[400], succesDoux: p.emeraude[950],
     alerte: p.orange[400], alerteDoux: p.orange[900],

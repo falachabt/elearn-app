@@ -96,3 +96,50 @@ async function actionDistante(action: 'correction' | 'fil', userId: string | nul
     return false;
   }
 }
+
+const CLE_DATE_COMPLETION = 'accueil.assistantConfiguration.dateCompletion';
+
+export function dateAujourdhuiLocale(): string {
+  const d = new Date();
+  const annee = d.getFullYear();
+  const mois = String(d.getMonth() + 1).padStart(2, '0');
+  const jour = String(d.getDate()).padStart(2, '0');
+  return `${annee}-${mois}-${jour}`;
+}
+
+export async function enregistrerCompletionAssistant(): Promise<void> {
+  const aujourdhui = dateAujourdhuiLocale();
+  const existant = await AsyncStorage.getItem(CLE_DATE_COMPLETION);
+  if (!existant) {
+    await AsyncStorage.setItem(CLE_DATE_COMPLETION, aujourdhui);
+  }
+  try {
+    const client = getSupabase();
+    const { data: session } = await client.auth.getSession();
+    if (session.session?.user && !session.session.user.user_metadata?.assistant_termine_le) {
+      await client.auth.updateUser({ data: { assistant_termine_le: aujourdhui } });
+    }
+  } catch (erreur) {
+    console.warn('Impossible de synchroniser la complétion de l’assistant.', erreur);
+  }
+}
+
+export async function estAssistantMasque(): Promise<boolean> {
+  let dateCompletee = await AsyncStorage.getItem(CLE_DATE_COMPLETION);
+  if (!dateCompletee) {
+    try {
+      const client = getSupabase();
+      const { data: session } = await client.auth.getSession();
+      const distante = session.session?.user.user_metadata?.assistant_termine_le as string | undefined;
+      if (distante) {
+        dateCompletee = distante;
+        await AsyncStorage.setItem(CLE_DATE_COMPLETION, distante);
+      }
+    } catch {
+      // Réseau indisponible ou non connecté : repli sur le local
+    }
+  }
+  if (!dateCompletee) return false;
+  return dateAujourdhuiLocale() > dateCompletee;
+}
+

@@ -33,6 +33,8 @@ jest.mock('expo-router', () => ({
 jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
 jest.mock('@/services/assistantConfiguration', () => ({
   lireProgressionAssistant: jest.fn(async () => ({ mission: false, lecon: false, quiz: false, exercice: false, correction: false, fil: false })),
+  estAssistantMasque: jest.fn(async () => false),
+  enregistrerCompletionAssistant: jest.fn(async () => undefined),
 }));
 let mockPret: string | null = 'u1';
 let mockInvite = false;

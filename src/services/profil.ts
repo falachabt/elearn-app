@@ -41,9 +41,9 @@ export type Pays = (typeof PAYS)[number];
 export const INDICATIFS: Record<Pays, string> = { CM: '237', CI: '225', SN: '221', GA: '241', BF: '226', CD: '243', FR: '33' };
 
 /** Pays présélectionné d'après la région du téléphone (M1-02), Cameroun par défaut. */
-export function paysParDefaut(region?: string | null): Pays {
+export function paysParDefaut(region?: string | null): string {
   const r = region?.toUpperCase();
-  return (PAYS as readonly string[]).includes(r ?? '') ? (r as Pays) : 'CM';
+  return r && /^[A-Z]{2}$/.test(r) ? r : 'CM';
 }
 
 export const CLASSES = ['6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'] as const;

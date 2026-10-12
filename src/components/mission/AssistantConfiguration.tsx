@@ -8,7 +8,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withSequence, withSpring, w
 
 import type { CleTexte } from '@/i18n';
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireProgressionAssistant, type ProgressionAssistant } from '@/services/assistantConfiguration';
+import { enregistrerCompletionAssistant, estAssistantMasque, lireProgressionAssistant, type ProgressionAssistant } from '@/services/assistantConfiguration';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -44,6 +44,7 @@ export function AssistantConfiguration() {
   const compteFait = !invite;
   const [progression, setProgression] = useState<ProgressionAssistant | null>(null);
   const [chargee, setChargee] = useState(false);
+  const [masque, setMasque] = useState(false);
   const [ouverte, setOuverte] = useState(false);
   const feuille = useRef<BottomSheetModal>(null);
   const presente = useRef(false);
@@ -51,6 +52,9 @@ export function AssistantConfiguration() {
 
   const actualiser = useCallback(() => {
     let actif = true;
+    void estAssistantMasque().then((m) => {
+      if (actif && m) setMasque(true);
+    });
     void lireProgressionAssistant().then((p) => {
       if (!actif) return;
       setProgression(p);
@@ -79,6 +83,12 @@ export function AssistantConfiguration() {
     () => ETAPES.filter((etape) => (etape === 'compte' ? compteFait : !!progression?.[etape])).length,
     [compteFait, progression],
   );
+
+  useEffect(() => {
+    if (chargee && faites === ETAPES.length) {
+      void enregistrerCompletionAssistant();
+    }
+  }, [chargee, faites]);
   const fermerFeuille = () => {
     presente.current = false;
     feuille.current?.dismiss();
@@ -125,6 +135,8 @@ export function AssistantConfiguration() {
         break;
     }
   };
+
+  if (masque) return null;
 
   return (
     <>
