@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { BookOpen, Check, Cpu, GraduationCap, HeartPulse, Stethoscope, Trophy, Wrench, type LucideIcon } from 'lucide-react-native';
+import { BookOpen, Check, Cpu, GraduationCap, Stethoscope, Trophy, Wrench } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -12,7 +12,7 @@ import { enregistrerProfil, lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -21,15 +21,25 @@ import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
-function iconeFiliere(codeOuNom?: unknown): LucideIcon {
-  if (typeof codeOuNom !== 'string') return Trophy;
-  const c = codeOuNom.toLowerCase();
-  if (c.includes('ingenieur') || c.includes('construct') || c.includes('techn') || c.includes('poly')) return Wrench;
-  if (c.includes('sante') || c.includes('med') || c.includes('medkit')) return Stethoscope;
-  if (c.includes('ens') || c.includes('educ') || c.includes('pedag')) return GraduationCap;
-  if (c.includes('science') || c.includes('info')) return Cpu;
-  if (c.includes('droit') || c.includes('lettre')) return BookOpen;
-  return Trophy;
+function renduIcone(icone: unknown, couleur: string) {
+  if (icone === Trophy) return <Trophy size={20} color={couleur} strokeWidth={2} />;
+  const c = typeof icone === 'string' ? icone.toLowerCase() : '';
+  if (c.includes('ingenieur') || c.includes('construct') || c.includes('techn') || c.includes('poly')) {
+    return <Wrench size={20} color={couleur} strokeWidth={2} />;
+  }
+  if (c.includes('sante') || c.includes('med') || c.includes('medkit')) {
+    return <Stethoscope size={20} color={couleur} strokeWidth={2} />;
+  }
+  if (c.includes('ens') || c.includes('educ') || c.includes('pedag')) {
+    return <GraduationCap size={20} color={couleur} strokeWidth={2} />;
+  }
+  if (c.includes('science') || c.includes('info')) {
+    return <Cpu size={20} color={couleur} strokeWidth={2} />;
+  }
+  if (c.includes('droit') || c.includes('lettre')) {
+    return <BookOpen size={20} color={couleur} strokeWidth={2} />;
+  }
+  return <Trophy size={20} color={couleur} strokeWidth={2} />;
 }
 
 /** Ligne à choisir (filière ou concours) : badge icône, titre, détail, radio à droite. */
@@ -47,12 +57,6 @@ function Choix({
   onPress: () => void;
 }) {
   const { theme } = useTheme();
-  const Icone: LucideIcon =
-    typeof icone === 'function' || (typeof icone === 'object' && icone !== null && '$$typeof' in icone)
-      ? (icone as LucideIcon)
-      : typeof icone === 'string'
-      ? iconeFiliere(icone)
-      : Trophy;
 
   return (
     <Appui
@@ -77,7 +81,7 @@ function Choix({
         ]}
       >
         <View style={[styles.iconeCadre, { backgroundColor: actif ? theme.accent.soleilTresDoux : theme.fond.creux, borderColor: theme.bord.fort }]}>
-          <Icone size={20} color={theme.texte.principal} strokeWidth={2} />
+          {renduIcone(icone, theme.texte.principal)}
         </View>
         <View style={styles.flex}>
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>

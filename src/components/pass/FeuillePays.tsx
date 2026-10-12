@@ -7,7 +7,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import type { PaysPaiement } from '@/services/paiementPass';
-import { ALPHA3, INDICATIFS_MONDE } from '@/services/paysCodes';
+import { ALPHA3, INDICATIFS_MONDE, NOMS_PAYS_EN, NOMS_PAYS_FR, SYNONYMES_PAYS } from '@/services/paysCodes';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
@@ -18,7 +18,16 @@ function Fond(props: BottomSheetBackdropProps) {
 }
 
 /** Sans accents ni majuscules : « cote d'ivoire » trouve « Côte d’Ivoire ». */
-export const normaliser = (v: string) => v.normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase().trim();
+export const normaliser = (v: string) =>
+  v
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, ' ')
+    .toLowerCase()
+    .trim();
+
+/** Version condensée sans aucun espace ni séparateur : « cote divoire » ou « cotedivoire » trouve « Côte d’Ivoire ». */
+export const condenser = (v: string) => normaliser(v).replace(/[^a-z0-9]/g, '');
 
 /**
  * Pays qui correspondent à la saisie. On doit pouvoir y arriver par le nom (« Cameroun »), le code à deux lettres
@@ -30,6 +39,7 @@ export const normaliser = (v: string) => v.normalize('NFD').replace(/[̀-ͯ]/g, 
 export function filtrerPays(liste: PaysPaiement[], saisie: string): PaysPaiement[] {
   const q = normaliser(saisie);
   if (!q) return liste;
+  const qCondensed = condenser(saisie);
   const chiffres = q.replace(/\D/g, '');
 
   const rang = (p: PaysPaiement): number => {
@@ -37,12 +47,54 @@ export function filtrerPays(liste: PaysPaiement[], saisie: string): PaysPaiement
     const alpha3 = (ALPHA3[p.alpha2] ?? '').toLowerCase();
     const indicatif = (p.prefix || INDICATIFS_MONDE[p.alpha2] || '').replace(/\D/g, '');
     const nom = normaliser(p.name);
-    if (code === q || (!!alpha3 && alpha3 === q)) return 0;
+    const nomCondensed = condenser(p.name);
+    const nomFr = normaliser(NOMS_PAYS_FR[p.alpha2] ?? '');
+    const nomFrCondensed = condenser(NOMS_PAYS_FR[p.alpha2] ?? '');
+    const nomEn = normaliser(NOMS_PAYS_EN[p.alpha2] ?? '');
+    const nomEnCondensed = condenser(NOMS_PAYS_EN[p.alpha2] ?? '');
+    const synonymes = SYNONYMES_PAYS[p.alpha2] ?? [];
+
+    // 0. Code ISO exact (CI, CIV, etc.)
+    if (code === q || (!!alpha3 && alpha3 === q) || (!!qCondensed && (code === qCondensed || alpha3 === qCondensed))) return 0;
+
+    // 1. Indicatif téléphonique exact (225, +225, 237, +237, etc.)
     if (!!chiffres && !!indicatif && indicatif === chiffres) return 1;
-    if (nom.startsWith(q)) return 2;
-    if (!!chiffres && !!indicatif && indicatif.startsWith(chiffres)) return 3;
-    if (nom.includes(q)) return 4;
-    if (p.currencies.some((d) => d.toLowerCase().includes(q))) return 5;
+
+    // 2. Nom exact (français, anglais, affiché) ou synonyme exact
+    if (
+      (!!qCondensed && (nomCondensed === qCondensed || nomFrCondensed === qCondensed || nomEnCondensed === qCondensed)) ||
+      synonymes.some((s) => condenser(s) === qCondensed)
+    ) {
+      return 2;
+    }
+
+    // 3. Nom commence par la recherche
+    if (
+      nom.startsWith(q) ||
+      (!!nomFr && nomFr.startsWith(q)) ||
+      (!!nomEn && nomEn.startsWith(q)) ||
+      (!!qCondensed && (nomCondensed.startsWith(qCondensed) || nomFrCondensed.startsWith(qCondensed) || nomEnCondensed.startsWith(qCondensed)))
+    ) {
+      return 3;
+    }
+
+    // 4. Indicatif commence par la saisie (ex: "22" pour 225, 226...)
+    if (!!chiffres && !!indicatif && indicatif.startsWith(chiffres)) return 4;
+
+    // 5. Nom ou synonyme contient la recherche
+    if (
+      nom.includes(q) ||
+      (!!nomFr && nomFr.includes(q)) ||
+      (!!nomEn && nomEn.includes(q)) ||
+      (!!qCondensed && (nomCondensed.includes(qCondensed) || nomFrCondensed.includes(qCondensed) || nomEnCondensed.includes(qCondensed))) ||
+      synonymes.some((s) => condenser(s).includes(qCondensed))
+    ) {
+      return 5;
+    }
+
+    // 6. Monnaie
+    if (p.currencies.some((d) => d.toLowerCase().includes(q))) return 6;
+
     return -1;
   };
 

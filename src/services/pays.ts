@@ -1,7 +1,7 @@
 import { AsYouType, type CountryCode } from 'libphonenumber-js/min';
 
 import type { PaysPaiement } from './paiementPass';
-import { EXEMPLES, INDICATIFS_MONDE, TELEPHONE } from './paysCodes';
+import { EXEMPLES, INDICATIFS_MONDE, NOMS_PAYS_EN, NOMS_PAYS_FR, TELEPHONE } from './paysCodes';
 
 /**
  * Liste exhaustive des pays proposés au paiement.
@@ -42,12 +42,16 @@ const CONNUS = new Set(CODES_PAYS);
 export function nomPays(code: string | null | undefined, langue: string): string {
   const propre = (code ?? '').toUpperCase();
   if (!propre || !CONNUS.has(propre)) return propre;
-  if (!Affichage) return propre;
-  try {
-    return new Affichage([langue === 'en' ? 'en' : 'fr'], { type: 'region' }).of(propre) ?? propre;
-  } catch {
-    return propre;
+  if (Affichage) {
+    try {
+      const res = new Affichage([langue === 'en' ? 'en' : 'fr'], { type: 'region' }).of(propre);
+      if (res && res !== propre) return res;
+    } catch {
+      // repli ci-dessous
+    }
   }
+  const dict = langue === 'en' ? NOMS_PAYS_EN : NOMS_PAYS_FR;
+  return dict[propre] ?? NOMS_PAYS_FR[propre] ?? propre;
 }
 
 /** Drapeau du pays (CDN public, un fichier par code). `null` pour un code inconnu : la ligne reste sans image. */

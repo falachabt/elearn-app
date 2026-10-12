@@ -9,7 +9,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
-import { CLASSES, CONCOURS, PAYS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Pays } from '@/services/profil';
+import { CLASSES, CONCOURS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 

@@ -46,8 +46,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   const [toastActuel, setToastActuel] = useState<OptionsToast | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const animOpacite = useRef(new Animated.Value(0)).current;
-  const animGlisse = useRef(new Animated.Value(-20)).current;
+  const [animOpacite] = useState(() => new Animated.Value(0));
+  const [animGlisse] = useState(() => new Animated.Value(-20));
 
   const masquerToast = useCallback(() => {
     if (timerRef.current) {
