@@ -52,7 +52,7 @@ function ChoixCarte({ titre, aide, icone: Icone, couleurIcone, couleurFondIcone,
           <Text style={[typo.texteFort, { color: texte }]}>{titre}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text>
         </View>
-        <ChevronRight size={20} color={theme.texte.secondaire} strokeWidth={2} />
+        <ChevronRight size={20} color={theme.texte.secondaire} strokeWidth={2} style={styles.chevron} />
       </View>
     </Appui>
   );
@@ -345,9 +345,10 @@ export { terminer as terminerParcoursArrivee };
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
-  choix: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  choix: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   choixTexte: { flex: 1, gap: espace[2] },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  chevron: { alignSelf: 'center' },
   drapeau: { width: 32, height: 22, borderRadius: 4, borderWidth: bord.fin },
   drapeauGrand: { width: 36, height: 24, borderRadius: 4, borderWidth: bord.fin },
   enteteEtape: { flexDirection: 'row', alignItems: 'center', gap: espace[3], marginTop: espace[2] },
