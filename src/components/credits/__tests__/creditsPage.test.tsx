@@ -81,14 +81,14 @@ beforeEach(() => {
 
 describe('Page /credits (EcranCredits)', () => {
   it('affiche la synthèse du solde et la jauge', async () => {
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Crédits & Récompenses')).toBeTruthy());
     expect(screen.getByText('18 crédits')).toBeTruthy();
     expect(screen.getByText('18 / 25')).toBeTruthy();
   });
 
   it('affiche les cartes des 4 actions quotidiennes', async () => {
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Visiter le site web')).toBeTruthy());
     expect(screen.getByText('Facebook')).toBeTruthy();
     expect(screen.getByText('Instagram')).toBeTruthy();
@@ -96,14 +96,14 @@ describe('Page /credits (EcranCredits)', () => {
   });
 
   it('affiche l’historique des transactions', async () => {
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Recharge hebdomadaire du lundi')).toBeTruthy());
     expect(screen.getByText('+25')).toBeTruthy();
     expect(screen.getByText('-5')).toBeTruthy();
   });
 
   it('lit l’état des actions du jour pour le compte connecté (le serveur fait foi)', async () => {
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Visiter le site web')).toBeTruthy());
     expect(lireEtatActionsQuotidiennes).toHaveBeenCalledWith(expect.any(Date), expect.objectContaining({ utilisateurId: 'user-1' }));
   });
@@ -113,7 +113,7 @@ describe('Page /credits (EcranCredits)', () => {
       options.onDejaFait?.();
       return false;
     });
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Facebook')).toBeTruthy());
     const avant = (lireEtatActionsQuotidiennes as jest.Mock).mock.calls.length;
     fireEvent.press(screen.getByText('Facebook'));
@@ -123,7 +123,7 @@ describe('Page /credits (EcranCredits)', () => {
 
   it('une action déjà réclamée selon le serveur s’affiche « Fait » et n’offre plus de gain', async () => {
     (lireEtatActionsQuotidiennes as jest.Mock).mockResolvedValue({ site_web: false, facebook: true, instagram: false, parrainage: false });
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Fait')).toBeTruthy());
     expect(screen.getAllByText('Fait')).toHaveLength(1);
   });
@@ -131,14 +131,14 @@ describe('Page /credits (EcranCredits)', () => {
   it('l’état du téléphone s’affiche tout de suite, avant la réponse du serveur', async () => {
     (lireEtatLocal as jest.Mock).mockResolvedValueOnce({ site_web: false, facebook: true, instagram: false, parrainage: false });
     (lireEtatActionsQuotidiennes as jest.Mock).mockImplementation(() => new Promise(() => {}));
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Fait')).toBeTruthy());
     // Serveur en cours : les actions pas encore connues n'affichent pas « Gagner ».
     expect(screen.queryByText(/^Gagner \+\d/)).toBeNull();
   });
 
   it('clic sur parrainage redirige vers /parrainage', async () => {
-    renderComponent(<EcranCredits />);
+    await renderComponent(<EcranCredits />);
     await waitFor(() => expect(screen.getByText('Inviter des amis')).toBeTruthy());
     const parrainageBtn = screen.getByText('Inviter des amis');
     fireEvent.press(parrainageBtn);
