@@ -1696,6 +1696,17 @@ export const fr = {
     aidePaiement: 'Un souci avec ce paiement ? Écris au support',
     messagePaiement: 'Bonjour, j’ai un souci avec un paiement Elearn Prepa. Référence : {{reference}}',
   },
+  appareilActif: {
+    deconnecteTitre: 'Session ouverte ailleurs',
+    deconnecteMessage: 'Ton compte a été connecté sur un autre appareil. Un seul téléphone ou tablette peut être actif à la fois.',
+    deconnecteBouton: 'Se reconnecter',
+    limiteTitre: 'Limite d’appareils atteinte',
+    limiteMessage: 'Tu as déjà changé 3 fois d’appareil ce mois-ci. Pour des raisons de sécurité, ton compte reste sur ton appareil précédent.',
+    limiteConseil: 'Le compteur se réinitialise le 1er du mois prochain.',
+    contacterSupport: 'Contacter le support',
+    supportMessage: 'Bonjour, j’ai atteint la limite de 3 changements d’appareil ce mois-ci sur mon compte Elearn Prepa et j’ai besoin d’aide pour transférer ma session.',
+    compris: 'Compris',
+  },
   actions: { commencer: 'Commencer', plusTard: 'Plus tard' },
 } as const;
 

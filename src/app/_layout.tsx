@@ -13,8 +13,10 @@ import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
 import { ToastRechargeCredits } from '@/components/credits/ToastRechargeCredits';
 import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
+import { GardeAppareilActif } from '@/components/compte/GardeAppareilActif';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
+import { ToastProvider } from '@/components/Toast';
 import { useDemandeSupportAuto } from '@/components/support/useDemandeSupportAuto';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
@@ -149,24 +151,27 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={styles.racine}>
       <ThemeProvider>
-        <ErrorBoundary>
-          <SessionProvider>
-            <CreditsProvider>
-              <NotificationsProvider>
-                <VisiteProvider>
-                  <BottomSheetModalProvider>
-                    <BandeauApplication />
-                    <Navigation />
-                  </BottomSheetModalProvider>
-                  <BienvenueCredits />
-                  <ToastRechargeCredits />
-                  <BienvenuePass />
-                  <MiseAJour />
-                </VisiteProvider>
-              </NotificationsProvider>
-            </CreditsProvider>
-          </SessionProvider>
-        </ErrorBoundary>
+        <ToastProvider>
+          <ErrorBoundary>
+            <SessionProvider>
+              <CreditsProvider>
+                <NotificationsProvider>
+                  <VisiteProvider>
+                    <BottomSheetModalProvider>
+                      <BandeauApplication />
+                      <Navigation />
+                    </BottomSheetModalProvider>
+                    <BienvenueCredits />
+                    <ToastRechargeCredits />
+                    <BienvenuePass />
+                    <MiseAJour />
+                    <GardeAppareilActif />
+                  </VisiteProvider>
+                </NotificationsProvider>
+              </CreditsProvider>
+            </SessionProvider>
+          </ErrorBoundary>
+        </ToastProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
