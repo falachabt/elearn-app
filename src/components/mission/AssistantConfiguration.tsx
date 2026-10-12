@@ -127,28 +127,27 @@ export function AssistantConfiguration() {
   };
 
   return (
-    <View pointerEvents="box-none" style={StyleSheet.absoluteFill}>
-      <View pointerEvents="box-none" style={styles.position}>
-        <Animated.View style={reduit ? undefined : animation}>
-          <Appui
-            accessibilityRole="button"
-            accessibilityLabel={t('configuration.ouvrir', { faits: faites, total: ETAPES.length })}
-            accessibilityHint={t('configuration.ouvrirAide')}
-            onPress={() => setOuverte(true)}
-            ombre={4}
-            decalage={3}
-            rayon={rayon.l}
-            couleurOmbre={theme.ombre}
-          >
-            <View style={[styles.bouton, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{t('configuration.bouton')}</Text>
-              <View style={[styles.badge, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{`${faites}/${ETAPES.length}`}</Text>
-              </View>
+    <>
+      <Animated.View style={[styles.conteneur, reduit ? undefined : animation]}>
+        <Appui
+          accessibilityRole="button"
+          accessibilityLabel={t('configuration.ouvrir', { faits: faites, total: ETAPES.length })}
+          accessibilityHint={t('configuration.ouvrirAide')}
+          onPress={() => setOuverte(true)}
+          ombre={4}
+          decalage={3}
+          rayon={rayon.l}
+          couleurOmbre={theme.ombre}
+          style={styles.conteneur}
+        >
+          <View style={[styles.bouton, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.bouton, { color: theme.texte.surCouleur }]}>{t('configuration.bouton')}</Text>
+            <View style={[styles.badge, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{`${faites}/${ETAPES.length}`}</Text>
             </View>
-          </Appui>
-        </Animated.View>
-      </View>
+          </View>
+        </Appui>
+      </Animated.View>
 
       <BottomSheetModal
         ref={feuille}
@@ -228,13 +227,13 @@ export function AssistantConfiguration() {
           showsVerticalScrollIndicator
         />
       </BottomSheetModal>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  position: { position: 'absolute', alignItems: 'flex-end', right: espace[5], bottom: espace[5] },
-  bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
+  conteneur: { width: '100%' },
+  bouton: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
   badge: { minWidth: 32, height: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   feuille: { flex: 1, paddingHorizontal: espace[5], paddingBottom: espace[3], gap: espace[4] },
   entete: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingTop: espace[2], paddingBottom: espace[3] },

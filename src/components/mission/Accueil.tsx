@@ -224,6 +224,10 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Carte>
       </Apparition>
 
+      <Apparition delai={80}>
+        <AssistantConfiguration />
+      </Apparition>
+
       <Reprise />
 
       <Apparition delai={120}>
@@ -241,7 +245,6 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Appui>
       </Apparition>
     </Ecran>
-    <AssistantConfiguration />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
     </View>
   );
