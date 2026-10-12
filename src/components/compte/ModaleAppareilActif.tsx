@@ -2,7 +2,7 @@ import { Smartphone, AlertTriangle } from 'lucide-react-native';
 import { Linking, Modal, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Bouton } from '@/components/Banniere/../Bouton';
+import { Bouton } from '@/components/Bouton';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lienSupport } from '@/services/ancienCompte';
 import { useTheme } from '@/theme/ThemeProvider';
