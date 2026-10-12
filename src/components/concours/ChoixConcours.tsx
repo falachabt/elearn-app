@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import { BookOpen, Check, Cpu, GraduationCap, HeartPulse, Stethoscope, Trophy, Wrench, type LucideIcon } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -12,7 +12,7 @@ import { enregistrerProfil, lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -21,18 +21,79 @@ import { Champ } from '../Champ';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
-/** Ligne à choisir (filière ou concours) : icône, titre, détail, coche quand elle est choisie. */
-function Choix({ icone, titre, detail, actif, onPress }: { icone: string; titre: string; detail: string; actif: boolean; onPress: () => void }) {
+function iconeFiliere(codeOuNom?: unknown): LucideIcon {
+  if (typeof codeOuNom !== 'string') return Trophy;
+  const c = codeOuNom.toLowerCase();
+  if (c.includes('ingenieur') || c.includes('construct') || c.includes('techn') || c.includes('poly')) return Wrench;
+  if (c.includes('sante') || c.includes('med') || c.includes('medkit')) return Stethoscope;
+  if (c.includes('ens') || c.includes('educ') || c.includes('pedag')) return GraduationCap;
+  if (c.includes('science') || c.includes('info')) return Cpu;
+  if (c.includes('droit') || c.includes('lettre')) return BookOpen;
+  return Trophy;
+}
+
+/** Ligne à choisir (filière ou concours) : badge icône, titre, détail, radio à droite. */
+function Choix({
+  icone,
+  titre,
+  detail,
+  actif,
+  onPress,
+}: {
+  icone?: unknown;
+  titre: string;
+  detail: string;
+  actif: boolean;
+  onPress: () => void;
+}) {
   const { theme } = useTheme();
+  const Icone: LucideIcon =
+    typeof icone === 'function' || (typeof icone === 'object' && icone !== null && '$$typeof' in icone)
+      ? (icone as LucideIcon)
+      : typeof icone === 'string'
+      ? iconeFiliere(icone)
+      : Trophy;
+
   return (
-    <Appui accessibilityRole="radio" accessibilityState={{ checked: actif }} accessibilityLabel={`${titre}. ${detail}`} onPress={onPress} rayon={rayon.l} ombre={actif ? 0 : 3} decalage={2} couleurOmbre={theme.ombre}>
-      <View style={[styles.ligne, { backgroundColor: actif ? theme.marque.douce : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
-        <Ionicons name={icone as keyof typeof Ionicons.glyphMap} size={22} color={theme.texte.principal} />
+    <Appui
+      accessibilityRole="radio"
+      accessibilityState={{ checked: actif }}
+      accessibilityLabel={`${titre}. ${detail}`}
+      onPress={onPress}
+      rayon={rayon.l}
+      ombre={actif ? ombre.m : ombre.s}
+      decalage={actif ? 3 : 2}
+      couleurOmbre={theme.ombre}
+      retour
+    >
+      <View
+        style={[
+          styles.ligne,
+          {
+            backgroundColor: actif ? theme.fond.surface : theme.fond.surface,
+            borderColor: theme.bord.fort,
+            borderWidth: actif ? bord.epais : bord.normal,
+          },
+        ]}
+      >
+        <View style={[styles.iconeCadre, { backgroundColor: actif ? theme.accent.soleilTresDoux : theme.fond.creux, borderColor: theme.bord.fort }]}>
+          <Icone size={20} color={theme.texte.principal} strokeWidth={2} />
+        </View>
         <View style={styles.flex}>
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{detail}</Text>
         </View>
-        {actif ? <Ionicons name="checkmark-circle" size={22} color={theme.marque.principale} /> : null}
+        <View
+          style={[
+            styles.radio,
+            {
+              borderColor: theme.bord.fort,
+              backgroundColor: actif ? theme.marque.principale : theme.fond.surface,
+            },
+          ]}
+        >
+          {actif ? <Check size={14} color={theme.texte.surCouleur} strokeWidth={3} /> : null}
+        </View>
       </View>
     </Appui>
   );
@@ -141,7 +202,7 @@ export function ChoixConcours() {
             {visibles.map((c) => (
               <Choix
                 key={c.id}
-                icone="trophy-outline"
+                icone={Trophy}
                 titre={[c.sigle, c.ville].filter(Boolean).join(' · ')}
                 detail={[c.cycle ?? c.nom, c.sujets ? t(c.sujets > 1 ? 'annales.sujets' : 'annales.sujet', { n: c.sujets }) : null].filter(Boolean).join(' · ')}
                 actif={choisi?.id === c.id}
@@ -159,5 +220,7 @@ export function ChoixConcours() {
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   liste: { gap: espace[3] },
-  ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderRadius: rayon.l },
+  ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderRadius: rayon.l },
+  iconeCadre: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  radio: { width: 22, height: 22, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
 });

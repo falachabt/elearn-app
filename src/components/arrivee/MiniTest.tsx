@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { ChevronLeft, X } from 'lucide-react-native';
 import { router } from 'expo-router';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -50,7 +51,7 @@ export function BoutonFermer({ libelle, onPress, icone = 'close', petit, surCoul
   return (
     <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={rayon.m} hitSlop={petit ? 6 : undefined}>
       <View style={[styles.fermer, petit && styles.fermerPetit, { borderColor: surCouleur ? palette.encre[1000] : theme.bord.fort, backgroundColor: fond }]}>
-        <Ionicons name={icone} size={20} color={encre} />
+        {icone === 'chevron-back' ? <ChevronLeft size={20} color={encre} strokeWidth={2} /> : <X size={20} color={encre} strokeWidth={2} />}
       </View>
     </Appui>
   );
