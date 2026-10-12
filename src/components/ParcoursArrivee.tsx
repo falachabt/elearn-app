@@ -227,7 +227,7 @@ export function ChoixClasse() {
           setChoixPays(false);
         }}
       />
-      <View style={styles.enteteEtape}>
+      <View style={[styles.enteteEtape, styles.enteteEtapeSuivante]}>
         <View style={[styles.numeroEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Text style={[styles.numeroTexte, { color: theme.texte.principal }]}>2</Text>
         </View>
@@ -251,7 +251,7 @@ export function ChoixClasse() {
       </View>
       {!modifier ? (
         <>
-          <View style={styles.enteteEtape}>
+          <View style={[styles.enteteEtape, styles.enteteEtapeSuivante]}>
             <View style={[styles.numeroEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
               <Text style={[styles.numeroTexte, { color: theme.texte.principal }]}>3</Text>
             </View>
@@ -351,6 +351,7 @@ const styles = StyleSheet.create({
   drapeau: { width: 32, height: 22, borderRadius: 4, borderWidth: bord.fin },
   drapeauGrand: { width: 36, height: 24, borderRadius: 4, borderWidth: bord.fin },
   enteteEtape: { flexDirection: 'row', alignItems: 'center', gap: espace[3], marginTop: espace[2] },
+  enteteEtapeSuivante: { marginTop: espace[7] },
   numeroEtape: { width: 28, height: 28, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   numeroTexte: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 18 },
   flex: { flex: 1 },
