@@ -5,7 +5,7 @@ import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 
 import type { Bloc, Segment } from './blocs';
 import { identifiantAppareil, lireCouts, lireSolde } from './credits';
-import { latexVersTexte, texteAvecFormules } from './blocs';
+import { latexVersTexte } from './blocs';
 
 /**
  * Aide par photo (M3) : préparation de l'image recadrée, envoi à la fonction serveur photo-correction (flux NDJSON),

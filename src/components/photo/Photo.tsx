@@ -84,8 +84,16 @@ export function Photo() {
   }, []);
 
   useEffect(() => {
-    void rafraichirQuota();
-  }, [rafraichirQuota]);
+    let actif = true;
+    lireQuotaPhoto(getSupabase())
+      .then((q) => {
+        if (actif && q) setQuota(q);
+      })
+      .catch(() => {});
+    return () => {
+      actif = false;
+    };
+  }, []);
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', (etatApp) => {
