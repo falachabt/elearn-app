@@ -232,6 +232,22 @@ describe('Google', () => {
     expect(await lireRepriseInvite()).toBeNull();
   });
 
+  it('n’ouvre pas la reprise si l’invité a juste fait l’arrivée (profil) sans aucune activité', async () => {
+    await AsyncStorage.setItem('profil.arrivee', JSON.stringify({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true }));
+    const c = faux(invite, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: invite } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    c.functions.invoke.mockResolvedValueOnce({
+      data: { ok: true, has_progress: false, guest_refresh_token: 'refresh-rotated' },
+      error: null,
+    });
+    await connecterEmail(c, { email: 'eleve@test.com', motDePasse: 'secret123' });
+    expect(repriseInviteEnCours()).toBe(false);
+    expect(await lireRepriseInvite()).toBeNull();
+  });
+
   it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {
     const c = faux(membre);
     await expect(

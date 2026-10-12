@@ -309,3 +309,43 @@ export async function reclamerRecompensePartage(
   }
 }
 
+export type QuotaPhoto = {
+  used: number;
+  daily_limit: number;
+  remaining: number;
+  unlimited: boolean;
+};
+
+/**
+ * Lit le quota de questions IA restantes aujourd'hui (Issue #10, B3-Notif-UI).
+ * Tente d'abord `my_ai_quota_today()`, sinon repli sur `photo_quota()`.
+ */
+export async function lireQuotaPhoto(client: Pick<SupabaseClient, 'rpc'>): Promise<QuotaPhoto | null> {
+  try {
+    const { data, error } = await client.rpc('my_ai_quota_today');
+    if (!error && data) {
+      const row = (Array.isArray(data) ? data[0] : data) as { used?: number; daily_limit?: number; remaining?: number; unlimited?: boolean } | null;
+      if (row && typeof row.used === 'number' && typeof row.daily_limit === 'number') {
+        const remaining = typeof row.remaining === 'number' ? row.remaining : Math.max(0, row.daily_limit - row.used);
+        return { used: row.used, daily_limit: row.daily_limit, remaining, unlimited: !!row.unlimited };
+      }
+    }
+  } catch {
+    // repli
+  }
+
+  try {
+    const { data, error } = await client.rpc('photo_quota');
+    if (!error && data) {
+      const row = (Array.isArray(data) ? data[0] : data) as { used?: number; daily_limit?: number; unlimited?: boolean } | null;
+      if (row && typeof row.used === 'number' && typeof row.daily_limit === 'number') {
+        return { used: row.used, daily_limit: row.daily_limit, remaining: Math.max(0, row.daily_limit - row.used), unlimited: !!row.unlimited };
+      }
+    }
+  } catch {
+    // indisponible
+  }
+  return null;
+}
+
+

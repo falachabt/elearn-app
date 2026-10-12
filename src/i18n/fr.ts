@@ -237,6 +237,11 @@ export const fr = {
     limiteCadenceNote: '20 corrections par heure au maximum.',
     limiteCadenceBouton: 'J’ai compris',
     posterQuestion: 'Poser dans Questions',
+    quotaRestant: '{{n}} question IA restante aujourd’hui',
+    quotaRestants: '{{n}} questions IA restantes aujourd’hui',
+    quotaZero: '0 question IA restante aujourd’hui',
+    quotaBloqueExplication: 'Tu as utilisé toutes tes questions IA d’aujourd’hui. Elles reviennent cette nuit à minuit.',
+    quotaRechargeMinuit: 'Recharge cette nuit à minuit',
   },
   onglets: { accueil: 'Accueil', reviser: 'Réviser', photo: 'Photo', questions: 'Questions', moi: 'Moi' },
   ecrans: {

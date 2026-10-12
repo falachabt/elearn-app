@@ -71,15 +71,31 @@ export function cleErreur(erreur: unknown): CleTexte {
 export const estInvite = (user?: Pick<User, 'is_anonymous'> | null) => !!user?.is_anonymous;
 
 async function confirmerBesoinReprise(client: Client, inviteId: string, compteId: string): Promise<boolean> {
-  if (!(await terminerOAuthRepriseInvite(inviteId, compteId))) return false;
-  try {
-    const progressionLocale = await progressionInviteeLocalePresente();
-    if (progressionLocale || await verifierRepriseInvitee(client, false)) return true;
+  if (inviteId === compteId) {
     await effacerRepriseInvite();
     return false;
+  }
+  try {
+    const progressionLocale = await progressionInviteeLocalePresente();
+    let progressionServeur = false;
+    if (!progressionLocale) {
+      try {
+        progressionServeur = await verifierRepriseInvitee(client, false);
+      } catch (e) {
+        console.warn('Impossible de vérifier la progression invitée côté serveur.', e);
+        progressionServeur = false;
+      }
+    }
+    const aProgression = progressionLocale || progressionServeur;
+    if (!aProgression) {
+      await effacerRepriseInvite();
+      return false;
+    }
+    return await terminerOAuthRepriseInvite(inviteId, compteId);
   } catch (e) {
     console.warn('Impossible de vérifier la progression invitée avant son rattachement.', e);
-    return true;
+    await effacerRepriseInvite();
+    return false;
   }
 }
 

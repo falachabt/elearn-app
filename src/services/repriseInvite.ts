@@ -41,8 +41,7 @@ export function useRepriseInviteEnCours(): boolean {
 }
 
 export async function progressionInviteeLocalePresente(): Promise<boolean> {
-  const cles = new Set(await AsyncStorage.getAllKeys());
-  return [
+  const cles = [
     'miniTest.resultat',
     'mission.historique',
     'mission.dernier',
@@ -51,8 +50,36 @@ export async function progressionInviteeLocalePresente(): Promise<boolean> {
     'entrainement.scores',
     'entrainement.exercicesFaits',
     'entrainement.sessions',
-    'profil.arrivee',
-  ].some((cle) => cles.has(cle));
+  ];
+  try {
+    const paires = await AsyncStorage.multiGet(cles);
+    for (const [cle, val] of paires) {
+      if (!val) continue;
+      try {
+        const parsed = JSON.parse(val);
+        if (!parsed) continue;
+        if (Array.isArray(parsed)) {
+          if (parsed.length > 0) return true;
+        } else if (typeof parsed === 'object') {
+          if (cle === 'miniTest.resultat') {
+            if (typeof (parsed as { total?: number }).total === 'number' && (parsed as { total: number }).total > 0) return true;
+          } else if (cle === 'entrainement.sessions') {
+            const sessions = Object.values(parsed);
+            if (sessions.some((s) => Array.isArray(s) && s.length > 0)) return true;
+          } else {
+            if (Object.keys(parsed).length > 0) return true;
+          }
+        }
+      } catch {
+        if (val.trim().length > 0 && val !== '[]' && val !== '{}' && val !== 'null') {
+          return true;
+        }
+      }
+    }
+  } catch {
+    return false;
+  }
+  return false;
 }
 
 export async function reprendreApresRedemarrage(compteId: string): Promise<boolean> {
@@ -150,12 +177,12 @@ export async function verifierRepriseInvitee(
   client: Pick<SupabaseClient, 'functions'>,
   progressionLocale: boolean,
 ): Promise<boolean> {
-  const reprise = await lireRepriseInvite();
-  if (!reprise) throw new Error('La session invitée nécessaire à la reprise n’est plus disponible.');
+  const jeton = (await SecureStore.getItemAsync(CLE_JETON_INVITE)) ?? (await lireRepriseInvite())?.jetonRafraichissementInvite;
+  if (!jeton) throw new Error('La session invitée nécessaire à la reprise n’est plus disponible.');
   const { data, error } = await client.functions.invoke('transfer-guest-progress', {
     body: {
       action: 'verifier',
-      guest_refresh_token: reprise.jetonRafraichissementInvite,
+      guest_refresh_token: jeton,
       progression_locale: progressionLocale,
     },
   });

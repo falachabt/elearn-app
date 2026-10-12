@@ -1,5 +1,5 @@
 import { texteAvecFormules } from '../blocs';
-import { blocsDepuisTexte, cadrePixels, etatsEtapes, issueDe, lireLignes, reclamerRecompensePartage, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
+import { blocsDepuisTexte, cadrePixels, etatsEtapes, issueDe, lireLignes, lireQuotaPhoto, reclamerRecompensePartage, segmentsDepuisTexte, tailleReduite, texteDePartage, type CorrectionPhoto } from '../photo';
 
 const c: CorrectionPhoto = {
   matiere: 'maths',
@@ -106,5 +106,44 @@ describe('photo : étapes de l’analyse', () => {
 describe('photo : titre d’étape', () => {
   it('convertit les formules du titre comme celles du détail', () => {
     expect(texteAvecFormules('Équation 1 : $x^2 - 5x + 6 = 0$')).toBe('Équation 1 : x² - 5x + 6 = 0');
+  });
+});
+
+describe('photo : quota IA du jour (Issue #10)', () => {
+  it('lit le quota via my_ai_quota_today', async () => {
+    const client = {
+      rpc: jest.fn().mockImplementation((nom: string) => {
+        if (nom === 'my_ai_quota_today') {
+          return Promise.resolve({ data: [{ used: 2, daily_limit: 5, remaining: 3, unlimited: false }], error: null });
+        }
+        return Promise.resolve({ data: null, error: { message: 'not found' } });
+      }),
+    };
+    const res = await lireQuotaPhoto(client as never);
+    expect(res).toEqual({ used: 2, daily_limit: 5, remaining: 3, unlimited: false });
+  });
+
+  it('repli sur photo_quota si my_ai_quota_today n’est pas disponible', async () => {
+    const client = {
+      rpc: jest.fn().mockImplementation((nom: string) => {
+        if (nom === 'my_ai_quota_today') {
+          return Promise.resolve({ data: null, error: { message: 'function does not exist' } });
+        }
+        if (nom === 'photo_quota') {
+          return Promise.resolve({ data: [{ used: 1, daily_limit: 4, unlimited: false }], error: null });
+        }
+        return Promise.resolve({ data: null, error: { message: 'not found' } });
+      }),
+    };
+    const res = await lireQuotaPhoto(client as never);
+    expect(res).toEqual({ used: 1, daily_limit: 4, remaining: 3, unlimited: false });
+  });
+
+  it('renvoie null si tous les RPC échouent', async () => {
+    const client = {
+      rpc: jest.fn().mockResolvedValue({ data: null, error: { message: 'network error' } }),
+    };
+    const res = await lireQuotaPhoto(client as never);
+    expect(res).toBeNull();
   });
 });

@@ -69,13 +69,17 @@ it('efface un marqueur illisible au redémarrage plutôt que de bloquer les sync
   expect(await AsyncStorage.getItem('compte.repriseInvite')).toBeNull();
 });
 
-it('ignore les réglages système par défaut et détecte les vraies avancées d’apprentissage', async () => {
+it('ignore les réglages système et le profil d’arrivée, et détecte les vraies avancées d’apprentissage', async () => {
   await AsyncStorage.setItem('affichage.theme', 'sombre');
   await AsyncStorage.setItem('retours.preferences', '{}');
   await AsyncStorage.setItem('reglages.maj', '2026-10-04T00:00:00Z');
+  await AsyncStorage.setItem('profil.arrivee', JSON.stringify({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true }));
   expect(await progressionInviteeLocalePresente()).toBe(false);
 
   await AsyncStorage.setItem('mission.historique', '[]');
+  expect(await progressionInviteeLocalePresente()).toBe(false);
+
+  await AsyncStorage.setItem('mission.historique', JSON.stringify([{ mission: 1 }]));
   expect(await progressionInviteeLocalePresente()).toBe(true);
 });
 

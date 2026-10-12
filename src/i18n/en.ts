@@ -236,6 +236,11 @@ export const en: Textes = {
     limiteCadenceNote: 'Up to 20 corrections per hour.',
     limiteCadenceBouton: 'Got it',
     posterQuestion: 'Post in Questions',
+    quotaRestant: '{{n}} AI question remaining today',
+    quotaRestants: '{{n}} AI questions remaining today',
+    quotaZero: '0 AI questions remaining today',
+    quotaBloqueExplication: 'You have used all your AI questions for today. They will reset tonight at midnight.',
+    quotaRechargeMinuit: 'Resets tonight at midnight',
   },
   onglets: { accueil: 'Home', reviser: 'Study', photo: 'Photo', questions: 'Questions', moi: 'Me' },
   ecrans: {

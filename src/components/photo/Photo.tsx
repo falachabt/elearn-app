@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
-import { Flag, Share2 } from 'lucide-react-native';
+import { Flag, Share2, Sparkles } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import {
-  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, noterCorrection, preparerImage, reclamerRecompensePartage, retenirMatiere,
-  signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression,
+  MATIERES_PHOTO, MOTIFS_PHOTO, PROGRESSIONS, blocsDepuisTexte, envoyerPhoto, etatsEtapes, lireMatiere, lireQuotaPhoto, noterCorrection, preparerImage, reclamerRecompensePartage, retenirMatiere,
+  signalerCorrection, texteDePartage, type Cadre, type CorrectionPhoto, type MatierePhoto, type MotifPhoto, type Progression, type QuotaPhoto,
 } from '@/services/photo';
 import { suivre } from '@/services/analytics';
 import { texteAvecFormules } from '@/services/blocs';
@@ -72,6 +72,27 @@ export function Photo() {
   const [occupe, setOccupe] = useState(false);
   const [signaleErreur, setSignaleErreur] = useState(false);
   const [signale, setSignale] = useState<Set<string>>(new Set());
+  const [quota, setQuota] = useState<QuotaPhoto | null>(null);
+
+  const rafraichirQuota = useCallback(async () => {
+    try {
+      const q = await lireQuotaPhoto(getSupabase());
+      if (q) setQuota(q);
+    } catch {
+      // repli silencieux
+    }
+  }, []);
+
+  useEffect(() => {
+    void rafraichirQuota();
+  }, [rafraichirQuota]);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (etatApp) => {
+      if (etatApp === 'active') void rafraichirQuota();
+    });
+    return () => sub.remove();
+  }, [rafraichirQuota]);
 
   useEffect(() => {
     void lireMatiere().then(setMatiere);
@@ -148,6 +169,7 @@ export function Photo() {
         surEtape: (e) => setEtat((s) => (s.ecran === 'analyse' && !s.etapes.includes(e) ? { ecran: 'analyse', etapes: [...s.etapes, e] } : s)),
       });
       void rafraichir();
+      void rafraichirQuota();
       void rappel.then(annulerCorrectionPrete);
       // Application en arrière-plan quand la correction arrive : on prévient tout de suite plutôt qu'au délai prévu.
       if (issue.type === 'fin' && AppState.currentState !== 'active') void notifierCorrectionPrete({ titre: t('photo.notifTitre'), corps: t('photo.notifCorps'), canal: t('photo.notifCanal') });
@@ -297,7 +319,17 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.recadrer')}</Text>
           </>
         }
-        pied={<BoutonEnvoi libelle={t('photo.demanderIa')} cout={solde?.illimite ? undefined : couts.ai_question} desactive={occupe} onPress={() => void envoyer(photo, source)} />}
+        pied={
+          <View style={styles.piedRecadrage}>
+            <BoutonEnvoi
+              libelle={t('photo.demanderIa')}
+              cout={solde?.illimite ? undefined : couts.ai_question}
+              desactive={occupe || (quota !== null && quota.remaining === 0)}
+              onPress={() => void envoyer(photo, source)}
+            />
+            {quota !== null ? <CompteurQuotaIA quota={quota} /> : null}
+          </View>
+        }
       >
         <CadreRecadrage uri={photo.uri} largeur={photo.largeur} hauteur={photo.hauteur} onChange={setCadre} />
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('photo.matiereDevinee')}</Text>
@@ -373,15 +405,22 @@ export function Photo() {
           }
           pied={
             avis ? (
-              <View style={styles.piedAvecPartage}>
-                <View style={styles.flex}>
-                  <Bouton libelle={t('photo.nouvelle')} onPress={recommencer} />
-                </View>
-                <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={2} rayon={rayon.m}>
-                  <View style={[styles.boutonCarrePartage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                    <Share2 size={22} strokeWidth={2.25} color={theme.texte.principal} />
+              <View style={styles.piedCorrection}>
+                <View style={styles.piedAvecPartage}>
+                  <View style={styles.flex}>
+                    <Bouton
+                      libelle={t('photo.nouvelle')}
+                      desactive={quota !== null && quota.remaining === 0}
+                      onPress={recommencer}
+                    />
                   </View>
-                </Appui>
+                  <Appui accessibilityRole="button" accessibilityLabel={t('photo.partager')} onPress={() => void partager(c, id)} decalage={2} rayon={rayon.m}>
+                    <View style={[styles.boutonCarrePartage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                      <Share2 size={22} strokeWidth={2.25} color={theme.texte.principal} />
+                    </View>
+                  </Appui>
+                </View>
+                {quota !== null ? <CompteurQuotaIA quota={quota} discret /> : null}
               </View>
             ) : (
               <View style={styles.avis}>
@@ -557,6 +596,43 @@ function BoutonEnvoi({ libelle, cout, desactive, onPress }: { libelle: string; c
   );
 }
 
+/** Compteur discret du quota IA restant aujourd'hui (vert > 2 -> orange 1-2 -> rouge 0, Issue #10). */
+export function CompteurQuotaIA({ quota, discret }: { quota: QuotaPhoto; discret?: boolean }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+
+  const couleurPastille =
+    quota.remaining > 2
+      ? theme.etat.succes
+      : quota.remaining > 0
+      ? theme.etat.alerte
+      : theme.etat.erreur;
+
+  const texteCompteur =
+    quota.remaining === 0
+      ? t('photo.quotaZero')
+      : quota.remaining === 1
+      ? t('photo.quotaRestant', { n: '1' })
+      : t('photo.quotaRestants', { n: String(quota.remaining) });
+
+  return (
+    <View style={styles.quotaConteneur}>
+      <View style={styles.quotaLigne}>
+        <View style={[styles.quotaPastille, { backgroundColor: couleurPastille }]} />
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{texteCompteur}</Text>
+      </View>
+      {quota.remaining === 0 && !discret ? (
+        <View style={[styles.quotaBlocExplication, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]}>
+          <Sparkles size={16} color={theme.texte.secondaire} />
+          <Text style={[typo.etiquette, styles.flex, { color: theme.texte.secondaire }]}>
+            {t('photo.quotaBloqueExplication')}
+          </Text>
+        </View>
+      ) : null}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   centre: { textAlign: 'center' },
@@ -578,4 +654,19 @@ const styles = StyleSheet.create({
   piedAvecPartage: { flexDirection: 'row', gap: espace[3], alignItems: 'center' },
   boutonCarrePartage: { width: 48, height: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   separateur: { height: 1.5, marginVertical: espace[3] },
+  piedRecadrage: { gap: espace[3] },
+  piedCorrection: { gap: espace[3] },
+  quotaConteneur: { gap: espace[2], alignItems: 'center', width: '100%' },
+  quotaLigne: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  quotaPastille: { width: 8, height: 8, borderRadius: 4 },
+  quotaBlocExplication: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    borderWidth: bord.fin,
+    borderRadius: rayon.m,
+    paddingHorizontal: espace[3],
+    paddingVertical: espace[2],
+    width: '100%',
+  },
 });
