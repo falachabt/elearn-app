@@ -193,10 +193,10 @@ export function ChoixClasse() {
         </View>
       ) : null}
       <View style={styles.enteteEtape}>
-        <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.etiquette, { color: theme.texte.principal }]}>1</Text>
+        <View style={[styles.numeroEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Text style={[styles.numeroTexte, { color: theme.texte.principal }]}>1</Text>
         </View>
-        <Text style={[typo.h3, { color: theme.texte.principal }]}>
+        <Text style={[typo.h2, { color: theme.texte.principal }]}>
           {concours ? t('classe.tonConcours') : t('classe.taClasse')}
         </Text>
       </View>
@@ -229,10 +229,10 @@ export function ChoixClasse() {
         }}
       />
       <View style={styles.enteteEtape}>
-        <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
-          <Text style={[typo.etiquette, { color: theme.texte.principal }]}>2</Text>
+        <View style={[styles.numeroEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+          <Text style={[styles.numeroTexte, { color: theme.texte.principal }]}>2</Text>
         </View>
-        <Text style={[typo.h3, { color: theme.texte.principal }]}>
+        <Text style={[typo.h2, { color: theme.texte.principal }]}>
           {t('classe.tonPays')}
         </Text>
       </View>
@@ -253,10 +253,10 @@ export function ChoixClasse() {
       {!modifier ? (
         <>
           <View style={styles.enteteEtape}>
-            <View style={[styles.numeroEtape, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>3</Text>
+            <View style={[styles.numeroEtape, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[styles.numeroTexte, { color: theme.texte.principal }]}>3</Text>
             </View>
-            <Text style={[typo.h3, { color: theme.texte.principal }]}>
+            <Text style={[typo.h2, { color: theme.texte.principal }]}>
               {t('classe.langueApp')}
             </Text>
           </View>
@@ -352,7 +352,8 @@ const styles = StyleSheet.create({
   drapeau: { width: 32, height: 22, borderRadius: 4, borderWidth: bord.fin },
   drapeauGrand: { width: 36, height: 24, borderRadius: 4, borderWidth: bord.fin },
   enteteEtape: { flexDirection: 'row', alignItems: 'center', gap: espace[3], marginTop: espace[2] },
-  numeroEtape: { width: 24, height: 24, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  numeroEtape: { width: 28, height: 28, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  numeroTexte: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 18 },
   flex: { flex: 1 },
   lignePaysEpuree: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
   pastilles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
