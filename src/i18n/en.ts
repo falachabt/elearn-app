@@ -1753,5 +1753,10 @@ export const en: Textes = {
     palier8: 'Mentor',
     palier9: 'Master',
     palier10: 'Legend',
+    toastGain: '+{{gain}} XP',
+    toastMission: 'Daily mission completed!',
+    toastQuiz: 'Quiz completed!',
+    toastExercise: 'Exercise solved!',
+    toastNiveauSuperieur: 'Level {{niveau}} reached! Well done!',
   },
 };

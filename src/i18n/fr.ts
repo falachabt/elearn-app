@@ -1754,6 +1754,11 @@ export const fr = {
     palier8: 'Mentor',
     palier9: 'Maître',
     palier10: 'Légende',
+    toastGain: '+{{gain}} XP',
+    toastMission: 'Mission du jour accomplie !',
+    toastQuiz: 'Quiz validé !',
+    toastExercise: 'Exercice résolu !',
+    toastNiveauSuperieur: 'Niveau {{niveau}} atteint ! Bravo !',
   },
 } as const;
 
