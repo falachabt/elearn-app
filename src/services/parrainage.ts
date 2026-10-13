@@ -136,13 +136,41 @@ export async function partagerLienWhatsApp(code: string, prenom?: string): Promi
   const message = `${nom} t’invite sur Elearn Prepa ! Reçois tes crédits de bienvenue et -15% sur ton premier Pass avec le code : ${code}\n\nClique ici pour commencer : ${lien}`;
   
   try {
-    await Share.share({
+    const resultat = await Share.share({
       message,
       url: lien,
       title: 'Invitation Elearn Prepa',
     });
+    if (resultat.action === Share.sharedAction) suivre('referral_link_shared', { canal: 'autre' });
   } catch {
     // Annulé par l'utilisateur
+  }
+}
+
+export const CLE_JALONS_VUS = 'analytics.jalonsVus';
+
+/**
+ * Évènements des paliers de parrainage, vus depuis l'app : un palier débloqué ou une récompense versée n'est compté qu'une
+ * fois par jalon. Le versement lui-même est un évènement serveur (voir docs/analytics) ; ceci est sa trace côté élève.
+ */
+export async function suivreJalons(stats: Pick<StatsParrainage, 'comptesCrees' | 'jalons'>): Promise<void> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_JALONS_VUS);
+    const vus = new Set<string>(brut ? (JSON.parse(brut) as string[]) : []);
+    const avant = vus.size;
+    for (const j of stats.jalons) {
+      if (j.unlocked && !vus.has(`atteint:${j.id}`)) {
+        vus.add(`atteint:${j.id}`);
+        suivre('milestone_reached', { palier: j.referrals_needed, filleuls: stats.comptesCrees });
+      }
+      if (j.claimed && !vus.has(`verse:${j.id}`)) {
+        vus.add(`verse:${j.id}`);
+        suivre('reward_granted', { type: j.reward_type, valeur: j.reward_value });
+      }
+    }
+    if (vus.size !== avant) await AsyncStorage.setItem(CLE_JALONS_VUS, JSON.stringify([...vus]));
+  } catch {
+    // Au pire, un palier est compté une fois de plus.
   }
 }
 

@@ -429,6 +429,8 @@ export const fr = {
     missionValeur: '{{n}} questions',
     wifi: 'Télécharger en Wi-Fi seulement',
     wifiAide: 'Économise tes données mobiles',
+    mesures: 'Aider à améliorer l’application',
+    mesuresAide: 'Envoie des mesures d’usage (pages vues, boutons, erreurs). Jamais ton nom, ton e-mail, ton téléphone ni le contenu de tes questions.',
     documents: 'Mes documents',
     documentsAide: 'Sujets et corrigés gardés sur ce téléphone',
     horsLigne: 'Mode hors ligne',

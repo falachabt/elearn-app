@@ -54,6 +54,7 @@ export function Bouton({ libelle, onPress, variante = 'primaire', petit, desacti
       accessibilityState={{ disabled: !!desactive }}
       disabled={desactive}
       retour={retour}
+      suivi={libelle}
       onPress={onPress}
       onPressIn={onPressIn}
       decalage={plat ? 0 : DECALAGE}

@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import { Gift, Zap } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { suivre } from '@/services/analytics';
 import { estInvite } from '@/services/compte';
 import { useCredits } from '@/session/CreditsProvider';
 import { useSession } from '@/session/SessionProvider';
@@ -40,7 +41,7 @@ export function FeuilleEpuise({ ouverte, onFermer, recharge: rechargeSimple }: {
         ouverte={ouverte}
         onFermer={onFermer}
         titre={t('credits.epuiseInviteTitre')}
-        actions={[{ libelle: t('credits.creerCompte'), onPress: aller('/compte/creer'), variante: 'principal' }, ...choixCommuns(false)]}
+        actions={[{ libelle: t('credits.creerCompte'), onPress: () => { suivre('signup_from_credits', { source: 'epuise' }); aller('/compte/creer')(); }, variante: 'principal' }, ...choixCommuns(false)]}
       >
         <View style={[styles.cadeau, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
           <View style={[styles.icone, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>

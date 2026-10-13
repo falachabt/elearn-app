@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { suivre } from './analytics';
+import { definirProprietesUtilisateur, suivre } from './analytics';
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
@@ -83,6 +83,8 @@ export async function lireAcces(client: Client): Promise<Acces> {
   const { data, error } = await client.rpc('my_access');
   if (error) throw error;
   const l = (data as { product_code: CodeOffre; ends_at: string; source: string }[] | null)?.[0];
+  // Avec ou sans Pass : propriété de la personne dans l'analytics, sans appel de plus.
+  definirProprietesUtilisateur({ pass_actif: !!l, pass_offre: l?.product_code ?? null });
   return l ? { offre: l.product_code, fin: l.ends_at, source: l.source } : null;
 }
 

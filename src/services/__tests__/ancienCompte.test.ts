@@ -31,13 +31,15 @@ describe('retrouverAncienCompte', () => {
     const c = client({ data: { session } });
     await expect(retrouverAncienCompte(c as never, { telephone: '677 12 34 56', motDePasse: 'secret12' })).resolves.toBe(session);
     expect(c.auth.signInWithPassword).toHaveBeenCalledWith({ phone: '+237677123456', password: 'secret12' });
+    expect(suivre).toHaveBeenCalledWith('login_started', { methode: 'ancien_compte' });
     expect(suivre).toHaveBeenCalledWith('connexion_reussie', { methode: 'telephone' });
   });
 
   it('identifiants faux : message dédié qui oriente vers le support', async () => {
     const c = client({ error: { code: 'invalid_credentials', message: 'Invalid login credentials' } });
     await expect(retrouverAncienCompte(c as never, { telephone: '677123456', motDePasse: 'x' })).rejects.toMatchObject({ cle: 'ancien.erreurs.identifiants' });
-    expect(suivre).not.toHaveBeenCalled();
+    expect(suivre).toHaveBeenCalledWith('login_started', { methode: 'ancien_compte' });
+    expect(suivre).not.toHaveBeenCalledWith('connexion_reussie', expect.anything());
   });
 
   it('connexion par téléphone désactivée côté serveur : méthode indisponible', async () => {

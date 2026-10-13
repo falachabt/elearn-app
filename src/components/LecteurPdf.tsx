@@ -117,6 +117,7 @@ export function LecteurPdf() {
   };
 
   const choisirDuree = async (dureeS: number | undefined) => {
+    suivre('annale_timer_started', { mode: dureeS === undefined ? 'libre' : dureeOfficielle && dureeS === dureeOfficielle * 60 ? 'officiel' : 'perso', minutes: dureeS === undefined ? null : Math.round(dureeS / 60) });
     setDureeChoisieS(dureeS);
     chrono.demarrer();
     setMenuChronoOuvert(false);

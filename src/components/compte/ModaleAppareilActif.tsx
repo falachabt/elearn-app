@@ -3,6 +3,7 @@ import { Linking, Modal, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Bouton } from '@/components/Bouton';
+import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lienSupport } from '@/services/ancienCompte';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -34,6 +35,7 @@ export function ModaleAppareilActif({ visible, type, surFermer }: PropsModaleApp
 
   const contacterSupport = () => {
     const url = lienSupport(t('appareilActif.supportMessage'));
+    suivre('whatsapp_opened', { contexte: 'support' });
     Linking.openURL(url).catch(() => {});
   };
 

@@ -183,7 +183,9 @@ export function Photo() {
       if (issue.type === 'fin' && AppState.currentState !== 'active') void notifierCorrectionPrete({ titre: t('photo.notifTitre'), corps: t('photo.notifCorps'), canal: t('photo.notifCanal') });
       if (issue.type === 'fin') {
         declencher('arrive');
-        suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: Math.round((Date.now() - debut) / 1000), etapes: issue.correction.etapes.length });
+        const dureeS = Math.round((Date.now() - debut) / 1000);
+        suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: dureeS, etapes: issue.correction.etapes.length });
+        suivre('ai_answer_seen', { source: 'photo', duree_s: dureeS });
         await noterActionConfiguration('correction').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
         setEtat({ ecran: 'correction', id: issue.id, correction: issue.correction });
       } else if (issue.type === 'illisible') {
@@ -194,6 +196,7 @@ export function Photo() {
         setEpuise(true);
         setEtat({ ecran: 'recadrage', photo: derniereRecadrage.current!, source: image.source });
       } else if (issue.type === 'quota') {
+        suivre('quota_reached', { action: 'ai_question', limite: quota?.daily_limit ?? 0 });
         declencher('problem');
         setEtat({ ecran: 'limite' });
       } else if (issue.type === 'limite') {
@@ -257,6 +260,7 @@ export function Photo() {
 
   const partager = async (c: CorrectionPhoto, correctionId?: string) => {
     suivre('photo_shared', { id: correctionId });
+    suivre('correction_shared', { source: 'photo' });
     try {
       await Share.share({
         message: texteDePartage(
@@ -279,6 +283,7 @@ export function Photo() {
         void mefierNotificationReward('partage_photo', res.gain);
         setPartageMessage(t('photo.recompensePartageToast'));
         suivre('share_reward_claimed', { gain: res.gain, type: 'photo' });
+        suivre('reward_granted', { type: 'partage_photo', valeur: res.gain });
       } else if (!res.ok && res.motif === 'deja_reclame') {
         setPartageMessage(t('photo.recompensePartageDeja'));
       }

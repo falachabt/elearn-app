@@ -52,6 +52,9 @@ type NavigationSortie = {
  * « Fait » n'est jamais automatique : on le demande sur « Suivant » et en quittant (D11e, D11f).
  */
 export function ExerciceLibre() {
+  useEffect(() => {
+    suivre('exercise_opened', {});
+  }, []);
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;

@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 
+import { suivre } from '@/services/analytics';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, mouvement, rayon, typo } from '@/theme/theme';
 
@@ -34,7 +35,10 @@ export function Interrupteur({ libelle, aide, valeur, onChange, desactive }: Pro
       accessibilityHint={aide}
       accessibilityState={{ checked: valeur, disabled: desactive }}
       disabled={desactive}
-      onPress={() => onChange(!valeur)}
+      onPress={() => {
+        suivre('button_pressed', { bouton: `interrupteur:${libelle}`.slice(0, 60) });
+        onChange(!valeur);
+      }}
       style={[styles.ligne, desactive && styles.desactive]}
     >
       <View style={styles.texte}>

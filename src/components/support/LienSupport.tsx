@@ -1,5 +1,6 @@
 import { Linking } from 'react-native';
 
+import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
 import { lienSupport } from '@/services/ancienCompte';
 
@@ -18,6 +19,7 @@ export function LienSupport({ reference }: { reference?: string }) {
       variante="texte"
       libelle={t('support.aidePaiement')}
       onPress={() => {
+        suivre('whatsapp_opened', { contexte: 'support' });
         Linking.openURL(lienSupport(message)).catch(() => {});
       }}
     />

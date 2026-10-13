@@ -10,7 +10,7 @@ import { fr } from '../fr';
 import { changerLangue, detecterLangue, i18n, langueSupportee } from '../index';
 import { useTraduction } from '../useTraduction';
 
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), consentementActif: jest.fn(() => true), definirConsentement: jest.fn(() => Promise.resolve()), definirProprietesUtilisateur: jest.fn(), suivreException: jest.fn(), lireEcranCourant: jest.fn(() => null) }));
 
 /** Liste triée de tous les chemins de clés d'un arbre de textes. */
 function chemins(arbre: object, prefixe = ''): string[] {

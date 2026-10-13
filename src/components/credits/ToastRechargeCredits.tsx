@@ -5,6 +5,7 @@ import { Animated, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { lireRechargeRecente } from '@/services/credits';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
@@ -53,6 +54,7 @@ export function ToastRechargeCredits() {
       if (vue === r.id) return;
       if (actif) {
         setRecharge(r);
+        suivre('credits_refilled', { montant: r.montant });
         Animated.parallel([
           Animated.timing(animOpacite, { toValue: 1, duration: mouvement.fondu, useNativeDriver: true }),
           Animated.timing(animGlisse, { toValue: 0, duration: mouvement.fondu, useNativeDriver: true }),

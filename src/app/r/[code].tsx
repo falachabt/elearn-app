@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Ecran } from '@/components/Ecran';
 import { Feuille } from '@/components/Feuille';
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { conserverCode } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
 
@@ -28,6 +29,7 @@ export default function ParrainageDeepLink() {
         if (code) {
           const resCode = await conserverCode(String(code), 'lien');
           if (actif && resCode) {
+            suivre('shared_content_opened', { type: 'parrainage', nouvel_appareil: invite });
             setCodeValide(resCode);
             setEstInvite(invite);
             if (invite) {

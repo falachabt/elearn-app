@@ -110,3 +110,12 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 
 ## 19. App Store (iOS)
 - Plan et règles Apple : **docs/app-store.md**. Sur iOS, aucune mention d'Android ni de paiement externe (Mobile Money, pawaPay) ; partout où Google est proposé pour se connecter, Apple l'est aussi (règle 4.8). Achats iOS via RevenueCat.
+
+## 20. Analytics PostHog (13 octobre 2026)
+- Dictionnaire, propriétés, identité, vie privée et plan d'entrepôt : **docs/analytics/**. Tout évènement passe par `suivre()` (`src/services/analytics.ts`) et par le type `Evenements` (`src/services/evenements.ts`) ; ajouter l'évènement au type **et** à `docs/analytics/dictionnaire-evenements.md`.
+- **Jamais de donnée personnelle** dans un évènement ou une propriété : pas d'e-mail, de téléphone, de mot de passe, de jeton ni de contenu de question ou de réponse. `confidentialite.ts` retire et masque, mais ce n'est qu'un dernier filet.
+- Un bouton n'est suivi que par un nom stable (`suivi` sur `Appui`, libellé sur `Bouton`), jamais par un `accessibilityLabel` qui peut porter du contenu.
+- Les pages vues sont automatiques (`$screen`, nom de route sans paramètres) : ne pas ajouter d'évènement « écran ouvert ».
+- Hors ligne : le SDK range les évènements dans une file persistée (horodatage et identifiant d'origine) et la vide au retour du réseau ; ne pas réécrire une file maison. `src/services/__tests__/analytics.horsligne.test.ts` utilise le vrai SDK et doit rester vert.
+- Identité : `identifier()` à la connexion, alias de l'invité vers le compte quand l'identifiant change, `reinitialiserIdentite()` à la déconnexion (déjà branchés dans `SessionProvider`). Respect du réglage « Aider à améliorer l'application ».
+- Pas de capture de `console.error` par le SDK (il y écrit ses propres échecs d'envoi hors ligne). Les crashs natifs demandent `@posthog/react-native-plugin` : nouvel APK et §17.

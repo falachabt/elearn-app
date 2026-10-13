@@ -21,6 +21,9 @@ const retour = () => (router.canGoBack() ? router.back() : router.replace('/revi
 
 /** Quiz libre (M5-09) : même lecteur que la mission, résultats et correction communs (M5-10), sans toucher à la série. */
 export function QuizLibreEcran() {
+  useEffect(() => {
+    suivre('quiz_started', { type: 'libre' });
+  }, []);
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { id, cours, nom } = useLocalSearchParams<{ id: string; cours?: string; nom?: string }>();

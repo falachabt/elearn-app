@@ -428,6 +428,8 @@ export const en: Textes = {
     missionValeur: '{{n}} questions',
     wifi: 'Download on Wi-Fi only',
     wifiAide: 'Saves your mobile data',
+    mesures: 'Help improve the app',
+    mesuresAide: 'Sends usage measures (pages viewed, buttons, errors). Never your name, email, phone or the content of your questions.',
     documents: 'My documents',
     documentsAide: 'Papers and answers kept on this phone',
     horsLigne: 'Offline mode',

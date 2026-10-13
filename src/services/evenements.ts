@@ -74,6 +74,46 @@ export type Evenements = {
   support_confirmation_vue: { demandes: number };
   support_confirmation_reponse: { reponse: 'accepted' | 'refused' | 'expiree' | 'erreur' };
   erreur_ecran: { message: string; pile?: string; origine: 'boundary' | 'global'; fatale?: boolean };
+
+  // Cycle de vie, navigation, réseau et consentement. `ecran` et `hors_ligne` sont ajoutés à tous les évènements.
+  app_first_open: { pays: string | null; langue: string; plateforme: string };
+  button_pressed: { bouton: string };
+  connectivity_lost: Record<string, never>;
+  connectivity_restored: { duree_s: number };
+  analytics_consent_changed: { actif: boolean };
+  pwa_install_prompt: { choix: 'propose' | 'accepte' | 'refuse' };
+  pwa_installed: Record<string, never>;
+  login_started: { methode: 'email' | 'google' | 'apple' | 'facebook' | 'ancien_compte' };
+
+  // Crédits et récompenses.
+  welcome_credits_seen: { montant: number };
+  credits_refilled: { montant: number };
+  credits_gained: { source: string; montant: number };
+  signup_from_credits: { source: 'epuise' | 'bienvenue' | 'compteur' };
+  quota_reached: { action: string; limite: number };
+  reward_granted: { type: string; valeur: number };
+
+  // Parrainage et partage.
+  referral_page_opened: Record<string, never>;
+  referral_link_shared: { canal: 'whatsapp' | 'copie' | 'autre' };
+  referral_signup: Record<string, never>;
+  milestone_reached: { palier: number; filleuls: number };
+  referral_discount_applied: { code: string; pct: number };
+  correction_shared: { source: 'photo' | 'quiz' };
+  shared_content_opened: { type: 'correction' | 'exercice' | 'parrainage'; nouvel_appareil: boolean };
+
+  // Apprentissage : les ouvertures de cours, leçons et annales sont des pages vues (`$screen`).
+  quiz_started: { type: 'lecon' | 'libre' | 'mission' | 'erreurs' };
+  exercise_opened: Record<string, never>;
+  annale_timer_started: { mode: 'officiel' | 'perso' | 'libre'; minutes: number | null };
+  ai_answer_seen: { source: 'photo' | 'question'; duree_s: number };
+
+  // Support et notifications.
+  whatsapp_opened: { contexte: 'support' | 'parent' | 'parrainage' | 'aide' | 'autre' };
+  notification_received: { type: string; premier_plan: boolean };
+
+  // Réservé : posé quand la fonctionnalité existe (écoles relais, lot 2).
+  school_class_created: { class_id: string; concours: string };
 };
 
 export type NomEvenement = keyof Evenements;

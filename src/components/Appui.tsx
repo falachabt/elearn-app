@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, View, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
+import { suivre } from '@/services/analytics';
+
 import { useFeedback } from './useFeedback';
 
 type Props = Omit<PressableProps, 'style' | 'children'> & {
@@ -14,12 +16,14 @@ type Props = Omit<PressableProps, 'style' | 'children'> & {
   rayon?: number;
   /** Léger retour (vibration de sélection et tap) à l'appui. Désactivé par défaut. */
   retour?: boolean;
+  /** Nom stable du bouton pour l'analytics (`button_pressed`). Jamais de contenu saisi ni de texte de question. */
+  suivi?: string;
 };
 
 const RESSORT = { damping: 14, stiffness: 600, mass: 0.6 } as const;
 
 /** Wrapper pressable néo-brutal : le contenu s'enfonce de `decalage` px, retour sec en ressort. Sans animation si « Réduire les animations ». */
-export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, retour, disabled, onPressIn, onPressOut, ...reste }: Props) {
+export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, rayon = 0, retour, suivi, disabled, onPress, onPressIn, onPressOut, ...reste }: Props) {
   const { reduit, declencher } = useFeedback();
   const d = Math.max(0, decalage);
   const enfonce = useSharedValue(0);
@@ -32,6 +36,10 @@ export function Appui({ children, style, decalage = 3, ombre = 0, couleurOmbre, 
     <Pressable
       {...reste}
       disabled={disabled}
+      onPress={(e) => {
+        if (suivi) suivre('button_pressed', { bouton: suivi.slice(0, 60) });
+        onPress?.(e);
+      }}
       onPressIn={(e) => {
         vers(1);
         if (retour) declencher('select');

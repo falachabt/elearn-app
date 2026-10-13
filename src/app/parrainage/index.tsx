@@ -11,9 +11,11 @@ import { Ecran } from '@/components/Ecran';
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
 import { Groupe, LigneGroupe, TitreSection } from '@/components/parametres/Groupe';
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import {
   chargerStatsParrainage,
   partagerLienWhatsApp,
+  suivreJalons,
   type StatsParrainage,
 } from '@/services/parrainage';
 import { getSupabase } from '@/services/supabase';
@@ -31,11 +33,13 @@ export default function EcranParrainage() {
   const [copie, setCopie] = useState(false);
 
   useEffect(() => {
+    suivre('referral_page_opened', {});
     let actif = true;
     void (async () => {
       try {
         const stats = await chargerStatsParrainage(getSupabase());
         if (actif) setEtat({ statut: 'pret', stats });
+        void suivreJalons(stats);
       } catch {
         if (actif) setEtat({ statut: 'erreur' });
       }
@@ -47,6 +51,7 @@ export default function EcranParrainage() {
 
   const copierCode = async (code: string) => {
     await Clipboard.setStringAsync(code);
+    suivre('referral_link_shared', { canal: 'copie' });
     setCopie(true);
     setTimeout(() => setCopie(false), 2500);
   };

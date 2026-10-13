@@ -37,6 +37,9 @@ type Etat =
  * leçon (elle compte dans la progression) ; sinon, relire ou réessayer. Une leçon sans questions est validée d'office.
  */
 export function QuizLecon() {
+  useEffect(() => {
+    suivre('quiz_started', { type: 'lecon' });
+  }, []);
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { cours, lecon, suivante, matiere } = useLocalSearchParams<{ cours: string; lecon: string; suivante?: string; matiere?: string }>();

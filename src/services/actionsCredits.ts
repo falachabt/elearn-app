@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import * as Linking from 'expo-linking';
 import { router } from 'expo-router';
 
+import { suivre } from './analytics';
 import type { Solde } from './credits';
 import { mefierNotificationReward, planifierNotificationRappelHebdo } from './rappels';
 import { getSupabase } from './supabase';
@@ -138,7 +139,9 @@ export async function reclamerActionServeur(client: Client, actionCode: string):
   try {
     const { data, error } = await client.rpc('claim_daily_action', { p_action_code: actionCode });
     if (error) return 'erreur';
-    return Number(data) > 0 ? 'credite' : 'deja';
+    const gain = Number(data);
+    if (gain > 0) suivre('credits_gained', { source: actionCode, montant: gain });
+    return gain > 0 ? 'credite' : 'deja';
   } catch {
     return 'erreur';
   }

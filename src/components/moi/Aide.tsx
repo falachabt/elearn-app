@@ -3,6 +3,7 @@ import { CircleHelp, Mail, MessageCircle } from 'lucide-react-native';
 import { useState } from 'react';
 import { Linking, Text } from 'react-native';
 
+import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
 import { paiementPossible } from '@/services/plateforme';
 import { lienSupport } from '@/services/ancienCompte';
@@ -25,6 +26,7 @@ export function Aide() {
   const [erreur, setErreur] = useState(false);
   const ouvrir = (url: string) => {
     setErreur(false);
+    if (url.includes('wa.me')) suivre('whatsapp_opened', { contexte: 'aide' });
     Linking.openURL(url).catch(() => setErreur(true));
   };
   const v = lireVersion();

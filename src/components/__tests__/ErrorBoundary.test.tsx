@@ -5,8 +5,11 @@ import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { ErrorBoundary } from '../ErrorBoundary';
 
-const mockSuivre = jest.fn();
-jest.mock('@/services/analytics', () => ({ suivre: (...a: unknown[]) => mockSuivre(...a) }));
+const mockException = jest.fn();
+jest.mock('@/services/analytics', () => ({
+  suivreException: (...a: unknown[]) => mockException(...a),
+  lireEcranCourant: () => '/moi',
+}));
 
 function Casse(): never {
   throw new Error('boum');
@@ -24,7 +27,7 @@ describe('ErrorBoundary', () => {
     );
     expect(screen.getByText('Un problème est survenu')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Réessayer' })).toBeTruthy();
-    expect(mockSuivre).toHaveBeenCalledWith('erreur_ecran', expect.objectContaining({ message: 'boum', origine: 'boundary' }));
+    expect(mockException).toHaveBeenCalledWith(expect.objectContaining({ message: 'boum' }), expect.objectContaining({ origine: 'boundary', ecran: '/moi' }));
     expect(consoleErr).toHaveBeenCalled();
     consoleErr.mockRestore();
   });

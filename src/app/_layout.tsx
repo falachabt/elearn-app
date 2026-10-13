@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
-import { Stack, usePathname, useRouter } from 'expo-router';
+import { Stack, usePathname, useRouter, useSegments } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AppState, Platform, StyleSheet } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -24,7 +24,8 @@ import { demarrerConnectivite } from '@/services/connectivite';
 import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
-import { initAnalytics, suivre } from '@/services/analytics';
+import { initAnalytics, suivre, suivreEcran } from '@/services/analytics';
+import { demarrerSuivi, nomEcran } from '@/services/suivi';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { lirePaiementAttente } from '@/services/reprisePaiement';
 import { CreditsProvider } from '@/session/CreditsProvider';
@@ -64,6 +65,16 @@ function Navigation() {
   useOuvertureRecapAuto();
   useDemandeSupportAuto();
   useRetourOAuthWeb();
+
+  // Pages vues : nom de la route (sans paramètres), avec l'écran précédent.
+  const segments = useSegments();
+  const nomCourant = nomEcran(segments);
+  const ecranPrecedent = useRef<string | null>(null);
+  useEffect(() => {
+    if (nomCourant === ecranPrecedent.current) return;
+    suivreEcran(nomCourant, ecranPrecedent.current);
+    ecranPrecedent.current = nomCourant;
+  }, [nomCourant]);
 
   useEffect(() => {
     if (statut === 'pret' && repriseEnCours && pathname !== '/compte/reprise') {
@@ -131,7 +142,10 @@ export default function RootLayout() {
     const arreterLiens = ecouterLiensParrainage();
     // Observation du réseau : la garde des actions serveur et l'indicateur en dépendent (issue #25).
     const arreterReseau = demarrerConnectivite();
+    // Suivi : propriétés de la personne, premier lancement, coupures réseau, envoi de la file hors ligne.
+    const arreterSuivi = demarrerSuivi();
     return () => {
+      arreterSuivi();
       arreterNotifications();
       arreterLiens?.();
       arreterReseau();

@@ -2,7 +2,7 @@ import type { Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
 import { assurerSessionInvite } from '@/services/session';
-import { identifier } from '@/services/analytics';
+import { identifier, reinitialiserIdentite } from '@/services/analytics';
 import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
@@ -44,7 +44,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         await appliquerReglagesCompteSiPlusRecent(session.user).catch(() => {});
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
-        identifier(session.user.id, { email: session.user.email, invite: session.user.is_anonymous ?? false });
+        void identifier(session.user.id, { invite: session.user.is_anonymous ?? false });
         if (!reprise) {
           synchroniserReglages(client, session.user).catch(() => {});
           synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
@@ -55,7 +55,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
           if (actif && nouvelle) {
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
-            identifier(nouvelle.user.id, { email: nouvelle.user.email, invite: nouvelle.user.is_anonymous ?? false });
+            void identifier(nouvelle.user.id, { invite: nouvelle.user.is_anonymous ?? false });
             // M1-04 : le score d'invité suit le compte, même quand la connexion change d'utilisateur (Apple, ancien compte).
             // Différé : ne jamais appeler Supabase depuis le rappel lui-même (verrou de session).
             if (evenement === 'SIGNED_IN') {
@@ -76,6 +76,8 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             // Session sign out – clear state and recreate invited session
             setEtat({ statut: 'chargement', session: null, erreur: null });
             void (async () => {
+              // Le profil de suivi repart de zéro : le prochain invité aura son propre identifiant.
+              await reinitialiserIdentite();
               const invited = await assurerSessionInvite(client);
               if (actif) {
                 setEtat({ statut: 'pret', session: invited, erreur: null });
