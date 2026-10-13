@@ -14,6 +14,7 @@ Objectif : que l'app vende. Chemin critique : paiement réel pawaPay, mesure Pos
 - **WhatsApp (Kapso)** : en service depuis le 11 octobre (support IA, résumé parent du dimanche 14 h, facture PDF) ; elearn-supabase #14 et #52, app #29, site #8 et #22 fermées.
 - **Web** : app.elearnprepa.com sert la branche de travail ; liens d'app `.well-known` en JSON (#37) ; PWA installable (le démarrage hors ligne reste ouvert : #54).
 - **Ménage** : 76 branches supprimées le 11 octobre, règle « une branche, une PR » (#39 fermée le 13) ; PR obsolètes fermées (dont elearn #25 et #14 le 13 octobre).
+- **XP et niveaux (M4-07 / #66)** : reprise des XP historiques de l'ancienne app (Supabase `user_xp`/`xp_history` intactes), anneau de progression circulaire dynamique autour de l'avatar avec couleur par palier (accueil et Moi), jauge d'effort, écran du barème officiel (`/xp`) avec règle d'or éthique (zéro valeur monétaire, non convertible), événement PostHog `xp_earned`.
 - Issues fermées par Benny entre le 10 et le 13 octobre et contrôlées dans le bilan : voir « À trancher » pour #16 (app) et #11 (supabase).
 
 ## En cours
@@ -47,7 +48,7 @@ Objectif : que l'app vende. Chemin critique : paiement réel pawaPay, mesure Pos
 ## Issues ajoutées le 13 octobre (oubliées du cahier des charges)
 Le projet GitHub n° 4 n'est pas modifiable depuis les outils du chef de projet : Benny doit les y ajouter (ou le demander à l'agent local).
 - **P1** : #62 test terrain de 20 élèves et appareils d'entrée de gamme ; #63 droits et source des annales (M6-05) ; #64 données personnelles, mineurs, juriste ; elearn-supabase #107 sauvegardes et restauration testée.
-- **P2** : #65 programme de révision personnalisé (M4-04) ; #66 XP et niveaux (M4-07) ; #67 M17 échauffements (décision) ; #68 journal d'erreurs et alertes ; elearn-supabase #108 ouverture d'un pays et packs par pays (M14) ; elearn-supabase #109 plafond d'un message marketing par semaine (M9-04) ; elearn #34 configuration des crédits (M18-12) ; elearn #35 tableau de bord des indicateurs (M12-06) ; elearn #36 fiche utilisateur et modération (M12-04/05).
+- **P2** : #65 programme de révision personnalisé (M4-04) ; #66 XP et niveaux (M4-07, fait) ; #67 M17 échauffements (décision) ; #68 journal d'erreurs et alertes ; elearn-supabase #108 ouverture d'un pays et packs par pays (M14) ; elearn-supabase #109 plafond d'un message marketing par semaine (M9-04) ; elearn #34 configuration des crédits (M18-12) ; elearn #35 tableau de bord des indicateurs (M12-06) ; elearn #36 fiche utilisateur et modération (M12-04/05).
 - **P3** : #69 missions de parrainage (M15-10) ; #70 espace partenaire dans l'app (M11) ; #71 backlog Should/Could (multi-profils, question de suivi, anglais, mode concentration).
 
 ## À trancher avec Benny

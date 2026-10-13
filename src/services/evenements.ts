@@ -107,6 +107,7 @@ export type Evenements = {
   exercise_opened: Record<string, never>;
   annale_timer_started: { mode: 'officiel' | 'perso' | 'libre'; minutes: number | null };
   ai_answer_seen: { source: 'photo' | 'question'; duree_s: number };
+  xp_earned: { gain: number; total: number; source: string; niveau: number };
 
   // Support et notifications.
   whatsapp_opened: { contexte: 'support' | 'parent' | 'parrainage' | 'aide' | 'autre' };

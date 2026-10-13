@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M4-07 · Maquette XP & Niveaux — Elearn Prépa</title>
+<style>
+  :root {
+    --app: #FFF7E3;
+    --surface: #FFFFFF;
+    --creux: #F6EEDA;
+    --txt: #0A0A0A;
+    --txt2: #5C5C5C;
+    --bord: #0A0A0A;
+    --bord-doux: #D9D0BA;
+    --emeraude: #10B981;
+    --soleil: #FFD83D;
+    --soleildoux: #FFF1B8;
+    --bleu: #5B9BFF;
+    --bleu-doux: #DCE9FF;
+    --orange: #FF9A3D;
+    --ombre: #0A0A0A;
+  }
+  .sombre {
+    --app: #141614;
+    --surface: #1F221F;
+    --creux: #2A2E2A;
+    --txt: #F6F1E4;
+    --txt2: #9E998C;
+    --bord: #EDE6D3;
+    --bord-doux: #3A3F3A;
+    --emeraude: #34D399;
+    --soleil: #FFD83D;
+    --soleildoux: #3D3514;
+    --bleu: #7FB0FF;
+    --bleu-doux: #14264A;
+    --orange: #FF9A3D;
+    --ombre: #0A0A0A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #E5DFC9;
+    color: #0A0A0A;
+    padding: 32px 24px;
+  }
+  .header-doc {
+    max-width: 1200px;
+    margin: 0 auto 32px;
+    background: #FFF;
+    border: 2px solid #0A0A0A;
+    border-radius: 14px;
+    padding: 24px 32px;
+    box-shadow: 4px 4px 0 #0A0A0A;
+  }
+  .header-doc h1 {
+    font-size: 24px;
+    margin: 0 0 8px;
+    letter-spacing: -0.5px;
+  }
+  .header-doc p {
+    margin: 0 0 12px;
+    color: #3D3D3D;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .tags-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1.5px solid #0A0A0A;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #FFF;
+  }
+  .badge.soleil { background: var(--soleil); color: #0A0A0A; }
+  .badge.emeraude { background: #10B981; color: #0A0A0A; }
+  .badge.bleu { background: var(--bleu-doux); color: #0A0A0A; }
+
+  .grille {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+  }
+  .tel-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 360px;
+  }
+  .tel-titre {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ecran {
+    width: 360px;
+    height: 720px;
+    background: var(--app);
+    color: var(--txt);
+    border: 2px solid var(--bord);
+    border-radius: 16px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ombre);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Barre du haut */
+  .topbar {
+    padding: 16px 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .topbar-h1 {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+  .btn-icon {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--bord);
+    border-radius: 10px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--txt);
+  }
+
+  /* Section Profil */
+  .profil-header {
+    padding: 0 20px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: 2px solid var(--bord);
+    background: var(--soleil);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 800;
+    color: #0A0A0A;
+  }
+  .profil-infos {
+    flex: 1;
+  }
+  .profil-nom {
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 2px;
+  }
+  .profil-classe {
+    font-size: 13px;
+    color: var(--txt2);
+    margin: 0;
+  }
+
+  .contenu {
+    padding: 0 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* NOUVELLE CARTE XP & NIVEAU */
+  .carte-xp {
+    background: var(--surface);
+    border: 2px solid var(--bord);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 3px 3px 0 var(--ombre);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .carte-xp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badge-niveau {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--soleil);
+    color: #0A0A0A;
+    border: 2px solid var(--bord);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .xp-total {
+    font-family: "Space Mono", monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--txt2);
+  }
+  .xp-total b {
+    color: var(--txt);
+    font-size: 15px;
+  }
+
+  /* Barre de progression XP */
+  .rail-xp {
+    height: 12px;
+    background: var(--creux);
+    border: 2px solid var(--bord);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+  }
+  .fill-xp {
+    height: 100%;
+    background: var(--emeraude);
+    border-radius: 999px;
+  }
+  .xp-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--txt2);
+  }
+  .xp-details span b {
+    color: var(--txt);
+  }
+
+  /* GROUPE DE LIGNES */
+  .groupe {
+    background: var(--surface);
+    border: 2px solid var(--bord);
+    border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--ombre);
+    overflow: hidden;
+  }
+  .ligne-groupe {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1.5px solid var(--bord-doux);
+  }
+  .ligne-groupe:last-child {
+    border-bottom: none;
+  }
+  .pastille-icone {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid var(--bord);
+    background: var(--creux);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--txt);
+    flex-shrink: 0;
+  }
+  .ligne-groupe.vert .pastille-icone {
+    background: #ECFDF5;
+    color: #047857;
+  }
+  .ligne-texte {
+    flex: 1;
+  }
+  .ligne-titre {
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--txt);
+  }
+  .ligne-soustitre {
+    font-size: 12px;
+    color: var(--txt2);
+    margin: 2px 0 0;
+  }
+  .chevron {
+    color: var(--txt2);
+  }
+
+  /* ÉCRAN BARÈME & RÈGLES XP */
+  .ecran-bareme {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .entete-bareme {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 2px solid var(--bord);
+    background: var(--surface);
+  }
+  .entete-bareme h2 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .scroll-bareme {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+  }
+  .alerte-ethique {
+    background: var(--soleildoux);
+    border: 2px solid var(--bord);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #0A0A0A;
+  }
+  .alerte-ethique b {
+    display: block;
+    margin-bottom: 2px;
+  }
+  .table-bareme {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 2px solid var(--bord);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .table-bareme th {
+    background: var(--creux);
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 800;
+    border-bottom: 2px solid var(--bord);
+    text-transform: uppercase;
+    color: var(--txt);
+  }
+  .table-bareme td {
+    padding: 12px;
+    border-bottom: 1.5px solid var(--bord-doux);
+    font-size: 13px;
+    color: var(--txt);
+  }
+  .table-bareme tr:last-child td {
+    border-bottom: none;
+  }
+  .badge-xp-gain {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #ECFDF5;
+    border: 1.5px solid #047857;
+    border-radius: 4px;
+    font-weight: 800;
+    color: #047857;
+    font-family: "Space Mono", monospace;
+  }
+  .palier-item {
+    background: var(--surface);
+    border: 2px solid var(--bord);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .palier-badge {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--bord);
+    border-radius: 8px;
+    background: var(--soleil);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    color: #0A0A0A;
+    flex-shrink: 0;
+  }
+  .palier-info {
+    flex: 1;
+  }
+  .palier-nom {
+    font-weight: 700;
+    font-size: 14px;
+    margin: 0 0 2px;
+  }
+  .palier-seuil {
+    font-size: 12px;
+    color: var(--txt2);
+    margin: 0;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-doc">
+  <h1>[M4-07] Maquette & Spécification : XP et Niveaux (Elearn Prépa)</h1>
+  <p>Conforme aux règles de design Benny (néo-brutal doux, tokens <code>theme.color.*</code>, zéro emoji, icônes Lucide, texte noir sur surface colorée, barème transparent). Cette maquette illustre l'ajustement de l'écran <b>Moi (H1)</b> et la page dédiée <b>Barème & Niveaux XP</b>.</p>
+  <div class="tags-row">
+    <div class="badge soleildoux"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> XP = Réputation d'effort</div>
+    <div class="badge emeraude"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Zéro valeur monétaire (ne convertit pas en crédits)</div>
+    <div class="badge bleu"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Reprise totale des XP historiques</div>
+  </div>
+</div>
+
+<div class="grille">
+
+  <!-- VUE 1 : MOI (Thème Clair) -->
+  <div class="tel-col">
+    <div class="tel-titre">
+      <span>1 · Écran Moi (H1) — Thème Clair</span>
+      <span style="font-size:12px; color:#5C5C5C;">Ajustement existant</span>
+    </div>
+    <div class="ecran">
+      <div class="topbar">
+        <h1 class="topbar-h1">Moi</h1>
+        <div class="btn-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+      </div>
+
+      <div class="profil-header">
+        <div class="avatar">A</div>
+        <div class="profil-infos">
+          <div class="profil-nom">Awa Kamga</div>
+          <div class="profil-classe">Terminale C · Cameroun</div>
+        </div>
+      </div>
+
+      <div class="contenu">
+        <!-- NOUVELLE CARTE XP -->
+        <div class="carte-xp">
+          <div class="carte-xp-header">
+            <div class="badge-niveau">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Niveau 3 · Confirmé
+            </div>
+            <div class="xp-total"><b>340</b> XP</div>
+          </div>
+          
+          <div class="rail-xp">
+            <div class="fill-xp" style="width: 55%;"></div>
+          </div>
+
+          <div class="xp-details">
+            <span>Encore <b>160 XP</b> pour Niveau 4</span>
+            <span style="font-weight:700; color:var(--txt);">500 XP</span>
+          </div>
+        </div>
+
+        <!-- GROUPE NAVIGATION -->
+        <div class="groupe">
+          <div class="ligne-groupe">
+            <div class="pastille-icone">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Ma progression</div>
+              <div class="ligne-soustitre">42 min cette semaine · par matière</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+
+          <div class="ligne-groupe">
+            <div class="pastille-icone">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Mes documents</div>
+              <div class="ligne-soustitre">3 documents gardés · 4,2 Mo</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+
+          <div class="ligne-groupe vert">
+            <div class="pastille-icone">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Règles & Barème XP</div>
+              <div class="ligne-soustitre">Barème public · Niveaux 1 à 10</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+        </div>
+
+        <!-- CLASSEMENT SEMAINE (M17-09 / issue #38 preview) -->
+        <div class="groupe">
+          <div class="ligne-groupe">
+            <div class="pastille-icone" style="background:#FEF9C3; color:#A16207;">
+              <svg viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H7"/><path d="M14 14.66V17c0 .55.45 1 1 1h2"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Classement hebdomadaire</div>
+              <div class="ligne-soustitre">14e de ta classe cette semaine</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VUE 2 : MOI (Thème Sombre) -->
+  <div class="tel-col sombre">
+    <div class="tel-titre">
+      <span style="color:#0A0A0A;">2 · Écran Moi (H1) — Thème Sombre</span>
+      <span style="font-size:12px; color:#5C5C5C;">Contraste vérifié</span>
+    </div>
+    <div class="ecran">
+      <div class="topbar">
+        <h1 class="topbar-h1">Moi</h1>
+        <div class="btn-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+      </div>
+
+      <div class="profil-header">
+        <div class="avatar">A</div>
+        <div class="profil-infos">
+          <div class="profil-nom">Awa Kamga</div>
+          <div class="profil-classe">Terminale C · Cameroun</div>
+        </div>
+      </div>
+
+      <div class="contenu">
+        <!-- NOUVELLE CARTE XP SOMBRE -->
+        <div class="carte-xp">
+          <div class="carte-xp-header">
+            <div class="badge-niveau">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Niveau 3 · Confirmé
+            </div>
+            <div class="xp-total"><b>340</b> XP</div>
+          </div>
+          
+          <div class="rail-xp">
+            <div class="fill-xp" style="width: 55%;"></div>
+          </div>
+
+          <div class="xp-details">
+            <span>Encore <b>160 XP</b> pour Niveau 4</span>
+            <span style="font-weight:700; color:var(--txt);">500 XP</span>
+          </div>
+        </div>
+
+        <div class="groupe">
+          <div class="ligne-groupe">
+            <div class="pastille-icone">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Ma progression</div>
+              <div class="ligne-soustitre">42 min cette semaine · par matière</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+
+          <div class="ligne-groupe vert">
+            <div class="pastille-icone">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="ligne-texte">
+              <div class="ligne-titre">Règles & Barème XP</div>
+              <div class="ligne-soustitre">Barème public · Niveaux 1 à 10</div>
+            </div>
+            <div class="chevron"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VUE 3 : BARÈME & NIVEAUX (Écran dédié) -->
+  <div class="tel-col">
+    <div class="tel-titre">
+      <span>3 · Écran « Barème & Niveaux »</span>
+      <span style="font-size:12px; color:#5C5C5C;">Transparence publique</span>
+    </div>
+    <div class="ecran">
+      <div class="ecran-bareme">
+        <div class="entete-bareme">
+          <div class="btn-icon" style="width:36px; height:36px;">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </div>
+          <h2>XP & Niveaux</h2>
+        </div>
+
+        <div class="scroll-bareme">
+          <div class="alerte-ethique">
+            <b>Règle d'or de la plateforme :</b>
+            Les points d'expérience (XP) mesurent uniquement ton effort régulier et alimentent le classement hebdomadaire. <b>Ils n'ont aucune valeur monétaire et ne s'achètent ni ne se convertissent en crédits.</b>
+          </div>
+
+          <div style="font-weight:800; font-size:15px; margin-top:4px;">Barème d'attribution</div>
+
+          <table class="table-bareme">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Gain XP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Bonne réponse à un quiz</td>
+                <td><span class="badge-xp-gain">+10 XP</span></td>
+              </tr>
+              <tr>
+                <td>Mission du jour terminée</td>
+                <td><span class="badge-xp-gain">+50 XP</span></td>
+              </tr>
+              <tr>
+                <td>Leçon ou cours terminé</td>
+                <td><span class="badge-xp-gain">+20 XP</span></td>
+              </tr>
+              <tr>
+                <td>Exercice d'entraînement validé</td>
+                <td><span class="badge-xp-gain">+15 XP</span></td>
+              </tr>
+              <tr>
+                <td>Épreuve ou concours blanc terminé</td>
+                <td><span class="badge-xp-gain">+100 XP</span></td>
+              </tr>
+              <tr>
+                <td>Question utile posée en entraide</td>
+                <td><span class="badge-xp-gain">+5 XP</span></td>
+              </tr>
+              <tr>
+                <td>Réponse confirmée ou utile</td>
+                <td><span class="badge-xp-gain">+10 XP</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="font-weight:800; font-size:15px; margin-top:8px;">Grille des 10 Niveaux</div>
+
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div class="palier-item">
+              <div class="palier-badge">1</div>
+              <div class="palier-info">
+                <div class="palier-nom">Débutant</div>
+                <div class="palier-seuil">0 à 99 XP</div>
+              </div>
+            </div>
+
+            <div class="palier-item">
+              <div class="palier-badge">2</div>
+              <div class="palier-info">
+                <div class="palier-nom">Apprenti</div>
+                <div class="palier-seuil">100 à 249 XP</div>
+              </div>
+            </div>
+
+            <div class="palier-item" style="border-color:#10B981; background:#ECFDF5;">
+              <div class="palier-badge" style="background:#10B981;">3</div>
+              <div class="palier-info">
+                <div class="palier-nom" style="color:#047857;">Confirmé (Ton niveau)</div>
+                <div class="palier-seuil" style="color:#065F46;">250 à 499 XP (340 XP actuels)</div>
+              </div>
+            </div>
+
+            <div class="palier-item">
+              <div class="palier-badge">4</div>
+              <div class="palier-info">
+                <div class="palier-nom">Assidu</div>
+                <div class="palier-seuil">500 à 999 XP</div>
+              </div>
+            </div>
+
+            <div class="palier-item">
+              <div class="palier-badge">5</div>
+              <div class="palier-info">
+                <div class="palier-nom">Expert</div>
+                <div class="palier-seuil">1 000 à 1 999 XP</div>
+              </div>
+            </div>
+
+            <div class="palier-item">
+              <div class="palier-badge">6 à 10</div>
+              <div class="palier-info">
+                <div class="palier-nom">Major · Maître · Légende</div>
+                <div class="palier-seuil">Jusqu'à 10 000+ XP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -29,6 +29,9 @@ import { Ecran } from './Ecran';
 import { CarteCredits } from './moi/CarteCredits';
 import { enMo } from './MesDocuments';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
+import { AvatarNiveau } from './xp/AvatarNiveau';
+import { CarteXp } from './xp/CarteXp';
+import { lireUserXp } from '@/services/xp';
 
 type Resume = { minutes: number | null; documents: { n: number; octets: number } | null };
 
@@ -47,6 +50,7 @@ export function EcranMoi() {
   const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
+  const [totalXp, setTotalXp] = useState(0);
 
   const user = session?.user;
   const invite = estInvite(user);
@@ -55,20 +59,22 @@ export function EcranMoi() {
   const { nom, photo } = identiteDe(user);
   const initiale = (nom ?? '').charAt(0).toUpperCase();
 
-  // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté.
+  // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté, XP gagnés.
   useFocusEffect(
     useCallback(() => {
       let actif = true;
       void (async () => {
         const client = getSupabase();
-        const [p, docs, passages, activites] = await Promise.all([
+        const [p, docs, passages, activites, xp] = await Promise.all([
           lireProfil(),
           lireDocuments().catch(() => []),
           lirePassages(client).catch(() => null),
           lireActivitesJours().catch(() => ({})),
+          connecte && idUtilisateur ? lireUserXp(client, idUtilisateur).catch(() => 0) : Promise.resolve(0),
         ]);
         if (!actif) return;
         setProfil(p);
+        setTotalXp(xp);
         setResume({
           minutes: passages ? calculerProgression(passages, undefined, activites).minutesSemaine : null,
           documents: { n: docs.length, octets: docs.reduce((s, d) => s + d.taille, 0) },
@@ -80,7 +86,7 @@ export function EcranMoi() {
       return () => {
         actif = false;
       };
-    }, [connecte]),
+    }, [connecte, idUtilisateur]),
   );
 
   useEffect(() => {
@@ -126,18 +132,14 @@ export function EcranMoi() {
       </View>
 
       <View style={styles.identite}>
-        <View style={[styles.avatar, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-          {photo ? (
-            <Image source={{ uri: photo }} style={styles.photo} contentFit="cover" accessibilityLabel={nom ?? undefined} accessibilityIgnoresInvertColors />
-          ) : (
-            <Text style={[typo.h3, { color: theme.texte.surCouleur }]}>{initiale || '?'}</Text>
-          )}
-        </View>
+        <AvatarNiveau photo={photo} nom={nom} totalXp={totalXp} taille={60} />
         <View style={styles.flex}>
           <Text style={[typo.h2, { color: theme.texte.principal }]}>{nom ?? t('profil.invite')}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{invite ? t('profil.inviteSous') : classePays ?? ''}</Text>
         </View>
       </View>
+
+      {connecte && totalXp >= 0 ? <CarteXp totalXp={totalXp} /> : null}
 
       {statut === 'erreur' ? <Banniere ton="erreur" titre={t('erreur.banniere')} texte={t('moi.sessionErreur')} /> : null}
 

@@ -23,8 +23,12 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
+import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
+import { identiteDe } from '@/services/identite';
+import { lireUserXp } from '@/services/xp';
+import { useSession } from '@/session/SessionProvider';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
@@ -104,11 +108,16 @@ export function SelecteurClasse({ profil }: { profil: Profil | null }) {
 export function Accueil({ maintenant }: { maintenant?: Date }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const { session } = useSession();
   const [etat, setEtat] = useState<Etat>({ mission: null, serie: 0, faite: null });
   const [profil, setProfil] = useState<Profil | null>(null);
+  const [totalXp, setTotalXp] = useState(0);
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
+
+  const user = session?.user;
+  const { nom, photo } = identiteDe(user);
 
   useEffect(() => {
     let actif = true;
@@ -143,11 +152,18 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       let actif = true;
       void (async () => {
         const jour = jourLocal(maintenant);
-        const [p, historique, dernier, taille] = await Promise.all([lireProfil(), lireHistorique(), lireDernierResultat(), lireRythme()]);
+        const [p, historique, dernier, taille, xp] = await Promise.all([
+          lireProfil(),
+          lireHistorique(),
+          lireDernierResultat(),
+          lireRythme(),
+          user?.id ? lireUserXp(getSupabase(), user.id).catch(() => 0) : Promise.resolve(0),
+        ]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
         if (actif) {
           setProfil(p);
+          setTotalXp(xp);
           setEtat((e) => ({ ...e, serie, faite }));
         }
         if (!pret) return;
@@ -167,7 +183,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       return () => {
         actif = false;
       };
-    }, [maintenant, t, pret]),
+    }, [maintenant, t, pret, user?.id]),
   );
 
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
@@ -187,6 +203,16 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           ) : null}
           <CompteurCredits />
           <Cloche />
+          <Appui
+            accessibilityRole="button"
+            accessibilityLabel={t('onglets.moi')}
+            onPress={() => router.push('/moi')}
+            rayon={rayon.pilule}
+            decalage={0}
+            hitSlop={4}
+          >
+            <AvatarNiveau photo={photo} nom={nom} totalXp={totalXp} taille={38} />
+          </Appui>
         </View>
       </Apparition>
 
