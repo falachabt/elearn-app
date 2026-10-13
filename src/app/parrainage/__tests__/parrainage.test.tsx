@@ -59,4 +59,14 @@ describe('Parrainage · contraste du bouton Copier', () => {
     await waitFor(() => expect(screen.getByText('Réclamé')).toBeTruthy());
     expect(screen.getByText('Réclamé')).toHaveStyle({ color: themes.dark.texte.surCouleur });
   });
+
+  it('affiche les missions de parrainage avec intitulé serveur et jauge 100% quand débloqué', async () => {
+    rendre('clair');
+    await waitFor(() => expect(screen.getByText('Premier filleul')).toBeTruthy());
+    expect(screen.getByText('1 / 1 amis inscrits')).toBeTruthy();
+    expect(screen.getByText('+20 crédits')).toBeTruthy();
+    expect(screen.getByText('100%')).toBeTruthy();
+    expect(screen.getByText('Réclamé')).toBeTruthy();
+  });
 });
+

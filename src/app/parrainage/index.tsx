@@ -126,44 +126,90 @@ export default function EcranParrainage() {
             </View>
           </View>
 
-          {/* Section Récompenses & Paliers */}
-          <TitreSection texte={t('parrainage.recompensesTitre')} />
-          <View style={styles.listeJalons}>
-            {etat.stats.jalons.map((j) => (
-              <View
-                key={j.id}
-                style={[
-                  styles.carteJalon,
-                  {
-                    backgroundColor: j.unlocked ? theme.fond.surface : theme.fond.creux,
-                    borderColor: theme.bord.fort,
-                  },
-                ]}
-              >
-                <View style={[styles.iconeSoleil, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-                  <Sun size={24} color="#0A0A0A" />
-                </View>
+          {/* Section Missions de Parrainage & Objectifs */}
+          <TitreSection texte={t('parrainage.missionsTitre')} />
+          <View style={styles.listeMissions}>
+            {etat.stats.jalons.map((j) => {
+              const atteint = j.unlocked || j.claimed;
+              const ratio = Math.min(1, Math.max(0, etat.stats.comptesCrees / (j.referrals_needed || 1)));
+              const pct = Math.round(ratio * 100);
 
-                <View style={styles.flex}>
-                  <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
-                    {j.label_fr}
-                  </Text>
-                  <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
-                    +{j.reward_value} crédits
-                  </Text>
-                </View>
+              return (
+                <View
+                  key={j.id}
+                  style={[
+                    styles.carteMission,
+                    {
+                      backgroundColor: theme.fond.surface,
+                      borderColor: theme.bord.fort,
+                    },
+                  ]}
+                >
+                  {/* En-tête de la mission : Titre & Badge récompense */}
+                  <View style={styles.ligneEnteteMission}>
+                    <View style={styles.colonneTitre}>
+                      <Text style={[typo.h3, { color: theme.texte.principal }]}>
+                        {j.label_fr}
+                      </Text>
+                      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
+                        {t('parrainage.progression', {
+                          actuel: Math.min(etat.stats.comptesCrees, j.referrals_needed),
+                          requis: j.referrals_needed,
+                        })}
+                      </Text>
+                    </View>
 
-                {j.unlocked ? (
-                  <View style={[styles.badgeUnlock, { backgroundColor: theme.etat.succes, borderColor: theme.bord.fort }]}>
-                    <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>{t('parrainage.reclame')}</Text>
+                    <View style={[styles.badgeGain, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                      <Text style={[typo.etiquette, { color: '#0A0A0A' }]}>
+                        {t('parrainage.recompenseCredits', { valeur: j.reward_value })}
+                      </Text>
+                    </View>
                   </View>
-                ) : (
-                  <View style={[styles.badgeUnlock, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]}>
-                    <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('parrainage.verrouille')}</Text>
+
+                  {/* Rail de progression */}
+                  <View style={styles.zoneProgression}>
+                    <View
+                      accessibilityRole="progressbar"
+                      accessibilityValue={{ min: 0, max: 100, now: pct }}
+                      style={[styles.railProgression, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}
+                    >
+                      <View
+                        style={[
+                          styles.remplissageProgression,
+                          {
+                            width: `${pct}%`,
+                            backgroundColor: atteint ? theme.etat.succes : theme.marque.principale,
+                          },
+                        ]}
+                      />
+                    </View>
+                    <Text style={[typo.donnee, { color: theme.texte.secondaire, alignSelf: 'flex-end' }]}>
+                      {pct}%
+                    </Text>
                   </View>
-                )}
-              </View>
-            ))}
+
+                  {/* Pied de carte : Statut ou Action */}
+                  <View style={styles.piedMission}>
+                    {atteint ? (
+                      <View style={[styles.badgeRecompense, { backgroundColor: theme.etat.succes, borderColor: theme.bord.fort }]}>
+                        <Check size={16} color={theme.texte.surCouleur} strokeWidth={3} />
+                        <Text style={[typo.boutonPetit, { color: theme.texte.surCouleur }]}>
+                          {t('parrainage.reclame')}
+                        </Text>
+                      </View>
+                    ) : (
+                      <Bouton
+                        petit
+                        variante="secondaire"
+                        libelle={t('parrainage.inviterAmi')}
+                        icone={<Share2 size={16} color={theme.texte.principal} />}
+                        onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
+                      />
+                    )}
+                  </View>
+                </View>
+              );
+            })}
           </View>
 
           {/* Lien vers la page d'explications */}
@@ -230,30 +276,64 @@ const styles = StyleSheet.create({
     borderRadius: rayon.m,
     gap: espace[1],
   },
-  listeJalons: {
-    gap: espace[3],
+  listeMissions: {
+    gap: espace[4],
     marginVertical: espace[2],
   },
-  carteJalon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: espace[4],
+  carteMission: {
     padding: espace[4],
     borderWidth: bord.normal,
     borderRadius: rayon.l,
+    gap: espace[3],
+    shadowColor: '#0A0A0A',
+    shadowOffset: { width: 3, height: 3 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 3,
   },
-  iconeSoleil: {
-    width: 44,
-    height: 44,
-    borderRadius: rayon.m,
-    borderWidth: bord.normal,
-    alignItems: 'center',
-    justifyContent: 'center',
+  ligneEnteteMission: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: espace[3],
   },
-  badgeUnlock: {
+  colonneTitre: {
+    flex: 1,
+    gap: espace[1],
+  },
+  badgeGain: {
     paddingHorizontal: espace[3],
     paddingVertical: espace[1],
     borderWidth: bord.normal,
+    borderRadius: rayon.s,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  zoneProgression: {
+    gap: espace[1],
+  },
+  railProgression: {
+    height: 12,
     borderRadius: rayon.pilule,
+    borderWidth: bord.fin,
+    overflow: 'hidden',
+  },
+  remplissageProgression: {
+    height: '100%',
+    borderRadius: rayon.pilule,
+  },
+  piedMission: {
+    marginTop: espace[1],
+    alignItems: 'stretch',
+  },
+  badgeRecompense: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: espace[2],
+    paddingVertical: espace[2],
+    paddingHorizontal: espace[3],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
   },
 });
