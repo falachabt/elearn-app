@@ -57,7 +57,12 @@ let envoiActivitesEnCours: Promise<void> | null = null;
 export function synchroniserActivitesEnAttente(client?: Pick<SupabaseClient, 'from'>): Promise<void> {
   if (envoiActivitesEnCours) return envoiActivitesEnCours;
   envoiActivitesEnCours = (async () => {
-    const supabase = client ?? getSupabase();
+    let supabase: Pick<SupabaseClient, 'from'>;
+    try {
+      supabase = client ?? getSupabase();
+    } catch {
+      return;
+    }
     const enAttente = await lireSessionsEnAttente();
     if (!enAttente.length) return;
 
@@ -91,8 +96,13 @@ export function synchroniserActivitesEnAttente(client?: Pick<SupabaseClient, 'fr
  * Fusionne les sessions distantes avec le récapitulatif local.
  */
 export async function synchroniserActivitesServeur(client?: Pick<SupabaseClient, 'from'>): Promise<Record<string, ActiviteJour>> {
-  const supabase = client ?? getSupabase();
   try {
+    let supabase: Pick<SupabaseClient, 'from'>;
+    try {
+      supabase = client ?? getSupabase();
+    } catch {
+      return await lireActivitesJours();
+    }
     // 1. Envoyer d'abord les sessions locales en attente
     await synchroniserActivitesEnAttente(supabase);
 
