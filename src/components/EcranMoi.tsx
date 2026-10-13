@@ -120,21 +120,17 @@ export function EcranMoi() {
 
   return (
     <Ecran insetBas={false}>
-      <View style={styles.entete}>
-        <Text accessibilityRole="header" style={[typo.h1, styles.flex, { color: theme.texte.principal }]}>{t('moi.titre')}</Text>
-        <Appui accessibilityRole="button" accessibilityLabel={t('profil.reglagesLibelle')} onPress={() => router.push('/parametres')} decalage={0} rayon={rayon.m} hitSlop={4}>
-          <View style={[styles.roue, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-            <Settings size={20} strokeWidth={2} color={theme.texte.principal} />
-          </View>
-        </Appui>
-      </View>
-
       <View style={styles.identite}>
         <AvatarNiveau photo={photo} nom={nom} totalXp={totalXp} taille={60} />
         <View style={styles.flex}>
           <Text style={[typo.h2, { color: theme.texte.principal }]}>{nom ?? t('profil.invite')}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{invite ? t('profil.inviteSous') : classePays ?? ''}</Text>
         </View>
+        <Appui accessibilityRole="button" accessibilityLabel={t('profil.reglagesLibelle')} onPress={() => router.push('/parametres')} decalage={0} rayon={rayon.m} hitSlop={4}>
+          <View style={[styles.roue, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+            <Settings size={20} strokeWidth={2} color={theme.texte.principal} />
+          </View>
+        </Appui>
       </View>
 
       {connecte && totalXp >= 0 ? <CarteXp totalXp={totalXp} /> : null}
@@ -223,7 +219,6 @@ export function EcranMoi() {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   roue: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   identite: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
   avatar: { width: 56, height: 56, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

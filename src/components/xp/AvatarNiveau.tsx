@@ -24,19 +24,20 @@ export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
   const info = calculerNiveau(totalXp);
   const initiale = (nom ?? '').trim().charAt(0).toUpperCase() || '?';
 
-  const epaisseurAnneau = taille >= 56 ? 4.5 : 3.5;
+  const epaisseurAnneau = taille >= 56 ? 4 : 3;
   const rayonCercle = (taille - epaisseurAnneau) / 2;
   const circonference = 2 * Math.PI * rayonCercle;
   const decalageProgression = circonference - circonference * info.ratioProgression;
 
-  const tailleInterne = taille - epaisseurAnneau * 2 - 4;
-  const tailleBadge = taille >= 56 ? 20 : 16;
+  // L'avatar interne prend exactement tout l'espace intérieur délimité par l'anneau
+  const tailleInterne = taille - epaisseurAnneau * 2;
+  const tailleBadge = taille >= 56 ? 18 : 14;
 
   return (
     <View style={[styles.conteneur, { width: taille, height: taille }]}>
-      {/* Anneau de progression SVG */}
+      {/* Anneau de progression SVG (remplace la bordure du profil) */}
       <Svg width={taille} height={taille} style={styles.svg}>
-        {/* Rail de fond */}
+        {/* Rail de fond faisant office de bordure neutre */}
         <Circle
           cx={taille / 2}
           cy={taille / 2}
@@ -59,7 +60,7 @@ export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
         />
       </Svg>
 
-      {/* Avatar (photo ou initiale) */}
+      {/* Avatar (photo ou initiale) directement cerclé par l'anneau */}
       <View
         style={[
           styles.cercleInterne,
@@ -67,7 +68,6 @@ export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
             width: tailleInterne,
             height: tailleInterne,
             backgroundColor: theme.accent.soleil,
-            borderColor: theme.bord.fort,
           },
         ]}
       >
@@ -98,7 +98,7 @@ export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
           },
         ]}
       >
-        <Text style={[styles.texteBadge, { fontSize: taille >= 56 ? 10 : 8.5 }]}>
+        <Text style={[styles.texteBadge, { fontSize: taille >= 56 ? 9.5 : 8 }]}>
           {info.niveau}
         </Text>
       </View>
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
   },
   cercleInterne: {
     borderRadius: rayon.pilule,
-    borderWidth: bord.fin,
+    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   },
   badgeNiveau: {
     position: 'absolute',
-    bottom: -2,
-    right: -2,
+    bottom: -1,
+    right: -1,
     borderRadius: rayon.pilule,
     borderWidth: bord.fin,
     alignItems: 'center',

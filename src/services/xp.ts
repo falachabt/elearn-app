@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { suivre } from './analytics';
@@ -100,21 +101,74 @@ export function calculerNiveau(totalXp: number): InfoNiveau {
   };
 }
 
+export const CLE_XP_LOCAL = 'xp.totalLocal';
+
 type Client = Pick<SupabaseClient, 'from'>;
 
 /**
  * Lit les XP de l'élève connecté dans `public.user_xp`.
  * Les XP de l'ancienne application sont ainsi repris et conservés.
+ * Replie sur le cache local en mode hors ligne ou invité.
  */
-export async function lireUserXp(client: Client, userId?: string | null): Promise<number> {
-  if (!userId) return 0;
+export async function lireUserXp(client?: Client | null, userId?: string | null): Promise<number> {
+  if (client && userId) {
+    try {
+      const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
+      if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
+        const distant = (data as { total_xp: number }).total_xp;
+        await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
+        return distant;
+      }
+    } catch {
+      // Repli sur le stockage local ci-dessous
+    }
+  }
+
+  // Repli sur le cache local (invités, hors ligne)
   try {
-    const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
-    if (error || !data) return 0;
-    return (data as { total_xp: number }).total_xp || 0;
+    const local = await AsyncStorage.getItem(CLE_XP_LOCAL);
+    return local ? Math.max(0, parseInt(local, 10) || 0) : 0;
   } catch {
     return 0;
   }
+}
+
+/**
+ * Crédite des points d'XP :
+ * - Persiste localement pour affichage et calcul instantané.
+ * - Écrit dans `public.xp_history` sur Supabase si connecté (le trigger Postgres met à jour `user_xp`).
+ * - Trace l'événement PostHog `xp_earned`.
+ */
+export async function crediterXp(
+  client?: Client | null,
+  userId?: string | null,
+  gain = 0,
+  source: SourceXp = 'quiz',
+  sourceId?: string,
+): Promise<number> {
+  if (gain <= 0) {
+    return lireUserXp(client, userId);
+  }
+
+  const actuel = await lireUserXp(client, userId);
+  const nouveauTotal = actuel + gain;
+  await AsyncStorage.setItem(CLE_XP_LOCAL, String(nouveauTotal)).catch(() => {});
+
+  if (client && userId) {
+    try {
+      await client.from('xp_history').insert({
+        userid: userId,
+        xp_gained: gain,
+        source_type: 'quiz', // Le trigger serveur update_user_xp écoute source_type = 'quiz'
+        source_id: sourceId ?? source,
+      });
+    } catch (err) {
+      console.warn('Impossible d’enregistrer le gain d’XP sur Supabase.', err);
+    }
+  }
+
+  notifierXpGagne(gain, nouveauTotal, source);
+  return nouveauTotal;
 }
 
 /**

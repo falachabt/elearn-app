@@ -6,6 +6,7 @@ import { contenuHorsLigneValide } from './connectivite';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
 import { enregistrerCorrection } from './correction';
 import { TAILLE_DEFAUT } from './rythme';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
 
@@ -181,7 +182,7 @@ export async function lireDernierResultat(): Promise<ResultatMission | null> {
  */
 export async function terminerMission(
   client: Client,
-  p: { questions: readonly QuestionTiree[]; reponses: readonly number[]; niveau: string; dureeS: number; jour?: string },
+  p: { questions: readonly QuestionTiree[]; reponses: readonly number[]; niveau: string; dureeS: number; jour?: string; userId?: string },
 ): Promise<ResultatMission> {
   const jour = p.jour ?? jourLocal();
   const base = calculerResultat(p.questions, p.reponses, { niveau: p.niveau, dureeS: p.dureeS });
@@ -198,6 +199,7 @@ export async function terminerMission(
   ]).catch(() => {});
   await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
+  void crediterXp(client, p.userId, 50, 'daily_mission');
   // Le passage est gardé sur le téléphone AVANT l'envoi : hors ligne, l'insertion échouait en silence et la mission
   // n'entrait jamais dans la progression (ni hors ligne, ni au retour du réseau).
   await ajouterPassageLocal({

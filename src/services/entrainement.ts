@@ -6,6 +6,7 @@ import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { signalerProgressionLocale } from './progressionLocale';
 import { avecCopie, lireLocalHorsLigne, rpc } from './reviser';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -157,6 +158,9 @@ export async function basculerExerciceFait(exercice: string, maintenant = new Da
   // de changer d'état, et le bouton « fait » semblerait mort.
   await AsyncStorage.multiSet([[CLE_EXERCICES_FAITS, JSON.stringify(suite)], [CLE_EXERCICES_DATES, JSON.stringify(dates)]]).catch(() => {});
   signalerProgressionLocale();
+  if (fait) {
+    void crediterXp(null, null, 15, 'exercise', exercice);
+  }
   return fait;
 }
 

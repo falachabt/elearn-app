@@ -1,4 +1,4 @@
-import { calculerNiveau, lireUserXp, notifierXpGagne, PALIERS_NIVEAU } from '../xp';
+import { calculerNiveau, crediterXp, lireUserXp, notifierXpGagne, PALIERS_NIVEAU } from '../xp';
 
 describe('services/xp', () => {
   describe('calculerNiveau', () => {
@@ -90,6 +90,36 @@ describe('services/xp', () => {
   describe('notifierXpGagne', () => {
     it('notifie sans lever d’erreur', () => {
       expect(() => notifierXpGagne(15, 65, 'quiz')).not.toThrow();
+    });
+  });
+
+  describe('crediterXp', () => {
+    it('ajoute l’XP en base et persiste localement', async () => {
+      const mockInsert = jest.fn().mockResolvedValue({ error: null });
+      const mockMaybeSingle = jest.fn().mockResolvedValue({ data: { total_xp: 60 }, error: null });
+      const mockEq = jest.fn().mockReturnValue({ maybeSingle: mockMaybeSingle });
+      const mockSelect = jest.fn().mockReturnValue({ eq: mockEq });
+      const client = {
+        from: jest.fn().mockImplementation((table: string) => {
+          if (table === 'xp_history') return { insert: mockInsert };
+          if (table === 'user_xp') return { select: mockSelect };
+          return {};
+        }),
+      } as any;
+
+      const nouveau = await crediterXp(client, 'user-1', 50, 'daily_mission');
+      expect(nouveau).toBe(110);
+      expect(mockInsert).toHaveBeenCalledWith({
+        userid: 'user-1',
+        xp_gained: 50,
+        source_type: 'quiz',
+        source_id: 'daily_mission',
+      });
+    });
+
+    it('gère l’absence d’utilisateur (invité/local)', async () => {
+      const nouveau = await crediterXp(null, null, 15, 'exercise');
+      expect(nouveau).toBeGreaterThanOrEqual(15);
     });
   });
 });

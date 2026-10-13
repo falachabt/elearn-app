@@ -9,7 +9,8 @@ import { enregistrerSession, lireQuizLibre, noterDernier } from '@/services/entr
 import { enregistrerTempsActivite } from '@/services/activite';
 import type { QuestionTiree } from '@/services/miniTest';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { crediterXp } from '@/services/xp';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -28,6 +29,8 @@ export function QuizLibreEcran() {
   const { theme } = useTheme();
   const { id, cours, nom } = useLocalSearchParams<{ id: string; cours?: string; nom?: string }>();
   const [questions, setQuestions] = useState<QuestionTiree[] | null | undefined>(undefined);
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
   const pret = useSessionPrete();
 
   useEffect(() => {
@@ -78,6 +81,7 @@ export function QuizLibreEcran() {
             console.warn('Impossible de noter ce quiz pour « Reprendre ».', erreur);
           }
           suivre('practice_quiz_completed', { score, total: q.length, record });
+          void crediterXp(getSupabase(), idUtilisateur, 10, 'quiz', String(id));
           router.replace('/quiz/resultats');
         }}
       />
