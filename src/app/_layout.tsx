@@ -17,7 +17,6 @@ import { GardeAppareilActif } from '@/components/compte/GardeAppareilActif';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
 import { ToastProvider } from '@/components/Toast';
-import { DeviceAlertProvider, useDeviceAlert } from '@/context/DeviceAlertContext';
 import { useDemandeSupportAuto } from '@/components/support/useDemandeSupportAuto';
 import { VisiteProvider } from '@/components/Visite';
 import { restaurerLangue } from '@/i18n';
@@ -153,34 +152,25 @@ export default function RootLayout() {
     <GestureHandlerRootView style={styles.racine}>
       <ThemeProvider>
         <ToastProvider>
-          <DeviceAlertProvider>
-            {alert ? (
-              // When device limit alert is active, only show the modal (which is rendered elsewhere)
-              <></>
-            ) : (
-              <>
-                <ErrorBoundary>
-                  <SessionProvider>
-                    <CreditsProvider>
-                      <NotificationsProvider>
-                        <VisiteProvider>
-                          <BottomSheetModalProvider>
-                            <BandeauApplication />
-                            <Navigation />
-                          </BottomSheetModalProvider>
-                          <BienvenueCredits />
-                          <ToastRechargeCredits />
-                          <BienvenuePass />
-                          <MiseAJour />
-                          <GardeAppareilActif />
-                        </VisiteProvider>
-                      </NotificationsProvider>
-                    </CreditsProvider>
-                  </SessionProvider>
-                </ErrorBoundary>
-              </>
-            )}
-          </DeviceAlertProvider>
+          <ErrorBoundary>
+            <SessionProvider>
+              <CreditsProvider>
+                <NotificationsProvider>
+                  <VisiteProvider>
+                    <BottomSheetModalProvider>
+                      <BandeauApplication />
+                      <Navigation />
+                    </BottomSheetModalProvider>
+                    <BienvenueCredits />
+                    <ToastRechargeCredits />
+                    <BienvenuePass />
+                    <MiseAJour />
+                    <GardeAppareilActif />
+                  </VisiteProvider>
+                </NotificationsProvider>
+              </CreditsProvider>
+            </SessionProvider>
+          </ErrorBoundary>
         </ToastProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
