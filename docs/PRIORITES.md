@@ -44,11 +44,17 @@ Objectif : que l'app vende. Chemin critique : paiement réel pawaPay, mesure Pos
 ## P3 (lot 2)
 #38 classes et classement, elearn-supabase #16 écoles relais, elearn #18 à #22 (écoles relais, partenaires, audit, réseaux sociaux), M17 échauffements (pas commencé, à décider), elearn #1 (demande de 2025, IA dans les leçons, à trancher).
 
+## Issues ajoutées le 13 octobre (oubliées du cahier des charges)
+Le projet GitHub n° 4 n'est pas modifiable depuis les outils du chef de projet : Benny doit les y ajouter (ou le demander à l'agent local).
+- **P1** : #62 test terrain de 20 élèves et appareils d'entrée de gamme ; #63 droits et source des annales (M6-05) ; #64 données personnelles, mineurs, juriste ; elearn-supabase #107 sauvegardes et restauration testée.
+- **P2** : #65 programme de révision personnalisé (M4-04) ; #66 XP et niveaux (M4-07) ; #67 M17 échauffements (décision) ; #68 journal d'erreurs et alertes ; elearn-supabase #108 ouverture d'un pays et packs par pays (M14) ; elearn-supabase #109 plafond d'un message marketing par semaine (M9-04) ; elearn #34 configuration des crédits (M18-12) ; elearn #35 tableau de bord des indicateurs (M12-06) ; elearn #36 fiche utilisateur et modération (M12-04/05).
+- **P3** : #69 missions de parrainage (M15-10) ; #70 espace partenaire dans l'app (M11) ; #71 backlog Should/Could (multi-profils, question de suivi, anglais, mode concentration).
+
 ## À trancher avec Benny
 1. #16 (classement des candidats aux annales) a été fermée le 12 octobre sans code ni migration : la rouvrir ou l'abandonner ?
 2. elearn-supabase #11 (auth) a été fermée alors que Supabase signale encore l'expiration des codes et les mots de passe compromis : à faire dans le tableau de bord ou assumer.
 3. Orange Cameroun refusé dans le code : critère de recette « MTN et Orange ».
-4. M17 échauffements : avant ou après le lancement ?
+4. M17 échauffements : avant ou après le lancement ? (issue #67)
 5. PR elearn #23 (notification « Paiement confirmé ») et #13 (préfixe Orange Cameroun) : à relire ou fermer.
 6. Les clones locaux `elearn-app-ci` et `elearn-app-notif` portent la seule copie de deux branches non fusionnées.
 
