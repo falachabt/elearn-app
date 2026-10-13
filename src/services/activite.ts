@@ -1,12 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, type AppStateStatus } from 'react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { jourLocal } from './mission';
+import { getSupabase } from './supabase';
 
 export type TypeActivite = 'cours' | 'lecon' | 'quiz' | 'exercice' | 'annale' | 'mission';
 
 export type SessionActivite = {
+  id?: string;
   type: TypeActivite;
   matiere?: string;
   titre?: string;
@@ -23,6 +26,132 @@ export type ActiviteJour = {
 };
 
 export const CLE_ACTIVITES_JOURS = 'activites.jours';
+export const CLE_ACTIVITES_EN_ATTENTE = 'activites.en_attente';
+
+type SessionEnAttente = {
+  id: string;
+  jour: string;
+  type: TypeActivite;
+  matiere?: string;
+  titre?: string;
+  secondes: number;
+  quand: string;
+};
+
+async function lireSessionsEnAttente(): Promise<SessionEnAttente[]> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_ACTIVITES_EN_ATTENTE);
+    return brut ? (JSON.parse(brut) as SessionEnAttente[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+async function sauvegarderSessionsEnAttente(sessions: SessionEnAttente[]): Promise<void> {
+  await AsyncStorage.setItem(CLE_ACTIVITES_EN_ATTENTE, JSON.stringify(sessions)).catch(() => {});
+}
+
+let envoiActivitesEnCours: Promise<void> | null = null;
+
+/** Envoie les sessions d'activités enregistrées localement vers Supabase. */
+export function synchroniserActivitesEnAttente(client?: Pick<SupabaseClient, 'from'>): Promise<void> {
+  if (envoiActivitesEnCours) return envoiActivitesEnCours;
+  envoiActivitesEnCours = (async () => {
+    const supabase = client ?? getSupabase();
+    const enAttente = await lireSessionsEnAttente();
+    if (!enAttente.length) return;
+
+    const restants: SessionEnAttente[] = [];
+    for (const s of enAttente) {
+      try {
+        const { error } = await supabase.from('activite_sessions').insert({
+          jour: s.jour,
+          type: s.type,
+          matiere: s.matiere ?? null,
+          titre: s.titre ?? null,
+          secondes: s.secondes,
+          quand: s.quand,
+        });
+        if (error) {
+          restants.push(s);
+        }
+      } catch {
+        restants.push(s);
+      }
+    }
+    await sauvegarderSessionsEnAttente(restants);
+  })().finally(() => {
+    envoiActivitesEnCours = null;
+  });
+  return envoiActivitesEnCours;
+}
+
+/**
+ * Restaure les activités depuis Supabase lors d'une connexion / reconnexion.
+ * Fusionne les sessions distantes avec le récapitulatif local.
+ */
+export async function synchroniserActivitesServeur(client?: Pick<SupabaseClient, 'from'>): Promise<Record<string, ActiviteJour>> {
+  const supabase = client ?? getSupabase();
+  try {
+    // 1. Envoyer d'abord les sessions locales en attente
+    await synchroniserActivitesEnAttente(supabase);
+
+    // 2. Récupérer toutes les sessions de l'élève depuis Supabase
+    const { data, error } = await supabase
+      .from('activite_sessions')
+      .select('id, jour, type, matiere, titre, secondes, quand')
+      .order('quand', { ascending: true });
+
+    if (error || !data) {
+      return await lireActivitesJours();
+    }
+
+    // 3. Reconstruire la structure ActiviteJour
+    const distantes: Record<string, ActiviteJour> = {};
+    for (const row of data as { id: string; jour: string; type: TypeActivite; matiere: string | null; titre: string | null; secondes: number; quand: string }[]) {
+      const j = row.jour;
+      const existant = distantes[j] ?? {
+        jour: j,
+        secondes: 0,
+        parType: { cours: 0, lecon: 0, quiz: 0, exercice: 0, annale: 0, mission: 0 },
+        parMatiere: {},
+        sessions: [],
+      };
+
+      existant.secondes += row.secondes;
+      existant.parType[row.type] = (existant.parType[row.type] ?? 0) + row.secondes;
+      if (row.matiere) {
+        existant.parMatiere[row.matiere] = (existant.parMatiere[row.matiere] ?? 0) + row.secondes;
+      }
+      existant.sessions.push({
+        id: row.id,
+        type: row.type,
+        matiere: row.matiere ?? undefined,
+        titre: row.titre ?? undefined,
+        secondes: row.secondes,
+        quand: row.quand,
+      });
+
+      distantes[j] = existant;
+    }
+
+    // 4. Fusionner avec le local existant au cas où des sessions locales ne sont pas encore parties
+    const locales = await lireActivitesJours();
+    const fusion: Record<string, ActiviteJour> = { ...distantes };
+
+    for (const [jour, actLocal] of Object.entries(locales)) {
+      if (!fusion[jour]) {
+        fusion[jour] = actLocal;
+      }
+    }
+
+    await AsyncStorage.setItem(CLE_ACTIVITES_JOURS, JSON.stringify(fusion));
+    return fusion;
+  } catch (err) {
+    console.warn('Erreur synchronisation activites serveur', err);
+    return await lireActivitesJours();
+  }
+}
 
 /** Lit toutes les activités enregistrées par jour. */
 export async function lireActivitesJours(): Promise<Record<string, ActiviteJour>> {
@@ -49,6 +178,8 @@ export async function enregistrerTempsActivite(p: {
   const date = p.date ?? new Date();
   const jour = jourLocal(date);
   const matierePropre = p.matiere ? p.matiere.trim() : 'Général';
+  const idSession = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const dateIso = date.toISOString();
 
   try {
     const tous = await lireActivitesJours();
@@ -67,20 +198,37 @@ export async function enregistrerTempsActivite(p: {
     }
 
     existant.sessions.push({
+      id: idSession,
       type: p.type,
       matiere: matierePropre,
       titre: p.titre,
       secondes: dureeS,
-      quand: date.toISOString(),
+      quand: dateIso,
     });
 
-    // On ne garde que les 100 dernières sessions par jour pour éviter l'encombrement
+    // On ne garde que les 100 dernières sessions par jour pour éviter l'encombrement local
     if (existant.sessions.length > 100) {
       existant.sessions = existant.sessions.slice(-100);
     }
 
     tous[jour] = existant;
     await AsyncStorage.setItem(CLE_ACTIVITES_JOURS, JSON.stringify(tous));
+
+    // Ajouter à la file d'attente hors-ligne / synchro
+    const enAttente = await lireSessionsEnAttente();
+    enAttente.push({
+      id: idSession,
+      jour,
+      type: p.type,
+      matiere: matierePropre,
+      titre: p.titre,
+      secondes: dureeS,
+      quand: dateIso,
+    });
+    await sauvegarderSessionsEnAttente(enAttente);
+
+    // Déclencher l'envoi en arrière-plan sans bloquer l'UI
+    void synchroniserActivitesEnAttente();
   } catch (err) {
     console.warn('Impossible d’enregistrer le temps d’activité locale.', err);
   }

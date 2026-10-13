@@ -7,6 +7,7 @@ import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { synchroniserResultat } from '@/services/miniTest';
+import { synchroniserActivitesServeur } from '@/services/activite';
 import { synchroniserLues } from '@/services/reviser';
 import { repriseInviteEnCours, reprendreApresRedemarrage } from '@/services/repriseInvite';
 import { suivreProgressionEntrainement, synchroniserEntrainement } from '@/services/synchroEntrainement';
@@ -66,6 +67,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 // M2-14 : après une connexion (ou reconnexion), la série et les leçons validées reviennent du compte.
                 restaurerHistorique(client).catch(() => {});
                 synchroniserLues(client).catch(() => {});
+                synchroniserActivitesServeur(client).catch(() => {});
                 // Nouveau compte sur ce téléphone : son jeton push lui est donné (si la permission l'est déjà).
                 void enregistrerJetonPush(client);
               }, 0);

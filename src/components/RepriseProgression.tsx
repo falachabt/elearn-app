@@ -13,6 +13,7 @@ import { lireRepriseInvite, transfererProgressionInvitee, effacerRepriseInvite, 
 import { getSupabase } from '@/services/supabase';
 import { appliquerReglages, lireReglagesCompte, remplacerReglagesParTelephone, type Reglages } from '@/services/synchroReglages';
 import { synchroniserLues } from '@/services/reviser';
+import { synchroniserActivitesServeur } from '@/services/activite';
 import { enregistrerJetonPush } from '@/services/push';
 import { PREFERENCES_PAR_DEFAUT } from '@/services/retours';
 import { synchroniserEntrainement } from '@/services/synchroEntrainement';
@@ -106,6 +107,7 @@ export function RepriseProgression() {
           synchroniserEntrainement(client, true),
           synchroniserLues(client, true),
           restaurerHistorique(client, true),
+          synchroniserActivitesServeur(client),
         ]);
       } else {
         await effacerRappelInvite();
@@ -123,6 +125,7 @@ export function RepriseProgression() {
           synchroniserEntrainement(client, true),
           synchroniserLues(client, true),
           restaurerHistorique(client, true),
+          synchroniserActivitesServeur(client),
         ]);
       }
       await enregistrerJetonPush(client);
