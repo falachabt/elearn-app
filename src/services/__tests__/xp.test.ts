@@ -78,4 +78,18 @@ describe('services/xp', () => {
       expect(res).toBe(0);
     });
   });
+
+  describe('PALIERS_NIVEAU', () => {
+    it('définit bien les 10 paliers ordonnés', () => {
+      expect(PALIERS_NIVEAU).toHaveLength(10);
+      expect(PALIERS_NIVEAU[0].niveau).toBe(1);
+      expect(PALIERS_NIVEAU[9].niveau).toBe(10);
+    });
+  });
+
+  describe('notifierXpGagne', () => {
+    it('notifie sans lever d’erreur', () => {
+      expect(() => notifierXpGagne(15, 65, 'quiz')).not.toThrow();
+    });
+  });
 });

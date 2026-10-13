@@ -1,5 +1,4 @@
 import * as Clipboard from 'expo-clipboard';
-import { Image } from 'expo-image';
 import { router, useFocusEffect } from 'expo-router';
 import { CircleHelp, FileText, Gift, IdCard, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
@@ -57,7 +56,6 @@ export function EcranMoi() {
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
   const { nom, photo } = identiteDe(user);
-  const initiale = (nom ?? '').charAt(0).toUpperCase();
 
   // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté, XP gagnés.
   useFocusEffect(

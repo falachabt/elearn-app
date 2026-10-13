@@ -11,7 +11,7 @@ import { lireProfil, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -28,7 +28,6 @@ import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
 import { identiteDe } from '@/services/identite';
 import { lireUserXp } from '@/services/xp';
-import { useSession } from '@/session/SessionProvider';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
@@ -183,7 +182,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       return () => {
         actif = false;
       };
-    }, [maintenant, t, pret, user?.id]),
+    }, [maintenant, t, pret, user]),
   );
 
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
