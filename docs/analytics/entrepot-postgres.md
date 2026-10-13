@@ -1,6 +1,6 @@
 # Plan : connecter la base Postgres à PostHog (entrepôt de données)
 
-Statut : plan seulement, rien n'est installé. Toute création de rôle ou de vue en production demande l'accord de Benny et passe par `elearn-supabase` (migration additive via `supabase/schemas/*.sql` puis `supabase db diff`, PR, jamais de push sur `main`). Les noms de colonnes ci-dessous sont à confirmer contre le schéma réel au moment de la migration.
+Statut : prêt à brancher, rien n'est installé (le SQL est livré, pas appliqué). Toute création de rôle ou de vue en production demande l'accord de Benny et passe par `elearn-supabase` (migration additive via `supabase/schemas/*.sql` puis `supabase db diff`, PR, jamais de push sur `main`). Les noms de colonnes ci-dessous sont à confirmer contre le schéma réel au moment de la migration.
 
 ## But
 
@@ -29,13 +29,28 @@ Créer un schéma dédié `posthog_export` qui ne contient que des vues sans don
 
 À exclure absolument : e-mail et téléphone de `auth.users`, `guardian_contacts`, `parent_contacts`, `parent_outbox`, `discussion_messages` et pièces jointes, `support_*`, `whatsapp_webhook_events`, `payment_webhook_events`, `payment_links` (jetons), `order_invoices`, `credit_devices` (identifiants d'appareil), `account_deletion_requests`.
 
-## Branchement
+## Branchement : étapes exactes pour Benny
 
-1. Rôle `posthog_reader` en lecture seule, avec `SELECT` sur le schéma `posthog_export` uniquement et rien sur `public` ni `auth`. Mot de passe dans le gestionnaire de secrets, jamais dans un dépôt.
-2. Connexion par le pooleur Supabase en SSL ; adresses IP de sortie de PostHog (région US) autorisées si la restriction réseau est active.
-3. PostHog : Données, Sources, Postgres ; choisir les vues du schéma `posthog_export` ; mode incrémental sur `updated_at` ou `created_at` ; fréquence quotidienne au début, horaire plus tard si utile.
-4. Dans PostHog, joindre chaque vue à `persons` par `user_id`, puis enregistrer des requêtes enregistrées pour les analyses récurrentes.
-5. Contrôle : comparer le nombre de commandes payées d'une semaine entre la vue et la base ; vérifier qu'aucune colonne ne contient d'e-mail ni de téléphone.
+Claude ne peut pas créer la source : le mot de passe doit être saisi par Benny dans PostHog, et la création du rôle touche la production (accord de Benny requis). Tout est prêt, il reste trois gestes.
+
+1. **Créer le rôle et les vues** : relire puis lancer `docs/analytics/entrepot-postgres.sql` dans l'éditeur SQL Supabase du projet « elearn ». Remplacer d'abord `REMPLACER_PAR_UN_MOT_DE_PASSE_LONG` par un mot de passe long généré (le garder dans le gestionnaire de mots de passe). Le fichier crée le schéma `posthog_export` (14 vues sans donnée personnelle), l'utilisateur `posthog_reader` (lecture seule, 5 connexions au plus, requêtes limitées à 60 s) et donne la requête de contrôle ainsi que le retour arrière.
+2. **Relever les paramètres de connexion** : dans Supabase, bouton **Connect** en haut, onglet **Direct**, choisir **Session pooler**. Prendre l'hôte affiché.
+3. **Créer la source dans PostHog** : Data pipeline, Sources, New source, **Supabase**, puis saisir :
+
+| Champ | Valeur |
+| --- | --- |
+| Host | l'hôte du **Session pooler** relevé à l'étape 2 (forme `aws-0-eu-central-1.pooler.supabase.com`, région du projet : eu-central-1) |
+| Port | `5432` |
+| Database | `postgres` |
+| User | `posthog_reader.yhznbitjlzeslvudbsil` (nom du rôle, point, référence du projet) |
+| Password | le mot de passe de l'étape 1 |
+| Schema | `posthog_export` |
+
+Pourquoi le **Session pooler** et pas la connexion directe : l'hôte direct `db.<ref>.supabase.co` n'est joignable qu'en IPv6, et PostHog n'y arrive pas ; le Session pooler répond en IPv4. Aucune liste d'adresses IP à autoriser n'est nécessaire avec le pooleur ; si une restriction réseau a été activée sur le projet, il faut y ajouter les adresses de sortie de PostHog (région US), données par PostHog à l'écran de création.
+
+Tables à cocher et fréquence : cocher les 14 vues `v_*`. Les vues n'ont pas de clé primaire, donc PostHog ne propose pas la synchro incrémentale : choisir **Full table** (rafraîchissement complet), **une fois par jour** au début. Les volumes sont petits (quelques milliers de lignes), le coût est négligeable. Quand `v_credit_ledger` ou `v_missions` grossissent, passer cette vue en table suivie par un curseur `created_at` (demande à Claude de préparer la migration).
+
+Contrôle après la première synchro : dans PostHog, requête SQL `select count() from v_orders` ; comparer avec `select count(*) from orders` dans Supabase. Vérifier ensuite qu'aucune colonne ne ressemble à un e-mail ou un téléphone (requête de contrôle en fin de fichier SQL). Jointure avec les évènements : `v_orders.user_id` = identifiant de la personne PostHog (`events.distinct_id`).
 
 ## Évènements serveur à émettre (en plus de la synchro)
 
