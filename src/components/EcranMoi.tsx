@@ -9,6 +9,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { estInvite } from '@/services/compte';
 import { paiementPossible } from '@/services/plateforme';
 import { identiteDe } from '@/services/identite';
+import { lireActivitesJours } from '@/services/activite';
 import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
 import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
@@ -29,14 +30,7 @@ import { CarteCredits } from './moi/CarteCredits';
 import { enMo } from './MesDocuments';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
 
-type Resume = {
-  minutes: number | null;
-  lessons: number; // total lessons
-  quizzes: number; // total quizzes
-  exercises: number; // total exercises
-  analyses: number; // total analyses
-  documents: { n: number; octets: number } | null;
-};
+type Resume = { minutes: number | null; documents: { n: number; octets: number } | null };
 
 /**
  * H1 · Moi (M2-15, guide §23) : en-tête (avatar, nom, classe et pays, roue des réglages), puis selon l'état la carte
@@ -50,7 +44,7 @@ export function EcranMoi() {
   const { solde } = useCredits();
   const [acces, setAcces] = useState<Acces>(null);
   const [profil, setProfil] = useState<Profil | null>(null);
-  const [resume, setResume] = useState<Resume>({ minutes: null, lessons: 0, quizzes: 0, exercises: 0, analyses: 0, documents: null });
+  const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
 
@@ -67,23 +61,16 @@ export function EcranMoi() {
       let actif = true;
       void (async () => {
         const client = getSupabase();
-        const [p, docs, passages] = await Promise.all([
+        const [p, docs, passages, activites] = await Promise.all([
           lireProfil(),
           lireDocuments().catch(() => []),
           lirePassages(client).catch(() => null),
+          lireActivitesJours().catch(() => ({})),
         ]);
         if (!actif) return;
         setProfil(p);
         setResume({
-          minutes: passages ? calculerProgression(passages).minutesSemaine : null,
-          lessons: passages ? calculerProgression(passages).globale?.totalLecons ?? 0 : 0,
-          exercises: passages ? calculerProgression(passages).globale?.totalExercices ?? 0 : 0,
-          quizzes: passages ? calculerProgression(passages).globale?.totalQuiz ?? 0 : 0,
-          analyses: passages
-            ? passages.reduce((acc, p) =>
-                acc + (p.chapitres?.filter(c => (c.matiere ?? '').toLowerCase().includes('annale')).length ?? 0),
-              0)
-            : 0,
+          minutes: passages ? calculerProgression(passages, undefined, activites).minutesSemaine : null,
           documents: { n: docs.length, octets: docs.reduce((s, d) => s + d.taille, 0) },
         });
         if (!connecte) return;
@@ -193,7 +180,7 @@ export function EcranMoi() {
         <LigneGroupe
           icone={Target}
           titre={t('profil.progression')}
-          sousTitre={resume.minutes && resume.minutes > 0 ? t('profil.progSous', { n: resume.minutes }) : undefined}
+          sousTitre={resume.minutes !== null ? t('profil.progSous', { n: resume.minutes }) : undefined}
           onPress={() => router.push('/progression')}
         />
         <LigneGroupe
