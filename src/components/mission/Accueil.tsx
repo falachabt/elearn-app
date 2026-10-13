@@ -116,6 +116,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const [rappelCompte, setRappelCompte] = useState(false);
 
   const user = session?.user;
+  const idUtilisateur = user?.id;
   const { nom, photo } = identiteDe(user);
 
   useEffect(() => {
@@ -156,7 +157,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           lireHistorique(),
           lireDernierResultat(),
           lireRythme(),
-          user?.id ? lireUserXp(getSupabase(), user.id).catch(() => 0) : Promise.resolve(0),
+          idUtilisateur ? lireUserXp(getSupabase(), idUtilisateur).catch(() => 0) : Promise.resolve(0),
         ]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;
@@ -182,7 +183,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       return () => {
         actif = false;
       };
-    }, [maintenant, t, pret, user]),
+    }, [maintenant, t, pret, idUtilisateur]),
   );
 
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
