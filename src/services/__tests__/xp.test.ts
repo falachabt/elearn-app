@@ -7,7 +7,7 @@ describe('services/xp', () => {
       expect(info.niveau).toBe(1);
       expect(info.ratioProgression).toBe(0);
       expect(info.xpRequisPourSuivant).toBe(100);
-      expect(info.couleur).toBe('#9E998C');
+      expect(info.couleur).toBe('#B69CFF');
     });
 
     it('calcule la progression au sein du niveau 1', () => {

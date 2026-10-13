@@ -11,6 +11,7 @@ import { BarresSysteme } from '@/components/BarresSysteme';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { BienvenueCredits } from '@/components/credits/BienvenueCredits';
 import { ToastRechargeCredits } from '@/components/credits/ToastRechargeCredits';
+import { ToastGainXp } from '@/components/xp/ToastGainXp';
 import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
 import { GardeAppareilActif } from '@/components/compte/GardeAppareilActif';
@@ -177,6 +178,7 @@ export default function RootLayout() {
                     </BottomSheetModalProvider>
                     <BienvenueCredits />
                     <ToastRechargeCredits />
+                    <ToastGainXp />
                     <BienvenuePass />
                     <MiseAJour />
                     <GardeAppareilActif />

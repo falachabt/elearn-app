@@ -27,7 +27,7 @@ import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
 import { identiteDe } from '@/services/identite';
-import { lireUserXp } from '@/services/xp';
+import { ecouterGainXp, lireUserXp } from '@/services/xp';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
 
@@ -129,6 +129,12 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     };
   }, []);
 
+  useEffect(() => {
+    return ecouterGainXp((info) => {
+      setTotalXp(info.total);
+    });
+  }, []);
+
   // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
   useFocusEffect(
     useCallback(() => {
@@ -157,7 +163,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           lireHistorique(),
           lireDernierResultat(),
           lireRythme(),
-          idUtilisateur ? lireUserXp(getSupabase(), idUtilisateur).catch(() => 0) : Promise.resolve(0),
+          lireUserXp(getSupabase(), idUtilisateur).catch(() => 0),
         ]);
         const { serie } = calculerSerie(historique, jour);
         const faite = dernier?.jour === jour ? dernier : null;

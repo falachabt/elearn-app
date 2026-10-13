@@ -22,7 +22,7 @@ export interface PalierNiveau {
  * - Niveaux 8 à 10 : Or Soleil (excellence / prestige)
  */
 export const PALIERS_NIVEAU: readonly PalierNiveau[] = [
-  { niveau: 1, nomCleI18n: 'xp.palier1', seuilMin: 0, seuilSuivant: 100, couleur: '#9E998C' },
+  { niveau: 1, nomCleI18n: 'xp.palier1', seuilMin: 0, seuilSuivant: 100, couleur: '#B69CFF' },
   { niveau: 2, nomCleI18n: 'xp.palier2', seuilMin: 100, seuilSuivant: 250, couleur: '#10B981' },
   { niveau: 3, nomCleI18n: 'xp.palier3', seuilMin: 250, seuilSuivant: 500, couleur: '#10B981' },
   { niveau: 4, nomCleI18n: 'xp.palier4', seuilMin: 500, seuilSuivant: 1000, couleur: '#059669' },
@@ -171,8 +171,36 @@ export async function crediterXp(
   return nouveauTotal;
 }
 
+export type InfoGainXp = {
+  gain: number;
+  total: number;
+  source: SourceXp | string;
+};
+
+type AuditeurGainXp = (info: InfoGainXp) => void;
+const auditeursGainXp: Set<AuditeurGainXp> = new Set();
+
+/** Permet à l'application d'écouter les gains d'XP en temps réel (ex: pour afficher un toast). */
+export function ecouterGainXp(auditeur: AuditeurGainXp): () => void {
+  auditeursGainXp.add(auditeur);
+  return () => {
+    auditeursGainXp.delete(auditeur);
+  };
+}
+
+/** Émet l'événement de gain XP à tous les auditeurs actifs. */
+export function emettreGainXp(info: InfoGainXp): void {
+  for (const auditeur of auditeursGainXp) {
+    try {
+      auditeur(info);
+    } catch (err) {
+      console.warn('Erreur dans un auditeur de gain XP.', err);
+    }
+  }
+}
+
 /**
- * Notifie l'événement PostHog après un gain d'XP.
+ * Notifie l'événement PostHog après un gain d'XP et déclenche les auditeurs d'UI.
  */
 export function notifierXpGagne(gain: number, totalApresGain: number, source: SourceXp | string): void {
   const info = calculerNiveau(totalApresGain);
@@ -182,4 +210,5 @@ export function notifierXpGagne(gain: number, totalApresGain: number, source: So
     source,
     niveau: info.niveau,
   });
+  emettreGainXp({ gain, total: totalApresGain, source });
 }

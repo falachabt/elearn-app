@@ -30,7 +30,7 @@ import { enMo } from './MesDocuments';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
 import { AvatarNiveau } from './xp/AvatarNiveau';
 import { CarteXp } from './xp/CarteXp';
-import { lireUserXp } from '@/services/xp';
+import { ecouterGainXp, lireUserXp } from '@/services/xp';
 
 type Resume = { minutes: number | null; documents: { n: number; octets: number } | null };
 
@@ -57,6 +57,12 @@ export function EcranMoi() {
   const idUtilisateur = user?.id;
   const { nom, photo } = identiteDe(user);
 
+  useEffect(() => {
+    return ecouterGainXp((info) => {
+      setTotalXp(info.total);
+    });
+  }, []);
+
   // Relu à chaque retour sur l'onglet : classe changée, mission faite, document gardé, contact ajouté, XP gagnés.
   useFocusEffect(
     useCallback(() => {
@@ -68,7 +74,7 @@ export function EcranMoi() {
           lireDocuments().catch(() => []),
           lirePassages(client).catch(() => null),
           lireActivitesJours().catch(() => ({})),
-          connecte && idUtilisateur ? lireUserXp(client, idUtilisateur).catch(() => 0) : Promise.resolve(0),
+          lireUserXp(client, idUtilisateur).catch(() => 0),
         ]);
         if (!actif) return;
         setProfil(p);

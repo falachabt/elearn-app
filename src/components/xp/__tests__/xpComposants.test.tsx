@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { act, fireEvent, render, screen } from '@testing-library/react-native';
 import { router } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { BaremeXp } from '../BaremeXp';
 import { CarteXp } from '../CarteXp';
 import { AvatarNiveau } from '../AvatarNiveau';
+import { ToastGainXp } from '../ToastGainXp';
+import { emettreGainXp } from '@/services/xp';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 jest.mock('expo-router', () => ({
@@ -68,6 +70,28 @@ describe('Composants XP & Niveaux (M4-07)', () => {
       const btnRetour = screen.getByRole('button', { name: 'Retour' });
       await fireEvent.press(btnRetour);
       expect(router.back).toHaveBeenCalled();
+    });
+  });
+
+  describe('ToastGainXp', () => {
+    it('affiche un toast lors d’un gain d’XP puis réagit au tap', async () => {
+      await monter(<ToastGainXp />);
+
+      // Au début, rien n'est affiché
+      expect(screen.queryByText('+50 XP')).toBeNull();
+
+      // Émission d'un gain de mission
+      act(() => {
+        emettreGainXp({ gain: 50, total: 50, source: 'daily_mission' });
+      });
+
+      // Le toast apparaît avec le titre et le sous-titre
+      expect(await screen.findByText('+50 XP')).toBeTruthy();
+      expect(screen.getByText('Mission du jour accomplie !')).toBeTruthy();
+
+      // Tap sur le toast pour ouvrir le barème
+      await fireEvent.press(screen.getByText('+50 XP'));
+      expect(router.push).toHaveBeenCalledWith(expect.objectContaining({ pathname: '/xp' }));
     });
   });
 });
