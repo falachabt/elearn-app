@@ -70,6 +70,15 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 void enregistrerJetonPush(client);
               }, 0);
             }
+          } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
+            // Session sign out – clear state and recreate invited session
+            setEtat({ statut: 'chargement', session: null, erreur: null });
+            void (async () => {
+              const invited = await assurerSessionInvite(client);
+              if (actif) {
+                setEtat({ statut: 'pret', session: invited, erreur: null });
+              }
+            })();
           }
         });
         desabonner = () => {

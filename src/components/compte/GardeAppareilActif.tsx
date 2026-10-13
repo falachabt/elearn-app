@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import {
   enregistrerAppareilActif,
   suivreAppareilActif,
@@ -8,15 +7,13 @@ import {
 import { getSupabase } from '@/services/supabase';
 import { useSession } from '@/session/SessionProvider';
 import { ModaleAppareilActif, type TypeAlerteAppareil } from './ModaleAppareilActif';
+import { deconnecter } from '@/services/compte';
+import { useRouter } from 'expo-router';
 
-/**
- * Gardien de l'appareil actif unique (issue #26) :
- * - À l'ouverture et lors de la connexion, enregistre cet appareil.
- * - Si le quota mensuel est atteint (3 changements), affiche la modale explicative avec contact direct du support.
- * - Écoute en temps réel : si un autre appareil est connecté, déconnecte la session et affiche la modale « Session ouverte ailleurs ».
- */
 export function GardeAppareilActif() {
   const { session } = useSession();
+  const router = useRouter();
+  const client = getSupabase();
   const [alerte, setAlerte] = useState<TypeAlerteAppareil | null>(null);
 
   const utilisateur = session?.user.id ?? null;
@@ -24,7 +21,6 @@ export function GardeAppareilActif() {
 
   useEffect(() => {
     if (!utilisateur || !connecte) return;
-    const client = getSupabase();
     let actif = true;
 
     // 1. Enregistrement de l'appareil actif
@@ -43,8 +39,7 @@ export function GardeAppareilActif() {
       const toujoursValide = await verifierAppareilActif(client).catch(() => true);
       if (!toujoursValide && actif) {
         setAlerte('deconnecte');
-        // Invalidation locale de la session
-        await client.auth.signOut().catch(() => {});
+        await deconnecter(client);
       }
     });
 
@@ -56,13 +51,17 @@ export function GardeAppareilActif() {
 
   if (!alerte) return null;
 
+  const fermer = async () => {
+    setAlerte(null);
+    await deconnecter(client);
+    router.replace('/bienvenue');
+  };
+
   return (
     <ModaleAppareilActif
       visible={!!alerte}
       type={alerte}
-      surFermer={() => {
-        setAlerte(null);
-      }}
+      surFermer={fermer}
     />
   );
 }
