@@ -31,6 +31,7 @@ PostHog `$screen`, une par changement d'écran, avec le nom de la route sans par
 | `langue_telephone`, `region_telephone` | langue et région du téléphone | Démarrage |
 | `plateforme`, `version_app`, `canal` | Android, iOS, web ; version ; canal de mise à jour | Démarrage |
 | `pass_actif`, `pass_offre` | avec ou sans Pass, et l'offre | Chaque lecture de l'accès |
+| `taille_texte_reglage` | `auto` (taille selon l'écran) ou la taille manuelle choisie (`80` à `130`) | Démarrage, chaque changement de taille |
 
 Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 
@@ -114,7 +115,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `notification_prompt_answered` | Réponse à la proposition | `{ choix: 'accepte' \| 'refuse' \| 'plus_tard' }` |
 | `notification_opened` | Notification ouverte | `{ type: string }` |
 | `notification_setting_changed` | Rappel quotidien activé ou coupé | `{ rappel: boolean }` |
-| `display_setting_changed` | Thème ou taille du texte modifié | `{ theme?: 'clair' \| 'sombre' \| 'systeme'; taille?: number }` |
+| `display_setting_changed` | Thème ou taille du texte modifié | `{ theme?: 'clair' \| 'sombre' \| 'systeme'; taille?: number; mode?: 'auto' \| 'manuel' }` |
 | `settings_opened` | Paramètres ouverts | `{ source: 'moi' }` |
 | `contest_chosen` | Concours choisi | `{ filiere: string; concours: string }` |
 | `mission_goal_set` | Objectif de mission réglé | `{ minutes: number \| null; questions: number; origine: 'fin_mission' \| 'parametres' }` |

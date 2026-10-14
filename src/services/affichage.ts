@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { typo } from '@/theme/theme';
 
-import { suivre } from './analytics';
+import { definirProprietesUtilisateur, suivre } from './analytics';
 import { signalerModification } from './reglagesLocaux';
 
 /**
@@ -45,10 +45,17 @@ let charge: Promise<void> | null = null;
 const ecouteurs = new Set<() => void>();
 
 // Copie des tailles d'origine : la taille du texte se calcule toujours depuis elles.
+// Gardée sur globalThis : au fast refresh ce module est réévalué alors que `typo` est déjà réduit ; une copie locale
+// capturerait ces tailles réduites et chaque rechargement les réduirait encore (texte qui rétrécit à chaque modification).
 type CleTypo = keyof typeof typo;
-const base = Object.fromEntries(
-  (Object.keys(typo) as CleTypo[]).map((k) => [k, { fontSize: typo[k].fontSize, lineHeight: typo[k].lineHeight, letterSpacing: 'letterSpacing' in typo[k] ? typo[k].letterSpacing : undefined }]),
-) as Record<CleTypo, { fontSize: number; lineHeight: number; letterSpacing?: number }>;
+type BaseTypo = Record<CleTypo, { fontSize: number; lineHeight: number; letterSpacing?: number }>;
+const cleBase = '__elearnTypoBase';
+const globale = globalThis as typeof globalThis & { [cleBase]?: BaseTypo };
+const base: BaseTypo =
+  globale[cleBase] ??
+  (globale[cleBase] = Object.fromEntries(
+    (Object.keys(typo) as CleTypo[]).map((k) => [k, { fontSize: typo[k].fontSize, lineHeight: typo[k].lineHeight, letterSpacing: 'letterSpacing' in typo[k] ? typo[k].letterSpacing : undefined }]),
+  ) as BaseTypo);
 
 /**
  * Applique la taille du texte aux styles `typo` partagés par tous les écrans. Les écrans lisent `typo` au rendu ;
@@ -75,6 +82,8 @@ const estTaille = (v: unknown): v is ReglageTaille => v === 'auto' || TAILLES.in
 function publier(nouvel: Etat) {
   etat = nouvel;
   appliquerTaille(tailleEffective(etat.taille, dpMin));
+  // Propriété de la personne : « auto » ou la taille manuelle choisie (pour la répartition dans PostHog).
+  definirProprietesUtilisateur({ taille_texte_reglage: etat.taille === 'auto' ? 'auto' : String(etat.taille) });
   ecouteurs.forEach((f) => f());
 }
 
@@ -132,7 +141,7 @@ export async function definirTheme(theme: ReglageTheme): Promise<void> {
 export async function definirTaille(taille: TailleTexte): Promise<void> {
   if (taille === etat.taille) return;
   publier({ ...etat, taille });
-  suivre('display_setting_changed', { taille });
+  suivre('display_setting_changed', { taille, mode: 'manuel' });
   await AsyncStorage.setItem(CLE_TAILLE, String(taille)).catch(() => {});
   await signalerModification();
 }
@@ -141,7 +150,7 @@ export async function definirTaille(taille: TailleTexte): Promise<void> {
 export async function definirTailleAuto(): Promise<void> {
   if (etat.taille === 'auto') return;
   publier({ ...etat, taille: 'auto' });
-  suivre('display_setting_changed', { taille: lireTailleEffective() });
+  suivre('display_setting_changed', { taille: lireTailleEffective(), mode: 'auto' });
   await AsyncStorage.setItem(CLE_TAILLE, 'auto').catch(() => {});
   await signalerModification();
 }

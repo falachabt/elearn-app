@@ -53,7 +53,7 @@ export type Evenements = {
   notification_prompt_answered: { choix: 'accepte' | 'refuse' | 'plus_tard' };
   notification_opened: { type: string };
   notification_setting_changed: { rappel: boolean };
-  display_setting_changed: { theme?: 'clair' | 'sombre' | 'systeme'; taille?: number };
+  display_setting_changed: { theme?: 'clair' | 'sombre' | 'systeme'; taille?: number; mode?: 'auto' | 'manuel' };
   settings_opened: { source: 'moi' };
   contest_chosen: { filiere: string; concours: string };
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
