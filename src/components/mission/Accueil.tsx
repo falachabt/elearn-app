@@ -43,13 +43,13 @@ export function titreMission(m: Mission | null): string | null {
 
 /**
  * Libellé court du profil affiché dans le sélecteur d'en-tête :
- * - élève : classe · pays (ex. 3e · CM)
- * - concours : sigle · ville si disponible, sinon sigle · pays (ex. ENS · Yaoundé ou ENS · CM)
+ * - élève : classe seule (ex. 3e, Tle) sans le pays
+ * - concours : sigle seul (ex. ENS, Médecine) sans le pays
  */
 export function libelleProfil(profil: Profil | null): string {
-  if (!profil) return '3e · CM';
+  if (!profil) return '3e';
   if (profil.type === 'concours') {
-    const sigle =
+    return (
       profil.concours?.sigle ??
       (profil.niveau === 'ens'
         ? 'ENS'
@@ -57,13 +57,10 @@ export function libelleProfil(profil: Profil | null): string {
           ? 'Médecine'
           : profil.niveau === 'ingenieurs'
             ? 'Ingénieurs'
-            : profil.niveau ?? 'Concours');
-    const precision = profil.concours?.ville?.trim() || profil.pays || '';
-    return [sigle, precision].filter(Boolean).join(' · ');
+            : profil.niveau ?? 'Concours')
+    );
   }
-  const classe = profil.niveau || '3e';
-  const pays = profil.pays || 'CM';
-  return [classe, pays].filter(Boolean).join(' · ');
+  return profil.niveau || '3e';
 }
 
 /**

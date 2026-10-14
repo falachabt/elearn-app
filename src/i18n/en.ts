@@ -1757,6 +1757,11 @@ export const en: Textes = {
     toastMission: 'Daily mission completed!',
     toastQuiz: 'Quiz completed!',
     toastExercise: 'Exercise solved!',
+    toastCourse: 'Lesson completed!',
     toastNiveauSuperieur: 'Level {{niveau}} reached! Well done!',
+    toastNiveauDebloqueTitre: 'Level {{niveau}} unlocked!',
+    toastNiveauDebloqueSous: 'You reached rank {{palier}}!',
+    toastNotificationTitre: 'Level {{niveau}} unlocked!',
+    toastNotificationCorps: 'Congratulations, you just reached rank {{palier}}!',
   },
 };

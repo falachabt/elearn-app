@@ -203,6 +203,17 @@ describe('terminerMission', () => {
     ]);
   });
 
+  it('attribue 50 XP la première fois du jour, mais pas lors d’une seconde complétion', async () => {
+    const questions = [convertir(ligne(1), VF, () => 0)!];
+    const c = clientFaux({});
+    await terminerMission(c as never, { questions, reponses: [questions[0].bonne], niveau: '3e', dureeS: 10, jour: '2026-10-14' });
+    expect(await AsyncStorage.getItem('mission.xp_recompensee_2026-10-14')).toBe('1');
+
+    // Seconde fois le même jour
+    await terminerMission(c as never, { questions, reponses: [questions[0].bonne], niveau: '3e', dureeS: 10, jour: '2026-10-14' });
+    expect(await AsyncStorage.getItem('mission.xp_recompensee_2026-10-14')).toBe('1');
+  });
+
   it('jour local AAAA-MM-JJ', () => {
     expect(jourLocal(new Date(2026, 0, 5, 23, 59))).toBe('2026-01-05');
   });

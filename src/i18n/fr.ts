@@ -1758,7 +1758,12 @@ export const fr = {
     toastMission: 'Mission du jour accomplie !',
     toastQuiz: 'Quiz validé !',
     toastExercise: 'Exercice résolu !',
+    toastCourse: 'Leçon terminée !',
     toastNiveauSuperieur: 'Niveau {{niveau}} atteint ! Bravo !',
+    toastNiveauDebloqueTitre: 'Niveau {{niveau}} débloqué !',
+    toastNiveauDebloqueSous: 'Tu passes au rang {{palier}} !',
+    toastNotificationTitre: 'Niveau {{niveau}} débloqué !',
+    toastNotificationCorps: 'Félicitations, tu viens d’atteindre le rang {{palier}} !',
   },
 } as const;
 

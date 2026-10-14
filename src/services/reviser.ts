@@ -8,6 +8,7 @@ import { contenuHorsLigneValide } from './connectivite';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
+import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
 
@@ -283,9 +284,19 @@ export function quizReussi(score: number, total: number): boolean {
  * Marque la leçon comme validée : elle compte alors dans la progression (questions réussies, ou leçon sans questions).
  * Enregistrée sur le téléphone tout de suite, puis envoyée au serveur sans bloquer quand un client est donné.
  */
-export async function marquerLue(lecon: number, cours: number, client?: ClientSynchro, resultat?: { score: number; total: number }): Promise<void> {
+export async function marquerLue(
+  lecon: number,
+  cours: number,
+  client?: ClientSynchro,
+  resultat?: { score: number; total: number },
+  userId?: string | null,
+): Promise<void> {
   const lues = await lireLues();
+  const premiereFois = lues[lecon] === undefined;
   if (lues[lecon] !== cours) await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ ...lues, [lecon]: cours }));
+  if (premiereFois) {
+    void crediterXp(client as never, userId, 20, 'course', String(lecon));
+  }
   if (client) {
     void client.rpc('validate_lessons', { p_items: [{ lesson_id: lecon, course_id: cours, ...resultat }] }).then(
       () => undefined,

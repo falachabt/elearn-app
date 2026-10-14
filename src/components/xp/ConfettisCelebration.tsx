@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
 
 const COULEURS = ['#FFD83D', '#10B981', '#B69CFF', '#1A75FF', '#FF9A3D', '#FF5252', '#34D399'];
@@ -37,8 +37,8 @@ function genererParticules(largeur: number): Particule[] {
 
 export function ConfettisCelebration() {
   const { width, height } = Dimensions.get('window');
-  const particules = useRef(genererParticules(width)).current;
-  const animations = useRef(particules.map(() => new Animated.Value(0))).current;
+  const [particules] = useState(() => genererParticules(width));
+  const [animations] = useState(() => particules.map(() => new Animated.Value(0)));
 
   useEffect(() => {
     const lancements = animations.map((anim, i) => {
@@ -54,7 +54,11 @@ export function ConfettisCelebration() {
       ]);
     });
 
-    Animated.stagger(20, lancements).start();
+    const composite = Animated.stagger(20, lancements);
+    composite.start();
+    return () => {
+      composite.stop();
+    };
   }, [animations, particules]);
 
   return (

@@ -93,5 +93,17 @@ describe('Composants XP & Niveaux (M4-07)', () => {
       await fireEvent.press(screen.getByText('+50 XP'));
       expect(router.push).toHaveBeenCalledWith(expect.objectContaining({ pathname: '/xp' }));
     });
+
+    it('affiche un toast spécial de déblocage lors d’un passage de niveau', async () => {
+      await monter(<ToastGainXp />);
+
+      // Émission d'un gain faisant passer au niveau 2 (Apprenti à partir de 100 XP)
+      await act(async () => {
+        emettreGainXp({ gain: 30, total: 110, source: 'quiz' });
+      });
+
+      expect(await screen.findByText('Niveau 2 débloqué !')).toBeTruthy();
+      expect(screen.getByText('Tu passes au rang Apprenti !')).toBeTruthy();
+    });
   });
 });

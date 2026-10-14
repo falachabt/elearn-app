@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { Platform } from 'react-native';
 
 import { suivre } from './analytics';
 
@@ -154,7 +155,7 @@ export async function crediterXp(
   const nouveauTotal = actuel + gain;
   await AsyncStorage.setItem(CLE_XP_LOCAL, String(nouveauTotal)).catch(() => {});
 
-  if (client && userId) {
+  if (client && typeof client.from === 'function' && userId) {
     try {
       await client.from('xp_history').insert({
         userid: userId,
@@ -211,4 +212,24 @@ export function notifierXpGagne(gain: number, totalApresGain: number, source: So
     niveau: info.niveau,
   });
   emettreGainXp({ gain, total: totalApresGain, source });
+}
+
+/** Déclenche une notification push locale immédiate sur le téléphone lors d'un passage de niveau. */
+export async function notifierNiveauDebloqueNotification(niveau: number, titre: string, corps: string): Promise<void> {
+  if (Platform.OS === 'web') return;
+  try {
+    const Notifications = await import('expo-notifications');
+    const permission = await Notifications.getPermissionsAsync();
+    if (!permission.granted) return;
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: titre,
+        body: corps,
+        data: { screen: '/xp' },
+      },
+      trigger: null,
+    });
+  } catch {
+    // Ne bloque jamais
+  }
 }

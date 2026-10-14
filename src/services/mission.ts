@@ -199,7 +199,14 @@ export async function terminerMission(
   ]).catch(() => {});
   await enregistrerCorrection({ source: 'mission', questions: [...p.questions], reponses: [...p.reponses], contexte: { type: 'mission' } });
   suivre('mission_completed', { score: resultat.score, total: resultat.total, duree_s: resultat.dureeS, serie });
-  void crediterXp(client, p.userId, 50, 'daily_mission');
+
+  // Les 50 XP ne sont crédités qu'une seule fois par jour calendaire (M4-07)
+  const cleXpJour = `mission.xp_recompensee_${jour}`;
+  const dejaRecompense = (await AsyncStorage.getItem(cleXpJour).catch(() => null)) === '1';
+  if (!dejaRecompense) {
+    await AsyncStorage.setItem(cleXpJour, '1').catch(() => {});
+    void crediterXp(client, p.userId, 50, 'daily_mission', jour);
+  }
   // Le passage est gardé sur le téléphone AVANT l'envoi : hors ligne, l'insertion échouait en silence et la mission
   // n'entrait jamais dans la progression (ni hors ligne, ni au retour du réseau).
   await ajouterPassageLocal({
