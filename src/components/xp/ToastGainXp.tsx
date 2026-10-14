@@ -93,6 +93,16 @@ export function ToastGainXp() {
     [animGlisse, animOpacite, masquer, reduit],
   );
 
+  // Nettoyage du timer au démontage
+  useEffect(() => {
+    return () => {
+      if (timerMasquer.current) {
+        clearTimeout(timerMasquer.current);
+        timerMasquer.current = null;
+      }
+    };
+  }, []);
+
   // 1. Écoute les gains locaux émis dans l'app (mission, quiz, exercice, même hors-ligne)
   useEffect(() => {
     return ecouterGainXp((info) => {

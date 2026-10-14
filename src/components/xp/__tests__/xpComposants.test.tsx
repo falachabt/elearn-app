@@ -81,7 +81,7 @@ describe('Composants XP & Niveaux (M4-07)', () => {
       expect(screen.queryByText('+50 XP')).toBeNull();
 
       // Émission d'un gain de mission
-      act(() => {
+      await act(async () => {
         emettreGainXp({ gain: 50, total: 50, source: 'daily_mission' });
       });
 
