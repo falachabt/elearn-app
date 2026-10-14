@@ -6,11 +6,13 @@ import {
   lireUserXp,
   notifierXpGagne,
   PALIERS_NIVEAU,
+  reinitialiserCacheXp,
   reinitialiserVerrousCreditation,
 } from '../xp';
 
 describe('services/xp', () => {
   beforeEach(async () => {
+    reinitialiserCacheXp();
     await AsyncStorage.clear();
     reinitialiserVerrousCreditation();
   });

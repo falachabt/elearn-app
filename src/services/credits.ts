@@ -88,12 +88,29 @@ export async function lireSolde(client: Client, appareil: string | null): Promis
 export type ReglagesCredits = { bienvenue: number; invite: number; recharge: number };
 
 /** Montants du back-office (bienvenue, invité, recharge du lundi) : lisibles sans compte, jamais écrits en dur dans les textes. */
+/**
+ * Ces montants changent rarement : on les garde en mémoire pendant une dizaine de minutes au lieu de les relire à chaque écran
+ * (issue #14, `credit_settings` relu une quarantaine de fois par jour pour un seul téléphone).
+ */
+const DUREE_CACHE_CONFIG_MS = 10 * 60 * 1000;
+let cacheReglages: { valeur: ReglagesCredits; date: number } | null = null;
+let cacheCouts: { valeur: Partial<Record<ActionCredit, number>>; date: number } | null = null;
+
+/** Vide le cache des montants (déconnexion, tests). */
+export function viderCacheCredits(): void {
+  cacheReglages = null;
+  cacheCouts = null;
+}
+
 export async function lireReglages(client: Client): Promise<ReglagesCredits> {
+  if (cacheReglages && Date.now() - cacheReglages.date < DUREE_CACHE_CONFIG_MS) return cacheReglages.valeur;
   const { data, error } = await client.from('credit_settings').select('welcome_amount, guest_amount, weekly_amount').limit(1).maybeSingle();
   if (error) throw error;
   const l = data as { welcome_amount: number; guest_amount: number; weekly_amount: number } | null;
   if (!l) throw new Error('réglages introuvables');
-  return { bienvenue: l.welcome_amount, invite: l.guest_amount, recharge: l.weekly_amount };
+  const valeur = { bienvenue: l.welcome_amount, invite: l.guest_amount, recharge: l.weekly_amount };
+  cacheReglages = { valeur, date: Date.now() };
+  return valeur;
 }
 
 /**
@@ -133,9 +150,12 @@ export async function lireRechargeRecente(client: Client, depuis: string): Promi
 
 /** Coût de chaque action active, pour afficher le prix avant d'agir (M18-07). */
 export async function lireCouts(client: Client): Promise<Partial<Record<ActionCredit, number>>> {
+  if (cacheCouts && Date.now() - cacheCouts.date < DUREE_CACHE_CONFIG_MS) return cacheCouts.valeur;
   const { data, error } = await client.from('credit_actions').select('code, cost');
   if (error) throw error;
-  return Object.fromEntries(((data ?? []) as { code: ActionCredit; cost: number }[]).map((l) => [l.code, l.cost]));
+  const valeur = Object.fromEntries(((data ?? []) as { code: ActionCredit; cost: number }[]).map((l) => [l.code, l.cost]));
+  cacheCouts = { valeur, date: Date.now() };
+  return valeur;
 }
 
 /**

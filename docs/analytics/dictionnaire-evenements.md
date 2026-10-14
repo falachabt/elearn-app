@@ -161,6 +161,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `exercise_opened` | Exercice libre ouvert | `Record<string, never>` |
 | `annale_timer_started` | Chronomètre d'une annale lancé (officiel, perso, libre) | `{ mode: 'officiel' \| 'perso' \| 'libre'; minutes: number \| null }` |
 | `ai_answer_seen` | Réponse de l'IA affichée (durée de bout en bout) | `{ source: 'photo' \| 'question'; duree_s: number }` |
+| `compte_echec` | Échec de création de compte par e-mail (code d'erreur seulement, jamais le message ni l'adresse) | `{ methode: 'email'; etape: 'inscription' \| 'mise_a_jour'; raison: string }` |
 | `ai_correction_complete` | Correction photo reçue, en millisecondes (issue #14) | `{ duration_ms: number; matiere: string; etapes: number }` |
 | `app_cold_start` | Démarrage à froid : du chargement du module jusqu'à l'écran prêt, une fois par lancement (issue #14) | `{ duration_ms: number }` |
 | `requete_reseau` | Requête vers Supabase : nom de la ressource (table, rpc, fonction, auth, storage), durée, statut (0 = échec réseau), octets envoyés et reçus (`null` si non annoncés). Jamais l'URL complète ni les filtres (issue #14) | `{ nom: string; duration_ms: number; statut: number; octets_envoyes: number; octets_recus: number \| null }` |

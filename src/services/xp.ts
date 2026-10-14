@@ -117,15 +117,28 @@ type Client = Pick<SupabaseClient, 'from'>;
  * Les XP de l'ancienne application sont ainsi repris et conservés.
  * Replie sur le cache local en mode hors ligne ou invité.
  */
+/** Le total ne bouge qu'à un gain d'XP : une lecture récente suffit pour les écrans qui s'affichent en rafale (issue #14). */
+const DUREE_CACHE_XP_MS = 60 * 1000;
+let lectureXpRecente: { userId: string; valeur: number; date: number } | null = null;
+
+/** Pour les tests : oublie la dernière lecture distante. */
+export function reinitialiserCacheXp(): void {
+  lectureXpRecente = null;
+}
+
 export async function lireUserXp(client?: Client | null, userId?: string | null): Promise<number> {
   const localBrut = await AsyncStorage.getItem(CLE_XP_LOCAL).catch(() => null);
   const local = localBrut ? Math.max(0, parseInt(localBrut, 10) || 0) : 0;
 
   if (client && typeof client.from === 'function' && userId) {
+    if (lectureXpRecente && lectureXpRecente.userId === userId && Date.now() - lectureXpRecente.date < DUREE_CACHE_XP_MS) {
+      return lectureXpRecente.valeur;
+    }
     try {
       const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
       if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
         const distant = (data as { total_xp: number }).total_xp;
+        lectureXpRecente = { userId, valeur: distant, date: Date.now() };
         // Le serveur est la source de vérité pour un compte connecté : synchronise le stockage local
         await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
         return distant;
@@ -198,6 +211,7 @@ export async function crediterXp(
       });
       // Synchronisation directe de user_xp pour garantir que l'élève ne soit jamais bloqué
       const q = client.from('user_xp');
+      lectureXpRecente = null;
       if (typeof q?.upsert === 'function') {
         await q.upsert({
           userid: userId,

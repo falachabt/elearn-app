@@ -106,6 +106,11 @@ type ResultatCreation = { etat: 'cree' | 'confirmation'; conversionInvite: boole
  * en compte permanent (même identifiant : la progression est conservée). Le code de parrainage part dans la metadata
  * `referral_code` (le serveur l'enregistre par trigger). `confirmation` : Supabase attend un clic sur le lien e-mail.
  */
+/** Code d'erreur seul, jamais le message (il peut contenir l'adresse e-mail). */
+function codeErreur(erreur: { code?: string; status?: number; name?: string }): string {
+  return String(erreur.code ?? erreur.status ?? erreur.name ?? 'inconnue').slice(0, 40);
+}
+
 export async function creerCompteEmail(client: Client, p: { email: string; motDePasse: string; codeParrainage?: string | null }): Promise<ResultatCreation> {
   const email = p.email.trim();
   const code = normaliserCode(p.codeParrainage);
@@ -114,7 +119,10 @@ export async function creerCompteEmail(client: Client, p: { email: string; motDe
 
   if (conversionInvite) {
     const { data: maj, error } = await client.auth.updateUser({ email, password: p.motDePasse });
-    if (error) throw error;
+    if (error) {
+      suivre('compte_echec', { methode: 'email', etape: 'mise_a_jour', raison: codeErreur(error) });
+      throw error;
+    }
     await rattacherCode(client, p.codeParrainage);
     suivre('compte_cree', { methode: 'email', conversion_invite: true, avec_parrainage: !!code });
     if (code) suivre('referral_signup', {});
@@ -122,7 +130,10 @@ export async function creerCompteEmail(client: Client, p: { email: string; motDe
   }
 
   const { data: nouveau, error } = await client.auth.signUp({ email, password: p.motDePasse });
-  if (error) throw error;
+  if (error) {
+    suivre('compte_echec', { methode: 'email', etape: 'inscription', raison: codeErreur(error) });
+    throw error;
+  }
   if (nouveau.session) {
     await rattacherCode(client, p.codeParrainage);
   }

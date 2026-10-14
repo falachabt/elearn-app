@@ -128,7 +128,8 @@ describe('creerCompteEmail', () => {
   it('propage l’erreur Supabase (e-mail déjà pris)', async () => {
     const c = faux(invite, { updateUser: jest.fn().mockResolvedValue({ data: {}, error: { code: 'email_exists', message: 'x' } }) });
     await expect(creerCompteEmail(c, { email: 'a@b.cc', motDePasse: 'motdepasse1' })).rejects.toMatchObject({ code: 'email_exists' });
-    expect(suivre).not.toHaveBeenCalled();
+    expect(suivre).toHaveBeenCalledWith('compte_echec', { methode: 'email', etape: 'mise_a_jour', raison: 'email_exists' });
+    expect(suivre).not.toHaveBeenCalledWith('compte_cree', expect.anything());
   });
 });
 
