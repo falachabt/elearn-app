@@ -118,32 +118,38 @@ type Client = Pick<SupabaseClient, 'from'>;
  * Replie sur le cache local en mode hors ligne ou invité.
  */
 export async function lireUserXp(client?: Client | null, userId?: string | null): Promise<number> {
-  if (client && userId) {
+  const localBrut = await AsyncStorage.getItem(CLE_XP_LOCAL).catch(() => null);
+  const local = localBrut ? Math.max(0, parseInt(localBrut, 10) || 0) : 0;
+
+  if (client && typeof client.from === 'function' && userId) {
     try {
       const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
       if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
         const distant = (data as { total_xp: number }).total_xp;
-        await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
-        return distant;
+        // On ne fait JAMAIS régresser l'XP : on prend la valeur la plus avancée
+        const meilleur = Math.max(local, distant);
+        if (meilleur > distant) {
+          // Rattrapage de Supabase si le stockage local est plus récent
+          const q = client.from('user_xp');
+          if (typeof q?.upsert === 'function') {
+            await q.upsert({ userid: userId, total_xp: meilleur }).catch(() => {});
+          }
+        }
+        await AsyncStorage.setItem(CLE_XP_LOCAL, String(meilleur)).catch(() => {});
+        return meilleur;
       }
     } catch {
       // Repli sur le stockage local ci-dessous
     }
   }
 
-  // Repli sur le cache local (invités, hors ligne)
-  try {
-    const local = await AsyncStorage.getItem(CLE_XP_LOCAL);
-    return local ? Math.max(0, parseInt(local, 10) || 0) : 0;
-  } catch {
-    return 0;
-  }
+  return local;
 }
 
 /**
  * Crédite des points d'XP :
  * - Persiste localement pour affichage et calcul instantané.
- * - Écrit dans `public.xp_history` sur Supabase si connecté (le trigger Postgres met à jour `user_xp`).
+ * - Écrit dans `public.xp_history` et met à jour `user_xp` sur Supabase si connecté.
  * - Trace l'événement PostHog `xp_earned`.
  */
 export async function crediterXp(
@@ -169,6 +175,14 @@ export async function crediterXp(
         source_type: 'quiz', // Le trigger serveur update_user_xp écoute source_type = 'quiz'
         source_id: sourceId ?? source,
       });
+      // Synchronisation directe de user_xp pour garantir que l'élève ne soit jamais bloqué
+      const q = client.from('user_xp');
+      if (typeof q?.upsert === 'function') {
+        await q.upsert({
+          userid: userId,
+          total_xp: nouveauTotal,
+        });
+      }
     } catch (err) {
       console.warn('Impossible d’enregistrer le gain d’XP sur Supabase.', err);
     }
