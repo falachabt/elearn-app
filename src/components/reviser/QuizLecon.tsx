@@ -12,7 +12,7 @@ import type { QuestionTiree } from '@/services/miniTest';
 import { lireQuizLecon, marquerLue, quizReussi } from '@/services/reviser';
 import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -46,13 +46,15 @@ export function QuizLecon() {
   const [essai, setEssai] = useState(0);
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
 
   useEffect(() => {
     if (!pret) return;
     let actif = true;
     lireQuizLecon(getSupabase(), { cours: Number(cours), lecon: Number(lecon), vraiFaux: { vrai: t('mission.vrai'), faux: t('mission.faux') } })
       .then(async (questions) => {
-        if (!questions.length) await marquerLue(Number(lecon), Number(cours), getSupabase());
+        if (!questions.length) await marquerLue(Number(lecon), Number(cours), getSupabase(), undefined, idUtilisateur);
         if (actif) setEtat(questions.length ? { statut: 'quiz', questions } : { statut: 'vide' });
       })
       .catch(() => actif && setEtat({ statut: 'erreur' }));
@@ -61,7 +63,7 @@ export function QuizLecon() {
     };
     // Libellés Vrai/Faux figés au tirage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cours, lecon, pret, essai]);
+  }, [cours, lecon, pret, essai, idUtilisateur]);
 
   // Au retour de « Refaire mes erreurs » : la correction de cette leçon a été mise à jour (score, grille, validation).
   const fini = etat.statut === 'fini';
@@ -102,7 +104,7 @@ export function QuizLecon() {
             await enregistrerCorrection({ source: 'lecon', questions, reponses, contexte: { type: 'lecon', lecon: Number(lecon), cours: Number(cours) } });
             void noterActionConfiguration('quiz').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
             // Attendue : au retour sur le chapitre, la case de la leçon doit déjà être cochée. Un échec local ne bloque pas le score.
-            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }).catch(() => {});
+            if (quizReussi(score, questions.length)) await marquerLue(Number(lecon), Number(cours), getSupabase(), { score, total: questions.length }, idUtilisateur).catch(() => {});
           } finally {
             // Quoi qu'il arrive aux écritures ci-dessus, le résultat s'affiche : jamais une page vide à la fin du quiz.
             setEtat({ statut: 'fini', score, total: questions.length, statuts: statutsDe({ questions, reponses }) });
