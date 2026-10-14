@@ -25,7 +25,7 @@ import { demarrerConnectivite } from '@/services/connectivite';
 import { ecouterLiensParrainage } from '@/services/lienProfond';
 import { precharger } from '@/services/retours';
 import { suivreOuvertures } from '@/services/rappels';
-import { analyticsActif, consentementActif, initAnalytics, suivre, suivreEcran } from '@/services/analytics';
+import { initAnalytics, suivre, suivreEcran } from '@/services/analytics';
 import { demarrerSuivi, nomEcran } from '@/services/suivi';
 import { installerHandlerGlobal } from '@/services/erreurs';
 import { lirePaiementAttente } from '@/services/reprisePaiement';
@@ -43,21 +43,6 @@ let demarrageMesure = false;
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 initAnalytics();
-// DIAGNOSTIC TEMPORAIRE (3.1.0 sans évènements) : état d'init PostHog envoyé en direct, sans passer par le SDK.
-// À retirer une fois la cause trouvée.
-setTimeout(() => {
-  const cle = process.env.EXPO_PUBLIC_POSTHOG_API_KEY ?? '';
-  void fetch('https://us.i.posthog.com/i/v0/e/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      api_key: cle,
-      event: 'diagnostic_demarrage',
-      distinct_id: 'diagnostic-app-3.1.0',
-      properties: { cle_presente: cle.length > 0, sdk_actif: analyticsActif(), consentement: consentementActif(), ts: Date.now() },
-    }),
-  }).catch(() => {});
-}, 5000);
 installerHandlerGlobal();
 
 /** Web : retour d'une connexion Google en page entière (voir retourOAuthWeb). */
