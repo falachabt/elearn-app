@@ -40,6 +40,7 @@ export function ChoixTheme() {
 }
 
 const styles = StyleSheet.create({
-  groupe: { flexDirection: 'row', borderWidth: bord.normal, borderRadius: rayon.m, padding: 3, gap: 3 },
-  choix: { flex: 1, minHeight: cibleMin - 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2], borderRadius: rayon.s, paddingHorizontal: espace[2] },
+  // Même gabarit que les onglets segmentés (Onglets) : pas de marge, le choix actif remplit le cadre, le cadre donne les coins.
+  groupe: { flexDirection: 'row', overflow: 'hidden', borderWidth: bord.normal, borderRadius: rayon.m },
+  choix: { flex: 1, minHeight: cibleMin - 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[2], paddingHorizontal: espace[2] },
 });
