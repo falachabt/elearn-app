@@ -132,7 +132,7 @@ export async function lireUserXp(client?: Client | null, userId?: string | null)
           // Rattrapage de Supabase si le stockage local est plus récent
           const q = client.from('user_xp');
           if (typeof q?.upsert === 'function') {
-            await q.upsert({ userid: userId, total_xp: meilleur }).catch(() => {});
+            await q.upsert({ userid: userId, total_xp: meilleur });
           }
         }
         await AsyncStorage.setItem(CLE_XP_LOCAL, String(meilleur)).catch(() => {});
