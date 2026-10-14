@@ -13,7 +13,7 @@ import { lireDocuments } from '@/services/documents';
 import { calculerProgression, lirePassages } from '@/services/progression';
 import { lireContactParent, lireDemandeSuppression } from '@/services/moi';
 import { lireAcces, type Acces } from '@/services/pass';
-import { lireProfil, type Profil } from '@/services/profil';
+import { enregistrerProfil, lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { joursAvant } from '@/services/quand';
 import { getSupabase } from '@/services/supabase';
 import { useCredits } from '@/session/CreditsProvider';
@@ -69,8 +69,15 @@ export function EcranMoi() {
       let actif = true;
       void (async () => {
         const client = getSupabase();
-        const [p, docs, passages, activites, xp] = await Promise.all([
-          lireProfil(),
+        let p = await lireProfil();
+        if ((!p || !p.niveau) && user) {
+          const depuisCompte = profilDepuisCompte(user);
+          if (depuisCompte) {
+            p = depuisCompte;
+            void enregistrerProfil(depuisCompte);
+          }
+        }
+        const [docs, passages, activites, xp] = await Promise.all([
           lireDocuments().catch(() => []),
           lirePassages(client).catch(() => null),
           lireActivitesJours().catch(() => ({})),
@@ -90,7 +97,7 @@ export function EcranMoi() {
       return () => {
         actif = false;
       };
-    }, [connecte, idUtilisateur]),
+    }, [connecte, idUtilisateur, user]),
   );
 
   useEffect(() => {
@@ -124,13 +131,16 @@ export function EcranMoi() {
   const jours = finPass ? joursAvant(finPass) : null;
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
+  const nomAffiche = invite ? t('profil.invite') : (nom ?? (user?.email ? user.email.split('@')[0] : t('profil.monCompte')));
+  const sousTitre = invite ? t('profil.inviteSous') : (classePays ?? (user?.email ? user.email : ''));
+
   return (
     <Ecran insetBas={false}>
       <View style={styles.identite}>
-        <AvatarNiveau photo={photo} nom={nom} totalXp={totalXp} taille={60} />
+        <AvatarNiveau photo={photo} nom={nomAffiche} totalXp={totalXp} taille={60} />
         <View style={styles.flex}>
-          <Text style={[typo.h2, { color: theme.texte.principal }]}>{nom ?? t('profil.invite')}</Text>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{invite ? t('profil.inviteSous') : classePays ?? ''}</Text>
+          <Text style={[typo.h2, { color: theme.texte.principal }]}>{nomAffiche}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{sousTitre}</Text>
         </View>
         <Appui accessibilityRole="button" accessibilityLabel={t('profil.reglagesLibelle')} onPress={() => router.push('/parametres')} decalage={0} rayon={rayon.m} hitSlop={4}>
           <View style={[styles.roue, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>

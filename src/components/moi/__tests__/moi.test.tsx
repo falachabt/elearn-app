@@ -177,3 +177,29 @@ it('changer de statut depuis Moi : élève vers concours', async () => {
   await waitFor(() => expect(router.push).toHaveBeenCalledWith('/concours'));
   expect(await lireProfil()).toEqual({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: null, termine: true });
 });
+
+it('un compte sans nom mais connecté affiche son email et son profil, jamais "Invité"', async () => {
+  await act(() => changerLangue('fr'));
+  await AsyncStorage.clear();
+  mockSession.mockReturnValue({
+    statut: 'pret',
+    session: {
+      user: {
+        id: 'u3',
+        is_anonymous: false,
+        email: 'falacha@exemple.com',
+        user_metadata: {
+          reglages: {
+            profil: { type: 'eleve', niveau: '3e', pays: 'CM' },
+          },
+        },
+      },
+    },
+    erreur: null,
+  });
+
+  await monter(<EcranMoi />);
+  await waitFor(() => expect(screen.getByText('Falacha')).toBeTruthy());
+  expect(screen.queryByText('Invité')).toBeNull();
+  expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
+});

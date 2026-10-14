@@ -18,6 +18,19 @@ describe('identité du compte', () => {
     expect(identiteDe(null)).toEqual({ nom: null, prenom: null, photo: null });
   });
 
+  it('compte sans nom complet mais avec email : déduit un nom propre et initiale', () => {
+    expect(identiteDe({ user_metadata: {}, email: 'falachabt@gmail.com' })).toEqual({
+      nom: 'Falachabt',
+      prenom: 'Falachabt',
+      photo: null,
+    });
+    expect(identiteDe({ user_metadata: {}, email: 'benny.kamga@yahoo.fr' })).toEqual({
+      nom: 'Benny Kamga',
+      prenom: 'Benny',
+      photo: null,
+    });
+  });
+
   it('photo non https ignorée', () => {
     expect(identiteDe({ user_metadata: { name: 'A B', picture: 'file:///etc/passwd' } }).photo).toBeNull();
   });

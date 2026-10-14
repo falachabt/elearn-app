@@ -267,6 +267,8 @@ export const en: Textes = {
   profil: {
     pass: 'PASS',
     invite: 'Guest',
+    monCompte: 'My account',
+    eleve: 'Student',
     parrainage: 'Referral & Rewards',
     parrainageSous: 'Earn credits by inviting your friends',
     reglages: 'Settings',

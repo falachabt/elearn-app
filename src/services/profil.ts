@@ -22,6 +22,40 @@ export async function lireProfil(): Promise<Profil | null> {
   return null;
 }
 
+/**
+ * Tente d'extraire le profil depuis les métadonnées du compte Supabase
+ * (utilisé quand un invité se connecte à un compte existant ou sur un nouvel appareil).
+ */
+export function profilDepuisCompte(user?: { user_metadata?: Record<string, unknown> } | null): Profil | null {
+  if (!user || !user.user_metadata) return null;
+  const m = user.user_metadata;
+  const reglages = m.reglages as { profil?: Partial<Profil> } | undefined;
+  const p = reglages?.profil ?? (m.profil as Partial<Profil> | undefined);
+
+  const type = p?.type === 'concours' || m.statut === 'concours' ? 'concours' : 'eleve';
+  const niveau =
+    p?.niveau ??
+    (typeof m.niveau === 'string' && m.niveau ? m.niveau : undefined) ??
+    (typeof m.classe === 'string' && m.classe ? m.classe : undefined) ??
+    (typeof m.class_level === 'string' && m.class_level ? m.class_level : undefined);
+  const pays =
+    p?.pays ??
+    (typeof m.pays === 'string' && m.pays ? m.pays : undefined) ??
+    (typeof m.country === 'string' && m.country ? m.country : undefined);
+  const concours = p?.concours ?? null;
+
+  if (niveau || pays) {
+    return {
+      type,
+      niveau,
+      pays,
+      concours,
+      termine: true,
+    };
+  }
+  return null;
+}
+
 export async function enregistrerProfil(profil: Profil): Promise<void> {
   try {
     await AsyncStorage.setItem(CLE_PROFIL, JSON.stringify(profil));

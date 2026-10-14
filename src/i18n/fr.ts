@@ -268,6 +268,8 @@ export const fr = {
   profil: {
     pass: 'PASS',
     invite: 'Invité',
+    monCompte: 'Mon compte',
+    eleve: 'Élève',
     parrainage: 'Parrainage et récompenses',
     parrainageSous: 'Gagne des crédits en invitant tes amis',
     reglages: 'Paramètres',

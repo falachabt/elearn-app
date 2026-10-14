@@ -98,7 +98,9 @@ export async function synchroniserReglages(client: Client, user: Pick<User, 'use
   if (repriseInviteEnCours()) return 'rien';
   const distants = lireReglagesCompte(user);
   const locale = await lireMajReglages();
-  if (distants && (!locale || Date.parse(distants.maj) > Date.parse(locale))) {
+  const profilLocal = await lireProfil();
+  const profilManquant = !profilLocal || !profilLocal.niveau;
+  if (distants && (!locale || Date.parse(distants.maj) > Date.parse(locale) || (profilManquant && distants.profil?.niveau))) {
     await appliquerReglages(distants);
     return 'applique';
   }
@@ -117,7 +119,9 @@ export async function appliquerReglagesCompteSiPlusRecent(user: Pick<User, 'user
   const distants = lireReglagesCompte(user);
   if (!distants) return false;
   const locale = await lireMajReglages();
-  if (locale && Date.parse(distants.maj) <= Date.parse(locale)) return false;
+  const profilLocal = await lireProfil();
+  const profilManquant = !profilLocal || !profilLocal.niveau;
+  if (locale && Date.parse(distants.maj) <= Date.parse(locale) && !profilManquant) return false;
   await appliquerReglages(distants);
   return true;
 }

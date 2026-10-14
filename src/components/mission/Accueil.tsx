@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
-import { lireProfil, type Profil } from '@/services/profil';
+import { enregistrerProfil, lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
@@ -118,13 +118,15 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
 
   useEffect(() => {
     let actif = true;
-    void lireProfil().then((p) => {
-      if (actif && p) setProfil(p);
-    });
+    void (async () => {
+      const p = await lireProfil();
+      const effectif = (!p || !p.niveau) && user ? (profilDepuisCompte(user) ?? p) : p;
+      if (actif && effectif) setProfil(effectif);
+    })();
     return () => {
       actif = false;
     };
-  }, []);
+  }, [idUtilisateur]);
 
   useEffect(() => {
     return ecouterGainXp((info) => {
