@@ -176,6 +176,8 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   const postId = typeof data?.post_id === 'string' && data.post_id ? data.post_id : null;
   const ecran = typeof data?.screen === 'string' && data.screen.startsWith('/') ? data.screen : null;
   const categorie = categorieDe(type);
+  // Passage de niveau XP : écran du barème et des paliers de niveau.
+  if (type === 'level_up' || data?.screen === '/xp') return { pathname: '/xp' };
   // Correction par photo prête : cette correction quand l'identifiant est là (`correction_id` du serveur, `photoId` d'un
   // rappel local), sinon l'historique des corrections.
   if (type === 'photo_ready') {

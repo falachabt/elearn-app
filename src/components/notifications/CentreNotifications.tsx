@@ -1,5 +1,5 @@
 import { router, type Href } from 'expo-router';
-import { BadgeCheck, Camera, Clock, Gift, ListChecks, Megaphone, MessageCircle, Zap, type LucideIcon } from 'lucide-react-native';
+import { BadgeCheck, Camera, Clock, Gift, ListChecks, Megaphone, MessageCircle, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -24,10 +24,11 @@ import { BoutonFermer } from '../arrivee/MiniTest';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
 
-const ICONES = { reponse: MessageCircle, sondage: ListChecks, cadeau: Gift, credits: Zap, rappel: Clock, paiement: BadgeCheck, photo: Camera, equipe: Megaphone } satisfies Record<string, LucideIcon>;
+const ICONES = { reponse: MessageCircle, sondage: ListChecks, cadeau: Gift, credits: Zap, rappel: Clock, paiement: BadgeCheck, photo: Camera, equipe: Megaphone, niveau: Trophy } satisfies Record<string, LucideIcon>;
 
-/** Famille d'icône du type (réponse, sondage, crédits, parrainage, rappel, paiement, message de l'équipe). */
+/** Famille d'icône du type (réponse, sondage, crédits, parrainage, rappel, paiement, message de l'équipe, niveau XP). */
 function familleIcone(type: string): keyof typeof ICONES {
+  if (type === 'level_up') return 'niveau';
   const c = categorieDe(type);
   if (c === 'answers') return 'reponse';
   if (c === 'polls') return 'sondage';
@@ -44,6 +45,7 @@ export const iconeDe = (type: string): LucideIcon => ICONES[familleIcone(type)];
 
 /** Couleur de la pastille d'icône : jamais la palette brute, seulement les tokens d'état et d'accent. */
 function fondIcone(type: string, theme: Theme): string {
+  if (type === 'level_up') return theme.accent.soleilDoux;
   const c = categorieDe(type);
   if (c === 'answers') return theme.etat.infoDoux;
   if (c === 'polls') return theme.marque.douce;

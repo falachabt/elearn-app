@@ -6,10 +6,13 @@ import { Animated, Platform, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { useNotifications } from '@/session/NotificationsProvider';
+import { useSession } from '@/session/SessionProvider';
+import { getSupabase } from '@/services/supabase';
 import {
   calculerNiveau,
   ecouterGainXp,
-  notifierNiveauDebloqueNotification,
+  enregistrerNotificationNiveau,
   type InfoGainXp,
 } from '@/services/xp';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -41,6 +44,8 @@ export function ToastGainXp() {
   const { theme } = useTheme();
   const insets = useSafeAreaInsets();
   const reduit = useReduireAnimations();
+  const { session } = useSession();
+  const { rafraichir: rafraichirNotifications } = useNotifications();
 
   const [donnees, setDonnees] = useState<DonneesToast | null>(null);
   const timerMasquer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -86,7 +91,15 @@ export function ToastGainXp() {
         const nomPalier = t(apres.nomCleI18n as never);
         const titreNotif = t('xp.toastNiveauDebloqueTitre', { niveau: levelUp });
         const corpsNotif = t('xp.toastNotificationCorps', { palier: nomPalier });
-        void notifierNiveauDebloqueNotification(levelUp, titreNotif, corpsNotif);
+        let client = null;
+        try {
+          client = getSupabase();
+        } catch {
+          // Environnement de test ou hors ligne
+        }
+        void enregistrerNotificationNiveau(client, session?.user?.id ?? null, levelUp, titreNotif, corpsNotif).then(() => {
+          void rafraichirNotifications?.();
+        });
       }
 
       if (reduit) {

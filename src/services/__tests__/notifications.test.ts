@@ -196,6 +196,7 @@ describe('catégories et destinations', () => {
   it('ouvre la question quand le serveur donne son identifiant', () => {
     expect(destinationDe('post_reply', { post_id: 'q1' })).toEqual({ pathname: '/question', params: { id: 'q1' } });
     expect(destinationDe('poll_revealed', { post_id: 'q2', screen: '/credits' })).toEqual({ pathname: '/question', params: { id: 'q2' } });
+    expect(destinationDe('level_up', { niveau: 2 })).toEqual({ pathname: '/xp' });
   });
 
   it('une correction prête ouvre cette correction quand son identifiant est donné, sinon l’historique', () => {

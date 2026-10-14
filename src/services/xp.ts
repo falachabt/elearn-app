@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { Platform } from 'react-native';
 
 import { suivre } from './analytics';
+import { garderNotifications, lireNotificationsGardees, type Notification } from './notifications';
 
 export type SourceXp = 'quiz' | 'daily_mission' | 'course' | 'exercise' | 'exam' | 'feed_post' | 'feed_comment';
 
@@ -234,22 +235,55 @@ export function notifierXpGagne(gain: number, totalApresGain: number, source: So
   emettreGainXp({ gain, total: totalApresGain, source });
 }
 
-/** Déclenche une notification push locale immédiate sur le téléphone lors d'un passage de niveau. */
-export async function notifierNiveauDebloqueNotification(niveau: number, titre: string, corps: string): Promise<void> {
-  if (Platform.OS === 'web') return;
-  try {
-    const Notifications = await import('expo-notifications');
-    const permission = await Notifications.getPermissionsAsync();
-    if (!permission.granted) return;
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: titre,
-        body: corps,
-        data: { screen: '/xp' },
-      },
-      trigger: null,
-    });
-  } catch {
-    // Ne bloque jamais
+/**
+ * Enregistre une notification dans le centre de notifications (table `notifications` Supabase et stockage local)
+ * lors d'un passage de niveau, sans notification push/FCM système lorsque l'appareil est actif.
+ */
+export async function enregistrerNotificationNiveau(
+  client?: Client | null,
+  userId?: string | null,
+  niveau = 1,
+  titre?: string,
+  corps?: string,
+): Promise<void> {
+  const t = titre ?? `Niveau ${niveau} débloqué !`;
+  const c = corps ?? `Félicitations, tu viens d’atteindre le niveau ${niveau} !`;
+
+  // 1. Enregistrement distant sur Supabase si connecté
+  if (client && typeof client.from === 'function' && userId) {
+    try {
+      await client.from('notifications').insert({
+        user_id: userId,
+        type: 'level_up',
+        title: t,
+        body: c,
+        data: { screen: '/xp', niveau },
+      });
+    } catch (err) {
+      console.warn('Impossible d’insérer la notification level_up sur Supabase.', err);
+    }
+  }
+
+  // 2. Enregistrement dans la liste gardée en local pour affichage immédiat
+  if (userId) {
+    try {
+      const gardees = (await lireNotificationsGardees(userId)) ?? [];
+      const idNotif = `level_up_${niveau}`;
+      // On évite d'ajouter un doublon pour le même niveau
+      if (!gardees.some((n) => n.id === idNotif || (n.type === 'level_up' && (n.data as { niveau?: number })?.niveau === niveau))) {
+        const nouvelle: Notification = {
+          id: idNotif,
+          type: 'level_up',
+          titre: t,
+          corps: c,
+          data: { screen: '/xp', niveau },
+          lue: false,
+          creeLe: new Date().toISOString(),
+        };
+        await garderNotifications(userId, [nouvelle, ...gardees]);
+      }
+    } catch {
+      // Ne bloque jamais
+    }
   }
 }

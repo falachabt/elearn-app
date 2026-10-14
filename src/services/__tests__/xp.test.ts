@@ -1,4 +1,4 @@
-import { calculerNiveau, crediterXp, lireUserXp, notifierXpGagne, PALIERS_NIVEAU } from '../xp';
+import { calculerNiveau, crediterXp, enregistrerNotificationNiveau, lireUserXp, notifierXpGagne, PALIERS_NIVEAU } from '../xp';
 
 describe('services/xp', () => {
   describe('calculerNiveau', () => {
@@ -120,6 +120,27 @@ describe('services/xp', () => {
     it('gère l’absence d’utilisateur (invité/local)', async () => {
       const nouveau = await crediterXp(null, null, 15, 'exercise');
       expect(nouveau).toBeGreaterThanOrEqual(15);
+    });
+  });
+
+  describe('enregistrerNotificationNiveau', () => {
+    it('insère dans la table notifications Supabase pour le compte', async () => {
+      const mockInsert = jest.fn().mockResolvedValue({ error: null });
+      const client = {
+        from: jest.fn().mockReturnValue({ insert: mockInsert }),
+      } as any;
+
+      await enregistrerNotificationNiveau(client, 'user-123', 2, 'Niveau 2 débloqué !', 'Tu passes au rang Apprenti !');
+      expect(client.from).toHaveBeenCalledWith('notifications');
+      expect(mockInsert).toHaveBeenCalledWith(
+        expect.objectContaining({
+          user_id: 'user-123',
+          type: 'level_up',
+          title: 'Niveau 2 débloqué !',
+          body: 'Tu passes au rang Apprenti !',
+          data: { screen: '/xp', niveau: 2 },
+        }),
+      );
     });
   });
 });
