@@ -15,23 +15,29 @@ export interface PalierNiveau {
 }
 
 /**
- * 10 Paliers de niveaux simples et transparents (M4-07).
- * Les couleurs suivent la charte Elearn Prépa :
- * - Niveau 1 : Neutre / Débutant
- * - Niveaux 2 à 4 : Émeraude (marque)
- * - Niveaux 5 à 7 : Bleu (info / maîtrise)
- * - Niveaux 8 à 10 : Or Soleil (excellence / prestige)
+ * 10 Paliers de niveaux avec chacun sa couleur unique et distincte (M4-07).
+ * Couleurs issues de la palette du design system :
+ * - Niveau 1 (Débutant) : Lilas 400 (#B69CFF)
+ * - Niveau 2 (Apprenti) : Menthe 400 (#8FD2C1)
+ * - Niveau 3 (Initié)   : Herbe 400 (#7BC74D)
+ * - Niveau 4 (Assidu)   : Émeraude 500 (#10B981)
+ * - Niveau 5 (Expert)   : Bleu azur 400 (#5B9BFF)
+ * - Niveau 6 (Major)    : Bleu roi 500 (#1A75FF)
+ * - Niveau 7 (Virtuose) : Rose 400 (#FF8FB1)
+ * - Niveau 8 (Mentor)   : Orange 400 (#FF9A3D)
+ * - Niveau 9 (Maître)   : Corail vif 500 (#FF5A4F)
+ * - Niveau 10 (Légende) : Or Soleil 400 (#FFD83D)
  */
 export const PALIERS_NIVEAU: readonly PalierNiveau[] = [
   { niveau: 1, nomCleI18n: 'xp.palier1', seuilMin: 0, seuilSuivant: 100, couleur: '#B69CFF' },
-  { niveau: 2, nomCleI18n: 'xp.palier2', seuilMin: 100, seuilSuivant: 250, couleur: '#10B981' },
-  { niveau: 3, nomCleI18n: 'xp.palier3', seuilMin: 250, seuilSuivant: 500, couleur: '#10B981' },
-  { niveau: 4, nomCleI18n: 'xp.palier4', seuilMin: 500, seuilSuivant: 1000, couleur: '#059669' },
+  { niveau: 2, nomCleI18n: 'xp.palier2', seuilMin: 100, seuilSuivant: 250, couleur: '#8FD2C1' },
+  { niveau: 3, nomCleI18n: 'xp.palier3', seuilMin: 250, seuilSuivant: 500, couleur: '#7BC74D' },
+  { niveau: 4, nomCleI18n: 'xp.palier4', seuilMin: 500, seuilSuivant: 1000, couleur: '#10B981' },
   { niveau: 5, nomCleI18n: 'xp.palier5', seuilMin: 1000, seuilSuivant: 2000, couleur: '#5B9BFF' },
-  { niveau: 6, nomCleI18n: 'xp.palier6', seuilMin: 2000, seuilSuivant: 3500, couleur: '#5B9BFF' },
-  { niveau: 7, nomCleI18n: 'xp.palier7', seuilMin: 3500, seuilSuivant: 5500, couleur: '#1A75FF' },
+  { niveau: 6, nomCleI18n: 'xp.palier6', seuilMin: 2000, seuilSuivant: 3500, couleur: '#1A75FF' },
+  { niveau: 7, nomCleI18n: 'xp.palier7', seuilMin: 3500, seuilSuivant: 5500, couleur: '#FF8FB1' },
   { niveau: 8, nomCleI18n: 'xp.palier8', seuilMin: 5500, seuilSuivant: 8000, couleur: '#FF9A3D' },
-  { niveau: 9, nomCleI18n: 'xp.palier9', seuilMin: 8000, seuilSuivant: 12000, couleur: '#FFD83D' },
+  { niveau: 9, nomCleI18n: 'xp.palier9', seuilMin: 8000, seuilSuivant: 12000, couleur: '#FF5A4F' },
   { niveau: 10, nomCleI18n: 'xp.palier10', seuilMin: 12000, seuilSuivant: null, couleur: '#FFD83D' },
 ] as const;
 

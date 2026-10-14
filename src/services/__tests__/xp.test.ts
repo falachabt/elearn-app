@@ -27,7 +27,7 @@ describe('services/xp', () => {
       expect(info.xpActuelDansNiveau).toBe(90);
       expect(info.xpRequisPourSuivant).toBe(160);
       expect(info.ratioProgression).toBeCloseTo(0.36);
-      expect(info.couleur).toBe('#10B981');
+      expect(info.couleur).toBe('#7BC74D');
     });
 
     it('calcule le palier max (Niveau 10 Légende)', () => {
