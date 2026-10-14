@@ -47,7 +47,7 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
       <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <View style={styles.haut}>
           {q.matiere ? (
-            <View style={[styles.pastille, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
+            <View style={[styles.tagMatiere, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
               <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{q.matiere}</Text>
             </View>
           ) : null}
@@ -106,4 +106,6 @@ const styles = StyleSheet.create({
   miniature: { width: 44, height: 44, borderRadius: rayon.s, borderWidth: bord.normal },
   pastille: { flexDirection: 'row', alignItems: 'center', gap: espace[1], borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
   pied: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  // Tag matière : coins peu arrondis (rayon s, comme les étiquettes du design), pas une pilule.
+  tagMatiere: { borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: espace[1] },
 });

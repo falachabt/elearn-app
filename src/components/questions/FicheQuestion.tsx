@@ -1,7 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { Check, EyeOff, Flag, Trash2 } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
@@ -42,6 +42,8 @@ export function FicheQuestion() {
   const { bloquerReseau, banniere, horsLigne } = useGardeReseau();
   const [etat, setEtat] = useEtatMemorise<Etat>(`question.${id}`, { statut: 'chargement' });
   const [menu, setMenu] = useState<Reponse | null>(null);
+  // Suppression en attente de confirmation (feuille du bas) : l'action est gardée jusqu'au choix de l'élève.
+  const [aSupprimer, setASupprimer] = useState<(() => Promise<void>) | null>(null);
   const [cible, setCible] = useState<Reponse | null>(null);
   const [signal, setSignal] = useState<CibleSignalement | null>(null);
   const [masques, setMasques] = useState<Set<string>>(new Set());
@@ -130,10 +132,7 @@ export function FicheQuestion() {
   /** Confirmation avant suppression définitive : le message disparaît du fil pour tout le monde. */
   const confirmerSuppression = (action: () => Promise<void>) => {
     if (horsLigne) return bloquerReseau();
-    Alert.alert(t('questions.supprimerTitre'), t('questions.supprimerTexte'), [
-      { text: t('questions.supprimerAnnuler'), style: 'cancel' },
-      { text: t('questions.supprimerConfirmer'), style: 'destructive', onPress: () => void action().catch(() => rafraichir()) },
-    ]);
+    setASupprimer(() => action);
   };
   const retirerMaQuestion = () =>
     confirmerSuppression(async () => {
@@ -236,6 +235,23 @@ export function FicheQuestion() {
               ]
             : []
         }
+      />
+      <Feuille
+        ouverte={!!aSupprimer}
+        onFermer={() => setASupprimer(null)}
+        titre={t('questions.supprimerTitre')}
+        texte={t('questions.supprimerTexte')}
+        actions={[
+          {
+            libelle: t('questions.supprimerConfirmer'),
+            onPress: () => {
+              const action = aSupprimer;
+              setASupprimer(null);
+              if (action) void action().catch(() => rafraichir());
+            },
+          },
+          { libelle: t('questions.supprimerAnnuler'), variante: 'secondaire' as const, onPress: () => setASupprimer(null) },
+        ]}
       />
       <FeuilleSignalement
         cible={signal}
