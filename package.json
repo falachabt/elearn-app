@@ -91,7 +91,7 @@
     "lint": "expo lint",
     "test": "jest",
     "export:android": "expo export --platform android --output-dir .export-android",
-    "valider": "npm run typecheck && npm test -- --runInBand --silent && npm run export:android"
+    "valider": "npm run typecheck && npm run lint && npm test -- --runInBand --silent && npm run export:android"
   },
   "private": true,
   "jest": {

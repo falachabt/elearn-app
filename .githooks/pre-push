@@ -63,7 +63,15 @@ if ! npm run --silent typecheck; then
   exit 1
 fi
 
-echo "[pre-push] 2/2 Tests Jest (npm test -- --runInBand --ci)"
+echo "[pre-push] 2/3 ESLint (npm run lint, erreurs seulement : les avertissements ne bloquent pas, comme en CI)"
+if ! npm run --silent lint; then
+  echo "" >&2
+  echo "[pre-push] ECHEC d'ESLint. Push annule : le job verifier de EAS preview échouerait." >&2
+  echo "[pre-push] Corrige les erreurs ci-dessus, ou force avec : SKIP_PRE_PUSH=1 git push" >&2
+  exit 1
+fi
+
+echo "[pre-push] 3/3 Tests Jest (npm test -- --runInBand --ci)"
 # --runInBand : les workers de Jest passent par des pipes, interdits dans certains environnements
 # (bac à sable Windows) qui echouent alors sur « spawn EPERM ». En serie, le resultat est identique.
 if ! npm test --silent -- --runInBand --ci; then
