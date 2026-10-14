@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -26,6 +26,7 @@ export function Mission() {
   const pret = useSessionPrete();
   const { session } = useSession();
   const userId = session?.user?.id;
+  const termineRef = useRef(false);
 
   useEffect(() => {
     if (!pret || mission) return;
@@ -63,6 +64,8 @@ export function Mission() {
       libelleFermer={t('mission.fermer')}
       onFermer={accueil}
       onTermine={async ({ questions, reponses, dureeS }) => {
+        if (termineRef.current) return;
+        termineRef.current = true;
         await terminerMission(getSupabase(), { questions, reponses, niveau, dureeS, jour: mission.jour, userId });
         router.replace('/mission/terminee');
       }}

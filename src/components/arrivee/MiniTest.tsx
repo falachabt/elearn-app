@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { ChevronLeft, X } from 'lucide-react-native';
 import { router } from 'expo-router';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -103,6 +102,9 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   const derniere = index === total - 1;
   const juste = validee && choix === q?.bonne;
 
+  const [enCoursTerminaison, setEnCoursTerminaison] = useState(false);
+  const termineRef = useRef(false);
+
   const valider = () => {
     if (choix === null || !q) return;
     setValidee(true);
@@ -112,7 +114,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
   };
 
   const suivant = async () => {
-    if (!questions) return;
+    if (!questions || termineRef.current) return;
     if (!derniere) {
       setIndex((i) => i + 1);
       setChoix(null);
@@ -120,14 +122,28 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
       setHorsLigne(false);
       return;
     }
+    termineRef.current = true;
+    setEnCoursTerminaison(true);
     const dureeS = tempsEcouleS;
     if (onTermine) {
-      await onTermine({ questions: questions.map((x) => (ouvertes[x.id] ? { ...x, explication: ouvertes[x.id] } : x)), reponses, dureeS });
+      try {
+        await onTermine({ questions: questions.map((x) => (ouvertes[x.id] ? { ...x, explication: ouvertes[x.id] } : x)), reponses, dureeS });
+      } catch (err) {
+        termineRef.current = false;
+        setEnCoursTerminaison(false);
+        throw err;
+      }
       return;
     }
-    const resultat = calculerResultat(questions, reponses, { niveau: niveau ?? '3e', dureeS });
-    await enregistrerResultat(resultat);
-    router.replace('/score');
+    try {
+      const resultat = calculerResultat(questions, reponses, { niveau: niveau ?? '3e', dureeS });
+      await enregistrerResultat(resultat);
+      router.replace('/score');
+    } catch (err) {
+      termineRef.current = false;
+      setEnCoursTerminaison(false);
+      throw err;
+    }
   };
 
   const etat = useMemo(
@@ -139,7 +155,7 @@ export function MiniTest({ questions: fournies, onTermine, onFermer, libelleFin,
     [validee, choix, q],
   );
 
-  const suite = <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} />;
+  const suite = <Bouton libelle={derniere ? (libelleFin ?? t('miniTest.voirScore')) : t('miniTest.suivant')} onPress={suivant} desactive={enCoursTerminaison} />;
   const explicationOuverte = q ? q.explication || ouvertes[q.id] || '' : '';
   const payante = !!q && !q.explication && !ouvertes[q.id] && /^\d+$/.test(q.id);
   const ouverturePass = useOuverturePass<{ explanation?: string | null }>({

@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -32,6 +32,7 @@ export function QuizLibreEcran() {
   const { session } = useSession();
   const idUtilisateur = session?.user?.id;
   const pret = useSessionPrete();
+  const termineRef = useRef(false);
 
   useEffect(() => {
     if (!pret) return;
@@ -58,6 +59,8 @@ export function QuizLibreEcran() {
         libelleFermer={t('entrainement.quizFermer')}
         onFermer={retour}
         onTermine={async ({ questions: q, reponses, dureeS }) => {
+          if (termineRef.current) return;
+          termineRef.current = true;
           const score = q.filter((x, i) => reponses[i] === x.bonne).length;
           const le = new Date();
           void enregistrerTempsActivite({ type: 'quiz', dureeS, titre: nom ?? 'Quiz libre' });

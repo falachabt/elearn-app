@@ -180,6 +180,8 @@ export async function lireDernierResultat(): Promise<ResultatMission | null> {
  * Fin de mission (M4-03) : résultat et série calculés sur le téléphone (visibles sans réseau), puis envoyés au serveur
  * sans bloquer. Une deuxième mission le même jour ne change pas la série.
  */
+const missionsXpEnCours = new Set<string>();
+
 export async function terminerMission(
   client: Client,
   p: { questions: readonly QuestionTiree[]; reponses: readonly number[]; niveau: string; dureeS: number; jour?: string; userId?: string },
@@ -202,10 +204,13 @@ export async function terminerMission(
 
   // Les 50 XP ne sont crédités qu'une seule fois par jour calendaire (M4-07)
   const cleXpJour = `mission.xp_recompensee_${jour}`;
-  const dejaRecompense = (await AsyncStorage.getItem(cleXpJour).catch(() => null)) === '1';
-  if (!dejaRecompense) {
-    await AsyncStorage.setItem(cleXpJour, '1').catch(() => {});
-    void crediterXp(client, p.userId, 50, 'daily_mission', jour);
+  if (!missionsXpEnCours.has(cleXpJour)) {
+    missionsXpEnCours.add(cleXpJour);
+    const dejaRecompense = (await AsyncStorage.getItem(cleXpJour).catch(() => null)) === '1';
+    if (!dejaRecompense) {
+      await AsyncStorage.setItem(cleXpJour, '1').catch(() => {});
+      void crediterXp(client, p.userId, 50, 'daily_mission', jour);
+    }
   }
   // Le passage est gardé sur le téléphone AVANT l'envoi : hors ligne, l'insertion échouait en silence et la mission
   // n'entrait jamais dans la progression (ni hors ligne, ni au retour du réseau).

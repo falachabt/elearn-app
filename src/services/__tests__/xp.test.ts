@@ -1,6 +1,19 @@
-import { calculerNiveau, crediterXp, enregistrerNotificationNiveau, lireUserXp, notifierXpGagne, PALIERS_NIVEAU } from '../xp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  calculerNiveau,
+  crediterXp,
+  enregistrerNotificationNiveau,
+  lireUserXp,
+  notifierXpGagne,
+  PALIERS_NIVEAU,
+  reinitialiserVerrousCreditation,
+} from '../xp';
 
 describe('services/xp', () => {
+  beforeEach(async () => {
+    await AsyncStorage.clear();
+    reinitialiserVerrousCreditation();
+  });
   describe('calculerNiveau', () => {
     it('calcule le niveau 1 (Débutant) pour 0 XP', () => {
       const info = calculerNiveau(0);
@@ -120,6 +133,26 @@ describe('services/xp', () => {
     it('gère l’absence d’utilisateur (invité/local)', async () => {
       const nouveau = await crediterXp(null, null, 15, 'exercise');
       expect(nouveau).toBeGreaterThanOrEqual(15);
+    });
+
+    it('ignore un deuxième appel identique pour la mission du jour', async () => {
+      const mockInsert = jest.fn().mockResolvedValue({ error: null });
+      const mockMaybeSingle = jest.fn().mockResolvedValue({ data: { total_xp: 0 }, error: null });
+      const client = {
+        from: jest.fn().mockImplementation((table: string) => {
+          if (table === 'xp_history') return { insert: mockInsert };
+          if (table === 'user_xp') return { select: () => ({ eq: () => ({ maybeSingle: mockMaybeSingle }) }), upsert: jest.fn() };
+          return {};
+        }),
+      } as any;
+
+      const premier = await crediterXp(client, 'user-idempotent', 50, 'daily_mission', '2026-10-14');
+      expect(premier).toBe(50);
+
+      // Deuxième appel le même jour : pas de deuxième crédit
+      const deuxieme = await crediterXp(client, 'user-idempotent', 50, 'daily_mission', '2026-10-14');
+      expect(deuxieme).toBe(50);
+      expect(mockInsert).toHaveBeenCalledTimes(1);
     });
   });
 

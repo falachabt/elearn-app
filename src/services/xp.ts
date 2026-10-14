@@ -146,6 +146,13 @@ export async function lireUserXp(client?: Client | null, userId?: string | null)
   return local;
 }
 
+const creditationsEnCours = new Set<string>();
+
+/** Réinitialise les verrous en mémoire (utile entre chaque test). */
+export function reinitialiserVerrousCreditation(): void {
+  creditationsEnCours.clear();
+}
+
 /**
  * Crédite des points d'XP :
  * - Persiste localement pour affichage et calcul instantané.
@@ -161,6 +168,28 @@ export async function crediterXp(
 ): Promise<number> {
   if (gain <= 0) {
     return lireUserXp(client, userId);
+  }
+
+  // Anti-rebond en mémoire : empêche qu'une même action soit créditée deux fois en cas de double clic
+  const identifiantAction = sourceId ?? (source === 'daily_mission' ? new Date().toISOString().slice(0, 10) : undefined);
+  if (identifiantAction) {
+    const cleRebond = `${userId ?? 'anonyme'}_${source}_${identifiantAction}`;
+    if (creditationsEnCours.has(cleRebond)) {
+      return lireUserXp(client, userId);
+    }
+    creditationsEnCours.add(cleRebond);
+    setTimeout(() => creditationsEnCours.delete(cleRebond), 4000);
+  }
+
+  // Barrière absolue pour la mission du jour : 1 seule fois par jour calendaire
+  if (source === 'daily_mission') {
+    const jourCle = sourceId ?? new Date().toISOString().slice(0, 10);
+    const cleStockage = `xp.mission_creditee_${userId ?? 'anonyme'}_${jourCle}`;
+    const deja = await AsyncStorage.getItem(cleStockage).catch(() => null);
+    if (deja === '1') {
+      return lireUserXp(client, userId);
+    }
+    await AsyncStorage.setItem(cleStockage, '1').catch(() => {});
   }
 
   const actuel = await lireUserXp(client, userId);
