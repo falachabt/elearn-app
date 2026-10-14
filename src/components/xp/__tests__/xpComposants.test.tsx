@@ -30,6 +30,12 @@ describe('Composants XP & Niveaux (M4-07)', () => {
       expect(screen.getByText('B')).toBeTruthy();
       expect(screen.getByText('3')).toBeTruthy();
     });
+
+    it('affiche la photo de profil avec son accessibilityLabel et sans initiale', async () => {
+      await monter(<AvatarNiveau photo="https://example.com/avatar.jpg" nom="Benny Falachabt" totalXp={100} taille={60} />);
+      expect(screen.getByLabelText('Benny Falachabt')).toBeTruthy();
+      expect(screen.queryByText('B')).toBeNull();
+    });
   });
 
   describe('CarteXp', () => {

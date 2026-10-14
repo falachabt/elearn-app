@@ -31,7 +31,58 @@ describe('identité du compte', () => {
     });
   });
 
-  it('photo non https ignorée', () => {
+  it('Google / OAuth : extrait photo et nom depuis identities si user_metadata est vide', () => {
+    expect(
+      identiteDe({
+        user_metadata: {},
+        email: 'falachabt@gmail.com',
+        identities: [
+          {
+            identity_data: {
+              full_name: 'Benny Falachabt',
+              avatar_url: 'https://lh3.googleusercontent.com/a/google-avatar',
+            },
+          },
+        ],
+      } as never)
+    ).toEqual({
+      nom: 'Benny Falachabt',
+      prenom: 'Benny',
+      photo: 'https://lh3.googleusercontent.com/a/google-avatar',
+    });
+  });
+
+  it('Facebook : supporte le format picture objet { data: { url } }', () => {
+    expect(
+      identiteDe({
+        user_metadata: {
+          name: 'Jean Paul',
+          picture: { data: { url: 'https://platform-lookaside.fbsbx.com/photo.jpg' } },
+        },
+      } as never)
+    ).toEqual({
+      nom: 'Jean Paul',
+      prenom: 'Jean',
+      photo: 'https://platform-lookaside.fbsbx.com/photo.jpg',
+    });
+  });
+
+  it('Apple : pas de photo fournie par Apple, nom extrait et initiale', () => {
+    expect(
+      identiteDe({
+        user_metadata: {
+          full_name: 'Jean Dupont',
+          email: 'jean.dupont@privaterelay.appleid.com',
+        },
+      })
+    ).toEqual({
+      nom: 'Jean Dupont',
+      prenom: 'Jean',
+      photo: null,
+    });
+  });
+
+  it('photo non https/http ignoree', () => {
     expect(identiteDe({ user_metadata: { name: 'A B', picture: 'file:///etc/passwd' } }).photo).toBeNull();
   });
 });
