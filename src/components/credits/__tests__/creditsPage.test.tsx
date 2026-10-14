@@ -65,7 +65,7 @@ jest.mock('@/services/credits', () => ({
   ]),
 }));
 
-const renderComponent = (node: React.ReactNode) => render(<ThemeProvider>{node}</ThemeProvider>);
+const renderComponent = async (node: React.ReactNode) => await render(<ThemeProvider>{node}</ThemeProvider>);
 
 beforeEach(() => {
   jest.clearAllMocks();

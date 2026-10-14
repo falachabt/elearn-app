@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState } from 'react-native';
 
 import type { EtatConnectivite } from '../connectivite';
@@ -50,7 +51,8 @@ function sansModuleReseau() {
   if (module) module.addListener = undefined;
 }
 
-beforeEach(() => {
+beforeEach(async () => {
+  await AsyncStorage.clear();
   app = null;
   reseau = null;
   retires = 0;
