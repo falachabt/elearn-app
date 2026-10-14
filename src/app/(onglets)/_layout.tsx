@@ -12,8 +12,8 @@ import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { profilToeicActif } from '@/services/certification/accueil';
 import { etapeCertification } from '@/services/certification/reprise';
-import { lireProfil } from '@/services/profil';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { lireProfil, profilDepuisCompte } from '@/services/profil';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord } from '@/theme/theme';
 
@@ -24,6 +24,8 @@ export default function LayoutOnglets() {
   const { bottom } = useSafeAreaInsets();
   const { t } = useTraduction();
   const sessionPrete = useSessionPrete();
+  const { session } = useSession();
+  const idCompte = session?.user.id;
   const nouvelles = useNouvellesQuestions();
   const certificationOuverte = useProfilCertification();
   const chemin = usePathname();
@@ -49,6 +51,9 @@ export default function LayoutOnglets() {
     // « hors-ligne » passe aussi : le profil est local, il doit s'afficher sans réseau.
     if (!sessionPrete) return;
     let actif = true;
+    // Le profil du compte compte aussi : si la copie locale n'a pas été appliquée (règle « plus récent »), le compte
+    // dit déjà que l'arrivée est faite. Sans ça, la garde renvoyait à « bienvenue » le temps de la synchro.
+    const compte = profilDepuisCompte(session?.user);
     void (async () => {
       const p = await lireProfil();
       const etape = await etapeCertification(p);
@@ -57,12 +62,15 @@ export default function LayoutOnglets() {
       // Les onglets TOEIC s'ouvrent dès l'arrivée (objectif et temps) : diagnostic commencé ou en cours compris.
       // Le résultat reste une étape obligatoire tant que « Voir mon plan » n'a pas été pressé.
       const arriveeFaite = etape === '/certification/arrivee' || etape === '/certification/diagnostic';
-      setArrivee(p?.termine || arriveeFaite ? 'fait' : 'a-faire');
+      setArrivee(p?.termine || compte?.termine || arriveeFaite ? 'fait' : 'a-faire');
     })();
     return () => {
       actif = false;
     };
-  }, [sessionPrete, chemin]);
+    // `session` est lu au moment de la vérification ; `idCompte` suffit pour relancer au changement de compte.
+    // `chemin` relance la vérification à chaque écran : « Voir mon plan » bascule la barre sans relancer l'app.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionPrete, idCompte, chemin]);
 
   useEffect(() => {
     if (!sessionPrete || sessionPrete === 'hors-ligne') return;

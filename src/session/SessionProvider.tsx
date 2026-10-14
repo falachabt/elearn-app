@@ -48,7 +48,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         if (!reprise) {
           synchroniserReglages(client, session.user).catch(() => {});
           synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
-          void enregistrerJetonPush(client, session.user.id);
+          void enregistrerJetonPush(client);
         }
         if (!session.user.is_anonymous && typeof client.auth?.getUser === 'function') {
           void client.auth.getUser().then(({ data }) => {
@@ -80,7 +80,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 synchroniserLues(client).catch(() => {});
                 synchroniserActivitesServeur(client).catch(() => {});
                 // Nouveau compte sur ce téléphone : son jeton push lui est donné (si la permission l'est déjà).
-                void enregistrerJetonPush(client, nouvelle.user.id);
+                void enregistrerJetonPush(client);
               }, 0);
             }
           } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
