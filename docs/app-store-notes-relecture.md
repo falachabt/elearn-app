@@ -17,7 +17,7 @@ Elearn Prepa is a study app for high-school students and entrance-exam candidate
 2. The Pass screen lists three options: weekly, monthly and exam-season (contest). Each is a consumable in-app purchase: `pass_weeks`, `pass_month`, `pass_contest`.
 3. Select an option and tap the purchase button. The price shown is the App Store price in the local currency. The purchase is processed by StoreKit through RevenueCat.
 4. "Restore purchases" is available on the same screen.
-5. Sandbox: please use a Sandbox tester account. [Demo account credentials are provided in the App Review Information fields.]
+5. Sandbox: please use your Sandbox tester Apple ID on the device (Settings > App Store > Sandbox Account). No demo account is needed: the app works for a guest, and sign-in with Apple is available if you want to test an account.
 
 **No other payment method on iOS**
 On iOS, the app does not show Mobile Money, web checkout, parent payment links or any external purchase link. The only way to buy a Pass on iOS is the in-app purchase above. Credits (the in-app currency used for explanations and corrections) are not sold separately; they are granted by the app (welcome allowance and a weekly allowance) and spent on content. The Pass is the only paid product.
