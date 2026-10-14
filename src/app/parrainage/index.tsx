@@ -25,8 +25,16 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; stats: StatsParrainage };
 
+/**
+ * Nettoie tout suffixe de crédits redondant avec le badge (+50 crédits, (+150 credits), etc.).
+ * Le badge jaune affiche déjà la récompense en crédits.
+ */
+export function epurerLibelleMission(libelle: string): string {
+  return libelle.replace(/\s*\(\s*\+?\s*\d+\s*cr[ée]dits?\s*\)/gi, '').trim();
+}
+
 export default function EcranParrainage() {
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { session } = useSession();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
@@ -154,7 +162,7 @@ export default function EcranParrainage() {
                   <View style={styles.ligneEnteteMission}>
                     <View style={styles.colonneTitre}>
                       <Text style={[typo.h3, { color: theme.texte.principal }]}>
-                        {j.label_fr}
+                        {epurerLibelleMission((langue === 'en' ? j.label_en : j.label_fr) || j.label_fr || '')}
                       </Text>
                       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
                         {t('parrainage.progression', {

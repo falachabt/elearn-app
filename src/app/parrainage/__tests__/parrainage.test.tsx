@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react-native';
 
-import EcranParrainage from '@/app/parrainage/index';
+import EcranParrainage, { epurerLibelleMission } from '@/app/parrainage/index';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 import { themes } from '@/theme/theme';
 
@@ -67,6 +67,14 @@ describe('Parrainage · contraste du bouton Copier', () => {
     expect(screen.getByText('+20 crédits')).toBeTruthy();
     expect(screen.getByText('100%')).toBeTruthy();
     expect(screen.getByText('Réclamé')).toBeTruthy();
+  });
+
+  it('epurerLibelleMission supprime la mention redondante (+X credits/crédits) du libellé', () => {
+    expect(epurerLibelleMission('1er ami parrainé (+50 crédits)')).toBe('1er ami parrainé');
+    expect(epurerLibelleMission('3 amis parrainés (+150 crédits)')).toBe('3 amis parrainés');
+    expect(epurerLibelleMission('1st invited friend (+50 credits)')).toBe('1st invited friend');
+    expect(epurerLibelleMission('10 amis parrainés (+700 credits)')).toBe('10 amis parrainés');
+    expect(epurerLibelleMission('1 ami invité')).toBe('1 ami invité');
   });
 });
 
