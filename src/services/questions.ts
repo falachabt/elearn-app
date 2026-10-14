@@ -113,6 +113,18 @@ export async function poserQuestion(client: ClientPoster, q: { texte: string; ma
   return (data as { id: string }).id;
 }
 
+/** Supprime sa propre question (RLS : seul l'auteur). Ses réponses partent avec elle (ON DELETE CASCADE). */
+export async function supprimerQuestion(client: ClientPoster, id: string): Promise<void> {
+  const { error } = await client.from('feed_posts').delete().eq('id', id);
+  if (error) throw error;
+}
+
+/** Supprime sa propre réponse (RLS : seul l'auteur). Les suites de cette réponse partent avec elle. */
+export async function supprimerReponse(client: ClientPoster, id: string): Promise<void> {
+  const { error } = await client.from('post_comments').delete().eq('id', id);
+  if (error) throw error;
+}
+
 /** Signale une question ou une réponse : elle est masquée en attendant la décision (M7-04). */
 export async function signaler(client: ClientFil, type: 'post' | 'comment', id: string, motif: MotifSignalement, details?: string): Promise<void> {
   const { error } = await client.rpc('report_content', { p_type: type, p_id: id, p_reason: motif, p_details: details ?? null });

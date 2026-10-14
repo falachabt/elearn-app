@@ -12,7 +12,8 @@ const q: Question = {
 describe('CarteQuestion', () => {
   it('affiche auteur, extrait, réponses, réponse IA et état résolue', async () => {
     await render(<CarteQuestion q={q} onPress={jest.fn()} />);
-    expect(screen.getByText('Awa · 3e')).toBeTruthy();
+    expect(screen.getByText(/Élève de 3e/)).toBeTruthy();
+    expect(screen.getByText('Maths')).toBeTruthy();
     expect(screen.getByText('Comment résoudre x² = 4 ?')).toBeTruthy();
     expect(screen.getByText('2 réponses')).toBeTruthy();
     expect(screen.getByText('réponse IA')).toBeTruthy();

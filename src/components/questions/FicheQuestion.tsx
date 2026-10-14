@@ -1,12 +1,12 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { Check, EyeOff, Flag } from 'lucide-react-native';
+import { Check, EyeOff, Flag, Trash2 } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
 import { useEtatMemorise } from '@/services/memoire';
-import { ajouterSortie, appliquerVote, choisirMeilleure, envoyerSortie, envoyerSortiesEnAttente, fil, lireQuestion, lireReponses, lireSorties, parentPourReponse, retirerSortie, voter, type Question, type Reponse, type Sortie } from '@/services/questions';
+import { ajouterSortie, appliquerVote, choisirMeilleure, envoyerSortie, envoyerSortiesEnAttente, fil, lireQuestion, lireReponses, lireSorties, parentPourReponse, retirerSortie, supprimerQuestion, supprimerReponse, voter, type Question, type Reponse, type Sortie } from '@/services/questions';
 import { getSupabase } from '@/services/supabase';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -127,6 +127,25 @@ export function FicheQuestion() {
     await rafraichirSorties();
   };
 
+  /** Confirmation avant suppression définitive : le message disparaît du fil pour tout le monde. */
+  const confirmerSuppression = (action: () => Promise<void>) => {
+    if (horsLigne) return bloquerReseau();
+    Alert.alert(t('questions.supprimerTitre'), t('questions.supprimerTexte'), [
+      { text: t('questions.supprimerAnnuler'), style: 'cancel' },
+      { text: t('questions.supprimerConfirmer'), style: 'destructive', onPress: () => void action().catch(() => rafraichir()) },
+    ]);
+  };
+  const retirerMaQuestion = () =>
+    confirmerSuppression(async () => {
+      await supprimerQuestion(getSupabase(), id);
+      retour();
+    });
+  const retirerMaReponse = (r: Reponse) =>
+    confirmerSuppression(async () => {
+      await supprimerReponse(getSupabase(), r.id);
+      await rafraichir();
+    });
+
   const q = etat.statut === 'pret' ? etat.question : null;
   const reponses = etat.statut === 'pret' ? fil(etat.reponses) : [];
   const humaines = etat.statut === 'pret' ? etat.reponses.filter((r) => !r.ia).length : 0;
@@ -142,6 +161,11 @@ export function FicheQuestion() {
           {q && !q.miennes && !q.masquee ? (
             <Appui accessibilityRole="button" accessibilityLabel={t('questions.signalerQuestion')} onPress={() => exiger('question', () => setSignal({ type: 'post', id }))} decalage={0}>
               <Flag size={22} strokeWidth={2} color={theme.texte.principal} />
+            </Appui>
+          ) : null}
+          {q && q.miennes ? (
+            <Appui accessibilityRole="button" accessibilityLabel={t('questions.supprimerMaQuestion')} onPress={retirerMaQuestion} decalage={0}>
+              <Trash2 size={22} strokeWidth={2} color={theme.etat.erreurTexte} />
             </Appui>
           ) : null}
         </>
@@ -177,12 +201,12 @@ export function FicheQuestion() {
       ) : null}
       {reponses.map(({ reponse, suites }) => (
         <View key={reponse.id} style={styles.groupe}>
-          <CarteReponse r={reponse} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} masquee={masques.has(reponse.id)} />
+          <CarteReponse r={reponse} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} onSupprimer={retirerMaReponse} masquee={masques.has(reponse.id)} />
           {suites.map((s) => (
             <View key={s.id} style={styles.suite}>
               <View style={[styles.filet, { backgroundColor: theme.bord.doux }]} />
               <View style={styles.flex}>
-                <CarteReponse r={s} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} masquee={masques.has(s.id)} />
+                <CarteReponse r={s} onVote={voterPour} onMenu={setMenu} onPhoto={setPhotoGrande} onRepondre={setCible} onSupprimer={retirerMaReponse} masquee={masques.has(s.id)} />
               </View>
             </View>
           ))}
@@ -228,7 +252,7 @@ export function FicheQuestion() {
   );
 }
 
-function CarteReponse({ r, onVote, onMenu, onRepondre, masquee, onPhoto }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void; masquee: boolean; onPhoto: (uri: string) => void }) {
+function CarteReponse({ r, onVote, onMenu, onRepondre, onSupprimer, masquee, onPhoto }: { r: Reponse; onVote: (r: Reponse, v: 1 | -1) => void; onMenu?: (r: Reponse) => void; onRepondre: (r: Reponse) => void; onSupprimer?: (r: Reponse) => void; masquee: boolean; onPhoto: (uri: string) => void }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const ilYa = useIlYa();
@@ -261,6 +285,11 @@ function CarteReponse({ r, onVote, onMenu, onRepondre, masquee, onPhoto }: { r: 
         <Appui accessibilityRole="button" accessibilityLabel={t('questions.repondreA', { nom: r.ia ? 'Elearn Prepa' : r.auteur })} onPress={() => onRepondre(r)} decalage={0}>
           <Text style={[typo.boutonPetit, { color: theme.texte.lien }]}>{t('questions.repondre')}</Text>
         </Appui>
+        {r.miennes && !r.ia && onSupprimer ? (
+          <Appui accessibilityRole="button" accessibilityLabel={t('questions.supprimerMaReponse')} onPress={() => onSupprimer(r)} decalage={0}>
+            <Text style={[typo.boutonPetit, { color: theme.etat.erreurTexte }]}>{t('questions.supprimer')}</Text>
+          </Appui>
+        ) : null}
         <View style={styles.flex} />
         {!r.miennes && !r.ia ? <Vote r={r} onVote={onVote} /> : null}
       </View>
