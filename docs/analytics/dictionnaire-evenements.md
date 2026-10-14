@@ -160,6 +160,10 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `exercise_opened` | Exercice libre ouvert | `Record<string, never>` |
 | `annale_timer_started` | Chronomètre d'une annale lancé (officiel, perso, libre) | `{ mode: 'officiel' \| 'perso' \| 'libre'; minutes: number \| null }` |
 | `ai_answer_seen` | Réponse de l'IA affichée (durée de bout en bout) | `{ source: 'photo' \| 'question'; duree_s: number }` |
+| `ai_correction_complete` | Correction photo reçue, en millisecondes (issue #14) | `{ duration_ms: number; matiere: string; etapes: number }` |
+| `app_cold_start` | Démarrage à froid : du chargement du module jusqu'à l'écran prêt, une fois par lancement (issue #14) | `{ duration_ms: number }` |
+| `requete_reseau` | Requête vers Supabase : nom de la ressource (table, rpc, fonction, auth, storage), durée, statut (0 = échec réseau), octets envoyés et reçus (`null` si non annoncés). Jamais l'URL complète ni les filtres (issue #14) | `{ nom: string; duration_ms: number; statut: number; octets_envoyes: number; octets_recus: number \| null }` |
+| `ecran_pret` | Délai entre l'ouverture d'un écran et sa première réponse serveur réussie, une fois par écran. Approximation : une requête de fond peut compter (issue #14) | `{ ecran_cible: string; duration_ms: number }` |
 | `whatsapp_opened` | Ouverture de WhatsApp (support, aide) | `{ contexte: 'support' \| 'parent' \| 'parrainage' \| 'aide' \| 'autre' }` |
 | `notification_received` | Notification reçue (app ouverte ou non) | `{ type: string; premier_plan: boolean }` |
 | `school_class_created` | Réservé (écoles relais, lot 2) | `{ class_id: string; concours: string }` |

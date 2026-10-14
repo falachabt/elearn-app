@@ -186,6 +186,7 @@ export function Photo() {
         const dureeS = Math.round((Date.now() - debut) / 1000);
         suivre('photo_corrected', { matiere: issue.correction.matiere, duree_s: dureeS, etapes: issue.correction.etapes.length });
         suivre('ai_answer_seen', { source: 'photo', duree_s: dureeS });
+        suivre('ai_correction_complete', { duration_ms: Date.now() - debut, matiere: issue.correction.matiere, etapes: issue.correction.etapes.length });
         await noterActionConfiguration('correction').catch((erreur: unknown) => console.warn('Impossible d’enregistrer cette étape de configuration.', erreur));
         setEtat({ ecran: 'correction', id: issue.id, correction: issue.correction });
       } else if (issue.type === 'illisible') {

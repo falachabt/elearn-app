@@ -38,6 +38,9 @@ import { useRepriseInviteEnCours } from '@/services/repriseInvite';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { getSupabase } from '@/services/supabase';
 
+const debutDemarrage = Date.now();
+let demarrageMesure = false;
+
 SplashScreen.preventAutoHideAsync().catch(() => {});
 initAnalytics();
 installerHandlerGlobal();
@@ -158,6 +161,11 @@ export default function RootLayout() {
   useEffect(() => {
     if (pret) {
       SplashScreen.hideAsync().catch(() => {});
+      // Cold start (issue #14) : du chargement du module jusqu'à l'écran prêt. Une seule mesure par lancement.
+      if (!demarrageMesure) {
+        demarrageMesure = true;
+        suivre('app_cold_start', { duration_ms: Date.now() - debutDemarrage });
+      }
     }
   }, [pret]);
 

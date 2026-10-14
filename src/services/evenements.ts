@@ -107,6 +107,11 @@ export type Evenements = {
   exercise_opened: Record<string, never>;
   annale_timer_started: { mode: 'officiel' | 'perso' | 'libre'; minutes: number | null };
   ai_answer_seen: { source: 'photo' | 'question'; duree_s: number };
+  // Performance (issue #14). Durées en millisecondes, volumes en octets (`null` si le serveur n'annonce pas la taille).
+  app_cold_start: { duration_ms: number };
+  ai_correction_complete: { duration_ms: number; matiere: string; etapes: number };
+  requete_reseau: { nom: string; duration_ms: number; statut: number; octets_envoyes: number; octets_recus: number | null };
+  ecran_pret: { ecran_cible: string; duration_ms: number };
   xp_earned: { gain: number; total: number; source: string; niveau: number };
 
   // Support et notifications.
