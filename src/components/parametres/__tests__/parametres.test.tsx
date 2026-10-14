@@ -130,13 +130,24 @@ describe('H2 · réglages', () => {
 
   it('taille du texte : un cran plus grand agrandit les styles partagés et se garde', async () => {
     await monter(<Parametres />);
+    // Réglage par défaut : automatique (écran de test = 750 dp, donc 120 %). Un cran plus grand passe en manuel, à 130 %.
+    expect(lireAffichage().taille).toBe('auto');
     await act(() => fireEvent(screen.getByRole('adjustable'), 'accessibilityAction', { nativeEvent: { actionName: 'increment' } }));
-    expect(lireAffichage().taille).toBe(100);
-    expect(typo.texte.fontSize).toBe(16);
-    expect(screen.getByText('100 %')).toBeTruthy();
-    expect(await AsyncStorage.getItem(CLE_TAILLE)).toBe('100');
+    expect(lireAffichage().taille).toBe(130);
+    expect(screen.getByText('130 %')).toBeTruthy();
+    expect(await AsyncStorage.getItem(CLE_TAILLE)).toBe('130');
     appliquerTaille(90);
     expect(typo.texte.fontSize).toBeCloseTo(14.4);
+  });
+
+  it('auto : le bouton Auto rend la taille à l\'écran, et un choix manuel le désactive', async () => {
+    await monter(<Parametres />);
+    await act(() => fireEvent(screen.getByRole('adjustable'), 'accessibilityAction', { nativeEvent: { actionName: 'increment' } }));
+    expect(lireAffichage().taille).toBe(130);
+    await act(() => fireEvent.press(screen.getByLabelText('Auto')));
+    expect(lireAffichage().taille).toBe('auto');
+    expect(await AsyncStorage.getItem(CLE_TAILLE)).toBe('auto');
+    expect(screen.getByText('Auto · 120 %')).toBeTruthy();
   });
 
   it('rail : la position touchée donne le cran le plus proche', () => {

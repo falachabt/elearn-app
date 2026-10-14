@@ -17,11 +17,27 @@ export const CLE_TAILLE = 'affichage.taille';
 /** Tailles proposées, en pour cent de la taille de base. 130 % au plus (consigne d'accessibilité du guide). */
 export const TAILLES = [80, 90, 100, 110, 120, 130] as const;
 export type TailleTexte = (typeof TAILLES)[number];
-export const TAILLE_DEFAUT: TailleTexte = 90;
+/** « auto » : la taille suit la taille de l'écran. Dès que l'élève choisit une taille, le réglage passe en manuel. */
+export type ReglageTaille = TailleTexte | 'auto';
+export const TAILLE_DEFAUT: ReglageTaille = 'auto';
+const TAILLE_MAX = 130;
 
-type Etat = { theme: ReglageTheme; taille: TailleTexte };
+/** Facteur automatique selon la plus petite dimension de l'écran (en dp) : petit téléphone, téléphone, grand téléphone, tablette. */
+export function tailleAuto(dpMin: number): number {
+  const facteur = dpMin < 360 ? 90 : dpMin < 414 ? 100 : dpMin < 600 ? 110 : 120;
+  return Math.min(facteur, TAILLE_MAX);
+}
+
+/** Taille réellement appliquée : le réglage de l'élève, ou la taille automatique de l'écran. */
+export function tailleEffective(reglage: ReglageTaille, dpMinimum: number): number {
+  return reglage === 'auto' ? tailleAuto(dpMinimum) : reglage;
+}
+
+type Etat = { theme: ReglageTheme; taille: ReglageTaille };
 
 let etat: Etat = { theme: 'systeme', taille: TAILLE_DEFAUT };
+/** Plus petite dimension de l'écran, en dp (renseignée par le ThemeProvider). 360 tant qu'elle n'est pas connue. */
+let dpMin = 360;
 let charge: Promise<void> | null = null;
 const ecouteurs = new Set<() => void>();
 
@@ -51,15 +67,28 @@ export function appliquerTaille(taille: number): void {
 }
 
 const estTheme = (v: unknown): v is ReglageTheme => v === 'clair' || v === 'sombre' || v === 'systeme';
-const estTaille = (v: unknown): v is TailleTexte => TAILLES.includes(v as TailleTexte);
+const estTaille = (v: unknown): v is ReglageTaille => v === 'auto' || TAILLES.includes(v as TailleTexte);
 
 function publier(nouvel: Etat) {
   etat = nouvel;
-  appliquerTaille(etat.taille);
+  appliquerTaille(tailleEffective(etat.taille, dpMin));
   ecouteurs.forEach((f) => f());
 }
 
 export const lireAffichage = (): Etat => etat;
+
+/** Taille effective pour l'écran courant (réglage manuel, ou taille automatique). */
+export const lireTailleEffective = (): number => tailleEffective(etat.taille, dpMin);
+
+/**
+ * Le ThemeProvider signale la taille de l'écran (et ses changements : rotation, fenêtre du navigateur).
+ * En mode auto, la taille du texte est recalculée et tout l'écran est redessiné.
+ */
+export function signalerEcran(dp: number): void {
+  if (dp === dpMin) return;
+  dpMin = dp;
+  if (etat.taille === 'auto') publier({ ...etat });
+}
 
 export function abonnerAffichage(f: () => void): () => void {
   ecouteurs.add(f);
@@ -71,7 +100,7 @@ export function chargerAffichage(): Promise<void> {
   charge ??= (async () => {
     try {
       const [[, theme], [, taille]] = await AsyncStorage.multiGet([CLE_THEME, CLE_TAILLE]);
-      const t = Number(taille);
+      const t = taille === 'auto' ? 'auto' : Number(taille);
       publier({ theme: estTheme(theme) ? theme : etat.theme, taille: estTaille(t) ? t : etat.taille });
     } catch {
       // Valeurs par défaut.
@@ -87,11 +116,21 @@ export async function definirTheme(theme: ReglageTheme): Promise<void> {
   await signalerModification();
 }
 
+/** Choix manuel d'une taille : le réglage passe en manuel et garde cette valeur. */
 export async function definirTaille(taille: TailleTexte): Promise<void> {
   if (taille === etat.taille) return;
   publier({ ...etat, taille });
   suivre('display_setting_changed', { taille });
   await AsyncStorage.setItem(CLE_TAILLE, String(taille)).catch(() => {});
+  await signalerModification();
+}
+
+/** Retour au mode automatique : la taille suit de nouveau l'écran. */
+export async function definirTailleAuto(): Promise<void> {
+  if (etat.taille === 'auto') return;
+  publier({ ...etat, taille: 'auto' });
+  suivre('display_setting_changed', { taille: lireTailleEffective() });
+  await AsyncStorage.setItem(CLE_TAILLE, 'auto').catch(() => {});
   await signalerModification();
 }
 

@@ -2,7 +2,7 @@ import type { SupabaseClient, User } from '@supabase/supabase-js';
 
 import { changerLangue, i18n, langueSupportee, type Langue } from '@/i18n';
 
-import { appliquerAffichage, lireAffichage, type ReglageTheme, type TailleTexte } from './affichage';
+import { appliquerAffichage, lireAffichage, type ReglageTaille, type ReglageTheme } from './affichage';
 import { repriseInviteEnCours } from './repriseInvite';
 import { definirWifiSeulement, lireWifiSeulement } from './donnees';
 import { enregistrerProfil, lireProfil, type Profil } from './profil';
@@ -19,7 +19,7 @@ export type Reglages = {
   profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'concours' | 'exam'>;
   /** Taille de la mission du jour choisie (M4-08). */
   rythme?: number | null;
-  affichage?: { theme: ReglageTheme; taille: TailleTexte };
+  affichage?: { theme: ReglageTheme; taille: ReglageTaille };
   wifiSeulement?: boolean;
   maj: string;
 };

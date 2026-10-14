@@ -450,6 +450,8 @@ export const en: Textes = {
     themes: { clair: 'Light', sombre: 'Dark', systeme: 'System' },
     taille: 'Text size',
     tailleValeur: '{{n}} %',
+    tailleAuto: 'Auto · {{n}} %',
+    tailleAutoBouton: 'Auto',
     sons: 'Sounds and vibrations',
     sonsDetail: 'Sounds, vibrations and animations',
     notifications: 'Notifications',

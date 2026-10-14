@@ -451,6 +451,8 @@ export const fr = {
     themes: { clair: 'Clair', sombre: 'Sombre', systeme: 'Système' },
     taille: 'Taille du texte',
     tailleValeur: '{{n}} %',
+    tailleAuto: 'Auto · {{n}} %',
+    tailleAutoBouton: 'Auto',
     sons: 'Sons et vibrations',
     sonsDetail: 'Sons, vibrations et animations',
     notifications: 'Notifications',
