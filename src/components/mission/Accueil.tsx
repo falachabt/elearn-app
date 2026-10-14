@@ -7,7 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
-import { enregistrerProfil, lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
+import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
 import { doitRappelerCompte, noterRappelCompte } from '@/services/rappels';
 import { getSupabase } from '@/services/supabase';
