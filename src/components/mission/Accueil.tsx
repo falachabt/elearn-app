@@ -126,6 +126,8 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
     return () => {
       actif = false;
     };
+    // idUtilisateur suffit pour recharger le profil lors d'un changement de compte sans relancer l'effet a chaque re-render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idUtilisateur]);
 
   useEffect(() => {

@@ -34,7 +34,7 @@ export function identiteDe(
   user:
     | (Pick<User, 'user_metadata'> & {
         email?: string | null;
-        identities?: Array<{ identity_data?: Record<string, unknown> | null }> | null;
+        identities?: { identity_data?: Record<string, unknown> | null }[] | null;
       })
     | null
     | undefined

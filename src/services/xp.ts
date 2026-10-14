@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { Platform } from 'react-native';
 
 import { suivre } from './analytics';
 import { garderNotifications, lireNotificationsGardees, type Notification } from './notifications';

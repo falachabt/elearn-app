@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Image } from 'expo-image';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
@@ -22,13 +22,10 @@ interface Props {
  */
 export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
   const { theme } = useTheme();
-  const [erreurPhoto, setErreurPhoto] = useState(false);
+  const [urlEchouee, setUrlEchouee] = useState<string | null>(null);
   const info = calculerNiveau(totalXp);
   const initiale = (nom ?? '').trim().charAt(0).toUpperCase() || '?';
-
-  useEffect(() => {
-    setErreurPhoto(false);
-  }, [photo]);
+  const affichePhoto = Boolean(photo && photo !== urlEchouee);
 
   const epaisseurAnneau = taille >= 56 ? 4 : 3;
   const rayonCercle = (taille - epaisseurAnneau) / 2;
@@ -77,14 +74,15 @@ export function AvatarNiveau({ photo, nom, totalXp = 0, taille = 44 }: Props) {
           },
         ]}
       >
-        {photo && !erreurPhoto ? (
+        {affichePhoto ? (
           <Image
-            source={{ uri: photo }}
+            key={photo}
+            source={{ uri: photo! }}
             style={styles.photo}
             contentFit="cover"
             accessibilityLabel={nom ?? undefined}
             accessibilityIgnoresInvertColors
-            onError={() => setErreurPhoto(true)}
+            onError={() => setUrlEchouee(photo ?? null)}
           />
         ) : (
           <Text style={[taille >= 56 ? typo.h3 : typo.boutonPetit, { color: theme.texte.surCouleur }]}>
