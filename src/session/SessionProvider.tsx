@@ -48,7 +48,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         if (!reprise) {
           synchroniserReglages(client, session.user).catch(() => {});
           synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
-          void enregistrerJetonPush(client);
+          void enregistrerJetonPush(client, session.user.id);
         }
         if (!session.user.is_anonymous && typeof client.auth?.getUser === 'function') {
           void client.auth.getUser().then(({ data }) => {
@@ -59,8 +59,12 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         }
         const arreterSuivi = suivreModifications(client);
         const arreterSuiviEntrainement = suivreProgressionEntrainement(client);
-        const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {
+        const { data } = client.auth.onAuthStateChange(async (evenement, nouvelle) => {
           if (actif && nouvelle) {
+            // Connexion : le parcours d'arrivée du compte est appliqué AVANT de publier la session, comme au démarrage.
+            // Sinon la garde des onglets lit le profil local (non terminé) et renvoie à « bienvenue » le temps du délai.
+            if (evenement === 'SIGNED_IN') await appliquerReglagesCompteSiPlusRecent(nouvelle.user).catch(() => {});
+            if (!actif) return;
             setEtat({ statut: 'pret', session: nouvelle, erreur: null });
             void identifier(nouvelle.user.id, { invite: nouvelle.user.is_anonymous ?? false });
             // M1-04 : le score d'invité suit le compte, même quand la connexion change d'utilisateur (Apple, ancien compte).
@@ -76,7 +80,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 synchroniserLues(client).catch(() => {});
                 synchroniserActivitesServeur(client).catch(() => {});
                 // Nouveau compte sur ce téléphone : son jeton push lui est donné (si la permission l'est déjà).
-                void enregistrerJetonPush(client);
+                void enregistrerJetonPush(client, nouvelle.user.id);
               }, 0);
             }
           } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
