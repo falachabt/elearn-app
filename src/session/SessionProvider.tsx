@@ -50,6 +50,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
           synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
           void enregistrerJetonPush(client);
         }
+        if (!session.user.is_anonymous && typeof client.auth?.getUser === 'function') {
+          void client.auth.getUser().then(({ data }) => {
+            if (actif && data?.user) {
+              setEtat((e) => (e.session ? { ...e, session: { ...e.session, user: data.user } } : e));
+            }
+          }).catch(() => {});
+        }
         const arreterSuivi = suivreModifications(client);
         const arreterSuiviEntrainement = suivreProgressionEntrainement(client);
         const { data } = client.auth.onAuthStateChange((evenement, nouvelle) => {

@@ -126,17 +126,9 @@ export async function lireUserXp(client?: Client | null, userId?: string | null)
       const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
       if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
         const distant = (data as { total_xp: number }).total_xp;
-        // On ne fait JAMAIS régresser l'XP : on prend la valeur la plus avancée
-        const meilleur = Math.max(local, distant);
-        if (meilleur > distant) {
-          // Rattrapage de Supabase si le stockage local est plus récent
-          const q = client.from('user_xp');
-          if (typeof q?.upsert === 'function') {
-            await q.upsert({ userid: userId, total_xp: meilleur });
-          }
-        }
-        await AsyncStorage.setItem(CLE_XP_LOCAL, String(meilleur)).catch(() => {});
-        return meilleur;
+        // Le serveur est la source de vérité pour un compte connecté : synchronise le stockage local
+        await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
+        return distant;
       }
     } catch {
       // Repli sur le stockage local ci-dessous

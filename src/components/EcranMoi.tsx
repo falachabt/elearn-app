@@ -50,8 +50,9 @@ export function EcranMoi() {
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
   const [totalXp, setTotalXp] = useState(0);
+  const [utilisateurFrais, setUtilisateurFrais] = useState(session?.user);
 
-  const user = session?.user;
+  const user = utilisateurFrais ?? session?.user;
   const invite = estInvite(user);
   const connecte = !!user && !invite;
   const idUtilisateur = user?.id;
@@ -92,7 +93,14 @@ export function EcranMoi() {
         });
         if (!connecte) return;
         const [c] = await Promise.all([lireContactParent(client).catch(() => null), lireDemandeSuppression(client).catch(() => null)]);
-        if (actif) setParent(c?.telephone ? c.nom : null);
+        if (actif) {
+          setParent(c?.telephone ? c.nom : null);
+          if (typeof client.auth?.getUser === 'function' && (!user?.user_metadata?.avatar_url || !user?.user_metadata?.full_name)) {
+            client.auth.getUser().then(({ data }) => {
+              if (actif && data?.user) setUtilisateurFrais(data.user);
+            }).catch(() => {});
+          }
+        }
       })();
       return () => {
         actif = false;

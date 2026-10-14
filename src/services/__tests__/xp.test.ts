@@ -136,12 +136,17 @@ describe('services/xp', () => {
     });
 
     it('ignore un deuxième appel identique pour la mission du jour', async () => {
+      let totalCourant = 0;
       const mockInsert = jest.fn().mockResolvedValue({ error: null });
-      const mockMaybeSingle = jest.fn().mockResolvedValue({ data: { total_xp: 0 }, error: null });
+      const mockMaybeSingle = jest.fn().mockImplementation(() => Promise.resolve({ data: { total_xp: totalCourant }, error: null }));
+      const mockUpsert = jest.fn().mockImplementation((payload: { total_xp: number }) => {
+        totalCourant = payload.total_xp;
+        return Promise.resolve({ error: null });
+      });
       const client = {
         from: jest.fn().mockImplementation((table: string) => {
           if (table === 'xp_history') return { insert: mockInsert };
-          if (table === 'user_xp') return { select: () => ({ eq: () => ({ maybeSingle: mockMaybeSingle }) }), upsert: jest.fn() };
+          if (table === 'user_xp') return { select: () => ({ eq: () => ({ maybeSingle: mockMaybeSingle }) }), upsert: mockUpsert };
           return {};
         }),
       } as any;
