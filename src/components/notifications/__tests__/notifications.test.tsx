@@ -150,21 +150,26 @@ describe('Centre de notifications (N1)', () => {
   });
 
   it('groupe « Aujourd’hui » et « Plus tôt », non lues repérées par un point et un fond', async () => {
-    mockNotifications.mockReturnValue(
-      etat({
-        nonLues: 1,
-        notifications: [notif('a'), notif('b', { lue: true, creeLe: new Date(Date.now() - 5 * 86400000).toISOString() })],
-      }),
-    );
-    await monter(<CentreNotifications />);
-    expect(screen.getByText(fr.notifications.aujourdhui)).toBeTruthy();
-    expect(screen.getByText(fr.notifications.plusTot)).toBeTruthy();
-    expect(screen.getAllByTestId('notification-non-lue')).toHaveLength(1);
-    expect(screen.getAllByTestId('notification-lue')).toHaveLength(1);
-    expect(screen.getAllByTestId('point-non-lue')).toHaveLength(1);
-    expect(screen.getByText('Titre a')).toBeTruthy();
-    expect(screen.getByText('10 min')).toBeTruthy();
-    expect(screen.getByText('5 j')).toBeTruthy();
+    jest.useFakeTimers().setSystemTime(new Date('2026-10-14T12:00:00Z'));
+    try {
+      mockNotifications.mockReturnValue(
+        etat({
+          nonLues: 1,
+          notifications: [notif('a'), notif('b', { lue: true, creeLe: new Date(Date.now() - 5 * 86400000).toISOString() })],
+        }),
+      );
+      await monter(<CentreNotifications />);
+      expect(screen.getByText(fr.notifications.aujourdhui)).toBeTruthy();
+      expect(screen.getByText(fr.notifications.plusTot)).toBeTruthy();
+      expect(screen.getAllByTestId('notification-non-lue')).toHaveLength(1);
+      expect(screen.getAllByTestId('notification-lue')).toHaveLength(1);
+      expect(screen.getAllByTestId('point-non-lue')).toHaveLength(1);
+      expect(screen.getByText('Titre a')).toBeTruthy();
+      expect(screen.getByText('10 min')).toBeTruthy();
+      expect(screen.getByText('5 j')).toBeTruthy();
+    } finally {
+      jest.useRealTimers();
+    }
   });
 
   it('un appui marque lue, compte l’ouverture et ouvre la question concernée', async () => {
