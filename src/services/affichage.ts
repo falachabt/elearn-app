@@ -13,6 +13,8 @@ export type ReglageTheme = 'clair' | 'sombre' | 'systeme';
 
 export const CLE_THEME = 'affichage.theme';
 export const CLE_TAILLE = 'affichage.taille';
+/** Drapeau : le mode auto a été posé comme défaut (une seule fois, à la mise à jour qui l'introduit). */
+export const CLE_TAILLE_AUTO_DEFAUT = 'affichage.tailleAutoDefaut';
 
 /** Tailles proposées, en pour cent de la taille de base. 130 % au plus (consigne d'accessibilité du guide). */
 export const TAILLES = [80, 90, 100, 110, 120, 130] as const;
@@ -24,7 +26,8 @@ const TAILLE_MAX = 130;
 
 /** Facteur automatique selon la plus petite dimension de l'écran (en dp) : petit téléphone, téléphone, grand téléphone, tablette. */
 export function tailleAuto(dpMin: number): number {
-  const facteur = dpMin < 360 ? 90 : dpMin < 414 ? 100 : dpMin < 600 ? 110 : 120;
+  // Seuils revus sur un Galaxy S25 Ultra (384 dp de large) : 90 % jugé juste par l'élève, 100 % trop grand.
+  const facteur = dpMin < 420 ? 90 : dpMin < 600 ? 100 : 110;
   return Math.min(facteur, TAILLE_MAX);
 }
 
@@ -99,8 +102,17 @@ export function abonnerAffichage(f: () => void): () => void {
 export function chargerAffichage(): Promise<void> {
   charge ??= (async () => {
     try {
-      const [[, theme], [, taille]] = await AsyncStorage.multiGet([CLE_THEME, CLE_TAILLE]);
+      const [[, theme], [, taille], [, migre]] = await AsyncStorage.multiGet([CLE_THEME, CLE_TAILLE, CLE_TAILLE_AUTO_DEFAUT]);
       const t = taille === 'auto' ? 'auto' : Number(taille);
+      // Une seule fois : le mode auto devient le défaut, même pour un réglage manuel gardé avant cette version.
+      if (migre !== '1') {
+        publier({ theme: estTheme(theme) ? theme : etat.theme, taille: 'auto' });
+        await AsyncStorage.multiSet([
+          [CLE_TAILLE, 'auto'],
+          [CLE_TAILLE_AUTO_DEFAUT, '1'],
+        ]).catch(() => {});
+        return;
+      }
       publier({ theme: estTheme(theme) ? theme : etat.theme, taille: estTaille(t) ? t : etat.taille });
     } catch {
       // Valeurs par défaut.
