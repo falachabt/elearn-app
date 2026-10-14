@@ -125,7 +125,7 @@ export function ToastGainXp() {
       const duree = levelUp ? DUREE_TOAST_LEVEL_UP_MS : DUREE_TOAST_XP_MS;
       timerMasquer.current = setTimeout(masquer, duree);
     },
-    [animEchelle, animGlisse, animOpacite, masquer, reduit, t],
+    [animEchelle, animGlisse, animOpacite, masquer, rafraichirNotifications, reduit, session?.user?.id, t],
   );
 
   // Nettoyage du timer au démontage
