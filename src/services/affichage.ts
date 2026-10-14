@@ -111,8 +111,6 @@ export function chargerAffichage(): Promise<void> {
           [CLE_TAILLE, 'auto'],
           [CLE_TAILLE_AUTO_DEFAUT, '1'],
         ]).catch(() => {});
-        // Prévient le compte : sinon un ancien réglage manuel gardé dans le compte reviendrait sur ce téléphone.
-        await signalerModification().catch(() => {});
         return;
       }
       publier({ theme: estTheme(theme) ? theme : etat.theme, taille: estTaille(t) ? t : etat.taille });
