@@ -144,8 +144,14 @@ Benny a répondu « Oui, 30 jours ». La variante est active.
 L'objectif de score (écran A3) se saisit au clavier au format JJ/MM/AAAA. Pas de calendrier natif, donc pas de nouvel APK.
 
 - `TOEIC-A3-DATE-VIDE` : champ vide, placeholder « JJ/MM/AAAA », date facultative, « Continuer » actif.
-- `TOEIC-A3-DATE-VALIDE` : date saisie, coche, nombre de jours restants, « Continuer » actif.
+- `TOEIC-A3-DATE-VALIDE` : date saisie, coche placée dans la ligne de message sous le champ (pas dans le champ), texte « Test le … : il reste N jours », « Continuer » actif.
 - `TOEIC-A3-DATE-FORMAT` : format invalide (JJ/MM sans année), message avec icône et texte, bordure épaissie, « Continuer » désactivé.
 - `TOEIC-A3-DATE-PASSEE` : date passée, message « Cette date est passée. Choisis une date à venir. », « Continuer » désactivé.
 - `TOEIC-A3` (écran d'origine, champ calendrier) : remplacé pour la date par les quatre états ci-dessus.
 - Les états s'appuient sur le texte et l'icône, pas sur la couleur seule.
+
+## Alignement E-04 et coche de la date (version 13, cahier v1.10)
+
+- E-04 : l'étiquette de A3 passe à « TOEIC · étape 3 sur 4 », le parcours comptant 4 étapes avec A4 (« Étape 4 sur 4 »). A1 et A2 n'ont pas de compteur dans la maquette ni dans le cahier : aucun compteur ajouté.
+- La coche de `TOEIC-A3-DATE-VALIDE` est dans la ligne de message sous le champ, comme dans le code ; le champ ne porte plus d'icône.
+- Identifiants inchangés.
