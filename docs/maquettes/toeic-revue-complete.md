@@ -108,3 +108,15 @@ Les identifiants existants ne changent pas. Les nouveaux sont T5, T6, T7 et G1.
 ## Durées des demi-tests (version 8, cahier v1.6)
 
 - `TOEIC-T5` : demi-test écoute, parties 1 à 4, 100 questions, 45 minutes. Demi-test lecture, parties 5 à 7, 100 questions, 75 minutes. Chacun 8 crédits, Pass 0. Les durées « à fixer » sont remplacées.
+
+## Barre TOEIC : Photo remplacée par Statistiques (version 9, décision de Benny du 15 octobre)
+
+- Barre TOEIC : Accueil, Réviser, **Tests (au centre)**, Statistiques, Moi. Tests occupe la place centrale que tenait Photo dans l'app, car c'est l'action principale du profil TOEIC. Statistiques est à côté de Moi, parce que la progression se lit là.
+- Photo n'apparaît plus dans le profil TOEIC. La correction par photo reste dans les autres profils ; elle ne sert à rien à un examen à choix multiples.
+- `TOEIC-ST1` : page Statistiques. Score estimé dans le temps, maîtrise par partie (P1 à P7, état par icône et texte), mots du carnet, régularité, temps passé, accès à l'historique (`TOEIC-T4`). Les segments Semaine, Mois et Tout ne sont dessinés que pour Semaine.
+- `TOEIC-ST2` : vide, pas encore de statistiques (nouvel élève).
+- `TOEIC-ST3` : première semaine, quelques données, pas encore de tendance.
+- `TOEIC-ST4` : hors ligne, dernier calcul daté, mise à jour à la reconnexion.
+- `TOEIC-B9` : le bouton devient « Explication détaillée » avec un badge « 1 crédit ». Le badge disparaît quand le coût est nul (Pass actif). C'est une règle, pas un écran : `TOEIC-B9-PASS` est supprimé.
+- `TOEIC-G1` : validé tel quel par Benny.
+- Les identifiants existants ne changent pas. Nouveaux : `TOEIC-ST1` à `TOEIC-ST4`. Supprimé : `TOEIC-B9-PASS`.
