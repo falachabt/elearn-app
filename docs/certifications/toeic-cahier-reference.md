@@ -1,7 +1,7 @@
 # Cahier des charges de référence : profil TOEIC (Elearn Prepa)
 
-**Version 1.2 du 15 octobre 2026** (1.1 + décision « onglet Tests à la place de Questions » ; les écrans touchés sont marqués « maquette à mettre à jour »). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
-Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `1953b17`.
+**Version 1.3 du 15 octobre 2026** (1.2 + écrans TOEIC-T1 à T4 livrés par la maquette `98d016a`, décisions D-09 et D-10 de Benny sur l'explication gratuite et la fourchette du diagnostic). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
+Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `98d016a`.
 Quota ElevenLabs à retenir : 131 000 crédits par mois (Benny, 15 octobre). Démo : 16 000 crédits.
 
 ## 0. Comment lire et utiliser ce document
@@ -98,7 +98,7 @@ Tous les paramètres entre accolades sont dans `cert_settings` (clé/valeur JSON
 ### F2 Fourchette
 - Pour chaque section avec `n` questions répondues, intervalle de Wilson à `{score_z}` (valeur initiale 1,28, soit 80 %) sur `p` ; bornes converties par F1 ; fourchette totale = somme des bornes basses et hautes, arrondie à 10 (basse vers le bas, haute vers le haut), bornée à [10, 990].
 - L'estimation n'est disponible qu'à partir de `{score_min_answers}` réponses au total (initial 20, toutes sections confondues, diagnostic compris) ; en dessous, S8 (« Il faut au moins 20 réponses pour estimer ton score. Tu en es à {k}. », barre `k / 20`) ou la mention A5 / S7 si aucune réponse. Si une section a 0 réponse, l'intervalle de Wilson de cette section est [0 ; 1] (fourchette maximale).
-- **Conséquence à connaître** : avec 20 questions (10 par section) la fourchette est large (de l'ordre de 150 points de chaque côté). La maquette affiche « 650 à 730 » (80 points) : voir écart E-03.
+- **Conséquence à connaître** : avec 20 questions (10 par section) la fourchette est large (de l'ordre de 150 points de chaque côté). La maquette affiche « 650 à 730 » (80 points) : voir écart E-03. **Décision D-10 (Benny, 15 octobre)** : la fourchette honnête (environ 150 points de chaque côté) est retenue et toujours présentée comme « Une estimation ». Le diagnostic pourra être prolongé plus tard par une suite de questions pour resserrer la fourchette, sans changer la maquette : même écran, seule la largeur change.
 
 ### F3 Maîtrise d'une notion
 - Réponses de l'élève sur les questions étiquetées par la notion (rôle principal poids 1, secondaire poids 0,5). Les réponses au diagnostic comptent comme les autres.
@@ -283,7 +283,7 @@ Acceptation transverse : AC-B-1 aucune bonne réponse n'est présente dans la ch
 - **Données** : bonne réponse, réponse de l'élève, notion principale (`cert_notions.titre`, famille), piège (`cert_questions.piege`), mots clés (`cert_question_mots`) servis après la réponse (option A).
 - **Interactif** : « Revoir la notion » → C5 de la notion ; « Pourquoi j'ai raté ? » → B10 ; chips de mots clés → ajoutent le mot au carnet (F5, boîte 1) ; « Question suivante » → question suivante.
 - **Textes exacts** : en-tête « Explication » ; badge « CORRIGÉ » ; « Bonne réponse : B · Elle a perdu ses documents. » ; « Ta réponse : C » ; « Notion : Vocabulaire du voyage · Question de compréhension » ; « Piège : le bureau est mentionné, mais il n'est pas la cause. » ; chips « + ticket », « + lost », « + documents » ; étiquette « Mots clés à ajouter au carnet » ; boutons « Revoir la notion », « Pourquoi j'ai raté ? », « Question suivante ».
-- **Règles** : visible aussi quand la réponse est juste (sans « Ta réponse » ni « Pourquoi j'ai raté ? », variante à dessiner : écart E-15). Le corrigé suit le style existant (carte jaune doux `theme.corrige`). **Lot** : « Pourquoi j'ai raté ? » est reporté en S2 (D-01) : en S1 ce bouton est absent. **Porte payante** : une explication détaillée coûte `cert_explanation` (F10) ; la maquette montre X1 mais pas le point d'entrée dans B9 : écart E-08, question ouverte Q-01.
+- **Règles** : visible aussi quand la réponse est juste (sans « Ta réponse » ni « Pourquoi j'ai raté ? », variante à dessiner : écart E-15). Le corrigé suit le style existant (carte jaune doux `theme.corrige`). **Lot** : « Pourquoi j'ai raté ? » est reporté en S2 (D-01) : en S1 ce bouton est absent. **Porte payante (décision D-09, Benny, 15 octobre)** : le résultat juste ou faux, la bonne réponse, la notion nommée, le piège et « Revoir la notion » sont **gratuits** ; seule l'**explication détaillée rédigée** coûte 1 crédit (`cert_explanation`, F10, incluse au Pass). Le point d'entrée dans B9 (bouton ou ligne « Explication détaillée · 1 crédit », puis X1) n'est pas dessiné : écart E-08, à demander à l'agent design.
 - **Évènements** : `cert_notion_opened { notion, source: 'explication' }` à « Revoir la notion ».
 - **Acceptation** : AC-B9-1 la notion est nommée ; AC-B9-2 « Revoir la notion » ouvre la fiche de la notion principale ; AC-B9-3 un tap sur un mot clé l'ajoute en boîte 1 et le chip passe à « ajouté » (texte à dessiner) ; AC-B9-4 en S1 le bouton « Pourquoi j'ai raté ? » n'existe pas.
 - **Tests** : Jest (rendu, ajout de mot, navigation) ; pgTAP (corrigé non servi sans droit).
@@ -475,12 +475,12 @@ La barre est visible partout sauf pendant une série et un test blanc (plein éc
 
 ### 5.T Onglet Tests (décision D-08 du 15 octobre) · maquette à mettre à jour
 
-> **Écrans à créer par l'agent design** (identifiants à attribuer, provisoires **TOEIC-T1** à **TOEIC-T4**) : T1 accueil de l'onglet Tests ; T2 introduction d'un mini-test ; T3 historique ; T4 détail d'une tentative. E1 à E7 sont conservés pour le demi-test et le test complet. Le texte ci-dessous est la spec attendue ; **aucun texte n'est « exact » tant que la maquette n'existe pas**.
+> **Écrans livrés (maquette `98d016a`, 15 octobre)** : `TOEIC-T1` accueil de l'onglet Tests (mini-tests, test complet, score estimé) ; `TOEIC-T2` réglage d'un mini-test (partie, longueur, temps, coût) ; `TOEIC-T3` reprise d'un test interrompu ; `TOEIC-T4` historique et score estimé. Ils remplacent les identifiants provisoires T1 à T4 de la version 1.2 (dont l'ancien « détail d'une tentative », non dessiné : écart E-37). E1 à E7 sont conservés pour le test complet (V2). Les textes de ces écrans sont ceux de la maquette ; le reste de cette section est la spec complémentaire.
 
 #### 5.T.1 Types de tests
 | Type | Contenu | Durée | Conditions | Lot | Action de crédit |
 | --- | --- | --- | --- | --- | --- |
-| **Mini-test** | 20 questions tirées par le plan `{diag_blueprint}` (comme le diagnostic : 10 Listening, 10 Reading), sans question déjà vue dans les `{mini_exclude_last}` derniers tests (initial 3) | `{mini_duration_min}` (initial 15) | chronométré, audio en lecture unique, pas de correction avant la fin | S1 | `cert_mock_mini` |
+| **Mini-test** | Deux formats dessinés (T1, T2) : **par partie** (10 questions d'une partie P1 à P7, 10 min) et **mixte** (20 questions, toutes les parties, 20 min). Le mixte est tiré par le plan `{diag_blueprint}` (10 Listening, 10 Reading), sans question déjà vue dans les `{mini_exclude_last}` derniers tests (initial 3). T2 propose aussi la longueur 10 ou 20 | 10 min pour 10 questions, 20 min pour 20 (`{mini_minutes_per_10q}` initial 10) | chronométré, audio en lecture unique, pas de correction avant la fin | S1 | `cert_mock_mini` |
 | **Demi-test** | 100 questions : Listening seul (P1 à P4, 6/25/39/30) ou Reading seul (P5 à P7, 30/16/54) d'un test complet | 45 ou 75 minutes | conditions réelles de la section | V2 | `cert_mock_half` |
 | **Test complet** | Les 200 questions d'un test de la banque (`cert_tests`) | 2 h | conditions réelles | V2 | `cert_mock_full` |
 Le diagnostic (A6) est le **premier mini-test**, gratuit et sans compte ; il apparaît dans l'historique avec le libellé « Diagnostic ».
@@ -490,17 +490,19 @@ Le diagnostic (A6) est le **premier mini-test**, gratuit et sans compte ; il app
 - Le mini-test n'est pas un test de la banque : il est **tiré** au lancement (`cert_mini_draw()`) dans les questions `reviewed`, selon le plan stratifié, hors questions récentes ; les 20 questions tirées sont figées dans la tentative.
 - `cert_mock_attempts(id, user_id, client_uuid unique, kind, test_id null, questions jsonb, started_at, finished_at, status, score_min, score_max, per_part jsonb, time_per_part jsonb, credits_spent, op_id, refunded)` ; `kind` : `diagnostic`, `mini`, `half_listening`, `half_reading`, `full` ; `status` : `in_progress`, `finished`, `abandoned`, `refunded`. RLS : propriétaire.
 - Les réponses d'un test sont écrites dans `cert_answers` (contexte `test`) et comptent pour F3 (maîtrise) comme les autres ; le score de la tentative est F1/F2 sur les seules réponses de la tentative (fourchette selon le nombre de questions : large pour un mini-test).
-- **Historique** (T3) : liste des tentatives `finished` et `abandoned` triée par date, avec type, date, durée, fourchette de score (F2), crédits dépensés ; T4 : détail par partie, par notion (« points perdus » comme E6), temps par partie, bouton de rejeu des erreurs (rejeu F6).
+- **Historique** (`TOEIC-T4`) : tuiles « Score estimé » et « Tendance », puis liste « Tests faits » (type, résultat, date, notions touchées) et la mention « Une estimation, pas un score officiel. » Un test abandonné compte comme fait pour l'historique (texte de `TOEIC-T3`). Le détail d'une tentative (par partie, par notion, rejeu des erreurs) n'est pas dessiné : écart E-37 ; en attendant, le toucher d'une ligne n'ouvre rien.
 - **Courbe de progression** : suite des fourchettes des tentatives `finished` (diagnostic compris) ; affichée quand il y a au moins 2 tentatives ; texte à dessiner.
 - Une tentative `in_progress` se reprend (hors ligne comprise) pendant sa durée plus `{mock_resume_grace_min}` (initial 30) ; passé ce délai elle devient `abandoned`, avec remboursement si l'abandon survient dans la fenêtre de la section 12.3.
 
 #### 5.T.3 Écran de l'onglet (spec)
-- **T1 Tests** : trois cartes (Mini-test, Demi-test, Test complet) avec durée, nombre de questions, coût (`PuceCout`, montant du serveur) et état (« Bientôt » pour demi-test et test complet avant V2) ; bloc « Reprendre » si une tentative est en cours ; accès « Historique » ; pastille de solde.
-- **T2 Introduction d'un mini-test** : mêmes règles que E1 adaptées (20 questions, 15 minutes, audio joué une fois), bouton « Commencer le test » (débit au lancement de l'écoute, section 12.3).
+- **`TOEIC-T1` Tests** (texte de la maquette) : section « Mini-tests » avec deux lignes (« Mini-test par partie : 10 questions · une partie au choix · 10 min » ; « Mini-test mixte : 20 questions · toutes les parties · 20 min »), section « Test complet » (200 questions · 2 h, chronomètre exact, « Inclus au Pass, ou 5 crédits (exemple, montant serveur) »), section « Ton score » (Score estimé, Tests faits), boutons « Choisir un mini-test » et « Lancer le test complet ». Le demi-test n'est pas dessiné (écart E-36) ; le test complet est V2 : le bouton est inactif avec l'état « Bientôt » tant que V2 n'existe pas (état non dessiné, écart E-36).
+- **`TOEIC-T2` Réglage d'un mini-test** : choix de la partie (P1 à P7 ou Mixte), de la longueur (10 ou 20), lignes « Temps limité » (« 10 min pour 10 questions, chrono visible ») et « Coût » (« Inclus au Pass ; 1 crédit hors Pass (exemple) »), mention « Les notions touchées seront ajoutées à ta carte de maîtrise. », bouton « Commencer le mini-test » (débit au lancement de l'écoute, section 12.3). Le coût affiché vient du serveur et dépend de l'option A ou B (Q-12) ; la combinaison partie P1 à P4 avec 20 questions n'est pas définie (écart E-35).
+- **`TOEIC-T3` Reprise** : « Test interrompu », titre du test, « 6 questions sur 10 faites. Tes réponses sont gardées sur l'appareil. », barre de progression, « Temps restant », boutons « Reprendre le mini-test » et « Abandonner ». Reprendre : même test, même question, temps restant conservé.
+- **`TOEIC-T4` Historique** : voir 5.T.2.
 - **Épreuve du mini-test** : réutilise le moteur B1 à B8 en mode examen (lecteur B8 une écoute, pas de correction pendant l'épreuve, fond sombre dans les deux thèmes) ; bilan réduit : réutilise E6 avec la fourchette large du mini-test.
 - **Hors ligne** : un mini-test se joue hors ligne si ses 20 questions et ses audios sont préparés (Pass : pack ; non-Pass : seulement les questions sans audio, ou état X4) ; une tentative hors ligne est écrite localement et envoyée à la reconnexion (idempotente).
 - **Évènements** : `cert_tests_tab_viewed`, `cert_mock_started { kind }`, `cert_mock_completed { kind, score_min, score_max }`, `cert_mock_abandoned { kind, minute }`, `cert_mock_resumed { kind }`.
-- **Acceptation** : AC-T-1 la barre TOEIC affiche Tests à la place de Questions et jamais les deux ; AC-T-2 un mini-test contient exactement 20 questions respectant le plan, sans doublon avec les 3 derniers tests ; AC-T-3 la fourchette de score d'un mini-test est plus large que celle d'un test complet pour la même proportion de bonnes réponses ; AC-T-4 une tentative interrompue se reprend à la même question ; AC-T-5 l'historique liste le diagnostic comme première ligne ; AC-T-6 le débit d'un test est idempotent (même `client_uuid`, un seul débit).
+- **Acceptation** : AC-T-1 la barre TOEIC affiche Tests à la place de Questions et jamais les deux ; AC-T-2 un mini-test mixte contient exactement 20 questions respectant le plan, un mini-test par partie exactement 10 questions de la partie choisie, sans doublon avec les 3 derniers tests ; AC-T-3 la fourchette de score d'un mini-test est plus large que celle d'un test complet pour la même proportion de bonnes réponses ; AC-T-4 une tentative interrompue se reprend à la même question ; AC-T-5 l'historique liste le diagnostic comme première ligne ; AC-T-6 le débit d'un test est idempotent (même `client_uuid`, un seul débit).
 - **Tests** : Jest (tirage et plan, reprise, états, historique), pgTAP (RLS des tentatives, idempotence du débit et du remboursement, `cert_mini_draw` exclut les questions récentes).
 
 #### 5.T.4 Photo en profil TOEIC (question ouverte Q-14)
@@ -652,7 +654,7 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 
 | Écran | Légende de la maquette | Lot | Exigences | Composant | Table / RPC | Tests | Évènements |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| T1 à T4 | Onglet Tests (à dessiner) | S1 (mini-test), V2 (reste) | AC-T-1 à 6 | `OngletTests`, `HistoriqueTests` | `cert_tests`, `cert_mock_attempts`, `cert_mini_draw` | `OngletTests.test`, pgTAP attempts | `cert_tests_tab_viewed`, `cert_mock_*` |
+| T1 à T4 | Onglet Tests : T1 accueil, T2 réglage, T3 reprise, T4 historique (maquette `98d016a`) | S1 (mini-test), V2 (reste) | AC-T-1 à 6 | `OngletTests`, `HistoriqueTests` | `cert_tests`, `cert_mock_attempts`, `cert_mini_draw` | `OngletTests.test`, pgTAP attempts | `cert_tests_tab_viewed`, `cert_mock_*` |
 | N1 | Accueil TOEIC | S1 | AC-N1-1 à 5 | `AccueilTOEIC` (remplace D1) | F7, `cert_sessions`, `credit_balances` | `AccueilTOEIC.test` | `cert_session_started` |
 | N2 | Moi | S1 | AC-N2-1 à 3 | `EcranMoi.tsx` (existant) + `MoiCertification` | `cert_user_plan` | `MoiCertification.test` | aucun |
 | N3 | Réviser (sous-onglets) | S1 | AC-N3-1 à 3 | `ReviserCert` | `cert_notions`, `cert_user_mot` | `ReviserCert.test` | aucun |
@@ -698,12 +700,12 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | --- | --- | --- | --- |
 | E-01 | Les textes d'A1 pour Élève et Concours diffèrent du code (« Tu es… », « Élève », « Candidat à un concours » contre « Choisis ton profil », « Je suis élève », « Je prépare un concours » et leurs sous-titres) | A1 | Le code garde les textes actuels ; seuls les deux textes de la carte certification sont nouveaux |
 | E-02 | Pas d'état pour 1 à 2 réponses sur une notion (« trop peu de réponses ») ni de seuil minimal | F3, C3 | De 1 réponse à 2 : « En progrès » ; seuil minimal réglable `{mastery_min_answers}` initial 1 |
-| E-03 | La fourchette de la maquette (80 points) est plus étroite que celle que 20 questions autorisent honnêtement (de l'ordre de 150 points de chaque côté) | A7, D1 | Fourchette honnête (F2) ; l'écran ne change pas, seule la largeur change ; décision de Benny demandée (Q-03) |
+| E-03 | La fourchette de la maquette (80 points) est plus étroite que celle que 20 questions autorisent honnêtement (de l'ordre de 150 points de chaque côté) | A7, D1 | Fourchette honnête (F2) ; l'écran ne change pas, seule la largeur change ; décision D-10 : retenue |
 | E-04 | A3 affiche « étape 3 sur 3 » alors que le parcours compte maintenant 4 étapes (A4) | A3 | « étape 3 sur 4 » ; la maquette doit être corrigée |
 | E-05 | Logo « LOGO À FOURNIR » et encadré pointillé « D'autres certifications… » sont des repères de maquette, pas des textes de production | A2 | Pas de logo tant que Benny n'en fournit pas (pastille neutre `Languages`) ; encadré non affiché |
 | E-06 | « Recommandé pour ton objectif » sur 20 minutes sans règle de recommandation | A4 | Affiché sur 20 minutes en dur côté serveur (`cert_settings.session_minutes_recommended`) |
 | E-07 | A5 et S7 sont deux accueils « Mon TOEIC » avant diagnostic aux contenus différents | A5, S7 | A5 est affiché juste après A4 ; S7 est l'état de D1 aux ouvertures suivantes tant que le diagnostic n'est pas commencé ; à fusionner par l'agent design si possible |
-| E-08 | La porte payante (X1) n'a pas de point d'entrée dans B9 ; B9 montre le piège gratuitement | B9, X1 | En S1, B9 est entièrement gratuit (piège inclus) ; X1 n'est déclenchée par aucun écran (non branchée) tant que Q-01 n'est pas tranchée |
+| E-08 | La porte payante (X1) n'a pas de point d'entrée dans B9 ; B9 montre le piège gratuitement | B9, X1 | Décision D-09 : seule l'explication détaillée est payante ; le point d'entrée dans B9 est à dessiner. En S1, tant qu'il n'existe pas, B9 est entièrement gratuit et X1 n'est déclenchée par aucun écran |
 | E-09 | Date du test passée : aucun état dessiné | D1, D3 | La ligne « Test dans » est omise |
 | E-10 | « Pourquoi cette séance ? » sans erreur ni mot échu : pas de texte | D1, D2 | « Pour continuer ton plan. » (texte provisoire, à valider) |
 | E-11 | « Question 6 » en partie 2 incompatible avec un ordre strict P1 → P7 sur 20 questions | A6 | Ordre mélangé à l'intérieur de chaque section |
@@ -728,16 +730,21 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | E-31 | Les barres d'onglets de N1, N2, N3 (et de tous les écrans à barre) montrent encore « Questions » | N1, N2, N3 | Le code applique la barre TOEIC de 5.N ; maquette à mettre à jour |
 | E-32 | La maquette a un sous-onglet « Tests » dans Réviser et E1 à E7 comme écrans de Réviser | N3, C1, E1 à E7 | Retirés de Réviser ; ouverts depuis l'onglet Tests ; maquette à mettre à jour |
 | E-33 | L'écran Photo parle d'exercice scolaire | Photo | Inchangé en S1 (Q-14) |
-| E-34 | T1 à T4 (onglet Tests, historique) n'existent pas dans la maquette | Tests | Spec 5.T ; texte exact à venir de l'agent design |
+| E-34 | ~~T1 à T4 n'existent pas dans la maquette~~ | Tests | **Résolu** par `98d016a` (T1 à T4 livrés) ; voir E-35 à E-39 |
+| E-35 | T2 propose partie × longueur sans règle : une partie d'écoute (P1 à P4) en 20 questions dépasse parfois la banque de la partie, et P1 n'a que 6 questions dans un vrai test | T2 | Longueur 20 limitée à Mixte et aux parties P5 à P7 ; sinon seule la longueur 10 est active (à confirmer avec l'agent design) |
+| E-36 | Le demi-test est absent de T1 ; le test complet est un bouton actif alors qu'il est V2 ; l'état « Bientôt » n'est pas dessiné | T1 | Bouton inactif « Bientôt » en S1 ; demi-test ajouté avec V2 |
+| E-37 | Pas d'écran de détail d'une tentative (par partie, par notion, rejeu des erreurs) | T4 | Ligne non cliquable en S1 ; écran à dessiner en V2 |
+| E-38 | Un mini-test par partie de 10 questions ne permet pas un score estimé (F1 exige au moins 20 réponses par section) | T1, T4, bilan | Le bilan d'un mini-test par partie affiche le nombre de bonnes réponses et les notions, jamais une fourchette de score ; seul le mixte alimente le score estimé |
+| E-39 | Le temps du mixte est 20 min dans la maquette, 15 min dans la spec 1.2 ; le prix « 1 crédit » du mini-test est figé dans le texte d'exemple | T1, T2 | 20 min retenu (maquette, `{mini_minutes_per_10q}` = 10) ; prix lu au serveur (Q-12) |
 | E-27 | `Profil.type` accepte seulement `'eleve' | 'concours'` ; `onboarding_choice_made` impose `niveau` et `pays` | Code existant | Type étendu de façon additive ; propriétés facultatives pour `certification` |
 
 ### 10.2 Questions ouvertes pour Benny (une réponse débloque chaque ligne)
 
 | ID | Question | Ma recommandation |
 | --- | --- | --- |
-| Q-01 | Que coûte et que montre l'explication ? B9 est-il entièrement gratuit, ou le piège et l'explication détaillée sont-ils derrière X1 (1 crédit, inclus dans le pass) ? | Corrigé, bonne réponse, notion et piège gratuits ; explication rédigée détaillée payante ; à dessiner dans B9 |
+| Q-01 | **TRANCHÉE (D-09, 15 octobre : oui)**  Que coûte et que montre l'explication ? B9 est-il entièrement gratuit, ou le piège et l'explication détaillée sont-ils derrière X1 (1 crédit, inclus dans le pass) ? | Corrigé, bonne réponse, notion et piège gratuits ; explication rédigée détaillée payante ; à dessiner dans B9 |
 | Q-02 | Logos des examens : les fournit-il ? (marque d'ETS : autorisation d'usage à vérifier) | Pas de logo ETS ; pastille neutre |
-| Q-03 | Fourchette du diagnostic : accepte-t-il une fourchette large (honnête) ou veut-il une fourchette étroite (moins fiable) ? | Large, avec la mention « Une estimation » |
+| Q-03 | **TRANCHÉE (D-10, 15 octobre : oui, fourchette large)**  Fourchette du diagnostic : accepte-t-il une fourchette large (honnête) ou veut-il une fourchette étroite (moins fiable) ? | Large, avec la mention « Une estimation » |
 | Q-04 | Les quatre écrans X1 à X4 restent-ils dans le périmètre ? | Oui |
 | Q-05 | Que signifient les trois aspects des tuiles P1 à P7 dans C1 ? | Retirer cette distinction |
 | Q-06 | Combien de séances par semaine dans le plan (D3) ? | 3 par défaut, 5 si l'écart à l'objectif dépasse 150 points ou s'il reste moins de 28 jours |
@@ -748,7 +755,7 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | Q-12 | Crédits : Option A (test blanc accessible) ou Option B (un test par semaine offert) ? | Option B avec garde-fous (section 12.4) |
 | Q-13 | L'onglet « Tests » est-il visible dès la semaine 1 avec « Bientôt » ? | Oui (maquette N3) |
 | Q-14 | Photo en profil TOEIC : inchangée en S1 (reco), à adapter plus tard, ou retirée ? | Inchangée, mesurer l'usage |
-| Q-15 | Taille et coût du mini-test : 20 questions, 15 minutes, 1 ou 2 crédits ? Le diagnostic est-il bien le premier mini-test ? | 20 questions, 15 minutes, coût option A 1 / option B 2 |
+| Q-15 | Format du mini-test : la maquette propose 10 questions / 10 min (par partie) et 20 / 20 min (mixte), le cahier 1.2 proposait 20 / 15 min. Prix : 1 ou 2 crédits (Q-12) ? Le diagnostic est-il bien le premier mini-test mixte ? | Format de la maquette ; diagnostic = premier mixte ; prix selon Q-12 |
 | Q-11 | Le TOEIC passe-t-il avant ou après le chemin critique du lancement (#44, #35, #17) ? | À arbitrer par Benny ; un seul agent local à la fois |
 
 ## 11. Journal des changements
@@ -774,6 +781,9 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 
 | D-08 | 2026-10-15 | Benny (message de 19 h 10) | N1, N2, N3, C1, E1 à E7, barre d'onglets, T1 à T4 | En profil TOEIC l'onglet Questions disparaît et est remplacé par Tests (mini-tests et tests complets) ; Réviser garde Parcours, Parties, Cours, Carnet | Décision de Benny | validé ; maquette à mettre à jour |
 | J-007 | 2026-10-15 | Claude (fil TOEIC) | section 5.T, 12, 6, 7 | Spec de l'onglet Tests (types, données, historique), `cert_mock_mini`, Photo inchangée (proposé), J-004 remplacée | Application de D-08 | proposé |
+| D-09 | 2026-10-15 | Benny (message de 19 h 11, « oui pour tes 2 questions ») | B9, X1 | Bonne réponse, notion et piège gratuits ; seule l'explication détaillée coûte 1 crédit (incluse au Pass) | Décision de Benny | validé ; point d'entrée à dessiner |
+| D-10 | 2026-10-15 | Benny (même message) | A7, D1, bilan, F2 | Fourchette du diagnostic large et honnête (environ 150 points de chaque côté), toujours « Une estimation » ; extension future par questions supplémentaires sans changer la maquette | Décision de Benny (interprétée : sa réponse « oui » ne choisit pas entre les deux options ; la valeur par défaut honnête est retenue) | validé ; à confirmer si Benny préfère plus de questions |
+| J-008 | 2026-10-15 | Agent design (`98d016a`) puis Claude (fil TOEIC) | T1 à T4, N3, barre | Livraison de TOEIC-T1 à T4, N3 à quatre sous-onglets, barre Accueil · Réviser · Photo · Tests · Moi ; reprise des textes dans 5.T, écarts E-35 à E-39 ; prix des tests en option B provisoire jusqu'à la réponse de Benny (Q-12) | Mise en cohérence | appliqué au cahier v1.3 |
 
 **Règle d'ajout** : toute modification de ce cahier ajoute une ligne ici avant d'être faite ; une ligne « appliqué en code » cite le commit.
 
