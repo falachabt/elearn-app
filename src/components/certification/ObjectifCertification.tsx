@@ -1,11 +1,11 @@
 import { router } from 'expo-router';
-import { CalendarDays } from 'lucide-react-native';
+import { Check, TriangleAlert } from 'lucide-react-native';
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { jourDe } from '@/services/certification/jours';
+import { joursAvantTest, jourDe } from '@/services/certification/jours';
 import { ecrirePlan, lirePlan, obtenirExamens, obtenirReglages } from '@/services/certification/etat';
 import { afficherJour, analyserDateSaisie, analyserObjectif } from '@/services/certification/format';
 import type { Reglages } from '@/services/certification/reglages';
@@ -30,7 +30,6 @@ export function ObjectifCertification() {
   const [r, setR] = useState<Reglages | null>(null);
   const [texte, setTexte] = useState('');
   const [dateTexte, setDateTexte] = useState('');
-  const [dateOuverte, setDateOuverte] = useState(false);
 
   useEffect(() => {
     let actif = true;
@@ -50,7 +49,6 @@ export function ObjectifCertification() {
       }
       if (plan?.exam === code && plan.dateTest) {
         setDateTexte(afficherJour(plan.dateTest));
-        setDateOuverte(true);
       }
     })();
     return () => {
@@ -62,7 +60,7 @@ export function ObjectifCertification() {
   const aujourdhui = useMemo(() => jourDe(new Date()), []);
   const date = analyserDateSaisie(dateTexte, aujourdhui);
   const erreurValeur = r && texte !== '' && valeur === null ? t('certification.objectif.erreurBornes', { min: r.objectifMin, max: r.objectifMax }) : undefined;
-  const erreurDate = !date.ok ? t(date.erreur === 'passe' ? 'certification.objectif.erreurDate' : 'certification.objectif.erreurDateFormat') : undefined;
+  const restants = date.ok ? joursAvantTest(date.jour, aujourdhui) : null;
   const valide = valeur !== null && date.ok;
 
   const continuer = async () => {
@@ -122,34 +120,24 @@ export function ObjectifCertification() {
         </>
       ) : null}
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.objectif.date')}</Text>
-      {dateOuverte ? (
-        <Champ
-          libelle={t('certification.objectif.dateAide')}
-          value={dateTexte}
-          onChangeText={setDateTexte}
-          placeholder="JJ/MM/AAAA"
-          keyboardType="numbers-and-punctuation"
-          erreur={erreurDate}
-        />
-      ) : (
-        <Appui accessibilityRole="button" accessibilityLabel={`${t('certification.objectif.date')} : ${t('certification.objectif.datePasEncore')}`} onPress={() => setDateOuverte(true)} decalage={0} rayon={rayon.m}>
-          <View style={[styles.champ, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-            <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('certification.objectif.datePasEncore')}</Text>
-            <CalendarDays size={20} color={theme.texte.principal} strokeWidth={2} />
-          </View>
-        </Appui>
-      )}
-      {dateOuverte ? (
-        <Bouton
-          petit
-          variante="texte"
-          libelle={t('certification.objectif.effacerDate')}
-          onPress={() => {
-            setDateTexte('');
-            setDateOuverte(false);
-          }}
-        />
-      ) : null}
+      <Champ
+        libelle={t('certification.objectif.date')}
+        value={dateTexte}
+        onChangeText={(v) => setDateTexte(v.replace(/[^0-9/.-]/g, '').slice(0, 10))}
+        placeholder={t('certification.objectif.datePlaceholder')}
+        keyboardType="numbers-and-punctuation"
+        style={date.ok ? undefined : { borderWidth: 3, borderColor: theme.etat.erreur }}
+      />
+      <View accessibilityLiveRegion="polite" style={styles.messageDate}>
+        {!date.ok ? <TriangleAlert size={18} color={theme.texte.principal} strokeWidth={2} /> : date.jour ? <Check size={18} color={theme.texte.principal} strokeWidth={2} /> : null}
+        <Text style={[typo.petit, styles.texteDate, { color: theme.texte.principal }]}>
+          {!date.ok
+            ? t(date.erreur === 'passe' ? 'certification.objectif.datePassee' : 'certification.objectif.dateFormat')
+            : date.jour && restants !== null
+              ? t(restants === 1 ? 'certification.objectif.dateValideUn' : 'certification.objectif.dateValide', { date: afficherJour(date.jour), n: restants })
+              : t('certification.objectif.dateVide')}
+        </Text>
+      </View>
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.objectif.aide')}</Text>
     </Ecran>
   );
@@ -159,5 +147,6 @@ const styles = StyleSheet.create({
   pied: { gap: espace[2] },
   paliers: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   palier: { minHeight: 48, minWidth: 64, paddingHorizontal: espace[5], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
-  champ: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.m },
+  messageDate: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[2] },
+  texteDate: { flex: 1 },
 });

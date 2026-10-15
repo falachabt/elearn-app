@@ -186,17 +186,38 @@ describe('A3 · Objectif', () => {
     expect(await lirePlan()).toMatchObject({ exam: 'toeic', objectif: 820, dateTest: null });
     expect(suivre).toHaveBeenCalledWith('cert_goal_set', { score: 820, date_renseignee: false });
   });
-  it('une date valide est enregistrée, une date passée est refusée', async () => {
+  const continuerActif = () => screen.getByRole('button', { name: t.continuer }).props.accessibilityState.disabled !== true;
+  it('TOEIC-A3-DATE-VIDE : champ visible avec son format, facultatif, « Continuer » actif', async () => {
     await monterObjectif();
-    await fireEvent.press(screen.getByRole('button', { name: new RegExp(t.objectif.date) }));
-    await fireEvent.changeText(screen.getByPlaceholderText('JJ/MM/AAAA'), '01/01/2020');
-    expect(screen.getByText(t.objectif.erreurDate)).toBeTruthy();
-    expect(screen.getByRole('button', { name: t.continuer }).props.accessibilityState.disabled).toBe(true);
-    await fireEvent.changeText(screen.getByPlaceholderText('JJ/MM/AAAA'), '20/12/2099');
+    expect(screen.getByPlaceholderText(t.objectif.datePlaceholder)).toBeTruthy();
+    expect(screen.getByText(t.objectif.dateVide)).toBeTruthy();
+    expect(continuerActif()).toBe(true);
+  });
+  it('TOEIC-A3-DATE-VALIDE : date saisie, jours restants, enregistrée au clavier JJ/MM/AAAA', async () => {
+    await monterObjectif();
+    const demain = new Date(Date.now() + 42 * 86400000);
+    const saisie = `${String(demain.getUTCDate()).padStart(2, '0')}/${String(demain.getUTCMonth() + 1).padStart(2, '0')}/${demain.getUTCFullYear()}`;
+    await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), saisie);
+    expect(screen.getByText(t.objectif.dateValide.replace('{{date}}', saisie).replace('{{n}}', '42'))).toBeTruthy();
+    expect(continuerActif()).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: t.continuer }));
     await waitFor(() => expect(router.push).toHaveBeenCalledWith('/certification/temps'));
-    expect(await lirePlan()).toMatchObject({ dateTest: '2099-12-20' });
+    expect((await lirePlan())?.dateTest).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(suivre).toHaveBeenCalledWith('cert_goal_set', { score: 800, date_renseignee: true });
+  });
+  it('TOEIC-A3-DATE-FORMAT : JJ/MM sans année, message texte, « Continuer » désactivé', async () => {
+    await monterObjectif();
+    await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), '26/11');
+    expect(screen.getByText(t.objectif.dateFormat)).toBeTruthy();
+    expect(continuerActif()).toBe(false);
+  });
+  it('TOEIC-A3-DATE-PASSEE : date passée refusée avec son message, « Continuer » désactivé', async () => {
+    await monterObjectif();
+    await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), '02/10/2026');
+    expect(screen.getByText(t.objectif.datePassee)).toBeTruthy();
+    expect(continuerActif()).toBe(false);
+    await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), '');
+    expect(continuerActif()).toBe(true);
   });
   it('AC-A3-4 : « Passer » ne crée aucun objectif et continue', async () => {
     await monterObjectif();
