@@ -45,3 +45,12 @@ Chaque écran porte un identifiant `TOEIC-<section><n>`. Un identifiant ne chang
 | X | X1 à X4 | Écrans ajoutés, à valider : crédits, signaler une erreur, quitter la série, pack audio manquant |
 
 Les états sont nommés dans l'écran concerné (par exemple TOEIC-S3 pour une série hors ligne). Le cahier des charges reprendra ces identifiants un par un.
+
+## États du moteur d'exercice (version 2.1)
+
+- `TOEIC-B1-CHARGE` à `TOEIC-B7-CHARGE` : chargement d'une question, un écran par type (squelette, valider grisé).
+- `TOEIC-B1-AUDIO-KO` à `TOEIC-B4-AUDIO-KO` : son indisponible sur les types audio (parties 1 à 4). Le texte reste lisible ; « Réessayer le son » ou « Passer la question », la question est rejouée plus tard.
+- `TOEIC-B3-ERR-AUDIO` : lecture interrompue dans une conversation, reprise sans recommencer, réponse gardée.
+- `TOEIC-B8-ERR-AUDIO` : erreur de lecture dans le lecteur audio, reprise à la même position.
+
+Les types 5 à 7 n'ont pas d'audio : leur seul état d'erreur est le chargement (`TOEIC-B5-CHARGE` à `TOEIC-B7-CHARGE`).
