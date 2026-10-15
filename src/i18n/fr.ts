@@ -1198,6 +1198,7 @@ export const fr = {
     pays: { CM: 'Cameroun', CI: 'Côte d’Ivoire', SN: 'Sénégal', GA: 'Gabon', BF: 'Burkina Faso', CD: 'RD Congo', CG: 'Congo', BJ: 'Bénin', TG: 'Togo', ML: 'Mali', NE: 'Niger', GN: 'Guinée', TD: 'Tchad', CF: 'Centrafrique', GQ: 'Guinée équatoriale', NG: 'Nigeria', FR: 'France', BE: 'Belgique', CH: 'Suisse', CA: 'Canada', US: 'États-Unis', GB: 'Royaume-Uni', DE: 'Allemagne' },
   },
   compte: {
+    retourEnCours: 'On finalise ta connexion…',
     ancienGoogle: 'Tu avais un compte Elearn ? Connecte-toi avec le même compte Google.',
     titreCreer: 'Garde ton score et ta progression',
     texteCreer: 'Crée ton compte en un appui. C’est gratuit et sans carte bancaire.',

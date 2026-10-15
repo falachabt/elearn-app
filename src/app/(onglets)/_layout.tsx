@@ -42,7 +42,10 @@ export default function LayoutOnglets() {
   }, [chemin, sessionPrete]);
   const barreToeic = certificationOuverte && toeic;
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
-  const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
+  // Le résultat est lié à la session qui l'a calculé : une valeur d'une session précédente (invité) ne doit jamais
+  // servir au rendu de la session suivante (compte), sinon la garde renvoie à « bienvenue » pendant un rendu.
+  const [resultat, setResultat] = useState<{ session: string | null; etat: 'a-faire' | 'fait' }>({ session: null, etat: 'a-faire' });
+  const arrivee: 'inconnu' | 'a-faire' | 'fait' = sessionPrete && resultat.session === sessionPrete ? resultat.etat : 'inconnu';
   // Profil certification inachevé : l'écran où reprendre (jamais Bienvenue).
   const [reprise, setReprise] = useState<string | null>(null);
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function LayoutOnglets() {
       // Les onglets TOEIC s'ouvrent dès l'arrivée (objectif et temps) : diagnostic commencé ou en cours compris.
       // Le résultat reste une étape obligatoire tant que « Voir mon plan » n'a pas été pressé.
       const arriveeFaite = etape === '/certification/arrivee' || etape === '/certification/diagnostic';
-      setArrivee(p?.termine || compte?.termine || arriveeFaite ? 'fait' : 'a-faire');
+      setResultat({ session: sessionPrete, etat: p?.termine || compte?.termine || arriveeFaite ? 'fait' : 'a-faire' });
     })();
     return () => {
       actif = false;
