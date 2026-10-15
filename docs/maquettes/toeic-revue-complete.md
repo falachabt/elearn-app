@@ -63,3 +63,9 @@ Les types 5 à 7 n'ont pas d'audio : leur seul état d'erreur est le chargement 
 - Barre d'onglets : identique à celle de l'app (Accueil, Réviser, Photo, Questions, Moi). Aucun menu latéral ; deux niveaux maximum.
 - Schéma complet, différences par profil et crédits : dans l'aperçu, en tête de page.
 - Crédits : tableau des actions, proposition à valider par Benny (le cœur du produit reste gratuit, les montants viennent de la configuration serveur).
+
+## Options de réponse (version 4)
+
+- Une option sélectionnée n'affiche plus le libellé « Choisi » ni la coche. Elle est signalée par le fond vert, un contour plus épais (3 px) et une lettre inversée (fond sombre, lettre claire). Ce n'est donc pas la couleur seule qui la porte.
+- Les libellés « Juste » et « Faux » (`TOEIC-B2`, `TOEIC-B5` et les autres types à correction) restent : ils donnent le résultat à quelqu'un qui ne voit pas la couleur, et la règle de design l'impose (`docs/design-regles.md`).
+- Les identifiants ne changent pas.
