@@ -1,6 +1,6 @@
 # Cahier des charges de référence : profil TOEIC (Elearn Prepa)
 
-**Version 1.1 du 15 octobre 2026** (1.0 + navigation N1 à N3, options de réponse v4, crédits et Pass). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
+**Version 1.2 du 15 octobre 2026** (1.1 + décision « onglet Tests à la place de Questions » ; les écrans touchés sont marqués « maquette à mettre à jour »). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
 Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `1953b17`.
 Quota ElevenLabs à retenir : 131 000 crédits par mois (Benny, 15 octobre). Démo : 16 000 crédits.
 
@@ -316,10 +316,10 @@ Il reste à compléter par l'agent design : états d'erreur de chargement par ty
 #### C1 · Réviser : onglets propres au TOEIC · lot S1
 - **But** : point d'entrée du travail libre. **Entrée** : onglet Réviser de l'app pour un profil `certification`. **Sortie** : liste d'une partie (C3), carte de maîtrise (C2), cours (C4), carnet (C6).
 - **Données** : nombre de notions publiées (`cert_notions`), mots du carnet et mots « à revoir » (F5), état des parties P1 à P7.
-- **Interactif** : onglets segmentés « Parcours », « Parties », « Cours », « Carnet », « Tests » (onglet courant : « Parties ») ; tuiles P1 à P7 → C3 de la partie ; ligne « Carte de maîtrise » → C2 ; ligne « Cours par notion » → C4 ; ligne « Carnet de mots » → C6.
+- **Interactif** : onglets segmentés « Parcours », « Parties », « Cours », « Carnet » (onglet courant : « Parties ») — **le cinquième onglet « Tests » de la maquette est retiré par la décision D-08 : maquette à mettre à jour** ; tuiles P1 à P7 → C3 de la partie ; ligne « Carte de maîtrise » → C2 ; ligne « Cours par notion » → C4 ; ligne « Carnet de mots » → C6.
 - **Textes exacts** : en-tête « Réviser » ; onglets ci-dessus ; étiquette « Partie 1 à 7 » ; lignes « Carte de maîtrise » / « Notions par partie », « Cours par notion » / « 58 notions », « Carnet de mots » / « 214 mots · 42 à revoir ».
-- **Règles** : C1 est le contenu de l'onglet **Parties** de N3 ; l'onglet « Tests » est présent dès S1 (maquette N3) et affiche l'état « bientôt » jusqu'au lot V2 (D-02 modifiée par J-004, écart E-28). L'onglet « Parcours » ouvre D1. Les nombres « 58 » et « 214 · 42 » sont des exemples calculés, jamais figés. Les tuiles P1 à P7 ont trois aspects dans la maquette (`on`, `ok`, `todo`) dont la signification n'est écrite nulle part : écart E-16, question ouverte Q-05. Le code ne les distingue pas tant que la règle n'est pas écrite (toutes les tuiles ont l'aspect neutre).
-- **Acceptation** : AC-C1-1 le nombre de notions vient du serveur ; AC-C1-2 « 42 à revoir » égale le nombre de mots en boîte 1 ; AC-C1-3 en S1 l'onglet « Tests » est présent et mène à l'état « bientôt » ; AC-C1-4 chaque tuile ouvre la bonne partie.
+- **Règles** : C1 est le contenu de l'onglet **Parties** de N3 ; les tests ne sont plus un sous-onglet de Réviser : ils vivent dans l'onglet **Tests** de la barre du bas (section 5.T, décision D-08). L'onglet « Parcours » ouvre D1. Les nombres « 58 » et « 214 · 42 » sont des exemples calculés, jamais figés. Les tuiles P1 à P7 ont trois aspects dans la maquette (`on`, `ok`, `todo`) dont la signification n'est écrite nulle part : écart E-16, question ouverte Q-05. Le code ne les distingue pas tant que la règle n'est pas écrite (toutes les tuiles ont l'aspect neutre).
+- **Acceptation** : AC-C1-1 le nombre de notions vient du serveur ; AC-C1-2 « 42 à revoir » égale le nombre de mots en boîte 1 ; AC-C1-3 Réviser ne contient plus d'onglet « Tests » ; AC-C1-4 chaque tuile ouvre la bonne partie.
 - **Tests** : Jest (onglets, navigation, comptes).
 
 #### C2 · Carte de maîtrise · lot S1
@@ -428,22 +428,24 @@ Il reste à compléter par l'agent design : états d'erreur de chargement par ty
 
 ### 5.N Navigation du profil TOEIC (maquette version 3, `b74a711`)
 
-**Structure** : une seule barre d'onglets, celle de l'app, inchangée (composant existant `LayoutOnglets`) : **Accueil · Réviser · Photo (central) · Questions · Moi**. Aucun menu latéral, aucun tiroir ; deux niveaux au plus ; retour par la flèche de l'en-tête. Le TOEIC ne change que ce qu'il y a derrière Accueil, Réviser et Moi. Photo et Questions sont inchangés.
+**Structure** : une seule barre d'onglets, celle de l'app, inchangée (composant existant `LayoutOnglets`) : **Accueil · Réviser · Photo (central) · Questions · Moi** pour Élève et Concours. **Pour le profil TOEIC (décision D-08 de Benny, 15 octobre, 19 h 10) l'onglet Questions disparaît et est remplacé par Tests : Accueil · Réviser · Photo (central) · Tests · Moi** *(maquette à mettre à jour : la barre des écrans N1, N2, N3 et de tous les écrans à barre montre encore Questions)*. Aucun menu latéral, aucun tiroir ; deux niveaux au plus ; retour par la flèche de l'en-tête. Le TOEIC ne change que ce qu'il y a derrière Accueil, Réviser, Tests et Moi. Photo est inchangée (voir 5.T.4).
 La barre est visible partout sauf pendant une série et un test blanc (plein écran). Le profil `certification` choisit les écrans TOEIC ; les profils Élève et Concours gardent les leurs.
 
 | Onglet | Élève | Concours | TOEIC |
 | --- | --- | --- | --- |
 | Accueil | Mission du jour, série | Mission du jour, annales | **N1 : séance du jour, score estimé** |
-| Réviser | Cours, leçons, fiches, entraînement, annales | Idem avec annales | **N3 : Parcours, Parties, Cours, Carnet, Tests** |
+| Réviser | Cours, leçons, fiches, entraînement, annales | Idem avec annales | **N3 : Parcours, Parties, Cours, Carnet** |
 | Photo | Correction photo | Idem | Idem |
-| Questions | Entraide, sondages | Idem | Idem |
+| Questions | Entraide, sondages | Idem | **Absent, remplacé par Tests (5.T)** |
+| Tests | absent | absent | **Mini-tests, tests complets, historique** |
 | Moi | Profil, progression, réglages | Idem | **N2 : objectif, date, temps par jour, plan** |
 
 **Carte de navigation** (feuilles : écran ; flèche : ouvre) :
 - **Accueil (N1)** → « Commencer la séance » (D2) → bloc cours (C5), bloc mots (C8 → C9), bloc rejeu / série (B* → B9 → B10 → B11 → retour Accueil) ; tuile « Score estimé » (A7) ; « Reprendre » (reprise directe de la série, ou S2 en cas d'erreur) ; accès rapides : Parties (C1, C2, C3), Cours (C4), Carnet (C6), Mon plan (D3).
-- **Réviser (N3)** : sous-onglets Parcours (D2), Parties (C1 → C2 → C3 → C5 ou série B*), Cours (C4 → C5), Carnet (C6 → C7 → C8 → C9), Tests (E1 à E7, état « bientôt » avant V2).
+- **Réviser (N3)** : sous-onglets Parcours (D2), Parties (C1 → C2 → C3 → C5 ou série B*), Cours (C4 → C5), Carnet (C6 → C7 → C8 → C9).
+- **Tests (nouvel onglet, 5.T)** : choix du type (mini-test, demi-test, test complet) → introduction (E1) → épreuve (E2 à E5, ou version courte) → bilan (E6) ; coût et packs (E7) ; historique.
 - **Photo** : inchangé, 5 crédits (règle actuelle).
-- **Questions** : inchangé.
+- **Questions** : retiré du profil TOEIC (D-08). Les profils Élève et Concours le gardent.
 - **Moi (N2)** : objectif et date (D4 → A3), temps par jour (D4), crédits et Pass (écrans existants), Ma semaine (existant), Certification (A2), réglages (existants).
 
 #### N1 · Accueil TOEIC · lot S1
@@ -466,14 +468,49 @@ La barre est visible partout sauf pendant une série et un test blanc (plein éc
 
 #### N3 · Réviser (profil TOEIC) · lot S1
 - **But** : ressources à son rythme. **Entrée** : onglet Réviser. **Sortie** : D2, C1, C4, C6, E1.
-- **Textes exacts** : en-tête « Réviser » ; sous-onglets « Parcours », « Parties », « Cours », « Carnet », « Tests » (courant : « Parcours ») ; carte « Parcours » / « Ce que tu fais maintenant : la séance du jour et ton plan. Les autres onglets sont des ressources à ton rythme. » ; lignes « Parties 1 à 7 » / « Carte de maîtrise », « Cours par notion » / « 58 notions », « Carnet de mots » / « 42 mots à revoir », « Tests blancs » / « V2, bientôt » ; barre avec Réviser actif.
-- **Règles** : l'onglet courant à l'ouverture est « Parcours » ; chaque autre sous-onglet affiche l'écran C1 (Parties), C4 (Cours), C6 (Carnet) ou E1 (Tests) ; le sous-titre « V2, bientôt » contient un terme interne : il devient « Bientôt » (écart E-28) ; le nombre de notions et de mots est calculé.
-- **Acceptation** : AC-N3-1 Réviser s'ouvre sur « Parcours » ; AC-N3-2 un sous-onglet change de vue sans quitter l'écran ; AC-N3-3 « Tests blancs » n'ouvre rien d'autre qu'un état « bientôt » avant V2.
+- **Textes exacts** : en-tête « Réviser » ; sous-onglets « Parcours », « Parties », « Cours », « Carnet » (courant : « Parcours ») *(la maquette montre encore « Tests » : à mettre à jour)* ; carte « Parcours » / « Ce que tu fais maintenant : la séance du jour et ton plan. Les autres onglets sont des ressources à ton rythme. » ; lignes « Parties 1 à 7 » / « Carte de maîtrise », « Cours par notion » / « 58 notions », « Carnet de mots » / « 42 mots à revoir » ; la ligne « Tests blancs » / « V2, bientôt » de la maquette est **retirée** (les tests sont dans l'onglet Tests) ; barre avec Réviser actif.
+- **Règles** : l'onglet courant à l'ouverture est « Parcours » ; chaque autre sous-onglet affiche l'écran C1 (Parties), C4 (Cours) ou C6 (Carnet) ; le nombre de notions et de mots est calculé.
+- **Acceptation** : AC-N3-1 Réviser s'ouvre sur « Parcours » ; AC-N3-2 un sous-onglet change de vue sans quitter l'écran ; AC-N3-3 Réviser n'a ni sous-onglet ni ligne « Tests ».
 - **Tests** : Jest (sous-onglets, comptes).
+
+### 5.T Onglet Tests (décision D-08 du 15 octobre) · maquette à mettre à jour
+
+> **Écrans à créer par l'agent design** (identifiants à attribuer, provisoires **TOEIC-T1** à **TOEIC-T4**) : T1 accueil de l'onglet Tests ; T2 introduction d'un mini-test ; T3 historique ; T4 détail d'une tentative. E1 à E7 sont conservés pour le demi-test et le test complet. Le texte ci-dessous est la spec attendue ; **aucun texte n'est « exact » tant que la maquette n'existe pas**.
+
+#### 5.T.1 Types de tests
+| Type | Contenu | Durée | Conditions | Lot | Action de crédit |
+| --- | --- | --- | --- | --- | --- |
+| **Mini-test** | 20 questions tirées par le plan `{diag_blueprint}` (comme le diagnostic : 10 Listening, 10 Reading), sans question déjà vue dans les `{mini_exclude_last}` derniers tests (initial 3) | `{mini_duration_min}` (initial 15) | chronométré, audio en lecture unique, pas de correction avant la fin | S1 | `cert_mock_mini` |
+| **Demi-test** | 100 questions : Listening seul (P1 à P4, 6/25/39/30) ou Reading seul (P5 à P7, 30/16/54) d'un test complet | 45 ou 75 minutes | conditions réelles de la section | V2 | `cert_mock_half` |
+| **Test complet** | Les 200 questions d'un test de la banque (`cert_tests`) | 2 h | conditions réelles | V2 | `cert_mock_full` |
+Le diagnostic (A6) est le **premier mini-test**, gratuit et sans compte ; il apparaît dans l'historique avec le libellé « Diagnostic ».
+
+#### 5.T.2 Organisation des données
+- `cert_tests(id, code, titre, statut, ordre)` : un test complet = 200 questions fixes rangées par `cert_test_questions(test_id, question_id, numero)`. La banque de départ : le test de la démo plus 2 tests (planning). Un test complet déjà fait n'est pas reproposé tant qu'il en reste un jamais fait.
+- Le mini-test n'est pas un test de la banque : il est **tiré** au lancement (`cert_mini_draw()`) dans les questions `reviewed`, selon le plan stratifié, hors questions récentes ; les 20 questions tirées sont figées dans la tentative.
+- `cert_mock_attempts(id, user_id, client_uuid unique, kind, test_id null, questions jsonb, started_at, finished_at, status, score_min, score_max, per_part jsonb, time_per_part jsonb, credits_spent, op_id, refunded)` ; `kind` : `diagnostic`, `mini`, `half_listening`, `half_reading`, `full` ; `status` : `in_progress`, `finished`, `abandoned`, `refunded`. RLS : propriétaire.
+- Les réponses d'un test sont écrites dans `cert_answers` (contexte `test`) et comptent pour F3 (maîtrise) comme les autres ; le score de la tentative est F1/F2 sur les seules réponses de la tentative (fourchette selon le nombre de questions : large pour un mini-test).
+- **Historique** (T3) : liste des tentatives `finished` et `abandoned` triée par date, avec type, date, durée, fourchette de score (F2), crédits dépensés ; T4 : détail par partie, par notion (« points perdus » comme E6), temps par partie, bouton de rejeu des erreurs (rejeu F6).
+- **Courbe de progression** : suite des fourchettes des tentatives `finished` (diagnostic compris) ; affichée quand il y a au moins 2 tentatives ; texte à dessiner.
+- Une tentative `in_progress` se reprend (hors ligne comprise) pendant sa durée plus `{mock_resume_grace_min}` (initial 30) ; passé ce délai elle devient `abandoned`, avec remboursement si l'abandon survient dans la fenêtre de la section 12.3.
+
+#### 5.T.3 Écran de l'onglet (spec)
+- **T1 Tests** : trois cartes (Mini-test, Demi-test, Test complet) avec durée, nombre de questions, coût (`PuceCout`, montant du serveur) et état (« Bientôt » pour demi-test et test complet avant V2) ; bloc « Reprendre » si une tentative est en cours ; accès « Historique » ; pastille de solde.
+- **T2 Introduction d'un mini-test** : mêmes règles que E1 adaptées (20 questions, 15 minutes, audio joué une fois), bouton « Commencer le test » (débit au lancement de l'écoute, section 12.3).
+- **Épreuve du mini-test** : réutilise le moteur B1 à B8 en mode examen (lecteur B8 une écoute, pas de correction pendant l'épreuve, fond sombre dans les deux thèmes) ; bilan réduit : réutilise E6 avec la fourchette large du mini-test.
+- **Hors ligne** : un mini-test se joue hors ligne si ses 20 questions et ses audios sont préparés (Pass : pack ; non-Pass : seulement les questions sans audio, ou état X4) ; une tentative hors ligne est écrite localement et envoyée à la reconnexion (idempotente).
+- **Évènements** : `cert_tests_tab_viewed`, `cert_mock_started { kind }`, `cert_mock_completed { kind, score_min, score_max }`, `cert_mock_abandoned { kind, minute }`, `cert_mock_resumed { kind }`.
+- **Acceptation** : AC-T-1 la barre TOEIC affiche Tests à la place de Questions et jamais les deux ; AC-T-2 un mini-test contient exactement 20 questions respectant le plan, sans doublon avec les 3 derniers tests ; AC-T-3 la fourchette de score d'un mini-test est plus large que celle d'un test complet pour la même proportion de bonnes réponses ; AC-T-4 une tentative interrompue se reprend à la même question ; AC-T-5 l'historique liste le diagnostic comme première ligne ; AC-T-6 le débit d'un test est idempotent (même `client_uuid`, un seul débit).
+- **Tests** : Jest (tirage et plan, reprise, états, historique), pgTAP (RLS des tentatives, idempotence du débit et du remboursement, `cert_mini_draw` exclut les questions récentes).
+
+#### 5.T.4 Photo en profil TOEIC (question ouverte Q-14)
+- **Constat** : l'onglet Photo (correction par photo, 5 crédits, coût réel de l'IA) est conçu pour un exercice scolaire (matière, classe). Un candidat TOEIC l'utilise peu pour un exercice de manuel, mais il garde un usage réel : photographier une question de livre de préparation ou une phrase pour obtenir une explication.
+- **Décision prise tant qu'elle n'est pas contestée** : Photo reste **inchangée** dans la barre TOEIC (la décision de Benny remplace Questions, pas Photo) ; aucun écran Photo propre au TOEIC en S1. Les libellés scolaires de l'écran (matière, exercice) sont à vérifier : *maquette à mettre à jour si l'agent design juge qu'un libellé TOEIC est nécessaire* (écart E-33).
+- **Options** : (1) laisser Photo telle quelle, sa limite de 5 crédits et la limite IA du Pass s'appliquent (recommandé pour la semaine 1, zéro dérive) ; (2) l'adapter plus tard à « Pose une question sur un texte ou une phrase d'anglais » (modification de l'écran existant, nouvelle maquette) ; (3) la retirer de la barre TOEIC (barre à quatre onglets : déconseillé, la barre centrale est un repère commun). Mesurer l'usage avec PostHog avant de choisir.
 
 ### 5.E Test blanc (lot V2, épreuve sombre dans les deux thèmes)
 
-Rappel : tout l'ensemble E1 à E7 est **hors du lot S1 et S2** (D-02). Aucun code n'est écrit avant la maquette finale validée par Benny et l'ouverture du lot V2. Les fiches ci-dessous fixent le comportement attendu pour éviter une dérive plus tard.
+Rappel : E1 à E7 (demi-test et test complet) sont **hors des lots S1 et S2** (D-02, reformulée par D-08) ; seul le **mini-test** est proposé en S1 (5.T). Ces écrans sont ouverts depuis l'onglet **Tests** (et non plus depuis Réviser) *(maquette à mettre à jour)*. Aucun code n'est écrit avant la maquette finale validée par Benny. Les fiches ci-dessous fixent le comportement attendu pour éviter une dérive plus tard.
 
 #### E1 · Introduction au test blanc
 - **Textes exacts** : en-tête « Test blanc » ; « Test complet » ; « 200 questions · 2 h » ; « 45 minutes d'écoute, puis 75 minutes de lecture. Pas de pause automatique. » ; lignes « Chronomètre exact » / « Il tourne aussi en arrière-plan », « Audio joué une seule fois » / « Pas de réécoute en Listening », « Pas de retour en Listening » / « Retour libre en Reading » ; encadré « Un test blanc ne donne pas de score officiel. L'estimation vient de la même règle que la démo. » ; boutons « Commencer le test » et lien « Plus tard ».
@@ -563,6 +600,8 @@ Toutes les tables dans le schéma `public` de `elearn-supabase`, éditées dans 
 | `cert_user_mot` | Carnet | user_id, mot_id, boite, prochaine_revue, vues, bonnes, mauvaises | propriétaire |
 | `cert_sessions` | Séances | id, user_id, client_uuid unique, composition jsonb, termine_le | propriétaire |
 | `cert_answers` | Journal des réponses (source de F3) | user_id, question_id, client_uuid unique, juste, repondu_le, duree_s, contexte (diagnostic, serie, rejeu, test) | propriétaire |
+| `cert_tests` / `cert_test_questions` | Tests complets de la banque (5.T) | code, titre, statut, ordre ; test_id, question_id, numero | lecture des `reviewed` |
+| `cert_mock_attempts` | Historique des tentatives (5.T) | voir 5.T.2 | propriétaire |
 | `cert_error_reports` | Signalements (X2) | user_id, question_id, type, client_uuid | écriture propriétaire, lecture back-office |
 
 RPC proposées (toutes `security definer` avec contrôle explicite de `auth.uid()`, idempotentes quand elles écrivent) : `cert_list_exams`, `cert_get_settings`, `cert_diagnostic_draw`, `cert_series_get`, `cert_submit_answers(batch)`, `cert_notions_list`, `cert_notion_get`, `cert_words_list`, `cert_word_result(batch)`, `cert_set_plan`, `cert_session_complete`, `cert_report_error`, `cert_mastery_for(user)` (pour la reprise multi-appareils).
@@ -594,7 +633,8 @@ Tout évènement est typé dans `src/services/evenements.ts`. Propriétés minim
 | `cert_credit_gate_viewed` | `action` | X1 | **à ajouter** |
 | `cert_credit_spent` / `cert_credit_refunded` | `action`, `cout` | X1, E7 | **à ajouter** (section 12) |
 | `cert_paywall_to_pass` | `source` | X1, E7, feuille crédits épuisés | **à ajouter** (section 12) |
-| `cert_mock_started` / `cert_mock_completed` | `mode`, `score_min`, `score_max` | E1 à E6 | V2, à ajouter |
+| `cert_tests_tab_viewed` | aucune | T1 | **à ajouter** (D-08) |
+| `cert_mock_started` / `cert_mock_completed` / `cert_mock_abandoned` / `cert_mock_resumed` | `kind`, `score_min`, `score_max`, `minute` | T1 à T4, E1 à E6 | **à ajouter** (mini-test en S1, le reste en V2) |
 
 Acceptation : AC-EV-1 chaque évènement ci-dessus a un test qui vérifie le nom et les propriétés ; AC-EV-2 aucun évènement ne contient d'e-mail, de nom ni de numéro.
 
@@ -612,6 +652,7 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 
 | Écran | Légende de la maquette | Lot | Exigences | Composant | Table / RPC | Tests | Évènements |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| T1 à T4 | Onglet Tests (à dessiner) | S1 (mini-test), V2 (reste) | AC-T-1 à 6 | `OngletTests`, `HistoriqueTests` | `cert_tests`, `cert_mock_attempts`, `cert_mini_draw` | `OngletTests.test`, pgTAP attempts | `cert_tests_tab_viewed`, `cert_mock_*` |
 | N1 | Accueil TOEIC | S1 | AC-N1-1 à 5 | `AccueilTOEIC` (remplace D1) | F7, `cert_sessions`, `credit_balances` | `AccueilTOEIC.test` | `cert_session_started` |
 | N2 | Moi | S1 | AC-N2-1 à 3 | `EcranMoi.tsx` (existant) + `MoiCertification` | `cert_user_plan` | `MoiCertification.test` | aucun |
 | N3 | Réviser (sous-onglets) | S1 | AC-N3-1 à 3 | `ReviserCert` | `cert_notions`, `cert_user_mot` | `ReviserCert.test` | aucun |
@@ -684,6 +725,10 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | E-28 | N3 affiche « V2, bientôt » : « V2 » est un terme interne ; l'onglet Tests est présent dès S1 alors que D-02 le disait absent | N3, C1 | « Bientôt » ; onglet présent (J-004) |
 | E-29 | N2 « Certification · changer » alors que CERT-4 exclut la bascule entre profils | N2, A2 | A2 liste seulement des certifications ; le profil Élève ou Concours n'est pas rejoignable depuis N2 |
 | E-30 | « Ma semaine » existant décrit la semaine de l'élève (crédits, quiz), pas les séances TOEIC | N2 | Écran existant tel quel en S1 ; adaptation au lot S2 |
+| E-31 | Les barres d'onglets de N1, N2, N3 (et de tous les écrans à barre) montrent encore « Questions » | N1, N2, N3 | Le code applique la barre TOEIC de 5.N ; maquette à mettre à jour |
+| E-32 | La maquette a un sous-onglet « Tests » dans Réviser et E1 à E7 comme écrans de Réviser | N3, C1, E1 à E7 | Retirés de Réviser ; ouverts depuis l'onglet Tests ; maquette à mettre à jour |
+| E-33 | L'écran Photo parle d'exercice scolaire | Photo | Inchangé en S1 (Q-14) |
+| E-34 | T1 à T4 (onglet Tests, historique) n'existent pas dans la maquette | Tests | Spec 5.T ; texte exact à venir de l'agent design |
 | E-27 | `Profil.type` accepte seulement `'eleve' | 'concours'` ; `onboarding_choice_made` impose `niveau` et `pays` | Code existant | Type étendu de façon additive ; propriétés facultatives pour `certification` |
 
 ### 10.2 Questions ouvertes pour Benny (une réponse débloque chaque ligne)
@@ -702,6 +747,8 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | Q-10 | Qui relit les explications, fiches et mots en anglais ? | Un enseignant d'anglais avant tout passage en `reviewed` |
 | Q-12 | Crédits : Option A (test blanc accessible) ou Option B (un test par semaine offert) ? | Option B avec garde-fous (section 12.4) |
 | Q-13 | L'onglet « Tests » est-il visible dès la semaine 1 avec « Bientôt » ? | Oui (maquette N3) |
+| Q-14 | Photo en profil TOEIC : inchangée en S1 (reco), à adapter plus tard, ou retirée ? | Inchangée, mesurer l'usage |
+| Q-15 | Taille et coût du mini-test : 20 questions, 15 minutes, 1 ou 2 crédits ? Le diagnostic est-il bien le premier mini-test ? | 20 questions, 15 minutes, coût option A 1 / option B 2 |
 | Q-11 | Le TOEIC passe-t-il avant ou après le chemin critique du lancement (#44, #35, #17) ? | À arbitrer par Benny ; un seul agent local à la fois |
 
 ## 11. Journal des changements
@@ -725,6 +772,9 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | J-005 | 2026-10-15 | Agent design | B1 à B7 | Option sélectionnée sans libellé « Choisi » ni coche (`1953b17`) | Design | validé (maquette) |
 | J-006 | 2026-10-15 | Claude (fil TOEIC) | section 12 | Crédits et Pass : deux options, recommandation B, garde-fous | Demande de Benny | en attente de Q-12 |
 
+| D-08 | 2026-10-15 | Benny (message de 19 h 10) | N1, N2, N3, C1, E1 à E7, barre d'onglets, T1 à T4 | En profil TOEIC l'onglet Questions disparaît et est remplacé par Tests (mini-tests et tests complets) ; Réviser garde Parcours, Parties, Cours, Carnet | Décision de Benny | validé ; maquette à mettre à jour |
+| J-007 | 2026-10-15 | Claude (fil TOEIC) | section 5.T, 12, 6, 7 | Spec de l'onglet Tests (types, données, historique), `cert_mock_mini`, Photo inchangée (proposé), J-004 remplacée | Application de D-08 | proposé |
+
 **Règle d'ajout** : toute modification de ce cahier ajoute une ligne ici avant d'être faite ; une ligne « appliqué en code » cite le commit.
 
 ## 12. Crédits et Pass (décision de Benny : Q-12)
@@ -742,7 +792,7 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | Diagnostic (A6), séance du jour (D2), parties et séries d'entraînement (B1 à B7), cours (C4, C5), carnet et séance de mots (C6 à C9), rejeu, carte de maîtrise, plan | **Gratuits, jamais débités.** C'est le cœur de la valeur et de la rétention | aucune |
 | Résultat juste ou faux, bonne réponse, notion nommée, « Revoir la notion » (B9) | Gratuits | aucune |
 | Explication détaillée d'une question (X1) | Payante : `cert_explanation` | `credit_actions` |
-| Test blanc complet, demi-test, corrigé complet d'un test | Payants : `cert_mock_full`, `cert_mock_half`, `cert_mock_review` | `credit_actions` |
+| Mini-test, demi-test, test complet, corrigé complet d'un test (onglet Tests) | Payants : `cert_mock_mini`, `cert_mock_half`, `cert_mock_full`, `cert_mock_review` | `credit_actions` |
 | Pack hors ligne audio (E7) | **Pass seulement**, aucune dépense en crédits | `cert_settings.pack_requires_pass` |
 | Correction par photo, question IA | 5 crédits (règle actuelle, `ai_question`) ; limite IA du Pass inchangée | inchangé |
 | Rédaction et oral corrigés par IA (V2) | Coût mesuré à la mise en service, même limite IA quotidienne du Pass | à définir |
@@ -757,6 +807,7 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | | **Option A — « test blanc accessible »** (proposition de l'agent design) | **Option B — « un test par semaine offert »** (étude #43) |
 | --- | --- | --- |
 | `cert_explanation` | 1 | 1 |
+| `cert_mock_mini` (20 questions, 15 min) | 1 | 2 |
 | `cert_mock_half` | 3 | 8 |
 | `cert_mock_full` | 5 | 15 |
 | `cert_mock_review` (corrigé complet d'un test) | 0 (inclus dans le test) | 5 |
@@ -782,7 +833,7 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 À mesurer avant de figer : part des élèves qui lancent un test blanc, part qui l'abandonnent dans les 10 premières minutes, conversion vers le Pass après un solde insuffisant.
 
 ### 12.5 Cohérence avec la configuration serveur
-- Aucun montant dans l'app, les textes ou les tests : lus de `credit_actions` (`cert_explanation`, `cert_mock_half`, `cert_mock_full`, `cert_mock_review`), `credit_settings` et `cert_settings` (`pack_requires_pass`, `mock_requires_account`, `mock_refund_window_min`, `mock_audio_fail_s`).
+- Aucun montant dans l'app, les textes ou les tests : lus de `credit_actions` (`cert_explanation`, `cert_mock_mini`, `cert_mock_half`, `cert_mock_full`, `cert_mock_review`), `credit_settings` et `cert_settings` (`pack_requires_pass`, `mock_requires_account`, `mock_refund_window_min`, `mock_audio_fail_s`).
 - Les textes parlent de « {n} crédits » (singulier/pluriel existant `credits.cout` / `credits.coutUn`), jamais d'un chiffre.
 - Les tests utilisent des valeurs lues d'un jeu de configuration injecté, jamais « 15 » ou « 5 » en dur.
 - Migration additive (seed des quatre actions), tests pgTAP : coûts lus depuis la table, débit idempotent, remboursement idempotent, pass illimité sans débit, invité refusé sur test blanc.
