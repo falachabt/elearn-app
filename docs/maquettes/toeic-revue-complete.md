@@ -129,3 +129,12 @@ Non activée : Benny n'a pas encore confirmé l'expiration à 30 jours des créd
 - `TOEIC-X6` : Moi, ligne « Crédits et Pass » avec la même mention.
 - Les écrans actuels (TOEIC-X1, TOEIC-N2) restent la version valide tant que la variante n'est pas confirmée.
 - Les identifiants existants ne changent pas. Nouveaux : `TOEIC-X5` et `TOEIC-X6`.
+
+## Expiration des crédits gagnés : validée (version 11, réponse de Benny)
+
+Benny a répondu « Oui, 30 jours ». La variante est active.
+
+- `TOEIC-X5` : feuille de coût avec « dont {e} à utiliser avant le {date} ». **Valide**. Remplace `TOEIC-X1` pour le solde.
+- `TOEIC-X6` : solde dans Moi, avec la même mention. **Valide**. Remplace la ligne « Crédits et Pass » de `TOEIC-N2`.
+- `TOEIC-X1` et `TOEIC-N2` restent dans l'aperçu, marqués comme remplacés pour ces parties.
+- Les valeurs affichées (12 crédits, 14 novembre 2026) sont des exemples : le montant et la date viennent du serveur.
