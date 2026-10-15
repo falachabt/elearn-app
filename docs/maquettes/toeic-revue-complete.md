@@ -29,3 +29,19 @@ Montants de crédits et durées sont des exemples, pas des valeurs à figer.
 2. Temps par jour : 20 minutes par défaut, ou 10 ?
 3. Les quatre écrans ajoutés au cours de la revue (crédits, signaler une erreur, quitter la série, pack audio manquant) restent-ils dans le périmètre ?
 4. Budget ElevenLabs : 133 000 ou 131 000 par mois ? (le planning indique 133 000)
+
+## Identifiants stables (version 2, 15 octobre 2026)
+
+Chaque écran porte un identifiant `TOEIC-<section><n>`. Un identifiant ne change plus. Si un écran déjà livré est modifié, son identifiant reste le même et la modification est notée dans le fil.
+
+| Section | Écrans | Contenu |
+| --- | --- | --- |
+| A | A1 à A8 | Arrivée, objectif, temps par jour, diagnostic et résultat (A1 à A5 = anciens O1 à O4 et A3) |
+| B | B1 à B11 | Moteur d'exercice : sept types, lecteur audio, explication, « Pourquoi j'ai raté ? », fin de série |
+| C | C1 à C9 | Réviser TOEIC : onglets, carte de maîtrise, parties, cours, notion, carnet, mot, séance de mots |
+| D | D1 à D4 | Accueil TOEIC, séance du jour, mon plan, objectif dans Moi |
+| E | E1 à E7 | Test blanc (V2, épreuve sombre) : introduction, Listening, transition, Reading, pause, bilan, coût |
+| S | S1 à S9 | États transverses : squelette, erreurs, hors ligne, réponse non envoyée, vides, expiration |
+| X | X1 à X4 | Écrans ajoutés, à valider : crédits, signaler une erreur, quitter la série, pack audio manquant |
+
+Les états sont nommés dans l'écran concerné (par exemple TOEIC-S3 pour une série hors ligne). Le cahier des charges reprendra ces identifiants un par un.
