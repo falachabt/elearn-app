@@ -69,3 +69,15 @@ Les types 5 à 7 n'ont pas d'audio : leur seul état d'erreur est le chargement 
 - Une option sélectionnée n'affiche plus le libellé « Choisi » ni la coche. Elle est signalée par le fond vert, un contour plus épais (3 px) et une lettre inversée (fond sombre, lettre claire). Ce n'est donc pas la couleur seule qui la porte.
 - Les libellés « Juste » et « Faux » (`TOEIC-B2`, `TOEIC-B5` et les autres types à correction) restent : ils donnent le résultat à quelqu'un qui ne voit pas la couleur, et la règle de design l'impose (`docs/design-regles.md`).
 - Les identifiants ne changent pas.
+
+## Onglet Tests, à la place de Questions (version 5)
+
+Décision de Benny (15 octobre) : en profil TOEIC, il n'y a pas d'onglet Questions. L'onglet devient Tests.
+
+- Barre d'onglets TOEIC : Accueil, Réviser, Photo, Tests, Moi. Les élèves et concours ne changent pas.
+- `TOEIC-N3` (Réviser) : quatre sous-onglets, Parcours, Parties, Cours, Carnet. Tests n'est plus dedans.
+- Nouveaux écrans : `TOEIC-T1` (accueil de Tests : mini-tests, test complet, score estimé), `TOEIC-T2` (réglage d'un mini-test : partie, longueur, temps, coût), `TOEIC-T3` (reprise d'un test interrompu), `TOEIC-T4` (historique et score estimé).
+- Les tests complets gardent leurs identifiants `TOEIC-E1` à `TOEIC-E7` (V2).
+- Les identifiants existants ne changent pas. `TOEIC-N3` est mis à jour (sous-onglet Tests retiré).
+
+Question ouverte : la Photo (correction par photo) n'a pas de sens pour un examen à choix multiples. Elle ne sert en TOEIC que pour la rédaction, qui est hors périmètre (V2). Proposition : garder l'onglet Photo au centre pour l'instant, puis le remplacer ou le retirer quand la rédaction sera décidée.
