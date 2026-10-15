@@ -24,6 +24,8 @@ export const LIGNES_SEED: LigneReglage[] = [
       '30': { notion_min: 5, words: 10, replay: 8, series: 15 },
     },
   },
+  { key: 'goal_default', value: 800 },
+  { key: 'mock_audio_fail_s', value: 20 },
   { key: 'goal_min', value: 10 },
   { key: 'goal_max', value: 990 },
   { key: 'stats_min_answers', value: 5 },

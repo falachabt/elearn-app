@@ -4,7 +4,7 @@ export type Evenements = {
   session_invite_creee: Record<string, never>;
   feedback_setting_changed: { setting: 'sounds' | 'haptics' | 'reduced_motion' | 'volume'; value: boolean | 'faible' | 'normal'; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   celebration_seen: { sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
-  onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string };
+  onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string } | { profil: 'certification'; pays?: string };
   first_result_seen: { type: 'mini_test' | 'photo'; duree_s: number; score?: number; total?: number };
   signup_prompt_seen: { source: 'score' };
   paywall_viewed: { declencheur: 'score' | 'moi' | 'limite' };
@@ -117,6 +117,36 @@ export type Evenements = {
   // Support et notifications.
   whatsapp_opened: { contexte: 'support' | 'parent' | 'parrainage' | 'aide' | 'autre' };
   notification_received: { type: string; premier_plan: boolean };
+
+  // Profil TOEIC (certifications, cahier des charges section 7). Aucune donnée personnelle ni contenu de question.
+  cert_exam_chosen: { examen: string };
+  cert_goal_set: { score: number; date_renseignee: boolean };
+  cert_goal_skipped: Record<string, never>;
+  cert_daily_time_set: { minutes: number };
+  cert_diagnostic_started: Record<string, never>;
+  cert_diagnostic_completed: { score_min: number | null; score_max: number | null };
+  cert_exercise_answered: { type: string; partie: number; juste: boolean | null };
+  cert_why_missed: { raison: string };
+  cert_notion_opened: { notion: string; source: string };
+  cert_word_state_changed: { mot: string; boite_avant: number; boite_apres: number };
+  cert_session_started: { composition: string };
+  cert_session_completed: { composition: string };
+  cert_mastery_viewed: { ecran: string };
+  cert_stats_viewed: { periode: string };
+  cert_stats_period_changed: { periode: string };
+  cert_error_reported: { type: string };
+  cert_audio_error: { ecran: string; code: string };
+  cert_offline_answer_queued: { nb: number };
+  cert_offline_answer_flushed: { nb: number };
+  cert_credit_gate_viewed: { action: string };
+  cert_credit_spent: { action: string; cout: number };
+  cert_credit_refunded: { action: string; cout: number };
+  cert_paywall_to_pass: { source: string };
+  cert_tests_tab_viewed: Record<string, never>;
+  cert_mock_started: { kind: string };
+  cert_mock_completed: { kind: string; score_min: number | null; score_max: number | null };
+  cert_mock_abandoned: { kind: string; minute: number };
+  cert_mock_resumed: { kind: string; minute: number };
 
   // Réservé : posé quand la fonctionnalité existe (écoles relais, lot 2).
   school_class_created: { class_id: string; concours: string };

@@ -9,6 +9,7 @@ import { Onglet } from '@/components/Onglet';
 import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
 import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
+import { etapeCertification } from '@/services/certification/reprise';
 import { lireProfil } from '@/services/profil';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -23,13 +24,21 @@ export default function LayoutOnglets() {
   const nouvelles = useNouvellesQuestions();
   // Premier lancement : le parcours d'arrivée passe avant les onglets (aucun compte demandé).
   const [arrivee, setArrivee] = useState<'inconnu' | 'a-faire' | 'fait'>('inconnu');
+  // Profil certification inachevé : l'écran où reprendre (jamais Bienvenue).
+  const [reprise, setReprise] = useState<string | null>(null);
   useEffect(() => {
     // Le profil se lit APRÈS que la session soit décidée (useSessionPrete), et se relit quand elle change : après une
     // connexion, le compte apporte le parcours d'arrivée (voir SessionProvider) et la session invité le précède.
     // « hors-ligne » passe aussi : le profil est local, il doit s'afficher sans réseau.
     if (!sessionPrete) return;
     let actif = true;
-    lireProfil().then((p) => actif && setArrivee(p?.termine ? 'fait' : 'a-faire'));
+    void (async () => {
+      const p = await lireProfil();
+      const etape = await etapeCertification(p);
+      if (!actif) return;
+      setReprise(etape);
+      setArrivee(p?.termine ? 'fait' : 'a-faire');
+    })();
     return () => {
       actif = false;
     };
@@ -48,7 +57,7 @@ export default function LayoutOnglets() {
     return () => abonnement.remove();
   }, [sessionPrete]);
   if (arrivee === 'inconnu') return <View style={[styles.racine, { backgroundColor: theme.fond.app }]} />;
-  if (arrivee === 'a-faire') return <Redirect href="/bienvenue" />;
+  if (arrivee === 'a-faire') return <Redirect href={(reprise ?? '/bienvenue') as '/bienvenue'} />;
 
   return (
     <View style={styles.racine}>

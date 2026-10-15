@@ -20,12 +20,14 @@ export type Reglages = {
   refroidissementNotionJours: number;
   seanceMinutesChoix: number[];
   seanceMinutesDefaut: number;
+  objectifDefaut: number;
   objectifMin: number;
   objectifMax: number;
   statsMinReponses: number;
   tendanceMinPoints: number;
   validiteHorsLigneJours: number;
   plafondGainsSemaine: number;
+  audioEchecSecondes: number;
 };
 
 export type LigneReglage = { key: string; value: unknown };
@@ -65,11 +67,13 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     refroidissementNotionJours: nombre('notion_cooldown_days'),
     seanceMinutesChoix: liste('session_minutes_choices'),
     seanceMinutesDefaut: nombre('session_minutes_default'),
+    objectifDefaut: nombre('goal_default'),
     objectifMin: nombre('goal_min'),
     objectifMax: nombre('goal_max'),
     statsMinReponses: nombre('stats_min_answers'),
     tendanceMinPoints: nombre('trend_min_points'),
     validiteHorsLigneJours: nombre('offline_validity_days'),
     plafondGainsSemaine: nombre('cert_earn_weekly_cap'),
+    audioEchecSecondes: nombre('mock_audio_fail_s'),
   };
 }

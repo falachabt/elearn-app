@@ -8,14 +8,24 @@ export const CLE_PROFIL = 'profil.arrivee';
 export type ConcoursChoisi = { id: string; sigle: string; nom: string; ville?: string | null };
 
 /** `niveau` : la classe pour un élève, la filière (ingenieurs, sante…) pour un candidat. */
-export type Profil = { type: 'eleve' | 'concours'; niveau?: string; pays?: string; concours?: ConcoursChoisi | null; termine: boolean };
+export type Profil = {
+  type: 'eleve' | 'concours' | 'certification';
+  niveau?: string;
+  pays?: string;
+  concours?: ConcoursChoisi | null;
+  /** Examen préparé (profil `certification`) : code de `cert_exams`, par exemple `toeic`. */
+  exam?: string;
+  termine: boolean;
+};
 
 /** Choix du parcours d'arrivée (M1-01), gardés sur le téléphone : aucun compte n'est demandé. */
 export async function lireProfil(): Promise<Profil | null> {
   try {
     const brut = await AsyncStorage.getItem(CLE_PROFIL);
     const p = brut ? (JSON.parse(brut) as Partial<Profil>) : null;
-    if (p && (p.type === 'eleve' || p.type === 'concours')) return { type: p.type, niveau: p.niveau, pays: p.pays, concours: p.type === 'concours' ? (p.concours ?? null) : null, termine: !!p.termine };
+    if (p && (p.type === 'eleve' || p.type === 'concours' || p.type === 'certification')) {
+      return { type: p.type, niveau: p.niveau, pays: p.pays, concours: p.type === 'concours' ? (p.concours ?? null) : null, ...(p.type === 'certification' && p.exam ? { exam: p.exam } : {}), termine: !!p.termine };
+    }
   } catch {
     // illisible : parcours d'arrivée à refaire
   }
@@ -32,7 +42,7 @@ export function profilDepuisCompte(user?: { user_metadata?: Record<string, unkno
   const reglages = m.reglages as { profil?: Partial<Profil> } | undefined;
   const p = reglages?.profil ?? (m.profil as Partial<Profil> | undefined);
 
-  const type = p?.type === 'concours' || m.statut === 'concours' ? 'concours' : 'eleve';
+  const type = p?.type === 'certification' ? 'certification' : p?.type === 'concours' || m.statut === 'concours' ? 'concours' : 'eleve';
   const niveau =
     p?.niveau ??
     (typeof m.niveau === 'string' && m.niveau ? m.niveau : undefined) ??
@@ -44,12 +54,13 @@ export function profilDepuisCompte(user?: { user_metadata?: Record<string, unkno
     (typeof m.country === 'string' && m.country ? m.country : undefined);
   const concours = p?.concours ?? null;
 
-  if (niveau || pays) {
+  if (niveau || pays || type === 'certification') {
     return {
       type,
       niveau,
       pays,
       concours,
+      ...(type === 'certification' && typeof p?.exam === 'string' ? { exam: p.exam } : {}),
       termine: true,
     };
   }

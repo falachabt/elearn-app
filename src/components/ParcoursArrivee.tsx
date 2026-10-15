@@ -2,7 +2,7 @@ import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Camera, ChevronRight, GraduationCap, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
+import { Award, Camera, ChevronRight, GraduationCap, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -20,6 +20,7 @@ import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
 import { Logo } from './Logo';
+import { useProfilCertification } from './certification/useProfilCertification';
 import { FeuillePays } from './pass/FeuillePays';
 
 type ChoixCarteProps = {
@@ -62,6 +63,8 @@ function ChoixCarte({ titre, aide, icone: Icone, couleurIcone, couleurFondIcone,
 export function Bienvenue() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  // Troisième carte derrière le drapeau PostHog `cert_profile_enabled` (R-09) : faux, l'écran est identique à avant.
+  const certification = useProfilCertification();
   return (
     <Ecran>
       <Apparition delai={0}>
@@ -100,6 +103,21 @@ export function Bienvenue() {
           onPress={() => router.push({ pathname: '/classe', params: { type: 'concours' } })}
         />
       </Apparition>
+      {certification ? (
+        <Apparition delai={300}>
+          <ChoixCarte
+            icone={Award}
+            couleurIcone={theme.texte.principal}
+            couleurFondIcone={theme.accent.soleilTresDoux}
+            titre={t('certification.carte')}
+            aide={t('certification.carteAide')}
+            onPress={() => {
+              suivre('onboarding_choice_made', { profil: 'certification' });
+              router.push('/certification');
+            }}
+          />
+        </Apparition>
+      ) : null}
       <Bouton variante="texte" libelle={t('bienvenue.dejaCompte')} onPress={() => router.push('/compte/connexion')} />
     </Ecran>
   );
