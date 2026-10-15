@@ -1,6 +1,6 @@
 # Cahier des charges de référence : profil TOEIC (Elearn Prepa)
 
-**Version 1.3 du 15 octobre 2026** (1.2 + écrans TOEIC-T1 à T4 livrés par la maquette `98d016a`, décisions D-09 et D-10 de Benny sur l'explication gratuite et la fourchette du diagnostic). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
+**Version 1.4 du 15 octobre 2026** (1.3 + montants de crédits définitifs et gains de crédits, section 12.6, décision D-11 ; 1.3 = 1.2 + écrans TOEIC-T1 à T4 livrés par la maquette `98d016a`, décisions D-09 et D-10 de Benny sur l'explication gratuite et la fourchette du diagnostic). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
 Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `98d016a`.
 Quota ElevenLabs à retenir : 131 000 crédits par mois (Benny, 15 octobre). Démo : 16 000 crédits.
 
@@ -150,7 +150,7 @@ Tous les paramètres entre accolades sont dans `cert_settings` (clé/valeur JSON
 - La date du test est facultative, strictement postérieure à aujourd'hui.
 
 ### F10 Crédits
-La règle des crédits et du Pass est la **section 12** (deux options, recommandation, décision de Benny attendue : Q-12). En attendant la décision, le code n'implémente aucun débit autre que ceux de la section 12.1 (communs aux deux options).
+La règle des crédits et du Pass est la **section 12** (montants définitifs et gains : 12.6, décision D-11 ; les options A et B de 12.2 sont historiques). En attendant la décision, le code n'implémente aucun débit autre que ceux de la section 12.1 (communs aux deux options).
 
 ## 5. Spécification écran par écran
 
@@ -735,7 +735,9 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | E-36 | Le demi-test est absent de T1 ; le test complet est un bouton actif alors qu'il est V2 ; l'état « Bientôt » n'est pas dessiné | T1 | Bouton inactif « Bientôt » en S1 ; demi-test ajouté avec V2 |
 | E-37 | Pas d'écran de détail d'une tentative (par partie, par notion, rejeu des erreurs) | T4 | Ligne non cliquable en S1 ; écran à dessiner en V2 |
 | E-38 | Un mini-test par partie de 10 questions ne permet pas un score estimé (F1 exige au moins 20 réponses par section) | T1, T4, bilan | Le bilan d'un mini-test par partie affiche le nombre de bonnes réponses et les notions, jamais une fourchette de score ; seul le mixte alimente le score estimé |
-| E-39 | Le temps du mixte est 20 min dans la maquette, 15 min dans la spec 1.2 ; le prix « 1 crédit » du mini-test est figé dans le texte d'exemple | T1, T2 | 20 min retenu (maquette, `{mini_minutes_per_10q}` = 10) ; prix lu au serveur (Q-12) |
+| E-39 | Le temps du mixte est 20 min dans la maquette, 15 min dans la spec 1.2 ; le prix « 1 crédit » du mini-test est figé dans le texte d'exemple | T1, T2 | 20 min retenu (maquette, `{mini_minutes_per_10q}` = 10) ; prix lu au serveur (12.6) ; T2 doit montrer un coût qui dépend de la longueur (écart E-40) |
+| E-40 | T2 affiche un seul coût (« 1 crédit hors Pass ») alors que la longueur 10 et la longueur 20 coûtent 1 et 2 crédits ; T1 ne montre pas le coût des mini-tests | T1, T2 | Le coût affiché suit la longueur choisie (`PuceCout` serveur) ; ajouter le coût sur les lignes de T1 : maquette à mettre à jour |
+| E-41 | La page « Gagner » existante n'a pas de lignes TOEIC (séance du jour, série, objectif) ; ses gains (10, 5, 5) sont aussi écrits dans `ACTIONS_QUOTIDIENNES` côté app, contre la règle « aucun montant en dur » ; les lignes Facebook et Instagram récompensent un abonnement, ce que les règles de Meta déconseillent (REGLES_BENNY §6) | Gagner | Pour TOEIC : nouvelles lignes depuis le serveur (12.6.3), maquette à mettre à jour ; l'existant est signalé à Benny, non modifié ici |Ma recommandation |
 | E-27 | `Profil.type` accepte seulement `'eleve' | 'concours'` ; `onboarding_choice_made` impose `niveau` et `pays` | Code existant | Type étendu de façon additive ; propriétés facultatives pour `certification` |
 
 ### 10.2 Questions ouvertes pour Benny (une réponse débloque chaque ligne)
@@ -752,10 +754,11 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | Q-08 | Test blanc : pause autorisée ou non ? | Non autorisée en Listening, libre en Reading |
 | Q-09 | Énoncés des questions d'entraînement : anglais comme au test (consigne en français) ? | Oui |
 | Q-10 | Qui relit les explications, fiches et mots en anglais ? | Un enseignant d'anglais avant tout passage en `reviewed` |
-| Q-12 | Crédits : Option A (test blanc accessible) ou Option B (un test par semaine offert) ? | Option B avec garde-fous (section 12.4) |
+| Q-12 | **TRANCHÉE (D-11, 15 octobre)** : Benny laisse le choix des montants ; valeurs retenues en 12.6 | Voir 12.6 |
 | Q-13 | L'onglet « Tests » est-il visible dès la semaine 1 avec « Bientôt » ? | Oui (maquette N3) |
 | Q-14 | Photo en profil TOEIC : inchangée en S1 (reco), à adapter plus tard, ou retirée ? | Inchangée, mesurer l'usage |
 | Q-15 | Format du mini-test : la maquette propose 10 questions / 10 min (par partie) et 20 / 20 min (mixte), le cahier 1.2 proposait 20 / 15 min. Prix : 1 ou 2 crédits (Q-12) ? Le diagnostic est-il bien le premier mini-test mixte ? | Format de la maquette ; diagnostic = premier mixte ; prix selon Q-12 |
+| Q-16 | Les gains quotidiens existants (site +10, Facebook +5, Instagram +5, jusqu'à 20 par jour) rendent-ils les tests trop faciles à obtenir gratuitement ? Faut-il les plafonner par semaine en profil TOEIC ? Les lignes Facebook et Instagram respectent-elles les règles de Meta ? | Les garder pour l'acquisition, plafonner à `cert_earn_weekly_cap` seulement les gains TOEIC, mesurer 2 semaines avant de décider |
 | Q-11 | Le TOEIC passe-t-il avant ou après le chemin critique du lancement (#44, #35, #17) ? | À arbitrer par Benny ; un seul agent local à la fois |
 
 ## 11. Journal des changements
@@ -784,6 +787,8 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | D-09 | 2026-10-15 | Benny (message de 19 h 11, « oui pour tes 2 questions ») | B9, X1 | Bonne réponse, notion et piège gratuits ; seule l'explication détaillée coûte 1 crédit (incluse au Pass) | Décision de Benny | validé ; point d'entrée à dessiner |
 | D-10 | 2026-10-15 | Benny (même message) | A7, D1, bilan, F2 | Fourchette du diagnostic large et honnête (environ 150 points de chaque côté), toujours « Une estimation » ; extension future par questions supplémentaires sans changer la maquette | Décision de Benny (interprétée : sa réponse « oui » ne choisit pas entre les deux options ; la valeur par défaut honnête est retenue) | validé ; à confirmer si Benny préfère plus de questions |
 | J-008 | 2026-10-15 | Agent design (`98d016a`) puis Claude (fil TOEIC) | T1 à T4, N3, barre | Livraison de TOEIC-T1 à T4, N3 à quatre sous-onglets, barre Accueil · Réviser · Photo · Tests · Moi ; reprise des textes dans 5.T, écarts E-35 à E-39 ; prix des tests en option B provisoire jusqu'à la réponse de Benny (Q-12) | Mise en cohérence | appliqué au cahier v1.3 |
+| D-11 | 2026-10-15 | Benny (message de 19 h 15) | section 12, T1, T2, Gagner | Benny laisse le choix des montants de crédits : avec les crédits gratuits de la semaine l'élève fait un test complet par semaine et d'autres tests ; réutiliser les mécanismes existants pour gagner des crédits | Décision de Benny | validé ; montants en 12.6, maquette Gagner et coûts T1/T2 à mettre à jour |
+| J-009 | 2026-10-15 | Claude (fil TOEIC) | section 12.6, Q-12, E-40, E-41 | Montants définitifs (seed), trois profils types, gains de crédits TOEIC | Application de D-11 | appliqué au cahier v1.4 |
 
 **Règle d'ajout** : toute modification de ce cahier ajoute une ligne ici avant d'être faite ; une ligne « appliqué en code » cite le commit.
 
@@ -812,7 +817,7 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | Contenu hors ligne | Le gratuit (cours, carnet, séries préparées) reste lisible 7 jours ; une explication payante ou un test blanc exige le serveur (décision du 7 octobre) ; les non-Pass n'ont pas de pack audio | décision existante |
 | Raison du prix | Les explications et les tests sont **pré-générés** (coût marginal nul) : leur prix est un levier de conversion, pas un recouvrement de coût. Seules les actions IA ont un coût réel | note |
 
-### 12.2 Les deux options (valeurs de seed proposées, toutes dans `credit_actions` et `cert_settings`)
+### 12.2 Les deux options initiales (historique, remplacées par 12.6 ; valeurs de seed proposées, toutes dans `credit_actions` et `cert_settings`)
 
 | | **Option A — « test blanc accessible »** (proposition de l'agent design) | **Option B — « un test par semaine offert »** (étude #43) |
 | --- | --- | --- |
@@ -838,7 +843,7 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 7. **Un demi-test** est proposé comme première marche : Listening ou Reading seul, pour ne pas vider la semaine.
 8. **Mesure** : `cert_credit_gate_viewed`, `cert_credit_spent { action, cout }`, `cert_credit_refunded { action }`, `cert_paywall_to_pass { source }` (voir section 7) pour comparer A et B sur les achats de Pass.
 
-### 12.4 Recommandation
+### 12.4 Recommandation initiale (remplacée par 12.6)
 **Option B**, avec les garde-fous 1 à 8 et le demi-test en première marche. Raisons : (1) l'objectif du produit est de vendre ; avec l'option A le Pass ne se justifie que par le pack hors ligne ; (2) l'option B garde un test par semaine gratuit (bonne expérience, acquisition) et le Pass devient rationnel pour qui s'entraîne vraiment ; (3) tout le cœur reste gratuit dans les deux options, donc le risque d'abandon reste faible ; (4) les montants sont des lignes de configuration : on peut passer de B à A (ou à des valeurs intermédiaires) en production, sans déploiement, après une semaine de mesure PostHog.
 À mesurer avant de figer : part des élèves qui lancent un test blanc, part qui l'abandonnent dans les 10 premières minutes, conversion vers le Pass après un solde insuffisant.
 
@@ -848,6 +853,54 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 - Les tests utilisent des valeurs lues d'un jeu de configuration injecté, jamais « 15 » ou « 5 » en dur.
 - Migration additive (seed des quatre actions), tests pgTAP : coûts lus depuis la table, débit idempotent, remboursement idempotent, pass illimité sans débit, invité refusé sur test blanc.
 - Le back-office existant (« Finance » / configuration des crédits) gère déjà `credit_actions` : aucune page de plus.
+
+### 12.6 Montants définitifs et gains de crédits (décision D-11 de Benny, 15 octobre)
+
+Principe donné par Benny : avec les crédits gratuits de la semaine, l'élève peut faire **un test complet par semaine et d'autres tests**, et il peut gagner des crédits par les mécanismes qui existent déjà. Toutes les valeurs ci-dessous sont des **valeurs de seed** (lignes de `credit_actions`, `credit_settings`, `cert_settings`), modifiables au back-office sans déploiement. Elles ne figurent jamais dans l'app, les textes ni les tests.
+
+#### 12.6.1 Montants retenus (seed)
+| Action (`credit_actions`) | Coût | Remarque |
+| --- | --- | --- |
+| `cert_explanation` (explication détaillée) | 1 | D-09 : le reste de B9 est gratuit |
+| `cert_mock_mini`, par partie (10 questions) | 1 | |
+| `cert_mock_mini`, mixte (20 questions) | 2 | le coût suit la longueur choisie dans T2 (variantes `cert_mock_mini_10` et `cert_mock_mini_20`, à créer) |
+| `cert_mock_half` (demi-test, V2) | 8 | première marche avant le test complet |
+| `cert_mock_full` (test complet, V2) | 15 | |
+| `cert_mock_review` (corrigé complet d'un test) | 3 | comme `document_pdf` ; la bonne réponse de chaque question reste gratuite |
+| Pass actif | 0 | tout est inclus (débit « included ») |
+Valeurs déjà en base et inchangées : lundi 25 (`weekly_amount`, non cumulable), bienvenue 40 (une fois par appareil), invité (valeur à vérifier en base : 5 ou 15).
+
+#### 12.6.2 Vérification sur trois profils types (semaine après la première, 25 crédits du lundi, aucun gain)
+| Profil | Usage de la semaine | Dépense | Résultat |
+| --- | --- | --- | --- |
+| **Curieux** : séance du jour presque chaque jour, peu de tests | 1 test complet (15) + 1 mini-test mixte (2) + 4 explications (4) | 21 | Reste 4 ; il a tout fait avec le gratuit. Le Pass ne lui sert pas. |
+| **Sérieux** : veut un test complet par semaine et s'entraîner autour | 1 test complet (15) + son corrigé (3) + 1 mini-test mixte (2) + 3 mini-tests par partie (3) + 2 explications (2) | 25 | Pile le budget : c'est le cas visé par Benny. Un deuxième test complet est impossible sans gains ou Pass. |
+| **Intensif** : 2 tests complets, corrigés, 4 mixtes, 15 explications | 30 + 6 + 8 + 15 | 59 | Il manque 34 crédits par semaine : le Pass (500 FCFA la semaine) devient rationnel. |
+Première semaine (25 + 40 de bienvenue = 65) : le Sérieux fait 2 tests complets avec corrigés, ou 1 demi-test, 1 test complet et leur corrigé, plus des mini-tests. C'est voulu : une bonne première semaine, puis le rythme de 25.
+Pour l'ensemble, le cœur reste gratuit (12.1) : seules les épreuves de test et l'explication détaillée consomment des crédits.
+
+**Risque à surveiller** : les gains quotidiens existants (12.6.3) peuvent valoir jusqu'à 20 crédits par jour. Si tous sont pris chaque jour, un élève gratuit couvre plus que la semaine ci-dessus et le Pass perd son levier. Question Q-16 pour Benny. Mesure : `cert_credit_spent`, `credits_gained`, `cert_paywall_to_pass`.
+
+#### 12.6.3 Mécanismes pour gagner des crédits (relus dans `elearn-app` et `docs/MEMOIRE_PROJET.md`)
+| Mécanisme existant | Fonctionnement relu | En TOEIC |
+| --- | --- | --- |
+| Crédits de bienvenue et recharge du lundi | 40 une fois par appareil, 25 par lundi | **Tels quels**, ils financent tout le TOEIC |
+| Bouton « Gagner » de la feuille « crédits épuisés » et page des actions quotidiennes (`claim_daily_action`, table `daily_reward_claims`, jour de Douala) | visiter le site (+10), Facebook (+5), Instagram (+5), page parrainage ; un gain par action et par jour, côté serveur | **Tels quels** (la feuille s'ouvre sur la même page). Les montants viennent du serveur ; voir écart E-41 |
+| Parrainage M15 | 3 étapes (clic, création de compte, achat d'un pass) ; le parrain gagne à chaque étape, le filleul à l'inscription ; paliers, abus et règle iOS administrés au back-office (Finance > Parrainage) | **Tel quel**. Le message de partage peut citer le TOEIC quand le parrain est en profil TOEIC (texte à dessiner) |
+| Paliers communautaires | décrits dans le contexte produit | **Tels quels** |
+| Code promo du Pass | rabais sur le prix du Pass, pas des crédits | Inchangé |
+**Nouveaux gains TOEIC (à adapter, tous serveur, plafonnés)**, liés à l'apprentissage et jamais à un « j'aime » ou un abonnement :
+| Code (`cert_earn_*` dans `cert_settings`) | Condition | Gain (seed) | Limite |
+| --- | --- | --- | --- |
+| `session_done` | terminer la séance du jour (D2, bloc final) | 2 | une fois par jour |
+| `streak_7` | 7 jours de suite avec une séance terminée | 10 | une fois par période de 7 jours |
+| `goal_reached` | borne basse de la fourchette de score (F2) au moins égale à l'objectif | 20 | une fois par examen |
+| `mini_first` | premier mini-test mixte terminé | 3 | une fois par compte |
+Plafond commun : `cert_earn_weekly_cap` (seed 15) de crédits TOEIC gagnés par semaine, pour que les gains aident sans remplacer le Pass. RPC `cert_claim_earn(code)` idempotente, versement par `credit_log.kind = 'reward'`, notification existante `notify_student`. Écran : lignes ajoutées à la page « Gagner » (maquette à mettre à jour, écart E-41), avec la progression (par exemple « 4 jours sur 7 »), sans faux compte à rebours.
+Reste à vérifier dans la migration : si les crédits gagnés expirent comme ceux du lundi ou s'ajoutent au solde durable (cela décide du texte de la feuille de coût).
+
+#### 12.6.4 Garde-fous
+Les garde-fous 1 à 8 de 12.3 restent obligatoires, dont le remboursement automatique, le débit au lancement de l'écoute et l'avertissement avant la perte des crédits non cumulables du lundi.
 
 ## 13. Définition de « terminé » pour un écran
 Un écran est terminé quand : (1) son identifiant, ses textes et ses états sont dans ce cahier ; (2) la maquette correspond (clair, sombre, 130 %) ; (3) tous ses critères AC passent en test ; (4) ses évènements sont typés et testés ; (5) aucun montant ni texte non listé n'est dans le code ; (6) `npm run valider` passe ; (7) Benny l'a vu sur téléphone ; (8) la ligne du tableau 9 est à jour.
