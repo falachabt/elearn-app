@@ -138,3 +138,14 @@ Benny a répondu « Oui, 30 jours ». La variante est active.
 - `TOEIC-X6` : solde dans Moi, avec la même mention. **Valide**. Remplace la ligne « Crédits et Pass » de `TOEIC-N2`.
 - `TOEIC-X1` et `TOEIC-N2` restent dans l'aperçu, marqués comme remplacés pour ces parties.
 - Les valeurs affichées (12 crédits, 14 novembre 2026) sont des exemples : le montant et la date viennent du serveur.
+
+## Date du test saisie au clavier (version 12, cahier v1.10, E-50)
+
+L'objectif de score (écran A3) se saisit au clavier au format JJ/MM/AAAA. Pas de calendrier natif, donc pas de nouvel APK.
+
+- `TOEIC-A3-DATE-VIDE` : champ vide, placeholder « JJ/MM/AAAA », date facultative, « Continuer » actif.
+- `TOEIC-A3-DATE-VALIDE` : date saisie, coche, nombre de jours restants, « Continuer » actif.
+- `TOEIC-A3-DATE-FORMAT` : format invalide (JJ/MM sans année), message avec icône et texte, bordure épaissie, « Continuer » désactivé.
+- `TOEIC-A3-DATE-PASSEE` : date passée, message « Cette date est passée. Choisis une date à venir. », « Continuer » désactivé.
+- `TOEIC-A3` (écran d'origine, champ calendrier) : remplacé pour la date par les quatre états ci-dessus.
+- Les états s'appuient sur le texte et l'icône, pas sur la couleur seule.
