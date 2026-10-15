@@ -1,0 +1,296 @@
+<title>Parcours d'arrivée TOEIC, maquette</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Concept : parcours d'arrivée du profil Certification (TOEIC), ajusté à l'onboarding existant. Téléphones 360 x 780 ; tokens de theme.ts. */
+:root{
+  --pg-bg:#FFF7E3;--pg-fg:#0A0A0A;--pg-mute:#5C5C5C;--pg-card:#FFFFFF;--pg-line:#0A0A0A;--pg-soft:#F6EEDA;--pg-accent:#047857;
+  --f-display:'Archivo Black','Arial Black',sans-serif;--f-body:'Space Grotesk','Segoe UI',system-ui,sans-serif;--f-mono:'Space Mono',ui-monospace,Menlo,monospace;
+  --app:#FFF7E3;--surf:#FFFFFF;--creux:#F6EEDA;--txt:#0A0A0A;--txt2:#5C5C5C;--bord:#0A0A0A;--bord-d:#D9D0BA;--shadow:#0A0A0A;
+  --marque:#10B981;--marque-d:#D1FAE5;--lien:#047857;--soleil:#FFD83D;--err:#C0271C;--err-d:#FFE1DE;--corail:#FF5A4F;--info-d:#DCE9FF;--key:#FFFFFF;--kbbg:#E7E0CC;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}}
+:root[data-theme="dark"]{--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}
+body{background:var(--pg-bg);color:var(--pg-fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.5px}
+h2{font-size:24px;line-height:1.2;margin-top:56px}
+h3{font-family:var(--f-body);font-weight:700;font-size:17px;margin:0}
+p{margin:0}
+.lead{max-width:64ch;margin-top:12px;color:var(--pg-mute);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--pg-accent);font-weight:700}
+.row-title{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin:28px 0 12px}
+.row-title small{color:var(--pg-mute);font-size:14px}
+.rail{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 22px}
+.rail>*{flex:none}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--pg-mute);margin-top:8px;max-width:288px;line-height:1.4}
+.demo{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:28px;align-items:start;margin-top:20px}
+@media (max-width:820px){.demo{grid-template-columns:minmax(0,1fr)}}
+.ctl{display:grid;gap:16px;min-width:0}
+.box{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:16px 18px;min-width:0}
+.box h3{margin-bottom:8px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.seg2{display:inline-flex;border:2px solid var(--pg-line);border-radius:10px;overflow:hidden;background:var(--pg-soft);flex-wrap:wrap}
+.seg2 button{font:700 14px var(--f-body);padding:10px 14px;min-height:44px;border:0;background:none;color:var(--pg-fg);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:#10B981;color:#0A0A0A}
+.seg2 button:focus-visible,.chip button:focus-visible{outline:3px solid #1A75FF;outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip button{font:700 13px var(--f-mono);padding:8px 10px;border:2px solid var(--pg-line);border-radius:10px;background:var(--pg-card);color:var(--pg-fg);cursor:pointer;min-height:40px}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+label.sw{display:flex;gap:10px;align-items:center;font-size:15px;min-height:44px}
+pre.cd{margin:0;overflow-x:auto;background:var(--pg-soft);border-radius:10px;padding:12px 14px;line-height:1.5;font-family:var(--f-mono);font-size:13px}
+.spec{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--pg-soft);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--pg-mute)}
+.tw{overflow-x:auto}
+code{font-family:var(--f-mono);font-size:13px}
+
+/* téléphone 360 x 780 */
+.fr{width:288px;height:624px;position:relative}
+.fr.live{width:324px;height:702px}
+.ph{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(.8);transform-origin:0 0;border:2px solid var(--pg-line);border-radius:30px;overflow:hidden;background:var(--app);color:var(--txt);display:flex;flex-direction:column;font-family:var(--f-body)}
+.fr.live .ph{transform:scale(.9)}
+.ph.dark{--app:#141614;--surf:#1F221F;--creux:#2A2E2A;--txt:#F6F1E4;--txt2:#9E998C;--bord:#EDE6D3;--bord-d:#3A3F3A;--marque:#34D399;--marque-d:#0F3B2E;--lien:#6EE7B7;--err:#FF9F97;--err-d:#401B18;--corail:#FF7A70;--info-d:#14264A;--key:#3A3F3A;--kbbg:#1F221F;color-scheme:dark}
+.sb{height:26px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font:700 12px var(--f-mono)}
+.hd{display:flex;gap:12px;align-items:center;padding:8px 16px 4px;flex:none}
+.hd .t{font:700 18px var(--f-body)}
+.sq{width:48px;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;flex:none;color:var(--txt)}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bd{flex:1;min-height:0;padding:8px 16px 0;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.ft{flex:none;padding:10px 16px 20px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.sum{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px;border:2px solid var(--bord-d);border-radius:10px;background:var(--creux);padding:14px 14px}
+.sum .sn{font:500 14px var(--f-body);color:var(--txt2);white-space:nowrap}
+.sum .sp{margin-left:auto;font:700 18px var(--f-body);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;justify-content:flex-end}
+.sum s{font:500 14px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.sav{display:flex;align-items:center;gap:10px;margin-top:-2px;font:500 14px var(--f-body);color:var(--txt)}
+.badge{display:inline-block;background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:999px;padding:2px 10px;font:700 12px var(--f-mono);letter-spacing:.4px}
+.lab{font:500 14px var(--f-body);color:var(--txt)}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{height:52px;border:2px solid var(--bord);border-radius:10px;display:flex;gap:8px;align-items:center;justify-content:center;font:700 15px var(--f-body);background:var(--surf)}
+.op.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.num{height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:10px;padding:0 12px;font:500 16px var(--f-body)}
+.num b{font-weight:700}
+.hint{font:400 13px/1.4 var(--f-body);color:var(--txt2)}
+.lnk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:48px;display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.promo{display:flex;flex-direction:column;gap:8px}
+.prow{display:flex;gap:8px;align-items:stretch}
+.fld{flex:1;min-width:0;height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--txt)}
+.fld.err{border-color:var(--corail);box-shadow:0 0 0 2px var(--corail)}
+.fld.foc{box-shadow:0 0 0 2px #1A75FF;border-color:#1A75FF}
+.fld input,.fld .fk{flex:1;min-width:0;border:0;background:none;outline:0;font:700 17px var(--f-mono);letter-spacing:1.2px;color:var(--txt);text-transform:uppercase;padding:0;width:100%}
+.fld .fk.ph2{color:var(--txt2);font-weight:400;letter-spacing:.4px}
+.fld .car{display:inline-block;width:2px;height:22px;background:var(--txt);vertical-align:middle;margin-left:1px}
+.btn{height:52px;border:2px solid var(--bord);border-radius:10px;font:700 16px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px;color:#0A0A0A;background:var(--marque);box-shadow:4px 4px 0 var(--shadow);cursor:pointer;padding:0 16px;width:100%}
+.btn.sec{background:var(--surf);color:var(--txt)}
+.btn.dis{background:var(--creux);color:var(--txt2);box-shadow:none;border-color:var(--bord-d)}
+.btn.sm{width:auto;flex:none;font-size:15px;min-width:112px}
+.btn.txt{background:none;border-color:transparent;box-shadow:none;color:var(--txt);text-decoration:underline;text-underline-offset:3px;height:44px}
+.msg{display:flex;gap:8px;align-items:flex-start;font:500 14px/1.4 var(--f-body);color:var(--err)}
+.msg svg{margin-top:1px}
+.msg.info{color:var(--txt)}
+.cancel{align-self:flex-end}
+.applied{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:10px 10px 10px 12px;display:flex;gap:10px;align-items:center}
+.applied .ic{width:40px;height:40px;border:2px solid var(--bord);border-radius:8px;background:var(--soleil);display:grid;place-items:center;color:#0A0A0A;flex:none}
+.applied .ct{flex:1;min-width:0}
+.applied .cc{font:700 15px var(--f-mono);letter-spacing:.8px}
+.applied .cd2{font:400 13px/1.3 var(--f-body);color:var(--txt2)}
+.rm{border:2px solid var(--bord);border-radius:10px;background:var(--surf);color:var(--txt);min-height:48px;padding:0 10px;display:flex;gap:6px;align-items:center;font:700 14px var(--f-body);cursor:pointer;flex:none}
+.free{border:2px solid var(--bord);border-radius:14px;background:var(--marque);color:#0A0A0A;box-shadow:4px 4px 0 var(--shadow);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.free b{display:block;font:700 18px var(--f-body)}
+.free span{font:500 14px/1.4 var(--f-body)}
+.lock{display:flex;gap:6px;align-items:center;justify-content:center;font:400 12px var(--f-body);color:var(--txt2)}
+.kb{flex:none;height:262px;background:var(--kbbg);padding:10px 6px 14px;display:flex;flex-direction:column;gap:9px;border-top:2px solid var(--bord-d)}
+.kb div{display:flex;gap:5px;justify-content:center}
+.kb i{font-style:normal;flex:1;max-width:32px;height:44px;border-radius:6px;background:var(--key);display:grid;place-items:center;font:500 18px var(--f-body);color:var(--txt);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.kb i.w{max-width:none;flex:none;width:96px;font-size:14px}
+.kb i.ok{background:#10B981;color:#0A0A0A;font-weight:700}
+.spin{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+.rec{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:4px 4px 0 var(--shadow);padding:14px;display:grid;gap:8px}
+.rec .rw{display:flex;justify-content:space-between;gap:10px;font:500 14px var(--f-body)}
+.rec .rw span:first-child{color:var(--txt2)}
+.tag2{justify-self:start;border:2px solid var(--bord);border-radius:6px;padding:1px 8px;font:700 12px var(--f-mono);letter-spacing:.6px}
+.big2{font:400 28px/1.1 var(--f-display)}
+.ok{width:64px;height:64px;border:2px solid var(--bord);border-radius:50%;background:var(--marque);display:grid;place-items:center;color:#0A0A0A;box-shadow:3px 3px 0 var(--shadow)}
+.ok svg{width:30px;height:30px}
+.toast{margin-top:8px;font:500 13px var(--f-mono);color:var(--pg-mute)}
+.of{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:10px 12px;display:flex;gap:10px;align-items:center;min-height:68px;cursor:pointer}
+.of.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.of.off{cursor:default}
+.rd{width:22px;height:22px;border:2px solid var(--bord);border-radius:50%;flex:none;display:grid;place-items:center;background:var(--surf);color:#0A0A0A}
+.rd.on{background:var(--marque)}.rd svg{width:14px;height:14px;stroke-width:3}
+.ot{flex:1;min-width:0}.ot b{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font:700 15px var(--f-body)}
+.ot small{display:block;font:400 12px/1.3 var(--f-body);color:var(--txt2)}
+.pr2{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font:700 16px var(--f-body)}
+.pr2 s{font:500 12px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.pr2 .nv{font:500 11px var(--f-body);color:var(--txt2);max-width:92px}
+.pr2 .badge{font-size:11px;padding:1px 8px}
+.cons{background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:6px;padding:0 6px;font:700 10px var(--f-mono);letter-spacing:.5px}
+.rep{border:2px solid var(--bord);border-radius:10px;background:#FFF1B8;color:#0A0A0A;padding:10px 12px;font:500 13px/1.35 var(--f-body);display:flex;gap:8px;align-items:center}
+.ph.dark .rep{background:#3D3514;color:#F6F1E4}
+.note2{font:400 12px/1.4 var(--f-body);color:var(--txt2);text-align:center}
+.warn{border:2px solid var(--bord);border-radius:10px;background:var(--info-d);color:var(--txt);padding:10px 12px;font:500 13px/1.4 var(--f-body);display:flex;gap:8px;align-items:flex-start}
+.phones{display:flex;gap:20px;flex-wrap:wrap}
+.pl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+.blk{margin-top:36px}
+</style>
+
+<style>
+.ot small.no{color:var(--err);display:flex;gap:4px;align-items:flex-start;font-weight:500}
+.ot small.no svg{width:14px;height:14px;margin-top:1px}
+.ctlrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.phones .fr.live{flex:none}
+.of .pr2 span.n{font:700 16px var(--f-body)}
+.btn.sec.pa{box-shadow:3px 3px 0 var(--shadow)}
+.applied.no .ic{background:var(--creux)}
+.ot small.ap{display:flex;gap:6px;align-items:center;margin-top:2px}
+.ot small.ap .badge{font-size:11px;padding:0 8px}
+.of{min-height:60px;padding:8px 12px}
+.ic2{width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none;color:var(--txt)}
+.ic2.so{background:var(--soleil);color:#0A0A0A}
+.ch{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:12px 12px;display:flex;gap:12px;align-items:center;min-height:68px}
+.ch.on{background:var(--marque-d)}
+.ch .ot b{font:700 15px var(--f-body)}
+.ch .ot small{font:400 12px/1.3 var(--f-body);color:var(--txt2);display:block}
+.ch .rad{margin-left:auto;width:24px;height:24px;border:2px solid var(--bord);border-radius:50%;display:grid;place-items:center;flex:none;background:var(--surf)}
+.ch .rad.on{background:var(--marque)}
+.ch .rad svg{width:14px;height:14px;stroke-width:3}
+.pill{flex:1;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;font:700 15px var(--f-body)}
+.pill.on{background:var(--marque);box-shadow:3px 3px 0 var(--shadow)}
+.pills{display:flex;gap:8px}
+.nt{border:2px dashed var(--bord-d);border-radius:10px;padding:10px 12px;font:500 13px/1.4 var(--f-body);color:var(--txt2)}
+.lk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.logo{font:400 22px var(--f-display);letter-spacing:-.3px}
+.logo span{color:var(--marque)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <p class="eyebrow">Maquette · profil Certification · parcours d'arrivée (O1 à O4)</p>
+  <h1>Arrivée dans le profil TOEIC</h1>
+  <p class="lead">Premier lot validé par Benny : l'onboarding. L'élève choisit d'abord son profil (élève ou concours), ou « Je prépare une certification ». Il choisit ensuite l'examen, en bas de la liste, puis son objectif, et arrive sur le profil TOEIC. On ajuste les écrans existants (accueil du choix, liste des concours, objectif) et on n'en redessine aucun.</p>
+
+  <div class="blk"><h3>Parcours, clair</h3><p class="lead" style="margin-top:6px">Quatre écrans, dans l'ordre. Les écrans existants restent identiques, sauf une carte ajoutée en O1.</p></div>
+  <div class="rail" id="g-clair"></div>
+  <div class="blk"><h3>Parcours, sombre</h3></div>
+  <div class="rail" id="g-sombre"></div>
+
+  <h2>Spec pour le dev</h2>
+  <div class="spec">
+    <div class="box"><h3>O1 · Bienvenue (existant, une carte ajoutée)</h3><ul>
+      <li>Trois cartes au lieu de deux : Élève (existant), Concours (existant), <b>Je prépare une certification</b> (nouveau, icône Lucide <code>Award</code>, aide « TOEIC, puis d'autres examens »).</li>
+      <li>Même gabarit que les deux cartes actuelles (<code>ChoixCarte</code> de <code>ParcoursArrivee.tsx</code>). Aucun texte existant n'est modifié.</li>
+      <li>Lien « J'ai déjà un compte » inchangé.</li>
+      <li>Les sous-titres des cartes Élève et Concours sont des repères de maquette : reprendre les textes exacts du code (<code>bienvenue.eleveAide</code>, <code>bienvenue.concoursAide</code>).</li></ul></div>
+    <div class="box"><h3>O2 · Choix de la certification (nouveau, gabarit du concours)</h3><ul>
+      <li>Titre « Quelle certification prépares-tu ? ». Liste en lignes radio, même composant que la liste des filières (<code>Choix</code> dans <code>ChoixConcours.tsx</code>).</li>
+      <li>La liste vient de <code>cert_exams</code> (serveur). <b>TOEIC est en bas de liste</b> ; les autres examens s'ajouteront au-dessus, dans l'ordre servi.</li>
+      <li>Un seul choix possible. Icône de l'examen dans une pastille carrée, Lucide <code>Languages</code> pour le TOEIC.</li>
+      <li>Pays sous la liste, valeur par défaut comme l'écran de classe actuel (<code>paysParDefaut</code>), pour le prix et Mobile Money.</li>
+      <li>Mention sous le bouton : « TOEIC est une marque d'ETS. Elearn Prépa n'est pas affilié à ETS. »</li>
+      <li>Le bouton vert « Continuer » est désactivé tant que rien n'est choisi.</li></ul></div>
+    <div class="box"><h3>O3 · Objectif (A1, partie objectif)</h3><ul>
+      <li>Score visé : paliers servis par le serveur (exemple : 600, 700, 800, 900). Un seul palier actif. Le score n'est jamais présenté comme officiel.</li>
+      <li>Date du test : facultative, « Pas encore » par défaut.</li>
+      <li>« Passer pour l'instant » en texte : l'objectif se règle plus tard dans Moi (CERT-3).</li>
+      <li>Aide sous le score : « Ton plan se construit à partir de ce score. Il ne garantit rien. »</li></ul></div>
+    <div class="box"><h3>O4 · Arrivée sur le profil TOEIC</h3><ul>
+      <li>Premier écran du profil : une seule action verte, « Commencer le diagnostic » (20 questions, gratuit, sans crédit, sans compte, CERT-6).</li>
+      <li>Trois rangées de présentation (cours, carnet de mots, séance du jour) en texte et icône Lucide, non cliquables tant qu'elles sont vides.</li>
+      <li>État vide : « Pas encore de score estimé. Le diagnostic le calcule. » Pas de faux chiffre, pas de fausse progression.</li>
+      <li>Les états squelette, hors ligne et erreur sont dessinés au lot suivant (accueil du profil).</li></ul></div>
+    <div class="box"><h3>Règles et textes</h3><ul>
+      <li>Aucun emoji. Icônes Lucide carrées. Tutoiement, espaces insécables avant <code>?</code> <code>!</code> <code>:</code>.</li>
+      <li>Une seule action verte par écran ; les autres boutons sont blancs ou en texte.</li>
+      <li>Aucun montant dans l'écran. Les crédits du diagnostic (gratuit) et des explications viennent du serveur.</li>
+      <li>Chaque écran existe en clair et en sombre (tokens <code>theme.color.*</code> uniquement).</li></ul></div>
+    <div class="box"><h3>Évènements PostHog</h3><ul>
+      <li><code>onboarding_choice_made</code> {profil: 'certification'} (évènement existant, nouvelle valeur)</li>
+      <li><code>cert_exam_chosen</code> {examen}</li>
+      <li><code>cert_goal_set</code> {score, date_renseignee} ; <code>cert_goal_skipped</code></li>
+      <li><code>cert_diagnostic_started</code> depuis O4</li></ul></div>
+    <div class="box"><h3>Questions pour Benny (à trancher, sans bloquer)</h3><ul>
+      <li>Le pays se choisit-il sur O2 (proposition) ou seulement au paiement ?</li>
+      <li>Le paiement reste-t-il possible sans objectif renseigné ? (proposition : oui)</li>
+      <li>Les autres examens seront-ils une liste à part, ou ajoutés au-dessus du TOEIC dans la même liste ? (proposition : même liste)</li></ul></div>
+  </div>
+</div>
+<script>
+const P={
+  back:'<path d="m15 18-6-6 6-6"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',chev:'<path d="m9 18 6-6-6-6"/>',
+  grad:'<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+  trophy:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  award:'<circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>',
+  lang:'<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+  book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>',
+  notes:'<path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/>',
+  cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>',
+  wallet:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>'
+};
+const ic=(n)=>`<svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">${P[n]}</svg>`;
+const sb=`<div class="sb"><span>21:04</span><span>4G · 62 %</span></div>`;
+const frame=(h)=>`<div class="fr">${h}</div>`;
+const cap=t=>`<p class="cap">${t}</p>`;
+const radio=(on)=>`<span class="rad ${on?'on':''}">${on?ic('check'):''}</span>`;
+
+function o1(t){
+  return `<div class="ph ${t}">${sb}<div class="hd" style="padding-top:14px"><span class="logo">Elearn <span>Prépa</span></span></div>
+  <div class="bd">
+    <h2 style="font:400 26px/1.1 var(--f-display);margin-top:6px">Bienvenue</h2>
+    <p style="font:700 15px var(--f-body)">Tu es…</p>
+    <div class="ch"><span class="ic2 so">${ic('grad')}</span><div class="ot"><b>Élève</b><small>Ton programme du collège ou du lycée</small></div>${ic('chev')}</div>
+    <div class="ch"><span class="ic2 so">${ic('trophy')}</span><div class="ot"><b>Candidat à un concours</b><small>Filière, concours, annales</small></div>${ic('chev')}</div>
+    <div class="ch" style="border-color:var(--bord)"><span class="ic2 so">${ic('award')}</span><div class="ot"><b>Je prépare une certification</b><small>TOEIC, puis d'autres examens</small></div>${ic('chev')}</div>
+    <span class="lk" style="margin-top:6px">J'ai déjà un compte</span>
+  </div></div>`;
+}
+function o2(t){
+  return `<div class="ph ${t}">${sb}<div class="hd"><span class="sq">${ic('back')}</span><span class="t">Certification</span></div>
+  <div class="bd" style="gap:10px">
+    <h2 style="font:400 22px/1.15 var(--f-display)">Quelle certification prépares-tu ?</h2>
+    <div class="ch on" aria-checked="true"><span class="ic2">${ic('lang')}</span><div class="ot"><b>TOEIC Listening and Reading</b><small>Anglais des affaires · 2 h · 200 questions</small></div>${radio(true)}</div>
+    <div class="nt">D'autres certifications s'ajouteront au-dessus du TOEIC.</div>
+    <div class="lab" style="font:700 12px var(--f-mono);text-transform:uppercase;color:var(--txt2)">Ton pays</div>
+    <div class="fld" style="flex:none;height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;justify-content:space-between;padding:0 12px;font:500 16px var(--f-body)"><span>Cameroun</span>${ic('chev')}</div>
+  </div>
+  <div class="ft"><button class="btn">Continuer</button><p class="hint" style="text-align:center">TOEIC est une marque d'ETS. Elearn Prépa n'est pas affilié à ETS.</p></div></div>`;
+}
+function o3(t){
+  const pal=[['600',0],['700',1],['800',0],['900',0]].map(([n,a])=>`<span class="pill ${a?'on':''}">${n}</span>`).join('');
+  return `<div class="ph ${t}">${sb}<div class="hd"><span class="sq">${ic('back')}</span><span class="t">Ton objectif</span></div>
+  <div class="bd" style="gap:12px">
+    <p class="hint" style="font:700 12px var(--f-mono);text-transform:uppercase">TOEIC · Étape 3 sur 3</p>
+    <h2 style="font:400 22px/1.15 var(--f-display)">Quel score vises-tu ?</h2>
+    <div class="pills">${pal}</div>
+    <p class="hint">Ton plan se construit à partir de ce score. Il ne garantit rien.</p>
+    <div class="lab" style="font:700 12px var(--f-mono);text-transform:uppercase;color:var(--txt2);margin-top:6px">Date du test</div>
+    <div style="flex:none;height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;justify-content:space-between;padding:0 12px;font:500 16px var(--f-body)"><span style="color:var(--txt2)">Pas encore</span>${ic('cal')}</div>
+    <p class="hint">Facultatif. Tu peux la mettre plus tard dans Moi.</p>
+  </div>
+  <div class="ft"><button class="btn">Continuer</button><span class="lk">Passer pour l'instant</span></div></div>`;
+}
+function o4(t){
+  return `<div class="ph ${t}">${sb}<div class="hd"><span class="t">Mon TOEIC</span></div>
+  <div class="bd" style="gap:12px">
+    <div class="box" style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:4px 4px 0 var(--shadow);padding:14px;display:grid;gap:8px">
+      <span class="badge" style="justify-self:start">PREMIER PAS</span>
+      <h3 style="font:700 17px var(--f-body)">Commence par un diagnostic</h3>
+      <p class="hint" style="color:var(--txt)">20 questions, environ 15 minutes. Gratuit, sans crédit.</p>
+    </div>
+    <div class="box" style="border:2px dashed var(--bord-d);border-radius:14px;padding:12px;display:grid;gap:6px;font:500 14px var(--f-body);color:var(--txt2)">Pas encore de score estimé. Le diagnostic le calcule.</div>
+    <div class="ch"><span class="ic2">${ic('book')}</span><div class="ot"><b>Cours</b><small>Une notion à la fois</small></div>${ic('chev')}</div>
+    <div class="ch"><span class="ic2">${ic('notes')}</span><div class="ot"><b>Carnet de mots</b><small>Vide pour l'instant</small></div>${ic('chev')}</div>
+    <div class="ch"><span class="ic2">${ic('cal')}</span><div class="ot"><b>Séance du jour</b><small>Après le diagnostic</small></div>${ic('chev')}</div>
+  </div>
+  <div class="ft"><button class="btn">Commencer le diagnostic</button></div></div>`;
+}
+const screens=[[o1,'O1 · Bienvenue : une carte ajoutée (Certification), les deux existantes inchangées'],[o2,'O2 · Liste des certifications, TOEIC en bas, pays par défaut'],[o3,'O3 · Objectif : score et date facultative, passer possible'],[o4,'O4 · Arrivée : diagnostic proposé en premier, états vides']];
+const gal=(t)=>screens.map(([f,c])=>`<div>${frame(f(t))}${cap(c)}</div>`).join('');
+document.getElementById('g-clair').innerHTML=gal('');
+document.getElementById('g-sombre').innerHTML=gal('dark');
+</script>
+</body>
+</html>
