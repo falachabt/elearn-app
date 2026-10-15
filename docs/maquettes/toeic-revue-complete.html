@@ -1,0 +1,414 @@
+<title>Écrans TOEIC, revue complète</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Concept : parcours d'arrivée du profil Certification (TOEIC), ajusté à l'onboarding existant. Téléphones 360 x 780 ; tokens de theme.ts. */
+:root{
+  --pg-bg:#FFF7E3;--pg-fg:#0A0A0A;--pg-mute:#5C5C5C;--pg-card:#FFFFFF;--pg-line:#0A0A0A;--pg-soft:#F6EEDA;--pg-accent:#047857;
+  --f-display:'Archivo Black','Arial Black',sans-serif;--f-body:'Space Grotesk','Segoe UI',system-ui,sans-serif;--f-mono:'Space Mono',ui-monospace,Menlo,monospace;
+  --app:#FFF7E3;--surf:#FFFFFF;--creux:#F6EEDA;--txt:#0A0A0A;--txt2:#5C5C5C;--bord:#0A0A0A;--bord-d:#D9D0BA;--shadow:#0A0A0A;
+  --marque:#10B981;--marque-d:#D1FAE5;--lien:#047857;--soleil:#FFD83D;--err:#C0271C;--err-d:#FFE1DE;--corail:#FF5A4F;--info-d:#DCE9FF;--key:#FFFFFF;--kbbg:#E7E0CC;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}}
+:root[data-theme="dark"]{--pg-bg:#141614;--pg-fg:#F6F1E4;--pg-mute:#9E998C;--pg-card:#1F221F;--pg-line:#EDE6D3;--pg-soft:#2A2E2A;--pg-accent:#6EE7B7;color-scheme:dark}
+body{background:var(--pg-bg);color:var(--pg-fg);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:24px 64px}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2{font-family:var(--f-display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.08;letter-spacing:-.5px}
+h2{font-size:24px;line-height:1.2;margin-top:56px}
+h3{font-family:var(--f-body);font-weight:700;font-size:17px;margin:0}
+p{margin:0}
+.lead{max-width:64ch;margin-top:12px;color:var(--pg-mute);font-size:17px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.7px;text-transform:uppercase;color:var(--pg-accent);font-weight:700}
+.row-title{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;margin:28px 0 12px}
+.row-title small{color:var(--pg-mute);font-size:14px}
+.rail{display:flex;gap:20px;overflow-x:auto;padding:6px 6px 22px}
+.rail>*{flex:none}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--pg-mute);margin-top:8px;max-width:288px;line-height:1.4}
+.demo{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:28px;align-items:start;margin-top:20px}
+@media (max-width:820px){.demo{grid-template-columns:minmax(0,1fr)}}
+.ctl{display:grid;gap:16px;min-width:0}
+.box{border:2px solid var(--pg-line);border-radius:14px;background:var(--pg-card);padding:16px 18px;min-width:0}
+.box h3{margin-bottom:8px}
+.box ul{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.seg2{display:inline-flex;border:2px solid var(--pg-line);border-radius:10px;overflow:hidden;background:var(--pg-soft);flex-wrap:wrap}
+.seg2 button{font:700 14px var(--f-body);padding:10px 14px;min-height:44px;border:0;background:none;color:var(--pg-fg);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:#10B981;color:#0A0A0A}
+.seg2 button:focus-visible,.chip button:focus-visible{outline:3px solid #1A75FF;outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip button{font:700 13px var(--f-mono);padding:8px 10px;border:2px solid var(--pg-line);border-radius:10px;background:var(--pg-card);color:var(--pg-fg);cursor:pointer;min-height:40px}
+.lbl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+label.sw{display:flex;gap:10px;align-items:center;font-size:15px;min-height:44px}
+pre.cd{margin:0;overflow-x:auto;background:var(--pg-soft);border-radius:10px;padding:12px 14px;line-height:1.5;font-family:var(--f-mono);font-size:13px}
+.spec{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:16px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--pg-soft);vertical-align:top}
+th{font-family:var(--f-mono);font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--pg-mute)}
+.tw{overflow-x:auto}
+code{font-family:var(--f-mono);font-size:13px}
+
+/* téléphone 360 x 780 */
+.fr{width:288px;height:624px;position:relative}
+.fr.live{width:324px;height:702px}
+.ph{position:absolute;left:0;top:0;width:360px;height:780px;transform:scale(.8);transform-origin:0 0;border:2px solid var(--pg-line);border-radius:30px;overflow:hidden;background:var(--app);color:var(--txt);display:flex;flex-direction:column;font-family:var(--f-body)}
+.fr.live .ph{transform:scale(.9)}
+.ph.dark{--app:#141614;--surf:#1F221F;--creux:#2A2E2A;--txt:#F6F1E4;--txt2:#9E998C;--bord:#EDE6D3;--bord-d:#3A3F3A;--marque:#34D399;--marque-d:#0F3B2E;--lien:#6EE7B7;--err:#FF9F97;--err-d:#401B18;--corail:#FF7A70;--info-d:#14264A;--key:#3A3F3A;--kbbg:#1F221F;color-scheme:dark}
+.sb{height:26px;flex:none;display:flex;justify-content:space-between;align-items:center;padding:0 22px;font:700 12px var(--f-mono)}
+.hd{display:flex;gap:12px;align-items:center;padding:8px 16px 4px;flex:none}
+.hd .t{font:700 18px var(--f-body)}
+.sq{width:48px;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;flex:none;color:var(--txt)}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bd{flex:1;min-height:0;padding:8px 16px 0;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.ft{flex:none;padding:10px 16px 20px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.sum{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 10px;border:2px solid var(--bord-d);border-radius:10px;background:var(--creux);padding:14px 14px}
+.sum .sn{font:500 14px var(--f-body);color:var(--txt2);white-space:nowrap}
+.sum .sp{margin-left:auto;font:700 18px var(--f-body);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;justify-content:flex-end}
+.sum s{font:500 14px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.sav{display:flex;align-items:center;gap:10px;margin-top:-2px;font:500 14px var(--f-body);color:var(--txt)}
+.badge{display:inline-block;background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:999px;padding:2px 10px;font:700 12px var(--f-mono);letter-spacing:.4px}
+.lab{font:500 14px var(--f-body);color:var(--txt)}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.op{height:52px;border:2px solid var(--bord);border-radius:10px;display:flex;gap:8px;align-items:center;justify-content:center;font:700 15px var(--f-body);background:var(--surf)}
+.op.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.num{height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:10px;padding:0 12px;font:500 16px var(--f-body)}
+.num b{font-weight:700}
+.hint{font:400 13px/1.4 var(--f-body);color:var(--txt2)}
+.lnk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:48px;display:flex;align-items:center;gap:8px;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.promo{display:flex;flex-direction:column;gap:8px}
+.prow{display:flex;gap:8px;align-items:stretch}
+.fld{flex:1;min-width:0;height:52px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--txt)}
+.fld.err{border-color:var(--corail);box-shadow:0 0 0 2px var(--corail)}
+.fld.foc{box-shadow:0 0 0 2px #1A75FF;border-color:#1A75FF}
+.fld input,.fld .fk{flex:1;min-width:0;border:0;background:none;outline:0;font:700 17px var(--f-mono);letter-spacing:1.2px;color:var(--txt);text-transform:uppercase;padding:0;width:100%}
+.fld .fk.ph2{color:var(--txt2);font-weight:400;letter-spacing:.4px}
+.fld .car{display:inline-block;width:2px;height:22px;background:var(--txt);vertical-align:middle;margin-left:1px}
+.btn{height:52px;border:2px solid var(--bord);border-radius:10px;font:700 16px var(--f-body);display:flex;align-items:center;justify-content:center;gap:8px;color:#0A0A0A;background:var(--marque);box-shadow:4px 4px 0 var(--shadow);cursor:pointer;padding:0 16px;width:100%}
+.btn.sec{background:var(--surf);color:var(--txt)}
+.btn.dis{background:var(--creux);color:var(--txt2);box-shadow:none;border-color:var(--bord-d)}
+.btn.sm{width:auto;flex:none;font-size:15px;min-width:112px}
+.btn.txt{background:none;border-color:transparent;box-shadow:none;color:var(--txt);text-decoration:underline;text-underline-offset:3px;height:44px}
+.msg{display:flex;gap:8px;align-items:flex-start;font:500 14px/1.4 var(--f-body);color:var(--err)}
+.msg svg{margin-top:1px}
+.msg.info{color:var(--txt)}
+.cancel{align-self:flex-end}
+.applied{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:10px 10px 10px 12px;display:flex;gap:10px;align-items:center}
+.applied .ic{width:40px;height:40px;border:2px solid var(--bord);border-radius:8px;background:var(--soleil);display:grid;place-items:center;color:#0A0A0A;flex:none}
+.applied .ct{flex:1;min-width:0}
+.applied .cc{font:700 15px var(--f-mono);letter-spacing:.8px}
+.applied .cd2{font:400 13px/1.3 var(--f-body);color:var(--txt2)}
+.rm{border:2px solid var(--bord);border-radius:10px;background:var(--surf);color:var(--txt);min-height:48px;padding:0 10px;display:flex;gap:6px;align-items:center;font:700 14px var(--f-body);cursor:pointer;flex:none}
+.free{border:2px solid var(--bord);border-radius:14px;background:var(--marque);color:#0A0A0A;box-shadow:4px 4px 0 var(--shadow);padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.free b{display:block;font:700 18px var(--f-body)}
+.free span{font:500 14px/1.4 var(--f-body)}
+.lock{display:flex;gap:6px;align-items:center;justify-content:center;font:400 12px var(--f-body);color:var(--txt2)}
+.kb{flex:none;height:262px;background:var(--kbbg);padding:10px 6px 14px;display:flex;flex-direction:column;gap:9px;border-top:2px solid var(--bord-d)}
+.kb div{display:flex;gap:5px;justify-content:center}
+.kb i{font-style:normal;flex:1;max-width:32px;height:44px;border-radius:6px;background:var(--key);display:grid;place-items:center;font:500 18px var(--f-body);color:var(--txt);box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.kb i.w{max-width:none;flex:none;width:96px;font-size:14px}
+.kb i.ok{background:#10B981;color:#0A0A0A;font-weight:700}
+.spin{animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+.rec{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:4px 4px 0 var(--shadow);padding:14px;display:grid;gap:8px}
+.rec .rw{display:flex;justify-content:space-between;gap:10px;font:500 14px var(--f-body)}
+.rec .rw span:first-child{color:var(--txt2)}
+.tag2{justify-self:start;border:2px solid var(--bord);border-radius:6px;padding:1px 8px;font:700 12px var(--f-mono);letter-spacing:.6px}
+.big2{font:400 28px/1.1 var(--f-display)}
+.ok{width:64px;height:64px;border:2px solid var(--bord);border-radius:50%;background:var(--marque);display:grid;place-items:center;color:#0A0A0A;box-shadow:3px 3px 0 var(--shadow)}
+.ok svg{width:30px;height:30px}
+.toast{margin-top:8px;font:500 13px var(--f-mono);color:var(--pg-mute)}
+.of{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:10px 12px;display:flex;gap:10px;align-items:center;min-height:68px;cursor:pointer}
+.of.on{background:var(--marque-d);box-shadow:3px 3px 0 var(--shadow)}
+.of.off{cursor:default}
+.rd{width:22px;height:22px;border:2px solid var(--bord);border-radius:50%;flex:none;display:grid;place-items:center;background:var(--surf);color:#0A0A0A}
+.rd.on{background:var(--marque)}.rd svg{width:14px;height:14px;stroke-width:3}
+.ot{flex:1;min-width:0}.ot b{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font:700 15px var(--f-body)}
+.ot small{display:block;font:400 12px/1.3 var(--f-body);color:var(--txt2)}
+.pr2{flex:none;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:2px;font:700 16px var(--f-body)}
+.pr2 s{font:500 12px var(--f-body);color:var(--txt2);text-decoration-thickness:2px}
+.pr2 .nv{font:500 11px var(--f-body);color:var(--txt2);max-width:92px}
+.pr2 .badge{font-size:11px;padding:1px 8px}
+.cons{background:var(--soleil);color:#0A0A0A;border:2px solid var(--bord);border-radius:6px;padding:0 6px;font:700 10px var(--f-mono);letter-spacing:.5px}
+.rep{border:2px solid var(--bord);border-radius:10px;background:#FFF1B8;color:#0A0A0A;padding:10px 12px;font:500 13px/1.35 var(--f-body);display:flex;gap:8px;align-items:center}
+.ph.dark .rep{background:#3D3514;color:#F6F1E4}
+.note2{font:400 12px/1.4 var(--f-body);color:var(--txt2);text-align:center}
+.warn{border:2px solid var(--bord);border-radius:10px;background:var(--info-d);color:var(--txt);padding:10px 12px;font:500 13px/1.4 var(--f-body);display:flex;gap:8px;align-items:flex-start}
+.phones{display:flex;gap:20px;flex-wrap:wrap}
+.pl{font-family:var(--f-mono);font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--pg-mute);font-weight:700;margin-bottom:6px}
+.blk{margin-top:36px}
+</style>
+
+<style>
+.ot small.no{color:var(--err);display:flex;gap:4px;align-items:flex-start;font-weight:500}
+.ot small.no svg{width:14px;height:14px;margin-top:1px}
+.ctlrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:22px}
+.phones .fr.live{flex:none}
+.of .pr2 span.n{font:700 16px var(--f-body)}
+.btn.sec.pa{box-shadow:3px 3px 0 var(--shadow)}
+.applied.no .ic{background:var(--creux)}
+.ot small.ap{display:flex;gap:6px;align-items:center;margin-top:2px}
+.ot small.ap .badge{font-size:11px;padding:0 8px}
+.of{min-height:60px;padding:8px 12px}
+.ic2{width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none;color:var(--txt)}
+.ic2.so{background:var(--soleil);color:#0A0A0A}
+.ch{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:12px 12px;display:flex;gap:12px;align-items:center;min-height:68px}
+.ch.on{background:var(--marque-d)}
+.ch .ot b{font:700 15px var(--f-body)}
+.ch .ot small{font:400 12px/1.3 var(--f-body);color:var(--txt2);display:block}
+.ch .rad{margin-left:auto;width:24px;height:24px;border:2px solid var(--bord);border-radius:50%;display:grid;place-items:center;flex:none;background:var(--surf)}
+.ch .rad.on{background:var(--marque)}
+.ch .rad svg{width:14px;height:14px;stroke-width:3}
+.pill{flex:1;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;font:700 15px var(--f-body)}
+.pill.on{background:var(--marque);box-shadow:3px 3px 0 var(--shadow)}
+.pills{display:flex;gap:8px}
+.nt{border:2px dashed var(--bord-d);border-radius:10px;padding:10px 12px;font:500 13px/1.4 var(--f-body);color:var(--txt2)}
+.lk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.logo{font:400 22px var(--f-display);letter-spacing:-.3px}
+.logo span{color:var(--marque)}
+.ic2{width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none;color:var(--txt)}
+.ic2.so{background:var(--soleil);color:#0A0A0A}
+.ch{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:3px 3px 0 var(--shadow);padding:10px 12px;display:flex;gap:12px;align-items:center;min-height:68px}
+.ch.on{background:var(--marque-d)}
+.ch .ot b{font:700 15px var(--f-body);display:block}
+.ch .ot small{font:400 12px/1.3 var(--f-body);color:var(--txt2);display:block}
+.ch .rad{margin-left:auto;width:24px;height:24px;border:2px solid var(--bord);border-radius:50%;display:grid;place-items:center;flex:none;background:var(--surf)}
+.ch .rad.on{background:var(--marque)}.ch .rad svg{width:14px;height:14px;stroke-width:3}
+.lg{width:48px;height:48px;border:2px dashed var(--bord-d);border-radius:10px;display:grid;place-items:center;font:700 9px/1.1 var(--f-mono);color:var(--txt2);text-align:center;flex:none;background:var(--surf)}
+.pill{flex:1;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;font:700 15px var(--f-body)}
+.pill.on{background:var(--marque);box-shadow:3px 3px 0 var(--shadow)}
+.pills{display:flex;gap:8px}
+.nt{border:2px dashed var(--bord-d);border-radius:10px;padding:10px 12px;font:500 13px/1.4 var(--f-body);color:var(--txt2)}
+.lk{font:700 14px var(--f-body);color:var(--lien);text-decoration:underline;text-underline-offset:3px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.fl{height:52px;flex:none;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:flex;align-items:center;justify-content:space-between;padding:0 12px;font:500 16px var(--f-body)}
+.lbl2{font:700 12px var(--f-mono);text-transform:uppercase;color:var(--txt2);letter-spacing:.4px}
+.h2s{font:400 22px/1.15 var(--f-display);margin:0}
+.bar{height:10px;border:2px solid var(--bord);border-radius:99px;background:var(--surf);overflow:hidden;flex:none}.bar i{display:block;height:100%;background:var(--marque)}
+.seg{display:flex;border:2px solid var(--bord);border-radius:10px;overflow:hidden;background:var(--creux);flex:none}
+.seg span{flex:1;text-align:center;padding:9px 4px;font:700 12px var(--f-body);white-space:nowrap}
+.seg span.on{background:var(--surf);border-radius:6px;box-shadow:inset 0 -3px 0 var(--marque)}
+.o{border:2px solid var(--bord);border-radius:10px;background:var(--surf);min-height:50px;padding:8px 12px;display:flex;gap:10px;align-items:center;font:500 15px/1.3 var(--f-body);flex:none}
+.o .L{width:28px;height:28px;border:2px solid var(--bord);border-radius:6px;display:grid;place-items:center;font:700 13px var(--f-mono);flex:none}
+.o.sel,.o.ok{background:var(--marque-d)}.o.ko{background:var(--err-d)}
+.mk{margin-left:auto;display:flex;gap:4px;align-items:center;font:700 12px var(--f-mono);white-space:nowrap}.mk svg{width:14px;height:14px}
+.q{font:500 16px/1.4 var(--f-body)}
+.aud{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:10px 12px;display:flex;gap:10px;align-items:center;box-shadow:3px 3px 0 var(--shadow);flex:none}
+.pb{width:44px;height:44px;border:2px solid var(--bord);border-radius:50%;background:var(--marque);display:grid;place-items:center;flex:none;color:#0A0A0A}
+.pic{height:118px;border:2px solid var(--bord);border-radius:10px;background:repeating-linear-gradient(45deg,var(--creux) 0 10px,var(--surf) 10px 20px);display:grid;place-items:center;font:700 11px var(--f-mono);color:var(--txt2);flex:none}
+.gridn{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;flex:none}.gridn span{height:34px;border:2px solid var(--bord);border-radius:8px;display:grid;place-items:center;font:700 13px var(--f-mono);background:var(--surf)}.gridn span.on{background:var(--marque-d)}.gridn span.ok{background:var(--marque)}.gridn span.todo{border-style:dashed;color:var(--txt2)}
+.st{display:inline-flex;gap:4px;align-items:center;border:2px solid var(--bord);border-radius:999px;padding:1px 8px;font:700 11px var(--f-mono);text-transform:uppercase;background:var(--surf);color:var(--txt);white-space:nowrap;width:max-content}.st svg{width:12px;height:12px}
+.st.f{background:var(--err-d)}.st.p{background:var(--soleil);color:#0A0A0A}.st.a{background:var(--marque-d)}
+.flip{border:2px solid var(--bord);border-radius:14px;background:var(--surf);box-shadow:4px 4px 0 var(--shadow);padding:18px;text-align:center;display:grid;gap:8px;align-content:center;min-height:170px;flex:none}
+.big{font:400 26px/1.1 var(--f-display)}
+.sheet{border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:14px 14px 16px;display:grid;gap:10px;box-shadow:4px 4px 0 var(--shadow);flex:none}
+.exam{background:var(--app)}
+.blk2{border:2px solid var(--bord);border-radius:10px;background:var(--creux);padding:10px 12px;font:500 14px/1.4 var(--f-body);flex:none}
+.hl{background:var(--soleil);color:#0A0A0A;padding:0 3px;border-radius:3px}
+.corr{border:2px solid var(--bord);border-radius:14px;background:var(--corrige,#FFF1B8);padding:12px;display:grid;gap:6px;font:500 14px/1.4 var(--f-body);color:#0A0A0A;flex:none}
+.ph.dark .corr{background:#3D3514;color:#F6F1E4}
+.chips2{display:flex;gap:6px;flex-wrap:wrap}.chips2 span{border:2px solid var(--bord);border-radius:999px;padding:3px 10px;font:700 12px var(--f-mono);background:var(--surf)}
+.rowb{display:flex;justify-content:space-between;align-items:center;font:500 14px var(--f-body)}
+.gr2{display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:none}
+.tile{border:2px solid var(--bord);border-radius:10px;background:var(--surf);padding:10px;display:grid;gap:4px;font:700 13px var(--f-body)}
+.tile small{font:400 12px var(--f-body);color:var(--txt2)}
+.dash{border:2px dashed var(--bord-d);border-radius:10px;padding:10px 12px;font:500 13px/1.4 var(--f-body);color:var(--txt2);flex:none}
+.g-sec{font:400 20px var(--f-display);margin:44px 0 6px}
+.grp{font:700 13px var(--f-mono);text-transform:uppercase;letter-spacing:.5px;color:var(--pg-accent);margin:28px 0 0}
+.xb{width:48px;height:48px;border:2px solid var(--bord);border-radius:10px;background:var(--surf);display:grid;place-items:center;flex:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <p class="eyebrow">Maquettes · profil TOEIC · revue complète</p>
+  <h1>Tous les écrans TOEIC</h1>
+  <p class="lead">Revue complète demandée par Benny : chaque écran de la liste des besoins est dessiné, clair et sombre, regroupé par parcours. L'arrivée (onboarding) vient en premier, comme demandé. Les écrans de la V2 restent en épreuve sombre dans les deux thèmes. Les quatre écrans marqués « ajoutés » ne figuraient pas dans la liste : je les propose pour la revue.</p>
+
+  <div class="box" style="margin-top:20px"><h3>Ce qui manque encore, à trancher avec Benny</h3><ul>
+    <li>Logos officiels des examens : je n'ai pas de fichier fourni, donc un emplacement propre « LOGO À FOURNIR ». Pas de faux logo.</li>
+    <li>États vides et hors ligne de chaque écran : je n'en ai dessiné que trois (pack audio manquant, fin d'examen, séance vide). Il faut le reste au lot suivant.</li>
+    <li>Recherche dans le carnet : le champ est dessiné, pas les résultats vides.</li>
+    <li>Parcours de premier usage après le diagnostic : que voit l'élève s'il n'a pas de séance du jour (date passée) ?</li>
+    <li>Démo web gratuite « Teste ton niveau TOEIC » : pas dessinée, décision de Benny.</li>
+  </ul></div>
+
+  <div id="all"></div>
+
+  <h2>Spec pour le dev</h2>
+  <div class="spec">
+    <div class="box"><h3>Règles appliquées</h3><ul>
+      <li>Tokens <code>theme.color.*</code> uniquement ; clair et sombre pour chaque écran, sauf l'épreuve (sombre dans les deux).</li>
+      <li>Aucun emoji. Icônes Lucide (carrées, trait 2) ; un état n'est jamais porté par la couleur seule : chaque état a un texte et une icône (« Fragile », « En progrès », « Acquise », « Juste », « Faux »).</li>
+      <li>Une seule action verte par écran. Texte noir sur toute surface colorée. Cibles de 48 px.</li>
+      <li>Tutoiement. Espaces insécables avant <code>?</code> <code>!</code> <code>:</code>.</li>
+      <li>Les montants (crédits, coûts, seuils de maîtrise, paliers de score) viennent du serveur. Les valeurs visibles sont des exemples.</li>
+      <li>Le score n'est jamais présenté comme officiel : toujours une fourchette, « Une estimation ».</li></ul></div>
+    <div class="box"><h3>Parcours et décisions</h3><ul>
+      <li><b>Arrivée :</b> O1 à O4 et A3 ; objectif par défaut 800 sur 990, valeur libre entre 10 et 990 ; temps par jour 20 minutes par défaut (proposition).</li>
+      <li><b>Diagnostic :</b> 20 questions gratuites ; résultat avec carte de maîtrise résumée et trois points faibles.</li>
+      <li><b>Entraînement :</b> sept types, lecteur audio à écoute unique en mode examen, explication avec notion nommée et « Revoir la notion ».</li>
+      <li><b>Réviser :</b> onglets Parcours, Parties, Cours, Carnet, Tests blancs ; carte de maîtrise par partie.</li>
+      <li><b>Parcours du jour :</b> séance composée (un point de cours, des mots, des questions à rejouer, une série) avec « Pourquoi cette séance ».</li>
+      <li><b>V2 :</b> test blanc, Listening, transition, Reading, pause, bilan sur 990, coût et packs.</li></ul></div>
+    <div class="box"><h3>Évènements PostHog (à ajouter au dictionnaire)</h3><ul>
+      <li><code>cert_exam_chosen</code>, <code>cert_goal_set</code>, <code>cert_goal_skipped</code>, <code>cert_diagnostic_started</code>, <code>cert_diagnostic_completed</code></li>
+      <li><code>cert_exercise_answered</code> {type, partie, juste}, <code>cert_why_missed</code> {raison}, <code>cert_notion_opened</code></li>
+      <li><code>cert_word_state_changed</code>, <code>cert_session_started</code> / <code>cert_session_completed</code> {composition}, <code>cert_mastery_viewed</code></li>
+      <li><code>cert_error_reported</code> {type}</li></ul></div>
+    <div class="box"><h3>Questions pour la revue</h3><ul>
+      <li>Logos : Benny fournit les fichiers officiels, ou on garde l'emplacement ?</li>
+      <li>Temps par jour : 20 minutes par défaut ?</li>
+      <li>Feuille de crédits pour l'explication : un crédit ou gratuit dans le pass ?</li>
+      <li>Ajouter ou non les quatre écrans marqués « ajoutés ».</li></ul></div>
+  </div>
+</div>
+<script>
+const P={
+back:'<path d="m15 18-6-6 6-6"/>',x:'<path d="M18 6 6 18"/><path d="m6 6 12 12"/>',chev:'<path d="m9 18 6-6-6-6"/>',check:'<path d="M20 6 9 17l-5-5"/>',
+award:'<circle cx="12" cy="8" r="6"/><path d="M15.5 12.9 17 22l-5-3-5 3 1.5-9.1"/>',
+lang:'<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+grad:'<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+trophy:'<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+play:'<path d="M6 3l14 9-14 9z"/>',pause:'<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>',
+head:'<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="17" y="14" width="4" height="7" rx="1"/>',
+image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
+clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+book:'<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>',
+notes:'<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/>',
+cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/>',
+target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+alert:'<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
+bulb:'<path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2.3h6c0-1.1.4-1.8 1-2.3A7 7 0 0 0 12 2z"/>',
+flag:'<path d="M4 22V4"/><path d="M4 4h13l-2 4 2 4H4"/>',
+search:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+plus:'<path d="M12 5v14"/><path d="M5 12h14"/>',
+rotate:'<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/>',
+trend:'<path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/>',
+layers:'<path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/>',
+route:'<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+info:'<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+send:'<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>',
+eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+wallet:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>',
+lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+wifi:'<path d="M12 20h.01"/><path d="M8.5 16.4a5 5 0 0 1 7 0"/><path d="M2 8.8a15 15 0 0 1 4.2-2.6"/><path d="M22 8.8a15 15 0 0 0-10-3.8"/><path d="m2 2 20 20"/>',
+flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-1-2-1-4 2 1 4 3 4 6a4 4 0 0 1-8 0c0-2 1-3 2-4 0 2 1 3 1.5 4.5Z"/>',
+circle:'<circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/>',
+user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/>'
+};
+const I=(n,c='')=>`<svg class="i ${c}" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none">${P[n]}</svg>`;
+const SB='<div class="sb"><span>21:04</span><span>4G · 62 %</span></div>';
+const ph=(t,body)=>`<div class="ph ${t}">${SB}${body}</div>`;
+const hd=(title,back=true,right='')=>`<div class="hd">${back?`<span class="sq">${I('back')}</span>`:''}<span class="t" style="flex:1;min-width:0">${title}</span>${right}</div>`;
+const bd=(c,g=10)=>`<div class="bd" style="gap:${g}px">${c}</div>`;
+const ft=(...b)=>`<div class="ft">${b.join('')}</div>`;
+const B=(l,k='')=>`<button class="btn ${k}">${l}</button>`;
+const BS=(l)=>B(l,'sec');
+const BD=(l)=>B(l,'dis');
+const LK=(l)=>`<span class="lk">${l}</span>`;
+const lab=(l)=>`<div class="lbl2">${l}</div>`;
+const H2=(t)=>`<h2 class="h2s">${t}</h2>`;
+const opt=(L,txt,s='')=>`<div class="o ${s}"><span class="L">${L}</span><span>${txt}</span>${s==='ok'?`<span class="mk">${I('check')}Juste</span>`:s==='ko'?`<span class="mk">${I('x')}Faux</span>`:s==='sel'?`<span class="mk">${I('check')}Choisi</span>`:''}</div>`;
+const aud=(lbl,pause=false,pos=35)=>`<div class="aud"><span class="pb">${I(pause?'pause':'play')}</span><div style="flex:1;min-width:0"><b style="font:700 14px var(--f-body)">${lbl}</b><div class="bar" style="margin-top:6px;height:8px"><i style="width:${pos}%"></i></div></div></div>`;
+const ST={f:(l)=>`<span class="st f">${I('alert')}${l}</span>`,p:(l)=>`<span class="st p">${I('trend')}${l}</span>`,a:(l)=>`<span class="st a">${I('check')}${l}</span>`,n:(l)=>`<span class="st">${I('circle')}${l}</span>`};
+const row=(icon,title,sub,right=I('chev'))=>`<div class="ch"><span class="ic2">${I(icon)}</span><div class="ot" style="flex:1;min-width:0"><b>${title}</b><small>${sub}</small></div>${right}</div>`;
+const rad=(on)=>`<span class="rad ${on?'on':''}">${on?I('check'):''}</span>`;
+const seg=(items,on)=>`<div class="seg">${items.map((x,i)=>`<span class="${i===on?'on':''}">${x}</span>`).join('')}</div>`;
+const bar=(p)=>`<div class="bar"><i style="width:${p}%"></i></div>`;
+const shot=(lbl,h=118)=>`<div class="pic" style="height:${h}px">${lbl}</div>`;
+const mini=(n,s,l)=>`<div class="rowb" style="gap:8px"><span style="font:700 13px var(--f-mono);width:70px">${l}</span><div class="bar" style="flex:1;height:8px"><i style="width:${n}%"></i></div>${ST[s]('')}</div>`;
+
+/* ---------- ARRIVÉE ---------- */
+const o1=t=>ph(t,hd('',false)+bd(`<div style="font:400 24px var(--f-display)">Elearn <span style="color:var(--marque)">Prépa</span></div><h2 class="h2s" style="font-size:26px">Bienvenue</h2><p style="font:700 15px var(--f-body);margin:0">Tu es…</p>`+
+ row('grad','Élève','Ton programme du collège ou du lycée','')+row('trophy','Candidat à un concours','Filière, concours, annales','')+row('award','Je prépare une certification','TOEIC, puis d\'autres examens','')+LK("J'ai déjà un compte"),10));
+const o2=t=>ph(t,hd('Certification')+bd(H2('Quelle certification prépares-tu ?')+
+ `<div class="ch on"><span class="lg">LOGO<br>À FOURNIR</span><div class="ot" style="flex:1;min-width:0"><b>TOEIC Listening and Reading</b><small>Anglais des affaires · 2 h · 200 questions</small></div>${rad(true)}</div>`+
+ `<div class="dash">D'autres certifications s'ajouteront au-dessus du TOEIC.</div>`+lab('Ton pays')+`<div class="fl"><span>Cameroun</span>${I('chev')}</div>`)+
+ ft(B('Continuer')+`<p class="hint" style="text-align:center;margin:0">TOEIC est une marque d'ETS. Elearn Prépa n'est pas affilié à ETS.</p>`));
+const o3=t=>ph(t,hd('Ton objectif')+bd(lab('TOEIC · étape 3 sur 3')+H2('Quel score vises-tu ?')+
+ `<div class="pills"><span class="pill">600</span><span class="pill">700</span><span class="pill on">800</span><span class="pill">900</span></div>`+
+ lab('Ou une valeur entre 10 et 990')+`<div class="fl"><span style="font:700 18px var(--f-mono)">820</span><span style="font:500 13px var(--f-body);color:var(--txt2)">sur 990</span></div>`+
+ `<div style="position:relative;height:18px"><div class="bar" style="position:absolute;inset:6px 0 auto"><i style="width:81%"></i></div><span style="position:absolute;left:calc(81% - 10px);top:0;width:20px;height:20px;border:2px solid var(--bord);border-radius:50%;background:var(--marque)"></span></div>`+
+ lab('Date du test')+`<div class="fl"><span style="color:var(--txt2)">Pas encore</span>${I('cal')}</div><p class="hint">Ton plan se construit à partir de ce score. Il ne garantit rien. La date est facultative.</p>`)+
+ ft(B('Continuer')+LK("Passer pour l'instant")));
+const a3=t=>ph(t,hd('Temps par jour')+bd(lab('Étape 4 sur 4')+H2('Combien de temps par jour ?')+
+ row('clock','10 minutes','Une séance courte, une notion ou quelques mots','')+
+ `<div class="ch on"><span class="ic2">${I('clock')}</span><div class="ot" style="flex:1;min-width:0"><b>20 minutes</b><small>Recommandé pour ton objectif</small></div>${rad(true)}</div>`+
+ row('clock','30 minutes','Une séance complète avec une série de questions','')+
+ `<p class="hint">Tu peux changer ce réglage dans Moi.</p>`)+ft(B('Commencer mon plan')));
+const o4=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="sheet" style="box-shadow:4px 4px 0 var(--shadow)"><span class="badge" style="justify-self:start">PREMIER PAS</span><b style="font:700 17px var(--f-body)">Commence par un diagnostic</b><p class="hint" style="color:var(--txt)">20 questions, environ 15 minutes. Gratuit, sans crédit.</p></div>`+
+ `<div class="dash">Pas encore de score estimé. Le diagnostic le calcule.</div>`+row('book','Cours','Une notion à la fois','')+row('notes','Carnet de mots','Vide pour l\'instant','')+row('cal','Séance du jour','Après le diagnostic','')+'')+ft(B('Commencer le diagnostic')));
+
+/* ---------- DIAGNOSTIC ---------- */
+const d1=t=>ph(t,hd('Diagnostic · 6 / 20')+bd(bar(30)+`<div class="chips2" style="align-self:flex-start"><span>Partie 2</span></div>`+aud('Question 6',false,0)+`<div class="q">Question-réponse : choisis la réponse la plus appropriée.</div>`+opt('A','Yes, I will call you back.')+opt('B','At the office on Monday.','sel')+opt('C','It was a good idea.'))+ft(B('Valider')+LK('Passer cette question')));
+const d2=t=>ph(t,hd('Ton résultat',true)+bd(`<div class="sheet"><span class="lbl2">Score estimé</span><div class="big">650 à 730</div><p class="hint" style="color:var(--txt)">Une estimation, pas un score officiel.</p></div>`+
+ `<div class="sheet" style="padding:10px 12px;gap:6px"><b style="font:700 15px var(--f-body)">Ta maîtrise par partie</b>${mini(70,'a','P1 à P2')}${mini(45,'p','P3 à P4')}${mini(30,'f','P5')}${mini(55,'p','P6')}${mini(40,'f','P7')}</div>`+
+ `<b style="font:700 15px var(--f-body)">3 points à travailler</b>`+row('alert','Prépositions de temps','Partie 5 · 4 questions ratées','')+row('alert','Connecteurs','Partie 6 · 3 questions ratées','')+row('alert','Mots du bureau','Vocabulaire · 5 mots à revoir',''))+ft(B('Voir mon plan')));
+const d1x=t=>ph(t,hd('Diagnostic · terminé',true)+bd(`<div class="flip"><span class="big">Diagnostic fait</span><p class="hint" style="color:var(--txt)">Ton plan se prépare. Tu verras ta maîtrise par partie.</p></div>`)+ft(B('Voir mon résultat')));
+
+/* ---------- ENTRAÎNEMENT (B) ---------- */
+const b1=t=>ph(t,hd('Partie 1 · Photos')+bd(bar(40)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',150)+aud('Écoute, puis choisis',false,20)+opt('A','Man reading a newspaper.','')+opt('B','Woman typing on a laptop.','sel')+opt('C','Two men shaking hands.',''))+ft(B('Valider')));
+const b2=t=>ph(t,hd('Partie 2 · Question-réponse')+bd(bar(55)+aud('Question 14',true,48)+`<div class="q">Écoute la question, puis choisis la meilleure réponse.</div>`+opt('A','Sure, I can do it on Friday.','')+opt('B','The meeting room is on the third floor.','ok')+opt('C','Yes, it is very expensive.','ko'))+ft(B('Suivant')));
+const b3=t=>ph(t,hd('Partie 3 · Conversation')+bd(seg(['Question 32','33','34'],0)+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+aud('Conversation, lecture unique',false,70)+`<div class="q">Quel est le problème de la femme ?</div>`+opt('A','Le train est en retard.','')+opt('B','Elle a perdu ses documents.','sel')+opt('C','Le bureau est fermé.',''))+ft(B('Suivant')));
+const b4=t=>ph(t,hd('Partie 4 · Exposé')+bd(bar(70)+aud('Exposé, lecture unique',false,40)+`<div class="blk2">Écoute l'exposé. Les questions arrivent après.</div>`+`<div class="q">Pourquoi le locuteur contacte-t-il l'auditoire ?</div>`+opt('A','Pour annoncer un changement.','')+opt('B','Pour demander un avis.','')+opt('C','Pour présenter un produit.',''))+ft(B('Suivant')));
+const b5=t=>ph(t,hd('Partie 5 · Phrase')+bd(bar(35)+`<div class="chips2"><span>Forme du mot</span></div><div class="q" style="font-size:18px">The new software will be ______ next week.</div>`+opt('A','release','')+opt('B','released','sel')+opt('C','releasing','')+opt('D','releases',''))+ft(B('Valider')));
+const b6=t=>ph(t,hd('Partie 6 · Texte à trous')+bd(bar(60)+`<div class="blk2" style="font-size:14px">Dear client, thank you for your order. <span class="hl">(131)</span> the delivery is delayed, we will contact you. <span style="border-bottom:2px solid var(--bord)">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>`+opt('A','However','sel')+opt('B','Meanwhile','')+opt('C','Therefore','')+opt('D','Despite',''))+ft(B('Suivant')));
+const b7=t=>ph(t,hd('Partie 7 · Documents')+bd(seg(['Doc. 1','Doc. 2','Doc. 3'],1)+`<div class="blk2" style="font-size:13px;height:120px;overflow:hidden">Memo — the Lisbon office will close on 14 March for renovation. Staff in Lisbon should…</div>`+`<div class="q" style="font-size:14px">Pour qui ce message est-il écrit ?</div>`+opt('A','Les clients','')+opt('B','Le personnel de Lisbonne','sel')+opt('C','Les fournisseurs',''))+ft(B('Suivant')));
+const b8=t=>ph(t,hd('Lecteur audio')+bd(aud('Écoute en cours',true,62)+`<div class="sheet" style="padding:10px 12px"><b style="font:700 14px var(--f-body)">Mode examen</b><p class="hint" style="color:var(--txt)">Une seule écoute. Pas de réécoute, vitesse fixe. Reprise possible après un appel ou une coupure.</p></div>`+`<div class="dash">Écoute déjà jouée. La réécoute se fait en entraînement.</div>`+`<div class="gr2" style="font:700 13px var(--f-mono)"><span class="tile">Écoute 1 / 1</span><span class="tile">Vitesse 1×</span></div>`)+ft(B('Continuer')));
+const b9=t=>ph(t,hd('Explication')+bd(`<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}CORRIGÉ</span><b>Bonne réponse : B · Elle a perdu ses documents.</b><span>Ta réponse : C</span><span><b>Notion :</b> Vocabulaire du voyage · Question de compréhension</span><span><b>Piège :</b> le bureau est mentionné, mais il n'est pas la cause.</span></div>`+
+ `<div class="chips2"><span>+ ticket</span><span>+ lost</span><span>+ documents</span></div>`+lab('Mots clés à ajouter au carnet')+`<div class="gr2">${BS('Revoir la notion')}${BS('Pourquoi j\'ai raté ?')}</div>`)+ft(B('Question suivante')));
+const b10=t=>ph(t,hd('Pourquoi j\'ai raté ?',true)+bd(`<p class="hint" style="color:var(--txt)">Une touche. Ça aide ton plan, sans rien changer à ton score.</p>`+row('notes','Je ne connaissais pas le mot','Ajouter au carnet','')+row('bulb','La règle n\'était pas claire','Revoir la notion','')+row('eye','Je l\'ai mal lu','Relire la question','')+row('clock','Trop vite ou trop lentement','Rejouer plus tard','')+LK('Passer'))+'');
+const b11=t=>ph(t,hd('Série terminée',false)+bd(`<div class="flip"><span class="lbl2">Ton résultat</span><span class="big">7 / 10</span><p class="hint" style="color:var(--txt)">Partie 5 · Forme du mot</p></div>`+lab('À rejouer demain')+row('rotate','3 questions ratées','Rejeu dans 1 jour, puis 3 jours','')+lab('Notions touchées')+`<div class="chips2"><span>Forme du mot</span><span>Prépositions</span></div>`+lab('Mots ajoutés au carnet')+`<div class="chips2"><span>release</span><span>postpone</span><span>deadline</span></div>`)+ft(B('Séance du jour'),BS('Refaire la série')));
+/* ---------- RÉVISER (C) ---------- */
+const c1=t=>ph(t,hd('Réviser',false)+bd(seg(['Parcours','Parties','Cours','Carnet','Tests'],1)+lab('Partie 1 à 7')+`<div class="gridn" style="grid-template-columns:repeat(4,1fr)"><span class="on">P1</span><span class="ok">P2</span><span class="todo">P3</span><span class="on">P4</span><span class="todo">P5</span><span class="on">P6</span><span class="todo">P7</span></div>`+
+ row('target','Carte de maîtrise','Notions par partie','')+row('book','Cours par notion','58 notions','')+row('notes','Carnet de mots','214 mots · 42 à revoir','')+'')+ft(''));
+const c2=t=>ph(t,hd('Carte de maîtrise')+bd(`<p class="hint" style="color:var(--txt)">Tes notions, de fragile à acquise. Une notion se travaille avec quelques questions.</p>`+mini(80,'a','Partie 1')+mini(60,'p','Partie 2')+mini(70,'a','Partie 3')+mini(40,'p','Partie 4')+mini(25,'f','Partie 5')+mini(35,'f','Partie 6')+mini(50,'p','Partie 7')+`<div class="gr2">${ST.a('Acquise 12')}${ST.p('En progrès 19')}</div>`+`<div class="gr2">${ST.f('Fragile 9')}${ST.n('Pas commencée 18')}</div>`)+ft(BS('Voir la partie 5')));
+const c3=t=>ph(t,hd('Partie 5 · Notions')+bd(row('target','Forme du mot','6 questions · 2 réussies',ST.f('Fragile'))+row('trend','Prépositions de temps','9 questions · 6 réussies',ST.p('En progrès'))+row('check','Temps du passé','12 questions · 11 réussies',ST.a('Acquise'))+row('circle','Connecteurs','0 question faite',ST.n('Pas commencée'))+BS('Revoir la notion'))+ft(B('M\'entraîner sur Forme du mot')));
+const c4=t=>ph(t,hd('Cours')+bd(seg(['Grammaire','Vocabulaire','Pièges','Méthode'],0)+lab('Grammaire · Partie 5')+row('book','Forme du mot','Nature du mot, 3 minutes','')+row('book','Prépositions de temps','in, on, at, by, until','')+row('book','Temps du passé','Simple et continu','')+lab('Pièges · Partie 6')+row('alert','Connecteurs','However, therefore, despite','')+'')+ft(''));
+const c5=t=>ph(t,hd('Prépositions de temps')+bd(`<div class="sheet" style="padding:10px 12px"><b>Règle</b><p class="hint" style="color:var(--txt)">« on » pour un jour ou une date, « at » pour une heure, « in » pour un mois ou une année.</p></div>`+lab('Exemples')+`<div class="q" style="font-size:14px">We meet <span class="hl">on</span> Monday.<br><span style="color:var(--txt2)">Nous nous voyons lundi.</span></div><div class="q" style="font-size:14px">The report is due <span class="hl">by</span> noon.<br><span style="color:var(--txt2)">Le rapport est dû avant midi.</span></div>`+`<div class="corr" style="padding:10px"><b>Piège TOEIC</b><span>« until » suit une action qui dure. « by » indique une limite.</span></div>`+`<div class="chips2"><span>Faux ami : actually ≠ actuellement</span></div>`+lab('3 questions d\'ancrage')+row('target','Question 1 · 3 minutes','Choisir la préposition','')+'')+ft(B('M\'entraîner sur cette notion')));
+const c6=t=>ph(t,hd('Carnet de mots')+bd(`<div class="fl" style="gap:8px;justify-content:flex-start;color:var(--txt2)">${I('search')}Rechercher un mot</div>`+seg(['À revoir 42','En cours 88','Connus 84'],0)+
+ row('notes','postpone','reporter · boîte 1',ST.f('À revoir'))+row('notes','deadline','date limite · boîte 2',ST.p('En cours'))+row('notes','invoice','facture · boîte 4',ST.a('Connu'))+row('notes','quarterly','trimestriel · boîte 1',ST.f('À revoir'))+`<div style="display:flex;justify-content:flex-end">${B('Ajouter un mot',"")}</div>`)+ft(''));
+const c7=t=>ph(t,hd('postpone')+bd(`<div class="sheet" style="padding:12px"><span class="lbl2">Verbe · définition</span><b style="font:700 16px var(--f-body)">reporter, remettre à plus tard</b><span style="font:400 14px/1.4 var(--f-body)">They decided to postpone the meeting.</span><span style="color:var(--txt2);font:400 13px var(--f-body)">Ils ont décidé de reporter la réunion.</span>${aud('Prononciation',false,0)}</div>`+lab('Questions où il a été raté')+row('alert','Partie 5 · Question 112','Mal classé, mot inconnu','')+row('alert','Partie 7 · Question 178','Vu à la lecture','')+`<div class="rowb"><span>Boîte</span>${ST.f('Boîte 1 · à revoir')}</div>`)+ft(B('Commencer la séance de mots')));
+const c8=t=>ph(t,hd('Séance de mots · 3 / 10',true)+bd(bar(30)+`<div class="flip"><span class="lbl2">Recto</span><span class="big">postpone</span><span class="hint" style="color:var(--txt2)">Touche pour voir la réponse</span></div>`+`<div class="hint">Mot à réviser : rappel dans 1 jour si tu ne le savais pas.</div>`)+ft(BS('Je ne savais pas'),B('Je savais')));
+const c9=t=>ph(t,hd('Séance terminée',false)+bd(`<div class="flip"><span class="lbl2">Ta séance</span><span class="big">7 mots sur 10</span><p class="hint" style="color:var(--txt)">3 mots reviendront demain.</p></div>`+lab('Boîtes')+`<div class="gr2"><span class="tile">Boîte 1 · 4 mots</span><span class="tile">Boîte 2 · 3 mots</span><span class="tile">Boîte 3 · 2 mots</span><span class="tile">Boîte 4 · 1 mot</span></div>`)+ft(B('Retour au carnet')));
+
+/* ---------- PARCOURS DU JOUR (D) ---------- */
+const dacc=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="sheet"><span class="lbl2">Séance du jour · 20 minutes</span><b style="font:700 17px var(--f-body)">Séance du jour</b><p class="hint" style="color:var(--txt)">Parce que tu as raté 4 questions sur les prépositions.</p>${bar(20)}</div>`+`<div class="gr2"><span class="tile">Score estimé<small>650 à 730 sur 990</small></span><span class="tile">Test dans<small>42 jours</small></span></div>`+row('route','Mon plan de la semaine','Séances et rejeux','')+row('target','Carte de maîtrise','3 notions fragiles','')+'')+ft(B('Commencer la séance')));
+const dseance=t=>ph(t,hd('Séance du jour')+bd(`<div class="dash" style="color:var(--txt);font-size:14px"><b>Pourquoi cette séance ?</b><br>Parce que tu as raté 4 questions sur les prépositions, et que 6 mots du carnet arrivent à échéance.</div>`+row('book','Un point de cours','Prépositions de temps · 3 min','')+row('notes','Des mots à revoir','6 mots · séance de mots','')+row('rotate','Des questions à rejouer','4 questions ratées · partie 5','')+row('target','Une série','Partie 5 · 10 questions','')+bar(0)+`<p class="hint">0 sur 4 terminés</p>`)+ft(B('Commencer'),LK('Changer la durée')));
+const dsem=t=>ph(t,hd('Mon plan')+bd(lab('Semaine du 12 octobre')+`<div class="gridn"><span class="ok">L</span><span class="ok">M</span><span class="on">M</span><span class="todo">J</span><span class="todo">V</span><span class="todo">S</span><span class="todo">D</span></div>`+`<div class="sheet" style="padding:10px 12px"><b>Test le 26 novembre</b><p class="hint" style="color:var(--txt)">Il reste 42 jours. Le plan prévoit 3 séances par semaine.</p>${bar(35)}</div>`+row('check','Lundi et mardi','Faits','')+row('cal','Jeudi et plus','Prévus','')+'')+ft(BS('Modifier mon objectif')));
+const dmoi=t=>ph(t,hd('Mon objectif TOEIC')+bd(lab('Score visé')+`<div class="fl"><span style="font:700 17px var(--f-mono)">800</span>${I('chev')}</div>`+lab('Date du test')+`<div class="fl"><span>26 novembre 2026</span>${I('cal')}</div>`+lab('Temps par jour')+`<div class="pills"><span class="pill">10</span><span class="pill on">20</span><span class="pill">30</span></div>`+`<p class="hint">Le score ne garantit rien. Les changements s'appliquent à ton plan du jour.</p>`)+ft(B('Enregistrer')));
+/* ---------- TESTS BLANCS (V2, épreuve sombre) ---------- */
+const e1=t=>ph('dark',hd('Test blanc')+bd(`<div class="sheet" style="background:var(--surf)"><span class="lbl2">Test complet</span><b style="font:700 17px var(--f-body)">200 questions · 2 h</b><p class="hint" style="color:var(--txt)">45 minutes d'écoute, puis 75 minutes de lecture. Pas de pause automatique.</p></div>`+row('clock','Chronomètre exact','Il tourne aussi en arrière-plan','')+row('head','Audio joué une seule fois','Pas de réécoute en Listening','')+row('flag','Pas de retour en Listening','Retour libre en Reading','')+`<div class="dash">Un test blanc ne donne pas de score officiel. L'estimation vient de la même règle que la démo.</div>`)+ft(B('Commencer le test'),LK('Plus tard')));
+const e2=t=>ph('dark',hd('Listening · question 45',false,'')+bd(`<div class="gridn" style="grid-template-columns:repeat(5,1fr)"><span class="ok">41</span><span class="ok">42</span><span class="ok">43</span><span class="on">44</span><span class="todo">45</span></div>`+aud('Question 45 · écoute en cours',true,30)+`<div class="q">Qu'est-ce que la femme va faire ?</div>`+opt('A','Envoyer le contrat.','')+opt('B','Appeler le client.','')+opt('C','Changer de bureau.',''))+ft(`<span class="lk" style="color:var(--txt2)">Pas de retour en Listening</span>`,B('Question suivante')));
+const e3=t=>ph('dark',hd('Transition',false)+bd(`<div class="flip"><span class="lbl2">Fin de Listening</span><span class="big">Reading commence</span><p class="hint" style="color:var(--txt)">Tu peux revenir librement sur les questions de Reading.</p></div>`)+ft(B('Commencer Reading')));
+const e4=t=>ph('dark',hd('Reading · navigation libre',false,'')+bd(`<div class="gridn"><span class="ok">101</span><span class="ok">102</span><span class="todo">103</span><span class="on">104</span><span class="todo">105</span><span class="todo">106</span><span class="todo">107</span><span class="todo">108</span><span class="todo">109</span><span class="todo">110</span></div>`+`<div class="q">Partie 5 · question 104</div><div class="q" style="font-size:16px">The board ______ the new plan on Tuesday.</div>`+opt('A','approve','')+opt('B','approved','')+opt('C','approves',''))+ft(BS('Revoir les questions'),B('Question suivante')));
+const e5=t=>ph('dark',hd('Pause',false)+bd(`<div class="flip"><span class="lbl2">Temps restant</span><span class="big">12:40</span><p class="hint" style="color:var(--txt)">La pause compte dans le temps total, sauf règle fixée pour le test.</p></div>`)+ft(B('Reprendre le test')));
+const e6=t=>ph(t,hd('Bilan du test',false)+bd(`<div class="sheet"><span class="lbl2">Estimation sur 990</span><div class="big">680 à 760</div><p class="hint" style="color:var(--txt)">Une estimation, pas un score officiel.</p></div>`+mini(60,'p','Listening')+mini(45,'f','Reading')+lab('Les 3 notions qui ont coûté le plus')+row('alert','Forme du mot','9 points perdus','')+row('alert','Connecteurs','6 points perdus','')+row('alert','Prépositions','5 points perdus','')+`<p class="hint">Temps par partie : P1 4 min · P5 14 min · P7 31 min</p>`)+ft(B('Voir mon plan')));
+const e7=t=>ph(t,hd('Coût et packs',true)+bd(`<div class="sheet"><span class="lbl2">Ce test blanc coûte</span><div class="big" style="font-size:22px">Exemple : 5 crédits</div><p class="hint" style="color:var(--txt)">Le montant vient du serveur. Les crédits de la semaine sont mis de côté pour tes séances.</p></div>`+row('wallet','Pass inclus','Test blanc illimité pendant le pass','')+row('wifi','Pack hors ligne','Audio et questions pour 7 jours','')+`<p class="hint">Un pack se télécharge sur le Wi-Fi. Le contenu expire après 7 jours sans connexion.</p>`)+ft(B('Télécharger le pack'),BS('Plus tard')));
+/* ---------- AJOUTS ---------- */
+const x1=t=>ph(t,hd('Explication payante',false)+bd(`<div class="sheet"><b style="font:700 17px var(--f-body)">Il te faut 1 crédit</b><p class="hint" style="color:var(--txt)">Une explication détaillée de cette notion. Les séances, le cours et le carnet restent gratuits.</p></div>`+row('lock','Recharger mes crédits','Pass ou crédits','')+row('clock','Revoir la notion gratuitement','Le cours est gratuit','')+'')+ft(B('Voir l\'explication'),LK('Plus tard')));
+const x2=t=>ph(t,hd('Signaler une erreur',true)+bd(`<p class="hint" style="color:var(--txt)">Un corrigé ou une notion te semble faux ? Dis-nous. La relecture se fait dans la semaine.</p>`+row('flag','La bonne réponse est fausse','Question 112','')+row('flag','L\'explication est fausse','Notion : Prépositions','')+row('flag','Le son ne correspond pas','Audio de la question','')+`<div class="dash">Ton message ne contient pas de donnée personnelle.</div>`)+ft(B('Envoyer')));
+const x3=t=>ph(t,hd('Quitter la série ?',false)+bd(`<div class="sheet"><b style="font:700 17px var(--f-body)">Tu peux reprendre plus tard</b><p class="hint" style="color:var(--txt)">Tes réponses sont gardées sur l'appareil, même hors ligne.</p></div>`)+ft(B('Reprendre la série'),BS('Quitter et garder mes réponses')));
+const x4=t=>ph(t,hd('Pack audio manquant',true)+bd(`<div class="sheet" style="border-color:var(--bord)"><span class="st f" style="justify-self:start">${I('alert')}Hors ligne</span><b style="font:700 16px var(--f-body)">Il manque l'audio de ce test</b><p class="hint" style="color:var(--txt)">Le texte reste disponible. Connecte-toi pour télécharger l'audio.</p></div>`+`<div class="dash">Contenu périmé après 7 jours sans connexion : il se remet à jour dès que tu es en ligne.</div>`)+ft(B('Réessayer'),BS('Continuer sans audio')));
+
+const groups=[
+ ['Arrivée et objectif (onboarding, A1 à A3)',[[o1,'O1 · Bienvenue : trois cartes, la nouvelle « Certification »'],[o2,'O2 · Liste des certifications, TOEIC en bas, logo à fournir'],[o3,'O3 · Objectif : score rapide ou valeur libre, 800 par défaut, date facultative'],[a3,'A3 · Temps par jour : 10, 20 ou 30 minutes'],[o4,'O4 · Arrivée : diagnostic proposé en premier']]],
+ ['Diagnostic et résultat (A2)',[[d1,'Question du diagnostic, progression et passer'],[d2,'Résultat : estimation sur 990, carte de maîtrise résumée, 3 points faibles'],[d1x,'Fin du diagnostic, avant le résultat']]],
+ ['Moteur d\'exercice (B, sept types)',[[b1,'Type 1 · Photos (partie 1)'],[b2,'Type 2 · Question-réponse audio (partie 2)'],[b3,'Type 3 · Conversation (partie 3)'],[b4,'Type 4 · Exposé court (partie 4)'],[b5,'Type 5 · Phrase à compléter (partie 5)'],[b6,'Type 6 · Texte à trous (partie 6)'],[b7,'Type 7 · Passage, un ou plusieurs documents (partie 7)'],[b8,'Lecteur audio : écoute unique ou relisible'],[b9,'Explication : notion nommée, piège, Revoir la notion'],[b10,'Feuille « Pourquoi j\'ai raté ? »'],[b11,'Fin de série : à rejouer, notions, mots ajoutés']]],
+ ['Réviser le TOEIC (C)',[[c1,'Réviser : onglets propres au TOEIC, parties 1 à 7'],[c2,'Carte de maîtrise : notions par partie, sans rouge agressif'],[c3,'Une partie : notions avec état'],[c4,'Cours groupés par famille'],[c5,'Fiche d\'une notion, courte, avec trois questions'],[c6,'Carnet de mots : trois listes et recherche'],[c7,'Fiche d\'un mot : définition, audio, erreurs'],[c8,'Séance de mots : rappel espacé'],[c9,'Fin de séance de mots, boîtes']]],
+ ['Parcours du jour (D)',[[dacc,'Accueil TOEIC après le diagnostic'],[dseance,'Séance du jour : composition et pourquoi'],[dsem,'Mon plan : semaine et jours avant le test'],[dmoi,'Moi : objectif, date et temps par jour']]],
+ ['Test blanc (V2, épreuve sombre dans les deux thèmes)',[[e1,'Introduction au test blanc'],[e2,'Listening : question, audio, pas de retour'],[e3,'Transition vers Reading'],[e4,'Reading : navigation libre'],[e5,'Pause'],[e6,'Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'Coût et packs hors ligne']]],
+ ['Écrans ajoutés (manquaient à la liste)',[[x1,'Feuille de crédits pour une explication payante'],[x2,'Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'Quitter une série sans perdre les réponses'],[x4,'Pack audio manquant, hors ligne']]]
+];
+const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
+const frame=h=>`<div class="fr">${h}</div>`;
+let html='';
+for(const [name,list] of groups){
+  html+=`<div class="grp">${name}</div>`;
+  for(const th of ['','dark']){
+    html+=`<div class="row-title" style="margin:8px 0 0"><h3>${th?'Thème sombre':'Thème clair'}</h3></div><div class="rail">`+
+    list.map(([f,c])=>`<div>${frame(f(th))}<p class="cap">${c}</p></div>`).join('')+`</div>`;
+  }
+}
+document.getElementById('all').innerHTML=html;
+</script>
+</body>
+</html>

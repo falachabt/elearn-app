@@ -1,0 +1,31 @@
+# Profil TOEIC : revue complète des écrans (15 octobre 2026)
+
+Aperçu : `docs/maquettes/toeic-revue-complete.html` (ouvrir dans un navigateur). Clair et sombre, cadres de téléphone 360 x 780. Règles générales : `docs/design-regles.md`. Onboarding validé en amont : `docs/maquettes/toeic-parcours-arrivee.md`.
+
+Montants de crédits et durées sont des exemples, pas des valeurs à figer.
+
+## Écrans par parcours
+
+1. **Arrivée et objectif (A1 à A3)** : Bienvenue avec la carte « Je prépare une certification », liste des certifications (TOEIC en bas, logo à fournir), objectif (600, 700, 800, 900, ou valeur libre entre 10 et 990, 800 par défaut), temps par jour (10, 20, 30 minutes).
+2. **Diagnostic (A4)** : accueil « Mon TOEIC » avec le diagnostic proposé en premier.
+3. **Réviser TOEIC (C, parcours D)** : onglets Parcours, Parties, Cours, Carnet, Tests ; navigation par parties 1 à 7 ; carte de maîtrise (sans rouge agressif) ; notions d'une partie avec état ; cours groupés par famille.
+4. **Fiche d'une notion** : règle, exemples, piège TOEIC, faux amis, trois questions d'ancrage, bouton d'entraînement.
+5. **Carnet de mots** : trois listes (à revoir, en cours, connus), recherche, fiche d'un mot avec audio et questions ratées, séance de mots en rappel espacé (recto, verso, « je savais / je ne savais pas »), fin de séance avec boîtes.
+6. **Séance du jour et plan (D, H)** : séance du jour avec « Pourquoi cette séance ? » et composition, mon plan de la semaine, objectif et temps par jour dans Moi.
+
+## Écrans encore absents ou à compléter
+
+- Logo réel des certifications (un emplacement « LOGO À FOURNIR » est prévu, pas de faux logo).
+- États vide, hors ligne, erreur et squelette pour chaque écran ; seuls quelques états sont dessinés.
+- Résultats de recherche dans le carnet.
+- Parcours d'un élève sans séance du jour.
+- Explication d'une question avec notion nommée et « Pourquoi j'ai raté » : à reprendre dans la revue globale.
+- Moteur d'exercice (sept types) et lecteur audio : hors de cet aperçu.
+- Test blanc et page web de démo : non dessinés (V2 ou décision de Benny).
+
+## Questions pour Benny
+
+1. Logos des certifications : les fournit-il, ou garde-t-on l'emplacement ?
+2. Temps par jour : 20 minutes par défaut, ou 10 ?
+3. Les quatre écrans ajoutés au cours de la revue (crédits, signaler une erreur, quitter la série, pack audio manquant) restent-ils dans le périmètre ?
+4. Budget ElevenLabs : 133 000 ou 131 000 par mois ? (le planning indique 133 000)
