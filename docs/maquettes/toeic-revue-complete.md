@@ -54,3 +54,12 @@ Les états sont nommés dans l'écran concerné (par exemple TOEIC-S3 pour une s
 - `TOEIC-B8-ERR-AUDIO` : erreur de lecture dans le lecteur audio, reprise à la même position.
 
 Les types 5 à 7 n'ont pas d'audio : leur seul état d'erreur est le chargement (`TOEIC-B5-CHARGE` à `TOEIC-B7-CHARGE`).
+
+## Navigation du profil TOEIC (version 3)
+
+- `TOEIC-N1` : accueil TOEIC (séance du jour, score estimé, reprise, accès rapides). Remplace le rôle de `TOEIC-D1` (accueil compact de la semaine 1).
+- `TOEIC-N2` : Moi (objectif, temps par jour, crédits et Pass, certification, réglages).
+- `TOEIC-N3` : Réviser, avec les sous-onglets Parcours, Parties, Cours, Carnet, Tests.
+- Barre d'onglets : identique à celle de l'app (Accueil, Réviser, Photo, Questions, Moi). Aucun menu latéral ; deux niveaux maximum.
+- Schéma complet, différences par profil et crédits : dans l'aperçu, en tête de page.
+- Crédits : tableau des actions, proposition à valider par Benny (le cœur du produit reste gratuit, les montants viennent de la configuration serveur).

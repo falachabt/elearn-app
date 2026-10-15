@@ -389,6 +389,74 @@ const x2=t=>ph(t,hd('Signaler une erreur',true)+bd(`<p class="hint" style="color
 const x3=t=>ph(t,hd('Quitter la série ?',false)+bd(`<div class="sheet"><b style="font:700 17px var(--f-body)">Tu peux reprendre plus tard</b><p class="hint" style="color:var(--txt)">Tes réponses sont gardées sur l'appareil, même hors ligne.</p></div>`)+ft(B('Reprendre la série'),BS('Quitter et garder mes réponses')));
 const x4=t=>ph(t,hd('Pack audio manquant',true)+bd(`<div class="sheet" style="border-color:var(--bord)"><span class="st f" style="justify-self:start">${I('alert')}Hors ligne</span><b style="font:700 16px var(--f-body)">Il manque l'audio de ce test</b><p class="hint" style="color:var(--txt)">Le texte reste disponible. Connecte-toi pour télécharger l'audio.</p></div>`+`<div class="dash">Contenu périmé après 7 jours sans connexion : il se remet à jour dès que tu es en ligne.</div>`)+ft(B('Réessayer'),BS('Continuer sans audio')));
 
+// Navigation TOEIC : accueil, barre d'onglets, Moi (N1 à N3)
+P.camera='<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>';
+P.chat='<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>';
+const TB=(act)=>{const items=[['home','Accueil'],['book','Réviser'],['camera','Photo'],['chat','Questions'],['user','Moi']];return `<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--bord);background:var(--surf);padding:8px 0 12px">${items.map(([i,l],k)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:3px;font:700 11px var(--f-body);color:${k===act?'var(--marque)':'var(--txt2)'}">${I(i)}${l}</div>`).join('')}</div>`};
+const n1=t=>ph(t,hd('Accueil',false,`<span class="badge">5 crédits</span>`)+bd(`<p class="hint" style="color:var(--txt)">Objectif 800 · test dans 42 jours</p>`+`<div class="sheet"><span class="lbl2">Séance du jour · 20 minutes</span><b style="font:700 17px var(--f-body)">Séance du jour</b><p class="hint" style="color:var(--txt)">Parce que tu as raté 4 questions sur les prépositions.</p>${bar(20)}</div>`+`<div class="gr2"><span class="tile">Score estimé<small>650 à 730 sur 990</small></span><span class="tile">Mots à revoir<small>42 mots</small></span></div>`+lab('Reprendre')+row('rotate','Série interrompue','Partie 5 · 6 questions sur 10','')+lab('Accès rapides')+`<div class="gr2"><span class="tile">Parties<small>1 à 7</small></span><span class="tile">Cours<small>par notion</small></span><span class="tile">Carnet<small>42 à revoir</small></span><span class="tile">Mon plan<small>3 séances / semaine</small></span></div>`)+ft(B('Commencer la séance'),TB(0)));
+const n2=t=>ph(t,hd('Moi',false)+bd(row('target','Mon objectif','Score 800 · test le 26 novembre','')+row('clock','Temps par jour','20 minutes','')+row('wallet','Crédits et Pass','5 crédits · Pass semaine','')+row('route','Ma semaine','Séances faites et rejeux','')+row('award','Certification','TOEIC · changer','')+row('bulb','Réglages','Sons, notifications, hors ligne',''))+ft(TB(4)));
+const n3=t=>ph(t,hd('Réviser',false)+bd(seg(['Parcours','Parties','Cours','Carnet','Tests'],0)+`<div class="sheet"><b style="font:700 15px var(--f-body)">Parcours</b><p class="hint" style="color:var(--txt)">Ce que tu fais maintenant : la séance du jour et ton plan. Les autres onglets sont des ressources à ton rythme.</p></div>`+row('book','Parties 1 à 7','Carte de maîtrise',``)+row('target','Cours par notion','58 notions','')+row('notes','Carnet de mots','42 mots à revoir','')+row('trophy','Tests blancs','V2, bientôt','')+'')+ft(TB(1)));
+
+const NAV_HTML=`
+<div class="box" style="margin:18px 0"><h3>Schéma de navigation du profil TOEIC</h3>
+<p class="hint" style="color:var(--txt2)">Une seule barre d'onglets, celle de l'app, à cinq onglets. Le TOEIC ne change que ce qu'il y a derrière. Les deux niveaux sont : la barre (Accueil, Réviser, Photo, Questions, Moi) et, à l'intérieur de Réviser, cinq sous-onglets (Parcours, Parties, Cours, Carnet, Tests). Il n'y a pas de menu latéral.</p>
+<pre style="font:400 12.5px/1.55 var(--f-mono);white-space:pre-wrap;margin:10px 0;color:var(--txt)">
+BARRE D'ONGLETS (toujours visible, sauf séries et test blanc, plein écran)
+│
+├─ ACCUEIL (TOEIC-N1)
+│   ├─ Séance du jour ................ TOEIC-D2 ─► série (TOEIC-B*) ─► explication (TOEIC-B9)
+│   │                                                              └─► « Pourquoi j'ai raté » (B10)
+│   │                                                              └─► fin de série (B11) ─► retour Accueil
+│   ├─ Score estimé .................. TOEIC-A7 (résultat du diagnostic, reste accessible)
+│   ├─ Reprendre une série ........... TOEIC-S2 si erreur, sinon reprise directe
+│   └─ Accès rapides ─► Parties (C1/C2/C3) · Cours (C4) · Carnet (C6) · Mon plan (D3)
+│
+├─ RÉVISER (TOEIC-C1) : sous-onglets Parcours · Parties · Cours · Carnet · Tests
+│   ├─ Parcours ...................... séance du jour (D2)
+│   ├─ Parties ....................... P1 à P7 ─► carte de maîtrise (C2) ─► partie (C3) ─► notion (C5)
+│   │                                                                     └─► entraînement de la notion (B*)
+│   ├─ Cours ......................... familles (C4) ─► notion (C5)
+│   ├─ Carnet ........................ listes (C6) ─► mot (C7) ─► séance de mots (C8) ─► fin (C9)
+│   └─ Tests ......................... test blanc (E1 à E7), V2 ; coût et packs (E7)
+│
+├─ PHOTO (central, inchangé) : correction par photo, 5 crédits (règle actuelle)
+│
+├─ QUESTIONS (inchangé) : entraide et sondages, hors périmètre TOEIC
+│
+└─ MOI (TOEIC-N2)
+    ├─ Mon objectif et date .......... TOEIC-D4
+    ├─ Mon plan ...................... TOEIC-D3
+    ├─ Crédits et Pass ............... écrans existants (crédits, Pass, E1 à E7 pour le test blanc)
+    ├─ Ma semaine .................... écran existant
+    ├─ Certification ................. changer de certification ─► liste (TOEIC-A2)
+    └─ Réglages ...................... sons, notifications, hors ligne (existants)
+</pre></div>
+<div class="box" style="margin:18px 0"><h3>Pourquoi cette structure</h3><ul>
+<li>Les onglets ne changent pas : Accueil, Réviser, Photo, Questions, Moi. Un élève qui passe du bac au TOEIC retrouve les mêmes places. Les autres certifications réutilisent la barre telle quelle.</li>
+<li>Ce qui est propre au TOEIC vit dans Accueil (la séance du jour remplace la mission du jour) et dans Réviser (parties, carte de maîtrise, carnet). Les onglets de Réviser sont la seule variation visible.</li>
+<li>Pas de menu latéral ni de tiroir : la navigation est toujours à deux niveaux maximum, retour par la flèche de l'en-tête.</li>
+<li>Le tableau ci-dessous montre ce qui change par profil.</li>
+</ul></div>
+<div class="box" style="margin:18px 0"><h3>Ce qui change par profil</h3>
+<table style="width:100%;border-collapse:collapse;font:400 13px/1.45 var(--f-body)">
+<tr><th style="text-align:left;padding:6px">Onglet</th><th style="text-align:left;padding:6px">Élève</th><th style="text-align:left;padding:6px">Concours</th><th style="text-align:left;padding:6px">TOEIC</th></tr>
+<tr><td style="padding:6px">Accueil</td><td style="padding:6px">Mission du jour, série</td><td style="padding:6px">Mission du jour, annales</td><td style="padding:6px"><b>Séance du jour, score estimé</b></td></tr>
+<tr><td style="padding:6px">Réviser</td><td style="padding:6px">Cours, leçons, fiches, entraînement, annales</td><td style="padding:6px">Idem, avec annales</td><td style="padding:6px"><b>Parcours, Parties, Cours, Carnet, Tests</b></td></tr>
+<tr><td style="padding:6px">Photo</td><td style="padding:6px">Correction photo</td><td style="padding:6px">Idem</td><td style="padding:6px">Idem</td></tr>
+<tr><td style="padding:6px">Questions</td><td style="padding:6px">Entraide, sondages</td><td style="padding:6px">Idem</td><td style="padding:6px">Idem</td></tr>
+<tr><td style="padding:6px">Moi</td><td style="padding:6px">Profil, progression, réglages</td><td style="padding:6px">Idem</td><td style="padding:6px"><b>Objectif, date, temps par jour, plan</b></td></tr>
+</table></div>
+<div class="box" style="margin:18px 0"><h3>Où vit le crédit dans le profil TOEIC</h3>
+<p class="hint" style="color:var(--txt2)">Proposition à valider par Benny. Les montants viennent de la configuration serveur, jamais de l'app. Les exemples ci-dessous reprennent les coûts du modèle v1.13.</p>
+<table style="width:100%;border-collapse:collapse;font:400 13px/1.45 var(--f-body)">
+<tr><th style="text-align:left;padding:6px">Action</th><th style="text-align:left;padding:6px">Coût (exemple)</th><th style="text-align:left;padding:6px">Écran</th></tr>
+<tr><td style="padding:6px">Diagnostic, séance du jour, parties, cours, carnet, séance de mots</td><td style="padding:6px">Gratuit (cœur du produit, proposition)</td><td style="padding:6px">TOEIC-A6, D2, B*, C*</td></tr>
+<tr><td style="padding:6px">Explication détaillée d'une question</td><td style="padding:6px">1 crédit</td><td style="padding:6px">TOEIC-X1</td></tr>
+<tr><td style="padding:6px">Test blanc complet</td><td style="padding:6px">5 crédits, ou inclus au Pass</td><td style="padding:6px">TOEIC-E7</td></tr>
+<tr><td style="padding:6px">Pack hors ligne (audio, 7 jours)</td><td style="padding:6px">Pass</td><td style="padding:6px">TOEIC-E7</td></tr>
+<tr><td style="padding:6px">Correction par photo, question IA</td><td style="padding:6px">5 crédits (règle actuelle)</td><td style="padding:6px">Photo, existant</td></tr>
+</table>
+<p class="hint" style="color:var(--txt2)">Le solde s'affiche sur l'Accueil et dans Moi (TOEIC-N1, TOEIC-N2). Un bouton payant affiche son coût. Crédits épuisés : la feuille « Recharger / Plus tard » existante, sur la même page.</p></div>`;
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -410,6 +478,7 @@ const optsTxt=opt('A','release','')+opt('B','released','');
 
 // Identifiants stables : TOEIC-<section><n>. Ne pas les renommer ; un écran modifié garde son identifiant.
 const groups=[
+ ['Navigation : accueil, barre d\'onglets, Moi (N1 à N3)',[[n1,'TOEIC-N1 · Accueil TOEIC : séance du jour, score estimé, reprise, accès rapides'],[n3,'TOEIC-N3 · Réviser : sous-onglets Parcours, Parties, Cours, Carnet, Tests'],[n2,'TOEIC-N2 · Moi : objectif, temps par jour, crédits et Pass, certification']]],
  ['Arrivée et objectif (A1 à A5)',[[o1,'TOEIC-A1 · Bienvenue : trois cartes, la nouvelle « Certification »'],[o2,'TOEIC-A2 · Liste des certifications, TOEIC en bas, logo à fournir'],[o3,'TOEIC-A3 · Objectif : score rapide ou valeur libre, 800 par défaut, date facultative'],[a3,'TOEIC-A4 · Temps par jour : 10, 20 ou 30 minutes, choisi par l\'élève'],[o4,'TOEIC-A5 · Arrivée : diagnostic proposé en premier']]],
  ['Diagnostic et résultat (A6 à A8)',[[d1,'TOEIC-A6 · Question du diagnostic, progression et passer'],[d2,'TOEIC-A7 · Résultat : estimation sur 990, carte de maîtrise résumée, 3 points faibles'],[d1x,'TOEIC-A8 · Fin du diagnostic, avant le résultat']]],
  ['Moteur d\'exercice (B1 à B11, sept types)',[[b1,'TOEIC-B1 · Type 1, photos (partie 1)'],[b2,'TOEIC-B2 · Type 2, question-réponse audio (partie 2)'],[b3,'TOEIC-B3 · Type 3, conversation (partie 3)'],[b4,'TOEIC-B4 · Type 4, exposé court (partie 4)'],[b5,'TOEIC-B5 · Type 5, phrase à compléter (partie 5)'],[b6,'TOEIC-B6 · Type 6, texte à trous (partie 6)'],[b7,'TOEIC-B7 · Type 7, passage à un ou plusieurs documents (partie 7)'],[b8,'TOEIC-B8 · Lecteur audio, écoute unique ou relisible'],[b9,'TOEIC-B9 · Explication : notion nommée, piège, Revoir la notion'],[b10,'TOEIC-B10 · Feuille « Pourquoi j\'ai raté ? »'],[b11,'TOEIC-B11 · Fin de série : à rejouer, notions, mots ajoutés']]],
@@ -420,9 +489,10 @@ const groups=[
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits pour une explication payante'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]]
 ];
+let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
 const frame=h=>`<div class="fr">${h}</div>`;
-let html='';
+
 for(const [name,list] of groups){
   html+=`<div class="grp">${name}</div>`;
   for(const th of ['','dark']){
