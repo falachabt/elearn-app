@@ -81,3 +81,18 @@ Décision de Benny (15 octobre) : en profil TOEIC, il n'y a pas d'onglet Questio
 - Les identifiants existants ne changent pas. `TOEIC-N3` est mis à jour (sous-onglet Tests retiré).
 
 Question ouverte : la Photo (correction par photo) n'a pas de sens pour un examen à choix multiples. Elle ne sert en TOEIC que pour la rédaction, qui est hors périmètre (V2). Proposition : garder l'onglet Photo au centre pour l'instant, puis le remplacer ou le retirer quand la rédaction sera décidée.
+
+## Crédits TOEIC et états manquants (version 6, cahier v1.4 section 12.6)
+
+Montants : valeurs de seed du cahier, modifiables au back-office. Ils ne sont jamais écrits dans l'app ni dans les textes ; la maquette les montre comme exemples.
+
+- `TOEIC-B9` : bouton « Explication détaillée · 1 crédit » ; « Question suivante » reste le bouton vert. Le reste de l'explication est gratuit.
+- `TOEIC-T1` : coûts affichés sur les lignes. Mini-test par partie 1 crédit, mixte 2, demi-test 8, test complet 15, corrigé complet 3. Pass : 0 (« Avec le Pass, tout est inclus. »).
+- `TOEIC-T2` : coût du mini-test : 1 crédit par partie, 2 en mixte, Pass 0.
+- `TOEIC-T5` : demi-test (V2), nouvel écran.
+- `TOEIC-T6` : test complet « Bientôt », bouton désactivé, nouvel état.
+- `TOEIC-T7` : détail d'une tentative (score, temps, notions, questions ratées), nouvel état.
+- `TOEIC-G1` : page « Gagner » en TOEIC : séance du jour terminée +2, 7 jours de suite +10, objectif atteint +20, premier mini-test mixte +3, plafond 15 par semaine.
+- `TOEIC-E7` : le coût du test complet passe de 5 à 15 crédits (cahier 12.6).
+
+Les identifiants existants ne changent pas. Les nouveaux sont T5, T6, T7 et G1.
