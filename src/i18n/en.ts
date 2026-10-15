@@ -2,6 +2,7 @@ import type { Textes } from './fr';
 
 export const en: Textes = {
   accueil: {
+    compteARebours: { jours: 'd', heures: 'h', minutes: 'min', secondes: 's', estime: 'estimated' },
     titre: 'Elearn Prepa',
     accroche: 'Your pocket tutor.',
     etiquette: 'Version 3 · foundation',

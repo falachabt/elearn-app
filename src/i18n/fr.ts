@@ -3,6 +3,7 @@
 // l'inscrire dans `index.ts`.
 export const fr = {
   accueil: {
+    compteARebours: { jours: 'j', heures: 'h', minutes: 'min', secondes: 's', estime: 'estimé' },
     titre: 'Elearn Prepa',
     accroche: 'Le tuteur de poche.',
     etiquette: 'Version 3 · socle',
