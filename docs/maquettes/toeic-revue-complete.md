@@ -120,3 +120,12 @@ Les identifiants existants ne changent pas. Les nouveaux sont T5, T6, T7 et G1.
 - `TOEIC-B9` : le bouton devient « Explication détaillée » avec un badge « 1 crédit ». Le badge disparaît quand le coût est nul (Pass actif). C'est une règle, pas un écran : `TOEIC-B9-PASS` est supprimé.
 - `TOEIC-G1` : validé tel quel par Benny.
 - Les identifiants existants ne changent pas. Nouveaux : `TOEIC-ST1` à `TOEIC-ST4`. Supprimé : `TOEIC-B9-PASS`.
+
+## Variante en attente : expiration des crédits gagnés (version 10, cahier v1.8)
+
+Non activée : Benny n'a pas encore confirmé l'expiration à 30 jours des crédits gagnés. Les deux écrans sont dans la section « Variante en attente ».
+
+- `TOEIC-X5` : feuille de coût. Ligne ajoutée sous le solde : « dont {e} à utiliser avant le {date} ». Les valeurs de la maquette (12 crédits, 14 novembre 2026) sont des exemples.
+- `TOEIC-X6` : Moi, ligne « Crédits et Pass » avec la même mention.
+- Les écrans actuels (TOEIC-X1, TOEIC-N2) restent la version valide tant que la variante n'est pas confirmée.
+- Les identifiants existants ne changent pas. Nouveaux : `TOEIC-X5` et `TOEIC-X6`.
