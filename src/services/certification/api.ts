@@ -71,10 +71,13 @@ let courante: CertApi | null = null;
 
 /** Contenu embarqué (essais sur Expo web) : jamais actif en production, voir `demo/`. */
 function apiDemoSiDemandee(): CertApi | null {
-  if (!__DEV__ || process.env.EXPO_PUBLIC_CERT_DEMO !== '1') return null;
-  // Chargé seulement dans ce cas : sans la condition ci-dessus, l'export de production l'élimine du paquet.
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  return (require('./demo/apiDemo') as typeof import('./demo/apiDemo')).apiDemo;
+  // Le `require` est dans le bloc conditionnel : l'export de production replie la condition (`__DEV__` faux) et retire
+  // le module et son contenu du paquet. Une sortie anticipée avant le `require` ne suffirait pas.
+  if (__DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO === '1') {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return (require('./demo/apiDemo') as typeof import('./demo/apiDemo')).apiDemo;
+  }
+  return null;
 }
 
 export function obtenirApi(): CertApi {
