@@ -176,6 +176,17 @@ export async function lireDernierResultat(): Promise<ResultatMission | null> {
   return brut ? (JSON.parse(brut) as ResultatMission) : null;
 }
 
+/** Jour (AAAA-MM-JJ) où l'alerte « ta série est en danger » a été montrée à l'ouverture : une fois par jour. */
+export const CLE_ALERTE_SERIE = 'mission.alerteSerie';
+
+export async function lireAlerteSerie(): Promise<string | null> {
+  return AsyncStorage.getItem(CLE_ALERTE_SERIE);
+}
+
+export async function noterAlerteSerie(jour: string): Promise<void> {
+  await AsyncStorage.setItem(CLE_ALERTE_SERIE, jour);
+}
+
 /**
  * Fin de mission (M4-03) : résultat et série calculés sur le téléphone (visibles sans réseau), puis envoyés au serveur
  * sans bloquer. Une deuxième mission le même jour ne change pas la série.

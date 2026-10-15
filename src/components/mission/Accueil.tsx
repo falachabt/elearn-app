@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { calculerSerie, chargerMission, jourLocal, lireDernierResultat, lireHistorique, type Mission, type ResultatMission } from '@/services/mission';
+import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
 import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
@@ -27,6 +27,7 @@ import { CompteARebours } from '../accueil/CompteARebours';
 import { lireCalendrierClasse, prochaineEcheance, type EcheanceClasse } from '@/services/calendrier';
 import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
+import { FeuilleSerie } from './FeuilleSerie';
 import { Reprise } from './Reprise';
 import { identiteDe } from '@/services/identite';
 import { ecouterGainXp, lireUserXp } from '@/services/xp';
@@ -116,6 +117,9 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
+  const [joues, setJoues] = useState<string[]>([]);
+  const [feuilleSerie, setFeuilleSerie] = useState(false);
+  const [serieEnDanger, setSerieEnDanger] = useState(false);
   // Prochaine échéance de la classe (issue #65) : null tant que la base n'a rien, ou pour un invité ou un concours.
   // Liée à la clé (classe, pays, session) qui l'a calculée : une valeur d'une autre classe ou session n'est jamais affichée.
   const [echeanceCalculee, setEcheanceCalculee] = useState<{ cle: string; echeance: EcheanceClasse | null } | null>(null);
@@ -194,7 +198,14 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         if (actif) {
           setProfil(p);
           setTotalXp(xp);
+          setJoues(historique);
           setEtat((e) => ({ ...e, serie, faite }));
+        }
+        // Série en danger à l'ouverture (mission du jour pas faite) : feuille ouverte toute seule, une fois par jour.
+        if (actif && serie > 0 && !faite && (await lireAlerteSerie()) !== jour) {
+          await noterAlerteSerie(jour);
+          setSerieEnDanger(true);
+          setFeuilleSerie(true);
         }
         if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
@@ -226,10 +237,22 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         <View style={styles.entete}>
           <SelecteurClasse profil={profil} />
           {etat.serie > 0 ? (
-            <View accessible accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })} style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <Ionicons name="flame" size={14} color={surVert} />
-              <Text style={[typo.etiquette, { color: surVert }]}>{t('mission.serie', { n: etat.serie })}</Text>
-            </View>
+            <Appui
+              accessibilityRole="button"
+              accessibilityLabel={t('mission.serieLibelle', { n: etat.serie })}
+              onPress={() => {
+                setSerieEnDanger(false);
+                setFeuilleSerie(true);
+              }}
+              rayon={rayon.s}
+              decalage={2}
+              hitSlop={4}
+            >
+              <View style={[styles.serie, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Ionicons name="flame" size={14} color={surVert} />
+                <Text style={[typo.etiquette, { color: surVert }]}>{t('mission.serie', { n: etat.serie })}</Text>
+              </View>
+            </Appui>
           ) : null}
           <CompteurCredits />
           <Cloche />
@@ -317,6 +340,17 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Appui>
       </Apparition>
     </Ecran>
+    <FeuilleSerie
+      ouverte={feuilleSerie}
+      onFermer={() => setFeuilleSerie(false)}
+      serie={etat.serie}
+      joues={joues}
+      enDanger={serieEnDanger}
+      onFaireMission={() => {
+        setFeuilleSerie(false);
+        router.push('/mission');
+      }}
+    />
     <FeuilleCompte raison={rappelCompte ? 'rappel' : null} onFermer={() => setRappelCompte(false)} onCompte={() => setRappelCompte(false)} />
     </View>
   );
