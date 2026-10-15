@@ -104,3 +104,7 @@ Les identifiants existants ne changent pas. Les nouveaux sont T5, T6, T7 et G1.
 - **E-44, test complet « Bientôt »** : `TOEIC-T6` ne promet plus de prévenir l'élève, car aucune notification n'existe pour ce cas. Texte : « Il n'est pas encore disponible. En attendant, les mini-tests et ton historique restent accessibles. » Si Benny veut une notification, c'est une exigence nouvelle à écrire dans le cahier.
 - **E-45, phrase sur les crédits mis de côté** : retirée de `TOEIC-E7`. Le texte devient « Le montant vient du serveur et s'affiche avant le lancement. »
 - Les identifiants existants ne changent pas ; `TOEIC-B9-PASS` est le seul nouvel identifiant de cette version.
+
+## Durées des demi-tests (version 8, cahier v1.6)
+
+- `TOEIC-T5` : demi-test écoute, parties 1 à 4, 100 questions, 45 minutes. Demi-test lecture, parties 5 à 7, 100 questions, 75 minutes. Chacun 8 crédits, Pass 0. Les durées « à fixer » sont remplacées.
