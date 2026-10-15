@@ -1,7 +1,7 @@
 # Cahier des charges de référence : profil TOEIC (Elearn Prepa)
 
-**Version 1.0 du 15 octobre 2026.** Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
-Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `d39d78b`.
+**Version 1.1 du 15 octobre 2026** (1.0 + navigation N1 à N3, options de réponse v4, crédits et Pass). Document de référence unique entre le cahier, le design et le code. Il remplace la version 0.3 (archivée dans `cahier-des-charges-v0.3-archive.md`) et complète, sans la remplacer, la section « certifications » de la PR elearn-app #43 (`docs/certifications/`, exigences CERT-n).
+Maquettes de référence (branche `claude/project-thread-kw792g` d'`elearn-app`) : `docs/maquettes/toeic-revue-complete.html` (43 écrans, clair et sombre) et `.md`, `docs/maquettes/toeic-parcours-arrivee.html` et `.md`. Dernier commit lu : `1953b17`.
 Quota ElevenLabs à retenir : 131 000 crédits par mois (Benny, 15 octobre). Démo : 16 000 crédits.
 
 ## 0. Comment lire et utiliser ce document
@@ -16,7 +16,7 @@ Toute exigence porte un identifiant stable. Une exigence supprimée est marquée
 Chaque pull request ou commit qui touche le profil TOEIC cite les identifiants d'écran et d'exigence. (Pas de PR pour l'app : commit direct sur la branche de travail, selon la règle de Benny.)
 
 ### 0.2 Identifiants d'écran
-Les identifiants sont ceux de la maquette version 2 (`docs/maquettes/toeic-revue-complete.md`, commit `ced993c`, états du moteur d'exercice au commit `9148a7b`) : `TOEIC-<section><n>`, stables, jamais renommés. Dans ce cahier, le préfixe `TOEIC-` est omis (A1 = TOEIC-A1). Sections : **A** arrivée, objectif, diagnostic ; **B** moteur d'exercice ; **C** réviser ; **D** parcours du jour ; **E** test blanc ; **S** états transverses ; **X** écrans ajoutés ; **B*-CHARGE / -AUDIO-KO / -ERR-AUDIO** états du moteur.
+Les identifiants sont ceux de la maquette version 2 (`docs/maquettes/toeic-revue-complete.md`, commit `ced993c`, états du moteur d'exercice `9148a7b`, navigation N1 à N3 `b74a711`, options de réponse v4 `1953b17`) : `TOEIC-<section><n>`, stables, jamais renommés. Dans ce cahier, le préfixe `TOEIC-` est omis (A1 = TOEIC-A1). Sections : **N** navigation (accueil, Réviser, Moi) ; **A** arrivée, objectif, diagnostic ; **B** moteur d'exercice ; **C** réviser ; **D** parcours du jour ; **E** test blanc ; **S** états transverses ; **X** écrans ajoutés ; **B*-CHARGE / -AUDIO-KO / -ERR-AUDIO** états du moteur.
 Correspondance avec les premiers noms : O1 = A1, O2 = A2, O3 = A3, ancien A3 « temps par jour » = A4, O4 = A5.
 
 ### 0.3 Lots de livraison (voir `planning.md`)
@@ -55,7 +55,7 @@ Tout ce qui n'est pas dessiné est marqué **[maquette à venir]**. Le développ
 
 - **R-01 Interface** : aucun emoji ; icônes Lucide carrées, trait 2 ; tokens `theme.color.*` uniquement ; une seule action verte par écran ; texte noir sur surface colorée ; cibles de 48 px minimum espacées de 8 px ; tutoiement ; espace insécable avant `?` `!` `:` ; texte qui suit la taille système jusqu'à 130 %.
 - **R-02 Thèmes** : chaque écran existe en clair et en sombre. Exception : l'**épreuve** (E1 à E5) reste sombre dans les deux thèmes.
-- **R-03 États sans couleur seule** : chaque état porte un texte et une icône (Fragile, En progrès, Acquise, Pas commencée, Juste, Faux, Choisi).
+- **R-03 États sans couleur seule** : chaque état porte un texte et une icône (Fragile, En progrès, Acquise, Pas commencée, Juste, Faux). Une option **sélectionnée** n'affiche plus de libellé ni de coche (maquette v4) : elle est portée par le fond vert, un contour de 3 px et une lettre inversée ; le lecteur d'écran annonce « Choisi ».
 - **R-04 Montants** : aucun montant (crédits, coûts, seuils, paliers, délais) dans le code, les textes ou les tests. Les valeurs de la maquette sont des exemples. Lus dans `credit_settings`, `credit_actions` et `cert_settings`.
 - **R-05 Score** : jamais présenté comme officiel ; toujours une fourchette ; mention « Une estimation, pas un score officiel. » partout où un score apparaît.
 - **R-06 Marque** : mention « TOEIC est une marque d'ETS. Elearn Prépa n'est pas affilié à ETS. » sur A2 et dans « À propos » ; jamais de logo ETS ; logo fourni par Benny, sinon emplacement (voir écart E-05).
@@ -149,16 +149,8 @@ Tous les paramètres entre accolades sont dans `cert_settings` (clé/valeur JSON
 - Valeur libre : entier entre 10 et 990 (bornes de la maquette) ; la saisie libre et le curseur partagent la même valeur ; un palier est mis en évidence s'il est égal à la valeur.
 - La date du test est facultative, strictement postérieure à aujourd'hui.
 
-### F10 Crédits (R-04)
-| Action | Clé `credit_actions` | Gratuit ? |
-| --- | --- | --- |
-| Diagnostic | aucune | oui, sans compte |
-| Réponse juste/faux, bonne réponse, notion nommée | aucune | oui |
-| Cours, carnet, séance de mots, rejeu | aucune | oui |
-| Explication détaillée d'une question | `cert_explanation` | incluse dans le pass |
-| Demi-test blanc | `cert_mock_half` | incluse dans le pass |
-| Test blanc complet | `cert_mock_full` | incluse dans le pass |
-Le serveur vérifie le droit avant de servir l'explication et débite de façon idempotente (opération identifiée), comme `depenser_credits` aujourd'hui.
+### F10 Crédits
+La règle des crédits et du Pass est la **section 12** (deux options, recommandation, décision de Benny attendue : Q-12). En attendant la décision, le code n'implémente aucun débit autre que ceux de la section 12.1 (communs aux deux options).
 
 ## 5. Spécification écran par écran
 
@@ -257,7 +249,7 @@ Noms de composants : ceux qui existent sont notés ainsi (existant) ; les autres
 - **Entrée** : série d'entraînement (depuis C3, C5, D2), diagnostic (A6), rejeu (D2), test blanc (E2, E4 en V2). **Sortie** : question suivante ; après la dernière, B11 (série) ou A8 (diagnostic) ; quitter → X3.
 - **Données** : une question `cert_questions` (type, partie, énoncé, options, bonne réponse, notion principale et secondaires, mots clés, explication, piège), audio/image si besoin, via RPC de série `cert_series_get(...)`. La bonne réponse et l'explication ne sont **pas** envoyées avant la réponse hors diagnostic (option A, R-08) ; hors ligne, le corrigé local est celui du contenu préparé (R-07).
 - **Éléments communs** : barre de progression (`bar`), pastille de partie ou de notion, énoncé, 3 ou 4 options (composant existant `OptionReponse`), bouton « Valider » (désactivé tant qu'aucune option n'est choisie), après validation bouton « Suivant » / « Question suivante », retour → X3.
-- **Choix d'une option** : état « Choisi » (coche + texte) ; un seul choix ; après validation, en entraînement : « Juste » (coche) sur la bonne option, « Faux » (croix) sur l'option choisie si erreur, B9 s'ouvre ; en diagnostic : pas de correction (A6).
+- **Choix d'une option** : état sélectionné = fond vert + contour de 3 px + lettre inversée, sans libellé « Choisi » ni coche (maquette v4, `1953b17`), annoncé « Choisi » par le lecteur d'écran ; un seul choix ; après validation, en entraînement : « Juste » (coche) sur la bonne option, « Faux » (croix) sur l'option choisie si erreur, B9 s'ouvre ; en diagnostic : pas de correction (A6).
 - **États communs** : chargement `B<n>-CHARGE` ; son indisponible `B1..B4-AUDIO-KO` ; lecture interrompue `B3-ERR-AUDIO` ; réponse non envoyée S4 ; hors ligne S3 ; erreur de série S2.
 - **Règles** : la réponse est écrite localement avant tout envoi (`cert.reponses.file`, `client_uuid` par réponse) ; une réponse ne peut être modifiée après validation ; un temps de réponse est mesuré (secondes) mais jamais montré ; le son se joue via `expo-audio` (déjà dans l'APK, AGENTS.md §17).
 - **Évènements** : `cert_exercise_answered { type, partie, juste }` à chaque validation.
@@ -273,7 +265,7 @@ Noms de composants : ceux qui existent sont notés ainsi (existant) ; les autres
 | B6 | Texte à trous | 6 | « Partie 6 · Texte à trous » ; « Dear client, thank you for your order. (131) the delivery is delayed, we will contact you. » ; « However » (choisie), « Meanwhile », « Therefore », « Despite » | Le trou courant est surligné et numéroté |
 | B7 | Passage, un ou plusieurs documents | 7 | « Partie 7 · Documents » ; onglets « Doc. 1 », « Doc. 2 », « Doc. 3 » ; extrait « Memo — the Lisbon office will close on 14 March for renovation. Staff in Lisbon should… » ; « Pour qui ce message est-il écrit ? » ; « Les clients », « Le personnel de Lisbonne » (choisie), « Les fournisseurs » | Zone de lecture de hauteur fixe défilante ; onglets = documents ; le texte d'un document est le contenu d'un `cert_passages` |
 
-Acceptation transverse : AC-B-1 aucune bonne réponse n'est présente dans la charge utile réseau avant validation (hors diagnostic terminé) ; AC-B-2 un tap sur une option change l'état « Choisi » sans valider ; AC-B-3 l'ordre des options est conservé après validation ; AC-B-4 chaque type s'affiche en clair, en sombre et à 130 % sans défilement latéral.
+Acceptation transverse : AC-B-1 aucune bonne réponse n'est présente dans la charge utile réseau avant validation (hors diagnostic terminé) ; AC-B-2 un tap sur une option la sélectionne (fond, contour, lettre inversée) sans valider ; les libellés « Juste » et « Faux » restent après validation ; AC-B-3 l'ordre des options est conservé après validation ; AC-B-4 chaque type s'affiche en clair, en sombre et à 130 % sans défilement latéral.
 
 #### B8 · Lecteur audio · lot S1 (mode examen : V2)
 - **But** : lire l'audio d'une question. **Entrée / Sortie** : composant intégré aux écrans B1 à B4, A6, E2.
@@ -326,8 +318,8 @@ Il reste à compléter par l'agent design : états d'erreur de chargement par ty
 - **Données** : nombre de notions publiées (`cert_notions`), mots du carnet et mots « à revoir » (F5), état des parties P1 à P7.
 - **Interactif** : onglets segmentés « Parcours », « Parties », « Cours », « Carnet », « Tests » (onglet courant : « Parties ») ; tuiles P1 à P7 → C3 de la partie ; ligne « Carte de maîtrise » → C2 ; ligne « Cours par notion » → C4 ; ligne « Carnet de mots » → C6.
 - **Textes exacts** : en-tête « Réviser » ; onglets ci-dessus ; étiquette « Partie 1 à 7 » ; lignes « Carte de maîtrise » / « Notions par partie », « Cours par notion » / « 58 notions », « Carnet de mots » / « 214 mots · 42 à revoir ».
-- **Règles** : l'onglet « Tests » (blancs) n'existe qu'à partir du lot V2 (D-02) ; en S1 il est absent (jamais désactivé). L'onglet « Parcours » ouvre D1. Les nombres « 58 » et « 214 · 42 » sont des exemples calculés, jamais figés. Les tuiles P1 à P7 ont trois aspects dans la maquette (`on`, `ok`, `todo`) dont la signification n'est écrite nulle part : écart E-16, question ouverte Q-05. Le code ne les distingue pas tant que la règle n'est pas écrite (toutes les tuiles ont l'aspect neutre).
-- **Acceptation** : AC-C1-1 le nombre de notions vient du serveur ; AC-C1-2 « 42 à revoir » égale le nombre de mots en boîte 1 ; AC-C1-3 en S1 l'onglet « Tests » est absent ; AC-C1-4 chaque tuile ouvre la bonne partie.
+- **Règles** : C1 est le contenu de l'onglet **Parties** de N3 ; l'onglet « Tests » est présent dès S1 (maquette N3) et affiche l'état « bientôt » jusqu'au lot V2 (D-02 modifiée par J-004, écart E-28). L'onglet « Parcours » ouvre D1. Les nombres « 58 » et « 214 · 42 » sont des exemples calculés, jamais figés. Les tuiles P1 à P7 ont trois aspects dans la maquette (`on`, `ok`, `todo`) dont la signification n'est écrite nulle part : écart E-16, question ouverte Q-05. Le code ne les distingue pas tant que la règle n'est pas écrite (toutes les tuiles ont l'aspect neutre).
+- **Acceptation** : AC-C1-1 le nombre de notions vient du serveur ; AC-C1-2 « 42 à revoir » égale le nombre de mots en boîte 1 ; AC-C1-3 en S1 l'onglet « Tests » est présent et mène à l'état « bientôt » ; AC-C1-4 chaque tuile ouvre la bonne partie.
 - **Tests** : Jest (onglets, navigation, comptes).
 
 #### C2 · Carte de maîtrise · lot S1
@@ -399,7 +391,8 @@ Il reste à compléter par l'agent design : états d'erreur de chargement par ty
 
 ### 5.D Parcours du jour
 
-#### D1 · Accueil TOEIC après le diagnostic · lot S1
+#### D1 · Accueil TOEIC après le diagnostic · **remplacé par N1** (J-003)
+> L'agent design indique que N1 remplace le rôle de D1. Cette fiche reste comme historique ; le code implémente **N1**. Les règles de contenu ci-dessous (séance, score, jours avant le test) s'appliquent à N1.
 - **But** : accueil du profil. **Entrée** : A7, onglet d'accueil. **Sortie** : D2, D3, C2.
 - **Données** : séance du jour (F7), score estimé (F1, F2), jours avant le test (F8), maîtrise.
 - **Interactif** : « Commencer la séance » → D2 ; tuile « Score estimé » → A7 ; ligne « Mon plan de la semaine » → D3 ; ligne « Carte de maîtrise » → C2.
@@ -432,6 +425,51 @@ Il reste à compléter par l'agent design : états d'erreur de chargement par ty
 - **Évènements** : `cert_goal_set` (si le score ou la date change), `cert_daily_time_set`.
 - **Acceptation** : AC-D4-1 un changement est visible dans D1 et D3 sans relance ; AC-D4-2 aucune valeur hors bornes n'est enregistrée.
 - **Tests** : Jest.
+
+### 5.N Navigation du profil TOEIC (maquette version 3, `b74a711`)
+
+**Structure** : une seule barre d'onglets, celle de l'app, inchangée (composant existant `LayoutOnglets`) : **Accueil · Réviser · Photo (central) · Questions · Moi**. Aucun menu latéral, aucun tiroir ; deux niveaux au plus ; retour par la flèche de l'en-tête. Le TOEIC ne change que ce qu'il y a derrière Accueil, Réviser et Moi. Photo et Questions sont inchangés.
+La barre est visible partout sauf pendant une série et un test blanc (plein écran). Le profil `certification` choisit les écrans TOEIC ; les profils Élève et Concours gardent les leurs.
+
+| Onglet | Élève | Concours | TOEIC |
+| --- | --- | --- | --- |
+| Accueil | Mission du jour, série | Mission du jour, annales | **N1 : séance du jour, score estimé** |
+| Réviser | Cours, leçons, fiches, entraînement, annales | Idem avec annales | **N3 : Parcours, Parties, Cours, Carnet, Tests** |
+| Photo | Correction photo | Idem | Idem |
+| Questions | Entraide, sondages | Idem | Idem |
+| Moi | Profil, progression, réglages | Idem | **N2 : objectif, date, temps par jour, plan** |
+
+**Carte de navigation** (feuilles : écran ; flèche : ouvre) :
+- **Accueil (N1)** → « Commencer la séance » (D2) → bloc cours (C5), bloc mots (C8 → C9), bloc rejeu / série (B* → B9 → B10 → B11 → retour Accueil) ; tuile « Score estimé » (A7) ; « Reprendre » (reprise directe de la série, ou S2 en cas d'erreur) ; accès rapides : Parties (C1, C2, C3), Cours (C4), Carnet (C6), Mon plan (D3).
+- **Réviser (N3)** : sous-onglets Parcours (D2), Parties (C1 → C2 → C3 → C5 ou série B*), Cours (C4 → C5), Carnet (C6 → C7 → C8 → C9), Tests (E1 à E7, état « bientôt » avant V2).
+- **Photo** : inchangé, 5 crédits (règle actuelle).
+- **Questions** : inchangé.
+- **Moi (N2)** : objectif et date (D4 → A3), temps par jour (D4), crédits et Pass (écrans existants), Ma semaine (existant), Certification (A2), réglages (existants).
+
+#### N1 · Accueil TOEIC · lot S1
+- **But** : l'accueil du profil, remplace la mission du jour. **Entrée** : onglet Accueil ; fin de A7. **Sortie** : D2, A7, reprise, C1, C4, C6, D3.
+- **Données** : solde de crédits (service existant `credits`), objectif et date (`cert_user_plan`), séance du jour (F7), score estimé (F1, F2), mots à revoir (F5), série interrompue (file locale), plan (D3).
+- **Interactif** : « Commencer la séance » → D2 ; tuile « Score estimé » → A7 ; ligne « Série interrompue » → reprise de la série ; tuiles d'accès rapides → C1, C4, C6, D3 ; pastille de crédits de l'en-tête → écran des crédits existant.
+- **États** : avant diagnostic ou sans réponse : S7 ; diagnostic partiel : S8 ; aucune série interrompue : le bloc « Reprendre » est omis ; sans date de test : la phrase « test dans… » est omise ; squelette, erreur, hors ligne [maquette à venir] ; compte invité : pastille de crédits invité (comportement existant).
+- **Textes exacts** : en-tête « Accueil » avec pastille « 5 crédits » (exemple, solde du serveur) ; « Objectif 800 · test dans 42 jours » ; « Séance du jour · 20 minutes » ; « Séance du jour » ; « Parce que tu as raté 4 questions sur les prépositions. » ; tuiles « Score estimé » / « 650 à 730 sur 990 » et « Mots à revoir » / « 42 mots » ; étiquette « Reprendre » ; ligne « Série interrompue » / « Partie 5 · 6 questions sur 10 » ; étiquette « Accès rapides » ; tuiles « Parties » / « 1 à 7 », « Cours » / « par notion », « Carnet » / « 42 à revoir », « Mon plan » / « 3 séances / semaine » ; bouton « Commencer la séance » ; barre d'onglets avec Accueil actif.
+- **Règles** : « 3 séances / semaine » dépend de Q-06 ; tant que D3 (S2) n'existe pas, la tuile « Mon plan » est omise (D-04). Le solde n'est jamais écrit en dur.
+- **Évènements** : `cert_session_started { composition }` au tap sur le bouton.
+- **Acceptation** : AC-N1-1 la pastille reflète le solde du serveur et le mode pass (illimité) ; AC-N1-2 « Reprendre » apparaît seulement si une série incomplète existe, avec le bon décompte ; AC-N1-3 « Mots à revoir » égale le nombre de mots en boîte 1 ; AC-N1-4 le bouton est l'unique action verte ; AC-N1-5 la barre d'onglets est celle de l'app, avec Accueil actif.
+- **Tests** : Jest (états S7, S8, normal ; reprise ; pastille crédits pass et non-pass).
+
+#### N2 · Moi (profil TOEIC) · lot S1
+- **But** : réglages et compte pour un profil certification. **Entrée** : onglet Moi. **Sortie** : D4, D3, écrans crédits/Pass, Ma semaine, A2, réglages.
+- **Textes exacts** : en-tête « Moi » ; lignes « Mon objectif » / « Score 800 · test le 26 novembre », « Temps par jour » / « 20 minutes », « Crédits et Pass » / « 5 crédits · Pass semaine », « Ma semaine » / « Séances faites et rejeux », « Certification » / « TOEIC · changer », « Réglages » / « Sons, notifications, hors ligne » ; barre d'onglets avec Moi actif.
+- **Règles** : s'insère dans `EcranMoi.tsx` (existant) pour le profil `certification` ; « Certification · changer » ouvre A2 et change **d'examen** uniquement (CERT-4 : pas de bascule vers Élève ou Concours, écran A2 ne propose que des certifications, écart E-29) ; « Ma semaine » : écran existant, à adapter aux séances TOEIC (la page actuelle décrit la semaine de l'élève : écart E-30) ; « Crédits et Pass » : écrans existants (solde, détail, offres).
+- **Acceptation** : AC-N2-1 les lignes reflètent les valeurs de D4 ; AC-N2-2 « Crédits et Pass » affiche « Pass » seulement si un pass est actif ; AC-N2-3 changer de certification ne supprime ni le carnet ni la maîtrise des autres examens.
+- **Tests** : Jest.
+
+#### N3 · Réviser (profil TOEIC) · lot S1
+- **But** : ressources à son rythme. **Entrée** : onglet Réviser. **Sortie** : D2, C1, C4, C6, E1.
+- **Textes exacts** : en-tête « Réviser » ; sous-onglets « Parcours », « Parties », « Cours », « Carnet », « Tests » (courant : « Parcours ») ; carte « Parcours » / « Ce que tu fais maintenant : la séance du jour et ton plan. Les autres onglets sont des ressources à ton rythme. » ; lignes « Parties 1 à 7 » / « Carte de maîtrise », « Cours par notion » / « 58 notions », « Carnet de mots » / « 42 mots à revoir », « Tests blancs » / « V2, bientôt » ; barre avec Réviser actif.
+- **Règles** : l'onglet courant à l'ouverture est « Parcours » ; chaque autre sous-onglet affiche l'écran C1 (Parties), C4 (Cours), C6 (Carnet) ou E1 (Tests) ; le sous-titre « V2, bientôt » contient un terme interne : il devient « Bientôt » (écart E-28) ; le nombre de notions et de mots est calculé.
+- **Acceptation** : AC-N3-1 Réviser s'ouvre sur « Parcours » ; AC-N3-2 un sous-onglet change de vue sans quitter l'écran ; AC-N3-3 « Tests blancs » n'ouvre rien d'autre qu'un état « bientôt » avant V2.
+- **Tests** : Jest (sous-onglets, comptes).
 
 ### 5.E Test blanc (lot V2, épreuve sombre dans les deux thèmes)
 
@@ -554,6 +592,8 @@ Tout évènement est typé dans `src/services/evenements.ts`. Propriétés minim
 | `cert_audio_error` | `ecran`, `code` | B8, B*-AUDIO-KO | **à ajouter** |
 | `cert_offline_answer_queued` / `cert_offline_answer_flushed` | `nb` | S3, S4 | **à ajouter** |
 | `cert_credit_gate_viewed` | `action` | X1 | **à ajouter** |
+| `cert_credit_spent` / `cert_credit_refunded` | `action`, `cout` | X1, E7 | **à ajouter** (section 12) |
+| `cert_paywall_to_pass` | `source` | X1, E7, feuille crédits épuisés | **à ajouter** (section 12) |
 | `cert_mock_started` / `cert_mock_completed` | `mode`, `score_min`, `score_max` | E1 à E6 | V2, à ajouter |
 
 Acceptation : AC-EV-1 chaque évènement ci-dessus a un test qui vérifie le nom et les propriétés ; AC-EV-2 aucun évènement ne contient d'e-mail, de nom ni de numéro.
@@ -572,6 +612,9 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 
 | Écran | Légende de la maquette | Lot | Exigences | Composant | Table / RPC | Tests | Évènements |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| N1 | Accueil TOEIC | S1 | AC-N1-1 à 5 | `AccueilTOEIC` (remplace D1) | F7, `cert_sessions`, `credit_balances` | `AccueilTOEIC.test` | `cert_session_started` |
+| N2 | Moi | S1 | AC-N2-1 à 3 | `EcranMoi.tsx` (existant) + `MoiCertification` | `cert_user_plan` | `MoiCertification.test` | aucun |
+| N3 | Réviser (sous-onglets) | S1 | AC-N3-1 à 3 | `ReviserCert` | `cert_notions`, `cert_user_mot` | `ReviserCert.test` | aucun |
 | A1 | Bienvenue : trois cartes | S1 | AC-A1-1 à 5 | `ParcoursArrivee.tsx` (existant, `ChoixCarte`) | drapeau PostHog | `ParcoursArrivee.test` | `onboarding_choice_made` |
 | A2 | Liste des certifications | S1 | AC-A2-1 à 6 | `ChoixCertification` (gabarit `ChoixConcours`) | `cert_exams`, `cert_list_exams` | `ChoixCertification.test`, pgTAP exams | `cert_exam_chosen` |
 | A3 | Objectif | S1 | AC-A3-1 à 5 | `EcranObjectif` | `cert_user_plan`, `cert_set_plan` | `EcranObjectif.test` | `cert_goal_set`, `cert_goal_skipped` |
@@ -638,6 +681,9 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | E-24 | S2 « Revenir au carnet » alors que l'origine d'une série varie | S2 | Libellé « Retour » vers l'écran d'origine |
 | E-25 | Le fichier `toeic-revue-complete.md` (section « Écrans encore absents ») est périmé : moteur d'exercice, lecteur, test blanc, états sont dessinés dans le HTML | Maquette | L'agent design met le `.md` à jour |
 | E-26 | La maquette ne montre pas de variante pour un invité (sans compte) après le diagnostic | A7, D1 | Invitation à créer un compte (feuille existante `FeuilleSauvegarde`) après A7 ; à dessiner |
+| E-28 | N3 affiche « V2, bientôt » : « V2 » est un terme interne ; l'onglet Tests est présent dès S1 alors que D-02 le disait absent | N3, C1 | « Bientôt » ; onglet présent (J-004) |
+| E-29 | N2 « Certification · changer » alors que CERT-4 exclut la bascule entre profils | N2, A2 | A2 liste seulement des certifications ; le profil Élève ou Concours n'est pas rejoignable depuis N2 |
+| E-30 | « Ma semaine » existant décrit la semaine de l'élève (crédits, quiz), pas les séances TOEIC | N2 | Écran existant tel quel en S1 ; adaptation au lot S2 |
 | E-27 | `Profil.type` accepte seulement `'eleve' | 'concours'` ; `onboarding_choice_made` impose `niveau` et `pays` | Code existant | Type étendu de façon additive ; propriétés facultatives pour `certification` |
 
 ### 10.2 Questions ouvertes pour Benny (une réponse débloque chaque ligne)
@@ -654,6 +700,8 @@ Colonnes : écran (identifiant de la maquette) → exigences (préfixes d'accept
 | Q-08 | Test blanc : pause autorisée ou non ? | Non autorisée en Listening, libre en Reading |
 | Q-09 | Énoncés des questions d'entraînement : anglais comme au test (consigne en français) ? | Oui |
 | Q-10 | Qui relit les explications, fiches et mots en anglais ? | Un enseignant d'anglais avant tout passage en `reviewed` |
+| Q-12 | Crédits : Option A (test blanc accessible) ou Option B (un test par semaine offert) ? | Option B avec garde-fous (section 12.4) |
+| Q-13 | L'onglet « Tests » est-il visible dès la semaine 1 avec « Bientôt » ? | Oui (maquette N3) |
 | Q-11 | Le TOEIC passe-t-il avant ou après le chemin critique du lancement (#44, #35, #17) ? | À arbitrer par Benny ; un seul agent local à la fois |
 
 ## 11. Journal des changements
@@ -671,7 +719,74 @@ Format : identifiant · date · auteur · écrans touchés · changement · rais
 | D-06 | 2026-10-15 | Benny | planning | Quota ElevenLabs : 131 000 crédits par mois | Message de Benny | validé |
 | D-07 | 2026-10-15 | Agent design | tous | Identifiants stables `TOEIC-<section><n>` ; états du moteur | Éviter les dérives | validé |
 
+| J-002 | 2026-10-15 | Claude (fil TOEIC) | N1 à N3 | Intégration de la navigation (commit `b74a711`) ; D1 devient historique | Question de Benny : où sont l'accueil, les onglets, les menus ? | proposé |
+| J-003 | 2026-10-15 | Agent design | D1, N1 | N1 remplace le rôle de D1 | Maquette v3 | validé (maquette) |
+| J-004 | 2026-10-15 | Maquette v3 | C1, N3 | Onglet « Tests » présent dès S1 avec état « bientôt » (D-02 modifiée) | Maquette | proposé |
+| J-005 | 2026-10-15 | Agent design | B1 à B7 | Option sélectionnée sans libellé « Choisi » ni coche (`1953b17`) | Design | validé (maquette) |
+| J-006 | 2026-10-15 | Claude (fil TOEIC) | section 12 | Crédits et Pass : deux options, recommandation B, garde-fous | Demande de Benny | en attente de Q-12 |
+
 **Règle d'ajout** : toute modification de ce cahier ajoute une ligne ici avant d'être faite ; une ligne « appliqué en code » cite le commit.
 
-## 12. Définition de « terminé » pour un écran
+## 12. Crédits et Pass (décision de Benny : Q-12)
+
+### 12.0 Modèle actuel (relu dans `elearn-supabase` et `elearn-app`)
+- **Table `credit_settings`** (une ligne, modifiable au back-office sans déploiement) : `weekly_amount` (seed 25), `welcome_amount` (seed 40, une fois par appareil, compte requis), `guest_amount` (seed 15 dans la migration ; les documents disent 5 : **vérifier la valeur en base**), `pass_ai_daily_limit` (seed 30). **Table `credit_actions`** (code, coût de 0 à 100, libellé, actif) : `quiz_explanation` 1, `exercise_solution` 2, `document_pdf` 3, `exam_correction` 5, `ai_question` 5.
+- **Recharge du lundi non cumulable** : les crédits de la semaine non utilisés sont perdus (`weekly_left` remis à `weekly_amount`).
+- **Pass** (500 / 2 500 / 7 500 FCFA) : crédits illimités, limite de `pass_ai_daily_limit` questions IA par jour. Pas de paquet de crédits à acheter : gratuit, crédits gagnés, ou Pass.
+- **Débit idempotent** (identifiant d'opération), feuille de coût `FeuilleCout`, feuille « crédits épuisés » `FeuilleEpuise` (Recharger / Gagner / Plus tard), décision du 7 octobre : aucun contenu payant en crédits ne se consomme hors ligne.
+- Un code d'action nouveau exige : une ligne dans `credit_actions`, le type `ActionCredit` dans `src/services/credits.ts` et le texte `credits.actions.<code>` dans `fr.ts` et `en.ts`.
+
+### 12.1 Commun aux deux options (tableau de l'agent design confirmé, avec précisions)
+| Élément | Règle | Source de la valeur |
+| --- | --- | --- |
+| Diagnostic (A6), séance du jour (D2), parties et séries d'entraînement (B1 à B7), cours (C4, C5), carnet et séance de mots (C6 à C9), rejeu, carte de maîtrise, plan | **Gratuits, jamais débités.** C'est le cœur de la valeur et de la rétention | aucune |
+| Résultat juste ou faux, bonne réponse, notion nommée, « Revoir la notion » (B9) | Gratuits | aucune |
+| Explication détaillée d'une question (X1) | Payante : `cert_explanation` | `credit_actions` |
+| Test blanc complet, demi-test, corrigé complet d'un test | Payants : `cert_mock_full`, `cert_mock_half`, `cert_mock_review` | `credit_actions` |
+| Pack hors ligne audio (E7) | **Pass seulement**, aucune dépense en crédits | `cert_settings.pack_requires_pass` |
+| Correction par photo, question IA | 5 crédits (règle actuelle, `ai_question`) ; limite IA du Pass inchangée | inchangé |
+| Rédaction et oral corrigés par IA (V2) | Coût mesuré à la mise en service, même limite IA quotidienne du Pass | à définir |
+| Pass actif | Tout ce qui est payant ci-dessus devient illimité (débit « included » à 0 pour la mesure) ; seule la limite IA quotidienne s'applique | `credit_settings` |
+| Invité | Diagnostic gratuit sans compte ; test blanc et explications détaillées exigent un compte (score et solde rattachés au compte) | `cert_settings.mock_requires_account` |
+| Nouveaux comptes | Le bonus de bienvenue et la recharge du lundi (valeurs `credit_settings`) s'appliquent tels quels, à toute action payante TOEIC | `credit_settings` |
+| Contenu hors ligne | Le gratuit (cours, carnet, séries préparées) reste lisible 7 jours ; une explication payante ou un test blanc exige le serveur (décision du 7 octobre) ; les non-Pass n'ont pas de pack audio | décision existante |
+| Raison du prix | Les explications et les tests sont **pré-générés** (coût marginal nul) : leur prix est un levier de conversion, pas un recouvrement de coût. Seules les actions IA ont un coût réel | note |
+
+### 12.2 Les deux options (valeurs de seed proposées, toutes dans `credit_actions` et `cert_settings`)
+
+| | **Option A — « test blanc accessible »** (proposition de l'agent design) | **Option B — « un test par semaine offert »** (étude #43) |
+| --- | --- | --- |
+| `cert_explanation` | 1 | 1 |
+| `cert_mock_half` | 3 | 8 |
+| `cert_mock_full` | 5 | 15 |
+| `cert_mock_review` (corrigé complet d'un test) | 0 (inclus dans le test) | 5 |
+| Effet du lundi (seed 25) | jusqu'à 5 tests complets, ou 25 explications | 1 test complet (15) + 10 : par exemple le corrigé (5) et 5 explications |
+| Effet du bonus de bienvenue (seed 40) | 8 tests complets | 2 tests complets + 10 |
+| Un élève qui fait 2 tests et 6 explications par semaine | Dépense 16 sur 25 : **n'achète jamais** pour les tests | Dépense 36 : il manque 11 crédits, **le Pass devient rationnel** |
+| Levier de conversion | Explications seulement (25 par semaine) et pack hors ligne | Tests blancs, corrigés, explications, pack hors ligne |
+| Risque | Les tests blancs deviennent gratuits en pratique (un test dure 2 h, le plafond réel est le temps) : peu de raison d'acheter le Pass | Un test vide 60 % de la semaine d'un coup ; frustration si le crédit est dépensé puis le test abandonné |
+| Cohérence avec le principe « cœur gratuit » | Oui | Oui (le cœur reste gratuit) |
+
+### 12.3 Garde-fous (obligatoires dans l'option retenue, surtout B)
+1. **Coût et solde après achat** affichés avant le lancement (`FeuilleCout`) : « Ce test blanc coûte {n} crédits. Il t'en restera {m}. ». Texte à dessiner [maquette à venir : E7 montre seulement le coût].
+2. **Solde insuffisant** : `FeuilleEpuise` (Recharger, Gagner, Plus tard) sur la même page ; jamais d'achat partiel.
+3. **Remboursement automatique** (`credit_log.kind = 'refund'`) si le test est abandonné dans les `{mock_refund_window_min}` minutes (initial 10) ou si une panne de notre côté l'interrompt (audio indisponible plus de `{mock_audio_fail_s}` secondes, initial 20) ; remboursement idempotent par identifiant d'opération.
+4. **Débit au lancement de l'écoute**, pas à l'ouverture de E1 ; « Plus tard » ne débite rien.
+5. **Crédits de la semaine non cumulables** : avertir quand une recharge du lundi approche et qu'il reste assez pour un test (ligne dans la feuille de coût, texte à dessiner) — évite de perdre un test gratuit.
+6. **Le texte de E7 « Les crédits de la semaine sont mis de côté pour tes séances »** est retiré : aucune réserve n'existe (écart E-23).
+7. **Un demi-test** est proposé comme première marche : Listening ou Reading seul, pour ne pas vider la semaine.
+8. **Mesure** : `cert_credit_gate_viewed`, `cert_credit_spent { action, cout }`, `cert_credit_refunded { action }`, `cert_paywall_to_pass { source }` (voir section 7) pour comparer A et B sur les achats de Pass.
+
+### 12.4 Recommandation
+**Option B**, avec les garde-fous 1 à 8 et le demi-test en première marche. Raisons : (1) l'objectif du produit est de vendre ; avec l'option A le Pass ne se justifie que par le pack hors ligne ; (2) l'option B garde un test par semaine gratuit (bonne expérience, acquisition) et le Pass devient rationnel pour qui s'entraîne vraiment ; (3) tout le cœur reste gratuit dans les deux options, donc le risque d'abandon reste faible ; (4) les montants sont des lignes de configuration : on peut passer de B à A (ou à des valeurs intermédiaires) en production, sans déploiement, après une semaine de mesure PostHog.
+À mesurer avant de figer : part des élèves qui lancent un test blanc, part qui l'abandonnent dans les 10 premières minutes, conversion vers le Pass après un solde insuffisant.
+
+### 12.5 Cohérence avec la configuration serveur
+- Aucun montant dans l'app, les textes ou les tests : lus de `credit_actions` (`cert_explanation`, `cert_mock_half`, `cert_mock_full`, `cert_mock_review`), `credit_settings` et `cert_settings` (`pack_requires_pass`, `mock_requires_account`, `mock_refund_window_min`, `mock_audio_fail_s`).
+- Les textes parlent de « {n} crédits » (singulier/pluriel existant `credits.cout` / `credits.coutUn`), jamais d'un chiffre.
+- Les tests utilisent des valeurs lues d'un jeu de configuration injecté, jamais « 15 » ou « 5 » en dur.
+- Migration additive (seed des quatre actions), tests pgTAP : coûts lus depuis la table, débit idempotent, remboursement idempotent, pass illimité sans débit, invité refusé sur test blanc.
+- Le back-office existant (« Finance » / configuration des crédits) gère déjà `credit_actions` : aucune page de plus.
+
+## 13. Définition de « terminé » pour un écran
 Un écran est terminé quand : (1) son identifiant, ses textes et ses états sont dans ce cahier ; (2) la maquette correspond (clair, sombre, 130 %) ; (3) tous ses critères AC passent en test ; (4) ses évènements sont typés et testés ; (5) aucun montant ni texte non listé n'est dans le code ; (6) `npm run valider` passe ; (7) Benny l'a vu sur téléphone ; (8) la ligne du tableau 9 est à jour.
