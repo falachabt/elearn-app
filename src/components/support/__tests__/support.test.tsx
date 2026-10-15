@@ -23,7 +23,7 @@ jest.mock('expo-router', () => ({
   usePathname: () => mockPathname(),
 }));
 jest.mock('expo-notifications', () => ({ addNotificationReceivedListener: (f: unknown) => mockNotifs(f) }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/support', () => ({

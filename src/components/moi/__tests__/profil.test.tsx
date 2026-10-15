@@ -31,7 +31,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/CreditsProvider', () => ({ useCredits: () => mockCredits() }));
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(() => Promise.resolve(true)) }));

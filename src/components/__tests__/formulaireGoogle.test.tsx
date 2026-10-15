@@ -11,7 +11,7 @@ const mockCreer = jest.fn();
 const mockGoogle = jest.fn();
 
 jest.mock('expo-router', () => ({ router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: () => false } }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/authNatif', () => ({ appleAffiche: false, facebookAffiche: false, depsOAuth: () => ({}), depsApple: () => ({}) }));
 jest.mock('@/services/compte', () => ({

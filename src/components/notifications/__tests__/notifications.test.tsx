@@ -28,7 +28,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/session/NotificationsProvider', () => ({ useNotifications: () => mockNotifications() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));

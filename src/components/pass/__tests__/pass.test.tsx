@@ -24,7 +24,7 @@ jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams,
 }));
 jest.mock('expo-clipboard', () => ({ setStringAsync: jest.fn(async () => true) }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }: { children?: React.ReactNode }) => children ?? null;

@@ -1,7 +1,7 @@
 import { suivre } from '../analytics';
 import { INDICATIFS, lienSupport, normaliserTelephone, retrouverAncienCompte, validerTelephone } from '../ancienCompte';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const client = (resultat: { data?: unknown; error?: unknown }) => ({
   auth: { signInWithPassword: jest.fn().mockResolvedValue({ data: { session: null }, error: null, ...resultat }) },

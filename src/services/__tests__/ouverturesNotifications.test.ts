@@ -15,7 +15,7 @@ jest.mock('expo-notifications', () => ({
   }),
 }));
 jest.mock('expo-router', () => ({ router: { push: jest.fn() } }));
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('../supabase', () => ({ getSupabase: () => ({ id: 'client' }) }));
 jest.mock('../notifications', () => ({
   ...jest.requireActual('../notifications'),

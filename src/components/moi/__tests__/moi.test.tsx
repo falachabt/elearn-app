@@ -28,7 +28,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));
 jest.mock('@/services/version', () => ({
   lireVersion: () => ({ version: '3.0.0', build: '1', canal: mockVersion.canal, miseAJour: null, publiee: null }),

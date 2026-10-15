@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { CompteARebours, decompter, SEUIL_PROCHE_JOURS } from '../CompteARebours';
+import { CompteARebours, decompter, SEUIL_PROCHE_JOURS, segments } from '../CompteARebours';
 
 describe('decompter', () => {
   const maintenant = new Date(2027, 0, 1, 0, 0, 0);
@@ -34,5 +34,26 @@ describe('CompteARebours', () => {
   it('passe en variante « proche » sous le seuil de jours', async () => {
     await render(<CompteARebours type="fin_de_cours" cible={dans(SEUIL_PROCHE_JOURS - 1)} libelle="6e · FIN DE COURS" />);
     expect(screen.getByLabelText(/6e · FIN DE COURS/)).toBeTruthy();
+  });
+});
+
+describe('segments', () => {
+  const libelles = { jours: 'j', heures: 'heures', minutes: 'min', secondes: 's' };
+  const d = (jours: number, heures: number, minutes: number, secondes: number) => ({ jours, heures, minutes, secondes, passee: false });
+
+  it("avec des jours : jours en grand, puis heures et secondes en petit", () => {
+    expect(segments(d(243, 6, 12, 42), libelles).map((s) => [s.unite, s.grand, s.moyen])).toEqual([
+      ['jours', true, false], ['heures', false, true], ['minutes', false, false], ['secondes', false, false],
+    ]);
+  });
+
+  it("0 jour : l'heure devient la première unité, en grand", () => {
+    const s = segments(d(0, 6, 12, 42), libelles);
+    expect(s[0]).toMatchObject({ unite: 'heures', texte: '06 heures', grand: true });
+    expect(s.map((x) => x.unite)).toEqual(['heures', 'minutes', 'secondes']);
+  });
+
+  it("0 jour et 0 heure : la minute devient grande", () => {
+    expect(segments(d(0, 0, 5, 9), libelles)[0]).toMatchObject({ unite: 'minutes', grand: true });
   });
 });

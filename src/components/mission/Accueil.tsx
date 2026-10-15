@@ -23,6 +23,8 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
+import { CompteARebours } from '../accueil/CompteARebours';
+import { lireCalendrierClasse, prochaineEcheance, type EcheanceClasse } from '@/services/calendrier';
 import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
 import { Reprise } from './Reprise';
@@ -30,6 +32,9 @@ import { identiteDe } from '@/services/identite';
 import { ecouterGainXp, lireUserXp } from '@/services/xp';
 
 type Etat = { mission: Mission | null; serie: number; faite: ResultatMission | null };
+
+/** Exemple du compte à rebours en développement : une date dans 243 jours. Jamais utilisée en production. */
+const CIBLE_EXEMPLE = new Date(Date.now() + 243 * 86_400_000);
 
 /** Titre de la carte : trois lignes au plus (une leçon au titre très long ne pousse plus le reste de l'écran vers le bas). */
 const LIGNES_TITRE = 3;
@@ -111,6 +116,11 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
   const pret = useSessionPrete();
   const invite = useInvite();
   const [rappelCompte, setRappelCompte] = useState(false);
+  // Prochaine échéance de la classe (issue #65) : null tant que la base n'a rien, ou pour un invité ou un concours.
+  // Liée à la clé (classe, pays, session) qui l'a calculée : une valeur d'une autre classe ou session n'est jamais affichée.
+  const [echeanceCalculee, setEcheanceCalculee] = useState<{ cle: string; echeance: EcheanceClasse | null } | null>(null);
+  const cleEcheance = !pret || pret === 'hors-ligne' || invite || profil?.type !== 'eleve' || !profil.niveau || !profil.pays ? null : `${pret}|${profil.niveau}|${profil.pays}`;
+  const echeance = cleEcheance && echeanceCalculee?.cle === cleEcheance ? echeanceCalculee.echeance : null;
 
   const user = session?.user;
   const idUtilisateur = user?.id;
@@ -135,6 +145,19 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
       setTotalXp(info.total);
     });
   }, []);
+
+  // Compte à rebours : seulement pour un élève connecté avec une classe et un pays. Une erreur ou une base vide cache la carte.
+  useEffect(() => {
+    if (!cleEcheance || !profil?.niveau || !profil.pays) return;
+    let actif = true;
+    const cle = cleEcheance;
+    lireCalendrierClasse(getSupabase(), profil.niveau, profil.pays)
+      .then((echeances) => actif && setEcheanceCalculee({ cle, echeance: prochaineEcheance(echeances, new Date()) }))
+      .catch(() => actif && setEcheanceCalculee({ cle, echeance: null }));
+    return () => {
+      actif = false;
+    };
+  }, [cleEcheance, profil?.niveau, profil?.pays]);
 
   // Rappel à l'invité de lier un compte pour ne pas perdre sa progression, quelques jours après la première ouverture.
   useFocusEffect(
@@ -222,6 +245,22 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           </Appui>
         </View>
       </Apparition>
+
+      {/* En développement seulement : exemple visible tant que la base n'a pas de date pour cet élève. */}
+      {echeance || __DEV__ ? (
+        <Apparition delai={40}>
+          <CompteARebours
+            type={echeance?.type ?? 'examen'}
+            cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
+            libelle={
+              echeance
+                ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
+                : 'EXEMPLE · BEPC'
+            }
+            estime={echeance ? echeance.statut === 'reprise' : true}
+          />
+        </Apparition>
+      ) : null}
 
       <Apparition delai={60}>
         <Carte style={{ backgroundColor: theme.marque.principale }}>

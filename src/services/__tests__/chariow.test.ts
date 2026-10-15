@@ -1,6 +1,6 @@
 import { ErreurChariow, ouvrirPaiementChariow } from '../chariow';
 
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 type Reponse = { data?: unknown; error?: unknown };
 

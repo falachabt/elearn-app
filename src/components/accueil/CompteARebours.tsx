@@ -33,6 +33,29 @@ export function decompter(cible: Date, maintenant: Date): Decompte {
 
 const deuxChiffres = (n: number) => String(n).padStart(2, '0');
 
+export type SegmentDecompte = { unite: 'jours' | 'heures' | 'minutes' | 'secondes'; texte: string; grand: boolean; moyen: boolean };
+
+/**
+ * Affichage du décompte : l'unité la plus grande non nulle est la première, en grand. Les unités nulles qui la précèdent
+ * disparaissent (0 j → l'heure devient grande). Une seconde en petit, la minute en moyen.
+ */
+export function segments(d: Decompte, libelles: Record<SegmentDecompte['unite'], string>): SegmentDecompte[] {
+  const unites = [
+    { unite: 'jours' as const, valeur: d.jours, libelle: libelles.jours },
+    { unite: 'heures' as const, valeur: d.heures, libelle: libelles.heures },
+    { unite: 'minutes' as const, valeur: d.minutes, libelle: libelles.minutes },
+    { unite: 'secondes' as const, valeur: d.secondes, libelle: libelles.secondes },
+  ];
+  const premier = unites.findIndex((u) => u.valeur > 0);
+  const debut = premier < 0 ? unites.length - 1 : premier;
+  return unites.slice(debut).map((u, i) => ({
+    unite: u.unite,
+    texte: `${u.unite === 'jours' ? u.valeur : deuxChiffres(u.valeur)} ${u.libelle}`,
+    grand: i === 0,
+    moyen: i === 1,
+  }));
+}
+
 /**
  * Compte à rebours de l'accueil (issue #65) : jours en grand, heures et minutes ensuite, secondes en petit.
  * Quatre variantes : examen (jaune, à retenir), fin de cours (blanc), concours (bleu, information), et « proche »
@@ -72,15 +95,16 @@ export function CompteARebours({ type, cible, libelle, estime = false }: { type:
           {estime ? ` · ${t('accueil.compteARebours.estime')}` : ''}
         </Text>
         <View style={styles.ligne}>
-          <Text style={[typo.chiffreL, { color: encre }]}>
-            {d.jours} {t('accueil.compteARebours.jours')}
-          </Text>
-          <Text style={[typo.donnee, { color: encre }]}>
-            {deuxChiffres(d.heures)} {t('accueil.compteARebours.heures')} {deuxChiffres(d.minutes)} {t('accueil.compteARebours.minutes')}
-          </Text>
-          <Text style={[typo.legende, { color: encre }]}>
-            {deuxChiffres(d.secondes)} {t('accueil.compteARebours.secondes')}
-          </Text>
+          {segments(d, {
+            jours: t('accueil.compteARebours.jours'),
+            heures: t('accueil.compteARebours.heures'),
+            minutes: t('accueil.compteARebours.minutes'),
+            secondes: t('accueil.compteARebours.secondes'),
+          }).map((s) => (
+            <Text key={s.unite} style={[s.grand ? typo.chiffreL : s.moyen ? typo.donnee : typo.legende, { color: encre }]}>
+              {s.texte}
+            </Text>
+          ))}
         </View>
       </View>
     </Carte>

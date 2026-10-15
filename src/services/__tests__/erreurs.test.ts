@@ -11,6 +11,7 @@ import {
 
 jest.mock('../analytics', () => ({
   lireEcranCourant: jest.fn(() => '/cours/lecon'),
+  definirProprietesUtilisateur: jest.fn(),
   suivreException: jest.fn(),
 }));
 

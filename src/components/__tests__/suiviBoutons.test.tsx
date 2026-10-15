@@ -8,7 +8,7 @@ import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
 import { Interrupteur } from '../Interrupteur';
 
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const rendre = (ui: React.ReactElement) => render(<ThemeProvider>{ui}</ThemeProvider>);
 

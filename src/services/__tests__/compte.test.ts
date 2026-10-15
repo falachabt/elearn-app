@@ -16,7 +16,7 @@ import {
   validerMotDePasse,
 } from '../compte';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const mockSecureStore = new Map<string, string>();
 jest.mock('expo-secure-store', () => ({

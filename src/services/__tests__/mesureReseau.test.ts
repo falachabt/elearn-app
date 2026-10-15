@@ -6,6 +6,7 @@ const mockEcran = jest.fn<string | null, []>();
 jest.mock('../analytics', () => ({
   suivre: (...args: unknown[]) => mockSuivre(...args),
   lireEcranCourant: () => mockEcran(),
+  definirProprietesUtilisateur: jest.fn(),
 }));
 
 function reponse(status: number, contentLength?: string): Response {

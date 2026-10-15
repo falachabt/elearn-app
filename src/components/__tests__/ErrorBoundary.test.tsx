@@ -9,6 +9,7 @@ const mockException = jest.fn();
 jest.mock('@/services/analytics', () => ({
   suivreException: (...a: unknown[]) => mockException(...a),
   lireEcranCourant: () => '/moi',
+  definirProprietesUtilisateur: () => undefined,
 }));
 
 function Casse(): never {

@@ -12,6 +12,7 @@ jest.mock('@/services/supabase', () => ({ getSupabase: () => mockGetSupabase() }
 jest.mock('@/services/analytics', () => ({
   identifier: jest.fn(() => Promise.resolve()),
   reinitialiserIdentite: jest.fn(() => Promise.resolve()),
+  definirProprietesUtilisateur: jest.fn(),
   suivre: jest.fn(),
 }));
 

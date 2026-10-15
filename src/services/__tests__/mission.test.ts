@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { suivre } from '../analytics';
 import { calculerSerie, chargerMission, envoyerPassages, lirePassagesLocaux, CLE_MISSION, convertir, coursRates, jourLocal, lireDernierResultat, lireErreurs, lireHistorique, terminerMission, type LigneMission } from '../mission';
 
-jest.mock('../analytics', () => ({ suivre: jest.fn() }));
+jest.mock('../analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn() }));
 
 const VF = { vrai: 'Vrai', faux: 'Faux' };
 const ligne = (i: number, p: Partial<LigneMission> = {}): LigneMission => ({
