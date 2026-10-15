@@ -96,3 +96,11 @@ Montants : valeurs de seed du cahier, modifiables au back-office. Ils ne sont ja
 - `TOEIC-E7` : le coût du test complet passe de 5 à 15 crédits (cahier 12.6).
 
 Les identifiants existants ne changent pas. Les nouveaux sont T5, T6, T7 et G1.
+
+## Écarts E-42 à E-45 (version 7, cahier v1.5)
+
+- **E-42, coût de l'explication avec Pass** : `TOEIC-B9-PASS` (nouveau). Avec un Pass actif, le bouton devient « Explication détaillée · inclus au Pass », sans coût affiché. Proposition : ne pas afficher de coût à un élève qui n'en paie pas. Choix de produit à confirmer par Benny.
+- **E-43, demi-test** : `TOEIC-T5` montre désormais deux demi-tests distincts, « écoute seule » et « lecture seule ». Les durées restent à fixer (elles ne figurent pas dans le cahier) ; la maquette ne les invente plus. Le coût (8 crédits, Pass 0) est inchangé.
+- **E-44, test complet « Bientôt »** : `TOEIC-T6` ne promet plus de prévenir l'élève, car aucune notification n'existe pour ce cas. Texte : « Il n'est pas encore disponible. En attendant, les mini-tests et ton historique restent accessibles. » Si Benny veut une notification, c'est une exigence nouvelle à écrire dans le cahier.
+- **E-45, phrase sur les crédits mis de côté** : retirée de `TOEIC-E7`. Le texte devient « Le montant vient du serveur et s'affiche avant le lancement. »
+- Les identifiants existants ne changent pas ; `TOEIC-B9-PASS` est le seul nouvel identifiant de cette version.
