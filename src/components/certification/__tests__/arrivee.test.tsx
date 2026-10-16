@@ -247,7 +247,7 @@ describe('A4 · Temps par jour', () => {
     await monter(<TempsParJour />);
     await fireEvent.press(await screen.findByRole('radio', { name: /30 minutes/ }));
     await fireEvent.press(screen.getByRole('button', { name: t.temps.commencer }));
-    await waitFor(() => expect(router.push).toHaveBeenCalledWith('/certification/arrivee'));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
     expect((await lirePlan())?.minutes).toBe(30);
     expect(suivre).toHaveBeenCalledWith('cert_daily_time_set', { minutes: 30 });
   });

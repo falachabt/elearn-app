@@ -54,12 +54,15 @@ export default function LayoutOnglets() {
       const etape = await etapeCertification(p);
       if (!actif) return;
       setReprise(etape);
-      setArrivee(p?.termine ? 'fait' : 'a-faire');
+      // Les onglets TOEIC s'ouvrent dès l'arrivée (objectif et temps) : diagnostic commencé ou en cours compris.
+      // Le résultat reste une étape obligatoire tant que « Voir mon plan » n'a pas été pressé.
+      const arriveeFaite = etape === '/certification/arrivee' || etape === '/certification/diagnostic';
+      setArrivee(p?.termine || arriveeFaite ? 'fait' : 'a-faire');
     })();
     return () => {
       actif = false;
     };
-  }, [sessionPrete]);
+  }, [sessionPrete, chemin]);
 
   useEffect(() => {
     if (!sessionPrete || sessionPrete === 'hors-ligne') return;

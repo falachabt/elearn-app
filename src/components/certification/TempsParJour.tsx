@@ -45,7 +45,8 @@ export function TempsParJour() {
     await ecrirePlan({ exam, minutes });
     suivre('cert_daily_time_set', { minutes });
     if (modifier) router.back();
-    else router.push('/certification/arrivee');
+    // Objectif et temps sont enregistrés : les onglets TOEIC s'ouvrent, l'accueil affiche « Mon TOEIC avant diagnostic » (S7).
+    else router.replace('/');
   };
 
   return (

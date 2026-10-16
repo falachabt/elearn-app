@@ -63,5 +63,5 @@ export async function chargerAccueil(): Promise<DonneesAccueil> {
 /** Un seul accueil à la fois : le profil TOEIC n'est actif qu'une fois le diagnostic vu (« Voir mon plan »). */
 export async function profilToeicActif(): Promise<boolean> {
   const p = await lireProfil();
-  return p?.type === 'certification' && p.termine;
+  return p?.type === 'certification';
 }

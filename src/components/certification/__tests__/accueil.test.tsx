@@ -214,10 +214,10 @@ describe('Bascule des onglets selon le profil', () => {
     expect(await screen.findByText('classique')).toBeTruthy();
   });
 
-  it('classique tant que le diagnostic n’est pas vu (profil pas terminé)', async () => {
+  it('TOEIC dès l’arrivée (objectif et temps), même sans diagnostic terminé', async () => {
     await enregistrerProfil({ type: 'certification', exam: 'toeic', pays: 'CM', termine: false });
     await monter(<Sonde />);
-    expect(await screen.findByText('classique')).toBeTruthy();
+    expect(await screen.findByText('toeic')).toBeTruthy();
   });
 
   it('classique pour un élève', async () => {
