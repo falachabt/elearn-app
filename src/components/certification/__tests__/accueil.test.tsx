@@ -8,7 +8,7 @@ import { suivre } from '@/services/analytics';
 import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { JOUR, MOTS_TEST, REVISION_TEST, SEANCE_TEST } from '@/services/certification/__tests__/fixturesRevision';
-import { ecrirePlan } from '@/services/certification/etat';
+import { ecrireDiagnostic, ecrirePlan } from '@/services/certification/etat';
 import { lireSeanceJour, terminerBloc } from '@/services/certification/seanceJour';
 import { enregistrerProfil } from '@/services/profil';
 
@@ -76,13 +76,17 @@ afterEach(() => {
 });
 
 describe('N1 · Accueil TOEIC', () => {
+  beforeEach(async () => {
+    // Accueil d'un élève qui a fini son diagnostic : c'est le seul cas où les cartes de séance s'affichent.
+    await ecrireDiagnostic({ fin: { estimated: true, score: 700, score_min: 650, score_max: 730 } } as never);
+  });
   it('montre objectif, séance du jour avec sa raison, mots à revoir et accès rapides', async () => {
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.objectifJours.replace('{{score}}', '800').replace('{{n}}', '42'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.pourquoiMots.replace('{{n}}', '4').replace('{{notion}}', 'Prépositions de temps').replace('{{m}}', '2'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.motsN.replace('{{n}}', '2'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.scorePas)).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.scorePlage.replace('{{min}}', '650').replace('{{max}}', '730'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.parties)).toBeTruthy();
   });
 
@@ -220,5 +224,21 @@ describe('Bascule des onglets selon le profil', () => {
     await enregistrerProfil({ type: 'eleve', niveau: '1re', pays: 'CM', termine: true });
     await monter(<Sonde />);
     expect(await screen.findByText('classique')).toBeTruthy();
+  });
+});
+
+describe('S7 · Mon TOEIC avant diagnostic', () => {
+  it('montre seulement la préparation et le bouton, sans cartes de séance, cours ni carnet', async () => {
+    await monter(<AccueilToeic />);
+    expect(await screen.findByText(t.arrivee.contientTitre)).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.arrivee.commencer })).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeNull();
+    expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
+    expect(screen.queryByText(t.arrivee.donneTitre)).toBeNull();
+  });
+  it('« Commencer le diagnostic » ouvre le diagnostic', async () => {
+    await monter(<AccueilToeic />);
+    await fireEvent.press(await screen.findByRole('button', { name: t.arrivee.commencer }));
+    expect(router.push).toHaveBeenCalledWith('/certification/diagnostic');
   });
 });

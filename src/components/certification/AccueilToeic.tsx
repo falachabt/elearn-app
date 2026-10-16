@@ -3,6 +3,7 @@ import { RotateCcw } from 'lucide-react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { suivre } from '@/services/analytics';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
 import { afficherJour } from '@/services/certification/format';
 import { avancement, pourquoiDeLaSeance } from '@/services/certification/seanceJour';
@@ -14,6 +15,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
+import { PreparationDiagnostic } from './PreparationDiagnostic';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
@@ -67,6 +69,19 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
       : t('certification.accueilToeic.serieAide', { partie: serie.perimetre.part ?? '', k: serie.index, n: serie.questions.length })
     : '';
   const aller = (chemin: string) => router.push(chemin as never);
+
+  if (!d.diagnosticFait) {
+    const commencerDiagnostic = () => {
+      suivre('cert_diagnostic_started', {});
+      router.push('/certification/diagnostic');
+    };
+    return (
+      <View style={styles.groupe}>
+        <PreparationDiagnostic complet={false} />
+        <Bouton libelle={t('certification.arrivee.commencer')} onPress={commencerDiagnostic} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.groupe}>

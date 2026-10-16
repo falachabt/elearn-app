@@ -1,4 +1,4 @@
-import { afficherJour, analyserDateSaisie, analyserObjectif, formaterDuree } from '../format';
+import { afficherJour, analyserDateSaisie, analyserObjectif, formaterDuree, masquerDate } from '../format';
 import { formaterTemps, etatInitial, reduireLecteur } from '../lecteur';
 import { urlMedia } from '../media';
 
@@ -71,5 +71,24 @@ describe('lecteur audio (B8)', () => {
   it('formate le temps', () => {
     expect(formaterTemps(18.4)).toBe('0:18');
     expect(formaterTemps(75)).toBe('1:15');
+  });
+});
+
+describe('masque de date JJ/MM/AAAA', () => {
+  it('ajoute les barres obliques toutes seules pendant la frappe', () => {
+    expect(masquerDate('', '1')).toBe('1');
+    expect(masquerDate('1', '15')).toBe('15');
+    expect(masquerDate('15', '150')).toBe('15/0');
+    expect(masquerDate('15/0', '15/05')).toBe('15/05');
+    expect(masquerDate('15/05', '15/052')).toBe('15/05/2');
+    expect(masquerDate('15/05/202', '15/05/2026')).toBe('15/05/2026');
+  });
+  it('ignore les caractères non numériques et borne à huit chiffres', () => {
+    expect(masquerDate('', '15-05.2026')).toBe('15/05/2026');
+    expect(masquerDate('15/05/2026', '15/05/20261')).toBe('15/05/2026');
+  });
+  it('effacer la barre de fin efface le chiffre d’avant, le masque ne la remet pas', () => {
+    expect(masquerDate('15/', '15')).toBe('1');
+    expect(masquerDate('15/05/', '15/05')).toBe('15/0');
   });
 });

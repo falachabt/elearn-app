@@ -7,7 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { joursAvantTest, jourDe } from '@/services/certification/jours';
 import { ecrirePlan, lirePlan, obtenirExamens, obtenirReglages } from '@/services/certification/etat';
-import { afficherJour, analyserDateSaisie, analyserObjectif } from '@/services/certification/format';
+import { afficherJour, analyserDateSaisie, analyserObjectif, masquerDate } from '@/services/certification/format';
 import type { Reglages } from '@/services/certification/reglages';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -127,9 +127,10 @@ export function ObjectifCertification() {
       <Champ
         libelle={t('certification.objectif.date')}
         value={dateTexte}
-        onChangeText={(v) => setDateTexte(v.replace(/[^0-9/.-]/g, '').slice(0, 10))}
+        onChangeText={(v) => setDateTexte(masquerDate(dateTexte, v))}
         placeholder={t('certification.objectif.datePlaceholder')}
-        keyboardType="numbers-and-punctuation"
+        keyboardType="number-pad"
+        maxLength={10}
         style={date.ok ? undefined : { borderWidth: 3, borderColor: theme.etat.erreur }}
       />
       <View accessibilityLiveRegion="polite" style={styles.messageDate}>

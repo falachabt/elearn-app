@@ -260,18 +260,24 @@ describe('A4 · Temps par jour', () => {
 });
 
 describe('A5 · Arrivée avant diagnostic', () => {
-  it('AC-A5-1 : aucune valeur de performance, juste le nombre de questions du diagnostic', async () => {
+  it('AC-A5-1 : aucune valeur de performance, les repères et le contenu du diagnostic', async () => {
     await monter(<ArriveeToeic />);
-    expect(await screen.findByText('20 questions, environ 15 minutes. Gratuit, sans crédit.')).toBeTruthy();
-    expect(screen.getByText(t.arrivee.encadre)).toBeTruthy();
-    expect(screen.queryByText(/\d+ à \d+/)).toBeNull();
+    expect(await screen.findByText(t.arrivee.repereQuestions.replace('{{n}}', '20'))).toBeTruthy();
+    expect(screen.getByText(t.arrivee.repereDuree)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.repereGratuit)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientEcoute)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientLecture)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.donneTexte)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.regle)).toBeTruthy();
+    expect(screen.queryByText(/\d{3} à \d{3}/)).toBeNull();
   });
-  it('AC-A5-2 et 3 : une seule action, les trois rangées ne réagissent pas', async () => {
+  it('AC-A5-2 : une seule action, plus de rangées Cours, Carnet ou Séance', async () => {
     await monter(<ArriveeToeic />);
     await screen.findByText(t.arrivee.badge);
     expect(screen.getAllByRole('button')).toHaveLength(1);
-    await fireEvent.press(screen.getByText(t.arrivee.cours));
-    expect(router.push).not.toHaveBeenCalled();
+    expect(screen.queryByText(t.arrivee.cours)).toBeNull();
+    expect(screen.queryByText(t.arrivee.carnet)).toBeNull();
+    expect(screen.queryByText(t.arrivee.seance)).toBeNull();
   });
   it('« Commencer le diagnostic » trace l’évènement puis ouvre A6', async () => {
     await monter(<ArriveeToeic />);

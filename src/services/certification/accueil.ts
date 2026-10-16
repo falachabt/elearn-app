@@ -21,6 +21,8 @@ export type DonneesAccueil = {
   /** Séance du jour ; `null` quand le serveur ne répond pas et qu'aucune copie du jour n'existe. */
   seance: EtatSeanceJour | null;
   seanceErreur: boolean;
+  /** Diagnostic terminé : sans lui, l'accueil reste la préparation (maquette TOEIC-S7), sans cartes. */
+  diagnosticFait: boolean;
 };
 
 /** Durée voulue de la séance : celle du plan, sinon la valeur par défaut de la configuration (jamais écrite en dur). */
@@ -54,6 +56,7 @@ export async function chargerAccueil(): Promise<DonneesAccueil> {
     serie: serie && !serie.termine && serie.exam === exam ? serie : null,
     seance,
     seanceErreur,
+    diagnosticFait: !!fin,
   };
 }
 

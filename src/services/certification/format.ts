@@ -26,6 +26,19 @@ export function analyserDateSaisie(texte: string, aujourdhui: Jour): DateAnalyse
   return jour < aujourdhui ? { ok: false, erreur: 'passe' } : { ok: true, jour };
 }
 
+/**
+ * Masque de saisie JJ/MM/AAAA : l'élève tape les chiffres, les barres obliques s'ajoutent toutes seules.
+ * Effacer la barre de fin efface aussi le chiffre qui la précède, sinon le masque la remettrait aussitôt.
+ */
+export function masquerDate(precedent: string, saisie: string): string {
+  let chiffres = saisie.replace(/\D/g, '');
+  if (saisie.length < precedent.length && precedent.endsWith('/') && saisie === precedent.slice(0, -1)) chiffres = chiffres.slice(0, -1);
+  chiffres = chiffres.slice(0, 8);
+  if (chiffres.length <= 2) return chiffres;
+  if (chiffres.length <= 4) return `${chiffres.slice(0, 2)}/${chiffres.slice(2)}`;
+  return `${chiffres.slice(0, 2)}/${chiffres.slice(2, 4)}/${chiffres.slice(4)}`;
+}
+
 /** Jour ISO → « JJ/MM/AAAA ». */
 export const afficherJour = (jour: Jour): string => jour.split('-').reverse().join('/');
 
