@@ -593,38 +593,37 @@ const P1=t=>ph(t,identiteSec+bd(
     row('logout','Se déconnecter','Ton compte reste enregistré.','')
   )+ft(TBS(4)));
 
-/* P2 : choix du profil (trois choix) */
-const P2=t=>ph(t,hd('Mon profil',true)+bd(
-    `<p class="hint" style="color:var(--txt)">Choisis ton profil. Tu peux changer à tout moment depuis Moi.</p>`+
-    `<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>Secondaire</b><small>De la 6e à la terminale</small></div><span class="badge">Actuel</span></div>`+
-    `<div class="ch">${rad(false)}<div class="ot" style="flex:1;min-width:0"><b>Candidat à un concours</b><small>Filière, concours et annales</small></div></div>`+
-    `<div class="ch">${rad(false)}<div class="ot" style="flex:1;min-width:0"><b>Je prépare une certification</b><small>TOEIC, puis d'autres examens</small></div></div>`
-  )+ft(B('Continuer')));
-
-/* P3 : niveau secondaire (classe) */
-const P3s=t=>ph(t,hd('Secondaire',true)+bd(lab('Ta classe')+
-    `<div class="gridn" style="grid-template-columns:repeat(4,1fr)"><span class="todo">6e</span><span class="todo">5e</span><span class="todo">4e</span><span class="todo">3e</span><span class="todo">2de</span><span class="todo">1re</span><span class="on">Tle</span></div>`+
-    `<p class="hint" style="color:var(--txt)">Ton programme et tes séances suivent ta classe.</p>`
+/* P2 : page « Mon profil » (ChoixClasse en mode modifier, mise en page plein écran, sans barre d'onglets).
+   Statut en trois choix : Je suis élève, Je prépare un concours, Je prépare une certification.
+   Étape 1 selon le statut (classe, concours ou examen), étape 2 le pays. Enregistrer. */
+const etapeNum=(n,titre)=>`<div style="display:flex;align-items:center;gap:10px"><span style="width:28px;height:28px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;font:700 13px var(--f-body);background:var(--surf);color:var(--txt);flex:none">${n}</span><b style="font:700 17px var(--f-display);color:var(--txt)">${titre}</b></div>`;
+const statut=(k)=>`<div class="pills" style="flex-direction:column;align-items:stretch">`+[['Je suis élève','eleve'],['Je prépare un concours','concours'],['Je prépare une certification','cert']].map(([l,c])=>`<span class="pill ${c===k?'on':''}">${l}</span>`).join('')+`</div>`;
+const pays=`<div class="fl" style="margin-top:0"><span>Cameroun</span>${I('chev')}</div>`;
+const P2e=t=>ph(t,hd('Mon profil',true)+bd(lab('Statut')+statut('eleve')+
+    etapeNum(1,'Ta classe')+`<div class="pills">${['6e','5e','4e','3e','2nde','1re'].map(c=>`<span class="pill">${c}</span>`).join('')}<span class="pill on">Tle</span></div>`+
+    etapeNum(2,'Ton pays')+pays
+  )+ft(B('Enregistrer')));
+const P2c=t=>ph(t,hd('Mon profil',true)+bd(lab('Statut')+statut('concours')+
+    etapeNum(1,'Ton concours')+`<div class="sheet" style="gap:6px"><span class="lbl2" style="margin:0">Mon concours</span><div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><b style="font:700 16px var(--f-body);color:var(--txt)">Médecine</b><span class="lk">Changer</span></div></div>`+
+    etapeNum(2,'Ton pays')+pays
+  )+ft(B('Enregistrer')));
+const P2x=t=>ph(t,hd('Mon profil',true)+bd(lab('Statut')+statut('cert')+
+    etapeNum(1,'Ton examen')+`<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>TOEIC Listening and Reading</b><small>Anglais des affaires · 2 h · 200 questions</small></div></div>`+
+    `<p class="hint" style="color:var(--txt)">Seul examen disponible pour l'instant. D'autres arriveront bientôt.</p>`+
+    etapeNum(2,'Ton pays')+pays
   )+ft(B('Enregistrer')));
 
-/* P3 : concours (choix du concours selon le pays) */
-const P3c=t=>ph(t,hd('Concours',true)+bd(lab('Ton concours')+
-    `<div class="fl"><span>Choisir dans la liste de ton pays</span>${I('chev')}</div>`+
-    `<p class="hint" style="color:var(--txt)">La liste dépend de ton pays. Tes annales et ton programme suivent ce choix.</p>`
-  )+ft(B('Enregistrer')));
-
-/* P4 : confirmation pour passer au TOEIC (feuille sur Moi secondaire) */
-const P4=t=>ph(t,identiteSec+bd(row('flag','Mon profil','Secondaire · Terminale · changer','')+row('trend','Progression','Temps d\'étude et niveau par matière',''))+cadreFeuille(
+/* P4 : confirmation de bascule vers le TOEIC (déclenchée par Enregistrer depuis P2, statut certification) */
+const P4=t=>ph(t,hd('Mon profil',true)+bd(lab('Statut')+statut('cert')+etapeNum(1,'Ton examen')+`<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>TOEIC Listening and Reading</b><small>Anglais des affaires · 2 h · 200 questions</small></div></div>`)+cadreFeuille(
     `<b style="font:700 17px var(--f-body);color:var(--txt)">Passer au profil TOEIC ?</b>`+
     `<p class="hint" style="color:var(--txt)">L'accueil, Réviser, Tests et Statistiques changent. Ton profil secondaire reste enregistré : tu pourras y revenir depuis Moi.</p>`+
-    B('Passer au TOEIC')+LK('Annuler'))+ft(TBS(4)));
+    B('Passer au TOEIC')+LK('Annuler'))+ft(B('Enregistrer')));
 
-/* P5 : confirmation pour quitter le TOEIC (feuille sur Moi TOEIC) */
-const P5=t=>ph(t,hd('Moi',false)+bd(row('flag','Mon profil','TOEIC · changer de profil','')+row('target','Mon objectif','Score 800 · test le 26 novembre',''))+cadreFeuille(
+/* P5 : confirmation de retour au secondaire ou au concours (déclenchée par Enregistrer depuis P2 sur le TOEIC) */
+const P5=t=>ph(t,hd('Mon profil',true)+bd(lab('Statut')+statut('eleve')+etapeNum(1,'Ta classe')+`<div class="pills">${['6e','5e','4e','3e','2nde','1re'].map(c=>`<span class="pill">${c}</span>`).join('')}<span class="pill on">Tle</span></div>`)+cadreFeuille(
     `<b style="font:700 17px var(--f-body);color:var(--txt)">Revenir au secondaire ?</b>`+
     `<p class="hint" style="color:var(--txt)">Le profil TOEIC reste enregistré. Tu pourras le retrouver depuis Moi.</p>`+
-    `<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>Secondaire</b><small>De la 6e à la terminale</small></div></div>`+
-    B('Revenir au secondaire')+LK('Annuler'))+ft(TB(4)));
+    B('Revenir au secondaire')+LK('Annuler'))+ft(B('Enregistrer')));
 
 /* P6 : état de changement en cours */
 const P6c=t=>ph(t,hd('Mon profil',true)+bd(
@@ -674,7 +673,7 @@ const groups=[
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
  ['Crédits gagnés : échéance à 30 jours (X5 et X6, valides)',[[x5,'TOEIC-X5 · Feuille de coût : « dont {e} à utiliser avant le {date} » (remplace X1 pour cette partie)'],[x6,'TOEIC-X6 · Moi, solde avec échéance (remplace la ligne crédits de N2)']]],
-['Changer de profil : secondaire, concours ou TOEIC (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours : ligne « Mon profil » (remplace « Classe »)'], [P2,'TOEIC-P2 · Choix du profil : secondaire, concours ou certification (TOEIC)'], [P3s,'TOEIC-P3-SEC · Choix de la classe, 6e à terminale'], [P3c,'TOEIC-P3-CONC · Choix du concours selon le pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (Moi secondaire)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (Moi TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
+['Changer de profil : une seule page, comme le choix de classe (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours : ligne « Mon profil » (remplace « Classe »)'], [P2e,'TOEIC-P2-ELEVE · Mon profil, statut élève : classe puis pays, Enregistrer'], [P2c,'TOEIC-P2-CONC · Mon profil, statut concours : concours puis pays'], [P2x,'TOEIC-P2-CERT · Mon profil, statut certification : examen (TOEIC, seul disponible) puis pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (après Enregistrer)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (depuis le TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;

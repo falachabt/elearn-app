@@ -193,3 +193,17 @@ Demande de Benny (16/10) : dans Moi, « changer de classe ou de concours » devi
 - `TOEIC-N2-2` (Moi TOEIC, suite) : **révisé**. La ligne « Certification » devient « Mon profil · TOEIC · changer de profil ».
 - Textes à valider avec le cahier : la liste des concours dépend du pays (non écrite ici). Les états de P6 ne sont pas encore dessinés en sombre dans le détail des feuilles, mais le moteur les rend dans les deux thèmes.
 
+## Changer de profil : une seule page (version 17, retour de Benny du 16 octobre)
+
+Retour de Benny : le changement de profil ne se fait pas par des écrans séparés. C'est la page de choix de classe ou de concours de l'app (`ChoixClasse`, `src/components/ParcoursArrivee.tsx`, mode modification depuis Moi). Écart relevé : la version 16 avait découpé ce choix en étapes qui n'existent pas dans l'app. Cause : la maquette, pas le code.
+
+- `TOEIC-P1` : Moi secondaire ou concours. Ligne « Mon profil » (remplace « Classe ») qui ouvre P2.
+- `TOEIC-P2-ELEVE` : statut « Je suis élève ». Étape 1 « Ta classe » (6e à Tle), étape 2 « Ton pays », « Enregistrer ».
+- `TOEIC-P2-CONC` : statut « Je prépare un concours ». Étape 1 « Ton concours » (carte « Mon concours », « Changer » vers la liste ENS, Médecine, Écoles d'ingénieurs), étape 2 « Ton pays », « Enregistrer ».
+- `TOEIC-P2-CERT` : statut « Je prépare une certification ». Étape 1 « Ton examen » (TOEIC, seul disponible ; d'autres à venir), étape 2 « Ton pays », « Enregistrer ». Le choix mène au layout TOEIC.
+- `TOEIC-P4` : confirmation « Passer au profil TOEIC ? », après « Enregistrer » depuis P2-CERT. Le secondaire reste enregistré.
+- `TOEIC-P5` : confirmation « Revenir au secondaire ? », après « Enregistrer » depuis le TOEIC. Le profil TOEIC reste enregistré.
+- `TOEIC-P6-CHARGE` et `TOEIC-P6-ERR` : inchangés (changement en cours, changement impossible).
+- Les anciens identifiants `TOEIC-P3-SEC` et `TOEIC-P3-CONC` sont retirés : leur contenu est dans P2-ELEVE et P2-CONC.
+- Pas de barre d'onglets sur P2 : la page est plein écran, comme dans l'app.
+
