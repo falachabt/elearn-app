@@ -155,3 +155,16 @@ L'objectif de score (écran A3) se saisit au clavier au format JJ/MM/AAAA. Pas d
 - E-04 : l'étiquette de A3 passe à « TOEIC · étape 3 sur 4 », le parcours comptant 4 étapes avec A4 (« Étape 4 sur 4 »). A1 et A2 n'ont pas de compteur dans la maquette ni dans le cahier : aucun compteur ajouté.
 - La coche de `TOEIC-A3-DATE-VALIDE` est dans la ligne de message sous le champ, comme dans le code ; le champ ne porte plus d'icône.
 - Identifiants inchangés.
+
+## Moi et Accueil TOEIC repris de l'app secondaire (version 14, 16 octobre 2026)
+
+Demande de Benny (16/10) : repartir de la page Moi et de l'accueil du secondaire, garder ce qui est propre au TOEIC, et prévoir la déconnexion.
+
+- `TOEIC-N1` (Accueil) : **révisé**. Carte « Séance du jour » verte (comme la mission du jour du secondaire), bloc « Test dans N jours » avec date d'examen et avancement du plan, score estimé, mots à revoir, reprise. Les accès rapides ont été retirés : les onglets les remplacent.
+- `TOEIC-D1` (Accueil après le diagnostic) : **révisé**, même structure que N1, avec le diagnostic à la place du score estimé.
+- `TOEIC-N2` (Moi) : **révisé**, en-tête identité repris du secondaire, puis `Progression vers ton objectif` à la place des points XP (score visé 800, score estimé 650 à 730, écart 70 à 150 points). Pas de points XP en certification.
+- `TOEIC-N2-2` (Moi, suite) : **nouveau**. Certification, parent, identifiant, aide, réglages, puis la ligne « Se déconnecter » visible.
+- `TOEIC-N2-DECO` (confirmation) : **nouveau**. Feuille « Se déconnecter ? » avec « Annuler » (action verte) et « Se déconnecter » (secondaire).
+- Hors maquette, à trancher : « Documents » (factures et reçus) et « Parrainage » du secondaire ne sont pas dessinés dans cette version, par manque de place sous la barre d'onglets.
+- Les montants et dates sont des exemples : le solde, le score et la date viennent du serveur.
+

@@ -372,7 +372,6 @@ const c8=t=>ph(t,hd('Séance de mots · 3 / 10',true)+bd(bar(30)+`<div class="fl
 const c9=t=>ph(t,hd('Séance terminée',false)+bd(`<div class="flip"><span class="lbl2">Ta séance</span><span class="big">7 mots sur 10</span><p class="hint" style="color:var(--txt)">3 mots reviendront demain.</p></div>`+lab('Boîtes')+`<div class="gr2"><span class="tile">Boîte 1 · 4 mots</span><span class="tile">Boîte 2 · 3 mots</span><span class="tile">Boîte 3 · 2 mots</span><span class="tile">Boîte 4 · 1 mot</span></div>`)+ft(B('Retour au carnet')));
 
 /* ---------- PARCOURS DU JOUR (D) ---------- */
-const dacc=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="sheet"><span class="lbl2">Séance du jour · 20 minutes</span><b style="font:700 17px var(--f-body)">Séance du jour</b><p class="hint" style="color:var(--txt)">Parce que tu as raté 4 questions sur les prépositions.</p>${bar(20)}</div>`+`<div class="gr2"><span class="tile">Score estimé<small>650 à 730 sur 990</small></span><span class="tile">Test dans<small>42 jours</small></span></div>`+row('route','Mon plan de la semaine','Séances et rejeux','')+row('target','Carte de maîtrise','3 notions fragiles','')+'')+ft(B('Commencer la séance')));
 const dseance=t=>ph(t,hd('Séance du jour')+bd(`<div class="dash" style="color:var(--txt);font-size:14px"><b>Pourquoi cette séance ?</b><br>Parce que tu as raté 4 questions sur les prépositions, et que 6 mots du carnet arrivent à échéance.</div>`+row('book','Un point de cours','Prépositions de temps · 3 min','')+row('notes','Des mots à revoir','6 mots · séance de mots','')+row('rotate','Des questions à rejouer','4 questions ratées · partie 5','')+row('target','Une série','Partie 5 · 10 questions','')+bar(0)+`<p class="hint">0 sur 4 terminés</p>`)+ft(B('Commencer'),LK('Changer la durée')));
 const dsem=t=>ph(t,hd('Mon plan')+bd(lab('Semaine du 12 octobre')+`<div class="gridn"><span class="ok">L</span><span class="ok">M</span><span class="on">M</span><span class="todo">J</span><span class="todo">V</span><span class="todo">S</span><span class="todo">D</span></div>`+`<div class="sheet" style="padding:10px 12px"><b>Test le 26 novembre</b><p class="hint" style="color:var(--txt)">Il reste 42 jours. Le plan prévoit 3 séances par semaine.</p>${bar(35)}</div>`+row('check','Lundi et mardi','Faits','')+row('cal','Jeudi et plus','Prévus','')+'')+ft(BS('Modifier mon objectif')));
 const dmoi=t=>ph(t,hd('Mon objectif TOEIC')+bd(lab('Score visé')+`<div class="fl"><span style="font:700 17px var(--f-mono)">800</span>${I('chev')}</div>`+lab('Date du test')+`<div class="fl"><span>26 novembre 2026</span>${I('cal')}</div>`+lab('Temps par jour')+`<div class="pills"><span class="pill">10</span><span class="pill on">20</span><span class="pill">30</span></div>`+`<p class="hint">Le score ne garantit rien. Les changements s'appliquent à ton plan du jour.</p>`)+ft(B('Enregistrer')));
@@ -394,8 +393,6 @@ const x4=t=>ph(t,hd('Pack audio manquant',true)+bd(`<div class="sheet" style="bo
 P.camera='<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>';
 P.chat='<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>';
 const TB=(act)=>{const items=[['home','Accueil'],['book','Réviser'],['trophy','Tests'],['trend','Statistiques'],['user','Moi']];return `<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--bord);background:var(--surf);padding:8px 0 12px">${items.map(([i,l],k)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:3px;font:700 11px var(--f-body);color:${k===act?'var(--marque)':'var(--txt2)'}">${k===2?`<span style="display:grid;place-items:center;width:40px;height:32px;border:2px solid var(--bord);border-radius:10px;background:var(--marque);color:#0A0A0A">${I(i)}</span>`:I(i)}${l}</div>`).join('')}</div>`};
-const n1=t=>ph(t,hd('Accueil',false,`<span class="badge">5 crédits</span>`)+bd(`<p class="hint" style="color:var(--txt)">Objectif 800 · test dans 42 jours</p>`+`<div class="sheet"><span class="lbl2">Séance du jour · 20 minutes</span><b style="font:700 17px var(--f-body)">Séance du jour</b><p class="hint" style="color:var(--txt)">Parce que tu as raté 4 questions sur les prépositions.</p>${bar(20)}</div>`+`<div class="gr2"><span class="tile">Score estimé<small>650 à 730 sur 990</small></span><span class="tile">Mots à revoir<small>42 mots</small></span></div>`+lab('Reprendre')+row('rotate','Série interrompue','Partie 5 · 6 questions sur 10','')+lab('Accès rapides')+`<div class="gr2"><span class="tile">Parties<small>1 à 7</small></span><span class="tile">Cours<small>par notion</small></span><span class="tile">Carnet<small>42 à revoir</small></span><span class="tile">Mon plan<small>3 séances / semaine</small></span></div>`)+ft(B('Commencer la séance'),TB(0)));
-const n2=t=>ph(t,hd('Moi',false)+bd(row('target','Mon objectif','Score 800 · test le 26 novembre','')+row('clock','Temps par jour','20 minutes','')+row('wallet','Crédits et Pass','5 crédits · Pass semaine','')+row('route','Ma semaine','Séances faites et rejeux','')+row('award','Certification','TOEIC · changer','')+row('bulb','Réglages','Sons, notifications, hors ligne',''))+ft(TB(4)));
 const n3=t=>ph(t,hd('Réviser',false)+bd(seg(['Parcours','Parties','Cours','Carnet'],0)+`<div class="sheet"><b style="font:700 15px var(--f-body)">Parcours</b><p class="hint" style="color:var(--txt)">Ce que tu fais maintenant : la séance du jour et ton plan. Les autres onglets sont des ressources à ton rythme.</p></div>`+row('book','Parties 1 à 7','Carte de maîtrise',``)+row('target','Cours par notion','58 notions','')+row('notes','Carnet de mots','42 mots à revoir','')+'')+ft(TB(1)));
 
 // Statistiques TOEIC (ST1 à ST4), remplace l'onglet Photo
@@ -496,6 +493,76 @@ BARRE D'ONGLETS (toujours visible, sauf séries, test en cours et lecteur audio 
 <tr><td style="padding:6px">Correction par photo, question IA</td><td style="padding:6px">5 crédits (règle actuelle)</td><td style="padding:6px">Photo, existant</td></tr>
 </table>
 <p class="hint" style="color:var(--txt2)">Le solde s'affiche sur l'Accueil et dans Moi (TOEIC-N1, TOEIC-N2). Un bouton payant affiche son coût. Crédits épuisés : la feuille « Recharger / Plus tard » existante, sur la même page.</p></div>`;
+/* ---------- MOI ET ACCUEIL TOEIC, REPRIS DE L'APP SECONDAIRE (v14, 16 octobre) ---------- */
+Object.assign(P,{
+ logout:'<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>',
+ bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+ settings:'<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+ idcard:'<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M15 9h3M15 13h3M6 16c.5-1.2 1.6-2 3-2s2.5.8 3 2"/>',
+ shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+});
+const cadreFeuille=(corps)=>`<div style="position:absolute;inset:0;background:rgba(10,10,10,.45)"></div><div style="position:absolute;left:0;right:0;bottom:0;background:var(--surf);border-top:2px solid var(--bord);border-radius:14px 14px 0 0;padding:16px 16px 18px;display:grid;gap:10px">${corps}</div>`;
+const iconeBouton=(icone,libelle)=>`<span style="display:flex;align-items:center;justify-content:center;gap:8px">${I(icone)}${libelle}</span>`;
+
+/* Accueil TOEIC : carte séance du jour (comme la mission du jour), bloc compte à rebours */
+const homeT=(t,variante)=>{
+  const diag=variante==='diag';
+  const bas=diag
+    ? row('route','Mon plan de la semaine','Séances et rejeux','')+row('target','Carte de maîtrise','3 notions fragiles','')
+    : lab('Reprendre')+row('rotate','Série interrompue','Partie 5 · 6 questions sur 10','');
+  return ph(t,hd('Accueil',false,`<span class="ic2" style="width:30px;height:30px">${I('bell')}</span><span class="badge">5 crédits</span>`)+bd(
+    `<div class="sheet" style="background:var(--marque);color:#0A0A0A;gap:8px;padding:12px 14px">`+
+      `<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="badge" style="background:var(--surf);color:var(--txt)">Séance du jour</span><span style="font:700 12px var(--f-body)">20 min</span></div>`+
+      `<b style="font:700 17px var(--f-body)">Prépositions de temps</b>`+
+      `<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="badge" style="background:var(--surf);color:var(--txt)">Partie 5</span><span class="badge" style="background:var(--surf);color:var(--txt)">6 mots</span></div>`+
+      `<div>${B('Commencer','sec')}</div>`+
+    `</div>`+
+    `<div class="sheet" style="padding:12px 14px;gap:6px"><span class="lbl2" style="margin:0">Test dans</span><div style="display:flex;align-items:baseline;gap:8px"><b style="font:700 28px var(--f-display);color:var(--txt)">42 jours</b><small style="font:700 12px var(--f-body);color:var(--txt2)">le 26 novembre 2026</small></div>${bar(35)}<p class="hint" style="color:var(--txt)">Ton plan : 3 séances par semaine. Cette semaine, 2 faites.</p></div>`+
+    `<div class="gr2"><span class="tile">${diag?'Diagnostic':'Score estimé'}<small>650 à 730 sur 990</small></span><span class="tile">Mots à revoir<small>42 mots</small></span></div>`+
+    bas
+  )+ft(TB(0)));
+};
+const n1=t=>homeT(t,'nouveau');
+const dacc=t=>homeT(t,'diag');
+
+/* Moi TOEIC : même structure que Moi de l'app secondaire, bloc progression à la place de l'XP */
+const moiBloc=(titre,corps)=>`<div class="sheet" style="gap:8px"><span class="lbl2" style="margin:0">${titre}</span>${corps}</div>`;
+const n2=t=>ph(t,
+  `<div style="display:flex;align-items:center;gap:12px;padding:14px 16px 6px">`+
+    `<span style="width:52px;height:52px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;background:var(--surf);flex:none">${I('user')}</span>`+
+    `<div style="flex:1;min-width:0"><b style="font:700 18px var(--f-display);color:var(--txt)">Léa M.</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">TOEIC · Cameroun · objectif 800</small></div>`+
+    `<span class="ic2" style="width:44px;height:44px">${I('settings')}</span>`+
+  `</div>`+
+  bd(
+    moiBloc('Progression vers ton objectif',
+      `<div class="gr2" style="grid-template-columns:1fr 1fr 1fr"><span class="tile">Visé<small>800</small></span><span class="tile">Estimé<small>650 à 730</small></span><span class="tile">Écart<small>70 à 150 pts</small></span></div>`+
+      bar(86)+
+      `<p class="hint" style="color:var(--txt)">Score estimé d'après tes séances. Il ne garantit rien.</p>`+
+      `<span class="lk" style="justify-self:start">Voir mes statistiques</span>`)+
+    row('wallet','Crédits et Pass','5 crédits · Pass semaine','')+
+    row('target','Mon objectif','Score 800 · 20 min par jour · test le 26 novembre','')+
+    row('route','Ma semaine','Séances faites et rejeux','')
+  )+ft(TB(4)));
+
+/* Suite de Moi TOEIC : ligne déconnexion visible */
+const n2b=t=>ph(t,hd('Moi',false)+bd(
+    row('award','Certification','TOEIC · changer','')+
+    row('shield','Parent','Aucun parent lié','')+
+    row('idcard','Mon identifiant','Copier pour le support','')+
+    row('info','Aide','Questions fréquentes, contact','')+
+    row('bulb','Réglages','Sons, notifications, hors ligne','')+
+    `<div class="ch" style="border-style:dashed"><span class="ic2">${I('logout')}</span><div class="ot" style="flex:1;min-width:0"><b>Se déconnecter</b><small>Ton compte reste enregistré.</small></div></div>`
+  )+ft(TB(4)));
+
+/* Confirmation de déconnexion */
+const n2c=t=>ph(t,hd('Moi',false)+bd(
+    row('target','Mon objectif','Score 800 · test le 26 novembre','')+
+    row('wallet','Crédits et Pass','5 crédits · Pass semaine','')
+  )+cadreFeuille(
+    `<b style="font:700 17px var(--f-body);color:var(--txt)">Se déconnecter ?</b>`+
+    `<p class="hint" style="color:var(--txt)">Ton compte reste enregistré. Tu pourras te reconnecter avec ton identifiant ou ton e-mail.</p>`+
+    B('Annuler')+B('Se déconnecter','sec')
+  )+ft(TB(4)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -517,7 +584,7 @@ const optsTxt=opt('A','release','')+opt('B','released','');
 
 // Identifiants stables : TOEIC-<section><n>. Ne pas les renommer ; un écran modifié garde son identifiant.
 const groups=[
- ['Navigation : accueil, barre d\'onglets, Moi (N1 à N3)',[[n1,'TOEIC-N1 · Accueil TOEIC : séance du jour, score estimé, reprise, accès rapides'],[n3,'TOEIC-N3 · Réviser : sous-onglets Parcours, Parties, Cours, Carnet'],[n2,'TOEIC-N2 · Moi : objectif, temps par jour, crédits et Pass (ligne crédits remplacée par X6)']]],
+ ['Navigation : accueil, barre d\'onglets, Moi (N1 à N3)',[[n1,'TOEIC-N1 · Accueil TOEIC : carte séance du jour, compte à rebours avant le test, score estimé, reprise, accès rapides'],[n3,'TOEIC-N3 · Réviser : sous-onglets Parcours, Parties, Cours, Carnet'],[n2,'TOEIC-N2 · Moi TOEIC : repris de Moi (secondaire), bloc progression vers l\'objectif à la place des XP, crédits et objectif'],[n2b,'TOEIC-N2-2 · Moi TOEIC, suite : certification, parent, identifiant, aide, réglages, déconnexion visible'],[n2c,'TOEIC-N2-DECO · Confirmation de déconnexion (Annuler, Se déconnecter)']]],
  ['Onglet Tests, remplace Questions (T1 à T7) et gains (G1)',[[t1,'TOEIC-T1 · Tests : mini-tests, test complet, score estimé'],[t2,'TOEIC-T2 · Réglage d\'un mini-test : partie, longueur, temps, coût'],[t3,'TOEIC-T3 · Reprise d\'un test interrompu'],[t4,'TOEIC-T4 · Historique et score estimé'],[t5,'TOEIC-T5 · Demi-test, écoute ou lecture seule (V2)'],[t6,'TOEIC-T6 · Test complet, indisponible pour l\'instant (V2)'],[t7,'TOEIC-T7 · Détail d\'une tentative dans l\'historique (état manquant)'],[g1,'TOEIC-G1 · Gagner des crédits : gains TOEIC, plafond 15 par semaine']]],
  ['Statistiques (ST1 à ST4) : remplace Photo',[[st1,'TOEIC-ST1 · Statistiques : score estimé, maîtrise par partie, mots, régularité, temps'],[st2,'TOEIC-ST2 · Vide : pas encore de statistiques (nouvel élève)'],[st3,'TOEIC-ST3 · Première semaine : quelques données, pas encore de tendance'],[st4,'TOEIC-ST4 · Hors ligne : dernier calcul daté']]],
  ['Arrivée et objectif (A1 à A5)',[[o1,'TOEIC-A1 · Bienvenue : trois cartes, la nouvelle « Certification »'],[o2,'TOEIC-A2 · Liste des certifications, TOEIC en bas, logo à fournir'],[o3,'TOEIC-A3 · Objectif : score rapide ou valeur libre, 800 par défaut (date : voir TOEIC-A3-DATE-*)'],[a3,'TOEIC-A4 · Temps par jour : 10, 20 ou 30 minutes, choisi par l\'élève'],[o4,'TOEIC-A5 · Arrivée : diagnostic proposé en premier']]],
@@ -525,7 +592,7 @@ const groups=[
  ['Diagnostic et résultat (A6 à A8)',[[d1,'TOEIC-A6 · Question du diagnostic, progression et passer'],[d2,'TOEIC-A7 · Résultat : estimation sur 990, carte de maîtrise résumée, 3 points faibles'],[d1x,'TOEIC-A8 · Fin du diagnostic, avant le résultat']]],
  ['Moteur d\'exercice (B1 à B11, sept types)',[[b1,'TOEIC-B1 · Type 1, photos (partie 1)'],[b2,'TOEIC-B2 · Type 2, question-réponse audio (partie 2)'],[b3,'TOEIC-B3 · Type 3, conversation (partie 3)'],[b4,'TOEIC-B4 · Type 4, exposé court (partie 4)'],[b5,'TOEIC-B5 · Type 5, phrase à compléter (partie 5)'],[b6,'TOEIC-B6 · Type 6, texte à trous (partie 6)'],[b7,'TOEIC-B7 · Type 7, passage à un ou plusieurs documents (partie 7)'],[b8,'TOEIC-B8 · Lecteur audio, écoute unique ou relisible'],[b9,'TOEIC-B9 · Explication : notion nommée, piège, bouton « Explication détaillée » avec badge 1 crédit (sans badge avec le Pass)'],[b10,'TOEIC-B10 · Feuille « Pourquoi j\'ai raté ? »'],[b11,'TOEIC-B11 · Fin de série : à rejouer, notions, mots ajoutés']]],
  ['Réviser le TOEIC (C1 à C9)',[[c1,'TOEIC-C1 · Réviser : onglets propres au TOEIC, parties 1 à 7'],[c2,'TOEIC-C2 · Carte de maîtrise : notions par partie, sans rouge agressif'],[c3,'TOEIC-C3 · Une partie : notions avec état'],[c4,'TOEIC-C4 · Cours groupés par famille'],[c5,'TOEIC-C5 · Fiche d\'une notion, courte, avec trois questions'],[c6,'TOEIC-C6 · Carnet de mots : trois listes et recherche'],[c7,'TOEIC-C7 · Fiche d\'un mot : définition, audio, erreurs'],[c8,'TOEIC-C8 · Séance de mots : rappel espacé'],[c9,'TOEIC-C9 · Fin de séance de mots, boîtes']]],
- ['Parcours du jour (D1 à D4)',[[dacc,'TOEIC-D1 · Accueil TOEIC après le diagnostic'],[dseance,'TOEIC-D2 · Séance du jour : composition et pourquoi'],[dsem,'TOEIC-D3 · Mon plan : semaine et jours avant le test'],[dmoi,'TOEIC-D4 · Moi : objectif, date et temps par jour']]],
+ ['Parcours du jour (D1 à D4)',[[dacc,'TOEIC-D1 · Accueil TOEIC après le diagnostic (même structure que N1, diagnostic affiché)'],[dseance,'TOEIC-D2 · Séance du jour : composition et pourquoi'],[dsem,'TOEIC-D3 · Mon plan : semaine et jours avant le test'],[dmoi,'TOEIC-D4 · Moi : objectif, date et temps par jour']]],
  ['États du moteur d\'exercice (B1 à B8, chargement, audio, lecture)',[[chg('Partie 1 · Photos'),'TOEIC-B1-CHARGE · Chargement d\'une photo'],[chg('Partie 2 · Question-réponse'),'TOEIC-B2-CHARGE · Chargement d\'une question audio'],[chg('Partie 3 · Conversation'),'TOEIC-B3-CHARGE · Chargement d\'une conversation'],[chg('Partie 4 · Exposé'),'TOEIC-B4-CHARGE · Chargement d\'un exposé'],[chg('Partie 5 · Phrase'),'TOEIC-B5-CHARGE · Chargement d\'une phrase'],[chg('Partie 6 · Texte à trous'),'TOEIC-B6-CHARGE · Chargement d\'un texte à trous'],[chg('Partie 7 · Documents'),'TOEIC-B7-CHARGE · Chargement d\'un passage'],[akO('Partie 1 · Photos',optsAud),'TOEIC-B1-AUDIO-KO · Son indisponible, partie 1'],[akO('Partie 2 · Question-réponse',optsAud),'TOEIC-B2-AUDIO-KO · Son indisponible, partie 2'],[akO('Partie 3 · Conversation',optsAud),'TOEIC-B3-AUDIO-KO · Son indisponible, partie 3'],[akO('Partie 4 · Exposé',optsAud),'TOEIC-B4-AUDIO-KO · Son indisponible, partie 4'],[erA('Partie 3 · Conversation',optsAud),'TOEIC-B3-ERR-AUDIO · Lecture interrompue, reprise sans recommencer'],[erA('Lecteur audio',''),'TOEIC-B8-ERR-AUDIO · Lecteur : erreur de lecture, reprise à la même position']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
