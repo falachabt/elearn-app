@@ -54,6 +54,11 @@ async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant
 /** Clés locales chargées pendant la session, quand le contenu est encore valable. */
 const localesEnMemoire = new Map<string, unknown>();
 
+/** Oublie la valeur gardée en mémoire pour une clé locale que l'appelant vient de réécrire. */
+export function oublierLocalEnMemoire(cle: string): void {
+  localesEnMemoire.delete(cle);
+}
+
 /**
  * Ce contenu local peut-il encore être servi ? Faux hors ligne au-delà de la durée de validité (issue #13).
  *

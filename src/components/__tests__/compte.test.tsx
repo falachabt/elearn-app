@@ -30,7 +30,7 @@ jest.mock('expo-router', () => ({
     useEffect(f, [f]);
   },
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), consentementActif: jest.fn(() => true), definirConsentement: jest.fn(() => Promise.resolve()), definirProprietesUtilisateur: jest.fn() }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), consentementActif: jest.fn(() => true), definirConsentement: jest.fn(() => Promise.resolve()), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => false), ecouterDrapeaux: jest.fn(() => () => {}) }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/authNatif', () => ({ appleAffiche: true, facebookAffiche: true, depsOAuth: () => ({}), depsApple: () => ({}) }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession() }));

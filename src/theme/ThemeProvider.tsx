@@ -44,3 +44,13 @@ export function ThemeProvider({ reglage: force, children }: { reglage?: ReglageT
 }
 
 export const useTheme = () => useContext(ThemeContext);
+
+/**
+ * Force le thème sombre sur un sous-arbre (écran d'examen, qui reste sombre dans les deux thèmes). Sans effet de bord :
+ * le réglage de l'app, la barre du navigateur et le mode nuit du système ne changent pas.
+ */
+export function ForcerSombre({ children }: { children: ReactNode }) {
+  const courant = useContext(ThemeContext);
+  const valeur = useMemo(() => ({ ...courant, theme: themes.dark, sombre: true }), [courant]);
+  return <ThemeContext.Provider value={valeur}>{children}</ThemeContext.Provider>;
+}

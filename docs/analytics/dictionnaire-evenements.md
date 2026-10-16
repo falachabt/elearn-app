@@ -65,7 +65,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `session_invite_creee` | Création de la session invité (connexion anonyme) | `Record<string, never>` |
 | `feedback_setting_changed` | Réglage de sons, vibrations ou animations modifié | `{ setting: 'sounds' \| 'haptics' \| 'reduced_motion' \| 'volume'; value: boolean \| 'faible' \| 'normal'; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean }` |
 | `celebration_seen` | Célébration (fin de mission ou de quiz) affichée | `{ sound_on: boolean; haptics_on: boolean; reduced_motion: boolean }` |
-| `onboarding_choice_made` | Profil choisi à l'arrivée (élève ou concours, classe, pays) | `{ profil: 'eleve' \| 'concours'; niveau: string; pays: string }` |
+| `onboarding_choice_made` | Profil choisi à l'arrivée (élève, concours ou certification ; classe et pays pour les deux premiers) | `{ profil: 'eleve' \| 'concours'; niveau: string; pays: string } \| { profil: 'certification'; pays?: string }` |
 | `first_result_seen` | Premier résultat affiché (mini-test ou photo) | `{ type: 'mini_test' \| 'photo'; duree_s: number; score?: number; total?: number }` |
 | `signup_prompt_seen` | Invitation à créer un compte vue après le score | `{ source: 'score' }` |
 | `paywall_viewed` | Écran des offres affiché | `{ declencheur: 'score' \| 'moi' \| 'limite' }` |
@@ -167,3 +167,39 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `whatsapp_opened` | Ouverture de WhatsApp (support, aide) | `{ contexte: 'support' \| 'parent' \| 'parrainage' \| 'aide' \| 'autre' }` |
 | `notification_received` | Notification reçue (app ouverte ou non) | `{ type: string; premier_plan: boolean }` |
 | `school_class_created` | Réservé (écoles relais, lot 2) | `{ class_id: string; concours: string }` |
+
+## Profil certification (TOEIC)
+
+Aucune donnée personnelle ni contenu de question : seulement des types, parties, bornes de score et noms de notions ou d'actions. Les montants viennent de la configuration serveur.
+
+| Évènement | Quand | Propriétés |
+| --- | --- | --- |
+| `cert_exam_chosen` | Certification choisie à l'écran A2 | `{ examen: string }` |
+| `cert_goal_set` | Objectif de score enregistré (A3) | `{ score: number; date_renseignee: boolean }` |
+| `cert_goal_skipped` | « Passer » à l'écran objectif | `Record<string, never>` |
+| `cert_daily_time_set` | Temps par jour choisi (A4) | `{ minutes: number }` |
+| `cert_diagnostic_started` | Début du diagnostic (A5) | `Record<string, never>` |
+| `cert_diagnostic_completed` | Résultat du diagnostic affiché (A7) | `{ score_min: number \| null; score_max: number \| null }` |
+| `cert_exercise_answered` | Une question répondue ; `juste` est `null` quand la correction n'est pas montrée (diagnostic) | `{ type: string; partie: number; juste: boolean \| null }` |
+| `cert_why_missed` | Raison d'une erreur indiquée | `{ raison: string }` |
+| `cert_notion_opened` | Fiche de notion ouverte | `{ notion: string; source: string }` |
+| `cert_word_state_changed` | Un mot change de boîte | `{ mot: string; boite_avant: number; boite_apres: number }` |
+| `cert_session_started` | Séance du jour lancée | `{ composition: string }` |
+| `cert_session_completed` | Séance du jour terminée | `{ composition: string }` |
+| `cert_mastery_viewed` | Maîtrise par partie affichée | `{ ecran: string }` |
+| `cert_stats_viewed` | Statistiques ouvertes | `{ periode: string }` |
+| `cert_stats_period_changed` | Période des statistiques changée | `{ periode: string }` |
+| `cert_error_reported` | Erreur de contenu signalée | `{ type: string }` |
+| `cert_audio_error` | Audio indisponible | `{ ecran: string; code: string }` |
+| `cert_offline_answer_queued` | Réponses mises en file hors ligne | `{ nb: number }` |
+| `cert_offline_answer_flushed` | File de réponses envoyée au retour du réseau | `{ nb: number }` |
+| `cert_credit_gate_viewed` | Feuille de coût en crédits affichée | `{ action: string }` |
+| `cert_credit_spent` | Crédits dépensés | `{ action: string; cout: number }` |
+| `cert_credit_refunded` | Crédits rendus | `{ action: string; cout: number }` |
+| `cert_paywall_to_pass` | Passage de la feuille de coût vers le Pass | `{ source: string }` |
+| `cert_tests_tab_viewed` | Onglet Tests ouvert | `Record<string, never>` |
+| `cert_mock_started` | Test blanc démarré | `{ kind: string }` |
+| `cert_mock_completed` | Test blanc terminé | `{ kind: string; score_min: number \| null; score_max: number \| null }` |
+| `cert_mock_abandoned` | Test blanc abandonné | `{ kind: string; minute: number }` |
+| `cert_mock_resumed` | Test blanc repris | `{ kind: string; minute: number }` |
+| `cert_earn_claimed` | Gain de crédits TOEIC réclamé (G1) ; `statut` est la réponse du serveur (`granted`, `already`, `cap_reached`, `not_eligible`, `account_required`) | `{ code: string; statut: string }` |

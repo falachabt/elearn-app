@@ -101,6 +101,29 @@ async function chargerEtatMemorise(stockage: Stockage) {
 }
 
 export const analyticsActif = () => client !== null;
+
+/** Prévient quand les drapeaux PostHog sont (re)chargés. Renvoie la fonction d'arrêt. */
+export function ecouterDrapeaux(rappel: () => void): () => void {
+  try {
+    const arret = client?.onFeatureFlags(() => rappel());
+    return typeof arret === 'function' ? arret : () => {};
+  } catch {
+    return () => {};
+  }
+}
+
+/**
+ * Drapeau de fonctionnalité PostHog (R-09). Faux tant que PostHog n'a pas répondu : une fonction derrière un drapeau
+ * reste fermée plutôt que d'apparaître par erreur. `forcer` permet un essai local (variable d'environnement).
+ */
+export function drapeauActif(nom: string, forcer = false): boolean {
+  if (forcer) return true;
+  try {
+    return client?.isFeatureEnabled(nom) === true;
+  } catch {
+    return false;
+  }
+}
 export const consentementActif = () => consentement;
 
 /** Exécute maintenant, ou dès que l'état mémorisé est lu. */
