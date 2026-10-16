@@ -249,3 +249,14 @@ Textes des consignes à valider (rédaction originale, pas de copie des consigne
 - Partie 1 : « Tu vois une photo. Tu entends quatre phrases, lues une seule fois. Choisis la phrase qui décrit le mieux la photo. » (EN de travail : "You will see a photo and hear four statements. Choose the statement that best describes the photo.")
 - Partie 3 : « Tu entends une conversation, écoutée une seule fois. Plusieurs questions portent sur cette conversation : réponds à chacune avant de passer au groupe suivant. » (EN : "You will hear a conversation once. Several questions follow it. Answer every question in the group before moving on.")
 - Transition : « Fin de la partie 1 · Partie 2 commence. » Les textes des autres parties (2, 4, 5, 6, 7) restent à rédiger.
+
+## Trous numérotés, parties 5 et 6 (version 21, 16 octobre 2026)
+
+Retour de Benny (16/10, 21:36) : le texte à trous affichait « {1} », « {2} » et la question « Blank (140) ». Attendu : de petits rectangles numérotés dans le texte, bien visibles, et une question qui renvoie au numéro du trou.
+
+- `TOEIC-B6-1` : partie 6, trou 131 actif (rectangle jaune, bordure forte), rien de répondu. Libellé « Trou 131 · choisis le mot qui complète le texte ». « Valider » désactivé tant qu'aucun choix n'est fait.
+- `TOEIC-B6-2` : trou 131 répondu (rectangle vert, pas seulement la couleur : le numéro reste visible), trou 132 actif. Libellé « Trou 132 · ... ». Le choix sélectionné reprend le style de sélection existant.
+- `TOEIC-B5-TROU` : partie 5, un seul trou numéroté (128) dans la phrase, même libellé « Trou 128 · ... ».
+- Partie 7 : pas de trou, inchangée.
+- Clair et sombre : les rectangles utilisent les tokens (`--surf`, `--soleil`, `--marque`), donc les deux thèmes suivent le moteur.
+- Règle pour le dev : le numéro affiché dans le texte est le même que dans le libellé de la question et que dans le récapitulatif du diagnostic.
