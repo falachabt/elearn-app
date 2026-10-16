@@ -178,3 +178,18 @@ Demande de Benny (16/10) : sur « Mon TOEIC » avant le diagnostic, ne plus affi
 - Les chiffres (20 questions, 10 et 10, environ 15 minutes) viennent du cahier, section A5 et A6.
 - Point hors maquette, signalé à Benny : la première question du diagnostic n'a pas d'image (contenu partie 1, à fournir).
 
+## Changer de profil : secondaire, concours ou TOEIC (version 16, 16 octobre 2026)
+
+Demande de Benny (16/10) : dans Moi, « changer de classe ou de concours » devient un choix de profil en trois. Choisir le TOEIC bascule vers la mise en page TOEIC ; depuis Moi TOEIC, on peut revenir au secondaire ou à un concours. La page Moi TOEIC part de Moi du secondaire, avec quelques lignes en plus ou en moins.
+
+- `TOEIC-P1` : Moi secondaire ou concours. La ligne « Classe » devient « Mon profil » (« Secondaire · Terminale · changer »). Lignes du bas non dessinées, inchangées.
+- `TOEIC-P2` : choix du profil. Trois choix : Secondaire (6e à terminale), Candidat à un concours, Je prépare une certification (TOEIC, puis d'autres examens). Le profil actuel porte la mention « Actuel ». Continuer.
+- `TOEIC-P3-SEC` : choix de la classe, de la 6e à la terminale.
+- `TOEIC-P3-CONC` : choix du concours, dans la liste du pays.
+- `TOEIC-P4` : confirmation pour passer au TOEIC (feuille sur Moi secondaire). Le profil secondaire reste enregistré.
+- `TOEIC-P5` : confirmation pour revenir au secondaire ou au concours (feuille sur Moi TOEIC). Le profil TOEIC reste enregistré.
+- `TOEIC-P6-CHARGE` : changement en cours, bouton désactivé.
+- `TOEIC-P6-ERR` : changement impossible. Le profil n'a pas changé ; réessayer ou rester sur le profil actuel.
+- `TOEIC-N2-2` (Moi TOEIC, suite) : **révisé**. La ligne « Certification » devient « Mon profil · TOEIC · changer de profil ».
+- Textes à valider avec le cahier : la liste des concours dépend du pays (non écrite ici). Les états de P6 ne sont pas encore dessinés en sombre dans le détail des feuilles, mais le moteur les rend dans les deux thèmes.
+

@@ -543,7 +543,7 @@ const n2=t=>ph(t,
 
 /* Suite de Moi TOEIC : ligne déconnexion visible */
 const n2b=t=>ph(t,hd('Moi',false)+bd(
-    row('award','Certification','TOEIC · changer','')+
+    row('flag','Mon profil','TOEIC · changer de profil','')+
     row('shield','Parent','Aucun parent lié','')+
     row('idcard','Mon identifiant','Copier pour le support','')+
     row('info','Aide','Questions fréquentes, contact','')+
@@ -576,6 +576,70 @@ const prepDiag=(t,avecBarre)=>ph(t,hd('Mon TOEIC',false)+bd(
   )+(avecBarre?ft(B('Commencer le diagnostic'),TB(0)):ft(B('Commencer le diagnostic'))));
 const o4=t=>prepDiag(t,false);
 const s7=t=>prepDiag(t,true);
+/* ---------- CHANGER DE PROFIL (P1 à P6, v16, 16 octobre) ---------- */
+/* Barre d'onglets du secondaire et du concours (Accueil, Réviser, Photo, Questions, Moi) */
+const TBS=(act)=>{const items=[['home','Accueil'],['book','Réviser'],['camera','Photo'],['chat','Questions'],['user','Moi']];return `<div style="display:grid;grid-template-columns:repeat(5,1fr);border-top:2px solid var(--bord);background:var(--surf);padding:8px 0 12px">${items.map(([i,l],k)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:3px;font:700 11px var(--f-body);color:${k===act?'var(--marque)':'var(--txt2)'}">${k===2?`<span style="display:grid;place-items:center;width:40px;height:32px;border:2px solid var(--bord);border-radius:10px;background:var(--marque);color:#0A0A0A">${I(i)}</span>`:I(i)}${l}</div>`).join('')}</div>`};
+
+const identiteSec=`<div style="display:flex;align-items:center;gap:12px;padding:14px 16px 6px">`+
+    `<span style="width:52px;height:52px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;background:var(--surf);flex:none">${I('user')}</span>`+
+    `<div style="flex:1;min-width:0"><b style="font:700 18px var(--f-display);color:var(--txt)">Yann K.</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Secondaire · Terminale</small></div>`+
+    `<span class="ic2" style="width:44px;height:44px">${I('settings')}</span></div>`;
+
+/* P1 : Moi secondaire ou concours, ligne « Mon profil » */
+const P1=t=>ph(t,identiteSec+bd(
+    row('flag','Mon profil','Secondaire · Terminale · changer','')+
+    row('trend','Progression','Temps d\'étude et niveau par matière','')+
+    row('wallet','Pass et crédits','Solde et Pass','')+
+    row('logout','Se déconnecter','Ton compte reste enregistré.','')
+  )+ft(TBS(4)));
+
+/* P2 : choix du profil (trois choix) */
+const P2=t=>ph(t,hd('Mon profil',true)+bd(
+    `<p class="hint" style="color:var(--txt)">Choisis ton profil. Tu peux changer à tout moment depuis Moi.</p>`+
+    `<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>Secondaire</b><small>De la 6e à la terminale</small></div><span class="badge">Actuel</span></div>`+
+    `<div class="ch">${rad(false)}<div class="ot" style="flex:1;min-width:0"><b>Candidat à un concours</b><small>Filière, concours et annales</small></div></div>`+
+    `<div class="ch">${rad(false)}<div class="ot" style="flex:1;min-width:0"><b>Je prépare une certification</b><small>TOEIC, puis d'autres examens</small></div></div>`
+  )+ft(B('Continuer')));
+
+/* P3 : niveau secondaire (classe) */
+const P3s=t=>ph(t,hd('Secondaire',true)+bd(lab('Ta classe')+
+    `<div class="gridn" style="grid-template-columns:repeat(4,1fr)"><span class="todo">6e</span><span class="todo">5e</span><span class="todo">4e</span><span class="todo">3e</span><span class="todo">2de</span><span class="todo">1re</span><span class="on">Tle</span></div>`+
+    `<p class="hint" style="color:var(--txt)">Ton programme et tes séances suivent ta classe.</p>`
+  )+ft(B('Enregistrer')));
+
+/* P3 : concours (choix du concours selon le pays) */
+const P3c=t=>ph(t,hd('Concours',true)+bd(lab('Ton concours')+
+    `<div class="fl"><span>Choisir dans la liste de ton pays</span>${I('chev')}</div>`+
+    `<p class="hint" style="color:var(--txt)">La liste dépend de ton pays. Tes annales et ton programme suivent ce choix.</p>`
+  )+ft(B('Enregistrer')));
+
+/* P4 : confirmation pour passer au TOEIC (feuille sur Moi secondaire) */
+const P4=t=>ph(t,identiteSec+bd(row('flag','Mon profil','Secondaire · Terminale · changer','')+row('trend','Progression','Temps d\'étude et niveau par matière',''))+cadreFeuille(
+    `<b style="font:700 17px var(--f-body);color:var(--txt)">Passer au profil TOEIC ?</b>`+
+    `<p class="hint" style="color:var(--txt)">L'accueil, Réviser, Tests et Statistiques changent. Ton profil secondaire reste enregistré : tu pourras y revenir depuis Moi.</p>`+
+    B('Passer au TOEIC')+LK('Annuler'))+ft(TBS(4)));
+
+/* P5 : confirmation pour quitter le TOEIC (feuille sur Moi TOEIC) */
+const P5=t=>ph(t,hd('Moi',false)+bd(row('flag','Mon profil','TOEIC · changer de profil','')+row('target','Mon objectif','Score 800 · test le 26 novembre',''))+cadreFeuille(
+    `<b style="font:700 17px var(--f-body);color:var(--txt)">Revenir au secondaire ?</b>`+
+    `<p class="hint" style="color:var(--txt)">Le profil TOEIC reste enregistré. Tu pourras le retrouver depuis Moi.</p>`+
+    `<div class="ch on">${rad(true)}<div class="ot" style="flex:1;min-width:0"><b>Secondaire</b><small>De la 6e à la terminale</small></div></div>`+
+    B('Revenir au secondaire')+LK('Annuler'))+ft(TB(4)));
+
+/* P6 : état de changement en cours */
+const P6c=t=>ph(t,hd('Mon profil',true)+bd(
+    `<div class="sheet" style="gap:10px"><span class="lbl2" style="margin:0">Changement de profil</span>`+
+      `<b style="font:700 16px var(--f-body);color:var(--txt)">Un instant, ton accueil se prépare.</b>${bar(50)}</div>`+
+    `<div class="sheet" style="height:64px;background:var(--creux);box-shadow:none"></div>`+
+    `<div class="sheet" style="height:120px;background:var(--creux);box-shadow:none"></div>`
+  )+ft(BD('Patiente un instant')));
+
+/* P6 : erreur de changement, le profil n'a pas changé */
+const P6e=t=>ph(t,hd('Mon profil',true)+bd(
+    `<div class="sheet" style="gap:8px"><span class="st f" style="justify-self:start">${I('alert')}Changement impossible</span>`+
+      `<b style="font:700 16px var(--f-body);color:var(--txt)">Ton profil n'a pas changé.</b>`+
+      `<p class="hint" style="color:var(--txt)">Vérifie ta connexion, puis réessaie. Tes données ne sont pas modifiées.</p></div>`
+  )+ft(B('Réessayer'),LK('Rester sur mon profil actuel')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -610,6 +674,7 @@ const groups=[
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
  ['Crédits gagnés : échéance à 30 jours (X5 et X6, valides)',[[x5,'TOEIC-X5 · Feuille de coût : « dont {e} à utiliser avant le {date} » (remplace X1 pour cette partie)'],[x6,'TOEIC-X6 · Moi, solde avec échéance (remplace la ligne crédits de N2)']]],
+['Changer de profil : secondaire, concours ou TOEIC (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours : ligne « Mon profil » (remplace « Classe »)'], [P2,'TOEIC-P2 · Choix du profil : secondaire, concours ou certification (TOEIC)'], [P3s,'TOEIC-P3-SEC · Choix de la classe, 6e à terminale'], [P3c,'TOEIC-P3-CONC · Choix du concours selon le pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (Moi secondaire)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (Moi TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
