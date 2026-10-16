@@ -17,7 +17,7 @@ jest.mock('@/services/analytics', () => ({
       mockRappel = null;
     };
   }),
-  suivre: jest.fn(),
+  suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(),
 }));
 jest.mock('expo-router', () => ({
   Redirect: ({ href }: { href: string }) => {

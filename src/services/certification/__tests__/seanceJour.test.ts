@@ -17,7 +17,7 @@ import {
 import { creerApiFausse } from './apiFausse';
 import { JOUR, SEANCE_TEST } from './fixturesRevision';
 
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
 let mockCompteur = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `uuid-${++mockCompteur}` }));
 

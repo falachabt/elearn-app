@@ -18,7 +18,7 @@ jest.mock('expo-router', () => ({
   useFocusEffect: jest.fn(),
   useLocalSearchParams: () => ({}),
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
 jest.mock('../../credits/CompteurCredits', () => ({ CompteurCredits: () => null }));
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 jest.mock('@/services/compte', () => ({

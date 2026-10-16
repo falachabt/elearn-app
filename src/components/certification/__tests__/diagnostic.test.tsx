@@ -23,7 +23,7 @@ jest.mock('expo-router', () => ({
   useLocalSearchParams: () => ({}),
 }));
 jest.mock('@/services/analytics', () => ({
-  suivre: jest.fn(),
+  suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(),
   drapeauActif: jest.fn(() => true),
   ecouterDrapeaux: jest.fn(() => () => {}),
 }));

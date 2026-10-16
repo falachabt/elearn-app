@@ -29,7 +29,7 @@ jest.mock('expo-router', () => ({
   },
   useLocalSearchParams: () => ({}),
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
 jest.mock('@/session/CreditsProvider', () => ({
   useCredits: () => ({ solde: mockSolde, reglages: { bienvenue: 40, invite: 5, recharge: 25 }, couts: {}, depenser: jest.fn(), rafraichir: (...a: unknown[]) => mockRafraichir(...a) }),
 }));
