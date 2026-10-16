@@ -265,8 +265,9 @@ describe('A5 · Arrivée avant diagnostic', () => {
     expect(await screen.findByText(t.arrivee.repereQuestions.replace('{{n}}', '20'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.repereDuree)).toBeTruthy();
     expect(screen.getByText(t.arrivee.repereGratuit)).toBeTruthy();
-    expect(screen.getByText(t.arrivee.contientEcoute)).toBeTruthy();
-    expect(screen.getByText(t.arrivee.contientLecture)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.intro)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientEcouteTitre)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientLectureTitre)).toBeTruthy();
     expect(screen.getByText(t.arrivee.donneTexte)).toBeTruthy();
     expect(screen.getByText(t.arrivee.regle)).toBeTruthy();
     expect(screen.queryByText(/\d{3} à \d{3}/)).toBeNull();
