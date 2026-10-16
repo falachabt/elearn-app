@@ -6,7 +6,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import type { CertApi } from '../api';
+import type { CertApi, ExplicationAchetee } from '../api';
 import { plageScore } from '../certScore';
 import { lireReglages } from '../reglages';
 import type { Examen, FinTentative, GroupeServi, MotsARevoir, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
@@ -31,6 +31,7 @@ const groupes = new Map<string, G>(contenu.groupes.map((g) => [g.id, g]));
 const questions = new Map<string, Q>(contenu.questions.map((q) => [q.id, q]));
 const notions = new Map(contenu.notions.map((n) => [n.part, { id: n.id, code: n.code, title: n.title, family: n.family as 'grammaire' | 'methode' }]));
 const reglages = lireReglages(reglagesBruts as { key: string; value: unknown }[]);
+const reglagesSerie = Number(((reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'series_size') ?? { value: 10 }).value);
 const blueprint = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'diag_blueprint')!.value as Record<string, number>;
 
 async function lire(): Promise<Store> {
@@ -86,6 +87,7 @@ function corriger(r: ReponseEnvoyee): ResultatReponse {
     trap: null,
     notion: notions.get(q.part) ?? null,
     notions: [],
+    words: [],
     transcript: g?.transcript ?? null,
     replay: false,
   };
@@ -152,6 +154,18 @@ export const apiDemo: CertApi = {
       results: resultats,
       replay: false,
     };
+  },
+  async lireSerie(perimetre, _exam, taille) {
+    const n = taille ?? reglagesSerie;
+    if (perimetre.part) return tirer(perimetre.part, n).map(servir);
+    const parties = [1, 2, 3, 4, 5, 6, 7];
+    return Array.from({ length: n }, (_, i) => tirer(parties[i % parties.length], 1)[0]).filter(Boolean).map(servir);
+  },
+  async ajouterMot() {},
+  /** Pas de crédits sur Expo web sans serveur : l'explication s'ouvre directement. */
+  async acheterExplication(questionId): Promise<ExplicationAchetee> {
+    const q = questions.get(questionId);
+    return { statut: 'unlimited', cout: 0, solde: 0, contenu: { explanation: q?.explanation ?? null, trap: null } };
   },
   async motsARevoir(): Promise<MotsARevoir> {
     const s = await lire();

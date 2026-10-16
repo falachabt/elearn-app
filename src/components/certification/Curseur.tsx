@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+/* eslint-disable react-hooks/refs -- le geste ne lit la ref que dans ses rappels, jamais pendant le rendu */
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { PanResponder, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
 
 import { useTheme } from '@/theme/ThemeProvider';
@@ -13,7 +14,9 @@ export function Curseur({ valeur, min, max, pas = 10, onChange, libelle }: Props
   const { theme } = useTheme();
   const [largeur, setLargeur] = useState(0);
   const ref = useRef({ largeur: 0, min, max, onChange });
-  ref.current = { largeur, min, max, onChange };
+  useEffect(() => {
+    ref.current = { largeur, min, max, onChange };
+  });
 
   const depuisX = (x: number) => {
     const { largeur: l, min: a, max: b } = ref.current;
@@ -21,14 +24,15 @@ export function Curseur({ valeur, min, max, pas = 10, onChange, libelle }: Props
     const p = Math.max(0, Math.min(1, (x - POUCE / 2) / (l - POUCE)));
     ref.current.onChange(Math.round(a + p * (b - a)));
   };
-  const geste = useRef(
-    PanResponder.create({
+  const geste = useMemo(
+    () => PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
       onPanResponderGrant: (e) => depuisX(e.nativeEvent.locationX),
       onPanResponderMove: (e) => depuisX(e.nativeEvent.locationX),
     }),
-  ).current;
+    [],
+  );
 
   const part = max > min ? Math.max(0, Math.min(1, (valeur - min) / (max - min))) : 0;
   const gauche = part * Math.max(0, largeur - POUCE);

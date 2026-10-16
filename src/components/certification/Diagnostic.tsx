@@ -28,7 +28,7 @@ export function Diagnostic() {
   const [choix, setChoix] = useState<number | null>(null);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
-  const debut = useRef(Date.now());
+  const debut = useRef(0);
   const occupe = useRef(false);
 
   const charger = useCallback(async () => {
@@ -46,12 +46,14 @@ export function Diagnostic() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     void charger();
   }, [charger]);
 
   // Nouvelle question : sélection remise à zéro, chronomètre relancé.
   const index = etat?.index ?? 0;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setChoix(null);
     debut.current = Date.now();
   }, [index]);

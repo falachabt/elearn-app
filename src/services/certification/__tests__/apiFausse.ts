@@ -35,12 +35,30 @@ export function questionsTest(plan: Record<number, number> = PLAN_TEST): Questio
   return sortie;
 }
 
-export type Appels = { demarrer: number; terminer: number; plans: unknown[] };
+export type Appels = { demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[] };
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
-export function creerApiFausse(options: { echecsTerminer?: number; echecDemarrer?: boolean; mots?: { total: number; theme: string | null } } = {}) {
-  const appels: Appels = { demarrer: 0, terminer: 0, plans: [] };
+export function creerApiFausse(options: { echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; mots?: { total: number; theme: string | null } } = {}) {
+  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [] };
   let echecs = options.echecsTerminer ?? 0;
+  let echecsEnvoi = options.echecsEnvoi ?? 0;
+  const corriger = (reponses: ReponseEnvoyee[]): ResultatReponse[] =>
+    reponses.map((r) => {
+      const q = questions.find((x) => x.id === r.question_id)!;
+      return {
+        question_id: r.question_id,
+        client_uuid: r.client_uuid,
+        correct: r.chosen === 0,
+        skipped: r.chosen === null,
+        correct_index: 0,
+        trap: q.part === 5 ? 'Piège de la forme du mot.' : null,
+        notion: { id: `n-${q.part}`, code: `n${q.part}`, title: `Notion ${q.part}`, family: 'grammaire' },
+        notions: [],
+        words: q.part === 5 ? [{ id: `w-${q.number}`, word: `word${q.number}` }] : [],
+        transcript: null,
+        replay: false,
+      };
+    });
   const questions = questionsTest();
   const api: CertApi = {
     async listerExamens() {
@@ -58,8 +76,22 @@ export function creerApiFausse(options: { echecsTerminer?: number; echecDemarrer
       const t: Tentative = { attempt_id: `att-${clientUuid}`, kind: 'diagnostic', part: null, length: questions.length, status: 'in_progress', started_at: '2026-10-15T10:00:00Z', credits_spent: 0, questions, replay: false };
       return t;
     },
-    async envoyerReponses() {
-      return [];
+    async envoyerReponses(reponses) {
+      appels.envois++;
+      if (echecsEnvoi > 0) {
+        echecsEnvoi--;
+        throw new Error('réseau');
+      }
+      return corriger(reponses);
+    },
+    async lireSerie(perimetre, _exam, taille) {
+      appels.series.push(perimetre);
+      if (options.echecSerie) throw new Error('réseau');
+      const choisies = questions.filter((q) => (perimetre.part ? q.part === perimetre.part : true)).slice(0, taille ?? 3);
+      return choisies;
+    },
+    async ajouterMot(motId) {
+      appels.mots.push(motId);
     },
     async terminerTentative(id, reponses: ReponseEnvoyee[]) {
       appels.terminer++;

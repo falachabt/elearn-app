@@ -7,6 +7,7 @@ import { profilCertificationOuvert } from '@/services/certification/drapeau';
 export function useProfilCertification(): boolean {
   const [ouvert, setOuvert] = useState(profilCertificationOuvert);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setOuvert(profilCertificationOuvert());
     return ecouterDrapeaux(() => setOuvert(profilCertificationOuvert()));
   }, []);

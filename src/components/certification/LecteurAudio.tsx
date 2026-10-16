@@ -34,7 +34,9 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   const lecteur = useRef<AudioPlayer | null>(null);
   const delai = useRef<ReturnType<typeof setTimeout> | null>(null);
   const finRef = useRef(onFin);
-  finRef.current = onFin;
+  useEffect(() => {
+    finRef.current = onFin;
+  });
 
   const liberer = useCallback(() => {
     if (delai.current) clearTimeout(delai.current);

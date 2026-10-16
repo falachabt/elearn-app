@@ -48,6 +48,9 @@ export type ReponseEnvoyee = {
 
 export type NotionLiee = { id: string; code: string; title: string; family: 'grammaire' | 'vocabulaire' | 'piege' | 'methode' };
 
+/** Mot clé d'une question, ajoutable au carnet depuis le corrigé (B9). */
+export type MotCle = { id: string; word: string };
+
 export type ResultatReponse = {
   question_id: string;
   client_uuid: string;
@@ -57,6 +60,7 @@ export type ResultatReponse = {
   trap: string | null;
   notion: NotionLiee | null;
   notions: NotionLiee[];
+  words?: MotCle[];
   transcript: unknown;
   replay: boolean;
 };

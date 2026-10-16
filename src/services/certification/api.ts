@@ -1,12 +1,16 @@
 import { getSupabase } from '../supabase';
 import type { LigneReglage } from './reglages';
 import type { Jour } from './jours';
-import type { Examen, FinTentative, MotsARevoir, PlanEleve, ReponseEnvoyee, ResultatReponse, Tentative } from './types';
+import type { Examen, FinTentative, MotsARevoir, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from './types';
 
 /**
  * Accès aux données du profil TOEIC. Une seule interface : le serveur (RPC `cert_*`) en production, et un contenu
  * embarqué pour les essais sur Expo web (outil de développement, voir `demo/`). Les écrans ne connaissent que ceci.
  */
+/** Périmètre d'une série : une partie, une notion, ou rien (mélange). */
+export type PerimetreSerie = { part?: number; notion?: string };
+export type ExplicationAchetee = { statut: 'spent' | 'unlimited' | 'already' | 'free' | 'insufficient'; cout: number; solde: number; contenu: { explanation: string | null; trap: string | null } | null };
+
 export interface CertApi {
   listerExamens(): Promise<Examen[]>;
   lireReglages(): Promise<LigneReglage[]>;
@@ -14,6 +18,12 @@ export interface CertApi {
   demarrerDiagnostic(clientUuid: string, exam: string, jourLocal: Jour): Promise<Tentative>;
   envoyerReponses(reponses: ReponseEnvoyee[]): Promise<ResultatReponse[]>;
   terminerTentative(tentativeId: string, reponses: ReponseEnvoyee[]): Promise<FinTentative>;
+  /** Série d'entraînement (B1 à B7) : par partie ou par notion, sans la bonne réponse. */
+  lireSerie(perimetre: PerimetreSerie, exam: string, taille?: number): Promise<QuestionServie[]>;
+  /** Ajoute un mot clé au carnet, en boîte 1 (B9). Idempotent. */
+  ajouterMot(motId: string, jourLocal: Jour): Promise<void>;
+  /** Explication détaillée payante. Absent en production : la dépense passe alors par `credits.depenser`. */
+  acheterExplication?(questionId: string): Promise<ExplicationAchetee>;
   /** Mots du carnet en boîte 1 (« à revoir ») et leur thème le plus fréquent. */
   motsARevoir(): Promise<MotsARevoir>;
 }
@@ -53,6 +63,14 @@ export const apiServeur: CertApi = {
   async terminerTentative(tentativeId, reponses) {
     const res = await getSupabase().rpc('cert_attempt_finish', { p_attempt: tentativeId, p_answers: reponses });
     return verifier(res) as FinTentative;
+  },
+  async lireSerie(perimetre, exam, taille) {
+    const res = await getSupabase().rpc('cert_series_get', { p_exam: exam, p_part: perimetre.part ?? null, p_notion: perimetre.notion ?? null, p_count: taille ?? null });
+    return verifier(res) as QuestionServie[];
+  },
+  async ajouterMot(motId, jourLocal) {
+    const res = await getSupabase().rpc('cert_word_add', { p_word: motId, p_local_day: jourLocal });
+    verifier(res);
   },
   async motsARevoir() {
     const res = await getSupabase().from('cert_user_word').select('cert_words(theme)').eq('box', 1);

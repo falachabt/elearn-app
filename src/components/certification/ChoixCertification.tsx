@@ -53,6 +53,7 @@ export function ChoixCertification() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     charger();
     // Retour depuis A3 : les choix précédents sont repris.
     lireProfil().then((p) => {
@@ -131,7 +132,6 @@ export function ChoixCertification() {
 }
 
 function LigneSelecteur({ valeur, drapeau, onPress, libelle }: { valeur: string; drapeau: string | null; onPress: () => void; libelle: string }) {
-  const { theme } = useTheme();
   return (
     <Bouton
       variante="secondaire"

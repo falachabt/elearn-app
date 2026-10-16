@@ -7,10 +7,11 @@ import type { Examen, FinTentative, PlanEleve, ReponseEnvoyee, Tentative } from 
 /** État local du profil TOEIC : l'élève peut tout faire sans compte et hors ligne (le serveur reprend au retour du réseau). */
 export const CLE_PLAN = 'cert.plan';
 export const CLE_DIAGNOSTIC = 'cert.diagnostic';
+export const CLE_SERIE = 'cert.serie';
 export const CLE_CACHE_EXAMENS = 'cert.cache.examens';
 export const CLE_CACHE_REGLAGES = 'cert.cache.reglages';
 
-async function lireJson<T>(cle: string): Promise<T | null> {
+export async function lireJson<T>(cle: string): Promise<T | null> {
   try {
     const brut = await AsyncStorage.getItem(cle);
     return brut ? (JSON.parse(brut) as T) : null;
@@ -19,7 +20,7 @@ async function lireJson<T>(cle: string): Promise<T | null> {
   }
 }
 
-async function ecrireJson(cle: string, valeur: unknown): Promise<void> {
+export async function ecrireJson(cle: string, valeur: unknown): Promise<void> {
   try {
     await AsyncStorage.setItem(cle, JSON.stringify(valeur));
   } catch {
