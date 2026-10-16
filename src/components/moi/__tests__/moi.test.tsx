@@ -203,3 +203,17 @@ it('un compte sans nom mais connecté affiche son email et son profil, jamais "I
   expect(screen.queryByText('Invité')).toBeNull();
   expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
 });
+
+describe('Moi en mode TOEIC', () => {
+  it('garde la même page : progression, lignes TOEIC, déconnexion avec confirmation', async () => {
+    await monter(<EcranMoi toeic />);
+    const x = fr;
+    await waitFor(() => expect(screen.getByText(x.certification.moiToeic.progressionEtiquette)).toBeTruthy());
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.objectif}`) }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/objectif', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.temps}`) }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/temps', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.certification.moiToeic.deconnexion}`) }));
+    expect(screen.getByText(x.certification.moiToeic.deconnexionTitre)).toBeTruthy();
+  });
+});

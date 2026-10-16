@@ -227,27 +227,3 @@ describe('G1 · Gagner des crédits', () => {
   });
 });
 
-describe('X6 · Moi, ligne crédits', () => {
-  it('solde simple', async () => {
-    await monter(<MoiToeic />);
-    expect(await screen.findByText(t.moiToeic.creditsAide.replace('{{n}}', '12'))).toBeTruthy();
-  });
-
-  it('crédits gagnés : « dont … à utiliser avant le … »', async () => {
-    mockSolde = { ...mockSolde, recompenses: 5, expirationRecompenses: '2026-11-14T10:00:00Z' };
-    await monter(<MoiToeic />);
-    expect(await screen.findByText(t.moiToeic.creditsAideGagnes.replace('{{base}}', '12 crédits').replace('{{e}}', '5').replace('{{date}}', '14 nov.'))).toBeTruthy();
-  });
-
-  it('Pass actif : la date de fin remplace le solde', async () => {
-    mockSolde = { ...mockSolde, illimite: true, illimiteJusqua: '2026-11-14T10:00:00Z' };
-    await monter(<MoiToeic />);
-    expect(await screen.findByText(t.moiToeic.creditsAidePass.replace('{{date}}', '14 nov.'))).toBeTruthy();
-  });
-
-  it('mène à la page Gagner', async () => {
-    await monter(<MoiToeic />);
-    await fireEvent.press(await screen.findByText(t.moiToeic.gagner));
-    expect(router.push).toHaveBeenCalledWith('/certification/gagner');
-  });
-});

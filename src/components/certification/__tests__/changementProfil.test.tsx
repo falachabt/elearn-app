@@ -12,7 +12,6 @@ import { CLE_PROFIL, enregistrerProfil, lireProfil } from '@/services/profil';
 
 import { ChoisirCertification } from '../../profil/ChoisirCertification';
 import { ChoisirProfil } from '../../profil/ChoisirProfil';
-import { MoiToeic } from '../MoiToeic';
 import { monter } from './harnais';
 
 jest.mock('expo-router', () => ({
@@ -81,16 +80,3 @@ describe('Page certification : TOEIC', () => {
   });
 });
 
-describe('Moi TOEIC : la ligne ouvre la page de choix', () => {
-  beforeEach(async () => {
-    await passerAuToeic();
-    await ecrirePlan({ exam: 'toeic', objectif: 800, dateTest: '2026-11-27', minutes: 20 });
-  });
-
-  it('« Mon profil » ouvre la page de choix, sans feuille dans Moi', async () => {
-    await monter(<MoiToeic />);
-    fireEvent.press(await screen.findByRole('button', { name: new RegExp(`^${x.certification.moiToeic.monProfil}`) }));
-    expect(router.push).toHaveBeenCalledWith('/profil/choisir');
-    expect(screen.queryByText(x.profilChoix.revenirTitre)).toBeNull();
-  });
-});

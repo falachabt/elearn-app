@@ -185,18 +185,6 @@ describe('D2 · Séance du jour', () => {
   });
 });
 
-describe('N2 · Moi, profil TOEIC', () => {
-  it('résume l’objectif et le temps par jour, et ouvre l’édition sans repasser par l’arrivée', async () => {
-    await monter(<MoiToeic />);
-    expect(await screen.findByText(t.moiToeic.tempsAide.replace('{{n}}', '20'))).toBeTruthy();
-    expect(screen.getByText(/Score 800/)).toBeTruthy();
-    await fireEvent.press(screen.getByText(t.moiToeic.objectif));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/objectif', params: { modifier: '1' } });
-    await fireEvent.press(screen.getByText(t.moiToeic.temps));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/temps', params: { modifier: '1' } });
-  });
-});
-
 describe('Bascule des onglets selon le profil', () => {
   function Sonde() {
     const v = useProfilToeic();

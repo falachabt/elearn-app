@@ -1,11 +1,11 @@
 import * as Clipboard from 'expo-clipboard';
 import { router, useFocusEffect } from 'expo-router';
-import { CircleHelp, FileText, Gift, IdCard, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
+import { CircleHelp, Clock, FileText, Gift, IdCard, LogOut, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { estInvite } from '@/services/compte';
+import { cleErreur, deconnecter, estInvite } from '@/services/compte';
 import { paiementPossible } from '@/services/plateforme';
 import { identiteDe } from '@/services/identite';
 import { lireActivitesJours } from '@/services/activite';
@@ -24,7 +24,9 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Appui } from './Appui';
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
+import { Carte } from './Carte';
 import { Ecran } from './Ecran';
+import { ProgressionToeic } from './certification/ProgressionToeic';
 import { CarteCredits } from './moi/CarteCredits';
 import { enMo } from './MesDocuments';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
@@ -39,7 +41,8 @@ type Resume = { minutes: number | null; documents: { n: number; octets: number }
  * jaune du pass, la carte « Mes crédits » ou la carte d'invitation à créer un compte, et deux cartes de lignes.
  * Chaque ligne ouvre son écran ; celles dont l'écran n'existe pas encore ne sont pas affichées.
  */
-export function EcranMoi() {
+/** Moi. `toeic` : même page, progression vers l'objectif à la place de la carte XP et lignes TOEIC (maquette TOEIC-N2). */
+export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const { session, statut } = useSession();
@@ -49,6 +52,9 @@ export function EcranMoi() {
   const [resume, setResume] = useState<Resume>({ minutes: null, documents: null });
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
+  const [confirmerSortie, setConfirmerSortie] = useState(false);
+  const [sortieEnCours, setSortieEnCours] = useState(false);
+  const [sortieErreur, setSortieErreur] = useState<string | null>(null);
   const [totalXp, setTotalXp] = useState(0);
   const [utilisateurFrais, setUtilisateurFrais] = useState(session?.user);
 
@@ -120,6 +126,20 @@ export function EcranMoi() {
   }, [idUtilisateur]);
 
   // L'identifiant sert au support WhatsApp : l'élève le copie et le colle dans la conversation (spec : docs/maquettes/support-confirmer.md).
+  const sortir = async () => {
+    setSortieEnCours(true);
+    setSortieErreur(null);
+    try {
+      await deconnecter(getSupabase());
+      router.replace('/bienvenue');
+    } catch (e) {
+      setSortieErreur(t(cleErreur(e) === 'compte.erreurs.reseau' ? 'compte.erreurs.reseau' : 'moi.deconnexionErreur'));
+    } finally {
+      setSortieEnCours(false);
+      setConfirmerSortie(false);
+    }
+  };
+
   const copierIdentifiant = async () => {
     if (!idUtilisateur) return;
     await Clipboard.setStringAsync(idUtilisateur).catch(() => {});
@@ -164,7 +184,7 @@ export function EcranMoi() {
         </Appui>
       </View>
 
-      {connecte && totalXp >= 0 ? <CarteXp totalXp={totalXp} /> : null}
+      {toeic ? <ProgressionToeic /> : connecte && totalXp >= 0 ? <CarteXp totalXp={totalXp} /> : null}
 
       {statut === 'erreur' ? <Banniere ton="erreur" titre={t('erreur.banniere')} texte={t('moi.sessionErreur')} /> : null}
 
@@ -228,7 +248,7 @@ export function EcranMoi() {
       </Groupe>
 
       <Groupe>
-        <LigneGroupe icone={RefreshCw} titre={t('profilChoix.monProfil')} sousTitre={sousProfil} onPress={() => router.push('/profil/choisir' as never)} />
+        <LigneGroupe icone={RefreshCw} titre={t('profilChoix.monProfil')} sousTitre={toeic ? t('certification.moiToeic.monProfilAide') : sousProfil} onPress={() => router.push('/profil/choisir' as never)} />
         {connecte ? (
           <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t(paiementPossible() ? 'profil.parentAucun' : 'profil.parentAucunSansPaiement')} onPress={() => router.push('/profil/parent')} />
         ) : null}
@@ -244,6 +264,24 @@ export function EcranMoi() {
         ) : null}
         <LigneGroupe icone={CircleHelp} titre={t('profil.aide')} onPress={() => router.push('/aide')} />
       </Groupe>
+
+      {toeic ? (
+        <Groupe>
+          <LigneGroupe icone={Target} titre={t('certification.moiToeic.objectif')} onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)} />
+          <LigneGroupe icone={Clock} titre={t('certification.moiToeic.temps')} onPress={() => router.push({ pathname: '/certification/temps', params: { modifier: '1' } } as never)} />
+          <LigneGroupe icone={LogOut} titre={t('certification.moiToeic.deconnexion')} sousTitre={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmerSortie(true)} />
+        </Groupe>
+      ) : null}
+
+      {toeic && confirmerSortie ? (
+        <Carte>
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.moiToeic.deconnexionTitre')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.moiToeic.deconnexionTexte')}</Text>
+          {sortieErreur ? <Text style={[typo.petit, { color: theme.etat.erreur }]}>{sortieErreur}</Text> : null}
+          <Bouton variante="secondaire" libelle={t('certification.moiToeic.deconnexionAnnuler')} onPress={() => setConfirmerSortie(false)} />
+          <Bouton libelle={t('certification.moiToeic.deconnexionBouton')} desactive={sortieEnCours} onPress={() => void sortir()} />
+        </Carte>
+      ) : null}
     </Ecran>
   );
 }

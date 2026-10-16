@@ -8,7 +8,7 @@ import { ecrirePlan } from '@/services/certification/etat';
 import { enregistrerProfil } from '@/services/profil';
 
 import { AccueilToeic } from '../AccueilToeic';
-import { MoiToeic } from '../MoiToeic';
+import { ProgressionToeic } from '../ProgressionToeic';
 import { ReviserToeic } from '../ReviserToeic';
 import { StatistiquesToeic } from '../StatistiquesToeic';
 import { TestsToeic } from '../TestsToeic';
@@ -47,7 +47,7 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
   });
 
   it('Moi : objectif visible et estimation « Pas encore estimé »', async () => {
-    await monter(<MoiToeic />);
+    await monter(<ProgressionToeic />);
     expect(await screen.findByText('Pas encore estimé')).toBeTruthy();
     expect(screen.getByText('Visé')).toBeTruthy();
   });
