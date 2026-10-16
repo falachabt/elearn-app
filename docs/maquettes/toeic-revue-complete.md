@@ -294,3 +294,22 @@ Cohérence :
 - Diagnostic : même revue, explication gratuite (D-09).
 - Groupes de questions (G1) : en revue, les questions d'un même audio ou passage restent groupées ; pas de réécoute audio dans la revue.
 - Crédits : explication détaillée 1 crédit en série, 0 avec le Pass, gratuite au diagnostic. Le tarif du corrigé complet d'un test ne change pas (cahier, section 12.6).
+
+## Confirmations de bascule P4 et P5 : texte retiré, espacement (version 25, 16 octobre 2026)
+
+Retour de Benny (16/10, 22:05) : la feuille « Passer au profil TOEIC ? » était serrée (titre, texte, carte, bouton et « Annuler » collés) et expliquait que l'interface change. Il n'a pas besoin de le savoir : on change, et c'est tout.
+
+- `TOEIC-P4` : titre « Passer au profil TOEIC ? », carte TOEIC, « Passer au TOEIC », « Annuler ». Le paragraphe explicatif est retiré.
+- `TOEIC-P5` : titre « Revenir au secondaire ? », « Revenir au secondaire », « Annuler ». Le paragraphe est retiré aussi, pour rester cohérent.
+- Espacement : la feuille a 22 px en haut et 24 px en bas, et 16 px entre chaque élément, comme la page secondaire. Avant, la maquette n'avait que 10 px, ce qui collait les éléments. C'était un écart de ma maquette, pas du code.
+- Clair et sombre : mêmes tokens que le reste de la feuille.
+
+## Chiffre net partout pour le score estimé (version 25)
+
+Retour de l'équipe (16/10, 22:06) : l'accueil affichait encore « 650 à 730 » alors que le résultat affiche « 745 ». Tout passe à un chiffre net :
+- Accueil TOEIC (N1, D1), tuiles « Score estimé » : « 745 sur 990 ».
+- Statistiques (ST1), historique (T4), tests : « 745 sur 990 ».
+- Moi TOEIC : « Estimé 745 », « Écart 55 pts » (Visé 800 moins 745).
+- Résultat du diagnostic (A7) : « 745 », avec la mention « Estimation, pas un score officiel. ».
+- Bilan du test blanc (E6) : « 720 », sur la même règle.
+- Les chiffres sont des exemples ; ils viennent du calcul serveur.
