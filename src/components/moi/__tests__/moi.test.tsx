@@ -77,8 +77,8 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
     expect(screen.getAllByText(new RegExp(`^3e · `)).length).toBeGreaterThan(0);
     await fireEvent.press(screen.getByRole('button', { name: x.profil.reglagesLibelle }));
     expect(router.push).toHaveBeenCalledWith('/parametres');
-    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profil.classe}`) }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
+    await fireEvent.press(screen.getByRole('button', { name: new RegExp(`^${x.profilChoix.monProfil}`) }));
+    expect(router.push).toHaveBeenCalledWith('/profil/choisir');
     await fireEvent.press(screen.getByRole('button', { name: `${x.moi.parent}. ${x.profil.parentAucun}` }));
     expect(router.push).toHaveBeenCalledWith('/profil/parent');
     await fireEvent.press(screen.getByRole('button', { name: x.profil.aide }));

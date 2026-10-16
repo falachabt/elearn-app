@@ -1,10 +1,11 @@
 import * as Clipboard from 'expo-clipboard';
-import { router, useFocusEffect } from 'expo-router';
+import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { CircleHelp, FileText, Gift, IdCard, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { passerAuToeic } from '@/services/changementProfil';
 import { estInvite } from '@/services/compte';
 import { paiementPossible } from '@/services/plateforme';
 import { identiteDe } from '@/services/identite';
@@ -27,6 +28,7 @@ import { Bouton } from './Bouton';
 import { Ecran } from './Ecran';
 import { CarteCredits } from './moi/CarteCredits';
 import { enMo } from './MesDocuments';
+import { FeuilleChangementProfil, type EtatChangement } from './profil/FeuilleChangementProfil';
 import { Groupe, LigneGroupe } from './parametres/Groupe';
 import { AvatarNiveau } from './xp/AvatarNiveau';
 import { CarteXp } from './xp/CarteXp';
@@ -50,6 +52,10 @@ export function EcranMoi() {
   const [parent, setParent] = useState<string | null>(null);
   const [identifiantCopie, setIdentifiantCopie] = useState(false);
   const [totalXp, setTotalXp] = useState(0);
+  // P4 : « Moi » s'ouvre avec la feuille « Passer au TOEIC ? » quand on vient du choix de profil (P2).
+  const params = useLocalSearchParams<{ confirmer?: string }>();
+  const [feuille, setFeuille] = useState(params.confirmer === 'toeic');
+  const [etatChangement, setEtatChangement] = useState<EtatChangement>('repos');
   const [utilisateurFrais, setUtilisateurFrais] = useState(session?.user);
 
   const user = utilisateurFrais ?? session?.user;
@@ -140,6 +146,23 @@ export function EcranMoi() {
   const date = (iso: string) => new Date(iso).toLocaleDateString(langue === 'fr' ? 'fr-FR' : 'en-GB', { day: 'numeric', month: 'long' });
 
   const nomAffiche = invite ? t('profil.invite') : (nom ?? (user?.email ? user.email.split('@')[0] : t('profil.monCompte')));
+  const sousProfil = profil?.niveau
+    ? t('profilChoix.monProfilSous', {
+        type: profil.type === 'concours' ? t('profilChoix.typeConcours') : t('profilChoix.typeSecondaire'),
+        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : profil.niveau,
+      })
+    : undefined;
+
+  const passer = async () => {
+    setEtatChangement('charge');
+    try {
+      await passerAuToeic();
+      router.replace('/');
+    } catch {
+      setEtatChangement('erreur');
+    }
+  };
+
   const sousTitre = invite ? t('profil.inviteSous') : (classePays ?? (user?.email ? user.email : ''));
 
   return (
@@ -221,7 +244,7 @@ export function EcranMoi() {
       </Groupe>
 
       <Groupe>
-        <LigneGroupe icone={RefreshCw} titre={t('profil.classe')} sousTitre={classePays ?? undefined} onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })} />
+        <LigneGroupe icone={RefreshCw} titre={t('profilChoix.monProfil')} sousTitre={sousProfil} onPress={() => router.push('/profil/choisir' as never)} />
         {connecte ? (
           <LigneGroupe icone={Shield} titre={t('moi.parent')} sousTitre={parent ? t('profil.parentSous', { nom: parent }) : t(paiementPossible() ? 'profil.parentAucun' : 'profil.parentAucunSansPaiement')} onPress={() => router.push('/profil/parent')} />
         ) : null}
@@ -237,6 +260,21 @@ export function EcranMoi() {
         ) : null}
         <LigneGroupe icone={CircleHelp} titre={t('profil.aide')} onPress={() => router.push('/aide')} />
       </Groupe>
+
+      {feuille ? (
+        <FeuilleChangementProfil
+          etat={etatChangement}
+          titre={t('profilChoix.passerToeicTitre')}
+          texte={t('profilChoix.passerToeicTexte')}
+          confirmer={t('profilChoix.passerToeicBouton')}
+          annuler={t('profilChoix.annuler')}
+          onConfirmer={() => void passer()}
+          onAnnuler={() => {
+            setFeuille(false);
+            setEtatChangement('repos');
+          }}
+        />
+      ) : null}
     </Ecran>
   );
 }

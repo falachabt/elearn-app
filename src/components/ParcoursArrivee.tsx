@@ -157,14 +157,16 @@ export function ChoixClasse() {
     let actif = true;
     lireProfil().then((p) => {
       if (!actif || !p) return;
-      setType(p.type);
-      if (p.niveau) setNiveau(p.niveau);
+      // Le choix du profil (P2) impose le type ; un profil TOEIC ne fournit ni classe ni concours à réutiliser.
+      const cible = params.type ?? (p.type === 'certification' ? 'eleve' : p.type);
+      setType(cible);
+      if (p.type !== 'certification' && p.type === cible && p.niveau) setNiveau(p.niveau);
       if (p.pays) setPays(p.pays.toUpperCase());
     });
     return () => {
       actif = false;
     };
-  }, [modifier]);
+  }, [modifier, params.type]);
 
   const continuer = async () => {
     if (concours && !monConcours) {

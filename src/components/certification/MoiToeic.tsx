@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
-import { Award, CalendarRange, Clock, Gift, Lightbulb, LogOut, Target, Wallet } from 'lucide-react-native';
+import { Award, CalendarRange, Clock, Gift, GraduationCap, Lightbulb, LogOut, Target, Wallet } from 'lucide-react-native';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { getSupabase } from '@/services/supabase';
+import { revenirAuSecondaire } from '@/services/changementProfil';
 import { chargerAccueil } from '@/services/certification/accueil';
 import { lirePlan } from '@/services/certification/etat';
 import { afficherJour } from '@/services/certification/format';
@@ -16,6 +17,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { FeuilleChangementProfil, type EtatChangement } from '../profil/FeuilleChangementProfil';
 import { EnteteToeic, LigneChoix, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
@@ -30,6 +32,25 @@ export function MoiToeic() {
   const [confirmer, setConfirmer] = useState(false);
   const [enCours, setEnCours] = useState(false);
   const [erreur, setErreur] = useState<string | null>(null);
+  // P5 : « Mon profil · TOEIC » ouvre la feuille « Revenir au secondaire ? » ; le profil TOEIC reste gardé.
+  const [changer, setChanger] = useState(false);
+  const [etatChangement, setEtatChangement] = useState<EtatChangement>('repos');
+  const revenir = async () => {
+    setEtatChangement('charge');
+    try {
+      const trouve = await revenirAuSecondaire();
+      if (trouve) {
+        router.replace('/');
+        return;
+      }
+      // Aucun profil secondaire gardé : on choisit la classe, sans rien écrire avant.
+      setChanger(false);
+      setEtatChangement('repos');
+      router.push({ pathname: '/classe', params: { type: 'eleve', modifier: '1' } });
+    } catch {
+      setEtatChangement('erreur');
+    }
+  };
   const sortir = async () => {
     setEnCours(true);
     setErreur(null);
@@ -74,9 +95,25 @@ export function MoiToeic() {
         <LigneChoix icone={Wallet} titre={t('certification.moiToeic.credits')} aide={aideCredits} onPress={() => aller({ pathname: '/offres', params: { declencheur: 'moi' } })} />
         <LigneChoix icone={Gift} titre={t('certification.moiToeic.gagner')} aide={t('certification.moiToeic.gagnerAide')} onPress={() => aller('/certification/gagner')} />
         <LigneChoix icone={CalendarRange} titre={t('certification.moiToeic.semaine')} aide={t('certification.moiToeic.semaineAide')} onPress={() => aller('/ma-semaine')} />
-        <LigneChoix icone={Award} titre={t('certification.moiToeic.certification')} aide={t('certification.moiToeic.certificationAide', { examen: 'TOEIC' })} onPress={() => aller('/certification')} />
+        <LigneChoix icone={Award} titre={t('profilChoix.monProfil')} aide={t('certification.moiToeic.monProfilAide')} onPress={() => setChanger(true)} />
         <LigneChoix icone={Lightbulb} titre={t('certification.moiToeic.reglages')} aide={t('certification.moiToeic.reglagesAide')} onPress={() => aller('/parametres')} />
         <LigneChoix icone={LogOut} titre={t('certification.moiToeic.deconnexion')} aide={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmer(true)} />
+        {changer ? (
+          <FeuilleChangementProfil
+            etat={etatChangement}
+            titre={t('profilChoix.revenirTitre')}
+            texte={t('profilChoix.revenirTexte')}
+            confirmer={t('profilChoix.revenirBouton')}
+            annuler={t('profilChoix.annuler')}
+            onConfirmer={() => void revenir()}
+            onAnnuler={() => {
+              setChanger(false);
+              setEtatChangement('repos');
+            }}
+          >
+            <LigneChoix icone={GraduationCap} titre={t('profilChoix.revenirSecondaire')} aide={t('profilChoix.revenirSecondaireAide')} radio actif onPress={() => undefined} />
+          </FeuilleChangementProfil>
+        ) : null}
         {confirmer ? (
           <Carte>
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.moiToeic.deconnexionTitre')}</Text>
