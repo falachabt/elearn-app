@@ -80,14 +80,14 @@ describe('N1 · Accueil TOEIC', () => {
     // Accueil d'un élève qui a fini son diagnostic : c'est le seul cas où les cartes de séance s'affichent.
     await ecrireDiagnostic({ fin: { estimated: true, score: 700, score_min: 650, score_max: 730 } } as never);
   });
-  it('montre objectif, séance du jour avec sa raison, mots à revoir et accès rapides', async () => {
+  it('montre objectif, séance du jour (carte verte, notion en titre), mots à revoir et score', async () => {
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.objectifJours.replace('{{score}}', '800').replace('{{n}}', '42'))).toBeTruthy();
+    expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.pourquoiMots.replace('{{n}}', '4').replace('{{notion}}', 'Prépositions de temps').replace('{{m}}', '2'))).toBeTruthy();
+    expect(screen.getByText('Prépositions de temps')).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.motsN.replace('{{n}}', '2'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.parties)).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
   });
 
   it('« Commencer la séance » ouvre D2, « Continuer » une fois un bloc terminé', async () => {
@@ -117,7 +117,7 @@ describe('N1 · Accueil TOEIC', () => {
     installer({ seance: 'echec' });
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.erreurTitre)).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.parties)).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.mots)).toBeTruthy();
   });
 
   it('propose de réessayer quand tout échoue', async () => {
