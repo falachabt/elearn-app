@@ -49,25 +49,28 @@ export function SerieMission({ serie, joues, aujourdhui = aujourdhuiLocal(), com
   const { theme } = useTheme();
   const { reduit } = useFeedback();
   const depart = Math.max(serie - 1, 0);
-  const [affiche, setAffiche] = useState(reduit ? serie : depart);
+  // Valeur du compteur, rattachée à la série qui l'a produite : quand la série change, on repart de `depart`
+  // au rendu (sans setState dans l'effet), puis les pas de l'effet remplacent la valeur.
+  const cleCompte = `${depart}:${serie}`;
+  const [compte, setCompte] = useState({ cle: cleCompte, valeur: reduit ? serie : depart });
+  const affiche = compte.cle === cleCompte ? compte.valeur : depart;
   const flamme = useSharedValue(1);
 
   useEffect(() => {
     // Réduire les animations : la valeur finale est affichée directement au rendu (voir plus bas), rien à animer.
     if (reduit) return;
     const suite = suiteCompte(depart, serie);
-    setAffiche(depart);
     let i = 0;
     let minuterie: ReturnType<typeof setTimeout> | undefined;
     const pas = () => {
       i++;
       if (i >= suite.length) return;
-      setAffiche(suite[i]);
+      setCompte({ cle: cleCompte, valeur: suite[i] });
       minuterie = setTimeout(pas, PAS_COMPTE_MS);
     };
     minuterie = setTimeout(pas, DELAI_DEPART_MS + PAS_COMPTE_MS);
     return () => clearTimeout(minuterie);
-  }, [depart, serie, reduit]);
+  }, [cleCompte, depart, serie, reduit]);
 
   useEffect(() => {
     if (reduit) return;
