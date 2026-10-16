@@ -143,6 +143,16 @@ describe('A6 · Diagnostic', () => {
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
   });
 
+  it('aucune question publiée côté serveur : message « pas encore disponible », sans « Réessayer » ni erreur réseau', async () => {
+    const api = creerApiFausse().api;
+    definirApi({ ...api, demarrerDiagnostic: async () => { throw new Error('contenu indisponible'); } });
+    await monter(<Diagnostic />);
+    expect(await screen.findByText(t.diagnostic.videTitre)).toBeTruthy();
+    expect(screen.getByText(t.diagnostic.videTexte)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: t.reessayer })).toBeNull();
+    expect(screen.queryByText(t.diagnostic.erreurTitre)).toBeNull();
+  });
+
   it.each(['clair', 'sombre'] as const)('se monte en thème %s', async (reglage) => {
     await monter(<Diagnostic />, reglage);
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();

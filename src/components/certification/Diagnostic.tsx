@@ -17,7 +17,7 @@ import { FeuilleQuitter } from './FeuilleQuitter';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
-type Phase = { nom: 'chargement' } | { nom: 'erreur'; horsLigne: boolean } | { nom: 'question' };
+type Phase = { nom: 'chargement' } | { nom: 'erreur'; horsLigne: boolean } | { nom: 'vide' } | { nom: 'question' };
 
 /** A6 · Question du diagnostic : pas de correction, l'audio se joue une seule fois, « Passer » compte comme faux. */
 export function Diagnostic() {
@@ -39,7 +39,12 @@ export function Diagnostic() {
       const e = await demarrerOuReprendre(p?.exam ?? 'toeic');
       setEtat(e);
       setPhase({ nom: 'question' });
-    } catch {
+    } catch (e) {
+      // Pas de questions publiées côté serveur : ce n'est ni une panne ni une coupure, il n'y a rien à réessayer.
+      if (e instanceof Error && e.message.includes('contenu indisponible')) {
+        setPhase({ nom: 'vide' });
+        return;
+      }
       const c = lireConnectivite();
       setPhase({ nom: 'erreur', horsLigne: !c.connecte || c.backend === false });
     }
@@ -82,9 +87,15 @@ export function Diagnostic() {
   if (phase.nom !== 'question' || !etat || !question) {
     return (
       <Ecran entete={<EnteteToeic titre={t('certification.arrivee.entete')} onRetour={() => router.back()} />}>
-        {phase.nom !== 'erreur' ? (
+        {phase.nom === 'vide' ? (
+          <View style={styles.groupe}>
+            <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.diagnostic.videTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('certification.diagnostic.videTexte')}</Text>
+            <Bouton variante="texte" libelle={t('certification.diagnostic.sortir')} onPress={() => router.back()} />
+          </View>
+        ) : phase.nom === 'chargement' ? (
           <Text accessibilityLiveRegion="polite" style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.diagnostic.chargement')}</Text>
-        ) : (
+        ) : phase.nom === 'erreur' ? (
           <View style={styles.groupe}>
             <Text style={[typo.h3, { color: theme.texte.principal }]}>{t(phase.horsLigne ? 'certification.diagnostic.horsLigneTitre' : 'certification.diagnostic.erreurTitre')}</Text>
             <Text style={[typo.texte, { color: theme.texte.principal }]}>{t(phase.horsLigne ? 'certification.diagnostic.horsLigneTexte' : 'certification.diagnostic.erreurTexte')}</Text>
@@ -92,7 +103,7 @@ export function Diagnostic() {
             <Bouton libelle={t('certification.reessayer')} onPress={charger} />
             <Bouton variante="texte" libelle={t('certification.diagnostic.sortir')} onPress={() => router.back()} />
           </View>
-        )}
+        ) : null}
       </Ecran>
     );
   }

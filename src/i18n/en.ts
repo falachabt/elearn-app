@@ -1849,6 +1849,8 @@ export const en: Textes = {
       erreurTitre: 'Loading error',
       erreurTexte: 'Could not load the diagnostic',
       erreurGardees: 'Your answers so far are kept on this device.',
+      videTitre: 'Diagnostic not available yet',
+      videTexte: 'The questions for this profile are not published yet. Come back later: nothing was lost.',
       horsLigneTitre: 'Offline',
       horsLigneTexte: 'The diagnostic needs a connection to start. Reconnect and try again.',
       sortir: 'Go back',

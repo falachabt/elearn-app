@@ -1850,6 +1850,8 @@ export const fr = {
       erreurTitre: 'Erreur de chargement',
       erreurTexte: 'Impossible de charger le diagnostic',
       erreurGardees: 'Tes réponses déjà données sont gardées sur l’appareil.',
+      videTitre: 'Diagnostic pas encore disponible',
+      videTexte: 'Les questions de ce profil ne sont pas encore publiées. Reviens plus tard : rien n’a été perdu.',
       horsLigneTitre: 'Hors ligne',
       horsLigneTexte: 'Le diagnostic a besoin d’une connexion pour démarrer. Reconnecte-toi puis réessaie.',
       sortir: 'Revenir en arrière',
