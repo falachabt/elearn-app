@@ -226,3 +226,26 @@ Demande de Benny (16/10) : la page Moi TOEIC doit être la page Moi du secondair
 - **Retirées** : « Ma semaine » (écran du secondaire, qui ne décrit pas les séances TOEIC) et « Gagner des crédits » (déjà présent dans la carte de crédits).
 - **Invité** : le bloc progression s'affiche aussi sans compte, parce que le diagnostic est gratuit ; c'est un écart à faire valider.
 - Une ligne du bas n'est jamais dessinée sous la barre d'onglets : la page est découpée en cadres haut, milieu et bas.
+
+## Groupes de questions et consignes de partie (version 20, 16 octobre 2026)
+
+Demande de Benny (16/10, 21:32) : un audio est écouté une seule fois, puis ses questions se répondent sur le même écran (parties 3, 4, 6 et 7 concernées). Avant chaque partie, des consignes expliquent le déroulé, comme au vrai TOEIC, avec une transition entre les parties.
+
+- `TOEIC-G1-Q1` : groupe de la partie 3, audio en cours, onglets « Question 32 · 33 · 34 », une seule écoute.
+- `TOEIC-G1-Q2` : même groupe, question 32 répondue (coche, pas seulement la couleur), question 33 affichée. Pas de bouton de réécoute.
+- `TOEIC-G1-Q3` : dernière question du groupe. « Groupe suivant » est désactivé tant qu'une question du groupe n'a pas de réponse ; le texte indique laquelle manque.
+- `TOEIC-D-P1` : consignes avant la partie 1 (ce qu'on voit, ce qu'on fait, pas de retour, nombre de questions du diagnostic, écoute optionnelle des consignes), bouton « Commencer la partie 1 ».
+- `TOEIC-D-P3` : consignes avant la partie 3 (groupes, onglets, pas de réécoute).
+- `TOEIC-T-P2` : transition entre la partie 1 et la partie 2, bouton « Commencer la partie 2 ».
+
+Règles à reprendre par le dev :
+- Audio d'un groupe : lecture unique, sans bouton de relance. Le fait d'être sur un autre onglet ne relance pas l'audio.
+- Onglets : libres dans le groupe, jamais vers un autre audio. Chaque onglet indique « répondu » par une coche.
+- « Groupe suivant » : actif seulement quand toutes les questions du groupe ont une réponse.
+- Écoute en Listening : pas de retour aux parties précédentes. Reading reste libre (cahier, section 5 et E1).
+- Nombre de questions par partie dans les consignes : repris du diagnostic (blueprint P1 1, P2 2, P3 4, P4 3, P5 3, P6 2, P7 5).
+
+Textes des consignes à valider (rédaction originale, pas de copie des consignes officielles) :
+- Partie 1 : « Tu vois une photo. Tu entends quatre phrases, lues une seule fois. Choisis la phrase qui décrit le mieux la photo. » (EN de travail : "You will see a photo and hear four statements. Choose the statement that best describes the photo.")
+- Partie 3 : « Tu entends une conversation, écoutée une seule fois. Plusieurs questions portent sur cette conversation : réponds à chacune avant de passer au groupe suivant. » (EN : "You will hear a conversation once. Several questions follow it. Answer every question in the group before moving on.")
+- Transition : « Fin de la partie 1 · Partie 2 commence. » Les textes des autres parties (2, 4, 5, 6, 7) restent à rédiger.
