@@ -278,3 +278,19 @@ Retour de Benny (16/10, 21:55) : « Chiffre exact ... ». L'élève veut un seul
 - `TOEIC-A7-EVOL` : après un mini-test, « 760 », « +15 depuis le diagnostic (745) ». Même mention discrète.
 - Les chiffres sont des exemples ; ils viennent du calcul serveur.
 - Pas de marge affichée. La marge reste un outil interne de calibration (cahier, section 5.R).
+
+## Séries sans correction immédiate, revue en fin de série (version 24, 16 octobre 2026, à valider)
+
+Retour de Benny (16/10, 22:01) : la correction ne s'affiche pas après chaque question, même en entraînement. On enchaîne, la série se termine, puis la revue question par question.
+
+- `TOEIC-S-Q4` : mini-test, question 4 sur 10. La réponse est enregistrée, sans correction. Bouton « Question suivante ».
+- `TOEIC-S-FIN` : série terminée. Score de la série, grille des 10 questions (juste en vert, faux en corail, avec le numéro et la couleur). Aucune correction ici. « Revoir mes réponses ».
+- `TOEIC-S-REV` : revue question par question. Grille cliquable, question, « Faux » ou « Juste » avec le texte, réponse donnée, bonne réponse, « Revoir la notion » (gratuit), « Explication détaillée · 1 crédit » (0 avec le Pass), « Question suivante ».
+- `TOEIC-S-REV-DIAG` : même revue au diagnostic. L'explication y reste gratuite (D-09).
+
+Recommandation sur le mode immédiat : ne pas le construire. Il réintroduirait la correction après chaque question, que Benny refuse. Si un entraînement guidé est voulu un jour, ce serait un réglage dans Réglages, désactivé par défaut, jamais dans une série, un test ou le diagnostic.
+
+Cohérence :
+- Diagnostic : même revue, explication gratuite (D-09).
+- Groupes de questions (G1) : en revue, les questions d'un même audio ou passage restent groupées ; pas de réécoute audio dans la revue.
+- Crédits : explication détaillée 1 crédit en série, 0 avec le Pass, gratuite au diagnostic. Le tarif du corrigé complet d'un test ne change pas (cahier, section 12.6).

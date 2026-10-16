@@ -737,6 +737,32 @@ const d2d=t=>ph(t,hd('Mini-test partie 6',true)+bd(
     row('trend','Évolution','+15 depuis le diagnostic (745)','')+
     `<p class="hint" style="color:var(--txt)">Ton score bouge à chaque test terminé. Un test complet le précise le plus.</p>`
   )+ft(B('Voir mon plan')));
+/* ---------- SÉRIES SANS CORRECTION APRÈS CHAQUE QUESTION (v24, 16 octobre) ----------
+   Retour de Benny (16/10, 22:01) : pas de correction après chaque question, même en entraînement.
+   On enchaîne, la série se termine, puis la revue question par question. Aucun mode immédiat. */
+const gridS=(etats,on)=>`<div class="gridn" style="grid-template-columns:repeat(5,minmax(0,1fr));width:100%">${etats.map((e,i)=>{
+    const cls=e==='ok'?'ok':(e==='ko'?'':(e==='todo'?'todo':'on'));
+    const st=e==='ko'?'background:var(--corail);':'';
+    return `<span class="${cls}" style="${st}${i===on?'box-shadow:inset 0 -4px 0 var(--txt);':''}">${i+1}</span>`;}).join('')}</div>`;
+/* S-Q4 : question 4 sur 10, aucune correction, réponse enregistrée */
+const SQ4=t=>ph(t,hd('Mini-test partie 5 · 4 / 10',true)+bd(bar(40)+gridS(['on','on','on','todo','todo','todo','todo','todo','todo','todo'],3)+`<div class="chips2"><span>Forme du mot</span></div><div class="q" style="font-size:18px">The new software will be ${tb(4,'on')} next week.</div>`+opt('A','release','')+opt('B','released','sel')+opt('C','releasing','')+opt('D','releases','')+`<p class="hint" style="color:var(--txt)">Ta réponse est enregistrée. La correction viendra à la fin de la série.</p>`)+ft(B('Question suivante')+LK('Passer cette question')));
+/* S-FIN : série terminée, récapitulatif, pas de correction ici */
+const SFIN=t=>ph(t,hd('Série terminée',false)+bd(
+    `<div class="flip"><span class="lbl2">Ton score de la série</span><span class="big">7 / 10</span><p class="hint" style="color:var(--txt)">Tu as répondu aux 10 questions. Repasse sur chacune pour voir la bonne réponse.</p></div>`+
+    gridS(['ok','ok','ko','ok','ok','ko','ok','ok','ok','ko'],-1)+
+    `<div class="dash" style="font-size:13px">Vert : juste · Coral : faux. Les couleurs vont avec le mot, pas seulement avec la teinte.</div>`
+  )+ft(B('Revoir mes réponses')+LK('Retour aux tests')));
+/* S-REV : revue question par question, après la série */
+const SREV=t=>ph(t,hd('Revue · 3 / 10',true)+bd(gridS(['ok','ok','ko','ok','ok','ko','ok','ok','ok','ko'],2)+
+    `<div class="chips2"><span>Partie 5 · Forme du mot</span></div><div class="q" style="font-size:17px">The new software will be ______ next week.</div>`+
+    `<div class="sheet" style="gap:6px"><span class="st f" style="justify-self:start">${I('alert')}Faux</span><span class="lbl2" style="margin:0">Ta réponse</span><b style="font:700 15px var(--f-body);color:var(--txt)">C · releasing</b></div>`+
+    `<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}BONNE RÉPONSE</span><b>B · released</b><span>Notion : Forme du mot (démo)</span></div>`)+
+    ft(LK('Revoir la notion')+B('Explication détaillée · 1 crédit','sec')+B('Question suivante')));
+/* S-REV-DIAG : même revue au diagnostic, explication gratuite (D-09) */
+const SREVD=t=>ph(t,hd('Revue · diagnostic 6 / 20',true)+bd(gridS(['ok','ok','ok','ok','ok','ko','ok','ok','ok','ok','ok','ko','ok','ok','ok','ok','ok','ok','ok','ko'],5),
+    `<div class="sheet" style="gap:6px"><span class="st a" style="justify-self:start">${I('check')}Juste</span><b style="font:700 15px var(--f-body);color:var(--txt)">Ta réponse : B · released</b></div>`+
+    `<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}BONNE RÉPONSE</span><b>B · released</b></div>`)+
+    ft(LK('Revoir la notion')+B('Explication détaillée · gratuite','sec')+B('Question suivante')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -770,6 +796,7 @@ const groups=[
  ['Groupes de questions et consignes de partie (v20, 16 octobre)',[[G1,'TOEIC-G1-Q1 · Partie 3, groupe d\'une conversation : audio en cours, une seule écoute, onglets Question 32 à 34'],[G2,'TOEIC-G1-Q2 · Même groupe, question 33 : question 32 répondue, pas de réécoute'],[G3,'TOEIC-G1-Q3 · Dernière question du groupe : « Groupe suivant » bloqué tant qu\'une question est sans réponse'],[D1,'TOEIC-D-P1 · Consignes avant la partie 1 (déroulé, pas de retour, écoute des consignes)'],[D3,'TOEIC-D-P3 · Consignes avant la partie 3 (groupes, une seule écoute)'],[T2,'TOEIC-T-P2 · Transition entre la partie 1 et la partie 2']]],
  ['Trous numérotés, parties 5 et 6 (v21, 16 octobre)',[[b5c,'TOEIC-B5-TROU · Partie 5 : trou numéroté dans la phrase, question « Trou 128 »'],[b6c1,'TOEIC-B6-1 · Partie 6 : trou 131 actif, rectangles numérotés dans le texte (remplace {1})'],[b6c2,'TOEIC-B6-2 · Partie 6 : trou 131 répondu (vert), trou 132 actif']]],
  ['Score estimé précis et évolution (v22, 16 octobre, à valider)',[[d2c,'TOEIC-A7-SCORE · Ton résultat : un chiffre net (745), Listening et Reading chacun sur 495, mention « estimation »'],[d2d,'TOEIC-A7-EVOL · Après un mini-test : 760, évolution de +15 depuis le diagnostic']]],
+ ['Série sans correction immédiate, revue en fin de série (v24, 16 octobre, à valider)',[[SQ4,'TOEIC-S-Q4 · Mini-test : question 4 sur 10, réponse enregistrée, aucune correction (« Question suivante »)'],[SFIN,'TOEIC-S-FIN · Série terminée : récapitulatif, aucune correction, « Revoir mes réponses »'],[SREV,'TOEIC-S-REV · Revue question par question : réponse donnée, bonne réponse, Revoir la notion, Explication détaillée (1 crédit, 0 avec le Pass)'],[SREVD,'TOEIC-S-REV-DIAG · Revue du diagnostic : explication gratuite (D-09)']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
