@@ -1,6 +1,6 @@
 import { lireProfil } from '../profil';
 import { lireDiagnostic, lirePlan, obtenirReglages } from './etat';
-import { formaterPlage } from './certDiagnostic';
+import { scoreEstime } from './certDiagnostic';
 import { jourDe, joursAvantTest } from './jours';
 import { chargerDonneesRevision, motsEchus, type DonneesRevision } from './revision';
 import { chargerSeanceJour, type EtatSeanceJour } from './seanceJour';
@@ -14,8 +14,8 @@ export type DonneesAccueil = {
   joursRestants: number | null;
   revision: DonneesRevision;
   motsAReviser: number;
-  /** Fourchette du dernier diagnostic ou `null` (pas encore d'estimation). */
-  plage: string | null;
+  /** Score estimé sur 990 (exact, sinon milieu de la fourchette) ; `null` sans estimation. */
+  score: number | null;
   /** Série interrompue à reprendre (B1 à B7), sinon `null`. */
   serie: EtatSerie | null;
   /** Séance du jour ; `null` quand le serveur ne répond pas et qu'aucune copie du jour n'existe. */
@@ -52,7 +52,7 @@ export async function chargerAccueil(): Promise<DonneesAccueil> {
     joursRestants: joursAvantTest(plan?.dateTest, aujourdhui),
     revision,
     motsAReviser: motsEchus(revision.carnet, aujourdhui).length,
-    plage: fin?.estimated ? formaterPlage(fin.score_min, fin.score_max) : null,
+    score: scoreEstime(fin),
     serie: serie && !serie.termine && serie.exam === exam ? serie : null,
     seance,
     seanceErreur,

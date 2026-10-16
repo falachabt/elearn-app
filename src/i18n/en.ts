@@ -2208,6 +2208,7 @@ export const en: Textes = {
       pourquoiMotUn: 'Because 1 notebook word is due.',
       pourquoiPlan: 'To keep going with your plan.',
       score: 'Estimated score',
+      scoreExact: '{{score}} out of 990',
       scorePlage: '{{min}} to {{max}} out of 990',
       scorePas: 'Not yet',
       mots: 'Words to review',

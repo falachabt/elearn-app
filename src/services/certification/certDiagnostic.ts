@@ -88,6 +88,14 @@ export function pointsFaibles(
 }
 
 /** « 650 à 730 » : la fourchette F2. Sans estimation, aucune valeur (jamais de faux chiffre). */
+/** Score exact sur 990 : celui du serveur ; sans lui (résultats anciens), le milieu de la fourchette. `null` sans estimation. */
+export function scoreEstime(fin: { estimated: boolean; score: number | null; score_min: number | null; score_max: number | null } | null | undefined): number | null {
+  if (!fin?.estimated) return null;
+  if (fin.score !== null && fin.score !== undefined) return fin.score;
+  if (fin.score_min === null || fin.score_max === null) return null;
+  return Math.round((fin.score_min + fin.score_max) / 2);
+}
+
 export function formaterPlage(min: number | null, max: number | null): string | null {
   return min === null || max === null ? null : `${min} à ${max}`;
 }

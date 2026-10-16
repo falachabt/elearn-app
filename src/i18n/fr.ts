@@ -2209,6 +2209,7 @@ export const fr = {
       pourquoiMotUn: 'Parce que 1 mot du carnet arrive à échéance.',
       pourquoiPlan: 'Pour continuer ton plan.',
       score: 'Score estimé',
+      scoreExact: '{{score}} sur 990',
       scorePlage: '{{min}} à {{max}} sur 990',
       scorePas: 'Pas encore',
       mots: 'Mots à revoir',

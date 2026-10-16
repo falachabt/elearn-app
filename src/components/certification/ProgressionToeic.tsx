@@ -16,14 +16,14 @@ export function ProgressionToeic() {
   const { theme } = useTheme();
   const { etat } = useChargement(lirePlan);
   const accueil = useChargement(chargerAccueil);
-  const plage = accueil.etat.phase === 'ok' ? accueil.etat.valeur.plage : null;
+  const score = accueil.etat.phase === 'ok' ? accueil.etat.valeur.score : null;
   const plan = etat.phase === 'ok' ? etat.valeur : null;
   return (
     <Carte>
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionEtiquette')}</Text>
       <View style={styles.grille}>
         <Tuile titre={t('certification.moiToeic.progressionVise')} aide={plan?.objectif ? String(plan.objectif) : t('certification.moiToeic.objectifVide')} />
-        <Tuile titre={t('certification.moiToeic.progressionEstime')} aide={plage ?? t('certification.moiToeic.progressionPas')} />
+        <Tuile titre={t('certification.moiToeic.progressionEstime')} aide={score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas')} />
       </View>
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionNote')}</Text>
     </Carte>

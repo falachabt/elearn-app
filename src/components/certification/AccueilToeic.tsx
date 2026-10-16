@@ -104,7 +104,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
         <Banniere ton="alerte" titre={t('certification.accueilToeic.erreurTitre')} texte={t('certification.accueilToeic.erreurTexte')} />
       ) : null}
       <View style={styles.grille}>
-        <Tuile titre={t('certification.accueilToeic.score')} aide={d.plage ? t('certification.accueilToeic.scorePlage', { min: d.plage.split(' à ')[0], max: d.plage.split(' à ')[1] }) : t('certification.accueilToeic.scorePas')} />
+        <Tuile titre={t('certification.accueilToeic.score')} aide={d.score !== null ? t('certification.accueilToeic.scoreExact', { score: d.score }) : t('certification.accueilToeic.scorePas')} />
         <Tuile titre={t('certification.accueilToeic.mots')} aide={mots} onPress={() => aller('/reviser?onglet=carnet')} />
       </View>
       {serie ? (

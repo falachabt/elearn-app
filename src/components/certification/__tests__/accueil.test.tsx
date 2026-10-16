@@ -86,7 +86,7 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.getByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.pourquoiMots.replace('{{n}}', '4').replace('{{notion}}', 'Prépositions de temps').replace('{{m}}', '2'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.motsN.replace('{{n}}', '2'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.scorePlage.replace('{{min}}', '650').replace('{{max}}', '730'))).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.parties)).toBeTruthy();
   });
 
@@ -110,7 +110,7 @@ describe('N1 · Accueil TOEIC', () => {
   it('affiche la fourchette du dernier diagnostic', async () => {
     await AsyncStorage.setItem('cert.diagnostic', JSON.stringify({ clientUuid: 'd', tentative: null, reponses: [], index: 0, termine: true, fin: { status: 'finished', attempt_id: 'a', kind: 'diagnostic', estimated: true, score: 700, score_min: 650, score_max: 730, per_part: {}, results: [], replay: false } }));
     await monter(<AccueilToeic />);
-    expect(await screen.findByText(t.accueilToeic.scorePlage.replace('{{min}}', '650').replace('{{max}}', '730'))).toBeTruthy();
+    expect(await screen.findByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
   });
 
   it('garde l’accueil lisible quand la séance ne peut pas être composée', async () => {

@@ -1,4 +1,4 @@
-import { formaterPlage, maitriseParGroupe, ordonnerDiagnostic, pointsFaibles } from '../certDiagnostic';
+import { formaterPlage, maitriseParGroupe, ordonnerDiagnostic, pointsFaibles, scoreEstime } from '../certDiagnostic';
 import type { QuestionServie, ResultatReponse } from '../types';
 import { REGLAGES as R } from './fixtures';
 import { questionsTest } from './apiFausse';
@@ -74,5 +74,18 @@ describe('fourchette affichée (F2)', () => {
   it('« 650 à 730 » ; sans estimation, aucune valeur', () => {
     expect(formaterPlage(650, 730)).toBe('650 à 730');
     expect(formaterPlage(null, null)).toBeNull();
+  });
+});
+
+describe('scoreEstime : score exact, repli sur le milieu de la fourchette', () => {
+  it('prend le score exact du serveur', () => {
+    expect(scoreEstime({ estimated: true, score: 745, score_min: 720, score_max: 770 })).toBe(745);
+  });
+  it('sans score exact (résultat ancien), prend le milieu de la fourchette', () => {
+    expect(scoreEstime({ estimated: true, score: null, score_min: 650, score_max: 730 })).toBe(690);
+  });
+  it('sans estimation, ne donne rien', () => {
+    expect(scoreEstime({ estimated: false, score: null, score_min: null, score_max: null })).toBeNull();
+    expect(scoreEstime(null)).toBeNull();
   });
 });
