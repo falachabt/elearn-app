@@ -22,7 +22,7 @@ jest.mock('expo-router', () => ({
   },
   useLocalSearchParams: () => ({}),
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
 jest.mock('expo-crypto', () => ({ randomUUID: () => 'uuid-avant' }));
 jest.mock('../../credits/CompteurCredits', () => ({ CompteurCredits: () => null }));
 
