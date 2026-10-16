@@ -77,7 +77,9 @@ export function ReglageMini() {
     const exam = (await lireProfil())?.exam ?? 'toeic';
     setEnCours(true);
     try {
-      const res = await garde(() => lancerMini(exam, partie, longueurEffective, reglages));
+      // Essais sur Expo web (outil de développement, voir `demo/`) : pas de serveur à joindre, la garde réseau est sans objet.
+      const demo = __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO === '1';
+      const res = demo ? await lancerMini(exam, partie, longueurEffective, reglages) : await garde(() => lancerMini(exam, partie, longueurEffective, reglages));
       if (!res) return;
       if (res.statut === 'compte_requis') setCompteRequis(true);
       else if (res.statut === 'insuffisant') {
