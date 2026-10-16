@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
+import { afficherJour } from '@/services/certification/format';
 import { avancement, pourquoiDeLaSeance } from '@/services/certification/seanceJour';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -47,6 +48,13 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
         : d.joursRestants === 1
           ? t('certification.accueilToeic.objectifJour', { score: objectif })
           : t('certification.accueilToeic.objectifJours', { score: objectif, n: d.joursRestants });
+  const compte = d.plan?.dateTest && d.joursRestants !== null && d.joursRestants >= 0
+    ? d.joursRestants === 0
+      ? t('certification.accueilToeic.compteAujourdhui')
+      : d.joursRestants === 1
+        ? t('certification.accueilToeic.compteJour')
+        : t('certification.accueilToeic.compteJours', { n: d.joursRestants })
+    : null;
   const seance = d.seance;
   const p = seance ? pourquoiDeLaSeance(seance.seance.pourquoi) : null;
   const av = seance ? avancement(seance) : null;
@@ -63,6 +71,13 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
   return (
     <View style={styles.groupe}>
       {ligneObjectif ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{ligneObjectif}</Text> : null}
+      {compte && d.plan?.dateTest ? (
+        <Carte>
+          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
+          <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
+        </Carte>
+      ) : null}
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
       {seance ? (
         <Carte>
