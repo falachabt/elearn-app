@@ -1,10 +1,11 @@
 import { router } from 'expo-router';
-import { Award, CalendarRange, Clock, Lightbulb, Target, Wallet } from 'lucide-react-native';
+import { Award, CalendarRange, Clock, Gift, Lightbulb, Target, Wallet } from 'lucide-react-native';
 import { StyleSheet, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { lirePlan } from '@/services/certification/etat';
 import { afficherJour } from '@/services/certification/format';
+import { useCredits } from '@/session/CreditsProvider';
 import { espace } from '@/theme/theme';
 
 import { Ecran } from '../Ecran';
@@ -15,16 +16,29 @@ import { useChargement } from './useChargement';
 export function MoiToeic() {
   const { t } = useTraduction();
   const { etat } = useChargement(lirePlan);
+  const { solde } = useCredits();
   const plan = etat.phase === 'ok' ? etat.valeur : null;
   const aller = (chemin: object | string) => router.push(chemin as never);
   const aideObjectif = plan?.objectif ? (plan.dateTest ? t('certification.moiToeic.objectifAide', { score: plan.objectif, date: afficherJour(plan.dateTest) }) : t('certification.moiToeic.objectifAideSans', { score: plan.objectif })) : t('certification.moiToeic.objectifVide');
+
+  const jour = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  // X6 : solde, avec la mention des crédits gagnés à utiliser avant une date ; le Pass remplace le solde.
+  const base = solde ? (solde.total === 1 ? t('certification.moiToeic.creditsAideUn') : t('certification.moiToeic.creditsAide', { n: solde.total })) : undefined;
+  const aideCredits = !solde
+    ? undefined
+    : solde.illimite && solde.illimiteJusqua
+      ? t('certification.moiToeic.creditsAidePass', { date: jour(solde.illimiteJusqua) })
+      : solde.recompenses > 0 && solde.expirationRecompenses
+        ? t('certification.moiToeic.creditsAideGagnes', { base, e: solde.recompenses, date: jour(solde.expirationRecompenses) })
+        : base;
 
   return (
     <Ecran insetBas={false} entete={<EnteteToeic titre={t('certification.moiToeic.entete')} />}>
       <View style={styles.groupe}>
         <LigneChoix icone={Target} titre={t('certification.moiToeic.objectif')} aide={aideObjectif} onPress={() => aller({ pathname: '/certification/objectif', params: { modifier: '1' } })} />
         <LigneChoix icone={Clock} titre={t('certification.moiToeic.temps')} aide={plan?.minutes ? t('certification.moiToeic.tempsAide', { n: plan.minutes }) : undefined} onPress={() => aller({ pathname: '/certification/temps', params: { modifier: '1' } })} />
-        <LigneChoix icone={Wallet} titre={t('certification.moiToeic.credits')} onPress={() => aller({ pathname: '/offres', params: { declencheur: 'moi' } })} />
+        <LigneChoix icone={Wallet} titre={t('certification.moiToeic.credits')} aide={aideCredits} onPress={() => aller({ pathname: '/offres', params: { declencheur: 'moi' } })} />
+        <LigneChoix icone={Gift} titre={t('certification.moiToeic.gagner')} aide={t('certification.moiToeic.gagnerAide')} onPress={() => aller('/certification/gagner')} />
         <LigneChoix icone={CalendarRange} titre={t('certification.moiToeic.semaine')} aide={t('certification.moiToeic.semaineAide')} onPress={() => aller('/ma-semaine')} />
         <LigneChoix icone={Award} titre={t('certification.moiToeic.certification')} aide={t('certification.moiToeic.certificationAide', { examen: 'TOEIC' })} onPress={() => aller('/certification')} />
         <LigneChoix icone={Lightbulb} titre={t('certification.moiToeic.reglages')} aide={t('certification.moiToeic.reglagesAide')} onPress={() => aller('/parametres')} />

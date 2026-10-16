@@ -262,8 +262,8 @@ describe('clés locales hors ligne : toutes soumises à l’expiration', () => {
     expect(await lireLocalHorsLigne('entrainement.exercice.corrige.ex-1', maintenant)).toBeNull();
   });
 
-  it('profil TOEIC : révision, carnet et fiches (cert.cache.*) sont soumis à l’expiration', async () => {
-    for (const cle of ['cert.cache.revision.toeic', 'cert.cache.carnet.toeic', 'cert.cache.fiche.n-1']) {
+  it('profil TOEIC : révision, carnet, fiches et statistiques (cert.cache.*) sont soumis à l’expiration', async () => {
+    for (const cle of ['cert.cache.revision.toeic', 'cert.cache.carnet.toeic', 'cert.cache.fiche.n-1', 'cert.cache.stats.toeic.7', 'cert.cache.stats.toeic.0']) {
       await AsyncStorage.setItem(cle, JSON.stringify({ ok: cle }));
       contenuHorsLigneValide.mockResolvedValue(true);
       expect(await lireLocalHorsLigne(cle, maintenant)).toEqual({ ok: cle });

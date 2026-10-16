@@ -2,7 +2,7 @@ import { getSupabase } from '../supabase';
 import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
 import type { EtatMaitrise } from './certMaitrise';
-import type { BlocServi, Examen, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
+import type { BlocServi, DemarrageMini, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
  * Accès aux données du profil TOEIC. Une seule interface : le serveur (RPC `cert_*`) en production, et un contenu
@@ -48,6 +48,19 @@ export interface CertApi {
   envoyerResultatsMots(resultats: ResultatMot[]): Promise<void>;
   /** Enregistre la séance du jour terminée avec sa composition (D2). */
   terminerSeance(clientUuid: string, exam: string, composition: unknown, minutesActives: number, jourLocal: Jour): Promise<void>;
+  /** Départ d'un mini-test (T2) : le serveur débite au lancement (idempotent par `clientUuid`). */
+  demarrerMini(clientUuid: string, exam: string, partie: number | null, longueur: number, jourLocal: Jour): Promise<DemarrageMini>;
+  /** Tentative en cours, pour la reprise (T3). */
+  lireTentative(tentativeId: string): Promise<Tentative>;
+  /** Abandon : rembourse dans la fenêtre prévue par les réglages. */
+  abandonnerTentative(tentativeId: string, raison: 'user' | 'expired'): Promise<{ statut: Tentative['status']; rembourse: boolean; solde: number | null }>;
+  /** Historique des tentatives (T4), plus récentes d'abord. */
+  listerTentatives(exam: string): Promise<TentativeListee[]>;
+  /** Statistiques (F11) d'une période : un seul appel. */
+  lireStats(exam: string, periode: PeriodeStats, jourLocal: Jour): Promise<Stats>;
+  /** Gains de crédits TOEIC (G1) et réclamation d'un gain. */
+  lireGains(exam: string, jourLocal: Jour): Promise<EtatGains>;
+  reclamerGain(code: string, exam: string, jourLocal: Jour): Promise<ResultatGain>;
 }
 
 const ETATS_SERVEUR: Record<string, EtatMaitrise> = { not_started: 'pas_commencee', fragile: 'fragile', progress: 'en_progres', acquired: 'acquise' };
@@ -58,7 +71,9 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
   return res.data as T;
 }
 
-const baseServeur: Omit<CertApi, 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance'> = {
+type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
+type Testee = 'demarrerMini' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireStats' | 'lireGains' | 'reclamerGain';
+const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
     return verifier(res) as Examen[];
@@ -114,7 +129,7 @@ const baseServeur: Omit<CertApi, 'lireRevision' | 'lireCarnet' | 'composerSeance
   },
 };
 
-const revisionServeur: Pick<CertApi, 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance'> = {
+const revisionServeur: Pick<CertApi, Revisee> = {
 lireRevision: async (exam, jourLocal) => {
   const res = await getSupabase().rpc('cert_notions_list', { p_exam: exam, p_today: jourLocal });
   const j = verifier(res) as {
@@ -171,7 +186,84 @@ terminerSeance: async (clientUuid, exam, composition, minutesActives, jourLocal)
 },
 };
 
-export const apiServeur: CertApi = { ...baseServeur, ...revisionServeur };
+const testsServeur: Pick<CertApi, Testee> = {
+  demarrerMini: async (clientUuid, exam, partie, longueur, jourLocal) => {
+    const res = await getSupabase().rpc('cert_mini_start', { p_client_uuid: clientUuid, p_part: partie, p_length: longueur, p_exam: exam, p_local_day: jourLocal });
+    const j = verifier(res) as Record<string, unknown> & { status: DemarrageMini['status']; cost?: number; balance?: number };
+    if (j.status === 'insufficient' || j.status === 'account_required') {
+      return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };
+    }
+    // Le statut de l'enveloppe (started, replay) remplace celui de la tentative : la tentative démarre toujours « en cours ».
+    const tentative = { ...(j as unknown as Tentative), status: 'in_progress' as const, replay: j.status === 'replay' };
+    return { status: j.status, tentative, cout: j.cost ?? null, solde: j.balance ?? null };
+  },
+  lireTentative: async (tentativeId) => {
+    const res = await getSupabase().rpc('cert_attempt_get', { p_attempt: tentativeId });
+    return { ...(verifier(res) as Tentative), replay: false };
+  },
+  abandonnerTentative: async (tentativeId, raison) => {
+    const res = await getSupabase().rpc('cert_attempt_abandon', { p_attempt: tentativeId, p_reason: raison });
+    const j = verifier(res) as { status: Tentative['status']; refunded: boolean; balance?: number };
+    return { statut: j.status, rembourse: !!j.refunded, solde: j.balance ?? null };
+  },
+  listerTentatives: async (exam) => {
+    const res = await getSupabase()
+      .from('cert_mock_attempts')
+      .select('id,kind,part,length,status,score_min,score_max,started_at,finished_at,per_part,time_per_part,credits_spent,refunded,questions')
+      .eq('exam_code', exam)
+      .order('started_at', { ascending: false })
+      .limit(50);
+    const lignes = verifier(res) as { id: string; kind: Tentative['kind']; part: number | null; length: number; status: Tentative['status']; score_min: number | null; score_max: number | null; started_at: string; finished_at: string | null; per_part: TentativeListee['perPart']; time_per_part: TentativeListee['timePerPart']; credits_spent: number; refunded: boolean; questions: string[] }[];
+    return lignes.map((l) => ({
+      id: l.id, kind: l.kind, part: l.part, length: l.length, status: l.status, scoreMin: l.score_min, scoreMax: l.score_max,
+      startedAt: l.started_at, finishedAt: l.finished_at, perPart: l.per_part, timePerPart: l.time_per_part,
+      creditsSpent: l.credits_spent, refunded: l.refunded, questions: l.questions ?? [],
+    }));
+  },
+  lireStats: async (exam, periode, jourLocal) => {
+    const res = await getSupabase().rpc('cert_stats_get', { p_period: periode, p_exam: exam, p_today: jourLocal });
+    const j = verifier(res) as {
+      status: Stats['status']; answers_total?: number;
+      score?: { estimated: boolean; score_min: number | null; score_max: number | null };
+      bars?: { end: string; score_min: number; score_max: number; mid: number }[]; trend?: Stats['tendance'];
+      parts?: { part: number; answered: number; correct: number; rate: number | null; mastery: number; mastery_answers: number; state: string }[];
+      time?: { session_minutes: number; reading_minutes: number };
+      regularity?: { days_last_7: number; sessions: number; streak: number };
+      words?: { to_review: number; in_progress: number; known: number }; generated_at?: string;
+    };
+    return {
+      status: j.status,
+      periode,
+      reponsesTotal: j.answers_total ?? 0,
+      score: j.score ? { estime: !!j.score.estimated, min: j.score.score_min, max: j.score.score_max } : null,
+      barres: (j.bars ?? []).map((b) => ({ fin: b.end, min: b.score_min, max: b.score_max, milieu: b.mid })),
+      tendance: j.trend ?? null,
+      parties: (j.parts ?? []).map((p) => ({ partie: p.part, repondues: p.answered, bonnes: p.correct, taux: p.rate, maitrise: Number(p.mastery), reponsesMaitrise: p.mastery_answers, etat: etatDepuisServeur(p.state) })),
+      minutesSeances: j.time?.session_minutes ?? 0,
+      minutesLecture: j.time?.reading_minutes ?? 0,
+      joursSur7: j.regularity?.days_last_7 ?? 0,
+      seances: j.regularity?.sessions ?? 0,
+      serieJours: j.regularity?.streak ?? 0,
+      mots: { aRevoir: j.words?.to_review ?? 0, enCours: j.words?.in_progress ?? 0, connus: j.words?.known ?? 0 },
+      calculeLe: j.generated_at ?? null,
+    };
+  },
+  lireGains: async (exam, jourLocal) => {
+    const res = await getSupabase().rpc('cert_earn_status', { p_exam: exam, p_local_day: jourLocal });
+    const j = verifier(res) as { cap: number; weekly_total: number; streak: number; items: { code: EtatGains['gains'][number]['code']; amount: number; progress?: number; target?: number; claimed_today?: boolean; claimed?: boolean }[] };
+    return {
+      plafond: Number(j.cap), gagneSemaine: Number(j.weekly_total), serie: j.streak,
+      gains: j.items.map((i) => ({ code: i.code, montant: Number(i.amount), progression: i.progress, cible: i.target, deja: i.claimed_today ?? i.claimed ?? false })),
+    };
+  },
+  reclamerGain: async (code, exam, jourLocal) => {
+    const res = await getSupabase().rpc('cert_claim_earn', { p_code: code, p_exam: exam, p_local_day: jourLocal });
+    const j = verifier(res) as { status: ResultatGain['status']; amount?: number; weekly_total?: number; cap?: number };
+    return { status: j.status, montant: j.amount, gagneSemaine: j.weekly_total, plafond: j.cap };
+  },
+};
+
+export const apiServeur: CertApi = { ...baseServeur, ...revisionServeur, ...testsServeur };
 
 let courante: CertApi | null = null;
 

@@ -147,6 +147,7 @@ export type Evenements = {
   cert_mock_completed: { kind: string; score_min: number | null; score_max: number | null };
   cert_mock_abandoned: { kind: string; minute: number };
   cert_mock_resumed: { kind: string; minute: number };
+  cert_earn_claimed: { code: string; statut: string };
 
   // Réservé : posé quand la fonctionnalité existe (écoles relais, lot 2).
   school_class_created: { class_id: string; concours: string };

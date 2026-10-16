@@ -35,3 +35,17 @@ export function analyserObjectif(texte: string, min: number, max: number): numbe
   const v = Number(texte);
   return v >= min && v <= max ? v : null;
 }
+
+/** « 4 min 10 » : temps restant d'un test interrompu (T3). */
+export function minutesSecondes(ms: number): string {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  return `${m} min ${String(s).padStart(2, '0')}`;
+}
+
+/** « 04:10 » : chronomètre de l'écran d'examen. */
+export function chronometre(ms: number): string {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
+}

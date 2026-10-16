@@ -202,3 +202,4 @@ Aucune donnée personnelle ni contenu de question : seulement des types, parties
 | `cert_mock_completed` | Test blanc terminé | `{ kind: string; score_min: number \| null; score_max: number \| null }` |
 | `cert_mock_abandoned` | Test blanc abandonné | `{ kind: string; minute: number }` |
 | `cert_mock_resumed` | Test blanc repris | `{ kind: string; minute: number }` |
+| `cert_earn_claimed` | Gain de crédits TOEIC réclamé (G1) ; `statut` est la réponse du serveur (`granted`, `already`, `cap_reached`, `not_eligible`, `account_required`) | `{ code: string; statut: string }` |

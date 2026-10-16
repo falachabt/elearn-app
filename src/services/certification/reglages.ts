@@ -27,7 +27,12 @@ export type Reglages = {
   tendanceMinPoints: number;
   validiteHorsLigneJours: number;
   plafondGainsSemaine: number;
+  gainsValiditeJours: number;
   audioEchecSecondes: number;
+  miniMinutesPour10: number;
+  repriseToleranceMin: number;
+  fenetreRemboursementMin: number;
+  testsExigentCompte: boolean;
 };
 
 export type LigneReglage = { key: string; value: unknown };
@@ -74,6 +79,11 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     tendanceMinPoints: nombre('trend_min_points'),
     validiteHorsLigneJours: nombre('offline_validity_days'),
     plafondGainsSemaine: nombre('cert_earn_weekly_cap'),
+    gainsValiditeJours: nombre('cert_earn_valid_days'),
     audioEchecSecondes: nombre('mock_audio_fail_s'),
+    miniMinutesPour10: nombre('mini_minutes_per_10q'),
+    repriseToleranceMin: nombre('mock_resume_grace_min'),
+    fenetreRemboursementMin: nombre('mock_refund_window_min'),
+    testsExigentCompte: brut('mock_requires_account') === true,
   };
 }

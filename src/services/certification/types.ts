@@ -168,3 +168,57 @@ export type SeanceServie = {
 
 /** Résultat d'une carte de la séance de mots, rejoué tel quel s'il n'est pas parti (idempotent par `clientUuid`). */
 export type ResultatMot = { wordId: string; clientUuid: string; connu: boolean; jour: Jour };
+
+// Tests (T1 à T7), statistiques (ST1 à ST4) et gains (G1) ------------------------------------------------------------
+
+/** Départ d'un mini-test (T2) : `insufficient` et `account_required` n'ouvrent aucune tentative et ne débitent rien. */
+export type DemarrageMini = {
+  status: 'started' | 'replay' | 'insufficient' | 'account_required';
+  tentative: Tentative | null;
+  cout: number | null;
+  solde: number | null;
+};
+
+/** Ligne de l'historique (T4) et détail d'une tentative (T7). */
+export type TentativeListee = {
+  id: string;
+  kind: Tentative['kind'];
+  part: number | null;
+  length: number;
+  status: Tentative['status'];
+  scoreMin: number | null;
+  scoreMax: number | null;
+  startedAt: string;
+  finishedAt: string | null;
+  perPart: Record<string, { answered: number; correct: number }> | null;
+  timePerPart: Record<string, number> | null;
+  creditsSpent: number;
+  refunded: boolean;
+  questions: string[];
+};
+
+export type CodeGain = 'session_done' | 'streak_7' | 'goal_reached' | 'mini_first';
+export type GainListe = { code: CodeGain; montant: number; progression?: number; cible?: number; deja?: boolean };
+export type EtatGains = { plafond: number; gagneSemaine: number; serie: number; gains: GainListe[] };
+export type ResultatGain = { status: 'granted' | 'already' | 'cap_reached' | 'not_eligible' | 'account_required'; montant?: number; gagneSemaine?: number; plafond?: number };
+
+export type PeriodeStats = 7 | 30 | 0;
+export type BarreScore = { fin: Jour; min: number; max: number; milieu: number };
+export type PartieStats = { partie: number; repondues: number; bonnes: number; taux: number | null; maitrise: number; reponsesMaitrise: number; etat: EtatMaitrise };
+/** Statistiques d'une période (F11) : `guest`, `empty` (ST2) et `first_week` (ST3) sont des états, pas des erreurs. */
+export type Stats = {
+  status: 'ok' | 'first_week' | 'empty' | 'guest';
+  periode: PeriodeStats;
+  reponsesTotal: number;
+  score: { estime: boolean; min: number | null; max: number | null } | null;
+  barres: BarreScore[];
+  tendance: 'up' | 'down' | 'stable' | null;
+  parties: PartieStats[];
+  minutesSeances: number;
+  minutesLecture: number;
+  joursSur7: number;
+  seances: number;
+  serieJours: number;
+  mots: { aRevoir: number; enCours: number; connus: number };
+  calculeLe: string | null;
+};

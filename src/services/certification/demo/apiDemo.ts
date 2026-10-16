@@ -11,7 +11,7 @@ import { etatMaitrise } from '../certMaitrise';
 import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { lireReglages } from '../reglages';
-import type { BlocServi, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
+import type { BlocServi, DemarrageMini, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
@@ -25,6 +25,8 @@ type Store = {
   parties: Record<string, { n: number; c: number }>;
   mots: Record<string, EtatMotDemo>;
   ouvertes: Record<string, string>;
+  historique: TentativeListee[];
+  gains: string[];
 };
 
 /** Mots de démonstration du carnet (outil de développement, hors production) : définitions et exemples originaux. */
@@ -59,11 +61,11 @@ const blueprint = (reglagesBruts as { key: string; value: unknown }[]).find((l) 
 async function lire(): Promise<Store> {
   try {
     const brut = await AsyncStorage.getItem(CLE);
-    if (brut) return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {}, ...(JSON.parse(brut) as Partial<Store>) };
+    if (brut) return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {}, historique: [], gains: [], ...(JSON.parse(brut) as Partial<Store>) };
   } catch {
     // magasin illisible : on repart de zéro
   }
-  return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {} };
+  return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {}, historique: [], gains: [] };
 }
 const ecrire = (s: Store) => AsyncStorage.setItem(CLE, JSON.stringify(s)).catch(() => {});
 
@@ -176,16 +178,28 @@ export const apiDemo: CertApi = {
       cumul.n += e.answered;
       cumul.c += e.correct;
     }
-    if (entree) entree.tentative.status = 'finished';
+    const kind = entree?.tentative.kind ?? 'diagnostic';
+    // Mini-test par partie : pas de fourchette de score (E-38).
+    const avecScore = plage.estime && !(kind === 'mini' && entree?.tentative.part !== null);
+    if (entree) {
+      entree.tentative.status = 'finished';
+      if (kind === 'mini') {
+        s.historique.unshift({
+          id: tentativeId, kind, part: entree.tentative.part, length: entree.tentative.length, status: 'finished',
+          scoreMin: avecScore ? plage.min : null, scoreMax: avecScore ? plage.max : null, startedAt: entree.tentative.started_at,
+          finishedAt: new Date().toISOString(), perPart: parPartie, timePerPart: null, creditsSpent: 0, refunded: false, questions: entree.tentative.questions.map((q) => q.id),
+        });
+      }
+    }
     await ecrire(s);
     return {
       status: 'finished',
       attempt_id: tentativeId,
-      kind: 'diagnostic',
-      estimated: plage.estime,
-      score: plage.estime ? plage.score : null,
-      score_min: plage.estime ? plage.min : null,
-      score_max: plage.estime ? plage.max : null,
+      kind,
+      estimated: avecScore,
+      score: avecScore ? plage.score : null,
+      score_min: avecScore ? plage.min : null,
+      score_max: avecScore ? plage.max : null,
       per_part: parPartie,
       results: resultats,
       replay: false,
@@ -272,5 +286,81 @@ export const apiDemo: CertApi = {
     await ecrire(s);
   },
   async terminerSeance() {},
+  /** Sans serveur, pas de crédits sur Expo web : le mini-test est gratuit (outil de développement). */
+  async demarrerMini(clientUuid, _exam, partie, longueur): Promise<DemarrageMini> {
+    const s = await lire();
+    const existante = s.tentatives[clientUuid];
+    if (existante) return { status: 'replay', tentative: { ...existante.tentative, replay: true }, cout: 0, solde: 0 };
+    const choisies = partie
+      ? tirer(partie, longueur)
+      : Object.entries(blueprint)
+          .sort((a, b) => Number(a[0]) - Number(b[0]))
+          .flatMap(([p, n]) => tirer(Number(p), Math.round((Number(n) * longueur) / 20) || 1))
+          .slice(0, longueur);
+    const tentative: Tentative = {
+      attempt_id: `demo-${clientUuid}`, kind: 'mini', part: partie, length: choisies.length, status: 'in_progress',
+      started_at: new Date().toISOString(), credits_spent: 0, questions: choisies.map(servir), replay: false,
+    };
+    s.tentatives[clientUuid] = { tentative, reponses: {} };
+    await ecrire(s);
+    return { status: 'started', tentative, cout: 0, solde: 0 };
+  },
+  async lireTentative(id) {
+    const s = await lire();
+    const e = Object.values(s.tentatives).find((x) => x.tentative.attempt_id === id);
+    if (!e) throw new Error('tentative introuvable');
+    return e.tentative;
+  },
+  async abandonnerTentative(id) {
+    const s = await lire();
+    const e = Object.values(s.tentatives).find((x) => x.tentative.attempt_id === id);
+    if (e) e.tentative.status = 'abandoned';
+    await ecrire(s);
+    return { statut: 'abandoned' as const, rembourse: true, solde: 0 };
+  },
+  async listerTentatives() {
+    return (await lire()).historique;
+  },
+  async lireStats(_exam, periode, jour): Promise<Stats> {
+    const s = await lire();
+    const total = Object.values(s.parties).reduce((a, p) => a + p.n, 0);
+    const base: Stats = {
+      status: 'empty', periode, reponsesTotal: total, score: null, barres: [], tendance: null, parties: [], minutesSeances: 0, minutesLecture: 0,
+      joursSur7: 0, seances: 0, serieJours: 0, mots: { aRevoir: s.motsRates.length, enCours: 0, connus: 0 }, calculeLe: new Date().toISOString(),
+    };
+    if (total === 0) return base;
+    const dernier = s.historique.find((h) => h.scoreMin !== null);
+    return {
+      ...base,
+      status: dernier && s.historique.filter((h) => h.scoreMin !== null).length >= 2 ? 'ok' : 'first_week',
+      score: dernier ? { estime: true, min: dernier.scoreMin, max: dernier.scoreMax } : null,
+      barres: s.historique.filter((h) => h.scoreMin !== null && h.scoreMax !== null).slice(0, 6).reverse().map((h) => ({ fin: (h.finishedAt ?? jour).slice(0, 10), min: h.scoreMin!, max: h.scoreMax!, milieu: Math.round((h.scoreMin! + h.scoreMax!) / 2) })),
+      parties: [1, 2, 3, 4, 5, 6, 7].map((partie) => {
+        const e = s.parties[String(partie)] ?? { n: 0, c: 0 };
+        const m = e.n ? e.c / e.n : 0;
+        return { partie, repondues: e.n, bonnes: e.c, taux: e.n ? m : null, maitrise: m, reponsesMaitrise: e.n, etat: etatMaitrise(e.n ? m : null, e.n, reglages) };
+      }),
+    };
+  },
+  async lireGains(): Promise<EtatGains> {
+    const s = await lire();
+    const cle = (k: string) => Number(((reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === k) ?? { value: 0 }).value);
+    return {
+      plafond: cle('cert_earn_weekly_cap'), gagneSemaine: 0, serie: 0,
+      gains: [
+        { code: 'session_done', montant: cle('cert_earn_session_done'), progression: 0, cible: 7, deja: s.gains.includes('session_done') },
+        { code: 'streak_7', montant: cle('cert_earn_streak_7'), progression: 0, cible: cle('cert_earn_streak_days') },
+        { code: 'goal_reached', montant: cle('cert_earn_goal_reached'), deja: s.gains.includes('goal_reached') },
+        { code: 'mini_first', montant: cle('cert_earn_mini_first'), deja: s.gains.includes('mini_first') },
+      ],
+    };
+  },
+  async reclamerGain(code) {
+    const s = await lire();
+    if (s.gains.includes(code)) return { status: 'already' as const };
+    s.gains.push(code);
+    await ecrire(s);
+    return { status: 'granted' as const, montant: 0 };
+  },
 };
 

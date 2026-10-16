@@ -26,12 +26,17 @@ export const LIGNES_SEED: LigneReglage[] = [
   },
   { key: 'goal_default', value: 800 },
   { key: 'mock_audio_fail_s', value: 20 },
+  { key: 'mini_minutes_per_10q', value: 10 },
+  { key: 'mock_resume_grace_min', value: 30 },
+  { key: 'mock_refund_window_min', value: 10 },
+  { key: 'mock_requires_account', value: true },
   { key: 'goal_min', value: 10 },
   { key: 'goal_max', value: 990 },
   { key: 'stats_min_answers', value: 5 },
   { key: 'trend_min_points', value: 20 },
   { key: 'offline_validity_days', value: 7 },
   { key: 'cert_earn_weekly_cap', value: 15 },
+  { key: 'cert_earn_valid_days', value: 30 },
 ];
 
 export const REGLAGES = lireReglages(LIGNES_SEED);

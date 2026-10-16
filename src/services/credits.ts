@@ -8,7 +8,7 @@ import { suivre } from './analytics';
 type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel'>;
 
 /** Actions payantes en crédits (M18). Les coûts viennent du serveur (credit_actions), jamais de l'app. */
-export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation';
+export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation' | 'cert_mock_mini_ten' | 'cert_mock_mini_twenty';
 
 export type Solde = {
   total: number;

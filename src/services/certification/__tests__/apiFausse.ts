@@ -1,7 +1,7 @@
 import type { CertApi } from '../api';
 import type { Examen, FinTentative, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
 import { LIGNES_SEED } from './fixtures';
-import type { MotCarnetServi, NotionFiche, Revision, ResultatMot, SeanceServie } from '../types';
+import type { DemarrageMini, EtatGains, MotCarnetServi, NotionFiche, Revision, ResultatGain, ResultatMot, SeanceServie, Stats, TentativeListee } from '../types';
 
 export const EXAMEN_TEST: Examen = {
   code: 'toeic',
@@ -36,17 +36,26 @@ export function questionsTest(plan: Record<number, number> = PLAN_TEST): Questio
   return sortie;
 }
 
+export const STATS_VIDE = (periode: Stats['periode']): Stats => ({
+  status: 'empty', periode, reponsesTotal: 0, score: null, barres: [], tendance: null, parties: [], minutesSeances: 0, minutesLecture: 0,
+  joursSur7: 0, seances: 0, serieJours: 0, mots: { aRevoir: 0, enCours: 0, connus: 0 }, calculeLe: null,
+});
+
 export type Appels = {
   demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[];
   notionsOuvertes: { id: string; secondes: number }[]; resultatsMots: ResultatMot[][]; seances: unknown[]; compositions: { minutes: number; eviter: number | null }[];
+  minis: { partie: number | null; longueur: number }[]; abandons: { id: string; raison: string }[]; gainsReclames: string[]; stats: number[];
 };
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
 export function creerApiFausse(options: {
   echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; mots?: { total: number; theme: string | null };
   revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
+  mini?: 'insufficient' | 'account_required' | 'echec'; stats?: Stats | 'echec'; gains?: EtatGains | 'echec'; reclamation?: ResultatGain; tentatives?: TentativeListee[] | 'echec';
+  abandon?: { rembourse: boolean };
 } = {}) {
-  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [] };
+  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [] };
+  const minis = new Map<string, { part: number | null; length: number; questions: QuestionServie[] }>();
   let echecs = options.echecsTerminer ?? 0;
   let echecsEnvoi = options.echecsEnvoi ?? 0;
   let echecsMots = options.echecsMots ?? 0;
@@ -129,7 +138,13 @@ export function creerApiFausse(options: {
         e.answered++;
         e.correct += res.correct ? 1 : 0;
       }
-      return { status: 'finished', attempt_id: id, kind: 'diagnostic', estimated: true, score: 700, score_min: 650, score_max: 730, per_part: per, results: resultats, replay: false };
+      const mini = minis.get(id);
+      // Mini-test par partie : pas de fourchette de score (E-38) ; mixte : fourchette large.
+      const sansScore = mini ? mini.part !== null : false;
+      return {
+        status: 'finished', attempt_id: id, kind: mini ? 'mini' : 'diagnostic', estimated: !sansScore,
+        score: sansScore ? null : 700, score_min: sansScore ? null : 650, score_max: sansScore ? null : 730, per_part: per, results: resultats, replay: false,
+      };
     },
     async motsARevoir() {
       return options.mots ?? { total: 0, theme: null };
@@ -163,6 +178,43 @@ export function creerApiFausse(options: {
     },
     async terminerSeance(clientUuid, _exam, composition) {
       appels.seances.push({ clientUuid, composition });
+    },
+    async demarrerMini(clientUuid, _exam, partie, longueur): Promise<DemarrageMini> {
+      appels.minis.push({ partie, longueur });
+      if (options.mini === 'echec') throw new Error('réseau');
+      if (options.mini === 'account_required') return { status: 'account_required', tentative: null, cout: null, solde: null };
+      if (options.mini === 'insufficient') return { status: 'insufficient', tentative: null, cout: 2, solde: 0 };
+      const choisies = (partie ? questions.filter((q) => q.part === partie) : questions).slice(0, longueur);
+      const id = `mini-${clientUuid}`;
+      minis.set(id, { part: partie, length: longueur, questions: choisies });
+      const tentative: Tentative = { attempt_id: id, kind: 'mini', part: partie, length: choisies.length, status: 'in_progress', started_at: new Date().toISOString(), credits_spent: 1, questions: choisies, replay: false };
+      return { status: 'started', tentative, cout: 1, solde: 11 };
+    },
+    async lireTentative(id) {
+      const m = minis.get(id);
+      if (!m) throw new Error('tentative introuvable');
+      return { attempt_id: id, kind: 'mini', part: m.part, length: m.questions.length, status: 'in_progress', started_at: new Date().toISOString(), credits_spent: 1, questions: m.questions, replay: false };
+    },
+    async abandonnerTentative(id, raison) {
+      appels.abandons.push({ id, raison });
+      return { statut: 'abandoned', rembourse: options.abandon?.rembourse ?? false, solde: 12 };
+    },
+    async listerTentatives() {
+      if (options.tentatives === 'echec') throw new Error('réseau');
+      return options.tentatives ?? [];
+    },
+    async lireStats(_exam, periode) {
+      appels.stats.push(periode);
+      if (options.stats === 'echec') throw new Error('réseau');
+      return options.stats ?? STATS_VIDE(periode);
+    },
+    async lireGains() {
+      if (options.gains === 'echec') throw new Error('réseau');
+      return options.gains ?? { plafond: 15, gagneSemaine: 0, serie: 0, gains: [] };
+    },
+    async reclamerGain(code) {
+      appels.gainsReclames.push(code);
+      return options.reclamation ?? { status: 'granted', montant: 2, gagneSemaine: 2, plafond: 15 };
     },
   };
   return { api, appels, questions };
