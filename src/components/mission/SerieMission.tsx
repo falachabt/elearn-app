@@ -53,10 +53,8 @@ export function SerieMission({ serie, joues, aujourdhui = aujourdhuiLocal(), com
   const flamme = useSharedValue(1);
 
   useEffect(() => {
-    if (reduit) {
-      setAffiche(serie);
-      return;
-    }
+    // Réduire les animations : la valeur finale est affichée directement au rendu (voir plus bas), rien à animer.
+    if (reduit) return;
     const suite = suiteCompte(depart, serie);
     setAffiche(depart);
     let i = 0;
@@ -86,7 +84,7 @@ export function SerieMission({ serie, joues, aujourdhui = aujourdhuiLocal(), com
           <Ionicons name="flame" size={18} color={theme.texte.surCouleur} />
         </Animated.View>
         <Text style={[typo.etiquette, styles.flex, { color: theme.texte.principal }]}>{t('mission.maSerie')}</Text>
-        <Text accessibilityLiveRegion="polite" style={[typo.chiffreL, { color: theme.texte.principal }]}>{affiche}</Text>
+        <Text accessibilityLiveRegion="polite" style={[typo.chiffreL, { color: theme.texte.principal }]}>{reduit ? serie : affiche}</Text>
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(serie > 1 ? 'mission.joursDeSuite' : 'mission.jourDeSuite')}</Text>
       </View>
       <View style={styles.semaine}>
