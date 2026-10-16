@@ -93,8 +93,12 @@ jobs:
           exit $rc
 
       # Export et publication : uniquement hors pull request.
+      # Hôte public des médias TOEIC (bucket R2 « elearnprepa-public », préfixe toeic/) : valeur de configuration,
+      # intégrée au bundle à l'export. Une variable de dépôt « EXPO_PUBLIC_CERT_MEDIA_BASE » la remplace si elle existe.
       - name: Export Android (bundle Metro + compilation Hermes, comme l'OTA)
         if: ${{ github.event_name != 'pull_request' }}
+        env:
+          EXPO_PUBLIC_CERT_MEDIA_BASE: ${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}
         run: npx expo export --platform android --output-dir "$RUNNER_TEMP/export-android"
       - name: Le bundle Hermes existe et n'est pas vide
         if: ${{ github.event_name != 'pull_request' }}
@@ -119,6 +123,8 @@ jobs:
           if printf '%s' "$MESSAGE" | grep -qiF '[obligatoire]'; then UPDATE_OBLIGATOIRE=1; else UPDATE_OBLIGATOIRE=0; fi
           export UPDATE_OBLIGATOIRE
           echo "UPDATE_OBLIGATOIRE=$UPDATE_OBLIGATOIRE"
+          # Même valeur que l'export ci-dessus : eas update reconstruit le bundle et lit cette variable locale.
+          export EXPO_PUBLIC_CERT_MEDIA_BASE="${{ vars.EXPO_PUBLIC_CERT_MEDIA_BASE || 'https://pub-b05c9f45ef884ab2aa345a5763751590.r2.dev' }}"
           eas update --platform android --channel preview --environment preview --message "$(printf '%s' "$MESSAGE" | head -n1)" --non-interactive
 
       # Pas de build natif sans [build] (ou sans l'option du lancement manuel).

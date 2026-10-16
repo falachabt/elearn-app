@@ -173,7 +173,7 @@ export function Serie() {
     >
       <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={entete} />
       {!repondue ? (
-        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} delaiEchecS={delaiEchecS} ecran="serie" onPasser={() => void passer()} />
+        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} delaiEchecS={delaiEchecS} ecran="serie" position={Math.min(index + 1, total)} onPasser={() => void passer()} />
       ) : resultat ? (
         <ExplicationCert
           key={question.id}

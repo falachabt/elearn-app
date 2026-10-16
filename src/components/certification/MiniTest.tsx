@@ -145,7 +145,7 @@ function Examen() {
     >
       <BarreProgression pourcent={total ? (etat.index / total) * 100 : 0} libelle={titre} />
       {question ? (
-        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} unique delaiEchecS={delaiEchecS} ecran="mini_test" onPasser={() => void avancer(null)} />
+        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} unique delaiEchecS={delaiEchecS} ecran="mini_test" position={etat.index + 1} onPasser={() => void avancer(null)} />
       ) : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.examen.sansCorrection')}</Text>
       <Feuille

@@ -127,6 +127,7 @@ export function Diagnostic() {
         unique
         delaiEchecS={delaiEchecS}
         ecran="diagnostic"
+        position={Math.min(faites + 1, total)}
         onPasser={() => void avancer(null)}
       />
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />

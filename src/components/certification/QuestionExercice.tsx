@@ -28,6 +28,8 @@ type Props = {
   onPasser: () => void;
   /** Option cochée figée après validation. */
   verrouille?: boolean;
+  /** Position de la question dans la séance (1 à total). Jamais le numéro d'origine dans la banque. */
+  position?: number;
 };
 
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
@@ -37,7 +39,7 @@ const SANS_ENONCE = new Set(['photo', 'question_reponse']);
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, position }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -68,7 +70,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           unique={unique}
           delaiEchecS={delaiEchecS}
           ecran={ecran}
-          libelle={t('certification.exercice.question', { n: question.number ?? 1 })}
+          libelle={t('certification.exercice.question', { n: position ?? 1 })}
           onPasser={onPasser}
         />
       ) : null}
