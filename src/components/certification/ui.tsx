@@ -34,10 +34,12 @@ type LigneProps = {
   actif?: boolean;
   onPress?: () => void;
   accessibilityLabel?: string;
+  /** Remplace le chevron par un élément à droite (état de maîtrise, boîte du mot). */
+  droite?: ReactNode;
 };
 
 /** Ligne de choix : pastille carrée avec icône Lucide, titre, aide, radio ou chevron (A2, A4, A5, A7). */
-export function LigneChoix({ icone: Icone, titre, aide, radio, actif, onPress, accessibilityLabel }: LigneProps) {
+export function LigneChoix({ icone: Icone, titre, aide, radio, actif, onPress, accessibilityLabel, droite }: LigneProps) {
   const { theme } = useTheme();
   const contenu = (
     <View style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
@@ -48,7 +50,9 @@ export function LigneChoix({ icone: Icone, titre, aide, radio, actif, onPress, a
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
         {aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text> : null}
       </View>
-      {radio ? (
+      {droite ? (
+        droite
+      ) : radio ? (
         <View style={[styles.radio, { borderColor: theme.bord.fort, backgroundColor: actif ? theme.marque.principale : theme.fond.surface }]}>
           {actif ? <Check size={16} color={theme.texte.surCouleur} strokeWidth={3} /> : null}
         </View>
@@ -120,7 +124,50 @@ export function EncadrePointille({ texte }: { texte: string }) {
   );
 }
 
+/** Tuile d'accueil (N1, C9) : titre et valeur, éventuellement touchable. */
+export function Tuile({ titre, aide, onPress }: { titre: string; aide?: string; onPress?: () => void }) {
+  const { theme } = useTheme();
+  const corps = (
+    <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+      <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
+      {aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text> : null}
+    </View>
+  );
+  if (!onPress) return <View style={styles.tuileZone}>{corps}</View>;
+  return (
+    <Appui style={styles.tuileZone} accessibilityRole="button" accessibilityLabel={aide ? `${titre}. ${aide}` : titre} onPress={onPress} decalage={3} ombre={ombre.s} couleurOmbre={theme.ombre} rayon={rayon.m} retour>
+      {corps}
+    </Appui>
+  );
+}
+
+/** Étiquette de section (mono, secondaire) au-dessus d'un groupe de lignes. */
+export function EtiquetteSection({ texte }: { texte: string }) {
+  const { theme } = useTheme();
+  return (
+    <Text accessibilityRole="header" style={[typo.etiquette, { color: theme.texte.secondaire }]}>
+      {texte}
+    </Text>
+  );
+}
+
+/** Squelette de chargement : quelques blocs neutres, sans texte (S1). */
+export function Squelette({ lignes = 3 }: { lignes?: number }) {
+  const { theme } = useTheme();
+  return (
+    <View accessibilityLabel="…" accessibilityRole="progressbar" style={styles.squelette}>
+      {Array.from({ length: lignes }, (_, i) => (
+        <View key={i} style={[styles.bloc, { backgroundColor: theme.fond.creux, borderColor: theme.bord.doux }]} />
+      ))}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
+  tuileZone: { flexGrow: 1, flexBasis: '45%' },
+  tuile: { gap: 2, padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, minHeight: 64, justifyContent: 'center' },
+  squelette: { gap: espace[3] },
+  bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
   titreEntete: { flex: 1 },
   ligne: { minHeight: cibleMin + 16, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderRadius: rayon.l },

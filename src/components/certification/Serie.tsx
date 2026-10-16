@@ -35,10 +35,11 @@ type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'question' };
 export function Serie() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const params = useLocalSearchParams<{ part?: string; notion?: string; rejeu?: string; taille?: string; origine?: string }>();
+  const params = useLocalSearchParams<{ part?: string; notion?: string; rejeu?: string; ancrage?: string; taille?: string; origine?: string }>();
   const part = params.part ? Number(params.part) : undefined;
   const notion = params.notion || undefined;
   const rejeu = params.rejeu === '1';
+  const ancrage = params.ancrage === '1';
   const taille = params.taille ? Number(params.taille) : undefined;
   const origine = params.origine === 'seance' ? 'seance' : undefined;
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
@@ -54,13 +55,13 @@ export function Serie() {
     try {
       const [p, r] = await Promise.all([lireProfil(), obtenirReglages().catch(() => null)]);
       if (r) setDelaiEchecS(r.audioEchecSecondes);
-      const e = await reprendreOuDemarrer(p?.exam ?? 'toeic', { part: part && !Number.isNaN(part) ? part : undefined, notion, rejeu }, { taille: taille && !Number.isNaN(taille) ? taille : undefined, origine });
+      const e = await reprendreOuDemarrer(p?.exam ?? 'toeic', { part: part && !Number.isNaN(part) ? part : undefined, notion, rejeu, ancrage }, { taille: taille && !Number.isNaN(taille) ? taille : undefined, origine });
       setEtat(e);
       setPhase({ nom: 'question' });
     } catch {
       setPhase({ nom: 'erreur' });
     }
-  }, [part, notion, rejeu, taille, origine]);
+  }, [part, notion, rejeu, ancrage, taille, origine]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect

@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Check, TriangleAlert } from 'lucide-react-native';
 import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -24,6 +24,8 @@ import { EnteteToeic } from './ui';
 export function ObjectifCertification() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  // Depuis Moi (D4) : l'objectif se modifie seul, sans repasser par l'arrivée.
+  const modifier = useLocalSearchParams<{ modifier?: string }>().modifier === '1';
   const [exam, setExam] = useState('toeic');
   const [nomExamen, setNomExamen] = useState('TOEIC');
   const [paliers, setPaliers] = useState<number[]>([]);
@@ -67,11 +69,13 @@ export function ObjectifCertification() {
     if (valeur === null || !date.ok) return;
     await ecrirePlan({ exam, objectif: valeur, ...(date.jour ? { dateTest: date.jour } : {}) }, { effacerDate: !date.jour });
     suivre('cert_goal_set', { score: valeur, date_renseignee: !!date.jour });
-    router.push('/certification/temps');
+    if (modifier) router.back();
+    else router.push('/certification/temps');
   };
   const passer = () => {
     suivre('cert_goal_skipped', {});
-    router.push('/certification/temps');
+    if (modifier) router.back();
+    else router.push('/certification/temps');
   };
 
   return (
@@ -79,12 +83,12 @@ export function ObjectifCertification() {
       entete={<EnteteToeic titre={t('certification.objectif.entete')} onRetour={() => router.back()} />}
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={t('certification.continuer')} desactive={!valide} onPress={continuer} retour />
+          <Bouton libelle={modifier ? t('certification.enregistrer') : t('certification.continuer')} desactive={!valide} onPress={continuer} retour />
           <Bouton variante="texte" libelle={t('certification.objectif.passer')} onPress={passer} />
         </View>
       }
     >
-      <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.objectif.etape', { examen: nomExamen })}</Text>
+      {modifier ? null : <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.objectif.etape', { examen: nomExamen })}</Text>}
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.objectif.titre')}</Text>
       <View accessibilityRole="radiogroup" style={styles.paliers}>
         {paliers.map((p) => {

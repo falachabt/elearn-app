@@ -27,10 +27,12 @@ export type EtatSerie = {
   termine: boolean;
   /** Série lancée depuis la séance du jour (D2) : B11 ramène à D2. */
   origine?: 'seance';
+  /** Vrai quand le bloc de la séance du jour correspondant a été clos (évite de clore deux blocs en rouvrant la fin). */
+  blocClos?: boolean;
 };
 
 const maintenant = () => jourDe(new Date());
-const memePerimetre = (a: PerimetreSerie, b: PerimetreSerie) => (a.part ?? null) === (b.part ?? null) && (a.notion ?? null) === (b.notion ?? null) && !!a.rejeu === !!b.rejeu;
+const memePerimetre = (a: PerimetreSerie, b: PerimetreSerie) => (a.part ?? null) === (b.part ?? null) && (a.notion ?? null) === (b.notion ?? null) && !!a.rejeu === !!b.rejeu && !!a.ancrage === !!b.ancrage;
 
 export const lireSerieEnCours = () => lireJson<EtatSerie>(CLE_SERIE);
 export const ecrireSerie = (e: EtatSerie) => ecrireJson(CLE_SERIE, e);
@@ -38,7 +40,7 @@ export const effacerSerie = () => AsyncStorage.removeItem(CLE_SERIE).catch(() =>
 
 /** Tire une nouvelle série et remplace celle en cours. Échoue si le serveur ne répond pas : rien n'est perdu. */
 export async function demarrerSerie(exam: string, perimetre: PerimetreSerie, taille?: number, origine?: 'seance'): Promise<EtatSerie> {
-  const questions = await obtenirApi().lireSerie(perimetre, exam, taille);
+  const questions = perimetre.ancrage && perimetre.notion ? (await obtenirApi().lireNotion(perimetre.notion)).ancrages : await obtenirApi().lireSerie(perimetre, exam, taille);
   if (questions.length === 0) throw new Error('aucune question disponible');
   const etat: EtatSerie = { clientUuid: randomUUID(), exam, perimetre, questions, index: 0, reponses: [], resultats: {}, enAttente: [], motsAjoutes: [], termine: false, ...(origine ? { origine } : {}) };
   await ecrireSerie(etat);

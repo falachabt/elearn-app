@@ -1,8 +1,9 @@
+import { lireProfil } from '../profil';
 import { obtenirApi } from './api';
 import { lireAvecCopie } from './copie';
 import type { EtatMaitrise } from './certMaitrise';
 import { etatMot, type EtatMot } from './certCarnet';
-import type { Jour } from './jours';
+import { jourDe, type Jour } from './jours';
 import type { FamilleNotion, MotCarnetServi, NotionFiche, NotionListee, PartieMaitrise, Revision } from './types';
 
 /** Clés locales du contenu de révision (AGENTS.md §16 bis : lues seulement par `lireAvecCopie`, donc soumises à l'expiration). */
@@ -134,3 +135,13 @@ export function compteursCarnet(mots: MotCarnetServi[]): Record<EtatMot, number>
 }
 
 export const motsEchus = (mots: MotCarnetServi[], aujourdhui: Jour): MotCarnetServi[] => mots.filter((m) => m.prochaineRevue <= aujourdhui);
+
+export type DonneesRevision = { exam: string; revision: Revision; carnet: MotCarnetServi[]; depuisCopie: boolean };
+
+/** Notions, maîtrise et carnet de l'examen préparé : tout ce que Réviser, l'accueil et la carte affichent. */
+export async function chargerDonneesRevision(): Promise<DonneesRevision> {
+  const profil = await lireProfil();
+  const exam = profil?.exam ?? 'toeic';
+  const [r, c] = await Promise.all([chargerRevision(exam, jourDe(new Date())), chargerCarnet(exam)]);
+  return { exam, revision: r.valeur, carnet: c.valeur, depuisCopie: r.depuisCopie || c.depuisCopie };
+}

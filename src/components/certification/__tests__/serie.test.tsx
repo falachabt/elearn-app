@@ -6,6 +6,8 @@ import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
 import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
+import { JOUR, SEANCE_TEST } from '@/services/certification/__tests__/fixturesRevision';
+import { chargerSeanceJour, lireSeanceJour } from '@/services/certification/seanceJour';
 import { lireSerieEnCours } from '@/services/certification/serie';
 import { enregistrerProfil } from '@/services/profil';
 
@@ -85,7 +87,7 @@ describe('B8 à B9 · Série', () => {
   it('charge la série de la partie demandée et propose le choix', async () => {
     await monter(<Serie />);
     expect(await screen.findByText(/Question \d+/)).toBeTruthy();
-    expect(fausse.appels.series).toEqual([{ part: 5, notion: undefined }]);
+    expect(fausse.appels.series).toEqual([{ part: 5, notion: undefined, rejeu: false, ancrage: false }]);
   });
 
   it('bonne réponse : explication B9 avec badge, piège et mot clé ajoutable', async () => {
@@ -167,6 +169,22 @@ describe('B11 · Fin de série', () => {
     expect(screen.getByText(t.finSerie.rateeUne)).toBeTruthy();
     expect(screen.getByText(t.finSerie.notions)).toBeTruthy();
     await attendre();
+  });
+
+  it('série lancée par la séance du jour : clôt le bloc une seule fois et ramène à D2', async () => {
+    installer({ seance: SEANCE_TEST });
+    await chargerSeanceJour('toeic', JOUR, 20);
+    const e = (await lireSerieEnCours()) ?? null;
+    expect(e).toBeNull();
+    await AsyncStorage.setItem('cert.serie', JSON.stringify({ clientUuid: 'c', exam: 'toeic', perimetre: { part: 5 }, questions: [], index: 0, reponses: [], resultats: {}, enAttente: [], motsAjoutes: [], termine: true, origine: 'seance' }));
+    await monter(<FinSerie />);
+    await screen.findByText(t.finSerie.entete);
+    await monter(<FinSerie />);
+    await screen.findAllByText(t.finSerie.entete);
+    expect((await lireSeanceJour())?.termines).toEqual([0]);
+    await fireEvent.press(screen.getAllByText(t.finSerie.seance)[0]);
+    expect(router.replace).toHaveBeenCalledWith('/certification/seance');
+    expect(screen.queryByText(t.finSerie.refaire)).toBeNull();
   });
 
   it('sans série terminée : retour à la série', async () => {

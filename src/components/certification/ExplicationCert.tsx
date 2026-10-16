@@ -55,9 +55,8 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
   const revoirNotion = () => {
     const notion = resultat.notion;
     if (!notion) return;
-    suivre('cert_notion_opened', { notion: notion.code, source: 'explication' });
     setFeuille(false);
-    router.push({ pathname: '/certification/notion/[id]', params: { id: notion.id } } as never);
+    router.push({ pathname: '/certification/notion/[id]', params: { id: notion.id, source: 'explication' } } as never);
   };
 
   const acheter = async () => {

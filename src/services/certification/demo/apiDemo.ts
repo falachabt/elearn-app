@@ -193,6 +193,8 @@ export const apiDemo: CertApi = {
   },
   async lireSerie(perimetre, _exam, taille) {
     const n = taille ?? reglagesSerie;
+    const partieNotion = perimetre.notion ? contenu.notions.find((x) => x.id === perimetre.notion)?.part : undefined;
+    if (partieNotion) return tirer(partieNotion, n).map(servir);
     if (perimetre.part) return tirer(perimetre.part, n).map(servir);
     const parties = [1, 2, 3, 4, 5, 6, 7];
     return Array.from({ length: n }, (_, i) => tirer(parties[i % parties.length], 1)[0]).filter(Boolean).map(servir);

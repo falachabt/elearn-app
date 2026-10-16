@@ -10,11 +10,14 @@ import {
   indexBlocSuivant,
   indexDuBloc,
   lireSeanceJour,
+  pourquoiDeLaSeance,
   terminerBloc,
+  terminerBlocSuivant,
 } from '../seanceJour';
 import { creerApiFausse } from './apiFausse';
 import { JOUR, SEANCE_TEST } from './fixturesRevision';
 
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
 let mockCompteur = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `uuid-${++mockCompteur}` }));
 
@@ -107,5 +110,35 @@ describe('D2 · séance du jour', () => {
   it('un échec du serveur remonte pour que l’écran propose de réessayer', async () => {
     definirApi(creerApiFausse({ seance: 'echec' }).api);
     await expect(chargerSeanceJour('toeic', JOUR, 20)).rejects.toThrow('réseau');
+  });
+});
+
+describe('terminerBlocSuivant et pourquoiDeLaSeance', () => {
+  it('clôt toujours le premier bloc pas terminé, jusqu’à la fin, puis ne fait plus rien', async () => {
+    const { api, appels } = creerApiFausse({ seance: SEANCE_TEST });
+    definirApi(api);
+    await chargerSeanceJour('toeic', JOUR, 20);
+    expect(await terminerBlocSuivant()).toMatchObject({ termines: [0] });
+    expect(await terminerBlocSuivant()).toMatchObject({ termines: [0, 1] });
+    await terminerBlocSuivant();
+    const fin = await terminerBlocSuivant();
+    expect(fin).toMatchObject({ termines: [0, 1, 2, 3], finie: true, enregistree: true });
+    expect(await terminerBlocSuivant()).toMatchObject({ termines: [0, 1, 2, 3] });
+    expect(appels.seances).toHaveLength(1);
+    expect(jest.requireMock('@/services/analytics').suivre).toHaveBeenCalledWith('cert_session_completed', { composition: 'cours,mots,rejeu,serie' });
+  });
+
+  it('sans séance gardée, ne fait rien', async () => {
+    expect(await terminerBlocSuivant()).toBeNull();
+  });
+
+  it('choisit la raison la plus forte sans inventer de chiffre', () => {
+    expect(pourquoiDeLaSeance({ erreurs: 4, notion: 'Prépositions', motsEchus: 2 })).toEqual({ cle: 'pourquoiMots', params: { n: 4, notion: 'Prépositions', m: 2 } });
+    expect(pourquoiDeLaSeance({ erreurs: 1, notion: 'Prépositions', motsEchus: 2 }).cle).toBe('pourquoiMotsUne');
+    expect(pourquoiDeLaSeance({ erreurs: 4, notion: 'Prépositions', motsEchus: 0 }).cle).toBe('pourquoi');
+    expect(pourquoiDeLaSeance({ erreurs: 1, notion: 'Prépositions', motsEchus: 0 }).cle).toBe('pourquoiUne');
+    expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 1 }).cle).toBe('pourquoiMotUn');
+    expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 5 })).toEqual({ cle: 'pourquoiMotsSeuls', params: { m: 5 } });
+    expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 0 }).cle).toBe('pourquoiPlan');
   });
 });

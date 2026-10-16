@@ -88,7 +88,7 @@ Le skill `.claude/skills/caveman` réduit la consommation de tokens. Il s'appliq
 
 ### 16 bis. Expiration du contenu hors ligne : passer par `lireLocalHorsLigne`
 
-- **Le cache hors ligne est éparpillé en plusieurs clés**, chacune rangée par la préparation et lue par son propre chemin : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`. Les contenus rangés par `avecCopie` (cours, leçons, fiches, exercices, quiz libres, annales) passent par ce même point.
+- **Le cache hors ligne est éparpillé en plusieurs clés**, chacune rangée par la préparation et lue par son propre chemin : `reviser.quiz.horsLigne.*`, `entrainement.exercice.corrige.*`, `mission.horsLigne.*`, et pour le profil TOEIC `cert.cache.revision.*`, `cert.cache.carnet.*`, `cert.cache.fiche.*` (lus par `lireAvecCopie`, `src/services/certification/copie.ts`). Les contenus rangés par `avecCopie` (cours, leçons, fiches, exercices, quiz libres, annales) passent par ce même point.
 - **Toute lecture d'une clé locale de contenu doit passer par `lireLocalHorsLigne()`** (`src/services/reviser.ts`), qui applique l'expiration. Un `AsyncStorage.getItem()` direct **contourne la règle** — c'est l'erreur commise deux fois, en annonçant à tort que l'expiration bloquait le contenu alors que quiz et corrigés restaient accessibles.
 - Ne pas recopier `contenuHorsLigneValide()` au cas par cas : le contrôle vit dans `lireLocalHorsLigne` et `avecCopie`. Une nouvelle clé locale de contenu doit être ajoutée à la liste ci-dessus **et** couverte par un test.
 - `src/services/__tests__/reviser.test.ts` contient le bloc « clés locales hors ligne : toutes soumises à l'expiration », qui couvre chaque clé. **Toute nouvelle clé de contenu local doit y ajouter son test.**

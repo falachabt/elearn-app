@@ -1,3 +1,4 @@
+import { ErreurContenuExpire } from '../copie';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { definirApi } from '../api';
@@ -150,12 +151,12 @@ describe('copie hors ligne et expiration', () => {
     expect(r.valeur.notions).toHaveLength(NOTIONS_TEST.length);
   });
 
-  it('hors ligne au-delà de 7 jours : la copie est refusée et l’erreur réseau remonte (S9)', async () => {
+  it('hors ligne au-delà de 7 jours : la copie est refusée et l’écran reçoit « contenu expiré » (S9)', async () => {
     definirApi(creerApiFausse({ carnet: MOTS_TEST }).api);
     await chargerCarnet('toeic');
     definirApi(creerApiFausse({ carnet: 'echec' }).api);
     mockValable.mockResolvedValue(false);
-    await expect(chargerCarnet('toeic')).rejects.toThrow('réseau');
+    await expect(chargerCarnet('toeic')).rejects.toBeInstanceOf(ErreurContenuExpire);
   });
 
   it('une copie récente n’empêche pas de relire le serveur : le carnet reste à jour après une séance', async () => {

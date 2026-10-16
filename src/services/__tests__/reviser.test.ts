@@ -262,6 +262,17 @@ describe('clés locales hors ligne : toutes soumises à l’expiration', () => {
     expect(await lireLocalHorsLigne('entrainement.exercice.corrige.ex-1', maintenant)).toBeNull();
   });
 
+  it('profil TOEIC : révision, carnet et fiches (cert.cache.*) sont soumis à l’expiration', async () => {
+    for (const cle of ['cert.cache.revision.toeic', 'cert.cache.carnet.toeic', 'cert.cache.fiche.n-1']) {
+      await AsyncStorage.setItem(cle, JSON.stringify({ ok: cle }));
+      contenuHorsLigneValide.mockResolvedValue(true);
+      expect(await lireLocalHorsLigne(cle, maintenant)).toEqual({ ok: cle });
+
+      contenuHorsLigneValide.mockResolvedValue(false);
+      expect(await lireLocalHorsLigne(cle, maintenant)).toBeNull();
+    }
+  });
+
   it('mission préchargée : refusée quand périmé', async () => {
     await AsyncStorage.setItem('mission.horsLigne.1re.CM.classe.5.2026-10-20', JSON.stringify({ jour: '2026-10-20' }));
     expect(await lireLocalHorsLigne('mission.horsLigne.1re.CM.classe.5.2026-10-20', maintenant)).toEqual({ jour: '2026-10-20' });

@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { Clock } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -21,6 +21,7 @@ const AIDES: Record<number, 'm10' | 'm20' | 'm30'> = { 10: 'm10', 20: 'm20', 30:
 export function TempsParJour() {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const modifier = useLocalSearchParams<{ modifier?: string }>().modifier === '1';
   const [r, setR] = useState<Reglages | null>(null);
   const [minutes, setMinutes] = useState<number | null>(null);
   const [exam, setExam] = useState('toeic');
@@ -43,15 +44,16 @@ export function TempsParJour() {
     if (!minutes) return;
     await ecrirePlan({ exam, minutes });
     suivre('cert_daily_time_set', { minutes });
-    router.push('/certification/arrivee');
+    if (modifier) router.back();
+    else router.push('/certification/arrivee');
   };
 
   return (
     <Ecran
       entete={<EnteteToeic titre={t('certification.temps.entete')} onRetour={() => router.back()} />}
-      pied={<Bouton libelle={t('certification.temps.commencer')} desactive={!minutes} onPress={commencer} retour />}
+      pied={<Bouton libelle={modifier ? t('certification.enregistrer') : t('certification.temps.commencer')} desactive={!minutes} onPress={commencer} retour />}
     >
-      <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.temps.etape')}</Text>
+      {modifier ? null : <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.temps.etape')}</Text>}
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.temps.titre')}</Text>
       <View style={styles.liste}>
         {(r?.seanceMinutesChoix ?? []).map((m) => {

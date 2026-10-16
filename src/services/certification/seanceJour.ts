@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { randomUUID } from 'expo-crypto';
 
+import { suivre } from '../analytics';
 import { obtenirApi } from './api';
 import { ecrireJson, lireJson } from './etat';
 import type { Jour } from './jours';
@@ -104,6 +105,7 @@ export async function envoyerSeanceSiBesoin(etat: EtatSeanceJour, maintenant = D
     await obtenirApi().terminerSeance(etat.clientUuid, etat.exam, { minutes: etat.seance.minutes, blocs: etat.seance.blocs, termines: etat.termines }, minutes, etat.jour);
     const suivant = { ...etat, enregistree: true };
     await ecrire(suivant);
+    suivre('cert_session_completed', { composition: etat.seance.blocs.map((b) => b.type).join(',') });
     return suivant;
   } catch {
     return etat;
@@ -112,3 +114,30 @@ export async function envoyerSeanceSiBesoin(etat: EtatSeanceJour, maintenant = D
 
 /** « {k} sur {b} terminés » (F7). */
 export const avancement = (etat: EtatSeanceJour) => ({ faits: etat.termines.length, total: etat.seance.blocs.length });
+
+/**
+ * Clôt le bloc en cours de la séance gardée sur l'appareil (série, rejeu, mots) : les blocs se font dans l'ordre, donc
+ * c'est toujours le premier bloc pas terminé. Sans séance gardée, ne fait rien.
+ */
+export async function terminerBlocSuivant(maintenant = Date.now()): Promise<EtatSeanceJour | null> {
+  const etat = await lireSeanceJour();
+  if (!etat) return null;
+  const i = indexBlocSuivant(etat);
+  return i === null ? etat : terminerBloc(etat, i, maintenant);
+}
+
+export type ClePourquoi = 'pourquoi' | 'pourquoiUne' | 'pourquoiMots' | 'pourquoiMotsUne' | 'pourquoiMotsSeuls' | 'pourquoiMotUn' | 'pourquoiPlan';
+export type Pourquoi = { cle: ClePourquoi; params: Record<string, string | number> };
+
+/** Phrase « Parce que… » de l'accueil et de la séance (F7) : la raison la plus forte, sans jamais inventer de chiffre. */
+export function pourquoiDeLaSeance(p: SeanceServie['pourquoi']): Pourquoi {
+  const { erreurs, notion, motsEchus } = p;
+  if (erreurs > 0 && notion) {
+    const base = erreurs === 1 ? 'pourquoiUne' : 'pourquoi';
+    if (motsEchus > 0) return { cle: erreurs === 1 ? 'pourquoiMotsUne' : 'pourquoiMots', params: { n: erreurs, notion, m: motsEchus } };
+    return { cle: base, params: { n: erreurs, notion } };
+  }
+  if (motsEchus === 1) return { cle: 'pourquoiMotUn', params: {} };
+  if (motsEchus > 1) return { cle: 'pourquoiMotsSeuls', params: { m: motsEchus } };
+  return { cle: 'pourquoiPlan', params: {} };
+}

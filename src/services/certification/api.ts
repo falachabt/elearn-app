@@ -9,7 +9,14 @@ import type { BlocServi, Examen, FinTentative, MotCarnetServi, MotsARevoir, Noti
  * embarqué pour les essais sur Expo web (outil de développement, voir `demo/`). Les écrans ne connaissent que ceci.
  */
 /** Périmètre d'une série : une partie, une notion, ou rien (mélange). */
-export type PerimetreSerie = { part?: number; notion?: string; /** Questions ratées à rejouer (F6) au lieu d'un tirage. */ rejeu?: boolean };
+export type PerimetreSerie = {
+  part?: number;
+  notion?: string;
+  /** Questions ratées à rejouer (F6) au lieu d'un tirage. */
+  rejeu?: boolean;
+  /** Les trois questions d'ancrage de la notion (C5) au lieu d'un tirage. */
+  ancrage?: boolean;
+};
 export type ExplicationAchetee = { statut: 'spent' | 'unlimited' | 'already' | 'free' | 'insufficient'; cout: number; solde: number; contenu: { explanation: string | null; trap: string | null } | null };
 
 export interface CertApi {

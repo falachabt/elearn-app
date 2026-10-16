@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirReglages } from '@/services/certification/etat';
-import { effacerSerie, lireSerieEnCours, resumerSerie, type EtatSerie, type ResumeSerie } from '@/services/certification/serie';
+import { terminerBlocSuivant } from '@/services/certification/seanceJour';
+import { ecrireSerie, effacerSerie, lireSerieEnCours, resumerSerie, type EtatSerie, type ResumeSerie } from '@/services/certification/serie';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -36,6 +37,12 @@ export function FinSerie() {
         // garde les délais par défaut
       }
       if (!actif) return;
+      // Une série lancée par la séance du jour clôt son bloc (idempotent : un bloc terminé n'est pas recompté).
+      if (e.origine === 'seance' && !e.blocClos) {
+        await terminerBlocSuivant();
+        await ecrireSerie({ ...e, blocClos: true });
+      }
+      if (!actif) return;
       setEtat(e);
       setResume(resumerSerie(e, { delaisRejeuJours: delais }));
     })();
@@ -64,8 +71,8 @@ export function FinSerie() {
       entete={<EnteteToeic titre={t('certification.finSerie.entete')} />}
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={t('certification.finSerie.seance')} onPress={() => router.replace('/')} retour />
-          <Bouton variante="secondaire" libelle={t('certification.finSerie.refaire')} onPress={() => void refaire()} />
+          <Bouton libelle={t('certification.finSerie.seance')} onPress={() => router.replace(etat?.origine === 'seance' ? ('/certification/seance' as never) : '/')} retour />
+          {etat?.origine === 'seance' ? null : <Bouton variante="secondaire" libelle={t('certification.finSerie.refaire')} onPress={() => void refaire()} />}
         </View>
       }
     >

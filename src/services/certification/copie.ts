@@ -1,5 +1,15 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { ecrireJson } from './etat';
 import { lireLocalHorsLigne, oublierLocalEnMemoire } from '../reviser';
+
+/** Le contenu gardé hors ligne a dépassé sa durée de validité : il n'est pas servi (S9). */
+export class ErreurContenuExpire extends Error {
+  constructor() {
+    super('contenu expiré');
+    this.name = 'ErreurContenuExpire';
+  }
+}
 
 /**
  * Lecture « réseau d'abord » avec copie locale pour le hors ligne. Les données de l'élève (maîtrise, carnet) changent
@@ -14,7 +24,11 @@ export async function lireAvecCopie<T>(cle: string, lire: () => Promise<T>): Pro
     return { valeur, depuisCopie: false };
   } catch (erreur) {
     const copie = await lireLocalHorsLigne<T>(cle);
-    if (copie === null) throw erreur;
+    if (copie === null) {
+      // Une copie existe mais elle a plus de 7 jours : elle n'est pas servie, l'écran le dit (S9).
+      const gardee = await AsyncStorage.getItem(cle).catch(() => null);
+      throw gardee ? new ErreurContenuExpire() : erreur;
+    }
     return { valeur: copie, depuisCopie: true };
   }
 }
