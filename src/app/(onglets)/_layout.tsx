@@ -74,7 +74,8 @@ export default function LayoutOnglets() {
     return () => abonnement.remove();
   }, [sessionPrete]);
   if (arrivee === 'inconnu') return <View style={[styles.racine, { backgroundColor: theme.fond.app }]} />;
-  if (arrivee === 'a-faire') return <Redirect href={(reprise ?? '/bienvenue') as '/bienvenue'} />;
+  // Reprise du profil certification seulement drapeau ouvert : fermé, un profil TOEIC inachevé repart de l'accueil élève.
+  if (arrivee === 'a-faire') return <Redirect href={(certificationOuverte && reprise ? reprise : '/bienvenue') as '/bienvenue'} />;
 
   return (
     <View style={styles.racine}>
