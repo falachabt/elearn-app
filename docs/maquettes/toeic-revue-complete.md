@@ -260,3 +260,12 @@ Retour de Benny (16/10, 21:36) : le texte à trous affichait « {1} », « {2} �
 - Partie 7 : pas de trou, inchangée.
 - Clair et sombre : les rectangles utilisent les tokens (`--surf`, `--soleil`, `--marque`), donc les deux thèmes suivent le moteur.
 - Règle pour le dev : le numéro affiché dans le texte est le même que dans le libellé de la question et que dans le récapitulatif du diagnostic.
+
+## Score estimé précis et évolution (version 22, 16 octobre 2026, à valider)
+
+Demande de Benny (16/10, 21:39) : donner un chiffre précis à l'élève (par exemple « 745 »), pas une fourchette, puis suivre son évolution au fil des tests. Méthode et réserves : cahier, section 5.R. Benny doit valider la méthode avant tout code.
+
+- `TOEIC-A7-SCORE` : « Ton résultat » au diagnostic. Score estimé « 745 », avec « Environ 745, à ± 30 points près ». Listening (375) et Reading (370), chacun sur 495, avec une barre. Maîtrise par partie conservée (P6 fragile, P5 acquise).
+- `TOEIC-A7-EVOL` : après un mini-test, estimation « 760 » et mention « Tu étais à 745 au diagnostic ». Ligne « Évolution : +15 points depuis le diagnostic ». La marge est dite en clair : elle se réduit avec les tests terminés.
+- Les chiffres (745, 760, 375, 370, 380) sont des exemples, jamais des valeurs figées. Ils viennent du calcul serveur.
+- Pas de promesse de « 98 % de fidélité » dans l'écran : la recherche n'a pas trouvé de table officielle publique (voir cahier 5.R).
