@@ -269,3 +269,12 @@ Demande de Benny (16/10, 21:39) : donner un chiffre précis à l'élève (par ex
 - `TOEIC-A7-EVOL` : après un mini-test, estimation « 760 » et mention « Tu étais à 745 au diagnostic ». Ligne « Évolution : +15 points depuis le diagnostic ». La marge est dite en clair : elle se réduit avec les tests terminés.
 - Les chiffres (745, 760, 375, 370, 380) sont des exemples, jamais des valeurs figées. Ils viennent du calcul serveur.
 - Pas de promesse de « 98 % de fidélité » dans l'écran : la recherche n'a pas trouvé de table officielle publique (voir cahier 5.R).
+
+## Score estimé : un chiffre net (version 22, révisée le 16 octobre 2026, à valider)
+
+Retour de Benny (16/10, 21:55) : « Chiffre exact ... ». L'élève veut un seul chiffre, pas une fourchette ni une marge affichée en gros.
+
+- `TOEIC-A7-SCORE` : le titre de la carte est un chiffre net, « 745 » ; la mention « Estimation, pas un score officiel. » est discrète, en petit. Pas de « ± 30 » ni de fourchette. Listening (375) et Reading (370), chacun sur un chiffre exact et sur 495.
+- `TOEIC-A7-EVOL` : après un mini-test, « 760 », « +15 depuis le diagnostic (745) ». Même mention discrète.
+- Les chiffres sont des exemples ; ils viennent du calcul serveur.
+- Pas de marge affichée. La marge reste un outil interne de calibration (cahier, section 5.R).

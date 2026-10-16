@@ -717,13 +717,13 @@ const b6c1=t=>ph(t,BLANK_CSS+hd('Partie 6 · Texte à trous')+bd(bar(60)+T6(131,
 const b6c2=t=>ph(t,BLANK_CSS+hd('Partie 6 · Texte à trous')+bd(bar(70)+T6(132,{131:1})+lab('Trou 132 · choisis le mot qui complète le texte')+opt('A','Instead','sel')+opt('B','Otherwise','')+opt('C','Meanwhile','')+opt('D','Afterward',''))+ft(B('Valider')+LK('Passer ce trou')));
 /* B5-1 : partie 5, une phrase à trou numéroté */
 const b5c=t=>ph(t,BLANK_CSS+hd('Partie 5 · Phrase')+bd(bar(35)+`<div class="chips2"><span>Forme du mot</span></div><div class="q" style="font-size:18px">The new software will be ${tb(128,'on')} next week.</div>`+lab('Trou 128 · choisis le mot qui complète la phrase')+opt('A','release','')+opt('B','released','sel')+opt('C','releasing','')+opt('D','releases',''))+ft(B('Valider')));
-/* ---------- RÉSULTAT AVEC SCORE ESTIMÉ PRÉCIS (v22, 16 octobre) ----------
-   Demande de Benny (16/10, 21:39) : un chiffre précis (« 745 »), fidèle à environ 98 %,
-   puis son évolution. Méthode et réserves : cahier, section 5.R. Benny valide avant code. */
+/* ---------- RÉSULTAT AVEC UN CHIFFRE NET (v22 révisée, 16 octobre) ----------
+   Retour de Benny (16/10, 21:55) : « Chiffre exact ... ». Un seul chiffre en titre, sans fourchette
+   ni « ± 30 » en gros ; mention discrète « estimation, pas un score officiel ». Benny valide avant code. */
 const scoreSec=(lbl,val,pos)=>`<div style="display:grid;gap:4px"><span class="lbl2" style="margin:0">${lbl}</span><b style="font:700 20px var(--f-mono);color:var(--txt)">${val}</b><div class="bar"><i style="width:${pos}%"></i></div><small style="font:700 12px var(--f-body);color:var(--txt2)">sur 495</small></div>`;
 const d2c=t=>ph(t,hd('Ton résultat',true)+bd(
-    `<div class="sheet"><span class="lbl2">Score estimé</span><div class="big" style="font-size:44px">745</div>`+
-    `<p class="hint" style="color:var(--txt)">Environ 745, à ± 30 points près. Une estimation d'après tes réponses, pas un score officiel.</p></div>`+
+    `<div class="sheet"><span class="lbl2">Ton score estimé</span><div class="big" style="font-size:52px">745</div>`+
+    `<small style="font:700 12px var(--f-body);color:var(--txt2)">Estimation, pas un score officiel.</small></div>`+
     `<div class="sheet" style="gap:12px"><span class="lbl2" style="margin:0">Écoute et lecture</span><div class="gr2" style="grid-template-columns:1fr 1fr">${scoreSec('Listening','375',75)+scoreSec('Reading','370',74)}</div></div>`+
     lab('Ta maîtrise par partie')+
     row('target','Partie 6','Textes à trous · 2 questions ratées',ST.f('Fragile'))+
@@ -731,11 +731,11 @@ const d2c=t=>ph(t,hd('Ton résultat',true)+bd(
   )+ft(B('Voir mon plan')));
 /* d2d : au test suivant, évolution par rapport au diagnostic */
 const d2d=t=>ph(t,hd('Mini-test partie 6',true)+bd(
-    `<div class="sheet"><span class="lbl2">Ton estimation aujourd'hui</span><div class="big" style="font-size:44px">760</div>`+
-    `<p class="hint" style="color:var(--txt)">Environ 760, à ± 30 points près. Tu étais à 745 au diagnostic.</p></div>`+
+    `<div class="sheet"><span class="lbl2">Ton score estimé</span><div class="big" style="font-size:52px">760</div>`+
+    `<small style="font:700 12px var(--f-body);color:var(--txt2)">Estimation, pas un score officiel.</small></div>`+
     `<div class="gr2" style="grid-template-columns:1fr 1fr">${scoreSec('Listening','380',77)+scoreSec('Reading','380',77)}</div>`+
-    row('trend','Évolution','+15 points depuis le diagnostic','')+
-    `<p class="hint" style="color:var(--txt)">La marge diminue avec le nombre de tests terminés. Un test complet la réduit le plus.</p>`
+    row('trend','Évolution','+15 depuis le diagnostic (745)','')+
+    `<p class="hint" style="color:var(--txt)">Ton score bouge à chaque test terminé. Un test complet le précise le plus.</p>`
   )+ft(B('Voir mon plan')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
@@ -769,7 +769,7 @@ const groups=[
  ['États du moteur d\'exercice (B1 à B8, chargement, audio, lecture)',[[chg('Partie 1 · Photos'),'TOEIC-B1-CHARGE · Chargement d\'une photo'],[chg('Partie 2 · Question-réponse'),'TOEIC-B2-CHARGE · Chargement d\'une question audio'],[chg('Partie 3 · Conversation'),'TOEIC-B3-CHARGE · Chargement d\'une conversation'],[chg('Partie 4 · Exposé'),'TOEIC-B4-CHARGE · Chargement d\'un exposé'],[chg('Partie 5 · Phrase'),'TOEIC-B5-CHARGE · Chargement d\'une phrase'],[chg('Partie 6 · Texte à trous'),'TOEIC-B6-CHARGE · Chargement d\'un texte à trous'],[chg('Partie 7 · Documents'),'TOEIC-B7-CHARGE · Chargement d\'un passage'],[akO('Partie 1 · Photos',optsAud),'TOEIC-B1-AUDIO-KO · Son indisponible, partie 1'],[akO('Partie 2 · Question-réponse',optsAud),'TOEIC-B2-AUDIO-KO · Son indisponible, partie 2'],[akO('Partie 3 · Conversation',optsAud),'TOEIC-B3-AUDIO-KO · Son indisponible, partie 3'],[akO('Partie 4 · Exposé',optsAud),'TOEIC-B4-AUDIO-KO · Son indisponible, partie 4'],[erA('Partie 3 · Conversation',optsAud),'TOEIC-B3-ERR-AUDIO · Lecture interrompue, reprise sans recommencer'],[erA('Lecteur audio',''),'TOEIC-B8-ERR-AUDIO · Lecteur : erreur de lecture, reprise à la même position']]],
  ['Groupes de questions et consignes de partie (v20, 16 octobre)',[[G1,'TOEIC-G1-Q1 · Partie 3, groupe d\'une conversation : audio en cours, une seule écoute, onglets Question 32 à 34'],[G2,'TOEIC-G1-Q2 · Même groupe, question 33 : question 32 répondue, pas de réécoute'],[G3,'TOEIC-G1-Q3 · Dernière question du groupe : « Groupe suivant » bloqué tant qu\'une question est sans réponse'],[D1,'TOEIC-D-P1 · Consignes avant la partie 1 (déroulé, pas de retour, écoute des consignes)'],[D3,'TOEIC-D-P3 · Consignes avant la partie 3 (groupes, une seule écoute)'],[T2,'TOEIC-T-P2 · Transition entre la partie 1 et la partie 2']]],
  ['Trous numérotés, parties 5 et 6 (v21, 16 octobre)',[[b5c,'TOEIC-B5-TROU · Partie 5 : trou numéroté dans la phrase, question « Trou 128 »'],[b6c1,'TOEIC-B6-1 · Partie 6 : trou 131 actif, rectangles numérotés dans le texte (remplace {1})'],[b6c2,'TOEIC-B6-2 · Partie 6 : trou 131 répondu (vert), trou 132 actif']]],
- ['Score estimé précis et évolution (v22, 16 octobre, à valider)',[[d2c,'TOEIC-A7-SCORE · Ton résultat : score estimé 745, à ± 30 près, Listening et Reading sur 495'],[d2d,'TOEIC-A7-EVOL · Après un mini-test : estimation 760, évolution depuis le diagnostic']]],
+ ['Score estimé précis et évolution (v22, 16 octobre, à valider)',[[d2c,'TOEIC-A7-SCORE · Ton résultat : un chiffre net (745), Listening et Reading chacun sur 495, mention « estimation »'],[d2d,'TOEIC-A7-EVOL · Après un mini-test : 760, évolution de +15 depuis le diagnostic']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
