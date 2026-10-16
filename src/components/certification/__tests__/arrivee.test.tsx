@@ -219,6 +219,18 @@ describe('A3 · Objectif', () => {
     await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), '');
     expect(continuerActif()).toBe(true);
   });
+  it('TOEIC-A3-MOTIF : date passée, son message reste sous le champ, « Continuer » grisé', async () => {
+    await monterObjectif();
+    await fireEvent.changeText(screen.getByPlaceholderText(t.objectif.datePlaceholder), '02/02/2026');
+    expect(screen.getByText(t.objectif.datePassee)).toBeTruthy();
+    expect(continuerActif()).toBe(false);
+  });
+  it('TOEIC-A3-MOTIF : score vide, le motif indique quoi saisir', async () => {
+    await monterObjectif();
+    await fireEvent.changeText(screen.getByDisplayValue(/^\d+$/), '');
+    expect(screen.getByText(t.objectif.scoreVide)).toBeTruthy();
+    expect(continuerActif()).toBe(false);
+  });
   it('AC-A3-4 : « Passer » ne crée aucun objectif et continue', async () => {
     await monterObjectif();
     await fireEvent.press(screen.getByRole('button', { name: t.objectif.passer }));

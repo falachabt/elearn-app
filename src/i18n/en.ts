@@ -1865,6 +1865,7 @@ export const en: Textes = {
       aide: 'Your plan is built from this score. It guarantees nothing. The date is optional.',
       passer: 'Skip for now',
       erreurBornes: 'Pick a score between {{min}} and {{max}}.',
+      scoreVide: 'Enter your target score to continue.',
       curseur: 'Target score',
     },
     temps: {

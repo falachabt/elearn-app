@@ -64,6 +64,8 @@ export function ObjectifCertification() {
   const erreurValeur = r && texte !== '' && valeur === null ? t('certification.objectif.erreurBornes', { min: r.objectifMin, max: r.objectifMax }) : undefined;
   const restants = date.ok ? joursAvantTest(date.jour, aujourdhui) : null;
   const valide = valeur !== null && date.ok;
+  // Score vide : le motif s'affiche au-dessus du « Continuer » grisé (la date a son message sous le champ, en rouge).
+  const motifBloque = r && valeur === null && texte === '' ? t('certification.objectif.scoreVide') : null;
 
   const continuer = async () => {
     if (valeur === null || !date.ok) return;
@@ -83,6 +85,11 @@ export function ObjectifCertification() {
       entete={<EnteteToeic titre={t('certification.objectif.entete')} onRetour={() => router.back()} />}
       pied={
         <View style={styles.pied}>
+          {motifBloque ? (
+            <Text accessibilityLiveRegion="polite" style={[typo.petit, { color: theme.etat.erreur }]}>
+              {motifBloque}
+            </Text>
+          ) : null}
           <Bouton libelle={modifier ? t('certification.enregistrer') : t('certification.continuer')} desactive={!valide} onPress={continuer} retour />
           <Bouton variante="texte" libelle={t('certification.objectif.passer')} onPress={passer} />
         </View>
@@ -135,7 +142,7 @@ export function ObjectifCertification() {
       />
       <View accessibilityLiveRegion="polite" style={styles.messageDate}>
         {!date.ok ? <TriangleAlert size={18} color={theme.texte.principal} strokeWidth={2} /> : date.jour ? <Check size={18} color={theme.texte.principal} strokeWidth={2} /> : null}
-        <Text style={[typo.petit, styles.texteDate, { color: theme.texte.principal }]}>
+        <Text style={[typo.petit, styles.texteDate, { color: date.ok ? theme.texte.principal : theme.etat.erreur }]}>
           {!date.ok
             ? t(date.erreur === 'passe' ? 'certification.objectif.datePassee' : 'certification.objectif.dateFormat')
             : date.jour && restants !== null

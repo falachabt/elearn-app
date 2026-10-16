@@ -1866,6 +1866,7 @@ export const fr = {
       aide: 'Ton plan se construit à partir de ce score. Il ne garantit rien. La date est facultative.',
       passer: 'Passer pour l’instant',
       erreurBornes: 'Choisis un score entre {{min}} et {{max}}.',
+      scoreVide: 'Indique ton score visé pour continuer.',
       curseur: 'Score visé',
     },
     temps: {
