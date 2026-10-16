@@ -8,8 +8,9 @@ import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { MOTS_TEST, REVISION_TEST, SEANCE_TEST } from '@/services/certification/__tests__/fixturesRevision';
 import { ecrirePlan } from '@/services/certification/etat';
-import { enregistrerProfil } from '@/services/profil';
+import { CLE_PROFIL, enregistrerProfil, lireProfil } from '@/services/profil';
 
+import { ChoisirCertification } from '../../profil/ChoisirCertification';
 import { ChoisirProfil } from '../../profil/ChoisirProfil';
 import { MoiToeic } from '../MoiToeic';
 import { monter } from './harnais';
@@ -22,7 +23,7 @@ jest.mock('expo-router', () => ({
   },
   useLocalSearchParams: () => ({}),
 }));
-jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesUtilisateur: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}) }));
+jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), drapeauActif: jest.fn(() => true), ecouterDrapeaux: jest.fn(() => () => {}), definirProprietesUtilisateur: jest.fn() }));
 jest.mock('expo-crypto', () => ({ randomUUID: () => 'uuid-profil' }));
 jest.mock('../../credits/CompteurCredits', () => ({ CompteurCredits: () => null }));
 jest.mock('../../../services/reglagesLocaux', () => ({ signalerModification: jest.fn(async () => {}) }));
@@ -35,12 +36,12 @@ beforeEach(async () => {
 });
 
 describe('P2 · choix du profil', () => {
-  it('marque le profil actuel et envoie le TOEIC vers la confirmation de Moi', async () => {
+  it('marque le profil actuel et la certification ouvre sa page de choix', async () => {
     await monter(<ChoisirProfil />);
     expect(await screen.findByText(x.profilChoix.actuel)).toBeTruthy();
     fireEvent.press(await screen.findByRole('radio', { name: new RegExp(`^${x.profilChoix.toeic}`) }));
     fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.continuer }));
-    expect(router.replace).toHaveBeenCalledWith({ pathname: '/moi', params: { confirmer: 'toeic' } });
+    expect(router.push).toHaveBeenCalledWith('/profil/certification');
   });
 
   it('le secondaire passe par le choix de classe en mode modification', async () => {
@@ -50,29 +51,46 @@ describe('P2 · choix du profil', () => {
   });
 });
 
-describe('P5 · Moi TOEIC : revenir au secondaire', () => {
+describe('Page certification : TOEIC', () => {
+  it('profil déjà TOEIC : confirmer revient sans rien écrire', async () => {
+    await passerAuToeic();
+    const avant = await AsyncStorage.getItem(CLE_PROFIL);
+    await monter(<ChoisirCertification />);
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.continuer }));
+    expect(router.back).toHaveBeenCalled();
+    expect(router.replace).not.toHaveBeenCalled();
+    // Rien n'est réécrit : l'octet-près du profil stocké est identique.
+    expect(await AsyncStorage.getItem(CLE_PROFIL)).toBe(avant);
+  });
+
+  it('profil secondaire : confirmer passe au TOEIC puis va sur l’accueil TOEIC', async () => {
+    await monter(<ChoisirCertification />);
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.passerToeicBouton }));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
+    expect((await lireProfil())?.type).toBe('certification');
+  });
+
+  it('une écriture refusée affiche « Changement impossible » et garde le profil', async () => {
+    await monter(<ChoisirCertification />);
+    const spy = jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('disque plein'));
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.passerToeicBouton }));
+    expect(await screen.findByText(x.profilChoix.erreurTitre)).toBeTruthy();
+    spy.mockRestore();
+    expect((await lireProfil())?.type).toBe('eleve');
+    expect(router.replace).not.toHaveBeenCalled();
+  });
+});
+
+describe('Moi TOEIC : la ligne ouvre la page de choix', () => {
   beforeEach(async () => {
     await passerAuToeic();
     await ecrirePlan({ exam: 'toeic', objectif: 800, dateTest: '2026-11-27', minutes: 20 });
   });
 
-  it('ouvre la feuille et revient au secondaire mémorisé', async () => {
+  it('« Mon profil » ouvre la page de choix, sans feuille dans Moi', async () => {
     await monter(<MoiToeic />);
     fireEvent.press(await screen.findByRole('button', { name: new RegExp(`^${x.certification.moiToeic.monProfil}`) }));
-    expect(await screen.findByText(x.profilChoix.revenirTitre)).toBeTruthy();
-    fireEvent.press(screen.getByRole('button', { name: x.profilChoix.revenirBouton }));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
-  });
-
-  it('une écriture refusée affiche « Changement impossible » et garde le TOEIC', async () => {
-    await monter(<MoiToeic />);
-    fireEvent.press(await screen.findByRole('button', { name: new RegExp(`^${x.certification.moiToeic.monProfil}`) }));
-    await screen.findByText(x.profilChoix.revenirTitre);
-    const spy = jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('disque plein'));
-    fireEvent.press(screen.getByRole('button', { name: x.profilChoix.revenirBouton }));
-    expect(await screen.findByText(x.profilChoix.erreurTitre)).toBeTruthy();
-    expect(screen.getByRole('button', { name: x.profilChoix.reessayer })).toBeTruthy();
-    spy.mockRestore();
-    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.push).toHaveBeenCalledWith('/profil/choisir');
+    expect(screen.queryByText(x.profilChoix.revenirTitre)).toBeNull();
   });
 });

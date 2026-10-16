@@ -9,7 +9,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
-import { CLASSES, CONCOURS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi } from '@/services/profil';
+import { CLASSES, CONCOURS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Profil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -123,6 +123,17 @@ export function Bienvenue() {
   );
 }
 
+/** Même type, même classe ou filière, même pays et même concours : rien à enregistrer. */
+function memeProfil(a: Profil | null, b: Profil): boolean {
+  return (
+    !!a &&
+    a.type === b.type &&
+    a.niveau === b.niveau &&
+    (a.pays ?? '').toUpperCase() === (b.pays ?? '').toUpperCase() &&
+    (a.concours?.id ?? null) === (b.concours?.id ?? null)
+  );
+}
+
 /** A2 · Classe (ou concours) et pays, avec valeurs par défaut (M1-01, M1-02). */
 export function ChoixClasse() {
   const { t, langue, changerLangue } = useTraduction();
@@ -178,7 +189,15 @@ export function ChoixClasse() {
     }
     const choix = concours ? monConcours : null;
     if (modifier) {
-      await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: true });
+      const cible: Profil = { type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: true };
+      const actuel = await lireProfil();
+      // Rien n'a changé : on revient sans rien écrire (la mission du jour garde son cache).
+      if (memeProfil(actuel, cible)) {
+        if (router.canGoBack()) router.back();
+        else router.replace('/moi');
+        return;
+      }
+      await enregistrerProfil(cible);
       // La mission du jour gardée en cache était tirée pour l'ancienne classe.
       await AsyncStorage.removeItem('mission.jour');
       suivre('profile_class_changed', { niveau, pays, statut: concours ? 'concours' : 'eleve' });

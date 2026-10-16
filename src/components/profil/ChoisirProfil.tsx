@@ -39,8 +39,8 @@ export function ChoisirProfil() {
     // Secondaire et concours passent par le choix de classe ou de concours existant (M1-01), en mode modification.
     if (c === 'secondaire') router.push({ pathname: '/classe', params: { type: 'eleve', modifier: '1' } });
     else if (c === 'concours') router.push({ pathname: '/classe', params: { type: 'concours', modifier: '1' } });
-    // Le TOEIC se confirme sur Moi, où le profil secondaire reste gardé (P4).
-    else router.replace({ pathname: '/moi', params: { confirmer: 'toeic' } });
+    // Le TOEIC : page de choix de l'examen, puis confirmation (rien n'est écrit si le profil ne change pas).
+    else router.push('/profil/certification' as never);
   };
 
   const badge = (c: Choix) => (actuel === c ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('profilChoix.actuel')}</Text> : undefined);
