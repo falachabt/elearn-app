@@ -60,10 +60,12 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     liberer();
     envoyer({ type: 'jouer' });
     try {
-      const p = createAudioPlayer({ uri });
+      const p = createAudioPlayer({ uri }, { updateInterval: 250 });
       lecteur.current = p;
       p.addListener('playbackStatusUpdate', (s) => {
-        if (s.isLoaded && delai.current) {
+        // Le délai d'échec ne s'arrête qu'à la première position réellement lue : un fichier chargé
+        // mais figé à 0:00 doit finir en « audio indisponible », pas en lecture muette sans fin.
+        if (s.isLoaded && s.currentTime > 0 && delai.current) {
           clearTimeout(delai.current);
           delai.current = null;
         }
@@ -99,6 +101,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   const action = () => {
     if (enLecture) {
       lecteur.current?.pause();
+      if (delai.current) clearTimeout(delai.current);
+      delai.current = null;
       envoyer({ type: 'pause' });
     } else if (etat.phase === 'pause' && lecteur.current) {
       lecteur.current.play();
