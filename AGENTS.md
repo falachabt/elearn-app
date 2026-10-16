@@ -21,6 +21,11 @@
 - Respecte scrupuleusement les tokens sémantiques (couleurs, typographie, espacements).
 - Règles de travail design (ajuster l'existant, pas d'emojis, Lucide, thèmes clair et sombre, crédits épuisés, limites Figma) : **docs/design-regles.md**.
 
+## 4 bis. Vérification visuelle en fin de développement (16 octobre 2026, consigne de Benny)
+- À la fin de chaque développement d'écran, lancer l'app en version web (Expo web en dev) et la parcourir avec Playwright ou le navigateur intégré. Chromium est préinstallé : ne jamais lancer `playwright install` ; utiliser `executablePath: '/opt/pw-browsers/chromium'` si besoin.
+- Parcourir les écrans touchés, en clair et en sombre, prendre des captures et les comparer à la maquette (identifiant TOEIC-…). Corriger les écarts avant de déclarer le travail fini.
+- Dans le rapport : indiquer ce qui a été vérifié et joindre les captures. Si l'app web ne démarre pas, ou si une donnée manque (session, contenu), le dire au lieu de déclarer que tout va bien.
+
 ## 5. Mise à jour des consignes
 - Si je te donne de nouvelles règles ou consignes de travail en cours de session, **tu as la consigne de mettre à jour ce fichier AGENTS.md** toi-même pour t'en souvenir lors de nos futures sessions.
 
