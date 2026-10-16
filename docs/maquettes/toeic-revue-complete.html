@@ -335,9 +335,6 @@ const a3=t=>ph(t,hd('Temps par jour')+bd(lab('Étape 4 sur 4')+H2('Combien de te
  `<div class="ch on"><span class="ic2">${I('clock')}</span><div class="ot" style="flex:1;min-width:0"><b>20 minutes</b><small>Recommandé pour ton objectif</small></div>${rad(true)}</div>`+
  row('clock','30 minutes','Une séance complète avec une série de questions','')+
  `<p class="hint">Tu peux changer ce réglage dans Moi.</p>`)+ft(B('Commencer mon plan')));
-const o4=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="sheet" style="box-shadow:4px 4px 0 var(--shadow)"><span class="badge" style="justify-self:start">PREMIER PAS</span><b style="font:700 17px var(--f-body)">Commence par un diagnostic</b><p class="hint" style="color:var(--txt)">20 questions, environ 15 minutes. Gratuit, sans crédit.</p></div>`+
- `<div class="dash">Pas encore de score estimé. Le diagnostic le calcule.</div>`+row('book','Cours','Une notion à la fois','')+row('notes','Carnet de mots','Vide pour l\'instant','')+row('cal','Séance du jour','Après le diagnostic','')+'')+ft(B('Commencer le diagnostic')));
-
 /* ---------- DIAGNOSTIC ---------- */
 const d1=t=>ph(t,hd('Diagnostic · 6 / 20')+bd(bar(30)+`<div class="chips2" style="align-self:flex-start"><span>Partie 2</span></div>`+aud('Question 6',false,0)+`<div class="q">Question-réponse : choisis la réponse la plus appropriée.</div>`+opt('A','Yes, I will call you back.')+opt('B','At the office on Monday.','sel')+opt('C','It was a good idea.'))+ft(B('Valider')+LK('Passer cette question')));
 const d2=t=>ph(t,hd('Ton résultat',true)+bd(`<div class="sheet"><span class="lbl2">Score estimé</span><div class="big">650 à 730</div><p class="hint" style="color:var(--txt)">Une estimation, pas un score officiel.</p></div>`+
@@ -563,6 +560,22 @@ const n2c=t=>ph(t,hd('Moi',false)+bd(
     `<p class="hint" style="color:var(--txt)">Ton compte reste enregistré. Tu pourras te reconnecter avec ton identifiant ou ton e-mail.</p>`+
     B('Annuler')+B('Se déconnecter','sec')
   )+ft(TB(4)));
+
+/* Avant le diagnostic : page de préparation (A5 et S7), sans cartes vides */
+const prepDiag=(t,avecBarre)=>ph(t,hd('Mon TOEIC',false)+bd(
+    `<div class="sheet" style="gap:8px"><span class="badge" style="justify-self:start">Premier pas</span>`+
+      `<b style="font:700 18px var(--f-display);color:var(--txt)">Commence par le diagnostic</b>`+
+      `<p class="hint" style="color:var(--txt)">Il mesure où tu en es sur les sept parties du TOEIC. Il sert à composer ta première séance.</p>`+
+      `<div class="gr2" style="grid-template-columns:1fr 1fr 1fr"><span class="tile">Questions<small>20</small></span><span class="tile">Durée<small>env. 15 min</small></span><span class="tile">Prix<small>Gratuit</small></span></div>`+
+    `</div>`+
+    lab('Ce que tu vas trouver')+
+    row('play','Écoute · parties 1 à 4','10 questions · audio joué une seule fois','')+
+    row('book','Lecture · parties 5 à 7','10 questions · phrases et textes à lire','')+
+    (avecBarre?'':`<div class="sheet" style="padding:10px 12px;gap:6px"><span class="lbl2" style="margin:0">Ce que ça donne</span><p class="hint" style="color:var(--txt)">Une première estimation de ton score sur 990, avec une fourchette large, et ta carte de maîtrise par partie. Ce n'est pas un score officiel.</p></div>`)+
+    `<p class="hint" style="color:var(--txt)">Tu peux passer une question si tu ne sais pas. Elle compte comme fausse. Pas besoin de compte.</p>`
+  )+(avecBarre?ft(B('Commencer le diagnostic'),TB(0)):ft(B('Commencer le diagnostic'))));
+const o4=t=>prepDiag(t,false);
+const s7=t=>prepDiag(t,true);
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -571,7 +584,6 @@ const s3=t=>ph(t,hd('Série · hors ligne',true)+bd(`<span class="st f" style="j
 const s4=t=>ph(t,hd('Série · réponse',false)+bd(bar(45)+`<div class="q">Question 6 sur 10</div>`+opt('A','Yes, I will call you back.','')+opt('B','At the office on Monday.','sel')+`<div class="sheet" style="padding:10px 12px"><span class="st f" style="justify-self:start">${I('alert')}Non envoyée</span><b style="font:700 14px var(--f-body)">Ta réponse n'est pas encore partie.</b><p class="hint" style="color:var(--txt)">Elle est gardée. On réessaie dès que la connexion revient.</p></div>`)+ft(B('Réessayer maintenant'),BS('Continuer')));
 const s5=t=>ph(t,hd('Carnet de mots')+bd(seg(['À revoir 0','En cours 0','Connus 0'],0)+`<div class="sheet" style="padding:14px;text-align:center"><span class="ic2" style="margin:0 auto">${I('notes')}</span><b style="font:700 16px var(--f-body)">Ton carnet est vide</b><p class="hint" style="color:var(--txt)">Les mots que tu ajoutes, ou que tu rates en série, apparaissent ici.</p></div>`)+ft(B('Ajouter un mot')));
 const s6=t=>ph(t,hd('Carnet de mots')+bd(`<div class="fl" style="gap:8px;justify-content:flex-start;color:var(--txt)">${I('search')}contrat</div>`+`<div class="sheet" style="padding:12px"><span class="st f" style="justify-self:start">${I('alert')}Aucun résultat</span><p class="hint" style="color:var(--txt)">Aucun mot ne correspond à « contrat ». Vérifie l'orthographe, ou ajoute-le à la main.</p></div>`)+ft(B('Ajouter « contrat »')));
-const s7=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="sheet"><span class="lbl2">Séance du jour</span><b style="font:700 17px var(--f-body)">Pas encore de séance</b><p class="hint" style="color:var(--txt)">Fais d'abord le diagnostic : il sert à composer ta séance.</p></div>`+row('target','Carte de maîtrise','Vide tant que le diagnostic n\'est pas fait','')+row('book','Cours','Une notion à la fois','')+row('notes','Carnet de mots','Vide pour l\'instant','')+'')+ft(B('Commencer le diagnostic')));
 const s8=t=>ph(t,hd('Mon TOEIC',false)+bd(`<div class="gr2"><span class="tile">Score estimé<small>Pas encore</small></span><span class="tile">Test dans<small>42 jours</small></span></div>`+`<div class="sheet" style="padding:10px 12px"><b>Estimation à venir</b><p class="hint" style="color:var(--txt)">Il faut au moins 20 réponses pour estimer ton score. Tu en es à 12.</p>${bar(60)}</div>`)+ft(B('Continuer le diagnostic')));
 const s9=t=>ph(t,hd('Cours · Prépositions',true)+bd(`<span class="st f" style="justify-self:start">${I('wifi')}Contenu expiré</span><div class="sheet" style="padding:12px"><b style="font:700 16px var(--f-body)">Ce cours n'a pas été mis à jour depuis 7 jours</b><p class="hint" style="color:var(--txt)">Connecte-toi pour le rafraîchir. Tu peux relire le début, sans les exercices.</p></div>`)+ft(B('Actualiser'),BS('Relire le début')));
 

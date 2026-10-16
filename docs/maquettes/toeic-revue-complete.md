@@ -168,3 +168,13 @@ Demande de Benny (16/10) : repartir de la page Moi et de l'accueil du secondaire
 - Hors maquette, à trancher : « Documents » (factures et reçus) et « Parrainage » du secondaire ne sont pas dessinés dans cette version, par manque de place sous la barre d'onglets.
 - Les montants et dates sont des exemples : le solde, le score et la date viennent du serveur.
 
+## Page avant diagnostic : préparation (version 15, 16 octobre 2026)
+
+Demande de Benny (16/10) : sur « Mon TOEIC » avant le diagnostic, ne plus afficher les cartes Cours, Carnet de mots et Séance du jour. Montrer ce que le diagnostic contient, puis le bouton pour commencer.
+
+- `TOEIC-A5` (arrivée, sans barre d'onglets) : **révisé**. Badge « Premier pas », « Commence par le diagnostic », trois repères (20 questions, environ 15 minutes, gratuit), ce qu'il contient (écoute parties 1 à 4, 10 questions ; lecture parties 5 à 7, 10 questions), ce que ça donne (estimation sur 990, fourchette large, carte de maîtrise, pas un score officiel), règle du passage (une question passée compte fausse), sans compte. Bouton « Commencer le diagnostic ».
+- `TOEIC-S7` (Mon TOEIC avant diagnostic, avec la barre d'onglets) : **révisé**, même page. Le bloc « Ce que ça donne » est retiré pour tenir sous le bouton.
+- Plus aucune carte vide dans cette page.
+- Les chiffres (20 questions, 10 et 10, environ 15 minutes) viennent du cahier, section A5 et A6.
+- Point hors maquette, signalé à Benny : la première question du diagnostic n'a pas d'image (contenu partie 1, à fournir).
+
