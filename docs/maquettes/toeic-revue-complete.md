@@ -207,3 +207,22 @@ Retour de Benny : le changement de profil ne se fait pas par des écrans sépar�
 - Les anciens identifiants `TOEIC-P3-SEC` et `TOEIC-P3-CONC` sont retirés : leur contenu est dans P2-ELEVE et P2-CONC.
 - Pas de barre d'onglets sur P2 : la page est plein écran, comme dans l'app.
 
+
+## Moi TOEIC : copie de la page Moi de l'app (version 19, 16 octobre 2026)
+
+Demande de Benny (16/10) : la page Moi TOEIC doit être la page Moi du secondaire ou du concours (`src/components/EcranMoi.tsx`), avec les mêmes composants, invité compris. Seuls écarts : la carte XP est remplacée par « Progression vers ton objectif » (capture de Benny), et les lignes propres au TOEIC sont ajoutées.
+
+- `TOEIC-N2` (connecté, haut) : en-tête, bloc progression à la place de la carte XP, carte « Crédits et Pass », « Ma progression », « Mes documents ».
+- `TOEIC-N2-2` (connecté, milieu) : « Parrainage et récompenses », « Mes paiements », « Mon profil · TOEIC · changer de profil », « Parent ou tuteur ».
+- `TOEIC-N2-3` (connecté, bas) : « Mon identifiant », « Aide et contact », ajouts « Mon objectif » et « Temps par jour », « Se déconnecter » (ligne en tiretés).
+- `TOEIC-N2-INV` (invité, haut) : en-tête « Invité », carte de bienvenue à la place de la carte de crédits (comme Moi invité), puis le bloc progression.
+- `TOEIC-N2-INV-2` (invité, bas) : « Ma progression », « Mes documents », « Parrainage et récompenses », « Mon profil », « Aide et contact ».
+- `TOEIC-N2-DECO` : confirmation « Se déconnecter ? » sur la page bas.
+- `TOEIC-P1` et `TOEIC-P1-2` : la page Moi secondaire ou concours, pour comparaison (haut et bas).
+
+Écarts par rapport à Moi du secondaire :
+- **Remplacée** : la carte XP (« Carte XP et niveau ») par le bloc « Progression vers ton objectif ».
+- **Ajoutées** : « Mon objectif » (score 800, date du test) et « Temps par jour » (groupe TOEIC, en bas) ; « Se déconnecter » (la déconnexion du secondaire se trouve dans Réglages).
+- **Retirées** : « Ma semaine » (écran du secondaire, qui ne décrit pas les séances TOEIC) et « Gagner des crédits » (déjà présent dans la carte de crédits).
+- **Invité** : le bloc progression s'affiche aussi sans compte, parce que le diagnostic est gratuit ; c'est un écart à faire valider.
+- Une ligne du bas n'est jamais dessinée sous la barre d'onglets : la page est découpée en cadres haut, milieu et bas.

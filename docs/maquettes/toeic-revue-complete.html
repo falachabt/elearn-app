@@ -524,42 +524,10 @@ const dacc=t=>homeT(t,'diag');
 
 /* Moi TOEIC : même structure que Moi de l'app secondaire, bloc progression à la place de l'XP */
 const moiBloc=(titre,corps)=>`<div class="sheet" style="gap:8px"><span class="lbl2" style="margin:0">${titre}</span>${corps}</div>`;
-const n2=t=>ph(t,
-  `<div style="display:flex;align-items:center;gap:12px;padding:14px 16px 6px">`+
-    `<span style="width:52px;height:52px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;background:var(--surf);flex:none">${I('user')}</span>`+
-    `<div style="flex:1;min-width:0"><b style="font:700 18px var(--f-display);color:var(--txt)">Léa M.</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">TOEIC · Cameroun · objectif 800</small></div>`+
-    `<span class="ic2" style="width:44px;height:44px">${I('settings')}</span>`+
-  `</div>`+
-  bd(
-    moiBloc('Progression vers ton objectif',
-      `<div class="gr2" style="grid-template-columns:1fr 1fr 1fr"><span class="tile">Visé<small>800</small></span><span class="tile">Estimé<small>650 à 730</small></span><span class="tile">Écart<small>70 à 150 pts</small></span></div>`+
-      bar(86)+
-      `<p class="hint" style="color:var(--txt)">Score estimé d'après tes séances. Il ne garantit rien.</p>`+
-      `<span class="lk" style="justify-self:start">Voir mes statistiques</span>`)+
-    row('wallet','Crédits et Pass','5 crédits · Pass semaine','')+
-    row('target','Mon objectif','Score 800 · 20 min par jour · test le 26 novembre','')+
-    row('route','Ma semaine','Séances faites et rejeux','')
-  )+ft(TB(4)));
 
 /* Suite de Moi TOEIC : ligne déconnexion visible */
-const n2b=t=>ph(t,hd('Moi',false)+bd(
-    row('flag','Mon profil','TOEIC · changer de profil','')+
-    row('shield','Parent','Aucun parent lié','')+
-    row('idcard','Mon identifiant','Copier pour le support','')+
-    row('info','Aide','Questions fréquentes, contact','')+
-    row('bulb','Réglages','Sons, notifications, hors ligne','')+
-    `<div class="ch" style="border-style:dashed"><span class="ic2">${I('logout')}</span><div class="ot" style="flex:1;min-width:0"><b>Se déconnecter</b><small>Ton compte reste enregistré.</small></div></div>`
-  )+ft(TB(4)));
 
 /* Confirmation de déconnexion */
-const n2c=t=>ph(t,hd('Moi',false)+bd(
-    row('target','Mon objectif','Score 800 · test le 26 novembre','')+
-    row('wallet','Crédits et Pass','5 crédits · Pass semaine','')
-  )+cadreFeuille(
-    `<b style="font:700 17px var(--f-body);color:var(--txt)">Se déconnecter ?</b>`+
-    `<p class="hint" style="color:var(--txt)">Ton compte reste enregistré. Tu pourras te reconnecter avec ton identifiant ou ton e-mail.</p>`+
-    B('Annuler')+B('Se déconnecter','sec')
-  )+ft(TB(4)));
 
 /* Avant le diagnostic : page de préparation (A5 et S7), sans cartes vides */
 const prepDiag=(t,avecBarre)=>ph(t,hd('Mon TOEIC',false)+bd(
@@ -584,14 +552,6 @@ const identiteSec=`<div style="display:flex;align-items:center;gap:12px;padding:
     `<span style="width:52px;height:52px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;background:var(--surf);flex:none">${I('user')}</span>`+
     `<div style="flex:1;min-width:0"><b style="font:700 18px var(--f-display);color:var(--txt)">Yann K.</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Secondaire · Terminale</small></div>`+
     `<span class="ic2" style="width:44px;height:44px">${I('settings')}</span></div>`;
-
-/* P1 : Moi secondaire ou concours, ligne « Mon profil » */
-const P1=t=>ph(t,identiteSec+bd(
-    row('flag','Mon profil','Secondaire · Terminale · changer','')+
-    row('trend','Progression','Temps d\'étude et niveau par matière','')+
-    row('wallet','Pass et crédits','Solde et Pass','')+
-    row('logout','Se déconnecter','Ton compte reste enregistré.','')
-  )+ft(TBS(4)));
 
 /* P2 : page « Mon profil » (ChoixClasse en mode modifier, mise en page plein écran, sans barre d'onglets).
    Statut en trois choix : Je suis élève, Je prépare un concours, Je prépare une certification.
@@ -639,6 +599,81 @@ const P6e=t=>ph(t,hd('Mon profil',true)+bd(
       `<b style="font:700 16px var(--f-body);color:var(--txt)">Ton profil n'a pas changé.</b>`+
       `<p class="hint" style="color:var(--txt)">Vérifie ta connexion, puis réessaie. Tes données ne sont pas modifiées.</p></div>`
   )+ft(B('Réessayer'),LK('Rester sur mon profil actuel')));
+/* ---------- MOI : COPIE DE LA PAGE MOI DE L'APP (v18, 16 octobre) ----------
+   Référence : src/components/EcranMoi.tsx (secondaire et concours).
+   Écarts TOEIC : bloc « Progression vers ton objectif » à la place de la carte XP ;
+   groupe « Mon objectif » et « Ma semaine », « Temps par jour », « Gagner des crédits » ajoutés ;
+   ligne « Déconnexion » ajoutée (dans l'app secondaire, la déconnexion est dans Réglages). */
+const idHeader=(nom,sous,invite)=>`<div style="display:flex;align-items:center;gap:12px;padding:14px 16px 6px">`+
+    `<span style="width:52px;height:52px;border:2px solid var(--bord);border-radius:999px;display:grid;place-items:center;background:${invite?'var(--creux)':'var(--surf)'};flex:none">${I('user')}</span>`+
+    `<div style="flex:1;min-width:0"><b style="font:700 18px var(--f-display);color:var(--txt)">${nom}</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">${sous}</small></div>`+
+    `<span class="ic2" style="width:44px;height:44px">${I('settings')}</span></div>`;
+const carteXpRef=`<div class="sheet" style="padding:10px 12px;gap:4px"><span class="lbl2" style="margin:0">Carte XP et niveau</span><small style="font:700 12px var(--f-body);color:var(--txt2)">Composant existant du secondaire, inchangé.</small></div>`;
+const progBloc=`<div class="sheet" style="gap:8px"><span class="lbl2" style="margin:0">Progression vers ton objectif</span>`+
+    `<div class="gr2" style="grid-template-columns:1fr 1fr 1fr"><span class="tile">Visé<small>800</small></span><span class="tile">Estimé<small>650 à 730</small></span><span class="tile">Écart<small>70 à 150 pts</small></span></div>`+
+    bar(86)+`<p class="hint" style="color:var(--txt)">Score estimé d'après tes séances. Il ne garantit rien.</p>`+
+    `<span class="lk" style="justify-self:start">Voir mes statistiques</span></div>`;
+const creditsRef=`<div class="sheet" style="padding:10px 12px;gap:2px"><span class="lbl2" style="margin:0">Crédits et Pass</span><b style="font:700 15px var(--f-body);color:var(--txt)">5 crédits · Pass semaine</b></div>`;
+const inviteCarte=`<div class="sheet" style="background:var(--soleil);color:#0A0A0A;gap:8px"><b style="font:700 16px var(--f-body)">Crée ton compte, reçois tes crédits de bienvenue</b><p class="hint" style="color:#0A0A0A">Il te reste 5 crédits d'essai. Ta progression sera sauvegardée.</p><div>${B('Créer mon compte','sec')}</div><span class="lk" style="justify-self:start">J'ai déjà un compte</span></div>`;
+
+/* P1 : copie de Moi secondaire ou concours (référence, connecté), haut */
+const P1=t=>ph(t,idHeader('Yann K.','Terminale · Cameroun',false)+bd(
+    carteXpRef+creditsRef+
+    row('target','Ma progression','Temps d\'étude cette semaine','')+
+    row('notes','Mes documents','Aucun document gardé','')+
+    row('flag','Parrainage et récompenses','Gagne des crédits en invitant tes amis','')+
+    row('wallet','Mes paiements','Reçus et motifs de paiement','')
+  )+ft(TBS(4)));
+/* P1-BAS : suite de Moi secondaire (connecté) */
+const P1b=t=>ph(t,hd('Moi',false)+bd(
+    row('flag','Mon profil','Élève · Tle · Cameroun · changer','')+
+    row('shield','Parent ou tuteur','Aucun parent lié','')+
+    row('idcard','Mon identifiant','Copier pour le support','')+
+    row('info','Aide et contact','Questions fréquentes, contact','')
+  )+ft(TBS(4)));
+
+/* N2 : Moi TOEIC connecté, haut. Même ordre que Moi secondaire : la progression remplace la carte XP. */
+const n2=t=>ph(t,idHeader('Léa M.','TOEIC · Cameroun',false)+bd(
+    progBloc+creditsRef+
+    row('target','Ma progression','Temps d\'étude cette semaine','')+
+    row('notes','Mes documents','Aucun document gardé','')
+  )+ft(TB(4)));
+/* N2-2 : Moi TOEIC connecté, milieu : suite du premier groupe, puis Mon profil et Parent (copie) */
+const n2b=t=>ph(t,hd('Moi',false)+bd(
+    row('flag','Parrainage et récompenses','Gagne des crédits en invitant tes amis','')+
+    row('wallet','Mes paiements','Reçus et motifs de paiement','')+
+    row('flag','Mon profil','TOEIC · changer de profil','')+
+    row('shield','Parent ou tuteur','Aucun parent lié','')
+  )+ft(TB(4)));
+/* N2-3 : Moi TOEIC connecté, bas : identifiant, aide, ajouts TOEIC, déconnexion */
+const n2c=t=>ph(t,hd('Moi',false)+bd(
+    row('idcard','Mon identifiant','Copier pour le support','')+
+    row('info','Aide et contact','Questions fréquentes, contact','')+
+    row('cal','Mon objectif','Score 800 · test le 26 novembre','')+
+    row('clock','Temps par jour','20 minutes','')+
+    `<div class="ch" style="border-style:dashed"><span class="ic2">${I('logout')}</span><div class="ot" style="flex:1;min-width:0"><b>Se déconnecter</b><small>Ton compte reste enregistré.</small></div></div>`
+  )+ft(TB(4)));
+/* N2-INV : Moi TOEIC invité, haut : même carte que Moi invité (remplace la carte de crédits), puis progression */
+const n2i=t=>ph(t,idHeader('Invité','Rien n’est sauvegardé',true)+bd(
+    inviteCarte+progBloc
+  )+ft(TB(4)));
+/* N2-INV-2 : Moi TOEIC invité, bas : mêmes lignes que Moi invité, sans ligne de paiement */
+const n2i2=t=>ph(t,hd('Moi',false)+bd(
+    row('target','Ma progression','Temps d\'étude cette semaine','')+
+    row('notes','Mes documents','Aucun document gardé','')+
+    row('flag','Parrainage et récompenses','Gagne des crédits en invitant tes amis','')+
+    row('flag','Mon profil','TOEIC · changer de profil','')+
+    row('info','Aide et contact','Questions fréquentes, contact','')
+  )+ft(TB(4)));
+/* N2-DECO : confirmation de déconnexion sur Moi TOEIC */
+const n2d=t=>ph(t,hd('Moi',false)+bd(
+    row('idcard','Mon identifiant','Copier pour le support','')+
+    row('info','Aide et contact','Questions fréquentes, contact','')
+  )+cadreFeuille(
+    `<b style="font:700 17px var(--f-body);color:var(--txt)">Se déconnecter ?</b>`+
+    `<p class="hint" style="color:var(--txt)">Ton compte reste enregistré. Tu pourras te reconnecter avec ton identifiant ou ton e-mail.</p>`+
+    B('Annuler')+B('Se déconnecter','sec')
+  )+ft(TB(4)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -659,7 +694,7 @@ const optsTxt=opt('A','release','')+opt('B','released','');
 
 // Identifiants stables : TOEIC-<section><n>. Ne pas les renommer ; un écran modifié garde son identifiant.
 const groups=[
- ['Navigation : accueil, barre d\'onglets, Moi (N1 à N3)',[[n1,'TOEIC-N1 · Accueil TOEIC : carte séance du jour, compte à rebours avant le test, score estimé, reprise, accès rapides'],[n3,'TOEIC-N3 · Réviser : sous-onglets Parcours, Parties, Cours, Carnet'],[n2,'TOEIC-N2 · Moi TOEIC : repris de Moi (secondaire), bloc progression vers l\'objectif à la place des XP, crédits et objectif'],[n2b,'TOEIC-N2-2 · Moi TOEIC, suite : certification, parent, identifiant, aide, réglages, déconnexion visible'],[n2c,'TOEIC-N2-DECO · Confirmation de déconnexion (Annuler, Se déconnecter)']]],
+ ['Navigation : accueil, barre d\'onglets, Moi TOEIC (N1 à N3)',[[n1,'TOEIC-N1 · Accueil TOEIC : carte séance du jour, compte à rebours avant le test, score estimé, reprise, accès rapides'],[n3,'TOEIC-N3 · Réviser : sous-onglets Parcours, Parties, Cours, Carnet'],[n2,'TOEIC-N2 · Moi TOEIC, haut : copie de Moi, bloc progression à la place de la carte XP'],[n2b,'TOEIC-N2-2 · Moi TOEIC, milieu : parrainage, paiements, mon profil, parent (copie de Moi)'],[n2c,'TOEIC-N2-3 · Moi TOEIC, bas : identifiant, aide, ajouts TOEIC (objectif, temps par jour), déconnexion'],[n2d,'TOEIC-N2-DECO · Confirmation de déconnexion (Annuler, Se déconnecter)'],[n2i,'TOEIC-N2-INV · Moi TOEIC invité, haut : créer le compte, progression'],[n2i2,'TOEIC-N2-INV-2 · Moi TOEIC invité, bas : mêmes lignes que Moi invité']]],
  ['Onglet Tests, remplace Questions (T1 à T7) et gains (G1)',[[t1,'TOEIC-T1 · Tests : mini-tests, test complet, score estimé'],[t2,'TOEIC-T2 · Réglage d\'un mini-test : partie, longueur, temps, coût'],[t3,'TOEIC-T3 · Reprise d\'un test interrompu'],[t4,'TOEIC-T4 · Historique et score estimé'],[t5,'TOEIC-T5 · Demi-test, écoute ou lecture seule (V2)'],[t6,'TOEIC-T6 · Test complet, indisponible pour l\'instant (V2)'],[t7,'TOEIC-T7 · Détail d\'une tentative dans l\'historique (état manquant)'],[g1,'TOEIC-G1 · Gagner des crédits : gains TOEIC, plafond 15 par semaine']]],
  ['Statistiques (ST1 à ST4) : remplace Photo',[[st1,'TOEIC-ST1 · Statistiques : score estimé, maîtrise par partie, mots, régularité, temps'],[st2,'TOEIC-ST2 · Vide : pas encore de statistiques (nouvel élève)'],[st3,'TOEIC-ST3 · Première semaine : quelques données, pas encore de tendance'],[st4,'TOEIC-ST4 · Hors ligne : dernier calcul daté']]],
  ['Arrivée et objectif (A1 à A5)',[[o1,'TOEIC-A1 · Bienvenue : trois cartes, la nouvelle « Certification »'],[o2,'TOEIC-A2 · Liste des certifications, TOEIC en bas, logo à fournir'],[o3,'TOEIC-A3 · Objectif : score rapide ou valeur libre, 800 par défaut (date : voir TOEIC-A3-DATE-*)'],[a3,'TOEIC-A4 · Temps par jour : 10, 20 ou 30 minutes, choisi par l\'élève'],[o4,'TOEIC-A5 · Arrivée : diagnostic proposé en premier']]],
@@ -673,7 +708,8 @@ const groups=[
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
  ['Crédits gagnés : échéance à 30 jours (X5 et X6, valides)',[[x5,'TOEIC-X5 · Feuille de coût : « dont {e} à utiliser avant le {date} » (remplace X1 pour cette partie)'],[x6,'TOEIC-X6 · Moi, solde avec échéance (remplace la ligne crédits de N2)']]],
-['Changer de profil : une seule page, comme le choix de classe (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours : ligne « Mon profil » (remplace « Classe »)'], [P2e,'TOEIC-P2-ELEVE · Mon profil, statut élève : classe puis pays, Enregistrer'], [P2c,'TOEIC-P2-CONC · Mon profil, statut concours : concours puis pays'], [P2x,'TOEIC-P2-CERT · Mon profil, statut certification : examen (TOEIC, seul disponible) puis pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (après Enregistrer)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (depuis le TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
+['Changer de profil : une seule page, comme le choix de classe (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours, haut : copie de la page Moi existante (référence)'],
+ [P1b,'TOEIC-P1-2 · Moi secondaire ou concours, bas : ligne « Mon profil »'], [P2e,'TOEIC-P2-ELEVE · Mon profil, statut élève : classe puis pays, Enregistrer'], [P2c,'TOEIC-P2-CONC · Mon profil, statut concours : concours puis pays'], [P2x,'TOEIC-P2-CERT · Mon profil, statut certification : examen (TOEIC, seul disponible) puis pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (après Enregistrer)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (depuis le TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
