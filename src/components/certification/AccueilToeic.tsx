@@ -23,8 +23,18 @@ import { useChargement } from './useChargement';
 export function AccueilToeic() {
   const { t } = useTraduction();
   const { etat, recharger } = useChargement(chargerAccueil);
+  // Avant le diagnostic, le bouton reste fixé en bas (maquette TOEIC-S7), au-dessus de la barre d'onglets.
+  const avantDiagnostic = etat.phase === 'ok' && !etat.valeur.diagnosticFait;
+  const commencerDiagnostic = () => {
+    suivre('cert_diagnostic_started', {});
+    router.push('/certification/diagnostic');
+  };
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={t('certification.accueilToeic.entete')} droite={<CompteurCredits />} />}>
+    <Ecran
+      insetBas={false}
+      entete={<EnteteToeic titre={t('certification.accueilToeic.entete')} droite={<CompteurCredits />} />}
+      pied={avantDiagnostic ? <Bouton libelle={t('certification.arrivee.commencer')} onPress={commencerDiagnostic} /> : undefined}
+    >
       {etat.phase === 'chargement' ? <Squelette lignes={5} /> : null}
       {etat.phase === 'erreur' ? (
         <View style={styles.groupe}>
@@ -70,18 +80,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
     : '';
   const aller = (chemin: string) => router.push(chemin as never);
 
-  if (!d.diagnosticFait) {
-    const commencerDiagnostic = () => {
-      suivre('cert_diagnostic_started', {});
-      router.push('/certification/diagnostic');
-    };
-    return (
-      <View style={styles.groupe}>
-        <PreparationDiagnostic complet={false} />
-        <Bouton libelle={t('certification.arrivee.commencer')} onPress={commencerDiagnostic} />
-      </View>
-    );
-  }
+  if (!d.diagnosticFait) return <PreparationDiagnostic complet={false} />;
 
   return (
     <View style={styles.groupe}>
