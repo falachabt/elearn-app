@@ -1,5 +1,5 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react-native';
-import { createAudioPlayer } from 'expo-audio';
+import { createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 
 import { fr } from '@/i18n/fr';
 
@@ -12,6 +12,7 @@ type Ecoute = (statut: Record<string, unknown>) => void;
 const mockEcoutes: Ecoute[] = [];
 
 jest.mock('expo-audio', () => ({
+  setAudioModeAsync: jest.fn(() => Promise.resolve()),
   createAudioPlayer: jest.fn(() => ({
     addListener: (_nom: string, cb: (s: Record<string, unknown>) => void) => {
       mockEcoutes.push(cb);
@@ -36,6 +37,12 @@ const statut = (currentTime: number) => {
 describe('LecteurAudio : garde-fou contre un audio figé', () => {
   beforeEach(() => {
     mockEcoutes.length = 0;
+  });
+
+  it('règle le mode audio pour une épreuve écoutée, même en silencieux', async () => {
+    await rendre();
+    fireEvent.press(screen.getByLabelText(t.exercice.ecouter));
+    expect(setAudioModeAsync).toHaveBeenCalledWith(expect.objectContaining({ playsInSilentMode: true }));
   });
 
   it('crée le lecteur avec un suivi de position fréquent', async () => {

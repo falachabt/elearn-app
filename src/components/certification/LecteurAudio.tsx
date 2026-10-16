@@ -1,4 +1,4 @@
-import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 import { Pause, Play } from 'lucide-react-native';
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -59,6 +59,9 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     }
     liberer();
     envoyer({ type: 'jouer' });
+    // Une épreuve écoutée doit sortir même téléphone en silencieux. Le mode est réglé ici, à chaque lecture,
+    // car un autre écran (sons de retour, retours.ts) peut l'avoir changé entre-temps.
+    void setAudioModeAsync({ playsInSilentMode: true, interruptionMode: 'duckOthers', shouldPlayInBackground: false }).catch(() => {});
     try {
       const p = createAudioPlayer({ uri }, { updateInterval: 250 });
       lecteur.current = p;
