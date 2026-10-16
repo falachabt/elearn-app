@@ -108,6 +108,8 @@ export const estFcfa = (devise: string) => devise === 'XAF' || devise === 'XOF';
 /** « 2 500 FCFA » : espaces insécables, FCFA pour XAF et XOF. */
 export function formaterMontant(montant: number, devise: string): string {
   const nombre = String(Math.round(montant)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  // Une devise absente ne doit jamais s'afficher (« null ») : on n'affiche que le nombre.
+  if (!devise) return nombre;
   const unite = estFcfa(devise) ? 'FCFA' : devise;
   return `${nombre} ${unite}`;
 }
