@@ -1,6 +1,7 @@
 import type { CertApi } from '../api';
 import type { Examen, FinTentative, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
 import { LIGNES_SEED } from './fixtures';
+import type { MotCarnetServi, NotionFiche, Revision, ResultatMot, SeanceServie } from '../types';
 
 export const EXAMEN_TEST: Examen = {
   code: 'toeic',
@@ -35,13 +36,20 @@ export function questionsTest(plan: Record<number, number> = PLAN_TEST): Questio
   return sortie;
 }
 
-export type Appels = { demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[] };
+export type Appels = {
+  demarrer: number; terminer: number; plans: unknown[]; envois: number; series: unknown[]; mots: string[]; explications: string[];
+  notionsOuvertes: { id: string; secondes: number }[]; resultatsMots: ResultatMot[][]; seances: unknown[]; compositions: { minutes: number; eviter: number | null }[];
+};
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
-export function creerApiFausse(options: { echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; mots?: { total: number; theme: string | null } } = {}) {
-  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [] };
+export function creerApiFausse(options: {
+  echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; mots?: { total: number; theme: string | null };
+  revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
+} = {}) {
+  const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [] };
   let echecs = options.echecsTerminer ?? 0;
   let echecsEnvoi = options.echecsEnvoi ?? 0;
+  let echecsMots = options.echecsMots ?? 0;
   const corriger = (reponses: ReponseEnvoyee[]): ResultatReponse[] =>
     reponses.map((r) => {
       const q = questions.find((x) => x.id === r.question_id)!;
@@ -125,6 +133,36 @@ export function creerApiFausse(options: { echecsTerminer?: number; echecDemarrer
     },
     async motsARevoir() {
       return options.mots ?? { total: 0, theme: null };
+    },
+    async lireRevision() {
+      if (options.revision === 'echec') throw new Error('réseau');
+      return options.revision ?? { notions: [], parties: [] };
+    },
+    async lireCarnet() {
+      if (options.carnet === 'echec') throw new Error('réseau');
+      return options.carnet ?? [];
+    },
+    async composerSeance(_exam, minutes, _jour, eviter) {
+      appels.compositions.push({ minutes, eviter });
+      if (options.seance === 'echec') throw new Error('réseau');
+      return options.seance ? { ...options.seance, minutes } : { minutes, blocs: [], pourquoi: { erreurs: 0, notion: null, motsEchus: 0 } };
+    },
+    async lireNotion() {
+      if (options.fiche === 'echec' || !options.fiche) throw new Error('réseau');
+      return options.fiche;
+    },
+    async ouvrirNotion(id, secondes) {
+      appels.notionsOuvertes.push({ id, secondes });
+    },
+    async envoyerResultatsMots(resultats) {
+      if (echecsMots > 0) {
+        echecsMots--;
+        throw new Error('réseau');
+      }
+      appels.resultatsMots.push(resultats);
+    },
+    async terminerSeance(clientUuid, _exam, composition) {
+      appels.seances.push({ clientUuid, composition });
     },
   };
   return { api, appels, questions };

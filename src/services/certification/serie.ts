@@ -25,29 +25,31 @@ export type EtatSerie = {
   /** Mots ajoutés au carnet depuis le corrigé pendant cette série. */
   motsAjoutes: MotCle[];
   termine: boolean;
+  /** Série lancée depuis la séance du jour (D2) : B11 ramène à D2. */
+  origine?: 'seance';
 };
 
 const maintenant = () => jourDe(new Date());
-const memePerimetre = (a: PerimetreSerie, b: PerimetreSerie) => (a.part ?? null) === (b.part ?? null) && (a.notion ?? null) === (b.notion ?? null);
+const memePerimetre = (a: PerimetreSerie, b: PerimetreSerie) => (a.part ?? null) === (b.part ?? null) && (a.notion ?? null) === (b.notion ?? null) && !!a.rejeu === !!b.rejeu;
 
 export const lireSerieEnCours = () => lireJson<EtatSerie>(CLE_SERIE);
 export const ecrireSerie = (e: EtatSerie) => ecrireJson(CLE_SERIE, e);
 export const effacerSerie = () => AsyncStorage.removeItem(CLE_SERIE).catch(() => {});
 
 /** Tire une nouvelle série et remplace celle en cours. Échoue si le serveur ne répond pas : rien n'est perdu. */
-export async function demarrerSerie(exam: string, perimetre: PerimetreSerie, taille?: number): Promise<EtatSerie> {
+export async function demarrerSerie(exam: string, perimetre: PerimetreSerie, taille?: number, origine?: 'seance'): Promise<EtatSerie> {
   const questions = await obtenirApi().lireSerie(perimetre, exam, taille);
   if (questions.length === 0) throw new Error('aucune question disponible');
-  const etat: EtatSerie = { clientUuid: randomUUID(), exam, perimetre, questions, index: 0, reponses: [], resultats: {}, enAttente: [], motsAjoutes: [], termine: false };
+  const etat: EtatSerie = { clientUuid: randomUUID(), exam, perimetre, questions, index: 0, reponses: [], resultats: {}, enAttente: [], motsAjoutes: [], termine: false, ...(origine ? { origine } : {}) };
   await ecrireSerie(etat);
   return etat;
 }
 
 /** Reprend la série en cours de même périmètre (X3 : « garder mes réponses »), sinon en tire une nouvelle. */
-export async function reprendreOuDemarrer(exam: string, perimetre: PerimetreSerie): Promise<EtatSerie> {
+export async function reprendreOuDemarrer(exam: string, perimetre: PerimetreSerie, options: { taille?: number; origine?: 'seance' } = {}): Promise<EtatSerie> {
   const existante = await lireSerieEnCours();
-  if (existante && !existante.termine && existante.exam === exam && memePerimetre(existante.perimetre, perimetre)) return existante;
-  return demarrerSerie(exam, perimetre);
+  if (existante && !existante.termine && existante.exam === exam && memePerimetre(existante.perimetre, perimetre) && existante.origine === options.origine) return existante;
+  return demarrerSerie(exam, perimetre, options.taille, options.origine);
 }
 
 /** Envoie les réponses en attente ; garde en file celles que le serveur n'a pas reçues. */
@@ -73,7 +75,7 @@ export async function repondreSerie(etat: EtatSerie, chosen: number | null, ms: 
   const question = etat.questions[etat.index];
   if (!question || etat.termine) return etat;
   if (etat.reponses.some((r) => r.question_id === question.id)) return etat;
-  const reponse: ReponseEnvoyee = { question_id: question.id, client_uuid: randomUUID(), chosen, ms: Math.max(0, Math.round(ms)), context: 'series', local_day: maintenant() };
+  const reponse: ReponseEnvoyee = { question_id: question.id, client_uuid: randomUUID(), chosen, ms: Math.max(0, Math.round(ms)), context: etat.perimetre.rejeu ? 'replay' : etat.origine === 'seance' ? 'session' : 'series', local_day: maintenant() };
   const local: EtatSerie = { ...etat, reponses: [...etat.reponses, reponse], enAttente: [...etat.enAttente, reponse.client_uuid] };
   await ecrireSerie(local);
   return envoyerEnAttente(local);

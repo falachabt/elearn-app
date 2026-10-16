@@ -1,3 +1,4 @@
+import type { EtatMaitrise } from './certMaitrise';
 import type { Jour } from './jours';
 
 /** Examen proposé (A2) : tout vient de `cert_exams`, jamais du code. */
@@ -99,3 +100,71 @@ export type PlanEleve = {
 };
 
 export type MotsARevoir = { total: number; theme: string | null };
+
+/** Famille d'une notion (C4) : les quatre onglets de la liste des cours. */
+export type FamilleNotion = NotionLiee['family'];
+
+/** Notion avec son état de maîtrise (F3), servie par `cert_notions_list` (C3, C4). Les décomptes sont bruts. */
+export type NotionListee = {
+  id: string;
+  code: string;
+  titre: string;
+  famille: FamilleNotion;
+  parties: number[];
+  dureeMin: number | null;
+  /** Vrai quand une fiche publiée existe : sans fiche, la notion n'apparaît pas dans la liste des cours (AC-C4-2). */
+  fiche: boolean;
+  reponses: number;
+  reussies: number;
+  etat: EtatMaitrise;
+  derniereOuverture: string | null;
+};
+
+/** Maîtrise d'une partie (F4), barre de la carte de maîtrise (C2). */
+export type PartieMaitrise = { partie: number; reponses: number; m: number; etat: EtatMaitrise };
+
+export type Revision = { notions: NotionListee[]; parties: PartieMaitrise[] };
+
+/** Un mot du carnet (C6, C7, C8) avec sa boîte (F5). */
+export type MotCarnetServi = {
+  id: string;
+  mot: string;
+  categorie: string | null;
+  definition: string;
+  exemple: string | null;
+  theme: string | null;
+  audio: string | null;
+  boite: 1 | 2 | 3 | 4;
+  prochaineRevue: Jour;
+  vus: number;
+  bons: number;
+  mauvais: number;
+};
+
+/** Fiche d'une notion (C5) : texte de cours et trois questions d'ancrage. */
+export type NotionFiche = {
+  id: string;
+  code: string;
+  famille: FamilleNotion;
+  titre: string;
+  parties: number[];
+  markdown: string | null;
+  dureeMin: number | null;
+  ancrages: QuestionServie[];
+};
+
+/** Bloc de la séance du jour (F7), tel que composé par `cert_session_compose`. */
+export type BlocServi =
+  | { type: 'cours'; notionId: string; titre: string; minutes: number; erreurs: number }
+  | { type: 'mots'; nombre: number; echus: number }
+  | { type: 'rejeu'; nombre: number; partie: number | null }
+  | { type: 'serie'; partie: number; nombre: number };
+
+export type SeanceServie = {
+  minutes: number;
+  blocs: BlocServi[];
+  pourquoi: { erreurs: number; notion: string | null; motsEchus: number };
+};
+
+/** Résultat d'une carte de la séance de mots, rejoué tel quel s'il n'est pas parti (idempotent par `clientUuid`). */
+export type ResultatMot = { wordId: string; clientUuid: string; connu: boolean; jour: Jour };

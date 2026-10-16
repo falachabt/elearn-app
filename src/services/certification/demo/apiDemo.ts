@@ -7,15 +7,37 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { CertApi, ExplicationAchetee } from '../api';
+import { etatMaitrise } from '../certMaitrise';
+import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { lireReglages } from '../reglages';
-import type { Examen, FinTentative, GroupeServi, MotsARevoir, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
+import type { BlocServi, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, QuestionServie, ReponseEnvoyee, ResultatReponse, Tentative } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
 type Q = (typeof contenu.questions)[number];
 type G = (typeof contenu.groupes)[number];
-type Store = { tentatives: Record<string, { tentative: Tentative; reponses: Record<string, ReponseEnvoyee> }>; motsRates: number[] };
+type EtatMotDemo = { boite: 1 | 2 | 3 | 4; prochaineRevue: string; vus: number; bons: number; mauvais: number };
+type Store = {
+  tentatives: Record<string, { tentative: Tentative; reponses: Record<string, ReponseEnvoyee> }>;
+  motsRates: number[];
+  /** Réponses données par partie, pour la maîtrise de la carte (démo seulement). */
+  parties: Record<string, { n: number; c: number }>;
+  mots: Record<string, EtatMotDemo>;
+  ouvertes: Record<string, string>;
+};
+
+/** Mots de démonstration du carnet (outil de développement, hors production) : définitions et exemples originaux. */
+const MOTS_DEMO = [
+  ['postpone', 'Verbe', 'reporter, remettre à plus tard', 'They decided to postpone the meeting.', 'bureau'],
+  ['deadline', 'Nom', 'date limite', 'The deadline is Friday.', 'bureau'],
+  ['invoice', 'Nom', 'facture', 'Please send the invoice by email.', 'finance'],
+  ['quarterly', 'Adjectif', 'trimestriel', 'The quarterly report is ready.', 'finance'],
+  ['attend', 'Verbe', 'assister à', 'Most staff attend the weekly meeting.', 'bureau'],
+  ['supplier', 'Nom', 'fournisseur', 'Our supplier delivers on Mondays.', 'achats'],
+  ['refund', 'Nom', 'remboursement', 'You may request a refund within a week.', 'achats'],
+  ['schedule', 'Nom', 'emploi du temps, calendrier', 'The schedule changed this morning.', 'bureau'],
+] as const;
 
 const CLE = 'cert.demo.store';
 const EXAMEN: Examen = {
@@ -37,11 +59,11 @@ const blueprint = (reglagesBruts as { key: string; value: unknown }[]).find((l) 
 async function lire(): Promise<Store> {
   try {
     const brut = await AsyncStorage.getItem(CLE);
-    if (brut) return JSON.parse(brut) as Store;
+    if (brut) return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {}, ...(JSON.parse(brut) as Partial<Store>) };
   } catch {
     // magasin illisible : on repart de zéro
   }
-  return { tentatives: {}, motsRates: [] };
+  return { tentatives: {}, motsRates: [], parties: {}, mots: {}, ouvertes: {} };
 }
 const ecrire = (s: Store) => AsyncStorage.setItem(CLE, JSON.stringify(s)).catch(() => {});
 
@@ -124,7 +146,16 @@ export const apiDemo: CertApi = {
     return tentative;
   },
   async envoyerReponses(reponses) {
-    return reponses.map(corriger);
+    const resultats = reponses.map(corriger);
+    const s = await lire();
+    reponses.forEach((r, i) => {
+      const part = String(questions.get(r.question_id)?.part ?? 0);
+      const e = (s.parties[part] ??= { n: 0, c: 0 });
+      e.n += 1;
+      e.c += resultats[i].correct ? 1 : 0;
+    });
+    await ecrire(s);
+    return resultats;
   },
   async terminerTentative(tentativeId, reponses) {
     const s = await lire();
@@ -140,6 +171,11 @@ export const apiDemo: CertApi = {
     }
     const somme = (parties: number[]) => parties.reduce((a, p) => ({ bonnes: a.bonnes + (parPartie[String(p)]?.correct ?? 0), repondues: a.repondues + (parPartie[String(p)]?.answered ?? 0) }), { bonnes: 0, repondues: 0 });
     const plage = plageScore(somme([1, 2, 3, 4]), somme([5, 6, 7]), reglages);
+    for (const [part, e] of Object.entries(parPartie)) {
+      const cumul = (s.parties[part] ??= { n: 0, c: 0 });
+      cumul.n += e.answered;
+      cumul.c += e.correct;
+    }
     if (entree) entree.tentative.status = 'finished';
     await ecrire(s);
     return {
@@ -171,4 +207,68 @@ export const apiDemo: CertApi = {
     const s = await lire();
     return { total: s.motsRates.length, theme: s.motsRates.length ? 'bureau' : null };
   },
+  async lireRevision() {
+    const s = await lire();
+    const parties: PartieMaitrise[] = [1, 2, 3, 4, 5, 6, 7].map((partie) => {
+      const e = s.parties[String(partie)] ?? { n: 0, c: 0 };
+      const m = e.n ? e.c / e.n : 0;
+      return { partie, reponses: e.n, m, etat: etatMaitrise(e.n ? m : null, e.n, reglages) };
+    });
+    const liste: NotionListee[] = contenu.notions.map((n) => {
+      const p = parties[n.part - 1];
+      return {
+        id: n.id, code: n.code, titre: n.title, famille: n.family as NotionListee['famille'], parties: [n.part], dureeMin: 3, fiche: true,
+        reponses: p.reponses, reussies: Math.round(p.m * p.reponses), etat: p.etat, derniereOuverture: s.ouvertes[n.id] ?? null,
+      };
+    });
+    return { notions: liste, parties };
+  },
+  async lireCarnet() {
+    const s = await lire();
+    const aujourdhui = jourDe(new Date());
+    return MOTS_DEMO.map(([mot, categorie, definition, exemple, theme]): MotCarnetServi => {
+      const e = s.mots[mot] ?? { boite: 1, prochaineRevue: aujourdhui, vus: 0, bons: 0, mauvais: 0 };
+      return { id: mot, mot, categorie, definition, exemple, theme, audio: null, boite: e.boite, prochaineRevue: e.prochaineRevue, vus: e.vus, bons: e.bons, mauvais: e.mauvais };
+    });
+  },
+  async composerSeance(exam, minutes, jour, eviterPartie) {
+    const { notions: liste, parties } = await apiDemo.lireRevision(exam, jour);
+    const carnet = await apiDemo.lireCarnet(exam);
+    const budget = reglages.budgetSeance[String(minutes)];
+    if (!budget) throw new Error('durée de séance invalide');
+    const blocs: BlocServi[] = [];
+    const notion = [...liste].sort((a, b) => a.reponses - b.reponses)[0];
+    if (notion) blocs.push({ type: 'cours', notionId: notion.id, titre: notion.titre, minutes: budget.notionMin, erreurs: 0 });
+    const echus = carnet.filter((m) => m.prochaineRevue <= jour).length;
+    if (echus > 0) blocs.push({ type: 'mots', nombre: Math.min(echus, budget.mots), echus });
+    const partie = [...parties].sort((a, b) => Number(a.partie === eviterPartie) - Number(b.partie === eviterPartie) || a.m - b.m)[0];
+    if (partie) blocs.push({ type: 'serie', partie: partie.partie, nombre: budget.serie });
+    return { minutes, blocs, pourquoi: { erreurs: 0, notion: null, motsEchus: echus } };
+  },
+  async lireNotion(notionId): Promise<NotionFiche> {
+    const n = contenu.notions.find((x) => x.id === notionId);
+    if (!n) throw new Error('notion introuvable');
+    const ancrages = tirer(n.part, 3).map(servir);
+    const markdown = ['## Règle', `Fiche de démonstration : ${n.title}.`, '', '## Exemples', '- This is a demo example. | Ceci est un exemple de démonstration.', '', '## Piège', 'Lis toute la phrase avant de choisir.'].join('\n');
+    return { id: n.id, code: n.code, famille: n.family as NotionFiche['famille'], titre: n.title, parties: [n.part], markdown, dureeMin: 3, ancrages };
+  },
+  async ouvrirNotion(notionId, _secondes, jour) {
+    const s = await lire();
+    s.ouvertes[notionId] = jour;
+    await ecrire(s);
+  },
+  async envoyerResultatsMots(resultats) {
+    const s = await lire();
+    for (const r of resultats) {
+      const avant = s.mots[r.wordId] ?? { boite: 1 as const, prochaineRevue: r.jour, vus: 0, bons: 0, mauvais: 0 };
+      const boite = (r.connu ? Math.min(4, avant.boite + 1) : 1) as 1 | 2 | 3 | 4;
+      s.mots[r.wordId] = {
+        boite, prochaineRevue: jourPlus(r.jour, reglages.delaisBoitesJours[boite - 1]),
+        vus: avant.vus + 1, bons: avant.bons + (r.connu ? 1 : 0), mauvais: avant.mauvais + (r.connu ? 0 : 1),
+      };
+    }
+    await ecrire(s);
+  },
+  async terminerSeance() {},
 };
+
