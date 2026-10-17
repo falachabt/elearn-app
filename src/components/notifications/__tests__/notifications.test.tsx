@@ -126,6 +126,13 @@ describe('Cloche (N0)', () => {
     expect(screen.getByLabelText(fr.notifications.clocheAucune)).toBeTruthy();
   });
 
+  it('pour un invité, la cloche ouvre la création de compte (parcours A6), pas le centre', async () => {
+    mockSession.mockReturnValue(invite);
+    await monter(<Cloche pourInvite />);
+    await fireEvent.press(screen.getByLabelText(fr.notifications.clocheAucune));
+    expect(router.push).toHaveBeenCalledWith('/compte/creer');
+  });
+
   it('est absente sans session', async () => {
     mockSession.mockReturnValue({ session: null, statut: 'chargement' });
     await monter(<Cloche />);

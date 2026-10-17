@@ -22,11 +22,12 @@ export function Cloche({ pourInvite = false }: { pourInvite?: boolean }) {
   const { session } = useSession();
   const { nonLues } = useNotifications();
   // L'accueil TOEIC la montre aussi à l'invité (décision de Benny, 17 octobre) : pourInvite.
-  if (!session || (session.user.is_anonymous && !pourInvite)) return null;
+  const invite = !!session?.user.is_anonymous;
+  if (!session || (invite && !pourInvite)) return null;
 
   const libelle = nonLues === 0 ? t('notifications.clocheAucune') : nonLues === 1 ? t('notifications.clocheUne') : t('notifications.clocheNon', { n: nonLues });
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={() => router.push('/notifications')} rayon={rayon.s} decalage={2} hitSlop={8} style={styles.zone}>
+    <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={() => router.push(invite ? '/compte/creer' : '/notifications')} rayon={rayon.s} decalage={2} hitSlop={8} style={styles.zone}>
       <View style={styles.relatif}>
         <View style={[styles.cloche, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <Bell size={14} strokeWidth={2.5} color={theme.texte.principal} />
