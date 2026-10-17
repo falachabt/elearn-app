@@ -8,6 +8,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { Onglet } from '@/components/Onglet';
 import { useProfilCertification } from '@/components/certification/useProfilCertification';
 import { useNouvellesQuestions } from '@/components/questions/useNouvelles';
+import { DEPASSEMENT_CENTRAL } from '@/components/Onglet';
 import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { profilToeicActif } from '@/services/certification/accueil';
@@ -15,7 +16,7 @@ import { etapeCertification } from '@/services/certification/reprise';
 import { lireProfil, profilDepuisCompte } from '@/services/profil';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord } from '@/theme/theme';
+import { bord, espace } from '@/theme/theme';
 
 // Cinq onglets. Élève : Accueil · Réviser · Photo · Questions · Moi. Profil TOEIC : Accueil · Réviser · Tests · Statistiques · Moi
 // (la photo et les questions n'y sont pas, décision D-08).
@@ -94,7 +95,8 @@ export default function LayoutOnglets() {
   return (
     <View style={styles.racine}>
       <Tabs style={styles.racine}>
-        <TabSlot style={styles.ecran} />
+        {/* Le bouton central déborde de la barre : le défilement de chaque onglet s'arrête au-dessus, sans rien cacher. */}
+        <TabSlot style={[styles.ecran, { paddingBottom: DEPASSEMENT_CENTRAL + espace[3] }]} />
         {/* Hors ligne seulement : la barre fine se pose juste au-dessus de la tabbar (la pastille flotte au-dessus).
             Placé entre le contenu et la barre, donc dans le flux : aucune superposition avec les écrans. */}
         <EtatReseau />

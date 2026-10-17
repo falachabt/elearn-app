@@ -125,10 +125,11 @@ export function EncadrePointille({ texte }: { texte: string }) {
 }
 
 /** Tuile d'accueil (N1, C9) : titre et valeur, éventuellement touchable. */
-export function Tuile({ titre, aide, onPress }: { titre: string; aide?: string; onPress?: () => void }) {
+/** `pleineHauteur` : la tuile remplit sa colonne, pour que des tuiles voisines aient la même hauteur. */
+export function Tuile({ titre, aide, onPress, pleineHauteur = false }: { titre: string; aide?: string; onPress?: () => void; pleineHauteur?: boolean }) {
   const { theme } = useTheme();
   const corps = (
-    <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+    <View style={[styles.tuile, pleineHauteur && styles.pleineHauteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
       <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
       {aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text> : null}
     </View>
@@ -166,6 +167,7 @@ export function Squelette({ lignes = 3 }: { lignes?: number }) {
 const styles = StyleSheet.create({
   tuileZone: { flexGrow: 1, flexBasis: '45%' },
   tuile: { gap: 2, padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, minHeight: 64, justifyContent: 'center' },
+  pleineHauteur: { flex: 1 },
   squelette: { gap: espace[3] },
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
