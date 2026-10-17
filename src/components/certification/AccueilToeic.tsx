@@ -38,7 +38,7 @@ export function AccueilToeic() {
           titre={t('certification.accueilToeic.entete')}
           droite={
             <View style={styles.droite}>
-              <Cloche />
+              <Cloche pourInvite />
               <CompteurCredits />
             </View>
           }

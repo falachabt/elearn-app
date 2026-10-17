@@ -120,6 +120,12 @@ describe('Cloche (N0)', () => {
     expect(screen.queryByLabelText(fr.notifications.clocheAucune)).toBeNull();
   });
 
+  it('reste visible pour un invité quand l’écran la demande (accueil TOEIC)', async () => {
+    mockSession.mockReturnValue(invite);
+    await monter(<Cloche pourInvite />);
+    expect(screen.getByLabelText(fr.notifications.clocheAucune)).toBeTruthy();
+  });
+
   it('est absente sans session', async () => {
     mockSession.mockReturnValue({ session: null, statut: 'chargement' });
     await monter(<Cloche />);
