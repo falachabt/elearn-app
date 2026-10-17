@@ -73,6 +73,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
   const progressionSemaine = Math.min(100, (d.seancesSemaine.faites / Math.max(d.seancesSemaine.prevues, 1)) * 100);
   const partieSeance = seance?.seance.blocs.find((b) => b.type === 'serie')?.partie;
   const motsSeance = seance?.seance.blocs.find((b) => b.type === 'mots')?.nombre;
+  const planSemaine = t('certification.accueilToeic.planSemaine', { prevues: d.seancesSemaine.prevues, faites: d.seancesSemaine.faites });
   const mots = d.motsAReviser === 1 ? t('certification.accueilToeic.motsUn') : t('certification.accueilToeic.motsN', { n: d.motsAReviser });
   const serie = d.serie;
   const aideSerie = serie
@@ -90,10 +91,9 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
       {seance ? (
         // Carte verte comme la mission du jour du secondaire : le bouton reste à l'intérieur (maquette TOEIC-N1).
         <Carte style={{ backgroundColor: theme.marque.principale, gap: espace[2] }}>
-          <View style={styles.ligne}>
-            <View style={[styles.pastille, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('certification.accueilToeic.seanceEtiquette', { minutes: seance.seance.minutes })}</Text>
-            </View>
+          <View style={styles.ligneBadges}>
+            <Pastille texte={t('certification.accueilToeic.seanceTitre')} />
+            <Pastille texte={t('certification.accueilToeic.minutesCourtes', { minutes: seance.seance.minutes })} />
           </View>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.surCouleur }]}>{seance.seance.pourquoi.notion ?? t('certification.accueilToeic.seanceTitre')}</Text>
           {partieSeance !== undefined || motsSeance !== undefined ? (
@@ -115,9 +115,12 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
           </View>
           <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.accueilToeic.planSemaine', { prevues: d.seancesSemaine.prevues, faites: d.seancesSemaine.faites })}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
         </Carte>
-      ) : null}
+      ) : (
+        // Sans date de test, la phrase du plan reste seule (cahier N1, état sans date).
+        <Text style={[typo.petit, { color: theme.texte.principal }]}>{planSemaine}</Text>
+      )}
       <View style={styles.grille}>
         <Tuile titre={t('certification.accueilToeic.score')} aide={d.score !== null ? t('certification.accueilToeic.scoreExact', { score: d.score }) : t('certification.accueilToeic.scorePas')} />
         <Tuile titre={t('certification.accueilToeic.mots')} aide={mots} onPress={() => aller('/reviser?onglet=carnet')} />

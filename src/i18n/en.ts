@@ -2205,6 +2205,7 @@ export const en: Textes = {
       objectifJour: 'Goal {{score}} · test in 1 day',
       objectifAujourdhui: 'Goal {{score}} · test today',
       seanceEtiquette: 'Daily session · {{minutes}} minutes',
+      minutesCourtes: '{{minutes}} min',
       seanceTitre: 'Daily session',
       pourquoi: 'Because you missed {{n}} questions on {{notion}}.',
       pourquoiUne: 'Because you missed 1 question on {{notion}}.',

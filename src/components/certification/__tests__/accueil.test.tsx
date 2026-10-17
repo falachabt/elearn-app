@@ -84,7 +84,8 @@ describe('N1 · Accueil TOEIC', () => {
   it('montre objectif, séance du jour (carte verte, notion en titre), mots à revoir et score', async () => {
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.seanceTitre)).toBeTruthy();
+    expect(screen.getByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeTruthy();
     expect(screen.getByText('Prépositions de temps')).toBeTruthy();
     expect(screen.getAllByText(t.accueilToeic.motsN.replace('{{n}}', '2')).length).toBeGreaterThan(0);
     expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
@@ -95,6 +96,13 @@ describe('N1 · Accueil TOEIC', () => {
     await AsyncStorage.setItem('cert.seancesFaites', JSON.stringify([{ clientUuid: 'x', jour: jourDe(new Date()) }]));
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '1'))).toBeTruthy();
+  });
+
+  it('sans date de test, la phrase du plan reste visible hors de la carte', async () => {
+    await ecrirePlan({ exam: 'toeic', objectif: 800, minutes: 20 }, { effacerDate: true });
+    await monter(<AccueilToeic />);
+    expect(await screen.findByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '0'))).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.compteEtiquette)).toBeNull();
   });
 
   it('« Commencer la séance » ouvre D2, « Continuer » une fois un bloc terminé', async () => {
@@ -227,7 +235,7 @@ describe('S7 · Mon TOEIC avant diagnostic', () => {
     await monter(<AccueilToeic />);
     expect(await screen.findByText(t.arrivee.contientTitre)).toBeTruthy();
     expect(screen.getByRole('button', { name: t.arrivee.commencer })).toBeTruthy();
-    expect(screen.queryByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeNull();
+    expect(screen.queryByText(t.accueilToeic.minutesCourtes.replace('{{minutes}}', '20'))).toBeNull();
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
     expect(screen.queryByText(t.arrivee.donneTitre)).toBeNull();
   });
