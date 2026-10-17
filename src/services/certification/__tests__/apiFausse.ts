@@ -49,7 +49,7 @@ export type Appels = {
 
 /** API en mémoire : la bonne réponse est toujours l'option 0 ; les notions suivent la partie. */
 export function creerApiFausse(options: {
-  echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; mots?: { total: number; theme: string | null };
+  echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; serieVide?: boolean; mots?: { total: number; theme: string | null };
   revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
   mini?: 'insufficient' | 'account_required' | 'echec'; stats?: Stats | 'echec'; gains?: EtatGains | 'echec'; reclamation?: ResultatGain; tentatives?: TentativeListee[] | 'echec';
   abandon?: { rembourse: boolean };
@@ -104,6 +104,7 @@ export function creerApiFausse(options: {
     async lireSerie(perimetre, _exam, taille) {
       appels.series.push(perimetre);
       if (options.echecSerie) throw new Error('réseau');
+      if (options.serieVide) return [];
       const choisies = questions.filter((q) => (perimetre.part ? q.part === perimetre.part : true)).slice(0, taille ?? 3);
       return choisies;
     },

@@ -145,6 +145,14 @@ describe('B8 à B9 · Série', () => {
     expect(await screen.findByText(t.serie.erreurTitre)).toBeTruthy();
   });
 
+  it('aucune question à servir : état vide, sans fausse erreur de chargement', async () => {
+    installer({ serieVide: true });
+    await monter(<Serie />);
+    expect(await screen.findByText(t.serie.videTitre)).toBeTruthy();
+    expect(screen.queryByText(t.serie.erreurTitre)).toBeNull();
+    expect(screen.queryByText(t.serie.entete.replace('{{n}}', '1').replace('{{total}}', '0'))).toBeNull();
+  });
+
   it('thème sombre : l’explication s’affiche aussi', async () => {
     await monter(<Serie />, 'sombre');
     await repondre('A');

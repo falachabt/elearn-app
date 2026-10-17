@@ -6,6 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirReglages } from '@/services/certification/etat';
 import {
+  MESSAGE_SERIE_VIDE,
   ajouterMotCarnet,
   avancer,
   envoyerEnAttente,
@@ -29,7 +30,7 @@ import { FeuilleQuitter } from './FeuilleQuitter';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
-type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'question' };
+type Phase = { nom: 'chargement' } | { nom: 'erreur' } | { nom: 'vide' } | { nom: 'question' };
 
 /** B1 à B7 · Série d'entraînement : choisir, valider, corrigé (B9), question suivante, fin (B11). */
 export function Serie() {
@@ -58,8 +59,9 @@ export function Serie() {
       const e = await reprendreOuDemarrer(p?.exam ?? 'toeic', { part: part && !Number.isNaN(part) ? part : undefined, notion, rejeu, ancrage }, { taille: taille && !Number.isNaN(taille) ? taille : undefined, origine });
       setEtat(e);
       setPhase({ nom: 'question' });
-    } catch {
-      setPhase({ nom: 'erreur' });
+    } catch (e) {
+      // Aucune question à servir (ex. rien à rejouer aujourd'hui) : ce n'est pas une panne, il n'y a rien à réessayer.
+      setPhase({ nom: e instanceof Error && e.message === MESSAGE_SERIE_VIDE ? 'vide' : 'erreur' });
     }
   }, [part, notion, rejeu, ancrage, taille, origine]);
 
@@ -141,9 +143,15 @@ export function Serie() {
 
   if (phase.nom !== 'question' || !etat || !question) {
     return (
-      <Ecran entete={<EnteteToeic titre={t('certification.serie.entete', { n: 1, total: etat?.questions.length ?? 0 })} onRetour={() => router.back()} />}>
-        {phase.nom !== 'erreur' ? (
+      <Ecran entete={<EnteteToeic titre={t('certification.serie.titre')} onRetour={() => router.back()} />}>
+        {phase.nom === 'chargement' ? (
           <Text accessibilityLiveRegion="polite" style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.serie.chargement')}</Text>
+        ) : phase.nom === 'vide' ? (
+          <View style={styles.groupe}>
+            <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.serie.videTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{rejeu ? t('certification.serie.videRejeu') : t('certification.serie.videTexte')}</Text>
+            <Bouton variante="texte" libelle={t('certification.serie.revenir')} onPress={() => router.back()} />
+          </View>
         ) : (
           <View style={styles.groupe}>
             <Text style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.serie.erreurTitre')}</Text>

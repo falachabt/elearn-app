@@ -38,10 +38,13 @@ export const lireSerieEnCours = () => lireJson<EtatSerie>(CLE_SERIE);
 export const ecrireSerie = (e: EtatSerie) => ecrireJson(CLE_SERIE, e);
 export const effacerSerie = () => AsyncStorage.removeItem(CLE_SERIE).catch(() => {});
 
+/** Message levé quand le serveur ne renvoie aucune question (rien à rejouer, pas de question pour ce périmètre). */
+export const MESSAGE_SERIE_VIDE = 'aucune question disponible';
+
 /** Tire une nouvelle série et remplace celle en cours. Échoue si le serveur ne répond pas : rien n'est perdu. */
 export async function demarrerSerie(exam: string, perimetre: PerimetreSerie, taille?: number, origine?: 'seance'): Promise<EtatSerie> {
   const questions = perimetre.ancrage && perimetre.notion ? (await obtenirApi().lireNotion(perimetre.notion)).ancrages : await obtenirApi().lireSerie(perimetre, exam, taille);
-  if (questions.length === 0) throw new Error('aucune question disponible');
+  if (questions.length === 0) throw new Error(MESSAGE_SERIE_VIDE);
   const etat: EtatSerie = { clientUuid: randomUUID(), exam, perimetre, questions, index: 0, reponses: [], resultats: {}, enAttente: [], motsAjoutes: [], termine: false, ...(origine ? { origine } : {}) };
   await ecrireSerie(etat);
   return etat;
