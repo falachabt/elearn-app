@@ -48,7 +48,9 @@ describe('Onglets TOEIC avant diagnostic terminé', () => {
 
   it('Moi : objectif visible et estimation « Pas encore estimé »', async () => {
     await monter(<ProgressionToeic />);
-    expect(await screen.findByText('Pas encore estimé')).toBeTruthy();
+    expect((await screen.findAllByText('Pas encore estimé')).length).toBeGreaterThan(0);
+    expect(await screen.findByText('Écart')).toBeTruthy();
+    expect(screen.getByText('Voir mes statistiques')).toBeTruthy();
     expect(screen.getByText('Visé')).toBeTruthy();
   });
 
