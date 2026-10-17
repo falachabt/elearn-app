@@ -271,7 +271,9 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
           <LigneGroupe icone={Target} titre={t('certification.moiToeic.objectif')} onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)} />
           <LigneGroupe icone={Clock} titre={t('certification.moiToeic.temps')} onPress={() => router.push({ pathname: '/certification/temps', params: { modifier: '1' } } as never)} />
           <LigneGroupe icone={Settings} titre={t('certification.moiToeic.reglages')} sousTitre={t('certification.moiToeic.reglagesAide')} onPress={() => router.push('/parametres')} />
-          <LigneGroupe icone={LogOut} titre={t('certification.moiToeic.deconnexion')} sousTitre={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmerSortie(true)} />
+          <View style={[styles.pointille, { borderColor: theme.bord.fort }]}>
+  <LigneGroupe icone={LogOut} titre={t('certification.moiToeic.deconnexion')} sousTitre={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmerSortie(true)} />
+          </View>
         </Groupe>
       ) : null}
 
@@ -299,5 +301,7 @@ const styles = StyleSheet.create({
   photo: { width: '100%', height: '100%' },
   carteJaune: { gap: espace[3], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
   ligne: { flexDirection: 'row', alignItems: 'center' },
+  // Séparateur en tirets au-dessus de « Se déconnecter » (maquette N2-2).
+  pointille: { borderTopWidth: bord.normal, borderStyle: 'dashed' },
   jours: { borderWidth: bord.normal, borderRadius: rayon.s, paddingHorizontal: espace[3], paddingVertical: espace[1] },
 });
