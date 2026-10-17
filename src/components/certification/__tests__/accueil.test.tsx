@@ -9,6 +9,7 @@ import { definirApi } from '@/services/certification/api';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { JOUR, MOTS_TEST, REVISION_TEST, SEANCE_TEST } from '@/services/certification/__tests__/fixturesRevision';
 import { ecrireDiagnostic, ecrirePlan } from '@/services/certification/etat';
+import { jourDe } from '@/services/certification/jours';
 import { lireSeanceJour, terminerBloc } from '@/services/certification/seanceJour';
 import { enregistrerProfil } from '@/services/profil';
 
@@ -88,6 +89,12 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.getAllByText(t.accueilToeic.motsN.replace('{{n}}', '2')).length).toBeGreaterThan(0);
     expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
+  });
+
+  it('la carte Test dans montre les séances faites de la semaine sur les séances prévues', async () => {
+    await AsyncStorage.setItem('cert.seancesFaites', JSON.stringify([{ clientUuid: 'x', jour: jourDe(new Date()) }]));
+    await monter(<AccueilToeic />);
+    expect(await screen.findByText(t.accueilToeic.planSemaine.replace('{{prevues}}', '3').replace('{{faites}}', '1'))).toBeTruthy();
   });
 
   it('« Commencer la séance » ouvre D2, « Continuer » une fois un bloc terminé', async () => {

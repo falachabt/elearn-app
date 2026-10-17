@@ -3,7 +3,7 @@ import { lireDiagnostic, lirePlan, obtenirReglages } from './etat';
 import { scoreEstime } from './certDiagnostic';
 import { jourDe, joursAvantTest } from './jours';
 import { chargerDonneesRevision, motsEchus, type DonneesRevision } from './revision';
-import { chargerSeanceJour, type EtatSeanceJour } from './seanceJour';
+import { chargerSeanceJour, seancesFaitesSemaine, type EtatSeanceJour } from './seanceJour';
 import { lireSerieEnCours, type EtatSerie } from './serie';
 import type { PlanEleve } from './types';
 
@@ -21,9 +21,14 @@ export type DonneesAccueil = {
   /** Séance du jour ; `null` quand le serveur ne répond pas et qu'aucune copie du jour n'existe. */
   seance: EtatSeanceJour | null;
   seanceErreur: boolean;
+  /** Séances de la semaine : faites sur l'appareil, prévues par le plan (3 par semaine à défaut). */
+  seancesSemaine: { faites: number; prevues: number };
   /** Diagnostic terminé : sans lui, l'accueil reste la préparation (maquette TOEIC-S7), sans cartes. */
   diagnosticFait: boolean;
 };
+
+/** Séances prévues par semaine quand le plan n'en porte pas (valeur de départ de la maquette N1). */
+export const SEANCES_PAR_SEMAINE = 3;
 
 /** Durée voulue de la séance : celle du plan, sinon la valeur par défaut de la configuration (jamais écrite en dur). */
 export async function minutesDeLaSeance(): Promise<number> {
@@ -56,6 +61,7 @@ export async function chargerAccueil(): Promise<DonneesAccueil> {
     serie: serie && !serie.termine && serie.exam === exam ? serie : null,
     seance,
     seanceErreur,
+    seancesSemaine: { faites: await seancesFaitesSemaine(aujourdhui), prevues: SEANCES_PAR_SEMAINE },
     diagnosticFait: !!fin,
   };
 }

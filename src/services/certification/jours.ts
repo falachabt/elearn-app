@@ -13,6 +13,12 @@ export function jourDe(date: Date): Jour {
   return `${date.getFullYear()}-${p(date.getMonth() + 1)}-${p(date.getDate())}`;
 }
 
+/** Lundi de la semaine (lundi à dimanche) qui contient le jour. */
+export function lundiDe(jour: Jour): Jour {
+  const dow = (new Date(enUtc(jour)).getUTCDay() + 6) % 7;
+  return jourPlus(jour, -dow);
+}
+
 export function jourPlus(jour: Jour, jours: number): Jour {
   const d = new Date(enUtc(jour) + jours * MS_JOUR);
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;

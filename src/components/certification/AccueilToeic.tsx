@@ -17,7 +17,7 @@ import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
 import { Cloche } from '../notifications/Cloche';
 import { PreparationDiagnostic } from './PreparationDiagnostic';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
+import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
 /** N1 · Accueil du profil TOEIC : objectif, séance du jour, score estimé, mots, reprise d'une série, accès rapides. */
@@ -70,6 +70,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
     : null;
   const seance = d.seance;
   const commencee = !!seance && avancement(seance).faits > 0;
+  const progressionSemaine = Math.min(100, (d.seancesSemaine.faites / Math.max(d.seancesSemaine.prevues, 1)) * 100);
   const partieSeance = seance?.seance.blocs.find((b) => b.type === 'serie')?.partie;
   const motsSeance = seance?.seance.blocs.find((b) => b.type === 'mots')?.nombre;
   const mots = d.motsAReviser === 1 ? t('certification.accueilToeic.motsUn') : t('certification.accueilToeic.motsN', { n: d.motsAReviser });
@@ -113,6 +114,8 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
             <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
           </View>
+          <BarreProgression pourcent={progressionSemaine} libelle={t('certification.accueilToeic.planBarre')} />
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.accueilToeic.planSemaine', { prevues: d.seancesSemaine.prevues, faites: d.seancesSemaine.faites })}</Text>
         </Carte>
       ) : null}
       <View style={styles.grille}>

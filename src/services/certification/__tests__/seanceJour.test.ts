@@ -11,6 +11,7 @@ import {
   indexDuBloc,
   lireSeanceJour,
   pourquoiDeLaSeance,
+  seancesFaitesSemaine,
   terminerBloc,
   terminerBlocSuivant,
 } from '../seanceJour';
@@ -140,5 +141,31 @@ describe('terminerBlocSuivant et pourquoiDeLaSeance', () => {
     expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 1 }).cle).toBe('pourquoiMotUn');
     expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 5 })).toEqual({ cle: 'pourquoiMotsSeuls', params: { m: 5 } });
     expect(pourquoiDeLaSeance({ erreurs: 0, notion: null, motsEchus: 0 }).cle).toBe('pourquoiPlan');
+  });
+});
+
+describe('progression de la semaine (carte Test dans)', () => {
+  it('compte les séances finies de lundi à dimanche, une seule fois par séance', async () => {
+    const { api } = creerApiFausse({ seance: SEANCE_TEST });
+    definirApi(api);
+    await chargerSeanceJour('toeic', JOUR, 20);
+    await terminerBlocSuivant();
+    await terminerBlocSuivant();
+    await terminerBlocSuivant();
+    await terminerBlocSuivant();
+    expect(await seancesFaitesSemaine(JOUR)).toBe(1);
+    expect(await seancesFaitesSemaine(JOUR)).toBe(1);
+  });
+
+  it('une séance d’une autre semaine ne compte pas', async () => {
+    await AsyncStorage.setItem('cert.seancesFaites', JSON.stringify([
+      { clientUuid: 'a', jour: '2026-10-11' },
+      { clientUuid: 'b', jour: '2026-10-12' },
+      { clientUuid: 'c', jour: '2026-10-18' },
+      { clientUuid: 'd', jour: '2026-10-19' },
+    ]));
+    expect(await seancesFaitesSemaine('2026-10-14')).toBe(2);
+    expect(await seancesFaitesSemaine('2026-10-12')).toBe(2);
+    expect(await seancesFaitesSemaine('2026-10-19')).toBe(1);
   });
 });

@@ -2199,6 +2199,8 @@ export const fr = {
       compteJour: '1 jour',
       compteJours: '{{n}} jours',
       compteDate: 'Le {{date}}',
+      planBarre: 'Séances de la semaine',
+      planSemaine: 'Ton plan : {{prevues}} séances par semaine. Cette semaine, {{faites}} faites.',
       objectif: 'Objectif {{score}}',
       objectifJours: 'Objectif {{score}} · test dans {{n}} jours',
       objectifJour: 'Objectif {{score}} · test dans 1 jour',

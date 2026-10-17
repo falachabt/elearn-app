@@ -2197,6 +2197,8 @@ export const en: Textes = {
       compteJour: '1 day',
       compteJours: '{{n}} days',
       compteDate: 'On {{date}}',
+      planBarre: 'Sessions this week',
+      planSemaine: 'Your plan: {{prevues}} sessions a week. This week, {{faites}} done.',
       entete: 'Home',
       objectif: 'Goal {{score}}',
       objectifJours: 'Goal {{score}} · test in {{n}} days',

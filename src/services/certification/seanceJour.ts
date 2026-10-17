@@ -4,7 +4,7 @@ import { randomUUID } from 'expo-crypto';
 import { suivre } from '../analytics';
 import { obtenirApi } from './api';
 import { ecrireJson, lireJson } from './etat';
-import type { Jour } from './jours';
+import { lundiDe, jourPlus, type Jour } from './jours';
 import type { BlocServi, SeanceServie } from './types';
 
 /**
@@ -13,6 +13,28 @@ import type { BlocServi, SeanceServie } from './types';
  * avec sa composition ; un envoi manqué repart au prochain chargement (idempotent par `clientUuid`).
  */
 export const CLE_SEANCE_JOUR = 'cert.seanceJour';
+/** Séances terminées sur cet appareil (une entrée par séance), pour la progression de la semaine (carte Test dans). */
+export const CLE_SEANCES_FAITES = 'cert.seancesFaites';
+
+type SeanceFaite = { clientUuid: string; jour: Jour };
+
+async function lireSeancesFaites(): Promise<SeanceFaite[]> {
+  return (await lireJson<SeanceFaite[]>(CLE_SEANCES_FAITES)) ?? [];
+}
+
+/** Garde la séance finie dans le journal local ; une même séance n'est comptée qu'une fois. */
+async function noterSeanceFaite(etat: EtatSeanceJour): Promise<void> {
+  const liste = await lireSeancesFaites();
+  if (liste.some((s) => s.clientUuid === etat.clientUuid)) return;
+  await ecrireJson(CLE_SEANCES_FAITES, [...liste, { clientUuid: etat.clientUuid, jour: etat.jour }]);
+}
+
+/** Séances terminées du lundi au dimanche qui contient `jour` (journal de l'appareil). */
+export async function seancesFaitesSemaine(jour: Jour): Promise<number> {
+  const lundi = lundiDe(jour);
+  const dimanche = jourPlus(lundi, 6);
+  return (await lireSeancesFaites()).filter((s) => s.jour >= lundi && s.jour <= dimanche).length;
+}
 const CLE_VEILLE = 'cert.seanceJour.veille';
 
 export type EtatSeanceJour = {
@@ -94,7 +116,9 @@ export async function terminerBloc(etat: EtatSeanceJour, index: number, maintena
   const finie = termines.length >= etat.seance.blocs.length;
   const suivant: EtatSeanceJour = { ...etat, termines, finie, debut: etat.debut ?? maintenant };
   await ecrire(suivant);
-  return finie ? envoyerSeanceSiBesoin(suivant, maintenant) : suivant;
+  if (!finie) return suivant;
+  await noterSeanceFaite(suivant);
+  return envoyerSeanceSiBesoin(suivant, maintenant);
 }
 
 /** Enregistre la séance finie si le serveur ne l'a pas encore reçue ; garde l'état si l'envoi échoue. */
