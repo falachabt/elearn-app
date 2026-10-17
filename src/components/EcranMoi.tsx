@@ -24,6 +24,7 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Appui } from './Appui';
 import { Banniere } from './Banniere';
 import { Bouton } from './Bouton';
+import { Feuille } from './Feuille';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { ProgressionToeic } from './certification/ProgressionToeic';
@@ -269,18 +270,22 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
         <Groupe>
           <LigneGroupe icone={Target} titre={t('certification.moiToeic.objectif')} onPress={() => router.push({ pathname: '/certification/objectif', params: { modifier: '1' } } as never)} />
           <LigneGroupe icone={Clock} titre={t('certification.moiToeic.temps')} onPress={() => router.push({ pathname: '/certification/temps', params: { modifier: '1' } } as never)} />
+          <LigneGroupe icone={Settings} titre={t('certification.moiToeic.reglages')} sousTitre={t('certification.moiToeic.reglagesAide')} onPress={() => router.push('/parametres')} />
           <LigneGroupe icone={LogOut} titre={t('certification.moiToeic.deconnexion')} sousTitre={t('certification.moiToeic.deconnexionAide')} onPress={() => setConfirmerSortie(true)} />
         </Groupe>
       ) : null}
 
-      {toeic && confirmerSortie ? (
-        <Carte>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('certification.moiToeic.deconnexionTitre')}</Text>
-          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.moiToeic.deconnexionTexte')}</Text>
-          {sortieErreur ? <Text style={[typo.petit, { color: theme.etat.erreur }]}>{sortieErreur}</Text> : null}
-          <Bouton variante="secondaire" libelle={t('certification.moiToeic.deconnexionAnnuler')} onPress={() => setConfirmerSortie(false)} />
-          <Bouton libelle={t('certification.moiToeic.deconnexionBouton')} desactive={sortieEnCours} onPress={() => void sortir()} />
-        </Carte>
+      {toeic ? (
+        <Feuille
+          ouverte={confirmerSortie}
+          onFermer={() => setConfirmerSortie(false)}
+          titre={t('certification.moiToeic.deconnexionTitre')}
+          texte={sortieErreur ? `${t('certification.moiToeic.deconnexionTexte')}\n${sortieErreur}` : t('certification.moiToeic.deconnexionTexte')}
+          actions={[
+            { libelle: t('certification.moiToeic.deconnexionAnnuler'), onPress: () => setConfirmerSortie(false) },
+            { libelle: t('certification.moiToeic.deconnexionBouton'), onPress: () => void sortir(), variante: 'secondaire' },
+          ]}
+        />
       ) : null}
     </Ecran>
   );

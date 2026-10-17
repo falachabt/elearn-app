@@ -42,6 +42,12 @@ describe('N2 · Moi TOEIC', () => {
     expect(deconnecter).not.toHaveBeenCalled();
   });
 
+  it('la ligne Réglages ouvre les réglages (N2-2)', async () => {
+    await monter(<MoiToeic />);
+    await fireEvent.press(await screen.findByText(t.moiToeic.reglages));
+    expect(router.push).toHaveBeenCalledWith('/parametres');
+  });
+
   it('« Annuler » ferme la confirmation sans se déconnecter', async () => {
     await monter(<MoiToeic />);
     await fireEvent.press(await screen.findByText(t.moiToeic.deconnexion));
