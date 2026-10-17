@@ -1241,6 +1241,7 @@ export const en: Textes = {
     compteExistantTexte: 'This social account is already linked to an Elearn profile. Sign in with the same provider to access it.',
     compteExistantMention: 'After signing in, you can add to your account what you did without an account.',
     connecterGoogle: 'Sign in with Google',
+    connecterApple: 'Sign in with Apple',
     connecterFacebook: 'Sign in with Facebook',
     continuerInvite: 'Continue as a guest',
     ou: 'or with your email',
