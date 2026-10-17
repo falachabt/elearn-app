@@ -1,6 +1,6 @@
 # Planning d'études : plan jusqu'à la date cible (spec, à valider)
 
-Statut : **proposition à valider par Benny avant tout code.** Aucun écran ne se code sans cette validation. Règles générales : `docs/design-regles.md`. Cette spec suffit pour coder une fois validée.
+Statut : **validée par Benny le 17 octobre 2026.** Côté serveur : migration `20261017120000_planning_etudes` (branche `claude/planning-etudes` d'elearn-supabase). Côté app : à coder. Règles générales : `docs/design-regles.md`. Cette spec suffit pour coder une fois validée.
 
 Principe : l'élève donne le temps qu'il peut consacrer à ses études par jour. Le serveur calcule un planning jusqu'à la date cible de sa classe (examen ou fin de cours). Quand le planning est prêt, l'élève reçoit une notification.
 
@@ -14,9 +14,9 @@ Le planning complète la mission du jour (5 questions) : il ne la remplace pas.
 
 ## 2. Données (contrat avec le serveur)
 
-Saisie : `definir_temps_etude(minutes_par_jour)` (RPC, une valeur entière). Bornes : 15 à 240 minutes, par pas de 15.
+Saisie : `study_plan_set_time(p_level, p_country, p_minutes)` (RPC ; la classe vient de l'app, comme pour `revision_courses`). Bornes : 15 à 240 minutes, par pas de 15, lues dans `study_plan_settings`. Réservé aux comptes (un invité reçoit l'erreur `42501`).
 
-Lecture : `mon_planning()` (RPC) renvoie :
+Lecture : `my_study_plan()` (RPC) renvoie :
 
 ```json
 {
@@ -36,18 +36,20 @@ Lecture : `mon_planning()` (RPC) renvoie :
 }
 ```
 
-- `statut` : `vide` (pas de temps saisi), `en_preparation` (le serveur calcule), `pret`, `sans_echeance` (aucune date à venir pour la classe).
+- `status` : `empty` (pas de temps saisi, ou invité), `preparing` (le serveur calcule), `ready`, `no_target` (aucune date à venir pour la classe). Le JSON réel contient aussi `minutes_per_day`, `target` (`type`, `label`, `date`, `status`), `days_left`, `coverage` (`lessons_total`, `lessons_scheduled`) et `weeks` (`start`, `phase`, `days` avec `day`, `phase`, `minutes`, `items`, `done`).
 - `echeance.statut` : `reprise` ou `confirmee`, comme le compte à rebours. Si `reprise`, la date est marquée « · estimé » (même règle que l'accueil).
-- `fait` : coché par l'élève quand il termine la séance du jour (écriture à part, idempotente).
+- `done` : coché par l'élève quand il termine la séance du jour, par `study_plan_mark_done(p_day, p_done)` (idempotent, faux si le jour n'est pas dans le planning). Les jours cochés restent cochés quand le planning est recalculé.
+- Un jour porte une liste `items` : des leçons (`kind: lesson`, avec la matière, le cours, la leçon et sa durée), ou `past_papers`, `final_review`, `free_review` (révision libre quand il n'y a plus de leçon à placer).
 - Copie locale : le dernier planning reçu est gardé sur l'appareil. Hors ligne, l'écran affiche cette copie avec la mention « Dernière mise à jour : {date} ».
 
 Calcul côté serveur (fonction de base, pgTAP) :
 - Jours restants = date cible moins aujourd'hui. Semaines = arrondi supérieur de jours / 7.
-- Trois phases, dans l'ordre : apprentissage des chapitres, annales, révisions finales. Répartition proposée : 60 %, 25 %, 15 % du temps total. **À valider.**
-- Les chapitres d'une matière sont répartis selon le temps total de la matière ; les matières où l'élève réussit le moins reçoivent plus de temps (résultats de quiz). **Pondération à valider.**
+- Trois phases, dans l'ordre : apprentissage des chapitres, annales, révisions finales. Répartition validée : 60 %, 25 %, 15 % des jours d'étude.
+- Les leçons de la classe sont placées dans l'ordre, une matière après l'autre à tour de rôle, jusqu'à remplir le temps du jour. Les leçons qui ne tiennent pas avant la phase d'annales ne sont pas planifiées : la couverture (`coverage`) le dit. **Reste à faire (étape suivante) : donner plus de temps aux matières où l'élève réussit le moins, d'après ses résultats de quiz.**
+- Jours de repos (validés) : 1 ou 2 par semaine (lundi à dimanche), tirés au hasard mais toujours les mêmes pour un même élève et une même semaine, donc le recalcul ne les déplace pas.
 - Les paramètres (répartition, bornes, jours d'étude) viennent de la configuration serveur, jamais de l'app.
 
-Recalcul : une date saisie au back-office (officielle, ou une nouvelle année) relance le calcul de tous les plannings de la classe. Le planning reste visible pendant le calcul.
+Recalcul : chaque matin à 5 h (heure de Douala), et à la lecture quand le jour ou la date de la classe a changé. Une date saisie au back-office est donc prise en compte au plus tard le lendemain matin, ou dès que l'élève ouvre son planning. L'élève est prévenu quand la date cible a changé (notification `study_plan_updated`). Le planning reste visible pendant le calcul.
 
 ## 3. Écrans
 
@@ -103,14 +105,14 @@ Un seul bouton vert par écran.
 - La couleur ne porte jamais seule une information (coche + libellé).
 - Pas d'emojis, icônes Lucide (`Check`, `X`, `RotateCw`).
 
-## 5. Ce que la spec ne tranche pas (à valider)
+## 5. Décisions de Benny (17 octobre 2026)
 
-1. **Répartition** 60 / 25 / 15 % et pondération par résultats : OK ?
-2. **Jours d'étude** : tous les 7 jours, ou repos le dimanche ?
-3. **Gratuité** : le planning est-il gratuit (sans crédits) ? Hypothèse retenue : oui.
-4. **Invité** : carte visible mais saisie réservée aux comptes. OK ?
-5. **Notification** : « planning prêt » seulement, ou aussi un rappel quand le planning change après une date officielle ?
-6. **« Refaire mes erreurs »** dans le récap : même règle de crédits que l'écran de résultats, à confirmer côté dev.
+1. Répartition 60 / 25 / 15 % et pondération par résultats de quiz : validées. La pondération par quiz est à coder dans une étape suivante.
+2. Jours de repos : 1 ou 2 par semaine, au hasard.
+3. Planning gratuit, sans crédits.
+4. Invité : carte visible, saisie réservée aux comptes.
+5. Notification quand le planning est prêt, et aussi quand il change après une date officielle.
+6. « Refaire mes erreurs » dans le récap : règle de crédits inchangée, à confirmer côté dev.
 
 ## 6. Tests à écrire (avant de coder l'écran)
 
