@@ -28,9 +28,15 @@ export function ProgressionToeic() {
     <Carte>
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionEtiquette')}</Text>
       <View style={styles.grille}>
-        <Tuile titre={t('certification.moiToeic.progressionVise')} aide={objectif !== null ? String(objectif) : t('certification.moiToeic.objectifVide')} />
-        <Tuile titre={t('certification.moiToeic.progressionEstime')} aide={score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas')} />
-        <Tuile titre={t('certification.moiToeic.progressionEcart')} aide={ecart !== null ? t('certification.moiToeic.progressionEcartAide', { n: ecart }) : t('certification.moiToeic.progressionPas')} />
+        <View style={styles.colonne}>
+          <Tuile titre={t('certification.moiToeic.progressionVise')} aide={objectif !== null ? String(objectif) : t('certification.moiToeic.objectifVide')} />
+        </View>
+        <View style={styles.colonne}>
+          <Tuile titre={t('certification.moiToeic.progressionEstime')} aide={score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas')} />
+        </View>
+        <View style={styles.colonne}>
+          <Tuile titre={t('certification.moiToeic.progressionEcart')} aide={ecart !== null ? t('certification.moiToeic.progressionEcartAide', { n: ecart }) : t('certification.moiToeic.progressionPas')} />
+        </View>
       </View>
       <BarreProgression pourcent={pourcent} libelle={t('certification.moiToeic.progressionEtiquette')} />
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionNote')}</Text>
@@ -39,4 +45,8 @@ export function ProgressionToeic() {
   );
 }
 
-const styles = StyleSheet.create({ grille: { flexDirection: 'row', gap: espace[2] } });
+// Trois tuiles qui se partagent la largeur de la carte : minWidth 0 laisse le libellé passer à la ligne au lieu de déborder.
+const styles = StyleSheet.create({
+  grille: { flexDirection: 'row', gap: espace[2] },
+  colonne: { flex: 1, minWidth: 0 },
+});
