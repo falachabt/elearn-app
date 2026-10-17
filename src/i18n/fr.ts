@@ -1242,6 +1242,7 @@ export const fr = {
     compteExistantTexte: 'Ce compte social est déjà associé à un profil Elearn. Connecte-toi avec le même fournisseur pour le retrouver.',
     compteExistantMention: 'Après ta connexion, tu pourras ajouter à ton compte ce que tu as fait sans compte.',
     connecterGoogle: 'Se connecter avec Google',
+    connecterApple: 'Se connecter avec Apple',
     connecterFacebook: 'Se connecter avec Facebook',
     continuerInvite: 'Continuer en invité',
     ou: 'ou avec ton e-mail',
