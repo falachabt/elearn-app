@@ -85,7 +85,7 @@ describe('N1 · Accueil TOEIC', () => {
     expect(await screen.findByText(t.accueilToeic.compteJours.replace('{{n}}', '42'))).toBeTruthy();
     expect(screen.getByText(t.accueilToeic.seanceEtiquette.replace('{{minutes}}', '20'))).toBeTruthy();
     expect(screen.getByText('Prépositions de temps')).toBeTruthy();
-    expect(screen.getByText(t.accueilToeic.motsN.replace('{{n}}', '2'))).toBeTruthy();
+    expect(screen.getAllByText(t.accueilToeic.motsN.replace('{{n}}', '2')).length).toBeGreaterThan(0);
     expect(screen.getByText(t.accueilToeic.scoreExact.replace('{{score}}', '700'))).toBeTruthy();
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
   });

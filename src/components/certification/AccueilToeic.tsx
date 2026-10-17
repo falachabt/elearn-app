@@ -70,6 +70,8 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
     : null;
   const seance = d.seance;
   const commencee = !!seance && avancement(seance).faits > 0;
+  const partieSeance = seance?.seance.blocs.find((b) => b.type === 'serie')?.partie;
+  const motsSeance = seance?.seance.blocs.find((b) => b.type === 'mots')?.nombre;
   const mots = d.motsAReviser === 1 ? t('certification.accueilToeic.motsUn') : t('certification.accueilToeic.motsN', { n: d.motsAReviser });
   const serie = d.serie;
   const aideSerie = serie
@@ -83,15 +85,6 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
 
   return (
     <View style={styles.groupe}>
-      {compte && d.plan?.dateTest ? (
-        <Carte>
-          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
-          <View style={styles.ligne}>
-            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
-          </View>
-        </Carte>
-      ) : null}
       {d.revision.depuisCopie ? <Banniere ton="info" titre={t('certification.reviser.copie')} /> : null}
       {seance ? (
         // Carte verte comme la mission du jour du secondaire : le bouton reste à l'intérieur (maquette TOEIC-N1).
@@ -102,10 +95,25 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
             </View>
           </View>
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.surCouleur }]}>{seance.seance.pourquoi.notion ?? t('certification.accueilToeic.seanceTitre')}</Text>
+          {partieSeance !== undefined || motsSeance !== undefined ? (
+            <View style={styles.ligneBadges}>
+              {partieSeance !== undefined ? <Pastille texte={t('certification.diagnostic.partie', { n: partieSeance })} /> : null}
+              {motsSeance !== undefined ? <Pastille texte={t('certification.accueilToeic.motsN', { n: motsSeance })} /> : null}
+            </View>
+          ) : null}
           <Bouton variante="secondaire" libelle={commencee ? t('certification.accueilToeic.continuer') : t('certification.accueilToeic.commencer')} onPress={() => aller('/certification/seance')} />
         </Carte>
       ) : d.seanceErreur ? (
         <Banniere ton="alerte" titre={t('certification.accueilToeic.erreurTitre')} texte={t('certification.accueilToeic.erreurTexte')} />
+      ) : null}
+      {compte && d.plan?.dateTest ? (
+        <Carte>
+          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
+          <View style={styles.ligne}>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
+            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteDate', { date: afficherJour(d.plan.dateTest) })}</Text>
+          </View>
+        </Carte>
       ) : null}
       <View style={styles.grille}>
         <Tuile titre={t('certification.accueilToeic.score')} aide={d.score !== null ? t('certification.accueilToeic.scoreExact', { score: d.score }) : t('certification.accueilToeic.scorePas')} />
@@ -122,9 +130,20 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
   );
 }
 
+/** Étiquette de la carte verte (maquette TOEIC-N1 : badges « Partie 5 », « 6 mots »). */
+function Pastille({ texte }: { texte: string }) {
+  const { theme } = useTheme();
+  return (
+    <View style={[styles.pastille, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+      <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{texte}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   droite: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  ligneBadges: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
   ligne: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: espace[2] },
   pastille: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.s },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
