@@ -5,11 +5,11 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { chargerAccueil } from '@/services/certification/accueil';
 import { lirePlan } from '@/services/certification/etat';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
-import { BarreProgression, Tuile } from './ui';
+import { BarreProgression } from './ui';
 import { useChargement } from './useChargement';
 
 /** « Progression vers ton objectif » : visé, estimé et écart, à la place de la carte XP de Moi (maquette TOEIC-N2). */
@@ -24,20 +24,22 @@ export function ProgressionToeic() {
   // L'écart n'existe que si le score estimé et l'objectif sont connus : sinon pas de chiffre inventé.
   const ecart = score !== null && objectif !== null ? score - objectif : null;
   const pourcent = score !== null && objectif ? (score / objectif) * 100 : 0;
+  const tuiles = [
+    { titre: t('certification.moiToeic.progressionVise'), aide: objectif !== null ? String(objectif) : t('certification.moiToeic.objectifVide') },
+    { titre: t('certification.moiToeic.progressionEstime'), aide: score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas') },
+    { titre: t('certification.moiToeic.progressionEcart'), aide: ecart !== null ? t('certification.moiToeic.progressionEcartAide', { n: ecart }) : t('certification.moiToeic.progressionPas') },
+  ];
   return (
     <Carte>
       <View style={styles.contenu}>
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionEtiquette')}</Text>
         <View style={styles.grille}>
-          <View style={styles.colonne}>
-            <Tuile pleineHauteur titre={t('certification.moiToeic.progressionVise')} aide={objectif !== null ? String(objectif) : t('certification.moiToeic.objectifVide')} />
-          </View>
-          <View style={styles.colonne}>
-            <Tuile pleineHauteur titre={t('certification.moiToeic.progressionEstime')} aide={score !== null ? t('certification.accueilToeic.scoreExact', { score }) : t('certification.moiToeic.progressionPas')} />
-          </View>
-          <View style={styles.colonne}>
-            <Tuile pleineHauteur titre={t('certification.moiToeic.progressionEcart')} aide={ecart !== null ? t('certification.moiToeic.progressionEcartAide', { n: ecart }) : t('certification.moiToeic.progressionPas')} />
-          </View>
+          {tuiles.map((tuile) => (
+            <View key={tuile.titre} style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tuile.titre}</Text>
+              <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{tuile.aide}</Text>
+            </View>
+          ))}
         </View>
         <BarreProgression pourcent={pourcent} libelle={t('certification.moiToeic.progressionEtiquette')} />
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.moiToeic.progressionNote')}</Text>
@@ -47,11 +49,20 @@ export function ProgressionToeic() {
   );
 }
 
-// Trois tuiles qui se partagent la largeur de la carte : minWidth 0 laisse le libellé passer à la ligne au lieu de déborder.
+// Trois tuiles directes dans la rangée (pas d'enveloppe en pourcentage ni de rétrécissement) : sur téléphone la rangée
+// garde sa hauteur naturelle et les tuiles se partagent la largeur. minWidth 0 laisse le libellé passer à la ligne.
 // Espace vertical entre l'étiquette, les tuiles, la barre et la phrase : rien ne se touche.
-// Les tuiles d'une rangée ont la même hauteur (colonne stretch + pleineHauteur) et se partagent la largeur.
 const styles = StyleSheet.create({
   contenu: { gap: espace[3] },
-  grille: { flexDirection: 'row', gap: espace[2] },
-  colonne: { flex: 1, minWidth: 0 },
+  grille: { flexDirection: 'row', gap: espace[2], alignItems: 'stretch' },
+  tuile: {
+    flex: 1,
+    minWidth: 0,
+    gap: 2,
+    padding: espace[4],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+    minHeight: 64,
+    justifyContent: 'center',
+  },
 });
