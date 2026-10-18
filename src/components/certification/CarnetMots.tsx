@@ -95,7 +95,7 @@ export function CarnetMots({ mots }: { mots: MotCarnetServi[] }) {
         />
       ))}
       <View style={styles.droite}>
-        <Bouton libelle={recherche && trouves.length === 0 ? t('certification.carnet.ajouterMot', { mot: requete.trim() }) : t('certification.carnet.ajouter')} onPress={ajouter} />
+        <Bouton variante="secondaire" libelle={recherche && trouves.length === 0 ? t('certification.carnet.ajouterMot', { mot: requete.trim() }) : t('certification.carnet.ajouter')} onPress={ajouter} />
       </View>
       {bientot ? <Banniere ton="info" titre={t('certification.carnet.ajoutBientot')} /> : null}
     </View>

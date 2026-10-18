@@ -114,6 +114,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
-  tuile: { width: '22%', flexGrow: 1 },
+  // Largeur fixe, sans croissance : les pastilles de la deuxième ligne ont la même largeur que celles de la première.
+  tuile: { width: '22%' },
   cube: { minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
 });

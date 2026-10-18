@@ -117,15 +117,18 @@ function corriger(r: ReponseEnvoyee): ResultatReponse {
   };
 }
 
+/** Réponses de démonstration par partie (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1). */
+const PARTIES_DEMO = [
+  { partie: 1, n: 18, c: 15 }, { partie: 2, n: 14, c: 9 }, { partie: 3, n: 12, c: 10 }, { partie: 4, n: 16, c: 8 },
+  { partie: 5, n: 20, c: 13 }, { partie: 6, n: 10, c: 6 }, { partie: 7, n: 30, c: 19 },
+];
+
 /** Statistiques de démonstration (outil de développement) : activées par `EXPO_PUBLIC_CERT_DEMO_STATS=1`, jamais en production. */
 function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>[0]): Stats {
-  const parties: [number, number, number][] = [
-    [1, 18, 15], [2, 14, 9], [3, 12, 10], [4, 16, 8], [5, 20, 13], [6, 10, 6], [7, 30, 19],
-  ];
   return {
     status: 'ok',
     periode,
-    reponsesTotal: parties.reduce((a, [, n]) => a + n, 0),
+    reponsesTotal: PARTIES_DEMO.reduce((a, p) => a + p.n, 0),
     score: { estime: true, min: 620, max: 700 },
     barres: [
       { fin: jourPlus(jour, -21), min: 540, max: 600, milieu: 570 },
@@ -134,7 +137,7 @@ function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>
       { fin: jour, min: 620, max: 700, milieu: 660 },
     ],
     tendance: 'up',
-    parties: parties.map(([partie, n, c]) => {
+    parties: PARTIES_DEMO.map(({ partie, n, c }) => {
       const m = c / n;
       return { partie, repondues: n, bonnes: c, taux: m, maitrise: m, reponsesMaitrise: n, etat: etatMaitrise(m, n, reglages) };
     }),
@@ -256,8 +259,9 @@ export const apiDemo: CertApi = {
   },
   async lireRevision() {
     const s = await lire();
+    const demo = process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1';
     const parties: PartieMaitrise[] = [1, 2, 3, 4, 5, 6, 7].map((partie) => {
-      const e = s.parties[String(partie)] ?? { n: 0, c: 0 };
+      const e = demo ? { n: PARTIES_DEMO[partie - 1].n, c: PARTIES_DEMO[partie - 1].c } : (s.parties[String(partie)] ?? { n: 0, c: 0 });
       const m = e.n ? e.c / e.n : 0;
       return { partie, reponses: e.n, m, etat: etatMaitrise(e.n ? m : null, e.n, reglages) };
     });

@@ -129,7 +129,7 @@ export function ReglageMini() {
       <View accessibilityRole="radiogroup" style={styles.grille}>
         {([10, 20] as const).map((n) => {
           const permis = possibles.includes(n);
-          return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n })} court={String(n)} onPress={() => setLongueur(n)} />;
+          return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n })} court={String(n)} large onPress={() => setLongueur(n)} />;
         })}
       </View>
       <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurEffective })} />
@@ -175,7 +175,8 @@ function Cube({ actif, desactive, libelle, court, large, onPress }: { actif: boo
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
-  cube: { width: '22%', flexGrow: 1 },
+  // Largeur fixe sans croissance : les pastilles P5 à P7 gardent la largeur de P1 à P4 (même correctif que les Parties de Réviser).
+  cube: { width: '22%' },
   large: { width: '48%', flexGrow: 1 },
   bloc: { minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'center', borderRadius: rayon.m },
 });
