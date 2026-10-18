@@ -18,7 +18,7 @@ export type StatutPlanning = 'empty' | 'preparing' | 'ready' | 'no_target';
 export type PhasePlanning = 'learning' | 'past_papers' | 'final_review';
 
 export type ElementSeance =
-  | { genre: 'lecon'; matiere: string | null; cours: string; lecon: string; minutes: number }
+  | { genre: 'lecon'; matiere: string | null; cours: string; lecon: string; minutes: number; coursId: number; leconId: number }
   | { genre: 'annales' | 'revisionFinale' | 'revisionLibre' };
 
 export type JourPlanning = { jour: string; phase: PhasePlanning; minutes: number; elements: ElementSeance[]; fait: boolean };
@@ -51,7 +51,8 @@ function elementDepuis(brut: unknown): ElementSeance | null {
   if (!e || typeof e.kind !== 'string') return null;
   if (e.kind === 'lesson') {
     if (typeof e.lesson !== 'string' || typeof e.course !== 'string') return null;
-    return { genre: 'lecon', matiere: typeof e.subject === 'string' ? e.subject : null, cours: e.course, lecon: e.lesson, minutes: entier(e.minutes) };
+    if (typeof e.lesson_id !== 'number' || typeof e.course_id !== 'number') return null;
+    return { genre: 'lecon', matiere: typeof e.subject === 'string' ? e.subject : null, cours: e.course, lecon: e.lesson, minutes: entier(e.minutes), coursId: e.course_id, leconId: e.lesson_id };
   }
   const genre = GENRES[e.kind];
   return genre ? { genre } : null;
@@ -128,6 +129,32 @@ export function septJours(semaine: SemainePlanning): { jour: string; seance: Jou
 
 export const seancesFaites = (semaine: SemainePlanning) => semaine.jours.filter((j) => j.fait).length;
 
+/** Leçons déjà validées par l'élève : identifiant de leçon → identifiant de cours (`lireLues` de reviser). */
+export type LeconsValidees = Readonly<Record<string, number>>;
+
+/** Une leçon du planning déjà validée (par le planning ou à la main dans Réviser) compte comme faite. Les autres tâches se cochent avec la séance. */
+export const elementFait = (e: ElementSeance, lues: LeconsValidees): boolean => e.genre === 'lecon' && lues[String(e.leconId)] !== undefined;
+
+/** Séance terminée : cochée par l'élève, ou entièrement composée de leçons déjà validées. */
+export const seanceTerminee = (j: JourPlanning, lues: LeconsValidees): boolean => j.fait || (j.elements.length > 0 && j.elements.every((e) => elementFait(e, lues)));
+
+/** Tâches faites sur le total d'une séance ; une séance cochée compte toutes ses tâches. */
+export function progressionSeance(j: JourPlanning, lues: LeconsValidees): { faits: number; total: number } {
+  const total = j.elements.length;
+  return { faits: j.fait ? total : j.elements.filter((e) => elementFait(e, lues)).length, total };
+}
+
+/** Situation d'un jour par rapport au planning : séance prévue, repos au milieu du planning, ou avant son début / après sa fin. */
+export type EtatJour = 'seance' | 'repos' | 'horsPlanning';
+export function etatJour(p: Planning, jour: string): EtatJour {
+  const jours = tousLesJours(p);
+  if (jours.some((j) => j.jour === jour)) return 'seance';
+  return jours.length > 0 && jour >= jours[0].jour && jour <= jours[jours.length - 1].jour ? 'repos' : 'horsPlanning';
+}
+
+/** Séance d'un jour donné, partout dans le planning ; null un jour de repos ou hors planning. */
+export const seanceDe = (p: Planning, jour: string): JourPlanning | null => tousLesJours(p).find((j) => j.jour === jour) ?? null;
+
 /** Planning avec la séance du jour donné cochée ou décochée (mise à jour locale en attendant la réponse du serveur). */
 export const avecSeanceFaite = (p: Planning, jour: string, fait: boolean): Planning => ({
   ...p,
@@ -138,6 +165,10 @@ export const avecSeanceFaite = (p: Planning, jour: string, fait: boolean): Plann
 export function heuresEstimees(joursRestants: number, minutesParJour: number): number {
   return Math.max(0, Math.round((joursRestants * (5.5 / 7) * minutesParJour) / 60));
 }
+
+/** Midi local du jour donné (AAAA-MM-JJ) : aucun décalage de fuseau ni d'heure d'été. */
+export const dateDuJour = (jour: string): Date => new Date(Number(jour.slice(0, 4)), Number(jour.slice(5, 7)) - 1, Number(jour.slice(8, 10)), 12);
+export const localeDe = (langue: string) => (langue === 'en' ? 'en-GB' : 'fr-FR');
 
 /** Date du jour local, AAAA-MM-JJ. */
 export function jourLocalTexte(date = new Date()): string {

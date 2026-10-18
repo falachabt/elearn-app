@@ -4,7 +4,8 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { estJourDeRepos, jourLocalTexte, lirePlanning, seanceDuJour, type ElementSeance, type Planning } from '@/services/planning';
+import { etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type LeconsValidees, type Planning } from '@/services/planning';
+import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -12,7 +13,6 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 import { Appui } from '../Appui';
 import { Carte } from '../Carte';
 
-const CLES_ELEMENT = { annales: 'planning.elements.annales', revisionFinale: 'planning.elements.revisionFinale', revisionLibre: 'planning.elements.revisionLibre' } as const;
 
 /**
  * Carte « Mon planning » de l'accueil (spec `docs/maquettes/planning-etudes.md` §1) : la séance du jour, ou « Choisis ton
@@ -23,10 +23,14 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [planning, setPlanning] = useState<Planning | null>(null);
+  const [lues, setLues] = useState<LeconsValidees>({});
 
   useFocusEffect(
     useCallback(() => {
       let actif = true;
+      lireLues()
+        .catch(() => ({}) as LeconsValidees)
+        .then((validees) => actif && setLues(validees));
       lirePlanning(getSupabase(), idUtilisateur)
         .then(({ planning: p }) => actif && setPlanning(p))
         .catch(() => actif && setPlanning(null));
@@ -39,15 +43,15 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
   if (!planning || planning.statut === 'no_target') return null;
 
   const aujourdhui = jourLocalTexte();
-  const seance = planning.statut === 'ready' ? seanceDuJour(planning, aujourdhui) : null;
-  const premier: ElementSeance | undefined = seance?.elements[0];
-  const matiere = premier ? (premier.genre === 'lecon' ? (premier.matiere ?? premier.cours) : t(CLES_ELEMENT[premier.genre])) : null;
+  const seance = planning.statut === 'ready' ? seanceDe(planning, aujourdhui) : null;
+  const progression = seance ? progressionSeance(seance, lues) : null;
   const sousTitre =
     planning.statut !== 'ready' ? t('planning.carte.choisir')
-    : seance?.fait ? t('planning.carte.fait')
-    : seance ? t('planning.carte.aujourdhui', { matiere: matiere ?? t('planning.carte.libre') })
-    : estJourDeRepos(planning, aujourdhui) ? t('planning.carte.repos')
+    : seance && seanceTerminee(seance, lues) ? t('planning.carte.fait')
+    : seance ? t(seance.elements.length === 1 ? 'planning.carte.tache' : 'planning.carte.taches', { n: seance.elements.length, minutes: seance.minutes })
+    : etatJour(planning, aujourdhui) === 'repos' ? t('planning.carte.repos')
     : t('planning.carte.libre');
+  const avancement = seance && progression && progression.faits > 0 && !seanceTerminee(seance, lues) ? t('planning.carte.avancement', progression) : null;
 
   return (
     <Appui
@@ -63,7 +67,7 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
         </View>
         <View style={styles.texte}>
           <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{t('planning.carte.titre')}</Text>
-          <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>{sousTitre}</Text>
+          <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>{avancement ? `${sousTitre} · ${avancement}` : sousTitre}</Text>
         </View>
         <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />
       </Carte>

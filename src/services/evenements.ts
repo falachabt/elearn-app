@@ -25,6 +25,7 @@ export type Evenements = {
   planning_opened: { source: 'accueil' | 'push' | 'inbox' };
   planning_time_chosen: { minutes: number };
   planning_day_checked: { fait: boolean };
+  planning_task_opened: { genre: 'lecon' | 'annales' | 'revisionFinale' | 'revisionLibre' };
   mission_started: { source: 'serveur' | 'locale'; total: number };
   mission_completed: { score: number; total: number; duree_s: number; serie: number };
   mission_lesson_review_opened: { cours: number };

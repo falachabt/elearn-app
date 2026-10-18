@@ -6,12 +6,17 @@ import {
   cocherSeance,
   definirTemps,
   depuisReponse,
+  elementFait,
   estJourDeRepos,
+  etatJour,
   heuresEstimees,
   jourLocalTexte,
   lirePlanning,
   prochaineSeance,
+  progressionSeance,
+  seanceDe,
   seanceDuJour,
+  seanceTerminee,
   seancesFaites,
   semaineDuJour,
   septJours,
@@ -59,8 +64,8 @@ describe('depuisReponse', () => {
     expect(p?.cible).toEqual({ type: 'examen', libelle: 'Baccalauréat', date: '2027-06-23', statut: 'reprise' });
     expect(p?.semaines.map((s) => s.debut)).toEqual(['2026-10-19', '2026-10-26']);
     expect(p?.semaines[0].jours[0].elements).toEqual([
-      { genre: 'lecon', matiere: 'Mathématique', cours: 'Fractions', lecon: 'Définition', minutes: 20 },
-      { genre: 'lecon', matiere: null, cours: 'Grammaire', lecon: 'Noms', minutes: 20 },
+      { genre: 'lecon', matiere: 'Mathématique', cours: 'Fractions', lecon: 'Définition', minutes: 20, coursId: 1, leconId: 2 },
+      { genre: 'lecon', matiere: null, cours: 'Grammaire', lecon: 'Noms', minutes: 20, coursId: 3, leconId: 4 },
     ]);
     expect(p?.semaines[0].jours[2].elements).toEqual([{ genre: 'revisionFinale' }]);
     expect(p?.semaines[0].jours[0].fait).toBe(true);
@@ -120,6 +125,32 @@ describe('règles d’affichage', () => {
     expect(heuresEstimees(70, 60)).toBe(55);
     expect(heuresEstimees(0, 60)).toBe(0);
     expect(heuresEstimees(10, 15)).toBe(2);
+  });
+
+  it('une leçon sans identifiant est ignorée (pas de tâche impossible à ouvrir)', () => {
+    const p = depuisReponse({ status: 'ready', weeks: [{ start: '2026-10-19', days: [{ day: '2026-10-19', phase: 'learning', minutes: 30, items: [{ kind: 'lesson', course: 'C', lesson: 'L' }, { kind: 'past_papers' }], done: false }] }] });
+    expect(p?.semaines[0].jours[0].elements).toEqual([{ genre: 'annales' }]);
+  });
+
+  it('leçons déjà validées : tâche faite, séance terminée seulement si toutes les tâches sont des leçons validées', () => {
+    const j = { ...p.semaines[0].jours[0], fait: false };
+    expect(j.elements.map((e) => elementFait(e, { '2': 1 }))).toEqual([true, false]);
+    expect(progressionSeance(j, { '2': 1 })).toEqual({ faits: 1, total: 2 });
+    expect(seanceTerminee({ ...j, fait: false }, { '2': 1 })).toBe(false);
+    expect(seanceTerminee({ ...j, fait: false }, { '2': 1, '4': 3 })).toBe(true);
+    expect(progressionSeance({ ...j, fait: true }, {})).toEqual({ faits: 2, total: 2 });
+    const annales = p.semaines[0].jours[1];
+    expect(seanceTerminee({ ...annales, fait: false }, { '2': 1, '4': 3 })).toBe(false);
+    expect(seanceTerminee({ ...annales, fait: true }, {})).toBe(true);
+  });
+
+  it('situation d’un jour : séance, repos au milieu du planning, ou hors planning', () => {
+    expect(etatJour(p, '2026-10-19')).toBe('seance');
+    expect(etatJour(p, '2026-10-21')).toBe('repos');
+    expect(etatJour(p, '2026-10-12')).toBe('horsPlanning');
+    expect(etatJour(p, '2026-11-30')).toBe('horsPlanning');
+    expect(seanceDe(p, '2026-10-26')?.elements).toEqual([{ genre: 'revisionLibre' }]);
+    expect(seanceDe(p, '2026-10-21')).toBeNull();
   });
 
   it('jour local en AAAA-MM-JJ', () => {

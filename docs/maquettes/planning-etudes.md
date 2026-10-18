@@ -118,3 +118,20 @@ Un seul bouton vert par écran.
 
 - Base (pgTAP) : calcul des semaines et des phases, bornes du temps par jour, recalcul après une date officielle, RLS (un élève ne lit que son planning).
 - App (Jest) : chaque état (vide, préparation, prêt, erreur, hors ligne, sans échéance), clair et sombre, copie locale, libellé « estimé ».
+
+## 7. Itération du 18 octobre 2026 (retours de Benny sur la première version)
+
+Fait dans l'app (aucune migration) :
+- **En-tête** : le titre « MON PLANNING » prend la place restante, la croix est à droite. À côté de la croix, un bouton **Ajuster** (icône curseurs) rouvre le choix du temps par jour, avec le temps actuel déjà sélectionné. Absent hors ligne.
+- **Séance du jour (accueil du planning)** : « Aujourd'hui », nombre de tâches et durée, trois premières tâches avec leur case, avancement « 1 sur 2 faits », bouton **Ouvrir la séance**. Jour de repos : le message et un bouton **Voir la prochaine séance**. Séance faite : « Séance du jour faite » et **Voir la séance**.
+- **Page d'une séance** (`/planning/jour?jour=AAAA-MM-JJ`) : le jour en toutes lettres, la phase et la durée, l'avancement, toutes les tâches ; chaque tâche s'ouvre (la leçon elle-même, sinon l'onglet Réviser). Bouton **J'ai terminé ma séance** en bas ; une fois terminée : « Séance terminée. Bravo ! », « Marquer comme non faite » (si cochée à la main), retour au planning. Hors ligne : lecture seule.
+- **Suivi automatique** : une leçon déjà validée (dans le planning ou à la main dans Réviser) compte comme faite. Une séance composée uniquement de leçons toutes validées se coche toute seule. Les tâches qui ne sont pas des leçons (annales, révisions) se terminent avec le bouton de la séance.
+- **Navigation** : flèches semaine précédente et suivante avec les dates (« 26 oct. – 1 nov. ») et la phase ; toucher un jour ouvre sa page.
+- **Jours avant le début ou après la fin du planning** : « — » (accessible : « Hors planning »), plus jamais « Jour de repos ». Un vrai repos au milieu du planning reste « Jour de repos ».
+- **Carte de l'accueil** : « Aujourd'hui : 2 tâches · 45 min », avec l'avancement quand une leçon est déjà validée.
+
+Reste à faire (à décider avec Benny) :
+1. **Programme de l'élève** : le planning prend toutes les leçons de la classe et du pays (toutes les séries). Il faut le filtrer sur la série ou le programme de l'élève.
+2. **Exercices et annales réels** : aujourd'hui une journée d'annales ou de révision finale est une tâche générique. À remplacer par de vrais sujets d'annales et des exercices du chapitre, par une évolution du calcul serveur.
+3. **Suivi côté serveur** : la séance cochée par les leçons validées est envoyée au serveur à l'ouverture de la page de la séance ; le calcul serveur ne sait pas encore ignorer les leçons déjà validées à la création du planning.
+

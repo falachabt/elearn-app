@@ -1,12 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
+import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
 import { CLE_COPIE_PLANNING } from '@/services/planning';
 import { CLE_PROFIL } from '@/services/profil';
+import { CLE_LUES } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { CartePlanning } from '../CartePlanning';
@@ -28,6 +30,8 @@ jest.mock('@/services/analytics', () => ({ suivre: jest.fn(), definirProprietesU
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({ rpc: (...a: unknown[]) => mockRpc(...a) }) }));
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1' }));
 
+const lecon = (id: number, cours: number, nom: string, matiere: string) => ({ kind: 'lesson', course_id: cours, course: `Cours ${cours}`, subject: matiere, lesson_id: id, lesson: nom, minutes: 20 });
+
 // Mardi 20 octobre 2026 : séance du jour avec deux leçons, mercredi de repos, jeudi une séance d'annales.
 const PRET = {
   status: 'ready',
@@ -40,22 +44,19 @@ const PRET = {
       start: '2026-10-19',
       phase: 'learning',
       days: [
-        { day: '2026-10-19', phase: 'learning', minutes: 45, items: [{ kind: 'free_review' }], done: false },
-        {
-          day: '2026-10-20',
-          phase: 'learning',
-          minutes: 45,
-          items: [
-            { kind: 'lesson', course_id: 1, course: 'Fractions', subject: 'Mathématique', lesson_id: 2, lesson: 'Définition', minutes: 20 },
-            { kind: 'lesson', course_id: 3, course: 'Grammaire', subject: 'Français', lesson_id: 4, lesson: 'Noms', minutes: 20 },
-          ],
-          done: false,
-        },
+        { day: '2026-10-19', phase: 'learning', minutes: 45, items: [{ kind: 'free_review' }], done: true },
+        { day: '2026-10-20', phase: 'learning', minutes: 45, items: [lecon(2, 1, 'Définition', 'Mathématique'), lecon(4, 3, 'Noms', 'Français')], done: false },
         { day: '2026-10-22', phase: 'learning', minutes: 45, items: [{ kind: 'past_papers' }], done: false },
       ],
     },
     { start: '2026-10-26', phase: 'past_papers', days: [{ day: '2026-10-26', phase: 'past_papers', minutes: 45, items: [{ kind: 'past_papers' }], done: false }] },
   ],
+};
+
+// Le planning commence un jeudi : le lundi, le mardi et le mercredi d'avant ne sont ni des séances ni des jours de repos.
+const DEBUT_TARD = {
+  ...PRET,
+  weeks: [{ start: '2026-10-19', phase: 'learning', days: [{ day: '2026-10-22', phase: 'learning', minutes: 45, items: [lecon(2, 1, 'Définition', 'Mathématique')], done: false }] }],
 };
 
 const metriques = { frame: { x: 0, y: 0, width: 360, height: 780 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } };
@@ -67,14 +68,14 @@ const monter = (ui: React.ReactElement, reglage: 'clair' | 'sombre' = 'clair') =
   );
 
 const erreurReseau = { name: 'TypeError', message: 'Network request failed' };
-type Reponses = { plan?: unknown; planErreur?: unknown; calendrier?: unknown[]; definir?: unknown; cocher?: unknown };
+type Reponses = { plan?: unknown; planErreur?: unknown; calendrier?: unknown[]; definir?: unknown };
 
 function serveur(r: Reponses) {
   mockRpc.mockImplementation(async (nom: string) => {
     if (nom === 'my_study_plan') return r.planErreur ? { data: null, error: r.planErreur } : { data: r.plan, error: null };
     if (nom === 'calendrier_de_ma_classe') return { data: r.calendrier ?? [], error: null };
     if (nom === 'study_plan_set_time') return r.definir ? { data: null, error: r.definir } : { data: { status: 'ready' }, error: null };
-    if (nom === 'study_plan_mark_done') return r.cocher ? { data: null, error: r.cocher } : { data: true, error: null };
+    if (nom === 'study_plan_mark_done') return { data: true, error: null };
     return { data: null, error: null };
   });
 }
@@ -93,6 +94,15 @@ beforeEach(async () => {
 afterEach(() => jest.useRealTimers());
 
 describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
+  it('en-tête : le titre prend la place restante et la croix reste à droite', async () => {
+    serveur({ plan: PRET });
+    await monter(<Planning />, reglage);
+    await screen.findByText(t.aujourdhuiTitre.toUpperCase());
+    const titre = screen.getByText(t.etiquette.toUpperCase());
+    expect(StyleSheet.flatten(titre.props.style).flex).toBe(1);
+    expect(screen.getByRole('button', { name: t.fermer })).toBeTruthy();
+  });
+
   it('sans planning : propose le temps par jour, 45 minutes choisies d’office, la date estimée et les heures de travail', async () => {
     serveur({ plan: { status: 'empty' }, calendrier: CALENDRIER });
     await monter(<Planning />, reglage);
@@ -102,6 +112,7 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     for (const m of [15, 30, 45, 60, 90]) expect(screen.getByRole('radio', { name: t.temps.replace('{{n}}', String(m)) })).toBeTruthy();
     expect(screen.getByRole('radio', { name: t.temps.replace('{{n}}', '45') }).props.accessibilityState.selected).toBe(true);
     expect(screen.getByText(/Environ \d+ heures de travail/)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: t.ajusterLibelle })).toBeNull();
   });
 
   it('choisir 60 minutes puis créer : le serveur reçoit la classe et le temps, puis le planning s’affiche', async () => {
@@ -112,54 +123,95 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     serveur({ plan: PRET });
     await fireEvent.press(screen.getByText(t.creer));
     await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('study_plan_set_time', { p_level: 'Tle', p_country: 'BF', p_minutes: 60 }));
-    await screen.findByText('Semaine 1 sur 2');
+    await screen.findByText(t.aujourdhuiTitre.toUpperCase());
     expect(suivre).toHaveBeenCalledWith('planning_time_chosen', { minutes: 60 });
   });
 
-  it('planning prêt : semaine, phase, séance du jour, leçons, repos et bouton pour commencer', async () => {
+  it('séance du jour : nombre de tâches, tâches, avancement et bouton qui ouvre la page de la séance', async () => {
     serveur({ plan: PRET });
     await monter(<Planning />, reglage);
-    await screen.findByText('Semaine 1 sur 2');
-    expect(screen.getByText(t.phases.learning.toUpperCase())).toBeTruthy();
-    expect(screen.getByText('45 min aujourd’hui')).toBeTruthy();
+    await screen.findByText('2 tâches · 45 min');
     expect(screen.getAllByText('Définition').length).toBeGreaterThan(0);
     expect(screen.getAllByText('Noms').length).toBeGreaterThan(0);
-    expect(screen.getAllByText(t.repos).length).toBe(4);
+    expect(screen.getByText('0 sur 2 faits')).toBeTruthy();
     expect(screen.getByText(/Baccalauréat · 23 juin 2027 · estimé/)).toBeTruthy();
-    expect(screen.getByText(/4 leçons sur 6/)).toBeTruthy();
-    await fireEvent.press(screen.getByText(t.commencer));
-    expect(router.push).toHaveBeenCalledWith('/reviser');
+    await fireEvent.press(screen.getByText(t.ouvrirSeance));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/planning/jour', params: { jour: '2026-10-20' } });
   });
 
-  it('cocher la séance du jour : le serveur reçoit le jour, la carte passe à « faite » et le bouton disparaît', async () => {
+  it('leçons déjà validées dans Réviser : la séance du jour est faite, sans rien à cocher', async () => {
+    await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ '2': 1, '4': 3 }));
+    serveur({ plan: PRET });
+    await monter(<Planning />, reglage);
+    await screen.findByText(t.aujourdhuiFait);
+    expect(screen.queryByText(t.ouvrirSeance)).toBeNull();
+    expect(screen.getByText(t.voirSeance)).toBeTruthy();
+  });
+
+  it('une seule leçon validée : elle est comptée, la séance reste à faire', async () => {
+    await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ '2': 1 }));
+    serveur({ plan: PRET });
+    await monter(<Planning />, reglage);
+    await screen.findByText('1 sur 2 faits');
+    expect(screen.getByText(t.ouvrirSeance)).toBeTruthy();
+  });
+
+  it('semaine : jours de repos, avant le début « hors planning » (pas de faux repos), toucher un jour ouvre sa page', async () => {
     serveur({ plan: PRET });
     await monter(<Planning />, reglage);
     await screen.findByText('Semaine 1 sur 2');
-    const cases = screen.getAllByRole('checkbox');
-    await fireEvent.press(cases[1]);
-    await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('study_plan_mark_done', { p_day: '2026-10-20', p_done: true }));
-    await waitFor(() => expect(screen.getByText(t.aujourdhuiFait)).toBeTruthy());
-    expect(screen.queryByText(t.commencer)).toBeNull();
-    expect(suivre).toHaveBeenCalledWith('planning_day_checked', { fait: true });
+    expect(screen.getAllByText(t.repos).length).toBe(4);
+    await fireEvent.press(screen.getByRole('button', { name: /jeu\.? 22/i }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/planning/jour', params: { jour: '2026-10-22' } });
   });
 
-  it('cocher échoue : la case revient en arrière et un message le dit', async () => {
-    serveur({ plan: PRET, cocher: { message: 'boom' } });
+  it('le planning commence en milieu de semaine : les jours d’avant ne sont pas des jours de repos', async () => {
+    jest.setSystemTime(new Date(2026, 9, 22, 10, 0));
+    serveur({ plan: DEBUT_TARD });
+    await monter(<Planning />, reglage);
+    await screen.findByText('Semaine 1 sur 1');
+    // Lundi, mardi, mercredi avant le début, vendredi, samedi, dimanche après la fin.
+    expect(screen.getAllByLabelText(t.horsPlanning).length).toBe(6);
+    expect(screen.queryByText(t.repos)).toBeNull();
+  });
+
+  it('navigation : semaine suivante, puis retour ; pas de semaine avant la première', async () => {
+    serveur({ plan: PRET });
     await monter(<Planning />, reglage);
     await screen.findByText('Semaine 1 sur 2');
-    await fireEvent.press(screen.getAllByRole('checkbox')[1]);
-    await screen.findByText(t.erreurCocher);
-    expect(screen.getByText('45 min aujourd’hui')).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.semainePrecedente }).props.accessibilityState.disabled).toBe(true);
+    await fireEvent.press(screen.getByRole('button', { name: t.semaineSuivante }));
+    await screen.findByText('Semaine 2 sur 2');
+    expect(screen.getByText(/26 oct\. – 1 nov\./)).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.semaineSuivante }).props.accessibilityState.disabled).toBe(true);
+    await fireEvent.press(screen.getByRole('button', { name: t.semainePrecedente }));
+    await screen.findByText('Semaine 1 sur 2');
   });
 
-  it('hors ligne avec une copie : dernier planning, cases et changement de temps bloqués', async () => {
+  it('jour de repos : la séance du jour dit quand reprendre, et ouvre la prochaine séance', async () => {
+    jest.setSystemTime(new Date(2026, 9, 21, 10, 0));
+    serveur({ plan: PRET });
+    await monter(<Planning />, reglage);
+    await screen.findByText(/Pas de séance aujourd’hui/);
+    await fireEvent.press(screen.getByText(t.voirProchaine));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/planning/jour', params: { jour: '2026-10-22' } });
+  });
+
+  it('Ajuster est dans l’en-tête, à côté de la croix : le choix s’ouvre avec le temps actuel déjà sélectionné', async () => {
+    serveur({ plan: PRET });
+    await monter(<Planning />, reglage);
+    await screen.findByText(t.aujourdhuiTitre.toUpperCase());
+    await fireEvent.press(screen.getByRole('button', { name: t.ajusterLibelle }));
+    await screen.findByText(t.titreTemps);
+    expect(screen.getByRole('radio', { name: t.temps.replace('{{n}}', '45') }).props.accessibilityState.selected).toBe(true);
+  });
+
+  it('hors ligne avec une copie : dernier planning, ni « Ajuster » ni changement de temps', async () => {
     await AsyncStorage.setItem(CLE_COPIE_PLANNING('u1'), JSON.stringify(PRET));
     serveur({ planErreur: erreurReseau });
     await monter(<Planning />, reglage);
     await screen.findByText(t.horsLigne);
-    expect(screen.getAllByRole('checkbox')[0].props.accessibilityState.disabled).toBe(true);
-    await fireEvent.press(screen.getAllByRole('checkbox')[1]);
-    expect(mockRpc).not.toHaveBeenCalledWith('study_plan_mark_done', expect.anything());
+    expect(screen.queryByRole('button', { name: t.ajusterLibelle })).toBeNull();
   });
 
   it('hors ligne sans copie : message « pas de réseau » et bouton pour réessayer', async () => {
@@ -168,13 +220,14 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     await screen.findByText(t.horsLigneTitre);
     serveur({ plan: PRET });
     await fireEvent.press(screen.getByText(t.reessayer));
-    await screen.findByText('Semaine 1 sur 2');
+    await screen.findByText(t.aujourdhuiTitre.toUpperCase());
   });
 
   it('erreur du serveur : message d’erreur et bouton pour réessayer', async () => {
     serveur({ planErreur: { name: 'PostgrestError', message: 'boom' } });
     await monter(<Planning />, reglage);
     await screen.findByText(t.erreurTitre);
+    expect(screen.getByText(t.erreurTexte)).toBeTruthy();
     expect(screen.getByText(t.reessayer)).toBeTruthy();
   });
 
@@ -198,20 +251,11 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     expect(screen.getByText(t.preparationTexte)).toBeTruthy();
   });
 
-  it('changer le temps : le choix s’ouvre avec le temps actuel déjà sélectionné', async () => {
-    serveur({ plan: PRET });
-    await monter(<Planning />, reglage);
-    await screen.findByText('Semaine 1 sur 2');
-    await fireEvent.press(screen.getByText(t.changer));
-    await screen.findByText(t.titreTemps);
-    expect(screen.getByRole('radio', { name: t.temps.replace('{{n}}', '45') }).props.accessibilityState.selected).toBe(true);
-  });
-
   it('mesure : ouverture avec son origine', async () => {
     mockParams = { source: 'push' };
     serveur({ plan: PRET });
     await monter(<Planning />, reglage);
-    await screen.findByText('Semaine 1 sur 2');
+    await screen.findByText(t.aujourdhuiTitre.toUpperCase());
     expect(suivre).toHaveBeenCalledWith('planning_opened', { source: 'push' });
   });
 });
@@ -225,10 +269,24 @@ describe('CartePlanning', () => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/planning', params: { source: 'accueil' } });
   });
 
-  it('séance du jour : la matière du jour', async () => {
+  it('séance du jour : nombre de tâches et durée', async () => {
     serveur({ plan: PRET });
     await monter(<CartePlanning idUtilisateur="u1" />);
-    await screen.findByText('Aujourd’hui : Mathématique');
+    await screen.findByText('Aujourd’hui : 2 tâches · 45 min');
+  });
+
+  it('avancement : une leçon validée sur deux', async () => {
+    await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ '2': 1 }));
+    serveur({ plan: PRET });
+    await monter(<CartePlanning idUtilisateur="u1" />);
+    await screen.findByText('Aujourd’hui : 2 tâches · 45 min · 1 sur 2 faits');
+  });
+
+  it('séance déjà faite par les leçons validées', async () => {
+    await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ '2': 1, '4': 3 }));
+    serveur({ plan: PRET });
+    await monter(<CartePlanning idUtilisateur="u1" />);
+    await screen.findByText(t.carte.fait);
   });
 
   it('jour de repos', async () => {
