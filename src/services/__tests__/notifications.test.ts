@@ -269,3 +269,15 @@ describe('réglages', () => {
     await expect(ecrireReglagesNotifications({ rpc: async () => ({ error: new Error('refusé') }), from: jest.fn() } as never, { enabled: true })).rejects.toThrow('refusé');
   });
 });
+
+describe('planning d’études : notifications', () => {
+  it('« planning prêt » et « planning changé » sont des rappels (réglage coupé avec les rappels)', () => {
+    expect(categorieDe('study_plan_ready')).toBe('reminders');
+    expect(categorieDe('study_plan_updated')).toBe('reminders');
+  });
+
+  it('le toucher ouvre le planning, avec l’origine pour la mesure', () => {
+    expect(destinationDe('study_plan_ready', { screen: '/planning' }, 'push')).toEqual({ pathname: '/planning', params: { source: 'push' } });
+    expect(destinationDe('study_plan_updated', undefined, 'inbox')).toEqual({ pathname: '/planning', params: { source: 'inbox' } });
+  });
+});

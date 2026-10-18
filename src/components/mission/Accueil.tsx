@@ -24,6 +24,7 @@ import { Ecran } from '../Ecran';
 import { FeuilleCompte, useInvite } from '../FeuilleCompte';
 import { Cloche } from '../notifications/Cloche';
 import { CompteARebours } from '../accueil/CompteARebours';
+import { CartePlanning } from '../planning/CartePlanning';
 import { lireCalendrierClasse, prochaineEcheance, type EcheanceClasse } from '@/services/calendrier';
 import { AvatarNiveau } from '../xp/AvatarNiveau';
 import { AssistantConfiguration } from './AssistantConfiguration';
@@ -282,6 +283,13 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
             }
             estime={echeance ? echeance.statut === 'reprise' : true}
           />
+        </Apparition>
+      ) : null}
+
+      {/* Planning d'études (issue #65) : seulement quand l'élève a une date à venir, donc jamais pour un invité. */}
+      {echeance && idUtilisateur ? (
+        <Apparition delai={50}>
+          <CartePlanning idUtilisateur={idUtilisateur} />
         </Apparition>
       ) : null}
 

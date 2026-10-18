@@ -22,6 +22,9 @@ export type Evenements = {
   web_app_banner_dismissed: Record<string, never>;
   payment_succeeded: { offre: 'week' | 'month' | 'contest'; pays: string };
   payment_failed: { offre: 'week' | 'month' | 'contest'; pays: string; motif?: string };
+  planning_opened: { source: 'accueil' | 'push' | 'inbox' };
+  planning_time_chosen: { minutes: number };
+  planning_day_checked: { fait: boolean };
   mission_started: { source: 'serveur' | 'locale'; total: number };
   mission_completed: { score: number; total: number; duree_s: number; serie: number };
   mission_lesson_review_opened: { cours: number };

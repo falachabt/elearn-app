@@ -160,7 +160,7 @@ export function categorieDe(type: string): CategorieReglage | null {
   if (['post_comment', 'post_reply', 'mention', 'post_like', 'profile_like'].includes(type)) return 'answers';
   if (type === 'poll_revealed') return 'polls';
   if (['credits_refilled', 'referral', 'reward', 'credits_low'].includes(type)) return 'credits';
-  if (type === 'study_reminder' || type === 'weekly_summary') return 'reminders';
+  if (['study_reminder', 'weekly_summary', 'study_plan_ready', 'study_plan_updated'].includes(type)) return 'reminders';
   if (type === 'marketing') return 'marketing';
   return null;
 }
@@ -196,6 +196,8 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const semaine = typeof data?.week_start === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.week_start) ? data.week_start : null;
     return { pathname: '/ma-semaine', params: { ...(semaine ? { semaine } : {}), source: origine } };
   }
+  // Planning d'études prêt ou changé : l'écran du planning, avec l'origine du toucher pour la mesure.
+  if (type === 'study_plan_ready' || type === 'study_plan_updated') return { pathname: '/planning', params: { source: origine } };
   if ((categorie === 'answers' || categorie === 'polls') && postId) return { pathname: '/question', params: { id: postId } };
   if (ecran && ecran !== '/') return { pathname: ecran };
   if (categorie === 'answers' || categorie === 'polls') return { pathname: '/questions' };
