@@ -11,7 +11,7 @@ import { etatMaitrise } from '../certMaitrise';
 import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { lireReglages } from '../reglages';
-import type { BlocServi, DemarrageMini, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
+import type { BlocServi, DemarrageMini, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
@@ -114,6 +114,37 @@ function corriger(r: ReponseEnvoyee): ResultatReponse {
     words: [],
     transcript: g?.transcript ?? null,
     replay: false,
+  };
+}
+
+/** Statistiques de démonstration (outil de développement) : activées par `EXPO_PUBLIC_CERT_DEMO_STATS=1`, jamais en production. */
+function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>[0]): Stats {
+  const parties: [number, number, number][] = [
+    [1, 18, 15], [2, 14, 9], [3, 12, 10], [4, 16, 8], [5, 20, 13], [6, 10, 6], [7, 30, 19],
+  ];
+  return {
+    status: 'ok',
+    periode,
+    reponsesTotal: parties.reduce((a, [, n]) => a + n, 0),
+    score: { estime: true, min: 620, max: 700 },
+    barres: [
+      { fin: jourPlus(jour, -21), min: 540, max: 600, milieu: 570 },
+      { fin: jourPlus(jour, -14), min: 580, max: 640, milieu: 610 },
+      { fin: jourPlus(jour, -7), min: 600, max: 660, milieu: 630 },
+      { fin: jour, min: 620, max: 700, milieu: 660 },
+    ],
+    tendance: 'up',
+    parties: parties.map(([partie, n, c]) => {
+      const m = c / n;
+      return { partie, repondues: n, bonnes: c, taux: m, maitrise: m, reponsesMaitrise: n, etat: etatMaitrise(m, n, reglages) };
+    }),
+    minutesSeances: 95,
+    minutesLecture: 40,
+    joursSur7: 4,
+    seances: 6,
+    serieJours: 3,
+    mots: { aRevoir: 5, enCours: 12, connus: 30 },
+    calculeLe: new Date().toISOString(),
   };
 }
 
@@ -322,6 +353,8 @@ export const apiDemo: CertApi = {
     return (await lire()).historique;
   },
   async lireStats(_exam, periode, jour): Promise<Stats> {
+    // Jeu de données fixe pour capturer les tuiles de Statistiques (ST1) sans avoir répondu à des questions.
+    if (process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1') return statsDemoFixes(periode, jour);
     const s = await lire();
     const total = Object.values(s.parties).reduce((a, p) => a + p.n, 0);
     const base: Stats = {
