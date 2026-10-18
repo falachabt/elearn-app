@@ -165,7 +165,9 @@ export function Squelette({ lignes = 3 }: { lignes?: number }) {
 }
 
 const styles = StyleSheet.create({
-  tuileZone: { flexGrow: 1, flexBasis: '45%' },
+  // Base 45 % pour que les grilles en retour à la ligne passent deux par ligne ; shrink et minWidth 0 pour qu'une rangée
+  // sans retour (trois tuiles) se resserre au lieu de déborder de la carte.
+  tuileZone: { flexGrow: 1, flexShrink: 1, flexBasis: '45%', minWidth: 0 },
   tuile: { gap: 2, padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, minHeight: 64, justifyContent: 'center' },
   pleineHauteur: { flex: 1 },
   squelette: { gap: espace[3] },
