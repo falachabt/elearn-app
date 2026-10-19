@@ -10,9 +10,30 @@ import type { SupabaseClient } from '@supabase/supabase-js';
  * échouer instantanément la connexion Google d'un invité) : on y retombe sur le stockage du navigateur.
  */
 export const SecureStore = {
-  getItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.getItem(cle) : ExpoSecureStore.getItemAsync(cle)),
-  setItemAsync: (cle: string, valeur: string) => (Platform.OS === 'web' ? AsyncStorage.setItem(cle, valeur) : ExpoSecureStore.setItemAsync(cle, valeur)),
-  deleteItemAsync: (cle: string) => (Platform.OS === 'web' ? AsyncStorage.removeItem(cle) : ExpoSecureStore.deleteItemAsync(cle)),
+  getItemAsync: async (cle: string): Promise<string | null> => {
+    if (Platform.OS === 'web') return AsyncStorage.getItem(cle);
+    try {
+      return await ExpoSecureStore.getItemAsync(cle);
+    } catch {
+      return AsyncStorage.getItem(cle);
+    }
+  },
+  setItemAsync: async (cle: string, valeur: string): Promise<void> => {
+    if (Platform.OS === 'web') return AsyncStorage.setItem(cle, valeur);
+    try {
+      await ExpoSecureStore.setItemAsync(cle, valeur);
+    } catch {
+      await AsyncStorage.setItem(cle, valeur);
+    }
+  },
+  deleteItemAsync: async (cle: string): Promise<void> => {
+    if (Platform.OS === 'web') return AsyncStorage.removeItem(cle);
+    try {
+      await ExpoSecureStore.deleteItemAsync(cle);
+    } catch {
+      await AsyncStorage.removeItem(cle);
+    }
+  },
 };
 
 const CLE_REPRISE = 'compte.repriseInvite';

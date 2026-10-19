@@ -249,6 +249,19 @@ describe('Google', () => {
     expect(await lireRepriseInvite()).toBeNull();
   });
 
+  it('session invitée sans refresh_token : connexion Google réussit sans bloquer avec erreur', async () => {
+    const inviteSansRefresh = { ...invite, refresh_token: '' };
+    const c = faux(inviteSansRefresh, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: inviteSansRefresh } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    await expect(
+      connecterGoogle(c, deps({ type: 'success', url: 'elearnprepa://auth/callback?code=g_sans_token' }), null, { connexionDirecte: true }),
+    ).resolves.toBe(false);
+    expect(c.auth.signInWithOAuth).toHaveBeenCalled();
+  });
+
   it('rattachement explicite (ancien compte) déjà lié : message lisible, pas de repli', async () => {
     const c = faux(membre);
     await expect(
@@ -312,5 +325,18 @@ describe('Apple', () => {
   it('annulation par l’utilisateur', async () => {
     const c = faux(null);
     await expect(connecterApple(c, deps({ demander: jest.fn().mockRejectedValue({ code: 'ERR_REQUEST_CANCELED' }) }))).rejects.toMatchObject({ cle: 'compte.erreurs.annule' });
+  });
+
+  it('session invitée sans refresh_token : connexion Apple réussit sans bloquer avec erreur', async () => {
+    const inviteSansRefresh = { ...invite, refresh_token: '' };
+    const c = faux(inviteSansRefresh, {
+      getSession: jest.fn()
+        .mockResolvedValueOnce({ data: { session: inviteSansRefresh } })
+        .mockResolvedValueOnce({ data: { session: membre } }),
+    });
+    await expect(
+      connecterApple(c, deps(), null, { connexionDirecte: true }),
+    ).resolves.toBe(false);
+    expect(c.auth.signInWithIdToken).toHaveBeenCalled();
   });
 });

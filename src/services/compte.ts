@@ -145,10 +145,19 @@ export async function creerCompteEmail(client: Client, p: { email: string; motDe
 export async function connecterEmail(client: Client, p: { email: string; motDePasse: string }): Promise<Session> {
   suivre('login_started', { methode: 'email' });
   const { data: courante } = await client.auth.getSession();
-  const sessionInvite = estInvite(courante.session?.user) ? courante.session : null;
+  let sessionInvite = estInvite(courante.session?.user) ? courante.session : null;
   if (sessionInvite) {
-    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
-    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+    if (!sessionInvite.refresh_token) {
+      console.warn('Session invitée sans refresh_token : reprise ignorée.');
+      sessionInvite = null;
+    } else {
+      try {
+        await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+      } catch (e) {
+        console.warn('Impossible de préparer la reprise invitée, connexion poursuivie sans reprise.', e);
+        sessionInvite = null;
+      }
+    }
   }
 
   // Simulation mode développeur pour tester l'écran 429 connexion
@@ -167,14 +176,22 @@ export async function connecterEmail(client: Client, p: { email: string; motDePa
     const { data, error } = await client.auth.signInWithPassword({ email: p.email.trim(), password: p.motDePasse });
     if (error) throw error;
     if (sessionInvite) {
-      const sessionCible = data.session ?? (await client.auth.getSession()).data.session;
-      if (!sessionCible) throw new ErreurCompte('compte.erreurs.inconnue');
-      await confirmerBesoinReprise(client, sessionInvite.user.id, sessionCible.user.id);
+      try {
+        const sessionCible = data.session ?? (await client.auth.getSession()).data.session;
+        if (sessionCible) {
+          await confirmerBesoinReprise(client, sessionInvite.user.id, sessionCible.user.id);
+        } else {
+          await effacerRepriseInvite().catch(() => {});
+        }
+      } catch (err) {
+        console.warn('Impossible de confirmer la reprise invitée :', err);
+        await effacerRepriseInvite().catch(() => {});
+      }
     }
     suivre('connexion_reussie', { methode: 'email' });
     return data.session;
   } catch (e) {
-    if (sessionInvite) await annulerOAuthRepriseInvite();
+    if (sessionInvite) await annulerOAuthRepriseInvite().catch(() => {});
     throw e;
   }
 }
@@ -206,10 +223,19 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
   const { data: courante } = await client.auth.getSession();
   const conversionInvite = estInvite(courante.session?.user);
   const rattachement = !mode.connexionDirecte && (conversionInvite || !!mode.rattacher);
-  const sessionInvite = mode.connexionDirecte && conversionInvite ? courante.session : null;
+  let sessionInvite = mode.connexionDirecte && conversionInvite ? courante.session : null;
   if (sessionInvite) {
-    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
-    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+    if (!sessionInvite.refresh_token) {
+      console.warn('Session invitée sans refresh_token : reprise ignorée.');
+      sessionInvite = null;
+    } else {
+      try {
+        await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+      } catch (e) {
+        console.warn('Impossible de préparer la reprise invitée, connexion poursuivie sans reprise.', e);
+        sessionInvite = null;
+      }
+    }
   }
   try {
     // Page entière : le formulaire est perdu pendant l'aller-retour, le code de parrainage saisi est gardé sur l'appareil.
@@ -217,9 +243,18 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     await parcoursOAuth(client, fournisseur, deps, rattachement);
     let reprise = false;
     if (sessionInvite) {
-      const { data: connexion } = await client.auth.getSession();
-      if (!connexion.session) throw new ErreurCompte('compte.erreurs.inconnue');
-      reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+      try {
+        const { data: connexion } = await client.auth.getSession();
+        if (connexion?.session) {
+          reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+        } else {
+          await effacerRepriseInvite().catch(() => {});
+        }
+      } catch (e) {
+        console.warn('Erreur lors de la confirmation de la reprise invitée :', e);
+        await effacerRepriseInvite().catch(() => {});
+        reprise = false;
+      }
     }
     const avecCode = await rattacherCode(client, codeParrainage);
     if (rattachement && conversionInvite) {
@@ -230,7 +265,7 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
     else suivre('connexion_reussie', { methode: fournisseur });
     return reprise;
   } catch (e) {
-    if (sessionInvite) await annulerOAuthRepriseInvite();
+    if (sessionInvite) await annulerOAuthRepriseInvite().catch(() => {});
     throw e;
   }
 }
@@ -320,25 +355,43 @@ export async function connecterApple(client: Client, deps: DepsApple, codeParrai
   if (!jeton.identityToken) throw new ErreurCompte('compte.erreurs.inconnue');
   const identifiants = { provider: 'apple', token: jeton.identityToken, nonce: jeton.nonce };
   const { data: courante } = await client.auth.getSession();
-  const sessionInvite = mode.connexionDirecte && estInvite(courante.session?.user) ? courante.session : null;
+  let sessionInvite = mode.connexionDirecte && estInvite(courante.session?.user) ? courante.session : null;
   if (sessionInvite) {
-    if (!sessionInvite.refresh_token) throw new ErreurCompte('compte.erreurs.inconnue');
-    await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+    if (!sessionInvite.refresh_token) {
+      console.warn('Session invitée sans refresh_token : reprise ignorée.');
+      sessionInvite = null;
+    } else {
+      try {
+        await preparerRepriseInvite(sessionInvite.user.id, sessionInvite.refresh_token);
+      } catch (e) {
+        console.warn('Impossible de préparer la reprise invitée, connexion poursuivie sans reprise.', e);
+        sessionInvite = null;
+      }
+    }
   }
   try {
     const { error } = mode.rattacher ? await client.auth.linkIdentity(identifiants) : await client.auth.signInWithIdToken(identifiants);
     if (error) throw error;
     let reprise = false;
     if (sessionInvite) {
-      const { data: connexion } = await client.auth.getSession();
-      if (!connexion.session) throw new ErreurCompte('compte.erreurs.inconnue');
-      reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+      try {
+        const { data: connexion } = await client.auth.getSession();
+        if (connexion?.session) {
+          reprise = await confirmerBesoinReprise(client, sessionInvite.user.id, connexion.session.user.id);
+        } else {
+          await effacerRepriseInvite().catch(() => {});
+        }
+      } catch (e) {
+        console.warn('Erreur lors de la confirmation de la reprise invitée :', e);
+        await effacerRepriseInvite().catch(() => {});
+        reprise = false;
+      }
     }
     await rattacherCode(client, codeParrainage);
     suivre(mode.rattacher ? 'identite_rattachee' : 'connexion_reussie', { methode: 'apple' });
     return reprise;
   } catch (e) {
-    if (sessionInvite) await annulerOAuthRepriseInvite();
+    if (sessionInvite) await annulerOAuthRepriseInvite().catch(() => {});
     throw e;
   }
 }
