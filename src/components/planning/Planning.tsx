@@ -1,7 +1,7 @@
 import {
   BottomSheetBackdrop,
   BottomSheetModal,
-  BottomSheetView,
+  BottomSheetScrollView,
   type BottomSheetBackdropProps,
 } from '@gorhom/bottom-sheet';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
@@ -21,7 +21,7 @@ import {
   type LucideIcon,
 } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -1048,40 +1048,42 @@ function PlanningPret({
           ]}
           handleIndicatorStyle={[styles.poigneeFeuilleSemaine, { backgroundColor: theme.bord.fort }]}
         >
-          <BottomSheetView style={styles.conteneurFeuilleSemaine} testID="planning-feuille-semaine">
-            <View style={[styles.enteteFeuilleSemaine, { borderBottomColor: theme.bord.doux }]}>
-              <Text style={[typo.h3, styles.enteteFeuilleTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
-              <Appui
-                testID="planning-fermer-semaine"
-                accessibilityRole="button"
-                accessibilityLabel={t('planning.masquerSemaine')}
-                onPress={fermerFeuilleSemaine}
-                decalage={0}
-                rayon={rayon.pilule}
-              >
-                <View style={[styles.boutonFermerFeuille, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-                  <X size={18} strokeWidth={2.4} color={theme.texte.principal} />
-                </View>
-              </Appui>
-            </View>
-            <ScrollView contentContainerStyle={styles.corpsFeuilleSemaine} showsVerticalScrollIndicator={false}>
-              <Semaine
-                planning={planning}
-                lues={lues}
-                acquises={acquises}
-                aujourdhui={aujourdhui}
-                copie={copie}
-                onOuvrirJour={(jour) => {
-                  fermerFeuilleSemaine();
-                  ouvrirJour(jour);
-                }}
-                onChanger={() => {
-                  fermerFeuilleSemaine();
-                  onChanger();
-                }}
-              />
-            </ScrollView>
-          </BottomSheetView>
+          <View style={[styles.enteteFeuilleSemaine, { borderBottomColor: theme.bord.doux, backgroundColor: theme.fond.app }]}>
+            <Text style={[typo.h3, styles.enteteFeuilleTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
+            <Appui
+              testID="planning-fermer-semaine"
+              accessibilityRole="button"
+              accessibilityLabel={t('planning.masquerSemaine')}
+              onPress={fermerFeuilleSemaine}
+              decalage={0}
+              rayon={rayon.pilule}
+            >
+              <View style={[styles.boutonFermerFeuille, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+                <X size={18} strokeWidth={2.4} color={theme.texte.principal} />
+              </View>
+            </Appui>
+          </View>
+          <BottomSheetScrollView
+            testID="planning-feuille-semaine"
+            contentContainerStyle={styles.corpsFeuilleSemaine}
+            showsVerticalScrollIndicator={false}
+          >
+            <Semaine
+              planning={planning}
+              lues={lues}
+              acquises={acquises}
+              aujourdhui={aujourdhui}
+              copie={copie}
+              onOuvrirJour={(jour) => {
+                fermerFeuilleSemaine();
+                ouvrirJour(jour);
+              }}
+              onChanger={() => {
+                fermerFeuilleSemaine();
+                onChanger();
+              }}
+            />
+          </BottomSheetScrollView>
         </BottomSheetModal>
       ) : null}
     </>
@@ -1394,9 +1396,6 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: rayon.pilule,
   },
-  conteneurFeuilleSemaine: {
-    flex: 1,
-  },
   enteteFeuilleSemaine: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1415,9 +1414,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  corpsFeuilleSemaine: {
-    paddingHorizontal: espace[4],
-    paddingTop: espace[4],
-    paddingBottom: espace[7],
-  },
+  corpsFeuilleSemaine: { paddingHorizontal: espace[4], paddingTop: espace[4], paddingBottom: espace[7] },
 });

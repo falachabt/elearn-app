@@ -200,7 +200,7 @@ function withSequenceMorph(echelle: { value: number }) {
 }
 
 const styles = StyleSheet.create({
-  carte: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[3], paddingHorizontal: espace[4] },
+  carte: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingVertical: espace[3], paddingHorizontal: espace[4] },
   pastille: { width: 36, height: 36, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   texte: { flex: 1, gap: espace[1] },
   ligne: { flexDirection: 'row', alignItems: 'baseline', flexWrap: 'wrap', gap: espace[2] },

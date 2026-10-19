@@ -4,7 +4,8 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type LeconsValidees, type Planning } from '@/services/planning';
+import { etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type AcquisesEntrainement, type LeconsValidees, type Planning } from '@/services/planning';
+import { lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -12,7 +13,6 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Carte } from '../Carte';
-
 
 /**
  * Carte « Mon planning » de l'accueil (spec `docs/maquettes/planning-etudes.md` §1) : la séance du jour, ou « Choisis ton
@@ -24,6 +24,7 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
   const { theme } = useTheme();
   const [planning, setPlanning] = useState<Planning | null>(null);
   const [lues, setLues] = useState<LeconsValidees>({});
+  const [acquises, setAcquises] = useState<AcquisesEntrainement>({});
 
   useFocusEffect(
     useCallback(() => {
@@ -31,6 +32,10 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
       lireLues()
         .catch(() => ({}) as LeconsValidees)
         .then((validees) => actif && setLues(validees));
+      Promise.all([
+        lireMeilleursScores().catch(() => ({}) as Record<string, number>),
+        lireExercicesFaits().catch(() => ({}) as Record<string, true>),
+      ]).then(([scores, exercices]) => actif && setAcquises({ scores, exercices }));
       lirePlanning(getSupabase(), idUtilisateur)
         .then(({ planning: p }) => actif && setPlanning(p))
         .catch(() => actif && setPlanning(null));
@@ -44,14 +49,24 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
 
   const aujourdhui = jourLocalTexte();
   const seance = planning.statut === 'ready' ? seanceDe(planning, aujourdhui) : null;
-  const progression = seance ? progressionSeance(seance, lues) : null;
+  const progression = seance ? progressionSeance(seance, lues, acquises) : null;
   const sousTitre =
-    planning.statut !== 'ready' ? t('planning.carte.choisir')
-    : seance && seanceTerminee(seance, lues) ? t('planning.carte.fait')
-    : seance ? t(seance.elements.length === 1 ? 'planning.carte.tache' : 'planning.carte.taches', { n: seance.elements.length, minutes: seance.minutes })
-    : etatJour(planning, aujourdhui) === 'repos' ? t('planning.carte.repos')
-    : t('planning.carte.libre');
-  const avancement = seance && progression && progression.faits > 0 && !seanceTerminee(seance, lues) ? t('planning.carte.avancement', progression) : null;
+    planning.statut !== 'ready'
+      ? t('planning.carte.choisir')
+      : seance && seanceTerminee(seance, lues, acquises)
+        ? t('planning.carte.fait')
+        : seance
+          ? t(seance.elements.length === 1 ? 'planning.carte.tache' : 'planning.carte.taches', {
+              n: seance.elements.length,
+              minutes: seance.minutes,
+            })
+          : etatJour(planning, aujourdhui) === 'repos'
+            ? t('planning.carte.repos')
+            : t('planning.carte.libre');
+  const pourcentage =
+    seance && progression && progression.total > 0
+      ? Math.round((progression.faits / progression.total) * 100)
+      : null;
 
   return (
     <Appui
@@ -66,17 +81,60 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
           <CalendarCheck size={20} strokeWidth={2} color={theme.texte.principal} />
         </View>
         <View style={styles.texte}>
-          <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>{t('planning.carte.titre')}</Text>
-          <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>{avancement ? `${sousTitre} · ${avancement}` : sousTitre}</Text>
+          <Text numberOfLines={1} style={[typo.texteFort, { color: theme.texte.principal }]}>
+            {t('planning.carte.titre')}
+          </Text>
+          <Text numberOfLines={2} style={[typo.petit, { color: theme.texte.secondaire }]}>
+            {sousTitre}
+          </Text>
+          {pourcentage !== null ? (
+            <View
+              testID="carte-planning-progression"
+              accessibilityRole="progressbar"
+              accessibilityValue={{ min: 0, max: 100, now: pourcentage }}
+              style={[styles.piste, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}
+            >
+              <View
+                style={[
+                  styles.remplissage,
+                  { width: `${pourcentage}%`, backgroundColor: theme.marque.principale },
+                ]}
+              />
+            </View>
+          ) : null}
         </View>
-        <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />
+        <View style={styles.chevron}>
+          <ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />
+        </View>
       </Carte>
     </Appui>
   );
 }
 
 const styles = StyleSheet.create({
-  carte: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[3], paddingHorizontal: espace[4] },
-  pastille: { width: 36, height: 36, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  carte: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: espace[3],
+    paddingVertical: espace[3],
+    paddingHorizontal: espace[4],
+  },
+  pastille: {
+    width: 36,
+    height: 36,
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   texte: { flex: 1, gap: espace[1] },
+  piste: {
+    height: 10,
+    marginTop: espace[1],
+    borderWidth: bord.fin,
+    borderRadius: rayon.pilule,
+    overflow: 'hidden',
+  },
+  remplissage: { height: '100%' },
+  chevron: { alignSelf: 'center' },
 });

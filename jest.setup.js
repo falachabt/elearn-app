@@ -35,7 +35,7 @@ jest.mock('expo-notifications', () => ({
 // Feuilles du bas : rendues à plat (le module natif d'animation n'existe pas sous Jest).
 jest.mock('@gorhom/bottom-sheet', () => {
   const passe = ({ children }) => children ?? null;
-  const { FlatList, TextInput } = require('react-native');
+  const { FlatList, ScrollView, TextInput } = require('react-native');
   return {
     __esModule: true,
     default: passe,
@@ -44,6 +44,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
     BottomSheetModalProvider: passe,
     BottomSheetBackdrop: () => null,
     BottomSheetFlatList: FlatList,
+    BottomSheetScrollView: ScrollView,
     BottomSheetTextInput: TextInput,
   };
 });

@@ -307,11 +307,13 @@ describe('CartePlanning', () => {
     await screen.findByText('Aujourd’hui : 2 tâches · 45 min');
   });
 
-  it('avancement : une leçon validée sur deux', async () => {
+  it('avancement : une leçon validée sur deux montre la barre de progression à 50 %', async () => {
     await AsyncStorage.setItem(CLE_LUES, JSON.stringify({ '2': 1 }));
     serveur({ plan: PRET });
     await monter(<CartePlanning idUtilisateur="u1" />);
-    await screen.findByText('Aujourd’hui : 2 tâches · 45 min · 1 sur 2 faits');
+    await screen.findByText('Aujourd’hui : 2 tâches · 45 min');
+    const barre = await screen.findByTestId('carte-planning-progression');
+    expect(barre.props.accessibilityValue).toEqual({ min: 0, max: 100, now: 50 });
   });
 
   it('séance déjà faite par les leçons validées', async () => {
