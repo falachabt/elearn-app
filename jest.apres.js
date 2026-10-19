@@ -1,9 +1,9 @@
-/* global beforeEach */
-// Les copies gardées en mémoire (services/reviser, services/memoire, services/correction) s'enregistrent dans
-// globalThis.__nettoyerMemoireTests dès que leur module est chargé : chaque test repart sans elles, sans forcer
-// le chargement de tout le graphe applicatif (expo-router, posthog…) dans les suites qui ne les importent pas.
+/* global beforeEach, jest */
+// Les copies gardées en mémoire (services/reviser, services/memoire) vivent le temps de l'application : chaque test
+// repart sans elles, comme après un AsyncStorage.clear().
 beforeEach(() => {
   require('@react-native-async-storage/async-storage').clear();
-  globalThis.__nettoyerMemoireTests?.forEach((f) => f());
+  jest.requireActual('./src/services/reviser').oublierCopiesEnMemoire();
+  jest.requireActual('./src/services/memoire').oublierEtatsMemorises();
+  jest.requireActual('./src/services/correction').oublierCorrectionEnMemoire();
 });
-

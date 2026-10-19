@@ -27,9 +27,6 @@ export function oublierCorrectionEnMemoire(): void {
   derniereCorrection = null;
 }
 
-const gTests = globalThis as { __nettoyerMemoireTests?: Set<() => void> };
-(gTests.__nettoyerMemoireTests ??= new Set()).add(oublierCorrectionEnMemoire);
-
 export async function enregistrerCorrection(c: Correction): Promise<void> {
   derniereCorrection = c;
   await AsyncStorage.setItem(CLE_CORRECTION, JSON.stringify(c)).catch(() => {});
