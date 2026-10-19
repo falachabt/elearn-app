@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { BookOpen, Check, ChevronRight, FileText, ListChecks, PenTool, RotateCw, type LucideIcon } from 'lucide-react-native';
+import { Check, ChevronRight } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -26,25 +26,27 @@ import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { EcranErreur } from '../liste/EcranErreur';
+import { Pastille } from '../liste/Pastille';
+import { PastilleType, type TypeContenu } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
 import { CLES_PHASE, titreElement } from './Planning';
 
 type Etat = { type: 'chargement' } | { type: 'pret'; planning: Planning; copie: boolean } | { type: 'erreur' } | { type: 'pasReseau' };
 
-const ICONES: Record<ElementSeance['genre'], LucideIcon> = {
-  lecon: BookOpen,
-  quiz: ListChecks,
-  exercice: PenTool,
-  annales: FileText,
-  revisionFinale: RotateCw,
-  revisionLibre: BookOpen,
+const TYPE_PASTILLE: Record<ElementSeance['genre'], TypeContenu> = {
+  lecon: 'lecon',
+  quiz: 'quiz',
+  exercice: 'exercice',
+  annales: 'annale',
+  revisionFinale: 'lecon',
+  revisionLibre: 'lecon',
 };
 const CLES_DETAIL = {
   annales: 'planning.detail.annales',
@@ -79,7 +81,7 @@ function ouvrir(e: ElementSeance) {
 function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const Icone = ICONES[e.genre];
+  const typePastille = TYPE_PASTILLE[e.genre];
   const titre = titreElement(e, t);
   const detail =
     e.genre === 'lecon'
@@ -93,16 +95,22 @@ function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
             : t(CLES_DETAIL[e.genre]);
   const aValidationPropre = e.genre === 'lecon' || e.genre === 'quiz' || e.genre === 'exercice';
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={`${t('planning.ouvrirTache', { titre })}${fait ? `. ${t('planning.fait')}` : ''}`} onPress={() => ouvrir(e)} decalage={0} rayon={rayon.l}>
-      <View style={[styles.tache, { borderColor: fait ? theme.bord.doux : theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-        <View style={[styles.pastille, { borderColor: theme.bord.fort, backgroundColor: fait ? theme.marque.principale : theme.marque.douce }]}>
-          {fait ? <Check size={20} strokeWidth={2.5} color={theme.texte.surCouleur} /> : <Icone size={20} strokeWidth={2} color={theme.texte.principal} />}
-        </View>
+    <Appui
+      accessibilityRole="button"
+      accessibilityLabel={`${t('planning.ouvrirTache', { titre })}${fait ? `. ${t('planning.fait')}` : ''}`}
+      onPress={() => ouvrir(e)}
+      ombre={fait ? 0 : ombre.carte}
+      decalage={fait ? 0 : 2}
+      couleurOmbre={theme.ombre}
+      rayon={rayon.l}
+    >
+      <View style={[styles.tache, { borderColor: theme.bord.fort, backgroundColor: fait ? theme.marque.douce : theme.fond.surface }]}>
+        <PastilleType type={typePastille} taille={38} />
         <View style={styles.tacheTexte}>
           <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
           <Text numberOfLines={2} style={[typo.legende, { color: theme.texte.secondaire }]}>{fait && aValidationPropre ? `${t('planning.jourDeja')} · ${detail}` : detail}</Text>
         </View>
-        <ChevronRight size={22} strokeWidth={2} color={theme.texte.secondaire} />
+        {fait ? <Pastille texte={t('planning.fait')} vert /> : <ChevronRight size={22} strokeWidth={2} color={theme.texte.secondaire} />}
       </View>
     </Appui>
   );

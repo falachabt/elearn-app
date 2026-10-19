@@ -1,22 +1,27 @@
+import {
+  BottomSheetBackdrop,
+  BottomSheetModal,
+  BottomSheetView,
+  type BottomSheetBackdropProps,
+} from '@gorhom/bottom-sheet';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import {
   Bell,
-  BookOpen,
   Calendar,
   Check,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
+  CircleHelp,
   FileText,
-  ListChecks,
-  PenTool,
+  GraduationCap,
+  PencilLine,
   SlidersHorizontal,
   Sparkles,
+  X,
   type LucideIcon,
 } from 'lucide-react-native';
-import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -58,13 +63,14 @@ import { AUTRES, couleurMatiere, lireCours, lireLues, nomCourt, programmeDu } fr
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, matiere as couleursMatieres, matiereSecours, ombre, palette, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, matiere as couleursMatieres, matiereSecours, ombre, palette, rayon, typeContenu, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { EcranErreur } from '../liste/EcranErreur';
+import { PastilleType, type TypeContenu } from '../liste/PastilleType';
 import { Squelettes } from '../liste/Squelettes';
 import { IconeMatiere } from '../reviser/IconeMatiere';
 
@@ -96,6 +102,8 @@ const REPOS_PAR_DEFAUT = 2;
 const RAPPEL_PAR_DEFAUT = '18:30';
 const ETAPES_ASSISTANT = [1, 2, 3, 4, 5] as const;
 const MATIERES_REPLI = ['Mathématique', 'Physique-Chimie', 'SVT', 'Français', 'Anglais', 'Histoire-Géo', 'Philosophie'] as const;
+const CLES_JOURS = ['mission.jourCourt1', 'mission.jourCourt2', 'mission.jourCourt3', 'mission.jourCourt4', 'mission.jourCourt5', 'mission.jourCourt6', 'mission.jourCourt7'] as const;
+const POINTS_FEUILLE_SEMAINE = ['93%'];
 /** Tâches du jour montrées dans la carte « Aujourd'hui » avant « … » (la page de la séance les montre toutes). */
 const TACHES_VISIBLES = 3;
 
@@ -108,12 +116,71 @@ export const CLES_ELEMENT = {
   exercice: 'planning.elements.exercice',
 } as const;
 
-const ICONES_CONTENU: Record<TypeContenuPlanning, LucideIcon> = {
-  lesson: BookOpen,
-  quiz: ListChecks,
-  exercise: PenTool,
-  past_papers: FileText,
+const PASTILLE_CONTENU: Record<TypeContenuPlanning, TypeContenu> = {
+  lesson: 'lecon',
+  quiz: 'quiz',
+  exercise: 'exercice',
+  past_papers: 'annale',
 };
+
+const COULEUR_DOUCE_CONTENU: Record<TypeContenu, string> = {
+  lecon: palette.emeraude[50],
+  quiz: palette.bleu[100],
+  exercice: palette.orange[100],
+  annale: palette.soleil[100],
+};
+
+const ICONE_PASTILLE: Record<TypeContenu, LucideIcon> = {
+  lecon: GraduationCap,
+  quiz: CircleHelp,
+  exercice: PencilLine,
+  annale: FileText,
+};
+
+type TagComposition = {
+  type: TypeContenu;
+  libelle: string;
+};
+
+/** Libellé court dans le cercle d'un jour : initiale du jour + numéro du mois (ex. « M 20 », « J 22 »). */
+function cercleJourTexte(jour: string, t: Traduire): string {
+  const d = dateDuJour(jour);
+  const indexIso = ((d.getDay() + 6) % 7) + 1;
+  const initiale = t(CLES_JOURS[indexIso - 1]);
+  return `${initiale} ${d.getDate()}`;
+}
+
+/** Tags de composition d'une séance (« 2 cours », « 2 quiz », « 1 exercice », « 1 annale ») sans afficher les titres de leçons. */
+function tagsCompositionSeance(seance: JourPlanning, t: Traduire): TagComposition[] {
+  let cours = 0;
+  let quiz = 0;
+  let exercices = 0;
+  let annales = 0;
+  for (const e of seance.elements) {
+    if (e.genre === 'lecon') cours += 1;
+    else if (e.genre === 'quiz') quiz += 1;
+    else if (e.genre === 'exercice') exercices += 1;
+    else if (e.genre === 'annales') annales += 1;
+    else cours += 1;
+  }
+  const tags: TagComposition[] = [];
+  if (cours > 0) {
+    tags.push({ type: 'lecon', libelle: cours === 1 ? t('planning.tagCoursUn') : t('planning.tagCours', { n: cours }) });
+  }
+  if (quiz > 0) {
+    tags.push({ type: 'quiz', libelle: quiz === 1 ? t('planning.tagQuizUn') : t('planning.tagQuiz', { n: quiz }) });
+  }
+  if (exercices > 0) {
+    tags.push({ type: 'exercice', libelle: exercices === 1 ? t('planning.tagExerciceUn') : t('planning.tagExercices', { n: exercices }) });
+  }
+  if (annales > 0) {
+    tags.push({ type: 'annale', libelle: annales === 1 ? t('planning.tagAnnaleUne') : t('planning.tagAnnales', { n: annales }) });
+  }
+  if (tags.length === 0) {
+    tags.push({ type: 'lecon', libelle: t('planning.tagCoursUn') });
+  }
+  return tags;
+}
 
 const sourceDe = (valeur?: string): Source => (valeur === 'push' || valeur === 'inbox' ? valeur : 'accueil');
 
@@ -385,7 +452,7 @@ function AssistantPlanning({
         </View>
       ) : null}
 
-      {/* ÉTAPE 2 : Contenus du programme (Leçons, Quiz, Exercices, Annales) */}
+      {/* ÉTAPE 2 : Contenus du programme (Leçons, Quiz, Exercices, Annales) avec les icônes et couleurs du Design System */}
       {etape === 2 ? (
         <View style={styles.bloc}>
           <View style={styles.bloc}>
@@ -401,7 +468,9 @@ function AssistantPlanning({
             <View style={styles.grilleContenus}>
               {CONTENUS_PROPOSES.map((code) => {
                 const choisi = contenusChoisis.includes(code);
-                const Icone = ICONES_CONTENU[code];
+                const typePastille = PASTILLE_CONTENU[code];
+                const couleurType = typeContenu[typePastille];
+                const couleurDouce = COULEUR_DOUCE_CONTENU[typePastille];
                 const titreContenu = t(`planning.contenus.${code}`);
                 const aideContenu = t(`planning.contenusAide.${code}`);
                 return (
@@ -421,28 +490,26 @@ function AssistantPlanning({
                           styles.carteContenu,
                           {
                             borderColor: theme.bord.fort,
-                            backgroundColor: choisi ? theme.marque.douce : theme.fond.surface,
+                            backgroundColor: choisi ? couleurDouce : theme.fond.surface,
                           },
                         ]}
                       >
                         <View style={styles.enteteCarteContenu}>
-                          <View style={[styles.iconeContenu, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
-                            <Icone size={16} strokeWidth={2.2} color={theme.texte.principal} />
-                          </View>
+                          <PastilleType type={typePastille} taille={34} />
                           <View
                             style={[
                               styles.casePuce,
                               {
                                 borderColor: theme.bord.fort,
-                                backgroundColor: choisi ? theme.marque.principale : theme.fond.surface,
+                                backgroundColor: choisi ? couleurType : theme.fond.surface,
                               },
                             ]}
                           >
-                            {choisi ? <Check size={12} strokeWidth={3} color={theme.texte.surCouleur} /> : null}
+                            {choisi ? <Check size={12} strokeWidth={3} color={palette.encre[1000]} /> : null}
                           </View>
                         </View>
-                        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titreContenu}</Text>
-                        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{aideContenu}</Text>
+                        <Text style={[typo.texteFort, { color: choisi ? palette.encre[1000] : theme.texte.principal }]}>{titreContenu}</Text>
+                        <Text style={[typo.legende, { color: choisi ? palette.encre[800] : theme.texte.secondaire }]}>{aideContenu}</Text>
                       </View>
                     </Appui>
                   </View>
@@ -714,6 +781,7 @@ function LigneJour({
   lues,
   acquises,
   aujourdhui,
+  onOuvrir,
 }: {
   jour: string;
   seance: JourPlanning | null;
@@ -721,22 +789,62 @@ function LigneJour({
   lues: LeconsValidees;
   acquises: AcquisesEntrainement;
   aujourdhui: string;
+  onOuvrir?: (jour: string) => void;
 }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const libelle = dateDuJour(jour).toLocaleDateString(localeDe(langue), { weekday: 'short', day: 'numeric' });
+  const pastilleJour = cercleJourTexte(jour, t);
   const etat = etatJour(planning, jour);
   const terminee = seance ? seanceTerminee(seance, lues, acquises) : false;
   const passeeNonFaite = seance !== null && !terminee && jour < aujourdhui;
+  const estAujourdhui = jour === aujourdhui;
+  const tags = seance ? tagsCompositionSeance(seance, t) : [];
+
   const contenu = (
-    <View style={[styles.ligne, { borderColor: jour === aujourdhui ? theme.bord.fort : theme.bord.doux, backgroundColor: theme.fond.surface }]}>
-      <Text style={[typo.etiquette, styles.jourLibelle, { color: theme.texte.secondaire }]}>{libelle}</Text>
+    <View style={[styles.ligne, { borderColor: estAujourdhui ? theme.bord.fort : theme.bord.doux, backgroundColor: theme.fond.surface }]}>
+      <View
+        style={[
+          styles.cercleJour,
+          {
+            borderColor: estAujourdhui ? theme.bord.fort : theme.bord.doux,
+            backgroundColor: estAujourdhui ? theme.accent.soleil : seance ? theme.marque.douce : theme.fond.app,
+          },
+        ]}
+      >
+        <Text
+          numberOfLines={1}
+          style={[
+            typo.etiquette,
+            { color: estAujourdhui ? theme.texte.surCouleur : theme.texte.principal },
+          ]}
+        >
+          {pastilleJour}
+        </Text>
+      </View>
       <View style={styles.ligneTexte}>
         {seance ? (
           <>
-            <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>
-              {seance.elements.length === 0 ? t(CLES_ELEMENT.revisionLibre) : `${titreElement(seance.elements[0], t)}${seance.elements.length > 1 ? ` +${seance.elements.length - 1}` : ''}`}
-            </Text>
+            <View style={styles.rangeeTagsJour}>
+              {tags.map((tag) => {
+                const IconeTag = ICONE_PASTILLE[tag.type];
+                return (
+                  <View
+                    key={tag.type}
+                    style={[
+                      styles.tagComposition,
+                      {
+                        borderColor: theme.bord.fort,
+                        backgroundColor: COULEUR_DOUCE_CONTENU[tag.type],
+                      },
+                    ]}
+                  >
+                    <IconeTag size={13} strokeWidth={2.2} color={palette.encre[1000]} />
+                    <Text style={[typo.etiquette, { color: palette.encre[1000] }]}>{tag.libelle}</Text>
+                  </View>
+                );
+              })}
+            </View>
             <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{passeeNonFaite ? t('planning.pasFait') : t('planning.minutes', { n: seance.minutes })}</Text>
           </>
         ) : (
@@ -757,8 +865,15 @@ function LigneJour({
     </View>
   );
   if (!seance) return contenu;
+  const resumeAccessibilite = tags.map((item) => item.libelle).join(', ');
   return (
-    <Appui accessibilityRole="button" accessibilityLabel={`${libelle}. ${seance.elements.length > 0 ? titreElement(seance.elements[0], t) : t(CLES_ELEMENT.revisionLibre)}`} onPress={() => ouvrirJour(jour)} decalage={0} rayon={rayon.l}>
+    <Appui
+      accessibilityRole="button"
+      accessibilityLabel={`${libelle}. ${resumeAccessibilite}`}
+      onPress={() => (onOuvrir ? onOuvrir(jour) : ouvrirJour(jour))}
+      decalage={0}
+      rayon={rayon.l}
+    >
       {contenu}
     </Appui>
   );
@@ -771,6 +886,7 @@ function Semaine({
   aujourdhui,
   copie,
   onChanger,
+  onOuvrirJour,
 }: {
   planning: DonneesPlanning;
   lues: LeconsValidees;
@@ -778,6 +894,7 @@ function Semaine({
   aujourdhui: string;
   copie: boolean;
   onChanger: () => void;
+  onOuvrirJour?: (jour: string) => void;
 }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
@@ -809,7 +926,16 @@ function Semaine({
         {fleche(1, t('planning.semaineSuivante'), ChevronRight)}
       </View>
       {jours.map(({ jour, seance }) => (
-        <LigneJour key={jour} jour={jour} seance={seance} planning={planning} lues={lues} acquises={acquises} aujourdhui={aujourdhui} />
+        <LigneJour
+          key={jour}
+          jour={jour}
+          seance={seance}
+          planning={planning}
+          lues={lues}
+          acquises={acquises}
+          aujourdhui={aujourdhui}
+          onOuvrir={onOuvrirJour}
+        />
       ))}
       {planning.couverture.total > planning.couverture.prevues ? (
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('planning.couvertureV2', { prevues: planning.couverture.prevues, total: planning.couverture.total })}</Text>
@@ -834,8 +960,29 @@ function PlanningPret({
 }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
+  const feuilleSemaineRef = useRef<BottomSheetModal>(null);
   const [toutVoir, setToutVoir] = useState(false);
   const aujourdhui = jourLocalTexte();
+
+  const ouvrirFeuilleSemaine = useCallback(() => {
+    setToutVoir(true);
+    requestAnimationFrame(() => {
+      feuilleSemaineRef.current?.present();
+    });
+  }, []);
+
+  const fermerFeuilleSemaine = useCallback(() => {
+    feuilleSemaineRef.current?.dismiss();
+    setToutVoir(false);
+  }, []);
+
+  const rendreVoile = useCallback(
+    (propsVoile: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop {...propsVoile} disappearsOnIndex={-1} appearsOnIndex={0} opacity={0.5} pressBehavior="close" />
+    ),
+    [],
+  );
+
   if (planning.semaines.length === 0) {
     return (
       <View style={styles.bloc}>
@@ -856,20 +1003,18 @@ function PlanningPret({
       ) : null}
       <Aujourdhui planning={planning} lues={lues} acquises={acquises} aujourdhui={aujourdhui} copie={copie} />
 
-      {!toutVoir ? (
-        <View style={styles.bloc} testID="planning-prochains-jours">
-          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('planning.prochainsJours').toUpperCase()}</Text>
-          {prochains.map(({ jour, seance }) => (
-            <LigneJour key={jour} jour={jour} seance={seance} planning={planning} lues={lues} acquises={acquises} aujourdhui={aujourdhui} />
-          ))}
-        </View>
-      ) : null}
+      <View style={styles.bloc} testID="planning-prochains-jours">
+        <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('planning.prochainsJours').toUpperCase()}</Text>
+        {prochains.map(({ jour, seance }) => (
+          <LigneJour key={jour} jour={jour} seance={seance} planning={planning} lues={lues} acquises={acquises} aujourdhui={aujourdhui} />
+        ))}
+      </View>
 
       <Appui
         testID="planning-voir-tout"
         accessibilityRole="button"
-        accessibilityLabel={toutVoir ? t('planning.masquerSemaine') : t('planning.voirTout')}
-        onPress={() => setToutVoir((v) => !v)}
+        accessibilityLabel={t('planning.voirTout')}
+        onPress={ouvrirFeuilleSemaine}
         decalage={2}
         ombre={3}
         rayon={rayon.l}
@@ -878,18 +1023,67 @@ function PlanningPret({
         <View style={[styles.boutonVoirTout, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
           <Calendar size={18} strokeWidth={2.2} color={theme.texte.principal} />
           <Text style={[typo.bouton, styles.boutonVoirToutTexte, { color: theme.texte.principal }]}>
-            {toutVoir ? t('planning.masquerSemaine') : t('planning.voirTout')}
+            {t('planning.voirTout')}
           </Text>
           {!toutVoir ? (
-            <View style={[styles.badgeSemaine, { borderColor: theme.bord.fort, backgroundColor: theme.marque.douce }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('planning.semaine', { n: numeroSemaine, total: totalSemaines })}</Text>
-            </View>
+          <View style={[styles.badgeSemaine, { borderColor: theme.bord.fort, backgroundColor: theme.marque.douce }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t('planning.semaine', { n: numeroSemaine, total: totalSemaines })}</Text>
+          </View>
           ) : null}
-          {toutVoir ? <ChevronUp size={18} strokeWidth={2.2} color={theme.texte.secondaire} /> : <ChevronDown size={18} strokeWidth={2.2} color={theme.texte.secondaire} />}
+          <ChevronRight size={18} strokeWidth={2.2} color={theme.texte.secondaire} />
         </View>
       </Appui>
 
-      {toutVoir ? <Semaine planning={planning} lues={lues} acquises={acquises} aujourdhui={aujourdhui} copie={copie} onChanger={onChanger} /> : null}
+      {toutVoir ? (
+        <BottomSheetModal
+          ref={feuilleSemaineRef}
+          snapPoints={POINTS_FEUILLE_SEMAINE}
+          enableDynamicSizing={false}
+          enablePanDownToClose
+          onDismiss={() => setToutVoir(false)}
+          backdropComponent={rendreVoile}
+          backgroundStyle={[
+            styles.fondFeuilleSemaine,
+            { backgroundColor: theme.fond.app, borderColor: theme.bord.fort },
+          ]}
+          handleIndicatorStyle={[styles.poigneeFeuilleSemaine, { backgroundColor: theme.bord.fort }]}
+        >
+          <BottomSheetView style={styles.conteneurFeuilleSemaine} testID="planning-feuille-semaine">
+            <View style={[styles.enteteFeuilleSemaine, { borderBottomColor: theme.bord.doux }]}>
+              <Text style={[typo.h3, styles.enteteFeuilleTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
+              <Appui
+                testID="planning-fermer-semaine"
+                accessibilityRole="button"
+                accessibilityLabel={t('planning.masquerSemaine')}
+                onPress={fermerFeuilleSemaine}
+                decalage={0}
+                rayon={rayon.pilule}
+              >
+                <View style={[styles.boutonFermerFeuille, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+                  <X size={18} strokeWidth={2.4} color={theme.texte.principal} />
+                </View>
+              </Appui>
+            </View>
+            <ScrollView contentContainerStyle={styles.corpsFeuilleSemaine} showsVerticalScrollIndicator={false}>
+              <Semaine
+                planning={planning}
+                lues={lues}
+                acquises={acquises}
+                aujourdhui={aujourdhui}
+                copie={copie}
+                onOuvrirJour={(jour) => {
+                  fermerFeuilleSemaine();
+                  ouvrirJour(jour);
+                }}
+                onChanger={() => {
+                  fermerFeuilleSemaine();
+                  onChanger();
+                }}
+              />
+            </ScrollView>
+          </BottomSheetView>
+        </BottomSheetModal>
+      ) : null}
     </>
   );
 }
@@ -1103,14 +1297,13 @@ const styles = StyleSheet.create({
   grilleContenus: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   celluleContenu: { width: '47.5%' },
   carteContenu: {
-    minHeight: 104,
+    minHeight: 108,
     padding: espace[3],
     gap: espace[1],
     borderWidth: bord.normal,
     borderRadius: rayon.l,
   },
-  enteteCarteContenu: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 },
-  iconeContenu: { width: 32, height: 32, borderWidth: bord.normal, borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
+  enteteCarteContenu: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 },
   choix: { gap: espace[3] },
   option: { minHeight: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.m },
   optionTextes: { flexDirection: 'row', alignItems: 'baseline', gap: espace[3] },
@@ -1161,8 +1354,70 @@ const styles = StyleSheet.create({
   navigation: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[3] },
   navigationTexte: { flex: 1, alignItems: 'center', gap: espace[1] },
   fleche: { width: cibleMin, height: cibleMin, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
-  ligne: { minHeight: 78, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
-  jourLibelle: { width: 56 },
+  ligne: {
+    minHeight: 78,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[3],
+    paddingHorizontal: espace[4],
+    paddingVertical: espace[3],
+    borderWidth: bord.normal,
+    borderRadius: rayon.l,
+  },
+  cercleJour: {
+    width: 48,
+    height: 48,
+    borderWidth: bord.normal,
+    borderRadius: rayon.pilule,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   ligneTexte: { flex: 1, gap: espace[1] },
+  rangeeTagsJour: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: espace[2] },
+  tagComposition: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[1],
+    paddingHorizontal: espace[2],
+    paddingVertical: 3,
+    borderWidth: bord.normal,
+    borderRadius: rayon.pilule,
+  },
   case: { width: cibleMin, height: cibleMin, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  fondFeuilleSemaine: {
+    borderTopLeftRadius: rayon.l,
+    borderTopRightRadius: rayon.l,
+    borderWidth: bord.normal,
+  },
+  poigneeFeuilleSemaine: {
+    width: 40,
+    height: 4,
+    borderRadius: rayon.pilule,
+  },
+  conteneurFeuilleSemaine: {
+    flex: 1,
+  },
+  enteteFeuilleSemaine: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: espace[4],
+    paddingTop: espace[1],
+    paddingBottom: espace[3],
+    borderBottomWidth: bord.fin,
+  },
+  enteteFeuilleTitre: { flex: 1 },
+  boutonFermerFeuille: {
+    width: 38,
+    height: 38,
+    borderWidth: bord.normal,
+    borderRadius: rayon.pilule,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  corpsFeuilleSemaine: {
+    paddingHorizontal: espace[4],
+    paddingTop: espace[4],
+    paddingBottom: espace[7],
+  },
 });

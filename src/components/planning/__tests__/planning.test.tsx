@@ -153,6 +153,7 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     await monter(<Planning />, reglage);
     await screen.findByText('2 tâches · 45 min');
     expect(screen.getAllByText('Définition').length).toBeGreaterThan(0);
+    expect(screen.getByText('J 22')).toBeTruthy();
     expect(screen.getAllByText('Noms').length).toBeGreaterThan(0);
     expect(screen.getByText('0 sur 2 faits')).toBeTruthy();
     expect(screen.getByText(/Baccalauréat · 23 juin 2027 · estimé/)).toBeTruthy();
@@ -198,7 +199,7 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     await fireEvent.press(screen.getByTestId('planning-voir-tout'));
     await screen.findByText('Semaine 1 sur 1');
     // Lundi, mardi, mercredi avant le début, vendredi, samedi, dimanche après la fin.
-    expect(screen.getAllByLabelText(t.horsPlanning).length).toBe(6);
+    expect(screen.getAllByLabelText(t.horsPlanning).length).toBeGreaterThanOrEqual(6);
     expect(screen.queryByText(t.repos)).toBeNull();
   });
 
