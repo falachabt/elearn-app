@@ -100,6 +100,7 @@ export default function EcranParrainage() {
               <Appui
                 accessibilityRole="button"
                 accessibilityLabel={t('parrainage.copier')}
+                accessibilityHint={t('parrainage.hintCopier') || 'Copie votre code de parrainage dans le presse-papiers.'}
                 onPress={() => void copierCode(etat.stats.code)}
                 decalage={2}
                 rayon={rayon.m}
@@ -115,6 +116,7 @@ export default function EcranParrainage() {
 
             <Bouton
               libelle={t('parrainage.partagerWhatsApp')}
+              accessibilityHint={t('parrainage.hintPartagerWhatsApp') || 'Ouvre WhatsApp avec un message d’invitation pré-rempli.'}
               icone={<Share2 size={20} color={theme.texte.principal} />}
               variante="secondaire"
               onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
@@ -215,6 +217,7 @@ export default function EcranParrainage() {
                         petit
                         variante="secondaire"
                         libelle={t('parrainage.inviterAmi')}
+                        accessibilityHint={t('parrainage.hintPartagerWhatsApp') || 'Ouvre WhatsApp avec un message d’invitation pré-rempli.'}
                         icone={<Share2 size={16} color={theme.texte.principal} />}
                         onPress={() => void partagerLienWhatsApp(etat.stats.code, prenom)}
                       />

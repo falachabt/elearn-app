@@ -90,6 +90,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "expo lint",
     "test": "jest",
+    "test:e2e": "maestro test .maestro/parcours_critique.yaml",
     "export:android": "expo export --platform android --output-dir .export-android",
     "valider": "npm run typecheck && npm run lint && npm test -- --runInBand --silent && npm run export:android"
   },

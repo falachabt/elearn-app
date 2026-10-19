@@ -22,6 +22,13 @@ export function OptionReponse({ lettre, texte, etat = 'neutre', onPress }: { let
       accessibilityRole="button"
       accessibilityState={{ selected: etat === 'choisie' }}
       accessibilityLabel={corrige ? `${texte}. ${t(etat === 'bonne' ? 'parametres.moments.success' : 'parametres.moments.error')}` : texte}
+      accessibilityHint={
+        corrige
+          ? undefined
+          : etat === 'choisie'
+          ? (t('quiz.hintOptionChoisie') || 'Réponse sélectionnée. Touchez deux fois pour confirmer ou modifier.')
+          : (t('quiz.hintOption') || 'Touchez deux fois pour choisir cette réponse.')
+      }
       onPress={onPress}
       style={[styles.zone, { backgroundColor: fond, borderColor: theme.bord.fort, borderWidth: etat === 'neutre' ? bord.normal : bord.epais }]}
     >

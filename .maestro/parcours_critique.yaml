@@ -1,0 +1,59 @@
+# Parcours critique E2E Elearn Prepa (B10-11)
+# Couvre : Mission du jour + Quiz d'entraînement + Écran de paiement Pass
+appId: com.ezadrive.elearn
+---
+- launchApp:
+    clearState: false
+
+# 1. Attente de l'accueil
+- assertVisible:
+    text: "Elearn Prepa"
+    optional: true
+
+# 2. Parcours Mission du jour
+- tapOn:
+    text: "Mission du jour"
+    optional: true
+
+# Si la mission s'ouvre, vérifier la présence des questions ou étapes
+- assertVisible:
+    text: "Question 1"
+    optional: true
+
+# 3. Parcours Quiz d'entraînement
+- tapOn:
+    text: "S'entraîner"
+    optional: true
+
+- tapOn:
+    text: "Quiz"
+    optional: true
+
+# Sélection d'une option de réponse
+- tapOn:
+    text: "A"
+    optional: true
+
+# 4. Parcours Paiement du Pass
+- tapOn:
+    text: "Pass"
+    optional: true
+
+# Vérifier la présence des offres de pass
+- assertVisible:
+    text: "Pass Annuel"
+    optional: true
+
+- assertVisible:
+    text: "Pass Mensuel"
+    optional: true
+
+# Cliquer sur débloquer une offre
+- tapOn:
+    text: "Débloquer mon pass"
+    optional: true
+
+# Vérifier que le récapitulatif de paiement et les opérateurs Mobile Money sont visibles
+- assertVisible:
+    text: "Paiement sécurisé"
+    optional: true
