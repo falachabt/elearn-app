@@ -1,5 +1,6 @@
 import type { Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { AppState, Platform } from 'react-native';
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier } from '@/services/analytics';
@@ -72,7 +73,33 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             }
           }
         });
+        // B10-5 : Gestion du cycle de vie mobile (arrière-plan / premier plan).
+        // Sur mobile, les timers JS se figent en arrière-plan. Au retour au premier plan (active),
+        // on relance l'auto-refresh Supabase et on rafraîchit immédiatement le JWT si expiré.
+        const abonnementAppState = AppState.addEventListener('change', (etatApp) => {
+          if (Platform.OS !== 'web' && typeof client.auth?.startAutoRefresh === 'function') {
+            if (etatApp === 'active') {
+              client.auth.startAutoRefresh();
+              void client.auth.getSession().then(async ({ data: { session: s } }) => {
+                if (!actif || !s) return;
+                const now = Math.floor(Date.now() / 1000);
+                if (s.expires_at && s.expires_at - now < 60 && typeof client.auth?.refreshSession === 'function') {
+                  const { data: { session: sRefraichie } } = await client.auth.refreshSession().catch(() => ({ data: { session: null } }));
+                  if (actif && sRefraichie) {
+                    setEtat((prec) => (prec.statut === 'pret' ? { ...prec, session: sRefraichie } : prec));
+                  }
+                } else {
+                  setEtat((prec) => (prec.statut === 'pret' ? { ...prec, session: s } : prec));
+                }
+              }).catch(() => {});
+            } else if (etatApp === 'background') {
+              client.auth.stopAutoRefresh();
+            }
+          }
+        });
+
         desabonner = () => {
+          abonnementAppState.remove();
           data.subscription.unsubscribe();
           arreterSuivi();
           arreterSuiviEntrainement();
