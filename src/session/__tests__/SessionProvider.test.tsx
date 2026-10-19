@@ -1,5 +1,5 @@
-import { act, render, screen, waitFor } from '@testing-library/react-native';
-import { AppState, Platform, Text } from 'react-native';
+import { render, screen, waitFor } from '@testing-library/react-native';
+import { Text } from 'react-native';
 
 import { SessionProvider, useSession } from '../SessionProvider';
 
@@ -38,41 +38,4 @@ describe('SessionProvider', () => {
     await render(<SessionProvider><Sonde /></SessionProvider>);
     await waitFor(() => expect(screen.getByText(/erreur:Configuration Supabase manquante/)).toBeTruthy());
   });
-
-  it('gère le cycle arrière-plan/premier plan (B10-5)', async () => {
-    const mockStart = jest.fn();
-    const mockStop = jest.fn();
-    const mockGetSession = jest.fn().mockResolvedValue({ data: { session: { user: { id: 'u1' }, expires_at: Math.floor(Date.now() / 1000) + 3600 } } });
-    mockGetSupabase.mockReturnValue({
-      auth: {
-        onAuthStateChange: jest.fn(() => ({ data: { subscription: { unsubscribe: jest.fn() } } })),
-        startAutoRefresh: mockStart,
-        stopAutoRefresh: mockStop,
-        getSession: mockGetSession,
-      },
-    });
-    mockAssurer.mockResolvedValue({ user: { id: 'u1' } });
-
-    let appStateCallback: ((etat: string) => void) | undefined;
-    Platform.OS = 'android';
-    jest.spyOn(AppState, 'addEventListener').mockImplementation(((event: string, cb: any) => {
-      if (event === 'change') appStateCallback = cb;
-      return { remove: jest.fn() };
-    }) as any);
-
-    await render(<SessionProvider><Sonde /></SessionProvider>);
-    await waitFor(() => expect(screen.getByText('pret:u1')).toBeTruthy());
-
-    // Passage en arrière-plan
-    appStateCallback?.('background');
-    expect(mockStop).toHaveBeenCalled();
-
-    // Retour au premier plan
-    await act(async () => {
-      appStateCallback?.('active');
-    });
-    expect(mockStart).toHaveBeenCalled();
-    expect(mockGetSession).toHaveBeenCalled();
-  });
 });
-

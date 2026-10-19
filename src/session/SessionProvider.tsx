@@ -1,6 +1,5 @@
 import type { Session } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
-import { AppState, Platform } from 'react-native';
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier, reinitialiserIdentite } from '@/services/analytics';
@@ -36,9 +35,9 @@ export function SessionProvider({ children }: { children: ReactNode }) {
         // Web : terminer le retour OAuth (Google, Apple) AVANT de créer une session invité. Sinon, au retour d'une
         // connexion, l'invité était créé d'abord, son profil était lu (parcours d'arrivée non terminé) et l'élève
         // connecté retombait sur « bienvenue ».
-        await finirRetourOAuthWebUneFois(client).catch(() => 'rien');
+        await finirRetourOAuthWebUneFois(client);
         const session = await assurerSessionInvite(client);
-        const reprise = await reprendreApresRedemarrage(session.user.id).catch(() => false);
+        const reprise = await reprendreApresRedemarrage(session.user.id);
         // Les réglages du compte portent le parcours d'arrivée (profil) : les appliquer au téléphone AVANT de marquer
         // la session prête, sinon un élève connecté sur un appareil sans profil local (navigateur web neuf) retombait
         // sur « bienvenue ». Écritures locales seulement ; l'envoi vers le compte reste en arrière-plan.
@@ -97,41 +96,11 @@ export function SessionProvider({ children }: { children: ReactNode }) {
             })();
           }
         });
-
-        // B10-5 : Gestion du cycle de vie mobile (arrière-plan / premier plan).
-        // Sur mobile, les timers JS se figent en arrière-plan. Au retour au premier plan (active),
-        // on relance l'auto-refresh Supabase et on rafraîchit immédiatement le JWT si expiré.
-        const abonnementAppState = AppState.addEventListener('change', (etatApp) => {
-          if (Platform.OS !== 'web' && typeof client.auth?.startAutoRefresh === 'function') {
-            if (etatApp === 'active') {
-              client.auth.startAutoRefresh();
-              void client.auth.getSession().then(async (reponse) => {
-                const s = reponse?.data?.session;
-                if (!actif || !s) return;
-                const now = Math.floor(Date.now() / 1000);
-                if (s.expires_at && s.expires_at - now < 60 && typeof client.auth?.refreshSession === 'function') {
-                  const { data } = await client.auth.refreshSession().catch(() => ({ data: { session: null } }));
-                  const sessionRefraichie = data?.session;
-                  if (actif && sessionRefraichie) {
-                    setEtat((prec) => (prec.statut === 'pret' ? { ...prec, session: sessionRefraichie } : prec));
-                  }
-                } else {
-                  setEtat((prec) => (prec.statut === 'pret' ? { ...prec, session: s } : prec));
-                }
-              }).catch(() => {});
-            } else if (etatApp === 'background' && typeof client.auth?.stopAutoRefresh === 'function') {
-              client.auth.stopAutoRefresh();
-            }
-          }
-        });
-
         desabonner = () => {
-          abonnementAppState.remove();
           data.subscription.unsubscribe();
           arreterSuivi();
           arreterSuiviEntrainement();
         };
-
       } catch (e) {
         if (actif) setEtat({ statut: 'erreur', session: null, erreur: e instanceof Error ? e : new Error(String(e)) });
       }
