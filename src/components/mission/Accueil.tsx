@@ -346,7 +346,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('mission.photoTitre')}</Text>
               <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('mission.photoTexte')}</Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} />
+            <Ionicons name="chevron-forward" size={18} color={theme.texte.principal} style={styles.chevronPhoto} />
           </View>
         </Appui>
       </Apparition>
@@ -378,7 +378,8 @@ const styles = StyleSheet.create({
   // Étiquettes de matières : deux lignes au plus (hauteur fixe par étiquette, le reste est rogné) ; un nom trop long se raccourcit (…).
   tags: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3], maxHeight: HAUTEUR_ETIQUETTE * 2 + espace[3], overflow: 'hidden' },
   tag: { height: HAUTEUR_ETIQUETTE, maxWidth: '100%', justifyContent: 'center', paddingHorizontal: espace[3], borderWidth: bord.normal, borderRadius: rayon.s },
-  photo: { flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  photo: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[5], borderWidth: bord.normal, borderRadius: rayon.l },
+  chevronPhoto: { alignSelf: 'center' },
   icone: { width: 40, height: 40, borderRadius: rayon.m, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   zoneSelecteur: { flex: 1, flexDirection: 'row', alignItems: 'center' },
   selecteur: {

@@ -111,7 +111,9 @@ function Tache({ e, fait, jour }: { e: ElementSeance; fait: boolean; jour?: stri
           <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
           <Text numberOfLines={2} style={[typo.legende, { color: theme.texte.secondaire }]}>{fait && aValidationPropre ? `${t('planning.jourDeja')} · ${detail}` : detail}</Text>
         </View>
-        {fait ? <Pastille texte={t('planning.fait')} vert /> : <ChevronRight size={22} strokeWidth={2} color={theme.texte.secondaire} />}
+        <View style={styles.droiteTache}>
+          {fait ? <Pastille texte={t('planning.fait')} vert /> : <ChevronRight size={22} strokeWidth={2} color={theme.texte.secondaire} />}
+        </View>
       </View>
     </Appui>
   );
@@ -253,7 +255,8 @@ const styles = StyleSheet.create({
   enteteTitre: { flex: 1 },
   contenu: { gap: espace[5], paddingBottom: espace[7] },
   bloc: { gap: espace[3] },
-  tache: { minHeight: 78, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3], borderWidth: bord.normal, borderRadius: rayon.l },
+  tache: { minHeight: 78, flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], paddingHorizontal: espace[4], paddingVertical: espace[3], borderWidth: bord.normal, borderRadius: rayon.l },
+  droiteTache: { alignSelf: 'center' },
   pastille: { width: cibleMin - 8, height: cibleMin - 8, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   tacheTexte: { flex: 1, gap: espace[1] },
   bravo: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },

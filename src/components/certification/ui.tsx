@@ -51,13 +51,13 @@ export function LigneChoix({ icone: Icone, titre, aide, radio, actif, onPress, a
         {aide ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{aide}</Text> : null}
       </View>
       {droite ? (
-        droite
+        <View style={styles.droiteLigne}>{droite}</View>
       ) : radio ? (
-        <View style={[styles.radio, { borderColor: theme.bord.fort, backgroundColor: actif ? theme.marque.principale : theme.fond.surface }]}>
+        <View style={[styles.radio, styles.droiteLigne, { borderColor: theme.bord.fort, backgroundColor: actif ? theme.marque.principale : theme.fond.surface }]}>
           {actif ? <Check size={16} color={theme.texte.surCouleur} strokeWidth={3} /> : null}
         </View>
       ) : onPress ? (
-        <ChevronRight size={20} color={theme.texte.secondaire} strokeWidth={2} />
+        <ChevronRight size={20} color={theme.texte.secondaire} strokeWidth={2} style={styles.droiteLigne} />
       ) : null}
     </View>
   );
@@ -173,7 +173,8 @@ const styles = StyleSheet.create({
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
   titreEntete: { flex: 1 },
-  ligne: { minHeight: cibleMin + 16, flexDirection: 'row', alignItems: 'center', gap: espace[4], padding: espace[4], borderRadius: rayon.l },
+  ligne: { minHeight: cibleMin + 16, flexDirection: 'row', alignItems: 'flex-start', gap: espace[4], padding: espace[4], borderRadius: rayon.l },
+  droiteLigne: { alignSelf: 'center' },
   pastille: { width: 40, height: 40, borderRadius: rayon.s, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   texte: { flex: 1, gap: 2 },
   radio: { width: 28, height: 28, borderRadius: 14, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },

@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   texte: { flex: 1, gap: espace[1] },
   piste: {
     height: 10,
-    marginTop: espace[1],
+    marginTop: espace[3],
     borderWidth: bord.fin,
     borderRadius: rayon.pilule,
     overflow: 'hidden',

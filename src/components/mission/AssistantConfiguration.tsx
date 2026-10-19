@@ -231,7 +231,7 @@ export function AssistantConfiguration() {
                       : <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{index + 1}</Text>}
                   </View>
                   <Text style={[typo.texteFort, styles.libelle, { color: theme.texte.principal }]}>{libelle}</Text>
-                  <ChevronRight size={20} color={theme.texte.secondaire} />
+                  <ChevronRight size={20} color={theme.texte.secondaire} style={styles.chevron} />
                 </View>
               </Appui>
             );
@@ -257,7 +257,8 @@ const styles = StyleSheet.create({
   fermer: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
   liste: { flex: 1 },
   contenuListe: { gap: espace[3], paddingHorizontal: espace[5], paddingBottom: espace[3] },
-  ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
+  ligne: { minHeight: 64, flexDirection: 'row', alignItems: 'flex-start', gap: espace[3], padding: espace[3], borderRadius: rayon.l },
   numero: { width: 36, height: 36, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   libelle: { flex: 1 },
+  chevron: { alignSelf: 'center' },
 });

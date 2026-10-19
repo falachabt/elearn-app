@@ -100,7 +100,7 @@ export function CarteQuestion({ q, onPress, onPhoto }: { q: Question; onPress: (
 
 const styles = StyleSheet.create({
   carte: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.l },
-  corps: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  corps: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
   flex: { flex: 1 },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   miniature: { width: 44, height: 44, borderRadius: rayon.s, borderWidth: bord.normal },
