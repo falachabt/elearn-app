@@ -4,7 +4,7 @@ import { AppState, Platform } from 'react-native';
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier, reinitialiserIdentite } from '@/services/analytics';
-import { restaurerHistorique } from '@/services/donneesLocales';
+import { effacerDonneesLocales, restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { synchroniserResultat } from '@/services/miniTest';
@@ -85,9 +85,10 @@ export function SessionProvider({ children }: { children: ReactNode }) {
               }, 0);
             }
           } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
-            // Session sign out – clear state and recreate invited session
+            // Session sign out – clear state, wipe local data and recreate invited session
             setEtat({ statut: 'chargement', session: null, erreur: null });
             void (async () => {
+              await effacerDonneesLocales().catch(() => {});
               // Le profil de suivi repart de zéro : le prochain invité aura son propre identifiant.
               await reinitialiserIdentite();
               const invited = await assurerSessionInvite(client);
