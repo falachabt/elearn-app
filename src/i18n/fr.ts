@@ -1819,6 +1819,7 @@ export const fr = {
     tagExercices: '{{n}} exercices',
     tagAnnaleUne: '1 annale',
     tagAnnales: '{{n}} annales',
+    retourProgramme: 'Retour au programme de révision',
     carte: { titre: 'Mon programme de révision', choisir: 'Construis ton programme sur mesure', aujourdhui: 'Aujourd’hui\u00a0: {{matiere}}', repos: 'Jour de repos', fait: 'Séance du jour faite', libre: 'Séance du jour', taches: 'Aujourd’hui\u00a0: {{n}} tâches · {{minutes}} min', tache: 'Aujourd’hui\u00a0: 1 tâche · {{minutes}} min', avancement: '{{faits}} sur {{total}} faits' },
   },
   maSemaine: {

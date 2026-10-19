@@ -57,18 +57,19 @@ const CLES_DETAIL = {
 const jourValide = (v: unknown): string | null => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : null);
 
 /** Ouvre la tâche : leçon, quiz, exercice ou dossier d'annales correspondant, sinon l'onglet Réviser. */
-function ouvrir(e: ElementSeance) {
+function ouvrir(e: ElementSeance, jour?: string | null) {
   suivre('planning_task_opened', { genre: e.genre });
+  const planningParams = jour ? { provenance: 'planning', planningJour: jour } : { provenance: 'planning' };
   if (e.genre === 'lecon') {
-    router.push({ pathname: '/cours/lecon', params: { id: String(e.leconId), cours: String(e.coursId), matiere: e.matiere ?? '' } });
+    router.push({ pathname: '/cours/lecon', params: { id: String(e.leconId), cours: String(e.coursId), matiere: e.matiere ?? '', ...planningParams } });
     return;
   }
   if (e.genre === 'quiz') {
-    router.push({ pathname: '/entrainement/quiz', params: { id: e.quizId, cours: String(e.coursId), nom: e.cours } });
+    router.push({ pathname: '/entrainement/quiz', params: { id: e.quizId, cours: String(e.coursId), nom: e.cours, ...planningParams } });
     return;
   }
   if (e.genre === 'exercice') {
-    router.push({ pathname: '/entrainement/exercice', params: { id: e.exerciceId, cours: String(e.coursId) } });
+    router.push({ pathname: '/entrainement/exercice', params: { id: e.exerciceId, cours: String(e.coursId), ...planningParams } });
     return;
   }
   if (e.genre === 'annales' && e.dossierId) {
@@ -78,7 +79,7 @@ function ouvrir(e: ElementSeance) {
   router.push('/reviser');
 }
 
-function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
+function Tache({ e, fait, jour }: { e: ElementSeance; fait: boolean; jour?: string | null }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const typePastille = TYPE_PASTILLE[e.genre];
@@ -98,7 +99,7 @@ function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
     <Appui
       accessibilityRole="button"
       accessibilityLabel={`${t('planning.ouvrirTache', { titre })}${fait ? `. ${t('planning.fait')}` : ''}`}
-      onPress={() => ouvrir(e)}
+      onPress={() => ouvrir(e, jour)}
       ombre={fait ? 0 : ombre.carte}
       decalage={fait ? 0 : 2}
       couleurOmbre={theme.ombre}
@@ -236,7 +237,7 @@ export function PlanningJour() {
         ) : null}
         <View style={styles.bloc}>
           {(seance.elements.length > 0 ? seance.elements : [{ genre: 'revisionLibre' } as ElementSeance]).map((e, i) => (
-            <Tache key={i} e={e} fait={seance.fait || elementFait(e, lues, acquises)} />
+            <Tache key={i} e={e} fait={seance.fait || elementFait(e, lues, acquises)} jour={jour} />
           ))}
         </View>
         {erreurCocher ? <Text accessibilityRole="alert" style={[typo.petit, { color: theme.etat.erreur }]}>{t('planning.erreurCocher')}</Text> : null}

@@ -31,7 +31,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LeconLecteur() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { id, cours, matiere } = useLocalSearchParams<{ id: string; cours?: string; matiere?: string }>();
+  const { id, cours, matiere, provenance, planningJour } = useLocalSearchParams<{ id: string; cours?: string; matiere?: string; provenance?: string; planningJour?: string }>();
   const [etat, setEtat] = useEtatMemorise<Etat>(`lecon.${id}`, { statut: 'chargement' });
   const [validee, setValidee] = useState(false);
   const [invitation, setInvitation] = useState(false);
@@ -91,7 +91,22 @@ export function LeconLecteur() {
     }, [id]),
   );
 
-  const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+  const retour = () => {
+    if (provenance === 'planning') {
+      if (planningJour) {
+        router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+        return;
+      }
+      if (router.canGoBack()) {
+        router.back();
+        return;
+      }
+      router.replace('/planning');
+      return;
+    }
+    if (router.canGoBack()) router.back();
+    else router.replace('/reviser');
+  };
   const position = etat.statut === 'pret' ? etat.lecons.findIndex((l) => l.id === etat.lecon.id) : -1;
   const suivante = etat.statut === 'pret' && position >= 0 ? etat.lecons[position + 1] : undefined;
   const courante = etat.statut === 'pret' && position >= 0 ? etat.lecons[position] : undefined;
@@ -99,11 +114,24 @@ export function LeconLecteur() {
   const ouvrirQuiz = () => {
     if (etat.statut !== 'pret') return;
     setInvitation(false);
-    router.push({ pathname: '/cours/quiz', params: { cours: String(etat.lecon.coursId), lecon: String(etat.lecon.id), suivante: suivante ? String(suivante.id) : '', matiere: matiere ?? '' } });
+    router.push({
+      pathname: '/cours/quiz',
+      params: {
+        cours: String(etat.lecon.coursId),
+        lecon: String(etat.lecon.id),
+        suivante: suivante ? String(suivante.id) : '',
+        matiere: matiere ?? '',
+        ...(provenance ? { provenance, planningJour: planningJour ?? '' } : {}),
+      },
+    });
   };
   const continuer = () => {
     if (etat.statut !== 'pret') return;
     setInvitation(false);
+    if (provenance === 'planning') {
+      retour();
+      return;
+    }
     if (suivante) router.replace({ pathname: '/cours/lecon', params: { id: String(suivante.id), cours: String(etat.lecon.coursId), matiere: matiere ?? '' } });
     // Dernière leçon : la fin de chapitre propose le quiz et les exercices du chapitre (M5-11).
     else {
@@ -121,7 +149,15 @@ export function LeconLecteur() {
     etat.statut === 'pret' ? (
       <View style={styles.pied}>
         {quiz}
-        <Bouton libelle={t(suivante ? 'reviser.suivante' : 'reviser.finChapitre')} onPress={avancer} retour />
+        <Bouton
+          libelle={
+            provenance === 'planning'
+              ? t('planning.retourProgramme')
+              : t(suivante ? 'reviser.suivante' : 'reviser.finChapitre')
+          }
+          onPress={avancer}
+          retour
+        />
       </View>
     ) : undefined;
 

@@ -58,7 +58,12 @@ export function ExerciceLibre() {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
-  const { id, cours } = useLocalSearchParams<{ id: string; cours: string }>();
+  const { id, cours, provenance, planningJour } = useLocalSearchParams<{
+    id: string;
+    cours: string;
+    provenance?: string;
+    planningJour?: string;
+  }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   // Exercice dont le corrigé est affiché : repasse à l'énoncé quand on enchaîne sur l'exercice suivant.
   const [corrigeDe, setCorrigeDe] = useState<string | null>(null);
@@ -121,7 +126,21 @@ export function ExerciceLibre() {
     };
   }, [cours, id, pret, essai]);
 
-  const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+  const retourProgramme = () => {
+    if (planningJour) {
+      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+    } else {
+      router.replace('/planning/jour');
+    }
+  };
+
+  const retour = () => {
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/reviser');
+  };
   const position = etat.statut === 'pret' ? etat.exercices.findIndex((e) => e.id === id) : -1;
   const exercice = etat.statut === 'pret' ? etat.exercices[position] : undefined;
   useEffect(() => {
@@ -207,6 +226,10 @@ export function ExerciceLibre() {
   const allerSuivant = () => {
     setDemande(null);
     passer.current = true;
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
     if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } });
     else retour();
   };
@@ -249,7 +272,7 @@ export function ExerciceLibre() {
     }
     void voirCorrige();
   };
-  // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » à droite.
+  // Barre du bas (écran 5 v2) : bascule énoncé / corrigé à gauche, « Suivant » ou « Terminer » à droite.
   const pied = exercice ? (
     <View style={styles.pied}>
       <View style={styles.flex}>
@@ -269,8 +292,20 @@ export function ExerciceLibre() {
       </View>
       <View style={styles.flex}>
         <Bouton
-          libelle={suivant ? `${t('entrainement.suivant')} ›` : t('entrainement.terminer')}
-          accessibilityLabel={suivant ? t('entrainement.exerciceSuivant') : t('entrainement.terminer')}
+          libelle={
+            provenance === 'planning'
+              ? t('entrainement.terminer')
+              : suivant
+                ? `${t('entrainement.suivant')} ›`
+                : t('entrainement.terminer')
+          }
+          accessibilityLabel={
+            provenance === 'planning'
+              ? t('entrainement.terminer')
+              : suivant
+                ? t('entrainement.exerciceSuivant')
+                : t('entrainement.terminer')
+          }
           onPress={surSuivant}
           retour
         />
@@ -371,7 +406,7 @@ export function ExerciceLibre() {
         },
         { libelle: t('entrainement.finiPasEncore'), variante: 'secondaire', onPress: allerSuivant },
       ]}
-      mention={suivant ? t('entrainement.finiNote', { n: position + 2 }) : t('entrainement.finiNoteDernier')}
+      mention={provenance === 'planning' ? undefined : suivant ? t('entrainement.finiNote', { n: position + 2 }) : t('entrainement.finiNoteDernier')}
     />
     <Feuille
       ouverte={demande === 'sortie'}

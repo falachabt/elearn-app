@@ -1818,6 +1818,7 @@ export const en: Textes = {
     tagExercices: '{{n}} exercises',
     tagAnnaleUne: '1 past paper',
     tagAnnales: '{{n}} past papers',
+    retourProgramme: 'Back to revision program',
     carte: { titre: 'My study programme', choisir: 'Build your tailored study programme', aujourdhui: 'Today: {{matiere}}', repos: 'Rest day', fait: 'Today’s session done', libre: 'Today’s session', taches: 'Today: {{n}} tasks · {{minutes}} min', tache: 'Today: 1 task · {{minutes}} min', avancement: '{{faits}} of {{total}} done' },
   },
   maSemaine: {

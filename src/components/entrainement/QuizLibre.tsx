@@ -18,8 +18,6 @@ import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
 import { BoutonFermer, MiniTest } from '../arrivee/MiniTest';
 
-const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
-
 /** Quiz libre (M5-09) : même lecteur que la mission, résultats et correction communs (M5-10), sans toucher à la série. */
 export function QuizLibreEcran() {
   useEffect(() => {
@@ -27,7 +25,13 @@ export function QuizLibreEcran() {
   }, []);
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { id, cours, nom } = useLocalSearchParams<{ id: string; cours?: string; nom?: string }>();
+  const { id, cours, nom, provenance, planningJour } = useLocalSearchParams<{
+    id: string;
+    cours?: string;
+    nom?: string;
+    provenance?: string;
+    planningJour?: string;
+  }>();
   const [questions, setQuestions] = useState<QuestionTiree[] | null | undefined>(undefined);
   const { session } = useSession();
   const idUtilisateur = session?.user?.id;
@@ -50,6 +54,22 @@ export function QuizLibreEcran() {
     // Libellés Vrai/Faux figés au tirage.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, cours, pret]);
+
+  const retourProgramme = () => {
+    if (planningJour) {
+      router.replace({ pathname: '/planning/jour', params: { jour: planningJour } });
+    } else {
+      router.replace('/planning/jour');
+    }
+  };
+
+  const retour = () => {
+    if (provenance === 'planning') {
+      retourProgramme();
+      return;
+    }
+    return router.canGoBack() ? router.back() : router.replace('/reviser');
+  };
 
   if (questions) {
     return (
@@ -85,7 +105,17 @@ export function QuizLibreEcran() {
           }
           suivre('practice_quiz_completed', { score, total: q.length, record });
           void crediterXp(getSupabase(), idUtilisateur, 10, 'quiz', String(id));
-          router.replace('/quiz/resultats');
+          if (provenance === 'planning') {
+            router.replace({
+              pathname: '/quiz/resultats',
+              params: {
+                provenance,
+                planningJour: planningJour ?? '',
+              },
+            });
+          } else {
+            router.replace('/quiz/resultats');
+          }
         }}
       />
     );

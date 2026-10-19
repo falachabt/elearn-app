@@ -200,8 +200,14 @@ export type AcquisesEntrainement = {
 /** Une leçon, un quiz ou un exercice déjà validé dans Réviser compte comme fait. Les autres tâches se cochent avec la séance. */
 export const elementFait = (e: ElementSeance, lues: LeconsValidees, acquises?: AcquisesEntrainement): boolean => {
   if (e.genre === 'lecon') return lues[String(e.leconId)] !== undefined;
-  if (e.genre === 'quiz') return acquises?.scores?.[e.quizId] !== undefined;
-  if (e.genre === 'exercice') return acquises?.exercices?.[e.exerciceId] === true;
+  if (e.genre === 'quiz') {
+    const cle = String(e.quizId);
+    return acquises?.scores?.[cle] !== undefined || acquises?.scores?.[cle.toLowerCase()] !== undefined;
+  }
+  if (e.genre === 'exercice') {
+    const cle = String(e.exerciceId);
+    return acquises?.exercices?.[cle] === true || acquises?.exercices?.[cle.toLowerCase()] === true;
+  }
   return false;
 };
 

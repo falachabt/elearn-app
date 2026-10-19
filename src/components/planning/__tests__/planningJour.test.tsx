@@ -89,7 +89,10 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText('Définition');
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Définition/ }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/cours/lecon', params: { id: '2', cours: '1', matiere: 'Mathématique' } });
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/cours/lecon',
+      params: { id: '2', cours: '1', matiere: 'Mathématique', provenance: 'planning', planningJour: '2026-10-20' },
+    });
     expect(suivre).toHaveBeenCalledWith('planning_task_opened', { genre: 'lecon' });
   });
 
@@ -119,10 +122,16 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText('Quiz Fractions');
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Quiz Fractions/ }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'q1', cours: '1', nom: 'Cours 1' } });
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/entrainement/quiz',
+      params: { id: 'q1', cours: '1', nom: 'Cours 1', provenance: 'planning', planningJour: '2026-10-20' },
+    });
 
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Exo Fractions/ }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'ex1', cours: '1' } });
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/entrainement/exercice',
+      params: { id: 'ex1', cours: '1', provenance: 'planning', planningJour: '2026-10-20' },
+    });
 
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Bac 2024/ }));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'd1', titre: 'Bac 2024' } });
