@@ -230,7 +230,7 @@ function Entete({ onFermer, onAjuster }: { onFermer: () => void; onAjuster?: () 
   const { theme } = useTheme();
   return (
     <View style={styles.entete}>
-      <Text numberOfLines={1} style={[typo.etiquette, styles.enteteTitre, { color: theme.texte.secondaire }]}>{t('planning.etiquette').toUpperCase()}</Text>
+      <Text accessibilityRole="header" numberOfLines={1} style={[typo.h2, styles.enteteTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
       {onAjuster ? (
         <Appui accessibilityRole="button" accessibilityLabel={t('planning.ajusterLibelle')} onPress={onAjuster} decalage={0} rayon={rayon.m} hitSlop={4}>
           <View style={[styles.ajuster, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
@@ -1060,7 +1060,7 @@ function PlanningPret({
           handleIndicatorStyle={[styles.poigneeFeuilleSemaine, { backgroundColor: theme.bord.fort }]}
         >
           <View style={[styles.enteteFeuilleSemaine, { borderBottomColor: theme.bord.doux, backgroundColor: theme.fond.app }]}>
-            <Text style={[typo.h3, styles.enteteFeuilleTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
+            <Text accessibilityRole="header" style={[typo.h2, styles.enteteFeuilleTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
             <Appui
               testID="planning-fermer-semaine"
               accessibilityRole="button"
@@ -1179,8 +1179,7 @@ export function Planning() {
   useFocusEffect(useCallback(() => charger(), [charger]));
 
   const fermer = useCallback(() => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/');
+    router.replace('/');
   }, []);
 
   const creer = useCallback(

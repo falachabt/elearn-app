@@ -205,7 +205,7 @@ export function PlanningJour() {
   const entete = (
     <View style={styles.entete}>
       <BoutonFermer icone="chevron-back" libelle={t('planning.retour')} onPress={retour} />
-      <Text numberOfLines={1} style={[typo.etiquette, styles.enteteTitre, { color: theme.texte.secondaire }]}>{t('planning.etiquette').toUpperCase()}</Text>
+      <Text accessibilityRole="header" numberOfLines={1} style={[typo.h2, styles.enteteTitre, { color: theme.texte.principal }]}>{t('planning.etiquette')}</Text>
     </View>
   );
 

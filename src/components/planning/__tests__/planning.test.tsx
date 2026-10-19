@@ -94,13 +94,14 @@ beforeEach(async () => {
 afterEach(() => jest.useRealTimers());
 
 describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
-  it('en-tête : le titre prend la place restante et la croix reste à droite', async () => {
+  it('en-tête : le titre prend la place restante et la croix ferme vers l’accueil', async () => {
     serveur({ plan: PRET });
     await monter(<Planning />, reglage);
     await screen.findByText(t.aujourdhuiTitre.toUpperCase());
-    const titre = screen.getByText(t.etiquette.toUpperCase());
+    const titre = screen.getByText(t.etiquette);
     expect(StyleSheet.flatten(titre.props.style).flex).toBe(1);
-    expect(screen.getByRole('button', { name: t.fermer })).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: t.fermer }));
+    expect(router.replace).toHaveBeenCalledWith('/');
   });
 
   it('sans planning : assistant façon onboarding en 5 étapes (matières, contenus, temps, repos, rappel), 45 min pré-sélectionnées à l’étape 3', async () => {
