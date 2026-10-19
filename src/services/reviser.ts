@@ -41,6 +41,9 @@ export function oublierCopiesEnMemoire() {
   relecturesEnCours.clear();
 }
 
+const gTests = globalThis as { __nettoyerMemoireTests?: Set<() => void> };
+(gTests.__nettoyerMemoireTests ??= new Set()).add(oublierCopiesEnMemoire);
+
 async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant: number): Promise<T> {
   const valeur = await lire();
   copiesEnMemoire.set(cle, { valeur, date: maintenant });

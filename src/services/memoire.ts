@@ -11,6 +11,9 @@ export function oublierEtatsMemorises() {
   etats.clear();
 }
 
+const gTests = globalThis as { __nettoyerMemoireTests?: Set<() => void> };
+(gTests.__nettoyerMemoireTests ??= new Set()).add(oublierEtatsMemorises);
+
 /** Valeur gardée pour un écran sans statut de chargement (cartes de l'accueil), ou `defaut`. */
 export const lireMemorise = <T,>(cle: string, defaut: T): T => (etats.has(cle) ? (etats.get(cle) as T) : defaut);
 export const garderMemorise = (cle: string, valeur: unknown) => void etats.set(cle, valeur);
