@@ -289,14 +289,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </Apparition>
       ) : null}
 
-      {/* Planning d'études (issue #65) : seulement quand l'élève a une date à venir, donc jamais pour un invité. */}
-      {echeance && idUtilisateur ? (
-        <Apparition delai={50}>
-          <CartePlanning idUtilisateur={idUtilisateur} />
-        </Apparition>
-      ) : null}
-
-      <Apparition delai={60}>
+      <Apparition delai={50}>
         <Carte style={{ backgroundColor: theme.marque.principale }}>
           <View style={styles.groupe}>
             <View style={styles.entete}>
@@ -329,6 +322,13 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           </View>
         </Carte>
       </Apparition>
+
+      {/* Planning d'études (issue #65) : après la mission du jour, seulement quand l'élève a une date à venir. */}
+      {echeance && idUtilisateur ? (
+        <Apparition delai={60}>
+          <CartePlanning idUtilisateur={idUtilisateur} />
+        </Apparition>
+      ) : null}
 
       <Apparition delai={80}>
         <AssistantConfiguration />

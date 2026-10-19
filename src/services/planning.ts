@@ -16,10 +16,14 @@ type Client = Pick<SupabaseClient, 'rpc'>;
 
 export type StatutPlanning = 'empty' | 'preparing' | 'ready' | 'no_target';
 export type PhasePlanning = 'learning' | 'past_papers' | 'final_review';
+export type TypeContenuPlanning = 'lesson' | 'quiz' | 'exercise' | 'past_papers';
 
 export type ElementSeance =
   | { genre: 'lecon'; matiere: string | null; cours: string; lecon: string; minutes: number; coursId: number; leconId: number }
-  | { genre: 'annales' | 'revisionFinale' | 'revisionLibre' };
+  | { genre: 'quiz'; matiere: string | null; cours: string; quiz: string; questions: number; minutes: number; coursId: number; quizId: string }
+  | { genre: 'exercice'; matiere: string | null; cours: string; exercice: string; minutes: number; coursId: number; exerciceId: string }
+  | { genre: 'annales'; dossierId?: string; dossier?: string; minutes?: number }
+  | { genre: 'revisionFinale' | 'revisionLibre' };
 
 export type JourPlanning = { jour: string; phase: PhasePlanning; minutes: number; elements: ElementSeance[]; fait: boolean };
 export type SemainePlanning = { debut: string; phase: PhasePlanning; jours: JourPlanning[] };
@@ -32,15 +36,23 @@ export type Planning = {
   joursRestants: number | null;
   couverture: { total: number; prevues: number };
   semaines: SemainePlanning[];
+  matieres?: string[] | null;
+  contenus?: TypeContenuPlanning[];
+  joursReposParSemaine?: number;
+  heureRappel?: string;
 };
 
 /** Temps proposés à l'élève (le serveur accepte tout multiple de 15 entre 15 et 240 minutes). */
 export const TEMPS_PROPOSES = [15, 30, 45, 60, 90] as const;
+export const CONTENUS_PROPOSES: readonly TypeContenuPlanning[] = ['lesson', 'quiz', 'exercise', 'past_papers'] as const;
+export const REPOS_PROPOSES = [1, 2, 3] as const;
+export const HEURES_RAPPEL_PROPOSEES = ['16:30', '17:30', '18:30', '19:30', '20:30'] as const;
 export const CLE_COPIE_PLANNING = (idUtilisateur: string) => `planning.copie.${idUtilisateur}`;
 
 const FORMAT_JOUR = /^\d{4}-\d{2}-\d{2}$/;
 const STATUTS: readonly string[] = ['empty', 'preparing', 'ready', 'no_target'];
 const PHASES: readonly string[] = ['learning', 'past_papers', 'final_review'];
+const CONTENUS_VALIDES: readonly string[] = ['lesson', 'quiz', 'exercise', 'past_papers'];
 const GENRES: Record<string, 'annales' | 'revisionFinale' | 'revisionLibre'> = { past_papers: 'annales', final_review: 'revisionFinale', free_review: 'revisionLibre' };
 
 const entier = (v: unknown): number => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? Math.floor(v) : 0);
@@ -53,6 +65,37 @@ function elementDepuis(brut: unknown): ElementSeance | null {
     if (typeof e.lesson !== 'string' || typeof e.course !== 'string') return null;
     if (typeof e.lesson_id !== 'number' || typeof e.course_id !== 'number') return null;
     return { genre: 'lecon', matiere: typeof e.subject === 'string' ? e.subject : null, cours: e.course, lecon: e.lesson, minutes: entier(e.minutes), coursId: e.course_id, leconId: e.lesson_id };
+  }
+  if (e.kind === 'quiz') {
+    if (typeof e.quiz_id !== 'string' || typeof e.quiz !== 'string' || typeof e.course !== 'string' || typeof e.course_id !== 'number') return null;
+    return {
+      genre: 'quiz',
+      matiere: typeof e.subject === 'string' ? e.subject : null,
+      cours: e.course,
+      quiz: e.quiz,
+      questions: entier(e.questions),
+      minutes: entier(e.minutes),
+      coursId: e.course_id,
+      quizId: e.quiz_id,
+    };
+  }
+  if (e.kind === 'exercise') {
+    if (typeof e.exercise_id !== 'string' || typeof e.exercise !== 'string' || typeof e.course !== 'string' || typeof e.course_id !== 'number') return null;
+    return {
+      genre: 'exercice',
+      matiere: typeof e.subject === 'string' ? e.subject : null,
+      cours: e.course,
+      exercice: e.exercise,
+      minutes: entier(e.minutes),
+      coursId: e.course_id,
+      exerciceId: e.exercise_id,
+    };
+  }
+  if (e.kind === 'past_papers') {
+    if (typeof e.folder_id === 'string' && typeof e.folder === 'string') {
+      return { genre: 'annales', dossierId: e.folder_id, dossier: e.folder, minutes: entier(e.minutes) };
+    }
+    return { genre: 'annales' };
   }
   const genre = GENRES[e.kind];
   return genre ? { genre } : null;
@@ -85,6 +128,10 @@ export function depuisReponse(brut: unknown): Planning | null {
     })
     .filter((s): s is SemainePlanning => s !== null)
     .sort((a, b) => a.debut.localeCompare(b.debut));
+  const matieres = Array.isArray(r.subjects) ? r.subjects.filter((s): s is string => typeof s === 'string') : null;
+  const contenus = Array.isArray(r.content_types)
+    ? r.content_types.filter((t): t is TypeContenuPlanning => typeof t === 'string' && CONTENUS_VALIDES.includes(t))
+    : undefined;
   return {
     statut: r.status as StatutPlanning,
     minutesParJour: typeof r.minutes_per_day === 'number' ? entier(r.minutes_per_day) : null,
@@ -92,6 +139,10 @@ export function depuisReponse(brut: unknown): Planning | null {
     joursRestants: typeof r.days_left === 'number' ? entier(r.days_left) : null,
     couverture: { total: entier(couv?.lessons_total), prevues: entier(couv?.lessons_scheduled) },
     semaines,
+    ...(matieres !== null ? { matieres } : {}),
+    ...(contenus && contenus.length > 0 ? { contenus } : {}),
+    ...(typeof r.rest_days_per_week === 'number' ? { joursReposParSemaine: entier(r.rest_days_per_week) } : {}),
+    ...(typeof r.reminder_time === 'string' ? { heureRappel: r.reminder_time } : {}),
   };
 }
 
@@ -104,6 +155,14 @@ export const seanceDuJour = (p: Planning, aujourdhui: string): JourPlanning | nu
 
 /** Séance du jour, sinon la prochaine (jour de repos : celle de demain ou d'après) ; null quand le planning est fini. */
 export const prochaineSeance = (p: Planning, aujourdhui: string): JourPlanning | null => tousLesJours(p).find((j) => j.jour >= aujourdhui) ?? null;
+
+/** Les deux jours qui suivent `aujourdhui` (demain et après-demain), avec leur séance éventuelle. */
+export function deuxProchainsJours(p: Planning, aujourdhui: string): { jour: string; seance: JourPlanning | null }[] {
+  return [1, 2].map((decalage) => {
+    const jour = ajouterJours(aujourdhui, decalage);
+    return { jour, seance: seanceDe(p, jour) };
+  });
+}
 
 /** Semaine qui contient le jour donné, avec son rang parmi les semaines du planning ; null hors du planning. */
 export function semaineDuJour(p: Planning, aujourdhui: string): { semaine: SemainePlanning; numero: number; total: number } | null {
@@ -132,16 +191,28 @@ export const seancesFaites = (semaine: SemainePlanning) => semaine.jours.filter(
 /** Leçons déjà validées par l'élève : identifiant de leçon → identifiant de cours (`lireLues` de reviser). */
 export type LeconsValidees = Readonly<Record<string, number>>;
 
-/** Une leçon du planning déjà validée (par le planning ou à la main dans Réviser) compte comme faite. Les autres tâches se cochent avec la séance. */
-export const elementFait = (e: ElementSeance, lues: LeconsValidees): boolean => e.genre === 'lecon' && lues[String(e.leconId)] !== undefined;
+/** Progression complémentaire de l'élève sur les quiz et exercices d'entraînement. */
+export type AcquisesEntrainement = {
+  scores?: Readonly<Record<string, number>>;
+  exercices?: Readonly<Record<string, boolean>>;
+};
 
-/** Séance terminée : cochée par l'élève, ou entièrement composée de leçons déjà validées. */
-export const seanceTerminee = (j: JourPlanning, lues: LeconsValidees): boolean => j.fait || (j.elements.length > 0 && j.elements.every((e) => elementFait(e, lues)));
+/** Une leçon, un quiz ou un exercice déjà validé dans Réviser compte comme fait. Les autres tâches se cochent avec la séance. */
+export const elementFait = (e: ElementSeance, lues: LeconsValidees, acquises?: AcquisesEntrainement): boolean => {
+  if (e.genre === 'lecon') return lues[String(e.leconId)] !== undefined;
+  if (e.genre === 'quiz') return acquises?.scores?.[e.quizId] !== undefined;
+  if (e.genre === 'exercice') return acquises?.exercices?.[e.exerciceId] === true;
+  return false;
+};
+
+/** Séance terminée : cochée par l'élève, ou entièrement composée de tâches déjà validées. */
+export const seanceTerminee = (j: JourPlanning, lues: LeconsValidees, acquises?: AcquisesEntrainement): boolean =>
+  j.fait || (j.elements.length > 0 && j.elements.every((e) => elementFait(e, lues, acquises)));
 
 /** Tâches faites sur le total d'une séance ; une séance cochée compte toutes ses tâches. */
-export function progressionSeance(j: JourPlanning, lues: LeconsValidees): { faits: number; total: number } {
+export function progressionSeance(j: JourPlanning, lues: LeconsValidees, acquises?: AcquisesEntrainement): { faits: number; total: number } {
   const total = j.elements.length;
-  return { faits: j.fait ? total : j.elements.filter((e) => elementFait(e, lues)).length, total };
+  return { faits: j.fait ? total : j.elements.filter((e) => elementFait(e, lues, acquises)).length, total };
 }
 
 /** Situation d'un jour par rapport au planning : séance prévue, repos au milieu du planning, ou avant son début / après sa fin. */
@@ -161,9 +232,10 @@ export const avecSeanceFaite = (p: Planning, jour: string, fait: boolean): Plann
   semaines: p.semaines.map((s) => ({ ...s, jours: s.jours.map((j) => (j.jour === jour ? { ...j, fait } : j)) })),
 });
 
-/** Heures de travail d'ici la date cible, à l'estime (environ 5,5 jours d'étude sur 7), pour la ligne d'aide du choix du temps. */
-export function heuresEstimees(joursRestants: number, minutesParJour: number): number {
-  return Math.max(0, Math.round((joursRestants * (5.5 / 7) * minutesParJour) / 60));
+/** Heures de travail d'ici la date cible, à l'estime (selon le nombre de jours de repos par semaine, 2 par défaut). */
+export function heuresEstimees(joursRestants: number, minutesParJour: number, joursRepos?: number): number {
+  const ratioEtude = typeof joursRepos === 'number' ? Math.max(1, 7 - joursRepos) / 7 : 5.5 / 7;
+  return Math.max(0, Math.round((joursRestants * ratioEtude * minutesParJour) / 60));
 }
 
 /** Midi local du jour donné (AAAA-MM-JJ) : aucun décalage de fuseau ni d'heure d'été. */
@@ -221,13 +293,35 @@ export async function lirePlanning(client: Client, idUtilisateur?: string): Prom
   }
 }
 
-/** Enregistre le temps par jour (et la classe et la série) ; le serveur calcule le planning tout de suite. */
-export async function definirTemps(client: Client, niveau: string, pays: string, minutes: number, serie?: string | null): Promise<void> {
+export type OptionsCreationPlanning = {
+  serie?: string | null;
+  matieres?: readonly string[] | null;
+  contenus?: readonly TypeContenuPlanning[] | null;
+  joursRepos?: number | null;
+  heureRappel?: string | null;
+};
+
+/** Enregistre les préférences du planning (temps par jour, classe, série, matières, types de contenu, repos, rappel). */
+export async function definirTemps(
+  client: Client,
+  niveau: string,
+  pays: string,
+  minutes: number,
+  serieOuOptions?: string | null | OptionsCreationPlanning,
+): Promise<void> {
+  const opts: OptionsCreationPlanning =
+    typeof serieOuOptions === 'string' || serieOuOptions === null || serieOuOptions === undefined
+      ? { serie: serieOuOptions }
+      : serieOuOptions;
   const { error } = await client.rpc('study_plan_set_time', {
     p_level: niveau,
     p_country: pays,
     p_minutes: minutes,
-    ...(serie ? { p_series: serie } : {}),
+    ...(opts.serie ? { p_series: opts.serie } : {}),
+    ...(opts.matieres && opts.matieres.length > 0 ? { p_subjects: [...opts.matieres] } : {}),
+    ...(opts.contenus && opts.contenus.length > 0 ? { p_content_types: [...opts.contenus] } : {}),
+    ...(typeof opts.joursRepos === 'number' ? { p_rest_days: opts.joursRepos } : {}),
+    ...(opts.heureRappel ? { p_reminder_time: opts.heureRappel } : {}),
   });
   if (error) throw error;
   signalerSucces();

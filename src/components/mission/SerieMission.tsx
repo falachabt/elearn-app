@@ -23,14 +23,30 @@ const CLES_JOURS = ['mission.jourCourt1', 'mission.jourCourt2', 'mission.jourCou
 const cleDe = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const aujourdhuiLocal = () => cleDe(new Date());
 
-/** Jours de la semaine civile, lundi d'abord, avec ceux joués et le jour courant. */
-export function semaineDe(aujourdhui: string, joues: readonly string[]): { cle: string; joue: boolean; aujourdhui: boolean }[] {
+export type JourSerie = {
+  cle: string;
+  joue: boolean;
+  aujourdhui: boolean;
+  /** Indice du jour de la semaine (0 = lundi … 6 = dimanche). */
+  jourIndice: number;
+  /** Numéro du jour dans le mois (1 à 31). */
+  numero: number;
+};
+
+/** Fenêtre de 7 jours centrée sur `aujourdhui` (3 jours avant, aujourd'hui au milieu, 3 jours après), avec l'initiale et le quantième. */
+export function semaineDe(aujourdhui: string, joues: readonly string[]): JourSerie[] {
   const [a, m, j] = aujourdhui.split('-').map(Number);
-  const decalage = (new Date(a, m - 1, j).getDay() + 6) % 7;
   const ensemble = new Set(joues);
   return Array.from({ length: 7 }, (_, i) => {
-    const cle = cleDe(new Date(a, m - 1, j - decalage + i));
-    return { cle, joue: ensemble.has(cle), aujourdhui: cle === aujourdhui };
+    const date = new Date(a, m - 1, j - 3 + i);
+    const cle = cleDe(date);
+    return {
+      cle,
+      joue: ensemble.has(cle),
+      aujourdhui: cle === aujourdhui,
+      jourIndice: (date.getDay() + 6) % 7,
+      numero: date.getDate(),
+    };
   });
 }
 
@@ -41,8 +57,9 @@ export function suiteCompte(de: number, a: number): number[] {
 }
 
 /**
- * Série du jour à la fin de la mission : le compteur monte de la série précédente à la nouvelle,
- * la flamme pulse une fois et la semaine marque les jours joués. « Réduire les animations » : valeur finale directe.
+ * Série du jour à la fin de la mission et dans la feuille de série : le compteur monte de la série précédente à la nouvelle,
+ * la flamme pulse une fois et la bande de 7 jours est centrée sur aujourd'hui (3 jours avant, aujourd'hui au milieu, 3 jours après)
+ * avec l'initiale du jour et son numéro dans le mois.
  */
 export function SerieMission({ serie, joues, aujourdhui = aujourdhuiLocal(), compact = false }: { serie: number; joues: readonly string[]; aujourdhui?: string; compact?: boolean }) {
   const { t } = useTraduction();
@@ -91,14 +108,27 @@ export function SerieMission({ serie, joues, aujourdhui = aujourdhuiLocal(), com
         <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(serie > 1 ? 'mission.joursDeSuite' : 'mission.jourDeSuite')}</Text>
       </View>
       <View style={styles.semaine}>
-        {jours.map((jour, i) => (
-          <View key={jour.cle} style={styles.jour}>
-            <View accessible accessibilityLabel={`${t(CLES_JOURS[i])} : ${jour.joue ? t('mission.jourJoue') : t('mission.jourNonJoue')}`} style={styles.pastille}>
-              <Ionicons name={jour.joue ? 'flame' : 'flame-outline'} size={TAILLE_FLAMME} color={jour.joue ? theme.accent.soleil : theme.texte.secondaire} />
+        {jours.map((jour) => {
+          const initiale = t(CLES_JOURS[jour.jourIndice]);
+          return (
+            <View
+              key={jour.cle}
+              testID={jour.aujourdhui ? 'serie-jour-aujourdhui' : undefined}
+              style={[
+                styles.jour,
+                jour.aujourdhui
+                  ? [styles.jourAujourdhui, { backgroundColor: theme.marque.douce, borderColor: theme.bord.fort }]
+                  : undefined,
+              ]}
+            >
+              <Text style={[typo.legende, { color: jour.aujourdhui ? theme.texte.principal : theme.texte.secondaire }]}>{initiale}</Text>
+              <Text style={[typo.etiquette, { color: jour.aujourdhui ? theme.texte.principal : theme.texte.secondaire }]}>{jour.numero}</Text>
+              <View accessible accessibilityLabel={`${initiale} ${jour.numero} : ${jour.joue ? t('mission.jourJoue') : t('mission.jourNonJoue')}`} style={styles.pastille}>
+                <Ionicons name={jour.joue ? 'flame' : 'flame-outline'} size={TAILLE_FLAMME} color={jour.joue ? theme.accent.soleil : theme.texte.secondaire} />
+              </View>
             </View>
-            <Text style={[typo.legende, { color: jour.aujourdhui ? theme.texte.principal : theme.texte.secondaire }]}>{t(CLES_JOURS[i])}</Text>
-          </View>
-        ))}
+          );
+        })}
       </View>
     </>
   );
@@ -112,7 +142,8 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   flamme: { width: 34, height: 34, borderRadius: rayon.s, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   compact: { gap: espace[3] },
-  semaine: { flexDirection: 'row', justifyContent: 'space-between', marginTop: espace[4] },
-  jour: { alignItems: 'center', gap: espace[1] },
+  semaine: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: espace[4] },
+  jour: { alignItems: 'center', gap: 2, paddingVertical: espace[1], paddingHorizontal: espace[1], borderRadius: rayon.m },
+  jourAujourdhui: { borderWidth: bord.normal },
   pastille: { width: TAILLE_PASTILLE, height: TAILLE_PASTILLE, alignItems: 'center', justifyContent: 'center' },
 });

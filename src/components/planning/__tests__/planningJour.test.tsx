@@ -93,7 +93,42 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     expect(suivre).toHaveBeenCalledWith('planning_task_opened', { genre: 'lecon' });
   });
 
-  it('annales et révision finale ouvrent Réviser', async () => {
+  it('toucher un quiz, un exercice ou un sujet d’annales ouvre la page correspondante', async () => {
+    serveur({
+      ...plan(),
+      weeks: [
+        {
+          start: '2026-10-19',
+          phase: 'learning',
+          days: [
+            {
+              day: '2026-10-20',
+              phase: 'learning',
+              minutes: 45,
+              items: [
+                { kind: 'quiz', course_id: 1, course: 'Cours 1', subject: 'Mathématique', quiz_id: 'q1', quiz: 'Quiz Fractions', minutes: 10 },
+                { kind: 'exercise', course_id: 1, course: 'Cours 1', subject: 'Mathématique', exercise_id: 'ex1', exercise: 'Exo Fractions', minutes: 15 },
+                { kind: 'past_papers', subject: 'Mathématique', folder_id: 'd1', folder: 'Bac 2024', minutes: 20 },
+              ],
+              done: false,
+            },
+          ],
+        },
+      ],
+    });
+    await monter(reglage);
+    await screen.findByText('Quiz Fractions');
+    await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Quiz Fractions/ }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/quiz', params: { id: 'q1', cours: '1', nom: 'Cours 1' } });
+
+    await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Exo Fractions/ }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/entrainement/exercice', params: { id: 'ex1', cours: '1' } });
+
+    await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Bac 2024/ }));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'd1', titre: 'Bac 2024' } });
+  });
+
+  it('annales sans sujet et révision finale ouvrent Réviser', async () => {
     mockParams = { jour: '2026-10-22' };
     serveur(plan());
     await monter(reglage);

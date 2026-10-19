@@ -1,11 +1,12 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import { BookOpen, Check, ChevronRight, FileText, RotateCw, type LucideIcon } from 'lucide-react-native';
+import { BookOpen, Check, ChevronRight, FileText, ListChecks, PenTool, RotateCw, type LucideIcon } from 'lucide-react-native';
 import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { estErreurReseau } from '@/services/connectivite';
+import { lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import {
   avecSeanceFaite,
   cocherSeance,
@@ -16,6 +17,7 @@ import {
   progressionSeance,
   seanceDe,
   seanceTerminee,
+  type AcquisesEntrainement,
   type ElementSeance,
   type LeconsValidees,
   type Planning,
@@ -36,16 +38,42 @@ import { CLES_PHASE, titreElement } from './Planning';
 
 type Etat = { type: 'chargement' } | { type: 'pret'; planning: Planning; copie: boolean } | { type: 'erreur' } | { type: 'pasReseau' };
 
-const ICONES: Record<ElementSeance['genre'], LucideIcon> = { lecon: BookOpen, annales: FileText, revisionFinale: RotateCw, revisionLibre: BookOpen };
-const CLES_DETAIL = { annales: 'planning.detail.annales', revisionFinale: 'planning.detail.revisionFinale', revisionLibre: 'planning.detail.revisionLibre' } as const;
+const ICONES: Record<ElementSeance['genre'], LucideIcon> = {
+  lecon: BookOpen,
+  quiz: ListChecks,
+  exercice: PenTool,
+  annales: FileText,
+  revisionFinale: RotateCw,
+  revisionLibre: BookOpen,
+};
+const CLES_DETAIL = {
+  annales: 'planning.detail.annales',
+  revisionFinale: 'planning.detail.revisionFinale',
+  revisionLibre: 'planning.detail.revisionLibre',
+} as const;
 
 const jourValide = (v: unknown): string | null => (typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : null);
 
-/** Ouvre la tâche : la leçon elle-même, sinon l'onglet Réviser (annales, erreurs, révision libre). */
+/** Ouvre la tâche : leçon, quiz, exercice ou dossier d'annales correspondant, sinon l'onglet Réviser. */
 function ouvrir(e: ElementSeance) {
   suivre('planning_task_opened', { genre: e.genre });
-  if (e.genre === 'lecon') router.push({ pathname: '/cours/lecon', params: { id: String(e.leconId), cours: String(e.coursId), matiere: e.matiere ?? '' } });
-  else router.push('/reviser');
+  if (e.genre === 'lecon') {
+    router.push({ pathname: '/cours/lecon', params: { id: String(e.leconId), cours: String(e.coursId), matiere: e.matiere ?? '' } });
+    return;
+  }
+  if (e.genre === 'quiz') {
+    router.push({ pathname: '/entrainement/quiz', params: { id: e.quizId, cours: String(e.coursId), nom: e.cours } });
+    return;
+  }
+  if (e.genre === 'exercice') {
+    router.push({ pathname: '/entrainement/exercice', params: { id: e.exerciceId, cours: String(e.coursId) } });
+    return;
+  }
+  if (e.genre === 'annales' && e.dossierId) {
+    router.push({ pathname: '/annales/dossier', params: { id: e.dossierId, titre: e.dossier ?? '' } });
+    return;
+  }
+  router.push('/reviser');
 }
 
 function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
@@ -53,7 +81,17 @@ function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
   const { theme } = useTheme();
   const Icone = ICONES[e.genre];
   const titre = titreElement(e, t);
-  const detail = e.genre === 'lecon' ? `${e.cours}${e.matiere ? ` · ${e.matiere}` : ''} · ${t('planning.minutes', { n: e.minutes })}` : t(CLES_DETAIL[e.genre]);
+  const detail =
+    e.genre === 'lecon'
+      ? `${e.cours}${e.matiere ? ` · ${e.matiere}` : ''} · ${t('planning.minutes', { n: e.minutes })}`
+      : e.genre === 'quiz'
+        ? `${e.cours}${e.matiere ? ` · ${e.matiere}` : ''} · ${t('planning.detail.quiz', { questions: e.questions, minutes: e.minutes })}`
+        : e.genre === 'exercice'
+          ? `${e.cours}${e.matiere ? ` · ${e.matiere}` : ''} · ${t('planning.detail.exercice', { minutes: e.minutes })}`
+          : e.genre === 'annales' && e.minutes
+            ? `${t('planning.detail.annales')} · ${t('planning.minutes', { n: e.minutes })}`
+            : t(CLES_DETAIL[e.genre]);
+  const aValidationPropre = e.genre === 'lecon' || e.genre === 'quiz' || e.genre === 'exercice';
   return (
     <Appui accessibilityRole="button" accessibilityLabel={`${t('planning.ouvrirTache', { titre })}${fait ? `. ${t('planning.fait')}` : ''}`} onPress={() => ouvrir(e)} decalage={0} rayon={rayon.l}>
       <View style={[styles.tache, { borderColor: fait ? theme.bord.doux : theme.bord.fort, backgroundColor: theme.fond.surface }]}>
@@ -62,7 +100,7 @@ function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
         </View>
         <View style={styles.tacheTexte}>
           <Text numberOfLines={2} style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
-          <Text numberOfLines={2} style={[typo.legende, { color: theme.texte.secondaire }]}>{fait && e.genre === 'lecon' ? `${t('planning.jourDeja')} · ${detail}` : detail}</Text>
+          <Text numberOfLines={2} style={[typo.legende, { color: theme.texte.secondaire }]}>{fait && aValidationPropre ? `${t('planning.jourDeja')} · ${detail}` : detail}</Text>
         </View>
         <ChevronRight size={22} strokeWidth={2} color={theme.texte.secondaire} />
       </View>
@@ -71,9 +109,8 @@ function Tache({ e, fait }: { e: ElementSeance; fait: boolean }) {
 }
 
 /**
- * Page d'une séance (spec `docs/maquettes/planning-etudes.md` §3.7) : les tâches du jour, chacune ouvre sa leçon ou son
- * exercice. Une leçon déjà validée (dans le planning ou à la main dans Réviser) compte comme faite ; une séance entièrement
- * faite se coche toute seule. Les tâches qui ne sont pas des leçons se terminent avec « J'ai terminé ma séance ».
+ * Page d'une séance (spec `docs/maquettes/planning-etudes.md` §3.7) : les tâches du jour (leçons, quiz, exercices, annales),
+ * chacune ouvre sa ressource. Une tâche déjà validée compte comme faite ; une séance entièrement validée se coche toute seule.
  */
 export function PlanningJour() {
   const { t, langue } = useTraduction();
@@ -83,6 +120,7 @@ export function PlanningJour() {
   const utilisateur = useSessionPrete();
   const [etat, setEtat] = useState<Etat>({ type: 'chargement' });
   const [lues, setLues] = useState<LeconsValidees>({});
+  const [acquises, setAcquises] = useState<AcquisesEntrainement>({});
   const [erreurCocher, setErreurCocher] = useState(false);
 
   const charger = useCallback(() => {
@@ -90,14 +128,22 @@ export function PlanningJour() {
     let actif = true;
     void (async () => {
       try {
-        const validees = await lireLues().catch(() => ({}) as LeconsValidees);
-        if (actif) setLues(validees);
+        const [validees, scores, exercices] = await Promise.all([
+          lireLues().catch(() => ({}) as LeconsValidees),
+          lireMeilleursScores().catch(() => ({}) as Record<string, number>),
+          lireExercicesFaits().catch(() => ({}) as Record<string, true>),
+        ]);
+        const acq: AcquisesEntrainement = { scores, exercices };
+        if (actif) {
+          setLues(validees);
+          setAcquises(acq);
+        }
         const lu = await lirePlanning(getSupabase(), utilisateur);
         if (!actif) return;
         let planning = lu.planning;
-        // Toutes les leçons de la séance sont déjà validées : la séance est cochée sans attendre l'élève.
+        // Toutes les tâches de la séance sont déjà validées : la séance est cochée sans attendre l'élève.
         const seance = jour ? seanceDe(planning, jour) : null;
-        if (jour && seance && !seance.fait && !lu.copie && seanceTerminee(seance, validees)) {
+        if (jour && seance && !seance.fait && !lu.copie && seanceTerminee(seance, validees, acq)) {
           planning = avecSeanceFaite(planning, jour, true);
           cocherSeance(getSupabase(), jour, true).catch(() => undefined);
         }
@@ -161,10 +207,10 @@ export function PlanningJour() {
     );
   }
 
-  const terminee = seanceTerminee(seance, lues);
-  const progression = progressionSeance(seance, lues);
-  // Une séance cochée par les leçons seules ne se décoche pas à la main : elle se recocherait aussitôt.
-  const seulementLecons = seance.elements.length > 0 && seance.elements.every((e) => elementFait(e, lues));
+  const terminee = seanceTerminee(seance, lues, acquises);
+  const progression = progressionSeance(seance, lues, acquises);
+  // Une séance cochée par les tâches validées seules ne se décoche pas à la main : elle se recocherait aussitôt.
+  const seulementAcquises = seance.elements.length > 0 && seance.elements.every((e) => elementFait(e, lues, acquises));
   const pied = terminee ? undefined : <Bouton libelle={t('planning.terminer')} desactive={copie} onPress={() => void basculer(true)} />;
   return (
     <Ecran entete={entete} pied={pied}>
@@ -182,11 +228,11 @@ export function PlanningJour() {
         ) : null}
         <View style={styles.bloc}>
           {(seance.elements.length > 0 ? seance.elements : [{ genre: 'revisionLibre' } as ElementSeance]).map((e, i) => (
-            <Tache key={i} e={e} fait={seance.fait || elementFait(e, lues)} />
+            <Tache key={i} e={e} fait={seance.fait || elementFait(e, lues, acquises)} />
           ))}
         </View>
         {erreurCocher ? <Text accessibilityRole="alert" style={[typo.petit, { color: theme.etat.erreur }]}>{t('planning.erreurCocher')}</Text> : null}
-        {terminee && seance.fait && !seulementLecons ? <Bouton variante="texte" libelle={t('planning.rouvrir')} desactive={copie} onPress={() => void basculer(false)} /> : null}
+        {terminee && seance.fait && !seulementAcquises ? <Bouton variante="texte" libelle={t('planning.rouvrir')} desactive={copie} onPress={() => void basculer(false)} /> : null}
         {terminee ? <Bouton variante="secondaire" libelle={t('planning.retourPlanning')} onPress={retour} /> : null}
       </View>
     </Ecran>

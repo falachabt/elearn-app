@@ -9,6 +9,7 @@ import { AssistantConfiguration } from '../AssistantConfiguration';
 
 const progression = {
   mission: false,
+  planning: false,
   lecon: true,
   quiz: false,
   exercice: false,
@@ -97,15 +98,17 @@ beforeEach(() => {
   enregistrerCompletionAssistant.mockResolvedValue(undefined);
 });
 
-it('ouvre une liste claire de neuf étapes, coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
+it('ouvre une liste claire de dix étapes (avec Construire mon planning en 3e position), coche le compte et les actions déjà faites et permet de fermer la feuille', async () => {
   const vue = await monter();
 
-  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') });
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') });
   fireEvent.press(ouvrir);
 
   await waitFor(() => expect(mockPresent).toHaveBeenCalledTimes(1));
   expect(await vue.findByText(fr.configuration.titre)).toBeTruthy();
-  expect(vue.getAllByRole('checkbox')).toHaveLength(9);
+  const cases = vue.getAllByRole('checkbox');
+  expect(cases).toHaveLength(10);
+  expect(cases[2].props.accessibilityLabel).toContain(fr.configuration.etapes.planning);
   expect(mockSnapPoints).toHaveBeenCalledWith(['93%']);
   expect(vue.getByTestId('configuration-sheet-mock').props.style.paddingBottom).toBe(24);
   const liste = vue.getByTestId('configuration-etapes');
@@ -115,6 +118,7 @@ it('ouvre une liste claire de neuf étapes, coche le compte et les actions déj�
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.lecon}. ${fr.configuration.fait}` }).props.accessibilityState.checked).toBe(true);
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.mission}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
+  expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.planning}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
 
   fireEvent.press(vue.getByRole('button', { name: fr.configuration.fermer }));
   await waitFor(() => expect(mockDismiss).toHaveBeenCalled());
@@ -124,15 +128,25 @@ it('décoche l’étape du compte pour un invité sans compte', async () => {
   mockUseInvite.mockReturnValue(true);
   const vue = await monter();
 
-  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '9') });
+  const ouvrir = await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '2').replace('{{total}}', '10') });
   fireEvent.press(ouvrir);
 
   expect(vue.getByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.aFaire}` }).props.accessibilityState.checked).toBe(false);
 });
 
+it('ouvre le planning depuis la 3e étape « Construire mon planning »', async () => {
+  const vue = await monter();
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') }));
+
+  fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.planning}. ${fr.configuration.aFaire}` }));
+
+  expect(mockPush).toHaveBeenCalledWith({ pathname: '/planning', params: { source: 'accueil' } });
+  expect(mockDismiss).toHaveBeenCalled();
+});
+
 it('ferme la feuille et ouvre la page correspondant à l’action choisie', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.correction}. ${fr.configuration.fait}` }));
 
@@ -142,7 +156,7 @@ it('ferme la feuille et ouvre la page correspondant à l’action choisie', asyn
 
 it('ouvre la page des paramètres depuis l’étape de personnalisation', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.parametres}. ${fr.configuration.aFaire}` }));
 
@@ -152,7 +166,7 @@ it('ouvre la page des paramètres depuis l’étape de personnalisation', async 
 
 it('ouvre le parcours hors ligne sur la dernière étape', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.horsLigne}. ${fr.configuration.aFaire}` }));
 
@@ -162,7 +176,7 @@ it('ouvre le parcours hors ligne sur la dernière étape', async () => {
 
 it('ouvre le compte depuis la première étape fictive', async () => {
   const vue = await monter();
-  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '9') }));
+  fireEvent.press(await vue.findByRole('button', { name: fr.configuration.ouvrir.replace('{{faits}}', '3').replace('{{total}}', '10') }));
 
   fireEvent.press(await vue.findByRole('checkbox', { name: `${fr.configuration.etapes.compte}. ${fr.configuration.fait}` }));
 
@@ -180,10 +194,11 @@ it('se masque lorsque l’assistant est masqué (dès le lendemain)', async () =
   });
 });
 
-it('enregistre la complétion lorsque les 9 étapes sont complétées', async () => {
+it('enregistre la complétion lorsque les 10 étapes sont complétées', async () => {
   const { enregistrerCompletionAssistant } = jest.requireMock('@/services/assistantConfiguration') as { enregistrerCompletionAssistant: jest.Mock };
   jest.mocked(lireProgressionAssistant).mockResolvedValue({
     mission: true,
+    planning: true,
     lecon: true,
     quiz: true,
     exercice: true,

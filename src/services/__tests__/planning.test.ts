@@ -6,6 +6,7 @@ import {
   cocherSeance,
   definirTemps,
   depuisReponse,
+  deuxProchainsJours,
   elementFait,
   estJourDeRepos,
   etatJour,
@@ -32,6 +33,10 @@ jest.mock('../connectivite', () => ({
 const BRUT = {
   status: 'ready',
   minutes_per_day: 45,
+  rest_days_per_week: 2,
+  reminder_time: '18:30',
+  subjects: ['Mathématique', 'Français'],
+  content_types: ['lesson', 'quiz', 'exercise', 'past_papers'],
   target: { type: 'examen', label: 'Baccalauréat', date: '2027-06-23', status: 'reprise' },
   days_left: 247,
   coverage: { lessons_total: 4, lessons_scheduled: 3 },
@@ -60,7 +65,16 @@ beforeEach(() => AsyncStorage.clear());
 describe('depuisReponse', () => {
   it('lit un planning prêt : cible, couverture, semaines triées, éléments connus seulement', () => {
     const p = depuisReponse(BRUT);
-    expect(p).toMatchObject({ statut: 'ready', minutesParJour: 45, joursRestants: 247, couverture: { total: 4, prevues: 3 } });
+    expect(p).toMatchObject({
+      statut: 'ready',
+      minutesParJour: 45,
+      joursReposParSemaine: 2,
+      heureRappel: '18:30',
+      matieres: ['Mathématique', 'Français'],
+      contenus: ['lesson', 'quiz', 'exercise', 'past_papers'],
+      joursRestants: 247,
+      couverture: { total: 4, prevues: 3 },
+    });
     expect(p?.cible).toEqual({ type: 'examen', libelle: 'Baccalauréat', date: '2027-06-23', statut: 'reprise' });
     expect(p?.semaines.map((s) => s.debut)).toEqual(['2026-10-19', '2026-10-26']);
     expect(p?.semaines[0].jours[0].elements).toEqual([
@@ -69,6 +83,35 @@ describe('depuisReponse', () => {
     ]);
     expect(p?.semaines[0].jours[2].elements).toEqual([{ genre: 'revisionFinale' }]);
     expect(p?.semaines[0].jours[0].fait).toBe(true);
+  });
+
+  it('lit les quiz, exercices et annales enrichies', () => {
+    const p = depuisReponse({
+      status: 'ready',
+      weeks: [
+        {
+          start: '2026-10-19',
+          days: [
+            {
+              day: '2026-10-19',
+              phase: 'learning',
+              minutes: 45,
+              items: [
+                { kind: 'quiz', course_id: 1, course: 'Fractions', subject: 'Mathématique', quiz_id: 'q1', quiz: 'Quiz Fractions', questions: 5, minutes: 10 },
+                { kind: 'exercise', course_id: 1, course: 'Fractions', subject: 'Mathématique', exercise_id: 'ex1', exercise: 'Exo 1', minutes: 15 },
+                { kind: 'past_papers', subject: 'Mathématique', folder_id: 'd1', folder: 'Bac 2024', minutes: 20 },
+              ],
+              done: false,
+            },
+          ],
+        },
+      ],
+    });
+    expect(p?.semaines[0].jours[0].elements).toEqual([
+      { genre: 'quiz', matiere: 'Mathématique', cours: 'Fractions', quiz: 'Quiz Fractions', questions: 5, minutes: 10, coursId: 1, quizId: 'q1' },
+      { genre: 'exercice', matiere: 'Mathématique', cours: 'Fractions', exercice: 'Exo 1', minutes: 15, coursId: 1, exerciceId: 'ex1' },
+      { genre: 'annales', dossierId: 'd1', dossier: 'Bac 2024', minutes: 20 },
+    ]);
   });
 
   it('un statut sans planning (empty, no_target) reste lisible, sans cible ni semaine', () => {
@@ -87,11 +130,15 @@ describe('depuisReponse', () => {
 describe('règles d’affichage', () => {
   const p = depuisReponse(BRUT)!;
 
-  it('séance du jour et séance suivante', () => {
+  it('séance du jour, séance suivante et deux prochains jours', () => {
     expect(seanceDuJour(p, '2026-10-20')?.elements).toEqual([{ genre: 'annales' }]);
     expect(seanceDuJour(p, '2026-10-21')).toBeNull();
     expect(prochaineSeance(p, '2026-10-21')?.jour).toBe('2026-10-22');
     expect(prochaineSeance(p, '2026-11-30')).toBeNull();
+    expect(deuxProchainsJours(p, '2026-10-20')).toEqual([
+      { jour: '2026-10-21', seance: null },
+      { jour: '2026-10-22', seance: p.semaines[0].jours[2] },
+    ]);
   });
 
   it('jour de repos : dans le planning sans séance ; avant ou après le planning, ce n’est pas un repos', () => {
@@ -132,7 +179,7 @@ describe('règles d’affichage', () => {
     expect(p?.semaines[0].jours[0].elements).toEqual([{ genre: 'annales' }]);
   });
 
-  it('leçons déjà validées : tâche faite, séance terminée seulement si toutes les tâches sont des leçons validées', () => {
+  it('leçons, quiz et exercices déjà validés : tâche faite et séance terminée si toutes les tâches sont validées', () => {
     const j = { ...p.semaines[0].jours[0], fait: false };
     expect(j.elements.map((e) => elementFait(e, { '2': 1 }))).toEqual([true, false]);
     expect(progressionSeance(j, { '2': 1 })).toEqual({ faits: 1, total: 2 });
@@ -142,6 +189,11 @@ describe('règles d’affichage', () => {
     const annales = p.semaines[0].jours[1];
     expect(seanceTerminee({ ...annales, fait: false }, { '2': 1, '4': 3 })).toBe(false);
     expect(seanceTerminee({ ...annales, fait: true }, {})).toBe(true);
+
+    const quizEl = { genre: 'quiz' as const, matiere: 'Math', cours: 'C', quiz: 'Q', questions: 5, minutes: 10, coursId: 1, quizId: 'q1' };
+    const exEl = { genre: 'exercice' as const, matiere: 'Math', cours: 'C', exercice: 'E', minutes: 15, coursId: 1, exerciceId: 'ex1' };
+    expect(elementFait(quizEl, {}, { scores: { q1: 8 } })).toBe(true);
+    expect(elementFait(exEl, {}, { exercices: { ex1: true } })).toBe(true);
   });
 
   it('situation d’un jour : séance, repos au milieu du planning, ou hors planning', () => {
@@ -192,10 +244,28 @@ describe('lirePlanning', () => {
 });
 
 describe('écritures', () => {
-  it('définir le temps envoie la classe et les minutes', async () => {
+  it('définir le temps envoie la classe, les minutes et les options si fournies', async () => {
     const c = client({ data: { status: 'ready' } });
     await definirTemps(c, '3e', 'CM', 45);
     expect(c.rpc).toHaveBeenCalledWith('study_plan_set_time', { p_level: '3e', p_country: 'CM', p_minutes: 45 });
+
+    await definirTemps(c, 'Tle', 'BF', 60, {
+      serie: 'D',
+      matieres: ['Mathématique'],
+      contenus: ['lesson', 'quiz'],
+      joursRepos: 2,
+      heureRappel: '18:30',
+    });
+    expect(c.rpc).toHaveBeenCalledWith('study_plan_set_time', {
+      p_level: 'Tle',
+      p_country: 'BF',
+      p_minutes: 60,
+      p_series: 'D',
+      p_subjects: ['Mathématique'],
+      p_content_types: ['lesson', 'quiz'],
+      p_rest_days: 2,
+      p_reminder_time: '18:30',
+    });
   });
 
   it('une erreur à la saisie remonte', async () => {
@@ -209,3 +279,4 @@ describe('écritures', () => {
     expect(await cocherSeance(client({ data: false }), '2000-01-01', true)).toBe(false);
   });
 });
+

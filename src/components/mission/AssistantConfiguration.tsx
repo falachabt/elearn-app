@@ -1,4 +1,4 @@
-import { BottomSheetBackdrop, BottomSheetFlatList, BottomSheetModal, BottomSheetView, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop, BottomSheetFlatList, BottomSheetModal, type BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import { router, useFocusEffect } from 'expo-router';
 import { Check, ChevronRight, X } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -18,10 +18,11 @@ import { useFeedback } from '../useFeedback';
 
 type Etape = keyof ProgressionAssistant | 'compte';
 
-const ETAPES: Etape[] = ['compte', 'mission', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'parametres', 'horsLigne'];
+const ETAPES: Etape[] = ['compte', 'mission', 'planning', 'lecon', 'quiz', 'exercice', 'correction', 'fil', 'parametres', 'horsLigne'];
 const LIBELLES: Record<Etape, CleTexte> = {
   compte: 'configuration.etapes.compte',
   mission: 'configuration.etapes.mission',
+  planning: 'configuration.etapes.planning',
   lecon: 'configuration.etapes.lecon',
   quiz: 'configuration.etapes.quiz',
   exercice: 'configuration.etapes.exercice',
@@ -113,6 +114,9 @@ export function AssistantConfiguration() {
         break;
       case 'mission':
         router.push({ pathname: '/parametres', params: { assistant: 'mission' } });
+        break;
+      case 'planning':
+        router.push({ pathname: '/planning', params: { source: 'accueil' } });
         break;
       case 'lecon':
         router.push({ pathname: '/reviser', params: { onglet: 'cours' } });
