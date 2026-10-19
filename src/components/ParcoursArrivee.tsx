@@ -9,7 +9,20 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
-import { CLASSES, CONCOURS, enregistrerProfil, lireProfil, paysParDefaut, type ConcoursChoisi, type Profil } from '@/services/profil';
+import { actualiserPlanningProfil } from '@/services/planning';
+import {
+  CLASSES,
+  CONCOURS,
+  enregistrerProfil,
+  lireProfil,
+  lireSeriesClasse,
+  paysParDefaut,
+  type ConcoursChoisi,
+  type Profil,
+  type SerieChoisie,
+  type SerieClasse,
+} from '@/services/profil';
+import { getSupabase } from '@/services/supabase';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -123,14 +136,15 @@ export function Bienvenue() {
   );
 }
 
-/** Même type, même classe ou filière, même pays et même concours : rien à enregistrer. */
+/** Même type, même classe ou filière, même pays, même concours et même série : rien à enregistrer. */
 function memeProfil(a: Profil | null, b: Profil): boolean {
   return (
     !!a &&
     a.type === b.type &&
     a.niveau === b.niveau &&
     (a.pays ?? '').toUpperCase() === (b.pays ?? '').toUpperCase() &&
-    (a.concours?.id ?? null) === (b.concours?.id ?? null)
+    (a.concours?.id ?? null) === (b.concours?.id ?? null) &&
+    (a.serie?.id ?? null) === (b.serie?.id ?? null)
   );
 }
 
@@ -147,6 +161,8 @@ export function ChoixClasse() {
   const [monConcours, setMonConcours] = useState<ConcoursChoisi | null>(null);
   const [pays, setPays] = useState<string>(() => paysParDefaut(safeRegion()));
   const [choixPays, setChoixPays] = useState(false);
+  const [series, setSeries] = useState<SerieClasse[]>([]);
+  const [serie, setSerie] = useState<SerieChoisie | null>(null);
   const listePays = useMemo(() => listerPays(langue, {}), [langue]);
   // Le concours se choisit sur son propre écran (filière puis concours), qui l'enregistre dans le profil.
   useFocusEffect(
@@ -173,11 +189,45 @@ export function ChoixClasse() {
       setType(cible);
       if (p.type !== 'certification' && p.type === cible && p.niveau) setNiveau(p.niveau);
       if (p.pays) setPays(p.pays.toUpperCase());
+      if (p.type === 'eleve' && p.serie) setSerie(p.serie);
     });
     return () => {
       actif = false;
     };
   }, [modifier, params.type]);
+
+  useEffect(() => {
+    if (concours) return;
+    let actif = true;
+    let client = null;
+    try {
+      client = getSupabase();
+    } catch {
+      client = null;
+    }
+    Promise.all([lireSeriesClasse(client, niveau, pays), lireProfil()])
+      .then(([liste, p]) => {
+        if (!actif) return;
+        // Une seule série (« 3e », « 6e »…) est un détail technique : seules les classes qui en ont plusieurs proposent le choix.
+        if (liste.length <= 1) {
+          setSeries([]);
+          const meme = p?.type === 'eleve' && p.niveau === niveau && (p.pays ?? '').toUpperCase() === pays.toUpperCase() ? (p.serie ?? null) : null;
+          setSerie(liste.length === 0 ? meme : null);
+          return;
+        }
+        setSeries(liste);
+        const connue = p?.serie ? liste.find((s) => s.id === p.serie?.id || s.nom === p.serie?.nom) : null;
+        setSerie((actuelle) => {
+          const deja = actuelle ? liste.find((s) => s.id === actuelle.id) : null;
+          const retenue = deja ?? connue ?? liste[0];
+          return retenue ? { id: retenue.id, nom: retenue.nom } : null;
+        });
+      })
+      .catch(() => {});
+    return () => {
+      actif = false;
+    };
+  }, [concours, niveau, pays]);
 
   const continuer = async () => {
     if (concours && !monConcours) {
@@ -188,8 +238,16 @@ export function ChoixClasse() {
       return;
     }
     const choix = concours ? monConcours : null;
+    const serieChoix = !concours && serie ? serie : null;
     if (modifier) {
-      const cible: Profil = { type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: true };
+      const cible: Profil = {
+        type: concours ? 'concours' : 'eleve',
+        niveau,
+        pays,
+        concours: choix,
+        ...(serieChoix ? { serie: serieChoix } : {}),
+        termine: true,
+      };
       const actuel = await lireProfil();
       // Rien n'a changé : on revient sans rien écrire (la mission du jour garde son cache).
       if (memeProfil(actuel, cible)) {
@@ -200,13 +258,37 @@ export function ChoixClasse() {
       await enregistrerProfil(cible);
       // La mission du jour gardée en cache était tirée pour l'ancienne classe.
       await AsyncStorage.removeItem('mission.jour');
-      suivre('profile_class_changed', { niveau, pays, statut: concours ? 'concours' : 'eleve' });
+      if (!concours) {
+        try {
+          void actualiserPlanningProfil(getSupabase(), niveau, pays, serieChoix?.id);
+        } catch {
+          // Pas de client Supabase configuré (tests unitaires) : rien à recalculer.
+        }
+      }
+      suivre('profile_class_changed', {
+        niveau,
+        pays,
+        statut: concours ? 'concours' : 'eleve',
+        ...(serieChoix ? { serie: serieChoix.nom } : {}),
+      });
       if (router.canGoBack()) router.back();
       else router.replace('/moi');
       return;
     }
-    await enregistrerProfil({ type: concours ? 'concours' : 'eleve', niveau, pays, concours: choix, termine: false });
-    suivre('onboarding_choice_made', { profil: concours ? 'concours' : 'eleve', niveau, pays });
+    await enregistrerProfil({
+      type: concours ? 'concours' : 'eleve',
+      niveau,
+      pays,
+      concours: choix,
+      ...(serieChoix ? { serie: serieChoix } : {}),
+      termine: false,
+    });
+    suivre('onboarding_choice_made', {
+      profil: concours ? 'concours' : 'eleve',
+      niveau,
+      pays,
+      ...(serieChoix ? { serie: serieChoix.nom } : {}),
+    });
     router.push('/premier-resultat');
   };
 
@@ -250,11 +332,28 @@ export function ChoixClasse() {
           </View>
         </Carte>
       ) : (
-        <View style={styles.pastilles}>
-          {CLASSES.map((o) => (
-            <Pastille key={o} libelle={o} actif={niveau === o} onPress={() => setNiveau(o)} />
-          ))}
-        </View>
+        <>
+          <View style={styles.pastilles}>
+            {CLASSES.map((o) => (
+              <Pastille key={o} libelle={o} actif={niveau === o} onPress={() => setNiveau(o)} />
+            ))}
+          </View>
+          {series.length > 1 ? (
+            <View style={styles.blocSerie}>
+              <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('classe.taSerie')}</Text>
+              <View accessibilityRole="radiogroup" accessibilityLabel={t('classe.taSerie')} style={styles.pastilles}>
+                {series.map((s) => (
+                  <Pastille
+                    key={s.id}
+                    libelle={s.nom}
+                    actif={serie?.id === s.id}
+                    onPress={() => setSerie({ id: s.id, nom: s.nom })}
+                  />
+                ))}
+              </View>
+            </View>
+          ) : null}
+        </>
       )}
       <FeuillePays
         ouverte={choixPays}
@@ -340,7 +439,14 @@ function Pastille({ libelle, actif, onPress }: { libelle: string; actif: boolean
 
 async function terminer(): Promise<void> {
   const p = await lireProfil();
-  await enregistrerProfil({ type: p?.type ?? 'eleve', niveau: p?.niveau, pays: p?.pays, termine: true });
+  await enregistrerProfil({
+    type: p?.type ?? 'eleve',
+    niveau: p?.niveau,
+    pays: p?.pays,
+    ...(p?.concours ? { concours: p.concours } : {}),
+    ...(p?.serie ? { serie: p.serie } : {}),
+    termine: true,
+  });
 }
 
 /** A3 · Premier résultat : deux portes (photo ou mini-test) ou explorer (M1-03). La photo mène à l'onglet Photo en attendant le parcours B. */
@@ -396,6 +502,7 @@ const styles = StyleSheet.create({
   numeroTexte: { fontFamily: 'SpaceGrotesk-Bold', fontSize: 15, lineHeight: 18 },
   flex: { flex: 1 },
   lignePaysEpuree: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },
+  blocSerie: { gap: espace[2], marginTop: espace[3] },
   pastilles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   pastille: { minHeight: cibleMin - 6, paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.pilule, alignItems: 'center', justifyContent: 'center' },
 });

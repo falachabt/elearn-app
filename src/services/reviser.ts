@@ -18,7 +18,7 @@ export type Lecon = { id: number; nom: string; minutes: number | null };
 export type ContenuLecon = { id: number; coursId: number; nom: string; blocs: Bloc[] };
 export type Fiche = { nom: string; blocs: Bloc[] };
 
-const CLE_COURS = (niveau: string, pays: string) => `reviser.cours.${niveau}.${pays.toUpperCase()}`;
+const CLE_COURS = (niveau: string, pays: string, serie?: string | null) => `reviser.cours.${niveau}.${pays.toUpperCase()}${serie ? `.${serie}` : ''}`;
 const CLE_LECONS = (cours: number) => `reviser.lecons.${cours}`;
 const CLE_LECON = (lecon: number) => `reviser.lecon.${lecon}`;
 const CLE_FICHE = (cours: number) => `reviser.fiche.${cours}`;
@@ -185,19 +185,26 @@ export function nomCourt(nom: string): string {
   return nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase().replace(/ & /g, ' et ');
 }
 
-/** Ce que lit Réviser pour un profil : le programme du concours choisi, sinon celui de la classe. */
-export function programmeDu(profil: { type?: string | null; niveau?: string | null; pays?: string | null; concours?: { id: string } | null } | null) {
-  return { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', concours: profil?.type === 'concours' ? (profil.concours?.id ?? null) : null };
+/** Ce que lit Réviser pour un profil : le programme du concours choisi, sinon celui de la classe (et de sa série). */
+export function programmeDu(
+  profil: { type?: string | null; niveau?: string | null; pays?: string | null; serie?: { id: string; nom?: string } | null; concours?: { id: string; sigle?: string; nom?: string } | null } | null,
+) {
+  return {
+    niveau: profil?.niveau ?? '3e',
+    pays: profil?.pays ?? 'CM',
+    ...(profil?.type !== 'concours' && profil?.serie?.id ? { serie: profil.serie.id } : {}),
+    concours: profil?.type === 'concours' ? (profil.concours?.id ?? null) : null,
+  };
 }
 
-export async function lireCours(client: Client, p: { niveau: string; pays: string; concours?: string | null }): Promise<Cours[]> {
+export async function lireCours(client: Client, p: { niveau: string; pays: string; serie?: string | null; concours?: string | null }): Promise<Cours[]> {
   // Un concours choisi se comporte comme une classe : son programme remplace celui de la classe.
-  const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays);
+  const cle = p.concours ? `reviser.cours.concours.${p.concours}` : CLE_COURS(p.niveau, p.pays, p.serie);
   return avecCopie(cle, async () => {
     type Ligne = { course_id: number; name: string; subject: string | null; lessons: number };
     const lignes = p.concours
       ? await rpc<Ligne>(client, 'contest_courses', { p_contest: p.concours })
-      : await rpc<Ligne>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays });
+      : await rpc<Ligne>(client, 'revision_courses', { p_level: p.niveau, p_country: p.pays, ...(p.serie ? { p_series: p.serie } : {}) });
     return lignes.map((l) => ({ id: l.course_id, nom: l.name.trim(), matiere: l.subject?.trim() || AUTRES, lecons: l.lessons }));
   });
 }

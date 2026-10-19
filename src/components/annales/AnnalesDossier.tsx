@@ -41,7 +41,12 @@ export function AnnalesDossier() {
         const client = getSupabase();
         const profil = await lireProfil();
         const [dossiers, documents] = await Promise.all([
-          lireDossiers(client, { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM', parent: id }),
+          lireDossiers(client, {
+            niveau: profil?.niveau ?? '3e',
+            pays: profil?.pays ?? 'CM',
+            parent: id,
+            ...(profil?.type === 'eleve' && profil.serie?.id ? { serie: profil.serie.id } : {}),
+          }),
           lireDocuments(client, id),
         ]);
         if (actif) setEtat({ statut: 'pret', dossiers, documents });

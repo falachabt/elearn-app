@@ -148,9 +148,15 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
     setTimeout(() => setIdentifiantCopie(false), 2500);
   };
 
+  const serieCourt = profil?.type === 'eleve' && profil.serie?.nom
+    ? profil.serie.nom.replace(/^(s[eé]rie|seconde|premi[eè]re|terminale)\s+/i, '').trim()
+    : '';
+  const classeEleve = profil?.niveau
+    ? (serieCourt && serieCourt.toLowerCase() !== profil.niveau.toLowerCase() ? `${profil.niveau} ${serieCourt}` : profil.niveau)
+    : '';
   const classePays = profil?.niveau
     ? t('profil.classeSous', {
-        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : profil.niveau,
+        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : classeEleve,
         pays: profil.pays ? t(`pays.${profil.pays as 'CM'}`) : '',
       })
     : null;
@@ -164,7 +170,7 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
   const sousProfil = profil?.niveau
     ? t('profilChoix.monProfilSous', {
         type: profil.type === 'concours' ? t('profilChoix.typeConcours') : t('profilChoix.typeSecondaire'),
-        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : profil.niveau,
+        classe: profil.type === 'concours' ? t(`classe.concoursListe.${profil.niveau as 'ens'}`) : classeEleve,
       })
     : undefined;
 

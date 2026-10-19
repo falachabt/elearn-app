@@ -7,16 +7,39 @@ export const CLE_PROFIL = 'profil.arrivee';
 /** Concours précis choisi par un candidat : il se comporte comme une classe (programme, mission, annales). */
 export type ConcoursChoisi = { id: string; sigle: string; nom: string; ville?: string | null };
 
+/** Série du lycée (2nde, 1re, Tle) choisie par l'élève : filtre ses cours, sa mission, ses annales et son planning. */
+export type SerieChoisie = { id: string; nom: string };
+export type SerieClasse = { id: string; nom: string; cours: number };
+
 /** `niveau` : la classe pour un élève, la filière (ingenieurs, sante…) pour un candidat. */
 export type Profil = {
   type: 'eleve' | 'concours' | 'certification';
   niveau?: string;
   pays?: string;
+  serie?: SerieChoisie | null;
   concours?: ConcoursChoisi | null;
   /** Examen préparé (profil `certification`) : code de `cert_exams`, par exemple `toeic`. */
   exam?: string;
   termine: boolean;
 };
+
+/** Séries proposées pour une classe et un pays (`class_series`) ; vide si la classe n'a pas de choix ou hors ligne. */
+export async function lireSeriesClasse(
+  client: { rpc?: (nom: string, args: Record<string, unknown>) => PromiseLike<{ data: unknown; error: unknown }> } | null | undefined,
+  niveau: string,
+  pays: string,
+): Promise<SerieClasse[]> {
+  if (!client || typeof client.rpc !== 'function') return [];
+  try {
+    const { data, error } = await client.rpc('class_series', { p_level: niveau, p_country: pays.toUpperCase() });
+    if (error || !Array.isArray(data)) return [];
+    return (data as { series_id?: string; name?: string; courses?: number }[])
+      .filter((l): l is { series_id: string; name: string; courses?: number } => typeof l.series_id === 'string' && typeof l.name === 'string' && l.name.trim() !== '')
+      .map((l) => ({ id: l.series_id, nom: l.name.trim(), cours: typeof l.courses === 'number' ? l.courses : 0 }));
+  } catch {
+    return [];
+  }
+}
 
 /** Choix du parcours d'arrivée (M1-01), gardés sur le téléphone : aucun compte n'est demandé. */
 export async function lireProfil(): Promise<Profil | null> {
@@ -24,7 +47,15 @@ export async function lireProfil(): Promise<Profil | null> {
     const brut = await AsyncStorage.getItem(CLE_PROFIL);
     const p = brut ? (JSON.parse(brut) as Partial<Profil>) : null;
     if (p && (p.type === 'eleve' || p.type === 'concours' || p.type === 'certification')) {
-      return { type: p.type, niveau: p.niveau, pays: p.pays, concours: p.type === 'concours' ? (p.concours ?? null) : null, ...(p.type === 'certification' && p.exam ? { exam: p.exam } : {}), termine: !!p.termine };
+      return {
+        type: p.type,
+        niveau: p.niveau,
+        pays: p.pays,
+        ...(p.type === 'eleve' && p.serie?.id && p.serie?.nom ? { serie: { id: p.serie.id, nom: p.serie.nom } } : {}),
+        concours: p.type === 'concours' ? (p.concours ?? null) : null,
+        ...(p.type === 'certification' && p.exam ? { exam: p.exam } : {}),
+        termine: !!p.termine,
+      };
     }
   } catch {
     // illisible : parcours d'arrivée à refaire
@@ -52,6 +83,7 @@ export function profilDepuisCompte(user?: { user_metadata?: Record<string, unkno
     p?.pays ??
     (typeof m.pays === 'string' && m.pays ? m.pays : undefined) ??
     (typeof m.country === 'string' && m.country ? m.country : undefined);
+  const serie = type === 'eleve' && p?.serie?.id && p?.serie?.nom ? { id: p.serie.id, nom: p.serie.nom } : undefined;
   const concours = p?.concours ?? null;
 
   if (niveau || pays || type === 'certification') {
@@ -59,6 +91,7 @@ export function profilDepuisCompte(user?: { user_metadata?: Record<string, unkno
       type,
       niveau,
       pays,
+      ...(serie ? { serie } : {}),
       concours,
       ...(type === 'certification' && typeof p?.exam === 'string' ? { exam: p.exam } : {}),
       termine: true,

@@ -38,8 +38,8 @@ export const CLE_MISSION = 'mission.jour';
 export const CLE_HISTORIQUE = 'mission.historique';
 export const CLE_DERNIER = 'mission.dernier';
 export const CLE_ERREURS = 'mission.erreurs';
-const cleMissionHorsLigne = (p: { niveau: string; pays: string; concours?: string | null; taille?: number }, jour: string) =>
-  `mission.horsLigne.${p.niveau}.${p.pays}.${p.concours ?? 'classe'}.${p.taille ?? TAILLE_DEFAUT}.${jour}`;
+const cleMissionHorsLigne = (p: { niveau: string; pays: string; serie?: string | null; concours?: string | null; taille?: number }, jour: string) =>
+  `mission.horsLigne.${p.niveau}.${p.pays}.${p.concours ?? p.serie ?? 'classe'}.${p.taille ?? TAILLE_DEFAUT}.${jour}`;
 
 /** Jour local au format AAAA-MM-JJ : la mission change à minuit, heure du téléphone. */
 export function jourLocal(date: Date = new Date()): string {
@@ -78,12 +78,12 @@ export function convertir(l: LigneMission, vraiFaux: { vrai: string; faux: strin
 }
 
 /**
- * Mission du jour (M4-01) : tirée par le serveur pour la classe et le pays, gardée pour la journée (elle se rejoue sans
+ * Mission du jour (M4-01) : tirée par le serveur pour la classe (et la série) et le pays, gardée pour la journée (elle se rejoue sans
  * réseau). Sans réseau ou sans contenu pour la classe, questions embarquées de la classe.
  */
 export async function chargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number; concours?: string | null },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour?: string; taille?: number; serie?: string | null; concours?: string | null },
 ): Promise<Mission> {
   const jour = p.jour ?? jourLocal();
   const taille = p.taille ?? TAILLE_DEFAUT;
@@ -94,18 +94,26 @@ export async function chargerMission(
   const missionHorsLigne = copieEncoreValable ? await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
   if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
   const brut = copieEncoreValable ? await AsyncStorage.getItem(CLE_MISSION) : null;
-  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; concours?: string | null }) : null;
-  if (garde?.jour === jour && garde.niveau === p.niveau && (garde.taille ?? taille) === taille && (garde.concours ?? null) === (p.concours ?? null)) return garde;
+  const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; serie?: string | null; concours?: string | null }) : null;
+  if (
+    garde?.jour === jour &&
+    garde.niveau === p.niveau &&
+    (garde.taille ?? taille) === taille &&
+    (garde.serie ?? null) === (p.serie ?? null) &&
+    (garde.concours ?? null) === (p.concours ?? null)
+  )
+    return garde;
 
   let mission: Mission;
+  const argSerie = p.serie ? { p_series: p.serie } : {};
   try {
     // Candidat : les quiz des cours de son concours. Élève : du plus récent au plus ancien, la fonction peut ne pas
     // encore être déployée en production.
     let { data, error } = p.concours
       ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: jour, p_questions: taille })
-      : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille });
-    if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION }));
-    if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION }));
+      : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_questions: taille, ...argSerie });
+    if (error) ({ data, error } = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_lessons: LECONS_MISSION, ...argSerie }));
+    if (error) ({ data, error } = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: jour, p_size: TAILLE_MISSION, ...argSerie }));
     if (error) throw error;
     const questions = ((data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
     if (questions.length < 3) throw new Error('mission trop courte');
@@ -114,25 +122,26 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, concours: p.concours ?? null }));
+  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null }));
   return mission;
 }
 
 /** Prépare une journée future sans écraser la mission courante ni la progression de l'élève. */
 export async function prechargerMission(
   client: Client,
-  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour: string; taille?: number; concours?: string | null },
+  p: { niveau: string; pays: string; vraiFaux: { vrai: string; faux: string }; jour: string; taille?: number; serie?: string | null; concours?: string | null },
 ): Promise<Mission> {
   const taille = p.taille ?? TAILLE_DEFAUT;
   const cle = cleMissionHorsLigne({ ...p, taille }, p.jour);
   const garde = await AsyncStorage.getItem(cle);
   if (garde) return JSON.parse(garde) as Mission;
 
+  const argSerie = p.serie ? { p_series: p.serie } : {};
   let resultat = p.concours
     ? await client.rpc('daily_mission_contest', { p_contest: p.concours, p_day: p.jour, p_questions: taille })
-    : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_questions: taille });
-  if (resultat.error) resultat = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_lessons: LECONS_MISSION });
-  if (resultat.error) resultat = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_size: TAILLE_MISSION });
+    : await client.rpc('daily_mission_sized', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_questions: taille, ...argSerie });
+  if (resultat.error) resultat = await client.rpc('daily_mission_lessons', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_lessons: LECONS_MISSION, ...argSerie });
+  if (resultat.error) resultat = await client.rpc('daily_mission', { p_level: p.niveau, p_country: p.pays, p_day: p.jour, p_size: TAILLE_MISSION, ...argSerie });
   if (resultat.error) throw resultat.error;
   const questions = ((resultat.data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
   if (questions.length < 3) throw new Error('mission trop courte');

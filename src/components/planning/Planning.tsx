@@ -370,7 +370,7 @@ export function Planning() {
       setEtat({ type: 'enregistrement' });
       suivre('planning_time_chosen', { minutes });
       try {
-        await definirTemps(getSupabase(), profil.niveau, profil.pays, minutes);
+        await definirTemps(getSupabase(), profil.niveau, profil.pays, minutes, profil.serie?.id);
         charger();
       } catch {
         setEtat({ type: 'erreur' });

@@ -35,6 +35,7 @@ type Tache = {
   document?: { id: string; titre: string };
   niveau?: string;
   pays?: string;
+  serie?: string | null;
   concours?: string | null;
   taille?: number;
   tailleOctets?: number;
@@ -149,7 +150,7 @@ function documentsEstimes(taches: Tache[], documents: { id: string; titre: strin
 
 async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, profil: Profil): Promise<{ id: string; titre: string; correctionId: string | null }[]> {
   const visiter = async (parent: string | null): Promise<{ id: string; titre: string; correctionId: string | null; tailleOctets?: number }[]> => {
-    const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', parent });
+    const dossiers = await lireDossiers(client, { niveau: profil.niveau ?? '3e', pays: profil.pays ?? 'CM', ...(profil.serie?.id ? { serie: profil.serie.id } : {}), parent });
     const contenus = await Promise.all(dossiers.map(async (dossier) => {
       const [fichiers, enfants] = await Promise.all([
         lireDocuments(client, dossier.id),
@@ -186,7 +187,7 @@ export async function estimerTelechargement(): Promise<EstimationTelechargement>
       `${aujourdHui.getFullYear()}-${String(aujourdHui.getMonth() + 1).padStart(2, '0')}-${String(aujourdHui.getDate()).padStart(2, '0')}`,
       i,
     );
-    ajouterTache(taches, 'missions', jour, { jour, niveau: programme.niveau, pays: programme.pays, concours: programme.concours, taille: rythme ?? undefined });
+    ajouterTache(taches, 'missions', jour, { jour, niveau: programme.niveau, pays: programme.pays, ...(programme.serie ? { serie: programme.serie } : {}), concours: programme.concours, taille: rythme ?? undefined });
   }
 
   const [leconsParCours, documents] = await Promise.all([
@@ -263,6 +264,7 @@ async function executerTache(tache: Tache): Promise<void> {
     await prechargerMission(client, {
       niveau: tache.niveau ?? '3e',
       pays: tache.pays ?? 'CM',
+      ...(tache.serie ? { serie: tache.serie } : {}),
       concours: tache.concours,
       jour: tache.jour,
       taille: tache.taille,

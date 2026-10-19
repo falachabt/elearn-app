@@ -24,6 +24,7 @@ PostHog `$screen`, une par changement d'écran, avec le nom de la route sans par
 | `invite` | `true` pour un invité, `false` pour un compte | Connexion, création de compte |
 | `statut` | `eleve` ou `concours` | Choix du profil |
 | `classe` | `6e` à `Tle` (élève) | Choix du profil |
+| `serie` | série du lycée choisie (`Série C`, `Série D`…) | Choix du profil |
 | `filiere` | filière du candidat (`sante`, `ingenieurs`) | Choix du profil |
 | `concours` | sigle du concours choisi | Choix du concours |
 | `pays` | pays choisi dans le profil | Choix du profil |
@@ -66,7 +67,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `session_invite_creee` | Création de la session invité (connexion anonyme) | `Record<string, never>` |
 | `feedback_setting_changed` | Réglage de sons, vibrations ou animations modifié | `{ setting: 'sounds' \| 'haptics' \| 'reduced_motion' \| 'volume'; value: boolean \| 'faible' \| 'normal'; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean }` |
 | `celebration_seen` | Célébration (fin de mission ou de quiz) affichée | `{ sound_on: boolean; haptics_on: boolean; reduced_motion: boolean }` |
-| `onboarding_choice_made` | Profil choisi à l'arrivée (élève, concours ou certification ; classe et pays pour les deux premiers) | `{ profil: 'eleve' \| 'concours'; niveau: string; pays: string } \| { profil: 'certification'; pays?: string }` |
+| `onboarding_choice_made` | Profil choisi à l'arrivée (élève, concours ou certification ; classe, série éventuelle et pays pour les deux premiers) | `{ profil: 'eleve' \| 'concours'; niveau: string; pays: string; serie?: string } \| { profil: 'certification'; pays?: string }` |
 | `first_result_seen` | Premier résultat affiché (mini-test ou photo) | `{ type: 'mini_test' \| 'photo'; duree_s: number; score?: number; total?: number }` |
 | `signup_prompt_seen` | Invitation à créer un compte vue après le score | `{ source: 'score' }` |
 | `paywall_viewed` | Écran des offres affiché | `{ declencheur: 'score' \| 'moi' \| 'limite' }` |
@@ -94,7 +95,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `document_opened` | Document ou sujet PDF ouvert | `{ hors_ligne: boolean }` |
 | `chapter_end_shown` | Fin de chapitre affichée | `{ complet: boolean; quiz: number; exercices: number }` |
 | `guardian_contact_saved` | Contact du parent ou tuteur enregistré | `Record<string, never>` |
-| `profile_class_changed` | Classe, pays ou statut modifié | `{ niveau: string; pays: string; statut: 'eleve' \| 'concours' }` |
+| `profile_class_changed` | Classe, série, pays ou statut modifié | `{ niveau: string; pays: string; statut: 'eleve' \| 'concours'; serie?: string }` |
 | `guardian_contact_withdrawn` | Contact du parent retiré | `Record<string, never>` |
 | `account_deletion_requested` | Suppression du compte demandée | `Record<string, never>` |
 | `summary_opened` | Fiche de cours ouverte | `{ cours: number }` |

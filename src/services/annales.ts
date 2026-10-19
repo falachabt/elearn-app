@@ -123,9 +123,14 @@ export function nomDocument(nom: string): string {
 }
 
 /** Dossiers d'annales de la classe (racines, ou sous-dossiers de `parent`). */
-export async function lireDossiers(client: Client, p: { niveau: string; pays: string; parent?: string | null }): Promise<Dossier[]> {
-  return avecCopie(`annales.dossiers.${p.niveau}.${p.pays}.${p.parent ?? ''}`, async () => {
-    const { data, error } = await client.rpc('class_document_folders', { p_level: p.niveau, p_country: p.pays, p_parent: p.parent ?? null });
+export async function lireDossiers(client: Client, p: { niveau: string; pays: string; serie?: string | null; parent?: string | null }): Promise<Dossier[]> {
+  return avecCopie(`annales.dossiers.${p.niveau}.${p.pays}${p.serie ? `.${p.serie}` : ''}.${p.parent ?? ''}`, async () => {
+    const { data, error } = await client.rpc('class_document_folders', {
+      p_level: p.niveau,
+      p_country: p.pays,
+      p_parent: p.parent ?? null,
+      ...(p.serie ? { p_series: p.serie } : {}),
+    });
     if (error) throw error;
     type Ligne = { folder_id: string; name: string; subfolders: number; documents: number };
     return ((data ?? []) as Ligne[]).filter((l) => l.documents > 0).map((l) => ({ id: l.folder_id, nom: nomDocument(l.name), sousDossiers: l.subfolders, documents: l.documents }));

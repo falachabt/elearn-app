@@ -550,6 +550,7 @@ export const fr = {
     titreConcours: 'Quel concours prépares-tu ?',
     pays: 'Pays',
     taClasse: 'Ta classe',
+    taSerie: 'Ta série',
     tonConcours: 'Ton concours',
     tonPays: 'Ton pays',
     taLangue: 'Ta langue',

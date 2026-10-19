@@ -221,11 +221,29 @@ export async function lirePlanning(client: Client, idUtilisateur?: string): Prom
   }
 }
 
-/** Enregistre le temps par jour (et la classe) ; le serveur calcule le planning tout de suite. */
-export async function definirTemps(client: Client, niveau: string, pays: string, minutes: number): Promise<void> {
-  const { error } = await client.rpc('study_plan_set_time', { p_level: niveau, p_country: pays, p_minutes: minutes });
+/** Enregistre le temps par jour (et la classe et la série) ; le serveur calcule le planning tout de suite. */
+export async function definirTemps(client: Client, niveau: string, pays: string, minutes: number, serie?: string | null): Promise<void> {
+  const { error } = await client.rpc('study_plan_set_time', {
+    p_level: niveau,
+    p_country: pays,
+    p_minutes: minutes,
+    ...(serie ? { p_series: serie } : {}),
+  });
   if (error) throw error;
   signalerSucces();
+}
+
+/** Si l'élève a déjà un planning, le recalcule pour sa nouvelle classe ou série en gardant son temps par jour. */
+export async function actualiserPlanningProfil(client: { rpc?: Client['rpc'] } | null | undefined, niveau: string, pays: string, serie?: string | null): Promise<void> {
+  if (!client || typeof client.rpc !== 'function') return;
+  try {
+    const { data, error } = await client.rpc('my_study_plan');
+    if (error) return;
+    const p = depuisReponse(data);
+    if (p?.minutesParJour) await definirTemps(client as Client, niveau, pays, p.minutesParJour, serie);
+  } catch {
+    // Recalcul facultatif : hors ligne ou invité, rien à faire.
+  }
 }
 
 /** Coche ou décoche la séance d'un jour. Faux si le jour n'est pas dans le planning. */

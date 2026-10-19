@@ -4,7 +4,7 @@ export type Evenements = {
   session_invite_creee: Record<string, never>;
   feedback_setting_changed: { setting: 'sounds' | 'haptics' | 'reduced_motion' | 'volume'; value: boolean | 'faible' | 'normal'; sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
   celebration_seen: { sound_on: boolean; haptics_on: boolean; reduced_motion: boolean };
-  onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string } | { profil: 'certification'; pays?: string };
+  onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string; serie?: string } | { profil: 'certification'; pays?: string };
   first_result_seen: { type: 'mini_test' | 'photo'; duree_s: number; score?: number; total?: number };
   signup_prompt_seen: { source: 'score' };
   paywall_viewed: { declencheur: 'score' | 'moi' | 'limite' };
@@ -36,7 +36,7 @@ export type Evenements = {
   document_opened: { hors_ligne: boolean };
   chapter_end_shown: { complet: boolean; quiz: number; exercices: number };
   guardian_contact_saved: Record<string, never>;
-  profile_class_changed: { niveau: string; pays: string; statut: 'eleve' | 'concours' };
+  profile_class_changed: { niveau: string; pays: string; statut: 'eleve' | 'concours'; serie?: string };
   guardian_contact_withdrawn: Record<string, never>;
   account_deletion_requested: Record<string, never>;
   summary_opened: { cours: number };

@@ -130,8 +130,9 @@ Fait dans l'app (aucune migration) :
 - **Jours avant le début ou après la fin du planning** : « — » (accessible : « Hors planning »), plus jamais « Jour de repos ». Un vrai repos au milieu du planning reste « Jour de repos ».
 - **Carte de l'accueil** : « Aujourd'hui : 2 tâches · 45 min », avec l'avancement quand une leçon est déjà validée.
 
+- **Série du lycée (migration `20261018120000_series_programme`)** : quand la classe a plusieurs séries pour le pays (`2nde`, `1re`, `Tle`), l'élève choisit sa série dans `ChoixClasse` (`class_series`). Ce choix filtre les cours (`revision_courses`), la mission du jour (`daily_mission`, `daily_mission_lessons`, `daily_mission_sized`), les dossiers d'annales (`class_document_folders`) et le planning d'études (`study_plan_set_time`). Changer de classe, de pays ou de série recalcule le planning s'il existe déjà.
+
 Reste à faire (à décider avec Benny) :
-1. **Programme de l'élève** : le planning prend toutes les leçons de la classe et du pays (toutes les séries). Il faut le filtrer sur la série ou le programme de l'élève.
-2. **Exercices et annales réels** : aujourd'hui une journée d'annales ou de révision finale est une tâche générique. À remplacer par de vrais sujets d'annales et des exercices du chapitre, par une évolution du calcul serveur.
-3. **Suivi côté serveur** : la séance cochée par les leçons validées est envoyée au serveur à l'ouverture de la page de la séance ; le calcul serveur ne sait pas encore ignorer les leçons déjà validées à la création du planning.
+1. **Exercices et annales réels** : aujourd'hui une journée d'annales ou de révision finale est une tâche générique. À remplacer par de vrais sujets d'annales et des exercices du chapitre, par une évolution du calcul serveur.
+2. **Suivi côté serveur** : la séance cochée par les leçons validées est envoyée au serveur à l'ouverture de la page de la séance ; le calcul serveur ne sait pas encore ignorer les leçons déjà validées à la création du planning.
 

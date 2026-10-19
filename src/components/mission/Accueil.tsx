@@ -67,7 +67,9 @@ export function libelleProfil(profil: Profil | null): string {
             : profil.niveau ?? 'Concours')
     );
   }
-  return profil.niveau || '3e';
+  const classe = profil.niveau || '3e';
+  const court = profil.serie?.nom ? profil.serie.nom.replace(/^(s[eé]rie|seconde|premi[eè]re|terminale)\s+/i, '').trim() : '';
+  return court && court.toLowerCase() !== classe.toLowerCase() ? `${classe} ${court}` : classe;
 }
 
 /**
@@ -217,6 +219,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           jour,
           taille: taille ?? undefined,
           concours: p?.type === 'concours' ? p.concours?.id : null,
+          ...(p?.type === 'eleve' && p.serie?.id ? { serie: p.serie.id } : {}),
         }).catch(() => null);
         // Un résultat d'une autre mission du jour (taille changée, nouvelle version) ne compte pas comme faite.
         const aJour = faite && mission && faite.total !== mission.questions.length ? null : faite;

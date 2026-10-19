@@ -46,7 +46,13 @@ export function Annales({ tous = false }: { tous?: boolean }) {
       const profil = await lireProfil();
       const eleve = profil?.type !== 'concours';
       const [dossiers, sujets] = await Promise.all([
-        eleve && !tous ? lireDossiers(client, { niveau: profil?.niveau ?? '3e', pays: profil?.pays ?? 'CM' }).catch(() => []) : Promise.resolve([]),
+        eleve && !tous
+          ? lireDossiers(client, {
+              niveau: profil?.niveau ?? '3e',
+              pays: profil?.pays ?? 'CM',
+              ...(profil?.serie?.id ? { serie: profil.serie.id } : {}),
+            }).catch(() => [])
+          : Promise.resolve([]),
         lireCatalogue(client).catch(() => null),
       ]);
       if (!actif) return;

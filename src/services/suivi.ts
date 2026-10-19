@@ -50,6 +50,7 @@ export async function synchroniserProprietes(): Promise<void> {
   if (profil) {
     proprietes.statut = profil.type;
     proprietes.classe = profil.type === 'eleve' ? (profil.niveau ?? null) : null;
+    if (profil.type === 'eleve' && profil.serie?.nom) proprietes.serie = profil.serie.nom;
     proprietes.filiere = profil.type === 'concours' ? (profil.niveau ?? null) : null;
     proprietes.concours = profil.concours?.sigle ?? null;
     proprietes.pays = profil.pays ?? null;

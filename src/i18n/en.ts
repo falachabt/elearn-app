@@ -549,6 +549,7 @@ export const en: Textes = {
     titreConcours: 'Which exam are you preparing?',
     pays: 'Country',
     taClasse: 'Your class',
+    taSerie: 'Your series',
     tonConcours: 'Your exam',
     tonPays: 'Your country',
     taLangue: 'Your language',

@@ -16,7 +16,7 @@ type Client = Pick<SupabaseClient, 'auth'>;
 export type Reglages = {
   preferences: Preferences;
   langue: Langue;
-  profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'concours' | 'exam'>;
+  profil?: Pick<Profil, 'type' | 'niveau' | 'pays' | 'serie' | 'concours' | 'exam'>;
   /** Taille de la mission du jour choisie (M4-08). */
   rythme?: number | null;
   affichage?: { theme: ReglageTheme; taille: ReglageTaille };
@@ -29,7 +29,16 @@ export async function construireReglages(maj?: string | null): Promise<Reglages>
   return {
     preferences: { ...lirePreferences() },
     langue: langueSupportee(i18n.language) ?? 'fr',
-    ...(profil && { profil: { type: profil.type, niveau: profil.niveau, pays: profil.pays, concours: profil.concours ?? null, ...(profil.exam ? { exam: profil.exam } : {}) } }),
+    ...(profil && {
+      profil: {
+        type: profil.type,
+        niveau: profil.niveau,
+        pays: profil.pays,
+        ...(profil.serie ? { serie: profil.serie } : {}),
+        concours: profil.concours ?? null,
+        ...(profil.exam ? { exam: profil.exam } : {}),
+      },
+    }),
     rythme: await lireRythme(),
     affichage: lireAffichage(),
     wifiSeulement: await lireWifiSeulement(),
@@ -65,7 +74,15 @@ export async function appliquerReglages(r: Reglages): Promise<void> {
     if (r.affichage) await appliquerAffichage(r.affichage);
     if (typeof r.wifiSeulement === 'boolean') await definirWifiSeulement(r.wifiSeulement);
     if (r.profil?.type === 'eleve' || r.profil?.type === 'concours' || r.profil?.type === 'certification') {
-      await enregistrerProfil({ type: r.profil.type, niveau: r.profil.niveau, pays: r.profil.pays, concours: r.profil.concours ?? null, ...(r.profil.exam ? { exam: r.profil.exam } : {}), termine: true });
+      await enregistrerProfil({
+        type: r.profil.type,
+        niveau: r.profil.niveau,
+        pays: r.profil.pays,
+        ...(r.profil.serie ? { serie: r.profil.serie } : {}),
+        concours: r.profil.concours ?? null,
+        ...(r.profil.exam ? { exam: r.profil.exam } : {}),
+        termine: true,
+      });
     }
     if (typeof r.rythme === 'number') await enregistrerRythme(r.rythme);
   });
