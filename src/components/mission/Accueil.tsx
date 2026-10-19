@@ -233,10 +233,23 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
 
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
   const surVert = theme.texte.surCouleur;
+  const elementCompteARebours =
+    echeance || __DEV__ ? (
+      <CompteARebours
+        type={echeance?.type ?? 'examen'}
+        cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
+        libelle={
+          echeance
+            ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
+            : 'EXEMPLE · BEPC'
+        }
+        estime={echeance ? echeance.statut === 'reprise' : true}
+      />
+    ) : undefined;
 
   return (
     <View style={styles.racine}>
-    <Ecran insetBas={false}>
+    <Ecran insetBas={false} pied={elementCompteARebours}>
       <Apparition>
         <View style={styles.entete}>
           <SelecteurClasse profil={profil} />
@@ -273,23 +286,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
         </View>
       </Apparition>
 
-      {/* En développement seulement : exemple visible tant que la base n'a pas de date pour cet élève. */}
-      {echeance || __DEV__ ? (
-        <Apparition delai={40}>
-          <CompteARebours
-            type={echeance?.type ?? 'examen'}
-            cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
-            libelle={
-              echeance
-                ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
-                : 'EXEMPLE · BEPC'
-            }
-            estime={echeance ? echeance.statut === 'reprise' : true}
-          />
-        </Apparition>
-      ) : null}
-
-      <Apparition delai={50}>
+      <Apparition delai={40}>
         <Carte style={{ backgroundColor: theme.marque.principale }}>
           <View style={styles.groupe}>
             <View style={styles.entete}>
