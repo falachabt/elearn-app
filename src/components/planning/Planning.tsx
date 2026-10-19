@@ -321,7 +321,17 @@ function AssistantPlanning({
     joursRepos !== REPOS_PAR_DEFAUT ||
     heureFinale !== RAPPEL_PAR_DEFAUT;
 
+  const passerEtape = (suivante: EtapeAssistant, nom: string) => {
+    suivre('planning_step_completed', { etape, nom });
+    setEtape(suivante);
+  };
+
   const soumettre = () => {
+    suivre('planning_created', {
+      minutes_jour: choixMinutes,
+      jours_repos: joursRepos,
+      matieres_choisies: matieresChoisies.length,
+    });
     onCreer({
       minutes: choixMinutes,
       options: aPersonnaliseOptions
@@ -448,7 +458,7 @@ function AssistantPlanning({
             </View>
           </View>
 
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(2)} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(2, 'matieres')} />
         </View>
       ) : null}
 
@@ -518,7 +528,7 @@ function AssistantPlanning({
             </View>
           </View>
 
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(3)} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(3, 'contenus')} />
           <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(1)} />
         </View>
       ) : null}
@@ -561,7 +571,7 @@ function AssistantPlanning({
           </View>
 
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{heures === 1 ? t('planning.aideHeure') : t('planning.aideHeures', { n: heures })}</Text>
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(4)} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(4, 'temps')} />
           <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(2)} />
         </View>
       ) : null}
@@ -612,7 +622,7 @@ function AssistantPlanning({
             <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('planning.reposExplication')}</Text>
           </View>
 
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(5)} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(5, 'repos')} />
           <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(3)} />
         </View>
       ) : null}
@@ -965,6 +975,7 @@ function PlanningPret({
   const aujourdhui = jourLocalTexte();
 
   const ouvrirFeuilleSemaine = useCallback(() => {
+    suivre('planning_sheet_opened', { source: 'voir_tout' });
     setToutVoir(true);
     requestAnimationFrame(() => {
       feuilleSemaineRef.current?.present();

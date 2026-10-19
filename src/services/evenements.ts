@@ -26,6 +26,10 @@ export type Evenements = {
   planning_time_chosen: { minutes: number };
   planning_day_checked: { fait: boolean };
   planning_task_opened: { genre: 'lecon' | 'quiz' | 'exercice' | 'annales' | 'revisionFinale' | 'revisionLibre' };
+  planning_sheet_opened: { source: 'voir_tout' };
+  planning_created: { minutes_jour: number; jours_repos: number; matieres_choisies: number };
+  planning_step_completed: { etape: number; nom: string };
+  planning_session_returned: { jour: string };
   mission_started: { source: 'serveur' | 'locale'; total: number };
   mission_completed: { score: number; total: number; duree_s: number; serie: number };
   mission_lesson_review_opened: { cours: number };

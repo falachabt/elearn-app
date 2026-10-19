@@ -203,7 +203,7 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText(t.jourAbsent);
     await fireEvent.press(screen.getByText(t.retourPlanning));
-    expect(router.back).toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith('/planning');
   });
 
   it('hors ligne avec une copie : la séance se lit, mais ne se termine pas', async () => {
@@ -230,6 +230,6 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await monter(reglage);
     await screen.findByText('Définition');
     await fireEvent.press(screen.getByRole('button', { name: t.retour }));
-    expect(router.back).toHaveBeenCalled();
+    expect(router.replace).toHaveBeenCalledWith('/planning');
   });
 });

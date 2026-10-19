@@ -1,7 +1,7 @@
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { Check, ChevronRight } from 'lucide-react-native';
-import { useCallback, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { BackHandler, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -170,9 +170,19 @@ export function PlanningJour() {
   useFocusEffect(useCallback(() => charger(), [charger]));
 
   const retour = useCallback(() => {
-    if (router.canGoBack()) router.back();
-    else router.replace('/planning');
-  }, []);
+    if (jour) {
+      suivre('planning_session_returned', { jour });
+    }
+    router.replace('/planning');
+  }, [jour]);
+
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      retour();
+      return true;
+    });
+    return () => sub.remove();
+  }, [retour]);
 
   const seance = etat.type === 'pret' && jour ? seanceDe(etat.planning, jour) : null;
   const copie = etat.type === 'pret' && etat.copie;

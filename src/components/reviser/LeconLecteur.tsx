@@ -114,8 +114,8 @@ export function LeconLecteur() {
   const ouvrirQuiz = () => {
     if (etat.statut !== 'pret') return;
     setInvitation(false);
-    router.push({
-      pathname: '/cours/quiz',
+    const cible = {
+      pathname: '/cours/quiz' as const,
       params: {
         cours: String(etat.lecon.coursId),
         lecon: String(etat.lecon.id),
@@ -123,7 +123,9 @@ export function LeconLecteur() {
         matiere: matiere ?? '',
         ...(provenance ? { provenance, planningJour: planningJour ?? '' } : {}),
       },
-    });
+    };
+    if (provenance === 'planning') router.replace(cible);
+    else router.push(cible);
   };
   const continuer = () => {
     if (etat.statut !== 'pret') return;
