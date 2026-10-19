@@ -103,13 +103,16 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     expect(screen.getByRole('button', { name: t.fermer })).toBeTruthy();
   });
 
-  it('sans planning : assistant en 3 étapes (matières/contenus, temps/repos, rappel), 45 min pré-sélectionnées à l’étape 2', async () => {
+  it('sans planning : assistant façon onboarding en 5 étapes (matières, contenus, temps, repos, rappel), 45 min pré-sélectionnées à l’étape 3', async () => {
     serveur({ plan: { status: 'empty' }, calendrier: CALENDRIER });
     await monter(<Planning />, reglage);
     await screen.findByText(t.etape1Titre);
     expect(screen.queryByRole('button', { name: t.ajusterLibelle })).toBeNull();
 
     await fireEvent.press(screen.getByTestId('planning-etape-2'));
+    await screen.findByText(t.etape2ContenusTitre);
+
+    await fireEvent.press(screen.getByTestId('planning-etape-3'));
     await screen.findByText(t.titreTemps);
     expect(screen.getByText(/jusqu’au 23 juin 2027 \(Baccalauréat\)/)).toBeTruthy();
     expect(screen.getByText(t.estimee)).toBeTruthy();
@@ -118,21 +121,27 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     expect(screen.getByText(/Environ \d+ heures de travail/)).toBeTruthy();
   });
 
-  it('choisir 60 minutes à l’étape 2 puis créer à l’étape 3 : le serveur reçoit la classe, le temps et les options, puis le planning s’affiche', async () => {
+  it('parcours 5 étapes complet avec heure personnalisée : le serveur reçoit la classe, le temps et l’heure saisie, puis le planning s’affiche', async () => {
     serveur({ plan: { status: 'empty' }, calendrier: CALENDRIER });
     await monter(<Planning />, reglage);
     await screen.findByText(t.etape1Titre);
     await fireEvent.press(screen.getByText(t.continuer));
+    await screen.findByText(t.etape2ContenusTitre);
+    await fireEvent.press(screen.getByText(t.continuer));
     await screen.findByText(t.titreTemps);
     await fireEvent.press(screen.getByRole('radio', { name: t.temps.replace('{{n}}', '60') }));
     await fireEvent.press(screen.getByText(t.continuer));
+    await screen.findByText(t.etape4ReposTitre);
+    expect(screen.getByText(t.reposExplication)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.continuer));
     await screen.findByText(t.etape3Titre);
+    await fireEvent.changeText(screen.getByTestId('planning-rappel-personnalise'), '07:15');
     serveur({ plan: PRET });
     await fireEvent.press(screen.getByText(t.creer));
     await waitFor(() =>
       expect(mockRpc).toHaveBeenCalledWith(
         'study_plan_set_time',
-        expect.objectContaining({ p_level: 'Tle', p_country: 'BF', p_minutes: 60 }),
+        expect.objectContaining({ p_level: 'Tle', p_country: 'BF', p_minutes: 60, p_reminder_time: '07:15' }),
       ),
     );
     await screen.findByText(t.aujourdhuiTitre.toUpperCase());

@@ -16,8 +16,8 @@ export type Decompte = { jours: number; heures: number; minutes: number; seconde
 
 /** Sous ce nombre de jours, la carte passe en orange (attention) quel que soit son type. */
 export const SEUIL_PROCHE_JOURS = 30;
-/** Durée d'affichage du composant complet avant le repli en infobulle à droite (6 secondes). */
-export const DUREE_AFFICHAGE_MS = 6_000;
+/** Durée d'affichage du composant complet avant le repli en infobulle à droite (3 secondes). */
+export const DUREE_AFFICHAGE_MS = 3_000;
 
 const JOUR = 86_400_000;
 const HEURE = 3_600_000;

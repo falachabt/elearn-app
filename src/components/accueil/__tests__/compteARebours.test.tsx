@@ -36,7 +36,8 @@ describe('CompteARebours', () => {
     expect(screen.getByLabelText(/6e · FIN DE COURS/)).toBeTruthy();
   });
 
-  it('se replie en infobulle à droite après 6 secondes, et se réaffiche 6 secondes quand on appuie dessus', async () => {
+  it('se replie en infobulle à droite après 3 secondes, et se réaffiche 3 secondes quand on appuie dessus', async () => {
+    expect(DUREE_AFFICHAGE_MS).toBe(3_000);
     jest.useFakeTimers({ advanceTimers: true });
     try {
       await render(<CompteARebours type="examen" cible={dans(243)} libelle="BACCALAURÉAT · 23 JUIN 2027" estime />);

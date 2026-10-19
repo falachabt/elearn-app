@@ -13,10 +13,10 @@ import {
   PenTool,
   SlidersHorizontal,
   Sparkles,
-   type LucideIcon,
+  type LucideIcon,
 } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -54,11 +54,11 @@ import {
   type TypeContenuPlanning,
 } from '@/services/planning';
 import { lireProfil, type Profil } from '@/services/profil';
-import { AUTRES, lireCours, lireLues, nomCourt, programmeDu } from '@/services/reviser';
+import { AUTRES, couleurMatiere, lireCours, lireLues, nomCourt, programmeDu } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, matiere as couleursMatieres, matiereSecours, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { BoutonFermer } from '../arrivee/MiniTest';
@@ -66,9 +66,11 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
+import { IconeMatiere } from '../reviser/IconeMatiere';
 
 type Source = 'accueil' | 'push' | 'inbox';
 type Echeance = { libelle: string; date: Date; jours: number; estimee: boolean };
+type EtapeAssistant = 1 | 2 | 3 | 4 | 5;
 type ValeursAssistant = {
   minutes: number | null;
   matieres: string[] | null;
@@ -78,7 +80,7 @@ type ValeursAssistant = {
 };
 type Etat =
   | { type: 'chargement' }
-  | { type: 'temps'; echeance: Echeance; actuel: ValeursAssistant; etapeInitiale: 1 | 2 | 3 }
+  | { type: 'temps'; echeance: Echeance; actuel: ValeursAssistant; etapeInitiale: EtapeAssistant }
   | { type: 'enregistrement' }
   | { type: 'preparation' }
   | { type: 'pret'; planning: DonneesPlanning; copie: boolean }
@@ -92,6 +94,7 @@ const JOUR_MS = 86_400_000;
 const TEMPS_PAR_DEFAUT = 45;
 const REPOS_PAR_DEFAUT = 2;
 const RAPPEL_PAR_DEFAUT = '18:30';
+const ETAPES_ASSISTANT = [1, 2, 3, 4, 5] as const;
 const MATIERES_REPLI = ['Mathématique', 'Physique-Chimie', 'SVT', 'Français', 'Anglais', 'Histoire-Géo', 'Philosophie'] as const;
 /** Tâches du jour montrées dans la carte « Aujourd'hui » avant « … » (la page de la séance les montre toutes). */
 const TACHES_VISIBLES = 3;
@@ -137,6 +140,20 @@ function formaterHeuresHebdo(minutesParJour: number, joursRepos: number): string
   return m === 0 ? `${h} h` : `${h} h ${String(m).padStart(2, '0')}`;
 }
 
+function normaliserHeureRappel(saisie: string): string | null {
+  const propre = saisie.trim();
+  const correspondance = /^([01]?\d|2[0-3])\s*[:hH]\s*([0-5]\d)$/.exec(propre);
+  if (!correspondance) return null;
+  const h = String(Number(correspondance[1])).padStart(2, '0');
+  const m = correspondance[2];
+  return `${h}:${m}`;
+}
+
+function fondMatiere(nom: string, index: number): string {
+  const cle = couleurMatiere(nom);
+  return cle ? couleursMatieres[cle] : matiereSecours[index % matiereSecours.length];
+}
+
 const ouvrirJour = (jour: string) => router.push({ pathname: '/planning/jour', params: { jour } });
 
 // --- En-tête ------------------------------------------------------------------------------------------------------------
@@ -160,7 +177,7 @@ function Entete({ onFermer, onAjuster }: { onFermer: () => void; onAjuster?: () 
   );
 }
 
-// --- Assistant de génération en 3 étapes ------------------------------------------------------------------------------
+// --- Assistant de génération façon Onboarding en 5 étapes ---------------------------------------------------------------
 
 function AssistantPlanning({
   echeance,
@@ -171,13 +188,13 @@ function AssistantPlanning({
 }: {
   echeance: Echeance;
   actuel: ValeursAssistant;
-  etapeInitiale: 1 | 2 | 3;
+  etapeInitiale: EtapeAssistant;
   matieresDisponibles: readonly string[];
   onCreer: (choix: { minutes: number; options: OptionsCreationPlanning }) => void;
 }) {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const [etape, setEtape] = useState<1 | 2 | 3>(etapeInitiale);
+  const [etape, setEtape] = useState<EtapeAssistant>(etapeInitiale);
   const listeMatieres = matieresDisponibles.length > 0 ? matieresDisponibles : MATIERES_REPLI;
   const [matieresPersonnalisees, setMatieresPersonnalisees] = useState<string[] | null>(() =>
     actuel.matieres && actuel.matieres.length > 0 ? actuel.matieres : null,
@@ -189,6 +206,10 @@ function AssistantPlanning({
   const [choixMinutes, setChoixMinutes] = useState<number>(actuel.minutes ?? TEMPS_PAR_DEFAUT);
   const [joursRepos, setJoursRepos] = useState<number>(actuel.joursRepos ?? REPOS_PAR_DEFAUT);
   const [heureRappel, setHeureRappel] = useState<string>(actuel.heureRappel ?? RAPPEL_PAR_DEFAUT);
+  const [saisieHeure, setSaisieHeure] = useState<string>(() => {
+    const initiale = actuel.heureRappel ?? RAPPEL_PAR_DEFAUT;
+    return (HEURES_RAPPEL_PROPOSEES as readonly string[]).includes(initiale) ? '' : initiale;
+  });
 
   const basculerMatiere = (matiere: string) => {
     setMatieresPersonnalisees((courantes) => {
@@ -209,15 +230,29 @@ function AssistantPlanning({
     });
   };
 
+  const choisirHeureProposee = (heure: string) => {
+    setHeureRappel(heure);
+    setSaisieHeure('');
+  };
+
+  const changerSaisieHeure = (texte: string) => {
+    setSaisieHeure(texte);
+    const normalisee = normaliserHeureRappel(texte);
+    if (normalisee) {
+      setHeureRappel(normalisee);
+    }
+  };
+
   const heures = heuresEstimees(echeance.jours, choixMinutes, joursRepos);
   const date = echeance.date.toLocaleDateString(localeDe(langue), { day: 'numeric', month: 'long', year: 'numeric' });
   const toutesMatieresSelectionnees = matieresChoisies.length === listeMatieres.length;
   const tousContenusSelectionnes = contenusChoisis.length === CONTENUS_PROPOSES.length;
+  const heureFinale = normaliserHeureRappel(saisieHeure) ?? heureRappel;
   const aPersonnaliseOptions =
     !toutesMatieresSelectionnees ||
     !tousContenusSelectionnes ||
     joursRepos !== REPOS_PAR_DEFAUT ||
-    heureRappel !== RAPPEL_PAR_DEFAUT;
+    heureFinale !== RAPPEL_PAR_DEFAUT;
 
   const soumettre = () => {
     onCreer({
@@ -227,7 +262,7 @@ function AssistantPlanning({
             matieres: toutesMatieresSelectionnees ? null : matieresChoisies,
             contenus: contenusChoisis,
             joursRepos,
-            heureRappel,
+            heureRappel: heureFinale,
           }
         : {},
     });
@@ -235,9 +270,9 @@ function AssistantPlanning({
 
   return (
     <View style={styles.bloc}>
-      {/* Barre de progression des 3 étapes (cliquable pour passer d'une étape à l'autre) */}
-      <View style={styles.barreEtapes} accessibilityLabel={t('planning.etapeIndicateur', { n: etape, total: 3 })}>
-        {([1, 2, 3] as const).map((num) => {
+      {/* Barre de progression des 5 étapes façon Onboarding (cliquable pour passer d'une étape à l'autre) */}
+      <View style={styles.barreEtapes} accessibilityLabel={t('planning.etapeIndicateur', { n: etape, total: 5 })}>
+        {ETAPES_ASSISTANT.map((num) => {
           const active = etape === num;
           const passee = etape > num;
           return (
@@ -246,7 +281,7 @@ function AssistantPlanning({
               testID={`planning-etape-${num}`}
               accessibilityRole="tab"
               accessibilityState={{ selected: active }}
-              accessibilityLabel={t('planning.etapeIndicateur', { n: num, total: 3 })}
+              accessibilityLabel={t('planning.etapeIndicateur', { n: num, total: 5 })}
               onPress={() => setEtape(num)}
               decalage={0}
               rayon={rayon.pilule}
@@ -266,6 +301,7 @@ function AssistantPlanning({
         })}
       </View>
 
+      {/* ÉTAPE 1 : Matières (chaque matière avec sa couleur et son icône comme dans Réviser) */}
       {etape === 1 ? (
         <View style={styles.bloc}>
           <View style={styles.bloc}>
@@ -279,45 +315,82 @@ function AssistantPlanning({
               <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('planning.toutesMatieres', { n: matieresChoisies.length })}</Text>
             </View>
             <View style={styles.grilleMatieres}>
-              {listeMatieres.map((matiere) => {
+              {listeMatieres.map((matiere, index) => {
                 const choisie = matieresChoisies.includes(matiere);
                 const libelleCourt = nomCourt(matiere);
+                const couleurTuile = fondMatiere(matiere, index);
                 return (
-                  <Appui
-                    key={matiere}
-                    accessibilityRole="checkbox"
-                    accessibilityState={{ checked: choisie }}
-                    accessibilityLabel={libelleCourt}
-                    onPress={() => basculerMatiere(matiere)}
-                    decalage={0}
-                    rayon={rayon.m}
-                  >
-                    <View
-                      style={[
-                        styles.puceMatiere,
-                        {
-                          borderColor: theme.bord.fort,
-                          backgroundColor: choisie ? theme.marque.principale : theme.fond.surface,
-                        },
-                      ]}
+                  <View key={matiere} style={styles.celluleMatiere}>
+                    <Appui
+                      accessibilityRole="checkbox"
+                      accessibilityState={{ checked: choisie }}
+                      accessibilityLabel={libelleCourt}
+                      onPress={() => basculerMatiere(matiere)}
+                      decalage={2}
+                      ombre={choisie ? ombre.carte : 0}
+                      couleurOmbre={theme.ombre}
+                      rayon={rayon.l}
                     >
                       <View
                         style={[
-                          styles.casePuce,
+                          styles.tuileMatiere,
                           {
                             borderColor: theme.bord.fort,
-                            backgroundColor: choisie ? theme.fond.surface : 'transparent',
+                            backgroundColor: choisie ? couleurTuile : theme.fond.surface,
                           },
                         ]}
                       >
-                        {choisie ? <Check size={12} strokeWidth={3} color={theme.texte.principal} /> : null}
+                        <View style={styles.enteteTuileMatiere}>
+                          <View
+                            style={[
+                              styles.iconeMatierePastille,
+                              {
+                                borderColor: theme.bord.fort,
+                                backgroundColor: choisie ? palette.papier[0] : couleurTuile,
+                              },
+                            ]}
+                          >
+                            <IconeMatiere nom={matiere} taille={18} couleur={palette.encre[1000]} />
+                          </View>
+                          <View
+                            style={[
+                              styles.casePuce,
+                              {
+                                borderColor: theme.bord.fort,
+                                backgroundColor: choisie ? palette.encre[1000] : theme.fond.surface,
+                              },
+                            ]}
+                          >
+                            {choisie ? <Check size={12} strokeWidth={3} color={palette.papier[0]} /> : null}
+                          </View>
+                        </View>
+                        <Text
+                          numberOfLines={2}
+                          style={[
+                            typo.texteFort,
+                            { color: choisie ? theme.texte.surCouleur : theme.texte.principal },
+                          ]}
+                        >
+                          {libelleCourt}
+                        </Text>
                       </View>
-                      <Text style={[typo.etiquette, { color: choisie ? theme.texte.surCouleur : theme.texte.principal }]}>{libelleCourt}</Text>
-                    </View>
-                  </Appui>
+                    </Appui>
+                  </View>
                 );
               })}
             </View>
+          </View>
+
+          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(2)} />
+        </View>
+      ) : null}
+
+      {/* ÉTAPE 2 : Contenus du programme (Leçons, Quiz, Exercices, Annales) */}
+      {etape === 2 ? (
+        <View style={styles.bloc}>
+          <View style={styles.bloc}>
+            <Text accessibilityRole="header" style={[typo.affiche, { color: theme.texte.principal }]}>{t('planning.etape2ContenusTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('planning.etape2ContenusSousTitre')}</Text>
           </View>
 
           <View style={styles.sectionAssistant}>
@@ -338,8 +411,10 @@ function AssistantPlanning({
                       accessibilityState={{ checked: choisi }}
                       accessibilityLabel={titreContenu}
                       onPress={() => basculerContenu(code)}
-                      decalage={0}
-                      rayon={rayon.m}
+                      decalage={2}
+                      ombre={choisi ? ombre.carte : 0}
+                      couleurOmbre={theme.ombre}
+                      rayon={rayon.l}
                     >
                       <View
                         style={[
@@ -376,11 +451,13 @@ function AssistantPlanning({
             </View>
           </View>
 
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(2)} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(3)} />
+          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(1)} />
         </View>
       ) : null}
 
-      {etape === 2 ? (
+      {/* ÉTAPE 3 : Temps par jour (sans mélanger avec les jours de repos) */}
+      {etape === 3 ? (
         <View style={styles.bloc}>
           <View style={styles.bloc}>
             <Text accessibilityRole="header" style={[typo.affiche, { color: theme.texte.principal }]}>{t('planning.titreTemps')}</Text>
@@ -416,48 +493,65 @@ function AssistantPlanning({
             })}
           </View>
 
-          <View style={styles.sectionAssistant}>
-            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('planning.reposSection').toUpperCase()}</Text>
-            <View style={styles.rangeeRepos}>
-              {REPOS_PROPOSES.map((nb) => {
-                const choisi = nb === joursRepos;
-                const libelleRepos = nb === 1 ? t('planning.reposOptionUn') : t('planning.reposOption', { n: nb });
-                return (
-                  <View key={nb} style={styles.celluleRepos}>
-                    <Appui
-                      accessibilityRole="radio"
-                      accessibilityState={{ selected: choisi }}
-                      accessibilityLabel={`${t('planning.reposSection')} : ${libelleRepos}`}
-                      onPress={() => setJoursRepos(nb)}
-                      decalage={0}
-                      rayon={rayon.m}
-                    >
-                      <View
-                        style={[
-                          styles.optionRepos,
-                          {
-                            borderColor: theme.bord.fort,
-                            backgroundColor: choisi ? theme.marque.principale : theme.fond.surface,
-                          },
-                        ]}
-                      >
-                        <Text style={[typo.texteFort, { color: choisi ? theme.texte.surCouleur : theme.texte.principal }]}>{libelleRepos}</Text>
-                        <Text style={[typo.legende, { color: choisi ? theme.texte.surCouleur : theme.texte.secondaire }]}>{t('planning.reposAide')}</Text>
-                      </View>
-                    </Appui>
-                  </View>
-                );
-              })}
-            </View>
-          </View>
-
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{heures === 1 ? t('planning.aideHeure') : t('planning.aideHeures', { n: heures })}</Text>
-          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(3)} />
-          <Bouton variante="secondaire" libelle={t('planning.creer')} onPress={soumettre} />
+          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(4)} />
+          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(2)} />
         </View>
       ) : null}
 
-      {etape === 3 ? (
+      {/* ÉTAPE 4 : Jours de repos par semaine (écran dédié + explication) */}
+      {etape === 4 ? (
+        <View style={styles.bloc}>
+          <View style={styles.bloc}>
+            <Text accessibilityRole="header" style={[typo.affiche, { color: theme.texte.principal }]}>{t('planning.etape4ReposTitre')}</Text>
+            <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('planning.etape4ReposSousTitre')}</Text>
+          </View>
+
+          <View style={styles.choix}>
+            {REPOS_PROPOSES.map((nb) => {
+              const choisi = nb === joursRepos;
+              const libelleRepos = nb === 1 ? t('planning.reposOptionUn') : t('planning.reposOption', { n: nb });
+              return (
+                <Appui
+                  key={nb}
+                  accessibilityRole="radio"
+                  accessibilityState={{ selected: choisi }}
+                  accessibilityLabel={`${t('planning.reposSection')} : ${libelleRepos}`}
+                  onPress={() => setJoursRepos(nb)}
+                  decalage={0}
+                  rayon={rayon.m}
+                >
+                  <View
+                    style={[
+                      styles.option,
+                      {
+                        borderColor: theme.bord.fort,
+                        backgroundColor: choisi ? theme.marque.principale : theme.fond.surface,
+                      },
+                    ]}
+                  >
+                    <View style={styles.optionTextes}>
+                      <Text style={[typo.h3, { color: choisi ? theme.texte.surCouleur : theme.texte.principal }]}>{libelleRepos}</Text>
+                      <Text style={[typo.legende, { color: choisi ? theme.texte.surCouleur : theme.texte.secondaire }]}>{t('planning.reposAide')}</Text>
+                    </View>
+                    {choisi ? <Check size={20} strokeWidth={2} color={theme.texte.surCouleur} /> : null}
+                  </View>
+                </Appui>
+              );
+            })}
+          </View>
+
+          <View style={[styles.carteExplicationRepos, { borderColor: theme.bord.fort, backgroundColor: theme.marque.douce }]}>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('planning.reposExplication')}</Text>
+          </View>
+
+          <Bouton libelle={t('planning.continuer')} onPress={() => setEtape(5)} />
+          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(3)} />
+        </View>
+      ) : null}
+
+      {/* ÉTAPE 5 : Heure de rappel + champ d'heure personnalisée + Créer mon planning */}
+      {etape === 5 ? (
         <View style={styles.bloc}>
           <View style={styles.bloc}>
             <Text accessibilityRole="header" style={[typo.affiche, { color: theme.texte.principal }]}>{t('planning.etape3Titre')}</Text>
@@ -466,7 +560,7 @@ function AssistantPlanning({
 
           <View style={styles.choix}>
             {HEURES_RAPPEL_PROPOSEES.map((heure) => {
-              const choisi = heure === heureRappel;
+              const choisi = heure === heureFinale && saisieHeure.trim() === '';
               const libelleHeure = heure.replace(':', ' h ');
               return (
                 <Appui
@@ -474,7 +568,7 @@ function AssistantPlanning({
                   accessibilityRole="radio"
                   accessibilityState={{ selected: choisi }}
                   accessibilityLabel={t('planning.rappelHeure', { heure: libelleHeure })}
-                  onPress={() => setHeureRappel(heure)}
+                  onPress={() => choisirHeureProposee(heure)}
                   decalage={0}
                   rayon={rayon.m}
                 >
@@ -495,15 +589,39 @@ function AssistantPlanning({
             })}
           </View>
 
+          <View style={styles.sectionAssistant}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('planning.rappelPersonnaliseLabel').toUpperCase()}</Text>
+            <TextInput
+              testID="planning-rappel-personnalise"
+              accessibilityLabel={t('planning.rappelPersonnaliseLabel')}
+              value={saisieHeure}
+              onChangeText={changerSaisieHeure}
+              placeholder={t('planning.rappelPersonnalisePlaceholder')}
+              placeholderTextColor={theme.texte.secondaire}
+              keyboardType="numbers-and-punctuation"
+              maxLength={5}
+              style={[
+                typo.h3,
+                styles.champHeurePersonnalisee,
+                {
+                  borderColor: theme.bord.fort,
+                  backgroundColor: theme.fond.surface,
+                  color: theme.texte.principal,
+                },
+              ]}
+            />
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('planning.rappelPersonnaliseAide')}</Text>
+          </View>
+
           <View style={[styles.carteResume, { borderColor: theme.bord.fort, backgroundColor: theme.accent.soleil }]}>
             <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('planning.resumeProgramme').toUpperCase()}</Text>
             <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>
-              {`${matieresChoisies.length === 1 ? t('planning.resumeMatiereUne') : t('planning.resumeMatieres', { n: matieresChoisies.length })} · ${t('planning.minutes', { n: choixMinutes })} · ${joursRepos === 1 ? t('planning.reposOptionUn') : t('planning.reposOption', { n: joursRepos })}`}
+              {`${matieresChoisies.length === 1 ? t('planning.resumeMatiereUne') : t('planning.resumeMatieres', { n: matieresChoisies.length })} · ${t('planning.minutes', { n: choixMinutes })} · ${joursRepos === 1 ? t('planning.reposOptionUn') : t('planning.reposOption', { n: joursRepos })} · ${heureFinale.replace(':', ' h ')}`}
             </Text>
           </View>
 
           <Bouton libelle={t('planning.creer')} onPress={soumettre} />
-          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(2)} />
+          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(4)} />
         </View>
       ) : null}
     </View>
@@ -890,7 +1008,7 @@ export function Planning() {
         joursRepos: etat.planning.joursReposParSemaine ?? REPOS_PAR_DEFAUT,
         heureRappel: etat.planning.heureRappel ?? RAPPEL_PAR_DEFAUT,
       },
-      etapeInitiale: 2,
+      etapeInitiale: 3,
     });
   }, [etat]);
 
@@ -955,49 +1073,60 @@ const styles = StyleSheet.create({
   segmentEtape: { height: 10, borderWidth: bord.normal, borderRadius: rayon.pilule },
   sectionAssistant: { gap: espace[2] },
   enteteSection: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  grilleMatieres: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
-  puceMatiere: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  grilleMatieres: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
+  celluleMatiere: { width: '47.5%' },
+  tuileMatiere: {
+    minHeight: 92,
+    padding: espace[3],
+    justifyContent: 'space-between',
     gap: espace[2],
-    paddingVertical: espace[2],
-    paddingHorizontal: espace[3],
     borderWidth: bord.normal,
-    borderRadius: rayon.m,
+    borderRadius: rayon.l,
   },
-  casePuce: {
-    width: 18,
-    height: 18,
+  enteteTuileMatiere: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  iconeMatierePastille: {
+    width: 34,
+    height: 34,
     borderWidth: bord.normal,
-    borderRadius: 5,
+    borderRadius: rayon.pilule,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  grilleContenus: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[2] },
-  celluleContenu: { width: '48%' },
+  casePuce: {
+    width: 20,
+    height: 20,
+    borderWidth: bord.normal,
+    borderRadius: 6,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  grilleContenus: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
+  celluleContenu: { width: '47.5%' },
   carteContenu: {
+    minHeight: 104,
     padding: espace[3],
     gap: espace[1],
     borderWidth: bord.normal,
-    borderRadius: rayon.m,
+    borderRadius: rayon.l,
   },
   enteteCarteContenu: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 },
-  iconeContenu: { width: 30, height: 30, borderWidth: bord.normal, borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
+  iconeContenu: { width: 32, height: 32, borderWidth: bord.normal, borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
   choix: { gap: espace[3] },
   option: { minHeight: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: espace[5], borderWidth: bord.normal, borderRadius: rayon.m },
   optionTextes: { flexDirection: 'row', alignItems: 'baseline', gap: espace[3] },
-  rangeeRepos: { flexDirection: 'row', gap: espace[2] },
-  celluleRepos: { flex: 1 },
-  optionRepos: {
-    paddingVertical: espace[3],
-    paddingHorizontal: espace[2],
-    alignItems: 'center',
-    gap: 2,
+  carteExplicationRepos: {
+    padding: espace[4],
     borderWidth: bord.normal,
-    borderRadius: rayon.m,
+    borderRadius: rayon.l,
   },
   ligneRappel: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   badgeRecommande: { paddingHorizontal: espace[2], paddingVertical: 2, borderWidth: bord.normal, borderRadius: rayon.s },
+  champHeurePersonnalisee: {
+    minHeight: 56,
+    paddingHorizontal: espace[4],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+  },
   carteResume: { padding: espace[4], gap: espace[1], borderWidth: bord.normal, borderRadius: rayon.l },
   illustrationPreparation: {
     width: 64,
