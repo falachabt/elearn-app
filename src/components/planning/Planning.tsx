@@ -251,12 +251,14 @@ function AssistantPlanning({
   actuel,
   etapeInitiale,
   matieresDisponibles,
+  onFermer,
   onCreer,
 }: {
   echeance: Echeance;
   actuel: ValeursAssistant;
   etapeInitiale: EtapeAssistant;
   matieresDisponibles: readonly string[];
+  onFermer: () => void;
   onCreer: (choix: { minutes: number; options: OptionsCreationPlanning }) => void;
 }) {
   const { t, langue } = useTraduction();
@@ -345,9 +347,36 @@ function AssistantPlanning({
     });
   };
 
+  const passerSuivant = () => {
+    if (etape === 1) passerEtape(2, 'matieres');
+    else if (etape === 2) passerEtape(3, 'contenus');
+    else if (etape === 3) passerEtape(4, 'temps');
+    else if (etape === 4) passerEtape(5, 'repos');
+    else soumettre();
+  };
+
+  const revenirPrecedent = () => {
+    if (etape > 1) {
+      setEtape((courante) => (courante - 1) as EtapeAssistant);
+    }
+  };
+
+  const piedAssistant = (
+    <View style={styles.piedAssistant}>
+      <Bouton
+        libelle={etape < 5 ? t('planning.continuer') : t('planning.creer')}
+        onPress={passerSuivant}
+      />
+      {etape > 1 ? (
+        <Bouton variante="texte" libelle={t('planning.precedent')} onPress={revenirPrecedent} />
+      ) : null}
+    </View>
+  );
+
   return (
-    <View style={styles.bloc}>
-      {/* Barre de progression des 5 étapes façon Onboarding (cliquable pour passer d'une étape à l'autre) */}
+    <Ecran entete={<Entete onFermer={onFermer} />} remonterSur={etape} pied={piedAssistant}>
+      <View style={styles.bloc}>
+        {/* Barre de progression des 5 étapes façon Onboarding (cliquable pour passer d'une étape à l'autre) */}
       <View style={styles.barreEtapes} accessibilityLabel={t('planning.etapeIndicateur', { n: etape, total: 5 })}>
         {ETAPES_ASSISTANT.map((num) => {
           const active = etape === num;
@@ -457,8 +486,6 @@ function AssistantPlanning({
               })}
             </View>
           </View>
-
-          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(2, 'matieres')} />
         </View>
       ) : null}
 
@@ -527,9 +554,6 @@ function AssistantPlanning({
               })}
             </View>
           </View>
-
-          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(3, 'contenus')} />
-          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(1)} />
         </View>
       ) : null}
 
@@ -571,8 +595,6 @@ function AssistantPlanning({
           </View>
 
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{heures === 1 ? t('planning.aideHeure') : t('planning.aideHeures', { n: heures })}</Text>
-          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(4, 'temps')} />
-          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(2)} />
         </View>
       ) : null}
 
@@ -621,9 +643,6 @@ function AssistantPlanning({
           <View style={[styles.carteExplicationRepos, { borderColor: theme.bord.fort, backgroundColor: theme.marque.douce }]}>
             <Text style={[typo.texte, { color: theme.texte.principal }]}>{t('planning.reposExplication')}</Text>
           </View>
-
-          <Bouton libelle={t('planning.continuer')} onPress={() => passerEtape(5, 'repos')} />
-          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(3)} />
         </View>
       ) : null}
 
@@ -697,11 +716,10 @@ function AssistantPlanning({
             </Text>
           </View>
 
-          <Bouton libelle={t('planning.creer')} onPress={soumettre} />
-          <Bouton variante="texte" libelle={t('planning.precedent')} onPress={() => setEtape(4)} />
-        </View>
+          </View>
       ) : null}
-    </View>
+      </View>
+    </Ecran>
   );
 }
 
@@ -1214,7 +1232,7 @@ export function Planning() {
         joursRepos: etat.planning.joursReposParSemaine ?? REPOS_PAR_DEFAUT,
         heureRappel: etat.planning.heureRappel ?? RAPPEL_PAR_DEFAUT,
       },
-      etapeInitiale: 3,
+      etapeInitiale: 1,
     });
   }, [etat]);
 
@@ -1225,6 +1243,19 @@ export function Planning() {
 
   // « Ajuster » est dans l'en-tête, à côté de la croix, dès que le planning est prêt (pas hors ligne : le serveur calcule).
   const ajuster = etat.type === 'pret' && !etat.copie && etat.planning.cible ? changer : undefined;
+
+  if (etat.type === 'temps') {
+    return (
+      <AssistantPlanning
+        echeance={etat.echeance}
+        actuel={etat.actuel}
+        etapeInitiale={etat.etapeInitiale}
+        matieresDisponibles={matieresDisponibles}
+        onFermer={fermer}
+        onCreer={(c) => void creer(c)}
+      />
+    );
+  }
 
   return (
     <Ecran entete={<Entete onFermer={fermer} onAjuster={ajuster} />}>
@@ -1244,15 +1275,7 @@ export function Planning() {
             <Bouton variante="texte" libelle={t('planning.fermer')} onPress={fermer} />
           </View>
         ) : null}
-        {etat.type === 'temps' ? (
-          <AssistantPlanning
-            echeance={etat.echeance}
-            actuel={etat.actuel}
-            etapeInitiale={etat.etapeInitiale}
-            matieresDisponibles={matieresDisponibles}
-            onCreer={(c) => void creer(c)}
-          />
-        ) : null}
+        
         {etat.type === 'pret' ? <PlanningPret planning={etat.planning} copie={etat.copie} lues={lues} acquises={acquises} onChanger={changer} /> : null}
         {etat.type === 'sansEcheance' ? (
           <View style={styles.bloc}>
@@ -1324,6 +1347,19 @@ const styles = StyleSheet.create({
     borderWidth: bord.normal,
     borderRadius: rayon.l,
   },
+  grilleRappels: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
+  celluleRappel: { width: '47.5%' },
+  tuileRappel: {
+    minHeight: 68,
+    padding: espace[3],
+    justifyContent: 'center',
+    gap: espace[1],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+  },
+  enteteTuileRappel: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  ligneHeureRappel: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  piedAssistant: { gap: espace[2] },
   ligneRappel: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   badgeRecommande: { paddingHorizontal: espace[2], paddingVertical: 2, borderWidth: bord.normal, borderRadius: rayon.s },
   champHeurePersonnalisee: {

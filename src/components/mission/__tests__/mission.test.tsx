@@ -165,6 +165,15 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
     expect(screen.getByText(x.mission.feuilleSerieTitre)).toBeTruthy();
   });
 
+  it('accueil : le matin (plus de 40% de la journée restante), la série en danger ne s’ouvre pas', async () => {
+    await AsyncStorage.removeItem(CLE_ALERTE_SERIE);
+    await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));
+    const MATIN = new Date(2026, 9, 1, 9, 0);
+    await monter(<Accueil maintenant={MATIN} />);
+    await waitFor(() => expect(screen.getByLabelText(x.mission.serieLibelle.replace('{{n}}', '2'))).toBeTruthy());
+    expect(screen.queryByText(x.mission.feuilleSerieTitreDanger)).toBeNull();
+  });
+
   it('accueil : série en danger ouvre la feuille toute seule, CTA vers la mission', async () => {
     await AsyncStorage.removeItem(CLE_ALERTE_SERIE);
     await AsyncStorage.setItem(CLE_HISTORIQUE, JSON.stringify(['2026-09-29', '2026-09-30']));

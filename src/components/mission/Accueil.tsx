@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission } from '@/services/mission';
+import { calculerSerie, chargerMission, jourLocal, lireAlerteSerie, lireDernierResultat, lireHistorique, noterAlerteSerie, type Mission, type ResultatMission , estMomentAlerteSerie } from '@/services/mission';
 import { lireRythme } from '@/services/rythme';
 import { lireProfil, profilDepuisCompte, type Profil } from '@/services/profil';
 import { suivre } from '@/services/analytics';
@@ -204,8 +204,10 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           setJoues(historique);
           setEtat((e) => ({ ...e, serie, faite }));
         }
-        // Série en danger à l'ouverture (mission du jour pas faite) : feuille ouverte toute seule, une fois par jour.
-        if (actif && serie > 0 && !faite && (await lireAlerteSerie()) !== jour) {
+        // Série en danger à l'ouverture (mission du jour pas faite) :
+        // Uniquement s'il reste au maximum 40% de la journée (environ après 14h24), une fois par jour.
+        const momentAlerte = estMomentAlerteSerie(maintenant ?? new Date());
+        if (actif && serie > 0 && !faite && momentAlerte && (await lireAlerteSerie()) !== jour) {
           await noterAlerteSerie(jour);
           setSerieEnDanger(true);
           setFeuilleSerie(true);
@@ -399,8 +401,9 @@ const styles = StyleSheet.create({
     maxWidth: 160,
   },
   piedCompteARebours: {
-    paddingTop: espace[1],
+    paddingTop: 0,
     paddingBottom: 0,
+    marginBottom: -espace[3],
     gap: 0,
   },
 });

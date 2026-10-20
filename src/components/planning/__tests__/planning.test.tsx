@@ -228,11 +228,13 @@ describe.each(['clair', 'sombre'] as const)('Planning (%s)', (reglage) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/planning/jour', params: { jour: '2026-10-22' } });
   });
 
-  it('Ajuster est dans l’en-tête, à côté de la croix : le choix s’ouvre avec le temps actuel déjà sélectionné à l’étape 2', async () => {
+  it('Ajuster est dans l’en-tête, à côté de la croix : le choix s’ouvre à l’étape 1 avec le temps actuel conservé', async () => {
     serveur({ plan: PRET });
     await monter(<Planning />, reglage);
     await screen.findByText(t.aujourdhuiTitre.toUpperCase());
     await fireEvent.press(screen.getByRole('button', { name: t.ajusterLibelle }));
+    await screen.findByText(t.etape1Titre);
+    await fireEvent.press(screen.getByTestId('planning-etape-3'));
     await screen.findByText(t.titreTemps);
     expect(screen.getByRole('radio', { name: t.temps.replace('{{n}}', '45') }).props.accessibilityState.selected).toBe(true);
   });

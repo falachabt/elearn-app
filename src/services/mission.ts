@@ -197,6 +197,16 @@ export async function noterAlerteSerie(jour: string): Promise<void> {
 }
 
 /**
+ * Alerte « Ta série est en danger » : ne s'affiche que s'il reste au maximum 40% de la journée
+ * (soit environ après 14h24 en heure locale), pour ne pas alerter l'élève dès le début de journée.
+ */
+export function estMomentAlerteSerie(maintenant: Date = new Date(), fractionMaxRestante: number = 0.4): boolean {
+  const minutesEcoulees = maintenant.getHours() * 60 + maintenant.getMinutes();
+  const fractionRestante = (1440 - minutesEcoulees) / 1440;
+  return fractionRestante <= fractionMaxRestante;
+}
+
+/**
  * Fin de mission (M4-03) : résultat et série calculés sur le téléphone (visibles sans réseau), puis envoyés au serveur
  * sans bloquer. Une deuxième mission le même jour ne change pas la série.
  */
