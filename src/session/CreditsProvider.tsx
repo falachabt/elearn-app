@@ -53,6 +53,19 @@ const ContexteCredits = createContext<Credits>({
 });
 
 /** Un seul abonnement temps réel au solde pour toute l'app (M18-06). */
+/** Solde d'exemple de la démo TOEIC (valeurs de la maquette X5, sans session). */
+const SOLDE_DEMO: Solde = {
+  total: 25,
+  semaine: 0,
+  recompenses: 12,
+  recharge: 25,
+  prochaineRecharge: '2026-10-26',
+  rechargeHebdo: true,
+  illimite: false,
+  illimiteJusqua: null,
+  expirationRecompenses: '2026-11-14T00:00:00.000Z',
+};
+
 export function CreditsProvider({ children }: { children: ReactNode }) {
   const { session } = useSession();
   const utilisateur = session?.user.id ?? null;
@@ -63,10 +76,11 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   const soldeReel = etat && etat.pour === utilisateur ? etat.solde : null;
   // Solde simulé (page développeur) : remplace l'affichage, jamais le registre du serveur.
   const simule = useSyncExternalStore(ecouterSoldeSimule, soldeSimule, soldeSimule);
-  const solde = useMemo<Solde | null>(
-    () => (soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel),
-    [soldeReel, simule],
-  );
+  const solde = useMemo<Solde | null>(() => {
+    // Démo des explications TOEIC (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1) : solde d'exemple sans session.
+    if (__DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1' && !soldeReel) return SOLDE_DEMO;
+    return soldeReel && simule !== null ? { ...soldeReel, total: simule, semaine: simule, recompenses: 0, illimite: false, illimiteJusqua: null } : soldeReel;
+  }, [soldeReel, simule]);
   const majSolde = useCallback(
     (pour: string, f: (s: Solde | null) => Solde | null) =>
       setEtat((e) => {
