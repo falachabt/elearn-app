@@ -115,6 +115,11 @@ export type Evenements = {
   quiz_started: { type: 'lecon' | 'libre' | 'mission' | 'erreurs' };
   exercise_opened: Record<string, never>;
   annale_timer_started: { mode: 'officiel' | 'perso' | 'libre'; minutes: number | null };
+  annale_ai_started: { source: 'photos' | 'galerie' };
+  annale_ai_sent: { feuilles: number };
+  annale_ai_done: { points: number; total: number };
+  annale_ai_failed: { raison: string };
+  annale_correction_toggle: { vers: 'correction' | 'sujet' };
   ai_answer_seen: { source: 'photo' | 'question'; duree_s: number };
   // Performance (issue #14). Durées en millisecondes, volumes en octets (`null` si le serveur n'annonce pas la taille).
   app_cold_start: { duration_ms: number };

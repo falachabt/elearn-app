@@ -141,16 +141,12 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await monter(<AnnalesDossier />);
     await waitFor(() => expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy());
     expect(screen.getByText('Séquence 1')).toBeTruthy();
-    // Pastilles : documents gratuits restants pour le sujet, « Déjà ouvert » pour la correction déjà consultée.
+    // Pastille : documents gratuits restants.
     expect(screen.getByText(x.credits.gratuit)).toBeTruthy();
-    expect(screen.getByText(x.credits.dejaOuvert)).toBeTruthy();
-    // Lecteur dans l'app, jamais le navigateur.
+    // Un document ouvre sa page de détails (comme un concours) ; le lecteur et les crédits viennent ensuite.
     await fireEvent.press(screen.getByText('Séquence 3 · Collège Privé'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/d1.pdf', titre: 'Séquence 3 · Collège Privé' } });
-    expect(mockDepenser).toHaveBeenCalledWith('document_pdf', 'd1');
-    await fireEvent.press(screen.getByText(x.annales.ouvrirCorrection));
-    expect(router.push).toHaveBeenLastCalledWith({ pathname: '/document', params: { url: 'https://r2/d1c.pdf', titre: `Séquence 3 · Collège Privé · ${x.annales.correctionTitre}` } });
-    expect(mockDepenser).toHaveBeenLastCalledWith('document_pdf', 'd1c');
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: 'd1', kind: 'document', nom: 'Séquence 3 · Collège Privé', corr: 'd1c' } });
+    expect(mockDepenser).not.toHaveBeenCalled();
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('Séquence 1'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'f2', nom: 'Séquence 1' } });
@@ -163,10 +159,16 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await waitFor(() => expect(screen.getByRole('button', { name: x.annales.ouvrirCorrection })).toBeTruthy());
     expect(screen.getByText(x.annales.source.replace('{{ecole}}', 'Polytechnique Yaoundé'))).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirSujet }));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/s1.pdf', titre: 'Maths', sujet: '1' } });
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/document',
+      params: expect.objectContaining({ url: 'https://r2/s1.pdf', titre: 'Maths', sujet: '1', kind: 'exam', ref: '1', corrAction: 'exam_correction', corrRef: '1', duree: '10800' }),
+    });
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirCorrection }));
     expect(mockDepenser).toHaveBeenCalledWith('exam_correction', 1);
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: `Maths · ${x.annales.correctionTitre}`, sujet: '1' } });
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/document',
+      params: expect.objectContaining({ url: 'https://r2/c1.pdf', titre: `Maths · ${x.annales.correctionTitre}`, vue: 'correction', sujet: '1' }),
+    });
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
   });
 
@@ -186,7 +188,7 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
   it('sujet sans correction', async () => {
     mockParams = { id: '3' };
     await monter(<SujetAnnale />);
-    await waitFor(() => expect(screen.getByText(x.annales.pasDeCorrection)).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(x.travail.pasDeCorrigeIA)).toBeTruthy());
   });
 
   it('erreur à l’ouverture du sujet', async () => {

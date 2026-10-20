@@ -161,6 +161,11 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `quiz_started` | Quiz de leçon ou libre démarré | `{ type: 'lecon' \| 'libre' \| 'mission' \| 'erreurs' }` |
 | `exercise_opened` | Exercice libre ouvert | `Record<string, never>` |
 | `annale_timer_started` | Chronomètre d'une annale lancé (officiel, perso, libre) | `{ mode: 'officiel' \| 'perso' \| 'libre'; minutes: number \| null }` |
+| `annale_ai_started` | Correction par l'IA d'un ancien sujet : feuilles prises ou importées | `{ source: 'photos' \| 'galerie' }` |
+| `annale_ai_sent` | Feuilles envoyées à l'IA | `{ feuilles: number }` |
+| `annale_ai_done` | Correction reçue (points et total, jamais le contenu) | `{ points: number; total: number }` |
+| `annale_ai_failed` | Correction non aboutie (type d'issue) | `{ raison: string }` |
+| `annale_correction_toggle` | Bascule sujet / correction dans le lecteur | `{ vers: 'correction' \| 'sujet' }` |
 | `ai_answer_seen` | Réponse de l'IA affichée (durée de bout en bout) | `{ source: 'photo' \| 'question'; duree_s: number }` |
 | `compte_echec` | Échec de création de compte par e-mail (code d'erreur seulement, jamais le message ni l'adresse) | `{ methode: 'email'; etape: 'inscription' \| 'mise_a_jour'; raison: string }` |
 | `ai_correction_complete` | Correction photo reçue, en millisecondes (issue #14) | `{ duration_ms: number; matiere: string; etapes: number }` |

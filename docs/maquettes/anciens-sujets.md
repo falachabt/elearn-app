@@ -8,7 +8,7 @@ Un seul parcours pour le secondaire et les concours : on ajuste l'existant (parc
 ## Écrans
 | Id | Écran | Ce qui change |
 | --- | --- | --- |
-| AS1 | Détails du sujet (`/annales/sujet`) | Déjà là pour les concours ; devient la page de tout ancien sujet. Ajoute : durée recommandée (config du chrono) et la liste « Mes sessions » avec la note de chacune. |
+| AS1 | Détails du sujet (`/annales/sujet`) | Déjà là pour les concours ; devient la page de tout ancien sujet. Ajoute : « Temps de travail » (choix du chrono, voir ci-dessous) et la liste « Mes sessions » avec la note de chacune. Même page pour le secondaire et les concours. |
 | AS2 | Lecteur : sujet | À côté de zoom + et zoom - : bouton « Voir la correction » (seulement si le sujet a un corrigé). |
 | AS3 | Lecteur : correction | Même place : bouton « Voir le sujet ». |
 | AS4 | Faire corriger par l'IA | Sujet sans corrigé : bouton « Faire corriger par l'IA » (page de détails et lecteur). Choix : prendre en photo ou importer de la galerie. |
@@ -17,6 +17,9 @@ Un seul parcours pour le secondaire et les concours : on ajuste l'existant (parc
 | AS7 | Correction en cours | Écran d'analyse existant (B3) : lecture, correction, notation. |
 | AS8 | Résultat de la session | Note sur le total, points par question (carte par question : points obtenus / possibles, commentaire), photos du travail. Ouverte depuis « Mes sessions ». |
 | AS9 | États | Crédits insuffisants (feuille K3), hors ligne, photo illisible (crédits rendus), erreur, vide (aucune session). |
+
+## Temps de travail (demande de Benny du 20 octobre)
+Avant d'ouvrir le sujet, l'élève choisit : **Mesurer mon temps** (chrono montant, sans limite) ou **Compte à rebours** (simulation d'examen). Le compte à rebours propose **Temps conseillé** (durée du sujet, si connue) ou **Mon temps** (saisie en minutes). Sans durée conseillée, seul « Mon temps » est proposé. Le choix est mémorisé pour la prochaine fois. Le lecteur démarre alors directement le chrono choisi, sans second menu.
 
 ## Règles
 - Correction fournie par le concours : « Voir la correction » coûte le prix serveur (`exam_correction`, premier sujet gratuit). Aucun changement de droit.

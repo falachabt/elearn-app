@@ -1,4 +1,4 @@
-import { Check, Clock, Hourglass, Minus, Plus, Timer, TriangleAlert } from 'lucide-react-native';
+import { BookOpenCheck, Check, Clock, FileText, Hourglass, Minus, Plus, Sparkles, Timer, TriangleAlert } from 'lucide-react-native';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,11 +9,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { enregistrerTempsActivite, useChrono } from '@/services/activite';
+import { lireSujet } from '@/services/annales';
+import { useContenuPayant } from '@/session/useContenuPayant';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
+import { getSupabase } from '@/services/supabase';
+import type { TypeSujet } from '@/services/travailSujet';
 import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typeContenu, typo } from '@/theme/theme';
 
+import { FeuilleEpuise } from './credits/FeuilleEpuise';
+import { FeuilleCorrigerTravail } from './annales/travail/FeuilleCorrigerTravail';
+import { useDepenseCredits } from './credits/useDepenseCredits';
 import { Appui } from './Appui';
 import { ChronoPuce } from './ChronoPuce';
 import { Ecran } from './Ecran';
@@ -41,20 +48,40 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { url, titre, sujet, matiere, dureeMin } = useLocalSearchParams<{
+  const { url: urlParam, titre: titreParam, sujet, matiere, dureeMin, duree, kind, ref, corrAction, corrRef, vue: vueParam } = useLocalSearchParams<{
     url: string;
     titre?: string;
     sujet?: string;
     matiere?: string;
     dureeMin?: string;
+    /** Temps choisi sur la page du sujet : 'libre' ou des secondes. Sans lui, l'ancien menu du chrono s'ouvre. */
+    duree?: string;
+    kind?: TypeSujet;
+    ref?: string;
+    corrAction?: string;
+    corrRef?: string;
+    vue?: string;
   }>();
+  // Bascule sujet / correction dans le même lecteur : les deux adresses sont gardées une fois obtenues.
+  const [vue, setVue] = useState<'sujet' | 'correction'>(vueParam === 'correction' ? 'correction' : 'sujet');
+  const [url, setUrl] = useState(urlParam);
+  const adresses = useRef<{ sujet?: string; correction?: string }>({ [vueParam === 'correction' ? 'correction' : 'sujet']: urlParam });
+  const [bascule, setBascule] = useState(false);
+  const [corriger, setCorriger] = useState(false);
+  const { lancer, feuilles: feuillesCredits } = useDepenseCredits({ rechargeSimple: true });
+  const payant = useContenuPayant();
+  const suffixeCorrection = ` · ${t('annales.correctionTitre')}`;
+  const titreBase = (titreParam ?? '').endsWith(suffixeCorrection) ? (titreParam ?? '').slice(0, -suffixeCorrection.length) : (titreParam ?? '');
+  const titre = vue === 'correction' ? `${titreBase}${suffixeCorrection}` : titreBase;
+  const peutBasculer = !!kind && !!ref && !!corrAction && !!corrRef;
+  const secondes = duree && duree !== 'libre' ? Number(duree) : 0;
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [essai, setEssai] = useState(0);
   const [page, setPage] = useState({ n: 1, total: 0 });
   const [zoom, setZoom] = useState(1);
   const [reprise, setReprise] = useState(false);
   const [menuChronoOuvert, setMenuChronoOuvert] = useState(false);
-  const [dureeChoisieS, setDureeChoisieS] = useState<number | undefined>(undefined);
+  const [dureeChoisieS, setDureeChoisieS] = useState<number | undefined>(secondes > 0 ? secondes : undefined);
   const [sujetInfo, setSujetInfo] = useState<{ matiere?: string; dureeMin?: number } | null>(null);
 
   useEffect(() => {
@@ -91,6 +118,11 @@ export function LecteurPdf() {
   useEffect(() => {
     if (etat.statut !== 'pret' || initialisationChronoFaite.current) return;
     initialisationChronoFaite.current = true;
+    // Temps déjà choisi sur la page du sujet : le chrono démarre sans second menu.
+    if (duree) {
+      chrono.demarrer();
+      return;
+    }
 
     void Promise.all([
       AsyncStorage.getItem(CLE_ONBOARDING_VU),
@@ -108,7 +140,7 @@ export function LecteurPdf() {
         setMenuChronoOuvert(true);
       }
     });
-  }, [etat.statut, chrono]);
+  }, [etat.statut, chrono, duree]);
 
   const fermerOnboarding = async () => {
     await AsyncStorage.setItem(CLE_ONBOARDING_VU, '1');
@@ -161,11 +193,11 @@ export function LecteurPdf() {
           type: sujet ? 'annale' : 'cours',
           dureeS,
           matiere: matiereEffective || undefined,
-          titre: titre || undefined,
+          titre: titreBase || undefined,
         });
       }
     };
-  }, [url, sujet, matiereEffective, titre]);
+  }, [urlParam, sujet, matiereEffective, titreBase]);
   // Le PDF descend jusqu'au bord de l'écran ; les boutons de zoom restent au-dessus de la barre de navigation.
   const { bottom } = useSafeAreaInsets();
 
@@ -190,6 +222,36 @@ export function LecteurPdf() {
   }, [url, titre, sujet, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
+
+  const resoudre = async (cible: 'sujet' | 'correction'): Promise<string | null> => {
+    if (cible === 'correction') {
+      // Comme sur la page du sujet : un corrigé de concours passe par le droit du serveur (premier sujet gratuit), sans confirmation.
+      if (corrAction === 'exam_correction') return (await payant.ouvrir<{ url?: string | null }>('exam_correction', String(corrRef)))?.url ?? null;
+      return (await lancer<{ url?: string | null }>('document_pdf', String(corrRef)))?.contenu?.url ?? null;
+    }
+    if (corrAction === 'document_pdf') return (await lancer<{ url?: string | null }>('document_pdf', String(ref)))?.contenu?.url ?? null;
+    return (await lireSujet(getSupabase(), Number(ref))).urlSujet;
+  };
+  const basculerVue = async () => {
+    if (bascule) return;
+    const cible = vue === 'sujet' ? 'correction' : 'sujet';
+    setBascule(true);
+    try {
+      const adresse = adresses.current[cible] ?? (await resoudre(cible));
+      if (!adresse) return;
+      adresses.current[cible] = adresse;
+      suivre('annale_correction_toggle', { vers: cible });
+      setVue(cible);
+      setUrl(adresse);
+      setEtat({ statut: 'chargement' });
+      setPage({ n: 1, total: 0 });
+      setZoom(1);
+    } catch {
+      // Hors ligne ou refus : on reste sur le document affiché.
+    } finally {
+      setBascule(false);
+    }
+  };
   // Toast « Reprise à la page n » à l'ouverture, quelques secondes.
   useEffect(() => {
     if (!reprise) return;
@@ -270,6 +332,19 @@ export function LecteurPdf() {
               <Text style={[typo.boutonPetit, { color: theme.texte.inverse }]}>{t('document.reprise', { n: etat.depart })}</Text>
             </View>
           ) : null}
+          <View style={[styles.actions, { bottom: bottom + espace[5] }]}>
+            {peutBasculer ? (
+              <BoutonLecteur
+                libelle={vue === 'sujet' ? t('travail.voirCorrection') : t('travail.voirSujet')}
+                desactive={bascule}
+                onPress={() => void basculerVue()}
+                icone={vue === 'sujet' ? <BookOpenCheck size={18} strokeWidth={2} color={theme.texte.principal} /> : <FileText size={18} strokeWidth={2} color={theme.texte.principal} />}
+              />
+            ) : null}
+            {kind && ref ? (
+              <BoutonLecteur libelle={t('travail.corriger')} onPress={() => setCorriger(true)} icone={<Sparkles size={18} strokeWidth={2} color={theme.texte.principal} />} />
+            ) : null}
+          </View>
           <View style={[styles.zoom, { bottom: bottom + espace[5], backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre }]}>
             <BoutonZoom libelle={t('document.zoomMoins')} onPress={() => setZoom((z) => Math.max(1, z - 0.5))}>
               <Minus size={18} strokeWidth={2} color={theme.texte.principal} />
@@ -281,6 +356,15 @@ export function LecteurPdf() {
         </View>
       ) : null}
     </Ecran>
+    {feuillesCredits}
+    <FeuilleEpuise ouverte={payant.refus?.raison === 'insuffisant'} onFermer={payant.effacerRefus} recharge />
+    {kind && ref ? (
+      <FeuilleCorrigerTravail
+        ouverte={corriger}
+        onFermer={() => setCorriger(false)}
+        sujet={{ kind, ref: String(ref), titre: titreBase, matiere: matiereEffective ?? null, tempsS: chrono.tempsEcouleS > 0 ? chrono.tempsEcouleS : null }}
+      />
+    ) : null}
     <Feuille
       ouverte={onboardingOuvert}
       onFermer={fermerOnboarding}
@@ -460,6 +544,27 @@ const VuePdf = memo(
   (a, b) => a.uri === b.uri && a.depart === b.depart && a.zoom === b.zoom && a.fond === b.fond,
 );
 
+function BoutonLecteur({ libelle, onPress, icone, desactive }: { libelle: string; onPress: () => void; icone: React.ReactNode; desactive?: boolean }) {
+  const { theme } = useTheme();
+  return (
+    <Appui
+      accessibilityRole="button"
+      accessibilityLabel={libelle}
+      accessibilityState={{ disabled: !!desactive }}
+      disabled={desactive}
+      onPress={onPress}
+      decalage={0}
+      rayon={rayon.m}
+      hitSlop={4}
+    >
+      <View style={[styles.boutonLecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, shadowColor: theme.ombre, opacity: desactive ? 0.6 : 1 }]}>
+        {icone}
+        <Text numberOfLines={1} style={[typo.boutonPetit, { color: theme.texte.principal }]}>{libelle}</Text>
+      </View>
+    </Appui>
+  );
+}
+
 function BoutonZoom({ libelle, onPress, children }: { libelle: string; onPress: () => void; children: React.ReactNode }) {
   return (
     <Appui accessibilityRole="button" accessibilityLabel={libelle} onPress={onPress} decalage={0} rayon={7} hitSlop={4}>
@@ -480,6 +585,20 @@ const styles = StyleSheet.create({
   cadre: { flex: 1, borderTopWidth: bord.normal },
   page: { paddingHorizontal: espace[3], paddingVertical: espace[1], borderWidth: bord.normal, borderRadius: rayon.pilule },
   toast: { position: 'absolute', top: espace[5], alignSelf: 'center', paddingHorizontal: espace[5], paddingVertical: espace[3], borderRadius: rayon.pilule },
+  actions: { position: 'absolute', left: espace[5], gap: espace[2], alignItems: 'flex-start' },
+  boutonLecteur: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espace[2],
+    minHeight: 48,
+    paddingHorizontal: espace[4],
+    borderWidth: bord.normal,
+    borderRadius: rayon.m,
+    shadowOffset: { width: ombre.carte, height: ombre.carte },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 0,
+  },
   zoom: {
     position: 'absolute',
     right: espace[5],

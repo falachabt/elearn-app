@@ -24,6 +24,12 @@ jest.mock('expo-router', () => ({
   useNavigation: () => ({ addListener: jest.fn(() => () => {}), dispatch: jest.fn() }),
 }));
 
+const mockDepenser = jest.fn();
+jest.mock('@/session/CreditsProvider', () => ({
+  useCredits: () => ({ solde: null, couts: { exam_correction: 5, document_pdf: 3 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {}, depensesEnAttente: 0 }),
+}));
+jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
+
 // Système de fichiers en mémoire : chemin → taille.
 const mockFichiers = new Map<string, number>();
 const mockTelecharger = jest.fn();
@@ -90,7 +96,7 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await monter();
     await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
     expect(mockTelecharger).toHaveBeenCalledWith(URL_SUJET, expect.objectContaining({ uri: LOCAL }));
-    expect(screen.getByTestId('lecteur-pdf').props.accessibilityLabel).toBe(LOCAL);
+    expect(screen.getByTestId('lecteur-pdf', { includeHiddenElements: true }).props.accessibilityLabel).toBe(LOCAL);
     expect(screen.getByText('Sujet Maths 2024')).toBeTruthy();
     expect(screen.getByLabelText(x.document.page.replace('{{n}}', '1').replace('{{total}}', '3'))).toBeTruthy();
   });
@@ -181,6 +187,91 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await monter();
     await waitFor(() => expect(screen.getByText(x.annales.configurerChrono)).toBeTruthy());
     expect(screen.getByText(x.annales.nePlusAfficher)).toBeTruthy();
+  });
+
+  describe('#72 · temps choisi, sujet / correction, correction du travail', () => {
+    const URL_CORR = 'https://r2/c1.pdf';
+    const parametres = (extra: Record<string, string> = {}) => ({
+      url: URL_SUJET,
+      titre: 'Sujet Maths 2024',
+      kind: 'exam',
+      ref: '1',
+      corrAction: 'exam_correction',
+      corrRef: '1',
+      sujet: '1',
+      duree: 'libre',
+      ...extra,
+    });
+    beforeEach(() => {
+      mockDepenser.mockResolvedValue({ statut: 'spent', cout: 0, solde: 20, contenu: { url: URL_CORR } });
+    });
+
+    it('temps déjà choisi sur la page du sujet : ni onboarding ni menu du chrono', async () => {
+      await AsyncStorage.clear();
+      mockParams = parametres({ duree: '5400' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByText(x.annales.onboardingChronoTitre)).toBeNull();
+      expect(screen.queryByText(x.annales.configurerChrono)).toBeNull();
+    });
+
+    it('sans paramètres de sujet : aucun bouton de correction (documents de cours)', async () => {
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.queryByRole('button', { name: x.travail.corriger })).toBeNull();
+    });
+
+    it('sujet sans corrigé : seule l’action « Corriger mon travail »', async () => {
+      mockParams = parametres({ corrRef: '' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.getByRole('button', { name: x.travail.corriger })).toBeTruthy();
+    });
+
+    it('« Voir la correction » charge le corrigé dans le même lecteur, puis « Voir le sujet » revient sans redépenser', async () => {
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirCorrection }));
+      expect(mockDepenser).toHaveBeenCalledWith('exam_correction', '1');
+      await waitFor(() => expect(mockTelecharger).toHaveBeenCalledWith(URL_CORR, expect.anything()));
+      await waitFor(() => expect(screen.getByRole('button', { name: x.travail.voirSujet })).toBeTruthy());
+      expect(screen.getByText(`Sujet Maths 2024 · ${x.annales.correctionTitre}`)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirSujet }));
+      await waitFor(() => expect(screen.getByRole('button', { name: x.travail.voirCorrection })).toBeTruthy());
+      expect(mockDepenser).toHaveBeenCalledTimes(1);
+      expect(screen.getByText('Sujet Maths 2024')).toBeTruthy();
+    });
+
+    it('ouvert sur la correction : le titre ne double pas le suffixe', async () => {
+      mockParams = parametres({ url: URL_CORR, vue: 'correction', titre: `Sujet Maths 2024 · ${x.annales.correctionTitre}` });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.getByText(`Sujet Maths 2024 · ${x.annales.correctionTitre}`)).toBeTruthy();
+      expect(screen.getByRole('button', { name: x.travail.voirSujet })).toBeTruthy();
+    });
+
+    it('crédits insuffisants : on reste sur le sujet', async () => {
+      mockDepenser.mockResolvedValue({ statut: 'insufficient', cout: 5, solde: 1, contenu: null });
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirCorrection }));
+      await waitFor(() => expect(mockDepenser).toHaveBeenCalled());
+      expect(screen.getByTestId('lecteur-pdf', { includeHiddenElements: true }).props.accessibilityLabel).toBe(LOCAL);
+      expect(mockTelecharger).not.toHaveBeenCalledWith(URL_CORR, expect.anything());
+    });
+
+    it('« Corriger mon travail » ouvre le choix photos / galerie', async () => {
+      mockParams = parametres();
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.corriger }));
+      await waitFor(() => expect(screen.getByText(x.travail.feuilleTitre)).toBeTruthy());
+      expect(screen.getByText(x.travail.prendre)).toBeTruthy();
+    });
   });
 
   it('déconnexion : les documents sont effacés', () => {
