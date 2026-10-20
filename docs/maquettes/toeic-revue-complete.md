@@ -313,3 +313,23 @@ Retour de l'équipe (16/10, 22:06) : l'accueil affichait encore « 650 à 730 »
 - Résultat du diagnostic (A7) : « 745 », avec la mention « Estimation, pas un score officiel. ».
 - Bilan du test blanc (E6) : « 720 », sur la même règle.
 - Les chiffres sont des exemples ; ils viennent du calcul serveur.
+
+## Correction intégrée et modes Entraînement / Examen (version 26, 20 octobre 2026, à valider)
+
+Demande de Benny (20/10, 21:39) : la correction ne s'ouvre plus sur une autre page. Elle s'affiche sur le même écran que la question, sous les options, et l'élève garde le contexte (photo, audio, passage, onglet de groupe). Deux modes : Entraînement (correction après chaque question) et Examen (revue à la fin). Brief : `brief-design-correction-integree.md` ; règles : cahier 5.M.
+
+- `TOEIC-M-B1` : photo. Option juste (coche et mot « Juste »), carte « Corrigé » sous les options, « Question suivante ». L'explication détaillée affiche son coût (1 crédit).
+- `TOEIC-M-B2` : question-réponse audio. Une option fausse (croix et mot « Faux »), une juste ; « Réécouter » disponible dans le lecteur ; piège de la question dans la carte.
+- `TOEIC-M-B3` : groupe de trois. Onglet 32 validé (coche), correction dans l'onglet de la question.
+- `TOEIC-M-B5` : phrase à trou, trou 128 en vert avec la bonne réponse.
+- `TOEIC-M-EXP` : explication détaillée dépliée dans la carte, sans changer d'écran. Le texte s'insère sous le piège.
+- `TOEIC-M-T2` : mini-test avec le sélecteur « Examen · Entraînement ». Examen par défaut, coût 1 crédit hors Pass.
+- `TOEIC-M-T2-ENT` : même écran, mode Entraînement. Gratuit, ne compte pas pour le score.
+- `TOEIC-M-REV` : revue d'Examen. Filtre « Toutes · Mes erreurs », grille, question avec son contexte et sa correction ; la carte se lit en défilant.
+- `TOEIC-M-REV-HORS` : revue hors ligne. « La correction sera disponible au retour du réseau. », réponses gardées.
+- `TOEIC-M-FIN` : fin d'Entraînement, bilan sans score estimé.
+
+Points à reprendre par le dev :
+- Une seule action verte par écran ; en revue, « Question suivante » est la seule action verte.
+- Une option juste ou fausse porte toujours son mot (« Juste », « Faux »), pas seulement sa couleur.
+- Le bouton « Explication détaillée » n'apparaît qu'avec son coût ; avec le Pass, la mention disparaît.

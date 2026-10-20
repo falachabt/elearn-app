@@ -762,6 +762,61 @@ const SREVD=t=>ph(t,hd('Revue · diagnostic 6 / 20',true)+bd(gridS(['ok','ok','o
     `<div class="sheet" style="gap:6px"><span class="st a" style="justify-self:start">${I('check')}Juste</span><b style="font:700 15px var(--f-body);color:var(--txt)">Ta réponse : B · released</b></div>`+
     `<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}BONNE RÉPONSE</span><b>B · released</b></div>`)+
     ft(LK('Revoir la notion')+B('Explication détaillée · gratuite','sec')+B('Question suivante')));
+/* ---------- CORRECTION INTÉGRÉE ET MODES (v26, 20 octobre) ----------
+   Brief design : /mnt/project-files/toeic/brief-design-correction-integree.md ; cahier 5.M (v1.21).
+   Entraînement : correction sous les options, même écran. Examen : revue à la fin, contexte gardé. */
+const optC=(L,txt,etat,mot)=>`<div class="o" style="${etat==='juste'?'background:var(--marque-d);':''}${etat==='faux'?'background:var(--corail);':''}"><span class="L">${L}</span><span style="flex:1;min-width:0">${txt}</span>${mot?`<span class="st ${etat==='juste'?'p':'f'}" style="margin-left:auto">${I(etat==='juste'?'check':'alert')}${mot}</span>`:''}</div>`;
+const corrCarte=(bonne,ta,notion,extra='')=>`<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}CORRIGÉ</span><b>Bonne réponse : ${bonne}</b>${ta?`<span>Ta réponse : ${ta}</span>`:''}<span>Notion : ${notion}</span>${extra}<div class="fl" style="justify-content:flex-start;gap:6px;margin-top:2px"><span class="lk">Transcription</span><span class="lk">Revoir la notion</span></div></div>`;
+const explCout=`<span style="margin-left:6px;padding:2px 8px;border:2px solid var(--bord);border-radius:999px;background:var(--soleil);color:#0A0A0A;font:700 12px var(--f-body)">1 crédit</span>`;
+/* M1 : photo, correction juste sous les options */
+const M1=t=>ph(t,hd('Partie 1 · Photos',true)+bd(bar(40)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',110)+
+    optC('A','Une femme paie à un comptoir.','juste','Juste')+optC('B','Un homme lit un journal.','')+optC('C','Des enfants jouent dehors.','')+
+    corrCarte('A · A customer is paying at a counter.','','Décrire une photo (démo)')+
+    `<div style="display:flex;gap:8px;align-items:center"><span class="lk" style="color:var(--txt2)">Explication détaillée</span>${explCout}</div>`
+  )+ft(B('Question suivante')));
+/* M2 : question-réponse audio, correction fausse, réécoute disponible */
+const M2=t=>ph(t,hd('Partie 2 · Question-réponse',true)+bd(bar(55)+aud('Question 14 · réécouter disponible',false,100)+
+    optC('A','Yes, I will call you back.','','')+optC('B','At the office on Monday.','faux','Faux')+optC('C','It was a good idea.','juste','Juste')+
+    corrCarte('C · It was a good idea.','B · At the office on Monday.','Répondre à une question (démo)','<span style="font:500 13px var(--f-body);color:var(--txt2)">Piège : « Monday » répond à une question sur le jour, pas sur le lieu.</span>')
+  )+ft(B('Question suivante')));
+/* M3 : groupe de trois, onglet de la question 32 validé, correction dans l'onglet */
+const M3=t=>ph(t,hd('Partie 3 · Conversation',true)+bd(groupeTabs(0,[true,false,false])+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+aud('Conversation · réécouter disponible',false,70)+
+    `<div class="q" style="font-size:15px">Quel est le problème de la femme ?</div>`+optC('A','Le train est en retard.','faux','Faux')+optC('B','Elle a perdu ses documents.','juste','Juste')+optC('C','Le bureau est fermé.','')+
+    corrCarte('B · Elle a perdu ses documents.','A · Le train est en retard.','Problème exprimé dans la conversation (démo)')
+  )+ft(B('Question suivante')));
+/* M4 : phrase à trou, réponse fausse, trou actif en vert */
+const M4=t=>ph(t,hd('Partie 5 · Phrase',true)+bd(bar(35)+`<div class="q" style="font-size:18px">The new software will be ${tb(128,'ok')} next week.</div>`+optC('A','release','faux','Faux')+optC('B','released','juste','Juste')+optC('C','releasing','')+optC('D','releases','')+
+    corrCarte('B · released','A · release','Forme du mot (démo)')
+  )+ft(B('Question suivante')));
+/* M5 : explication détaillée dépliée dans la carte, sans changer d'écran */
+const M5=t=>ph(t,hd('Partie 2 · Question-réponse',true)+bd(bar(55)+optC('C','It was a good idea.','juste','Juste')+
+    `<div class="corr"><span class="st p" style="justify-self:start">${I('bulb')}CORRIGÉ</span><b>Bonne réponse : C · It was a good idea.</b><span>Notion : Répondre à une question (démo)</span>`+
+    `<span class="lbl2" style="margin:0">Explication détaillée</span><span style="font:500 14px/1.4 var(--f-body);color:var(--txt)">La réponse reprend l'idée de la question : on dit que l'idée était bonne, pas où ni quand.</span></div>`
+  )+ft(B('Question suivante')));
+/* M6 : T2 avec le sélecteur de mode, Examen par défaut */
+const M6=t=>ph(t,hd('Mini-test',true)+bd(lab('Mode')+`<div class="seg"><span class="on">Examen</span><span>Entraînement</span></div>`+
+    `<div class="sheet" style="gap:6px"><b style="font:700 15px var(--f-body);color:var(--txt)">Examen</b><p class="hint" style="color:var(--txt)">Aucune correction pendant le mini-test. Revue à la fin. Compte pour ton score estimé.</p><span class="st p" style="justify-self:start">${I('clock')}Coût : 1 crédit hors Pass</span></div>`+
+    row('layers','Partie','Partie 5 · 10 questions','')
+  )+ft(B('Commencer le mini-test')));
+/* M6b : même écran, mode Entraînement choisi */
+const M6b=t=>ph(t,hd('Mini-test',true)+bd(lab('Mode')+`<div class="seg"><span>Examen</span><span class="on">Entraînement</span></div>`+
+    `<div class="sheet" style="gap:6px"><b style="font:700 15px var(--f-body);color:var(--txt)">Entraînement</b><p class="hint" style="color:var(--txt)">La correction s'affiche après chaque question. Ça ne compte pas pour ton score estimé.</p><span class="st p" style="justify-self:start">${I('clock')}Gratuit</span></div>`+
+    row('layers','Partie','Partie 5 · 10 questions','')
+  )+ft(B('Commencer l\'entraînement')));
+/* M7 : revue d'Examen, réutilise l'écran de la question, filtre Mes erreurs */
+const M7=t=>ph(t,hd('Revue · 7 / 10',true)+bd(seg(['Toutes','Mes erreurs'],1)+gridS(['ok','ok','ko','ok','ok','ko','ok','ok','ok','ko'],6).replace('gap:6px','gap:4px')+
+    aud('Conversation · réécouter disponible',false,70)+`<div class="q" style="font-size:15px">Où a lieu la conversation ?</div>`+optC('A','Dans une gare.','faux','Ta réponse')+optC('B','Dans un bureau.','juste','Bonne réponse')+optC('C','Dans un magasin.','')+
+    corrCarte('B · Dans un bureau.','A · Dans une gare.','Lieu de la conversation (démo)')
+  )+ft(B('Question suivante')));
+/* M8 : revue hors ligne, correction indisponible */
+const M8=t=>ph(t,hd('Revue · hors ligne',true)+bd(`<span class="st f" style="justify-self:start">${I('wifi')}Hors ligne</span>`+
+    `<div class="sheet" style="gap:6px"><b style="font:700 15px var(--f-body);color:var(--txt)">La correction sera disponible au retour du réseau.</b><p class="hint" style="color:var(--txt)">Tes réponses sont enregistrées sur cet appareil.</p></div>`+
+    optC('A','Dans une gare.','','Ta réponse')+optC('B','Dans un bureau.','','')+optC('C','Dans un magasin.','','')
+  )+ft(BD('Question suivante')));
+/* M9 : fin d'Entraînement, bilan sans score estimé */
+const M9=t=>ph(t,hd('Entraînement terminé',false)+bd(`<div class="flip"><span class="lbl2">Ton entraînement</span><span class="big">7 bonnes réponses sur 10</span><p class="hint" style="color:var(--txt)">Ça ne compte pas pour ton score estimé. Tu peux revoir les questions manquées.</p></div>`+
+    row('target','Notions à revoir','Lieu de la conversation · 2 questions','')
+  )+ft(B('Revoir mes erreurs')+LK('Retour à Réviser')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -796,6 +851,7 @@ const groups=[
  ['Trous numérotés, parties 5 et 6 (v21, 16 octobre)',[[b5c,'TOEIC-B5-TROU · Partie 5 : trou numéroté dans la phrase, question « Trou 128 »'],[b6c1,'TOEIC-B6-1 · Partie 6 : trou 131 actif, rectangles numérotés dans le texte (remplace {1})'],[b6c2,'TOEIC-B6-2 · Partie 6 : trou 131 répondu (vert), trou 132 actif']]],
  ['Score estimé précis et évolution (v22, 16 octobre, à valider)',[[d2c,'TOEIC-A7-SCORE · Ton résultat : un chiffre net (745), Listening et Reading chacun sur 495, mention « estimation »'],[d2d,'TOEIC-A7-EVOL · Après un mini-test : 760, évolution de +15 depuis le diagnostic']]],
  ['Série sans correction immédiate, revue en fin de série (v24, 16 octobre, à valider)',[[SQ4,'TOEIC-S-Q4 · Mini-test : question 4 sur 10, réponse enregistrée, aucune correction (« Question suivante »)'],[SFIN,'TOEIC-S-FIN · Série terminée : récapitulatif, aucune correction, « Revoir mes réponses »'],[SREV,'TOEIC-S-REV · Revue question par question : réponse donnée, bonne réponse, Revoir la notion, Explication détaillée (1 crédit, 0 avec le Pass)'],[SREVD,'TOEIC-S-REV-DIAG · Revue du diagnostic : explication gratuite (D-09)']]],
+ ['Correction intégrée, modes Entraînement et Examen (v26, 20 octobre, à valider)',[[M1,'TOEIC-M-B1 · Photo : correction sous les options, même écran (juste)'],[M2,'TOEIC-M-B2 · Question-réponse audio : correction fausse, réécoute disponible'],[M3,'TOEIC-M-B3 · Groupe de trois : correction dans l\'onglet validé'],[M4,'TOEIC-M-B5 · Phrase à trou : correction (faux, trou en vert)'],[M5,'TOEIC-M-EXP · Explication détaillée dépliée dans la carte, sans changer d\'écran (1 crédit)'],[M6,'TOEIC-M-T2 · Mini-test : sélecteur de mode, Examen par défaut'],[M6b,'TOEIC-M-T2-ENT · Même écran, mode Entraînement (gratuit, ne compte pas)'],[M7,'TOEIC-M-REV · Revue d\'Examen : grille, filtre Mes erreurs, question avec son contexte'],[M8,'TOEIC-M-REV-HORS · Revue hors ligne : correction indisponible, réponses gardées'],[M9,'TOEIC-M-FIN · Fin d\'Entraînement : bilan sans score estimé']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
