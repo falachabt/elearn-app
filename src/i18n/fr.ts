@@ -1025,6 +1025,15 @@ export const fr = {
     partiTitre: 'On te prévient',
     partiTexte: 'Ta correction continue sur nos serveurs. Tu recevras une notification dès qu’elle est prête.',
     partiOk: 'Compris',
+    visiteEtape: 'Étape {{n}} sur {{total}}',
+    visitePasser: 'Passer',
+    visiteSuivant: 'Suivant',
+    visiteCompris: 'Compris',
+    visite: {
+      photographier: { titre: 'Photographie tes feuilles', texte: 'Cadre une feuille entière, bien à plat et bien éclairée, puis appuie sur le bouton rond. Une photo par feuille, dans l’ordre où tu as résolu.' },
+      verifier: { titre: 'Vérifie tes photos', texte: 'Appuie sur une miniature pour la voir en grand, la pivoter ou la recadrer. La croix la supprime.' },
+      envoyer: { titre: 'Envoie à l’IA', texte: 'Appuie sur Terminer pour remettre les feuilles dans l’ordre, puis envoie. Tu peux quitter la page : on te prévient quand la correction est prête.' },
+    },
   },
   annales: {
     filtreAnnee: 'Année',

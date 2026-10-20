@@ -358,3 +358,17 @@ export async function lirePreferenceTemps(): Promise<PreferenceTemps> {
   }
 }
 export const enregistrerPreferenceTemps = (p: PreferenceTemps) => AsyncStorage.setItem(CLE_TEMPS, JSON.stringify(p)).catch(() => {});
+
+// --- Visite guidée de la prise de photos --------------------------------------------------------------------------------
+
+const CLE_VISITE = 'annales.visiteTravail.vue';
+
+/** Vrai quand la visite a déjà été vue (ou passée) sur cet appareil. Une lecture qui échoue compte comme « déjà vue » : jamais bloquante. */
+export async function visiteDejaVue(): Promise<boolean> {
+  try {
+    return (await AsyncStorage.getItem(CLE_VISITE)) === '1';
+  } catch {
+    return true;
+  }
+}
+export const marquerVisiteVue = () => AsyncStorage.setItem(CLE_VISITE, '1').catch(() => {});

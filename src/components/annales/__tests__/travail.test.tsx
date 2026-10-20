@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -6,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
-import { definirBrouillon, lireBrouillon, PREFERENCE_TEMPS_DEFAUT, type PreferenceTemps, type Session } from '@/services/travailSujet';
+import { definirBrouillon, lireBrouillon, PREFERENCE_TEMPS_DEFAUT, visiteDejaVue, type PreferenceTemps, type Session } from '@/services/travailSujet';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { AnalyseTravail } from '../travail/AnalyseTravail';
@@ -40,6 +41,8 @@ jest.mock('@/components/photo/CadreRecadrage', () => {
 });
 
 const mockEnvoyer = jest.fn();
+const mockSuivre = jest.fn();
+jest.mock('@/services/analytics', () => ({ ...jest.requireActual('@/services/analytics'), suivre: (...a: unknown[]) => mockSuivre(...a) }));
 const mockPivoter = jest.fn();
 const mockRecadrer = jest.fn();
 const mockLireSession = jest.fn();
@@ -225,13 +228,42 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
   });
 
   describe('PhotosTravail', () => {
-    beforeEach(() => definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] }));
+    beforeEach(async () => {
+      await AsyncStorage.setItem('annales.visiteTravail.vue', '1');
+      definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] });
+    });
 
     it('supprimer une vignette retire la feuille sans passer par l’ordre', async () => {
       await monter(<PhotosTravail />);
       await fireEvent.press(screen.getByRole('button', { name: x.travail.supprimerFeuille.replace('{{n}}', '1') }));
       expect(lireBrouillon()?.feuilles.map((f) => f.id)).toEqual(['f2']);
       expect(router.replace).not.toHaveBeenCalled();
+    });
+
+    it('première ouverture : la visite guidée se déroule puis ne revient plus', async () => {
+      await AsyncStorage.clear();
+      await monter(<PhotosTravail />);
+      await waitFor(() => expect(screen.getByText(x.travail.visite.photographier.titre)).toBeTruthy());
+      await fireEvent.press(screen.getByText(x.travail.visiteSuivant));
+      expect(screen.getByText(x.travail.visite.verifier.titre)).toBeTruthy();
+      await fireEvent.press(screen.getByText(x.travail.visiteSuivant));
+      expect(screen.getByText(x.travail.visite.envoyer.titre)).toBeTruthy();
+      expect(screen.queryByText(x.travail.visitePasser)).toBeNull();
+      await fireEvent.press(screen.getByText(x.travail.visiteCompris));
+      expect(screen.queryByText(x.travail.visite.envoyer.titre)).toBeNull();
+      expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true });
+      await monter(<PhotosTravail />);
+      await waitFor(() => expect(mockSuivre).toHaveBeenCalled());
+      expect(screen.queryByText(x.travail.visite.photographier.titre)).toBeNull();
+    });
+
+    it('« Passer » ferme la visite et la marque comme vue', async () => {
+      await AsyncStorage.clear();
+      await monter(<PhotosTravail />);
+      await waitFor(() => expect(screen.getByText(x.travail.visitePasser)).toBeTruthy());
+      await fireEvent.press(screen.getByText(x.travail.visitePasser));
+      expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: false });
+      expect(await visiteDejaVue()).toBe(true);
     });
 
     it('toucher une vignette ouvre l’aperçu', async () => {

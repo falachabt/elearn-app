@@ -47,3 +47,11 @@ Un document déjà ouvert ne coûte plus rien : il s'ouvre directement, sans feu
 - **Étapes** : pastille ronde bordée comme dans l'aide par photo (vert et coche si terminée, corail et croix si échec, indicateur de chargement si en cours). Avant le premier signal du serveur, la première étape est déjà « en cours » (préparation et envoi des feuilles).
 - **Quitter la page** : bouton « Quitter, me prévenir quand c'est prêt » dès que les feuilles sont arrivées au serveur ; la connexion est coupée, le serveur termine et envoie la notification `photo_ready` (données `exam_attempt_id`, `paper_kind`, `paper_ref`) ; le toucher ouvre `/annales/session`. Quitter avant l'arrivée des feuilles n'est pas proposé : rien ne serait corrigé.
 - Tests : états des étapes, quitter (connexion coupée, aucune ouverture tardive de la session), illisible, suppression, aperçu (pivoter, recadrer, échec), routage de la notification, qualité des feuilles.
+
+## Visite guidée de la prise de photos (demande de Benny du 20 octobre)
+- **Quand** : une seule fois, à la première ouverture de la prise de photos (valeur mémorisée sur l'appareil). « Passer » la ferme et compte comme vue. Jamais bloquante.
+- **Contenu** (3 étapes, tutoiement) : 1. photographier chaque feuille dans l'ordre, bien cadrée et éclairée ; 2. vérifier les miniatures (toucher pour voir, pivoter, recadrer ; croix pour supprimer) ; 3. Terminer, ordre, envoi à l'IA, possibilité de quitter et d'être prévenu.
+- **Design** : fond sombre voilé, carte neo-brutaliste (bordure 2 px, ombre dure 4 px, tokens du thème, clair et sombre), indicateur d'étape et trois repères, bouton principal « Suivant » puis « Compris », bouton texte « Passer ». Pas d'emoji, pas de spot sur un élément précis (mesure native fragile) : la carte nomme l'élément.
+- **Inspiration** : le tour de l'ancienne app (`@wrack/react-native-tour-guide`, tour une seule fois, étapes, passer). Pas de nouvelle dépendance ici (AGENTS §17) : composant maison.
+- **Évènements** : `annale_visite_vue` { terminee: boolean }.
+- **Correctif lié** : la miniature d'une feuille prise n'avait pas de taille (seule la croix se voyait) ; taille fixée à 56 par 70.

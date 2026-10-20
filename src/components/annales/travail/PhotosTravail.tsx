@@ -3,17 +3,19 @@ import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { Image as IconeImage, X } from 'lucide-react-native';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, retirerFeuille, useBrouillon } from '@/services/travailSujet';
+import { suivre } from '@/services/analytics';
+import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, marquerVisiteVue, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
 import { Bouton } from '../../Bouton';
 import { useFeedback } from '../../useFeedback';
+import { VisiteTravail } from './VisiteTravail';
 
 /** L'appareil photo reste sombre dans les deux thèmes (guide, parcours B). */
 const NOIR = palette.encre[1000];
@@ -29,6 +31,17 @@ export function PhotosTravail() {
   const camera = useRef<CameraView>(null);
   const [prete, setPrete] = useState(false);
   const [prise, setPrise] = useState(false);
+  const [visite, setVisite] = useState(false);
+  useEffect(() => {
+    let actif = true;
+    void visiteDejaVue().then((vue) => { if (actif && !vue) setVisite(true); });
+    return () => { actif = false; };
+  }, []);
+  const finVisite = (terminee: boolean) => {
+    setVisite(false);
+    void marquerVisiteVue();
+    suivre('annale_visite_vue', { terminee });
+  };
   const feuilles = brouillon?.feuilles ?? [];
   const plein = feuilles.length >= MAX_FEUILLES;
 
@@ -102,6 +115,7 @@ export function PhotosTravail() {
           <View style={[styles.carre, styles.terminer]}><Text style={[typo.boutonPetit, { color: NOIR }]}>{t('travail.photosTerminer')}</Text></View>
         </Appui>
       </View>
+      {visite ? <VisiteTravail onFin={finVisite} /> : null}
     </View>
   );
 }
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
   bandeZone: { flexGrow: 0, minHeight: 72 },
   bande: { flexDirection: 'row', gap: espace[3], minHeight: 72, paddingTop: espace[2], paddingRight: espace[2] },
   vignette: { width: 56, height: 70 },
-  cadre: { flex: 1, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.s, overflow: 'hidden' },
+  cadre: { width: 56, height: 70, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.s, overflow: 'hidden' },
   numero: { position: 'absolute', left: 0, bottom: 0, color: BLANC, backgroundColor: 'rgba(10,10,10,0.7)', paddingHorizontal: espace[2], },
   supprimer: { position: 'absolute', right: -6, top: -8 },
   croix: { width: 24, height: 24, borderRadius: rayon.pilule, borderWidth: bord.normal, borderColor: BLANC, backgroundColor: palette.corail[500], alignItems: 'center', justifyContent: 'center' },

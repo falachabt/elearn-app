@@ -165,6 +165,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `annale_ai_sent` | Feuilles envoyées à l'IA | `{ feuilles: number }` |
 | `annale_ai_done` | Correction reçue (points et total, jamais le contenu) | `{ points: number; total: number }` |
 | `annale_ai_failed` | Correction non aboutie (type d'issue) | `{ raison: string }` |
+| `annale_visite_vue` | Visite guidée de la prise de photos fermée (terminée ou passée) | `{ terminee: boolean }` |
 | `annale_correction_toggle` | Bascule sujet / correction dans le lecteur | `{ vers: 'correction' \| 'sujet' }` |
 | `ai_answer_seen` | Réponse de l'IA affichée (durée de bout en bout) | `{ source: 'photo' \| 'question'; duree_s: number }` |
 | `compte_echec` | Échec de création de compte par e-mail (code d'erreur seulement, jamais le message ni l'adresse) | `{ methode: 'email'; etape: 'inscription' \| 'mise_a_jour'; raison: string }` |

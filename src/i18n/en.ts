@@ -1024,6 +1024,15 @@ export const en: Textes = {
     partiTitre: 'We will notify you',
     partiTexte: 'Your correction keeps running on our servers. You will get a notification as soon as it is ready.',
     partiOk: 'Got it',
+    visiteEtape: 'Step {{n}} of {{total}}',
+    visitePasser: 'Skip',
+    visiteSuivant: 'Next',
+    visiteCompris: 'Got it',
+    visite: {
+      photographier: { titre: 'Photograph your sheets', texte: 'Frame the whole sheet, flat and well lit, then tap the round button. One photo per sheet, in the order you solved them.' },
+      verifier: { titre: 'Check your photos', texte: 'Tap a thumbnail to view it larger, rotate it or crop it. The cross deletes it.' },
+      envoyer: { titre: 'Send it to the AI', texte: 'Tap Finish to put the sheets in order, then send. You can leave the page: we notify you when the correction is ready.' },
+    },
   },
   annales: {
     filtreAnnee: 'Year',
