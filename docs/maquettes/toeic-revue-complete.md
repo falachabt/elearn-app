@@ -333,3 +333,12 @@ Points à reprendre par le dev :
 - Une seule action verte par écran ; en revue, « Question suivante » est la seule action verte.
 - Une option juste ou fausse porte toujours son mot (« Juste », « Faux »), pas seulement sa couleur.
 - Le bouton « Explication détaillée » n'apparaît qu'avec son coût ; avec le Pass, la mention disparaît.
+
+## Écrans restants de la correction intégrée (version 27, 20 octobre 2026)
+
+- `TOEIC-M-B7` : documents. Onglets Doc. 1 à 3, passage avec la phrase de la réponse surlignée, correction sous les options.
+- `TOEIC-M-X5` : feuille « Il te faut 1 crédit » par-dessus la question, avec le solde et « Débloquer · 1 crédit ». Le texte de la feuille est celui de X5.
+- `TOEIC-M-REV-GRP` : revue d'Examen d'un groupe (onglet 33), « Réécouter » disponible, correction dans l'onglet.
+- `TOEIC-M-ECOUTE-EPUISEE` : épreuve, audio déjà écouté. Le bouton de relance n'existe pas ; la mention « Écoute unique : pas de réécoute pendant l'épreuve. » est affichée.
+
+Règle d'écoute : en Examen pendant l'épreuve, lecture unique. En revue d'Examen et en Entraînement, « Réécouter » est disponible. Clair et sombre : chaque écran est rendu dans les deux thèmes dans l'aperçu.

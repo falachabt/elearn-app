@@ -817,6 +817,31 @@ const M8=t=>ph(t,hd('Revue · hors ligne',true)+bd(`<span class="st f" style="ju
 const M9=t=>ph(t,hd('Entraînement terminé',false)+bd(`<div class="flip"><span class="lbl2">Ton entraînement</span><span class="big">7 bonnes réponses sur 10</span><p class="hint" style="color:var(--txt)">Ça ne compte pas pour ton score estimé. Tu peux revoir les questions manquées.</p></div>`+
     row('target','Notions à revoir','Lieu de la conversation · 2 questions','')
   )+ft(B('Revoir mes erreurs')+LK('Retour à Réviser')));
+/* ---------- ÉCRANS RESTANTS DU DESIGN CORRECTION INTÉGRÉE (v27, 20 octobre) ----------
+   Brief : brief-design-correction-integree.md. Écoute unique en épreuve, réécoute en revue et en entraînement. */
+const docTabs=(on,ok)=>seg(['Doc. 1','Doc. 2','Doc. 3'],on);
+/* M10 : B7 documents, correction intégrée, document de la question surligné */
+const M10=t=>ph(t,hd('Partie 7 · Documents',true)+bd(docTabs(1,[false,true,false])+
+    `<div class="blk2" style="font-size:13px;line-height:1.5">Memo — the Lisbon office will close on 14 March for renovation. <span style="background:var(--soleil);padding:0 2px">Staff in Lisbon should work from the Porto office that week.</span></div>`+
+    `<div class="q" style="font-size:14px">Pour qui ce message est-il écrit ?</div>`+optC('A','Les clients','faux','Faux')+optC('B','Le personnel de Lisbonne','juste','Juste')+optC('C','Les fournisseurs','')+
+    corrCarte('B · Le personnel de Lisbonne','A · Les clients','Lire un mémo interne (démo)','<span style="font:500 13px var(--f-body);color:var(--txt2)">Le document 2 est la seule source de la réponse.</span>')
+  )+ft(B('Question suivante')));
+/* M11 : feuille de coût X5 par-dessus la question (explication détaillée) */
+const M11=t=>ph(t,hd('Partie 1 · Photos',true)+bd(bar(40)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',110)+
+    optC('A','Une femme paie à un comptoir.','juste','Juste')+optC('B','Un homme lit un journal.','')+optC('C','Des enfants jouent dehors.','')+
+    corrCarte('A · A customer is paying at a counter.','','Décrire une photo (démo)'))+cadreFeuille(
+    `<b style="font:700 17px var(--f-body);color:var(--txt)">Il te faut 1 crédit</b>`+
+    `<p class="hint" style="color:var(--txt)">Une explication détaillée de cette question. Le cours et le carnet restent gratuits.</p>`+
+    `<div class="fl" style="justify-content:space-between"><span style="font:700 14px var(--f-body);color:var(--txt)">Ton solde</span><span style="font:700 14px var(--f-mono)">5 crédits</span></div>`+
+    B('Débloquer · 1 crédit')+LK('Plus tard'))+ft(B('Question suivante')));
+/* M12 : revue de groupe d'Examen, Réécouter disponible, onglet 33 */
+const M12=t=>ph(t,hd('Revue · Partie 3 · 33',true)+bd(groupeTabs(1,[true,true,false])+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+aud('Conversation · réécouter disponible',false,70)+
+    `<div class="q" style="font-size:15px">Qu'est-ce que l'homme propose ?</div>`+optC('A','Changer de train.','juste','Juste')+optC('B','Appeler un taxi.','faux','Ta réponse')+optC('C','Attendre à la gare.','')+
+    corrCarte('A · Changer de train.','B · Appeler un taxi.','Proposition dans la conversation (démo)')
+  )+ft(B('Question suivante')));
+/* M13 : épreuve, audio déjà écouté une fois : réécoute épuisée (pas de bouton de relance) */
+const ecouteExpose=`<div class="aud"><span class="pb">${I('check')}</span><div style="flex:1;min-width:0"><b style="font:700 14px var(--f-body);color:var(--txt)">Exposé écouté</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Une seule écoute · pas de réécoute</small></div></div>`;
+const M13=t=>ph(t,hd('Partie 4 · Exposé',false)+bd(bar(70)+ecouteExpose+`<div class="q" style="font-size:15px">Qu'est-ce que l'orateur va faire ensuite ?</div>`+opt('A','Présenter un rapport.','sel')+opt('B','Ouvrir une discussion.','')+opt('C','Annuler la réunion.',''))+ft(B('Valider')+`<small style="font:500 12px var(--f-body);color:var(--txt2);text-align:center">Écoute unique : pas de réécoute pendant l'épreuve.</small>`));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -852,6 +877,7 @@ const groups=[
  ['Score estimé précis et évolution (v22, 16 octobre, à valider)',[[d2c,'TOEIC-A7-SCORE · Ton résultat : un chiffre net (745), Listening et Reading chacun sur 495, mention « estimation »'],[d2d,'TOEIC-A7-EVOL · Après un mini-test : 760, évolution de +15 depuis le diagnostic']]],
  ['Série sans correction immédiate, revue en fin de série (v24, 16 octobre, à valider)',[[SQ4,'TOEIC-S-Q4 · Mini-test : question 4 sur 10, réponse enregistrée, aucune correction (« Question suivante »)'],[SFIN,'TOEIC-S-FIN · Série terminée : récapitulatif, aucune correction, « Revoir mes réponses »'],[SREV,'TOEIC-S-REV · Revue question par question : réponse donnée, bonne réponse, Revoir la notion, Explication détaillée (1 crédit, 0 avec le Pass)'],[SREVD,'TOEIC-S-REV-DIAG · Revue du diagnostic : explication gratuite (D-09)']]],
  ['Correction intégrée, modes Entraînement et Examen (v26, 20 octobre, à valider)',[[M1,'TOEIC-M-B1 · Photo : correction sous les options, même écran (juste)'],[M2,'TOEIC-M-B2 · Question-réponse audio : correction fausse, réécoute disponible'],[M3,'TOEIC-M-B3 · Groupe de trois : correction dans l\'onglet validé'],[M4,'TOEIC-M-B5 · Phrase à trou : correction (faux, trou en vert)'],[M5,'TOEIC-M-EXP · Explication détaillée dépliée dans la carte, sans changer d\'écran (1 crédit)'],[M6,'TOEIC-M-T2 · Mini-test : sélecteur de mode, Examen par défaut'],[M6b,'TOEIC-M-T2-ENT · Même écran, mode Entraînement (gratuit, ne compte pas)'],[M7,'TOEIC-M-REV · Revue d\'Examen : grille, filtre Mes erreurs, question avec son contexte'],[M8,'TOEIC-M-REV-HORS · Revue hors ligne : correction indisponible, réponses gardées'],[M9,'TOEIC-M-FIN · Fin d\'Entraînement : bilan sans score estimé']]],
+ ['Écrans restants de la correction intégrée (v27, 20 octobre)',[[M10,'TOEIC-M-B7 · Documents : correction sous les options, document de la question surligné'],[M11,'TOEIC-M-X5 · Feuille « Il te faut 1 crédit » par-dessus la question (explication détaillée)'],[M12,'TOEIC-M-REV-GRP · Revue d\'Examen d\'un groupe : onglet 33, Réécouter disponible'],[M13,'TOEIC-M-ECOUTE-EPUISEE · Épreuve : audio déjà écouté, réécoute épuisée']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
