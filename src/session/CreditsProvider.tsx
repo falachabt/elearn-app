@@ -75,7 +75,10 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       }),
     [],
   );
-  const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>({});
+  // Démo des explications TOEIC (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1) : sans session, les coûts ne se lisent pas.
+  const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>(() =>
+    __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1' ? { cert_explanation: 1 } : {},
+  );
   const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
   const [depenses, setDepenses] = useState<{ pour: string; n: number } | null>(null);
   // Dépenses hors ligne en attente : tant qu'il en reste, le solde affiché n'est pas confirmé par le serveur.
