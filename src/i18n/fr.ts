@@ -2257,6 +2257,8 @@ export const fr = {
       ecouteJouee: 'Écoute déjà jouée.',
       document: 'Doc. {{n}}',
       imageAlt: 'Photo de la partie {{n}}',
+      illustration: 'PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',
+      ecouteChoisis: 'Écoute, puis choisis',
       partieNom: {
         photo: 'Photos',
         question_reponse: 'Question-réponse',

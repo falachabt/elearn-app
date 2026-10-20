@@ -39,7 +39,7 @@ const SANS_ENONCE = new Set(['photo', 'question_reponse']);
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, position }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -58,7 +58,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           <Image source={{ uri: image }} accessibilityLabel={g?.image_alt ?? t('certification.exercice.imageAlt', { n: 1 })} style={[styles.image, { borderColor: theme.bord.fort }]} contentFit="cover" />
         ) : (
           <View accessibilityLabel={g?.image_alt ?? ''} style={[styles.image, styles.imageAbsente, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
-            <Text style={[typo.legende, { color: theme.texte.secondaire, textAlign: 'center' }]}>{g?.image_alt ?? ''}</Text>
+            <Text style={[typo.legende, { color: theme.texte.secondaire, textAlign: 'center' }]}>{t('certification.exercice.illustration')}</Text>
           </View>
         )
       ) : null}
@@ -70,7 +70,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           unique={unique}
           delaiEchecS={delaiEchecS}
           ecran={ecran}
-          libelle={t('certification.exercice.question', { n: position ?? 1 })}
+          libelle={t('certification.exercice.ecouteChoisis')}
           onPasser={onPasser}
         />
       ) : null}

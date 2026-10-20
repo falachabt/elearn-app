@@ -34,20 +34,13 @@ const rendre = async (ui: ReactElement) => {
   return monter(ui);
 };
 
-describe('QuestionExercice : libellé audio selon la position dans la séance', () => {
-  it('affiche la position de la séance, jamais le numéro de la banque', async () => {
+describe('QuestionExercice : libellé audio fixe, jamais le numéro de la banque', () => {
+  it('affiche « Écoute, puis choisis » quelle que soit la position, sans numéro de la banque', async () => {
     await rendre(
       <QuestionExercice question={question} choix={null} onChoix={() => {}} unique delaiEchecS={10} ecran="diagnostic" position={5} onPasser={() => {}} />,
     );
 
-    expect(mockLibelles).toContain(t.exercice.question.replace('{{n}}', '5'));
+    expect(mockLibelles).toContain(t.exercice.ecouteChoisis);
     expect(mockLibelles.join(' ')).not.toContain('33');
-  });
-
-  it('sans position, retombe sur la question 1 et non sur le numéro de la banque', async () => {
-    await rendre(<QuestionExercice question={question} choix={null} onChoix={() => {}} unique delaiEchecS={10} ecran="serie" onPasser={() => {}} />);
-
-    expect(mockLibelles).toContain(t.exercice.question.replace('{{n}}', '1'));
-    expect(screen.queryByText(/33/)).toBeNull();
   });
 });

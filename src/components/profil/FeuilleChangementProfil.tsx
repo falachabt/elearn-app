@@ -14,7 +14,7 @@ export type EtatChangement = 'repos' | 'charge' | 'erreur';
 type Props = {
   etat: EtatChangement;
   titre: string;
-  texte: string;
+  texte?: string;
   confirmer: string;
   annuler: string;
   onConfirmer: () => void;
@@ -63,7 +63,7 @@ export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler
       <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
         {titre}
       </Text>
-      <Text style={[typo.petit, { color: theme.texte.principal }]}>{texte}</Text>
+      {texte ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{texte}</Text> : null}
       {children}
       <Bouton libelle={confirmer} onPress={onConfirmer} />
       <Bouton variante="texte" libelle={annuler} onPress={onAnnuler} />

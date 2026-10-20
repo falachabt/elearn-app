@@ -90,11 +90,13 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   if (etat.phase === 'erreur') {
     return (
       <View accessibilityRole="alert" style={[styles.carte, { backgroundColor: theme.etat.erreurDoux, borderColor: theme.bord.fort }]}>
-        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTitre')}</Text>
-        <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTexte')}</Text>
-        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.exercice.audioKoAide')}</Text>
-        <Bouton petit variante="secondaire" libelle={t('certification.exercice.audioKoReessayer')} onPress={() => demarrer(etat.position)} />
-        <Bouton petit variante="texte" libelle={t('certification.exercice.audioKoPasser')} onPress={onPasser} />
+        <View style={styles.centre}>
+          <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTitre')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTexte')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.exercice.audioKoAide')}</Text>
+          <Bouton petit variante="secondaire" libelle={t('certification.exercice.audioKoReessayer')} onPress={() => demarrer(etat.position)} />
+          <Bouton petit variante="texte" libelle={t('certification.exercice.audioKoPasser')} onPress={onPasser} />
+        </View>
       </View>
     );
   }

@@ -35,3 +35,15 @@ export async function passerAuToeic(): Promise<void> {
   const suivant: Profil = memoire.toeic ?? { type: 'certification', exam: 'toeic', pays: actuel?.pays, termine: false };
   await basculer(suivant, { ...memoire, ...(actuel ? { secondaire: actuel } : {}) });
 }
+
+/**
+ * P5 : revenir du TOEIC au secondaire. Le secondaire mémorisé est rétabli ; sans mémoire, la fonction renvoie `false`
+ * et l'écran ouvre le choix de classe. Le profil TOEIC reste en mémoire.
+ */
+export async function revenirAuSecondaire(): Promise<boolean> {
+  const actuel = await lireProfil();
+  const memoire = await lireMemoire();
+  if (!memoire.secondaire) return false;
+  await basculer(memoire.secondaire, { ...memoire, ...(actuel?.type === 'certification' ? { toeic: actuel } : {}) });
+  return true;
+}

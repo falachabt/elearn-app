@@ -35,12 +35,23 @@ beforeEach(async () => {
 });
 
 describe('P2 · choix du profil', () => {
-  it('marque le profil actuel et la certification ouvre sa page de choix', async () => {
+  it('marque le profil actuel, puis Continuer pose la feuille P4 sur la page sans quitter P2', async () => {
     await monter(<ChoisirProfil />);
     expect(await screen.findByText(x.profilChoix.actuel)).toBeTruthy();
     fireEvent.press(await screen.findByRole('radio', { name: new RegExp(`^${x.profilChoix.toeic}`) }));
     fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.continuer }));
-    expect(router.push).toHaveBeenCalledWith('/profil/certification');
+    expect(router.push).not.toHaveBeenCalledWith('/profil/certification');
+    expect(await screen.findByRole('button', { name: x.profilChoix.passerToeicBouton })).toBeTruthy();
+  });
+
+  it('depuis le TOEIC, Continuer vers le secondaire pose la feuille P5 ; la confirmation restaure le secondaire mémorisé', async () => {
+    await passerAuToeic();
+    await monter(<ChoisirProfil />);
+    fireEvent.press(await screen.findByRole('radio', { name: new RegExp(`^${x.profilChoix.secondaire}`) }));
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.continuer }));
+    fireEvent.press(await screen.findByRole('button', { name: x.profilChoix.revenirBouton }));
+    await waitFor(async () => expect((await lireProfil())?.type).toBe('eleve'));
+    expect(router.replace).toHaveBeenCalledWith('/');
   });
 
   it('le secondaire passe par le choix de classe en mode modification', async () => {

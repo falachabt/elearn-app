@@ -305,7 +305,7 @@ export const en: Textes = {
     continuer: 'Continue',
     annuler: 'Cancel',
     passerToeicTitre: 'Switch to the TOEIC profile?',
-    passerToeicTexte: 'Home, Practice, Tests and Statistics will change. Your secondary profile stays saved: you can go back to it from Me.',
+    passerToeicTexte: 'Home, Revision, Tests and Statistics change. Your secondary profile stays saved: you can go back from Me.',
     passerToeicBouton: 'Switch to TOEIC',
     revenirTitre: 'Go back to secondary?',
     revenirTexte: 'The TOEIC profile stays saved. You can find it again from Me.',
@@ -2256,6 +2256,8 @@ export const en: Textes = {
       ecouteJouee: 'Already played.',
       document: 'Doc. {{n}}',
       imageAlt: 'Photo for part {{n}}',
+      illustration: 'PART 1 PHOTO · AI ILLUSTRATION',
+      ecouteChoisis: 'Listen, then choose',
       partieNom: {
         photo: 'Photos',
         question_reponse: 'Question-response',
