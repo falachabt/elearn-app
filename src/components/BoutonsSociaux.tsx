@@ -4,7 +4,7 @@ import { router } from 'expo-router';
 
 import type { FournisseurOAuth } from '@/services/compte';
 import { useTraduction } from '@/i18n/useTraduction';
-import { suivre } from '@/services/analytics';
+import { journaliserErreur, suivre } from '@/services/analytics';
 import { appleAffiche, depsApple, depsOAuth, facebookAffiche } from '@/services/authNatif';
 import { cleErreur, connecterApple, connecterAppleWeb, connecterFacebook, connecterGoogle } from '@/services/compte';
 import { getSupabase } from '@/services/supabase';
@@ -80,6 +80,7 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       const x = e as { code?: string; message?: string } | null;
       suivre('connexion_echec', { cle, code: x?.code ?? null, message: (x?.message ?? '').slice(0, 200) });
       console.warn('Connexion sociale en échec :', e);
+      journaliserErreur('connexion_sociale_echec', { fournisseur, cle, code: x?.code ?? null, message: (x?.message ?? '').slice(0, 300) });
       onErreur(cle, `${fournisseur} · ${x?.code ?? 'sans code'} · ${(x?.message ?? '').slice(0, 160)}`);
     } finally {
       setEnCours(false);

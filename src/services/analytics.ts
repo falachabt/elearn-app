@@ -57,6 +57,7 @@ export function initAnalytics(config: Config = configDepuisEnv()): boolean {
       captureAppLifecycleEvents: true,
       enablePersistSessionIdAcrossRestart: false,
       preloadFeatureFlags: false,
+      logs: { serviceName: 'elearn-app', environment: process.env.NODE_ENV === 'production' ? 'production' : 'development' },
       disableSurveys: true,
       ...(config.stockage ? { customStorage: config.stockage } : {}),
       // Exceptions JavaScript non gérées et refus de promesse. Pas de capture de `console.error` : le SDK y écrit ses propres
@@ -288,3 +289,13 @@ export async function arreterAnalyticsPourTests() {
 
 /** Pour les tests uniquement : attend la fin de la lecture de l'état mémorisé. */
 export const attendreAnalyticsPret = () => pret;
+
+/** Journal structuré PostHog (Logs) : diagnostic des échecs de connexion. N'échoue jamais, ne bloque jamais. */
+export function journaliserErreur(message: string, attributs: Record<string, Propriete> = {}): void {
+  try {
+    const l = (client as unknown as { logger?: { error?: (m: string, a?: Record<string, unknown>) => void } } | null)?.logger;
+    l?.error?.(message, assainir(attributs));
+  } catch {
+    /* le diagnostic ne doit jamais casser la connexion */
+  }
+}
