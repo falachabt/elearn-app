@@ -509,12 +509,13 @@ describe('T4 · historique et T7 · détail', () => {
 });
 
 describe('T6 · test complet « Bientôt »', () => {
-  it('le lancement est grisé et un mini-test est proposé à la place', async () => {
+  it('le lancement est grisé, le mini-test mixte est proposé, sans lien hors maquette', async () => {
     mockParams = { kind: 'full' };
     await monter(<TestBientot />);
     expect(await screen.findByText(t.tests.bientotTitre)).toBeTruthy();
     expect(screen.getByRole('button', { name: t.tests.bientotLancer }).props.accessibilityState?.disabled).toBe(true);
-    await fireEvent.press(screen.getByText(t.tests.bientotMini));
-    expect(router.replace).toHaveBeenCalledWith('/certification/mini');
+    await fireEvent.press(screen.getByText(t.tests.miniMixte));
+    expect(router.push).toHaveBeenCalledWith('/certification/mini?mode=mixte');
+    expect(screen.queryByText('Faire un mini-test')).toBeNull();
   });
 });
