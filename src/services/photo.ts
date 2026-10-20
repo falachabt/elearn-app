@@ -84,19 +84,25 @@ export function cadrePixels(fraction: Cadre, largeur: number, hauteur: number): 
 }
 
 /** Taille finale après réduction (côté le plus long ≤ COTE_MAX), proportions gardées. */
-export function tailleReduite(largeur: number, hauteur: number): { width: number } | { height: number } | null {
-  if (Math.max(largeur, hauteur) <= COTE_MAX) return null;
-  return largeur >= hauteur ? { width: COTE_MAX } : { height: COTE_MAX };
+export function tailleReduite(largeur: number, hauteur: number, coteMax: number = COTE_MAX): { width: number } | { height: number } | null {
+  if (Math.max(largeur, hauteur) <= coteMax) return null;
+  return largeur >= hauteur ? { width: coteMax } : { height: coteMax };
 }
 
 /** Recadre, réduit et compresse la photo ; renvoie le JPEG en base64 et l'adresse locale (aperçu). */
-export async function preparerImage(uri: string, fraction: Cadre, largeur: number, hauteur: number): Promise<{ base64: string; uri: string }> {
+export async function preparerImage(
+  uri: string,
+  fraction: Cadre,
+  largeur: number,
+  hauteur: number,
+  qualite: { coteMax?: number; compress?: number } = {},
+): Promise<{ base64: string; uri: string }> {
   const c = cadrePixels(fraction, largeur, hauteur);
   const contexte = ImageManipulator.manipulate(uri).crop({ originX: c.x, originY: c.y, width: c.largeur, height: c.hauteur });
-  const taille = tailleReduite(c.largeur, c.hauteur);
+  const taille = tailleReduite(c.largeur, c.hauteur, qualite.coteMax ?? COTE_MAX);
   if (taille) contexte.resize(taille);
   const image = await contexte.renderAsync();
-  const resultat = await image.saveAsync({ format: SaveFormat.JPEG, compress: 0.7, base64: true });
+  const resultat = await image.saveAsync({ format: SaveFormat.JPEG, compress: qualite.compress ?? 0.7, base64: true });
   if (!resultat.base64) throw new Error('Image non encodée');
   return { base64: resultat.base64, uri: resultat.uri };
 }

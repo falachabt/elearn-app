@@ -203,6 +203,8 @@ describe('catégories et destinations', () => {
     expect(destinationDe('photo_ready', { correction_id: 'c-1' })).toEqual({ pathname: '/photo', params: { id: 'c-1' } });
     expect(destinationDe('photo_ready', { photoId: 'p-2' })).toEqual({ pathname: '/photo', params: { id: 'p-2' } });
     expect(destinationDe('photo_ready', {})).toEqual({ pathname: '/photo', params: { historique: '1' } });
+    expect(destinationDe('photo_ready', { exam_attempt_id: 's-1', paper_kind: 'document', paper_ref: 'd-9' })).toEqual({ pathname: '/annales/session', params: { id: 's-1', kind: 'document', ref: 'd-9' } });
+    expect(destinationDe('photo_ready', { exam_attempt_id: 's-2', paper_kind: 'exam', paper_ref: '12' })).toEqual({ pathname: '/annales/session', params: { id: 's-2', kind: 'exam', ref: '12' } });
     expect(destinationDe('photo_refunded', { screen: '/photo' })).toEqual({ pathname: '/photo', params: { historique: '1' } });
     expect(destinationDe('credits_low', { screen: '/credits', balance: 4 })).toEqual({ pathname: '/credits' });
     expect(destinationDe('credits_low', {})).toEqual({ pathname: '/credits' });

@@ -11,6 +11,11 @@ import {
   enregistrerPreferenceTemps,
   envoyerTravail,
   etatsEtapesTravail,
+  pivoterFeuille,
+  recadrerFeuille,
+  remplacerFeuille,
+  QUALITE_FEUILLE,
+  preparerFeuille,
   issueDe,
   libelleNote,
   libellePoints,
@@ -32,7 +37,12 @@ import {
 
 const mockFetch = jest.fn();
 jest.mock('expo/fetch', () => ({ fetch: (...a: unknown[]) => mockFetch(...a) }));
-jest.mock('../photo', () => ({ preparerImage: jest.fn(async () => ({ base64: 'AAAA' })) }));
+const mockManip = { rotate: jest.fn(), crop: jest.fn(), renderAsync: jest.fn(), saveAsync: jest.fn() };
+jest.mock('expo-image-manipulator', () => ({ ImageManipulator: { manipulate: () => mockManip }, SaveFormat: { JPEG: 'jpeg' } }));
+jest.mock('../photo', () => ({
+  preparerImage: jest.fn(async () => ({ base64: 'AAAA' })),
+  cadrePixels: (c: { x: number; y: number; largeur: number; hauteur: number }, l: number, h: number) => ({ x: Math.round(c.x * l), y: Math.round(c.y * h), largeur: Math.round(c.largeur * l), hauteur: Math.round(c.hauteur * h) }),
+}));
 
 const feuille = (n: number): Feuille => ({ id: `f${n}`, uri: `file:///${n}.jpg`, largeur: 100, hauteur: 200 });
 const liste = (n: number) => Array.from({ length: n }, (_, i) => feuille(i + 1));
@@ -154,7 +164,9 @@ describe('flux de correction', () => {
   });
 
   it('états des étapes', () => {
-    expect(etatsEtapesTravail([])).toEqual(['attente', 'attente', 'attente']);
+    expect(etatsEtapesTravail([])).toEqual(['en_cours', 'attente', 'attente']);
+    expect(etatsEtapesTravail([], true)).toEqual(['echec', 'attente', 'attente']);
+    expect(etatsEtapesTravail(['envoi', 'correction'], true)).toEqual(['fait', 'echec', 'attente']);
     expect(etatsEtapesTravail(['envoi'])).toEqual(['en_cours', 'attente', 'attente']);
     expect(etatsEtapesTravail(['envoi', 'correction'])).toEqual(['fait', 'en_cours', 'attente']);
     expect(etatsEtapesTravail(['envoi', 'correction', 'notation'])).toEqual(['fait', 'fait', 'en_cours']);
@@ -260,5 +272,39 @@ describe('sessions', () => {
     const chaine: Record<string, unknown> = {};
     for (const m of ['select', 'eq', 'order', 'limit']) chaine[m] = () => (m === 'limit' ? Promise.resolve({ data: null, error: new Error('x') }) : chaine);
     await expect(lireSessions({ from: () => chaine } as never, 'exam', '1')).rejects.toThrow('x');
+  });
+});
+
+describe('retouche des feuilles (aperçu)', () => {
+  beforeEach(() => {
+    mockManip.rotate.mockReturnValue(mockManip);
+    mockManip.crop.mockReturnValue(mockManip);
+    mockManip.renderAsync.mockResolvedValue(mockManip);
+    mockManip.saveAsync.mockResolvedValue({ uri: 'file:///neuf.jpg' });
+  });
+
+  it('pivoter échange largeur et hauteur et change l’adresse', async () => {
+    const r = await pivoterFeuille(feuille(1));
+    expect(mockManip.rotate).toHaveBeenCalledWith(90);
+    expect(r).toEqual({ uri: 'file:///neuf.jpg', largeur: 200, hauteur: 100 });
+  });
+
+  it('recadrer rogne en pixels et renvoie la nouvelle taille', async () => {
+    const r = await recadrerFeuille(feuille(1), { x: 0.1, y: 0.1, largeur: 0.5, hauteur: 0.5 });
+    expect(mockManip.crop).toHaveBeenCalledWith({ originX: 10, originY: 20, width: 50, height: 100 });
+    expect(r).toEqual({ uri: 'file:///neuf.jpg', largeur: 50, hauteur: 100 });
+  });
+
+  it('remplacer garde l’identifiant et la place', () => {
+    const l = remplacerFeuille(liste(3), 'f2', { uri: 'x', largeur: 1, hauteur: 2 });
+    expect(l.map((f) => f.id)).toEqual(['f1', 'f2', 'f3']);
+    expect(l[1]).toEqual({ id: 'f2', uri: 'x', largeur: 1, hauteur: 2 });
+  });
+
+  it('les feuilles envoyées sont plus fines qu’une photo d’aide', async () => {
+    const { preparerImage } = jest.requireMock('../photo') as { preparerImage: jest.Mock };
+    await preparerFeuille(feuille(1));
+    expect(preparerImage).toHaveBeenCalledWith('file:///1.jpg', { x: 0, y: 0, largeur: 1, hauteur: 1 }, 100, 200, QUALITE_FEUILLE);
+    expect(QUALITE_FEUILLE.coteMax).toBeGreaterThan(1280);
   });
 });

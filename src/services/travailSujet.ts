@@ -1,9 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { ImageManipulator, SaveFormat } from 'expo-image-manipulator';
 import { fetch as fetchFlux } from 'expo/fetch';
 import { useSyncExternalStore } from 'react';
 
-import { preparerImage } from './photo';
+import { cadrePixels, preparerImage, type Cadre } from './photo';
 
 /**
  * Anciens sujets corrigés par l'IA (#72) : l'élève photographie son travail, remet les feuilles dans l'ordre où il les a
@@ -120,10 +121,35 @@ export const useBrouillon = () => useSyncExternalStore((f) => { ecouteurs.add(f)
 
 // --- Envoi et lecture ----------------------------------------------------------------------------------------------------
 
-/** Feuille cadrée en entier, réduite et compressée comme une photo d'aide (côté le plus long 1280 px, JPEG). */
+/**
+ * Qualité d'une feuille envoyée : plus fine qu'une photo d'aide (1280 px, 0,7), car une écriture manuscrite petite ou une
+ * photo un peu sombre doit rester lisible pour l'IA. ~500 Ko par feuille, 12 feuilles au plus sous la limite du serveur.
+ */
+export const QUALITE_FEUILLE = { coteMax: 1800, compress: 0.8 };
+
+/** Feuille cadrée en entier, réduite et compressée en JPEG de bonne qualité. */
 export async function preparerFeuille(f: Feuille): Promise<string> {
-  const { base64 } = await preparerImage(f.uri, { x: 0, y: 0, largeur: 1, hauteur: 1 }, f.largeur, f.hauteur);
+  const { base64 } = await preparerImage(f.uri, { x: 0, y: 0, largeur: 1, hauteur: 1 }, f.largeur, f.hauteur, QUALITE_FEUILLE);
   return base64;
+}
+
+/** Remplace une feuille (même identifiant, même place) après un recadrage ou une rotation. */
+export const remplacerFeuille = (liste: readonly Feuille[], id: string, nouvelle: Pick<Feuille, 'uri' | 'largeur' | 'hauteur'>): Feuille[] =>
+  liste.map((f) => (f.id === id ? { ...f, ...nouvelle } : f));
+
+/** Pivote la feuille d'un quart de tour à droite ; la largeur et la hauteur s'échangent. */
+export async function pivoterFeuille(f: Feuille): Promise<Pick<Feuille, 'uri' | 'largeur' | 'hauteur'>> {
+  const image = await ImageManipulator.manipulate(f.uri).rotate(90).renderAsync();
+  const r = await image.saveAsync({ format: SaveFormat.JPEG, compress: 0.9 });
+  return { uri: r.uri, largeur: f.hauteur, hauteur: f.largeur };
+}
+
+/** Recadre la feuille sur un cadre en fractions (0–1) de l'image. */
+export async function recadrerFeuille(f: Feuille, cadre: Cadre): Promise<Pick<Feuille, 'uri' | 'largeur' | 'hauteur'>> {
+  const c = cadrePixels(cadre, f.largeur, f.hauteur);
+  const image = await ImageManipulator.manipulate(f.uri).crop({ originX: c.x, originY: c.y, width: c.largeur, height: c.hauteur }).renderAsync();
+  const r = await image.saveAsync({ format: SaveFormat.JPEG, compress: 0.9 });
+  return { uri: r.uri, largeur: c.largeur, hauteur: c.hauteur };
 }
 
 export function lireLignes(tampon: string): { evenements: Evenement[]; reste: string } {
@@ -150,9 +176,11 @@ export function issueDe(e: Evenement): Issue | null {
 }
 
 /** Étapes déjà atteintes : l'envoi est fait quand la correction démarre, la notation quand l'IA a répondu. */
-export function etatsEtapesTravail(recues: readonly EtapeTravail[]): ('attente' | 'en_cours' | 'fait')[] {
-  const atteinte = ETAPES_TRAVAIL.reduce((n, p, i) => (recues.includes(p) ? i : n), -1);
-  return ETAPES_TRAVAIL.map((_, i) => (i < atteinte ? 'fait' : i === atteinte ? 'en_cours' : 'attente'));
+export type EtatEtapeTravail = 'attente' | 'en_cours' | 'fait' | 'echec';
+export function etatsEtapesTravail(recues: readonly EtapeTravail[], echec = false): EtatEtapeTravail[] {
+  // Avant le premier signal du serveur, la préparation et l'envoi des feuilles sont déjà la première étape en cours.
+  const atteinte = Math.max(0, ETAPES_TRAVAIL.reduce((n, p, i) => (recues.includes(p) ? i : n), -1));
+  return ETAPES_TRAVAIL.map((_, i) => (i < atteinte ? 'fait' : i === atteinte ? (echec ? 'echec' : 'en_cours') : 'attente'));
 }
 
 type Options = { kind: TypeSujet; ref: string; pages: string[]; titre: string; matiere: string | null; tempsS: number | null; surEtape: (e: EtapeTravail) => void; signal?: AbortSignal };

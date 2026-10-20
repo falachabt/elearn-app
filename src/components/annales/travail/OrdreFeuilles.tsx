@@ -69,12 +69,14 @@ export function OrdreFeuilles() {
           <View key={f.id} style={styles.zone}>
             <View style={[styles.ombre, { backgroundColor: theme.ombre }]} />
             <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <View style={[styles.image, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
-                <Image source={{ uri: f.uri }} style={StyleSheet.absoluteFill} contentFit="cover" accessibilityLabel={t('travail.feuilleNumero', { n: i + 1 })} />
-                <View style={[styles.numero, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-                  <Text style={[typo.donnee, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+              <Appui accessibilityRole="button" accessibilityLabel={t('travail.voirFeuille', { n: i + 1 })} onPress={() => router.push({ pathname: '/annales/apercu', params: { id: f.id } })} decalage={0} rayon={rayon.m}>
+                <View style={[styles.image, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
+                  <Image source={{ uri: f.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                  <View style={[styles.numero, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+                    <Text style={[typo.donnee, { color: theme.texte.surCouleur }]}>{i + 1}</Text>
+                  </View>
                 </View>
-              </View>
+              </Appui>
               <View style={styles.actions}>
                 <BoutonIcone libelle={t('travail.monter', { n: i + 1 })} desactive={i === 0} onPress={() => majFeuilles((l) => deplacerFeuille(l, i, i - 1))}>
                   <ChevronUp size={18} color={theme.texte.principal} strokeWidth={2} />

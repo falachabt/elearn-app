@@ -180,6 +180,12 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   if (type === 'level_up' || data?.screen === '/xp') return { pathname: '/xp' };
   // Correction par photo prête : cette correction quand l'identifiant est là (`correction_id` du serveur, `photoId` d'un
   // rappel local), sinon l'historique des corrections.
+  // Correction d'un travail d'ancien sujet prête (#72) : la session corrigée, avec le sujet pour revenir à sa page.
+  if (type === 'photo_ready' && typeof data?.exam_attempt_id === 'string' && data.exam_attempt_id) {
+    const kind = data.paper_kind === 'document' ? 'document' : 'exam';
+    const ref = typeof data.paper_ref === 'string' ? data.paper_ref : '';
+    return { pathname: '/annales/session', params: { id: data.exam_attempt_id, kind, ref } };
+  }
   if (type === 'photo_ready') {
     const correction = [data?.correction_id, data?.photoId, data?.photo_id, data?.id].find((v): v is string => typeof v === 'string' && v !== '');
     return { pathname: '/photo', params: correction ? { id: correction } : { historique: '1' } };

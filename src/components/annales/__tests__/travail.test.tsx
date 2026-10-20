@@ -10,9 +10,11 @@ import { definirBrouillon, lireBrouillon, PREFERENCE_TEMPS_DEFAUT, type Preferen
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { AnalyseTravail } from '../travail/AnalyseTravail';
+import { ApercuFeuille } from '../travail/ApercuFeuille';
 import { ChoixTemps } from '../travail/ChoixTemps';
 import { ListeSessions } from '../travail/ListeSessions';
 import { OrdreFeuilles } from '../travail/OrdreFeuilles';
+import { PhotosTravail } from '../travail/PhotosTravail';
 import { SessionTravail } from '../travail/SessionTravail';
 
 let mockParams: Record<string, string> = {};
@@ -25,7 +27,21 @@ jest.mock('@/session/CreditsProvider', () => ({
 }));
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 
+jest.mock('expo-camera', () => ({ CameraView: () => null, useCameraPermissions: () => [{ granted: true }, jest.fn()] }));
+jest.mock('expo-image-picker', () => ({ launchImageLibraryAsync: jest.fn() }));
+jest.mock('@/components/photo/CadreRecadrage', () => {
+  const { Pressable, Text } = jest.requireActual('react-native');
+  return {
+    CADRE_INITIAL: { x: 0.1, y: 0.1, largeur: 0.8, hauteur: 0.8 },
+    CadreRecadrage: ({ onChange }: { onChange: (c: unknown) => void }) => (
+      <Pressable accessibilityRole="button" accessibilityLabel="cadre-test" onPress={() => onChange({ x: 0.2, y: 0.2, largeur: 0.5, hauteur: 0.5 })}><Text>cadre</Text></Pressable>
+    ),
+  };
+});
+
 const mockEnvoyer = jest.fn();
+const mockPivoter = jest.fn();
+const mockRecadrer = jest.fn();
 const mockLireSession = jest.fn();
 const mockUrls = jest.fn();
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
@@ -35,6 +51,8 @@ jest.mock('@/services/travailSujet', () => {
     ...reel,
     envoyerTravail: (...a: unknown[]) => mockEnvoyer(...a),
     preparerFeuille: jest.fn(async () => 'AAAA'),
+    pivoterFeuille: (...a: unknown[]) => mockPivoter(...a),
+    recadrerFeuille: (...a: unknown[]) => mockRecadrer(...a),
     lireSession: (...a: unknown[]) => mockLireSession(...a),
     lireUrlsFeuilles: (...a: unknown[]) => mockUrls(...a),
   };
@@ -115,6 +133,12 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(lireBrouillon()?.feuilles.map((f) => f.id)).toEqual(['f2', 'f1']);
     });
 
+    it('toucher une feuille ouvre son aperçu', async () => {
+      await monter(<OrdreFeuilles />);
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirFeuille.replace('{{n}}', '2') }));
+      expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/apercu', params: { id: 'f2' } });
+    });
+
     it('le bouton d’envoi annonce le prix du serveur et ouvre l’analyse', async () => {
       await monter(<OrdreFeuilles />);
       const envoyer = screen.getByRole('button', { name: /5/ });
@@ -148,11 +172,112 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(router.replace).not.toHaveBeenCalled();
     });
 
+    it('échec illisible : la raison s’affiche et « Reprendre les photos » ouvre la prise de photos', async () => {
+      mockEnvoyer.mockResolvedValue({ type: 'illisible', raison: 'photo trop sombre' });
+      await monter(<AnalyseTravail />);
+      await waitFor(() => expect(screen.getByText(x.travail.illisibleRaison.replace('{{raison}}', 'photo trop sombre'))).toBeTruthy());
+      expect(screen.queryByText(x.travail.reessayer)).toBeNull();
+      await fireEvent.press(screen.getByText(x.travail.reprendrePhotos));
+      expect(router.replace).toHaveBeenCalledWith('/annales/photos');
+    });
+
+    it('la première étape tourne dès le départ, puis chaque étape a son état, l’échec compris', async () => {
+      let etape: ((e: 'envoi' | 'correction' | 'notation') => void) | undefined;
+      let finir: ((i: unknown) => void) | undefined;
+      mockEnvoyer.mockImplementation((_c, o) => new Promise((r) => { etape = o.surEtape; finir = r; }));
+      await monter(<AnalyseTravail />);
+      const nom = (cle: 'etapeEnvoi' | 'etapeCorrection' | 'etapeNotation', etat?: string) => `${x.travail[cle]}${etat ? `, ${etat}` : ''}`;
+      await waitFor(() => expect(screen.getByLabelText(nom('etapeEnvoi', x.travail.etapeEnCours))).toBeTruthy());
+      await act(async () => { etape?.('envoi'); etape?.('correction'); });
+      expect(screen.getByLabelText(nom('etapeEnvoi', x.travail.etapeFaite))).toBeTruthy();
+      expect(screen.getByLabelText(nom('etapeCorrection', x.travail.etapeEnCours))).toBeTruthy();
+      expect(screen.getByLabelText(nom('etapeNotation'))).toBeTruthy();
+      await act(async () => { finir?.({ type: 'erreur' }); });
+      await waitFor(() => expect(screen.getByLabelText(nom('etapeCorrection', x.travail.etapeEchec))).toBeTruthy());
+      expect(screen.getByText(x.travail.reessayer)).toBeTruthy();
+    });
+
+    it('quitter : la connexion est coupée, l’élève est prévenu qu’il aura une notification, rien n’ouvre la session après coup', async () => {
+      let signal: AbortSignal | undefined;
+      let etape: ((e: 'envoi') => void) | undefined;
+      let finir: ((i: unknown) => void) | undefined;
+      mockEnvoyer.mockImplementation((_c, o) => new Promise((r) => { signal = o.signal; etape = o.surEtape; finir = r; }));
+      await monter(<AnalyseTravail />);
+      await waitFor(() => expect(mockEnvoyer).toHaveBeenCalled());
+      expect(screen.queryByText(x.travail.quitterAnalyse)).toBeNull();
+      await act(async () => { etape?.('envoi'); });
+      await fireEvent.press(screen.getByText(x.travail.quitterAnalyse));
+      expect(signal?.aborted).toBe(true);
+      expect(lireBrouillon()).toBeNull();
+      expect(screen.getByText(x.travail.partiTitre)).toBeTruthy();
+      await act(async () => { finir?.({ type: 'fin', id: 's9', score: 1, total: 2, resultat }); });
+      expect(router.replace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/annales/session' }));
+      await fireEvent.press(screen.getByText(x.travail.partiOk));
+      expect(router.replace).toHaveBeenCalledWith('/reviser');
+    });
+
     it('sans feuilles : retour à l’ordre', async () => {
       definirBrouillon(null);
       await monter(<AnalyseTravail />);
       await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/annales/ordre'));
       expect(mockEnvoyer).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('PhotosTravail', () => {
+    beforeEach(() => definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] }));
+
+    it('supprimer une vignette retire la feuille sans passer par l’ordre', async () => {
+      await monter(<PhotosTravail />);
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.supprimerFeuille.replace('{{n}}', '1') }));
+      expect(lireBrouillon()?.feuilles.map((f) => f.id)).toEqual(['f2']);
+      expect(router.replace).not.toHaveBeenCalled();
+    });
+
+    it('toucher une vignette ouvre l’aperçu', async () => {
+      await monter(<PhotosTravail />);
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.voirFeuille.replace('{{n}}', '2') }));
+      expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/apercu', params: { id: 'f2' } });
+    });
+  });
+
+  describe('ApercuFeuille', () => {
+    beforeEach(() => {
+      mockParams = { id: 'f2' };
+      definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] });
+    });
+
+    it('pivoter remplace la feuille au même rang avec la nouvelle taille', async () => {
+      mockPivoter.mockResolvedValue({ uri: 'file:///tourne.jpg', largeur: 200, hauteur: 100 });
+      await monter(<ApercuFeuille />);
+      await fireEvent.press(screen.getByText(x.travail.pivoter));
+      await waitFor(() => expect(lireBrouillon()?.feuilles[1]).toEqual({ id: 'f2', uri: 'file:///tourne.jpg', largeur: 200, hauteur: 100 }));
+      expect(lireBrouillon()?.feuilles[0].id).toBe('f1');
+    });
+
+    it('recadrer : le cadre choisi est appliqué puis on revient à l’aperçu', async () => {
+      mockRecadrer.mockResolvedValue({ uri: 'file:///rogne.jpg', largeur: 50, hauteur: 100 });
+      await monter(<ApercuFeuille />);
+      await fireEvent.press(screen.getByText(x.travail.recadrer));
+      await fireEvent.press(screen.getByLabelText('cadre-test'));
+      await fireEvent.press(screen.getByText(x.travail.appliquerCadre));
+      await waitFor(() => expect(lireBrouillon()?.feuilles[1].uri).toBe('file:///rogne.jpg'));
+      expect(mockRecadrer).toHaveBeenCalledWith(expect.objectContaining({ id: 'f2' }), { x: 0.2, y: 0.2, largeur: 0.5, hauteur: 0.5 });
+      await waitFor(() => expect(screen.getByText(x.travail.pivoter)).toBeTruthy());
+    });
+
+    it('échec de la retouche : message, feuille inchangée', async () => {
+      mockPivoter.mockRejectedValue(new Error('x'));
+      await monter(<ApercuFeuille />);
+      await fireEvent.press(screen.getByText(x.travail.pivoter));
+      await waitFor(() => expect(screen.getByText(x.travail.apercuErreur)).toBeTruthy());
+      expect(lireBrouillon()?.feuilles[1].uri).toBe('file:///2.jpg');
+    });
+
+    it('feuille inconnue : message', async () => {
+      mockParams = { id: 'zzz' };
+      await monter(<ApercuFeuille />);
+      expect(screen.getByText(x.travail.apercuIntrouvable)).toBeTruthy();
     });
   });
 

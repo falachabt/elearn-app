@@ -15,9 +15,10 @@ Un seul parcours pour le secondaire et les concours : on ajuste l'existant (parc
 | AS4 | Faire corriger par l'IA | Sujet sans corrigé : bouton « Faire corriger par l'IA » (page de détails et lecteur). Choix : prendre en photo ou importer de la galerie. |
 | AS5 | Prise de photos | Appareil existant en rafale : une feuille après l'autre, compteur, vignettes. |
 | AS6 | Mettre dans l'ordre | Grille des photos numérotées ; monter/descendre (et appui long pour déplacer), retirer, ajouter. Texte : l'ordre aide l'IA. |
-| AS7 | Correction en cours | Écran d'analyse existant (B3) : lecture, correction, notation. |
+| AS5b | Aperçu d'une feuille | Toucher une vignette (prise de photos) ou une feuille (ordre) ouvre l'aperçu en grand : Pivoter (quart de tour), Recadrer (cadre de l'aide par photo, « Appliquer le cadre »), Terminé. La croix de chaque vignette supprime la photo sans passer par l'ordre. |
+| AS7 | Correction en cours | Écran d'analyse existant (B3) : lecture, correction, notation. Coches neo-brutalistes comme l'aide par photo ; chaque étape a son état (attente, chargement, terminée, échec), la première tourne dès l'envoi. « Quitter, me prévenir quand c'est prêt » coupe la connexion : la correction continue côté serveur et une notification ouvre la session corrigée. |
 | AS8 | Résultat de la session | Note sur le total, points par question (carte par question : points obtenus / possibles, commentaire), photos du travail. Ouverte depuis « Mes sessions ». |
-| AS9 | États | Crédits insuffisants (feuille K3), hors ligne, photo illisible (crédits rendus), erreur, vide (aucune session). |
+| AS9 | États | Crédits insuffisants (feuille K3), hors ligne, photo illisible (crédits rendus, raison de l'IA affichée, action « Reprendre les photos »), erreur, vide (aucune session). |
 
 ## Temps de travail (demande de Benny du 20 octobre)
 Dans une feuille du bas ouverte par « Ouvrir le sujet », l'élève choisit : **Mesurer mon temps** (chrono montant, sans limite) ou **Compte à rebours** (simulation d'examen). Le compte à rebours propose **Temps conseillé** (durée du sujet, si connue) ou **Mon temps** (saisie en minutes). Sans durée conseillée, seul « Mon temps » est proposé ; sans temps déjà saisi, la feuille s'ouvre sur « Mesurer mon temps » pour que « Commencer » reste à un appui. Le choix est mémorisé pour la prochaine fois. Le lecteur démarre alors directement le chrono choisi, sans second menu.
@@ -37,3 +38,12 @@ Jest : tri et réordonnancement des photos, états de l'écran de détails, basc
 
 ## Crédits d'un document de classe (retour de Benny du 20 octobre)
 Un document déjà ouvert ne coûte plus rien : il s'ouvre directement, sans feuille d'accord ni débit, comme les ouvertures gratuites restantes. La feuille « prix » ne s'affiche que pour un document jamais ouvert, quand il n'en reste plus de gratuit.
+
+## Retours de Benny du 20 octobre, correction du travail (lot B)
+- **« Feuilles illisibles » à tort** : deux causes traitées. Côté app, les feuilles partent en meilleure qualité (côté long 1800 px, JPEG 0,8 au lieu de 1280 px et 0,7). Côté fonction Edge, la consigne de l'IA est tolérante : elle corrige tout ce qui se lit, signale le reste en 0 point dans le commentaire de la question, et ne répond « illisible » que si aucun mot ni calcul ne se lit ou si les photos ne montrent aucun travail écrit. L'absence de l'énoncé n'est jamais une raison de refuser.
+- **Illisible pour de bon** : bannière, raison donnée par l'IA, bouton principal « Reprendre les photos » (retour à la prise de photos, les feuilles déjà prises restent), bouton secondaire vers l'ordre. « Renvoyer à l'IA » reste pour les autres échecs.
+- **Supprimer une photo** depuis l'écran de prise (croix sur la vignette), sans passer par l'ordre.
+- **Aperçu, recadrage, rotation** depuis la prise de photos et depuis l'ordre (AS5b, AS5c).
+- **Étapes** : pastille ronde bordée comme dans l'aide par photo (vert et coche si terminée, corail et croix si échec, indicateur de chargement si en cours). Avant le premier signal du serveur, la première étape est déjà « en cours » (préparation et envoi des feuilles).
+- **Quitter la page** : bouton « Quitter, me prévenir quand c'est prêt » dès que les feuilles sont arrivées au serveur ; la connexion est coupée, le serveur termine et envoie la notification `photo_ready` (données `exam_attempt_id`, `paper_kind`, `paper_ref`) ; le toucher ouvre `/annales/session`. Quitter avant l'arrivée des feuilles n'est pas proposé : rien ne serait corrigé.
+- Tests : états des étapes, quitter (connexion coupée, aucune ouverture tardive de la session), illisible, suppression, aperçu (pivoter, recadrer, échec), routage de la notification, qualité des feuilles.

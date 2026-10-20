@@ -4,11 +4,11 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { Image as IconeImage, X } from 'lucide-react-native';
 import { useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, useBrouillon } from '@/services/travailSujet';
+import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, retirerFeuille, useBrouillon } from '@/services/travailSujet';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
@@ -76,14 +76,21 @@ export function PhotosTravail() {
         )}
       </View>
       {permission?.granted ? <Text style={[typo.petit, styles.conseil]}>{t('travail.photosConseil')}</Text> : null}
-      <View style={styles.bande}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.bandeZone} contentContainerStyle={styles.bande}>
         {feuilles.map((f, i) => (
           <View key={f.id} style={styles.vignette}>
-            <Image source={{ uri: f.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
-            <Text style={[typo.donnee, styles.numero]}>{i + 1}</Text>
+            <Appui accessibilityRole="button" accessibilityLabel={t('travail.voirFeuille', { n: i + 1 })} onPress={() => router.push({ pathname: '/annales/apercu', params: { id: f.id } })} decalage={0} rayon={rayon.s} style={StyleSheet.absoluteFill}>
+              <View style={styles.cadre}>
+                <Image source={{ uri: f.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
+                <Text style={[typo.donnee, styles.numero]}>{i + 1}</Text>
+              </View>
+            </Appui>
+            <Appui accessibilityRole="button" accessibilityLabel={t('travail.supprimerFeuille', { n: i + 1 })} onPress={() => majFeuilles((l) => retirerFeuille(l, i))} decalage={0} rayon={rayon.s} style={styles.supprimer} hitSlop={8}>
+              <View style={styles.croix}><X size={14} color={NOIR} strokeWidth={2.5} /></View>
+            </Appui>
           </View>
         ))}
-      </View>
+      </ScrollView>
       <View style={styles.bas}>
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosGalerie')} onPress={() => void galerie()} decalage={0} rayon={rayon.m}>
           <View style={styles.carre}><IconeImage size={20} color={BLANC} strokeWidth={2} /></View>
@@ -108,9 +115,13 @@ const styles = StyleSheet.create({
   viseur: { flex: 1, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.m, overflow: 'hidden', backgroundColor: palette.encre[900] },
   permission: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: espace[5], padding: espace[7] },
   conseil: { color: palette.papier[300], textAlign: 'center' },
-  bande: { flexDirection: 'row', gap: espace[3], minHeight: 58 },
-  vignette: { width: 46, height: 58, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.s, overflow: 'hidden', justifyContent: 'flex-end' },
-  numero: { color: BLANC, backgroundColor: 'rgba(10,10,10,0.7)', paddingHorizontal: espace[2] },
+  bandeZone: { flexGrow: 0, minHeight: 72 },
+  bande: { flexDirection: 'row', gap: espace[3], minHeight: 72, paddingTop: espace[2], paddingRight: espace[2] },
+  vignette: { width: 56, height: 70 },
+  cadre: { flex: 1, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.s, overflow: 'hidden' },
+  numero: { position: 'absolute', left: 0, bottom: 0, color: BLANC, backgroundColor: 'rgba(10,10,10,0.7)', paddingHorizontal: espace[2], },
+  supprimer: { position: 'absolute', right: -6, top: -8 },
+  croix: { width: 24, height: 24, borderRadius: rayon.pilule, borderWidth: bord.normal, borderColor: BLANC, backgroundColor: palette.corail[500], alignItems: 'center', justifyContent: 'center' },
   bas: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', minHeight: 88 },
   obturateur: { width: 68, height: 68, borderRadius: rayon.pilule, borderWidth: 4, borderColor: BLANC, backgroundColor: palette.emeraude[500] },
 });

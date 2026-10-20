@@ -21,6 +21,8 @@ describe('photo : image', () => {
     expect(tailleReduite(4000, 3000)).toEqual({ width: 1280 });
     expect(tailleReduite(1000, 3000)).toEqual({ height: 1280 });
     expect(tailleReduite(800, 600)).toBeNull();
+    expect(tailleReduite(4000, 3000, 1800)).toEqual({ width: 1800 });
+    expect(tailleReduite(1600, 1200, 1800)).toBeNull();
   });
 });
 
