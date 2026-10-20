@@ -182,9 +182,20 @@ export function Serie() {
       }
     >
       <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={entete} />
-      {!repondue ? (
-        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} delaiEchecS={delaiEchecS} ecran="serie" position={Math.min(index + 1, total)} onPasser={() => void passer()} />
-      ) : resultat ? (
+      {/* B1 à B7 : la question reste à l'écran après validation (photo, audio, passage gardés) ; le corrigé s'ajoute dessous. */}
+      <QuestionExercice
+        key={question.id}
+        question={question}
+        choix={repondue ? (reponse?.chosen ?? null) : choix}
+        onChoix={setChoix}
+        bonne={repondue && resultat ? resultat.correct_index : undefined}
+        verrouille={repondue}
+        delaiEchecS={delaiEchecS}
+        ecran="serie"
+        position={Math.min(index + 1, total)}
+        onPasser={() => void passer()}
+      />
+      {!repondue ? null : resultat ? (
         <ExplicationCert
           key={question.id}
           question={question}

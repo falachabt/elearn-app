@@ -168,7 +168,7 @@ describe('B11 · Fin de série', () => {
       await screen.findByText(t.explication.badge);
       const derniere = i === 2;
       await fireEvent.press(screen.getByText(derniere ? t.serie.terminer : t.serie.suivante));
-      if (!derniere) await screen.findByText(/Question \d+/);
+      if (!derniere) await screen.findAllByText(/Question \d+/);
     }
     expect(router.replace).toHaveBeenCalledWith('/certification/serie-fin');
     await monter(<FinSerie />);
