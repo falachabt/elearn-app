@@ -67,6 +67,9 @@ export function Feuille({ ouverte, onFermer, icone, couleurPastille, titre, text
       ref={feuille}
       enableDynamicSizing
       topInset={top}
+      keyboardBehavior="interactive"
+      keyboardBlurBehavior="restore"
+      android_keyboardInputMode="adjustResize"
       enablePanDownToClose={!bloquante}
       enableContentPanningGesture={!bloquante}
       enableHandlePanningGesture={!bloquante}

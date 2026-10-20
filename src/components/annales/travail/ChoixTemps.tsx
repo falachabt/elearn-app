@@ -1,4 +1,5 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { dureeLisible, minutesValides, type PreferenceTemps } from '@/services/travailSujet';
@@ -59,7 +60,7 @@ export function ChoixTemps({ valeur, onChange, dureeMin }: { valeur: PreferenceT
               actif={valeur.choix === 'perso'}
               libelle={t('travail.tempsPerso')}
               valeur={
-                <TextInput
+                <BottomSheetTextInput
                   accessibilityLabel={t('travail.tempsMinutes')}
                   keyboardType="number-pad"
                   maxLength={3}
