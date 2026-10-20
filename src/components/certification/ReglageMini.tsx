@@ -20,7 +20,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
-import { EnteteToeic, EtiquetteSection, LigneChoix } from './ui';
+import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
 
@@ -120,17 +120,19 @@ export function ReglageMini() {
         </View>
       ) : null}
       <EtiquetteSection texte={t('certification.mini.partie')} />
-      <View accessibilityRole="radiogroup" style={styles.grille}>
-        {[1, 2, 3, 4, 5, 6, 7, 'mixte' as const].map((p) => (
-          <Cube key={String(p)} actif={choix === p} libelle={p === 'mixte' ? t('certification.mini.mixte') : t('certification.mini.partieLabel', { n: p })} court={p === 'mixte' ? t('certification.mini.mixte') : `P${p}`} large={p === 'mixte'} onPress={() => setChoix(p)} />
-        ))}
+      <View accessibilityRole="radiogroup" style={styles.groupe}>
+        <GrilleEgale enfants={[1, 2, 3, 4, 5, 6, 7].map((p) => <Cube key={p} actif={choix === p} libelle={t('certification.mini.partieLabel', { n: p })} court={`P${p}`} onPress={() => setChoix(p)} />)} />
+        <Cube actif={choix === 'mixte'} libelle={t('certification.mini.mixte')} court={t('certification.mini.mixte')} onPress={() => setChoix('mixte')} />
       </View>
       <EtiquetteSection texte={t('certification.mini.longueur')} />
-      <View accessibilityRole="radiogroup" style={styles.grille}>
-        {([10, 20] as const).map((n) => {
-          const permis = possibles.includes(n);
-          return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n })} court={String(n)} large onPress={() => setLongueur(n)} />;
-        })}
+      <View accessibilityRole="radiogroup">
+        <GrilleEgale
+          colonnes={2}
+          enfants={([10, 20] as const).map((n) => {
+            const permis = possibles.includes(n);
+            return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n })} court={String(n)} onPress={() => setLongueur(n)} />;
+          })}
+        />
       </View>
       <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurEffective })} />
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
@@ -152,11 +154,10 @@ export function ReglageMini() {
   );
 }
 
-function Cube({ actif, desactive, libelle, court, large, onPress }: { actif: boolean; desactive?: boolean; libelle: string; court: string; large?: boolean; onPress: () => void }) {
+function Cube({ actif, desactive, libelle, court, onPress }: { actif: boolean; desactive?: boolean; libelle: string; court: string; onPress: () => void }) {
   const { theme } = useTheme();
   return (
     <Appui
-      style={large ? styles.large : styles.cube}
       accessibilityRole="radio"
       accessibilityState={{ checked: actif, disabled: !!desactive }}
       accessibilityLabel={libelle}
@@ -174,9 +175,5 @@ function Cube({ actif, desactive, libelle, court, large, onPress }: { actif: boo
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
-  // Largeur fixe sans croissance : les pastilles P5 à P7 gardent la largeur de P1 à P4 (même correctif que les Parties de Réviser).
-  cube: { width: '22%' },
-  large: { width: '48%', flexGrow: 1 },
   bloc: { minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'center', borderRadius: rayon.m },
 });

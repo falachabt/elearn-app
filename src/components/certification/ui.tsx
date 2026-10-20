@@ -152,6 +152,29 @@ export function EtiquetteSection({ texte }: { texte: string }) {
   );
 }
 
+/** Grille de colonnes égales qui remplit la largeur (équivalent de repeat(n, 1fr)) : chaque case a flex 1 et la dernière
+ *  rangée est complétée par des cases vides, pour que toutes les pastilles aient la même largeur. */
+export function GrilleEgale({ enfants, colonnes = 4 }: { enfants: ReactNode[]; colonnes?: number }) {
+  const lignes: ReactNode[][] = [];
+  for (let i = 0; i < enfants.length; i += colonnes) lignes.push(enfants.slice(i, i + colonnes));
+  return (
+    <View style={styles.grilleEgale}>
+      {lignes.map((ligne, i) => (
+        <View key={i} style={styles.ligneEgale}>
+          {ligne.map((enfant, j) => (
+            <View key={j} style={styles.caseEgale}>
+              {enfant}
+            </View>
+          ))}
+          {Array.from({ length: colonnes - ligne.length }, (_, j) => (
+            <View key={`vide-${j}`} style={styles.caseEgale} />
+          ))}
+        </View>
+      ))}
+    </View>
+  );
+}
+
 /** Squelette de chargement : quelques blocs neutres, sans texte (S1). */
 export function Squelette({ lignes = 3 }: { lignes?: number }) {
   const { theme } = useTheme();
@@ -169,6 +192,9 @@ const styles = StyleSheet.create({
   tuileZone: { flexGrow: 1, flexBasis: '45%' },
   tuile: { gap: 2, padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m, minHeight: 64, justifyContent: 'center' },
   pleineHauteur: { flex: 1 },
+  grilleEgale: { gap: espace[3] },
+  ligneEgale: { flexDirection: 'row', gap: espace[3] },
+  caseEgale: { flex: 1, minWidth: 0 },
   squelette: { gap: espace[3] },
   bloc: { height: 64, borderWidth: bord.fin, borderRadius: rayon.m },
   entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingVertical: espace[2] },

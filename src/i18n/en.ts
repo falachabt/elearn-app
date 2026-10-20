@@ -2037,6 +2037,8 @@ export const en: Textes = {
       dateFormat: 'Expected format: DD/MM/YYYY',
       datePassee: 'This date has passed. Pick an upcoming date.',
       aide: 'Your plan is built from this score. It guarantees nothing. The date is optional.',
+      titreModifier: 'My {{examen}} goal',
+      aideModifier: 'A score is never guaranteed. Changes apply to your plan from today.',
       passer: 'Skip for now',
       erreurBornes: 'Pick a score between {{min}} and {{max}}.',
       scoreVide: 'Enter your target score to continue.',

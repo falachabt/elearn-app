@@ -16,7 +16,7 @@ import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
 import { CoursNotions } from './CoursNotions';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
+import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 type Onglet = 'parcours' | 'parties' | 'cours' | 'carnet';
@@ -82,11 +82,10 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
       {onglet === 'parties' ? (
         <>
           <EtiquetteSection texte={t('certification.reviser.etiquetteParties')} />
-          <View style={styles.grille}>
-            {[1, 2, 3, 4, 5, 6, 7].map((n) => (
+          <GrilleEgale
+            enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => (
               <Appui
                 key={n}
-                style={styles.tuile}
                 accessibilityRole="button"
                 accessibilityLabel={t('certification.reviser.tuileLabel', { n })}
                 onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(n) } } as never)}
@@ -99,7 +98,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
                 </View>
               </Appui>
             ))}
-          </View>
+          />
           <LigneChoix icone={Target} titre={t('certification.reviser.carteTitre')} aide={t('certification.reviser.carteAide')} onPress={() => router.push('/certification/carte' as never)} />
           <LigneChoix icone={BookOpen} titre={t('certification.reviser.coursTitre')} aide={aideCours} onPress={() => aller('cours')} />
           <LigneChoix icone={NotebookPen} titre={t('certification.reviser.carnetTitre')} aide={aideCarnetCompte} onPress={() => aller('carnet')} />
@@ -113,8 +112,5 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  grille: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
-  // Largeur fixe, sans croissance : les pastilles de la deuxième ligne ont la même largeur que celles de la première.
-  tuile: { width: '22%' },
   cube: { minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
 });

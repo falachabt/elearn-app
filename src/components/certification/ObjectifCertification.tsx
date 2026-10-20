@@ -32,6 +32,7 @@ export function ObjectifCertification() {
   const [r, setR] = useState<Reglages | null>(null);
   const [texte, setTexte] = useState('');
   const [dateTexte, setDateTexte] = useState('');
+  const [minutes, setMinutes] = useState<number | null>(null);
 
   useEffect(() => {
     let actif = true;
@@ -48,6 +49,7 @@ export function ObjectifCertification() {
       if (reglages) {
         setR(reglages);
         setTexte(String(plan?.exam === code && plan.objectif ? plan.objectif : reglages.objectifDefaut));
+        setMinutes(plan?.minutes && reglages.seanceMinutesChoix.includes(plan.minutes) ? plan.minutes : reglages.seanceMinutesDefaut);
       }
       if (plan?.exam === code && plan.dateTest) {
         setDateTexte(afficherJour(plan.dateTest));
@@ -69,7 +71,8 @@ export function ObjectifCertification() {
 
   const continuer = async () => {
     if (valeur === null || !date.ok) return;
-    await ecrirePlan({ exam, objectif: valeur, ...(date.jour ? { dateTest: date.jour } : {}) }, { effacerDate: !date.jour });
+    // Depuis Moi (D4), la feuille « Mon objectif TOEIC » enregistre aussi le temps par jour.
+    await ecrirePlan({ exam, objectif: valeur, ...(date.jour ? { dateTest: date.jour } : {}), ...(modifier && minutes ? { minutes } : {}) }, { effacerDate: !date.jour });
     suivre('cert_goal_set', { score: valeur, date_renseignee: !!date.jour });
     if (modifier) router.back();
     else router.push('/certification/temps');
@@ -91,12 +94,13 @@ export function ObjectifCertification() {
             </Text>
           ) : null}
           <Bouton libelle={modifier ? t('certification.enregistrer') : t('certification.continuer')} desactive={!valide} onPress={continuer} retour />
-          <Bouton variante="texte" libelle={t('certification.objectif.passer')} onPress={passer} />
+          {modifier ? null : <Bouton variante="texte" libelle={t('certification.objectif.passer')} onPress={passer} />}
         </View>
       }
     >
       {modifier ? null : <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.objectif.etape', { examen: nomExamen })}</Text>}
-      <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.objectif.titre')}</Text>
+      <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{modifier ? t('certification.objectif.titreModifier', { examen: nomExamen }) : t('certification.objectif.titre')}</Text>
+      {modifier ? null : (
       <View accessibilityRole="radiogroup" style={styles.paliers}>
         {paliers.map((p) => {
           const actif = valeur === p;
@@ -109,6 +113,7 @@ export function ObjectifCertification() {
           );
         })}
       </View>
+      )}
       {r ? (
         <>
           <Champ
@@ -121,13 +126,15 @@ export function ObjectifCertification() {
             accessibilityLabel={t('certification.objectif.curseur')}
           />
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.objectif.sur', { max: r.objectifMax })}</Text>
-          <Curseur
-            libelle={t('certification.objectif.curseur')}
-            valeur={valeur ?? r.objectifDefaut}
-            min={r.objectifMin}
-            max={r.objectifMax}
-            onChange={(v) => setTexte(String(v))}
-          />
+          {modifier ? null : (
+            <Curseur
+              libelle={t('certification.objectif.curseur')}
+              valeur={valeur ?? r.objectifDefaut}
+              min={r.objectifMin}
+              max={r.objectifMax}
+              onChange={(v) => setTexte(String(v))}
+            />
+          )}
         </>
       ) : null}
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.objectif.date')}</Text>
@@ -150,7 +157,26 @@ export function ObjectifCertification() {
               : t('certification.objectif.dateVide')}
         </Text>
       </View>
-      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.objectif.aide')}</Text>
+      {modifier ? (
+        <>
+          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.temps.entete')}</Text>
+          <View accessibilityRole="radiogroup" style={styles.paliers}>
+            {(r?.seanceMinutesChoix ?? []).map((m) => {
+              const actif = minutes === m;
+              return (
+                <Appui key={m} accessibilityRole="radio" accessibilityState={{ checked: actif }} accessibilityLabel={t('certification.temps.minutes', { n: m })} onPress={() => setMinutes(m)} decalage={0} rayon={rayon.pilule} retour>
+                  <View style={[styles.palier, { backgroundColor: actif ? theme.texte.principal : theme.fond.surface, borderColor: theme.bord.fort }]}>
+                    <Text style={[typo.texteFort, { color: actif ? theme.texte.inverse : theme.texte.principal }]}>{m}</Text>
+                  </View>
+                </Appui>
+              );
+            })}
+          </View>
+          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.objectif.aideModifier')}</Text>
+        </>
+      ) : (
+        <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.objectif.aide')}</Text>
+      )}
     </Ecran>
   );
 }
