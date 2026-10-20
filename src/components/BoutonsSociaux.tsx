@@ -18,7 +18,7 @@ import { LogoGoogle } from './LogoGoogle';
 
 type Props = {
   codeParrainage?: string | null;
-  onErreur: (cle: CleTexte) => void;
+  onErreur: (cle: CleTexte, detail?: string) => void;
   onSucces: () => void;
   desactive?: boolean;
   /** Ajoute le fournisseur au compte déjà connecté (A7, ancien compte). */
@@ -79,7 +79,8 @@ export function BoutonsSociaux({ codeParrainage, onErreur, onSucces, desactive, 
       const cle = cleErreur(e);
       const x = e as { code?: string; message?: string } | null;
       suivre('connexion_echec', { cle, code: x?.code ?? null, message: (x?.message ?? '').slice(0, 200) });
-      onErreur(cle);
+      console.warn('Connexion sociale en échec :', e);
+      onErreur(cle, `${fournisseur} · ${x?.code ?? 'sans code'} · ${(x?.message ?? '').slice(0, 160)}`);
     } finally {
       setEnCours(false);
       onFin?.();

@@ -143,7 +143,9 @@ export function FormulaireCompte({ mode, emailActif = CONNEXION_EMAIL }: { mode:
     }
   };
 
-  const surErreurSociale = (cle: CleTexte) => {
+  const [detailSocial, setDetailSocial] = useState<string | null>(null);
+  const surErreurSociale = (cle: CleTexte, detail?: string) => {
+    setDetailSocial(detail ?? null);
     setErreurServeur(cle);
     echec();
   };
@@ -177,7 +179,7 @@ export function FormulaireCompte({ mode, emailActif = CONNEXION_EMAIL }: { mode:
         <>
           {/* L'erreur vaut pour toutes les méthodes (e-mail comme Google/Apple) : elle est hors du formulaire e-mail,
               qui peut être coupé. */}
-          {erreurServeur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={t(erreurServeur)} /> : null}
+          {erreurServeur ? <Banniere ton="erreur" titre={t('compte.erreurTitre')} texte={detailSocial ? `${t(erreurServeur)}\n(${detailSocial})` : t(erreurServeur)} /> : null}
           {emailActif ? (
             <>
               <Secousse declencheur={secousse}>
