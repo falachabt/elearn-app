@@ -963,6 +963,7 @@ export const en: Textes = {
     feuille: '1 sheet',
     feuilles: '{{n}} sheets',
     photosConseil: 'Frame the whole sheet, flat and well lit.',
+    revoirVisite: 'Replay the tour',
     photosFermer: 'Close the camera',
     photosGalerie: 'Import from the gallery',
     photosPrendre: 'Take a photo of the sheet',

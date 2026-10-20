@@ -62,3 +62,5 @@ Pas un diaporama : l'élève fait vraiment les gestes, sur une feuille d'exemple
 - À l'échéance du compte à rebours : vibration et son de fin d'épreuve (réglages sons et vibrations respectés), puis feuille « Temps écoulé ».
 - Actions : « Voir la correction » (seulement si le sujet a un corrigé), « Corriger mon travail » (envoyer ses photos à l'IA), « Quitter ». Chrono libre : rien.
 - Application en arrière-plan à l'échéance : notification locale, uniquement si la permission est déjà donnée (jamais demandée ici, AGENTS §18).
+
+- Revoir la visite (AS5f) : bouton rond d'aide (point d'interrogation, 48 px, bord blanc) en haut à droite de l'appareil photo, à côté de la pastille du nombre de feuilles. Relance la visite à tout moment, sans crédit ni envoi à l'IA.

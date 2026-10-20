@@ -2,7 +2,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
-import { Image as IconeImage, X } from 'lucide-react-native';
+import { CircleHelp, Image as IconeImage, X } from 'lucide-react-native';
 import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -67,8 +67,13 @@ export function PhotosTravail() {
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosFermer')} onPress={fermer} decalage={0} rayon={rayon.m}>
           <View style={styles.carre}><X size={20} color={BLANC} strokeWidth={2} /></View>
         </Appui>
-        <View style={styles.pastille} accessibilityLiveRegion="polite">
-          <Text style={[typo.donnee, { color: BLANC }]}>{t(feuilles.length > 1 ? 'travail.feuilles' : 'travail.feuille', { n: feuilles.length })}</Text>
+        <View style={styles.droite}>
+          <View style={styles.pastille} accessibilityLiveRegion="polite">
+            <Text style={[typo.donnee, { color: BLANC }]}>{t(feuilles.length > 1 ? 'travail.feuilles' : 'travail.feuille', { n: feuilles.length })}</Text>
+          </View>
+          <Appui accessibilityRole="button" accessibilityLabel={t('travail.revoirVisite')} onPress={() => router.push('/annales/visite')} decalage={0} rayon={rayon.m}>
+            <View style={[styles.carre, styles.aide]}><CircleHelp size={20} color={BLANC} strokeWidth={2} /></View>
+          </Appui>
         </View>
       </View>
       <View style={styles.viseur}>
@@ -117,6 +122,8 @@ const styles = StyleSheet.create({
   haut: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   carre: { minWidth: 48, height: 48, paddingHorizontal: espace[4], borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   terminer: { backgroundColor: palette.emeraude[500], borderColor: palette.emeraude[500] },
+  droite: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  aide: { paddingHorizontal: 0 },
   pastille: { borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.pilule, paddingHorizontal: espace[4], paddingVertical: espace[2] },
   viseur: { flex: 1, borderWidth: bord.normal, borderColor: BLANC, borderRadius: rayon.m, overflow: 'hidden', backgroundColor: palette.encre[900] },
   permission: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: espace[5], padding: espace[7] },

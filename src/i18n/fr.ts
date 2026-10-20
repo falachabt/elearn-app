@@ -964,6 +964,7 @@ export const fr = {
     feuille: '1 feuille',
     feuilles: '{{n}} feuilles',
     photosConseil: 'Cadre la feuille entière, bien à plat et bien éclairée.',
+    revoirVisite: 'Revoir la visite',
     photosFermer: 'Fermer l’appareil photo',
     photosGalerie: 'Importer depuis la galerie',
     photosPrendre: 'Prendre la feuille en photo',

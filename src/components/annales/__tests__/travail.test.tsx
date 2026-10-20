@@ -247,6 +247,13 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       await waitFor(() => expect(router.push).toHaveBeenCalledWith('/annales/visite'));
     });
 
+    it('« Revoir la visite » relance la visite même déjà vue', async () => {
+      await monter(<PhotosTravail />);
+      await act(async () => {});
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirVisite }));
+      expect(router.push).toHaveBeenCalledWith('/annales/visite');
+    });
+
     it('visite déjà vue : rien ne s’ouvre', async () => {
       await monter(<PhotosTravail />);
       await waitFor(() => expect(visiteDejaVue).toBeDefined());
