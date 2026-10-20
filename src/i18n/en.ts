@@ -2256,6 +2256,15 @@ export const en: Textes = {
       ecouteJouee: 'Already played.',
       document: 'Doc. {{n}}',
       imageAlt: 'Photo for part {{n}}',
+      partieNom: {
+        photo: 'Photos',
+        question_reponse: 'Question-response',
+        conversation: 'Conversation',
+        expose: 'Talk',
+        phrase: 'Sentence',
+        texte_trous: 'Text completion',
+        passage: 'Documents',
+      },
       consigne: {
         photo: 'Photos: choose the sentence that best describes the picture.',
         question_reponse: 'Question-response: choose the most appropriate answer.',
@@ -2268,6 +2277,7 @@ export const en: Textes = {
     },
     serie: {
       entete: 'Series · {{n}} / {{total}}',
+      partieEntete: 'Part {{n}} · {{nom}}',
       titre: 'Series',
       chargement: 'Loading the question…',
       erreurTitre: 'Loading error',

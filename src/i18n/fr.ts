@@ -2155,7 +2155,7 @@ export const fr = {
     temps: {
       entete: 'Temps par jour',
       etape: 'Étape 4 sur 4',
-      titre: 'Combien de temps par jour ?',
+      titre: 'Combien de temps par jour\u00a0?',
       minutes: '{{n}} minutes',
       m10: 'Une séance courte, une notion ou quelques mots',
       m20: 'Recommandé pour ton objectif',
@@ -2257,6 +2257,15 @@ export const fr = {
       ecouteJouee: 'Écoute déjà jouée.',
       document: 'Doc. {{n}}',
       imageAlt: 'Photo de la partie {{n}}',
+      partieNom: {
+        photo: 'Photos',
+        question_reponse: 'Question-réponse',
+        conversation: 'Conversation',
+        expose: 'Exposé',
+        phrase: 'Phrase',
+        texte_trous: 'Texte à trous',
+        passage: 'Documents',
+      },
       consigne: {
         photo: 'Photos : choisis la phrase qui décrit le mieux l’image.',
         question_reponse: 'Question-réponse : choisis la réponse la plus appropriée.',
@@ -2269,6 +2278,7 @@ export const fr = {
     },
     serie: {
       entete: 'Série · {{n}} / {{total}}',
+      partieEntete: 'Partie {{n}} · {{nom}}',
       titre: 'Série',
       chargement: 'Chargement de la question…',
       erreurTitre: 'Erreur de chargement',

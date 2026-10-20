@@ -82,6 +82,8 @@ export function Serie() {
   const total = etat?.questions.length ?? 0;
   const faites = etat?.reponses.length ?? 0;
   const entete = t('certification.serie.entete', { n: Math.min(index + 1, total), total });
+  // En-tête de la maquette : « Partie N · Nom » dès que la partie de la question est connue, sinon « Série n / total ».
+  const titre = question ? t('certification.serie.partieEntete', { n: question.part, nom: t(`certification.exercice.partieNom.${question.type}` as "certification.exercice.partieNom.photo") }) : entete;
 
   const fin = (e: EtatSerie) => {
     if (e.termine) router.replace('/certification/serie-fin');
@@ -170,7 +172,7 @@ export function Serie() {
 
   return (
     <Ecran
-      entete={<EnteteToeic titre={repondue ? t('certification.explication.entete') : entete} onRetour={sortir} />}
+      entete={<EnteteToeic titre={repondue ? t('certification.explication.entete') : titre} onRetour={sortir} />}
       pied={
         repondue ? undefined : (
           <View style={styles.pied}>
