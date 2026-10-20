@@ -10,9 +10,18 @@ type ClientAuth = Pick<SupabaseClient, 'auth'>;
  * conservée par le client (AsyncStorage) et rafraîchie automatiquement.
  */
 export async function assurerSessionInvite(client: ClientAuth): Promise<Session> {
-  const { data, error } = await client.auth.getSession();
-  if (error) throw error;
-  if (data.session) return data.session;
+  try {
+    const { data, error } = await client.auth.getSession();
+    if (error) {
+      console.warn('Session stockée invalide ou expirée, réinitialisation :', error);
+      await client.auth.signOut().catch(() => {});
+    } else if (data?.session) {
+      return data.session;
+    }
+  } catch (e) {
+    console.warn('Erreur lors de la récupération de la session stockée :', e);
+    await client.auth.signOut().catch(() => {});
+  }
 
   const { data: connexion, error: erreurConnexion } = await client.auth.signInAnonymously();
   if (erreurConnexion) throw erreurConnexion;

@@ -285,11 +285,23 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
   }
 }
 
+const codeEnCours = new Map<string, Promise<{ error: unknown }>>();
+
+/** Échange un code PKCE en évitant les requêtes en double (par exemple entre la fenêtre et la route deep link). */
+export function echangerCodeOAuthUneFois(client: Pick<SupabaseClient, 'auth'>, code: string): Promise<{ error: unknown }> {
+  let p = codeEnCours.get(code);
+  if (!p) {
+    p = client.auth.exchangeCodeForSession(code).then(
+      (res) => res,
+      (err) => ({ error: err }),
+    );
+    codeEnCours.set(code, p);
+  }
+  return p;
+}
+
 /** Ouvre la page du fournisseur puis installe la session renvoyée sur `elearnprepa://auth/callback`. */
 async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps: DepsOAuth, rattachement: boolean): Promise<void> {
-  // Web : on veut le flux PKCE (`?code=` échangé contre une vraie session). `skipBrowserRedirect: true` forcerait le
-  // flux implicite (`#access_token=`) dont le `refresh_token` est un leurre (`nyxhb7iejebe`) : la session serait
-  // installée sans jeton de rafraîchissement valable, et l'élève retomberait déconnecté sur l'accueil.
   const options = { redirectTo: deps.urlRedirection, skipBrowserRedirect: !deps.pleinePage };
   const { data, error } = rattachement
     ? await client.auth.linkIdentity({ provider: fournisseur, options })
@@ -298,15 +310,27 @@ async function parcoursOAuth(client: Client, fournisseur: FournisseurOAuth, deps
   if (!data.url) throw new ErreurCompte('compte.erreurs.inconnue');
 
   const resultat = await deps.ouvrirNavigateur(data.url, deps.urlRedirection);
-  if (resultat.type !== 'success' || !resultat.url) throw new ErreurCompte('compte.erreurs.annule');
+  if (resultat.type !== 'success' || !resultat.url) {
+    // Sur Android, la fenêtre WebBrowser peut se fermer (dismiss) car le système a ouvert le lien
+    // profond elearnprepa://auth/callback directement dans l'application.
+    const { data: s } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
+    if (s.session && !s.session.user.is_anonymous) return;
+    await new Promise((r) => setTimeout(r, 1200));
+    const { data: s2 } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
+    if (s2.session && !s2.session.user.is_anonymous) return;
+    throw new ErreurCompte('compte.erreurs.annule');
+  }
 
   const { code, accessToken, refreshToken, erreur, codeErreur } = lireRetourOAuth(resultat.url);
   if (codeErreur === 'identity_already_exists') throw new ErreurCompte('compte.erreurs.dejaLie', { code: codeErreur });
   if (codeErreur === 'manual_linking_disabled') throw new ErreurCompte('compte.erreurs.methodeIndisponible', { code: codeErreur });
   if (erreur) throw new ErreurCompte('compte.erreurs.annule');
   if (code) {
-    const { error: e } = await client.auth.exchangeCodeForSession(code);
-    if (e) throw e;
+    const { error: e } = await echangerCodeOAuthUneFois(client, code);
+    if (e) {
+      const { data: s } = await client.auth.getSession().catch(() => ({ data: { session: null } }));
+      if (!s.session || s.session.user.is_anonymous) throw e;
+    }
   } else if (accessToken && refreshToken) {
     const { error: e } = await client.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
     if (e) throw e;

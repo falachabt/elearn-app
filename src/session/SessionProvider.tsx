@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 
 import { assurerSessionInvite } from '@/services/session';
 import { identifier, reinitialiserIdentite } from '@/services/analytics';
+import { ecouterConnectivite } from '@/services/connectivite';
 import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
@@ -16,7 +17,7 @@ import { getSupabase } from '@/services/supabase';
 
 type Etat =
   | { statut: 'chargement'; session: null; erreur: null }
-  | { statut: 'pret'; session: Session; erreur: null }
+  | { statut: 'pret'; session: Session | null; erreur: null }
   | { statut: 'erreur'; session: null; erreur: Error };
 
 const ContexteSession = createContext<Etat>({ statut: 'chargement', session: null, erreur: null });
@@ -27,20 +28,56 @@ export function SessionProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let actif = true;
-    let desabonner: (() => void) | undefined;
+    let client: ReturnType<typeof getSupabase>;
+    try {
+      client = getSupabase();
+    } catch (e) {
+      if (actif) setEtat({ statut: 'erreur', session: null, erreur: e instanceof Error ? e : new Error(String(e)) });
+      return;
+    }
+
+    const arreterSuivi = suivreModifications(client);
+    const arreterSuiviEntrainement = suivreProgressionEntrainement(client);
+
+    // L'écouteur d'authentification est abonné immédiatement pour ne rater aucun retour OAuth ou échange de session.
+    const { data } = client.auth.onAuthStateChange(async (evenement, nouvelle) => {
+      if (actif && nouvelle) {
+        if (evenement === 'SIGNED_IN') await appliquerReglagesCompteSiPlusRecent(nouvelle.user).catch(() => {});
+        if (!actif) return;
+        setEtat({ statut: 'pret', session: nouvelle, erreur: null });
+        void identifier(nouvelle.user.id, { invite: nouvelle.user.is_anonymous ?? false });
+        if (evenement === 'SIGNED_IN') {
+          setTimeout(() => {
+            if (repriseInviteEnCours()) return;
+            synchroniserResultat(client).catch(() => {});
+            synchroniserReglages(client, nouvelle.user).catch(() => {});
+            synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
+            restaurerHistorique(client).catch(() => {});
+            synchroniserLues(client).catch(() => {});
+            synchroniserActivitesServeur(client).catch(() => {});
+            void enregistrerJetonPush(client);
+          }, 0);
+        }
+      } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
+        setEtat({ statut: 'chargement', session: null, erreur: null });
+        void (async () => {
+          await reinitialiserIdentite().catch(() => {});
+          try {
+            const invited = await assurerSessionInvite(client);
+            if (actif) setEtat({ statut: 'pret', session: invited, erreur: null });
+          } catch {
+            if (actif) setEtat({ statut: 'pret', session: null, erreur: null });
+          }
+        })();
+      }
+    });
 
     (async () => {
       try {
-        const client = getSupabase();
-        // Web : terminer le retour OAuth (Google, Apple) AVANT de créer une session invité. Sinon, au retour d'une
-        // connexion, l'invité était créé d'abord, son profil était lu (parcours d'arrivée non terminé) et l'élève
-        // connecté retombait sur « bienvenue ».
-        await finirRetourOAuthWebUneFois(client);
+        await finirRetourOAuthWebUneFois(client).catch(() => {});
         const session = await assurerSessionInvite(client);
-        const reprise = await reprendreApresRedemarrage(session.user.id);
-        // Les réglages du compte portent le parcours d'arrivée (profil) : les appliquer au téléphone AVANT de marquer
-        // la session prête, sinon un élève connecté sur un appareil sans profil local (navigateur web neuf) retombait
-        // sur « bienvenue ». Écritures locales seulement ; l'envoi vers le compte reste en arrière-plan.
+        if (!actif) return;
+        const reprise = await reprendreApresRedemarrage(session.user.id).catch(() => false);
         await appliquerReglagesCompteSiPlusRecent(session.user).catch(() => {});
         if (!actif) return;
         setEtat({ statut: 'pret', session, erreur: null });
@@ -51,64 +88,43 @@ export function SessionProvider({ children }: { children: ReactNode }) {
           void enregistrerJetonPush(client);
         }
         if (!session.user.is_anonymous && typeof client.auth?.getUser === 'function') {
-          void client.auth.getUser().then(({ data }) => {
-            if (actif && data?.user) {
-              setEtat((e) => (e.session ? { ...e, session: { ...e.session, user: data.user } } : e));
+          void client.auth.getUser().then(({ data: uData }) => {
+            if (actif && uData?.user) {
+              setEtat((e) => (e.session ? { ...e, session: { ...e.session, user: uData.user } } : e));
             }
           }).catch(() => {});
         }
-        const arreterSuivi = suivreModifications(client);
-        const arreterSuiviEntrainement = suivreProgressionEntrainement(client);
-        const { data } = client.auth.onAuthStateChange(async (evenement, nouvelle) => {
-          if (actif && nouvelle) {
-            // Connexion : le parcours d'arrivée du compte est appliqué AVANT de publier la session, comme au démarrage.
-            // Sinon la garde des onglets lit le profil local (non terminé) et renvoie à « bienvenue » le temps du délai.
-            if (evenement === 'SIGNED_IN') await appliquerReglagesCompteSiPlusRecent(nouvelle.user).catch(() => {});
-            if (!actif) return;
-            setEtat({ statut: 'pret', session: nouvelle, erreur: null });
-            void identifier(nouvelle.user.id, { invite: nouvelle.user.is_anonymous ?? false });
-            // M1-04 : le score d'invité suit le compte, même quand la connexion change d'utilisateur (Apple, ancien compte).
-            // Différé : ne jamais appeler Supabase depuis le rappel lui-même (verrou de session).
-            if (evenement === 'SIGNED_IN') {
-              setTimeout(() => {
-                if (repriseInviteEnCours()) return;
-                synchroniserResultat(client).catch(() => {});
-                synchroniserReglages(client, nouvelle.user).catch(() => {});
-                synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
-                // M2-14 : après une connexion (ou reconnexion), la série et les leçons validées reviennent du compte.
-                restaurerHistorique(client).catch(() => {});
-                synchroniserLues(client).catch(() => {});
-                synchroniserActivitesServeur(client).catch(() => {});
-                // Nouveau compte sur ce téléphone : son jeton push lui est donné (si la permission l'est déjà).
-                void enregistrerJetonPush(client);
-              }, 0);
-            }
-          } else if (evenement === 'SIGNED_OUT' || !nouvelle) {
-            // Session sign out – clear state and recreate invited session
-            setEtat({ statut: 'chargement', session: null, erreur: null });
-            void (async () => {
-              // Le profil de suivi repart de zéro : le prochain invité aura son propre identifiant.
-              await reinitialiserIdentite();
-              const invited = await assurerSessionInvite(client);
-              if (actif) {
-                setEtat({ statut: 'pret', session: invited, erreur: null });
-              }
-            })();
-          }
-        });
-        desabonner = () => {
-          data.subscription.unsubscribe();
-          arreterSuivi();
-          arreterSuiviEntrainement();
-        };
       } catch (e) {
-        if (actif) setEtat({ statut: 'erreur', session: null, erreur: e instanceof Error ? e : new Error(String(e)) });
+        console.warn('Session invité non établie au démarrage (repli hors ligne) :', e);
+        if (actif) setEtat({ statut: 'pret', session: null, erreur: null });
       }
     })();
 
+    // Si l'application a démarré hors ligne (session null), on réessaie automatiquement dès le retour du réseau.
+    const arreterConnectivite = ecouterConnectivite((etatConn) => {
+      if (etatConn.connecte && actif) {
+        setEtat((actuel) => {
+          if (actuel.statut === 'pret' && !actuel.session) {
+            void assurerSessionInvite(client)
+              .then((s) => {
+                if (actif && s) {
+                  setEtat({ statut: 'pret', session: s, erreur: null });
+                  void identifier(s.user.id, { invite: s.user.is_anonymous ?? false });
+                }
+              })
+              .catch(() => {});
+          }
+          return actuel;
+        });
+      }
+    });
+
     return () => {
       actif = false;
-      desabonner?.();
+      data.subscription.unsubscribe();
+      arreterSuivi();
+      arreterSuiviEntrainement();
+      arreterConnectivite();
     };
   }, []);
 
