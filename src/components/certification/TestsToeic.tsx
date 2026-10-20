@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { BookOpen, Layers, RotateCcw, Target, Trophy } from 'lucide-react-native';
+import { BookOpen, Clock, Layers, RotateCcw, Target, Trophy } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -11,7 +11,7 @@ import { abandonnerMini, tempsRestantMs } from '@/services/certification/miniTes
 import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { espace, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
@@ -140,18 +140,18 @@ function Reprise({ donnees, onAbandon }: { donnees: DonneesTests; onAbandon: (re
   return (
     <>
       <Carte style={{ gap: espace[3] }}>
-        <View style={styles.titreReprise}>
-          <RotateCcw size={20} color={theme.texte.principal} strokeWidth={2} />
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{statut === 'a_rendre' ? t('certification.tests.reprise.termineTitre') : t('certification.tests.reprise.titre')}</Text>
+        <View accessibilityRole="header" style={[styles.pastilleReprise, { backgroundColor: theme.etat.alerteDoux, borderColor: theme.bord.fort }]}>
+          <RotateCcw size={14} color={theme.texte.principal} strokeWidth={2} />
+          <Text style={[typo.legende, { color: theme.texte.principal }]}>{statut === 'a_rendre' ? t('certification.tests.reprise.termineTitre') : t('certification.tests.reprise.titre')}</Text>
         </View>
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{sous}</Text>
         <Text style={[typo.petit, { color: theme.texte.principal }]}>{statut === 'a_rendre' ? t('certification.tests.reprise.termineTexte') : avancement}</Text>
         <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={avancement} />
       </Carte>
       {statut === 'en_cours' ? (
-        <LigneChoix icone={RotateCcw} titre={t('certification.tests.reprise.restant')} aide={minutesSecondes(reste)} />
+        <LigneChoix icone={Clock} titre={t('certification.tests.reprise.restant')} aide={minutesSecondes(reste)} />
       ) : null}
-      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.tests.reprise.aide')}</Text>
+      {statut === 'en_cours' ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.tests.reprise.aide')}</Text> : null}
       {statut === 'en_cours' ? (
         <Bouton libelle={t('certification.tests.reprise.reprendre')} onPress={reprendre} retour />
       ) : (
@@ -176,5 +176,5 @@ const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   centre: { textAlign: 'center' },
-  titreReprise: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  pastilleReprise: { flexDirection: 'row', alignItems: 'center', gap: espace[1], alignSelf: 'flex-start', borderWidth: bord.fin, borderRadius: rayon.s, paddingHorizontal: espace[2], paddingVertical: 2 },
 });
