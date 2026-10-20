@@ -19,7 +19,7 @@ const p = palette;
 type Elargi<T> = { [K in keyof T]: T[K] extends string ? string : Elargi<T[K]> };
 
 const lightValeurs = {
-  fond: { app: p.papier[0], surface: p.papier[0], creux: p.papier[100], inverse: p.encre[1000] },
+  fond: { app: p.papier[50], surface: p.papier[0], creux: p.papier[100], inverse: p.encre[1000] },
   texte: { principal: p.encre[1000], secondaire: p.encre[500], inverse: p.papier[0], surCouleur: p.encre[1000], lien: p.emeraude[700] },
   bord: { fort: p.encre[1000], doux: p.encre[200] },
   ombre: p.encre[1000],

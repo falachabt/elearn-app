@@ -353,3 +353,124 @@ export async function cocherSeance(client: Client, jour: string, fait: boolean):
   signalerSucces();
   return data === true;
 }
+
+
+export type BilanPhase = {
+  phase: PhasePlanning;
+  totalSeances: number;
+  seancesFaites: number;
+  totalMinutes: number;
+  leconsFaites: number;
+  quizFaits: number;
+  exercicesFaits: number;
+  annalesFaites: number;
+  revisionsFaites: number;
+};
+
+export type BilanPlanning = {
+  termine: boolean;
+  cible: CiblePlanning | null;
+  totalSeances: number;
+  seancesFaites: number;
+  tauxReussite: number;
+  totalMinutes: number;
+  apprentissage: BilanPhase;
+  annales: BilanPhase;
+  revisionFinale: BilanPhase;
+};
+
+export function planningEstTermine(p: Planning, aujourdhui = jourLocalTexte()): boolean {
+  if (p.statut !== 'ready') return false;
+  const jours = tousLesJours(p);
+  if (jours.length === 0) return false;
+  const dernierJour = jours[jours.length - 1].jour;
+  const dateDepassee = aujourdhui > dernierJour;
+  const cibleAtteinte = p.joursRestants !== null && p.joursRestants <= 0;
+  const toutFait = jours.every((j) => j.fait);
+  return dateDepassee || cibleAtteinte || toutFait;
+}
+
+export const CLE_PLANNING_TERMINE_VU = (idUtilisateur: string) => `planning.termine.vu.${idUtilisateur}`;
+
+export async function lirePlanningTermineVu(idUtilisateur?: string): Promise<boolean> {
+  if (!idUtilisateur) return false;
+  try {
+    return (await AsyncStorage.getItem(CLE_PLANNING_TERMINE_VU(idUtilisateur))) === '1';
+  } catch {
+    return false;
+  }
+}
+
+export async function noterPlanningTermineVu(idUtilisateur?: string): Promise<void> {
+  if (!idUtilisateur) return;
+  try {
+    await AsyncStorage.setItem(CLE_PLANNING_TERMINE_VU(idUtilisateur), '1');
+  } catch {}
+}
+
+export function calculerBilanPlanning(
+  p: Planning,
+  lues: LeconsValidees = {},
+  acquises: AcquisesEntrainement = {},
+): BilanPlanning {
+  const jours = tousLesJours(p);
+  const creerPhase = (phase: PhasePlanning): BilanPhase => ({
+    phase,
+    totalSeances: 0,
+    seancesFaites: 0,
+    totalMinutes: 0,
+    leconsFaites: 0,
+    quizFaits: 0,
+    exercicesFaits: 0,
+    annalesFaites: 0,
+    revisionsFaites: 0,
+  });
+
+  const apprentissage = creerPhase('learning');
+  const annales = creerPhase('past_papers');
+  const revisionFinale = creerPhase('final_review');
+
+  let totalMinutes = 0;
+  let seancesFaites = 0;
+
+  for (const j of jours) {
+    const terminee = seanceTerminee(j, lues, acquises);
+    if (terminee) seancesFaites++;
+    totalMinutes += j.minutes;
+
+    const phase =
+      j.phase === 'past_papers'
+        ? annales
+        : j.phase === 'final_review'
+          ? revisionFinale
+          : apprentissage;
+
+    phase.totalSeances++;
+    if (terminee) phase.seancesFaites++;
+    phase.totalMinutes += j.minutes;
+
+    for (const elem of j.elements) {
+      const fait = elementFait(elem, lues, acquises) || j.fait;
+      if (elem.genre === 'lecon' && fait) phase.leconsFaites++;
+      else if (elem.genre === 'quiz' && fait) phase.quizFaits++;
+      else if (elem.genre === 'exercice' && fait) phase.exercicesFaits++;
+      else if (elem.genre === 'annales' && (fait || terminee)) phase.annalesFaites++;
+      else if ((elem.genre === 'revisionFinale' || elem.genre === 'revisionLibre') && (fait || terminee)) phase.revisionsFaites++;
+    }
+  }
+
+  const totalSeances = jours.length;
+  const tauxReussite = totalSeances > 0 ? Math.round((seancesFaites / totalSeances) * 100) : 0;
+
+  return {
+    termine: planningEstTermine(p),
+    cible: p.cible,
+    totalSeances,
+    seancesFaites,
+    tauxReussite,
+    totalMinutes,
+    apprentissage,
+    annales,
+    revisionFinale,
+  };
+}

@@ -21,7 +21,7 @@ import {
   type LucideIcon,
 } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { BackHandler,  StyleSheet, Text, TextInput, View  } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -57,7 +57,7 @@ import {
   type PhasePlanning,
   type Planning as DonneesPlanning,
   type TypeContenuPlanning,
-} from '@/services/planning';
+ } from '@/services/planning';
 import { lireProfil, type Profil } from '@/services/profil';
 import { AUTRES, couleurMatiere, lireCours, lireLues, nomCourt, programmeDu } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -346,6 +346,18 @@ function AssistantPlanning({
         : {},
     });
   };
+
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (etape > 1) {
+        setEtape((c) => (c - 1) as EtapeAssistant);
+      } else {
+        onFermer();
+      }
+      return true;
+    });
+    return () => sub.remove();
+  }, [etape, onFermer]);
 
   const passerSuivant = () => {
     if (etape === 1) passerEtape(2, 'matieres');
@@ -1211,6 +1223,14 @@ export function Planning() {
     router.replace('/');
   }, []);
 
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      fermer();
+      return true;
+    });
+    return () => sub.remove();
+  }, [fermer]);
+
   const creer = useCallback(
     async ({ minutes, options }: { minutes: number; options: OptionsCreationPlanning }) => {
       if (!profil?.niveau || !profil.pays) return setEtat({ type: 'sansEcheance' });
@@ -1370,6 +1390,8 @@ const styles = StyleSheet.create({
   },
   enteteTuileRappel: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   ligneHeureRappel: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  banniereTermine: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
+  texteBanniereTermine: { flex: 1 },
   piedAssistant: { gap: espace[2] },
   ligneRappel: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   badgeRecommande: { paddingHorizontal: espace[2], paddingVertical: 2, borderWidth: bord.normal, borderRadius: rayon.s },

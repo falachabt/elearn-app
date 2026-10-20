@@ -1,3 +1,4 @@
+import { lirePlanning, planningEstTermine, lirePlanningTermineVu, noterPlanningTermineVu } from '@/services/planning';
 import { Ionicons } from '@expo/vector-icons';
 import { ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
@@ -212,6 +213,21 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
           setSerieEnDanger(true);
           setFeuilleSerie(true);
         }
+        // Bilan automatique quand le planning est terminé :
+        if (actif && idUtilisateur && pret && pret !== 'hors-ligne') {
+          try {
+            const { planning: pl } = await lirePlanning(getSupabase(), idUtilisateur);
+            if (actif && pl && planningEstTermine(pl)) {
+              const dejaVu = await lirePlanningTermineVu(idUtilisateur);
+              if (actif && !dejaVu) {
+                await noterPlanningTermineVu(idUtilisateur);
+                router.push({ pathname: '/planning/termine', params: { source: 'auto' } });
+                return;
+              }
+            }
+          } catch {}
+        }
+
         if (!pret) return;
         // Tirée dès l'accueil : la mission est prête (et jouable hors ligne) avant le premier appui.
         const mission = await chargerMission(getSupabase(), {

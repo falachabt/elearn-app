@@ -122,7 +122,9 @@ export function suivreOuvertures(): () => void {
     suivre('notification_opened', { type: typeof type === 'string' ? type : 'inconnu' });
     
     // Correction par photo prête (`photo_ready`, serveur ou rappel local) : `destinationDe` ouvre la correction ou l'historique.
-    if (type === 'credits_refilled') {
+    if (type === 'study_plan_completed' || type === 'study_plan_finished') {
+      router.push({ pathname: '/planning/termine', params: { source: 'push' } });
+    } else if (type === 'credits_refilled') {
       // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
       router.push('/moi');
     } else if (type === 'mission') {

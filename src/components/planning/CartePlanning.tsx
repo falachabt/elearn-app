@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type AcquisesEntrainement, type LeconsValidees, type Planning } from '@/services/planning';
+import { planningEstTermine,  etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type AcquisesEntrainement, type LeconsValidees, type Planning  } from '@/services/planning';
 import { lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -50,9 +50,12 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
   const aujourdhui = jourLocalTexte();
   const seance = planning.statut === 'ready' ? seanceDe(planning, aujourdhui) : null;
   const progression = seance ? progressionSeance(seance, lues, acquises) : null;
+  const termine = planning.statut === 'ready' && planningEstTermine(planning, aujourdhui);
   const sousTitre =
-    planning.statut !== 'ready'
-      ? t('planning.carte.choisir')
+    termine
+      ? t('planning.carte.termine')
+      : planning.statut !== 'ready'
+        ? t('planning.carte.choisir')
       : seance && seanceTerminee(seance, lues, acquises)
         ? t('planning.carte.fait')
         : seance
@@ -72,7 +75,7 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
     <Appui
       accessibilityRole="button"
       accessibilityLabel={`${t('planning.carte.titre')}. ${sousTitre}`}
-      onPress={() => router.push({ pathname: '/planning', params: { source: 'accueil' } })}
+      onPress={() => router.push(termine ? { pathname: '/planning/termine', params: { source: 'carte' } } : { pathname: '/planning', params: { source: 'accueil' } })}
       decalage={4}
       rayon={rayon.l}
     >

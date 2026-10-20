@@ -196,6 +196,8 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const semaine = typeof data?.week_start === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.week_start) ? data.week_start : null;
     return { pathname: '/ma-semaine', params: { ...(semaine ? { semaine } : {}), source: origine } };
   }
+  // Planning d'études terminé : bilan récapitulatif
+  if (type === 'study_plan_completed' || type === 'study_plan_finished' || data?.screen === '/planning/termine') return { pathname: '/planning/termine', params: { source: origine } };
   // Planning d'études prêt ou changé : l'écran du planning, avec l'origine du toucher pour la mesure.
   if (type === 'study_plan_ready' || type === 'study_plan_updated') return { pathname: '/planning', params: { source: origine } };
   if ((categorie === 'answers' || categorie === 'polls') && postId) return { pathname: '/question', params: { id: postId } };
