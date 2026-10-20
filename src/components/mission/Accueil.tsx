@@ -233,15 +233,19 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
 
   const matieres = [...new Set(etat.mission?.questions.map((q) => q.libelleMatiere).filter((m): m is string => !!m) ?? [])].slice(0, 3);
   const surVert = theme.texte.surCouleur;
+  const dateCible = echeance?.dateCible ?? CIBLE_EXEMPLE;
+  const anneeCible = dateCible.getFullYear();
+  const nomBase = echeance?.libelle ?? 'BEPC';
+  const nomAvecAnnee = /\b20\d{2}\b/.test(nomBase) ? nomBase : `${nomBase} ${anneeCible}`;
   const elementCompteARebours =
     echeance || __DEV__ ? (
       <CompteARebours
         type={echeance?.type ?? 'examen'}
-        cible={echeance?.dateCible ?? CIBLE_EXEMPLE}
+        cible={dateCible}
         libelle={
           echeance
-            ? `${echeance.libelle} · ${echeance.dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
-            : 'EXEMPLE · BEPC'
+            ? `${nomAvecAnnee} · ${dateCible.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}`
+            : `EXEMPLE · ${nomAvecAnnee}`
         }
         estime={echeance ? echeance.statut === 'reprise' : true}
       />
@@ -249,7 +253,7 @@ export function Accueil({ maintenant }: { maintenant?: Date }) {
 
   return (
     <View style={styles.racine}>
-    <Ecran insetBas={false} pied={elementCompteARebours}>
+    <Ecran insetBas={false} pied={elementCompteARebours} piedStyle={elementCompteARebours ? styles.piedCompteARebours : undefined}>
       <Apparition>
         <View style={styles.entete}>
           <SelecteurClasse profil={profil} />
@@ -393,5 +397,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 16,
     maxWidth: 160,
+  },
+  piedCompteARebours: {
+    paddingTop: espace[1],
+    paddingBottom: 0,
+    gap: 0,
   },
 });

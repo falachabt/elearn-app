@@ -1,9 +1,6 @@
 import { render, waitFor } from '@testing-library/react-native';
 import RetourAuth from '../callback';
 
-// @ts-expect-error test act env
-globalThis.IS_REACT_ACT_ENVIRONMENT = true;
-
 let mockParams: Record<string, string | undefined> = {};
 let mockSession: { user: { is_anonymous: boolean } } | null = null;
 const mockExchange = jest.fn();
@@ -11,11 +8,11 @@ const mockSetSession = jest.fn();
 const mockGetSession = jest.fn();
 
 jest.mock('expo-router', () => {
-  const React = require('react');
-  const { Text } = require('react-native');
+  const R = jest.requireActual('react');
+  const RN = jest.requireActual('react-native');
   return {
     useLocalSearchParams: () => mockParams,
-    Redirect: ({ href }: { href: string }) => React.createElement(Text, { testID: 'redirect' }, href),
+    Redirect: ({ href }: { href: string }) => R.createElement(RN.Text, { testID: 'redirect' }, href),
   };
 });
 

@@ -71,6 +71,13 @@ export function texteInfobulle(d: Decompte, libelles: { jours: string; heures: s
  * alignée à droite sur sa propre rangée (sans jamais chevaucher un autre composant). Un appui sur l'infobulle réaffiche
  * la carte complète pendant 6 secondes avant de revenir en infobulle.
  */
+function formaterNomAvecAnnee(libelle: string, cible: Date): string {
+  const nomBrut = libelle.split("·")[0].trim();
+  const matchAnnee = libelle.match(/\b(20\d{2})\b/);
+  const annee = matchAnnee ? matchAnnee[1] : String(cible.getFullYear());
+  return /\b20\d{2}\b/.test(nomBrut) ? nomBrut : `${nomBrut} ${annee}`;
+}
+
 export function CompteARebours({ type, cible, libelle, estime = false }: { type: TypeEcheance; cible: Date; libelle: string; estime?: boolean }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
@@ -126,6 +133,7 @@ export function CompteARebours({ type, cible, libelle, estime = false }: { type:
   const fond = proche ? theme.etat.alerteDoux : type === 'examen' ? theme.accent.soleil : type === 'concours' ? theme.etat.infoDoux : theme.fond.surface;
   // Jaune et orange vifs : texte noir. Surfaces claires ou sombres du thème : texte du thème.
   const encre = type === 'examen' && !proche ? theme.texte.surCouleur : theme.texte.principal;
+  const nomInfobulle = formaterNomAvecAnnee(libelle, cible);
   const resumeCourt = texteInfobulle(d, {
     jours: t('accueil.compteARebours.jours'),
     heures: t('accueil.compteARebours.heures'),
@@ -150,7 +158,7 @@ export function CompteARebours({ type, cible, libelle, estime = false }: { type:
                 <CalendarDays size={14} strokeWidth={2.2} color={theme.texte.principal} />
               </View>
               <Text numberOfLines={1} style={[typo.etiquette, styles.libelleInfobulle, { color: encre }]}>
-                {libelle.split('·')[0].trim()}
+                {nomInfobulle}
               </Text>
               <View style={[styles.separateurInfobulle, { backgroundColor: theme.bord.fort }]} />
               <Text style={[typo.texteFort, { color: encre }]}>{resumeCourt}</Text>
@@ -223,6 +231,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  libelleInfobulle: { maxWidth: 140 },
+  libelleInfobulle: { maxWidth: 180 },
   separateurInfobulle: { width: 1.5, height: 14, opacity: 0.35 },
 });
