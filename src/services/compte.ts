@@ -70,7 +70,22 @@ export function cleErreur(erreur: unknown): CleTexte {
 
 export const estInvite = (user?: Pick<User, 'is_anonymous'> | null) => !!user?.is_anonymous;
 
-async function confirmerBesoinReprise(client: Client, inviteId: string, compteId: string): Promise<boolean> {
+/** Borne une étape annexe : la connexion ne doit jamais rester suspendue à la reprise de progression invitée. */
+function avecDelai<T>(p: Promise<T>, ms: number, repli: T): Promise<T> {
+  return new Promise<T>((resolve) => {
+    const minuteur = setTimeout(() => resolve(repli), ms);
+    p.then(
+      (v) => { clearTimeout(minuteur); resolve(v); },
+      () => { clearTimeout(minuteur); resolve(repli); },
+    );
+  });
+}
+
+function confirmerBesoinReprise(client: Client, inviteId: string, compteId: string): Promise<boolean> {
+  return avecDelai(confirmerBesoinRepriseSansDelai(client, inviteId, compteId), 8000, false);
+}
+
+async function confirmerBesoinRepriseSansDelai(client: Client, inviteId: string, compteId: string): Promise<boolean> {
   if (inviteId === compteId) {
     await effacerRepriseInvite();
     return false;
@@ -256,7 +271,7 @@ export async function connecterOAuth(client: Client, fournisseur: FournisseurOAu
         reprise = false;
       }
     }
-    const avecCode = await rattacherCode(client, codeParrainage);
+    const avecCode = await avecDelai(rattacherCode(client, codeParrainage), 5000, false);
     if (rattachement && conversionInvite) {
       suivre('compte_cree', { methode: fournisseur, conversion_invite: true, avec_parrainage: avecCode });
       if (avecCode) suivre('referral_signup', {});

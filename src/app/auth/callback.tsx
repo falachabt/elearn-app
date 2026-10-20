@@ -1,4 +1,6 @@
 import { Redirect } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { getSupabase } from '@/services/supabase';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Logo } from '@/components/Logo';
@@ -19,7 +21,23 @@ export default function RetourAuth() {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { session } = useSession();
+  const [abandon, setAbandon] = useState<'moi' | 'connexion' | null>(null);
+  // Filet : si l'état de session tarde, on lit la vraie session stockée au lieu d'attendre indéfiniment.
+  useEffect(() => {
+    let actif = true;
+    const minuteur = setTimeout(() => {
+      getSupabase().auth.getSession()
+        .then(({ data }) => actif && setAbandon(data.session && !data.session.user.is_anonymous ? 'moi' : 'connexion'))
+        .catch(() => actif && setAbandon('connexion'));
+    }, 6000);
+    return () => {
+      actif = false;
+      clearTimeout(minuteur);
+    };
+  }, []);
   if (session && !session.user.is_anonymous) return <Redirect href="/moi" />;
+  if (abandon === 'moi') return <Redirect href="/moi" />;
+  if (abandon === 'connexion') return <Redirect href="/compte/connexion" />;
   return (
     <View style={[styles.racine, { backgroundColor: theme.fond.app }]}>
       <View style={styles.haut}>
