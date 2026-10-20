@@ -183,9 +183,9 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
           </View>
           {pied ? (
             piedPleineLargeur ? (
-              <View testID="ecran-pied-large" style={[{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.surface }, piedStyle]}>{pied}</View>
+              <View testID="ecran-pied-large" style={[{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.app }, piedStyle]}>{pied}</View>
             ) : (
-              <View testID="ecran-pied" style={[styles.pied, { paddingBottom: clavier ? espace[3] : (insetBas ? insets.bottom : 0) + espace[5] }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.surface }, piedStyle]}>{pied}</View>
+              <View testID="ecran-pied" style={[styles.pied, { paddingBottom: clavier ? espace[3] : (insetBas ? insets.bottom : 0) + espace[5] }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.app }, piedStyle]}>{pied}</View>
             )
           ) : null}
         </View>
