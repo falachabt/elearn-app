@@ -123,6 +123,24 @@ const PARTIES_DEMO = [
   { partie: 5, n: 20, c: 13 }, { partie: 6, n: 10, c: 6 }, { partie: 7, n: 30, c: 19 },
 ];
 
+/** Test terminé de démonstration (T7) : une partie, dix questions, six bonnes réponses. */
+const TENTATIVE_DEMO_TERMINEE: TentativeListee = {
+  id: 'demo-tentative-terminee',
+  kind: 'mini',
+  part: 2,
+  length: 10,
+  status: 'finished',
+  scoreMin: null,
+  scoreMax: null,
+  startedAt: '2026-10-17T18:00:00.000Z',
+  finishedAt: '2026-10-17T18:12:00.000Z',
+  perPart: { '2': { answered: 10, correct: 6 } },
+  timePerPart: null,
+  creditsSpent: 1,
+  refunded: false,
+  questions: [],
+};
+
 /** Statistiques de démonstration (outil de développement) : activées par `EXPO_PUBLIC_CERT_DEMO_STATS=1`, jamais en production. */
 function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>[0]): Stats {
   return {
@@ -354,6 +372,8 @@ export const apiDemo: CertApi = {
     return { statut: 'abandoned' as const, rembourse: true, solde: 0 };
   },
   async listerTentatives() {
+    // Test terminé de démonstration (T7) : détail capturable sans avoir passé de test (EXPO_PUBLIC_CERT_DEMO_STATS=1).
+    if (process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1') return [TENTATIVE_DEMO_TERMINEE];
     return (await lire()).historique;
   },
   async lireStats(_exam, periode, jour): Promise<Stats> {
