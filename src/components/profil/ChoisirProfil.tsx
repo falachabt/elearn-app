@@ -119,7 +119,19 @@ export function ChoisirProfil() {
             annuler={t('profilChoix.annuler')}
             onConfirmer={() => void (feuille === 'passer' ? confirmerPasser() : confirmerRevenir())}
             onAnnuler={fermerFeuille}
-          />
+          >
+            {feuille === 'passer' ? (
+              <LigneChoix
+                visuel={<LogoToeic />}
+                titre={t('profilChoix.toeicTitre')}
+                aide={t('profilChoix.toeicAideSeul')}
+                radio
+                actif
+                onPress={() => undefined}
+                droite={actuel === 'toeic' ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('profilChoix.actuel')}</Text> : undefined}
+              />
+            ) : null}
+          </FeuilleChangementProfil>
         </View>
       ) : null}
     </View>
