@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Award, GraduationCap, Trophy } from 'lucide-react-native';
+import { GraduationCap, Trophy } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -11,6 +11,7 @@ import { typo } from '@/theme/theme';
 
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
+import { LogoToeic } from '../certification/LogoToeic';
 import { EnteteToeic, LigneChoix } from '../certification/ui';
 import { FeuilleChangementProfil, type EtatChangement } from './FeuilleChangementProfil';
 
@@ -71,6 +72,7 @@ export function ChoisirProfil() {
     setEtat('charge');
     try {
       await passerAuToeic();
+      router.dismissAll();
       router.replace('/');
     } catch {
       setEtat('erreur');
@@ -82,6 +84,7 @@ export function ChoisirProfil() {
     try {
       const restaure = choix === 'secondaire' ? await revenirAuSecondaire() : false;
       if (restaure) {
+        router.dismissAll();
         router.replace('/');
         return;
       }
@@ -105,7 +108,7 @@ export function ChoisirProfil() {
         <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('profilChoix.intro')}</Text>
         <LigneChoix icone={GraduationCap} titre={t('profilChoix.secondaire')} aide={t('profilChoix.secondaireAide')} radio actif={choix === 'secondaire'} droite={badge('secondaire')} onPress={() => setChoix('secondaire')} />
         <LigneChoix icone={Trophy} titre={t('profilChoix.concours')} aide={t('profilChoix.concoursAide')} radio actif={choix === 'concours'} droite={badge('concours')} onPress={() => setChoix('concours')} />
-        <LigneChoix icone={Award} titre={t('profilChoix.toeic')} aide={t('profilChoix.toeicAide')} radio actif={choix === 'toeic'} droite={badge('toeic')} onPress={() => setChoix('toeic')} />
+        <LigneChoix visuel={<LogoToeic />} titre={t('profilChoix.toeic')} aide={t('profilChoix.toeicAide')} radio actif={choix === 'toeic'} droite={badge('toeic')} onPress={() => setChoix('toeic')} />
       </Ecran>
       {feuille ? (
         <View style={styles.voile}>

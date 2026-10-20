@@ -1,7 +1,6 @@
 import { router } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import { Image } from 'expo-image';
-import { Languages } from 'lucide-react-native';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -19,6 +18,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuillePays } from '../pass/FeuillePays';
+import { LogoToeic } from './LogoToeic';
 import { EnteteToeic, LigneChoix } from './ui';
 
 function regionTelephone(): string | null {
@@ -101,7 +101,7 @@ export function ChoixCertification() {
         examens.map((e) => (
           <LigneChoix
             key={e.code}
-            icone={Languages}
+            visuel={<LogoToeic />}
             radio
             actif={choisi === e.code}
             titre={e.name}

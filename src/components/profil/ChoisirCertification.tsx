@@ -1,5 +1,4 @@
 import { router } from 'expo-router';
-import { Award } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { Text } from 'react-native';
 
@@ -10,6 +9,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { typo } from '@/theme/theme';
 
 import { Ecran } from '../Ecran';
+import { LogoToeic } from '../certification/LogoToeic';
 import { EnteteToeic, LigneChoix } from '../certification/ui';
 import { FeuilleChangementProfil, type EtatChangement } from './FeuilleChangementProfil';
 
@@ -59,7 +59,7 @@ export function ChoisirCertification() {
         onAnnuler={() => router.back()}
       >
         <LigneChoix
-          icone={Award}
+          visuel={<LogoToeic />}
           titre={t('profilChoix.toeicTitre')}
           aide={t('profilChoix.toeicAideSeul')}
           radio

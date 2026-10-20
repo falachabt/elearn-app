@@ -2,8 +2,8 @@ import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { getLocales } from 'expo-localization';
 import { Image } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Award, Camera, ChevronRight, GraduationCap, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Camera, ChevronRight, GraduationCap, Trophy, Zap, type LucideIcon } from 'lucide-react-native';
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -28,6 +28,7 @@ import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Apparition } from './Apparition';
 import { Appui } from './Appui';
+import { LogoToeic } from './certification/LogoToeic';
 import { Bouton } from './Bouton';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
@@ -39,7 +40,9 @@ import { FeuillePays } from './pass/FeuillePays';
 type ChoixCarteProps = {
   titre: string;
   aide: string;
-  icone: LucideIcon;
+  icone?: LucideIcon;
+  /** Remplace l'icône (logo officiel du TOEIC). */
+  visuel?: ReactNode;
   couleurIcone?: string;
   couleurFondIcone?: string;
   plein?: 'marque' | 'soleil';
@@ -48,7 +51,7 @@ type ChoixCarteProps = {
 };
 
 /** Grande carte de choix (maquettes A1 et A3) : icône Lucide, titre, aide, chevron. */
-function ChoixCarte({ titre, aide, icone: Icone, couleurIcone, couleurFondIcone, plein, etiquette, onPress }: ChoixCarteProps) {
+function ChoixCarte({ titre, aide, icone: Icone, visuel, couleurIcone, couleurFondIcone, plein, etiquette, onPress }: ChoixCarteProps) {
   const { theme } = useTheme();
   const fond = plein === 'marque' ? theme.marque.principale : plein === 'soleil' ? theme.accent.soleil : theme.fond.surface;
   const texte = theme.texte.principal;
@@ -59,7 +62,7 @@ function ChoixCarte({ titre, aide, icone: Icone, couleurIcone, couleurFondIcone,
     <Appui accessibilityRole="button" accessibilityLabel={titre} onPress={onPress} decalage={4} ombre={ombre.m} couleurOmbre={theme.ombre} rayon={rayon.l} retour>
       <View style={[styles.choix, { backgroundColor: fond, borderColor: theme.bord.fort }]}>
         <View style={[styles.icone, { backgroundColor: fondIcone, borderColor: theme.bord.fort }]}>
-          <Icone size={20} color={iconeCouleur} strokeWidth={2} />
+          {visuel ?? (Icone ? <Icone size={20} color={iconeCouleur} strokeWidth={2} /> : null)}
         </View>
         <View style={styles.choixTexte}>
           {etiquette ? <Etiquette texte={etiquette} /> : null}
@@ -119,7 +122,7 @@ export function Bienvenue() {
       {certification ? (
         <Apparition delai={300}>
           <ChoixCarte
-            icone={Award}
+            visuel={<LogoToeic />}
             couleurIcone={theme.texte.principal}
             couleurFondIcone={theme.accent.soleilTresDoux}
             titre={t('certification.carte')}
@@ -271,8 +274,9 @@ export function ChoixClasse() {
         statut: concours ? 'concours' : 'eleve',
         ...(serieChoix ? { serie: serieChoix.nom } : {}),
       });
-      if (router.canGoBack()) router.back();
-      else router.replace('/moi');
+      // Un changement de profil ramène à l'accueil du nouveau profil, quel que soit le parcours d'origine.
+      router.dismissAll();
+      router.replace('/');
       return;
     }
     await enregistrerProfil({

@@ -32,7 +32,7 @@ export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler
 
   if (etat === 'charge') {
     return (
-      <Carte>
+      <Carte style={styles.feuille}>
         <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
           {t('profilChoix.chargeTitre')}
         </Text>
@@ -44,7 +44,7 @@ export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler
 
   if (etat === 'erreur') {
     return (
-      <Carte>
+      <Carte style={styles.feuille}>
         <View style={styles.ligne}>
           <TriangleAlert size={20} color={theme.etat.erreur} strokeWidth={2} />
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
@@ -59,7 +59,7 @@ export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler
   }
 
   return (
-    <Carte>
+    <Carte style={styles.feuille}>
       <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>
         {titre}
       </Text>
@@ -71,4 +71,7 @@ export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler
   );
 }
 
-const styles = StyleSheet.create({ ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[2] } });
+const styles = StyleSheet.create({
+  ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
+  feuille: { gap: espace[4] },
+});

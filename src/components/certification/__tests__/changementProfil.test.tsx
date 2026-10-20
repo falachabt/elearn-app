@@ -15,7 +15,7 @@ import { ChoisirProfil } from '../../profil/ChoisirProfil';
 import { monter } from './harnais';
 
 jest.mock('expo-router', () => ({
-  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
+  router: { push: jest.fn(), replace: jest.fn(), back: jest.fn(), dismissAll: jest.fn(), canGoBack: jest.fn(() => true) },
   useFocusEffect: (cb: () => void | (() => void)) => {
     const { useEffect } = jest.requireActual<typeof import('react')>('react');
     useEffect(() => cb(), [cb]);

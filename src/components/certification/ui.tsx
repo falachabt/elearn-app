@@ -26,7 +26,9 @@ export function EnteteToeic({ titre, onRetour, droite }: { titre: string; onReto
 }
 
 type LigneProps = {
-  icone: LucideIcon;
+  icone?: LucideIcon;
+  /** Remplace l'icône de la pastille (logo officiel du TOEIC). */
+  visuel?: ReactNode;
   titre: string;
   aide?: string;
   /** Mode radio : `actif` coche la ligne. Sans `radio`, un chevron (ou rien si `onPress` absent) termine la ligne. */
@@ -39,12 +41,12 @@ type LigneProps = {
 };
 
 /** Ligne de choix : pastille carrée avec icône Lucide, titre, aide, radio ou chevron (A2, A4, A5, A7). */
-export function LigneChoix({ icone: Icone, titre, aide, radio, actif, onPress, accessibilityLabel, droite }: LigneProps) {
+export function LigneChoix({ icone: Icone, visuel, titre, aide, radio, actif, onPress, accessibilityLabel, droite }: LigneProps) {
   const { theme } = useTheme();
   const contenu = (
     <View style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
       <View style={[styles.pastille, { backgroundColor: theme.accent.soleilTresDoux, borderColor: theme.bord.fort }]}>
-        <Icone size={20} color={theme.texte.principal} strokeWidth={2} />
+        {visuel ?? (Icone ? <Icone size={20} color={theme.texte.principal} strokeWidth={2} /> : null)}
       </View>
       <View style={styles.texte}>
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>

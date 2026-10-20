@@ -154,14 +154,15 @@ describe.each(['fr', 'en'] as const)('H1, H3, H6 · profil (%s)', (langue) => {
   });
 });
 
-it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubliée, retour', async () => {
+it('changer de classe depuis Moi : profil gardé terminé, mission du jour oubliée, retour à l’accueil', async () => {
   await act(() => changerLangue('fr'));
   mockParams = { modifier: '1' };
   await AsyncStorage.setItem('mission.jour', '{}');
   await monter(<ChoixClasse />);
   await fireEvent.press(await screen.findByText('Tle'));
   await fireEvent.press(screen.getByRole('button', { name: fr.classe.enregistrer }));
-  await waitFor(() => expect(router.back).toHaveBeenCalled());
+  await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/'));
+  expect(router.dismissAll).toHaveBeenCalled();
   expect(await lireProfil()).toEqual({ type: 'eleve', niveau: 'Tle', pays: 'CM', concours: null, termine: true });
   expect(await AsyncStorage.getItem('mission.jour')).toBeNull();
 });
