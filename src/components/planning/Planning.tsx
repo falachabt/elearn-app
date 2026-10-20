@@ -654,33 +654,44 @@ function AssistantPlanning({
             <Text style={[typo.texte, { color: theme.texte.secondaire }]}>{t('planning.etape3SousTitre')}</Text>
           </View>
 
-          <View style={styles.choix}>
+          <View style={styles.grilleRappels}>
             {HEURES_RAPPEL_PROPOSEES.map((heure) => {
               const choisi = heure === heureFinale && saisieHeure.trim() === '';
               const libelleHeure = heure.replace(':', ' h ');
               return (
-                <Appui
-                  key={heure}
-                  accessibilityRole="radio"
-                  accessibilityState={{ selected: choisi }}
-                  accessibilityLabel={t('planning.rappelHeure', { heure: libelleHeure })}
-                  onPress={() => choisirHeureProposee(heure)}
-                  decalage={0}
-                  rayon={rayon.m}
-                >
-                  <View style={[styles.option, { borderColor: theme.bord.fort, backgroundColor: choisi ? theme.marque.principale : theme.fond.surface }]}>
-                    <View style={styles.ligneRappel}>
-                      <Bell size={18} strokeWidth={2.2} color={choisi ? theme.texte.surCouleur : theme.texte.principal} />
-                      <Text style={[typo.h3, { color: choisi ? theme.texte.surCouleur : theme.texte.principal }]}>{libelleHeure}</Text>
+                <View key={heure} style={styles.celluleRappel}>
+                  <Appui
+                    accessibilityRole="radio"
+                    accessibilityState={{ selected: choisi }}
+                    accessibilityLabel={t('planning.rappelHeure', { heure: libelleHeure })}
+                    onPress={() => choisirHeureProposee(heure)}
+                    decalage={0}
+                    rayon={rayon.m}
+                  >
+                    <View
+                      style={[
+                        styles.tuileRappel,
+                        {
+                          borderColor: theme.bord.fort,
+                          backgroundColor: choisi ? theme.marque.principale : theme.fond.surface,
+                        },
+                      ]}
+                    >
+                      <View style={styles.enteteTuileRappel}>
+                        <View style={styles.ligneHeureRappel}>
+                          <Bell size={16} strokeWidth={2.2} color={choisi ? theme.texte.surCouleur : theme.texte.principal} />
+                          <Text style={[typo.h3, { color: choisi ? theme.texte.surCouleur : theme.texte.principal }]}>{libelleHeure}</Text>
+                        </View>
+                        {choisi ? <Check size={18} strokeWidth={2.5} color={theme.texte.surCouleur} /> : null}
+                      </View>
                       {heure === RAPPEL_PAR_DEFAUT ? (
-                        <View style={[styles.badgeRecommande, { borderColor: theme.bord.fort, backgroundColor: theme.accent.soleil }]}>
+                        <View style={[styles.badgeRecommande, { alignSelf: 'flex-start', borderColor: theme.bord.fort, backgroundColor: theme.accent.soleil }]}>
                           <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('planning.recommande')}</Text>
                         </View>
                       ) : null}
                     </View>
-                    {choisi ? <Check size={20} strokeWidth={2} color={theme.texte.surCouleur} /> : null}
-                  </View>
-                </Appui>
+                  </Appui>
+                </View>
               );
             })}
           </View>
