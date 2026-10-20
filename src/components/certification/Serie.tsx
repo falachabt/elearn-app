@@ -184,7 +184,7 @@ export function Serie() {
       <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={entete} />
       {/* B1 à B7 : la question reste à l'écran après validation (photo, audio, passage gardés) ; le corrigé s'ajoute dessous. */}
       <QuestionExercice
-        key={question.id}
+        key={`question-${question.id}`}
         question={question}
         choix={repondue ? (reponse?.chosen ?? null) : choix}
         onChoix={setChoix}
@@ -197,7 +197,7 @@ export function Serie() {
       />
       {!repondue ? null : resultat ? (
         <ExplicationCert
-          key={question.id}
+          key={`${question.id}-correction`}
           question={question}
           resultat={resultat}
           choix={reponse?.chosen ?? null}

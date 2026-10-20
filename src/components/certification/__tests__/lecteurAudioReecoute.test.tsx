@@ -1,0 +1,39 @@
+import { act, fireEvent, screen } from '@testing-library/react-native';
+
+import { fr } from '@/i18n/fr';
+
+import { LecteurAudio } from '../LecteurAudio';
+import { monter } from './harnais';
+
+const t = fr.certification;
+
+const ecoutes: ((statut: Record<string, unknown>) => void)[] = [];
+
+jest.mock('expo-audio', () => ({
+  setAudioModeAsync: jest.fn(() => Promise.resolve()),
+  createAudioPlayer: jest.fn(() => ({
+    addListener: (_nom: string, cb: (s: Record<string, unknown>) => void) => {
+      ecoutes.push(cb);
+    },
+    play: jest.fn(),
+    pause: jest.fn(),
+    seekTo: jest.fn(() => Promise.resolve()),
+    remove: jest.fn(),
+  })),
+}));
+
+describe('LecteurAudio : réécoute après une écoute complète (entraînement)', () => {
+  beforeEach(() => {
+    ecoutes.length = 0;
+  });
+
+  it('propose de réécouter une fois la piste finie, sans écoute unique', async () => {
+    await monter(<LecteurAudio uri="https://exemple.test/toeic/audio/p1_1.mp3" libelle="Question 1" delaiEchecS={3} ecran="serie" onPasser={() => {}} />);
+    fireEvent.press(screen.getByLabelText(t.exercice.ecouter));
+    await act(async () => {
+      ecoutes.forEach((cb) => cb({ isLoaded: true, playing: false, currentTime: 12, duration: 12, didJustFinish: true }));
+    });
+    expect(screen.getByLabelText(t.exercice.reecouter)).toBeTruthy();
+    expect(screen.getByText(t.exercice.reecouter)).toBeTruthy();
+  });
+});

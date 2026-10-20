@@ -2257,6 +2257,7 @@ export const fr = {
     exercice: {
       enCours: 'Écoute en cours',
       ecouter: 'Écouter',
+      reecouter: 'Réécouter',
       pause: 'Pause',
       question: 'Question {{n}}',
       choisi: 'Choisi',

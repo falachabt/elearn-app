@@ -117,11 +117,13 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     }
   };
   const Icone = enLecture ? Pause : Play;
+  // Écoute déjà faite : en entraînement, le bouton propose de réécouter (le mode examen reste à écoute unique).
+  const reecoute = !enLecture && !unique && etat.jouee;
   return (
     <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
       <Appui
         accessibilityRole="button"
-        accessibilityLabel={enLecture ? t('certification.exercice.pause') : t('certification.exercice.ecouter')}
+        accessibilityLabel={enLecture ? t('certification.exercice.pause') : reecoute ? t('certification.exercice.reecouter') : t('certification.exercice.ecouter')}
         accessibilityState={{ disabled: bloque }}
         disabled={bloque}
         onPress={action}
@@ -134,7 +136,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
         </View>
       </Appui>
       <View style={styles.centre}>
-        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{enLecture ? t('certification.exercice.enCours') : libelle}</Text>
+        <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{enLecture ? t('certification.exercice.enCours') : reecoute ? t('certification.exercice.reecouter') : libelle}</Text>
         <BarreProgression pourcent={etat.duree > 0 ? (etat.position / etat.duree) * 100 : etat.phase === 'fini' ? 100 : 0} hauteur={8} libelle={libelle} />
         {bloque ? (
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.exercice.ecouteJouee')}</Text>
