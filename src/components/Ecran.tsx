@@ -49,6 +49,8 @@ type Props = {
   pied?: ReactNode;
   /** Style personnalisé du pied (padding, espacement). */
   piedStyle?: StyleProp<ViewStyle>;
+  /** Affiche une bordure en haut du pied pour le séparer visuellement du contenu défilant (désactivé par défaut). */
+  piedBordure?: boolean;
   /** Pied pleine largeur, bord à bord, collé au clavier (barre de saisie) : sans marge, et sans inset du bas quand le clavier est ouvert. */
   piedPleineLargeur?: boolean;
   /** Revient en haut du défilement chaque fois que cette valeur change (ex. bascule énoncé / corrigé). */
@@ -67,7 +69,7 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedStyle, piedPleineLargeur, remonterSur, onScroll, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedStyle, piedBordure, piedPleineLargeur, remonterSur, onScroll, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
@@ -181,9 +183,9 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
           </View>
           {pied ? (
             piedPleineLargeur ? (
-              <View testID="ecran-pied-large" style={[{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }, piedStyle]}>{pied}</View>
+              <View testID="ecran-pied-large" style={[{ paddingBottom: insetBas && !clavier ? insets.bottom : 0 }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.surface }, piedStyle]}>{pied}</View>
             ) : (
-              <View testID="ecran-pied" style={[styles.pied, { paddingBottom: clavier ? espace[3] : (insetBas ? insets.bottom : 0) + espace[5] }, piedStyle]}>{pied}</View>
+              <View testID="ecran-pied" style={[styles.pied, { paddingBottom: clavier ? espace[3] : (insetBas ? insets.bottom : 0) + espace[5] }, piedBordure && { borderTopWidth: bord.normal, borderTopColor: theme.bord.fort, backgroundColor: theme.fond.surface }, piedStyle]}>{pied}</View>
             )
           ) : null}
         </View>

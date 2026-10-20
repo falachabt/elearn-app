@@ -374,7 +374,7 @@ function AssistantPlanning({
   );
 
   return (
-    <Ecran entete={<Entete onFermer={onFermer} />} remonterSur={etape} pied={piedAssistant}>
+    <Ecran entete={<Entete onFermer={onFermer} />} remonterSur={etape} piedBordure pied={piedAssistant}>
       <View style={styles.bloc}>
         {/* Barre de progression des 5 étapes façon Onboarding (cliquable pour passer d'une étape à l'autre) */}
       <View style={styles.barreEtapes} accessibilityLabel={t('planning.etapeIndicateur', { n: etape, total: 5 })}>
