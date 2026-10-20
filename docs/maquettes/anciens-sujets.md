@@ -48,10 +48,17 @@ Un document déjà ouvert ne coûte plus rien : il s'ouvre directement, sans feu
 - **Quitter la page** : bouton « Quitter, me prévenir quand c'est prêt » dès que les feuilles sont arrivées au serveur ; la connexion est coupée, le serveur termine et envoie la notification `photo_ready` (données `exam_attempt_id`, `paper_kind`, `paper_ref`) ; le toucher ouvre `/annales/session`. Quitter avant l'arrivée des feuilles n'est pas proposé : rien ne serait corrigé.
 - Tests : états des étapes, quitter (connexion coupée, aucune ouverture tardive de la session), illisible, suppression, aperçu (pivoter, recadrer, échec), routage de la notification, qualité des feuilles.
 
-## Visite guidée de la prise de photos (demande de Benny du 20 octobre)
-- **Quand** : une seule fois, à la première ouverture de la prise de photos (valeur mémorisée sur l'appareil). « Passer » la ferme et compte comme vue. Jamais bloquante.
-- **Contenu** (3 étapes, tutoiement) : 1. photographier chaque feuille dans l'ordre, bien cadrée et éclairée ; 2. vérifier les miniatures (toucher pour voir, pivoter, recadrer ; croix pour supprimer) ; 3. Terminer, ordre, envoi à l'IA, possibilité de quitter et d'être prévenu.
-- **Design** : fond sombre voilé, carte neo-brutaliste (bordure 2 px, ombre dure 4 px, tokens du thème, clair et sombre), indicateur d'étape et trois repères, bouton principal « Suivant » puis « Compris », bouton texte « Passer ». Pas d'emoji, pas de spot sur un élément précis (mesure native fragile) : la carte nomme l'élément.
-- **Inspiration** : le tour de l'ancienne app (`@wrack/react-native-tour-guide`, tour une seule fois, étapes, passer). Pas de nouvelle dépendance ici (AGENTS §17) : composant maison.
+## Visite guidée interactive de la prise de photos (demandes de Benny du 20 octobre)
+Pas un diaporama : l'élève fait vraiment les gestes, sur une feuille d'exemple préchargée (`assets/images/exemple-feuille.jpg`), sans caméra, sans crédit, sans appel IA et sans rien enregistrer (ni session, ni photo).
+- **Quand** : une seule fois, à la première ouverture de la prise de photos (valeur mémorisée). « Passer » est toujours visible (en haut) : il ferme et compte comme vue. Jamais bloquante.
+- **Étapes (6)**, chacune avance quand l'action est faite : 1. appuyer sur le bouton rond (la feuille d'exemple est « photographiée ») ; 2. appuyer sur la miniature ; 3. dans l'aperçu, appuyer sur Recadrer ; 4. déplacer le cadre puis appuyer sur Appliquer le cadre ; 5. appuyer sur Terminer puis sur Envoyer à l'IA ; 6. attendre la correction d'exemple (étapes simulées, puis note d'exemple), « Terminer la visite ».
+- **Mise en évidence** : l'élément à toucher est entouré en jaune (jeton `accent.soleil`), le reste est atténué et inactif ; une carte d'indication (jaune doux, bordure 2 px, ombre dure) dit quoi faire, avec « Étape n sur 6 » et « Passer ».
+- **Écrans** : AS5d (étapes 1 à 6) et AS5e (résultat d'exemple), clair et sombre. L'appareil reste sombre dans les deux thèmes.
+- **Inspiration** : l'ancienne app (`@wrack/react-native-tour-guide`, une seule fois, étapes, passer) ; pas de nouvelle dépendance (AGENTS §17), composant maison.
 - **Évènements** : `annale_visite_vue` { terminee: boolean }.
-- **Correctif lié** : la miniature d'une feuille prise n'avait pas de taille (seule la croix se voyait) ; taille fixée à 56 par 70.
+- **Correctif lié** : la miniature d'une feuille prise n'avait pas de taille ; fixée à 56 par 70.
+
+## Fin du chrono (demande de Benny du 20 octobre, AS8)
+- À l'échéance du compte à rebours : vibration et son de fin d'épreuve (réglages sons et vibrations respectés), puis feuille « Temps écoulé ».
+- Actions : « Voir la correction » (seulement si le sujet a un corrigé), « Corriger mon travail » (envoyer ses photos à l'IA), « Quitter ». Chrono libre : rien.
+- Application en arrière-plan à l'échéance : notification locale, uniquement si la permission est déjà donnée (jamais demandée ici, AGENTS §18).

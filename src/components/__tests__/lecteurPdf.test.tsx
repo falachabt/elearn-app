@@ -24,6 +24,15 @@ jest.mock('expo-router', () => ({
   useNavigation: () => ({ addListener: jest.fn(() => () => {}), dispatch: jest.fn() }),
 }));
 
+const mockDeclencher = jest.fn();
+jest.mock('../useFeedback', () => ({ useFeedback: () => ({ declencher: (...a: unknown[]) => mockDeclencher(...a) }) }));
+const mockProgrammerFin = jest.fn();
+const mockAnnulerFin = jest.fn();
+jest.mock('@/services/finChrono', () => ({
+  programmerFinChrono: (...a: unknown[]) => mockProgrammerFin(...a),
+  annulerFinChrono: (...a: unknown[]) => mockAnnulerFin(...a),
+}));
+
 const mockDepenser = jest.fn();
 jest.mock('@/session/CreditsProvider', () => ({
   useCredits: () => ({ solde: null, couts: { exam_correction: 5, document_pdf: 3 }, depenser: (...a: unknown[]) => mockDepenser(...a), rafraichir: async () => {}, depensesEnAttente: 0 }),
@@ -77,6 +86,7 @@ const LOCAL = `file:///doc/documents/${nomFichier(URL_SUJET)}`;
 beforeEach(async () => {
   jest.clearAllMocks();
   mockFichiers.clear();
+  mockProgrammerFin.mockResolvedValue(null);
   await AsyncStorage.clear();
   await AsyncStorage.setItem('annales.chrono.onboarding_vu', '1');
   await AsyncStorage.setItem('annales.chrono.ne_plus_afficher', '1');
@@ -262,6 +272,36 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
       await waitFor(() => expect(mockDepenser).toHaveBeenCalled());
       expect(screen.getByTestId('lecteur-pdf', { includeHiddenElements: true }).props.accessibilityLabel).toBe(LOCAL);
       expect(mockTelecharger).not.toHaveBeenCalledWith(URL_CORR, expect.anything());
+    });
+
+    it('fin du chrono : son de fin, feuille « Temps écoulé » avec correction, correction du travail et quitter', async () => {
+      mockProgrammerFin.mockResolvedValue('notif-1');
+      mockParams = parametres({ duree: '1' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByText(x.travail.tempsEcouleTitre)).toBeNull();
+      await waitFor(() => expect(screen.getByText(x.travail.tempsEcouleTitre)).toBeTruthy(), { timeout: 4000 });
+      expect(mockDeclencher).toHaveBeenCalledWith('timerEnd');
+      expect(mockProgrammerFin).toHaveBeenCalled();
+      expect(screen.getAllByRole('button', { name: x.travail.voirCorrection }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('button', { name: x.travail.corriger }).length).toBeGreaterThan(0);
+      expect(screen.getAllByRole('button', { name: x.travail.quitter }).length).toBeGreaterThan(0);
+    });
+
+    it('fin du chrono sur un sujet sans corrigé : pas de « Voir la correction » dans la feuille', async () => {
+      mockParams = parametres({ duree: '1', corrRef: '' });
+      await monter();
+      await waitFor(() => expect(screen.getByText(x.travail.tempsEcouleTitre)).toBeTruthy(), { timeout: 4000 });
+      expect(screen.queryByRole('button', { name: x.travail.voirCorrection })).toBeNull();
+      expect(screen.getAllByRole('button', { name: x.travail.corriger }).length).toBeGreaterThan(0);
+    });
+
+    it('chrono libre : aucune feuille, aucune notification', async () => {
+      mockParams = parametres({ duree: 'libre' });
+      await monter();
+      await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+      expect(screen.queryByText(x.travail.tempsEcouleTitre)).toBeNull();
+      expect(mockProgrammerFin).not.toHaveBeenCalled();
     });
 
     it('« Corriger mon travail » ouvre le choix photos / galerie', async () => {

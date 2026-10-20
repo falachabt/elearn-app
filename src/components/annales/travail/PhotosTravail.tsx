@@ -8,14 +8,12 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { suivre } from '@/services/analytics';
-import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, marquerVisiteVue, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
+import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
 import { Bouton } from '../../Bouton';
 import { useFeedback } from '../../useFeedback';
-import { VisiteTravail } from './VisiteTravail';
 
 /** L'appareil photo reste sombre dans les deux thèmes (guide, parcours B). */
 const NOIR = palette.encre[1000];
@@ -31,17 +29,12 @@ export function PhotosTravail() {
   const camera = useRef<CameraView>(null);
   const [prete, setPrete] = useState(false);
   const [prise, setPrise] = useState(false);
-  const [visite, setVisite] = useState(false);
+  // Première ouverture : visite guidée interactive (écran à part, sur une feuille d'exemple).
   useEffect(() => {
     let actif = true;
-    void visiteDejaVue().then((vue) => { if (actif && !vue) setVisite(true); });
+    void visiteDejaVue().then((vue) => { if (actif && !vue) router.push('/annales/visite'); });
     return () => { actif = false; };
   }, []);
-  const finVisite = (terminee: boolean) => {
-    setVisite(false);
-    void marquerVisiteVue();
-    suivre('annale_visite_vue', { terminee });
-  };
   const feuilles = brouillon?.feuilles ?? [];
   const plein = feuilles.length >= MAX_FEUILLES;
 
@@ -115,7 +108,6 @@ export function PhotosTravail() {
           <View style={[styles.carre, styles.terminer]}><Text style={[typo.boutonPetit, { color: NOIR }]}>{t('travail.photosTerminer')}</Text></View>
         </Appui>
       </View>
-      {visite ? <VisiteTravail onFin={finVisite} /> : null}
     </View>
   );
 }

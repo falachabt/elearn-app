@@ -12,6 +12,7 @@ import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { lireSujet } from '@/services/annales';
 import { useContenuPayant } from '@/session/useContenuPayant';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
+import { annulerFinChrono, programmerFinChrono } from '@/services/finChrono';
 import { getSupabase } from '@/services/supabase';
 import type { TypeSujet } from '@/services/travailSujet';
 import { titreDocument } from '@/services/titres';
@@ -25,6 +26,7 @@ import { useDepenseCredits } from './credits/useDepenseCredits';
 import { Appui } from './Appui';
 import { ChronoPuce } from './ChronoPuce';
 import { Ecran } from './Ecran';
+import { useFeedback } from './useFeedback';
 import { Feuille } from './Feuille';
 import { BoutonFermer } from './arrivee/MiniTest';
 import { EcranErreur } from './liste/EcranErreur';
@@ -101,13 +103,45 @@ export function LecteurPdf() {
   const dureeOfficielle = (dureeMin ? Number(dureeMin) : sujetInfo?.dureeMin) ?? undefined;
   const matiereEffective = matiere || sujetInfo?.matiere;
 
+  // Fin du compte à rebours : son et vibration de fin d'épreuve (réglages respectés), puis feuille « Temps écoulé ».
+  const { declencher } = useFeedback();
+  const declencherRef = useRef(declencher);
+  useEffect(() => {
+    declencherRef.current = declencher;
+  }, [declencher]);
+  const [tempsEcoule, setTempsEcoule] = useState(false);
+  const finChrono = useCallback(() => {
+    declencherRef.current('timerEnd');
+    setTempsEcoule(true);
+  }, []);
+  const alerteChrono = useCallback(() => declencherRef.current('timerWarning'), []);
   const chrono = useChrono({
     dureeInitialeS: dureeChoisieS,
+    onFin: finChrono,
+    onAlerte: alerteChrono,
   });
   const tempsRef = useRef(0);
   useEffect(() => {
     tempsRef.current = chrono.tempsEcouleS;
   }, [chrono.tempsEcouleS]);
+
+  // Application en arrière-plan à l'échéance : notification locale (jamais de demande de permission ici).
+  const notifTitre = t('travail.finChronoNotifTitre');
+  const notifCorps = t('travail.finChronoNotifCorps');
+  const notifCanal = t('travail.finChronoCanal');
+  useEffect(() => {
+    if (dureeChoisieS === undefined || tempsEcoule) return;
+    let id: string | null = null;
+    let annule = false;
+    void programmerFinChrono(dureeChoisieS - tempsRef.current, { titre: notifTitre, corps: notifCorps, canal: notifCanal }).then((i) => {
+      id = i;
+      if (annule) void annulerFinChrono(i);
+    });
+    return () => {
+      annule = true;
+      void annulerFinChrono(id);
+    };
+  }, [dureeChoisieS, tempsEcoule, notifTitre, notifCorps, notifCanal]);
 
   const navigation = useNavigation() as unknown as NavigationSortie | null;
   const [onboardingOuvert, setOnboardingOuvert] = useState(false);
@@ -417,6 +451,24 @@ export function LecteurPdf() {
         </View>
       </View>
     </Feuille>
+
+    <Feuille
+      ouverte={tempsEcoule}
+      onFermer={() => setTempsEcoule(false)}
+      icone={<Hourglass size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
+      couleurPastille={theme.accent.soleil}
+      titre={t('travail.tempsEcouleTitre')}
+      texte={t('travail.tempsEcouleTexte')}
+      actions={[
+        ...(peutBasculer && vue === 'sujet'
+          ? [{ libelle: t('travail.voirCorrection'), variante: 'principal' as const, onPress: () => { setTempsEcoule(false); void basculerVue(); } }]
+          : []),
+        ...(kind && ref
+          ? [{ libelle: t('travail.corriger'), variante: peutBasculer && vue === 'sujet' ? ('secondaire' as const) : ('principal' as const), onPress: () => { setTempsEcoule(false); setCorriger(true); } }]
+          : []),
+        { libelle: t('travail.quitter'), variante: 'texte' as const, onPress: () => { setTempsEcoule(false); autoriserSortie.current = true; retour(); } },
+      ]}
+    />
 
     <Feuille
       ouverte={menuChronoOuvert}

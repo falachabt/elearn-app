@@ -16,6 +16,7 @@ import { ChoixTemps } from '../travail/ChoixTemps';
 import { ListeSessions } from '../travail/ListeSessions';
 import { OrdreFeuilles } from '../travail/OrdreFeuilles';
 import { PhotosTravail } from '../travail/PhotosTravail';
+import { VisiteInteractive } from '../travail/VisiteInteractive';
 import { SessionTravail } from '../travail/SessionTravail';
 
 let mockParams: Record<string, string> = {};
@@ -240,36 +241,63 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(router.replace).not.toHaveBeenCalled();
     });
 
-    it('première ouverture : la visite guidée se déroule puis ne revient plus', async () => {
+    it('première ouverture : la visite interactive s’ouvre', async () => {
       await AsyncStorage.clear();
       await monter(<PhotosTravail />);
-      await waitFor(() => expect(screen.getByText(x.travail.visite.photographier.titre)).toBeTruthy());
-      await fireEvent.press(screen.getByText(x.travail.visiteSuivant));
-      expect(screen.getByText(x.travail.visite.verifier.titre)).toBeTruthy();
-      await fireEvent.press(screen.getByText(x.travail.visiteSuivant));
-      expect(screen.getByText(x.travail.visite.envoyer.titre)).toBeTruthy();
-      expect(screen.queryByText(x.travail.visitePasser)).toBeNull();
-      await fireEvent.press(screen.getByText(x.travail.visiteCompris));
-      expect(screen.queryByText(x.travail.visite.envoyer.titre)).toBeNull();
-      expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true });
-      await monter(<PhotosTravail />);
-      await waitFor(() => expect(mockSuivre).toHaveBeenCalled());
-      expect(screen.queryByText(x.travail.visite.photographier.titre)).toBeNull();
+      await waitFor(() => expect(router.push).toHaveBeenCalledWith('/annales/visite'));
     });
 
-    it('« Passer » ferme la visite et la marque comme vue', async () => {
-      await AsyncStorage.clear();
+    it('visite déjà vue : rien ne s’ouvre', async () => {
       await monter(<PhotosTravail />);
-      await waitFor(() => expect(screen.getByText(x.travail.visitePasser)).toBeTruthy());
-      await fireEvent.press(screen.getByText(x.travail.visitePasser));
-      expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: false });
-      expect(await visiteDejaVue()).toBe(true);
+      await waitFor(() => expect(visiteDejaVue).toBeDefined());
+      await act(async () => {});
+      expect(router.push).not.toHaveBeenCalledWith('/annales/visite');
     });
 
     it('toucher une vignette ouvre l’aperçu', async () => {
       await monter(<PhotosTravail />);
       await fireEvent.press(screen.getByRole('button', { name: x.travail.voirFeuille.replace('{{n}}', '2') }));
       expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/apercu', params: { id: 'f2' } });
+    });
+  });
+
+  describe('VisiteInteractive', () => {
+    const lib = x.travail;
+    const nom = (cle: string) => ({ name: cle });
+
+    it('chaque étape avance quand le geste est fait, sans appel IA ni crédit, jusqu’à la correction d’exemple', async () => {
+      jest.useFakeTimers();
+      const onFin = jest.fn();
+      await monter(<VisiteInteractive onFin={onFin} />);
+      expect(screen.getByText(lib.visite.photo)).toBeTruthy();
+      // Seul le bouton rond répond : « Terminer » est inerte à cette étape.
+      expect(screen.queryByRole('button', { name: lib.photosTerminer })).toBeNull();
+      await fireEvent.press(screen.getByRole('button', nom(lib.photosPrendre)));
+      expect(screen.getByText(lib.visite.miniature)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', nom(lib.voirFeuille.replace('{{n}}', '1'))));
+      expect(screen.getByText(lib.visite.apercu)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', nom(lib.recadrer)));
+      expect(screen.getByText(lib.visite.rogner)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', nom(lib.appliquerCadre)));
+      expect(screen.getByText(lib.visite.terminer)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', nom(lib.photosTerminer)));
+      expect(screen.getByText(lib.visite.envoyer)).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', nom(lib.envoyer)));
+      expect(screen.getByText(lib.visite.analyse)).toBeTruthy();
+      await act(async () => { jest.advanceTimersByTime(3100); });
+      expect(screen.getByText('14/20')).toBeTruthy();
+      expect(mockEnvoyer).not.toHaveBeenCalled();
+      expect(lireBrouillon()).toBeNull();
+      await fireEvent.press(screen.getByRole('button', nom(lib.visiteFinir)));
+      expect(onFin).toHaveBeenCalledWith(true);
+      jest.useRealTimers();
+    });
+
+    it('« Passer » ferme la visite à n’importe quelle étape', async () => {
+      const onFin = jest.fn();
+      await monter(<VisiteInteractive onFin={onFin} />);
+      await fireEvent.press(screen.getByRole('button', nom(lib.visitePasser)));
+      expect(onFin).toHaveBeenCalledWith(false);
     });
   });
 
