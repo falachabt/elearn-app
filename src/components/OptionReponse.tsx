@@ -11,7 +11,8 @@ type Etat = 'neutre' | 'choisie' | 'bonne' | 'fausse';
  * Choix de réponse. Corrigé, la lettre laisse place à une coche ou une croix dans un cadre plein plus foncé, à gauche
  * (maquette Figma) : la couleur n'est jamais le seul signal.
  */
-export function OptionReponse({ lettre, texte, etat = 'neutre', onPress }: { lettre: string; texte: string; etat?: Etat; onPress?: () => void }) {
+/** `motCorrection` : affiche « Juste » ou « Faux » en mots sous la réponse corrigée (correction TOEIC, jamais la couleur seule). */
+export function OptionReponse({ lettre, texte, etat = 'neutre', onPress, motCorrection = false }: { lettre: string; texte: string; etat?: Etat; onPress?: () => void; motCorrection?: boolean }) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const fond = etat === 'bonne' ? theme.etat.succesDoux : etat === 'fausse' ? theme.etat.erreurDoux : etat === 'choisie' ? theme.marque.douce : theme.fond.surface;
@@ -41,7 +42,10 @@ export function OptionReponse({ lettre, texte, etat = 'neutre', onPress }: { let
           <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{lettre}</Text>
         </View>
       )}
-      <Text style={[typo.texte, styles.texte, { color: theme.texte.principal }]}>{texte}</Text>
+      <View style={styles.texte}>
+        <Text style={[typo.texte, { color: theme.texte.principal }]}>{texte}</Text>
+        {corrige && motCorrection ? <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{t(etat === 'bonne' ? 'certification.exercice.juste' : 'certification.exercice.faux')}</Text> : null}
+      </View>
     </Pressable>
   );
 }

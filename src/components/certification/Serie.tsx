@@ -172,7 +172,7 @@ export function Serie() {
 
   return (
     <Ecran
-      entete={<EnteteToeic titre={repondue ? t('certification.explication.entete') : titre} onRetour={sortir} />}
+      entete={<EnteteToeic titre={titre} onRetour={sortir} />}
       pied={
         repondue ? undefined : (
           <View style={styles.pied}>

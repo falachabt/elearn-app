@@ -114,11 +114,11 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
         <View style={styles.colonne}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.explication.motsCles')}</Text>
           <View style={styles.puces}>
-            {mots.map((m) => {
+            {mots.map((m, i) => {
               const ajoute = motsAjoutes.some((x) => x.id === m.id);
               return (
                 <Appui
-                  key={m.id}
+                  key={`${m.id}-${i}`}
                   accessibilityRole="button"
                   accessibilityState={{ disabled: ajoute }}
                   accessibilityLabel={ajoute ? t('certification.explication.ajoute', { mot: m.word }) : t('certification.explication.ajouter', { mot: m.word })}

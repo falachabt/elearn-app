@@ -103,6 +103,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
             texte={o}
             etat={corrige ? (i === bonne ? 'bonne' : i === choix ? 'fausse' : 'neutre') : choix === i ? 'choisie' : 'neutre'}
             onPress={verrouille || corrige ? undefined : () => onChoix(i)}
+            motCorrection={corrige}
           />
         ))}
       </View>
