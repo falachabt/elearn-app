@@ -117,7 +117,7 @@ export function ObjectifCertification() {
       {r ? (
         <>
           <Champ
-            libelle={t('certification.objectif.valeur', { min: r.objectifMin, max: r.objectifMax })}
+            libelle={modifier ? t('certification.objectif.scoreVise') : t('certification.objectif.valeur', { min: r.objectifMin, max: r.objectifMax })}
             value={texte}
             onChangeText={(v) => setTexte(v.replace(/[^0-9]/g, '').slice(0, 4))}
             keyboardType="number-pad"

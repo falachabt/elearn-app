@@ -2038,6 +2038,7 @@ export const fr = {
       dateFormat: 'Format attendu : JJ/MM/AAAA',
       datePassee: 'Cette date est passée. Choisis une date à venir.',
       aide: 'Ton plan se construit à partir de ce score. Il ne garantit rien. La date est facultative.',
+      scoreVise: 'Score visé',
       titreModifier: 'Mon objectif {{examen}}',
       aideModifier: 'Le score ne garantit rien. Les changements s’appliquent à ton plan du jour.',
       passer: 'Passer pour l’instant',
