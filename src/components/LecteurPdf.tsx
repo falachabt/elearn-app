@@ -18,6 +18,7 @@ import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typeContenu, typo } from '@/theme/theme';
 
+import { useOuverts } from './credits/useOuverts';
 import { FeuilleEpuise } from './credits/FeuilleEpuise';
 import { FeuilleCorrigerTravail } from './annales/travail/FeuilleCorrigerTravail';
 import { useDepenseCredits } from './credits/useDepenseCredits';
@@ -70,6 +71,7 @@ export function LecteurPdf() {
   const [corriger, setCorriger] = useState(false);
   const { lancer, feuilles: feuillesCredits } = useDepenseCredits({ rechargeSimple: true });
   const payant = useContenuPayant();
+  const acces = useOuverts('document_pdf', corrAction === 'document_pdf' ? [String(ref), String(corrRef)] : []);
   const suffixeCorrection = ` · ${t('annales.correctionTitre')}`;
   const titreBase = (titreParam ?? '').endsWith(suffixeCorrection) ? (titreParam ?? '').slice(0, -suffixeCorrection.length) : (titreParam ?? '');
   const titre = vue === 'correction' ? `${titreBase}${suffixeCorrection}` : titreBase;
@@ -227,9 +229,9 @@ export function LecteurPdf() {
     if (cible === 'correction') {
       // Comme sur la page du sujet : un corrigé de concours passe par le droit du serveur (premier sujet gratuit), sans confirmation.
       if (corrAction === 'exam_correction') return (await payant.ouvrir<{ url?: string | null }>('exam_correction', String(corrRef)))?.url ?? null;
-      return (await lancer<{ url?: string | null }>('document_pdf', String(corrRef)))?.contenu?.url ?? null;
+      return (await lancer<{ url?: string | null }>('document_pdf', String(corrRef), { deja: acces.sansFrais(String(corrRef)) }))?.contenu?.url ?? null;
     }
-    if (corrAction === 'document_pdf') return (await lancer<{ url?: string | null }>('document_pdf', String(ref)))?.contenu?.url ?? null;
+    if (corrAction === 'document_pdf') return (await lancer<{ url?: string | null }>('document_pdf', String(ref), { deja: acces.sansFrais(String(ref)) }))?.contenu?.url ?? null;
     return (await lireSujet(getSupabase(), Number(ref))).urlSujet;
   };
   const basculerVue = async () => {

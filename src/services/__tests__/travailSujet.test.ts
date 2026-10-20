@@ -118,8 +118,9 @@ describe('temps de travail choisi', () => {
     expect(dureeDemarrage({ mode: 'compte', choix: 'perso', minutes: '' }, 180)).toBeNull();
   });
 
-  it('sans temps conseillé, le compte à rebours retombe sur « Mon temps »', () => {
-    expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, null).choix).toBe('perso');
+  it('sans temps conseillé : « Mon temps » si un temps est déjà saisi, sinon chrono libre', () => {
+    expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, null).mode).toBe('libre');
+    expect(preferenceCoherente({ mode: 'compte', choix: 'conseille', minutes: '45' }, null)).toMatchObject({ mode: 'compte', choix: 'perso' });
     expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, 120).choix).toBe('conseille');
     expect(preferenceCoherente({ mode: 'libre', choix: 'conseille', minutes: '' }, null).mode).toBe('libre');
   });

@@ -145,7 +145,7 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(screen.getByText(x.credits.gratuit)).toBeTruthy();
     // Un document ouvre sa page de détails (comme un concours) ; le lecteur et les crédits viennent ensuite.
     await fireEvent.press(screen.getByText('Séquence 3 · Collège Privé'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: 'd1', kind: 'document', nom: 'Séquence 3 · Collège Privé', corr: 'd1c' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: 'd1', kind: 'document', nom: 'Séquence 3 · Collège Privé', cat: 'Maths', corr: 'd1c' } });
     expect(mockDepenser).not.toHaveBeenCalled();
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('Séquence 1'));
@@ -159,6 +159,9 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await waitFor(() => expect(screen.getByRole('button', { name: x.annales.ouvrirCorrection })).toBeTruthy());
     expect(screen.getByText(x.annales.source.replace('{{ecole}}', 'Polytechnique Yaoundé'))).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirSujet }));
+    // Le choix du temps se fait dans une feuille, pas sur la page.
+    expect(router.push).not.toHaveBeenCalled();
+    await fireEvent.press(await screen.findByRole('button', { name: x.travail.commencer }));
     expect(router.push).toHaveBeenCalledWith({
       pathname: '/document',
       params: expect.objectContaining({ url: 'https://r2/s1.pdf', titre: 'Maths', sujet: '1', kind: 'exam', ref: '1', corrAction: 'exam_correction', corrRef: '1', duree: '10800' }),
@@ -189,6 +192,51 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     mockParams = { id: '3' };
     await monter(<SujetAnnale />);
     await waitFor(() => expect(screen.getByText(x.travail.pasDeCorrigeIA)).toBeTruthy());
+  });
+
+  describe('document de classe : crédits et accord', () => {
+    const lignes = (gratuits: number) =>
+      mockRpc.mockImplementation(async (nom: string) => {
+        if (nom === 'my_free_documents_left') return { data: gratuits, error: null };
+        if (nom === 'my_unlocked_refs') return { data: ['d1c'], error: null };
+        return { data: [], error: null };
+      });
+
+    it('déjà ouvert : s’ouvre directement, sans demander d’accord ni redébiter', async () => {
+      lignes(0);
+      mockParams = { id: 'd1', kind: 'document', nom: 'Séquence 3', corr: 'd1c' };
+      await monter(<SujetAnnale />);
+      const bouton = await screen.findByRole('button', { name: x.annales.ouvrirCorrection });
+      await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('my_unlocked_refs', expect.anything()));
+      await fireEvent.press(bouton);
+      await waitFor(() => expect(mockDepenser).toHaveBeenCalledWith('document_pdf', 'd1c'));
+      expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: expect.objectContaining({ url: 'https://r2/d1c.pdf', vue: 'correction' }) });
+    });
+
+    it('pas encore ouvert et plus de gratuit : l’accord sur le prix est demandé avant tout débit', async () => {
+      lignes(0);
+      mockParams = { id: 'd1', kind: 'document', nom: 'Séquence 3', corr: 'd2c' };
+      await monter(<SujetAnnale />);
+      const bouton = await screen.findByRole('button', { name: x.annales.ouvrirCorrection });
+      await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('my_unlocked_refs', expect.anything()));
+      await fireEvent.press(bouton);
+      await waitFor(() => expect(screen.getByRole('button', { name: x.credits.pasMaintenant })).toBeTruthy());
+      expect(mockDepenser).not.toHaveBeenCalled();
+      expect(router.push).not.toHaveBeenCalled();
+    });
+
+    it('le sujet lui-même : feuille du temps, puis ouverture sans accord quand il est déjà ouvert', async () => {
+      mockRpc.mockImplementation(async (nom: string) => (nom === 'my_unlocked_refs' ? { data: ['d1'], error: null } : nom === 'my_free_documents_left' ? { data: 0, error: null } : { data: [], error: null }));
+      mockParams = { id: 'd1', kind: 'document', nom: 'Séquence 3', cat: 'Maths' };
+      await monter(<SujetAnnale />);
+      expect(await screen.findByText('Maths')).toBeTruthy();
+      expect(screen.getByText(x.annales.enteteSujet)).toBeTruthy();
+      await waitFor(() => expect(mockRpc).toHaveBeenCalledWith('my_unlocked_refs', expect.anything()));
+      await fireEvent.press(screen.getByRole('button', { name: x.annales.ouvrirSujet }));
+      await fireEvent.press(await screen.findByRole('button', { name: x.travail.commencer }));
+      await waitFor(() => expect(mockDepenser).toHaveBeenCalledWith('document_pdf', 'd1'));
+      expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: expect.objectContaining({ url: 'https://r2/d1.pdf', kind: 'document', ref: 'd1' }) });
+    });
   });
 
   it('erreur à l’ouverture du sujet', async () => {

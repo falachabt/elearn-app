@@ -307,9 +307,13 @@ export function dureeDemarrage(pref: PreferenceTemps, dureeConseilleeMin: number
   return minutes ? String(minutes * 60) : null;
 }
 
-/** Choix mémorisé ; sans durée conseillée, le compte à rebours retombe sur « Mon temps ». */
+/**
+ * Choix mémorisé ; sans durée conseillée, le compte à rebours retombe sur « Mon temps » si l'élève a déjà saisi un temps,
+ * sinon sur le chrono libre : la feuille s'ouvre alors avec un choix valide et « Commencer » reste à un appui.
+ */
 export function preferenceCoherente(pref: PreferenceTemps, dureeConseilleeMin: number | null): PreferenceTemps {
-  return pref.mode === 'compte' && pref.choix === 'conseille' && !dureeConseilleeMin ? { ...pref, choix: 'perso' } : pref;
+  if (pref.mode !== 'compte' || pref.choix !== 'conseille' || dureeConseilleeMin) return pref;
+  return minutesValides(pref.minutes) ? { ...pref, choix: 'perso' } : { ...pref, mode: 'libre' };
 }
 
 export async function lirePreferenceTemps(): Promise<PreferenceTemps> {

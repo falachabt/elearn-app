@@ -33,6 +33,8 @@ import { Ecran } from '../Ecran';
 import { Etiquette } from '../Etiquette';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { useDepenseCredits } from '../credits/useDepenseCredits';
+import { useOuverts } from '../credits/useOuverts';
+import { Feuille } from '../Feuille';
 import { ChoixTemps } from './travail/ChoixTemps';
 import { FeuilleCorrigerTravail } from './travail/FeuilleCorrigerTravail';
 import { ListeSessions } from './travail/ListeSessions';
@@ -48,7 +50,7 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function SujetAnnale() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { id, kind: kindParam, nom, corr } = useLocalSearchParams<{ id: string; kind?: string; nom?: string; corr?: string }>();
+  const { id, kind: kindParam, nom, corr, cat } = useLocalSearchParams<{ id: string; kind?: string; nom?: string; corr?: string; cat?: string }>();
   const document = kindParam === 'document';
   const kind: TypeSujet = document ? 'document' : 'exam';
   const pret = useSessionPrete();
@@ -58,6 +60,7 @@ export function SujetAnnale() {
   const [sessions, setSessions] = useState<Session[] | null>(null);
   const [sessionsErreur, setSessionsErreur] = useState(false);
   const [ia, setIa] = useState(false);
+  const [temps, setTemps] = useState(false);
 
   useEffect(() => {
     if (document) {
@@ -103,6 +106,8 @@ export function SujetAnnale() {
 
   const payant = useContenuPayant();
   const { lancer, feuilles } = useDepenseCredits({ rechargeSimple: true });
+  // Un document déjà ouvert ne coûte plus rien et ne redemande aucun accord (M18-04) ; les ouvertures gratuites non plus.
+  const acces = useOuverts('document_pdf', document ? [String(id), ...(corr ? [String(corr)] : [])] : []);
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
   const s = etat.statut === 'pret' ? etat.sujet : null;
@@ -123,11 +128,13 @@ export function SujetAnnale() {
 
   const ouvrirSujet = async (d: DetailSujet) => {
     if (!duree) return;
+    setTemps(false);
     void enregistrerPreferenceTemps(prefEffective);
     let url = d.urlSujet;
     if (document) {
       try {
-        url = (await lancer<{ url?: string | null }>('document_pdf', String(id)))?.contenu?.url ?? '';
+        url = (await lancer<{ url?: string | null }>('document_pdf', String(id), { deja: acces.sansFrais(String(id)) }))?.contenu?.url ?? '';
+        void acces.relire();
       } catch {
         url = '';
       }
@@ -138,7 +145,8 @@ export function SujetAnnale() {
   // La correction ne vient que de depenser_credits (M18-04) : le premier sujet de chaque concours est gratuit.
   const voirCorrection = async (d: DetailSujet) => {
     if (document) {
-      const r = await lancer<{ url?: string | null }>('document_pdf', String(corr));
+      const r = await lancer<{ url?: string | null }>('document_pdf', String(corr), { deja: acces.sansFrais(String(corr)) });
+      void acces.relire();
       if (r?.contenu?.url) router.push({ pathname: '/document', params: parametresLecteur(r.contenu.url, `${d.titre} · ${t('annales.correctionTitre')}`, { vue: 'correction' }) });
       return;
     }
@@ -150,7 +158,7 @@ export function SujetAnnale() {
   const pied =
     etat.statut === 'pret' ? (
       <View style={styles.groupe}>
-        <Bouton libelle={t('annales.ouvrirSujet')} desactive={!duree} onPress={() => void ouvrirSujet(etat.detail)} retour />
+        <Bouton libelle={t('annales.ouvrirSujet')} onPress={() => setTemps(true)} retour />
         {etat.detail.aCorrection ? (
           <Bouton
             variante="secondaire"
@@ -165,15 +173,24 @@ export function SujetAnnale() {
 
   return (
     <>
-      <Ecran pied={pied} entete={<BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />}>
+      <Ecran
+        pied={pied}
+        entete={
+          <>
+            <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
+            <Text numberOfLines={1} style={[typo.texteFort, styles.flex, { color: theme.texte.secondaire }]}>{t('annales.enteteSujet')}</Text>
+          </>
+        }
+      >
         {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('annales.sujetErreur')} /> : null}
         {etat.statut === 'pret' ? (
           <>
             <View style={styles.meta}>
               {s ? <Etiquette texte={[s.sigle, s.annee].filter(Boolean).join(' · ')} /> : null}
               {s?.matiere ? <Etiquette jaune texte={s.matiere} /> : null}
+              {document && cat ? <Etiquette jaune texte={String(cat)} /> : null}
             </View>
-            <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{etat.detail.titre}</Text>
+            <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{etat.detail.titre}</Text>
             {s ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{s.concours}</Text> : null}
             {payant.refus ? (
               <Carte style={{ backgroundColor: theme.accent.soleil }}>
@@ -189,7 +206,6 @@ export function SujetAnnale() {
                 </View>
               </Carte>
             ) : null}
-            <ChoixTemps valeur={prefEffective} onChange={setPref} dureeMin={dureeMin} />
             {!etat.detail.aCorrection ? <Banniere ton="info" titre={t('travail.pasDeCorrigeIA')} /> : null}
             <ListeSessions sessions={sessions} erreur={sessionsErreur} kind={kind} reference={String(id)} />
             {s?.ecole ? (
@@ -202,6 +218,17 @@ export function SujetAnnale() {
         ) : null}
       </Ecran>
       {feuilles}
+      <Feuille
+        ouverte={temps}
+        onFermer={() => setTemps(false)}
+        titre={t('travail.tempsTitre')}
+        actions={[
+          ...(duree && etat.statut === 'pret' ? [{ libelle: t('travail.commencer'), onPress: () => void ouvrirSujet(etat.detail), variante: 'principal' as const }] : []),
+          { libelle: t('travail.plusTard'), onPress: () => setTemps(false), variante: 'texte' as const },
+        ]}
+      >
+        <ChoixTemps valeur={prefEffective} onChange={setPref} dureeMin={dureeMin} />
+      </Feuille>
       <FeuilleCorrigerTravail ouverte={ia} onFermer={() => setIa(false)} sujet={{ kind, ref: String(id), titre, matiere: s?.matiere ?? null }} />
     </>
   );

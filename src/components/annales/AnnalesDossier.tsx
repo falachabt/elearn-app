@@ -61,7 +61,7 @@ export function AnnalesDossier() {
   // comme pour un concours. Les pastilles de coût restent sur la ligne.
   const refs = etat.statut === 'pret' ? etat.documents.flatMap((d) => [d.id, ...(d.correctionId ? [d.correctionId] : [])]).map(String) : [];
   const acces = useOuverts('document_pdf', refs);
-  const detail = (d: Document) => router.push({ pathname: '/annales/sujet', params: { id: d.id, kind: 'document', nom: d.nom, ...(d.correctionId ? { corr: d.correctionId } : {}) } });
+  const detail = (d: Document) => router.push({ pathname: '/annales/sujet', params: { id: d.id, kind: 'document', nom: d.nom, ...(nom ? { cat: String(nom) } : {}), ...(d.correctionId ? { corr: d.correctionId } : {}) } });
   const puce = (ref: string | number) => solde?.illimite ? null : <PuceCout cout={acces.cout} etat={acces.etat(String(ref))} />;
 
   return (

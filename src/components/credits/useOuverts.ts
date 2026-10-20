@@ -21,7 +21,7 @@ export function useOuverts(action: ActionCredit, refs: string[]) {
   const cle = refs.join('|');
 
   const relire = useCallback(async () => {
-    if (!pret || pret === 'hors-ligne') return;
+    if (!pret || pret === 'hors-ligne' || !cle) return;
     const client = getSupabase();
     const [o, g] = await Promise.all([
       lireOuverts(client, action, cle ? cle.split('|') : []).catch(() => null),

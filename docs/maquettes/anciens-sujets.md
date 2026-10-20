@@ -8,7 +8,8 @@ Un seul parcours pour le secondaire et les concours : on ajuste l'existant (parc
 ## Écrans
 | Id | Écran | Ce qui change |
 | --- | --- | --- |
-| AS1 | Détails du sujet (`/annales/sujet`) | Déjà là pour les concours ; devient la page de tout ancien sujet. Ajoute : « Temps de travail » (choix du chrono, voir ci-dessous) et la liste « Mes sessions » avec la note de chacune. Même page pour le secondaire et les concours. |
+| AS1 | Détails du sujet (`/annales/sujet`) | Déjà là pour les concours ; devient la page de tout ancien sujet. Ajoute la liste « Mes sessions » avec la note de chacune. Même page pour le secondaire et les concours. Retours de Benny du 20 octobre : titre en police plus petite (même place), en-tête « Ancien sujet » à côté de la flèche retour (jamais vide), catégorie du document (nom du dossier) en pastille jaune sous les étiquettes, et le choix du temps n'est plus sur la page. |
+| AS1c | Feuille « Temps de travail » | S'ouvre quand l'élève appuie sur « Ouvrir le sujet » : choix du chrono, puis « Commencer » ou « Plus tard ». |
 | AS2 | Lecteur : sujet | À côté de zoom + et zoom - : bouton « Voir la correction » (seulement si le sujet a un corrigé). |
 | AS3 | Lecteur : correction | Même place : bouton « Voir le sujet ». |
 | AS4 | Faire corriger par l'IA | Sujet sans corrigé : bouton « Faire corriger par l'IA » (page de détails et lecteur). Choix : prendre en photo ou importer de la galerie. |
@@ -19,7 +20,7 @@ Un seul parcours pour le secondaire et les concours : on ajuste l'existant (parc
 | AS9 | États | Crédits insuffisants (feuille K3), hors ligne, photo illisible (crédits rendus), erreur, vide (aucune session). |
 
 ## Temps de travail (demande de Benny du 20 octobre)
-Avant d'ouvrir le sujet, l'élève choisit : **Mesurer mon temps** (chrono montant, sans limite) ou **Compte à rebours** (simulation d'examen). Le compte à rebours propose **Temps conseillé** (durée du sujet, si connue) ou **Mon temps** (saisie en minutes). Sans durée conseillée, seul « Mon temps » est proposé. Le choix est mémorisé pour la prochaine fois. Le lecteur démarre alors directement le chrono choisi, sans second menu.
+Dans une feuille du bas ouverte par « Ouvrir le sujet », l'élève choisit : **Mesurer mon temps** (chrono montant, sans limite) ou **Compte à rebours** (simulation d'examen). Le compte à rebours propose **Temps conseillé** (durée du sujet, si connue) ou **Mon temps** (saisie en minutes). Sans durée conseillée, seul « Mon temps » est proposé ; sans temps déjà saisi, la feuille s'ouvre sur « Mesurer mon temps » pour que « Commencer » reste à un appui. Le choix est mémorisé pour la prochaine fois. Le lecteur démarre alors directement le chrono choisi, sans second menu.
 
 ## Règles
 - Correction fournie par le concours : « Voir la correction » coûte le prix serveur (`exam_correction`, premier sujet gratuit). Aucun changement de droit.
@@ -33,3 +34,6 @@ Avant d'ouvrir le sujet, l'élève choisit : **Mesurer mon temps** (chrono monta
 
 ## Tests
 Jest : tri et réordonnancement des photos, états de l'écran de détails, bascule sujet/correction, calcul de la note. pgTAP : RLS, débit et remboursement. Deno : fonction Edge de correction multi-pages.
+
+## Crédits d'un document de classe (retour de Benny du 20 octobre)
+Un document déjà ouvert ne coûte plus rien : il s'ouvre directement, sans feuille d'accord ni débit, comme les ouvertures gratuites restantes. La feuille « prix » ne s'affiche que pour un document jamais ouvert, quand il n'en reste plus de gratuit.
