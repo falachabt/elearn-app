@@ -237,11 +237,19 @@ describe('T2 · réglage d’un mini-test', () => {
     expect(screen.getByText(t.mini.tempsAide.replace('{{min}}', String(2 * reglages.miniMinutesPour10)).replace('{{n}}', '20'))).toBeTruthy();
   });
 
+  it('mode Entraînement : le choix est transmis à l’écran du mini-test', async () => {
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 5'));
+    await fireEvent.press(screen.getByText(t.mini.modeEntrainement));
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/certification/mini-test', params: { epreuve: 'entrainement' } }));
+  });
+
   it('départ : le serveur tire et débite, l’état est gardé, l’écran d’examen s’ouvre', async () => {
     await monter(<ReglageMini />);
     await fireEvent.press(await screen.findByLabelText('Partie 5'));
     await fireEvent.press(screen.getByText(t.mini.commencer));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/certification/mini-test'));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/certification/mini-test', params: { epreuve: 'examen' } }));
     expect(fausse.appels.minis).toEqual([{ partie: 5, longueur: 10 }]);
     expect((await lireMini())?.partie).toBe(5);
     expect(suivre).toHaveBeenCalledWith('cert_mock_started', { kind: 'mini' });
@@ -312,7 +320,7 @@ describe('T2 · réglage d’un mini-test', () => {
     expect(await screen.findByText(t.mini.coutPass)).toBeTruthy();
     await fireEvent.press(screen.getByLabelText('Partie 5'));
     await fireEvent.press(screen.getByText(t.mini.commencer));
-    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/certification/mini-test'));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/certification/mini-test', params: { epreuve: 'examen' } }));
   });
 
   it('thème sombre', async () => {

@@ -2672,6 +2672,10 @@ export const en: Textes = {
       bientotLancer: 'Start the full test',
     },
     mini: {
+      modeTitre: 'Mode',
+      modeExamen: 'Exam',
+      modeEntrainement: 'Practice',
+      modeAide: 'Exam: answers corrected at the end, one listen only. Practice: correction after each question, not scored.',
       entete: 'Mini-test',
       partie: 'Part',
       mixte: 'Mixed',

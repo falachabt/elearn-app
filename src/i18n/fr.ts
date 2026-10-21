@@ -2673,6 +2673,10 @@ export const fr = {
       bientotLancer: 'Lancer le test complet',
           },
     mini: {
+      modeTitre: 'Mode',
+      modeExamen: 'Examen',
+      modeEntrainement: 'Entraînement',
+      modeAide: 'Examen : correction à la fin, une seule écoute. Entraînement : correction après chaque question, hors score.',
       entete: 'Mini-test',
       partie: 'Partie',
       mixte: 'Mixte',

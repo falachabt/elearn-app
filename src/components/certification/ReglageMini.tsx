@@ -20,9 +20,12 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { Onglets } from '../Onglets';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
 
 type Choix = number | 'mixte' | null;
+/** Mode de l'épreuve (M-T2) : Examen (défaut, correction à la fin) ou Entraînement (correction après chaque question). */
+type ModeEpreuve = 'examen' | 'entrainement';
 
 /** T2 · Réglage d'un mini-test : partie ou mixte, longueur, temps et coût. Le serveur tire les questions et débite au départ. */
 export function ReglageMini() {
@@ -33,6 +36,7 @@ export function ReglageMini() {
   const { cout } = useTextesCredits();
   const { garde, banniere } = useGardeReseau();
   const [choix, setChoix] = useState<Choix>(mode === 'mixte' ? 'mixte' : null);
+  const [epreuve, setEpreuve] = useState<ModeEpreuve>('examen');
   const [longueur, setLongueur] = useState<LongueurMini>(mode === 'mixte' ? 20 : 10);
   const [reglages, setReglages] = useState<Reglages | null>(null);
   const [enCours, setEnCours] = useState(false);
@@ -89,7 +93,7 @@ export function ReglageMini() {
         suivre('cert_mock_started', { kind: 'mini' });
         if (res.etat.tentative.credits_spent > 0) suivre('cert_credit_spent', { action, cout: res.etat.tentative.credits_spent });
         void rafraichir();
-        router.replace('/certification/mini-test' as never);
+        router.replace({ pathname: '/certification/mini-test', params: { epreuve } } as never);
       }
     } catch {
       setEchec(true);
@@ -119,6 +123,9 @@ export function ReglageMini() {
           <Bouton variante="secondaire" libelle={t('certification.mini.compteBouton')} onPress={() => router.push('/compte/creer')} />
         </View>
       ) : null}
+      <EtiquetteSection texte={t('certification.mini.modeTitre')} />
+      <Onglets<ModeEpreuve> valeurs={[{ valeur: 'examen', libelle: t('certification.mini.modeExamen') }, { valeur: 'entrainement', libelle: t('certification.mini.modeEntrainement') }]} valeur={epreuve} onChange={setEpreuve} />
+      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.mini.modeAide')}</Text>
       <EtiquetteSection texte={t('certification.mini.partie')} />
       <View accessibilityRole="radiogroup" style={styles.groupe}>
         <GrilleEgale enfants={[1, 2, 3, 4, 5, 6, 7].map((p) => <Cube key={p} actif={choix === p} libelle={t('certification.mini.partieLabel', { n: p })} court={`P${p}`} onPress={() => setChoix(p)} />)} />
