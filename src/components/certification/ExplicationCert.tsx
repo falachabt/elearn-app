@@ -110,16 +110,18 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
 
   return (
     <View style={styles.colonne}>
-      <Carte style={{ backgroundColor: couleursCorrige.fond, gap: espace[2] }}>
-        <Etiquette texte={t('certification.explication.badge')} jaune />
-        <Text style={[typo.texteFort, { color: couleursCorrige.texte }]}>{t('certification.explication.bonne', { lettre: LETTRES[bonne] ?? String(bonne + 1), texte: question.options[bonne] ?? '' })}</Text>
-        {resultat.correct ? (
-          <Text style={[typo.petit, { color: couleursCorrige.texte }]}>{t('certification.explication.juste')}</Text>
-        ) : choix !== null ? (
-          <Text style={[typo.petit, { color: couleursCorrige.texte }]}>{t('certification.explication.tienne', { lettre: LETTRES[choix] ?? String(choix + 1) })}</Text>
+      <Carte style={{ backgroundColor: couleursCorrige.fond, gap: espace[3] }}>
+        <View style={styles.enteteGrille}>
+          <Etiquette texte={t('certification.explication.badge')} jaune />
+          <Etiquette texte={resultat.correct ? t('certification.exercice.grilleJuste') : t('certification.exercice.grilleFaux')} />
+        </View>
+        {/* Correction en grille (v28) : libellé à gauche, valeur à droite. */}
+        <LigneGrille libelle={t('certification.exercice.grilleBonne')} valeur={`${LETTRES[bonne] ?? String(bonne + 1)} · ${question.options[bonne] ?? ''}`} couleur={couleursCorrige.texte} />
+        {!resultat.correct && choix !== null ? (
+          <LigneGrille libelle={t('certification.exercice.grilleTienne')} valeur={`${LETTRES[choix] ?? String(choix + 1)} · ${question.options[choix] ?? ''}`} couleur={couleursCorrige.texte} />
         ) : null}
-        {resultat.notion ? <Text style={[typo.petit, { color: couleursCorrige.texte }]}>{t('certification.explication.notion', { titre: resultat.notion.title })}</Text> : null}
-        {piege ? <Text style={[typo.petit, { color: couleursCorrige.texte }]}>{t('certification.explication.piege', { texte: piege })}</Text> : null}
+        {resultat.notion ? <LigneGrille libelle={t('certification.exercice.grilleNotion')} valeur={resultat.notion.title} couleur={couleursCorrige.texte} /> : null}
+        {piege ? <LigneGrille libelle={t('certification.exercice.grillePiege')} valeur={piege} couleur={couleursCorrige.texte} /> : null}
       </Carte>
       {mots.length > 0 ? (
         <View style={styles.colonne}>
@@ -170,8 +172,22 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
   );
 }
 
+/** Une ligne de la grille de correction : libellé en colonne fixe, valeur à droite. */
+function LigneGrille({ libelle, valeur, couleur }: { libelle: string; valeur: string; couleur: string }) {
+  return (
+    <View style={styles.ligneGrille}>
+      <Text style={[typo.etiquette, styles.libelleGrille, { color: couleur }]}>{libelle}</Text>
+      <Text style={[typo.petit, styles.valeurGrille, { color: couleur }]}>{valeur}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   colonne: { gap: espace[4] },
+  enteteGrille: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: espace[2] },
+  ligneGrille: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
+  libelleGrille: { width: 96 },
+  valeurGrille: { flex: 1 },
   puces: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   puce: { minHeight: 36, paddingHorizontal: espace[4], justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   detail: { minHeight: cibleMin, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },

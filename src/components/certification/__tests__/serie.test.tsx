@@ -104,7 +104,8 @@ describe('B8 à B9 · Série', () => {
     await monter(<Serie />);
     await repondre('B');
     await screen.findByText(t.explication.badge);
-    expect(screen.getByText(t.explication.tienne.replace('{{lettre}}', 'B'))).toBeTruthy();
+    expect(screen.getByText(t.exercice.grilleTienne)).toBeTruthy();
+    expect(screen.getByText(/^B · /)).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_exercise_answered', expect.objectContaining({ juste: false }));
   });
 
