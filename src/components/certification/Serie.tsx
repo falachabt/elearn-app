@@ -207,6 +207,7 @@ export function Serie() {
       pied={
         groupeValide ? undefined : (
           <View style={styles.pied}>
+            {incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
             <Bouton
               libelle={
                 pluriel
@@ -227,7 +228,6 @@ export function Serie() {
       }
     >
       <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={entete} />
-      {!groupeValide && incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       {/* B1 à B7 : la question reste à l'écran après validation (photo, audio, passage gardés) ; le corrigé s'ajoute dessous.
           Clé par groupe : l'audio d'un groupe (parties 3, 4, 6, 7) n'est pas relancé d'une question à l'autre. */}
       <QuestionExercice
