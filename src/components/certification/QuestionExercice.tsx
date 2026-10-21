@@ -63,7 +63,7 @@ const TROU_PASSAGE = /\{\d+\}/;
  * Texte à trous (partie 6) : chaque « {n} » devient un petit rectangle numéroté, dans le flux du texte (v21). Le trou en
  * cours est en jaune ; les autres restent sur la surface. Les paragraphes sont séparés par un espace.
  */
-function PassageTrous({ texte, blanc }: { texte: string; blanc: number }) {
+function PassageTrous({ texte, blanc }: { texte: string; blanc?: number }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   return (
@@ -76,8 +76,8 @@ function PassageTrous({ texte, blanc }: { texte: string; blanc: number }) {
               const n = Number(trou[1]);
               const actif = n === blanc;
               return [
-                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: actif ? theme.accent.soleil : theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  <Text style={[typo.legende, styles.trouNumero, { color: actif ? theme.texte.surCouleur : theme.texte.principal }]}>{n}</Text>
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+                  <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.principal }]}>{n}</Text>
                 </View>,
               ];
             }
@@ -105,7 +105,7 @@ export const documentsDuPassage = (passage: GroupeServi['passage'] | undefined):
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant = 1 }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -127,7 +127,10 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
       </>
     );
   };
-  const consigne = SANS_ENONCE.has(question.type) ? t(`certification.exercice.consigne.${question.type}` as 'certification.exercice.consigne.photo') : afficherEnonce(question.stem);
+  // Partie 6 : le texte à trous porte la question, le libellé de la question est « Trou N » (jamais l'énoncé brut de la banque).
+  const consigne = SANS_ENONCE.has(question.type)
+    ? t(`certification.exercice.consigne.${question.type}` as 'certification.exercice.consigne.photo')
+    : question.type === 'texte_trous' ? t('certification.exercice.trou', { n: question.number ?? 0 }) : afficherEnonce(question.stem);
 
   return (
     <View style={styles.colonne}>
