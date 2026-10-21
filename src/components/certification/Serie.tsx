@@ -11,9 +11,8 @@ import {
   ajouterMotCarnet,
   avancer,
   envoyerEnAttente,
-  repondreSerie,
+  repondreGroupeSerie,
   reprendreOuDemarrer,
-  resultatCourant,
   type EtatSerie,
 } from '@/services/certification/serie';
 import type { MotCle } from '@/services/certification/types';
@@ -45,8 +44,11 @@ export function Serie() {
   const origine = params.origine === 'seance' ? 'seance' : undefined;
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   const [etat, setEtat] = useState<EtatSerie | null>(null);
-  const [choix, setChoix] = useState<number | null>(null);
-  /** Question affichée dans le groupe quand ce n'est pas la question courante (onglet d'une question déjà corrigée). */
+  /** Option choisie par question du groupe courant, avant validation (v28 : groupes à validation unique). */
+  const [choixGroupe, setChoixGroupe] = useState<Record<string, number | null>>({});
+  /** « Valider » touché alors que le groupe n'est pas complet : on le signale, puis « Valider quand même ». */
+  const [incomplet, setIncomplet] = useState(false);
+  /** Question affichée dans le groupe (onglet) ; `null` = la première question du groupe. */
   const [vue, setVue] = useState<number | null>(null);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
@@ -75,24 +77,27 @@ export function Serie() {
   const index = etat?.index ?? 0;
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setChoix(null);
+    setChoixGroupe({});
+    setIncomplet(false);
     setVue(null);
     debut.current = Date.now();
   }, [index]);
 
-  // Onglets du groupe : les questions déjà corrigées se consultent ; la question courante reste la seule à répondre (la série est servie dans l'ordre).
+  // Le groupe courant : une question seule, ou les questions d'une même conversation / d'un même texte (parties 3, 4, 6, 7).
   const indices = etat ? indicesGroupe(etat.questions, index) : [];
+  const membres = etat ? indices.flatMap((i) => (etat.questions[i] ? [etat.questions[i]] : [])) : [];
+  const dernierIndice = indices[indices.length - 1] ?? index;
+  // Le groupe est validé quand toutes ses questions ont une réponse (envoyée ou en file).
+  const groupeValide = !!etat && membres.length > 0 && membres.every((m) => etat.reponses.some((r) => r.question_id === m.id));
   const indiceVue = vue ?? index;
-  const estCourante = indiceVue === index;
   const question = etat ? (etat.questions[indiceVue] ?? null) : null;
   const reponseVue = etat && question ? etat.reponses.find((r) => r.question_id === question.id) : undefined;
-  const repondue = !!reponseVue;
   const resultatVue = etat && question ? (etat.resultats[question.id] ?? null) : null;
-  const reponsesGroupe = etat ? Object.fromEntries(etat.reponses.map((r) => [r.question_id, r.chosen])) : {};
-  const membres = etat ? indices.flatMap((i) => (etat.questions[i] ? [etat.questions[i]] : [])) : [];
+  const choixVue = question ? (choixGroupe[question.id] ?? null) : null;
+  const reponsesGroupe: Record<string, number | null> = groupeValide && etat ? Object.fromEntries(etat.reponses.map((r) => [r.question_id, r.chosen])) : choixGroupe;
   const choisirOnglet = (i: number) => {
     const cible = indices[i];
-    if (cible === undefined || cible > index) return;
+    if (cible === undefined) return;
     setVue(cible === index ? null : cible);
   };
   const total = etat?.questions.length ?? 0;
@@ -100,31 +105,34 @@ export function Serie() {
   const entete = t('certification.serie.entete', { n: Math.min(index + 1, total), total });
   // En-tête de la maquette : « Partie N · Nom » dès que la partie de la question est connue, sinon « Série n / total ».
   const titre = question ? t('certification.serie.partieEntete', { n: question.part, nom: t(`certification.exercice.partieNom.${question.type}` as "certification.exercice.partieNom.photo") }) : entete;
+  const positionVue = indices.indexOf(indiceVue);
+  const derniereVue = indiceVue === dernierIndice;
 
   const fin = (e: EtatSerie) => {
     if (e.termine) router.replace('/certification/serie-fin');
   };
 
+  /** Valide le groupe entier : une réponse par question, dans l'ordre servi. Les questions non cochées partent passées. */
   const valider = async () => {
-    if (!etat || !question || !estCourante || choix === null || occupe.current) return;
+    if (!etat || occupe.current || membres.length === 0) return;
     occupe.current = true;
     try {
-      const suivant = await repondreSerie(etat, choix, Date.now() - debut.current);
-      const r = resultatCourant(suivant);
-      suivre('cert_exercise_answered', { type: question.type, partie: question.part, juste: r ? r.correct : null });
+      const suivant = await repondreGroupeSerie(etat, indices, choixGroupe, Date.now() - debut.current);
+      for (const m of membres) suivre('cert_exercise_answered', { type: m.type, partie: m.part, juste: suivant.resultats[m.id] ? suivant.resultats[m.id]!.correct : null });
       setEtat(suivant);
+      setVue(null);
     } finally {
       occupe.current = false;
     }
   };
 
   const passer = async () => {
-    if (!etat || !question || !estCourante || occupe.current) return;
+    if (!etat || occupe.current || membres.length === 0) return;
     occupe.current = true;
     try {
-      const repondu = await repondreSerie(etat, null, Date.now() - debut.current);
-      suivre('cert_exercise_answered', { type: question.type, partie: question.part, juste: null });
-      const suivant = await avancer(repondu);
+      const repondu = await repondreGroupeSerie(etat, indices, {}, Date.now() - debut.current);
+      membres.forEach((m) => suivre('cert_exercise_answered', { type: m.type, partie: m.part, juste: null }));
+      const suivant = await avancer(repondu, dernierIndice + 1);
       setEtat(suivant);
       fin(suivant);
     } finally {
@@ -132,15 +140,16 @@ export function Serie() {
     }
   };
 
+  /** Onglet suivant dans le groupe corrigé, ou question suivante après la dernière question du groupe. */
   const suivante = async () => {
     if (!etat || occupe.current) return;
-    if (!estCourante) {
-      setVue(null);
+    if (!derniereVue) {
+      setVue(indices[positionVue + 1] ?? null);
       return;
     }
     occupe.current = true;
     try {
-      const suivant = await avancer(etat);
+      const suivant = await avancer(etat, dernierIndice + 1);
       setEtat(suivant);
       fin(suivant);
     } finally {
@@ -187,16 +196,33 @@ export function Serie() {
     );
   }
 
-  const resultat = estCourante ? resultatCourant(etat) : resultatVue;
-  const reponse = reponseVue;
+  const resultat = groupeValide && resultatVue ? resultatVue : null;
+  const corrigee = groupeValide && !!reponseVue;
+  const pluriel = membres.length > 1;
+  const nbRepondues = membres.filter((m) => m.id in choixGroupe).length;
 
   return (
     <Ecran
       entete={<EnteteToeic titre={titre} onRetour={sortir} />}
       pied={
-        repondue || !estCourante ? undefined : (
+        groupeValide ? undefined : (
           <View style={styles.pied}>
-            <Bouton libelle={t('certification.diagnostic.valider')} desactive={choix === null} onPress={() => void valider()} retour />
+            {incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
+            <Bouton
+              libelle={
+                pluriel
+                  ? incomplet
+                    ? t('certification.exercice.validerQuandMeme', { n: nbRepondues, total: membres.length })
+                    : t('certification.exercice.validerN', { n: nbRepondues, total: membres.length })
+                  : t('certification.diagnostic.valider')
+              }
+              desactive={!pluriel && choixVue === null}
+              onPress={() => {
+                if (pluriel && !incomplet && !membres.every((m) => m.id in choixGroupe)) setIncomplet(true);
+                else void valider();
+              }}
+              retour
+            />
           </View>
         )
       }
@@ -207,25 +233,26 @@ export function Serie() {
       <QuestionExercice
         key={`groupe-${question.group?.id ?? question.id}`}
         question={question}
-        choix={repondue ? (reponse?.chosen ?? null) : choix}
-        onChoix={setChoix}
-        bonne={repondue && resultat ? resultat.correct_index : undefined}
-        verrouille={repondue}
+        choix={corrigee ? (reponseVue?.chosen ?? null) : choixVue}
+        onChoix={(i) => setChoixGroupe((c) => ({ ...c, [question.id]: i }))}
+        bonne={corrigee && resultat ? resultat.correct_index : undefined}
+        verrouille={corrigee}
         delaiEchecS={delaiEchecS}
         ecran="serie"
         position={Math.min(indiceVue + 1, total)}
         onPasser={() => void passer()}
-        enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={indices.indexOf(indiceVue)} onChoisir={choisirOnglet} /> : null}
-        trouCourant={indices.indexOf(indiceVue) + 1}
+        enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} /> : null}
+        trouCourant={positionVue + 1}
       />
-      {!repondue ? null : resultat ? (
+      {!groupeValide ? null : resultat ? (
         <ExplicationCert
           key={`${question.id}-correction`}
           question={question}
           resultat={resultat}
-          choix={reponse?.chosen ?? null}
+          choix={reponseVue?.chosen ?? null}
           motsAjoutes={etat.motsAjoutes}
-          derniere={index + 1 >= total}
+          derniere={derniereVue && dernierIndice + 1 >= total}
+          libelleSuivante={!derniereVue ? t('certification.exercice.ongletSuivant') : undefined}
           onAjouterMot={ajouterMot}
           onSuivante={() => void suivante()}
         />
@@ -233,7 +260,7 @@ export function Serie() {
         <View style={styles.groupe}>
           <Banniere ton="alerte" titre={t('certification.serie.nonEnvoyeeTitre')} texte={`${t('certification.serie.nonEnvoyeeTexte')}`} />
           <Bouton libelle={t('certification.serie.reessayerMaintenant')} onPress={() => void reessayerEnvoi()} />
-          <Bouton variante="secondaire" libelle={index + 1 >= total ? t('certification.serie.terminer') : t('certification.serie.continuer')} onPress={() => void suivante()} />
+          <Bouton variante="secondaire" libelle={dernierIndice + 1 >= total ? t('certification.serie.terminer') : t('certification.serie.continuer')} onPress={() => void suivante()} />
         </View>
       )}
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.back())} />

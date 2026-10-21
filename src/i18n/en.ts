@@ -2302,6 +2302,7 @@ export const en: Textes = {
       ecouteJouee: 'Already played.',
       ecouteExamen: 'Single listen: no replay during the test.',
       groupeSuivant: 'Next group',
+      ongletSuivant: 'Next tab',
       validerN: 'Submit ({{n}}/{{total}})',
       validerQuandMeme: 'Submit anyway ({{n}}/{{total}})',
       pasToutRepondu: 'You have not answered every question.',

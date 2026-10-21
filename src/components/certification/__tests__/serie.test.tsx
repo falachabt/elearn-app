@@ -161,6 +161,27 @@ describe('B8 à B9 · Série', () => {
   });
 });
 
+describe('B8 · Groupe à validation unique (v28)', () => {
+  it('répond aux onglets librement, valide le groupe d’un coup, puis corrige onglet par onglet', async () => {
+    installer({ groupeSerie: true });
+    await monter(<Serie />);
+    const onglets = await screen.findAllByRole('tab');
+    expect(onglets).toHaveLength(3);
+    await fireEvent.press(await screen.findByText(/^A\b/));
+    await fireEvent.press(onglets[1]!);
+    await fireEvent.press(await screen.findByText(/^A\b/));
+    expect(screen.queryByText(t.explication.badge)).toBeNull();
+    await fireEvent.press(screen.getByText(t.exercice.validerN.replace('{{n}}', '2').replace('{{total}}', '3')));
+    expect(await screen.findByText(t.exercice.pasToutRepondu)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.exercice.validerQuandMeme.replace('{{n}}', '2').replace('{{total}}', '3')));
+    expect(await screen.findByText(t.explication.badge)).toBeTruthy();
+    await fireEvent.press(screen.getByText(t.exercice.ongletSuivant));
+    await fireEvent.press(screen.getByText(t.exercice.ongletSuivant));
+    await fireEvent.press(screen.getByText(t.serie.terminer));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/certification/serie-fin'));
+  });
+});
+
 describe('B11 · Fin de série', () => {
   it('va au bout de la série puis affiche le score et le rejeu', async () => {
     await monter(<Serie />);

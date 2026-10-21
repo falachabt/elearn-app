@@ -2303,6 +2303,7 @@ export const fr = {
       ecouteJouee: 'Écoute déjà jouée.',
       ecouteExamen: "Écoute unique : pas de réécoute pendant l'épreuve.",
       groupeSuivant: 'Groupe suivant',
+      ongletSuivant: 'Onglet suivant',
       validerN: 'Valider ({{n}}/{{total}})',
       validerQuandMeme: 'Valider quand même ({{n}}/{{total}})',
       pasToutRepondu: 'Tu n’as pas tout répondu.',

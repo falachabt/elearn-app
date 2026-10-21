@@ -77,7 +77,12 @@ export async function envoyerEnAttente(etat: EtatSerie): Promise<EtatSerie> {
  * affichée avec son corrigé jusqu'à `avancer`. Une même question ne reçoit qu'une réponse (double toucher).
  */
 export async function repondreSerie(etat: EtatSerie, chosen: number | null, ms: number): Promise<EtatSerie> {
-  const question = etat.questions[etat.index];
+  return repondreALaQuestion(etat, etat.index, chosen, ms);
+}
+
+/** Répond à la question d'index donné (v28 : un groupe reçoit ses réponses d'un coup, dans l'ordre servi). */
+async function repondreALaQuestion(etat: EtatSerie, index: number, chosen: number | null, ms: number): Promise<EtatSerie> {
+  const question = etat.questions[index];
   if (!question || etat.termine) return etat;
   if (etat.reponses.some((r) => r.question_id === question.id)) return etat;
   const reponse: ReponseEnvoyee = { question_id: question.id, client_uuid: randomUUID(), chosen, ms: Math.max(0, Math.round(ms)), context: etat.perimetre.rejeu ? 'replay' : etat.origine === 'seance' ? 'session' : 'series', local_day: maintenant() };
@@ -86,10 +91,25 @@ export async function repondreSerie(etat: EtatSerie, chosen: number | null, ms: 
   return envoyerEnAttente(local);
 }
 
+/**
+ * Répond à un groupe (v28) : `indices` = questions du groupe, `choix` = option par identifiant de question (absente = passée).
+ * Le temps est réparti entre les questions du groupe.
+ */
+export async function repondreGroupeSerie(etat: EtatSerie, indices: number[], choix: Record<string, number | null>, ms: number): Promise<EtatSerie> {
+  let suivant = etat;
+  const par = ms / Math.max(1, indices.length);
+  for (const i of indices) {
+    const q = suivant.questions[i];
+    if (!q) continue;
+    suivant = await repondreALaQuestion(suivant, i, choix[q.id] ?? null, par);
+  }
+  return suivant;
+}
+
 /** Question suivante ; la dernière réponse clôt la série (B11). Tente d'abord de vider la file. */
-export async function avancer(etat: EtatSerie): Promise<EtatSerie> {
+export async function avancer(etat: EtatSerie, vers?: number): Promise<EtatSerie> {
   const vide = await envoyerEnAttente(etat);
-  const index = vide.index + 1;
+  const index = vers ?? vide.index + 1;
   const suivant: EtatSerie = { ...vide, index, termine: index >= vide.questions.length };
   await ecrireSerie(suivant);
   return suivant;

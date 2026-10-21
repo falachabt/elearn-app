@@ -27,6 +27,8 @@ type Props = {
   choix: number | null;
   motsAjoutes: MotCle[];
   derniere: boolean;
+  /** Libellé du bouton de bas de carte ; par défaut « Question suivante » (ou « Terminer » en dernière). */
+  libelleSuivante?: string;
   onAjouterMot: (mot: MotCle) => Promise<void>;
   onSuivante: () => void;
 };
@@ -35,7 +37,7 @@ type Props = {
  * B9 · Explication. Gratuit : résultat, bonne réponse, notion, piège, « Revoir la notion ». Payant : seule l'explication
  * détaillée rédigée (`cert_explanation`), derrière la feuille de coût X1 hors Pass (D-09, D-15).
  */
-export function ExplicationCert({ question, resultat, choix, motsAjoutes, derniere, onAjouterMot, onSuivante }: Props) {
+export function ExplicationCert({ question, resultat, choix, motsAjoutes, derniere, libelleSuivante, onAjouterMot, onSuivante }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { solde, couts } = useCredits();
@@ -158,7 +160,7 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
           </View>
         </Appui>
       )}
-      <Bouton libelle={derniere ? t('certification.serie.terminer') : t('certification.serie.suivante')} onPress={onSuivante} retour />
+      <Bouton libelle={libelleSuivante ?? (derniere ? t('certification.serie.terminer') : t('certification.serie.suivante'))} onPress={onSuivante} retour />
       <FeuilleExplication ouverte={feuille} cout={cout} onVoir={() => void acheter()} onPlusTard={() => setFeuille(false)} onRevoirNotion={revoirNotion} />
       {feuilles}
     </View>

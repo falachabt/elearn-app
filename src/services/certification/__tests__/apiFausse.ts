@@ -53,6 +53,8 @@ export function creerApiFausse(options: {
   revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
   mini?: 'insufficient' | 'account_required' | 'echec'; stats?: Stats | 'echec'; gains?: EtatGains | 'echec'; reclamation?: ResultatGain; tentatives?: TentativeListee[] | 'echec';
   abandon?: { rembourse: boolean };
+  /** Série : les questions servies partagent un même groupe (conversation ou texte), comme les parties 3, 4, 6 et 7. */
+  groupeSerie?: boolean;
 } = {}) {
   const appels: Appels = { demarrer: 0, terminer: 0, plans: [], envois: 0, series: [], mots: [], explications: [], notionsOuvertes: [], resultatsMots: [], seances: [], compositions: [], minis: [], abandons: [], gainsReclames: [], stats: [] };
   const minis = new Map<string, { part: number | null; length: number; questions: QuestionServie[] }>();
@@ -106,7 +108,7 @@ export function creerApiFausse(options: {
       if (options.echecSerie) throw new Error('réseau');
       if (options.serieVide) return [];
       const choisies = questions.filter((q) => (perimetre.part ? q.part === perimetre.part : true)).slice(0, taille ?? 3);
-      return choisies;
+      return options.groupeSerie ? choisies.map((q) => ({ ...q, group: { id: 'gserie', audio_path: null, image_path: null, image_alt: null, passage: null } })) : choisies;
     },
     async ajouterMot(motId) {
       appels.mots.push(motId);
