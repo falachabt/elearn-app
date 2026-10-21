@@ -164,15 +164,11 @@ function Examen() {
         />
       }
       pied={
-        <View style={styles.pied}>
-          <Bouton
-            libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')}
-            desactive={membres.length > 1 ? false : !complet}
-            onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
-            retour
-          />
-          <Bouton variante="texte" libelle={t('certification.examen.passer')} onPress={passer} />
-        </View>
+        <Bouton
+          libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')}
+          onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
+          retour
+        />
       }
     >
       <BarreProgression pourcent={total ? (etat.index / total) * 100 : 0} libelle={titre} />
@@ -209,6 +205,5 @@ function Examen() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  pied: { gap: espace[2] },
   chrono: { flexDirection: 'row', alignItems: 'center', gap: espace[1] },
 });

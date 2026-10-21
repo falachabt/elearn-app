@@ -1,13 +1,12 @@
 import { router } from 'expo-router';
-import { TriangleAlert } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { scoresSections, statutsDesQuestions } from '@/services/certification/bilanMini';
 import { obtenirReglages } from '@/services/certification/etat';
 import { effacerMini, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
-import { notionsPerdues } from '@/services/certification/bilanMini';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -15,11 +14,15 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
-import { EnteteToeic, EtiquetteSection, LigneChoix, Squelette } from './ui';
+import { GrilleQuestions } from './GrilleQuestions';
+import { EnteteToeic, Squelette } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'attente'; etat: EtatMini } | { nom: 'ok'; etat: EtatMini };
 
-/** Bilan réduit d'un mini-test (E6 réduit) : estimation large, jamais présentée comme un score officiel. */
+/**
+ * Fin d'Examen (v28, V_FIN) : score estimé d'un seul chiffre, Écoute et lecture, grille des questions. Les questions sans
+ * réponse comptent fausses. Aucune correction ici : elle se revoit depuis « Revoir mes réponses ».
+ */
 export function BilanMini() {
   const { t } = useTraduction();
   const { theme } = useTheme();
@@ -89,57 +92,70 @@ export function BilanMini() {
   const etat = phase.etat;
   const total = etat.tentative.questions.length;
   const bonnes = Object.values(fin.per_part).reduce((a, p) => a + p.correct, 0);
-  const parties = Object.entries(fin.per_part).sort((a, b) => Number(a[0]) - Number(b[0]));
-  const avecEstimation = fin.estimated && fin.score_min !== null && fin.score_max !== null;
-  const parPartie = etat.partie !== null;
-  const perdues = notionsPerdues(fin.results);
+  const avecEstimation = fin.estimated && fin.score !== null;
+  const sections = scoresSections(fin.per_part);
+  const statuts = statutsDesQuestions(etat.tentative.questions.map((q) => q.id), fin.results);
 
   return (
     <Ecran
       entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
       pied={
         <View style={styles.groupe}>
-          <Bouton libelle={t('certification.bilanMini.retour')} onPress={() => void sortir('/tests')} retour />
-          <Bouton variante="texte" libelle={t('certification.bilanMini.historique')} onPress={() => void sortir('/certification/historique')} />
+          <Bouton libelle={t('certification.bilanMini.revoir')} onPress={() => router.push('/certification/mini-revue' as never)} retour />
+          <Bouton variante="texte" libelle={t('certification.bilanMini.retour')} onPress={() => void sortir('/tests')} />
         </View>
       }
     >
       <Carte style={{ gap: espace[2] }}>
         {avecEstimation ? (
           <>
-            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.estimation', { total: maxScore ?? '' })}</Text>
-            <Text style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.bilanMini.plage', { min: fin.score_min!, max: fin.score_max! })}</Text>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.scoreEstime')}</Text>
+            <Text style={[typo.donnee, { color: theme.texte.principal, fontSize: 52, lineHeight: 58 }]}>{String(fin.score)}</Text>
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.estimationAide')}</Text>
           </>
         ) : (
           <>
             <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.scorePartie')}</Text>
             <Text style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.bilanMini.sur', { c: bonnes, n: total })}</Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{parPartie ? t('certification.bilanMini.sansEstimation') : t('certification.bilanMini.peuDeReponses')}</Text>
+            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.sansEstimation')}</Text>
           </>
         )}
       </Carte>
-      {parties.length > 0 ? (
-        <>
-          <EtiquetteSection texte={t('certification.bilanMini.parties')} />
-          {parties.map(([partie, p]) => (
-            <LigneChoix key={partie} icone={TriangleAlert} titre={t('certification.bilanMini.ligneParti', { n: partie })} aide={t('certification.bilanMini.sur', { c: p.correct, n: p.answered })} />
-          ))}
-        </>
+      {avecEstimation ? (
+        <Carte style={{ gap: espace[3] }}>
+          <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.ecouteLecture')}</Text>
+          <View style={styles.sections}>
+            <Section libelle={t('certification.bilanMini.listening')} score={sections.listening} />
+            <Section libelle={t('certification.bilanMini.reading')} score={sections.reading} />
+          </View>
+        </Carte>
       ) : null}
-      <EtiquetteSection texte={t('certification.bilanMini.notions')} />
-      {perdues.length === 0 ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.aucuneNotion')}</Text> : null}
-      {perdues.map((n) => (
-        <LigneChoix
-          key={n.id}
-          icone={TriangleAlert}
-          titre={n.titre}
-          aide={n.manquees === 1 ? t('certification.bilanMini.notionPerduUne') : t('certification.bilanMini.notionPerdus', { n: n.manquees })}
-          onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'bilan_mini' } } as never)}
-        />
-      ))}
+      <GrilleQuestions statuts={statuts} />
+      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.sansReponseFausse')}</Text>
     </Ecran>
   );
 }
 
-const styles = StyleSheet.create({ groupe: { gap: espace[2] } });
+/** Une section (Listening ou Reading) : nom, score sur 495 et barre de progression. */
+function Section({ libelle, score }: { libelle: string; score: number }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  return (
+    <View style={styles.section}>
+      <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{libelle}</Text>
+      <Text style={[typo.donnee, { color: theme.texte.principal }]}>{String(score)}</Text>
+      <View style={[styles.barre, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+        <View style={[styles.remplissage, { width: `${Math.round((score / 495) * 100)}%`, backgroundColor: theme.etat.succes }]} />
+      </View>
+      <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.sur495')}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  groupe: { gap: espace[2] },
+  sections: { flexDirection: 'row', gap: espace[3] },
+  section: { flex: 1, gap: espace[1] },
+  barre: { height: 8, borderWidth: 1, borderRadius: 4, overflow: 'hidden' },
+  remplissage: { height: '100%' },
+});

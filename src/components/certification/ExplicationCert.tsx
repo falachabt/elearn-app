@@ -10,17 +10,15 @@ import { obtenirApi } from '@/services/certification/api';
 import type { MotCle, QuestionServie, ResultatReponse } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, corrige as corrigeCouleurs, espace, ombre, rayon, typo } from '@/theme/theme';
+import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
-import { Etiquette } from '../Etiquette';
+import { CarteCorrection } from './CarteCorrection';
 import { FeuilleExplication } from './FeuilleExplication';
 import { PourquoiRate } from './PourquoiRate';
-
-const LETTRES = ['A', 'B', 'C', 'D'];
 
 type Props = {
   question: QuestionServie;
@@ -39,8 +37,7 @@ type Props = {
  */
 export function ExplicationCert({ question, resultat, choix, motsAjoutes, derniere, onAjouterMot, onSuivante }: Props) {
   const { t } = useTraduction();
-  const { theme, sombre } = useTheme();
-  const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
+  const { theme } = useTheme();
   const { solde, couts } = useCredits();
   const { lancer, feuilles } = useDepenseCredits();
   const [feuille, setFeuille] = useState(false);
@@ -110,19 +107,15 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
 
   return (
     <View style={styles.colonne}>
-      <Carte style={{ backgroundColor: couleursCorrige.fond, gap: espace[3] }}>
-        <View style={styles.enteteGrille}>
-          <Etiquette texte={t('certification.explication.badge')} jaune />
-          <Etiquette texte={resultat.correct ? t('certification.exercice.grilleJuste') : t('certification.exercice.grilleFaux')} />
-        </View>
-        {/* Correction en grille (v28) : libellé à gauche, valeur à droite. */}
-        <LigneGrille libelle={t('certification.exercice.grilleBonne')} valeur={`${LETTRES[bonne] ?? String(bonne + 1)} · ${question.options[bonne] ?? ''}`} couleur={couleursCorrige.texte} />
-        {!resultat.correct && choix !== null ? (
-          <LigneGrille libelle={t('certification.exercice.grilleTienne')} valeur={`${LETTRES[choix] ?? String(choix + 1)} · ${question.options[choix] ?? ''}`} couleur={couleursCorrige.texte} />
-        ) : null}
-        {resultat.notion ? <LigneGrille libelle={t('certification.exercice.grilleNotion')} valeur={resultat.notion.title} couleur={couleursCorrige.texte} /> : null}
-        {piege ? <LigneGrille libelle={t('certification.exercice.grillePiege')} valeur={piege} couleur={couleursCorrige.texte} /> : null}
-      </Carte>
+      <CarteCorrection
+        badge={t('certification.explication.badge')}
+        juste={resultat.correct}
+        question={question}
+        choix={choix}
+        bonne={bonne}
+        notion={resultat.notion}
+        piege={piege}
+      />
       {mots.length > 0 ? (
         <View style={styles.colonne}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.explication.motsCles')}</Text>
@@ -172,22 +165,8 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
   );
 }
 
-/** Une ligne de la grille de correction : libellé en colonne fixe, valeur à droite. */
-function LigneGrille({ libelle, valeur, couleur }: { libelle: string; valeur: string; couleur: string }) {
-  return (
-    <View style={styles.ligneGrille}>
-      <Text style={[typo.etiquette, styles.libelleGrille, { color: couleur }]}>{libelle}</Text>
-      <Text style={[typo.petit, styles.valeurGrille, { color: couleur }]}>{valeur}</Text>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   colonne: { gap: espace[4] },
-  enteteGrille: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: espace[2] },
-  ligneGrille: { flexDirection: 'row', alignItems: 'flex-start', gap: espace[3] },
-  libelleGrille: { width: 96 },
-  valeurGrille: { flex: 1 },
   puces: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
   puce: { minHeight: 36, paddingHorizontal: espace[4], justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.pilule },
   detail: { minHeight: cibleMin, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: espace[3], paddingHorizontal: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },

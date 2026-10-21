@@ -16,6 +16,7 @@ import { enregistrerProfil } from '@/services/profil';
 import { ForcerSombre, useTheme } from '@/theme/ThemeProvider';
 
 import { BilanMini } from '../BilanMini';
+import { MiniRevue } from '../MiniRevue';
 import { DetailTentative } from '../DetailTentative';
 import { HistoriqueTests } from '../HistoriqueTests';
 import { MiniTest } from '../MiniTest';
@@ -365,11 +366,13 @@ describe('écran d’examen', () => {
     expect(screen.queryByText(fr.certification.explication.badge)).toBeNull();
   });
 
-  it('« Passer » compte la question comme passée', async () => {
+  it('sans réponse : « Question suivante » passe la question, qui compte fausse au bilan', async () => {
     await semer();
     await monter(<MiniTest />);
-    await fireEvent.press(await screen.findByText(t.examen.passer));
+    expect(screen.queryByText(t.examen.passer)).toBeNull();
+    await fireEvent.press(await screen.findByText(t.examen.suivante));
     await waitFor(async () => expect((await lireMini())?.reponses[0]?.chosen).toBeNull());
+    expect(screen.getByText(t.examen.sansCorrection)).toBeTruthy();
   });
 
   it('temps écoulé : les réponses données sont gardées et le bilan s’ouvre', async () => {
@@ -404,9 +407,11 @@ describe('bilan réduit', () => {
     const e = await semer({ partie: null, reponses: 3 });
     await ecrireMini({ ...e, termine: true });
     await monter(<BilanMini />);
-    expect(await screen.findByText('650 à 730')).toBeTruthy();
+    expect(await screen.findByText('700')).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.scoreEstime)).toBeTruthy();
     expect(screen.getByText(t.bilanMini.estimationAide)).toBeTruthy();
-    expect(screen.getByText(t.bilanMini.estimation.replace('{{total}}', '990'))).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.ecouteLecture)).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.revoir)).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_mock_completed', { kind: 'mini', score_min: 650, score_max: 730 });
     expect(fausse.appels.terminer).toBe(1);
   });
@@ -417,7 +422,8 @@ describe('bilan réduit', () => {
     await monter(<BilanMini />);
     expect(await screen.findByText(t.bilanMini.sansEstimation)).toBeTruthy();
     expect(screen.getAllByText('3 sur 3').length).toBeGreaterThan(0);
-    expect(screen.queryByText('650 à 730')).toBeNull();
+    expect(screen.queryByText('700')).toBeNull();
+    expect(screen.queryByText(t.bilanMini.ecouteLecture)).toBeNull();
     expect(suivre).toHaveBeenCalledWith('cert_mock_completed', { kind: 'mini', score_min: null, score_max: null });
   });
 
@@ -525,5 +531,40 @@ describe('T6 · test complet « Bientôt »', () => {
     await fireEvent.press(screen.getByText(t.tests.miniMixte));
     expect(router.push).toHaveBeenCalledWith('/certification/mini?mode=mixte');
     expect(screen.queryByText('Faire un mini-test')).toBeNull();
+  });
+});
+
+describe('revue de l’Examen terminé', () => {
+  it('une question à la fois, bonne réponse et réponse de l’élève, puis retour aux tests', async () => {
+    const e = await semer({ partie: 5, reponses: 3 });
+    await ecrireMini({ ...e, termine: true });
+    await monter(<BilanMini />);
+    await fireEvent.press(await screen.findByText(t.bilanMini.revoir));
+    await monter(<MiniRevue />);
+    expect(await screen.findByText(t.revue.position.replace('{{n}}', '1').replace('{{total}}', '3'))).toBeTruthy();
+    expect(screen.getByText(t.revue.corrige)).toBeTruthy();
+    expect(screen.getAllByText(t.exercice.grilleJuste).length).toBeGreaterThan(0);
+    expect(screen.queryByText(t.revue.sansReponse)).toBeNull();
+    await fireEvent.press(screen.getByText(t.revue.suivante));
+    await fireEvent.press(screen.getByText(t.revue.suivante));
+    await fireEvent.press(await screen.findByText(t.revue.terminer));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/tests'));
+    expect(await lireMini()).toBeNull();
+  });
+
+  it('une question sans réponse le dit au lieu de montrer une réponse de l’élève', async () => {
+    const e = await semer({ partie: 5, reponses: 0 });
+    await ecrireMini({ ...e, termine: true });
+    await monter(<BilanMini />);
+    await fireEvent.press(await screen.findByText(t.bilanMini.revoir));
+    await monter(<MiniRevue />);
+    expect(await screen.findByText(t.revue.sansReponse)).toBeTruthy();
+    expect(screen.getByText(t.revue.sansReponseAide.replace('{{n}}', '1'))).toBeTruthy();
+    expect(screen.queryByText(t.exercice.grilleTienne)).toBeNull();
+  });
+
+  it('sans test terminé : retour aux tests', async () => {
+    await monter(<MiniRevue />);
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/tests'));
   });
 });
