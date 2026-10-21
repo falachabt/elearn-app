@@ -64,21 +64,42 @@ async function avancerService(n: number, chosen: number | null = 0) {
   return e;
 }
 
+/** Attend le bouton « Commencer la partie N » s'il s'affiche (D-P1, D-P3) : une seule attente courte, sans erreur. */
+async function trouverConsigne() {
+  try {
+    return await screen.findByRole('button', { name: /Commencer la partie/ }, { timeout: 300 });
+  } catch {
+    return null;
+  }
+}
+
+/** Passe les consignes affichées avant une partie, comme le ferait l'élève. */
+async function passerConsignes() {
+  for (let i = 0; i < 8; i++) {
+    const bouton = await trouverConsigne();
+    if (!bouton) return;
+    fireEvent.press(bouton);
+  }
+}
+
 describe('A6 · Diagnostic', () => {
   it('affiche la première question et une progression « 1 / 20 »', async () => {
     await monter(<Diagnostic />);
+    await passerConsignes();
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
     expect(screen.getAllByRole('button', { name: t.diagnostic.valider }).length).toBeGreaterThan(0);
   });
 
   it('« Valider » est inactif tant qu’aucune option n’est choisie, puis avance et garde la réponse', async () => {
     await monter(<Diagnostic />);
+    await passerConsignes();
     await screen.findByText(entete(1), { exact: false });
     const valider = () => screen.getByRole('button', { name: t.diagnostic.valider });
     expect(valider().props.accessibilityState?.disabled).toBe(true);
     await fireEvent.press(screen.getByRole('button', { name: /^a/ }));
     expect(valider().props.accessibilityState?.disabled).toBeFalsy();
     await fireEvent.press(valider());
+    await passerConsignes();
     expect(await screen.findByText(entete(2), { exact: false })).toBeTruthy();
     const etat = await lireDiagnostic();
     expect(etat?.reponses).toHaveLength(1);
@@ -88,8 +109,10 @@ describe('A6 · Diagnostic', () => {
 
   it('« Passer cette question » enregistre une réponse vide qui compte comme fausse', async () => {
     await monter(<Diagnostic />);
+    await passerConsignes();
     await screen.findByText(entete(1), { exact: false });
     await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+    await passerConsignes();
     expect(await screen.findByText(entete(2), { exact: false })).toBeTruthy();
     expect((await lireDiagnostic())?.reponses[0].chosen).toBeNull();
   });
@@ -97,34 +120,41 @@ describe('A6 · Diagnostic', () => {
   it('reprend à la question suivante après un redémarrage', async () => {
     await avancerService(5);
     await monter(<Diagnostic />);
+    await passerConsignes();
     expect(await screen.findByText(entete(6), { exact: false })).toBeTruthy();
   });
 
   it('la dernière réponse ouvre A8', async () => {
     await avancerService(19);
     await monter(<Diagnostic />);
+    await passerConsignes();
     await screen.findByText(entete(20), { exact: false });
     await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+    await passerConsignes();
     await attendre();
     expect(router.replace).toHaveBeenCalledWith('/certification/fin');
   });
 
   it('audio indisponible : l’état s’affiche, le texte reste lisible, on peut passer', async () => {
     await monter(<Diagnostic />);
+    await passerConsignes();
     await screen.findByText(entete(1), { exact: false });
     await fireEvent.press(screen.getByRole('button', { name: t.exercice.ecouter }));
     expect(await screen.findByText(t.exercice.audioKoTitre)).toBeTruthy();
     expect(screen.getByText(t.exercice.audioKoAide)).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: t.exercice.audioKoPasser }));
+    await passerConsignes();
     expect(await screen.findByText(entete(2), { exact: false })).toBeTruthy();
   });
 
   it('retour sans réponse : revient en arrière ; avec réponses : propose de quitter en gardant les réponses', async () => {
     await monter(<Diagnostic />);
+    await passerConsignes();
     await screen.findByText(entete(1), { exact: false });
     await fireEvent.press(screen.getByRole('button', { name: t.retour }));
     expect(router.back).toHaveBeenCalledTimes(1);
     await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+    await passerConsignes();
     await screen.findByText(entete(2), { exact: false });
     await fireEvent.press(screen.getByRole('button', { name: t.retour }));
     expect(router.back).toHaveBeenCalledTimes(1);
@@ -141,6 +171,7 @@ describe('A6 · Diagnostic', () => {
     expect(await screen.findByText(t.diagnostic.erreurGardees, undefined, { timeout: 4000 })).toBeTruthy();
     definirApi(creerApiFausse().api);
     await fireEvent.press(screen.getByRole('button', { name: t.reessayer }));
+    await passerConsignes();
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
   });
 
@@ -156,6 +187,7 @@ describe('A6 · Diagnostic', () => {
 
   it.each(['clair', 'sombre'] as const)('se monte en thème %s', async (reglage) => {
     await monter(<Diagnostic />, reglage);
+    await passerConsignes();
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
   });
 });
@@ -232,5 +264,17 @@ describe('A7 · Résultat du diagnostic', () => {
     await preparer();
     await monter(<ResultatDiagnostic />, reglage);
     expect(await screen.findByText(t.resultat.maitrise)).toBeTruthy();
+  });
+});
+
+describe('A6 · Diagnostic : consignes avant chaque partie (D-P1, D-P3)', () => {
+  it('affiche les consignes de la partie 1 avant la première question, puis la question', async () => {
+    creerApiFausse();
+    definirApi(creerApiFausse().api);
+    await monter(<Diagnostic />);
+    expect(await screen.findByText(fr.certification.consignes.partie1.titre)).toBeTruthy();
+    expect(screen.queryByText(entete(1), { exact: false })).toBeNull();
+    fireEvent.press(screen.getByRole('button', { name: fr.certification.consignes.commencer.replace('{{n}}', '1') }));
+    expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
   });
 });

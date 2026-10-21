@@ -15,6 +15,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuilleQuitter } from './FeuilleQuitter';
+import { ConsignesPartie } from './ConsignesPartie';
 import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
@@ -41,6 +42,8 @@ export function Diagnostic() {
   /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
   const [reponses, setReponses] = useState<Record<string, number | null>>({});
   const [onglet, setOnglet] = useState(0);
+  /** Parties dont les consignes ont été lues (D-P1, D-P3). */
+  const [partiesVues, setPartiesVues] = useState<number[]>([]);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
   const debut = useRef(0);
@@ -140,6 +143,14 @@ export function Diagnostic() {
         ) : null}
       </Ecran>
     );
+  }
+
+  // Consignes avant la première question de chaque partie (une fois par partie, au même endroit du diagnostic).
+  const partieCourante = membres[0]?.part;
+  const debutPartie = index === 0 || etat.tentative?.questions[index - 1]?.part !== partieCourante;
+  if (partieCourante !== undefined && debutPartie && !partiesVues.includes(partieCourante)) {
+    const questionsPartie = (etat.tentative?.questions ?? []).filter((q) => q.part === partieCourante).length;
+    return <ConsignesPartie partie={partieCourante} questions={questionsPartie} onCommencer={() => setPartiesVues((v) => [...v, partieCourante])} onRetour={sortir} />;
   }
 
   return (

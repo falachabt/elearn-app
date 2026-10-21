@@ -2142,7 +2142,20 @@ export const fr = {
   },
   // Profil TOEIC (certifications) : textes exacts du cahier des charges v1.9, section 5.
   certification: {
-    carte: 'Je prépare une certification',
+
+    consignes: {
+      entete: 'Partie {{n}}',
+      commencer: 'Commencer la partie {{n}}',
+      nombre: '{{n}} questions dans cette partie.',
+      retour: 'Tu ne peux pas revenir sur une question passée.',
+      partie1: { titre: 'Photos', texte: 'Tu vois une photo. Tu entends quatre phrases, lues une seule fois. Choisis la phrase qui décrit le mieux la photo.' },
+      partie2: { titre: 'Question et réponse', texte: 'Tu entends une question ou une phrase, puis trois réponses, lues une seule fois. Choisis la meilleure réponse.' },
+      partie3: { titre: 'Conversations', texte: 'Tu entends une conversation, écoutée une seule fois. Plusieurs questions portent sur cette conversation : réponds à chacune avant de passer au groupe suivant.' },
+      partie4: { titre: 'Messages courts', texte: 'Tu entends un message ou une annonce, écouté une seule fois. Plusieurs questions portent dessus : réponds à chacune avant de passer au groupe suivant.' },
+      partie5: { titre: 'Phrases à compléter', texte: 'Lis chaque phrase, puis choisis le mot ou le groupe de mots qui la complète.' },
+      partie6: { titre: 'Textes à trous', texte: 'Lis le texte. Choisis le mot ou la phrase qui complète chaque trou.' },
+      partie7: { titre: 'Documents', texte: 'Lis le ou les documents, puis réponds aux questions qui les suivent.' },
+    },    carte: 'Je prépare une certification',
     carteAide: 'TOEIC, puis d’autres examens',
     marqueExamen: 'TOEIC est une marque d’ETS. Elearn Prépa n’est pas affilié à ETS.',
     retour: 'Retour',

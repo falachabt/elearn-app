@@ -2141,7 +2141,20 @@ export const en: Textes = {
   },
   // TOEIC (certifications) profile.
   certification: {
-    carte: 'I am preparing for a certification',
+
+    consignes: {
+      entete: 'Part {{n}}',
+      commencer: 'Start part {{n}}',
+      nombre: '{{n}} questions in this part.',
+      retour: 'You cannot go back to a question you have passed.',
+      partie1: { titre: 'Photos', texte: 'You see a photo. You hear four statements, read once. Choose the statement that best describes the photo.' },
+      partie2: { titre: 'Question and response', texte: 'You hear a question or a statement, then three responses, read once. Choose the best response.' },
+      partie3: { titre: 'Conversations', texte: 'You hear a conversation, listened to once. Several questions follow it: answer each one before moving on to the next group.' },
+      partie4: { titre: 'Short talks', texte: 'You hear a message or an announcement, listened to once. Several questions follow it: answer each one before moving on to the next group.' },
+      partie5: { titre: 'Sentences to complete', texte: 'Read each sentence, then choose the word or group of words that completes it.' },
+      partie6: { titre: 'Texts with blanks', texte: 'Read the text. Choose the word or sentence that completes each blank.' },
+      partie7: { titre: 'Documents', texte: 'Read the document or documents, then answer the questions that follow.' },
+    },    carte: 'I am preparing for a certification',
     carteAide: 'TOEIC, then other exams',
     marqueExamen: 'TOEIC is a trademark of ETS. Elearn Prépa is not affiliated with ETS.',
     retour: 'Back',
