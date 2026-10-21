@@ -6,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirReglages } from '@/services/certification/etat';
+import { membresGroupe } from '@/services/certification/groupes';
 import { chronometre } from '@/services/certification/format';
 import { cloreParTemps, lireMini, repondreMini, tempsRestantMs, type EtatMini } from '@/services/certification/miniTest';
 import { ForcerSombre, useTheme } from '@/theme/ThemeProvider';
@@ -15,6 +16,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
@@ -36,7 +38,9 @@ function Examen() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
-  const [choix, setChoix] = useState<number | null>(null);
+  /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
+  const [reponses, setReponses] = useState<Record<string, number | null>>({});
+  const [onglet, setOnglet] = useState(0);
   const [quitter, setQuitter] = useState(false);
   const [maintenant, setMaintenant] = useState(() => Date.now());
   const [delaiEchecS, setDelaiEchecS] = useState(20);
@@ -62,7 +66,8 @@ function Examen() {
   const index = etat?.index ?? 0;
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setChoix(null);
+    setReponses({});
+    setOnglet(0);
     debut.current = Date.now();
   }, [index]);
 
@@ -82,13 +87,22 @@ function Examen() {
     void cloreParTemps(etat).then(aLaFin);
   }, [etat, reste, aLaFin]);
 
-  const avancer = async (chosen: number | null) => {
-    if (!etat || occupe.current || clos.current) return;
+  const membres = etat ? membresGroupe(etat.tentative.questions, etat.index) : [];
+  const question = membres[onglet] ?? membres[0];
+  const choix = question ? (reponses[question.id] ?? null) : null;
+  const complet = membres.length > 0 && membres.every((m) => m.id in reponses);
+
+  /** Envoie les réponses du groupe, dans l'ordre servi ; le test se termine à la dernière question. */
+  const envoyer = async (map: Record<string, number | null>) => {
+    if (!etat || membres.length === 0 || occupe.current || clos.current) return;
     occupe.current = true;
     try {
-      const question = etat.tentative.questions[etat.index];
-      const suivant = await repondreMini(etat, chosen, Date.now() - debut.current);
-      if (question) suivre('cert_exercise_answered', { type: question.type, partie: question.part, juste: null });
+      const ms = (Date.now() - debut.current) / membres.length;
+      let suivant = etat;
+      for (const m of membres) {
+        suivant = await repondreMini(suivant, map[m.id] ?? null, ms);
+        suivre('cert_exercise_answered', { type: m.type, partie: m.part, juste: null });
+      }
       if (suivant.termine) {
         clos.current = true;
         aLaFin();
@@ -96,6 +110,16 @@ function Examen() {
     } finally {
       occupe.current = false;
     }
+  };
+
+  /** Passe la question en cours ; quand tout le groupe a une réponse, il part au serveur. */
+  const passer = () => {
+    if (!question) return;
+    const suite = { ...reponses, [question.id]: null };
+    setReponses(suite);
+    const prochain = membres.findIndex((m) => !(m.id in suite));
+    if (prochain >= 0) setOnglet(prochain);
+    else void envoyer(suite);
   };
 
   if (phase.nom === 'chargement') {
@@ -116,9 +140,8 @@ function Examen() {
     );
   }
 
-  const question = etat.tentative.questions[etat.index];
   const total = etat.tentative.questions.length;
-  const derniere = etat.index >= total - 1;
+  const derniere = etat.index + membres.length >= total;
   const titre = t('certification.examen.entete', { n: Math.min(etat.index + 1, total), total });
   const horloge = chronometre(reste);
 
@@ -138,14 +161,25 @@ function Examen() {
       }
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')} desactive={choix === null} onPress={() => void avancer(choix)} retour />
-          <Bouton variante="texte" libelle={t('certification.examen.passer')} onPress={() => void avancer(null)} />
+          <Bouton libelle={membres.length > 1 ? t('certification.exercice.groupeSuivant') : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')} desactive={!complet} onPress={() => void envoyer(reponses)} retour />
+          <Bouton variante="texte" libelle={t('certification.examen.passer')} onPress={passer} />
         </View>
       }
     >
       <BarreProgression pourcent={total ? (etat.index / total) * 100 : 0} libelle={titre} />
       {question ? (
-        <QuestionExercice key={question.id} question={question} choix={choix} onChoix={setChoix} unique delaiEchecS={delaiEchecS} ecran="mini_test" position={etat.index + 1} onPasser={() => void avancer(null)} />
+        <QuestionExercice
+          key={membres[0]?.id ?? question.id}
+          question={question}
+          choix={choix}
+          onChoix={(i) => setReponses((r) => ({ ...r, [question.id]: i }))}
+          unique
+          delaiEchecS={delaiEchecS}
+          ecran="mini_test"
+          position={etat.index + onglet + 1}
+          onPasser={passer}
+          enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
+        />
       ) : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.examen.sansCorrection')}</Text>
       <Feuille

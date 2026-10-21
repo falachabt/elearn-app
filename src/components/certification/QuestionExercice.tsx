@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -30,6 +30,8 @@ type Props = {
   verrouille?: boolean;
   /** Position de la question dans la séance (1 à total). Jamais le numéro d'origine dans la banque. */
   position?: number;
+  /** Onglets des questions d'un groupe, affichés sous l'audio partagé. */
+  enteteGroupe?: ReactNode;
 };
 
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
@@ -56,7 +58,7 @@ const ALEA_TROU = /-{3,}/;
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -104,6 +106,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           onPasser={onPasser}
         />
       ) : null}
+      {enteteGroupe}
       {docs.length > 0 ? (
         <View>
           {docs.length > 1 ? (

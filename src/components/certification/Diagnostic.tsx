@@ -7,6 +7,7 @@ import { suivre } from '@/services/analytics';
 import { lireConnectivite } from '@/services/connectivite';
 import { demarrerOuReprendre, progression, repondre } from '@/services/certification/diagnostic';
 import { obtenirReglages, type EtatDiagnostic } from '@/services/certification/etat';
+import { membresGroupe } from '@/services/certification/groupes';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -14,6 +15,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuilleQuitter } from './FeuilleQuitter';
+import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
@@ -25,7 +27,9 @@ export function Diagnostic() {
   const { theme } = useTheme();
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   const [etat, setEtat] = useState<EtatDiagnostic | null>(null);
-  const [choix, setChoix] = useState<number | null>(null);
+  /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
+  const [reponses, setReponses] = useState<Record<string, number | null>>({});
+  const [onglet, setOnglet] = useState(0);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
   const debut = useRef(0);
@@ -55,23 +59,41 @@ export function Diagnostic() {
     void charger();
   }, [charger]);
 
-  // Nouvelle question : sélection remise à zéro, chronomètre relancé.
+  // Nouveau groupe : réponses remises à zéro, premier onglet, chronomètre relancé.
   const index = etat?.index ?? 0;
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setChoix(null);
+    setReponses({});
+    setOnglet(0);
     debut.current = Date.now();
   }, [index]);
 
-  const question = etat?.tentative?.questions[index] ?? null;
+  const membres = etat?.tentative ? membresGroupe(etat.tentative.questions, index) : [];
+  const question = membres[onglet] ?? membres[0] ?? null;
+  const choix = question ? (reponses[question.id] ?? null) : null;
+  const complet = membres.length > 0 && membres.every((m) => m.id in reponses);
   const { faites, total } = etat ? progression(etat) : { faites: 0, total: 0 };
 
-  const avancer = async (chosen: number | null) => {
-    if (!etat || !question || occupe.current) return;
+  /** Passe la question en cours ; quand tout le groupe a une réponse, il part au serveur. */
+  const passer = () => {
+    if (!question) return;
+    const suite = { ...reponses, [question.id]: null };
+    setReponses(suite);
+    const prochain = membres.findIndex((m) => !(m.id in suite));
+    if (prochain >= 0) setOnglet(prochain);
+    else void envoyer(suite);
+  };
+
+  const envoyer = async (map: Record<string, number | null>) => {
+    if (!etat || membres.length === 0 || occupe.current) return;
     occupe.current = true;
     try {
-      const suivant = await repondre(etat, chosen, Date.now() - debut.current);
-      suivre('cert_exercise_answered', { type: question.type, partie: question.part, juste: null });
+      const ms = (Date.now() - debut.current) / membres.length;
+      let suivant = etat;
+      for (const m of membres) {
+        suivant = await repondre(suivant, map[m.id] ?? null, ms);
+        suivre('cert_exercise_answered', { type: m.type, partie: m.part, juste: null });
+      }
       setEtat(suivant);
       if (suivant.termine) router.replace('/certification/fin');
     } finally {
@@ -113,22 +135,23 @@ export function Diagnostic() {
       entete={<EnteteToeic titre={t('certification.diagnostic.entete', { n: Math.min(faites + 1, total), total })} onRetour={sortir} />}
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={t('certification.diagnostic.valider')} desactive={choix === null} onPress={() => void avancer(choix)} retour />
-          <Bouton variante="texte" libelle={t('certification.diagnostic.passer')} onPress={() => void avancer(null)} />
+          <Bouton libelle={membres.length > 1 ? t('certification.exercice.groupeSuivant') : t('certification.diagnostic.valider')} desactive={!complet} onPress={() => void envoyer(reponses)} retour />
+          <Bouton variante="texte" libelle={t('certification.diagnostic.passer')} onPress={passer} />
         </View>
       }
     >
       <BarreProgression pourcent={total ? (faites / total) * 100 : 0} libelle={t('certification.diagnostic.entete', { n: Math.min(faites + 1, total), total })} />
       <QuestionExercice
-        key={question.id}
+        key={membres[0]?.id ?? question.id}
         question={question}
         choix={choix}
-        onChoix={setChoix}
+        onChoix={(i) => setReponses((r) => ({ ...r, [question.id]: i }))}
         unique
         delaiEchecS={delaiEchecS}
         ecran="diagnostic"
-        position={Math.min(faites + 1, total)}
-        onPasser={() => void avancer(null)}
+        position={Math.min(faites + onglet + 1, total)}
+        onPasser={passer}
+        enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
       />
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />
     </Ecran>
