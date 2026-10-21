@@ -143,18 +143,22 @@ const TENTATIVE_DEMO_TERMINEE: TentativeListee = {
 };
 
 /** Statistiques de démonstration (outil de développement) : activées par `EXPO_PUBLIC_CERT_DEMO_STATS=1`, jamais en production. */
+/** Points de la courbe par segment (AC-ST-2) : Semaine 4 semaines, Mois 5 semaines, Tout 6 mois. Dernier point = score du jour. */
+const COURBE_DEMO: Record<PeriodeStats, { jours: number[]; valeurs: number[] }> = {
+  '7': { jours: [-21, -14, -7, 0], valeurs: [605, 620, 640, 660] },
+  '30': { jours: [-28, -21, -14, -7, 0], valeurs: [600, 615, 630, 645, 660] },
+  0: { jours: [-150, -120, -90, -60, -30, 0], valeurs: [600, 612, 625, 640, 650, 660] },
+};
+
 function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>[0]): Stats {
+  const { jours, valeurs } = COURBE_DEMO[periode];
+  const dernier = valeurs[valeurs.length - 1];
   return {
     status: 'ok',
     periode,
     reponsesTotal: PARTIES_DEMO.reduce((a, p) => a + p.n, 0),
-    score: { estime: true, min: 620, max: 700, valeur: 660 },
-    barres: [
-      { fin: jourPlus(jour, -21), min: 540, max: 600, milieu: 570, valeur: 570 },
-      { fin: jourPlus(jour, -14), min: 580, max: 640, milieu: 610, valeur: 610 },
-      { fin: jourPlus(jour, -7), min: 600, max: 660, milieu: 630, valeur: 630 },
-      { fin: jour, min: 620, max: 700, milieu: 660, valeur: 660 },
-    ],
+    score: { estime: true, min: dernier - 40, max: dernier + 40, valeur: dernier },
+    barres: jours.map((d, i) => ({ fin: jourPlus(jour, d), min: valeurs[i] - 30, max: valeurs[i] + 30, milieu: valeurs[i], valeur: valeurs[i] })),
     tendance: 'up',
     parties: PARTIES_DEMO.map(({ partie, n, c }) => {
       const m = c / n;

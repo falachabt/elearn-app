@@ -130,9 +130,13 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
       </View>
       <EtiquetteSection texte={t('certification.stats.mots')} />
       <View style={styles.tuiles}>
-        <Tuile titre={String(stats.mots.aRevoir)} aide={t('certification.stats.motsRevoir')} onPress={() => router.push({ pathname: '/reviser', params: { onglet: 'carnet' } } as never)} />
-        <Tuile titre={String(stats.mots.enCours)} aide={t('certification.stats.motsProgres')} />
-        <Tuile titre={String(stats.mots.connus)} aide={t('certification.stats.motsConnus')} />
+        {/* Deux compteurs seulement, comme la maquette (« Connu » non dessiné, E-49) : même largeur pour les deux. */}
+        <View style={styles.tuile}>
+          <Tuile titre={String(stats.mots.aRevoir)} aide={t('certification.stats.motsRevoir')} onPress={() => router.push({ pathname: '/reviser', params: { onglet: 'carnet' } } as never)} />
+        </View>
+        <View style={styles.tuile}>
+          <Tuile titre={String(stats.mots.enCours)} aide={t('certification.stats.motsProgres')} />
+        </View>
       </View>
       <LigneChoix icone={History} titre={t('certification.stats.historique')} onPress={() => router.push('/certification/historique' as never)} />
     </>
@@ -173,7 +177,8 @@ function Graphique({ barres }: { barres: DonneesStats['stats']['barres'] }) {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
+  tuiles: { flexDirection: 'row', gap: espace[3] },
+  tuile: { flex: 1 },
   graphique: { gap: espace[1], paddingTop: espace[2] },
   legende: { flexDirection: 'row', justifyContent: 'flex-end' },
 });
