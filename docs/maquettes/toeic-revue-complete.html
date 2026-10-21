@@ -989,6 +989,48 @@ const V30_ACCUEIL_TOEIC_SANS_DATE=t=>ph(t,hd('Accueil',false)+bd(
      <span style="width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none">${I('cal')}</span>
      <div style="flex:1;min-width:0"><b style="display:block;font:700 15px var(--f-body)">Ajoute la date de ton examen</b><small style="font:500 13px var(--f-body);color:var(--txt2)">Pour voir le compte à rebours</small></div>${I('chev')}</div>`
   )+ft(TB(0)));
+/* v31 : correction Entraînement allégée (21 octobre, à valider) : pas de grand cadre, justification repliée, onglets de groupe colorés */
+const voirJustif=`<div style="display:flex;justify-content:center"><span class="lk" style="text-decoration:underline">Voir la justification</span></div>`;
+const justifOuverte=`<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)">
+  <b style="font:700 14px var(--f-body)">Justification</b>
+  <span style="font:500 14px/1.45 var(--f-body)">La conversation porte sur le renouvellement du contrat. Les mots « renewal » et « contract » sont les indices.</span>
+  <div style="display:grid;gap:8px;margin-top:4px">${B('Revoir la notion','sec')}${B('Explication détaillée','sec')}</div></div>`;
+
+const V31_CORR_REPLIEE=t=>ph(t,hd('Partie 3 · Conversation')+bd(
+  `<div class="q" style="font-size:17px">Why is the man contacting the woman?</div>`+
+  optC('A','To sell a new machine','')+optC('B','To discuss a contract renewal','juste','JUSTE')+optC('C','To report a repair','')+optC('D','To schedule training','')+
+  voirJustif)+ft(B('Question suivante')));
+
+const V31_CORR_OUVERTE=t=>ph(t,hd('Partie 3 · Conversation')+bd(
+  `<div class="q" style="font-size:17px">Why is the man contacting the woman?</div>`+
+  optC('A','To sell a new machine','')+optC('B','To discuss a contract renewal','juste','JUSTE')+optC('C','To report a repair','')+optC('D','To schedule training','')+
+  justifOuverte)+ft(B('Question suivante')));
+
+const V31_CORR_REPLIEE_390=t=>ph390(t,hd('Partie 3 · Conversation')+bd(
+  `<div class="q" style="font-size:17px">Why is the man contacting the woman?</div>`+
+  optC('A','To sell a new machine','')+optC('B','To discuss a contract renewal','juste','JUSTE')+optC('C','To report a repair','')+optC('D','To schedule training','')+
+  voirJustif)+ft(B('Question suivante')));
+
+const ongletAudio=(l,etat,actif)=>{
+  const fond=actif?'#0A0A0A':etat==='juste'?'var(--marque-d)':etat==='faux'?'var(--corail)':'var(--surf)';
+  const txt=actif?'#F6F1E4':'#0A0A0A';
+  const ico=etat==='juste'?I('check'):etat==='faux'?I('alert'):'';
+  return `<span style="display:flex;gap:4px;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--bord);border-radius:10px;background:${fond};color:${txt};font:700 13px var(--f-body)">${ico}${l}</span>`;
+};
+const V31_GROUPE=t=>ph(t,hd('Partie 3 · Conversation')+bd(
+  `<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${ongletAudio('Question 65','juste',true)}${ongletAudio('66','faux',false)}${ongletAudio('67','juste',false)}</div>`+
+  `<div class="q" style="font-size:17px">Why is the man contacting the woman?</div>`+
+  optC('A','To sell a new machine','')+optC('B','To discuss a contract renewal','juste','JUSTE')+optC('C','To report a repair','')+optC('D','To schedule training','')+
+  voirJustif)+ft(B('Question suivante')));
+
+/* Groupe à onglets : « Onglet suivant » sur chaque onglet, « Valider (k/N) » sur le dernier (ajout de Benny, 21 octobre) */
+const ongletGroupe=(l,actif,etat='')=>`<span style="display:flex;gap:4px;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--bord);border-radius:10px;background:${actif?'#0A0A0A':etat==='juste'?'var(--marque-d)':etat==='faux'?'var(--corail)':'var(--surf)'};color:${actif?'#F6F1E4':'#0A0A0A'};font:700 13px var(--f-body)">${etat==='juste'?I('check'):etat==='faux'?I('alert'):''}${l}</span>`;
+const enteteGroupe=(on)=>`<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${[['Question 68',''],['Question 69',''],['Question 70','']].map(([l,e],k)=>ongletGroupe(l,k===on,e)).join('')}</div>`;
+const questionGroupe=`<div class="q" style="font-size:17px">What does the man say about the schedule?</div>`+opt('A','It has been changed.','')+opt('B','It is too long.','')+opt('C','It is printed in two languages.','')+opt('D','It is free of charge.','');
+
+const V31_GROUPE_ONGLET=t=>ph(t,hd('Partie 3 · Conversation')+bd(enteteGroupe(0)+questionGroupe)+ft(B('Onglet suivant')));
+const V31_GROUPE_DERNIER=t=>ph(t,hd('Partie 3 · Conversation')+bd(enteteGroupe(2)+`<div class="q" style="font-size:17px">What does the woman suggest?</div>`+opt('A','Call back later.','')+opt('B','Check the website.','')+opt('C','Visit the office.','')+opt('D','Ask a manager.','')+`<p class="hint" style="color:var(--txt)">Dernier onglet : valide le groupe quand tu as répondu à tout.</p>`)+ft(B('Valider (3/3)')));
+const V31_GROUPE_EXAMEN=t=>ph(t,hd('Examen · Partie 3',true)+bd(enteteGroupe(1)+questionGroupe)+ft(B('Onglet suivant')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1034,6 +1076,8 @@ const groups=[
  [P1b,'TOEIC-P1-2 · Moi secondaire ou concours, bas : ligne « Mon profil »'], [P2e,'TOEIC-P2-ELEVE · Mon profil, statut élève : classe puis pays, Enregistrer'], [P2c,'TOEIC-P2-CONC · Mon profil, statut concours : concours puis pays'], [P2x,'TOEIC-P2-CERT · Mon profil, statut certification : examen (TOEIC, seul disponible) puis pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (après Enregistrer)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (depuis le TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
  ['Identité des pages Réviser, Examen et courbe de score (v29, 21 octobre, à valider)',[[V29_PARCOURS,'TOEIC-V29-PARCOURS · Réviser, Parcours : frise numérotée, une icône par étape'],[V29_PARTIES,'TOEIC-V29-PARTIES · Réviser, Parties : tuiles P1 à P6 avec maîtrise'],[V29_COURS_GRAM,'TOEIC-V29-COURS-GRAM · Cours, Grammaire : bandeau jaune, icône couches'],[V29_COURS_VOC,'TOEIC-V29-COURS-VOC · Cours, Vocabulaire : bandeau vert, icône notes'],[V29_COURS_PIEGES,'TOEIC-V29-COURS-PIEGES · Cours, Pièges : bandeau corail, icône alerte'],[V29_COURS_METHODE,'TOEIC-V29-COURS-METHODE · Cours, Méthode : bandeau crème, icône ampoule'],[V29_EXAMEN,'TOEIC-V29-EXAMEN · Examen : bandeau d\'épreuve sombre, chrono, pas de correction'],[V29_STATS,'TOEIC-V29-STATS · Statistiques : courbe du score, cible 800 en pointillé']]],
  ['Cartes de liste propres à chaque catégorie et partie, accueil TOEIC avec compte à rebours (v30, 21 octobre, à valider)',[[V30_GRAMMAIRE,'TOEIC-V30-GRAMMAIRE · Cours, Grammaire : cartes jaunes, icône propre par fiche, pas de livre'],[V30_PARTIES,'TOEIC-V30-PARTIES · Réviser, Parties : une couleur et une icône par partie, P1 à P7'],[V30_ACCUEIL_TOEIC,'TOEIC-V30-ACCUEIL · Accueil : carte « J-87 » avec barre de progression (date configurée)'],[V30_ACCUEIL_TOEIC_SANS_DATE,'TOEIC-V30-ACCUEIL-SANS-DATE · Accueil sans date : invitation à ajouter la date']]],
+ ['Correction Entraînement allégée : pas de cadre jaune, justification repliée, onglets de groupe colorés (v31, 21 octobre, à valider)',[[V31_CORR_REPLIEE,'TOEIC-V31-REPLIEE · Correction : option juste en vert, « Voir la justification » discret'],[V31_CORR_OUVERTE,'TOEIC-V31-OUVERTE · Justification ouverte : « Revoir la notion » et « Explication détaillée »'],[V31_CORR_REPLIEE_390,'TOEIC-V31-REPLIEE-390 · Correction repliée à 390 px'],[V31_GROUPE,'TOEIC-V31-GROUPE · Groupe audio : onglet actif en noir, 65 juste en vert, 66 faux en rouge']]],
+ ['Groupe à onglets : « Onglet suivant » puis « Valider (k/N) » sur le dernier onglet (v31, 21 octobre, à valider)',[[V31_GROUPE_ONGLET,'TOEIC-V31-ONGLET · Groupe, premier onglet : bouton « Onglet suivant »'],[V31_GROUPE_DERNIER,'TOEIC-V31-DERNIER · Groupe, dernier onglet : bouton « Valider (3/3) »'],[V31_GROUPE_EXAMEN,'TOEIC-V31-EXAMEN-ONGLET · Examen, groupe : « Onglet suivant », aucune correction']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;

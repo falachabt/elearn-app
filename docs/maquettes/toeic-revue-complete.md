@@ -391,3 +391,17 @@ Règles de la carte « J-N » (décision de la maquette, à confirmer par Benny)
 - Pourcentage : jours écoulés depuis le début de la préparation divisés par les jours entre ce début et la date d'examen. Il ne baisse jamais.
 - Après la date, la carte passe à « Examen passé : ajoute ton résultat ».
 - Aucun compte à rebours fictif : sans date, aucun J-N n'est affiché.
+
+## Version 31 : correction Entraînement allégée, groupes à onglets (21 octobre 2026, à valider)
+
+Retour de Benny sur la correction d'une question en Entraînement : le cadre jaune « Réponse juste / fausse » et la notion prennent trop de place. L'option choisie est déjà verte ou rouge. Retour aussi sur les groupes à onglets.
+
+- `TOEIC-V31-REPLIEE` : la correction tient en une ligne. Le choix reste vert (juste) ou rouge (faux), et un lien discret « Voir la justification » est en bas. Pas de cadre jaune.
+- `TOEIC-V31-REPLIEE-390` : même écran à 390 px.
+- `TOEIC-V31-OUVERTE` : au toucher, la justification s'ouvre. Elle propose « Revoir la notion » et « Explication détaillée ».
+- `TOEIC-V31-GROUPE` : groupe audio à onglets après validation. L'onglet actif reste noir ; chaque onglet passe en vert (juste) ou rouge (faux) avec son icône, pour un repère visuel.
+- `TOEIC-V31-ONGLET` : groupe, premier onglet. Le bouton du bas est « Onglet suivant ».
+- `TOEIC-V31-DERNIER` : groupe, dernier onglet. Le bouton du bas est « Valider (3/3) ».
+- `TOEIC-V31-EXAMEN-ONGLET` : Examen, groupe. « Onglet suivant », aucune correction.
+
+Règle : pour un groupe à onglets, la navigation reste libre entre onglets. Le bouton du bas est « Onglet suivant » sauf sur le dernier onglet, où il devient « Valider (k/N) ». En Examen, aucune correction n'apparaît avant la revue de fin.
