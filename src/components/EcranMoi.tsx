@@ -1,6 +1,6 @@
 import * as Clipboard from 'expo-clipboard';
 import { router, useFocusEffect } from 'expo-router';
-import { CircleHelp, Clock, FileText, Gift, IdCard, LogOut, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
+import { CalendarDays, CircleHelp, Clock, FileText, Gift, IdCard, LogOut, ReceiptText, RefreshCw, Settings, Shield, Target } from 'lucide-react-native';
 import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -237,6 +237,14 @@ export function EcranMoi({ toeic = false }: { toeic?: boolean } = {}) {
           sousTitre={resume.minutes !== null ? t('profil.progSous', { n: resume.minutes }) : undefined}
           onPress={() => router.push('/progression')}
         />
+        {connecte ? (
+          <LigneGroupe
+            icone={CalendarDays}
+            titre={t('profil.rapportHebdo')}
+            sousTitre={t('profil.rapportHebdoSous')}
+            onPress={() => router.push({ pathname: '/ma-semaine', params: { source: 'inbox' } })}
+          />
+        ) : null}
         <LigneGroupe
           icone={FileText}
           titre={t('profil.documents')}

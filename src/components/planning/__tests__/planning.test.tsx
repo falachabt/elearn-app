@@ -330,7 +330,7 @@ describe('CartePlanning', () => {
     jest.setSystemTime(new Date(2026, 9, 21, 10, 0));
     serveur({ plan: PRET });
     await monter(<CartePlanning idUtilisateur="u1" />);
-    await screen.findByText(t.carte.repos);
+    await screen.findByText(new RegExp(`^${t.carte.repos.split(' ·')[0]}`));
   });
 
   it('sans cible, ou en cas d’erreur : la carte ne s’affiche pas', async () => {

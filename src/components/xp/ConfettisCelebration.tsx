@@ -3,6 +3,12 @@ import { Animated, Dimensions, Easing, StyleSheet, View } from 'react-native';
 
 const COULEURS = ['#FFD83D', '#10B981', '#B69CFF', '#1A75FF', '#FF9A3D', '#FF5252', '#34D399'];
 const NB_PARTICULES = 28;
+/** Chute lente (demande de Benny, 21 octobre : environ 3,5 fois plus longue qu'avant, 1,8 à 2,6 s). */
+const FACTEUR_DUREE = 3.5;
+const DUREE_MIN_MS = 1800 * FACTEUR_DUREE;
+const DUREE_ALEA_MS = 800 * FACTEUR_DUREE;
+/** Durée maximale d'une particule, retard compris : le toast garde les confettis montés au moins aussi longtemps. */
+export const DUREE_CONFETTIS_MS = DUREE_MIN_MS + DUREE_ALEA_MS + 200 + 28 * 20 + 300;
 
 interface Particule {
   id: number;
@@ -27,7 +33,7 @@ function genererParticules(largeur: number): Particule[] {
       estCercle: i % 3 === 0,
       couleur,
       delai: Math.floor(Math.random() * 200),
-      duree: 1800 + Math.floor(Math.random() * 800),
+      duree: DUREE_MIN_MS + Math.floor(Math.random() * DUREE_ALEA_MS),
       rotationFin: (Math.random() > 0.5 ? 1 : -1) * (360 + Math.floor(Math.random() * 360)),
       derivationX: (Math.random() - 0.5) * 80,
     });
@@ -48,7 +54,7 @@ export function ConfettisCelebration() {
         Animated.timing(anim, {
           toValue: 1,
           duration: p.duree,
-          easing: Easing.out(Easing.cubic),
+          easing: Easing.out(Easing.quad),
           useNativeDriver: true,
         }),
       ]);
@@ -62,7 +68,7 @@ export function ConfettisCelebration() {
   }, [animations, particules]);
 
   return (
-    <View pointerEvents="none" style={styles.conteneur}>
+    <View testID="confettis" pointerEvents="none" style={styles.conteneur}>
       {particules.map((p, i) => {
         const anim = animations[i];
         const translateY = anim.interpolate({

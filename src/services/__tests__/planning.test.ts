@@ -8,6 +8,7 @@ import {
   depuisReponse,
   deuxProchainsJours,
   elementFait,
+  annonceRepos,
   estJourDeRepos,
   etatJour,
   heuresEstimees,
@@ -146,6 +147,13 @@ describe('règles d’affichage', () => {
     expect(estJourDeRepos(p, '2026-10-19')).toBe(false);
     expect(estJourDeRepos(p, '2026-10-01')).toBe(false);
     expect(estJourDeRepos(p, '2026-12-01')).toBe(false);
+  });
+
+  it('jour annoncé « repos » : sans séance avec une séance à venir, y compris avant le début du planning', () => {
+    expect(annonceRepos(p, '2026-10-21')).toBe(true);
+    expect(annonceRepos(p, '2026-10-01')).toBe(true);
+    expect(annonceRepos(p, '2026-10-22')).toBe(false);
+    expect(annonceRepos(p, '2026-12-01')).toBe(false);
   });
 
   it('semaine du jour : rang et total ; null hors planning', () => {

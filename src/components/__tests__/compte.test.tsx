@@ -214,6 +214,15 @@ describe.each(['fr', 'en'] as const)('EcranMoi (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith('/compte/connexion');
   });
 
+  it('compte sauvegardé : « Mon rapport hebdomadaire » ouvre Ma semaine ; absent pour un invité', async () => {
+    await monter(<EcranMoi />);
+    expect(screen.queryByText(x.profil.rapportHebdo)).toBeNull();
+    mockSession.mockReturnValue(membre);
+    await monter(<EcranMoi />);
+    await fireEvent.press(screen.getByText(x.profil.rapportHebdo));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/ma-semaine', params: { source: 'inbox' } });
+  });
+
   it('compte sauvegardé : pas de carte de création, déconnexion dans Paramètres', async () => {
     mockSession.mockReturnValue(membre);
     mockDeconnecter.mockResolvedValue(undefined);
