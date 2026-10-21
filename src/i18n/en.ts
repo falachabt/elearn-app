@@ -2295,6 +2295,7 @@ export const en: Textes = {
       audioKoPasser: 'Skip the question',
       ecouteUnique: 'Single listen: it cannot be replayed during the diagnostic.',
       ecouteJouee: 'Already played.',
+      ecouteExamen: 'Single listen: no replay during the test.',
       document: 'Doc. {{n}}',
       imageAlt: 'Photo for part {{n}}',
       illustration: 'PART 1 PHOTO · AI ILLUSTRATION',

@@ -139,7 +139,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
         <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{enLecture ? t('certification.exercice.enCours') : reecoute ? t('certification.exercice.reecouter') : libelle}</Text>
         <BarreProgression pourcent={etat.duree > 0 ? (etat.position / etat.duree) * 100 : etat.phase === 'fini' ? 100 : 0} hauteur={8} libelle={libelle} />
         {bloque ? (
-          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.exercice.ecouteJouee')}</Text>
+          <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{unique ? t('certification.exercice.ecouteExamen') : t('certification.exercice.ecouteJouee')}</Text>
         ) : etat.duree > 0 ? (
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{`${formaterTemps(etat.position)} / ${formaterTemps(etat.duree)}`}</Text>
         ) : null}

@@ -2296,6 +2296,7 @@ export const fr = {
       audioKoPasser: 'Passer la question',
       ecouteUnique: 'Écoute unique : elle ne se rejoue pas pendant le diagnostic.',
       ecouteJouee: 'Écoute déjà jouée.',
+      ecouteExamen: "Écoute unique : pas de réécoute pendant l'épreuve.",
       document: 'Doc. {{n}}',
       imageAlt: 'Photo de la partie {{n}}',
       illustration: 'PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',
