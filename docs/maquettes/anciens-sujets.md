@@ -49,7 +49,7 @@ Un document déjà ouvert ne coûte plus rien : il s'ouvre directement, sans feu
 - Tests : états des étapes, quitter (connexion coupée, aucune ouverture tardive de la session), illisible, suppression, aperçu (pivoter, recadrer, échec), routage de la notification, qualité des feuilles.
 
 ## Visite guidée interactive de la prise de photos (demandes de Benny du 20 octobre)
-Pas un diaporama : l'élève fait vraiment les gestes, sur une feuille d'exemple préchargée (`assets/images/exemple-feuille.jpg`), sans caméra, sans crédit, sans appel IA et sans rien enregistrer (ni session, ni photo).
+Visite remplacée le 21 octobre par la bibliothèque de visite de l’app (voir la section du 21 octobre) ; l’ancienne visite sur feuille d’exemple est supprimée.
 - **Quand** : une seule fois, à la première ouverture de la prise de photos (valeur mémorisée). « Passer » est toujours visible (en haut) : il ferme et compte comme vue. Jamais bloquante.
 - **Étapes (6)**, chacune avance quand l'action est faite : 1. appuyer sur le bouton rond (la feuille d'exemple est « photographiée ») ; 2. appuyer sur la miniature ; 3. dans l'aperçu, appuyer sur Recadrer ; 4. déplacer le cadre puis appuyer sur Appliquer le cadre ; 5. appuyer sur Terminer puis sur Envoyer à l'IA ; 6. attendre la correction d'exemple (étapes simulées, puis note d'exemple), « Terminer la visite ».
 - **Mise en évidence** : l'élément à toucher est entouré en jaune (jeton `accent.soleil`), le reste est atténué et inactif ; une carte d'indication (jaune doux, bordure 2 px, ombre dure) dit quoi faire, avec « Étape n sur 6 » et « Passer ».
@@ -73,3 +73,8 @@ Pas un diaporama : l'élève fait vraiment les gestes, sur une feuille d'exemple
 - **« Revoir les feuilles »** : les adresses signées sont obtenues par la fonction Edge (lecture de la ligne par le serveur après contrôle du propriétaire), car les colonnes des chemins ne sont pas lisibles par l'élève.
 - **Visite guidée (AS5d, remplace la visite maison)** : bibliothèque `@wrack/react-native-tour-guide` (déjà dans l'app, aucun module natif ajouté) : projecteur sur les vrais boutons de la prise de photos, une carte d'explication par étape : viseur, bouton rond, galerie, compteur de feuilles, Terminer, aide. « Passer » toujours visible. Lancée une fois à la première ouverture ; le bouton d'aide (point d'interrogation) la relance. Évènement `annale_visite_vue`. L'ancienne visite sur feuille d'exemple n'est plus ouverte automatiquement.
 - Les maquettes HTML ne sont pas redessinées à cette date : cette spec fait foi (écrans existants ajustés, aucun nouvel écran).
+
+## Nettoyage de l'ancien parcours et chrono (21 octobre)
+- **Bug du temps** : sans temps conseillé (documents de classe), le choix « Compte à rebours » était aussitôt ramené au chrono libre ; il bascule maintenant sur « Mon temps » avec saisie des minutes.
+- **Mes documents** : une annale gardée sur le téléphone rouvre la page de détail du sujet (temps, correction, sessions) et non plus le lecteur seul. Seuls les documents sans origine connue s'ouvrent directement, sans menu de chrono.
+- **Supprimé** : l'ancien menu de chrono du lecteur (durée officielle, 30 min, 1 h, 2 h, « Ne plus afficher »), sa feuille d'explication au premier lancement, la visite interactive sur feuille d'exemple et leurs textes. Le temps se choisit uniquement sur la page de détail du sujet.

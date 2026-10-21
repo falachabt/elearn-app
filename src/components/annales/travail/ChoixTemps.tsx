@@ -41,7 +41,8 @@ export function ChoixTemps({ valeur, onChange, dureeMin }: { valeur: PreferenceT
             { valeur: 'compte', libelle: t('travail.tempsCompte') },
           ]}
           valeur={valeur.mode}
-          onChange={(mode) => onChange({ ...valeur, mode })}
+          // Sans temps conseillé, le compte à rebours passe par la saisie en minutes (sinon la valeur est ramenée au chrono libre).
+          onChange={(mode) => onChange({ ...valeur, mode, ...(mode === 'compte' && !dureeMin ? { choix: 'perso' as const } : {}) })}
         />
         {valeur.mode === 'libre' ? (
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('travail.tempsMesurerTexte')}</Text>

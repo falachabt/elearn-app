@@ -7,6 +7,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { CLE_CATALOGUE, lireSujet, titreSujet, type DetailSujet, type Sujet } from '@/services/annales';
+import { suivre } from '@/services/analytics';
 import { useEtatMemorise } from '@/services/memoire';
 import { getSupabase } from '@/services/supabase';
 import {
@@ -135,6 +136,10 @@ export function SujetAnnale() {
     if (!duree) return;
     setTemps(false);
     void enregistrerPreferenceTemps(prefEffective);
+    suivre('annale_timer_started', {
+      mode: prefEffective.mode === 'libre' ? 'libre' : prefEffective.choix === 'conseille' ? 'officiel' : 'perso',
+      minutes: duree === 'libre' ? null : Math.round(Number(duree) / 60),
+    });
     let url = d.urlSujet;
     if (document) {
       try {

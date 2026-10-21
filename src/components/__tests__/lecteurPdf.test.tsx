@@ -141,7 +141,11 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     await waitFor(() => expect(screen.getByText('Correction')).toBeTruthy());
     expect(screen.getAllByText(/^(Correction|Sujet Maths 2024)$/).map((e) => e.props.children)).toEqual(['Correction', 'Sujet Maths 2024']);
     await fireEvent.press(screen.getByText('Sujet Maths 2024'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: URL_SUJET, titre: 'Sujet Maths 2024' } });
+    // Annale de concours (sujet 7) : la page de détail du sujet, plus le lecteur direct.
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '7' } });
+    // Document sans origine connue : le lecteur seul, sans menu de chrono.
+    await fireEvent.press(screen.getByText('Correction'));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/document', params: { url: 'https://r2/c1.pdf', titre: 'Correction' } });
     await fireEvent.press(screen.getByRole('button', { name: x.document.retirer.replace('{{titre}}', 'Correction') }));
     await waitFor(() => expect(screen.queryByText('Correction')).toBeNull());
     expect((await lireDocuments()).map((d) => [d.titre, d.sujet])).toEqual([['Sujet Maths 2024', 7]]);
@@ -178,25 +182,18 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
     expect(mockTelecharger).toHaveBeenCalledWith('https://r2/docs/S%C3%A9quence%205%20COLLEGE.pdf', expect.anything());
   });
 
-  it('première ouverture sans onboarding : feuille explicative bloquante puis choix du chrono', async () => {
-    await AsyncStorage.removeItem('annales.chrono.onboarding_vu');
-    await AsyncStorage.removeItem('annales.chrono.ne_plus_afficher');
+  it('sans temps choisi (document rouvert) : aucun menu de chrono, lecture directe', async () => {
+    await AsyncStorage.clear();
     await monter();
-    await waitFor(() => expect(screen.getByText(x.annales.onboardingChronoTitre)).toBeTruthy());
-    expect(screen.getByText(x.annales.onboardingChronoLibre)).toBeTruthy();
-    expect(screen.getByText(x.annales.onboardingCompteARebours)).toBeTruthy();
-    const btnCompris = screen.getByRole('button', { name: x.annales.onboardingCompris });
-    await fireEvent.press(btnCompris);
-    expect(await AsyncStorage.getItem('annales.chrono.onboarding_vu')).toBe('1');
-    await waitFor(() => expect(screen.getByText(x.annales.configurerChrono)).toBeTruthy());
+    await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
+    expect(screen.queryByRole('checkbox')).toBeNull();
+    expect(AsyncStorage.getItem('annales.chrono.onboarding_vu')).resolves.toBeNull();
   });
 
-  it('prochaine ouverture : feuille de configuration avec case "Ne plus afficher"', async () => {
-    await AsyncStorage.setItem('annales.chrono.onboarding_vu', '1');
-    await AsyncStorage.removeItem('annales.chrono.ne_plus_afficher');
-    await monter();
-    await waitFor(() => expect(screen.getByText(x.annales.configurerChrono)).toBeTruthy());
-    expect(screen.getByText(x.annales.nePlusAfficher)).toBeTruthy();
+  it('un ancien sujet gardé rouvre sa page de détail depuis « Mes documents »', async () => {
+    await ouvrirDocument('https://r2/s.pdf', 'Sujet Maths · Correction', new Date(), undefined, undefined, { kind: 'document', ref: 'abc', corr: 'def' });
+    const [d] = await lireDocuments();
+    expect(d.origine).toEqual({ kind: 'document', ref: 'abc', corr: 'def' });
   });
 
   describe('#72 · temps choisi, sujet / correction, correction du travail', () => {
@@ -216,13 +213,11 @@ describe.each(['fr', 'en'] as const)('lecteur PDF (%s)', (langue) => {
       mockDepenser.mockResolvedValue({ statut: 'spent', cout: 0, solde: 20, contenu: { url: URL_CORR } });
     });
 
-    it('temps déjà choisi sur la page du sujet : ni onboarding ni menu du chrono', async () => {
+    it('temps déjà choisi sur la page du sujet : le lecteur s’ouvre directement', async () => {
       await AsyncStorage.clear();
       mockParams = parametres({ duree: '5400' });
       await monter();
       await waitFor(() => expect(screen.getByTestId('lecteur-pdf')).toBeTruthy());
-      expect(screen.queryByText(x.annales.onboardingChronoTitre)).toBeNull();
-      expect(screen.queryByText(x.annales.configurerChrono)).toBeNull();
     });
 
     it('sans paramètres de sujet : aucun bouton de correction (documents de cours)', async () => {

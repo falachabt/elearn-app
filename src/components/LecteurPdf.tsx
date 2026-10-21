@@ -1,4 +1,4 @@
-import { BookOpenCheck, Check, Clock, FileText, Hourglass, Minus, Plus, Sparkles, Timer, TriangleAlert } from 'lucide-react-native';
+import { BookOpenCheck, FileText, Hourglass, Minus, Plus, Sparkles, TriangleAlert } from 'lucide-react-native';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -17,7 +17,7 @@ import { getSupabase } from '@/services/supabase';
 import type { TypeSujet } from '@/services/travailSujet';
 import { titreDocument } from '@/services/titres';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, ombre, rayon, typeContenu, typo } from '@/theme/theme';
+import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { useOuverts } from './credits/useOuverts';
 import { FeuilleEpuise } from './credits/FeuilleEpuise';
@@ -32,10 +32,6 @@ import { BoutonFermer } from './arrivee/MiniTest';
 import { EcranErreur } from './liste/EcranErreur';
 
 const ZOOM_MAX = 3;
-const CLE_ONBOARDING_VU = 'annales.chrono.onboarding_vu';
-const CLE_NE_PLUS_AFFICHER = 'annales.chrono.ne_plus_afficher';
-const CLE_DUREE_DEFAUT = 'annales.chrono.duree_defaut';
-
 type ActionNavigation = object;
 type NavigationSortie = {
   addListener: (evenement: 'beforeRemove', rappel: (e: { preventDefault: () => void; data: { action: ActionNavigation } }) => void) => () => void;
@@ -51,13 +47,12 @@ type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; 
 export function LecteurPdf() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { url: urlParam, titre: titreParam, sujet, matiere, dureeMin, duree, kind, ref, corrAction, corrRef, vue: vueParam } = useLocalSearchParams<{
+  const { url: urlParam, titre: titreParam, sujet, matiere, duree, kind, ref, corrAction, corrRef, vue: vueParam } = useLocalSearchParams<{
     url: string;
     titre?: string;
     sujet?: string;
     matiere?: string;
-    dureeMin?: string;
-    /** Temps choisi sur la page du sujet : 'libre' ou des secondes. Sans lui, l'ancien menu du chrono s'ouvre. */
+    /** Temps choisi sur la page du sujet : 'libre' ou des secondes. */
     duree?: string;
     kind?: TypeSujet;
     ref?: string;
@@ -84,23 +79,21 @@ export function LecteurPdf() {
   const [page, setPage] = useState({ n: 1, total: 0 });
   const [zoom, setZoom] = useState(1);
   const [reprise, setReprise] = useState(false);
-  const [menuChronoOuvert, setMenuChronoOuvert] = useState(false);
-  const [dureeChoisieS, setDureeChoisieS] = useState<number | undefined>(secondes > 0 ? secondes : undefined);
-  const [sujetInfo, setSujetInfo] = useState<{ matiere?: string; dureeMin?: number } | null>(null);
+  const dureeChoisieS = secondes > 0 ? secondes : undefined;
+  const [sujetInfo, setSujetInfo] = useState<{ matiere?: string } | null>(null);
 
   useEffect(() => {
     if (!sujet) return;
     void AsyncStorage.getItem('annales.catalogue').then((cat) => {
       if (!cat) return;
       try {
-        const liste = JSON.parse(cat) as { id: number; matiere?: string; dureeMin?: number }[];
+        const liste = JSON.parse(cat) as { id: number; matiere?: string }[];
         const item = liste.find((s) => s.id === Number(sujet));
-        if (item) setSujetInfo({ matiere: item.matiere, dureeMin: item.dureeMin });
+        if (item) setSujetInfo({ matiere: item.matiere });
       } catch {}
     });
   }, [sujet]);
 
-  const dureeOfficielle = (dureeMin ? Number(dureeMin) : sujetInfo?.dureeMin) ?? undefined;
   const matiereEffective = matiere || sujetInfo?.matiere;
 
   // Fin du compte à rebours : son et vibration de fin d'épreuve (réglages respectés), puis feuille « Temps écoulé ».
@@ -144,59 +137,18 @@ export function LecteurPdf() {
   }, [dureeChoisieS, tempsEcoule, notifTitre, notifCorps, notifCanal]);
 
   const navigation = useNavigation() as unknown as NavigationSortie | null;
-  const [onboardingOuvert, setOnboardingOuvert] = useState(false);
   const [demandeSortie, setDemandeSortie] = useState(false);
-  const [nePlusAfficher, setNePlusAfficher] = useState(false);
   const sortieAction = useRef<ActionNavigation | null>(null);
   const autoriserSortie = useRef(false);
   const initialisationChronoFaite = useRef(false);
 
+  // Le temps est choisi sur la page du sujet : le chrono démarre à l'ouverture, sans second menu. Sans temps choisi
+  // (document rouvert depuis « Mes documents »), il mesure le temps de lecture.
   useEffect(() => {
     if (etat.statut !== 'pret' || initialisationChronoFaite.current) return;
     initialisationChronoFaite.current = true;
-    // Temps déjà choisi sur la page du sujet : le chrono démarre sans second menu.
-    if (duree) {
-      chrono.demarrer();
-      return;
-    }
-
-    void Promise.all([
-      AsyncStorage.getItem(CLE_ONBOARDING_VU),
-      AsyncStorage.getItem(CLE_NE_PLUS_AFFICHER),
-      AsyncStorage.getItem(CLE_DUREE_DEFAUT),
-    ]).then(([vu, nePlusAfficherStocke, dureeStockee]) => {
-      setNePlusAfficher(nePlusAfficherStocke === '1');
-      if (!vu) {
-        setOnboardingOuvert(true);
-      } else if (nePlusAfficherStocke === '1') {
-        const sec = dureeStockee ? Number(dureeStockee) : undefined;
-        setDureeChoisieS(sec && sec > 0 ? sec : undefined);
-        chrono.demarrer();
-      } else {
-        setMenuChronoOuvert(true);
-      }
-    });
-  }, [etat.statut, chrono, duree]);
-
-  const fermerOnboarding = async () => {
-    await AsyncStorage.setItem(CLE_ONBOARDING_VU, '1');
-    setOnboardingOuvert(false);
-    setMenuChronoOuvert(true);
-  };
-
-  const choisirDuree = async (dureeS: number | undefined) => {
-    suivre('annale_timer_started', { mode: dureeS === undefined ? 'libre' : dureeOfficielle && dureeS === dureeOfficielle * 60 ? 'officiel' : 'perso', minutes: dureeS === undefined ? null : Math.round(dureeS / 60) });
-    setDureeChoisieS(dureeS);
     chrono.demarrer();
-    setMenuChronoOuvert(false);
-    if (nePlusAfficher) {
-      await AsyncStorage.setItem(CLE_NE_PLUS_AFFICHER, '1');
-      await AsyncStorage.setItem(CLE_DUREE_DEFAUT, dureeS ? String(dureeS) : '0');
-    } else {
-      await AsyncStorage.removeItem(CLE_NE_PLUS_AFFICHER);
-      await AsyncStorage.removeItem(CLE_DUREE_DEFAUT);
-    }
-  };
+  }, [etat.statut, chrono]);
 
   useEffect(
     () =>
@@ -243,7 +195,7 @@ export function LecteurPdf() {
       const horsLigne = !!documentLocal(String(url));
       try {
         // Copie gardée : affichée sans réseau ; sinon téléchargée une fois. Reprise à la dernière page lue.
-        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? '', new Date(), undefined, sujet ? Number(sujet) : undefined), pageDocument(String(url))]);
+        const [uri, depart] = await Promise.all([ouvrirDocument(String(url), titre ?? '', new Date(), undefined, sujet ? Number(sujet) : undefined, kind && ref ? { kind, ref: String(ref), ...(corrRef ? { corr: String(corrRef) } : {}) } : undefined), pageDocument(String(url))]);
         suivre('document_opened', { hors_ligne: horsLigne });
         if (!actif) return;
         setEtat({ statut: 'pret', uri, horsLigne, depart });
@@ -255,7 +207,7 @@ export function LecteurPdf() {
     return () => {
       actif = false;
     };
-  }, [url, titre, sujet, essai]);
+  }, [url, titre, sujet, kind, ref, corrRef, essai]);
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
 
@@ -310,7 +262,6 @@ export function LecteurPdf() {
             secondes={dureeChoisieS !== undefined ? (chrono.tempsRestantS ?? 0) : chrono.tempsEcouleS}
             compteARebours={dureeChoisieS !== undefined}
             alerte={dureeChoisieS !== undefined && (chrono.tempsRestantS ?? 0) <= 300}
-            onPress={() => setMenuChronoOuvert(true)}
           />
           {page.total ? (
             <View style={[styles.page, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
@@ -402,57 +353,6 @@ export function LecteurPdf() {
       />
     ) : null}
     <Feuille
-      ouverte={onboardingOuvert}
-      onFermer={fermerOnboarding}
-      bloquante
-      icone={<Clock size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
-      couleurPastille={theme.accent.soleil}
-      titre={t('annales.onboardingChronoTitre')}
-      actions={[
-        {
-          libelle: t('annales.onboardingCompris'),
-          onPress: fermerOnboarding,
-          variante: 'principal',
-        },
-      ]}
-    >
-      <View style={styles.onboardingContenu}>
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <View style={styles.ligneOnboarding}>
-            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.quiz, borderColor: theme.bord.fort }]}>
-              <Timer size={18} strokeWidth={2} color={theme.texte.surCouleur} />
-            </View>
-            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingChronoLibre')}</Text>
-          </View>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoLibreDesc')}</Text>
-        </View>
-
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <View style={styles.ligneOnboarding}>
-            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.exercice, borderColor: theme.bord.fort }]}>
-              <Hourglass size={18} strokeWidth={2} color={theme.texte.surCouleur} />
-            </View>
-            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingCompteARebours')}</Text>
-          </View>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingCompteAReboursDesc')}</Text>
-        </View>
-
-        <View style={[styles.carteOnboarding, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-          <View style={styles.ligneOnboarding}>
-            <View style={[styles.pastilleIcone, { backgroundColor: typeContenu.annale, borderColor: theme.bord.fort }]}>
-              <Clock size={18} strokeWidth={2} color={theme.texte.surCouleur} />
-            </View>
-            <Text style={[typo.texteFort, styles.titreItemOnboarding, { color: theme.texte.principal }]}>{t('annales.onboardingChronoEnTete')}</Text>
-          </View>
-          <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('annales.onboardingChronoEnTeteDesc')}</Text>
-          <View style={styles.demoChrono}>
-            <ChronoPuce secondes={1800} compteARebours />
-          </View>
-        </View>
-      </View>
-    </Feuille>
-
-    <Feuille
       ouverte={tempsEcoule}
       onFermer={() => setTempsEcoule(false)}
       icone={<Hourglass size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
@@ -469,60 +369,6 @@ export function LecteurPdf() {
         { libelle: t('travail.quitter'), variante: 'texte' as const, onPress: () => { setTempsEcoule(false); autoriserSortie.current = true; retour(); } },
       ]}
     />
-
-    <Feuille
-      ouverte={menuChronoOuvert}
-      onFermer={() => setMenuChronoOuvert(false)}
-      icone={<Timer size={24} strokeWidth={2} color={theme.texte.surCouleur} />}
-      couleurPastille={theme.accent.soleil}
-      titre={t('annales.configurerChrono')}
-      texte={t('annales.choisirChrono')}
-      actions={[
-        ...(dureeOfficielle && dureeOfficielle > 0
-          ? [
-              {
-                libelle: `Durée officielle (${dureeOfficielle}\u00A0min)`,
-                onPress: () => void choisirDuree(dureeOfficielle * 60),
-                variante: dureeChoisieS === dureeOfficielle * 60 ? ('principal' as const) : ('secondaire' as const),
-              },
-            ]
-          : []),
-        {
-          libelle: 'Chrono libre (montant)',
-          onPress: () => void choisirDuree(undefined),
-          variante: dureeChoisieS === undefined ? ('principal' as const) : ('secondaire' as const),
-        },
-        {
-          libelle: '30 minutes',
-          onPress: () => void choisirDuree(30 * 60),
-          variante: dureeChoisieS === 1800 ? ('principal' as const) : ('secondaire' as const),
-        },
-        {
-          libelle: '1 heure (60\u00A0min)',
-          onPress: () => void choisirDuree(60 * 60),
-          variante: dureeChoisieS === 3600 ? ('principal' as const) : ('secondaire' as const),
-        },
-        {
-          libelle: '2 heures (120\u00A0min)',
-          onPress: () => void choisirDuree(120 * 60),
-          variante: dureeChoisieS === 7200 ? ('principal' as const) : ('secondaire' as const),
-        },
-      ]}
-    >
-      <Appui
-        accessibilityRole="checkbox"
-        accessibilityState={{ checked: nePlusAfficher }}
-        accessibilityLabel={t('annales.nePlusAfficher')}
-        onPress={() => setNePlusAfficher((v) => !v)}
-        decalage={0}
-        style={styles.ligneNePlusAfficher}
-      >
-        <View style={[styles.caseCochee, { borderColor: theme.bord.fort, backgroundColor: nePlusAfficher ? theme.marque.principale : theme.fond.surface }]}>
-          {nePlusAfficher ? <Check size={14} strokeWidth={2.5} color={theme.texte.surCouleur} /> : null}
-        </View>
-        <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('annales.nePlusAfficher')}</Text>
-      </Appui>
-    </Feuille>
 
     <Feuille
       ouverte={demandeSortie}
@@ -667,50 +513,4 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   boutonZoom: { width: 44, height: 40, alignItems: 'center', justifyContent: 'center' },
-  onboardingContenu: {
-    gap: espace[3],
-    marginVertical: espace[2],
-  },
-  carteOnboarding: {
-    gap: espace[2],
-    padding: espace[4],
-    borderWidth: bord.normal,
-    borderRadius: rayon.m,
-  },
-  ligneOnboarding: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: espace[3],
-  },
-  pastilleIcone: {
-    width: 34,
-    height: 34,
-    borderRadius: 8,
-    borderWidth: bord.normal,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titreItemOnboarding: {
-    flex: 1,
-  },
-  demoChrono: {
-    alignSelf: 'flex-start',
-    marginTop: espace[2],
-  },
-  ligneNePlusAfficher: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: espace[3],
-    minHeight: 48,
-    paddingVertical: espace[2],
-    paddingHorizontal: espace[1],
-  },
-  caseCochee: {
-    width: 22,
-    height: 22,
-    borderWidth: bord.normal,
-    borderRadius: rayon.s,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });

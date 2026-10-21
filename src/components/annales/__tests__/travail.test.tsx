@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
-import { definirBrouillon, lireBrouillon, memoriserSujet, PREFERENCE_TEMPS_DEFAUT, visiteDejaVue, type PreferenceTemps, type Session } from '@/services/travailSujet';
+import { definirBrouillon, lireBrouillon, memoriserSujet, PREFERENCE_TEMPS_DEFAUT, preferenceCoherente, visiteDejaVue, type PreferenceTemps, type Session } from '@/services/travailSujet';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { AnalyseTravail } from '../travail/AnalyseTravail';
@@ -16,7 +16,6 @@ import { ChoixTemps } from '../travail/ChoixTemps';
 import { ListeSessions } from '../travail/ListeSessions';
 import { OrdreFeuilles } from '../travail/OrdreFeuilles';
 import { PhotosTravail } from '../travail/PhotosTravail';
-import { VisiteInteractive } from '../travail/VisiteInteractive';
 import { SessionTravail } from '../travail/SessionTravail';
 
 let mockParams: Record<string, string> = {};
@@ -104,6 +103,17 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(screen.queryByRole('radio', { name: x.travail.tempsConseille })).toBeNull();
       await fireEvent.changeText(screen.getByLabelText(x.travail.tempsMinutes), '45');
       expect(surChange).toHaveBeenLastCalledWith({ mode: 'compte', choix: 'perso', minutes: '45' });
+    });
+    it('sans temps conseillé, « Compte à rebours » reste sélectionné (la page ramène sinon au chrono libre)', async () => {
+      // Même chaîne que SujetAnnale : la valeur affichée passe par preferenceCoherente.
+      const Page = () => {
+        const [pref, setPref] = useState<PreferenceTemps>({ mode: 'libre', choix: 'conseille', minutes: '' });
+        return <ChoixTemps valeur={preferenceCoherente(pref, null)} dureeMin={null} onChange={setPref} />;
+      };
+      await monter(<Page />);
+      await fireEvent.press(screen.getByRole('tab', { name: x.travail.tempsCompte }));
+      expect(screen.getByLabelText(x.travail.tempsMinutes)).toBeTruthy();
+      expect(screen.getByRole('tab', { name: x.travail.tempsCompte }).props.accessibilityState?.selected).toBe(true);
     });
   });
 
@@ -277,46 +287,6 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       await monter(<PhotosTravail />);
       await fireEvent.press(screen.getByRole('button', { name: x.travail.voirFeuille.replace('{{n}}', '2') }));
       expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/apercu', params: { id: 'f2' } });
-    });
-  });
-
-  describe('VisiteInteractive', () => {
-    const lib = x.travail;
-    const nom = (cle: string) => ({ name: cle });
-
-    it('chaque étape avance quand le geste est fait, sans appel IA ni crédit, jusqu’à la correction d’exemple', async () => {
-      jest.useFakeTimers();
-      const onFin = jest.fn();
-      await monter(<VisiteInteractive onFin={onFin} />);
-      expect(screen.getByText(lib.visite.photo)).toBeTruthy();
-      // Seul le bouton rond répond : « Terminer » est inerte à cette étape.
-      expect(screen.queryByRole('button', { name: lib.photosTerminer })).toBeNull();
-      await fireEvent.press(screen.getByRole('button', nom(lib.photosPrendre)));
-      expect(screen.getByText(lib.visite.miniature)).toBeTruthy();
-      await fireEvent.press(screen.getByRole('button', nom(lib.voirFeuille.replace('{{n}}', '1'))));
-      expect(screen.getByText(lib.visite.apercu)).toBeTruthy();
-      await fireEvent.press(screen.getByRole('button', nom(lib.recadrer)));
-      expect(screen.getByText(lib.visite.rogner)).toBeTruthy();
-      await fireEvent.press(screen.getByRole('button', nom(lib.appliquerCadre)));
-      expect(screen.getByText(lib.visite.terminer)).toBeTruthy();
-      await fireEvent.press(screen.getByRole('button', nom(lib.photosTerminer)));
-      expect(screen.getByText(lib.visite.envoyer)).toBeTruthy();
-      await fireEvent.press(screen.getByRole('button', nom(lib.envoyer)));
-      expect(screen.getByText(lib.visite.analyse)).toBeTruthy();
-      await act(async () => { jest.advanceTimersByTime(3100); });
-      expect(screen.getByText('14/20')).toBeTruthy();
-      expect(mockEnvoyer).not.toHaveBeenCalled();
-      expect(lireBrouillon()).toBeNull();
-      await fireEvent.press(screen.getByRole('button', nom(lib.visiteFinir)));
-      expect(onFin).toHaveBeenCalledWith(true);
-      jest.useRealTimers();
-    });
-
-    it('« Passer » ferme la visite à n’importe quelle étape', async () => {
-      const onFin = jest.fn();
-      await monter(<VisiteInteractive onFin={onFin} />);
-      await fireEvent.press(screen.getByRole('button', nom(lib.visitePasser)));
-      expect(onFin).toHaveBeenCalledWith(false);
     });
   });
 
