@@ -41,6 +41,8 @@ function Examen() {
   /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
   const [reponses, setReponses] = useState<Record<string, number | null>>({});
   const [onglet, setOnglet] = useState(0);
+  /** « Valider » touché alors que le groupe n'est pas complet : on le signale, puis « Valider quand même ». */
+  const [incomplet, setIncomplet] = useState(false);
   const [quitter, setQuitter] = useState(false);
   const [maintenant, setMaintenant] = useState(() => Date.now());
   const [delaiEchecS, setDelaiEchecS] = useState(20);
@@ -68,6 +70,7 @@ function Examen() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setReponses({});
     setOnglet(0);
+    setIncomplet(false);
     debut.current = Date.now();
   }, [index]);
 
@@ -91,6 +94,7 @@ function Examen() {
   const question = membres[onglet] ?? membres[0];
   const choix = question ? (reponses[question.id] ?? null) : null;
   const complet = membres.length > 0 && membres.every((m) => m.id in reponses);
+  const repondues = membres.filter((m) => m.id in reponses).length;
 
   /** Envoie les réponses du groupe, dans l'ordre servi ; le test se termine à la dernière question. */
   const envoyer = async (map: Record<string, number | null>) => {
@@ -161,7 +165,12 @@ function Examen() {
       }
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={membres.length > 1 ? t('certification.exercice.groupeSuivant') : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')} desactive={!complet} onPress={() => void envoyer(reponses)} retour />
+          <Bouton
+            libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')}
+            desactive={membres.length > 1 ? false : !complet}
+            onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
+            retour
+          />
           <Bouton variante="texte" libelle={t('certification.examen.passer')} onPress={passer} />
         </View>
       }
@@ -182,6 +191,7 @@ function Examen() {
           trouCourant={onglet + 1}
         />
       ) : null}
+      {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.examen.sansCorrection')}</Text>
       <Feuille
         ouverte={quitter}

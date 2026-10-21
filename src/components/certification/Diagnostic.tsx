@@ -12,6 +12,7 @@ import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
+import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuilleQuitter } from './FeuilleQuitter';
@@ -42,6 +43,8 @@ export function Diagnostic() {
   /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
   const [reponses, setReponses] = useState<Record<string, number | null>>({});
   const [onglet, setOnglet] = useState(0);
+  /** « Valider » touché alors que le groupe n'est pas complet : on le signale, puis « Valider quand même ». */
+  const [incomplet, setIncomplet] = useState(false);
   /** Parties dont les consignes ont été lues (D-P1, D-P3). */
   const [partiesVues, setPartiesVues] = useState<number[]>([]);
   const [quitter, setQuitter] = useState(false);
@@ -80,6 +83,7 @@ export function Diagnostic() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setReponses({});
     setOnglet(0);
+    setIncomplet(false);
     debut.current = Date.now();
   }, [index]);
 
@@ -87,6 +91,7 @@ export function Diagnostic() {
   const question = membres[onglet] ?? membres[0] ?? null;
   const choix = question ? (reponses[question.id] ?? null) : null;
   const complet = membres.length > 0 && membres.every((m) => m.id in reponses);
+  const repondues = membres.filter((m) => m.id in reponses).length;
   const { faites, total } = etat ? progression(etat) : { faites: 0, total: 0 };
 
   /** Passe la question en cours ; quand tout le groupe a une réponse, il part au serveur. */
@@ -158,7 +163,12 @@ export function Diagnostic() {
       entete={<EnteteToeic titre={t('certification.diagnostic.entete', { n: Math.min(faites + 1, total), total })} onRetour={sortir} />}
       pied={
         <View style={styles.pied}>
-          <Bouton libelle={membres.length > 1 ? t('certification.exercice.groupeSuivant') : t('certification.diagnostic.valider')} desactive={!complet} onPress={() => void envoyer(reponses)} retour />
+          <Bouton
+            libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : t('certification.diagnostic.valider')}
+            desactive={membres.length > 1 ? false : !complet}
+            onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
+            retour
+          />
           <Bouton variante="texte" libelle={t('certification.diagnostic.passer')} onPress={passer} />
         </View>
       }
@@ -177,6 +187,7 @@ export function Diagnostic() {
         enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
         trouCourant={onglet + 1}
       />
+      {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />
     </Ecran>
   );
