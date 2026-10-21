@@ -405,3 +405,24 @@ Retour de Benny sur la correction d'une question en Entraînement : le cadre jau
 - `TOEIC-V31-EXAMEN-ONGLET` : Examen, groupe. « Onglet suivant », aucune correction.
 
 Règle : pour un groupe à onglets, la navigation reste libre entre onglets. Le bouton du bas est « Onglet suivant » sauf sur le dernier onglet, où il devient « Valider (k/N) ». En Examen, aucune correction n'apparaît avant la revue de fin.
+
+## Version 32 : grilles, onglets en numéros, séance de mots en QCM, plan de formation (21 octobre 2026, à valider)
+
+Retours de Benny (21 octobre, soir) :
+- Grammaire et Parties reprennent la grille de tuiles, pas la liste (la liste de v30 est retirée pour ces deux pages).
+- Les onglets de groupe n'écrivent plus « Question » : seul le numéro reste (« 65 », « 66 »), pour gagner de la place.
+- Mini-test : la page doit suivre le thème choisi. Seule l'épreuve chronométrée de l'Examen reste sombre dans les deux thèmes.
+- Séance de mots en QCM : l'élève choisit le sens avant de voir la réponse, pour mémoriser.
+- Plan de formation : un parcours jusqu'à la date d'examen, alimenté par les mots, notions et temps verbaux ratés.
+
+Frames :
+- `TOEIC-V32-GRAMMAIRE` : Cours, Grammaire, grille de fiches 2 colonnes, icône propre à chaque fiche.
+- `TOEIC-V32-PARTIES` : Réviser, Parties, grille P1 à P7 avec maîtrise, couleur et icône par partie.
+- `TOEIC-V32-MOTS-QCM` : séance de mots, question « Quel est le sens de deadline ? », quatre propositions, aucune réponse affichée avant le choix.
+- `TOEIC-V32-MOTS-FAUX` : après le choix, la mauvaise réponse passe en rouge « TA RÉPONSE », la bonne en vert « BONNE RÉPONSE ». La ligne « Mot à revoir : rappel dans 1 jour » reste en bas.
+- `TOEIC-V32-PARCOURS` : « Mon plan », jusqu'à la date d'examen. Bloc « À reprendre cette semaine » (mots ratés, temps verbaux), puis « Cette semaine » (cours, notions, mini-test, test complet).
+
+Règles (décisions de la maquette, à confirmer par Benny) :
+- Séance de mots : QCM à quatre propositions. Mot raté : rappel dans 1 jour. Mot juste : rappel plus tard.
+- Plan : généré à partir de la date d'examen. Les mots, notions et temps verbaux ratés y reviennent. Jamais de compte à rebours fictif.
+- Thème : mini-test, séance de mots et plan suivent le thème clair ou sombre. Seule l'épreuve chronométrée de l'Examen reste sombre.

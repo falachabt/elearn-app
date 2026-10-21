@@ -345,7 +345,7 @@ const d1x=t=>ph(t,hd('Diagnostic · terminé',true)+bd(`<div class="flip"><span 
 /* ---------- ENTRAÎNEMENT (B) ---------- */
 const b1=t=>ph(t,hd('Partie 1 · Photos')+bd(bar(40)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',150)+aud('Écoute, puis choisis',false,20)+opt('A','Man reading a newspaper.','')+opt('B','Woman typing on a laptop.','sel')+opt('C','Two men shaking hands.',''))+ft(B('Valider')));
 const b2=t=>ph(t,hd('Partie 2 · Question-réponse')+bd(bar(55)+aud('Question 14',true,48)+`<div class="q">Écoute la question, puis choisis la meilleure réponse.</div>`+opt('A','Sure, I can do it on Friday.','')+opt('B','The meeting room is on the third floor.','ok')+opt('C','Yes, it is very expensive.','ko'))+ft(B('Suivant')));
-const b3=t=>ph(t,hd('Partie 3 · Conversation')+bd(seg(['Question 32','33','34'],0)+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+aud('Conversation, lecture unique',false,70)+`<div class="q">Quel est le problème de la femme ?</div>`+opt('A','Le train est en retard.','')+opt('B','Elle a perdu ses documents.','sel')+opt('C','Le bureau est fermé.',''))+ft(B('Suivant')));
+const b3=t=>ph(t,hd('Partie 3 · Conversation')+bd(seg(['32','33','34'],0)+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+aud('Conversation, lecture unique',false,70)+`<div class="q">Quel est le problème de la femme ?</div>`+opt('A','Le train est en retard.','')+opt('B','Elle a perdu ses documents.','sel')+opt('C','Le bureau est fermé.',''))+ft(B('Suivant')));
 const b4=t=>ph(t,hd('Partie 4 · Exposé')+bd(bar(70)+aud('Exposé, lecture unique',false,40)+`<div class="blk2">Écoute l'exposé. Les questions arrivent après.</div>`+`<div class="q">Pourquoi le locuteur contacte-t-il l'auditoire ?</div>`+opt('A','Pour annoncer un changement.','')+opt('B','Pour demander un avis.','')+opt('C','Pour présenter un produit.',''))+ft(B('Suivant')));
 const b5=t=>ph(t,hd('Partie 5 · Phrase')+bd(bar(35)+`<div class="chips2"><span>Forme du mot</span></div><div class="q" style="font-size:18px">The new software will be ______ next week.</div>`+opt('A','release','')+opt('B','released','sel')+opt('C','releasing','')+opt('D','releases',''))+ft(B('Valider')));
 const b6=t=>ph(t,hd('Partie 6 · Texte à trous')+bd(bar(60)+`<div class="blk2" style="font-size:14px">Dear client, thank you for your order. <span class="hl">(131)</span> the delivery is delayed, we will contact you. <span style="border-bottom:2px solid var(--bord)">&nbsp;&nbsp;&nbsp;&nbsp;</span></div>`+opt('A','However','sel')+opt('B','Meanwhile','')+opt('C','Therefore','')+opt('D','Despite',''))+ft(B('Suivant')));
@@ -677,7 +677,7 @@ const n2d=t=>ph(t,hd('Moi',false)+bd(
    Demande de Benny (16/10, 21:32) : un audio = plusieurs questions, écouté une seule fois ;
    onglets dans le groupe ; consignes avant chaque partie, transitions comme au vrai TOEIC. */
 const qtabs=(items,on)=>`<div class="seg">${items.map((x,i)=>`<span class="${i===on?'on':''}" style="display:flex;gap:4px;align-items:center;justify-content:center">${x.ok?I('check'):''}${x.l}</span>`).join('')}</div>`;
-const groupeTabs=(on,ok)=>qtabs([{l:'Question 32',ok:ok[0]},{l:'33',ok:ok[1]},{l:'34',ok:ok[2]}],on);
+const groupeTabs=(on,ok)=>qtabs([{l:'32',ok:ok[0]},{l:'33',ok:ok[1]},{l:'34',ok:ok[2]}],on);
 const ecouteUnique=`<div class="aud"><span class="pb">${I('check')}</span><div style="flex:1;min-width:0"><b style="font:700 14px var(--f-body);color:var(--txt)">Conversation écoutée</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Une seule écoute · pas de réécoute</small></div></div>`;
 const ecouteEnCours=`<div class="aud"><span class="pb">${I('pause')}</span><div style="flex:1;min-width:0"><b style="font:700 14px var(--f-body);color:var(--txt)">Conversation en cours</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Une seule écoute · pas de réécoute</small></div></div>`;
 const grpHead=(titre)=>hd(titre,true)+'';
@@ -1018,19 +1018,49 @@ const ongletAudio=(l,etat,actif)=>{
   return `<span style="display:flex;gap:4px;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--bord);border-radius:10px;background:${fond};color:${txt};font:700 13px var(--f-body)">${ico}${l}</span>`;
 };
 const V31_GROUPE=t=>ph(t,hd('Partie 3 · Conversation')+bd(
-  `<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${ongletAudio('Question 65','juste',true)}${ongletAudio('66','faux',false)}${ongletAudio('67','juste',false)}</div>`+
+  `<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${ongletAudio('65','juste',true)}${ongletAudio('66','faux',false)}${ongletAudio('67','juste',false)}</div>`+
   `<div class="q" style="font-size:17px">Why is the man contacting the woman?</div>`+
   optC('A','To sell a new machine','')+optC('B','To discuss a contract renewal','juste','JUSTE')+optC('C','To report a repair','')+optC('D','To schedule training','')+
   voirJustif)+ft(B('Question suivante')));
 
 /* Groupe à onglets : « Onglet suivant » sur chaque onglet, « Valider (k/N) » sur le dernier (ajout de Benny, 21 octobre) */
 const ongletGroupe=(l,actif,etat='')=>`<span style="display:flex;gap:4px;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--bord);border-radius:10px;background:${actif?'#0A0A0A':etat==='juste'?'var(--marque-d)':etat==='faux'?'var(--corail)':'var(--surf)'};color:${actif?'#F6F1E4':'#0A0A0A'};font:700 13px var(--f-body)">${etat==='juste'?I('check'):etat==='faux'?I('alert'):''}${l}</span>`;
-const enteteGroupe=(on)=>`<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${[['Question 68',''],['Question 69',''],['Question 70','']].map(([l,e],k)=>ongletGroupe(l,k===on,e)).join('')}</div>`;
+const enteteGroupe=(on)=>`<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">${[['68',''],['69',''],['Question 70','']].map(([l,e],k)=>ongletGroupe(l,k===on,e)).join('')}</div>`;
 const questionGroupe=`<div class="q" style="font-size:17px">What does the man say about the schedule?</div>`+opt('A','It has been changed.','')+opt('B','It is too long.','')+opt('C','It is printed in two languages.','')+opt('D','It is free of charge.','');
 
 const V31_GROUPE_ONGLET=t=>ph(t,hd('Partie 3 · Conversation')+bd(enteteGroupe(0)+questionGroupe)+ft(B('Onglet suivant')));
 const V31_GROUPE_DERNIER=t=>ph(t,hd('Partie 3 · Conversation')+bd(enteteGroupe(2)+`<div class="q" style="font-size:17px">What does the woman suggest?</div>`+opt('A','Call back later.','')+opt('B','Check the website.','')+opt('C','Visit the office.','')+opt('D','Ask a manager.','')+`<p class="hint" style="color:var(--txt)">Dernier onglet : valide le groupe quand tu as répondu à tout.</p>`)+ft(B('Valider (3/3)')));
 const V31_GROUPE_EXAMEN=t=>ph(t,hd('Examen · Partie 3',true)+bd(enteteGroupe(1)+questionGroupe)+ft(B('Onglet suivant')));
+/* v32 : grilles (Grammaire, Parties), onglets en numéros, séance de mots en QCM, parcours de formation (21 octobre, à valider) */
+const tuile=(n,titre,sous,couleur,icone)=>`<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow);min-height:110px"><div style="display:flex;justify-content:space-between;align-items:center">${n?`<b style="font:800 18px var(--f-display)">${n}</b>`:''}<span style="width:30px;height:30px;border:2px solid var(--bord);border-radius:8px;background:${couleur};display:grid;place-items:center">${I(icone)}</span></div><b style="font:700 14px/1.25 var(--f-body)">${titre}</b><small style="font:500 12px var(--f-body);color:var(--txt2)">${sous}</small></div>`;
+const grille2=(items)=>`<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${items.join('')}</div>`;
+
+const V32_GRAMMAIRE=t=>ph(t,hd('Cours')+bd(seg(['Grammaire','Vocabulaire','Pièges','Méthode'],0)+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--soleil);padding:12px;box-shadow:var(--shadow)"><b style="font:800 17px var(--f-display);color:#0A0A0A">Grammaire</b><small style="display:block;font:600 12px var(--f-body);color:#0A0A0A">24 fiches · 5 parties</small></div>`+
+  grille2([tuile('1','Présent continu','3 min','var(--soleil)','layers'),tuile('2','Voix passive','3 min','var(--soleil)','route'),tuile('3','Mots interrogatifs','3 min','var(--soleil)','notes'),tuile('4','Questions tag','3 min','var(--soleil)','target')])
+  )+ft(B('Continuer · Grammaire')));
+
+const V32_PARTIES=t=>ph(t,hd('Réviser')+bd(seg(['Parcours','Parties','Cours','Carnet'],1)+
+  grille2([['P1','Photos','80 %','var(--marque)','image'],['P2','Question-réponse','60 %','var(--soleil)','notes'],['P3','Conversation','70 %','var(--creux)','head'],['P4','Exposé','40 %','var(--corail)','play'],['P5','Grammaire','25 %','var(--soleil)','layers'],['P6','Texte à trous','35 %','var(--marque)','route'],['P7','Passages','50 %','var(--creux)','book']].map(([n,l,p,c,i])=>tuile(n,l,'maîtrise '+p,c,i)))
+  )+ft(B('Reprendre P5 · Grammaire')));
+
+const tabNum=(n,actif,etat='')=>`<span style="display:flex;gap:4px;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--bord);border-radius:10px;background:${actif?'#0A0A0A':etat==='juste'?'var(--marque-d)':etat==='faux'?'var(--corail)':'var(--surf)'};color:${actif?'#F6F1E4':'#0A0A0A'};font:700 14px var(--f-body)">${etat==='juste'?I('check'):etat==='faux'?I('alert'):''}${n}</span>`;
+const V32_MOTS_QCM=t=>ph(t,hd('Séance de mots · 2 / 8',false)+bd(bar(25)+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:14px;display:grid;gap:6px;box-shadow:var(--shadow)"><span class="lbl2">Quel est le sens de</span><b style="font:800 26px var(--f-display)">deadline</b></div>`+
+  opt('A','un rendez-vous','')+opt('B','une date limite','')+opt('C','une réduction','')+opt('D','une équipe','')+
+  `<p class="hint" style="color:var(--txt)">Réfléchis avant de répondre : la réponse t'aidera à retenir le mot.</p>`)+ft(B('Valider ma réponse')));
+const V32_MOTS_FAUX=t=>ph(t,hd('Séance de mots · 2 / 8',false)+bd(bar(25)+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:14px;display:grid;gap:6px;box-shadow:var(--shadow)"><span class="lbl2">Quel est le sens de</span><b style="font:800 26px var(--f-display)">deadline</b></div>`+
+  optC('A','un rendez-vous','faux','TA RÉPONSE')+optC('B','une date limite','juste','BONNE RÉPONSE')+optC('C','une réduction','')+optC('D','une équipe','')+
+  `<p class="hint" style="color:var(--txt)">Mot à revoir : rappel dans 1 jour.</p>`)+ft(B('Mot suivant')));
+
+const V32_PARCOURS=t=>ph(t,hd('Mon plan',false)+bd(
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--marque);padding:14px;display:grid;gap:6px;box-shadow:var(--shadow)"><b style="font:800 20px var(--f-display);color:#0A0A0A">Jusqu'au 16 janvier</b><small style="font:600 12px var(--f-body);color:#0A0A0A">Semaine 4 sur 12 · 34 % du plan</small><div style="height:10px;border:2px solid #0A0A0A;border-radius:6px;background:var(--surf);overflow:hidden"><i style="display:block;height:100%;width:34%;background:var(--soleil)"></i></div></div>`+
+  `<span class="lbl2">À reprendre cette semaine</span>`+
+  grille2([tuile('','Mots ratés','5 mots à revoir','var(--corail)','alert'),tuile('','Temps verbaux','2 erreurs au passé','var(--corail)','rotate')])+
+  `<span class="lbl2">Cette semaine</span>`+
+  grille2([tuile('','Cours','Grammaire, 2 fiches','var(--soleil)','layers'),tuile('','Notions','Méthode, partie 1','var(--creux)','bulb'),tuile('','Mini-test','Partie 5 · 10 questions','var(--marque)','target'),tuile('','Test complet','Samedi · 120 min','var(--creux)','award')])
+  )+ft(B('Commencer la séance du jour')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1078,6 +1108,7 @@ const groups=[
  ['Cartes de liste propres à chaque catégorie et partie, accueil TOEIC avec compte à rebours (v30, 21 octobre, à valider)',[[V30_GRAMMAIRE,'TOEIC-V30-GRAMMAIRE · Cours, Grammaire : cartes jaunes, icône propre par fiche, pas de livre'],[V30_PARTIES,'TOEIC-V30-PARTIES · Réviser, Parties : une couleur et une icône par partie, P1 à P7'],[V30_ACCUEIL_TOEIC,'TOEIC-V30-ACCUEIL · Accueil : carte « J-87 » avec barre de progression (date configurée)'],[V30_ACCUEIL_TOEIC_SANS_DATE,'TOEIC-V30-ACCUEIL-SANS-DATE · Accueil sans date : invitation à ajouter la date']]],
  ['Correction Entraînement allégée : pas de cadre jaune, justification repliée, onglets de groupe colorés (v31, 21 octobre, à valider)',[[V31_CORR_REPLIEE,'TOEIC-V31-REPLIEE · Correction : option juste en vert, « Voir la justification » discret'],[V31_CORR_OUVERTE,'TOEIC-V31-OUVERTE · Justification ouverte : « Revoir la notion » et « Explication détaillée »'],[V31_CORR_REPLIEE_390,'TOEIC-V31-REPLIEE-390 · Correction repliée à 390 px'],[V31_GROUPE,'TOEIC-V31-GROUPE · Groupe audio : onglet actif en noir, 65 juste en vert, 66 faux en rouge']]],
  ['Groupe à onglets : « Onglet suivant » puis « Valider (k/N) » sur le dernier onglet (v31, 21 octobre, à valider)',[[V31_GROUPE_ONGLET,'TOEIC-V31-ONGLET · Groupe, premier onglet : bouton « Onglet suivant »'],[V31_GROUPE_DERNIER,'TOEIC-V31-DERNIER · Groupe, dernier onglet : bouton « Valider (3/3) »'],[V31_GROUPE_EXAMEN,'TOEIC-V31-EXAMEN-ONGLET · Examen, groupe : « Onglet suivant », aucune correction']]],
+ ['Grilles pour Grammaire et Parties, onglets en numéros, séance de mots en QCM, plan de formation (v32, 21 octobre, à valider)',[[V32_GRAMMAIRE,'TOEIC-V32-GRAMMAIRE · Cours, Grammaire : grille de fiches, icône propre par fiche'],[V32_PARTIES,'TOEIC-V32-PARTIES · Réviser, Parties : grille P1 à P7 avec maîtrise'],[V32_MOTS_QCM,'TOEIC-V32-MOTS-QCM · Séance de mots : QCM, choisir le sens avant de voir la réponse'],[V32_MOTS_FAUX,'TOEIC-V32-MOTS-FAUX · Séance de mots : mauvaise réponse en rouge, bonne en vert, rappel dans 1 jour'],[V32_PARCOURS,'TOEIC-V32-PARCOURS · Mon plan jusqu\'à la date : mots ratés, temps verbaux, cours, notions, mini-tests, test complet']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
