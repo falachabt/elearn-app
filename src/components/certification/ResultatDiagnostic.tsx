@@ -8,6 +8,7 @@ import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
 import { maitriseParGroupe, pointsFaibles, type LigneMaitrise, type PointFaible } from '@/services/certification/certDiagnostic';
 import { lireDiagnostic, obtenirReglages } from '@/services/certification/etat';
+import { titreAffiche } from '@/services/certification/titre';
 import { enregistrerProfil, lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, typo } from '@/theme/theme';
@@ -93,7 +94,7 @@ export function ResultatDiagnostic() {
                   <LigneChoix
                     key={f.notion.id}
                     icone={TriangleAlert}
-                    titre={f.notion.title}
+                    titre={titreAffiche(f.notion.title)}
                     aide={t('certification.resultat.lignePartie', { n: f.partie, rates: f.ratees === 1 ? t('certification.resultat.ratesUn') : t('certification.resultat.rates', { n: f.ratees }) })}
                   />
                 ) : (

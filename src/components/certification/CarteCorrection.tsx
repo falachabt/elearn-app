@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
+import { titreAffiche } from '@/services/certification/titre';
 import type { NotionLiee, QuestionServie } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { corrige as corrigeCouleurs, espace, typo } from '@/theme/theme';
@@ -36,7 +37,7 @@ export function CarteCorrection({ question, badge, juste, choix, bonne, notion, 
       </View>
       <LigneGrille libelle={t('certification.exercice.grilleBonne')} valeur={libelleOption(bonne)} couleur={couleurs.texte} />
       {!juste && choix !== null ? <LigneGrille libelle={t('certification.exercice.grilleTienne')} valeur={libelleOption(choix)} couleur={couleurs.texte} /> : null}
-      {notion ? <LigneGrille libelle={t('certification.exercice.grilleNotion')} valeur={notion.title} couleur={couleurs.texte} /> : null}
+      {notion ? <LigneGrille libelle={t('certification.exercice.grilleNotion')} valeur={titreAffiche(notion.title)} couleur={couleurs.texte} /> : null}
       {piege ? <LigneGrille libelle={t('certification.exercice.grillePiege')} valeur={piege} couleur={couleurs.texte} /> : null}
     </Carte>
   );

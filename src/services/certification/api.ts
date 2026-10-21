@@ -1,6 +1,7 @@
 import { getSupabase } from '../supabase';
 import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
+import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
 import type { BlocServi, DemarrageMini, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
@@ -155,7 +156,7 @@ lireRevision: async (exam, jourLocal) => {
   };
   return {
     notions: j.notions.map((n) => ({
-      id: n.id, code: n.code, titre: n.title, famille: n.family, parties: n.parts, dureeMin: n.duration_min, fiche: n.has_course,
+      id: n.id, code: n.code, titre: titreAffiche(n.title), famille: n.family, parties: n.parts, dureeMin: n.duration_min, fiche: n.has_course,
       reponses: n.answers, reussies: n.correct, etat: etatDepuisServeur(n.state), derniereOuverture: n.last_opened,
     })),
     parties: j.parts.map((p) => ({ partie: p.part, reponses: p.answers, m: Number(p.mastery), etat: etatDepuisServeur(p.state) })),
@@ -173,7 +174,7 @@ composerSeance: async (exam, minutes, jourLocal, eviterPartie) => {
   const res = await rpcAuthentifie('cert_session_compose', { p_exam: exam, p_minutes: minutes, p_today: jourLocal, p_avoid_part: eviterPartie });
   const j = verifier(res) as { minutes: number; blocks: Record<string, unknown>[]; why: { errors: number; notion: string | null; words_due: number } };
   const blocs: BlocServi[] = j.blocks.map((b) => {
-    if (b.kind === 'course') return { type: 'cours', notionId: String(b.notion_id), titre: String(b.title), minutes: Number(b.minutes), erreurs: Number(b.errors) };
+    if (b.kind === 'course') return { type: 'cours', notionId: String(b.notion_id), titre: titreAffiche(String(b.title)), minutes: Number(b.minutes), erreurs: Number(b.errors) };
     if (b.kind === 'words') return { type: 'mots', nombre: Number(b.count), echus: Number(b.due) };
     if (b.kind === 'replay') return { type: 'rejeu', nombre: Number(b.count), partie: b.part === null || b.part === undefined ? null : Number(b.part) };
     return { type: 'serie', partie: Number(b.part), nombre: Number(b.count) };
@@ -183,7 +184,7 @@ composerSeance: async (exam, minutes, jourLocal, eviterPartie) => {
 lireNotion: async (notionId) => {
   const res = await rpcAuthentifie('cert_notion_get', { p_notion: notionId });
   const j = verifier(res) as { id: string; code: string; family: NotionFiche['famille']; title: string; parts: number[]; course_md: string | null; duration_min: number | null; anchors: QuestionServie[] };
-  return { id: j.id, code: j.code, famille: j.family, titre: j.title, parties: j.parts, markdown: j.course_md, dureeMin: j.duration_min, ancrages: j.anchors ?? [] };
+  return { id: j.id, code: j.code, famille: j.family, titre: titreAffiche(j.title), parties: j.parts, markdown: j.course_md, dureeMin: j.duration_min, ancrages: j.anchors ?? [] };
 },
 ouvrirNotion: async (notionId, secondesLecture, jourLocal) => {
   const res = await rpcAuthentifie('cert_notion_open', { p_notion: notionId, p_read_seconds: secondesLecture, p_local_day: jourLocal });

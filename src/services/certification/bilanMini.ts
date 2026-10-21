@@ -1,4 +1,5 @@
 import { scoreSection } from './certScore';
+import { titreAffiche } from './titre';
 import type { ResultatReponse } from './types';
 
 export type NotionPerdue = { id: string; titre: string; manquees: number };
@@ -8,7 +9,7 @@ export function notionsPerdues(resultats: ResultatReponse[], max = 3): NotionPer
   const compte = new Map<string, NotionPerdue>();
   for (const r of resultats) {
     if (r.correct || !r.notion) continue;
-    const entree = compte.get(r.notion.id) ?? { id: r.notion.id, titre: r.notion.title, manquees: 0 };
+    const entree = compte.get(r.notion.id) ?? { id: r.notion.id, titre: titreAffiche(r.notion.title), manquees: 0 };
     entree.manquees += 1;
     compte.set(r.notion.id, entree);
   }

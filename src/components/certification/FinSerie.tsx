@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirReglages } from '@/services/certification/etat';
 import { terminerBlocSuivant } from '@/services/certification/seanceJour';
+import { titreAffiche } from '@/services/certification/titre';
 import { ecrireSerie, effacerSerie, lireSerieEnCours, resumerSerie, type EtatSerie, type ResumeSerie } from '@/services/certification/serie';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -90,7 +91,7 @@ export function FinSerie() {
             <View style={styles.groupe}>
               <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.finSerie.notions')}</Text>
               {resume.notions.map((n) => (
-                <Text key={n.id} style={[typo.texte, { color: theme.texte.principal }]}>{n.title}</Text>
+                <Text key={n.id} style={[typo.texte, { color: theme.texte.principal }]}>{titreAffiche(n.title)}</Text>
               ))}
             </View>
           ) : null}
