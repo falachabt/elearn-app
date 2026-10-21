@@ -959,6 +959,36 @@ const V29_STATS=t=>{
        ${svg}</div>`+
     `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><span class="tile">Écart au visé<small>55 points</small></span><span class="tile">Séances<small>12 cette semaine</small></span></div>`)+ft(TB(3)));
 };
+/* v30 : cartes de liste différenciées (catégorie, sous-onglet, partie), carte « J-N » de l'Accueil TOEIC (21 octobre, à valider) */
+const carteListe=(stripe,icone,titre,sous,tag='')=>`<div style="position:relative;display:flex;gap:12px;align-items:flex-start;min-height:78px;padding:12px 12px 12px 16px;border:2px solid var(--bord);border-radius:12px;background:var(--surf);box-shadow:3px 3px 0 var(--bord);overflow:hidden"><span style="position:absolute;left:0;top:0;bottom:0;width:6px;background:${stripe}"></span><span style="width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:${stripe};display:grid;place-items:center;flex:none">${I(icone)}</span><div style="flex:1;min-width:0"><b style="display:block;font:700 15px/1.25 var(--f-body)">${titre}</b><small style="font:500 13px var(--f-body);color:var(--txt2)">${sous}</small>${tag?`<div style="margin-top:6px"><span class="st p" style="font-size:11px">${tag}</span></div>`:''}</div><span style="align-self:center">${I('chev')}</span></div>`;
+const entete=(stripe,icone,titre,sous)=>`<div style="display:flex;gap:12px;align-items:center;padding:12px;border:2px solid var(--bord);border-radius:14px;background:${stripe};box-shadow:var(--shadow)"><span style="width:44px;height:44px;border:2px solid #0A0A0A;border-radius:12px;background:var(--surf);display:grid;place-items:center;flex:none">${I(icone)}</span><div style="min-width:0"><b style="display:block;font:800 17px/1.2 var(--f-display);color:#0A0A0A">${titre}</b><small style="font:600 12px var(--f-body);color:#0A0A0A">${sous}</small></div></div>`;
+
+const GRAM=['var(--soleil)'],
+  V30_GRAMMAIRE=t=>ph(t,hd('Cours')+bd(seg(['Grammaire','Vocabulaire','Pièges','Méthode'],0)+entete('var(--soleil)','layers','Grammaire','24 fiches · 5 parties')+
+    `<div style="font:700 11px var(--f-mono);letter-spacing:.06em">GRAMMAIRE · PARTIE 1 · PHOTOS</div>`+
+    carteListe('var(--soleil)','layers','Décrire une photo au présent continu','3 minutes')+carteListe('var(--soleil)','route','Décrire une photo : voix passive et états','3 minutes')+
+    `<div style="font:700 11px var(--f-mono);letter-spacing:.06em">GRAMMAIRE · PARTIE 2 · QUESTIONS</div>`+
+    carteListe('var(--soleil)','notes','Mots interrogatifs : who, when, where, how','3 minutes')+carteListe('var(--soleil)','target','Questions tag et questions fermées','3 minutes','Nouveau')
+    )+ft(B('Continuer · Grammaire')));
+
+const V30_PARTIES=t=>ph(t,hd('Réviser')+bd(seg(['Parcours','Parties','Cours','Carnet'],1)+
+  [['P1 · Photos','image','var(--marque)','Décrire une photo','4 leçons'],['P2 · Question-réponse','notes','var(--soleil)','Répondre à une question','5 leçons'],['P3 · Conversation','head','var(--creux)','Comprendre une conversation','6 leçons'],['P4 · Exposé','play','var(--corail)','Comprendre un exposé','5 leçons'],['P5 · Grammaire','layers','var(--soleil)','Compléter une phrase','24 fiches'],['P6 · Texte à trous','route','var(--marque)','Compléter un texte','4 leçons'],['P7 · Passages','book','var(--creux)','Lire un passage','7 leçons']].map(([a,i,c,b,d])=>carteListe(c,i,a+' · '+b,d)).join('')
+  )+ft(B('Reprendre P5 · Grammaire')));
+
+const V30_ACCUEIL_TOEIC=t=>ph(t,hd('Accueil',false)+bd(
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--marque);padding:14px;display:grid;gap:10px;box-shadow:var(--shadow)">
+     <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:800 26px var(--f-display);color:#0A0A0A">J-87</span><span class="st p" style="font-size:11px">Examen le 16 janvier</span></div>
+     <small style="font:600 13px var(--f-body);color:#0A0A0A">avant le TOEIC · préparation à 34 %</small>
+     <div style="height:12px;border:2px solid #0A0A0A;border-radius:8px;background:var(--surf);overflow:hidden"><i style="display:block;height:100%;width:34%;background:var(--soleil)"></i></div>
+   </div>`+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;box-shadow:var(--shadow)"><b style="font:700 15px var(--f-body)">Mission du jour</b><small style="display:block;font:500 13px var(--f-body);color:var(--txt2)">Décrire une photo · 12 minutes</small></div>`
+  )+ft(TB(0)));
+
+const V30_ACCUEIL_TOEIC_SANS_DATE=t=>ph(t,hd('Accueil',false)+bd(
+  `<div style="border:2px dashed var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:flex;gap:12px;align-items:center;min-height:78px">
+     <span style="width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none">${I('cal')}</span>
+     <div style="flex:1;min-width:0"><b style="display:block;font:700 15px var(--f-body)">Ajoute la date de ton examen</b><small style="font:500 13px var(--f-body);color:var(--txt2)">Pour voir le compte à rebours</small></div>${I('chev')}</div>`
+  )+ft(TB(0)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1003,6 +1033,7 @@ const groups=[
 ['Changer de profil : une seule page, comme le choix de classe (P1 à P6)',[[P1,'TOEIC-P1 · Moi secondaire ou concours, haut : copie de la page Moi existante (référence)'],
  [P1b,'TOEIC-P1-2 · Moi secondaire ou concours, bas : ligne « Mon profil »'], [P2e,'TOEIC-P2-ELEVE · Mon profil, statut élève : classe puis pays, Enregistrer'], [P2c,'TOEIC-P2-CONC · Mon profil, statut concours : concours puis pays'], [P2x,'TOEIC-P2-CERT · Mon profil, statut certification : examen (TOEIC, seul disponible) puis pays'], [P4,'TOEIC-P4 · Confirmation : passer au profil TOEIC (après Enregistrer)'], [P5,'TOEIC-P5 · Confirmation : revenir au secondaire ou au concours (depuis le TOEIC)'], [P6c,'TOEIC-P6-CHARGE · Changement de profil en cours'], [P6e,'TOEIC-P6-ERR · Changement impossible, le profil n\'a pas changé']]],
  ['Identité des pages Réviser, Examen et courbe de score (v29, 21 octobre, à valider)',[[V29_PARCOURS,'TOEIC-V29-PARCOURS · Réviser, Parcours : frise numérotée, une icône par étape'],[V29_PARTIES,'TOEIC-V29-PARTIES · Réviser, Parties : tuiles P1 à P6 avec maîtrise'],[V29_COURS_GRAM,'TOEIC-V29-COURS-GRAM · Cours, Grammaire : bandeau jaune, icône couches'],[V29_COURS_VOC,'TOEIC-V29-COURS-VOC · Cours, Vocabulaire : bandeau vert, icône notes'],[V29_COURS_PIEGES,'TOEIC-V29-COURS-PIEGES · Cours, Pièges : bandeau corail, icône alerte'],[V29_COURS_METHODE,'TOEIC-V29-COURS-METHODE · Cours, Méthode : bandeau crème, icône ampoule'],[V29_EXAMEN,'TOEIC-V29-EXAMEN · Examen : bandeau d\'épreuve sombre, chrono, pas de correction'],[V29_STATS,'TOEIC-V29-STATS · Statistiques : courbe du score, cible 800 en pointillé']]],
+ ['Cartes de liste propres à chaque catégorie et partie, accueil TOEIC avec compte à rebours (v30, 21 octobre, à valider)',[[V30_GRAMMAIRE,'TOEIC-V30-GRAMMAIRE · Cours, Grammaire : cartes jaunes, icône propre par fiche, pas de livre'],[V30_PARTIES,'TOEIC-V30-PARTIES · Réviser, Parties : une couleur et une icône par partie, P1 à P7'],[V30_ACCUEIL_TOEIC,'TOEIC-V30-ACCUEIL · Accueil : carte « J-87 » avec barre de progression (date configurée)'],[V30_ACCUEIL_TOEIC_SANS_DATE,'TOEIC-V30-ACCUEIL-SANS-DATE · Accueil sans date : invitation à ajouter la date']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
