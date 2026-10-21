@@ -19,7 +19,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo, mouvement } from '@/theme/theme';
 import { Appui } from '../Appui';
 import { useReduireAnimations } from '../useReduireAnimations';
-import { ConfettisCelebration } from './ConfettisCelebration';
+import { ConfettisCelebration, DUREE_CONFETTIS_MS } from './ConfettisCelebration';
 
 export const DUREE_TOAST_XP_MS = 4000;
 export const DUREE_TOAST_LEVEL_UP_MS = 5500;
@@ -49,6 +49,9 @@ export function ToastGainXp() {
 
   const [donnees, setDonnees] = useState<DonneesToast | null>(null);
   const timerMasquer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Les confettis durent plus que le toast : ils ont leur propre minuterie et restent à l'écran après sa fermeture.
+  const [confettis, setConfettis] = useState(0);
+  const timerConfettis = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [animGlisse] = useState(() => new Animated.Value(-100));
   const [animOpacite] = useState(() => new Animated.Value(0));
   const [animEchelle] = useState(() => new Animated.Value(0.85));
@@ -122,6 +125,11 @@ export function ToastGainXp() {
         ]).start();
       }
 
+      if (levelUp) {
+        setConfettis((n) => n + 1);
+        if (timerConfettis.current) clearTimeout(timerConfettis.current);
+        timerConfettis.current = setTimeout(() => setConfettis(0), DUREE_CONFETTIS_MS);
+      }
       const duree = levelUp ? DUREE_TOAST_LEVEL_UP_MS : DUREE_TOAST_XP_MS;
       timerMasquer.current = setTimeout(masquer, duree);
     },
@@ -135,6 +143,7 @@ export function ToastGainXp() {
         clearTimeout(timerMasquer.current);
         timerMasquer.current = null;
       }
+      if (timerConfettis.current) clearTimeout(timerConfettis.current);
     };
   }, []);
 
@@ -145,7 +154,7 @@ export function ToastGainXp() {
     });
   }, [afficher]);
 
-  if (!donnees) return null;
+  if (!donnees) return confettis ? <ConfettisCelebration key={confettis} reduit={reduit} /> : null;
 
   const infoPalier = calculerNiveau(donnees.total);
   const nomPalier = t(infoPalier.nomCleI18n as never);
@@ -183,7 +192,7 @@ export function ToastGainXp() {
 
   return (
     <>
-      {estLevelUp ? <ConfettisCelebration /> : null}
+      {confettis ? <ConfettisCelebration key={confettis} reduit={reduit} /> : null}
       <Animated.View
         pointerEvents="box-none"
         style={[

@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { planningEstTermine,  etatJour, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type AcquisesEntrainement, type LeconsValidees, type Planning  } from '@/services/planning';
+import { planningEstTermine, annonceRepos, prochaineSeance, dateDuJour, localeDe, jourLocalTexte, lirePlanning, progressionSeance, seanceDe, seanceTerminee, type AcquisesEntrainement, type LeconsValidees, type Planning  } from '@/services/planning';
 import { lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import { lireLues } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
@@ -20,7 +20,7 @@ import { Carte } from '../Carte';
  * de date cible cache la carte : l'accueil ne montre jamais d'erreur pour elle.
  */
 export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
-  const { t } = useTraduction();
+  const { t, langue } = useTraduction();
   const { theme } = useTheme();
   const [planning, setPlanning] = useState<Planning | null>(null);
   const [lues, setLues] = useState<LeconsValidees>({});
@@ -63,8 +63,8 @@ export function CartePlanning({ idUtilisateur }: { idUtilisateur: string }) {
               n: seance.elements.length,
               minutes: seance.minutes,
             })
-          : etatJour(planning, aujourdhui) === 'repos'
-            ? t('planning.carte.repos')
+          : annonceRepos(planning, aujourdhui)
+            ? t('planning.carte.repos', { jour: dateDuJour(prochaineSeance(planning, aujourdhui)!.jour).toLocaleDateString(localeDe(langue), { weekday: 'long', day: 'numeric' }) })
             : t('planning.carte.libre');
   const pourcentage =
     seance && progression && progression.total > 0

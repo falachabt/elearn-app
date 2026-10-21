@@ -5,7 +5,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { BaremeXp } from '../BaremeXp';
 import { CarteXp } from '../CarteXp';
 import { AvatarNiveau } from '../AvatarNiveau';
-import { ToastGainXp } from '../ToastGainXp';
+import { DUREE_CONFETTIS_MS } from '../ConfettisCelebration';
+import { DUREE_TOAST_LEVEL_UP_MS, DUREE_TOAST_XP_MS, ToastGainXp } from '../ToastGainXp';
 import { emettreGainXp } from '@/services/xp';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -110,6 +111,27 @@ describe('Composants XP & Niveaux (M4-07)', () => {
 
       expect(await screen.findByText('Niveau 2 débloqué !')).toBeTruthy();
       expect(screen.getByText('Tu passes au rang Apprenti !')).toBeTruthy();
+    });
+
+    it('confettis du passage de niveau : toujours là après la fermeture du toast, retirés ensuite, absents sans niveau', async () => {
+      jest.useFakeTimers();
+      try {
+        await monter(<ToastGainXp />);
+        await act(async () => { emettreGainXp({ gain: 5, total: 20, source: 'quiz' }); });
+        expect(screen.queryByTestId('confettis')).toBeNull();
+        await act(async () => { await jest.advanceTimersByTimeAsync(DUREE_TOAST_XP_MS + 100); });
+
+        await act(async () => { emettreGainXp({ gain: 30, total: 110, source: 'quiz' }); });
+        expect(screen.getByTestId('confettis')).toBeTruthy();
+        await act(async () => { await jest.advanceTimersByTimeAsync(DUREE_TOAST_LEVEL_UP_MS + 500); });
+        expect(screen.queryByText('Niveau 2 débloqué !')).toBeNull();
+        expect(screen.getByTestId('confettis')).toBeTruthy();
+        expect(DUREE_CONFETTIS_MS).toBeGreaterThanOrEqual(3.5 * 2600);
+        await act(async () => { await jest.advanceTimersByTimeAsync(DUREE_CONFETTIS_MS); });
+        expect(screen.queryByTestId('confettis')).toBeNull();
+      } finally {
+        jest.useRealTimers();
+      }
     });
   });
 });

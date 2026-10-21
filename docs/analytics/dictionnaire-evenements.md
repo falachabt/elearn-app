@@ -133,6 +133,8 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `week_recap_shown` | Résumé hebdomadaire ouvert | `{ source: 'auto' \| 'push' \| 'inbox'; semaine: string }` |
 | `week_recap_card_viewed` | Carte du résumé vue | `{ index: number; semaine: string }` |
 | `week_recap_cta` | Bouton du résumé touché | `{ cta: 'refaire_erreurs' \| 'aller_reviser' \| 'faire_mission' \| 'reessayer' \| 'fermer'; semaine: string }` |
+| `week_errors_viewed` | Liste « Mes erreurs de la semaine » ouverte | `{ semaine: string; n: number }` |
+| `week_errors_retried` | Erreurs de la semaine refaites jusqu'au bout | `{ semaine: string; score: number; total: number }` |
 | `week_recap_closed` | Résumé fermé | `{ derniere_carte: number; semaine: string }` |
 | `support_confirmation_vue` | Écran de confirmation du support WhatsApp ouvert | `{ demandes: number }` |
 | `support_confirmation_reponse` | Réponse à la demande de vérification du support | `{ reponse: 'accepted' \| 'refused' \| 'expiree' \| 'erreur' }` |

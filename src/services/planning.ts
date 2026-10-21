@@ -229,6 +229,12 @@ export function etatJour(p: Planning, jour: string): EtatJour {
   return jours.length > 0 && jour >= jours[0].jour && jour <= jours[jours.length - 1].jour ? 'repos' : 'horsPlanning';
 }
 
+/**
+ * Jour à annoncer « Jour de repos » : pas de séance ce jour-là et une séance encore à venir. Contrairement à
+ * `estJourDeRepos`, compte aussi les jours avant le début du planning (le programme commence demain : aujourd'hui se repose).
+ */
+export const annonceRepos = (p: Planning, jour: string): boolean => !seanceDe(p, jour) && !!prochaineSeance(p, jour);
+
 /** Séance d'un jour donné, partout dans le planning ; null un jour de repos ou hors planning. */
 export const seanceDe = (p: Planning, jour: string): JourPlanning | null => tousLesJours(p).find((j) => j.jour === jour) ?? null;
 

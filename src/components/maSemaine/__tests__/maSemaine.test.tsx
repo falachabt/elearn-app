@@ -298,7 +298,7 @@ describe('carte 3 : à rattraper', () => {
     await suivant();
     await suivant();
     await fireEvent.press(screen.getByText(t.refaireErreurs));
-    expect(router.push).toHaveBeenCalledWith('/mission/erreurs');
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/erreurs-semaine', params: { semaine: '2026-09-28' } });
     expect(suivre).toHaveBeenCalledWith('week_recap_cta', { cta: 'refaire_erreurs', semaine: '2026-09-28' });
     await suivant();
     expect(screen.getByTestId('carte-credits')).toBeTruthy();

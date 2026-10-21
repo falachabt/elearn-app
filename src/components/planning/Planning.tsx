@@ -35,6 +35,7 @@ import {
   definirTemps,
   deuxProchainsJours,
   elementFait,
+  annonceRepos,
   etatJour,
   HEURES_RAPPEL_PROPOSEES,
   heuresEstimees,
@@ -774,7 +775,7 @@ function Aujourdhui({
   const { theme } = useTheme();
   const seance = seanceDe(planning, aujourdhui);
   const suivante = prochaineSeance(planning, aujourdhui);
-  const repos = etatJour(planning, aujourdhui) === 'repos';
+  const repos = annonceRepos(planning, aujourdhui);
   const terminee = seance ? seanceTerminee(seance, lues, acquises) : false;
   const progression = seance ? progressionSeance(seance, lues, acquises) : null;
   const resume = seance ? t(seance.elements.length === 1 ? 'planning.tacheJour' : 'planning.tachesJour', { n: seance.elements.length, minutes: seance.minutes }) : null;

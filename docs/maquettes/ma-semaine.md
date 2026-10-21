@@ -143,3 +143,7 @@ Chaque état existe en clair et en sombre (voir le fichier HTML, rangées « Var
 - Pas de récap pour l'invité sans compte.
 - Règles de crédits de « Refaire mes erreurs » lancé depuis la carte 3.
 - Durée de conservation de l'entrée du centre de notifications (8 semaines proposées).
+
+
+## Suite du 21 octobre 2026
+Le bouton « Refaire mes erreurs » de la carte 3 ouvre désormais la liste des erreurs de la semaine (`erreurs-semaine.md`), et Moi propose « Mon rapport hebdomadaire ». Les règles de crédits de « Refaire mes erreurs » restent gratuites (aucune dépense).

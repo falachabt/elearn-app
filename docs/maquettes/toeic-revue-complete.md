@@ -360,3 +360,18 @@ Décisions de Benny du 21 octobre (cahier 1.24, section 5.M.10, D-32 à D-35), r
 - `TOEIC-V28-REV-GRP` : revue de groupe, réécoute disponible, « Sans réponse ».
 
 Non dessiné dans cette version : B3 (groupe en Entraînement, écran complet), B5 (phrase), B7 (documents) en version 28. Ces trois écrans restent couverts par la version 27 (`TOEIC-M-B3`, `TOEIC-M-B7`) en attendant le lot suivant.
+
+## Version 29 : identité des pages Réviser, Examen et courbe de score (21 octobre 2026, à valider)
+
+Retour de Benny (capture de Réviser, Cours, Méthode) : les pages se ressemblent toutes, mêmes cartes et même icône livre. Chaque page reçoit une identité propre (bandeau de couleur, icône propre, mise en page propre). Couleurs prises dans les tokens existants, aucun couple inventé.
+
+- `TOEIC-V29-PARCOURS` : frise numérotée (aujourd'hui, série, prochain palier, objectif), une icône par étape.
+- `TOEIC-V29-PARTIES` : tuiles P1 à P6 en deux colonnes, maîtrise par partie, icône propre à chaque partie.
+- `TOEIC-V29-COURS-GRAM` : bandeau jaune, icône couches. Lignes à icône jaune.
+- `TOEIC-V29-COURS-VOC` : bandeau vert, icône notes.
+- `TOEIC-V29-COURS-PIEGES` : bandeau corail, icône alerte.
+- `TOEIC-V29-COURS-METHODE` : bandeau crème, icône ampoule.
+- `TOEIC-V29-EXAMEN` : épreuve, bandeau sombre avec chrono, pas de correction pendant la question.
+- `TOEIC-V29-STATS` : courbe du score (échelle 600 à 1000, cible 800 en pointillé corail, points par séance), vue « Tout ».
+
+Non dessiné en v29 : Carnet, les vues Semaine et Mois de Statistiques, la liste des tests (Tests) et la fin d'Examen dans la nouvelle identité. Ils restent en version 28 ou 27.
