@@ -8,6 +8,7 @@ import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
 import { ErreurContenuExpire } from '@/services/certification/copie';
 import { jourDe } from '@/services/certification/jours';
+import { titreAffiche } from '@/services/certification/titre';
 import { chargerFiche, lireFiche, morceauxMisEnValeur } from '@/services/certification/revision';
 import type { NotionFiche } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -57,7 +58,7 @@ export function FicheNotion() {
   );
 
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser' as never));
-  const titre = phase.nom === 'ok' ? phase.fiche.titre : t('certification.cours.entete');
+  const titre = phase.nom === 'ok' ? titreAffiche(phase.fiche.titre) : t('certification.cours.entete');
 
   return (
     <Ecran insetBas={false} entete={<EnteteToeic titre={titre} onRetour={retour} />}>
