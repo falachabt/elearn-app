@@ -207,7 +207,6 @@ export function Serie() {
       pied={
         groupeValide ? undefined : (
           <View style={styles.pied}>
-            {incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
             <Bouton
               libelle={
                 pluriel
@@ -244,6 +243,7 @@ export function Serie() {
         enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} /> : null}
         trouCourant={positionVue + 1}
       />
+      {!groupeValide && incomplet && !membres.every((m) => m.id in choixGroupe) ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       {!groupeValide ? null : resultat ? (
         <ExplicationCert
           key={`${question.id}-correction`}
