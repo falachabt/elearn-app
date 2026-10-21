@@ -35,6 +35,20 @@ type Props = {
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
 const SANS_ENONCE = new Set(['photo', 'question_reponse']);
 
+/**
+ * B7 : phrase du document qui contient un mot de la bonne réponse (le plus long d'abord). Calculée côté app, après
+ * validation seulement. `null` si aucune phrase ne correspond : rien n'est surligné.
+ */
+export const phraseSurlignee = (texte: string, reponse: string): string | null => {
+  const mots = reponse.toLowerCase().match(/[a-zà-ÿ]{4,}/g) ?? [];
+  const phrases = texte.match(/[^.!?\n]+[.!?]?/g) ?? [];
+  for (const mot of [...mots].sort((a, b) => b.length - a.length)) {
+    const trouvee = phrases.find((p) => p.toLowerCase().includes(mot));
+    if (trouvee) return trouvee;
+  }
+  return null;
+};
+
 /** Trou d'une phrase (parties 5 et 6) : « ------- ». Le numéro de la question remplace le trait (v21). */
 const ALEA_TROU = /-{3,}/;
 
@@ -51,6 +65,19 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
   const image = question.part === 1 ? urlMedia(g?.image_path) : null;
   const docs = g?.passage?.docs ?? [];
   const corrige = bonne !== undefined && bonne !== null;
+  /** B7 : après validation, la phrase du document qui porte la bonne réponse est surlignée ; sinon le texte seul. */
+  const surlignage = (texte: string) => {
+    const phrase = corrige ? phraseSurlignee(texte, question.options[bonne] ?? '') : null;
+    if (!phrase) return texte;
+    const [avant, ...apres] = texte.split(phrase);
+    return (
+      <>
+        {avant}
+        <Text style={[styles.surlignee, { backgroundColor: theme.accent.soleil, color: theme.texte.surCouleur }]}>{phrase}</Text>
+        {apres.join(phrase)}
+      </>
+    );
+  };
   const consigne = SANS_ENONCE.has(question.type) ? t(`certification.exercice.consigne.${question.type}` as 'certification.exercice.consigne.photo') : afficherEnonce(question.stem);
 
   return (
@@ -93,7 +120,9 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           <ScrollView style={[styles.passage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]} nestedScrollEnabled>
             {docs[doc]?.kind ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{docs[doc]?.kind}</Text> : null}
             {docs[doc]?.head ? <Text style={[typo.donnee, { color: theme.texte.principal }]}>{docs[doc]?.head}</Text> : null}
-            <Text style={[typo.texte, { color: theme.texte.principal }]}>{docs[doc]?.text}</Text>
+            <Text style={[typo.texte, { color: theme.texte.principal }]}>
+              {surlignage(docs[doc]?.text ?? '')}
+            </Text>
           </ScrollView>
         </View>
       ) : null}
@@ -134,6 +163,7 @@ const styles = StyleSheet.create({
   phrase: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: espace[2], rowGap: espace[2] },
   trou: { minWidth: 44, minHeight: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
   trouNumero: { fontWeight: '700' },
+  surlignee: { fontWeight: '700' },
   image: { width: '100%', aspectRatio: 16 / 10, borderWidth: bord.normal, borderRadius: rayon.m },
   imageAbsente: { alignItems: 'center', justifyContent: 'center', padding: espace[4] },
   options: { gap: espace[3] },
