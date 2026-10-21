@@ -20,7 +20,8 @@ export type GroupeServi = {
   audio_path: string | null;
   image_path: string | null;
   image_alt: string | null;
-  passage: { docs: DocumentPassage[]; multi?: boolean } | null;
+  /** Partie 7 : `docs` (plusieurs documents). Partie 6 : un seul texte à trous, servi à plat (`text`). */
+  passage: ({ docs?: DocumentPassage[]; multi?: boolean } & Partial<DocumentPassage>) | null;
 };
 
 /** Question servie : jamais la bonne réponse, le piège ni la transcription (révélés après la réponse). */

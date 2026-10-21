@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { randomUUID } from 'expo-crypto';
 
 import { obtenirApi } from './api';
+import { etapeDemarrage } from './erreurDemarrage';
 import { ecrireJson, lireJson } from './etat';
 import { jourDe } from './jours';
 import type { Reglages } from './reglages';
@@ -73,9 +74,21 @@ export type ResultatLancement = { statut: 'demarre'; etat: EtatMini } | { statut
  * Lance un mini-test : le serveur tire les questions et débite au lancement. Un test déjà en cours n'est jamais écrasé
  * ici (l'écran T3 propose de le reprendre ou de l'abandonner d'abord).
  */
-export async function lancerMini(exam: string, partie: number | null, longueur: LongueurMini, r: Pick<Reglages, 'miniMinutesPour10'>): Promise<ResultatLancement> {
+let lancementEnVol: Promise<ResultatLancement> | null = null;
+
+export function lancerMini(exam: string, partie: number | null, longueur: LongueurMini, r: Pick<Reglages, 'miniMinutesPour10'>): Promise<ResultatLancement> {
+  // Un seul lancement à la fois : un double appui ou une relance pendant l'appel ne part pas une seconde fois, avec un
+  // second identifiant qui ferait échouer le premier (409 côté serveur, « n'a pas démarré » à l'écran).
+  if (lancementEnVol) return lancementEnVol;
+  lancementEnVol = lancerMiniUnique(exam, partie, longueur, r).finally(() => {
+    lancementEnVol = null;
+  });
+  return lancementEnVol;
+}
+
+async function lancerMiniUnique(exam: string, partie: number | null, longueur: LongueurMini, r: Pick<Reglages, 'miniMinutesPour10'>): Promise<ResultatLancement> {
   const clientUuid = randomUUID();
-  const rep: DemarrageMini = await obtenirApi().demarrerMini(clientUuid, exam, partie, longueur, maintenant());
+  const rep: DemarrageMini = await etapeDemarrage('appel', () => obtenirApi().demarrerMini(clientUuid, exam, partie, longueur, maintenant()));
   if (rep.status === 'account_required') return { statut: 'compte_requis' };
   if (rep.status === 'insufficient' || !rep.tentative) return { statut: 'insuffisant', cout: rep.cout, solde: rep.solde };
   const debut = rep.status === 'replay' ? Date.parse(rep.tentative.started_at) : Date.now();
@@ -85,7 +98,7 @@ export async function lancerMini(exam: string, partie: number | null, longueur: 
     dureeMin: dureeMiniMin(longueur, r),
     reponses: [], index: 0, termine: false, fin: null,
   };
-  await ecrireMini(etat);
+  await etapeDemarrage('stockage', () => ecrireMini(etat));
   return { statut: 'demarre', etat };
 }
 

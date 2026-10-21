@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { urlMedia } from '@/services/certification/media';
-import type { QuestionServie } from '@/services/certification/types';
+import type { DocumentPassage, GroupeServi, QuestionServie } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -91,6 +91,16 @@ function PassageTrous({ texte, blanc }: { texte: string; blanc: number }) {
   );
 }
 
+/**
+ * Documents du passage d'un groupe. La partie 7 les sert en `docs` ; la partie 6 sert son texte à trous à plat (`text`,
+ * avec les « {n} »), sans liste : sans ce repli la question n'a plus son passage à l'écran.
+ */
+export const documentsDuPassage = (passage: GroupeServi['passage'] | undefined): DocumentPassage[] => {
+  if (passage?.docs?.length) return passage.docs;
+  if (passage?.text) return [{ kind: passage.kind, head: passage.head, text: passage.text }];
+  return [];
+};
+
 /** Remplace le trou « ------- » d'une phrase par un trait lisible. */
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
@@ -102,7 +112,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
   const g = question.group;
   const audio = question.part <= 4 ? urlMedia(g?.audio_path) : null;
   const image = question.part === 1 ? urlMedia(g?.image_path) : null;
-  const docs = g?.passage?.docs ?? [];
+  const docs = documentsDuPassage(g?.passage);
   const corrige = bonne !== undefined && bonne !== null;
   /** B7 : après validation, la phrase du document qui porte la bonne réponse est surlignée ; sinon le texte seul. */
   const surlignage = (texte: string) => {

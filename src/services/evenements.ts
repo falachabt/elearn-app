@@ -153,6 +153,7 @@ export type Evenements = {
   cert_stats_period_changed: { periode: string };
   cert_error_reported: { type: string };
   cert_audio_error: { ecran: string; code: string };
+  cert_start_error: { ecran: string; etape: string; motif: string; code: string };
   cert_offline_answer_queued: { nb: number };
   cert_offline_answer_flushed: { nb: number };
   cert_credit_gate_viewed: { action: string };

@@ -1,12 +1,13 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { Clock, Gift, Wallet } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTextesCredits } from '@/components/credits/textes';
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { etapeDemarrage, signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { obtenirReglages } from '@/services/certification/etat';
 import { dureeMiniMin, lancerMini, lireMini, longueursPossibles, type LongueurMini } from '@/services/certification/miniTest';
 import type { Reglages } from '@/services/certification/reglages';
@@ -42,6 +43,8 @@ export function ReglageMini() {
   const [enCours, setEnCours] = useState(false);
   const [dejaUn, setDejaUn] = useState(false);
   const [echec, setEchec] = useState(false);
+  const [codeEchec, setCodeEchec] = useState<string | null>(null);
+  const enVolRef = useRef(false);
   const [compteRequis, setCompteRequis] = useState(false);
   const [feuille, setFeuille] = useState<{ cout: number | null; solde: number | null } | null>(null);
 
@@ -69,8 +72,11 @@ export function ReglageMini() {
   const lignesCout = pass ? t('certification.mini.coutPass') : coutServeur === undefined ? t('certification.mini.coutInconnu') : t('certification.mini.coutAide', { cout: cout(coutServeur) });
 
   const commencer = async () => {
-    if (choix === null || !reglages || enCours) return;
+    // Garde synchrone : deux appuis dans la même image ne partent pas deux fois (l'état `enCours` arrive trop tard).
+    if (choix === null || !reglages || enCours || enVolRef.current) return;
+    enVolRef.current = true;
     setEchec(false);
+    setCodeEchec(null);
     setCompteRequis(false);
     // Avant l'appel : solde visible trop bas, la feuille s'ouvre sans rien tenter (le serveur reste l'autorité).
     if (!pass && coutServeur !== undefined && coutServeur > 0 && solde && solde.total < coutServeur) {
@@ -78,9 +84,9 @@ export function ReglageMini() {
       setFeuille({ cout: coutServeur, solde: solde.total });
       return;
     }
-    const exam = (await lireProfil())?.exam ?? 'toeic';
     setEnCours(true);
     try {
+      const exam = await etapeDemarrage('profil', async () => (await lireProfil())?.exam ?? 'toeic');
       // Essais sur Expo web (outil de développement, voir `demo/`) : pas de serveur à joindre, la garde réseau est sans objet.
       const demo = __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO === '1';
       const res = demo ? await lancerMini(exam, partie, longueurEffective, reglages) : await garde(() => lancerMini(exam, partie, longueurEffective, reglages));
@@ -95,9 +101,12 @@ export function ReglageMini() {
         void rafraichir();
         router.replace({ pathname: '/certification/mini-test', params: { epreuve } } as never);
       }
-    } catch {
+    } catch (erreur) {
+      // Le code court n'expose aucune donnée : il renvoie à l'évènement PostHog qui garde l'étape et le motif.
+      setCodeEchec(signalerErreurDemarrage('mini', 'MIN', erreur));
       setEchec(true);
     } finally {
+      enVolRef.current = false;
       setEnCours(false);
     }
   };
@@ -116,7 +125,12 @@ export function ReglageMini() {
         </View>
       ) : null}
       {banniere}
-      {echec ? <Banniere ton="erreur" titre={t('certification.mini.erreurTitre')} texte={t('certification.mini.erreurTexte')} /> : null}
+      {echec ? (
+        <View style={styles.groupe}>
+          <Banniere ton="erreur" titre={t('certification.mini.erreurTitre')} texte={t('certification.mini.erreurTexte')} />
+          {codeEchec ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.mini.erreurCode', { code: codeEchec })}</Text> : null}
+        </View>
+      ) : null}
       {compteRequis ? (
         <View style={styles.groupe}>
           <Banniere ton="info" titre={t('certification.mini.compteTitre')} texte={t('certification.mini.compteTexte')} />

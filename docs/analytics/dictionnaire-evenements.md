@@ -202,6 +202,7 @@ Aucune donnée personnelle ni contenu de question : seulement des types, parties
 | `cert_stats_period_changed` | Période des statistiques changée | `{ periode: string }` |
 | `cert_error_reported` | Erreur de contenu signalée | `{ type: string }` |
 | `cert_audio_error` | Audio indisponible | `{ ecran: string; code: string }` |
+| `cert_start_error` | Démarrage d'un test ou du diagnostic en échec | `{ ecran: string; etape: 'profil' \| 'appel' \| 'stockage' \| 'inconnue'; motif: string (message d'erreur, 80 caractères max, sans donnée personnelle); code: string (empreinte courte affichée à l'élève) }` |
 | `cert_offline_answer_queued` | Réponses mises en file hors ligne | `{ nb: number }` |
 | `cert_offline_answer_flushed` | File de réponses envoyée au retour du réseau | `{ nb: number }` |
 | `cert_credit_gate_viewed` | Feuille de coût en crédits affichée | `{ action: string }` |

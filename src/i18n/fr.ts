@@ -2748,6 +2748,7 @@ export const fr = {
       horsLigneTexte: 'Le test est tiré et réservé par le serveur. Rien n’est débité tant qu’il n’a pas démarré.',
       erreurTitre: 'Le test n’a pas démarré',
       erreurTexte: 'Aucun crédit n’a été retiré. Réessaie dans un instant.',
+      erreurCode: 'Code {{code}}, à donner au support si ça revient.',
       compteTitre: 'Crée ton compte pour continuer',
       compteTexte: 'Les tests sont réservés aux comptes, pour garder ton score et ton solde.',
       compteBouton: 'Créer mon compte',

@@ -2762,6 +2762,7 @@ export const en: Textes = {
       enCoursTitre: 'A test is already in progress',
       enCoursTexte: 'Resume it or abandon it before starting another one.',
       enCoursBouton: 'See the test in progress',
+      erreurCode: 'Code {{code}}, to give to support if it happens again.',
     },
     examen: {
       entete: 'Mini-test · question {{n}} of {{total}}',
