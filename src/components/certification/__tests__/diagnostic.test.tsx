@@ -137,7 +137,8 @@ describe('A6 · Diagnostic', () => {
     const { api } = creerApiFausse({ echecDemarrer: true });
     definirApi(api);
     await monter(<Diagnostic />);
-    expect(await screen.findByText(t.diagnostic.erreurGardees)).toBeTruthy();
+    // Un nouvel essai silencieux précède l'erreur : on laisse le temps de le voir échouer.
+    expect(await screen.findByText(t.diagnostic.erreurGardees, undefined, { timeout: 4000 })).toBeTruthy();
     definirApi(creerApiFausse().api);
     await fireEvent.press(screen.getByRole('button', { name: t.reessayer }));
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();

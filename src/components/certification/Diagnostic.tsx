@@ -19,6 +19,17 @@ import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
+/** Une nouvelle tentative silencieuse après une erreur passagère ; « contenu indisponible » n'est pas passager. */
+async function essayerEncore<T>(appel: () => Promise<T>): Promise<T> {
+  try {
+    return await appel();
+  } catch (erreur) {
+    if (erreur instanceof Error && erreur.message.includes('contenu indisponible')) throw erreur;
+    await new Promise((resoudre) => setTimeout(resoudre, 1500));
+    return appel();
+  }
+}
+
 type Phase = { nom: 'chargement' } | { nom: 'erreur'; horsLigne: boolean } | { nom: 'vide' } | { nom: 'question' };
 
 /** A6 · Question du diagnostic : pas de correction, l'audio se joue une seule fois, « Passer » compte comme faux. */
@@ -40,7 +51,8 @@ export function Diagnostic() {
     try {
       const [p, r] = await Promise.all([lireProfil(), obtenirReglages().catch(() => null)]);
       if (r) setDelaiEchecS(r.audioEchecSecondes);
-      const e = await demarrerOuReprendre(p?.exam ?? 'toeic');
+      // Secours silencieux : une erreur passagère au premier appel ne doit pas afficher l'écran d'erreur.
+      const e = await essayerEncore(() => demarrerOuReprendre(p?.exam ?? 'toeic'));
       setEtat(e);
       setPhase({ nom: 'question' });
     } catch (e) {

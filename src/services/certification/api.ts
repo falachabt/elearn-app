@@ -63,6 +63,23 @@ export interface CertApi {
   reclamerGain(code: string, exam: string, jourLocal: Jour): Promise<ResultatGain>;
 }
 
+/**
+ * Appel RPC authentifié. Au premier lancement à froid, la session est parfois restaurée après la première requête : le
+ * serveur répond « authentification requise » (auth.uid() vide). On rafraîchit la session et on rejoue l'appel une fois.
+ */
+async function rpcAuthentifie(nom: string, args: Record<string, unknown>) {
+  const client = getSupabase();
+  const premier = await client.rpc(nom, args);
+  if (!premier.error || !estErreurSession(premier.error)) return premier;
+  await client.auth.refreshSession().catch(() => null);
+  return client.rpc(nom, args);
+}
+
+/** Session absente ou expirée côté serveur (code 28000, ou JWT refusé par PostgREST). */
+export function estErreurSession(erreur: { code?: string; message: string }): boolean {
+  return erreur.code === '28000' || erreur.code === 'PGRST301' || /authentification requise|jwt/i.test(erreur.message);
+}
+
 const ETATS_SERVEUR: Record<string, EtatMaitrise> = { not_started: 'pas_commencee', fragile: 'fragile', progress: 'en_progres', acquired: 'acquise' };
 const etatDepuisServeur = (e: string): EtatMaitrise => ETATS_SERVEUR[e] ?? 'pas_commencee';
 
@@ -83,7 +100,7 @@ const baseServeur: Omit<CertApi, Revisee | Testee> = {
     return verifier(res) as LigneReglage[];
   },
   async enregistrerPlan({ exam, objectif, dateTest, minutes, effacerDate }) {
-    const res = await getSupabase().rpc('cert_set_plan', {
+    const res = await rpcAuthentifie('cert_set_plan', {
       p_exam: exam,
       p_goal: objectif ?? null,
       p_test_date: dateTest ?? null,
@@ -93,27 +110,27 @@ const baseServeur: Omit<CertApi, Revisee | Testee> = {
     verifier(res);
   },
   async demarrerDiagnostic(clientUuid, exam, jourLocal) {
-    const res = await getSupabase().rpc('cert_diagnostic_start', { p_client_uuid: clientUuid, p_exam: exam, p_local_day: jourLocal });
+    const res = await rpcAuthentifie('cert_diagnostic_start', { p_client_uuid: clientUuid, p_exam: exam, p_local_day: jourLocal });
     return verifier(res) as Tentative;
   },
   async envoyerReponses(reponses) {
-    const res = await getSupabase().rpc('cert_submit_answers', { p_answers: reponses });
+    const res = await rpcAuthentifie('cert_submit_answers', { p_answers: reponses });
     return verifier(res) as ResultatReponse[];
   },
   async terminerTentative(tentativeId, reponses) {
-    const res = await getSupabase().rpc('cert_attempt_finish', { p_attempt: tentativeId, p_answers: reponses });
+    const res = await rpcAuthentifie('cert_attempt_finish', { p_attempt: tentativeId, p_answers: reponses });
     return verifier(res) as FinTentative;
   },
   async lireSerie(perimetre, exam, taille) {
     if (perimetre.rejeu) {
-      const rejeu = await getSupabase().rpc('cert_replay_get', { p_count: taille ?? 10, p_today: jourDe(new Date()) });
+      const rejeu = await rpcAuthentifie('cert_replay_get', { p_count: taille ?? 10, p_today: jourDe(new Date()) });
       return verifier(rejeu) as QuestionServie[];
     }
-    const res = await getSupabase().rpc('cert_series_get', { p_exam: exam, p_part: perimetre.part ?? null, p_notion: perimetre.notion ?? null, p_count: taille ?? null });
+    const res = await rpcAuthentifie('cert_series_get', { p_exam: exam, p_part: perimetre.part ?? null, p_notion: perimetre.notion ?? null, p_count: taille ?? null });
     return verifier(res) as QuestionServie[];
   },
   async ajouterMot(motId, jourLocal) {
-    const res = await getSupabase().rpc('cert_word_add', { p_word: motId, p_local_day: jourLocal });
+    const res = await rpcAuthentifie('cert_word_add', { p_word: motId, p_local_day: jourLocal });
     verifier(res);
   },
   async motsARevoir() {
@@ -131,7 +148,7 @@ const baseServeur: Omit<CertApi, Revisee | Testee> = {
 
 const revisionServeur: Pick<CertApi, Revisee> = {
 lireRevision: async (exam, jourLocal) => {
-  const res = await getSupabase().rpc('cert_notions_list', { p_exam: exam, p_today: jourLocal });
+  const res = await rpcAuthentifie('cert_notions_list', { p_exam: exam, p_today: jourLocal });
   const j = verifier(res) as {
     notions: { id: string; code: string; title: string; family: NotionFiche['famille']; parts: number[]; duration_min: number | null; has_course: boolean; answers: number; correct: number; state: string; last_opened: string | null }[];
     parts: { part: number; answers: number; mastery: number; state: string }[];
@@ -145,7 +162,7 @@ lireRevision: async (exam, jourLocal) => {
   };
 },
 lireCarnet: async (exam) => {
-  const res = await getSupabase().rpc('cert_words_list', { p_exam: exam });
+  const res = await rpcAuthentifie('cert_words_list', { p_exam: exam });
   const lignes = verifier(res) as { id: string; word: string; pos: string | null; def_fr: string; example: string | null; theme: string | null; audio_path: string | null; box: 1 | 2 | 3 | 4; next_review: string; seen: number; good: number; bad: number }[];
   return lignes.map((m) => ({
     id: m.id, mot: m.word, categorie: m.pos, definition: m.def_fr, exemple: m.example, theme: m.theme, audio: m.audio_path,
@@ -153,7 +170,7 @@ lireCarnet: async (exam) => {
   }));
 },
 composerSeance: async (exam, minutes, jourLocal, eviterPartie) => {
-  const res = await getSupabase().rpc('cert_session_compose', { p_exam: exam, p_minutes: minutes, p_today: jourLocal, p_avoid_part: eviterPartie });
+  const res = await rpcAuthentifie('cert_session_compose', { p_exam: exam, p_minutes: minutes, p_today: jourLocal, p_avoid_part: eviterPartie });
   const j = verifier(res) as { minutes: number; blocks: Record<string, unknown>[]; why: { errors: number; notion: string | null; words_due: number } };
   const blocs: BlocServi[] = j.blocks.map((b) => {
     if (b.kind === 'course') return { type: 'cours', notionId: String(b.notion_id), titre: String(b.title), minutes: Number(b.minutes), erreurs: Number(b.errors) };
@@ -164,22 +181,22 @@ composerSeance: async (exam, minutes, jourLocal, eviterPartie) => {
   return { minutes: j.minutes, blocs, pourquoi: { erreurs: j.why.errors, notion: j.why.notion, motsEchus: j.why.words_due } };
 },
 lireNotion: async (notionId) => {
-  const res = await getSupabase().rpc('cert_notion_get', { p_notion: notionId });
+  const res = await rpcAuthentifie('cert_notion_get', { p_notion: notionId });
   const j = verifier(res) as { id: string; code: string; family: NotionFiche['famille']; title: string; parts: number[]; course_md: string | null; duration_min: number | null; anchors: QuestionServie[] };
   return { id: j.id, code: j.code, famille: j.family, titre: j.title, parties: j.parts, markdown: j.course_md, dureeMin: j.duration_min, ancrages: j.anchors ?? [] };
 },
 ouvrirNotion: async (notionId, secondesLecture, jourLocal) => {
-  const res = await getSupabase().rpc('cert_notion_open', { p_notion: notionId, p_read_seconds: secondesLecture, p_local_day: jourLocal });
+  const res = await rpcAuthentifie('cert_notion_open', { p_notion: notionId, p_read_seconds: secondesLecture, p_local_day: jourLocal });
   verifier(res);
 },
 envoyerResultatsMots: async (resultats) => {
-  const res = await getSupabase().rpc('cert_word_result', {
+  const res = await rpcAuthentifie('cert_word_result', {
     p_results: resultats.map((r) => ({ word_id: r.wordId, client_uuid: r.clientUuid, known: r.connu, local_day: r.jour })),
   });
   verifier(res);
 },
 terminerSeance: async (clientUuid, exam, composition, minutesActives, jourLocal) => {
-  const res = await getSupabase().rpc('cert_session_complete', {
+  const res = await rpcAuthentifie('cert_session_complete', {
     p_client_uuid: clientUuid, p_exam: exam, p_composition: composition, p_active_minutes: minutesActives, p_local_day: jourLocal,
   });
   verifier(res);
@@ -188,7 +205,7 @@ terminerSeance: async (clientUuid, exam, composition, minutesActives, jourLocal)
 
 const testsServeur: Pick<CertApi, Testee> = {
   demarrerMini: async (clientUuid, exam, partie, longueur, jourLocal) => {
-    const res = await getSupabase().rpc('cert_mini_start', { p_client_uuid: clientUuid, p_part: partie, p_length: longueur, p_exam: exam, p_local_day: jourLocal });
+    const res = await rpcAuthentifie('cert_mini_start', { p_client_uuid: clientUuid, p_part: partie, p_length: longueur, p_exam: exam, p_local_day: jourLocal });
     const j = verifier(res) as Record<string, unknown> & { status: DemarrageMini['status']; cost?: number; balance?: number };
     if (j.status === 'insufficient' || j.status === 'account_required') {
       return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };
@@ -198,11 +215,11 @@ const testsServeur: Pick<CertApi, Testee> = {
     return { status: j.status, tentative, cout: j.cost ?? null, solde: j.balance ?? null };
   },
   lireTentative: async (tentativeId) => {
-    const res = await getSupabase().rpc('cert_attempt_get', { p_attempt: tentativeId });
+    const res = await rpcAuthentifie('cert_attempt_get', { p_attempt: tentativeId });
     return { ...(verifier(res) as Tentative), replay: false };
   },
   abandonnerTentative: async (tentativeId, raison) => {
-    const res = await getSupabase().rpc('cert_attempt_abandon', { p_attempt: tentativeId, p_reason: raison });
+    const res = await rpcAuthentifie('cert_attempt_abandon', { p_attempt: tentativeId, p_reason: raison });
     const j = verifier(res) as { status: Tentative['status']; refunded: boolean; balance?: number };
     return { statut: j.status, rembourse: !!j.refunded, solde: j.balance ?? null };
   },
@@ -221,7 +238,7 @@ const testsServeur: Pick<CertApi, Testee> = {
     }));
   },
   lireStats: async (exam, periode, jourLocal) => {
-    const res = await getSupabase().rpc('cert_stats_get', { p_period: periode, p_exam: exam, p_today: jourLocal });
+    const res = await rpcAuthentifie('cert_stats_get', { p_period: periode, p_exam: exam, p_today: jourLocal });
     const j = verifier(res) as {
       status: Stats['status']; answers_total?: number;
       score?: { estimated: boolean; score_min: number | null; score_max: number | null };
@@ -249,7 +266,7 @@ const testsServeur: Pick<CertApi, Testee> = {
     };
   },
   lireGains: async (exam, jourLocal) => {
-    const res = await getSupabase().rpc('cert_earn_status', { p_exam: exam, p_local_day: jourLocal });
+    const res = await rpcAuthentifie('cert_earn_status', { p_exam: exam, p_local_day: jourLocal });
     const j = verifier(res) as { cap: number; weekly_total: number; streak: number; items: { code: EtatGains['gains'][number]['code']; amount: number; progress?: number; target?: number; claimed_today?: boolean; claimed?: boolean }[] };
     return {
       plafond: Number(j.cap), gagneSemaine: Number(j.weekly_total), serie: j.streak,
@@ -257,7 +274,7 @@ const testsServeur: Pick<CertApi, Testee> = {
     };
   },
   reclamerGain: async (code, exam, jourLocal) => {
-    const res = await getSupabase().rpc('cert_claim_earn', { p_code: code, p_exam: exam, p_local_day: jourLocal });
+    const res = await rpcAuthentifie('cert_claim_earn', { p_code: code, p_exam: exam, p_local_day: jourLocal });
     const j = verifier(res) as { status: ResultatGain['status']; amount?: number; weekly_total?: number; cap?: number };
     return { status: j.status, montant: j.amount, gagneSemaine: j.weekly_total, plafond: j.cap };
   },
