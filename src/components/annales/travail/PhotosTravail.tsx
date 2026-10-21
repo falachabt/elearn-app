@@ -7,15 +7,14 @@ import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
-import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, marquerVisiteVue, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
+import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, retirerFeuille, useBrouillon } from '@/services/travailSujet';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
 import { Bouton } from '../../Bouton';
 import { useFeedback } from '../../useFeedback';
-import { useVisite } from '../../Visite';
+import { useVisiteEcran } from './useVisiteEcran';
 
 /** L'appareil photo reste sombre dans les deux thèmes (guide, parcours B). */
 const NOIR = palette.encre[1000];
@@ -37,37 +36,17 @@ export function PhotosTravail() {
   const refGalerie = useRef<View>(null);
   const refObturateur = useRef<View>(null);
   const refTerminer = useRef<View>(null);
-  const { demarrer } = useVisite();
-  // Visite guidée (bibliothèque de visite de l'app) : met en avant les vrais boutons de l'écran.
-  const lancerVisite = () =>
-    demarrer(
-      [
-        { id: 'viseur', cible: refViseur, titre: t('travail.visiteGuide.viseurTitre'), description: t('travail.visiteGuide.viseur') },
-        { id: 'obturateur', cible: refObturateur, titre: t('travail.visiteGuide.obturateurTitre'), description: t('travail.visiteGuide.obturateur') },
-        { id: 'galerie', cible: refGalerie, titre: t('travail.visiteGuide.galerieTitre'), description: t('travail.visiteGuide.galerie') },
-        { id: 'compteur', cible: refCompteur, titre: t('travail.visiteGuide.compteurTitre'), description: t('travail.visiteGuide.compteur') },
-        { id: 'terminer', cible: refTerminer, titre: t('travail.visiteGuide.terminerTitre'), description: t('travail.visiteGuide.terminer') },
-        { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
-      ],
-      (terminee) => {
-        void marquerVisiteVue();
-        suivre('annale_visite_vue', { terminee });
-      },
-    );
-  // Première ouverture : la visite se lance seule, une fois les boutons mesurables.
-  useEffect(() => {
-    let actif = true;
-    let minuteur: ReturnType<typeof setTimeout> | undefined;
-    void visiteDejaVue().then((vue) => {
-      if (actif && !vue) minuteur = setTimeout(lancerVisite, 600);
-    });
-    return () => {
-      actif = false;
-      if (minuteur) clearTimeout(minuteur);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const refBande = useRef<View>(null);
   const feuilles = brouillon?.feuilles ?? [];
+  const lancerVisite = useVisiteEcran('photos', () => [
+    { id: 'viseur', cible: refViseur, titre: t('travail.visiteGuide.viseurTitre'), description: t('travail.visiteGuide.viseur') },
+    { id: 'obturateur', cible: refObturateur, titre: t('travail.visiteGuide.obturateurTitre'), description: t('travail.visiteGuide.obturateur') },
+    { id: 'galerie', cible: refGalerie, titre: t('travail.visiteGuide.galerieTitre'), description: t('travail.visiteGuide.galerie') },
+    { id: 'compteur', cible: refCompteur, titre: t('travail.visiteGuide.compteurTitre'), description: t('travail.visiteGuide.compteur') },
+    ...(feuilles.length ? [{ id: 'miniatures', cible: refBande, titre: t('travail.visiteGuide.miniaturesTitre'), description: t('travail.visiteGuide.miniatures') }] : []),
+    { id: 'terminer', cible: refTerminer, titre: t('travail.visiteGuide.terminerTitre'), description: t('travail.visiteGuide.terminer') },
+    { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
+  ]);
   const plein = feuilles.length >= MAX_FEUILLES;
 
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
@@ -119,6 +98,7 @@ export function PhotosTravail() {
         )}
       </View>
       {permission?.granted ? <Text style={[typo.petit, styles.conseil]}>{t('travail.photosConseil')}</Text> : null}
+      <View ref={refBande} collapsable={false}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.bandeZone} contentContainerStyle={styles.bande}>
         {feuilles.map((f, i) => (
           <View key={f.id} style={styles.vignette}>
@@ -134,6 +114,7 @@ export function PhotosTravail() {
           </View>
         ))}
       </ScrollView>
+      </View>
       <View style={styles.bas}>
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosGalerie')} onPress={() => void galerie()} decalage={0} rayon={rayon.m}>
           <View ref={refGalerie} collapsable={false} style={styles.carre}><IconeImage size={20} color={BLANC} strokeWidth={2} /></View>

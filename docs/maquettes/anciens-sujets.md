@@ -78,3 +78,19 @@ Visite remplacée le 21 octobre par la bibliothèque de visite de l’app (voir 
 - **Bug du temps** : sans temps conseillé (documents de classe), le choix « Compte à rebours » était aussitôt ramené au chrono libre ; il bascule maintenant sur « Mon temps » avec saisie des minutes.
 - **Mes documents** : une annale gardée sur le téléphone rouvre la page de détail du sujet (temps, correction, sessions) et non plus le lecteur seul. Seuls les documents sans origine connue s'ouvrent directement, sans menu de chrono.
 - **Supprimé** : l'ancien menu de chrono du lecteur (durée officielle, 30 min, 1 h, 2 h, « Ne plus afficher »), sa feuille d'explication au premier lancement, la visite interactive sur feuille d'exemple et leurs textes. Le temps se choisit uniquement sur la page de détail du sujet.
+
+## Visite guidée du parcours photo (21 octobre)
+- Bibliothèque `@wrack/react-native-tour-guide`, habillée aux couleurs de l'app dans `Visite.tsx` (bulle surface, bord noir 2 px, ombre dure, boutons `Bouton`, compteur « Étape x sur y », fond sombre du thème).
+- Une visite par écran, lancée seule à la première ouverture (clé `annales.visite.<ecran>.vue`), rejouable par le bouton d'aide (CircleHelp) de l'en-tête.
+- Photos : viseur, obturateur, galerie, compteur, miniatures (si feuilles), Terminer, aide.
+- Aperçu d'une feuille : la feuille, pivoter, recadrer (rogner), terminer l'aperçu, aide.
+- Ordre des feuilles : une feuille, monter/descendre/retirer, ajouter une feuille, envoyer à l'IA, aide.
+- Évènement `annale_visite_vue { terminee, ecran }`.
+
+## Résultat : explications et questions non traitées (21 octobre)
+- Détail d'une question : « Pourquoi cette réponse » s'affiche toujours (juste ou fausse, notamment QCM et vrai/faux) ; « La bonne réponse » seulement si l'élève s'est trompé ; le commentaire dit d'où vient l'erreur.
+- Le serveur lit tout le sujet (texte extrait du PDF) et liste tous ses exercices et questions. Une question laissée de côté porte `traitee: false`, vaut 0 point sur son barème, affiche la pastille « Non traité » (fond creux, bord noir) ; un bandeau d'information donne le nombre de questions non traitées ; son détail montre l'énoncé et la bonne réponse, sans « Ta réponse ».
+- Le total du barème inclut les questions non traitées (note sur le sujet entier).
+
+## Temps passé (21 octobre)
+- Le lecteur PDF enregistre le temps par incréments (sortie et passage en arrière-plan) : catégorie Annale pour un concours ou un document de classe (`sujet` ou `kind`), Cours pour un autre PDF. Avant, un document de classe comptait en Cours et un temps lu avant un changement de titre pouvait être perdu.

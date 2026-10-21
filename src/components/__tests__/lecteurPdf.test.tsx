@@ -8,6 +8,7 @@ import { fr } from '@/i18n/fr';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { adresseEncodee, effacerDocuments, lireDocuments, noterPage, nomFichier, ouvrirDocument, pageDocument, prechargerDocument, retirerTousDocuments } from '@/services/documents';
+import { lireActivitesJours } from '@/services/activite';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { LecteurPdf } from '../LecteurPdf';
@@ -349,5 +350,39 @@ describe('quandOuvert', () => {
     expect(quandOuvert('2026-10-01T07:00:00', maintenant)).toBe('aujourdhui');
     expect(quandOuvert('2026-09-30T22:00:00', maintenant)).toBe('hier');
     expect(quandOuvert('2026-09-28T10:00:00', maintenant)).toBeNull();
+  });
+});
+
+describe('temps passé sur un ancien sujet : compté dans Ma progression', () => {
+  const passer = async (params: Record<string, string>) => {
+    jest.useFakeTimers();
+    try {
+      mockParams = { url: URL_SUJET, titre: 'Sujet Maths 2024', ...params };
+      const vue = await monter();
+      await act(async () => { await jest.advanceTimersByTimeAsync(500); });
+      await act(async () => { await jest.advanceTimersByTimeAsync(12_000); });
+      await vue.unmount();
+      await act(async () => { await jest.advanceTimersByTimeAsync(100); });
+    } finally {
+      jest.useRealTimers();
+    }
+    return Object.values(await lireActivitesJours())[0]?.parType;
+  };
+
+  it('un concours (sujet) compte en Annale', async () => {
+    const parType = await passer({ sujet: '7', kind: 'exam', ref: '7' });
+    expect(parType?.annale ?? 0).toBeGreaterThanOrEqual(10);
+    expect(parType?.cours ?? 0).toBe(0);
+  });
+
+  it('un document de classe (kind=document) compte aussi en Annale', async () => {
+    const parType = await passer({ kind: 'document', ref: '3' });
+    expect(parType?.annale ?? 0).toBeGreaterThanOrEqual(10);
+  });
+
+  it('un PDF de cours reste en Cours', async () => {
+    const parType = await passer({});
+    expect(parType?.cours ?? 0).toBeGreaterThanOrEqual(10);
+    expect(parType?.annale ?? 0).toBe(0);
   });
 });

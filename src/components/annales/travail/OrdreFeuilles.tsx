@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
-import { ChevronDown, ChevronUp, Plus, Sparkles, Trash2 } from 'lucide-react-native';
-import { useState } from 'react';
+import { ChevronDown, ChevronUp, CircleHelp, Plus, Sparkles, Trash2 } from 'lucide-react-native';
+import { useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -16,6 +16,7 @@ import { Banniere } from '../../Banniere';
 import { Bouton } from '../../Bouton';
 import { Ecran } from '../../Ecran';
 import { BoutonFermer } from '../../arrivee/MiniTest';
+import { useVisiteEcran } from './useVisiteEcran';
 
 function BoutonIcone({ libelle, onPress, desactive, children }: { libelle: string; onPress: () => void; desactive?: boolean; children: React.ReactNode }) {
   const { theme } = useTheme();
@@ -35,6 +36,23 @@ export function OrdreFeuilles() {
   const [plein, setPlein] = useState(false);
   const feuilles = brouillon?.feuilles ?? [];
 
+  const refFeuille = useRef<View>(null);
+  const refActions = useRef<View>(null);
+  const refAjouter = useRef<View>(null);
+  const refEnvoyer = useRef<View>(null);
+  const refAide = useRef<View>(null);
+  const lancerVisite = useVisiteEcran(
+    'ordre',
+    () => [
+      { id: 'feuille', cible: refFeuille, titre: t('travail.visiteGuide.ordreFeuilleTitre'), description: t('travail.visiteGuide.ordreFeuille') },
+      { id: 'actions', cible: refActions, titre: t('travail.visiteGuide.ordreActionsTitre'), description: t('travail.visiteGuide.ordreActions') },
+      { id: 'ajouter', cible: refAjouter, titre: t('travail.visiteGuide.ordreAjouterTitre'), description: t('travail.visiteGuide.ordreAjouter') },
+      { id: 'envoyer', cible: refEnvoyer, titre: t('travail.visiteGuide.ordreEnvoyerTitre'), description: t('travail.visiteGuide.ordreEnvoyer') },
+      { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
+    ],
+    feuilles.length > 0,
+  );
+
   const retour = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const ajouter = () => {
     if (feuilles.length >= MAX_FEUILLES) return setPlein(true);
@@ -47,16 +65,23 @@ export function OrdreFeuilles() {
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
           <Text accessibilityRole="header" style={[typo.h3, styles.flex, { color: theme.texte.principal }]}>{t('travail.ordreTitre')}</Text>
+          <Appui accessibilityRole="button" accessibilityLabel={t('travail.revoirVisite')} onPress={lancerVisite} decalage={0} rayon={rayon.m}>
+            <View ref={refAide} collapsable={false} style={[styles.aide, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }]}>
+              <CircleHelp size={20} color={theme.texte.principal} strokeWidth={2} />
+            </View>
+          </Appui>
         </>
       }
       pied={
         <View style={styles.pied}>
-          <Bouton
-            libelle={libelleAvecPrix(t, t('travail.envoyer'), { cout: couts.ai_question || null, illimite: !!solde?.illimite })}
-            desactive={!feuilles.length}
-            icone={<Sparkles size={20} color={theme.texte.surCouleur} />}
-            onPress={() => router.push('/annales/analyse')}
-          />
+          <View ref={refEnvoyer} collapsable={false}>
+            <Bouton
+              libelle={libelleAvecPrix(t, t('travail.envoyer'), { cout: couts.ai_question || null, illimite: !!solde?.illimite })}
+              desactive={!feuilles.length}
+              icone={<Sparkles size={20} color={theme.texte.surCouleur} />}
+              onPress={() => router.push('/annales/analyse')}
+            />
+          </View>
           <Text style={[typo.legende, styles.astuce, { color: theme.texte.secondaire }]}>{t('travail.ordreAstuce')}</Text>
         </View>
       }
@@ -68,7 +93,7 @@ export function OrdreFeuilles() {
         {feuilles.map((f, i) => (
           <View key={f.id} style={styles.zone}>
             <View style={[styles.ombre, { backgroundColor: theme.ombre }]} />
-            <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            <View ref={i === 0 ? refFeuille : undefined} collapsable={false} style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
               <Appui accessibilityRole="button" accessibilityLabel={t('travail.voirFeuille', { n: i + 1 })} onPress={() => router.push({ pathname: '/annales/apercu', params: { id: f.id } })} decalage={0} rayon={rayon.m}>
                 <View style={[styles.image, { borderColor: theme.bord.fort, backgroundColor: theme.fond.creux }]}>
                   <Image source={{ uri: f.uri }} style={StyleSheet.absoluteFill} contentFit="cover" />
@@ -77,7 +102,7 @@ export function OrdreFeuilles() {
                   </View>
                 </View>
               </Appui>
-              <View style={styles.actions}>
+              <View ref={i === 0 ? refActions : undefined} collapsable={false} style={styles.actions}>
                 <BoutonIcone libelle={t('travail.monter', { n: i + 1 })} desactive={i === 0} onPress={() => majFeuilles((l) => deplacerFeuille(l, i, i - 1))}>
                   <ChevronUp size={18} color={theme.texte.principal} strokeWidth={2} />
                 </BoutonIcone>
@@ -92,7 +117,9 @@ export function OrdreFeuilles() {
           </View>
         ))}
       </View>
-      <Bouton variante="secondaire" libelle={t('travail.ajouter')} icone={<Plus size={20} color={theme.texte.principal} />} onPress={ajouter} />
+      <View ref={refAjouter} collapsable={false}>
+        <Bouton variante="secondaire" libelle={t('travail.ajouter')} icone={<Plus size={20} color={theme.texte.principal} />} onPress={ajouter} />
+      </View>
     </Ecran>
   );
 }
@@ -109,5 +136,6 @@ const styles = StyleSheet.create({
   numero: { position: 'absolute', left: espace[2], top: espace[2], minWidth: 28, height: 28, borderRadius: rayon.pilule, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
   actions: { flexDirection: 'row', gap: espace[2] },
   icone: { flex: 1 },
+  aide: { width: 48, height: 48, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
   boutonIcone: { height: cibleMin - 8, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
 });

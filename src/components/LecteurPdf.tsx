@@ -2,7 +2,7 @@ import { BookOpenCheck, FileText, Hourglass, Minus, Plus, Sparkles, TriangleAler
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, AppState, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -173,19 +173,30 @@ export function LecteurPdf() {
     sortieAction.current = null;
   };
 
+  // Le temps passé compte dans « Ma progression » : catégorie Annale pour un ancien sujet (concours ou document de classe,
+  // reconnus à `sujet` ou `kind`), Cours pour un autre PDF. Enregistré à la sortie et à chaque passage en arrière-plan, par
+  // incréments (jamais deux fois la même seconde), avec les valeurs les plus récentes lues dans une référence.
+  const contexte = useRef({ ancien: false, matiere: undefined as string | undefined, titre: undefined as string | undefined });
   useEffect(() => {
+    contexte.current = { ancien: !!sujet || !!kind, matiere: matiereEffective || undefined, titre: titreBase || undefined };
+  }, [sujet, kind, matiereEffective, titreBase]);
+  const dejaCompte = useRef(0);
+  const enregistrerTemps = useCallback(() => {
+    const dureeS = tempsRef.current - dejaCompte.current;
+    if (dureeS < 3) return;
+    dejaCompte.current = tempsRef.current;
+    const c = contexte.current;
+    void enregistrerTempsActivite({ type: c.ancien ? 'annale' : 'cours', dureeS, matiere: c.matiere, titre: c.titre });
+  }, []);
+  useEffect(() => {
+    const abo = AppState.addEventListener('change', (etatApp) => {
+      if (etatApp !== 'active') enregistrerTemps();
+    });
     return () => {
-      const dureeS = tempsRef.current;
-      if (dureeS >= 3) {
-        void enregistrerTempsActivite({
-          type: sujet ? 'annale' : 'cours',
-          dureeS,
-          matiere: matiereEffective || undefined,
-          titre: titreBase || undefined,
-        });
-      }
+      abo.remove();
+      enregistrerTemps();
     };
-  }, [urlParam, sujet, matiereEffective, titreBase]);
+  }, [enregistrerTemps]);
   // Le PDF descend jusqu'au bord de l'écran ; les boutons de zoom restent au-dessus de la barre de navigation.
   const { bottom } = useSafeAreaInsets();
 

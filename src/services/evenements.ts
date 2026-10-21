@@ -119,7 +119,7 @@ export type Evenements = {
   annale_ai_sent: { feuilles: number };
   annale_ai_done: { points: number; total: number };
   annale_ai_failed: { raison: string };
-  annale_visite_vue: { terminee: boolean };
+  annale_visite_vue: { terminee: boolean; ecran: 'photos' | 'apercu' | 'ordre' };
   annale_correction_toggle: { vers: 'correction' | 'sujet' };
   ai_answer_seen: { source: 'photo' | 'question'; duree_s: number };
   // Performance (issue #14). Durées en millisecondes, volumes en octets (`null` si le serveur n'annonce pas la taille).

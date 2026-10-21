@@ -27,6 +27,8 @@ export type QuestionNotee = {
   reponse_eleve?: string;
   bonne_reponse?: string;
   explication?: string;
+  /** false : question du sujet que l'élève n'a pas traitée (0 point). Absent : traitée. */
+  traitee?: boolean;
 };
 export type ResultatTravail = { questions: QuestionNotee[]; resume: string; barème_propose?: boolean };
 export type StatutSession = 'pending' | 'done' | 'unreadable' | 'failed';
@@ -427,16 +429,18 @@ export async function lirePreferenceTemps(): Promise<PreferenceTemps> {
 }
 export const enregistrerPreferenceTemps = (p: PreferenceTemps) => AsyncStorage.setItem(CLE_TEMPS, JSON.stringify(p)).catch(() => {});
 
-// --- Visite guidée de la prise de photos --------------------------------------------------------------------------------
+// --- Visite guidée des écrans de la correction du travail ---------------------------------------------------------------
 
-const CLE_VISITE = 'annales.visiteTravail.vue';
+/** Chaque écran a sa propre visite, vue une seule fois : prise de photos, aperçu d'une feuille, ordre des feuilles. */
+export type EcranVisite = 'photos' | 'apercu' | 'ordre';
+const cleVisite = (ecran: EcranVisite) => `annales.visite.${ecran}.vue`;
 
-/** Vrai quand la visite a déjà été vue (ou passée) sur cet appareil. Une lecture qui échoue compte comme « déjà vue » : jamais bloquante. */
-export async function visiteDejaVue(): Promise<boolean> {
+/** Vrai quand la visite de cet écran a déjà été vue (ou passée) sur cet appareil. Une lecture qui échoue compte comme « déjà vue » : jamais bloquante. */
+export async function visiteDejaVue(ecran: EcranVisite): Promise<boolean> {
   try {
-    return (await AsyncStorage.getItem(CLE_VISITE)) === '1';
+    return (await AsyncStorage.getItem(cleVisite(ecran))) === '1';
   } catch {
     return true;
   }
 }
-export const marquerVisiteVue = () => AsyncStorage.setItem(CLE_VISITE, '1').catch(() => {});
+export const marquerVisiteVue = (ecran: EcranVisite) => AsyncStorage.setItem(cleVisite(ecran), '1').catch(() => {});

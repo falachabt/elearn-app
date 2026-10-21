@@ -139,6 +139,12 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
   describe('OrdreFeuilles', () => {
     beforeEach(() => definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2), feuille(3)] }));
 
+    it('« Revoir la visite » couvre feuille, déplacement, ajout, envoi', async () => {
+      await monter(<OrdreFeuilles />);
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirVisite }));
+      expect(mockDemarrer.mock.calls[0][0].map((e: { id: string }) => e.id)).toEqual(['feuille', 'actions', 'ajouter', 'envoyer', 'aide']);
+    });
+
     it('monter, descendre et retirer changent l’ordre envoyé', async () => {
       await monter(<OrdreFeuilles />);
       await fireEvent.press(screen.getByRole('button', { name: x.travail.descendre.replace('{{n}}', '1') }));
@@ -242,7 +248,7 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
 
   describe('PhotosTravail', () => {
     beforeEach(async () => {
-      await AsyncStorage.setItem('annales.visiteTravail.vue', '1');
+      await AsyncStorage.setItem('annales.visite.photos.vue', '1');
       definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] });
     });
 
@@ -261,10 +267,10 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
         await act(async () => { await jest.advanceTimersByTimeAsync(1000); });
         expect(mockDemarrer).toHaveBeenCalledTimes(1);
         const [etapes, onFin] = mockDemarrer.mock.calls[0];
-        expect(etapes.map((e: { id: string }) => e.id)).toEqual(['viseur', 'obturateur', 'galerie', 'compteur', 'terminer', 'aide']);
+        expect(etapes.map((e: { id: string }) => e.id)).toEqual(['viseur', 'obturateur', 'galerie', 'compteur', 'miniatures', 'terminer', 'aide']);
         await act(async () => { onFin(true); });
-        expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true });
-        expect(await visiteDejaVue()).toBe(true);
+        expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true, ecran: 'photos' });
+        expect(await visiteDejaVue('photos')).toBe(true);
       } finally {
         jest.useRealTimers();
       }
@@ -294,6 +300,13 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
     beforeEach(() => {
       mockParams = { id: 'f2' };
       definirBrouillon({ kind: 'exam', ref: '1', titre: 'Maths', matiere: null, tempsS: null, feuilles: [feuille(1), feuille(2)] });
+    });
+
+    it('« Revoir la visite » explique pivoter et recadrer', async () => {
+      await monter(<ApercuFeuille />);
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirVisite }));
+      const ids = mockDemarrer.mock.calls[0][0].map((e: { id: string }) => e.id);
+      expect(ids).toEqual(expect.arrayContaining(['pivoter', 'recadrer']));
     });
 
     it('pivoter remplace la feuille au même rang avec la nouvelle taille', async () => {
@@ -401,14 +414,29 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(screen.getByText('On abaisse la puissance.')).toBeTruthy();
     });
 
-    it('question entièrement juste : pas de bonne réponse ni d’explication dans le détail', async () => {
+    it('question entièrement juste : pas de bonne réponse mais l’explication du choix', async () => {
       mockLireSession.mockResolvedValue(structuree({ resultat: { resume: '', questions: [{ n: '1', titre: 'Limite', points: 3, max: 3, commentaire: 'Juste', reponse_eleve: '1', bonne_reponse: '1', explication: 'Direct.' }] } }));
       await monter(<SessionTravail />);
       await waitFor(() => expect(screen.getByText('Juste')).toBeTruthy());
       await fireEvent.press(screen.getByRole('button', { name: new RegExp(`${x.travail.question.replace('{{n}}', '1')}, Limite`) }));
       await waitFor(() => expect(screen.getByText(x.travail.detailTaReponse)).toBeTruthy());
       expect(screen.queryByText(x.travail.detailBonneReponse)).toBeNull();
-      expect(screen.queryByText(x.travail.detailExplication)).toBeNull();
+      expect(screen.getByText(x.travail.detailExplication)).toBeTruthy();
+      expect(screen.getByText('Direct.')).toBeTruthy();
+    });
+
+    it('question non traitée : pastille « Non traité », bandeau de synthèse, détail sans ta réponse', async () => {
+      mockLireSession.mockResolvedValue(structuree({ resultat: { resume: '', questions: [
+        { n: '1', titre: 'Limite', points: 3, max: 3, commentaire: 'Juste', reponse_eleve: '1', bonne_reponse: '1', explication: 'Direct.' },
+        { n: '2', titre: 'Intégrale', points: 0, max: 4, commentaire: '', bonne_reponse: '12', traitee: false },
+      ] } }));
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText(x.travail.nonTraitees.replace('{{n}}', '1').replace(/\{\{s\}\}/g, ''))).toBeTruthy());
+      expect(screen.getAllByText(x.travail.nonTraite).length).toBeGreaterThan(0);
+      await fireEvent.press(screen.getByRole('button', { name: new RegExp(`${x.travail.question.replace('{{n}}', '2')}, Intégrale, ${x.travail.nonTraite}`) }));
+      await waitFor(() => expect(screen.getByText(x.travail.nonTraiteDetail)).toBeTruthy());
+      expect(screen.getByText(x.travail.detailBonneReponse)).toBeTruthy();
+      expect(screen.queryByText(x.travail.detailTaReponse)).toBeNull();
     });
 
     it('« Quitter » ramène sur la page de détails du sujet avec ses paramètres, jamais « Retour au sujet »', async () => {

@@ -76,18 +76,24 @@ export function SessionTravail() {
   const groupes = useMemo(() => grouperQuestions(s?.resultat?.questions ?? []), [s]);
   const structure = aUneStructure(groupes);
 
-  const pastille = (points: number, max: number) => (
-    <View style={[styles.points, { backgroundColor: couleurPoints(niveauPoints(points, max)), borderColor: theme.bord.fort }]}>
-      <Text style={[typo.donnee, { color: theme.texte.surCouleur }]}>{libellePoints(points, max)}</Text>
-    </View>
-  );
+  const pastille = (points: number, max: number, traitee = true) =>
+    traitee ? (
+      <View style={[styles.points, { backgroundColor: couleurPoints(niveauPoints(points, max)), borderColor: theme.bord.fort }]}>
+        <Text style={[typo.donnee, { color: theme.texte.surCouleur }]}>{libellePoints(points, max)}</Text>
+      </View>
+    ) : (
+      <View style={[styles.points, { backgroundColor: theme.fond.creux, borderColor: theme.bord.fort }]}>
+        <Text style={[typo.donnee, { color: theme.texte.principal }]}>{t('travail.nonTraite')}</Text>
+      </View>
+    );
+  const nonTraitees = (s?.resultat?.questions ?? []).filter((q) => q.traitee === false).length;
 
   const ligneQuestion = (q: QuestionNotee, i: number) => (
-    <Appui key={`${q.n}-${i}`} accessibilityRole="button" accessibilityLabel={`${t('travail.question', { n: q.n })}${q.titre ? `, ${q.titre}` : ''}, ${libellePoints(q.points, q.max)}`} accessibilityHint={t('travail.detailQuestion', { n: q.n })} onPress={() => setDetail(q)} decalage={0} rayon={rayon.l}>
+    <Appui key={`${q.n}-${i}`} accessibilityRole="button" accessibilityLabel={`${t('travail.question', { n: q.n })}${q.titre ? `, ${q.titre}` : ''}, ${q.traitee === false ? t('travail.nonTraite') : libellePoints(q.points, q.max)}`} accessibilityHint={t('travail.detailQuestion', { n: q.n })} onPress={() => setDetail(q)} decalage={0} rayon={rayon.l}>
       <View style={[styles.question, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <View style={styles.ligne}>
           <Text style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{t('travail.question', { n: q.n })}{q.titre ? ` · ${q.titre}` : ''}</Text>
-          {pastille(q.points, q.max)}
+          {pastille(q.points, q.max, q.traitee !== false)}
           <ChevronRight size={18} color={theme.texte.secondaire} strokeWidth={2} />
         </View>
         {q.commentaire ? <TexteFormules texte={q.commentaire} style={typo.petit} couleur={theme.texte.secondaire} /> : null}
@@ -159,6 +165,7 @@ export function SessionTravail() {
             </View>
           </Carte>
           {s.resultat?.resume ? <TexteFormules texte={s.resultat.resume} /> : null}
+          {nonTraitees ? <Banniere ton="info" titre={t('travail.nonTraitees', { n: nonTraitees, s: nonTraitees > 1 ? 's' : '' })} /> : null}
           {s.resultat?.barème_propose ? <Banniere ton="info" titre={t('travail.baremePropose')} /> : null}
           <View style={styles.pile}>{structure ? parties : questionsEnVrac}</View>
           {s.feuillesEffacees ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('travail.feuillesEffacees')}</Text> : null}
@@ -174,12 +181,21 @@ export function SessionTravail() {
       >
         {detail ? (
           <View style={styles.detail}>
-            <View style={styles.ligne}>{pastille(detail.points, detail.max)}</View>
+            <View style={styles.ligne}>{pastille(detail.points, detail.max, detail.traitee !== false)}</View>
             {bloc(t('travail.detailEnonce'), detail.enonce)}
-            {bloc(t('travail.detailTaReponse'), detail.reponse_eleve)}
-            {faux ? bloc(t('travail.detailBonneReponse'), detail.bonne_reponse) : null}
-            {faux ? bloc(t('travail.detailExplication'), detail.explication) : null}
-            {bloc(t('travail.detailCommentaire'), detail.commentaire)}
+            {detail.traitee === false ? (
+              <>
+                {bloc(t('travail.detailBonneReponse'), detail.bonne_reponse)}
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('travail.nonTraiteDetail')}</Text>
+              </>
+            ) : (
+              <>
+                {bloc(t('travail.detailTaReponse'), detail.reponse_eleve)}
+                {faux ? bloc(t('travail.detailBonneReponse'), detail.bonne_reponse) : null}
+                {bloc(t('travail.detailExplication'), detail.explication)}
+                {bloc(t('travail.detailCommentaire'), detail.commentaire)}
+              </>
+            )}
           </View>
         ) : null}
       </Feuille>
