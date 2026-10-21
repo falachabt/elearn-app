@@ -118,9 +118,11 @@ export function Annales({ tous = false }: { tous?: boolean }) {
   }
 
   const dossiers = cherche ? etat.dossiers.filter((d) => correspond(requete, d.nom)) : etat.dossiers;
+  // Un élève n'a aucun concours dans sa liste, sauf la page « tous les concours » qu'il ouvre lui-même.
   const mien = cherche ? etat.mien.filter((c) => correspond(requete, c.nom, c.sigle)) : etat.mien;
   const autres = cherche ? etat.autres.filter((c) => correspond(requete, c.nom, c.sigle)) : etat.autres;
-  const sujets = cherche ? rechercherSujets(etat.sujets ?? [], requete) : [];
+  // L'élève ne cherche que dans les dossiers de sa classe : les sujets du catalogue des concours restent hors recherche.
+  const sujets = cherche && !etat.eleve ? rechercherSujets(etat.sujets ?? [], requete) : [];
   const rien = !dossiers.length && !mien.length && !(tous && autres.length);
 
   return (

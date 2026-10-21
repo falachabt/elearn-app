@@ -144,6 +144,32 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(screen.queryByText('ENSPY · Concours 1re année')).toBeNull();
   });
 
+  it('recherche : un élève ne voit jamais les sujets ni les concours d\'un autre programme', async () => {
+    await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByText('Maths')).toBeTruthy());
+    for (const q of ['physique 2023', 'fmsb', 'enspy', 'biologie', 'concours']) {
+      await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), q);
+      expect(screen.queryByText('Physique 2023')).toBeNull();
+      expect(screen.queryByText('Maths 2024')).toBeNull();
+      expect(screen.queryByText(/FMSB|ENSPY/)).toBeNull();
+      expect(screen.queryByText(x.annales.sujetsTrouves)).toBeNull();
+      expect(screen.getByText(x.annales.aucunResultat.replace('{{q}}', q))).toBeTruthy();
+    }
+  });
+
+  it('recherche : un candidat avec son concours ne cherche que dans ce concours', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENSPY', nom: 'Concours 1re année' }, termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByText('Maths 2024')).toBeTruthy());
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'biologie');
+    expect(screen.queryByText(/Biologie/)).toBeNull();
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'maths');
+    expect(screen.getByText('Maths 2024')).toBeTruthy();
+  });
+
   it('candidat aux concours : pas de dossiers de classe', async () => {
     await enregistrerProfil({ type: 'concours', termine: true });
     await monter(<Reviser />);
