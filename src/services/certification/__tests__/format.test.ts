@@ -1,6 +1,6 @@
 import { afficherJour, analyserDateSaisie, analyserObjectif, formaterDuree, masquerDate } from '../format';
 import { formaterTemps, etatInitial, reduireLecteur } from '../lecteur';
-import { urlMedia } from '../media';
+import { HOTE_MEDIAS_PUBLIC, urlMedia } from '../media';
 
 describe('formats', () => {
   it('durée de l’examen', () => {
@@ -33,6 +33,10 @@ describe('adresse des médias', () => {
   it('préfixe l’hôte configuré, sans double barre', () => {
     expect(urlMedia('toeic/audio/p1_1.mp3', 'https://media.example/')).toBe('https://media.example/toeic/audio/p1_1.mp3');
     expect(urlMedia('/toeic/img/a.jpg', 'https://media.example')).toBe('https://media.example/toeic/img/a.jpg');
+  });
+  it('sans configuration : l’hôte public du bucket par défaut (bundle construit à la main)', () => {
+    expect(urlMedia('toeic/audio/p1_1.mp3')).toBe(`${HOTE_MEDIAS_PUBLIC}/toeic/audio/p1_1.mp3`);
+    expect(HOTE_MEDIAS_PUBLIC.startsWith('https://')).toBe(true);
   });
   it('sans hôte ou sans chemin : indisponible, jamais une adresse inventée', () => {
     expect(urlMedia('toeic/audio/p1_1.mp3', '')).toBeNull();
