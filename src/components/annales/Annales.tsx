@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { concoursDuCatalogue, lireCatalogue, lireDossiers, type Concours, type Dossier, type Sujet } from '@/services/annales';
+import { concoursDuCatalogue, correspond, lireCatalogue, lireDossiers, rechercherSujets, type Concours, type Dossier, type Sujet } from '@/services/annales';
 import { lireDocuments } from '@/services/documents';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
@@ -16,12 +16,13 @@ import { Banniere } from '../Banniere';
 import { LigneLien } from '../LigneLien';
 import { EcranErreur } from '../liste/EcranErreur';
 import { Squelettes } from '../liste/Squelettes';
+import { BarreRecherche } from './BarreRecherche';
 import { ListeSujets } from './ListeSujets';
 
 type Etat =
   | { statut: 'chargement' }
   | { statut: 'erreur' }
-  | { statut: 'pret'; dossiers: Dossier[]; mien: Concours[]; autres: Concours[]; eleve: boolean }
+  | { statut: 'pret'; dossiers: Dossier[]; mien: Concours[]; autres: Concours[]; eleve: boolean; sujets?: Sujet[] }
   | { statut: 'concours'; concours: Concours | null; sujets: Sujet[] };
 
 /**
@@ -36,6 +37,8 @@ export function Annales({ tous = false }: { tous?: boolean }) {
   const [etat, setEtat] = useEtatMemorise<Etat>(`annales.${tous}`, { statut: 'chargement' });
   const [gardes, setGardes] = useState(0);
   const [essai, setEssai] = useState(0);
+  const [requete, setRequete] = useState('');
+  const cherche = requete.trim().length > 0;
 
   useEffect(() => {
     if (!pret) return;
@@ -65,7 +68,7 @@ export function Annales({ tous = false }: { tous?: boolean }) {
       // Sans concours choisi, un candidat voit tous les concours, comme avant le choix.
       const mien = tous ? [] : eleve ? [] : monId ? concours.filter((c) => c.id === monId) : concours;
       const autres = tous ? concours : concours.filter((c) => !mien.includes(c));
-      setEtat({ statut: 'pret', dossiers, mien, autres, eleve });
+      setEtat({ statut: 'pret', dossiers, mien, autres, eleve, sujets: sujets ?? [] });
     })();
     return () => {
       actif = false;
@@ -104,18 +107,31 @@ export function Annales({ tous = false }: { tous?: boolean }) {
             <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t(etat.sujets.length > 1 ? 'annales.sujets' : 'annales.sujet', { n: etat.sujets.length })}</Text>
           </View>
         ) : null}
-        {etat.sujets.length ? <ListeSujets sujets={etat.sujets} /> : <Banniere ton="info" titre={t('annales.vide')} />}
+        <BarreRecherche valeur={requete} onChange={setRequete} />
+        {(() => {
+          const trouves = cherche ? rechercherSujets(etat.sujets, requete) : etat.sujets;
+          if (cherche && !trouves.length) return <AucunResultat q={requete.trim()} />;
+          return trouves.length ? <ListeSujets sujets={trouves} /> : <Banniere ton="info" titre={t('annales.vide')} />;
+        })()}
       </View>
     );
   }
 
+  const dossiers = cherche ? etat.dossiers.filter((d) => correspond(requete, d.nom)) : etat.dossiers;
+  // Un élève n'a aucun concours dans sa liste, sauf la page « tous les concours » qu'il ouvre lui-même.
+  const mien = cherche ? etat.mien.filter((c) => correspond(requete, c.nom, c.sigle)) : etat.mien;
+  const autres = cherche ? etat.autres.filter((c) => correspond(requete, c.nom, c.sigle)) : etat.autres;
+  // L'élève ne cherche que dans les dossiers de sa classe : les sujets du catalogue des concours restent hors recherche.
+  const sujets = cherche && !etat.eleve ? rechercherSujets(etat.sujets ?? [], requete) : [];
+  const rien = !dossiers.length && !mien.length && !(tous && autres.length);
+
   return (
     <View style={styles.groupe}>
       {mesDocuments}
-      {etat.dossiers.length ? (
+      <BarreRecherche valeur={requete} onChange={setRequete} />
+      {dossiers.length ? (
         <View style={styles.section}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.maClasse')}</Text>
-          {etat.dossiers.map((d) => (
+          {dossiers.map((d) => (
             <LigneLien
               key={d.id}
               icone="folder-outline"
@@ -126,18 +142,29 @@ export function Annales({ tous = false }: { tous?: boolean }) {
           ))}
         </View>
       ) : null}
-      {etat.mien.length ? (
+      {mien.length ? (
         <View style={styles.section}>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t(etat.mien.length > 1 ? 'annales.concours' : 'annales.monConcours')}</Text>
-          {etat.mien.map((c) => (
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t(mien.length > 1 ? 'annales.concours' : 'annales.monConcours')}</Text>
+          {mien.map((c) => (
             <LigneConcours key={c.id} c={c} />
           ))}
         </View>
       ) : null}
-      {tous ? etat.autres.map((c) => <LigneConcours key={c.id} c={c} />) : null}
-      {!etat.dossiers.length && !etat.mien.length && !(tous && etat.autres.length) ? <Banniere ton="info" titre={t('annales.vide')} /> : null}
+      {tous ? autres.map((c) => <LigneConcours key={c.id} c={c} />) : null}
+      {sujets.length ? (
+        <View style={styles.section}>
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('annales.sujetsTrouves')}</Text>
+          <ListeSujets sujets={sujets} />
+        </View>
+      ) : null}
+      {rien && !sujets.length ? (cherche ? <AucunResultat q={requete.trim()} /> : <Banniere ton="info" titre={t('annales.vide')} />) : null}
     </View>
   );
+}
+
+function AucunResultat({ q }: { q: string }) {
+  const { t } = useTraduction();
+  return <Banniere ton="info" titre={t('annales.aucunResultat', { q })} texte={t('annales.aucunResultatTexte')} />;
 }
 
 function LigneConcours({ c }: { c: Concours }) {

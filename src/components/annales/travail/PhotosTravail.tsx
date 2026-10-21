@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { CircleHelp, Image as IconeImage, X } from 'lucide-react-native';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -38,34 +38,37 @@ export function PhotosTravail() {
   const refTerminer = useRef<View>(null);
   const refBande = useRef<View>(null);
   const feuilles = brouillon?.feuilles ?? [];
-  const lancerVisite = useVisiteEcran('photos', () => [
-    { id: 'viseur', cible: refViseur, titre: t('travail.visiteGuide.viseurTitre'), description: t('travail.visiteGuide.viseur') },
-    { id: 'obturateur', cible: refObturateur, titre: t('travail.visiteGuide.obturateurTitre'), description: t('travail.visiteGuide.obturateur') },
-    { id: 'galerie', cible: refGalerie, titre: t('travail.visiteGuide.galerieTitre'), description: t('travail.visiteGuide.galerie') },
-    { id: 'compteur', cible: refCompteur, titre: t('travail.visiteGuide.compteurTitre'), description: t('travail.visiteGuide.compteur') },
-    ...(feuilles.length ? [{ id: 'miniatures', cible: refBande, titre: t('travail.visiteGuide.miniaturesTitre'), description: t('travail.visiteGuide.miniatures') }] : []),
-    { id: 'terminer', cible: refTerminer, titre: t('travail.visiteGuide.terminerTitre'), description: t('travail.visiteGuide.terminer') },
-    { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
-  ]);
   const plein = feuilles.length >= MAX_FEUILLES;
 
   const fermer = () => (router.canGoBack() ? router.back() : router.replace('/reviser'));
   const terminer = () => (feuilles.length ? router.replace('/annales/ordre') : fermer());
 
   const photographier = async () => {
-    if (!camera.current || prise || plein) return;
+    if (!camera.current || prise || plein) return false;
     setPrise(true);
     declencher('select');
     try {
       const p = await camera.current.takePictureAsync({ quality: 0.85 });
-      if (p?.uri) majFeuilles((l) => ajouterFeuilles(l, [nouvelleFeuille({ uri: p.uri, largeur: p.width, hauteur: p.height })]).liste);
+      if (!p?.uri) return false;
+      majFeuilles((l) => ajouterFeuilles(l, [nouvelleFeuille({ uri: p.uri, largeur: p.width, hauteur: p.height })]).liste);
+      return true;
     } catch {
       // prise ratée : on peut recommencer
+      return false;
     } finally {
       setPrise(false);
     }
   };
 
+  const lancerVisite = useVisiteEcran('photos', () => [
+    { id: 'viseur', cible: refViseur, titre: t('travail.visiteGuide.viseurTitre'), description: t('travail.visiteGuide.viseur') },
+    { id: 'obturateur', cible: refObturateur, titre: t('travail.visiteGuide.obturateurTitre'), description: t('travail.visiteGuide.obturateur'), surCible: photographier },
+    { id: 'miniatures', cible: refBande, titre: t('travail.visiteGuide.miniaturesTitre'), description: t('travail.visiteGuide.miniatures') },
+    { id: 'galerie', cible: refGalerie, titre: t('travail.visiteGuide.galerieTitre'), description: t('travail.visiteGuide.galerie') },
+    { id: 'compteur', cible: refCompteur, titre: t('travail.visiteGuide.compteurTitre'), description: t('travail.visiteGuide.compteur') },
+    { id: 'terminer', cible: refTerminer, titre: t('travail.visiteGuide.terminerTitre'), description: t('travail.visiteGuide.terminer') },
+    { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
+  ]);
   const galerie = async () => {
     const r = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], allowsMultipleSelection: true, selectionLimit: Math.max(1, MAX_FEUILLES - feuilles.length), quality: 1 }).catch(() => null);
     if (!r || r.canceled) return;
@@ -80,7 +83,7 @@ export function PhotosTravail() {
         </Appui>
         <View style={styles.droite}>
           <View ref={refCompteur} collapsable={false} style={styles.pastille} accessibilityLiveRegion="polite">
-            <Text style={[typo.donnee, { color: BLANC }]}>{t(feuilles.length > 1 ? 'travail.feuilles' : 'travail.feuille', { n: feuilles.length })}</Text>
+            <Text style={[typo.donnee, { color: BLANC }]}>{t('travail.feuillesSurMax', { n: feuilles.length, max: MAX_FEUILLES })}</Text>
           </View>
           <Appui accessibilityRole="button" accessibilityLabel={t('travail.revoirVisite')} onPress={lancerVisite} decalage={0} rayon={rayon.m}>
             <View ref={refAide} collapsable={false} style={[styles.carre, styles.aide]}><CircleHelp size={20} color={BLANC} strokeWidth={2} /></View>

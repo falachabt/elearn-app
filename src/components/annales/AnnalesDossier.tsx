@@ -1,9 +1,9 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { lireDocuments, lireDossiers, type Document, type Dossier } from '@/services/annales';
+import { correspond, lireDocuments, lireDossiers, type Document, type Dossier } from '@/services/annales';
 import { useEtatMemorise } from '@/services/memoire';
 import { lireProfil } from '@/services/profil';
 import { getSupabase } from '@/services/supabase';
@@ -18,6 +18,7 @@ import { useOuverts } from '../credits/useOuverts';
 import { Ecran } from '../Ecran';
 import { LigneLien } from '../LigneLien';
 import { BoutonFermer } from '../arrivee/MiniTest';
+import { BarreRecherche } from './BarreRecherche';
 
 type Etat = { statut: 'chargement' } | { statut: 'erreur' } | { statut: 'pret'; dossiers: Dossier[]; documents: Document[] };
 
@@ -28,6 +29,8 @@ export function AnnalesDossier() {
   const { solde } = useCredits();
   const { id, nom } = useLocalSearchParams<{ id: string; nom?: string }>();
   const pret = useSessionPrete();
+  const [requete, setRequete] = useState('');
+  const cherche = requete.trim().length > 0;
   const [etat, setEtat] = useEtatMemorise<Etat>(`annales.dossier.${id}`, { statut: 'chargement' });
 
   useEffect(() => {
@@ -67,6 +70,7 @@ export function AnnalesDossier() {
   return (
     <>
     <Ecran
+      retourHautApres={0.5}
       entete={
         <>
           <BoutonFermer icone="chevron-back" libelle={t('reviser.retour')} onPress={retour} />
@@ -78,7 +82,8 @@ export function AnnalesDossier() {
       {etat.statut === 'erreur' ? <Banniere ton="erreur" titre={t('annales.erreur')} /> : null}
       {etat.statut === 'pret' ? (
         <>
-          {etat.dossiers.map((d) => (
+          <BarreRecherche valeur={requete} onChange={setRequete} />
+          {(cherche ? etat.dossiers.filter((d) => correspond(requete, d.nom)) : etat.dossiers).map((d) => (
             <LigneLien
               key={d.id}
               icone="folder-outline"
@@ -87,10 +92,13 @@ export function AnnalesDossier() {
               onPress={() => router.push({ pathname: '/annales/dossier', params: { id: d.id, nom: d.nom } })}
             />
           ))}
-          {etat.documents.map((d) => (
+          {(cherche ? etat.documents.filter((d) => correspond(requete, d.nom)) : etat.documents).map((d) => (
             <LigneLien key={d.id} icone="document-text-outline" titre={d.nom} detail={d.correctionId ? t('annales.sujetCorrige') : undefined} droite={puce(d.id)} onPress={() => detail(d)} />
           ))}
           {!etat.dossiers.length && !etat.documents.length ? <Banniere ton="info" titre={t('annales.dossierVide')} /> : null}
+          {cherche && !etat.dossiers.some((d) => correspond(requete, d.nom)) && !etat.documents.some((d) => correspond(requete, d.nom)) && (etat.dossiers.length || etat.documents.length) ? (
+            <Banniere ton="info" titre={t('annales.aucunResultat', { q: requete.trim() })} texte={t('annales.aucunResultatTexte')} />
+          ) : null}
         </>
       ) : null}
     </Ecran>

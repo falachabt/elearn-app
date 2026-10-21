@@ -74,6 +74,21 @@ export function optionsFiltres(sujets: readonly Sujet[], f: Filtres = {}): { sig
   return { sigles, annees, matieres };
 }
 
+/** Minuscules sans accents : « Physique », « physique » et « PHYSIQUÉ » se valent. */
+export const normaliser = (texte: string): string => texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+/** Tous les mots de la recherche doivent se retrouver (dans n'importe quel ordre) dans l'un des textes donnés. */
+export function correspond(requete: string, ...textes: (string | number | null | undefined)[]): boolean {
+  const mots = normaliser(requete).split(/\s+/).filter(Boolean);
+  if (!mots.length) return true;
+  const foin = normaliser(textes.filter((x) => x !== null && x !== undefined).join(' '));
+  return mots.every((m) => foin.includes(m));
+}
+
+/** Recherche dans les sujets d'un concours : titre, matière, année, école et concours. */
+export const rechercherSujets = (sujets: readonly Sujet[], requete: string): Sujet[] =>
+  sujets.filter((s) => correspond(requete, s.titre, s.matiere, s.annee, s.sigle, s.ecole, s.concours));
+
 /** Ordre de la liste des sujets : année la plus récente d'abord, puis matière. */
 export function trierSujets(sujets: readonly Sujet[]): Sujet[] {
   return [...sujets].sort((a, b) => (b.annee ?? 0) - (a.annee ?? 0) || (a.matiere ?? a.titre).localeCompare(b.matiere ?? b.titre, 'fr'));

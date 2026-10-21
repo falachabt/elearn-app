@@ -1,6 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
 import { AlertTriangle, Camera, Send, X } from 'lucide-react-native';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Image, StyleSheet, Text, TextInput, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -19,6 +19,9 @@ type Props = {
   horsLigne?: boolean;
 };
 
+/** Deux envois du même contenu à moins de 2 s d'écart sont un double appui, pas deux réponses. */
+export const DELAI_DOUBLE_APPUI_MS = 2000;
+
 /** G3b · Composeur de réponse (M7-02) : barre fixe au-dessus du clavier, une photo facultative, avertissement si un numéro est détecté. */
 export function Composeur({ repondA, onAnnulerCible, onEnvoyer, horsLigne }: Props) {
   const { t } = useTraduction();
@@ -31,8 +34,14 @@ export function Composeur({ repondA, onAnnulerCible, onEnvoyer, horsLigne }: Pro
     const r = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], quality: 0.7, allowsEditing: false });
     if (!r.canceled && r.assets[0]) setPhoto(r.assets[0].uri);
   };
+  // Un double appui part avant que le champ ne se vide : le deuxième envoi du même contenu est ignoré (réponses en double).
+  const dernierEnvoi = useRef<{ cle: string; le: number } | null>(null);
   const envoyer = () => {
     if (vide) return;
+    const cle = `${texte}\u0000${photo ?? ''}`;
+    const maintenant = Date.now();
+    if (dernierEnvoi.current && dernierEnvoi.current.cle === cle && maintenant - dernierEnvoi.current.le < DELAI_DOUBLE_APPUI_MS) return;
+    dernierEnvoi.current = { cle, le: maintenant };
     onEnvoyer(texte, photo);
     setTexte('');
     setPhoto(null);

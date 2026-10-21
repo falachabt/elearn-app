@@ -80,7 +80,7 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
     await monter(<Reviser />);
     await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
-    await waitFor(() => expect(screen.getByText(x.annales.maClasse)).toBeTruthy());
+    await waitFor(() => expect(screen.getByLabelText(x.annales.rechercher)).toBeTruthy());
     expect(mockRpc).toHaveBeenCalledWith('class_document_folders', { p_level: '3e', p_country: 'CM', p_parent: null });
     expect(screen.getByText('Maths')).toBeTruthy();
     expect(screen.queryByText('Vide')).toBeNull();
@@ -113,12 +113,69 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '2' } });
   });
 
+  it('recherche : remplace le titre « Ma classe », filtre en direct sans tenir compte des accents, état vide et croix pour effacer', async () => {
+    await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByText('Maths')).toBeTruthy());
+    expect(screen.queryByText(x.annales.maClasse)).toBeNull();
+    const champ = () => screen.getByLabelText(x.annales.rechercher);
+    expect(screen.queryByRole('button', { name: x.annales.effacerRecherche })).toBeNull();
+    await fireEvent.changeText(champ(), 'MATHS');
+    expect(screen.getByText('Maths')).toBeTruthy();
+    await fireEvent.changeText(champ(), 'zzz');
+    expect(screen.queryByText('Maths')).toBeNull();
+    expect(screen.getByText(x.annales.aucunResultat.replace('{{q}}', 'zzz'))).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.annales.effacerRecherche }));
+    expect(champ().props.value).toBe('');
+    expect(screen.getByText('Maths')).toBeTruthy();
+  });
+
+  it('recherche : trouve aussi un sujet (matière, année) et un concours', async () => {
+    await enregistrerProfil({ type: 'concours', termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByLabelText(x.annales.rechercher)).toBeTruthy());
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'physique 2023');
+    expect(await screen.findByText('Physique 2023')).toBeTruthy();
+    expect(screen.queryByText('Maths 2024')).toBeNull();
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'fmsb');
+    expect(screen.getByText('FMSB · Concours 1re année')).toBeTruthy();
+    expect(screen.queryByText('ENSPY · Concours 1re année')).toBeNull();
+  });
+
+  it('recherche : un élève ne voit jamais les sujets ni les concours d\'un autre programme', async () => {
+    await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByText('Maths')).toBeTruthy());
+    for (const q of ['physique 2023', 'fmsb', 'enspy', 'biologie', 'concours']) {
+      await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), q);
+      expect(screen.queryByText('Physique 2023')).toBeNull();
+      expect(screen.queryByText('Maths 2024')).toBeNull();
+      expect(screen.queryByText(/FMSB|ENSPY/)).toBeNull();
+      expect(screen.queryByText(x.annales.sujetsTrouves)).toBeNull();
+      expect(screen.getByText(x.annales.aucunResultat.replace('{{q}}', q))).toBeTruthy();
+    }
+  });
+
+  it('recherche : un candidat avec son concours ne cherche que dans ce concours', async () => {
+    await enregistrerProfil({ type: 'concours', niveau: 'ingenieurs', pays: 'CM', concours: { id: 'c1', sigle: 'ENSPY', nom: 'Concours 1re année' }, termine: true });
+    await monter(<Reviser />);
+    await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
+    await waitFor(() => expect(screen.getByText('Maths 2024')).toBeTruthy());
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'biologie');
+    expect(screen.queryByText(/Biologie/)).toBeNull();
+    await fireEvent.changeText(screen.getByLabelText(x.annales.rechercher), 'maths');
+    expect(screen.getByText('Maths 2024')).toBeTruthy();
+  });
+
   it('candidat aux concours : pas de dossiers de classe', async () => {
     await enregistrerProfil({ type: 'concours', termine: true });
     await monter(<Reviser />);
     await fireEvent.press(screen.getByRole('tab', { name: x.annales.onglet }));
     await waitFor(() => expect(screen.getByText(x.annales.concours)).toBeTruthy());
-    expect(screen.queryByText(x.annales.maClasse)).toBeNull();
+    expect(screen.queryByText('Maths')).toBeNull();
     expect(mockRpc).not.toHaveBeenCalledWith('class_document_folders', expect.anything());
   });
 
@@ -150,6 +207,24 @@ describe.each(['fr', 'en'] as const)('D3, D4 · annales (%s)', (langue) => {
     expect(WebBrowser.openBrowserAsync).not.toHaveBeenCalled();
     await fireEvent.press(screen.getByText('Séquence 1'));
     expect(router.push).toHaveBeenCalledWith({ pathname: '/annales/dossier', params: { id: 'f2', nom: 'Séquence 1' } });
+  });
+
+  it('dossier de classe : barre de recherche en haut (documents et sous-dossiers), vide et croix', async () => {
+    mockParams = { id: 'f1', nom: 'Maths' };
+    await monter(<AnnalesDossier />);
+    await waitFor(() => expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy());
+    const champ = () => screen.getByLabelText(x.annales.rechercher);
+    await fireEvent.changeText(champ(), 'sequence 1');
+    expect(screen.getByText('Séquence 1')).toBeTruthy();
+    expect(screen.queryByText('Séquence 3 · Collège Privé')).toBeNull();
+    await fireEvent.changeText(champ(), 'college');
+    expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy();
+    expect(screen.queryByText('Séquence 1')).toBeNull();
+    await fireEvent.changeText(champ(), 'zzz');
+    expect(screen.getByText(x.annales.aucunResultat.replace('{{q}}', 'zzz'))).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: x.annales.effacerRecherche }));
+    expect(screen.getByText('Séquence 1')).toBeTruthy();
+    expect(screen.getByText('Séquence 3 · Collège Privé')).toBeTruthy();
   });
 
   it('sujet gratuit : sujet et correction ouverts, source affichée', async () => {

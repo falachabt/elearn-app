@@ -391,3 +391,38 @@ Règles de la carte « J-N » (décision de la maquette, à confirmer par Benny)
 - Pourcentage : jours écoulés depuis le début de la préparation divisés par les jours entre ce début et la date d'examen. Il ne baisse jamais.
 - Après la date, la carte passe à « Examen passé : ajoute ton résultat ».
 - Aucun compte à rebours fictif : sans date, aucun J-N n'est affiché.
+
+## Version 31 : correction Entraînement allégée, groupes à onglets (21 octobre 2026, à valider)
+
+Retour de Benny sur la correction d'une question en Entraînement : le cadre jaune « Réponse juste / fausse » et la notion prennent trop de place. L'option choisie est déjà verte ou rouge. Retour aussi sur les groupes à onglets.
+
+- `TOEIC-V31-REPLIEE` : la correction tient en une ligne. Le choix reste vert (juste) ou rouge (faux), et un lien discret « Voir la justification » est en bas. Pas de cadre jaune.
+- `TOEIC-V31-REPLIEE-390` : même écran à 390 px.
+- `TOEIC-V31-OUVERTE` : au toucher, la justification s'ouvre. Elle propose « Revoir la notion » et « Explication détaillée ».
+- `TOEIC-V31-GROUPE` : groupe audio à onglets après validation. L'onglet actif reste noir ; chaque onglet passe en vert (juste) ou rouge (faux) avec son icône, pour un repère visuel.
+- `TOEIC-V31-ONGLET` : groupe, premier onglet. Le bouton du bas est « Onglet suivant ».
+- `TOEIC-V31-DERNIER` : groupe, dernier onglet. Le bouton du bas est « Valider (3/3) ».
+- `TOEIC-V31-EXAMEN-ONGLET` : Examen, groupe. « Onglet suivant », aucune correction.
+
+Règle : pour un groupe à onglets, la navigation reste libre entre onglets. Le bouton du bas est « Onglet suivant » sauf sur le dernier onglet, où il devient « Valider (k/N) ». En Examen, aucune correction n'apparaît avant la revue de fin.
+
+## Version 32 : grilles, onglets en numéros, séance de mots en QCM, plan de formation (21 octobre 2026, à valider)
+
+Retours de Benny (21 octobre, soir) :
+- Grammaire et Parties reprennent la grille de tuiles, pas la liste (la liste de v30 est retirée pour ces deux pages).
+- Les onglets de groupe n'écrivent plus « Question » : seul le numéro reste (« 65 », « 66 »), pour gagner de la place.
+- Mini-test : la page doit suivre le thème choisi. Seule l'épreuve chronométrée de l'Examen reste sombre dans les deux thèmes.
+- Séance de mots en QCM : l'élève choisit le sens avant de voir la réponse, pour mémoriser.
+- Plan de formation : un parcours jusqu'à la date d'examen, alimenté par les mots, notions et temps verbaux ratés.
+
+Frames :
+- `TOEIC-V32-GRAMMAIRE` : Cours, Grammaire, grille de fiches 2 colonnes, icône propre à chaque fiche.
+- `TOEIC-V32-PARTIES` : Réviser, Parties, grille P1 à P7 avec maîtrise, couleur et icône par partie.
+- `TOEIC-V32-MOTS-QCM` : séance de mots, question « Quel est le sens de deadline ? », quatre propositions, aucune réponse affichée avant le choix.
+- `TOEIC-V32-MOTS-FAUX` : après le choix, la mauvaise réponse passe en rouge « TA RÉPONSE », la bonne en vert « BONNE RÉPONSE ». La ligne « Mot à revoir : rappel dans 1 jour » reste en bas.
+- `TOEIC-V32-PARCOURS` : « Mon plan », jusqu'à la date d'examen. Bloc « À reprendre cette semaine » (mots ratés, temps verbaux), puis « Cette semaine » (cours, notions, mini-test, test complet).
+
+Règles (décisions de la maquette, à confirmer par Benny) :
+- Séance de mots : QCM à quatre propositions. Mot raté : rappel dans 1 jour. Mot juste : rappel plus tard.
+- Plan : généré à partir de la date d'examen. Les mots, notions et temps verbaux ratés y reviennent. Jamais de compte à rebours fictif.
+- Thème : mini-test, séance de mots et plan suivent le thème clair ou sombre. Seule l'épreuve chronométrée de l'Examen reste sombre.

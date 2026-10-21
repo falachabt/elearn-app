@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { AlertTriangle, Camera, Image as IconeImage, X } from 'lucide-react-native';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -86,14 +86,17 @@ export function PoserQuestion() {
     if (!r.canceled) setPhotos((p) => [...p, ...r.assets.map((a) => a.uri)].slice(0, MAX_PHOTOS));
   };
 
+  // Le drapeau d'état n'est relu qu'au rendu suivant : deux appuis rapprochés publiaient deux fois la même question.
+  const enCours = useRef(false);
   const publier = async () => {
-    if (envoi) return;
+    if (envoi || enCours.current) return;
     if (!peutPublier) {
       setTentative(true);
       setSecousse((n) => n + 1);
       return;
     }
     if (!session) return;
+    enCours.current = true;
     setEnvoi(true);
     setErreur(null);
     try {
@@ -114,6 +117,7 @@ export function PoserQuestion() {
     } catch (e) {
       setErreur(e instanceof Error && e.message === 'photo_trop_lourde' ? 'lourde' : 'autre');
     } finally {
+      enCours.current = false;
       setEnvoi(false);
     }
   };
