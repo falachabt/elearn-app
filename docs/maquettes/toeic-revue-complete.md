@@ -375,3 +375,19 @@ Retour de Benny (capture de Réviser, Cours, Méthode) : les pages se ressemblen
 - `TOEIC-V29-STATS` : courbe du score (échelle 600 à 1000, cible 800 en pointillé corail, points par séance), vue « Tout ».
 
 Non dessiné en v29 : Carnet, les vues Semaine et Mois de Statistiques, la liste des tests (Tests) et la fin d'Examen dans la nouvelle identité. Ils restent en version 28 ou 27.
+
+## Version 30 : cartes de liste propres à chaque catégorie et partie, accueil TOEIC (21 octobre 2026, à valider)
+
+Retour de Benny : les cartes de liste ont toutes la même icône de livre et la même couleur, y compris dans Cours. Une carte de liste porte désormais la couleur et l'icône de sa catégorie, avec une bande de couleur à gauche. Les bandeaux de v29 ne suffisaient pas.
+
+- `TOEIC-V30-GRAMMAIRE` : Cours, Grammaire. Cartes jaunes, icône propre à chaque fiche (couches, tracé, notes, cible), étiquette « Nouveau » sur les fiches récentes. Plus aucune icône livre.
+- `TOEIC-V30-PARTIES` : Réviser, Parties. Une couleur et une icône par partie (P1 Photos vert et image, P2 Question-réponse jaune et notes, P3 Conversation crème et casque, P4 Exposé corail et lecture, P5 Grammaire jaune et couches, P6 Texte à trous vert et tracé, P7 Passages crème et livre). Les couleurs se répètent entre parties, l'icône et le libellé les distinguent.
+- `TOEIC-V30-ACCUEIL` : carte « J-N » sur l'accueil TOEIC, vert, avec la date d'examen, le pourcentage de préparation et une barre.
+- `TOEIC-V30-ACCUEIL-SANS-DATE` : même emplacement, sans date. Une carte en pointillés invite à ajouter la date.
+
+Règles de la carte « J-N » (décision de la maquette, à confirmer par Benny) :
+- Elle s'affiche sur l'accueil TOEIC uniquement, sous la carte du profil, au-dessus de la mission du jour.
+- La date se règle à l'inscription au profil TOEIC (étape « Quand passes-tu le TOEIC ? », passable), puis dans Moi, Mon profil, Date d'examen. Sans date, la carte d'invitation remplace la carte J-N.
+- Pourcentage : jours écoulés depuis le début de la préparation divisés par les jours entre ce début et la date d'examen. Il ne baisse jamais.
+- Après la date, la carte passe à « Examen passé : ajoute ton résultat ».
+- Aucun compte à rebours fictif : sans date, aucun J-N n'est affiché.
