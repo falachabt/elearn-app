@@ -94,3 +94,7 @@ Visite remplacée le 21 octobre par la bibliothèque de visite de l’app (voir 
 
 ## Temps passé (21 octobre)
 - Le lecteur PDF enregistre le temps par incréments (sortie et passage en arrière-plan) : catégorie Annale pour un concours ou un document de classe (`sujet` ou `kind`), Cours pour un autre PDF. Avant, un document de classe comptait en Cours et un temps lu avant un changement de titre pouvait être perdu.
+
+## Visite guidée : halo et carte (21 octobre, correctif)
+- Halo : sur Android la mesure d'un élément part déjà du haut de l'écran, barre d'état comprise ; la bibliothèque ajoutait en plus la hauteur de la barre d'état et le halo descendait. `insets.top` est à 0 et la barre d'état est évitée par `extraInsets` (`margesVisite`).
+- Carte : la pastille d'étape devient courte (« 2/5 », libellé complet pour l'accessibilité) et les boutons Retour et Suivant peuvent se resserrer ; rien ne sort de la carte, ombre dure comprise.

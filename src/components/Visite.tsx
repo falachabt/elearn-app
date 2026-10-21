@@ -1,5 +1,6 @@
 import { TourGuideOverlay, TourGuideProvider, createTheme, useTourGuide, type TourButtonProps, type TourProgressProps, type TourStep } from '@wrack/react-native-tour-guide';
 import { useMemo, type ReactNode } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -50,8 +51,9 @@ function Compteur({ currentStep, totalSteps }: TourProgressProps) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   return (
-    <View style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
-      <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('visite.etape', { n: currentStep + 1, total: totalSteps })}</Text>
+    // Pastille courte (« 2/5 ») : la rangée du bas tient en 300 dp avec Retour et Suivant, sans rien faire sortir de la carte.
+    <View accessible accessibilityLabel={t('visite.etape', { n: currentStep + 1, total: totalSteps })} style={[styles.compteur, { backgroundColor: theme.accent.soleilDoux, borderColor: theme.bord.fort }]}>
+      <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{currentStep + 1}/{totalSteps}</Text>
     </View>
   );
 }
@@ -59,10 +61,17 @@ function Compteur({ currentStep, totalSteps }: TourProgressProps) {
 const COMPOSANTS = { NextButton: Suivant, PrevButton: Retour, SkipButton: Passer, StepCounter: Compteur };
 
 const styles = StyleSheet.create({
-  bouton: { paddingRight: ombre.carte, paddingBottom: ombre.carte, minWidth: 96 },
+  bouton: { paddingRight: ombre.carte, paddingBottom: ombre.carte, flexShrink: 1 },
   passer: { minHeight: 48, justifyContent: 'center', paddingHorizontal: espace[2] },
-  compteur: { alignSelf: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[3], paddingVertical: espace[1] },
+  compteur: { flexShrink: 0, borderWidth: bord.normal, borderRadius: rayon.pilule, paddingHorizontal: espace[2], paddingVertical: espace[1] },
 });
+
+/**
+ * Marges de la visite. Sur Android la mesure d'un élément (`measureInWindow`) part déjà du haut de l'écran, barre d'état
+ * comprise, comme le calque de la visite : la bibliothèque ne doit donc rien ajouter (`insets.top` à 0, sinon le halo
+ * descend de la hauteur de la barre d'état). La barre d'état reste évitée par la carte via `extraInsets`.
+ */
+export const margesVisite = (haut: number) => ({ insets: { top: 0 }, extraInsets: { top: haut } });
 
 /** À placer une fois à la racine, sous `ThemeProvider` : fournit la visite guidée et son calque. */
 export function VisiteProvider({ children }: { children: ReactNode }) {
@@ -79,6 +88,7 @@ export function useVisite() {
   const { startTour, ...reste } = useTourGuide();
   const { theme } = useTheme();
   const { t } = useTraduction();
+  const { top } = useSafeAreaInsets();
   const config = useMemo(
     () => ({
       ...createTheme({
@@ -115,6 +125,7 @@ export function useVisite() {
           pulseWidth: 4,
         },
       }),
+      ...margesVisite(top),
       components: COMPOSANTS,
       showStepCounter: true,
       nextButtonText: t('visite.suivant'),
@@ -122,7 +133,7 @@ export function useVisite() {
       skipButtonText: t('visite.passer'),
       doneButtonText: t('visite.termine'),
     }),
-    [theme, t],
+    [theme, t, top],
   );
   const demarrer = (etapes: EtapeVisite[], onFin?: (terminee: boolean) => void) =>
     startTour(
