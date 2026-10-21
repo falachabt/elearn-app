@@ -73,6 +73,9 @@ export type FicheLue = {
   fauxAmi: string | null;
 };
 
+/** Étiquette de section en gras, avec le reste du paragraphe éventuel sur la même ligne. */
+const ETIQUETTE = /^\*\*([^*]+?)\s*[.:]?\s*\*\*\s*(.*)$/;
+
 const SECTIONS: Record<string, keyof FicheLue> = { 'règle': 'regle', regle: 'regle', exemples: 'exemples', 'piège': 'piege', piege: 'piege', 'faux ami': 'fauxAmi' };
 
 /**
@@ -91,6 +94,13 @@ export function lireFiche(markdown: string | null): FicheLue {
       section = SECTIONS[titre[1].toLowerCase()] ?? null;
       continue;
     }
+    // Format de la banque : chaque section commence par une étiquette en gras (« **Règle.** », « **Piège TOEIC.** »).
+    const etiquette = ETIQUETTE.exec(brut.trim());
+    if (etiquette) {
+      section = SECTIONS[etiquette[1].replace(/\s*toeic\s*$/i, '').trim().toLowerCase()] ?? null;
+      if (section && etiquette[2].trim()) (texte[section] ??= []).push(etiquette[2].trim());
+      continue;
+    }
     if (!section || !brut.trim()) continue;
     (texte[section] ??= []).push(brut.trim());
   }
@@ -102,6 +112,12 @@ export function lireFiche(markdown: string | null): FicheLue {
     fiche.fauxAmi = sens ? `${mot} ≠ ${sens}` : mot;
   }
   for (const l of texte.exemples ?? []) {
+    // Prose de la banque : « anglais » (français), plusieurs exemples possibles dans une même ligne.
+    const paires = [...l.matchAll(/«\s*([^»]+?)\s*»(?:\s*\(([^)]*)\))?/g)];
+    if (paires.length > 0) {
+      for (const p of paires) fiche.exemples.push({ en: p[1], fr: p[2]?.trim() || null });
+      continue;
+    }
     const [en, fr] = l.replace(/^[-*]\s+/, '').split('|').map((x) => x.trim());
     if (en) fiche.exemples.push({ en, fr: fr || null });
   }

@@ -166,3 +166,30 @@ describe('copie hors ligne et expiration', () => {
     expect((await chargerCarnet('toeic')).valeur).toHaveLength(1);
   });
 });
+
+describe('lireFiche : format en gras de la banque (course_md)', () => {
+  const md = [
+    '**Règle.** Pour décrire ce qui se passe sur une photo, on emploie le présent continu : sujet + am/is/are + verbe en -ing.',
+    '',
+    '**Exemples.** « The man is carrying a box. » (L’homme porte un carton.) « Two women are sitting at a table. » (Deux femmes sont assises à une table.)',
+    '',
+    '**Piège TOEIC.** Le présent simple (« The man carries a box ») décrit une habitude, pas la photo.',
+    '',
+    '**À retenir.** Vérifier le sujet pour choisir is/are.',
+  ].join('\n');
+
+  it('lit la règle, les exemples en paires et le piège, sans rien prendre de « À retenir »', () => {
+    const f = lireFiche(md);
+    expect(f.regle).toContain('présent continu');
+    expect(f.exemples).toEqual([
+      { en: 'The man is carrying a box.', fr: 'L’homme porte un carton.' },
+      { en: 'Two women are sitting at a table.', fr: 'Deux femmes sont assises à une table.' },
+    ]);
+    expect(f.piege).toContain('habitude');
+    expect(f.piege).not.toContain('Vérifier le sujet');
+  });
+
+  it('une fiche sans étiquette reste vide (aucun texte inventé)', () => {
+    expect(lireFiche('Un paragraphe sans section.')).toEqual({ regle: null, exemples: [], piege: null, fauxAmi: null });
+  });
+});
