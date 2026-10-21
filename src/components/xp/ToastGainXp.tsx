@@ -125,7 +125,7 @@ export function ToastGainXp() {
         ]).start();
       }
 
-      if (levelUp && !reduit) {
+      if (levelUp) {
         setConfettis((n) => n + 1);
         if (timerConfettis.current) clearTimeout(timerConfettis.current);
         timerConfettis.current = setTimeout(() => setConfettis(0), DUREE_CONFETTIS_MS);
@@ -154,7 +154,7 @@ export function ToastGainXp() {
     });
   }, [afficher]);
 
-  if (!donnees) return confettis ? <ConfettisCelebration key={confettis} /> : null;
+  if (!donnees) return confettis ? <ConfettisCelebration key={confettis} reduit={reduit} /> : null;
 
   const infoPalier = calculerNiveau(donnees.total);
   const nomPalier = t(infoPalier.nomCleI18n as never);
@@ -192,7 +192,7 @@ export function ToastGainXp() {
 
   return (
     <>
-      {confettis ? <ConfettisCelebration key={confettis} /> : null}
+      {confettis ? <ConfettisCelebration key={confettis} reduit={reduit} /> : null}
       <Animated.View
         pointerEvents="box-none"
         style={[
