@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { chargerDonneesRevision, notionsDeLaPartie } from '@/services/certification/revision';
+import { titreAffiche } from '@/services/certification/titre';
 import type { NotionListee } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -47,7 +48,7 @@ export function NotionsPartie() {
               <LigneChoix
                 key={n.id}
                 icone={BookOpen}
-                titre={n.titre}
+                titre={titreAffiche(n.titre)}
                 aide={aide(n)}
                 radio
                 actif={n.id === active.id}
@@ -56,7 +57,7 @@ export function NotionsPartie() {
               />
             ))}
             <Bouton variante="secondaire" libelle={t('certification.notionsPartie.revoir')} desactive={!active.fiche} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: active.id, source: 'partie' } } as never)} />
-            <Bouton libelle={t('certification.notionsPartie.entrainer', { notion: active.titre })} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: active.id } } as never)} />
+            <Bouton libelle={t('certification.notionsPartie.entrainer', { notion: titreAffiche(active.titre) })} onPress={() => router.push({ pathname: '/certification/serie', params: { notion: active.id } } as never)} />
           </View>
         );
       })() : null}

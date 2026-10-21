@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { coursDeLaFamille } from '@/services/certification/revision';
+import { titreAffiche } from '@/services/certification/titre';
 import type { FamilleNotion, NotionListee } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -31,7 +32,7 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
             <LigneChoix
               key={n.id}
               icone={famille === 'piege' ? TriangleAlert : BookOpen}
-              titre={n.titre}
+              titre={titreAffiche(n.titre)}
               aide={n.dureeMin ? t('certification.cours.duree', { n: n.dureeMin }) : undefined}
               onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'liste' } } as never)}
             />

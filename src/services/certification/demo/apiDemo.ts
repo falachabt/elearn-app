@@ -10,6 +10,7 @@ import type { CertApi, ExplicationAchetee } from '../api';
 import { etatMaitrise } from '../certMaitrise';
 import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
+import { titreAffiche } from '../titre';
 import { lireReglages } from '../reglages';
 import type { BlocServi, DemarrageMini, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
@@ -318,7 +319,7 @@ export const apiDemo: CertApi = {
     const n = contenu.notions.find((x) => x.id === notionId);
     if (!n) throw new Error('notion introuvable');
     const ancrages = tirer(n.part, 3).map(servir);
-    const markdown = ['## Règle', `Fiche de démonstration : ${n.title}.`, '', '## Exemples', '- This is a demo example. | Ceci est un exemple de démonstration.', '', '## Piège', 'Lis toute la phrase avant de choisir.'].join('\n');
+    const markdown = ['## Règle', `Règle : ${titreAffiche(n.title)}.`, '', '## Exemples', '- This is an example. | Ceci est un exemple.', '', '## Piège', 'Lis toute la phrase avant de choisir.'].join('\n');
     return { id: n.id, code: n.code, famille: n.family as NotionFiche['famille'], titre: n.title, parties: [n.part], markdown, dureeMin: 3, ancrages };
   },
   async ouvrirNotion(notionId, _secondes, jour) {
