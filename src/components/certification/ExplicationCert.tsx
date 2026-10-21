@@ -18,6 +18,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Etiquette } from '../Etiquette';
 import { FeuilleExplication } from './FeuilleExplication';
+import { PourquoiRate } from './PourquoiRate';
 
 const LETTRES = ['A', 'B', 'C', 'D'];
 
@@ -46,6 +47,7 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
   const [enCours, setEnCours] = useState(false);
   const [detail, setDetail] = useState<{ explication: string | null; piege: string | null } | null>(null);
   const [echecMot, setEchecMot] = useState(false);
+  const [pourquoi, setPourquoi] = useState(false);
   const cout = couts.cert_explanation ?? 0;
   const gratuit = !!solde?.illimite || cout === 0;
   const bonne = resultat.correct_index;
@@ -86,6 +88,15 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
     }
     suivre('cert_credit_gate_viewed', { action: 'cert_explanation' });
     setFeuille(true);
+  };
+
+  /** B10 : chaque raison fait l'action qui existe déjà ; la raison elle-même n'est pas enregistrée. */
+  const choisirRaison = (raison: 'mot' | 'regle' | 'lu' | 'vite') => {
+    setPourquoi(false);
+    if (raison === 'mot') {
+      const restant = mots.find((m) => !motsAjoutes.some((a) => a.id === m.id));
+      if (restant) void ajouter(restant);
+    } else if (raison === 'regle') revoirNotion();
   };
 
   const ajouter = async (mot: MotCle) => {
@@ -137,6 +148,8 @@ export function ExplicationCert({ question, resultat, choix, motsAjoutes, dernie
         </View>
       ) : null}
       {resultat.notion ? <Bouton variante="secondaire" libelle={t('certification.explication.revoir')} onPress={revoirNotion} /> : null}
+      {resultat.correct ? null : <Bouton variante="secondaire" libelle={t('certification.explication.pourquoi')} onPress={() => setPourquoi(true)} />}
+      <PourquoiRate ouverte={pourquoi} onFermer={() => setPourquoi(false)} onChoisir={choisirRaison} />
       {detail ? (
         <Carte style={{ gap: espace[2] }}>
           <Text accessibilityRole="header" style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.explication.detailTitre')}</Text>
