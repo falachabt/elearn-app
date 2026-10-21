@@ -9,12 +9,16 @@ export type EvenementLecteur =
   | { type: 'pause' }
   | { type: 'statut'; chargee: boolean; enLecture: boolean; position: number; duree: number; termine: boolean }
   | { type: 'erreur' }
-  | { type: 'reprendre' };
+  | { type: 'reprendre' }
+  | { type: 'reinitialiser' };
 
 export const etatInitial: EtatLecteur = { phase: 'pret', position: 0, duree: 0, jouee: false };
 
 export function reduireLecteur(etat: EtatLecteur, e: EvenementLecteur, unique: boolean): EtatLecteur {
   switch (e.type) {
+    case 'reinitialiser':
+      // Nouvelle piste (question suivante) : rien de l'ancienne lecture ne doit rester à l'écran.
+      return etatInitial;
     case 'jouer':
       if (unique && etat.jouee) return etat;
       return etat.phase === 'lecture' ? etat : { ...etat, phase: etat.phase === 'pret' || etat.phase === 'erreur' ? 'chargement' : 'lecture' };

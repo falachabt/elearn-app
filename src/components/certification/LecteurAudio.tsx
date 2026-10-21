@@ -49,7 +49,11 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     lecteur.current = null;
   }, []);
 
-  useEffect(() => liberer, [liberer, uri]);
+  // Changement de piste : l'ancienne s'arrête et l'état repart de zéro, un seul son à la fois.
+  useEffect(() => {
+    envoyer({ type: 'reinitialiser' });
+    return liberer;
+  }, [liberer, uri]);
 
   const demarrer = (depuis: number) => {
     if (!uri) {
@@ -66,6 +70,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
       const p = createAudioPlayer({ uri }, { updateInterval: 250 });
       lecteur.current = p;
       p.addListener('playbackStatusUpdate', (s) => {
+        // Un évènement d'une piste déjà remplacée ne doit pas toucher l'écran courant.
+        if (lecteur.current !== p) return;
         // Le délai d'échec ne s'arrête qu'à la première position réellement lue : un fichier chargé
         // mais figé à 0:00 doit finir en « audio indisponible », pas en lecture muette sans fin.
         if (s.isLoaded && s.currentTime > 0 && delai.current) {
@@ -87,14 +93,15 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     }
   };
 
-  if (etat.phase === 'erreur') {
+  // Pas de piste (question sans audio en base) : « audio indisponible » tout de suite, sans rien jouer.
+  if (etat.phase === 'erreur' || !uri) {
     return (
       <View accessibilityRole="alert" style={[styles.carte, { backgroundColor: theme.etat.erreurDoux, borderColor: theme.bord.fort }]}>
         <View style={styles.centre}>
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTitre')}</Text>
           <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTexte')}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.exercice.audioKoAide')}</Text>
-          <Bouton petit variante="secondaire" libelle={t('certification.exercice.audioKoReessayer')} onPress={() => demarrer(etat.position)} />
+          {uri ? <Bouton petit variante="secondaire" libelle={t('certification.exercice.audioKoReessayer')} onPress={() => demarrer(etat.position)} /> : null}
           <Bouton petit variante="texte" libelle={t('certification.exercice.audioKoPasser')} onPress={onPasser} />
         </View>
       </View>
