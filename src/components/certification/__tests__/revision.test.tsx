@@ -124,11 +124,16 @@ describe('C3 · Notions d’une partie', () => {
     expect(screen.getByText(t.notionsPartie.entrainer.replace('{{notion}}', 'Forme du mot'))).toBeTruthy();
   });
 
-  it('change de notion choisie et lance la série de cette notion', async () => {
+  it('appuyer sur une carte ouvre la fiche de cette notion', async () => {
     await monter(<NotionsPartie />);
     await fireEvent.press(await screen.findByText('Temps du passé'));
-    await fireEvent.press(screen.getByText(t.notionsPartie.entrainer.replace('{{notion}}', 'Temps du passé')));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: 'n-passe' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/notion/[id]', params: { id: 'n-passe', source: 'partie' } });
+  });
+
+  it('lance la série de la notion choisie par défaut', async () => {
+    await monter(<NotionsPartie />);
+    await fireEvent.press(await screen.findByText(t.notionsPartie.entrainer.replace('{{notion}}', 'Forme du mot')));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/serie', params: { notion: 'n-forme' } });
   });
 
   it('ouvre la fiche de la notion choisie', async () => {

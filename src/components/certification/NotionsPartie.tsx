@@ -51,7 +51,7 @@ export function NotionsPartie() {
                 aide={aide(n)}
                 radio
                 actif={n.id === active.id}
-                onPress={() => setChoisie(n.id)}
+                onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'partie' } } as never)}
                 droite={<PastilleEtat etat={n.etat} libelle={t(`certification.resultat.etats.${n.etat}`)} />}
               />
             ))}
