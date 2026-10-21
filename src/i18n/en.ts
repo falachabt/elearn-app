@@ -2787,6 +2787,7 @@ export const en: Textes = {
       corrige: 'Answer key',
       suivante: 'Next question',
       terminer: 'Back to tests',
+      retourResultat: 'Back to result',
     },
     historique: {
       entete: 'History',

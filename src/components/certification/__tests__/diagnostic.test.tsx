@@ -238,16 +238,25 @@ describe('A7 · Résultat du diagnostic', () => {
     expect(router.replace).toHaveBeenCalledWith('/certification/fin');
   });
 
-  it('montre la fourchette, une estimation non officielle, la maîtrise et au plus trois points faibles', async () => {
+  it('montre un score estimé d’un seul chiffre, une estimation non officielle, la maîtrise et au plus trois points faibles', async () => {
     await preparer({ total: 12, theme: 'bureau' });
     await monter(<ResultatDiagnostic />);
-    expect(await screen.findByText('650 à 730', { exact: false })).toBeTruthy();
+    expect(await screen.findByText('700')).toBeTruthy();
+    expect(screen.queryByText('650 à 730', { exact: false })).toBeNull();
     expect(screen.getByText(t.resultat.estimation)).toBeTruthy();
     expect(screen.getByText(t.resultat.maitrise)).toBeTruthy();
     for (const g of Object.values(t.resultat.groupes)) expect(screen.getByText(g)).toBeTruthy();
     expect(screen.getByText(t.resultat.motsDuBureau)).toBeTruthy();
     expect(screen.getByText(t.resultat.aTravailler.replace('{{n}}', '3'))).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_diagnostic_completed', { score_min: 650, score_max: 730 });
+  });
+
+  it('« Revoir mes réponses » ouvre la revue question par question du diagnostic', async () => {
+    await preparer();
+    await monter(<ResultatDiagnostic />);
+    await screen.findByText(t.resultat.maitrise);
+    await fireEvent.press(screen.getByRole('button', { name: t.bilanMini.revoir }));
+    expect(router.push).toHaveBeenCalledWith('/certification/diagnostic-revue');
   });
 
   it('« Voir mon plan » termine le profil et ouvre l’accueil', async () => {

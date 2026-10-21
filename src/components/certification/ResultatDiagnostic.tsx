@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
-import { formaterPlage, maitriseParGroupe, pointsFaibles, type LigneMaitrise, type PointFaible } from '@/services/certification/certDiagnostic';
+import { maitriseParGroupe, pointsFaibles, type LigneMaitrise, type PointFaible } from '@/services/certification/certDiagnostic';
 import { lireDiagnostic, obtenirReglages } from '@/services/certification/etat';
 import { enregistrerProfil, lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -17,9 +17,9 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { BarreProgression, EnteteToeic, LigneChoix, PastilleEtat } from './ui';
 
-type Donnees = { plage: string | null; lignes: LigneMaitrise[]; faibles: PointFaible[] };
+type Donnees = { score: string | null; lignes: LigneMaitrise[]; faibles: PointFaible[] };
 
-/** A7 · Résultat du diagnostic : fourchette (jamais un score officiel), maîtrise par partie, trois points faibles. */
+/** A7 · Résultat du diagnostic : score estimé d'un seul chiffre (jamais un score officiel), maîtrise par partie, points faibles, revue. */
 export function ResultatDiagnostic() {
   const { t } = useTraduction();
   const { theme } = useTheme();
@@ -36,9 +36,9 @@ export function ResultatDiagnostic() {
       }
       const mots = await obtenirApi().motsARevoir().catch(() => ({ total: 0, theme: null }));
       const fin = etat.fin;
-      const plage = fin.estimated ? formaterPlage(fin.score_min, fin.score_max) : null;
+      const score = fin.estimated && fin.score !== null ? String(fin.score) : null;
       if (!actif) return;
-      setD({ plage, lignes: maitriseParGroupe(fin.per_part, r), faibles: pointsFaibles(etat.tentative.questions, fin.results, mots, r) });
+      setD({ score, lignes: maitriseParGroupe(fin.per_part, r), faibles: pointsFaibles(etat.tentative.questions, fin.results, mots, r) });
       suivre('cert_diagnostic_completed', { score_min: fin.score_min, score_max: fin.score_max });
       suivre('cert_mastery_viewed', { ecran: 'resultat' });
     })();
@@ -55,13 +55,21 @@ export function ResultatDiagnostic() {
   };
 
   return (
-    <Ecran entete={<EnteteToeic titre={t('certification.resultat.entete')} />} pied={<Bouton libelle={t('certification.resultat.voirPlan')} desactive={!d} onPress={voirPlan} retour />}>
+    <Ecran
+      entete={<EnteteToeic titre={t('certification.resultat.entete')} />}
+      pied={
+        <View style={styles.pied}>
+          <Bouton variante="secondaire" libelle={t('certification.bilanMini.revoir')} desactive={!d} onPress={() => router.push('/certification/diagnostic-revue' as never)} />
+          <Bouton libelle={t('certification.resultat.voirPlan')} desactive={!d} onPress={voirPlan} retour />
+        </View>
+      }
+    >
       {d ? (
         <>
           <Carte>
             <View style={styles.groupe}>
               <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.resultat.score')}</Text>
-              <Text accessibilityRole="header" style={[typo.chiffreL, { color: theme.texte.principal }]}>{d.plage ?? t('certification.resultat.pasEstime')}</Text>
+              <Text accessibilityRole="header" style={[typo.chiffreL, { color: theme.texte.principal }]}>{d.score ?? t('certification.resultat.pasEstime')}</Text>
               <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.resultat.estimation')}</Text>
             </View>
           </Carte>
@@ -107,6 +115,7 @@ export function ResultatDiagnostic() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[2] },
+  pied: { gap: espace[3] },
   maitrise: { gap: espace[3], padding: espace[4], borderWidth: bord.normal, borderRadius: 14 },
   ligneMaitrise: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   etiquetteLigne: { width: 64 },

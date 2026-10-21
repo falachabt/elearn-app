@@ -2788,6 +2788,7 @@ export const fr = {
       corrige: 'Corrigé',
       suivante: 'Question suivante',
       terminer: 'Retour aux tests',
+      retourResultat: 'Retour au résultat',
     },
     historique: {
       entete: 'Historique',

@@ -5,7 +5,8 @@ import { Text } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { statutsDesQuestions } from '@/services/certification/bilanMini';
 import { indicesGroupe } from '@/services/certification/groupes';
-import { effacerMini, lireMini, type EtatMini } from '@/services/certification/miniTest';
+import { effacerMini, lireMini } from '@/services/certification/miniTest';
+import type { FinTentative, ReponseEnvoyee, Tentative } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -18,25 +19,37 @@ import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { EnteteToeic, Squelette } from './ui';
 
+/** Ce que la revue lit : l'Examen (mini-test) et le diagnostic gardent la même forme de tentative, de réponses et de fin. */
+type EtatRevue = { tentative: Tentative | null; fin: FinTentative | null; reponses: ReponseEnvoyee[] };
+/** Une revue n'est affichée qu'une fois la tentative et sa fin connues. */
+type EtatAffiche = { tentative: Tentative; fin: FinTentative; reponses: ReponseEnvoyee[] };
+
+type Props = {
+  lire?: () => Promise<EtatRevue | null>;
+  /** Où revenir à la fin : les tests (Examen) ou le résultat (diagnostic). Le diagnostic ne se remet pas à zéro. */
+  retourFin?: 'tests' | 'resultat';
+};
+
 /**
  * Revue d'un Examen terminé (v28, REV-PHOTO et REV-GRP) : une question à la fois, avec sa réponse, la bonne réponse et sa
  * notion. Les groupes gardent leurs onglets et leur audio réécoutable ; une question sans réponse le dit.
  */
-export function MiniRevue() {
+export function MiniRevue({ lire = lireMini, retourFin = 'tests' }: Props = {}) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const [etat, setEtat] = useState<EtatMini | null | 'chargement'>('chargement');
+  const [etat, setEtat] = useState<EtatAffiche | null | 'chargement'>('chargement');
   const [curseur, setCurseur] = useState(0);
+  const sortie = retourFin === 'resultat' ? '/certification/resultat' : '/tests';
 
   useEffect(() => {
-    void lireMini().then((e) => {
-      if (!e?.fin) {
-        router.replace('/tests' as never);
+    void lire().then((e) => {
+      if (!e?.tentative || !e.fin) {
+        router.replace(sortie as never);
         return;
       }
-      setEtat(e);
+      setEtat({ tentative: e.tentative, fin: e.fin, reponses: e.reponses });
     });
-  }, []);
+  }, [lire, sortie]);
 
   if (etat === 'chargement') {
     return (
@@ -62,7 +75,8 @@ export function MiniRevue() {
   const titre = membres.length > 1 ? t('certification.revue.partie', { p: question.part, n: curseur + 1 }) : t('certification.revue.position', { n: curseur + 1, total: questions.length });
   const suivante = () => {
     if (derniere) {
-      void effacerMini().then(() => router.replace('/tests' as never));
+      if (retourFin === 'resultat') router.replace(sortie as never);
+      else void effacerMini().then(() => router.replace(sortie as never));
       return;
     }
     setCurseur(dernierIdx + 1);
@@ -71,7 +85,7 @@ export function MiniRevue() {
   return (
     <Ecran
       entete={<EnteteToeic titre={titre} onRetour={() => router.back()} />}
-      pied={<Bouton libelle={derniere ? t('certification.revue.terminer') : t('certification.revue.suivante')} onPress={suivante} retour />}
+      pied={<Bouton libelle={derniere ? t(retourFin === 'resultat' ? 'certification.revue.retourResultat' : 'certification.revue.terminer') : t('certification.revue.suivante')} onPress={suivante} retour />}
     >
       <GrilleQuestions statuts={statuts} actif={curseur} onChoisir={setCurseur} />
       <QuestionExercice
