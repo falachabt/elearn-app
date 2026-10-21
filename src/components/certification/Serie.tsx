@@ -5,13 +5,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirReglages } from '@/services/certification/etat';
+import { indicesGroupe } from '@/services/certification/groupes';
 import {
   MESSAGE_SERIE_VIDE,
   ajouterMotCarnet,
   avancer,
   envoyerEnAttente,
-  questionCourante,
-  questionRepondue,
   repondreSerie,
   reprendreOuDemarrer,
   resultatCourant,
@@ -27,6 +26,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { ExplicationCert } from './ExplicationCert';
 import { FeuilleQuitter } from './FeuilleQuitter';
+import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
@@ -46,6 +46,8 @@ export function Serie() {
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
   const [etat, setEtat] = useState<EtatSerie | null>(null);
   const [choix, setChoix] = useState<number | null>(null);
+  /** Question affichée dans le groupe quand ce n'est pas la question courante (onglet d'une question déjà corrigée). */
+  const [vue, setVue] = useState<number | null>(null);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
   const debut = useRef(0);
@@ -74,11 +76,25 @@ export function Serie() {
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setChoix(null);
+    setVue(null);
     debut.current = Date.now();
   }, [index]);
 
-  const question = etat ? questionCourante(etat) : null;
-  const repondue = etat ? questionRepondue(etat) : false;
+  // Onglets du groupe : les questions déjà corrigées se consultent ; la question courante reste la seule à répondre (la série est servie dans l'ordre).
+  const indices = etat ? indicesGroupe(etat.questions, index) : [];
+  const indiceVue = vue ?? index;
+  const estCourante = indiceVue === index;
+  const question = etat ? (etat.questions[indiceVue] ?? null) : null;
+  const reponseVue = etat && question ? etat.reponses.find((r) => r.question_id === question.id) : undefined;
+  const repondue = !!reponseVue;
+  const resultatVue = etat && question ? (etat.resultats[question.id] ?? null) : null;
+  const reponsesGroupe = etat ? Object.fromEntries(etat.reponses.map((r) => [r.question_id, r.chosen])) : {};
+  const membres = etat ? indices.flatMap((i) => (etat.questions[i] ? [etat.questions[i]] : [])) : [];
+  const choisirOnglet = (i: number) => {
+    const cible = indices[i];
+    if (cible === undefined || cible > index) return;
+    setVue(cible === index ? null : cible);
+  };
   const total = etat?.questions.length ?? 0;
   const faites = etat?.reponses.length ?? 0;
   const entete = t('certification.serie.entete', { n: Math.min(index + 1, total), total });
@@ -90,7 +106,7 @@ export function Serie() {
   };
 
   const valider = async () => {
-    if (!etat || !question || choix === null || occupe.current) return;
+    if (!etat || !question || !estCourante || choix === null || occupe.current) return;
     occupe.current = true;
     try {
       const suivant = await repondreSerie(etat, choix, Date.now() - debut.current);
@@ -103,7 +119,7 @@ export function Serie() {
   };
 
   const passer = async () => {
-    if (!etat || !question || occupe.current) return;
+    if (!etat || !question || !estCourante || occupe.current) return;
     occupe.current = true;
     try {
       const repondu = await repondreSerie(etat, null, Date.now() - debut.current);
@@ -118,6 +134,10 @@ export function Serie() {
 
   const suivante = async () => {
     if (!etat || occupe.current) return;
+    if (!estCourante) {
+      setVue(null);
+      return;
+    }
     occupe.current = true;
     try {
       const suivant = await avancer(etat);
@@ -167,14 +187,14 @@ export function Serie() {
     );
   }
 
-  const resultat = resultatCourant(etat);
-  const reponse = etat.reponses.find((r) => r.question_id === question.id);
+  const resultat = estCourante ? resultatCourant(etat) : resultatVue;
+  const reponse = reponseVue;
 
   return (
     <Ecran
       entete={<EnteteToeic titre={titre} onRetour={sortir} />}
       pied={
-        repondue ? undefined : (
+        repondue || !estCourante ? undefined : (
           <View style={styles.pied}>
             <Bouton libelle={t('certification.diagnostic.valider')} desactive={choix === null} onPress={() => void valider()} retour />
           </View>
@@ -193,8 +213,9 @@ export function Serie() {
         verrouille={repondue}
         delaiEchecS={delaiEchecS}
         ecran="serie"
-        position={Math.min(index + 1, total)}
+        position={Math.min(indiceVue + 1, total)}
         onPasser={() => void passer()}
+        enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={indices.indexOf(indiceVue)} onChoisir={choisirOnglet} /> : null}
       />
       {!repondue ? null : resultat ? (
         <ExplicationCert

@@ -16,3 +16,18 @@ export function membresGroupe(questions: QuestionServie[], index: number): Quest
   }
   return membres;
 }
+
+/**
+ * Indices, dans la séance, de tout le groupe qui contient `index` (avant et après). Sert aux onglets de la série, où les
+ * questions déjà corrigées restent consultables. Une question sans groupe forme un groupe de une.
+ */
+export function indicesGroupe(questions: QuestionServie[], index: number): number[] {
+  const premiere = questions[index];
+  if (!premiere) return [];
+  if (!premiere.group) return [index];
+  let debut = index;
+  while (debut > 0 && questions[debut - 1]?.group?.id === premiere.group.id) debut--;
+  const indices: number[] = [];
+  for (let i = debut; i < questions.length && questions[i]?.group?.id === premiere.group.id; i++) indices.push(i);
+  return indices;
+}

@@ -1,4 +1,4 @@
-import { membresGroupe } from '../groupes';
+import { indicesGroupe, membresGroupe } from '../groupes';
 import type { QuestionServie } from '../types';
 
 const q = (id: string, groupe: string | null): QuestionServie => ({
@@ -29,5 +29,22 @@ describe('membresGroupe : questions d’un même audio ou passage', () => {
 
   it('renvoie une liste vide hors de la séance', () => {
     expect(membresGroupe(liste, 9)).toEqual([]);
+  });
+});
+
+describe('indicesGroupe : tout le groupe, avant et après la question courante', () => {
+  const liste = [q('q1', 'g1'), q('q2', 'g1'), q('q3', 'g1'), q('q4', 'g2'), q('q5', null)];
+
+  it('inclut les questions déjà passées du groupe', () => {
+    expect(indicesGroupe(liste, 1)).toEqual([0, 1, 2]);
+    expect(indicesGroupe(liste, 2)).toEqual([0, 1, 2]);
+  });
+
+  it('ne déborde pas sur le groupe voisin', () => {
+    expect(indicesGroupe(liste, 3)).toEqual([3]);
+  });
+
+  it('une question sans groupe forme un groupe de une', () => {
+    expect(indicesGroupe(liste, 4)).toEqual([4]);
   });
 });
