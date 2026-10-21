@@ -9,7 +9,7 @@ import { obtenirReglages } from '@/services/certification/etat';
 import { membresGroupe } from '@/services/certification/groupes';
 import { chronometre } from '@/services/certification/format';
 import { cloreParTemps, lireMini, repondreMini, tempsRestantMs, type EtatMini } from '@/services/certification/miniTest';
-import { ForcerSombre, useTheme } from '@/theme/ThemeProvider';
+import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
@@ -23,18 +23,10 @@ import { BarreProgression, EnteteToeic } from './ui';
 type Phase = { nom: 'chargement' } | { nom: 'absent' } | { nom: 'examen'; etat: EtatMini };
 
 /**
- * Écran d'examen d'un mini-test : sombre dans les deux thèmes, audio joué une seule fois, aucune correction avant la fin,
+ * Écran d'examen d'un mini-test : suit le thème clair ou sombre, audio joué une seule fois, aucune correction avant la fin,
  * chronomètre sur horodatage absolu (l'app en arrière-plan ne le fige pas). Fin à la dernière réponse ou au temps écoulé.
  */
 export function MiniTest() {
-  return (
-    <ForcerSombre>
-      <Examen />
-    </ForcerSombre>
-  );
-}
-
-function Examen() {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [phase, setPhase] = useState<Phase>({ nom: 'chargement' });
