@@ -2,7 +2,7 @@ import { BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
-import { dureeLisible, minutesValides, type PreferenceTemps } from '@/services/travailSujet';
+import { dureeLisible, MINUTES_DEFAUT, minutesValides, type PreferenceTemps } from '@/services/travailSujet';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 
@@ -42,7 +42,7 @@ export function ChoixTemps({ valeur, onChange, dureeMin }: { valeur: PreferenceT
           ]}
           valeur={valeur.mode}
           // Sans temps conseillé, le compte à rebours passe par la saisie en minutes (sinon la valeur est ramenée au chrono libre).
-          onChange={(mode) => onChange({ ...valeur, mode, ...(mode === 'compte' && !dureeMin ? { choix: 'perso' as const } : {}) })}
+          onChange={(mode) => onChange({ ...valeur, mode, ...(mode === 'compte' && !dureeMin ? { choix: 'perso' as const } : {}), ...(mode === 'compte' && !valeur.minutes ? { minutes: MINUTES_DEFAUT } : {}) })}
         />
         {valeur.mode === 'libre' ? (
           <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('travail.tempsMesurerTexte')}</Text>

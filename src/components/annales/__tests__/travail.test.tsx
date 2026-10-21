@@ -104,6 +104,15 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       await fireEvent.changeText(screen.getByLabelText(x.travail.tempsMinutes), '45');
       expect(surChange).toHaveBeenLastCalledWith({ mode: 'compte', choix: 'perso', minutes: '45' });
     });
+    it('premier affichage sans temps conseillé : « Compte à rebours » présélectionné avec 90 minutes (1 h 30)', async () => {
+      const Page = () => {
+        const [pref, setPref] = useState<PreferenceTemps>(PREFERENCE_TEMPS_DEFAUT);
+        return <ChoixTemps valeur={preferenceCoherente(pref, null)} dureeMin={null} onChange={setPref} />;
+      };
+      await monter(<Page />);
+      expect(screen.getByRole('tab', { name: x.travail.tempsCompte }).props.accessibilityState?.selected).toBe(true);
+      expect(screen.getByLabelText(x.travail.tempsMinutes).props.value).toBe('90');
+    });
     it('sans temps conseillé, « Compte à rebours » reste sélectionné (la page ramène sinon au chrono libre)', async () => {
       // Même chaîne que SujetAnnale : la valeur affichée passe par preferenceCoherente.
       const Page = () => {
@@ -238,6 +247,15 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(router.replace).toHaveBeenCalledWith('/reviser');
     });
 
+    it('affiche le détail de l’étape en cours et la durée habituelle', async () => {
+      mockEnvoyer.mockImplementation(() => new Promise(() => undefined));
+      await monter(<AnalyseTravail />);
+      await waitFor(() => expect(mockEnvoyer).toHaveBeenCalled());
+      expect(screen.getByText(x.travail.detailEnvoi)).toBeTruthy();
+      expect(screen.queryByText(x.travail.detailCorrection)).toBeNull();
+      expect(screen.getByTestId('analyse-duree').props.children).toBe(x.travail.analyseDuree.replace('{{min}}', '20').replace('{{max}}', '60'));
+    });
+
     it('sans feuilles : retour à l’ordre', async () => {
       definirBrouillon(null);
       await monter(<AnalyseTravail />);
@@ -267,13 +285,21 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
         await act(async () => { await jest.advanceTimersByTimeAsync(1000); });
         expect(mockDemarrer).toHaveBeenCalledTimes(1);
         const [etapes, onFin] = mockDemarrer.mock.calls[0];
-        expect(etapes.map((e: { id: string }) => e.id)).toEqual(['viseur', 'obturateur', 'galerie', 'compteur', 'miniatures', 'terminer', 'aide']);
+        expect(etapes.map((e: { id: string }) => e.id)).toEqual(['viseur', 'obturateur', 'miniatures', 'galerie', 'compteur', 'terminer', 'aide']);
+        expect(typeof etapes[1].surCible).toBe('function');
         await act(async () => { onFin(true); });
         expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true, ecran: 'photos' });
         expect(await visiteDejaVue('photos')).toBe(true);
       } finally {
         jest.useRealTimers();
       }
+    });
+
+    it('le compteur affiche « n sur 12 »', async () => {
+      await monter(<PhotosTravail />);
+      expect(screen.getByText(x.travail.feuillesSurMax.replace('{{n}}', '2').replace('{{max}}', '12'))).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.supprimerFeuille.replace('{{n}}', '1') }));
+      expect(screen.getByText(x.travail.feuillesSurMax.replace('{{n}}', '1').replace('{{max}}', '12'))).toBeTruthy();
     });
 
     it('« Revoir la visite » relance la visite même déjà vue', async () => {

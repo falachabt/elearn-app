@@ -5,7 +5,7 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { getSupabase } from '@/services/supabase';
-import { ETAPES_TRAVAIL, definirBrouillon, envoyerTravail, etatsEtapesTravail, lireBrouillon, preparerFeuille, type EtapeTravail, type Issue } from '@/services/travailSujet';
+import { DUREE_TYPIQUE_MAX_S, DUREE_TYPIQUE_MIN_S, ETAPES_TRAVAIL, definirBrouillon, envoyerTravail, etatsEtapesTravail, lireBrouillon, preparerFeuille, type EtapeTravail, type Issue } from '@/services/travailSujet';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -13,6 +13,12 @@ import { Banniere } from '../../Banniere';
 import { Bouton } from '../../Bouton';
 import { Ecran } from '../../Ecran';
 import { FeuilleEpuise } from '../../credits';
+
+const DETAILS: Record<EtapeTravail, 'travail.detailEnvoi' | 'travail.detailCorrection' | 'travail.detailNotation'> = {
+  envoi: 'travail.detailEnvoi',
+  correction: 'travail.detailCorrection',
+  notation: 'travail.detailNotation',
+};
 
 const CLES: Record<EtapeTravail, 'travail.etapeEnvoi' | 'travail.etapeCorrection' | 'travail.etapeNotation'> = {
   envoi: 'travail.etapeEnvoi',
@@ -136,11 +142,15 @@ export function AnalyseTravail() {
               <View style={[styles.coche, { borderColor: theme.bord.fort, backgroundColor: etat === 'fait' ? theme.etat.succes : etat === 'echec' ? theme.etat.erreur : 'transparent' }]}>
                 {etat === 'en_cours' ? <ActivityIndicator size="small" color={theme.marque.principale} /> : <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{etat === 'fait' ? '✓' : etat === 'echec' ? '✕' : ''}</Text>}
               </View>
-              <Text style={[typo.texteFort, { color: theme.texte.principal, opacity: etat === 'attente' ? 0.55 : 1 }]}>{t(CLES[e])}</Text>
+              <View style={styles.texte}>
+                <Text style={[typo.texteFort, { color: theme.texte.principal, opacity: etat === 'attente' ? 0.55 : 1 }]}>{t(CLES[e])}</Text>
+                {etat === 'en_cours' ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(DETAILS[e])}</Text> : null}
+              </View>
             </View>
           );
         })}
       </View>
+      {echec ? null : <Text testID="analyse-duree" style={[typo.petit, { color: theme.texte.secondaire }]}>{t('travail.analyseDuree', { min: DUREE_TYPIQUE_MIN_S, max: DUREE_TYPIQUE_MAX_S })}</Text>}
       <FeuilleEpuise ouverte={epuise} onFermer={() => setEpuise(false)} />
     </Ecran>
   );
@@ -150,5 +160,6 @@ const styles = StyleSheet.create({
   pied: { gap: espace[4] },
   carte: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[5], gap: espace[4], marginTop: espace[4] },
   ligne: { flexDirection: 'row', alignItems: 'center', gap: espace[4] },
+  texte: { flex: 1, gap: espace[1] },
   coche: { width: 24, height: 24, borderRadius: 12, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
 });

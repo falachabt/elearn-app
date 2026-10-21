@@ -16,6 +16,11 @@ export type EtapeVisite = {
   cible: TourStep['targetRef'];
   titre: string;
   description: string;
+  /**
+   * Action propre à l'élément mis en avant : un appui sur le halo l'exécute puis passe à l'étape suivante
+   * (sauf si elle renvoie `false`, par exemple une photo non prise).
+   */
+  surCible?: () => boolean | void | Promise<boolean | void>;
 };
 
 
@@ -135,9 +140,25 @@ export function useVisite() {
     }),
     [theme, t, top],
   );
+  const { nextStep } = reste;
   const demarrer = (etapes: EtapeVisite[], onFin?: (terminee: boolean) => void) =>
     startTour(
-      etapes.map((e) => ({ id: e.id, targetRef: e.cible, title: e.titre, description: e.description })),
+      etapes.map((e) => ({
+        id: e.id,
+        targetRef: e.cible,
+        title: e.titre,
+        description: e.description,
+        ...(e.surCible
+          ? {
+              onSpotlightPress: () => {
+                const action = e.surCible;
+                void Promise.resolve(action?.()).then((ok) => {
+                  if (ok !== false) nextStep();
+                });
+              },
+            }
+          : {}),
+      })),
       onFin ? { ...config, onTourEnd: onFin } : config,
     );
   return { demarrer, ...reste };

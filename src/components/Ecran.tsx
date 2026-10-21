@@ -45,6 +45,8 @@ type Props = {
   enteteStyle?: StyleProp<ViewStyle>;
   /** Bouton « Revenir en haut » après un long défilement (vrai par défaut). */
   retourHaut?: boolean;
+  /** Défilement (en hauteurs d'écran) à partir duquel « Revenir en haut » apparaît. 1,5 par défaut ; plus bas pour une longue liste. */
+  retourHautApres?: number;
   /** Bouton ou zone fixe collée en bas, au-dessus du clavier. */
   pied?: ReactNode;
   /** Style personnalisé du pied (padding, espacement). */
@@ -69,7 +71,7 @@ type Props = {
  * - Le fond et les zones système (haut et bas) prennent la couleur du thème ; le contenu ne passe jamais sous la
  *   barre d'état ni sous la barre de navigation, même en défilant.
  */
-export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, pied, piedStyle, piedBordure, piedPleineLargeur, remonterSur, onScroll, style, contenuStyle }: Props) {
+export function Ecran({ children, defilement = true, insetHaut = true, insetBas = true, entete, enteteStyle, retourHaut = true, retourHautApres = 1.5, pied, piedStyle, piedBordure, piedPleineLargeur, remonterSur, onScroll, style, contenuStyle }: Props) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   const { height } = useWindowDimensions();
@@ -116,10 +118,10 @@ export function Ecran({ children, defilement = true, insetHaut = true, insetBas 
     (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       onScroll?.(e);
       const y = e.nativeEvent.contentOffset.y;
-      const suivant = { separateur: y > 4, haut: retourHaut && y > height * 1.5 };
+      const suivant = { separateur: y > 4, haut: retourHaut && y > height * retourHautApres };
       setDefile((d) => (d.separateur === suivant.separateur && d.haut === suivant.haut ? d : suivant));
     },
-    [height, retourHaut, onScroll],
+    [height, retourHaut, retourHautApres, onScroll],
   );
 
   // Les insets sont posés sur un cadre fixe, hors du défilement : le contenu qui défile est coupé sous la barre

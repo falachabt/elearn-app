@@ -50,6 +50,9 @@ export const MAX_FEUILLES = 12;
 
 export type EtapeTravail = 'envoi' | 'correction' | 'notation';
 export const ETAPES_TRAVAIL: EtapeTravail[] = ['envoi', 'correction', 'notation'];
+/** Durée habituelle d'une correction, relevée sur les corrections réelles (médiane 24 s, 90 % sous 50 s) : une fourchette, pas une promesse. */
+export const DUREE_TYPIQUE_MIN_S = 20;
+export const DUREE_TYPIQUE_MAX_S = 60;
 
 export type Evenement =
   | { t: 'etape'; etape: EtapeTravail }
@@ -383,7 +386,9 @@ export type ModeTemps = 'libre' | 'compte';
 export type ChoixCompte = 'conseille' | 'perso';
 export type PreferenceTemps = { mode: ModeTemps; choix: ChoixCompte; minutes: string };
 
-export const PREFERENCE_TEMPS_DEFAUT: PreferenceTemps = { mode: 'compte', choix: 'conseille', minutes: '' };
+/** Temps de travail proposé par défaut (demande de Benny, 21 octobre) : compte à rebours de 1 h 30. */
+export const MINUTES_DEFAUT = '90';
+export const PREFERENCE_TEMPS_DEFAUT: PreferenceTemps = { mode: 'compte', choix: 'conseille', minutes: MINUTES_DEFAUT };
 export const MINUTES_MIN = 1;
 export const MINUTES_MAX = 600;
 const CLE_TEMPS = 'annales.temps.preference';
@@ -421,7 +426,7 @@ export async function lirePreferenceTemps(): Promise<PreferenceTemps> {
     return {
       mode: p.mode === 'libre' ? 'libre' : 'compte',
       choix: p.choix === 'perso' ? 'perso' : 'conseille',
-      minutes: typeof p.minutes === 'string' && minutesValides(p.minutes) ? p.minutes : '',
+      minutes: typeof p.minutes === 'string' && minutesValides(p.minutes) ? p.minutes : MINUTES_DEFAUT,
     };
   } catch {
     return PREFERENCE_TEMPS_DEFAUT;

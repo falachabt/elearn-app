@@ -301,8 +301,15 @@ export async function envoyerPhotos(client: ClientReponse, uris: readonly string
  * Envoie une réponse en attente. Succès : elle quitte la file. Échec : elle reste, marquée « echec », prête pour
  * « Réessayer ». Les numéros sont masqués par le serveur (M7-05) ; le client prévient avant (`contientNumero`).
  */
+const sortiesEnCours = new Set<string>();
+
 export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: string): Promise<boolean> {
+  // Déjà en route (envoi immédiat + renvoi des réponses en file au même moment) : on n'insère jamais deux fois la même.
+  if (sortiesEnCours.has(s.cle)) return false;
+  sortiesEnCours.add(s.cle);
   try {
+    // Partie entre-temps (lue dans la file avant que l'autre envoi ne la retire) : rien à renvoyer.
+    if (!(await lireToutesSorties()).some((x) => x.cle === s.cle)) return false;
     const photos = s.photo ? await envoyerPhotos(client, [s.photo], userId) : [];
     const { error } = await client
       .from('post_comments')
@@ -313,6 +320,8 @@ export async function envoyerSortie(client: ClientReponse, s: Sortie, userId: st
   } catch {
     await marquerSortie(s.cle, 'echec');
     return false;
+  } finally {
+    sortiesEnCours.delete(s.cle);
   }
 }
 

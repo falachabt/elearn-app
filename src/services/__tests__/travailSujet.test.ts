@@ -169,7 +169,11 @@ describe('temps de travail choisi', () => {
   });
 
   it('sans temps conseillé : « Mon temps » si un temps est déjà saisi, sinon chrono libre', () => {
-    expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, null).mode).toBe('libre');
+    // Par défaut : compte à rebours de 1 h 30 saisi dans « Mon temps » quand le sujet n'a pas de durée conseillée.
+    expect(PREFERENCE_TEMPS_DEFAUT).toEqual({ mode: 'compte', choix: 'conseille', minutes: '90' });
+    expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, null)).toEqual({ mode: 'compte', choix: 'perso', minutes: '90' });
+    expect(dureeDemarrage(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, null), null)).toBe('5400');
+    expect(preferenceCoherente({ mode: 'compte', choix: 'conseille', minutes: '' }, null).mode).toBe('libre');
     expect(preferenceCoherente({ mode: 'compte', choix: 'conseille', minutes: '45' }, null)).toMatchObject({ mode: 'compte', choix: 'perso' });
     expect(preferenceCoherente(PREFERENCE_TEMPS_DEFAUT, 120).choix).toBe('conseille');
     expect(preferenceCoherente({ mode: 'libre', choix: 'conseille', minutes: '' }, null).mode).toBe('libre');
@@ -181,7 +185,7 @@ describe('temps de travail choisi', () => {
     await enregistrerPreferenceTemps({ mode: 'compte', choix: 'perso', minutes: '75' });
     expect(await lirePreferenceTemps()).toEqual({ mode: 'compte', choix: 'perso', minutes: '75' });
     await AsyncStorage.setItem('annales.temps.preference', JSON.stringify({ mode: 'libre', choix: 'x', minutes: '9999' }));
-    expect(await lirePreferenceTemps()).toEqual({ mode: 'libre', choix: 'conseille', minutes: '' });
+    expect(await lirePreferenceTemps()).toEqual({ mode: 'libre', choix: 'conseille', minutes: '90' });
     await AsyncStorage.setItem('annales.temps.preference', '{pas du json');
     expect(await lirePreferenceTemps()).toEqual(PREFERENCE_TEMPS_DEFAUT);
   });
