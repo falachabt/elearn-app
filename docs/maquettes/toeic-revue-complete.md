@@ -342,3 +342,21 @@ Points à reprendre par le dev :
 - `TOEIC-M-ECOUTE-EPUISEE` : épreuve, audio déjà écouté. Le bouton de relance n'existe pas ; la mention « Écoute unique : pas de réécoute pendant l'épreuve. » est affichée.
 
 Règle d'écoute : en Examen pendant l'épreuve, lecture unique. En revue d'Examen et en Entraînement, « Réécouter » est disponible. Clair et sombre : chaque écran est rendu dans les deux thèmes dans l'aperçu.
+
+## Version 28 (21 octobre 2026, à valider)
+
+Décisions de Benny du 21 octobre (cahier 1.24, section 5.M.10, D-32 à D-35), rendues en 360 px et 390 px, clair et sombre.
+
+- `TOEIC-V28-G1` : groupe de questions à 360 px, onglets libres, audio continu, un seul bouton « Valider (2/3) ».
+- `TOEIC-V28-G1-390` : même groupe à 390 px.
+- `TOEIC-V28-G2` : groupe incomplet, pastille « Tu n'as pas tout répondu. », bouton « Valider quand même (2/3) ».
+- `TOEIC-V28-G3` : Entraînement, après « Valider » : correction par onglet, carte de correction en grille (juste, faux).
+- `TOEIC-V28-B1` : Photo, Entraînement, correction en grille sous les options (juste).
+- `TOEIC-V28-B4` : Exposé, Entraînement, correction en grille (faux, réécoute).
+- `TOEIC-V28-B6` : Texte à trous, Entraînement, trou 131 juste, correction en grille.
+- `TOEIC-V28-EX` : Examen, question sans aucune correction (« Question suivante » seul).
+- `TOEIC-V28-FIN` et `TOEIC-V28-FIN-390` : fin d'Examen, score estimé, grille, questions sans réponse comptées fausses.
+- `TOEIC-V28-REV-PHOTO` : revue de fin, photo, bonne réponse et justification.
+- `TOEIC-V28-REV-GRP` : revue de groupe, réécoute disponible, « Sans réponse ».
+
+Non dessiné dans cette version : B3 (groupe en Entraînement, écran complet), B5 (phrase), B7 (documents) en version 28. Ces trois écrans restent couverts par la version 27 (`TOEIC-M-B3`, `TOEIC-M-B7`) en attendant le lot suivant.

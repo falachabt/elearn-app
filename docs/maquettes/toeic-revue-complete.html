@@ -842,6 +842,70 @@ const M12=t=>ph(t,hd('Revue · Partie 3 · 33',true)+bd(groupeTabs(1,[true,true,
 /* M13 : épreuve, audio déjà écouté une fois : réécoute épuisée (pas de bouton de relance) */
 const ecouteExpose=`<div class="aud"><span class="pb">${I('check')}</span><div style="flex:1;min-width:0"><b style="font:700 14px var(--f-body);color:var(--txt)">Exposé écouté</b><small style="display:block;font:700 12px var(--f-body);color:var(--txt2)">Une seule écoute · pas de réécoute</small></div></div>`;
 const M13=t=>ph(t,hd('Partie 4 · Exposé',false)+bd(bar(70)+ecouteExpose+`<div class="q" style="font-size:15px">Qu'est-ce que l'orateur va faire ensuite ?</div>`+opt('A','Présenter un rapport.','sel')+opt('B','Ouvrir une discussion.','')+opt('C','Annuler la réunion.',''))+ft(B('Valider')+`<small style="font:500 12px var(--f-body);color:var(--txt2);text-align:center">Écoute unique : pas de réécoute pendant l'épreuve.</small>`));
+/* ---------- VERSION 28 : GROUPES À VALIDATION UNIQUE, CORRECTION REDESSINÉE (21 octobre) ----------
+   Cahier 5.M.10 (D-32 à D-35). Carte de correction en grille (libellé à gauche, valeur à droite). */
+const ph390=(t,body)=>`<div class="ph ${t}" style="width:390px">${SB}${body}</div>`;
+const rowC=(l,v,cls='')=>`<div style="display:grid;grid-template-columns:96px 1fr;gap:8px;align-items:start"><span style="font:700 12px var(--f-mono);color:var(--txt2);text-transform:uppercase;padding-top:2px">${l}</span><span class="${cls}" style="font:600 14px/1.35 var(--f-body);color:var(--txt)">${v}</span></div>`;
+const corrV28=(juste,bonne,ta,notion,piege)=>`<div class="sheet" style="gap:10px;padding:12px 14px">`+
+    `<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="st p">${I('bulb')}CORRIGÉ</span><span class="st ${juste?'p':'f'}">${I(juste?'check':'alert')}${juste?'Juste':'Faux'}</span></div>`+
+    rowC('Bonne réponse',bonne)+(ta?rowC('Ta réponse',ta):'')+rowC('Notion',notion)+(piege?rowC('Piège',piege):'')+
+    `<div class="fl" style="justify-content:flex-start;gap:14px;margin-top:2px"><span class="lk">Transcription</span><span class="lk">Revoir la notion</span></div></div>`;
+const seg3=(on,ok)=>qtabs([{l:'38',ok:ok[0]},{l:'40',ok:ok[1]},{l:'39',ok:ok[2]}],on);
+/* V-B1 : photo, correction en grille sous les options (Entraînement) */
+const V_B1=t=>ph(t,hd('Partie 1 · Photos',true)+bd(bar(40)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',110)+
+    optC('A','Une femme paie à un comptoir.','juste','Juste')+optC('B','Un homme lit un journal.','')+optC('C','Des enfants jouent dehors.','')+
+    corrV28(true,'A · A customer is paying at a counter.','','Décrire une photo (démo)','')+
+    B('Explication détaillée · 1 crédit','sec'))+ft(B('Question suivante')));
+/* V-B4 : exposé, réponse fausse */
+const V_B4=t=>ph(t,hd('Partie 4 · Exposé',true)+bd(bar(70)+ecouteExpose.replace('Exposé écouté','Exposé · réécouter disponible')+
+    `<div class="q" style="font-size:15px">Qu'est-ce que l'orateur va faire ensuite ?</div>`+optC('A','Présenter un rapport.','juste','Juste')+optC('B','Ouvrir une discussion.','faux','Faux')+optC('C','Annuler la réunion.','')+
+    corrV28(false,'A · Présenter un rapport.','B · Ouvrir une discussion.','Annoncer la suite d\'un exposé (démo)','« Ensuite » annonce une action, pas une question.')
+  )+ft(B('Question suivante')));
+/* V-B6 : texte à trous, trou 131 juste */
+const V_B6=t=>ph(t,hd('Partie 6 · Texte à trous',true)+bd(bar(60)+T6(131,{131:1})+lab('Trou 131 · correction')+
+    optC('A','However','juste','Juste')+optC('B','Meanwhile','')+optC('C','Therefore','')+optC('D','Despite','')+
+    corrV28(true,'A · However','','Liaisons logiques (démo)','')
+  )+ft(B('Question suivante')));
+/* V-G1 : groupe, onglets libres, 38 répondu, 40 courant, 39 vide ; audio continue ; Valider (2/3) */
+const V_G1=t=>ph(t,hd('Partie 3 · Conversation',true)+bd(seg3(1,[true,false,false])+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+ecouteEnCours+
+    `<div class="q" style="font-size:15px">Quel est le problème de la femme ?</div>`+optC('A','Le train est en retard.','','')+optC('B','Elle a perdu ses documents.','','')+optC('C','Le bureau est fermé.','','')+
+    `<p class="hint" style="color:var(--txt)">2 questions sur 3 répondues. L'audio continue.</p>`
+  )+ft(B('Valider (2/3)')));
+const V_G1_390=t=>ph390(t,hd('Partie 3 · Conversation',true)+bd(seg3(1,[true,false,false])+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+ecouteEnCours+
+    `<div class="q" style="font-size:15px">Quel est le problème de la femme ?</div>`+optC('A','Le train est en retard.','','')+optC('B','Elle a perdu ses documents.','','')+optC('C','Le bureau est fermé.','','')
+  )+ft(B('Valider (2/3)')));
+/* V-G2 : tap sur Valider incomplet : pastille, puis « Valider quand même » */
+const V_G2=t=>ph(t,hd('Partie 3 · Conversation',true)+bd(seg3(2,[true,true,false])+`<div class="chips2"><span>Conversation 8 sur 10</span></div>`+ecouteEnCours+
+    `<div class="q" style="font-size:15px">Où a lieu la conversation ?</div>`+optC('A','Dans une gare.','','')+optC('B','Dans un bureau.','','')+optC('C','Dans un magasin.','','')
+  )+ft(`<span class="st f" style="justify-self:stretch;justify-content:center">${I('alert')}Tu n'as pas tout répondu.</span>`+B('Valider quand même (2/3)')));
+/* V-G3 : Entraînement, après Valider unique, correction onglet par onglet (ici onglet 40, faux) */
+const V_G3=t=>ph(t,hd('Partie 3 · Conversation',true)+bd(seg3(1,[true,true,true])+`<div class="chips2"><span>Conversation 8 sur 10 · 3 réponses</span></div>`+
+    `<div class="q" style="font-size:15px">Quel est le problème de la femme ?</div>`+optC('A','Le train est en retard.','faux','Faux')+optC('B','Elle a perdu ses documents.','juste','Juste')+optC('C','Le bureau est fermé.','')+
+    corrV28(false,'B · Elle a perdu ses documents.','A · Le train est en retard.','Problème exprimé dans la conversation (démo)','Le retard concerne le train, pas la femme.')
+  )+ft(B('Onglet suivant')));
+/* V-EX : Examen, aucune correction entre les questions */
+const V_EX=t=>ph(t,hd('Examen · question 6 sur 20',true)+bd(bar(30)+`<div class="chips2"><span>Partie 2 · Question-réponse</span></div>`+ecouteUnique+
+    `<div class="q" style="font-size:15px">Question-réponse : choisis la réponse la plus appropriée.</div>`+opt('A','Yes, I will call you back.','')+opt('B','At the office on Monday.','sel')+opt('C','It was a good idea.','')+
+    `<p class="hint" style="color:var(--txt)">La correction viendra à la fin de l'examen.</p>`
+  )+ft(B('Question suivante')));
+/* V-FIN : fin d'Examen, résultat et revue à venir */
+const V_FIN=t=>ph(t,hd('Examen terminé',false)+bd(`<div class="sheet"><span class="lbl2">Ton score estimé</span><div class="big" style="font-size:52px">745</div><small style="font:700 12px var(--f-body);color:var(--txt2)">Estimation, pas un score officiel.</small></div>`+
+    `<div class="sheet" style="gap:12px"><span class="lbl2" style="margin:0">Écoute et lecture</span><div class="gr2" style="grid-template-columns:1fr 1fr">${scoreSec('Listening','375',75)+scoreSec('Reading','370',74)}</div></div>`+
+    gridS(['ok','ok','ko','ok','ok','ko','ok','ok','ok','ko','ok','ok','ok','ok','ko','ok','ok','ok','todo','ok'],-1)+`<p class="hint" style="color:var(--txt)">Les questions sans réponse sont comptées fausses.</p>`
+  )+ft(B('Revoir mes réponses')+LK('Retour aux tests')));
+const V_FIN_390=t=>ph390(t,hd('Examen terminé',false)+bd(`<div class="sheet"><span class="lbl2">Ton score estimé</span><div class="big" style="font-size:52px">745</div><small style="font:700 12px var(--f-body);color:var(--txt2)">Estimation, pas un score officiel.</small></div>`+
+    gridS(['ok','ok','ko','ok','ok','ko','ok','ok','ok','ko','ok','ok','ok','ok','ko','ok','ok','ok','todo','ok'],-1)
+  )+ft(B('Revoir mes réponses')+LK('Retour aux tests')));
+/* V-REV-PHOTO : revue de fin, photo, justification */
+const V_REV_PHOTO=t=>ph(t,hd('Revue · 1 / 20',true)+bd(gridS(['ok','ko','todo','ok','ok','ok','ok','ok','ok','ok'],0)+shot('PHOTO DE LA PARTIE 1 · ILLUSTRATION IA',100)+
+    optC('A','Une femme paie à un comptoir.','juste','Bonne réponse')+optC('B','Un homme lit un journal.','faux','Ta réponse')+optC('C','Des enfants jouent dehors.','')+
+    corrV28(false,'A · Une femme paie à un comptoir.','B · Un homme lit un journal.','Décrire une photo (démo)','Le journal est sur la table, personne ne le lit.')
+  )+ft(B('Question suivante')));
+/* V-REV-GRP : revue de groupe, audio réécoutable, question sans réponse */
+const V_REV_GRP=t=>ph(t,hd('Revue · Partie 3 · 39',true)+bd(seg3(2,[true,true,false])+aud('Conversation · réécouter',false,70)+
+    `<div class="q" style="font-size:15px">Où a lieu la conversation ?</div>`+optC('A','Dans une gare.','faux','Ta réponse')+optC('B','Dans un bureau.','juste','Bonne réponse')+optC('C','Dans un magasin.','')+
+    `<div class="sheet" style="padding:10px 12px"><span class="st f" style="justify-self:start">${I('alert')}Sans réponse</span><small style="font:700 12px var(--f-body);color:var(--txt2)">Pour l'onglet 39, si aucune réponse n'a été donnée.</small></div>`
+  )+ft(B('Question suivante')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -878,6 +942,7 @@ const groups=[
  ['Série sans correction immédiate, revue en fin de série (v24, 16 octobre, à valider)',[[SQ4,'TOEIC-S-Q4 · Mini-test : question 4 sur 10, réponse enregistrée, aucune correction (« Question suivante »)'],[SFIN,'TOEIC-S-FIN · Série terminée : récapitulatif, aucune correction, « Revoir mes réponses »'],[SREV,'TOEIC-S-REV · Revue question par question : réponse donnée, bonne réponse, Revoir la notion, Explication détaillée (1 crédit, 0 avec le Pass)'],[SREVD,'TOEIC-S-REV-DIAG · Revue du diagnostic : explication gratuite (D-09)']]],
  ['Correction intégrée, modes Entraînement et Examen (v26, 20 octobre, à valider)',[[M1,'TOEIC-M-B1 · Photo : correction sous les options, même écran (juste)'],[M2,'TOEIC-M-B2 · Question-réponse audio : correction fausse, réécoute disponible'],[M3,'TOEIC-M-B3 · Groupe de trois : correction dans l\'onglet validé'],[M4,'TOEIC-M-B5 · Phrase à trou : correction (faux, trou en vert)'],[M5,'TOEIC-M-EXP · Explication détaillée dépliée dans la carte, sans changer d\'écran (1 crédit)'],[M6,'TOEIC-M-T2 · Mini-test : sélecteur de mode, Examen par défaut'],[M6b,'TOEIC-M-T2-ENT · Même écran, mode Entraînement (gratuit, ne compte pas)'],[M7,'TOEIC-M-REV · Revue d\'Examen : grille, filtre Mes erreurs, question avec son contexte'],[M8,'TOEIC-M-REV-HORS · Revue hors ligne : correction indisponible, réponses gardées'],[M9,'TOEIC-M-FIN · Fin d\'Entraînement : bilan sans score estimé']]],
  ['Écrans restants de la correction intégrée (v27, 20 octobre)',[[M10,'TOEIC-M-B7 · Documents : correction sous les options, document de la question surligné'],[M11,'TOEIC-M-X5 · Feuille « Il te faut 1 crédit » par-dessus la question (explication détaillée)'],[M12,'TOEIC-M-REV-GRP · Revue d\'Examen d\'un groupe : onglet 33, Réécouter disponible'],[M13,'TOEIC-M-ECOUTE-EPUISEE · Épreuve : audio déjà écouté, réécoute épuisée']]],
+ ['Version 28 : groupes à validation unique, correction en grille, Examen sans correction (21 octobre, à valider)',[[V_B1,'TOEIC-V28-B1 · Photo, Entraînement : correction en grille sous les options (juste)'],[V_B4,'TOEIC-V28-B4 · Exposé, Entraînement : correction en grille (faux, réécoute)'],[V_B6,'TOEIC-V28-B6 · Texte à trous, Entraînement : trou 131 juste, correction en grille'],[V_G1,'TOEIC-V28-G1 · Groupe 360 px : onglets libres, audio continu, Valider (2/3)'],[V_G1_390,'TOEIC-V28-G1-390 · Même groupe à 390 px'],[V_G2,'TOEIC-V28-G2 · Groupe incomplet : pastille « Tu n\'as pas tout répondu. », Valider quand même (2/3)'],[V_G3,'TOEIC-V28-G3 · Groupe, Entraînement après Valider : correction par onglet (faux)'],[V_EX,'TOEIC-V28-EX · Examen : question sans aucune correction'],[V_FIN,'TOEIC-V28-FIN · Fin d\'Examen : résultat, grille, sans-réponse comptées fausses'],[V_FIN_390,'TOEIC-V28-FIN-390 · Fin d\'Examen à 390 px'],[V_REV_PHOTO,'TOEIC-V28-REV-PHOTO · Revue de fin : photo, bonne réponse, justification'],[V_REV_GRP,'TOEIC-V28-REV-GRP · Revue de groupe : réécoute, « Sans réponse »']]],
  ['Test blanc (E1 à E7, V2, épreuve sombre dans les deux thèmes)',[[e1,'TOEIC-E1 · Introduction au test blanc'],[e2,'TOEIC-E2 · Listening : question, audio, pas de retour'],[e3,'TOEIC-E3 · Transition vers Reading'],[e4,'TOEIC-E4 · Reading : navigation libre'],[e5,'TOEIC-E5 · Pause'],[e6,'TOEIC-E6 · Bilan : estimation sur 990, notions coûteuses, temps par partie'],[e7,'TOEIC-E7 · Coût et packs hors ligne']]],
  ['États transverses (S1 à S9, nouveaux)',[[s1,'TOEIC-S1 · Squelette : question en chargement'],[s2,'TOEIC-S2 · Erreur de chargement d\'une série'],[s3,'TOEIC-S3 · Série hors ligne, réponse gardée sur l\'appareil'],[s4,'TOEIC-S4 · Réponse non envoyée, à réessayer'],[s5,'TOEIC-S5 · Carnet vide'],[s6,'TOEIC-S6 · Recherche du carnet sans résultat'],[s7,'TOEIC-S7 · Mon TOEIC sans séance du jour (avant diagnostic)'],[s8,'TOEIC-S8 · Score estimé pas encore disponible'],[s9,'TOEIC-S9 · Contenu expiré après 7 jours hors ligne']]],
  ['Écrans ajoutés (X1 à X4, à valider)',[[x1,'TOEIC-X1 · Feuille de crédits : remplacée par X5 pour le solde'],[x2,'TOEIC-X2 · Signaler une erreur (risque n° 1 : corrigés faux)'],[x3,'TOEIC-X3 · Quitter une série sans perdre les réponses'],[x4,'TOEIC-X4 · Pack audio manquant, hors ligne']]],
