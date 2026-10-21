@@ -13,7 +13,7 @@ import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useCredits } from '@/session/CreditsProvider';
 import { libelleAvecPrix } from '@/session/useContenuPayant';
-import { useSessionPrete } from '@/session/SessionProvider';
+import { useSession, useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, corrige as corrigeCouleurs, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
@@ -69,6 +69,8 @@ export function ExerciceLibre() {
   const [corrigeDe, setCorrigeDe] = useState<string | null>(null);
   const corrige = corrigeDe === id;
   const pret = useSessionPrete();
+  const { session } = useSession();
+  const idUtilisateur = session?.user?.id;
   const navigation = useNavigation() as unknown as NavigationSortie;
   const { declencher } = useFeedback();
   const [demande, setDemande] = useState<'suivant' | 'sortie' | null>(null);
@@ -151,7 +153,7 @@ export function ExerciceLibre() {
 
   const basculer = async () => {
     if (!exercice || etat.statut !== 'pret') return;
-    const maintenant = await basculerExerciceFait(exercice.id);
+    const maintenant = await basculerExerciceFait(exercice.id, new Date(), { client: getSupabase(), userId: idUtilisateur });
     suivre('practice_exercise_done', { fait: maintenant });
     setEtat({ ...etat, faits: maintenant ? { ...etat.faits, [exercice.id]: true } : Object.fromEntries(Object.entries(etat.faits).filter(([k]) => k !== exercice.id)) });
   };

@@ -145,7 +145,11 @@ export const lireExercicesFaits = () => lireObjet<true>(CLE_EXERCICES_FAITS);
 export const CLE_EXERCICES_DATES = 'entrainement.exercicesDates';
 export const lireDatesExercices = () => lireObjet<string>(CLE_EXERCICES_DATES);
 
-export async function basculerExerciceFait(exercice: string, maintenant = new Date()): Promise<boolean> {
+/** Compte connecté : ses XP sont écrits sur le serveur. Sans compte, ils restent sur l'appareil. */
+export type CompteXp = { client: Parameters<typeof crediterXp>[0]; userId: string | null | undefined };
+export const CLE_XP_EXERCICE = (userId: string | null | undefined, exercice: string) => `xp.exercice_credite_${userId ?? 'anonyme'}_${exercice}`;
+
+export async function basculerExerciceFait(exercice: string, maintenant = new Date(), compte?: CompteXp): Promise<boolean> {
   const faits = await lireExercicesFaits();
   const fait = !faits[exercice];
   const suite = { ...faits };
@@ -159,7 +163,13 @@ export async function basculerExerciceFait(exercice: string, maintenant = new Da
   await AsyncStorage.multiSet([[CLE_EXERCICES_FAITS, JSON.stringify(suite)], [CLE_EXERCICES_DATES, JSON.stringify(dates)]]).catch(() => {});
   signalerProgressionLocale();
   if (fait) {
-    void crediterXp(null, null, 15, 'exercise', exercice);
+    // Une seule fois par exercice : décocher puis recocher ne rapporte rien de plus. Avec un compte, le gain part au
+    // serveur (sans quoi le niveau annoncé par les confettis ne serait jamais celui que Moi affiche).
+    const cle = CLE_XP_EXERCICE(compte?.userId, exercice);
+    if ((await AsyncStorage.getItem(cle).catch(() => null)) !== '1') {
+      await AsyncStorage.setItem(cle, '1').catch(() => {});
+      void crediterXp(compte?.userId ? compte.client : null, compte?.userId ?? null, 15, 'exercise', exercice);
+    }
   }
   return fait;
 }
