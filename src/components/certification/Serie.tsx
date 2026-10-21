@@ -216,6 +216,7 @@ export function Serie() {
         position={Math.min(indiceVue + 1, total)}
         onPasser={() => void passer()}
         enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={indices.indexOf(indiceVue)} onChoisir={choisirOnglet} /> : null}
+        trouCourant={indices.indexOf(indiceVue) + 1}
       />
       {!repondue ? null : resultat ? (
         <ExplicationCert

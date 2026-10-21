@@ -164,6 +164,7 @@ export function Diagnostic() {
         position={Math.min(faites + onglet + 1, total)}
         onPasser={passer}
         enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
+        trouCourant={onglet + 1}
       />
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />
     </Ecran>

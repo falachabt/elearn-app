@@ -179,6 +179,7 @@ function Examen() {
           position={etat.index + onglet + 1}
           onPasser={passer}
           enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
+          trouCourant={onglet + 1}
         />
       ) : null}
       <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.examen.sansCorrection')}</Text>

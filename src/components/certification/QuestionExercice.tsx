@@ -1,6 +1,6 @@
 import { Image } from 'expo-image';
 import { useState, type ReactNode } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { urlMedia } from '@/services/certification/media';
@@ -32,6 +32,8 @@ type Props = {
   position?: number;
   /** Onglets des questions d'un groupe, affichés sous l'audio partagé. */
   enteteGroupe?: ReactNode;
+  /** Trou en cours dans un texte à trous (1 à n) : son rectangle est mis en surbrillance. */
+  trouCourant?: number;
 };
 
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
@@ -54,11 +56,46 @@ export const phraseSurlignee = (texte: string, reponse: string): string | null =
 /** Trou d'une phrase (parties 5 et 6) : « ------- ». Le numéro de la question remplace le trait (v21). */
 const ALEA_TROU = /-{3,}/;
 
+/** Trou numéroté d'un texte à trous de la partie 6 : « {1} », « {2} »… */
+const TROU_PASSAGE = /\{\d+\}/;
+
+/**
+ * Texte à trous (partie 6) : chaque « {n} » devient un petit rectangle numéroté, dans le flux du texte (v21). Le trou en
+ * cours est en jaune ; les autres restent sur la surface. Les paragraphes sont séparés par un espace.
+ */
+function PassageTrous({ texte, blanc }: { texte: string; blanc: number }) {
+  const { t } = useTraduction();
+  const { theme } = useTheme();
+  return (
+    <View style={styles.paragraphes}>
+      {texte.split('\n').filter((p) => p.trim()).map((paragraphe, p) => (
+        <View key={p} style={styles.ligne}>
+          {paragraphe.split(/(\{\d+\})/).flatMap((morceau, i) => {
+            const trou = /^\{(\d+)\}$/.exec(morceau);
+            if (trou) {
+              const n = Number(trou[1]);
+              const actif = n === blanc;
+              return [
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: actif ? theme.accent.soleil : theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <Text style={[typo.legende, styles.trouNumero, { color: actif ? theme.texte.surCouleur : theme.texte.principal }]}>{n}</Text>
+                </View>,
+              ];
+            }
+            return morceau.split(' ').filter(Boolean).map((mot, j) => (
+              <Text key={`m${i}-${j}`} style={[typo.texte, { color: theme.texte.principal }]}>{mot}</Text>
+            ));
+          })}
+        </View>
+      ))}
+    </View>
+  );
+}
+
 /** Remplace le trou « ------- » d'une phrase par un trait lisible. */
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant = 1 }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -120,13 +157,17 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
               ))}
             </View>
           ) : null}
-          <ScrollView style={[styles.passage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]} nestedScrollEnabled>
+          <View style={[styles.passage, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
             {docs[doc]?.kind ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{docs[doc]?.kind}</Text> : null}
             {docs[doc]?.head ? <Text style={[typo.donnee, { color: theme.texte.principal }]}>{docs[doc]?.head}</Text> : null}
-            <Text style={[typo.texte, { color: theme.texte.principal }]}>
-              {surlignage(docs[doc]?.text ?? '')}
-            </Text>
-          </ScrollView>
+            {TROU_PASSAGE.test(docs[doc]?.text ?? '') ? (
+              <PassageTrous texte={docs[doc]?.text ?? ''} blanc={trouCourant} />
+            ) : (
+              <Text style={[typo.texte, { color: theme.texte.principal }]}>
+                {surlignage(docs[doc]?.text ?? '')}
+              </Text>
+            )}
+          </View>
         </View>
       ) : null}
       {ALEA_TROU.test(question.stem) && !SANS_ENONCE.has(question.type) ? (
@@ -172,5 +213,7 @@ const styles = StyleSheet.create({
   options: { gap: espace[3] },
   onglets: { flexDirection: 'row', gap: espace[3], marginBottom: espace[3] },
   onglet: { minHeight: 36, paddingHorizontal: espace[4], justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
-  passage: { maxHeight: 220, padding: espace[4], borderWidth: bord.normal, borderRadius: rayon.m },
+  passage: { padding: espace[4], gap: espace[2], borderWidth: bord.normal, borderRadius: rayon.m },
+  paragraphes: { gap: espace[3] },
+  ligne: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: espace[1], rowGap: espace[2] },
 });
