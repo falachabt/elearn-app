@@ -2,13 +2,14 @@ import { router } from 'expo-router';
 import { Clock, History, Layers } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Svg, { Circle, Line, Polyline, Text as SvgText } from 'react-native-svg';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { chargerPageStats, PERIODES, type DonneesStats } from '@/services/certification/stats';
 import type { PeriodeStats } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, espace, rayon, typo } from '@/theme/theme';
+import { espace, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
@@ -63,7 +64,7 @@ export function StatistiquesToeic() {
 function Contenu({ donnees }: { donnees: DonneesStats }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { stats, depuisCopie, scoreMax } = donnees;
+  const { stats, depuisCopie } = donnees;
   const copie = depuisCopie && stats.calculeLe ? t('certification.stats.horsLigne', { date: new Date(stats.calculeLe).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }) }) : null;
   const masteryVue = useRef(false);
   const aDesParties = stats.status === 'ok' || stats.status === 'first_week';
@@ -103,10 +104,10 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
       <Carte style={{ gap: espace[2] }}>
         <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.stats.score')}</Text>
         <Text style={[typo.h1, { color: theme.texte.principal }]}>
-          {stats.score && stats.score.min !== null && stats.score.max !== null ? t('certification.stats.scorePlage', { min: stats.score.min, max: stats.score.max, total: scoreMax }) : t('certification.historique.pasEncore')}
+          {stats.score && stats.score.valeur !== null ? String(stats.score.valeur) : t('certification.historique.pasEncore')}
         </Text>
         {tendance ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tendance}</Text> : null}
-        {stats.barres.length > 0 ? <Graphique barres={stats.barres} scoreMax={scoreMax} /> : null}
+        {stats.barres.some((b) => b.valeur !== null) ? <Graphique barres={stats.barres} /> : null}
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
       </Carte>
       <EtiquetteSection texte={t('certification.stats.maitrise')} />
@@ -138,26 +139,34 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
   );
 }
 
-const HAUTEUR = 96;
+// Échelle de la maquette v29 : 600 à 1000, cible 800 en pointillé corail, un point par période estimée.
+const ECHELLE = { bas: 600, haut: 1000, cible: 800 } as const;
+const GRAPHE = { largeur: 320, hauteur: 160, gauche: 40, droite: 300, haut: 12, bas: 136 } as const;
 
-/** Score estimé dans le temps : une barre flottante par point (de la borne basse à la borne haute), l'échelle va de 0 au score maximal. */
-function Graphique({ barres, scoreMax }: { barres: DonneesStats['stats']['barres']; scoreMax: number }) {
+const yDe = (v: number) => GRAPHE.haut + ((ECHELLE.haut - v) / (ECHELLE.haut - ECHELLE.bas)) * (GRAPHE.bas - GRAPHE.haut);
+
+/** Score estimé dans le temps : une courbe qui relie les valeurs exactes, avec la cible en pointillé. */
+function Graphique({ barres }: { barres: DonneesStats['stats']['barres'] }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const points = barres.filter((b): b is typeof b & { valeur: number } => b.valeur !== null);
+  const xDe = (i: number) => (points.length === 1 ? (GRAPHE.gauche + GRAPHE.droite) / 2 : GRAPHE.gauche + (i * (GRAPHE.droite - GRAPHE.gauche)) / (points.length - 1));
+  const trace = points.map((b, i) => `${xDe(i)},${yDe(b.valeur)}`).join(' ');
   return (
     <View accessibilityLabel={t('certification.stats.graphique')} style={styles.graphique}>
-      {barres.map((b) => {
-        const bas = (b.min / scoreMax) * HAUTEUR;
-        const haut = Math.max(6, ((b.max - b.min) / scoreMax) * HAUTEUR);
-        return (
-          <View key={b.fin} accessible accessibilityLabel={`${b.fin}, ${t('certification.stats.scorePlage', { min: b.min, max: b.max, total: scoreMax })}`} style={styles.colonne}>
-            <View style={[styles.piste, { height: HAUTEUR, borderColor: theme.bord.doux }]}>
-              <View style={[styles.segment, { bottom: bas, height: haut, backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]} />
-            </View>
-            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{new Date(b.fin).toLocaleDateString('fr-FR', { day: 'numeric', month: 'numeric' })}</Text>
-          </View>
-        );
-      })}
+      <Svg width="100%" height={GRAPHE.hauteur} viewBox={`0 0 ${GRAPHE.largeur} ${GRAPHE.hauteur}`}>
+        {[ECHELLE.bas, ECHELLE.cible, ECHELLE.haut].map((v) => (
+          <SvgText key={v} x={0} y={yDe(v) + 4} fontSize={10} fill={theme.texte.secondaire}>{String(v)}</SvgText>
+        ))}
+        <Line x1={GRAPHE.gauche} x2={GRAPHE.droite} y1={yDe(ECHELLE.cible)} y2={yDe(ECHELLE.cible)} stroke={theme.etat.erreur} strokeWidth={1.5} strokeDasharray="6 4" />
+        {points.length > 1 ? <Polyline points={trace} fill="none" stroke={theme.marque.principale} strokeWidth={2.5} /> : null}
+        {points.map((b, i) => (
+          <Circle key={b.fin} cx={xDe(i)} cy={yDe(b.valeur)} r={4} fill={theme.marque.principale} stroke={theme.bord.fort} strokeWidth={1.5} />
+        ))}
+      </Svg>
+      <View style={styles.legende}>
+        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.stats.cible', { score: ECHELLE.cible })}</Text>
+      </View>
     </View>
   );
 }
@@ -165,8 +174,6 @@ function Graphique({ barres, scoreMax }: { barres: DonneesStats['stats']['barres
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   tuiles: { flexDirection: 'row', flexWrap: 'wrap', gap: espace[3] },
-  graphique: { flexDirection: 'row', alignItems: 'flex-end', gap: espace[2], paddingTop: espace[2] },
-  colonne: { flex: 1, alignItems: 'center', gap: espace[1] },
-  piste: { width: '60%', borderLeftWidth: bord.fin, borderRightWidth: bord.fin, justifyContent: 'flex-end' },
-  segment: { position: 'absolute', left: 0, right: 0, borderWidth: bord.normal, borderRadius: rayon.s },
+  graphique: { gap: espace[1], paddingTop: espace[2] },
+  legende: { flexDirection: 'row', justifyContent: 'flex-end' },
 });

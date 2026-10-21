@@ -2861,6 +2861,7 @@ export const en: Textes = {
       tendanceStable: 'Steady',
       mention: 'An estimate, not an official score.',
       graphique: 'Estimated score over time',
+      cible: 'Target {{score}}',
       maitrise: 'Mastery by part',
       partie: 'Part {{n}}',
       partieAide: '{{n}} answers',

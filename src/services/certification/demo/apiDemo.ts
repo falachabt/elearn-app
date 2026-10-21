@@ -148,12 +148,12 @@ function statsDemoFixes(periode: PeriodeStats, jour: Parameters<typeof jourPlus>
     status: 'ok',
     periode,
     reponsesTotal: PARTIES_DEMO.reduce((a, p) => a + p.n, 0),
-    score: { estime: true, min: 620, max: 700 },
+    score: { estime: true, min: 620, max: 700, valeur: 660 },
     barres: [
-      { fin: jourPlus(jour, -21), min: 540, max: 600, milieu: 570 },
-      { fin: jourPlus(jour, -14), min: 580, max: 640, milieu: 610 },
-      { fin: jourPlus(jour, -7), min: 600, max: 660, milieu: 630 },
-      { fin: jour, min: 620, max: 700, milieu: 660 },
+      { fin: jourPlus(jour, -21), min: 540, max: 600, milieu: 570, valeur: 570 },
+      { fin: jourPlus(jour, -14), min: 580, max: 640, milieu: 610, valeur: 610 },
+      { fin: jourPlus(jour, -7), min: 600, max: 660, milieu: 630, valeur: 630 },
+      { fin: jour, min: 620, max: 700, milieu: 660, valeur: 660 },
     ],
     tendance: 'up',
     parties: PARTIES_DEMO.map(({ partie, n, c }) => {
@@ -391,8 +391,8 @@ export const apiDemo: CertApi = {
     return {
       ...base,
       status: dernier && s.historique.filter((h) => h.scoreMin !== null).length >= 2 ? 'ok' : 'first_week',
-      score: dernier ? { estime: true, min: dernier.scoreMin, max: dernier.scoreMax } : null,
-      barres: s.historique.filter((h) => h.scoreMin !== null && h.scoreMax !== null).slice(0, 6).reverse().map((h) => ({ fin: (h.finishedAt ?? jour).slice(0, 10), min: h.scoreMin!, max: h.scoreMax!, milieu: Math.round((h.scoreMin! + h.scoreMax!) / 2) })),
+      score: dernier ? { estime: true, min: dernier.scoreMin, max: dernier.scoreMax, valeur: Math.round((dernier.scoreMin! + dernier.scoreMax!) / 2) } : null,
+      barres: s.historique.filter((h) => h.scoreMin !== null && h.scoreMax !== null).slice(0, 6).reverse().map((h) => ({ fin: (h.finishedAt ?? jour).slice(0, 10), min: h.scoreMin!, max: h.scoreMax!, milieu: Math.round((h.scoreMin! + h.scoreMax!) / 2), valeur: Math.round((h.scoreMin! + h.scoreMax!) / 2) })),
       parties: [1, 2, 3, 4, 5, 6, 7].map((partie) => {
         const e = s.parties[String(partie)] ?? { n: 0, c: 0 };
         const m = e.n ? e.c / e.n : 0;

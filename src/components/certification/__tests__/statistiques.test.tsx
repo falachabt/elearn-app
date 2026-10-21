@@ -41,8 +41,8 @@ const PARTIES: Stats['parties'] = [1, 2, 3, 4, 5, 6, 7].map((partie) => ({
   etat: partie === 5 ? 'fragile' : partie === 7 ? 'pas_commencee' : 'acquise',
 }));
 const STATS_OK = (periode: Stats['periode'] = 7): Stats => ({
-  status: 'ok', periode, reponsesTotal: 84, score: { estime: true, min: 650, max: 730 },
-  barres: [{ fin: '2026-10-05', min: 600, max: 700, milieu: 650 }, { fin: '2026-10-12', min: 650, max: 730, milieu: 690 }],
+  status: 'ok', periode, reponsesTotal: 84, score: { estime: true, min: 650, max: 730, valeur: 690 },
+  barres: [{ fin: '2026-10-05', min: 600, max: 700, milieu: 650, valeur: 650 }, { fin: '2026-10-12', min: 650, max: 730, milieu: 690, valeur: 690 }],
   tendance: 'up', parties: PARTIES, minutesSeances: 95, minutesLecture: 22, joursSur7: 4, seances: 6, serieJours: 3,
   mots: { aRevoir: 5, enCours: 4, connus: 9 }, calculeLe: '2026-10-16T09:00:00Z',
 });
@@ -70,7 +70,7 @@ afterEach(() => {
 describe('ST1 · Statistiques', () => {
   it('score estimé, tendance, maîtrise par partie, temps, régularité et mots', async () => {
     await monter(<StatistiquesToeic />);
-    expect(await screen.findByText('650 à 730 sur 990')).toBeTruthy();
+    expect(await screen.findByText('690')).toBeTruthy();
     expect(screen.getByText(t.stats.tendanceHausse)).toBeTruthy();
     expect(screen.getByText(t.stats.mention)).toBeTruthy();
     expect(screen.getByText(t.stats.partie.replace('{{n}}', '5'))).toBeTruthy();
@@ -89,7 +89,7 @@ describe('ST1 · Statistiques', () => {
 
   it('change de période : un seul appel par période et un évènement', async () => {
     await monter(<StatistiquesToeic />);
-    await screen.findByText('650 à 730 sur 990');
+    await screen.findByText('690');
     await fireEvent.press(screen.getByText(t.stats.periodes.s30));
     await waitFor(() => expect(fausse.appels.stats).toEqual([7, 30]));
     expect(suivre).toHaveBeenCalledWith('cert_stats_period_changed', { periode: 's30' });
@@ -116,7 +116,7 @@ describe('ST1 · Statistiques', () => {
     installer({ stats: { ...STATS_OK(), status: 'first_week', tendance: null, barres: [] } });
     await monter(<StatistiquesToeic />);
     expect(await screen.findByText(t.stats.premiere.titre)).toBeTruthy();
-    expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
+    expect(screen.getByText('690')).toBeTruthy();
     expect(screen.queryByText(t.stats.tendanceHausse)).toBeNull();
     expect(screen.queryByLabelText(t.stats.graphique)).toBeNull();
   });
@@ -131,21 +131,21 @@ describe('ST1 · Statistiques', () => {
 
   it('ST4 · hors ligne : la dernière réponse est servie avec sa date de calcul', async () => {
     await monter(<StatistiquesToeic />);
-    await screen.findByText('650 à 730 sur 990');
+    await screen.findByText('690');
     installer({ stats: 'echec' });
     await monter(<StatistiquesToeic />);
     expect(await screen.findByText(t.stats.horsLigne.replace('{{date}}', '16 octobre'))).toBeTruthy();
-    expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
+    expect(screen.getByText('690')).toBeTruthy();
   });
 
   it('copie de plus de 7 jours : non servie', async () => {
     await monter(<StatistiquesToeic />);
-    await screen.findByText('650 à 730 sur 990');
+    await screen.findByText('690');
     installer({ stats: 'echec' });
     definirDernierContactPourTest(Date.now() - 8 * 24 * 3600 * 1000);
     await monter(<StatistiquesToeic />);
     expect(await screen.findByText(t.stats.expire.titre)).toBeTruthy();
-    expect(screen.queryByText('650 à 730 sur 990')).toBeNull();
+    expect(screen.queryByText('690')).toBeNull();
   });
 
   it('sans copie ni réseau : message d’erreur et nouvel essai', async () => {
@@ -154,12 +154,12 @@ describe('ST1 · Statistiques', () => {
     expect(await screen.findByText(t.stats.erreurTitre)).toBeTruthy();
     installer({ stats: STATS_OK() });
     await fireEvent.press(screen.getByText(t.reessayer));
-    expect(await screen.findByText('650 à 730 sur 990')).toBeTruthy();
+    expect(await screen.findByText('690')).toBeTruthy();
   });
 
   it('thème sombre', async () => {
     await monter(<StatistiquesToeic />, 'sombre');
-    expect(await screen.findByText('650 à 730 sur 990')).toBeTruthy();
+    expect(await screen.findByText('690')).toBeTruthy();
   });
 });
 

@@ -2862,6 +2862,7 @@ export const fr = {
       tendanceStable: 'Stable',
       mention: 'Une estimation, pas un score officiel.',
       graphique: 'Score estimé dans le temps',
+      cible: 'Cible {{score}}',
       maitrise: 'Maîtrise par partie',
       partie: 'Partie {{n}}',
       partieAide: '{{n}} réponses',

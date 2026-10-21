@@ -242,8 +242,8 @@ const testsServeur: Pick<CertApi, Testee> = {
     const res = await rpcAuthentifie('cert_stats_get', { p_period: periode, p_exam: exam, p_today: jourLocal });
     const j = verifier(res) as {
       status: Stats['status']; answers_total?: number;
-      score?: { estimated: boolean; score_min: number | null; score_max: number | null };
-      bars?: { end: string; score_min: number; score_max: number; mid: number }[]; trend?: Stats['tendance'];
+      score?: { estimated: boolean; score: number | null; score_min: number | null; score_max: number | null };
+      bars?: { end: string; score_min: number; score_max: number; mid: number; score?: number | null }[]; trend?: Stats['tendance'];
       parts?: { part: number; answered: number; correct: number; rate: number | null; mastery: number; mastery_answers: number; state: string }[];
       time?: { session_minutes: number; reading_minutes: number };
       regularity?: { days_last_7: number; sessions: number; streak: number };
@@ -253,8 +253,8 @@ const testsServeur: Pick<CertApi, Testee> = {
       status: j.status,
       periode,
       reponsesTotal: j.answers_total ?? 0,
-      score: j.score ? { estime: !!j.score.estimated, min: j.score.score_min, max: j.score.score_max } : null,
-      barres: (j.bars ?? []).map((b) => ({ fin: b.end, min: b.score_min, max: b.score_max, milieu: b.mid })),
+      score: j.score ? { estime: !!j.score.estimated, min: j.score.score_min, max: j.score.score_max, valeur: j.score.score ?? null } : null,
+      barres: (j.bars ?? []).map((b) => ({ fin: b.end, min: b.score_min, max: b.score_max, milieu: b.mid, valeur: b.score ?? null })),
       tendance: j.trend ?? null,
       parties: (j.parts ?? []).map((p) => ({ partie: p.part, repondues: p.answered, bonnes: p.correct, taux: p.rate, maitrise: Number(p.mastery), reponsesMaitrise: p.mastery_answers, etat: etatDepuisServeur(p.state) })),
       minutesSeances: j.time?.session_minutes ?? 0,

@@ -203,14 +203,14 @@ export type EtatGains = { plafond: number; gagneSemaine: number; serie: number; 
 export type ResultatGain = { status: 'granted' | 'already' | 'cap_reached' | 'not_eligible' | 'account_required'; montant?: number; gagneSemaine?: number; plafond?: number };
 
 export type PeriodeStats = 7 | 30 | 0;
-export type BarreScore = { fin: Jour; min: number; max: number; milieu: number };
+export type BarreScore = { fin: Jour; min: number; max: number; milieu: number; /** Score estimé exact de la période (un seul chiffre), `null` sans estimation. */ valeur: number | null };
 export type PartieStats = { partie: number; repondues: number; bonnes: number; taux: number | null; maitrise: number; reponsesMaitrise: number; etat: EtatMaitrise };
 /** Statistiques d'une période (F11) : `guest`, `empty` (ST2) et `first_week` (ST3) sont des états, pas des erreurs. */
 export type Stats = {
   status: 'ok' | 'first_week' | 'empty' | 'guest';
   periode: PeriodeStats;
   reponsesTotal: number;
-  score: { estime: boolean; min: number | null; max: number | null } | null;
+  score: { estime: boolean; min: number | null; max: number | null; valeur: number | null } | null;
   barres: BarreScore[];
   tendance: 'up' | 'down' | 'stable' | null;
   parties: PartieStats[];
