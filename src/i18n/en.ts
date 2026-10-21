@@ -2281,6 +2281,7 @@ export const en: Textes = {
       enCours: 'Listening',
       ecouter: 'Listen',
       reecouter: 'Listen again',
+      trou: 'Blank {{n}}',
       pause: 'Pause',
       question: 'Question {{n}}',
       choisi: 'Selected',

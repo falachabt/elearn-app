@@ -2282,6 +2282,7 @@ export const fr = {
       enCours: 'Écoute en cours',
       ecouter: 'Écouter',
       reecouter: 'Réécouter',
+      trou: 'Trou {{n}}',
       pause: 'Pause',
       question: 'Question {{n}}',
       choisi: 'Choisi',

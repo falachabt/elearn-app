@@ -35,6 +35,9 @@ type Props = {
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
 const SANS_ENONCE = new Set(['photo', 'question_reponse']);
 
+/** Trou d'une phrase (parties 5 et 6) : « ------- ». Le numéro de la question remplace le trait (v21). */
+const ALEA_TROU = /-{3,}/;
+
 /** Remplace le trou « ------- » d'une phrase par un trait lisible. */
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
@@ -94,7 +97,22 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
           </ScrollView>
         </View>
       ) : null}
-      <Text accessibilityRole="header" style={[typo.texteFort, { color: theme.texte.principal }]}>{consigne}</Text>
+      {ALEA_TROU.test(question.stem) && !SANS_ENONCE.has(question.type) ? (
+        <View accessibilityRole="header" style={styles.phrase}>
+          {question.stem.split(ALEA_TROU).flatMap((morceau, i, tous) => [
+            ...morceau.split(' ').filter(Boolean).map((mot, j) => (
+              <Text key={`m${i}-${j}`} style={[typo.texteFort, { color: theme.texte.principal }]}>{mot}</Text>
+            )),
+            i < tous.length - 1 ? (
+              <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: question.number ?? 0 })} style={[styles.trou, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.surCouleur }]}>{question.number ?? '…'}</Text>
+              </View>
+            ) : null,
+          ])}
+        </View>
+      ) : (
+        <Text accessibilityRole="header" style={[typo.texteFort, { color: theme.texte.principal }]}>{consigne}</Text>
+      )}
       <View accessibilityRole="radiogroup" style={styles.options}>
         {question.options.map((o, i) => (
           <OptionReponse
@@ -113,6 +131,9 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
 
 const styles = StyleSheet.create({
   colonne: { gap: espace[4] },
+  phrase: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: espace[2], rowGap: espace[2] },
+  trou: { minWidth: 44, minHeight: 28, paddingHorizontal: espace[2], alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
+  trouNumero: { fontWeight: '700' },
   image: { width: '100%', aspectRatio: 16 / 10, borderWidth: bord.normal, borderRadius: rayon.m },
   imageAbsente: { alignItems: 'center', justifyContent: 'center', padding: espace[4] },
   options: { gap: espace[3] },
