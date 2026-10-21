@@ -197,10 +197,10 @@ function Segments({ segments, style, lien }: { segments: Segment[]; style: TextS
 }
 
 /** Affichage des leçons (D2) : titres, paragraphes, listes, tableaux, images, formules en ligne. `surJaune` : corrigé d'exercice. */
-export function Blocs({ blocs, surJaune, surCouleur }: { blocs: Bloc[]; surJaune?: boolean; surCouleur?: boolean }) {
+export function Blocs({ blocs, surJaune, surCouleur, texteStyle, couleurTexte }: { blocs: Bloc[]; surJaune?: boolean; surCouleur?: boolean; texteStyle?: TextStyle; couleurTexte?: string }) {
   const { theme } = useTheme();
   const c = useCouleurs(surJaune, surCouleur);
-  const texte = { ...typo.texte, color: c.texte };
+  const texte = { ...typo.texte, ...texteStyle, color: couleurTexte ?? c.texte };
   return (
     <View style={styles.pile}>
       {blocs.map((b, i) => {

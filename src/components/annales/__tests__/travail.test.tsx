@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { changerLangue } from '@/i18n';
 import { en } from '@/i18n/en';
 import { fr } from '@/i18n/fr';
-import { definirBrouillon, lireBrouillon, PREFERENCE_TEMPS_DEFAUT, visiteDejaVue, type PreferenceTemps, type Session } from '@/services/travailSujet';
+import { definirBrouillon, lireBrouillon, memoriserSujet, PREFERENCE_TEMPS_DEFAUT, visiteDejaVue, type PreferenceTemps, type Session } from '@/services/travailSujet';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
 import { AnalyseTravail } from '../travail/AnalyseTravail';
@@ -21,7 +21,7 @@ import { SessionTravail } from '../travail/SessionTravail';
 
 let mockParams: Record<string, string> = {};
 jest.mock('expo-router', () => ({
-  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), canGoBack: jest.fn(() => true) },
+  router: { replace: jest.fn(), push: jest.fn(), back: jest.fn(), dismissTo: jest.fn(), canGoBack: jest.fn(() => true) },
   useLocalSearchParams: () => mockParams,
 }));
 jest.mock('@/session/CreditsProvider', () => ({
@@ -29,6 +29,8 @@ jest.mock('@/session/CreditsProvider', () => ({
 }));
 jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => 'u1', useSession: () => ({ session: { user: { id: 'u1', is_anonymous: false } } }) }));
 
+const mockDemarrer = jest.fn();
+jest.mock('@/components/Visite', () => ({ useVisite: () => ({ demarrer: mockDemarrer }) }));
 jest.mock('expo-camera', () => ({ CameraView: () => null, useCameraPermissions: () => [{ granted: true }, jest.fn()] }));
 jest.mock('expo-image-picker', () => ({ launchImageLibraryAsync: jest.fn() }));
 jest.mock('@/components/photo/CadreRecadrage', () => {
@@ -241,24 +243,34 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(router.replace).not.toHaveBeenCalled();
     });
 
-    it('première ouverture : la visite interactive s’ouvre', async () => {
+    it('première ouverture : la visite guidée se lance sur les vrais boutons', async () => {
       await AsyncStorage.clear();
-      await monter(<PhotosTravail />);
-      await waitFor(() => expect(router.push).toHaveBeenCalledWith('/annales/visite'));
+      jest.useFakeTimers();
+      try {
+        await monter(<PhotosTravail />);
+        await act(async () => { await jest.advanceTimersByTimeAsync(1000); });
+        expect(mockDemarrer).toHaveBeenCalledTimes(1);
+        const [etapes, onFin] = mockDemarrer.mock.calls[0];
+        expect(etapes.map((e: { id: string }) => e.id)).toEqual(['viseur', 'obturateur', 'galerie', 'compteur', 'terminer', 'aide']);
+        await act(async () => { onFin(true); });
+        expect(mockSuivre).toHaveBeenCalledWith('annale_visite_vue', { terminee: true });
+        expect(await visiteDejaVue()).toBe(true);
+      } finally {
+        jest.useRealTimers();
+      }
     });
 
     it('« Revoir la visite » relance la visite même déjà vue', async () => {
       await monter(<PhotosTravail />);
       await act(async () => {});
       await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirVisite }));
-      expect(router.push).toHaveBeenCalledWith('/annales/visite');
+      expect(mockDemarrer).toHaveBeenCalledTimes(1);
     });
 
-    it('visite déjà vue : rien ne s’ouvre', async () => {
+    it('visite déjà vue : rien ne se lance', async () => {
       await monter(<PhotosTravail />);
-      await waitFor(() => expect(visiteDejaVue).toBeDefined());
       await act(async () => {});
-      expect(router.push).not.toHaveBeenCalledWith('/annales/visite');
+      expect(mockDemarrer).not.toHaveBeenCalled();
     });
 
     it('toucher une vignette ouvre l’aperçu', async () => {
@@ -361,6 +373,104 @@ describe.each(['fr', 'en'] as const)('anciens sujets, parcours du travail (%s)',
       expect(screen.getByText('0/2')).toBeTruthy();
       expect(screen.getByText('Presque')).toBeTruthy();
       expect(screen.getByText('Bon début')).toBeTruthy();
+    });
+
+    const structuree = (extra: Partial<Session> = {}) =>
+      session({
+        score: 5,
+        total: 10,
+        resultat: {
+          resume: 'Voir $\\frac{1}{2}$',
+          questions: [
+            { n: '1', titre: 'Limite', points: 3, max: 3, commentaire: 'Juste', partie: 'Partie A', exercice: 'Exercice 1' },
+            { n: '2', titre: 'Dérivée', points: 1, max: 4, commentaire: 'Tu as écrit $x^2$ au lieu de $2x$', partie: 'Partie A', exercice: 'Exercice 1', enonce: 'Dérive $f(x)=x^2$.', reponse_eleve: '$x^2$', bonne_reponse: '$2x$', explication: 'On abaisse la puissance.' },
+            { n: '3', titre: 'Aire', points: 1, max: 3, commentaire: 'Presque', partie: 'Partie B', exercice: 'Exercice 2' },
+          ],
+        },
+        ...extra,
+      });
+
+    it('structure du sujet : parties et exercices repliables avec leurs points', async () => {
+      mockLireSession.mockResolvedValue(structuree());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('Partie A')).toBeTruthy());
+      expect(screen.getByText('Exercice 1')).toBeTruthy();
+      expect(screen.getByText('Partie B')).toBeTruthy();
+      expect(screen.getAllByText(x.travail.sectionPoints.replace('{{points}}', '4').replace('{{max}}', '7'))).toHaveLength(2);
+      expect(screen.getByText('Presque')).toBeTruthy();
+      await fireEvent.press(screen.getByRole('button', { name: new RegExp(x.travail.sectionReplier.replace('{{titre}}', 'Partie B')) }));
+      expect(screen.queryByText('Presque')).toBeNull();
+      await fireEvent.press(screen.getByRole('button', { name: new RegExp(x.travail.sectionDeplier.replace('{{titre}}', 'Partie B')) }));
+      expect(screen.getByText('Presque')).toBeTruthy();
+    });
+
+    it('sujet sans parties ni exercices : questions directes, aucune section', async () => {
+      mockLireSession.mockResolvedValue(session());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('12/20')).toBeTruthy());
+      expect(screen.queryByRole('button', { name: new RegExp(x.travail.sectionReplier.replace('{{titre}}', '')) })).toBeNull();
+    });
+
+    it('formules LaTeX : rendues en texte lisible, jamais de $ ni de barre oblique', async () => {
+      mockLireSession.mockResolvedValue(structuree());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('Partie A')).toBeTruthy());
+      expect(screen.queryByText(/[$\\]/)).toBeNull();
+      expect(screen.getByLabelText('1/2')).toBeTruthy();
+    });
+
+    it('toucher une question ouvre son détail : énoncé, réponse, bonne réponse et explication', async () => {
+      mockLireSession.mockResolvedValue(structuree());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('Partie A')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: new RegExp(`${x.travail.question.replace('{{n}}', '2')}, Dérivée`) }));
+      await waitFor(() => expect(screen.getByText(x.travail.detailBonneReponse)).toBeTruthy());
+      expect(screen.getByText(x.travail.detailEnonce)).toBeTruthy();
+      expect(screen.getByText(x.travail.detailTaReponse)).toBeTruthy();
+      expect(screen.getByText(x.travail.detailExplication)).toBeTruthy();
+      expect(screen.getByText('On abaisse la puissance.')).toBeTruthy();
+    });
+
+    it('question entièrement juste : pas de bonne réponse ni d’explication dans le détail', async () => {
+      mockLireSession.mockResolvedValue(structuree({ resultat: { resume: '', questions: [{ n: '1', titre: 'Limite', points: 3, max: 3, commentaire: 'Juste', reponse_eleve: '1', bonne_reponse: '1', explication: 'Direct.' }] } }));
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('Juste')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: new RegExp(`${x.travail.question.replace('{{n}}', '1')}, Limite`) }));
+      await waitFor(() => expect(screen.getByText(x.travail.detailTaReponse)).toBeTruthy());
+      expect(screen.queryByText(x.travail.detailBonneReponse)).toBeNull();
+      expect(screen.queryByText(x.travail.detailExplication)).toBeNull();
+    });
+
+    it('« Quitter » ramène sur la page de détails du sujet avec ses paramètres, jamais « Retour au sujet »', async () => {
+      memoriserSujet('exam', '1', { id: '1' });
+      mockLireSession.mockResolvedValue(session());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('12/20')).toBeTruthy());
+      expect(screen.queryByText('Retour au sujet')).toBeNull();
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.quitter }));
+      expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: '1' } });
+    });
+
+    it('document de classe : « Quitter » rouvre le sujet avec son titre et son corrigé', async () => {
+      mockParams = { id: 's1', kind: 'document', ref: 'd1' };
+      memoriserSujet('document', 'd1', { id: 'd1', kind: 'document', nom: 'Séquence 3', cat: 'Maths', corr: 'd1c' });
+      mockLireSession.mockResolvedValue(session());
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('12/20')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.quitter }));
+      expect(router.dismissTo).toHaveBeenCalledWith({ pathname: '/annales/sujet', params: { id: 'd1', kind: 'document', nom: 'Séquence 3', cat: 'Maths', corr: 'd1c' } });
+    });
+
+    it('« Revoir mes feuilles » : feuilles affichées, ou message si le chargement échoue', async () => {
+      mockLireSession.mockResolvedValue(session());
+      mockUrls.mockResolvedValueOnce(['https://r2/a.jpg', 'https://r2/b.jpg']);
+      await monter(<SessionTravail />);
+      await waitFor(() => expect(screen.getByText('12/20')).toBeTruthy());
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirFeuilles }));
+      await waitFor(() => expect(screen.getByLabelText(x.travail.feuilleNumero.replace('{{n}}', '2'))).toBeTruthy());
+      mockUrls.mockRejectedValueOnce(new Error('x'));
+      await fireEvent.press(screen.getByRole('button', { name: x.travail.revoirFeuilles }));
+      await waitFor(() => expect(screen.getByText(x.travail.feuillesErreur)).toBeTruthy());
     });
 
     it('session introuvable ou non terminée : état absent', async () => {

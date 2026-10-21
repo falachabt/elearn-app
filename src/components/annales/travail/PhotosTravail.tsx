@@ -7,13 +7,15 @@ import { useEffect, useRef, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { suivre } from '@/services/analytics';
 import { useTraduction } from '@/i18n/useTraduction';
-import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
+import { MAX_FEUILLES, ajouterFeuilles, majFeuilles, marquerVisiteVue, nouvelleFeuille, retirerFeuille, useBrouillon, visiteDejaVue } from '@/services/travailSujet';
 import { bord, espace, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
 import { Bouton } from '../../Bouton';
 import { useFeedback } from '../../useFeedback';
+import { useVisite } from '../../Visite';
 
 /** L'appareil photo reste sombre dans les deux thèmes (guide, parcours B). */
 const NOIR = palette.encre[1000];
@@ -29,11 +31,41 @@ export function PhotosTravail() {
   const camera = useRef<CameraView>(null);
   const [prete, setPrete] = useState(false);
   const [prise, setPrise] = useState(false);
-  // Première ouverture : visite guidée interactive (écran à part, sur une feuille d'exemple).
+  const refViseur = useRef<View>(null);
+  const refCompteur = useRef<View>(null);
+  const refAide = useRef<View>(null);
+  const refGalerie = useRef<View>(null);
+  const refObturateur = useRef<View>(null);
+  const refTerminer = useRef<View>(null);
+  const { demarrer } = useVisite();
+  // Visite guidée (bibliothèque de visite de l'app) : met en avant les vrais boutons de l'écran.
+  const lancerVisite = () =>
+    demarrer(
+      [
+        { id: 'viseur', cible: refViseur, titre: t('travail.visiteGuide.viseurTitre'), description: t('travail.visiteGuide.viseur') },
+        { id: 'obturateur', cible: refObturateur, titre: t('travail.visiteGuide.obturateurTitre'), description: t('travail.visiteGuide.obturateur') },
+        { id: 'galerie', cible: refGalerie, titre: t('travail.visiteGuide.galerieTitre'), description: t('travail.visiteGuide.galerie') },
+        { id: 'compteur', cible: refCompteur, titre: t('travail.visiteGuide.compteurTitre'), description: t('travail.visiteGuide.compteur') },
+        { id: 'terminer', cible: refTerminer, titre: t('travail.visiteGuide.terminerTitre'), description: t('travail.visiteGuide.terminer') },
+        { id: 'aide', cible: refAide, titre: t('travail.visiteGuide.aideTitre'), description: t('travail.visiteGuide.aide') },
+      ],
+      (terminee) => {
+        void marquerVisiteVue();
+        suivre('annale_visite_vue', { terminee });
+      },
+    );
+  // Première ouverture : la visite se lance seule, une fois les boutons mesurables.
   useEffect(() => {
     let actif = true;
-    void visiteDejaVue().then((vue) => { if (actif && !vue) router.push('/annales/visite'); });
-    return () => { actif = false; };
+    let minuteur: ReturnType<typeof setTimeout> | undefined;
+    void visiteDejaVue().then((vue) => {
+      if (actif && !vue) minuteur = setTimeout(lancerVisite, 600);
+    });
+    return () => {
+      actif = false;
+      if (minuteur) clearTimeout(minuteur);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const feuilles = brouillon?.feuilles ?? [];
   const plein = feuilles.length >= MAX_FEUILLES;
@@ -68,15 +100,15 @@ export function PhotosTravail() {
           <View style={styles.carre}><X size={20} color={BLANC} strokeWidth={2} /></View>
         </Appui>
         <View style={styles.droite}>
-          <View style={styles.pastille} accessibilityLiveRegion="polite">
+          <View ref={refCompteur} collapsable={false} style={styles.pastille} accessibilityLiveRegion="polite">
             <Text style={[typo.donnee, { color: BLANC }]}>{t(feuilles.length > 1 ? 'travail.feuilles' : 'travail.feuille', { n: feuilles.length })}</Text>
           </View>
-          <Appui accessibilityRole="button" accessibilityLabel={t('travail.revoirVisite')} onPress={() => router.push('/annales/visite')} decalage={0} rayon={rayon.m}>
-            <View style={[styles.carre, styles.aide]}><CircleHelp size={20} color={BLANC} strokeWidth={2} /></View>
+          <Appui accessibilityRole="button" accessibilityLabel={t('travail.revoirVisite')} onPress={lancerVisite} decalage={0} rayon={rayon.m}>
+            <View ref={refAide} collapsable={false} style={[styles.carre, styles.aide]}><CircleHelp size={20} color={BLANC} strokeWidth={2} /></View>
           </Appui>
         </View>
       </View>
-      <View style={styles.viseur}>
+      <View ref={refViseur} collapsable={false} style={styles.viseur}>
         {permission?.granted ? (
           <CameraView ref={camera} style={StyleSheet.absoluteFill} facing="back" onCameraReady={() => setPrete(true)} />
         ) : (
@@ -104,13 +136,13 @@ export function PhotosTravail() {
       </ScrollView>
       <View style={styles.bas}>
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosGalerie')} onPress={() => void galerie()} decalage={0} rayon={rayon.m}>
-          <View style={styles.carre}><IconeImage size={20} color={BLANC} strokeWidth={2} /></View>
+          <View ref={refGalerie} collapsable={false} style={styles.carre}><IconeImage size={20} color={BLANC} strokeWidth={2} /></View>
         </Appui>
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosPrendre')} accessibilityState={{ disabled: !prete || prise || plein }} disabled={!prete || prise || plein} onPress={() => void photographier()} decalage={0} rayon={rayon.pilule}>
-          <View style={[styles.obturateur, (!prete || plein) && { opacity: 0.4 }]} />
+          <View ref={refObturateur} collapsable={false} style={[styles.obturateur, (!prete || plein) && { opacity: 0.4 }]} />
         </Appui>
         <Appui accessibilityRole="button" accessibilityLabel={t('travail.photosTerminer')} onPress={terminer} decalage={0} rayon={rayon.m}>
-          <View style={[styles.carre, styles.terminer]}><Text style={[typo.boutonPetit, { color: NOIR }]}>{t('travail.photosTerminer')}</Text></View>
+          <View ref={refTerminer} collapsable={false} style={[styles.carre, styles.terminer]}><Text style={[typo.boutonPetit, { color: NOIR }]}>{t('travail.photosTerminer')}</Text></View>
         </Appui>
       </View>
     </View>

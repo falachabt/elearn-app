@@ -142,6 +142,47 @@ export function latexVersTexte(latex: string): string {
   return sortie.replace(/\s+/g, ' ').trim();
 }
 
+const MATHS = /\$\$([\s\S]+?)\$\$|\$([^$\n]+?)\$|\\\(([\s\S]+?)\\\)|\\\[([\s\S]+?)\\\]/g;
+
+/** Texte hors formule : **gras** reconnu ; du LaTeX resté sans `$` (« \\frac{1}{2} ») est converti en texte lisible. */
+function segmentsSansMath(texte: string): Segment[] {
+  const sortie: Segment[] = [];
+  texte.split(/(\*\*[^*]+\*\*)/g).forEach((morceau) => {
+    if (!morceau) return;
+    const gras = /^\*\*[^*]+\*\*$/.test(morceau);
+    const brut = gras ? morceau.slice(2, -2) : morceau;
+    sortie.push({ texte: /\\[a-zA-Z]+/.test(brut) ? `${/^\s/.test(brut) ? ' ' : ''}${latexVersTexte(brut)}${/\s$/.test(brut) ? ' ' : ''}` : brut, ...(gras ? { gras: true } : {}) });
+  });
+  return sortie;
+}
+
+/**
+ * Texte écrit par l'IA ou un auteur, avec des formules entre $…$, $$…$$, \(…\) ou \[…\] → segments de l'app. Une formule
+ * devient un segment `math` (texte lisible + LaTeX pour le rendu dessiné) ; jamais de « $ » ni de barre oblique affichés.
+ */
+export function segmentsAvecFormules(texte: string): Segment[] {
+  const sortie: Segment[] = [];
+  let dernier = 0;
+  for (const m of texte.matchAll(MATHS)) {
+    const debut = m.index ?? 0;
+    if (debut > dernier) sortie.push(...segmentsSansMath(texte.slice(dernier, debut)));
+    const latex = (m[1] ?? m[2] ?? m[3] ?? m[4] ?? '').trim();
+    if (latex) sortie.push({ texte: latexVersTexte(latex), math: true, latex });
+    dernier = debut + m[0].length;
+  }
+  if (dernier < texte.length) sortie.push(...segmentsSansMath(texte.slice(dernier)));
+  return sortie;
+}
+
+/** Un paragraphe par ligne non vide, formules comprises. */
+export function blocsDepuisTexte(texte: string): Bloc[] {
+  return texte
+    .split(/\n+/)
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l): Bloc => ({ type: 'paragraphe', segments: segmentsAvecFormules(l), retrait: 0 }));
+}
+
 /** Texte avec formules entre $…$ (énoncés de quiz) : formules converties, le reste gardé. */
 export function texteAvecFormules(texte: string): string {
   return texte.replace(/\$\$([^$]+)\$\$|\$([^$]+)\$/g, (_, a: string | undefined, b: string | undefined) => latexVersTexte(a ?? b ?? ''));

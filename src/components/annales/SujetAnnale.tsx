@@ -15,6 +15,7 @@ import {
   enregistrerPreferenceTemps,
   lirePreferenceTemps,
   lireSessions,
+  memoriserSujet,
   preferenceCoherente,
   type PreferenceTemps,
   type Session,
@@ -61,6 +62,10 @@ export function SujetAnnale() {
   const [sessionsErreur, setSessionsErreur] = useState(false);
   const [ia, setIa] = useState(false);
   const [temps, setTemps] = useState(false);
+  // La page de résultat revient ici avec « Quitter » : on retient ses paramètres (titre, dossier, corrigé).
+  useEffect(() => {
+    memoriserSujet(kind, String(id), { id: String(id), kind: kindParam, nom, cat, corr });
+  }, [kind, id, kindParam, nom, cat, corr]);
 
   useEffect(() => {
     if (document) {

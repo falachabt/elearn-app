@@ -9,6 +9,7 @@ import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../../Appui';
 import { Banniere } from '../../Banniere';
+import { couleurNiveauNote } from './couleurNote';
 import { dateCourte } from './SessionTravail';
 
 /** « Mes sessions » : anciennes corrections de l'élève sur ce sujet, avec la note de chacune. */
@@ -17,7 +18,7 @@ export function ListeSessions({ sessions, erreur, kind, reference }: { sessions:
   const { theme } = useTheme();
   const couleur = (s: Session) => {
     const n = s.score !== null && s.total !== null ? niveauNote(s.score, s.total) : 'moyenne';
-    return n === 'bonne' ? theme.marque.principale : n === 'moyenne' ? theme.accent.soleil : theme.etat.erreurDoux;
+    return couleurNiveauNote(theme, n);
   };
   return (
     <View style={styles.groupe}>

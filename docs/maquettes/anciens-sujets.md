@@ -64,3 +64,12 @@ Pas un diaporama : l'élève fait vraiment les gestes, sur une feuille d'exemple
 - Application en arrière-plan à l'échéance : notification locale, uniquement si la permission est déjà donnée (jamais demandée ici, AGENTS §18).
 
 - Revoir la visite (AS5f) : bouton rond d'aide (point d'interrogation, 48 px, bord blanc) en haut à droite de l'appareil photo, à côté de la pastille du nombre de feuilles. Relance la visite à tout moment, sans crédit ni envoi à l'IA.
+
+## Retours de Benny du 21 octobre : résultat de la correction (AS8 révisé) et visite avec la bibliothèque de l'app
+- **Structure du sujet** : le résultat reprend les parties, les exercices et les questions (ou des questions directes). Chaque partie et chaque exercice est une section repliable avec son titre et ses points obtenus / possibles ; la première est ouverte. Sans structure (anciennes sessions), liste à plat comme avant.
+- **Détail d'une question** : toucher une question ouvre une feuille du bas : énoncé, « Ta réponse » (ce que l'élève a écrit), « La bonne réponse » (seulement si la question n'a pas tous ses points), explication, commentaire. Les formules sont rendues comme dans les cours (même composant), jamais en LaTeX brut.
+- **Carte de note x/y** : fond émeraude par défaut ; orange (`etat.alerte`) sous 40 % ; corail (`etat.erreur`) sous 20 %. Texte noir (règle de contraste). La couleur ne porte pas seule l'information : le score reste écrit.
+- **Quitter** remplace « Retour au sujet » et ramène à la page de détails du sujet (mémorisé par `memoriserSujet`).
+- **« Revoir les feuilles »** : les adresses signées sont obtenues par la fonction Edge (lecture de la ligne par le serveur après contrôle du propriétaire), car les colonnes des chemins ne sont pas lisibles par l'élève.
+- **Visite guidée (AS5d, remplace la visite maison)** : bibliothèque `@wrack/react-native-tour-guide` (déjà dans l'app, aucun module natif ajouté) : projecteur sur les vrais boutons de la prise de photos, une carte d'explication par étape : viseur, bouton rond, galerie, compteur de feuilles, Terminer, aide. « Passer » toujours visible. Lancée une fois à la première ouverture ; le bouton d'aide (point d'interrogation) la relance. Évènement `annale_visite_vue`. L'ancienne visite sur feuille d'exemple n'est plus ouverte automatiquement.
+- Les maquettes HTML ne sont pas redessinées à cette date : cette spec fait foi (écrans existants ajustés, aucun nouvel écran).

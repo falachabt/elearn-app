@@ -14,7 +14,20 @@ import { cadrePixels, preparerImage, type Cadre } from './photo';
 
 export type TypeSujet = 'exam' | 'document';
 export type Feuille = { id: string; uri: string; largeur: number; hauteur: number };
-export type QuestionNotee = { n: string; titre: string; points: number; max: number; commentaire: string };
+/** Une question corrigée. Les champs après `commentaire` manquent aux sessions corrigées avant leur ajout. */
+export type QuestionNotee = {
+  n: string;
+  titre: string;
+  points: number;
+  max: number;
+  commentaire: string;
+  partie?: string;
+  exercice?: string;
+  enonce?: string;
+  reponse_eleve?: string;
+  bonne_reponse?: string;
+  explication?: string;
+};
 export type ResultatTravail = { questions: QuestionNotee[]; resume: string; barème_propose?: boolean };
 export type StatutSession = 'pending' | 'done' | 'unreadable' | 'failed';
 export type Session = {
@@ -88,10 +101,65 @@ export function niveauPoints(points: number, max: number): NiveauPoints {
   return points >= max ? 'plein' : 'partiel';
 }
 
-/** Note globale : bonne à partir de 60 %, à travailler en dessous de 40 %. */
-export function niveauNote(score: number, total: number): 'bonne' | 'moyenne' | 'faible' {
-  const r = total > 0 ? score / total : 0;
-  return r >= 0.6 ? 'bonne' : r >= 0.4 ? 'moyenne' : 'faible';
+/** Note globale : bonne à partir de 60 %, faible (orange) sous 40 %, critique (rouge) sous 20 %. */
+export type NiveauNote = 'bonne' | 'moyenne' | 'faible' | 'critique';
+export function niveauNote(score: number, total: number): NiveauNote {
+  if (!(total > 0)) return 'faible';
+  const r = score / total;
+  return r >= 0.6 ? 'bonne' : r >= 0.4 ? 'moyenne' : r >= 0.2 ? 'faible' : 'critique';
+}
+
+// --- Structure du sujet : parties, exercices, questions --------------------------------------------------------------
+
+export type GroupeExercice = { exercice: string | null; questions: QuestionNotee[]; points: number; max: number };
+export type GroupePartie = { partie: string | null; exercices: GroupeExercice[]; points: number; max: number };
+
+const somme = (qs: QuestionNotee[], cle: 'points' | 'max') => Math.round(qs.reduce((t, q) => t + q[cle], 0) * 4) / 4;
+
+/**
+ * Regroupe les questions dans l'ordre du sujet : parties, puis exercices, puis questions. Un sujet sans parties ni
+ * exercices (des questions directement) donne un seul groupe sans intitulé : l'écran n'affiche alors aucune section.
+ */
+export function grouperQuestions(questions: QuestionNotee[]): GroupePartie[] {
+  const parties: GroupePartie[] = [];
+  for (const q of questions) {
+    const nomPartie = q.partie?.trim() || null;
+    const nomExercice = q.exercice?.trim() || null;
+    let partie = parties[parties.length - 1];
+    if (!partie || partie.partie !== nomPartie) {
+      partie = { partie: nomPartie, exercices: [], points: 0, max: 0 };
+      parties.push(partie);
+    }
+    let exercice = partie.exercices[partie.exercices.length - 1];
+    if (!exercice || exercice.exercice !== nomExercice) {
+      exercice = { exercice: nomExercice, questions: [], points: 0, max: 0 };
+      partie.exercices.push(exercice);
+    }
+    exercice.questions.push(q);
+  }
+  for (const p of parties) {
+    for (const e of p.exercices) {
+      e.points = somme(e.questions, 'points');
+      e.max = somme(e.questions, 'max');
+    }
+    p.points = Math.round(p.exercices.reduce((t, e) => t + e.points, 0) * 4) / 4;
+    p.max = Math.round(p.exercices.reduce((t, e) => t + e.max, 0) * 4) / 4;
+  }
+  return parties;
+}
+
+/** Vrai quand le sujet a au moins un niveau (partie ou exercice) à montrer. */
+export const aUneStructure = (groupes: GroupePartie[]) => groupes.some((g) => g.partie || g.exercices.some((e) => e.exercice));
+
+/** Page de détail du sujet ouverte en dernier : « Quitter » y revient avec les mêmes paramètres (titre, dossier, corrigé). */
+let dernierSujet: { kind: TypeSujet; ref: string; params: Record<string, string> } | null = null;
+export function memoriserSujet(kind: TypeSujet, ref: string, params: Record<string, string | undefined>) {
+  dernierSujet = { kind, ref, params: Object.fromEntries(Object.entries(params).filter((e): e is [string, string] => typeof e[1] === 'string' && e[1] !== '')) };
+}
+export function destinationSujet(kind: string | undefined, ref: string | undefined): { pathname: '/annales/sujet'; params: Record<string, string> } | null {
+  if (dernierSujet && dernierSujet.kind === (kind === 'document' ? 'document' : 'exam') && dernierSujet.ref === ref) return { pathname: '/annales/sujet', params: dernierSujet.params };
+  if (kind !== 'document' && ref && /^\d+$/.test(ref)) return { pathname: '/annales/sujet', params: { id: ref } };
+  return null;
 }
 
 /** « 1 h 52 » ou « 45 min ». */

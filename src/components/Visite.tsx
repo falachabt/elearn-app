@@ -49,10 +49,10 @@ export function useVisite() {
     }),
     [theme, t],
   );
-  const demarrer = (etapes: EtapeVisite[]) =>
+  const demarrer = (etapes: EtapeVisite[], onFin?: (terminee: boolean) => void) =>
     startTour(
       etapes.map((e) => ({ id: e.id, targetRef: e.cible, title: e.titre, description: e.description })),
-      config,
+      onFin ? { ...config, onTourEnd: onFin } : config,
     );
   return { demarrer, ...reste };
 }

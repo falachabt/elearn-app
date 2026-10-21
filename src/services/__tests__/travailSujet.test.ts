@@ -25,6 +25,10 @@ import {
   lireSessions,
   majFeuilles,
   minutesValides,
+  destinationSujet,
+  grouperQuestions,
+  aUneStructure,
+  memoriserSujet,
   niveauNote,
   niveauPoints,
   nouvelleFeuille,
@@ -103,6 +107,42 @@ describe('note et points', () => {
     expect(niveauNote(8, 20)).toBe('moyenne');
     expect(niveauNote(7, 20)).toBe('faible');
     expect(niveauNote(0, 0)).toBe('faible');
+  });
+
+  it('note : orange sous 40 %, rouge sous 20 %', () => {
+    expect(niveauNote(8, 20)).toBe('moyenne');
+    expect(niveauNote(7.75, 20)).toBe('faible');
+    expect(niveauNote(4, 20)).toBe('faible');
+    expect(niveauNote(3.75, 20)).toBe('critique');
+    expect(niveauNote(0, 20)).toBe('critique');
+  });
+
+  it('structure : parties, exercices, questions dans l’ordre, avec leurs sommes', () => {
+    const q = (n: string, points: number, max: number, partie?: string, exercice?: string) => ({ n, titre: '', points, max, commentaire: '', partie, exercice });
+    const g = grouperQuestions([q('1', 1, 2, 'A', 'Ex 1'), q('2', 2, 3, 'A', 'Ex 1'), q('3', 1, 1, 'A', 'Ex 2'), q('4', 0.5, 2, 'B', 'Ex 3')]);
+    expect(g.map((p) => [p.partie, p.points, p.max])).toEqual([['A', 4, 6], ['B', 0.5, 2]]);
+    expect(g[0].exercices.map((e) => [e.exercice, e.questions.length, e.points, e.max])).toEqual([['Ex 1', 2, 3, 5], ['Ex 2', 1, 1, 1]]);
+    expect(aUneStructure(g)).toBe(true);
+  });
+
+  it('structure : exercices sans partie, ou questions directes', () => {
+    const q = (n: string, exercice?: string) => ({ n, titre: '', points: 1, max: 1, commentaire: '', exercice });
+    const sansPartie = grouperQuestions([q('1', 'Ex 1'), q('2', 'Ex 2')]);
+    expect(sansPartie).toHaveLength(1);
+    expect(sansPartie[0].partie).toBeNull();
+    expect(aUneStructure(sansPartie)).toBe(true);
+    const directes = grouperQuestions([q('1'), q('2'), q('3')]);
+    expect(directes[0].exercices[0].questions).toHaveLength(3);
+    expect(aUneStructure(directes)).toBe(false);
+    expect(grouperQuestions([])).toEqual([]);
+  });
+
+  it('destination de « Quitter » : page de détails mémorisée, sinon sujet d’annale par son identifiant', () => {
+    memoriserSujet('document', 'd1', { id: 'd1', kind: 'document', nom: 'Séq', cat: undefined, corr: '' });
+    expect(destinationSujet('document', 'd1')).toEqual({ pathname: '/annales/sujet', params: { id: 'd1', kind: 'document', nom: 'Séq' } });
+    expect(destinationSujet('document', 'autre')).toBeNull();
+    expect(destinationSujet('exam', '42')).toEqual({ pathname: '/annales/sujet', params: { id: '42' } });
+    expect(destinationSujet(undefined, undefined)).toBeNull();
   });
 
   it('durée lisible', () => {

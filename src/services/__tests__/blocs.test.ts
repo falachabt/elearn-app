@@ -1,6 +1,6 @@
 import { gzipSync, strToU8 } from 'fflate';
 
-import { decoderContenu, latexVersTexte, normaliserBlocs, texteAvecFormules } from '../blocs';
+import { decoderContenu, latexVersTexte, normaliserBlocs, texteAvecFormules, blocsDepuisTexte, segmentsAvecFormules } from '../blocs';
 
 /** Même format que le back-office (blocknote-codec.ts) : clés courtes, gzip, base64. */
 function compresser(blocs: unknown): string {
@@ -106,5 +106,26 @@ describe('latexVersTexte', () => {
 
   it('formules entre $ dans un texte', () => {
     expect(texteAvecFormules('Calcule $x^2$ pour $x = \\frac{1}{2}$.')).toBe('Calcule x² pour x = 1/2.');
+  });
+});
+
+describe('texte avec formules (commentaires de l’IA)', () => {
+  it('formules entre $…$, $$…$$, \\(…\\) et \\[…\\] : segments math, jamais de $ affiché', () => {
+    const segs = segmentsAvecFormules('Tu as écrit $x^2$ puis $$\\frac{1}{2}$$, et \\(a+b\\) ou \\[c\\].');
+    const maths = segs.filter((x) => x.math);
+    expect(maths.map((x) => x.latex)).toEqual(['x^2', '\\frac{1}{2}', 'a+b', 'c']);
+    expect(segs.map((x) => x.texte).join('')).not.toMatch(/[$\\]/);
+    expect(maths[1].texte).toBe('1/2');
+  });
+
+  it('LaTeX resté sans $ : converti en texte lisible ; **gras** reconnu', () => {
+    const segs = segmentsAvecFormules('Il faut **simplifier** \\frac{3}{4} avant.');
+    expect(segs.find((x) => x.gras)?.texte).toBe('simplifier');
+    expect(segs.map((x) => x.texte).join('')).toBe('Il faut simplifier 3/4 avant.');
+  });
+
+  it('un paragraphe par ligne non vide', () => {
+    expect(blocsDepuisTexte('Un\n\nDeux $x$\n')).toHaveLength(2);
+    expect(blocsDepuisTexte('   ')).toEqual([]);
   });
 });
