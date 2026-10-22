@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { BookOpen, NotebookPen, Target } from 'lucide-react-native';
+import { BookOpen, CalendarCheck, NotebookPen, Target } from 'lucide-react-native';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -75,6 +75,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
               <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.reviser.parcoursTexte')}</Text>
             </Carte>
           </Appui>
+          <LigneChoix icone={CalendarCheck} titre={t('certification.monPlan.entete')} aide={t('certification.monPlan.lien')} onPress={() => router.push('/certification/mon-plan' as never)} />
           <LigneChoix icone={BookOpen} titre={t('certification.reviser.partiesTitre')} aide={t('certification.reviser.partiesAide')} onPress={() => router.push('/certification/carte' as never)} />
           <LigneChoix icone={Target} titre={t('certification.reviser.coursTitre')} aide={aideCours} onPress={() => aller('cours')} />
           <LigneChoix icone={NotebookPen} titre={t('certification.reviser.carnetTitre')} aide={carnet.length ? aideCarnetRevoir : t('certification.reviser.carnetAideVide')} onPress={() => aller('carnet')} />
