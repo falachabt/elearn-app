@@ -6,7 +6,7 @@ import { etapeDemarrage } from './erreurDemarrage';
 import { ecrireJson, lireJson } from './etat';
 import { jourDe } from './jours';
 import type { Reglages } from './reglages';
-import type { DemarrageMini, FinTentative, ReponseEnvoyee, Tentative } from './types';
+import type { DemarrageMini, FinTentative, ReponseEnvoyee, Tentative, TypeTestFixe } from './types';
 
 /**
  * Mini-test (T2, écran d'examen, bilan réduit). État local écrit à chaque réponse : relancer l'app ou perdre le réseau
@@ -15,7 +15,8 @@ import type { DemarrageMini, FinTentative, ReponseEnvoyee, Tentative } from './t
  */
 export const CLE_MINI = 'cert.mini';
 
-export type LongueurMini = 10 | 20;
+/** Mini-tests (10 ou 20 questions) et épreuves fixes (100 pour une moitié, 200 pour le test complet). */
+export type LongueurMini = 10 | 20 | 100 | 200;
 
 export type EtatMini = {
   /** Identifiant d'idempotence du départ : un départ rejoué ne débite pas deux fois. */
@@ -47,6 +48,9 @@ export const longueursPossibles = (partie: number | null): LongueurMini[] => (pa
 
 /** Le temps vient des réglages du serveur : 10 minutes pour 10 questions au départ. */
 export const dureeMiniMin = (longueur: LongueurMini, r: Pick<Reglages, 'miniMinutesPour10'>) => (longueur / 10) * r.miniMinutesPour10;
+
+/** Durée officielle des épreuves fixes (T5), en minutes : écoute 45, lecture 75, test complet 120. */
+export const dureeTestMin: Record<TypeTestFixe, number> = { half_listening: 45, half_reading: 75, full: 120 };
 
 /** Millisecondes restantes (jamais négatif). */
 export const tempsRestantMs = (e: Pick<EtatMini, 'debutMs' | 'dureeMin'>, maintenantMs: number = Date.now()) =>
@@ -96,6 +100,26 @@ async function lancerMiniUnique(exam: string, partie: number | null, longueur: L
     clientUuid, exam, partie, longueur, tentative: rep.tentative,
     debutMs: Number.isFinite(debut) ? debut : Date.now(),
     dureeMin: dureeMiniMin(longueur, r),
+    reponses: [], index: 0, termine: false, fin: null,
+  };
+  await etapeDemarrage('stockage', () => ecrireMini(etat));
+  return { statut: 'demarre', etat };
+}
+
+/**
+ * Lance un demi-test ou le test complet (T5) : même état local et même reprise que le mini-test, avec la durée officielle.
+ * Le serveur tire les questions du test fixe et débite au lancement.
+ */
+export async function lancerTest(exam: string, testId: string, type: TypeTestFixe): Promise<ResultatLancement> {
+  const clientUuid = randomUUID();
+  const rep: DemarrageMini = await etapeDemarrage('appel', () => obtenirApi().demarrerTest(clientUuid, testId, type, exam, maintenant()));
+  if (rep.status === 'account_required') return { statut: 'compte_requis' };
+  if (rep.status === 'insufficient' || !rep.tentative) return { statut: 'insuffisant', cout: rep.cout, solde: rep.solde };
+  const debut = rep.status === 'replay' ? Date.parse(rep.tentative.started_at) : Date.now();
+  const etat: EtatMini = {
+    clientUuid, exam, partie: null, longueur: rep.tentative.questions.length as LongueurMini, tentative: rep.tentative,
+    debutMs: Number.isFinite(debut) ? debut : Date.now(),
+    dureeMin: dureeTestMin[type],
     reponses: [], index: 0, termine: false, fin: null,
   };
   await etapeDemarrage('stockage', () => ecrireMini(etat));
