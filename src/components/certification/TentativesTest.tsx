@@ -61,7 +61,13 @@ export function TentativesTest() {
                 key={x.id}
                 icone={x.status === 'finished' ? Trophy : x.status === 'in_progress' ? Layers : RotateCcw}
                 titre={`${new Date(x.startedAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })} · ${statutLibelle(t, x)}`}
-                aide={x.status === 'finished' && x.score !== null && x.score !== undefined ? t('certification.tentatives.scoreSur', { score: x.score, total: etat.valeur.total }) : t('certification.tentatives.sansScore')}
+                aide={[
+                  x.status === 'finished' && x.score !== null && x.score !== undefined ? t('certification.tentatives.scoreSur', { score: x.score, total: etat.valeur.total }) : t('certification.tentatives.sansScore'),
+                  dureeMinutes(x) === null ? null : t('certification.tentatives.duree', { n: dureeMinutes(x) }),
+                  t('certification.tentatives.revoir'),
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
                 onPress={() => router.push({ pathname: '/certification/tentative/[id]', params: { id: x.id } } as never)}
               />
             ))
@@ -70,6 +76,12 @@ export function TentativesTest() {
       ) : null}
     </Ecran>
   );
+}
+
+/** Temps passé sur une tentative terminée, en minutes entières ; `null` quand la fin n'est pas connue. */
+function dureeMinutes(x: TentativeListee): number | null {
+  if (!x.finishedAt) return null;
+  return Math.max(0, Math.round((new Date(x.finishedAt).getTime() - new Date(x.startedAt).getTime()) / 60_000));
 }
 
 /** Statut en mots (jamais seulement une couleur) : terminée, en cours, interrompue. */

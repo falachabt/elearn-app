@@ -69,9 +69,12 @@ afterEach(() => {
 
 describe('ST1 · Statistiques', () => {
   it('score estimé, tendance, maîtrise par partie, temps, régularité et mots', async () => {
+    // La tendance n'est affichée qu'avec un diagnostic terminé (maquette v33) : on en fournit un.
+    installer({ stats: STATS_OK(), tentatives: [{ id: 'diag', kind: 'diagnostic', part: null, length: 20, status: 'finished', score: 745, scoreMin: 700, scoreMax: 790, startedAt: '2026-10-01T10:00:00Z', finishedAt: '2026-10-01T10:30:00Z', perPart: null, timePerPart: null, creditsSpent: 0, refunded: false, questions: [] }] });
     await monter(<StatistiquesToeic />);
     expect(await screen.findByText('690')).toBeTruthy();
-    expect(screen.getByText(t.stats.tendanceHausse)).toBeTruthy();
+    // La tendance attend le chargement de la courbe (diagnostic).
+    expect(await screen.findByText(t.stats.tendanceHausse)).toBeTruthy();
     expect(screen.getByText(t.stats.mention)).toBeTruthy();
     expect(screen.getByText(t.stats.partie.replace('{{n}}', '5'))).toBeTruthy();
     expect(screen.getAllByText(t.resultat.etats.fragile).length).toBe(1);

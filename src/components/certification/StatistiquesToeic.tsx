@@ -15,7 +15,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
-import { CourbeTests } from './CourbeTests';
+import { chargerCourbe, CourbeTests } from './CourbeTests';
 import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, PastilleEtat, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
@@ -65,6 +65,8 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const { stats, depuisCopie } = donnees;
+  const courbe = useChargement(chargerCourbe);
+  const avecDiagnostic = courbe.etat.phase === 'ok' && courbe.etat.valeur.some((p) => p.type === 'diagnostic');
   const copie = depuisCopie && stats.calculeLe ? t('certification.stats.horsLigne', { date: new Date(stats.calculeLe).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }) }) : null;
   const masteryVue = useRef(false);
   const aDesParties = stats.status === 'ok' || stats.status === 'first_week';
@@ -96,7 +98,9 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
     );
   }
 
-  const tendance = stats.tendance === 'up' ? t('certification.stats.tendanceHausse') : stats.tendance === 'down' ? t('certification.stats.tendanceBaisse') : stats.tendance === 'stable' ? t('certification.stats.tendanceStable') : null;
+  const tendanceServeur = stats.tendance === 'up' ? t('certification.stats.tendanceHausse') : stats.tendance === 'down' ? t('certification.stats.tendanceBaisse') : stats.tendance === 'stable' ? t('certification.stats.tendanceStable') : null;
+  // Sans diagnostic, il n'y a pas de tendance à montrer : « Pas encore » (maquette v33).
+  const tendance = courbe.etat.phase !== 'ok' ? null : avecDiagnostic ? tendanceServeur : t('certification.historique.pasEncore');
   return (
     <>
       {copie ? <Banniere ton="info" titre={copie} /> : null}
@@ -107,7 +111,7 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
           {stats.score && stats.score.valeur !== null ? String(stats.score.valeur) : t('certification.historique.pasEncore')}
         </Text>
         {tendance ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tendance}</Text> : null}
-        <CourbeTests />
+        {courbe.etat.phase === 'ok' ? <CourbeTests points={courbe.etat.valeur} /> : null}
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
       </Carte>
       <EtiquetteSection texte={t('certification.stats.maitrise')} />
