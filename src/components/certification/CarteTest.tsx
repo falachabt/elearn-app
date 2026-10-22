@@ -36,7 +36,7 @@ export function CarteTest({ icone: Icone, couleur, titre, sous, statut, libelleS
     <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
         <View style={styles.haut}>
           <View style={[styles.icone, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-            <Icone size={22} color={theme.texte.principal} strokeWidth={2} />
+            <Icone size={22} color={theme.texte.surCouleur} strokeWidth={2} />
           </View>
           <View style={styles.texte}>
             <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titre}</Text>
