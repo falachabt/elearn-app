@@ -2734,7 +2734,10 @@ export const en: Textes = {
       bilanDef: {
         nouveau: 'New best score',
         premier: 'First score',
-        meilleur: 'Best score: {{score}} of {{max}}',
+        ancien: 'previous best {{score}}',
+        tentative: 'Score for this attempt',
+        reste: 'Your best stays {{score}} of {{max}}',
+        resteSansMax: 'Your best stays {{score}}',
         surMax: 'of {{max}}',
         retour: 'Back to tests',
       },
