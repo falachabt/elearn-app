@@ -6,7 +6,7 @@ import { etapeDemarrage } from './erreurDemarrage';
 import { ecrireJson, lireJson } from './etat';
 import { jourDe } from './jours';
 import type { Reglages } from './reglages';
-import type { DemarrageMini, FinTentative, ReponseEnvoyee, Tentative, TypeTestFixe } from './types';
+import type { DemarrageMini, FinTentative, ReponseEnvoyee, Tentative, TypeDefTest, TypeTestFixe } from './types';
 
 /**
  * Mini-test (T2, écran d'examen, bilan réduit). État local écrit à chaque réponse : relancer l'app ou perdre le réseau
@@ -164,4 +164,28 @@ export async function abandonnerMini(etat: EtatMini, raison: 'user' | 'expired')
   const rep = await obtenirApi().abandonnerTentative(etat.tentative.attempt_id, raison);
   await effacerMini();
   return { rembourse: rep.rembourse };
+}
+
+/** Type de test composé (liste v38, v39) vers le type d'épreuve qui fixe la durée et le débit. */
+const typeDeDefinition: Record<TypeDefTest, TypeTestFixe> = { listening: 'half_listening', reading: 'half_reading', full: 'full' };
+
+/**
+ * Lance un test composé (listes v38, v39) : même contrat que `lancerTest` (débit au lancement, replay), tiré du test
+ * composé choisi dans la liste.
+ */
+export async function lancerDefTest(exam: string, defId: string, kind: TypeDefTest): Promise<ResultatLancement> {
+  const clientUuid = randomUUID();
+  const rep: DemarrageMini = await etapeDemarrage('appel', () => obtenirApi().demarrerDefTest(clientUuid, defId, exam, maintenant()));
+  if (rep.status === 'account_required') return { statut: 'compte_requis' };
+  if (rep.status === 'insufficient' || !rep.tentative) return { statut: 'insuffisant', cout: rep.cout, solde: rep.solde };
+  const type = typeDeDefinition[kind];
+  const debut = rep.status === 'replay' ? Date.parse(rep.tentative.started_at) : Date.now();
+  const etat: EtatMini = {
+    clientUuid, exam, partie: null, longueur: rep.tentative.questions.length as LongueurMini, tentative: rep.tentative,
+    debutMs: Number.isFinite(debut) ? debut : Date.now(),
+    dureeMin: dureeTestMin[type],
+    reponses: [], index: 0, termine: false, fin: null,
+  };
+  await etapeDemarrage('stockage', () => ecrireMini(etat));
+  return { statut: 'demarre', etat };
 }

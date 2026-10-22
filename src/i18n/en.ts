@@ -2731,6 +2731,23 @@ export const en: Textes = {
     },
     tests: {
       entete: 'Tests',
+      listes: {
+        titreEcoute: 'Listening half-tests',
+        titreLecture: 'Reading half-tests',
+        titreComplet: 'Full tests',
+        fait: 'Done: {{faits}} of {{total}}',
+        pasDeScore: 'No score yet',
+        meilleurSection: 'Best of the section: {{score}} of {{max}}',
+        numeroEcoute: 'Listening n° {{numero}}',
+        numeroLecture: 'Reading n° {{numero}}',
+        numeroComplet: 'Full test n° {{numero}}',
+        statut: { pas_fait: 'Not done yet', commence: 'Started', fait: 'Done' },
+        conseille: 'Recommended',
+        pasDeScoreLigne: 'No score yet',
+        meilleur: 'Best: {{score}}',
+        tentatives: 'Attempts: {{n}}',
+        nouvelles: '{{n}} new questions for you',
+      },
       suivi: {
         pasFait: 'Not done yet',
         enCours: 'In progress · Resume',
