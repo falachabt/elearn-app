@@ -2935,6 +2935,11 @@ export const en: Textes = {
       retour: 'Back to history',
     },
     stats: {
+      courbe: {
+        depart: 'Start',
+        diagnostic: 'Diagnostic',
+        test: 'Test {{n}}',
+      },
       entete: 'Statistics',
       periodes: { s7: 'Week', s30: 'Month', s0: 'All' },
       score: 'Estimated score',

@@ -44,3 +44,21 @@ export function meilleurScore(liste: TentativeListee[]): number | null {
   const scores = liste.filter((t) => t.status === 'finished' && t.score !== null && t.score !== undefined).map((t) => t.score as number);
   return scores.length ? Math.max(...scores) : null;
 }
+
+/** Un point de la courbe des scores (maquette v33) : le départ à 0, le diagnostic, puis un point par test terminé. */
+export type PointCourbe = { type: 'depart' } | { type: 'diagnostic'; valeur: number } | { type: 'test'; valeur: number; numero: number };
+
+/**
+ * Points de la courbe : « Départ » à 0 (toujours), le score du diagnostic s'il existe, puis un point par demi-test ou
+ * test complet terminé, dans l'ordre de fin. Les mini-tests ne sont pas comptés, ni les tentatives interrompues.
+ */
+export function pointsCourbe(liste: TentativeListee[]): PointCourbe[] {
+  const points: PointCourbe[] = [{ type: 'depart' }];
+  const diagnostic = liste.find((t) => t.kind === 'diagnostic' && t.status === 'finished' && t.score !== null && t.score !== undefined);
+  if (diagnostic?.score !== null && diagnostic?.score !== undefined) points.push({ type: 'diagnostic', valeur: diagnostic.score });
+  const tests = liste
+    .filter((t) => (t.kind === 'full' || t.kind === 'half_listening' || t.kind === 'half_reading') && t.status === 'finished' && t.score !== null && t.score !== undefined)
+    .sort((a, b) => (a.finishedAt ?? a.startedAt).localeCompare(b.finishedAt ?? b.startedAt));
+  tests.forEach((t, i) => points.push({ type: 'test', valeur: t.score as number, numero: i + 1 }));
+  return points;
+}

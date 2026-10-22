@@ -118,7 +118,8 @@ describe('ST1 · Statistiques', () => {
     expect(await screen.findByText(t.stats.premiere.titre)).toBeTruthy();
     expect(screen.getByText('690')).toBeTruthy();
     expect(screen.queryByText(t.stats.tendanceHausse)).toBeNull();
-    expect(screen.queryByLabelText(t.stats.graphique)).toBeNull();
+    // Courbe v33 : le départ à 0 est toujours là, même sans barre de période.
+    expect(screen.getByLabelText(t.stats.graphique)).toBeTruthy();
   });
 
   it('invité : invitation à créer un compte', async () => {

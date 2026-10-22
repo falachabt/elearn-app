@@ -2936,6 +2936,11 @@ export const fr = {
       retour: 'Revenir à l’historique',
     },
     stats: {
+      courbe: {
+        depart: 'Départ',
+        diagnostic: 'Diagnostic',
+        test: 'Test {{n}}',
+      },
       entete: 'Statistiques',
       periodes: { s7: 'Semaine', s30: 'Mois', s0: 'Tout' },
       score: 'Score estimé',

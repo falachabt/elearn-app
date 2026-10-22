@@ -2,7 +2,6 @@ import { router } from 'expo-router';
 import { Clock, History, Layers } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Svg, { Circle, Line, Polyline, Text as SvgText } from 'react-native-svg';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -16,6 +15,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
+import { CourbeTests } from './CourbeTests';
 import { EncadrePointille, EnteteToeic, EtiquetteSection, LigneChoix, PastilleEtat, Squelette, Tuile } from './ui';
 import { useChargement } from './useChargement';
 
@@ -107,7 +107,7 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
           {stats.score && stats.score.valeur !== null ? String(stats.score.valeur) : t('certification.historique.pasEncore')}
         </Text>
         {tendance ? <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{tendance}</Text> : null}
-        {stats.barres.some((b) => b.valeur !== null) ? <Graphique barres={stats.barres} /> : null}
+        <CourbeTests />
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.stats.mention')}</Text>
       </Carte>
       <EtiquetteSection texte={t('certification.stats.maitrise')} />
@@ -143,42 +143,8 @@ function Contenu({ donnees }: { donnees: DonneesStats }) {
   );
 }
 
-// Échelle de la maquette v29 : 600 à 1000, cible 800 en pointillé corail, un point par période estimée.
-const ECHELLE = { bas: 600, haut: 1000, cible: 800 } as const;
-const GRAPHE = { largeur: 320, hauteur: 160, gauche: 40, droite: 300, haut: 12, bas: 136 } as const;
-
-const yDe = (v: number) => GRAPHE.haut + ((ECHELLE.haut - v) / (ECHELLE.haut - ECHELLE.bas)) * (GRAPHE.bas - GRAPHE.haut);
-
-/** Score estimé dans le temps : une courbe qui relie les valeurs exactes, avec la cible en pointillé. */
-function Graphique({ barres }: { barres: DonneesStats['stats']['barres'] }) {
-  const { t } = useTraduction();
-  const { theme } = useTheme();
-  const points = barres.filter((b): b is typeof b & { valeur: number } => b.valeur !== null);
-  const xDe = (i: number) => (points.length === 1 ? (GRAPHE.gauche + GRAPHE.droite) / 2 : GRAPHE.gauche + (i * (GRAPHE.droite - GRAPHE.gauche)) / (points.length - 1));
-  const trace = points.map((b, i) => `${xDe(i)},${yDe(b.valeur)}`).join(' ');
-  return (
-    <View accessibilityLabel={t('certification.stats.graphique')} style={styles.graphique}>
-      <Svg width="100%" height={GRAPHE.hauteur} viewBox={`0 0 ${GRAPHE.largeur} ${GRAPHE.hauteur}`}>
-        {[ECHELLE.bas, ECHELLE.cible, ECHELLE.haut].map((v) => (
-          <SvgText key={v} x={0} y={yDe(v) + 4} fontSize={10} fill={theme.texte.secondaire}>{String(v)}</SvgText>
-        ))}
-        <Line x1={GRAPHE.gauche} x2={GRAPHE.droite} y1={yDe(ECHELLE.cible)} y2={yDe(ECHELLE.cible)} stroke={theme.etat.erreur} strokeWidth={1.5} strokeDasharray="6 4" />
-        {points.length > 1 ? <Polyline points={trace} fill="none" stroke={theme.marque.principale} strokeWidth={2.5} /> : null}
-        {points.map((b, i) => (
-          <Circle key={b.fin} cx={xDe(i)} cy={yDe(b.valeur)} r={4} fill={theme.marque.principale} stroke={theme.bord.fort} strokeWidth={1.5} />
-        ))}
-      </Svg>
-      <View style={styles.legende}>
-        <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.stats.cible', { score: ECHELLE.cible })}</Text>
-      </View>
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
   tuiles: { flexDirection: 'row', gap: espace[3] },
   tuile: { flex: 1 },
-  graphique: { gap: espace[1], paddingTop: espace[2] },
-  legende: { flexDirection: 'row', justifyContent: 'flex-end' },
 });
