@@ -212,6 +212,13 @@ export function creerApiFausse(options: {
       if (options.tentatives === 'echec') throw new Error('réseau');
       return options.tentatives ?? [];
     },
+    async lireProgressionTests() {
+      return [
+        { kind: 'half_listening', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+        { kind: 'half_reading', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+        { kind: 'full', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+      ];
+    },
     async lireStats(_exam, periode) {
       appels.stats.push(periode);
       if (options.stats === 'echec') throw new Error('réseau');

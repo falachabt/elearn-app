@@ -211,6 +211,17 @@ export type GainListe = { code: CodeGain; montant: number; progression?: number;
 export type EtatGains = { plafond: number; gagneSemaine: number; serie: number; gains: GainListe[] };
 export type ResultatGain = { status: 'granted' | 'already' | 'cap_reached' | 'not_eligible' | 'account_required'; montant?: number; gagneSemaine?: number; plafond?: number };
 
+/** Suivi d'un type de test (T-SUIVI, maquette v33), lu par `cert_test_progress_get`. */
+export type ProgressionTest = {
+  kind: 'half_listening' | 'half_reading' | 'full';
+  statut: 'pas_fait' | 'en_cours' | 'fait' | 'interrompu';
+  tentatives: number;
+  dernierScore: number | null;
+  meilleurScore: number | null;
+  derniereDate: string | null;
+  tentativeEnCours: boolean;
+};
+
 export type PeriodeStats = 7 | 30 | 0;
 export type BarreScore = { fin: Jour; min: number; max: number; milieu: number; /** Score estimé exact de la période (un seul chiffre), `null` sans estimation. */ valeur: number | null };
 export type PartieStats = { partie: number; repondues: number; bonnes: number; taux: number | null; maitrise: number; reponsesMaitrise: number; etat: EtatMaitrise };

@@ -12,7 +12,7 @@ import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { titreAffiche } from '../titre';
 import { lireReglages } from '../reglages';
-import type { BlocServi, DemarrageMini, TestFixe, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
+import type { BlocServi, DemarrageMini, ProgressionTest, TestFixe, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
@@ -395,6 +395,13 @@ export const apiDemo: CertApi = {
     if (e) e.tentative.status = 'abandoned';
     await ecrire(s);
     return { statut: 'abandoned' as const, rembourse: true, solde: 0 };
+  },
+  async lireProgressionTests() {
+    return [
+      { kind: 'half_listening', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+      { kind: 'half_reading', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+      { kind: 'full', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+    ] as ProgressionTest[];
   },
   async listerTentatives() {
     // Test terminé de démonstration (T7) : détail capturable sans avoir passé de test (EXPO_PUBLIC_CERT_DEMO_STATS=1).

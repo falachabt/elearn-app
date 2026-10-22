@@ -3,7 +3,7 @@ import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
-import type { BlocServi, DemarrageMini, TestFixe, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
+import type { BlocServi, DemarrageMini, ProgressionTest, TestFixe, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
  * Accès aux données du profil TOEIC. Une seule interface : le serveur (RPC `cert_*`) en production, et un contenu
@@ -61,6 +61,8 @@ export interface CertApi {
   abandonnerTentative(tentativeId: string, raison: 'user' | 'expired'): Promise<{ statut: Tentative['status']; rembourse: boolean; solde: number | null }>;
   /** Historique des tentatives (T4), plus récentes d'abord. */
   listerTentatives(exam: string): Promise<TentativeListee[]>;
+  /** Suivi des tests faits (demi-tests, test complet) : statut, nombre, dernier et meilleur score (propriétaire seul ; un seul appel, tous examens confondus). */
+  lireProgressionTests(): Promise<ProgressionTest[]>;
   /** Statistiques (F11) d'une période : un seul appel. */
   lireStats(exam: string, periode: PeriodeStats, jourLocal: Jour): Promise<Stats>;
   /** Gains de crédits TOEIC (G1) et réclamation d'un gain. */
@@ -94,7 +96,7 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
 }
 
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
-type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireStats' | 'lireGains' | 'reclamerGain';
+type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
@@ -253,6 +255,14 @@ const testsServeur: Pick<CertApi, Testee> = {
       id: l.id, kind: l.kind, part: l.part, length: l.length, status: l.status, score: l.score, scoreMin: l.score_min, scoreMax: l.score_max,
       startedAt: l.started_at, finishedAt: l.finished_at, perPart: l.per_part, timePerPart: l.time_per_part,
       creditsSpent: l.credits_spent, refunded: l.refunded, questions: l.questions ?? [],
+    }));
+  },
+  lireProgressionTests: async () => {
+    const res = await rpcAuthentifie('cert_test_progress_get', {});
+    const lignes = (verifier(res) ?? []) as { kind: ProgressionTest['kind']; statut: ProgressionTest['statut']; tentatives: number; dernier_score: number | null; meilleur_score: number | null; derniere_date: string | null; tentative_en_cours: boolean }[];
+    return lignes.map((l) => ({
+      kind: l.kind, statut: l.statut, tentatives: l.tentatives, dernierScore: l.dernier_score, meilleurScore: l.meilleur_score,
+      derniereDate: l.derniere_date, tentativeEnCours: l.tentative_en_cours,
     }));
   },
   lireStats: async (exam, periode, jourLocal) => {
