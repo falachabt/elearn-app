@@ -499,3 +499,13 @@ Retour de Benny (22 octobre, soir) : les cartes de l'onglet Tests sont monochrom
 - Couleurs et icônes de la v37 : crème et casque pour l'écoute, corail et livre pour la lecture.
 - Quand le dernier score égale le meilleur, un seul chiffre s'affiche (pas de doublon).
 - Pas encore de score : mention « Pas encore de score », jamais un tiret seul.
+
+## Version 39 : une liste par type, choix de partie, détail, bilan de fin (cahier v1.35, D-50 à D-53, 22 octobre 2026, à valider)
+
+- `TOEIC-V34-LISTE-MINI` : « Mini-tests Partie 5 ». Lignes numérotées (Partie 5 n° 1 à n° 4), même gabarit que la v38, vert et cible.
+- `TOEIC-V34-CHOIX-PARTIE` : choix de la partie (P1 à P7) avant la liste. Chaque partie porte son statut ; « Conseillé » sur la partie qui a le plus de nouvelles questions.
+- `TOEIC-V34-LISTE-COMPLET` : « Tests complets », vert foncé et trophée, même gabarit.
+- `TOEIC-V34-DETAIL` : détail d'un test fait. Score en gros, tentatives, date. Trois actions : « Voir ma note et mes tentatives », « Refaire pour améliorer ma note », « Passer un autre test ». Le meilleur score est conservé.
+- `TOEIC-V34-BILAN` : bilan de fin. « Nouveau meilleur score » (9 sur 10, ancien meilleur 8), mêmes trois actions, puis « Retour aux tests ».
+
+Règles : une liste par type ; mini-tests et mixte demandent d'abord la partie quand il y en a une. « Refaire » crée une tentative du même test, nouveau débit. « Passer un autre test » ouvre le test Conseillé du même type.
