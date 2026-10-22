@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { BookOpen, Layers, Lightbulb, NotebookPen, TriangleAlert, type LucideIcon } from 'lucide-react-native';
+import { Layers, Lightbulb, NotebookPen, TriangleAlert, type LucideIcon } from 'lucide-react-native';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -12,7 +12,7 @@ import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Onglets } from '../Onglets';
-import { EtiquetteSection, GrilleEgale, LigneChoix } from './ui';
+import { EtiquetteSection, GrilleEgale } from './ui';
 
 const FAMILLES: readonly FamilleNotion[] = ['grammaire', 'vocabulaire', 'piege', 'methode'];
 
@@ -35,13 +35,6 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
   return (
     <View style={styles.colonne}>
       <Onglets valeurs={FAMILLES.map((f) => ({ valeur: f, libelle: t(`certification.cours.familles.${f}`) }))} valeur={famille} onChange={setFamille} />
-      {/* Maquette v30 et v32 (Grammaire) : pas de bandeau sous les onglets, le libellé est déjà l'onglet actif. */}
-      {famille === 'grammaire' ? null : (
-        <View style={[styles.bandeau, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-          <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
-          <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t(`certification.cours.familles.${famille}`)}</Text>
-        </View>
-      )}
       {groupes.length === 0 ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.vide')}</Text> : null}
       {groupes.map((g) => (
         <View key={g.partie} style={styles.colonne}>
@@ -69,7 +62,6 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
 
 const styles = StyleSheet.create({
   colonne: { gap: espace[3] },
-  bandeau: { flexDirection: 'row', alignItems: 'center', gap: espace[3], padding: espace[3], borderWidth: bord.normal, borderRadius: rayon.m },
   tuile: { minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
   pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s, marginBottom: espace[1] },
 });
