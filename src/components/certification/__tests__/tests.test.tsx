@@ -118,8 +118,9 @@ describe('T1 · onglet Tests', () => {
   it('affiche les mini-tests avec les coûts du serveur, le score estimé et les tests faits', async () => {
     installer({ tentatives: [LIGNE({ id: 'a', kind: 'mini', part: null, scoreMin: 650, scoreMax: 730 }), LIGNE({ id: 'b' }), LIGNE({ id: 'c', status: 'abandoned' }), LIGNE({ id: 'd', kind: 'diagnostic' })] });
     await monter(<TestsToeic />);
-    expect(await screen.findByText(`${t.tests.detailMiniPartie} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
-    expect(screen.getByText(`${t.tests.detailMiniMixte} · ${fr.credits.cout.replace('{{n}}', '2')} hors Pass`)).toBeTruthy();
+    // Le statut du mini-test précède son détail (maquette v33) : 8 bonnes réponses sur 10, pour la partie 5 comme pour le mixte.
+    expect(await screen.findByText(`Fait : dernier 8 sur 10, 1 tentative(s) · ${t.tests.detailMiniPartie} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
+    expect(screen.getByText(`Fait : dernier 8 sur 10, 1 tentative(s) · ${t.tests.detailMiniMixte} · ${fr.credits.cout.replace('{{n}}', '2')} hors Pass`)).toBeTruthy();
     expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
     expect(screen.getByText('3')).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_tests_tab_viewed', {});
@@ -129,7 +130,7 @@ describe('T1 · onglet Tests', () => {
     mockPass = true;
     await monter(<TestsToeic />);
     expect(await screen.findByText(t.tests.inclus)).toBeTruthy();
-    expect(screen.getByText(t.tests.detailMiniPartie)).toBeTruthy();
+    expect(screen.getByText(`Pas encore fait · ${t.tests.detailMiniPartie}`)).toBeTruthy();
   });
 
   it('le demi-test et le test complet mènent à l’écran « Bientôt »', async () => {

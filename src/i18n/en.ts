@@ -2718,6 +2718,7 @@ export const en: Textes = {
         enCours: 'In progress, to resume',
         interrompu: 'Interrupted',
         fait: 'Done: last {{dernier}} out of {{total}}, best {{meilleur}}, {{n}} attempt(s)',
+        miniFait: 'Done: last {{dernier}} out of {{total}}, {{n}} attempt(s)',
       },
       etiquetteMini: 'Mini-tests',
       etiquetteComplets: 'Full tests',

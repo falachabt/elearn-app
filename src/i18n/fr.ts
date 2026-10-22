@@ -2738,6 +2738,7 @@ export const fr = {
         enCours: 'En cours, à reprendre',
         interrompu: 'Interrompu',
         fait: 'Fait : dernier {{dernier}} sur {{total}}, meilleur {{meilleur}}, {{n}} tentative(s)',
+        miniFait: 'Fait : dernier {{dernier}} sur {{total}}, {{n}} tentative(s)',
       },
       historique: 'Voir l’historique',
       erreurTitre: 'Impossible de charger tes tests',

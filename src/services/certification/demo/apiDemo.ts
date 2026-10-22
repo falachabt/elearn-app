@@ -397,11 +397,18 @@ export const apiDemo: CertApi = {
     return { statut: 'abandoned' as const, rembourse: true, solde: 0 };
   },
   async lireProgressionTests() {
+    // Captures de démo : un état surchargeable depuis le navigateur (clé cert.demo.progression), sinon Écoute pas faite et Lecture faite.
+    try {
+      const brut = await AsyncStorage.getItem('cert.demo.progression');
+      if (brut) return JSON.parse(brut) as ProgressionTest[];
+    } catch {
+      // Sans stockage lisible, on retombe sur l'état par défaut.
+    }
     return [
       { kind: 'half_listening', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
-      { kind: 'half_reading', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
+      { kind: 'half_reading', statut: 'fait', tentatives: 3, dernierScore: 385, meilleurScore: 705, derniereDate: '2026-10-18', tentativeEnCours: false },
       { kind: 'full', statut: 'pas_fait', tentatives: 0, dernierScore: null, meilleurScore: null, derniereDate: null, tentativeEnCours: false },
-    ] as ProgressionTest[];
+    ];
   },
   async listerTentatives() {
     // Test terminé de démonstration (T7) : détail capturable sans avoir passé de test (EXPO_PUBLIC_CERT_DEMO_STATS=1).

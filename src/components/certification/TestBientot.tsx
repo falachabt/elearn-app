@@ -7,10 +7,11 @@ import { useGardeReseau } from '@/components/reseau/useGardeReseau';
 import { useTextesCredits } from '@/components/credits/textes';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { obtenirReglages } from '@/services/certification/etat';
 import { etapeDemarrage, signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { obtenirApi } from '@/services/certification/api';
 import { lancerTest } from '@/services/certification/miniTest';
-import type { TestFixe, TypeTestFixe } from '@/services/certification/types';
+import type { ProgressionTest, TestFixe, TypeTestFixe } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -19,6 +20,7 @@ import { espace, typo } from '@/theme/theme';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { avecSuivi } from './suiviLignes';
 import { EnteteToeic, LigneChoix } from './ui';
 
 /** T5 · Demi-test (écoute ou lecture, 100 questions) et test complet (200 questions). Le serveur tire les questions et débite au lancement. */
@@ -31,12 +33,16 @@ export function TestBientot() {
   const { cout } = useTextesCredits();
   const demiCout = couts.cert_mock_half;
   const completCout = couts.cert_mock_full;
+  const suiviMoitie = (kind: 'half_listening' | 'half_reading') => (totalDemi === null ? undefined : progression?.find((p) => p.kind === kind));
   const avecCout = (base: string) => (demiCout === undefined ? base : `${base} · ${cout(demiCout)}`);
   const [test, setTest] = useState<TestFixe | null>(null);
   const [chargement, setChargement] = useState(true);
   const [enCours, setEnCours] = useState(false);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
   const [manque, setManque] = useState(false);
+  // Suivi des moitiés (maquette v33, DEMI-SUIVI) : le score se lit sur la moitié du total (495 sur 990).
+  const [progression, setProgression] = useState<ProgressionTest[] | null>(null);
+  const [totalDemi, setTotalDemi] = useState<number | null>(null);
 
   useEffect(() => {
     let vivant = true;
@@ -45,6 +51,11 @@ export function TestBientot() {
         const exam = (await lireProfil())?.exam ?? 'toeic';
         const tests = await obtenirApi().listerTests(exam);
         if (vivant) setTest(tests[0] ?? null);
+        const [suivi, reglages] = await Promise.all([obtenirApi().lireProgressionTests().catch(() => null), obtenirReglages().catch(() => null)]);
+        if (vivant) {
+          setProgression(suivi);
+          setTotalDemi(reglages ? reglages.objectifMax / 2 : null);
+        }
       } catch (erreur) {
         if (vivant) setCodeEchec(signalerErreurDemarrage('test', 'TST', erreur));
       } finally {
@@ -109,8 +120,8 @@ export function TestBientot() {
       </Carte>
       {demi ? (
         <>
-          <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecCout(t('certification.tests.ecouteAide'))} onPress={() => void lancer('half_listening')} />
-          <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecCout(t('certification.tests.lectureAide'))} onPress={() => void lancer('half_reading')} />
+          <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.ecouteAide')), suiviMoitie('half_listening'), totalDemi ?? 0)} onPress={() => void lancer('half_listening')} />
+          <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecSuivi(t, avecCout(t('certification.tests.lectureAide')), suiviMoitie('half_reading'), totalDemi ?? 0)} onPress={() => void lancer('half_reading')} />
         </>
       ) : (
         <Carte style={{ gap: espace[2] }}>

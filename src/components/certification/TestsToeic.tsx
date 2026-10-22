@@ -7,8 +7,7 @@ import { useTextesCredits } from '@/components/credits/textes';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { minutesSecondes } from '@/services/certification/format';
-import { progressionDemi } from '@/services/certification/suivi';
-import type { ProgressionTest } from '@/services/certification/types';
+import { progressionDemi, suiviDe } from '@/services/certification/suivi';
 import { abandonnerMini, tempsRestantMs } from '@/services/certification/miniTest';
 import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
 import { useCredits } from '@/session/CreditsProvider';
@@ -21,6 +20,7 @@ import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
+import { avecSuivi } from './suiviLignes';
 import { useChargement } from './useChargement';
 
 /**
@@ -68,18 +68,6 @@ export function TestsToeic() {
   );
 }
 
-/** Statut d'un test sur sa carte (maquette v33) : en mots, jamais seulement une couleur. */
-function ligneSuivi(t: ReturnType<typeof useTraduction>['t'], p: ProgressionTest, total: number): string {
-  if (p.statut === 'en_cours') return t('certification.tests.suivi.enCours');
-  if (p.statut === 'interrompu') return t('certification.tests.suivi.interrompu');
-  if (p.statut === 'pas_fait' || p.dernierScore === null) return t('certification.tests.suivi.pasFait');
-  return t('certification.tests.suivi.fait', { dernier: p.dernierScore, total, meilleur: p.meilleurScore ?? p.dernierScore, n: p.tentatives });
-}
-
-function avecSuivi(t: ReturnType<typeof useTraduction>['t'], detail: string, p: ProgressionTest | undefined, total: number) {
-  return p ? `${ligneSuivi(t, p, total)} · ${detail}` : detail;
-}
-
 function Accueil({ donnees }: { donnees: DonneesTests }) {
   const { t } = useTraduction();
   const { solde, couts } = useCredits();
@@ -92,6 +80,16 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const total = donnees.reglages.objectifMax;
   const suiviDemi = donnees.progression ? progressionDemi(donnees.progression) : undefined;
   const suiviComplet = donnees.progression?.find((p) => p.kind === 'full');
+  const minis = donnees.tentatives ?? [];
+  const suiviMiniPartie = suiviDe(minis.filter((x) => x.part !== null), 'mini');
+  const suiviMiniMixte = suiviDe(minis.filter((x) => x.part === null), 'mini');
+  // Un mini-test se lit en bonnes réponses sur le nombre de questions (« 8 sur 10 »), pas en score exact.
+  const ligneMini = (suivi: ReturnType<typeof suiviDe>, detail: string) => {
+    const derniere = suivi.derniere;
+    if (!derniere) return `${t('certification.tests.suivi.pasFait')} · ${detail}`;
+    const bonnes = Object.values(derniere.perPart ?? {}).reduce((somme, p) => somme + p.correct, 0);
+    return `${t('certification.tests.suivi.miniFait', { dernier: bonnes, total: derniere.length, n: suivi.fois })} · ${detail}`;
+  };
   const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
   const estimation = donnees.tentatives ? derniereEstimation(donnees.tentatives) : null;
@@ -100,8 +98,8 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <LigneChoix icone={Target} titre={t('certification.tests.miniPartie')} aide={detail(t('certification.tests.detailMiniPartie'), dixQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
-      <LigneChoix icone={Layers} titre={t('certification.tests.miniMixte')} aide={detail(t('certification.tests.detailMiniMixte'), vingtQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
+      <LigneChoix icone={Target} titre={t('certification.tests.miniPartie')} aide={donnees.tentatives ? ligneMini(suiviMiniPartie, detail(t('certification.tests.detailMiniPartie'), dixQ)) : detail(t('certification.tests.detailMiniPartie'), dixQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
+      <LigneChoix icone={Layers} titre={t('certification.tests.miniMixte')} aide={donnees.tentatives ? ligneMini(suiviMiniMixte, detail(t('certification.tests.detailMiniMixte'), vingtQ)) : detail(t('certification.tests.detailMiniMixte'), vingtQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
       <LigneChoix icone={Trophy} titre={t('certification.tests.demi')} aide={avecSuivi(t, detail(t('certification.tests.detailDemi'), demiQ), suiviDemi, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
       <LigneChoix icone={Trophy} titre={t('certification.tests.complet')} aide={avecSuivi(t, detail(t('certification.tests.detailComplet'), completQ), suiviComplet, total)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'full' } } as never)} />
