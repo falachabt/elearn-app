@@ -106,6 +106,22 @@ export type TypeTestFixe = 'half_listening' | 'half_reading' | 'full';
 /** Test fixe listé (cert_tests_list) : décompte des questions par moitié, sans contenu. */
 export type TestFixe = { id: string; code: string; title: string; listening: number; reading: number; total: number };
 
+/** Type d'une définition composée (cahier v1.35) : écoute, lecture ou complet. */
+export type TypeDefTest = 'listening' | 'reading' | 'full';
+
+/** Test composé de la liste d'un type (`cert_test_list_get`) : sans contenu, avec ses tentatives. */
+export type DefTest = {
+  id: string;
+  kind: TypeDefTest;
+  numero: number;
+  questions: number;
+  tentatives: number;
+  fini: boolean;
+  meilleurScoreMax: number | null;
+  derniereDate: string | null;
+  nouvellesQuestions: number;
+};
+
 export type MotsARevoir = { total: number; theme: string | null };
 
 /** Famille d'une notion (C4) : les quatre onglets de la liste des cours. */

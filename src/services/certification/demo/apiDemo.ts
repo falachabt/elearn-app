@@ -12,7 +12,7 @@ import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { titreAffiche } from '../titre';
 import { lireReglages } from '../reglages';
-import type { BlocServi, DemarrageMini, ProgressionTest, TestFixe, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
+import type { BlocServi, DefTest, DemarrageMini, ProgressionTest, TestFixe, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
@@ -366,6 +366,20 @@ export const apiDemo: CertApi = {
   /** Sans serveur, le test est gratuit ; la répartition suit le test réel (100 en écoute, 100 en lecture). */
   async listerTests(): Promise<TestFixe[]> {
     return [{ id: 'demo-test', code: 'demo', title: 'Test démo', listening: 100, reading: 100, total: 200 }];
+  },
+  /** Démo : un test composé par type (v38, v39), même répartition que les tests fixes. */
+  async listerDefsTests(_exam, type): Promise<DefTest[]> {
+    const tous: DefTest[] = [
+      { id: 'demo-listening-1', kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+      { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+      { id: 'demo-full-1', kind: 'full', numero: 1, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+    ];
+    return type ? tous.filter((t) => t.kind === type) : tous;
+  },
+  /** Démo : le type est lu dans l'identifiant de démo, puis le départ suit celui du test fixe. */
+  async demarrerDefTest(clientUuid, defId): Promise<DemarrageMini> {
+    const type = defId.startsWith('demo-listening') ? 'half_listening' : defId.startsWith('demo-reading') ? 'half_reading' : 'full';
+    return apiDemo.demarrerTest(clientUuid, 'demo-test', type, 'toeic', '2030-06-01');
   },
   async demarrerTest(clientUuid, _testId, type): Promise<DemarrageMini> {
     const s = await lire();

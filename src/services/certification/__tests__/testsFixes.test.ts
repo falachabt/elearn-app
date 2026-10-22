@@ -31,3 +31,20 @@ describe('demi-tests et test complet (démo)', () => {
     expect(rejeu.tentative?.attempt_id).toBe(premier.tentative?.attempt_id);
   });
 });
+
+// Tests composés (listes v38, v39) côté démo : une liste par type, départ par identifiant de test.
+describe('tests composés (démo)', () => {
+  it('liste un test par type, filtrable', async () => {
+    const tous = await apiDemo.listerDefsTests('toeic', null);
+    expect(tous.map((t) => t.kind)).toEqual(['listening', 'reading', 'full']);
+    const ecoute = await apiDemo.listerDefsTests('toeic', 'listening');
+    expect(ecoute).toHaveLength(1);
+    expect(ecoute[0]).toMatchObject({ kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false });
+  });
+
+  it('démarre le test composé selon son type, avec 200 questions pour le complet', async () => {
+    const r = await apiDemo.demarrerDefTest('00000000-0000-4000-8000-00000000e010', 'demo-full-1', 'toeic', '2030-06-01');
+    expect(r.status).toBe('started');
+    expect(r.tentative?.questions).toHaveLength(200);
+  });
+});

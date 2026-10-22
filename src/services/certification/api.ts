@@ -3,7 +3,7 @@ import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
-import type { BlocServi, DemarrageMini, ProgressionTest, TestFixe, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
+import type { BlocServi, DefTest, DemarrageMini, ProgressionTest, TestFixe, TypeDefTest, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
  * Accès aux données du profil TOEIC. Une seule interface : le serveur (RPC `cert_*`) en production, et un contenu
@@ -55,6 +55,10 @@ export interface CertApi {
   listerTests(exam: string): Promise<TestFixe[]>;
   /** Départ d'un demi-test ou du test complet (T5) : débit au lancement, idempotent par `clientUuid`. */
   demarrerTest(clientUuid: string, testId: string, type: TypeTestFixe, exam: string, jourLocal: Jour): Promise<DemarrageMini>;
+  /** Tests composés d'un type (v38, v39) : écoute, lecture ou complet ; sans contenu. */
+  listerDefsTests(exam: string, type: TypeDefTest | null): Promise<DefTest[]>;
+  /** Départ d'un test composé : débit au lancement, idempotent par `clientUuid` (même contrat que `demarrerTest`). */
+  demarrerDefTest(clientUuid: string, defId: string, exam: string, jourLocal: Jour): Promise<DemarrageMini>;
   /** Tentative en cours, pour la reprise (T3). */
   lireTentative(tentativeId: string): Promise<Tentative>;
   /** Abandon : rembourse dans la fenêtre prévue par les réglages. */
@@ -96,7 +100,7 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
 }
 
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
-type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain';
+type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'listerDefsTests' | 'demarrerDefTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireProgressionTests' | 'lireStats' | 'lireGains' | 'reclamerGain';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
@@ -227,6 +231,23 @@ const testsServeur: Pick<CertApi, Testee> = {
   },
   demarrerTest: async (clientUuid, testId, type, exam, jourLocal) => {
     const res = await rpcAuthentifie('cert_test_start', { p_client_uuid: clientUuid, p_test_id: testId, p_kind: type, p_exam: exam, p_local_day: jourLocal });
+    const j = verifier(res) as Record<string, unknown> & { status: DemarrageMini['status']; cost?: number; balance?: number };
+    if (j.status === 'insufficient' || j.status === 'account_required') {
+      return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };
+    }
+    const tentative = { ...(j as unknown as Tentative), status: 'in_progress' as const, replay: j.status === 'replay' };
+    return { status: j.status, tentative, cout: j.cost ?? null, solde: j.balance ?? null };
+  },
+  listerDefsTests: async (exam, type) => {
+    const res = await rpcAuthentifie('cert_test_list_get', { p_exam: exam, p_kind: type });
+    const lignes = (verifier(res) ?? []) as { id: string; kind: TypeDefTest; number: number; questions: number; attempts: number; finished: boolean; best_score_max: number | null; last_started_at: string | null; new_questions: number }[];
+    return lignes.map((l) => ({
+      id: l.id, kind: l.kind, numero: l.number, questions: l.questions, tentatives: l.attempts, fini: l.finished,
+      meilleurScoreMax: l.best_score_max, derniereDate: l.last_started_at, nouvellesQuestions: l.new_questions,
+    }));
+  },
+  demarrerDefTest: async (clientUuid, defId, exam, jourLocal) => {
+    const res = await rpcAuthentifie('cert_test_def_start', { p_client_uuid: clientUuid, p_test_def_id: defId, p_exam: exam, p_local_day: jourLocal });
     const j = verifier(res) as Record<string, unknown> & { status: DemarrageMini['status']; cost?: number; balance?: number };
     if (j.status === 'insufficient' || j.status === 'account_required') {
       return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };

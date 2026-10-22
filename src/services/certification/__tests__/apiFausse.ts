@@ -188,6 +188,12 @@ export function creerApiFausse(options: {
     async demarrerTest(): Promise<DemarrageMini> {
       throw new Error('non prévu dans ce test');
     },
+    async listerDefsTests() {
+      return [];
+    },
+    async demarrerDefTest(): Promise<DemarrageMini> {
+      throw new Error('non prévu dans ce test');
+    },
     async demarrerMini(clientUuid, _exam, partie, longueur): Promise<DemarrageMini> {
       appels.minis.push({ partie, longueur });
       if (options.mini === 'echec') throw new Error('réseau');
