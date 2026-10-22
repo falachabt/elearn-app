@@ -130,6 +130,7 @@ export function TestBientot() {
           {completCout !== undefined ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{cout(completCout)}</Text> : null}
         </Carte>
       )}
+      <Bouton variante="secondaire" libelle={t('certification.tests.voirTentatives')} onPress={() => router.push({ pathname: '/certification/tentatives', params: { kind: demi ? 'half' : 'full' } } as never)} />
     </Ecran>
   );
 }

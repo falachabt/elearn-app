@@ -411,6 +411,13 @@ export const apiDemo: CertApi = {
     ];
   },
   async listerTentatives() {
+    // Captures de démo : liste de tentatives surchargeable depuis le navigateur (clé cert.demo.tentatives).
+    try {
+      const brut = await AsyncStorage.getItem('cert.demo.tentatives');
+      if (brut) return JSON.parse(brut) as TentativeListee[];
+    } catch {
+      // Sans stockage lisible, on retombe sur la démo habituelle.
+    }
     // Test terminé de démonstration (T7) : détail capturable sans avoir passé de test (EXPO_PUBLIC_CERT_DEMO_STATS=1).
     if (process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1') return [TENTATIVE_DEMO_TERMINEE];
     return (await lire()).historique;

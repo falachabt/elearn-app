@@ -29,3 +29,18 @@ export function progressionDemi(liste: ProgressionTest[]): ProgressionTest | und
   const faites = moities.filter((p) => p.derniereDate).sort((a, b) => (b.derniereDate ?? '').localeCompare(a.derniereDate ?? ''));
   return faites[0] ?? moities.find((p) => p.kind === 'half_listening');
 }
+
+/** Tentatives d'un type de test (demi-tests : écoute et lecture ; complet), la plus récente d'abord. */
+export function tentativesDeType(liste: TentativeListee[], type: 'half' | 'full'): TentativeListee[] {
+  const kinds: Tentative['kind'][] = type === 'full' ? ['full'] : ['half_listening', 'half_reading'];
+  return liste.filter((t) => kinds.includes(t.kind)).sort((a, b) => b.startedAt.localeCompare(a.startedAt));
+}
+
+/**
+ * Meilleur score d'un type : seules les tentatives terminées comptent. Une tentative interrompue n'écrase ni le meilleur
+ * score ni le dernier (maquette v33).
+ */
+export function meilleurScore(liste: TentativeListee[]): number | null {
+  const scores = liste.filter((t) => t.status === 'finished' && t.score !== null && t.score !== undefined).map((t) => t.score as number);
+  return scores.length ? Math.max(...scores) : null;
+}
