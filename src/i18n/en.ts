@@ -2819,9 +2819,10 @@ export const en: Textes = {
     },
     examen: {
       entete: 'Mini-test · question {{n}} of {{total}}',
-      enteteEcoute: 'Listening half · question {{n}} of {{total}}',
-      enteteLecture: 'Reading half · question {{n}} of {{total}}',
-      enteteComplet: 'Full test · question {{n}} of {{total}}',
+      enteteEcoute: 'Listening · {{n}} / {{total}}',
+      enteteLecture: 'Reading · {{n}} / {{total}}',
+      enteteComplet: 'Full test · {{n}} / {{total}}',
+      transition: 'End of part {{precedente}} · Part {{n}} starts.',
       chrono: 'Time left {{temps}}',
       chronoFin: 'Time is up',
       valider: 'Confirm',

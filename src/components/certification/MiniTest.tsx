@@ -18,6 +18,7 @@ import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
 import { OngletsGroupe } from './OngletsGroupe';
 import { QuestionExercice } from './QuestionExercice';
+import { TransitionPartie } from './TransitionPartie';
 import { BarreProgression, EnteteToeic } from './ui';
 
 type Phase = { nom: 'chargement' } | { nom: 'absent' } | { nom: 'examen'; etat: EtatMini };
@@ -33,6 +34,8 @@ export function MiniTest() {
   /** Réponses du groupe en cours (une par question ; `null` = passée). Validées ensemble au « Groupe suivant ». */
   const [reponses, setReponses] = useState<Record<string, number | null>>({});
   const [onglet, setOnglet] = useState(0);
+  /** Dernière partie dont la transition a été passée (demi-test et test complet). */
+  const [partieVue, setPartieVue] = useState<number | null>(null);
   /** « Valider » touché alors que le groupe n'est pas complet : on le signale, puis « Valider quand même ». */
   const [incomplet, setIncomplet] = useState(false);
   const [quitter, setQuitter] = useState(false);
@@ -133,6 +136,21 @@ export function MiniTest() {
           <Bouton libelle={t('certification.examen.retour')} onPress={() => router.replace('/tests' as never)} />
         </View>
       </Ecran>
+    );
+  }
+
+  const servies = etat.tentative.questions;
+  const partieSuivante = servies[etat.index]?.part;
+  const partiePrecedente = etat.index > 0 ? servies[etat.index - 1]?.part : undefined;
+  const avecTransition = etat.tentative.kind === 'half_listening' || etat.tentative.kind === 'half_reading' || etat.tentative.kind === 'full';
+  if (avecTransition && partieSuivante !== undefined && partiePrecedente !== undefined && partiePrecedente !== partieSuivante && partieVue !== partieSuivante) {
+    return (
+      <TransitionPartie
+        precedente={partiePrecedente}
+        partie={partieSuivante}
+        questions={servies.filter((q) => q.part === partieSuivante).length}
+        onCommencer={() => setPartieVue(partieSuivante)}
+      />
     );
   }
 

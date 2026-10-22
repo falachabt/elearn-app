@@ -17,7 +17,7 @@ import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
 import { CoursNotions } from './CoursNotions';
 import { stylePartie } from './partiesStyle';
-import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
+import { BarreProgression, EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 type Onglet = 'parcours' | 'parties' | 'cours' | 'carnet';
@@ -106,6 +106,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.reviser.tuile', { n })}</Text>
                     <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t(cle)}</Text>
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.carteMaitrise.pourcent', { n: pourcent })}</Text>
+                    <BarreProgression pourcent={pourcent} hauteur={6} />
                   </View>
                 </Appui>
               );
