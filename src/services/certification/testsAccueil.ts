@@ -3,7 +3,7 @@ import { obtenirApi } from './api';
 import { obtenirReglages } from './etat';
 import { abandonnerMini, etatDeReprise, lireMini, type EtatMini } from './miniTest';
 import type { Reglages } from './reglages';
-import type { TentativeListee } from './types';
+import type { ProgressionTest, TentativeListee } from './types';
 
 export type Reprise = { etat: EtatMini; statut: 'en_cours' | 'a_rendre' };
 
@@ -14,6 +14,8 @@ export type DonneesTests = {
   reprise: Reprise | null;
   /** Historique du serveur ; `null` quand il ne répond pas (le reste de l'écran reste utilisable). */
   tentatives: TentativeListee[] | null;
+  /** Suivi des tests faits (statut, dernier et meilleur score) ; `null` sans réseau. */
+  progression: ProgressionTest[] | null;
   /** Test périmé abandonné au chargement : `rembourse` dit si le serveur a rendu les crédits. */
   abandonAuto: { rembourse: boolean } | null;
 };
@@ -46,6 +48,6 @@ export async function chargerTests(): Promise<DonneesTests> {
       }
     }
   }
-  const tentatives = await obtenirApi().listerTentatives(exam).catch(() => null);
-  return { exam, reglages, reprise, tentatives, abandonAuto };
+  const [tentatives, progression] = await Promise.all([obtenirApi().listerTentatives(exam).catch(() => null), obtenirApi().lireProgressionTests().catch(() => null)]);
+  return { exam, reglages, reprise, tentatives, progression, abandonAuto };
 }

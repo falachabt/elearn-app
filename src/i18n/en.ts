@@ -2713,6 +2713,12 @@ export const en: Textes = {
     },
     tests: {
       entete: 'Tests',
+      suivi: {
+        pasFait: 'Not done yet',
+        enCours: 'In progress, to resume',
+        interrompu: 'Interrupted',
+        fait: 'Done: last {{dernier}} out of {{total}}, best {{meilleur}}, {{n}} attempt(s)',
+      },
       etiquetteMini: 'Mini-tests',
       etiquetteComplets: 'Full tests',
       miniPartie: 'Mini-test by part',

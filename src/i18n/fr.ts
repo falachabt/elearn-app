@@ -2733,6 +2733,12 @@ export const fr = {
       faits: 'Tests faits',
       inclus: 'Avec le Pass, tout est inclus.',
       choisir: 'Choisir un mini-test',
+      suivi: {
+        pasFait: 'Pas encore fait',
+        enCours: 'En cours, à reprendre',
+        interrompu: 'Interrompu',
+        fait: 'Fait : dernier {{dernier}} sur {{total}}, meilleur {{meilleur}}, {{n}} tentative(s)',
+      },
       historique: 'Voir l’historique',
       erreurTitre: 'Impossible de charger tes tests',
       erreurTexte: 'Vérifie ta connexion. Tes tests en cours restent gardés sur l’appareil.',
