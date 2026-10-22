@@ -5,7 +5,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
-import { CLE_COPIE_PLANNING } from '@/services/planning';
+import { CLE_COCHES_EN_ATTENTE, CLE_COPIE_PLANNING } from '@/services/planning';
 import { CLE_LUES } from '@/services/reviser';
 import { ThemeProvider } from '@/theme/ThemeProvider';
 
@@ -206,14 +206,18 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     expect(router.replace).toHaveBeenCalledWith('/planning');
   });
 
-  it('hors ligne avec une copie : la séance se lit, mais ne se termine pas', async () => {
+  it('hors ligne avec une copie : la séance se termine sur l’appareil et la coche part dans la file (issue #74)', async () => {
     await AsyncStorage.setItem(CLE_COPIE_PLANNING('u1'), JSON.stringify(plan()));
-    serveur(null, erreurReseau);
+    mockRpc.mockImplementation(async () => ({ data: null, error: erreurReseau }));
     await monter(reglage);
     await screen.findByText('Définition');
-    expect(screen.getByRole('button', { name: t.terminer }).props.accessibilityState.disabled).toBe(true);
+    expect(screen.getByText(t.horsLigneSynchro)).toBeTruthy();
+    expect(screen.getByRole('button', { name: t.terminer }).props.accessibilityState.disabled).toBeFalsy();
     await fireEvent.press(screen.getByText(t.terminer));
-    expect(mockRpc).not.toHaveBeenCalledWith('study_plan_mark_done', expect.anything());
+    await screen.findByText(t.terminee);
+    const file = JSON.parse((await AsyncStorage.getItem(CLE_COCHES_EN_ATTENTE('u1'))) ?? '[]') as { jour: string; fait: boolean }[];
+    expect(file).toEqual([{ jour: '2026-10-20', fait: true, le: expect.any(String) }]);
+    expect(suivre).toHaveBeenCalledWith('planning_day_checked', { fait: true });
   });
 
   it('hors ligne sans copie : message « pas de réseau » et bouton pour réessayer', async () => {

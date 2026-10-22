@@ -1,6 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
+  appliquerCoches,
+  basculerSeance,
+  CLE_COCHES_EN_ATTENTE,
   CLE_COPIE_PLANNING,
   avecSeanceFaite,
   cocherSeance,
@@ -9,10 +12,12 @@ import {
   deuxProchainsJours,
   elementFait,
   annonceRepos,
+  enregistrerCocheEnAttente,
   estJourDeRepos,
   etatJour,
   heuresEstimees,
   jourLocalTexte,
+  lireCochesEnAttente,
   lirePlanning,
   prochaineSeance,
   progressionSeance,
@@ -22,6 +27,7 @@ import {
   seancesFaites,
   semaineDuJour,
   septJours,
+  synchroniserCoches,
 } from '../planning';
 
 jest.mock('../connectivite', () => ({
@@ -285,6 +291,130 @@ describe('écritures', () => {
     expect(await cocherSeance(c, '2026-10-19', true)).toBe(true);
     expect(c.rpc).toHaveBeenCalledWith('study_plan_mark_done', { p_day: '2026-10-19', p_done: true });
     expect(await cocherSeance(client({ data: false }), '2000-01-01', true)).toBe(false);
+  });
+});
+
+// Issue #74, lot A (spec planning-etudes.md, section 8) : la coche de séance hors ligne part dans une file
+// par utilisateur, s'applique à ce qui est affiché, et se rejoue au retour du réseau.
+describe('coches hors ligne : file et rejeu', () => {
+  const RESEAU = { name: 'TypeError', message: 'Network request failed' };
+
+  it('la file garde une entrée par jour : le dernier état gagne, avec sa date', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    await enregistrerCocheEnAttente('u1', '2026-10-20', false, new Date('2026-10-20T09:30:00.000Z'));
+    await enregistrerCocheEnAttente('u1', '2026-10-22', true, new Date('2026-10-22T07:00:00.000Z'));
+    expect(await lireCochesEnAttente('u1')).toEqual([
+      { jour: '2026-10-20', fait: false, le: '2026-10-20T09:30:00.000Z' },
+      { jour: '2026-10-22', fait: true, le: '2026-10-22T07:00:00.000Z' },
+    ]);
+    // Jamais la file d'un autre élève.
+    expect(await lireCochesEnAttente('u2')).toEqual([]);
+  });
+
+  it('une file absente ou illisible vaut une file vide', async () => {
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+    await AsyncStorage.setItem(CLE_COCHES_EN_ATTENTE('u1'), '{"pas":"un tableau"}');
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+    await AsyncStorage.setItem(CLE_COCHES_EN_ATTENTE('u1'), JSON.stringify([{ jour: '20 octobre', fait: 'oui' }, { jour: '2026-10-20', fait: true, le: '2026-10-20T08:00:00.000Z' }]));
+    expect(await lireCochesEnAttente('u1')).toEqual([{ jour: '2026-10-20', fait: true, le: '2026-10-20T08:00:00.000Z' }]);
+  });
+
+  it('basculer en ligne : le serveur confirme et la file reste vide', async () => {
+    const c = client({ data: true });
+    expect(await basculerSeance(c, 'u1', '2026-10-20', true)).toBe('serveur');
+    expect(c.rpc).toHaveBeenCalledWith('study_plan_mark_done', { p_day: '2026-10-20', p_done: true });
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('basculer en ligne retire une coche plus ancienne du même jour restée en file', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    expect(await basculerSeance(client({ data: true }), 'u1', '2026-10-20', false)).toBe('serveur');
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('basculer hors ligne : la coche part dans la file, rien ne remonte comme erreur', async () => {
+    expect(await basculerSeance(client({ error: RESEAU }), 'u1', '2026-10-20', true)).toBe('enAttente');
+    expect(await lireCochesEnAttente('u1')).toEqual([{ jour: '2026-10-20', fait: true, le: expect.any(String) }]);
+  });
+
+  it('basculer sur un jour inconnu du serveur : l’erreur remonte, rien n’est mis en file', async () => {
+    await expect(basculerSeance(client({ data: false }), 'u1', '2000-01-01', true)).rejects.toThrow('jour_inconnu');
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('basculer sur une erreur du serveur : elle remonte, rien n’est mis en file', async () => {
+    await expect(basculerSeance(client({ error: { message: 'boom' } }), 'u1', '2026-10-20', true)).rejects.toMatchObject({ message: 'boom' });
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('synchroniserCoches rejoue chaque coche dans l’ordre et vide la file', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    await enregistrerCocheEnAttente('u1', '2026-10-22', false, new Date('2026-10-22T07:00:00.000Z'));
+    const c = client({ data: true });
+    expect(await synchroniserCoches(c, 'u1')).toEqual([]);
+    expect(c.rpc.mock.calls).toEqual([
+      ['study_plan_mark_done', { p_day: '2026-10-20', p_done: true }],
+      ['study_plan_mark_done', { p_day: '2026-10-22', p_done: false }],
+    ]);
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('synchroniserCoches : un jour disparu côté serveur abandonne sa coche, les autres passent', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-19', true, new Date('2026-10-19T08:00:00.000Z'));
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    const c = {
+      rpc: jest.fn(async (_nom: string, args: { p_day: string }) => ({ data: args.p_day !== '2026-10-19', error: null })),
+    } as never;
+    expect(await synchroniserCoches(c, 'u1')).toEqual([]);
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
+  });
+
+  it('synchroniserCoches sans réseau : tout reste dans la file, rien n’est perdu', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    await enregistrerCocheEnAttente('u1', '2026-10-22', true, new Date('2026-10-22T07:00:00.000Z'));
+    const c = client({ error: RESEAU });
+    const restantes = await synchroniserCoches(c, 'u1');
+    expect(restantes).toHaveLength(2);
+    expect(await lireCochesEnAttente('u1')).toHaveLength(2);
+    // Sans réseau, inutile d’essayer la deuxième coche : un seul appel parti.
+    expect(c.rpc).toHaveBeenCalledTimes(1);
+  });
+
+  it('appliquerCoches pose l’état des coches sur le planning, jours inconnus ignorés', () => {
+    const p = depuisReponse(BRUT);
+    expect(p).not.toBeNull();
+    const avec = appliquerCoches(p!, [
+      { jour: '2026-10-20', fait: true, le: '2026-10-20T08:00:00.000Z' },
+      { jour: '2026-10-19', fait: false, le: '2026-10-20T08:05:00.000Z' },
+      { jour: '2030-01-01', fait: true, le: '2026-10-20T08:10:00.000Z' },
+    ]);
+    expect(seanceDe(avec, '2026-10-20')?.fait).toBe(true);
+    expect(seanceDe(avec, '2026-10-19')?.fait).toBe(false);
+  });
+
+  it('lirePlanning hors ligne : la copie affichée porte les coches en attente', async () => {
+    await lirePlanning(client({ data: BRUT }), 'u1');
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    const r = await lirePlanning(client({ error: RESEAU }), 'u1');
+    expect(r.copie).toBe(true);
+    expect(seanceDe(r.planning, '2026-10-20')?.fait).toBe(true);
+    // La copie gardée, elle, reste celle du serveur : le recouvrement se refait à chaque lecture.
+    expect(await lireCochesEnAttente('u1')).toHaveLength(1);
+  });
+
+  it('lirePlanning en ligne : la file est rejouée avant la lecture du planning', async () => {
+    await enregistrerCocheEnAttente('u1', '2026-10-20', true, new Date('2026-10-20T08:00:00.000Z'));
+    const ordre: string[] = [];
+    const c = {
+      rpc: jest.fn(async (nom: string) => {
+        ordre.push(nom);
+        return nom === 'study_plan_mark_done' ? { data: true, error: null } : { data: BRUT, error: null };
+      }),
+    } as never;
+    const r = await lirePlanning(c, 'u1');
+    expect(r.copie).toBe(false);
+    expect(ordre).toEqual(['study_plan_mark_done', 'my_study_plan']);
+    expect(await lireCochesEnAttente('u1')).toEqual([]);
   });
 });
 

@@ -286,8 +286,14 @@ async function garderCopie(idUtilisateur: string | undefined, brut: unknown): Pr
 /**
  * Planning de l'élève. Sans réseau : la copie gardée sur l'appareil (`copie: true`), sinon l'erreur remonte pour l'état
  * « Pas de réseau ». Seul un planning prêt est gardé.
+ *
+ * Les coches faites hors ligne (file ci-dessous) sont d'abord rejouées vers le serveur : la lecture qui suit voit alors
+ * son état à jour. Celles qui n'ont pas pu partir sont reposées sur ce qui s'affiche, copie comme réponse du serveur.
  */
 export async function lirePlanning(client: Client, idUtilisateur?: string): Promise<ResultatPlanning> {
+  const restantes = idUtilisateur
+    ? await synchroniserCoches(client, idUtilisateur).catch(() => lireCochesEnAttente(idUtilisateur))
+    : [];
   try {
     const { data, error } = await client.rpc('my_study_plan');
     if (error) throw error;
@@ -295,12 +301,117 @@ export async function lirePlanning(client: Client, idUtilisateur?: string): Prom
     const planning = depuisReponse(data);
     if (!planning) throw new Error('planning_illisible');
     if (planning.statut === 'ready') await garderCopie(idUtilisateur, data);
-    return { planning, copie: false };
+    return { planning: restantes.length > 0 ? appliquerCoches(planning, restantes) : planning, copie: false };
   } catch (erreur) {
     if (!estErreurReseau(erreur)) throw erreur;
     signalerEchec();
     const copie = await lireCopie(idUtilisateur);
-    if (copie && copie.statut === 'ready') return { planning: copie, copie: true };
+    if (copie && copie.statut === 'ready') {
+      return { planning: restantes.length > 0 ? appliquerCoches(copie, restantes) : copie, copie: true };
+    }
+    throw erreur;
+  }
+}
+
+// --- Coches de séance hors ligne (issue #74, lot A ; spec docs/maquettes/planning-etudes.md, section 8) ---------------
+
+/** Une coche faite sans réseau : le jour, l'état voulu et quand elle a été faite. Rien d'autre ne part dans la file. */
+export type CocheEnAttente = { jour: string; fait: boolean; le: string };
+
+export const CLE_COCHES_EN_ATTENTE = (idUtilisateur: string) => `planning.cochesEnAttente.${idUtilisateur}`;
+
+function estCoche(valeur: unknown): valeur is CocheEnAttente {
+  if (!valeur || typeof valeur !== 'object') return false;
+  const c = valeur as Partial<CocheEnAttente>;
+  return typeof c.jour === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(c.jour) && typeof c.fait === 'boolean' && typeof c.le === 'string';
+}
+
+/** File des coches en attente de cet élève ; jamais celle d'un autre. Absente ou illisible : une file vide. */
+export async function lireCochesEnAttente(idUtilisateur: string): Promise<CocheEnAttente[]> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_COCHES_EN_ATTENTE(idUtilisateur));
+    if (!brut) return [];
+    const lu: unknown = JSON.parse(brut);
+    return Array.isArray(lu) ? lu.filter(estCoche) : [];
+  } catch {
+    return [];
+  }
+}
+
+async function ecrireCochesEnAttente(idUtilisateur: string, file: CocheEnAttente[]): Promise<void> {
+  try {
+    if (file.length === 0) await AsyncStorage.removeItem(CLE_COCHES_EN_ATTENTE(idUtilisateur));
+    else await AsyncStorage.setItem(CLE_COCHES_EN_ATTENTE(idUtilisateur), JSON.stringify(file));
+  } catch {
+    // File facultative : au pire, la coche se refera une fois en ligne.
+  }
+}
+
+/**
+ * Garde une coche faite hors ligne. Une seule entrée par jour : cocher puis décocher le même jour ne garde que le
+ * dernier état, c'est lui qui sera rejoué.
+ */
+export async function enregistrerCocheEnAttente(idUtilisateur: string, jour: string, fait: boolean, maintenant = new Date()): Promise<void> {
+  const file = (await lireCochesEnAttente(idUtilisateur)).filter((c) => c.jour !== jour);
+  file.push({ jour, fait, le: maintenant.toISOString() });
+  await ecrireCochesEnAttente(idUtilisateur, file);
+}
+
+async function retirerCocheEnAttente(idUtilisateur: string, jour: string): Promise<void> {
+  const file = await lireCochesEnAttente(idUtilisateur);
+  if (file.some((c) => c.jour === jour)) {
+    await ecrireCochesEnAttente(idUtilisateur, file.filter((c) => c.jour !== jour));
+  }
+}
+
+/** Pose les coches en attente sur un planning lu (copie ou serveur) ; les jours inconnus du planning sont ignorés. */
+export function appliquerCoches(planning: Planning, coches: CocheEnAttente[]): Planning {
+  return coches.reduce((p, c) => avecSeanceFaite(p, c.jour, c.fait), planning);
+}
+
+/**
+ * Rejoue la file des coches vers le serveur et renvoie ce qui reste à envoyer. Le RPC `study_plan_mark_done` est
+ * idempotent : un rejeu répété ne change rien. Un jour que le serveur ne connaît plus (il répond faux, par exemple
+ * après un recalcul du planning) abandonne sa coche : l'état du serveur fait foi. Sans réseau, on s'arrête à la
+ * première coche : les suivantes repartiront au prochain essai, rien n'est perdu.
+ */
+export async function synchroniserCoches(client: Client, idUtilisateur: string): Promise<CocheEnAttente[]> {
+  const file = await lireCochesEnAttente(idUtilisateur);
+  if (file.length === 0) return [];
+  const restantes: CocheEnAttente[] = [];
+  let sansReseau = false;
+  for (const coche of file) {
+    if (sansReseau) {
+      restantes.push(coche);
+      continue;
+    }
+    try {
+      await cocherSeance(client, coche.jour, coche.fait);
+    } catch (erreur) {
+      restantes.push(coche);
+      if (estErreurReseau(erreur)) sansReseau = true;
+    }
+  }
+  await ecrireCochesEnAttente(idUtilisateur, restantes);
+  return restantes;
+}
+
+/**
+ * Coche ou décoche une séance, en ligne comme hors ligne. En ligne, le serveur confirme (`serveur`) et une coche plus
+ * ancienne du même jour encore en file est retirée. Sans réseau, la coche part dans la file (`enAttente`) et sera
+ * rejouée : l'élève n'a pas à la refaire. Un jour inconnu du serveur reste une erreur (`jour_inconnu`), comme avant :
+ * ce n'est pas un problème de réseau, et rien n'est mis en file.
+ */
+export async function basculerSeance(client: Client, idUtilisateur: string | undefined, jour: string, fait: boolean): Promise<'serveur' | 'enAttente'> {
+  try {
+    if (!(await cocherSeance(client, jour, fait))) throw new Error('jour_inconnu');
+    if (idUtilisateur) await retirerCocheEnAttente(idUtilisateur, jour);
+    return 'serveur';
+  } catch (erreur) {
+    if (idUtilisateur && estErreurReseau(erreur)) {
+      await enregistrerCocheEnAttente(idUtilisateur, jour, fait);
+      return 'enAttente';
+    }
     throw erreur;
   }
 }

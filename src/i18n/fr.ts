@@ -1904,6 +1904,7 @@ export const fr = {
     horsLigne: 'Hors ligne\u00a0: dernière version de ton planning.',
     horsLigneTitre: 'Pas de réseau.',
     horsLigneTexte: 'Ton planning s’affichera dès que le réseau revient.',
+    horsLigneSynchro: 'Tu es hors ligne\u00a0: ta séance est gardée sur l’appareil, elle sera synchronisée au retour du réseau.',
     sansEcheanceTitre: 'Pas encore de date pour ta classe.',
     sansEcheanceTexte: 'Ton planning se créera dès que la date de ton examen ou de la fin de cours sera connue.',
     ajuster: 'Ajuster',

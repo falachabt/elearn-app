@@ -8,6 +8,7 @@ import { restaurerHistorique } from '@/services/donneesLocales';
 import { enregistrerJetonPush } from '@/services/push';
 import { finirRetourOAuthWebUneFois } from '@/services/retourOAuthWeb';
 import { synchroniserResultat } from '@/services/miniTest';
+import { synchroniserCoches } from '@/services/planning';
 import { synchroniserActivitesServeur } from '@/services/activite';
 import { synchroniserLues } from '@/services/reviser';
 import { repriseInviteEnCours, reprendreApresRedemarrage } from '@/services/repriseInvite';
@@ -48,6 +49,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
                 if (repriseInviteEnCours()) return;
                 synchroniserResultat(client).catch(() => {});
                 synchroniserReglages(client, nouvelle.user).catch(() => {});
+                synchroniserCoches(client, nouvelle.user.id).catch(() => {});
                 synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
                 restaurerHistorique(client).catch(() => {});
                 synchroniserLues(client).catch(() => {});
@@ -80,6 +82,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
           void identifier(session.user.id, { invite: session.user.is_anonymous ?? false });
           if (!reprise) {
             synchroniserReglages(client, session.user).catch(() => {});
+            synchroniserCoches(client, session.user.id).catch(() => {});
             synchroniserEntrainement(client).catch((erreur: unknown) => console.warn('La synchronisation des entraînements a échoué.', erreur));
             void enregistrerJetonPush(client);
           }

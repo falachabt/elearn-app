@@ -1903,6 +1903,7 @@ export const en: Textes = {
     horsLigne: 'Offline: last version of your plan.',
     horsLigneTitre: 'No network.',
     horsLigneTexte: 'Your plan will show as soon as the network is back.',
+    horsLigneSynchro: 'You are offline: your session is kept on this device and will sync when the network is back.',
     sansEcheanceTitre: 'No date yet for your class.',
     sansEcheanceTexte: 'Your plan will be created as soon as the date of your exam or end of classes is known.',
     ajuster: 'Adjust',

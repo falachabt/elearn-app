@@ -9,7 +9,7 @@ import { estErreurReseau } from '@/services/connectivite';
 import { lireExercicesFaits, lireMeilleursScores } from '@/services/entrainement';
 import {
   avecSeanceFaite,
-  cocherSeance,
+  basculerSeance,
   dateDuJour,
   elementFait,
   lirePlanning,
@@ -153,10 +153,11 @@ export function PlanningJour() {
         if (!actif) return;
         let planning = lu.planning;
         // Toutes les tâches de la séance sont déjà validées : la séance est cochée sans attendre l'élève.
+        // Hors ligne, la coche part dans la file et sera synchronisée au retour du réseau (issue #74, lot A).
         const seance = jour ? seanceDe(planning, jour) : null;
-        if (jour && seance && !seance.fait && !lu.copie && seanceTerminee(seance, validees, acq)) {
+        if (jour && seance && !seance.fait && seanceTerminee(seance, validees, acq)) {
           planning = avecSeanceFaite(planning, jour, true);
-          cocherSeance(getSupabase(), jour, true).catch(() => undefined);
+          void basculerSeance(getSupabase(), utilisateur, jour, true).catch(() => undefined);
         }
         setEtat({ type: 'pret', planning, copie: lu.copie });
       } catch (e) {
@@ -188,12 +189,14 @@ export function PlanningJour() {
   const copie = etat.type === 'pret' && etat.copie;
 
   const basculer = async (fait: boolean) => {
-    if (etat.type !== 'pret' || etat.copie || !jour) return;
+    if (etat.type !== 'pret' || !jour) return;
     const avant = etat.planning;
     setErreurCocher(false);
     setEtat({ ...etat, planning: avecSeanceFaite(avant, jour, fait) });
     try {
-      if (!(await cocherSeance(getSupabase(), jour, fait))) throw new Error('jour_inconnu');
+      // En ligne, le serveur confirme ; hors ligne, la coche est gardée sur l'appareil (file de l'issue #74).
+      // Dans les deux cas, l'état affiché reste celui que l'élève vient de choisir.
+      await basculerSeance(getSupabase(), utilisateur ?? undefined, jour, fait);
       suivre('planning_day_checked', { fait });
     } catch {
       setEtat((courant) => (courant.type === 'pret' ? { ...courant, planning: avant } : courant));
@@ -232,7 +235,7 @@ export function PlanningJour() {
   const progression = progressionSeance(seance, lues, acquises);
   // Une séance cochée par les tâches validées seules ne se décoche pas à la main : elle se recocherait aussitôt.
   const seulementAcquises = seance.elements.length > 0 && seance.elements.every((e) => elementFait(e, lues, acquises));
-  const pied = terminee ? undefined : <Bouton libelle={t('planning.terminer')} desactive={copie} onPress={() => void basculer(true)} />;
+  const pied = terminee ? undefined : <Bouton libelle={t('planning.terminer')} onPress={() => void basculer(true)} />;
   return (
     <Ecran entete={entete} pied={pied}>
       <View style={styles.contenu}>
@@ -253,7 +256,8 @@ export function PlanningJour() {
           ))}
         </View>
         {erreurCocher ? <Text accessibilityRole="alert" style={[typo.petit, { color: theme.etat.erreur }]}>{t('planning.erreurCocher')}</Text> : null}
-        {terminee && seance.fait && !seulementAcquises ? <Bouton variante="texte" libelle={t('planning.rouvrir')} desactive={copie} onPress={() => void basculer(false)} /> : null}
+        {copie ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('planning.horsLigneSynchro')}</Text> : null}
+        {terminee && seance.fait && !seulementAcquises ? <Bouton variante="texte" libelle={t('planning.rouvrir')} onPress={() => void basculer(false)} /> : null}
         {terminee ? <Bouton variante="secondaire" libelle={t('planning.retourPlanning')} onPress={retour} /> : null}
       </View>
     </Ecran>
