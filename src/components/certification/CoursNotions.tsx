@@ -46,32 +46,21 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
       {groupes.map((g) => (
         <View key={g.partie} style={styles.colonne}>
           <EtiquetteSection texte={g.partie ? t('certification.cours.etiquette', { famille: t(`certification.cours.familles.${famille}`), n: g.partie }) : t('certification.cours.etiquetteSans', { famille: t(`certification.cours.familles.${famille}`) })} />
-          {famille === 'grammaire' ? (
-            <GrilleEgale
-              colonnes={2}
-              enfants={g.notions.map((n) => (
-                <Appui key={n.id} accessibilityRole="button" accessibilityLabel={titreAffiche(n.titre)} onPress={() => ouvrir(n.id)} decalage={2} rayon={rayon.m} retour>
-                  <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                    <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-                      <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
-                    </View>
-                    <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titreAffiche(n.titre)}</Text>
-                    {n.dureeMin ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.duree', { n: n.dureeMin })}</Text> : null}
+          {/* Retour de Benny (22 octobre) : toutes les familles en grille de tuiles, pas seulement Grammaire. */}
+          <GrilleEgale
+            colonnes={2}
+            enfants={g.notions.map((n) => (
+              <Appui key={n.id} accessibilityRole="button" accessibilityLabel={titreAffiche(n.titre)} onPress={() => ouvrir(n.id)} decalage={2} rayon={rayon.m} retour>
+                <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                    <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
                   </View>
-                </Appui>
-              ))}
-            />
-          ) : (
-            g.notions.map((n) => (
-              <LigneChoix
-                key={n.id}
-                visuel={<Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />}
-                titre={titreAffiche(n.titre)}
-                aide={n.dureeMin ? t('certification.cours.duree', { n: n.dureeMin }) : undefined}
-                onPress={() => ouvrir(n.id)}
-              />
-            ))
-          )}
+                  <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{titreAffiche(n.titre)}</Text>
+                  {n.dureeMin ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.duree', { n: n.dureeMin })}</Text> : null}
+                </View>
+              </Appui>
+            ))}
+          />
         </View>
       ))}
     </View>
