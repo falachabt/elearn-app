@@ -1,4 +1,8 @@
-import { dateLocale, lireCalendrierClasse, prochaineEcheance, versEcheance, type EcheanceClasse } from '../calendrier';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { CLE_CALENDRIER_CLASSE, dateLocale, lireCalendrierClasse, prochaineEcheance, versEcheance, type EcheanceClasse } from '../calendrier';
+
+beforeEach(() => AsyncStorage.clear());
 
 const echeance = (type: 'examen' | 'fin_de_cours', iso: string, libelle = 'BEPC'): EcheanceClasse => ({
   type,
@@ -50,5 +54,46 @@ describe('calendrier de la classe', () => {
   it('une erreur de la base remonte (l’accueil cache alors la carte)', async () => {
     const rpc = jest.fn(async () => ({ data: null, error: { message: 'boom' } }));
     await expect(lireCalendrierClasse({ rpc } as never, '3e', 'CM')).rejects.toEqual({ message: 'boom' });
+  });
+
+  // Issue #74 : l'accueil ne montre le compte à rebours et la carte planning que s'il connaît l'échéance de la classe.
+  // Sans copie locale, les deux disparaissaient hors ligne alors même que le planning a la sienne.
+  describe('copie locale pour le hors ligne', () => {
+    const LIGNES = [{ type: 'examen', libelle: 'BEPC', date_cible: '2027-06-14', statut: 'reprise', annee_scolaire: '2026-2027' }];
+    const RESEAU = { name: 'TypeError', message: 'Network request failed' };
+    const enLigne = () => jest.fn(async () => ({ data: LIGNES, error: null }));
+    const horsLigne = () => jest.fn(async () => ({ data: null, error: RESEAU }));
+
+    it('une lecture en ligne garde une copie, par niveau et par pays', async () => {
+      await lireCalendrierClasse({ rpc: enLigne() } as never, '3e', 'CM');
+      expect(await AsyncStorage.getItem(CLE_CALENDRIER_CLASSE('3e', 'CM'))).not.toBeNull();
+      expect(await AsyncStorage.getItem(CLE_CALENDRIER_CLASSE('Tle', 'CM'))).toBeNull();
+      expect(await AsyncStorage.getItem(CLE_CALENDRIER_CLASSE('3e', 'BF'))).toBeNull();
+    });
+
+    it('hors ligne : la copie de cette classe est servie, avec les mêmes échéances', async () => {
+      await lireCalendrierClasse({ rpc: enLigne() } as never, '3e', 'CM');
+      const lues = await lireCalendrierClasse({ rpc: horsLigne() } as never, '3e', 'CM');
+      expect(lues).toHaveLength(1);
+      expect(lues[0]).toMatchObject({ type: 'examen', libelle: 'BEPC' });
+      expect(lues[0].dateCible).toEqual(dateLocale('2027-06-14'));
+      // La copie d'une autre classe ne sert jamais.
+      await expect(lireCalendrierClasse({ rpc: horsLigne() } as never, 'Tle', 'CM')).rejects.toEqual(RESEAU);
+    });
+
+    it('hors ligne sans copie : l’erreur remonte, comme avant', async () => {
+      await expect(lireCalendrierClasse({ rpc: horsLigne() } as never, '3e', 'CM')).rejects.toEqual(RESEAU);
+    });
+
+    it('une erreur qui n’est pas le réseau remonte même avec une copie', async () => {
+      await lireCalendrierClasse({ rpc: enLigne() } as never, '3e', 'CM');
+      const rpc = jest.fn(async () => ({ data: null, error: { message: 'boom' } }));
+      await expect(lireCalendrierClasse({ rpc } as never, '3e', 'CM')).rejects.toEqual({ message: 'boom' });
+    });
+
+    it('une copie illisible vaut pas de copie', async () => {
+      await AsyncStorage.setItem(CLE_CALENDRIER_CLASSE('3e', 'CM'), '{pas du json');
+      await expect(lireCalendrierClasse({ rpc: horsLigne() } as never, '3e', 'CM')).rejects.toEqual(RESEAU);
+    });
   });
 });

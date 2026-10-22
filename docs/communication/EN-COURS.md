@@ -16,7 +16,7 @@ Branche de travail : `claude/project-thread-kw792g` (`elearn-app`). `git pull` a
 | Écrans hors TOEIC (Réviser, Questions, Moi, Photo, paiement) | libre, à prendre avant de modifier | | libre | |
 | Première tâche de Muse (hors TOEIC) | Muse | 22 octobre 2026 | fait (choix confirmé par Benny : issue #54) | `echanges/2026-10-22-2032-muse-prise-issue-54.md` |
 | Démarrage web et PWA, issue #54 (`public/sw.js`, `public/index.html`, `public/manifest.json`, `vercel.json`, test `src/__tests__/serviceWorker.test.ts`) | Muse | 22 octobre 2026 | libre (tâche fermée le 22 octobre 2026, issue #54 fermée par décision de Benny) | `echanges/2026-10-22-2054-muse-issue-54-fermeture.md` |
-| Planning d'études hors ligne, crédits et synchronisation, issue #74 (`src/services/planning.ts`, `src/components/planning/`, file de synchronisation, garde hors ligne du changement de classe) | Muse | 22 octobre 2026 | pris | `echanges/2026-10-22-2109-muse-prise-issue-74.md` |
+| Planning d'études hors ligne, crédits et synchronisation, issue #74 (`src/services/planning.ts`, `src/components/planning/`, `src/services/calendrier.ts`, file de synchronisation, garde hors ligne du changement de classe) | Muse | 22 octobre 2026 | pris | `echanges/2026-10-22-2109-muse-prise-issue-74.md` |
 
 ## Notes
 - Le dev TOEIC et l'agent contenu sont bloqués sur l'accès ElevenLabs et l'écriture R2 : Benny doit reconnecter les accès dans les réglages de l'environnement cloud. Ne pas toucher à ces zones en attendant.
