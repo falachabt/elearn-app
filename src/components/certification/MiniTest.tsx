@@ -138,7 +138,8 @@ export function MiniTest() {
 
   const total = etat.tentative.questions.length;
   const derniere = etat.index + membres.length >= total;
-  const titre = t('certification.examen.entete', { n: Math.min(etat.index + 1, total), total });
+  const cle = etat.tentative.kind === 'half_listening' ? 'certification.examen.enteteEcoute' : etat.tentative.kind === 'half_reading' ? 'certification.examen.enteteLecture' : etat.tentative.kind === 'full' ? 'certification.examen.enteteComplet' : 'certification.examen.entete';
+  const titre = t(cle, { n: Math.min(etat.index + 1, total), total });
   const horloge = chronometre(reste);
 
   return (

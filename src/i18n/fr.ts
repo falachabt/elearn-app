@@ -2817,6 +2817,9 @@ export const fr = {
     },
     examen: {
       entete: 'Mini-test · question {{n}} sur {{total}}',
+      enteteEcoute: 'Demi-test écoute · question {{n}} sur {{total}}',
+      enteteLecture: 'Demi-test lecture · question {{n}} sur {{total}}',
+      enteteComplet: 'Test complet · question {{n}} sur {{total}}',
       chrono: 'Temps restant {{temps}}',
       chronoFin: 'Temps écoulé',
       valider: 'Valider',
