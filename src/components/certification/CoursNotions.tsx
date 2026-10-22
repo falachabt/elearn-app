@@ -35,10 +35,13 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
   return (
     <View style={styles.colonne}>
       <Onglets valeurs={FAMILLES.map((f) => ({ valeur: f, libelle: t(`certification.cours.familles.${f}`) }))} valeur={famille} onChange={setFamille} />
-      <View style={[styles.bandeau, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
-        <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
-        <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t(`certification.cours.familles.${famille}`)}</Text>
-      </View>
+      {/* Maquette v30 et v32 (Grammaire) : pas de bandeau sous les onglets, le libellé est déjà l'onglet actif. */}
+      {famille === 'grammaire' ? null : (
+        <View style={[styles.bandeau, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+          <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
+          <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t(`certification.cours.familles.${famille}`)}</Text>
+        </View>
+      )}
       {groupes.length === 0 ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.cours.vide')}</Text> : null}
       {groupes.map((g) => (
         <View key={g.partie} style={styles.colonne}>
