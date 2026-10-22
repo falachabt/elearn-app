@@ -440,3 +440,16 @@ Demande de Benny (22 octobre) : chaque test montre s'il est fait, quand, avec qu
 - `TOEIC-V33-STATS-COURBE` (trois états) : sans diagnostic (point « Départ » à 0), diagnostic seul (Départ puis 745), plusieurs tests (un point par demi-test ou test complet terminé, les mini-tests ne sont pas comptés). Axe de 0 à 990, cible 800 en pointillé, ligne continue, un score exact par point.
 
 Règles : statut en mots, jamais seulement une couleur. Interrompu n'écrase ni le dernier ni le meilleur score. Les tentatives d'Entraînement ne comptent pas dans le meilleur score.
+
+## Version 35 : grilles pour toute la catégorie Cours, états de maîtrise, timeline « Mon parcours » (22 octobre 2026, à valider)
+
+Demande de Benny (22 octobre) : Vocabulaire, Pièges et Méthode en grille comme Grammaire ; l'onglet Parcours devient une vraie timeline (aujourd'hui, demain, jours suivants) ; chaque notion et piège porte un état de maîtrise lié aux quiz.
+
+- `TOEIC-V35-COURS-GRAMMAIRE` : grille de cartes, jauge de maîtrise en pourcentage, états sur chaque carte (Non vu, Vu, Validé, Maîtrisé) et « Quiz liés : 2/2 ».
+- `TOEIC-V35-COURS-VOCABULAIRE` : même grille, cartes vertes.
+- `TOEIC-V35-COURS-PIEGES` : même grille, cartes corail.
+- `TOEIC-V35-COURS-METHODE` : même grille, cartes crème.
+- `TOEIC-V35-PIEGE-MAITRISE` : détail d'un piège, états de maîtrise.
+- `TOEIC-V35-PARCOURS` : timeline « Mon parcours », jusqu'au 16 janvier. Aujourd'hui (9 h, notion ratée à revoir ; 9 h 10, mini-test en cours), demain, jours suivants (test complet). Chaque étape porte son état : À faire, En cours, Fait, Ratée à revoir.
+
+Règles : l'état d'une notion passe à « Validé » quand le quiz lié est réussi, à « Maîtrisé » quand il est réussi plusieurs fois. Une notion ratée revient dans la timeline. Les états sont écrits en mots, jamais seulement en couleur.

@@ -1128,6 +1128,48 @@ const V33_STATS_COURBE_PLUSIEURS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semai
   carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'},{v:385,l:'D. lect.'},{v:430,l:'D. lect.'},{v:812,l:'Complet'}],'Score dans le temps','Un point par demi-test ou test complet terminé. Les mini-tests ne sont pas comptés.')+
   `<div class="gr2"><span class="tile">Meilleur score<small>812 sur 990</small></span><span class="tile">Tests faits<small>4 sur 12</small></span></div>`
   )+ft(TB(3)));
+/* v34 : grilles pour toutes les catégories de Cours, timeline « Mon parcours », états de maîtrise (21-22 octobre, à valider) */
+const etatMaitrise=(k)=>({
+  non:`<span class="st" style="justify-self:start">${I('circle')}Non vu</span>`,
+  vu:`<span class="st a" style="justify-self:start">${I('eye')}Vu</span>`,
+  valide:`<span class="st p" style="justify-self:start">${I('check')}Validé</span>`,
+  maitrise:`<span class="st p" style="justify-self:start;background:var(--soleil)">${I('award')}Maîtrisé</span>`})[k];
+const carteNotion=(couleur,icone,titre,sous,etat,quiz)=>`<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow);min-height:132px;align-content:start">
+  <span style="width:36px;height:36px;border:2px solid var(--bord);border-radius:10px;background:${couleur};display:grid;place-items:center">${I(icone)}</span>
+  <b style="font:700 14px/1.25 var(--f-body)">${titre}</b><small style="font:500 12px var(--f-body);color:var(--txt2)">${sous}</small>
+  ${etatMaitrise(etat)}<small style="font:600 11px var(--f-mono);color:var(--txt2)">Quiz liés : ${quiz}</small></div>`;
+const pourcentage=(p,couleur)=>`<div style="display:grid;gap:4px"><div style="display:flex;justify-content:space-between;font:600 12px var(--f-mono)"><span>Maîtrise de la catégorie</span><span>${p} %</span></div><div style="height:10px;border:2px solid var(--bord);border-radius:6px;background:var(--surf);overflow:hidden"><i style="display:block;height:100%;width:${p}%;background:${couleur}"></i></div></div>`;
+const grilleCours=(onglet)=>{
+  const cat=[
+    {n:'Grammaire',c:'var(--soleil)',i:'layers',p:40,items:[['Présent continu','3 min','maitrise','2/2'],['Voix passive','3 min','valide','1/2'],['Mots interrogatifs','3 min','vu','0/2'],['Questions tag','3 min','non','0/2']]},
+    {n:'Vocabulaire',c:'var(--marque)',i:'notes',p:55,items:[['Mots à revoir','6 min','valide','3/4'],['Synonymes du bureau','5 min','vu','1/3'],['Mots du voyage','4 min','non','0/3'],['Faux amis','4 min','vu','1/2']]},
+    {n:'Pièges',c:'var(--corail)',i:'alert',p:20,items:[['Tout le monde','2 min','vu','1/2'],['Futur proche','3 min','non','0/2']]},
+    {n:'Méthode',c:'var(--creux)',i:'bulb',p:30,items:[['Décrire une photo','3 min','valide','2/2'],['Question et réponse','3 min','vu','0/2'],['Conversation','3 min','non','0/3']]}][onglet];
+  return ph('',hd('Cours')+bd(seg(['Grammaire','Vocabulaire','Pièges','Méthode'],onglet)+pourcentage(cat.p,cat.c)+
+    `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${cat.items.map(([t,s,e,q])=>carteNotion(cat.c,cat.i,t,s,e,q)).join('')}</div>`)+ft(B('Continuer · '+cat.n)));
+};
+const V34_COURS_VOCAB=t=>grilleCours(1), V34_COURS_PIEGES=t=>grilleCours(2), V34_COURS_METHODE=t=>grilleCours(3), V34_COURS_GRAMMAIRE=t=>grilleCours(0);
+
+const etape=(heure,titre,sous,etat,couleur,icone)=>{
+  const libelle={fait:'Fait',cours:'En cours',faire:'À faire',rate:'Ratée, à revoir'}[etat];
+  const cls={fait:'p',cours:'a',faire:'',rate:'f'}[etat];
+  return `<div style="position:relative;display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:start"><span style="font:700 12px var(--f-mono);padding-top:14px;color:var(--txt2)">${heure}</span><div style="border:2px solid var(--bord);border-radius:12px;background:var(--surf);padding:12px;display:grid;gap:6px;box-shadow:3px 3px 0 var(--bord)"><div style="display:flex;gap:10px;align-items:center"><span style="width:34px;height:34px;border:2px solid var(--bord);border-radius:9px;background:${couleur};display:grid;place-items:center;flex:none">${I(icone)}</span><div style="min-width:0;flex:1"><b style="display:block;font:700 14px/1.25 var(--f-body)">${titre}</b><small style="display:block;font:500 12px var(--f-body);color:var(--txt2)">${sous}</small></div></div><span class="st ${cls}" style="justify-self:start">${libelle}</span></div></div>`;
+};
+const jour=(titre,sous)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;margin-top:6px"><span class="lbl2">${titre}</span><small style="font:600 12px var(--f-mono);color:var(--txt2)">${sous}</small></div>`;
+const V34_PARCOURS_TIMELINE=t=>ph(t,hd('Réviser')+bd(seg(['Parcours','Parties','Cours','Carnet'],0)+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--marque);padding:12px;display:grid;gap:6px;box-shadow:var(--shadow)"><b style="font:800 18px var(--f-display);color:#0A0A0A">Jusqu'au 16 janvier</b><small style="font:600 12px var(--f-body);color:#0A0A0A">Semaine 4 sur 12 · maîtrise globale 34 %</small><div style="height:10px;border:2px solid #0A0A0A;border-radius:6px;background:var(--surf);overflow:hidden"><i style="display:block;height:100%;width:34%;background:var(--soleil)"></i></div></div>`+
+  jour('Aujourd\'hui','Jeudi 22 oct.')+
+  etape('9 h','Notion : mots interrogatifs','Grammaire, partie 2 · 3 min','rate','var(--soleil)','layers')+
+  etape('9 h 10','Mini-test partie 5','10 questions · 4 faites','cours','var(--marque)','target')+
+  jour('Demain','Vendredi 23 oct.')+
+  etape('18 h','Voix passive et états','Grammaire · 3 min','faire','var(--soleil)','layers')+
+  etape('18 h 05','Vocabulaire : faux amis','4 min','faire','var(--marque)','notes')+
+  jour('Les jours suivants','Samedi 24 oct. et après')+
+  etape('Sam.','Test complet','Écoute et lecture · 2 h','faire','var(--creux)','award')
+  )+ft(B('Commencer · mini-test partie 5')));
+
+const V34_NOTION_MAITRISE=t=>ph(t,hd('Cours')+bd(seg(['Grammaire','Vocabulaire','Pièges','Méthode'],2)+pourcentage(20,'var(--corail)')+
+  `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">${carteNotion('var(--corail)','alert','Tout le monde','Accord et sens','vu','1/2')}${carteNotion('var(--corail)','alert','Futur proche','Confusion fréquente','non','0/2')}</div>`)+ft(B('Revoir le piège')));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1178,6 +1220,7 @@ const groups=[
  ['Grilles pour Grammaire et Parties, onglets en numéros, séance de mots en QCM, plan de formation (v32, 21 octobre, à valider)',[[V32_GRAMMAIRE,'TOEIC-V32-GRAMMAIRE · Cours, Grammaire : grille de fiches, icône propre par fiche'],[V32_PARTIES,'TOEIC-V32-PARTIES · Réviser, Parties : grille P1 à P7 avec maîtrise'],[V32_MOTS_QCM,'TOEIC-V32-MOTS-QCM · Séance de mots : QCM, choisir le sens avant de voir la réponse'],[V32_MOTS_FAUX,'TOEIC-V32-MOTS-FAUX · Séance de mots : mauvaise réponse en rouge, bonne en vert, rappel dans 1 jour'],[V32_PARCOURS,'TOEIC-V32-PARCOURS · Mon plan jusqu\'à la date : mots ratés, temps verbaux, cours, notions, mini-tests, test complet']]],
  ['Suivi des tests faits : statut, dernier et meilleur score, tentatives, revue (v33, 22 octobre, à valider)',[[V33_TESTS_SUIVI,'TOEIC-V33-TESTS-SUIVI · Onglet Tests : statut sur chaque carte (Pas encore fait, En cours, Fait, Interrompu)'],[V33_DEMI_SUIVI,'TOEIC-V33-DEMI-SUIVI · Demi-test : cartes Écoute et Lecture sur 495, statut, date'],[V33_TENTATIVES,'TOEIC-V33-TENTATIVES · Liste des tentatives d\'un test, revue, interrompue sans effet sur le meilleur'],[V33_REVISER_SUIVI,'TOEIC-V33-REVISER-SUIVI · Réviser : statut sur les leçons et les mini-tests'],[V33_PARCOURS_STATUT,'TOEIC-V33-PARCOURS-STATUT · Mon plan : statut sur chaque étape'],[V33_STATS_TESTS,'TOEIC-V33-STATS · Statistiques : tests faits, meilleur score, demi-test lecture dans le temps']]],
  ['Courbe des scores : départ à 0, diagnostic, un point par test terminé, axe 0 à 990 (v33, 22 octobre, à valider)',[[V33_STATS_COURBE_SANS,'TOEIC-V33-STATS-COURBE · Sans diagnostic : point « Départ » seul'],[V33_STATS_COURBE_DIAG,'TOEIC-V33-STATS-COURBE · Diagnostic seul : Départ puis diagnostic'],[V33_STATS_COURBE_PLUSIEURS,'TOEIC-V33-STATS-COURBE · Plusieurs tests : un point par demi-test ou test complet']]],
+ ['Cours en grille pour toutes les catégories, états de maîtrise, timeline Mon parcours (v35, 22 octobre, à valider)',[[V34_COURS_GRAMMAIRE,'TOEIC-V35-COURS-GRAMMAIRE · Grille, états de maîtrise et jauge par catégorie'],[V34_COURS_VOCAB,'TOEIC-V35-COURS-VOCABULAIRE · Grille, cartes vertes'],[V34_COURS_PIEGES,'TOEIC-V35-COURS-PIEGES · Grille, cartes corail'],[V34_COURS_METHODE,'TOEIC-V35-COURS-METHODE · Grille, cartes crème'],[V34_NOTION_MAITRISE,'TOEIC-V35-PIEGE-MAITRISE · Piège : états Non vu, Vu, Validé, Maîtrisé'],[V34_PARCOURS_TIMELINE,'TOEIC-V35-PARCOURS · Timeline Mon parcours : aujourd\'hui, demain, jours suivants, état de chaque étape']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
