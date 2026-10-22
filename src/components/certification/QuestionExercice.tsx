@@ -76,7 +76,7 @@ function PassageTrous({ texte, blanc }: { texte: string; blanc?: number }) {
               const n = Number(trou[1]);
               const actif = n === blanc;
               return [
-                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
                   <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.principal }]}>{n}</Text>
                 </View>,
               ];
