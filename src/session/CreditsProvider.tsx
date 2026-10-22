@@ -53,7 +53,17 @@ const ContexteCredits = createContext<Credits>({
 });
 
 /** Un seul abonnement temps réel au solde pour toute l'app (M18-06). */
+const DEMO_STATS = __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1';
 /** Solde d'exemple de la démo TOEIC (valeurs de la maquette X5, sans session). */
+/** Coûts d'exemple de la démo TOEIC (outil de développement, sans session) : copie de `credit_actions` pour l'affichage seul. */
+const COUTS_DEMO: Partial<Record<ActionCredit, number>> = {
+  cert_explanation: 1,
+  cert_mock_mini_ten: 1,
+  cert_mock_mini_twenty: 2,
+  cert_mock_half: 8,
+  cert_mock_full: 15,
+  cert_mock_review: 3,
+};
 const SOLDE_DEMO: Solde = {
   total: 25,
   semaine: 0,
@@ -91,7 +101,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
   );
   // Démo des explications TOEIC (outil de développement, avec EXPO_PUBLIC_CERT_DEMO_STATS=1) : sans session, les coûts ne se lisent pas.
   const [couts, setCouts] = useState<Partial<Record<ActionCredit, number>>>(() =>
-    __DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1' ? { cert_explanation: 1 } : {},
+    DEMO_STATS ? COUTS_DEMO : {},
   );
   const [reglages, setReglages] = useState<ReglagesCredits | null>(null);
   const [depenses, setDepenses] = useState<{ pour: string; n: number } | null>(null);
@@ -108,7 +118,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
     majSolde(utilisateur, () => s);
     void garderSoldeLocal(utilisateur, s);
     const [c, r] = await Promise.all([lireCouts(client), lireReglages(client).catch(() => null)]);
-    setCouts(c);
+    if (!DEMO_STATS || Object.keys(c).length > 0) setCouts(c);
     if (r) setReglages(r);
   }, [utilisateur, majSolde]);
 
@@ -120,7 +130,7 @@ export function CreditsProvider({ children }: { children: ReactNode }) {
       .then(([s, c, r]) => {
         majSolde(utilisateur, () => s);
         void garderSoldeLocal(utilisateur, s);
-        setCouts(c);
+        if (!DEMO_STATS || Object.keys(c).length > 0) setCouts(c);
         if (r) setReglages(r);
       })
       // Hors ligne au démarrage : on affiche le dernier solde confirmé, jamais celui d'un autre compte.

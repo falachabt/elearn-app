@@ -70,7 +70,8 @@ export function EtatReseau() {
   }, [enVerification, reduit, reflet]);
   const anime = useAnimatedStyle(() => ({ transform: [{ translateX: reflet.value * 160 }] }));
 
-  if (estEnLigne) return null;
+  // Démo TOEIC (outil de développement) : pas de serveur joignable, l'indicateur gênerait les captures.
+  if (estEnLigne || (__DEV__ && process.env.EXPO_PUBLIC_CERT_DEMO === '1')) return null;
   const teinte = expire ? theme.etat.erreur : theme.etat.alerte;
   const fond = expire ? theme.etat.erreurDoux : theme.etat.alerteDoux;
 
