@@ -13,6 +13,7 @@ import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, meilleurDeSection, nombreFaits, stat
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
+import { BookOpen, Headphones, Trophy, type LucideIcon } from 'lucide-react-native';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
@@ -20,15 +21,23 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Appui } from '../Appui';
+import { stylePartie } from './partiesStyle';
 import { EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
 const TYPES: TypeDefTest[] = ['listening', 'reading', 'full'];
 
+/** Icône et couleur de chaque type (maquette v37) : crème et casque, corail et livre, vert foncé et trophée. */
+function styleType(type: TypeDefTest, theme: ReturnType<typeof useTheme>['theme'], sombre: boolean): { icone: LucideIcon; couleur: string } {
+  if (type === 'listening') return { icone: Headphones, couleur: stylePartie(theme, sombre)[3]!.couleur };
+  if (type === 'reading') return { icone: BookOpen, couleur: stylePartie(theme, sombre)[4]!.couleur };
+  return { icone: Trophy, couleur: theme.marque.forte };
+}
+
 /** Liste des tests composés d'un type (maquette v38, écoute et lecture ; v39, complet). Un test non fini se lance d'ici. */
 export function ListeTests() {
   const { t } = useTraduction();
-  const { theme } = useTheme();
+  const { theme, sombre } = useTheme();
   const { kind } = useLocalSearchParams<{ kind?: string }>();
   const type: TypeDefTest = TYPES.includes(kind as TypeDefTest) ? (kind as TypeDefTest) : 'listening';
   const { garde, banniere } = useGardeReseau();
@@ -63,6 +72,7 @@ export function ListeTests() {
     }
   };
 
+  const { icone: Icone, couleur } = styleType(type, theme, sombre);
   const tests = etat.phase === 'ok' ? etat.valeur.tests : [];
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
   const meilleur = meilleurDeSection(tests);
@@ -82,14 +92,21 @@ export function ListeTests() {
       {etat.phase === 'ok' ? (
         <>
           <Carte style={{ gap: espace[2] }}>
-            <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
-              {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
-            </Text>
-            <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-              {meilleur === null || sectionMax === null
-                ? t('certification.tests.listes.pasDeScore')
-                : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
-            </Text>
+            <View style={styles.entete}>
+              <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                <Icone size={20} color={theme.texte.surCouleur} strokeWidth={2} />
+              </View>
+              <View style={styles.texte}>
+                <Text style={[typo.texteFort, { color: theme.texte.principal }]}>
+                  {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
+                </Text>
+                <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                  {meilleur === null || sectionMax === null
+                    ? t('certification.tests.listes.pasDeScore')
+                    : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
+                </Text>
+              </View>
+            </View>
           </Carte>
           {tests.map((test) => {
             const statut = statutLigne(test);
@@ -110,25 +127,30 @@ export function ListeTests() {
                   testID={`ligne-${test.kind}-${test.numero}`}
                   style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: estConseille ? theme.accent.soleil : theme.bord.fort }]}
                 >
-                  <View style={styles.haut}>
-                    <Text style={[typo.texteFort, { color: theme.texte.principal, flex: 1 }]}>
-                      {t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}
-                    </Text>
-                    <Text style={[typo.legende, { color: theme.texte.principal }]}>{libelleStatut}</Text>
+                  <View style={[styles.pastilleLigne, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                    <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
                   </View>
-                  {estConseille ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.conseille')}</Text> : null}
-                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                    {test.meilleurScoreMax === null
-                      ? t('certification.tests.listes.pasDeScoreLigne')
-                      : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
-                    {' · '}
-                    {t('certification.tests.listes.tentatives', { n: test.tentatives })}
-                  </Text>
-                  {test.nouvellesQuestions > 0 ? (
+                  <View style={styles.texte}>
+                    <View style={styles.haut}>
+                      <Text style={[typo.texteFort, { color: theme.texte.principal, flex: 1 }]}>
+                        {t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}
+                      </Text>
+                      <Text style={[typo.legende, { color: theme.texte.principal }]}>{libelleStatut}</Text>
+                    </View>
+                    {estConseille ? <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.tests.listes.conseille')}</Text> : null}
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                      {t('certification.tests.listes.nouvelles', { n: test.nouvellesQuestions })}
+                      {test.meilleurScoreMax === null
+                        ? t('certification.tests.listes.pasDeScoreLigne')
+                        : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
+                      {' · '}
+                      {t('certification.tests.listes.tentatives', { n: test.tentatives })}
                     </Text>
-                  ) : null}
+                    {test.nouvellesQuestions > 0 ? (
+                      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                        {t('certification.tests.listes.nouvelles', { n: test.nouvellesQuestions })}
+                      </Text>
+                    ) : null}
+                  </View>
                 </View>
               </Appui>
             );
@@ -143,6 +165,10 @@ export function ListeTests() {
 }
 
 const styles = StyleSheet.create({
-  ligne: { borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[3], gap: espace[1], minHeight: 78 },
+  ligne: { flexDirection: 'row', alignItems: 'flex-start', borderWidth: bord.normal, borderRadius: rayon.l, padding: espace[3], gap: espace[3], minHeight: 78 },
+  pastilleLigne: { width: 34, height: 34, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  entete: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  pastille: { width: 44, height: 44, borderWidth: bord.normal, borderRadius: rayon.m, alignItems: 'center', justifyContent: 'center' },
+  texte: { flex: 1, minWidth: 0, gap: 2 },
   haut: { flexDirection: 'row', alignItems: 'center', gap: espace[2] },
 });

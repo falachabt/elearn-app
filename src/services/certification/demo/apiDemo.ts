@@ -379,6 +379,7 @@ export const apiDemo: CertApi = {
         { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 395, derniereDate: '2026-10-19T15:00:00Z', nouvellesQuestions: 0 },
         { id: 'demo-reading-2', kind: 'reading', numero: 2, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
         { id: 'demo-reading-3', kind: 'reading', numero: 3, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T12:00:00Z', nouvellesQuestions: 40 },
+        { id: 'demo-reading-4', kind: 'reading', numero: 4, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-22T17:00:00Z', nouvellesQuestions: 70 },
         { id: 'demo-full-1', kind: 'full', numero: 1, questions: 200, tentatives: 1, fini: true, meilleurScoreMax: 760, derniereDate: '2026-10-18T09:00:00Z', nouvellesQuestions: 0 },
         { id: 'demo-full-2', kind: 'full', numero: 2, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
       ];
