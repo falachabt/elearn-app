@@ -30,6 +30,7 @@ export function TestBientot() {
   const { couts } = useCredits();
   const { cout } = useTextesCredits();
   const demiCout = couts.cert_mock_half;
+  const completCout = couts.cert_mock_full;
   const avecCout = (base: string) => (demiCout === undefined ? base : `${base} · ${cout(demiCout)}`);
   const [test, setTest] = useState<TestFixe | null>(null);
   const [chargement, setChargement] = useState(true);
@@ -111,7 +112,13 @@ export function TestBientot() {
           <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecCout(t('certification.tests.ecouteAide'))} onPress={() => void lancer('half_listening')} />
           <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecCout(t('certification.tests.lectureAide'))} onPress={() => void lancer('half_reading')} />
         </>
-      ) : null}
+      ) : (
+        <Carte style={{ gap: espace[2] }}>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.ecouteAide')}</Text>
+          <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.lectureAide')}</Text>
+          {completCout !== undefined ? <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{cout(completCout)}</Text> : null}
+        </Carte>
+      )}
     </Ecran>
   );
 }
