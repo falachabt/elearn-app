@@ -2732,6 +2732,13 @@ export const fr = {
     },
     tests: {
       entete: 'Tests',
+      detail: {
+        meilleur: 'Meilleur score : {{score}}',
+        derniere: 'dernier test le {{date}}',
+        voirNote: 'Voir ma note et mes tentatives',
+        refaire: 'Refaire pour améliorer ma note',
+        autre: 'Passer un autre test',
+      },
       listes: {
         titreEcoute: 'Demi-tests d\'écoute',
         titreLecture: 'Demi-tests de lecture',

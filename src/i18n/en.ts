@@ -2731,6 +2731,13 @@ export const en: Textes = {
     },
     tests: {
       entete: 'Tests',
+      detail: {
+        meilleur: 'Best score: {{score}}',
+        derniere: 'last test on {{date}}',
+        voirNote: 'See my score and attempts',
+        refaire: 'Retake to improve my score',
+        autre: 'Take another test',
+      },
       listes: {
         titreEcoute: 'Listening half-tests',
         titreLecture: 'Reading half-tests',

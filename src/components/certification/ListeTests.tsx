@@ -118,8 +118,8 @@ export function ListeTests() {
                 key={test.id}
                 accessibilityRole="button"
                 accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
-                disabled={test.fini || enCours !== null}
-                onPress={() => void lancer(test, exam)}
+                disabled={enCours !== null}
+                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id } } as never) : void lancer(test, exam))}
                 decalage={3}
                 rayon={rayon.l}
               >
