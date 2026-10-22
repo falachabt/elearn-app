@@ -2554,6 +2554,13 @@ export const fr = {
       introuvable: 'Ce mot n’est plus dans ton carnet.',
     },
     seanceMots: {
+      choisis: 'Choisis le sens du mot',
+      bonneReponse: 'BONNE RÉPONSE',
+      taReponse: 'TA RÉPONSE',
+      motRevoir: 'Mot à revoir : rappel dans {{n}} jour',
+      motRevoirPluriel: 'Mot à revoir : rappel dans {{n}} jours',
+      motJuste: 'Mot juste : rappel plus tard',
+      suivant: 'Suivant',
       entete: 'Séance de mots · {{k}} / {{n}}',
       recto: 'Recto',
       verso: 'Verso',

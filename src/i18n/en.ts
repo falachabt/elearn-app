@@ -2553,6 +2553,13 @@ export const en: Textes = {
       introuvable: 'This word is no longer in your notebook.',
     },
     seanceMots: {
+      choisis: 'Choose the meaning of the word',
+      bonneReponse: 'CORRECT ANSWER',
+      taReponse: 'YOUR ANSWER',
+      motRevoir: 'Word to review: reminder in {{n}} day',
+      motRevoirPluriel: 'Word to review: reminder in {{n}} days',
+      motJuste: 'Correct: reminder later',
+      suivant: 'Next',
       entete: 'Word session · {{k}} / {{n}}',
       recto: 'Front',
       verso: 'Back',

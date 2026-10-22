@@ -1,4 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { Check, X } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -10,6 +11,7 @@ import { jourDe } from '@/services/certification/jours';
 import { obtenirReglages } from '@/services/certification/etat';
 import type { Reglages } from '@/services/certification/reglages';
 import { carteCourante, demarrerSeanceMots, noterCarte, reprendreSeanceMots, retournerCarte, type EtatSeanceMots } from '@/services/certification/seanceMots';
+import { propositionsMot } from '@/services/certification/qcmMots';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -36,6 +38,8 @@ export function SeanceMots() {
   const [reglages, setReglages] = useState<Reglages | null>(null);
   const [quitter, setQuitter] = useState(false);
   const occupe = useRef(false);
+  /** Choix du QCM pour la carte affichée : index de la proposition cochée, `null` avant le choix. */
+  const [choix, setChoix] = useState<{ carte: string; index: number } | null>(null);
 
   const charger = useCallback(async () => {
     setPhase({ nom: 'chargement' });
@@ -69,6 +73,18 @@ export function SeanceMots() {
     if (!etat || etat.retourne || occupe.current) return;
     occupe.current = true;
     try {
+      setEtat(await retournerCarte(etat));
+    } finally {
+      occupe.current = false;
+    }
+  };
+
+  /** QCM (v32) : le choix révèle la réponse (recto et verso), puis « Suivant » note la carte. */
+  const choisir = async (index: number) => {
+    if (!etat || etat.retourne || occupe.current) return;
+    occupe.current = true;
+    try {
+      setChoix({ carte: carteCourante(etat)?.id ?? '', index });
       setEtat(await retournerCarte(etat));
     } finally {
       occupe.current = false;
@@ -119,28 +135,57 @@ export function SeanceMots() {
       {phase.nom === 'ok' && etat && carte ? (
         <View style={styles.groupe}>
           <BarreProgression pourcent={(etat.index / total) * 100} libelle={t('certification.seanceMots.entete', { k: etat.index + 1, n: total })} />
-          <Appui accessibilityRole="button" accessibilityLabel={etat.retourne ? carte.definition : `${carte.mot}. ${t('certification.seanceMots.touche')}`} onPress={() => void retourner()} decalage={0} rayon={rayon.l}>
-            <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-              <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{etat.retourne ? t('certification.seanceMots.verso') : t('certification.seanceMots.recto')}</Text>
-              {etat.retourne ? (
-                <>
-                  <Text style={[typo.h2, { color: theme.texte.principal, textAlign: 'center' }]}>{carte.definition}</Text>
-                  {carte.exemple ? <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{carte.exemple}</Text> : null}
-                </>
-              ) : (
-                <>
-                  <Text style={[typo.h1, { color: theme.texte.principal, textAlign: 'center' }]}>{carte.mot}</Text>
-                  <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.seanceMots.touche')}</Text>
-                </>
-              )}
-            </View>
-          </Appui>
-          <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>{delai === 1 ? t('certification.seanceMots.aide', { n: delai }) : t('certification.seanceMots.aidePluriel', { n: delai })}</Text>
-          {etat.enAttente.length > 0 ? <Banniere ton="info" titre={t('certification.seanceMots.attente')} /> : null}
-          <View style={styles.groupe}>
-            <Bouton variante="secondaire" libelle={t('certification.seanceMots.nonSu')} desactive={!etat.retourne} onPress={() => void noter(false)} />
-            <Bouton libelle={t('certification.seanceMots.su')} desactive={!etat.retourne} onPress={() => void noter(true)} />
+          <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+            <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.seanceMots.choisis')}</Text>
+            <Text style={[typo.h1, { color: theme.texte.principal, textAlign: 'center' }]}>{carte.mot}</Text>
           </View>
+          <View style={styles.groupe}>
+            {propositionsMot(carte, etat.cartes).map((p, i) => {
+              const choisie = choix?.carte === carte.id && choix.index === i;
+              const repondu = etat.retourne;
+              const fond = !repondu ? theme.fond.surface : p.juste ? theme.etat.succesDoux : choisie ? theme.etat.erreurDoux : theme.fond.surface;
+              const etiquetteReponse = !repondu ? null : p.juste ? t('certification.seanceMots.bonneReponse') : choisie ? t('certification.seanceMots.taReponse') : null;
+              return (
+                <Appui
+                  key={`${carte.id}-${i}`}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${String.fromCharCode(65 + i)}. ${p.texte}`}
+                  accessibilityState={{ disabled: repondu }}
+                  disabled={repondu}
+                  onPress={() => void choisir(i)}
+                  decalage={repondu ? 0 : 2}
+                  rayon={rayon.m}
+                  retour={!repondu}
+                >
+                  <View style={[styles.option, { backgroundColor: fond, borderColor: theme.bord.fort, borderWidth: choisie ? bord.epais : bord.normal }]}>
+                    <View style={[styles.lettre, { borderColor: theme.bord.fort }]}>
+                      <Text style={[typo.legende, { color: theme.texte.principal }]}>{String.fromCharCode(65 + i)}</Text>
+                    </View>
+                    <Text style={[typo.texte, { color: theme.texte.principal, flex: 1 }]}>{p.texte}</Text>
+                    {etiquetteReponse ? (
+                      <View style={styles.etiquette}>
+                        {p.juste ? <Check size={16} color={theme.texte.principal} strokeWidth={2} /> : <X size={16} color={theme.texte.principal} strokeWidth={2} />}
+                        <Text style={[typo.etiquette, { color: theme.texte.principal }]}>{etiquetteReponse}</Text>
+                      </View>
+                    ) : null}
+                  </View>
+                </Appui>
+              );
+            })}
+          </View>
+          {etat.retourne && choix?.carte === carte.id ? (
+            <Text style={[typo.petit, { color: theme.texte.secondaire, textAlign: 'center' }]}>
+              {choix.index !== propositionsMot(carte, etat.cartes).findIndex((p) => p.juste)
+                ? (delai === 1 ? t('certification.seanceMots.motRevoir', { n: delai }) : t('certification.seanceMots.motRevoirPluriel', { n: delai }))
+                : t('certification.seanceMots.motJuste')}
+            </Text>
+          ) : null}
+          {etat.enAttente.length > 0 ? <Banniere ton="info" titre={t('certification.seanceMots.attente')} /> : null}
+          <Bouton
+            libelle={t('certification.seanceMots.suivant')}
+            desactive={!etat.retourne || choix?.carte !== carte.id}
+            onPress={() => void noter(choix?.index === propositionsMot(carte, etat.cartes).findIndex((p) => p.juste))}
+          />
         </View>
       ) : null}
       <FeuilleQuitter mots ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={sortir} />
@@ -150,5 +195,8 @@ export function SeanceMots() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  carte: { borderWidth: bord.epais, borderRadius: rayon.l, padding: espace[5], minHeight: 220, alignItems: 'center', justifyContent: 'center', gap: espace[3] },
+  carte: { borderWidth: bord.epais, borderRadius: rayon.l, padding: espace[5], minHeight: 160, alignItems: 'center', justifyContent: 'center', gap: espace[3] },
+  option: { minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: espace[3], paddingHorizontal: espace[3], paddingVertical: espace[2], borderRadius: rayon.m },
+  lettre: { width: 32, height: 32, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s },
+  etiquette: { flexDirection: 'row', alignItems: 'center', gap: espace[1] },
 });

@@ -287,17 +287,26 @@ describe('C8 et C9 · Séance de mots', () => {
     mockParams = { origine: 'carnet' };
   });
 
-  const noterTout = async (reponses: ('su' | 'nonSu')[]) => {
-    for (const r of reponses) {
-      await fireEvent.press(await screen.findByLabelText(new RegExp(t.seanceMots.touche)));
-      await fireEvent.press(screen.getByText(t.seanceMots[r]));
-    }
+  /** QCM (v32) : choisit le bon sens (« su ») ou un mauvais (« nonSu ») pour la carte affichée, puis « Suivant ». */
+  const repondre = async (voulu: 'su' | 'nonSu') => {
+    const affichee = MOTS_TEST.find((m) => screen.queryByText(m.mot) !== null);
+    const bonne = affichee?.definition ?? '';
+    const propositions = await screen.findAllByLabelText(/^[A-D]\. /);
+    const cible = voulu === 'su'
+      ? propositions.find((p) => p.props.accessibilityLabel.endsWith(`. ${bonne}`))
+      : propositions.find((p) => !p.props.accessibilityLabel.endsWith(`. ${bonne}`));
+    await fireEvent.press(cible!);
+    await fireEvent.press(screen.getByText(t.seanceMots.suivant));
   };
 
-  it('ne note qu’après le retournement de la carte', async () => {
+  const noterTout = async (reponses: ('su' | 'nonSu')[]) => {
+    for (const r of reponses) await repondre(r);
+  };
+
+  it('ne note qu’après le choix du sens', async () => {
     await monter(<SeanceMots />);
-    await screen.findByLabelText(new RegExp(t.seanceMots.touche));
-    expect(screen.getByText(t.seanceMots.su)).toBeDisabled();
+    await screen.findAllByLabelText(/^[A-D]\. /);
+    expect(screen.getByText(t.seanceMots.suivant)).toBeDisabled();
     expect(fausse.appels.resultatsMots).toHaveLength(0);
   });
 
@@ -313,8 +322,7 @@ describe('C8 et C9 · Séance de mots', () => {
   it('garde les notes sur l’appareil hors ligne et l’annonce', async () => {
     installer({ echecsMots: 5 });
     await monter(<SeanceMots />);
-    await fireEvent.press(await screen.findByLabelText(new RegExp(t.seanceMots.touche)));
-    await fireEvent.press(screen.getByText(t.seanceMots.nonSu));
+    await repondre('nonSu');
     expect(await screen.findByText(t.seanceMots.attente)).toBeTruthy();
   });
 
@@ -326,7 +334,7 @@ describe('C8 et C9 · Séance de mots', () => {
 
   it('X3 : la croix ouvre la feuille « Quitter », qui garde les notes', async () => {
     await monter(<SeanceMots />);
-    await screen.findByLabelText(new RegExp(t.seanceMots.touche));
+    await screen.findAllByLabelText(/^[A-D]\. /);
     await fireEvent.press(screen.getByLabelText(t.seanceMots.quitterTitre));
     await fireEvent.press(await screen.findByText(t.seanceMots.quitterQuitter));
     expect(router.replace).toHaveBeenCalledWith({ pathname: '/reviser', params: { onglet: 'carnet' } });

@@ -16,7 +16,7 @@ import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
 import { CoursNotions } from './CoursNotions';
-import { STYLE_PARTIE } from './partiesStyle';
+import { stylePartie } from './partiesStyle';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
@@ -86,7 +86,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
           <GrilleEgale
             colonnes={2}
             enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => {
-              const { couleur, icone: Icone, cle } = STYLE_PARTIE[n] ?? STYLE_PARTIE[1]!;
+              const { couleur, icone: Icone, cle } = stylePartie(theme)[n] ?? stylePartie(theme)[1]!;
               const pourcent = Math.round((revision.parties.find((x) => x.partie === n)?.m ?? 0) * 100);
               return (
                 <Appui
