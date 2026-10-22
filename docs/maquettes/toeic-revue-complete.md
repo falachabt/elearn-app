@@ -426,3 +426,17 @@ Règles (décisions de la maquette, à confirmer par Benny) :
 - Séance de mots : QCM à quatre propositions. Mot raté : rappel dans 1 jour. Mot juste : rappel plus tard.
 - Plan : généré à partir de la date d'examen. Les mots, notions et temps verbaux ratés y reviennent. Jamais de compte à rebours fictif.
 - Thème : mini-test, séance de mots et plan suivent le thème clair ou sombre. Seule l'épreuve chronométrée de l'Examen reste sombre.
+
+## Version 33 : suivi des tests faits, courbe des scores (22 octobre 2026, à valider)
+
+Demande de Benny (22 octobre) : chaque test montre s'il est fait, quand, avec quel score, et ouvre la liste des tentatives puis la revue. Score demi-test sur 495, test complet sur 990, mini-test « 8 sur 10 », un chiffre exact.
+
+- `TOEIC-V33-TESTS-SUIVI` : onglet Tests, statut sur chaque carte (Pas encore fait, En cours avec Reprendre, Fait avec dernier et meilleur score, Interrompu).
+- `TOEIC-V33-DEMI-SUIVI` : choix du demi-test, cartes Écoute (sur 495, pas encore de score) et Lecture (640 sur 495, dernier, 18 oct., meilleur 705, 3 tentatives).
+- `TOEIC-V33-TENTATIVES` : liste des tentatives d'un test, chacune avec date, score, temps, statut et « Revoir la tentative ». Une tentative interrompue n'écrase pas le meilleur score.
+- `TOEIC-V33-REVISER-SUIVI` : statuts dans Réviser (leçons et mini-tests).
+- `TOEIC-V33-PARCOURS-STATUT` : statut sur chaque étape de « Mon plan ».
+- `TOEIC-V33-STATS` : tests faits, meilleur score, courbe du demi-test lecture.
+- `TOEIC-V33-STATS-COURBE` (trois états) : sans diagnostic (point « Départ » à 0), diagnostic seul (Départ puis 745), plusieurs tests (un point par demi-test ou test complet terminé, les mini-tests ne sont pas comptés). Axe de 0 à 990, cible 800 en pointillé, ligne continue, un score exact par point.
+
+Règles : statut en mots, jamais seulement une couleur. Interrompu n'écrase ni le dernier ni le meilleur score. Les tentatives d'Entraînement ne comptent pas dans le meilleur score.

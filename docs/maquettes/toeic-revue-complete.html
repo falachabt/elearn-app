@@ -1061,6 +1061,73 @@ const V32_PARCOURS=t=>ph(t,hd('Mon plan',false)+bd(
   `<span class="lbl2">Cette semaine</span>`+
   grille2([tuile('','Cours','Grammaire, 2 fiches','var(--soleil)','layers'),tuile('','Notions','Méthode, partie 1','var(--creux)','bulb'),tuile('','Mini-test','Partie 5 · 10 questions','var(--marque)','target'),tuile('','Test complet','Samedi · 120 min','var(--creux)','award')])
   )+ft(B('Commencer la séance du jour')));
+/* v33 : suivi des tests faits (22 octobre, à valider) : statut, dernier et meilleur score, tentatives, revue */
+const statutTest=(k)=>({
+  vide:`<span class="st" style="justify-self:start">${I('circle')}Pas encore fait</span>`,
+  cours:`<span class="st a" style="justify-self:start">${I('rotate')}En cours</span>`,
+  fait:`<span class="st p" style="justify-self:start">${I('check')}Fait</span>`,
+  interrompu:`<span class="st f" style="justify-self:start">${I('alert')}Interrompu</span>`})[k];
+const carteTest=(k,titre,sous,pied,action)=>`<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px"><div style="min-width:0"><b style="display:block;font:700 15px/1.25 var(--f-body)">${titre}</b><small style="font:500 12px var(--f-body);color:var(--txt2)">${sous}</small></div>${statutTest(k)}</div>
+  ${pied?`<small style="font:600 12px var(--f-mono);color:var(--txt)">${pied}</small>`:''}
+  ${action?`<div>${action}</div>`:''}</div>`;
+
+const V33_TESTS_SUIVI=t=>ph(t,hd('Tests',false)+bd(seg(['Mini-tests','Demi-tests','Tests complets'],1)+
+  carteTest('vide','Mini-test partie 5','10 questions · 1 crédit hors Pass','','')+
+  carteTest('cours','Demi-test écoute','Parties 1 à 4 · 45 min','Commencé le 20 oct. · question 34 sur 100',B('Reprendre','sec'))+
+  carteTest('fait','Demi-test lecture','Parties 5 à 7 · 75 min','Dernier 640 · Meilleur 705 · 3 tentatives · 18 oct.',B('Voir les tentatives','sec'))+
+  carteTest('interrompu','Test complet','Écoute et lecture · 2 h','Interrompu le 19 oct. · le score précédent est conservé',B('Refaire','sec'))
+  )+ft(TB(2)));
+
+const V33_DEMI_SUIVI=t=>ph(t,hd('Demi-test',true)+bd(lab('Choisis la moitié')+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">Écoute</b>${statutTest('cours')}</div><small style="font:500 12px var(--f-body);color:var(--txt2)">Parties 1 à 4 · 100 questions</small><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 26px var(--f-display)">—</span><small style="font:600 12px var(--f-mono)">sur 495 · pas encore de score</small></div>${B('Reprendre','')}</div>`+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">Lecture</b>${statutTest('fait')}</div><small style="font:500 12px var(--f-body);color:var(--txt2)">Parties 5 à 7 · 100 questions</small><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 26px var(--f-display)">640</span><small style="font:600 12px var(--f-mono)">sur 495 · dernier · 18 oct.</small></div><small style="font:600 12px var(--f-mono)">Meilleur 705 · 3 tentatives</small>${B('Voir les tentatives','sec')}</div>`
+  )+ft(B('Commencer le demi-test écoute')));
+
+const ligneTentative=(date,score,temps,statut,revue)=>`<div style="border:2px solid var(--bord);border-radius:12px;background:var(--surf);padding:12px;display:grid;gap:6px;box-shadow:3px 3px 0 var(--bord)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">${date}</b>${statut}</div><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 22px var(--f-display)">${score}</span><small style="font:600 12px var(--f-mono);color:var(--txt2)">${temps}</small></div>${revue?`<div>${B('Revoir la tentative','sec')}</div>`:''}</div>`;
+const V33_TENTATIVES=t=>ph(t,hd('Lecture · tentatives',true)+bd(lab('Demi-test lecture · 3 tentatives')+
+  ligneTentative('18 oct. · 14 h 20','640 sur 495','72 min',statutTest('fait'),true)+
+  ligneTentative('12 oct. · 19 h 05','705 sur 495','68 min',statutTest('fait'),true)+
+  ligneTentative('9 oct. · 10 h 30','Pas de score','Interrompue à la question 61',statutTest('interrompu'),false)+
+  `<p class="hint" style="color:var(--txt)">Le meilleur score (705) reste affiché même si une tentative est interrompue.</p>`
+  )+ft(B('Refaire le demi-test')));
+
+const ligneRevise=(titre,sous,k)=>`<div class="ch" style="justify-content:space-between"><div style="min-width:0;flex:1"><b style="display:block">${titre}</b><small style="display:block">${sous}</small></div>${statutTest(k)}</div>`;
+const V33_REVISER_SUIVI=t=>ph(t,hd('Réviser')+bd(seg(['Parcours','Parties','Cours','Carnet'],2)+lab('Grammaire · partie 1')+
+  ligneRevise('Présent continu','3 minutes','fait')+ligneRevise('Voix passive et états','3 minutes','cours')+ligneRevise('Mots interrogatifs','3 minutes','vide')+lab('Mini-tests')+ligneRevise('Partie 5 · 10 questions','Dernier 8 sur 10 · 2 tentatives','fait'))+ft(TB(1)));
+
+const V33_PARCOURS_STATUT=t=>ph(t,hd('Mon plan',false)+bd(lab('Semaine 4 sur 12')+
+  row('layers','Cours : présent continu','Fait le 19 oct.','')+
+  row('bulb','Notion : mots interrogatifs','Pas encore fait','')+
+  row('target','Mini-test partie 5','En cours · question 4 sur 10','')+
+  row('award','Test complet','Pas encore fait · samedi','')
+  )+ft(B('Continuer · mini-test partie 5')));
+
+const V33_STATS_TESTS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
+  `<div class="gr2"><span class="tile">Tests faits<small>4 sur 12</small></span><span class="tile">Meilleur score<small>705 sur 495</small></span></div>`+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;box-shadow:var(--shadow)"><span class="lbl2">Demi-test lecture dans le temps</span><small style="display:block;font:600 12px var(--f-mono);color:var(--txt2)">3 tentatives · 640 le 18 oct.</small></div>`
+  )+ft(TB(3)));
+
+const courbeScore=(points)=>{
+  const x=i=>28+i*(268/Math.max(1,points.length-1)), y=v=>150-v/990*130;
+  const grad=[0,330,660,990].map(v=>`<line x1="28" x2="296" y1="${y(v)}" y2="${y(v)}" stroke="var(--bord)" stroke-width="1" stroke-dasharray="3 4" opacity=".35"/><text x="0" y="${y(v)+4}" font-size="10" font-family="var(--f-mono)" fill="var(--txt2)">${v}</text>`).join('');
+  const cible=`<line x1="28" x2="296" y1="${y(800)}" y2="${y(800)}" stroke="var(--corail)" stroke-width="2" stroke-dasharray="6 4"/><text x="250" y="${y(800)-6}" font-size="10" font-family="var(--f-mono)" fill="var(--txt)">Visé 800</text>`;
+  const ligne=points.map((p,i)=>`${i?'L':'M'}${x(i)} ${y(p.v)}`).join(' ');
+  const pts=points.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="5" fill="var(--surf)" stroke="var(--bord)" stroke-width="2"/><text x="${x(i)}" y="${y(p.v)-9}" font-size="10" text-anchor="middle" font-family="var(--f-mono)" fill="var(--txt)">${p.v}</text>`).join('');
+  const etiq=points.map((p,i)=>`<text x="${x(i)}" y="166" font-size="9" text-anchor="middle" font-family="var(--f-mono)" fill="var(--txt2)">${p.l}</text>`).join('');
+  return `<svg viewBox="0 0 320 170" width="100%" role="img" aria-label="Courbe des scores">${grad}${cible}${points.length>1?`<path d="${ligne}" fill="none" stroke="var(--marque-d)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`:''}${pts}${etiq}</svg>`;
+};
+const carteCourbe=(points,titre,detail)=>`<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><span class="lbl2">${titre}</span><small style="font:600 12px var(--f-mono);color:var(--txt2)">${detail}</small>${courbeScore(points)}</div>`;
+const V33_STATS_COURBE_SANS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
+  carteCourbe([{v:0,l:'Départ'}],'Score dans le temps','Aucun test terminé pour l\'instant.')
+  )+ft(TB(3)));
+const V33_STATS_COURBE_DIAG=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
+  carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'}],'Score dans le temps','Score estimé du diagnostic · 745 sur 990.')
+  )+ft(TB(3)));
+const V33_STATS_COURBE_PLUSIEURS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
+  carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'},{v:640,l:'D. lect.'},{v:705,l:'D. lect.'},{v:812,l:'Complet'}],'Score dans le temps','Un point par demi-test ou test complet terminé. Les mini-tests ne sont pas comptés.')+
+  `<div class="gr2"><span class="tile">Meilleur score<small>812 sur 990</small></span><span class="tile">Tests faits<small>4 sur 12</small></span></div>`
+  )+ft(TB(3)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1109,6 +1176,8 @@ const groups=[
  ['Correction Entraînement allégée : pas de cadre jaune, justification repliée, onglets de groupe colorés (v31, 21 octobre, à valider)',[[V31_CORR_REPLIEE,'TOEIC-V31-REPLIEE · Correction : option juste en vert, « Voir la justification » discret'],[V31_CORR_OUVERTE,'TOEIC-V31-OUVERTE · Justification ouverte : « Revoir la notion » et « Explication détaillée »'],[V31_CORR_REPLIEE_390,'TOEIC-V31-REPLIEE-390 · Correction repliée à 390 px'],[V31_GROUPE,'TOEIC-V31-GROUPE · Groupe audio : onglet actif en noir, 65 juste en vert, 66 faux en rouge']]],
  ['Groupe à onglets : « Onglet suivant » puis « Valider (k/N) » sur le dernier onglet (v31, 21 octobre, à valider)',[[V31_GROUPE_ONGLET,'TOEIC-V31-ONGLET · Groupe, premier onglet : bouton « Onglet suivant »'],[V31_GROUPE_DERNIER,'TOEIC-V31-DERNIER · Groupe, dernier onglet : bouton « Valider (3/3) »'],[V31_GROUPE_EXAMEN,'TOEIC-V31-EXAMEN-ONGLET · Examen, groupe : « Onglet suivant », aucune correction']]],
  ['Grilles pour Grammaire et Parties, onglets en numéros, séance de mots en QCM, plan de formation (v32, 21 octobre, à valider)',[[V32_GRAMMAIRE,'TOEIC-V32-GRAMMAIRE · Cours, Grammaire : grille de fiches, icône propre par fiche'],[V32_PARTIES,'TOEIC-V32-PARTIES · Réviser, Parties : grille P1 à P7 avec maîtrise'],[V32_MOTS_QCM,'TOEIC-V32-MOTS-QCM · Séance de mots : QCM, choisir le sens avant de voir la réponse'],[V32_MOTS_FAUX,'TOEIC-V32-MOTS-FAUX · Séance de mots : mauvaise réponse en rouge, bonne en vert, rappel dans 1 jour'],[V32_PARCOURS,'TOEIC-V32-PARCOURS · Mon plan jusqu\'à la date : mots ratés, temps verbaux, cours, notions, mini-tests, test complet']]],
+ ['Suivi des tests faits : statut, dernier et meilleur score, tentatives, revue (v33, 22 octobre, à valider)',[[V33_TESTS_SUIVI,'TOEIC-V33-TESTS-SUIVI · Onglet Tests : statut sur chaque carte (Pas encore fait, En cours, Fait, Interrompu)'],[V33_DEMI_SUIVI,'TOEIC-V33-DEMI-SUIVI · Demi-test : cartes Écoute et Lecture sur 495, statut, date'],[V33_TENTATIVES,'TOEIC-V33-TENTATIVES · Liste des tentatives d\'un test, revue, interrompue sans effet sur le meilleur'],[V33_REVISER_SUIVI,'TOEIC-V33-REVISER-SUIVI · Réviser : statut sur les leçons et les mini-tests'],[V33_PARCOURS_STATUT,'TOEIC-V33-PARCOURS-STATUT · Mon plan : statut sur chaque étape'],[V33_STATS_TESTS,'TOEIC-V33-STATS · Statistiques : tests faits, meilleur score, demi-test lecture dans le temps']]],
+ ['Courbe des scores : départ à 0, diagnostic, un point par test terminé, axe 0 à 990 (v33, 22 octobre, à valider)',[[V33_STATS_COURBE_SANS,'TOEIC-V33-STATS-COURBE · Sans diagnostic : point « Départ » seul'],[V33_STATS_COURBE_DIAG,'TOEIC-V33-STATS-COURBE · Diagnostic seul : Départ puis diagnostic'],[V33_STATS_COURBE_PLUSIEURS,'TOEIC-V33-STATS-COURBE · Plusieurs tests : un point par demi-test ou test complet']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
