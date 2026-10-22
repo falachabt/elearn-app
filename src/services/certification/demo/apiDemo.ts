@@ -372,28 +372,41 @@ export const apiDemo: CertApi = {
     // Jeu de démo à quatre tests d'écoute (faite, commencée, pas faite, faite), pour contrôler les états de la liste.
     if (process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1') {
       const demo: DefTest[] = [
-        { id: 'demo-listening-1', kind: 'listening', numero: 1, questions: 100, tentatives: 2, fini: true, meilleurScoreMax: 410, derniereDate: '2026-10-20T10:00:00Z', nouvellesQuestions: 0 },
-        { id: 'demo-listening-2', kind: 'listening', numero: 2, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T18:00:00Z', nouvellesQuestions: 60 },
-        { id: 'demo-listening-3', kind: 'listening', numero: 3, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-        { id: 'demo-listening-4', kind: 'listening', numero: 4, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 380, derniereDate: '2026-10-22T09:00:00Z', nouvellesQuestions: 0 },
-        { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 395, derniereDate: '2026-10-19T15:00:00Z', nouvellesQuestions: 0 },
-        { id: 'demo-reading-2', kind: 'reading', numero: 2, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-        { id: 'demo-reading-3', kind: 'reading', numero: 3, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T12:00:00Z', nouvellesQuestions: 40 },
-        { id: 'demo-reading-4', kind: 'reading', numero: 4, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-22T17:00:00Z', nouvellesQuestions: 70 },
-        { id: 'demo-full-1', kind: 'full', numero: 1, questions: 200, tentatives: 1, fini: true, meilleurScoreMax: 760, derniereDate: '2026-10-18T09:00:00Z', nouvellesQuestions: 0 },
-        { id: 'demo-full-2', kind: 'full', numero: 2, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+        { id: 'demo-listening-1', kind: 'listening', part: null, numero: 1, questions: 100, tentatives: 2, fini: true, meilleurScoreMax: 410, derniereDate: '2026-10-20T10:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-listening-2', kind: 'listening', part: null, numero: 2, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T18:00:00Z', nouvellesQuestions: 60 },
+        { id: 'demo-listening-3', kind: 'listening', part: null, numero: 3, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+        { id: 'demo-listening-4', kind: 'listening', part: null, numero: 4, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 380, derniereDate: '2026-10-22T09:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-reading-1', kind: 'reading', part: null, numero: 1, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 395, derniereDate: '2026-10-19T15:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-reading-2', kind: 'reading', part: null, numero: 2, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+        { id: 'demo-reading-3', kind: 'reading', part: null, numero: 3, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T12:00:00Z', nouvellesQuestions: 40 },
+        { id: 'demo-reading-4', kind: 'reading', part: null, numero: 4, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-22T17:00:00Z', nouvellesQuestions: 70 },
+        { id: 'demo-full-1', kind: 'full', part: null, numero: 1, questions: 200, tentatives: 1, fini: true, meilleurScoreMax: 760, derniereDate: '2026-10-18T09:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-full-2', kind: 'full', part: null, numero: 2, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+        { id: 'demo-mini-1-1', kind: 'mini', part: 1, numero: 1, questions: 10, tentatives: 1, fini: true, meilleurScoreMax: 8, derniereDate: '2026-10-20T08:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-mini-1-2', kind: 'mini', part: 1, numero: 2, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
+        { id: 'demo-mini-5-3', kind: 'mini', part: 5, numero: 3, questions: 10, tentatives: 1, fini: true, meilleurScoreMax: 7, derniereDate: '2026-10-21T08:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-mini-5-4', kind: 'mini', part: 5, numero: 4, questions: 10, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-22T08:00:00Z', nouvellesQuestions: 6 },
+        { id: 'demo-mini-5-5', kind: 'mini', part: 5, numero: 5, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
+        { id: 'demo-mixed-1', kind: 'mixed', part: null, numero: 1, questions: 20, tentatives: 1, fini: true, meilleurScoreMax: 13, derniereDate: '2026-10-21T19:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-mixed-2', kind: 'mixed', part: null, numero: 2, questions: 20, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 20 },
       ];
       return type ? demo.filter((t) => t.kind === type) : demo;
     }
     const tous: DefTest[] = [
-      { id: 'demo-listening-1', kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-      { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-      { id: 'demo-full-1', kind: 'full', numero: 1, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+      { id: 'demo-listening-1', kind: 'listening', part: null, numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+      { id: 'demo-reading-1', kind: 'reading', part: null, numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+      { id: 'demo-full-1', kind: 'full', part: null, numero: 1, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+      { id: 'demo-mini-1-1', kind: 'mini', part: 1, numero: 1, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
+      { id: 'demo-mini-5-2', kind: 'mini', part: 5, numero: 2, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
+      { id: 'demo-mixed-1', kind: 'mixed', part: null, numero: 1, questions: 20, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 20 },
     ];
     return type ? tous.filter((t) => t.kind === type) : tous;
   },
   /** Démo : le type est lu dans l'identifiant de démo, puis le départ suit celui du test fixe. */
   async demarrerDefTest(clientUuid, defId): Promise<DemarrageMini> {
+    // Mini-test d'une partie (« demo-mini-5-3 ») et mixte (« demo-mixed-1 ») : même départ que le mini-test par partie.
+    if (defId.startsWith('demo-mini-')) return apiDemo.demarrerMini(clientUuid, 'toeic', Number(defId.split('-')[2]), 10, '2030-06-01');
+    if (defId.startsWith('demo-mixed-')) return apiDemo.demarrerMini(clientUuid, 'toeic', null, 20, '2030-06-01');
     const type = defId.startsWith('demo-listening') ? 'half_listening' : defId.startsWith('demo-reading') ? 'half_reading' : 'full';
     return apiDemo.demarrerTest(clientUuid, 'demo-test', type, 'toeic', '2030-06-01');
   },

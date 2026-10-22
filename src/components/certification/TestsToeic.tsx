@@ -114,8 +114,8 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(t('certification.tests.detailMiniPartie'), dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
-      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(suiviMiniMixte)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
+      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(t('certification.tests.detailMiniPartie'), dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push('/certification/choix-partie' as never)} />
+      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(suiviMiniMixte)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
       <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreSur(pEcoute, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
       <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pLecture)} score={scoreSur(pLecture, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />

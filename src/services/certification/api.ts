@@ -240,9 +240,9 @@ const testsServeur: Pick<CertApi, Testee> = {
   },
   listerDefsTests: async (exam, type) => {
     const res = await rpcAuthentifie('cert_test_list_get', { p_exam: exam, p_kind: type });
-    const lignes = (verifier(res) ?? []) as { id: string; kind: TypeDefTest; number: number; questions: number; attempts: number; finished: boolean; best_score_max: number | null; last_started_at: string | null; new_questions: number }[];
+    const lignes = (verifier(res) ?? []) as { id: string; kind: TypeDefTest; part: number | null; number: number; questions: number; attempts: number; finished: boolean; best_score_max: number | null; last_started_at: string | null; new_questions: number }[];
     return lignes.map((l) => ({
-      id: l.id, kind: l.kind, numero: l.number, questions: l.questions, tentatives: l.attempts, fini: l.finished,
+      id: l.id, kind: l.kind, part: l.part ?? null, numero: l.number, questions: l.questions, tentatives: l.attempts, fini: l.finished,
       meilleurScoreMax: l.best_score_max, derniereDate: l.last_started_at, nouvellesQuestions: l.new_questions,
     }));
   },

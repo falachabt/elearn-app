@@ -169,23 +169,28 @@ export async function abandonnerMini(etat: EtatMini, raison: 'user' | 'expired')
 }
 
 /** Type de test composé (liste v38, v39) vers le type d'épreuve qui fixe la durée et le débit. */
-const typeDeDefinition: Record<TypeDefTest, TypeTestFixe> = { listening: 'half_listening', reading: 'half_reading', full: 'full' };
+/** Les épreuves fixes ont une durée officielle ; mini-tests et mixte suivent la durée des réglages, comme `lancerMini`. */
+const typeDeDefinition: Partial<Record<TypeDefTest, TypeTestFixe>> = { listening: 'half_listening', reading: 'half_reading', full: 'full' };
 
 /**
  * Lance un test composé (listes v38, v39) : même contrat que `lancerTest` (débit au lancement, replay), tiré du test
- * composé choisi dans la liste.
+ * composé choisi dans la liste. `partie` vaut la partie du mini-test, `null` pour le mixte et les types fixes.
  */
-export async function lancerDefTest(exam: string, defId: string, kind: TypeDefTest, meilleurAvant: number | null = null): Promise<ResultatLancement> {
+export async function lancerDefTest(
+  exam: string, defId: string, kind: TypeDefTest, meilleurAvant: number | null = null,
+  partie: number | null = null, reglages: Pick<Reglages, 'miniMinutesPour10'> | null = null,
+): Promise<ResultatLancement> {
   const clientUuid = randomUUID();
   const rep: DemarrageMini = await etapeDemarrage('appel', () => obtenirApi().demarrerDefTest(clientUuid, defId, exam, maintenant()));
   if (rep.status === 'account_required') return { statut: 'compte_requis' };
   if (rep.status === 'insufficient' || !rep.tentative) return { statut: 'insuffisant', cout: rep.cout, solde: rep.solde };
-  const type = typeDeDefinition[kind];
+  const longueur = rep.tentative.questions.length as LongueurMini;
+  const fixe = typeDeDefinition[kind];
   const debut = rep.status === 'replay' ? Date.parse(rep.tentative.started_at) : Date.now();
   const etat: EtatMini = {
-    clientUuid, exam, partie: null, longueur: rep.tentative.questions.length as LongueurMini, tentative: rep.tentative,
+    clientUuid, exam, partie: kind === 'mini' ? partie : null, longueur, tentative: rep.tentative,
     debutMs: Number.isFinite(debut) ? debut : Date.now(),
-    dureeMin: dureeTestMin[type],
+    dureeMin: fixe ? dureeTestMin[fixe] : dureeMiniMin(longueur, { miniMinutesPour10: reglages?.miniMinutesPour10 ?? 10 }),
     definition: { id: defId, kind, meilleurAvant },
     reponses: [], index: 0, termine: false, fin: null,
   };

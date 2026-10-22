@@ -1,5 +1,5 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
@@ -9,11 +9,12 @@ import { obtenirApi } from '@/services/certification/api';
 import { obtenirReglages } from '@/services/certification/etat';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { lancerDefTest } from '@/services/certification/miniTest';
-import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, meilleurDeSection, nombreFaits, statutLigne, testConseille } from '@/services/certification/listesTests';
+import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFaits, numeroDansPartie, statutLigne, testConseille, testsDeLaPartie } from '@/services/certification/listesTests';
+import type { Reglages } from '@/services/certification/reglages';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
-import { BookOpen, Headphones, Trophy, type LucideIcon } from 'lucide-react-native';
+import { BookOpen, Headphones, Layers, Target, Trophy, type LucideIcon } from 'lucide-react-native';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Banniere } from '../Banniere';
@@ -25,39 +26,57 @@ import { stylePartie } from './partiesStyle';
 import { EnteteToeic, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
-const TYPES: TypeDefTest[] = ['listening', 'reading', 'full'];
+const TYPES: TypeDefTest[] = ['listening', 'reading', 'full', 'mini', 'mixed'];
 
-/** Icône et couleur de chaque type (maquette v37) : crème et casque, corail et livre, vert foncé et trophée. */
-function styleType(type: TypeDefTest, theme: ReturnType<typeof useTheme>['theme'], sombre: boolean): { icone: LucideIcon; couleur: string } {
+/** Icône et couleur de chaque type (maquette v37, v39) : crème et casque, corail et livre, vert foncé et trophée ; mini-tests par partie et mixte. */
+function styleType(type: TypeDefTest, partie: number | null, theme: ReturnType<typeof useTheme>['theme'], sombre: boolean): { icone: LucideIcon; couleur: string } {
   if (type === 'listening') return { icone: Headphones, couleur: stylePartie(theme, sombre)[3]!.couleur };
   if (type === 'reading') return { icone: BookOpen, couleur: stylePartie(theme, sombre)[4]!.couleur };
+  if (type === 'mini') return { icone: Target, couleur: stylePartie(theme, sombre)[partie ?? 1]!.couleur };
+  if (type === 'mixed') return { icone: Layers, couleur: stylePartie(theme, sombre)[5]!.couleur };
   return { icone: Trophy, couleur: theme.marque.forte };
 }
 
-/** Liste des tests composés d'un type (maquette v38, écoute et lecture ; v39, complet). Un test non fini se lance d'ici. */
+/** Une partie valide (1 à 7) ou null, lue dans les paramètres de la route. */
+function lirePartie(valeur: string | undefined): number | null {
+  const n = Number(valeur);
+  return PARTIES.some((p) => p === n) ? n : null;
+}
+
+/**
+ * Liste des tests composés d'un type (maquette v38, écoute et lecture ; v39, complet, mini-tests par partie et mixte).
+ * Un mini-test demande d'abord sa partie (écran de choix) ; un test non fini se lance d'ici.
+ */
 export function ListeTests() {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
-  const { kind } = useLocalSearchParams<{ kind?: string }>();
+  const { kind, partie: partieParam } = useLocalSearchParams<{ kind?: string; partie?: string }>();
   const type: TypeDefTest = TYPES.includes(kind as TypeDefTest) ? (kind as TypeDefTest) : 'listening';
+  const partie = type === 'mini' ? lirePartie(partieParam) : null;
+  const choixManquant = type === 'mini' && partie === null;
   const { garde, banniere } = useGardeReseau();
   const [enCours, setEnCours] = useState<string | null>(null);
   const [codeEchec, setCodeEchec] = useState<string | null>(null);
   const [manque, setManque] = useState(false);
 
+  useEffect(() => {
+    if (choixManquant) router.replace('/certification/choix-partie' as never);
+  }, [choixManquant]);
+
   const { etat, recharger } = useChargement(async () => {
+    if (choixManquant) return { exam: 'toeic', tests: [], reglages: null };
     const exam = (await lireProfil())?.exam ?? 'toeic';
     const [tests, reglages] = await Promise.all([obtenirApi().listerDefsTests(exam, type), obtenirReglages().catch(() => null)]);
     return { exam, tests, reglages };
   });
 
-  const lancer = async (test: DefTest, exam: string) => {
+  const lancer = async (test: DefTest, exam: string, reglages: Pick<Reglages, 'miniMinutesPour10'> | null) => {
     if (enCours) return;
     setEnCours(test.id);
     setCodeEchec(null);
     setManque(false);
     try {
-      const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax))) ?? null;
+      const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax, test.part, reglages))) ?? null;
       if (!res) return;
       if (res.statut === 'compte_requis') router.push('/compte/creer');
       else if (res.statut === 'insuffisant') setManque(true);
@@ -72,18 +91,21 @@ export function ListeTests() {
     }
   };
 
-  const { icone: Icone, couleur } = styleType(type, theme, sombre);
-  const tests = etat.phase === 'ok' ? etat.valeur.tests : [];
+  const { icone: Icone, couleur } = styleType(type, partie, theme, sombre);
+  const tousTests = etat.phase === 'ok' ? etat.valeur.tests : [];
+  const tests = type === 'mini' && partie !== null ? testsDeLaPartie(tousTests, partie) : tousTests;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
+  const reglagesOk = etat.phase === 'ok' ? etat.valeur.reglages : null;
   const meilleur = meilleurDeSection(tests);
-  // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total.
-  const sectionMax = etat.phase === 'ok' && etat.valeur.reglages
-    ? (type === 'full' ? etat.valeur.reglages.objectifMax : etat.valeur.reglages.objectifMax / 2)
+  // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total. Mini-tests et mixte : pas de section.
+  const sectionMax = reglagesOk && (type === 'listening' || type === 'reading' || type === 'full')
+    ? (type === 'full' ? reglagesOk.objectifMax : reglagesOk.objectifMax / 2)
     : null;
   const conseille = testConseille(tests);
+  const parMini = type === 'mini' || type === 'mixed';
 
   return (
-    <Ecran insetBas={false} entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type])} onRetour={() => router.back()} />}>
+    <Ecran insetBas={false} entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}>
       {banniere}
       {etat.phase === 'chargement' ? <Squelette lignes={4} /> : null}
       {etat.phase === 'erreur' ? (
@@ -101,7 +123,7 @@ export function ListeTests() {
                   {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
                 </Text>
                 <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                  {meilleur === null || sectionMax === null
+                  {parMini ? null : meilleur === null || sectionMax === null
                     ? t('certification.tests.listes.pasDeScore')
                     : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
                 </Text>
@@ -119,7 +141,7 @@ export function ListeTests() {
                 accessibilityRole="button"
                 accessibilityLabel={`${t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}. ${libelleStatut}`}
                 disabled={enCours !== null}
-                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id } } as never) : void lancer(test, exam))}
+                onPress={() => (test.fini ? router.push({ pathname: '/certification/test-detail', params: { kind: type, id: test.id } } as never) : void lancer(test, exam, reglagesOk))}
                 decalage={3}
                 rayon={rayon.l}
               >
@@ -133,7 +155,7 @@ export function ListeTests() {
                   <View style={styles.texte}>
                     <View style={styles.haut}>
                       <Text style={[typo.texteFort, { color: theme.texte.principal, flex: 1 }]}>
-                        {t(CLE_NUMERO_LIGNE[type], { numero: test.numero })}
+                        {t(CLE_NUMERO_LIGNE[type], { numero: type === 'mini' ? numeroDansPartie(tests, test) : test.numero })}
                       </Text>
                       <Text style={[typo.legende, { color: theme.texte.principal }]}>{libelleStatut}</Text>
                     </View>
@@ -141,7 +163,9 @@ export function ListeTests() {
                     <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
                       {test.meilleurScoreMax === null
                         ? t('certification.tests.listes.pasDeScoreLigne')
-                        : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
+                        : parMini
+                          ? t('certification.tests.listes.meilleurSur', { score: test.meilleurScoreMax, max: test.questions })
+                          : t('certification.tests.listes.meilleur', { score: test.meilleurScoreMax })}
                       {' · '}
                       {t('certification.tests.listes.tentatives', { n: test.tentatives })}
                     </Text>

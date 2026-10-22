@@ -36,7 +36,7 @@ describe('demi-tests et test complet (démo)', () => {
 describe('tests composés (démo)', () => {
   it('liste un test par type, filtrable', async () => {
     const tous = await apiDemo.listerDefsTests('toeic', null);
-    expect(tous.map((t) => t.kind)).toEqual(['listening', 'reading', 'full']);
+    expect(tous.map((t) => t.kind)).toEqual(['listening', 'reading', 'full', 'mini', 'mini', 'mixed']);
     const ecoute = await apiDemo.listerDefsTests('toeic', 'listening');
     expect(ecoute).toHaveLength(1);
     expect(ecoute[0]).toMatchObject({ kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false });

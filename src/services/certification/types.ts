@@ -107,12 +107,15 @@ export type TypeTestFixe = 'half_listening' | 'half_reading' | 'full';
 export type TestFixe = { id: string; code: string; title: string; listening: number; reading: number; total: number };
 
 /** Type d'une définition composée (cahier v1.35) : écoute, lecture ou complet. */
-export type TypeDefTest = 'listening' | 'reading' | 'full';
+/** Types de test composé : demi-tests et test complet (fixes), mini-tests par partie et mixte (listes v39). */
+export type TypeDefTest = 'listening' | 'reading' | 'full' | 'mini' | 'mixed';
 
 /** Test composé de la liste d'un type (`cert_test_list_get`) : sans contenu, avec ses tentatives. */
 export type DefTest = {
   id: string;
   kind: TypeDefTest;
+  /** Partie du mini-test (1 à 7) ; null pour les autres types, mixte compris. */
+  part: number | null;
   numero: number;
   questions: number;
   tentatives: number;
