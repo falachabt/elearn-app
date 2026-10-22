@@ -244,13 +244,13 @@ const testsServeur: Pick<CertApi, Testee> = {
   listerTentatives: async (exam) => {
     const res = await getSupabase()
       .from('cert_mock_attempts')
-      .select('id,kind,part,length,status,score_min,score_max,started_at,finished_at,per_part,time_per_part,credits_spent,refunded,questions')
+      .select('id,kind,part,length,status,score,score_min,score_max,started_at,finished_at,per_part,time_per_part,credits_spent,refunded,questions')
       .eq('exam_code', exam)
       .order('started_at', { ascending: false })
       .limit(50);
-    const lignes = verifier(res) as { id: string; kind: Tentative['kind']; part: number | null; length: number; status: Tentative['status']; score_min: number | null; score_max: number | null; started_at: string; finished_at: string | null; per_part: TentativeListee['perPart']; time_per_part: TentativeListee['timePerPart']; credits_spent: number; refunded: boolean; questions: string[] }[];
+    const lignes = verifier(res) as { id: string; kind: Tentative['kind']; part: number | null; length: number; status: Tentative['status']; score: number | null; score_min: number | null; score_max: number | null; started_at: string; finished_at: string | null; per_part: TentativeListee['perPart']; time_per_part: TentativeListee['timePerPart']; credits_spent: number; refunded: boolean; questions: string[] }[];
     return lignes.map((l) => ({
-      id: l.id, kind: l.kind, part: l.part, length: l.length, status: l.status, scoreMin: l.score_min, scoreMax: l.score_max,
+      id: l.id, kind: l.kind, part: l.part, length: l.length, status: l.status, score: l.score, scoreMin: l.score_min, scoreMax: l.score_max,
       startedAt: l.started_at, finishedAt: l.finished_at, perPart: l.per_part, timePerPart: l.time_per_part,
       creditsSpent: l.credits_spent, refunded: l.refunded, questions: l.questions ?? [],
     }));
