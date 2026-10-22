@@ -453,3 +453,16 @@ Demande de Benny (22 octobre) : Vocabulaire, Pièges et Méthode en grille comme
 - `TOEIC-V35-PARCOURS` : timeline « Mon parcours », jusqu'au 16 janvier. Aujourd'hui (9 h, notion ratée à revoir ; 9 h 10, mini-test en cours), demain, jours suivants (test complet). Chaque étape porte son état : À faire, En cours, Fait, Ratée à revoir.
 
 Règles : l'état d'une notion passe à « Validé » quand le quiz lié est réussi, à « Maîtrisé » quand il est réussi plusieurs fois. Une notion ratée revient dans la timeline. Les états sont écrits en mots, jamais seulement en couleur.
+
+## Version 35 (suite) : cahier v1.32, ids TOEIC-V34-* (22 octobre 2026, à valider)
+
+Révision v35 avec les ids du cahier v1.32 (D-41 à D-44).
+
+- `TOEIC-V34-COURS-GRILLE` : Vocabulaire, Pièges et Méthode en grille comme Grammaire (captures séparées par catégorie).
+- `TOEIC-V34-TUILE-ETATS` : cinq états en mots : Non vu, Vu, Validé, Maîtrisé, À revoir.
+- `TOEIC-V34-PARCOURS-TIMELINE` : frise verticale. Aujourd'hui ouvert, Demain, Samedi (jour de test) et les jours suivants repliés. Couverture en en-tête (notions vues 12 sur 40, validées 6, maîtrisées 2). États des étapes : À faire, En cours, Fait, Reportée.
+- `TOEIC-V34-PARCOURS-JOUR` : détail d'un jour, avec les étapes du jour.
+- `TOEIC-V34-PARCOURS-SANS-DATE` : sans date d'examen, pas de timeline ; invitation à choisir la date.
+- `TOEIC-V34-PARCOURS-TROP-DE-CONTENU` : semaine chargée, étapes repliées avec « Voir les étapes restantes ».
+- `TOEIC-V34-NOTION-MAITRISE` : notion avec son état et ses quiz liés (réussi, à faire).
+- `TOEIC-V34-STATS` : décompte Vu, Validé, Maîtrisé, À revoir, et maîtrise par catégorie.
