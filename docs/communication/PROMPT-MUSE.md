@@ -45,7 +45,7 @@ Si tu as accès à une mémoire projet (`read_memory`), lis-la aussi.
 - Modifier la production (base, OTA, déploiement), dépenser, supprimer (fichier, donnée, branche, compte, contenu publié).
 - Lancer une migration en production. Les migrations sont **additives** (ne jamais casser l'ancienne app `elearn_mobile` ni le back-office) et testées en local (`npx supabase@2.118.0 test db`), puis passent par une PR sur `elearn-supabase`, avec un rapport à Benny.
 - Passer `PAWAPAY_MODE=production`.
-- Toucher aux zones TOEIC en cours (voir section 5).
+- Toucher aux écrans Tests, Réviser ou Statistiques, ni à `src/` de la certification, tant que le dev TOEIC y travaille (voir section 5).
 
 ## 4. Le protocole entre agents
 
@@ -63,7 +63,7 @@ Si tu as accès à une mémoire projet (`read_memory`), lis-la aussi.
 
 ## 6. Ta première tâche
 
-Ne touche pas au TOEIC. Ta première tâche est une **issue de `elearn-app` hors TOEIC**, confirmée par le chef de projet (il trie `docs/PRIORITES.md`). Par défaut, la suggestion est l'issue **#54, PWA installée : l'app ne s'ouvre pas sans internet au démarrage à froid** (bug web, pistes dans l'issue). Elle est isolée (démarrage web, manifeste, service de connectivité) et ne touche pas au TOEIC.
+**Tu ne touches JAMAIS aux écrans Tests, Réviser et Statistiques, ni au dossier `src/` de la certification (TOEIC), pendant que le dev TOEIC y travaille.** Consulte `docs/communication/EN-COURS.md` avant chaque modification : si une zone est prise, tu n'y touches pas. Ta première tâche est une **issue de `elearn-app` hors TOEIC**, et le chef de projet confirmera le choix après tri (il trie `docs/PRIORITES.md`). Par défaut, la suggestion est l'issue **#54, PWA installée : l'app ne s'ouvre pas sans internet au démarrage à froid** (bug web, pistes dans l'issue). Elle est isolée (démarrage web, manifeste, service de connectivité) et ne touche pas au TOEIC.
 
 Procédure :
 1. Vérifie `docs/communication/EN-COURS.md` et la zone de l'issue. Si personne ne la tient, écris un échange `pris` et inscris-la.
