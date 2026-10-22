@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { lirePlan } from '@/services/certification/etat';
 import { jourDe } from '@/services/certification/jours';
 import { planDeFormation, type PlanFormation } from '@/services/certification/monPlan';
+import { titreAffiche } from '@/services/certification/titre';
 import { chargerDonneesRevision } from '@/services/certification/revision';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -72,7 +73,7 @@ function Contenu({ plan }: { plan: PlanFormation }) {
         <LigneChoix icone={NotebookPen} titre={t('certification.monPlan.motsTitre', { n: plan.motsARevoir })} aide={t('certification.monPlan.motsAide')} onPress={() => router.push({ pathname: '/certification/mots-seance', params: { origine: 'carnet' } } as never)} />
       ) : null}
       {plan.notionsARepasser.map((n) => (
-        <LigneChoix key={n.id} icone={Target} titre={n.titre} aide={t(`certification.monPlan.etat.${n.etat}`)} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'liste' } } as never)} />
+        <LigneChoix key={n.id} icone={Target} titre={titreAffiche(n.titre)} aide={t(`certification.monPlan.etat.${n.etat}`)} onPress={() => router.push({ pathname: '/certification/notion/[id]', params: { id: n.id, source: 'liste' } } as never)} />
       ))}
       {plan.motsARevoir === 0 && plan.notionsARepasser.length === 0 ? (
         <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.monPlan.rienARepasser')}</Text>
