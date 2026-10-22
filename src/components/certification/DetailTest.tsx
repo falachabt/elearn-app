@@ -7,6 +7,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { obtenirApi } from '@/services/certification/api';
 import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE } from '@/services/certification/listesTests';
 import { lancerDefTest } from '@/services/certification/miniTest';
+import { lancerAutreTest } from '@/services/certification/passerAutreTest';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { obtenirReglages } from '@/services/certification/etat';
 import { lireProfil } from '@/services/profil';
@@ -42,6 +43,12 @@ export function DetailTest() {
     return { exam, max, test: tests.find((x) => x.id === id) ?? null };
   });
 
+  const autre = async () => {
+    const res = await lancerAutreTest(exam, type);
+    if (res?.statut === 'demarre') router.replace('/certification/mini-test' as never);
+    else if (res?.statut === 'compte_requis') router.push('/compte/creer');
+    else router.replace({ pathname: '/certification/liste-tests', params: { kind: type } } as never);
+  };
   const refaire = async (test: DefTest, exam: string) => {
     if (enCours) return;
     setEnCours(true);
@@ -88,7 +95,7 @@ export function DetailTest() {
             <Bouton
               libelle={t('certification.tests.detail.autre')}
               variante="secondaire"
-              onPress={() => router.replace({ pathname: '/certification/liste-tests', params: { kind: type } } as never)}
+              onPress={() => void autre()}
             />
           </View>
           {codeEchec === 'insuffisant' ? <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.tests.creditsInsuffisants')}</Text> : null}

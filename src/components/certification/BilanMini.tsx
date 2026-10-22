@@ -6,6 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { scoresSections, statutsDesQuestions } from '@/services/certification/bilanMini';
 import { obtenirReglages } from '@/services/certification/etat';
+import { lancerAutreTest } from '@/services/certification/passerAutreTest';
 import { effacerMini, lancerDefTest, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -107,6 +108,12 @@ export function BilanMini() {
       if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
       else if (res.statut === 'compte_requis') router.push('/compte/creer');
     };
+    const autre = async () => {
+      const res = await lancerAutreTest(etat.exam, def.kind);
+      if (res?.statut === 'demarre') router.replace('/certification/mini-test' as never);
+      else if (res?.statut === 'compte_requis') router.push('/compte/creer');
+      else await sortir(`/certification/liste-tests?kind=${def.kind}`);
+    };
     return (
       <Ecran
         entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
@@ -114,7 +121,7 @@ export function BilanMini() {
           <View style={styles.groupe}>
             <Bouton libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} />
             <Bouton variante="secondaire" libelle={t('certification.tests.detail.voirNote')} onPress={() => void sortir('/certification/tentatives')} />
-            <Bouton variante="secondaire" libelle={t('certification.tests.detail.autre')} onPress={() => void sortir(`/certification/liste-tests?kind=${def.kind}`)} />
+            <Bouton variante="secondaire" libelle={t('certification.tests.detail.autre')} onPress={() => void autre()} />
             <Bouton variante="texte" libelle={t('certification.tests.bilanDef.retour')} onPress={() => void sortir('/tests')} />
           </View>
         }
