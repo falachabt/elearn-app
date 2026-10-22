@@ -2735,7 +2735,7 @@ export const fr = {
       choisir: 'Choisir un mini-test',
       suivi: {
         pasFait: 'Pas encore fait',
-        enCours: 'En cours, à reprendre',
+        enCours: 'En cours',
         interrompu: 'Interrompu',
         fait: 'Fait : dernier {{dernier}} sur {{total}}, meilleur {{meilleur}}, {{n}} tentative(s)',
         miniFait: 'Fait : dernier {{dernier}} sur {{total}}, {{n}} tentative(s)',

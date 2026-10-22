@@ -15,11 +15,17 @@ export function suiviDe(liste: TentativeListee[], kind: Tentative['kind'], part?
   return { fois: finies.length, derniere: finies[0] ?? null };
 }
 
-/** Progression d'un demi-test : la moitié en cours, sinon la plus récemment faite, sinon l'écoute (maquette v33). */
+/**
+ * Progression d'un demi-test sur la carte (maquette v33) : une moitié en cours d'abord, puis une interrompue (elle
+ * n'a alors aucune moitié en cours), puis la plus récemment faite, sinon l'écoute.
+ */
 export function progressionDemi(liste: ProgressionTest[]): ProgressionTest | undefined {
-  const enCours = liste.find((p) => p.statut === 'en_cours' && p.kind !== 'full');
-  if (enCours) return enCours;
   const moities = liste.filter((p) => p.kind !== 'full');
+  const trouver = (statut: ProgressionTest['statut']) => moities.find((p) => p.statut === statut);
+  const enCours = trouver('en_cours');
+  if (enCours) return enCours;
+  const interrompue = trouver('interrompu');
+  if (interrompue) return interrompue;
   const faites = moities.filter((p) => p.derniereDate).sort((a, b) => (b.derniereDate ?? '').localeCompare(a.derniereDate ?? ''));
   return faites[0] ?? moities.find((p) => p.kind === 'half_listening');
 }

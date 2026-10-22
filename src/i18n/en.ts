@@ -2715,7 +2715,7 @@ export const en: Textes = {
       entete: 'Tests',
       suivi: {
         pasFait: 'Not done yet',
-        enCours: 'In progress, to resume',
+        enCours: 'In progress',
         interrompu: 'Interrupted',
         fait: 'Done: last {{dernier}} out of {{total}}, best {{meilleur}}, {{n}} attempt(s)',
         miniFait: 'Done: last {{dernier}} out of {{total}}, {{n}} attempt(s)',

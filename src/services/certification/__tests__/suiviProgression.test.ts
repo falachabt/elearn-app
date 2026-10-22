@@ -14,6 +14,11 @@ describe('progressionDemi', () => {
     expect(progressionDemi(liste)?.kind).toBe('half_reading');
   });
 
+  it('sans moitié en cours, renvoie la moitié interrompue avant une moitié faite', () => {
+    const liste = [{ ...vide('half_listening'), statut: 'fait' as const, derniereDate: '2026-10-20' }, { ...vide('half_reading'), statut: 'interrompu' as const, dernierScore: 385, meilleurScore: 705, tentatives: 3 }];
+    expect(progressionDemi(liste)?.kind).toBe('half_reading');
+  });
+
   it("sans test fait, renvoie l'écoute ; ignore le test complet", () => {
     expect(progressionDemi([vide('full'), vide('half_listening'), vide('half_reading')])?.kind).toBe('half_listening');
   });
