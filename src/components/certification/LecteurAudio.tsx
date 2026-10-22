@@ -19,6 +19,10 @@ import { BarreProgression } from './ui';
  */
 let pisteActive: (() => void) | null = null;
 
+function definirPisteActive(arret: (() => void) | null) {
+  pisteActive = arret;
+}
+
 type Props = {
   /** Adresse du média ; `null` = indisponible (pas d'hôte configuré ou piste absente). */
   uri: string | null;
@@ -39,6 +43,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   const [etat, envoyer] = useReducer((e: typeof etatInitial, ev: Parameters<typeof reduireLecteur>[1]) => reduireLecteur(e, ev, !!unique), etatInitial);
   const lecteur = useRef<AudioPlayer | null>(null);
   const delai = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Relances automatiques de la même piste (un lecteur figé à 0:00 est relancé une fois avant l'erreur). */
+  const relances = useRef(0);
   /** Code de diagnostic (statut HTTP et fin d'adresse) affiché quand le son ne se charge pas. */
   const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const finRef = useRef(onFin);
@@ -64,7 +70,9 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     return liberer;
   }, [liberer, uri]);
 
-  const demarrer = (depuis: number) => {
+  const demarrer = (depuis: number, automatique = false) => {
+    // Un appui de l'élève repart de zéro ; la relance automatique garde son compteur.
+    if (!automatique) relances.current = 0;
     if (!uri) {
       envoyer({ type: 'erreur' });
       suivre('cert_audio_error', { ecran, code: 'absent' });
@@ -80,7 +88,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     try {
       const p = createAudioPlayer({ uri }, { updateInterval: 250 });
       lecteur.current = p;
-      pisteActive = liberer;
+      definirPisteActive(liberer);
       p.addListener('playbackStatusUpdate', (s) => {
         // Un évènement d'une piste déjà remplacée ne doit pas toucher l'écran courant.
         if (lecteur.current !== p) return;
@@ -96,6 +104,12 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
       if (depuis > 1) void p.seekTo(depuis);
       p.play();
       delai.current = setTimeout(() => {
+        if (relances.current < 1) {
+          relances.current += 1;
+          suivre('cert_audio_error', { ecran, code: 'relance' });
+          demarrer(depuis, true);
+          return;
+        }
         envoyer({ type: 'erreur' });
         suivre('cert_audio_error', { ecran, code: 'delai' });
         void diagnosticAudio(uri).then(setDiagnostic);

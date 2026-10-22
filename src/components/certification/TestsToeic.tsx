@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { BookOpen, Clock, Layers, RotateCcw, Target, Trophy } from 'lucide-react-native';
+import { BookOpen, Clock, Headphones, Layers, NotebookPen, RotateCcw, Target, Trophy } from 'lucide-react-native';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -7,9 +7,10 @@ import { useTextesCredits } from '@/components/credits/textes';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { minutesSecondes } from '@/services/certification/format';
-import { progressionDemi, suiviDe } from '@/services/certification/suivi';
+import { suiviDe, type SuiviTest } from '@/services/certification/suivi';
 import { abandonnerMini, tempsRestantMs } from '@/services/certification/miniTest';
 import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
+import type { ProgressionTest } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -19,8 +20,9 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
 import { Feuille } from '../Feuille';
+import { stylePartie } from './partiesStyle';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
-import { avecSuivi } from './suiviLignes';
+import { CarteTest, type ProprietesCarteTest } from './CarteTest';
 import { useChargement } from './useChargement';
 
 /**
@@ -78,32 +80,47 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const demiQ = couts.cert_mock_half;
   const completQ = couts.cert_mock_full;
   const total = donnees.reglages.objectifMax;
-  const suiviDemi = donnees.progression ? progressionDemi(donnees.progression) : undefined;
-  const suiviComplet = donnees.progression?.find((p) => p.kind === 'full');
+  const { theme, sombre } = useTheme();
   const minis = donnees.tentatives ?? [];
   const suiviMiniPartie = suiviDe(minis.filter((x) => x.part !== null), 'mini');
   const suiviMiniMixte = suiviDe(minis.filter((x) => x.part === null), 'mini');
-  // Un mini-test se lit en bonnes réponses sur le nombre de questions (« 8 sur 10 »), pas en score exact.
-  const ligneMini = (suivi: ReturnType<typeof suiviDe>, detail: string) => {
-    const derniere = suivi.derniere;
-    if (!derniere) return `${t('certification.tests.suivi.pasFait')} · ${detail}`;
-    const bonnes = Object.values(derniere.perPart ?? {}).reduce((somme, p) => somme + p.correct, 0);
-    return `${t('certification.tests.suivi.miniFait', { dernier: bonnes, total: derniere.length, n: suivi.fois })} · ${detail}`;
-  };
+  const progression = (kind: ProgressionTest['kind']) => donnees.progression?.find((p) => p.kind === kind);
+  const pEcoute = progression('half_listening');
+  const pLecture = progression('half_reading');
+  const pComplet = progression('full');
   const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
   const estimation = donnees.tentatives ? derniereEstimation(donnees.tentatives) : null;
   const faits = donnees.tentatives ? testsFaits(donnees.tentatives) : null;
+  const couleurs = stylePartie(theme, sombre);
+
+  // Statut en mots (maquette v37) : jamais la couleur seule.
+  const statutProgression = (p: ProgressionTest | undefined): Pick<ProprietesCarteTest, 'statut' | 'libelleStatut'> => {
+    const s = p?.statut ?? 'pas_fait';
+    if (s === 'en_cours') return { statut: 'en_cours', libelleStatut: t('certification.tests.statut.enCours') };
+    if (s === 'interrompu') return { statut: 'interrompu', libelleStatut: t('certification.tests.statut.interrompu') };
+    if (s === 'fait') return { statut: 'fait', libelleStatut: t('certification.tests.statut.fait') };
+    return { statut: 'vide', libelleStatut: t('certification.tests.statut.pasFait') };
+  };
+  const statutMini = (suivi: SuiviTest): Pick<ProprietesCarteTest, 'statut' | 'libelleStatut' | 'score'> => {
+    const derniere = suivi.derniere;
+    if (!derniere) return { statut: 'vide', libelleStatut: t('certification.tests.statut.pasFait') };
+    // Un mini-test se lit en bonnes réponses sur le nombre de questions (« 8 sur 10 »), pas en score exact.
+    const bonnes = Object.values(derniere.perPart ?? {}).reduce((somme, p) => somme + p.correct, 0);
+    return { statut: 'fait', libelleStatut: t('certification.tests.statut.fait'), score: `${bonnes} sur ${derniere.length}` };
+  };
+  const scoreSur = (p: ProgressionTest | undefined, total: number) => (p?.meilleurScore !== null && p?.meilleurScore !== undefined ? `${p.meilleurScore} sur ${total}` : undefined);
 
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <LigneChoix icone={Target} titre={t('certification.tests.miniPartie')} aide={donnees.tentatives ? ligneMini(suiviMiniPartie, detail(t('certification.tests.detailMiniPartie'), dixQ)) : detail(t('certification.tests.detailMiniPartie'), dixQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
-      <LigneChoix icone={Layers} titre={t('certification.tests.miniMixte')} aide={donnees.tentatives ? ligneMini(suiviMiniMixte, detail(t('certification.tests.detailMiniMixte'), vingtQ)) : detail(t('certification.tests.detailMiniMixte'), vingtQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
+      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(t('certification.tests.detailMiniPartie'), dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
+      <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(suiviMiniMixte)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
-      <LigneChoix icone={Trophy} titre={t('certification.tests.demi')} aide={avecSuivi(t, detail(t('certification.tests.detailDemi'), demiQ), suiviDemi, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
-      <LigneChoix icone={Trophy} titre={t('certification.tests.complet')} aide={avecSuivi(t, detail(t('certification.tests.detailComplet'), completQ), suiviComplet, total)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'full' } } as never)} />
-      <LigneChoix icone={BookOpen} titre={t('certification.tests.corrige')} aide={detail(t('certification.tests.detailCorrige'), corrigeQ)} />
+      <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreSur(pEcoute, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
+      <CarteTest icone={BookOpen} couleur={couleurs[4]!.couleur} titre={t('certification.tests.demiLecture')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pLecture)} score={scoreSur(pLecture, total / 2)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
+      <CarteTest icone={Trophy} couleur={theme.marque.forte} titre={t('certification.tests.complet')} sous={detail(t('certification.tests.detailComplet'), completQ)} {...statutProgression(pComplet)} score={scoreSur(pComplet, total)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'full' } } as never)} />
+      <CarteTest icone={NotebookPen} couleur={theme.fond.surface} titre={t('certification.tests.corrige')} sous={detail(t('certification.tests.detailCorrige'), corrigeQ)} statut="vide" libelleStatut="" />
       <View style={styles.tuiles}>
         <Tuile
           titre={estimation ? t('certification.tests.scorePlage', { min: estimation.min, max: estimation.max, total }) : t('certification.tests.scoreVide')}
