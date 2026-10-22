@@ -1,4 +1,4 @@
-import { BookOpen, Headphones, Image, Layers, MessageCircleQuestion, Pen, type LucideIcon } from 'lucide-react-native';
+import { BookOpen, Headphones, Image, Layers, NotebookPen, Pen, type LucideIcon } from 'lucide-react-native';
 
 import type { Theme } from '@/theme/theme';
 import { matiere } from '@/theme/theme';
@@ -14,15 +14,15 @@ type ClePartie = 'certification.reviser.partieNom1' | 'certification.reviser.par
 export type StylePartie = { couleur: string; icone: LucideIcon; cle: ClePartie };
 
 /**
- * Couleurs de la maquette v32 : P1 vert, P2 jaune, P3 crème, P4 corail, P5 jaune, P6 vert, P7 crème. Vert et jaune
- * viennent des tokens de matière, corail et crème des tokens d'état et d'accent du thème (clair et sombre).
+ * Couleurs de la maquette v30 et v32 : P1 vert, P2 jaune, P3 crème, P4 corail, P5 jaune, P6 vert, P7 crème. Vert et corail
+ * viennent des tokens de matière et d'état, jaune et crème du thème (clair et sombre).
  */
 export const stylePartie = (theme: Theme): Record<number, StylePartie> => ({
   1: { couleur: matiere.svt, icone: Image, cle: 'certification.reviser.partieNom1' },
-  2: { couleur: matiere.histoireGeo, icone: MessageCircleQuestion, cle: 'certification.reviser.partieNom2' },
-  3: { couleur: theme.accent.soleilTresDoux, icone: Headphones, cle: 'certification.reviser.partieNom3' },
+  2: { couleur: theme.accent.soleil, icone: NotebookPen, cle: 'certification.reviser.partieNom2' },
+  3: { couleur: theme.fond.app, icone: Headphones, cle: 'certification.reviser.partieNom3' },
   4: { couleur: theme.etat.erreur, icone: BookOpen, cle: 'certification.reviser.partieNom4' },
-  5: { couleur: matiere.histoireGeo, icone: Layers, cle: 'certification.reviser.partieNom5' },
+  5: { couleur: theme.accent.soleil, icone: Layers, cle: 'certification.reviser.partieNom5' },
   6: { couleur: matiere.svt, icone: Pen, cle: 'certification.reviser.partieNom6' },
   7: { couleur: theme.accent.soleilTresDoux, icone: BookOpen, cle: 'certification.reviser.partieNom7' },
 });
