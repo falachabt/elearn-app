@@ -369,6 +369,21 @@ export const apiDemo: CertApi = {
   },
   /** Démo : un test composé par type (v38, v39), même répartition que les tests fixes. */
   async listerDefsTests(_exam, type): Promise<DefTest[]> {
+    // Jeu de démo à quatre tests d'écoute (faite, commencée, pas faite, faite), pour contrôler les états de la liste.
+    if (process.env.EXPO_PUBLIC_CERT_DEMO_STATS === '1') {
+      const demo: DefTest[] = [
+        { id: 'demo-listening-1', kind: 'listening', numero: 1, questions: 100, tentatives: 2, fini: true, meilleurScoreMax: 410, derniereDate: '2026-10-20T10:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-listening-2', kind: 'listening', numero: 2, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T18:00:00Z', nouvellesQuestions: 60 },
+        { id: 'demo-listening-3', kind: 'listening', numero: 3, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+        { id: 'demo-listening-4', kind: 'listening', numero: 4, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 380, derniereDate: '2026-10-22T09:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 1, fini: true, meilleurScoreMax: 395, derniereDate: '2026-10-19T15:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-reading-2', kind: 'reading', numero: 2, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
+        { id: 'demo-reading-3', kind: 'reading', numero: 3, questions: 100, tentatives: 1, fini: false, meilleurScoreMax: null, derniereDate: '2026-10-21T12:00:00Z', nouvellesQuestions: 40 },
+        { id: 'demo-full-1', kind: 'full', numero: 1, questions: 200, tentatives: 1, fini: true, meilleurScoreMax: 760, derniereDate: '2026-10-18T09:00:00Z', nouvellesQuestions: 0 },
+        { id: 'demo-full-2', kind: 'full', numero: 2, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
+      ];
+      return type ? demo.filter((t) => t.kind === type) : demo;
+    }
     const tous: DefTest[] = [
       { id: 'demo-listening-1', kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
       { id: 'demo-reading-1', kind: 'reading', numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },

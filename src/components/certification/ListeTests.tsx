@@ -66,8 +66,10 @@ export function ListeTests() {
   const tests = etat.phase === 'ok' ? etat.valeur.tests : [];
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
   const meilleur = meilleurDeSection(tests);
-  // Le score se lit sur la moitié du total (495 sur 990), comme sur le suivi des tests.
-  const sectionMax = etat.phase === 'ok' && etat.valeur.reglages ? etat.valeur.reglages.objectifMax / 2 : null;
+  // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total.
+  const sectionMax = etat.phase === 'ok' && etat.valeur.reglages
+    ? (type === 'full' ? etat.valeur.reglages.objectifMax : etat.valeur.reglages.objectifMax / 2)
+    : null;
   const conseille = testConseille(tests);
 
   return (
@@ -93,7 +95,7 @@ export function ListeTests() {
             const statut = statutLigne(test);
             const estConseille = conseille?.id === test.id;
             const libelleStatut = t(`certification.tests.listes.statut.${statut}`);
-            const cle = `${test.kind}-${test.numero}`;
+            
             return (
               <Appui
                 key={test.id}
@@ -105,7 +107,7 @@ export function ListeTests() {
                 rayon={rayon.l}
               >
                 <View
-                  testID={`ligne-${cle}`}
+                  testID={`ligne-${test.kind}-${test.numero}`}
                   style={[styles.ligne, { backgroundColor: theme.fond.surface, borderColor: estConseille ? theme.accent.soleil : theme.bord.fort }]}
                 >
                   <View style={styles.haut}>
