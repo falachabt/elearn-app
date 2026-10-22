@@ -2652,6 +2652,7 @@ export const en: Textes = {
       reprendre: 'Resume',
       serieInterrompue: 'Interrupted series',
       serieAide: 'Part {{partie}} · {{k}} questions out of {{n}}',
+      serieAideSansPartie: '{{k}} questions out of {{n}}',
       serieAideRejeu: 'Replay · {{k}} questions out of {{n}}',
       acces: 'Quick access',
       parties: 'Parts',

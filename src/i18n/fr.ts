@@ -2653,6 +2653,7 @@ export const fr = {
       reprendre: 'Reprendre',
       serieInterrompue: 'Série interrompue',
       serieAide: 'Partie {{partie}} · {{k}} questions sur {{n}}',
+      serieAideSansPartie: '{{k}} questions sur {{n}}',
       serieAideRejeu: 'Rejeu · {{k}} questions sur {{n}}',
       acces: 'Accès rapides',
       parties: 'Parties',

@@ -7,6 +7,7 @@ import { suivre } from '@/services/analytics';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
 import { afficherJour } from '@/services/certification/format';
 import { avancement } from '@/services/certification/seanceJour';
+import { titreAffiche } from '@/services/certification/titre';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, rayon, typo } from '@/theme/theme';
 
@@ -79,7 +80,9 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
   const aideSerie = serie
     ? serie.perimetre.rejeu
       ? t('certification.accueilToeic.serieAideRejeu', { k: serie.index, n: serie.questions.length })
-      : t('certification.accueilToeic.serieAide', { partie: serie.perimetre.part ?? '', k: serie.index, n: serie.questions.length })
+      : serie.perimetre.part
+        ? t('certification.accueilToeic.serieAide', { partie: serie.perimetre.part, k: serie.index, n: serie.questions.length })
+        : t('certification.accueilToeic.serieAideSansPartie', { k: serie.index, n: serie.questions.length })
     : '';
   const aller = (chemin: string) => router.push(chemin as never);
 
@@ -95,7 +98,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
             <Pastille texte={t('certification.accueilToeic.seanceTitre')} />
             <Pastille texte={t('certification.accueilToeic.minutesCourtes', { minutes: seance.seance.minutes })} />
           </View>
-          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.surCouleur }]}>{seance.seance.pourquoi.notion ?? t('certification.accueilToeic.seanceTitre')}</Text>
+          <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.surCouleur }]}>{seance.seance.pourquoi.notion ? titreAffiche(seance.seance.pourquoi.notion) : t('certification.accueilToeic.seanceTitre')}</Text>
           {partieSeance !== undefined || motsSeance !== undefined ? (
             <View style={styles.ligneBadges}>
               {partieSeance !== undefined ? <Pastille texte={t('certification.diagnostic.partie', { n: partieSeance })} /> : null}
@@ -108,7 +111,7 @@ function Contenu({ d, recharger }: { d: DonneesAccueil; recharger: () => void })
         <Banniere ton="alerte" titre={t('certification.accueilToeic.erreurTitre')} texte={t('certification.accueilToeic.erreurTexte')} />
       ) : null}
       {compte && d.plan?.dateTest ? (
-        <Carte>
+        <Carte style={{ gap: espace[3] }}>
           <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.accueilToeic.compteEtiquette')}</Text>
           <View style={styles.ligne}>
             <Text accessibilityRole="header" style={[typo.h2, { color: theme.texte.principal }]}>{compte}</Text>
