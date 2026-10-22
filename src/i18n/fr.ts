@@ -2733,7 +2733,7 @@ export const fr = {
     tests: {
       entete: 'Tests',
       detail: {
-        meilleur: 'Meilleur score : {{score}}',
+        meilleur: 'Meilleur score : {{score}} sur {{max}}',
         derniere: 'dernier test le {{date}}',
         voirNote: 'Voir ma note et mes tentatives',
         refaire: 'Refaire pour améliorer ma note',

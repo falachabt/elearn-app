@@ -2732,7 +2732,7 @@ export const en: Textes = {
     tests: {
       entete: 'Tests',
       detail: {
-        meilleur: 'Best score: {{score}}',
+        meilleur: 'Best score: {{score}} of {{max}}',
         derniere: 'last test on {{date}}',
         voirNote: 'See my score and attempts',
         refaire: 'Retake to improve my score',

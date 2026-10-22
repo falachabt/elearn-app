@@ -8,6 +8,7 @@ import { obtenirApi } from '@/services/certification/api';
 import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE } from '@/services/certification/listesTests';
 import { lancerDefTest } from '@/services/certification/miniTest';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
+import { obtenirReglages } from '@/services/certification/etat';
 import { lireProfil } from '@/services/profil';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -35,8 +36,10 @@ export function DetailTest() {
 
   const { etat } = useChargement(async () => {
     const exam = (await lireProfil())?.exam ?? 'toeic';
-    const tests = await obtenirApi().listerDefsTests(exam, type);
-    return { exam, test: tests.find((x) => x.id === id) ?? null };
+    const [tests, reglages] = await Promise.all([obtenirApi().listerDefsTests(exam, type), obtenirReglages().catch(() => null)]);
+    // Même échelle que la liste : moitié du total, sauf le test complet (990).
+    const max = reglages ? (type === 'full' ? reglages.objectifMax : reglages.objectifMax / 2) : null;
+    return { exam, max, test: tests.find((x) => x.id === id) ?? null };
   });
 
   const refaire = async (test: DefTest, exam: string) => {
@@ -58,6 +61,7 @@ export function DetailTest() {
 
   const test = etat.phase === 'ok' ? etat.valeur.test : null;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
+  const max = etat.phase === 'ok' ? etat.valeur.max : null;
 
   return (
     <Ecran insetBas={false} entete={<EnteteToeic titre={t(CLE_NUMERO_LIGNE[type], { numero: test?.numero ?? 1 })} onRetour={() => router.back()} />}>
@@ -71,7 +75,7 @@ export function DetailTest() {
           <Carte style={{ gap: espace[2] }}>
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t(CLE_TITRE_LISTE[type])}</Text>
             <Text style={[typo.chiffreL, { color: theme.texte.principal }]}>
-              {test.meilleurScoreMax === null ? t('certification.tests.listes.pasDeScore') : t('certification.tests.detail.meilleur', { score: test.meilleurScoreMax })}
+              {test.meilleurScoreMax === null ? t('certification.tests.listes.pasDeScore') : t('certification.tests.detail.meilleur', { score: test.meilleurScoreMax, max: max ?? '' })}
             </Text>
             <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
               {t('certification.tests.listes.tentatives', { n: test.tentatives })}
