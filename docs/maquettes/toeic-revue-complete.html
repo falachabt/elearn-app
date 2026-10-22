@@ -1075,21 +1075,21 @@ const carteTest=(k,titre,sous,pied,action)=>`<div style="border:2px solid var(--
 const V33_TESTS_SUIVI=t=>ph(t,hd('Tests',false)+bd(seg(['Mini-tests','Demi-tests','Tests complets'],1)+
   carteTest('vide','Mini-test partie 5','10 questions · 1 crédit hors Pass','','')+
   carteTest('cours','Demi-test écoute','Parties 1 à 4 · 45 min','Commencé le 20 oct. · question 34 sur 100',B('Reprendre','sec'))+
-  carteTest('fait','Demi-test lecture','Parties 5 à 7 · 75 min','Dernier 640 · Meilleur 705 · 3 tentatives · 18 oct.',B('Voir les tentatives','sec'))+
+  carteTest('fait','Demi-test lecture','Parties 5 à 7 · 75 min','Dernier 385 · Meilleur 430 · 3 tentatives · 18 oct.',B('Voir les tentatives','sec'))+
   carteTest('interrompu','Test complet','Écoute et lecture · 2 h','Interrompu le 19 oct. · le score précédent est conservé',B('Refaire','sec'))
   )+ft(TB(2)));
 
 const V33_DEMI_SUIVI=t=>ph(t,hd('Demi-test',true)+bd(lab('Choisis la moitié')+
   `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">Écoute</b>${statutTest('cours')}</div><small style="font:500 12px var(--f-body);color:var(--txt2)">Parties 1 à 4 · 100 questions</small><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 26px var(--f-display)">—</span><small style="font:600 12px var(--f-mono)">sur 495 · pas encore de score</small></div>${B('Reprendre','')}</div>`+
-  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">Lecture</b>${statutTest('fait')}</div><small style="font:500 12px var(--f-body);color:var(--txt2)">Parties 5 à 7 · 100 questions</small><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 26px var(--f-display)">640</span><small style="font:600 12px var(--f-mono)">sur 495 · dernier · 18 oct.</small></div><small style="font:600 12px var(--f-mono)">Meilleur 705 · 3 tentatives</small>${B('Voir les tentatives','sec')}</div>`
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;gap:8px;box-shadow:var(--shadow)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">Lecture</b>${statutTest('fait')}</div><small style="font:500 12px var(--f-body);color:var(--txt2)">Parties 5 à 7 · 100 questions</small><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 26px var(--f-display)">385</span><small style="font:600 12px var(--f-mono)">sur 495 · dernier · 18 oct.</small></div><small style="font:600 12px var(--f-mono)">Meilleur 430 · 3 tentatives</small>${B('Voir les tentatives','sec')}</div>`
   )+ft(B('Commencer le demi-test écoute')));
 
 const ligneTentative=(date,score,temps,statut,revue)=>`<div style="border:2px solid var(--bord);border-radius:12px;background:var(--surf);padding:12px;display:grid;gap:6px;box-shadow:3px 3px 0 var(--bord)"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font:700 15px var(--f-body)">${date}</b>${statut}</div><div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:800 22px var(--f-display)">${score}</span><small style="font:600 12px var(--f-mono);color:var(--txt2)">${temps}</small></div>${revue?`<div>${B('Revoir la tentative','sec')}</div>`:''}</div>`;
 const V33_TENTATIVES=t=>ph(t,hd('Lecture · tentatives',true)+bd(lab('Demi-test lecture · 3 tentatives')+
-  ligneTentative('18 oct. · 14 h 20','640 sur 495','72 min',statutTest('fait'),true)+
-  ligneTentative('12 oct. · 19 h 05','705 sur 495','68 min',statutTest('fait'),true)+
+  ligneTentative('18 oct. · 14 h 20','385 sur 495','72 min',statutTest('fait'),true)+
+  ligneTentative('12 oct. · 19 h 05','430 sur 495','68 min',statutTest('fait'),true)+
   ligneTentative('9 oct. · 10 h 30','Pas de score','Interrompue à la question 61',statutTest('interrompu'),false)+
-  `<p class="hint" style="color:var(--txt)">Le meilleur score (705) reste affiché même si une tentative est interrompue.</p>`
+  `<p class="hint" style="color:var(--txt)">Le meilleur score (430) reste affiché même si une tentative est interrompue.</p>`
   )+ft(B('Refaire le demi-test')));
 
 const ligneRevise=(titre,sous,k)=>`<div class="ch" style="justify-content:space-between"><div style="min-width:0;flex:1"><b style="display:block">${titre}</b><small style="display:block">${sous}</small></div>${statutTest(k)}</div>`;
@@ -1104,8 +1104,8 @@ const V33_PARCOURS_STATUT=t=>ph(t,hd('Mon plan',false)+bd(lab('Semaine 4 sur 12'
   )+ft(B('Continuer · mini-test partie 5')));
 
 const V33_STATS_TESTS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
-  `<div class="gr2"><span class="tile">Tests faits<small>4 sur 12</small></span><span class="tile">Meilleur score<small>705 sur 495</small></span></div>`+
-  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;box-shadow:var(--shadow)"><span class="lbl2">Demi-test lecture dans le temps</span><small style="display:block;font:600 12px var(--f-mono);color:var(--txt2)">3 tentatives · 640 le 18 oct.</small></div>`
+  `<div class="gr2"><span class="tile">Tests faits<small>4 sur 12</small></span><span class="tile">Meilleur score<small>430 sur 495</small></span></div>`+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;box-shadow:var(--shadow)"><span class="lbl2">Demi-test lecture dans le temps</span><small style="display:block;font:600 12px var(--f-mono);color:var(--txt2)">3 tentatives · 385 le 18 oct.</small></div>`
   )+ft(TB(3)));
 
 const courbeScore=(points)=>{
@@ -1125,7 +1125,7 @@ const V33_STATS_COURBE_DIAG=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','
   carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'}],'Score dans le temps','Score estimé du diagnostic · 745 sur 990.')
   )+ft(TB(3)));
 const V33_STATS_COURBE_PLUSIEURS=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Mois','Tout'],2)+
-  carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'},{v:640,l:'D. lect.'},{v:705,l:'D. lect.'},{v:812,l:'Complet'}],'Score dans le temps','Un point par demi-test ou test complet terminé. Les mini-tests ne sont pas comptés.')+
+  carteCourbe([{v:0,l:'Départ'},{v:745,l:'Diag.'},{v:385,l:'D. lect.'},{v:430,l:'D. lect.'},{v:812,l:'Complet'}],'Score dans le temps','Un point par demi-test ou test complet terminé. Les mini-tests ne sont pas comptés.')+
   `<div class="gr2"><span class="tile">Meilleur score<small>812 sur 990</small></span><span class="tile">Tests faits<small>4 sur 12</small></span></div>`
   )+ft(TB(3)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)

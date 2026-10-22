@@ -432,7 +432,7 @@ Règles (décisions de la maquette, à confirmer par Benny) :
 Demande de Benny (22 octobre) : chaque test montre s'il est fait, quand, avec quel score, et ouvre la liste des tentatives puis la revue. Score demi-test sur 495, test complet sur 990, mini-test « 8 sur 10 », un chiffre exact.
 
 - `TOEIC-V33-TESTS-SUIVI` : onglet Tests, statut sur chaque carte (Pas encore fait, En cours avec Reprendre, Fait avec dernier et meilleur score, Interrompu).
-- `TOEIC-V33-DEMI-SUIVI` : choix du demi-test, cartes Écoute (sur 495, pas encore de score) et Lecture (640 sur 495, dernier, 18 oct., meilleur 705, 3 tentatives).
+- `TOEIC-V33-DEMI-SUIVI` : choix du demi-test, cartes Écoute (sur 495, pas encore de score) et Lecture (385 sur 495, dernier, 18 oct., meilleur 705, 3 tentatives).
 - `TOEIC-V33-TENTATIVES` : liste des tentatives d'un test, chacune avec date, score, temps, statut et « Revoir la tentative ». Une tentative interrompue n'écrase pas le meilleur score.
 - `TOEIC-V33-REVISER-SUIVI` : statuts dans Réviser (leçons et mini-tests).
 - `TOEIC-V33-PARCOURS-STATUT` : statut sur chaque étape de « Mon plan ».
