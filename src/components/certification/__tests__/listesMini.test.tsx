@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { screen } from '@testing-library/react-native';
+import { fireEvent, screen } from '@testing-library/react-native';
 import { router } from 'expo-router';
 
 import { definirApi } from '@/services/certification/api';
@@ -8,6 +8,8 @@ import type { DefTest } from '@/services/certification/types';
 import { enregistrerProfil } from '@/services/profil';
 
 import { ListeTests } from '../ListeTests';
+import { fr } from '@/i18n/fr';
+
 import { monter } from './harnais';
 
 
@@ -83,5 +85,39 @@ describe('liste des mini-tests d’une partie (v39)', () => {
     await monter(<ListeTests />);
     expect(await screen.findByText('Mixte n° 1')).toBeTruthy();
     expect(screen.getByTestId('ligne-mixed-1')).toBeTruthy();
+  });
+});
+
+describe('départ depuis la liste d’un mini-test (v39)', () => {
+  it('le coût du mini-test est affiché dans la liste de la partie', async () => {
+    mockParams = { kind: 'mini', partie: '5' };
+    await monter(<ListeTests />);
+    expect(await screen.findByText(`${fr.certification.tests.detailMiniPartie} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
+  });
+
+  it('crédits insuffisants : le serveur refuse, aucun test ne s’ouvre', async () => {
+    mockParams = { kind: 'mini', partie: '5' };
+    const demarrer = jest.fn(async () => ({ status: 'insufficient' as const, cost: 1, balance: 0 }));
+    definirApi({ ...fausse.api, listerDefsTests: async (_e, type) => LIGNES.filter((l) => !type || l.kind === type), demarrerDefTest: demarrer });
+    await monter(<ListeTests />);
+    fireEvent.press(await screen.findByTestId('ligne-mini-4'));
+    expect(await screen.findByText(fr.certification.tests.creditsInsuffisants)).toBeTruthy();
+    expect(demarrer.mock.calls[0]?.[1]).toBe('d');
+    expect(demarrer.mock.calls[0]?.[2]).toBe('toeic');
+    expect(router.push).not.toHaveBeenCalledWith('/certification/mini-test');
+    expect(router.replace).not.toHaveBeenCalledWith('/certification/mini-test');
+  });
+
+  it('départ accepté : la tentative du serveur est gardée et l’écran du mini-test s’ouvre', async () => {
+    mockParams = { kind: 'mini', partie: '5' };
+    definirApi({
+      ...fausse.api,
+      listerDefsTests: async (_e, type) => LIGNES.filter((l) => !type || l.kind === type),
+      demarrerDefTest: async (clientUuid) => fausse.api.demarrerMini(clientUuid, 'toeic', 5, 10, '2030-06-01'),
+    });
+    await monter(<ListeTests />);
+    fireEvent.press(await screen.findByTestId('ligne-mini-5'));
+    await screen.findByTestId('ligne-mini-5');
+    expect(router.replace).toHaveBeenCalledWith('/certification/mini-test');
   });
 });

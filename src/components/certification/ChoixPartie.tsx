@@ -44,6 +44,8 @@ export function ChoixPartie() {
         <>
           {PARTIES.map((partie) => {
             const ligne = parties.find((p) => p.partie === partie)!;
+            // Une partie sans test n'a rien à proposer : elle ne s'affiche pas.
+            if (ligne.total === 0) return null;
             const { couleur, icone: Icone } = styleDes[partie]!;
             return (
               <Appui

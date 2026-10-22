@@ -69,7 +69,8 @@ describe('choix de la partie (v39)', () => {
     expect(await screen.findByText(t.choixPartie.partie.replace('{{partie}}', '1'))).toBeTruthy();
     expect(screen.getByText(t.choixPartie.faits.replace('{{faits}}', '1').replace('{{total}}', '2'))).toBeTruthy();
     expect(screen.getByText(t.choixPartie.conseille)).toBeTruthy();
-    expect(screen.getByTestId('partie-7')).toBeTruthy();
+    // Une partie sans test ne s'affiche pas.
+    expect(screen.queryByTestId('partie-7')).toBeNull();
     expect(screen.getByTestId('mixte')).toBeTruthy();
   });
 

@@ -2,6 +2,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import { useTextesCredits } from '@/components/credits/textes';
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
@@ -13,6 +14,7 @@ import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFa
 import type { Reglages } from '@/services/certification/reglages';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
+import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { BookOpen, Headphones, Layers, Target, Trophy, type LucideIcon } from 'lucide-react-native';
 import { bord, espace, rayon, typo } from '@/theme/theme';
@@ -29,11 +31,12 @@ import { useChargement } from './useChargement';
 const TYPES: TypeDefTest[] = ['listening', 'reading', 'full', 'mini', 'mixed'];
 
 /** Icône et couleur de chaque type (maquette v37, v39) : crème et casque, corail et livre, vert foncé et trophée ; mini-tests par partie et mixte. */
-function styleType(type: TypeDefTest, partie: number | null, theme: ReturnType<typeof useTheme>['theme'], sombre: boolean): { icone: LucideIcon; couleur: string } {
+function styleType(type: TypeDefTest, theme: ReturnType<typeof useTheme>['theme'], sombre: boolean): { icone: LucideIcon; couleur: string } {
   if (type === 'listening') return { icone: Headphones, couleur: stylePartie(theme, sombre)[3]!.couleur };
   if (type === 'reading') return { icone: BookOpen, couleur: stylePartie(theme, sombre)[4]!.couleur };
-  if (type === 'mini') return { icone: Target, couleur: stylePartie(theme, sombre)[partie ?? 1]!.couleur };
-  if (type === 'mixed') return { icone: Layers, couleur: stylePartie(theme, sombre)[5]!.couleur };
+  // Couleurs du type (maquette v39, TOEIC-V34-TESTS-TYPES) : mini-test vert et cible, mixte jaune et couches.
+  if (type === 'mini') return { icone: Target, couleur: theme.etat.succes };
+  if (type === 'mixed') return { icone: Layers, couleur: theme.accent.soleil };
   return { icone: Trophy, couleur: theme.marque.forte };
 }
 
@@ -91,7 +94,11 @@ export function ListeTests() {
     }
   };
 
-  const { icone: Icone, couleur } = styleType(type, partie, theme, sombre);
+  const { icone: Icone, couleur } = styleType(type, theme, sombre);
+  const { solde, couts } = useCredits();
+  const { cout } = useTextesCredits();
+  const coutMini = type === 'mixed' ? couts.cert_mock_mini_twenty : couts.cert_mock_mini_ten;
+  const libelleMini = type === 'mixed' ? t('certification.tests.detailMiniMixte') : t('certification.tests.detailMiniPartie');
   const tousTests = etat.phase === 'ok' ? etat.valeur.tests : [];
   const tests = type === 'mini' && partie !== null ? testsDeLaPartie(tousTests, partie) : tousTests;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
@@ -123,9 +130,11 @@ export function ListeTests() {
                   {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
                 </Text>
                 <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                  {parMini ? null : meilleur === null || sectionMax === null
-                    ? t('certification.tests.listes.pasDeScore')
-                    : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
+                  {parMini
+                    ? coutMini === undefined || solde?.illimite ? libelleMini : t('certification.tests.avecCout', { detail: libelleMini, cout: cout(coutMini) })
+                    : meilleur === null || sectionMax === null
+                      ? t('certification.tests.listes.pasDeScore')
+                      : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
                 </Text>
               </View>
             </View>
