@@ -30,6 +30,8 @@ export type EtatMini = {
   debutMs: number;
   /** Durée accordée en minutes, figée au départ (un réglage modifié ensuite ne change pas un test commencé). */
   dureeMin: number;
+  /** Test composé (listes v38, v39) : identifiant, type et meilleur score avant ce test (bilan « Nouveau meilleur score »). */
+  definition?: { id: string; kind: TypeDefTest; meilleurAvant: number | null };
   reponses: ReponseEnvoyee[];
   index: number;
   /** Fin locale : toutes les questions vues, ou temps écoulé. Le bilan peut attendre le réseau. */
@@ -173,7 +175,7 @@ const typeDeDefinition: Record<TypeDefTest, TypeTestFixe> = { listening: 'half_l
  * Lance un test composé (listes v38, v39) : même contrat que `lancerTest` (débit au lancement, replay), tiré du test
  * composé choisi dans la liste.
  */
-export async function lancerDefTest(exam: string, defId: string, kind: TypeDefTest): Promise<ResultatLancement> {
+export async function lancerDefTest(exam: string, defId: string, kind: TypeDefTest, meilleurAvant: number | null = null): Promise<ResultatLancement> {
   const clientUuid = randomUUID();
   const rep: DemarrageMini = await etapeDemarrage('appel', () => obtenirApi().demarrerDefTest(clientUuid, defId, exam, maintenant()));
   if (rep.status === 'account_required') return { statut: 'compte_requis' };
@@ -184,6 +186,7 @@ export async function lancerDefTest(exam: string, defId: string, kind: TypeDefTe
     clientUuid, exam, partie: null, longueur: rep.tentative.questions.length as LongueurMini, tentative: rep.tentative,
     debutMs: Number.isFinite(debut) ? debut : Date.now(),
     dureeMin: dureeTestMin[type],
+    definition: { id: defId, kind, meilleurAvant },
     reponses: [], index: 0, termine: false, fin: null,
   };
   await etapeDemarrage('stockage', () => ecrireMini(etat));

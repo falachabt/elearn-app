@@ -2732,6 +2732,13 @@ export const fr = {
     },
     tests: {
       entete: 'Tests',
+      bilanDef: {
+        nouveau: 'Nouveau meilleur score',
+        premier: 'Premier score',
+        meilleur: 'Meilleur score : {{score}} sur {{max}}',
+        surMax: 'sur {{max}}',
+        retour: 'Retour aux tests',
+      },
       detail: {
         meilleur: 'Meilleur score : {{score}} sur {{max}}',
         derniere: 'dernier test le {{date}}',

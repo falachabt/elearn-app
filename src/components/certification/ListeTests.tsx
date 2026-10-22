@@ -57,7 +57,7 @@ export function ListeTests() {
     setCodeEchec(null);
     setManque(false);
     try {
-      const res = (await garde(() => lancerDefTest(exam, test.id, test.kind))) ?? null;
+      const res = (await garde(() => lancerDefTest(exam, test.id, test.kind, test.meilleurScoreMax))) ?? null;
       if (!res) return;
       if (res.statut === 'compte_requis') router.push('/compte/creer');
       else if (res.statut === 'insuffisant') setManque(true);

@@ -6,7 +6,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { scoresSections, statutsDesQuestions } from '@/services/certification/bilanMini';
 import { obtenirReglages } from '@/services/certification/etat';
-import { effacerMini, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
+import { effacerMini, lancerDefTest, lireMini, terminerMini, type EtatMini } from '@/services/certification/miniTest';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -14,6 +14,7 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { Ecran } from '../Ecran';
+import { BilanDefinition } from './BilanDefinition';
 import { GrilleQuestions } from './GrilleQuestions';
 import { EnteteToeic, Squelette } from './ui';
 
@@ -95,6 +96,33 @@ export function BilanMini() {
   const avecEstimation = fin.estimated && fin.score !== null;
   const sections = scoresSections(fin.per_part);
   const statuts = statutsDesQuestions(etat.tentative.questions.map((q) => q.id), fin.results);
+  const def = etat.definition;
+  const maxDef = def ? (def.kind === 'full' ? maxScore : maxScore === null ? null : maxScore / 2) : null;
+
+  if (def) {
+    const refaire = async () => {
+      const exam = etat.exam;
+      const meilleur = Math.max(def.meilleurAvant ?? 0, fin.score_max ?? 0) || null;
+      const res = await lancerDefTest(exam, def.id, def.kind, meilleur);
+      if (res.statut === 'demarre') router.replace('/certification/mini-test' as never);
+      else if (res.statut === 'compte_requis') router.push('/compte/creer');
+    };
+    return (
+      <Ecran
+        entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
+        pied={
+          <View style={styles.groupe}>
+            <Bouton libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} />
+            <Bouton variante="secondaire" libelle={t('certification.tests.detail.voirNote')} onPress={() => void sortir('/certification/tentatives')} />
+            <Bouton variante="secondaire" libelle={t('certification.tests.detail.autre')} onPress={() => void sortir(`/certification/liste-tests?kind=${def.kind}`)} />
+            <Bouton variante="texte" libelle={t('certification.tests.bilanDef.retour')} onPress={() => void sortir('/tests')} />
+          </View>
+        }
+      >
+        <BilanDefinition scoreMax={fin.score_max} meilleurAvant={def.meilleurAvant} max={maxDef} />
+      </Ecran>
+    );
+  }
 
   return (
     <Ecran
