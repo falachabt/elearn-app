@@ -477,3 +477,17 @@ Retour de Benny (22 octobre, soir) : la carte Demi-test écrit « Fait : dernier
 - `TOEIC-V34-CARTE-MINI` : mini-test fait (8 / 10, 2 tentatives) et mini-test interrompu (le meilleur précédent est conservé).
 
 Règles : le score principal est le meilleur score. Le « dernier » n'apparaît que s'il est différent du meilleur. Le nombre de tentatives et la date restent en détail discret.
+
+## Version 37 : une icône et une couleur par type de test (22 octobre 2026, à valider)
+
+Retour de Benny (22 octobre, soir) : les cartes de l'onglet Tests sont monochromes. Chaque type de test a son icône et sa couleur, comme les cours.
+
+- `TOEIC-V34-TESTS-TYPES` :
+  - Mini-test par partie : vert, cible.
+  - Mini-test mixte : jaune, couches.
+  - Demi-test écoute : crème, casque.
+  - Demi-test lecture : corail, livre.
+  - Test complet : vert foncé, trophée.
+  - Corrigé complet : blanc, notes.
+- Couleurs reprises des parties de Réviser : vert, jaune, crème, corail. Le vert foncé et le blanc ne sont pas utilisés pour une partie.
+- Chaque carte garde son statut en mots (Pas encore fait, En cours, Fait, Interrompu) et son score en gros.
