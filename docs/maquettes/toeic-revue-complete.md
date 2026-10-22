@@ -466,3 +466,14 @@ Révision v35 avec les ids du cahier v1.32 (D-41 à D-44).
 - `TOEIC-V34-PARCOURS-TROP-DE-CONTENU` : semaine chargée, étapes repliées avec « Voir les étapes restantes ».
 - `TOEIC-V34-NOTION-MAITRISE` : notion avec son état et ses quiz liés (réussi, à faire).
 - `TOEIC-V34-STATS` : décompte Vu, Validé, Maîtrisé, À revoir, et maîtrise par catégorie.
+
+## Version 36 : gabarit de carte de test (22 octobre 2026, à valider)
+
+Retour de Benny (22 octobre, soir) : la carte Demi-test écrit « Fait : dernier 410 sur 495, meilleur 410, 1 tentative(s) », phrase lourde et redondante quand dernier et meilleur sont égaux. La tuile « 90 à 400 sur 990 » donne une fourchette, contraire à la règle d'un chiffre exact.
+
+- Gabarit unique pour mini-tests, demi-test et test complet : pastille de statut (Pas encore fait, En cours, Fait, Interrompu), score principal en gros, détail discret en petit. Pas de « (s) », pas de doublon.
+- `TOEIC-V34-TESTS-LISTE` : onglet Tests complet. Score estimé en un chiffre (745 sur 990), tests faits (2).
+- `TOEIC-V34-CARTE-DEMI` : demi-test écoute (410 sur 495, meilleur score, 1 tentative, dernière le 18 oct.) et lecture (385 sur 495, 3 tentatives, dernier 360 le 19 oct. distinct du meilleur). Test complet en cours.
+- `TOEIC-V34-CARTE-MINI` : mini-test fait (8 / 10, 2 tentatives) et mini-test interrompu (le meilleur précédent est conservé).
+
+Règles : le score principal est le meilleur score. Le « dernier » n'apparaît que s'il est différent du meilleur. Le nombre de tentatives et la date restent en détail discret.

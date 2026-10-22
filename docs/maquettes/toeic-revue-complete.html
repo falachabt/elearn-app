@@ -1222,6 +1222,46 @@ const V34_STATS_DECOMPTE=t=>ph(t,hd('Statistiques',false)+bd(seg(['Semaine','Moi
   `<div class="gr2"><span class="tile">Vus<small>12</small></span><span class="tile">Validés<small>6</small></span></div><div class="gr2"><span class="tile">Maîtrisés<small>2</small></span><span class="tile">À revoir<small>3</small></span></div>`+
   `<span class="lbl2">Par catégorie</span>`+pourcentage(40,'var(--soleil)')+pourcentage(55,'var(--marque)')+pourcentage(20,'var(--corail)')
   )+ft(TB(3)));
+/* v36 : gabarit de carte de test (statut, score principal, détail discret), tuiles du bas à valeur unique (22 octobre, à valider) */
+const pastilleStatut=(k)=>({
+  vide:['circle','Pas encore fait','',''],
+  cours:['rotate','En cours','a','var(--soleil)'],
+  fait:['check','Fait','p','var(--marque-d)'],
+  interrompu:['alert','Interrompu','f','var(--corail)']})[k];
+const carteTestV36=(icone,titre,statut,corps,pied,action)=>{
+  const [ic,lib,cls]=pastilleStatut(statut);
+  return `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:14px;display:grid;gap:10px;box-shadow:var(--shadow)">
+    <div style="display:flex;gap:12px;align-items:center">
+      <span style="width:40px;height:40px;border:2px solid var(--bord);border-radius:10px;background:var(--creux);display:grid;place-items:center;flex:none">${I(icone)}</span>
+      <div style="flex:1;min-width:0"><b style="display:block;font:700 16px/1.25 var(--f-body)">${titre}</b></div>
+      <span class="st ${cls}">${I(ic)}${lib}</span>
+    </div>
+    ${corps}
+    ${pied?`<div style="display:flex;flex-wrap:wrap;gap:6px 12px;font:600 12px var(--f-mono);color:var(--txt2)">${pied}</div>`:''}
+    ${action||''}
+  </div>`;
+};
+const scoreBloc=(valeur,sur,legende)=>`<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap"><span style="font:800 32px var(--f-display);line-height:1">${valeur}</span>${sur?`<small style="font:600 13px var(--f-body);color:var(--txt2)">sur ${sur}</small>`:''}<small style="font:600 12px var(--f-mono);color:var(--txt2);margin-left:auto">${legende}</small></div>`;
+const fait=(t)=>`<span>${t}</span>`;
+const pasFait=(q,detail)=>`<div style="display:grid;gap:2px"><small style="font:600 13px var(--f-body);color:var(--txt)">${q}</small><small style="font:500 12px var(--f-body);color:var(--txt2)">${detail}</small></div>`;
+
+const V36_LISTE_TESTS=t=>ph(t,hd('Tests',false)+bd(
+  `<span class="lbl2">Mini-tests</span>`+
+  carteTestV36('target','Mini-test par partie','vide',pasFait('Jamais fait','10 questions · 8 sur 10 pour un score sans TOEIC'),'',B('Commencer','sec'))+
+  `<span class="lbl2">Tests complets</span>`+
+  carteTestV36('trophy','Demi-test','fait',scoreBloc(410,495,'Meilleur score')+'',fait('1 tentative')+fait('Dernière le 18 oct.')+fait('100 questions'),B('Voir les tentatives','sec'))+
+  carteTestV36('trophy','Test complet','vide',pasFait('Jamais fait','200 questions · 2 h'),'',B('Commencer','sec'))+
+  `<div style="border:2px solid var(--bord);border-radius:14px;background:var(--surf);padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;box-shadow:var(--shadow)"><div><small style="font:600 12px var(--f-mono);color:var(--txt2)">Score estimé</small><b style="display:block;font:800 22px var(--f-display)">745 <small style="font:600 12px var(--f-body)">sur 990</small></b></div><div><small style="font:600 12px var(--f-mono);color:var(--txt2)">Tests faits</small><b style="display:block;font:800 22px var(--f-display)">2</b></div></div>`
+  )+ft(TB(2)));
+
+const V36_CARTE_DEMI=t=>ph(t,hd('Tests',false)+bd(
+  carteTestV36('trophy','Demi-test écoute','fait',scoreBloc(410,495,'Meilleur score'),fait('1 tentative')+fait('Dernière le 18 oct.')+fait('100 questions'),B('Voir les tentatives','sec'))+
+  carteTestV36('trophy','Demi-test lecture','fait',scoreBloc(385,495,'Meilleur score'),fait('3 tentatives')+fait('Dernier 360 le 19 oct.')+fait('100 questions'),B('Voir les tentatives','sec'))+
+  carteTestV36('trophy','Test complet','cours',pasFait('Commencé le 20 oct.','Question 34 sur 200'),'',B('Reprendre','')))+ft(TB(2)));
+
+const V36_MINI_FAIT=t=>ph(t,hd('Tests',false)+bd(
+  carteTestV36('target','Mini-test par partie','fait',scoreBloc('8 / 10','','Partie 5'),fait('2 tentatives')+fait('Dernière le 21 oct.'),B('Voir les tentatives','sec'))+
+  carteTestV36('target','Mini-test mixte','interrompu',pasFait('Interrompu à la question 12','Le meilleur score précédent est conservé'),'',B('Reprendre','sec')))+ft(TB(2)));
 // États transverses : squelette, erreur, hors ligne, vide, expiration (S1 à S9)
 const sk=(h,w='100%')=>`<div style="height:${h}px;width:${w};border-radius:8px;background:var(--creux);border:2px solid var(--bord);opacity:.7"></div>`;
 const s1=t=>ph(t,hd('Série · chargement',true)+bd(bar(0)+sk(14,'40%')+sk(120)+sk(44)+sk(44)+sk(44)+`<p class="hint" aria-live="polite">Chargement de la question…</p>`)+ft(BD('Valider')));
@@ -1274,6 +1314,7 @@ const groups=[
  ['Courbe des scores : départ à 0, diagnostic, un point par test terminé, axe 0 à 990 (v33, 22 octobre, à valider)',[[V33_STATS_COURBE_SANS,'TOEIC-V33-STATS-COURBE · Sans diagnostic : point « Départ » seul'],[V33_STATS_COURBE_DIAG,'TOEIC-V33-STATS-COURBE · Diagnostic seul : Départ puis diagnostic'],[V33_STATS_COURBE_PLUSIEURS,'TOEIC-V33-STATS-COURBE · Plusieurs tests : un point par demi-test ou test complet']]],
  ['Cours en grille pour toutes les catégories, états de maîtrise, timeline Mon parcours (v35, 22 octobre, à valider)',[[V34_COURS_GRAMMAIRE,'TOEIC-V35-COURS-GRAMMAIRE · Grille, états de maîtrise et jauge par catégorie'],[V34_COURS_VOCAB,'TOEIC-V35-COURS-VOCABULAIRE · Grille, cartes vertes'],[V34_COURS_PIEGES,'TOEIC-V35-COURS-PIEGES · Grille, cartes corail'],[V34_COURS_METHODE,'TOEIC-V35-COURS-METHODE · Grille, cartes crème'],[V35_NOTION_MAITRISE,'TOEIC-V35-PIEGE-MAITRISE · Piège : états Non vu, Vu, Validé, Maîtrisé'],[V35_PARCOURS_TIMELINE,'TOEIC-V35-PARCOURS · Timeline Mon parcours : aujourd\'hui, demain, jours suivants, état de chaque étape']]],
  ['Cahier v1.32 : grilles, tuile d’états, timeline, jour, sans date, trop de contenu, notion, statistiques (v35, 22 octobre, à valider)',[[V34_COURS_GRILLE_VOC,'TOEIC-V34-COURS-GRILLE · Vocabulaire en grille'],[V34_COURS_GRILLE_PIEGES,'TOEIC-V34-COURS-GRILLE · Pièges en grille'],[V34_COURS_GRILLE_METHODE,'TOEIC-V34-COURS-GRILLE · Méthode en grille'],[V34_TUILE_ETATS,'TOEIC-V34-TUILE-ETATS · Cinq états : Non vu, Vu, Validé, Maîtrisé, À revoir'],[V34_PARCOURS_TIMELINE,'TOEIC-V34-PARCOURS-TIMELINE · Frise verticale, aujourd\'hui ouvert, jours suivants repliés, couverture'],[V34_PARCOURS_JOUR,'TOEIC-V34-PARCOURS-JOUR · Détail d\'un jour'],[V34_PARCOURS_SANS_DATE,'TOEIC-V34-PARCOURS-SANS-DATE · Sans date d\'examen, pas de timeline'],[V34_PARCOURS_TROP,'TOEIC-V34-PARCOURS-TROP-DE-CONTENU · Semaine chargée, étapes repliées'],[V34_NOTION_MAITRISE,'TOEIC-V34-NOTION-MAITRISE · Notion : états et quiz liés'],[V34_STATS_DECOMPTE,'TOEIC-V34-STATS · Décompte Vu, Validé, Maîtrisé, par catégorie']]],
+ ['Gabarit de carte de test : statut, score principal, détail discret, tuiles à valeur unique (v36, 22 octobre, à valider)',[[V36_LISTE_TESTS,'TOEIC-V34-TESTS-LISTE · Onglet Tests : gabarit de carte pour mini-tests, demi-test et test complet'],[V36_CARTE_DEMI,'TOEIC-V34-CARTE-DEMI · Demi-test : meilleur score en gros, tentatives et date en détail'],[V36_MINI_FAIT,'TOEIC-V34-CARTE-MINI · Mini-test fait et mini-test interrompu']]],
 ];
 let html=NAV_HTML;
 const SEC=(n,c)=>`<h2 class="g-sec">${n}</h2>`;
