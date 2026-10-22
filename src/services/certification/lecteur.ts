@@ -44,3 +44,22 @@ export function formaterTemps(secondes: number): string {
   const s = Math.max(0, Math.floor(secondes));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
+
+/** Adresse raccourcie pour le diagnostic affiché à l'élève (fin du chemin, pas de domaine). */
+export function adresseCourte(uri: string): string {
+  const chemin = uri.split('?')[0] ?? uri;
+  return chemin.length > 40 ? `…${chemin.slice(-40)}` : chemin;
+}
+
+/**
+ * Code de diagnostic d'un échec de chargement : statut HTTP de la piste, ou « réseau » si la requête ne répond pas.
+ * Une demande d'un seul octet (Range) : le fichier n'est pas téléchargé en entier.
+ */
+export async function diagnosticAudio(uri: string): Promise<string> {
+  try {
+    const reponse = await fetch(uri, { method: 'GET', headers: { Range: 'bytes=0-0' } });
+    return `HTTP ${reponse.status} · ${adresseCourte(uri)}`;
+  } catch {
+    return `réseau · ${adresseCourte(uri)}`;
+  }
+}

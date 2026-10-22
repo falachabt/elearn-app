@@ -1,17 +1,23 @@
 import { createAudioPlayer, setAudioModeAsync, type AudioPlayer } from 'expo-audio';
 import { Pause, Play } from 'lucide-react-native';
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { etatInitial, formaterTemps, reduireLecteur } from '@/services/certification/lecteur';
+import { diagnosticAudio, etatInitial, formaterTemps, reduireLecteur } from '@/services/certification/lecteur';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Bouton } from '../Bouton';
 import { BarreProgression } from './ui';
+
+/**
+ * Arrêt de la piste jouée en dernier, quel que soit l'écran : un seul son à la fois. Une question qui passe à la suivante
+ * ne doit pas laisser le son de la précédente continuer (la lecture accumulée rendait le lecteur inutilisable).
+ */
+let pisteActive: (() => void) | null = null;
 
 type Props = {
   /** Adresse du média ; `null` = indisponible (pas d'hôte configuré ou piste absente). */
@@ -33,6 +39,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   const [etat, envoyer] = useReducer((e: typeof etatInitial, ev: Parameters<typeof reduireLecteur>[1]) => reduireLecteur(e, ev, !!unique), etatInitial);
   const lecteur = useRef<AudioPlayer | null>(null);
   const delai = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Code de diagnostic (statut HTTP et fin d'adresse) affiché quand le son ne se charge pas. */
+  const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const finRef = useRef(onFin);
   useEffect(() => {
     finRef.current = onFin;
@@ -42,6 +50,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     if (delai.current) clearTimeout(delai.current);
     delai.current = null;
     try {
+      lecteur.current?.pause();
       lecteur.current?.remove();
     } catch {
       // déjà libéré
@@ -62,6 +71,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
       return;
     }
     liberer();
+    pisteActive?.();
+    setDiagnostic(null);
     envoyer({ type: 'jouer' });
     // Une épreuve écoutée doit sortir même téléphone en silencieux. Le mode est réglé ici, à chaque lecture,
     // car un autre écran (sons de retour, retours.ts) peut l'avoir changé entre-temps.
@@ -69,6 +80,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
     try {
       const p = createAudioPlayer({ uri }, { updateInterval: 250 });
       lecteur.current = p;
+      pisteActive = liberer;
       p.addListener('playbackStatusUpdate', (s) => {
         // Un évènement d'une piste déjà remplacée ne doit pas toucher l'écran courant.
         if (lecteur.current !== p) return;
@@ -86,6 +98,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
       delai.current = setTimeout(() => {
         envoyer({ type: 'erreur' });
         suivre('cert_audio_error', { ecran, code: 'delai' });
+        void diagnosticAudio(uri).then(setDiagnostic);
       }, delaiEchecS * 1000);
     } catch {
       envoyer({ type: 'erreur' });
@@ -101,6 +114,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
           <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTitre')}</Text>
           <Text style={[typo.petit, { color: theme.texte.principal }]}>{t('certification.exercice.audioKoTexte')}</Text>
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.exercice.audioKoAide')}</Text>
+          {diagnostic ? <Text accessibilityLabel={`Code d'erreur audio ${diagnostic}`} style={[typo.legende, { color: theme.texte.secondaire }]}>{`Code : ${diagnostic}`}</Text> : null}
           {uri ? <Bouton petit variante="secondaire" libelle={t('certification.exercice.audioKoReessayer')} onPress={() => demarrer(etat.position)} /> : null}
           <Bouton petit variante="texte" libelle={t('certification.exercice.audioKoPasser')} onPress={onPasser} />
         </View>
