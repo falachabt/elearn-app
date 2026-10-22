@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { chargerDonneesRevision, compteursCarnet, nombreDeFiches, type DonneesRevision } from '@/services/certification/revision';
 import { useTheme } from '@/theme/ThemeProvider';
-import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
+import { bord, espace, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
@@ -16,6 +16,7 @@ import { Ecran } from '../Ecran';
 import { Onglets } from '../Onglets';
 import { CarnetMots } from './CarnetMots';
 import { CoursNotions } from './CoursNotions';
+import { STYLE_PARTIE } from './partiesStyle';
 import { EnteteToeic, EtiquetteSection, GrilleEgale, LigneChoix, Squelette } from './ui';
 import { useChargement } from './useChargement';
 
@@ -83,21 +84,31 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
         <>
           <EtiquetteSection texte={t('certification.reviser.etiquetteParties')} />
           <GrilleEgale
-            enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => (
-              <Appui
-                key={n}
-                accessibilityRole="button"
-                accessibilityLabel={t('certification.reviser.tuileLabel', { n })}
-                onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(n) } } as never)}
-                decalage={2}
-                rayon={rayon.m}
-                retour
-              >
-                <View style={[styles.cube, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
-                  <Text style={[typo.donnee, { color: theme.texte.principal }]}>{t('certification.reviser.tuile', { n })}</Text>
-                </View>
-              </Appui>
-            ))}
+            colonnes={2}
+            enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => {
+              const { couleur, icone: Icone, cle } = STYLE_PARTIE[n] ?? STYLE_PARTIE[1]!;
+              const pourcent = Math.round((revision.parties.find((x) => x.partie === n)?.m ?? 0) * 100);
+              return (
+                <Appui
+                  key={n}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${t('certification.reviser.tuileLabel', { n })}, ${t(cle)}, ${t('certification.carteMaitrise.pourcent', { n: pourcent })}`}
+                  onPress={() => router.push({ pathname: '/certification/partie', params: { n: String(n) } } as never)}
+                  decalage={2}
+                  rayon={rayon.m}
+                  retour
+                >
+                  <View style={[styles.cube, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                    <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
+                      <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
+                    </View>
+                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.reviser.tuile', { n })}</Text>
+                    <Text style={[typo.texteFort, { color: theme.texte.principal }]}>{t(cle)}</Text>
+                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.carteMaitrise.pourcent', { n: pourcent })}</Text>
+                  </View>
+                </Appui>
+              );
+            })}
           />
           <LigneChoix icone={Target} titre={t('certification.reviser.carteTitre')} aide={t('certification.reviser.carteAide')} onPress={() => router.push('/certification/carte' as never)} />
           <LigneChoix icone={BookOpen} titre={t('certification.reviser.coursTitre')} aide={aideCours} onPress={() => aller('cours')} />
@@ -112,5 +123,6 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[3] },
-  cube: { minHeight: cibleMin + 8, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
+  cube: { minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
+  pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s, marginBottom: espace[1] },
 });
