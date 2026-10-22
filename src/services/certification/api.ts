@@ -3,7 +3,7 @@ import type { LigneReglage } from './reglages';
 import { jourDe, type Jour } from './jours';
 import { titreAffiche } from './titre';
 import type { EtatMaitrise } from './certMaitrise';
-import type { BlocServi, DemarrageMini, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
+import type { BlocServi, DemarrageMini, TestFixe, TypeTestFixe, EtatGains, Examen, PeriodeStats, ResultatGain, Stats, TentativeListee, FinTentative, MotCarnetServi, MotsARevoir, NotionFiche, PlanEleve, QuestionServie, ReponseEnvoyee, ResultatMot, ResultatReponse, Revision, SeanceServie, Tentative } from './types';
 
 /**
  * Accès aux données du profil TOEIC. Une seule interface : le serveur (RPC `cert_*`) en production, et un contenu
@@ -51,6 +51,10 @@ export interface CertApi {
   terminerSeance(clientUuid: string, exam: string, composition: unknown, minutesActives: number, jourLocal: Jour): Promise<void>;
   /** Départ d'un mini-test (T2) : le serveur débite au lancement (idempotent par `clientUuid`). */
   demarrerMini(clientUuid: string, exam: string, partie: number | null, longueur: number, jourLocal: Jour): Promise<DemarrageMini>;
+  /** Tests fixes relus (T5) : demi-tests et test complet. */
+  listerTests(exam: string): Promise<TestFixe[]>;
+  /** Départ d'un demi-test ou du test complet (T5) : débit au lancement, idempotent par `clientUuid`. */
+  demarrerTest(clientUuid: string, testId: string, type: TypeTestFixe, exam: string, jourLocal: Jour): Promise<DemarrageMini>;
   /** Tentative en cours, pour la reprise (T3). */
   lireTentative(tentativeId: string): Promise<Tentative>;
   /** Abandon : rembourse dans la fenêtre prévue par les réglages. */
@@ -90,7 +94,7 @@ function verifier<T>(res: { data: T | null; error: { message: string } | null })
 }
 
 type Revisee = 'lireRevision' | 'lireCarnet' | 'composerSeance' | 'lireNotion' | 'ouvrirNotion' | 'envoyerResultatsMots' | 'terminerSeance';
-type Testee = 'demarrerMini' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireStats' | 'lireGains' | 'reclamerGain';
+type Testee = 'demarrerMini' | 'listerTests' | 'demarrerTest' | 'lireTentative' | 'abandonnerTentative' | 'listerTentatives' | 'lireStats' | 'lireGains' | 'reclamerGain';
 const baseServeur: Omit<CertApi, Revisee | Testee> = {
   async listerExamens() {
     const res = await getSupabase().from('cert_exams').select('code,name,subtitle,duration_min,question_count,goal_steps,sec_per_question,sort').order('sort', { ascending: false });
@@ -212,6 +216,19 @@ const testsServeur: Pick<CertApi, Testee> = {
       return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };
     }
     // Le statut de l'enveloppe (started, replay) remplace celui de la tentative : la tentative démarre toujours « en cours ».
+    const tentative = { ...(j as unknown as Tentative), status: 'in_progress' as const, replay: j.status === 'replay' };
+    return { status: j.status, tentative, cout: j.cost ?? null, solde: j.balance ?? null };
+  },
+  listerTests: async (exam) => {
+    const res = await rpcAuthentifie('cert_tests_list', { p_exam: exam });
+    return verifier(res) as TestFixe[];
+  },
+  demarrerTest: async (clientUuid, testId, type, exam, jourLocal) => {
+    const res = await rpcAuthentifie('cert_test_start', { p_client_uuid: clientUuid, p_test_id: testId, p_kind: type, p_exam: exam, p_local_day: jourLocal });
+    const j = verifier(res) as Record<string, unknown> & { status: DemarrageMini['status']; cost?: number; balance?: number };
+    if (j.status === 'insufficient' || j.status === 'account_required') {
+      return { status: j.status, tentative: null, cout: j.cost ?? null, solde: j.balance ?? null };
+    }
     const tentative = { ...(j as unknown as Tentative), status: 'in_progress' as const, replay: j.status === 'replay' };
     return { status: j.status, tentative, cout: j.cost ?? null, solde: j.balance ?? null };
   },

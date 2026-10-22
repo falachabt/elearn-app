@@ -100,6 +100,12 @@ export type PlanEleve = {
   minutes: number | null;
 };
 
+/** Type d'épreuve fixe (T5) : demi-test écoute, demi-test lecture ou test complet. */
+export type TypeTestFixe = 'half_listening' | 'half_reading' | 'full';
+
+/** Test fixe listé (cert_tests_list) : décompte des questions par moitié, sans contenu. */
+export type TestFixe = { id: string; code: string; title: string; listening: number; reading: number; total: number };
+
 export type MotsARevoir = { total: number; theme: string | null };
 
 /** Famille d'une notion (C4) : les quatre onglets de la liste des cours. */

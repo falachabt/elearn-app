@@ -12,7 +12,7 @@ import { jourDe, jourPlus } from '../jours';
 import { plageScore } from '../certScore';
 import { titreAffiche } from '../titre';
 import { lireReglages } from '../reglages';
-import type { BlocServi, DemarrageMini, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
+import type { BlocServi, DemarrageMini, TestFixe, EtatGains, Examen, FinTentative, GroupeServi, MotCarnetServi, MotsARevoir, NotionFiche, NotionListee, PartieMaitrise, PeriodeStats, QuestionServie, ReponseEnvoyee, ResultatReponse, Stats, Tentative, TentativeListee } from '../types';
 import contenu from './contenu.json';
 import reglagesBruts from './reglages.json';
 
@@ -357,6 +357,26 @@ export const apiDemo: CertApi = {
           .slice(0, longueur);
     const tentative: Tentative = {
       attempt_id: `demo-${clientUuid}`, kind: 'mini', part: partie, length: choisies.length, status: 'in_progress',
+      started_at: new Date().toISOString(), credits_spent: 0, questions: choisies.map(servir), replay: false,
+    };
+    s.tentatives[clientUuid] = { tentative, reponses: {} };
+    await ecrire(s);
+    return { status: 'started', tentative, cout: 0, solde: 0 };
+  },
+  /** Sans serveur, le test est gratuit ; la répartition suit le test réel (100 en écoute, 100 en lecture). */
+  async listerTests(): Promise<TestFixe[]> {
+    return [{ id: 'demo-test', code: 'demo', title: 'Test démo', listening: 100, reading: 100, total: 200 }];
+  },
+  async demarrerTest(clientUuid, _testId, type): Promise<DemarrageMini> {
+    const s = await lire();
+    const existante = s.tentatives[clientUuid];
+    if (existante) return { status: 'replay', tentative: { ...existante.tentative, replay: true }, cout: 0, solde: 0 };
+    const repartition: [number, number][] = type === 'half_listening' ? [[1, 6], [2, 25], [3, 39], [4, 30]]
+      : type === 'half_reading' ? [[5, 30], [6, 16], [7, 54]]
+      : [[1, 6], [2, 25], [3, 39], [4, 30], [5, 30], [6, 16], [7, 54]];
+    const choisies = repartition.flatMap(([p, n]) => tirer(p, n));
+    const tentative: Tentative = {
+      attempt_id: `demo-${clientUuid}`, kind: type, part: null, length: choisies.length, status: 'in_progress',
       started_at: new Date().toISOString(), credits_spent: 0, questions: choisies.map(servir), replay: false,
     };
     s.tentatives[clientUuid] = { tentative, reponses: {} };

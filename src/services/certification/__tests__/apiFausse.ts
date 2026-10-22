@@ -182,6 +182,12 @@ export function creerApiFausse(options: {
     async terminerSeance(clientUuid, _exam, composition) {
       appels.seances.push({ clientUuid, composition });
     },
+    async listerTests() {
+      return [];
+    },
+    async demarrerTest(): Promise<DemarrageMini> {
+      throw new Error('non prévu dans ce test');
+    },
     async demarrerMini(clientUuid, _exam, partie, longueur): Promise<DemarrageMini> {
       appels.minis.push({ partie, longueur });
       if (options.mini === 'echec') throw new Error('réseau');
