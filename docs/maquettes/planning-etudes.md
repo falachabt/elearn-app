@@ -91,7 +91,7 @@ Un seul bouton vert par écran.
 ### 3.5 Erreur et hors ligne
 
 - Erreur de calcul : « Le planning n'a pas pu être créé. » + bouton « Réessayer » (secondaire). Message clair, pas d'échec silencieux (règle hors ligne, AGENTS.md section 16).
-- Hors ligne : copie locale, mention « Dernière mise à jour : {date} », pas de changement de temps par jour (bouton désactivé).
+- Hors ligne : copie locale, mention « Dernière mise à jour : {date} », pas de changement de temps par jour (bouton désactivé). La coche de séance, elle, devient possible hors ligne en écriture différée : voir l'itération du 22 octobre 2026, section 8.
 
 ### 3.6 Sans échéance
 
@@ -135,4 +135,18 @@ Fait dans l'app (aucune migration) :
 Reste à faire (à décider avec Benny) :
 1. **Exercices et annales réels** : aujourd'hui une journée d'annales ou de révision finale est une tâche générique. À remplacer par de vrais sujets d'annales et des exercices du chapitre, par une évolution du calcul serveur.
 2. **Suivi côté serveur** : la séance cochée par les leçons validées est envoyée au serveur à l'ouverture de la page de la séance ; le calcul serveur ne sait pas encore ignorer les leçons déjà validées à la création du planning.
+
+## 8. Itération du 22 octobre 2026 (issue #74, lot A) : cocher une séance hors ligne — validée par Benny le 22 octobre 2026
+
+La section 3.5 et l'itération du 18 octobre disaient « hors ligne : lecture seule » : la page d'une séance gardait « J'ai terminé ma séance » et « Marquer comme non faite » désactivés sans réseau. L'issue #74 demande la synchronisation des actions faites hors ligne ; cette itération remplace la lecture seule par une écriture différée, pour la coche de séance uniquement.
+
+- **Cocher et décocher hors ligne** : sur la page d'une séance lue depuis la copie locale, les deux boutons sont actifs. La coche est appliquée tout de suite à la copie affichée et gardée sur l'appareil, dans une file par utilisateur qui ne contient que le jour, l'état (faite ou non) et la date d'enregistrement — aucun contenu, aucun montant.
+- **Rejeu au retour du réseau** : la file est vidée dès que le planning est lu avec une connexion, et aux mêmes moments que la synchronisation des entraînements (ouverture de session, reprise de l'application). Chaque coche est rejouée par le RPC existant `study_plan_mark_done`, qui est idempotent : un rejeu répété ne change rien.
+- **Conflits** : si l'élève coche puis décoche le même jour hors ligne, seul le dernier état est gardé et rejoué. Si le serveur ne connaît plus le jour au moment du rejeu (planning recalculé entre-temps), la coche en attente est abandonnée et le planning relu fait foi — la règle de la section 6 continue de s'appliquer (les jours cochés **côté serveur** survivent au recalcul).
+- **La coche automatique suit la même voie** : une séance dont toutes les tâches sont déjà validées se coche aussi hors ligne, par la même file.
+- **Texte affiché** : en mode copie, sous les tâches de la page séance : « Tu es hors ligne : ta séance est gardée sur l'appareil, elle sera synchronisée au retour du réseau. » Ni promesse de délai, ni vocabulaire technique.
+- **Ce qui ne change pas hors ligne** : créer un planning, changer le temps par jour ou un réglage du planning restent impossibles sans réseau (boutons désactivés, sections 3.2 et 3.5), et la consultation reste la copie locale avec sa mention « Dernière mise à jour ».
+- **Échec de rejeu** : si le réseau coupe pendant le rejeu, les coches non encore envoyées restent dans la file et repartiront au prochain essai ; rien n'est perdu et rien n'est annoncé comme synchronisé tant que le serveur n'a pas répondu.
+
+Tests : la file, le rejeu et les conflits sont couverts par des tests unitaires du service planning (dates figées) ; la page séance couvre le cas « hors ligne avec copie : la séance se termine et part dans la file ».
 
