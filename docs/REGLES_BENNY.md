@@ -34,6 +34,7 @@ Source : messages de Benny, datés. À respecter par tout agent et par Claude Co
 - `[obligatoire]` dans le message d'un commit rend la mise à jour obligatoire, `[build]` lance un APK : ne l'écrire que si c'est voulu.
 - Après l'ajout d'un module natif : incrémenter `version` dans `app.json` (le `runtimeVersion` en dérive) et produire un nouvel APK.
 - Dire à Benny ce que contient chaque OTA et quoi tester.
+- **Changelog à chaque OTA** (22 octobre 2026) : à chaque OTA poussée, ajouter une entrée au changelog dynamique de la base (table `changelogs` de `elearn-supabase`, colonnes `title_fr/en`, `content_fr/en`), en français **et** en anglais, avec ce que l'élève voit, en mots simples. L'app n'affiche que la dernière entrée : une seule entrée par OTA, à jour. Écriture additive, sans migration.
 
 ## 6. Produit
 - **Modèle à crédits** : les montants (invité, bienvenue, recharge du lundi, coûts des actions, limite IA du pass) viennent de la **configuration serveur**, jamais écrits en dur dans l'app, les tests de maquette ou les textes.
