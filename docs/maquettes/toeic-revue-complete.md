@@ -491,3 +491,11 @@ Retour de Benny (22 octobre, soir) : les cartes de l'onglet Tests sont monochrom
   - Corrigé complet : blanc, notes.
 - Couleurs reprises des parties de Réviser : vert, jaune, crème, corail. Le vert foncé et le blanc ne sont pas utilisés pour une partie.
 - Chaque carte garde son statut en mots (Pas encore fait, En cours, Fait, Interrompu) et son score en gros.
+
+## Version 38 : listes des demi-tests d'écoute et de lecture (cahier v1.33, D-45 à D-48, 22 octobre 2026, à valider)
+
+- `TOEIC-V34-DEMI-LISTE-ECOUTE` : « Demi-tests d'écoute ». En-tête avec « Fait : 2 sur 6 · Meilleur de la section : 410 sur 495 ». Lignes numérotées (Écoute n° 1 à n° 4) avec statut, meilleur score, dernier score quand il est différent, tentatives, date et « n questions nouvelles pour toi ». « Conseillé » sur la ligne en cours, contour jaune.
+- `TOEIC-V34-DEMI-LISTE-LECTURE` : même liste pour la lecture. Lecture n° 4 interrompue, sans effet sur le meilleur score.
+- Couleurs et icônes de la v37 : crème et casque pour l'écoute, corail et livre pour la lecture.
+- Quand le dernier score égale le meilleur, un seul chiffre s'affiche (pas de doublon).
+- Pas encore de score : mention « Pas encore de score », jamais un tiret seul.
