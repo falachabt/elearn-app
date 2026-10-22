@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useGardeReseau } from '@/components/reseau/useGardeReseau';
+import { useTextesCredits } from '@/components/credits/textes';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { etapeDemarrage, signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
@@ -11,6 +12,7 @@ import { obtenirApi } from '@/services/certification/api';
 import { lancerTest } from '@/services/certification/miniTest';
 import type { TestFixe, TypeTestFixe } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
+import { useCredits } from '@/session/CreditsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
 
@@ -25,6 +27,10 @@ export function TestBientot() {
   const { theme } = useTheme();
   const { kind } = useLocalSearchParams<{ kind?: string }>();
   const { garde, banniere } = useGardeReseau();
+  const { couts } = useCredits();
+  const { cout } = useTextesCredits();
+  const demiCout = couts.cert_mock_half;
+  const avecCout = (base: string) => (demiCout === undefined ? base : `${base} · ${cout(demiCout)}`);
   const [test, setTest] = useState<TestFixe | null>(null);
   const [chargement, setChargement] = useState(true);
   const [enCours, setEnCours] = useState(false);
@@ -102,8 +108,8 @@ export function TestBientot() {
       </Carte>
       {demi ? (
         <>
-          <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={t('certification.tests.ecouteAide')} onPress={() => void lancer('half_listening')} />
-          <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={t('certification.tests.lectureAide')} onPress={() => void lancer('half_reading')} />
+          <LigneChoix icone={Layers} titre={t('certification.tests.ecouteTitre')} aide={avecCout(t('certification.tests.ecouteAide'))} onPress={() => void lancer('half_listening')} />
+          <LigneChoix icone={Layers} titre={t('certification.tests.lectureTitre')} aide={avecCout(t('certification.tests.lectureAide'))} onPress={() => void lancer('half_reading')} />
         </>
       ) : null}
     </Ecran>

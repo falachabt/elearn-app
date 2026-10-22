@@ -73,6 +73,9 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const pass = !!solde?.illimite;
   const dixQ = couts.cert_mock_mini_ten;
   const vingtQ = couts.cert_mock_mini_twenty;
+  const demiQ = couts.cert_mock_half;
+  const completQ = couts.cert_mock_full;
+  const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
   const estimation = donnees.tentatives ? derniereEstimation(donnees.tentatives) : null;
   const faits = donnees.tentatives ? testsFaits(donnees.tentatives) : null;
@@ -84,9 +87,9 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
       <LigneChoix icone={Target} titre={t('certification.tests.miniPartie')} aide={detail(t('certification.tests.detailMiniPartie'), dixQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'partie' } } as never)} />
       <LigneChoix icone={Layers} titre={t('certification.tests.miniMixte')} aide={detail(t('certification.tests.detailMiniMixte'), vingtQ)} onPress={() => router.push({ pathname: '/certification/mini', params: { mode: 'mixte' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
-      <LigneChoix icone={Trophy} titre={t('certification.tests.demi')} aide={t('certification.tests.detailDemi')} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
-      <LigneChoix icone={Trophy} titre={t('certification.tests.complet')} aide={t('certification.tests.detailComplet')} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'full' } } as never)} />
-      <LigneChoix icone={BookOpen} titre={t('certification.tests.corrige')} aide={t('certification.tests.detailCorrige')} />
+      <LigneChoix icone={Trophy} titre={t('certification.tests.demi')} aide={detail(t('certification.tests.detailDemi'), demiQ)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'half' } } as never)} />
+      <LigneChoix icone={Trophy} titre={t('certification.tests.complet')} aide={detail(t('certification.tests.detailComplet'), completQ)} onPress={() => router.push({ pathname: '/certification/test-bientot', params: { kind: 'full' } } as never)} />
+      <LigneChoix icone={BookOpen} titre={t('certification.tests.corrige')} aide={detail(t('certification.tests.detailCorrige'), corrigeQ)} />
       <View style={styles.tuiles}>
         <Tuile
           titre={estimation ? t('certification.tests.scorePlage', { min: estimation.min, max: estimation.max, total }) : t('certification.tests.scoreVide')}
