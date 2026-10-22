@@ -51,6 +51,16 @@ export function adresseCourte(uri: string): string {
   return chemin.length > 40 ? `…${chemin.slice(-40)}` : chemin;
 }
 
+/** Dernier état que le lecteur natif a renvoyé, résumé pour le diagnostic (chargé, position, durée). */
+export type StatutNatif = { isLoaded: boolean; playing: boolean; currentTime: number; duration: number };
+
+/** « chargé oui · position 0,0 s / 3,1 s » : ce que le lecteur natif a réellement rapporté. */
+export function resumeStatut(s: StatutNatif | null): string {
+  if (!s) return 'aucun statut reçu';
+  const decimale = (n: number) => n.toFixed(1).replace('.', ',');
+  return `chargé ${s.isLoaded ? 'oui' : 'non'} · position ${decimale(s.currentTime)} s / ${decimale(s.duration)} s`;
+}
+
 /**
  * Code de diagnostic d'un échec de chargement : statut HTTP de la piste, ou « réseau » si la requête ne répond pas.
  * Une demande d'un seul octet (Range) : le fichier n'est pas téléchargé en entier.

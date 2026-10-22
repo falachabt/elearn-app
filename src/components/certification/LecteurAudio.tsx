@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
-import { diagnosticAudio, etatInitial, formaterTemps, reduireLecteur } from '@/services/certification/lecteur';
+import { diagnosticAudio, etatInitial, formaterTemps, reduireLecteur, resumeStatut, type StatutNatif } from '@/services/certification/lecteur';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, rayon, typo } from '@/theme/theme';
 
@@ -45,6 +45,8 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
   const delai = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Relances automatiques de la même piste (un lecteur figé à 0:00 est relancé une fois avant l'erreur). */
   const relances = useRef(0);
+  /** Dernier statut du lecteur natif pour la piste en cours (le diagnostic le montre quand le son ne démarre pas). */
+  const statutNatif = useRef<StatutNatif | null>(null);
   /** Code de diagnostic (statut HTTP et fin d'adresse) affiché quand le son ne se charge pas. */
   const [diagnostic, setDiagnostic] = useState<string | null>(null);
   const finRef = useRef(onFin);
@@ -92,6 +94,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
       p.addListener('playbackStatusUpdate', (s) => {
         // Un évènement d'une piste déjà remplacée ne doit pas toucher l'écran courant.
         if (lecteur.current !== p) return;
+        statutNatif.current = { isLoaded: s.isLoaded, playing: s.playing, currentTime: s.currentTime, duration: s.duration };
         // Le délai d'échec ne s'arrête qu'à la première position réellement lue : un fichier chargé
         // mais figé à 0:00 doit finir en « audio indisponible », pas en lecture muette sans fin.
         if (s.isLoaded && s.currentTime > 0 && delai.current) {
@@ -112,7 +115,7 @@ export function LecteurAudio({ uri, libelle, unique, delaiEchecS, ecran, onPasse
         }
         envoyer({ type: 'erreur' });
         suivre('cert_audio_error', { ecran, code: 'delai' });
-        void diagnosticAudio(uri).then(setDiagnostic);
+        void diagnosticAudio(uri).then((d) => setDiagnostic(`${d} · ${resumeStatut(statutNatif.current)}`));
       }, delaiEchecS * 1000);
     } catch {
       envoyer({ type: 'erreur' });
