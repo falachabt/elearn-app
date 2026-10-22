@@ -15,14 +15,18 @@ export type StylePartie = { couleur: string; icone: LucideIcon; cle: ClePartie }
 
 /**
  * Couleurs de la maquette v30 et v32 : P1 vert, P2 jaune, P3 crème, P4 corail, P5 jaune, P6 vert, P7 crème. Vert et corail
- * viennent des tokens de matière et d'état, jaune et crème du thème (clair et sombre).
+ * viennent des tokens de matière et d'état, jaune du thème. Le crème est le papier clair en thème clair ; en thème sombre,
+ * le papier clair du texte (le fond sombre rendrait l'icône invisible).
  */
-export const stylePartie = (theme: Theme): Record<number, StylePartie> => ({
-  1: { couleur: matiere.svt, icone: Image, cle: 'certification.reviser.partieNom1' },
-  2: { couleur: theme.accent.soleil, icone: NotebookPen, cle: 'certification.reviser.partieNom2' },
-  3: { couleur: theme.fond.app, icone: Headphones, cle: 'certification.reviser.partieNom3' },
-  4: { couleur: theme.etat.erreur, icone: BookOpen, cle: 'certification.reviser.partieNom4' },
-  5: { couleur: theme.accent.soleil, icone: Layers, cle: 'certification.reviser.partieNom5' },
-  6: { couleur: matiere.svt, icone: Pen, cle: 'certification.reviser.partieNom6' },
-  7: { couleur: theme.accent.soleilTresDoux, icone: BookOpen, cle: 'certification.reviser.partieNom7' },
-});
+export const stylePartie = (theme: Theme, sombre: boolean): Record<number, StylePartie> => {
+  const creme = sombre ? theme.texte.principal : theme.fond.app;
+  return {
+    1: { couleur: matiere.svt, icone: Image, cle: 'certification.reviser.partieNom1' },
+    2: { couleur: theme.accent.soleil, icone: NotebookPen, cle: 'certification.reviser.partieNom2' },
+    3: { couleur: creme, icone: Headphones, cle: 'certification.reviser.partieNom3' },
+    4: { couleur: theme.etat.erreur, icone: BookOpen, cle: 'certification.reviser.partieNom4' },
+    5: { couleur: theme.accent.soleil, icone: Layers, cle: 'certification.reviser.partieNom5' },
+    6: { couleur: matiere.svt, icone: Pen, cle: 'certification.reviser.partieNom6' },
+    7: { couleur: creme, icone: BookOpen, cle: 'certification.reviser.partieNom7' },
+  };
+};

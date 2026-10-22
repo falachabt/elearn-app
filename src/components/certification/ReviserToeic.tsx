@@ -56,7 +56,7 @@ export function ReviserToeic() {
 
 function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesRevision; aller: (o: Onglet) => void }) {
   const { t } = useTraduction();
-  const { theme } = useTheme();
+  const { theme, sombre } = useTheme();
   const { revision, carnet, depuisCopie } = donnees;
   const compteurs = compteursCarnet(carnet);
   const fiches = nombreDeFiches(revision.notions);
@@ -87,7 +87,7 @@ function Contenu({ onglet, donnees, aller }: { onglet: Onglet; donnees: DonneesR
           <GrilleEgale
             colonnes={2}
             enfants={[1, 2, 3, 4, 5, 6, 7].map((n) => {
-              const { couleur, icone: Icone, cle } = stylePartie(theme)[n] ?? stylePartie(theme)[1]!;
+              const { couleur, icone: Icone, cle } = stylePartie(theme, sombre)[n] ?? stylePartie(theme, sombre)[1]!;
               const pourcent = Math.round((revision.parties.find((x) => x.partie === n)?.m ?? 0) * 100);
               return (
                 <Appui
