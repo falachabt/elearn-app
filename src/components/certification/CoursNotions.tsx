@@ -43,7 +43,7 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
           <GrilleEgale
             colonnes={2}
             enfants={g.notions.map((n) => (
-              <Appui key={n.id} accessibilityRole="button" accessibilityLabel={titreAffiche(n.titre)} onPress={() => ouvrir(n.id)} decalage={2} rayon={rayon.m} retour>
+              <Appui key={n.id} accessibilityRole="button" accessibilityLabel={titreAffiche(n.titre)} onPress={() => ouvrir(n.id)} decalage={2} rayon={rayon.m} retour style={styles.caseTuile}>
                 <View style={[styles.tuile, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
                   <View style={[styles.pastille, { backgroundColor: couleur, borderColor: theme.bord.fort }]}>
                     <Icone size={18} color={theme.texte.surCouleur} strokeWidth={2} />
@@ -62,6 +62,7 @@ export function CoursNotions({ notions }: { notions: NotionListee[] }) {
 
 const styles = StyleSheet.create({
   colonne: { gap: espace[3] },
-  tuile: { minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
+  caseTuile: { flex: 1 },
+  tuile: { flex: 1, minHeight: 136, padding: espace[3], gap: espace[1], alignItems: 'flex-start', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.m },
   pastille: { width: 34, height: 34, alignItems: 'center', justifyContent: 'center', borderWidth: bord.normal, borderRadius: rayon.s, marginBottom: espace[1] },
 });
