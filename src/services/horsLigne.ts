@@ -13,7 +13,7 @@ import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
 import { lireAcces } from './pass';
 import { lireProfil, type Profil } from './profil';
-import { lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
+import { ecrireLocalHorsLigne, lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
 import { lireRythme } from './rythme';
 import { getSupabase } from './supabase';
 
@@ -315,7 +315,7 @@ async function executerTache(tache: Tache): Promise<void> {
     else await lireFiche(client, tache.cours);
   } else if (tache.categorie === 'quiz' && tache.cours && tache.lecon) {
     const quiz = await lireQuizLecon(client, { cours: tache.cours, lecon: tache.lecon, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
-    await AsyncStorage.setItem(`reviser.quiz.horsLigne.${tache.lecon}`, JSON.stringify(quiz));
+    await ecrireLocalHorsLigne(`reviser.quiz.horsLigne.${tache.lecon}`, quiz);
   } else if (tache.categorie === 'quiz' && tache.quiz) {
     await lireQuizLibre(client, { quiz: tache.quiz, vraiFaux: { vrai: i18n.t('mission.vrai'), faux: i18n.t('mission.faux') } });
   } else if (tache.categorie === 'exercices' && tache.exercice) {

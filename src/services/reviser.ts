@@ -5,6 +5,7 @@ import type { matiere as couleursMatieres } from '@/theme/theme';
 
 import { decoderContenu, normaliserBlocs, type Bloc } from './blocs';
 import { contenuHorsLigneValide } from './connectivite';
+import { ecrireContenu, ecrireContenus, lireContenu, lireContenus } from './stockageContenu';
 import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
@@ -44,7 +45,9 @@ export function oublierCopiesEnMemoire() {
 async function relireEtGarder<T>(cle: string, lire: () => Promise<T>, maintenant: number): Promise<T> {
   const valeur = await lire();
   copiesEnMemoire.set(cle, { valeur, date: maintenant });
-  await AsyncStorage.multiSet([
+  // Les copies de contenu vivent dans les fichiers (stockageContenu), pas dans la base de réglages : un pack
+  // entier y a saturé AsyncStorage jusqu'à SQLITE_FULL (issue #74, retour terrain du 23 octobre 2026).
+  await ecrireContenus([
     [cle, JSON.stringify(valeur)],
     [CLE_DATE(cle), String(maintenant)],
   ]).catch(() => {});
@@ -85,7 +88,7 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
   }
   if (localesEnMemoire.has(cle)) return localesEnMemoire.get(cle) as T;
   try {
-    const brut = await AsyncStorage.getItem(cle);
+    const brut = await lireContenu(cle);
     if (!brut) return null;
     const valeur = JSON.parse(brut) as T;
     localesEnMemoire.set(cle, valeur);
@@ -93,6 +96,16 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
   } catch {
     return null;
   }
+}
+
+/**
+ * Range un contenu préparé pour le hors ligne (la porte d'écriture symétrique de `lireLocalHorsLigne`) :
+ * dans les fichiers, comme toutes les copies de contenu. La copie en mémoire de session est invalidée,
+ * pas alimentée : la prochaine lecture relira le fichier, comme elle relisait AsyncStorage avant la migration.
+ */
+export async function ecrireLocalHorsLigne(cle: string, valeur: unknown): Promise<void> {
+  localesEnMemoire.delete(cle);
+  await ecrireContenu(cle, JSON.stringify(valeur)).catch(() => {});
 }
 
 /**
@@ -108,10 +121,7 @@ export async function lireLocalHorsLigne<T>(cle: string, maintenant = Date.now()
 export async function avecCopie<T>(cle: string, lire: () => Promise<T>, maintenant = Date.now()): Promise<T> {
   let copie = copiesEnMemoire.get(cle);
   if (!copie) {
-    const [[, texte], [, date]] = await AsyncStorage.multiGet([cle, CLE_DATE(cle)]).catch(() => [
-      [cle, null],
-      [CLE_DATE(cle), null],
-    ]);
+    const [texte, date] = await lireContenus([cle, CLE_DATE(cle)]).catch(() => [null, null] as (string | null)[]);
     if (texte && date) {
       try {
         copie = { valeur: JSON.parse(texte), date: Number(date) };

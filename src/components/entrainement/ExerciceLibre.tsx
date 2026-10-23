@@ -1,6 +1,5 @@
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
@@ -8,7 +7,7 @@ import { suivre } from '@/services/analytics';
 import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import type { Bloc } from '@/services/blocs';
 import { basculerExerciceFait, blocsCorrige, lireEntrainement, lireExercice, lireExercicesFaits, noterDernier, type DetailExercice, type Exercice } from '@/services/entrainement';
-import { lireLocalHorsLigne } from '@/services/reviser';
+import { ecrireLocalHorsLigne, lireLocalHorsLigne } from '@/services/reviser';
 import { getSupabase } from '@/services/supabase';
 import { titreExercice } from '@/services/titres';
 import { useCredits } from '@/session/CreditsProvider';
@@ -198,7 +197,7 @@ export function ExerciceLibre() {
         }
       }
       if (!contenu) return;
-      await AsyncStorage.setItem(`entrainement.exercice.corrige.${id}`, JSON.stringify(contenu))
+      await ecrireLocalHorsLigne(`entrainement.exercice.corrige.${id}`, contenu)
         .catch((erreur: unknown) => console.warn('Le corrigé débloqué ne peut pas être gardé hors ligne.', erreur));
       setCorriges((c) => ({ ...c, [id]: blocsCorrige(contenu) }));
     }

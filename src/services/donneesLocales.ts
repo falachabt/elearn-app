@@ -6,6 +6,7 @@ import { oublierEtatsMemorises } from './memoire';
 import { CLE_HISTORIQUE } from './mission';
 import { repriseInviteEnCours } from './repriseInvite';
 import { oublierCopiesEnMemoire } from './reviser';
+import { viderContenus } from './stockageContenu';
 
 const CLE_REPRISE_INVITEE = 'compte.repriseInvite';
 
@@ -18,6 +19,8 @@ async function effacerDonneesLocalesEnGardant(clesGardees: readonly string[]): P
   const gardees = new Set(clesGardees);
   await AsyncStorage.multiRemove(cles.filter((c) => !c.startsWith('sb-') && !gardees.has(c)));
   effacerDocuments();
+  // Les copies de contenu vivent dans les fichiers depuis la migration (issue #74) : le dossier part aussi.
+  await viderContenus();
   oublierEtatsMemorises();
   oublierCopiesEnMemoire();
 }

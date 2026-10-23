@@ -6,6 +6,7 @@ import type { QuestionTiree } from './miniTest';
 import { convertir, type LigneMission } from './mission';
 import { signalerProgressionLocale } from './progressionLocale';
 import { avecCopie, lireLocalHorsLigne, rpc } from './reviser';
+import { lireContenus } from './stockageContenu';
 import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'rpc'>;
@@ -54,9 +55,9 @@ export type ProgresChapitre = { meilleur?: number; faits: number; quizFaits: num
 
 export async function lireProgresChapitres(cours: readonly number[]): Promise<Record<number, ProgresChapitre>> {
   if (!cours.length) return {};
-  const [copies, scores, faits] = await Promise.all([AsyncStorage.multiGet(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
+  const [copies, scores, faits] = await Promise.all([lireContenus(cours.map((c) => `entrainement.cours.${c}`)), lireMeilleursScores(), lireExercicesFaits()]);
   const sortie: Record<number, ProgresChapitre> = {};
-  copies.forEach(([, brut], k) => {
+  copies.forEach((brut, k) => {
     if (!brut) return;
     try {
       const e = JSON.parse(brut) as { quiz: QuizLibre[]; exercices: Exercice[] };

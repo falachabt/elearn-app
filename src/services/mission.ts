@@ -6,6 +6,7 @@ import { contenuHorsLigneValide } from './connectivite';
 import { calculerResultat, melanger, tirerMiniTest, type QuestionTiree, type ResultatMiniTest } from './miniTest';
 import { enregistrerCorrection } from './correction';
 import { TAILLE_DEFAUT } from './rythme';
+import { ecrireContenu, lireContenu } from './stockageContenu';
 import { crediterXp } from './xp';
 
 type Client = Pick<SupabaseClient, 'from' | 'rpc'>;
@@ -91,9 +92,9 @@ export async function chargerMission(
   // repart alors du serveur, qui échoue sans connexion, et l'écran retombe sur la mission embarquée. Sans ce
   // contrôle, la mission préchargée contournerait l'expiration puisqu'elle ne passe pas par `avecCopie`.
   const copieEncoreValable = await contenuHorsLigneValide();
-  const missionHorsLigne = copieEncoreValable ? await AsyncStorage.getItem(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
+  const missionHorsLigne = copieEncoreValable ? await lireContenu(cleMissionHorsLigne({ ...p, taille }, jour)) : null;
   if (missionHorsLigne) return JSON.parse(missionHorsLigne) as Mission;
-  const brut = copieEncoreValable ? await AsyncStorage.getItem(CLE_MISSION) : null;
+  const brut = copieEncoreValable ? await lireContenu(CLE_MISSION) : null;
   const garde = brut ? (JSON.parse(brut) as Mission & { niveau?: string; taille?: number; serie?: string | null; concours?: string | null }) : null;
   if (
     garde?.jour === jour &&
@@ -122,7 +123,7 @@ export async function chargerMission(
     // Pas gardée : au prochain affichage, on retente le serveur.
     return { jour, source: 'locale', questions: tirerMiniTest(p.niveau) };
   }
-  await AsyncStorage.setItem(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null }));
+  await ecrireContenu(CLE_MISSION, JSON.stringify({ ...mission, niveau: p.niveau, taille, ...(p.serie ? { serie: p.serie } : {}), concours: p.concours ?? null }));
   return mission;
 }
 
@@ -133,7 +134,7 @@ export async function prechargerMission(
 ): Promise<Mission> {
   const taille = p.taille ?? TAILLE_DEFAUT;
   const cle = cleMissionHorsLigne({ ...p, taille }, p.jour);
-  const garde = await AsyncStorage.getItem(cle);
+  const garde = await lireContenu(cle);
   if (garde) return JSON.parse(garde) as Mission;
 
   const argSerie = p.serie ? { p_series: p.serie } : {};
@@ -146,7 +147,7 @@ export async function prechargerMission(
   const questions = ((resultat.data ?? []) as LigneMission[]).map((l) => convertir(l, p.vraiFaux)).filter((q): q is QuestionTiree => !!q);
   if (questions.length < 3) throw new Error('mission trop courte');
   const mission: Mission = { jour: p.jour, source: 'serveur', questions };
-  await AsyncStorage.setItem(cle, JSON.stringify(mission));
+  await ecrireContenu(cle, JSON.stringify(mission));
   return mission;
 }
 

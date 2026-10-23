@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Sparkles } from 'lucide-react-native';
@@ -7,6 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { CLE_CATALOGUE, lireSujet, titreSujet, type DetailSujet, type Sujet } from '@/services/annales';
+import { lireContenu } from '@/services/stockageContenu';
 import { suivre } from '@/services/analytics';
 import { useEtatMemorise } from '@/services/memoire';
 import { getSupabase } from '@/services/supabase';
@@ -77,7 +77,7 @@ export function SujetAnnale() {
     let actif = true;
     void (async () => {
       try {
-        const [detail, catalogue] = await Promise.all([lireSujet(getSupabase(), Number(id)), AsyncStorage.getItem(CLE_CATALOGUE)]);
+        const [detail, catalogue] = await Promise.all([lireSujet(getSupabase(), Number(id)), lireContenu(CLE_CATALOGUE)]);
         const sujet = catalogue ? ((JSON.parse(catalogue) as Sujet[]).find((s) => s.id === Number(id)) ?? null) : null;
         if (actif) setEtat({ statut: 'pret', detail, sujet });
       } catch {

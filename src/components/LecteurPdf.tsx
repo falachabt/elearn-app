@@ -1,7 +1,6 @@
 import { BookOpenCheck, FileText, Hourglass, Minus, Plus, Sparkles, TriangleAlert } from 'lucide-react-native';
 import { router, useLocalSearchParams, useNavigation } from 'expo-router';
 import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, AppState, StyleSheet, Text, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -10,6 +9,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { enregistrerTempsActivite, useChrono } from '@/services/activite';
 import { lireSujet } from '@/services/annales';
+import { lireContenu } from '@/services/stockageContenu';
 import { useContenuPayant } from '@/session/useContenuPayant';
 import { documentLocal, noterPage, ouvrirDocument, pageDocument } from '@/services/documents';
 import { annulerFinChrono, programmerFinChrono } from '@/services/finChrono';
@@ -84,7 +84,7 @@ export function LecteurPdf() {
 
   useEffect(() => {
     if (!sujet) return;
-    void AsyncStorage.getItem('annales.catalogue').then((cat) => {
+    void lireContenu('annales.catalogue').then((cat) => {
       if (!cat) return;
       try {
         const liste = JSON.parse(cat) as { id: number; matiere?: string }[];

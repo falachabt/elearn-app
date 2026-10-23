@@ -4,6 +4,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { estEnLigne, estErreurReseau, DUREE_VALIDITE_HORS_LIGNE_MS } from './connectivite';
 import type { ActionCredit, Depense, Solde, StatutDepense } from './credits';
+import { ecrireContenu, lireContenu, supprimerContenu } from './stockageContenu';
 
 /**
  * Crédits hors ligne (issue #13, partie « Crédits en ligne et hors ligne »).
@@ -73,7 +74,7 @@ type EnveloppeContenu<C> = {
 
 async function lireEnveloppe<C>(action: ActionCredit, objet: string | number): Promise<EnveloppeContenu<C> | null> {
   try {
-    const brut = await AsyncStorage.getItem(cleCache(action, objet));
+    const brut = await lireContenu(cleCache(action, objet));
     return brut ? (JSON.parse(brut) as EnveloppeContenu<C>) : null;
   } catch {
     return null;
@@ -95,7 +96,7 @@ export async function enregistrerContenuEnCache<C>(
   paye = true,
 ): Promise<void> {
   const enveloppe: EnveloppeContenu<C> = { contenu, le: maintenant.toISOString(), paye };
-  await AsyncStorage.setItem(cleCache(action, objet), JSON.stringify(enveloppe)).catch(() => {});
+  await ecrireContenu(cleCache(action, objet), JSON.stringify(enveloppe)).catch(() => {});
 }
 
 /** Contenu déjà présent sur l'appareil, ou null. C'est ce qui autorise une dépense hors ligne. */
@@ -114,7 +115,7 @@ export async function contenuPaye(action: ActionCredit, objet: string | number):
 export async function marquerContenuPaye(action: ActionCredit, objet: string | number): Promise<void> {
   const enveloppe = await lireEnveloppe(action, objet);
   if (!enveloppe) return;
-  await AsyncStorage.setItem(cleCache(action, objet), JSON.stringify({ ...enveloppe, paye: true })).catch(() => {});
+  await ecrireContenu(cleCache(action, objet), JSON.stringify({ ...enveloppe, paye: true })).catch(() => {});
 }
 
 /**
@@ -169,7 +170,7 @@ export async function lireContenuEnCacheValide<C>(action: ActionCredit, objet: s
 
 /** Retire un contenu du cache (espace à libérer, contenu remplacé). */
 export async function oublierContenuEnCache(action: ActionCredit, objet: string | number): Promise<void> {
-  await AsyncStorage.removeItem(cleCache(action, objet)).catch(() => {});
+  await supprimerContenu(cleCache(action, objet)).catch(() => {});
 }
 
 /** Solde local gardé pour ce compte, ou null. */
