@@ -34,6 +34,7 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 - **Fait, issue #13 côté backend (PR #41 sur `elearn-supabase`)** : `depenser_credits` accepte un identifiant d'opération et devient idempotente (statut `replay`), avec la table `credit_operations` verrouillée. À merger avant tout envoi d'identifiant depuis l'app.
 - **Reste à faire, issue #13 côté app** : solde local confirmé, file des dépenses hors ligne, réconciliation et état « à synchroniser ».
 - **Piège à retenir** : remplacer une fonction PostgreSQL en ajoutant un paramètre par défaut ne supprime pas l'ancienne signature ; les deux surcharges coexistent et un appel à deux littéraux devient ambigu (`is not unique`). Il faut un `drop function if exists` explicite.
+- **Fait, issue #74 (23 octobre 2026, branche `claude/project-thread-kw792g`)** : planning d'études hors ligne complet — coches en écriture différée avec rejeu idempotent (lot A), séances de J/J+1/J+2 priorisées dans le téléchargement du pack (lot B), changement de classe ou de programme bloqué hors ligne avec feuille « Tu es hors ligne » (lot C), test d'intégration du parcours et audit du résiduel dans `docs/audit-hors-ligne.md` (lot D). Retours terrain intégrés le même jour : contenus stockés en fichiers (`stockageContenu`), sonde durcie (200 JSON exigé), file de gains XP sans double comptage, session conservée au démarrage à froid hors ligne. Détail des échanges dans `docs/communication/echanges/` (série issue 74 du 22-23 octobre 2026).
 
 ### Notifications : cloche, centre et réglages (issue #32)
 
