@@ -578,6 +578,10 @@ export const en: Textes = {
     retour: 'Back',
     concoursListe: { ens: 'ENS', medecine: 'Medicine', ingenieurs: 'Engineering schools' },
     selecteurA11y: 'Class or program: {{classe}}. Tap to change.',
+    horsLigneTitre: 'You are offline',
+    horsLigneTexte: 'Changing your class or programme needs a connection: your study plan and downloaded content are recalculated for the new class. Without a connection, nothing changes for now.',
+    horsLigneMention: 'Reconnect and try again — the change will only take a few seconds.',
+    horsLigneBouton: 'Got it',
   },
   premier: {
     titre: 'Where do we start?',

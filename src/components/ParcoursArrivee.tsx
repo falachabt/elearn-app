@@ -33,9 +33,11 @@ import { Bouton } from './Bouton';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
 import { Etiquette } from './Etiquette';
+import { Feuille } from './Feuille';
 import { Logo } from './Logo';
 import { useProfilCertification } from './certification/useProfilCertification';
 import { FeuillePays } from './pass/FeuillePays';
+import { useGardeReseau } from './reseau/useGardeReseau';
 
 type ChoixCarteProps = {
   titre: string;
@@ -164,6 +166,10 @@ export function ChoixClasse() {
   const [monConcours, setMonConcours] = useState<ConcoursChoisi | null>(null);
   const [pays, setPays] = useState<string>(() => paysParDefaut(safeRegion()));
   const [choixPays, setChoixPays] = useState(false);
+  // Garde hors ligne du changement de classe (issue #74, lot C) : la feuille qui l'explique quand le
+  // serveur est injoignable. Le design a été validé en maquette avant implémentation.
+  const { horsLigne } = useGardeReseau();
+  const [feuilleHorsLigne, setFeuilleHorsLigne] = useState(false);
   const [series, setSeries] = useState<SerieClasse[]>([]);
   const [serie, setSerie] = useState<SerieChoisie | null>(null);
   const listePays = useMemo(() => listerPays(langue, {}), [langue]);
@@ -233,6 +239,13 @@ export function ChoixClasse() {
   }, [concours, niveau, pays]);
 
   const continuer = async () => {
+    // Lot C (issue #74) : en modification, changer de classe ou de programme recalcule le planning et
+    // rend le pack téléchargé obsolète — les deux passent par le serveur. Hors ligne, on bloque avant
+    // toute écriture et la feuille du bas l'explique ; l'écran et les choix de l'élève restent intacts.
+    if (modifier && horsLigne) {
+      setFeuilleHorsLigne(true);
+      return;
+    }
     if (concours && !monConcours) {
       // Les deux étapes du concours écrivent d'abord un profil de candidat avec ce pays.
       const p = await lireProfil();
@@ -359,6 +372,15 @@ export function ChoixClasse() {
           ) : null}
         </>
       )}
+      <Feuille
+        ouverte={feuilleHorsLigne}
+        onFermer={() => setFeuilleHorsLigne(false)}
+        icone="cloud-offline-outline"
+        titre={t('classe.horsLigneTitre')}
+        texte={t('classe.horsLigneTexte')}
+        mention={t('classe.horsLigneMention')}
+        actions={[{ libelle: t('classe.horsLigneBouton'), onPress: () => setFeuilleHorsLigne(false) }]}
+      />
       <FeuillePays
         ouverte={choixPays}
         pays={listePays}

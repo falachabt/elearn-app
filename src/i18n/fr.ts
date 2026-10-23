@@ -579,6 +579,10 @@ export const fr = {
     retour: 'Retour',
     concoursListe: { ens: 'ENS', medecine: 'Médecine', ingenieurs: 'Écoles d’ingénieurs' },
     selecteurA11y: 'Classe ou programme : {{classe}}. Appuyer pour changer.',
+    horsLigneTitre: 'Tu es hors ligne',
+    horsLigneTexte: 'Changer de classe ou de programme demande une connexion : ton planning d’études et tes contenus téléchargés sont recalculés pour la nouvelle classe. Sans connexion, rien ne change pour l’instant.',
+    horsLigneMention: 'Reconnecte-toi puis réessaie, le changement prendra quelques secondes.',
+    horsLigneBouton: 'J’ai compris',
   },
   premier: {
     titre: 'Par quoi on commence ?',

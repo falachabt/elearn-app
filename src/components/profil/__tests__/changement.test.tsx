@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 
 import { fr as x } from '@/i18n/fr';
 import { lireDossiers } from '@/services/annales';
+import { definirConnectivitePourTest } from '@/services/connectivite';
 import { chargerMission } from '@/services/mission';
 import { actualiserPlanningProfil, definirTemps } from '@/services/planning';
 import { CLE_PROFIL, enregistrerProfil, lireProfil, lireSeriesClasse } from '@/services/profil';
@@ -64,6 +65,56 @@ describe('Choix de classe en modification : confirmer sans changement ne touche 
     fireEvent.press(screen.getByRole('button', { name: x.classe.enregistrer }));
     await attendre(50);
     expect(signalerModification).toHaveBeenCalled();
+  });
+});
+
+// Issue #74, lot C : en modification, le changement de classe ou de programme est interdit hors ligne
+// (le planning et le pack sont recalculés côté serveur). La feuille du bas « Tu es hors ligne »
+// l'explique et rien n'est écrit. L'arrivée (première classe) n'est pas concernée par la garde.
+describe('Garde hors ligne du changement de classe (lot C)', () => {
+  const couperReseau = () => definirConnectivitePourTest({ connecte: false, internet: false, backend: false, enVerification: false });
+
+  it('hors ligne : Enregistrer ouvre la feuille et n’écrit rien', async () => {
+    couperReseau();
+    await monter(<ChoixClasse />);
+    await attendre(50);
+    const avant = await AsyncStorage.getItem(CLE_PROFIL);
+    (signalerModification as jest.Mock).mockClear();
+    fireEvent.press(screen.getByRole('button', { name: x.classe.enregistrer }));
+    await attendre(50);
+    expect(screen.getByText(x.classe.horsLigneTitre)).toBeTruthy();
+    expect(screen.getByText(x.classe.horsLigneTexte)).toBeTruthy();
+    expect(signalerModification).not.toHaveBeenCalled();
+    expect(await AsyncStorage.getItem(CLE_PROFIL)).toBe(avant);
+    expect(router.replace).not.toHaveBeenCalled();
+    expect(router.push).not.toHaveBeenCalled();
+  });
+
+  it('hors ligne mais simple arrivée (pas de modification) : la garde ne bloque pas', async () => {
+    mockParams.modifier = undefined;
+    couperReseau();
+    await monter(<ChoixClasse />);
+    await attendre(50);
+    (signalerModification as jest.Mock).mockClear();
+    fireEvent.press(screen.getByRole('button', { name: x.classe.continuer }));
+    await attendre(50);
+    expect(screen.queryByText(x.classe.horsLigneTitre)).toBeNull();
+    expect(signalerModification).toHaveBeenCalled();
+    expect(router.push).toHaveBeenCalledWith('/premier-resultat');
+  });
+
+  it('en ligne : la feuille ne monte pas et le changement passe comme avant', async () => {
+    await monter(<ChoixClasse />);
+    await attendre(50);
+    // Le profil stocké est Tle ; choisir 3e crée un vrai changement à enregistrer.
+    fireEvent.press(screen.getByRole('button', { name: '3e' }));
+    await attendre(20);
+    (signalerModification as jest.Mock).mockClear();
+    fireEvent.press(screen.getByRole('button', { name: x.classe.enregistrer }));
+    await attendre(50);
+    expect(screen.queryByText(x.classe.horsLigneTitre)).toBeNull();
+    expect(signalerModification).toHaveBeenCalled();
+    expect((await lireProfil())?.niveau).toBe('3e');
   });
 });
 
