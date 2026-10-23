@@ -2332,6 +2332,7 @@ export const fr = {
       ecouter: 'Écouter',
       reecouter: 'Réécouter',
       trou: 'Trou {{n}}',
+      trouConsigne: 'Trou {{n}} · choisis le mot qui complète le texte',
       pause: 'Pause',
       question: 'Question {{n}}',
       choisi: 'Choisi',

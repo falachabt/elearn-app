@@ -165,7 +165,7 @@ export function Diagnostic() {
         <View style={styles.pied}>
           <Bouton
             libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : t('certification.diagnostic.valider')}
-            desactive={membres.length > 1 ? false : !complet}
+            desactive={membres.length > 1 ? repondues === 0 : !complet}
             onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
             retour
           />
@@ -178,7 +178,12 @@ export function Diagnostic() {
         key={membres[0]?.id ?? question.id}
         question={question}
         choix={choix}
-        onChoix={(i) => setReponses((r) => ({ ...r, [question.id]: i }))}
+        onChoix={(i) => {
+          const suite = { ...reponses, [question.id]: i };
+          setReponses(suite);
+          const prochain = membres.findIndex((m) => !(m.id in suite));
+          if (prochain >= 0) setOnglet(prochain);
+        }}
         unique
         delaiEchecS={delaiEchecS}
         ecran="diagnostic"
@@ -187,6 +192,7 @@ export function Diagnostic() {
         enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
         trouCourant={onglet + 1}
         numerosTrous={numerosDuGroupe(membres)}
+        trousRepondus={numerosDuGroupe(membres.filter((m) => (reponses[m.id] ?? null) !== null))}
       />
       {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />

@@ -36,6 +36,8 @@ type Props = {
   trouCourant?: number;
   /** Numéros officiels des questions du groupe à l'écran : ils remplacent les numéros locaux « {n} » du texte à trous. */
   numerosTrous?: number[];
+  /** Numéros officiels des trous déjà répondus : ils passent en vert. */
+  trousRepondus?: number[];
 };
 
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
@@ -67,7 +69,7 @@ const TROU_PASSAGE = /\{\d+\}/;
  * par un espace. Si le groupe à l'écran ne contient pas une question par trou (données partielles), les trous ne sont
  * pas numérotés au hasard : ils deviennent un trait, et la consigne nomme la question affichée.
  */
-function PassageTrous({ texte, blanc, numeros }: { texte: string; blanc?: number; numeros: number[] }) {
+function PassageTrous({ texte, blanc, numeros, repondus }: { texte: string; blanc?: number; numeros: number[]; repondus: number[] }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const nombreTrous = texte.match(/\{\d+\}/g)?.length ?? 0;
@@ -86,9 +88,10 @@ function PassageTrous({ texte, blanc, numeros }: { texte: string; blanc?: number
                 return [<Text key={`t${i}`} style={[typo.texteFort, { color: theme.texte.principal }]}>______</Text>];
               }
               const actif = k === blanc;
+              const fait = repondus.includes(numero);
               return [
-                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: numero })} style={[styles.trou, { backgroundColor: actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
-                  <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.principal }]}>{numero}</Text>
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: numero })} style={[styles.trou, { backgroundColor: fait ? theme.etat.succes : actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+                  <Text style={[typo.legende, styles.trouNumero, { color: fait ? theme.texte.surCouleur : theme.texte.principal }]}>{numero}</Text>
                 </View>,
               ];
             }
@@ -116,7 +119,7 @@ export const documentsDuPassage = (passage: GroupeServi['passage'] | undefined):
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant, numerosTrous }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant, numerosTrous, trousRepondus }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -141,7 +144,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
   // Partie 6 : le texte à trous porte la question, le libellé de la question est « Trou N » (jamais l'énoncé brut de la banque).
   const consigne = SANS_ENONCE.has(question.type)
     ? t(`certification.exercice.consigne.${question.type}` as 'certification.exercice.consigne.photo')
-    : question.type === 'texte_trous' ? t('certification.exercice.trou', { n: question.number ?? 0 }) : afficherEnonce(question.stem);
+    : question.type === 'texte_trous' ? t('certification.exercice.trouConsigne', { n: question.number ?? 0 }) : afficherEnonce(question.stem);
 
   return (
     <View style={styles.colonne}>
@@ -185,7 +188,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
             {docs[doc]?.kind ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{docs[doc]?.kind}</Text> : null}
             {docs[doc]?.head ? <Text style={[typo.donnee, { color: theme.texte.principal }]}>{docs[doc]?.head}</Text> : null}
             {TROU_PASSAGE.test(docs[doc]?.text ?? '') ? (
-              <PassageTrous texte={docs[doc]?.text ?? ''} blanc={trouCourant} numeros={numerosTrous ?? []} />
+              <PassageTrous texte={docs[doc]?.text ?? ''} blanc={trouCourant} numeros={numerosTrous ?? []} repondus={trousRepondus ?? []} />
             ) : (
               <Text style={[typo.texte, { color: theme.texte.principal }]}>
                 {surlignage(docs[doc]?.text ?? '')}

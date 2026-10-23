@@ -44,6 +44,6 @@ describe('texte à trous (partie 6) : rectangles numérotés', () => {
     expect(screen.queryByLabelText(libelleTrou(1))).toBeNull();
     expect(screen.getAllByText('______')).toHaveLength(4);
     // La consigne nomme toujours la question affichée.
-    expect(screen.getByText(libelleTrou(135))).toBeTruthy();
+    expect(screen.getByText(t.exercice.trouConsigne.replace('{{n}}', '135'))).toBeTruthy();
   });
 });

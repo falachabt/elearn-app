@@ -216,7 +216,7 @@ export function Serie() {
                     : t('certification.exercice.validerN', { n: nbRepondues, total: membres.length })
                   : t('certification.diagnostic.valider')
               }
-              desactive={!pluriel && choixVue === null}
+              desactive={pluriel ? nbRepondues === 0 : choixVue === null}
               onPress={() => {
                 if (pluriel && !incomplet && !membres.every((m) => m.id in choixGroupe)) setIncomplet(true);
                 else void valider();
@@ -234,7 +234,12 @@ export function Serie() {
         key={`groupe-${question.group?.id ?? question.id}`}
         question={question}
         choix={corrigee ? (reponseVue?.chosen ?? null) : choixVue}
-        onChoix={(i) => setChoixGroupe((c) => ({ ...c, [question.id]: i }))}
+        onChoix={(i) => {
+          const suite = { ...choixGroupe, [question.id]: i };
+          setChoixGroupe(suite);
+          const prochain = membres.findIndex((m) => !(m.id in suite));
+          if (pluriel && prochain >= 0) choisirOnglet(prochain);
+        }}
         bonne={corrigee && resultat ? resultat.correct_index : undefined}
         verrouille={corrigee}
         delaiEchecS={delaiEchecS}
@@ -244,6 +249,7 @@ export function Serie() {
         enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} /> : null}
         trouCourant={positionVue + 1}
         numerosTrous={numerosDuGroupe(membres)}
+        trousRepondus={numerosDuGroupe(membres.filter((m) => (reponsesGroupe[m.id] ?? null) !== null))}
       />
       {!groupeValide ? null : resultat ? (
         <ExplicationCert

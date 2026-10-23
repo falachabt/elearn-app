@@ -2331,6 +2331,7 @@ export const en: Textes = {
       ecouter: 'Listen',
       reecouter: 'Listen again',
       trou: 'Blank {{n}}',
+      trouConsigne: 'Blank {{n}} · choose the word that completes the text',
       pause: 'Pause',
       question: 'Question {{n}}',
       choisi: 'Selected',

@@ -177,6 +177,7 @@ export function MiniTest() {
       pied={
         <Bouton
           libelle={membres.length > 1 ? (incomplet ? t('certification.exercice.validerQuandMeme', { n: repondues, total: membres.length }) : t('certification.exercice.validerN', { n: repondues, total: membres.length })) : derniere ? t('certification.examen.derniere') : t('certification.examen.suivante')}
+          desactive={membres.length > 1 && repondues === 0}
           onPress={() => (membres.length > 1 && !complet && !incomplet ? setIncomplet(true) : void envoyer(reponses))}
           retour
         />
@@ -188,7 +189,12 @@ export function MiniTest() {
           key={membres[0]?.id ?? question.id}
           question={question}
           choix={choix}
-          onChoix={(i) => setReponses((r) => ({ ...r, [question.id]: i }))}
+          onChoix={(i) => {
+            const suite = { ...reponses, [question.id]: i };
+            setReponses(suite);
+            const prochain = membres.findIndex((m) => !(m.id in suite));
+            if (prochain >= 0) setOnglet(prochain);
+          }}
           unique
           delaiEchecS={delaiEchecS}
           ecran="mini_test"
@@ -197,6 +203,7 @@ export function MiniTest() {
           enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
           trouCourant={onglet + 1}
           numerosTrous={numerosDuGroupe(membres)}
+          trousRepondus={numerosDuGroupe(membres.filter((m) => (reponses[m.id] ?? null) !== null))}
         />
       ) : null}
       {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
