@@ -109,6 +109,59 @@ export function calculerNiveau(totalXp: number): InfoNiveau {
 }
 
 export const CLE_XP_LOCAL = 'xp.totalLocal';
+// Gains gagnés hors ligne (ou pendant un échec d'envoi) en attente d'écriture dans xp_history. Sans cette file,
+// un gain n'existait que dans le cache local et la lecture du total serveur à la reconnexion l'effaçait
+// (retour terrain du 23 octobre 2026 : +40 XP de leçons perdues, 910 revenu à 870).
+export const CLE_XP_EN_ATTENTE = 'xp.gainsEnAttente';
+
+type GainXpEnAttente = {
+  userId: string;
+  gain: number;
+  source?: string;
+  sourceId?: string;
+  le: string;
+};
+
+async function lireGainsEnAttente(): Promise<GainXpEnAttente[]> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_XP_EN_ATTENTE);
+    const liste = brut ? (JSON.parse(brut) as GainXpEnAttente[]) : [];
+    return Array.isArray(liste) ? liste : [];
+  } catch {
+    return [];
+  }
+}
+
+async function ecrireGainsEnAttente(liste: GainXpEnAttente[]): Promise<void> {
+  try {
+    if (liste.length === 0) await AsyncStorage.removeItem(CLE_XP_EN_ATTENTE);
+    else await AsyncStorage.setItem(CLE_XP_EN_ATTENTE, JSON.stringify(liste));
+  } catch {
+    // Si l'appareil ne peut même plus écrire localement, le total local reste la meilleure trace disponible.
+  }
+}
+
+function sommeGainsEnAttente(liste: GainXpEnAttente[], userId: string): number {
+  return liste.filter((g) => g.userId === userId).reduce((s, g) => s + g.gain, 0);
+}
+
+// Écrit un gain dans xp_history (le trigger `update_user_xp` met à jour le total serveur). PostgREST RENVOIE
+// ses erreurs sans les lever : le résultat est testé explicitement, sinon l'échec passerait inaperçu.
+async function envoyerGain(client: Client, gain: GainXpEnAttente): Promise<boolean> {
+  try {
+    const historique = client.from('xp_history');
+    if (typeof historique?.insert !== 'function') return false;
+    const res = await historique.insert({
+      userid: gain.userId,
+      xp_gained: gain.gain,
+      source_type: 'quiz',
+      source_id: gain.sourceId ?? gain.source ?? 0,
+    } as never);
+    return !(res as { error?: unknown } | undefined)?.error;
+  } catch {
+    return false;
+  }
+}
 
 type Client = Pick<SupabaseClient, 'from'>;
 
@@ -138,10 +191,12 @@ export async function lireUserXp(client?: Client | null, userId?: string | null)
       const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
       if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
         const distant = (data as { total_xp: number }).total_xp;
-        lectureXpRecente = { userId, valeur: distant, date: Date.now() };
-        // Le serveur est la source de vérité pour un compte connecté : synchronise le stockage local
-        await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
-        return distant;
+        // Le serveur fait foi pour ce qu'il connaît, PLUS les gains encore en attente d'envoi : sinon la
+        // reconnexion écraserait l'affichage (910 revenu à 870) alors que les leçons sont bien terminées.
+        const total = distant + sommeGainsEnAttente(await lireGainsEnAttente(), userId);
+        lectureXpRecente = { userId, valeur: total, date: Date.now() };
+        await AsyncStorage.setItem(CLE_XP_LOCAL, String(total)).catch(() => {});
+        return total;
       }
     } catch {
       // Repli sur le stockage local ci-dessous
@@ -202,29 +257,89 @@ export async function crediterXp(
   await AsyncStorage.setItem(CLE_XP_LOCAL, String(nouveauTotal)).catch(() => {});
 
   if (client && typeof client.from === 'function' && userId) {
-    try {
-      await client.from('xp_history').insert({
-        userid: userId,
-        xp_gained: gain,
-        source_type: 'quiz', // Le trigger serveur update_user_xp écoute source_type = 'quiz'
-        source_id: sourceId ?? source,
-      });
+    const envoye = await envoyerGain(client, { userId, gain, source, sourceId, le: new Date().toISOString() });
+    if (envoye) {
       // Synchronisation directe de user_xp pour garantir que l'élève ne soit jamais bloqué
       const q = client.from('user_xp');
       lectureXpRecente = null;
       if (typeof q?.upsert === 'function') {
-        await q.upsert({
-          userid: userId,
-          total_xp: nouveauTotal,
-        });
+        try {
+          await q.upsert({
+            userid: userId,
+            total_xp: nouveauTotal,
+          });
+        } catch {
+          // L'historique est écrit et le trigger serveur suit : cet ajustement direct est un plus.
+        }
       }
-    } catch (err) {
-      console.warn('Impossible d’enregistrer le gain d’XP sur Supabase.', err);
+    } else {
+      // Hors ligne ou échec d'envoi : le gain part en file d'attente et sera rejoué à la reconnexion
+      // (synchroniserXp) au lieu d'être perdu à la prochaine lecture du total serveur.
+      const liste = await lireGainsEnAttente();
+      liste.push({ userId, gain, source, sourceId, le: new Date().toISOString() });
+      await ecrireGainsEnAttente(liste);
+      lectureXpRecente = { userId, valeur: nouveauTotal, date: Date.now() };
     }
   }
 
   notifierXpGagne(gain, nouveauTotal, source);
   return nouveauTotal;
+}
+
+/**
+ * Rejoue les gains XP en attente pour ce compte (appelé à la connexion et au démarrage, comme les autres
+ * synchronisations). Avant chaque envoi, l'historique serveur est consulté : si le gain y figure déjà
+ * (l'envoi initial avait abouti malgré l'erreur vue par l'app), il n'est pas recrédité. Arrêt au premier
+ * échec : la file est conservée pour la prochaine connexion.
+ */
+export async function synchroniserXp(client?: Client | null, userId?: string | null): Promise<void> {
+  if (!client || typeof client.from !== 'function' || !userId) return;
+  const liste = await lireGainsEnAttente();
+  const miens = liste.filter((g) => g.userId === userId);
+  if (miens.length === 0) return;
+
+  const restants: GainXpEnAttente[] = [];
+  let echec = false;
+  let envoyes = 0;
+  for (const gain of miens) {
+    if (echec) {
+      restants.push(gain);
+      continue;
+    }
+    let dejaLa = false;
+    if (gain.sourceId != null) {
+      try {
+        const requete = client.from('xp_history').select('id');
+        const filtre = typeof requete?.eq === 'function' ? requete.eq('userid', userId).eq('source_id', gain.sourceId) : null;
+        const res = filtre && typeof filtre.limit === 'function' ? await filtre.limit(1) : null;
+        const lignes = (res as { data?: unknown[] } | null)?.data;
+        dejaLa = Array.isArray(lignes) && lignes.length > 0;
+      } catch {
+        dejaLa = false;
+      }
+    }
+    if (dejaLa || (await envoyerGain(client, gain))) envoyes += 1;
+    else {
+      echec = true;
+      restants.push(gain);
+    }
+  }
+
+  await ecrireGainsEnAttente([...liste.filter((g) => g.userId !== userId), ...restants]);
+
+  if (envoyes > 0 && !echec) {
+    // Les gains rejoués sont maintenant dans le total serveur : le cache local se resynchronise dessus.
+    try {
+      const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
+      if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
+        const distant = (data as { total_xp: number }).total_xp;
+        await AsyncStorage.setItem(CLE_XP_LOCAL, String(distant)).catch(() => {});
+        lectureXpRecente = { userId, valeur: distant, date: Date.now() };
+      }
+    } catch {
+      // Le total local reste la meilleure trace disponible.
+    }
+  }
 }
 
 export type InfoGainXp = {

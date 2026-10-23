@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  CLE_XP_EN_ATTENTE,
   calculerNiveau,
   crediterXp,
   enregistrerNotificationNiveau,
@@ -8,6 +9,7 @@ import {
   PALIERS_NIVEAU,
   reinitialiserCacheXp,
   reinitialiserVerrousCreditation,
+  synchroniserXp,
 } from '../xp';
 
 describe('services/xp', () => {
@@ -160,6 +162,73 @@ describe('services/xp', () => {
       const deuxieme = await crediterXp(client, 'user-idempotent', 50, 'daily_mission', '2026-10-14');
       expect(deuxieme).toBe(50);
       expect(mockInsert).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  // Retour terrain du 23 octobre 2026 : 2 leçons terminées hors ligne (+40 XP, total affiché 910), puis le total
+  // est revenu à 870 à la reconnexion — le gain n'existait que localement et la lecture serveur l'a écrasé.
+  describe('gains hors ligne (file d’attente)', () => {
+    const clientHorsLigne = () => ({
+      from: jest.fn().mockImplementation((table: string) => {
+        if (table === 'xp_history') return { insert: jest.fn().mockResolvedValue({ error: new Error('Failed to fetch') }) };
+        if (table === 'user_xp') return { select: () => ({ eq: () => ({ maybeSingle: jest.fn().mockResolvedValue({ data: null, error: new Error('Failed to fetch') }) }) }), upsert: jest.fn().mockResolvedValue({ error: null }) };
+        return {};
+      }),
+    }) as any;
+
+    const clientEnLigne = (totalServeur: () => number, insert: jest.Mock) => ({
+      from: jest.fn().mockImplementation((table: string) => {
+        if (table === 'xp_history') return {
+          insert,
+          select: () => ({ eq: () => ({ eq: () => ({ limit: () => Promise.resolve({ data: [], error: null }) }) }) }),
+        };
+        if (table === 'user_xp') return { select: () => ({ eq: () => ({ maybeSingle: jest.fn().mockImplementation(() => Promise.resolve({ data: { total_xp: totalServeur() }, error: null })) }) }), upsert: jest.fn().mockResolvedValue({ error: null }) };
+        return {};
+      }),
+    }) as any;
+
+    it('un gain hors ligne est gardé en attente et le total lu ensuite l’inclut (pas d’écrasement à 870)', async () => {
+      await AsyncStorage.setItem('xp.totalLocal', '870');
+      const total = await crediterXp(clientHorsLigne(), 'user-xp', 40, 'course', '101');
+      expect(total).toBe(910);
+      const file = JSON.parse((await AsyncStorage.getItem(CLE_XP_EN_ATTENTE)) ?? '[]');
+      expect(file).toHaveLength(1);
+      expect(file[0]).toMatchObject({ userId: 'user-xp', gain: 40, source: 'course', sourceId: '101' });
+
+      // Reconnexion : le serveur dit toujours 870, le total affiché doit rester 910 (870 + en attente).
+      reinitialiserCacheXp();
+      const relu = await lireUserXp(clientEnLigne(() => 870, jest.fn()), 'user-xp');
+      expect(relu).toBe(910);
+    });
+
+    it('synchroniserXp rejoue les gains en attente et vide la file', async () => {
+      await AsyncStorage.setItem(CLE_XP_EN_ATTENTE, JSON.stringify([
+        { userId: 'user-xp', gain: 20, source: 'course', sourceId: '101', le: '2026-10-23T08:00:00.000Z' },
+        { userId: 'user-xp', gain: 20, source: 'course', sourceId: '102', le: '2026-10-23T08:01:00.000Z' },
+        { userId: 'autre', gain: 5, source: 'quiz', sourceId: '9', le: '2026-10-23T08:02:00.000Z' },
+      ]));
+      let serveur = 870;
+      const insert = jest.fn().mockImplementation((l: { xp_gained: number }) => {
+        serveur += l.xp_gained;
+        return Promise.resolve({ error: null });
+      });
+      await synchroniserXp(clientEnLigne(() => serveur, insert), 'user-xp');
+      expect(insert).toHaveBeenCalledTimes(2);
+      const reste = JSON.parse((await AsyncStorage.getItem(CLE_XP_EN_ATTENTE)) ?? '[]');
+      expect(reste).toHaveLength(1);
+      expect(reste[0].userId).toBe('autre');
+      // Total local resynchronisé sur le serveur (910), les gains ne sont plus « en attente ».
+      expect(await AsyncStorage.getItem('xp.totalLocal')).toBe('910');
+    });
+
+    it('synchroniserXp garde la file si l’envoi échoue encore', async () => {
+      await AsyncStorage.setItem(CLE_XP_EN_ATTENTE, JSON.stringify([
+        { userId: 'user-xp', gain: 20, source: 'course', sourceId: '101', le: '2026-10-23T08:00:00.000Z' },
+      ]));
+      const insert = jest.fn().mockResolvedValue({ error: new Error('Failed to fetch') });
+      await synchroniserXp(clientEnLigne(() => 870, insert), 'user-xp');
+      const reste = JSON.parse((await AsyncStorage.getItem(CLE_XP_EN_ATTENTE)) ?? '[]');
+      expect(reste).toHaveLength(1);
     });
   });
 
