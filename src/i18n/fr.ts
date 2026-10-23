@@ -1442,6 +1442,7 @@ export const fr = {
     repriseErreur: 'La reprise n’a pas abouti. Vérifie ta connexion et réessaie.',
     repriseSessionErreur: 'La session nécessaire à la reprise n’est plus disponible. Reconnecte-toi et réessaie.',
     repriseRelancer: 'Réessayer',
+    repriseSansFusionner: 'Continuer sans fusionner',
     erreurTitre: 'Ça n’a pas marché',
     erreurs: {
       emailVide: 'Saisis ton adresse e-mail.',

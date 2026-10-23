@@ -1441,6 +1441,7 @@ export const en: Textes = {
     repriseErreur: 'Progress could not be restored. Check your connection and try again.',
     repriseSessionErreur: 'The session needed to restore progress is no longer available. Sign in again and retry.',
     repriseRelancer: 'Try again',
+    repriseSansFusionner: 'Continue without merging',
     erreurTitre: 'That didn’t work',
     erreurs: {
       emailVide: 'Enter your email address.',

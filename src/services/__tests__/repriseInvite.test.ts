@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   effacerRepriseInvite,
+  lireEtatReprise,
   lireRepriseInvite,
   preparerRepriseInvite,
   reprendreApresRedemarrage,
@@ -104,5 +105,19 @@ describe('web : connexion Google d’un invité', () => {
       natif.setItemAsync.mockImplementation(async (cle: string, valeur: string) => mockSecureStore.set(cle, valeur));
       natif.getItemAsync.mockImplementation(async (cle: string) => mockSecureStore.get(cle) ?? null);
     }
+  });
+});
+
+describe('lireEtatReprise (issue #119)', () => {
+  it('aucun état rangé : null', async () => {
+    expect(await lireEtatReprise()).toBeNull();
+  });
+
+  it('état présent mais jeton perdu : l’état reste lisible, là où lireRepriseInvite renvoie null', async () => {
+    await preparerRepriseInvite('invite-1', 'refresh-1');
+    await terminerOAuthRepriseInvite('invite-1', 'compte-2');
+    mockSecureStore.delete('compte.repriseInvite.jeton');
+    expect(await lireRepriseInvite()).toBeNull();
+    expect(await lireEtatReprise()).toMatchObject({ inviteId: 'invite-1', compteId: 'compte-2', etat: 'a-confirmer' });
   });
 });

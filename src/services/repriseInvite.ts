@@ -169,6 +169,22 @@ export async function annulerOAuthRepriseInvite(): Promise<void> {
   }
 }
 
+/**
+ * État de reprise tel qu'il est rangé, sans exiger le jeton invité. Sert à distinguer « aucune reprise en
+ * attente » (l'écran de reprise n'a pas lieu d'être) d'une reprise bloquée parce que le jeton a disparu —
+ * `lireRepriseInvite()` renvoie `null` dans les deux cas, l'écran ne doit pas les traiter pareil.
+ */
+export async function lireEtatReprise(): Promise<EtatReprise | null> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_REPRISE);
+    if (!brut) return null;
+    const etat = JSON.parse(brut) as EtatReprise;
+    return etat && typeof etat.inviteId === 'string' ? etat : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function lireRepriseInvite(): Promise<RepriseInvite | null> {
   try {
     const brut = await AsyncStorage.getItem(CLE_REPRISE);

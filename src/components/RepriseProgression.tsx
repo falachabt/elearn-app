@@ -9,7 +9,7 @@ import { effacerDonneesInviteesLocales, restaurerHistorique } from '@/services/d
 import { effacerRappelInvite } from '@/services/rappels';
 import { reprendreResultatApresTransfert } from '@/services/miniTest';
 import { lireProfil, PAYS, type Profil } from '@/services/profil';
-import { lireRepriseInvite, transfererProgressionInvitee, effacerRepriseInvite, type RepriseInvite } from '@/services/repriseInvite';
+import { lireEtatReprise, lireRepriseInvite, transfererProgressionInvitee, effacerRepriseInvite, type RepriseInvite } from '@/services/repriseInvite';
 import { getSupabase } from '@/services/supabase';
 import { appliquerReglages, lireReglagesCompte, remplacerReglagesParTelephone, type Reglages } from '@/services/synchroReglages';
 import { synchroniserLues } from '@/services/reviser';
@@ -63,21 +63,33 @@ export function RepriseProgression() {
   useEffect(() => {
     let actif = true;
     if (session) {
-      void charger().then((resultat) => {
-        if (!actif) return;
-        setReprise(resultat.reprise);
-        setProfilInvite(resultat.profilInvite);
-        setReglagesCompte(resultat.reglagesCompte);
-      }).catch(() => {
-        if (actif) setErreur(t('compte.repriseSessionErreur'));
-      }).finally(() => {
-        if (actif) setChargement(false);
-      });
+      void (async () => {
+        // Aucune reprise en attente (arrivée directe sur la route, état déjà réglé) : cet écran n'a pas
+        // lieu d'être — retour silencieux à l'accueil plutôt que l'erreur « session introuvable ».
+        if (!(await lireEtatReprise())) {
+          await effacerRepriseInvite();
+          if (actif) router.replace('/');
+          if (actif) setChargement(false);
+          return;
+        }
+        try {
+          const resultat = await charger();
+          if (!actif) return;
+          setErreur(null);
+          setReprise(resultat.reprise);
+          setProfilInvite(resultat.profilInvite);
+          setReglagesCompte(resultat.reglagesCompte);
+        } catch {
+          if (actif) setErreur(t('compte.repriseSessionErreur'));
+        } finally {
+          if (actif) setChargement(false);
+        }
+      })();
     }
     return () => {
       actif = false;
     };
-  }, [charger, session, t]);
+  }, [charger, session, t, router]);
 
   const relancer = () => {
     setChargement(true);
@@ -91,6 +103,20 @@ export function RepriseProgression() {
     }).finally(() => {
       setChargement(false);
     });
+  };
+
+  const [sortieEnCours, setSortieEnCours] = useState(false);
+  const continuerSansFusionner = async () => {
+    if (sortieEnCours) return;
+    setSortieEnCours(true);
+    // La session du compte est valide : seule la fusion est impossible (jeton invité introuvable), et
+    // réessayer ne le fera pas réapparaître. On efface l'état de reprise — ce qui lève aussi la garde du
+    // layout qui force cet écran — et on rentre à l'accueil, plutôt que d'enfermer l'élève dehors.
+    try {
+      await effacerRepriseInvite();
+    } finally {
+      router.replace('/');
+    }
   };
 
   const executer = async (garder: boolean) => {
@@ -194,7 +220,12 @@ export function RepriseProgression() {
       {erreur ? (
         <View accessibilityRole="alert">
           <Text style={[typo.petit, { color: theme.etat.erreurTexte }]}>{erreur}</Text>
-          {!reprise ? <Bouton libelle={t('compte.repriseRelancer')} variante="texte" onPress={relancer} /> : null}
+          {!reprise ? (
+            <View style={styles.sortie}>
+              <Bouton libelle={t('compte.repriseSansFusionner')} onPress={() => void continuerSansFusionner()} desactive={sortieEnCours} />
+              <Bouton libelle={t('compte.repriseRelancer')} variante="texte" onPress={relancer} desactive={sortieEnCours} />
+            </View>
+          ) : null}
         </View>
       ) : null}
     </Ecran>
@@ -207,5 +238,6 @@ const styles = StyleSheet.create({
   separateur: { height: 1, marginVertical: espace[5] },
   carteProfil: { marginTop: espace[4] },
   attente: { flexDirection: 'row', alignItems: 'center', gap: espace[4], marginTop: espace[5] },
+  sortie: { gap: espace[3], marginTop: espace[5] },
   pied: { gap: espace[3] },
 });
