@@ -17,6 +17,7 @@ import {
   estJourDeRepos,
   etatJour,
   heuresEstimees,
+  idsTachesSeances,
   jourLocalTexte,
   lireCochesEnAttente,
   lirePlanning,
@@ -222,6 +223,58 @@ describe('règles d’affichage', () => {
 
   it('jour local en AAAA-MM-JJ', () => {
     expect(jourLocalTexte(new Date(2026, 9, 5, 23, 59))).toBe('2026-10-05');
+  });
+});
+
+// Issue #74, lot B : le pack hors ligne télécharge d'abord les contenus des séances des trois prochains
+// jours. Ces identifiants sont ceux des tâches du pack (services/horsLigne) : leçon + quiz de validation,
+// quiz libre, exercice + corrigé.
+describe('idsTachesSeances', () => {
+  const planning: Parameters<typeof idsTachesSeances>[0] = {
+    statut: 'ready',
+    minutesParJour: 45,
+    cible: null,
+    joursRestants: 10,
+    couverture: { total: 4, prevues: 3 },
+    semaines: [
+      {
+        debut: '2026-10-19',
+        phase: 'learning',
+        jours: [
+          {
+            jour: '2026-10-19', phase: 'learning', minutes: 45, fait: false,
+            elements: [
+              { genre: 'lecon', matiere: 'Mathématique', cours: 'Fractions', lecon: 'Définition', minutes: 20, coursId: 1, leconId: 2 },
+              { genre: 'quiz', matiere: 'Mathématique', cours: 'Fractions', quiz: 'Quiz 1', questions: 5, minutes: 10, coursId: 1, quizId: 'q1' },
+              { genre: 'exercice', matiere: 'Mathématique', cours: 'Fractions', exercice: 'Exo 1', minutes: 15, coursId: 1, exerciceId: 'e1' },
+              { genre: 'revisionLibre' },
+            ],
+          },
+          {
+            jour: '2026-10-20', phase: 'learning', minutes: 45, fait: false,
+            elements: [
+              { genre: 'lecon', matiere: null, cours: 'Grammaire', lecon: 'Noms', minutes: 20, coursId: 3, leconId: 4 },
+              { genre: 'lecon', matiere: 'Mathématique', cours: 'Fractions', lecon: 'Définition', minutes: 20, coursId: 1, leconId: 2 },
+            ],
+          },
+        ],
+      },
+    ],
+  };
+
+  it('les contenus d’une séance : leçon et validation, quiz, exercice et corrigé', () => {
+    expect(idsTachesSeances(planning, ['2026-10-19'])).toEqual(['lecon-2', 'validation-2', 'quiz-q1', 'exercice-e1', 'corrige-e1']);
+  });
+
+  it('suit l’ordre des jours demandés et ne répète pas un contenu déjà vu', () => {
+    expect(idsTachesSeances(planning, ['2026-10-20', '2026-10-19'])).toEqual([
+      'lecon-4', 'validation-4', 'lecon-2', 'validation-2', 'quiz-q1', 'exercice-e1', 'corrige-e1',
+    ]);
+  });
+
+  it('un jour sans séance (ou inconnu) ne donne rien', () => {
+    expect(idsTachesSeances(planning, ['2026-10-21'])).toEqual([]);
+    expect(idsTachesSeances(planning, [])).toEqual([]);
   });
 });
 

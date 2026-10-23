@@ -12,6 +12,7 @@ import { lireEntrainement, lireExercice, lireQuizLibre } from './entrainement';
 import { lireDossiers, lireDocuments } from './annales';
 import { prechargerMission } from './mission';
 import { lireAcces } from './pass';
+import { idsTachesSeances, jourLocalTexte, lirePlanning } from './planning';
 import { lireProfil, type Profil } from './profil';
 import { ecrireLocalHorsLigne, lireFiche, lireLecon, lireLecons, lireQuizLecon, lireCours, programmeDu } from './reviser';
 import { lireRythme } from './rythme';
@@ -206,6 +207,42 @@ async function lireDocumentsProgramme(client: ReturnType<typeof getSupabase>, pr
   return visiter(null);
 }
 
+/**
+ * Réordonne les tâches du pack (issue #74, lot B) : les missions restent en tête, puis les contenus des
+ * séances des trois prochains jours, puis le reste du programme. Un téléchargement interrompu couvre
+ * ainsi d'abord ce que l'élève va réellement ouvrir. Partition stable : l'ordre relatif de chaque
+ * groupe est conservé.
+ */
+export function prioriserTachesSeances(taches: readonly Tache[], idsPrioritaires: ReadonlySet<string>): Tache[] {
+  const missions = taches.filter((t) => t.categorie === 'missions');
+  const autres = taches.filter((t) => t.categorie !== 'missions');
+  return [
+    ...missions,
+    ...autres.filter((t) => idsPrioritaires.has(t.id)),
+    ...autres.filter((t) => !idsPrioritaires.has(t.id)),
+  ];
+}
+
+/**
+ * Les tâches prioritaires du moment : les contenus des séances d'aujourd'hui, de demain et d'après-demain,
+ * lus dans le planning de l'élève connecté. Aucun planning (ou lecture impossible) : rien n'est prioritaire
+ * et le pack garde son ordre habituel — le préchargement ciblé ne doit jamais bloquer le pack entier.
+ */
+async function idsTachesSeancesProchaines(client: ReturnType<typeof getSupabase>): Promise<Set<string>> {
+  try {
+    if (typeof client.auth?.getSession !== 'function') return new Set();
+    const { data } = await client.auth.getSession();
+    const idUtilisateur = data?.session?.user.id;
+    if (!idUtilisateur) return new Set();
+    const { planning } = await lirePlanning(client, idUtilisateur);
+    if (planning.statut !== 'ready') return new Set();
+    const aujourdhui = jourLocalTexte();
+    return new Set(idsTachesSeances(planning, [0, 1, 2].map((decalage) => aujourdhuiPlus(aujourdhui, decalage))));
+  } catch {
+    return new Set();
+  }
+}
+
 async function lireRefsOuvertes(client: ReturnType<typeof getSupabase>, action: 'exercise_solution' | 'document_pdf', refs: string[]): Promise<Set<string>> {
   const lots: string[][] = [];
   for (let i = 0; i < refs.length; i += 200) lots.push(refs.slice(i, i + 200));
@@ -267,14 +304,18 @@ export async function estimerTelechargement(): Promise<EstimationTelechargement>
       });
     }
   }
-  documentsEstimes(taches, documents);
+  // Lot B (issue #74) : les contenus des séances des trois prochains jours passent devant le reste du
+  // programme — un téléchargement interrompu couvre d'abord les séances imminentes.
+  const prioritaires = await idsTachesSeancesProchaines(client);
+  const tachesOrdonnees = prioritaires.size > 0 ? prioriserTachesSeances(taches, prioritaires) : taches;
+  documentsEstimes(tachesOrdonnees, documents);
 
-  const estimationCategories = estimerCategories(taches);
+  const estimationCategories = estimerCategories(tachesOrdonnees);
   return {
     profil: { niveau: profil.niveau, pays: profil.pays, concours: profil.concours },
-    taches,
-    progression: progression(taches),
-    estimationOctets: octetsEstimes(taches),
+    taches: tachesOrdonnees,
+    progression: progression(tachesOrdonnees),
+    estimationOctets: octetsEstimes(tachesOrdonnees),
     estimationCategories,
     espaceDisponible: Math.max(0, Paths.availableDiskSpace || 0),
   };

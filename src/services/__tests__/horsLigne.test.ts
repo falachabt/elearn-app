@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { CLE_ETAT_HORS_LIGNE, ErreurEspaceInsuffisant, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, reprendreTelechargementHorsLigne } from '../horsLigne';
+import { CLE_ETAT_HORS_LIGNE, ErreurEspaceInsuffisant, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, prioriserTachesSeances, reprendreTelechargementHorsLigne } from '../horsLigne';
 
 /**
  * Prouve que le téléchargement hors ligne est bien scopé au programme actif : il ne prend que les cours renvoyés par
@@ -11,7 +11,14 @@ import { CLE_ETAT_HORS_LIGNE, ErreurEspaceInsuffisant, concurrenceTelechargement
 jest.mock('../profil', () => ({ lireProfil: jest.fn() }));
 jest.mock('../pass', () => ({ lireAcces: jest.fn() }));
 jest.mock('../rythme', () => ({ lireRythme: jest.fn(), TAILLE_DEFAUT: 10 }));
-jest.mock('../supabase', () => ({ getSupabase: jest.fn(() => ({ rpc: jest.fn(), from: () => ({ select: jest.fn() }) })) }));
+jest.mock('../supabase', () => ({
+  getSupabase: jest.fn(() => ({
+    rpc: jest.fn(),
+    from: () => ({ select: jest.fn() }),
+    auth: { getSession: jest.fn(async () => ({ data: { session: { user: { id: 'u-pack' } } }, error: null })) },
+  })),
+}));
+jest.mock('../planning', () => ({ ...jest.requireActual('../planning'), lirePlanning: jest.fn() }));
 jest.mock('../reviser', () => ({
   programmeDu: jest.fn((profil: unknown) => ({ niveau: (profil as { niveau?: string }).niveau ?? '3e', pays: (profil as { pays?: string }).pays ?? 'CM', concours: (profil as { concours?: { id: string } | null }).concours?.id ?? null })),
   lireCours: jest.fn(),
@@ -35,6 +42,7 @@ jest.mock('../connectivite', () => ({
 }));
 
 import { lireAcces } from '../pass';
+import { jourLocalTexte, lirePlanning } from '../planning';
 import { lireProfil } from '../profil';
 import { lireCours, lireLecon, lireLecons, programmeDu } from '../reviser';
 import { lireEntrainement } from '../entrainement';
@@ -47,6 +55,7 @@ const mProgramme = programmeDu as jest.Mock;
 const mCours = lireCours as jest.Mock;
 const mLecons = lireLecons as jest.Mock;
 const mEntrainement = lireEntrainement as jest.Mock;
+const mLirePlanning = lirePlanning as jest.Mock;
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -58,6 +67,7 @@ beforeEach(() => {
   mCours.mockResolvedValue([{ id: 11, nom: 'Analyse', matiere: 'Maths', lecons: 1 }]);
   mLecons.mockResolvedValue([{ id: 101, nom: 'Limites', minutes: 10 }]);
   mEntrainement.mockResolvedValue({ quiz: [{ id: 'q1', nom: 'Quiz 1', numero: 1, questions: 3 }], exercices: [{ id: 'e1', titre: 'Exo', enonce: 'Énoncé' }] });
+  mLirePlanning.mockResolvedValue({ planning: { statut: 'empty' }, copie: false });
 });
 
 it('télécharge uniquement les cours du programme actif', async () => {
@@ -205,6 +215,61 @@ describe('moteur de téléchargement : parallèle et reprise réseau', () => {
 
 // Retour terrain du 23 octobre : la base locale de l'app a saturé pendant le téléchargement (SQLITE_FULL à la
 // connexion suivante). Deux garde-fous : ne pas partir si la place manque, et s'arrêter net si le stockage dit plein.
+// Issue #74, lot B : les contenus des séances des trois prochains jours passent devant le reste du
+// programme dans le pack, pour qu'un téléchargement interrompu couvre d'abord les séances imminentes.
+describe('prioriserTachesSeances', () => {
+  const tache = (id: string, categorie: 'missions' | 'cours' | 'quiz' | 'exercices') => ({
+    id, categorie, statut: 'a-faire' as const,
+  });
+
+  it('missions en tête, puis les priorités, puis le reste — ordre relatif conservé', () => {
+    const taches = [
+      tache('fiche-11', 'cours'), tache('lecon-101', 'cours'), tache('mission-2026-10-23', 'missions'),
+      tache('quiz-q1', 'quiz'), tache('validation-101', 'quiz'), tache('exercice-e1', 'exercices'),
+    ];
+    const ordonnees = prioriserTachesSeances(taches, new Set(['lecon-101', 'validation-101']));
+    expect(ordonnees.map((t) => t.id)).toEqual(['mission-2026-10-23', 'lecon-101', 'validation-101', 'fiche-11', 'quiz-q1', 'exercice-e1']);
+  });
+
+  it('sans priorité, l’ordre est inchangé', () => {
+    const taches = [tache('fiche-11', 'cours'), tache('lecon-101', 'cours')];
+    expect(prioriserTachesSeances(taches, new Set()).map((t) => t.id)).toEqual(['fiche-11', 'lecon-101']);
+  });
+});
+
+describe('estimerTelechargement — séances des trois prochains jours en premier (lot B)', () => {
+  it('la séance du jour (leçon 101, exercice e1) passe avant la fiche et le quiz libre', async () => {
+    const aujourdhui = jourLocalTexte();
+    mLirePlanning.mockResolvedValue({
+      planning: {
+        statut: 'ready', minutesParJour: 45, cible: null, joursRestants: 10,
+        couverture: { total: 1, prevues: 1 },
+        semaines: [{
+          debut: aujourdhui, phase: 'learning',
+          jours: [{
+            jour: aujourdhui, phase: 'learning', minutes: 45, fait: false,
+            elements: [
+              { genre: 'lecon', matiere: null, cours: 'Cours 1', lecon: 'Leçon 101', minutes: 20, coursId: 11, leconId: 101 },
+              { genre: 'exercice', matiere: null, cours: 'Cours 1', exercice: 'Exo', minutes: 15, coursId: 11, exerciceId: 'e1' },
+            ],
+          }],
+        }],
+      },
+      copie: false,
+    });
+
+    const est = await estimerTelechargement();
+    const apresMissions = est.taches.filter((t) => t.categorie !== 'missions').map((t) => t.id);
+    expect(apresMissions).toEqual(['lecon-101', 'validation-101', 'exercice-e1', 'fiche-11', 'quiz-q1']);
+  });
+
+  it('sans planning prêt, l’ordre du programme est conservé', async () => {
+    const est = await estimerTelechargement();
+    const apresMissions = est.taches.filter((t) => t.categorie !== 'missions').map((t) => t.id);
+    expect(apresMissions).toEqual(['fiche-11', 'lecon-101', 'validation-101', 'quiz-q1', 'exercice-e1']);
+  });
+});
+
 describe('garde-fous stockage', () => {
   const mLecon = lireLecon as jest.Mock;
 

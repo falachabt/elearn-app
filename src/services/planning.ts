@@ -238,6 +238,40 @@ export const annonceRepos = (p: Planning, jour: string): boolean => !seanceDe(p,
 /** Séance d'un jour donné, partout dans le planning ; null un jour de repos ou hors planning. */
 export const seanceDe = (p: Planning, jour: string): JourPlanning | null => tousLesJours(p).find((j) => j.jour === jour) ?? null;
 
+/**
+ * Identifiants des tâches du pack hors ligne qui portent les contenus des séances des jours donnés
+ * (issue #74, lot B) : pour une leçon, la leçon et son quiz de validation ; pour un exercice, l'exercice
+ * et son corrigé ; pour un quiz libre, le quiz. Les annales et les révisions n'ont pas de contenu propre
+ * à télécharger par séance. L'ordre suit les jours donnés puis les éléments dans la séance, sans doublon :
+ * le pack s'en sert pour télécharger ces contenus en premier.
+ */
+export function idsTachesSeances(planning: Planning, jours: readonly string[]): string[] {
+  const vus = new Set<string>();
+  const ids: string[] = [];
+  const ajouter = (id: string) => {
+    if (!vus.has(id)) {
+      vus.add(id);
+      ids.push(id);
+    }
+  };
+  for (const jour of jours) {
+    const seance = seanceDe(planning, jour);
+    if (!seance) continue;
+    for (const element of seance.elements) {
+      if (element.genre === 'lecon') {
+        ajouter(`lecon-${element.leconId}`);
+        ajouter(`validation-${element.leconId}`);
+      } else if (element.genre === 'quiz') {
+        ajouter(`quiz-${element.quizId}`);
+      } else if (element.genre === 'exercice') {
+        ajouter(`exercice-${element.exerciceId}`);
+        ajouter(`corrige-${element.exerciceId}`);
+      }
+    }
+  }
+  return ids;
+}
+
 /** Planning avec la séance du jour donné cochée ou décochée (mise à jour locale en attendant la réponse du serveur). */
 export const avecSeanceFaite = (p: Planning, jour: string, fait: boolean): Planning => ({
   ...p,
