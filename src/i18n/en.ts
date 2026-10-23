@@ -2785,6 +2785,7 @@ export const en: Textes = {
           intro: 'Each mini-test covers one part: 10 questions.',
           partie: 'Part {{partie}}',
           faits: 'Done: {{faits}} out of {{total}}',
+          pasEncore: 'No test yet',
           conseille: 'Suggested',
           mixte: 'Mixed mini-tests',
           mixteSous: '20 questions, ten listening and ten reading',

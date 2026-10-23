@@ -35,10 +35,12 @@ describe('demi-tests et test complet (démo)', () => {
 // Tests composés (listes v38, v39) côté démo : une liste par type, départ par identifiant de test.
 describe('tests composés (démo)', () => {
   it('liste un test par type, filtrable', async () => {
+    // Démo calquée sur la production : 3 écoute, 3 lecture, 3 complets, 6 mini-tests par partie de 2 à 7 (pas de P1), 6 mixtes.
     const tous = await apiDemo.listerDefsTests('toeic', null);
-    expect(tous.map((t) => t.kind)).toEqual(['listening', 'reading', 'full', 'mini', 'mini', 'mixed']);
+    expect(tous.filter((t) => t.kind === 'mini').map((t) => t.part)).toEqual([2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7]);
+    expect(tous.filter((t) => t.kind === 'mixed')).toHaveLength(6);
     const ecoute = await apiDemo.listerDefsTests('toeic', 'listening');
-    expect(ecoute).toHaveLength(1);
+    expect(ecoute).toHaveLength(3);
     expect(ecoute[0]).toMatchObject({ kind: 'listening', numero: 1, questions: 100, tentatives: 0, fini: false });
   });
 

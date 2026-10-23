@@ -44,14 +44,18 @@ export function ChoixPartie() {
         <>
           {PARTIES.map((partie) => {
             const ligne = parties.find((p) => p.partie === partie)!;
-            // Une partie sans test n'a rien à proposer : elle ne s'affiche pas.
-            if (ligne.total === 0) return null;
+            // Une partie sans test reste visible (P1 à P7) avec « Pas encore de test » : elle ne s'ouvre pas.
+            const vide = ligne.total === 0;
             const { couleur, icone: Icone } = styleDes[partie]!;
+            const libelleFaits = vide
+              ? t('certification.tests.listes.choixPartie.pasEncore')
+              : t('certification.tests.listes.choixPartie.faits', { faits: ligne.faits, total: ligne.total });
             return (
               <Appui
                 key={partie}
                 accessibilityRole="button"
-                accessibilityLabel={`${t('certification.tests.listes.choixPartie.partie', { partie })}. ${t('certification.tests.listes.choixPartie.faits', { faits: ligne.faits, total: ligne.total })}`}
+                accessibilityLabel={`${t('certification.tests.listes.choixPartie.partie', { partie })}. ${libelleFaits}`}
+                disabled={vide}
                 onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mini', partie: String(partie) } } as never)}
                 decalage={3}
                 rayon={rayon.l}
@@ -69,9 +73,7 @@ export function ChoixPartie() {
                         <Text style={[typo.legende, { color: theme.texte.principal }]}>{t('certification.tests.listes.choixPartie.conseille')}</Text>
                       ) : null}
                     </View>
-                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                      {t('certification.tests.listes.choixPartie.faits', { faits: ligne.faits, total: ligne.total })}
-                    </Text>
+                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{libelleFaits}</Text>
                   </View>
                 </View>
               </Appui>

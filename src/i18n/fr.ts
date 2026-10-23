@@ -2786,6 +2786,7 @@ export const fr = {
           intro: 'Chaque mini-test porte sur une seule partie : 10 questions.',
           partie: 'Partie {{partie}}',
           faits: 'Fait : {{faits}} sur {{total}}',
+          pasEncore: 'Pas encore de test',
           conseille: 'Conseillé',
           mixte: 'Mini-tests mixtes',
           mixteSous: '20 questions, dix écoute et dix lecture',

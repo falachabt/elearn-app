@@ -392,13 +392,18 @@ export const apiDemo: CertApi = {
       ];
       return type ? demo.filter((t) => t.kind === type) : demo;
     }
+    // Même volume que la production (composition du 23 octobre) : trois tests par type fixe, six mini-tests par partie
+    // de 2 à 7 et six mixtes. La partie 1 n'a pas encore de mini-test, elle s'affiche « Pas encore de test ».
+    const vierge = (kind: DefTest['kind'], part: number | null, numero: number, questions: number): DefTest => ({
+      id: part === null ? `demo-${kind}-${numero}` : `demo-${kind}-${part}-${numero}`, kind, part, numero, questions, tentatives: 0, fini: false,
+      meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: questions,
+    });
     const tous: DefTest[] = [
-      { id: 'demo-listening-1', kind: 'listening', part: null, numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-      { id: 'demo-reading-1', kind: 'reading', part: null, numero: 1, questions: 100, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 100 },
-      { id: 'demo-full-1', kind: 'full', part: null, numero: 1, questions: 200, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 200 },
-      { id: 'demo-mini-1-1', kind: 'mini', part: 1, numero: 1, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
-      { id: 'demo-mini-5-2', kind: 'mini', part: 5, numero: 2, questions: 10, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 10 },
-      { id: 'demo-mixed-1', kind: 'mixed', part: null, numero: 1, questions: 20, tentatives: 0, fini: false, meilleurScoreMax: null, derniereDate: null, nouvellesQuestions: 20 },
+      ...[1, 2, 3].map((n) => vierge('listening', null, n, 100)),
+      ...[1, 2, 3].map((n) => vierge('reading', null, n, 100)),
+      ...[1, 2, 3].map((n) => vierge('full', null, n, 200)),
+      ...[2, 3, 4, 5, 6, 7].flatMap((partie) => [1, 2, 3, 4, 5, 6].map((n) => vierge('mini', partie, n, 10))),
+      ...[1, 2, 3, 4, 5, 6].map((n) => vierge('mixed', null, n, 20)),
     ];
     return type ? tous.filter((t) => t.kind === type) : tous;
   },

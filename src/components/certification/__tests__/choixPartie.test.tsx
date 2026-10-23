@@ -69,8 +69,9 @@ describe('choix de la partie (v39)', () => {
     expect(await screen.findByText(t.choixPartie.partie.replace('{{partie}}', '1'))).toBeTruthy();
     expect(screen.getByText(t.choixPartie.faits.replace('{{faits}}', '1').replace('{{total}}', '2'))).toBeTruthy();
     expect(screen.getByText(t.choixPartie.conseille)).toBeTruthy();
-    // Une partie sans test ne s'affiche pas.
-    expect(screen.queryByTestId('partie-7')).toBeNull();
+    // Une partie sans test reste affichée, avec « Pas encore de test », et ne s'ouvre pas.
+    expect(screen.getByTestId('partie-7')).toBeTruthy();
+    expect(screen.getAllByText(t.choixPartie.pasEncore).length).toBeGreaterThan(0);
     expect(screen.getByTestId('mixte')).toBeTruthy();
   });
 
