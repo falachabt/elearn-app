@@ -9,6 +9,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
+import { chargerPaysFermes, estPaysFerme, filtrerPaysOuverts, usePaysFermes } from '@/services/paysOuverts';
 import { actualiserPlanningProfil } from '@/services/planning';
 import {
   CLASSES,
@@ -172,7 +173,26 @@ export function ChoixClasse() {
   const [feuilleHorsLigne, setFeuilleHorsLigne] = useState(false);
   const [series, setSeries] = useState<SerieClasse[]>([]);
   const [serie, setSerie] = useState<SerieChoisie | null>(null);
-  const listePays = useMemo(() => listerPays(langue, {}), [langue]);
+  // Pays fermés par la configuration serveur (M14-03) : retirés de la liste, donc non sélectionnables.
+  // Tant que la configuration n'est pas connue (ou en échec), aucun filtrage.
+  const fermes = usePaysFermes();
+  const listePays = useMemo(() => filtrerPaysOuverts(listerPays(langue, {}), fermes), [langue, fermes]);
+  // Pays pré-sélectionné fermé par la configuration : bascule sur le premier pays ouvert dès qu'elle
+  // est connue. En mode « modifier », le pays d'un profil existant n'est pas réécrit en silence.
+  useEffect(() => {
+    if (modifier) return;
+    let actif = true;
+    void chargerPaysFermes().then((f) => {
+      if (!actif) return;
+      setPays((actuel) => {
+        if (!estPaysFerme(actuel, f)) return actuel;
+        return filtrerPaysOuverts(listerPays(langue, {}), f)[0]?.alpha2 ?? actuel;
+      });
+    });
+    return () => {
+      actif = false;
+    };
+  }, [modifier, langue, pays]);
   // Le concours se choisit sur son propre écran (filière puis concours), qui l'enregistre dans le profil.
   useFocusEffect(
     useCallback(() => {
