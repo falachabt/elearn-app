@@ -4,6 +4,7 @@ import { Paths } from 'expo-file-system';
 
 import { i18n } from '@/i18n';
 
+import { estErreurReseau } from './connectivite';
 import { prechargerDocument } from './documents';
 import { lireOuverts } from './credits';
 import { lireContenuEnCache, telechargerContenuPayant } from './creditsHorsLigne';
@@ -40,6 +41,8 @@ type Tache = {
   taille?: number;
   tailleOctets?: number;
   erreur?: string;
+  /** Vrai si le dernier échec vient du réseau (veille, coupure) : à la reprise, la tâche repart au lieu de rester en échec. */
+  erreurReseau?: boolean;
 };
 
 export type ProgressionCategorie = { total: number; faites: number; echecs: number };
@@ -80,12 +83,28 @@ export async function lireEtatHorsLigne(): Promise<EtatHorsLigne | null> {
   }
 }
 
+let chaineEcriture: Promise<void> = Promise.resolve();
+let versionEtat = 0;
+
 async function enregistrer(etat: EtatHorsLigne): Promise<void> {
   etat.actualiseLe = new Date().toISOString();
-  await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
   // Copie : la file mute le même objet d'une tâche à l'autre, et React ignore un `setEtat` qui reçoit la même référence
   // (les barres ne bougeaient qu'en quittant puis en rouvrant la page, qui relisait le disque).
   notifier({ ...etat, progression: { ...etat.progression }, taches: [...etat.taches] });
+  // Écritures sérialisées : avec des tâches en parallèle, écrire l'état entier dans le désordre laisserait une vieille
+  // version écraser la nouvelle sur le disque. Chaque version passe par la même file ; une version déjà dépassée par
+  // une plus récente au moment de son tour est sautée, la plus récente contient le même état à jour.
+  const version = ++versionEtat;
+  const ecriture = chaineEcriture.then(async () => {
+    if (version < versionEtat) return;
+    try {
+      await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify(etat));
+    } catch {
+      // État facultatif : au pire, la progression repart de la dernière version gardée.
+    }
+  });
+  chaineEcriture = ecriture;
+  await ecriture;
 }
 
 export async function aVuInvitationHorsLigne(): Promise<boolean> {
@@ -329,23 +348,89 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
   void executerFile();
 }
 
+/**
+ * Nombre de téléchargements menés de front, selon ce qui reste à faire (demande de Benny, tests de l'issue #74) :
+ * le pack entier compte des milliers d'éléments, une tâche après l'autre prenait des dizaines de minutes.
+ * Petit reste, peu de front ; gros pack, jusqu'à 16 — au-delà, le serveur et le téléphone saturent sans gagner de temps.
+ */
+export function concurrenceTelechargement(restantes: number): number {
+  if (restantes <= 0) return 0;
+  if (restantes <= 30) return Math.min(3, restantes);
+  if (restantes <= 200) return 6;
+  if (restantes <= 1000) return 10;
+  return 16;
+}
+
+const REESSAIS_RESEAU_MAX = 4;
+const DELAI_REESSAI_RESEAU_MS = 400;
+
+const attendreMs = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Exécute une tâche du pack. Une erreur réseau n'est pas un échec : la mise en veille coupe les connexions en cours,
+ * le réseau saute, et l'élève n'y est pour rien — la tâche attend un peu et repart, jusqu'à 4 fois. Pendant la veille,
+ * le code de l'app est de toute façon suspendu par le système : les délais courent au réveil et le téléchargement
+ * reprend tout seul. Seules les autres erreurs (contenu illisible, droit refusé) partent en échec, comme avant.
+ */
+async function executerTacheAvecReessais(tache: Tache): Promise<void> {
+  let reessais = 0;
+  for (;;) {
+    try {
+      await executerTache(tache);
+      return;
+    } catch (erreur) {
+      reessais++;
+      if (!estErreurReseau(erreur) || reessais > REESSAIS_RESEAU_MAX) throw erreur;
+      await attendreMs(DELAI_REESSAI_RESEAU_MS * reessais);
+    }
+  }
+}
+
 async function executerFile(): Promise<void> {
   if (execution) return execution;
   execution = (async () => {
-    let etat = await lireEtatHorsLigne();
-    if (!etat || etat.statut !== 'telechargement') return;
+    const etat = await lireEtatHorsLigne();
+    if (!etat || (etat.statut !== 'telechargement' && etat.statut !== 'partiel')) return;
+    // Reprise après interruption (veille, application tuée puis rouverte — demande de Benny, tests de l'issue #74) :
+    // un échec dû au réseau n'est pas un échec définitif. L'élément n'est pas complètement téléchargé, il repart
+    // entièrement ; son contenu partiel sera écrasé par le nouveau téléchargement. Les échecs des anciennes versions
+    // n'ont pas le drapeau : leur message fait foi. Les vrais échecs (droit refusé, contenu illisible) restent en
+    // attente du bouton « Réessayer » de l'écran, sinon ils repartiraient pour rien à chaque ouverture.
     for (const tache of etat.taches) {
-      if (tache.statut !== 'a-faire') continue;
-      try {
-        await executerTache(tache);
-        tache.statut = 'faite';
-      } catch (erreur) {
-        tache.statut = 'echec';
-        tache.erreur = erreur instanceof Error ? erreur.message : String(erreur);
+      if (tache.statut !== 'echec') continue;
+      const duReseau = tache.erreurReseau ?? (tache.erreur ? estErreurReseau({ message: tache.erreur }) : false);
+      if (duReseau) {
+        tache.statut = 'a-faire';
+        tache.erreur = undefined;
+        tache.erreurReseau = undefined;
       }
+    }
+    if (!etat.taches.some((t) => t.statut === 'a-faire')) return;
+    if (etat.statut !== 'telechargement') {
+      etat.statut = 'telechargement';
       etat.progression = progression(etat.taches);
       await enregistrer(etat);
     }
+    const aFaire = etat.taches.filter((t) => t.statut === 'a-faire');
+    let curseur = 0;
+    const ouvrier = async (): Promise<void> => {
+      while (curseur < aFaire.length) {
+        const tache = aFaire[curseur++];
+        try {
+          await executerTacheAvecReessais(tache);
+          tache.statut = 'faite';
+          tache.erreur = undefined;
+          tache.erreurReseau = undefined;
+        } catch (erreur) {
+          tache.statut = 'echec';
+          tache.erreur = erreur instanceof Error ? erreur.message : String(erreur);
+          tache.erreurReseau = estErreurReseau(erreur) ? true : undefined;
+        }
+        etat.progression = progression(etat.taches);
+        await enregistrer(etat);
+      }
+    };
+    await Promise.all(Array.from({ length: concurrenceTelechargement(aFaire.length) }, () => ouvrier()));
     etat.statut = etat.taches.some((t) => t.statut === 'echec') ? 'partiel' : 'termine';
     await enregistrer(etat);
     if (etat.statut === 'termine') {

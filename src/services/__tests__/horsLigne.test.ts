@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ecouterHorsLigne, estimerTelechargement, lancerTelechargement } from '../horsLigne';
+import { CLE_ETAT_HORS_LIGNE, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, reprendreTelechargementHorsLigne } from '../horsLigne';
 
 /**
  * Prouve que le téléchargement hors ligne est bien scopé au programme actif : il ne prend que les cours renvoyés par
@@ -27,11 +27,16 @@ jest.mock('../creditsHorsLigne', () => ({ telechargerContenuPayant: jest.fn(), l
 jest.mock('../annales', () => ({ lireDossiers: jest.fn(), lireDocuments: jest.fn() }));
 jest.mock('../documents', () => ({ prechargerDocument: jest.fn() }));
 jest.mock('../mission', () => ({ prechargerMission: jest.fn() }));
-jest.mock('../connectivite', () => ({ contenuHorsLigneValide: jest.fn(async () => true) }));
+jest.mock('../connectivite', () => ({
+  contenuHorsLigneValide: jest.fn(async () => true),
+  // Même règle que le vrai service : un TypeError ou un message « network » est une erreur réseau.
+  estErreurReseau: jest.fn((e: { name?: string; message?: string } | null) =>
+    !!e && (e.name === 'TypeError' || /network/i.test(e.message ?? ''))),
+}));
 
 import { lireAcces } from '../pass';
 import { lireProfil } from '../profil';
-import { lireCours, lireLecons, programmeDu } from '../reviser';
+import { lireCours, lireLecon, lireLecons, programmeDu } from '../reviser';
 import { lireEntrainement } from '../entrainement';
 import { lireRythme } from '../rythme';
 
@@ -79,6 +84,123 @@ it('ne crée aucune tâche de cours quand le programme n’en a pas', async () =
   expect(est.taches.filter((t) => t.categorie === 'cours')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'quiz')).toHaveLength(0);
   expect(est.taches.filter((t) => t.categorie === 'exercices')).toHaveLength(0);
+});
+
+// Demande de Benny pendant ses tests de l'issue #74 (23 octobre) : le pack entier (~5 800 éléments) se téléchargeait
+// une tâche après l'autre (10 % en cinq minutes), et la mise en veille coupait des éléments en « échec ».
+describe('moteur de téléchargement : parallèle et reprise réseau', () => {
+  const mLecon = lireLecon as jest.Mock;
+
+  const tachesLecons = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      id: `lecon-${100 + i}`,
+      categorie: 'cours' as const,
+      statut: 'a-faire' as const,
+      cours: 11,
+      lecon: 100 + i,
+    }));
+
+  const attendreFin = async () => {
+    for (let i = 0; i < 300; i++) {
+      const statut = (await lireEtatHorsLigne())?.statut;
+      if (statut && statut !== 'telechargement') return;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    throw new Error('le téléchargement ne s’est pas terminé');
+  };
+
+  it('la concurrence grandit avec la quantité restante, sans dépasser le plafond', () => {
+    expect(concurrenceTelechargement(0)).toBe(0);
+    expect(concurrenceTelechargement(5)).toBeLessThanOrEqual(5);
+    expect(concurrenceTelechargement(20)).toBeGreaterThan(1);
+    expect(concurrenceTelechargement(500)).toBeGreaterThan(concurrenceTelechargement(20));
+    expect(concurrenceTelechargement(6000)).toBeGreaterThan(concurrenceTelechargement(500));
+    expect(concurrenceTelechargement(6000)).toBeLessThanOrEqual(16);
+  });
+
+  it('plusieurs tâches partent en même temps, toutes arrivent, aucune en échec', async () => {
+    let enCours = 0;
+    let maximum = 0;
+    mLecon.mockImplementation(async () => {
+      enCours++;
+      maximum = Math.max(maximum, enCours);
+      await new Promise((r) => setTimeout(r, 40));
+      enCours--;
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(12) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.statut).toBe('termine');
+    expect(etat?.taches.every((t) => t.statut === 'faite')).toBe(true);
+    expect(maximum).toBeGreaterThanOrEqual(3);
+  });
+
+  it('une erreur réseau (veille, coupure) n’est pas un échec : la tâche repart et finit', async () => {
+    let appels = 0;
+    mLecon.mockImplementation(async () => {
+      appels++;
+      if (appels <= 2) throw { name: 'TypeError', message: 'Network request failed' };
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(1) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(appels).toBe(3);
+    expect(etat?.statut).toBe('termine');
+    expect(etat?.taches[0].statut).toBe('faite');
+  });
+
+  it('une erreur qui n’est pas le réseau reste un échec immédiat, sans réessai', async () => {
+    let appels = 0;
+    mLecon.mockImplementation(async () => {
+      appels++;
+      throw new Error('contenu illisible');
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(1) });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(appels).toBe(1);
+    expect(etat?.statut).toBe('partiel');
+    expect(etat?.taches[0].statut).toBe('echec');
+  });
+
+  // Benny, même matinée : à la réouverture de l'app, on vérifie ce qui a échoué à cause de la veille ou du réseau —
+  // pas complètement téléchargé = on retélécharge ; les vrais échecs (droit, contenu) ne repartent pas tout seuls.
+  it('à la reprise, un échec réseau est retéléchargé ; un vrai échec reste en attente', async () => {
+    mLecon.mockResolvedValue({});
+    const progressionVide = { missions: { total: 0, faites: 0, echecs: 0 }, cours: { total: 3, faites: 1, echecs: 2 }, quiz: { total: 0, faites: 0, echecs: 0 }, exercices: { total: 0, faites: 0, echecs: 0 }, pdf: { total: 0, faites: 0, echecs: 0 } };
+    await AsyncStorage.setItem(CLE_ETAT_HORS_LIGNE, JSON.stringify({
+      statut: 'partiel',
+      profil: { niveau: 'ingenieurs', pays: 'CM', concours: 'concours-cible' },
+      taches: [
+        { id: 'lecon-100', categorie: 'cours', statut: 'faite', cours: 11, lecon: 100 },
+        // Échec laissé par une ancienne version : pas de drapeau, mais le message dit le réseau.
+        { id: 'lecon-101', categorie: 'cours', statut: 'echec', cours: 11, lecon: 101, erreur: 'Network request failed' },
+        { id: 'lecon-102', categorie: 'cours', statut: 'echec', cours: 11, lecon: 102, erreur: 'corrigé non téléchargé : il n’est pas encore débloqué' },
+      ],
+      progression: progressionVide,
+      estimationOctets: 0,
+      espaceDisponible: 0,
+      actualiseLe: new Date().toISOString(),
+    }));
+    await reprendreTelechargementHorsLigne();
+    for (let i = 0; i < 100; i++) {
+      const e = await lireEtatHorsLigne();
+      if (e?.taches.find((t) => t.id === 'lecon-101')?.statut === 'faite') break;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.taches.find((t) => t.id === 'lecon-101')?.statut).toBe('faite');
+    expect(etat?.taches.find((t) => t.id === 'lecon-102')?.statut).toBe('echec');
+    // Une seule leçon retéléchargée : celle du réseau. Ni celle déjà faite, ni le vrai échec.
+    expect(mLecon).toHaveBeenCalledTimes(1);
+    expect(mLecon).toHaveBeenCalledWith(expect.anything(), 101);
+    expect(etat?.statut).toBe('partiel');
+  });
 });
 
 describe('progression du téléchargement', () => {
