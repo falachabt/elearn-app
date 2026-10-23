@@ -65,7 +65,7 @@ const TROU_PASSAGE = /\{\d+\}/;
 
 /**
  * Texte à trous (partie 6) : chaque « {k} » devient un petit rectangle portant le numéro officiel de sa question, dans le
- * flux du texte (v21). Le trou en cours est en jaune ; les autres restent sur la surface. Les paragraphes sont séparés
+ * flux du texte (v21). Le trou en cours est en jaune, un trou répondu en vert ; les autres restent sur la surface. Les paragraphes sont séparés
  * par un espace. Si le groupe à l'écran ne contient pas une question par trou (données partielles), les trous ne sont
  * pas numérotés au hasard : ils deviennent un trait, et la consigne nomme la question affichée.
  */
@@ -89,9 +89,10 @@ function PassageTrous({ texte, blanc, numeros, repondus }: { texte: string; blan
               }
               const actif = k === blanc;
               const fait = repondus.includes(numero);
+              const fond = fait ? theme.etat.succes : actif ? theme.accent.soleil : theme.fond.surface;
               return [
-                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: numero })} style={[styles.trou, { backgroundColor: fait ? theme.etat.succes : actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
-                  <Text style={[typo.legende, styles.trouNumero, { color: fait ? theme.texte.surCouleur : theme.texte.principal }]}>{numero}</Text>
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: numero })} style={[styles.trou, { backgroundColor: fond, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+                  <Text style={[typo.legende, styles.trouNumero, { color: fait || actif ? theme.texte.surCouleur : theme.texte.principal }]}>{numero}</Text>
                 </View>,
               ];
             }
