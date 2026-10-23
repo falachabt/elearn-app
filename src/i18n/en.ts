@@ -908,6 +908,8 @@ export const en: Textes = {
     pdfLourd: 'PDFs exceed 200 MB, so they start unchecked. You can select them if you want.',
     espaceDisponible: '{{taille}} available on your phone',
     espaceInconnu: 'Available storage could not be estimated.',
+    espaceInsuffisant: 'Not enough room for this pack: about {{besoin}} to download with only {{libre}} available. Free up space or untick some categories, then try again.',
+    stockagePlein: 'Storage is full, so the download stopped cleanly instead of piling up failures. Free up space on the phone, then try again.',
     estimationIndicative: 'This is an estimate; actual use depends on the content and PDF sizes.',
     progressionLocale: 'of the content saved on this phone',
     carteTitre: 'Offline preparation',

@@ -909,6 +909,8 @@ export const fr = {
     pdfLourd: 'Les PDF dépassent 200 Mo : ils sont décochés au départ. Tu peux les sélectionner si tu le souhaites.',
     espaceDisponible: '{{taille}} disponibles sur ton téléphone',
     espaceInconnu: 'L’espace disponible n’a pas pu être estimé.',
+    espaceInsuffisant: 'Pas assez de place pour ce pack : environ {{besoin}} à télécharger pour {{libre}} disponibles. Libère de l’espace ou décoche des catégories, puis réessaie.',
+    stockagePlein: 'Le stockage est plein, le téléchargement s’est arrêté net pour ne rien casser. Libère de l’espace sur le téléphone, puis réessaie.',
     estimationIndicative: 'Cette estimation est indicative et dépend du contenu et de la taille des PDF.',
     progressionLocale: 'du contenu enregistré sur ce téléphone',
     carteTitre: 'Préparation hors ligne',

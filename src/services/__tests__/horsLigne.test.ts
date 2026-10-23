@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { CLE_ETAT_HORS_LIGNE, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, reprendreTelechargementHorsLigne } from '../horsLigne';
+import { CLE_ETAT_HORS_LIGNE, ErreurEspaceInsuffisant, concurrenceTelechargement, ecouterHorsLigne, estimerTelechargement, lancerTelechargement, lireEtatHorsLigne, reprendreTelechargementHorsLigne } from '../horsLigne';
 
 /**
  * Prouve que le téléchargement hors ligne est bien scopé au programme actif : il ne prend que les cours renvoyés par
@@ -200,6 +200,55 @@ describe('moteur de téléchargement : parallèle et reprise réseau', () => {
     expect(mLecon).toHaveBeenCalledTimes(1);
     expect(mLecon).toHaveBeenCalledWith(expect.anything(), 101);
     expect(etat?.statut).toBe('partiel');
+  });
+});
+
+// Retour terrain du 23 octobre : la base locale de l'app a saturé pendant le téléchargement (SQLITE_FULL à la
+// connexion suivante). Deux garde-fous : ne pas partir si la place manque, et s'arrêter net si le stockage dit plein.
+describe('garde-fous stockage', () => {
+  const mLecon = lireLecon as jest.Mock;
+
+  const tachesLecons = (n: number) =>
+    Array.from({ length: n }, (_, i) => ({
+      id: `lecon-${100 + i}`,
+      categorie: 'cours' as const,
+      statut: 'a-faire' as const,
+      cours: 11,
+      lecon: 100 + i,
+    }));
+
+  const attendreFin = async () => {
+    for (let i = 0; i < 200; i++) {
+      const statut = (await lireEtatHorsLigne())?.statut;
+      if (statut && statut !== 'telechargement') return;
+      await new Promise((r) => setTimeout(r, 50));
+    }
+    throw new Error('le téléchargement ne s’est pas terminé');
+  };
+
+  it('refuse de partir quand l’espace disponible est inférieur à l’estimation', async () => {
+    const estimation = await estimerTelechargement();
+    await expect(lancerTelechargement({ ...estimation, taches: tachesLecons(3), estimationOctets: 5_000_000, espaceDisponible: 1_000_000 }))
+      .rejects.toBeInstanceOf(ErreurEspaceInsuffisant);
+    // Rien n'a été lancé : aucun état de téléchargement n'existe.
+    expect(await lireEtatHorsLigne()).toBeNull();
+  });
+
+  it('une écriture « base pleine » arrête tout le téléchargement au lieu de continuer élément par élément', async () => {
+    mLecon.mockImplementation(async (_c: unknown, id: number) => {
+      if (id === 100) throw new Error('database or disk is full (code 13 SQLITE_FULL)');
+      await new Promise((r) => setTimeout(r, 30));
+      return {};
+    });
+    const estimation = await estimerTelechargement();
+    await lancerTelechargement({ ...estimation, taches: tachesLecons(6), estimationOctets: 1000, espaceDisponible: 10_000_000 });
+    await attendreFin();
+    const etat = await lireEtatHorsLigne();
+    expect(etat?.statut).toBe('partiel');
+    expect(etat?.erreurStockage).toBe(true);
+    // Les ouvriers se sont arrêtés : des tâches n'ont même pas été tentées.
+    expect(etat?.taches.filter((t) => t.statut === 'a-faire').length).toBeGreaterThanOrEqual(3);
+    expect(etat?.taches.filter((t) => t.statut === 'faite').length).toBeLessThanOrEqual(2);
   });
 });
 

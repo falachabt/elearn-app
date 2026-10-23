@@ -59,8 +59,29 @@ export type EtatHorsLigne = {
   estimationCategories?: Record<CategorieHorsLigne, EstimationCategorie>;
   espaceDisponible: number;
   notification?: 'autorisee' | 'refusee' | 'echec';
+  /** Vrai quand le dernier arrêt vient d'un stockage plein (base locale saturée) : l'écran doit le dire, pas juste compter des échecs. */
+  erreurStockage?: boolean;
   actualiseLe: string;
 };
+
+/**
+ * Le téléchargement ne part pas : la place connue sur le téléphone est inférieure à la taille estimée du pack.
+ * Retour terrain du 23 octobre 2026 : sans ce refus, le moteur remplissait la base locale jusqu'à SQLITE_FULL,
+ * et même la connexion (qui écrit la session au même endroit) tombait en panne.
+ */
+export class ErreurEspaceInsuffisant extends Error {
+  constructor(readonly besoin: number, readonly libre: number) {
+    super('espace insuffisant pour le téléchargement hors ligne');
+    this.name = 'ErreurEspaceInsuffisant';
+  }
+}
+
+/** L'erreur dit-elle que le stockage est plein (base SQLite de l'app ou disque) ? Ces erreurs-là arrêtent tout. */
+export function estErreurStockage(erreur: unknown): boolean {
+  if (!erreur || typeof erreur !== 'object') return false;
+  const e = erreur as { name?: string; message?: string };
+  return /SQLITE_FULL|disk is full|database or disk|no space left|ENOSPC/i.test(`${e.name ?? ''} ${e.message ?? ''}`);
+}
 
 const ecouteurs = new Set<(etat: EtatHorsLigne | null) => void>();
 let execution: Promise<void> | null = null;
@@ -319,8 +340,15 @@ async function executerTache(tache: Tache): Promise<void> {
 }
 
 export async function lancerTelechargement(estimation?: EstimationTelechargement | EtatHorsLigne): Promise<void> {
-  await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   const calculee = estimation ?? await estimerTelechargement();
+  const precedent = await lireEtatHorsLigne();
+  // Garde-fou espace : un lancement neuf ne part pas si la place connue est inférieure à l'estimation. Une reprise
+  // (« partiel ») n'est pas bloquée : elle ne concerne que le reste, et l'arrêt net en cours de route (executerFile)
+  // protège si le stockage sature quand même.
+  if (precedent?.statut !== 'partiel' && calculee.espaceDisponible > 0 && calculee.estimationOctets > calculee.espaceDisponible) {
+    throw new ErreurEspaceInsuffisant(calculee.estimationOctets, calculee.espaceDisponible);
+  }
+  await AsyncStorage.setItem(CLE_MODE_HORS_LIGNE, '1');
   let notification: EtatHorsLigne['notification'] = 'refusee';
   try {
     const permission = await Notifications.getPermissionsAsync();
@@ -330,7 +358,6 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
     notification = 'echec';
     console.warn('Impossible de vérifier l’autorisation des notifications hors ligne.', erreur);
   }
-  const precedent = await lireEtatHorsLigne();
   const taches = precedent?.statut === 'partiel'
     ? precedent.taches.map((t) => t.statut === 'echec' ? { ...t, statut: 'a-faire' as const } : t)
     : calculee.taches;
@@ -342,6 +369,7 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
     estimationCategories: estimerCategories(taches),
     statut: 'telechargement',
     notification,
+    erreurStockage: undefined,
     actualiseLe: new Date().toISOString(),
   };
   await enregistrer(etat);
@@ -413,8 +441,11 @@ async function executerFile(): Promise<void> {
     }
     const aFaire = etat.taches.filter((t) => t.statut === 'a-faire');
     let curseur = 0;
+    // Arrêt net si le stockage dit plein : continuer élément par élément ne ferait qu'empiler les échecs et gonfler
+    // une base déjà saturée (retour terrain du 23 octobre : la session elle-même ne pouvait plus s'écrire).
+    let arretStockage = false;
     const ouvrier = async (): Promise<void> => {
-      while (curseur < aFaire.length) {
+      while (!arretStockage && curseur < aFaire.length) {
         const tache = aFaire[curseur++];
         try {
           await executerTacheAvecReessais(tache);
@@ -425,12 +456,14 @@ async function executerFile(): Promise<void> {
           tache.statut = 'echec';
           tache.erreur = erreur instanceof Error ? erreur.message : String(erreur);
           tache.erreurReseau = estErreurReseau(erreur) ? true : undefined;
+          if (estErreurStockage(erreur)) arretStockage = true;
         }
         etat.progression = progression(etat.taches);
         await enregistrer(etat);
       }
     };
     await Promise.all(Array.from({ length: concurrenceTelechargement(aFaire.length) }, () => ouvrier()));
+    etat.erreurStockage = arretStockage ? true : undefined;
     etat.statut = etat.taches.some((t) => t.statut === 'echec') ? 'partiel' : 'termine';
     await enregistrer(etat);
     if (etat.statut === 'termine') {
