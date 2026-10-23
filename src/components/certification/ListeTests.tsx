@@ -110,6 +110,8 @@ export function ListeTests() {
     : null;
   const conseille = testConseille(tests);
   const parMini = type === 'mini' || type === 'mixed';
+  // Demi-test (écoute ou lecture) et test complet : coût du départ, comme pour les mini-tests.
+  const coutListe = parMini ? coutMini : type === 'full' ? couts.cert_mock_full : (type === 'listening' || type === 'reading') ? couts.cert_mock_half : undefined;
 
   return (
     <Ecran insetBas={false} entete={<EnteteToeic titre={t(CLE_TITRE_LISTE[type], { partie: partie ?? 0 })} onRetour={() => router.back()} />}>
@@ -130,11 +132,15 @@ export function ListeTests() {
                   {t('certification.tests.listes.fait', { faits: nombreFaits(tests), total: tests.length })}
                 </Text>
                 <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                  {parMini
-                    ? coutMini === undefined || solde?.illimite ? libelleMini : t('certification.tests.avecCout', { detail: libelleMini, cout: cout(coutMini) })
-                    : meilleur === null || sectionMax === null
-                      ? t('certification.tests.listes.pasDeScore')
-                      : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax })}
+                  {(() => {
+                    // Coût du type (crédits hors Pass), lu dans la configuration serveur : mini, demi-test ou complet.
+                    const libelle = parMini
+                      ? libelleMini
+                      : meilleur === null || sectionMax === null
+                        ? t('certification.tests.listes.pasDeScore')
+                        : t('certification.tests.listes.meilleurSection', { score: meilleur, max: sectionMax });
+                    return coutListe === undefined || solde?.illimite ? libelle : t('certification.tests.avecCout', { detail: libelle, cout: cout(coutListe) });
+                  })()}
                 </Text>
               </View>
             </View>
