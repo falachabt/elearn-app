@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { estErreurReseau } from './connectivite';
+import { estErreurReseau, serveurJoignable } from './connectivite';
 
 /**
  * Calendrier de la classe de l'élève (issue #65, étape 2 : RPC calendrier_de_ma_classe). Les dates viennent de la base,
@@ -70,6 +70,12 @@ async function lireCopieCalendrier(niveau: string, pays: string): Promise<Echean
  */
 export async function lireCalendrierClasse(client: Pick<SupabaseClient, 'rpc'>, niveau: string, pays: string): Promise<EcheanceClasse[]> {
   try {
+    // Coupure déjà connue : la copie part tout de suite, sans attendre l'échec de la requête. Sans copie,
+    // le serveur est tenté quand même : l'état connu peut dater et le réseau être revenu.
+    if (!serveurJoignable()) {
+      const copie = await lireCopieCalendrier(niveau, pays);
+      if (copie) return copie;
+    }
     const { data, error } = await client.rpc('calendrier_de_ma_classe', { p_niveau: niveau, p_pays: pays });
     if (error) throw error;
     const lignes = (data as LigneCalendrier[] | null) ?? [];

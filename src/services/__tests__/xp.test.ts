@@ -1,4 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { definirConnectivitePourTest } from '../connectivite';
 import {
   CLE_XP_EN_ATTENTE,
   calculerNiveau,
@@ -219,6 +221,66 @@ describe('services/xp', () => {
       expect(reste[0].userId).toBe('autre');
       // Total local resynchronisé sur le serveur (910), les gains ne sont plus « en attente ».
       expect(await AsyncStorage.getItem('xp.totalLocal')).toBe('910');
+    });
+
+    // Retour terrain du 23 octobre 2026 : « avant d'être hors ligne j'étais à 910, en ligne je me suis
+    // retrouvé à 1010 » — un écart qui ne correspondait pas aux gains. Mécanisme : crediterXp écrivait le
+    // total ABSOLU (distant + en attente + gain) dans user_xp alors que les gains en attente n'étaient pas
+    // encore dans l'historique ; à leur rejeu, le trigger les ajoutait une seconde fois.
+    it('un gain crédité en ligne ne recompte pas les gains en attente (pas de double comptage au rejeu)', async () => {
+      const etat = { total: 870, historique: [] as { userid: string; xp_gained: number; source_id: unknown }[] };
+      const clientServeur = {
+        from: jest.fn((table: string) => {
+          if (table === 'xp_history') return {
+            insert: jest.fn((l: { userid: string; xp_gained: number; source_id: unknown }) => {
+              etat.historique.push(l);
+              etat.total += l.xp_gained;
+              return Promise.resolve({ error: null });
+            }),
+            select: jest.fn(() => ({
+              eq: (_c1: string, v1: unknown) => ({
+                eq: (_c2: string, v2: unknown) => ({
+                  limit: () => Promise.resolve({ data: etat.historique.filter((h) => h.userid === v1 && h.source_id === v2), error: null }),
+                }),
+              }),
+            })),
+          };
+          if (table === 'user_xp') return {
+            select: () => ({ eq: () => ({ maybeSingle: () => Promise.resolve({ data: { total_xp: etat.total }, error: null }) }) }),
+            upsert: jest.fn((l: { total_xp: number }) => {
+              etat.total = l.total_xp;
+              return Promise.resolve({ error: null });
+            }),
+          };
+          return {};
+        }),
+      } as any;
+
+      await AsyncStorage.setItem('xp.totalLocal', '910');
+      await AsyncStorage.setItem(CLE_XP_EN_ATTENTE, JSON.stringify([
+        { userId: 'user-xp', gain: 40, source: 'course', sourceId: '101', le: '2026-10-23T08:00:00.000Z' },
+      ]));
+      reinitialiserCacheXp();
+      const affiche = await crediterXp(clientServeur, 'user-xp', 20, 'course', '102');
+      expect(affiche).toBe(930);
+      // Ce que fait aussi SessionProvider à la connexion : après coup, rien ne doit bouger.
+      await synchroniserXp(clientServeur, 'user-xp');
+      expect(etat.total).toBe(930);
+      expect(await AsyncStorage.getItem('xp.totalLocal')).toBe('930');
+      expect(await AsyncStorage.getItem(CLE_XP_EN_ATTENTE)).toBeNull();
+    });
+
+    it('hors ligne déjà connu : le total local est servi tout de suite, sans requête réseau', async () => {
+      await AsyncStorage.setItem('xp.totalLocal', '910');
+      const from = jest.fn(() => { throw new Error('le réseau ne doit pas être tenté'); });
+      definirConnectivitePourTest({ backend: false });
+      try {
+        reinitialiserCacheXp();
+        await expect(lireUserXp({ from } as never, 'user-xp')).resolves.toBe(910);
+        expect(from).not.toHaveBeenCalled();
+      } finally {
+        definirConnectivitePourTest({ backend: null });
+      }
     });
 
     it('synchroniserXp garde la file si l’envoi échoue encore', async () => {

@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { suivre } from './analytics';
+import { serveurJoignable } from './connectivite';
 import { garderNotifications, lireNotificationsGardees, type Notification } from './notifications';
 
 export type SourceXp = 'quiz' | 'daily_mission' | 'course' | 'exercise' | 'exam' | 'feed_post' | 'feed_comment';
@@ -187,6 +188,13 @@ export async function lireUserXp(client?: Client | null, userId?: string | null)
     if (lectureXpRecente && lectureXpRecente.userId === userId && Date.now() - lectureXpRecente.date < DUREE_CACHE_XP_MS) {
       return lectureXpRecente.valeur;
     }
+    if (!serveurJoignable() && local > 0) {
+      // Coupure déjà connue : le total gardé sur l'appareil fait foi, tout de suite. Sans ce court-circuit,
+      // la lecture attendait l'échec de la requête réseau — très long sur un Wi-Fi sans internet — et la
+      // carte de niveau affichait 0 XP (niveau 1) pendant ce temps (retour terrain du 23 octobre 2026).
+      // Sans rien en local, le serveur est tenté quand même : l'état connu peut dater.
+      return local;
+    }
     try {
       const { data, error } = await client.from('user_xp').select('total_xp').eq('userid', userId).maybeSingle();
       if (!error && data && typeof (data as { total_xp: number }).total_xp === 'number') {
@@ -252,6 +260,13 @@ export async function crediterXp(
     await AsyncStorage.setItem(cleStockage, '1').catch(() => {});
   }
 
+  // D'abord vider la file des gains hors ligne : tant qu'il en reste, le total serveur ne les contient
+  // pas encore, et les comptes ci-dessous (lecture, écriture absolue) doivent partir d'un serveur à jour,
+  // sinon les gains en attente sont comptés deux fois — une fois dans le total écrit, une fois à leur rejeu.
+  if (client && typeof client.from === 'function' && userId) {
+    await synchroniserXp(client, userId).catch(() => {});
+  }
+
   const actuel = await lireUserXp(client, userId);
   const nouveauTotal = actuel + gain;
   await AsyncStorage.setItem(CLE_XP_LOCAL, String(nouveauTotal)).catch(() => {});
@@ -259,10 +274,13 @@ export async function crediterXp(
   if (client && typeof client.from === 'function' && userId) {
     const envoye = await envoyerGain(client, { userId, gain, source, sourceId, le: new Date().toISOString() });
     if (envoye) {
-      // Synchronisation directe de user_xp pour garantir que l'élève ne soit jamais bloqué
+      // Synchronisation directe de user_xp pour garantir que l'élève ne soit jamais bloqué — seulement si
+      // plus aucun gain n'attend son rejeu : écrire le total absolu (qui les inclut) avant leur envoi les
+      // ferait compter une seconde fois par le trigger quand ils partiront.
       const q = client.from('user_xp');
       lectureXpRecente = null;
-      if (typeof q?.upsert === 'function') {
+      const resteEnAttente = sommeGainsEnAttente(await lireGainsEnAttente(), userId) > 0;
+      if (!resteEnAttente && typeof q?.upsert === 'function') {
         try {
           await q.upsert({
             userid: userId,

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { estErreurReseau, signalerEchec, signalerSucces } from './connectivite';
+import { estErreurReseau, serveurJoignable, signalerEchec, signalerSucces } from './connectivite';
 import { ajouterJours, lundiDe } from './maSemaine';
 
 /**
@@ -291,10 +291,25 @@ async function garderCopie(idUtilisateur: string | undefined, brut: unknown): Pr
  * son état à jour. Celles qui n'ont pas pu partir sont reposées sur ce qui s'affiche, copie comme réponse du serveur.
  */
 export async function lirePlanning(client: Client, idUtilisateur?: string): Promise<ResultatPlanning> {
+  // Coupure déjà connue : le rejeu des coches n'est pas tenté, et si une copie prête existe elle part
+  // tout de suite — la lecture serveur attendrait l'échec de la requête (très long sur un Wi-Fi sans
+  // internet) avant d'y arriver, et l'écran restait vide pendant ce temps (retour terrain du
+  // 23 octobre 2026). Sans copie à servir, le serveur est tenté quand même : l'état connu peut dater
+  // et le réseau être revenu, un réessai explicite de l'élève doit pouvoir aboutir.
+  const enLigne = serveurJoignable();
   const restantes = idUtilisateur
-    ? await synchroniserCoches(client, idUtilisateur).catch(() => lireCochesEnAttente(idUtilisateur))
+    ? enLigne
+      ? await synchroniserCoches(client, idUtilisateur).catch(() => lireCochesEnAttente(idUtilisateur))
+      : await lireCochesEnAttente(idUtilisateur)
     : [];
   try {
+    if (!enLigne) {
+      const copie = await lireCopie(idUtilisateur);
+      if (copie && copie.statut === 'ready') {
+        signalerEchec();
+        return { planning: restantes.length > 0 ? appliquerCoches(copie, restantes) : copie, copie: true };
+      }
+    }
     const { data, error } = await client.rpc('my_study_plan');
     if (error) throw error;
     signalerSucces();

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLE_CALENDRIER_CLASSE, dateLocale, lireCalendrierClasse, prochaineEcheance, versEcheance, type EcheanceClasse } from '../calendrier';
+import { definirConnectivitePourTest } from '../connectivite';
 
 beforeEach(() => AsyncStorage.clear());
 
@@ -89,6 +90,19 @@ describe('calendrier de la classe', () => {
       await lireCalendrierClasse({ rpc: enLigne() } as never, '3e', 'CM');
       const rpc = jest.fn(async () => ({ data: null, error: { message: 'boom' } }));
       await expect(lireCalendrierClasse({ rpc } as never, '3e', 'CM')).rejects.toEqual({ message: 'boom' });
+    });
+
+    it('hors ligne déjà connu : la copie est servie sans appeler la RPC', async () => {
+      await lireCalendrierClasse({ rpc: enLigne() } as never, '3e', 'CM');
+      definirConnectivitePourTest({ backend: false });
+      try {
+        const rpc = enLigne();
+        const lues = await lireCalendrierClasse({ rpc } as never, '3e', 'CM');
+        expect(lues).toHaveLength(1);
+        expect(rpc).not.toHaveBeenCalled();
+      } finally {
+        definirConnectivitePourTest({ backend: null });
+      }
     });
 
     it('une copie illisible vaut pas de copie', async () => {

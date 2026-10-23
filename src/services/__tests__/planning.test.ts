@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { definirConnectivitePourTest } from '../connectivite';
 import {
   appliquerCoches,
   basculerSeance,
@@ -250,6 +251,22 @@ describe('lirePlanning', () => {
   it('une erreur du serveur remonte, sans copie', async () => {
     await lirePlanning(client({ data: BRUT }), 'u1');
     await expect(lirePlanning(client({ error: { name: 'PostgrestError', message: 'boom' } }), 'u1')).rejects.toMatchObject({ message: 'boom' });
+  });
+
+  // Retour terrain du 23 octobre 2026 : hors ligne, le planning « ne s'affiche pas » ou met très longtemps —
+  // la lecture tentait le serveur d'abord et attendait l'échec de la requête (très long sur un Wi-Fi sans
+  // internet) avant de servir la copie. Quand la coupure est déjà connue, la copie part tout de suite.
+  it('hors ligne déjà connu : la copie est servie sans même tenter le serveur', async () => {
+    await lirePlanning(client({ data: BRUT }), 'u1');
+    definirConnectivitePourTest({ backend: false });
+    try {
+      const c = client({ data: BRUT });
+      const r = await lirePlanning(c, 'u1');
+      expect(r).toMatchObject({ copie: true, planning: { statut: 'ready' } });
+      expect(c.rpc).not.toHaveBeenCalled();
+    } finally {
+      definirConnectivitePourTest({ backend: null });
+    }
   });
 
   it('une réponse illisible est une erreur', async () => {
