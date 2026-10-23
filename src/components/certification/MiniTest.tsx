@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirReglages } from '@/services/certification/etat';
-import { membresGroupe } from '@/services/certification/groupes';
+import { membresGroupe, numerosDuGroupe } from '@/services/certification/groupes';
 import { chronometre } from '@/services/certification/format';
 import { cloreParTemps, lireMini, repondreMini, tempsRestantMs, type EtatMini } from '@/services/certification/miniTest';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -196,6 +196,7 @@ export function MiniTest() {
           onPasser={passer}
           enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
           trouCourant={onglet + 1}
+          numerosTrous={numerosDuGroupe(membres)}
         />
       ) : null}
       {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}

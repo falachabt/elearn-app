@@ -31,3 +31,6 @@ export function indicesGroupe(questions: QuestionServie[], index: number): numbe
   for (let i = debut; i < questions.length && questions[i]?.group?.id === premiere.group.id; i++) indices.push(i);
   return indices;
 }
+
+/** Numéros officiels des questions d'un groupe, sans les questions qui n'en ont pas (sert aux trous d'un texte à trous). */
+export const numerosDuGroupe = (membres: QuestionServie[]): number[] => membres.flatMap((m) => (m.number === null ? [] : [m.number]));

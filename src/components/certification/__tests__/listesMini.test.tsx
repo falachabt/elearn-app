@@ -97,7 +97,7 @@ describe('départ depuis la liste d’un mini-test (v39)', () => {
 
   it('crédits insuffisants : le serveur refuse, aucun test ne s’ouvre', async () => {
     mockParams = { kind: 'mini', partie: '5' };
-    const demarrer = jest.fn(async () => ({ status: 'insufficient' as const, cost: 1, balance: 0 }));
+    const demarrer = jest.fn(async (_clientUuid: string, _defId: string, _exam: string, _jour: string) => ({ status: 'insufficient' as const, tentative: null, cout: 1, solde: 0 }));
     definirApi({ ...fausse.api, listerDefsTests: async (_e, type) => LIGNES.filter((l) => !type || l.kind === type), demarrerDefTest: demarrer });
     await monter(<ListeTests />);
     fireEvent.press(await screen.findByTestId('ligne-mini-4'));

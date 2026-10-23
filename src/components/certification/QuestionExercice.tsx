@@ -34,6 +34,8 @@ type Props = {
   enteteGroupe?: ReactNode;
   /** Trou en cours dans un texte à trous (1 à n) : son rectangle est mis en surbrillance. */
   trouCourant?: number;
+  /** Numéros officiels des questions du groupe à l'écran : ils remplacent les numéros locaux « {n} » du texte à trous. */
+  numerosTrous?: number[];
 };
 
 /** Les parties 1 et 2 ne montrent pas l'énoncé (il révèle ou répète l'audio) : la consigne de la partie le remplace. */
@@ -60,12 +62,17 @@ const ALEA_TROU = /-{3,}/;
 const TROU_PASSAGE = /\{\d+\}/;
 
 /**
- * Texte à trous (partie 6) : chaque « {n} » devient un petit rectangle numéroté, dans le flux du texte (v21). Le trou en
- * cours est en jaune ; les autres restent sur la surface. Les paragraphes sont séparés par un espace.
+ * Texte à trous (partie 6) : chaque « {k} » devient un petit rectangle portant le numéro officiel de sa question, dans le
+ * flux du texte (v21). Le trou en cours est en jaune ; les autres restent sur la surface. Les paragraphes sont séparés
+ * par un espace. Si le groupe à l'écran ne contient pas une question par trou (données partielles), les trous ne sont
+ * pas numérotés au hasard : ils deviennent un trait, et la consigne nomme la question affichée.
  */
-function PassageTrous({ texte, blanc }: { texte: string; blanc?: number }) {
+function PassageTrous({ texte, blanc, numeros }: { texte: string; blanc?: number; numeros: number[] }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
+  const nombreTrous = texte.match(/\{\d+\}/g)?.length ?? 0;
+  /** Numéros officiels rangés dans l'ordre du texte, seulement si chaque trou a sa question. */
+  const officiels = numeros.length === nombreTrous ? [...numeros].sort((a, b) => a - b) : null;
   return (
     <View style={styles.paragraphes}>
       {texte.split('\n').filter((p) => p.trim()).map((paragraphe, p) => (
@@ -73,11 +80,15 @@ function PassageTrous({ texte, blanc }: { texte: string; blanc?: number }) {
           {paragraphe.split(/(\{\d+\})/).flatMap((morceau, i) => {
             const trou = /^\{(\d+)\}$/.exec(morceau);
             if (trou) {
-              const n = Number(trou[1]);
-              const actif = n === blanc;
+              const k = Number(trou[1]);
+              const numero = officiels?.[k - 1];
+              if (numero === undefined) {
+                return [<Text key={`t${i}`} style={[typo.texteFort, { color: theme.texte.principal }]}>______</Text>];
+              }
+              const actif = k === blanc;
               return [
-                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n })} style={[styles.trou, { backgroundColor: actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
-                  <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.principal }]}>{n}</Text>
+                <View key={`t${i}`} accessibilityLabel={t('certification.exercice.trou', { n: numero })} style={[styles.trou, { backgroundColor: actif ? 'transparent' : theme.fond.surface, borderColor: theme.bord.fort, borderWidth: actif ? bord.epais : bord.normal }]}>
+                  <Text style={[typo.legende, styles.trouNumero, { color: theme.texte.principal }]}>{numero}</Text>
                 </View>,
               ];
             }
@@ -105,7 +116,7 @@ export const documentsDuPassage = (passage: GroupeServi['passage'] | undefined):
 export const afficherEnonce = (stem: string) => stem.replace(/-{3,}/g, '______');
 
 /** Disposition commune aux sept types de questions du TOEIC (B1 à B7). */
-export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant }: Props) {
+export function QuestionExercice({ question, choix, onChoix, bonne, unique, delaiEchecS, ecran, onPasser, verrouille, enteteGroupe, trouCourant, numerosTrous }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const [doc, setDoc] = useState(0);
@@ -174,7 +185,7 @@ export function QuestionExercice({ question, choix, onChoix, bonne, unique, dela
             {docs[doc]?.kind ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{docs[doc]?.kind}</Text> : null}
             {docs[doc]?.head ? <Text style={[typo.donnee, { color: theme.texte.principal }]}>{docs[doc]?.head}</Text> : null}
             {TROU_PASSAGE.test(docs[doc]?.text ?? '') ? (
-              <PassageTrous texte={docs[doc]?.text ?? ''} blanc={trouCourant} />
+              <PassageTrous texte={docs[doc]?.text ?? ''} blanc={trouCourant} numeros={numerosTrous ?? []} />
             ) : (
               <Text style={[typo.texte, { color: theme.texte.principal }]}>
                 {surlignage(docs[doc]?.text ?? '')}

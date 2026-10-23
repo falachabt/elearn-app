@@ -7,7 +7,7 @@ import { suivre } from '@/services/analytics';
 import { lireConnectivite } from '@/services/connectivite';
 import { demarrerOuReprendre, progression, repondre } from '@/services/certification/diagnostic';
 import { obtenirReglages, type EtatDiagnostic } from '@/services/certification/etat';
-import { membresGroupe } from '@/services/certification/groupes';
+import { membresGroupe, numerosDuGroupe } from '@/services/certification/groupes';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -186,6 +186,7 @@ export function Diagnostic() {
         onPasser={passer}
         enteteGroupe={membres.length > 1 ? <OngletsGroupe membres={membres} reponses={reponses} selection={onglet} onChoisir={setOnglet} /> : null}
         trouCourant={onglet + 1}
+        numerosTrous={numerosDuGroupe(membres)}
       />
       {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />

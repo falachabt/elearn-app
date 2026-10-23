@@ -5,7 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirReglages } from '@/services/certification/etat';
-import { indicesGroupe } from '@/services/certification/groupes';
+import { indicesGroupe, numerosDuGroupe } from '@/services/certification/groupes';
 import {
   MESSAGE_SERIE_VIDE,
   ajouterMotCarnet,
@@ -243,6 +243,7 @@ export function Serie() {
         onPasser={() => void passer()}
         enteteGroupe={pluriel ? <OngletsGroupe membres={membres} reponses={reponsesGroupe} selection={positionVue} onChoisir={choisirOnglet} /> : null}
         trouCourant={positionVue + 1}
+        numerosTrous={numerosDuGroupe(membres)}
       />
       {!groupeValide ? null : resultat ? (
         <ExplicationCert

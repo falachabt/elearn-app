@@ -24,12 +24,26 @@ const question: QuestionServie = {
   },
 };
 
+const libelleTrou = (n: number) => t.exercice.trou.replace('{{n}}', String(n));
+
 describe('texte à trous (partie 6) : rectangles numérotés', () => {
-  it('affiche les trous en rectangles numérotés, sans accolades brutes', async () => {
-    await monter(<QuestionExercice question={question} choix={null} onChoix={() => {}} delaiEchecS={20} ecran="diagnostic" onPasser={() => {}} unique trouCourant={1} />);
+  it('numérote chaque trou avec le numéro officiel de sa question, sans accolades brutes', async () => {
+    await monter(<QuestionExercice question={question} choix={null} onChoix={() => {}} delaiEchecS={20} ecran="diagnostic" onPasser={() => {}} unique trouCourant={1} numerosTrous={[136, 135]} />);
     expect(screen.queryByText(/\{\d\}/)).toBeNull();
-    expect(screen.getByLabelText(t.exercice.trou.replace('{{n}}', '1'))).toBeTruthy();
-    expect(screen.getByLabelText(t.exercice.trou.replace('{{n}}', '2'))).toBeTruthy();
+    expect(screen.getByLabelText(libelleTrou(135))).toBeTruthy();
+    expect(screen.getByLabelText(libelleTrou(136))).toBeTruthy();
+    expect(screen.queryByLabelText(libelleTrou(1))).toBeNull();
     expect(screen.getByText('Local Bakery Wins National Award')).toBeTruthy();
+  });
+
+  it('groupe partiel (4 trous, 2 questions servies) : pas de numéros locaux, des traits à la place', async () => {
+    const passage = 'Rosa opened the shop {1} a small loan, {2} the bakery {3} {4} to five locations.';
+    const partiel: QuestionServie = { ...question, group: { ...question.group!, passage: { docs: [{ kind: 'Article', head: 'Bakery', text: passage }] } } };
+    await monter(<QuestionExercice question={partiel} choix={null} onChoix={() => {}} delaiEchecS={20} ecran="diagnostic" onPasser={() => {}} unique trouCourant={1} numerosTrous={[135, 136]} />);
+    expect(screen.queryByText(/\{\d\}/)).toBeNull();
+    expect(screen.queryByLabelText(libelleTrou(1))).toBeNull();
+    expect(screen.getAllByText('______')).toHaveLength(4);
+    // La consigne nomme toujours la question affichée.
+    expect(screen.getByText(libelleTrou(135))).toBeTruthy();
   });
 });
