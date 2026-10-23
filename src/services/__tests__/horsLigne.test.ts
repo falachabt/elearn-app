@@ -115,7 +115,7 @@ describe('moteur de téléchargement : parallèle et reprise réseau', () => {
     expect(concurrenceTelechargement(20)).toBeGreaterThan(1);
     expect(concurrenceTelechargement(500)).toBeGreaterThan(concurrenceTelechargement(20));
     expect(concurrenceTelechargement(6000)).toBeGreaterThan(concurrenceTelechargement(500));
-    expect(concurrenceTelechargement(6000)).toBeLessThanOrEqual(16);
+    expect(concurrenceTelechargement(6000)).toBeLessThanOrEqual(32);
   });
 
   it('plusieurs tâches partent en même temps, toutes arrivent, aucune en échec', async () => {
@@ -246,9 +246,9 @@ describe('garde-fous stockage', () => {
     const etat = await lireEtatHorsLigne();
     expect(etat?.statut).toBe('partiel');
     expect(etat?.erreurStockage).toBe(true);
-    // Les ouvriers se sont arrêtés : des tâches n'ont même pas été tentées.
-    expect(etat?.taches.filter((t) => t.statut === 'a-faire').length).toBeGreaterThanOrEqual(3);
-    expect(etat?.taches.filter((t) => t.statut === 'faite').length).toBeLessThanOrEqual(2);
+    // Les ouvriers se sont arrêtés : des tâches n'ont même pas été tentées (seules celles déjà en vol ont fini).
+    expect(etat?.taches.filter((t) => t.statut === 'a-faire').length).toBeGreaterThanOrEqual(2);
+    expect(etat?.taches.filter((t) => t.statut === 'faite').length).toBeLessThanOrEqual(3);
   });
 });
 

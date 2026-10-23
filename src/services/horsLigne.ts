@@ -379,14 +379,15 @@ export async function lancerTelechargement(estimation?: EstimationTelechargement
 /**
  * Nombre de téléchargements menés de front, selon ce qui reste à faire (demande de Benny, tests de l'issue #74) :
  * le pack entier compte des milliers d'éléments, une tâche après l'autre prenait des dizaines de minutes.
- * Petit reste, peu de front ; gros pack, jusqu'à 16 — au-delà, le serveur et le téléphone saturent sans gagner de temps.
+ * Petit reste, peu de front ; gros pack, jusqu'à 32 (plafond relevé le 23 octobre à sa demande, après un premier
+ * palier à 16 qui tenait bien en terrain) — au-delà, le serveur et le téléphone saturent sans gagner de temps.
  */
 export function concurrenceTelechargement(restantes: number): number {
   if (restantes <= 0) return 0;
-  if (restantes <= 30) return Math.min(3, restantes);
-  if (restantes <= 200) return 6;
-  if (restantes <= 1000) return 10;
-  return 16;
+  if (restantes <= 30) return Math.min(4, restantes);
+  if (restantes <= 200) return 10;
+  if (restantes <= 1000) return 20;
+  return 32;
 }
 
 const REESSAIS_RESEAU_MAX = 4;

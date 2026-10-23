@@ -78,6 +78,40 @@ afterEach(() => {
 });
 
 describe('connectivite : sonde du serveur', () => {
+  // Retour terrain du 23 octobre 2026 : un portail captif (ou un Wi-Fi « revenu » sans internet) répond 200 en HTML ;
+  // l'ancienne sonde comptait toute réponse comme « serveur joint », l'app se croyait en ligne et perdait la session.
+  it('une réponse qui n’est pas le serveur (portail captif, HTML) ne compte pas comme « en ligne »', async () => {
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() =>
+      Promise.resolve({ ok: true, headers: { get: (n: string) => (n === 'content-type' ? 'text/html; charset=utf-8' : null) } }),
+    );
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    await expect(c.sonder()).resolves.toBe(false);
+    expect(c.estEnLigne()).toBe(false);
+    arret();
+  });
+
+  it('un code d’erreur HTTP ne compte pas comme « en ligne »', async () => {
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() =>
+      Promise.resolve({ ok: false, status: 502, headers: { get: (n: string) => (n === 'content-type' ? 'application/json' : null) } }),
+    );
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    await expect(c.sonder()).resolves.toBe(false);
+    arret();
+  });
+
+  it('la vraie réponse de santé (200, JSON) compte comme « en ligne »', async () => {
+    (globalThis as { fetch?: unknown }).fetch = jest.fn(() =>
+      Promise.resolve({ ok: true, status: 200, headers: { get: (n: string) => (n === 'content-type' ? 'application/json; charset=utf-8' : null) } }),
+    );
+    const c = charger();
+    const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
+    await expect(c.sonder()).resolves.toBe(true);
+    expect(c.estEnLigne()).toBe(true);
+    arret();
+  });
+
   it('passe hors ligne quand le serveur ne répond pas', async () => {
     const c = charger();
     const arret = c.demarrerConnectivite({ sonderAuDemarrage: false });
