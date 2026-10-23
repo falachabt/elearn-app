@@ -67,6 +67,8 @@ export type Evenements = {
   mission_goal_set: { minutes: number | null; questions: number; origine: 'fin_mission' | 'parametres' };
   account_prompt_shown: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
   account_prompt_dismissed: { raison: 'paiement' | 'parent' | 'rappel' | 'question' };
+  offline_prompt_shown: { variante: 'absent' | 'partiel' };
+  offline_prompt_answered: { choix: 'telecharger' | 'plus_tard'; variante: 'absent' | 'partiel' };
   referral_code_captured: { source: 'lien' | 'saisie' };
   compte_cree: { methode: 'email' | 'google' | 'apple' | 'facebook'; conversion_invite: boolean; avec_parrainage: boolean };
   compte_echec: { methode: 'email'; etape: 'inscription' | 'mise_a_jour'; raison: string };

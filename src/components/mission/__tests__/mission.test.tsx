@@ -92,6 +92,8 @@ beforeEach(async () => {
   await AsyncStorage.setItem(CLE_RYTHME, '20');
   // Alerte de série déjà montrée ce jour-là : la feuille de danger ne s'ouvre pas dans les autres tests (elle masque l'accueil).
   await AsyncStorage.setItem(CLE_ALERTE_SERIE, '2026-10-01');
+  // Pack hors ligne déjà téléchargé : la proposition de téléchargement (#118) ne s'ouvre pas ici (elle a sa propre suite).
+  await AsyncStorage.setItem('horsLigne.telechargement', JSON.stringify({ statut: 'termine' }));
   await enregistrerProfil({ type: 'eleve', niveau: '3e', pays: 'CM', termine: true });
   mockRpc.mockResolvedValue({ data: LIGNES, error: null });
 });
