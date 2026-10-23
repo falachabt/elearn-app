@@ -136,10 +136,14 @@ describe('T1 · onglet Tests', () => {
     expect(screen.getByText(t.tests.detailMiniPartie)).toBeTruthy();
   });
 
-  it('le demi-test et le test complet mènent à l’écran « Bientôt »', async () => {
+  it('les demi-tests et le test complet mènent à leur liste de tests', async () => {
     await monter(<TestsToeic />);
     await fireEvent.press(await screen.findByText(t.tests.complet));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/test-bientot', params: { kind: 'full' } });
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'full' } });
+    await fireEvent.press(await screen.findByText(t.tests.demiEcoute));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'listening' } });
+    await fireEvent.press(await screen.findByText(t.tests.demiLecture));
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/certification/liste-tests', params: { kind: 'reading' } });
   });
 
   it('historique injoignable : l’écran reste utilisable, les tests faits sont inconnus', async () => {
