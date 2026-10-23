@@ -59,6 +59,7 @@ Ce fichier sert de cerveau collectif. Il doit être consulté pour comprendre le
 ### Connexion : Google et e-mail séparés (7 octobre 2026)
 
 - Bug signalé sur la version web : « Continuer avec Google » semblait aussi valider le formulaire e-mail et mot de passe. Pas de `<form>` ni de bouton `submit` dans la page (vérifié sur le DOM de app.elearnprepa.com : boutons `type=button`, props React propres à chaque bouton) ; cause exacte non reproduite (clic réel sur Google refusé par le bac à sable de l'agent). Garde-fou ajouté dans `FormulaireCompte` : toute soumission e-mail est ignorée pendant un parcours social et 1,5 s après le début d'un appui sur un bouton social ; l'envoi e-mail grise déjà les boutons sociaux. Tests : `src/components/__tests__/formulaireGoogle.test.tsx`.
+- **Fait, issue #119 (23 octobre 2026, commit 3e78a48)** : l'écran de reprise invité (`/compte/reprise`) devenait un cul-de-sac quand le jeton invité avait disparu (cas web après redirection OAuth) — boutons de choix désactivés, « Réessayer » en boucle, garde du layout qui forçait la route. Correctif : bouton « Continuer sans fusionner » dans l'état d'erreur (efface l'état de reprise et ramène à l'accueil), redirection silencieuse si aucune reprise en attente (nouveau `lireEtatReprise()`), erreur effacée quand un chargement finit par réussir. Tests composant dédiés `repriseProgression.test.tsx`.
 
 ### Web : PWA, barre du navigateur, bandeau application, code promo v2 (7 octobre 2026)
 
