@@ -36,6 +36,14 @@ Les fonctions d'application utiles à connaître : `cert_tests_list` (liste des 
 - Ne jamais relancer une génération pour « réessayer » : chaque appel est facturé. Une génération qui échoue se signale avant de recommencer.
 - Coût et budget : le budget mensuel est celui de Benny. Il se vérifie avant toute série. Ne rien dépasser sans son accord écrit.
 
+## 3 bis. Voie OmniVoice (décision du 23 octobre 2026)
+
+- Jusqu'ici, les audios TOEIC (démo et tests 2 et 3) ont été générés avec ElevenLabs. Benny a décidé de passer l'audio TOEIC à OmniVoice, comme pour les vidéos de cours (dossier `video-cours/`, à reprendre depuis le fil vidéos, qui tient la chaîne exacte).
+- Principe relayé : une phrase = un clip, avec une voix de référence commune à toute la série. Le volume demande un GPU : à lancer là où le GPU est disponible, pas dans une session d'agent sans GPU.
+- Points à valider avant la mise en production commerciale : la licence OmniVoice est CC-BY-NC, incompatible avec un usage commercial sans accord. Un juriste doit la valider (issue #64) avant tout usage payant.
+- Les règles de la section 3 restent valables : débit naturel, clip test avant série, contrôle de durée et de chemin R2, ordre des options respecté, voix variées gardées (à re-vérifier avec la voix de référence OmniVoice), et une durée minimale de 4 secondes en partie 2.
+- Cette section décrit une décision relayée : la chaîne OmniVoice n'est pas encore décrite dans ce dépôt. Le fil vidéos est la source à jour.
+
 ## 4. Production des questions : la chaîne
 
 1. Partir du cahier (v1.35) et de la notion visée. Une question vise une notion et une partie.
