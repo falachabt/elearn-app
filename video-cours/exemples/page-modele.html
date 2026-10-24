@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Vidéo de cours</title>
+<style>
+:root{--bg:#FFF7E3;--fg:#0A0A0A;--accent:#10B981;--muted:#4a4a4a}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141614;--fg:#F5F1E6;--accent:#10B981;--muted:#B8B4A8;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141614;--fg:#F5F1E6;--accent:#10B981;--muted:#B8B4A8;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 system-ui,sans-serif;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px}
+h1{font-size:22px;margin:0 0 4px}
+p{margin:0 0 12px;color:var(--muted)}
+video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;border:8px solid var(--fg);background:#000}
+</style>
+</head>
+<body>
+<!-- Modèle de page : remplacer le titre, la description et le nom du fichier vidéo. Pas de piste de sous-titres : la bande jaune de la vidéo suffit. -->
+<h1>Titre du cours</h1>
+<p>Vidéo de cours, matière. Construite à partir des leçons du cours, numéro du cours.</p>
+<video controls playsinline preload="metadata" src="cours-XXXX-720p.mp4"></video>
+</body>
+</html>

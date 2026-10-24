@@ -96,3 +96,14 @@ python3 -c "import importlib.util,json; s=importlib.util.spec_from_file_location
 ```
 
 Le dossier de travail est `/tmp/chaine-cours/<courseId>` (Linux). Sur un autre système, le chemin `/tmp/chaine-cours` de la fonction `rendre` dans `lancer.py` est à adapter. Le montage réseau ne gère pas les liens symboliques : ne pas faire le travail dedans.
+
+## Exemples validés (dans le dépôt)
+
+Les trois cours validés sont dans `video-cours/exemples/`, en 720p pour rester légers (environ 3 à 4 Mo chacun) :
+- `cours-6290-720p.mp4` : suites numériques
+- `cours-7370-720p.mp4` : acidité et basicité (avec les formules corrigées)
+- `cours-7367-720p.mp4` : oscillations mécaniques (avec les écrans animés)
+
+`page-modele.html` est le modèle de page à regarder : la vidéo lue en ligne, sans piste de sous-titres, au ratio 16:9, avec les variables de couleur du design. Pour une nouvelle page, copier ce modèle à côté de la vidéo et remplacer le titre, la description et le nom du fichier.
+
+Les versions 1080p de référence restent dans `sorties/` (non suivies par git) : elles se régénèrent avec `lancer.py`, et la version 720p est une compression de cette sortie (`ffmpeg -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k`).
