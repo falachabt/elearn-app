@@ -1,3 +1,8 @@
+# Sorties générées : jamais dans git.
 sorties/
 __pycache__/
 *.pyc
+# Le .gitignore racine ignore *.py et node_modules : la chaîne en a besoin.
+!*.py
+!pipeline/gabarits/ressources/node_modules/
+!pipeline/gabarits/ressources/node_modules/**

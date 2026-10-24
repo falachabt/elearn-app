@@ -1,0 +1,171 @@
+{
+  "cours": 5942,
+  "lecons": [
+    4716,
+    4717,
+    4718,
+    4719
+  ],
+  "titre": "Mélanges et corps purs",
+  "matiere": "Chimie",
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bonjour à tous. Aujourd'hui, on découvre les corps purs et les mélanges : deux façons de décrire la matière.",
+      "texte": "Bonjour à tous. Aujourd'hui : corps purs et mélanges.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "Un corps pur est fait d'un seul type de particules. Un mélange en contient plusieurs.",
+      "texte": "Un corps pur contient un seul type de particules. Un mélange en contient plusieurs.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p03",
+      "ecran": "purs",
+      "dit": "Un corps pur a une composition fixe et des propriétés constantes. L'eau, le dioxygène et l'or en sont des exemples.",
+      "texte": "Corps pur : composition fixe et propriétés constantes. Exemples : eau, dioxygène, or.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p04",
+      "ecran": "purs_types",
+      "dit": "Il existe des corps purs simples, faits d'un seul type d'atome, comme le dioxygène. Et des corps purs composés, faits d'atomes différents, comme l'eau.",
+      "texte": "Corps pur simple : un seul type d'atome. Corps pur composé : plusieurs types d'atomes.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p05",
+      "ecran": "melange",
+      "dit": "Un mélange est constitué de deux substances ou plus, sans réaction chimique entre elles. L'air ou l'eau sucrée en sont des exemples.",
+      "texte": "Mélange : au moins deux substances, sans réaction chimique entre elles.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p06",
+      "ecran": "homog",
+      "dit": "Un mélange homogène a une composition uniforme à notre échelle. On ne distingue qu'une seule phase, comme dans l'eau sucrée ou l'air.",
+      "texte": "Mélange homogène : une seule phase, composition uniforme.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p07",
+      "ecran": "heterog",
+      "dit": "Un mélange hétérogène présente plusieurs phases visibles. Le sable dans l'eau en est l'exemple typique : le sable se dépose au fond.",
+      "texte": "Mélange hétérogène : plusieurs phases visibles. Exemple : sable dans l'eau.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p08",
+      "ecran": "critere",
+      "dit": "Attention : le critère n'est pas la transparence. Ce qui compte, c'est le nombre de phases visibles.",
+      "texte": "Le critère est le nombre de phases, pas la transparence.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p09",
+      "ecran": "etats",
+      "dit": "La matière existe sous trois états : solide, liquide et gaz. On passe d'un état à l'autre en changeant la température.",
+      "texte": "Trois états : solide, liquide, gaz. Le changement d'état dépend de la température.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p10",
+      "ecran": "solide",
+      "dit": "Un solide a une forme propre et un volume fixe.",
+      "texte": "Solide : forme propre et volume fixe.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p11",
+      "ecran": "liquide_gaz",
+      "dit": "Un liquide a un volume fixe, mais prend la forme de son récipient. Un gaz remplit tout le volume disponible.",
+      "texte": "Liquide : volume fixe, forme du récipient. Gaz : remplit tout le volume disponible.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p12",
+      "ecran": "recap",
+      "dit": "À retenir : un corps pur a une composition fixe, un mélange en contient plusieurs. Le nombre de phases distingue l'homogène de l'hétérogène.",
+      "texte": "À retenir : corps pur, composition fixe ; mélange, plusieurs substances.",
+      "pause_apres": 0.9
+    }
+  ],
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Chimie",
+      "titre": "Mélanges et corps purs",
+      "sous": "Déconstruire la matière"
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un corps pur ou un mélange : quelle différence ?"
+    },
+    "purs": {
+      "type": "formule",
+      "kicker": "Corps pur",
+      "tex": "H_2O \\quad O_2 \\quad \\mathrm{Au}",
+      "note": "composition fixe"
+    },
+    "purs_types": {
+      "type": "lignes",
+      "kicker": "Corps purs simples et composés",
+      "tex": [
+        "O_2 \\;\\text{corps pur simple}",
+        "H_2O \\;\\text{corps pur composé}"
+      ]
+    },
+    "melange": {
+      "type": "phrase",
+      "kicker": "Mélange",
+      "texte": "Au moins deux substances, sans réaction chimique"
+    },
+    "homog": {
+      "type": "phrase",
+      "kicker": "Mélange homogène",
+      "texte": "Une seule phase, composition uniforme"
+    },
+    "heterog": {
+      "type": "phrase",
+      "kicker": "Mélange hétérogène",
+      "texte": "Plusieurs phases visibles : sable dans l'eau"
+    },
+    "critere": {
+      "type": "phrase",
+      "kicker": "Piège",
+      "texte": "Ce n'est pas la transparence : c'est le nombre de phases"
+    },
+    "etats": {
+      "type": "lignes",
+      "kicker": "Les trois états de la matière",
+      "tex": [
+        "\\text{solide} \\leftrightarrow \\text{liquide} \\leftrightarrow \\text{gaz}"
+      ]
+    },
+    "solide": {
+      "type": "phrase",
+      "kicker": "Solide",
+      "texte": "Forme propre, volume fixe"
+    },
+    "liquide_gaz": {
+      "type": "phrase",
+      "kicker": "Liquide et gaz",
+      "texte": "Liquide : volume fixe. Gaz : tout le volume disponible"
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Corps pur : une seule substance, composition fixe",
+        "Mélange : plusieurs substances, sans réaction",
+        "Homogène : une seule phase ; hétérogène : plusieurs phases",
+        "Trois états : solide, liquide, gaz"
+      ]
+    }
+  }
+}
