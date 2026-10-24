@@ -12,6 +12,7 @@ import { DEPASSEMENT_CENTRAL } from '@/components/Onglet';
 import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { profilToeicActif } from '@/services/certification/accueil';
+import { lireDiagnostic } from '@/services/certification/etat';
 import { etapeCertification } from '@/services/certification/reprise';
 import { lireProfil, profilDepuisCompte } from '@/services/profil';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
@@ -49,6 +50,14 @@ export default function LayoutOnglets() {
   const arrivee: 'inconnu' | 'a-faire' | 'fait' = sessionPrete && resultat.session === sessionPrete ? resultat.etat : 'inconnu';
   // Profil certification inachevé : l'écran où reprendre (jamais Bienvenue).
   const [reprise, setReprise] = useState<string | null>(null);
+  // Diagnostic TOEIC terminé (résultat posé dans l'état local) : relu au même rythme que la reprise, donc à chaque
+  // changement d'écran — la barre masquée avant le diagnostic réapparaît au retour sur l'accueil, sans relancer l'app.
+  const [diagnosticFait, setDiagnosticFait] = useState(false);
+  // Diagnostic obligatoire (décision de Benny, issue #121) : profil TOEIC et diagnostic pas encore terminé, la barre
+  // d'onglets est masquée — pas de menus atténués ni de cadenas, l'élève ne voit que le diagnostic à faire. Elle reste
+  // montée mais non affichée (voir le style `masquee` plus bas) : sans `TabList`, le navigateur d'expo-router/ui ne
+  // trouve aucun écran et lève une erreur, les onglets doivent donc garder leurs déclencheurs.
+  const barreMasquee = barreToeic && !diagnosticFait;
   useEffect(() => {
     // Le profil se lit APRÈS que la session soit décidée (useSessionPrete), et se relit quand elle change : après une
     // connexion, le compte apporte le parcours d'arrivée (voir SessionProvider) et la session invité le précède.
@@ -61,10 +70,12 @@ export default function LayoutOnglets() {
     void (async () => {
       const p = await lireProfil();
       const etape = await etapeCertification(p);
+      const diag = await lireDiagnostic();
       if (!actif) return;
       setReprise(etape);
-      // Les onglets TOEIC s'ouvrent dès l'arrivée (objectif et temps) : diagnostic commencé ou en cours compris.
-      // Le résultat reste une étape obligatoire tant que « Voir mon plan » n'a pas été pressé.
+      setDiagnosticFait(!!diag?.fin);
+      // La garde d'arrivée laisse passer dès l'arrivée (objectif et temps faits), diagnostic commencé ou en cours
+      // compris. La barre, elle, reste masquée tant que le diagnostic n'est pas terminé (voir `barreMasquee`).
       const arriveeFaite = etape === '/certification/arrivee' || etape === '/certification/diagnostic';
       setResultat({ session: sessionPrete, etat: p?.termine || compte?.termine || arriveeFaite ? 'fait' : 'a-faire' });
     })();
@@ -95,13 +106,15 @@ export default function LayoutOnglets() {
   return (
     <View style={styles.racine}>
       <Tabs style={styles.racine}>
-        {/* Le bouton central déborde de la barre : le défilement de chaque onglet s'arrête au-dessus, sans rien cacher. */}
-        <TabSlot style={[styles.ecran, { paddingBottom: DEPASSEMENT_CENTRAL + espace[3] }]} />
+        {/* Le bouton central déborde de la barre : le défilement de chaque onglet s'arrête au-dessus, sans rien cacher.
+            Barre masquée (avant le diagnostic) : aucune réserve pour une barre absente, l'écran descend jusqu'à la
+            zone sûre — le pied de l'accueil (bouton du diagnostic) se pose en bas de l'écran, pas au-dessus d'un vide. */}
+        <TabSlot style={[styles.ecran, { paddingBottom: barreMasquee ? bottom : DEPASSEMENT_CENTRAL + espace[3] }]} />
         {/* Hors ligne seulement : la barre fine se pose juste au-dessus de la tabbar (la pastille flotte au-dessus).
             Placé entre le contenu et la barre, donc dans le flux : aucune superposition avec les écrans. */}
         <EtatReseau />
         <TabList asChild>
-          <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }])}>
+          <View style={StyleSheet.flatten([styles.barre, { backgroundColor: theme.fond.surface, borderTopColor: theme.bord.fort, paddingBottom: bottom }, barreMasquee && styles.masquee])}>
             <TabTrigger name="index" href="/" asChild>
               <Onglet libelle={t('onglets.accueil')} icone="home-outline" iconeActive="home" />
             </TabTrigger>
@@ -140,4 +153,6 @@ const styles = StyleSheet.create({
   racine: { flex: 1 },
   ecran: { flex: 1, minHeight: 0 },
   barre: { flexDirection: 'row', borderTopWidth: bord.normal },
+  // Barre masquée avant le diagnostic (issue #121) : montée pour le navigateur, mais ni vue, ni touchable.
+  masquee: { display: 'none' },
 });
