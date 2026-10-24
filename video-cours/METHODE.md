@@ -57,3 +57,42 @@ Règles :
 - La voix n'est pas relue automatiquement : à écouter avant publication.
 - Le choix pédagogique (quelles formules, quels exemples, quelles animations) reste manuel.
 - Le pipeline lit les formules par une table de règles (`dire_formule`). Les formules complexes sont dites à la main dans le script, en français oral.
+
+## Environnement (pour installer sans deviner)
+
+Ce qui est nécessaire, tel que lu dans `chaine-cours/lancer.py` et `pipeline/` :
+
+| Élément | Où | Rôle |
+| --- | --- | --- |
+| Python 3.12 | système | exécute `lancer.py` et `pipeline/` |
+| `omnivoice` (paquet Python du projet k2-fsa/OmniVoice) | pip | génération de la voix, importé dans `lancer.py` (fonction `voix`) |
+| modèle `k2-fsa/OmniVoice` | téléchargé par le paquet au premier lancement (Hugging Face, réseau requis) | poids de la voix, chargés sur CPU (`device_map="cpu"`, `float32`) |
+| `torch` | pip | moteur du modèle OmniVoice, CPU suffit |
+| `soundfile` | pip | lecture et écriture des WAV (voix de référence, `voix.wav`) |
+| `playwright` (paquet Python) | pip | pilote Chromium pour capturer les écrans |
+| Chromium | par défaut `/opt/pw-browsers/chromium-1243/chrome-linux64/chrome` | rendu des écrans 16:9 ; sur une autre machine, indiquer le chemin dans `CHAINE_CHROME` (par exemple `~/.cache/ms-playwright/chromium-.../chrome-linux/chrome`) |
+| `ffmpeg` et `ffprobe` | système | concaténation des images, encodage H.264 et AAC |
+| `chaine-cours/gabarit/`, `chaine-cours/voix/ref-femme-4s.wav` | dépôt | gabarit 16:9, voix de référence |
+| `pipeline/gabarits/ressources/node_modules/` | dépôt | KaTeX et polices Archivo Black et Space Grotesk, copiés dans le dossier de travail |
+| `CHAINE_SUPABASE_URL`, `CHAINE_SUPABASE_KEY` | variables d'environnement | lecture seule des leçons (`extraire`) |
+| `CHAINE_CHROME` (facultatif) | variable d'environnement | chemin de Chromium si différent du défaut |
+
+Installation (à adapter à la machine) :
+
+```
+python3 -m pip install omnivoice soundfile torch playwright
+python3 -m playwright install chromium   # seulement si Chromium n'est pas déjà présent
+```
+
+Ne pas lancer `playwright install` si `/opt/pw-browsers/` existe déjà : une autre version ne serait pas trouvée (règle de l'environnement cloud).
+
+Versions : celles qui ont produit les vidéos validées n'ont pas été notées. Au premier lancement, noter `python3 -m pip freeze` dans `chaine-cours/sorties/ENVIRONNEMENT.txt` (dossier ignoré par git) et le joindre à la première vidéo produite.
+
+Vérification sans voix ni réseau (à faire après chaque clone) :
+
+```
+cd video-cours/chaine-cours
+python3 -c "import importlib.util,json; s=importlib.util.spec_from_file_location('l','lancer.py'); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); print(m.valider(json.load(open('scripts/5942.json',encoding='utf-8'))) or 'OK')"
+```
+
+Le dossier de travail est `/tmp/chaine-cours/<courseId>` (Linux). Sur un autre système, le chemin `/tmp/chaine-cours` de la fonction `rendre` dans `lancer.py` est à adapter. Le montage réseau ne gère pas les liens symboliques : ne pas faire le travail dedans.
