@@ -86,7 +86,14 @@ Le script est un JSON avec : `cours`, `lecons` (les identifiants de leçon lus),
 
 ## 10. Contenu TOEIC
 
-*(Section à compléter : le chemin du fichier de documentation du contenu TOEIC est demandé au fil « Contenu TOEIC complet ». Quand il est disponible, cette section renvoie vers ce fichier, avec un résumé : production des questions, notions et mots, audios, validation, mise en base et R2, accès nécessaires, état actuel et ce qui bloque.)*
+Le document de passation de la production du contenu TOEIC est sur la branche `claude/project-thread-kw792g` de `elearn-app` : `docs/communication/production-contenu-toeic.md` (commit da92a08). Lis-le avant de toucher au contenu TOEIC. Il dit où vit le contenu (tables `cert_*` en base, bucket R2 `elearnprepa-public`), comment une question est rédigée, relue et publiée (migration dans `elearn-supabase`, une branche, une PR), comment l'audio est généré et contrôlé, et les règles de qualité.
+
+Points à retenir pour toi :
+- Accès : l'API ElevenLabs et l'écriture R2 ne sont pas disponibles aujourd'hui. Ne lance aucune génération audio et ne téléverse rien sans que Benny ait déclaré les accès dans l'environnement. Travaille sur les textes et les lots en attendant.
+- Partie 2 des tests 2 et 3 : 50 clips sont trop courts (1,5 à 4,1 s). Ils se régénèrent avec le texte complet, l'ordre des options de l'audio, un débit naturel (réglage de vitesse 1,05 à 1,1, par l'API directe) et une durée minimale de 4 s. Le clip t2_p2_30 est prioritaire.
+- Banque : environ 800 questions nouvelles (écoute et lecture) à rédiger par lots de 50, relues mot à mot contre leur transcription ou leur texte avant « prêt ». L'ordre des options suit toujours l'audio. Les voix variées sont gardées.
+- Aucune écriture directe en base hors migration. Pas de suppression en production sans comptage et sauvegarde préalables. Une question pour Benny se pose une fois, avec le choix recommandé.
+- Chaque lot se rapporte à Benny : nombre de questions, relecture faite, audios contrôlés, coût par rapport au budget, risques.
 
 ## 11. Premier lot proposé
 
