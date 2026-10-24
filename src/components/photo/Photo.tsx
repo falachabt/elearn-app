@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Flag, Share2, Sparkles } from 'lucide-react-native';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { ActivityIndicator, AppState, Share, StyleSheet, Text, View, type NativeScrollEvent, type NativeSyntheticEvent, type StyleProp, type ViewStyle } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { noterActionConfiguration } from '@/services/assistantConfiguration';
@@ -52,6 +52,17 @@ type Etat =
   | { ecran: 'limiteCadence'; minutes: number | null };
 
 const COULEUR: Record<string, string> = { maths: couleursMatiere.maths, physique: couleursMatiere.physique, chimie: couleursMatiere.physique, svt: couleursMatiere.svt, francais: couleursMatiere.francais, anglais: couleursMatiere.anglais };
+
+/**
+ * Pied des écrans du parcours posés dans l'onglet Photo (recadrage, correction, signaler, limites).
+ * Le `TabSlot` du layout des onglets réserve déjà sous chaque écran le dépassement du bouton central
+ * plus `espace[3]` de respiration ; le pied d'`Ecran` ajoute par-dessus son propre `paddingBottom`
+ * standard (`espace[5]`), prévu pour les écrans sans cette réserve. Les deux s'additionnaient : le bloc
+ * du bas flottait loin de la barre d'onglets. On compense la réserve en double par une marge négative :
+ * le pied garde son padding interne (clavier compris) et descend de `espace[5]`, la respiration de
+ * l'onglet (dépassement + `espace[3]`) reste la seule sous le bloc.
+ */
+const PIED_ONGLET: StyleProp<ViewStyle> = { marginBottom: -espace[5] };
 
 /** Aide par photo (M3, parcours B) : appareil photo → recadrage → analyse → correction pas à pas, signalement, limites. */
 export function Photo() {
@@ -327,6 +338,7 @@ export function Photo() {
         insetBas={false}
         defilement={false}
         retourHaut={false}
+        piedStyle={PIED_ONGLET}
         entete={
           <>
             <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={recommencer} />
@@ -405,6 +417,7 @@ export function Photo() {
         <Ecran
           insetBas={false}
           onScroll={surDefilementCorrection}
+          piedStyle={PIED_ONGLET}
           entete={
             <>
               <BoutonFermer icone="chevron-back" libelle={t('photo.retour')} onPress={depuis ? () => setEtat({ ecran: 'historique' }) : quitter} />
@@ -522,6 +535,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('photo.signalerTitre')}</Text>
           </>
         }
+        piedStyle={PIED_ONGLET}
         pied={<Bouton libelle={t('photo.signalerEnvoyer')} desactive={!motif || occupe} onPress={() => void envoyerSignalement(id, correction)} />}
       >
         <View style={styles.options}>
@@ -564,6 +578,7 @@ export function Photo() {
             <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
           </>
         }
+        piedStyle={PIED_ONGLET}
         pied={<Bouton libelle={t('photo.limiteCadenceBouton')} onPress={recommencer} />}
       >
         <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
@@ -587,6 +602,7 @@ export function Photo() {
           <Text accessibilityRole="header" style={[typo.h3, { color: theme.texte.principal }]}>{t('onglets.photo')}</Text>
         </>
       }
+      piedStyle={PIED_ONGLET}
       pied={<Bouton libelle={t('photo.faireMission')} onPress={() => router.replace('/')} />}
     >
       <View style={[styles.carteJaune, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
