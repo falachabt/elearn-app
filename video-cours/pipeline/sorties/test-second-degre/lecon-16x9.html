@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/node_modules/katex/dist/katex.min.css">
+<script src="/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/node_modules/katex/dist/katex.min.js"></script>
+<style>
+@font-face{font-family:"Archivo Black";src:url(/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/node_modules/@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:500;src:url(/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Space Grotesk";font-weight:700;src:url(/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2) format("woff2")}
+/* Tokens : clair par défaut, sombre via ?theme=sombre (guide Elearn Prépa, néo-brutal doux) */
+:root{--fond:#FFF7E3;--encre:#0A0A0A;--carte:#FFFFFF;--bordure:#0A0A0A;--ombre:#0A0A0A;--marque:#10B981;--jaune:#FFD83D;--muet:#5B5B55}
+:root.sombre{--fond:#141614;--encre:#F5F1E6;--carte:#1F221F;--bordure:#F5F1E6;--ombre:#10B981;--muet:#A8ADA6}
+*{box-sizing:border-box}
+html,body{margin:0;width:1080px;height:1920px;background:var(--fond)}
+#cadre{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--fond);color:var(--encre);font-family:"Space Grotesk",sans-serif}
+header{position:absolute;top:84px;left:80px;right:80px;display:flex;align-items:center;gap:22px}
+header img{width:72px;height:72px;border:5px solid var(--bordure);border-radius:14px;background:var(--marque);padding:8px}
+header .marque{font-family:"Archivo Black";font-size:40px;letter-spacing:-.5px}
+header .matiere{margin-left:auto;font-weight:700;font-size:30px;border:4px solid var(--bordure);border-radius:10px;padding:6px 18px;background:var(--carte)}
+#progres{position:absolute;top:196px;left:80px;right:80px;height:18px;border:4px solid var(--bordure);border-radius:10px;background:var(--carte);overflow:hidden}
+#progres div{height:100%;width:0;background:var(--marque)}
+#scene{position:absolute;top:300px;left:80px;right:80px;height:1040px;display:flex;flex-direction:column;justify-content:center;gap:40px}
+.kicker{display:inline-block;align-self:flex-start;font-weight:700;font-size:34px;border:4px solid var(--bordure);border-radius:10px;padding:8px 20px;background:var(--marque);color:#0A0A0A}
+h1{font-family:"Archivo Black";font-weight:400;font-size:104px;line-height:1.02;margin:0;letter-spacing:-1.5px}
+h2{font-family:"Archivo Black";font-weight:400;font-size:70px;line-height:1.08;margin:0;letter-spacing:-1px}
+.sous{font-size:44px;margin:0;color:var(--muet);font-weight:500}
+.note{font-size:40px;margin:0;font-weight:500;color:var(--muet)}
+.carte{background:var(--carte);border:6px solid var(--bordure);border-radius:16px;box-shadow:14px 14px 0 var(--ombre);padding:56px 48px;display:flex;flex-direction:column;align-items:center;gap:30px}
+.tex{width:100%;text-align:center;overflow:hidden}
+.tex .katex{font-size:112px}
+.tex .katex-display{margin:0}
+.carte .tex .katex{font-size:96px}
+.cas-liste{display:flex;flex-direction:column;gap:26px}
+.cas{position:relative;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--carte);border:6px solid var(--bordure);border-radius:14px;box-shadow:10px 10px 0 var(--ombre);padding:30px 36px;opacity:.5}
+.cas.actif{opacity:1;background:var(--marque);color:#0A0A0A}
+.cas .cond .katex{font-size:64px}
+.cas .texte{font-size:40px;font-weight:700;text-align:right}
+.cas .badge{position:absolute;top:-22px;right:28px;background:var(--jaune);color:#0A0A0A;border:4px solid var(--bordure);border-radius:10px;padding:4px 16px;font-weight:700;font-size:28px}
+.cas.actif .katex{color:#0A0A0A}
+ol.etapes{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:26px;counter-reset:n}
+ol.etapes li{counter-increment:n;display:flex;align-items:center;gap:26px;font-size:46px;font-weight:700;background:var(--carte);border:6px solid var(--bordure);border-radius:14px;box-shadow:10px 10px 0 var(--ombre);padding:28px 34px}
+ol.etapes li::before{content:counter(n);font-family:"Archivo Black";flex:0 0 76px;height:76px;line-height:76px;text-align:center;border:5px solid var(--bordure);border-radius:12px;background:var(--jaune);color:#0A0A0A}
+#sous{position:absolute;left:80px;right:80px;bottom:150px;min-height:220px;display:flex;align-items:center;background:var(--jaune);color:#0A0A0A;border:6px solid var(--bordure);border-radius:16px;box-shadow:12px 12px 0 var(--ombre);padding:36px 44px;font-size:46px;font-weight:700;line-height:1.3}
+footer{position:absolute;bottom:56px;left:80px;right:80px;font-size:28px;font-weight:500;color:var(--muet);display:flex;justify-content:space-between}
+.texte{font-size:64px;font-weight:700;line-height:1.25;text-align:left;align-items:flex-start}
+
+/* Format 16:9 (1920x1080), pour l'app et YouTube : mise en page en paysage */
+html,body{width:1920px;height:1080px}
+#cadre{width:1920px;height:1080px}
+header{top:34px;left:96px;right:96px;gap:20px}
+header img{width:60px;height:60px;padding:7px}
+header .marque{font-size:32px}
+header .matiere{font-size:24px;padding:4px 16px}
+#progres{top:112px;left:96px;right:96px;height:14px}
+#scene{top:188px;left:96px;right:96px;height:676px;gap:18px}
+h1{font-size:84px}
+h2{font-size:58px}
+.sous{font-size:36px}
+.note{font-size:32px}
+.kicker{font-size:26px;padding:6px 16px}
+.carte{padding:26px 48px;gap:14px;box-shadow:10px 10px 0 var(--ombre)}
+.tex .katex{font-size:100px}
+.carte .tex .katex{font-size:92px}
+.cas .cond .katex{font-size:52px}
+.cas{padding:14px 26px}
+.cas .texte{font-size:34px}
+.cas-liste{gap:12px}
+.cas-liste + .carte .tex .katex{font-size:68px}
+.cas-liste + .carte{padding:18px 40px}
+.cas-liste .cas{padding:12px 24px}
+.carte .katex-display{margin:0}
+ol.etapes li{font-size:36px;padding:20px 28px}
+ol.etapes li::before{flex:0 0 58px;height:58px;line-height:58px;font-size:30px}
+.texte{font-size:50px}
+#sous{left:96px;right:96px;bottom:24px;min-height:0;font-size:38px;padding:26px 40px;box-shadow:10px 10px 0 var(--ombre)}
+footer{display:none}
+</style>
+</head>
+<body>
+<div id="cadre">
+  <header>
+    <img src="/mnt/attach/project-files/video-cours/pipeline/gabarits/ressources/logo-symbole.svg" alt="">
+    <span class="marque">Elearn Prépa</span>
+    <span class="matiere" id="matiere"></span>
+  </header>
+  <div id="progres"><div id="barre"></div></div>
+  <main id="scene"></main>
+  <div id="sous"></div>
+  <footer><span>elearnprepa.com</span><span id="titre-lecon"></span></footer>
+</div>
+<script>
+let D = null;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tex = (t, bloc = true) => `<div class="tex" data-tex="${esc(t)}" data-bloc="${bloc}"></div>`;
+
+function gabarit(e) {
+  switch (e.type) {
+    case 'titre':
+      return `<span class="kicker">${esc(e.kicker)}</span><h1>${esc(e.titre)}</h1><p class="sous">${esc(e.sous)}</p>`;
+    case 'formule':
+      return `<span class="kicker">${esc(e.kicker)}</span><div class="carte">${tex(e.tex)}</div>${e.note ? `<p class="note">${esc(e.note)}</p>` : ''}`;
+    case 'etape':
+      return `<span class="kicker">${esc(e.kicker)}</span>${e.titre ? `<h2>${esc(e.titre)}</h2>` : ''}<div class="carte">${e.tex.map(t => tex(t)).join('')}</div>`;
+    case 'lignes':
+      return `<span class="kicker">${esc(e.kicker)}</span><div class="carte">${e.tex.map(t => tex(t)).join('')}</div>`;
+    case 'signe': {
+      const cas = D.cas.map((c, i) => `<div class="cas ${i === e.actif ? 'actif' : ''}">${i === e.actif ? '<span class="badge">Cas en cours</span>' : ''}<div class="cond">${tex(c.cond, false)}</div><div class="texte">${esc(c.texte)}</div></div>`).join('');
+      return `<span class="kicker">${esc(e.kicker)}</span><div class="cas-liste">${cas}</div>${e.tex.length ? `<div class="carte">${e.tex.map(t => tex(t)).join('')}</div>` : ''}`;
+    }
+    case 'phrase':
+      return `<span class="kicker">${esc(e.kicker)}</span><div class="carte texte">${esc(e.texte)}</div>`;
+    case 'recap':
+      return `<span class="kicker">${esc(e.kicker)}</span><ol class="etapes">${e.etapes.map(t => `<li>${esc(t)}</li>`).join('')}</ol>`;
+    default:
+      throw new Error('gabarit inconnu : ' + e.type);
+  }
+}
+
+
+window.chevauchement = () => {
+  const s = document.getElementById('sous').getBoundingClientRect();
+  return [...document.querySelectorAll('#scene > *')].some(e => {
+    const r = e.getBoundingClientRect();
+    return r.height > 0 && r.bottom > s.top + 1 && r.top < s.bottom - 1;
+  });
+};
+window.charger = d => {
+  D = d;
+  document.getElementById('matiere').textContent = d.matiere;
+  document.getElementById('titre-lecon').textContent = d.titre;
+};
+
+window.afficher = i => {
+  const c = D.sous_titres[i];
+  const e = D.ecrans[c.ecran];
+  const scene = document.getElementById('scene');
+  scene.innerHTML = gabarit(e);
+  scene.querySelectorAll('[data-tex]').forEach(el =>
+    katex.render(el.dataset.tex, el, { displayMode: el.dataset.bloc === 'true', throwOnError: false }));
+  document.getElementById('sous').textContent = c.texte;
+  document.getElementById('barre').style.width = ((i + 1) / D.sous_titres.length * 100) + '%';
+};
+</script>
+</body>
+</html>
