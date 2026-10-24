@@ -1,0 +1,352 @@
+{
+  "cours": 7370,
+  "lecons": [
+    10604,
+    10605,
+    10606,
+    10607
+  ],
+  "titre": "Acidité et basicité",
+  "matiere": "Chimie · Terminale",
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bonjour à tous ! Aujourd'hui, on étudie l'acidité et la basicité des solutions aqueuses : le pH, les acides et les bases, et les dosages.",
+      "texte": "Bonjour à tous ! Aujourd'hui, on étudie l'acidité et la basicité des solutions aqueuses.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "Même l'eau pure contient des ions. Elle réagit avec elle-même, et produit un ion hydronium et un ion hydroxyde.",
+      "texte": "Même l'eau pure contient des ions : elle réagit avec elle-même.",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p03",
+      "ecran": "autoprotolyse",
+      "dit": "C'est l'autoprotolyse de l'eau : deux molécules d'eau échangent un proton, pour donner un ion hydronium et un ion hydroxyde.",
+      "texte": "Autoprotolyse de l'eau : 2 H₂O ⇌ H₃O⁺ + OH⁻",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p04",
+      "ecran": "kw",
+      "dit": "À température fixe, le produit des concentrations en hydronium et en hydroxyde reste constant. À vingt-cinq degrés, K w vaut un virgule zéro fois dix puissance moins quatorze.",
+      "texte": "À 25 °C, le produit Kw = [H₃O⁺] × [OH⁻] vaut 1,0 × 10⁻¹⁴.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p05",
+      "ecran": "piege_kw",
+      "dit": "Attention : K w dépend de la température. Sauf indication contraire, on travaille à vingt-cinq degrés.",
+      "texte": "Attention : Kw dépend de la température. Sauf indication, on travaille à 25 °C.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p06",
+      "ecran": "ph",
+      "dit": "Le pH est défini par moins le logarithme décimal de la concentration en ions hydronium. Il est sans unité.",
+      "texte": "pH = −log[H₃O⁺], sans unité.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p07",
+      "ecran": "ph_poh",
+      "dit": "À vingt-cinq degrés, pH plus pOH vaut quatorze.",
+      "texte": "À 25 °C : pH + pOH = 14.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p08",
+      "ecran": "classement",
+      "dit": "Si le pH est inférieur à sept, la solution est acide. S'il vaut sept, elle est neutre. S'il est supérieur à sept, elle est basique.",
+      "texte": "pH inférieur à 7 : acide. pH égal à 7 : neutre. pH supérieur à 7 : basique.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p09",
+      "ecran": "acide_fort",
+      "dit": "Pour un acide fort, la dissociation est totale. Exemple : une solution d'acide chlorhydrique à zéro virgule zéro cinq mole par litre.",
+      "texte": "Acide fort : dissociation totale. Exemple : HCl à 0,05 mol·L⁻¹.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p10",
+      "ecran": "acide_calc",
+      "dit": "La concentration en hydronium vaut donc zéro virgule zéro cinq. Le pH vaut moins le logarithme de zéro virgule zéro cinq, soit environ un virgule trente.",
+      "texte": "[H₃O⁺] = C = 0,05 mol·L⁻¹, donc pH = −log(0,05) ≈ 1,30.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p11",
+      "ecran": "base_calc",
+      "dit": "Pour une base forte, c'est la concentration en hydroxyde qui vaut C. Avec C égal à dix puissance moins trois : pOH vaut trois, donc pH vaut onze.",
+      "texte": "Base forte, C = 10⁻³ mol·L⁻¹ : pOH = 3, donc pH = 14 − 3 = 11.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p12",
+      "ecran": "acide_faible",
+      "dit": "Un acide faible ne se dissocie pas totalement. Il établit un équilibre avec sa base conjuguée.",
+      "texte": "Un acide faible ne se dissocie pas totalement : il établit un équilibre.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p13",
+      "ecran": "ka",
+      "dit": "On mesure sa force par la constante d'acidité K a, ou par p K a, qui est moins le logarithme de K a. Plus p K a est grand, plus l'acide est faible.",
+      "texte": "Ka = [H⁺][A⁻] / [HA], et pKa = −log Ka. Plus pKa est grand, plus l'acide est faible.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p14",
+      "ecran": "couple",
+      "dit": "Un acide HA et sa base conjuguée A moins forment un couple acido-basique.",
+      "texte": "Couple acido-basique : HA / A⁻.",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p15",
+      "ecran": "ka_kb",
+      "dit": "Pour un couple, K a fois K b vaut K w. Autrement dit, p K a plus p K b égale quatorze.",
+      "texte": "Ka × Kb = Kw, soit pKa + pKb = 14.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p16",
+      "ecran": "henderson",
+      "dit": "Dans une solution tampon, un mélange d'acide faible et de sa base conjuguée, le pH se calcule par la formule de Henderson.",
+      "texte": "Solution tampon : pH = pKa + log([A⁻] / [HA]).",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p17",
+      "ecran": "tampon_calc",
+      "dit": "Exemple : p K a vaut quatre virgule soixante-seize, avec zéro virgule dix mole par litre d'acide et zéro virgule zéro cinquante d'acétate. Le pH vaut environ quatre virgule quarante-six.",
+      "texte": "pKa = 4,76 ; [HA] = 0,10 ; [A⁻] = 0,050 : pH ≈ 4,46.",
+      "pause_apres": 1.1
+    },
+    {
+      "id": "p18",
+      "ecran": "tampon_rem",
+      "dit": "Un tampon résiste aux petits ajouts d'acide ou de base : le pH reste presque stable.",
+      "texte": "Un tampon résiste aux petits ajouts d'acide ou de base.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p19",
+      "ecran": "equivalence",
+      "dit": "Pour un dosage, au point d'équivalence, les quantités de matière se correspondent : C A fois V A égale C T fois V T.",
+      "texte": "Au point d'équivalence : CA × VA = CT × VT.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p20",
+      "ecran": "ph_eq",
+      "dit": "Le pH à l'équivalence dépend des deux réactifs. Acide fort et base forte : pH égal à sept. Acide faible et base forte : pH supérieur à sept. Acide fort et base faible : pH inférieur à sept.",
+      "texte": "pH à l'équivalence : fort + fort → 7 ; faible + forte → plus de 7 ; fort + faible → moins de 7.",
+      "pause_apres": 1.2
+    },
+    {
+      "id": "p21",
+      "ecran": "courbe",
+      "dit": "Sur la courbe de titrage, le pH saute brutalement autour du volume équivalent. Avant, une zone tampon apparaît.",
+      "texte": "Sur la courbe de titrage, le pH saute autour du volume équivalent.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p22",
+      "ecran": "indicateur",
+      "dit": "Pour choisir l'indicateur coloré, son intervalle de changement de couleur doit contenir le pH d'équivalence.",
+      "texte": "L'indicateur doit changer de couleur autour du pH d'équivalence.",
+      "pause_apres": 0.9
+    },
+    {
+      "id": "p23",
+      "ecran": "indicateur_f",
+      "dit": "Autrement dit : p H inf est inférieur ou égal au pH d'équivalence, qui est inférieur ou égal à p H sup.",
+      "texte": "pH inf ≤ pH équivalence ≤ pH sup",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p24",
+      "ecran": "piege_ind",
+      "dit": "Si le pH d'équivalence est en dehors de cet intervalle, le dosage est faussé.",
+      "texte": "Si le pH d'équivalence est hors de l'intervalle, le dosage est faussé.",
+      "pause_apres": 1.0
+    },
+    {
+      "id": "p25",
+      "ecran": "recap",
+      "dit": "À retenir : à vingt-cinq degrés, K w vaut dix puissance moins quatorze, et pH plus pOH vaut quatorze. Acide fort et base forte se dissocient totalement. Pour un dosage, choisissez l'indicateur qui contient le pH d'équivalence.",
+      "texte": "À retenir : Kw = 10⁻¹⁴ et pH + pOH = 14 à 25 °C. Choisir l'indicateur qui contient le pH d'équivalence.",
+      "pause_apres": 0.0
+    }
+  ],
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Chimie · Terminale",
+      "titre": "Acidité et basicité",
+      "sous": "pH, acides, bases et dosages"
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "L'eau réagit avec elle-même : elle contient toujours des ions."
+    },
+    "autoprotolyse": {
+      "type": "formule",
+      "kicker": "Autoprotolyse de l'eau",
+      "tex": "2\\,H_2O \\rightleftharpoons H_3O^+ + OH^-",
+      "note": "un proton passe d'une molécule à l'autre"
+    },
+    "kw": {
+      "type": "formule",
+      "kicker": "Produit ionique de l'eau",
+      "tex": "K_w=[H_3O^+]\\times[OH^-]=1{,}0\\times10^{-14}",
+      "note": "à 25 °C"
+    },
+    "piege_kw": {
+      "type": "phrase",
+      "kicker": "Attention",
+      "texte": "Kw dépend de la température : on travaille à 25 °C."
+    },
+    "ph": {
+      "type": "formule",
+      "kicker": "Définition du pH",
+      "tex": "pH=-\\log[H_3O^+]",
+      "note": "[H_3O^+] en mol·L⁻¹, pH sans unité"
+    },
+    "ph_poh": {
+      "type": "formule",
+      "kicker": "Relation à 25 °C",
+      "tex": "pH+pOH=14",
+      "note": "pOH = −log[OH⁻]"
+    },
+    "classement": {
+      "type": "lignes",
+      "kicker": "Classer une solution",
+      "tex": [
+        "pH<7 \\;\\Rightarrow\\; \\text{acide}",
+        "pH=7 \\;\\Rightarrow\\; \\text{neutre}",
+        "pH>7 \\;\\Rightarrow\\; \\text{basique}"
+      ]
+    },
+    "acide_fort": {
+      "type": "formule",
+      "kicker": "Exemple · acide fort",
+      "tex": "HCl, \\quad C=0{,}05\\ \\text{mol}\\,\\text{L}^{-1}",
+      "note": "dissociation totale",
+      "anim": {
+        "nom": "ph",
+        "debut": 7,
+        "cible": 1.3
+      }
+    },
+    "acide_calc": {
+      "type": "etape",
+      "kicker": "Exemple · calcul du pH",
+      "tex": [
+        "[H_3O^+]=C=0{,}05",
+        "pH=-\\log(0{,}05)\\approx1{,}30"
+      ]
+    },
+    "base_calc": {
+      "type": "etape",
+      "kicker": "Exemple · base forte",
+      "tex": [
+        "[OH^-]=C=10^{-3}",
+        "pOH=3 \\;\\Rightarrow\\; pH=14-3=11"
+      ]
+    },
+    "acide_faible": {
+      "type": "phrase",
+      "kicker": "Acide faible",
+      "texte": "Un acide faible établit un équilibre avec sa base conjuguée."
+    },
+    "ka": {
+      "type": "formule",
+      "kicker": "Constante d'acidité",
+      "tex": "K_a=\\dfrac{[H^+][A^-]}{[HA]}",
+      "note": "pK_a = −log K_a : plus pK_a est grand, plus l'acide est faible"
+    },
+    "couple": {
+      "type": "formule",
+      "kicker": "Couple acido-basique",
+      "tex": "\\mathrm{HA}/\\mathrm{A}^-",
+      "note": "A⁻ est la base conjuguée de HA"
+    },
+    "ka_kb": {
+      "type": "formule",
+      "kicker": "Relation entre Ka et Kb",
+      "tex": "pK_a+pK_b=14"
+    },
+    "henderson": {
+      "type": "formule",
+      "kicker": "Solution tampon",
+      "tex": "pH=pK_a+\\log\\dfrac{[A^-]}{[HA]}",
+      "note": "formule de Henderson"
+    },
+    "tampon_calc": {
+      "type": "etape",
+      "kicker": "Exemple · tampon",
+      "tex": [
+        "pK_a=4{,}76, \\quad [HA]=0{,}10, \\quad [A^-]=0{,}050",
+        "pH=4{,}76+\\log(0{,}5)\\approx4{,}46"
+      ]
+    },
+    "tampon_rem": {
+      "type": "phrase",
+      "kicker": "Propriété",
+      "texte": "Un tampon résiste aux petits ajouts d'acide ou de base."
+    },
+    "equivalence": {
+      "type": "formule",
+      "kicker": "Dosage · point d'équivalence",
+      "tex": "C_A\\,V_A=C_T\\,V_T",
+      "note": "quantités de matière en proportion"
+    },
+    "ph_eq": {
+      "type": "lignes",
+      "kicker": "pH à l'équivalence",
+      "tex": [
+        "\\text{fort + fort} : pH=7",
+        "\\text{faible + fort} : pH>7",
+        "\\text{fort + faible} : pH<7"
+      ]
+    },
+    "courbe": {
+      "type": "phrase",
+      "kicker": "Courbe de titrage",
+      "texte": "Le pH saute brutalement autour du volume équivalent."
+    },
+    "indicateur": {
+      "type": "phrase",
+      "kicker": "Choisir l'indicateur",
+      "texte": "Son intervalle de couleur doit contenir le pH d'équivalence."
+    },
+    "indicateur_f": {
+      "type": "formule",
+      "kicker": "Critère de choix",
+      "tex": "\\text{pH}_{inf}\\leq \\text{pH}_{eq}\\leq \\text{pH}_{sup}"
+    },
+    "piege_ind": {
+      "type": "phrase",
+      "kicker": "Attention",
+      "texte": "Hors de cet intervalle, le dosage est faussé."
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Kw = 1,0 × 10⁻¹⁴ et pH + pOH = 14 à 25 °C",
+        "Acide fort ou base forte : dissociation totale",
+        "Tampon : pH = pKa + log([A⁻]/[HA])",
+        "Dosage : indicateur qui contient le pH d'équivalence"
+      ]
+    }
+  }
+}
