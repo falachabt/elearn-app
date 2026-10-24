@@ -15,7 +15,8 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { EnteteToeic, LigneChoix } from './ui';
 
-const AIDES: Record<number, 'm10' | 'm20' | 'm30'> = { 10: 'm10', 20: 'm20', 30: 'm30' };
+/** Aides descriptives par durée (cahier §5.A) ; le libellé « Recommandé » est porté à part, par le réglage serveur. */
+const AIDES: Record<number, 'm10' | 'm30'> = { 10: 'm10', 30: 'm30' };
 
 /** A4 · Temps par jour : l'élève choisit lui-même (décision du 15 octobre). Les valeurs viennent de `cert_settings`. */
 export function TempsParJour() {
@@ -58,9 +59,10 @@ export function TempsParJour() {
       <Text accessibilityRole="header" style={[typo.h1, { color: theme.texte.principal }]}>{t('certification.temps.titre')}</Text>
       <View style={styles.liste}>
         {(r?.seanceMinutesChoix ?? []).map((m) => {
-          const cle = AIDES[m];
-          // « Recommandé pour ton objectif » reste sur la durée par défaut tant qu'aucune règle de recommandation n'existe (E-06).
-          const aide = m === r?.seanceMinutesDefaut ? t('certification.temps.m20') : cle ? t(`certification.temps.${cle}`) : undefined;
+          // « Recommandé pour ton objectif » suit le réglage serveur `session_minutes_recommended` (écart E-06 : la
+          // recommandation est portée par le serveur) — pas le défaut servi, qui ne pilote que la présélection.
+          // Les autres durées affichent l'aide descriptive que le cahier leur associe.
+          const aide = m === r?.seanceMinutesRecommande ? t('certification.temps.m20') : AIDES[m] ? t(`certification.temps.${AIDES[m]}`) : undefined;
           return <LigneChoix key={m} icone={Clock} radio actif={minutes === m} titre={t('certification.temps.minutes', { n: m })} aide={aide} onPress={() => setMinutes(m)} />;
         })}
       </View>

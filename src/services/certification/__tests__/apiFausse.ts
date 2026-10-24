@@ -53,6 +53,8 @@ export function creerApiFausse(options: {
   revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
   mini?: 'insufficient' | 'account_required' | 'echec'; stats?: Stats | 'echec'; gains?: EtatGains | 'echec'; reclamation?: ResultatGain; tentatives?: TentativeListee[] | 'echec';
   abandon?: { rembourse: boolean };
+  /** Surcharges de réglages `cert_settings` (par clé), fusionnées dans les lignes du seed. */
+  reglages?: Record<string, unknown>;
   /** Série : les questions servies partagent un même groupe (conversation ou texte), comme les parties 3, 4, 6 et 7. */
   groupeSerie?: boolean;
 } = {}) {
@@ -84,7 +86,13 @@ export function creerApiFausse(options: {
       return [EXAMEN_TEST];
     },
     async lireReglages() {
-      return LIGNES_SEED;
+      if (!options.reglages) return LIGNES_SEED;
+      const surcharges = options.reglages;
+      const lignes = LIGNES_SEED.map((l) => (surcharges[l.key] !== undefined ? { ...l, value: surcharges[l.key] } : l));
+      for (const [key, value] of Object.entries(surcharges)) {
+        if (!LIGNES_SEED.some((l) => l.key === key)) lignes.push({ key, value });
+      }
+      return lignes;
     },
     async enregistrerPlan(plan) {
       appels.plans.push(plan);

@@ -16,6 +16,7 @@ export const LIGNES_SEED: LigneReglage[] = [
   { key: 'notion_cooldown_days', value: 3 },
   { key: 'session_minutes_choices', value: [10, 20, 30] },
   { key: 'session_minutes_default', value: 20 },
+  { key: 'session_minutes_recommended', value: 20 },
   {
     key: 'session_budget',
     value: {

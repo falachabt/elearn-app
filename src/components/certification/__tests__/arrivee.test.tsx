@@ -263,6 +263,15 @@ describe('A4 · Temps par jour', () => {
     expect((await lirePlan())?.minutes).toBe(30);
     expect(suivre).toHaveBeenCalledWith('cert_daily_time_set', { minutes: 30 });
   });
+  it('E-06 : « Recommandé » reste sur la ligne 20 même si le défaut servi est 10', async () => {
+    definirApi(creerApiFausse({ reglages: { session_minutes_default: 10 } }).api);
+    await enregistrerProfil({ type: 'certification', exam: 'toeic', pays: 'CM', termine: false });
+    await monter(<TempsParJour />);
+    const dix = await screen.findByRole('radio', { name: /10 minutes/ });
+    expect(dix.props.accessibilityState.checked).toBe(true);
+    expect(screen.getByText(t.temps.m10)).toBeTruthy();
+    expect(screen.getAllByText(t.temps.m20)).toHaveLength(1);
+  });
   it('reprend le choix déjà enregistré (relecture dans D4)', async () => {
     await enregistrerProfil({ type: 'certification', exam: 'toeic', pays: 'CM', termine: false });
     await AsyncStorage.setItem('cert.plan', JSON.stringify({ exam: 'toeic', pays: 'CM', objectif: 800, dateTest: null, minutes: 10 }));

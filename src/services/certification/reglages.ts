@@ -20,6 +20,7 @@ export type Reglages = {
   refroidissementNotionJours: number;
   seanceMinutesChoix: number[];
   seanceMinutesDefaut: number;
+  seanceMinutesRecommande: number;
   objectifDefaut: number;
   objectifMin: number;
   objectifMax: number;
@@ -72,6 +73,10 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     refroidissementNotionJours: nombre('notion_cooldown_days'),
     seanceMinutesChoix: liste('session_minutes_choices'),
     seanceMinutesDefaut: nombre('session_minutes_default'),
+    // Durée qui porte le libellé « Recommandé » d'A4 (écart E-06 : la recommandation est portée par le serveur).
+    // Repli sur le défaut si la ligne est absente (anciennes lignes servies ou mises en cache) : ce libellé d'aide
+    // ne doit jamais faire échouer le chargement des réglages, contrairement aux seuils de calcul ci-dessus.
+    seanceMinutesRecommande: table.has('session_minutes_recommended') ? nombre('session_minutes_recommended') : nombre('session_minutes_default'),
     objectifDefaut: nombre('goal_default'),
     objectifMin: nombre('goal_min'),
     objectifMax: nombre('goal_max'),
