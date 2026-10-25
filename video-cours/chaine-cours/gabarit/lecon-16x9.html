@@ -525,6 +525,83 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  pendule_conique_fig(t) {
+    return svgBoite(
+      `<line x1="430" y1="26" x2="430" y2="252" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7" opacity=".65"/>` +
+      `<ellipse cx="430" cy="194" rx="117" ry="20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6" opacity=".7"/>` +
+      trait(430, 44, 547, 194, prog(t), { w: 4.5 }) +
+      `<circle cx="430" cy="44" r="6" fill="currentColor"/>` +
+      `<path d="M 430 96 A 52 52 0 0 1 462 85" fill="none" stroke="#E8604C" stroke-width="3"/>` +
+      mot(455, 112, 'α', { c: '#E8604C', t: 23, a: 'start' }) +
+      mot(468, 102, 'l', { t: 23, a: 'start' }) +
+      `<line x1="430" y1="194" x2="547" y2="194" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/>` +
+      mot(488, 186, 'r', { t: 23 }) +
+      `<circle cx="547" cy="194" r="15" fill="#E8604C" stroke="currentColor" stroke-width="2.5"/>` +
+      trait(547, 209, 547, 246, prog(t), { c: '#E8604C', w: 4.5 }) + pointe(547, 252, 90, '#E8604C') +
+      mot(562, 238, 'P, le poids', { c: '#E8604C', t: 20, a: 'start' }) +
+      trait(552, 186, 580, 154, prog(t), { c: '#10B981', w: 4.5 }) + pointe(584, 150, -50, '#10B981') +
+      mot(596, 146, 'T, la tension', { c: '#10B981', t: 20, a: 'start' }) +
+      mot(500, 288, 'le pendule conique : la bille décrit un cercle horizontal', { t: 20 }));
+  },
+  deviation_electrique_fig(t) {
+    let para = '';
+    for (let k = 0; k <= 40; k++) {
+      const x = 330 + 370 * k / 40, y = 150 - 34 * Math.pow((x - 330) / 370, 2);
+      para += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<rect x="330" y="90" width="370" height="14" fill="#E8604C" fill-opacity=".8"/>` +
+      `<rect x="330" y="196" width="370" height="14" fill="#1A75FF" fill-opacity=".8"/>` +
+      mot(310, 104, '+', { c: '#E8604C', t: 26, a: 'end' }) + mot(310, 210, '−', { c: '#1A75FF', t: 26, a: 'end' }) +
+      mot(515, 80, 'l, la longueur des plaques', { t: 20 }) +
+      trait(196, 150, 322, 150, prog(t), { w: 4.5 }) + pointe(328, 150, 0) +
+      mot(238, 134, 'V₀', { t: 23, a: 'start' }) +
+      `<circle cx="188" cy="150" r="6" fill="currentColor"/>` +
+      `<polyline points="${para}" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linejoin="round"/>` +
+      trait(700, 116, 792, 99, prog(t), { w: 4.5 }) + pointe(798, 98, -13) +
+      `<line x1="806" y1="36" x2="806" y2="234" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="806" cy="98" r="7" fill="#E8604C"/>` +
+      `<line x1="700" y1="150" x2="800" y2="150" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="800" y1="98" x2="800" y2="150" stroke="#E8604C" stroke-width="3" stroke-dasharray="5 5"/>` +
+      mot(818, 128, "l'écran", { t: 19, a: 'start' }) +
+      mot(500, 256, 'déviation électrique : une parabole entre les plaques', { t: 20 }));
+  },
+  deviation_magnetique_fig(t) {
+    let croix = '';
+    for (const cx of [440, 520, 600, 680, 760]) for (const cy of [86, 140, 194])
+      if (!((cx === 600 && cy === 140))) croix += mot(cx, cy + 9, '×', { t: 26, c: '#1A75FF' });
+    return svgBoite(
+      `<rect x="392" y="48" width="408" height="200" fill="#1A75FF" fill-opacity=".05" stroke="#1A75FF" stroke-width="3" stroke-dasharray="10 7"/>` +
+      croix +
+      mot(596, 34, 'B, champ uniforme rentrant', { c: '#1A75FF', t: 20 }) +
+      trait(470, 284, 470, 254, prog(t), { w: 4.5 }) + pointe(470, 248, -90) +
+      mot(486, 276, "V₀, l'entrée", { t: 20, a: 'start' }) +
+      `<path d="M 470 246 A 110 110 0 0 1 690 246" fill="none" stroke="currentColor" stroke-width="4.5"/>` +
+      `<circle cx="580" cy="246" r="5.5" fill="currentColor"/>` +
+      `<line x1="580" y1="246" x2="580" y2="136" stroke="currentColor" stroke-width="3" stroke-dasharray="6 5"/>` +
+      mot(596, 196, 'R', { t: 24, a: 'start' }) +
+      trait(580, 144, 580, 178, prog(t), { c: '#E8604C', w: 4.5 }) + pointe(580, 184, 90, '#E8604C') +
+      mot(594, 172, 'F', { c: '#E8604C', t: 23, a: 'start' }) +
+      trait(586, 136, 642, 136, prog(t), { c: '#10B981', w: 4.5 }) + pointe(648, 136, 0, '#10B981') +
+      mot(656, 130, 'V', { c: '#10B981', t: 23, a: 'start' }) +
+      mot(300, 288, 'déviation magnétique : un arc de cercle de rayon R', { t: 20, a: 'start' }));
+  },
+  systeme_milieu_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(150, 44, 'le milieu extérieur', { t: 22, a: 'start' }) +
+      `<rect x="330" y="64" width="350" height="164" rx="14" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-width="5"/>` +
+      mot(505, 94, 'le système', { t: 23 }) +
+      `<circle cx="452" cy="168" r="16" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="558" cy="168" r="16" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      trait(474, 160, 532, 160, p, { w: 4 }) + pointe(474, 160, 180) + pointe(538, 160, 0) +
+      mot(505, 140, 'force intérieure', { t: 19 }) +
+      trait(196, 122, 322, 122, p, { c: '#E8604C', w: 5 }) + pointe(330, 122, 0, '#E8604C') +
+      mot(150, 106, 'forces extérieures', { c: '#E8604C', t: 20, a: 'start' }) +
+      trait(762, 84, 688, 112, p, { c: '#E8604C', w: 5 }) + pointe(682, 115, 158, '#E8604C') +
+      trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
+      mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
+  },
   graphes_cinematique_fig(t) {
     const panneau = (x0, titre, courbes) => {
       let s = `<line x1="${x0}" y1="66" x2="${x0}" y2="212" stroke="currentColor" stroke-width="3.5"/>` +
