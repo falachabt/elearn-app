@@ -2636,7 +2636,7 @@ export const en: Textes = {
       coursTitre: 'Read the lessons',
       coursAide: '{{n}} lessons to read',
       miniTitre: 'Mini-test',
-      miniAide: '10 questions, correction at the end',
+      miniAide: '10 or 12 questions depending on the part, correction at the end',
       completTitre: 'Full test',
       completAide: 'One full test per week',
       etat: {
@@ -2831,7 +2831,7 @@ export const en: Textes = {
         meilleurSur: 'Best: {{score}} out of {{max}}',
         choixPartie: {
           titre: 'Choose a part',
-          intro: 'Each mini-test covers one part: 10 questions.',
+          intro: 'Each mini-test covers one part: 10 or 12 questions depending on the part.',
           partie: 'Part {{partie}}',
           faits: 'Done: {{faits}} out of {{total}}',
           pasEncore: 'No test yet',
@@ -2844,7 +2844,7 @@ export const en: Textes = {
         pasDeScoreLigne: 'No score yet',
         meilleur: 'Best: {{score}}',
         tentatives: 'Attempts: {{n}}',
-        nouvelles: '{{n}} new questions for you',
+        total: '{{n}} questions',
       },
       suivi: {
         pasFait: 'Not done yet',

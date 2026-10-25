@@ -9,7 +9,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { etapeDemarrage, signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
 import { obtenirReglages } from '@/services/certification/etat';
-import { dureeMiniMin, lancerMini, lireMini, longueursPossibles, type LongueurMini } from '@/services/certification/miniTest';
+import { dureeMiniMin, lancerMini, lireMini, longueurMiniServie, longueursPossibles, type LongueurMini } from '@/services/certification/miniTest';
 import type { Reglages } from '@/services/certification/reglages';
 import { lireProfil } from '@/services/profil';
 import { useCredits } from '@/session/CreditsProvider';
@@ -67,7 +67,12 @@ export function ReglageMini() {
   const action = longueurEffective === 20 ? 'cert_mock_mini_twenty' : 'cert_mock_mini_ten';
   const coutServeur = couts[action];
   const pass = !!solde?.illimite;
-  const minutes = reglages ? dureeMiniMin(longueurEffective, reglages) : null;
+  // Au palier de base, le serveur sert la longueur de la partie (12 pour les parties 3, 4 et 6, groupes entiers) :
+  // c'est elle qu'on annonce, sélecteur et temps, et les minutes se calculent dessus. Le départ continue
+  // d'envoyer le palier demandé (10) : c'est le contrat du serveur, qui débite l'action de ce palier.
+  const longueurBaseServie = partie !== null ? longueurMiniServie(partie, reglages) : 10;
+  const longueurAnnoncee = longueurEffective === 10 ? longueurBaseServie : longueurEffective;
+  const minutes = reglages ? dureeMiniMin(longueurAnnoncee, reglages) : null;
 
   const lignesCout = pass ? t('certification.mini.coutPass') : coutServeur === undefined ? t('certification.mini.coutInconnu') : t('certification.mini.coutAide', { cout: cout(coutServeur) });
 
@@ -151,11 +156,12 @@ export function ReglageMini() {
           colonnes={2}
           enfants={([10, 20] as const).map((n) => {
             const permis = possibles.includes(n);
-            return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n })} court={String(n)} onPress={() => setLongueur(n)} />;
+            const affiche = n === 10 ? longueurBaseServie : n;
+            return <Cube key={n} actif={longueurEffective === n} desactive={!permis} libelle={t('certification.mini.longueurLabel', { n: affiche })} court={String(affiche)} onPress={() => setLongueur(n)} />;
           })}
         />
       </View>
-      <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurEffective })} />
+      <LigneChoix icone={Clock} titre={t('certification.mini.temps')} aide={minutes === null ? undefined : t('certification.mini.tempsAide', { min: minutes, n: longueurAnnoncee })} />
       <LigneChoix icone={Wallet} titre={t('certification.mini.cout')} aide={lignesCout} />
       <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.mini.aideCarte')}</Text>
       <Feuille

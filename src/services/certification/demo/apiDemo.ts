@@ -57,8 +57,9 @@ const questions = new Map<string, Q>(contenu.questions.map((q) => [q.id, q]));
 const notions = new Map(contenu.notions.map((n) => [n.part, { id: n.id, code: n.code, title: n.title, family: n.family as 'grammaire' | 'methode' }]));
 const reglages = lireReglages(reglagesBruts as { key: string; value: unknown }[]);
 const reglagesSerie = Number(((reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'series_size') ?? { value: 10 }).value);
-const blueprint = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'diag_blueprint')!.value as Record<string, number>;
-/** Plan explicite du diagnostic (même réglage `diag_counts` que le serveur) ; `diag_blueprint` ne sert plus qu'aux mini-tests mixtes. */
+/** Plan des tirages mixtes (même réglage `mini_mixed_counts` que le serveur, PR #171) : répartition d'un mixte de 20 questions. */
+const planMixte = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'mini_mixed_counts')!.value as Record<string, number>;
+/** Plan explicite du diagnostic (même réglage `diag_counts` que le serveur). */
 const planDiagnostic = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'diag_counts')!.value as Record<string, number>;
 
 async function lire(): Promise<Store> {
@@ -85,17 +86,24 @@ function servir(q: Q): QuestionServie {
   };
 }
 
-/**
- * Tirage des séries, mini-tests et tests : le dernier groupe est tronqué pour tomber juste.
- * Le diagnostic a son propre tirage, sans troncature (`tirerGroupesEntiers`).
- */
-function tirer(partie: number, n: number): Q[] {
+/** Les unités de tirage d'une partie : un groupe de questions liées, ou une question seule. */
+function unitesDe(partie: number): Q[][] {
   const unites = new Map<string, Q[]>();
   for (const q of contenu.questions.filter((x) => x.part === partie)) {
     const cle = q.group ?? q.id;
     unites.set(cle, [...(unites.get(cle) ?? []), q]);
   }
-  const melanges = [...unites.values()].sort(() => Math.random() - 0.5);
+  return [...unites.values()];
+}
+
+/**
+ * Tirage des tests fixes de la démo et des ancrages des fiches : le dernier groupe est tronqué pour tomber juste.
+ * Les tests fixes consomment la banque entière de chaque partie, donc aucune troncature n'y survient en pratique.
+ * Les tirages à la volée (diagnostic, minis, séries, mixtes) passent par `tirerGroupesEntiers` / `tirerMixte`,
+ * sans troncature, comme le serveur.
+ */
+function tirer(partie: number, n: number): Q[] {
+  const melanges = unitesDe(partie).sort(() => Math.random() - 0.5);
   const sortie: Q[] = [];
   for (const u of melanges) {
     if (sortie.length >= n) break;
@@ -105,17 +113,13 @@ function tirer(partie: number, n: number): Q[] {
 }
 
 /**
- * Tirage du diagnostic : groupes ENTIERS seulement, comme le serveur — une unité (groupe ou question seule) n'est
- * retenue que si elle tient entièrement dans le compte demandé, jamais de troncature du dernier groupe. Plusieurs
- * mélanges sont essayés pour atteindre le compte exact quand les tailles de groupes le permettent (partie 7).
+ * Tirage par groupes ENTIERS, comme le serveur : une unité (groupe ou question seule) n'est retenue que si elle
+ * tient entièrement dans le compte demandé, jamais de troncature du dernier groupe. Plusieurs mélanges sont
+ * essayés pour atteindre le compte exact quand les tailles de groupes le permettent (partie 7). `exclues`
+ * écarte les questions déjà tirées (appoint du mixte).
  */
-function tirerGroupesEntiers(partie: number, n: number): Q[] {
-  const unites = new Map<string, Q[]>();
-  for (const q of contenu.questions.filter((x) => x.part === partie)) {
-    const cle = q.group ?? q.id;
-    unites.set(cle, [...(unites.get(cle) ?? []), q]);
-  }
-  const toutes = [...unites.values()];
+function tirerGroupesEntiers(partie: number, n: number, exclues: ReadonlySet<string> = new Set()): Q[] {
+  const toutes = unitesDe(partie).filter((u) => !u.some((q) => exclues.has(q.id)));
   let meilleur: Q[] = [];
   for (let essai = 0; essai < 60 && meilleur.length < n; essai++) {
     const melangees = [...toutes].sort(() => Math.random() - 0.5);
@@ -126,6 +130,53 @@ function tirerGroupesEntiers(partie: number, n: number): Q[] {
     if (sortie.length > meilleur.length) meilleur = sortie;
   }
   return meilleur;
+}
+
+/**
+ * Répartition par partie d'un tirage mixte de `total` questions : le plan `mini_mixed_counts` (20 questions)
+ * mis à l'échelle par la méthode du plus fort reste, comme `cert_mixed_counts` côté serveur.
+ */
+function comptesMixtes(total: number): [number, number][] {
+  const plan = Object.entries(planMixte)
+    .map(([p, n]) => [Number(p), Number(n)] as [number, number])
+    .sort((a, b) => a[0] - b[0]);
+  const somme = plan.reduce((acc, [, n]) => acc + n, 0);
+  const exacts = plan.map(([p, n]) => ({ p, exact: (n * total) / somme }));
+  const comptes = new Map(exacts.map(({ p, exact }) => [p, Math.floor(exact)]));
+  let reste = total - [...comptes.values()].reduce((acc, n) => acc + n, 0);
+  for (const { p } of [...exacts].sort((a, b) => (b.exact % 1) - (a.exact % 1) || a.p - b.p)) {
+    if (reste <= 0) break;
+    comptes.set(p, (comptes.get(p) ?? 0) + 1);
+    reste -= 1;
+  }
+  return [...comptes.entries()];
+}
+
+/**
+ * Tirage mixte : chaque partie est tirée par groupes entiers selon `comptesMixtes`, puis un appoint en unités
+ * entières complète jusqu'au total demandé (comme `cert_draw_mixed`) quand une partie n'a pas pu fournir son
+ * compte en groupes entiers — à 10 questions, les sept parties ne peuvent pas toutes figurer (minimum 15).
+ */
+function tirerMixte(total: number): Q[] {
+  const choisies: Q[] = [];
+  for (const [p, n] of comptesMixtes(total)) choisies.push(...tirerGroupesEntiers(p, n));
+  const utilisees = new Set(choisies.map((q) => q.id));
+  let reste = total - choisies.length;
+  while (reste > 0) {
+    let progres = false;
+    for (const p of [1, 2, 3, 4, 5, 6, 7]) {
+      if (reste <= 0) break;
+      const extra = tirerGroupesEntiers(p, reste, utilisees);
+      if (extra.length > 0) {
+        choisies.push(...extra);
+        for (const q of extra) utilisees.add(q.id);
+        reste -= extra.length;
+        progres = true;
+      }
+    }
+    if (!progres) break;
+  }
+  return choisies;
 }
 
 function corriger(r: ReponseEnvoyee): ResultatReponse {
@@ -294,10 +345,9 @@ export const apiDemo: CertApi = {
   async lireSerie(perimetre, _exam, taille) {
     const n = taille ?? reglagesSerie;
     const partieNotion = perimetre.notion ? contenu.notions.find((x) => x.id === perimetre.notion)?.part : undefined;
-    if (partieNotion) return tirer(partieNotion, n).map(servir);
-    if (perimetre.part) return tirer(perimetre.part, n).map(servir);
-    const parties = [1, 2, 3, 4, 5, 6, 7];
-    return Array.from({ length: n }, (_, i) => tirer(parties[i % parties.length], 1)[0]).filter(Boolean).map(servir);
+    if (partieNotion) return tirerGroupesEntiers(partieNotion, n).map(servir);
+    if (perimetre.part) return tirerGroupesEntiers(perimetre.part, n).map(servir);
+    return tirerMixte(n).map(servir);
   },
   async ajouterMot() {},
   /** Pas de crédits sur Expo web sans serveur : l'explication s'ouvre directement. */
@@ -381,11 +431,8 @@ export const apiDemo: CertApi = {
     // Miroir du serveur : au palier de base, les parties 3, 4 et 6 servent 12 questions (groupes entiers).
     const servies = partie !== null && longueur === 10 && [3, 4, 6].includes(partie) ? 12 : longueur;
     const choisies = partie
-      ? tirer(partie, servies)
-      : Object.entries(blueprint)
-          .sort((a, b) => Number(a[0]) - Number(b[0]))
-          .flatMap(([p, n]) => tirer(Number(p), Math.round((Number(n) * longueur) / 20) || 1))
-          .slice(0, longueur);
+      ? tirerGroupesEntiers(partie, servies)
+      : tirerMixte(longueur);
     const tentative: Tentative = {
       attempt_id: `demo-${clientUuid}`, kind: 'mini', part: partie, length: choisies.length, status: 'in_progress',
       started_at: new Date().toISOString(), credits_spent: 0, questions: choisies.map(servir), replay: false,

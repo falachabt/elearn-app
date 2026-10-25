@@ -88,6 +88,30 @@ describe('liste des mini-tests d’une partie (v39)', () => {
   });
 });
 
+describe('total affiché sur les cartes (décision de Benny du 25 octobre 2026)', () => {
+  it('un mini affiche son total réel, pas ses questions nouvelles (cas de la capture : 10 au lieu de 6 nouvelles)', async () => {
+    mockParams = { kind: 'mini', partie: '2' };
+    installer([
+      mini('p2a', 2, 1, { nouvellesQuestions: 5 }),
+      mini('p2b', 2, 2, { nouvellesQuestions: 6 }),
+    ]);
+    await monter(<ListeTests />);
+    expect(await screen.findByText('n° 1')).toBeTruthy();
+    // Une ligne de total par carte, au total de la définition (10), jamais la nouveauté (5 ou 6).
+    expect(screen.getAllByText('10 questions')).toHaveLength(2);
+    expect(screen.queryByText(/questions nouvelles pour toi/)).toBeNull();
+  });
+
+  it('un demi-test affiche son total réel (100), pas ses questions nouvelles (76)', async () => {
+    mockParams = { kind: 'listening' };
+    installer([{ ...mini('l1', null, 1, { questions: 100, nouvellesQuestions: 76 }), kind: 'listening' }]);
+    await monter(<ListeTests />);
+    expect(await screen.findByText('Écoute n° 1')).toBeTruthy();
+    expect(screen.getByText('100 questions')).toBeTruthy();
+    expect(screen.queryByText(/questions nouvelles pour toi/)).toBeNull();
+  });
+});
+
 describe('départ depuis la liste d’un mini-test (v39)', () => {
   it('le coût du mini-test est affiché dans la liste de la partie, avec son nombre de questions', async () => {
     mockParams = { kind: 'mini', partie: '5' };

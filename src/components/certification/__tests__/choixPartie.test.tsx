@@ -75,6 +75,11 @@ describe('choix de la partie (v39)', () => {
     expect(screen.getByTestId('mixte')).toBeTruthy();
   });
 
+  it('l’intro annonce la fourchette servie : 10 ou 12 questions selon la partie (I-3)', async () => {
+    await monter(<ChoixPartie />);
+    expect(await screen.findByText('Chaque mini-test porte sur une seule partie : 10 ou 12 questions selon la partie.')).toBeTruthy();
+  });
+
   it('une partie ouvre la liste de ses mini-tests ; le mixte ouvre sa liste sans partie', async () => {
     await monter(<ChoixPartie />);
     fireEvent.press(await screen.findByTestId('partie-5'));

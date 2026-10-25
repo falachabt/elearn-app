@@ -248,6 +248,25 @@ describe('T2 · réglage d’un mini-test', () => {
     expect(screen.getByText(t.mini.tempsAide.replace('{{min}}', String(2 * reglages.miniMinutesPour10)).replace('{{n}}', '20'))).toBeTruthy();
   });
 
+  it('partie 6 au palier de base : le réglage annonce les 12 questions servies et le temps qui va avec', async () => {
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 6'));
+    // Le serveur sert 12 questions pour cette partie (groupes entiers) : le sélecteur et le temps l'annoncent (I-2).
+    expect(screen.getByLabelText(t.mini.longueurLabel.replace('{{n}}', '12')).props.accessibilityState.checked).toBe(true);
+    expect(screen.getByText(t.mini.tempsAide.replace('{{min}}', '12').replace('{{n}}', '12'))).toBeTruthy();
+    // Le départ envoie toujours le palier demandé (10) : le serveur fait la conversion et débite ce palier.
+    await fireEvent.press(screen.getByText(t.mini.commencer));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith({ pathname: '/certification/mini-test', params: { epreuve: 'examen' } }));
+    expect(fausse.appels.minis).toEqual([{ partie: 6, longueur: 10 }]);
+  });
+
+  it('partie 2 au palier de base : l’annonce reste 10 questions et 10 minutes', async () => {
+    await monter(<ReglageMini />);
+    await fireEvent.press(await screen.findByLabelText('Partie 2'));
+    expect(screen.getByLabelText(t.mini.longueurLabel.replace('{{n}}', '10')).props.accessibilityState.checked).toBe(true);
+    expect(screen.getByText(t.mini.tempsAide.replace('{{min}}', String(reglages.miniMinutesPour10)).replace('{{n}}', '10'))).toBeTruthy();
+  });
+
   it('mode Entraînement : le choix est transmis à l’écran du mini-test', async () => {
     await monter(<ReglageMini />);
     await fireEvent.press(await screen.findByLabelText('Partie 5'));

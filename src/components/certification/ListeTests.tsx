@@ -188,11 +188,12 @@ export function ListeTests() {
                       {' · '}
                       {t('certification.tests.listes.tentatives', { n: test.tentatives })}
                     </Text>
-                    {test.nouvellesQuestions > 0 ? (
-                      <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
-                        {t('certification.tests.listes.nouvelles', { n: test.nouvellesQuestions })}
-                      </Text>
-                    ) : null}
+                    {/* Le total réel du test, toujours affiché : la nouveauté (« questions nouvelles ») n'est plus
+                        présentée comme le nombre de questions (décision de Benny du 25 octobre 2026) ; elle ne
+                        sert plus qu'à la recommandation « Conseillé » (listesTests.ts). */}
+                    <Text style={[typo.petit, { color: theme.texte.secondaire }]}>
+                      {t('certification.tests.listes.total', { n: test.questions })}
+                    </Text>
                   </View>
                 </View>
               </Appui>

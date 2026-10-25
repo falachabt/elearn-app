@@ -2637,7 +2637,7 @@ export const fr = {
       coursTitre: 'Lire les cours',
       coursAide: '{{n}} cours à lire',
       miniTitre: 'Mini-test',
-      miniAide: '10 questions, correction à la fin',
+      miniAide: '10 ou 12 questions selon la partie, correction à la fin',
       completTitre: 'Test complet',
       completAide: 'Une épreuve complète par semaine',
       etat: {
@@ -2832,7 +2832,7 @@ export const fr = {
         meilleurSur: 'Meilleur : {{score}} sur {{max}}',
         choixPartie: {
           titre: 'Choisis une partie',
-          intro: 'Chaque mini-test porte sur une seule partie : 10 questions.',
+          intro: 'Chaque mini-test porte sur une seule partie : 10 ou 12 questions selon la partie.',
           partie: 'Partie {{partie}}',
           faits: 'Fait : {{faits}} sur {{total}}',
           pasEncore: 'Pas encore de test',
@@ -2845,7 +2845,7 @@ export const fr = {
         pasDeScoreLigne: 'Pas encore de score',
         meilleur: 'Meilleur : {{score}}',
         tentatives: 'Tentatives : {{n}}',
-        nouvelles: '{{n}} questions nouvelles pour toi',
+        total: '{{n}} questions',
       },
       etiquetteMini: 'Mini-tests',
       etiquetteComplets: 'Tests complets',
