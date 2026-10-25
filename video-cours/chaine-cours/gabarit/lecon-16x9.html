@@ -316,6 +316,20 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  pendule(t) {
+    const a = .55 * Math.cos(2 * Math.PI * t / 2.4), L = 170;
+    const bx = Math.round(500 + L * Math.sin(a)), by = Math.round(40 + L * Math.cos(a));
+    return svgBoite(
+      `<rect x="452" y="26" width="96" height="14" rx="4" fill="currentColor"/>` +
+      `<line x1="500" y1="40" x2="500" y2="228" stroke="currentColor" stroke-width="3" stroke-dasharray="9 8" opacity=".55"/>` +
+      `<path d="M 401 202 A 190 190 0 0 0 599 202" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".45"/>` +
+      trait(380, 40, 380, 210, prog(t), { w: 4, tiret: '8 7' }) + (prog(t) > .6 ? pointe(380, 40, -90) + pointe(380, 210, 90) : '') +
+      mot(356, 134, 'L', { t: 34, a: 'end' }) +
+      `<line x1="500" y1="40" x2="${bx}" y2="${by}" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>` +
+      `<circle cx="500" cy="40" r="7" fill="currentColor"/>` +
+      `<circle cx="${bx}" cy="${by}" r="17" fill="#E8604C" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 272, 'le pendule : sa période ne dépend que de L et de g', { t: 25 }));
+  },
   gaz(t) {
     const reb = (d0, v, lo, hi) => { const L = hi - lo; let m = (d0 - lo + v * t) % (2 * L); if (m < 0) m += 2 * L; return lo + (m <= L ? m : 2 * L - m); };
     let mols = '';
