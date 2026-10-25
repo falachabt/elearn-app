@@ -525,6 +525,86 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  venn(t) {
+    return svgBoite(
+      `<path d="M 500 72 A 95 95 0 0 1 500 228 A 95 95 0 0 1 500 72 Z" fill="#10B981" fill-opacity=".45"/>` +
+      `<circle cx="445" cy="150" r="95" fill="#E8604C" fill-opacity=".07" stroke="#E8604C" stroke-width="5"/>` +
+      `<circle cx="555" cy="150" r="95" fill="#1A75FF" fill-opacity=".07" stroke="#1A75FF" stroke-width="5"/>` +
+      mot(374, 90, 'A', { c: '#E8604C', t: 36 }) +
+      mot(626, 90, 'B', { c: '#1A75FF', t: 36 }) +
+      mot(500, 159, 'A ∩ B', { t: 24 }) +
+      mot(500, 284, 'deux ensembles et leur partie commune', { t: 22 }));
+  },
+  table_verite(t) {
+    const L = [[ 'V', 'V', 'V' ], [ 'V', 'F', 'F' ], [ 'F', 'V', 'V' ], [ 'F', 'F', 'V' ]];
+    let corps = `<rect x="330" y="140" width="340" height="44" fill="#E8604C" fill-opacity=".18"/>`;
+    corps += `<rect x="330" y="52" width="340" height="220" fill="none" stroke="currentColor" stroke-width="5"/>`;
+    for (const gx of [420, 510]) corps += `<line x1="${gx}" y1="52" x2="${gx}" y2="272" stroke="currentColor" stroke-width="3"/>`;
+    for (const gy of [96, 140, 184, 228]) corps += `<line x1="330" y1="${gy}" x2="670" y2="${gy}" stroke="currentColor" stroke-width="3"/>`;
+    corps += mot(375, 84, 'P', { t: 26 }) + mot(465, 84, 'Q', { t: 26 }) + mot(590, 84, 'P ⇒ Q', { t: 26 });
+    L.forEach((ligne, i) => {
+      const y = 128 + i * 44;
+      corps += mot(375, y, ligne[0], { t: 24 }) + mot(465, y, ligne[1], { t: 24 }) +
+        mot(590, y, ligne[2], { t: 24, c: i === 1 ? '#E8604C' : 'currentColor' });
+    });
+    corps += mot(716, 168, 'le seul cas faux :', { t: 21, a: 'start' }) + mot(716, 196, 'V ⇒ F', { t: 21, a: 'start' });
+    corps += mot(500, 296, "la table de vérité de l'implication", { t: 21 });
+    return svgBoite(corps);
+  },
+  fleche_fonction(t) {
+    const p = prog(t);
+    const courbe = (y1, y2, ang) => {
+      const d = `M 278 ${y1} C 420 ${y1 - 18}, 540 ${y2 - 14}, 660 ${y2}`;
+      return `<path d="${d}" fill="none" stroke="#10B981" stroke-width="4"/>` + pointe(666, y2, ang, '#10B981');
+    };
+    let ptsE = '', ptsF = '';
+    for (const y of [96, 150, 204]) ptsE += `<circle cx="268" cy="${y}" r="6" fill="currentColor"/>`;
+    for (const y of [92, 140, 188, 230]) ptsF += `<circle cx="676" cy="${y}" r="6" fill="currentColor"/>`;
+    return svgBoite(
+      `<ellipse cx="300" cy="150" rx="95" ry="106" fill="#E8604C" fill-opacity=".06" stroke="#E8604C" stroke-width="5"/>` +
+      `<ellipse cx="700" cy="150" rx="95" ry="106" fill="#1A75FF" fill-opacity=".06" stroke="#1A75FF" stroke-width="5"/>` +
+      mot(300, 26, 'E', { c: '#E8604C', t: 28 }) + mot(700, 26, 'F', { c: '#1A75FF', t: 28 }) +
+      mot(500, 52, 'f', { c: '#10B981', t: 30 }) +
+      ptsE + ptsF +
+      mot(244, 102, 'x₁', { t: 21, a: 'end' }) + mot(244, 156, 'x₂', { t: 21, a: 'end' }) + mot(244, 210, 'x₃', { t: 21, a: 'end' }) +
+      (p > .3 ? courbe(96, 92, 2) : '') + (p > .5 ? courbe(150, 140, -2) : '') + (p > .7 ? courbe(204, 188, 4) : '') +
+      mot(500, 288, 'à chaque x de E, f associe un unique f(x) dans F', { t: 21 }));
+  },
+  diagonale(t) {
+    const lignes = [ [ 'f(0)', '4', '1', '7', '3' ], [ 'f(1)', '2', '8', '5', '9' ], [ 'f(2)', '6', '3', '1', '4' ], [ 'f(3)', '9', '0', '2', '6' ] ];
+    let corps = '';
+    lignes.forEach((L, i) => {
+      const y = 84 + i * 44;
+      corps += mot(238, y + 8, L[0], { t: 22, a: 'end' });
+      corps += mot(272, y + 8, '0,', { t: 25, a: 'start' });
+      for (let j = 0; j < 4; j++) {
+        const x = 330 + j * 44;
+        if (j === i) corps += `<rect x="${x - 16}" y="${y - 24}" width="34" height="36" fill="#E8604C" fill-opacity=".14" stroke="#E8604C" stroke-width="4"/>`;
+        corps += mot(x, y + 8, L[1 + j], { t: 25, c: j === i ? '#E8604C' : 'currentColor' });
+      }
+      corps += mot(516, y + 8, '…', { t: 25, a: 'start' });
+    });
+    corps += trait(560, 84, 636, 224, prog(t), { c: '#E8604C', w: 4 }) + pointe(640, 228, 62, '#E8604C');
+    corps += mot(730, 130, 'le nombre construit', { t: 21, a: 'start' }) +
+      mot(730, 160, 'x = 0, b₁ b₂ b₃ …', { t: 23, a: 'start' }) +
+      mot(730, 190, 'diffère de chaque f(n)', { t: 21, a: 'start' }) +
+      mot(730, 218, 'à la n-ième décimale', { t: 21, a: 'start' });
+    corps += mot(500, 288, "l'argument diagonal de Cantor", { t: 21 });
+    return svgBoite(corps);
+  },
+  tiroirs_fig(t) {
+    return svgBoite(
+      `<rect x="350" y="38" width="300" height="212" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="500" y1="38" x2="500" y2="250" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/>` +
+      `<line x1="350" y1="144" x2="650" y2="144" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7"/>` +
+      trait(424, 88, 452, 112, prog(t), { c: '#E8604C', w: 4 }) +
+      `<circle cx="420" cy="86" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="458" cy="118" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="582" cy="90" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="428" cy="202" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="596" cy="204" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` +
+      mot(500, 284, 'cinq points, quatre cases : deux partagent forcément une case', { t: 21 }));
+  },
   oscilloscope(t) {
     const p = prog(t);
     let pts = '';
