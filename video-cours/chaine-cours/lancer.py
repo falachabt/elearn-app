@@ -35,39 +35,19 @@ sys.path.insert(0, str(PIPE / "mixte"))
 from decode_lecon import decoder  # noqa: E402
 from selecteur_scenes import texte_inline  # noqa: E402
 
-# Alternance des voix (décision de Benny, 25/10/2026 au soir) : un cours sur
-# deux avec la voix des premiers cours, un cours sur deux avec « Homme 1 ».
-# Le choix suit la parité de l'identifiant du cours : il est donc stable si
-# un cours est re-rendu, et les deux voix restent réparties sur le catalogue.
-VOIX = {
-    "origine": {
-        "ref": ICI / "voix" / "ref-femme-4s.wav",
-        "texte": "Bonjour à tous, aujourd hui nous allons apprendre à résoudre une équation du second degré.",
-        "vitesse": 0.92,
-    },
-    "homme1": {
-        "ref": ICI / "voix" / "ref-homme-1.wav",
-        "texte": ("Bonjour à tous, et bienvenue dans ce nouveau cours. Aujourd'hui, nous allons découvrir "
-                  "comment décrire le mouvement d'un corps, et surtout, comment sa vitesse évolue au fil du temps. "
-                  "Mais attention, une question se pose : qu'est-ce qui distingue vraiment la vitesse de "
-                  "l'accélération ? Retenez bien ceci : la vitesse décrit le déplacement, tandis que "
-                  "l'accélération décrit le changement de vitesse. "
-                  "Nous verrons d'abord les définitions, puis les formules essentielles, et enfin un "
-                  "exemple complet, traité pas à pas."),
-        "vitesse": 1.0,
-    },
-}
-
-
-def choisir_voix(cours):
-    return VOIX["homme1"] if int(cours) % 2 == 0 else VOIX["origine"]
+# Voix unique de production : la voix initiale de la chaîne (clonage de
+# ref-femme-4s.wav). « Homme 1 » a été essayée puis abandonnée sur décision
+# de Benny (25/10/2026, 23 h 50) — l'alternance des voix également.
+REF_AUDIO = ICI / "voix" / "ref-femme-4s.wav"
+REF_TEXTE = "Bonjour à tous, aujourd hui nous allons apprendre à résoudre une équation du second degré."
+VITESSE = 0.92
 GABARIT = ICI / "gabarit"
 CHROME = os.environ.get("CHAINE_CHROME", "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome")
 TYPES = {"titre", "formule", "etape", "lignes", "phrase", "recap"}
 # Intonation (choix de Benny, 25/10/2026) : débit légèrement plus posé sur les
 # écrans qui portent le sens — titres, formules clés, récapitulatifs — et
 # naturel ailleurs ; la ponctuation des « dit » fait le reste. Le facteur
-# s'applique à la vitesse de base de la voix choisie pour le cours.
+# s'applique à la vitesse de base de la voix.
 FACTEURS_VITESSE = {"titre": 0.96, "formule": 0.95, "recap": 0.95, "etape": 0.98, "phrase": 1.0, "lignes": 1.0}
 ETAPES = 16
 LEAD = 0.4
@@ -277,7 +257,6 @@ def voix(script, dossier):
     from omnivoice import OmniVoice
     import soundfile as sf
     import torch
-    voix_choisie = choisir_voix(script["cours"])
     modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
     for p in manquants:
         cle_ecran = p["ecran"]
@@ -285,8 +264,8 @@ def voix(script, dossier):
             type_ecran = "titre"
         else:
             type_ecran = script["ecrans"].get(cle_ecran, {}).get("type", "phrase")
-        a = modele.generate(text=p["dit"], ref_audio=str(voix_choisie["ref"]), ref_text=voix_choisie["texte"],
-                            num_step=ETAPES, speed=voix_choisie["vitesse"] * FACTEURS_VITESSE.get(type_ecran, 1.0))[0]
+        a = modele.generate(text=p["dit"], ref_audio=str(REF_AUDIO), ref_text=REF_TEXTE,
+                            num_step=ETAPES, speed=VITESSE * FACTEURS_VITESSE.get(type_ecran, 1.0))[0]
         sf.write(str(segs / f"{p['id']}.wav"), a, 24000)
         print("voix", p["id"], flush=True)
 
