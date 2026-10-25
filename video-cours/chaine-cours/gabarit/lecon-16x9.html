@@ -525,6 +525,155 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  triangle_fig(t) {
+    return svgBoite(
+      `<path d="M 330 230 A 171 171 0 0 1 670 230" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".55"/>` +
+      `<line x1="330" y1="230" x2="670" y2="230" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="670" y1="230" x2="520" y2="40" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="520" y1="40" x2="330" y2="230" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="500" y1="210" x2="520" y2="40" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<circle cx="500" cy="210" r="5" fill="currentColor"/>` +
+      mot(512, 200, 'O', { t: 22, a: 'start' }) +
+      mot(560, 128, 'R', { t: 24, a: 'start' }) +
+      mot(310, 246, 'A', { t: 28, a: 'end' }) + mot(690, 246, 'B', { t: 28, a: 'start' }) + mot(520, 28, 'C', { t: 28 }) +
+      mot(600, 128, 'a', { t: 27, a: 'start' }) + mot(418, 128, 'b', { t: 27, a: 'end' }) + mot(500, 258, 'c', { t: 27 }) +
+      mot(360, 214, 'Â', { t: 22 }) + mot(638, 214, 'B̂', { t: 22 }) + mot(506, 82, 'Ĉ', { t: 22, a: 'end' }) +
+      mot(500, 292, 'chaque côté fait face à son angle : a devant Â, b devant B̂, c devant Ĉ', { t: 20 }));
+  },
+  polaire_fig(t) {
+    const O = [300, 240], M = [503, 70];
+    return svgBoite(
+      trait(300, 240, 824, 240, prog(t), { w: 4 }) + pointe(830, 240, 0) + mot(846, 248, 'x', { t: 26, a: 'start' }) +
+      `<path d="M 364 240 A 64 64 0 0 0 349 199" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(388, 218, 'θ', { t: 26, a: 'start' }) +
+      trait(300, 240, 503, 70, prog(t), { c: '#E8604C', w: 5 }) +
+      `<circle cx="503" cy="70" r="7" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      mot(522, 62, 'M', { t: 26, a: 'start' }) +
+      mot(372, 138, 'ρ', { c: '#E8604C', t: 30 }) +
+      `<line x1="503" y1="70" x2="503" y2="240" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      mot(503, 268, 'x = ρ cos θ', { t: 23 }) +
+      mot(540, 160, 'y = ρ sin θ', { t: 23, a: 'start' }) +
+      mot(300, 282, 'O, le pôle', { t: 21 }));
+  },
+  cardioide_fig(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const th = 2 * Math.PI * k / 90, r = 1 + Math.cos(th);
+      pts += `${Math.round(410 + 104 * r * Math.cos(th))},${Math.round(152 - 104 * r * Math.sin(th))} `;
+    }
+    return svgBoite(
+      `<line x1="290" y1="152" x2="716" y2="152" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".6"/>` +
+      `<polyline points="${pts}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>` +
+      `<circle cx="410" cy="152" r="6" fill="currentColor"/>` +
+      mot(410, 190, 'le pôle, point de rebroussement', { t: 21 }) +
+      mot(640, 138, 'ρ max = 2', { t: 23, a: 'start' }) +
+      mot(500, 292, 'la cardioïde : ρ = 1 + cos θ', { t: 22 }));
+  },
+  branche_infinie_fig(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(70 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 215 + 605 * k / 70, yl = 200 - 0.258 * (x - 200);
+      pts += `${Math.round(x)},${Math.round(yl + 105 * Math.exp(-(x - 200) / 210))} `;
+    }
+    return svgBoite(
+      `<line x1="200" y1="200" x2="820" y2="40" stroke="currentColor" stroke-width="3" stroke-dasharray="9 7" opacity=".65"/>` +
+      mot(706, 30, 'y = mx + p', { t: 23, a: 'start' }) +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      trait(430, 186, 430, 142, p, { c: '#E8604C', w: 4 }) + pointe(430, 138, -90, '#E8604C') + pointe(430, 190, 90, '#E8604C') +
+      mot(452, 128, "l'écart tend vers zéro", { t: 21, a: 'start' }) +
+      mot(500, 288, 'une branche infinie : la courbe épouse son asymptote', { t: 21 }));
+  },
+  tangente_courbe_fig(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(80 * p));
+    for (let k = 0; k <= n; k++) {
+      const u = k / 80, x = 250 + 500 * u, y = 180 - 120 * Math.sin(Math.PI * u) + 34 * Math.sin(2 * Math.PI * u);
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="281" y1="173" x2="539" y2="21" stroke="#10B981" stroke-width="4"/>` +
+      pointe(545, 18, -30, '#10B981') +
+      mot(558, 42, "(f′(t), g′(t))", { c: '#10B981', t: 22, a: 'start' }) +
+      `<circle cx="410" cy="97" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      mot(426, 84, 'M(t₀)', { t: 23, a: 'start' }) +
+      mot(500, 288, 'la tangente en M suit le vecteur dérivé', { t: 22 }));
+  },
+  champ_radial_fig(t) {
+    const p = prog(t);
+    let fl = '';
+    for (let k = 0; k < 8; k++) {
+      const a = k * Math.PI / 4, c = Math.cos(a), s = Math.sin(a);
+      fl += trait(268 + 24 * c, 148 + 24 * s, 268 + 82 * c, 148 + 82 * s, p, { c: '#10B981', w: 4 }) + (p > .5 ? pointe(268 + 88 * c, 148 + 88 * s, k * 45, '#10B981') : '');
+    }
+    let fl2 = '';
+    for (const deg of [-40, 0, 40]) {
+      const a = deg * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
+      fl2 += trait(692 + 58 * c, 148 + 58 * s, 692 + 128 * c, 148 + 128 * s, p, { c: '#10B981', w: 4 }) + pointe(692 + 134 * c, 148 + 134 * s, deg, '#10B981');
+    }
+    return svgBoite(
+      fl +
+      `<circle cx="268" cy="148" r="6" fill="currentColor"/>` + mot(268, 262, 'O', { t: 24 }) +
+      `<ellipse cx="692" cy="148" rx="128" ry="86" fill="#1A75FF" fill-opacity=".07" stroke="#1A75FF" stroke-width="5"/>` + fl2 +
+      pointe(692, 60, 0, '#1A75FF') +
+      mot(692, 156, 'A(D)', { t: 23 }) +
+      mot(500, 292, "le flux du champ radial vaut deux fois l'aire enclose", { t: 21 }));
+  },
+  astroide_fig(t) {
+    let pts = '';
+    for (let k = 0; k <= 72; k++) {
+      const th = 2 * Math.PI * k / 72, c = Math.cos(th), s = Math.sin(th);
+      pts += `${Math.round(500 + 165 * c * c * c)},${Math.round(148 - 122 * s * s * s)} `;
+    }
+    return svgBoite(
+      `<line x1="316" y1="148" x2="684" y2="148" stroke="currentColor" stroke-width="3" opacity=".5"/>` +
+      `<line x1="500" y1="16" x2="500" y2="282" stroke="currentColor" stroke-width="3" opacity=".5"/>` +
+      `<polygon points="${pts}" fill="#1A75FF" fill-opacity=".1" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      mot(500, 156, 'astroïde', { t: 22 }) +
+      mot(500, 296, 'quatre pointes de rebroussement sur les axes', { t: 20 }));
+  },
+  hyperbole_fig(t) {
+    const branche = (sgn) => {
+      let pts = '';
+      for (let k = 0; k <= 40; k++) {
+        const s = -1.42 + 2.84 * k / 40;
+        pts += `${Math.round(500 + sgn * 74 * Math.cosh(s))},${Math.round(152 - 74 * Math.sinh(s))} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      `<line x1="352" y1="298" x2="648" y2="6" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".55"/>` +
+      `<line x1="352" y1="6" x2="648" y2="298" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".55"/>` +
+      `<line x1="292" y1="152" x2="708" y2="152" stroke="currentColor" stroke-width="3" opacity=".5"/>` +
+      branche(1) + branche(-1) +
+      `<circle cx="574" cy="152" r="6" fill="#E8604C"/><circle cx="426" cy="152" r="6" fill="#E8604C"/>` +
+      mot(574, 182, '1', { t: 22 }) + mot(426, 182, '−1', { t: 22 }) +
+      mot(660, 30, 'y = x', { t: 20, a: 'start' }) + mot(660, 288, 'y = −x', { t: 20, a: 'start' }) +
+      mot(240, 288, "l'hyperbole x² − y² = 1 et ses asymptotes", { t: 20, a: 'start' }));
+  },
+  symetrie_fig(t) {
+    const vague = (yc, sgn) => {
+      let pts = '';
+      for (let k = 0; k <= 60; k++) {
+        const x = 300 + 400 * k / 60, y = yc + sgn * 34 * Math.sin((x - 300) / 63);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      trait(238, 150, 756, 150, prog(t), { w: 4 }) + pointe(762, 150, 0) + mot(774, 158, 'x', { t: 24, a: 'start' }) +
+      vague(116, -1) + vague(184, 1) +
+      `<line x1="430" y1="88" x2="430" y2="212" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      `<circle cx="430" cy="84" r="7" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      `<circle cx="430" cy="216" r="7" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      mot(448, 78, 'M(t)', { t: 22, a: 'start' }) + mot(448, 230, 'M(−t)', { t: 22, a: 'start' }) +
+      mot(500, 284, "symétrie par rapport à (Ox) : on n'étudie qu'une moitié", { t: 21 }));
+  },
   venn(t) {
     return svgBoite(
       `<path d="M 500 72 A 95 95 0 0 1 500 228 A 95 95 0 0 1 500 72 Z" fill="#10B981" fill-opacity=".45"/>` +

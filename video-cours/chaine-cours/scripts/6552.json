@@ -1,0 +1,564 @@
+{
+ "cours": 6552,
+ "titre": "Géométrie",
+ "matiere": "Concours Polytechnique L3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours Polytechnique L3",
+   "titre": "Géométrie",
+   "sous": "Courbes paramétrées et polaires, trigonométrie dans les triangles, calcul vectoriel, déterminant barycentrique et flux : les méthodes du concours",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Ce cours organise vos outils : étudier une courbe, résoudre un triangle, prouver un alignement ou calculer un flux deviennent des démarches systématiques, à condition de choisir le bon langage — paramétrique, polaire ou vectoriel."
+  },
+  "domaine": {
+   "type": "etape",
+   "kicker": "Courbes paramétrées · le domaine",
+   "titre": "L'intersection des deux domaines",
+   "tex": [
+    "D = D_f \\cap D_g",
+    "x(t) = \\sqrt{t - 1} \\ \\Rightarrow \\ t \\geq 1",
+    "y(t) = \\dfrac{1}{t - 4} \\ \\Rightarrow \\ t \\neq 4",
+    "D = [1, 4[ \\cup ]4, +\\infty["
+   ]
+  },
+  "symetries": {
+   "type": "recap",
+   "kicker": "Courbes paramétrées · les symétries",
+   "titre": "Tester t remplacé par −t",
+   "etapes": [
+    "Axe (Ox) : x(−t) = x(t) et y(−t) = −y(t)",
+    "Axe (Oy) : x(−t) = −x(t) et y(−t) = y(t)",
+    "Origine O : x(−t) = −x(t) et y(−t) = −y(t)",
+    "Vérifier que la transformation conserve D",
+    "Exemple cos 2t, sin 3t : étude réduite à [0, π]"
+   ]
+  },
+  "branches": {
+   "type": "etape",
+   "kicker": "Courbes paramétrées · branches infinies",
+   "titre": "Trois cas, une asymptote à la clé",
+   "tex": [
+    "\\lim x = a, \\ \\lim y = \\pm\\infty \\ \\Rightarrow \\ x = a \\qquad \\lim x = \\pm\\infty, \\ \\lim y = b \\ \\Rightarrow \\ y = b",
+    "m = \\lim \\frac{y(t)}{x(t)} \\qquad p = \\lim \\big[ y(t) - m x(t) \\big]",
+    "y = m x + p"
+   ],
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 120
+   }
+  },
+  "tangentes": {
+   "type": "formule",
+   "kicker": "Courbes paramétrées · les tangentes",
+   "tex": "y - y(t_0) = \\dfrac{y'(t_0)}{x'(t_0)} \\big( x - x(t_0) \\big)",
+   "note": "Vecteur dérivé (f′(t), g′(t)) non nul · x′(t₀) = 0 et y′(t₀) ≠ 0 : tangente verticale x = x(t₀) · x′(t₀) = y′(t₀) = 0 : point singulier",
+   "anim": {
+    "nom": "tangente_courbe_fig",
+    "hauteur": 240
+   }
+  },
+  "exemple_courbe": {
+   "type": "etape",
+   "kicker": "Exemple type · branches infinies",
+   "titre": "Une courbe, deux comportements à l'infini",
+   "tex": [
+    "x(t) = \\frac{t^2}{t - 1} \\qquad y(t) = \\frac{t^3}{t - 1}",
+    "t \\to 1 : \\quad m = \\lim \\frac{y}{x} = 1 \\qquad p = \\lim (y - x) = 1",
+    "t \\to \\pm\\infty : \\quad \\frac{y}{x} \\to \\pm\\infty"
+   ]
+  },
+  "exemple_resultat": {
+   "type": "phrase",
+   "kicker": "Exemple type · résultats",
+   "texte": "Asymptote y = x + 1 quand t → 1 (courbe au-dessus pour t → 1⁺, en dessous pour t → 1⁻) · Tangente verticale x = 4 en t = 2 · Point de rebroussement de première espèce en t = 0",
+   "anim": {
+    "nom": "tangente_courbe_fig",
+    "hauteur": 220
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Étude d'une courbe · le canevas",
+   "titre": "Huit étapes, du domaine au tracé",
+   "etapes": [
+    "Domaine, puis symétries et périodicité pour réduire",
+    "Branches infinies et asymptotes aux bornes",
+    "Dérivées x′(t), y′(t) : tableau de variations conjoint",
+    "Points particuliers : tangentes, points stationnaires",
+    "Tracé, puis interprétation géométrique"
+   ]
+  },
+  "polaires": {
+   "type": "phrase",
+   "kicker": "Coordonnées polaires · le repérage",
+   "texte": "M est repéré par ρ = OM et par l'angle θ entre l'axe polaire et la demi-droite (OM) · ρ peut être négatif : (ρ, θ) et (−ρ, θ + π) désignent alors le même point",
+   "anim": {
+    "nom": "polaire_fig",
+    "hauteur": 240
+   }
+  },
+  "conversion": {
+   "type": "etape",
+   "kicker": "Coordonnées polaires · conversions",
+   "titre": "Passer d'un système à l'autre",
+   "tex": [
+    "x = \\rho \\cos\\theta \\qquad y = \\rho \\sin\\theta",
+    "\\rho = \\sqrt{x^2 + y^2} \\qquad \\cos\\theta = \\dfrac{x}{\\rho}, \\ \\sin\\theta = \\dfrac{y}{\\rho}",
+    "x(\\theta) = f(\\theta)\\cos\\theta \\qquad y(\\theta) = f(\\theta)\\sin\\theta"
+   ],
+   "anim": {
+    "nom": "polaire_fig",
+    "hauteur": 140
+   }
+  },
+  "cardioide": {
+   "type": "etape",
+   "kicker": "Exemple type · la cardioïde",
+   "titre": "Symétrie, passage au pôle, rebroussement",
+   "tex": [
+    "\\rho = 1 + \\cos\\theta \\qquad f(-\\theta) = f(\\theta)",
+    "\\rho(0) = 2 \\qquad \\rho(\\pi) = 0",
+    "x'(\\theta) = -\\sin\\theta \\, (1 + 2\\cos\\theta)"
+   ],
+   "anim": {
+    "nom": "cardioide_fig",
+    "hauteur": 150
+   }
+  },
+  "tangente_polaire": {
+   "type": "formule",
+   "kicker": "Coordonnées polaires · les tangentes",
+   "tex": "\\tan(\\alpha - \\theta) = \\dfrac{\\rho(\\theta)}{\\rho'(\\theta)}",
+   "note": "Au pôle : ρ(θ₀) = 0 et ρ′(θ₀) ≠ 0 ⇒ la tangente est la droite d'angle θ₀ · θ repère le point, α repère la tangente"
+  },
+  "sinus": {
+   "type": "formule",
+   "kicker": "Triangles · loi des sinus",
+   "tex": "\\dfrac{a}{\\sin \\widehat{A}} = \\dfrac{b}{\\sin \\widehat{B}} = \\dfrac{c}{\\sin \\widehat{C}} = 2R",
+   "note": "Notations : a = BC, b = CA, c = AB · R : rayon du cercle circonscrit au triangle",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 260
+   }
+  },
+  "alkashi": {
+   "type": "formule",
+   "kicker": "Triangles · loi des cosinus",
+   "tex": "a^2 = b^2 + c^2 - 2bc \\cos \\widehat{A}",
+   "note": "Renversée : cos Â = (b² + c² − a²) / (2bc) · Existence du triangle : a < b + c, b < a + c, c < a + b",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 240
+   }
+  },
+  "cas_resolution": {
+   "type": "recap",
+   "kicker": "Triangles · résoudre un triangle",
+   "titre": "Quatre cas, quatre stratégies",
+   "etapes": [
+    "SAS (2 côtés, angle compris) : Al-Kashi, puis sinus",
+    "AAS / ASA (1 côté, 2 angles) : 3e angle, puis sinus",
+    "SSS (3 côtés) : inégalité triangulaire, puis Al-Kashi",
+    "SSA (2 côtés, angle non compris) : cas ambigu",
+    "Contrôle final : angles positifs, de somme π"
+   ]
+  },
+  "ssa": {
+   "type": "etape",
+   "kicker": "Triangles · le cas ambigu SSA",
+   "titre": "Deux candidats, un seul triangle",
+   "tex": [
+    "c = AB = 5 \\qquad b = AC = 7 \\qquad \\widehat{B} = \\frac{\\pi}{6}",
+    "\\sin \\widehat{C} = \\frac{5}{14} < 1 \\qquad \\widehat{A}_2 = \\arcsin \\frac{5}{14} - \\frac{\\pi}{6} < 0",
+    "BC = \\frac{3\\sqrt{19} + 5\\sqrt{3}}{2}"
+   ]
+  },
+  "inegalite": {
+   "type": "formule",
+   "kicker": "Triangles · une inégalité d'optimisation",
+   "tex": "\\sin \\widehat{A} + \\sin \\widehat{B} + \\sin \\widehat{C} \\leq \\dfrac{3\\sqrt{3}}{2}",
+   "note": "Égalité si et seulement si Â = B̂ = Ĉ = π/3 : le triangle équilatéral · Outil : concavité de sin sur [0, π] (Jensen)"
+  },
+  "scalaire": {
+   "type": "formule",
+   "kicker": "Calcul vectoriel · produit scalaire",
+   "tex": "\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2 = \\|\\vec{u}\\| \\, \\|\\vec{v}\\| \\cos\\theta",
+   "note": "Orthogonalité : u ⊥ v ⇔ u · v = 0 · Angle : cos θ = (u · v) / (|u| |v|) · Norme : |u| = √(u · u)",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 200
+   }
+  },
+  "determinant": {
+   "type": "formule",
+   "kicker": "Calcul vectoriel · déterminant",
+   "tex": "\\det(\\vec{u}, \\vec{v}) = x_1 y_2 - x_2 y_1",
+   "note": "Colinéarité : det(u, v) = 0 · Aire du triangle ABC : ½ |det(AB, AC)| · Milieu de [AB] : moyenne des coordonnées ; centre de gravité : moyenne des trois sommets"
+  },
+  "alignement_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · alignement",
+   "titre": "Trois points alignés en une ligne de calcul",
+   "tex": [
+    "\\overrightarrow{AB} = (3, 4) \\qquad \\overrightarrow{AC} = (6, 8)",
+    "\\det(\\overrightarrow{AB}, \\overrightarrow{AC}) = 3 \\times 8 - 4 \\times 6 = 0"
+   ]
+  },
+  "barycentrique": {
+   "type": "etape",
+   "kicker": "Déterminant barycentrique",
+   "titre": "Un déterminant pour l'alignement",
+   "tex": [
+    "\\Delta = \\begin{vmatrix} x_1 & x_2 & x_3 \\\\ y_1 & y_2 & y_3 \\\\ 1 & 1 & 1 \\end{vmatrix}",
+    "\\Delta = 0 \\ \\Longleftrightarrow \\ M_1, M_2, M_3 \\text{ alignés}",
+    "|\\Delta| = 2 \\, \\mathcal{A}(M_1 M_2 M_3)"
+   ]
+  },
+  "bary_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu · alignement avec paramètre",
+   "titre": "Le paramètre, puis le piège du point confondu",
+   "tex": [
+    "\\Delta = (10t - 3) - (t - 1) - 7 = 9t - 9",
+    "\\Delta = 0 \\ \\Longleftrightarrow \\ t = 1 \\ \\Rightarrow \\ C(1, 2) = A"
+   ]
+  },
+  "flux": {
+   "type": "formule",
+   "kicker": "Flux d'un champ · définition",
+   "tex": "\\Phi = \\int_a^b \\det\\big( \\vec{F}, \\vec{T} \\big) \\, dt",
+   "note": "En composantes, F = (P, Q) et T = (x′, y′) : Φ = ∫ (P y′ − Q x′) dt · Vecteur normal : n ds = (dy, −dx)",
+   "anim": {
+    "nom": "champ_radial_fig",
+    "hauteur": 240
+   }
+  },
+  "radial": {
+   "type": "formule",
+   "kicker": "Flux d'un champ · le champ radial",
+   "tex": "\\oint_{\\mathcal{C}} \\overrightarrow{OM} \\cdot \\vec{n} \\, ds = 2 \\, \\mathcal{A}(D)",
+   "note": "Preuve : théorème de Green-Riemann, la divergence du champ radial vaut 2 · Courbe fermée orientée dans le sens direct",
+   "anim": {
+    "nom": "champ_radial_fig",
+    "hauteur": 240
+   }
+  },
+  "astroide": {
+   "type": "etape",
+   "kicker": "Exemple type · l'astroïde",
+   "titre": "Une aire calculée par un flux",
+   "tex": [
+    "x(t) = a \\cos^3 t \\qquad y(t) = a \\sin^3 t",
+    "P y' - Q x' = 3 a^2 \\cos^2 t \\sin^2 t",
+    "\\Phi = \\frac{3 \\pi a^2}{4} \\qquad \\mathcal{A} = \\frac{\\Phi}{2} = \\frac{3 \\pi a^2}{8}"
+   ],
+   "anim": {
+    "nom": "astroide_fig",
+    "hauteur": 120
+   }
+  },
+  "dictionnaire": {
+   "type": "recap",
+   "kicker": "Synthèse · paramétrisation et vecteurs",
+   "titre": "Le dictionnaire de traduction",
+   "etapes": [
+    "Alignement de A, B, C : det(AB, AC) = 0",
+    "Perpendicularité : produit scalaire nul",
+    "Tangente parallèle à d : det(v(t), d) = 0",
+    "Tangente perpendiculaire à n : v(t) · n = 0",
+    "Médiatrice de [AB] : MA = MB, soit AM · AB = ½|AB|²"
+   ]
+  },
+  "synthese_ex": {
+   "type": "etape",
+   "kicker": "Exemple de synthèse · tangentes parallèles",
+   "titre": "Une condition vectorielle, une équation en t",
+   "tex": [
+    "\\vec{v}(t) = (2t, \\ 3t^2 - 3) \\qquad \\vec{u} = (1, 2)",
+    "\\det(\\vec{v}(t), \\vec{u}) = -3t^2 + 4t + 3 = 0",
+    "t = \\dfrac{2 \\pm \\sqrt{13}}{3}"
+   ]
+  },
+  "enveloppe": {
+   "type": "etape",
+   "kicker": "Synthèse · enveloppe d'une famille de droites",
+   "titre": "La courbe dont toutes les droites sont tangentes",
+   "tex": [
+    "F(x, y, t) = 0 \\qquad \\dfrac{\\partial F}{\\partial t}(x, y, t) = 0",
+    "x(t) = \\dfrac{1 + t^2}{1 - t^2} \\qquad y(t) = \\dfrac{2t}{1 - t^2}",
+    "x^2 - y^2 = 1"
+   ]
+  },
+  "hyperbole": {
+   "type": "formule",
+   "kicker": "Synthèse · l'hyperbole en polaire",
+   "tex": "\\rho^2 = \\dfrac{1}{\\cos 2\\theta}",
+   "note": "Asymptotes : y = x et y = −x · Sommets : (1, 0) et (−1, 0) · Domaine de validité : cos 2θ > 0",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 250
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "titre": "Géométrie : la boîte à outils complète",
+   "etapes": [
+    "Courbe : domaine, symétries, branches, variations, tracé",
+    "Polaire : convertir, réduire, surveiller le passage au pôle",
+    "Triangle : identifier le cas ; SSA, cas ambigu",
+    "Alignement : déterminant ; angle droit : produit scalaire",
+    "Flux radial sur courbe fermée : deux fois l'aire"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours de géométrie pour le concours Polytechnique. Au programme : les courbes paramétrées et polaires, la trigonométrie dans les triangles, le calcul vectoriel et le déterminant barycentrique, puis le flux d'un champ et la synthèse. Le fil rouge : une méthode rigoureuse, et chaque calcul interprété géométriquement.",
+   "texte": "Géométrie : courbes, triangles, vecteurs et problèmes de synthèse.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Ce cours ne présente presque aucun outil nouveau : il les organise. Étudier une courbe, résoudre un triangle, prouver un alignement ou calculer un flux deviennent des démarches systématiques, à condition de commencer par la même question : quel est le bon langage pour ce problème, paramétrique, polaire ou vectoriel.",
+   "texte": "Organiser les outils, puis choisir le bon langage pour chaque problème.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "ecran": "domaine",
+   "dit": "Première étape de toute étude de courbe paramétrée : le domaine de définition, obtenu en intersectant les domaines des deux fonctions coordonnées. Les contraintes sont toujours les mêmes : un dénominateur ne s'annule pas, une racine carrée exige un contenu positif ou nul, un logarithme un contenu strictement positif. Ici, la racine impose t supérieur ou égal à un, la fraction exclut quatre, et le domaine est la réunion de deux intervalles.",
+   "texte": "Le domaine : l'intersection des domaines des deux coordonnées.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "ecran": "symetries",
+   "dit": "Deuxième étape, la plus rentable : les symétries. On cherche une transformation du paramètre, le plus souvent t remplacé par moins t, qui envoie le point courant sur son symétrique par rapport à un axe ou à l'origine. Si x de moins t égale x de t et y de moins t égale moins y de t, la courbe est symétrique par rapport à l'axe des abscisses, et l'étude se réduit de moitié. Mais attention : toujours vérifier que la transformation conserve le domaine.",
+   "texte": "Symétries : tester t remplacé par −t, puis restreindre le domaine d'étude.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "ecran": "branches",
+   "dit": "Troisième étape : les branches infinies. Quand t tend vers une valeur où au moins une coordonnée part à l'infini, trois cas se présentent. X tend vers une limite finie et y vers l'infini : asymptote verticale. X part à l'infini et y tend vers une limite finie : asymptote horizontale. Les deux partent à l'infini : on calcule la pente, limite du quotient de y par x, puis l'ordonnée à l'origine, limite de y moins m fois x. On obtient l'asymptote oblique, ou une branche parabolique si la pente est infinie.",
+   "texte": "Branches infinies : verticale, horizontale, ou oblique d'équation y = mx + p.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "ecran": "tangentes",
+   "dit": "Le vecteur dérivé, de coordonnées x prime et y prime, donne la direction de la tangente en chaque point régulier. Si x prime ne s'annule pas, la pente est le quotient de y prime par x prime, et l'équation s'écrit aussitôt. Si x prime est nul sans y prime, la tangente est verticale. Si les deux sont nuls, le point est singulier : il faudra des développements limités, comme dans l'exemple qui suit.",
+   "texte": "La tangente : dirigée par le vecteur dérivé, de pente y prime sur x prime.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "ecran": "exemple_courbe",
+   "dit": "Exemple type, entièrement corrigé dans le cours : x égal à t au carré sur t moins un, y égal à t au cube sur t moins un. Quand t tend vers un, les deux coordonnées partent à l'infini : le quotient de y par x tend vers un, c'est la pente, et y moins x tend aussi vers un, c'est l'ordonnée à l'origine. Quand t tend vers l'infini, ce quotient tend vers l'infini : direction asymptotique verticale, sans asymptote ; c'est une branche parabolique.",
+   "texte": "Asymptote à préciser en t vers un, branche parabolique à l'infini.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "exemple_resultat",
+   "dit": "Résultats : la droite d'équation y égal à x plus un est asymptote quand t tend vers un, la courbe au-dessus à droite de un, en dessous à gauche. En t égal à deux, x prime s'annule mais pas y prime : tangente verticale d'équation x égal à quatre. En t égal à zéro, les deux dérivées s'annulent : les développements limités donnent x équivalent à moins t au carré et y à moins t au cube, donc un point de rebroussement de première espèce.",
+   "texte": "y = x + 1 asymptote, tangente verticale x = 4, rebroussement en t = 0.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "methode",
+   "dit": "Retenez le canevas complet d'une étude de courbe : domaine et réduction par les symétries, branches infinies, dérivées et tableau de variations conjoint, points particuliers et tangentes, tracé, interprétation. Chaque calcul répond à une question géométrique : où la courbe existe, où elle va, dans quelle direction elle avance. C'est cette lecture géométrique des résultats que les correcteurs valorisent.",
+   "texte": "Le canevas : huit étapes, du domaine au tracé interprété.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "polaires",
+   "dit": "Changeons de repérage : les coordonnées polaires. Un point est repéré par sa distance rho au pôle et par l'angle thêta entre l'axe polaire et la demi-droite qui le joint au pôle. Ce système est fait pour les formes circulaires et les symétries de rotation. Nuance essentielle : rho peut être négatif ; le point est alors le symétrique, par rapport au pôle, du point de même angle et de distance opposée, ce qui revient à ajouter pi à l'angle.",
+   "texte": "Coordonnées polaires : une distance rho et un angle thêta.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "ecran": "conversion",
+   "dit": "Les conversions doivent être automatiques. De polaire vers cartésien : x est le produit de rho par le cosinus de thêta, y le produit de rho par le sinus de thêta. En sens inverse, rho est la racine carrée de x au carré plus y au carré, et thêta se détermine par son cosinus et son sinus, jamais par la seule arctangente, valable seulement pour x strictement positif. Une courbe polaire se paramètre alors en cartésien, et toutes les techniques précédentes s'appliquent.",
+   "texte": "Conversions : x = ρ cos θ, y = ρ sin θ ; thêta se lit dans le bon quadrant.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "ecran": "cardioide",
+   "dit": "Exemple type : la cardioïde, d'équation rho égal à un plus cosinus thêta. La fonction est paire en thêta : symétrie par rapport à l'axe polaire, étude réduite à thêta entre zéro et pi. La distance au pôle est maximale en thêta égal à zéro, et rho s'annule en thêta égal à pi : la courbe passe par le pôle, avec un point de rebroussement. Aucune branche infinie : rho reste borné par deux.",
+   "texte": "Cardioïde ρ = 1 + cos θ : symétrique, rebroussement au pôle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "ecran": "tangente_polaire",
+   "dit": "Pour les tangentes en polaire, une formule donne l'angle alpha de la tangente avec l'axe polaire : la tangente de alpha moins thêta vaut rho sur rho prime. Retenez surtout le cas du pôle : si rho s'annule pour un angle donné, avec une dérivée non nulle, la courbe traverse le pôle avec pour tangente la droite de ce même angle. Ne confondez jamais thêta, qui repère le point, avec alpha, qui repère la tangente.",
+   "texte": "Tangente polaire : tangente de alpha moins thêta égale rho sur rho prime.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "ecran": "sinus",
+   "dit": "Passons aux triangles. Dans un triangle A B C, on note a, b et c les longueurs des côtés opposés aux angles de mêmes noms. La loi des sinus dit que les côtés sont proportionnels aux sinus des angles opposés, le rapport commun étant le diamètre du cercle circonscrit, deux fois son rayon R. C'est l'outil des cas où l'on connaît un côté et des angles.",
+   "texte": "Loi des sinus : les côtés sont proportionnels aux sinus des angles opposés.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "ecran": "alkashi",
+   "dit": "La loi des cosinus, ou théorème d'Al-Kashi, généralise Pythagore : le carré d'un côté s'obtient à partir des deux autres et du cosinus de l'angle qu'ils forment. Renversée, elle donne le cosinus d'un angle à partir des trois côtés : porte d'entrée du cas des trois côtés connus. Avant toute résolution, vérifiez l'existence : chaque côté doit être strictement inférieur à la somme des deux autres.",
+   "texte": "Al-Kashi : Pythagore généralisé aux triangles quelconques.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "ecran": "cas_resolution",
+   "dit": "Résoudre un triangle, c'est déterminer tous ses éléments à partir de trois données indépendantes. La méthode dépend du cas. Deux côtés et l'angle compris : Al-Kashi donne le troisième côté, puis la loi des sinus un deuxième angle. Un côté et deux angles : le troisième par différence à pi, puis la loi des sinus deux fois. Trois côtés : inégalité triangulaire, puis Al-Kashi. Restent deux côtés et un angle non compris : le fameux cas ambigu, à traiter à part.",
+   "texte": "Quatre cas de résolution : identifier avant de calculer.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "ecran": "ssa",
+   "dit": "Le cas ambigu, sur l'exemple du cours : A B égal à cinq, A C égal à sept, angle B égal à pi sur six, opposé au côté A C. La loi des sinus donne le sinus de l'angle C : cinq quatorzièmes, strictement inférieur à un ; deux angles sont donc possibles, supplémentaires l'un de l'autre. Mais le second donne un angle A négatif : rejeté. Il reste un unique triangle, et B C vaut la moitié de trois racine de dix-neuf plus cinq racine de trois. Dans le cas ambigu, chaque candidat se teste par la positivité des angles.",
+   "texte": "Cas SSA : deux candidats pour l'angle C, un seul triangle au final.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "ecran": "inegalite",
+   "dit": "Dernier outil trigonométrique : les inégalités. Dans tout triangle, la somme des sinus des trois angles est majorée par trois racine de trois sur deux, avec égalité uniquement pour le triangle équilatéral. La démonstration utilise la concavité du sinus entre zéro et pi, par l'inégalité de Jensen, ou une transformation de somme en produit. Réflexe dès qu'un problème demande d'optimiser une grandeur dans un triangle.",
+   "texte": "La somme des sinus est maximale pour le triangle équilatéral.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "ecran": "scalaire",
+   "dit": "Le calcul vectoriel relie l'algèbre à la géométrie. Le produit scalaire se calcule par les coordonnées : x un x deux plus y un y deux. Mais il se lit aussi géométriquement : produit des normes par le cosinus de l'angle des deux vecteurs. D'où l'application reine : deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. Angle droit dans l'énoncé, produit scalaire nul dans la copie : premier réflexe du concours.",
+   "texte": "Produit scalaire : un calcul de coordonnées, une lecture en angle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "ecran": "determinant",
+   "dit": "Le déterminant de deux vecteurs, x un y deux moins x deux y un, est l'outil de l'alignement : il est nul si et seulement si les vecteurs sont colinéaires. Pour prouver que trois points sont alignés, on montre que le déterminant des vecteurs A B et A C est nul. Sa valeur absolue est l'aire du parallélogramme construit sur les deux vecteurs, donc le double de l'aire du triangle.",
+   "texte": "Déterminant : nul pour des vecteurs colinéaires, une aire en valeur absolue.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "ecran": "alignement_ex",
+   "dit": "Exemple éclair : les points A de coordonnées un et deux, B quatre et six, C sept et dix, sont-ils alignés. Le vecteur A B a pour coordonnées trois et quatre, le vecteur A C six et huit. Le déterminant vaut trois fois huit moins quatre fois six, c'est-à-dire zéro : les vecteurs sont colinéaires, les points sont alignés. Une ligne de calcul, là où une équation de droite en aurait demandé cinq.",
+   "texte": "Déterminant de A B et A C nul : A, B et C sont alignés.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "ecran": "barycentrique",
+   "dit": "Le déterminant barycentrique pousse l'idée plus loin : les coordonnées des trois points forment une matrice trois par trois, coiffée d'une ligne de uns. Il est nul si et seulement si les points sont alignés, et sa valeur absolue vaut le double de l'aire du triangle. Si les coordonnées contiennent un paramètre, il donne directement la condition sur ce paramètre : souvent plus rapide que de chercher une équation de droite.",
+   "texte": "Déterminant barycentrique : nul si et seulement si les points sont alignés.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "ecran": "bary_ex",
+   "dit": "Application avec paramètre : A a pour coordonnées un et deux, B trois et moins un, C a pour coordonnées t et trois t moins un. Le déterminant barycentrique, développé par rapport à la ligne des uns, vaut neuf t moins neuf : l'alignement exige t égal à un. Mais piège, signalé dans le cours : pour t égal à un, C a pour coordonnées un et deux ; C est confondu avec A, l'alignement est trivial. Après un tel calcul, toujours calculer les coordonnées du point trouvé.",
+   "texte": "Alignement pour t égal à un, mais C y est confondu avec A.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "ecran": "flux",
+   "dit": "Le flux mesure l'écoulement d'un champ de vecteurs à travers une courbe orientée : pensez à l'eau d'un ruisseau traversant une branche immergée. Perpendiculaire au courant, le flux est maximal ; parallèle, il est nul ; et son signe dépend du sens de traversée choisi. Pour une courbe paramétrée, tout se ramène à une intégrale ordinaire : celle du déterminant du champ et du vecteur tangent.",
+   "texte": "Flux : l'intégrale du déterminant du champ et du vecteur tangent.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "ecran": "radial",
+   "dit": "Le champ radial, qui associe à chaque point son vecteur position, a une propriété spectaculaire : son flux à travers une courbe fermée orientée dans le sens direct vaut exactement deux fois l'aire du domaine intérieur. Preuve en une ligne par Green-Riemann : la divergence de ce champ vaut deux. Conséquence pratique : beaucoup d'aires se calculent par un flux, souvent plus simple que le calcul direct.",
+   "texte": "Champ radial sur courbe fermée : le flux vaut deux fois l'aire.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "ecran": "astroide",
+   "dit": "Application : l'aire intérieure à l'astroïde, paramétrée par x égal à a cosinus cube t et y égal à a sinus cube t. L'intégrande du flux se simplifie magnifiquement grâce à l'identité cosinus carré plus sinus carré égal à un : il reste trois a carré cosinus carré sinus carré. Sur un tour complet, le flux vaut trois pi a carré sur quatre, donc l'aire trois pi a carré sur huit, la moitié du flux.",
+   "texte": "Astroïde : flux trois pi a carré sur quatre, aire trois pi a carré sur huit.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p27",
+   "ecran": "dictionnaire",
+   "dit": "La synthèse commence par un dictionnaire de traduction entre géométrie et vecteurs. Alignement : déterminant nul. Perpendicularité : produit scalaire nul. Tangente parallèle à une direction : le vecteur dérivé lui est colinéaire, déterminant nul. Tangente perpendiculaire à un vecteur : produit scalaire du vecteur dérivé avec ce vecteur, nul. Point sur la médiatrice d'un segment : égalité de deux distances. Toute question géométrique devient alors une équation en le paramètre.",
+   "texte": "Le dictionnaire : chaque mot géométrique a son équation vectorielle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p28",
+   "ecran": "synthese_ex",
+   "dit": "Exemple de synthèse : sur la courbe d'équations x égal à t au carré moins deux et y égal à t au cube moins trois t, on cherche les points où la tangente est parallèle à la droite A B, avec A de coordonnées un et zéro, B moins un et moins quatre. Le vecteur dérivé a pour coordonnées deux t et trois t au carré moins trois ; un vecteur directeur de A B se simplifie en un et deux. Le déterminant donne une équation du second degré, de discriminant cinquante-deux : deux paramètres conviennent, deux points répondent.",
+   "texte": "Deux points de la courbe ont leur tangente parallèle à la droite A B.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p29",
+   "ecran": "enveloppe",
+   "dit": "Dernier problème de synthèse : une famille de droites dépendant d'un paramètre t. Pour trouver la courbe à laquelle toutes ces droites sont tangentes, l'enveloppe, on résout le système formé de l'équation de la droite et de sa dérivée partielle par rapport au paramètre. Ici, le point courant a des coordonnées fractions rationnelles en t, et l'on vérifie que x au carré moins y au carré vaut un : l'enveloppe est une hyperbole, et chaque droite de la famille est l'une de ses tangentes.",
+   "texte": "Enveloppe : résoudre ensemble l'équation et sa dérivée par rapport à t.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p30",
+   "ecran": "hyperbole",
+   "dit": "Cette hyperbole se prête à un dernier changement de langage : en coordonnées polaires, rho au carré égale un sur cosinus de deux thêta. Symétrique par rapport aux deux axes, elle s'étudie au premier quadrant ; ses branches s'approchent des asymptotes y égal à x et y égal à moins x, et ses sommets sont les points de coordonnées un et zéro, et moins un et zéro. Paramétrique, cartésien, polaire, vectoriel : le même objet, quatre langages, et le bon choix fait la moitié de la solution.",
+   "texte": "L'hyperbole en polaire : rho carré égal à un sur cosinus deux thêta.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p31",
+   "ecran": "recap",
+   "dit": "Récapitulons. Une courbe s'étudie toujours dans le même ordre : domaine, symétries, branches infinies, variations, tracé interprété. Un triangle se résout en identifiant son cas, vigilance particulière pour le cas ambigu. Un alignement se prouve par un déterminant, une perpendicularité par un produit scalaire. Un flux se calcule par paramétrage, et celui du champ radial redonne les aires. Face à un problème qui mélange tout : traduisez d'abord, calculez ensuite, interprétez toujours.",
+   "texte": "Méthode d'abord, calcul ensuite, interprétation toujours.",
+   "pause_apres": 0.7
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Courbes paramétrées et polaires : domaine, symétries, tangentes"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Triangles et calcul vectoriel : sinus, cosinus, déterminants",
+   "pont": {
+    "dit": "Partie deux : la trigonométrie dans les triangles et le calcul vectoriel. Deux boîtes à outils qui se répondent : les lois des sinus et des cosinus pour résoudre les triangles, le produit scalaire pour les angles, le déterminant pour les alignements.",
+    "texte": "Partie 2 : triangles, produit scalaire et déterminants."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Flux d'un champ et problèmes de synthèse",
+   "pont": {
+    "dit": "Partie trois : le flux d'un champ de vecteurs à travers une courbe, puis la synthèse finale, où paramétrisation et calcul vectoriel travaillent ensemble sur les problèmes du concours.",
+    "texte": "Partie 3 : flux, enveloppe et synthèse."
+   }
+  }
+ ]
+}
