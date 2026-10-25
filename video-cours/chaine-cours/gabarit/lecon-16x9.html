@@ -316,6 +316,120 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  lignes_champ(t) {
+    const p = prog(t), cx = 430, cy = 158;
+    let traits = '';
+    for (let k = 0; k < 12; k++) {
+      const a = k * Math.PI / 6, c = Math.cos(a), s = Math.sin(a);
+      traits += trait(cx + 27 * c, cy + 27 * s, cx + 102 * c, cy + 102 * s, p, { c: '#1A75FF', w: 4 }) + (p > .5 ? pointe(cx + 108 * c, cy + 108 * s, a * 180 / Math.PI, '#1A75FF') : '');
+    }
+    const am = -25 * Math.PI / 180, mx = cx + 205 * Math.cos(am), my = cy + 205 * Math.sin(am);
+    return svgBoite(
+      traits +
+      `<circle cx="${cx}" cy="${cy}" r="17" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` +
+      mot(cx, cy + 10, '+', { c: '#FFFFFF', t: 30 }) +
+      mot(cx, cy + 152, '+Q', { c: '#E8604C', t: 26 }) +
+      `<circle cx="${Math.round(mx)}" cy="${Math.round(my)}" r="6" fill="currentColor"/>` +
+      mot(Math.round(mx) + 14, Math.round(my) - 10, 'M', { t: 26, a: 'start' }) +
+      (p > .6 ? trait(mx, my, mx + 58 * Math.cos(am), my + 58 * Math.sin(am), Math.min(1, (p - .6) / .4), { c: '#E8604C', w: 5 }) + pointe(mx + 64 * Math.cos(am), my + 64 * Math.sin(am), -25, '#E8604C') + mot(Math.round(mx + 74 * Math.cos(am)), Math.round(my + 74 * Math.sin(am)) + 8, 'E', { c: '#E8604C', t: 28, a: 'start' }) : '') +
+      mot(762, 268, 'le champ rayonne depuis la charge', { t: 21 }));
+  },
+  anneau_fig(t) {
+    let seg = '';
+    for (let k = 0; k <= 4; k++) {
+      const a = (202 + k * 8) * Math.PI / 180;
+      seg += `${Math.round(500 + 170 * Math.cos(a))},${Math.round(122 + 44 * Math.sin(a))} `;
+    }
+    return svgBoite(
+      `<ellipse cx="500" cy="122" rx="170" ry="44" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="${seg}" fill="none" stroke="#E8604C" stroke-width="10" stroke-linecap="round"/>` +
+      mot(348, 72, 'dq', { c: '#E8604C', t: 26 }) +
+      `<line x1="500" y1="26" x2="500" y2="266" stroke="currentColor" stroke-width="3" stroke-dasharray="9 8" opacity=".65"/>` +
+      mot(520, 42, "axe de l'anneau", { t: 21, a: 'start' }) +
+      trait(366, 96, 498, 224, prog(t), { w: 3, tiret: true }) +
+      `<circle cx="500" cy="228" r="6" fill="currentColor"/>` +
+      mot(522, 236, 'M', { t: 26, a: 'start' }) +
+      mot(500, 294, 'chaque élément dq crée un champ en M : on les additionne', { t: 21 }));
+  },
+  surface_gauss(t) {
+    const p = prog(t);
+    let fl = '';
+    for (const deg of [15, 75, 135, 195, 255, 315]) {
+      const a = deg * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
+      fl += trait(470 + 58 * c, 150 + 58 * s, 470 + 122 * c, 150 + 122 * s, p, { c: '#10B981', w: 5 }) + (p > .5 ? pointe(470 + 128 * c, 150 + 128 * s, deg, '#10B981') : '');
+    }
+    return svgBoite(
+      `<circle cx="470" cy="150" r="96" fill="#1A75FF" fill-opacity=".06" stroke="#1A75FF" stroke-width="5"/>` + fl +
+      `<circle cx="470" cy="150" r="13" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` +
+      mot(470, 194, '+Q', { c: '#E8604C', t: 24 }) +
+      mot(664, 56, 'Φ', { c: '#10B981', t: 32, a: 'start' }) +
+      mot(470, 282, 'la surface de Gauss, fermée autour de la charge', { t: 22 }));
+  },
+  condensateur_plan(t) {
+    let plus = '', moins = '';
+    for (let x = 345; x <= 665; x += 53) {
+      plus += mot(x, 74, '+', { c: '#E8604C', t: 24 });
+      moins += mot(x, 248, '−', { c: '#1A75FF', t: 26 });
+    }
+    let fl = '';
+    for (const fx of [385, 475, 565, 655]) fl += trait(fx, 106, fx, 192, prog(t), { c: '#10B981', w: 5 }) + pointe(fx, 198, 90, '#10B981');
+    return svgBoite(
+      plus + moins +
+      `<rect x="300" y="82" width="400" height="14" fill="#E8604C" opacity=".85"/>` +
+      `<rect x="300" y="202" width="400" height="14" fill="#1A75FF" opacity=".85"/>` + fl +
+      mot(272, 96, 'V₁', { t: 27, a: 'end' }) +
+      mot(272, 216, 'V₂', { t: 27, a: 'end' }) +
+      mot(688, 156, 'E', { c: '#10B981', t: 30, a: 'start' }) +
+      `<line x1="762" y1="96" x2="762" y2="196" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7"/>` + pointe(762, 202, 90) +
+      mot(762, 66, 'V décroît', { t: 22 }) +
+      mot(500, 282, 'entre les armatures : un champ uniforme et perpendiculaire', { t: 22 }));
+  },
+  plan_charge(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="216" y="138" width="568" height="24" fill="#B8860B" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 128, 'σ', { c: '#B8860B', t: 30 }) +
+      `<rect x="430" y="84" width="140" height="132" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<ellipse cx="500" cy="84" rx="70" ry="13" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<ellipse cx="500" cy="216" rx="70" ry="13" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      trait(500, 78, 500, 38, p, { c: '#10B981', w: 5 }) + (p > .5 ? pointe(500, 32, -90, '#10B981') : '') +
+      trait(500, 222, 500, 262, p, { c: '#10B981', w: 5 }) + (p > .5 ? pointe(500, 268, 90, '#10B981') : '') +
+      mot(528, 52, 'E', { c: '#10B981', t: 26, a: 'start' }) +
+      mot(528, 256, 'E', { c: '#10B981', t: 26, a: 'start' }) +
+      mot(592, 90, 'S', { t: 24, a: 'start' }) +
+      mot(592, 224, 'S', { t: 24, a: 'start' }) +
+      mot(500, 296, 'le flux ne traverse que les deux bases du cylindre', { t: 21 }));
+  },
+  wheatstone(t) {
+    const zig = (x1, y1, x2, y2) => {
+      const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+      let pts = `${Math.round(x1 + dx * .34)},${Math.round(y1 + dy * .34)} `;
+      for (let k = 1; k <= 5; k++) {
+        const f = .34 + .32 * k / 5;
+        let s = k % 2 ? 13 : -13;
+        if (k === 5) s = 0;
+        pts += `${Math.round(x1 + dx * f + nx * s)},${Math.round(y1 + dy * f + ny * s)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>`;
+    };
+    const traitBord = (x1, y1, x2, y2) =>
+      `<line x1="${x1}" y1="${y1}" x2="${Math.round(x1 + (x2 - x1) * .34)}" y2="${Math.round(y1 + (y2 - y1) * .34)}" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="${Math.round(x1 + (x2 - x1) * .66)}" y1="${Math.round(y1 + (y2 - y1) * .66)}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-width="4"/>` +
+      zig(x1, y1, x2, y2);
+    return svgBoite(
+      `<line x1="500" y1="14" x2="500" y2="22" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="480" y1="24" x2="520" y2="24" stroke="currentColor" stroke-width="7"/>` +
+      `<line x1="489" y1="34" x2="511" y2="34" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="500" y1="34" x2="500" y2="52" stroke="currentColor" stroke-width="4"/>` +
+      traitBord(500, 52, 716, 150) + traitBord(716, 150, 500, 248) + traitBord(500, 248, 284, 150) + traitBord(284, 150, 500, 52) +
+      `<line x1="284" y1="150" x2="471" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="529" y1="150" x2="716" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="500" cy="150" r="28" fill="#FFFDF5" stroke="currentColor" stroke-width="5"/>` +
+      mot(500, 160, 'G', { t: 28 }) +
+      mot(646, 74, 'R₁', { t: 25 }) + mot(646, 240, 'R₂', { t: 25 }) +
+      mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
+      mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
+  },
   oscilloscope(t) {
     const p = prog(t);
     let pts = '';
