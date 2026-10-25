@@ -14,6 +14,7 @@ import { ToastRechargeCredits } from '@/components/credits/ToastRechargeCredits'
 import { ToastGainXp } from '@/components/xp/ToastGainXp';
 import { useOuvertureRecapAuto } from '@/components/maSemaine/useOuvertureRecapAuto';
 import { BienvenuePass } from '@/components/pass/BienvenuePass';
+import { FeuilleRechargePass } from '@/components/pass/FeuilleRechargePass';
 import { GardeAppareilActif } from '@/components/compte/GardeAppareilActif';
 import { useReduireAnimations } from '@/components/useReduireAnimations';
 import { MiseAJour } from '@/components/MiseAJour';
@@ -188,6 +189,7 @@ export default function RootLayout() {
                     <ToastRechargeCredits />
                     <ToastGainXp />
                     <BienvenuePass />
+                    <FeuilleRechargePass />
                     <MiseAJour />
                     <GardeAppareilActif />
                   </VisiteProvider>

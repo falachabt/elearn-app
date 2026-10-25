@@ -3,6 +3,7 @@ import { router } from 'expo-router';
 import { suivre } from '../analytics';
 import { marquerLue } from '../notifications';
 import { suivreOuvertures } from '../rappels';
+import { sAbonnerFeuilleRecharge, type DemandeFeuilleRecharge } from '../rechargePass';
 
 let mockRappel: ((r: unknown) => void) | null = null;
 const mockRetirer = jest.fn();
@@ -62,10 +63,25 @@ describe('toucher d’une notification push du serveur', () => {
     expect(router.push).toHaveBeenCalledWith({ pathname: '/paiements/[id]', params: { id: 'o-9' } });
   });
 
-  it('une alerte de fin de Pass ouvre la page des paiements', () => {
+  it('une alerte de fin de Pass sans feuille montée retombe sur les offres, jamais « Mes paiements » (#124)', () => {
     toucher({ type: 'pass_ending', days_left: 3, notificationId: 'n6' });
-    expect(router.push).toHaveBeenCalledWith('/paiements');
+    expect(router.push).toHaveBeenCalledWith({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
+    expect(router.push).not.toHaveBeenCalledWith('/paiements');
     expect(marquerLue).toHaveBeenCalledWith({ id: 'client' }, 'n6');
+    expect(suivre).toHaveBeenCalledWith('notification_opened', { type: 'pass_ending' });
+  });
+
+  it('une alerte de fin de Pass demande la feuille « recharger le Pass » quand elle est montée, sans naviguer (#124)', () => {
+    const demandes: DemandeFeuilleRecharge[] = [];
+    const arreter = sAbonnerFeuilleRecharge((d) => demandes.push(d));
+    try {
+      toucher({ type: 'pass_ending', days_left: 8, notificationId: 'n8' });
+      expect(demandes).toEqual([{ joursRestants: 8 }]);
+      expect(router.push).not.toHaveBeenCalled();
+      expect(marquerLue).toHaveBeenCalledWith({ id: 'client' }, 'n8');
+    } finally {
+      arreter();
+    }
   });
 
   it('le résumé hebdomadaire ouvre la page Ma semaine de cette semaine', () => {

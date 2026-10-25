@@ -13,6 +13,7 @@ import {
   grouperParJour,
   type Notification,
 } from '@/services/notifications';
+import { demanderFeuilleRecharge } from '@/services/rechargePass';
 import { useNotifications } from '@/session/NotificationsProvider';
 import { useTheme } from '@/theme/ThemeProvider';
 import { bord, cibleMin, espace, ombre, rayon, typo, type Theme } from '@/theme/theme';
@@ -115,6 +116,12 @@ export function CentreNotifications() {
     (n: Notification) => {
       suivre('notification_opened', { type: n.type });
       void marquerLue(n.id);
+      // Fin de Pass (issue #124) : la feuille « recharger le Pass », comme au toucher du push ; `destinationDe`
+      // (les offres) reste le filet si la feuille n'est montée nulle part.
+      if (n.type === 'pass_ending') {
+        const jours = typeof n.data.days_left === 'number' && Number.isFinite(n.data.days_left) ? n.data.days_left : null;
+        if (demanderFeuilleRecharge({ joursRestants: jours })) return;
+      }
       const d = destinationDe(n.type, n.data, 'inbox');
       router.push((d.params ? { pathname: d.pathname, params: d.params } : d.pathname) as Href);
     },

@@ -197,6 +197,10 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
     const commande = typeof data?.order_id === 'string' && data.order_id ? data.order_id : null;
     return commande ? { pathname: '/paiements/[id]', params: { id: commande } } : { pathname: '/paiements' };
   }
+  // Fin de Pass (issue #124) : les offres. Le toucher ouvre en fait la feuille « recharger le Pass » (interception
+  // dans `suivreOuvertures` et dans la cloche) ; ceci n'est que le filet si la feuille ne peut pas s'ouvrir.
+  // Placée AVANT le repli `data.screen` : le serveur envoie encore `screen: '/paiements'`, qui menait à « Mes paiements ».
+  if (type === 'pass_ending') return { pathname: '/offres', params: { declencheur: 'recharge-pass' } };
   // Résumé du lundi : la page « Ma semaine » de la semaine concernée (même déjà vue), sinon de la semaine passée.
   if (type === 'weekly_summary') {
     const semaine = typeof data?.week_start === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.week_start) ? data.week_start : null;
@@ -213,8 +217,7 @@ export function destinationDe(type: string, data: Record<string, unknown> | unde
   // Recharge du lundi : même écran que le toucher d'un push local de recharge (Moi montre le solde).
   if (type === 'credits_refilled') return { pathname: '/moi' };
   if (categorie === 'credits') return { pathname: '/credits' };
-  // Fin de Pass : la page des paiements (retour vers Moi) ; résumé hebdomadaire : Moi.
-  if (type === 'pass_ending') return { pathname: '/paiements' };
+  // Résumé hebdomadaire : Moi.
   if (type === 'weekly_summary') return { pathname: '/moi' };
   return { pathname: '/' };
 }

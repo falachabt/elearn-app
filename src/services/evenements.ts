@@ -7,7 +7,7 @@ export type Evenements = {
   onboarding_choice_made: { profil: 'eleve' | 'concours'; niveau: string; pays: string; serie?: string } | { profil: 'certification'; pays?: string };
   first_result_seen: { type: 'mini_test' | 'photo'; duree_s: number; score?: number; total?: number };
   signup_prompt_seen: { source: 'score' };
-  paywall_viewed: { declencheur: 'score' | 'moi' | 'limite' };
+  paywall_viewed: { declencheur: 'score' | 'moi' | 'limite' | 'recharge-pass' };
   offer_selected: { offre: 'week' | 'month' | 'contest' };
   parent_link_created: { offre: 'week' | 'month' | 'contest'; montant: number };
   parent_link_sent: { canal: 'whatsapp' | 'copie' };

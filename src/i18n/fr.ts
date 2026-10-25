@@ -1148,6 +1148,23 @@ export const fr = {
     sortieContinuer: 'Continuer la session',
     sortieQuitter: 'Quitter le document',
   },
+  pass: {
+    recharge: {
+      jours: 'Ton Pass expire dans {{n}} jours',
+      demain: 'Ton Pass expire demain',
+      dernierJour: 'Dernier jour de ton Pass',
+      texte: 'Recharge-le maintenant pour garder tes corrections et tes contenus illimités, sans interruption.',
+      expireTitre: 'Ton Pass est expiré',
+      expireTexte: 'Tu es repassé en gratuit : tes corrections sont limitées chaque jour. Recharge un pass pour retrouver l’illimité.',
+      carteActif: '{{offre}} · jusqu’au {{date}}',
+      carteActifAide: 'Crédits illimités · tout illimité · hors ligne',
+      carteExpire: '{{offre}} · terminé le {{date}}',
+      carteExpireAide: 'Recharge quand tu veux : l’illimité repart dès le paiement validé.',
+      recharger: 'Recharger mon Pass',
+      voirOffres: 'Voir les offres',
+      plusTard: 'Plus tard',
+    },
+  },
   offres: {
     titre: 'Choisis ton pass',
     fermer: 'Fermer',

@@ -101,7 +101,7 @@ async function chargerOffres(): Promise<Etat> {
 export function Offres() {
   const { t, langue } = useTraduction();
   const { theme } = useTheme();
-  const { declencheur } = useLocalSearchParams<{ declencheur?: 'score' | 'moi' | 'limite' }>();
+  const { declencheur } = useLocalSearchParams<{ declencheur?: 'score' | 'moi' | 'limite' | 'recharge-pass' }>();
   const [etat, setEtat] = useState<Etat>({ statut: 'chargement' });
   const [choix, setChoix] = useState<Choix>('month');
   const { exiger, feuille } = useCompteRequis();

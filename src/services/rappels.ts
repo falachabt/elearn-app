@@ -18,6 +18,7 @@ if (Notifications.setNotificationHandler) {
 
 import { suivre } from './analytics';
 import { destinationDe, marquerLue } from './notifications';
+import { demanderFeuilleRecharge } from './rechargePass';
 import { getSupabase } from './supabase';
 
 /** Heure du rappel quotidien par défaut (M9-01 : 19 h–21 h, heure locale). */
@@ -124,6 +125,16 @@ export function suivreOuvertures(): () => void {
     // Correction par photo prête (`photo_ready`, serveur ou rappel local) : `destinationDe` ouvre la correction ou l'historique.
     if (type === 'study_plan_completed' || type === 'study_plan_finished') {
       router.push({ pathname: '/planning/termine', params: { source: 'push' } });
+    } else if (type === 'pass_ending') {
+      // Fin de Pass (issue #124) : la feuille « recharger le Pass » montée à la racine, quel que soit le jour de
+      // l'alerte ; aucune navigation vers « Mes paiements ». Repli sur les offres si la feuille n'est montée
+      // nulle part. La notification est marquée lue comme pour les autres types du serveur.
+      const jours = typeof data?.days_left === 'number' && Number.isFinite(data.days_left) ? data.days_left : null;
+      if (!demanderFeuilleRecharge({ joursRestants: jours })) {
+        router.push({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
+      }
+      const id = data?.notificationId;
+      if (typeof id === 'string' && id) void marquerLue(getSupabase(), id).catch(() => {});
     } else if (type === 'credits_refilled') {
       // Recharge de crédits ou paiement réussi -> on l'amène sur l'onglet Moi
       router.push('/moi');

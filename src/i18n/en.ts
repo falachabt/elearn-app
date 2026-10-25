@@ -1147,6 +1147,23 @@ export const en: Textes = {
     sortieContinuer: 'Continue session',
     sortieQuitter: 'Leave document',
   },
+  pass: {
+    recharge: {
+      jours: 'Your Pass expires in {{n}} days',
+      demain: 'Your Pass expires tomorrow',
+      dernierJour: 'Last day of your Pass',
+      texte: 'Top it up now to keep your corrections and content unlimited, with no interruption.',
+      expireTitre: 'Your Pass has expired',
+      expireTexte: 'You are back on the free plan: your corrections are limited each day. Get a pass to go unlimited again.',
+      carteActif: '{{offre}} · until {{date}}',
+      carteActifAide: 'Unlimited credits · everything unlimited · offline',
+      carteExpire: '{{offre}} · ended on {{date}}',
+      carteExpireAide: 'Top up whenever you like: unlimited resumes as soon as the payment is confirmed.',
+      recharger: 'Top up my Pass',
+      voirOffres: 'See the offers',
+      plusTard: 'Later',
+    },
+  },
   offres: {
     titre: 'Choose your pass',
     fermer: 'Close',

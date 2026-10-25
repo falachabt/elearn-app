@@ -233,8 +233,11 @@ describe('catégories et destinations', () => {
     expect(destinationDe('weekly_summary', {})).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
     expect(destinationDe('weekly_summary', { week_start: '2026-09-28', screen: '/ma-semaine' }, 'inbox')).toEqual({ pathname: '/ma-semaine', params: { semaine: '2026-09-28', source: 'inbox' } });
     expect(destinationDe('weekly_summary', { week_start: 'pas-une-date' })).toEqual({ pathname: '/ma-semaine', params: { source: 'push' } });
-    expect(destinationDe('pass_ending', { screen: '/paiements', days_left: 3 })).toEqual({ pathname: '/paiements' });
-    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/paiements' });
+  });
+
+  it('une fin de Pass mène aux offres, jamais à « Mes paiements », même si le serveur envoie son ancien écran (#124)', () => {
+    expect(destinationDe('pass_ending', { screen: '/paiements', days_left: 3 })).toEqual({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
+    expect(destinationDe('pass_ending', undefined)).toEqual({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
   });
 
   it('ne suit jamais une destination qui n’est pas un chemin interne', () => {

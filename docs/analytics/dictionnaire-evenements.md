@@ -70,7 +70,7 @@ Jamais de nom, e-mail, numéro de téléphone ou contenu de question.
 | `onboarding_choice_made` | Profil choisi à l'arrivée (élève, concours ou certification ; classe, série éventuelle et pays pour les deux premiers) | `{ profil: 'eleve' \| 'concours'; niveau: string; pays: string; serie?: string } \| { profil: 'certification'; pays?: string }` |
 | `first_result_seen` | Premier résultat affiché (mini-test ou photo) | `{ type: 'mini_test' \| 'photo'; duree_s: number; score?: number; total?: number }` |
 | `signup_prompt_seen` | Invitation à créer un compte vue après le score | `{ source: 'score' }` |
-| `paywall_viewed` | Écran des offres affiché | `{ declencheur: 'score' \| 'moi' \| 'limite' }` |
+| `paywall_viewed` | Écran des offres affiché | `{ declencheur: 'score' \| 'moi' \| 'limite' \| 'recharge-pass' }` |
 | `offer_selected` | Offre choisie | `{ offre: 'week' \| 'month' \| 'contest' }` |
 | `parent_link_created` | Lien parent créé | `{ offre: 'week' \| 'month' \| 'contest'; montant: number }` |
 | `parent_link_sent` | Lien parent envoyé (WhatsApp ou copie) | `{ canal: 'whatsapp' \| 'copie' }` |
