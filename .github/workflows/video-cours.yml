@@ -104,20 +104,22 @@ jobs:
           echo "Chromium : $CHAINE_CHROME"
           cd video-cours/chaine-cours
           python lancer.py ${{ inputs.cours }}
-          ffmpeg -v error -y -i "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4" \
-            -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k \
-            "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-720p.mp4"
-          DUREE=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4")
-          ffmpeg -v error -y -i "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4" \
-            -vf "fps=25/$DUREE,tile=5x5" -frames:v 1 "sorties/${{ inputs.cours }}/planche.png"
+          for f in "sorties/${{ inputs.cours }}"/cours-*-16x9.mp4; do
+            base="${f%-16x9.mp4}"
+            ffmpeg -v error -y -i "$f" \
+              -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k \
+              "${base}-720p.mp4"
+            DUREE=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+            ffmpeg -v error -y -i "$f" \
+              -vf "fps=25/$DUREE,tile=5x5" -frames:v 1 "${base}-planche.png"
+          done
           ls -lh "sorties/${{ inputs.cours }}/"
       - name: Publier la vidéo
         uses: actions/upload-artifact@v4
         with:
           name: video-${{ inputs.cours }}
           path: |
-            video-cours/chaine-cours/sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4
-            video-cours/chaine-cours/sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-720p.mp4
-            video-cours/chaine-cours/sorties/${{ inputs.cours }}/sous-titres.vtt
-            video-cours/chaine-cours/sorties/${{ inputs.cours }}/planche.png
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/*.mp4
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/*.vtt
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-planche.png
           retention-days: 90
