@@ -1,0 +1,525 @@
+{
+ "cours": 6684,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Filtrage : lisser une tension redressée",
+    "Temporisation : fixer une durée avec un circuit RC",
+    "Mémoire : stocker l'information par la charge (RAM)",
+    "Flash : décharger d'un coup l'énergie emmagasinée"
+   ],
+   "kicker": "Applications du condensateur",
+   "type": "recap"
+  },
+  "associations": {
+   "kicker": "Association de condensateurs",
+   "note": "En parallèle, même tension pour tous ; en série, même courant",
+   "tex": [
+    "C_{eq} = C_1 + C_2 + \\dots + C_n",
+    "\\frac{1}{C_{eq}} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\dots + \\frac{1}{C_n}"
+   ],
+   "titre": "Parallèle : les capacités s'ajoutent ; série : les inverses s'ajoutent",
+   "type": "etape"
+  },
+  "charge_decharge": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "charge"
+   },
+   "kicker": "Charge et décharge",
+   "texte": "À la charge, la tension aux bornes du condensateur croît de zéro vers la tension du générateur pendant que le courant s'éteint. À la décharge, elle redescend vers zéro.",
+   "type": "phrase"
+  },
+  "charge_q": {
+   "kicker": "La charge du condensateur",
+   "note": "q en coulombs (C), C en farads (F), U en volts (V) · C : la capacité du condensateur",
+   "tex": "q = C\\, U",
+   "titre": "La charge est proportionnelle à la tension",
+   "type": "formule"
+  },
+  "condensateur_def": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "condensateur_plan"
+   },
+   "kicker": "Qu'est-ce qu'un condensateur ?",
+   "texte": "Deux armatures conductrices séparées par un isolant, le diélectrique : le condensateur stocke l'énergie sous forme électrostatique. Son symbole : deux traits parallèles.",
+   "type": "phrase"
+  },
+  "energie": {
+   "kicker": "Énergie emmagasinée",
+   "note": "Formes équivalentes : E = q²/(2C) = qU/2 · elle est restituée à la décharge",
+   "tex": "E_C = \\frac{1}{2}\\, C\\, U^{2}",
+   "titre": "L'énergie dort dans le champ entre les armatures",
+   "type": "formule"
+  },
+  "energie_lc": {
+   "kicker": "L'énergie de l'oscillateur LC",
+   "note": "L'énergie totale reste constante : elle passe du condensateur à la bobine et retour",
+   "tex": "E = \\frac{1}{2}\\, L\\, i^{2} + \\frac{q^{2}}{2C}",
+   "titre": "Un échange permanent, sans perte",
+   "type": "formule"
+  },
+  "ex_assoc": {
+   "kicker": "Exemple · deux condensateurs",
+   "note": "Première ligne : en parallèle · lignes suivantes : en série, toujours plus petit",
+   "tex": [
+    "C_{eq} = C_1 + C_2 = 5\\ \\mu\\text{F}",
+    "\\frac{1}{C_{eq}} = \\frac{1}{2} + \\frac{1}{3} = \\frac{5}{6}",
+    "C_{eq} = 1{,}2\\ \\mu\\text{F}"
+   ],
+   "titre": "2 microfarads et 3 microfarads",
+   "type": "etape"
+  },
+  "ex_critique": {
+   "kicker": "Exemple · la résistance critique",
+   "note": "Au-delà de 1 000 Ω, le circuit ne peut plus osciller",
+   "tex": "R_c = 2\\, \\sqrt{\\frac{L}{C}} = 2 \\times 500 = 1000\\ \\Omega",
+   "titre": "0,5 henry et 2 microfarads",
+   "type": "formule"
+  },
+  "ex_energie": {
+   "kicker": "Exemple · une énergie",
+   "note": "Assez pour l'éclair d'un flash : l'énergie part d'un seul coup",
+   "tex": "E_C = \\frac{1}{2} \\times 1000 \\times 10^{-6} \\times 10^{2} = 0{,}05\\ \\text{J}",
+   "titre": "1 000 microfarads sous 10 volts",
+   "type": "formule"
+  },
+  "ex_lc": {
+   "kicker": "Exemple · une période",
+   "tex": [
+    "L = 0{,}1\\ \\text{H} \\qquad C = 10\\ \\mu\\text{F}",
+    "T_0 = 2\\pi \\sqrt{LC} \\approx 6{,}28\\ \\text{ms}"
+   ],
+   "titre": "0,1 henry et 10 microfarads",
+   "type": "etape"
+  },
+  "ex_plan": {
+   "kicker": "Exemple · un condensateur plan",
+   "tex": [
+    "S = 10^{-2}\\ \\text{m}^{2} \\qquad d = 10^{-4}\\ \\text{m} \\qquad \\varepsilon_r = 2",
+    "C = \\varepsilon_0\\, \\varepsilon_r\\, \\frac{S}{d}",
+    "C \\approx 1{,}77 \\times 10^{-9}\\ \\text{F} = 1{,}77\\ \\text{nF}"
+   ],
+   "titre": "Des armatures de 100 cm² à 0,1 mm",
+   "type": "etape"
+  },
+  "ex_puissance": {
+   "kicker": "Exemple · une puissance",
+   "note": "230 V efficaces, 2 A efficaces, un facteur de puissance de 0,8",
+   "tex": "P = 230 \\times 2 \\times 0{,}8 = 368\\ \\text{W}",
+   "titre": "Le courant d'un appareil domestique",
+   "type": "formule"
+  },
+  "ex_q": {
+   "kicker": "Exemple · une charge",
+   "note": "C'est la charge portée par l'armature positive",
+   "tex": "q = 10 \\times 10^{-6} \\times 5 = 50\\ \\mu\\text{C}",
+   "titre": "10 microfarads sous 5 volts",
+   "type": "formule"
+  },
+  "ex_qualite": {
+   "kicker": "Exemple · un facteur de qualité",
+   "note": "Avec ω₀ = 3 162 rad/s : une résonance déjà bien aiguë",
+   "tex": "Q = \\frac{\\omega_0\\, L}{R} = \\frac{3162 \\times 0{,}1}{20} \\approx 15{,}8",
+   "titre": "20 ohms, 0,1 henry, 1 microfarad",
+   "type": "formule"
+  },
+  "ex_tau": {
+   "kicker": "Exemple · une durée",
+   "note": "La charge est quasi complète en cinq tau, soit une demi-seconde",
+   "tex": "\\tau = 10^{3} \\times 100 \\times 10^{-6} = 0{,}1\\ \\text{s}",
+   "titre": "Un kilo-ohm et cent microfarads",
+   "type": "formule"
+  },
+  "force": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "sinusoide"
+   },
+   "kicker": "Oscillations forcées",
+   "texte": "Un générateur sinusoïdal impose sa pulsation au circuit RLC : le courant répond à la même pulsation, avec un déphasage qui dépend de la fréquence.",
+   "type": "phrase"
+  },
+  "impedance": {
+   "kicker": "Impédance et déphasage",
+   "note": "Circuit inductif si Lω dépasse 1/(Cω), capacitif sinon",
+   "tex": [
+    "Z = \\sqrt{R^{2} + \\left(L\\omega - \\frac{1}{C\\omega}\\right)^{2}}",
+    "\\tan\\varphi = \\frac{L\\omega - \\frac{1}{C\\omega}}{R}"
+   ],
+   "titre": "La loi d'Ohm en régime sinusoïdal : U = Z·I",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Fermer un interrupteur ne donne pas toujours un régime stable : le circuit traverse d'abord un transitoire, et parfois il se met à osciller.",
+   "type": "phrase"
+  },
+  "lc_eq": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "circuit_rlc"
+   },
+   "kicker": "Le circuit LC",
+   "note": "De la loi des mailles uC + uL = 0, avec uC = q/C et uL = L·d²q/dt²",
+   "tex": "\\frac{d^{2}q}{dt^{2}} + \\frac{1}{LC}\\, q = 0",
+   "titre": "Une bobine et un condensateur se renvoient l'énergie",
+   "type": "formule"
+  },
+  "lc_sol": {
+   "kicker": "Oscillations libres",
+   "note": "Qm : charge maximale · φ : phase à l'origine · i(t) = dq/dt, déphasée d'un quart de période",
+   "tex": "q(t) = Q_m \\cos(\\omega_0\\, t + \\varphi)",
+   "titre": "La charge oscille en sinusoïde",
+   "type": "formule"
+  },
+  "periode": {
+   "kicker": "Les grandeurs de l'oscillation",
+   "tex": [
+    "\\omega_0 = \\frac{1}{\\sqrt{LC}}",
+    "T_0 = 2\\pi \\sqrt{LC}",
+    "f_0 = \\frac{1}{2\\pi \\sqrt{LC}}"
+   ],
+   "titre": "Pulsation, période et fréquence propres",
+   "type": "etape"
+  },
+  "plan": {
+   "kicker": "Le condensateur plan",
+   "note": "S : surface des armatures · d : leur distance · ε = ε₀·εᵣ, avec ε₀ = 8,85 × 10⁻¹² F/m",
+   "tex": "C = \\varepsilon\\, \\frac{S}{d}",
+   "titre": "La capacité dépend de la géométrie",
+   "type": "formule"
+  },
+  "puissance": {
+   "kicker": "Puissance en régime sinusoïdal",
+   "note": "U et I : valeurs efficaces · cos φ = R/Z : le facteur de puissance, maximal à la résonance",
+   "tex": "P = U\\, I\\, \\cos\\varphi",
+   "titre": "Seule la composante en phase fournit de la puissance",
+   "type": "formule"
+  },
+  "qualite": {
+   "kicker": "Bande passante et facteur de qualité",
+   "note": "La bande passante : là où le courant reste au moins égal à Imax/√2",
+   "tex": [
+    "\\Delta\\omega = \\frac{R}{L}",
+    "Q = \\frac{\\omega_0}{\\Delta\\omega} = \\frac{1}{R}\\, \\sqrt{\\frac{L}{C}}"
+   ],
+   "titre": "La finesse du pic de résonance",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Condensateur : q = C·U ; capacité C = εS/d pour le plan",
+    "Circuit RC : τ = RC, transitoire terminé vers 5τ",
+    "Énergie du condensateur : E = ½ C U²",
+    "LC : T0 = 2π√(LC) ; RLC amorti selon R face à 2√(L/C)",
+    "Résonance : Z = R, I maximal, facteur de qualité Q"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regimes": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "amortie"
+   },
+   "etapes": [
+    "R faible : pseudo-périodique, oscillations amorties",
+    "R = 2√(L/C) : critique, retour le plus rapide",
+    "R fort : apériodique, retour sans oscillation"
+   ],
+   "kicker": "Les régimes d'amortissement",
+   "type": "recap"
+  },
+  "resonance": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "resonance"
+   },
+   "kicker": "La résonance d'intensité",
+   "note": "À ω = ω₀, l'impédance est minimale et le déphasage est nul",
+   "tex": "Z = R \\qquad I_m = \\frac{U_m}{R}",
+   "titre": "Le courant culmine quand la pulsation est la pulsation propre",
+   "type": "formule"
+  },
+  "rlc_eq": {
+   "kicker": "Le circuit RLC",
+   "note": "Le terme en R/L est le terme d'amortissement",
+   "tex": "\\frac{d^{2}q}{dt^{2}} + \\frac{R}{L}\\, \\frac{dq}{dt} + \\frac{1}{LC}\\, q = 0",
+   "titre": "La résistance dissipe l'énergie en chaleur",
+   "type": "formule"
+  },
+  "tau": {
+   "kicker": "La constante de temps",
+   "note": "R en ohms (Ω), C en farads (F), τ en secondes (s) · le transitoire dure environ 5τ",
+   "tex": "\\tau = R\\, C",
+   "titre": "Le produit qui règle la durée du transitoire",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "charge"
+   },
+   "kicker": "Physique",
+   "sous": "Le condensateur, la charge en circuit RC, et les oscillations des circuits LC et RLC",
+   "titre": "Circuits électriques en régime transitoire et oscillant",
+   "type": "titre"
+  }
+ },
+ "lecons": [
+  9450,
+  9451
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le condensateur : charge, capacité et constante de temps"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : associations et énergie du condensateur, puis les oscillations libres des circuits LC et RLC.",
+    "texte": "Partie 2 : associations, énergie et oscillations libres."
+   },
+   "sous_titre": "Associations, énergie et oscillations libres"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : les oscillations forcées. Le circuit répond à un générateur sinusoïdal, jusqu'à la résonance.",
+    "texte": "Partie 3 : oscillations forcées et résonance."
+   },
+   "sous_titre": "Oscillations forcées et résonance"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux circuits électriques en régime transitoire et oscillant : le condensateur d'abord, puis les oscillations des circuits LC et RLC.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Régimes transitoire et oscillant : du condensateur à la résonance."
+  },
+  {
+   "dit": "Quand on bascule un interrupteur, un circuit ne saute pas toujours directement à son régime définitif. Il traverse une phase de transition, le régime transitoire, et dans certains circuits, il ne se stabilise jamais : il oscille. Ce cours suit ces deux comportements.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Transitoire : la transition ; oscillant : le va-et-vient."
+  },
+  {
+   "dit": "Le premier acteur est le condensateur : un dipôle formé de deux armatures conductrices séparées par un isolant appelé diélectrique, de l'air, du papier ou de la céramique. Il stocke l'énergie sous forme électrostatique, dans le champ créé entre ses armatures. Son symbole normalisé tient en deux traits parallèles.",
+   "ecran": "condensateur_def",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Deux armatures, un diélectrique : le stockage électrostatique."
+  },
+  {
+   "dit": "Un condensateur est caractérisé par sa capacité, notée C, mesurée en farads. Sous une tension U, la charge portée par son armature positive est proportionnelle à cette tension : q égale C fois U.",
+   "ecran": "charge_q",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "q = C·U : la charge suit la tension."
+  },
+  {
+   "dit": "Exemple du cours : un condensateur de dix microfarads soumis à cinq volts porte une charge de dix fois dix puissance moins six, fois cinq, soit cinquante microcoulombs.",
+   "ecran": "ex_q",
+   "id": "p05",
+   "pause_apres": 0.7,
+   "texte": "Résultat : q = 50 µC."
+  },
+  {
+   "dit": "Branchons le condensateur avec un générateur et un résistor qui limite le courant. À la fermeture de l'interrupteur, la tension à ses bornes croît progressivement de zéro jusqu'à la tension du générateur, pendant que le courant décroît jusqu'à s'annuler.",
+   "ecran": "charge_decharge",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Charge : uC monte vers E, le courant s'éteint."
+  },
+  {
+   "dit": "Si l'on remplace ensuite le générateur par un simple fil, le condensateur se décharge dans le résistor : sa tension redescend progressivement vers zéro, en restituant l'énergie emmagasinée.",
+   "ecran": "charge_decharge",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Décharge : uC redescend vers zéro."
+  },
+  {
+   "dit": "La rapidité de ces deux phénomènes est réglée par la constante de temps : tau égale R fois C, le produit de la résistance par la capacité. Le régime transitoire dure environ cinq tau, après quoi la charge ou la décharge est considérée comme terminée.",
+   "ecran": "tau",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "τ = RC : le transitoire dure environ 5τ."
+  },
+  {
+   "dit": "Exemple : un résistor d'un kilo-ohm et un condensateur de cent microfarads donnent une constante de temps de zéro virgule une seconde. La charge est donc quasi complète en une demi-seconde.",
+   "ecran": "ex_tau",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Résultat : τ = 0,1 s, charge finie en 0,5 s."
+  },
+  {
+   "dit": "Pour un condensateur plan, la capacité se calcule : elle est proportionnelle à la surface des armatures et inversement proportionnelle à leur distance. Le coefficient epsilon rassemble la permittivité du vide et celle, relative, du diélectrique utilisé.",
+   "ecran": "plan",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Condensateur plan : C = ε·S/d."
+  },
+  {
+   "dit": "Exemple du cours : des armatures de cent centimètres carrés, distantes d'un dixième de millimètre, avec un diélectrique de permittivité relative deux. La capacité obtenue est d'environ un virgule soixante-dix-sept nanofarads.",
+   "ecran": "ex_plan",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Résultat : C ≈ 1,77 nF."
+  },
+  {
+   "dit": "On combine les condensateurs comme on combine d'autres composants. En parallèle, ils subissent la même tension et leurs capacités s'ajoutent. En série, ils sont traversés par le même courant et ce sont les inverses des capacités qui s'ajoutent.",
+   "ecran": "associations",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Parallèle : somme ; série : somme des inverses."
+  },
+  {
+   "dit": "Exemple : deux condensateurs de deux et trois microfarads. En parallèle, la capacité équivalente vaut cinq microfarads. En série, un demi plus un tiers donnent cinq sixièmes, donc une capacité équivalente d'un virgule deux microfarads, plus petite que chacune des deux.",
+   "ecran": "ex_assoc",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 5 µF en parallèle, 1,2 µF en série."
+  },
+  {
+   "dit": "Un condensateur chargé emmagasine une énergie potentielle électrostatique : un demi fois la capacité, fois le carré de la tension. Elle peut aussi s'écrire avec la charge : q au carré sur deux C, ou un demi q fois U. Cette énergie vit dans le champ électrique du diélectrique.",
+   "ecran": "energie",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Énergie : E = ½·C·U² = q²/(2C) = qU/2."
+  },
+  {
+   "dit": "Exemple : un condensateur de mille microfarads chargé sous dix volts emmagasine un demi fois mille fois dix puissance moins six, fois cent, soit zéro virgule zéro cinq joules. Peu en valeur absolue, mais libérable en une fraction de seconde.",
+   "ecran": "ex_energie",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Résultat : E = 0,05 J."
+  },
+  {
+   "dit": "Le condensateur est partout : il lisse les tensions redressées dans les alimentations, il règle les durées dans les circuits de temporisation, il stocke l'information dans les mémoires d'ordinateur, il élimine les parasites en découplage, et son décharge brutale fait l'éclair du flash photographique.",
+   "ecran": "applications",
+   "id": "p16",
+   "pause_apres": 0.7,
+   "texte": "Filtrage, temporisation, mémoire, flash, découplage."
+  },
+  {
+   "dit": "Associons maintenant le condensateur à une bobine d'inductance L, de résistance négligeable : c'est le circuit LC. La loi des mailles y dit que la tension du condensateur plus celle de la bobine est nulle à chaque instant. En exprimant ces tensions avec la charge, on obtient une équation différentielle du second ordre.",
+   "ecran": "lc_eq",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Circuit LC : uC + uL = 0 mène à l'équation d'oscillation."
+  },
+  {
+   "dit": "Sa solution est une sinusoïde : la charge oscille entre deux valeurs extrêmes opposées, sans s'arrêter. Le condensateur et la bobine se renvoient l'énergie indéfiniment, au moins dans ce modèle idéal sans résistance.",
+   "ecran": "lc_sol",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La charge oscille : q(t) = Qm·cos(ω₀t + φ)."
+  },
+  {
+   "dit": "Trois grandeurs décrivent cette oscillation. La pulsation propre, oméga zéro, vaut un sur la racine carrée du produit L fois C. La période propre vaut deux pi fois cette même racine, et la fréquence propre est son inverse.",
+   "ecran": "periode",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "ω₀ = 1/√(LC), T₀ = 2π√(LC), f₀ = 1/T₀."
+  },
+  {
+   "dit": "Exemple résolu du cours : une bobine de zéro virgule un henry et un condensateur de dix microfarads. La période propre vaut deux pi fois dix puissance moins trois, soit environ six virgule vingt-huit millisecondes.",
+   "ecran": "ex_lc",
+   "id": "p20",
+   "pause_apres": 0.7,
+   "texte": "Résultat : T₀ ≈ 6,28 ms."
+  },
+  {
+   "dit": "L'énergie totale de l'oscillateur est la somme de l'énergie électrique du condensateur, q au carré sur deux C, et de l'énergie magnétique de la bobine, un demi L i au carré. Elle reste constante : quand l'une est maximale, l'autre est nulle, et l'énergie passe de l'une à l'autre à chaque quart de période.",
+   "ecran": "energie_lc",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Énergie totale constante : un échange périodique."
+  },
+  {
+   "dit": "Un circuit réel contient toujours une résistance : c'est le circuit RLC. L'équation différentielle gagne un terme d'amortissement, proportionnel à R sur L, qui traduit la dissipation de l'énergie en chaleur dans la résistance.",
+   "ecran": "rlc_eq",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Circuit RLC : la résistance amortit."
+  },
+  {
+   "dit": "Trois régimes sont possibles. Si la résistance est faible devant deux fois la racine de L sur C, le circuit oscille encore, mais avec une amplitude qui décroît : c'est le régime pseudo-périodique. À la valeur critique exacte, le retour à l'équilibre est le plus rapide possible sans oscillation. Au-delà, le régime est apériodique : retour lent, sans aucune oscillation.",
+   "ecran": "regimes",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Pseudo-périodique, critique, apériodique."
+  },
+  {
+   "dit": "Exemple du cours : pour une bobine de zéro virgule cinq henry et un condensateur de deux microfarads, la résistance critique vaut deux fois cinq cents, soit mille ohms. Au-dessus de cette valeur, plus aucune oscillation n'est possible.",
+   "ecran": "ex_critique",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Résultat : Rc = 1 000 Ω."
+  },
+  {
+   "dit": "Dernier acte : on branche le circuit RLC sur un générateur qui délivre une tension sinusoïdale. Le générateur impose sa pulsation : le circuit répond par un courant sinusoïdal de même pulsation, mais déphasé, et dont l'amplitude dépend fortement de la fréquence imposée.",
+   "ecran": "force",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Oscillations forcées : le générateur impose sa pulsation."
+  },
+  {
+   "dit": "L'outil d'analyse est l'impédance Z, qui généralise la résistance au régime sinusoïdal : la tension et le courant restent proportionnels, avec U égale Z fois I. L'impédance combine la résistance et les effets opposés de la bobine et du condensateur, dont la différence règle aussi le déphasage.",
+   "ecran": "impedance",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Impédance : Z = √(R² + (Lω − 1/(Cω))²), U = ZI."
+  },
+  {
+   "dit": "Quand la pulsation imposée égale la pulsation propre, les effets de la bobine et du condensateur se compensent exactement : l'impédance tombe à la seule résistance, le déphasage s'annule et le courant atteint son maximum. C'est la résonance d'intensité, le principe de la sélection d'une station de radio.",
+   "ecran": "resonance",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Résonance : ω = ω₀, Z = R, courant maximal."
+  },
+  {
+   "dit": "Le pic de résonance est d'autant plus aigu que la résistance est faible. On le mesure par la bande passante, delta oméga égale R sur L, et par le facteur de qualité Q : le quotient de la pulsation propre par la bande passante. Plus Q est grand, plus la résonance est sélective.",
+   "ecran": "qualite",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Bande passante Δω = R/L ; Q = ω₀/Δω."
+  },
+  {
+   "dit": "Exemple du cours : vingt ohms, zéro virgule un henry et un microfarad. La pulsation propre vaut trois mille cent soixante-deux radians par seconde et le facteur de qualité atteint quinze virgule huit : une résonance déjà bien marquée.",
+   "ecran": "ex_qualite",
+   "id": "p29",
+   "pause_apres": 0.7,
+   "texte": "Résultat : ω₀ = 3 162 rad/s, Q ≈ 15,8."
+  },
+  {
+   "dit": "En régime sinusoïdal, la puissance moyenne reçue par le circuit vaut le produit des valeurs efficaces de la tension et du courant, multiplié par le cosinus du déphasage : c'est le facteur de puissance, égal au quotient de R par Z. À la résonance, il vaut un : toute la puissance fournie est consommée par la résistance.",
+   "ecran": "puissance",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Puissance moyenne : P = U·I·cos φ, avec cos φ = R/Z."
+  },
+  {
+   "dit": "Exemple final : deux cent trente volts efficaces, deux ampères efficaces et un facteur de puissance de zéro virgule huit donnent une puissance moyenne de trois cent soixante-huit watts.",
+   "ecran": "ex_puissance",
+   "id": "p31",
+   "pause_apres": 0.7,
+   "texte": "Résultat : P = 368 W."
+  },
+  {
+   "dit": "Retenez l'essentiel : le condensateur stocke charge et énergie selon q égale C fois U et un demi C fois U au carré ; sa constante de temps RC règle les transitoires ; associé à une bobine, il oscille à la période deux pi racine de LC, l'amortissement dépend de la résistance, et la résonance couronne le tout quand le générateur frappe à la pulsation propre.",
+   "ecran": "recap",
+   "id": "p32",
+   "pause_apres": 0.5,
+   "texte": "Condensateur, oscillations, résonance : à retenir."
+  }
+ ],
+ "titre": "Circuits électriques en régime transitoire et oscillant"
+}

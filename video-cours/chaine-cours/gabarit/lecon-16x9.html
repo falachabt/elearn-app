@@ -602,6 +602,48 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  niveaux_atome_fig(t) {
+    const niveau = (y, n, ev) =>
+      trait(300, y, 720, y, prog(t), { w: 4.5 }) +
+      mot(284, y + 5, `n = ${n}`, { t: 20, a: 'end' }) +
+      mot(736, y + 5, ev, { t: 20, a: 'start' });
+    return svgBoite(
+      trait(300, 52, 720, 52, prog(t), { w: 3, tiret: '8 6' }) +
+      mot(736, 57, 'E = 0, atome ionisé', { t: 19, a: 'start' }) + mot(284, 57, 'n = ∞', { t: 20, a: 'end' }) +
+      niveau(84, 4, '') + niveau(110, 3, 'E₃ = −1,5 eV') + niveau(152, 2, 'E₂ = −3,4 eV') + niveau(232, 1, 'E₁ = −13,6 eV') +
+      trait(420, 112, 420, 224, prog(t), { c: '#10B981', w: 4.5 }) + pointe(420, 232, 90, '#10B981') +
+      `<path d="M 448 176 l 16 -12 l 16 12 l 16 -12 l 16 12 l 16 -12" fill="none" stroke="#B8860B" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(540, 168, 'hν, le photon émis', { c: '#B8860B', t: 20, a: 'start' }) +
+      mot(500, 282, "l'atome ne prend que des énergies bien précises", { t: 20 }));
+  },
+  champ_gravitation_fig(t) {
+    let vec = '';
+    for (const a of [0, 45, 90, 135, 180, 225, 270, 315]) {
+      const rad = a * Math.PI / 180, c = Math.cos(rad), s = Math.sin(rad);
+      vec += trait(Math.round(500 + 128 * c), Math.round(155 + 128 * s), Math.round(500 + 64 * c), Math.round(155 + 64 * s), prog(t), { c: '#E8604C', w: 4 }) +
+        pointe(Math.round(500 + 58 * c), Math.round(155 + 58 * s), a + 180, '#E8604C');
+      vec += trait(Math.round(500 + 196 * c), Math.round(155 + 196 * s), Math.round(500 + 158 * c), Math.round(155 + 158 * s), prog(t), { c: '#E8604C', w: 3 });
+      vec += pointe(Math.round(500 + 152 * c), Math.round(155 + 152 * s), a + 180, '#E8604C');
+    }
+    return svgBoite(
+      mot(500, 34, '𝒢, le champ de gravitation', { c: '#E8604C', t: 22 }) +
+      vec +
+      `<circle cx="500" cy="155" r="46" fill="#1A75FF" fill-opacity=".18" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(500, 167, 'M', { t: 27 }) +
+      mot(500, 290, '𝒢 pointe vers la masse et faiblit avec la distance', { t: 19 }));
+  },
+  laplace_fig(t) {
+    let croix = '';
+    for (const x of [330, 425, 520, 615, 710]) for (const y of [102, 152, 202]) croix += mot(x, y + 8, '×', { t: 27 });
+    return svgBoite(
+      mot(500, 32, 'B uniforme, dirigé vers l’arrière du plan', { t: 20 }) +
+      `<rect x="252" y="58" width="496" height="182" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="8 6" opacity=".55"/>` + croix +
+      trait(196, 150, 804, 150, prog(t), { w: 9 }) +
+      trait(300, 120, 428, 120, prog(t), { c: '#1A75FF', w: 4 }) + pointe(436, 120, 0, '#1A75FF') + mot(362, 106, 'I, le courant', { c: '#1A75FF', t: 20 }) +
+      trait(560, 150, 560, 224, prog(t), { c: '#10B981', w: 5.5 }) + pointe(560, 232, 90, '#10B981') +
+      mot(576, 214, 'F, la force de Laplace', { c: '#10B981', t: 20, a: 'start' }) +
+      mot(500, 276, 'F est perpendiculaire au fil et au champ', { t: 20 }));
+  },
   graphique_mesures_fig(t) {
     const pts = [[340, 218], [450, 176], [560, 152], [670, 110], [760, 94]];
     let barres = '';

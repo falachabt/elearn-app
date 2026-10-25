@@ -1,0 +1,448 @@
+{
+ "cours": 6680,
+ "ecrans": {
+  "altitude": {
+   "kicker": "Le champ en altitude",
+   "note": "La force sur une masse m s'en déduit : F = m × 𝒢(h)",
+   "tex": "\\mathcal{G}(h) = \\frac{G\\, M_T}{(R_T + h)^{2}}",
+   "titre": "Il décroît comme l'inverse du carré de la distance",
+   "type": "formule",
+   "anim": {
+    "nom": "champ_gravitation_fig",
+    "hauteur": 160
+   }
+  },
+  "champ_b": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "aimant"
+   },
+   "kicker": "Le champ magnétique",
+   "texte": "Créé par les aimants et par les courants, le champ magnétique B s'exprime en teslas ; une aiguille aimantée s'oriente le long de ses lignes de champ.",
+   "type": "phrase"
+  },
+  "champ_e": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Le champ électrostatique",
+   "note": "En volts par mètre (V/m) · vers l'extérieur si Q est positive, vers la charge si elle est négative",
+   "tex": "E = k\\, \\frac{|Q|}{r^{2}}",
+   "titre": "Une charge crée un champ radial",
+   "type": "formule"
+  },
+  "champ_grav": {
+   "kicker": "Le champ de gravitation",
+   "note": "En newtons par kilogramme (N/kg) · le vecteur champ pointe vers la masse source",
+   "tex": "\\mathcal{G} = \\frac{G\\, M}{r^{2}}",
+   "titre": "Une masse modifie l'espace autour d'elle",
+   "type": "formule",
+   "anim": {
+    "nom": "champ_gravitation_fig",
+    "hauteur": 160
+   }
+  },
+  "condensateur": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "condensateur_plan"
+   },
+   "kicker": "Le condensateur",
+   "note": "C : capacité en farads (F) · entre les armatures règne le champ uniforme E = U/d",
+   "tex": "q = C\\, U",
+   "titre": "Deux armatures, un isolant, une charge stockée",
+   "type": "formule"
+  },
+  "coulomb": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Loi de Coulomb",
+   "note": "k = 9 × 10⁹ N·m²·C⁻² · attraction si les signes sont opposés, répulsion sinon",
+   "tex": "F = k\\, \\frac{|q_1\\, q_2|}{d^{2}}",
+   "titre": "L'analogue électrique de la loi de Newton",
+   "type": "formule"
+  },
+  "electrisation": {
+   "etapes": [
+    "Par frottement : les électrons passent d'un corps à l'autre",
+    "Par contact : une partie des charges se répartit",
+    "Par influence : les charges se séparent sans contact",
+    "Seuls les électrons bougent ; la charge totale se conserve"
+   ],
+   "kicker": "Phénomènes d'électrisation",
+   "type": "recap"
+  },
+  "ex_condensateur": {
+   "kicker": "Exemple · condensateur plan",
+   "note": "Un champ intense, obtenu avec une tension modeste et un faible écart",
+   "tex": "E = \\frac{U}{d} = \\frac{200}{2 \\times 10^{-3}} = 10^{5}\\ \\text{V/m}",
+   "titre": "200 V sur 2 mm d'écart",
+   "type": "formule"
+  },
+  "ex_coulomb": {
+   "kicker": "Exemple · deux charges",
+   "tex": [
+    "q_1 = +2\\ \\mu\\text{C} \\qquad q_2 = -3\\ \\mu\\text{C} \\qquad d = 0{,}10\\ \\text{m}",
+    "F = k\\, \\frac{|q_1\\, q_2|}{d^{2}} = 9 \\times 10^{9} \\times \\frac{6 \\times 10^{-12}}{10^{-2}}",
+    "F \\approx 5{,}4\\ \\text{N} \\quad \\text{(attractive)}"
+   ],
+   "titre": "Une force électrique bien plus sensible",
+   "type": "etape"
+  },
+  "ex_iss": {
+   "kicker": "Exemple · la station spatiale",
+   "note": "Seulement 12 % de moins qu'au sol : la gravité y est presque entière",
+   "tex": "\\mathcal{G} = \\frac{G\\, M_T}{(R_T + 400\\ \\text{km})^{2}} \\approx 8{,}66\\ \\text{N/kg}",
+   "titre": "À 400 km d'altitude, le champ vaut encore 8,66 N/kg",
+   "type": "formule"
+  },
+  "ex_laplace": {
+   "kicker": "Exemple · un conducteur",
+   "note": "Conducteur perpendiculaire au champ : sin α vaut alors un",
+   "tex": "F = I\\, L\\, B = 2 \\times 0{,}1 \\times 0{,}2 = 0{,}04\\ \\text{N}",
+   "titre": "10 cm de fil, 2 A, un champ de 0,2 T",
+   "type": "formule",
+   "anim": {
+    "nom": "laplace_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_lorentz": {
+   "kicker": "Exemple · un électron",
+   "note": "Électron à 10⁶ m/s dans un champ de 0,5 T",
+   "tex": "F = 1{,}6 \\times 10^{-19} \\times 10^{6} \\times 0{,}5 = 8 \\times 10^{-14}\\ \\text{N}",
+   "titre": "Vitesse perpendiculaire au champ : force maximale",
+   "type": "formule"
+  },
+  "ex_newton": {
+   "kicker": "Exemple · deux sphères",
+   "tex": [
+    "m_A = 100\\ \\text{kg} \\qquad m_B = 200\\ \\text{kg} \\qquad d = 2\\ \\text{m}",
+    "F = G\\, \\frac{m_A\\, m_B}{d^{2}} = 6{,}67 \\times 10^{-11} \\times \\frac{100 \\times 200}{2^{2}}",
+    "F \\approx 3{,}3 \\times 10^{-7}\\ \\text{N}"
+   ],
+   "titre": "Une force minuscule entre deux masses ordinaires",
+   "type": "etape"
+  },
+  "ex_terre": {
+   "kicker": "Exemple · la Terre",
+   "tex": [
+    "M_T = 5{,}97 \\times 10^{24}\\ \\text{kg} \\qquad R_T = 6{,}38 \\times 10^{6}\\ \\text{m}",
+    "\\mathcal{G}_0 = \\frac{G\\, M_T}{R_T^{2}} \\approx 9{,}8\\ \\text{N/kg}"
+   ],
+   "titre": "Le champ à la surface de la Terre",
+   "type": "etape"
+  },
+  "fil": {
+   "kicker": "Champ d'un fil rectiligne",
+   "note": "µ₀ = 4π × 10⁻⁷ T·m·A⁻¹ · le sens se lit à la main droite : pouce = courant, doigts = champ",
+   "tex": "B = \\frac{\\mu_0\\, I}{2\\pi\\, r}",
+   "titre": "Des lignes de champ en cercles autour du fil",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Comment un corps agit-il sur un autre sans le toucher ? Par un champ, créé dans tout l'espace qui l'entoure.",
+   "type": "phrase"
+  },
+  "laplace": {
+   "kicker": "Force de Laplace",
+   "note": "α : angle entre le conducteur et le champ · point d'application : le milieu du conducteur",
+   "tex": "F = I\\, L\\, B\\, \\sin\\alpha",
+   "titre": "Le champ agit sur les conducteurs parcourus par un courant",
+   "type": "formule",
+   "anim": {
+    "nom": "laplace_fig",
+    "hauteur": 160
+   }
+  },
+  "lorentz": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "deviation_magnetique_fig"
+   },
+   "kicker": "Force de Lorentz",
+   "note": "θ : angle entre la vitesse et le champ · la force est perpendiculaire aux deux",
+   "tex": "F = |q|\\, v\\, B\\, \\sin\\theta",
+   "titre": "Le champ agit sur les charges en mouvement",
+   "type": "formule"
+  },
+  "moteur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "induction"
+   },
+   "kicker": "Application · le moteur électrique",
+   "texte": "Un cadre conducteur parcouru par un courant, placé dans un champ magnétique, subit un couple de forces de Laplace : il tourne. C'est le principe de tout moteur électrique.",
+   "type": "phrase"
+  },
+  "newton": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "orbite"
+   },
+   "kicker": "Loi de Newton (1687)",
+   "note": "G = 6,67 × 10⁻¹¹ N·m²·kg⁻² · d : distance entre les centres des deux corps",
+   "tex": "F = G\\, \\frac{m_A\\, m_B}{d^{2}}",
+   "titre": "L'attraction universelle",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Newton : F = G mA mB / d², attraction universelle",
+    "Champ de gravitation : GM/r², dirigé vers la masse",
+    "Coulomb : F = k |q1 q2| / d², attraction ou répulsion",
+    "Champ électrique : E = k|Q|/r² ; uniforme : E = U/d",
+    "Magnétique : Lorentz q v∧B, Laplace I L B sin α"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "superposition": {
+   "kicker": "Superposition · exemple",
+   "note": "En O, les deux champs pointent de A vers B : ils s'ajoutent",
+   "tex": [
+    "E_1 = E_2 = 9 \\times 10^{3}\\ \\text{V/m}",
+    "E = E_1 + E_2 = 1{,}8 \\times 10^{4}\\ \\text{V/m}"
+   ],
+   "titre": "Au milieu de deux charges opposées",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Physique",
+   "sous": "Gravitation, champ électrostatique et champ magnétique : les actions à distance",
+   "titre": "Champs et interactions fondamentales",
+   "type": "titre"
+  },
+  "uniforme": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "condensateur_plan"
+   },
+   "kicker": "Le champ uniforme",
+   "note": "U : tension entre les plaques · d : distance qui les sépare",
+   "tex": "E = \\frac{U}{d}",
+   "titre": "Entre deux plaques, un champ constant",
+   "type": "formule"
+  }
+ },
+ "lecons": [
+  9441,
+  9442,
+  9443
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Gravitation et force électrostatique"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : les champs. Après les forces, voici les champs électrique et magnétique qui les décrivent.",
+    "texte": "Partie 2 : les champs électrique et magnétique."
+   },
+   "sous_titre": "Les champs : électrique et magnétique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux champs et aux interactions fondamentales : la gravitation, l'électrostatique et le magnétisme, c'est-à-dire les grandes actions à distance.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Champs et interactions fondamentales : agir à distance."
+  },
+  {
+   "dit": "Une question traverse tout ce cours : comment un corps peut-il agir sur un autre sans le toucher ? La réponse des physiciens tient en un mot : le champ. Une masse, une charge ou un courant modifie l'espace autour de lui, et tout objet placé là subit une force.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Le champ : la médiation des actions à distance."
+  },
+  {
+   "dit": "Commençons par la gravitation. En mille six cent quatre-vingt-sept, Newton énonce la loi de l'attraction universelle : deux corps de masses m A et m B, distants de d, s'attirent avec une force proportionnelle au produit des masses et inversement proportionnelle au carré de la distance.",
+   "ecran": "newton",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Newton : F = G·mA·mB/d²."
+  },
+  {
+   "dit": "Cette force est toujours attractive, elle s'exerce à distance, sans contact, et elle est réciproque : le corps A attire le corps B exactement autant que B attire A. Pour deux sphères homogènes, tout se passe comme si leur masse était concentrée en leur centre.",
+   "ecran": "newton",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Attractive, à distance, réciproque."
+  },
+  {
+   "dit": "Exemple, tiré du cours : deux sphères de cent et deux cents kilogrammes, dont les centres sont distants de deux mètres. Le calcul donne une force d'environ trois virgule trois fois dix puissance moins sept newtons.",
+   "ecran": "ex_newton",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux sphères de 100 kg et 200 kg à 2 m."
+  },
+  {
+   "dit": "C'est extrêmement faible : la constante de gravitation G est très petite. La gravitation ne devient sensible qu'avec des masses astronomiques, comme celle d'une planète.",
+   "ecran": "ex_newton",
+   "id": "p06",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 3,3 × 10⁻⁷ N, presque rien."
+  },
+  {
+   "dit": "Plutôt que de décrire chaque couple de corps, on décrit l'espace lui-même : une masse M crée autour d'elle un champ de gravitation. Son intensité vaut G fois M, divisé par le carré de la distance à la masse, et le vecteur champ pointe vers la masse qui le crée.",
+   "ecran": "champ_grav",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le champ de gravitation : 𝒢 = GM/r²."
+  },
+  {
+   "dit": "Point capital : ce champ ne dépend que de la masse source et de la position. Il existe avant même qu'on y place un corps, et il reste le même quelle que soit la masse qui vient le subir.",
+   "ecran": "champ_grav",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le champ ne dépend que de la masse source."
+  },
+  {
+   "dit": "Exemple : à la surface de la Terre, avec sa masse de cinq virgule quatre-vingt-dix-sept fois dix puissance vingt-quatre kilogrammes et son rayon de six virgule trente-huit fois dix puissance six mètres, le champ vaut environ neuf virgule huit newtons par kilogramme.",
+   "ecran": "ex_terre",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "À la surface de la Terre : 𝒢₀ ≈ 9,8 N/kg."
+  },
+  {
+   "dit": "En altitude, la distance au centre de la Terre devient le rayon terrestre plus l'altitude h. Le champ diminue donc comme l'inverse du carré de cette distance, tout en restant dirigé vers le centre de la Terre.",
+   "ecran": "altitude",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "En altitude : 𝒢(h) = GMT/(RT + h)²."
+  },
+  {
+   "dit": "Exemple : à quatre cents kilomètres d'altitude, là où orbite la station spatiale, le champ vaut encore huit virgule soixante-six newtons par kilogramme. Les astronautes flottent non pas faute de gravité, mais parce qu'ils tombent en permanence autour de la Terre.",
+   "ecran": "ex_iss",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Station spatiale : 8,66 N/kg, la gravité est là."
+  },
+  {
+   "dit": "Passons à l'électricité. On électrise un corps de trois façons : par frottement, comme une règle en plastique frottée sur un tissu ; par contact avec un corps déjà chargé ; ou par influence, en approchant un corps chargé sans le toucher. Dans tous les cas, seuls les électrons se déplacent : les protons restent fixes dans les noyaux, et la charge totale se conserve.",
+   "ecran": "electrisation",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Frottement, contact, influence : les électrons seuls bougent."
+  },
+  {
+   "dit": "Deux charges ponctuelles exercent l'une sur l'autre la force de Coulomb, de même forme que la loi de Newton : proportionnelle au produit des charges et inversement proportionnelle au carré de la distance. La constante k vaut neuf fois dix puissance neuf, et le signe des charges décide : signes opposés, attraction ; même signe, répulsion.",
+   "ecran": "coulomb",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Coulomb : F = k·|q1·q2|/d²."
+  },
+  {
+   "dit": "Exemple, tiré du cours : une charge de plus deux microcoulombs et une charge de moins trois microcoulombs, distantes de dix centimètres. Le calcul donne cinq virgule quatre newtons, et comme les signes sont opposés, la force est attractive.",
+   "ecran": "ex_coulomb",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Exemple : +2 µC et −3 µC à 10 cm, F = 5,4 N attractive."
+  },
+  {
+   "dit": "Comme pour la gravitation, on passe de la force au champ : une charge Q crée en tout point un champ électrostatique d'intensité k fois la valeur absolue de Q, divisée par le carré de la distance. Le champ est radial : il sort de la charge si elle est positive, il rentre vers elle si elle est négative.",
+   "ecran": "champ_e",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Champ d'une charge : E = k|Q|/r²."
+  },
+  {
+   "dit": "Avec plusieurs charges, les champs s'ajoutent vectoriellement : c'est le principe de superposition. Exemple du cours : un microcoulomb positif en A et un microcoulomb négatif en B, distants de deux mètres. Au milieu, chaque champ vaut neuf mille volts par mètre et les deux pointent de A vers B : le champ total atteint un virgule huit fois dix puissance quatre volts par mètre.",
+   "ecran": "superposition",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Superposition : les champs s'ajoutent, ici 1,8 × 10⁴ V/m."
+  },
+  {
+   "dit": "Un cas particulier précieux : entre deux plaques conductrices parallèles portant des charges opposées, le champ est uniforme, constant en tout point. Son intensité vaut simplement la tension entre les plaques divisée par leur distance, et il pointe de la plaque positive vers la plaque négative.",
+   "ecran": "uniforme",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Champ uniforme : E = U/d."
+  },
+  {
+   "dit": "Ces deux plaques forment un condensateur : deux armatures séparées par un isolant, qui stocke la charge. La charge portée par l'armature positive est proportionnelle à la tension appliquée : q égale C fois U, où C est la capacité, mesurée en farads.",
+   "ecran": "condensateur",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Le condensateur : q = C·U."
+  },
+  {
+   "dit": "Exemple : deux cents volts appliqués à des armatures distantes de deux millimètres donnent, entre elles, un champ de dix puissance cinq volts par mètre. Un faible écart transforme une tension modeste en un champ intense.",
+   "ecran": "ex_condensateur",
+   "id": "p19",
+   "pause_apres": 0.7,
+   "texte": "Résultat : E = 10⁵ V/m."
+  },
+  {
+   "dit": "Troisième champ du cours : le champ magnétique, noté B, mesuré en teslas. Il est créé par les aimants, mais aussi par tout conducteur parcouru par un courant. Une aiguille aimantée placée en un point s'oriente le long du champ : sa direction donne celle du vecteur B, et son pôle nord en donne le sens.",
+   "ecran": "champ_b",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Le champ magnétique : aimants et courants le créent."
+  },
+  {
+   "dit": "Autour d'un fil rectiligne parcouru par un courant, les lignes de champ sont des cercles concentriques, centrés sur le fil. À la distance r, le champ vaut mu zéro fois I, divisé par deux pi fois r. La main droite donne le sens : le pouce suit le courant, les doigts repliés indiquent le champ.",
+   "ecran": "fil",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Fil rectiligne : B = µ₀I/(2πr)."
+  },
+  {
+   "dit": "Le champ magnétique n'agit que sur les charges en mouvement, par la force de Lorentz. Elle est perpendiculaire au plan formé par la vitesse et le champ, et son intensité vaut la valeur absolue de la charge, fois la vitesse, fois le champ, fois le sinus de l'angle entre vitesse et champ.",
+   "ecran": "lorentz",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Lorentz : F = |q|·v·B·sin θ."
+  },
+  {
+   "dit": "Exemple : un électron lancé à dix puissance six mètres par seconde, perpendiculairement à un champ d'un demi-tesla. Le sinus vaut un : la force atteint huit fois dix puissance moins quatorze newtons. Faible pour nous, mais énorme pour une particule aussi légère.",
+   "ecran": "ex_lorentz",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Résultat : F = 8 × 10⁻¹⁴ N."
+  },
+  {
+   "dit": "À l'échelle d'un conducteur, la somme des forces de Lorentz sur tous les porteurs de charge donne la force de Laplace : intensité égale au courant, fois la longueur du conducteur dans le champ, fois le champ, fois le sinus de l'angle entre le conducteur et le champ. Elle s'applique au milieu du conducteur, perpendiculairement à lui et au champ.",
+   "ecran": "laplace",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Laplace : F = I·L·B·sin α."
+  },
+  {
+   "dit": "Exemple : dix centimètres de conducteur parcourus par deux ampères, placés perpendiculairement à un champ de zéro virgule deux tesla. La force de Laplace vaut zéro virgule zéro quatre newtons : déjà mesurable avec un simple dynamomètre.",
+   "ecran": "ex_laplace",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Résultat : F = 0,04 N."
+  },
+  {
+   "dit": "C'est cette force qui fait tourner les moteurs électriques : un cadre conducteur alimenté en courant, plongé dans le champ d'un aimant, reçoit un couple de forces de Laplace qui le met en rotation, et des balais entretiennent le mouvement.",
+   "ecran": "moteur",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Le moteur électrique : la force de Laplace au travail."
+  },
+  {
+   "dit": "Retenez l'essentiel : deux lois d'attraction en un sur d au carré, celle de Newton pour les masses et celle de Coulomb pour les charges ; deux champs en un sur r au carré, gravitationnel et électrostatique ; et un champ magnétique qui dévie les charges en mouvement par Lorentz, et pousse les conducteurs par Laplace.",
+   "ecran": "recap",
+   "id": "p27",
+   "pause_apres": 0.5,
+   "texte": "Forces et champs en 1/r², Lorentz et Laplace : à retenir."
+  }
+ ],
+ "titre": "Champs et interactions fondamentales"
+}

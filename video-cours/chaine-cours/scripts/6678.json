@@ -1,0 +1,411 @@
+{
+ "cours": 6678,
+ "ecrans": {
+  "bohr": {
+   "kicker": "Le modèle de Bohr",
+   "note": "n = 1 : état fondamental, à −13,6 eV · ioniser l'atome demande 13,6 eV",
+   "tex": "E_n = -\\frac{13{,}6\\ \\text{eV}}{n^{2}}",
+   "titre": "Les niveaux de l'atome d'hydrogène",
+   "type": "formule",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 150
+   }
+  },
+  "celerite": {
+   "kicker": "La célérité de la lumière",
+   "note": "c : célérité de la lumière dans le vide",
+   "tex": "c = 3{,}00 \\times 10^{8}\\ \\text{m/s}",
+   "titre": "Toutes ces ondes voyagent à la même vitesse dans le vide",
+   "type": "formule"
+  },
+  "corps_noir": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "rayonnement"
+   },
+   "kicker": "Le corps noir",
+   "texte": "Un corps noir absorbe tout le rayonnement reçu et émet un spectre continu qui ne dépend que de sa température.",
+   "type": "phrase"
+  },
+  "couleurs": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "spectre"
+   },
+   "etapes": [
+    "Rouge : moins de 3 700 K, comme Bételgeuse",
+    "Jaune : environ 5 800 K, comme le Soleil",
+    "Blanc, puis bleu : au-delà de 7 500 K",
+    "La couleur d'une étoile mesure sa température"
+   ],
+   "kicker": "Couleur et température des étoiles",
+   "type": "recap"
+  },
+  "emission": {
+   "kicker": "Émission et absorption",
+   "note": "Émission : chute d'un niveau haut vers un niveau bas · absorption : le trajet inverse",
+   "tex": "\\Delta E = E_p - E_n = h\\nu",
+   "titre": "Un photon émis ou absorbé, jamais entre les deux",
+   "type": "formule",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_betelgeuse": {
+   "kicker": "Exemple · Bételgeuse",
+   "note": "Le pic est dans l'infrarouge ; dans le visible, l'étoile paraît rouge",
+   "tex": "\\lambda_{\\max} = \\frac{2{,}898 \\times 10^{-3}}{3500} \\approx 828\\ \\text{nm}",
+   "titre": "Une géante rouge à 3 500 K seulement",
+   "type": "formule"
+  },
+  "ex_hydrogene": {
+   "kicker": "Exemple · transition de l'hydrogène",
+   "note": "Le photon émis est dans l'ultraviolet",
+   "tex": [
+    "\\Delta E = E_2 - E_1 = -3{,}4 - (-13{,}6)",
+    "\\Delta E = 10{,}2\\ \\text{eV} = 1{,}63 \\times 10^{-18}\\ \\text{J}",
+    "\\nu = \\frac{\\Delta E}{h} = 2{,}46 \\times 10^{15}\\ \\text{Hz}"
+   ],
+   "titre": "Du niveau 2 au niveau 1",
+   "type": "etape"
+  },
+  "ex_photon": {
+   "kicker": "Exemple · un photon vert",
+   "tex": [
+    "\\lambda = 500\\ \\text{nm} = 5{,}00 \\times 10^{-7}\\ \\text{m}",
+    "\\nu = \\frac{c}{\\lambda} = 6{,}00 \\times 10^{14}\\ \\text{Hz}",
+    "\\Delta E = h\\nu = 3{,}98 \\times 10^{-19}\\ \\text{J}"
+   ],
+   "titre": "L'énergie d'un photon de 500 nanomètres",
+   "type": "etape"
+  },
+  "ex_soleil": {
+   "kicker": "Exemple · le Soleil",
+   "note": "Le maximum tombe dans le vert-jaune : le Soleil paraît blanc",
+   "tex": [
+    "T = 5800\\ \\text{K}",
+    "\\lambda_{\\max} = \\frac{2{,}9 \\times 10^{-3}}{5800}",
+    "\\lambda_{\\max} = 5{,}0 \\times 10^{-7}\\ \\text{m} = 500\\ \\text{nm}"
+   ],
+   "titre": "La température de surface du Soleil : 5 800 K",
+   "type": "etape"
+  },
+  "fraunhofer": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "spectre"
+   },
+   "kicker": "Le spectre du Soleil",
+   "texte": "Le spectre solaire est continu, mais traversé de raies sombres : les atomes de l'atmosphère du Soleil absorbent leurs longueurs d'onde propres.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Chaque source de lumière possède une signature : la répartition de ses longueurs d'onde, que ce cours apprend à lire.",
+   "type": "phrase"
+  },
+  "niveaux": {
+   "kicker": "Les niveaux d'énergie",
+   "texte": "Un atome ne peut posséder que des valeurs d'énergie bien précises : l'état fondamental, le plus bas, puis les états excités.",
+   "type": "phrase",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 240
+   }
+  },
+  "nu_lambda": {
+   "kicker": "Fréquence et longueur d'onde",
+   "note": "ν en hertz (Hz), λ en mètres, c en mètres par seconde",
+   "tex": "\\nu = \\frac{c}{\\lambda}",
+   "titre": "Deux grandeurs liées par la célérité",
+   "type": "formule"
+  },
+  "photon": {
+   "kicker": "Le photon",
+   "note": "h = 6,63 × 10⁻³⁴ J·s : la constante de Planck · ν : la fréquence de l'onde",
+   "tex": "\\Delta E = h\\nu",
+   "titre": "La lumière voyage par paquets d'énergie",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Un spectre : la lumière décomposée par longueur d'onde",
+    "Corps chaud : continu ; gaz excité : raies lumineuses",
+    "Loi de Wien : plus c'est chaud, plus le pic est bleu",
+    "Photon : ΔE = hν, avec ν = c/λ",
+    "Niveaux quantifiés ; les raies du Soleil les révèlent"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sources": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "spectre"
+   },
+   "kicker": "Deux familles de sources",
+   "texte": "Source polychromatique : plusieurs longueurs d'onde, comme le Soleil. Source monochromatique : une seule, comme un laser ou une DEL rouge.",
+   "type": "phrase"
+  },
+  "spectre_def": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "prisme"
+   },
+   "kicker": "Qu'est-ce qu'un spectre ?",
+   "texte": "Un spectre est la décomposition de la lumière d'une source selon ses longueurs d'onde, obtenue avec un prisme ou un réseau.",
+   "type": "phrase"
+  },
+  "stefan": {
+   "kicker": "Loi de Stefan-Boltzmann",
+   "note": "M : puissance émise par unité de surface · σ = 5,67 × 10⁻⁸ W·m⁻²·K⁻⁴",
+   "tex": "M = \\sigma T^{4}",
+   "titre": "La puissance rayonnée explose avec la température",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "spectre"
+   },
+   "kicker": "Physique · Première",
+   "sous": "Spectres continus et de raies, loi de Wien, photon et niveaux d'énergie",
+   "titre": "Spectres et sources lumineuses",
+   "type": "titre"
+  },
+  "types_spectres": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "spectre"
+   },
+   "etapes": [
+    "Continu : toutes les longueurs d'onde, corps chaud",
+    "De raies : raies lumineuses sur fond noir, gaz excité",
+    "D'absorption : raies sombres sur fond continu, gaz froid"
+   ],
+   "kicker": "Trois types de spectres",
+   "type": "recap"
+  },
+  "visible": {
+   "kicker": "Le domaine visible",
+   "note": "Du violet au rouge · en dessous : ultraviolet ; au-dessus : infrarouge",
+   "tex": "400\\ \\text{nm} \\leq \\lambda \\leq 800\\ \\text{nm}",
+   "titre": "Une fenêtre étroite du spectre électromagnétique",
+   "type": "formule"
+  },
+  "wien": {
+   "kicker": "Loi de Wien",
+   "note": "λmax en mètres, T en kelvins · λmax est inversement proportionnelle à T",
+   "tex": "\\lambda_{\\max} \\times T = 2{,}9 \\times 10^{-3}\\ \\text{m·K}",
+   "titre": "Le pic d'émission recule quand la température monte",
+   "type": "formule"
+  }
+ },
+ "lecons": [
+  9439,
+  10619,
+  10620
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Spectres, corps chauds et loi de Wien"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : le photon. La lumière échange son énergie par paquets, entre des niveaux atomiques quantifiés.",
+    "texte": "Partie 2 : le photon et les niveaux d'énergie."
+   },
+   "sous_titre": "Le photon et les niveaux d'énergie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux spectres et aux sources lumineuses : comment la lumière d'une source raconte sa nature et sa température.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Spectres et sources lumineuses : lire la signature de la lumière."
+  },
+  {
+   "dit": "Chaque source de lumière possède une signature propre : la façon dont son énergie se répartit entre les longueurs d'onde. Apprendre à lire cette signature, c'est pouvoir identifier une source sans la toucher, même à des années-lumière de distance.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Le spectre : l'empreinte digitale d'une source."
+  },
+  {
+   "dit": "Un spectre est la décomposition de la lumière émise par une source selon ses longueurs d'onde. On l'obtient avec un prisme, qui dévie chaque couleur différemment, ou avec un réseau, qui la diffracte.",
+   "ecran": "spectre_def",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Décomposer la lumière selon ses longueurs d'onde."
+  },
+  {
+   "dit": "Premier classement : une source polychromatique émet plusieurs longueurs d'onde, comme le Soleil ou une lampe à filament. Une source monochromatique n'en émet qu'une seule, comme un laser ou une diode rouge.",
+   "ecran": "sources",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Plusieurs longueurs d'onde, ou une seule."
+  },
+  {
+   "dit": "Trois aspects possibles. Le spectre continu présente toutes les longueurs d'onde sans interruption : c'est celui des corps chauds. Le spectre de raies montre des raies lumineuses discrètes sur fond noir : c'est celui des gaz excités. Le spectre d'absorption, enfin, creuse des raies sombres dans un fond continu.",
+   "ecran": "types_spectres",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Continu, de raies lumineuses, ou de raies sombres."
+  },
+  {
+   "dit": "La lumière visible n'occupe qu'une plage étroite du spectre électromagnétique : de quatre cents nanomètres pour le violet à huit cents nanomètres pour le rouge. En dessous commence l'ultraviolet, au-dessus l'infrarouge.",
+   "ecran": "visible",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Visible : de 400 nm (violet) à 800 nm (rouge)."
+  },
+  {
+   "dit": "Toutes ces ondes, visibles ou non, se propagent dans le vide à la même célérité : trois cents millions de mètres par seconde, soit trois fois dix puissance huit mètres par seconde.",
+   "ecran": "celerite",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "c = 3,00 × 10⁸ m/s dans le vide."
+  },
+  {
+   "dit": "Le modèle de référence des sources chaudes est le corps noir : un objet idéal qui absorbe tout le rayonnement qu'il reçoit et dont le spectre d'émission, continu, ne dépend que de sa température absolue.",
+   "ecran": "corps_noir",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le corps noir : le spectre ne dépend que de T."
+  },
+  {
+   "dit": "La puissance totale rayonnée par un corps noir suit la loi de Stefan et Boltzmann : elle est proportionnelle à la puissance quatre de la température. Doubler la température, c'est multiplier la puissance émise par seize.",
+   "ecran": "stefan",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "M = σT⁴ : la puissance croît comme T⁴."
+  },
+  {
+   "dit": "La loi de Wien donne la position du maximum d'émission : le produit de la longueur d'onde du pic par la température est constant, environ deux virgule neuf fois dix puissance moins trois mètre-kelvin. Plus le corps est chaud, plus son pic se déplace vers les courtes longueurs d'onde.",
+   "ecran": "wien",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "λmax × T ≈ 2,9 × 10⁻³ m·K."
+  },
+  {
+   "dit": "Exemple, tiré du cours : le Soleil, dont la surface est à cinq mille huit cents kelvins. La loi de Wien donne un pic d'émission à cinq cents nanomètres, en pleine lumière visible.",
+   "ecran": "ex_soleil",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Soleil : λmax = 500 nm, dans le vert-jaune."
+  },
+  {
+   "dit": "Le calcul est direct : deux virgule neuf fois dix puissance moins trois, divisé par cinq mille huit cents, donne cinq fois dix puissance moins sept mètres. Ce maximum dans le vert-jaune explique que le Soleil nous paraisse blanc.",
+   "ecran": "ex_soleil",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Résultat : 5,0 × 10⁻⁷ m = 500 nm."
+  },
+  {
+   "dit": "À l'autre extrémité, l'étoile Bételgeuse, une géante rouge, n'affiche que trois mille cinq cents kelvins. Son pic d'émission tombe à huit cent vingt-huit nanomètres, dans l'infrarouge : dans le visible, elle paraît rougeâtre.",
+   "ecran": "ex_betelgeuse",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Bételgeuse : pic à 828 nm, étoile rouge."
+  },
+  {
+   "dit": "Retenez la correspondance : rouge pour les étoiles les plus froides, jaune vers cinq mille huit cents kelvins comme le Soleil, puis blanc et bleu pour les plus chaudes. La couleur d'une étoile est un thermomètre.",
+   "ecran": "couleurs",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Rouge → jaune → blanc → bleu : de plus en plus chaud."
+  },
+  {
+   "dit": "Changeons de regard : la lumière est aussi faite de particules, les photons. Chaque photon transporte une énergie proportionnelle à la fréquence de l'onde : delta E égale h fois nu, où h est la constante de Planck.",
+   "ecran": "photon",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Le photon : ΔE = hν."
+  },
+  {
+   "dit": "La fréquence et la longueur d'onde sont liées par la célérité : nu égale c sur lambda. Une courte longueur d'onde signifie donc une grande fréquence, et des photons plus énergétiques.",
+   "ecran": "nu_lambda",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "ν = c/λ : court λ, grande énergie."
+  },
+  {
+   "dit": "Exemple : un photon vert de cinq cents nanomètres. Sa fréquence vaut six fois dix puissance quatorze hertz, et son énergie environ quatre fois dix puissance moins dix-neuf joules.",
+   "ecran": "ex_photon",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Photon vert : ν = 6,00 × 10¹⁴ Hz, ΔE ≈ 3,98 × 10⁻¹⁹ J."
+  },
+  {
+   "dit": "C'est minuscule à notre échelle, mais c'est exactement cette énergie, ni plus ni moins, qu'un atome peut absorber ou émettre d'un seul coup.",
+   "ecran": "ex_photon",
+   "id": "p18",
+   "pause_apres": 0.7,
+   "texte": "L'échange d'énergie se fait photon par photon."
+  },
+  {
+   "dit": "Car l'énergie d'un atome est quantifiée : elle ne peut prendre que des valeurs discrètes, les niveaux d'énergie. Le plus bas est l'état fondamental ; au-dessus s'étagent les états excités.",
+   "ecran": "niveaux",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Des niveaux discrets : fondamental, puis excités."
+  },
+  {
+   "dit": "Quand un atome passe d'un niveau haut à un niveau plus bas, il émet un photon dont l'énergie vaut exactement la différence des deux niveaux. À l'inverse, il n'absorbe un photon que si son énergie correspond exactement à une transition possible.",
+   "ecran": "emission",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Émission et absorption : ΔE = Ep − En = hν."
+  },
+  {
+   "dit": "Pour l'hydrogène, le modèle de Bohr donne ces niveaux : l'énergie du niveau n vaut moins treize virgule six, divisé par n au carré, en électronvolts. Le niveau un, le fondamental, est à moins treize virgule six électronvolts : ioniser l'atome demande donc au moins treize virgule six électronvolts.",
+   "ecran": "bohr",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Hydrogène : En = −13,6/n² eV."
+  },
+  {
+   "dit": "Exemple : la transition du niveau deux au niveau un de l'hydrogène. La différence d'énergie vaut dix virgule deux électronvolts, soit environ un virgule six fois dix puissance moins dix-huit joules.",
+   "ecran": "ex_hydrogene",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Transition 2 → 1 : ΔE = 10,2 eV."
+  },
+  {
+   "dit": "La fréquence du photon émis atteint deux virgule quarante-six fois dix puissance quinze hertz : c'est une raie ultraviolette, invisible, mais bien réelle dans le spectre de l'hydrogène.",
+   "ecran": "ex_hydrogene",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "Résultat : ν = 2,46 × 10¹⁵ Hz, raie UV."
+  },
+  {
+   "dit": "Tout se relie dans le spectre du Soleil : son fond est continu, comme un corps chaud à cinq mille huit cents kelvins, mais il est traversé de raies sombres, les raies de Fraunhofer. Les atomes des couches froides de son atmosphère absorbent exactement leurs longueurs d'onde propres.",
+   "ecran": "fraunhofer",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Les raies de Fraunhofer : l'absorption dans l'atmosphère solaire."
+  },
+  {
+   "dit": "La position de ces raies identifie les atomes présents : hydrogène, hélium, sodium et bien d'autres. La spectroscopie lit ainsi la composition chimique des étoiles sans jamais les approcher.",
+   "ecran": "fraunhofer",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "La composition du Soleil se lit dans ses raies."
+  },
+  {
+   "dit": "Retenez l'essentiel : un spectre décompose la lumière ; la loi de Wien relie la couleur des corps chauds à leur température ; et tous les échanges entre lumière et matière se font par photons, d'énergie h fois nu, entre des niveaux quantifiés.",
+   "ecran": "recap",
+   "id": "p26",
+   "pause_apres": 0.5,
+   "texte": "Spectres, loi de Wien, photon : à retenir."
+  }
+ ],
+ "titre": "Spectres et sources lumineuses"
+}
