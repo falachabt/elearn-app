@@ -97,10 +97,10 @@ describe('A2 · Choix de la certification', () => {
     await monter(<ChoixCertification />);
     expect(screen.getByText(t.marqueExamen)).toBeTruthy();
   });
-  it('AC-A2-6 : l’encadré de maquette n’est jamais affiché', async () => {
+  it('AC-A2-6 (révisé, décision de Benny du 25/10/2026, issue #77) : l’encadré « D’autres certifications à venir » est affiché sous la liste', async () => {
     await monter(<ChoixCertification />);
     await screen.findByText('TOEIC Listening and Reading');
-    expect(screen.queryByText(/D’autres certifications/)).toBeNull();
+    expect(screen.getByText(t.choix.autresAVenir)).toBeTruthy();
   });
   it('choisir puis continuer enregistre le profil (type, examen, pays par défaut) et ouvre A3', async () => {
     await monter(<ChoixCertification />);

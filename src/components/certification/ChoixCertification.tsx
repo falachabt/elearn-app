@@ -19,7 +19,7 @@ import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuillePays } from '../pass/FeuillePays';
 import { LogoToeic } from './LogoToeic';
-import { EnteteToeic, LigneChoix } from './ui';
+import { EncadrePointille, EnteteToeic, LigneChoix } from './ui';
 
 function regionTelephone(): string | null {
   try {
@@ -98,17 +98,22 @@ export function ChoixCertification() {
           <Text style={[typo.petit, { color: theme.texte.secondaire }]}>{t('certification.choix.videTexte')}</Text>
         </View>
       ) : (
-        examens.map((e) => (
-          <LigneChoix
-            key={e.code}
-            visuel={<LogoToeic />}
-            radio
-            actif={choisi === e.code}
-            titre={e.name}
-            aide={t('certification.choix.ligneAide', { sous: e.subtitle ?? '', duree: formaterDuree(e.duration_min), questions: e.question_count })}
-            onPress={() => setChoisi(e.code)}
-          />
-        ))
+        <>
+          {examens.map((e) => (
+            <LigneChoix
+              key={e.code}
+              visuel={<LogoToeic />}
+              radio
+              actif={choisi === e.code}
+              titre={e.name}
+              aide={t('certification.choix.ligneAide', { sous: e.subtitle ?? '', duree: formaterDuree(e.duration_min), questions: e.question_count })}
+              onPress={() => setChoisi(e.code)}
+            />
+          ))}
+          {/* Décision de Benny (25/10/2026, issue #77) : l'encadré pointillé de la maquette est affiché en
+              production, avec un simple texte d'attente — il remplace le critère AC-A2-6 d'origine (écart E-05). */}
+          <EncadrePointille texte={t('certification.choix.autresAVenir')} />
+        </>
       )}
       <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('certification.choix.pays')}</Text>
       <LigneSelecteur

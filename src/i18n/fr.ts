@@ -2234,6 +2234,7 @@ export const fr = {
       erreurTitre: 'Impossible de charger les certifications',
       erreurTexte: 'Vérifie ta connexion et réessaie.',
       horsLigne: 'Hors ligne',
+      autresAVenir: 'D’autres certifications à venir.',
     },
     objectif: {
       entete: 'Ton objectif',

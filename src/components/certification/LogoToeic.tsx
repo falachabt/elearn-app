@@ -8,6 +8,12 @@ import { useTheme } from '@/theme/ThemeProvider';
  * `LOGO_TOEIC` vaut `null`, le composant garde l'icône générique. Pour brancher le logo, Benny dépose le fichier
  * `assets/images/logo-toeic.png` (fond transparent, version claire) et `logo-toeic-sombre.png` (version sombre), puis
  * on remplace `null` par les deux `require`.
+ *
+ * Recherche du 25/10/2026 (issue #77) : ETS ne propose pas le logo TOEIC en téléchargement sur ses sites, et ses
+ * pages légales interdisent l'usage des logos produits sans autorisation écrite expresse
+ * (ets.org/legal/trademarks.html : « Use of any ETS logo is strictly prohibited without the express written
+ * permission of ETS »). Aucun fichier tiers n'a donc été intégré ; l'emplacement reste prêt à recevoir un fichier
+ * obtenu avec l'autorisation d'ETS.
  */
 const LOGO_TOEIC: { clair: number; sombre: number } | null = null;
 
