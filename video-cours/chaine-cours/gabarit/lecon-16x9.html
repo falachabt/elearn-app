@@ -676,6 +676,38 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  fresnel_rlc_fig(t) {
+    return svgBoite(
+      trait(330, 200, 560, 200, prog(t), { c: '#E8604C', w: 5 }) + pointe(568, 200, 0, '#E8604C') +
+      mot(580, 207, 'I, le courant', { c: '#E8604C', t: 20, a: 'start' }) + mot(314, 224, 'O', { t: 21, a: 'end' }) +
+      trait(330, 186, 508, 186, prog(t), { c: '#1A75FF', w: 4.5 }) + pointe(516, 186, 0, '#1A75FF') +
+      mot(524, 180, 'U_R, en phase avec I', { c: '#1A75FF', t: 18, a: 'start' }) +
+      trait(510, 186, 510, 86, prog(t), { c: '#10B981', w: 4.5 }) + pointe(510, 78, -90, '#10B981') +
+      mot(522, 82, 'U_L, en avance', { c: '#10B981', t: 18, a: 'start' }) +
+      trait(510, 186, 510, 244, prog(t), { c: '#B8860B', w: 4.5 }) + pointe(510, 252, 90, '#B8860B') +
+      mot(522, 248, 'U_C, en retard', { c: '#B8860B', t: 18, a: 'start' }) +
+      trait(330, 194, 500, 122, prog(t), { w: 5 }) + pointe(509, 117, -24) +
+      mot(520, 116, 'U_m, la résultante', { t: 19, a: 'start' }) +
+      `<path d="M 384 194 A 54 54 0 0 0 380 173" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(394, 182, 'φ', { t: 23, a: 'start' }) +
+      mot(500, 288, "le diagramme de Fresnel du circuit RLC série", { t: 19 }));
+  },
+  echo_mesure_fig(t) {
+    let hach = '';
+    for (let y = 92; y <= 224; y += 33) hach += trait(807, y, 821, y - 13, 1, { w: 2.5 });
+    return svgBoite(
+      `<rect x="148" y="108" width="94" height="84" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="3.5"/>` +
+      mot(195, 90, 'la sonde', { t: 19 }) + mot(195, 159, 'émetteur et récepteur', { t: 13.5 }) +
+      trait(800, 68, 800, 232, prog(t), { w: 7 }) + hach + mot(800, 50, "l'obstacle", { t: 19 }) +
+      trait(250, 128, 786, 128, prog(t), { c: '#E8604C', w: 4.5 }) + pointe(794, 128, 0, '#E8604C') +
+      mot(510, 110, "l'impulsion part", { c: '#E8604C', t: 19 }) +
+      trait(786, 176, 260, 176, prog(t), { c: '#1A75FF', w: 4.5 }) + pointe(252, 176, 180, '#1A75FF') +
+      mot(510, 204, "l'écho revient après la durée Δt", { c: '#1A75FF', t: 19 }) +
+      trait(250, 234, 792, 234, prog(t), { w: 3, tiret: '7 6' }) +
+      trait(250, 226, 250, 242, prog(t), { w: 3 }) + trait(792, 226, 792, 242, prog(t), { w: 3 }) +
+      mot(521, 260, 'd, la distance cherchée', { t: 19 }) +
+      mot(500, 290, "l'impulsion fait l'aller-retour : d = v Δt / 2", { t: 19 }));
+  },
   reseau_caracteristiques_fig(t) {
     return svgBoite(
       trait(240, 250, 812, 250, prog(t), { w: 4 }) + pointe(820, 250, 0) + mot(828, 256, 'I', { t: 22, a: 'start' }) +
