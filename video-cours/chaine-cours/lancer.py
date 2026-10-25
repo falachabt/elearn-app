@@ -82,6 +82,75 @@ def extraire(cours):
     return len(lecons)
 
 
+CARACTERES_PAR_SECONDE = 17.65  # calibration mesurée sur 5908 (5 576 caractères -> 315,91 s de voix)
+
+
+def estimer_duree(script):
+    """Durée théorique estimée (secondes) d'après les caractères parlés, ponts compris."""
+    total = sum(len(p.get("dit", "")) for p in script["phrases"])
+    total += sum(len(partie.get("pont", {}).get("dit", "")) for partie in script.get("parties", []))
+    return total / CARACTERES_PAR_SECONDE
+
+
+def parties_attendues(duree):
+    """Règle de Benny (25 octobre 2026) : ≤ 4 min -> 1 partie ; > 4 min -> 2 ; > 7 min -> 3."""
+    if duree <= 240:
+        return 1
+    if duree <= 420:
+        return 2
+    return 3
+
+
+def phrase_pont(partie, i):
+    pont = partie["pont"]
+    return {"id": f"pont{i + 1}", "ecran": f"titre-partie-{i + 1}",
+            "texte": pont["texte"], "dit": pont["dit"], "pause_apres": 0.7}
+
+
+def phrases_completes(script):
+    """Toutes les phrases à synthétiser, dans l'ordre : celles du script + les phrases-ponts
+    des parties 2+, chacune juste avant la première phrase de sa partie."""
+    parties = script.get("parties") or []
+    if not parties:
+        return list(script["phrases"])
+    phrases = []
+    for i, partie in enumerate(parties):
+        if i > 0:
+            phrases.append(phrase_pont(partie, i))
+        debut = partie["debut"]
+        fin = parties[i + 1]["debut"] if i + 1 < len(parties) else None
+        ids = [p["id"] for p in script["phrases"]]
+        phrases.extend(script["phrases"][ids.index(debut): ids.index(fin) if fin else len(ids)])
+    return phrases
+
+
+def decouper(script):
+    """Découpe le script en un sous-script par partie (ou [script] sans champ `parties`).
+    Chaque partie reçoit son écran-titre « Partie N » ; la première phrase de la partie 1
+    et les phrases-ponts pointent dessus, les autres phrases gardent leur écran."""
+    parties = script.get("parties") or []
+    if not parties:
+        return [script]
+    ids = [p["id"] for p in script["phrases"]]
+    sous_scripts = []
+    for i, partie in enumerate(parties):
+        fin = parties[i + 1]["debut"] if i + 1 < len(parties) else None
+        phrases = list(script["phrases"][ids.index(partie["debut"]): ids.index(fin) if fin else len(ids)])
+        titre_cle = f"titre-partie-{i + 1}"
+        if i == 0:
+            phrases[0] = dict(phrases[0], ecran=titre_cle)
+        else:
+            phrases.insert(0, phrase_pont(partie, i))
+        ecrans = {titre_cle: {"type": "titre", "kicker": f"Partie {i + 1}",
+                              "titre": script["titre"], "sous": partie["sous_titre"]}}
+        for p in phrases:
+            if p["ecran"] != titre_cle:
+                ecrans[p["ecran"]] = script["ecrans"][p["ecran"]]
+        sous_scripts.append({"titre": f"{script['titre']} — Partie {i + 1}", "matiere": script["matiere"],
+                             "cas": script.get("cas", []), "ecrans": ecrans, "phrases": phrases})
+    return sous_scripts
+
+
 def valider(script):
     erreurs = []
     ecrans = script.get("ecrans", {})
@@ -97,8 +166,32 @@ def valider(script):
             erreurs.append(f"phrase {p['id']} : écran {p['ecran']!r} absent")
         if not p.get("dit"):
             erreurs.append(f"phrase {p['id']} : texte parlé vide")
+    parties = script.get("parties") or []
+    if parties:
+        if parties[0].get("debut") != script["phrases"][0]["id"]:
+            erreurs.append("parties : la première partie doit commencer à la première phrase")
+        positions = []
+        for i, partie in enumerate(parties):
+            if partie.get("debut") not in ids:
+                erreurs.append(f"parties : début {partie.get('debut')!r} absent des phrases")
+            else:
+                positions.append([p["id"] for p in script["phrases"]].index(partie["debut"]))
+            if not partie.get("sous_titre"):
+                erreurs.append(f"parties : sous-titre manquant pour la partie {i + 1}")
+            if i > 0:
+                pont = partie.get("pont") or {}
+                if not pont.get("texte") or not pont.get("dit"):
+                    erreurs.append(f"parties : phrase-pont (texte + dit) manquante pour la partie {i + 1}")
+        if positions != sorted(positions):
+            erreurs.append("parties : les débuts doivent être dans l'ordre des phrases")
     if erreurs:
         sys.exit("Script invalide :\n  " + "\n  ".join(erreurs))
+    duree = estimer_duree(script)
+    attendues = parties_attendues(duree)
+    declarees = len(parties) or 1
+    print(f"durée estimée : {round(duree)} s -> {attendues} partie(s) attendue(s), {declarees} déclarée(s)")
+    if attendues != declarees:
+        print("ATTENTION : le nombre de parties déclarées ne suit pas la règle de découpage (voir METHODE.md)")
 
 
 def voix(script, dossier):
@@ -243,7 +336,7 @@ def main(argv):
         cours, partie, total = argv[1], int(argv[2]), int(argv[3])
         script = json.loads((ICI / "scripts" / f"{cours}.json").read_text())
         valider(script)
-        script["phrases"] = [p for i, p in enumerate(script["phrases"]) if i % total == partie]
+        script["phrases"] = [p for i, p in enumerate(phrases_completes(script)) if i % total == partie]
         travail = dossier_travail(cours)
         travail.mkdir(parents=True, exist_ok=True)
         voix(script, travail)
@@ -262,15 +355,27 @@ def main(argv):
     travail = dossier_travail(cours)
     travail.mkdir(parents=True, exist_ok=True)
     debut = time.time()
-    voix(script, travail)
-    duree = monter(script, travail)
-    mp4 = rendre(travail, cours)
+    complet = dict(script, phrases=phrases_completes(script))
+    voix(complet, travail)
     final = sortie(cours)
     final.mkdir(parents=True, exist_ok=True)
-    shutil.copy(travail / "voix.wav", final / "voix.wav")
-    (final / "sous-titres.vtt").write_text(vtt(travail / "rendu.json"))
-    shutil.copy(mp4, final / mp4.name)
-    print(f"vidéo {final / mp4.name} ({duree} s de voix, {round(time.time() - debut)} s au total)")
+    morceaux = decouper(script)
+    for i, morceau in enumerate(morceaux):
+        if len(morceaux) == 1:
+            pdir, nom, suffixe = travail, str(cours), ""
+        else:
+            pdir = travail / f"partie-{i + 1}"
+            pdir.mkdir(parents=True, exist_ok=True)
+            (pdir / "seg").mkdir(exist_ok=True)
+            for p in morceau["phrases"]:
+                shutil.copy(travail / "seg" / f"{p['id']}.wav", pdir / "seg" / f"{p['id']}.wav")
+            nom, suffixe = f"{cours}-partie-{i + 1}", f"-partie-{i + 1}"
+        duree = monter(morceau, pdir)
+        mp4 = rendre(pdir, nom)
+        shutil.copy(pdir / "voix.wav", final / f"voix{suffixe}.wav")
+        (final / f"sous-titres{suffixe}.vtt").write_text(vtt(pdir / "rendu.json"))
+        shutil.copy(mp4, final / mp4.name)
+        print(f"vidéo {final / mp4.name} ({duree} s de voix, {round(time.time() - debut)} s écoulées)")
 
 
 if __name__ == "__main__":

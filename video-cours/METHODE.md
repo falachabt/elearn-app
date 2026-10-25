@@ -9,12 +9,29 @@ Dossiers :
 ## Étapes
 
 1. **Lire les leçons en base.** `python chaine-cours/lancer.py extraire <courseId>` lit `courses_content` en lecture seule (requête GET), décode chaque leçon et écrit `sorties/<courseId>/lecons.txt`. Il faut `CHAINE_SUPABASE_URL` et `CHAINE_SUPABASE_KEY` (clé publishable ou anon). La clé n'est jamais écrite dans un fichier.
-2. **Rédiger le script** `chaine-cours/scripts/<courseId>.json`. C'est la seule étape faite à la main. Une phrase parlée = un écran. Le script suit la structure : titre, introduction, définitions, formules, méthode, exemple chiffré résolu, récapitulatif. Environ 20 à 35 phrases, soit 3 à 5 minutes. Le champ `dit` est écrit en toutes lettres (« u indice n », « dix puissance moins trois »). Le champ `texte` (bande jaune) garde les symboles.
+2. **Rédiger le script** `chaine-cours/scripts/<courseId>.json`. C'est la seule étape faite à la main. Une phrase parlée = un écran. Le script suit la structure : titre, introduction, définitions, formules, méthode, exemple chiffré résolu, récapitulatif. Environ 20 à 35 phrases ; la durée totale décide du nombre de parties (voir « Découpage en parties »). Le champ `dit` est écrit en toutes lettres (« u indice n », « dix puissance moins trois »). Le champ `texte` (bande jaune) garde les symboles.
 3. **Voix.** Une génération OmniVoice par phrase, clonée sur `voix/ref-femme-4s.wav`, vitesse 0,92, 16 étapes. Les clips déjà générés sont réutilisés (reprise).
 4. **Chronologie.** Pause de 0,7 à 1,2 s entre phrases, chaque écran change 0,15 s avant la phrase qui le décrit.
 5. **Rendu.** Chromium capture l'écran 16:9 du gabarit. Un écran `anim` est capturé plusieurs fois par phrase (12 images par seconde), puis ffmpeg monte le MP4 (H.264, AAC, 1920×1080, 30 i/s).
-6. **Sorties.** `sorties/<courseId>/cours-<courseId>-16x9.mp4`, `voix.wav`, `sous-titres.vtt`. La piste de sous-titres n'est pas ajoutée à la lecture : la bande jaune du gabarit suffit.
+6. **Sorties.** `sorties/<courseId>/cours-<courseId>-16x9.mp4`, `voix.wav`, `sous-titres.vtt` — ou, si le script déclare des parties, un MP4 et un VTT par partie (`cours-<courseId>-partie-<n>-16x9.mp4`, `sous-titres-partie-<n>.vtt`). La piste de sous-titres n'est pas ajoutée à la lecture : la bande jaune du gabarit suffit.
 7. **Page à regarder.** La vidéo est publiée comme artefact (MP4 et une page HTML avec `<video controls>`). Pas de `<track>` : elle doublerait la bande jaune.
+
+## Découpage en parties (décision de Benny, 25 octobre 2026)
+
+Un cours ne sort pas forcément en une seule vidéo : selon sa durée **théorique estimée** (avant génération, à partir du script), il est découpé en parties nommées de façon cohérente — « Partie 1 », « Partie 2 », « Partie 3 » :
+
+- **4 minutes ou moins → 1 partie** (pas de découpage).
+- **Plus de 4 minutes → 2 parties.**
+- **Plus de 7 minutes → 3 parties.**
+
+Estimation de la durée : compter les caractères des champs `dit` et diviser par **17,65 caractères/seconde** (calibration mesurée sur le cours 5908 : 5 576 caractères pour 315,91 s de voix, voix de référence à vitesse 0,92). `lancer.py` affiche cette estimation et le nombre de parties attendu à la validation.
+
+Règles de coupe :
+- Couper aux **frontières naturelles** des notions (fin d'un chapitre, d'une méthode, d'un exemple complet) — jamais au milieu d'une notion ou d'un exemple. Exemple de Benny pour 5908 (5 min 20 → 2 parties) : la partie 1 s'arrête au prisme, les lentilles ouvrent la partie 2.
+- Équilibrer les parties (durées voisines) à frontière comparable.
+- Chaque partie est **autonome** : son écran-titre (« <Titre du cours> — Partie N » + sous-titre du bloc), sa barre de progression, sa clôture. Les parties 2+ ouvrent par une courte **phrase-pont** parlée qui situe le bloc (« Partie deux : les lentilles et les instruments d'optique. »).
+
+Technique : le script déclare `"parties": [{"debut": "<id de la première phrase>", "sous_titre": "…", "pont": {"texte": "…", "dit": "…"}}]` (le `pont` ne concerne que les parties 2+). La chaîne génère les voix une seule fois pour tout le cours, puis monte et rend chaque partie séparément : `cours-<id>-partie-<n>-16x9.mp4` et `sous-titres-partie-<n>.vtt`. Sans champ `parties`, le comportement historique (une seule vidéo) s'applique. Certains cours auront plus tard, en plus, une vidéo **Exercices** (exemples traités pas à pas) — format à cadrer séparément.
 
 ## Écrans animés (type `anim`)
 
