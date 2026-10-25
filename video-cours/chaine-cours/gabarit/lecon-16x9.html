@@ -602,6 +602,81 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  poussee_archimede_fig(t) {
+    return svgBoite(
+      `<rect x="440" y="110" width="120" height="100" fill="#1A75FF" fill-opacity=".18"/>` +
+      trait(300, 110, 700, 110, prog(t), { c: '#1A75FF', w: 3.5 }) +
+      mot(712, 106, 'surface libre', { c: '#1A75FF', t: 19, a: 'start' }) +
+      `<rect x="440" y="90" width="120" height="120" fill="currentColor" fill-opacity=".10" stroke="currentColor" stroke-width="4"/>` +
+      trait(300, 60, 300, 260, prog(t), { w: 5 }) + trait(300, 260, 700, 260, prog(t), { w: 5 }) + trait(700, 60, 700, 260, prog(t), { w: 5 }) +
+      trait(500, 150, 500, 66, prog(t), { c: '#10B981', w: 5.5 }) + pointe(500, 58, -90, '#10B981') +
+      mot(488, 96, "F_A, la poussée d'Archimède", { c: '#10B981', t: 21, a: 'end' }) +
+      trait(500, 150, 500, 234, prog(t), { c: '#E8604C', w: 5.5 }) + pointe(500, 242, 90, '#E8604C') +
+      mot(514, 204, 'P, le poids du corps', { c: '#E8604C', t: 21, a: 'start' }) +
+      `<circle cx="500" cy="150" r="6" fill="currentColor"/>` +
+      mot(500, 290, 'le volume immergé, teinté, fixe la poussée', { t: 20 }));
+  },
+  pression_profondeur_fig(t) {
+    const flecheP = (y, long) => trait(246, y, 246 + long, y, prog(t), { c: '#E8604C', w: 5.5 }) + pointe(252 + long, y, 0, '#E8604C');
+    return svgBoite(
+      trait(240, 80, 560, 80, prog(t), { c: '#1A75FF', w: 3.5 }) + mot(400, 66, 'surface libre', { c: '#1A75FF', t: 19 }) +
+      flecheP(124, 58) + flecheP(182, 108) + flecheP(238, 158) +
+      trait(240, 50, 240, 260, prog(t), { w: 5 }) + trait(240, 260, 560, 260, prog(t), { w: 5 }) + trait(560, 50, 560, 260, prog(t), { w: 5 }) +
+      trait(622, 80, 622, 238, prog(t), { tiret: '7 6', w: 3 }) +
+      trait(608, 80, 636, 80, prog(t), { w: 3 }) + trait(608, 238, 636, 238, prog(t), { w: 3 }) +
+      mot(646, 166, 'h, la profondeur', { t: 21, a: 'start' }) +
+      mot(500, 290, 'P = ρ g h : la pression croît avec la profondeur', { t: 20 }));
+  },
+  presse_hydraulique_fig(t) {
+    return svgBoite(
+      `<rect x="244" y="150" width="512" height="76" fill="#1A75FF" fill-opacity=".15"/>` +
+      `<path d="M 240 110 L 240 230 L 760 230 L 760 110" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      trait(340, 200, 560, 200, prog(t), { w: 3.5 }) +
+      `<rect x="244" y="118" width="92" height="28" fill="currentColor" fill-opacity=".28" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="564" y="118" width="192" height="28" fill="currentColor" fill-opacity=".28" stroke="currentColor" stroke-width="4"/>` +
+      trait(290, 118, 290, 82, prog(t), { w: 5 }) + trait(660, 118, 660, 82, prog(t), { w: 5 }) +
+      trait(290, 40, 290, 74, prog(t), { c: '#E8604C', w: 5.5 }) + pointe(290, 82, 90, '#E8604C') +
+      mot(308, 62, 'F₁', { c: '#E8604C', t: 27, a: 'start' }) +
+      trait(660, 112, 660, 68, prog(t), { c: '#10B981', w: 5.5 }) + pointe(660, 60, -90, '#10B981') +
+      mot(678, 92, 'F₂', { c: '#10B981', t: 27, a: 'start' }) +
+      mot(290, 190, 'S₁, petit piston', { t: 20 }) + mot(660, 190, 'S₂, grand piston', { t: 20 }) +
+      mot(500, 262, 'même pression partout : F₁ sur S₁ égale F₂ sur S₂', { t: 20 }));
+  },
+  paroi_pression_fig(t) {
+    const flecheP = (y, long) => trait(556 - long, y, 548, y, prog(t), { c: '#E8604C', w: 5 }) + pointe(556, y, 0, '#E8604C');
+    return svgBoite(
+      `<rect x="240" y="90" width="316" height="166" fill="#1A75FF" fill-opacity=".12"/>` +
+      trait(240, 90, 556, 90, prog(t), { c: '#1A75FF', w: 3.5 }) + mot(390, 76, 'le liquide', { c: '#1A75FF', t: 19 }) +
+      flecheP(128, 48) + flecheP(178, 92) + flecheP(228, 136) +
+      trait(560, 50, 560, 260, prog(t), { w: 8 }) + mot(398, 282, 'la paroi du réservoir', { t: 19 }) +
+      `<circle cx="560" cy="172" r="6.5" fill="currentColor"/>` + mot(578, 166, 'C, le barycentre', { t: 20, a: 'start' }) +
+      `<circle cx="560" cy="216" r="6.5" fill="#E8604C"/>` + mot(578, 240, 'D, le centre de poussée', { c: '#E8604C', t: 20, a: 'start' }) +
+      trait(566, 216, 676, 216, prog(t), { c: '#10B981', w: 5.5 }) + pointe(684, 216, 0, '#10B981') +
+      mot(696, 210, 'F, la résultante', { c: '#10B981', t: 20, a: 'start' }));
+  },
+  barometre_torricelli_fig(t) {
+    return svgBoite(
+      `<rect x="384" y="226" width="232" height="26" fill="currentColor" fill-opacity=".30"/>` +
+      trait(380, 210, 380, 256, prog(t), { w: 5 }) + trait(380, 256, 620, 256, prog(t), { w: 5 }) + trait(620, 210, 620, 256, prog(t), { w: 5 }) +
+      `<rect x="480" y="96" width="40" height="140" fill="currentColor" fill-opacity=".45"/>` +
+      trait(476, 40, 476, 240, prog(t), { w: 4 }) + trait(524, 40, 524, 240, prog(t), { w: 4 }) + trait(476, 40, 524, 40, prog(t), { w: 4 }) +
+      mot(536, 70, 'le vide, aucun air', { t: 20, a: 'start' }) +
+      trait(582, 96, 582, 226, prog(t), { tiret: '7 6', w: 3 }) +
+      trait(568, 96, 596, 96, prog(t), { w: 3 }) + trait(568, 226, 596, 226, prog(t), { w: 3 }) +
+      mot(606, 166, 'h = 76 cm de mercure', { t: 21, a: 'start' }) +
+      mot(660, 240, 'la cuvette', { t: 19, a: 'start' }) +
+      mot(500, 288, "la colonne de mercure équilibre la pression de l'air", { t: 20 }));
+  },
+  manometre_u_fig(t) {
+    return svgBoite(
+      `<path d="M 348 152 L 348 205 Q 348 242 385 242 L 615 242 Q 652 242 652 186" fill="none" stroke="#1A75FF" stroke-width="17" stroke-opacity=".35"/>` +
+      `<path d="M 340 70 L 340 210 Q 340 250 380 250 L 620 250 Q 660 250 660 210 L 660 70" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      trait(340, 70, 340, 42, prog(t), { w: 5 }) + trait(660, 70, 660, 42, prog(t), { w: 5 }) +
+      mot(340, 28, 'point A', { t: 22 }) + mot(660, 28, 'point B', { t: 22 }) +
+      trait(356, 152, 468, 152, prog(t), { tiret: '6 6', w: 3 }) + trait(644, 186, 476, 186, prog(t), { tiret: '6 6', w: 3 }) +
+      trait(472, 152, 472, 186, prog(t), { w: 3.5 }) + mot(484, 176, 'h, la dénivellation', { t: 21, a: 'start' }) +
+      mot(500, 290, "l'écart des niveaux mesure l'écart de pression", { t: 20 }));
+  },
   diffraction_fig(t) {
     let fronts = '';
     for (const x of [252, 312, 372, 432])

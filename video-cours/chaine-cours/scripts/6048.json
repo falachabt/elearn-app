@@ -1,0 +1,463 @@
+{
+ "cours": 6048,
+ "titre": "Notions d'hydrostatique",
+ "matiere": "Physique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Notions d'hydrostatique",
+   "sous": "Les fluides au repos : pression, principe de Pascal, poussée d'Archimède",
+   "anim": {
+    "nom": "poussee_archimede_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "L'hydrostatique, ou statique des fluides, étudie les conditions d'équilibre des fluides au repos et leurs interactions avec les surfaces et les corps immergés. Sans écoulement, les frottements dus à la viscosité ne se manifestent pas : l'étude vaut donc aussi pour les fluides réels."
+  },
+  "fluide": {
+   "type": "phrase",
+   "kicker": "Qu'est-ce qu'un fluide ?",
+   "texte": "Un fluide n'a pas de forme propre : il prend celle du récipient qui le contient. Liquides et gaz sont des fluides. Le fluide parfait ignore les frottements, le fluide réel les subit ; les liquides sont quasi incompressibles, les gaz sont compressibles.",
+   "anim": {
+    "nom": "phases",
+    "hauteur": 220
+   }
+  },
+  "masse_volumique": {
+   "type": "formule",
+   "kicker": "Propriétés des fluides",
+   "titre": "La masse volumique : la masse de l'unité de volume",
+   "tex": "\\rho = \\frac{M}{V}",
+   "note": "Eau : 1 000 · Eau de mer : 1 030 · Mercure : 13 600 · Air : 1,293 (en kg/m³)"
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des fluides",
+   "titre": "Densité, poids volumique et volume massique",
+   "tex": [
+    "d = \\frac{\\rho}{\\rho_{\\text{réf}}}",
+    "\\varpi = \\rho \\, g",
+    "v = \\frac{1}{\\rho}"
+   ]
+  },
+  "viscosite": {
+   "type": "formule",
+   "kicker": "Propriétés des fluides",
+   "titre": "La viscosité : le frottement interne du fluide",
+   "tex": "\\tau = \\mu \\, \\frac{du}{dy}",
+   "note": "μ : viscosité dynamique · ν = μ/ρ : viscosité cinématique"
+  },
+  "pression": {
+   "type": "formule",
+   "kicker": "La pression",
+   "titre": "Une force répartie sur une surface",
+   "tex": "P = \\frac{F}{S}",
+   "note": "F : force perpendiculaire (N) · S : surface (m²)",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 170
+   }
+  },
+  "unites": {
+   "type": "recap",
+   "kicker": "Unités de pression",
+   "titre": "Le pascal et ses voisins",
+   "etapes": [
+    "Le pascal : un newton par mètre carré, l'unité légale",
+    "Le bar : cent mille pascals",
+    "L'atmosphère : cent un mille trois cent vingt-cinq pascals",
+    "Le mètre de colonne d'eau : neuf mille huit cent dix pascals",
+    "Le millimètre de mercure : cent trente-trois pascals"
+   ]
+  },
+  "relative": {
+   "type": "formule",
+   "kicker": "La pression",
+   "titre": "Pression absolue ou pression relative ?",
+   "tex": "P_{\\text{relative}} = P_{\\text{absolue}} - P_{\\text{atmosphérique}}",
+   "note": "Absolue : depuis le vide · Relative : depuis l'atmosphère"
+  },
+  "loi": {
+   "type": "formule",
+   "kicker": "Pression hydrostatique",
+   "titre": "La pression croît avec la profondeur",
+   "tex": "P = \\rho \\, g \\, h",
+   "note": "Ne dépend ni de la forme ni de la section du récipient",
+   "anim": {
+    "nom": "pression_profondeur_fig",
+    "hauteur": 200
+   }
+  },
+  "relation": {
+   "type": "etape",
+   "kicker": "Relation fondamentale",
+   "titre": "La loi de la statique des fluides",
+   "tex": [
+    "dP = -\\rho \\, g \\, dz",
+    "P_2 - P_1 = \\rho \\, g \\, (z_1 - z_2)",
+    "\\frac{P}{\\rho \\, g} + z = \\text{constante}"
+   ],
+   "anim": {
+    "nom": "pression_profondeur_fig",
+    "hauteur": 120
+   }
+  },
+  "ex_plongeur": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un plongeur à dix mètres de profondeur",
+   "tex": [
+    "\\rho = 1025 \\ \\text{kg/m}^3 \\qquad h = 10 \\ \\text{m}",
+    "P = \\rho \\, g \\, h = 1025 \\times 9{,}81 \\times 10",
+    "P \\approx 1{,}0 \\times 10^{5} \\ \\text{Pa}"
+   ]
+  },
+  "pascal": {
+   "type": "phrase",
+   "kicker": "Principe de Pascal",
+   "texte": "Une variation de pression appliquée à un point d'un fluide incompressible, contenu dans un récipient fermé, se transmet intégralement à tous les points du fluide, dans toutes les directions.",
+   "anim": {
+    "nom": "presse_hydraulique_fig",
+    "hauteur": 170
+   }
+  },
+  "presse": {
+   "type": "formule",
+   "kicker": "Principe de Pascal",
+   "titre": "La presse hydraulique multiplie les forces",
+   "tex": "\\frac{F_1}{S_1} = \\frac{F_2}{S_2}",
+   "note": "La pression est la même des deux côtés du liquide",
+   "anim": {
+    "nom": "presse_hydraulique_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_presse": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Soulever lourd avec une petite force",
+   "tex": [
+    "S_1 = 10 \\ \\text{cm}^2 \\qquad S_2 = 100 \\ \\text{cm}^2",
+    "F_1 = 10 \\ \\text{N} \\qquad \\frac{S_2}{S_1} = 10",
+    "F_2 = 10 \\times 10 = 100 \\ \\text{N}"
+   ],
+   "anim": {
+    "nom": "presse_hydraulique_fig",
+    "hauteur": 120
+   }
+  },
+  "parois": {
+   "type": "etape",
+   "kicker": "Forces de pression",
+   "titre": "La force de pression sur une paroi plane",
+   "tex": [
+    "F = \\rho \\, g \\, h \\, S",
+    "F = \\rho \\, g \\, d \\, S",
+    "y_D = y_C + \\frac{I_{Cx}}{y_C \\, S}"
+   ],
+   "anim": {
+    "nom": "paroi_pression_fig",
+    "hauteur": 120
+   }
+  },
+  "archimede": {
+   "type": "formule",
+   "kicker": "Poussée d'Archimède",
+   "titre": "Le poids du volume de fluide déplacé",
+   "tex": "F_A = \\rho_{\\text{fluide}} \\, V_{\\text{immergé}} \\, g",
+   "note": "Verticale, vers le haut, appliquée au centre de poussée",
+   "anim": {
+    "nom": "poussee_archimede_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_cube": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un cube entièrement immergé dans l'eau",
+   "tex": [
+    "V = 0{,}001 \\ \\text{m}^3 \\qquad \\rho = 1000 \\ \\text{kg/m}^3",
+    "F_A = \\rho \\, V \\, g = 1000 \\times 0{,}001 \\times 9{,}81",
+    "F_A = 9{,}81 \\ \\text{N}"
+   ]
+  },
+  "flottabilite": {
+   "type": "recap",
+   "kicker": "Flottabilité",
+   "titre": "Couler, flotter, ou rester en équilibre",
+   "etapes": [
+    "Poids inférieur à la poussée : l'objet flotte",
+    "Poids supérieur à la poussée : l'objet coule",
+    "Poids égal à la poussée : équilibre dans le fluide"
+   ],
+   "anim": {
+    "nom": "poussee_archimede_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_sphere": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Une sphère qui refuse de couler",
+   "tex": [
+    "F_A = 1000 \\times 0{,}5 \\times 9{,}81 = 4905 \\ \\text{N}",
+    "P = 400 \\times 9{,}81 = 3924 \\ \\text{N}",
+    "F_A > P"
+   ]
+  },
+  "barometre": {
+   "type": "formule",
+   "kicker": "Mesurer la pression",
+   "titre": "Le baromètre de Torricelli",
+   "tex": "P_{\\text{atm}} = \\rho_m \\, g \\, h",
+   "note": "Mercure : ρ = 13 600 kg/m³ · h = 76 cm · Vide au-dessus",
+   "anim": {
+    "nom": "barometre_torricelli_fig",
+    "hauteur": 200
+   }
+  },
+  "manometre": {
+   "type": "etape",
+   "kicker": "Mesurer la pression",
+   "titre": "Piézomètre et manomètre différentiel",
+   "tex": [
+    "P_B = P_A + \\rho \\, g \\, h_2",
+    "P_A - P_B = g \\, h \\, (\\rho_m - \\rho)"
+   ],
+   "anim": {
+    "nom": "manometre_u_fig",
+    "hauteur": 150
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode de résolution",
+   "titre": "Résoudre un problème d'hydrostatique",
+   "etapes": [
+    "Identifier toutes les forces en présence",
+    "Choisir un système de référence adapté",
+    "Appliquer les principes de Pascal et d'Archimède",
+    "Résoudre les équations obtenues",
+    "Vérifier unités et ordre de grandeur du résultat"
+   ]
+  },
+  "applications": {
+   "type": "recap",
+   "kicker": "Applications",
+   "titre": "L'hydrostatique au quotidien",
+   "etapes": [
+    "Freins et presses hydrauliques : le principe de Pascal",
+    "Barrages : la pression croît avec la profondeur",
+    "Navires et sous-marins : la poussée d'Archimède et les ballasts",
+    "Ballons et dirigeables : la poussée de l'air"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "titre": "Notions d'hydrostatique",
+   "etapes": [
+    "Pression : P = F/S, puis P = ρ g h selon la profondeur",
+    "Pascal : la pression se transmet, les forces se multiplient",
+    "Archimède : la poussée vaut le poids du fluide déplacé",
+    "Paroi plane : F = ρ g d S, au barycentre de la surface",
+    "Mesures : baromètre au mercure, manomètres à dénivellation"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours de physique consacré aux notions d'hydrostatique, la science des fluides au repos. Nous allons voir comment naît la pression dans un liquide, comment elle se transmet, et pourquoi certains corps flottent pendant que d'autres coulent.",
+   "texte": "L'hydrostatique : les fluides au repos, de la pression à la flottabilité.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "L'hydrostatique, ou statique des fluides, étudie l'équilibre des fluides au repos et leurs interactions avec les surfaces et les corps immergés. Sans écoulement, les frottements de viscosité disparaissent : l'étude vaut donc aussi pour les fluides réels.",
+   "texte": "Des fluides au repos : pas d'écoulement, pas de frottement visqueux.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "ecran": "fluide",
+   "dit": "Un fluide est un corps sans forme propre, qui prend la forme du récipient qui le contient : les liquides et les gaz sont des fluides. Le fluide parfait est un modèle sans frottement ; le fluide réel les subit. Les liquides sont quasi incompressibles, les gaz sont compressibles.",
+   "texte": "Liquides et gaz : des corps sans forme propre.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "ecran": "masse_volumique",
+   "dit": "Première propriété : la masse volumique, notée rho, la masse de l'unité de volume. Rho égale M sur V, et s'exprime en kilogrammes par mètre cube. Quelques valeurs à retenir : mille pour l'eau pure, mille trente pour l'eau de mer, treize mille six cents pour le mercure, et un virgule trois pour l'air.",
+   "texte": "La masse volumique : rho égale M sur V.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "ecran": "proprietes",
+   "dit": "Trois grandeurs en découlent. La densité compare le fluide à un corps de référence, l'eau pour les liquides : celle de l'essence vaut sept cents sur mille, soit zéro virgule sept. Le poids volumique est le poids de l'unité de volume : rho fois g. Et le volume massique est l'inverse de rho.",
+   "texte": "Densité, poids volumique et volume massique : trois grandeurs liées à rho.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "ecran": "viscosite",
+   "dit": "La viscosité mesure le frottement interne d'un fluide en mouvement : la contrainte de cisaillement, tau, égale mu fois le gradient de vitesse. Au repos, aucun glissement, aucun frottement : en statique, le fluide réel se comporte comme un fluide parfait.",
+   "texte": "La viscosité ne se manifeste qu'en mouvement, jamais au repos.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "ecran": "pression",
+   "dit": "La pression n'est pas une simple force : c'est une force répartie sur une surface. C'est pourquoi des raquettes empêchent de s'enfoncer dans la neige, et pourquoi un talon aiguille fait si mal. La pression se définit par P égale F sur S, la force perpendiculaire divisée par la surface. C'est une grandeur scalaire.",
+   "texte": "La pression : une force divisée par une surface.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p08",
+   "ecran": "unites",
+   "dit": "L'unité légale de pression est le pascal, un newton par mètre carré. Mais d'autres unités vivent encore : le bar, qui vaut cent mille pascals ; l'atmosphère, environ cent un mille trois cent vingt-cinq pascals ; le mètre de colonne d'eau, neuf mille huit cent dix pascals ; et le millimètre de mercure, cent trente-trois pascals.",
+   "texte": "Pascal, bar, atmosphère, mètre de colonne d'eau, millimètre de mercure.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "relative",
+   "dit": "Deux références, deux pressions. La pression absolue est mesurée depuis le vide absolu : toujours positive. La pression relative est mesurée depuis la pression atmosphérique du moment : elle peut être positive ou négative. La relative vaut donc l'absolue moins l'atmosphérique.",
+   "texte": "Absolue depuis le vide, relative depuis l'atmosphère.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "loi",
+   "dit": "Dans un liquide au repos, la pression croît avec la profondeur : c'est la pression hydrostatique, due au poids du liquide situé au-dessus. Elle vaut rho fois g fois h, et ne dépend que de la masse volumique, de la pesanteur et de la profondeur. Ni de la forme du récipient, ni de sa section.",
+   "texte": "La pression hydrostatique : rho fois g fois h.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p11",
+   "ecran": "relation",
+   "dit": "Pour démontrer cette loi, on écrit l'équilibre d'une mince tranche de fluide : forces de pression sur ses faces, et son poids. Il vient d P égale moins rho g d z : la pression baisse quand l'altitude monte. Entre deux points, l'écart de pression ne dépend que de la dénivellation. Et tout plan horizontal est une surface isobare : même profondeur, même pression.",
+   "texte": "La relation fondamentale : la pression ne dépend que de la hauteur.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "ecran": "ex_plongeur",
+   "dit": "Exemple résolu du cours : un plongeur à dix mètres de profondeur dans l'eau de mer, de masse volumique mille vingt-cinq. On applique P égale rho g h : mille vingt-cinq fois neuf virgule quatre-vingt-un fois dix, soit environ cent mille pascals : à peu près une atmosphère de plus que la surface.",
+   "texte": "Exemple : environ cent mille pascals à dix mètres de profondeur.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p13",
+   "ecran": "pascal",
+   "dit": "Deuxième grand principe : celui de Pascal. Une variation de pression appliquée en un point d'un fluide incompressible, contenu dans un récipient fermé, se transmet intégralement à tous les points du fluide. C'est le secret des machines hydrauliques.",
+   "texte": "Pascal : la pression appliquée se transmet intégralement.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "ecran": "presse",
+   "dit": "Dans la presse hydraulique, deux pistons de surfaces différentes ferment le même liquide. La pression étant partout la même, les forces sont proportionnelles aux surfaces : F un sur S un égale F deux sur S deux. Élargir le piston, c'est multiplier la force.",
+   "texte": "La presse hydraulique : même pression, force multipliée.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "ecran": "ex_presse",
+   "dit": "Exemple du cours : un vérin possède un petit piston de dix centimètres carrés et un grand de cent centimètres carrés, dix fois plus. On applique dix newtons sur le petit piston. Le grand exerce dix fois plus : cent newtons. Une petite force soulève une lourde charge.",
+   "texte": "Exemple : dix newtons deviennent cent newtons.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p16",
+   "ecran": "parois",
+   "dit": "La loi fondamentale donne aussi la force sur une paroi. Sur un fond horizontal, elle vaut rho g h S : le poids de la colonne de liquide. Sur une paroi plane quelconque, elle vaut rho g d S, où d est la profondeur du barycentre de la surface mouillée. Et elle s'applique au centre de poussée, toujours plus bas que le barycentre.",
+   "texte": "La force sur une paroi se calcule au barycentre de la surface mouillée.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "ecran": "archimede",
+   "dit": "Troisième principe, le plus célèbre : celui d'Archimède. Tout corps plongé dans un fluide au repos subit une force verticale ascendante, égale au poids du volume de fluide déplacé. Elle vaut rho du fluide fois le volume immergé fois g : c'est la poussée d'Archimède.",
+   "texte": "Archimède : le poids du volume de fluide déplacé.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p18",
+   "ecran": "ex_cube",
+   "dit": "Exemple du cours : un cube de dix centimètres de côté, entièrement immergé dans l'eau. Son volume vaut un millième de mètre cube. La poussée vaut mille fois zéro virgule zéro zéro un fois neuf virgule quatre-vingt-un : neuf virgule quatre-vingt-un newtons, le poids du litre d'eau déplacé.",
+   "texte": "Exemple : neuf virgule quatre-vingt-un newtons pour un litre déplacé.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "ecran": "flottabilite",
+   "dit": "Flotter ou couler ? Tout se joue entre le poids de l'objet et la poussée. Poids inférieur à la poussée : l'objet flotte. Poids supérieur : il coule. Poids égal : il reste en équilibre dans le fluide, à la profondeur où on le place.",
+   "texte": "Trois cas : flotter, couler, rester en équilibre.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "ecran": "ex_sphere",
+   "dit": "Exemple résolu du cours : une sphère de zéro virgule cinq mètre cube et quatre cents kilogrammes, immergée dans l'eau. La poussée vaut mille fois zéro virgule cinq fois neuf virgule quatre-vingt-un : quatre mille neuf cent cinq newtons. Son poids : trois mille neuf cent vingt-quatre newtons. La poussée gagne, la sphère remonte et flotte.",
+   "texte": "Exemple : la poussée dépasse le poids, la sphère flotte.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p21",
+   "ecran": "barometre",
+   "dit": "Mesurer la pression atmosphérique : en seize cent quarante-quatre, Torricelli retourne un tube de mercure sur une cuvette. La colonne s'arrête à soixante-seize centimètres, le vide au-dessus. L'atmosphère équilibre la colonne de mercure : P atmosphérique égale rho du mercure fois g fois h, environ cent un mille trois cents pascals.",
+   "texte": "Torricelli : soixante-seize centimètres de mercure équilibrent l'atmosphère.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "ecran": "manometre",
+   "dit": "Le manomètre mesure une différence de pression. Le piézomètre est un simple tube vertical : la hauteur de liquide y donne la pression. Le manomètre différentiel, lui, compare deux points : l'écart de pression vaut g fois la dénivellation du mercure fois l'écart des masses volumiques.",
+   "texte": "Piézomètre et manomètre différentiel : des hauteurs qui donnent des pressions.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "ecran": "methode",
+   "dit": "La méthode du cours, en cinq étapes : identifier toutes les forces en présence ; choisir un système de référence adapté ; appliquer les principes de Pascal et d'Archimède ; résoudre les équations ; puis vérifier la cohérence du résultat, unités et ordre de grandeur.",
+   "texte": "Une méthode en cinq étapes pour tous les problèmes.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "ecran": "applications",
+   "dit": "Autour de nous, ces principes travaillent : les freins et les presses hydrauliques pour Pascal ; les barrages, dont la base résiste à la pression maximale ; les navires et les sous-marins, qui règlent leur flottabilité par leurs ballasts ; et les ballons, portés par la poussée de l'air.",
+   "texte": "Freins, barrages, navires, sous-marins et ballons : partout autour de nous.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "ecran": "recap",
+   "dit": "Retenez l'essentiel : la pression est une force par unité de surface, et vaut rho g h à la profondeur h ; Pascal transmet les pressions et multiplie les forces ; Archimède pousse les corps vers le haut, du poids du fluide déplacé ; et la force sur une paroi se calcule au barycentre de la surface mouillée.",
+   "texte": "Notions d'hydrostatique : pression, Pascal, Archimède, parois — à retenir.",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La pression et la loi fondamentale"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Pascal, Archimède et les instruments",
+   "pont": {
+    "texte": "Partie 2 : Pascal, Archimède et la mesure des pressions.",
+    "dit": "Partie deux : après la pression et sa loi fondamentale, place aux deux grands principes, Pascal et Archimède, puis aux instruments qui mesurent les pressions."
+   }
+  }
+ ]
+}
