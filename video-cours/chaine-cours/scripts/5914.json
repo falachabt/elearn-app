@@ -1,0 +1,506 @@
+{
+ "cours": 5914,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Mesure du temps : montres et horloges à quartz",
+    "Communications : porteuses des radios, des téléphones et des réseaux Wi-Fi",
+    "Laboratoires : générateurs de signaux sinusoïdaux, carrés ou triangulaires",
+    "Sélection de fréquence : tuners radio et filtres passe-bande",
+    "Imagerie médicale et instrumentation scientifique"
+   ],
+   "kicker": "Applications",
+   "titre": "Les oscillateurs sont partout",
+   "type": "recap"
+  },
+  "bobine": {
+   "kicker": "La bobine",
+   "note": "L : inductance, en henrys (H) · Courant constant : v_L = 0, la bobine se comporte comme un simple fil",
+   "tex": "v_L = L\\,\\dfrac{di}{dt}",
+   "titre": "Une tension proportionnelle à la variation du courant",
+   "type": "formule"
+  },
+  "charge": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "charge"
+   },
+   "kicker": "Charge du condensateur",
+   "note": "V₀ : tension de la source · À t = τ, v_C atteint 63,2 % de V₀",
+   "tex": "v_C(t) = V_0\\left(1 - e^{-t/\\tau}\\right)",
+   "titre": "La tension grimpe vers sa valeur finale",
+   "type": "formule"
+  },
+  "decharge": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "decharge"
+   },
+   "kicker": "Décharge du condensateur",
+   "note": "V₀ : tension initiale du condensateur · À t = τ, il ne reste que 36,8 % de V₀",
+   "tex": "v_C(t) = V_0\\, e^{-t/\\tau}",
+   "titre": "La tension retombe exponentiellement",
+   "type": "formule"
+  },
+  "dephasage": {
+   "kicker": "Oscillateur à décalage de phase",
+   "tex": [
+    "\\text{trois étages RC : } 180^\\circ",
+    "\\text{amplificateur inverseur : } 180^\\circ",
+    "f_0 = \\dfrac{1}{2\\pi R C \\sqrt{6}}",
+    "\\text{gain} > 29"
+   ],
+   "titre": "Trois étages RC et un amplificateur",
+   "type": "etape"
+  },
+  "equation": {
+   "kicker": "Équation différentielle",
+   "note": "q : charge du condensateur · i = dq/dt · V(t) est souvent une sinusoïde : V(t) = V₀ sin(ωt)",
+   "tex": "L\\,\\dfrac{d^2 q}{dt^2} + R\\,\\dfrac{dq}{dt} + \\dfrac{q}{C} = V(t)",
+   "titre": "La loi des mailles appliquée à la charge",
+   "type": "formule"
+  },
+  "ex_resonance": {
+   "kicker": "Exemple",
+   "tex": [
+    "L = 10\\ \\text{mH} \\qquad C = 100\\ \\text{nF}",
+    "\\omega_0 = \\dfrac{1}{\\sqrt{L\\,C}} \\approx 10^{4}\\ \\text{rad/s}",
+    "f_0 = \\dfrac{\\omega_0}{2\\pi} \\approx 1592\\ \\text{Hz}"
+   ],
+   "titre": "Dix millihenrys et cent nanofarads",
+   "type": "etape"
+  },
+  "ex_tau": {
+   "kicker": "Exemple",
+   "tex": [
+    "R = 1\\ \\text{k}\\Omega",
+    "C = 1\\ \\mu\\text{F}",
+    "\\tau = R\\,C = 10^{3} \\times 10^{-6}",
+    "\\tau = 10^{-3}\\ \\text{s} = 1\\ \\text{ms}"
+   ],
+   "titre": "Un kilo-ohm et un microfarad",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 260,
+    "nom": "pendule"
+   },
+   "kicker": "Introduction",
+   "texte": "Comme un pendule, un circuit peut osciller : la tension et le courant varient alors de façon périodique.",
+   "type": "phrase"
+  },
+  "lc": {
+   "kicker": "Oscillateur LC",
+   "note": "C'est la résonance ω₀ = 1/√(LC) exprimée en fréquence · Exemple : L = 10 mH et C = 100 nF donnent f₀ ≈ 1 592 Hz",
+   "tex": "f_0 = \\dfrac{1}{2\\pi\\sqrt{L\\,C}}",
+   "titre": "La fréquence propre, en hertz",
+   "type": "formule"
+  },
+  "libre": {
+   "kicker": "Oscillateur libre",
+   "note": "Le condensateur chargé se décharge dans la bobine et la résistance : sans apport d'énergie, l'amplitude ne peut que décroître",
+   "tex": "L\\,\\dfrac{d^2 q}{dt^2} + R\\,\\dfrac{dq}{dt} + \\dfrac{q}{C} = 0",
+   "titre": "Sans source : l'équation homogène",
+   "type": "formule"
+  },
+  "parallele": {
+   "kicker": "Circuit RLC parallèle",
+   "tex": [
+    "Z_R = R \\qquad Z_L = j\\,\\omega L \\qquad Z_C = \\dfrac{1}{j\\,\\omega C}",
+    "\\dfrac{1}{Z} = \\dfrac{1}{R} + \\dfrac{1}{j\\,\\omega L} + j\\,\\omega C"
+   ],
+   "titre": "Les impédances des trois branches",
+   "type": "etape"
+  },
+  "parallele_p": {
+   "kicker": "RLC parallèle",
+   "note": "La résonance a lieu à la même pulsation ω₀ = 1/√(LC) qu'en série · V : tension commune aux trois branches",
+   "tex": "P = \\dfrac{V^2}{R}",
+   "titre": "Même résonance, et la puissance dans la résistance",
+   "type": "formule"
+  },
+  "pmoy": {
+   "kicker": "Puissance moyenne",
+   "note": "φ : déphasage entre la tension et le courant · Bobine et condensateur stockent puis restituent l'énergie : seule la résistance consomme de la puissance en moyenne",
+   "tex": "P_{\\text{moy}} = V_{\\text{eff}}\\, I_{\\text{eff}} \\cos\\varphi",
+   "titre": "Le facteur de puissance cos φ",
+   "type": "formule"
+  },
+  "puissance_serie": {
+   "kicker": "Puissance dissipée",
+   "note": "I : amplitude du courant · À la résonance, le courant est maximal : la puissance dissipée est donc maximale aussi",
+   "tex": "P = I^{2}\\,R",
+   "titre": "L'effet Joule dans la résistance",
+   "type": "formule"
+  },
+  "quartz": {
+   "kicker": "Oscillateur à cristal",
+   "texte": "Un cristal de quartz piézoélectrique vibre à une fréquence d'une stabilité remarquable, fixée par ses dimensions.",
+   "type": "phrase",
+   "anim": {
+    "nom": "quartz",
+    "hauteur": 280
+   }
+  },
+  "rc_intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "circuit_rc"
+   },
+   "kicker": "Circuit RC",
+   "texte": "Une résistance et un condensateur en série : la charge et la décharge suivent des courbes exponentielles.",
+   "type": "phrase"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "circuit_rl"
+   },
+   "etapes": [
+    "Constantes de temps : τ = RC (circuit RC) et τ = L/R (circuit RL) ; évolutions exponentielles",
+    "Circuit RLC : L q″ + R q′ + q/C = V(t) ; trois régimes selon R² comparé à 4L/C",
+    "Résonance : ω₀ = 1/√(LC) ; puissance moyenne = Veff Ieff cos φ",
+    "Oscillateurs entretenus : LC, quartz, décalage de phase, pont de Wien"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regimes": {
+   "etapes": [
+    "Apériodique (R² > 4L/C) : retour à l'équilibre sans osciller",
+    "Critique (R² = 4L/C) : retour à l'équilibre le plus rapide possible, sans oscillation",
+    "Pseudo-périodique (R² < 4L/C) : oscillations d'amplitude décroissante"
+   ],
+   "kicker": "Les trois régimes",
+   "titre": "Tout dépend de R² comparé à 4L/C",
+   "type": "recap",
+   "anim": {
+    "nom": "regimes",
+    "hauteur": 200
+   }
+  },
+  "relaxation": {
+   "kicker": "Oscillateur à relaxation",
+   "tex": [
+    "T \\approx 0{,}7\\, R\\, C",
+    "R = 1\\ \\text{k}\\Omega \\qquad C = 0{,}15\\ \\mu\\text{F}",
+    "T \\approx 0{,}1\\ \\text{ms}"
+   ],
+   "titre": "Des charges et décharges qui donnent une onde carrée",
+   "type": "etape"
+  },
+  "reponse_freq": {
+   "kicker": "Analyse en fréquence",
+   "texte": "La réponse en fréquence, représentée par des diagrammes de Bode, décrit le gain et le déphasage selon la fréquence du signal.",
+   "type": "phrase",
+   "anim": {
+    "nom": "resonance",
+    "hauteur": 240
+   }
+  },
+  "resonance": {
+   "kicker": "Résonance",
+   "note": "À ω = ω₀ : impédance minimale pour le circuit série, donc courant maximal · L'énergie s'échange efficacement entre la bobine et le condensateur",
+   "tex": "\\omega_0 = \\dfrac{1}{\\sqrt{L\\,C}}",
+   "titre": "Le courant maximal à la pulsation propre",
+   "type": "formule",
+   "anim": {
+    "nom": "resonance",
+    "hauteur": 280
+   }
+  },
+  "rl_courant": {
+   "kicker": "Circuit RL",
+   "tex": [
+    "V = R\\,i + L\\,\\dfrac{di}{dt}",
+    "i(t) = \\dfrac{V}{R}\\left(1 - e^{-Rt/L}\\right)",
+    "\\tau = \\dfrac{L}{R}"
+   ],
+   "titre": "Le courant s'établit exponentiellement",
+   "type": "etape"
+  },
+  "rl_intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "circuit_rl"
+   },
+   "kicker": "Circuit RL",
+   "texte": "Une résistance et une bobine en série : la bobine stocke l'énergie dans un champ magnétique et s'oppose aux variations du courant.",
+   "type": "phrase"
+  },
+  "rlc_intro": {
+   "kicker": "Circuit RLC série",
+   "texte": "Résistance, bobine et condensateur en série : l'énergie s'échange entre le champ électrique du condensateur et le champ magnétique de la bobine.",
+   "type": "phrase",
+   "anim": {
+    "nom": "circuit_rlc",
+    "hauteur": 280
+   }
+  },
+  "solution": {
+   "kicker": "Régime pseudo-périodique",
+   "note": "α : facteur d'amortissement, lié à la résistance · ω : pulsation propre, fixée par L et C · A et φ : constantes fixées par les conditions initiales",
+   "tex": "q(t) = A\\, e^{-\\alpha t} \\cos\\left(\\omega t + \\varphi\\right)",
+   "titre": "Une sinusoïde amortie",
+   "type": "formule",
+   "anim": {
+    "nom": "amortie",
+    "hauteur": 260
+   }
+  },
+  "tau_rc": {
+   "kicker": "Constante de temps",
+   "note": "τ (tau) se mesure en secondes · À t = τ, la tension a parcouru 63,2 % de sa variation totale · Plus R ou C augmentent, plus le circuit est lent",
+   "tex": "\\tau = R\\,C",
+   "titre": "Le rythme du circuit RC",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "nom": "circuit_rlc",
+    "hauteur": 250
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "Circuits RC, RL et RLC : constantes de temps, régimes d'amortissement et résonance",
+   "titre": "Oscillateurs électriques",
+   "type": "titre"
+  },
+  "wien": {
+   "kicker": "Oscillateur à pont de Wien",
+   "note": "À f_r, le pont atténue le signal d'un facteur 3 : l'amplificateur fournit un gain légèrement supérieur à 3 · Exemple du cours : R = 10 kΩ et C = 15,9 nF donnent environ 1 kHz",
+   "tex": "f_r = \\dfrac{1}{2\\pi R C}",
+   "titre": "Le pont qui atténue d'un facteur trois",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Régimes transitoires et circuit RLC"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les trois régimes du circuit RLC, le phénomène de résonance et la puissance dissipée.",
+    "texte": "Partie 2 : régimes, résonance et puissance."
+   },
+   "sous_titre": "Régimes, résonance et puissance"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : entretenir l'oscillation, du circuit LC au cristal de quartz, puis les applications de ces oscillateurs.",
+    "texte": "Partie 3 : oscillateurs entretenus et applications."
+   },
+   "sous_titre": "Oscillateurs entretenus et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux oscillateurs électriques : comment la tension et le courant évoluent dans les circuits RC, RL et RLC, et comment naît le phénomène de résonance.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Oscillateurs électriques : constantes de temps, régimes et résonance."
+  },
+  {
+   "dit": "Comme un pendule qui se balance avec une période bien régulière, l'électricité peut elle aussi osciller : dans certains circuits, la tension et le courant varient de façon périodique. Ces oscillations sont au cœur des horloges à quartz, des radios, des téléphones et des ordinateurs.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "L'électricité aussi peut osciller, comme un pendule."
+  },
+  {
+   "dit": "Commençons par le circuit RC : une résistance et un condensateur branchés en série. Quand on connecte la source, le condensateur se charge progressivement ; quand on la déconnecte, il se décharge à travers la résistance. Dans les deux cas, la tension suit une courbe exponentielle.",
+   "ecran": "rc_intro",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Le circuit RC : charge et décharge exponentielles."
+  },
+  {
+   "dit": "La rapidité de cette évolution est fixée par la constante de temps du circuit, tau égale R fois C. Plus la résistance ou la capacité est grande, plus le circuit répond lentement. Au bout d'une durée égale à tau, la variation de tension a parcouru soixante-trois virgule deux pour cent de son parcours total.",
+   "ecran": "tau_rc",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "La constante de temps : τ = RC."
+  },
+  {
+   "dit": "Exemple tiré du cours : une résistance d'un kilo-ohm associée à un condensateur d'un microfarad donne une constante de temps tau d'une milliseconde. C'est l'ordre de grandeur des temporisations électroniques les plus courantes.",
+   "ecran": "ex_tau",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Exemple : 1 kΩ et 1 µF donnent τ = 1 ms."
+  },
+  {
+   "dit": "Pendant la charge, la tension aux bornes du condensateur suit la loi v C de t égale V zéro, facteur de un moins exponentielle de moins t sur tau. Elle grimpe rapidement au début, puis de plus en plus lentement, jusqu'à se stabiliser à la tension de la source.",
+   "ecran": "charge",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Charge : v_C(t) = V₀ (1 − e^(−t/τ))."
+  },
+  {
+   "dit": "Pendant la décharge, la tension décroît selon la loi v C de t égale V zéro fois exponentielle de moins t sur tau. Au bout d'une constante de temps, il ne reste que trente-six virgule huit pour cent de la tension initiale, puis la décroissance continue, de moins en moins vite.",
+   "ecran": "decharge",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Décharge : v_C(t) = V₀ e^(−t/τ)."
+  },
+  {
+   "dit": "Passons au circuit RL : une résistance et une bobine en série. La bobine stocke l'énergie sous forme de champ magnétique, et elle s'oppose à toute variation du courant qui la traverse. Conséquence pratique : le courant ne peut ni apparaître ni disparaître instantanément.",
+   "ecran": "rl_intro",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le circuit RL : la bobine s'oppose aux variations du courant."
+  },
+  {
+   "dit": "La tension aux bornes d'une bobine est proportionnelle à la dérivée du courant : v L égale L fois d i sur d t. Si le courant est constant, sa dérivée est nulle et la tension aux bornes de la bobine aussi : en régime continu établi, la bobine se comporte comme un simple fil.",
+   "ecran": "bobine",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "La bobine : v_L = L di/dt."
+  },
+  {
+   "dit": "Appliquons la loi des mailles au circuit RL : la tension de la source égale R fois i, plus L fois d i sur d t. La résolution donne un courant qui croît exponentiellement vers sa valeur finale, V sur R, avec une constante de temps tau égale L sur R. Au bout de tau, il atteint soixante-trois pour cent de cette valeur finale.",
+   "ecran": "rl_courant",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Le courant du circuit RL croît avec la constante de temps τ = L/R."
+  },
+  {
+   "dit": "Réunissons maintenant les trois composants en série avec une source de tension alternative : c'est le circuit RLC, le cœur de ce cours. La résistance y dissipe l'énergie en chaleur, la bobine la stocke dans un champ magnétique, et le condensateur dans un champ électrique. De cet échange permanent naissent de vraies oscillations.",
+   "ecran": "rlc_intro",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Le circuit RLC série : trois rôles, un échange d'énergie."
+  },
+  {
+   "dit": "La loi des mailles appliquée à ce circuit donne une équation différentielle du second ordre sur la charge q du condensateur : L fois la dérivée seconde de q, plus R fois la dérivée de q, plus q sur C, égale la tension de la source, souvent une sinusoïde. Le courant s'en déduit aussitôt, car i est la dérivée de q.",
+   "ecran": "equation",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "L'équation différentielle du circuit RLC série."
+  },
+  {
+   "dit": "La résolution de cette équation distingue trois régimes, selon que R au carré se compare à quatre L sur C. Au-dessus, le régime est apériodique : le système revient à l'équilibre sans osciller. À égalité, le régime critique y revient le plus vite possible. En dessous, le régime pseudo-périodique oscille, avec une amplitude qui décroît à cause de la résistance.",
+   "ecran": "regimes",
+   "id": "p13",
+   "pause_apres": 0.7,
+   "texte": "Trois régimes : apériodique, critique, pseudo-périodique."
+  },
+  {
+   "dit": "Si l'on supprime la source et qu'on laisse le condensateur chargé se décharger dans la bobine et la résistance, l'équation devient homogène : L q seconde, plus R q prime, plus q sur C, égale zéro. C'est l'équation de l'oscillateur électrique libre, dont les solutions décrivent les trois régimes.",
+   "ecran": "libre",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "L'oscillateur libre : l'équation homogène."
+  },
+  {
+   "dit": "En régime pseudo-périodique, la charge suit une sinusoïde amortie : q de t égale A, fois exponentielle de moins alpha t, fois cosinus de oméga t plus phi. Alpha est le facteur d'amortissement, lié à la résistance ; oméga est la pulsation propre, fixée par la bobine et le condensateur ; A et phi dépendent des conditions initiales.",
+   "ecran": "solution",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "La solution pseudo-périodique : une sinusoïde amortie."
+  },
+  {
+   "dit": "Le phénomène central de ce cours est la résonance. Quand la pulsation de la source atteint la pulsation propre du circuit, oméga zéro égale un sur racine de L C, l'impédance du circuit série devient minimale : pour une même tension, le courant est maximal, et l'énergie s'échange efficacement entre la bobine et le condensateur.",
+   "ecran": "resonance",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "La résonance : ω₀ = 1/√(LC), courant maximal."
+  },
+  {
+   "dit": "Exemple du cours : une bobine de dix millihenrys et un condensateur de cent nanofarads donnent une pulsation de résonance d'environ dix mille radians par seconde. En divisant par deux pi, on obtient une fréquence d'environ mille cinq cent quatre-vingt-douze hertz, dans le domaine des fréquences audibles.",
+   "ecran": "ex_resonance",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Exemple : ω₀ ≈ 10 000 rad/s, f₀ ≈ 1 592 Hz."
+  },
+  {
+   "dit": "Les trois composants peuvent aussi être montés en parallèle : chaque branche reçoit alors la même tension, mais elle est traversée par un courant différent. En notation complexe, les impédances valent R pour la résistance, j oméga L pour la bobine et un sur j oméga C pour le condensateur, et l'impédance totale se calcule comme pour des résistances en parallèle.",
+   "ecran": "parallele",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Le circuit RLC parallèle et ses impédances."
+  },
+  {
+   "dit": "La résonance du circuit parallèle se produit exactement à la même pulsation, un sur racine de L C. Et comme en série, seule la résistance consomme de l'énergie : la puissance dissipée vaut V au carré sur R, où V est la tension commune aux trois branches.",
+   "ecran": "parallele_p",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Parallèle : même ω₀, puissance P = V²/R."
+  },
+  {
+   "dit": "Dans le circuit série, la puissance dissipée par effet Joule dans la résistance vaut P égale I au carré fois R. À la résonance, le courant est maximal, donc la puissance dissipée est elle aussi maximale : c'est là que le circuit absorbe le plus d'énergie de la source.",
+   "ecran": "puissance_serie",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Puissance dissipée en série : P = I²R."
+  },
+  {
+   "dit": "D'une façon générale, la puissance moyenne reçue par un circuit RLC vaut V efficace fois I efficace fois cosinus phi, où phi est le déphasage entre la tension et le courant. Ce cosinus phi, le facteur de puissance, mesure l'efficacité de l'utilisation : proche de un, elle est excellente ; proche de zéro, le circuit échange de l'énergie sans presque rien consommer.",
+   "ecran": "pmoy",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Puissance moyenne : Veff Ieff cos φ."
+  },
+  {
+   "dit": "On peut enfin regarder le circuit du point de vue des fréquences : sa réponse en fréquence décrit le gain et le déphasage du signal selon sa fréquence, que l'on représente par des diagrammes de Bode. La résistance ne déplace pas la fréquence de résonance, mais elle en règle la largeur : faible résistance, pic aigu et sélectif ; forte résistance, pic large.",
+   "ecran": "reponse_freq",
+   "id": "p22",
+   "pause_apres": 0.7,
+   "texte": "Réponse en fréquence : R règle la largeur du pic de résonance."
+  },
+  {
+   "dit": "Un oscillateur LC, où la bobine et le condensateur échangent leur énergie presque sans perte, entretient des oscillations à sa fréquence propre : f zéro égale un sur deux pi racine de L C. Avec dix millihenrys et cent nanofarads, on retrouve les mille cinq cent quatre-vingt-douze hertz de l'exemple de résonance.",
+   "ecran": "lc",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "L'oscillateur LC : f₀ = 1/(2π√(LC))."
+  },
+  {
+   "dit": "Pour une précision bien supérieure, on remplace le circuit LC par un cristal de quartz. Le quartz est piézoélectrique : soumis à une tension, il vibre ; et quand il vibre, il produit une tension. Sa fréquence de vibration, fixée par ses dimensions, est d'une stabilité remarquable : c'est elle qui rythme les montres à quartz et les processeurs des ordinateurs.",
+   "ecran": "quartz",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Le cristal de quartz : la précision par la piézoélectricité."
+  },
+  {
+   "dit": "Autre famille d'oscillateurs entretenus : l'oscillateur à décalage de phase. Trois étages RC en cascade déphasent le signal de cent quatre-vingts degrés, et l'amplificateur inverseur ajoute cent quatre-vingts degrés : au total un tour complet, le signal revient en phase avec lui-même et l'oscillation s'entretient. La fréquence vaut un sur deux pi R C racine de six, et le gain de l'amplificateur doit dépasser vingt-neuf pour compenser les pertes des étages.",
+   "ecran": "dephasage",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Décalage de phase : 360° au total, gain supérieur à 29."
+  },
+  {
+   "dit": "L'oscillateur à pont de Wien repose sur un réseau de deux résistances et deux condensateurs. À la fréquence f r égale un sur deux pi R C, ce pont atténue le signal d'un facteur trois ; un amplificateur de gain légèrement supérieur à trois compense exactement cette atténuation, et l'oscillation démarre, très pure. Avec dix kilo-ohms et quinze virgule neuf nanofarads, on obtient environ un kilohertz.",
+   "ecran": "wien",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Pont de Wien : fr = 1/(2πRC), gain juste au-dessus de 3."
+  },
+  {
+   "dit": "Plus simple encore, l'oscillateur à relaxation charge et décharge un condensateur à travers une résistance, entre deux seuils, et produit une onde carrée. Sa période vaut environ zéro virgule sept fois R fois C : avec un kilo-ohm et zéro virgule quinze microfarad, on obtient une période d'environ un dixième de milliseconde.",
+   "ecran": "relaxation",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Relaxation : T ≈ 0,7 RC, sortie en onde carrée."
+  },
+  {
+   "dit": "Ces oscillateurs sont partout autour de nous : ils mesurent le temps dans les montres et les horloges, ils génèrent les porteuses des radios, des téléphones et du Wi-Fi, ils fournissent les signaux des générateurs de laboratoire, et ils servent même en imagerie médicale.",
+   "ecran": "applications",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Horloges, communications, laboratoires, médecine : les applications."
+  },
+  {
+   "dit": "Retenez l'essentiel : les constantes de temps règlent les régimes transitoires, l'équation différentielle du circuit RLC distingue trois régimes, la résonance concentre le courant à la pulsation propre, et les oscillateurs entretenus transforment ces phénomènes en horloges et en signaux pour toutes nos technologies.",
+   "ecran": "recap",
+   "id": "p29",
+   "pause_apres": 0.5,
+   "texte": "Oscillateurs électriques : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Oscillateurs électriques"
+}

@@ -316,6 +316,85 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  circuit_rlc(t) {
+    const p = prog(t);
+    let ondes = '';
+    for (let k = 0; k <= 24; k++) {
+      const x = 228 + 44 * k / 24, y = 150 + 13 * Math.sin(2 * Math.PI * k / 24);
+      ondes += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="250" y1="60" x2="330" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="330,60 348,42 372,78 396,42 420,78 444,42 460,60" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="460" y1="60" x2="750" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="60" x2="750" y2="100" stroke="currentColor" stroke-width="5"/>` +
+      `<path d="M 750 100 A 15 14 0 0 1 750 128 A 15 14 0 0 1 750 156 A 15 14 0 0 1 750 184" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="184" x2="750" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="240" x2="508" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="468" y1="240" x2="250" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="240" x2="250" y2="184" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="116" x2="250" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="484" y1="212" x2="484" y2="268" stroke="currentColor" stroke-width="6"/>` +
+      `<line x1="500" y1="212" x2="500" y2="268" stroke="currentColor" stroke-width="6"/>` +
+      `<circle cx="250" cy="150" r="34" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="${ondes}" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(196, 156, 'U', { t: 30, a: 'end' }) +
+      mot(395, 30, 'R', { t: 28 }) +
+      mot(786, 148, 'L', { t: 28, a: 'start' }) +
+      mot(492, 294, 'C', { t: 28 }) +
+      (p > .4 ? trait(566, 60, 626, 60, Math.min(1, (p - .4) / .6), { c: '#E8604C', w: 6 }) + (p > .8 ? pointe(632, 60, 0, '#E8604C') : '') + mot(596, 36, 'I', { c: '#E8604C', t: 28 }) : ''));
+  },
+  amortie(t) {
+    const p = prog(t);
+    const ligne = (f, coul, w, tiret) => {
+      let pts = '';
+      const n = Math.max(2, Math.floor(90 * p));
+      for (let k = 0; k <= n; k++) {
+        const u = 690 * k / 90, x = 170 + u;
+        pts += `${Math.round(x)},${Math.round(f(u))} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="${w}" stroke-linejoin="round" stroke-linecap="round"${tiret ? ' stroke-dasharray="8 7" opacity=".55"' : ''}/>`;
+    };
+    return svgBoite(
+      `<line x1="170" y1="150" x2="884" y2="150" stroke="currentColor" stroke-width="4"/>${pointe(890, 150, 0)}` +
+      `<line x1="170" y1="282" x2="170" y2="24" stroke="currentColor" stroke-width="4"/>${pointe(170, 18, -90)}` +
+      mot(906, 158, 't', { t: 30, a: 'start' }) +
+      mot(146, 30, 'q', { t: 28, a: 'end' }) +
+      ligne(u => 150 - 96 * Math.exp(-u / 300), '#E8604C', 3, true) +
+      ligne(u => 150 + 96 * Math.exp(-u / 300), '#E8604C', 3, true) +
+      ligne(u => 150 - 96 * Math.exp(-u / 300) * Math.cos(u / 33), '#1A75FF', 5, false) +
+      mot(560, 292, "l'amplitude s'éteint : l'énergie part en chaleur dans la résistance", { t: 23 }));
+  },
+  quartz(t) {
+    return svgBoite(
+      `<line x1="196" y1="150" x2="300" y2="150" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="380" y1="150" x2="470" y2="150" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="300" y1="104" x2="300" y2="196" stroke="currentColor" stroke-width="6"/>` +
+      `<line x1="380" y1="104" x2="380" y2="196" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="314" y="116" width="52" height="68" fill="#1A75FF" fill-opacity=".18" stroke="currentColor" stroke-width="4"/>` +
+      mot(340, 84, 'cristal de quartz', { t: 24 }) +
+      `<rect x="516" y="64" width="368" height="176" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="9 8" opacity=".7"/>` +
+      mot(700, 94, 'circuit équivalent', { t: 23 }) +
+      `<circle cx="560" cy="150" r="6" fill="currentColor"/><circle cx="840" cy="150" r="6" fill="currentColor"/>` +
+      `<line x1="560" y1="150" x2="586" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<polyline points="586,150 596,136 608,164 620,136 632,164 644,136 652,150" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      `<line x1="652" y1="150" x2="676" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<path d="M 676 150 A 11 11 0 0 1 698 150 A 11 11 0 0 1 720 150 A 11 11 0 0 1 742 150" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="742" y1="150" x2="770" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="778" y1="124" x2="778" y2="176" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="792" y1="124" x2="792" y2="176" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="800" y1="150" x2="840" y2="150" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="560" y1="150" x2="560" y2="204" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="840" y1="150" x2="840" y2="204" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="560" y1="204" x2="688" y2="204" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="720" y1="204" x2="840" y2="204" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="696" y1="180" x2="696" y2="228" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="712" y1="180" x2="712" y2="228" stroke="currentColor" stroke-width="5"/>` +
+      mot(619, 122, 'R', { t: 22 }) +
+      mot(709, 122, 'L', { t: 22 }) +
+      mot(785, 112, 'C', { t: 22 }) +
+      mot(704, 262, 'Cp', { t: 22 }));
+  },
   regimes(t) {
     const p = prog(t);
     const courbe = (f, coul) => {
