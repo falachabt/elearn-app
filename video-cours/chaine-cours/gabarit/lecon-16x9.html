@@ -316,6 +316,101 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  plan_incline(t) {
+    const A = [190, 238], B = [640, 96];
+    const dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy);
+    const ux = dx / L, uy = dy / L, nx = uy, ny = -ux;
+    const P = [A[0] + ux * 250, A[1] + uy * 250];
+    const C = [P[0] + nx * 27, P[1] + ny * 27];
+    const coin = (su, sn) => `${Math.round(C[0] + ux * su + nx * sn)},${Math.round(C[1] + uy * su + ny * sn)}`;
+    const fleche = (de, vers, coul, tiret) =>
+      `<line x1="${Math.round(de[0])}" y1="${Math.round(de[1])}" x2="${Math.round(vers[0])}" y2="${Math.round(vers[1])}" stroke="${coul}" stroke-width="5" ${tiret ? 'stroke-dasharray="8 6"' : ''}/>` +
+      pointe(Math.round(vers[0]), Math.round(vers[1]), Math.round(Math.atan2(vers[1] - de[1], vers[0] - de[0]) * 180 / Math.PI), coul);
+    return svgBoite(
+      `<line x1="150" y1="238" x2="660" y2="238" stroke="currentColor" stroke-width="5"/>` +
+      `<path d="M ${A[0]} ${A[1]} L ${B[0]} ${B[1]} L ${B[0]} ${B[1] + 142} Z" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      `<path d="M 566 238 A 74 74 0 0 0 578 178" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(588, 218, 'α', { t: 28, a: 'start' }) +
+      `<polygon points="${coin(-40, -24)} ${coin(40, -24)} ${coin(40, 24)} ${coin(-40, 24)}" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      fleche(C, [C[0], C[1] + 66], '#E8604C') +
+      mot(C[0] + 14, C[1] + 62, 'mg', { c: '#E8604C', t: 25, a: 'start' }) +
+      fleche(C, [C[0] - ux * 56, C[1] - uy * 56], '#E8604C', true) +
+      mot(Math.round(C[0] - ux * 96), Math.round(C[1] - uy * 96) + 8, 'mg sin α', { c: '#E8604C', t: 22, a: 'end' }) +
+      fleche(P, [P[0] + nx * 54, P[1] + ny * 54], '#10B981') +
+      mot(Math.round(P[0] + nx * 66), Math.round(P[1] + ny * 66) + 6, 'N', { c: '#10B981', t: 26, a: 'start' }) +
+      fleche([P[0] - ux * 6, P[1] - uy * 6], [P[0] + ux * 44, P[1] + uy * 44], '#10B981') +
+      mot(Math.round(P[0] + ux * 58), Math.round(P[1] + uy * 58) - 8, 'f', { c: '#10B981', t: 25, a: 'start' }) +
+      mot(760, 150, 'le poids se décompose :', { t: 22, a: 'start' }) +
+      mot(760, 182, 'mg sin α fait glisser,', { t: 22, a: 'start' }) +
+      mot(760, 214, 'mg cos α est compensé par N', { t: 22, a: 'start' }));
+  },
+  helice(t) {
+    const p = prog(t), cx = 420, cy = 152, R = 94;
+    let arc = '';
+    const n = Math.max(2, Math.floor(80 * p));
+    for (let k = 0; k <= n; k++) {
+      const a = -Math.PI / 2 + 2 * Math.PI * k / 80;
+      arc += `${Math.round(cx + R * Math.cos(a))},${Math.round(cy + R * Math.sin(a))} `;
+    }
+    const a2 = -50 * Math.PI / 180, mx = cx + R * Math.cos(a2), my = cy + R * Math.sin(a2);
+    let croix = '';
+    for (const gx of [648, 736, 824]) for (const gy of [84, 152, 220]) croix += mot(gx, gy + 10, '⊗', { c: '#1A75FF', t: 30 });
+    return svgBoite(
+      croix +
+      `<polyline points="${arc}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      `<circle cx="${cx}" cy="${cy}" r="5" fill="currentColor"/>` +
+      trait(cx, cy, Math.round(mx), Math.round(my), Math.min(1, p * 1.6), { w: 3, tiret: true }) +
+      mot(Math.round((cx + mx) / 2) - 8, Math.round((cy + my) / 2) - 8, 'Rc', { t: 24, a: 'end' }) +
+      `<circle cx="${Math.round(mx)}" cy="${Math.round(my)}" r="9" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` +
+      trait(cx - 46, cy - R, cx + 40, cy - R, p, { c: '#E8604C', w: 5 }) + (p > .6 ? pointe(cx + 46, cy - R, 0, '#E8604C') + mot(cx, cy - R - 14, 'v', { c: '#E8604C', t: 26 }) : '') +
+      mot(736, 282, 'B entrant, perpendiculaire', { c: '#1A75FF', t: 21 }) +
+      mot(310, 282, 'la charge tourne à rayon constant', { t: 21, a: 'end' }));
+  },
+  derive_fig(t) {
+    let pts = '';
+    for (let k = 0; k <= 90; k++) {
+      const th = 4 * Math.PI * k / 90;
+      pts += `${Math.round(258 + 25 * (th - Math.sin(th)))},${Math.round(216 - 25 * (1 - Math.cos(th)))} `;
+    }
+    const flecheE = (fx) => trait(fx, 252, fx, 200, prog(t), { c: '#10B981', w: 5 }) + pointe(fx, 194, -90, '#10B981');
+    return svgBoite(
+      mot(168, 66, '⊗', { c: '#1A75FF', t: 30 }) + mot(838, 66, '⊗', { c: '#1A75FF', t: 30 }) +
+      mot(838, 98, 'B entrant', { c: '#1A75FF', t: 20, a: 'end' }) +
+      flecheE(300) + flecheE(520) + flecheE(740) +
+      mot(520, 282, 'E', { c: '#10B981', t: 24 }) +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      trait(716, 128, 816, 128, prog(t), { c: '#E8604C', w: 5 }) + pointe(822, 128, 0, '#E8604C') +
+      mot(766, 110, 'dérive', { c: '#E8604C', t: 22 }) +
+      mot(240, 40, 'la particule avance en cycloïdes, à la vitesse E sur B', { t: 21, a: 'start' }));
+  },
+  choc(t) {
+    return svgBoite(
+      `<line x1="190" y1="198" x2="810" y2="198" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="322" cy="164" r="31" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="648" cy="164" r="31" fill="#1A75FF" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` +
+      mot(322, 116, 'm₁', { t: 26 }) + mot(648, 116, 'm₂', { t: 26 }) +
+      trait(366, 164, 448, 164, prog(t), { c: '#E8604C', w: 6 }) + pointe(454, 164, 0, '#E8604C') +
+      mot(408, 146, 'v₁', { c: '#E8604C', t: 25 }) +
+      trait(604, 164, 544, 164, prog(t), { c: '#1A75FF', w: 6 }) + pointe(538, 164, 180, '#1A75FF') +
+      mot(574, 146, 'v₂', { c: '#1A75FF', t: 25 }) +
+      mot(500, 256, 'pendant le choc, la quantité de mouvement totale se conserve', { t: 22 }));
+  },
+  sphere_fig(t) {
+    const cx = 500, cy = 190, R = 104, a = 48 * Math.PI / 180;
+    const mx = cx + R * Math.sin(a), my = cy - R * Math.cos(a);
+    const tx = Math.cos(a), ty = Math.sin(a);
+    return svgBoite(
+      `<line x1="290" y1="294" x2="710" y2="294" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="${cx}" cy="${cy}" r="${R}" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="${cx}" y1="${cy}" x2="${Math.round(mx)}" y2="${Math.round(my)}" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6"/>` +
+      `<path d="M ${cx} ${cy - 56} A 56 56 0 0 1 ${Math.round(cx + 56 * Math.sin(a))} ${Math.round(cy - 56 * Math.cos(a))}" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(cx + 40, cy - 66, 'θ₀', { t: 24, a: 'start' }) +
+      `<circle cx="${Math.round(mx)}" cy="${Math.round(my)}" r="10" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` +
+      trait(Math.round(mx), Math.round(my), Math.round(mx + 48 * tx), Math.round(my + 48 * ty), prog(t), { c: '#E8604C', w: 5 }) +
+      pointe(Math.round(mx + 54 * tx), Math.round(my + 54 * ty), 48, '#E8604C') +
+      mot(Math.round(mx + 66 * tx), Math.round(my + 66 * ty) + 8, 'v', { c: '#E8604C', t: 26, a: 'start' }) +
+      mot(356, 262, 'elle quitte la sphère pour cos θ₀ = 2/3', { t: 21, a: 'end' }));
+  },
   lignes_champ(t) {
     const p = prog(t), cx = 430, cy = 158;
     let traits = '';

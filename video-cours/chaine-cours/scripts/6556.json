@@ -1,0 +1,684 @@
+{
+ "cours": 6556,
+ "ecrans": {
+  "accueil": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "referentiel"
+   },
+   "kicker": "Point de départ",
+   "texte": "Quatre choix avant toute équation : le système étudié, le référentiel supposé galiléen, le bilan des forces appliquées, et les conditions initiales.",
+   "type": "phrase"
+  },
+  "amorti": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "regimes"
+   },
+   "kicker": "Oscillateur amorti",
+   "tex": [
+    "\\ddot{x} + 2\\lambda \\dot{x} + \\omega_0^2 x = 0, \\quad \\lambda = \\frac{\\alpha}{2m}",
+    "\\lambda < \\omega_0 : \\text{pseudo-périodique} \\qquad \\lambda = \\omega_0 : \\text{critique}",
+    "\\lambda > \\omega_0 : \\text{apériodique, retour lent}"
+   ],
+   "titre": "Trois régimes, selon λ et ω₀",
+   "type": "etape"
+  },
+  "balistique": {
+   "kicker": "Exemple · chocs et énergie",
+   "tex": [
+    "\\text{choc : } m\\, v_0 = (m + M)\\, V",
+    "\\text{montée : } \\frac{1}{2}(m + M) V^2 = (m + M)\\, g h",
+    "v_0 = \\frac{m + M}{m}\\, \\sqrt{2 g h}"
+   ],
+   "titre": "Le pendule balistique : deux phases, deux conservations",
+   "type": "etape"
+  },
+  "bilan": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "vecteurs"
+   },
+   "etapes": [
+    "Définir le système et le référentiel galiléen",
+    "Inventorier toutes les forces appliquées",
+    "Écrire ΣF = m a, puis projeter sur les axes",
+    "Résoudre, vérifier les unités et le sens physique"
+   ],
+   "kicker": "La méthode",
+   "type": "recap"
+  },
+  "cardioide": {
+   "kicker": "Exemple · cinématique",
+   "tex": [
+    "\\rho = a\\,(1 + \\cos\\varphi), \\quad \\varphi = \\omega t",
+    "\\vec{v}(0) = 2\\, a \\omega\\, \\vec{e}_\\varphi",
+    "\\vec{a}(0) = -3\\, a \\omega^2\\, \\vec{e}_\\rho",
+    "\\mathcal{R}_c(0) = \\dfrac{4a}{3}"
+   ],
+   "titre": "La cardioïde, à l'instant initial",
+   "type": "etape"
+  },
+  "champs_combines": {
+   "kicker": "Champs combinés",
+   "tex": [
+    "m \\dot{v}_x = q B\\, v_y",
+    "m \\dot{v}_y = -q B\\, v_x",
+    "m \\dot{v}_z = -m g"
+   ],
+   "titre": "Poids et champ magnétique : découpler avant tout",
+   "type": "etape"
+  },
+  "chocs": {
+   "kicker": "Collisions",
+   "note": "Choc élastique : l'énergie cinétique se conserve aussi · Choc mou : les deux corps repartent liés, à la même vitesse.",
+   "tex": "m_1 \\vec{v}_1 + m_2 \\vec{v}_2 = m_1 \\vec{v}_1' + m_2 \\vec{v}_2'",
+   "titre": "La quantité de mouvement se conserve",
+   "type": "formule",
+   "anim": {
+    "nom": "choc",
+    "hauteur": 240
+   }
+  },
+  "cinematique": {
+   "kicker": "Cinématique",
+   "note": "Le système de coordonnées suit la symétrie du problème : cartésiennes, cylindriques ou sphériques.",
+   "tex": "\\vec{v} = \\dfrac{d\\overrightarrow{OM}}{dt} \\qquad \\vec{a} = \\dfrac{d\\vec{v}}{dt}",
+   "titre": "Vitesse et accélération : deux dérivées",
+   "type": "formule"
+  },
+  "conservatives": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "puits"
+   },
+   "etapes": [
+    "Poids, près du sol : E_p = m g z",
+    "Ressort idéal : E_p = ½ k (ℓ − ℓ₀)²",
+    "Gravitation : E_p = −G M m / r",
+    "Coulomb : E_p = q Q / (4π ε₀ r)"
+   ],
+   "kicker": "Forces conservatives",
+   "type": "recap"
+  },
+  "cyclotron": {
+   "kicker": "Champ magnétique uniforme",
+   "tex": [
+    "v_\\parallel = \\text{constante}",
+    "R_c = \\frac{m\\, v_\\perp}{|q|\\, B}",
+    "\\omega_c = \\frac{|q|\\, B}{m} \\qquad T_c = \\frac{2\\pi m}{|q|\\, B}"
+   ],
+   "titre": "Le mouvement cyclotron : cercle et hélice",
+   "type": "etape"
+  },
+  "derive": {
+   "kicker": "Champs croisés",
+   "note": "Dérive commune à toutes les particules, quels que soient q et m · Trajectoire : un cercle emporté par la dérive · Si v₀ = E/B, la trajectoire est rectiligne.",
+   "tex": "v_d = \\dfrac{E}{B}",
+   "titre": "La dérive en E sur B",
+   "type": "formule",
+   "anim": {
+    "nom": "derive_fig",
+    "hauteur": 260
+   }
+  },
+  "em": {
+   "kicker": "Énergie mécanique",
+   "note": "E_m = E_c + E_p · Si aucune force non conservative ne travaille, E_m reste constante.",
+   "tex": "\\Delta E_m = W(\\vec{F}_{\\text{non cons}})",
+   "titre": "Elle ne varie que par les forces non conservatives",
+   "type": "formule"
+  },
+  "energie_osc": {
+   "kicker": "Énergie de l'oscillateur",
+   "note": "Échanges permanents entre énergie cinétique et potentielle · Sur une période, leurs valeurs moyennes sont égales.",
+   "tex": "E_m = \\dfrac{1}{2} m \\dot{x}^2 + \\dfrac{1}{2} k x^2 = \\dfrac{1}{2} k X_m^2",
+   "titre": "Un échange permanent, une somme constante",
+   "type": "formule"
+  },
+  "ex_plan": {
+   "kicker": "Exemple · dynamique",
+   "tex": [
+    "m = 2{,}0\\ \\text{kg}, \\quad \\alpha = 30^\\circ, \\quad v_0 = 5{,}0\\ \\text{m/s}, \\quad f = 0{,}20",
+    "a = -9{,}81 \\times (0{,}5 + 0{,}20 \\times 0{,}866) \\approx -6{,}60\\ \\text{m/s}^2 \\qquad x_{\\max} \\approx 1{,}89\\ \\text{m}",
+    "\\tan 30^\\circ \\approx 0{,}577 > f \\Rightarrow \\text{redescente, } |a| \\approx 3{,}21\\ \\text{m/s}^2"
+   ],
+   "titre": "La remontée d'un plan incliné avec frottements",
+   "type": "etape",
+   "anim": {
+    "nom": "plan_incline",
+    "hauteur": 120
+   }
+  },
+  "ex_proton": {
+   "kicker": "Exemple · force de Lorentz",
+   "tex": [
+    "B_0 = 0{,}1\\ \\text{T}, \\quad v_\\perp = 2{,}0 \\times 10^5\\ \\text{m/s}, \\quad v_\\parallel = 3{,}0 \\times 10^5\\ \\text{m/s}",
+    "R_c \\approx 2{,}1\\ \\text{cm} \\qquad T_c \\approx 6{,}56 \\times 10^{-7}\\ \\text{s}",
+    "\\text{pas} = v_\\parallel T_c \\approx 19{,}7\\ \\text{cm}"
+   ],
+   "titre": "L'hélice du proton",
+   "type": "etape",
+   "anim": {
+    "nom": "helice",
+    "hauteur": 120
+   }
+  },
+  "ex_ressort": {
+   "kicker": "Exemple · oscillateur",
+   "tex": [
+    "k = 100\\ \\text{N/m}, \\quad m = 400\\ \\text{g} \\qquad \\omega_0 = \\sqrt{\\frac{k}{m}} = 5\\sqrt{10} \\approx 15{,}81\\ \\text{rad/s}",
+    "z(t) = 0{,}10\\, \\cos(5\\sqrt{10}\\, t)\\ \\text{m}",
+    "T_0 \\approx 0{,}397\\ \\text{s} \\qquad E_m = 0{,}50\\ \\text{J}"
+   ],
+   "titre": "Le ressort vertical",
+   "type": "etape",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 105
+   }
+  },
+  "ex_satellite": {
+   "kicker": "Exemple · gravitation",
+   "tex": [
+    "m = 500\\ \\text{kg}, \\quad h = 400\\ \\text{km}, \\quad r = 6{,}78 \\times 10^6\\ \\text{m}",
+    "v_0 \\approx 7{,}66\\ \\text{km/s}",
+    "E_m \\approx -1{,}47 \\times 10^{10}\\ \\text{J}",
+    "\\Delta E \\approx 1{,}65 \\times 10^{10}\\ \\text{J depuis le sol}"
+   ],
+   "titre": "Mise en orbite d'un satellite de 500 kg",
+   "type": "etape"
+  },
+  "force": {
+   "kicker": "Oscillateur forcé",
+   "note": "Régime transitoire : il s'éteint en un temps de l'ordre de 1/λ · Régime permanent : oscillations à la pulsation ω de l'excitateur.",
+   "tex": "\\ddot{x} + 2\\lambda \\dot{x} + \\omega_0^2 x = \\dfrac{F_0}{m} \\cos(\\omega t)",
+   "titre": "Transitoire éteint, régime permanent imposé",
+   "type": "formule",
+   "anim": {
+    "nom": "resonance",
+    "hauteur": 170
+   }
+  },
+  "gravitation": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "orbite"
+   },
+   "kicker": "Gravitation universelle",
+   "note": "Force centrale attractive, en 1/r² · Énergie potentielle : E_p = −G M_T m / r, nulle à l'infini.",
+   "tex": "\\vec{F} = -\\dfrac{G M_T m}{r^2}\\, \\vec{e}_r",
+   "titre": "Une force centrale, deux conservations",
+   "type": "formule"
+  },
+  "kepler": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "kepler"
+   },
+   "etapes": [
+    "Orbites : des coniques, le corps central à un foyer",
+    "Aires balayées : dA/dt = L/(2m), constante",
+    "Périodes : T² = 4π² a³ / (G M)",
+    "Em négative : ellipse ; nulle : parabole ; positive : hyperbole"
+   ],
+   "kicker": "Lois de Kepler",
+   "type": "recap"
+  },
+  "liberation": {
+   "kicker": "Gravitation",
+   "note": "Énergie mécanique nulle à la surface : la trajectoire est parabolique, frontière entre orbite liée et fuite définitive.",
+   "tex": "v_{\\text{lib}} = \\sqrt{\\dfrac{2 G M_T}{R_T}}",
+   "titre": "La vitesse de libération",
+   "type": "formule"
+  },
+  "lorentz": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "aimant"
+   },
+   "kicker": "Force de Lorentz",
+   "note": "Perpendiculaire à la vitesse et au champ · Puissance nulle : la force magnétique ne travaille jamais, la norme de la vitesse est constante.",
+   "tex": "\\vec{F}_m = q\\, \\vec{v} \\wedge \\vec{B}",
+   "titre": "Une force qui courbe sans travailler",
+   "type": "formule"
+  },
+  "methode": {
+   "etapes": [
+    "Analyser : système, référentiel, forces, conditions initiales",
+    "Choisir la loi : Newton, énergie ou conservation",
+    "Projeter sur des axes adaptés, puis résoudre",
+    "Vérifier : homogénéité, limites, sens physique"
+   ],
+   "kicker": "Synthèse",
+   "type": "recap"
+  },
+  "newton": {
+   "kicker": "Dynamique",
+   "note": "Première loi : l'inertie définit les référentiels galiléens · Troisième loi : les actions réciproques, égales et opposées.",
+   "tex": "\\sum \\vec{F}_{\\text{ext}} = m\\, \\vec{a}",
+   "titre": "La relation fondamentale de la dynamique",
+   "type": "formule"
+  },
+  "oscillateur": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "pendule"
+   },
+   "kicker": "Oscillateur harmonique",
+   "note": "Force de rappel F = −k x autour d'un équilibre stable · Le même modèle décrit le ressort, le pendule aux petits angles et la molécule.",
+   "tex": "\\ddot{x} + \\omega_0^2\\, x = 0 \\qquad \\omega_0 = \\sqrt{\\dfrac{k}{m}}",
+   "titre": "L'équation canonique des petites oscillations",
+   "type": "formule"
+  },
+  "plan_incline": {
+   "kicker": "Dynamique · application",
+   "tex": [
+    "a = g \\sin\\alpha \\quad \\text{(sans frottement)}",
+    "a_{\\text{montée}} = -g\\,(\\sin\\alpha + f \\cos\\alpha) \\qquad a_{\\text{descente}} = -g\\,(\\sin\\alpha - f \\cos\\alpha)",
+    "\\text{immobilité : } \\tan\\alpha \\leq f_s"
+   ],
+   "titre": "Le plan incliné, avec ou sans frottement",
+   "type": "etape",
+   "anim": {
+    "nom": "plan_incline",
+    "hauteur": 130
+   }
+  },
+  "polaires": {
+   "kicker": "Cinématique",
+   "tex": [
+    "\\overrightarrow{OM} = \\rho\\, \\vec{e}_\\rho",
+    "\\vec{v} = \\dot{\\rho}\\, \\vec{e}_\\rho + \\rho \\dot{\\varphi}\\, \\vec{e}_\\varphi",
+    "\\vec{a}_\\rho = \\ddot{\\rho} - \\rho \\dot{\\varphi}^2",
+    "\\vec{a}_\\varphi = \\rho \\ddot{\\varphi} + 2 \\dot{\\rho} \\dot{\\varphi}"
+   ],
+   "titre": "Vitesse et accélération en coordonnées polaires",
+   "type": "etape"
+  },
+  "projectile": {
+   "kicker": "Dynamique · application",
+   "tex": [
+    "x(t) = v_0 \\cos\\alpha \\cdot t",
+    "y(t) = v_0 \\sin\\alpha \\cdot t - \\frac{1}{2} g t^2",
+    "y(x) = x \\tan\\alpha - \\frac{g}{2 v_0^2 \\cos^2\\alpha}\\, x^2"
+   ],
+   "titre": "Le projectile : équations horaires et trajectoire",
+   "type": "etape"
+  },
+  "projectile_grandeurs": {
+   "kicker": "Dynamique · application",
+   "tex": [
+    "x_p = \\frac{v_0^2 \\sin 2\\alpha}{g}",
+    "y_{\\max} = \\frac{v_0^2 \\sin^2\\alpha}{2g} \\qquad t_v = \\frac{2 v_0 \\sin\\alpha}{g}"
+   ],
+   "titre": "Portée, flèche et durée de vol",
+   "type": "etape"
+  },
+  "pseudo": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "amortie"
+   },
+   "kicker": "Oscillateur amorti",
+   "note": "Pseudo-période 2π/Ω, légèrement supérieure à T₀ · Facteur de qualité : Q = ω₀ / (2λ).",
+   "tex": "x(t) = A\\, e^{-\\lambda t} \\cos(\\Omega t + \\phi), \\quad \\Omega = \\sqrt{\\omega_0^2 - \\lambda^2}",
+   "titre": "Le régime pseudo-périodique",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Cinématique : v et a, dérivées du vecteur position",
+    "Dynamique : un bilan des forces, puis ΣF = m a",
+    "Énergie : ΔEc = ΣW ; Em conservée si tout est conservatif",
+    "Gravitation : v = √(GM/r) ; le signe de Em choisit l'orbite",
+    "Oscillateurs : pulsation propre ω₀ ; résonance près de ω₀"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "resonance_ex": {
+   "kicker": "Exemple · oscillateur forcé",
+   "tex": [
+    "\\omega_0 = 10\\ \\text{rad/s}, \\quad Q = 20",
+    "\\omega_r = \\omega_0 \\sqrt{1 - \\frac{1}{2 Q^2}} \\approx 9{,}994\\ \\text{rad/s}",
+    "\\omega = \\omega_0 \\ \\Rightarrow \\ \\varphi = -\\frac{\\pi}{2}"
+   ],
+   "titre": "La résonance, en chiffres",
+   "type": "etape"
+  },
+  "satellite": {
+   "kicker": "Gravitation",
+   "note": "La masse du satellite se simplifie dans la vitesse · Énergie mécanique négative : l'orbite est liée.",
+   "tex": "v_0 = \\sqrt{\\dfrac{G M_T}{r}} \\qquad E_m = -\\dfrac{1}{2}\\, \\dfrac{G M_T m}{r}",
+   "titre": "L'orbite circulaire : vitesse et énergie",
+   "type": "formule"
+  },
+  "solution": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "ondulation"
+   },
+   "kicker": "Oscillateur harmonique",
+   "note": "Amplitude X_m et phase φ fixées par les conditions initiales · Vitesse maximale : ω₀ X_m.",
+   "tex": "x(t) = X_m \\cos(\\omega_0 t + \\varphi) \\qquad T_0 = 2\\pi \\sqrt{\\dfrac{m}{k}}",
+   "titre": "La solution : une sinusoïde pure",
+   "type": "formule"
+  },
+  "sphere": {
+   "kicker": "Exemple · énergie",
+   "tex": [
+    "v^2 = 2 g R\\, (1 - \\cos\\theta) \\qquad \\text{décollage : } N = 0 \\ \\Rightarrow \\ \\cos\\theta_0 = \\frac{2}{3}",
+    "\\theta_0 \\approx 48^\\circ \\text{ depuis le sommet}"
+   ],
+   "titre": "La glissade sur une sphère fixe",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 150
+   }
+  },
+  "tec": {
+   "kicker": "Approche énergétique",
+   "note": "E_c = ½ m v² · Conséquence directe de la relation fondamentale, valable dans tout référentiel galiléen.",
+   "tex": "\\Delta E_c = \\sum W_{A \\to B}(\\vec{F})",
+   "titre": "Le théorème de l'énergie cinétique",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "trajectoire"
+   },
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Cinématique, dynamique, énergie, gravitation, champs et oscillateurs",
+   "titre": "Mécanique classique",
+   "type": "titre"
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Cinématique, lois de Newton, projectile et chocs"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : l'énergie d'abord, puis les champs. Nous relierons vitesses et positions par les conservations, des orbites de satellites aux particules chargées.",
+    "texte": "Partie 2 : énergie, gravitation et champ magnétique."
+   },
+   "sous_titre": "Énergie, gravitation et mouvement cyclotron"
+  },
+  {
+   "debut": "p26",
+   "pont": {
+    "dit": "Partie trois : la superposition des champs, puis les oscillateurs, libres, amortis ou forcés, jusqu'à la résonance.",
+    "texte": "Partie 3 : champs combinés et oscillateurs."
+   },
+   "sous_titre": "Champs superposés et oscillateurs"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mécanique classique, préparé pour le concours Polytechnique. Nous allons décrire, expliquer et prévoir les mouvements : du projectile au satellite, de la particule chargée dans un champ à l'oscillateur.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Mécanique classique : le programme du cours."
+  },
+  {
+   "dit": "Avant toute équation, quatre choix s'imposent : le système étudié, le référentiel, supposé galiléen, le bilan des forces appliquées, et les conditions initiales. C'est cette discipline, répétée à chaque problème, qui fait la différence le jour du concours.",
+   "ecran": "accueil",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Système, référentiel, forces, conditions initiales."
+  },
+  {
+   "dit": "La cinématique décrit le mouvement sans chercher ses causes : la vitesse est la dérivée du vecteur position par rapport au temps, et l'accélération est la dérivée de la vitesse. Tout le reste n'est que calcul de dérivées, à condition de bien choisir ses coordonnées.",
+   "ecran": "cinematique",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Vitesse et accélération : deux dérivations successives."
+  },
+  {
+   "dit": "En coordonnées polaires, la base tourne avec le point : la vitesse combine une composante radiale et une composante orthoradiale, et l'accélération fait apparaître le terme centripète et le terme de Coriolis. Oublier que la base est mobile est l'erreur classique du chapitre.",
+   "ecran": "polaires",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "En polaires, la base est mobile : attention en dérivant."
+  },
+  {
+   "dit": "Exemple type : un point décrit une cardioïde, avec un angle qui croît régulièrement. À l'instant initial, au point le plus éloigné, sa vitesse vaut deux a oméga, son accélération moins trois a oméga carré, et le rayon de courbure de sa trajectoire vaut quatre a sur trois.",
+   "ecran": "cardioide",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "La cardioïde : vitesse, accélération et rayon de courbure."
+  },
+  {
+   "dit": "La dynamique cherche les causes du mouvement. Elle tient en trois lois : l'inertie, qui définit les référentiels galiléens ; la relation fondamentale, qui relie la somme des forces à l'accélération ; et les actions réciproques, toujours égales et opposées.",
+   "ecran": "newton",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Les trois lois de Newton, le socle de la dynamique."
+  },
+  {
+   "dit": "La méthode du bilan des forces tient en quatre temps : définir le système et le référentiel, inventorier toutes les forces sans en oublier, écrire la relation fondamentale puis la projeter, et enfin résoudre en contrôlant unités et sens physique.",
+   "ecran": "bilan",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le bilan des forces : la méthode à répéter sans faute."
+  },
+  {
+   "dit": "Sur un plan incliné sans frottement, l'accélération vaut g sinus alpha, indépendante de la masse. Avec des frottements solides, le freinage s'ajoute à la montée et se retranche à la descente ; et le solide ne reste immobile que si tangente alpha ne dépasse pas le coefficient de frottement statique.",
+   "ecran": "plan_incline",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Plan incliné : g sin α, corrigé par le frottement."
+  },
+  {
+   "dit": "Exemple : un solide de deux kilogrammes lancé à cinq mètres par seconde sur un plan de trente degrés, coefficient de frottement zéro virgule vingt. Il freine à six virgule soixante mètres par seconde carré, s'arrête après un mètre quatre-vingt-neuf, puis redescend : tangente trente dépasse le coefficient.",
+   "ecran": "ex_plan",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Exemple : freinage, arrêt à 1,89 m, puis redescente."
+  },
+  {
+   "dit": "Soumis à son seul poids, le projectile a une accélération horizontale nulle et une accélération verticale constante. Deux intégrations successives donnent les équations horaires ; en éliminant le temps, la trajectoire apparaît : une parabole.",
+   "ecran": "projectile",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Le projectile : une parabole, par double intégration."
+  },
+  {
+   "dit": "De la trajectoire, on tire les grandeurs caractéristiques : la portée, maximale pour un angle de quarante-cinq degrés, la flèche, l'altitude la plus haute, et la durée du vol, double du temps de montée.",
+   "ecran": "projectile_grandeurs",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Portée, flèche et durée de vol."
+  },
+  {
+   "dit": "Pendant un choc, bref et intense, les forces extérieures sont négligeables devant les forces de contact : la quantité de mouvement totale du système se conserve. L'énergie cinétique, elle, ne se conserve que si le choc est parfaitement élastique.",
+   "ecran": "chocs",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Chocs : la quantité de mouvement se conserve toujours."
+  },
+  {
+   "dit": "Le pendule balistique enchaîne les deux conservations : pendant le choc, la quantité de mouvement donne la vitesse de l'ensemble ; pendant la montée, l'énergie mécanique la relie à la hauteur atteinte. On remonte ainsi à la vitesse du projectile, sans jamais la mesurer directement.",
+   "ecran": "balistique",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Pendule balistique : choc, puis montée."
+  },
+  {
+   "dit": "L'approche énergétique évite les vecteurs et les intégrations : le théorème de l'énergie cinétique affirme que la variation d'énergie cinétique entre deux points est égale à la somme des travaux de toutes les forces appliquées entre ces deux points.",
+   "ecran": "tec",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Le théorème de l'énergie cinétique."
+  },
+  {
+   "dit": "Une force est conservative lorsque son travail ne dépend que des positions de départ et d'arrivée. Elle dérive alors d'une énergie potentielle, et son travail vaut moins la variation de cette énergie. Quatre exemples à connaître par cœur : le poids, le ressort, la gravitation et la force de Coulomb.",
+   "ecran": "conservatives",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Forces conservatives et leurs énergies potentielles."
+  },
+  {
+   "dit": "L'énergie mécanique additionne l'énergie cinétique et les énergies potentielles. Elle ne varie que par le travail des forces non conservatives : frottements ou forces motrices. Sans elles, elle se conserve, et relie directement vitesses et positions.",
+   "ecran": "em",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "L'énergie mécanique : conservée, ou presque."
+  },
+  {
+   "dit": "Exemple : un point lâché sans vitesse du sommet d'une sphère fixe glisse sans frottement. La conservation de l'énergie donne sa vitesse à chaque angle ; la réaction du support s'annule quand cosinus thêta vaut deux tiers : le point décolle après environ quarante-huit degrés.",
+   "ecran": "sphere",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Exemple : décollage de la sphère à cos θ = 2/3."
+  },
+  {
+   "dit": "La gravitation est une force centrale, attractive, en un sur r carré. Dans un tel champ, deux grandeurs se conservent : le moment cinétique, car la force passe par le centre, et l'énergie mécanique, car la force est conservative.",
+   "ecran": "gravitation",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Gravitation : une force centrale en 1/r²."
+  },
+  {
+   "dit": "Ces deux conservations redonnent les lois de Kepler : des trajectoires coniques dont le corps central occupe un foyer, des aires balayées à rythme constant, et le carré de la période proportionnel au cube du demi-grand axe. Le signe de l'énergie mécanique décide du type d'orbite.",
+   "ecran": "kepler",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Les lois de Kepler, conséquences des conservations."
+  },
+  {
+   "dit": "Sur une orbite circulaire, la relation fondamentale projetée donne la vitesse : racine carrée de G M sur r. L'énergie mécanique vaut alors moins un demi de G M m sur r : négative, comme il se doit pour une orbite liée.",
+   "ecran": "satellite",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Orbite circulaire : vitesse et énergie."
+  },
+  {
+   "dit": "Exemple : placer un satellite de cinq cents kilogrammes en orbite circulaire basse, à quatre cents kilomètres d'altitude. Sa vitesse doit atteindre sept virgule soixante-six kilomètres par seconde, et l'énergie à fournir depuis le sol vaut environ un virgule soixante-cinq fois dix puissance dix joules.",
+   "ecran": "ex_satellite",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le prix d'une mise en orbite basse."
+  },
+  {
+   "dit": "Cas limite : si l'énergie mécanique s'annule dès le départ, la trajectoire devient une parabole. La vitesse correspondante est la vitesse de libération : la plus petite vitesse pour échapper définitivement à l'attraction terrestre.",
+   "ecran": "liberation",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "La vitesse de libération : l'énergie nulle."
+  },
+  {
+   "dit": "Une particule chargée en mouvement dans un champ magnétique subit la force de Lorentz, proportionnelle au produit vectoriel de sa vitesse par le champ. Toujours perpendiculaire à la vitesse, elle ne travaille jamais : la norme de la vitesse reste constante, seule la direction change.",
+   "ecran": "lorentz",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "La force de Lorentz : elle courbe sans accélérer."
+  },
+  {
+   "dit": "On décompose la vitesse par rapport au champ : la composante parallèle reste constante, la composante perpendiculaire tourne en cercle, à la pulsation cyclotron. La superposition des deux donne une hélice d'axe parallèle au champ ; remarquez que la période ne dépend pas de la vitesse.",
+   "ecran": "cyclotron",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Dans un champ uniforme : un cercle, plus une translation."
+  },
+  {
+   "dit": "Exemple : un proton pénètre dans un champ de zéro virgule un tesla, avec une vitesse inclinée. Il décrit une hélice de rayon deux virgule un centimètres, de période environ zéro virgule soixante-six microseconde, et dont le pas, l'avance par tour, vaut dix-neuf virgule sept centimètres.",
+   "ecran": "ex_proton",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Exemple : rayon 2,1 cm, pas 19,7 cm."
+  },
+  {
+   "dit": "Quand le poids s'ajoute au champ magnétique, on ne superpose pas les trajectoires, on additionne les forces. Avec le champ selon l'axe vertical, le mouvement vertical se découple : c'est une chute libre. Dans le plan horizontal, la vitesse obéit à une équation d'oscillateur, à la pulsation cyclotron.",
+   "ecran": "champs_combines",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Champs combinés : le vertical se découple."
+  },
+  {
+   "dit": "Avec un champ électrique croisé sur le champ magnétique, la trajectoire devient une cycloïde : un mouvement circulaire emporté par une dérive régulière, à la vitesse E sur B, identique pour toutes les particules. Si la vitesse initiale égale cette dérive, la particule file tout droit : c'est le sélecteur de vitesses.",
+   "ecran": "derive",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Champs croisés : la dérive en E/B."
+  },
+  {
+   "dit": "Dernier grand modèle du cours : dès qu'une force de rappel est proportionnelle à l'écart à une position d'équilibre stable, l'équation du mouvement prend la forme canonique de l'oscillateur harmonique, avec la pulsation propre racine de k sur m.",
+   "ecran": "oscillateur",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "L'oscillateur harmonique : l'équation canonique."
+  },
+  {
+   "dit": "La solution est une sinusoïde pure, de pulsation propre : l'amplitude et la phase à l'origine sont entièrement déterminées par les conditions initiales, et la période propre vaut deux pi racine de m sur k.",
+   "ecran": "solution",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Solution sinusoïdale et période propre."
+  },
+  {
+   "dit": "Sans frottement, l'énergie mécanique de l'oscillateur se conserve : elle vaut un demi de k fois l'amplitude au carré, et passe sans cesse de la forme cinétique à la forme potentielle, au rythme des oscillations.",
+   "ecran": "energie_osc",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "L'énergie de l'oscillateur : constante."
+  },
+  {
+   "dit": "Exemple : un ressort de raideur cent newtons par mètre porte une masse de quatre cents grammes. Écartée de dix centimètres et lâchée sans vitesse, elle oscille avec une période d'environ zéro virgule quatre seconde, pour une énergie mécanique d'un demi-joule : le poids n'a fait que déplacer la position d'équilibre.",
+   "ecran": "ex_ressort",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le ressort vertical oscille autour de son équilibre."
+  },
+  {
+   "dit": "Un frottement fluide, proportionnel à la vitesse, ajoute à l'équation le terme deux lambda x point. Avant tout calcul, comparez lambda et la pulsation propre : plus petit, le régime est pseudo-périodique ; égal, il est critique ; plus grand, il est apériodique et lent.",
+   "ecran": "amorti",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "Amortissement : tout se joue entre λ et ω₀."
+  },
+  {
+   "dit": "En régime pseudo-périodique, l'oscillation survit, mais son amplitude décroît en exponentielle, avec le temps caractéristique un sur lambda. La pseudo-pulsation est légèrement inférieure à la pulsation propre : le frottement ralentit l'oscillation en même temps qu'il l'éteint.",
+   "ecran": "pseudo",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "Pseudo-périodique : l'oscillation qui s'éteint."
+  },
+  {
+   "dit": "Une force extérieure périodique change le problème : la réponse est la somme d'un régime transitoire, qui s'éteint exponentiellement, et d'un régime permanent, où l'oscillateur finit par vibrer à la pulsation de l'excitateur, en oubliant sa pulsation propre.",
+   "ecran": "force",
+   "id": "p34",
+   "pause_apres": 0.6,
+   "texte": "Oscillateur forcé : transitoire plus permanent."
+  },
+  {
+   "dit": "L'amplitude du régime permanent culmine à la pulsation de résonance, très proche de la pulsation propre. Exemple : pulsation propre de dix radians par seconde, facteur de qualité vingt : la résonance tombe à neuf virgule neuf cent quatre-vingt-quatorze radians par seconde. À la pulsation propre, le déphasage vaut moins pi sur deux.",
+   "ecran": "resonance_ex",
+   "id": "p35",
+   "pause_apres": 0.7,
+   "texte": "Résonance : le pic d'amplitude, près de ω₀."
+  },
+  {
+   "dit": "Face à un problème complet, la démarche tient en quatre temps : analyser le système et ses forces, choisir la loi adaptée au contexte, projeter sur des axes judicieux et résoudre, puis vérifier l'homogénéité et le sens physique de chaque résultat.",
+   "ecran": "methode",
+   "id": "p36",
+   "pause_apres": 0.6,
+   "texte": "La démarche complète, en quatre temps."
+  },
+  {
+   "dit": "Retenez les piliers du cours : décrire par les dérivées, expliquer par les forces, simplifier par l'énergie et les conservations ; et reconnaître les deux grandes familles de mouvements, les orbites gouvernées par l'énergie, et les oscillations gouvernées par la pulsation propre.",
+   "ecran": "recap",
+   "id": "p37",
+   "pause_apres": 0.5,
+   "texte": "Mécanique classique : les piliers à retenir."
+  }
+ ],
+ "titre": "Mécanique classique"
+}
