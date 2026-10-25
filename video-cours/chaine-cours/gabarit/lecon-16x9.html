@@ -525,6 +525,34 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  graphes_cinematique_fig(t) {
+    const panneau = (x0, titre, courbes) => {
+      let s = `<line x1="${x0}" y1="66" x2="${x0}" y2="212" stroke="currentColor" stroke-width="3.5"/>` +
+        `<line x1="${x0}" y1="212" x2="${x0 + 268}" y2="212" stroke="currentColor" stroke-width="3.5"/>` +
+        mot(x0 + 134, 44, titre, { t: 21 });
+      for (const c of courbes) s += c(x0);
+      return s;
+    };
+    const droite = (x0, y1, y2, coul, tiret) =>
+      `<line x1="${x0 + 14}" y1="${y1}" x2="${x0 + 252}" y2="${y2}" stroke="${coul}" stroke-width="4" ${tiret ? 'stroke-dasharray="8 6"' : ''}/>`;
+    const parabole = (x0) => {
+      let pts = '';
+      for (let k = 0; k <= 30; k++) {
+        const u = k / 30, x = x0 + 14 + 238 * u, y = 192 - 88 * u * u;
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      panneau(56, 'position x(t)', [x0 => droite(x0, 192, 104, '#E8604C', true), parabole]) +
+      panneau(366, 'vitesse v(t)', [x0 => droite(x0, 122, 122, '#E8604C', true), x0 => droite(x0, 192, 86, '#1A75FF', false)]) +
+      panneau(676, 'accélération a(t)', [x0 => droite(x0, 206, 206, '#E8604C', true), x0 => droite(x0, 122, 122, '#1A75FF', false)]) +
+      `<line x1="196" y1="246" x2="248" y2="246" stroke="#E8604C" stroke-width="4" stroke-dasharray="8 6"/>` +
+      mot(258, 254, 'MRU', { c: '#E8604C', t: 22, a: 'start' }) +
+      `<line x1="386" y1="246" x2="438" y2="246" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(448, 254, 'MRUA', { c: '#1A75FF', t: 22, a: 'start' }) +
+      mot(500, 290, 'les trois graphes se lisent ensemble : des pentes, des aires', { t: 20 }));
+  },
   puits_modes_fig(t) {
     const mode = (n, yc, coul) => {
       let pts = '';

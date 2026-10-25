@@ -1,0 +1,586 @@
+{
+ "cours": 6044,
+ "ecrans": {
+  "acceleration": {
+   "kicker": "Accélération",
+   "note": "En mètres par seconde carrée · accélérer, freiner, mais aussi changer de direction : la vitesse est un vecteur, toute variation compte",
+   "tex": "\\bar{a} = \\frac{\\Delta v}{\\Delta t} = \\frac{v_f - v_i}{\\Delta t}",
+   "titre": "La variation de la vitesse",
+   "type": "formule"
+  },
+  "circulaire": {
+   "kicker": "Mouvement circulaire",
+   "tex": [
+    "f = \\frac{1}{T} \\qquad \\omega = \\frac{2\\pi}{T}",
+    "v = \\omega\\, r",
+    "a_c = \\frac{v^2}{r} = \\omega^2 r"
+   ],
+   "titre": "Les grandeurs du mouvement circulaire",
+   "type": "etape"
+  },
+  "deplacement": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "vecteurs"
+   },
+   "kicker": "Déplacement",
+   "tex": [
+    "\\text{distance} = 5 + 3 = 8\\ \\text{m}",
+    "|\\Delta \\vec{r}| = \\sqrt{5^2 + 3^2} = \\sqrt{34}",
+    "|\\Delta \\vec{r}| \\approx 5{,}8\\ \\text{m vers le nord-est}"
+   ],
+   "titre": "Cinq mètres à l'est, puis trois mètres au nord",
+   "type": "etape"
+  },
+  "energies": {
+   "kicker": "Énergie cinétique et potentielle",
+   "tex": [
+    "E_c = \\frac{1}{2} m v^2",
+    "E_p = m g h",
+    "E_m = E_c + E_p"
+   ],
+   "titre": "Les deux formes de l'énergie mécanique",
+   "type": "etape"
+  },
+  "eq_projectile": {
+   "kicker": "Les équations du projectile",
+   "tex": [
+    "x = v_{0x}\\, t",
+    "y = v_{0y}\\, t - \\frac{1}{2} g t^2"
+   ],
+   "titre": "La position à chaque instant",
+   "type": "etape"
+  },
+  "ex_accel": {
+   "kicker": "Exemple",
+   "tex": [
+    "v_i = 5\\ \\text{m/s} \\qquad v_f = 15\\ \\text{m/s}",
+    "\\Delta t = 5\\ \\text{s}",
+    "\\bar{a} = \\frac{15 - 5}{5} = 2\\ \\text{m/s}^2"
+   ],
+   "titre": "Un cycliste qui accélère",
+   "type": "etape"
+  },
+  "ex_collision": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "choc"
+   },
+   "kicker": "Exemple · collision",
+   "tex": [
+    "p_{\\text{avant}} = 1 \\times 3 + 2 \\times 0 = 3",
+    "p_{\\text{après}} = (1 + 2)\\, v'",
+    "v' = \\frac{3}{3} = 1\\ \\text{m/s}"
+   ],
+   "titre": "Deux chariots qui s'accrochent",
+   "type": "etape"
+  },
+  "ex_derivee": {
+   "kicker": "Exemple",
+   "tex": [
+    "x(t) = 2t^2 + 5t + 1",
+    "v(t) = 4t + 5",
+    "v(2) = 13\\ \\text{m/s}"
+   ],
+   "titre": "Une position qui dépend du temps",
+   "type": "etape"
+  },
+  "ex_energie": {
+   "kicker": "Exemple · conservation",
+   "tex": [
+    "m g h = \\frac{1}{2} m v^2",
+    "v = \\sqrt{2 g h}",
+    "v = \\sqrt{2 \\times 9{,}8 \\times 5} \\approx 9{,}9\\ \\text{m/s}"
+   ],
+   "titre": "Une masse lâchée de cinq mètres",
+   "type": "etape"
+  },
+  "ex_javelot": {
+   "kicker": "Exemple",
+   "tex": [
+    "v_{0x} = v_{0y} = 25 \\cos 45^\\circ \\approx 17{,}7\\ \\text{m/s}",
+    "t_{\\text{vol}} = \\frac{2\\, v_{0y}}{g} \\approx 3{,}6\\ \\text{s}",
+    "x_{max} = v_{0x}\\, t_{\\text{vol}} \\approx 63{,}7\\ \\text{m}"
+   ],
+   "titre": "Le lancer de javelot",
+   "type": "etape"
+  },
+  "ex_mrua": {
+   "kicker": "Exemple",
+   "tex": [
+    "v_0 = 0 \\qquad a = 2\\ \\text{m/s}^2 \\qquad t = 5\\ \\text{s}",
+    "v = 0 + 2 \\times 5 = 10\\ \\text{m/s}",
+    "x = \\frac{1}{2} \\times 2 \\times 5^2 = 25\\ \\text{m}"
+   ],
+   "titre": "Une voiture qui démarre",
+   "type": "etape"
+  },
+  "ex_newton": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 1000\\ \\text{kg}",
+    "a = \\frac{20 - 0}{5} = 4\\ \\text{m/s}^2",
+    "F = m\\, a = 1000 \\times 4 = 4000\\ \\text{N}"
+   ],
+   "titre": "La force qui lance une voiture",
+   "type": "etape"
+  },
+  "ex_roue": {
+   "kicker": "Exemple",
+   "tex": [
+    "r = 0{,}5\\ \\text{m} \\qquad f = 10\\ \\text{tours/s}",
+    "\\omega = 2\\pi f \\approx 62{,}8\\ \\text{rad/s}",
+    "v = \\omega r \\approx 31{,}4\\ \\text{m/s}",
+    "a_c = \\frac{v^2}{r} \\approx 1{,}97 \\times 10^3\\ \\text{m/s}^2"
+   ],
+   "titre": "Une roue qui tourne",
+   "type": "etape"
+  },
+  "ex_travail": {
+   "kicker": "Exemple",
+   "tex": [
+    "F = 50\\ \\text{N} \\qquad d = 5\\ \\text{m} \\qquad \\theta = 0^\\circ",
+    "W = F\\, d\\, \\cos\\theta",
+    "W = 50 \\times 5 \\times 1 = 250\\ \\text{J}"
+   ],
+   "titre": "Pousser une valise",
+   "type": "etape"
+  },
+  "ex_vitesse": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\Delta x = 25 - 0 = 25\\ \\text{m}",
+    "\\Delta t = 5\\ \\text{s}",
+    "\\bar{v} = \\frac{25}{5} = 5\\ \\text{m/s}"
+   ],
+   "titre": "Une voiture sur une route droite",
+   "type": "etape"
+  },
+  "fusee": {
+   "kicker": "Application · la fusée",
+   "note": "F : poussée des moteurs, vers le haut · le poids m g s'y oppose — la fusée ne décolle que si la poussée dépasse le poids",
+   "tex": "a = \\frac{F - m g}{m}",
+   "titre": "Poussée contre poids",
+   "type": "formule"
+  },
+  "impulsion": {
+   "kicker": "Impulsion",
+   "note": "L'impulsion d'une force égale la variation de quantité de mouvement · airbags et ceintures allongent la durée du choc pour réduire la force subie",
+   "tex": "I = F\\, \\Delta t = \\Delta p",
+   "titre": "Une force, pendant une durée",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "vecteurs"
+   },
+   "kicker": "Introduction",
+   "texte": "Cinématique : décrire le mouvement. Dynamique : l'expliquer par ses causes.",
+   "type": "phrase"
+  },
+  "lois_newton": {
+   "etapes": [
+    "Inertie : sans force, repos ou mouvement rectiligne uniforme",
+    "Dynamique : somme des forces égale masse fois accélération",
+    "Action-réaction : forces égales et opposées, sur deux corps"
+   ],
+   "kicker": "Les lois de Newton",
+   "titre": "Trois lois pour expliquer le mouvement",
+   "type": "recap"
+  },
+  "methode": {
+   "etapes": [
+    "Choisir le système étudié",
+    "Dessiner le diagramme corps libre : toutes les forces",
+    "Choisir des axes adaptés au problème",
+    "Projeter la deuxième loi sur chaque axe",
+    "Résoudre, puis vérifier que le résultat a un sens"
+   ],
+   "kicker": "Méthode",
+   "titre": "Résoudre un problème de dynamique",
+   "type": "recap"
+  },
+  "mru": {
+   "kicker": "Mouvement rectiligne uniforme",
+   "note": "Vitesse constante, accélération nulle · x₀ : position à l'instant initial, v : vitesse, t : temps écoulé",
+   "tex": "x(t) = x_0 + v\\, t",
+   "titre": "En ligne droite, à vitesse constante",
+   "type": "formule"
+  },
+  "mru_graphes": {
+   "etapes": [
+    "Position-temps : une droite, dont la pente est la vitesse",
+    "Vitesse-temps : une droite horizontale à la hauteur v",
+    "Accélération-temps : une droite horizontale à zéro"
+   ],
+   "kicker": "Les graphes du MRU",
+   "titre": "Trois graphes à lire d'un coup d'œil",
+   "type": "recap",
+   "anim": {
+    "nom": "graphes_cinematique_fig",
+    "hauteur": 150
+   }
+  },
+  "mrua": {
+   "kicker": "Mouvement rectiligne uniformément accéléré",
+   "tex": [
+    "v = v_0 + a\\, t",
+    "x = x_0 + v_0 t + \\frac{1}{2} a t^2",
+    "v^2 = v_0^2 + 2a\\, (x - x_0)"
+   ],
+   "titre": "Les trois équations du MRUA",
+   "type": "etape",
+   "anim": {
+    "nom": "graphes_cinematique_fig",
+    "hauteur": 120
+   }
+  },
+  "newton2": {
+   "kicker": "Deuxième loi de Newton",
+   "note": "F en newtons, m en kilogrammes, a en mètres par seconde carrée · plus la masse est grande, plus il faut de force pour la même accélération",
+   "tex": "\\sum \\vec{F} = m\\, \\vec{a}",
+   "titre": "La relation fondamentale de la dynamique",
+   "type": "formule"
+  },
+  "plan_incline": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "plan_incline"
+   },
+   "kicker": "Application · plan incliné",
+   "tex": [
+    "\\sum F_x = m g \\sin\\theta = m a",
+    "\\sum F_y = N - m g \\cos\\theta = 0",
+    "a = g \\sin\\theta"
+   ],
+   "titre": "Un bloc qui glisse sans frottement",
+   "type": "etape"
+  },
+  "position": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "referentiel"
+   },
+   "kicker": "Position et référentiel",
+   "texte": "Pas de position sans référentiel : on repère l'objet par ses coordonnées dans un repère choisi.",
+   "type": "phrase"
+  },
+  "projectile": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "trajectoire"
+   },
+   "kicker": "Mouvement d'un projectile",
+   "texte": "Deux mouvements indépendants : horizontalement, une vitesse constante ; verticalement, une chute libre. Leur combinaison dessine une parabole.",
+   "type": "phrase"
+  },
+  "quantite": {
+   "kicker": "Quantité de mouvement",
+   "note": "Unité : le kilogramme mètre par seconde, dans le sens de la vitesse · à vitesse égale, la boule de bowling emporte bien plus de quantité de mouvement que la balle de tennis",
+   "tex": "\\vec{p} = m\\, \\vec{v}",
+   "titre": "La masse en mouvement",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "MRU : x = x₀ + vt, vitesse constante, a = 0",
+    "MRUA : v = v₀ + at et x = x₀ + v₀t + ½ at²",
+    "Newton : ∑F = ma, après un diagramme corps libre",
+    "Énergie mécanique et quantité de mouvement se conservent",
+    "Circulaire : a_c = v²/r ; projectile : une parabole"
+   ],
+   "kicker": "À retenir",
+   "titre": "Généralités sur le mouvement",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "trajectoire"
+   },
+   "kicker": "Physique",
+   "sous": "Décrire le mouvement, puis l'expliquer : forces, énergie et quantité de mouvement",
+   "titre": "Généralités sur le mouvement",
+   "type": "titre"
+  },
+  "travail": {
+   "kicker": "Travail d'une force",
+   "note": "θ : angle entre la force et le déplacement · travail positif si la force aide le mouvement, négatif si elle le freine, nul si elle lui est perpendiculaire",
+   "tex": "W = \\vec{F} \\cdot \\vec{d} = F\\, d\\, \\cos\\theta",
+   "titre": "Une force qui déplace travaille",
+   "type": "formule"
+  },
+  "vitesse_inst": {
+   "kicker": "Vitesse instantanée",
+   "note": "La dérivée de la position par rapport au temps · sur un graphe position-temps, c'est la pente de la tangente à la courbe — ce qu'affiche le compteur d'une voiture",
+   "tex": "v = \\frac{dx}{dt}",
+   "titre": "La vitesse à un instant précis",
+   "type": "formule"
+  },
+  "vitesse_moy": {
+   "kicker": "Vitesse moyenne",
+   "note": "Δx : déplacement, en mètres · Δt : durée, en secondes · v en mètres par seconde — une vue d'ensemble, qui ne dit rien des variations en route",
+   "tex": "\\bar{v} = \\frac{\\Delta x}{\\Delta t}",
+   "titre": "Le déplacement par unité de temps",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Décrire le mouvement : position, vitesse, accélération"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les mouvements modèles, rectilignes puis circulaire, et les lois de Newton qui expliquent le mouvement.",
+    "texte": "Partie 2 : mouvements modèles et lois de Newton."
+   },
+   "sous_titre": "Mouvements modèles et lois de Newton"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : le travail et l'énergie, la quantité de mouvement, puis les projectiles.",
+    "texte": "Partie 3 : travail, énergie, quantité de mouvement et projectiles."
+   },
+   "sous_titre": "Travail, énergie, quantité de mouvement et projectiles"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux généralités sur le mouvement : comment décrire un déplacement avec précision, position, vitesse, accélération, puis comment l'expliquer par les forces, l'énergie et la quantité de mouvement.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Généralités sur le mouvement."
+  },
+  {
+   "dit": "Deux questions guident tout le cours. Comment le mouvement se déroule-t-il : c'est la cinématique, qui le décrit sans s'occuper de ses causes. Et pourquoi se déroule-t-il ainsi : c'est la dynamique, qui remonte aux forces responsables.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Cinématique : décrire. Dynamique : expliquer."
+  },
+  {
+   "dit": "Avant tout mouvement, il faut un point de vue : le référentiel. La position d'un objet est sa localisation par rapport à ce repère, par exemple trois coordonnées dans l'espace. Un ballon posé sur un terrain se repère ainsi à cinquante mètres dans un sens, et vingt-cinq dans l'autre, au niveau du sol.",
+   "ecran": "position",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La position se définit toujours par rapport à un référentiel."
+  },
+  {
+   "dit": "Attention à ne pas confondre distance et déplacement. Une personne marche cinq mètres vers l'est, puis trois mètres vers le nord : elle a parcouru huit mètres, mais son déplacement, la flèche droite de son point de départ à son point d'arrivée, ne vaut qu'environ cinq virgule huit mètres, vers le nord-est.",
+   "ecran": "deplacement",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Distance parcourue : huit mètres. Déplacement : environ cinq virgule huit mètres."
+  },
+  {
+   "dit": "La vitesse moyenne mesure le déplacement effectué par unité de temps : c'est le rapport du déplacement sur la durée. Elle se lit en mètres par seconde, mais elle reste une vue d'ensemble : elle ne raconte ni les arrêts, ni les accélérations du trajet.",
+   "ecran": "vitesse_moy",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Vitesse moyenne : le déplacement divisé par la durée."
+  },
+  {
+   "dit": "Premier exemple, tiré du cours : une voiture roule en ligne droite. À l'instant zéro, elle est à la position zéro ; cinq secondes plus tard, elle est à vingt-cinq mètres. Son déplacement vaut donc vingt-cinq mètres, et sa vitesse moyenne, vingt-cinq divisé par cinq, vaut cinq mètres par seconde.",
+   "ecran": "ex_vitesse",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Exemple : vingt-cinq mètres en cinq secondes, cinq mètres par seconde."
+  },
+  {
+   "dit": "La vitesse moyenne ne suffit pas : le compteur d'une voiture donne la vitesse à chaque instant. Cette vitesse instantanée est la dérivée de la position par rapport au temps, et sur un graphe position-temps, elle se lit comme la pente de la tangente à la courbe.",
+   "ecran": "vitesse_inst",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Vitesse instantanée : la dérivée de la position, pente de la tangente."
+  },
+  {
+   "dit": "Exemple : la position d'un objet suit la loi deux t au carré, plus cinq t, plus un, en mètres. En dérivant par rapport au temps, on obtient sa vitesse : quatre t, plus cinq. À deux secondes, elle vaut treize mètres par seconde.",
+   "ecran": "ex_derivee",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Exemple : dériver la position donne la vitesse instantanée."
+  },
+  {
+   "dit": "La vitesse peut elle-même changer : c'est l'accélération, la variation de vitesse rapportée à la durée, en mètres par seconde carrée. Accélérer, freiner, mais aussi tourner : dès que le vecteur vitesse change, de valeur ou de direction, il y a accélération.",
+   "ecran": "acceleration",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Accélération : la variation de vitesse par unité de temps."
+  },
+  {
+   "dit": "Exemple du cours : un cycliste passe de cinq mètres par seconde à quinze mètres par seconde en cinq secondes. Sa variation de vitesse vaut dix mètres par seconde ; divisée par cinq secondes, son accélération moyenne vaut deux mètres par seconde carrée.",
+   "ecran": "ex_accel",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Exemple : de cinq à quinze mètres par seconde en cinq secondes."
+  },
+  {
+   "dit": "Le mouvement le plus simple est le mouvement rectiligne uniforme : une trajectoire droite, et une vitesse qui ne change jamais. La position croît alors régulièrement : position égale position initiale, plus vitesse fois temps, et l'accélération est nulle.",
+   "ecran": "mru",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "MRU : trajectoire droite, vitesse constante, accélération nulle."
+  },
+  {
+   "dit": "Ces propriétés se lisent sur trois graphes. Le graphe position-temps est une droite dont la pente est la vitesse. Le graphe vitesse-temps est une horizontale, à la hauteur de la vitesse. Et le graphe accélération-temps reste collé à zéro.",
+   "ecran": "mru_graphes",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Les trois graphes du MRU : droite, horizontale, zéro."
+  },
+  {
+   "dit": "Un cran au-dessus : le mouvement rectiligne uniformément accéléré. L'accélération reste constante, la vitesse change donc régulièrement, et trois équations relient position, vitesse, accélération et temps : ce sont les outils de presque tous les exercices de cinématique.",
+   "ecran": "mrua",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "MRUA : accélération constante, trois équations fondamentales."
+  },
+  {
+   "dit": "Exemple du cours : une voiture démarre de l'arrêt et accélère à deux mètres par seconde carrée pendant cinq secondes. Sa vitesse finale vaut zéro plus deux fois cinq, soit dix mètres par seconde. Et la distance parcourue vaut un demi fois deux fois vingt-cinq, soit vingt-cinq mètres.",
+   "ecran": "ex_mrua",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Exemple : dix mètres par seconde et vingt-cinq mètres en cinq secondes."
+  },
+  {
+   "dit": "Pour expliquer le mouvement, Newton a formulé trois lois. L'inertie : sans force, un corps garde son repos ou son mouvement rectiligne uniforme. La dynamique : ce sont les forces qui produisent l'accélération. Et l'action-réaction : toute force exercée appelle une force opposée.",
+   "ecran": "lois_newton",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Inertie, dynamique, action-réaction : les trois lois de Newton."
+  },
+  {
+   "dit": "La deuxième loi est la relation fondamentale de la dynamique : la somme vectorielle des forces appliquées à un corps égale sa masse multipliée par son accélération. Doublez la force, vous doublez l'accélération ; doublez la masse, elle est divisée par deux.",
+   "ecran": "newton2",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "La somme des forces égale la masse fois l'accélération."
+  },
+  {
+   "dit": "Exemple : une voiture de mille kilogrammes passe de zéro à vingt mètres par seconde en cinq secondes. Son accélération vaut vingt divisé par cinq, soit quatre mètres par seconde carrée. La force nette nécessaire vaut donc mille fois quatre : quatre mille newtons.",
+   "ecran": "ex_newton",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Exemple : mille kilogrammes, quatre mètres par seconde carrée, quatre mille newtons."
+  },
+  {
+   "dit": "Pour appliquer ces lois sans se tromper, le cours donne une méthode : choisir le système étudié, dessiner le diagramme corps libre avec toutes les forces, choisir des axes adaptés, projeter la deuxième loi sur chaque axe, puis résoudre et vérifier le sens du résultat.",
+   "ecran": "methode",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La méthode : système, diagramme corps libre, axes, projections, résolution."
+  },
+  {
+   "dit": "Premier terrain d'application : un bloc qui glisse sans frottement sur un plan incliné d'un angle thêta. On projette le poids sur les axes du plan : le long de la pente, l'accélération du bloc vaut simplement g fois sinus thêta, indépendante de sa masse.",
+   "ecran": "plan_incline",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Plan incliné sans frottement : l'accélération vaut g sinus thêta."
+  },
+  {
+   "dit": "Autre application : une fusée poussée vers le haut par ses moteurs, pendant que son poids la tire vers le bas. Son accélération vaut la poussée moins le poids, le tout divisé par la masse : tant que la poussée ne dépasse pas le poids, elle ne décolle pas.",
+   "ecran": "fusee",
+   "id": "p20",
+   "pause_apres": 0.7,
+   "texte": "La fusée : poussée moins poids, divisé par la masse."
+  },
+  {
+   "dit": "Quittons la ligne droite pour le cercle. Un mouvement circulaire se décrit par son rayon, sa période, la durée d'un tour complet, et sa fréquence, le nombre de tours par seconde. La vitesse angulaire vaut deux pi sur la période, et la vitesse linéaire, oméga fois le rayon.",
+   "ecran": "circulaire",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Circulaire : période, fréquence, vitesse angulaire et vitesse linéaire."
+  },
+  {
+   "dit": "Exemple : une roue de cinquante centimètres de rayon tourne à dix tours par seconde. Sa vitesse angulaire vaut deux pi fois dix, environ soixante-deux virgule huit radians par seconde ; un point du bord file à environ trente et un virgule quatre mètres par seconde, avec une accélération centripète de près de deux mille mètres par seconde carrée.",
+   "ecran": "ex_roue",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la roue, ses vitesses et son accélération centripète."
+  },
+  {
+   "dit": "Une force qui déplace un objet effectue un travail. Ce travail vaut le produit de la force, du déplacement et du cosinus de l'angle entre les deux : maximal quand la force pousse dans le sens du mouvement, nul quand elle lui est perpendiculaire, négatif quand elle le freine.",
+   "ecran": "travail",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Travail : force fois déplacement fois cosinus de l'angle."
+  },
+  {
+   "dit": "Exemple du cours : vous poussez une valise avec une force de cinquante newtons, parallèle au sol, sur cinq mètres. L'angle vaut zéro, son cosinus vaut un : le travail effectué vaut cinquante fois cinq, soit deux cent cinquante joules.",
+   "ecran": "ex_travail",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Exemple : cinquante newtons sur cinq mètres, deux cent cinquante joules."
+  },
+  {
+   "dit": "Le travail modifie l'énergie du mouvement, l'énergie cinétique, qui vaut un demi de la masse fois la vitesse au carré. À quoi s'ajoute l'énergie potentielle de pesanteur, masse fois g fois hauteur. Leur somme forme l'énergie mécanique.",
+   "ecran": "energies",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Énergie cinétique plus énergie potentielle : l'énergie mécanique."
+  },
+  {
+   "dit": "Quand seules des forces comme le poids travaillent, l'énergie mécanique se conserve : l'une se transforme en l'autre. Une masse lâchée de cinq mètres convertit toute son énergie potentielle en énergie cinétique : sa vitesse à l'arrivée vaut racine de deux g h, environ neuf virgule neuf mètres par seconde, quelle que soit sa masse.",
+   "ecran": "ex_energie",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Exemple : lâchée de cinq mètres, environ neuf virgule neuf mètres par seconde."
+  },
+  {
+   "dit": "Autre grandeur clé : la quantité de mouvement, produit de la masse par la vitesse, dirigée comme elle. À vitesse égale, une boule de bowling de sept kilogrammes en emporte quatorze unités, contre zéro virgule douze pour une balle de tennis : c'est elle qui sera la plus dure à arrêter.",
+   "ecran": "quantite",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Quantité de mouvement : la masse fois la vitesse."
+  },
+  {
+   "dit": "Une force appliquée pendant une durée produit une impulsion, et cette impulsion égale exactement la variation de quantité de mouvement. C'est le secret des airbags : allonger la durée du choc, c'est réduire la force subie, à variation égale.",
+   "ecran": "impulsion",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Impulsion : la force fois la durée égale la variation de quantité de mouvement."
+  },
+  {
+   "dit": "Exemple entièrement corrigé du cours : un chariot d'un kilogramme, lancé à trois mètres par seconde, percute un chariot de deux kilogrammes immobile, et ils restent accrochés. La quantité de mouvement totale se conserve : ensemble, ils repartent à un mètre par seconde.",
+   "ecran": "ex_collision",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Exemple : collision accrochée, un mètre par seconde après le choc."
+  },
+  {
+   "dit": "Le projectile combine tout ce qui précède. Lancé dans l'air, il n'est soumis qu'à son poids : horizontalement, sa vitesse reste constante par inertie ; verticalement, il tombe en chute libre. Superposés, ces deux mouvements dessinent une trajectoire en parabole.",
+   "ecran": "projectile",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Le projectile : un mouvement uniforme et une chute, superposés."
+  },
+  {
+   "dit": "Les équations suivent la décomposition : l'abscisse croît comme la composante horizontale de la vitesse initiale fois le temps, et l'ordonnée comme la composante verticale fois le temps, moins un demi de g fois le temps au carré. Avec elles, on calcule portée, hauteur maximale et temps de vol.",
+   "ecran": "eq_projectile",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Les équations du projectile, issues de la décomposition."
+  },
+  {
+   "dit": "Exemple du cours : un javelot lancé à vingt-cinq mètres par seconde, sous un angle de quarante-cinq degrés. Ses deux composantes valent environ dix-sept virgule sept mètres par seconde. Le temps de vol vaut environ trois virgule six secondes, et la portée, produit de la composante horizontale par ce temps, environ soixante-trois virgule sept mètres.",
+   "ecran": "ex_javelot",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le javelot, temps de vol et portée."
+  },
+  {
+   "dit": "Retenez l'ossature du cours : décrire par la position, la vitesse et l'accélération ; les mouvements modèles, uniforme et uniformément accéléré ; expliquer par les lois de Newton et la méthode du diagramme corps libre ; et compter sur deux conservations, l'énergie mécanique et la quantité de mouvement.",
+   "ecran": "recap",
+   "id": "p33",
+   "pause_apres": 0.5,
+   "texte": "Décrire, modéliser, expliquer, conserver : l'ossature du cours."
+  }
+ ],
+ "titre": "Généralités sur le mouvement"
+}
