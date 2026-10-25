@@ -316,6 +316,89 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  charge(t) {
+    const p = prog(t);
+    let courbe = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 170 + 690 * k / 90, y = 240 - 162 * (1 - Math.exp(-(x - 170) / 150));
+      courbe += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="170" y1="240" x2="884" y2="240" stroke="currentColor" stroke-width="5"/>${pointe(890, 240, 0)}` +
+      `<line x1="170" y1="240" x2="170" y2="46" stroke="currentColor" stroke-width="5"/>${pointe(170, 40, -90)}` +
+      mot(906, 248, 't', { t: 30, a: 'start' }) +
+      mot(146, 54, 'vC', { t: 27, a: 'end' }) +
+      `<line x1="170" y1="78" x2="880" y2="78" stroke="currentColor" stroke-width="3" stroke-dasharray="8 8" opacity=".45"/>` +
+      mot(152, 86, 'E', { t: 28, a: 'end' }) +
+      `<polyline points="${courbe}" fill="none" stroke="#E8604C" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .5 ? `<line x1="320" y1="240" x2="320" y2="138" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".6"/><line x1="170" y1="138" x2="320" y2="138" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".6"/>` + mot(334, 130, '63,2 % de E', { t: 23, a: 'start' }) + mot(320, 270, 'τ', { t: 28 }) : '') +
+      mot(560, 292, 'la tension grimpe vers E, de plus en plus lentement', { t: 24 }));
+  },
+  decharge(t) {
+    const p = prog(t);
+    let courbe = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 170 + 690 * k / 90, y = 78 + 162 * (1 - Math.exp(-(x - 170) / 150));
+      courbe += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="170" y1="240" x2="884" y2="240" stroke="currentColor" stroke-width="5"/>${pointe(890, 240, 0)}` +
+      `<line x1="170" y1="240" x2="170" y2="46" stroke="currentColor" stroke-width="5"/>${pointe(170, 40, -90)}` +
+      mot(906, 248, 't', { t: 30, a: 'start' }) +
+      mot(146, 54, 'vC', { t: 27, a: 'end' }) +
+      `<line x1="170" y1="78" x2="880" y2="78" stroke="currentColor" stroke-width="3" stroke-dasharray="8 8" opacity=".45"/>` +
+      mot(152, 86, 'V₀', { t: 28, a: 'end' }) +
+      `<polyline points="${courbe}" fill="none" stroke="#1A75FF" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .5 ? `<line x1="320" y1="180" x2="320" y2="240" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".6"/><line x1="170" y1="180" x2="320" y2="180" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".6"/>` + mot(334, 172, '36,8 % de V₀', { t: 23, a: 'start' }) + mot(320, 270, 'τ', { t: 28 }) : '') +
+      mot(560, 292, 'la tension retombe vers zéro, de moins en moins vite', { t: 24 }));
+  },
+  circuit_rc(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="250" y1="60" x2="400" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="470" y1="60" x2="560" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="560,60 578,42 602,78 626,42 650,78 674,42 690,60" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="690" y1="60" x2="750" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="60" x2="750" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="240" x2="508" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="468" y1="240" x2="250" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="240" x2="250" y2="168" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="132" x2="250" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="218" y1="140" x2="282" y2="140" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="234" y1="160" x2="266" y2="160" stroke="currentColor" stroke-width="10"/>` +
+      `<line x1="484" y1="212" x2="484" y2="268" stroke="currentColor" stroke-width="6"/>` +
+      `<line x1="500" y1="212" x2="500" y2="268" stroke="currentColor" stroke-width="6"/>` +
+      `<circle cx="400" cy="60" r="6" fill="currentColor"/>` +
+      trait(400, 60, 458, 30, Math.min(1, p * 2), { w: 5 }) +
+      `<circle cx="470" cy="60" r="6" fill="currentColor"/>` +
+      mot(196, 156, 'E', { t: 30, a: 'end' }) +
+      mot(428, 20, 'interrupteur', { t: 22 }) +
+      mot(625, 30, 'R', { t: 28 }) +
+      mot(492, 294, 'C', { t: 28 }) +
+      (p > .4 ? trait(750, 104, 750, 150, Math.min(1, (p - .4) / .6), { c: '#E8604C', w: 6 }) + (p > .8 ? pointe(750, 156, 90, '#E8604C') : '') + mot(776, 138, 'I', { c: '#E8604C', t: 28, a: 'start' }) : ''));
+  },
+  circuit_rl(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="250" y1="60" x2="300" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="300,60 318,42 342,78 366,42 390,78 414,42 430,60" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="430" y1="60" x2="750" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="60" x2="750" y2="100" stroke="currentColor" stroke-width="5"/>` +
+      `<path d="M 750 100 A 15 14 0 0 1 750 128 A 15 14 0 0 1 750 156 A 15 14 0 0 1 750 184" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="184" x2="750" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="750" y1="240" x2="250" y2="240" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="240" x2="250" y2="168" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="250" y1="132" x2="250" y2="60" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="218" y1="140" x2="282" y2="140" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="234" y1="160" x2="266" y2="160" stroke="currentColor" stroke-width="10"/>` +
+      mot(196, 156, 'E', { t: 30, a: 'end' }) +
+      mot(365, 30, 'R', { t: 28 }) +
+      mot(786, 136, 'L', { t: 28, a: 'start' }) +
+      mot(786, 168, 'bobine', { t: 22, a: 'start' }) +
+      (p > .4 ? trait(596, 240, 656, 240, Math.min(1, (p - .4) / .6), { c: '#E8604C', w: 6 }) + (p > .8 ? pointe(662, 240, 0, '#E8604C') : '') + mot(626, 274, 'I', { c: '#E8604C', t: 28 }) : ''));
+  },
   chauffe(t) {
     const p = prog(t), s1 = Math.min(1, p * 4), s2 = Math.max(0, Math.min(1, p * 4 - 1)), s3 = Math.max(0, Math.min(1, p * 4 - 2)), s4 = Math.max(0, p * 4 - 3);
     return svgBoite(
