@@ -316,6 +316,45 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  trajectoire(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(80 * p));
+    for (let k = 0; k <= n; k++) {
+      const s = k / 80, x = 150 + 700 * s, y = 240 - 760 * s * (1 - s);
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    let sol = `<line x1="110" y1="240" x2="890" y2="240" stroke="currentColor" stroke-width="6"/>`;
+    for (let x = 130; x <= 880; x += 34) sol += `<line x1="${x}" y1="240" x2="${x - 12}" y2="254" stroke="currentColor" stroke-width="3" opacity=".55"/>`;
+    return svgBoite(
+      sol +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-dasharray="1 0" stroke-linejoin="round"/>` +
+      trait(150, 240, 212, 178, Math.min(1, p * 2), { c: '#E8604C', w: 6 }) + (p > .4 ? pointe(216, 174, -45, '#E8604C') : '') +
+      mot(234, 166, 'v₀', { c: '#E8604C', t: 30, a: 'start' }) +
+      (p > .5 ? `<line x1="216" y1="174" x2="216" y2="240" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".65"/><line x1="150" y1="174" x2="216" y2="174" stroke="currentColor" stroke-width="3" stroke-dasharray="7 7" opacity=".65"/>` + mot(183, 158, 'v₀ₓ', { t: 21 }) + mot(234, 214, 'v₀ᵧ', { t: 21, a: 'start' }) : '') +
+      `<path d="M 198 240 A 48 48 0 0 0 184 206" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(216, 226, 'α', { t: 25, a: 'start' }) +
+      `<line x1="150" y1="262" x2="850" y2="262" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".6"/>` +
+      mot(500, 290, 'portée', { t: 24 }));
+  },
+  puits(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(80 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 190 + 670 * k / 80, y = 110 + 5200 / (x - 140);
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="150" y1="110" x2="884" y2="110" stroke="currentColor" stroke-width="5"/>${pointe(890, 110, 0)}` +
+      `<line x1="150" y1="272" x2="150" y2="36" stroke="currentColor" stroke-width="5"/>${pointe(150, 30, -90)}` +
+      mot(906, 118, 'r', { t: 30, a: 'start' }) +
+      mot(128, 42, 'E_p', { t: 27, a: 'end' }) +
+      mot(132, 120, '0', { t: 24, a: 'end' }) +
+      `<polyline points="${pts}" fill="none" stroke="#E8604C" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .6 ? mot(268, 236, 'le puits de potentiel', { c: '#E8604C', t: 23, a: 'start' }) : '') +
+      mot(560, 282, "énergie négative : le système est lié, prisonnier du puits", { t: 24 }));
+  },
   charge(t) {
     const p = prog(t);
     let courbe = '';

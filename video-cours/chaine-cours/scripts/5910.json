@@ -1,0 +1,470 @@
+{
+ "cours": 5910,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Navigation spatiale : lancements et assistances gravitationnelles qui économisent le carburant",
+    "Géodésie : des satellites comme GRACE cartographient le champ de pesanteur et suivent le climat",
+    "Structures cosmiques : l'effondrement des nuages de gaz fait naître les étoiles et les galaxies"
+   ],
+   "kicker": "Applications",
+   "titre": "La gravitation en action",
+   "type": "recap"
+  },
+  "champ_def": {
+   "kicker": "Champ de gravitation",
+   "note": "F : force de gravitation subie par la masse d'essai m placée au point considéré · le champ ne dépend pas de cette masse d'essai",
+   "tex": "\\mathcal{G} = \\dfrac{F}{m}",
+   "titre": "La force que subirait un kilogramme placé là",
+   "type": "formule"
+  },
+  "champ_terre": {
+   "kicker": "Champ de gravitation terrestre",
+   "note": "À l'altitude z, la distance au centre devient R_T + z : le champ diminue",
+   "tex": "g_0 = \\dfrac{G\\, M_T}{R_T^2} \\approx 9{,}81\\ \\text{m/s}^2",
+   "titre": "À la surface de la Terre",
+   "type": "formule"
+  },
+  "champ_uniforme": {
+   "kicker": "Champ uniforme",
+   "note": "Le vecteur champ est alors constant : même valeur, direction verticale, vers le centre de la Terre",
+   "tex": "\\vec{P} = m\\, \\vec{g}",
+   "titre": "Près du sol, le champ devient uniforme",
+   "type": "formule"
+  },
+  "champ_valeur": {
+   "kicker": "Champ de gravitation",
+   "note": "Toujours dirigé vers la masse m qui le crée · ses lignes de champ sont radiales et convergent vers elle",
+   "tex": "\\mathcal{G} = \\dfrac{G\\, m}{d^2}",
+   "titre": "Le champ créé par une masse ponctuelle",
+   "type": "formule"
+  },
+  "chute": {
+   "kicker": "Champ uniforme",
+   "tex": [
+    "v = g\\, t",
+    "y = \\frac{1}{2}\\, g\\, t^2"
+   ],
+   "titre": "Chute libre, sans vitesse initiale",
+   "type": "etape"
+  },
+  "energie_mec": {
+   "etapes": [
+    "L'énergie mécanique se conserve quand seule la gravitation travaille",
+    "Énergie négative : orbite fermée, circulaire ou elliptique — le corps reste lié",
+    "Énergie nulle : trajectoire parabolique — c'est le seuil de la libération",
+    "Énergie positive : trajectoire ouverte, hyperbolique — le corps s'éloigne définitivement"
+   ],
+   "kicker": "Énergie mécanique",
+   "titre": "Son signe décide du destin du corps",
+   "type": "recap"
+  },
+  "energie_pot": {
+   "kicker": "Énergie potentielle",
+   "texte": "L'énergie potentielle gravitationnelle est négative, et nulle à l'infini : le système est lié, comme au fond d'un puits dont il faut grimper pour sortir.",
+   "type": "phrase",
+   "anim": {
+    "nom": "puits",
+    "hauteur": 280
+   }
+  },
+  "ex_lune": {
+   "kicker": "Exercice du cours",
+   "tex": [
+    "M_T \\approx 5{,}97 \\times 10^{24}\\ \\text{kg}",
+    "M_L \\approx 7{,}34 \\times 10^{22}\\ \\text{kg}",
+    "d \\approx 3{,}84 \\times 10^{8}\\ \\text{m}",
+    "F = \\dfrac{G\\, M_T\\, M_L}{d^2}"
+   ],
+   "titre": "La Terre et la Lune s'attirent",
+   "type": "etape"
+  },
+  "ex_lune_res": {
+   "kicker": "Exercice du cours · résultat",
+   "note": "C'est cette force qui retient la Lune sur son orbite, mois après mois",
+   "tex": "F \\approx 2{,}0 \\times 10^{20}\\ \\text{N}",
+   "titre": "La force qui retient la Lune",
+   "type": "formule"
+  },
+  "ex_mars": {
+   "kicker": "Activité du cours",
+   "tex": [
+    "\\left(\\dfrac{T_M}{T_T}\\right)^2 = \\left(\\dfrac{a_M}{a_T}\\right)^3",
+    "a_M = 1{,}5\\ \\text{UA} \\qquad T_T = 1\\ \\text{an}",
+    "T_M = 1{,}5^{3/2} \\approx 1{,}84\\ \\text{an}"
+   ],
+   "titre": "La période de Mars par la troisième loi",
+   "type": "etape"
+  },
+  "ex_personne": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 70\\ \\text{kg}",
+    "M_T \\approx 5{,}97 \\times 10^{24}\\ \\text{kg}",
+    "R_T \\approx 6{,}37 \\times 10^{6}\\ \\text{m}",
+    "F = \\dfrac{G\\, M_T\\, m}{R_T^2} \\approx 686\\ \\text{N}"
+   ],
+   "titre": "La force qui nous plaque au sol",
+   "type": "etape"
+  },
+  "ex_satellite": {
+   "kicker": "Exercice du cours",
+   "tex": [
+    "r = R_T + 500\\ \\text{km} = 6{,}871 \\times 10^{6}\\ \\text{m}",
+    "v = \\sqrt{\\dfrac{G\\, M_T}{r}} \\approx 7{,}6\\ \\text{km/s}"
+   ],
+   "titre": "Un satellite à cinq cents kilomètres d'altitude",
+   "type": "etape"
+  },
+  "force_caract": {
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 130
+   },
+   "etapes": [
+    "Point d'application : le centre de gravité du corps soumis à la force",
+    "Direction : la droite joignant les centres des deux corps",
+    "Sens : toujours attractif, vers le corps qui attire",
+    "Actions réciproques : les deux forces sont égales en norme et opposées en sens"
+   ],
+   "kicker": "Caractéristiques de la force",
+   "titre": "Une force attractive, portée par la droite des centres",
+   "type": "recap"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "orbite"
+   },
+   "kicker": "Introduction",
+   "texte": "La même force fait tomber la pomme et tourner la Lune autour de la Terre.",
+   "type": "phrase"
+  },
+  "kepler": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "kepler"
+   },
+   "etapes": [
+    "Première loi (orbites) : chaque planète décrit une ellipse, le Soleil à un foyer",
+    "Deuxième loi (aires) : des aires égales en des durées égales — plus vite près du Soleil",
+    "Troisième loi (périodes) : T² / a³ est le même pour toutes les planètes"
+   ],
+   "kicker": "Lois de Kepler",
+   "titre": "Trois lois tirées des observations",
+   "type": "recap"
+  },
+  "lancer": {
+   "kicker": "Champ uniforme",
+   "tex": [
+    "v = v_0 + g\\, t",
+    "y = v_0\\, t + \\frac{1}{2}\\, g\\, t^2",
+    "v^2 = v_0^2 + 2\\, g\\, y"
+   ],
+   "titre": "Lancer vertical : les équations",
+   "type": "etape"
+  },
+  "liberation": {
+   "kicker": "Vitesse de libération",
+   "note": "Pour la Terre : environ 11,2 km/s · c'est racine de deux fois la vitesse d'un satellite rasant le sol",
+   "tex": "v_{\\text{lib}} = \\sqrt{\\dfrac{2\\, G\\, M}{R}}",
+   "titre": "Le seuil pour quitter l'astre",
+   "type": "formule"
+  },
+  "loi_newton": {
+   "kicker": "Loi de Newton",
+   "note": "G : constante de gravitation, environ 6,674 × 10⁻¹¹ N·m²/kg² · d : distance entre les centres des deux corps",
+   "tex": "F = G\\,\\dfrac{m_A\\, m_B}{d^2}",
+   "titre": "L'attraction universelle",
+   "type": "formule"
+  },
+  "orbite_circulaire": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "orbite"
+   },
+   "kicker": "Orbite circulaire",
+   "note": "M : masse de l'astre central · r : rayon de l'orbite · la gravitation joue le rôle de force centripète",
+   "tex": "v = \\sqrt{\\dfrac{G\\, M}{r}}",
+   "titre": "La vitesse d'un satellite",
+   "type": "formule"
+  },
+  "problemes": {
+   "kicker": "Problèmes de mécanique céleste",
+   "texte": "Deux corps : des ellipses parfaites. Trois corps et plus : aucune formule générale, on calcule pas à pas, par simulations numériques.",
+   "type": "phrase"
+  },
+  "projectile": {
+   "kicker": "Champ uniforme",
+   "texte": "Horizontalement, la vitesse reste constante ; verticalement, le mouvement est celui d'une chute. Les deux mouvements sont indépendants : la trajectoire est une parabole.",
+   "type": "phrase",
+   "anim": {
+    "nom": "trajectoire",
+    "hauteur": 280
+   }
+  },
+  "recap": {
+   "etapes": [
+    "Loi de Newton : F = G mA mB / d², une attraction toujours, en 1/d²",
+    "Champ : g = GM/r² ; à la surface de la Terre, environ 9,81 m/s²",
+    "Champ uniforme : chute libre et projectile, deux mouvements indépendants",
+    "Orbites : v = √(GM/r) ; libération : racine de deux fois plus",
+    "Énergie : son signe décide — orbite fermée, parabolique ou ouverte"
+   ],
+   "kicker": "À retenir",
+   "titre": "Mouvements dans les champs gravitationnels",
+   "type": "recap"
+  },
+  "referentiels": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "referentiel"
+   },
+   "etapes": [
+    "Héliocentrique : origine au centre du Soleil, axes vers des étoiles fixes — pour les planètes",
+    "Géocentrique : origine au centre de la Terre, axes vers des étoiles fixes — pour la Lune et les satellites",
+    "Le bon référentiel dépend du mouvement que l'on étudie"
+   ],
+   "kicker": "Référentiels",
+   "titre": "Choisir le bon point de vue",
+   "type": "recap"
+  },
+  "satellites": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "orbite"
+   },
+   "kicker": "Satellites artificiels",
+   "texte": "Un satellite géostationnaire a la même période que la rotation de la Terre : il reste fixe au-dessus du même point de l'équateur.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "orbite"
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "De la loi de Newton aux orbites des satellites",
+   "titre": "Mouvements dans les champs gravitationnels",
+   "type": "titre"
+  },
+  "variations": {
+   "etapes": [
+    "Altitude : g diminue en 1/d² quand on s'éloigne du centre de la Terre",
+    "Pôle Nord : 9,832 m/s² — on y est plus près du centre",
+    "Équateur : 9,780 m/s² — l'aplatissement et la rotation diminuent g",
+    "Paris : 9,810 m/s², entre les deux"
+   ],
+   "kicker": "Variations de g",
+   "titre": "g n'est pas tout à fait le même partout",
+   "type": "recap"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La gravitation et le champ"
+  },
+  {
+   "debut": "p17",
+   "pont": {
+    "dit": "Partie deux : les planètes et les satellites. Lois de Kepler, orbites, énergie, et les applications de la gravitation.",
+    "texte": "Partie 2 : planètes, satellites et énergie."
+   },
+   "sous_titre": "Planètes, satellites et énergie"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux mouvements dans les champs gravitationnels : de la pomme de Newton aux planètes et aux satellites, une seule et même force gouverne tous ces mouvements.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Mouvements dans les champs gravitationnels."
+  },
+  {
+   "dit": "Au dix-septième siècle, Newton comprend que la force qui fait tomber une pomme vers le sol est la même que celle qui retient la Lune autour de la Terre. Il en fait une loi universelle, valable pour tous les corps massifs de l'univers.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Une même force pour la pomme et pour la Lune."
+  },
+  {
+   "dit": "La loi de Newton donne l'intensité de cette attraction : F égale G fois m A fois m B, divisé par d au carré. L'attraction croît avec les masses, et elle chute très vite quand la distance augmente : deux fois plus loin, quatre fois plus faible.",
+   "ecran": "loi_newton",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Loi de Newton : proportionnelle aux masses, en un sur d au carré."
+  },
+  {
+   "dit": "Précisons les caractéristiques de cette force. Elle s'applique au centre de gravité du corps attiré, elle agit le long de la droite qui joint les deux centres, et elle est toujours attractive. Et les deux corps s'attirent mutuellement, avec des forces égales et opposées.",
+   "ecran": "force_caract",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Les caractéristiques de la force de gravitation."
+  },
+  {
+   "dit": "Premier exemple, tiré du cours : la force avec laquelle la Terre attire une personne de soixante-dix kilogrammes debout à sa surface. On applique la loi de Newton avec la masse et le rayon de la Terre.",
+   "ecran": "ex_personne",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la Terre attire une personne de soixante-dix kilogrammes."
+  },
+  {
+   "dit": "Pour décrire l'influence d'un astre sans placer de corps partout, on définit son champ de gravitation : en chaque point, c'est la force que subirait une masse d'un kilogramme placée là, soit F sur m.",
+   "ecran": "champ_def",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Le champ de gravitation : la force par unité de masse."
+  },
+  {
+   "dit": "Le champ créé par une masse ponctuelle m à la distance d vaut donc G fois m sur d au carré. Il est toujours dirigé vers la masse qui le crée : ses lignes de champ sont des droites radiales qui convergent vers elle.",
+   "ecran": "champ_valeur",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le champ d'une masse ponctuelle, dirigé vers elle."
+  },
+  {
+   "dit": "Appliquons la formule à la Terre, à sa surface : avec sa masse et son rayon, on retrouve la valeur bien connue de neuf virgule quatre-vingt-un mètres par seconde au carré, l'accélération de la pesanteur.",
+   "ecran": "champ_terre",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "À la surface de la Terre, g vaut environ neuf virgule quatre-vingt-un."
+  },
+  {
+   "dit": "Mais ce champ n'est pas tout à fait le même partout à la surface. Il diminue quand l'altitude augmente, et il varie avec la latitude : un peu plus fort aux pôles, un peu plus faible à l'équateur, à cause de l'aplatissement de la Terre et de sa rotation.",
+   "ecran": "variations",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "g varie avec l'altitude et la latitude."
+  },
+  {
+   "dit": "Pour décrire un mouvement, il faut d'abord choisir un référentiel. Pour les planètes, on prend le référentiel héliocentrique, centré sur le Soleil. Pour la Lune et les satellites, le référentiel géocentrique, centré sur la Terre. Dans les deux cas, les axes pointent vers des étoiles fixes.",
+   "ecran": "referentiels",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Deux référentiels : héliocentrique et géocentrique."
+  },
+  {
+   "dit": "Exercice du cours : quelle force la Terre et la Lune exercent-elles l'une sur l'autre ? On connaît leurs masses et la distance moyenne qui les sépare, environ trois cent quatre-vingt-quatre mille kilomètres. On applique la loi de Newton.",
+   "ecran": "ex_lune",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Exercice : la force entre la Terre et la Lune."
+  },
+  {
+   "dit": "On trouve environ deux fois dix puissance vingt newtons. C'est cette force, immense mais appliquée à la masse énorme de la Lune, qui la maintient sur son orbite autour de la Terre.",
+   "ecran": "ex_lune_res",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Résultat : environ deux fois dix puissance vingt newtons."
+  },
+  {
+   "dit": "Près du sol, sur des distances petites devant le rayon terrestre, le champ peut être considéré comme uniforme : même valeur, même direction partout. La force subie est alors le poids, P égale m fois g, vertical et dirigé vers le bas.",
+   "ecran": "champ_uniforme",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Le champ uniforme : le poids, P égale m fois g."
+  },
+  {
+   "dit": "Dans ce champ uniforme, un objet lâché sans vitesse tombe en chute libre : sa vitesse croît régulièrement, v égale g fois t, et la distance parcourue croît comme le carré du temps, un demi de g t au carré.",
+   "ecran": "chute",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Chute libre : v égale g t, y égale un demi de g t au carré."
+  },
+  {
+   "dit": "Si l'objet est lancé verticalement avec une vitesse initiale v zéro, les équations gagnent un terme, et l'exemple du cours les applique à une balle lancée à vingt mètres par seconde : elle monte d'environ vingt mètres avant de retomber, pour un temps de vol d'environ quatre secondes.",
+   "ecran": "lancer",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Lancer vertical : l'exemple de la balle à vingt mètres par seconde."
+  },
+  {
+   "dit": "Un projectile combine les deux : horizontalement, sa vitesse reste constante ; verticalement, il chute comme en chute libre. Ces deux mouvements indépendants se superposent, et la trajectoire dessinée est une parabole.",
+   "ecran": "projectile",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Le projectile : deux mouvements indépendants, une parabole."
+  },
+  {
+   "dit": "Venons-en aux mouvements des planètes. Avant Newton, Kepler avait déjà décrit leurs orbites par trois lois tirées des observations : des ellipses dont le Soleil occupe un foyer, des aires égales balayées en des durées égales, et un lien entre période et taille de l'orbite.",
+   "ecran": "kepler",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Les trois lois de Kepler."
+  },
+  {
+   "dit": "L'activité du cours applique la troisième loi : le demi-grand axe de Mars vaut une fois et demie celui de la Terre. Sa période vaut donc un virgule cinq puissance trois demis, soit environ un virgule quatre-vingt-quatre an : près de six cent quatre-vingt-sept jours.",
+   "ecran": "ex_mars",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La période de Mars : environ un virgule quatre-vingt-quatre an."
+  },
+  {
+   "dit": "Pour un satellite en orbite circulaire, la gravitation fournit exactement la force centripète : le mouvement est uniforme, et sa vitesse ne dépend que de la masse de l'astre central et du rayon de l'orbite, v égale racine de G M sur r.",
+   "ecran": "orbite_circulaire",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "La vitesse orbitale : racine de G M sur r."
+  },
+  {
+   "dit": "L'exercice du cours demande la vitesse d'un satellite à cinq cents kilomètres d'altitude. Attention au piège : le rayon de l'orbite se mesure depuis le centre de la Terre, donc on ajoute le rayon terrestre. On trouve environ sept virgule six kilomètres par seconde.",
+   "ecran": "ex_satellite",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Un satellite à cinq cents kilomètres : sept virgule six kilomètres par seconde."
+  },
+  {
+   "dit": "Parmi les satellites artificiels, les géostationnaires occupent une orbite particulière : à l'altitude exacte où la période vaut un jour, ils tournent avec la Terre et restent fixes au-dessus du même point, précieux pour les télécommunications et la météo.",
+   "ecran": "satellites",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Les satellites géostationnaires, fixes dans le ciel."
+  },
+  {
+   "dit": "L'énergie apporte un autre regard. Par convention, l'énergie potentielle gravitationnelle est nulle à l'infini, et elle est négative partout ailleurs : le système est lié, comme au fond d'un puits, et il faut fournir de l'énergie pour en sortir.",
+   "ecran": "energie_pot",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "L'énergie potentielle : négative, nulle à l'infini."
+  },
+  {
+   "dit": "L'énergie mécanique, somme de l'énergie cinétique et de l'énergie potentielle, se conserve quand seule la gravitation travaille. Son signe décide alors du destin du corps : négative, l'orbite est fermée ; nulle, le corps part à la limite ; positive, il s'éloigne définitivement.",
+   "ecran": "energie_mec",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Le signe de l'énergie mécanique décide de l'orbite."
+  },
+  {
+   "dit": "Le seuil entre les deux destins porte un nom : la vitesse de libération, racine de deux G M sur R. Pour la Terre, elle vaut environ onze virgule deux kilomètres par seconde : en dessous, tout retombe ou reste en orbite ; au-dessus, on quitte la Terre pour toujours.",
+   "ecran": "liberation",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "La vitesse de libération terrestre : onze virgule deux kilomètres par seconde."
+  },
+  {
+   "dit": "En réalité, aucun astre n'est seul : les planètes se perturbent mutuellement, et dès trois corps, il n'existe aucune formule générale des trajectoires. On calcule alors pas à pas, par simulations numériques. C'est aussi la limite du modèle de Newton : la petite avance de l'orbite de Mercure n'a été expliquée que par la relativité d'Einstein.",
+   "ecran": "problemes",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Perturbations et problème à N corps : le calcul numérique."
+  },
+  {
+   "dit": "Ces lois servent chaque jour : lancer les satellites et les sondes, en économisant le carburant grâce aux assistances gravitationnelles ; cartographier la Terre et son climat depuis l'espace ; et comprendre comment la gravitation a assemblé étoiles et galaxies.",
+   "ecran": "applications",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Navigation, géodésie et formation des structures."
+  },
+  {
+   "dit": "Retenez la loi de Newton, le champ qu'elle définit, les mouvements dans le champ uniforme, et les deux vitesses qui gouvernent les orbites : la vitesse orbitale, et la vitesse de libération, racine de deux fois plus grande.",
+   "ecran": "recap",
+   "id": "p27",
+   "pause_apres": 0.5,
+   "texte": "Loi de Newton, champ, orbites et énergie : à retenir."
+  }
+ ],
+ "titre": "Mouvements dans les champs gravitationnels"
+}
