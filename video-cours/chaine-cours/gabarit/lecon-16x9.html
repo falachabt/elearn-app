@@ -676,6 +676,119 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  reseau_caracteristiques_fig(t) {
+    return svgBoite(
+      trait(240, 250, 812, 250, prog(t), { w: 4 }) + pointe(820, 250, 0) + mot(828, 256, 'I', { t: 22, a: 'start' }) +
+      trait(240, 250, 240, 58, prog(t), { w: 4 }) + pointe(240, 50, -90) + mot(226, 42, 'U', { t: 22, a: 'end' }) +
+      trait(240, 250, 756, 82, prog(t), { c: '#E8604C', w: 4 }) + mot(764, 88, 'R₁, la plus grande', { c: '#E8604C', t: 19, a: 'start' }) +
+      trait(240, 250, 700, 142, prog(t), { c: '#1A75FF', w: 4 }) + mot(708, 148, 'R₂', { c: '#1A75FF', t: 20, a: 'start' }) +
+      trait(240, 250, 644, 196, prog(t), { c: '#10B981', w: 4 }) + mot(652, 202, 'R₃, la plus petite', { c: '#10B981', t: 19, a: 'start' }) +
+      mot(500, 288, "U = R I : des droites par l'origine, une par valeur de R", { t: 19 }));
+  },
+  courbe_ctn_kty_fig(t) {
+    return svgBoite(
+      trait(240, 250, 812, 250, prog(t), { w: 4 }) + pointe(820, 250, 0) + mot(700, 278, 'θ, la température', { t: 20 }) +
+      trait(240, 250, 240, 52, prog(t), { w: 4 }) + pointe(240, 44, -90) + mot(226, 40, 'R', { t: 22, a: 'end' }) +
+      `<path d="M 282 66 C 380 84, 428 148, 520 204 C 585 242, 668 249, 782 250" fill="none" stroke="#E8604C" stroke-width="4.5"/>` +
+      trait(282, 226, 772, 104, prog(t), { c: '#10B981', w: 4.5 }) +
+      mot(592, 66, 'la CTN : R chute quand θ monte', { c: '#E8604C', t: 19, a: 'start' }) +
+      mot(600, 240, 'la KTY : R croît avec θ', { c: '#10B981', t: 19, a: 'start' }));
+  },
+  chaine_electronique_fig(t) {
+    const bloc = (x, l1, l2) =>
+      `<rect x="${x}" y="112" width="152" height="70" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="3.5"/>` +
+      (l2 ? mot(x + 76, 141, l1, { t: 16.5 }) + mot(x + 76, 165, l2, { t: 16.5 }) : mot(x + 76, 154, l1, { t: 16.5 }));
+    const fleche = (x) => trait(x, 147, x + 30, 147, prog(t), { w: 4 }) + pointe(x + 37, 147, 0);
+    return svgBoite(
+      bloc(36, 'la grandeur', 'physique') + fleche(188) +
+      bloc(228, 'le capteur', '') + fleche(380) +
+      bloc(420, 'le condi-', 'tionneur') + fleche(572) +
+      bloc(612, 'la commande', '') + fleche(764) +
+      bloc(804, "l'action-", 'neur') +
+      mot(500, 232, 'une chaîne électronique : mesurer, traiter, décider, agir', { t: 20 }) +
+      mot(500, 268, 'le capteur transforme la grandeur en signal électrique', { t: 19 }));
+  },
+  pont_diviseur_fig(t) {
+    return svgBoite(
+      mot(182, 67, '+', { t: 24, a: 'end' }) + mot(182, 258, '−', { t: 24, a: 'end' }) +
+      trait(200, 60, 762, 60, prog(t), { w: 4 }) + trait(200, 250, 762, 250, prog(t), { w: 4 }) +
+      trait(300, 60, 300, 95, prog(t), { w: 3.5 }) +
+      `<rect x="281" y="95" width="38" height="50" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="3.5"/>` +
+      trait(238, 88, 270, 106, prog(t), { c: '#B8860B', w: 3 }) + pointe(276, 109, 32, '#B8860B') +
+      trait(238, 118, 270, 130, prog(t), { c: '#B8860B', w: 3 }) + pointe(276, 132, 20, '#B8860B') +
+      mot(200, 82, 'la lumière', { c: '#B8860B', t: 17, a: 'start' }) + mot(332, 126, 'la LDR', { t: 20, a: 'start' }) +
+      trait(300, 145, 300, 152, prog(t), { w: 3.5 }) +
+      `<path d="M 300 152 l 11 9 l -22 12 l 22 12 l -22 12 l 22 12 l -11 9" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      trait(300, 218, 300, 250, prog(t), { w: 3.5 }) + mot(332, 192, 'R fixe', { t: 19, a: 'start' }) +
+      trait(300, 149, 516, 149, prog(t), { w: 3.5 }) + `<circle cx="300" cy="149" r="5.5" fill="currentColor"/>` +
+      mot(408, 134, 'la tension de base', { t: 18 }) +
+      trait(516, 149, 556, 149, prog(t), { w: 4.5 }) + trait(556, 118, 556, 180, prog(t), { w: 5.5 }) +
+      trait(556, 126, 638, 86, prog(t), { w: 4 }) + trait(556, 172, 638, 214, prog(t), { w: 4 }) + pointe(646, 219, 37) +
+      trait(638, 86, 638, 60, prog(t), { w: 4 }) + trait(638, 214, 638, 250, prog(t), { w: 4 }) +
+      `<path d="M 660 60 q 12 13 0 26 M 676 50 q 20 23 0 46" fill="none" stroke="#B8860B" stroke-width="3.5"/>` +
+      mot(700, 80, 'la sirène', { t: 19, a: 'start' }) +
+      mot(500, 286, "quand la tension de base atteint le seuil, le transistor conduit", { t: 19 }));
+  },
+  electrodes_niveau_fig(t) {
+    return svgBoite(
+      trait(240, 62, 240, 250, prog(t), { w: 3.5 }) + trait(240, 250, 560, 250, prog(t), { w: 3.5 }) + trait(560, 62, 560, 250, prog(t), { w: 3.5 }) +
+      `<rect x="244" y="152" width="312" height="94" fill="#1A75FF" fill-opacity=".16"/>` +
+      trait(244, 152, 556, 152, prog(t), { c: '#1A75FF', w: 3 }) + mot(400, 140, 'le liquide conducteur', { c: '#1A75FF', t: 18 }) +
+      trait(350, 62, 350, 178, prog(t), { w: 5.5 }) + trait(450, 62, 450, 200, prog(t), { w: 5.5 }) +
+      mot(350, 46, 'électrode 1', { t: 17 }) + mot(450, 46, 'électrode 2', { t: 17 }) +
+      trait(350, 62, 350, 36, prog(t), { w: 3 }) + trait(350, 36, 712, 36, prog(t), { w: 3 }) + trait(712, 36, 712, 92, prog(t), { w: 3 }) +
+      trait(450, 62, 450, 50, prog(t), { w: 3 }) + trait(450, 50, 728, 50, prog(t), { w: 3 }) + trait(728, 50, 728, 92, prog(t), { w: 3 }) +
+      `<rect x="640" y="92" width="160" height="52" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="3.5"/>` +
+      mot(720, 124, 'le détecteur', { t: 18 }) +
+      trait(800, 118, 846, 118, prog(t), { w: 3.5 }) +
+      `<path d="M 848 103 L 848 133 L 872 118 Z" fill="currentColor" fill-opacity=".25" stroke="currentColor" stroke-width="3"/>` +
+      trait(874, 103, 874, 133, prog(t), { w: 4 }) +
+      trait(886, 100, 900, 88, prog(t), { c: '#B8860B', w: 3 }) + trait(890, 118, 906, 118, prog(t), { c: '#B8860B', w: 3 }) + trait(886, 136, 900, 148, prog(t), { c: '#B8860B', w: 3 }) +
+      mot(862, 168, "la LED s'allume", { t: 17 }) +
+      mot(500, 282, 'le liquide ferme le circuit entre les deux électrodes', { t: 19 }));
+  },
+  spectre_em_fig(t) {
+    const seg = (x) => trait(x, 118, x, 170, prog(t), { w: 3 });
+    return svgBoite(
+      mot(500, 56, "la longueur d'onde augmente", { t: 20 }) +
+      trait(120, 82, 872, 82, prog(t), { w: 3 }) + pointe(880, 82, 0) +
+      `<rect x="120" y="118" width="760" height="52" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="3.5"/>` +
+      seg(252) + seg(372) + seg(482) + seg(566) + seg(662) + seg(772) +
+      `<rect x="484" y="118" width="80" height="52" fill="#E8604C" fill-opacity=".3"/>` +
+      mot(186, 198, 'gamma', { t: 17 }) + mot(312, 198, 'rayons X', { t: 17 }) + mot(427, 198, 'ultraviolet', { t: 16 }) +
+      mot(524, 198, 'visible', { c: '#E8604C', t: 17 }) + mot(614, 198, 'infrarouge', { t: 16 }) + mot(717, 198, 'micro-ondes', { t: 16 }) + mot(826, 198, 'radio', { t: 17 }) +
+      mot(500, 240, 'toutes voyagent à la célérité de la lumière', { t: 19 }) +
+      mot(500, 272, "seules changent la longueur d'onde et la fréquence", { t: 19 }));
+  },
+  fresnel_fig(t) {
+    return svgBoite(
+      `<circle cx="420" cy="152" r="106" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="7 6" opacity=".6"/>` +
+      trait(306, 152, 540, 152, prog(t), { w: 2.5, tiret: '6 5' }) + trait(420, 40, 420, 264, prog(t), { w: 2.5, tiret: '6 5' }) +
+      `<path d="M 322 92 A 112 112 0 0 1 402 44" fill="none" stroke="currentColor" stroke-width="3.5"/>` + pointe(411, 43, 2) +
+      trait(420, 152, 488, 71, prog(t), { c: '#E8604C', w: 5 }) + pointe(494, 62, -50, '#E8604C') +
+      mot(510, 58, 'M', { c: '#E8604C', t: 25, a: 'start' }) + mot(404, 176, 'O', { t: 22, a: 'end' }) +
+      mot(560, 108, 'le vecteur OM, de longueur X_m', { c: '#E8604C', t: 18, a: 'start' }) +
+      trait(488, 76, 488, 152, prog(t), { w: 3, tiret: '6 5' }) + trait(420, 76, 484, 76, prog(t), { w: 3, tiret: '6 5' }) +
+      trait(420, 152, 420, 79, prog(t), { c: '#1A75FF', w: 6.5 }) +
+      mot(300, 62, 'x(t), la projection verticale', { c: '#1A75FF', t: 18, a: 'end' }) +
+      `<path d="M 466 152 A 46 46 0 0 0 450 117" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(486, 140, 'φ(t)', { t: 21, a: 'start' }) +
+      mot(500, 290, 'le vecteur tourne à la pulsation ω : sa projection oscille', { t: 19 }));
+  },
+  doppler_fronts_fig(t) {
+    const front = (cx, r, op) => `<circle cx="${cx}" cy="152" r="${r}" fill="none" stroke="#1A75FF" stroke-width="3" opacity="${op}"/>`;
+    return svgBoite(
+      front(322, 136, .45) + front(360, 106, .6) + front(398, 76, .8) + front(436, 46, 1) +
+      `<circle cx="452" cy="152" r="13" fill="#E8604C"/>` +
+      mot(452, 192, 'la source', { c: '#E8604C', t: 18 }) +
+      trait(486, 104, 572, 104, prog(t), { c: '#E8604C', w: 4.5 }) + pointe(580, 104, 0, '#E8604C') +
+      mot(528, 86, 'elle avance', { c: '#E8604C', t: 19 }) +
+      `<circle cx="770" cy="126" r="9" fill="currentColor"/>` + trait(770, 135, 770, 172, prog(t), { w: 4 }) +
+      mot(770, 200, "l'observateur", { t: 18 }) +
+      mot(636, 262, 'λ courte devant : son plus aigu', { c: '#E8604C', t: 18 }) +
+      mot(250, 262, 'λ longue derrière : son plus grave', { t: 18 }) +
+      mot(500, 34, "les fronts d'onde se resserrent devant la source", { t: 19 }));
+  },
   compton_fig(t) {
     return svgBoite(
       mot(180, 80, 'le photon X incident', { c: '#B8860B', t: 19, a: 'start' }) +

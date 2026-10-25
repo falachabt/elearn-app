@@ -1,0 +1,478 @@
+{
+ "cours": 6689,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Astronomie : décalage vers le rouge, expansion de l'Univers",
+    "Exoplanètes : vitesses radiales des étoiles",
+    "Médecine : échographie Doppler, vitesse du sang",
+    "Radar Doppler et anémométrie laser : les vitesses"
+   ],
+   "kicker": "Les applications de l'effet Doppler",
+   "titre": "Mesurer les vitesses sans contact",
+   "type": "recap"
+  },
+  "diffraction": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "diffraction_fig"
+   },
+   "kicker": "Le phénomène de diffraction",
+   "texte": "L'onde contourne l'obstacle et se propage dans toutes les directions.",
+   "type": "phrase"
+  },
+  "doppler": {
+   "kicker": "L'effet Doppler",
+   "texte": "La fréquence perçue change quand la source et le récepteur bougent l'un par rapport à l'autre.",
+   "type": "phrase",
+   "anim": {
+    "nom": "doppler_fronts_fig",
+    "hauteur": 220
+   }
+  },
+  "doppler_meca": {
+   "etapes": [
+    "Source en mouvement : ondes comprimées devant, étirées derrière",
+    "Récepteur mobile : il croise les fronts plus ou moins souvent",
+    "La célérité v reste constante : f varie comme l'inverse de λ"
+   ],
+   "kicker": "L'interprétation de l'effet Doppler",
+   "titre": "Comprimées devant, étirées derrière",
+   "type": "recap",
+   "anim": {
+    "nom": "doppler_fronts_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_ambulance": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "f_e = 500\\ \\text{Hz}",
+    "f_{approche} = 550\\ \\text{Hz} > f_e",
+    "f_{\\text{éloignement}} = 455\\ \\text{Hz} < f_e"
+   ],
+   "titre": "La sirène de l'ambulance, plus aiguë puis plus grave",
+   "type": "etape"
+  },
+  "ex_coincidence": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "k_1 \\lambda_1 = k_2 \\lambda_2 \\qquad \\frac{k_1}{k_2} = \\frac{4}{3}",
+    "k_1 = 4 \\qquad k_2 = 3",
+    "x = \\frac{k_1 \\lambda_1 D}{b} = 9{,}6\\ \\text{mm}"
+   ],
+   "titre": "Deux radiations : la première coïncidence",
+   "type": "etape"
+  },
+  "ex_diffraction": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\lambda = 633\\ \\text{nm} \\qquad a = 0{,}1\\ \\text{mm} \\qquad D = 2{,}0\\ \\text{m}",
+    "d = \\frac{2\\lambda D}{a}",
+    "d = 2{,}53 \\times 10^{-2}\\ \\text{m} = 2{,}5\\ \\text{cm}"
+   ],
+   "titre": "La tache centrale derrière la fente",
+   "type": "etape"
+  },
+  "ex_fresnel": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "x(t) = 3 \\sin\\left(100\\pi t + \\frac{\\pi}{2}\\right)",
+    "X_m = 3 \\qquad \\omega = 100\\pi\\ \\text{rad/s}",
+    "\\varphi_0 = \\frac{\\pi}{2} \\qquad T = \\frac{2\\pi}{100\\pi} = 0{,}02\\ \\text{s}"
+   ],
+   "titre": "Le vecteur de Fresnel de l'exemple",
+   "type": "etape"
+  },
+  "ex_oscillo": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "T = 4 \\times 5\\ \\text{ms} = 20\\ \\text{ms} = 0{,}02\\ \\text{s}",
+    "U_m = 3 \\times 2 = 6\\ \\text{V}",
+    "f = \\frac{1}{T} = \\frac{1}{0{,}02} = 50\\ \\text{Hz}"
+   ],
+   "titre": "Lire une période et une amplitude",
+   "type": "etape"
+  },
+  "ex_strobo": {
+   "kicker": "Exemple : la corde sous le stroboscope",
+   "note": "L'immobilité apparente donne la fréquence : f = f_s, ici 25 Hz",
+   "tex": "f = 25\\ \\text{Hz} \\qquad T = \\frac{1}{25} = 0{,}04\\ \\text{s}",
+   "titre": "La corde vibre à vingt-cinq hertz",
+   "type": "formule"
+  },
+  "ex_trace": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "x(t) = 2 \\sin(4\\pi t)",
+    "X_m = 2 \\qquad \\omega = 4\\pi\\ \\text{rad/s} \\qquad \\varphi_0 = 0",
+    "T = \\frac{2\\pi}{4\\pi} = 0{,}5\\ \\text{s} \\qquad x = 2\\ \\text{à}\\ t = \\frac{T}{4} = 0{,}125\\ \\text{s}"
+   ],
+   "titre": "Tracer la sinusoïde de l'exemple",
+   "type": "etape"
+  },
+  "ex_young": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "b = 0{,}5\\ \\text{mm} \\qquad \\lambda = 550\\ \\text{nm} \\qquad D = 3{,}0\\ \\text{m}",
+    "i = \\frac{\\lambda D}{b}",
+    "i = 3{,}3 \\times 10^{-3}\\ \\text{m} = 3{,}3\\ \\text{mm}"
+   ],
+   "titre": "L'interfrange des fentes de Young",
+   "type": "etape"
+  },
+  "fresnel": {
+   "kicker": "La représentation de Fresnel",
+   "texte": "Un vecteur tournant : sa longueur est l'amplitude, son angle est la phase.",
+   "type": "phrase",
+   "anim": {
+    "nom": "fresnel_fig",
+    "hauteur": 230
+   }
+  },
+  "interfrange": {
+   "kicker": "L'interfrange",
+   "note": "Proportionnel à λ et à D, inversement proportionnel à b : franges équidistantes",
+   "tex": "i = \\frac{\\lambda D}{b}",
+   "titre": "La distance entre deux franges brillantes",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "pendule"
+   },
+   "kicker": "Introduction",
+   "texte": "Une grandeur qui varie périodiquement autour d'une position d'équilibre.",
+   "type": "phrase"
+  },
+  "marche": {
+   "kicker": "La différence de marche chez Young",
+   "note": "Frange brillante si δ = kλ ; frange sombre si δ = (k + ½)λ",
+   "tex": "\\delta = \\frac{b \\cdot x}{D}",
+   "titre": "Tout dépend de la position x sur l'écran",
+   "type": "formule"
+  },
+  "nature": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "diffraction_fig"
+   },
+   "kicker": "La nature ondulatoire de la lumière",
+   "texte": "Diffraction et interférences : des phénomènes que seuls des ondes expliquent.",
+   "type": "phrase"
+  },
+  "oscilloscope": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "oscilloscope"
+   },
+   "kicker": "Lire un oscilloscope",
+   "texte": "Période : divisions horizontales fois base de temps. Amplitude : divisions verticales fois sensibilité.",
+   "type": "phrase"
+  },
+  "parametres": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "sinusoide"
+   },
+   "etapes": [
+    "Période T : retrouver le même état, position et vitesse",
+    "Fréquence f = 1/T : le nombre d'oscillations par seconde",
+    "Amplitude X_m : l'écart maximal par rapport à l'équilibre",
+    "Phase : l'avancement de l'oscillation à chaque instant"
+   ],
+   "kicker": "Les paramètres d'un oscillateur",
+   "titre": "Période, fréquence, amplitude, phase",
+   "type": "recap"
+  },
+  "polychromatique": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "prisme"
+   },
+   "kicker": "Le cas de la lumière polychromatique",
+   "texte": "Chaque radiation produit son système de franges ; au centre, une frange blanche.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Oscillateur : T, f = 1/T, amplitude X_m, phase φ(t)",
+    "Équation horaire : x(t) = X_m sin(ωt + φ₀), ω = 2πf",
+    "Oscilloscope : T = n × base de temps, U_m = m × sensibilité",
+    "Diffraction : d = 2λD/a ; fentes de Young : i = λD/b",
+    "Doppler : la fréquence perçue suit le mouvement relatif"
+   ],
+   "kicker": "À retenir",
+   "titre": "Oscillations et ondes",
+   "type": "recap"
+  },
+  "sinus": {
+   "kicker": "L'oscillateur sinusoïdal",
+   "note": "ω : pulsation (rad/s) · φ₀ : phase initiale, la phase à l'instant zéro",
+   "tex": "x(t) = X_m \\sin(\\omega t + \\varphi_0)",
+   "titre": "L'équation horaire de référence",
+   "type": "formule"
+  },
+  "strobo": {
+   "etapes": [
+    "f_s = f : le système paraît immobile, stroboscopie synchrone",
+    "f_s légèrement différente : le mouvement paraît ralenti",
+    "f_s = f/k : immobile, mais avec k images du mobile"
+   ],
+   "kicker": "L'éclairage stroboscopique",
+   "titre": "Figer un mouvement périodique",
+   "type": "recap"
+  },
+  "tache": {
+   "kicker": "Diffraction par une fente fine",
+   "note": "d : largeur de la tache centrale · a : largeur de la fente · D : distance à l'écran",
+   "tex": "d = \\frac{2\\lambda D}{a}",
+   "titre": "La largeur de la tache centrale",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "sinusoide"
+   },
+   "kicker": "Physique",
+   "sous": "Systèmes oscillants, lumière ondulatoire et effet Doppler",
+   "titre": "Oscillations et ondes",
+   "type": "titre"
+  },
+  "trace": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "sinusoide"
+   },
+   "kicker": "Tracer l'équation horaire",
+   "texte": "Une sinusoïde de période T et d'amplitude X_m, décalée par la phase initiale.",
+   "type": "phrase"
+  },
+  "young": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "interference"
+   },
+   "kicker": "Le dispositif des fentes de Young",
+   "texte": "Deux fentes fines, deux sources secondaires cohérentes, des franges sur l'écran.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les systèmes oscillants"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : la lumière se comporte comme une onde. Diffraction et interférences des fentes de Young le prouvent, et permettent de mesurer sa longueur d'onde.",
+    "texte": "Partie 2 : la lumière ondulatoire, diffraction et fentes de Young."
+   },
+   "sous_titre": "La lumière ondulatoire : diffraction et fentes de Young"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : l'effet Doppler. Quand la source ou le récepteur bouge, la fréquence perçue change.",
+    "texte": "Partie 3 : l'effet Doppler."
+   },
+   "sous_titre": "L'effet Doppler"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré aux oscillations et aux ondes : d'abord les systèmes qui oscillent, avec leur période, leur amplitude et leur phase ; puis la lumière traitée comme une onde, avec la diffraction, les interférences et l'effet Doppler.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Oscillations et ondes."
+  },
+  {
+   "dit": "Un système oscillant est un système dont l'évolution se répète, identique à elle-même, à intervalles de temps réguliers. On le suit grâce à une grandeur associée qui varie périodiquement autour d'une position d'équilibre : pour un pendule simple, c'est l'angle qu'il fait avec la verticale, dont on repère l'écart maximal par rapport à la position d'équilibre.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Un mouvement qui se répète autour d'un équilibre."
+  },
+  {
+   "dit": "Quatre paramètres décrivent un oscillateur. La période : la durée minimale au bout de laquelle le système retrouve le même état, même position et même vitesse. La fréquence : le nombre d'oscillations par seconde, c'est l'inverse de la période. L'amplitude : la valeur maximale de la grandeur, comptée depuis l'équilibre. Et la phase, qui décrit l'état d'avancement de l'oscillation à chaque instant.",
+   "ecran": "parametres",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Période, fréquence, amplitude, phase."
+  },
+  {
+   "dit": "Le cas le plus important est l'oscillateur sinusoïdal : sa grandeur associée suit une loi en sinus. X indice m est l'amplitude, oméga est la pulsation, qui vaut deux pi divisé par la période, ou deux pi fois la fréquence, et phi zéro est la phase initiale, la phase à l'instant zéro.",
+   "ecran": "sinus",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "L'équation horaire : x(t) = X_m sin(ωt + φ₀)."
+  },
+  {
+   "dit": "Pour étudier une oscillation électrique, l'oscilloscope visualise la tension au cours du temps. La période se lit horizontalement : le nombre de divisions d'un motif complet, multiplié par la base de temps. L'amplitude se lit verticalement : le nombre de divisions entre le zéro et le maximum, multiplié par la sensibilité verticale.",
+   "ecran": "oscilloscope",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "L'oscilloscope : lire période et amplitude."
+  },
+  {
+   "dit": "Exemple du cours : base de temps de cinq millisecondes par division, sensibilité de deux volts par division. Un motif complet occupe quatre divisions : la période vaut vingt millisecondes, zéro virgule zéro deux seconde. L'amplitude crête mesure trois divisions : elle vaut six volts. La fréquence vaut donc un divisé par zéro virgule zéro deux, soit cinquante hertz.",
+   "ecran": "ex_oscillo",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Exemple : T = 20 ms, U_m = 6 V, f = 50 Hz."
+  },
+  {
+   "dit": "Autre instrument : le stroboscope, qui émet des éclairs brefs et périodiques de fréquence réglable. Si la fréquence des éclairs égale celle du mouvement, le système paraît immobile : c'est la stroboscopie synchrone. Si elle en diffère légèrement, le mouvement paraît ralenti. Et si elle vaut la fréquence divisée par un entier k, le système paraît immobile, mais on voit k images du mobile.",
+   "ecran": "strobo",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le stroboscope fige les mouvements périodiques."
+  },
+  {
+   "dit": "On mesure ainsi une fréquence en ajustant les éclairs jusqu'à obtenir l'immobilité apparente : la fréquence du mouvement égale alors celle du stroboscope. Exemple : une corde vibrante paraît immobile sous des éclairs à vingt-cinq hertz ; elle vibre donc à vingt-cinq hertz, avec une période de zéro virgule zéro quatre seconde.",
+   "ecran": "ex_strobo",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Exemple : f = f_s = 25 Hz, donc T = 0,04 s."
+  },
+  {
+   "dit": "Pour représenter une grandeur sinusoïdale, la méthode de Fresnel utilise un vecteur tournant. La longueur du vecteur vaut l'amplitude ; son angle avec l'axe de référence vaut la phase à l'instant considéré. Le vecteur tourne dans le sens trigonométrique, à la vitesse angulaire oméga, il fait donc un tour complet par période, et sa projection sur l'axe vertical donne, à chaque instant, la valeur de la grandeur.",
+   "ecran": "fresnel",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Fresnel : un vecteur tournant, une projection."
+  },
+  {
+   "dit": "Exemple : pour la grandeur trois fois sinus de cent pi t plus pi sur deux, le vecteur de Fresnel a pour longueur trois. Il tourne à cent pi radians par seconde et démarre à un angle de pi sur deux, quatre-vingt-dix degrés, avec l'axe de référence. Sa période de rotation vaut deux pi sur cent pi : zéro virgule zéro deux seconde.",
+   "ecran": "ex_fresnel",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Exemple : longueur 3, départ à π/2, T = 0,02 s."
+  },
+  {
+   "dit": "L'équation horaire se trace en portant le temps en abscisse et la grandeur en ordonnée : on obtient une sinusoïde d'amplitude X indice m et de période T. Elle coupe l'axe des temps en des points espacés d'une demi-période, et ses maxima et minima sont eux aussi espacés d'une demi-période. Si la phase initiale est positive, la courbe est décalée vers la gauche : c'est une avance de phase ; si elle est négative, vers la droite : un retard de phase.",
+   "ecran": "trace",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Tracer x(t) : une sinusoïde décalée par φ₀."
+  },
+  {
+   "dit": "Exemple : tracer deux fois sinus de quatre pi t. L'amplitude vaut deux, la pulsation quatre pi, donc la période vaut deux pi sur quatre pi : zéro virgule cinq seconde. La phase initiale est nulle : la courbe passe par zéro à l'instant zéro, atteint son maximum, deux, au quart de la période, zéro virgule cent vingt-cinq seconde, et son minimum, moins deux, aux trois quarts de la période.",
+   "ecran": "ex_trace",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Exemple : X_m = 2, T = 0,5 s, maximum à 0,125 s."
+  },
+  {
+   "dit": "La lumière présente un double aspect : corpusculaire, avec les photons, et ondulatoire. Ce sont les phénomènes de diffraction et d'interférences, impossibles à expliquer avec de simples particules, qui révèlent son caractère ondulatoire.",
+   "ecran": "nature",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "La lumière : onde et corpuscules, deux aspects."
+  },
+  {
+   "dit": "Quand une onde lumineuse rencontre un obstacle ou une ouverture de petite dimension, elle ne continue pas simplement en ligne droite : elle contourne l'obstacle et se propage dans toutes les directions. C'est la diffraction. Elle est d'autant plus marquée que la dimension de l'ouverture est petite devant la longueur d'onde.",
+   "ecran": "diffraction",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "La diffraction : l'onde contourne l'obstacle."
+  },
+  {
+   "dit": "Derrière une fente fine éclairée par un laser, on observe sur l'écran une tache centrale brillante, entourée de taches secondaires moins lumineuses. La largeur de la tache centrale vaut deux fois la longueur d'onde, multipliée par la distance entre la fente et l'écran, et divisée par la largeur de la fente.",
+   "ecran": "tache",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "La tache centrale : d = 2λD/a."
+  },
+  {
+   "dit": "Exemple résolu : un laser de six cent trente-trois nanomètres éclaire une fente de zéro virgule un millimètre, placée à deux mètres d'un écran. La largeur de la tache centrale vaut environ deux virgule cinq centimètres : la lumière s'est nettement étalée en traversant la fente.",
+   "ecran": "ex_diffraction",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : une tache centrale de 2,5 cm."
+  },
+  {
+   "dit": "Le dispositif des fentes de Young comporte deux fentes fines parallèles, distantes de b, éclairées par une source monochromatique. Chaque fente se comporte comme une source secondaire, et les deux sources sont cohérentes. Les ondes qui en sortent interfèrent : l'écran montre une alternance de zones brillantes et sombres, les franges d'interférences, observables dans toute la région où les ondes se superposent.",
+   "ecran": "young",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Les fentes de Young : deux sources cohérentes."
+  },
+  {
+   "dit": "En un point de l'écran, situé à la distance x de l'axe central, la différence de marche entre les deux ondes vaut l'écartement des fentes multiplié par x, divisé par la distance à l'écran. Si cette différence vaut un nombre entier de longueurs d'onde, la frange est brillante ; si elle vaut un nombre entier plus un demi de longueurs d'onde, la frange est sombre.",
+   "ecran": "marche",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "La différence de marche : δ = b·x/D."
+  },
+  {
+   "dit": "L'interfrange est la distance entre deux franges brillantes consécutives, ou deux franges sombres : il vaut la longueur d'onde multipliée par la distance à l'écran, divisée par l'écartement des fentes. Il est proportionnel à la longueur d'onde et à la distance, inversement proportionnel à l'écartement, et il ne dépend pas de la position : les franges sont équidistantes.",
+   "ecran": "interfrange",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "L'interfrange : i = λD/b."
+  },
+  {
+   "dit": "Exemple : des fentes distantes de zéro virgule cinq millimètre, une lumière de cinq cent cinquante nanomètres, un écran à trois mètres. L'interfrange vaut trois virgule trois millimètres : une distance mesurable à la règle, alors que la longueur d'onde, elle, ne se voit pas directement.",
+   "ecran": "ex_young",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Exemple : un interfrange de 3,3 mm."
+  },
+  {
+   "dit": "Avec une lumière polychromatique, qui contient plusieurs longueurs d'onde, chaque radiation produit son propre système de franges, avec son propre interfrange. Au centre de l'écran, là où la différence de marche est nulle, toutes les radiations sont en phase : la frange centrale est blanche. De part et d'autre, les systèmes se décalent progressivement : on observe des franges colorées.",
+   "ecran": "polychromatique",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Lumière blanche : frange centrale blanche, franges colorées."
+  },
+  {
+   "dit": "Exemple : une source émet deux radiations, quatre cent quatre-vingts et six cent quarante nanomètres. Leurs franges brillantes coïncident quand un nombre entier de longueurs d'onde de la première égale un nombre entier de la seconde : le premier couple possible est quatre et trois. Avec un écran à deux mètres et des fentes distantes de zéro virgule quatre millimètre, la coïncidence se produit à neuf virgule six millimètres du centre.",
+   "ecran": "ex_coincidence",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Exemple : première coïncidence à 9,6 mm du centre."
+  },
+  {
+   "dit": "Dernier phénomène : l'effet Doppler. Une ambulance passe devant vous : sa sirène semble plus aiguë quand elle approche, puis plus grave quand elle s'éloigne. La fréquence perçue change parce que la source et le récepteur sont en mouvement relatif l'un par rapport à l'autre.",
+   "ecran": "doppler",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "L'effet Doppler : la sirène de l'ambulance."
+  },
+  {
+   "dit": "L'explication tient en deux mécanismes. Si la source se déplace, les ondes émises successivement le sont depuis des positions différentes : devant la source, les fronts d'onde sont comprimés, la longueur d'onde perçue diminue ; derrière, ils sont étirés. Si le récepteur se déplace, il rencontre les fronts d'onde plus ou moins souvent. Dans les deux cas, la célérité de l'onde dans le milieu reste constante : c'est la fréquence perçue qui varie, en sens inverse de la longueur d'onde perçue.",
+   "ecran": "doppler_meca",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Comprimées devant la source, étirées derrière."
+  },
+  {
+   "dit": "Exemple du cours : une sirène émet à cinq cents hertz. Le piéton immobile perçoit cinq cent cinquante hertz à l'approche : les ondes sont comprimées, le son est plus aigu. Puis quatre cent cinquante-cinq hertz à l'éloignement : les ondes sont étirées, le son devient plus grave. Seule la fréquence perçue a changé, pas la célérité du son dans l'air.",
+   "ecran": "ex_ambulance",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Exemple : 550 Hz à l'approche, 455 Hz à l'éloignement."
+  },
+  {
+   "dit": "L'effet Doppler travaille partout. En astronomie, le décalage vers le rouge des galaxies lointaines traduit leur éloignement et prouve l'expansion de l'Univers ; les vitesses radiales des étoiles révèlent même des exoplanètes. En médecine, l'échographie Doppler mesure la vitesse du sang dans les vaisseaux. Les radars mesurent la vitesse des véhicules, et l'anémométrie laser, celle des écoulements de fluides, sans aucun contact.",
+   "ecran": "applications",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Doppler : astronomie, médecine, radars, fluides."
+  },
+  {
+   "dit": "Retenez l'essentiel : un oscillateur se décrit par sa période, sa fréquence, son amplitude et sa phase, et son équation horaire est un sinus ; la diffraction et les fentes de Young prouvent que la lumière est une onde et permettent de mesurer sa longueur d'onde ; et l'effet Doppler traduit tout mouvement relatif entre une source et un récepteur en une variation de la fréquence perçue.",
+   "ecran": "recap",
+   "id": "p27",
+   "pause_apres": 0.5,
+   "texte": "Oscillations, lumière ondulatoire, Doppler : l'essentiel."
+  }
+ ],
+ "titre": "Oscillations et ondes"
+}
