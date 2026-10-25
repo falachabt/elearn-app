@@ -173,6 +173,17 @@ jobs:
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-miniature.jpg
           retention-days: 14
 
+      - name: Inscrire la vidéo en base (sans migration)
+        # Après l'envoi R2 et la publication de l'artefact : un échec ici
+        # ne doit pas faire échouer le rendu, l'inscription se rattrape
+        # par un dispatch INSCRIRE (idempotent).
+        continue-on-error: true
+        env:
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_SERVICE_KEY }}
+        run: |
+          cd video-cours/chaine-cours
+          python inscrire_videos.py --depuis-rendu ${{ inputs.cours }} && echo "INSCRIPTION: OK" || echo "INSCRIPTION: ECHEC"
+
   index:
     name: Reconstruire l'index R2
     if: ${{ inputs.cours == 'INDEX' }}

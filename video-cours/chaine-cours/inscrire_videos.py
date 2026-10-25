@@ -84,11 +84,50 @@ def inscrire_cours(course_id, bloc):
     return "ok"
 
 
+def bloc_depuis_rendu(cours):
+    """Construit le bloc d'inscription d'un cours depuis son script et le
+    meta.json écrit par le montage : utilisé par le job de rendu pour
+    inscrire le cours automatiquement, sans fichier préparé à la main."""
+    import pathlib
+    racine = pathlib.Path(__file__).resolve().parent
+    script = json.loads((racine / "scripts" / f"{cours}.json").read_text(encoding="utf-8"))
+    dossier = racine / "sorties" / str(cours)
+    meta = json.loads((dossier / "meta.json").read_text(encoding="utf-8"))
+    fichiers = sorted(dossier.glob(f"cours-{cours}*-720p.mp4"))
+    parties_meta = sorted(meta["parties"], key=lambda p: p["numero"])
+    if len(fichiers) != len(parties_meta):
+        raise SystemExit(f"rendu {cours} : {len(fichiers)} fichier(s) 720p pour "
+                         f"{len(parties_meta)} partie(s) dans meta.json")
+    multi = len(parties_meta) > 1
+    parties = []
+    for p, f in zip(parties_meta, fichiers):
+        n = p["numero"]
+        if multi:
+            titre_video = f"Partie {n} — {script['parties'][n - 1]['sous_titre']}"
+        else:
+            titre_video = script["titre"]
+        parties.append({
+            "numero": n,
+            "titre_video": titre_video,
+            "duree_s": p["duree_s"],
+            "filesize": f.stat().st_size,
+            "url": f"{meta['url_base']}/partie-{n}-720.mp4",
+            "url_1080": f"{meta['url_base']}/partie-{n}-1080.mp4",
+            "miniature": f"{meta['url_base']}/partie-{n}-miniature.jpg",
+        })
+    return {"titre": script["titre"], "matiere": script["matiere"], "parties": parties}
+
+
 def main():
     if not URL or not CLE:
         sys.exit("Définir CHAINE_SUPABASE_URL et CHAINE_SUPABASE_KEY.")
+    if len(sys.argv) >= 3 and sys.argv[1] == "--depuis-rendu":
+        cours = sys.argv[2]
+        print(f"== inscription automatique du cours {cours} (depuis le rendu)")
+        inscrire_cours(cours, bloc_depuis_rendu(cours))
+        return
     if len(sys.argv) < 2:
-        sys.exit("Usage : inscrire_videos.py <fichier.json> [...]")
+        sys.exit("Usage : inscrire_videos.py <fichier.json> [...] | --depuis-rendu <cours>")
     compte = {"ok": 0, "deja": 0, "absent": 0}
     for chemin in sys.argv[1:]:
         print(f"== {chemin}")
