@@ -525,6 +525,120 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  arbre_fig(t) {
+    const p = prog(t);
+    const branche = (x1, y1, x2, y2, coul) => trait(x1, y1, x2, y2, p, { c: coul, w: 4 });
+    return svgBoite(
+      branche(186, 150, 424, 84, '#E8604C') + branche(186, 150, 424, 216, '#1A75FF') +
+      branche(436, 84, 694, 48, '#E8604C') + branche(436, 84, 694, 120, '#E8604C') +
+      branche(436, 216, 694, 180, '#1A75FF') + branche(436, 216, 694, 252, '#1A75FF') +
+      `<circle cx="180" cy="150" r="7" fill="currentColor"/>` +
+      `<circle cx="430" cy="84" r="6" fill="#E8604C"/><circle cx="430" cy="216" r="6" fill="#1A75FF"/>` +
+      `<circle cx="700" cy="48" r="5" fill="currentColor"/><circle cx="700" cy="120" r="5" fill="currentColor"/>` +
+      `<circle cx="700" cy="180" r="5" fill="currentColor"/><circle cx="700" cy="252" r="5" fill="currentColor"/>` +
+      mot(300, 96, 'p', { t: 22 }) + mot(300, 210, '1 − p', { t: 22 }) +
+      mot(448, 70, 'M', { c: '#E8604C', t: 24, a: 'start' }) + mot(448, 232, 'M̄', { c: '#1A75FF', t: 24, a: 'start' }) +
+      mot(566, 66, 'Se', { t: 20 }) + mot(566, 112, '1 − Se', { t: 20 }) +
+      mot(566, 196, '1 − Sp', { t: 20 }) + mot(566, 242, 'Sp', { t: 20 }) +
+      mot(722, 56, '+', { t: 26, a: 'start' }) + mot(722, 128, '−', { t: 26, a: 'start' }) +
+      mot(722, 188, '+', { t: 26, a: 'start' }) + mot(722, 260, '−', { t: 26, a: 'start' }) +
+      mot(500, 292, "le long d'un chemin on multiplie, entre chemins on additionne", { t: 20 }));
+  },
+  etoiles_barres_fig(t) {
+    const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
+    let corps = '';
+    items.forEach((it, i) => {
+      const x = 292 + i * 46;
+      corps += it === 'S'
+        ? `<circle cx="${x}" cy="120" r="11" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`
+        : `<rect x="${x - 4}" y="94" width="8" height="52" fill="#E8604C"/>`;
+    });
+    return svgBoite(
+      corps +
+      `<line x1="270" y1="176" x2="428" y2="176" stroke="currentColor" stroke-width="3"/>` +
+      mot(349, 206, 'des étoiles', { t: 21 }) +
+      `<line x1="446" y1="176" x2="604" y2="176" stroke="#E8604C" stroke-width="3"/>` +
+      mot(525, 206, 'des barres', { c: '#E8604C', t: 21 }) +
+      mot(500, 262, 'étoiles et barres : compter les répartitions en groupes', { t: 21 }));
+  },
+  histogramme_fig(t) {
+    const hauteurs = [70, 128, 176, 104, 52];
+    let barres = '';
+    hauteurs.forEach((h, i) => {
+      const x = 268 + i * 110;
+      barres += `<rect x="${x}" y="${238 - h}" width="64" height="${h}" fill="#1A75FF" fill-opacity=".7" stroke="currentColor" stroke-width="3"/>`;
+      barres += mot(x + 32, 266, `x${'₁₂₃₄₅'[i]}`, { t: 21 });
+    });
+    return svgBoite(
+      `<line x1="196" y1="238" x2="826" y2="238" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="196" y1="238" x2="196" y2="46" stroke="currentColor" stroke-width="4"/>` +
+      barres +
+      `<line x1="588" y1="34" x2="588" y2="238" stroke="#E8604C" stroke-width="4" stroke-dasharray="9 7"/>` +
+      mot(588, 26, 'E(X)', { c: '#E8604C', t: 24 }) +
+      mot(500, 294, "l'espérance : le centre de gravité de la loi", { t: 21 }));
+  },
+  grille_des_fig(t) {
+    let cellules = '';
+    for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) {
+      const x = 340 + c * 40, y = 36 + r * 40;
+      const diag = (r + c === 5), marque = (c === 5 && r === 0);
+      cellules += `<rect x="${x}" y="${y}" width="40" height="40" fill="${marque ? '#E8604C' : diag ? '#10B981' : 'none'}" fill-opacity="${marque ? '.45' : diag ? '.35' : '0'}" stroke="currentColor" stroke-width="${marque ? 4 : 2}"/>`;
+    }
+    let chiffres = '';
+    for (let k = 0; k < 6; k++) {
+      chiffres += mot(360 + k * 40, 26, String(k + 1), { t: 18 });
+      chiffres += mot(322, 62 + k * 40, String(k + 1), { t: 18, a: 'end' });
+    }
+    return svgBoite(
+      cellules + chiffres +
+      mot(284, 160, 'dé 2', { t: 20, a: 'end' }) +
+      mot(716, 130, 'la diagonale', { t: 20, a: 'start' }) +
+      mot(716, 156, '« somme 7 »', { t: 20, a: 'start' }) +
+      mot(716, 196, 'la case (6, 1)', { c: '#E8604C', t: 20, a: 'start' }) +
+      mot(460, 296, 'les 36 couples de deux dés', { t: 20 }));
+  },
+  urne_fig(t) {
+    const boules = [ [448, 118, 1], [512, 118, 0], [570, 118, 1], [430, 160, 1], [492, 160, 1], [554, 160, 0], [462, 202, 0], [528, 202, 1] ];
+    let corps = '';
+    for (const [x, y, rouge] of boules)
+      corps += `<circle cx="${x}" cy="${y}" r="17" fill="${rouge ? '#E8604C' : '#3A3A3A'}" stroke="currentColor" stroke-width="2"/>`;
+    return svgBoite(
+      `<rect x="362" y="68" width="276" height="18" fill="currentColor"/>` +
+      `<path d="M 380 86 L 620 86 L 584 242 L 416 242 Z" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      corps +
+      mot(692, 128, '5 rouges', { c: '#E8604C', t: 23, a: 'start' }) +
+      mot(692, 168, '3 noires', { t: 23, a: 'start' }) +
+      mot(500, 280, "tirer sans remettre change les proportions de l'urne", { t: 21 }));
+  },
+  surface_densite_fig(t) {
+    return svgBoite(
+      `<polygon points="320,196 640,196 320,16" fill="#10B981" fill-opacity=".22" stroke="currentColor" stroke-width="3"/>` +
+      `<polygon points="240,240 560,240 240,60" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="240" y1="240" x2="320" y2="196" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="560" y1="240" x2="640" y2="196" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="240" y1="60" x2="320" y2="16" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      mot(668, 130, 'f(x, y)', { t: 24, a: 'start' }) +
+      mot(576, 262, 'x', { t: 24, a: 'start' }) + mot(222, 52, 'y', { t: 24, a: 'end' }) +
+      mot(500, 292, 'le volume sous la surface de densité vaut un', { t: 21 }));
+  },
+  exponentielle_fig(t) {
+    const courbe = (tau, coul) => {
+      let pts = '';
+      for (let k = 0; k <= 60; k++) {
+        const x = 202 + 598 * k / 60, y = 250 - 192 * Math.exp(-(x - 202) / tau);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="5" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      `<line x1="190" y1="250" x2="832" y2="250" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="190" y1="250" x2="190" y2="36" stroke="currentColor" stroke-width="4"/>` +
+      courbe(300, '#E8604C') + courbe(150, '#1A75FF') +
+      mot(706, 108, 'exp(−λ t)', { c: '#E8604C', t: 22, a: 'start' }) +
+      mot(560, 196, 'exp(−2λ t)', { c: '#1A75FF', t: 22, a: 'start' }) +
+      mot(846, 258, 't', { t: 24, a: 'start' }) +
+      mot(500, 290, 'les courbes de survie des lois exponentielles', { t: 21 }));
+  },
   triangle_fig(t) {
     return svgBoite(
       `<path d="M 330 230 A 171 171 0 0 1 670 230" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".55"/>` +
