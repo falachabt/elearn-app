@@ -676,6 +676,52 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  spectre_raies_fig(t) {
+    const raies = [[300, '#8B5CF6'], [385, '#1A75FF'], [470, '#10B981'], [610, '#B8860B'], [700, '#F59E0B'], [770, '#E8604C']];
+    let traitsE = '', traitsA = '';
+    for (const [x, c] of raies) {
+      traitsE += trait(x, 64, x, 102, prog(t), { c, w: 6 });
+      traitsA += trait(x, 170, x, 208, prog(t), { c, w: 6 });
+    }
+    let noires = '';
+    for (const [x] of raies) noires += trait(x, 170, x, 208, 1, { c: '#0A0A0A', w: 5 });
+    return svgBoite(
+      mot(500, 38, 'un gaz chaud émet des raies colorées', { t: 19 }) +
+      `<rect x="170" y="62" width="660" height="42" fill="#0A0A0A"/>` + traitsE +
+      mot(150, 90, "d'émission", { t: 19, a: 'end' }) +
+      mot(500, 140, 'un gaz froid absorbe exactement aux mêmes endroits', { t: 19 }) +
+      `<rect x="170" y="168" width="660" height="42" fill="#F5EFE0" stroke="currentColor" stroke-width="2"/>` +
+      traitsA + noires +
+      mot(150, 196, "d'absorption", { t: 19, a: 'end' }) +
+      mot(500, 248, 'raies brillantes sur fond noir, raies noires sur fond continu', { t: 18 }) +
+      mot(500, 282, "chaque élément chimique a sa signature : la position de ses raies", { t: 18 }));
+  },
+  cellule_photo_fig(t) {
+    return svgBoite(
+      trait(430, 250, 430, 54, prog(t), { w: 4 }) + pointe(430, 46, -90) + mot(446, 48, 'I', { t: 22, a: 'start' }) +
+      trait(170, 160, 828, 160, prog(t), { w: 4 }) + pointe(836, 160, 0) + mot(842, 168, 'U', { t: 22, a: 'start' }) +
+      mot(414, 184, 'O', { t: 19, a: 'end' }) +
+      `<path d="M 356 159 C 386 156, 408 153, 428 148 C 446 116, 456 100, 474 95 L 796 95" fill="none" stroke="#E8604C" stroke-width="4.5"/>` +
+      trait(356, 160, 356, 198, prog(t), { w: 2.5, tiret: '6 5' }) +
+      mot(356, 226, "−U₀, le potentiel d'arrêt", { t: 18 }) +
+      mot(636, 78, 'I_sat, le palier de saturation', { c: '#E8604C', t: 18 }) +
+      mot(500, 282, 'la caractéristique de la cellule photoélectrique', { t: 18 }));
+  },
+  lustre_fig(t) {
+    let hach = '';
+    for (let x = 292; x <= 712; x += 42) hach += trait(x, 52, x - 12, 38, 1, { w: 2.5 });
+    return svgBoite(
+      trait(260, 52, 740, 52, prog(t), { w: 6 }) + hach +
+      trait(430, 52, 500, 148, prog(t), { w: 4 }) + trait(570, 52, 500, 148, prog(t), { w: 4 }) +
+      mot(446, 98, 'T₁', { c: '#E8604C', t: 21, a: 'end' }) + mot(554, 98, 'T₂', { c: '#E8604C', t: 21, a: 'start' }) +
+      trait(500, 148, 500, 164, prog(t), { w: 4.5 }) +
+      `<path d="M 466 182 A 36 36 0 0 1 534 182" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      trait(460, 182, 540, 182, prog(t), { w: 4 }) +
+      trait(500, 192, 500, 208, prog(t), { c: '#B8860B', w: 3 }) + trait(470, 192, 458, 204, prog(t), { c: '#B8860B', w: 3 }) + trait(530, 192, 542, 204, prog(t), { c: '#B8860B', w: 3 }) +
+      trait(580, 148, 580, 208, prog(t), { c: '#E8604C', w: 4 }) + pointe(580, 216, 90, '#E8604C') +
+      mot(594, 188, 'P, le poids du lustre', { c: '#E8604C', t: 19, a: 'start' }) +
+      mot(500, 262, 'deux câbles symétriques portent le lustre en équilibre', { t: 18 }));
+  },
   transistor_fig(t) {
     return svgBoite(
       `<circle cx="430" cy="150" r="80" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="3.5"/>` +

@@ -1,0 +1,387 @@
+{
+ "cours": 6720,
+ "ecrans": {
+  "acceleration": {
+   "kicker": "L'accélération",
+   "note": "Δv : variation de vitesse · Δt : durée",
+   "tex": "a = \\frac{\\Delta v}{\\Delta t}",
+   "type": "formule"
+  },
+  "chocs": {
+   "kicker": "Chocs et éclatements",
+   "note": "les vitesses portent un signe selon le sens choisi",
+   "tex": "m_1 v_1 + m_2 v_2 = m_1 v'_1 + m_2 v'_2",
+   "type": "formule"
+  },
+  "conservation": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "choc"
+   },
+   "kicker": "La conservation",
+   "texte": "Système isolé ou pseudo-isolé : la quantité de mouvement totale ne change pas.",
+   "type": "phrase"
+  },
+  "couple": {
+   "kicker": "Le couple de forces",
+   "note": "d₁ et d₂ : distances de chaque force à l'axe",
+   "tex": "M_C = F \\times (d_1 + d_2)",
+   "type": "formule"
+  },
+  "diagrammes": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "graphes_cinematique_fig"
+   },
+   "etapes": [
+    "Espaces d(t) : la pente de la tangente = la vitesse",
+    "Vitesses v(t) : l'aire sous la courbe = la distance"
+   ],
+   "kicker": "Lire les diagrammes",
+   "type": "recap"
+  },
+  "equilibre": {
+   "kicker": "La condition d'équilibre",
+   "note": "somme vectorielle des forces extérieures",
+   "tex": "\\sum \\vec{F} = \\vec{0}",
+   "type": "formule"
+  },
+  "exemple_cle": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "M = 20 \\times 0{,}15",
+    "M = 3 \\ \\text{N}\\,\\text{m}"
+   ],
+   "titre": "Serrer un boulon à la clé",
+   "type": "etape"
+  },
+  "exemple_fusee": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "v = \\frac{50 \\times 2000}{500 - 50}",
+    "v = 222 \\ \\text{m/s}"
+   ],
+   "titre": "La propulsion de la fusée",
+   "type": "etape"
+  },
+  "exemple_lustre": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "2T\\cos(30^\\circ) = P",
+    "T = \\frac{50}{2 \\times 0{,}866} \\approx 28{,}9 \\ \\text{N}"
+   ],
+   "titre": "Un lustre suspendu à deux câbles",
+   "type": "etape",
+   "anim": {
+    "nom": "lustre_fig",
+    "hauteur": 120
+   }
+  },
+  "exemple_vitesse": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "v_m = \\frac{120}{1{,}5}",
+    "v_m = 80 \\ \\text{km/h}"
+   ],
+   "titre": "Un véhicule sur la route",
+   "type": "etape"
+  },
+  "force": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "vecteurs"
+   },
+   "etapes": [
+    "Le système : le corps étudié, seul",
+    "Contact : tension, réaction, frottement",
+    "À distance : poids, attraction électrique",
+    "Vecteur : point, direction, sens, intensité"
+   ],
+   "kicker": "La notion de force",
+   "type": "recap"
+  },
+  "inertie": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "trajectoire"
+   },
+   "kicker": "Le principe d'inertie",
+   "texte": "Sans force nette, un système garde sa vitesse : repos ou mouvement rectiligne uniforme.",
+   "type": "phrase"
+  },
+  "moment": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "levier"
+   },
+   "kicker": "Le moment d'une force",
+   "note": "d : bras de levier, en mètres · M en newtons-mètres",
+   "tex": "M_{\\Delta}(\\vec{F}) = F \\times d",
+   "type": "formule"
+  },
+  "projections": {
+   "kicker": "La méthode analytique",
+   "note": "deux axes perpendiculaires, deux équations",
+   "tex": "\\sum F_x = 0 \\qquad \\sum F_y = 0",
+   "type": "formule"
+  },
+  "quantite_mouvement": {
+   "kicker": "La quantité de mouvement",
+   "note": "m : masse du système · v : sa vitesse",
+   "tex": "\\vec{p} = m\\vec{v}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Équilibre : somme des forces égale zéro",
+    "Rotation : somme des moments égale zéro",
+    "Quantité de mouvement : p = mv, conservée si isolé",
+    "Inertie : vitesse constante sans force nette"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "relativite": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "referentiel"
+   },
+   "kicker": "La relativité du mouvement",
+   "texte": "Le mouvement dépend du référentiel : un repère d'espace et une horloge.",
+   "type": "phrase"
+  },
+  "theoreme_moments": {
+   "kicker": "Le théorème des moments",
+   "note": "somme algébrique : les signes comptent",
+   "tex": "\\sum M_{\\Delta}(\\vec{F}_i) = 0",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "trajectoire"
+   },
+   "kicker": "Physique",
+   "sous": "Vitesses, équilibres, moments et quantité de mouvement",
+   "titre": "Mouvements et interactions mécaniques",
+   "type": "titre"
+  },
+  "trois_forces": {
+   "etapes": [
+    "Somme vectorielle des trois forces nulle",
+    "Les trois droites d'action se coupent en un point",
+    "Bout à bout, elles forment un triangle fermé"
+   ],
+   "kicker": "Équilibre à trois forces",
+   "type": "recap"
+  },
+  "types_mouvements": {
+   "etapes": [
+    "Rectiligne uniforme : v constante, droite",
+    "Rectiligne varié : a constante, droite",
+    "Circulaire uniforme : v constante, cercle",
+    "Parabolique : a = g, une parabole",
+    "Elliptique : force centrale, une ellipse"
+   ],
+   "kicker": "Les types de mouvements",
+   "type": "recap"
+  },
+  "vitesse_instantanee": {
+   "kicker": "La vitesse instantanée",
+   "note": "on resserre Δt autour de l'instant choisi",
+   "tex": "v(t) = \\lim_{\\Delta t \\to 0} \\frac{\\Delta d}{\\Delta t}",
+   "type": "formule"
+  },
+  "vitesse_moyenne": {
+   "kicker": "La vitesse moyenne",
+   "tex": [
+    "v_m = \\frac{\\Delta d}{\\Delta t}",
+    "\\Delta d = d(t_2) - d(t_1) \\qquad \\Delta t = t_2 - t_1"
+   ],
+   "titre": "Distance parcourue sur durée écoulée",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  9521
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Décrire le mouvement, équilibrer les forces"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : les moments et la quantité de mouvement. Après les forces qui déplacent, voici celles qui font tourner, puis la grandeur qui se conserve dans les chocs.",
+    "texte": "Partie 2 : les moments et la quantité de mouvement."
+   },
+   "sous_titre": "Moments et quantité de mouvement"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mécanique. Nous allons décrire les mouvements, vitesse et accélération, puis étudier les forces et l'équilibre d'un solide, les moments qui font tourner, et enfin la quantité de mouvement et sa conservation.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Mouvements et interactions mécaniques : décrire, équilibrer, conserver."
+  },
+  {
+   "dit": "Premier principe : le mouvement est relatif. Un passager assis dans un train est immobile dans le référentiel du train, mais en mouvement dans le référentiel terrestre. Un référentiel associe un repère d'espace, une origine et des axes, à un repère de temps, une horloge.",
+   "ecran": "relativite",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Le mouvement dépend du référentiel choisi."
+  },
+  {
+   "dit": "La vitesse moyenne, entre deux instants, est la distance parcourue divisée par la durée du parcours : v m égale delta d sur delta t. C'est une moyenne sur tout le trajet, qui ne dit rien des variations en route.",
+   "ecran": "vitesse_moyenne",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "La vitesse moyenne : la distance divisée par la durée."
+  },
+  {
+   "dit": "La vitesse instantanée est la vitesse à un instant précis : on l'obtient en resserrant l'intervalle de temps autour de cet instant, jusqu'à le faire tendre vers zéro. C'est elle qu'affiche le compteur d'une voiture.",
+   "ecran": "vitesse_instantanee",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "La vitesse instantanée : celle de l'instant précis."
+  },
+  {
+   "dit": "Exemple : un véhicule parcourt cent vingt kilomètres en une heure et demie. Sa vitesse moyenne vaut cent vingt divisé par un virgule cinq : quatre-vingts kilomètres par heure.",
+   "ecran": "exemple_vitesse",
+   "id": "p05",
+   "pause_apres": 0.9,
+   "texte": "Exemple : cent vingt kilomètres en une heure et demie."
+  },
+  {
+   "dit": "Deux graphiques à savoir lire. Le diagramme des espaces trace la distance en fonction du temps : la pente de la tangente en un point donne la vitesse instantanée. Le diagramme des vitesses trace la vitesse en fonction du temps : l'aire sous la courbe donne la distance parcourue.",
+   "ecran": "diagrammes",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Diagrammes : une pente donne la vitesse, une aire donne la distance."
+  },
+  {
+   "dit": "Si la vitesse varie, on définit l'accélération : la variation de vitesse divisée par la durée, a égale delta v sur delta t. Une accélération constante donne un mouvement uniformément varié.",
+   "ecran": "acceleration",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "L'accélération : la variation de vitesse par unité de temps."
+  },
+  {
+   "dit": "Retenez les grands types de mouvements : rectiligne uniforme, vitesse constante et trajectoire droite ; rectiligne uniformément varié, accélération constante ; circulaire uniforme, vitesse constante en valeur sur un cercle ; parabolique, quand l'accélération est le champ de pesanteur ; et elliptique, sous l'effet d'une force centrale.",
+   "ecran": "types_mouvements",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Cinq mouvements types : droite, cercle, parabole, ellipse."
+  },
+  {
+   "dit": "Pour étudier un corps, on définit le système, puis on fait l'inventaire des forces extérieures. Les forces de contact : la tension d'un fil, la réaction d'un support, les frottements. Les forces à distance : le poids, l'attraction électrique. Chaque force est un vecteur : un point d'application, une direction, un sens, et une intensité en newtons.",
+   "ecran": "force",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Une force : un vecteur, quatre caractéristiques."
+  },
+  {
+   "dit": "Un solide soumis à plusieurs forces est en équilibre si la somme vectorielle de ces forces est nulle. Pour deux forces, cela signifie qu'elles sont égales et opposées : même direction, même intensité, sens contraires.",
+   "ecran": "equilibre",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Condition d'équilibre : la somme des forces est nulle."
+  },
+  {
+   "dit": "À trois forces non parallèles, l'équilibre impose deux conditions : la somme vectorielle est nulle, et les trois forces sont concourantes, leurs droites d'action se coupent en un même point. Graphiquement, on les met bout à bout : elles doivent former un triangle fermé, le triangle des forces.",
+   "ecran": "trois_forces",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Trois forces en équilibre : concourantes, un triangle fermé."
+  },
+  {
+   "dit": "Méthode analytique : on projette toutes les forces sur deux axes perpendiculaires. L'équilibre devient deux équations : la somme des composantes selon x est nulle, et la somme des composantes selon y est nulle.",
+   "ecran": "projections",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Projeter sur deux axes : deux équations d'équilibre."
+  },
+  {
+   "dit": "Exemple : un lustre de poids cinquante newtons, suspendu à deux câbles symétriques inclinés à trente degrés de la verticale. Par symétrie, les tensions sont égales. La projection verticale donne : deux T cosinus trente degrés égale le poids. Donc T vaut cinquante divisé par deux fois zéro virgule huit cent soixante-six, environ vingt-huit virgule neuf newtons dans chaque câble.",
+   "ecran": "exemple_lustre",
+   "id": "p13",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le lustre et ses deux câbles, vingt-huit virgule neuf newtons chacun."
+  },
+  {
+   "dit": "Une force peut aussi faire tourner un solide autour d'un axe. Son moment mesure cet effet de rotation : M égale F fois d, où d est le bras de levier, la plus courte distance entre l'axe et la droite d'action de la force. Le moment s'exprime en newtons-mètres, positif ou négatif selon le sens de rotation choisi.",
+   "ecran": "moment",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Le moment d'une force : F fois le bras de levier."
+  },
+  {
+   "dit": "Exemple : une force de vingt newtons appliquée perpendiculairement à une clé, à quinze centimètres de l'axe. Le moment vaut vingt fois zéro virgule quinze : trois newtons-mètres. Plus la clé est longue, plus le même effort serre fort.",
+   "ecran": "exemple_cle",
+   "id": "p15",
+   "pause_apres": 0.9,
+   "texte": "Exemple : vingt newtons à quinze centimètres, trois newtons-mètres."
+  },
+  {
+   "dit": "Un couple de forces réunit deux forces de même intensité, parallèles et de sens contraires, appliquées en deux points différents : il ne fait que tourner, sans déplacer. Son moment vaut F fois la somme des distances des deux forces à l'axe.",
+   "ecran": "couple",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Un couple : deux forces contraires qui ne font que tourner."
+  },
+  {
+   "dit": "Théorème des moments : pour un solide en équilibre, mobile autour d'un axe, la somme algébrique des moments de toutes les forces par rapport à cet axe est nulle. C'est la condition d'équilibre des rotations, pendant de la somme des forces nulle pour les translations.",
+   "ecran": "theoreme_moments",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Équilibre de rotation : la somme des moments est nulle."
+  },
+  {
+   "dit": "La quantité de mouvement d'un système en translation vaut p égale m fois v : le produit de sa masse par sa vitesse, un vecteur comme elle. Elle combine la masse du corps et sa vitesse : à vitesse égale, un corps lourd emporte bien plus de quantité de mouvement qu'un corps léger.",
+   "ecran": "quantite_mouvement",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "La quantité de mouvement : p égale m fois v."
+  },
+  {
+   "dit": "Pour un système isolé, sans force extérieure, ou pseudo-isolé, quand les forces extérieures se compensent, la quantité de mouvement totale se conserve. C'est elle qui explique le recul d'une arme à feu : la balle part d'un côté, l'arme recule de l'autre. Et la propulsion des fusées : les gaz éjectés vers l'arrière poussent l'engin vers l'avant.",
+   "ecran": "conservation",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Système isolé : la quantité de mouvement totale se conserve."
+  },
+  {
+   "dit": "Dans un choc ou un éclatement, la conservation s'écrit simplement : la somme des quantités de mouvement avant égale la somme après. Masse un vitesse un plus masse deux vitesse deux, avant comme après.",
+   "ecran": "chocs",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Chocs et éclatements : avant égale après."
+  },
+  {
+   "dit": "Exemple : une fusée de cinq cents kilogrammes éjecte cinquante kilogrammes de gaz à deux mille mètres par seconde vers l'arrière. La conservation donne sa vitesse : cinquante fois deux mille, divisé par cinq cents moins cinquante, soit deux cent vingt-deux mètres par seconde vers l'avant.",
+   "ecran": "exemple_fusee",
+   "id": "p21",
+   "pause_apres": 0.9,
+   "texte": "Exemple : la fusée avance à deux cent vingt-deux mètres par seconde."
+  },
+  {
+   "dit": "Nous retrouvons la première loi de Newton, le principe d'inertie : dans un référentiel galiléen, un système isolé ou pseudo-isolé reste immobile s'il l'était, ou conserve un mouvement rectiligne uniforme. Son centre d'inertie a une vitesse constante, en direction et en valeur : c'est la conséquence directe de tout ce chapitre.",
+   "ecran": "inertie",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Principe d'inertie : sans force nette, la vitesse ne change pas."
+  },
+  {
+   "dit": "À retenir : un solide est en équilibre quand la somme des forces est nulle, et, autour d'un axe, quand la somme des moments est nulle. La quantité de mouvement, masse fois vitesse, se conserve pour tout système isolé : c'est la loi des chocs, des éclatements et des propulsions.",
+   "ecran": "recap",
+   "id": "p23",
+   "pause_apres": 0.9,
+   "texte": "À retenir : deux équilibres, une conservation."
+  }
+ ],
+ "titre": "Mouvements et interactions mécaniques"
+}
