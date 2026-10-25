@@ -602,6 +602,52 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  diffraction_fig(t) {
+    let fronts = '';
+    for (const x of [252, 312, 372, 432])
+      fronts += `<line x1="${x}" y1="42" x2="${x}" y2="258" stroke="#1A75FF" stroke-width="3.5" opacity=".8"/>`;
+    let arcs = '';
+    for (const r of [42, 76, 110, 144]) {
+      const c = Math.cos(55 * Math.PI / 180), s = Math.sin(55 * Math.PI / 180);
+      arcs += `<path d="M ${Math.round(472 + r * c)} ${Math.round(150 - r * s)} A ${r} ${r} 0 0 1 ${Math.round(472 + r * c)} ${Math.round(150 + r * s)}" fill="none" stroke="#1A75FF" stroke-width="3.5"/>`;
+    }
+    return svgBoite(
+      fronts + arcs +
+      `<line x1="472" y1="28" x2="472" y2="117" stroke="currentColor" stroke-width="9"/>` +
+      `<line x1="472" y1="183" x2="472" y2="272" stroke="currentColor" stroke-width="9"/>` +
+      trait(238, 84, 438, 84, prog(t), { w: 3.5 }) + pointe(446, 84, 0) +
+      mot(288, 40, "l'onde plane arrive", { t: 20, a: 'start' }) +
+      mot(448, 106, "l'obstacle", { t: 19, a: 'end' }) +
+      mot(492, 128, 'la fente, largeur a', { t: 19, a: 'start' }) +
+      `<line x1="480" y1="134" x2="700" y2="88" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 6" opacity=".5"/>` +
+      `<line x1="480" y1="166" x2="700" y2="212" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 6" opacity=".5"/>` +
+      mot(706, 156, "l'onde s'étale en éventail", { t: 20, a: 'start' }) +
+      mot(500, 294, "diffraction : après la fente, l'onde occupe tout l'espace", { t: 20 }));
+  },
+  photoelectrique_fig(t) {
+    const photon = (y) => {
+      let pts = '';
+      for (let k = 0; k <= 20; k++) {
+        const x = 168 + 104 * k / 20;
+        pts += `${Math.round(x)},${Math.round(y - 7 * Math.sin(k * Math.PI / 2.5))} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#B8860B" stroke-width="4" stroke-linejoin="round"/>` + pointe(284, y, 0, '#B8860B');
+    };
+    const electron = (y1, y2) =>
+      `<circle cx="348" cy="${y1}" r="6" fill="#1A75FF"/>` +
+      trait(358, y1, 452, y2, prog(t), { c: '#1A75FF', w: 4 }) + pointe(458, y2, Math.round(Math.atan2(y2 - y1, 100) * 180 / Math.PI), '#1A75FF') +
+      mot(340, y1 - 14, 'e⁻', { c: '#1A75FF', t: 20, a: 'end' });
+    return svgBoite(
+      photon(100) + photon(150) + photon(200) +
+      mot(176, 62, 'hν, les photons arrivent', { c: '#B8860B', t: 21, a: 'start' }) +
+      `<rect x="298" y="58" width="38" height="184" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="4"/>` +
+      mot(317, 266, 'le métal', { t: 21 }) +
+      electron(100, 84) + electron(150, 150) + electron(200, 218) +
+      mot(492, 92, 'des électrons éjectés,', { t: 20, a: 'start' }) +
+      mot(492, 120, "d'autant plus rapides", { t: 20, a: 'start' }) +
+      mot(492, 148, 'que hν est grand', { t: 20, a: 'start' }) +
+      mot(500, 294, "l'effet photoélectrique : un photon, un électron arraché", { t: 20 }));
+  },
   graphes_cinematique_fig(t) {
     const panneau = (x0, titre, courbes) => {
       let s = `<line x1="${x0}" y1="66" x2="${x0}" y2="212" stroke="currentColor" stroke-width="3.5"/>` +
