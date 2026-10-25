@@ -111,8 +111,12 @@ jobs:
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+      # Publication OTA réservée à la branche de travail kw792g : le canal preview est
+      # unique, un push sur main (ou une autre branche suivie) ne doit jamais l'écraser
+      # avec un état qui n'est pas celui de la branche de travail (incident du 25/10/2026 :
+      # des pushs « vidéo-cours » sur main ont resservi l'interface du 19/10 en preview).
       - name: Publier la mise à jour OTA
-        if: ${{ github.event_name != 'pull_request' && env.EXPO_TOKEN != '' }}
+        if: ${{ github.event_name != 'pull_request' && env.EXPO_TOKEN != '' && github.ref == 'refs/heads/claude/project-thread-kw792g' }}
         run: |
           # Le message arrive par variable d'environnement (jamais interpolé dans le script).
           # [obligatoire] n'importe où (titre ou corps) => mise à jour obligatoire (extra.obligatoire dans app.config.ts).
