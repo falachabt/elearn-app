@@ -54,6 +54,7 @@ La génération peut tourner sur GitHub Actions plutôt que sur une machine loca
 - La clé publique Supabase vit dans le secret du dépôt `CHAINE_SUPABASE_KEY` (créé le 25 octobre 2026 par Muse, sur délégation explicite de Benny) ; l'URL du projet est en clair dans le workflow, elle est publique par conception.
 - Dépendances épinglées : `chaine-cours/requirements-voix.txt` (torch CPU, OmniVoice) et `requirements-rendu.txt` (Playwright, SoundFile) — le job montage n'installe pas torch.
 - Le dossier de travail se règle par `CHAINE_TRAVAIL` (défaut inchangé : `/tmp/chaine-cours`).
+- Pièges CI rencontrés au premier test (25 octobre 2026) : `voix()` ne doit importer torch/OmniVoice que s'il manque des clips (le job montage tourne sans torch) ; **ffmpeg n'est pas dans l'image du runner**, le job montage l'installe par apt.
 
 ## Automatique et manuel
 

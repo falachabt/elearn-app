@@ -75,6 +75,12 @@ jobs:
           cache-dependency-path: video-cours/chaine-cours/requirements-rendu.txt
       - name: Installer les dépendances de rendu
         run: pip install -r video-cours/chaine-cours/requirements-rendu.txt
+      - name: Installer ffmpeg
+        # Absent de l'image du runner : le montage (silences, concat, MP4) en a besoin.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          ffmpeg -version | head -1
       - name: Cache Chromium (Playwright)
         uses: actions/cache@v4
         with:
