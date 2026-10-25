@@ -261,7 +261,11 @@ def voix(script, dossier):
     import torch
     modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
     for p in manquants:
-        type_ecran = script["ecrans"][p["ecran"]].get("type", "phrase")
+        cle_ecran = p["ecran"]
+        if cle_ecran.startswith("titre-partie"):
+            type_ecran = "titre"
+        else:
+            type_ecran = script["ecrans"].get(cle_ecran, {}).get("type", "phrase")
         a = modele.generate(text=p["dit"], ref_audio=str(REF_AUDIO), ref_text=REF_TEXTE,
                             num_step=ETAPES, speed=VITESSE * FACTEURS_VITESSE.get(type_ecran, 1.0))[0]
         sf.write(str(segs / f"{p['id']}.wav"), a, 24000)
