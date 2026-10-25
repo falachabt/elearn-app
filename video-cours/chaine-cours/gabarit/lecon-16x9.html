@@ -525,6 +525,34 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  spectre_gamma_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="196" y1="240" x2="826" y2="240" stroke="currentColor" stroke-width="4"/>` + pointe(832, 240, 0) +
+      `<line x1="196" y1="240" x2="196" y2="36" stroke="currentColor" stroke-width="4"/>` + pointe(196, 30, -90) +
+      mot(180, 44, 'coups', { t: 21, a: 'end' }) + mot(846, 248, 'énergie', { t: 21, a: 'start' }) +
+      `<polygon points="618,232 634,84 652,232" fill="#10B981" fill-opacity=".3"/>` +
+      `<polyline points="206,236 300,206 428,200 446,228 614,232 634,84 654,232 700,234 822,236" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      `<polyline points="512,232 524,152 536,232" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(362, 172, 'bord Compton', { t: 21 }) +
+      mot(524, 128, "pic d'échappement", { c: '#1A75FF', t: 19 }) +
+      mot(634, 60, 'pic photoélectrique', { t: 21 }) +
+      mot(634, 266, 'E₀', { t: 22 }) +
+      mot(500, 292, "lire un spectre gamma : chaque pic est une énergie", { t: 20 }));
+  },
+  etage_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      trait(196, 150, 424, 150, p, { w: 6 }) + pointe(432, 150, 0) +
+      mot(300, 124, 'F, alimentation', { t: 22 }) + mot(300, 186, 'x_F', { t: 23 }) +
+      `<rect x="436" y="95" width="150" height="110" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="5"/>` +
+      mot(511, 159, 'un étage', { t: 23 }) +
+      trait(586, 106, 792, 64, p, { c: '#10B981', w: 6 }) + pointe(800, 62, -11, '#10B981') +
+      mot(706, 38, 'P, produit enrichi', { c: '#10B981', t: 21, a: 'start' }) + mot(706, 96, 'x_P', { c: '#10B981', t: 22, a: 'start' }) +
+      trait(586, 194, 792, 236, p, { c: '#E8604C', w: 6 }) + pointe(800, 238, 11, '#E8604C') +
+      mot(706, 272, 'W, résidu appauvri', { c: '#E8604C', t: 21, a: 'start' }) + mot(706, 214, 'x_W', { c: '#E8604C', t: 22, a: 'start' }) +
+      mot(320, 292, 'les teneurs : x_P > x_F > x_W, et F = P + W', { t: 21, a: 'start' }));
+  },
   clapeyron_fig(t) {
     const p = prog(t);
     const courbe = (f, coul, tiret) => {
