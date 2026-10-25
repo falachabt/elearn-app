@@ -84,6 +84,17 @@ La génération peut tourner sur GitHub Actions plutôt que sur une machine loca
 | Rendu 16:9, MP4 et animations | oui | regarder quelques images (débordements, unités) |
 | Choix des leçons, des formules, des animations | non | oui, c'est le script |
 
+## Stockage R2 et diffusion (décision de Benny, 25 octobre 2026)
+
+Les vidéos produites sont envoyées directement par le job montage dans le bucket Cloudflare R2 **elearn-videos** (compte personnel de Benny), via l'API S3 (clés en secrets GitHub `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY`, jeton limité à ce bucket en lecture-écriture d'objets). Organisation fixe, pensée pour être devinée sans base de données :
+
+- `cours/<courseId>/partie-<n>-720.mp4` (lecture par défaut, faststart) et `partie-<n>-1080.mp4` (master, faststart) ;
+- `cours/<courseId>/partie-<n>-miniature.jpg` (image tirée de l'écran-titre de la partie) et `cours/<courseId>/miniature.jpg` (celle de la partie 1) ;
+- `cours/<courseId>/meta.json` (titre, matière, parties et durées) ;
+- `index.json` à la racine : courseId → dossier, titre, matière, numéros de parties (fusionné à chaque envoi, jamais écrasé).
+
+Base publique (domaine de développement r2.dev, à remplacer par un domaine personnalisé pour la production) : `https://pub-1b81b49f770447bf8dde7a2a284e2c98.r2.dev/` — l'URL d'une vidéo est donc `<base>cours/<courseId>/partie-<n>-720.mp4`. L'artefact GitHub du run reste publié en secours, rétention réduite à 14 jours (les vidéos vivent sur R2, pas dans les artefacts).
+
 ## Pièges rencontrés
 
 - Le point médian `·` dans `\text{}` s'affiche en rouge avec KaTeX. Écrire les unités en `\text{N}\,\text{m}`.

@@ -107,13 +107,69 @@ jobs:
           for f in "sorties/${{ inputs.cours }}"/cours-*-16x9.mp4; do
             base="${f%-16x9.mp4}"
             ffmpeg -v error -y -i "$f" \
-              -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k \
+              -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k -movflags +faststart \
               "${base}-720p.mp4"
+            ffmpeg -v error -y -ss 1 -i "$f" -frames:v 1 -q:v 3 "${base}-miniature.jpg"
             DUREE=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
             ffmpeg -v error -y -i "$f" \
               -vf "fps=25/$DUREE,tile=5x5" -frames:v 1 "${base}-planche.png"
           done
           ls -lh "sorties/${{ inputs.cours }}/"
+      - name: Envoyer vers R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          ENDPOINT: https://9ae82bfac632f6d0ed7b452940e13abd.r2.cloudflarestorage.com
+        run: |
+          COURS="${{ inputs.cours }}"
+          BASE="s3://elearn-videos/cours/$COURS"
+          cd video-cours/chaine-cours
+          python3 - "$COURS" <<'PYEOF'
+          import json, subprocess, sys, pathlib
+          cours = sys.argv[1]
+          script = json.loads(pathlib.Path(f"scripts/{cours}.json").read_text())
+          sorties = pathlib.Path(f"sorties/{cours}")
+          parties = []
+          for f in sorted(sorties.glob("cours-*-16x9.mp4")):
+              nom = f.name.replace(f"cours-{cours}-", "").replace("-16x9.mp4", "").replace(".mp4", "")
+              numero = int(nom.split("-")[-1]) if nom.startswith("partie-") else 1
+              duree = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                            "-of", "csv=p=0", str(f)], capture_output=True, text=True).stdout.strip())
+              parties.append({"numero": numero, "duree_s": round(duree, 1)})
+          meta = {"cours": int(cours), "titre": script["titre"], "matiere": script["matiere"],
+                  "parties": parties,
+                  "url_base": f"https://pub-1b81b49f770447bf8dde7a2a284e2c98.r2.dev/cours/{cours}"}
+          (sorties / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
+          print("meta.json :", meta)
+          PYEOF
+          for f in "sorties/$COURS"/cours-*-16x9.mp4; do
+            base="${f%-16x9.mp4}"
+            case "$base" in
+              *-partie-*) n="${base##*-partie-}" ;;
+              *) n="1" ;;
+            esac
+            aws s3 cp "$f" "$BASE/partie-$n-1080.mp4" --endpoint-url "$ENDPOINT" --content-type video/mp4 --only-show-errors
+            aws s3 cp "${base}-720p.mp4" "$BASE/partie-$n-720.mp4" --endpoint-url "$ENDPOINT" --content-type video/mp4 --only-show-errors
+            aws s3 cp "${base}-miniature.jpg" "$BASE/partie-$n-miniature.jpg" --endpoint-url "$ENDPOINT" --content-type image/jpeg --only-show-errors
+            if [ "$n" = "1" ]; then
+              aws s3 cp "${base}-miniature.jpg" "$BASE/miniature.jpg" --endpoint-url "$ENDPOINT" --content-type image/jpeg --only-show-errors
+            fi
+          done
+          aws s3 cp "sorties/$COURS/meta.json" "$BASE/meta.json" --endpoint-url "$ENDPOINT" --content-type application/json --only-show-errors
+          aws s3 cp "s3://elearn-videos/index.json" index-ancien.json --endpoint-url "$ENDPOINT" --only-show-errors || echo '{}' > index-ancien.json
+          python3 - "$COURS" <<'PYEOF'
+          import json, sys, pathlib
+          cours = sys.argv[1]
+          index = json.loads(pathlib.Path("index-ancien.json").read_text() or "{}")
+          meta = json.loads(pathlib.Path(f"sorties/{cours}/meta.json").read_text())
+          index[cours] = {"dossier": f"cours/{cours}", "titre": meta["titre"],
+                          "matiere": meta["matiere"], "parties": [p["numero"] for p in meta["parties"]]}
+          pathlib.Path("index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1, sort_keys=True))
+          print("index.json :", index[cours])
+          PYEOF
+          aws s3 cp index.json "s3://elearn-videos/index.json" --endpoint-url "$ENDPOINT" --content-type application/json --only-show-errors
+          echo "Envoi R2 terminé pour le cours $COURS"
       - name: Publier la vidéo
         uses: actions/upload-artifact@v4
         with:
@@ -122,4 +178,5 @@ jobs:
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*.mp4
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*.vtt
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-planche.png
-          retention-days: 90
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-miniature.jpg
+          retention-days: 14
