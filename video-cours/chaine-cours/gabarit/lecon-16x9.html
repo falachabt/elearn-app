@@ -525,6 +525,70 @@ const FIG = {
       mot(354, 240, 'R₃', { t: 25 }) + mot(354, 74, 'Rₓ', { t: 25 }) +
       mot(500, 290, "à l'équilibre, le galvanomètre ne dévie pas", { t: 22 }));
   },
+  puits_modes_fig(t) {
+    const mode = (n, yc, coul) => {
+      let pts = '';
+      for (let k = 0; k <= 90; k++) {
+        const x = 245 + 510 * k / 90, y = yc - 30 * Math.sin(n * Math.PI * (x - 245) / 510) * prog(t);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      let noeuds = '';
+      for (let k = 1; k < n; k++)
+        noeuds += `<circle cx="${245 + 510 * k / n}" cy="${yc}" r="4.5" fill="#E8604C"/>`;
+      return `<line x1="245" y1="${yc}" x2="755" y2="${yc}" stroke="currentColor" stroke-width="2.5" stroke-dasharray="6 6" opacity=".6"/>` +
+        `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="4.5" stroke-linejoin="round"/>` + noeuds +
+        mot(776, yc + 8, `ψ${'₁₂₃'[n - 1]} · E${'₁₂₃'[n - 1]}`, { t: 23, a: 'start' });
+    };
+    return svgBoite(
+      `<line x1="238" y1="24" x2="238" y2="272" stroke="currentColor" stroke-width="7"/>` +
+      `<line x1="762" y1="24" x2="762" y2="272" stroke="currentColor" stroke-width="7"/>` +
+      mode(1, 74, '#1A75FF') + mode(2, 152, '#10B981') + mode(3, 230, '#E8604C') +
+      mot(500, 294, "les fonctions propres du puits infini : E_n croît comme n²", { t: 20 }));
+  },
+  paquet_onde_fig(t) {
+    let osc = '', env = '';
+    for (let k = 0; k <= 145; k++) {
+      const x = 205 + 590 * k / 145, a = 132 * Math.exp(-Math.pow((x - 500) / 175, 2));
+      osc += `${Math.round(x)},${Math.round(158 - a * Math.cos((x - 500) * 2 * Math.PI / 52))} `;
+      env += `${Math.round(x)},${Math.round(158 - a)} `;
+    }
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="180" y1="158" x2="824" y2="158" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
+      `<polyline points="${env}" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 6" opacity=".7"/>` +
+      `<polyline points="${osc}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(500, 40, "l'oscillation rapide porte le nombre d'onde k₀", { t: 20 }) +
+      trait(500, 256, 500 + 175 * p, 256, p, { c: '#E8604C', w: 4 }) + pointe(504 + 175 * p, 256, 0, '#E8604C') +
+      mot(588, 244, 'σ, la largeur', { c: '#E8604C', t: 21 }) +
+      mot(500, 292, "un paquet d'ondes : une enveloppe gaussienne localisée", { t: 20 }));
+  },
+  barriere_tunnel_fig(t) {
+    let inc = '', trans = '', dedans = '';
+    for (let k = 0; k <= 50; k++) {
+      const x = 185 + 250 * k / 50;
+      inc += `${Math.round(x)},${Math.round(140 - 44 * Math.sin((x - 185) / 11))} `;
+    }
+    for (let k = 0; k <= 28; k++) {
+      const x = 445 + 140 * k / 28;
+      dedans += `${Math.round(x)},${Math.round(140 - 35 * Math.exp(-(x - 445) / 48))} `;
+    }
+    for (let k = 0; k <= 46; k++) {
+      const x = 595 + 230 * k / 46;
+      trans += `${Math.round(x)},${Math.round(140 - 13 * Math.sin((x - 595) / 11))} `;
+    }
+    return svgBoite(
+      `<line x1="168" y1="250" x2="842" y2="250" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="168" y1="140" x2="842" y2="140" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".55"/>` +
+      mot(150, 148, 'E', { t: 24, a: 'end' }) +
+      `<rect x="440" y="64" width="150" height="186" fill="#E8604C" fill-opacity=".13" stroke="#E8604C" stroke-width="4"/>` +
+      mot(515, 46, 'V₀, la barrière', { c: '#E8604C', t: 21 }) +
+      `<polyline points="${inc}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      `<polyline points="${dedans}" fill="none" stroke="#10B981" stroke-width="4.5" stroke-linejoin="round"/>` +
+      `<polyline points="${trans}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(302, 66, 'onde incidente', { t: 20 }) +
+      mot(716, 96, 'onde transmise, plus faible', { t: 19, a: 'start' }) +
+      mot(515, 282, 'dans la barrière : décroissance exponentielle', { c: '#10B981', t: 19 }));
+  },
   atmosphere_fig(t) {
     let points = '';
     for (let r = 0; r < 10; r++) {

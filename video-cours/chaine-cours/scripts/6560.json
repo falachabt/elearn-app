@@ -1,0 +1,667 @@
+{
+ "cours": 6560,
+ "ecrans": {
+  "barriere": {
+   "kicker": "Barrière rectangulaire",
+   "tex": [
+    "\\psi_I = A e^{ikx} + B e^{-ikx} \\qquad \\psi_{III} = F e^{ikx}",
+    "\\psi_{II} = C e^{\\kappa x} + D e^{-\\kappa x}",
+    "\\kappa = \\frac{\\sqrt{2m(V_0 - E)}}{\\hbar} \\qquad T = \\frac{|F|^2}{|A|^2}"
+   ],
+   "titre": "La barrière : trois régions, quatre raccords",
+   "type": "etape"
+  },
+  "boite3d": {
+   "kicker": "La boîte 3D",
+   "tex": [
+    "\\psi(x,y,z) = X(x) \\, Y(y) \\, Z(z) \\qquad k_x^2 + k_y^2 + k_z^2 = k^2 = \\frac{2mE}{\\hbar^2}",
+    "k_x = \\frac{n_x \\pi}{a} \\quad k_y = \\frac{n_y \\pi}{b} \\quad k_z = \\frac{n_z \\pi}{c}",
+    "E = \\frac{\\hbar^2}{2m} \\left( k_x^2 + k_y^2 + k_z^2 \\right)"
+   ],
+   "titre": "La boîte 3D : trois séparations en cascade",
+   "type": "etape"
+  },
+  "born": {
+   "kicker": "Interprétation de Born",
+   "note": "Interprétation de Born (1926) · À la question « signification de |ψ|² », répondre : densité de probabilité de présence, jamais « probabilité » tout court",
+   "tex": "\\rho(x,t) = |\\psi(x,t)|^2 = \\psi^*(x,t) \\, \\psi(x,t) \\qquad dP = \\rho(x,t) \\, dx",
+   "type": "formule"
+  },
+  "cas_negatif": {
+   "kicker": "Particule libre · E < 0",
+   "note": "κ = √(−2mE)/ħ pour E < 0 · Solutions divergentes sur tout l'espace : rejetées pour une particule libre, mais centrales dans les régions interdites (puits fini, barrière)",
+   "tex": "\\frac{d^2\\psi}{dx^2} - \\kappa^2 \\psi = 0 \\qquad \\psi(x) = C e^{\\kappa x} + D e^{-\\kappa x}",
+   "type": "formule"
+  },
+  "coefficients": {
+   "kicker": "Superposition d'états",
+   "tex": [
+    "\\int_0^L \\psi_m^*(x) \\, \\psi_n(x) \\, dx = \\delta_{mn}",
+    "c_m = \\int_0^L \\psi_m^*(x) \\, \\Psi(x,0) \\, dx"
+   ],
+   "titre": "Extraire les coefficients : l'orthogonalité",
+   "type": "etape"
+  },
+  "continuite": {
+   "etapes": [
+    "ψ est toujours continue, même si V saute",
+    "ψ' est continue si le saut de V est fini",
+    "Mur infini : ψ s'annule au bord du mur",
+    "Région interdite : exponentielle décroissante"
+   ],
+   "kicker": "Raccordements",
+   "titre": "Les règles de raccordement",
+   "type": "recap"
+  },
+  "courant": {
+   "kicker": "Propagation",
+   "tex": [
+    "|\\Psi(x,t)|^2 = |A|^2",
+    "j = \\frac{\\hbar}{m} \\, \\mathrm{Im} ( \\Psi^* \\frac{\\partial \\Psi}{\\partial x} )",
+    "j = |A|^2 \\frac{\\hbar k}{m} = |A|^2 v"
+   ],
+   "titre": "Densité uniforme et courant de probabilité",
+   "type": "etape"
+  },
+  "demarche": {
+   "etapes": [
+    "Bilan des données, choix du système, schéma",
+    "Loi applicable : l'équation de Schrödinger",
+    "Résolution rigoureuse, région par région",
+    "Vérification : unités, limites, signe",
+    "Interprétation physique du résultat"
+   ],
+   "kicker": "Méthode · démarche type",
+   "titre": "La démarche type concours",
+   "type": "recap"
+  },
+  "equations": {
+   "kicker": "Séparation des variables",
+   "tex": [
+    "i\\hbar \\frac{d\\phi}{dt} = E \\phi \\qquad \\phi(t) = e^{-iEt/\\hbar}",
+    "-\\frac{\\hbar^2}{2m} \\frac{d^2\\psi}{dx^2} + V\\psi = E\\psi \\quad \\text{(ESIT)}"
+   ],
+   "titre": "Deux équations ordinaires",
+   "type": "etape"
+  },
+  "exemple_cos": {
+   "kicker": "Exemple type · onde stationnaire",
+   "tex": [
+    "\\Psi(x,0) = N\\cos(3x) = \\frac{N}{2} \\left( e^{i3x} + e^{-i3x} \\right)",
+    "k = \\pm 3 \\ \\text{m}^{-1} \\qquad E = \\frac{\\hbar^2 k^2}{2m} = \\frac{9\\hbar^2}{2m}"
+   ],
+   "titre": "Exemple type : un cosinus à l'instant initial",
+   "type": "etape"
+  },
+  "exemple_cos_res": {
+   "kicker": "Exemple type · résultat",
+   "note": "Chaque composante évolue avec son facteur e^(−iEt/ħ) · Le facteur de phase commun disparaît dans le module carré : densité stationnaire",
+   "tex": "\\Psi(x,t) = N\\cos(3x) \\, e^{-i\\frac{9\\hbar}{2m}t} \\qquad |\\Psi(x,t)|^2 = |N|^2 \\cos^2(3x)",
+   "type": "formule"
+  },
+  "exemple_super": {
+   "kicker": "Exemple type · état tronqué",
+   "tex": [
+    "\\Psi(x,0) = A \\sin\\left(\\frac{2\\pi x}{L}\\right) \\quad 0 \\le x \\le L/2",
+    "\\Psi(x,0) = 0 \\quad L/2 \\le x \\le L",
+    "A^2 \\cdot \\frac{L}{4} = 1 \\qquad A = \\frac{2}{\\sqrt{L}}"
+   ],
+   "titre": "Exemple type : un état tronqué, sa normalisation",
+   "type": "etape"
+  },
+  "exemple_super_res": {
+   "kicker": "Exemple type · décomposition",
+   "tex": [
+    "c_2 = \\frac{\\sqrt{2}}{2} \\qquad c_n = -\\frac{4\\sqrt{2}}{\\pi} \\cdot \\frac{\\sin(n\\pi/2)}{n^2 - 4} \\ (n \\neq 2)",
+    "P\\left(0 \\le x \\le L/3\\right) = \\frac{2}{3} + \\frac{\\sqrt{3}}{4\\pi} \\approx 0{,}80"
+   ],
+   "titre": "Décomposition : les impairs et n = 2 survivent",
+   "type": "etape"
+  },
+  "exemple_tiers": {
+   "kicker": "Exemple type · probabilité",
+   "tex": [
+    "P = \\int_{-L/6}^{L/6} \\frac{2}{L} \\cos^2\\left(\\frac{\\pi x}{L}\\right) dx",
+    "P = \\frac{1}{3} + \\frac{\\sqrt{3}}{2\\pi} \\approx 0{,}61"
+   ],
+   "titre": "Exemple type : le tiers central du fondamental",
+   "type": "etape"
+  },
+  "exemple_tunnel": {
+   "kicker": "Exemple type · effet tunnel",
+   "tex": [
+    "E = 5{,}0 \\ \\text{eV} \\qquad V_0 = 7{,}0 \\ \\text{eV} \\qquad a = 0{,}10 \\ \\text{nm}",
+    "\\kappa = 7{,}24 \\times 10^{9} \\ \\text{m}^{-1} \\qquad 2\\kappa a = 1{,}45",
+    "T \\approx e^{-2\\kappa a} \\approx 0{,}24"
+   ],
+   "titre": "Exemple chiffré : un électron face à une barrière",
+   "type": "etape",
+   "anim": {
+    "nom": "barriere_tunnel_fig",
+    "hauteur": 115
+   }
+  },
+  "fondamental3d": {
+   "kicker": "La boîte 3D · fondamental",
+   "note": "Normalisation : chaque intégrale ∫ sin² vaut la longueur/2 · Boîte cubique : premier excité (2,1,1), (1,2,1), (1,1,2), dégénérescence 3",
+   "tex": "\\psi_{111}(x,y,z) = \\sqrt{\\frac{8}{abc}} \\sin\\frac{\\pi x}{a} \\sin\\frac{\\pi y}{b} \\sin\\frac{\\pi z}{c}",
+   "type": "formule"
+  },
+  "helmholtz": {
+   "kicker": "Équation de Helmholtz",
+   "note": "Relation de de Broglie : p = ħk · On retrouve E = p²/2m = ħ²k²/2m · k : nombre d'onde quantique, de dimension L⁻¹",
+   "tex": "\\frac{d^2\\psi}{dx^2} + k^2 \\psi = 0 \\qquad k^2 = \\frac{2mE}{\\hbar^2}",
+   "type": "formule"
+  },
+  "impulsion_moy": {
+   "kicker": "Paquet d'ondes · observable",
+   "note": "Valeur moyenne d'un opérateur : ⟨Ô⟩ = ∫ Ψ* Ô Ψ dx, ici à t = 0 · Le terme en x de la dérivée est impair : son intégrale est nulle",
+   "tex": "\\langle p \\rangle = \\int \\Psi^* \\hat{p} \\Psi \\, dx = \\hbar k_0, \\quad \\hat{p} = -i\\hbar \\partial_x",
+   "type": "formule",
+   "anim": {
+    "nom": "paquet_onde_fig",
+    "hauteur": 200
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Quatre situations modèles reviennent sans cesse au concours : particule libre, puits infini, puits fini, barrière de potentiel. Pour chacune : modéliser, résoudre, raccorder, interpréter.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Modéliser : écrire V(x), dessiner, repérer les régions",
+    "Stationnaire si V ne dépend pas du temps",
+    "Résoudre par régions, raccorder ψ et ψ'",
+    "Normaliser, extraire les observables",
+    "Vérifier : dimensions, limites, 0 ≤ T ≤ 1"
+   ],
+   "kicker": "Synthèse méthodologique",
+   "titre": "La méthode complète, en cinq temps",
+   "type": "recap"
+  },
+  "non_normalisable": {
+   "kicker": "Normalisation de Dirac",
+   "note": "Les ondes planes pures ne sont pas normalisables sur ℝ · Deux issues : boîte de normalisation de longueur L, ou paquets d'ondes (partie 3)",
+   "tex": "\\int_{-\\infty}^{+\\infty} e^{i(k-k')x} \\, dx = 2\\pi \\, \\delta(k-k')",
+   "type": "formule"
+  },
+  "normalisation": {
+   "kicker": "Normalisation",
+   "tex": [
+    "\\int_{-\\infty}^{+\\infty} |\\psi(x,t)|^2 \\, dx = 1",
+    "N = \\int_{-\\infty}^{+\\infty} |\\psi(x)|^2 \\, dx \\qquad |A| = \\frac{1}{\\sqrt{N}}"
+   ],
+   "titre": "Normaliser : intégrer, puis fixer la constante",
+   "type": "etape"
+  },
+  "onde_plane": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "sinusoide"
+   },
+   "kicker": "Onde plane monochromatique",
+   "note": "Relation de dispersion d'une particule libre non relativiste · Le signe devant kx donne le sens de propagation",
+   "tex": "\\Psi(x,t) = A e^{i(kx - \\omega t)} \\qquad \\omega = \\frac{E}{\\hbar} = \\frac{\\hbar k^2}{2m}",
+   "type": "formule"
+  },
+  "paquet": {
+   "anim": {
+    "nom": "paquet_onde_fig",
+    "hauteur": 240
+   },
+   "kicker": "Paquet d'ondes gaussien",
+   "note": "Produit d'une onde plane et d'une enveloppe gaussienne · k₀ : nombre d'onde central · σ : largeur spatiale · [N] = L^(−1/2)",
+   "tex": "\\Psi(x,0) = N e^{ik_0 x} \\, e^{-\\frac{x^2}{4\\sigma^2}}",
+   "type": "formule"
+  },
+  "paquet_res": {
+   "kicker": "Paquet d'ondes gaussien",
+   "tex": [
+    "|\\Psi(x,0)|^2 = |N|^2 e^{-\\frac{x^2}{2\\sigma^2}}",
+    "|N|^2 \\sqrt{2\\pi} \\, \\sigma = 1",
+    "N = \\frac{1}{(2\\pi)^{1/4} \\sqrt{\\sigma}}"
+   ],
+   "titre": "Normalisation du paquet gaussien",
+   "type": "etape"
+  },
+  "parite": {
+   "anim": {
+    "nom": "puits_modes_fig",
+    "hauteur": 120
+   },
+   "kicker": "Le puits centré",
+   "tex": [
+    "n \\text{ impair} : \\ \\psi_n = \\sqrt{\\frac{2}{L}} \\cos\\left(\\frac{n\\pi x}{L}\\right)",
+    "n \\text{ pair} : \\ \\psi_n = \\sqrt{\\frac{2}{L}} \\sin\\left(\\frac{n\\pi x}{L}\\right)"
+   ],
+   "titre": "Le même puits, centré : la parité alterne",
+   "type": "etape"
+  },
+  "puits_fini": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "puits"
+   },
+   "kicker": "Le puits fini",
+   "tex": [
+    "\\psi_I(x) = A e^{\\kappa x} \\qquad \\psi_{III}(x) = F e^{-\\kappa x}",
+    "\\psi_{II}(x) = C\\cos(kx) + D\\sin(kx)",
+    "\\kappa = \\frac{\\sqrt{2m(V_0 - E)}}{\\hbar} \\qquad k = \\frac{\\sqrt{2mE}}{\\hbar}"
+   ],
+   "titre": "Le puits fini : trois régions",
+   "type": "etape"
+  },
+  "puits_infini": {
+   "anim": {
+    "nom": "puits_modes_fig",
+    "hauteur": 240
+   },
+   "kicker": "Le puits infini",
+   "note": "Puits entre 0 et L : ψ nulle aux deux bords · n = 1, 2, 3, … (n = 0 donnerait ψ identiquement nulle)",
+   "tex": "\\psi_n(x) = \\sqrt{\\frac{2}{L}} \\sin\\left(\\frac{n\\pi x}{L}\\right) \\qquad 0 \\le x \\le L",
+   "type": "formule"
+  },
+  "quantification": {
+   "kicker": "Le puits infini",
+   "tex": [
+    "\\psi(0) = 0 \\ \\Rightarrow \\ B = 0",
+    "\\psi(L) = A\\sin(kL) = 0 \\ \\Rightarrow \\ k_n = \\frac{n\\pi}{L}",
+    "E_n = \\frac{\\hbar^2 k_n^2}{2m} = \\frac{\\hbar^2 \\pi^2 n^2}{2mL^2}"
+   ],
+   "titre": "La quantification, pas à pas",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Schrödinger, séparation des variables, Helmholtz",
+    "Particule libre : ondes planes, ω = ħk²/2m",
+    "Born : |ψ|² densité de présence, intégrale 1",
+    "Puits : k_n = nπ/L, E_n en n², états liés discrets",
+    "Superposition et tunnel : |c_n|², T en e^(−2κa)"
+   ],
+   "kicker": "À retenir",
+   "titre": "Physique quantique : l'enchaînement complet",
+   "type": "recap"
+  },
+  "schrodinger": {
+   "kicker": "Équation de Schrödinger",
+   "note": "Hamiltonien Ĥ = p̂²/2m + V · En représentation position : p̂ = −iħ ∂/∂x · Équation linéaire : toute combinaison de solutions est solution (superposition)",
+   "tex": "i\\hbar \\frac{\\partial \\Psi}{\\partial t} = -\\frac{\\hbar^2}{2m} \\frac{\\partial^2 \\Psi}{\\partial x^2}",
+   "type": "formule"
+  },
+  "separation": {
+   "kicker": "Séparation des variables",
+   "tex": [
+    "\\Psi(x,t) = \\psi(x) \\, \\phi(t)",
+    "i\\hbar \\, \\psi \\frac{d\\phi}{dt} = -\\frac{\\hbar^2}{2m} \\, \\phi \\, \\psi''",
+    "\\frac{i\\hbar}{\\phi} \\frac{d\\phi}{dt} = -\\frac{\\hbar^2}{2m} \\frac{\\psi''}{\\psi} = E"
+   ],
+   "titre": "Séparation des variables : l'ansatz produit",
+   "type": "etape"
+  },
+  "solutions": {
+   "kicker": "Particule libre · E > 0",
+   "note": "Cas E > 0 : solutions oscillantes · α et β : constantes complexes fixées par les conditions aux limites et la normalisation",
+   "tex": "\\psi(x) = \\alpha e^{ikx} + \\beta e^{-ikx} = A\\cos(kx) + B\\sin(kx)",
+   "type": "formule"
+  },
+  "superposition": {
+   "kicker": "Superposition d'états",
+   "note": "|c_n|² : probabilité de mesurer l'énergie E_n · Normalisation : Σ |c_n|² = 1 · Les c_n sont les amplitudes de probabilité",
+   "tex": "\\Psi(x,t) = \\sum_{n=1}^{\\infty} c_n \\, \\psi_n(x) \\, e^{-iE_n t/\\hbar}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "sinusoide"
+   },
+   "kicker": "Concours Polytechnique L3",
+   "sous": "Particule libre, puits de potentiel, superposition d'états, effet tunnel : les méthodes du concours",
+   "titre": "Physique quantique",
+   "type": "titre"
+  },
+  "transcendantes": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "puits"
+   },
+   "kicker": "Le puits fini",
+   "tex": [
+    "\\text{pairs :} \\quad k \\tan\\left(\\frac{ka}{2}\\right) = \\kappa",
+    "\\text{impairs :} \\quad -k \\cot\\left(\\frac{ka}{2}\\right) = \\kappa"
+   ],
+   "titre": "Parité et équations transcendantes",
+   "type": "etape"
+  },
+  "transmission": {
+   "kicker": "Barrière rectangulaire · transmission",
+   "note": "Barrière épaisse (κa ≫ 1) : T ≈ [16E(V₀ − E)/V₀²] e^(−2κa) · Décroissance exponentielle avec la largeur a : la signature de l'effet tunnel",
+   "tex": "T = \\frac{1}{1 + \\frac{V_0^2}{4E(V_0 - E)} \\sinh^2(\\kappa a)}",
+   "type": "formule",
+   "anim": {
+    "nom": "barriere_tunnel_fig",
+    "hauteur": 220
+   }
+  },
+  "valeurs_moy": {
+   "kicker": "Superposition d'états",
+   "tex": [
+    "\\langle H \\rangle = \\sum_{n} |c_n|^2 E_n",
+    "\\langle \\hat{A} \\rangle = \\sum_{n} |c_n|^2 a_n + \\text{termes } m \\neq n",
+    "\\text{oscillation : } e^{i(E_m - E_n)t/\\hbar}"
+   ],
+   "titre": "Valeurs moyennes dans une superposition",
+   "type": "etape"
+  },
+  "vitesses": {
+   "kicker": "Propagation",
+   "tex": [
+    "v_\\phi = \\frac{\\omega}{k} = \\frac{\\hbar k}{2m}",
+    "v_g = \\frac{d\\omega}{dk} = \\frac{\\hbar k}{m} = \\frac{p}{m}"
+   ],
+   "titre": "Vitesse de phase, vitesse de groupe",
+   "type": "etape"
+  }
+ },
+ "matiere": "Concours Polytechnique L3",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La particule libre : Schrödinger, ondes planes et interprétation de Born"
+  },
+  {
+   "debut": "p15",
+   "pont": {
+    "dit": "Partie deux : le problème de la normalisation des ondes planes, puis le confinement sous toutes ses formes, avec les raccordements, le puits infini, le puits fini et la boîte tridimensionnelle.",
+    "texte": "Partie 2 : normalisation et confinement."
+   },
+   "sous_titre": "Normalisation et confinement : puits infini, puits fini, boîte 3D"
+  },
+  {
+   "debut": "p27",
+   "pont": {
+    "dit": "Partie trois : les états réels ne sont presque jamais des états stationnaires purs. Paquets d'ondes, superpositions d'états, puis la barrière de potentiel et l'effet tunnel, avant la méthode complète de résolution.",
+    "texte": "Partie 3 : paquets d'ondes, superpositions et effet tunnel."
+   },
+   "sous_titre": "Paquets d'ondes, superposition d'états et effet tunnel"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré à la physique quantique : la particule libre, les puits de potentiel, la superposition d'états et l'effet tunnel. Un seul fil rouge, du début à la fin : la méthode.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Physique quantique : les méthodes du concours."
+  },
+  {
+   "dit": "Le cours est construit autour d'un petit nombre de situations modèles qui reviennent sans cesse dans les épreuves : la particule libre, le puits infini, le puits fini, la barrière. Pour chacune, nous suivrons la même démarche complète : modéliser, écrire l'équation, résoudre, raccorder, puis interpréter.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Des situations modèles, une seule démarche complète."
+  },
+  {
+   "dit": "Avant tout calcul, imposez-vous la démarche type du concours : bilan des données et choix du système, schéma mental du potentiel, identification de la loi applicable, résolution rigoureuse, vérification des unités, et enfin interprétation physique. C'est cette séquence, répétée à chaque problème, qui sécurise les points.",
+   "ecran": "demarche",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La démarche : bilan, loi, calcul, vérification, interprétation."
+  },
+  {
+   "dit": "La loi fondamentale est l'équation de Schrödinger. Pour une particule libre, le potentiel est nul et l'équation relie la dérivée temporelle de la fonction d'onde à sa dérivée seconde spatiale, avec le préfacteur h barre carré sur deux m. Elle est linéaire : toute combinaison linéaire de solutions est encore une solution, c'est le principe de superposition.",
+   "ecran": "schrodinger",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Équation de Schrödinger de la particule libre (V = 0)."
+  },
+  {
+   "dit": "Pour résoudre, on sépare les variables : on cherche la fonction d'onde sous la forme d'un produit, une fonction de l'espace seul fois une fonction du temps seul. En injectant cette forme dans l'équation, puis en divisant par le produit, le membre de gauche ne dépend plus que du temps et celui de droite que de l'espace : ils sont donc égaux à une même constante, que l'on note E.",
+   "ecran": "separation",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Ψ(x,t) = ψ(x) φ(t) : la constante de séparation est E."
+  },
+  {
+   "dit": "La séparation donne deux équations différentielles ordinaires. L'équation temporelle se résout immédiatement : phi de t est l'exponentielle de moins i E t sur h barre. L'équation spatiale est l'équation de Schrödinger indépendante du temps : c'est une équation aux valeurs propres, où l'hamiltonien appliqué à psi redonne psi multiplié par l'énergie E.",
+   "ecran": "equations",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "φ(t) = exp(−iEt/ħ) ; l'équation spatiale est l'ESIT."
+  },
+  {
+   "dit": "Pour la particule libre, l'équation spatiale prend une forme universelle : psi seconde plus k carré psi égale zéro. C'est l'équation de Helmholtz, déjà rencontrée en optique et en électromagnétisme. Le nombre d'onde k est fixé par l'énergie : k carré égale deux m E sur h barre carré, ce qui n'est autre que la relation de de Broglie, p égale h barre k.",
+   "ecran": "helmholtz",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Équation de Helmholtz : ψ'' + k²ψ = 0, k² = 2mE/ħ²."
+  },
+  {
+   "dit": "Quand l'énergie est positive, k est réel et la solution générale est une combinaison d'exponentielles complexes, ou, ce qui est équivalent, de cosinus et de sinus. Chaque exponentielle est une onde plane : la première se propage vers les x croissants, la seconde vers les x décroissants, une fois le facteur temporel remis en place.",
+   "ecran": "solutions",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "E > 0 : ψ = α e^(ikx) + β e^(−ikx), deux ondes planes."
+  },
+  {
+   "dit": "Si l'énergie était négative, k deviendrait imaginaire et les solutions deviendraient des exponentielles réelles, croissante et décroissante. Sur tout l'espace, elles divergent et ne sont pas acceptables pour une particule libre. Retenez-les cependant : ce sont exactement les formes que prend la fonction d'onde dans les régions classiquement interdites, puits fini et barrière.",
+   "ecran": "cas_negatif",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "E < 0 : exponentielles réelles, rejetées sur tout l'espace."
+  },
+  {
+   "dit": "En recomposant la solution complète, on obtient l'onde plane monochromatique : A fois l'exponentielle de i, k x moins omega t. La pulsation omega vaut E sur h barre, soit h barre k carré sur deux m : c'est la relation de dispersion de la particule libre non relativiste. Le signe devant k x indique le sens de propagation de l'onde.",
+   "ecran": "onde_plane",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Onde plane : ω = ħk²/2m (relation de dispersion)."
+  },
+  {
+   "dit": "Attention au piège classique : la surface de phase constante se déplace à la vitesse de phase, omega sur k, soit h barre k sur deux m. Mais la particule, elle, se déplace à la vitesse de groupe, dérivée de omega par rapport à k, soit h barre k sur m : exactement p sur m, la vitesse classique. C'est la vitesse de groupe qui décrit le mouvement du paquet d'ondes.",
+   "ecran": "vitesses",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "v_φ = ħk/2m ; v_g = ħk/m = p/m : la particule suit v_g."
+  },
+  {
+   "dit": "Pour une onde plane seule, la densité de probabilité est le module carré de A : elle est uniforme dans tout l'espace. Impulsion parfaitement définie, position totalement indéterminée : c'est le principe d'incertitude en action. Le courant de probabilité, lui, vaut module de A carré fois h barre k sur m, c'est-à-dire la densité fois la vitesse de la particule : un flux régulier, sans dissipation.",
+   "ecran": "courant",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "|Ψ|² = |A|² uniforme ; j = |A|² ħk/m = |A|² v."
+  },
+  {
+   "dit": "Que signifie physiquement la fonction d'onde ? Réponse de Max Born, en mille neuf cent vingt-six : son module carré est une densité de probabilité de présence. La probabilité de trouver la particule dans un petit intervalle dx est cette densité multipliée par dx. Au concours, la réponse attendue est toujours densité de probabilité de présence, jamais probabilité tout court.",
+   "ecran": "born",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Born : ρ = |ψ|², densité de probabilité de présence."
+  },
+  {
+   "dit": "La particule est quelque part : la probabilité totale vaut un, c'est la condition de normalisation. La méthode est toujours la même : calculer le module carré, intégrer sur tout l'espace, puis choisir la constante A de module un sur racine de N. Cohérence au passage : psi a la dimension de l'inverse d'une racine de longueur, pour que son module carré intégré donne un nombre sans dimension.",
+   "ecran": "normalisation",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Normalisation : ∫|ψ|²dx = 1, |A| = 1/√N."
+  },
+  {
+   "dit": "Problème : une onde plane pure n'est pas normalisable sur la droite entière, son module carré constant donne une intégrale infinie. Deux parades sont utilisées au concours : la boîte de normalisation, où l'on travaille sur une longueur L finie avant de passer à la limite, et la normalisation de Dirac, où les ondes planes sont orthogonales au sens des distributions.",
+   "ecran": "non_normalisable",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Ondes planes : normalisation de Dirac ou boîte de longueur L."
+  },
+  {
+   "dit": "Exemple type, entièrement corrigé dans les leçons : à l'instant initial, la fonction d'onde est N cosinus de trois x. On écrit le cosinus comme la demi-somme de deux exponentielles : deux ondes planes de nombres d'onde plus trois et moins trois par mètre. Point clé : le carré de k est le même, donc les deux ondes ont la même énergie, neuf h barre carré sur deux m.",
+   "ecran": "exemple_cos",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "cos(3x) = deux ondes planes k = ±3 m⁻¹, même énergie."
+  },
+  {
+   "dit": "Chaque onde plane reçoit son facteur d'évolution temporel. Les deux énergies étant égales, le facteur est commun et se met en facteur : la fonction d'onde est le cosinus initial fois une phase globale. Dans le module carré, cette phase disparaît : la densité de probabilité, en cosinus carré de trois x, est stationnaire. C'est une onde stationnaire, superposition de deux ondes de même énergie en sens opposés.",
+   "ecran": "exemple_cos_res",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Ψ(x,t) = N cos(3x) e^(−i9ħt/2m) ; densité stationnaire."
+  },
+  {
+   "dit": "Avant de confiner la particule, les règles de raccordement. La fonction d'onde est toujours continue, même là où le potentiel saute. Sa dérivée première est continue dès que le saut du potentiel est fini ; elle ne peut sauter qu'à un mur infini, où la fonction d'onde s'annule. Ces deux règles, appliquées aux frontières des régions, sont le moteur de tous les problèmes de puits et de barrières.",
+   "ecran": "continuite",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Raccordement : ψ continue ; ψ' continue si le saut de V est fini."
+  },
+  {
+   "dit": "Premier confinement : le puits infini, entre zéro et L. Le potentiel est nul dedans, infini dehors, donc la fonction d'onde s'annule aux deux bords. À l'intérieur, on retrouve Helmholtz. La forme sinus s'impose, et la condition au second bord va quantifier le nombre d'onde : c'est l'objet de l'écran suivant.",
+   "ecran": "puits_infini",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Puits infini : ψ_n = √(2/L) sin(nπx/L)."
+  },
+  {
+   "dit": "La condition en zéro élimine le cosinus. La condition en L impose que sinus de k L soit nul, donc k L égale n pi, avec n entier strictement positif : n égal zéro donnerait une fonction identiquement nulle. L'énergie suit immédiatement : E n égale h barre carré pi carré n carré sur deux m L carré. Le fondamental, n égal un, a une énergie non nulle : l'énergie de point zéro, conséquence du principe d'incertitude.",
+   "ecran": "quantification",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "k_n = nπ/L ; E_n = ħ²π²n²/(2mL²), proportionnelle à n²."
+  },
+  {
+   "dit": "Si le même puits est centré en zéro, le système de raccordement sépare deux familles : pour n impair, des cosinus, fonctions paires ; pour n pair, des sinus, fonctions impaires. La parité alterne avec le niveau, le nombre d'onde et l'énergie restent n pi sur L et la loi en n carré. Réflexe de concours : dès qu'un potentiel est symétrique, exploitez la parité pour diviser le travail par deux.",
+   "ecran": "parite",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Puits centré : n impair → cosinus pair, n pair → sinus impair."
+  },
+  {
+   "dit": "Exemple type : quelle est la probabilité de trouver la particule du fondamental dans le tiers central du puits centré ? On intègre la densité, deux sur L fois cosinus carré de pi x sur L, entre moins L sur six et L sur six. Le résultat : un tiers plus racine de trois sur deux pi, environ soixante et un pour cent. Et voici le piège de l'énoncé : ce résultat ne dépend pas de L ; il n'existe donc aucune largeur de puits pour laquelle la réponse serait un tiers.",
+   "ecran": "exemple_tiers",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "P = 1/3 + √3/(2π) ≈ 0,61, indépendant de L (piège classique)."
+  },
+  {
+   "dit": "Passons au puits fini, de profondeur V zéro, pour un état lié d'énergie inférieure à V zéro. Trois régions : à l'extérieur, des exponentielles qui doivent décroître pour rester normalisables, on rejette donc le terme qui diverge de chaque côté ; à l'intérieur, sinus et cosinus comme dans le puits infini. Le nombre kappa mesure la pénétration dans les régions interdites.",
+   "ecran": "puits_fini",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Puits fini : exponentielles dehors, sinusoïdes dedans."
+  },
+  {
+   "dit": "Le potentiel étant pair, on sépare à nouveau les familles paire et impaire, et le raccordement en a sur deux, bord du puits, donne une équation par famille : k tangente de k a sur deux égale kappa pour les pairs, moins k cotangente égale kappa pour les impairs. Ces équations transcendantes se résolvent graphiquement ou numériquement : elles donnent un nombre fini d'états liés, d'autant plus nombreux que le puits est large et profond.",
+   "ecran": "transcendantes",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "États pairs : k tan(ka/2) = κ ; impairs : −k cot(ka/2) = κ."
+  },
+  {
+   "dit": "Même méthode en trois dimensions, dans une boîte rectangulaire de côtés a, b et c : on sépare les trois coordonnées, chaque direction donne son nombre d'onde quantifié, n pi sur la longueur correspondante. L'énergie est la somme des trois contributions, chaque nombre quantique étant un entier strictement positif. La vérification dimensionnelle suit : en trois dimensions, psi a la dimension de L puissance moins trois demis.",
+   "ecran": "boite3d",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Boîte 3D : E = (ħ²π²/2m)(n_x²/a² + n_y²/b² + n_z²/c²)."
+  },
+  {
+   "dit": "Pour le fondamental de la boîte, les trois nombres quantiques valent un. La normalisation se factorise : chaque intégrale de sinus carré vaut la moitié de la longueur, et la constante vaut racine de huit sur a b c. Si la boîte est un cube, le premier niveau excité est atteint par trois triplets différents : c'est la dégénérescence, trois états distincts pour une même énergie.",
+   "ecran": "fondamental3d",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "ψ_111 = √(8/abc) sin(πx/a) sin(πy/b) sin(πz/c)."
+  },
+  {
+   "dit": "Une onde plane seule est délocalisée à l'infini ; un état réaliste est un paquet d'ondes. Exemple type des leçons : une onde plane de nombre d'onde k zéro, modulée par une enveloppe gaussienne de largeur sigma. La particule est alors localisée autour de l'origine, avec une impulsion centrée sur h barre k zéro : ni la position ni l'impulsion ne sont parfaitement définies.",
+   "ecran": "paquet",
+   "id": "p27",
+   "pause_apres": 0.7,
+   "texte": "Paquet gaussien : onde plane × enveloppe, largeur σ."
+  },
+  {
+   "dit": "La normalisation du paquet utilise l'intégrale gaussienne fournie par l'énoncé. Le module carré fait disparaître l'onde plane et double la précision de l'enveloppe : il reste une gaussienne de largeur sigma, dont l'intégrale vaut racine de deux pi fois sigma. On en tire N : un sur deux pi puissance un quart, racine de sigma. Notez que N a bien la dimension de psi, l'inverse d'une racine de longueur.",
+   "ecran": "paquet_res",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "N = 1/((2π)^(1/4) √σ), via l'intégrale gaussienne."
+  },
+  {
+   "dit": "L'impulsion moyenne se calcule avec l'opérateur impulsion, moins i h barre dérivée par rapport à x, pris en sandwich entre psi étoile et psi. La dérivée fait apparaître deux termes : i k zéro, qui donne h barre k zéro, et un terme en x sur deux sigma carré, impair, dont l'intégrale sur l'axe entier est nulle. Résultat : l'impulsion moyenne vaut exactement h barre k zéro, la valeur portée par l'onde plane centrale.",
+   "ecran": "impulsion_moy",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "⟨p⟩ = ħk₀ : le paquet hérite de l'impulsion centrale."
+  },
+  {
+   "dit": "Un état quelconque du puits n'est presque jamais un état stationnaire pur : c'est une superposition de tous les états propres, chacun pondéré par une amplitude de probabilité c n. Le module carré de c n donne la probabilité de mesurer l'énergie E n, et la somme de ces probabilités vaut un. Toute la physique de l'état est contenue dans ces coefficients.",
+   "ecran": "superposition",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Ψ = Σ c_n ψ_n e^(−iE_n t/ħ) ; |c_n|² = P(E_n)."
+  },
+  {
+   "dit": "Comment obtenir les c n d'un état initial donné ? Les états propres sont orthogonaux : le produit scalaire de psi m étoile et psi n vaut le symbole de Kronecker. On projette donc l'état initial sur chaque état propre : c m est l'intégrale, sur le puits, de psi m étoile fois la fonction initiale. C'est la même mécanique que les coefficients de Fourier.",
+   "ecran": "coefficients",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "c_m = ∫ ψ_m* Ψ(x,0) dx : projection sur la base propre."
+  },
+  {
+   "dit": "Pour l'énergie, le calcul est diagonal : la valeur moyenne est la moyenne des E n pondérée par les probabilités module de c n carré. Pour une observable quelconque, il s'ajoute des termes d'interférence entre niveaux différents, qui oscillent dans le temps avec les différences d'énergie. Ne confondez pas la probabilité de mesurer E n avec la valeur moyenne de l'énergie : l'une est une distribution, l'autre sa moyenne pondérée.",
+   "ecran": "valeurs_moy",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "⟨H⟩ = Σ |c_n|² E_n ; ailleurs, termes d'interférence oscillants."
+  },
+  {
+   "dit": "Exemple type des leçons : l'état initial est un sinus de deux pi x sur L, mais seulement sur la moitié gauche du puits, et zéro sur la moitié droite. La normalisation ne porte que sur la moitié utile : l'intégrale du sinus carré y vaut L sur quatre, donc A égale deux sur racine de L. Cet état n'est pas un état propre : il va falloir le décomposer.",
+   "ecran": "exemple_super",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "État tronqué : A = 2/√L après normalisation sur [0, L/2]."
+  },
+  {
+   "dit": "La projection donne un coefficient dominant pour n égal deux, racine de deux sur deux, et des coefficients non nuls seulement pour n impair : les n pairs autres que deux s'annulent par le sinus de n pi sur deux. Conséquence : l'énergie moyenne dépasse E deux, car des niveaux plus hauts contribuent. Et la probabilité d'être dans le tiers gauche du puits à l'instant initial vaut deux tiers plus racine de trois sur quatre pi, environ quatre-vingts pour cent.",
+   "ecran": "exemple_super_res",
+   "id": "p34",
+   "pause_apres": 0.6,
+   "texte": "c₂ = √2/2 ; ⟨H⟩ > E₂ ; P(tiers gauche) ≈ 0,80."
+  },
+  {
+   "dit": "Dernier modèle : la barrière rectangulaire, de hauteur V zéro et de largeur a, attaquée par une particule d'énergie inférieure à V zéro. À gauche, une onde incidente et une onde réfléchie ; dans la barrière, des exponentielles réelles ; à droite, seulement l'onde transmise, rien ne revient de l'infini. Quatre conditions de raccordement, en zéro et en a, relient les cinq constantes, et la transmission est le rapport des courants, module de F carré sur module de A carré.",
+   "ecran": "barriere",
+   "id": "p35",
+   "pause_apres": 0.6,
+   "texte": "Barrière : T = |F|²/|A|², avec R + T = 1."
+  },
+  {
+   "dit": "Le calcul de raccordement donne la transmission exacte, avec un sinus hyperbolique de kappa a. Dans la limite d'une barrière épaisse, le sinus hyperbolique devient une demi-exponentielle et la transmission chute comme l'exponentielle de moins deux kappa a : doubler la largeur écrase la transmission. C'est la signature quantitative de l'effet tunnel.",
+   "ecran": "transmission",
+   "id": "p36",
+   "pause_apres": 0.6,
+   "texte": "T = 1/[1 + (V₀²/4E(V₀−E)) sinh²(κa)] ; tunnel : e^(−2κa)."
+  },
+  {
+   "dit": "Exemple chiffré des leçons : un électron de cinq électronvolts face à une barrière de sept électronvolts et d'un dixième de nanomètre. Conversion en unités du système international, puis calcul organisé en séparant les nombres des puissances de dix : kappa vaut environ sept virgule deux quatre fois dix puissance neuf par mètre, deux kappa a vaut un virgule quarante-cinq, et la transmission environ vingt-quatre pour cent. Classiquement, ce serait zéro : l'électron passe une fois sur quatre.",
+   "ecran": "exemple_tunnel",
+   "id": "p37",
+   "pause_apres": 0.6,
+   "texte": "e⁻ de 5 eV, barrière 7 eV × 0,10 nm : T ≈ 0,24."
+  },
+  {
+   "dit": "Consolidons la méthode complète, celle de la synthèse des leçons. Un : modéliser, écrire le potentiel, dessiner son profil, repérer les régions. Deux : si le potentiel ne dépend pas du temps, chercher des états stationnaires. Trois : résoudre par régions et raccorder. Quatre : normaliser et extraire les observables. Cinq : vérifier dimensions, cas limites et cohérence, par exemple une transmission toujours entre zéro et un.",
+   "ecran": "methode",
+   "id": "p38",
+   "pause_apres": 0.6,
+   "texte": "Modéliser, stationnaire, régions, observables, vérification."
+  },
+  {
+   "dit": "Récapitulons l'enchaînement complet du cours. L'équation de Schrödinger, séparée, donne l'équation stationnaire et Helmholtz. La particule libre vit en ondes planes, de dispersion omega égale h barre k carré sur deux m. Born donne le sens de la fonction d'onde : une densité de probabilité de présence, normalisée à un. Le confinement quantifie : nombres d'onde en n pi sur L, énergies en n carré, états liés en nombre fini dans un puits fini. Enfin, les états réels sont des superpositions, et la barrière laisse passer une transmission en exponentielle décroissante : l'effet tunnel.",
+   "ecran": "recap",
+   "id": "p39",
+   "pause_apres": 0.7,
+   "texte": "L'enchaînement : Schrödinger → Helmholtz → puits → superposition → tunnel."
+  }
+ ],
+ "titre": "Physique quantique"
+}
