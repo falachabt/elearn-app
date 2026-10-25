@@ -676,6 +676,20 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  courbe_aston_fig(t) {
+    return svgBoite(
+      trait(230, 250, 812, 250, prog(t), { w: 4 }) + pointe(820, 250, 0) + mot(826, 278, 'A, le nombre de nucléons', { t: 18, a: 'start' }) +
+      trait(230, 250, 230, 56, prog(t), { w: 4 }) + pointe(230, 48, -90) + mot(216, 42, "l'énergie de liaison par nucléon", { t: 18, a: 'end' }) +
+      `<path d="M 252 226 C 330 130, 420 84, 520 74 C 610 66, 690 88, 792 128" fill="none" stroke="#E8604C" stroke-width="4.5"/>` +
+      `<circle cx="520" cy="74" r="6.5" fill="#E8604C"/>` +
+      trait(520, 74, 520, 128, prog(t), { w: 2.5, tiret: '6 5' }) +
+      mot(520, 152, 'le fer 56, le plus stable : 8,8 MeV par nucléon', { c: '#E8604C', t: 18 }) +
+      trait(300, 196, 448, 116, prog(t), { c: '#10B981', w: 4 }) + pointe(456, 110, -42, '#10B981') +
+      mot(330, 226, 'la fusion monte vers le pic', { c: '#10B981', t: 18 }) +
+      trait(742, 148, 596, 102, prog(t), { c: '#1A75FF', w: 4 }) + pointe(588, 99, -158, '#1A75FF') +
+      mot(716, 196, 'la fission redescend vers le pic', { c: '#1A75FF', t: 18 }) +
+      mot(500, 290, "la courbe d'Aston : tout tend vers le fer", { t: 18 }));
+  },
   spectre_raies_fig(t) {
     const raies = [[300, '#8B5CF6'], [385, '#1A75FF'], [470, '#10B981'], [610, '#B8860B'], [700, '#F59E0B'], [770, '#E8604C']];
     let traitsE = '', traitsA = '';

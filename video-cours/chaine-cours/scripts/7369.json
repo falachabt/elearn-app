@@ -1,0 +1,601 @@
+{
+ "cours": 7369,
+ "ecrans": {
+  "activite": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "decroissance"
+   },
+   "kicker": "L’activité",
+   "tex": [
+    "A(t) = \\lambda \\, N(t)",
+    "A(t) = A_0 \\, e^{-\\lambda t}"
+   ],
+   "titre": "L’activité d’une source",
+   "type": "etape"
+  },
+  "alpha": {
+   "kicker": "Le rayonnement alpha",
+   "note": "la particule alpha : un noyau d’hélium, charge +2, masse 4 u",
+   "tex": "{}^{4}_{2}\\alpha",
+   "type": "formule"
+  },
+  "beta": {
+   "kicker": "Le rayonnement bêta",
+   "note": "un électron bêta moins, ou un positon bêta plus, émis à grande vitesse",
+   "tex": "{}^{-1}_{0}\\beta",
+   "type": "formule"
+  },
+  "comparaison": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "emissions"
+   },
+   "etapes": [
+    "α : 4 u, charge +2, ionisation très forte",
+    "α : pénétration très faible, le papier l’arrête",
+    "β : masse négligeable, charge −1 pour l’électron",
+    "γ : ni masse ni charge, un simple photon"
+   ],
+   "kicker": "Trois rayonnements comparés",
+   "type": "recap"
+  },
+  "composition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "noyau"
+   },
+   "kicker": "La composition du noyau",
+   "texte": "Le noyau est fait de nucléons : des protons de charge plus e, et des neutrons sans charge.",
+   "type": "phrase"
+  },
+  "conservations": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "choc"
+   },
+   "etapes": [
+    "Le nombre de nucléons A se conserve",
+    "La charge totale Z se conserve",
+    "La masse totale, non : une partie devient énergie"
+   ],
+   "kicker": "Les règles des réactions",
+   "type": "recap"
+  },
+  "courbe": {
+   "kicker": "La courbe de liaison",
+   "texte": "L’énergie de liaison par nucléon culmine au fer 56 : fission et fusion s’en rapprochent.",
+   "type": "phrase",
+   "anim": {
+    "nom": "courbe_aston_fig",
+    "hauteur": 220
+   }
+  },
+  "datation": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "decroissance"
+   },
+   "kicker": "La datation au carbone 14",
+   "texte": "Le carbone 14 : constant chez le vivant, il ne fait que décroître après la mort.",
+   "type": "phrase"
+  },
+  "datation_formule": {
+   "kicker": "Calculer un âge",
+   "note": "carbone 14 : demi-vie de 5 730 ans, datation jusqu’à environ 50 000 ans",
+   "tex": "t = \\frac{T_{1/2}}{\\ln 2} \\, \\ln\\left(\\frac{A_0}{A}\\right)",
+   "type": "formule"
+  },
+  "decroissance": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "decroissance"
+   },
+   "kicker": "La loi de décroissance",
+   "tex": [
+    "-\\frac{dN}{dt} = \\lambda N",
+    "N(t) = N_0 \\, e^{-\\lambda t}",
+    "T_{1/2} = \\frac{\\ln 2}{\\lambda}"
+   ],
+   "titre": "La loi de décroissance radioactive",
+   "type": "etape"
+  },
+  "defaut": {
+   "kicker": "Le défaut de masse",
+   "note": "la masse du noyau est toujours inférieure à la somme de ses nucléons libres",
+   "tex": "\\Delta m = Z \\, m_p + N \\, m_n - m_{\\text{nucleus}}",
+   "type": "formule"
+  },
+  "defaut_reaction": {
+   "kicker": "Le défaut de masse d’une réaction",
+   "note": "Δm positif : la réaction libère de l’énergie ; négatif : elle en absorbe",
+   "tex": "\\Delta m = \\sum m_{\\text{avant}} - \\sum m_{\\text{produits}}",
+   "type": "formule"
+  },
+  "demarche": {
+   "etapes": [
+    "Écrivez la réaction, équilibrée en A et en Z",
+    "Relevez les masses atomiques, en unités u",
+    "Δm = masses des réactifs − masses des produits",
+    "E = Δm × 931,5 MeV : interprétez le signe"
+   ],
+   "kicker": "La méthode de calcul",
+   "type": "recap"
+  },
+  "echelle": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "rayonnement"
+   },
+   "kicker": "L’échelle des énergies",
+   "texte": "Par événement : quelques électron-volts en chimie, des mégaélectron-volts en nucléaire.",
+   "type": "phrase"
+  },
+  "einstein": {
+   "kicker": "Le bilan d’Einstein",
+   "note": "1 u = 1,66054 × 10⁻²⁷ kg, et 1 u·c² vaut 931,5 MeV",
+   "tex": "E = \\Delta m \\cdot c^2",
+   "type": "formule"
+  },
+  "ex_activite": {
+   "kicker": "Exemple type d’examen",
+   "tex": [
+    "A_0 = \\lambda N_0 = 2{,}24 \\times 10^{-7} \\times 2{,}5 \\times 10^{18}",
+    "A_0 = 5{,}60 \\times 10^{11} \\ \\text{Bq} = 560 \\ \\text{GBq}"
+   ],
+   "titre": "L’activité initiale",
+   "type": "etape"
+  },
+  "ex_calcul": {
+   "kicker": "Exemple : fission de l’uranium 235",
+   "tex": [
+    "m_{\\text{avant}} = 235{,}043930 + 1{,}008665 = 236{,}052595 \\ \\text{u}",
+    "m_{\\text{produits}} = 140{,}914411 + 91{,}926156 + 3 \\times 1{,}008665",
+    "m_{\\text{produits}} = 235{,}866562 \\ \\text{u}",
+    "\\Delta m = 0{,}186 \\ \\text{u}"
+   ],
+   "titre": "Le défaut de masse de la fission",
+   "type": "etape"
+  },
+  "ex_donnees": {
+   "kicker": "Exemple : fission de l’uranium 235",
+   "tex": [
+    "m({}^{235}_{92}\\mathrm{U}) = 235{,}043930 \\ \\text{u}",
+    "m(\\mathrm{n}) = 1{,}008665 \\ \\text{u} \\qquad m({}^{141}_{56}\\mathrm{Ba}) = 140{,}914411 \\ \\text{u}",
+    "m({}^{92}_{36}\\mathrm{Kr}) = 91{,}926156 \\ \\text{u}"
+   ],
+   "titre": "Les masses atomiques de la réaction",
+   "type": "etape"
+  },
+  "ex_energie": {
+   "kicker": "Exemple : fission de l’uranium 235",
+   "tex": [
+    "E = \\Delta m \\times 931{,}5 \\ \\text{MeV}",
+    "E = 0{,}186 \\times 931{,}5 \\approx 173 \\ \\text{MeV}"
+   ],
+   "titre": "L’énergie libérée par une fission",
+   "type": "etape"
+  },
+  "ex_lambda": {
+   "kicker": "Exemple type d’examen",
+   "tex": [
+    "\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0{,}693}{3{,}10 \\times 10^{6} \\ \\text{s}}",
+    "\\lambda = 2{,}24 \\times 10^{-7} \\ \\text{s}^{-1}"
+   ],
+   "titre": "La constante de décroissance",
+   "type": "etape"
+  },
+  "ex_suite": {
+   "kicker": "Exemple type d’examen",
+   "tex": [
+    "A(t) = A_0 \\, e^{-\\lambda t} = 5{,}60 \\times 10^{11} \\times e^{-0{,}224}",
+    "A(t) = 5{,}60 \\times 10^{11} \\times 0{,}80 = 4{,}48 \\times 10^{11} \\ \\text{Bq}"
+   ],
+   "titre": "L’activité après un million de secondes",
+   "type": "etape"
+  },
+  "fission": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "fission"
+   },
+   "kicker": "La fission nucléaire",
+   "texte": "La fission : un noyau lourd absorbe un neutron et se scinde en deux noyaux plus légers.",
+   "type": "phrase"
+  },
+  "fission_eq": {
+   "kicker": "Une fission de l’uranium",
+   "note": "comptez : les A et les Z se conservent des deux côtés",
+   "tex": "{}^{1}_{0}\\mathrm{n} + {}^{235}_{92}\\mathrm{U} \\to {}^{141}_{56}\\mathrm{Ba} + {}^{92}_{36}\\mathrm{Kr} + 3 \\, {}^{1}_{0}\\mathrm{n}",
+   "type": "formule"
+  },
+  "force": {
+   "kicker": "La cohésion du noyau",
+   "texte": "La force nucléaire forte : attractive, portée d’un à deux femtomètres, indépendante de la charge.",
+   "type": "phrase"
+  },
+  "fusion": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "fusion_fig"
+   },
+   "kicker": "La fusion nucléaire",
+   "texte": "La fusion : deux noyaux légers s’unissent en un noyau plus lourd, comme dans le Soleil.",
+   "type": "phrase"
+  },
+  "fusion_eq": {
+   "kicker": "Deutérium et tritium",
+   "note": "17,6 MeV libérés par réaction : le Soleil et les tokamaks",
+   "tex": "{}^{2}_{1}\\mathrm{H} + {}^{3}_{1}\\mathrm{H} \\to {}^{4}_{2}\\mathrm{He} + {}^{1}_{0}\\mathrm{n}",
+   "type": "formule"
+  },
+  "gamma": {
+   "kicker": "Le rayonnement gamma",
+   "note": "un photon de haute énergie : ni masse, ni charge",
+   "tex": "\\gamma",
+   "type": "formule"
+  },
+  "isotopes": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "noyau"
+   },
+   "kicker": "Les isotopes",
+   "texte": "Les isotopes : même nombre de protons, des nombres de neutrons différents.",
+   "type": "phrase"
+  },
+  "liaison": {
+   "kicker": "L’énergie de liaison",
+   "note": "E_b : l’énergie qui maintient les nucléons assemblés dans le noyau",
+   "tex": "E_b = \\Delta m \\cdot c^2",
+   "type": "formule"
+  },
+  "notation": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "noyau"
+   },
+   "kicker": "La notation nucléaire",
+   "tex": [
+    "{}^{A}_{Z}\\mathrm{X}",
+    "N = A - Z"
+   ],
+   "titre": "Lire la notation d’un nucléide",
+   "type": "etape"
+  },
+  "pieges": {
+   "etapes": [
+    "Ne confondez pas N, le nombre de noyaux, et A, l’activité",
+    "La demi-vie ne dépend ni de la quantité, ni des conditions",
+    "Datation : distinguez A₀, au départ, de A, mesurée",
+    "Convertissez les unités avant tout calcul"
+   ],
+   "kicker": "Les pièges à éviter",
+   "type": "recap"
+  },
+  "recap": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "decroissance"
+   },
+   "etapes": [
+    "Le noyau : Z protons, N neutrons, A = Z + N nucléons",
+    "Décroissance : N(t) = N₀ e^(−λt), T₁/₂ = ln 2 / λ",
+    "Activité A = λN, en becquerels",
+    "Fission, fusion : E = Δm c², 1 u·c² = 931,5 MeV"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "stabilite": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "noyau"
+   },
+   "etapes": [
+    "Noyaux légers : la stabilité demande N ≈ Z",
+    "Noyaux lourds : il faut N > Z, contre la répulsion des protons",
+    "Les noyaux pair-pair sont les plus stables",
+    "Tout est affaire d’équilibre entre protons et neutrons"
+   ],
+   "kicker": "La stabilité du noyau",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "noyau"
+   },
+   "kicker": "Physique",
+   "sous": "Le noyau, les rayonnements, la décroissance, la fission et la fusion",
+   "titre": "Physique nucléaire et réactions radioactives",
+   "type": "titre"
+  },
+  "types_intro": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "emissions"
+   },
+   "kicker": "La radioactivité",
+   "texte": "Un noyau instable émet un rayonnement : alpha, bêta ou gamma.",
+   "type": "phrase"
+  }
+ },
+ "lecons": [
+  10585,
+  10586,
+  10587,
+  10603
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le noyau et les rayonnements"
+  },
+  {
+   "debut": "p14",
+   "pont": {
+    "dit": "Partie deux : la loi de décroissance radioactive. Après la structure du noyau et ses rayonnements, voici comment le nombre de noyaux instables diminue au cours du temps, et comment cette horloge sert à dater les échantillons.",
+    "texte": "Partie 2 : la loi de décroissance et la datation."
+   },
+   "sous_titre": "La loi de décroissance radioactive"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : fission, fusion et énergie libérée. Nous allons maintenant provoquer les réactions au lieu de les attendre, et calculer l’énergie considérable qu’elles dégagent.",
+    "texte": "Partie 3 : fission, fusion et bilan d’énergie."
+   },
+   "sous_titre": "Fission, fusion et énergie libérée"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique nucléaire et de réactions radioactives. Nous commencerons par le noyau : sa composition, sa stabilité et le défaut de masse. Nous verrons ensuite les rayonnements alpha, bêta et gamma, puis la loi de décroissance et la datation. Nous terminerons par les réactions provoquées, la fission et la fusion, et leurs bilans d’énergie.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Physique nucléaire : le noyau, les rayonnements, la fission et la fusion."
+  },
+  {
+   "dit": "Le noyau atomique, au centre de l’atome, est constitué de deux sortes de particules, que l’on appelle les nucléons. Les protons portent une charge électrique positive, la charge élémentaire. Les neutrons, eux, n’ont aucune charge électrique. C’est l’ensemble des nucléons qui forme la masse du noyau.",
+   "ecran": "composition",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Protons chargés positivement, neutrons sans charge : les nucléons."
+  },
+  {
+   "dit": "Pour décrire un noyau, trois nombres suffisent. Z, le numéro atomique, compte les protons. A, le nombre de masse, compte tous les nucléons. Et N, le nombre de neutrons, s’obtient par la différence : N égale A moins Z. Le nucléide s’écrit alors avec A en haut à gauche, Z en bas à gauche, et le symbole de l’élément.",
+   "ecran": "notation",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Z protons, A nucléons, N neutrons : N égale A moins Z."
+  },
+  {
+   "dit": "Les isotopes sont des nucléides du même élément : ils ont le même nombre de protons, donc le même Z, mais pas le même nombre de neutrons, donc des A différents. Le carbone, par exemple, existe en carbone douze, carbone treize et carbone quatorze : six protons à chaque fois, mais six, sept ou huit neutrons.",
+   "ecran": "isotopes",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Isotopes : même Z, mais des A différents, comme les carbones douze, treize et quatorze."
+  },
+  {
+   "dit": "Qu’est-ce qui tient les protons ensemble, alors qu’ils devraient se repousser électriquement ? La force nucléaire forte. Elle est attractive, elle agit entre tous les nucléons, protons ou neutrons, sans tenir compte de leur charge. Mais sa portée est très courte : un ou deux femtomètres, au-delà elle s’effondre.",
+   "ecran": "force",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "La force forte : attractive, courte portée, aveugle à la charge."
+  },
+  {
+   "dit": "La stabilité d’un noyau dépend de l’équilibre entre protons et neutrons. Pour les noyaux légers, l’optimum est à nombres égaux : autant de neutrons que de protons. Pour les noyaux lourds, il faut davantage de neutrons, pour compenser la répulsion électrique entre les protons. Et les noyaux qui ont un nombre pair de protons et de neutrons sont, en général, les plus stables.",
+   "ecran": "stabilite",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Stabilité : N égale Z pour les légers, plus de neutrons pour les lourds."
+  },
+  {
+   "dit": "Pesons un noyau, puis pesons séparément ses protons et ses neutrons libres : surprise, le noyau assemblé est plus léger. Cette différence s’appelle le défaut de masse, delta m. Il vaut la somme des masses des nucléons, Z fois la masse du proton plus N fois celle du neutron, moins la masse réelle du noyau.",
+   "ecran": "defaut",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Le défaut de masse : le noyau pèse moins que ses nucléons séparés."
+  },
+  {
+   "dit": "Où est passée la masse manquante ? Elle est devenue de l’énergie, selon la célèbre relation d’Einstein : E égale m fois c au carré. Ici, cette énergie est l’énergie de liaison du noyau : c’est elle qui maintient les nucléons assemblés, et il faudrait la fournir entièrement pour disperser le noyau.",
+   "ecran": "liaison",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La masse manquante est devenue l’énergie de liaison du noyau."
+  },
+  {
+   "dit": "Certains noyaux sont instables : ils se transforment spontanément, et cette transformation s’accompagne de l’émission d’un rayonnement. On en distingue trois types, désignés par les lettres grecques alpha, bêta et gamma. Chacun a sa masse, sa charge et son pouvoir de pénétration.",
+   "ecran": "types_intro",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Trois rayonnements : alpha, bêta et gamma."
+  },
+  {
+   "dit": "Le rayonnement alpha est un noyau d’hélium éjecté par le noyau instable : deux protons et deux neutrons. C’est donc une particule massive, de masse quatre unités, et chargée positivement, de charge plus deux. Très ionisant, il est en revanche très peu pénétrant : une feuille de papier ou la peau suffit à l’arrêter.",
+   "ecran": "alpha",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Alpha : un noyau d’hélium, massif, chargé, très peu pénétrant."
+  },
+  {
+   "dit": "Le rayonnement bêta est formé de particules beaucoup plus légères : des électrons, pour le bêta moins, ou leurs contraires, les positons, pour le bêta plus. Ils sont émis à grande vitesse. Leur masse est négligeable devant celle de la particule alpha, et l’électron porte la charge moins un.",
+   "ecran": "beta",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Bêta : des électrons ou des positons, légers et rapides."
+  },
+  {
+   "dit": "Le rayonnement gamma, lui, n’est pas une particule de matière : c’est un photon, un rayonnement électromagnétique de très haute énergie. Il n’a ni masse ni charge. Il est émis quand un noyau, après une désintégration, se débarrasse d’un surplus d’énergie pour rejoindre un état de plus basse énergie.",
+   "ecran": "gamma",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Gamma : un photon de haute énergie, sans masse ni charge."
+  },
+  {
+   "dit": "Retenons le contraste entre les trois rayonnements. L’alpha est lourd, chargé plus deux, très ionisant mais très peu pénétrant. Le bêta est léger, de charge moins un pour l’électron. Et le gamma, sans masse ni charge, est un simple photon. C’est cette diversité qui explique leurs effets et leurs usages si différents.",
+   "ecran": "comparaison",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Alpha lourd et arrêté par le papier, bêta léger, gamma photon."
+  },
+  {
+   "dit": "Comment le nombre de noyaux évolue-t-il au cours du temps ? À chaque instant, le nombre de désintégrations par seconde est proportionnel au nombre de noyaux présents : c’est la constante lambda qui fixe le rythme, et elle est propre à chaque nucléide. En intégrant, on obtient une loi exponentielle : N de t égale N zéro fois l’exponentielle de moins lambda t. Et au bout d’une demi-vie, il ne reste exactement que la moitié des noyaux de départ.",
+   "ecran": "decroissance",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "La décroissance : une exponentielle, rythmée par lambda."
+  },
+  {
+   "dit": "L’activité d’une source, c’est son nombre de désintégrations par seconde : elle vaut lambda fois le nombre de noyaux présents, et elle suit la même loi exponentielle que lui. Elle se mesure en becquerels : un becquerel vaut une désintégration par seconde. On utilise aussi ses multiples, kilobecquerel, mégabecquerel et gigabecquerel, et l’ancienne unité, le curie, qui vaut trois virgule sept fois dix puissance dix becquerels.",
+   "ecran": "activite",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "L’activité : lambda fois N, en becquerels."
+  },
+  {
+   "dit": "La décroissance sert d’horloge : c’est la datation radiométrique. Prenons le carbone quatorze. Tant qu’un organisme vit, il échange du carbone avec l’extérieur et son taux de carbone quatorze reste constant. À sa mort, l’échange cesse : le carbone quatorze ne fait plus que décroître, avec une demi-vie de cinq mille sept cent trente ans. En mesurant l’activité restante, on remonte à l’âge de l’échantillon, jusqu’à environ cinquante mille ans.",
+   "ecran": "datation",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Le carbone quatorze : une horloge qui démarre à la mort de l’organisme."
+  },
+  {
+   "dit": "Concrètement, l’âge s’obtient à partir du rapport entre l’activité initiale, celle de l’organisme vivant, et l’activité mesurée aujourd’hui. La formule fait intervenir le logarithme de ce rapport, multiplié par la demi-vie divisée par le logarithme de deux. Toute la difficulté pratique est de bien distinguer l’activité de départ de celle que l’on mesure.",
+   "ecran": "datation_formule",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "L’âge : le logarithme du rapport des activités, fois la demi-vie sur ln deux."
+  },
+  {
+   "dit": "Passons à un exemple type d’examen. Un échantillon contient au départ deux virgule cinq fois dix puissance dix-huit noyaux, d’une demi-vie de trois virgule dix fois dix puissance six secondes. Première question : la constante de décroissance. Lambda vaut le logarithme de deux divisé par la demi-vie, soit zéro virgule six cent quatre-vingt-treize divisé par trois virgule dix fois dix puissance six : on obtient deux virgule vingt-quatre fois dix puissance moins sept par seconde.",
+   "ecran": "ex_lambda",
+   "id": "p18",
+   "pause_apres": 0.9,
+   "texte": "Exemple : lambda vaut deux virgule vingt-quatre fois dix puissance moins sept par seconde."
+  },
+  {
+   "dit": "Deuxième question : l’activité initiale. Elle vaut lambda fois le nombre initial de noyaux, soit deux virgule vingt-quatre fois dix puissance moins sept, multiplié par deux virgule cinq fois dix puissance dix-huit. Le résultat : cinq virgule soixante fois dix puissance onze becquerels, c’est-à-dire cinq cent soixante gigabecquerels.",
+   "ecran": "ex_activite",
+   "id": "p19",
+   "pause_apres": 0.9,
+   "texte": "Exemple : une activité initiale de cinq cent soixante gigabecquerels."
+  },
+  {
+   "dit": "Troisième question : l’activité après un million de secondes. On applique la loi exponentielle : l’exponentielle de moins lambda t vaut ici environ zéro virgule quatre-vingts. L’activité devient donc cinq virgule soixante fois dix puissance onze, multiplié par zéro virgule quatre-vingts, soit quatre virgule quarante-huit fois dix puissance onze becquerels. En un million de secondes, elle n’a baissé que de vingt pour cent environ.",
+   "ecran": "ex_suite",
+   "id": "p20",
+   "pause_apres": 0.9,
+   "texte": "Exemple : après un million de secondes, quatre virgule quarante-huit fois dix puissance onze becquerels."
+  },
+  {
+   "dit": "Avant de changer de partie, retenons les pièges classiques du baccalauréat. Ne confondez pas le nombre de noyaux et l’activité : l’un se compte, l’autre est un rythme de désintégrations. La demi-vie ne dépend ni de la quantité de matière ni des conditions extérieures, température ou pression. Et convertissez toujours les unités avant d’appliquer les formules.",
+   "ecran": "pieges",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Pièges : N contre A, demi-vie indépendante, unités à convertir."
+  },
+  {
+   "dit": "Pourquoi le nucléaire libère-t-il autant d’énergie ? Une réaction chimique, comme une combustion, dégage quelques électron-volts par événement. Une réaction nucléaire en dégage environ un million de fois plus : de l’ordre du mégaélectron-volt, jusqu’à plusieurs dizaines. La raison : une partie de la masse se convertit directement en énergie.",
+   "ecran": "echelle",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Chimique : des électron-volts. Nucléaire : des mégaélectron-volts."
+  },
+  {
+   "dit": "La fission est la cassure d’un noyau lourd, comme l’uranium deux cent trente-cinq ou le plutonium deux cent trente-neuf. Le noyau absorbe un projectile, souvent un neutron, devient instable et se scinde en deux noyaux plus légers. Il libère au passage quelques neutrons supplémentaires, et une grande quantité d’énergie.",
+   "ecran": "fission",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "La fission : un noyau lourd se scinde en deux noyaux plus légers."
+  },
+  {
+   "dit": "Voici la fission de l’uranium deux cent trente-cinq que nous calculerons tout à l’heure. Un neutron frappe le noyau d’uranium : il se forme du baryum cent quarante et un et du krypton quatre-vingt-douze, plus trois neutrons libres. Vérifiez les conservations : les nombres de masse et les charges s’équilibrent des deux côtés de la flèche.",
+   "ecran": "fission_eq",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Uranium plus neutron : baryum, krypton et trois neutrons."
+  },
+  {
+   "dit": "La fusion fait exactement l’inverse : deux noyaux légers se combinent pour former un noyau plus lourd. Mais pour s’approcher assez, ils doivent vaincre la répulsion électrique entre leurs protons : il faut pour cela des températures extrêmes, de plusieurs millions de degrés. C’est la réaction qui alimente le Soleil et les étoiles.",
+   "ecran": "fusion",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "La fusion : deux noyaux légers s’unissent, à des millions de degrés."
+  },
+  {
+   "dit": "L’exemple de référence associe deux isotopes de l’hydrogène : le deutérium, hydrogène deux, et le tritium, hydrogène trois. Ils fusionnent en un noyau d’hélium quatre, plus un neutron libre. L’énergie libérée est de dix-sept virgule six mégaélectron-volts par réaction : c’est la réaction du Soleil, et celle que visent les tokamaks.",
+   "ecran": "fusion_eq",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Deutérium plus tritium : hélium, neutron et dix-sept virgule six mégaélectron-volts."
+  },
+  {
+   "dit": "Fission et fusion partagent les mêmes règles du jeu. Le nombre total de nucléons se conserve : la somme des A est la même avant et après. La charge électrique totale se conserve aussi : la somme des Z ne change pas. En revanche, la masse totale n’est pas conservée : une partie disparaît, et c’est elle qui devient l’énergie libérée.",
+   "ecran": "conservations",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "A et Z se conservent ; la masse, non : elle devient énergie."
+  },
+  {
+   "dit": "Pour une réaction, le défaut de masse est la différence entre la masse des réactifs et celle des produits. S’il est positif, de la masse a disparu : la réaction libère de l’énergie, elle est exothermique. S’il est négatif, il a fallu fournir de l’énergie : la réaction est endothermique. On utilise les masses atomiques, à condition que les électrons soient équilibrés des deux côtés.",
+   "ecran": "defaut_reaction",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Défaut de masse d’une réaction : réactifs moins produits."
+  },
+  {
+   "dit": "D’où vient cette énergie ? De la position des noyaux sur la courbe de liaison. L’énergie de liaison par nucléon augmente pour les noyaux légers, culmine autour du fer cinquante-six, puis redescend lentement pour les noyaux lourds. La fusion fait grimper les noyaux légers vers ce maximum, la fission y ramène les noyaux lourds : dans les deux cas, les produits sont plus fortement liés, et la différence part en énergie.",
+   "ecran": "courbe",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Le fer cinquante-six, sommet de la courbe de liaison."
+  },
+  {
+   "dit": "Le bilan tient en une formule, celle d’Einstein : l’énergie libérée égale le défaut de masse multiplié par le carré de la célérité de la lumière. En pratique, on travaille en unités de masse atomique : une unité vaut environ un virgule soixante-six fois dix puissance moins vingt-sept kilogrammes, et son équivalent en énergie, neuf cent trente et un virgule cinq mégaélectron-volts.",
+   "ecran": "einstein",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "E égale delta m fois c au carré ; une unité de masse vaut neuf cent trente et un virgule cinq mégaélectron-volts."
+  },
+  {
+   "dit": "La méthode de calcul, en quatre temps. Écrivez d’abord la réaction équilibrée, en vérifiant les A et les Z. Relevez ensuite les masses atomiques de toutes les espèces, en unités de masse atomique. Calculez le défaut de masse : les réactifs moins les produits. Convertissez enfin en énergie, en multipliant par neuf cent trente et un virgule cinq, et interprétez le signe du résultat.",
+   "ecran": "demarche",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "La méthode : équilibrer, relever les masses, défaut de masse, convertir."
+  },
+  {
+   "dit": "Appliquons la méthode à la fission de l’uranium deux cent trente-cinq. Les masses atomiques sont données : environ deux cent trente-cinq virgule zéro quatre unités pour l’uranium, une virgule zéro zéro neuf pour le neutron, cent quarante virgule quatre-vingt-onze pour le baryum et quatre-vingt-onze virgule quatre-vingt-treize pour le krypton. N’oubliez pas les trois neutrons produits : ils comptent dans la masse des produits.",
+   "ecran": "ex_donnees",
+   "id": "p32",
+   "pause_apres": 0.9,
+   "texte": "Exemple : les masses atomiques de la fission de l’uranium."
+  },
+  {
+   "dit": "Calculons les deux masses totales. Avant la réaction, l’uranium plus le neutron donnent deux cent trente-six virgule zéro cinq unités. Après, le baryum, le krypton et les trois neutrons donnent environ deux cent trente-cinq virgule quatre-vingt-sept unités. La différence, le défaut de masse, vaut zéro virgule cent quatre-vingt-six unités de masse atomique.",
+   "ecran": "ex_calcul",
+   "id": "p33",
+   "pause_apres": 0.9,
+   "texte": "Exemple : un défaut de masse de zéro virgule cent quatre-vingt-six unités."
+  },
+  {
+   "dit": "Il ne reste qu’à convertir. L’énergie libérée vaut le défaut de masse multiplié par neuf cent trente et un virgule cinq : zéro virgule cent quatre-vingt-six fois neuf cent trente et un virgule cinq, soit environ cent soixante-treize mégaélectron-volts pour une seule fission. Voilà l’échelle des énergies nucléaires : une masse minuscule disparue, une énergie considérable dégagée.",
+   "ecran": "ex_energie",
+   "id": "p34",
+   "pause_apres": 0.9,
+   "texte": "Exemple : environ cent soixante-treize mégaélectron-volts par fission."
+  },
+  {
+   "dit": "Pour terminer, l’essentiel de ce cours. Un noyau, ce sont Z protons et N neutrons, et sa masse est toujours inférieure à celle de ses nucléons séparés : c’est le défaut de masse. Un noyau instable émet des rayonnements alpha, bêta ou gamma, et décroît exponentiellement, avec une activité en becquerels. Enfin, fission et fusion libèrent l’énergie du défaut de masse, selon E égale delta m fois c au carré. Vous avez maintenant toutes les clés du chapitre.",
+   "ecran": "recap",
+   "id": "p35",
+   "pause_apres": 0.9,
+   "texte": "À retenir : défaut de masse, décroissance exponentielle, E égale delta m c au carré."
+  }
+ ],
+ "titre": "Physique nucléaire et réactions radioactives"
+}
