@@ -316,6 +316,96 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  oscilloscope(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(80 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 285 + 500 * k / 80, y = 140 - 46 * Math.sin(2 * Math.PI * (x - 285) / 212);
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    let grat = '';
+    for (let gx = 323; gx <= 660; gx += 53) grat += `<line x1="${gx}" y1="52" x2="${gx}" y2="228" stroke="currentColor" stroke-width="2" opacity=".22"/>`;
+    for (const gy of [93, 187]) grat += `<line x1="262" y1="${gy}" x2="700" y2="${gy}" stroke="currentColor" stroke-width="2" opacity=".22"/>`;
+    return svgBoite(
+      `<rect x="240" y="26" width="590" height="236" rx="18" fill="none" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="262" y="52" width="438" height="176" fill="#10B981" fill-opacity=".07" stroke="currentColor" stroke-width="4"/>` + grat +
+      `<polyline points="${pts}" fill="none" stroke="#10B981" stroke-width="5" stroke-linejoin="round"/>` +
+      `<circle cx="765" cy="92" r="14" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="765" cy="152" r="14" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="748" y="196" width="34" height="20" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      (p > .5 ? `<line x1="302" y1="140" x2="302" y2="94" stroke="currentColor" stroke-width="4"/>` + pointe(302, 94, -90) + pointe(302, 140, 90) + mot(288, 120, 'A', { t: 28, a: 'end' }) : '') +
+      (p > .6 ? trait(338, 210, 550, 210, Math.min(1, (p - .6) / .4), { w: 4 }) + pointe(550, 210, 0) + pointe(338, 210, 180) + mot(444, 196, 'T', { t: 26 }) : '') +
+      mot(535, 292, "l'oscilloscope dessine la tension au cours du temps", { t: 23 }));
+  },
+  sonnerie(t) {
+    let bob = '';
+    for (const cy of [140, 168, 196, 224]) bob += `<ellipse cx="318" cy="${cy}" rx="31" ry="10" fill="none" stroke="#E8604C" stroke-width="4"/>`;
+    return svgBoite(
+      `<line x1="190" y1="250" x2="860" y2="250" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="300" y="118" width="36" height="132" fill="currentColor" opacity=".85"/>` + bob +
+      mot(318, 94, 'bobine', { t: 24 }) +
+      `<rect x="636" y="118" width="9" height="132" fill="currentColor"/>` +
+      `<rect x="352" y="112" width="352" height="11" fill="currentColor"/>` +
+      mot(528, 96, 'armature', { t: 23 }) +
+      `<line x1="380" y1="82" x2="380" y2="106" stroke="currentColor" stroke-width="5"/><circle cx="380" cy="109" r="4" fill="currentColor"/>` +
+      mot(380, 64, 'contact', { t: 23 }) +
+      `<line x1="694" y1="123" x2="694" y2="164" stroke="currentColor" stroke-width="6"/>` +
+      `<circle cx="694" cy="176" r="11" fill="currentColor"/>` +
+      mot(664, 200, 'marteau', { t: 22, a: 'end' }) +
+      `<path d="M 716 250 L 716 196 A 52 44 0 0 1 820 196 L 820 250" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="768" cy="242" r="7" fill="currentColor"/>` +
+      mot(768, 134, 'cloche', { t: 24 }) +
+      mot(500, 288, "le contact coupe le courant dès que le marteau frappe : le cycle recommence", { t: 21 }));
+  },
+  ventilateur(t) {
+    const pale = (rot) => `<path d="M 500 150 C 466 116 470 76 500 58 C 530 76 534 116 500 150" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4" transform="rotate(${rot} 500 150)"/>`;
+    return svgBoite(
+      `<circle cx="500" cy="150" r="112" fill="none" stroke="currentColor" stroke-width="3" opacity=".3"/>` +
+      `<circle cx="500" cy="150" r="102" fill="none" stroke="currentColor" stroke-width="3" opacity=".5"/>` +
+      pale(0) + pale(120) + pale(240) +
+      `<circle cx="500" cy="150" r="15" fill="currentColor"/>` +
+      `<line x1="500" y1="252" x2="500" y2="264" stroke="currentColor" stroke-width="9"/>` +
+      `<line x1="436" y1="264" x2="564" y2="264" stroke="currentColor" stroke-width="9"/>` +
+      trait(648, 108, 736, 108, prog(t), { c: '#1A75FF', w: 5 }) + pointe(742, 108, 0, '#1A75FF') +
+      trait(656, 150, 756, 150, prog(t), { c: '#1A75FF', w: 5 }) + pointe(762, 150, 0, '#1A75FF') +
+      trait(648, 192, 736, 192, prog(t), { c: '#1A75FF', w: 5 }) + pointe(742, 192, 0, '#1A75FF') +
+      mot(706, 82, "flux d'air", { c: '#1A75FF', t: 22 }) +
+      mot(500, 294, "le moteur fait tourner l'hélice, l'hélice pousse l'air", { t: 22 }));
+  },
+  levier(t) {
+    let sol = `<line x1="140" y1="240" x2="720" y2="240" stroke="currentColor" stroke-width="5"/>`;
+    for (let x = 158; x <= 712; x += 30) sol += `<line x1="${x}" y1="240" x2="${x - 11}" y2="253" stroke="currentColor" stroke-width="3" opacity=".55"/>`;
+    return svgBoite(
+      sol +
+      `<path d="M 468 240 L 532 240 L 500 184 Z" fill="currentColor"/>` +
+      `<line x1="186" y1="148" x2="814" y2="224" stroke="currentColor" stroke-width="11" stroke-linecap="round"/>` +
+      trait(215, 92, 215, 134, prog(t), { c: '#E8604C', w: 6 }) + pointe(215, 140, 90, '#E8604C') +
+      mot(215, 76, 'effort', { c: '#E8604C', t: 24 }) +
+      `<rect x="740" y="166" width="66" height="52" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` +
+      mot(773, 148, 'charge', { t: 23 }) +
+      mot(500, 270, "point d'appui", { t: 23 }) +
+      `<line x1="852" y1="36" x2="852" y2="66" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="852" cy="88" r="21" fill="none" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="852" y1="109" x2="852" y2="164" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="836" y="164" width="32" height="34" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` +
+      mot(852, 24, 'poulie', { t: 22 }));
+  },
+  sismogramme(t) {
+    let pts = '';
+    for (let x = 186; x <= 814; x += 6) {
+      let y;
+      if (x < 380) y = 150 + 4 * Math.sin(x * 1.7);
+      else if (x < 520) y = 150 + 17 * Math.sin(x * 2.3);
+      else y = 150 + 46 * Math.sin(x * .55) * Math.exp(-(x - 520) / 420);
+      pts += `${x},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<rect x="170" y="58" width="660" height="184" fill="#FFFFFF" fill-opacity=".35" stroke="currentColor" stroke-width="5"/>` +
+      `<polyline points="${pts}" fill="none" stroke="#E8604C" stroke-width="3" stroke-linejoin="round"/>` +
+      mot(450, 92, 'ondes P', { t: 23 }) + trait(450, 100, 450, 122, prog(t), { w: 3 }) + pointe(450, 126, 90) +
+      mot(664, 80, 'ondes S', { t: 23 }) + trait(664, 88, 664, 104, prog(t), { w: 3 }) + pointe(664, 108, 90) +
+      mot(500, 278, "le sismogramme : la signature écrite du séisme", { t: 23 }));
+  },
   sinusoide(t) {
     const p = prog(t);
     let pts = '';
