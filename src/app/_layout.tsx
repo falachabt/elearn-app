@@ -184,12 +184,16 @@ export default function RootLayout() {
                     <BottomSheetModalProvider>
                       <BandeauApplication />
                       <Navigation />
+                      {/* Issue #124 : la feuille rend un BottomSheetModal — elle doit vivre SOUS le provider,
+                          sinon la librairie lève « 'BottomSheetModalInternalContext' cannot be null! » au premier
+                          affichage (régression du 25/10/2026 : écran « Oups » au toucher d'une notification
+                          pass_ending). Garde-fou : src/__tests__/garde-feuille-racine.test.ts. */}
+                      <FeuilleRechargePass />
                     </BottomSheetModalProvider>
                     <BienvenueCredits />
                     <ToastRechargeCredits />
                     <ToastGainXp />
                     <BienvenuePass />
-                    <FeuilleRechargePass />
                     <MiseAJour />
                     <GardeAppareilActif />
                   </VisiteProvider>

@@ -1,10 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { router } from 'expo-router';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { fr } from '@/i18n/fr';
+import { suivreOuvertures } from '@/services/rappels';
 import { demanderFeuilleRecharge, noterRecapAutoPresente } from '@/services/rechargePass';
 import { CLE_PROFIL, type Profil } from '@/services/profil';
 import { ThemeProvider } from '@/theme/ThemeProvider';
@@ -18,10 +20,24 @@ let mockSession: { statut: string; session: { user: { id: string; is_anonymous: 
   session: { user: { id: 'u-1', is_anonymous: false } },
 };
 let mockReprise = false;
+let mockReponseNotif: ((r: unknown) => void) | null = null;
 
 jest.mock('expo-router', () => ({
   router: { push: jest.fn() },
   usePathname: () => mockPathname,
+}));
+jest.mock('expo-notifications', () => ({
+  setNotificationHandler: jest.fn(),
+  addNotificationResponseReceivedListener: jest.fn((cb: (r: unknown) => void) => {
+    mockReponseNotif = cb;
+    return { remove: jest.fn() };
+  }),
+}));
+jest.mock('@/services/analytics', () => ({
+  suivre: jest.fn(),
+  suivreException: jest.fn(),
+  lireEcranCourant: () => '/',
+  definirProprietesUtilisateur: jest.fn(),
 }));
 jest.mock('@/session/SessionProvider', () => ({ useSession: () => mockSession }));
 jest.mock('@/services/repriseInvite', () => ({ useRepriseInviteEnCours: () => mockReprise }));
@@ -52,10 +68,14 @@ const HEURE_MS = 3600 * 1000;
 const finDans = (heures: number) => new Date(Date.now() + heures * HEURE_MS).toISOString();
 const titreJours = (n: number) => fr.pass.recharge.jours.replace('{{n}}', String(n));
 
+// Montage identique à `src/app/_layout.tsx` : la feuille vit SOUS `BottomSheetModalProvider` (régression
+// #124 — hors du provider, le rendu de la modale lève et l'app affiche l'écran « Oups » au premier affichage).
 const vue = (reglage: 'clair' | 'sombre' = 'clair') => (
   <SafeAreaProvider initialMetrics={metriques}>
     <ThemeProvider reglage={reglage}>
-      <FeuilleRechargePass />
+      <BottomSheetModalProvider>
+        <FeuilleRechargePass />
+      </BottomSheetModalProvider>
     </ThemeProvider>
   </SafeAreaProvider>
 );
@@ -73,6 +93,7 @@ beforeEach(async () => {
   mockPathname = '/';
   mockSession = { statut: 'pret', session: { user: { id: 'u-1', is_anonymous: false } } };
   mockReprise = false;
+  mockReponseNotif = null;
   mockAcces.mockResolvedValue(null);
   ecouteurAppState = null;
   jest.spyOn(AppState, 'addEventListener').mockImplementation(((_: string, f: (e: string) => void) => {
@@ -211,5 +232,27 @@ describe('#124 · feuille « recharger le Pass » : coordination et toucher', ()
     await attendre();
     expect(router.push).toHaveBeenCalledWith({ pathname: '/offres', params: { declencheur: 'recharge-pass' } });
     expect(screen.queryByText(titreJours(3))).toBeNull();
+  });
+});
+
+describe('#124 · chemin toucher complet : du push à la feuille (régression du 25/10/2026)', () => {
+  /** Simule le toucher du push avec la charge utile RÉELLE du serveur : `screen: '/paiements'` inclus. */
+  const toucherPush = async (data: Record<string, unknown>) => {
+    await act(async () => {
+      mockReponseNotif?.({ notification: { request: { content: { data } } } });
+    });
+  };
+
+  it('toucher du push pass_ending : la feuille s’ouvre à J-3, aucune navigation (jamais « Mes paiements »)', async () => {
+    mockAcces.mockResolvedValue({ offre: 'month', fin: finDans(72), source: 'order' });
+    await render(vue());
+    const arreter = suivreOuvertures();
+    try {
+      await toucherPush({ type: 'pass_ending', days_left: 3, screen: '/paiements', notificationId: 'n-124' });
+      expect(await screen.findByText(titreJours(3))).toBeTruthy();
+      expect(router.push).not.toHaveBeenCalled();
+    } finally {
+      arreter();
+    }
   });
 });
