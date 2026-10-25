@@ -45,6 +45,16 @@ Règles :
 - Une animation ne lit pas le texte : elle illustre l'objet dont on parle.
 - **Visuel obligatoire (décision de Benny, 25 octobre 2026)** : une vidéo ne doit pas rester en pur texte. Chaque fois qu'une notion peut se montrer — un phénomène, un dispositif, un trajet de rayon, un montage — l'écran qui en parle reçoit une figure ou une animation, de préférence la figure type qui revient à l'examen, pour que l'élève puisse s'en rappeler visuellement. Si aucune figure du gabarit ne convient, en dessiner une nouvelle dans le registre `FIG` (SVG, encre du thème + couleurs Elearn) plutôt que laisser l'écran en texte seul.
 
+## Production via GitHub Actions (depuis le 25 octobre 2026)
+
+La génération peut tourner sur GitHub Actions plutôt que sur une machine locale : dépôt public, minutes gratuites, machines plus fortes et réseau propre (plus de téléchargement de modèle cassé par un proxy, plus de cache perdu au redémarrage). Workflow `.github/workflows/video-cours.yml`, lancement manuel (`workflow_dispatch`) avec l'identifiant du cours ; le script du cours doit être commité sur la branche choisie avant de lancer.
+
+- Job `voix` : les phrases sont réparties entre 4 machines en parallèle (`lancer.py voix <cours> <partie> 4`) ; le modèle OmniVoice est mis en cache d'un run à l'autre (`actions/cache`), les clips partent en artefacts.
+- Job `montage` : récupère les clips, relance `lancer.py <cours>` (la phase voix ne refait rien, les clips sont là), rend la vidéo, produit la 720p et une planche de contact ; le tout est publié en artefact `video-<cours>` (90 jours) sur la page du run.
+- La clé publique Supabase vit dans le secret du dépôt `CHAINE_SUPABASE_KEY` (créé le 25 octobre 2026 par Muse, sur délégation explicite de Benny) ; l'URL du projet est en clair dans le workflow, elle est publique par conception.
+- Dépendances épinglées : `chaine-cours/requirements-voix.txt` (torch CPU, OmniVoice) et `requirements-rendu.txt` (Playwright, SoundFile) — le job montage n'installe pas torch.
+- Le dossier de travail se règle par `CHAINE_TRAVAIL` (défaut inchangé : `/tmp/chaine-cours`).
+
 ## Automatique et manuel
 
 | Étape | Automatique | Manuel |

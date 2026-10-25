@@ -11,6 +11,11 @@ Tout le reste est automatique et reprend là où il s'est arrêté (voix déjà 
 Variables d'environnement (lecture seule, jamais écrites dans un fichier) :
   CHAINE_SUPABASE_URL   https://<projet>.supabase.co
   CHAINE_SUPABASE_KEY   clé publishable ou anon de lecture
+  CHAINE_CHROME         chemin du binaire Chromium (défaut : /opt/pw-browsers/…)
+  CHAINE_TRAVAIL        dossier de travail (défaut : /tmp/chaine-cours)
+
+Usage CI (GitHub Actions, voir .github/workflows/video-cours.yml) :
+  python lancer.py voix <courseId> <partie> <total>   # voix des phrases de cette partie seulement
 """
 import json
 import os
@@ -219,11 +224,26 @@ def vtt(rendu):
     return corps
 
 
+def dossier_travail(cours):
+    return pathlib.Path(os.environ.get("CHAINE_TRAVAIL", "/tmp/chaine-cours")) / str(cours)
+
+
 def main(argv):
     if not argv:
         sys.exit(__doc__)
     if argv[0] == "extraire":
         extraire(argv[1])
+        return
+    if argv[0] == "voix":
+        # Génère les voix d'une partie des phrases (travail réparti entre machines).
+        cours, partie, total = argv[1], int(argv[2]), int(argv[3])
+        script = json.loads((ICI / "scripts" / f"{cours}.json").read_text())
+        valider(script)
+        script["phrases"] = [p for i, p in enumerate(script["phrases"]) if i % total == partie]
+        travail = dossier_travail(cours)
+        travail.mkdir(parents=True, exist_ok=True)
+        voix(script, travail)
+        print(f"voix partie {partie}/{total} : {len(script['phrases'])} phrases traitées")
         return
     cours = argv[0]
     script_fichier = ICI / "scripts" / f"{cours}.json"
@@ -235,7 +255,7 @@ def main(argv):
     valider(script)
     # Le calcul se fait en local (le montage réseau ne gère pas les liens symboliques ni les fichiers lourds) ;
     # seuls les produits finis reviennent dans sorties/<cours>/.
-    travail = pathlib.Path("/tmp/chaine-cours") / str(cours)
+    travail = dossier_travail(cours)
     travail.mkdir(parents=True, exist_ok=True)
     debut = time.time()
     voix(script, travail)
