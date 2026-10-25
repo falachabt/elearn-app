@@ -602,6 +602,24 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  calorimetre_fig(t) {
+    let hachures = '';
+    for (const y of [110, 150, 190]) { hachures += trait(361, y, 377, y + 14, 1, { w: 2 }); hachures += trait(623, y, 639, y + 14, 1, { w: 2 }); }
+    for (const x of [420, 480, 540]) hachures += trait(x, 237, x + 14, 251, 1, { w: 2 });
+    return svgBoite(
+      `<rect x="382" y="150" width="236" height="82" fill="#1A75FF" fill-opacity=".15"/>` +
+      trait(382, 150, 618, 150, prog(t), { c: '#1A75FF', w: 3 }) +
+      hachures +
+      trait(360, 70, 360, 250, prog(t), { w: 5 }) + trait(360, 250, 640, 250, prog(t), { w: 5 }) + trait(640, 70, 640, 250, prog(t), { w: 5 }) +
+      trait(378, 84, 378, 236, prog(t), { w: 2.5 }) + trait(378, 236, 622, 236, prog(t), { w: 2.5 }) + trait(622, 84, 622, 236, prog(t), { w: 2.5 }) +
+      `<rect x="448" y="176" width="62" height="46" fill="#E8604C" fill-opacity=".35" stroke="#E8604C" stroke-width="3.5"/>` +
+      mot(479, 138, 'un corps chaud', { c: '#E8604C', t: 19 }) +
+      trait(514, 199, 566, 199, prog(t), { c: '#B8860B', w: 4.5 }) + pointe(574, 199, 0, '#B8860B') + mot(544, 184, 'Q', { c: '#B8860B', t: 24 }) +
+      trait(582, 54, 582, 174, prog(t), { w: 4 }) + `<circle cx="582" cy="186" r="10" fill="#E8604C" fill-opacity=".5" stroke="currentColor" stroke-width="3"/>` +
+      mot(598, 68, 'le thermomètre', { t: 19, a: 'start' }) +
+      trait(642, 128, 692, 118, prog(t), { w: 2.5 }) + mot(698, 112, 'paroi adiabatique :', { t: 19, a: 'start' }) + mot(698, 138, 'rien ne sort', { t: 19, a: 'start' }) +
+      mot(500, 284, 'le calorimètre mesure les chaleurs échangées', { t: 20 }));
+  },
   resistor_symbole_fig(t) {
     let zig = 'M 420 150 ';
     for (let k = 1; k <= 6; k++) zig += `L ${420 + 26 * k} ${k % 2 ? 126 : 174} `;

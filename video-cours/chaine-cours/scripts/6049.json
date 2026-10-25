@@ -1,0 +1,600 @@
+{
+ "cours": 6049,
+ "ecrans": {
+  "capacite": {
+   "kicker": "Capacité thermique",
+   "tex": [
+    "K = m\\, c",
+    "Q = K\\, (\\theta_f - \\theta_i)",
+    "K\\ \\text{en J/K}"
+   ],
+   "titre": "La capacité thermique du corps entier",
+   "type": "etape"
+  },
+  "chaleur_def": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "transfert"
+   },
+   "kicker": "Chaleur échangée",
+   "texte": "La chaleur : un transfert d'énergie désordonné, du chaud vers le froid.",
+   "type": "phrase"
+  },
+  "chaleur_latente": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "phases"
+   },
+   "kicker": "Changement d'état",
+   "note": "L en J/kg · pendant le changement d'état, la température reste constante",
+   "tex": "Q = m\\, L",
+   "titre": "Changer d'état, à température constante",
+   "type": "formule"
+  },
+  "chaleur_sensible": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "chauffe"
+   },
+   "kicker": "Sans changement d'état",
+   "note": "Q en joules · m en kilogrammes · c, chaleur massique, en J/(kg·K)",
+   "tex": "Q = m\\, c\\, (\\theta_f - \\theta_i)",
+   "titre": "Chauffer sans changer d'état",
+   "type": "formule"
+  },
+  "conversion": {
+   "kicker": "Température",
+   "note": "θ en degrés Celsius (°C), T en kelvins (K)",
+   "tex": "\\theta = T - 273{,}15",
+   "titre": "Deux échelles de température",
+   "type": "formule"
+  },
+  "energie_interne": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "agitation"
+   },
+   "kicker": "Énergie interne",
+   "texte": "L'énergie interne : l'agitation et les interactions des particules.",
+   "type": "phrase"
+  },
+  "equation_etat": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "clapeyron_fig"
+   },
+   "kicker": "Équation d'état",
+   "note": "R = 8,31 J/(K·mol), constante des gaz parfaits · P en Pa, V en m³, T en K",
+   "tex": "P V = n R T",
+   "titre": "L'équation d'état des gaz parfaits",
+   "type": "formule"
+  },
+  "equilibre": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "piston"
+   },
+   "kicker": "Équilibre thermodynamique",
+   "texte": "À l'équilibre, les variables d'état sont constantes et les échanges ont cessé.",
+   "type": "phrase"
+  },
+  "ex_glace": {
+   "kicker": "Exemple complet",
+   "tex": [
+    "Q_1 = m\\, c_{\\text{glace}}\\, (0 - (-10)) = 2\\,100\\ \\text{J}",
+    "Q_2 = m\\, L_f = 33\\,500\\ \\text{J}",
+    "Q_3 = m\\, c_{\\text{eau}}\\, (100 - 0) = 41\\,860\\ \\text{J}",
+    "Q_4 = m\\, L_v = 225\\,800\\ \\text{J}"
+   ],
+   "titre": "De la glace à moins dix degrés à la vapeur : les quatre étapes",
+   "type": "etape"
+  },
+  "ex_glace_res": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "chauffe"
+   },
+   "kicker": "Exemple complet · bilan",
+   "note": "L'essentiel part dans les changements d'état, surtout la vaporisation",
+   "tex": "Q = Q_1 + Q_2 + Q_3 + Q_4 \\approx 303\\ \\text{kJ}",
+   "titre": "Le bilan : environ trois cent trois kilojoules",
+   "type": "formule"
+  },
+  "ex_melange": {
+   "kicker": "Exemple",
+   "tex": [
+    "m_1 = 0{,}2\\ \\text{kg} \\quad \\theta_1 = 60\\ \\text{°C}",
+    "m_2 = 0{,}3\\ \\text{kg} \\quad \\theta_2 = 20\\ \\text{°C}",
+    "m_1\\, (60 - \\theta_e) = m_2\\, (\\theta_e - 20)"
+   ],
+   "titre": "Mélanger deux masses d'eau dans un calorimètre",
+   "type": "etape"
+  },
+  "ex_melange_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Une moyenne des températures, pondérée par les masses",
+   "tex": "\\theta_e = \\dfrac{0{,}2 \\times 60 + 0{,}3 \\times 20}{0{,}2 + 0{,}3} = 36\\ \\text{°C}",
+   "titre": "La température d'équilibre",
+   "type": "formule"
+  },
+  "ex_pp": {
+   "kicker": "Exemple",
+   "tex": [
+    "W = -150\\ \\text{J} \\qquad Q = +400\\ \\text{J}",
+    "\\Delta U = W + Q",
+    "\\Delta U = -150 + 400 = +250\\ \\text{J}"
+   ],
+   "titre": "Un système chauffé qui se détend",
+   "type": "etape"
+  },
+  "extensif_intensif": {
+   "etapes": [
+    "Extensive : elle grandit avec le système (volume, masse, n)",
+    "Intensive : définie en chaque point, indépendante de la taille",
+    "Intensives : la pression P et la température T",
+    "Le rapport de deux extensives est une intensive"
+   ],
+   "kicker": "Grandeurs d'état",
+   "titre": "Extensives ou intensives",
+   "type": "recap"
+  },
+  "grandeurs": {
+   "kicker": "Grandeurs d'état",
+   "note": "Deux variables suffisent : la troisième est donnée par l'équation d'état",
+   "tex": [
+    "n\\ \\text{(mol)} \\qquad P\\ \\text{(Pa)}",
+    "V\\ \\text{(m}^3\\text{)} \\qquad T\\ \\text{(K)}"
+   ],
+   "titre": "Les grandeurs d'état d'un système",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "La thermodynamique : l'énergie et la chaleur, des moteurs au climat.",
+   "type": "phrase"
+  },
+  "latentes": {
+   "kicker": "Chaleur latente",
+   "tex": [
+    "L_f\\ (\\text{fusion de l'eau}) = 335\\ \\text{kJ/kg}",
+    "L_v\\ (\\text{vaporisation de l'eau}) = 2258\\ \\text{kJ/kg}",
+    "L_f\\ (\\text{fusion de l'aluminium}) = 330\\ \\text{kJ/kg}"
+   ],
+   "titre": "Fusion et vaporisation",
+   "type": "etape"
+  },
+  "particulieres": {
+   "kicker": "Transformations particulières",
+   "tex": [
+    "P = \\text{constante} \\quad \\text{(isobare)}",
+    "T = \\text{constante} \\quad \\text{(isotherme)}",
+    "V = \\text{constante} \\quad \\text{(isochore)}"
+   ],
+   "titre": "Les transformations à grandeur constante",
+   "type": "etape"
+  },
+  "pp_complet": {
+   "kicker": "Premier principe",
+   "tex": [
+    "\\Delta \\left( \\tfrac{1}{2} M v^2 + U \\right) = W + Q",
+    "\\mathrm{d} \\left( \\tfrac{1}{2} M v^2 + U \\right) = \\delta W + \\delta Q"
+   ],
+   "titre": "La forme complète, avec l'énergie cinétique",
+   "type": "etape"
+  },
+  "pp_interpretation": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "clapeyron_fig"
+   },
+   "kicker": "Premier principe",
+   "texte": "ΔU ne dépend que des états extrêmes ; W et Q dépendent du chemin.",
+   "type": "phrase"
+  },
+  "premier_principe": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "transfert"
+   },
+   "kicker": "Premier principe",
+   "note": "Pour un système immobile · W et Q comptés positivement quand ils sont reçus",
+   "tex": "\\Delta U = W + Q",
+   "titre": "Le premier principe de la thermodynamique",
+   "type": "formule"
+  },
+  "principe_echanges": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "transfert"
+   },
+   "kicker": "Échanges entre corps",
+   "note": "Dans un calorimètre : Q du calorimètre = μ × Ce × Δθ, μ sa valeur en eau",
+   "tex": "Q_1 + Q_2 + \\cdots + Q_n = 0",
+   "titre": "Le principe des échanges de chaleur",
+   "type": "formule"
+  },
+  "quasi_statique": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "piston"
+   },
+   "kicker": "Transformations",
+   "texte": "Quasi-statique : une suite d'équilibres très proches les uns des autres.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Grandeurs d'état : n, P, V, T, liées par une équation d'état",
+    "Équilibre : P et T constantes, échanges cessés",
+    "Énergie interne U : une fonction d'état, pas W ni Q",
+    "Premier principe : ΔU = W + Q, en joules",
+    "Sans changement d'état : Q = mc(θf − θi) ; avec : Q = mL"
+   ],
+   "kicker": "À retenir",
+   "titre": "Thermodynamique physique",
+   "type": "recap"
+  },
+  "reversible": {
+   "etapes": [
+    "Réversible : retour possible sans trace, un modèle idéal",
+    "Irréversible : pas de retour sans laisser de trace",
+    "Toutes les transformations réelles sont irréversibles",
+    "Causes : frottements, inhomogénéités, effet Joule, hystérésis"
+   ],
+   "kicker": "Transformations",
+   "titre": "Réversible, irréversible",
+   "type": "recap"
+  },
+  "signes_modes": {
+   "etapes": [
+    "Q positive : le système absorbe la chaleur de l'extérieur",
+    "Q négative : le système cède de la chaleur à l'extérieur",
+    "Conduction dans un solide, convection dans un fluide en mouvement",
+    "Rayonnement : un transfert par ondes électromagnétiques"
+   ],
+   "kicker": "Chaleur échangée",
+   "titre": "Signes et modes de transfert",
+   "type": "recap"
+  },
+  "systeme": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "systeme_milieu_fig"
+   },
+   "kicker": "Notion de système",
+   "texte": "Un système : une portion de matière séparée du milieu extérieur par une frontière.",
+   "type": "phrase"
+  },
+  "thermostat": {
+   "kicker": "Terminologie",
+   "texte": "Thermostat : une source immense dont la température ne varie pas. Adiabatique : aucun échange de chaleur.",
+   "type": "phrase",
+   "anim": {
+    "nom": "calorimetre_fig",
+    "hauteur": 220
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "clapeyron_fig"
+   },
+   "kicker": "Physique",
+   "sous": "Systèmes, transformations, énergie interne et chaleur",
+   "titre": "Thermodynamique physique",
+   "type": "titre"
+  },
+  "travail": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "piston"
+   },
+   "kicker": "Travail échangé",
+   "texte": "Le travail : l'énergie échangée de manière ordonnée, par des forces.",
+   "type": "phrase"
+  },
+  "travail_pv": {
+   "kicker": "Travail échangé",
+   "note": "Détente : W négatif, le système fournit · Compression : W positif, il reçoit",
+   "tex": "W = \\int_{A}^{B} -P\\ \\mathrm{d}V",
+   "titre": "Le travail des forces de pression",
+   "type": "formule"
+  },
+  "types_systemes": {
+   "etapes": [
+    "Isolé : il n'échange ni matière ni énergie avec l'extérieur",
+    "Fermé : il échange de l'énergie, mais pas de matière",
+    "Ouvert : il échange matière et énergie avec l'extérieur",
+    "Notre échelle : macroscopique, loin du détail des particules"
+   ],
+   "kicker": "Typologie des systèmes",
+   "titre": "Trois types de systèmes, selon les échanges",
+   "type": "recap"
+  },
+  "types_travail": {
+   "etapes": [
+    "Travail pression-volume : détentes et compressions d'un gaz",
+    "Travail de frottement : dissipatif, il se convertit en chaleur",
+    "Travail électrique : celui d'une pile qui alimente un circuit",
+    "Le travail n'est pas une fonction d'état : il dépend du chemin"
+   ],
+   "kicker": "Travail échangé",
+   "titre": "Les formes du travail",
+   "type": "recap"
+  },
+  "valeurs_c": {
+   "kicker": "Chaleurs massiques",
+   "tex": [
+    "c_{\\text{aluminium}} = 920 \\qquad c_{\\text{fer}} = 460",
+    "c_{\\text{verre}} = 800 \\qquad c_{\\text{cuivre}} = 390",
+    "c_{\\text{plomb}} = 130 \\qquad \\text{(en J/(kg·K))}"
+   ],
+   "titre": "Des chaleurs massiques très différentes",
+   "type": "etape"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Systèmes, grandeurs d'état et transformations"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : après la description des systèmes, place aux échanges d'énergie, avec l'énergie interne, le travail, la chaleur, et le premier principe qui les relie.",
+    "texte": "Partie 2 : énergie interne, travail, chaleur et premier principe."
+   },
+   "sous_titre": "Énergie interne, travail, chaleur et premier principe"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : passons au calcul des quantités de chaleur, sans changement d'état, avec changement d'état, puis entre corps en contact dans un calorimètre.",
+    "texte": "Partie 3 : calculer la chaleur, calorimétrie et changements d'état."
+   },
+   "sous_titre": "Calculer la chaleur : calorimétrie et changements d'état"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique consacré à la thermodynamique physique : comment décrire un système, comment il évolue, et comment il échange de l'énergie avec son environnement.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Thermodynamique physique : systèmes, transformations et premier principe."
+  },
+  {
+   "dit": "La thermodynamique étudie les relations entre les différentes formes d'énergie, et tout particulièrement les échanges de chaleur. Elle permet de comprendre les propriétés des substances et les changements d'état, elle est indispensable pour concevoir les moteurs, les réfrigérateurs et les pompes à chaleur, et elle aide à gérer les ressources énergétiques de la planète.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "La thermodynamique, des moteurs au climat."
+  },
+  {
+   "dit": "Tout commence par le choix d'un système : une portion de matière, séparée du milieu extérieur par une frontière, réelle ou fictive. Le système et son milieu extérieur forment ensemble l'Univers. Quand le nombre de particules est immense, impossible à suivre une à une, le système est dit thermodynamique : on le décrit à grande échelle, par des moyennes.",
+   "ecran": "systeme",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Un système, séparé de l'extérieur par une frontière."
+  },
+  {
+   "dit": "Selon les échanges avec l'extérieur, on distingue trois types de systèmes. Le système isolé n'échange ni matière ni énergie. Le système fermé échange de l'énergie, mais pas de matière. Le système ouvert échange les deux. Et tout cela se décrit à l'échelle macroscopique, celle de nos observations.",
+   "ecran": "types_systemes",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Isolé, fermé ou ouvert : selon les échanges avec l'extérieur."
+  },
+  {
+   "dit": "Pour décrire un système à notre échelle, un petit nombre de grandeurs macroscopiques suffit : ce sont les grandeurs d'état. Les plus fréquentes sont la quantité de matière n, en moles, la pression P, en pascals, le volume V, en mètres cubes, et la température absolue T, en kelvins.",
+   "ecran": "grandeurs",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Les grandeurs d'état : n, P, V et T."
+  },
+  {
+   "dit": "La température absolue T se mesure en kelvins. Au quotidien, on utilise plutôt le degré Celsius : thêta égale T moins deux cent soixante-treize virgule quinze. Vingt-cinq degrés Celsius correspondent donc à environ deux cent quatre-vingt-dix-huit kelvins.",
+   "ecran": "conversion",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Du kelvin au degré Celsius."
+  },
+  {
+   "dit": "Les variables d'état ne sont pas indépendantes : une équation d'état les relie. Pour un gaz parfait, c'est P fois V égale n fois R fois T, où R est la constante des gaz parfaits, huit virgule trente et un joules par kelvin et par mole. Dans le diagramme de Clapeyron, chaque état du gaz est un point du plan pression-volume.",
+   "ecran": "equation_etat",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "L'équation d'état des gaz parfaits : PV = nRT."
+  },
+  {
+   "dit": "On classe aussi les grandeurs selon leur rapport à la taille. Une grandeur extensive dépend de la quantité de matière : doublez le système, elle double, comme le volume ou la masse. Une grandeur intensive est une propriété locale, la même en chaque point : la pression et la température ne changent pas quand le système grandit.",
+   "ecran": "extensif_intensif",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Extensives ou intensives : selon le rapport à la taille."
+  },
+  {
+   "dit": "Un système est en équilibre thermodynamique lorsque ses variables d'état sont définies et constantes au cours du temps, et que tout échange avec l'extérieur a cessé. Derrière une paroi mobile, la pression intérieure égale la pression extérieure : c'est l'équilibre mécanique. Derrière une paroi qui laisse passer la chaleur, les températures s'égalisent : c'est l'équilibre thermique.",
+   "ecran": "equilibre",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "L'équilibre : mécanique et thermique."
+  },
+  {
+   "dit": "Faire évoluer un système d'un état d'équilibre à un autre, c'est lui faire subir une transformation. Si la transformation avance par tout petits pas, chaque état intermédiaire restant presque un équilibre, elle est dite quasi-statique : pression et température restent définies à chaque instant, comme lorsqu'on comprime un gaz très lentement avec un piston.",
+   "ecran": "quasi_statique",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La transformation quasi-statique : avancer par tout petits pas."
+  },
+  {
+   "dit": "Une transformation est réversible si l'on peut revenir de l'état final à l'état initial en dépensant exactement l'opposé de l'énergie de l'aller. En pratique, c'est un modèle idéal, difficilement réalisable : les transformations réelles sont irréversibles, à cause des frottements, des inhomogénéités de température ou de pression, de l'effet Joule ou de l'hystérésis.",
+   "ecran": "reversible",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Réversible : un modèle idéal ; irréversible : le cas réel."
+  },
+  {
+   "dit": "Certaines transformations gardent une grandeur constante. Isobare : la pression du système ne varie pas. Isotherme : la température reste constante. Isochore : le volume ne change pas. Si c'est la pression extérieure qui reste constante, on parle de transformation monobare, et de monotherme pour la température extérieure.",
+   "ecran": "particulieres",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Isobare, isotherme, isochore : une grandeur reste constante."
+  },
+  {
+   "dit": "À l'intérieur du système, les particules bougent sans cesse : translation, rotation, vibration, et elles interagissent entre elles. La somme de toutes ces énergies microscopiques, cinétiques et potentielles, forme l'énergie interne, notée U. C'est une fonction d'état : elle ne dépend que de l'état présent du système, jamais du chemin suivi pour y arriver.",
+   "ecran": "energie_interne",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "L'énergie interne : la somme des énergies microscopiques."
+  },
+  {
+   "dit": "Le travail est une énergie transférée sous l'effet de forces. Le cas typique : un gaz enfermé dans un cylindre pousse un piston en se dilatant ; la force exercée, multipliée par le déplacement du piston, donne le travail fourni par le gaz. À l'inverse, comprimer le gaz demande un travail reçu par le système.",
+   "ecran": "travail",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Le travail : un gaz qui pousse un piston."
+  },
+  {
+   "dit": "Pour le travail des forces de pression, on additionne les contributions élémentaires le long du trajet : W est l'intégrale, de l'état A à l'état B, de moins P fois dV. Le signe parle de lui-même : quand le volume augmente, le système fournit du travail à l'extérieur, et W est négatif ; quand le volume diminue, le système en reçoit.",
+   "ecran": "travail_pv",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Le travail des forces de pression : une intégrale."
+  },
+  {
+   "dit": "Le travail prend plusieurs formes : travail des forces de pression, lié aux changements de volume ; travail de frottement, qui dissipe l'énergie mécanique en chaleur ; travail électrique, comme celui d'une pile qui alimente un circuit. Retenez surtout ceci : le travail n'est pas une fonction d'état. Un système ne possède pas de travail : le travail ne caractérise que l'échange, et il dépend du chemin suivi.",
+   "ecran": "types_travail",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Les formes du travail, et son statut particulier."
+  },
+  {
+   "dit": "La chaleur, notée Q, est l'autre mode de transfert : une énergie qui passe d'un corps à l'autre à cause d'une différence de température, toujours du plus chaud vers le plus froid. Contrairement au travail, ordonné, c'est un transfert désordonné, à l'échelle microscopique. Et comme le travail, la chaleur n'est pas une fonction d'état : un corps ne possède pas de chaleur, il en échange.",
+   "ecran": "chaleur_def",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "La chaleur : un transfert désordonné, du chaud vers le froid."
+  },
+  {
+   "dit": "La chaleur reçue est comptée positivement, la chaleur cédée négativement. Et elle voyage de trois façons : par conduction, à travers un matériau solide ; par convection, portée par un fluide en mouvement ; et par rayonnement, sous forme d'ondes électromagnétiques, sans aucun contact.",
+   "ecran": "signes_modes",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Signes de Q, et les trois modes de transfert."
+  },
+  {
+   "dit": "Deux mots de vocabulaire pour terminer. Un thermostat, ou source de chaleur, est un système immense, capable d'échanger de la chaleur sans que sa température varie : ses capacités thermiques sont pratiquement infinies. Et une transformation sans aucun transfert thermique, Q égale zéro, est dite adiabatique : parois isolantes, ou évolution trop rapide pour que la chaleur passe.",
+   "ecran": "thermostat",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Thermostat et transformation adiabatique."
+  },
+  {
+   "dit": "Voici le cœur du cours : le premier principe de la thermodynamique. Pour un système immobile, la variation de son énergie interne entre deux états d'équilibre égale la somme du travail et de la chaleur échangés avec l'extérieur : delta U égale W plus Q. Positifs, W et Q sont reçus par le système ; négatifs, ils sont fournis à l'extérieur.",
+   "ecran": "premier_principe",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Le premier principe : ΔU = W + Q."
+  },
+  {
+   "dit": "La forme complète du premier principe inclut l'énergie cinétique macroscopique du système : la variation de un demi de M v deux, plus U, égale W plus Q. En version infinitésimale, pour une toute petite évolution, on écrit d de cette somme égale delta W plus delta Q. Les delta signalent que travail et chaleur ne sont pas des variations de fonctions d'état.",
+   "ecran": "pp_complet",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "La forme complète du premier principe."
+  },
+  {
+   "dit": "Application directe du premier principe. Un système immobile reçoit quatre cents joules de chaleur ; en se détendant, il fournit cent cinquante joules de travail à l'extérieur, donc W vaut moins cent cinquante joules. Sa variation d'énergie interne vaut W plus Q : moins cent cinquante, plus quatre cents, égale plus deux cent cinquante joules. L'apport de chaleur l'emporte : son énergie interne augmente.",
+   "ecran": "ex_pp",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Exemple : ΔU = −150 + 400 = +250 J."
+  },
+  {
+   "dit": "Interprétation essentielle : la variation d'énergie interne ne dépend que des états initial et final, alors que le travail et la chaleur dépendent du chemin suivi entre ces états, comme deux itinéraires différents entre deux points du diagramme pression-volume. Le premier principe dit même plus fort : travail et chaleur sont équivalents sur le plan énergétique, et le système peut combiner les deux dans n'importe quelle proportion.",
+   "ecran": "pp_interpretation",
+   "id": "p23",
+   "pause_apres": 0.7,
+   "texte": "ΔU ignore le chemin ; W et Q en dépendent."
+  },
+  {
+   "dit": "Sans changement d'état, la quantité de chaleur échangée par un corps dont la température passe de thêta i à thêta f vaut Q égale m fois c fois thêta f moins thêta i. La chaleur massique c est la chaleur qu'il faut fournir à un kilogramme du corps pour élever sa température d'un degré : elle ne dépend que de la nature du corps.",
+   "ecran": "chaleur_sensible",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Sans changement d'état : Q = mc(θf − θi)."
+  },
+  {
+   "dit": "On regroupe souvent masse et chaleur massique en une seule grandeur : la capacité thermique K du corps, égale au produit m fois c. C'est la chaleur qu'il faut fournir au corps entier pour l'échauffer d'un degré. La quantité de chaleur s'écrit alors simplement Q égale K fois thêta f moins thêta i.",
+   "ecran": "capacite",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "La capacité thermique : K = mc."
+  },
+  {
+   "dit": "Les valeurs varient énormément d'une matière à l'autre : neuf cent vingt pour l'aluminium, huit cents pour le verre, quatre cent soixante pour le fer, trois cent quatre-vingt-dix pour le cuivre, et seulement cent trente pour le plomb. À masse égale, chauffer de l'aluminium demande donc environ sept fois plus de chaleur que chauffer du plomb.",
+   "ecran": "valeurs_c",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Les chaleurs massiques des matières courantes."
+  },
+  {
+   "dit": "Avec changement d'état, tout change : la température reste constante pendant toute la transformation, et la chaleur sert uniquement à réorganiser la matière. On appelle chaleur latente L la chaleur à fournir à un kilogramme du corps pour le faire changer d'état. Pour une masse m, la chaleur échangée vaut simplement Q égale m fois L.",
+   "ecran": "chaleur_latente",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Changement d'état : Q = mL, à température constante."
+  },
+  {
+   "dit": "Deux chaleurs latentes à distinguer : celle de fusion, pour passer du solide au liquide, et celle de vaporisation, pour passer du liquide à la vapeur. Pour l'eau, fondre un kilogramme de glace demande trois cent trente-cinq kilojoules, mais le vaporiser en demande deux mille deux cent cinquante-huit : la vaporisation coûte presque sept fois plus cher que la fusion.",
+   "ecran": "latentes",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Fusion : 335 kJ/kg ; vaporisation de l'eau : 2258 kJ/kg."
+  },
+  {
+   "dit": "Exemple complet, celui du cours : transformer cent grammes de glace, prise à moins dix degrés, en vapeur à cent degrés. Quatre étapes s'enchaînent : chauffer la glace jusqu'à zéro degré ; la faire fondre, à température constante ; chauffer l'eau obtenue jusqu'à cent degrés ; puis la vaporiser, toujours à cent degrés. Pour les chauffages, m fois c fois l'écart de température ; pour les changements d'état, m fois L.",
+   "ecran": "ex_glace",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Exemple : de la glace à −10 °C à la vapeur, en quatre étapes."
+  },
+  {
+   "dit": "En additionnant les quatre contributions, on arrive à environ trois cent trois kilojoules pour seulement cent grammes de matière. Et regardez la répartition : la vaporisation, à elle seule, représente presque les trois quarts du total. C'est elle, la grande consommatrice d'énergie, bien plus que les chauffages.",
+   "ecran": "ex_glace_res",
+   "id": "p30",
+   "pause_apres": 0.7,
+   "texte": "Bilan : environ 303 kJ, dominés par la vaporisation."
+  },
+  {
+   "dit": "Dernière situation : plusieurs corps en contact dans une enceinte adiabatique, qui n'échange rien avec l'extérieur, comme un calorimètre. Le principe des échanges de chaleur affirme que la somme algébrique des quantités de chaleur échangées par tous les corps, jusqu'à l'équilibre thermique, est nulle : ce que les corps chauds cèdent, les corps froids le reçoivent. Le calorimètre absorbe lui-même une part, comptée grâce à sa valeur en eau.",
+   "ecran": "principe_echanges",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Le principe des échanges : la somme des chaleurs est nulle."
+  },
+  {
+   "dit": "Exemple : on verse deux cents grammes d'eau à soixante degrés dans un calorimètre contenant trois cents grammes d'eau à vingt degrés. Quelle est la température d'équilibre ? L'eau chaude cède de la chaleur, l'eau froide en reçoit la même quantité : on égalise les deux expressions, la chaleur massique de l'eau se simplifie, et il ne reste qu'une équation à une inconnue, thêta e.",
+   "ecran": "ex_melange",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "Exemple : mélanger deux masses d'eau."
+  },
+  {
+   "dit": "La résolution donne thêta e égale trente-six degrés Celsius : une moyenne des deux températures, mais pondérée par les masses, donc plus proche des vingt degrés de la masse la plus lourde. C'est exactement ainsi qu'on exploite un calorimètre pour mesurer des chaleurs massiques ou des chaleurs latentes inconnues.",
+   "ecran": "ex_melange_res",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "Résultat : une température d'équilibre de 36 °C."
+  },
+  {
+   "dit": "Retenez l'essentiel du cours. Un système se décrit par ses grandeurs d'état, reliées par une équation d'état comme P V égale n R T. Son énergie interne est une fonction d'état, et le premier principe relie sa variation au travail et à la chaleur échangés. Enfin, la chaleur se calcule : m fois c fois l'écart de température sans changement d'état, m fois L avec changement d'état, à température constante.",
+   "ecran": "recap",
+   "id": "p34",
+   "pause_apres": 0.5,
+   "texte": "Thermodynamique physique : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Thermodynamique physique"
+}
