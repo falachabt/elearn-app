@@ -20,6 +20,7 @@ Usage CI (GitHub Actions, voir .github/workflows/video-cours.yml) :
 import json
 import os
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
@@ -154,9 +155,25 @@ def decouper(script):
 def valider(script):
     erreurs = []
     ecrans = script.get("ecrans", {})
+    cles_requises = {"titre": ("kicker", "titre", "sous"), "phrase": ("kicker", "texte"),
+                     "formule": ("kicker", "tex"), "etape": ("kicker", "tex"),
+                     "lignes": ("kicker", "tex"), "recap": ("kicker", "etapes")}
     for nom, e in ecrans.items():
         if e.get("type") not in TYPES:
             erreurs.append(f"écran {nom} : type inconnu {e.get('type')!r}")
+            continue
+        for cle in cles_requises.get(e["type"], ()):
+            if not e.get(cle):
+                erreurs.append(f"écran {nom} ({e['type']}) : clé {cle!r} manquante ou vide (format du gabarit)")
+        anim = e.get("anim") or {}
+        if anim.get("nom"):
+            gabarit_html = (GABARIT / "lecon-16x9.html")
+            if gabarit_html.exists():
+                noms = set(re.findall(r"^\s{2}(\w+)\(t(?:, o)?\) \{",
+                                      gabarit_html.read_text(encoding="utf-8"), re.M))
+                if anim["nom"] not in noms:
+                    erreurs.append(f"écran {nom} : animation {anim['nom']!r} absente du gabarit "
+                                   f"(disponibles : {', '.join(sorted(noms))})")
     ids = set()
     for p in script["phrases"]:
         if p["id"] in ids:

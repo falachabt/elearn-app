@@ -1,0 +1,234 @@
+{
+ "cours": 5901,
+ "ecrans": {
+  "circulaire": {
+   "type": "phrase",
+   "kicker": "Orbite circulaire",
+   "texte": "Beaucoup d'orbites sont presque circulaires : on les traite comme des cercles de rayon R.",
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 320
+   }
+  },
+  "ex_soleil": {
+   "kicker": "Exemple",
+   "titre": "Peser le Soleil grâce à la Terre",
+   "type": "etape",
+   "tex": [
+    "T = 1\\ \\text{an} \\approx 3{,}16 \\times 10^{7}\\ \\text{s}",
+    "a \\approx 1{,}50 \\times 10^{11}\\ \\text{m}",
+    "G = 6{,}67 \\times 10^{-11}\\ \\text{SI}",
+    "M = \\dfrac{4\\pi^2 a^3}{G\\, T^2}"
+   ]
+  },
+  "ex_soleil_res": {
+   "kicker": "Exemple · résultat",
+   "titre": "La masse du Soleil",
+   "type": "formule",
+   "tex": "M_{\\text{Soleil}} = \\frac{4\\pi^2 a^3}{G\\, T^2} \\approx 2{,}0 \\times 10^{30}\\ \\text{kg}"
+  },
+  "ex_terre": {
+   "kicker": "Exemple",
+   "titre": "À quelle vitesse la Terre orbite-t-elle ?",
+   "type": "etape",
+   "tex": [
+    "M \\approx 2{,}0 \\times 10^{30}\\ \\text{kg}",
+    "R \\approx 1{,}50 \\times 10^{11}\\ \\text{m}",
+    "v = \\sqrt{\\dfrac{G M}{R}}"
+   ]
+  },
+  "ex_terre_res": {
+   "kicker": "Exemple · résultat",
+   "titre": "La vitesse orbitale de la Terre",
+   "type": "formule",
+   "tex": "v = \\sqrt{\\frac{G M}{R}} \\approx 29{,}8\\ \\text{km/s}"
+  },
+  "hypotheses": {
+   "type": "recap",
+   "kicker": "Interprétation",
+   "etapes": [
+    "Planètes et Soleil assimilés à des points matériels",
+    "Seule interaction gardée : la planète et le Soleil",
+    "Masse de la planète négligeable devant celle du Soleil"
+   ]
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Trois lois empiriques, dégagées des observations du mouvement des planètes."
+  },
+  "loi2": {
+   "kicker": "Deuxième loi",
+   "titre": "La vitesse aréolaire est constante",
+   "type": "formule",
+   "tex": "\\frac{dA}{dt} = \\frac{\\omega\\, r^2}{2} = \\text{constante}",
+   "note": "A : aire balayée par le rayon Soleil-planète (m²) · ω : vitesse angulaire (rad/s) · r : distance Soleil-planète (m)"
+  },
+  "loi3": {
+   "kicker": "Troisième loi",
+   "titre": "Période et demi-grand axe",
+   "type": "formule",
+   "tex": "\\frac{T^2}{a^3} = \\frac{4\\pi^2}{G\\, M_A}",
+   "note": "T : période de révolution de la planète · a : demi-grand axe de l'ellipse · M_A : masse de l'astre central (ici le Soleil)"
+  },
+  "lois": {
+   "type": "recap",
+   "kicker": "Énoncés",
+   "etapes": [
+    "Première loi : la planète décrit une ellipse, le Soleil à un foyer",
+    "Deuxième loi (aires) : aires égales en des durées égales",
+    "Troisième loi : T² / a³ est le même pour toutes les planètes"
+   ],
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 300
+   }
+  },
+  "periode": {
+   "kicker": "Orbite circulaire",
+   "titre": "La période de révolution",
+   "type": "formule",
+   "tex": "T = \\frac{2\\pi R}{v_{\\text{sat}}} = 2\\pi \\sqrt{\\frac{R^3}{G M}}",
+   "note": "On retrouve la troisième loi de Kepler, cas du cercle (a = R)"
+  },
+  "recap": {
+   "type": "recap",
+   "etapes": [
+    "Trois lois : ellipse, aires égales, T² / a³ constant",
+    "Vitesse aréolaire : dA/dt = ω r² / 2, constante",
+    "Satellisation : v = √(GM/R) ; libération : √2 · v sat",
+    "Période circulaire : T = 2π √(R³ / GM)"
+   ],
+   "kicker": "À retenir"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Orbites, aires et périodes des planètes",
+   "titre": "Les lois de Kepler",
+   "type": "titre"
+  },
+  "vlib": {
+   "kicker": "Orbite circulaire",
+   "titre": "La vitesse de libération",
+   "type": "formule",
+   "tex": "v_{\\text{lib}} = \\sqrt{\\frac{2 G M}{R}} = \\sqrt{2}\\; v_{\\text{sat}}",
+   "note": "Vitesse minimale pour échapper à l'attraction de l'astre · Elle vaut √2 fois la vitesse de satellisation"
+  },
+  "vsat": {
+   "kicker": "Orbite circulaire",
+   "titre": "La vitesse de satellisation",
+   "type": "formule",
+   "tex": "v_{\\text{sat}} = \\sqrt{\\frac{G M}{R}}",
+   "note": "Vitesse minimale pour boucler une orbite à la distance R · En dessous : l'objet retombe sur l'astre"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux lois de Kepler, qui décrivent le mouvement des planètes autour du Soleil.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Les lois de Kepler : orbites, aires et périodes des planètes."
+  },
+  {
+   "dit": "Au début du dix-septième siècle, Johannes Kepler étudie les observations très précises du mouvement des planètes, et il en dégage trois lois, purement empiriques, que nous allons énoncer puis interpréter.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Kepler dégage trois lois empiriques du mouvement des planètes."
+  },
+  {
+   "dit": "Première loi : chaque planète décrit une ellipse, dont le Soleil occupe l'un des foyers. Deuxième loi, la loi des aires : le rayon qui joint le Soleil à la planète balaie des aires égales pendant des durées égales. Troisième loi : le rapport du carré de la période sur le cube du demi-grand axe est le même pour toutes les planètes.",
+   "ecran": "lois",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Les trois lois de Kepler."
+  },
+  {
+   "dit": "Pour interpréter ces lois, on fait trois hypothèses. On assimile les planètes et le Soleil à des points matériels. On ne garde que l'interaction entre la planète et le Soleil, en excluant toute influence des autres planètes. Et on néglige la masse de la planète devant celle du Soleil.",
+   "ecran": "hypotheses",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Les hypothèses qui rendent ces lois interprétables."
+  },
+  {
+   "dit": "Regardons la loi des aires de plus près. On appelle vitesse aréolaire la dérivée par rapport au temps de l'aire balayée par le rayon Soleil-planète : elle vaut oméga fois r au carré, sur deux, et elle est constante. Près du Soleil, la planète doit donc accélérer ; loin du Soleil, elle ralentit.",
+   "ecran": "loi2",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Deuxième loi : la vitesse aréolaire est constante."
+  },
+  {
+   "dit": "La troisième loi relie la période T et le demi-grand axe a : T au carré sur a au cube égale quatre pi au carré sur G fois M A, la masse de l'astre attracteur. Le membre de droite ne dépend que de cet astre : voilà pourquoi le rapport est le même pour toutes ses planètes.",
+   "ecran": "loi3",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Troisième loi : T² / a³ = 4π² / (G M)."
+  },
+  {
+   "dit": "Exemple : calculons la masse du Soleil, grâce à la Terre. Sa période vaut un an, soit environ trois virgule seize fois dix puissance sept secondes. Le demi-grand axe de son orbite vaut environ un virgule cinquante fois dix puissance onze mètres. On isole M dans la troisième loi.",
+   "ecran": "ex_soleil",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Exemple : peser le Soleil grâce à la Terre."
+  },
+  {
+   "dit": "Le calcul donne environ deux fois dix puissance trente kilogrammes : c'est la masse du Soleil, obtenue sans jamais quitter la Terre, simplement en regardant son mouvement.",
+   "ecran": "ex_soleil_res",
+   "id": "p08",
+   "pause_apres": 0.7,
+   "texte": "Résultat : la masse du Soleil vaut environ 2,0 × 10³⁰ kg."
+  },
+  {
+   "dit": "Dans la suite du cours, on simplifie le modèle : beaucoup d'orbites, comme celle de la Terre, sont presque circulaires. On traite donc le mouvement comme circulaire et uniforme, de rayon R, autour de l'astre de masse M.",
+   "ecran": "circulaire",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "On simplifie : l'orbite devient un cercle, le mouvement est uniforme."
+  },
+  {
+   "dit": "La deuxième loi de Newton donne alors la vitesse du satellite : racine carrée de G fois M sur R. C'est la vitesse de satellisation : la vitesse minimale pour boucler une orbite à la distance R, au lieu de s'écraser sur l'astre.",
+   "ecran": "vsat",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "La vitesse de satellisation : v = √(GM / R)."
+  },
+  {
+   "dit": "Autre vitesse remarquable : la vitesse de libération, la vitesse minimale pour échapper définitivement à l'attraction de l'astre et partir à l'infini. Elle vaut racine carrée de deux G M sur R, c'est-à-dire racine de deux fois la vitesse de satellisation.",
+   "ecran": "vlib",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "La vitesse de libération vaut √2 fois celle de satellisation."
+  },
+  {
+   "dit": "Enfin, la période : l'orbite mesure deux pi R, et elle est parcourue à la vitesse de satellisation. On obtient T égale deux pi racine de R au cube sur G M : c'est exactement la troisième loi de Kepler, dans le cas particulier du cercle.",
+   "ecran": "periode",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La période : on retrouve la troisième loi pour un cercle."
+  },
+  {
+   "dit": "Dernier exemple : la vitesse de la Terre sur son orbite. On reprend la masse du Soleil, calculée tout à l'heure, et le rayon de l'orbite, dans la formule de la vitesse de satellisation.",
+   "ecran": "ex_terre",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Exemple : à quelle vitesse la Terre orbite-t-elle ?"
+  },
+  {
+   "dit": "On trouve environ vingt-neuf virgule huit kilomètres par seconde : c'est la vitesse à laquelle la Terre parcourt son orbite, en ce moment même.",
+   "ecran": "ex_terre_res",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "La Terre file à près de trente kilomètres par seconde."
+  },
+  {
+   "dit": "Retenez les trois lois de Kepler, la vitesse aréolaire constante, et les deux vitesses remarquables, satellisation et libération, qui se déduisent l'une de l'autre par un facteur racine de deux.",
+   "ecran": "recap",
+   "id": "p15",
+   "pause_apres": 0.5,
+   "texte": "Les lois de Kepler et les vitesses remarquables : à retenir."
+  }
+ ],
+ "titre": "Les lois de Kepler"
+}

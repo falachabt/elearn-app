@@ -55,12 +55,26 @@ Figures (schémas) disponibles (même objet `ANIMS`, registre `FIG` du gabarit) 
 - `rayons` : construction complète — objet, lentille convergente, les trois rayons particuliers, image renversée. C'est la figure d'examen du chapitre.
 - `oeil` : œil réduit — objet, cristallin, image formée sur la rétine.
 - `fibre` : rayon qui zigzague dans une fibre par réflexions totales successives.
+- `kepler` : orbite elliptique — Soleil à un foyer, deux secteurs d'aires égales qui se remplissent, demi-grand axe a (loi des aires).
+- `orbite` : orbite circulaire — astre central, rayon R, satellite en mouvement et vecteur vitesse tangentiel.
 - Option `hauteur` (ex. `"anim": {"nom": "rayons", "hauteur": 175}`) : réduit la hauteur de la figure (260 px par défaut) pour les écrans déjà chargés, comme un récapitulatif en étapes.
 
 Règles :
 - Un écran animé doit tenir sous la bande jaune. La vérification de débordement (« texte qui déborde ») est lancée à l'écran animé, une fois la première image posée. Un débordement se règle en retirant l'animation de l'écran, pas en réduisant le texte validé.
 - Une animation ne lit pas le texte : elle illustre l'objet dont on parle.
 - **Visuel obligatoire (décision de Benny, 25 octobre 2026)** : une vidéo ne doit pas rester en pur texte. Chaque fois qu'une notion peut se montrer — un phénomène, un dispositif, un trajet de rayon, un montage — l'écran qui en parle reçoit une figure ou une animation, de préférence la figure type qui revient à l'examen, pour que l'élève puisse s'en rappeler visuellement. Si aucune figure du gabarit ne convient, en dessiner une nouvelle dans le registre `FIG` (SVG, encre du thème + couleurs Elearn) plutôt que laisser l'écran en texte seul.
+
+## Contrat de format des écrans (ce que le gabarit consomme vraiment)
+
+Clés par type — `lancer.py valider` les exige, avec le `kicker` partout :
+
+- `titre` : `kicker`, `titre`, `sous`.
+- `phrase` : `kicker`, `texte` (français libre, il se replie tout seul).
+- `formule` : `kicker`, `tex` (une chaîne KaTeX), `note` optionnelle (français libre sous la carte).
+- `etape` / `lignes` : `kicker`, `tex` (une liste de chaînes KaTeX courtes), `titre` optionnel pour `etape`.
+- `recap` : `kicker`, `etapes` (liste de français libre, affichée numérotée).
+
+**Piège vérifié (script 5901, 25 octobre 2026)** : les lignes `tex` passent par KaTeX, qui **mange les espaces** et ne replie jamais — une phrase française y devient illisible et déborde. Le français va dans `phrase.texte`, `formule.note`, `recap.etapes` et les `titre` d'`etape` ; les `tex` ne portent que des mathématiques courtes (`T = 1\ \text{an} \approx 3{,}16 \times 10^{7}\ \text{s}`). `valider` contrôle aussi que chaque `anim.nom` existe dans le gabarit.
 
 ## Production via GitHub Actions (depuis le 25 octobre 2026)
 

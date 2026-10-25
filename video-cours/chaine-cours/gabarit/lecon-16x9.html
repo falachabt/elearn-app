@@ -283,6 +283,37 @@ const FIG = {
       `<rect x="80" y="112" width="840" height="76" fill="#10B981" fill-opacity=".18" stroke="currentColor" stroke-width="5"/>` +
       zig + mot(500, 232, 'réflexions totales successives dans la fibre', { t: 27 }));
   },
+  kepler(t) {
+    const p = prog(t), p1 = Math.min(1, p * 2), p2 = Math.max(0, p * 2 - 1);
+    return svgBoite(
+      `<ellipse cx="500" cy="150" rx="330" ry="100" fill="#1A75FF" fill-opacity=".07" stroke="currentColor" stroke-width="5"/>` +
+      `<line x1="170" y1="150" x2="830" y2="150" stroke="currentColor" stroke-width="3" stroke-dasharray="10 9" opacity=".6"/>` +
+      mot(745, 132, 'a', { t: 34 }) +
+      (p1 > 0 ? `<path d="M 660 150 L 181 124 A 330 100 0 0 1 181 176 Z" fill="#B8860B" fill-opacity="${0.38 * p1}"/>` : '') +
+      (p2 > 0 ? `<path d="M 660 150 L 760 88 A 330 100 0 0 1 791 197 Z" fill="#B8860B" fill-opacity="${0.38 * p2}"/>` : '') +
+      trait(660, 150, 181, 124, p1, { c: '#B8860B', w: 4 }) + trait(660, 150, 181, 176, p1, { c: '#B8860B', w: 4 }) +
+      trait(660, 150, 760, 88, p2, { c: '#B8860B', w: 4 }) + trait(660, 150, 791, 197, p2, { c: '#B8860B', w: 4 }) +
+      `<circle cx="660" cy="150" r="17" fill="#E8A33D" stroke="currentColor" stroke-width="4"/>` +
+      mot(660, 205, 'Soleil (foyer)', { t: 26 }) +
+      `<circle cx="181" cy="150" r="11" fill="#1A75FF" stroke="currentColor" stroke-width="3"/>` +
+      mot(181, 108, 'planète', { t: 26 }) +
+      (p > .8 ? mot(330, 292, 'aires égales pendant des durées égales', { t: 27 }) : ''));
+  },
+  orbite(t) {
+    const p = prog(t);
+    const a = (-90 + 270 * p) * Math.PI / 180;
+    const sx = Math.round(500 + 105 * Math.cos(a)), sy = Math.round(150 + 105 * Math.sin(a));
+    const tx = Math.round(sx - 44 * Math.sin(a)), ty = Math.round(sy + 44 * Math.cos(a));
+    return svgBoite(
+      `<circle cx="500" cy="150" r="105" fill="#1A75FF" fill-opacity=".06" stroke="currentColor" stroke-width="5"/>` +
+      trait(500, 150, sx, sy, Math.min(1, p * 3), { c: '#B8860B', w: 4 }) +
+      mot(552, 128, 'R', { t: 32, a: 'start' }) +
+      `<circle cx="500" cy="150" r="15" fill="#E8A33D" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 205, 'astre (M)', { t: 26 }) +
+      `<circle cx="${sx}" cy="${sy}" r="11" fill="#1A75FF" stroke="currentColor" stroke-width="3"/>` +
+      (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
+      mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
+  },
 };
 
 Object.assign(ANIMS, FIG);
