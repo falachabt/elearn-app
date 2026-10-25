@@ -102,16 +102,20 @@ def valider(script):
 
 
 def voix(script, dossier):
-    """Une génération OmniVoice par phrase, réglages du 16:9 validé. Reprise : les clips existants ne sont pas refaits."""
-    from omnivoice import OmniVoice
-    import soundfile as sf
-    import torch
-
+    """Une génération OmniVoice par phrase, réglages du 16:9 validé. Reprise : les clips existants ne sont pas refaits.
+    Les imports lourds (torch, OmniVoice) ne se font que s'il manque des clips : un poste
+    qui ne fait que le montage peut donc tourner sans torch installé."""
     segs = dossier / "seg"
     segs.mkdir(exist_ok=True)
     manquants = [p for p in script["phrases"] if not (segs / f"{p['id']}.wav").exists()]
+    presents = len(script["phrases"]) - len(manquants)
+    print(f"voix : {presents} clips présents, {len(manquants)} à générer"
+          + (f" ({', '.join(p['id'] for p in manquants)})" if manquants else ""), flush=True)
     if not manquants:
         return
+    from omnivoice import OmniVoice
+    import soundfile as sf
+    import torch
     modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
     for p in manquants:
         a = modele.generate(text=p["dit"], ref_audio=str(REF_AUDIO), ref_text=REF_TEXTE,

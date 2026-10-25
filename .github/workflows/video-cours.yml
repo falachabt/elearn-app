@@ -93,6 +93,7 @@ jobs:
         run: |
           mkdir -p ".travail/${{ inputs.cours }}/seg"
           find .morceaux -name '*.wav' -exec cp {} ".travail/${{ inputs.cours }}/seg/" \;
+          echo "Clips récupérés : $(ls ".travail/${{ inputs.cours }}/seg" | wc -l)"
           export CHAINE_CHROME="$(ls -d ~/.cache/ms-playwright/chromium-*/chrome-linux64/chrome | head -1)"
           echo "Chromium : $CHAINE_CHROME"
           cd video-cours/chaine-cours
