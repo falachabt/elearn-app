@@ -27,7 +27,7 @@ env:
 jobs:
   voix:
     name: Voix (partie ${{ matrix.partie }})
-    if: ${{ inputs.cours != 'INDEX' && !startsWith(inputs.cours, 'EXTRAIRE') }}
+    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     strategy:
@@ -64,7 +64,7 @@ jobs:
 
   montage:
     name: Montage et rendu
-    if: ${{ inputs.cours != 'INDEX' && !startsWith(inputs.cours, 'EXTRAIRE') }}
+    if: ${{ inputs.cours != 'INDEX' && inputs.cours != 'INSCRIRE' && !startsWith(inputs.cours, 'EXTRAIRE') }}
     needs: voix
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -224,3 +224,20 @@ jobs:
           name: lecons-${{ github.run_id }}
           path: video-cours/chaine-cours/sorties
           retention-days: 7
+
+  inscrire:
+    name: Inscrire les vidéos en base (sans migration)
+    if: ${{ inputs.cours == 'INSCRIRE' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Inscrire les vidéos des fichiers d'inscriptions
+        env:
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_KEY }}
+        run: |
+          cd video-cours/chaine-cours
+          python inscrire_videos.py inscriptions/*.json
