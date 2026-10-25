@@ -1,0 +1,353 @@
+{
+ "cours": 5959,
+ "titre": "Chapitre 4 : Piles et Electrolyse",
+ "matiere": "Chimie",
+ "lecons": [
+  4902,
+  4903,
+  4904,
+  4905
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Électrochimie",
+   "titre": "Piles et électrolyse",
+   "sous": "L'oxydoréduction, des demi-équations à la loi de Faraday",
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "L'oxydoréduction",
+   "texte": "L'oxydoréduction, ou réaction redox, est un transfert d'électrons entre deux espèces chimiques : l'oxydant, avide d'électrons, et le réducteur, prêt à les céder.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 180
+   }
+  },
+  "demi_reactions": {
+   "type": "etape",
+   "kicker": "L'oxydoréduction",
+   "titre": "Le zinc et le cuivre : deux demi-réactions",
+   "tex": [
+    "\\mathrm{Zn \\longrightarrow Zn^{2+} + 2\\,e^-} \\quad \\text{(oxydation)}",
+    "\\mathrm{Cu^{2+} + 2\\,e^- \\longrightarrow Cu} \\quad \\text{(réduction)}",
+    "\\mathrm{Zn + Cu^{2+} \\longrightarrow Zn^{2+} + Cu}"
+   ]
+  },
+  "roles": {
+   "type": "recap",
+   "kicker": "Les quatre rôles",
+   "etapes": [
+    "Oxydation : perte d'électrons, le nombre d'oxydation augmente",
+    "Réduction : gain d'électrons, le nombre d'oxydation diminue",
+    "Oxydant : il accepte les électrons et est réduit",
+    "Réducteur : il cède les électrons et est oxydé"
+   ]
+  },
+  "regles": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Les règles du nombre d'oxydation",
+   "tex": [
+    "\\text{Corps simple : } 0 \\qquad \\text{Ion monoatomique : sa charge}",
+    "\\text{Oxygène : } -2 \\qquad \\text{Hydrogène : } +1",
+    "\\sum \\text{n.o.} = 0 \\ \\text{(molécule neutre)} \\qquad \\sum \\text{n.o.} = \\text{charge (ion)}"
+   ]
+  },
+  "exemples_no": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Deux exemples calculés",
+   "tex": [
+    "\\mathrm{SO_4^{2-}} : x + 4 \\times (-2) = -2 \\Rightarrow x = +6",
+    "\\mathrm{KMnO_4} : +1 + x + 4 \\times (-2) = 0 \\Rightarrow x = +7"
+   ]
+  },
+  "fer_argent": {
+   "type": "etape",
+   "kicker": "Les demi-équations",
+   "titre": "Le fer face aux ions argent",
+   "tex": [
+    "\\mathrm{Fe \\longrightarrow Fe^{2+} + 2\\,e^-}",
+    "\\mathrm{2\\,Ag^+ + 2\\,e^- \\longrightarrow 2\\,Ag}"
+   ]
+  },
+  "applications": {
+   "type": "recap",
+   "kicker": "Les applications du redox",
+   "etapes": [
+    "La corrosion : la rouille du fer",
+    "La respiration cellulaire et la photosynthèse",
+    "La métallurgie : extraire les métaux des minerais",
+    "L'électrolyse industrielle et le blanchiment"
+   ]
+  },
+  "pile_def": {
+   "type": "phrase",
+   "kicker": "Les piles",
+   "texte": "Une pile convertit l'énergie chimique en énergie électrique grâce à une réaction redox spontanée, dont les deux demi-réactions sont séparées mais connectées électriquement.",
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 160
+   }
+  },
+  "anatomie": {
+   "type": "recap",
+   "kicker": "Les piles",
+   "etapes": [
+    "L'anode : l'oxydation y libère les électrons",
+    "La cathode : la réduction y consomme les électrons",
+    "L'électrolyte : il fait circuler les ions, pas les électrons",
+    "Le pont salin : il maintient la neutralité électrique"
+   ],
+   "anim": {
+    "nom": "pile_daniell_fig",
+    "hauteur": 120
+   }
+  },
+  "daniell": {
+   "type": "etape",
+   "kicker": "Les piles",
+   "titre": "La pile Daniell au travail",
+   "tex": [
+    "\\text{Anode : } \\mathrm{Zn \\longrightarrow Zn^{2+} + 2\\,e^-}",
+    "\\text{Cathode : } \\mathrm{Cu^{2+} + 2\\,e^- \\longrightarrow Cu}",
+    "\\mathrm{Zn + Cu^{2+} \\longrightarrow Zn^{2+} + Cu}"
+   ]
+  },
+  "potentiels": {
+   "type": "etape",
+   "kicker": "Les potentiels standard",
+   "titre": "Mesurer la tendance à se réduire",
+   "tex": [
+    "E^\\circ(\\mathrm{Cu^{2+}/Cu}) = +0{,}34\\ \\text{V}",
+    "E^\\circ(\\mathrm{Zn^{2+}/Zn}) = -0{,}76\\ \\text{V}",
+    "\\text{référence : } E^\\circ(\\mathrm{H^+/H_2}) = 0\\ \\text{V}"
+   ]
+  },
+  "fem": {
+   "type": "formule",
+   "kicker": "La force électromotrice",
+   "tex": "E_{\\text{fem}} = E^\\circ_{\\text{cathode}} - E^\\circ_{\\text{anode}} = 0{,}34 - (-0{,}76) = 1{,}10\\ \\text{V}",
+   "note": "La force électromotrice d'une pile est la différence entre le potentiel standard de la cathode et celui de l'anode."
+  },
+  "caracteristique": {
+   "type": "etape",
+   "kicker": "La pile qui débite",
+   "titre": "Caractéristique, charge et énergie",
+   "tex": [
+    "U = E - r\\,I",
+    "Q = I\\,\\Delta t = n\\,\\mathcal{F} \\qquad \\mathcal{F} = 96\\,500\\ \\text{C/mol}",
+    "\\mathcal{E} = U \\times I \\times \\Delta t"
+   ]
+  },
+  "exercice_fem": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Une pile argent-magnésium",
+   "tex": [
+    "E_{\\text{fem}} = 0{,}80 - (-2{,}37) = 3{,}17\\ \\text{V}",
+    "\\text{électrode positive : l'argent (la cathode)}"
+   ]
+  },
+  "electrolyse_def": {
+   "type": "phrase",
+   "kicker": "L'électrolyse",
+   "texte": "L'électrolyse est une transformation chimique forcée : un générateur impose le courant et transforme l'énergie électrique en énergie chimique, le processus inverse de la pile.",
+   "anim": {
+    "nom": "electrolyse_fig",
+    "hauteur": 160
+   }
+  },
+  "polarite": {
+   "type": "etape",
+   "kicker": "L'électrolyse",
+   "titre": "La polarité imposée par le générateur",
+   "tex": [
+    "\\text{Borne } + : \\text{le générateur pompe les électrons} \\Rightarrow \\text{oxydation (anode)}",
+    "\\text{Borne } - : \\text{le générateur refoule les électrons} \\Rightarrow \\text{réduction (cathode)}"
+   ],
+   "anim": {
+    "nom": "electrolyse_fig",
+    "hauteur": 120
+   }
+  },
+  "faraday": {
+   "type": "formule",
+   "kicker": "Les lois de Faraday",
+   "tex": "m = \\frac{Q \\times M}{n \\times F} \\qquad Q = I \\times t = z \\times x \\times F",
+   "note": "La constante de Faraday est la charge d'une mole d'électrons : environ quatre-vingt-seize mille cinq cents coulombs par mole. La masse déposée est proportionnelle à la quantité d'électricité traversée."
+  },
+  "exercice_cu": {
+   "type": "etape",
+   "kicker": "Exercice",
+   "titre": "Le dépôt de cuivre par électrolyse",
+   "tex": [
+    "Q = 2 \\times 30 \\times 60 = 3\\,600\\ \\text{C}",
+    "n(e^-) = \\frac{3\\,600}{96\\,500} \\approx 0{,}037\\ \\text{mol}",
+    "n(\\mathrm{Cu}) \\approx 0{,}0185\\ \\text{mol}",
+    "m = 0{,}0185 \\times 63{,}5 \\approx 1{,}17\\ \\text{g}"
+   ]
+  },
+  "applications_electrolyse": {
+   "type": "recap",
+   "kicker": "Les applications de l'électrolyse",
+   "etapes": [
+    "Produire et raffiner les métaux",
+    "Traiter les surfaces : galvanisation et placage",
+    "Fabriquer le chlore et la soude caustique"
+   ]
+  },
+  "conclusion": {
+   "type": "phrase",
+   "kicker": "Pour conclure",
+   "texte": "Piles et électrolyse : deux faces réversibles des réactions d'oxydoréduction, entre production et consommation de courant."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce chapitre sur les piles et l'électrolyse. Nous poserons d'abord les fondations : les réactions d'oxydoréduction, le nombre d'oxydation et les demi-équations électroniques. Puis nous verrons comment une pile transforme l'énergie chimique en énergie électrique, avec la pile Daniell et sa force électromotrice. Nous terminerons par le processus inverse, l'électrolyse, et les lois de Faraday qui la quantifient.",
+   "texte": "Piles et électrolyse : le programme du chapitre."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "dit": "L'oxydoréduction, ou réaction redox, est un transfert d'électrons entre deux espèces chimiques, qui modifie leur nombre d'oxydation. Imaginez deux danseurs : l'un, avide d'électrons, est l'oxydant ; l'autre, prêt à les céder, est le réducteur.",
+   "texte": "L'oxydoréduction : un transfert d'électrons."
+  },
+  {
+   "id": "p03",
+   "ecran": "demi_reactions",
+   "dit": "Concrètement, avec le zinc et les ions cuivre : le zinc perd deux électrons, il est oxydé ; les ions cuivre gagnent ces deux électrons, ils sont réduits. Les deux processus sont couplés : il ne peut y avoir d'oxydation sans réduction simultanée.",
+   "texte": "Zinc et cuivre : oxydation et réduction couplées."
+  },
+  {
+   "id": "p04",
+   "ecran": "roles",
+   "dit": "Les rôles sont à ne pas inverser : l'oxydant est l'espèce qui accepte les électrons, et en les acceptant il est réduit ; le réducteur est l'espèce qui cède les électrons, et en les cédant il est oxydé.",
+   "texte": "Oxydant, réducteur, oxydation, réduction : les rôles."
+  },
+  {
+   "id": "p05",
+   "ecran": "regles",
+   "dit": "Le nombre d'oxydation suit des règles simples : zéro pour un corps simple, la charge pour un ion monoatomique, moins deux pour l'oxygène sauf dans les peroxydes, plus un pour l'hydrogène sauf dans les hydrures métalliques. Et la somme de tous les nombres d'oxydation vaut zéro pour une molécule neutre, ou la charge pour un ion.",
+   "texte": "Les règles du nombre d'oxydation."
+  },
+  {
+   "id": "p06",
+   "ecran": "exemples_no",
+   "dit": "Deux exemples : dans l'ion sulfate, le nombre cherché moins huit égale moins deux, donc le soufre est au degré plus six. Dans le permanganate de potassium, plus un plus le nombre cherché moins huit égale zéro, donc le manganèse est au degré plus sept.",
+   "texte": "Deux exemples : le soufre du sulfate, le manganèse du permanganate."
+  },
+  {
+   "id": "p07",
+   "ecran": "fer_argent",
+   "dit": "À vous de jouer mentalement : pour le fer face aux ions argent, la demi-équation d'oxydation donne les ions fer deux et deux électrons, et la réduction consomme deux ions argent et deux électrons pour donner deux atomes d'argent.",
+   "texte": "Demi-équations : le fer et l'argent."
+  },
+  {
+   "id": "p08",
+   "ecran": "applications",
+   "dit": "Les réactions redox sont partout : la corrosion qui rouille le fer, la respiration cellulaire et la photosynthèse, la métallurgie qui extrait les métaux de leurs minerais, l'électrolyse industrielle et même le blanchiment des textiles.",
+   "texte": "Le redox au quotidien et dans l'industrie."
+  },
+  {
+   "id": "p09",
+   "ecran": "pile_def",
+   "dit": "Une pile électrochimique convertit l'énergie chimique en énergie électrique grâce à une réaction d'oxydoréduction spontanée. Le principe est simple : deux demi-réactions séparées physiquement, mais connectées électriquement.",
+   "texte": "La pile : de l'énergie chimique à l'énergie électrique."
+  },
+  {
+   "id": "p10",
+   "ecran": "anatomie",
+   "dit": "L'anatomie d'une pile : une anode, où l'oxydation libère les électrons ; une cathode, où la réduction les consomme ; un électrolyte, qui fait circuler les ions mais pas les électrons ; et un pont salin, qui maintient la neutralité électrique des deux compartiments.",
+   "texte": "L'anatomie d'une pile."
+  },
+  {
+   "id": "p11",
+   "ecran": "daniell",
+   "dit": "Dans la pile Daniell, les électrons sont expulsés par l'anode de zinc, circulent dans le circuit externe et sont capturés par la cathode de cuivre. La solution s'enrichit en cations côté anode et s'appauvrit côté cathode : le pont salin rétablit l'équilibre des charges.",
+   "texte": "La pile Daniell au travail."
+  },
+  {
+   "id": "p12",
+   "ecran": "potentiels",
+   "dit": "Le potentiel standard d'électrode mesure la tendance d'une espèce à se réduire, par rapport à l'électrode standard à hydrogène, fixée à zéro volt. Le cuivre est à plus zéro virgule trente-quatre volt, le zinc à moins zéro virgule soixante-seize volt : le cuivre a donc la plus grande tendance à se réduire.",
+   "texte": "Les potentiels standard : cuivre contre zinc."
+  },
+  {
+   "id": "p13",
+   "ecran": "fem",
+   "dit": "La force électromotrice de la pile est la différence entre le potentiel de la cathode et celui de l'anode. Pour la pile Daniell : zéro virgule trente-quatre moins moins zéro virgule soixante-seize, soit un virgule dix volt.",
+   "texte": "La force électromotrice de la pile Daniell."
+  },
+  {
+   "id": "p14",
+   "ecran": "caracteristique",
+   "dit": "La caractéristique d'une pile est affine : la tension égale la force électromotrice moins la résistance interne fois l'intensité. La quantité d'électricité débitée vaut l'intensité fois la durée, ou le nombre de moles d'électrons fois la constante de Faraday. Et l'énergie libérée vaut la tension fois l'intensité fois la durée.",
+   "texte": "Caractéristique, charge débitée et énergie."
+  },
+  {
+   "id": "p15",
+   "ecran": "exercice_fem",
+   "dit": "Exercice : une pile argent-magnésium. Sa force électromotrice vaut zéro virgule quatre-vingt moins moins deux virgule trente-sept, soit trois virgule dix-sept volts, et l'électrode positive est l'électrode d'argent, la cathode.",
+   "texte": "Exercice : la pile argent-magnésium."
+  },
+  {
+   "id": "p16",
+   "ecran": "electrolyse_def",
+   "dit": "L'électrolyse est le processus inverse de la pile : une transformation chimique forcée, où un générateur impose la circulation du courant et transforme l'énergie électrique en énergie chimique.",
+   "texte": "L'électrolyse : le processus inverse de la pile."
+  },
+  {
+   "id": "p17",
+   "ecran": "polarite",
+   "dit": "La transformation étant forcée, c'est le générateur qui impose la polarité : à sa borne plus, il pompe les électrons, l'électrode doit donc en libérer, c'est une oxydation, et cette borne est l'anode. À sa borne moins, il refoule les électrons, l'électrode doit les capturer, c'est une réduction, et c'est la cathode.",
+   "texte": "La polarité imposée par le générateur."
+  },
+  {
+   "id": "p18",
+   "ecran": "faraday",
+   "dit": "Les lois de Faraday quantifient l'électrolyse : la masse déposée ou libérée est proportionnelle à la quantité d'électricité traversée, et, pour une même charge, les masses sont proportionnelles aux masses molaires divisées par le nombre d'électrons échangés.",
+   "texte": "Les lois de Faraday."
+  },
+  {
+   "id": "p19",
+   "ecran": "exercice_cu",
+   "dit": "Exercice : on électrolyse une solution de sulfate de cuivre avec un courant de deux ampères pendant trente minutes. La charge vaut trois mille six cents coulombs, soit environ zéro virgule zéro trente-sept mole d'électrons. Chaque ion cuivre en consomme deux : on dépose environ un virgule dix-sept gramme de cuivre à la cathode.",
+   "texte": "Exercice : le dépôt de cuivre."
+  },
+  {
+   "id": "p20",
+   "ecran": "applications_electrolyse",
+   "dit": "Les applications de l'électrolyse : produire et raffiner les métaux, traiter les surfaces par galvanisation ou placage, et fabriquer des produits chimiques comme le chlore et la soude caustique.",
+   "texte": "Les applications de l'électrolyse."
+  },
+  {
+   "id": "p21",
+   "ecran": "conclusion",
+   "dit": "En résumé, piles et électrolyse illustrent la dualité des réactions d'oxydoréduction : spontanée et productrice de courant dans la pile, forcée et consommatrice de courant dans l'électrolyse. Deux faces d'un même échange d'électrons.",
+   "texte": "Deux faces d'un même échange d'électrons."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les fondations : l'oxydoréduction"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Les piles et l'électrolyse",
+   "pont": {
+    "dit": "Partie deux : les piles et l'électrolyse. Les fondations sont posées : voici comment le transfert d'électrons produit un courant dans une pile, et comment, à l'inverse, un générateur force la réaction dans une électrolyse.",
+    "texte": "Partie 2 : les piles et l'électrolyse."
+   }
+  }
+ ]
+}
