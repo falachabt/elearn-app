@@ -602,6 +602,38 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  graphique_mesures_fig(t) {
+    const pts = [[340, 218], [450, 176], [560, 152], [670, 110], [760, 94]];
+    let barres = '';
+    for (const [x, y] of pts)
+      barres += trait(x, y - 21, x, y + 21, prog(t), { c: '#E8604C', w: 3 }) +
+        trait(x - 9, y - 21, x + 9, y - 21, prog(t), { c: '#E8604C', w: 3 }) +
+        trait(x - 9, y + 21, x + 9, y + 21, prog(t), { c: '#E8604C', w: 3 }) +
+        `<circle cx="${x}" cy="${y}" r="6.5" fill="#E8604C"/>`;
+    return svgBoite(
+      trait(230, 250, 824, 250, prog(t), { w: 4 }) + pointe(832, 250, 0) + mot(838, 256, 'I', { t: 22, a: 'start' }) +
+      trait(230, 250, 230, 52, prog(t), { w: 4 }) + pointe(230, 44, -90) + mot(216, 36, 'U', { t: 22, a: 'end' }) +
+      trait(252, 239, 788, 81, prog(t), { c: '#1A75FF', w: 3.5 }) + barres +
+      trait(560, 148, 668, 148, prog(t), { tiret: '6 5', w: 2.5 }) + trait(668, 148, 668, 117, prog(t), { tiret: '6 5', w: 2.5 }) +
+      mot(700, 138, 'la pente de la droite', { t: 19, a: 'start' }) +
+      mot(500, 290, "chaque point porte sa barre d'incertitude", { t: 20 }));
+  },
+  miroir_plan_fig(t) {
+    let hach = '';
+    for (let y = 74; y <= 244; y += 34) hach += trait(567, y, 581, y - 13, 1, { w: 2.5 });
+    return svgBoite(
+      trait(560, 45, 560, 255, prog(t), { w: 7 }) + hach + mot(600, 38, 'le miroir plan', { t: 19, a: 'start' }) +
+      trait(330, 215, 330, 113, prog(t), { w: 5 }) + pointe(330, 105, -90) +
+      mot(314, 100, 'B', { t: 24, a: 'end' }) + mot(314, 222, 'A', { t: 24, a: 'end' }) +
+      trait(790, 215, 790, 113, prog(t), { c: '#10B981', w: 4, tiret: '8 6' }) + pointe(790, 105, -90, '#10B981') +
+      mot(806, 100, "B'", { c: '#10B981', t: 24, a: 'start' }) + mot(806, 222, "A'", { c: '#10B981', t: 24, a: 'start' }) +
+      trait(330, 105, 560, 105, prog(t), { c: '#E8604C', w: 3.5 }) +
+      trait(330, 105, 560, 130, prog(t), { c: '#E8604C', w: 3.5 }) + trait(560, 130, 336, 155, prog(t), { c: '#E8604C', w: 3.5 }) + pointe(328, 156, 174, '#E8604C') +
+      trait(560, 130, 790, 105, prog(t), { c: '#10B981', w: 3, tiret: '7 6' }) +
+      trait(330, 264, 560, 264, prog(t), { w: 3 }) + trait(560, 264, 790, 264, prog(t), { w: 3 }) +
+      mot(445, 256, 'd', { t: 21 }) + mot(675, 256, 'd', { t: 21 }) +
+      mot(500, 294, "l'image est le symétrique de l'objet, derrière le miroir", { t: 19 }));
+  },
   regle_incertitude_fig(t) {
     let grad = '';
     for (let k = 0; k <= 20; k++) {

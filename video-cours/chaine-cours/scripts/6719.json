@@ -1,0 +1,328 @@
+{
+ "cours": 6719,
+ "ecrans": {
+  "chiffres": {
+   "kicker": "Chiffres significatifs",
+   "tex": [
+    "25{,}0 \\rightarrow 3 \\ \\text{chiffres}",
+    "0{,}025 \\rightarrow 2 \\ \\text{chiffres}",
+    "2{,}50 \\times 10^{2} \\rightarrow 3 \\ \\text{chiffres}"
+   ],
+   "titre": "Compter les chiffres significatifs",
+   "type": "etape"
+  },
+  "erreurs": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "Erreurs de mesure",
+   "texte": "Systématique : toutes les mesures déplacées dans le même sens. Aléatoire : les mesures dispersées autour de la valeur vraie.",
+   "type": "phrase"
+  },
+  "estimation": {
+   "kicker": "Estimer avant de mesurer",
+   "texte": "Une estimation choisit l'instrument adapté et détecte une mesure aberrante.",
+   "type": "phrase"
+  },
+  "ex_prop": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "R = \\frac{U}{I} = \\frac{5{,}00}{0{,}20} = 25 \\ \\Omega",
+    "\\frac{u(R)}{R} = \\sqrt{\\left( \\tfrac{0{,}05}{5{,}00} \\right)^2 + \\left( \\tfrac{0{,}01}{0{,}20} \\right)^2} = 0{,}051"
+   ],
+   "titre": "Incertitude d'une résistance",
+   "type": "etape"
+  },
+  "ex_prop_res": {
+   "kicker": "Résultat de l'exemple",
+   "note": "u(R) = 25 × 0,051, soit environ 1,3 ohm",
+   "tex": "R = (25{,}0 \\pm 1{,}3) \\ \\Omega",
+   "type": "formule"
+  },
+  "exemple_cs": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "12{,}4 \\ \\text{cm} \\times 3{,}2 \\ \\text{cm} = 39{,}68 \\ \\text{cm}^2",
+    "3{,}2 : 2 \\ \\text{chiffres significatifs}",
+    "\\text{Résultat : } 4{,}0 \\times 10^{1} \\ \\text{cm}^2"
+   ],
+   "titre": "Une aire en chiffres significatifs",
+   "type": "etape"
+  },
+  "graphique": {
+   "kicker": "Représentation graphique",
+   "texte": "Chaque point porte sa barre d'erreur, de longueur deux fois l'incertitude. La mesure est cohérente si la barre coupe la courbe modèle.",
+   "type": "phrase",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "incertitude_type": {
+   "kicker": "Incertitude-type",
+   "note": "σ : écart-type expérimental · n : nombre de mesures",
+   "tex": "u(\\bar{x}) = \\frac{\\sigma}{\\sqrt{n}}",
+   "type": "formule"
+  },
+  "instrument": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "regle_incertitude_fig"
+   },
+   "kicker": "Choisir l'instrument",
+   "texte": "Adapté à la grandeur, à l'ordre de grandeur et à la précision. Un zéro non vérifié fausse tout.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une grandeur physique est une propriété mesurable d'un phénomène ou d'une matière.",
+   "type": "phrase"
+  },
+  "notation": {
+   "kicker": "Notation scientifique",
+   "note": "a : entre 1 et 10 · n : entier relatif",
+   "tex": "x = a \\times 10^{n} \\quad 1 \\leq a < 10",
+   "type": "formule"
+  },
+  "ordre_exemple": {
+   "kicker": "Exemple · le cheveu",
+   "note": "diamètre d'un cheveu : ordre de grandeur, dix puissance moins quatre mètres",
+   "tex": "80 \\ \\mu\\text{m} = 8{,}0 \\times 10^{-5} \\ \\text{m} \\Rightarrow 10^{-4} \\ \\text{m}",
+   "type": "formule"
+  },
+  "ordre_regle": {
+   "kicker": "Ordre de grandeur",
+   "note": "la puissance de dix la plus proche du nombre",
+   "tex": "a < 5 \\Rightarrow 10^{n} \\quad ; \\quad a \\geq 5 \\Rightarrow 10^{n+1}",
+   "type": "formule"
+  },
+  "precision": {
+   "kicker": "Précision d'une mesure",
+   "tex": [
+    "m = (12{,}34 \\pm 0{,}02) \\ \\text{g}",
+    "\\frac{u(m)}{m} = \\frac{0{,}02}{12{,}34} \\approx 0{,}002 = 0{,}2 \\ \\%"
+   ],
+   "titre": "Exemple : des pesées répétées",
+   "type": "etape"
+  },
+  "prefixes": {
+   "etapes": [
+    "Giga G : 10⁹ · méga M : 10⁶ · kilo k : 10³",
+    "Hecto h : 10² · déca da : 10¹",
+    "Déci d : 10⁻¹ · centi c : 10⁻²",
+    "Milli m : 10⁻³ · micro µ : 10⁻⁶",
+    "Nano n : 10⁻⁹"
+   ],
+   "kicker": "Les préfixes usuels",
+   "type": "recap"
+  },
+  "prop_produit": {
+   "kicker": "Propagation · produit",
+   "note": "Y égal à A fois B, ou à A divisé par B",
+   "tex": "\\frac{u(Y)}{Y} = \\sqrt{\\left( \\frac{u(A)}{A} \\right)^2 + \\left( \\frac{u(B)}{B} \\right)^2}",
+   "type": "formule"
+  },
+  "prop_somme": {
+   "kicker": "Propagation · somme",
+   "note": "mesures indépendantes : les incertitudes au carré s'ajoutent",
+   "tex": "Y = A \\pm B \\Rightarrow u(Y) = \\sqrt{u(A)^2 + u(B)^2}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Estimer l'ordre de grandeur",
+    "Choisir et régler l'instrument adapté",
+    "Répéter les mesures, faire la moyenne",
+    "Calculer l'incertitude-type",
+    "Résultat (x̄ ± u), unité et chiffres cohérents"
+   ],
+   "kicker": "À retenir · démarche de mesure",
+   "type": "recap"
+  },
+  "regles_cs": {
+   "etapes": [
+    "Addition : précision du terme le moins précis",
+    "Multiplication : le moins de chiffres gagne",
+    "Jamais plus précis que les données de départ"
+   ],
+   "kicker": "Arrondir un résultat",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "regle_incertitude_fig"
+   },
+   "kicker": "Physique",
+   "sous": "Grandeurs, chiffres significatifs et propagation des incertitudes",
+   "titre": "Mesures et incertitudes",
+   "type": "titre"
+  },
+  "unites": {
+   "etapes": [
+    "Longueur : le mètre",
+    "Masse : le kilogramme",
+    "Temps : la seconde",
+    "Intensité électrique : l'ampère",
+    "Vitesse : le mètre par seconde, unité dérivée"
+   ],
+   "kicker": "Le système international",
+   "type": "recap"
+  }
+ },
+ "lecons": [
+  9520
+ ],
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "dit": "Bonjour à tous. Aujourd'hui, un cours de méthode : mesurer une grandeur, écrire le résultat avec ses chiffres significatifs et annoncer son incertitude.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Mesures et incertitudes : grandeurs, chiffres significatifs, propagation."
+  },
+  {
+   "dit": "Une grandeur physique est une propriété mesurable d'un phénomène ou d'une matière : une longueur, une masse, un temps ou une intensité électrique, par exemple.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.7,
+   "texte": "Une grandeur physique : une propriété mesurable."
+  },
+  {
+   "dit": "Le système international définit sept unités fondamentales. Toutes les autres, dites dérivées, s'expriment à partir d'elles : la vitesse, par exemple, se mesure en mètres par seconde.",
+   "ecran": "unites",
+   "id": "p03",
+   "pause_apres": 0.7,
+   "texte": "Sept unités fondamentales ; les unités dérivées s'en déduisent."
+  },
+  {
+   "dit": "Avant de mesurer, on choisit un instrument adapté : à la grandeur, à l'ordre de grandeur attendu et à la précision souhaitée. Et on vérifie son zéro, sinon toutes les mesures sont faussées.",
+   "ecran": "instrument",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Choisir l'instrument adapté et vérifier son zéro."
+  },
+  {
+   "dit": "Tout nombre s'écrit en notation scientifique : un nombre a, compris entre un et dix, multiplié par une puissance de dix. C'est le point de départ pour compter les chiffres significatifs.",
+   "ecran": "notation",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Notation scientifique : a fois dix puissance n."
+  },
+  {
+   "dit": "Les préfixes abrègent les puissances de dix : giga, méga et kilo pour les grandes valeurs ; milli, micro et nano pour les petites. Retiens surtout ceux que tu rencontres le plus souvent.",
+   "ecran": "prefixes",
+   "id": "p06",
+   "pause_apres": 0.7,
+   "texte": "Les préfixes : de giga à nano, les puissances de dix."
+  },
+  {
+   "dit": "Les chiffres significatifs sont les chiffres certains, plus le premier chiffre incertain. Vingt-cinq virgule zéro en compte trois ; zéro virgule zéro vingt-cinq n'en compte que deux, car les zéros du début ne comptent pas.",
+   "ecran": "chiffres",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Chiffres significatifs : certains, plus le premier incertain."
+  },
+  {
+   "dit": "Deux règles pour arrondir un résultat : en addition ou soustraction, on garde la précision du terme le moins précis en décimales ; en multiplication ou division, le nombre de chiffres significatifs du facteur qui en a le moins.",
+   "ecran": "regles_cs",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Arrondir : selon l'opération, décimales ou chiffres significatifs."
+  },
+  {
+   "dit": "Exemple : douze virgule quatre centimètres fois trois virgule deux centimètres donnent trente-neuf virgule soixante-huit centimètres carrés. Mais trois virgule deux n'a que deux chiffres significatifs : le résultat s'écrit quatre virgule zéro fois dix puissance un centimètres carrés.",
+   "ecran": "exemple_cs",
+   "id": "p09",
+   "pause_apres": 0.9,
+   "texte": "Exemple : le résultat garde deux chiffres significatifs."
+  },
+  {
+   "dit": "L'ordre de grandeur d'un nombre est la puissance de dix la plus proche : si a est plus petit que cinq, on garde dix puissance n ; sinon, on monte d'un cran.",
+   "ecran": "ordre_regle",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Ordre de grandeur : la puissance de dix la plus proche."
+  },
+  {
+   "dit": "Par exemple, un cheveu a un diamètre d'environ quatre-vingts micromètres, c'est-à-dire huit fois dix puissance moins cinq mètres : son ordre de grandeur vaut dix puissance moins quatre mètres.",
+   "ecran": "ordre_exemple",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Un cheveu : ordre de grandeur de dix puissance moins quatre mètres."
+  },
+  {
+   "dit": "Estimer une grandeur avant de la mesurer sert à deux choses : choisir le bon instrument, et repérer tout de suite une mesure aberrante quand elle arrive.",
+   "ecran": "estimation",
+   "id": "p12",
+   "pause_apres": 0.7,
+   "texte": "Estimer avant de mesurer : choisir, puis contrôler."
+  },
+  {
+   "dit": "Deux familles d'erreurs : la systématique, due à un défaut d'étalonnage, déplace toutes les mesures dans le même sens ; l'aléatoire les disperse autour de la valeur vraie. On réduit la première en réglant l'instrument, la seconde en répétant les mesures.",
+   "ecran": "erreurs",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Systématique : même sens. Aléatoire : dispersion autour du vrai."
+  },
+  {
+   "dit": "Quand on répète les mesures, l'incertitude-type de la moyenne vaut l'écart-type divisé par la racine carrée du nombre de mesures : plus on mesure, plus l'incertitude diminue.",
+   "ecran": "incertitude_type",
+   "id": "p14",
+   "pause_apres": 0.9,
+   "texte": "Incertitude-type : elle diminue quand le nombre de mesures augmente."
+  },
+  {
+   "dit": "Exemple : des pesées répétées donnent douze virgule trente-quatre grammes, plus ou moins zéro virgule zéro deux grammes. L'incertitude relative vaut environ zéro virgule zéro zéro deux, soit zéro virgule deux pour cent : plus elle est faible, plus la mesure est précise.",
+   "ecran": "precision",
+   "id": "p15",
+   "pause_apres": 0.9,
+   "texte": "Exemple : une incertitude relative de zéro virgule deux pour cent."
+  },
+  {
+   "dit": "Vient la propagation : si la grandeur cherchée est une somme ou une différence de deux mesures indépendantes, les incertitudes se combinent en racine de la somme des carrés.",
+   "ecran": "prop_somme",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Propagation, somme ou différence : racine des carrés."
+  },
+  {
+   "dit": "Si la grandeur est un produit ou un rapport, ce sont les incertitudes relatives qui se combinent de la même façon, en racine de la somme des carrés.",
+   "ecran": "prop_produit",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Propagation, produit ou rapport : les incertitudes relatives."
+  },
+  {
+   "dit": "Exemple complet : une tension de cinq volts, plus ou moins zéro virgule zéro cinq, et une intensité de zéro virgule vingt ampères, plus ou moins zéro virgule zéro un. La résistance vaut vingt-cinq ohms ; son incertitude relative vaut environ zéro virgule zéro cinq un.",
+   "ecran": "ex_prop",
+   "id": "p18",
+   "pause_apres": 0.9,
+   "texte": "Exemple : incertitude relative d'une résistance, zéro virgule zéro cinq un."
+  },
+  {
+   "dit": "L'incertitude sur la résistance vaut donc vingt-cinq fois zéro virgule zéro cinq un, soit environ un virgule trois ohms. Résultat final : vingt-cinq virgule zéro ohms, plus ou moins un virgule trois ohms.",
+   "ecran": "ex_prop_res",
+   "id": "p19",
+   "pause_apres": 0.9,
+   "texte": "Résultat : vingt-cinq virgule zéro, plus ou moins un virgule trois ohms."
+  },
+  {
+   "dit": "Sur un graphique, chaque mesure se dessine avec sa barre d'erreur, un segment de longueur deux fois l'incertitude. La courbe du modèle doit passer par les barres : sa pente donne la grandeur cherchée, avec son incertitude.",
+   "ecran": "graphique",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Barres d'erreur : la courbe modèle doit les traverser."
+  },
+  {
+   "dit": "À retenir, la démarche complète : estimer l'ordre de grandeur, choisir et régler l'instrument, répéter les mesures, calculer moyenne et incertitude-type, écrire le résultat avec son unité, puis vérifier la cohérence sur le graphique.",
+   "ecran": "recap",
+   "id": "p21",
+   "pause_apres": 0.9,
+   "texte": "À retenir : la démarche de mesure en six temps."
+  }
+ ],
+ "titre": "Mesures et incertitudes"
+}

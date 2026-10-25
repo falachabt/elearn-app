@@ -1,0 +1,383 @@
+{
+ "cours": 6721,
+ "ecrans": {
+  "angle_limite": {
+   "kicker": "Angle limite",
+   "note": "condition : du milieu le plus réfringent vers le moins réfringent",
+   "tex": "\\sin i_{lim} = \\frac{n_2}{n_1}",
+   "type": "formule"
+  },
+  "annee_lumiere": {
+   "kicker": "L'année-lumière",
+   "tex": [
+    "1 \\ \\text{a.l.} = c \\times t",
+    "= 3{,}00 \\times 10^{8} \\times (365{,}25 \\times 24 \\times 3600)",
+    "\\approx 9{,}47 \\times 10^{15} \\ \\text{m}"
+   ],
+   "titre": "La distance parcourue en un an",
+   "type": "etape"
+  },
+  "celerite": {
+   "kicker": "Célérité de la lumière",
+   "note": "dans le vide, et presque autant dans l'air",
+   "tex": "c = 3{,}00 \\times 10^{8} \\ \\text{m/s}",
+   "type": "formule"
+  },
+  "descartes": {
+   "kicker": "Lois de Descartes",
+   "note": "i un : incidence · i deux : réfraction, par rapport à la normale",
+   "tex": "n_1 \\sin i_1 = n_2 \\sin i_2",
+   "type": "formule"
+  },
+  "diffraction": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "diffraction_fig"
+   },
+   "kicker": "La diffraction",
+   "texte": "Près d'un obstacle ou d'un trou minuscule, la lumière s'écarte : tache centrale brillante, taches secondaires plus faibles.",
+   "type": "phrase"
+  },
+  "dioptre": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "refraction"
+   },
+   "kicker": "Image par un dioptre plan",
+   "texte": "Un poisson dans l'eau paraît plus proche de la surface : l'image se construit avec deux rayons réfractés.",
+   "type": "phrase"
+  },
+  "dispersion": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "prisme"
+   },
+   "kicker": "Dispersion",
+   "texte": "Monochromatique : une seule couleur. La lumière blanche se décompose, car l'indice dépend de la couleur.",
+   "type": "phrase"
+  },
+  "exemple_limite": {
+   "kicker": "Exemple résolu",
+   "note": "à soixante degrés, au-delà de l'angle limite : réflexion totale",
+   "tex": [
+    "\\sin i_{lim} = \\frac{1{,}00}{1{,}33} = 0{,}752",
+    "i_{lim} \\approx 48{,}8^\\circ",
+    "i = 60^\\circ > i_{lim}"
+   ],
+   "titre": "De l'eau vers l'air",
+   "type": "etape"
+  },
+  "indice": {
+   "kicker": "Indice de réfraction",
+   "note": "c : célérité dans le vide · v : dans le milieu",
+   "tex": "n = \\frac{c}{v}",
+   "type": "formule"
+  },
+  "loi_reflexion": {
+   "kicker": "Loi de la réflexion",
+   "note": "angles mesurés par rapport à la normale, tous dans le même plan",
+   "tex": "i = r",
+   "type": "formule"
+  },
+  "milieux": {
+   "etapes": [
+    "Transparent : voir nettement (verre, air)",
+    "Translucide : lumière sans netteté (verre dépoli)",
+    "Opaque : la lumière ne passe pas"
+   ],
+   "kicker": "Les milieux de propagation",
+   "type": "recap"
+  },
+  "miroir_construction": {
+   "etapes": [
+    "Tracer deux rayons issus du point A",
+    "Appliquer la loi de la réflexion",
+    "Prolonger les réfléchis derrière le miroir",
+    "Leur intersection donne l'image A′"
+   ],
+   "kicker": "Construire une image",
+   "type": "recap",
+   "anim": {
+    "nom": "miroir_plan_fig",
+    "hauteur": 120
+   }
+  },
+  "miroir_ex": {
+   "kicker": "Exemple résolu",
+   "note": "l'image est le symétrique de l'objet par rapport au miroir",
+   "tex": [
+    "AB = 3 \\ \\text{cm} \\quad d = 5 \\ \\text{cm}",
+    "A'B' = 3 \\ \\text{cm} \\quad d' = 5 \\ \\text{cm}"
+   ],
+   "titre": "Un objet devant un miroir plan",
+   "type": "etape",
+   "anim": {
+    "nom": "miroir_plan_fig",
+    "hauteur": 130
+   }
+  },
+  "miroir_proprietes": {
+   "kicker": "Propriétés de l'image",
+   "texte": "Virtuelle, symétrique de l'objet par rapport au miroir, de même grandeur, inversée de gauche à droite.",
+   "type": "phrase",
+   "anim": {
+    "nom": "miroir_plan_fig",
+    "hauteur": 210
+   }
+  },
+  "ombre": {
+   "kicker": "L'ombre portée",
+   "texte": "Les rayons arrêtés par l'objet laissent derrière lui une zone sans lumière : l'ombre portée.",
+   "type": "phrase"
+  },
+  "principe": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "chambre"
+   },
+   "kicker": "Le principe fondamental",
+   "texte": "Dans un milieu homogène et transparent, la lumière se propage en ligne droite.",
+   "type": "phrase"
+  },
+  "rayon_faisceau": {
+   "kicker": "Rayon et faisceau",
+   "texte": "Le rayon : une ligne droite orientée, dessinée avec une flèche. Le faisceau : un ensemble de rayons.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Propagation rectiligne en milieu homogène",
+    "Réflexion : i = r, par rapport à la normale",
+    "Réfraction : n₁ sin i₁ = n₂ sin i₂",
+    "Angle limite : sin i lim = n₂ / n₁",
+    "Au-delà : réflexion totale, fibre optique"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reflexion_totale": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "fibre"
+   },
+   "kicker": "Réflexion totale",
+   "texte": "Au-delà de l'angle limite, tout est réfléchi : c'est le principe des fibres optiques.",
+   "type": "phrase"
+  },
+  "reflexion_types": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "reflexion"
+   },
+   "kicker": "Spéculaire ou diffuse",
+   "texte": "Surface polie : réflexion spéculaire, les rayons restent parallèles. Surface rugueuse : diffusion dans toutes les directions.",
+   "type": "phrase"
+  },
+  "refraction": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "refraction"
+   },
+   "kicker": "La réfraction",
+   "texte": "En traversant le dioptre plan, la lumière change de vitesse : le rayon change de direction.",
+   "type": "phrase"
+  },
+  "retour_inverse": {
+   "kicker": "Retour inverse",
+   "texte": "Le trajet de la lumière est réversible : repartir par le rayon réfléchi fait revenir par le rayon incident.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "chambre"
+   },
+   "kicker": "Physique",
+   "sous": "Ombres, réflexion, réfraction et réflexion totale",
+   "titre": "Propagation rectiligne de la lumière",
+   "type": "titre"
+  }
+ },
+ "lecons": [
+  9522
+ ],
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "dit": "Bonjour à tous. Aujourd'hui, la lumière en ligne droite : comment elle se propage, comment elle se réfléchit sur un miroir et comment elle se réfracte en changeant de milieu.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Propagation rectiligne de la lumière : ombres, réflexion, réfraction."
+  },
+  {
+   "dit": "Le principe fondamental : dans un milieu homogène et transparent, la lumière se propage en ligne droite. C'est ce principe simple qui explique la formation des ombres et la façon dont nous voyons les objets.",
+   "ecran": "principe",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "En milieu homogène et transparent, la lumière va en ligne droite."
+  },
+  {
+   "dit": "On classe les milieux selon leur façon de laisser passer la lumière : transparents, comme le verre ou l'air, qui laissent voir nettement ; translucides, comme le verre dépoli, qui laissent passer la lumière sans netteté ; et opaques, qui l'arrêtent.",
+   "ecran": "milieux",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Transparent, translucide ou opaque : trois comportements."
+  },
+  {
+   "dit": "La lumière va très vite : dans le vide, et presque autant dans l'air, sa célérité vaut trois fois dix puissance huit mètres par seconde.",
+   "ecran": "celerite",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "La célérité de la lumière : trois fois dix puissance huit mètres par seconde."
+  },
+  {
+   "dit": "À cette vitesse, en une année, la lumière parcourt une distance immense : c'est l'année-lumière, environ neuf virgule quarante-sept fois dix puissance quinze mètres. On s'en sert pour les distances astronomiques.",
+   "ecran": "annee_lumiere",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "L'année-lumière : la distance parcourue en un an."
+  },
+  {
+   "dit": "Pour schématiser, on représente le trajet de la lumière par un rayon lumineux : une ligne droite orientée, dessinée avec une flèche. Un ensemble de rayons forme un faisceau lumineux.",
+   "ecran": "rayon_faisceau",
+   "id": "p06",
+   "pause_apres": 0.7,
+   "texte": "Le rayon lumineux : une droite fléchée. Le faisceau : un ensemble de rayons."
+  },
+  {
+   "dit": "Application directe : un objet opaque éclairé par une source ponctuelle arrête les rayons qui le frappent. Derrière lui se forme une zone qu'aucun rayon n'atteint : c'est l'ombre portée, dont la forme découle de la propagation rectiligne.",
+   "ecran": "ombre",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "L'ombre portée : les rayons arrêtés par l'objet opaque."
+  },
+  {
+   "dit": "Il y a une limite au modèle : quand la lumière rencontre un obstacle ou un trou très petit, de l'ordre de la longueur d'onde, elle s'écarte de la ligne droite. C'est la diffraction, qui donne une tache centrale brillante entourée de taches plus faibles.",
+   "ecran": "diffraction",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La diffraction : la lumière s'écarte près des très petits obstacles."
+  },
+  {
+   "dit": "Quand la lumière rencontre une surface, elle peut être renvoyée. Sur une surface polie comme un miroir, les rayons réfléchis restent parallèles : réflexion spéculaire. Sur une surface rugueuse, ils partent dans toutes les directions : c'est la diffusion, et c'est elle qui rend les objets visibles.",
+   "ecran": "reflexion_types",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Réflexion spéculaire sur le poli, diffusion sur le rugueux."
+  },
+  {
+   "dit": "La loi de la réflexion est très simple : l'angle d'incidence est égal à l'angle de réflexion. Le rayon incident, le rayon réfléchi et la normale à la surface sont dans le même plan, et les angles se mesurent par rapport à cette normale.",
+   "ecran": "loi_reflexion",
+   "id": "p10",
+   "pause_apres": 0.9,
+   "texte": "Loi de la réflexion : incidence égale réflexion, par rapport à la normale."
+  },
+  {
+   "dit": "Le trajet de la lumière est réversible : un rayon qui repart en suivant le trajet du rayon réfléchi revient exactement par le trajet du rayon incident. C'est la loi du retour inverse.",
+   "ecran": "retour_inverse",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Retour inverse : le trajet de la lumière est réversible."
+  },
+  {
+   "dit": "Pour construire l'image d'un point par un miroir plan : on trace deux rayons issus du point, on applique la loi de la réflexion, puis on prolonge les rayons réfléchis derrière le miroir, en pointillés. Leur intersection donne l'image.",
+   "ecran": "miroir_construction",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Construire l'image : deux rayons, leurs prolongements se croisent."
+  },
+  {
+   "dit": "Cette image a trois propriétés : elle est virtuelle, car obtenue par le prolongement des rayons ; elle est symétrique de l'objet par rapport au miroir ; et elle a la même grandeur, simplement inversée de gauche à droite.",
+   "ecran": "miroir_proprietes",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Virtuelle, symétrique, même grandeur, gauche et droite inversées."
+  },
+  {
+   "dit": "Exemple : un objet de trois centimètres placé à cinq centimètres devant un miroir plan donne une image de trois centimètres, située à cinq centimètres derrière le miroir : même taille, même distance, de l'autre côté.",
+   "ecran": "miroir_ex",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Exemple : trois centimètres à cinq centimètres, image identique derrière."
+  },
+  {
+   "dit": "Deuxième grand phénomène : la réfraction. Quand la lumière traverse la surface de séparation de deux milieux transparents, le dioptre plan, elle change de direction, car sa vitesse change.",
+   "ecran": "refraction",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "La réfraction : un changement de direction au dioptre plan."
+  },
+  {
+   "dit": "Les lois de Descartes disent d'abord que le rayon incident, le rayon réfracté et la normale sont dans le même plan. Ensuite, les indices et les sinus des angles sont liés : n un fois sinus i un égale n deux fois sinus i deux.",
+   "ecran": "descartes",
+   "id": "p16",
+   "pause_apres": 0.9,
+   "texte": "Descartes : n un sinus i un égale n deux sinus i deux."
+  },
+  {
+   "dit": "L'indice de réfraction d'un milieu compare la célérité de la lumière dans le vide à sa célérité dans ce milieu : plus l'indice est grand, plus la lumière y est lente.",
+   "ecran": "indice",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "L'indice : le rapport des célérités, dans le vide et dans le milieu."
+  },
+  {
+   "dit": "Une lumière d'une seule couleur est dite monochromatique. La lumière blanche, elle, se décompose en traversant un prisme : c'est la dispersion, parce que l'indice de réfraction dépend légèrement de la couleur.",
+   "ecran": "dispersion",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Dispersion : la lumière blanche se décompose dans un prisme."
+  },
+  {
+   "dit": "Cas particulier : quand la lumière passe d'un milieu plus réfringent vers un milieu moins réfringent, il existe un angle limite. Son sinus vaut l'indice du second milieu divisé par celui du premier.",
+   "ecran": "angle_limite",
+   "id": "p19",
+   "pause_apres": 0.9,
+   "texte": "L'angle limite : sinus égal au rapport des indices."
+  },
+  {
+   "dit": "Au-delà de l'angle limite, la réfraction devient impossible : la lumière est entièrement réfléchie dans le premier milieu. C'est la réflexion totale, le principe qui guide la lumière dans les fibres optiques sur de longues distances.",
+   "ecran": "reflexion_totale",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Réflexion totale : le principe des fibres optiques."
+  },
+  {
+   "dit": "Exemple : de l'eau vers l'air, le sinus de l'angle limite vaut un divisé par un virgule trente-trois, soit zéro virgule sept cent cinquante-deux. L'angle limite vaut environ quarante-huit virgule huit degrés : un rayon arrivant à soixante degrés subira donc une réflexion totale.",
+   "ecran": "exemple_limite",
+   "id": "p21",
+   "pause_apres": 0.9,
+   "texte": "Exemple : angle limite de quarante-huit virgule huit degrés, eau vers air."
+  },
+  {
+   "dit": "Dernier effet : un objet plongé dans l'eau, vu depuis l'air, paraît plus proche de la surface qu'il ne l'est réellement, comme un poisson. La construction de son image utilise les lois de la réfraction avec au moins deux rayons.",
+   "ecran": "dioptre",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Vu depuis l'air, le poisson paraît plus proche de la surface."
+  },
+  {
+   "dit": "À retenir : la lumière se propage en ligne droite dans un milieu homogène ; à la réflexion, l'angle d'incidence égale l'angle de réflexion ; à la réfraction, n un sinus i un égale n deux sinus i deux ; et au-delà de l'angle limite, la réflexion est totale.",
+   "ecran": "recap",
+   "id": "p23",
+   "pause_apres": 0.9,
+   "texte": "À retenir : propagation, réflexion, réfraction, réflexion totale."
+  }
+ ],
+ "titre": "Propagation rectiligne de la lumière",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Propagation rectiligne et réflexion"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "La réfraction et la réflexion totale",
+   "pont": {
+    "texte": "Partie 2 : la réfraction et la réflexion totale.",
+    "dit": "Partie deux : la réfraction et la réflexion totale."
+   }
+  }
+ ]
+}
