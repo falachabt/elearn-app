@@ -27,6 +27,7 @@ env:
 jobs:
   voix:
     name: Voix (partie ${{ matrix.partie }})
+    if: ${{ inputs.cours != 'INDEX' && !startsWith(inputs.cours, 'EXTRAIRE') }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     strategy:
@@ -63,6 +64,7 @@ jobs:
 
   montage:
     name: Montage et rendu
+    if: ${{ inputs.cours != 'INDEX' && !startsWith(inputs.cours, 'EXTRAIRE') }}
     needs: voix
     runs-on: ubuntu-latest
     timeout-minutes: 120
@@ -157,18 +159,8 @@ jobs:
             fi
           done
           aws s3 cp "sorties/$COURS/meta.json" "$BASE/meta.json" --endpoint-url "$ENDPOINT" --content-type application/json --only-show-errors
-          aws s3 cp "s3://elearn-videos/index.json" index-ancien.json --endpoint-url "$ENDPOINT" --only-show-errors || echo '{}' > index-ancien.json
-          python3 - "$COURS" <<'PYEOF'
-          import json, sys, pathlib
-          cours = sys.argv[1]
-          index = json.loads(pathlib.Path("index-ancien.json").read_text() or "{}")
-          meta = json.loads(pathlib.Path(f"sorties/{cours}/meta.json").read_text())
-          index[cours] = {"dossier": f"cours/{cours}", "titre": meta["titre"],
-                          "matiere": meta["matiere"], "parties": [p["numero"] for p in meta["parties"]]}
-          pathlib.Path("index.json").write_text(json.dumps(index, ensure_ascii=False, indent=1, sort_keys=True))
-          print("index.json :", index[cours])
-          PYEOF
-          aws s3 cp index.json "s3://elearn-videos/index.json" --endpoint-url "$ENDPOINT" --content-type application/json --only-show-errors
+          # index.json n'est plus touché ici (course entre rendus parallèles) :
+          # il est reconstruit par le job « index » (dispatch INDEX).
           echo "Envoi R2 terminé pour le cours $COURS"
       - name: Publier la vidéo
         uses: actions/upload-artifact@v4
@@ -180,3 +172,55 @@ jobs:
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-planche.png
             video-cours/chaine-cours/sorties/${{ inputs.cours }}/*-miniature.jpg
           retention-days: 14
+
+  index:
+    name: Reconstruire l'index R2
+    if: ${{ inputs.cours == 'INDEX' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Reconstruire index.json depuis les meta.json du bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          R2_ENDPOINT: https://9ae82bfac632f6d0ed7b452940e13abd.r2.cloudflarestorage.com
+        run: python video-cours/chaine-cours/reconstruire_index.py
+
+  extraire:
+    name: Extraire les leçons (rédaction des scripts)
+    if: ${{ startsWith(inputs.cours, 'EXTRAIRE') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: video-cours/chaine-cours/requirements-rendu.txt
+      - name: Installer les dépendances
+        run: pip install -r video-cours/chaine-cours/requirements-rendu.txt
+      - name: Extraire les leçons demandées
+        env:
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_KEY }}
+          DEMANDE: ${{ inputs.cours }}
+        run: |
+          IDS="${DEMANDE#EXTRAIRE:}"
+          cd video-cours/chaine-cours
+          IFS=',' read -ra LISTE <<< "$IDS"
+          for id in "${LISTE[@]}"; do
+            echo "=== Extraction du cours $id"
+            python lancer.py extraire "$id"
+          done
+          ls -R sorties | head -60
+      - name: Publier les leçons extraites
+        uses: actions/upload-artifact@v4
+        with:
+          name: lecons-${{ github.run_id }}
+          path: video-cours/chaine-cours/sorties
+          retention-days: 7
