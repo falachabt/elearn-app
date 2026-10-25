@@ -15,11 +15,12 @@ import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
 import { BoutonFermer } from '../arrivee/MiniTest';
 import { couleurDouce } from '../entrainement/Entrainement';
-import { CarteListe } from '../liste/CarteListe';
 import { Pastille } from '../liste/Pastille';
 import { PastilleType } from '../liste/PastilleType';
 import { PiluleCompteur } from '../liste/PiluleCompteur';
 import { Squelettes } from '../liste/Squelettes';
+import { GroupeColle, LigneGroupe } from './BlocEntrainement';
+import { VideosCours } from './VideosCours';
 
 /** Couleur de la matière passée par la page précédente, sinon celle du nom, sinon la première couleur de secours. */
 export function couleurDuCours(couleur: string | undefined, matiere: string | undefined): string {
@@ -36,8 +37,10 @@ export function leconEnCours(lecons: readonly Lecon[], lues: Record<string, numb
 }
 
 /**
- * D1e · Un cours (M5-15, revue design du 01/10) : la fiche, « S'entraîner sur ce cours » avec ses compteurs, puis les
- * leçons en cartes de 78 px. La leçon en cours est entourée de vert avec « Continuer ».
+ * D1e · Un cours (M5-15, revue design du 01/10 ; maquette vidéos validée le 26/10/2026) : tout en haut le
+ * carrousel des vidéos du cours (s'il en a), puis la fiche et « S'entraîner sur ce cours » COLLÉS en un seul
+ * bloc, puis les leçons COLLÉES en un seul bloc (trait entre les lignes, arrondis aux extrémités, petit rayon).
+ * La leçon en cours est signalée par « Continuer ».
  */
 export function Chapitre() {
   const { t } = useTraduction();
@@ -94,56 +97,68 @@ export function Chapitre() {
         </>
       }
     >
-      {fiche ? (
-        <CarteListe
-          fond={theme.accent.soleilDoux}
-          gauche={
-            <View style={[styles.carre, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
-              <FileText size={18} strokeWidth={2} color={theme.texte.surCouleur} />
-            </View>
-          }
-          titre={t('reviser.fiche')}
-          sousTitre={t('reviser.ficheTexte')}
-          onPress={() => router.push({ pathname: '/cours/fiche', params: { cours: id, nom: nom ?? '', matiere: matiere ?? '' } })}
-        />
-      ) : null}
-      {entrainement ? (
-        <CarteListe
-          gauche={<PastilleType type="quiz" />}
-          titre={t('reviser.entrainerCours')}
-          bas={
-            <View style={styles.compteurs}>
-              {entrainement.quiz ? <PiluleCompteur type="quiz" faits={entrainement.progres.quizFaits} total={entrainement.quiz} fini={false} /> : null}
-              {entrainement.exercices ? <PiluleCompteur type="exercice" faits={entrainement.progres.faits} total={entrainement.exercices} fini={false} /> : null}
-            </View>
-          }
-          onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: id, nom: nom ?? '' } })}
-        />
+      <VideosCours cours={Number(id)} nom={nom} matiere={matiere} />
+      {fiche || entrainement ? (
+        <GroupeColle>
+          {fiche ? (
+            <LigneGroupe
+              premier
+              fond={theme.accent.soleilDoux}
+              gauche={
+                <View style={[styles.carre, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <FileText size={18} strokeWidth={2} color={theme.texte.surCouleur} />
+                </View>
+              }
+              titre={t('reviser.fiche')}
+              sousTitre={t('reviser.ficheTexte')}
+              onPress={() => router.push({ pathname: '/cours/fiche', params: { cours: id, nom: nom ?? '', matiere: matiere ?? '' } })}
+            />
+          ) : null}
+          {entrainement ? (
+            <LigneGroupe
+              premier={!fiche}
+              gauche={<PastilleType type="quiz" />}
+              titre={t('reviser.entrainerCours')}
+              bas={
+                <View style={styles.compteurs}>
+                  {entrainement.quiz ? <PiluleCompteur type="quiz" faits={entrainement.progres.quizFaits} total={entrainement.quiz} fini={false} /> : null}
+                  {entrainement.exercices ? <PiluleCompteur type="exercice" faits={entrainement.progres.faits} total={entrainement.exercices} fini={false} /> : null}
+                </View>
+              }
+              onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: id, nom: nom ?? '' } })}
+            />
+          ) : null}
+        </GroupeColle>
       ) : null}
       {lecons === undefined ? <Squelettes /> : null}
       {lecons === null ? <Banniere ton="erreur" titre={t('reviser.erreur')} /> : null}
       {lecons?.length ? <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>{t('reviser.leconsEtiquette', { n: faites, total: lecons.length })}</Text> : null}
-      {lecons?.map((l, i) => {
-        const lue = lues[l.id] !== undefined;
-        const courante = l.id === enCours;
-        const sousTitre = [t('reviser.leconNumero', { n: i + 1 }), l.minutes ? t('reviser.minutes', { n: l.minutes }) : null].filter(Boolean).join(' · ');
-        return (
-          <CarteListe
-            key={l.id}
-            fini={lue}
-            enCours={courante}
-            gauche={
-              <View style={[styles.carre, { backgroundColor: lue ? theme.marque.principale : couleurDouce(fond, theme.fond.surface, sombre), borderColor: theme.bord.fort }]}>
-                {lue ? <Check size={18} strokeWidth={3} color={theme.texte.surCouleur} /> : <Text style={[typo.donnee, styles.chiffre, { color: theme.texte.principal }]}>{i + 1}</Text>}
-              </View>
-            }
-            titre={l.nom || t('reviser.leconNumero', { n: i + 1 })}
-            sousTitre={lue ? `${sousTitre} · ${t('reviser.lue')}` : sousTitre}
-            droite={courante ? <Pastille vert texte={t('reviser.continuer')} /> : undefined}
-            onPress={() => ouvrirLecon(l)}
-          />
-        );
-      })}
+      {lecons?.length ? (
+        <GroupeColle>
+          {lecons.map((l, i) => {
+            const lue = lues[l.id] !== undefined;
+            const courante = l.id === enCours;
+            const sousTitre = [t('reviser.leconNumero', { n: i + 1 }), l.minutes ? t('reviser.minutes', { n: l.minutes }) : null].filter(Boolean).join(' · ');
+            return (
+              <LigneGroupe
+                key={l.id}
+                premier={i === 0}
+                fond={lue ? theme.marque.douce : undefined}
+                enCours={courante}
+                gauche={
+                  <View style={[styles.carre, { backgroundColor: lue ? theme.marque.principale : couleurDouce(fond, theme.fond.surface, sombre), borderColor: theme.bord.fort }]}>
+                    {lue ? <Check size={18} strokeWidth={3} color={theme.texte.surCouleur} /> : <Text style={[typo.donnee, styles.chiffre, { color: theme.texte.principal }]}>{i + 1}</Text>}
+                  </View>
+                }
+                titre={l.nom || t('reviser.leconNumero', { n: i + 1 })}
+                sousTitre={lue ? `${sousTitre} · ${t('reviser.lue')}` : sousTitre}
+                droite={courante ? <Pastille vert texte={t('reviser.continuer')} /> : undefined}
+                onPress={() => ouvrirLecon(l)}
+              />
+            );
+          })}
+        </GroupeColle>
+      ) : null}
     </Ecran>
   );
 }
