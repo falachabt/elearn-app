@@ -25,7 +25,7 @@ ENDPOINT = os.environ.get(
 
 
 def aws(*args, capture=True):
-    cmd = ["aws", "s3", *args, "--endpoint-url", ENDPOINT, "--only-show-errors"]
+    cmd = ["aws", "s3", *args, "--endpoint-url", ENDPOINT]
     r = subprocess.run(cmd, capture_output=capture, text=True)
     if r.returncode != 0:
         raise RuntimeError(f"aws s3 {' '.join(args)} : {r.stderr.strip()}")
