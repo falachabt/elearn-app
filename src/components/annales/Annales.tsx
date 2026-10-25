@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -15,6 +16,7 @@ import { espace, typo } from '@/theme/theme';
 import { Banniere } from '../Banniere';
 import { LigneLien } from '../LigneLien';
 import { EcranErreur } from '../liste/EcranErreur';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { Squelettes } from '../liste/Squelettes';
 import { BarreRecherche } from './BarreRecherche';
 import { ListeSujets } from './ListeSujets';
@@ -130,17 +132,18 @@ export function Annales({ tous = false }: { tous?: boolean }) {
       {mesDocuments}
       <BarreRecherche valeur={requete} onChange={setRequete} />
       {dossiers.length ? (
-        <View style={styles.section}>
-          {dossiers.map((d) => (
-            <LigneLien
+        <GroupeColle>
+          {dossiers.map((d, i) => (
+            <LigneGroupe
               key={d.id}
-              icone="folder-outline"
+              premier={i === 0}
+              gauche={<Ionicons name="folder-outline" size={22} color={theme.texte.principal} />}
               titre={d.nom}
-              detail={t(d.documents > 1 ? 'annales.documents' : 'annales.document', { n: d.documents })}
+              sousTitre={t(d.documents > 1 ? 'annales.documents' : 'annales.document', { n: d.documents })}
               onPress={() => router.push({ pathname: '/annales/dossier', params: { id: d.id, nom: d.nom } })}
             />
           ))}
-        </View>
+        </GroupeColle>
       ) : null}
       {mien.length ? (
         <View style={styles.section}>

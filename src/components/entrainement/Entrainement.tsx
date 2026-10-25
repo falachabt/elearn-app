@@ -1,4 +1,4 @@
-import { Check, ChevronRight, Play } from 'lucide-react-native';
+import { Check, Play } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -13,7 +13,7 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, palette, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
-import { CarteListe } from '../liste/CarteListe';
+import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 import { Progressive } from '../liste/Progressive';
 import { PiluleCompteur } from '../liste/PiluleCompteur';
 import { EcranErreur } from '../liste/EcranErreur';
@@ -117,31 +117,33 @@ export function Entrainement({ matieres, cle }: Props) {
             <Text accessibilityRole="header" numberOfLines={1} style={[typo.texteFort, styles.flex, { color: theme.texte.principal }]}>{m.nom}</Text>
             <Text style={[typo.donnee, { color: theme.texte.secondaire }]}>{t('entrainement.chapitresN', { n: m.chapitres.length })}</Text>
           </View>
-          {m.chapitres.map((c) => {
-            const n = compteurs[c.id];
-            const p = progres[c.id] ?? { faits: 0, quizFaits: 0 };
-            const fini = p.quizFaits >= n.quiz && p.faits >= n.exercices;
-            return (
-              <CarteListe
-                key={c.id}
-                fini={fini}
-                gauche={
-                  <View style={[styles.numero, { backgroundColor: fini ? theme.marque.principale : couleurDouce(couleurs[m.nom], theme.fond.surface, sombre), borderColor: theme.bord.fort }]}>
-                    {fini ? <Check size={18} strokeWidth={3} color={theme.texte.surCouleur} /> : <Text style={[typo.donnee, styles.chiffre, { color: theme.texte.principal }]}>{c.numero}</Text>}
-                  </View>
-                }
-                titre={c.nom}
-                bas={
-                  <View style={styles.compteurs}>
-                    {n.quiz ? <PiluleCompteur type="quiz" faits={p.quizFaits} total={n.quiz} fini={fini} /> : null}
-                    {n.exercices ? <PiluleCompteur type="exercice" faits={p.faits} total={n.exercices} fini={fini} /> : null}
-                  </View>
-                }
-                droite={<ChevronRight size={20} strokeWidth={2} color={theme.texte.secondaire} />}
-                onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(c.id), nom: c.nom } })}
-              />
-            );
-          })}
+          <GroupeColle>
+            {m.chapitres.map((c, i) => {
+              const n = compteurs[c.id];
+              const p = progres[c.id] ?? { faits: 0, quizFaits: 0 };
+              const fini = p.quizFaits >= n.quiz && p.faits >= n.exercices;
+              return (
+                <LigneGroupe
+                  key={c.id}
+                  premier={i === 0}
+                  fond={fini ? theme.marque.douce : undefined}
+                  gauche={
+                    <View style={[styles.numero, { backgroundColor: fini ? theme.marque.principale : couleurDouce(couleurs[m.nom], theme.fond.surface, sombre), borderColor: theme.bord.fort }]}>
+                      {fini ? <Check size={18} strokeWidth={3} color={theme.texte.surCouleur} /> : <Text style={[typo.donnee, styles.chiffre, { color: theme.texte.principal }]}>{c.numero}</Text>}
+                    </View>
+                  }
+                  titre={c.nom}
+                  bas={
+                    <View style={styles.compteurs}>
+                      {n.quiz ? <PiluleCompteur type="quiz" faits={p.quizFaits} total={n.quiz} fini={fini} /> : null}
+                      {n.exercices ? <PiluleCompteur type="exercice" faits={p.faits} total={n.exercices} fini={fini} /> : null}
+                    </View>
+                  }
+                  onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(c.id), nom: c.nom } })}
+                />
+              );
+            })}
+          </GroupeColle>
         </View>
         )}
       />
