@@ -602,6 +602,59 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  resistor_symbole_fig(t) {
+    let zig = 'M 420 150 ';
+    for (let k = 1; k <= 6; k++) zig += `L ${420 + 26 * k} ${k % 2 ? 126 : 174} `;
+    zig += 'L 580 150';
+    return svgBoite(
+      mot(500, 46, 'le résistor et son symbole', { t: 24 }) +
+      trait(200, 150, 420, 150, prog(t), { w: 4.5 }) + `<path d="${zig}" fill="none" stroke="currentColor" stroke-width="4.5"/>` + trait(580, 150, 800, 150, prog(t), { w: 4.5 }) +
+      trait(318, 104, 428, 104, prog(t), { c: '#E8604C', w: 4 }) + pointe(436, 104, 0, '#E8604C') + mot(372, 90, 'I', { c: '#E8604C', t: 26 }) +
+      trait(572, 210, 436, 210, prog(t), { c: '#1A75FF', w: 4 }) + pointe(428, 210, 180, '#1A75FF') + mot(500, 240, 'U', { c: '#1A75FF', t: 26 }) +
+      mot(500, 284, "convention récepteur : la flèche de U s'oppose au courant", { t: 19 }));
+  },
+  moteur_symbole_fig(t) {
+    return svgBoite(
+      mot(500, 46, 'le moteur et son symbole', { t: 24 }) +
+      trait(200, 150, 448, 150, prog(t), { w: 4.5 }) + trait(552, 150, 800, 150, prog(t), { w: 4.5 }) +
+      `<circle cx="500" cy="150" r="52" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4.5"/>` + mot(500, 162, 'M', { t: 36 }) +
+      trait(318, 104, 428, 104, prog(t), { c: '#E8604C', w: 4 }) + pointe(436, 104, 0, '#E8604C') + mot(372, 90, 'I', { c: '#E8604C', t: 26 }) +
+      trait(552, 216, 456, 216, prog(t), { c: '#1A75FF', w: 4 }) + pointe(448, 216, 180, '#1A75FF') + mot(500, 246, 'U', { c: '#1A75FF', t: 26 }) +
+      mot(500, 284, "le moteur : U = E' + r' I, E' sa force contre-électromotrice", { t: 19 }));
+  },
+  source_courant_symbole_fig(t) {
+    return svgBoite(
+      mot(500, 46, 'la source de courant et son symbole', { t: 24 }) +
+      trait(200, 150, 448, 150, prog(t), { w: 4.5 }) + trait(552, 150, 800, 150, prog(t), { w: 4.5 }) +
+      `<circle cx="500" cy="150" r="52" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4.5"/>` +
+      trait(500, 192, 500, 114, prog(t), { c: '#B8860B', w: 5.5 }) + pointe(500, 106, -90, '#B8860B') +
+      mot(580, 120, 'I_g imposé', { c: '#B8860B', t: 22, a: 'start' }) +
+      trait(552, 216, 456, 216, prog(t), { c: '#1A75FF', w: 4 }) + pointe(448, 216, 180, '#1A75FF') + mot(500, 246, 'U, quelconque', { c: '#1A75FF', t: 21 }) +
+      mot(500, 284, 'la source idéale de courant impose son courant I_g', { t: 19 }));
+  },
+  thevenin_modele_fig(t) {
+    let zig = 'M 700 95 ';
+    for (let k = 1; k <= 4; k++) zig += `L ${700 + 22 * k} ${k % 2 ? 81 : 109} `;
+    zig += 'L 796 95';
+    return svgBoite(
+      mot(258, 62, 'le circuit, vu depuis A et B', { t: 20 }) +
+      `<rect x="120" y="88" width="282" height="124" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="4"/>` +
+      trait(150, 150, 196, 150, prog(t), { w: 3.5 }) + `<path d="M 196 150 L 208 136 L 220 164 L 232 136 L 244 164 L 256 150" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      `<circle cx="316" cy="150" r="17" fill="none" stroke="currentColor" stroke-width="3.5"/>` + trait(256, 150, 299, 150, prog(t), { w: 3.5 }) + trait(333, 150, 386, 150, prog(t), { w: 3.5 }) +
+      trait(402, 100, 436, 100, prog(t), { w: 4 }) + trait(402, 200, 436, 200, prog(t), { w: 4 }) +
+      `<circle cx="440" cy="100" r="6" fill="currentColor"/>` + mot(458, 94, 'A', { t: 24, a: 'start' }) +
+      `<circle cx="440" cy="200" r="6" fill="currentColor"/>` + mot(458, 208, 'B', { t: 24, a: 'start' }) +
+      trait(478, 150, 540, 150, prog(t), { w: 5 }) + pointe(548, 150, 0) + mot(509, 128, 'devient', { t: 20 }) +
+      trait(596, 95, 700, 95, prog(t), { w: 4 }) + `<path d="${zig}" fill="none" stroke="currentColor" stroke-width="4"/>` + trait(796, 95, 872, 95, prog(t), { w: 4 }) +
+      mot(748, 70, 'R_th', { t: 22 }) +
+      trait(596, 205, 872, 205, prog(t), { w: 4 }) +
+      trait(596, 95, 596, 120, prog(t), { w: 4 }) + trait(596, 180, 596, 205, prog(t), { w: 4 }) +
+      `<circle cx="596" cy="150" r="30" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` + mot(596, 158, 'E', { t: 22 }) +
+      mot(548, 156, 'E_th', { t: 20, a: 'end' }) +
+      `<circle cx="876" cy="95" r="6" fill="currentColor"/>` + mot(892, 92, 'A', { t: 24, a: 'start' }) +
+      `<circle cx="876" cy="205" r="6" fill="currentColor"/>` + mot(892, 212, 'B', { t: 24, a: 'start' }) +
+      mot(500, 268, 'le modèle de Thévenin : une source, une résistance', { t: 20 }));
+  },
   poussee_archimede_fig(t) {
     return svgBoite(
       `<rect x="440" y="110" width="120" height="100" fill="#1A75FF" fill-opacity=".18"/>` +
