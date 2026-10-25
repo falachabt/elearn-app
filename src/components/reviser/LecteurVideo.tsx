@@ -14,11 +14,11 @@ import { lireEntrainement, lireProgresChapitres, type Compteur, type ProgresChap
 import { getSupabase } from '@/services/supabase';
 import {
   formaterDuree,
-  lireSuivis,
   lireVideos,
   marquerTerminee,
   noterDerniereVideo,
   noterPosition,
+  synchroniserSuivis,
   type SuivisVideos,
   type VideoCours,
 } from '@/services/videos';
@@ -44,7 +44,7 @@ export function LecteurVideo() {
   const pret = useSessionPrete();
   const [videos, setVideos] = useState<VideoCours[] | null>(null);
   const [suivis, setSuivis] = useState<SuivisVideos>({});
-  const [couranteId, setCouranteId] = useState<number | null>(video ? Number(video) : null);
+  const [couranteId, setCouranteId] = useState<string | null>(video ?? null);
   const [entrainement, setEntrainement] = useState<(Compteur & { progres: ProgresChapitre }) | null>(null);
   const courante = videos?.find((v) => v.id === couranteId) ?? videos?.[0] ?? null;
 
@@ -56,7 +56,7 @@ export function LecteurVideo() {
   });
   const couranteRef = useRef<VideoCours | null>(null);
   const suivisRef = useRef<SuivisVideos>({});
-  const repriseFaite = useRef<number | null>(null);
+  const repriseFaite = useRef<string | null>(null);
   const sourceRef = useRef<string | null>(null);
   useEffect(() => {
     couranteRef.current = courante;
@@ -68,7 +68,7 @@ export function LecteurVideo() {
   const sauvegarder = useCallback(() => {
     const v = couranteRef.current;
     if (!v) return;
-    void noterPosition(v.id, lecteur.currentTime, v.dureeS ?? (lecteur.duration || null)).then((s) => {
+    void noterPosition(v.id, v.cours, lecteur.currentTime, v.dureeS ?? (lecteur.duration || null)).then((s) => {
       setSuivis((avant) => ({ ...avant, [v.id]: s }));
     });
   }, [lecteur]);
@@ -91,10 +91,10 @@ export function LecteurVideo() {
       p.addListener('playToEnd', () => {
         const v = couranteRef.current;
         if (!v) return;
-        void marquerTerminee(v.id, v.dureeS).then(() => {
+        void marquerTerminee(v.id, v.cours, v.dureeS).then(() => {
           setSuivis((avant) => ({
             ...avant,
-            [v.id]: { positionS: v.dureeS ?? avant[v.id]?.positionS ?? 0, dureeS: v.dureeS, terminee: true, quand: Date.now() },
+            [v.id]: { positionS: v.dureeS ?? avant[v.id]?.positionS ?? 0, dureeS: v.dureeS, terminee: true, quand: Date.now(), cours: v.cours },
           }));
         });
         // Enchaînement : la partie suivante est chargée, sans lecture automatique (l'élève appuie sur lecture).
@@ -119,7 +119,8 @@ export function LecteurVideo() {
     let actif = true;
     void (async () => {
       try {
-        const [v, s] = await Promise.all([lireVideos(getSupabase(), coursId), lireSuivis()]);
+        // La synchro serveur (lot 2) fusionne d'abord les positions du compte dans le suivi local.
+        const [v, s] = await Promise.all([lireVideos(getSupabase(), coursId), synchroniserSuivis(getSupabase())]);
         if (!actif) return;
         setVideos(v);
         setSuivis(s);
@@ -153,6 +154,8 @@ export function LecteurVideo() {
     useCallback(() => {
       return () => {
         sauvegarder();
+        // La position fraîche part au serveur (au retour du réseau, la synchro suivante la poussera).
+        void synchroniserSuivis(getSupabase());
         try {
           lecteur.pause();
         } catch {

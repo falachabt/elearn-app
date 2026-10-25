@@ -11,8 +11,8 @@ import {
   formaterDuree,
   indiceCarrousel,
   lireDerniereVideo,
-  lireSuivis,
   lireVideos,
+  synchroniserSuivis,
   type SuivisVideos,
   type VideoCours,
 } from '@/services/videos';
@@ -46,7 +46,7 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
       if (!pret) return;
       let actif = true;
       positionne.current = false;
-      void Promise.all([lireVideos(getSupabase(), cours).catch(() => [] as VideoCours[]), lireSuivis(), lireDerniereVideo()])
+      void Promise.all([lireVideos(getSupabase(), cours).catch(() => [] as VideoCours[]), synchroniserSuivis(getSupabase()), lireDerniereVideo()])
         .then(([v, s, d]) => {
           if (!actif) return;
           setVideos(v);
@@ -64,7 +64,7 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
   const terminees = compterTerminees(videos, suivis);
 
   const ouvrir = (v: VideoCours) =>
-    router.push({ pathname: '/video', params: { cours: String(cours), video: String(v.id), nom: nom ?? '', matiere: matiere ?? '' } });
+    router.push({ pathname: '/video', params: { cours: String(cours), video: v.id, nom: nom ?? '', matiere: matiere ?? '' } });
 
   return (
     <View>

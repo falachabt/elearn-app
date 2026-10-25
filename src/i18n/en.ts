@@ -798,6 +798,7 @@ export const en: Textes = {
     supprimerTelechargement: 'Delete the download',
     toutTelecharger: 'Download all',
     mesVideos: 'My videos',
+    mesVideosSousTitre: 'Watch again the videos you started or finished.',
     mesVideosVide: 'You have not watched any course video yet.',
     recentes: 'Recent',
     enCoursSection: 'In progress',

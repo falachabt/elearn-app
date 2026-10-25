@@ -12,6 +12,8 @@ import { bord, espace, matiere as couleursMatiere, matiereSecours, ombre, palett
 import { Appui } from '../Appui';
 import { Banniere } from '../Banniere';
 import { Ecran } from '../Ecran';
+import { CarteListe } from '../liste/CarteListe';
+import { PastilleType } from '../liste/PastilleType';
 import { Onglets } from '../Onglets';
 import { useReseau } from '../reseau/useReseau';
 import { BoutonFermer } from '../arrivee/MiniTest';
@@ -290,6 +292,12 @@ export function Progression() {
           )}
         </>
       ) : null}
+      <CarteListe
+        gauche={<PastilleType type="video" />}
+        titre={t('videos.mesVideos')}
+        sousTitre={t('videos.mesVideosSousTitre')}
+        onPress={() => router.push('/mes-videos')}
+      />
     </Ecran>
   );
 }

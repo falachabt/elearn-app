@@ -1,3 +1,4 @@
+import { Image } from "expo-image";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -5,6 +6,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTraduction } from "@/i18n/useTraduction";
 import { lireProfil } from "@/services/profil";
 import { lireReprise, type ElementReprise } from "@/services/reprise";
+import { formaterDuree } from "@/services/videos";
 import { garderMemorise, lireMemorise } from "@/services/memoire";
 import { lireCours, programmeDu } from "@/services/reviser";
 import { getSupabase } from "@/services/supabase";
@@ -18,7 +20,7 @@ import { libelleQuiz } from "../entrainement/libelles";
 import { CarteListe } from "../liste/CarteListe";
 import { PastilleType } from "../liste/PastilleType";
 
-/** C1 · Accueil, reprise (M4-09) : sous la mission du jour, jusqu'à 3 cartes (leçon, quiz, exercice en cours). Rien si tout est fini. */
+/** C1 · Accueil, reprise (M4-09) : sous la mission du jour, jusqu'à 4 cartes (leçon, quiz, exercice, vidéo en cours). Rien si tout est fini. */
 export function Reprise() {
   const { t } = useTraduction();
   const { theme } = useTheme();
@@ -36,7 +38,7 @@ export function Reprise() {
               programmeDu(await lireProfil()),
             ).catch(() => [])
           : [];
-        const e = await lireReprise(cours).catch(() => []);
+        const e = await lireReprise(cours, getSupabase()).catch(() => []);
         garderMemorise('accueil.reprise', e);
         if (actif) setElements(e);
       })();
@@ -83,6 +85,31 @@ export function Reprise() {
                       cours: String(l.cours),
                       matiere: e.matiere,
                     },
+                  })
+                }
+              />
+            );
+          }
+          if (e.type === "video") {
+            const v = e.video;
+            return (
+              <CarteListe
+                key="video"
+                gauche={
+                  v.miniature ? (
+                    <View style={[styles.miniVideo, { borderColor: theme.bord.fort }]}>
+                      <Image source={{ uri: v.miniature }} style={styles.miniVideoImage} contentFit="cover" />
+                    </View>
+                  ) : (
+                    <PastilleType type="lecon" play />
+                  )
+                }
+                titre={`${t("videos.partie", { n: v.numero })} — ${v.titre}`}
+                sousTitre={detail(t("videos.reprendreA", { temps: formaterDuree(v.positionS) }))}
+                onPress={() =>
+                  router.push({
+                    pathname: "/video",
+                    params: { cours: String(v.cours), video: v.id, nom: e.chapitre, matiere: e.matiere },
                   })
                 }
               />
@@ -135,4 +162,8 @@ export function Reprise() {
   );
 }
 
-const styles = StyleSheet.create({ groupe: { gap: espace[4] } });
+const styles = StyleSheet.create({
+  groupe: { gap: espace[4] },
+  miniVideo: { width: 62, height: 40, borderWidth: 2, borderRadius: 6, overflow: "hidden", backgroundColor: "#000" },
+  miniVideoImage: { width: "100%", height: "100%" },
+});

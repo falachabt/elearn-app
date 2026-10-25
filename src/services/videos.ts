@@ -5,7 +5,8 @@ type Client = Pick<SupabaseClient, 'from'>;
 
 /** Une vidéo de cours prête à être regardée (table `course_videos`, une ligne par partie). */
 export type VideoCours = {
-  id: number;
+  /** Identifiant de la ligne `course_videos` : un uuid, pas un entier. */
+  id: string;
   cours: number;
   /** Titre nettoyé : le préfixe « Partie N — » en est retiré, il part dans `numero`. */
   titre: string;
@@ -20,7 +21,7 @@ export type VideoCours = {
 };
 
 type LigneVideo = {
-  id: number;
+  id: string;
   course_id: number;
   title: string | null;
   duration: number | null;
@@ -81,8 +82,8 @@ export function estTerminee(positionS: number, dureeS: number | null): boolean {
   return dureeS !== null && dureeS > 0 && positionS >= dureeS * SEUIL_TERMINEE;
 }
 
-/** Suivi local d'une vidéo : où l'élève s'est arrêté, et s'il l'a terminée. */
-export type SuiviVideo = { positionS: number; dureeS: number | null; terminee: boolean; quand: number };
+/** Suivi d'une vidéo : où l'élève s'est arrêté, s'il l'a terminée, et dans quel cours (pour l'historique et la synchro). */
+export type SuiviVideo = { positionS: number; dureeS: number | null; terminee: boolean; quand: number; cours: number };
 export type SuivisVideos = Record<string, SuiviVideo>;
 
 export const CLE_SUIVIS_VIDEOS = 'videos.suivis';
@@ -91,7 +92,15 @@ export const CLE_DERNIERE_VIDEO = 'videos.derniere';
 export async function lireSuivis(): Promise<SuivisVideos> {
   try {
     const brut = await AsyncStorage.getItem(CLE_SUIVIS_VIDEOS);
-    return brut ? (JSON.parse(brut) as SuivisVideos) : {};
+    if (!brut) return {};
+    const lu = JSON.parse(brut) as Record<string, Partial<SuiviVideo>>;
+    // Les entrées du lot 1 n'avaient pas encore le cours : on le remet à 0 (inconnu) plutôt que de les perdre.
+    return Object.fromEntries(
+      Object.entries(lu).map(([id, s]) => [
+        id,
+        { positionS: s.positionS ?? 0, dureeS: s.dureeS ?? null, terminee: s.terminee === true, quand: s.quand ?? 0, cours: s.cours ?? 0 },
+      ]),
+    );
   } catch {
     return {};
   }
@@ -105,7 +114,7 @@ async function ecrireSuivis(suivis: SuivisVideos): Promise<void> {
  * Note la position courante d'une vidéo. `terminee` est collant : une vidéo terminée puis relancée
  * depuis le début reste terminée dans les compteurs, seule sa position de reprise repart.
  */
-export async function noterPosition(video: number, positionS: number, dureeS: number | null, maintenant = Date.now()): Promise<SuiviVideo> {
+export async function noterPosition(video: string, cours: number, positionS: number, dureeS: number | null, maintenant = Date.now()): Promise<SuiviVideo> {
   const suivis = await lireSuivis();
   const avant = suivis[video];
   const suivi: SuiviVideo = {
@@ -113,6 +122,7 @@ export async function noterPosition(video: number, positionS: number, dureeS: nu
     dureeS: dureeS ?? avant?.dureeS ?? null,
     terminee: avant?.terminee === true || estTerminee(positionS, dureeS ?? avant?.dureeS ?? null),
     quand: maintenant,
+    cours,
   };
   suivis[video] = suivi;
   await ecrireSuivis(suivis);
@@ -120,7 +130,7 @@ export async function noterPosition(video: number, positionS: number, dureeS: nu
 }
 
 /** Marque explicitement une vidéo comme terminée (fin de lecture atteinte). */
-export async function marquerTerminee(video: number, dureeS: number | null, maintenant = Date.now()): Promise<void> {
+export async function marquerTerminee(video: string, cours: number, dureeS: number | null, maintenant = Date.now()): Promise<void> {
   const suivis = await lireSuivis();
   const avant = suivis[video];
   suivis[video] = {
@@ -128,12 +138,13 @@ export async function marquerTerminee(video: number, dureeS: number | null, main
     dureeS: dureeS ?? avant?.dureeS ?? null,
     terminee: true,
     quand: maintenant,
+    cours,
   };
   await ecrireSuivis(suivis);
 }
 
 /** Dernière vidéo ouverte, toutes matières confondues : sert au carrousel (par cours) et, plus tard, à « Reprendre ». */
-export type DerniereVideo = { video: number; cours: number; quand: number };
+export type DerniereVideo = { video: string; cours: number; quand: number };
 
 export async function noterDerniereVideo(d: Omit<DerniereVideo, 'quand'>, maintenant = Date.now()): Promise<void> {
   await AsyncStorage.setItem(CLE_DERNIERE_VIDEO, JSON.stringify({ ...d, quand: maintenant })).catch(() => {});
@@ -162,4 +173,91 @@ export function indiceCarrousel(videos: readonly VideoCours[], suivis: SuivisVid
 /** Nombre de vidéos terminées d'une liste, pour l'en-tête « Vidéos · n / total ». */
 export function compterTerminees(videos: readonly VideoCours[], suivis: SuivisVideos): number {
   return videos.filter((v) => suivis[v.id]?.terminee).length;
+}
+
+// ---------------------------------------------------------------------------
+// Synchronisation avec le serveur (lot 2) : table `video_progress`, une ligne
+// par élève et par vidéo. Le local reste la source rapide ; le serveur suit
+// l'élève entre appareils. Conflit : la ligne la plus récente gagne
+// (`derniere_vue` côté serveur, `quand` côté téléphone — même horloge).
+// ---------------------------------------------------------------------------
+
+type ClientSynchro = Pick<SupabaseClient, 'from' | 'auth'>;
+
+export type LigneProgression = {
+  video_id: string;
+  course_id: number;
+  position_s: number;
+  duree_s: number | null;
+  terminee: boolean;
+  derniere_vue: string;
+};
+
+export function suiviDepuisLigne(l: LigneProgression): SuiviVideo {
+  return {
+    positionS: l.position_s,
+    dureeS: l.duree_s,
+    terminee: l.terminee,
+    quand: Date.parse(l.derniere_vue) || 0,
+    cours: l.course_id,
+  };
+}
+
+export function ligneDepuisSuivi(video: string, s: SuiviVideo): LigneProgression {
+  return {
+    video_id: video,
+    course_id: s.cours,
+    position_s: s.positionS,
+    duree_s: s.dureeS,
+    terminee: s.terminee,
+    derniere_vue: new Date(s.quand).toISOString(),
+  };
+}
+
+/** Fusion local + serveur : pour chaque vidéo, l'enregistrement le plus récent gagne. */
+export function fusionnerSuivis(locaux: SuivisVideos, serveur: readonly LigneProgression[]): SuivisVideos {
+  const sortie: SuivisVideos = { ...locaux };
+  for (const l of serveur) {
+    const distant = suiviDepuisLigne(l);
+    const local = sortie[l.video_id];
+    if (!local || distant.quand > local.quand) sortie[l.video_id] = distant;
+    else if (local && distant.quand === local.quand) sortie[l.video_id] = { ...local, terminee: local.terminee || distant.terminee };
+  }
+  return sortie;
+}
+
+/** Lignes locales à envoyer : absentes du serveur ou plus récentes que lui (le cours doit être connu). */
+export function lignesAEnvoyer(locaux: SuivisVideos, serveur: readonly LigneProgression[], userId: string): (LigneProgression & { user_id: string })[] {
+  const parVideo = new Map(serveur.map((l) => [l.video_id, Date.parse(l.derniere_vue) || 0]));
+  return Object.entries(locaux)
+    .filter(([video, s]) => s.cours > 0 && s.quand > (parVideo.get(video) ?? -1))
+    .map(([video, s]) => ({ user_id: userId, ...ligneDepuisSuivi(video, s) }));
+}
+
+/**
+ * Met en commun le suivi du téléphone et celui du compte : les positions du compte reviennent sur le
+ * téléphone (autre appareil), celles du téléphone partent au serveur. Sans réseau ou sans session,
+ * rien ne change et le local est rendu tel quel (même patron que `synchroniserLues`).
+ */
+export async function synchroniserSuivis(client: ClientSynchro): Promise<SuivisVideos> {
+  const locaux = await lireSuivis();
+  try {
+    const { data: session } = await client.auth.getSession();
+    const userId = session?.session?.user.id;
+    if (!userId) return locaux;
+    const { data, error } = await client.from('video_progress').select('video_id, course_id, position_s, duree_s, terminee, derniere_vue');
+    if (error) throw error;
+    const serveur = (data ?? []) as LigneProgression[];
+    const aEnvoyer = lignesAEnvoyer(locaux, serveur, userId);
+    if (aEnvoyer.length) {
+      const { error: erreurEnvoi } = await client.from('video_progress').upsert(aEnvoyer, { onConflict: 'user_id,video_id' });
+      if (erreurEnvoi) throw erreurEnvoi;
+    }
+    // Relecture juste avant d'écrire : une position notée pendant l'attente du serveur ne doit pas être écrasée.
+    const fusion = fusionnerSuivis(await lireSuivis(), serveur);
+    await ecrireSuivis(fusion);
+    return fusion;
+  } catch {
+    return locaux;
+  }
 }

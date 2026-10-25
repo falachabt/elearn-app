@@ -15,6 +15,7 @@ import {
   FileText,
   GraduationCap,
   PencilLine,
+  Play,
   SlidersHorizontal,
   Sparkles,
   X,
@@ -129,6 +130,7 @@ const COULEUR_DOUCE_CONTENU: Record<TypeContenu, string> = {
   quiz: palette.bleu[100],
   exercice: palette.orange[100],
   annale: palette.soleil[100],
+  video: palette.rose[400],
 };
 
 const ICONE_PASTILLE: Record<TypeContenu, LucideIcon> = {
@@ -136,6 +138,7 @@ const ICONE_PASTILLE: Record<TypeContenu, LucideIcon> = {
   quiz: CircleHelp,
   exercice: PencilLine,
   annale: FileText,
+  video: Play,
 };
 
 type TagComposition = {

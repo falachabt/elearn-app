@@ -799,6 +799,7 @@ export const fr = {
     supprimerTelechargement: 'Supprimer le téléchargement',
     toutTelecharger: 'Tout télécharger',
     mesVideos: 'Mes vidéos',
+    mesVideosSousTitre: 'Revoir les vidéos commencées ou terminées.',
     mesVideosVide: 'Tu n’as pas encore regardé de vidéo de cours.',
     recentes: 'Récentes',
     enCoursSection: 'En cours',
