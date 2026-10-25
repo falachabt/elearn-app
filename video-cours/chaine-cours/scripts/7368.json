@@ -1,0 +1,610 @@
+{
+ "cours": 7368,
+ "ecrans": {
+  "aimants": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "aimant"
+   },
+   "kicker": "Sources de champ magnétique",
+   "texte": "Aimant permanent : les moments magnétiques du matériau restent alignés, même sans courant. Le champ est constant dans le temps ; ses lignes sortent du pôle Nord et entrent par le pôle Sud.",
+   "type": "phrase"
+  },
+  "auto_induction": {
+   "kicker": "Auto-induction",
+   "tex": [
+    "\\Phi_{\\text{liaison}} = N\\Phi = L \\, i",
+    "L = \\frac{N\\Phi}{i}",
+    "\\mathcal{E} = -L \\, \\frac{di}{dt}"
+   ],
+   "titre": "La bobine réagit à son propre courant",
+   "type": "etape"
+  },
+  "biot_savart": {
+   "kicker": "Loi de Biot et Savart",
+   "note": "dl : élément de courant · r : distance de l'élément au point d'observation",
+   "tex": "d\\vec{B} = \\frac{\\mu_0}{4\\pi} \\, \\frac{I \\, d\\vec{l} \\times \\hat{r}}{r^{2}}",
+   "titre": "La loi fondamentale des champs de courants",
+   "type": "formule"
+  },
+  "circulaire": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "deviation_magnetique_fig"
+   },
+   "kicker": "Mouvement circulaire",
+   "tex": [
+    "q v B = \\tfrac{m v^{2}}{r}",
+    "r = \\tfrac{m v}{q B}",
+    "T = \\tfrac{2\\pi m}{q B} \\qquad f = \\tfrac{q B}{2\\pi m}"
+   ],
+   "titre": "Quand la vitesse est perpendiculaire au champ",
+   "type": "etape"
+  },
+  "cyclotron": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "orbite"
+   },
+   "kicker": "Application",
+   "texte": "Le cyclotron : un champ magnétique courbe les trajectoires en cercles, un champ électrique alternatif accélère les particules à chaque passage. La fréquence nécessaire est constante : qB sur deux pi m.",
+   "type": "phrase"
+  },
+  "energie_bobine": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "circuit_rl"
+   },
+   "kicker": "Énergie de la bobine",
+   "note": "E en joules · la bobine stocke l'énergie dans son champ",
+   "tex": "E = \\frac{1}{2} L i^{2}",
+   "titre": "L'énergie stockée dans le champ magnétique",
+   "type": "formule"
+  },
+  "exemple_fem": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\frac{di}{dt} = \\frac{4{,}0 - 0}{0{,}10} = 40\\ \\text{A/s}",
+    "\\mathcal{E} = -L \\frac{di}{dt} \\approx -6{,}3 \\times 10^{-2}\\ \\text{V}",
+    "E = \\frac{1}{2} L i^{2} \\approx 1{,}26 \\times 10^{-2}\\ \\text{J}"
+   ],
+   "titre": "Force électromotrice induite et énergie stockée",
+   "type": "etape"
+  },
+  "exemple_inductance": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "L = \\mu_0 \\frac{N^{2} S}{l}",
+    "L = 4\\pi \\times 10^{-7} \\times \\frac{500^{2} \\times 1{,}0 \\times 10^{-3}}{0{,}20}",
+    "L \\approx 1{,}57 \\times 10^{-3}\\ \\text{H}"
+   ],
+   "titre": "L'inductance d'un solénoïde",
+   "type": "etape"
+  },
+  "exemple_laplace": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "F = I l B \\sin\\theta",
+    "F = 5 \\times 0{,}20 \\times 0{,}80 \\times \\sin 30^{\\circ}",
+    "F = 0{,}40\\ \\text{N}"
+   ],
+   "titre": "Un conducteur incliné à trente degrés",
+   "type": "etape"
+  },
+  "exemple_moteur": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "F = I l B",
+    "F = 3 \\times 0{,}10 \\times 0{,}50 = 0{,}15\\ \\text{N}"
+   ],
+   "titre": "La force sur un segment du moteur",
+   "type": "etape"
+  },
+  "exemple_proton": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "m_p = 1{,}67 \\times 10^{-27}\\ \\text{kg} \\qquad q = 1{,}6 \\times 10^{-19}\\ \\text{C}",
+    "B = 0{,}8\\ \\text{T} \\qquad v = 3 \\times 10^{6}\\ \\text{m/s}",
+    "r = \\tfrac{m_p v}{q B} \\approx 3{,}9 \\times 10^{-2}\\ \\text{m} = 3{,}9\\ \\text{cm}",
+    "T = \\tfrac{2\\pi m_p}{q B} \\approx 8{,}2 \\times 10^{-8}\\ \\text{s} \\qquad f \\approx 1{,}2 \\times 10^{7}\\ \\text{Hz}"
+   ],
+   "titre": "Un proton dans un champ de zéro virgule huit tesla",
+   "type": "etape"
+  },
+  "exemple_solenoide": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "n = \\frac{N}{L} = \\frac{500}{0{,}5} = 1000\\ \\text{spires/m}",
+    "B = \\mu_0 n I = 4\\pi \\times 10^{-7} \\times 1000 \\times 2",
+    "B \\approx 2{,}5 \\times 10^{-3}\\ \\text{T} = 2{,}5\\ \\text{mT}"
+   ],
+   "titre": "Le champ au centre d'un solénoïde",
+   "type": "etape"
+  },
+  "faraday": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "induction"
+   },
+   "kicker": "Loi de Faraday",
+   "note": "ℰ : force électromotrice induite, en volts · le signe moins vient de Lenz",
+   "tex": "\\mathcal{E} = -\\frac{d\\Phi}{dt}",
+   "titre": "Un flux qui varie crée une tension",
+   "type": "formule"
+  },
+  "fil": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Champ d'un fil rectiligne",
+   "note": "r : distance au fil · champ tangent aux cercles centrés sur le fil",
+   "tex": "B = \\frac{\\mu_0 I}{2\\pi r}",
+   "titre": "Autour du fil, des lignes circulaires",
+   "type": "formule"
+  },
+  "flux": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Flux magnétique",
+   "note": "Φ en webers (Wb) · θ : angle entre le champ et la normale à la surface",
+   "tex": "\\Phi = B S \\cos\\theta",
+   "titre": "Compter les lignes de champ qui traversent une surface",
+   "type": "formule"
+  },
+  "haut_parleur": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "sonnerie"
+   },
+   "kicker": "Application",
+   "texte": "Le haut-parleur convertit un signal électrique en son : la bobine, placée pour que le conducteur soit toujours perpendiculaire au champ, reçoit une force de Laplace proportionnelle au courant ; le cône vibre.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "aimant"
+   },
+   "kicker": "Introduction",
+   "texte": "Deux grandes sources produisent un champ magnétique : les aimants permanents et les courants électriques. Tout ce cours tourne autour d'elles, et des forces que le champ exerce ensuite.",
+   "type": "phrase"
+  },
+  "laplace": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "laplace_fig"
+   },
+   "kicker": "Force de Laplace",
+   "note": "Conducteur droit en champ uniforme · forme élémentaire : dF = I dl × B",
+   "tex": "\\vec{F} = I \\, \\vec{l} \\times \\vec{B}",
+   "titre": "La force subie par un courant dans un champ",
+   "type": "formule"
+  },
+  "laplace_intensite": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "laplace_fig"
+   },
+   "kicker": "Force de Laplace",
+   "note": "F en newtons · I en ampères · l en mètres · B en teslas",
+   "tex": "F = I l B \\sin\\theta",
+   "titre": "Son intensité : I fois l fois B fois sinus thêta",
+   "type": "formule"
+  },
+  "lenz": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "lenz"
+   },
+   "kicker": "Loi de Lenz",
+   "texte": "Le courant induit s'oppose à la variation de flux qui l'a créé. Flux qui augmente : le champ induit est contraire ; flux qui diminue : le champ induit va dans le même sens.",
+   "type": "phrase"
+  },
+  "lorentz": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "deviation_magnetique_fig"
+   },
+   "kicker": "Force de Lorentz",
+   "note": "q : charge de la particule · v : sa vitesse · B : le champ magnétique",
+   "tex": "\\vec{F}_L = q \\, \\vec{v} \\times \\vec{B}",
+   "titre": "La force subie par une charge en mouvement",
+   "type": "formule"
+  },
+  "lorentz_proprietes": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "deviation_magnetique_fig"
+   },
+   "kicker": "Force de Lorentz",
+   "texte": "La force de Lorentz est perpendiculaire à la vitesse : elle ne travaille donc pas. Le module de la vitesse reste constant, et l'énergie cinétique de la particule est conservée.",
+   "type": "phrase"
+  },
+  "main_droite": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "laplace_fig"
+   },
+   "kicker": "Force de Laplace",
+   "texte": "Règle des trois doigts de la main droite : l'index suit le champ B, le majeur suit le courant I, et le pouce indique la force F.",
+   "type": "phrase"
+  },
+  "methode": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "induction"
+   },
+   "etapes": [
+    "Identifier ce qui varie : B, S, θ ou i",
+    "Calculer le flux Φ, ou les liaisons NΦ",
+    "Appliquer Faraday : ℰ = −dΦ/dt",
+    "Sens par la loi de Lenz ; unités : Wb, V, H, J"
+   ],
+   "kicker": "Méthode",
+   "type": "recap"
+  },
+  "moteur": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "induction"
+   },
+   "kicker": "Application",
+   "note": "τ : couple sur une bobine de N spires, d'aire A, parcourue par I",
+   "tex": "\\tau = N I A B \\sin\\theta",
+   "titre": "Le moteur électrique : un couple qui fait tourner",
+   "type": "formule"
+  },
+  "ordres": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "lignes_champ"
+   },
+   "etapes": [
+    "Champ terrestre : environ 10⁻⁵ T",
+    "Aimant permanent : 1 à 1,5 T",
+    "IRM médicale : 1 à 3 T",
+    "Piège : spire en 2a, fil en 2πr, ne pas confondre"
+   ],
+   "kicker": "Ordres de grandeur",
+   "type": "recap"
+  },
+  "orientations": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "aimant"
+   },
+   "etapes": [
+    "Fil : main droite, doigts enroulés dans le sens des lignes",
+    "Spire : tire-bouchon, le pouce donne le sens de B",
+    "Solénoïde : bonhomme d'Ampère, B parallèle à l'axe",
+    "Aimant : lignes du Nord vers le Sud à l'extérieur"
+   ],
+   "kicker": "Orienter le champ",
+   "type": "recap"
+  },
+  "periode_helice": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "orbite"
+   },
+   "kicker": "Mouvement circulaire",
+   "texte": "La période et la fréquence ne dépendent ni de la vitesse ni du rayon. Si la vitesse fait un angle quelconque avec le champ, seule sa composante perpendiculaire est courbée : la trajectoire devient une hélice.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Sources : aimant, fil, spire, solénoïde",
+    "Lorentz : F = qv∧B, trajectoire de rayon mv/qB",
+    "Laplace : F = IlB sinθ — moteur, haut-parleur",
+    "Faraday : ℰ = −dΦ/dt, sens par la loi de Lenz",
+    "Bobine : L = NΦ/i et E = ½Li²"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "solenoide": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Champ d'un solénoïde",
+   "note": "n = N/L : spires par mètre · valable loin des extrémités",
+   "tex": "B = \\mu_0 n I",
+   "titre": "Un champ uniforme, parallèle à l'axe",
+   "type": "formule"
+  },
+  "spectrographe": {
+   "kicker": "Application",
+   "tex": [
+    "v = \\sqrt{\\tfrac{2qU}{m}}",
+    "r = \\tfrac{\\sqrt{2mU}}{q B}",
+    "r \\propto \\sqrt{\\tfrac{m}{q}}"
+   ],
+   "titre": "Le spectrographe de masse trie les ions",
+   "type": "etape"
+  },
+  "spire": {
+   "kicker": "Champ d'une spire",
+   "note": "a : rayon de la spire · sens donné par la règle de la main droite",
+   "tex": "B = \\frac{\\mu_0 I}{2a}",
+   "titre": "Au centre d'une spire circulaire",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "lignes_champ"
+   },
+   "kicker": "Physique",
+   "sous": "Champs magnétiques, force de Laplace et induction : la force des aimants et des courants",
+   "titre": "Électromagnétisme",
+   "type": "titre"
+  }
+ },
+ "lecons": [
+  10584,
+  10600,
+  10601,
+  10602
+ ],
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les sources du champ magnétique"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les forces du champ magnétique. Le champ est créé ; voyons maintenant comment il agit sur les charges en mouvement et sur les courants.",
+    "texte": "Partie 2 : force de Lorentz et force de Laplace."
+   },
+   "sous_titre": "Force de Lorentz et force de Laplace"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : les applications de la force de Laplace, puis l'induction. Après les forces, voici ce qu'elles font tourner, ce qu'elles font sonner, et comment un champ qui varie crée un courant.",
+    "texte": "Partie 3 : applications de Laplace et induction."
+   },
+   "sous_titre": "Applications de la force de Laplace et induction"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'électromagnétisme. Au programme : d'où vient le champ magnétique et comment le calculer, les forces qu'il exerce sur les charges et sur les courants, avec la force de Lorentz et la force de Laplace, et enfin l'induction, qui transforme un champ variable en courant électrique.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Électromagnétisme : champs, forces et induction."
+  },
+  {
+   "dit": "Par quoi commencer ? Par une question simple : qu'est-ce qui crée un champ magnétique ? Deux réponses : les aimants permanents, et les courants électriques. Nous allons d'abord calculer le champ créé par chaque source, puis étudier les forces que ce champ exerce, et les courants qu'il peut induire.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Qui crée le champ magnétique ? Aimants et courants."
+  },
+  {
+   "dit": "Un aimant permanent est un matériau dont les moments magnétiques microscopiques restent alignés, même en l'absence de tout courant électrique. Son champ est constant dans le temps, et son intensité dépend du matériau : ferrite, Alnico ou néodyme-fer-bore. Retenez le trajet des lignes de champ : elles sortent du pôle Nord et entrent par le pôle Sud.",
+   "ecran": "aimants",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "L'aimant permanent : des lignes du Nord vers le Sud."
+  },
+  {
+   "dit": "Un courant continu qui traverse un fil rectiligne crée un champ magnétique dont les lignes sont des cercles centrés sur le fil. À la distance r du fil, le champ vaut mu zéro fois I, divisé par deux pi r. Plus on s'éloigne du fil, plus le champ faiblit.",
+   "ecran": "fil",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Fil rectiligne : B = μ₀I/2πr."
+  },
+  {
+   "dit": "Pour une spire circulaire de rayon a, parcourue par un courant I, le champ au centre de la spire vaut mu zéro fois I, divisé par deux a. Son sens se trouve avec la règle de la main droite, ou celle du tire-bouchon : les doigts suivent le courant, et le pouce donne le sens du champ.",
+   "ecran": "spire",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Spire : B = μ₀I/2a au centre."
+  },
+  {
+   "dit": "Un solénoïde est une bobine longue, faite de nombreuses spires enroulées. À l'intérieur, loin des extrémités, le champ est uniforme et parallèle à l'axe : il vaut mu zéro fois n fois I, où n est le nombre de spires par mètre. C'est l'outil standard pour fabriquer un champ magnétique contrôlé.",
+   "ecran": "solenoide",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Solénoïde : B = μ₀nI, uniforme à l'intérieur."
+  },
+  {
+   "dit": "Derrière ces trois formules, il y a une loi fondamentale : la loi de Biot et Savart. Chaque petit élément de courant contribue au champ par un terme en mu zéro sur quatre pi, fois I fois le produit vectoriel de d l par r chapeau, divisé par r au carré. En additionnant toutes les contributions, on retrouve les champs du fil, de la spire et du solénoïde.",
+   "ecran": "biot_savart",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Biot et Savart : la loi dont tout découle."
+  },
+  {
+   "dit": "Pour orienter le champ, trois règles à connaître par cœur : la règle de la main droite pour un fil, celle du tire-bouchon pour une spire, et celle du bonhomme d'Ampère pour un solénoïde. Et pour un aimant, souvenez-vous : à l'extérieur, les lignes de champ vont du pôle Nord vers le pôle Sud.",
+   "ecran": "orientations",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Main droite, tire-bouchon, bonhomme d'Ampère."
+  },
+  {
+   "dit": "Exemple résolu : un solénoïde de cinquante centimètres contient cinq cents spires, parcourues par un courant de deux ampères. La densité de spires vaut mille spires par mètre. Le champ au centre, mu zéro fois n fois I, vaut alors environ deux virgule cinq fois dix puissance moins trois tesla : deux virgule cinq milliteslas, uniforme et parallèle à l'axe.",
+   "ecran": "exemple_solenoide",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Exemple : n = 1000 spires/m, B ≈ 2,5 mT."
+  },
+  {
+   "dit": "Quelques ordres de grandeur pour situer ces valeurs : le champ magnétique terrestre vaut environ dix puissance moins cinq tesla, un aimant permanent entre un et un virgule cinq tesla, et une IRM médicale entre un et trois teslas. Et attention au piège classique : la formule de la spire contient deux a, celle du fil contient deux pi r ; les confondre fausse le résultat de plusieurs ordres de grandeur.",
+   "ecran": "ordres",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Ordres de grandeur : de 10⁻⁵ T (Terre) à 3 T (IRM)."
+  },
+  {
+   "dit": "Une particule de charge q, qui se déplace à la vitesse v dans un champ magnétique uniforme, subit une force : la force de Lorentz, égale à q fois le produit vectoriel de v par B. Sa direction est perpendiculaire à la fois à la vitesse et au champ, et son sens se trouve avec la main droite, pour une charge positive.",
+   "ecran": "lorentz",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Force de Lorentz : F = q·v ∧ B."
+  },
+  {
+   "dit": "Deux propriétés essentielles. L'intensité de la force vaut q v B sinus thêta, où thêta est l'angle entre la vitesse et le champ. Surtout, la force de Lorentz est toujours perpendiculaire au déplacement : elle ne travaille pas. Le module de la vitesse reste donc constant et l'énergie cinétique est conservée : le champ courbe la trajectoire, sans accélérer ni freiner la particule.",
+   "ecran": "lorentz_proprietes",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La force de Lorentz ne travaille pas : v constante."
+  },
+  {
+   "dit": "Cas fondamental : si la vitesse est perpendiculaire au champ, la force de Lorentz joue le rôle de force centripète. Égaler q v B à m v carré sur r donne le rayon de la trajectoire : r égale m v sur q B. La période de révolution vaut deux pi m sur q B, et la fréquence, son inverse, q B sur deux pi m.",
+   "ecran": "circulaire",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Trajectoire circulaire : r = mv/qB."
+  },
+  {
+   "dit": "Remarquez une propriété unique du champ magnétique uniforme : la période et la fréquence ne dépendent ni de la vitesse, ni du rayon de la trajectoire. Et si la vitesse fait un angle quelconque avec le champ ? Seule sa composante perpendiculaire, v sinus thêta, est déviée : la particule tourne autour des lignes de champ tout en avançant le long d'elles, en décrivant une hélice.",
+   "ecran": "periode_helice",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "T et f indépendantes de v ; sinon, trajectoire en hélice."
+  },
+  {
+   "dit": "Application célèbre : le spectrographe de masse. Des ions sont d'abord accélérés par une tension U, ce qui leur donne une vitesse égale à racine de deux q U sur m, puis ils traversent un champ B perpendiculaire. Leur rayon est proportionnel à racine de m sur q : en mesurant le rayon, on obtient le rapport masse sur charge, et l'on peut séparer les isotopes d'un même élément.",
+   "ecran": "spectrographe",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Spectrographe : r ∝ √(m/q), on trie les isotopes."
+  },
+  {
+   "dit": "Autre application : le cyclotron, qui accélère les particules chargées. Le champ magnétique les contraint à tourner en cercles, et un champ électrique alternatif les accélère à chaque passage entre les deux électrodes en forme de D. Comme la fréquence de révolution ne dépend pas de l'énergie, le générateur garde une fréquence fixe, toujours en phase. Limite de la machine : les particules doivent rester non relativistes, bien plus lentes que la lumière.",
+   "ecran": "cyclotron",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Cyclotron : B courbe, E accélère, fréquence fixe."
+  },
+  {
+   "dit": "Exemple type bac : un proton se déplace perpendiculairement à un champ uniforme de zéro virgule huit tesla, à trois fois dix puissance six mètres par seconde. Son rayon de trajectoire vaut m v sur q B, soit environ trois virgule neuf centimètres. Sa période de révolution vaut environ huit virgule deux fois dix puissance moins huit seconde, et sa fréquence environ un virgule deux fois dix puissance sept hertz.",
+   "ecran": "exemple_proton",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Exemple : r ≈ 3,9 cm, T ≈ 8,2×10⁻⁸ s, f ≈ 1,2×10⁷ Hz."
+  },
+  {
+   "dit": "Passons des charges isolées aux courants. Un conducteur droit de longueur l, parcouru par un courant I et plongé dans un champ magnétique, subit la force de Laplace : F égale I fois le produit vectoriel de l par B. C'est la même interaction que la force de Lorentz, mais appliquée à l'ensemble des charges qui circulent dans le fil.",
+   "ecran": "laplace",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Force de Laplace : F = I·l ∧ B."
+  },
+  {
+   "dit": "En intensité, la force de Laplace vaut I fois l fois B fois sinus thêta, où thêta est l'angle entre le conducteur et le champ. Elle est donc maximale lorsque le conducteur est perpendiculaire au champ, et nulle lorsqu'il lui est parallèle. La force est perpendiculaire au plan formé par le fil et le champ.",
+   "ecran": "laplace_intensite",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "F = IlB·sin θ : maximale à 90 degrés."
+  },
+  {
+   "dit": "Comment trouver le sens de cette force sans calcul ? Avec la règle des trois doigts de la main droite : pouce, index et majeur perpendiculaires entre eux ; l'index suit le champ B, le majeur suit le courant I, et le pouce donne la force de Laplace. C'est le réflexe à avoir le jour de l'épreuve.",
+   "ecran": "main_droite",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Trois doigts : index B, majeur I, pouce F."
+  },
+  {
+   "dit": "Exemple : un conducteur droit de vingt centimètres porte un courant de cinq ampères, dans un champ de zéro virgule quatre-vingts tesla, avec un angle de trente degrés entre le fil et le champ. La force vaut cinq fois zéro virgule vingt fois zéro virgule quatre-vingts fois sinus trente degrés, soit zéro virgule quarante newton. Son sens se détermine avec la règle de la main droite.",
+   "ecran": "exemple_laplace",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Exemple : F = 5 × 0,20 × 0,80 × sin 30° = 0,40 N."
+  },
+  {
+   "dit": "Première grande application : le moteur électrique. Une bobine placée dans le champ d'un aimant permanent subit, sur ses deux côtés, des forces de Laplace opposées : elles forment un couple qui fait tourner l'arbre. Pour une bobine de N spires et d'aire A, ce couple vaut N I A B sinus thêta.",
+   "ecran": "moteur",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Moteur : le couple τ = NIAB·sin θ fait tourner."
+  },
+  {
+   "dit": "Vérifions sur un moteur simplifié : un segment de conducteur de dix centimètres, parcouru par trois ampères, perpendiculaire à un champ de zéro virgule cinq tesla. La force de Laplace vaut trois fois zéro virgule dix fois zéro virgule cinq, soit zéro virgule quinze newton. Appliquée au bout d'un bras, cette force crée le couple qui met le rotor en mouvement.",
+   "ecran": "exemple_moteur",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Exemple : F = 3 × 0,10 × 0,50 = 0,15 N."
+  },
+  {
+   "dit": "Deuxième application : le haut-parleur, qui convertit un signal audio en son. Sa bobine est conçue pour que le conducteur reste toujours perpendiculaire au champ : la force de Laplace y est maximale, égale à I l B. Quand le courant varie au rythme du signal, la force varie aussi, le cône vibre, et le son naît. Si le courant s'inverse, la force change de sens : tout le principe est là.",
+   "ecran": "haut_parleur",
+   "id": "p24",
+   "pause_apres": 0.6,
+   "texte": "Haut-parleur : F = IlB fait vibrer le cône."
+  },
+  {
+   "dit": "Changeons de point de vue avec l'induction. D'abord, une grandeur : le flux magnétique, qui mesure le nombre de lignes de champ traversant une surface orientée. Il vaut B fois S fois cosinus thêta, où thêta est l'angle entre le champ et la perpendiculaire à la surface. Le flux peut varier de trois façons : si le champ varie, si la surface change, ou si elle tourne.",
+   "ecran": "flux",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Flux magnétique : Φ = BS·cos θ, en webers."
+  },
+  {
+   "dit": "La loi de Faraday dit l'essentiel : dès que le flux magnétique varie au cours du temps, une force électromotrice induite apparaît dans le circuit, égale à moins la dérivée du flux par rapport au temps. Plus le flux varie vite, plus la tension induite est grande. Le signe moins n'est pas un détail : il porte la loi de Lenz.",
+   "ecran": "faraday",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Faraday : ℰ = −dΦ/dt."
+  },
+  {
+   "dit": "La loi de Lenz fixe le sens du courant induit : il s'établit toujours de façon à s'opposer à la variation de flux qui l'a créé. Si le flux augmente, le courant induit crée un champ contraire, qui freine cette augmentation. Si le flux diminue, le champ induit va dans le même sens, pour compenser la baisse. Le courant induit ne s'oppose pas au flux : il s'oppose à sa variation.",
+   "ecran": "lenz",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Lenz : le courant induit s'oppose à la variation de flux."
+  },
+  {
+   "dit": "Cas particulier important : l'auto-induction. Quand le courant d'une bobine varie, le flux qu'elle produit elle-même varie aussi, et elle induit une force électromotrice en elle-même. On définit son inductance L par : le flux total à travers les N spires vaut L fois i. L s'exprime en henrys, et la force électromotrice auto-induite vaut moins L fois la dérivée du courant.",
+   "ecran": "auto_induction",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Auto-induction : NΦ = Li, ℰ = −L·di/dt."
+  },
+  {
+   "dit": "Conséquence directe : une bobine parcourue par un courant stocke de l'énergie dans son champ magnétique, égale à un demi de L fois i au carré. Et le signe de la force électromotrice auto-induite traduit l'opposition de Lenz : si le courant augmente, elle s'y oppose ; s'il diminue, elle cherche à le maintenir.",
+   "ecran": "energie_bobine",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Énergie de la bobine : E = ½Li²."
+  },
+  {
+   "dit": "Voici la démarche à suivre devant tout problème d'induction : identifier ce qui varie, le champ, la surface, l'angle ou le courant ; calculer le flux en fonction du temps ; appliquer la loi de Faraday ; déterminer le sens avec la loi de Lenz ; et vérifier les unités à chaque étape.",
+   "ecran": "methode",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Méthode : varier, fluxer, dériver, orienter."
+  },
+  {
+   "dit": "Exemple complet, en deux temps. Un solénoïde de cinq cents spires, long de vingt centimètres et de section un virgule zéro fois dix puissance moins trois mètre carré, voit son courant croître de zéro à quatre ampères en zéro virgule dix seconde. Son inductance vaut mu zéro fois N au carré fois S, divisé par l : environ un virgule cinquante-sept fois dix puissance moins trois henry.",
+   "ecran": "exemple_inductance",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Exemple : L ≈ 1,57×10⁻³ H."
+  },
+  {
+   "dit": "Le courant croît de quarante ampères par seconde : la force électromotrice auto-induite vaut moins L fois cette pente, environ moins six virgule trois fois dix puissance moins deux volt ; le signe moins confirme qu'elle s'oppose à la croissance du courant. À l'instant final, où le courant vaut quatre ampères, l'énergie stockée dans le champ vaut environ un virgule vingt-six fois dix puissance moins deux joule.",
+   "ecran": "exemple_fem",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "Exemple : ℰ ≈ −6,3×10⁻² V, E ≈ 1,26×10⁻² J."
+  },
+  {
+   "dit": "Résumons ce cours : le champ magnétique naît des aimants et des courants, et la loi de Biot et Savart permet de le calculer. Il exerce la force de Lorentz sur les charges, qui courbe leurs trajectoires en cercles, et la force de Laplace sur les courants, à l'origine des moteurs et des haut-parleurs. Enfin, un flux variable induit une tension selon la loi de Faraday, avec le sens donné par Lenz : c'est l'induction, le principe des générateurs.",
+   "ecran": "recap",
+   "id": "p33",
+   "pause_apres": 0.7,
+   "texte": "À retenir : sources, Lorentz, Laplace, induction."
+  }
+ ],
+ "titre": "Électromagnétisme : champs magnétiques, force de Laplace et induction"
+}

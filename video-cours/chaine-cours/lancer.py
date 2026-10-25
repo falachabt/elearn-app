@@ -35,12 +35,22 @@ sys.path.insert(0, str(PIPE / "mixte"))
 from decode_lecon import decoder  # noqa: E402
 from selecteur_scenes import texte_inline  # noqa: E402
 
-REF_AUDIO = ICI / "voix" / "ref-femme-4s.wav"
-REF_TEXTE = "Bonjour à tous, aujourd hui nous allons apprendre à résoudre une équation du second degré."
+REF_AUDIO = ICI / "voix" / "ref-homme-1.wav"
+REF_TEXTE = ("Bonjour à tous, et bienvenue dans ce nouveau cours. Aujourd'hui, nous allons découvrir "
+             "comment décrire le mouvement d'un corps, et surtout, comment sa vitesse évolue au fil du temps. "
+             "Mais attention, une question se pose : qu'est-ce qui distingue vraiment la vitesse de "
+             "l'accélération ? Retenez bien ceci : la vitesse décrit le déplacement, tandis que "
+             "l'accélération décrit le changement de vitesse. "
+             "Nous verrons d'abord les définitions, puis les formules essentielles, et enfin un "
+             "exemple complet, traité pas à pas.")
 GABARIT = ICI / "gabarit"
 CHROME = os.environ.get("CHAINE_CHROME", "/opt/pw-browsers/chromium-1243/chrome-linux64/chrome")
 TYPES = {"titre", "formule", "etape", "lignes", "phrase", "recap"}
-VITESSE = 0.92
+VITESSE = 1.0
+# Intonation (choix de Benny, 25/10/2026) : débit légèrement plus posé sur les
+# écrans qui portent le sens — titres, formules clés, récapitulatifs — et
+# naturel ailleurs ; la ponctuation des « dit » fait le reste.
+FACTEURS_VITESSE = {"titre": 0.96, "formule": 0.95, "recap": 0.95, "etape": 0.98, "phrase": 1.0, "lignes": 1.0}
 ETAPES = 16
 LEAD = 0.4
 DECALAGE_ECRAN = 0.15
@@ -251,8 +261,9 @@ def voix(script, dossier):
     import torch
     modele = OmniVoice.from_pretrained("k2-fsa/OmniVoice", device_map="cpu", dtype=torch.float32)
     for p in manquants:
+        type_ecran = script["ecrans"][p["ecran"]].get("type", "phrase")
         a = modele.generate(text=p["dit"], ref_audio=str(REF_AUDIO), ref_text=REF_TEXTE,
-                            num_step=ETAPES, speed=VITESSE)[0]
+                            num_step=ETAPES, speed=VITESSE * FACTEURS_VITESSE.get(type_ecran, 1.0))[0]
         sf.write(str(segs / f"{p['id']}.wav"), a, 24000)
         print("voix", p["id"], flush=True)
 
