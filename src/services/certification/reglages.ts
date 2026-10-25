@@ -26,6 +26,12 @@ export type Reglages = {
   objectifMax: number;
   /** Plan du diagnostic servi par le serveur (partie → nombre de questions) ; `null` si le serveur ne le sert pas. */
   diagComptes: Record<number, number> | null;
+  /**
+   * Longueur de base servie pour un mini-test par partie (`test_mini_length_by_part`, partie → nombre de questions) :
+   * le serveur sert 12 questions pour les parties 3, 4 et 6 (groupes entiers), 10 pour les autres — les parties absentes
+   * de la table valent 10. `null` si le serveur ne sert pas le réglage.
+   */
+  miniLongueursParPartie: Record<number, number> | null;
   statsMinReponses: number;
   tendanceMinPoints: number;
   validiteHorsLigneJours: number;
@@ -69,6 +75,22 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     }
     return sortie;
   };
+  /**
+   * Longueurs de base des minis par partie (`test_mini_length_by_part`) : même tolérance que le plan du diagnostic —
+   * cette donnée ne sert qu'aux libellés et au minuteur, elle ne doit jamais faire échouer le chargement des réglages.
+   */
+  const longueursMini = (): Record<number, number> | null => {
+    if (!table.has('test_mini_length_by_part')) return null;
+    const v = brut('test_mini_length_by_part');
+    if (typeof v !== 'object' || v === null || Array.isArray(v)) return null;
+    const sortie: Record<number, number> = {};
+    for (const [partie, compte] of Object.entries(v as Record<string, unknown>)) {
+      const n = Number(compte);
+      if (!Number.isFinite(n) || n <= 0) return null;
+      sortie[Number(partie)] = n;
+    }
+    return sortie;
+  };
   const budget = brut('session_budget') as Record<string, { notion_min: number; words: number; replay: number; series: number }>;
   return {
     scoreZ: nombre('score_z'),
@@ -99,6 +121,7 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     // `session_minutes_recommended`, cette donnée d'affichage ne doit jamais faire échouer le chargement des
     // réglages si une ancienne copie servie ou mise en cache ne le contient pas encore.
     diagComptes: planDiagnostic(),
+    miniLongueursParPartie: longueursMini(),
     statsMinReponses: nombre('stats_min_answers'),
     tendanceMinPoints: nombre('trend_min_points'),
     validiteHorsLigneJours: nombre('offline_validity_days'),

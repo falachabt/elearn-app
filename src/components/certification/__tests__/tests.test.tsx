@@ -119,7 +119,8 @@ describe('T1 · onglet Tests', () => {
     installer({ tentatives: [LIGNE({ id: 'a', kind: 'mini', part: null, scoreMin: 650, scoreMax: 730 }), LIGNE({ id: 'b' }), LIGNE({ id: 'c', status: 'abandoned' }), LIGNE({ id: 'd', kind: 'diagnostic' })] });
     await monter(<TestsToeic />);
     // Le statut du mini-test précède son détail (maquette v33) : 8 bonnes réponses sur 10, pour la partie 5 comme pour le mixte.
-    expect(await screen.findByText(`${t.tests.detailMiniPartie} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
+    // La carte des minis par partie annonce les longueurs servies selon les parties (réglage du seed) : 10 ou 12.
+    expect(await screen.findByText(`${t.tests.detailMiniPartiePlage.replace('{{min}}', '10').replace('{{max}}', '12')} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
     expect(screen.getAllByText(t.tests.statut.fait).length).toBeGreaterThan(0);
     expect(screen.getAllByText('8 sur 10').length).toBeGreaterThan(0);
     expect(screen.getByText(`${t.tests.detailMiniMixte} · ${fr.credits.cout.replace('{{n}}', '2')} hors Pass`)).toBeTruthy();
@@ -133,7 +134,7 @@ describe('T1 · onglet Tests', () => {
     await monter(<TestsToeic />);
     expect(await screen.findByText(t.tests.inclus)).toBeTruthy();
     expect(screen.getAllByText(t.tests.statut.pasFait).length).toBeGreaterThan(0);
-    expect(screen.getByText(t.tests.detailMiniPartie)).toBeTruthy();
+    expect(screen.getByText(t.tests.detailMiniPartiePlage.replace('{{min}}', '10').replace('{{max}}', '12'))).toBeTruthy();
   });
 
   it('les demi-tests et le test complet mènent à leur liste de tests', async () => {
@@ -163,15 +164,16 @@ describe('T1 · onglet Tests', () => {
 
 describe('T3 · reprise d’un test interrompu', () => {
   it('montre l’avancement et le temps restant, et reprend le même test', async () => {
-    await semer({ reponses: 2, decalageMs: 5 * 60_000 + 50_000 });
+    // La fausse banque sert 3 questions de partie 5 : la session dure 3 minutes (durée au servi), 1 min 50 écoulées.
+    await semer({ reponses: 2, decalageMs: 1 * 60_000 + 50_000 });
     await monter(<TestsToeic />);
     expect(await screen.findByText(t.tests.reprise.titre)).toBeTruthy();
-    expect(screen.getByText('4 min 10')).toBeTruthy();
+    expect(screen.getByText('1 min 10')).toBeTruthy();
     expect(screen.getByText(t.tests.reprise.sousMini.replace('{{n}}', '5'))).toBeTruthy();
     expect(screen.getAllByText(t.tests.reprise.avancement.replace('{{faites}}', '2').replace('{{total}}', '3')).length).toBeGreaterThan(0);
     await fireEvent.press(screen.getByText(t.tests.reprise.reprendre));
     expect(router.push).toHaveBeenCalledWith('/certification/mini-test');
-    expect(suivre).toHaveBeenCalledWith('cert_mock_resumed', { kind: 'mini', minute: 5 });
+    expect(suivre).toHaveBeenCalledWith('cert_mock_resumed', { kind: 'mini', minute: 1 });
   });
 
   it('abandon dans la fenêtre : confirmation, appel au serveur, état effacé, crédits rendus annoncés', async () => {
@@ -362,7 +364,8 @@ describe('écran d’examen', () => {
     await monter(<MiniTest />);
     expect(await screen.findByText(t.examen.entete.replace('{{n}}', '1').replace('{{total}}', '3'))).toBeTruthy();
     expect(screen.getByText(t.examen.sansCorrection)).toBeTruthy();
-    expect(screen.getByText('10:00')).toBeTruthy();
+    // 3 questions servies par la fausse banque : le chrono affiche la durée au servi, 3 minutes.
+    expect(screen.getByText('03:00')).toBeTruthy();
     for (let i = 0; i < 3; i++) {
       await fireEvent.press(await screen.findByText(/^A\b/));
       await fireEvent.press(screen.getByText(i === 2 ? t.examen.derniere : t.examen.suivante));

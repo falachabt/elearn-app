@@ -9,7 +9,7 @@ import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
 import { obtenirReglages } from '@/services/certification/etat';
 import { signalerErreurDemarrage } from '@/services/certification/erreurDemarrage';
-import { lancerDefTest } from '@/services/certification/miniTest';
+import { lancerDefTest, longueurMiniServie } from '@/services/certification/miniTest';
 import { CLE_NUMERO_LIGNE, CLE_TITRE_LISTE, PARTIES, meilleurDeSection, nombreFaits, numeroDansPartie, statutLigne, testConseille, testsDeLaPartie } from '@/services/certification/listesTests';
 import type { Reglages } from '@/services/certification/reglages';
 import type { DefTest, TypeDefTest } from '@/services/certification/types';
@@ -98,11 +98,15 @@ export function ListeTests() {
   const { solde, couts } = useCredits();
   const { cout } = useTextesCredits();
   const coutMini = type === 'mixed' ? couts.cert_mock_mini_twenty : couts.cert_mock_mini_ten;
-  const libelleMini = type === 'mixed' ? t('certification.tests.detailMiniMixte') : t('certification.tests.detailMiniPartie');
   const tousTests = etat.phase === 'ok' ? etat.valeur.tests : [];
   const tests = type === 'mini' && partie !== null ? testsDeLaPartie(tousTests, partie) : tousTests;
   const exam = etat.phase === 'ok' ? etat.valeur.exam : 'toeic';
   const reglagesOk = etat.phase === 'ok' ? etat.valeur.reglages : null;
+  // Nombre de questions annoncé pour un mini par partie : celui des définitions listées quand elles s'accordent
+  // (la donnée réelle — 12 pour les parties 3, 4 et 6) ; à défaut, la longueur que le serveur sert pour la partie.
+  const comptesMini = new Set(tests.map((x) => x.questions));
+  const nombreQuestionsMini = tests.length > 0 && comptesMini.size === 1 ? tests[0]!.questions : longueurMiniServie(partie, reglagesOk);
+  const libelleMini = type === 'mixed' ? t('certification.tests.detailMiniMixte') : t('certification.tests.detailMiniPartie', { n: nombreQuestionsMini });
   const meilleur = meilleurDeSection(tests);
   // Une moitié se lit sur la moitié du total (495 sur 990) ; le test complet se lit sur le total. Mini-tests et mixte : pas de section.
   const sectionMax = reglagesOk && (type === 'listening' || type === 'reading' || type === 'full')

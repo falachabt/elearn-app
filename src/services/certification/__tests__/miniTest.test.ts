@@ -4,7 +4,7 @@ import { definirApi } from '../api';
 import { notionsPerdues } from '../bilanMini';
 import { chronometre, minutesSecondes } from '../format';
 import {
-  abandonnerMini, cloreParTemps, dureeMiniMin, effacerMini, etatDeReprise, lancerMini, lireMini, longueursPossibles, minuteEcoulee,
+  abandonnerMini, cloreParTemps, dureeMiniMin, effacerMini, etatDeReprise, lancerMini, lireMini, longueurMiniServie, longueursMiniServies, longueursPossibles, minuteEcoulee,
   repondreMini, tempsRestantMs, terminerMini, type EtatMini,
 } from '../miniTest';
 import { lireReglages } from '../reglages';
@@ -35,6 +35,31 @@ describe('formules du mini-test', () => {
   it('la durée vient du réglage : 10 minutes pour 10 questions, 20 pour 20', () => {
     expect(dureeMiniMin(10, r)).toBe(r.miniMinutesPour10);
     expect(dureeMiniMin(20, r)).toBe(2 * r.miniMinutesPour10);
+  });
+
+  it('la durée est au prorata du nombre de questions : 12 questions, 12/10 du temps de base', () => {
+    expect(dureeMiniMin(12, r)).toBeCloseTo(1.2 * r.miniMinutesPour10, 9);
+  });
+
+  it('longueur servie par partie : le réglage du serveur fait foi (12 pour les parties 3, 4 et 6)', () => {
+    expect(longueurMiniServie(3, r)).toBe(12);
+    expect(longueurMiniServie(4, r)).toBe(12);
+    expect(longueurMiniServie(6, r)).toBe(12);
+    expect(longueurMiniServie(1, r)).toBe(10);
+    expect(longueurMiniServie(2, r)).toBe(10);
+    expect(longueurMiniServie(5, r)).toBe(10);
+    expect(longueurMiniServie(7, r)).toBe(10);
+    expect(longueurMiniServie(null, r)).toBe(10);
+    expect(longueursMiniServies(r)).toEqual([10, 12]);
+  });
+
+  it('sans réglage servi, la longueur retombe à 10 partout — et la lecture tolère la ligne absente ou illisible', () => {
+    expect(longueurMiniServie(6, null)).toBe(10);
+    expect(longueurMiniServie(6, { miniLongueursParPartie: null })).toBe(10);
+    expect(longueursMiniServies(null)).toEqual([10]);
+    const sansLigne = LIGNES_SEED.filter((l) => l.key !== 'test_mini_length_by_part');
+    expect(lireReglages(sansLigne).miniLongueursParPartie).toBeNull();
+    expect(lireReglages([...sansLigne, { key: 'test_mini_length_by_part', value: 'douze' }]).miniLongueursParPartie).toBeNull();
   });
 
   it('20 questions seulement en mixte ou sur les parties 5 à 7', () => {
@@ -86,9 +111,33 @@ describe('déroulé d’un mini-test', () => {
     expect(res.statut).toBe('demarre');
     expect(f.appels.minis).toEqual([{ partie: 5, longueur: 10 }]);
     const lu = await lireMini();
-    expect(lu?.dureeMin).toBe(r.miniMinutesPour10);
+    // La fausse banque sert 3 questions de partie 5 (plan du diagnostic) : la durée suit le nombre servi, pas le palier demandé.
+    expect(lu?.tentative.questions).toHaveLength(3);
+    expect(lu?.dureeMin).toBe(dureeMiniMin(3, r));
     expect(lu?.tentative.kind).toBe('mini');
     expect(lu?.reponses).toEqual([]);
+  });
+
+  it('le minuteur suit le nombre servi : 12 questions servies au palier de 10 en partie 6, durée au prorata', async () => {
+    const f = creerApiFausse();
+    // Le serveur sert 12 questions pour la partie 6 au palier de base (groupes entiers), quel que soit le palier demandé.
+    definirApi({
+      ...f.api,
+      demarrerMini: async (clientUuid, exam, partie, longueur, jour) => {
+        const rep = await f.api.demarrerMini(clientUuid, exam, partie, longueur, jour);
+        if (!rep.tentative) return rep;
+        const questions = Array.from({ length: 12 }, (_, i) => ({
+          id: `p6-${i + 1}`, part: 6, type: 'qcm', number: i + 1, stem: `Question ${i + 1}`, options: ['a', 'b', 'c', 'd'], group: null,
+        }));
+        return { ...rep, tentative: { ...rep.tentative, length: 12, questions } };
+      },
+    });
+    const res = await lancerMini('toeic', 6, 10, r);
+    expect(res.statut).toBe('demarre');
+    if (res.statut !== 'demarre') return;
+    expect(res.etat.tentative.questions).toHaveLength(12);
+    expect(res.etat.dureeMin).toBeCloseTo(1.2 * r.miniMinutesPour10, 9);
+    expect((await lireMini())?.dureeMin).toBeCloseTo(1.2 * r.miniMinutesPour10, 9);
   });
 
   it('solde insuffisant : aucune tentative n’est gardée', async () => {

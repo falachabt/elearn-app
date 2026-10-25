@@ -40,6 +40,8 @@ export const LIGNES_SEED: LigneReglage[] = [
   { key: 'cert_earn_valid_days', value: 30 },
   // Plan du diagnostic tel que le serveur le sert (diag_counts) : 21 questions, 9 écoute / 12 lecture.
   { key: 'diag_counts', value: { '1': 1, '2': 2, '3': 3, '4': 3, '5': 3, '6': 4, '7': 5 } },
+  // Longueurs de base des minis par partie telles que le serveur les sert : 12 pour les parties 3, 4 et 6, 10 sinon.
+  { key: 'test_mini_length_by_part', value: { '3': 12, '4': 12, '6': 12 } },
 ];
 
 export const REGLAGES = lireReglages(LIGNES_SEED);

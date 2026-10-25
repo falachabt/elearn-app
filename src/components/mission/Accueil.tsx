@@ -1,6 +1,6 @@
 import { lirePlanning, planningEstTermine, lirePlanningTermineVu, noterPlanningTermineVu } from '@/services/planning';
 import { Ionicons } from '@expo/vector-icons';
-import { ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
+import { Award, ChevronDown, GraduationCap, Trophy } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -56,9 +56,14 @@ export function titreMission(m: Mission | null): string | null {
  * Libellé court du profil affiché dans le sélecteur d'en-tête :
  * - élève : classe seule (ex. 3e, Tle) sans le pays
  * - concours : sigle seul (ex. ENS, Médecine) sans le pays
+ * - certification : sigle court de l'examen, c'est-à-dire son code en capitales (ex. TOEIC) ;
+ *   le nom complet vient de `cert_exams` et sert aux listes (A2), pas à la pastille.
  */
 export function libelleProfil(profil: Profil | null): string {
   if (!profil) return '3e';
+  if (profil.type === 'certification') {
+    return (profil.exam ?? 'toeic').toUpperCase();
+  }
   if (profil.type === 'concours') {
     return (
       profil.concours?.sigle ??
@@ -77,21 +82,24 @@ export function libelleProfil(profil: Profil | null): string {
 }
 
 /**
- * Sélecteur de classe ou de programme actuel : sous forme de menu select, un appui
- * ouvre l'écran permettant de changer de classe ou de programme.
+ * Sélecteur de classe, de programme ou de certification actuel : sous forme de menu select,
+ * un appui ouvre la page de changement de parcours (`/profil/changer`, sur la famille active).
  * Même gabarit et hauteur que les pastilles voisines (série, éclair, cloche).
+ * Monté sur l'accueil de chaque famille : élève et concours (écran `Accueil`) et
+ * certification (`AccueilToeic`, à la place du titre « Accueil », demande de Benny du 25/10/2026).
  */
 export function SelecteurClasse({ profil }: { profil: Profil | null }) {
   const { t } = useTraduction();
   const { theme } = useTheme();
   const libelle = libelleProfil(profil);
   const concours = profil?.type === 'concours';
+  const certification = profil?.type === 'certification';
 
   return (
     <View style={styles.zoneSelecteur}>
       <Appui
         accessibilityRole="button"
-        accessibilityLabel={t('classe.selecteurA11y', { classe: libelle })}
+        accessibilityLabel={t(certification ? 'classe.selecteurCertificationA11y' : 'classe.selecteurA11y', { classe: libelle })}
         onPress={() => router.push('/profil/changer')}
         rayon={rayon.s}
         decalage={2}
@@ -100,6 +108,8 @@ export function SelecteurClasse({ profil }: { profil: Profil | null }) {
         <View style={[styles.selecteur, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           {concours ? (
             <Trophy size={14} strokeWidth={2.2} color={theme.texte.principal} />
+          ) : certification ? (
+            <Award size={14} strokeWidth={2.2} color={theme.texte.principal} />
           ) : (
             <GraduationCap size={14} strokeWidth={2.2} color={theme.texte.principal} />
           )}

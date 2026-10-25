@@ -1,9 +1,11 @@
-import { router } from 'expo-router';
+import { router, useFocusEffect } from 'expo-router';
 import { RotateCcw } from 'lucide-react-native';
+import { useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { lireProfil, type Profil } from '@/services/profil';
 import { chargerAccueil, type DonneesAccueil } from '@/services/certification/accueil';
 import { afficherJour } from '@/services/certification/format';
 import { avancement } from '@/services/certification/seanceJour';
@@ -16,6 +18,7 @@ import { Bouton } from '../Bouton';
 import { Carte } from '../Carte';
 import { CompteurCredits } from '../credits/CompteurCredits';
 import { Ecran } from '../Ecran';
+import { SelecteurClasse } from '../mission/Accueil';
 import { Cloche } from '../notifications/Cloche';
 import { PreparationDiagnostic } from './PreparationDiagnostic';
 import { BarreProgression, EnteteToeic, EtiquetteSection, LigneChoix, Squelette, Tuile } from './ui';
@@ -25,6 +28,21 @@ import { useChargement } from './useChargement';
 export function AccueilToeic() {
   const { t } = useTraduction();
   const { etat, recharger } = useChargement(chargerAccueil);
+  // Chip changeur de profil en haut à gauche, comme sur les accueils élève et concours
+  // (demande de Benny du 25/10/2026) : le profil local donne le libellé (l'examen en cours).
+  // Relu à chaque retour sur l'onglet : le retour de `/profil/changer` met le chip à jour.
+  const [profil, setProfil] = useState<Profil | null>(null);
+  useFocusEffect(
+    useCallback(() => {
+      let vivant = true;
+      void lireProfil()
+        .then((p) => vivant && setProfil(p))
+        .catch(() => {});
+      return () => {
+        vivant = false;
+      };
+    }, []),
+  );
   // Avant le diagnostic, le bouton reste fixé en bas (maquette TOEIC-S7), au-dessus de la barre d'onglets.
   const avantDiagnostic = etat.phase === 'ok' && !etat.valeur.diagnosticFait;
   const commencerDiagnostic = () => {
@@ -37,6 +55,7 @@ export function AccueilToeic() {
       entete={
         <EnteteToeic
           titre={t('certification.accueilToeic.entete')}
+          gauche={profil ? <SelecteurClasse profil={profil} /> : <View />}
           droite={
             <View style={styles.droite}>
               <Cloche pourInvite />

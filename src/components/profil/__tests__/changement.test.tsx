@@ -41,6 +41,13 @@ beforeEach(async () => {
   mockParams.modifier = '1';
 });
 
+describe('Libellé du chip changeur de profil', () => {
+  it('certification : le sigle court de l’examen, depuis le code du profil', () => {
+    expect(libelleProfil({ type: 'certification', exam: 'toeic', termine: true })).toBe('TOEIC');
+    expect(libelleProfil({ type: 'certification', termine: true })).toBe('TOEIC');
+  });
+});
+
 describe('Choix de classe en modification : confirmer sans changement ne touche à rien', () => {
   it('même classe et même pays : aucune écriture, retour', async () => {
     await monter(<ChoixClasse />);

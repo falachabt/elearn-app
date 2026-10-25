@@ -48,8 +48,20 @@ export const effacerMini = () => AsyncStorage.removeItem(CLE_MINI).catch(() => {
 /** Une partie ou le mixte : 20 questions réservées au mixte et aux parties 5 à 7 (écart E-35). */
 export const longueursPossibles = (partie: number | null): LongueurMini[] => (partie === null || partie >= 5 ? [10, 20] : [10]);
 
-/** Le temps vient des réglages du serveur : 10 minutes pour 10 questions au départ. */
-export const dureeMiniMin = (longueur: LongueurMini, r: Pick<Reglages, 'miniMinutesPour10'>) => (longueur / 10) * r.miniMinutesPour10;
+/** Le temps vient des réglages du serveur : 10 minutes pour 10 questions au départ, au prorata du nombre de questions. */
+export const dureeMiniMin = (longueur: number, r: Pick<Reglages, 'miniMinutesPour10'>) => (longueur / 10) * r.miniMinutesPour10;
+
+/**
+ * Longueur de base réellement servie pour un mini-test d'une partie : le réglage serveur `test_mini_length_by_part`
+ * fait servir 12 questions pour les parties 3, 4 et 6 (groupes entiers) ; toute partie absente du réglage — ou
+ * réglage non servi — vaut le palier de base, 10.
+ */
+export const longueurMiniServie = (partie: number | null, r?: Pick<Reglages, 'miniLongueursParPartie'> | null): number =>
+  partie === null ? 10 : (r?.miniLongueursParPartie?.[partie] ?? 10);
+
+/** Les longueurs de base servies sur les sept parties, distinctes et triées (libellés qui ne visent pas une partie). */
+export const longueursMiniServies = (r?: Pick<Reglages, 'miniLongueursParPartie'> | null): number[] =>
+  [...new Set([1, 2, 3, 4, 5, 6, 7].map((p) => longueurMiniServie(p, r)))].sort((a, b) => a - b);
 
 /** Durée officielle des épreuves fixes (T5), en minutes : écoute 45, lecture 75, test complet 120. */
 export const dureeTestMin: Record<TypeTestFixe, number> = { half_listening: 45, half_reading: 75, full: 120 };
@@ -101,7 +113,9 @@ async function lancerMiniUnique(exam: string, partie: number | null, longueur: L
   const etat: EtatMini = {
     clientUuid, exam, partie, longueur, tentative: rep.tentative,
     debutMs: Number.isFinite(debut) ? debut : Date.now(),
-    dureeMin: dureeMiniMin(longueur, r),
+    // Le serveur peut servir plus de questions que le palier demandé (12 au lieu de 10 pour les parties 3, 4 et 6) :
+    // la durée suit le nombre réellement servi, comme pour les tests composés — jamais le palier demandé.
+    dureeMin: dureeMiniMin(rep.tentative.questions.length, r),
     reponses: [], index: 0, termine: false, fin: null,
   };
   await etapeDemarrage('stockage', () => ecrireMini(etat));

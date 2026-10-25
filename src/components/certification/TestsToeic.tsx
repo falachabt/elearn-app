@@ -8,7 +8,7 @@ import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { minutesSecondes } from '@/services/certification/format';
 import { suiviDe, type SuiviTest } from '@/services/certification/suivi';
-import { abandonnerMini, tempsRestantMs } from '@/services/certification/miniTest';
+import { abandonnerMini, longueursMiniServies, tempsRestantMs } from '@/services/certification/miniTest';
 import { chargerTests, derniereEstimation, testsFaits, type DonneesTests } from '@/services/certification/testsAccueil';
 import type { ProgressionTest } from '@/services/certification/types';
 import { useCredits } from '@/session/CreditsProvider';
@@ -90,6 +90,12 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   const pComplet = progression('full');
   const corrigeQ = couts.cert_mock_review;
   const detail = (base: string, c: number | undefined) => (c === undefined || pass ? base : t('certification.tests.avecCout', { detail: base, cout: cout(c) }));
+  // La carte ne vise pas une partie : elle annonce les longueurs de base que le serveur sert selon les parties
+  // (réglage test_mini_length_by_part) — la fourchette quand elles diffèrent, le nombre quand il est unique.
+  const longueursMini = longueursMiniServies(donnees.reglages);
+  const detailMiniPartie = longueursMini.length > 1
+    ? t('certification.tests.detailMiniPartiePlage', { min: longueursMini[0]!, max: longueursMini[longueursMini.length - 1]! })
+    : t('certification.tests.detailMiniPartie', { n: longueursMini[0] ?? 10 });
   const estimation = donnees.tentatives ? derniereEstimation(donnees.tentatives) : null;
   const faits = donnees.tentatives ? testsFaits(donnees.tentatives) : null;
   const couleurs = stylePartie(theme, sombre);
@@ -114,7 +120,7 @@ function Accueil({ donnees }: { donnees: DonneesTests }) {
   return (
     <>
       <EtiquetteSection texte={t('certification.tests.etiquetteMini')} />
-      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(t('certification.tests.detailMiniPartie'), dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push('/certification/choix-partie' as never)} />
+      <CarteTest icone={Target} couleur={couleurs[1]!.couleur} titre={t('certification.tests.miniPartie')} sous={detail(detailMiniPartie, dixQ)} {...statutMini(suiviMiniPartie)} onPress={() => router.push('/certification/choix-partie' as never)} />
       <CarteTest icone={Layers} couleur={couleurs[5]!.couleur} titre={t('certification.tests.miniMixte')} sous={detail(t('certification.tests.detailMiniMixte'), vingtQ)} {...statutMini(suiviMiniMixte)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'mixed' } } as never)} />
       <EtiquetteSection texte={t('certification.tests.etiquetteComplets')} />
       <CarteTest icone={Headphones} couleur={couleurs[3]!.couleur} titre={t('certification.tests.demiEcoute')} sous={detail(t('certification.tests.detailDemi'), demiQ)} {...statutProgression(pEcoute)} score={scoreSur(pEcoute, total / 2)} onPress={() => router.push({ pathname: '/certification/liste-tests', params: { kind: 'listening' } } as never)} />

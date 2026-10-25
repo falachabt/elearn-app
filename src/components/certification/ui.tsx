@@ -10,16 +10,22 @@ import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Appui } from '../Appui';
 import { BoutonFermer } from '../arrivee/MiniTest';
 
-/** En-tête fixe des écrans TOEIC : retour carré puis titre (maquettes A2 à A8). */
-export function EnteteToeic({ titre, onRetour, droite }: { titre: string; onRetour?: () => void; droite?: ReactNode }) {
+/**
+ * En-tête fixe des écrans TOEIC : retour carré puis titre (maquettes A2 à A8).
+ * `gauche`, quand il est fourni, remplace le texte du titre : l'accueil y pose le chip
+ * changeur de profil (`SelecteurClasse`) à la place de « Accueil » (demande de Benny du 25/10/2026).
+ */
+export function EnteteToeic({ titre, onRetour, droite, gauche }: { titre: string; onRetour?: () => void; droite?: ReactNode; gauche?: ReactNode }) {
   const { theme } = useTheme();
   const { t } = useTraduction();
   return (
     <View style={styles.entete}>
       {onRetour ? <BoutonFermer icone="chevron-back" libelle={t('certification.retour')} onPress={onRetour} /> : null}
-      <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.titreEntete, { color: theme.texte.principal }]}>
-        {titre}
-      </Text>
+      {gauche ?? (
+        <Text accessibilityRole="header" numberOfLines={1} style={[typo.h3, styles.titreEntete, { color: theme.texte.principal }]}>
+          {titre}
+        </Text>
+      )}
       {droite}
     </View>
   );

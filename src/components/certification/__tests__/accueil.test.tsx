@@ -92,6 +92,18 @@ describe('N1 · Accueil TOEIC', () => {
     expect(screen.queryByText(t.accueilToeic.parties)).toBeNull();
   });
 
+  it('le chip changeur de profil remplace le titre « Accueil » et ouvre la page de changement', async () => {
+    await monter(<AccueilToeic />);
+    // Même chip que les accueils élève et concours : libellé court de l'examen du profil (TOEIC),
+    // libellé d'accessibilité dédié à la certification, et plus de titre « Accueil » dans l'en-tête.
+    const chip = await screen.findByRole('button', { name: fr.classe.selecteurCertificationA11y.replace('{{classe}}', 'TOEIC') });
+    expect(chip).toBeTruthy();
+    expect(screen.getByText('TOEIC')).toBeTruthy();
+    expect(screen.queryByText(t.accueilToeic.entete)).toBeNull();
+    await fireEvent.press(chip);
+    expect(router.push).toHaveBeenCalledWith('/profil/changer');
+  });
+
   it('la carte Test dans montre les séances faites de la semaine sur les séances prévues', async () => {
     await AsyncStorage.setItem('cert.seancesFaites', JSON.stringify([{ clientUuid: 'x', jour: jourDe(new Date()) }]));
     await monter(<AccueilToeic />);

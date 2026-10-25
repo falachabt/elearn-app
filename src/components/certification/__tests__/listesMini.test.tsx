@@ -89,10 +89,20 @@ describe('liste des mini-tests d’une partie (v39)', () => {
 });
 
 describe('départ depuis la liste d’un mini-test (v39)', () => {
-  it('le coût du mini-test est affiché dans la liste de la partie', async () => {
+  it('le coût du mini-test est affiché dans la liste de la partie, avec son nombre de questions', async () => {
     mockParams = { kind: 'mini', partie: '5' };
     await monter(<ListeTests />);
-    expect(await screen.findByText(`${fr.certification.tests.detailMiniPartie} · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
+    expect(await screen.findByText(`10 questions · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
+  });
+
+  it('une partie servie à 12 questions l’annonce dans l’en-tête (partie 6, nombre lu dans les définitions)', async () => {
+    mockParams = { kind: 'mini', partie: '6' };
+    installer([
+      mini('g', 6, 1, { questions: 12, nouvellesQuestions: 12 }),
+      mini('h', 6, 2, { questions: 12, nouvellesQuestions: 12 }),
+    ]);
+    await monter(<ListeTests />);
+    expect(await screen.findByText(`12 questions · ${fr.credits.coutUn} hors Pass`)).toBeTruthy();
   });
 
   it('crédits insuffisants : le serveur refuse, aucun test ne s’ouvre', async () => {
