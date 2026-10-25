@@ -1,0 +1,517 @@
+{
+ "cours": 5915,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Musique : ondes stationnaires des cordes et des colonnes d'air",
+    "Échographie et sonar : la réflexion des ultrasons dessine les obstacles",
+    "Ondes sismiques P et S : sonder l'intérieur de la Terre",
+    "Casque antibruit : une interférence destructive qui annule le bruit"
+   ],
+   "kicker": "Applications",
+   "titre": "Les ondes mécaniques au travail",
+   "type": "recap"
+  },
+  "classement": {
+   "kicker": "Classer les ondes",
+   "texte": "On classe les ondes mécaniques selon la direction dans laquelle vibrent les particules du milieu, comparée à la direction de propagation de l'onde.",
+   "type": "phrase"
+  },
+  "conditions": {
+   "kicker": "Conditions d'interférence",
+   "tex": [
+    "\\Delta x = m\\,\\lambda \\qquad \\text{constructive}",
+    "\\Delta x = \\left(m + \\dfrac{1}{2}\\right)\\lambda \\qquad \\text{destructive}"
+   ],
+   "titre": "Le rôle de la différence de chemin",
+   "type": "etape"
+  },
+  "corde": {
+   "kicker": "Onde sur une corde tendue",
+   "note": "T : tension de la corde (N) · μ : masse linéique, la masse par mètre de corde (kg/m)",
+   "tex": "v = \\sqrt{\\dfrac{T}{\\mu}}",
+   "titre": "La vitesse dépend de la tension et de la masse",
+   "type": "formule"
+  },
+  "equation": {
+   "kicker": "L'équation d'une onde sinusoïdale",
+   "note": "A : amplitude · ω = 2πf : pulsation (rad/s) · φ : phase à l'origine, elle règle la valeur à l'instant initial",
+   "tex": "y(x, t) = A\\, \\cos(\\omega t + \\varphi)",
+   "titre": "La perturbation en un point, au cours du temps",
+   "type": "formule"
+  },
+  "ex_corde": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "L = 0{,}65\\ \\text{m} \\qquad v = 200\\ \\text{m/s}",
+    "f_n = n \\cdot \\dfrac{v}{2L}",
+    "f_1 \\approx 154\\ \\text{Hz} \\qquad f_2 \\approx 308\\ \\text{Hz}",
+    "f_3 \\approx 462\\ \\text{Hz}"
+   ],
+   "titre": "Les fréquences de résonance d'une corde de guitare",
+   "type": "etape"
+  },
+  "ex_hp": {
+   "kicker": "Exemple",
+   "tex": [
+    "v = 343\\ \\text{m/s} \\qquad f = 1000\\ \\text{Hz}",
+    "\\lambda = \\dfrac{v}{f} = 0{,}343\\ \\text{m} \\qquad \\Delta x = 0{,}5\\ \\text{m}",
+    "\\dfrac{\\Delta x}{\\lambda} \\approx 1{,}46"
+   ],
+   "titre": "Deux haut-parleurs, un observateur",
+   "type": "etape"
+  },
+  "ex_hp_res": {
+   "kicker": "Exemple · conclusion",
+   "note": "Ni un multiple entier de λ, ni un multiple impair de λ/2 : l'interférence est intermédiaire",
+   "tex": "\\dfrac{\\Delta x}{\\lambda} \\approx 1{,}46",
+   "titre": "Ni constructive, ni destructive",
+   "type": "formule"
+  },
+  "ex_la": {
+   "kicker": "Exemple",
+   "tex": [
+    "v = 343\\ \\text{m/s} \\qquad f = 440\\ \\text{Hz}",
+    "\\lambda = \\dfrac{v}{f}",
+    "T = \\dfrac{1}{f}"
+   ],
+   "titre": "La longueur d'onde et la période du la",
+   "type": "etape"
+  },
+  "ex_la_res": {
+   "kicker": "Exemple · résultat",
+   "tex": "\\lambda \\approx 0{,}78\\ \\text{m} \\qquad T \\approx 2{,}3 \\times 10^{-3}\\ \\text{s}",
+   "titre": "Le la mesure soixante-dix-huit centimètres",
+   "type": "formule"
+  },
+  "facteurs": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "agitation"
+   },
+   "kicker": "La vitesse dépend du milieu",
+   "texte": "La vitesse d'une onde n'est pas universelle : elle dépend de la nature du milieu, de sa température, de sa rigidité.",
+   "type": "phrase"
+  },
+  "frequence": {
+   "kicker": "Période et fréquence",
+   "note": "f : fréquence, en hertz (Hz) · T : période, en secondes (s)",
+   "tex": "f = \\dfrac{1}{T}",
+   "titre": "Deux grandeurs inverses",
+   "type": "formule"
+  },
+  "interference": {
+   "kicker": "Interférences",
+   "texte": "Quand deux ondes se superposent, leurs amplitudes s'ajoutent si elles sont en phase, et se soustraient si elles sont en opposition de phase.",
+   "type": "phrase",
+   "anim": {
+    "nom": "interference",
+    "hauteur": 280
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une perturbation qui se propage dans un milieu matériel, en transportant de l'énergie sans transporter la matière.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vagues",
+    "hauteur": 260
+   }
+  },
+  "longitudinale": {
+   "kicker": "Ondes longitudinales",
+   "texte": "Les particules vibrent parallèlement à la direction de propagation : le milieu se comprime puis se dilate, par zones successives.",
+   "type": "phrase",
+   "anim": {
+    "nom": "types_ondes",
+    "hauteur": 280
+   }
+  },
+  "milieu": {
+   "kicker": "Un milieu matériel indispensable",
+   "texte": "Pas d'onde mécanique sans milieu : dans le vide, rien ne vibre, une cloche reste silencieuse.",
+   "type": "phrase"
+  },
+  "modele": {
+   "kicker": "Le modèle sinusoïdal",
+   "texte": "L'onde sinusoïdale, de forme régulière et répétée, sert de modèle à toutes les ondes : les plus complexes s'en décomposent.",
+   "type": "phrase"
+  },
+  "modes": {
+   "kicker": "Corde fixée aux deux extrémités",
+   "tex": [
+    "n = 1 : \\lambda = 2L",
+    "n = 2 : \\lambda = L",
+    "n = 3 : \\lambda = \\dfrac{2L}{3}"
+   ],
+   "titre": "Seules certaines longueurs d'onde sont possibles",
+   "type": "etape"
+  },
+  "modes_formule": {
+   "kicker": "Formule générale",
+   "note": "L : longueur de la corde · n : nombre de ventres, c'est le rang de l'harmonique",
+   "tex": "\\lambda = \\dfrac{2L}{n}",
+   "titre": "La longueur d'onde du mode n",
+   "type": "formule"
+  },
+  "noeuds": {
+   "kicker": "Nœuds et ventres",
+   "texte": "Des points immobiles, les nœuds, alternent avec des points de vibration maximale, les ventres, espacés d'une demi-longueur d'onde.",
+   "type": "phrase",
+   "anim": {
+    "nom": "stationnaire",
+    "hauteur": 260
+   }
+  },
+  "parametres": {
+   "etapes": [
+    "Amplitude A : l'écart maximal par rapport à la position d'équilibre",
+    "Longueur d'onde λ : la distance entre deux crêtes successives, deux points en phase",
+    "Période T : la durée d'une oscillation complète d'un point du milieu",
+    "Fréquence f : le nombre d'oscillations par seconde, en hertz"
+   ],
+   "kicker": "Les paramètres d'une sinusoïde",
+   "titre": "Quatre grandeurs pour décrire l'onde",
+   "type": "recap",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 160
+   }
+  },
+  "recap": {
+   "etapes": [
+    "Relation fondamentale : v = λf ; fréquence f = 1/T",
+    "Deux familles : transversale et longitudinale, plus les ondes de surface",
+    "Réflexion : i = r ; réfraction : n₁ sin θ₁ = n₂ sin θ₂",
+    "Interférence : constructive si Δx = mλ, destructive si Δx = (m + ½)λ",
+    "Ondes stationnaires : nœuds, ventres, modes d'une corde λ = 2L/n"
+   ],
+   "kicker": "À retenir",
+   "titre": "Les ondes mécaniques",
+   "type": "recap"
+  },
+  "reflexion": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "reflexion"
+   },
+   "kicker": "La réflexion",
+   "texte": "L'onde rebondit sur l'obstacle : l'angle d'incidence égale l'angle de réflexion, les deux rayons dans le même plan.",
+   "type": "phrase"
+  },
+  "refraction": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "refraction"
+   },
+   "kicker": "La réfraction",
+   "texte": "En changeant de milieu, l'onde change de vitesse et donc de direction : elle se plie à la surface de séparation.",
+   "type": "phrase"
+  },
+  "snell": {
+   "kicker": "Loi de Snell-Descartes",
+   "note": "n₁ et n₂ : indices de réfraction des deux milieux · θ₁ : angle d'incidence · θ₂ : angle de réfraction",
+   "tex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
+   "titre": "Le changement de direction, quantifié",
+   "type": "formule"
+  },
+  "stationnaire": {
+   "kicker": "Ondes stationnaires",
+   "texte": "Deux ondes identiques qui se croisent en sens inverse donnent une onde qui vibre sur place, sans se propager.",
+   "type": "phrase",
+   "anim": {
+    "nom": "stationnaire",
+    "hauteur": 260
+   }
+  },
+  "superposition": {
+   "kicker": "Principe de superposition",
+   "note": "Valable en régime linéaire, tant que les amplitudes restent faibles",
+   "tex": "y(x, t) = y_1(x, t) + y_2(x, t)",
+   "titre": "Les déplacements s'additionnent",
+   "type": "formule",
+   "anim": {
+    "nom": "interference",
+    "hauteur": 200
+   }
+  },
+  "surface": {
+   "kicker": "Ondes de surface",
+   "texte": "À la frontière de deux milieux, les particules décrivent des cercles, combinant mouvements vertical et horizontal : ce sont les vagues.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vagues",
+    "hauteur": 260
+   }
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Propagation, interférences et ondes stationnaires",
+   "titre": "Les ondes mécaniques",
+   "type": "titre",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 250
+   }
+  },
+  "transversale": {
+   "kicker": "Ondes transversales",
+   "texte": "Les particules vibrent perpendiculairement à la direction de propagation : la corde de guitare, les ondes sismiques S.",
+   "type": "phrase",
+   "anim": {
+    "nom": "types_ondes",
+    "hauteur": 280
+   }
+  },
+  "vitesse": {
+   "kicker": "La relation fondamentale",
+   "note": "v : vitesse de propagation (m/s) · λ : longueur d'onde (m) · f : fréquence (Hz)",
+   "tex": "v = \\lambda\\, f",
+   "titre": "Vitesse, longueur d'onde et fréquence",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définition, types et modèle sinusoïdal"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : comment les ondes se propagent dans les milieux, et ce qui se passe quand deux ondes se rencontrent.",
+    "texte": "Partie 2 : propagation, superposition et interférences."
+   },
+   "sous_titre": "Propagation, superposition et interférences"
+  },
+  {
+   "debut": "p23",
+   "pont": {
+    "dit": "Partie trois : les ondes stationnaires, un cas particulier de superposition, et les applications des ondes mécaniques.",
+    "texte": "Partie 3 : ondes stationnaires et applications."
+   },
+   "sous_titre": "Ondes stationnaires et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux ondes mécaniques : comment une perturbation se propage dans un milieu, transporte de l'énergie, et ce qui arrive quand deux ondes se rencontrent.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Les ondes mécaniques : propagation, interférences et ondes stationnaires."
+  },
+  {
+   "dit": "Un caillou tombe dans l'eau : des cercles concentriques s'élargissent à la surface. L'eau, elle, ne voyage pas : elle oscille sur place, autour de sa position de repos, et seule l'énergie s'éloigne. C'est cela, une onde mécanique : une perturbation qui se propage dans un milieu matériel, en transportant de l'énergie sans transporter la matière.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Une perturbation qui transporte de l'énergie, sans transporter la matière."
+  },
+  {
+   "dit": "Sans milieu matériel, pas d'onde mécanique : une cloche placée dans le vide reste silencieuse, il n'y a rien pour vibrer. C'est la grande différence avec la lumière, qui traverse le vide. Dans le milieu, chaque particule oscille autour de sa position d'équilibre et transmet la vibration à sa voisine.",
+   "ecran": "milieu",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Pas d'onde mécanique sans milieu matériel."
+  },
+  {
+   "dit": "On classe les ondes mécaniques selon la direction dans laquelle les particules du milieu vibrent, comparée à la direction de propagation de l'onde. De ce critère simple sortent deux grandes familles, plus un cas particulier de surface.",
+   "ecran": "classement",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Le critère : la direction de vibration des particules."
+  },
+  {
+   "dit": "Première famille : les ondes transversales. Les particules vibrent perpendiculairement à la direction de propagation. Pincez une corde de guitare : la corde monte et descend, pendant que la perturbation file le long de la corde. Les ondes sismiques de type S sont transversales, elles aussi.",
+   "ecran": "transversale",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Transversale : la vibration est perpendiculaire à la propagation."
+  },
+  {
+   "dit": "Deuxième famille : les ondes longitudinales. Ici, les particules vibrent parallèlement à la direction de propagation : le milieu se comprime puis se dilate, par zones successives. C'est le cas du son dans l'air, et des ondes sismiques de type P, les plus rapides.",
+   "ecran": "longitudinale",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Longitudinale : la vibration est parallèle à la propagation."
+  },
+  {
+   "dit": "Troisième cas, à part : les ondes de surface, qui courent à la frontière entre deux milieux. Les vagues en sont l'exemple familier : les particules d'eau y décrivent des cercles, en combinant un mouvement vertical et un mouvement horizontal.",
+   "ecran": "surface",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Les vagues : des ondes de surface, à la frontière de deux milieux."
+  },
+  {
+   "dit": "Parmi toutes ces ondes, un modèle domine : l'onde sinusoïdale, dont la forme se répète régulièrement. Son intérêt est immense : toute onde complexe peut se décomposer en une somme d'ondes sinusoïdales simples, par l'analyse de Fourier, comme une mélodie se décompose en notes.",
+   "ecran": "modele",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "L'onde sinusoïdale : le modèle de base de toutes les ondes."
+  },
+  {
+   "dit": "Quatre paramètres décrivent une onde sinusoïdale. L'amplitude, l'écart maximal par rapport à la position d'équilibre. La longueur d'onde, la distance entre deux crêtes successives. La période, la durée d'une oscillation complète. Et la fréquence, le nombre d'oscillations par seconde.",
+   "ecran": "parametres",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Amplitude, longueur d'onde, période, fréquence."
+  },
+  {
+   "dit": "En un point du milieu, la perturbation varie au cours du temps comme un cosinus : y de x et t égale A fois cosinus de oméga t plus phi. Oméga est la pulsation : elle vaut deux pi fois la fréquence. Phi est la phase à l'origine : elle règle la valeur de la perturbation à l'instant initial.",
+   "ecran": "equation",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "L'équation : y(x, t) = A cos(ωt + φ), avec ω = 2πf."
+  },
+  {
+   "dit": "Période et fréquence sont deux regards sur le même phénomène : la période donne la durée d'un cycle, la fréquence donne le nombre de cycles par seconde. Elles sont inverses l'une de l'autre : la fréquence égale un sur la période.",
+   "ecran": "frequence",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "La fréquence est l'inverse de la période : f = 1/T."
+  },
+  {
+   "dit": "Pendant une période, l'onde avance exactement d'une longueur d'onde. Sa vitesse vaut donc la longueur d'onde multipliée par la fréquence : c'est la relation fondamentale des ondes, valable pour toutes les ondes sinusoïdales.",
+   "ecran": "vitesse",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "La relation fondamentale : v = λf."
+  },
+  {
+   "dit": "Exemple, tiré des exercices résolus du cours : le la du diapason. Une onde sonore de quatre cent quarante hertz se propage dans l'air à trois cent quarante-trois mètres par seconde. On calcule sa longueur d'onde avec la relation fondamentale, et sa période comme l'inverse de la fréquence.",
+   "ecran": "ex_la",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la longueur d'onde et la période du la, à 440 Hz."
+  },
+  {
+   "dit": "Résultat : la longueur d'onde vaut environ zéro virgule soixante-dix-huit mètre, soit soixante-dix-huit centimètres. Et la période environ deux virgule trois millisecondes : la vibration se répète quatre cent quarante fois par seconde.",
+   "ecran": "ex_la_res",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Le la : λ ≈ 0,78 m et T ≈ 2,3 ms."
+  },
+  {
+   "dit": "Mais attention : la vitesse d'une onde n'est pas une constante universelle, elle dépend du milieu traversé. Le son va bien plus vite dans l'acier que dans l'air, car les atomes y sont fortement liés. Elle augmente aussi avec la température : plus les molécules sont agitées, plus la vibration se transmet vite.",
+   "ecran": "facteurs",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "La vitesse dépend du milieu : nature, température…"
+  },
+  {
+   "dit": "Pour une onde sur une corde tendue, la formule est explicite : la vitesse vaut la racine carrée de la tension divisée par la masse linéique. Plus la corde est tendue, plus l'onde va vite ; plus elle est lourde, plus elle est lente. Doubler la tension multiplie la vitesse par racine de deux.",
+   "ecran": "corde",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Sur une corde : v = √(T/μ)."
+  },
+  {
+   "dit": "Quand une onde rencontre un obstacle, elle repart en sens inverse : c'est la réflexion. L'écho est un son réfléchi sur une paroi lointaine. La loi est géométrique : l'angle d'incidence, mesuré depuis la normale à la surface, égale l'angle de réflexion, et les deux rayons restent dans le même plan.",
+   "ecran": "reflexion",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Réflexion : l'angle d'incidence égale l'angle de réflexion."
+  },
+  {
+   "dit": "Quand l'onde change de milieu, sa vitesse change, et sa direction aussi : c'est la réfraction. Un rayon qui passe de l'air à l'eau se plie à la surface, comme la paille qui semble brisée dans un verre d'eau. C'est ce pli que les lentilles exploitent pour focaliser la lumière.",
+   "ecran": "refraction",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Réfraction : l'onde change de direction en changeant de milieu."
+  },
+  {
+   "dit": "La loi de Snell-Descartes quantifie ce changement de direction : n un sinus thêta un égale n deux sinus thêta deux, où n un et n deux sont les indices des deux milieux, et les thêta, les angles mesurés depuis la normale.",
+   "ecran": "snell",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "La loi de Snell-Descartes : n₁ sin θ₁ = n₂ sin θ₂."
+  },
+  {
+   "dit": "Quand deux ondes se croisent dans le même milieu, elles ne se percutent pas : elles se superposent. En chaque point, le déplacement résultant est simplement la somme des déplacements des deux ondes. C'est le principe de superposition, valable tant que les amplitudes restent faibles.",
+   "ecran": "superposition",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Superposition : les déplacements s'additionnent."
+  },
+  {
+   "dit": "De cette superposition naît l'interférence. Si les ondes arrivent en phase, crête contre crête, leurs amplitudes s'ajoutent : l'interférence est constructive. Si elles arrivent en opposition de phase, crête contre creux, elles se soustraient, et peuvent s'annuler complètement si leurs amplitudes sont égales.",
+   "ecran": "interference",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "En phase : constructive. En opposition de phase : destructive."
+  },
+  {
+   "dit": "Pour des sources cohérentes, de même fréquence, tout se joue sur la différence de chemin parcouru par les deux ondes. Si elle vaut un nombre entier de longueurs d'onde, l'interférence est constructive. Si elle vaut un multiple impair de la demi-longueur d'onde, elle est destructive.",
+   "ecran": "conditions",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "Tout dépend de la différence de chemin Δx."
+  },
+  {
+   "dit": "Exemple du cours : deux haut-parleurs identiques émettent un son de mille hertz. L'observateur se trouve à trois mètres du premier et à trois mètres et demi du second : la différence de chemin vaut cinquante centimètres, et la longueur d'onde environ trente-quatre centimètres. Leur rapport vaut environ un virgule quarante-six.",
+   "ecran": "ex_hp",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux haut-parleurs et un observateur."
+  },
+  {
+   "dit": "Un virgule quarante-six : ce n'est ni un entier, ni un multiple impair d'un demi. L'interférence n'est donc ni totalement constructive, ni totalement destructive : elle est intermédiaire, avec une amplitude entre les deux extrêmes.",
+   "ecran": "ex_hp_res",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Δx / λ ≈ 1,46 : une interférence intermédiaire."
+  },
+  {
+   "dit": "Cas particulier spectaculaire de superposition : deux ondes identiques, de même fréquence et même amplitude, qui se propagent en sens inverse. Le résultat ne voyage plus : il vibre sur place, sans avancer. C'est une onde stationnaire.",
+   "ecran": "stationnaire",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Deux ondes en sens inverse : une onde qui vibre sur place."
+  },
+  {
+   "dit": "Une onde stationnaire présente des points qui ne bougent jamais : les nœuds, d'amplitude nulle. Entre eux, des points vibrent au maximum : les ventres. La distance entre deux nœuds consécutifs, ou deux ventres consécutifs, vaut la moitié de la longueur d'onde.",
+   "ecran": "noeuds",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Nœuds immobiles, ventres au maximum : λ/2 entre deux nœuds."
+  },
+  {
+   "dit": "Sur une corde fixée aux deux extrémités, les extrémités sont forcément des nœuds : seules certaines longueurs d'onde sont possibles. Le mode fondamental compte un seul ventre, et la corde vaut une demi-longueur d'onde. Le mode suivant compte deux ventres, puis trois, et ainsi de suite.",
+   "ecran": "modes",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Corde fixée : seuls certains modes sont possibles."
+  },
+  {
+   "dit": "En résumé, la longueur d'onde du mode numéro n vaut deux fois la longueur de la corde, divisée par n. Chaque mode a donc sa fréquence propre : ce sont les harmoniques de la corde, ceux qui donnent son timbre à une note de guitare.",
+   "ecran": "modes_formule",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "La formule des modes : λ = 2L/n."
+  },
+  {
+   "dit": "Exemple résolu du cours : une corde de guitare de soixante-cinq centimètres, où les ondes voyagent à deux cents mètres par seconde. La formule des harmoniques donne ses trois premières fréquences de résonance : environ cent cinquante-quatre hertz pour le fondamental, trois cent huit, puis quatre cent soixante-deux hertz.",
+   "ecran": "ex_corde",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Exemple : les résonances d'une corde de 65 cm."
+  },
+  {
+   "dit": "Ces ondes travaillent partout. La musique naît d'ondes stationnaires, sur les cordes et dans les colonnes d'air. L'échographie et le sonar cartographient grâce à la réflexion des ultrasons. Les ondes sismiques révèlent l'intérieur de la Terre. Et le casque antibruit annule le bruit par interférence destructive.",
+   "ecran": "applications",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Musique, échographie, sonar, sismologie, antibruit."
+  },
+  {
+   "dit": "Retenez la relation fondamentale, vitesse égale longueur d'onde fois fréquence, les deux familles d'ondes, transversales et longitudinales, les conditions d'interférence selon la différence de chemin, et les ondes stationnaires, avec leurs nœuds, leurs ventres et leurs harmoniques.",
+   "ecran": "recap",
+   "id": "p31",
+   "pause_apres": 0.5,
+   "texte": "Ondes mécaniques : les relations à retenir."
+  }
+ ],
+ "titre": "Les ondes mécaniques"
+}

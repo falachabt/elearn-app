@@ -316,6 +316,112 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  sinusoide(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 140 + 690 * k / 90, y = 170 - 62 * Math.sin(2 * Math.PI * (x - 140) / 230);
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="120" y1="170" x2="884" y2="170" stroke="currentColor" stroke-width="4"/>${pointe(890, 170, 0)}` +
+      mot(902, 178, 'x', { t: 28, a: 'start' }) +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .5 ? trait(198, 78, 428, 78, Math.min(1, (p - .5) / .5), { w: 4 }) + pointe(428, 78, 0) + pointe(198, 78, 180) + mot(313, 60, 'λ', { t: 32 }) : '') +
+      (p > .6 ? `<line x1="605" y1="170" x2="605" y2="108" stroke="currentColor" stroke-width="4"/>` + pointe(605, 108, -90) + pointe(605, 170, 90) + mot(626, 146, 'A', { t: 30, a: 'start' }) : '') +
+      trait(706, 246, 796, 246, p, { c: '#E8604C', w: 6 }) + (p > .7 ? pointe(802, 246, 0, '#E8604C') + mot(752, 230, 'v', { c: '#E8604C', t: 28 }) : ''));
+  },
+  types_ondes(t) {
+    const p = prog(t);
+    let haut = '';
+    for (let k = 0; k <= 70; k++) {
+      const x = 330 + 540 * k / 70, y = 92 - 30 * Math.sin(2 * Math.PI * (x - 330) / 180);
+      haut += `${Math.round(x)},${Math.round(y)} `;
+    }
+    let zig = 'M 330 232';
+    let x = 330;
+    while (x < 866) {
+      const comprime = (x > 386 && x < 478) || (x > 626 && x < 718);
+      const pas = comprime ? 7 : 21;
+      zig += ` L ${x + pas / 2} ${232 - 17} L ${x + pas} 232`;
+      x += pas;
+    }
+    const flecheV = (fx) => `<line x1="${fx}" y1="60" x2="${fx}" y2="124" stroke="#E8604C" stroke-width="4"/>${pointe(fx, 56, -90, '#E8604C')}${pointe(fx, 128, 90, '#E8604C')}`;
+    const flecheH = (fx) => `<line x1="${fx - 26}" y1="270" x2="${fx + 26}" y2="270" stroke="#E8604C" stroke-width="4"/>${pointe(fx - 30, 270, 180, '#E8604C')}${pointe(fx + 30, 270, 0, '#E8604C')}`;
+    return svgBoite(
+      mot(130, 48, 'transversale', { c: '#E8604C', t: 23, a: 'start' }) +
+      mot(130, 204, 'longitudinale', { c: '#E8604C', t: 23, a: 'start' }) +
+      `<polyline points="${haut}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>` +
+      flecheV(423) + flecheV(693) +
+      trait(806, 34, 862, 34, p, { w: 5 }) + (p > .6 ? pointe(868, 34, 0) : '') +
+      `<path d="${zig}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>` +
+      flecheH(430) + flecheH(672) +
+      trait(806, 190, 862, 190, p, { w: 5 }) + (p > .6 ? pointe(868, 190, 0) : '') +
+      mot(500, 296, 'la vibration est perpendiculaire, ou parallèle, à la propagation', { t: 22 }));
+  },
+  interference(t) {
+    const petite = (yc, phase, coul) => {
+      let pts = '';
+      for (let k = 0; k <= 50; k++) {
+        const x = 130 + 300 * k / 50, y = yc - 15 * Math.sin(2 * Math.PI * (x - 130) / 150 + phase);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="4" stroke-linejoin="round"/>`;
+    };
+    const somme = (yc, amp) => {
+      let pts = '';
+      for (let k = 0; k <= 60; k++) {
+        const x = 510 + 360 * k / 60, y = yc - amp * Math.sin(2 * Math.PI * (x - 510) / 180);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#10B981" stroke-width="5" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      mot(130, 28, 'deux ondes en phase', { t: 22, a: 'start' }) +
+      petite(64, 0, '#1A75FF') + petite(116, 0, '#E8604C') +
+      mot(104, 96, '+', { t: 32 }) +
+      trait(452, 90, 490, 90, prog(t), { w: 5 }) + pointe(496, 90, 0) +
+      somme(90, 32) +
+      mot(690, 28, 'somme doublée : constructive', { c: '#10B981', t: 22 }) +
+      mot(130, 168, 'deux ondes en opposition', { t: 22, a: 'start' }) +
+      petite(204, 0, '#1A75FF') + petite(256, Math.PI, '#E8604C') +
+      mot(104, 236, '+', { t: 32 }) +
+      trait(452, 230, 490, 230, prog(t), { w: 5 }) + pointe(496, 230, 0) +
+      `<line x1="510" y1="230" x2="870" y2="230" stroke="#10B981" stroke-width="5"/>` +
+      mot(690, 168, 'somme nulle : destructive', { c: '#10B981', t: 22 }));
+  },
+  stationnaire(t) {
+    const mode = (yc, demi, amp) => {
+      let pts = '';
+      for (let k = 0; k <= 80; k++) {
+        const x = 180 + 640 * k / 80, y = yc - amp * Math.sin(demi * Math.PI * (x - 180) / 640);
+        pts += `${Math.round(x)},${Math.round(y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      `<line x1="180" y1="26" x2="180" y2="274" stroke="currentColor" stroke-width="7"/>` +
+      `<line x1="820" y1="26" x2="820" y2="274" stroke="currentColor" stroke-width="7"/>` +
+      mode(62, 1, 30) + mode(152, 2, 26) + mode(242, 3, 22) +
+      mot(852, 68, 'n = 1', { t: 23, a: 'start' }) +
+      mot(852, 158, 'n = 2', { t: 23, a: 'start' }) +
+      mot(852, 248, 'n = 3', { t: 23, a: 'start' }) +
+      mot(340, 112, 'V', { c: '#E8604C', t: 28 }) +
+      mot(500, 136, 'N', { c: '#E8604C', t: 28 }) +
+      mot(500, 292, 'N : nœud (immobile) · V : ventre (amplitude maximale)', { t: 22 }));
+  },
+  vagues(t) {
+    let cercles = '';
+    for (let k = 0; k < 4; k++) {
+      const r = 22 + ((k * 36 + t * 24) % 144), op = Math.max(.12, 1 - r / 175);
+      cercles += `<circle cx="500" cy="142" r="${r.toFixed(0)}" fill="none" stroke="#1A75FF" stroke-width="4" opacity="${op.toFixed(2)}"/>`;
+    }
+    return svgBoite(
+      cercles +
+      `<circle cx="500" cy="142" r="7" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      mot(500, 292, "une perturbation part en cercles, sans transporter d'eau", { t: 23 }));
+  },
   couplage(t) {
     const th = 2 * Math.PI * t / 2.2, L = 148;
     const a1 = .48 * Math.cos(th), a2 = .48 * Math.cos(th - .7);
