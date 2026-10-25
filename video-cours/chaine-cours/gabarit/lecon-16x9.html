@@ -602,6 +602,80 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  travail_angle_fig(t) {
+    return svgBoite(
+      trait(160, 215, 840, 215, prog(t), { w: 4 }) +
+      `<rect x="430" y="165" width="100" height="50" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` +
+      trait(480, 165, 608, 94, prog(t), { c: '#E8604C', w: 5 }) + pointe(617, 89, -29, '#E8604C') +
+      mot(630, 84, 'F, la force', { c: '#E8604C', t: 22, a: 'start' }) +
+      `<path d="M 544 165 A 64 64 0 0 0 536 134" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(560, 160, 'α', { t: 25, a: 'start' }) +
+      mot(438, 240, 'A', { t: 21, a: 'end' }) + mot(700, 240, 'B', { t: 21, a: 'start' }) +
+      trait(448, 250, 684, 250, prog(t), { w: 4 }) + pointe(692, 250, 0) +
+      mot(566, 278, 'le déplacement, de A vers B', { t: 20 }));
+  },
+  convection_fig(t) {
+    return svgBoite(
+      trait(250, 42, 250, 256, prog(t), { w: 3 }) + trait(250, 256, 750, 256, prog(t), { w: 3 }) + trait(750, 42, 750, 256, prog(t), { w: 3 }) +
+      `<path d="M 500 228 C 468 188, 532 148, 500 102" fill="none" stroke="#E8604C" stroke-width="4.5"/>` + pointe(500, 94, -90, '#E8604C') +
+      `<path d="M 432 232 C 382 198, 372 142, 416 106" fill="none" stroke="#1A75FF" stroke-width="4"/>` + pointe(421, 99, -52, '#1A75FF') +
+      `<path d="M 568 232 C 618 198, 628 142, 584 106" fill="none" stroke="#1A75FF" stroke-width="4"/>` + pointe(579, 99, -128, '#1A75FF') +
+      trait(322, 108, 322, 162, prog(t), { c: '#1A75FF', w: 4 }) + pointe(322, 170, 90, '#1A75FF') +
+      trait(678, 108, 678, 162, prog(t), { c: '#1A75FF', w: 4 }) + pointe(678, 170, 90, '#1A75FF') +
+      mot(500, 60, "l'air chaud monte", { c: '#E8604C', t: 21 }) +
+      mot(238, 150, "l'air froid redescend", { c: '#1A75FF', t: 19, a: 'end' }) +
+      mot(762, 150, "l'air froid redescend", { c: '#1A75FF', t: 19, a: 'start' }) +
+      `<rect x="440" y="238" width="120" height="18" fill="#E8604C" fill-opacity=".45"/>` +
+      mot(500, 284, 'la source chaude', { c: '#E8604C', t: 20 }));
+  },
+  microscope_fig(t) {
+    const lentille = (x, haut) =>
+      trait(x, 170 - haut, x, 170 + haut, prog(t), { w: 4.5 }) + pointe(x, 170 - haut - 8, -90) + pointe(x, 170 + haut + 8, 90);
+    return svgBoite(
+      trait(140, 170, 880, 170, prog(t), { w: 2.5, tiret: '7 6' }) +
+      lentille(330, 70) + lentille(690, 62) +
+      mot(330, 66, "l'objectif", { t: 21 }) + mot(690, 74, "l'oculaire", { t: 21 }) +
+      trait(215, 170, 215, 129, prog(t), { w: 4.5 }) + pointe(215, 121, -90) +
+      mot(200, 116, 'B', { t: 21, a: 'end' }) + mot(215, 196, 'A, l’objet', { t: 19 }) +
+      trait(215, 128, 330, 128, prog(t), { c: '#E8604C', w: 3 }) + trait(330, 128, 520, 206, prog(t), { c: '#E8604C', w: 3 }) +
+      trait(215, 128, 330, 170, prog(t), { c: '#E8604C', w: 3 }) + trait(330, 170, 520, 206, prog(t), { c: '#E8604C', w: 3 }) +
+      trait(520, 170, 520, 205, prog(t), { w: 4 }) + pointe(520, 212, 90) +
+      mot(520, 156, 'A₁', { t: 19 }) + mot(537, 210, 'B₁', { t: 19, a: 'start' }) +
+      mot(520, 242, "l'image intermédiaire, renversée", { t: 19 }) +
+      trait(520, 206, 690, 170, prog(t), { c: '#E8604C', w: 3 }) + trait(690, 170, 836, 137, prog(t), { c: '#E8604C', w: 3 }) + pointe(844, 135, -13, '#E8604C') +
+      trait(520, 206, 690, 148, prog(t), { c: '#E8604C', w: 3 }) + trait(690, 148, 836, 115, prog(t), { c: '#E8604C', w: 3 }) + pointe(844, 113, -13, '#E8604C') +
+      mot(500, 286, "l'objectif grandit l'objet, l'oculaire sert de loupe", { t: 19 }));
+  },
+  lunette_fig(t) {
+    const rayon = (y1, y2, y3, y4, y5) =>
+      trait(120, y1, 300, y2, prog(t), { c: '#B8860B', w: 3 }) + trait(300, y2, 500, y3, prog(t), { c: '#B8860B', w: 3 }) +
+      trait(500, y3, 700, y4, prog(t), { c: '#B8860B', w: 3 }) + trait(700, y4, 862, y5, prog(t), { c: '#B8860B', w: 3 }) + pointe(870, y5, Math.round(Math.atan2(y5 - y4, 162) * 180 / Math.PI), '#B8860B');
+    return svgBoite(
+      trait(120, 165, 880, 165, prog(t), { w: 2.5, tiret: '7 6' }) +
+      mot(150, 66, "l'objet visé, très lointain", { t: 19, a: 'start' }) +
+      trait(300, 85, 300, 245, prog(t), { w: 4.5 }) + pointe(300, 77, -90) + pointe(300, 253, 90) +
+      trait(700, 118, 700, 212, prog(t), { w: 4.5 }) + pointe(700, 110, -90) + pointe(700, 220, 90) +
+      mot(300, 56, "l'objectif", { t: 21 }) + mot(700, 88, "l'oculaire", { t: 20 }) +
+      rayon(100, 128, 178, 200, 176) + rayon(230, 202, 152, 130, 154) +
+      `<circle cx="500" cy="165" r="5.5" fill="#E8604C"/>` +
+      mot(500, 262, "F′₁ et F₂ confondus : la lunette est afocale", { t: 19 }) +
+      mot(500, 292, "les rayons d'une étoile arrivent parallèles", { t: 19 }));
+  },
+  telescope_fig(t) {
+    return svgBoite(
+      trait(170, 95, 760, 95, prog(t), { w: 3 }) + trait(170, 235, 760, 235, prog(t), { w: 3 }) +
+      mot(180, 66, "la lumière d'une étoile lointaine", { t: 19, a: 'start' }) +
+      trait(180, 125, 700, 125, prog(t), { c: '#B8860B', w: 3.5 }) + trait(180, 205, 700, 205, prog(t), { c: '#B8860B', w: 3.5 }) +
+      `<path d="M 724 104 Q 692 165 724 226" fill="none" stroke="currentColor" stroke-width="6"/>` +
+      trait(700, 125, 447, 152, prog(t), { c: '#B8860B', w: 3.5 }) + trait(700, 205, 413, 128, prog(t), { c: '#B8860B', w: 3.5 }) +
+      trait(407, 117, 453, 163, prog(t), { w: 6.5 }) +
+      trait(430, 140, 430, 72, prog(t), { c: '#B8860B', w: 3.5 }) + pointe(430, 64, -90, '#B8860B') +
+      `<rect x="415" y="66" width="30" height="30" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="3"/>` +
+      mot(462, 84, "l'oculaire", { t: 19, a: 'start' }) +
+      mot(566, 130, 'le miroir plan, à 45 degrés', { t: 18, a: 'start' }) +
+      mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
+      mot(320, 282, 'le télescope de Newton', { t: 19 }));
+  },
   niveaux_atome_fig(t) {
     const niveau = (y, n, ev) =>
       trait(300, y, 720, y, prog(t), { w: 4.5 }) +

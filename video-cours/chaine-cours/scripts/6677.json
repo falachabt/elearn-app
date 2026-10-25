@@ -1,0 +1,480 @@
+{
+ "cours": 6677,
+ "lecons": [
+  9437,
+  9438,
+  10617,
+  10618
+ ],
+ "titre": "Optique géométrique",
+ "matiere": "Physique",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, l'optique géométrique des lentilles minces : comment elles forment les images, comment l'œil les utilise, et les instruments qui grossissent le monde, du microscope au télescope.",
+   "texte": "Bonjour à tous. Aujourd'hui : les lentilles minces et les instruments d'optique.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "La lumière se propage en ligne droite, et les lentilles la réfractent selon la loi de Snell-Descartes. En associant plusieurs lentilles ou des miroirs, on obtient des systèmes optiques composés, qui forment des images agrandies, renversées ou corrigées.",
+   "texte": "La lumière va en ligne droite ; les lentilles la réfractent : on peut composer des systèmes optiques.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "dit": "Une lentille mince est un milieu transparent et homogène, limité par deux surfaces dont l'une au moins est sphérique, et dont l'épaisseur au centre est faible. Plus épaisse au centre qu'aux bords, la lentille biconvexe est convergente ; plus mince au centre, la lentille biconcave est divergente.",
+   "texte": "Lentille convergente : plus épaisse au centre. Lentille divergente : plus mince au centre.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "elements",
+   "dit": "Les éléments à connaître : le centre optique O, que tout rayon traverse sans être dévié ; le foyer objet F et le foyer image F prime, où convergent les rayons parallèles à l'axe ; la distance focale f prime, distance de O à F prime, positive pour une lentille convergente ; et la vergence, inverse de la focale, en dioptries.",
+   "texte": "Centre optique O, foyers F et F prime, distance focale f prime, vergence en dioptries.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p05",
+   "ecran": "gauss",
+   "dit": "Les constructions qui suivent supposent les conditions de Gauss : des rayons proches de l'axe principal et peu inclinés sur lui. Dans ce domaine, chaque point de l'objet donne un point image : c'est le stigmatisme approché, qui rend les images nettes.",
+   "texte": "Conditions de Gauss : rayons proches de l'axe et peu inclinés, images nettes.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p06",
+   "ecran": "rayons",
+   "dit": "Trois rayons remarquables suffisent pour construire une image. Le rayon parallèle à l'axe ressort en passant par le foyer image. Celui qui passe par le centre optique traverse sans être dévié. Celui qui passe par le foyer objet ressort parallèle à l'axe.",
+   "texte": "Trois rayons particuliers suffisent pour construire l'image.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "construction",
+   "dit": "Pour construire l'image A prime B prime d'un objet AB perpendiculaire à l'axe, on trace au moins deux rayons remarquables issus de B : leur intersection donne B prime, et A prime est la projection de B prime sur l'axe. Exemple de la leçon : un objet à dix centimètres d'une lentille convergente de focale quatre centimètres donne une image réelle, renversée et agrandie.",
+   "texte": "Deux rayons issus de B se croisent en B prime : ici, image réelle, renversée, agrandie.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "descartes",
+   "dit": "La formule de position de Descartes relie les positions de l'objet et de l'image à la focale : un sur OA prime, moins un sur OA, égale un sur f prime. Toutes les distances sont algébriques, comptées à partir du centre optique, avec un signe selon le sens de la lumière.",
+   "texte": "Formule de Descartes : elle relie position de l'objet, position de l'image et focale.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p09",
+   "ecran": "grandissement",
+   "dit": "Le grandissement, noté gamma, est le rapport de la taille de l'image à celle de l'objet ; il vaut aussi OA prime sur OA. Si sa valeur absolue dépasse un, l'image est agrandie ; sinon, elle est réduite. S'il est positif, l'image est droite ; s'il est négatif, elle est renversée.",
+   "texte": "Grandissement : plus grand que un en valeur absolue, agrandie ; négatif, renversée.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p10",
+   "ecran": "ex_descartes",
+   "dit": "Exemple. Un objet de deux centimètres est placé à vingt centimètres devant une lentille de focale cinq centimètres : OA vaut moins vingt centimètres. Un sur OA prime vaut un cinquième plus un sur moins vingt, soit trois vingtièmes : OA prime vaut environ six virgule soixante-sept centimètres, et le grandissement, environ moins zéro virgule trente-trois, donne une image renversée de zéro virgule soixante-sept centimètre.",
+   "texte": "Exemple : objet à moins 20 centimètres, focale 5, image à 6,67 centimètres, renversée.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "vergence",
+   "dit": "La vergence mesure la puissance d'une lentille : c'est l'inverse de sa distance focale exprimée en mètres, et elle s'exprime en dioptries. Positive pour une lentille convergente, négative pour une divergente : c'est le nombre inscrit sur l'ordonnance de vos lunettes.",
+   "texte": "Vergence : inverse de la focale en mètres, en dioptries.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p12",
+   "ecran": "accolees",
+   "dit": "Quand deux lentilles minces sont accolées, l'une contre l'autre, elles se comportent comme une seule lentille dont la vergence est la somme des deux vergences : c'est le théorème des vergences.",
+   "texte": "Lentilles accolées : les vergences s'ajoutent.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p13",
+   "ecran": "separees",
+   "dit": "Si les deux lentilles sont séparées d'une distance d, la focale équivalente tient compte de cet écart : un sur f égale un sur f un, plus un sur f deux, moins d divisé par le produit des deux focales. Quand d est nulle, on retrouve l'addition des vergences.",
+   "texte": "Lentilles séparées : la focale équivalente dépend aussi de la distance entre elles.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p14",
+   "ecran": "deux_lentilles",
+   "dit": "Pour construire avec deux lentilles, on procède pas à pas : l'image formée par la première lentille devient l'objet de la seconde, et on applique la formule de position deux fois. Le grandissement total est le produit des deux grandissements.",
+   "texte": "Construction en deux temps : l'image de la première lentille sert d'objet à la seconde.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "applications",
+   "dit": "Les applications sont partout : la loupe, qui place l'objet entre le foyer et la lentille pour donner une image virtuelle agrandie ; le projecteur et l'appareil photo, qui forment des images réelles ; et les lunettes correctrices, convergentes pour l'hypermétropie, divergentes pour la myopie.",
+   "texte": "Loupe, projecteur, appareil photo, lunettes : les lentilles au quotidien.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "bessel",
+   "dit": "Au laboratoire, la méthode de Bessel mesure la vergence d'une lentille : pour une distance objet-écran D supérieure à quatre fois la focale, il existe deux positions de la lentille qui donnent une image nette. Leur écart, noté d, permet de calculer la vergence : quatre D, divisé par D au carré moins d au carré.",
+   "texte": "Méthode de Bessel : deux positions nettes pour une même distance objet-écran.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p17",
+   "ecran": "oeil",
+   "dit": "L'œil lui-même se modélise par un système simple : le cristallin est une lentille convergente de distance focale variable, la rétine est un écran situé à distance fixe, et l'iris joue le rôle de diaphragme en réglant la quantité de lumière. L'image doit se former sur la rétine pour être vue nettement.",
+   "texte": "L'œil réduit : un cristallin-lentille, une rétine-écran, un iris-diaphragme.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "accommodation",
+   "dit": "Pour voir net à toutes les distances, le cristallin modifie sa courbure, donc sa focale : c'est l'accommodation. L'œil normal voit sans effort jusqu'à l'infini, son punctum remotum, et en accommodant au maximum jusqu'à environ vingt-cinq centimètres, son punctum proximum.",
+   "texte": "Accommodation : le cristallin change de focale. De l'infini à 25 centimètres pour un œil normal.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "defauts",
+   "dit": "Les défauts de la vision se corrigent par des lentilles. La myopie, œil trop convergent dont l'image se forme en avant de la rétine, se corrige par une lentille divergente ; l'hypermétropie, image en arrière de la rétine, par une convergente ; la presbytie vient de la perte d'élasticité du cristallin avec l'âge ; et l'astigmatisme, d'une cornée non sphérique, se corrige par une lentille cylindrique.",
+   "texte": "Myopie : divergente. Hypermétropie : convergente. Presbytie et astigmatisme : corrections adaptées.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "myope_ex",
+   "dit": "Exemple. Un myope ne voit nettement que jusqu'à cinquante centimètres : son punctum remotum est à cinquante centimètres. Pour qu'il voie à l'infini, la lentille correctrice doit former l'image d'un objet lointain en ce point : sa puissance vaut moins un, divisé par zéro virgule cinquante, soit moins deux dioptries. C'est une lentille divergente.",
+   "texte": "Exemple : punctum remotum à 50 centimètres, correction divergente de moins 2 dioptries.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "microscope",
+   "dit": "Le microscope observe les objets proches et très petits. Son objectif, lentille convergente de très courte focale, forme de l'objet, placé juste au-delà de son foyer, une image réelle, agrandie et renversée. Son oculaire, autre lentille convergente, observe cette image comme une loupe et la renvoie à l'infini pour un œil détendu.",
+   "texte": "Microscope : un objectif de courte focale, un oculaire qui joue le rôle de loupe.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "micro_formule",
+   "dit": "Le grossissement total d'un microscope est le produit des deux grossissements : celui de l'objectif, longueur du tube divisée par sa focale, et celui de l'oculaire, distance de vision nette, vingt-cinq centimètres, divisée par sa focale.",
+   "texte": "Grossissement total : produit du grossissement de l'objectif par celui de l'oculaire.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p23",
+   "ecran": "micro_puissance",
+   "dit": "On caractérise aussi le microscope par sa puissance : l'intervalle optique, noté delta, divisé par le produit des focales de l'objectif et de l'oculaire. Son grossissement commercial vaut cette puissance multipliée par zéro virgule vingt-cinq, la distance de vision nette exprimée en mètres.",
+   "texte": "Puissance du microscope : intervalle optique sur le produit des focales. G vaut P fois 0,25.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p24",
+   "ecran": "micro_ex",
+   "dit": "Exemple. Objectif de focale un centimètre, oculaire de deux centimètres, intervalle optique de seize centimètres : la puissance vaut zéro virgule seize divisé par zéro virgule zéro un fois zéro virgule zéro deux, soit huit cents dioptries, et le grossissement huit cents fois zéro virgule vingt-cinq, soit deux cents.",
+   "texte": "Exemple : puissance de 800 dioptries, grossissement de 200.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "lunette",
+   "dit": "La lunette astronomique observe les objets très éloignés : son objectif, convergent et de grande focale, forme l'image de l'astre dans son plan focal, et son oculaire, de courte focale, la grossit. Quand le foyer image de l'objectif coïncide avec le foyer objet de l'oculaire, la lunette est afocale : l'œil observe sans accommoder.",
+   "texte": "Lunette astronomique : objectif de grande focale, oculaire de courte focale, système afocal.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p26",
+   "ecran": "lunette_ex",
+   "dit": "Le grossissement d'une lunette afocale vaut la focale de l'objectif divisée par celle de l'oculaire. Exemple : un objectif de soixante centimètres et un oculaire de deux centimètres donnent un grossissement de zéro virgule soixante divisé par zéro virgule zéro deux, soit trente.",
+   "texte": "Exemple : objectif de 60 centimètres, oculaire de 2 centimètres, grossissement de 30.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p27",
+   "ecran": "telescope",
+   "dit": "Le télescope de Newton remplace l'objectif par un miroir concave de grande focale ; un petit miroir plan, incliné à quarante-cinq degrés, renvoie le faisceau de côté, vers l'oculaire. Avantages : aucune aberration chromatique, et un miroir se fabrique plus grand qu'une lentille.",
+   "texte": "Télescope de Newton : un miroir concave, un miroir plan à 45 degrés, un oculaire.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p28",
+   "ecran": "telescope_ex",
+   "dit": "Son grossissement suit la même règle que la lunette : la focale du miroir divisée par la focale de l'oculaire. Pour un miroir de un mètre vingt et un oculaire de dix millimètres, on obtient un grossissement de un virgule vingt divisé par zéro virgule zéro un, soit cent vingt.",
+   "texte": "Exemple : miroir de 1,20 mètre, oculaire de 10 millimètres, grossissement de 120.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p29",
+   "ecran": "recap",
+   "dit": "À retenir : Descartes donne la position de l'image, le grandissement sa taille et son sens ; les vergences des lentilles accolées s'ajoutent ; l'œil est une lentille devant un écran, corrigée selon son défaut ; et chaque instrument combine deux éléments pour grossir.",
+   "texte": "À retenir : Descartes, grandissement, vergences, œil réduit et instruments.",
+   "pause_apres": 0.9
+  }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Première",
+   "titre": "Optique géométrique",
+   "sous": "Lentilles minces, œil réduit et instruments d'optique",
+   "anim": {
+    "nom": "lentilles",
+    "hauteur": 190
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Propagation rectiligne et réfraction : les systèmes composés associent lentilles et miroirs.",
+   "anim": {
+    "nom": "chambre",
+    "hauteur": 170
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "Définition et classification",
+   "texte": "Convergente (biconvexe) : plus épaisse au centre. Divergente (biconcave) : plus mince au centre.",
+   "anim": {
+    "nom": "lentilles",
+    "hauteur": 200
+   }
+  },
+  "elements": {
+   "type": "recap",
+   "kicker": "Éléments caractéristiques",
+   "etapes": [
+    "O : centre optique, un rayon par O n'est pas dévié",
+    "F : foyer objet ; F' : foyer image, sur l'axe",
+    "f' = OF' : distance focale algébrique",
+    "C = 1/f' : vergence, en dioptries"
+   ],
+   "anim": {
+    "nom": "lentilles",
+    "hauteur": 120
+   }
+  },
+  "gauss": {
+   "type": "phrase",
+   "kicker": "Conditions de Gauss",
+   "texte": "Rayons proches de l'axe et peu inclinés : stigmatisme approché, images nettes."
+  },
+  "rayons": {
+   "type": "recap",
+   "kicker": "Trois rayons remarquables",
+   "etapes": [
+    "Parallèle à l'axe : il ressort par le foyer image F'",
+    "Par le centre optique O : il n'est pas dévié",
+    "Par le foyer objet F : il ressort parallèle à l'axe"
+   ],
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 175
+   }
+  },
+  "construction": {
+   "type": "phrase",
+   "kicker": "Construction de l'image",
+   "texte": "Deux rayons issus de B se croisent en B' : image réelle, renversée et agrandie.",
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 200
+   }
+  },
+  "descartes": {
+   "type": "formule",
+   "kicker": "Formule de position de Descartes",
+   "tex": "\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{f'}",
+   "note": "distances algébriques, origine au centre optique O · objet réel à gauche : OA négatif"
+  },
+  "grandissement": {
+   "type": "formule",
+   "kicker": "Grandissement",
+   "tex": "\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}",
+   "note": "valeur absolue plus grande que 1 : image agrandie · γ négatif : image renversée"
+  },
+  "ex_descartes": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Position et taille de l'image",
+   "tex": [
+    "\\overline{OA} = -20 \\ \\text{cm} \\quad f' = 5 \\ \\text{cm} \\quad AB = 2 \\ \\text{cm}",
+    "\\frac{1}{\\overline{OA'}} = \\frac{1}{5} + \\frac{1}{-20} = \\frac{3}{20}",
+    "\\overline{OA'} \\approx 6{,}67 \\ \\text{cm} \\quad \\gamma \\approx -0{,}33",
+    "A'B' \\approx 0{,}67 \\ \\text{cm}"
+   ]
+  },
+  "vergence": {
+   "type": "formule",
+   "kicker": "Vergence d'une lentille",
+   "tex": "C = \\frac{1}{f'}",
+   "note": "f' en mètres · C en dioptries (δ) : positive si convergente, négative si divergente"
+  },
+  "accolees": {
+   "type": "formule",
+   "kicker": "Théorème des vergences",
+   "tex": "C = C_1 + C_2",
+   "note": "deux lentilles minces accolées se comportent comme une seule lentille"
+  },
+  "separees": {
+   "type": "formule",
+   "kicker": "Lentilles séparées",
+   "tex": "\\frac{1}{f} = \\frac{1}{f_1} + \\frac{1}{f_2} - \\frac{d}{f_1 f_2}",
+   "note": "d : distance entre les deux lentilles · si d est nulle, on retrouve les vergences ajoutées"
+  },
+  "deux_lentilles": {
+   "type": "phrase",
+   "kicker": "Système de deux lentilles",
+   "texte": "L'image donnée par la première lentille devient l'objet de la seconde ; γ total = γ₁ fois γ₂."
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Applications des lentilles",
+   "texte": "Loupe, projecteur, appareil photo, lunettes correctrices : convergentes ou divergentes selon le besoin."
+  },
+  "bessel": {
+   "type": "formule",
+   "kicker": "Méthode de Bessel",
+   "tex": "C = \\frac{4D}{D^2 - d^2}",
+   "note": "D : distance objet-écran (plus grande que 4 f') · d : écart entre les deux positions nettes"
+  },
+  "oeil": {
+   "type": "phrase",
+   "kicker": "L'œil réduit",
+   "texte": "Cristallin : lentille convergente de focale variable. Rétine : écran fixe. Iris : diaphragme.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 200
+   }
+  },
+  "accommodation": {
+   "type": "phrase",
+   "kicker": "Accommodation, PR et PP",
+   "texte": "Le cristallin change de courbure pour faire la mise au point : PR à l'infini, PP à environ 25 centimètres.",
+   "anim": {
+    "nom": "oeil",
+    "hauteur": 160
+   }
+  },
+  "defauts": {
+   "type": "recap",
+   "kicker": "Défauts de la vision et corrections",
+   "etapes": [
+    "Myopie : œil trop convergent, corrigée par une divergente",
+    "Hypermétropie : œil peu convergent, corrigée par une convergente",
+    "Presbytie : cristallin moins élastique, convergente de près",
+    "Astigmatisme : cornée non sphérique, lentille cylindrique"
+   ]
+  },
+  "myope_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Corriger un myope de punctum remotum 50 centimètres",
+   "tex": [
+    "P = -\\frac{1}{\\overline{PR}} \\quad \\overline{PR} = 0{,}50 \\ \\text{m}",
+    "P = -\\frac{1}{0{,}50} = -2 \\ \\delta"
+   ]
+  },
+  "microscope": {
+   "type": "phrase",
+   "kicker": "Le microscope",
+   "texte": "Objectif de courte focale : image réelle agrandie. Oculaire : il l'observe comme une loupe.",
+   "anim": {
+    "nom": "microscope_fig",
+    "hauteur": 230
+   }
+  },
+  "micro_formule": {
+   "type": "formule",
+   "kicker": "Grossissement du microscope",
+   "tex": "M_{total} = \\frac{L}{f_o} \\times \\frac{D}{f_e}",
+   "note": "L : longueur du tube, environ 16 centimètres · D = 25 centimètres, distance de vision nette"
+  },
+  "micro_puissance": {
+   "type": "formule",
+   "kicker": "Puissance du microscope",
+   "tex": "P = \\frac{\\Delta}{f'_1 f'_2} \\quad G = P \\times 0{,}25",
+   "note": "Δ : intervalle optique · P en dioptries, G sans unité"
+  },
+  "micro_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Puissance et grossissement d'un microscope",
+   "tex": [
+    "f'_1 = 1 \\ \\text{cm} \\quad f'_2 = 2 \\ \\text{cm} \\quad \\Delta = 16 \\ \\text{cm}",
+    "P = \\frac{0{,}16}{0{,}01 \\times 0{,}02} = 800 \\ \\delta",
+    "G = 800 \\times 0{,}25 = 200"
+   ]
+  },
+  "lunette": {
+   "type": "phrase",
+   "kicker": "La lunette astronomique",
+   "texte": "Objectif de grande focale, oculaire de courte focale : afocale quand F'₁ coïncide avec F₂.",
+   "anim": {
+    "nom": "lunette_fig",
+    "hauteur": 230
+   }
+  },
+  "lunette_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Grossissement d'une lunette afocale",
+   "tex": [
+    "G = \\frac{f'_1}{f'_2}",
+    "G = \\frac{0{,}60}{0{,}02} = 30"
+   ]
+  },
+  "telescope": {
+   "type": "phrase",
+   "kicker": "Le télescope de Newton",
+   "texte": "Un miroir concave remplace l'objectif ; un miroir plan à 45 degrés renvoie la lumière vers l'oculaire.",
+   "anim": {
+    "nom": "telescope_fig",
+    "hauteur": 230
+   }
+  },
+  "telescope_ex": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Grossissement d'un télescope",
+   "tex": [
+    "G = \\frac{f'_{mir}}{f'_{oc}} = \\frac{1{,}20}{0{,}01} = 120"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Descartes : 1/OA' − 1/OA = 1/f', distances algébriques",
+    "Grandissement γ = OA'/OA : négatif, image renversée",
+    "Lentilles accolées : les vergences s'ajoutent",
+    "Œil : la myopie se corrige par une divergente",
+    "Instruments : le grossissement combine les deux focales"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les lentilles minces : éléments, rayons et formules"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Associations de lentilles et œil réduit",
+   "pont": {
+    "texte": "Partie 2 : associer les lentilles, et modéliser l'œil.",
+    "dit": "Partie deux : associer les lentilles, puis modéliser l'œil et ses corrections."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Les instruments d'optique",
+   "pont": {
+    "texte": "Partie 3 : microscope, lunette astronomique et télescope.",
+    "dit": "Partie trois : les instruments d'optique, le microscope, la lunette astronomique et le télescope de Newton."
+   }
+  }
+ ]
+}
