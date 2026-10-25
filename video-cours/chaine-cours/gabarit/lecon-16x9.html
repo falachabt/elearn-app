@@ -316,6 +316,49 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  couplage(t) {
+    const th = 2 * Math.PI * t / 2.2, L = 148;
+    const a1 = .48 * Math.cos(th), a2 = .48 * Math.cos(th - .7);
+    const b1 = [340 + L * Math.sin(a1), 40 + L * Math.cos(a1)], b2 = [660 + L * Math.sin(a2), 40 + L * Math.cos(a2)];
+    const s1 = [340 + 92 * Math.sin(a1), 40 + 92 * Math.cos(a1)], s2 = [660 + 92 * Math.sin(a2), 40 + 92 * Math.cos(a2)];
+    const dx = s2[0] - s1[0], dy = s2[1] - s1[1], long = Math.hypot(dx, dy), nx = -dy / long, ny = dx / long;
+    let zig = `M ${s1[0].toFixed(0)} ${s1[1].toFixed(0)}`;
+    for (let k = 1; k < 10; k++) {
+      const f = k / 10, signe = k % 2 ? 1 : -1, amp = (k === 0 || k === 10) ? 0 : 11 * signe;
+      zig += ` L ${(s1[0] + dx * f + nx * amp).toFixed(0)} ${(s1[1] + dy * f + ny * amp).toFixed(0)}`;
+    }
+    zig += ` L ${s2[0].toFixed(0)} ${s2[1].toFixed(0)}`;
+    return svgBoite(
+      `<rect x="238" y="26" width="524" height="14" rx="4" fill="currentColor"/>` +
+      `<line x1="340" y1="40" x2="${b1[0].toFixed(0)}" y2="${b1[1].toFixed(0)}" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="660" y1="40" x2="${b2[0].toFixed(0)}" y2="${b2[1].toFixed(0)}" stroke="currentColor" stroke-width="4"/>` +
+      `<path d="${zig}" fill="none" stroke="#10B981" stroke-width="4" stroke-linejoin="round"/>` +
+      `<circle cx="${b1[0].toFixed(0)}" cy="${b1[1].toFixed(0)}" r="15" fill="#E8604C" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="${b2[0].toFixed(0)}" cy="${b2[1].toFixed(0)}" r="15" fill="#1A75FF" stroke="currentColor" stroke-width="4"/>` +
+      mot(Math.round((s1[0] + s2[0]) / 2), Math.round((s1[1] + s2[1]) / 2) - 20, 'k′', { c: '#10B981', t: 28 }) +
+      mot(340, 272, 'x₁', { t: 25 }) +
+      mot(660, 272, 'x₂', { t: 25 }) +
+      mot(500, 296, 'deux pendules reliés : ils échangent leur énergie', { t: 23 }));
+  },
+  spectre(t) {
+    const p = prog(t);
+    let sig = '';
+    for (let k = 0; k <= 60; k++) {
+      const u = 300 * k / 60, x = 120 + u, y = 95 - 26 * Math.sin(u / 15) - 13 * Math.sin(u / 6.8);
+      sig += `${Math.round(x)},${Math.round(y)} `;
+    }
+    const pic = (x, h, coul, pmin) => p > pmin ? `<line x1="${x}" y1="240" x2="${x}" y2="${240 - h * Math.min(1, (p - pmin) / .3)}" stroke="${coul}" stroke-width="11" stroke-linecap="round"/>` : '';
+    return svgBoite(
+      `<rect x="106" y="36" width="330" height="122" fill="none" stroke="currentColor" stroke-width="3" opacity=".5"/>` +
+      `<polyline points="${sig}" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>` +
+      mot(271, 186, 'le signal dans le temps', { t: 22 }) +
+      trait(462, 97, 532, 97, Math.min(1, p * 2), { w: 6 }) + (p > .4 ? pointe(538, 97, 0) : '') +
+      mot(500, 74, 'analyse', { t: 22 }) +
+      `<line x1="580" y1="240" x2="896" y2="240" stroke="currentColor" stroke-width="4"/>` +
+      pic(650, 128, '#E8604C', .3) + pic(742, 74, '#1A75FF', .45) + pic(828, 46, '#1A75FF', .6) +
+      mot(650, 266, 'f₁', { t: 24 }) + mot(742, 266, 'f₂', { t: 24 }) + mot(828, 266, 'f₃', { t: 24 }) +
+      mot(730, 52, 'le spectre : les fréquences du signal', { t: 23 }));
+  },
   circuit_rlc(t) {
     const p = prog(t);
     let ondes = '';
