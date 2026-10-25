@@ -24,6 +24,8 @@ export type Reglages = {
   objectifDefaut: number;
   objectifMin: number;
   objectifMax: number;
+  /** Plan du diagnostic servi par le serveur (partie → nombre de questions) ; `null` si le serveur ne le sert pas. */
+  diagComptes: Record<number, number> | null;
   statsMinReponses: number;
   tendanceMinPoints: number;
   validiteHorsLigneJours: number;
@@ -54,6 +56,19 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     if (!Array.isArray(v) || v.some((x) => !Number.isFinite(Number(x)))) throw new Error(`Paramètre TOEIC illisible : ${cle}`);
     return v.map(Number);
   };
+  /** Plan du diagnostic (`diag_counts`) : nombre de questions par partie, servi par le serveur. */
+  const planDiagnostic = (): Record<number, number> | null => {
+    if (!table.has('diag_counts')) return null;
+    const v = brut('diag_counts');
+    if (typeof v !== 'object' || v === null || Array.isArray(v)) return null;
+    const sortie: Record<number, number> = {};
+    for (const [partie, compte] of Object.entries(v as Record<string, unknown>)) {
+      const n = Number(compte);
+      if (!Number.isFinite(n)) return null;
+      sortie[Number(partie)] = n;
+    }
+    return sortie;
+  };
   const budget = brut('session_budget') as Record<string, { notion_min: number; words: number; replay: number; series: number }>;
   return {
     scoreZ: nombre('score_z'),
@@ -80,6 +95,10 @@ export function lireReglages(lignes: LigneReglage[]): Reglages {
     objectifDefaut: nombre('goal_default'),
     objectifMin: nombre('goal_min'),
     objectifMax: nombre('goal_max'),
+    // Le plan ne sert qu'à l'annonce d'A5 (nombre de questions affiché avant le diagnostic) : comme
+    // `session_minutes_recommended`, cette donnée d'affichage ne doit jamais faire échouer le chargement des
+    // réglages si une ancienne copie servie ou mise en cache ne le contient pas encore.
+    diagComptes: planDiagnostic(),
     statsMinReponses: nombre('stats_min_answers'),
     tendanceMinPoints: nombre('trend_min_points'),
     validiteHorsLigneJours: nombre('offline_validity_days'),

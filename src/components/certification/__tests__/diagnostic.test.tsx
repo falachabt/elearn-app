@@ -46,7 +46,7 @@ jest.mock('@gorhom/bottom-sheet', () => {
   };
 });
 
-const entete = (n: number) => t.diagnostic.entete.replace('{{n}}', String(n)).replace('{{total}}', '20');
+const entete = (n: number) => t.diagnostic.entete.replace('{{n}}', String(n)).replace('{{total}}', '21');
 
 beforeEach(async () => {
   jest.clearAllMocks();
@@ -83,7 +83,7 @@ async function passerConsignes() {
 }
 
 describe('A6 · Diagnostic', () => {
-  it('affiche la première question et une progression « 1 / 20 »', async () => {
+  it('affiche la première question et une progression « 1 / 21 »', async () => {
     await monter(<Diagnostic />);
     await passerConsignes();
     expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
@@ -125,10 +125,12 @@ describe('A6 · Diagnostic', () => {
   });
 
   it('la dernière réponse ouvre A8', async () => {
+    // Il reste le dernier groupe de partie 7 (questions 20 et 21) : les deux se passent, le groupe part, A8 s'ouvre.
     await avancerService(19);
     await monter(<Diagnostic />);
     await passerConsignes();
     await screen.findByText(entete(20), { exact: false });
+    await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
     await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
     await passerConsignes();
     await attendre();
@@ -192,6 +194,52 @@ describe('A6 · Diagnostic', () => {
   });
 });
 
+describe('A6 · Diagnostic : validation par groupe (partie 6, texte à trous entier)', () => {
+  /** Fond d'un tag de trou, lu dans ses styles en ligne. */
+  const fondTag = (n: number) => {
+    const style = screen.getByLabelText(t.exercice.trou.replace('{{n}}', String(n))).props.style as unknown[];
+    const entree = style.find((s) => typeof s === 'object' && s !== null && 'backgroundColor' in (s as Record<string, unknown>)) as { backgroundColor: string };
+    return entree.backgroundColor;
+  };
+
+  it('onglets du groupe, trous numérotés dans le texte, « Valider (n/4) », bannière et « Valider quand même »', async () => {
+    // 12 réponses déjà données : l'écran reprend sur le groupe de partie 6 (questions 13 à 16, un seul texte).
+    await avancerService(12);
+    await monter(<Diagnostic />);
+    await passerConsignes();
+    expect(await screen.findByText(entete(13), { exact: false })).toBeTruthy();
+
+    // Un onglet par question du groupe, aux numéros officiels.
+    for (const n of [13, 14, 15, 16]) {
+      expect(screen.getByRole('tab', { name: t.exercice.question.replace('{{n}}', String(n)) })).toBeTruthy();
+    }
+    // Chaque trou du texte porte le numéro de sa question ; le trou en cours est en jaune, les autres pas encore.
+    for (const n of [13, 14, 15, 16]) {
+      expect(screen.getByLabelText(t.exercice.trou.replace('{{n}}', String(n)))).toBeTruthy();
+    }
+    expect(fondTag(13)).toBe('#FFD83D');
+    expect(fondTag(14)).not.toBe('#FFD83D');
+
+    // Rien de répondu dans le groupe : « Valider (0/4) » inactif.
+    const valider = (nom: string) => screen.getByRole('button', { name: nom });
+    expect(valider(t.exercice.validerN.replace('{{n}}', '0').replace('{{total}}', '4')).props.accessibilityState?.disabled).toBe(true);
+
+    // Une réponse : l'onglet suivant devient courant, son trou passe en jaune, le trou répondu en vert, « Valider (1/4) ».
+    await fireEvent.press(screen.getByRole('button', { name: /^a/ }));
+    expect(fondTag(13)).not.toBe('#FFD83D');
+    expect(fondTag(14)).toBe('#FFD83D');
+    expect(valider(t.exercice.validerN.replace('{{n}}', '1').replace('{{total}}', '4')).props.accessibilityState?.disabled).toBeFalsy();
+
+    // Groupe incomplet : premier appui = bannière + « Valider quand même », second appui = envoi du groupe entier.
+    await fireEvent.press(valider(t.exercice.validerN.replace('{{n}}', '1').replace('{{total}}', '4')));
+    expect(await screen.findByText(t.exercice.pasToutRepondu)).toBeTruthy();
+    await fireEvent.press(valider(t.exercice.validerQuandMeme.replace('{{n}}', '1').replace('{{total}}', '4')));
+    await passerConsignes();
+    expect(await screen.findByText(entete(17), { exact: false })).toBeTruthy();
+    expect((await lireDiagnostic())?.reponses).toHaveLength(16);
+  });
+});
+
 describe('A8 · Fin du diagnostic', () => {
   it('sans diagnostic terminé, renvoie vers A6', async () => {
     await monter(<FinDiagnostic />);
@@ -200,7 +248,7 @@ describe('A8 · Fin du diagnostic', () => {
   });
 
   it('calcule le résultat en arrière-plan puis « Voir mon résultat » ouvre A7', async () => {
-    await avancerService(20);
+    await avancerService(21);
     await monter(<FinDiagnostic />);
     expect(await screen.findByText(t.diagnostic.termineTitre)).toBeTruthy();
     await attendre();
@@ -213,7 +261,7 @@ describe('A8 · Fin du diagnostic', () => {
   it('échec réseau : bannière, puis « Voir mon résultat » rejoue l’envoi', async () => {
     const { api, appels } = creerApiFausse({ echecsTerminer: 1 });
     definirApi(api);
-    await avancerService(20);
+    await avancerService(21);
     await monter(<FinDiagnostic />);
     expect(await screen.findByText(t.diagnostic.envoiEchec)).toBeTruthy();
     await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.voirResultat }));
@@ -228,7 +276,7 @@ describe('A7 · Résultat du diagnostic', () => {
     const { api } = creerApiFausse({ mots });
     definirApi(api);
     // Les réponses sont toutes fausses (option 1) : toutes les parties sont à travailler.
-    const e = await avancerService(20, 1);
+    const e = await avancerService(21, 1);
     await terminer(e);
   }
 

@@ -13,24 +13,65 @@ export const EXAMEN_TEST: Examen = {
   sec_per_question: { listening: 27, reading: 45 },
 };
 
-/** Répartition du plan de diagnostic utilisée par les tests (jeu d'entrée, pas une règle du code). */
-export const PLAN_TEST: Record<number, number> = { 1: 1, 2: 2, 3: 4, 4: 3, 5: 3, 6: 2, 7: 5 };
+/** Répartition du plan de diagnostic utilisée par les tests (jeu d'entrée, pas une règle du code) : le plan servi, 21 questions. */
+export const PLAN_TEST: Record<number, number> = { 1: 1, 2: 2, 3: 3, 4: 3, 5: 3, 6: 4, 7: 5 };
+
+/**
+ * Formes de groupes de la banque, reprises dans le jeu de test : parties 3 et 4 en conversations de 3, partie 6 en
+ * texte à trous de 4, partie 7 en documents de 2 puis 3. Les autres parties restent une question par groupe (1, 2)
+ * ou sans groupe (5).
+ */
+const TAILLES_GROUPES: Record<number, number[]> = { 3: [3], 4: [3], 6: [4], 7: [2, 3] };
 
 export function questionsTest(plan: Record<number, number> = PLAN_TEST): QuestionServie[] {
   const sortie: QuestionServie[] = [];
   let n = 1;
-  for (const [partie, nombre] of Object.entries(plan)) {
-    for (let i = 0; i < nombre; i++) {
-      sortie.push({
-        id: `q-${n}`,
-        part: Number(partie),
-        type: 'phrase',
-        number: n,
-        stem: `Question ${n}`,
-        options: ['a', 'b', 'c', 'd'],
-        group: Number(partie) <= 4 ? { id: `g-${n}`, audio_path: `toeic/audio/p${partie}_${n}.mp3`, image_path: null, image_alt: null, passage: null } : null,
-      });
-      n++;
+  for (const [partieBrute, nombre] of Object.entries(plan)) {
+    const partie = Number(partieBrute);
+    const tailles = TAILLES_GROUPES[partie];
+    if (!tailles) {
+      for (let i = 0; i < nombre; i++) {
+        sortie.push({
+          id: `q-${n}`,
+          part: partie,
+          type: 'phrase',
+          number: n,
+          stem: `Question ${n}`,
+          options: ['a', 'b', 'c', 'd'],
+          group: partie <= 4 ? { id: `g-${n}`, audio_path: `toeic/audio/p${partie}_${n}.mp3`, image_path: null, image_alt: null, passage: null } : null,
+        });
+        n++;
+      }
+      continue;
+    }
+    let restes = nombre;
+    let g = 0;
+    while (restes > 0) {
+      const taille = Math.min(tailles[g % tailles.length], restes);
+      const idGroupe = `g-${partie}-${g + 1}`;
+      const numeros: number[] = [];
+      for (let i = 0; i < taille; i++) {
+        numeros.push(n);
+        n++;
+      }
+      // Le texte à trous de la partie 6 porte un marqueur « {k} » par question du groupe, comme la banque servie.
+      const passage =
+        partie === 6
+          ? { kind: 'Texte', head: `Texte ${idGroupe}`, text: numeros.map((_, i) => `Phrase ${i + 1} du texte avec un {${i + 1}} à compléter.`).join(' ') }
+          : { kind: 'Document', head: `Document ${idGroupe}`, text: `Contenu du document ${idGroupe}.` };
+      for (const numero of numeros) {
+        sortie.push({
+          id: `q-${numero}`,
+          part: partie,
+          type: partie === 6 ? 'texte_trous' : 'phrase',
+          number: numero,
+          stem: `Question ${numero}`,
+          options: ['a', 'b', 'c', 'd'],
+          group: { id: idGroupe, audio_path: partie <= 4 ? `toeic/audio/${idGroupe}.mp3` : null, image_path: null, image_alt: null, passage },
+        });
+      }
+      restes -= taille;
+      g++;
     }
   }
   return sortie;

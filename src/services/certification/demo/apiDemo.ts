@@ -58,6 +58,8 @@ const notions = new Map(contenu.notions.map((n) => [n.part, { id: n.id, code: n.
 const reglages = lireReglages(reglagesBruts as { key: string; value: unknown }[]);
 const reglagesSerie = Number(((reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'series_size') ?? { value: 10 }).value);
 const blueprint = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'diag_blueprint')!.value as Record<string, number>;
+/** Plan explicite du diagnostic (même réglage `diag_counts` que le serveur) ; `diag_blueprint` ne sert plus qu'aux mini-tests mixtes. */
+const planDiagnostic = (reglagesBruts as { key: string; value: unknown }[]).find((l) => l.key === 'diag_counts')!.value as Record<string, number>;
 
 async function lire(): Promise<Store> {
   try {
@@ -83,7 +85,10 @@ function servir(q: Q): QuestionServie {
   };
 }
 
-/** Tirage par groupes entiers, dans l'ordre servi du plan : le dernier groupe est tronqué pour tomber juste. */
+/**
+ * Tirage des séries, mini-tests et tests : le dernier groupe est tronqué pour tomber juste.
+ * Le diagnostic a son propre tirage, sans troncature (`tirerGroupesEntiers`).
+ */
 function tirer(partie: number, n: number): Q[] {
   const unites = new Map<string, Q[]>();
   for (const q of contenu.questions.filter((x) => x.part === partie)) {
@@ -97,6 +102,30 @@ function tirer(partie: number, n: number): Q[] {
     sortie.push(...u.slice(0, n - sortie.length));
   }
   return sortie;
+}
+
+/**
+ * Tirage du diagnostic : groupes ENTIERS seulement, comme le serveur — une unité (groupe ou question seule) n'est
+ * retenue que si elle tient entièrement dans le compte demandé, jamais de troncature du dernier groupe. Plusieurs
+ * mélanges sont essayés pour atteindre le compte exact quand les tailles de groupes le permettent (partie 7).
+ */
+function tirerGroupesEntiers(partie: number, n: number): Q[] {
+  const unites = new Map<string, Q[]>();
+  for (const q of contenu.questions.filter((x) => x.part === partie)) {
+    const cle = q.group ?? q.id;
+    unites.set(cle, [...(unites.get(cle) ?? []), q]);
+  }
+  const toutes = [...unites.values()];
+  let meilleur: Q[] = [];
+  for (let essai = 0; essai < 60 && meilleur.length < n; essai++) {
+    const melangees = [...toutes].sort(() => Math.random() - 0.5);
+    const sortie: Q[] = [];
+    for (const u of melangees) {
+      if (sortie.length + u.length <= n) sortie.push(...u);
+    }
+    if (sortie.length > meilleur.length) meilleur = sortie;
+  }
+  return meilleur;
 }
 
 function corriger(r: ReponseEnvoyee): ResultatReponse {
@@ -186,9 +215,9 @@ export const apiDemo: CertApi = {
     const s = await lire();
     const existante = s.tentatives[clientUuid];
     if (existante) return { ...existante.tentative, replay: true };
-    const choisies = Object.entries(blueprint)
+    const choisies = Object.entries(planDiagnostic)
       .sort((a, b) => Number(a[0]) - Number(b[0]))
-      .flatMap(([partie, n]) => tirer(Number(partie), Number(n)));
+      .flatMap(([partie, n]) => tirerGroupesEntiers(Number(partie), Number(n)));
     const tentative: Tentative = {
       attempt_id: `demo-${clientUuid}`,
       kind: 'diagnostic',

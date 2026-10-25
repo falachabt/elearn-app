@@ -25,7 +25,7 @@ describe('diagnostic : reprise et file locale (A6)', () => {
     const { api, appels } = creerApiFausse();
     definirApi(api);
     const a = await demarrerOuReprendre('toeic');
-    expect(a.tentative?.questions).toHaveLength(20);
+    expect(a.tentative?.questions).toHaveLength(21);
     const b = await demarrerOuReprendre('toeic');
     expect(b.clientUuid).toBe(a.clientUuid);
     expect(appels.demarrer).toBe(1);
@@ -57,7 +57,7 @@ describe('diagnostic : reprise et file locale (A6)', () => {
     let e = await demarrerOuReprendre('toeic');
     e = await repondre(e, null, 100);
     expect(e.reponses[0].chosen).toBeNull();
-    expect(progression(e)).toEqual({ faites: 1, total: 20 });
+    expect(progression(e)).toEqual({ faites: 1, total: 21 });
   });
 
   it('un double appui n’enregistre pas deux réponses à la même question', async () => {
@@ -69,15 +69,15 @@ describe('diagnostic : reprise et file locale (A6)', () => {
     expect(y.reponses).toHaveLength(1);
   });
 
-  it('la 20e réponse marque la fin locale (AC-A6-1, A8)', async () => {
+  it('la 21e réponse marque la fin locale (AC-A6-1, A8)', async () => {
     const { api } = creerApiFausse();
     definirApi(api);
     let e = await demarrerOuReprendre('toeic');
-    for (let i = 0; i < 20; i++) e = await repondre(e, 0, 50);
+    for (let i = 0; i < 21; i++) e = await repondre(e, 0, 50);
     expect(e.termine).toBe(true);
-    expect(e.reponses).toHaveLength(20);
+    expect(e.reponses).toHaveLength(21);
     // Aucune réponse de plus après la fin.
-    expect((await repondre(e, 0, 50)).reponses).toHaveLength(20);
+    expect((await repondre(e, 0, 50)).reponses).toHaveLength(21);
   });
 
   it('hors ligne au démarrage : erreur claire, rien de gardé', async () => {
@@ -90,7 +90,7 @@ describe('diagnostic : reprise et file locale (A6)', () => {
 describe('diagnostic : fin et résultat (A8, A7)', () => {
   const finir = async () => {
     let e = await demarrerOuReprendre('toeic');
-    for (let i = 0; i < 20; i++) e = await repondre(e, i % 2 === 0 ? 0 : 1, 50);
+    for (let i = 0; i < 21; i++) e = await repondre(e, i % 2 === 0 ? 0 : 1, 50);
     return e;
   };
 
@@ -99,7 +99,7 @@ describe('diagnostic : fin et résultat (A8, A7)', () => {
     definirApi(api);
     const e = await finir();
     await expect(terminer(e)).rejects.toThrow();
-    expect((await lireDiagnostic())?.reponses).toHaveLength(20);
+    expect((await lireDiagnostic())?.reponses).toHaveLength(21);
     const fini = await terminer(e);
     expect(fini.fin?.estimated).toBe(true);
     expect(appels.terminer).toBe(2);
@@ -108,11 +108,11 @@ describe('diagnostic : fin et résultat (A8, A7)', () => {
     expect(appels.terminer).toBe(2);
   });
 
-  it('le résultat par partie compte 10 bonnes sur 20', async () => {
+  it('le résultat par partie compte 11 bonnes sur 21', async () => {
     definirApi(creerApiFausse().api);
     const fini = await terminer(await finir());
     const total = Object.values(fini.fin!.per_part).reduce((a, p) => ({ answered: a.answered + p.answered, correct: a.correct + p.correct }), { answered: 0, correct: 0 });
-    expect(total).toEqual({ answered: 20, correct: 10 });
+    expect(total).toEqual({ answered: 21, correct: 11 });
   });
 });
 
@@ -136,7 +136,7 @@ describe('reprise du parcours (AC-A8-2)', () => {
     expect(await etapeCertification(profil)).toBe('/certification/arrivee');
     e = await repondre(e, 0, 10);
     expect(await etapeCertification(profil)).toBe('/certification/diagnostic');
-    for (let i = 1; i < 20; i++) e = await repondre(e, 0, 10);
+    for (let i = 1; i < 21; i++) e = await repondre(e, 0, 10);
     expect(await etapeCertification(profil)).toBe('/certification/fin');
     await terminer(e);
     expect(await etapeCertification(profil)).toBe('/certification/resultat');

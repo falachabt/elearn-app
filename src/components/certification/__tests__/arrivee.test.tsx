@@ -283,12 +283,15 @@ describe('A4 · Temps par jour', () => {
 describe('A5 · Arrivée avant diagnostic', () => {
   it('AC-A5-1 : aucune valeur de performance, les repères et le contenu du diagnostic', async () => {
     await monter(<ArriveeToeic />);
-    expect(await screen.findByText(t.arrivee.repereQuestions.replace('{{n}}', '20'))).toBeTruthy();
+    // Le compte vient du plan servi (diag_counts), pas du seuil de score : 21 questions, 9 écoute / 12 lecture.
+    expect(await screen.findByText(t.arrivee.repereQuestions.replace('{{n}}', '21'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.repereDuree)).toBeTruthy();
     expect(screen.getByText(t.arrivee.repereGratuit)).toBeTruthy();
     expect(screen.getByText(t.arrivee.intro)).toBeTruthy();
     expect(screen.getByText(t.arrivee.contientEcouteTitre)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientEcouteAide.replace('{{n}}', '9'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.contientLectureTitre)).toBeTruthy();
+    expect(screen.getByText(t.arrivee.contientLectureAide.replace('{{n}}', '12'))).toBeTruthy();
     expect(screen.getByText(t.arrivee.donneTexte)).toBeTruthy();
     expect(screen.getByText(t.arrivee.regle)).toBeTruthy();
     expect(screen.queryByText(/\d{3} à \d{3}/)).toBeNull();

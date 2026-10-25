@@ -38,6 +38,8 @@ export const LIGNES_SEED: LigneReglage[] = [
   { key: 'offline_validity_days', value: 7 },
   { key: 'cert_earn_weekly_cap', value: 15 },
   { key: 'cert_earn_valid_days', value: 30 },
+  // Plan du diagnostic tel que le serveur le sert (diag_counts) : 21 questions, 9 écoute / 12 lecture.
+  { key: 'diag_counts', value: { '1': 1, '2': 2, '3': 3, '4': 3, '5': 3, '6': 4, '7': 5 } },
 ];
 
 export const REGLAGES = lireReglages(LIGNES_SEED);
