@@ -602,6 +602,37 @@ const FIG = {
       trait(628, 276, 646, 234, p, { c: '#E8604C', w: 5 }) + pointe(649, 228, -68, '#E8604C') +
       mot(500, 292, "on isole un système, on compte les forces de l'extérieur", { t: 20 }));
   },
+  regle_incertitude_fig(t) {
+    let grad = '';
+    for (let k = 0; k <= 20; k++) {
+      const x = 140 + 36 * k, h = k % 5 === 0 ? 22 : 11;
+      grad += `<line x1="${x}" y1="168" x2="${x}" y2="${168 - h}" stroke="currentColor" stroke-width="2.5"/>`;
+    }
+    return svgBoite(
+      mot(400, 74, 'le bord de la table', { t: 19 }) +
+      trait(140, 92, 716, 92, prog(t), { w: 5 }) +
+      `<rect x="698" y="104" width="36" height="82" fill="#E8604C" fill-opacity=".18"/>` +
+      `<rect x="140" y="120" width="720" height="48" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-width="4"/>` + grad +
+      trait(716, 100, 716, 186, prog(t), { c: '#E8604C', w: 3, tiret: '6 5' }) +
+      mot(716, 56, '120 cm', { c: '#E8604C', t: 25 }) +
+      trait(702, 208, 730, 208, prog(t), { c: '#E8604C', w: 4 }) + pointe(698, 208, 180, '#E8604C') + pointe(734, 208, 0, '#E8604C') +
+      mot(716, 238, '± 0,5 cm', { c: '#E8604C', t: 22 }) +
+      mot(500, 276, 'on lit la table à un demi-centimètre près', { t: 20 }));
+  },
+  dispersion_mesures_fig(t) {
+    const pts = [[382, 138], [428, 168], [458, 122], [484, 158], [502, 132], [516, 172], [540, 126], [566, 156], [612, 140], [452, 182], [548, 186]];
+    let points = '';
+    for (const [x, y] of pts) points += `<circle cx="${x}" cy="${y}" r="7.5" fill="#1A75FF" fill-opacity=".75"/>`;
+    return svgBoite(
+      mot(500, 42, 'la moyenne des mesures', { c: '#E8604C', t: 21 }) +
+      trait(500, 56, 500, 208, prog(t), { c: '#E8604C', w: 3, tiret: '7 6' }) +
+      trait(436, 92, 564, 92, prog(t), { c: '#10B981', w: 4 }) + pointe(430, 92, 180, '#10B981') + pointe(570, 92, 0, '#10B981') +
+      mot(580, 98, "l'écart type, la dispersion", { c: '#10B981', t: 20, a: 'start' }) +
+      points +
+      trait(160, 212, 838, 212, prog(t), { w: 4 }) + pointe(846, 212, 0) +
+      mot(340, 240, '119,8', { t: 18 }) + mot(500, 240, '120,0', { t: 18 }) + mot(660, 240, '120,2', { t: 18 }) +
+      mot(500, 278, 'chaque mesure répétée donne une valeur un peu différente', { t: 19 }));
+  },
   calorimetre_fig(t) {
     let hachures = '';
     for (const y of [110, 150, 190]) { hachures += trait(361, y, 377, y + 14, 1, { w: 2 }); hachures += trait(623, y, 639, y + 14, 1, { w: 2 }); }
