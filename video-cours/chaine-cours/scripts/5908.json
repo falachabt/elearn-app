@@ -1,352 +1,380 @@
 {
-  "cours": 5908,
-  "lecons": [
-    4337,
-    4338,
-    4339,
-    4340,
-    4341,
-    4342,
-    4343,
-    4344,
-    4345,
-    4346,
-    4347,
-    4348,
-    4349,
-    4350
-  ],
-  "titre": "Optique géométrique",
-  "matiere": "Physique · Terminale",
-  "phrases": [
-    {
-      "id": "p01",
-      "ecran": "titre",
-      "dit": "Bonjour à tous. Aujourd'hui, on explore l'optique géométrique : la réflexion, la réfraction, les lentilles et les instruments qui forment les images.",
-      "texte": "Bonjour à tous. Aujourd'hui, on explore l'optique géométrique.",
-      "pause_apres": 0.9
-    },
-    {
-      "id": "p02",
-      "ecran": "intro",
-      "dit": "L'optique géométrique décrit la propagation de la lumière à l'aide de rayons lumineux. C'est un modèle simple, qui suffit pour comprendre les miroirs, les lentilles et la plupart des instruments.",
-      "texte": "L'optique géométrique décrit la lumière avec des rayons lumineux.",
-      "pause_apres": 0.7
-    },
-    {
-      "id": "p03",
-      "ecran": "propagation",
-      "dit": "Premier principe : dans un milieu homogène et transparent, la lumière se propage en ligne droite. C'est ce qui explique la chambre noire, où l'image d'une scène se projette inversée sur la paroi opposée au trou.",
-      "texte": "Dans un milieu homogène, la lumière se propage en ligne droite : c'est le principe de la chambre noire.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p04",
-      "ecran": "reflexion",
-      "dit": "Quand un rayon rencontre une surface, il peut rebondir : c'est la réflexion. On appelle rayon incident celui qui arrive, et normale la perpendiculaire à la surface au point d'impact.",
-      "texte": "La réflexion : le rayon rebondit sur la surface. Les angles se mesurent par rapport à la normale.",
-      "pause_apres": 0.7
-    },
-    {
-      "id": "p05",
-      "ecran": "loi_reflexion",
-      "dit": "La loi de la réflexion tient en une égalité : l'angle d'incidence, noté i, est égal à l'angle de réflexion, noté r. Le rayon incident, le rayon réfléchi et la normale sont dans un même plan.",
-      "texte": "Loi de la réflexion : l'angle d'incidence égale l'angle de réflexion.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p06",
-      "ecran": "speculaire",
-      "dit": "Sur une surface polie comme un miroir, la réflexion est régulière et forme une image : elle est spéculaire. Sur une surface rugueuse, les rayons repartent dans toutes les directions : la réflexion est diffuse, et c'est elle qui nous permet de voir les objets.",
-      "texte": "Surface polie : réflexion spéculaire. Surface rugueuse : réflexion diffuse.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p07",
-      "ecran": "refraction",
-      "dit": "Deuxième phénomène : la réfraction. Quand la lumière change de milieu, par exemple de l'air vers l'eau, sa vitesse change et le rayon change de direction. C'est pour cela qu'une paille plongée dans un verre d'eau semble brisée.",
-      "texte": "La réfraction : en changeant de milieu, la lumière change de vitesse et de direction.",
-      "pause_apres": 0.7
-    },
-    {
-      "id": "p08",
-      "ecran": "indice",
-      "dit": "L'indice de réfraction, noté n, compare la vitesse de la lumière dans le vide, notée c, à sa vitesse dans le milieu, notée v. Plus l'indice est grand, plus la lumière est ralentie : il vaut environ un pour l'air et un virgule trente-trois pour l'eau.",
-      "texte": "L'indice de réfraction compare la vitesse de la lumière dans le vide et dans le milieu.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p09",
-      "ecran": "snell",
-      "dit": "La loi de Snell-Descartes relie les indices et les angles des deux milieux : n un fois le sinus de thêta un égale n deux fois le sinus de thêta deux, les angles étant mesurés par rapport à la normale.",
-      "texte": "Loi de Snell-Descartes : elle relie les indices et les angles des deux milieux.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p10",
-      "ecran": "snell_ex",
-      "dit": "Exemple. Un rayon passe de l'air dans l'eau avec un angle d'incidence de trente degrés. On applique la loi : le sinus de thêta deux égale le sinus de trente degrés divisé par un virgule trente-trois, soit environ zéro virgule trois cent soixante-seize.",
-      "texte": "Exemple : rayon air vers eau, incidence de 30 degrés, on applique Snell-Descartes.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p11",
-      "ecran": "snell_res",
-      "dit": "On obtient un angle de réfraction d'environ vingt-deux degrés. Le rayon se rapproche donc de la normale en entrant dans l'eau, le milieu où la lumière va le moins vite.",
-      "texte": "Résultat : environ 22 degrés. En entrant dans l'eau, le rayon se rapproche de la normale.",
-      "pause_apres": 0.9
-    },
-    {
-      "id": "p12",
-      "ecran": "dispersion",
-      "dit": "L'indice dépend aussi de la couleur : dans un prisme, chaque longueur d'onde est déviée différemment. La lumière blanche se décompose en un spectre, le violet étant plus dévié que le rouge. C'est la célèbre expérience de Newton.",
-      "texte": "Dans un prisme, la lumière blanche se décompose : le violet est plus dévié que le rouge.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p13",
-      "ecran": "lentilles",
-      "dit": "Une lentille est un bloc transparent limité par des surfaces courbes, qui réfracte la lumière. Une lentille convergente est plus épaisse au centre qu'aux bords. Une lentille divergente, c'est l'inverse : elle est plus mince au centre.",
-      "texte": "Convergente : plus épaisse au centre. Divergente : plus mince au centre.",
-      "pause_apres": 0.7
-    },
-    {
-      "id": "p14",
-      "ecran": "focale",
-      "dit": "La distance focale, notée f, est la distance entre le centre optique de la lentille et son foyer. Elle est positive pour une lentille convergente et négative pour une lentille divergente.",
-      "texte": "La distance focale f : positive si la lentille est convergente, négative si elle est divergente.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p15",
-      "ecran": "rayons",
-      "dit": "Trois rayons suffisent pour construire une image. Le rayon parallèle à l'axe ressort en passant par le foyer image. Celui qui passe par le centre optique traverse sans être dévié. Celui qui passe par le foyer objet ressort parallèle à l'axe.",
-      "texte": "Trois rayons particuliers suffisent pour construire l'image.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p16",
-      "ecran": "conjugaison",
-      "dit": "La formule des lentilles minces relie la focale aux distances de l'objet et de l'image : un sur f égale un sur p plus un sur p prime, avec p la distance de l'objet et p prime celle de l'image, pour un objet et une image réels.",
-      "texte": "Formule des lentilles minces : elle relie focale, distance objet et distance image.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p17",
-      "ecran": "grandissement",
-      "dit": "Le grandissement, noté gamma, vaut moins p prime sur p. S'il est négatif, l'image est inversée. Si sa valeur absolue dépasse un, l'image est agrandie ; sinon, elle est réduite.",
-      "texte": "Le grandissement : négatif, l'image est inversée ; plus grand que un en valeur absolue, elle est agrandie.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p18",
-      "ecran": "lentille_ex",
-      "dit": "Exemple chiffré. Une lentille convergente de focale dix centimètres reçoit un objet placé à vingt centimètres. Un sur p prime égale un dixième moins un vingtième, donc p prime vaut vingt centimètres et le grandissement vaut moins un.",
-      "texte": "Exemple : focale de 10 centimètres, objet à 20 centimètres, image à 20 centimètres.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p19",
-      "ecran": "lentille_res",
-      "dit": "L'image se forme donc à vingt centimètres, de l'autre côté de la lentille : elle est réelle, inversée et de même taille que l'objet, car le grandissement vaut moins un.",
-      "texte": "Image réelle, inversée, de même taille que l'objet.",
-      "pause_apres": 0.9
-    },
-    {
-      "id": "p20",
-      "ecran": "oeil",
-      "dit": "L'œil lui-même se modélise simplement : une seule lentille convergente, qui représente la cornée et le cristallin, forme l'image sur la rétine. La focale change pour faire la mise au point selon la distance : c'est l'accommodation.",
-      "texte": "L'œil réduit : une lentille convergente unique, une image sur la rétine, une focale qui s'ajuste.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p21",
-      "ecran": "loupe",
-      "dit": "La loupe est une lentille convergente tenue près de l'œil, avec l'objet placé à l'intérieur de la focale : elle donne une image virtuelle, droite et agrandie. Son grossissement vaut vingt-cinq divisé par la focale en centimètres, soit cinq pour une focale de cinq centimètres.",
-      "texte": "La loupe : image virtuelle agrandie. Grossissement : 25 divisé par la focale en centimètres.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p22",
-      "ecran": "lunette",
-      "dit": "La lunette astronomique associe deux lentilles convergentes : un objectif de grande focale, qui forme une image réelle de l'astre, et un oculaire de courte focale, qui la grossit comme une loupe. Son grossissement vaut moins la focale de l'objectif divisée par celle de l'oculaire.",
-      "texte": "Lunette astronomique : un objectif de grande focale, un oculaire de courte focale.",
-      "pause_apres": 1.0
-    },
-    {
-      "id": "p23",
-      "ecran": "microscope",
-      "dit": "Le microscope combine aussi deux systèmes : l'objectif forme une image réelle et agrandie de l'objet, puis l'oculaire l'agrandit encore. Le grossissement total est le produit des deux : un objectif fois quarante et un oculaire fois dix donnent un grossissement de quatre cents.",
-      "texte": "Microscope : grossissement total égal au produit des deux grossissements.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p24",
-      "ecran": "applications",
-      "dit": "Enfin, quand un rayon ne peut plus sortir d'un milieu, la réflexion est totale et interne : c'est le principe des fibres optiques, utilisées dans les télécommunications et en médecine. Appareils photo, télescopes et correction de la vue reposent sur les mêmes lois.",
-      "texte": "Réflexion totale interne : le principe des fibres optiques.",
-      "pause_apres": 0.8
-    },
-    {
-      "id": "p25",
-      "ecran": "recap",
-      "dit": "À retenir : la lumière se propage en ligne droite dans un milieu homogène. À la réflexion, i égale r. À la réfraction, la loi de Snell-Descartes gouverne les angles. Et pour les lentilles, la formule de conjugaison et le grandissement permettent de prévoir chaque image.",
-      "texte": "À retenir : propagation rectiligne, réflexion, Snell-Descartes, conjugaison et grandissement.",
-      "pause_apres": 0.9
-    }
-  ],
-  "ecrans": {
-    "titre": {
-      "type": "titre",
-      "kicker": "Physique · Terminale",
-      "titre": "Optique géométrique",
-      "sous": "Réflexion, réfraction, lentilles et instruments"
-    },
-    "intro": {
-      "type": "phrase",
-      "kicker": "Introduction",
-      "texte": "L'optique géométrique décrit la propagation de la lumière avec des rayons lumineux."
-    },
-    "propagation": {
-      "type": "phrase",
-      "kicker": "Propagation rectiligne",
-      "texte": "Dans un milieu homogène et transparent, la lumière se propage en ligne droite."
-    },
-    "reflexion": {
-      "type": "phrase",
-      "kicker": "La réflexion",
-      "texte": "Le rayon incident rebondit sur la surface : c'est le rayon réfléchi."
-    },
-    "loi_reflexion": {
-      "type": "formule",
-      "kicker": "Loi de la réflexion",
-      "tex": "i = r",
-      "note": "angles mesurés par rapport à la normale, dans le même plan"
-    },
-    "speculaire": {
-      "type": "phrase",
-      "kicker": "Deux réflexions",
-      "texte": "Surface polie : réflexion spéculaire, une image se forme. Surface rugueuse : réflexion diffuse."
-    },
-    "refraction": {
-      "type": "phrase",
-      "kicker": "La réfraction",
-      "texte": "En changeant de milieu, la lumière change de vitesse : le rayon change de direction."
-    },
-    "indice": {
-      "type": "formule",
-      "kicker": "Indice de réfraction",
-      "tex": "n = \\dfrac{c}{v}",
-      "note": "c : vitesse dans le vide, environ 3,0 × 10⁸ mètres par seconde · eau : 1,33 · air : 1,00"
-    },
-    "snell": {
-      "type": "formule",
-      "kicker": "Loi de Snell-Descartes",
-      "tex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
-      "note": "θ₁ : incidence · θ₂ : réfraction, par rapport à la normale"
-    },
-    "snell_ex": {
-      "type": "etape",
-      "kicker": "Exemple · air vers eau",
-      "tex": [
-        "n_1 = 1{,}00 \\quad n_2 = 1{,}33 \\quad \\theta_1 = 30^\\circ",
-        "\\sin\\theta_2 = \\dfrac{\\sin 30^\\circ}{1{,}33} \\approx 0{,}376"
-      ]
-    },
-    "snell_res": {
-      "type": "phrase",
-      "kicker": "Résultat",
-      "texte": "θ₂ ≈ 22° : le rayon se rapproche de la normale en entrant dans l'eau."
-    },
-    "dispersion": {
-      "type": "phrase",
-      "kicker": "Dispersion par un prisme",
-      "texte": "L'indice dépend de la longueur d'onde : la lumière blanche se décompose en couleurs."
-    },
-    "lentilles": {
-      "type": "phrase",
-      "kicker": "Les lentilles",
-      "texte": "Convergente : plus épaisse au centre. Divergente : plus mince au centre."
-    },
-    "focale": {
-      "type": "lignes",
-      "kicker": "Distance focale",
-      "tex": [
-        "f > 0 \\quad \\text{lentille convergente}",
-        "f < 0 \\quad \\text{lentille divergente}"
-      ]
-    },
-    "rayons": {
-      "type": "recap",
-      "kicker": "Trois rayons pour construire",
-      "etapes": [
-        "Parallèle à l'axe : il ressort par le foyer image",
-        "Par le centre optique : il traverse sans être dévié",
-        "Par le foyer objet : il ressort parallèle à l'axe"
-      ]
-    },
-    "conjugaison": {
-      "type": "formule",
-      "kicker": "Formule des lentilles minces",
-      "tex": "\\dfrac{1}{f} = \\dfrac{1}{p} + \\dfrac{1}{p'}",
-      "note": "p : distance objet · p' : distance image (objet et image réels)"
-    },
-    "grandissement": {
-      "type": "formule",
-      "kicker": "Grandissement",
-      "tex": "\\gamma = -\\dfrac{p'}{p}",
-      "note": "γ négatif : image inversée · valeur absolue plus grande que 1 : image agrandie"
-    },
-    "lentille_ex": {
-      "type": "etape",
-      "kicker": "Exemple · lentille convergente",
-      "tex": [
-        "f = 10 \\ \\text{cm} \\quad p = 20 \\ \\text{cm}",
-        "\\dfrac{1}{p'} = \\dfrac{1}{10} - \\dfrac{1}{20} = \\dfrac{1}{20}",
-        "p' = 20 \\ \\text{cm} \\quad \\gamma = -1"
-      ]
-    },
-    "lentille_res": {
-      "type": "phrase",
-      "kicker": "Résultat",
-      "texte": "Image à 20 centimètres, de l'autre côté : réelle, inversée, de même taille."
-    },
-    "oeil": {
-      "type": "phrase",
-      "kicker": "L'œil réduit",
-      "texte": "Une lentille convergente unique forme l'image sur la rétine : la focale s'ajuste, c'est l'accommodation."
-    },
-    "loupe": {
-      "type": "formule",
-      "kicker": "Grossissement de la loupe",
-      "tex": "G = \\dfrac{25}{f}",
-      "note": "f en centimètres · 25 centimètres : distance minimale de vision nette"
-    },
-    "lunette": {
-      "type": "formule",
-      "kicker": "Grossissement de la lunette",
-      "tex": "G = -\\dfrac{f_o}{f_e}",
-      "note": "fo : focale de l'objectif · fe : focale de l'oculaire"
-    },
-    "microscope": {
-      "type": "phrase",
-      "kicker": "Le microscope",
-      "texte": "Grossissement total = grossissement de l'objectif × grossissement de l'oculaire."
-    },
-    "applications": {
-      "type": "phrase",
-      "kicker": "Applications",
-      "texte": "Fibres optiques, appareils photo, télescopes, correction de la vue : les mêmes lois partout."
-    },
-    "recap": {
-      "type": "recap",
-      "kicker": "À retenir",
-      "etapes": [
-        "Propagation rectiligne dans un milieu homogène",
-        "Réflexion : i = r, par rapport à la normale",
-        "Réfraction : n₁ sinθ₁ = n₂ sinθ₂ (Snell-Descartes)",
-        "Lentilles : 1/f = 1/p + 1/p' et γ = −p'/p"
-      ]
-    }
+ "cours": 5908,
+ "lecons": [
+  4337,
+  4338,
+  4339,
+  4340,
+  4341,
+  4342,
+  4343,
+  4344,
+  4345,
+  4346,
+  4347,
+  4348,
+  4349,
+  4350
+ ],
+ "titre": "Optique géométrique",
+ "matiere": "Physique · Terminale",
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bonjour à tous. Aujourd'hui, on explore l'optique géométrique : la réflexion, la réfraction, les lentilles et les instruments qui forment les images.",
+   "texte": "Bonjour à tous. Aujourd'hui, on explore l'optique géométrique.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "L'optique géométrique décrit la propagation de la lumière à l'aide de rayons lumineux. C'est un modèle simple, qui suffit pour comprendre les miroirs, les lentilles et la plupart des instruments.",
+   "texte": "L'optique géométrique décrit la lumière avec des rayons lumineux.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p03",
+   "ecran": "propagation",
+   "dit": "Premier principe : dans un milieu homogène et transparent, la lumière se propage en ligne droite. C'est ce qui explique la chambre noire, où l'image d'une scène se projette inversée sur la paroi opposée au trou.",
+   "texte": "Dans un milieu homogène, la lumière se propage en ligne droite : c'est le principe de la chambre noire.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "reflexion",
+   "dit": "Quand un rayon rencontre une surface, il peut rebondir : c'est la réflexion. On appelle rayon incident celui qui arrive, et normale la perpendiculaire à la surface au point d'impact.",
+   "texte": "La réflexion : le rayon rebondit sur la surface. Les angles se mesurent par rapport à la normale.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p05",
+   "ecran": "loi_reflexion",
+   "dit": "La loi de la réflexion tient en une égalité : l'angle d'incidence, noté i, est égal à l'angle de réflexion, noté r. Le rayon incident, le rayon réfléchi et la normale sont dans un même plan.",
+   "texte": "Loi de la réflexion : l'angle d'incidence égale l'angle de réflexion.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p06",
+   "ecran": "speculaire",
+   "dit": "Sur une surface polie comme un miroir, la réflexion est régulière et forme une image : elle est spéculaire. Sur une surface rugueuse, les rayons repartent dans toutes les directions : la réflexion est diffuse, et c'est elle qui nous permet de voir les objets.",
+   "texte": "Surface polie : réflexion spéculaire. Surface rugueuse : réflexion diffuse.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "refraction",
+   "dit": "Deuxième phénomène : la réfraction. Quand la lumière change de milieu, par exemple de l'air vers l'eau, sa vitesse change et le rayon change de direction. C'est pour cela qu'une paille plongée dans un verre d'eau semble brisée.",
+   "texte": "La réfraction : en changeant de milieu, la lumière change de vitesse et de direction.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p08",
+   "ecran": "indice",
+   "dit": "L'indice de réfraction, noté n, compare la vitesse de la lumière dans le vide, notée c, à sa vitesse dans le milieu, notée v. Plus l'indice est grand, plus la lumière est ralentie : il vaut environ un pour l'air et un virgule trente-trois pour l'eau.",
+   "texte": "L'indice de réfraction compare la vitesse de la lumière dans le vide et dans le milieu.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p09",
+   "ecran": "snell",
+   "dit": "La loi de Snell-Descartes relie les indices et les angles des deux milieux : n un fois le sinus de thêta un égale n deux fois le sinus de thêta deux, les angles étant mesurés par rapport à la normale.",
+   "texte": "Loi de Snell-Descartes : elle relie les indices et les angles des deux milieux.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p10",
+   "ecran": "snell_ex",
+   "dit": "Exemple. Un rayon passe de l'air dans l'eau avec un angle d'incidence de trente degrés. On applique la loi : le sinus de thêta deux égale le sinus de trente degrés divisé par un virgule trente-trois, soit environ zéro virgule trois cent soixante-seize.",
+   "texte": "Exemple : rayon air vers eau, incidence de 30 degrés, on applique Snell-Descartes.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "snell_res",
+   "dit": "On obtient un angle de réfraction d'environ vingt-deux degrés. Le rayon se rapproche donc de la normale en entrant dans l'eau, le milieu où la lumière va le moins vite.",
+   "texte": "Résultat : environ 22 degrés. En entrant dans l'eau, le rayon se rapproche de la normale.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p12",
+   "ecran": "dispersion",
+   "dit": "L'indice dépend aussi de la couleur : dans un prisme, chaque longueur d'onde est déviée différemment. La lumière blanche se décompose en un spectre, le violet étant plus dévié que le rouge. C'est la célèbre expérience de Newton.",
+   "texte": "Dans un prisme, la lumière blanche se décompose : le violet est plus dévié que le rouge.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "lentilles",
+   "dit": "Une lentille est un bloc transparent limité par des surfaces courbes, qui réfracte la lumière. Une lentille convergente est plus épaisse au centre qu'aux bords. Une lentille divergente, c'est l'inverse : elle est plus mince au centre.",
+   "texte": "Convergente : plus épaisse au centre. Divergente : plus mince au centre.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p14",
+   "ecran": "focale",
+   "dit": "La distance focale, notée f, est la distance entre le centre optique de la lentille et son foyer. Elle est positive pour une lentille convergente et négative pour une lentille divergente.",
+   "texte": "La distance focale f : positive si la lentille est convergente, négative si elle est divergente.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p15",
+   "ecran": "rayons",
+   "dit": "Trois rayons suffisent pour construire une image. Le rayon parallèle à l'axe ressort en passant par le foyer image. Celui qui passe par le centre optique traverse sans être dévié. Celui qui passe par le foyer objet ressort parallèle à l'axe.",
+   "texte": "Trois rayons particuliers suffisent pour construire l'image.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "conjugaison",
+   "dit": "La formule des lentilles minces relie la focale aux distances de l'objet et de l'image : un sur f égale un sur p plus un sur p prime, avec p la distance de l'objet et p prime celle de l'image, pour un objet et une image réels.",
+   "texte": "Formule des lentilles minces : elle relie focale, distance objet et distance image.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p17",
+   "ecran": "grandissement",
+   "dit": "Le grandissement, noté gamma, vaut moins p prime sur p. S'il est négatif, l'image est inversée. Si sa valeur absolue dépasse un, l'image est agrandie ; sinon, elle est réduite.",
+   "texte": "Le grandissement : négatif, l'image est inversée ; plus grand que un en valeur absolue, elle est agrandie.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p18",
+   "ecran": "lentille_ex",
+   "dit": "Exemple chiffré. Une lentille convergente de focale dix centimètres reçoit un objet placé à vingt centimètres. Un sur p prime égale un dixième moins un vingtième, donc p prime vaut vingt centimètres et le grandissement vaut moins un.",
+   "texte": "Exemple : focale de 10 centimètres, objet à 20 centimètres, image à 20 centimètres.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "lentille_res",
+   "dit": "L'image se forme donc à vingt centimètres, de l'autre côté de la lentille : elle est réelle, inversée et de même taille que l'objet, car le grandissement vaut moins un.",
+   "texte": "Image réelle, inversée, de même taille que l'objet.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p20",
+   "ecran": "oeil",
+   "dit": "L'œil lui-même se modélise simplement : une seule lentille convergente, qui représente la cornée et le cristallin, forme l'image sur la rétine. La focale change pour faire la mise au point selon la distance : c'est l'accommodation.",
+   "texte": "L'œil réduit : une lentille convergente unique, une image sur la rétine, une focale qui s'ajuste.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "loupe",
+   "dit": "La loupe est une lentille convergente tenue près de l'œil, avec l'objet placé à l'intérieur de la focale : elle donne une image virtuelle, droite et agrandie. Son grossissement vaut vingt-cinq divisé par la focale en centimètres, soit cinq pour une focale de cinq centimètres.",
+   "texte": "La loupe : image virtuelle agrandie. Grossissement : 25 divisé par la focale en centimètres.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p22",
+   "ecran": "lunette",
+   "dit": "La lunette astronomique associe deux lentilles convergentes : un objectif de grande focale, qui forme une image réelle de l'astre, et un oculaire de courte focale, qui la grossit comme une loupe. Son grossissement vaut moins la focale de l'objectif divisée par celle de l'oculaire.",
+   "texte": "Lunette astronomique : un objectif de grande focale, un oculaire de courte focale.",
+   "pause_apres": 1.0
+  },
+  {
+   "id": "p23",
+   "ecran": "microscope",
+   "dit": "Le microscope combine aussi deux systèmes : l'objectif forme une image réelle et agrandie de l'objet, puis l'oculaire l'agrandit encore. Le grossissement total est le produit des deux : un objectif fois quarante et un oculaire fois dix donnent un grossissement de quatre cents.",
+   "texte": "Microscope : grossissement total égal au produit des deux grossissements.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "applications",
+   "dit": "Enfin, quand un rayon ne peut plus sortir d'un milieu, la réflexion est totale et interne : c'est le principe des fibres optiques, utilisées dans les télécommunications et en médecine. Appareils photo, télescopes et correction de la vue reposent sur les mêmes lois.",
+   "texte": "Réflexion totale interne : le principe des fibres optiques.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "recap",
+   "dit": "À retenir : la lumière se propage en ligne droite dans un milieu homogène. À la réflexion, i égale r. À la réfraction, la loi de Snell-Descartes gouverne les angles. Et pour les lentilles, la formule de conjugaison et le grandissement permettent de prévoir chaque image.",
+   "texte": "À retenir : propagation rectiligne, réflexion, Snell-Descartes, conjugaison et grandissement.",
+   "pause_apres": 0.9
   }
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique · Terminale",
+   "titre": "Optique géométrique",
+   "sous": "Réflexion, réfraction, lentilles et instruments"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "L'optique géométrique décrit la propagation de la lumière avec des rayons lumineux."
+  },
+  "propagation": {
+   "type": "phrase",
+   "kicker": "Propagation rectiligne",
+   "texte": "Dans un milieu homogène et transparent, la lumière se propage en ligne droite.",
+   "anim": {
+    "nom": "chambre"
+   }
+  },
+  "reflexion": {
+   "type": "phrase",
+   "kicker": "La réflexion",
+   "texte": "Le rayon incident rebondit sur la surface : c'est le rayon réfléchi.",
+   "anim": {
+    "nom": "reflexion"
+   }
+  },
+  "loi_reflexion": {
+   "type": "formule",
+   "kicker": "Loi de la réflexion",
+   "tex": "i = r",
+   "note": "angles mesurés par rapport à la normale, dans le même plan"
+  },
+  "speculaire": {
+   "type": "phrase",
+   "kicker": "Deux réflexions",
+   "texte": "Surface polie : réflexion spéculaire, une image se forme. Surface rugueuse : réflexion diffuse."
+  },
+  "refraction": {
+   "type": "phrase",
+   "kicker": "La réfraction",
+   "texte": "En changeant de milieu, la lumière change de vitesse : le rayon change de direction.",
+   "anim": {
+    "nom": "refraction"
+   }
+  },
+  "indice": {
+   "type": "formule",
+   "kicker": "Indice de réfraction",
+   "tex": "n = \\dfrac{c}{v}",
+   "note": "c : vitesse dans le vide, environ 3,0 × 10⁸ mètres par seconde · eau : 1,33 · air : 1,00"
+  },
+  "snell": {
+   "type": "formule",
+   "kicker": "Loi de Snell-Descartes",
+   "tex": "n_1 \\sin\\theta_1 = n_2 \\sin\\theta_2",
+   "note": "θ₁ : incidence · θ₂ : réfraction, par rapport à la normale"
+  },
+  "snell_ex": {
+   "type": "etape",
+   "kicker": "Exemple · air vers eau",
+   "tex": [
+    "n_1 = 1{,}00 \\quad n_2 = 1{,}33 \\quad \\theta_1 = 30^\\circ",
+    "\\sin\\theta_2 = \\dfrac{\\sin 30^\\circ}{1{,}33} \\approx 0{,}376"
+   ]
+  },
+  "snell_res": {
+   "type": "phrase",
+   "kicker": "Résultat",
+   "texte": "θ₂ ≈ 22° : le rayon se rapproche de la normale en entrant dans l'eau."
+  },
+  "dispersion": {
+   "type": "phrase",
+   "kicker": "Dispersion par un prisme",
+   "texte": "L'indice dépend de la longueur d'onde : la lumière blanche se décompose en couleurs.",
+   "anim": {
+    "nom": "prisme"
+   }
+  },
+  "lentilles": {
+   "type": "phrase",
+   "kicker": "Les lentilles",
+   "texte": "Convergente : plus épaisse au centre. Divergente : plus mince au centre.",
+   "anim": {
+    "nom": "lentilles"
+   }
+  },
+  "focale": {
+   "type": "lignes",
+   "kicker": "Distance focale",
+   "tex": [
+    "f > 0 \\quad \\text{lentille convergente}",
+    "f < 0 \\quad \\text{lentille divergente}"
+   ]
+  },
+  "rayons": {
+   "type": "recap",
+   "kicker": "Trois rayons pour construire",
+   "etapes": [
+    "Parallèle à l'axe : il ressort par le foyer image",
+    "Par le centre optique : il traverse sans être dévié",
+    "Par le foyer objet : il ressort parallèle à l'axe"
+   ],
+   "anim": {
+    "nom": "rayons",
+    "hauteur": 175
+   }
+  },
+  "conjugaison": {
+   "type": "formule",
+   "kicker": "Formule des lentilles minces",
+   "tex": "\\dfrac{1}{f} = \\dfrac{1}{p} + \\dfrac{1}{p'}",
+   "note": "p : distance objet · p' : distance image (objet et image réels)",
+   "anim": {
+    "nom": "rayons"
+   }
+  },
+  "grandissement": {
+   "type": "formule",
+   "kicker": "Grandissement",
+   "tex": "\\gamma = -\\dfrac{p'}{p}",
+   "note": "γ négatif : image inversée · valeur absolue plus grande que 1 : image agrandie"
+  },
+  "lentille_ex": {
+   "type": "etape",
+   "kicker": "Exemple · lentille convergente",
+   "tex": [
+    "f = 10 \\ \\text{cm} \\quad p = 20 \\ \\text{cm}",
+    "\\dfrac{1}{p'} = \\dfrac{1}{10} - \\dfrac{1}{20} = \\dfrac{1}{20}",
+    "p' = 20 \\ \\text{cm} \\quad \\gamma = -1"
+   ]
+  },
+  "lentille_res": {
+   "type": "phrase",
+   "kicker": "Résultat",
+   "texte": "Image à 20 centimètres, de l'autre côté : réelle, inversée, de même taille."
+  },
+  "oeil": {
+   "type": "phrase",
+   "kicker": "L'œil réduit",
+   "texte": "Une lentille convergente unique forme l'image sur la rétine : la focale s'ajuste, c'est l'accommodation.",
+   "anim": {
+    "nom": "oeil"
+   }
+  },
+  "loupe": {
+   "type": "formule",
+   "kicker": "Grossissement de la loupe",
+   "tex": "G = \\dfrac{25}{f}",
+   "note": "f en centimètres · 25 centimètres : distance minimale de vision nette"
+  },
+  "lunette": {
+   "type": "formule",
+   "kicker": "Grossissement de la lunette",
+   "tex": "G = -\\dfrac{f_o}{f_e}",
+   "note": "fo : focale de l'objectif · fe : focale de l'oculaire"
+  },
+  "microscope": {
+   "type": "phrase",
+   "kicker": "Le microscope",
+   "texte": "Grossissement total = grossissement de l'objectif × grossissement de l'oculaire."
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Applications",
+   "texte": "Fibres optiques, appareils photo, télescopes, correction de la vue : les mêmes lois partout.",
+   "anim": {
+    "nom": "fibre"
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Propagation rectiligne dans un milieu homogène",
+    "Réflexion : i = r, par rapport à la normale",
+    "Réfraction : n₁ sinθ₁ = n₂ sinθ₂ (Snell-Descartes)",
+    "Lentilles : 1/f = 1/p + 1/p' et γ = −p'/p"
+   ]
+  }
+ }
 }

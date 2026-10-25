@@ -29,9 +29,21 @@ Animations disponibles (`gabarit/lecon-16x9.html`, objet `ANIMS`) :
 - `torsion` : pendule de torsion, un fil et une tige qui tourne.
 - `ph` : échelle de pH avec un curseur qui glisse de `debut` à `cible`, et la valeur affichée.
 
+Figures (schémas) disponibles (même objet `ANIMS`, registre `FIG` du gabarit) — les rayons se dessinent progressivement pendant les deux premières secondes de l'écran, puis la figure reste en place :
+- `chambre` : chambre noire — objet, petit trou, image renversée sur la paroi opposée.
+- `reflexion` : miroir plan — rayon incident, rayon réfléchi, normale, angles i et r.
+- `refraction` : rayon qui se plie à la surface air-eau (angles θ₁ et θ₂) + verre d'eau avec la paille qui semble brisée.
+- `prisme` : lumière blanche qui entre dans un prisme et ressort en spectre de couleurs.
+- `lentilles` : convergente (rayons parallèles qui se rejoignent en F′) et divergente (rayons qui s'écartent, prolongements pointillés vers F′) côte à côte.
+- `rayons` : construction complète — objet, lentille convergente, les trois rayons particuliers, image renversée. C'est la figure d'examen du chapitre.
+- `oeil` : œil réduit — objet, cristallin, image formée sur la rétine.
+- `fibre` : rayon qui zigzague dans une fibre par réflexions totales successives.
+- Option `hauteur` (ex. `"anim": {"nom": "rayons", "hauteur": 175}`) : réduit la hauteur de la figure (260 px par défaut) pour les écrans déjà chargés, comme un récapitulatif en étapes.
+
 Règles :
 - Un écran animé doit tenir sous la bande jaune. La vérification de débordement (« texte qui déborde ») est lancée à l'écran animé, une fois la première image posée. Un débordement se règle en retirant l'animation de l'écran, pas en réduisant le texte validé.
 - Une animation ne lit pas le texte : elle illustre l'objet dont on parle.
+- **Visuel obligatoire (décision de Benny, 25 octobre 2026)** : une vidéo ne doit pas rester en pur texte. Chaque fois qu'une notion peut se montrer — un phénomène, un dispositif, un trajet de rayon, un montage — l'écran qui en parle reçoit une figure ou une animation, de préférence la figure type qui revient à l'examen, pour que l'élève puisse s'en rappeler visuellement. Si aucune figure du gabarit ne convient, en dessiner une nouvelle dans le registre `FIG` (SVG, encre du thème + couleurs Elearn) plutôt que laisser l'écran en texte seul.
 
 ## Automatique et manuel
 

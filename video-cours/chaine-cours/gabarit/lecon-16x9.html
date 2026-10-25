@@ -75,7 +75,7 @@ ol.etapes li::before{flex:0 0 58px;height:58px;line-height:58px;font-size:30px}
 .texte{font-size:50px}
 #sous{left:96px;right:96px;bottom:24px;min-height:0;font-size:38px;padding:26px 40px;box-shadow:10px 10px 0 var(--ombre)}
 .anim{color:inherit;display:flex;justify-content:center}
-.anim svg{height:260px;width:auto;max-width:100%}
+.anim svg{height:var(--hauteur-anim,260px);width:auto;max-width:100%}
 footer{display:none}
 </style>
 </head>
@@ -160,8 +160,136 @@ const ANIMS = {
 };
 
 
+/* ——— Figures (schémas) ———
+   Une figure se branche comme une animation : "anim": {"nom": "..."} sur un écran
+   existant, sans toucher au texte ni à la voix. Les rayons se dessinent
+   progressivement pendant les ~2 premières secondes de l'écran, puis la figure
+   reste en place. Style : figure d'examen, encre du thème + couleurs Elearn. */
+const prog = t => Math.max(0, Math.min(1, t / 2.2));
+const interp = (x1, y1, x2, y2, p) => [x1 + (x2 - x1) * p, y1 + (y2 - y1) * p];
+const trait = (x1, y1, x2, y2, p, o = {}) => {
+  if (p <= 0) return '';
+  const [x, y] = interp(x1, y1, x2, y2, p);
+  return `<line x1="${x1}" y1="${y1}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="${o.c || 'currentColor'}" stroke-width="${o.w || 5}"${o.tiret ? ` stroke-dasharray="${o.tiret}"` : ''} stroke-linecap="round"/>`;
+};
+const pointe = (x, y, a, c = 'currentColor') => {
+  const r = a * Math.PI / 180, L = 17, l = 8;
+  const [dx, dy] = [Math.cos(r), Math.sin(r)], [px, py] = [-dy, dx];
+  return `<polygon points="${x},${y} ${x - L * dx + l * px},${y - L * dy + l * py} ${x - L * dx - l * px},${y - L * dy - l * py}" fill="${c}"/>`;
+};
+const mot = (x, y, s, o = {}) => `<text x="${x}" y="${y}" font-size="${o.t || 29}" font-weight="700" fill="${o.c || 'currentColor'}" text-anchor="${o.a || 'middle'}">${s}</text>`;
+const FIG = {
+  chambre(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="120" y1="92" x2="120" y2="212" stroke="#E8604C" stroke-width="10" stroke-linecap="round"/>${pointe(120, 84, -90, '#E8604C')}` +
+      mot(120, 252, 'objet') +
+      `<rect x="492" y="36" width="16" height="104" fill="currentColor"/><rect x="492" y="166" width="16" height="104" fill="currentColor"/>` +
+      mot(500, 296, 'petit trou', { t: 26 }) +
+      `<line x1="872" y1="56" x2="872" y2="248" stroke="currentColor" stroke-width="8"/>` +
+      trait(120, 92, 880, 212, p, { c: '#B8860B', w: 4 }) + trait(120, 212, 880, 92, p, { c: '#B8860B', w: 4 }) +
+      (p > .85 ? `<line x1="880" y1="92" x2="880" y2="212" stroke="#10B981" stroke-width="9" stroke-linecap="round"/>${pointe(880, 220, 90, '#10B981')}` + mot(880, 262, 'image renversée', { t: 26 }) : ''));
+  },
+  reflexion(t) {
+    const p = prog(t), p1 = Math.min(1, p * 2), p2 = Math.max(0, p * 2 - 1);
+    let hach = '';
+    for (let x = 210; x <= 800; x += 45) hach += `<line x1="${x}" y1="238" x2="${x - 18}" y2="258" stroke="currentColor" stroke-width="4" opacity=".55"/>`;
+    return svgBoite(
+      `<line x1="180" y1="238" x2="820" y2="238" stroke="currentColor" stroke-width="9"/>` + hach +
+      `<line x1="500" y1="36" x2="500" y2="238" stroke="currentColor" stroke-width="4" stroke-dasharray="12 10" opacity=".7"/>` +
+      mot(524, 52, 'normale', { t: 26, a: 'start' }) +
+      trait(296, 62, 500, 238, p1, { c: '#E8604C', w: 6 }) + (p1 > .5 ? pointe(398, 150, 41, '#E8604C') : '') +
+      trait(500, 238, 704, 62, p2, { c: '#1A75FF', w: 6 }) + (p2 > .5 ? pointe(602, 150, -41, '#1A75FF') : '') +
+      (p > .45 ? `<path d="M 500 148 A 90 90 0 0 0 442 165" fill="none" stroke="currentColor" stroke-width="4"/><path d="M 558 165 A 90 90 0 0 0 500 148" fill="none" stroke="currentColor" stroke-width="4"/>` + mot(428, 150, 'i', { t: 34 }) + mot(576, 150, 'r', { t: 34 }) : '') +
+      mot(280, 40, 'rayon incident', { c: '#E8604C' }) + mot(724, 40, 'rayon réfléchi', { c: '#1A75FF' }) +
+      mot(500, 290, 'miroir plan', { t: 26 }));
+  },
+  refraction(t) {
+    const p = prog(t), p1 = Math.min(1, p * 2), p2 = Math.max(0, p * 2 - 1);
+    return svgBoite(
+      `<rect x="56" y="150" width="510" height="132" fill="#7FC8E8" opacity=".45"/>` +
+      `<line x1="56" y1="150" x2="566" y2="150" stroke="currentColor" stroke-width="6"/>` +
+      mot(86, 52, 'air', { a: 'start' }) + mot(86, 262, 'eau', { a: 'start' }) +
+      `<line x1="311" y1="26" x2="311" y2="282" stroke="currentColor" stroke-width="4" stroke-dasharray="12 10" opacity=".7"/>` +
+      trait(176, 30, 311, 150, p1, { c: '#E8604C', w: 6 }) + (p1 > .5 ? pointe(244, 90, 41, '#E8604C') : '') +
+      trait(311, 150, 398, 282, p2, { c: '#1A75FF', w: 6 }) + (p2 > .5 ? pointe(356, 218, 57, '#1A75FF') : '') +
+      (p > .45 ? `<path d="M 311 84 A 66 66 0 0 0 264 103" fill="none" stroke="currentColor" stroke-width="4"/><path d="M 311 214 A 64 64 0 0 1 346 204" fill="none" stroke="currentColor" stroke-width="4"/>` + mot(240, 96, 'θ₁', { t: 32 }) + mot(366, 226, 'θ₂', { t: 32 }) : '') +
+      `<rect x="664" y="48" width="272" height="220" fill="none" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="670" y="140" width="260" height="122" fill="#7FC8E8" opacity=".45"/>` +
+      `<line x1="700" y1="16" x2="782" y2="140" stroke="#E8604C" stroke-width="15" stroke-linecap="round"/>` +
+      `<line x1="782" y1="140" x2="848" y2="256" stroke="#E8604C" stroke-width="15" stroke-linecap="round"/>` +
+      mot(800, 296, 'la paille semble brisée', { t: 25 }));
+  },
+  prisme(t) {
+    const p = prog(t), p1 = Math.min(1, p * 2), p2 = Math.max(0, p * 2 - 1);
+    const coul = ['#E8604C', '#FF9F1C', '#E3C800', '#10B981', '#1A75FF', '#7B2FF7'];
+    const ev = coul.map((c, k) => trait(556, 158, 884, 92 + k * 26, p2, { c, w: 5 })).join('');
+    return svgBoite(
+      `<path d="M 500 44 L 392 252 L 608 252 Z" fill="#FFFFFF" fill-opacity=".35" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>` +
+      trait(168, 106, 447, 148, p1, { w: 7 }) + (p1 > .5 ? pointe(310, 127, 14, 'currentColor') : '') +
+      trait(447, 148, 556, 158, p, { w: 6, op: 1 }) + ev +
+      mot(180, 76, 'lumière blanche', { a: 'start' }) + mot(884, 66, 'spectre', { a: 'end' }));
+  },
+  lentilles(t) {
+    const p = prog(t);
+    let ray = '';
+    [92, 150, 208].forEach(y => {
+      ray += trait(64, y, 268, y, p, { c: '#B8860B', w: 4 }) + trait(268, y, 428, 150, p, { c: '#B8860B', w: 4 });
+      ray += trait(524, y, 726, y, p, { c: '#B8860B', w: 4 }) + trait(726, y, 936, y + (150 - y) * -0.8, p, { c: '#B8860B', w: 4 }) + trait(726, y, 612, 150, Math.max(0, p - .15), { c: '#B8860B', w: 3, tiret: '8 8' });
+    });
+    return svgBoite(
+      mot(268, 28, 'convergente') + mot(726, 28, 'divergente') +
+      `<line x1="56" y1="150" x2="472" y2="150" stroke="currentColor" stroke-width="3" stroke-dasharray="10 9" opacity=".6"/>` +
+      `<line x1="516" y1="150" x2="944" y2="150" stroke="currentColor" stroke-width="3" stroke-dasharray="10 9" opacity=".6"/>` +
+      `<path d="M 268 44 Q 326 150 268 256 Q 210 150 268 44 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      `<path d="M 726 44 Q 686 150 726 256 Q 766 150 726 44 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      ray +
+      `<circle cx="428" cy="150" r="8" fill="currentColor"/>` + mot(428, 192, "F′") +
+      `<circle cx="612" cy="150" r="8" fill="currentColor"/>` + mot(612, 192, "F′"));
+  },
+  rayons(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="36" y1="170" x2="964" y2="170" stroke="currentColor" stroke-width="3" stroke-dasharray="10 9" opacity=".6"/>` +
+      `<path d="M 520 34 Q 576 170 520 300 Q 464 170 520 34 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="180" y1="170" x2="180" y2="76" stroke="#E8604C" stroke-width="10" stroke-linecap="round"/>${pointe(180, 66, -90, '#E8604C')}` +
+      mot(180, 208, 'objet', { t: 26 }) +
+      trait(180, 70, 520, 70, p, { c: '#B8860B', w: 4 }) + trait(520, 70, 902, 282, p, { c: '#B8860B', w: 4 }) +
+      trait(180, 70, 902, 282, Math.max(0, p - .1), { c: '#1A75FF', w: 4 }) +
+      trait(180, 70, 340, 170, p, { c: '#10B981', w: 4 }) + trait(340, 170, 520, 282, p, { c: '#10B981', w: 4 }) + trait(520, 282, 902, 282, Math.max(0, p - .1), { c: '#10B981', w: 4 }) +
+      `<circle cx="340" cy="170" r="7" fill="currentColor"/>` + mot(340, 140, 'F') +
+      `<circle cx="700" cy="170" r="7" fill="currentColor"/>` + mot(700, 140, "F′") +
+      (p > .8 ? `<line x1="902" y1="170" x2="902" y2="274" stroke="#7B2FF7" stroke-width="10" stroke-linecap="round"/>${pointe(902, 284, 90, '#7B2FF7')}` + mot(890, 140, 'image', { t: 26, a: 'end' }) : ''));
+  },
+  oeil(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="520" cy="150" r="112" fill="#FFFFFF" fill-opacity=".3" stroke="currentColor" stroke-width="6"/>` +
+      `<path d="M 596 66 A 96 96 0 0 1 596 234" fill="none" stroke="#10B981" stroke-width="9"/>` +
+      `<ellipse cx="428" cy="150" rx="20" ry="58" fill="#10B981" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="118" y1="106" x2="118" y2="196" stroke="#E8604C" stroke-width="10" stroke-linecap="round"/>${pointe(118, 96, -90, '#E8604C')}` +
+      mot(118, 232, 'objet', { t: 26 }) +
+      trait(118, 104, 428, 128, p, { c: '#B8860B', w: 4 }) + trait(428, 128, 600, 196, Math.max(0, p - .1), { c: '#B8860B', w: 4 }) +
+      trait(118, 196, 428, 172, p, { c: '#B8860B', w: 4 }) + trait(428, 172, 600, 108, Math.max(0, p - .1), { c: '#B8860B', w: 4 }) +
+      mot(428, 244, 'cristallin', { t: 26 }) + mot(664, 156, 'rétine', { t: 26, a: 'start' }));
+  },
+  fibre(t) {
+    const p = prog(t);
+    const pts = [[88, 150], [228, 124], [368, 176], [508, 124], [648, 176], [788, 124], [914, 148]];
+    let zig = '';
+    const n = pts.length - 1, total = p * n;
+    for (let k = 0; k < n; k++) zig += trait(pts[k][0], pts[k][1], pts[k + 1][0], pts[k + 1][1], Math.max(0, Math.min(1, total - k)), { c: '#E8604C', w: 6 });
+    return svgBoite(
+      `<rect x="80" y="112" width="840" height="76" fill="#10B981" fill-opacity=".18" stroke="currentColor" stroke-width="5"/>` +
+      zig + mot(500, 232, 'réflexions totales successives dans la fibre', { t: 27 }));
+  },
+};
+
+Object.assign(ANIMS, FIG);
+
 function gabarit(e) {
-  return gabaritBase(e) + (e.anim ? '<div class="anim" id="anim"></div>' : '');
+  const style = e.anim && e.anim.hauteur ? ` style="--hauteur-anim:${e.anim.hauteur}px"` : '';
+  return gabaritBase(e) + (e.anim ? `<div class="anim" id="anim"${style}></div>` : '');
 }
 
 window.chevauchement = () => {
