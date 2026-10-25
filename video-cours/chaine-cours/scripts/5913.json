@@ -1,1 +1,304 @@
-{"cours":5913,"ecrans":{"activite":{"kicker":"Activité radioactive","note":"A en becquerels (Bq) : une désintégration par seconde · l'activité décroît elle aussi de façon exponentielle","tex":"A(t) = \\lambda\\, N(t)","titre":"Le nombre de désintégrations par seconde","type":"formule"},"applications":{"etapes":["Datation au carbone 14 : retrouver l'âge des vestiges organiques","Imagerie médicale : la scintigraphie au technétium-99m voit les organes de l'intérieur","Radiothérapie : le cobalt-60 détruit les cellules cancéreuses","Industrie : radiographie des soudures et production d'électricité par fission de l'uranium-235, sans émettre de CO₂"],"kicker":"Applications","titre":"La radioactivité au service de l'homme","type":"recap"},"conservation":{"kicker":"Lois de conservation (Soddy)","note":"S'y ajoutent la conservation de l'énergie et celle de la quantité de mouvement","tex":"A = A' + a \\qquad Z = Z' + z","titre":"Ce qui se conserve dans une réaction nucléaire","type":"formule"},"dangers":{"kicker":"Effets sur le vivant","texte":"Ces rayonnements sont ionisants : ils arrachent des électrons, endommagent l'ADN, directement ou par les radicaux libres créés dans l'eau des cellules. La dose absorbée se mesure en grays.","type":"phrase"},"decroissance":{"anim":{"hauteur":320,"nom":"decroissance"},"kicker":"Loi de décroissance radioactive","note":"λ : constante radioactive, caractéristique de chaque isotope · N₀ : nombre initial de noyaux","tex":"N(t) = N_0\\, e^{-\\lambda t}","titre":"De moins en moins de noyaux","type":"formule"},"definition":{"kicker":"Définition","texte":"La radioactivité est la désintégration spontanée d'un noyau instable. Elle ne concerne que le noyau : les électrons périphériques, ceux des réactions chimiques, ne sont pas impliqués.","type":"phrase"},"demivie":{"kicker":"Demi-vie","note":"Après chaque demi-vie, il reste moitié moins de noyaux : N₀/2, puis N₀/4, puis N₀/8…","tex":"t_{1/2} = \\frac{\\ln 2}{\\lambda}","titre":"Le temps pour diviser les noyaux par deux","type":"formule"},"energie":{"kicker":"Énergie libérée","note":"La masse perdue par les noyaux, le défaut de masse Δm, réapparaît en énergie","tex":"E = \\Delta m\\, c^2","titre":"La masse devient énergie","type":"formule"},"ex_dose":{"kicker":"Exemple · radioprotection","tex":["\\text{à } 1\\ \\text{m : } 10\\ \\text{mSv/h} \\times 2\\ \\text{h} = 20\\ \\text{mSv}","\\text{à } 2\\ \\text{m : intensité divisée par } 2^2 = 4","\\text{donc } 20 / 4 = 5\\ \\text{mSv}"],"titre":"L'exercice du cours : la dose d'un technicien","type":"etape"},"ex_po":{"kicker":"Exemple","tex":["{}^{210}_{84}\\text{Po} \\; \\longrightarrow \\; {}^{A'}_{Z'}\\text{X} \\; + \\; {}^{4}_{2}\\text{He}","A' = 210 - 4 = 206","Z' = 84 - 2 = 82"],"titre":"Le polonium 210 émet une particule alpha","type":"etape"},"ex_po_res":{"kicker":"Exemple · résultat","note":"Z = 82 : c'est le plomb. Le polonium 210 devient du plomb 206","tex":"{}^{210}_{84}\\text{Po} \\; \\longrightarrow \\; {}^{206}_{82}\\text{Pb} \\; + \\; {}^{4}_{2}\\text{He}","titre":"Le noyau fils est identifié","type":"formule"},"fission_fusion":{"etapes":["Fission : un noyau lourd, frappé par un neutron, se casse en deux noyaux plus légers, d'autres neutrons et de l'énergie — la réaction des centrales","Fusion : deux noyaux légers s'assemblent en un noyau plus lourd en libérant de l'énergie — la réaction qui fait briller le Soleil"],"kicker":"Réactions nucléaires provoquées","titre":"Fission et fusion","type":"recap"},"intro":{"kicker":"Introduction","texte":"Découverte par Henri Becquerel en 1896, puis étudiée par Marie et Pierre Curie, la radioactivité a révélé que le noyau des atomes pouvait se transformer.","type":"phrase"},"protection":{"anim":{"hauteur":300,"nom":"penetration"},"kicker":"Radioprotection","texte":"Trois réflexes : réduire le temps d'exposition, s'éloigner — l'intensité chute avec le carré de la distance — et interposer un blindage adapté au rayonnement.","type":"phrase"},"recap":{"etapes":["Lois de Soddy : A et Z se conservent ; quatre désintégrations : alpha, bêta moins, bêta plus, gamma","Décroissance exponentielle : N(t) = N₀ e^(−λt), activité A = λN en becquerels","Demi-vie : t½ = ln 2 / λ","Protection : temps court, distance, blindage — papier pour alpha, aluminium pour bêta, plomb pour gamma"],"kicker":"À retenir","titre":"Introduction à la radioactivité","type":"recap"},"titre":{"kicker":"Physique · Terminale","sous":"Désintégrations, décroissance exponentielle, applications et radioprotection","titre":"Introduction à la radioactivité","type":"titre"},"types":{"etapes":["Alpha (α) : le noyau éjecte un noyau d'hélium — A diminue de 4, Z de 2","Bêta moins (β−) : un électron est éjecté — A inchangé, Z augmente de 1","Bêta plus (β+) : un positon est éjecté — A inchangé, Z diminue de 1","Gamma (γ) : un simple rayonnement, le noyau se désexcite — ni A ni Z ne changent"],"kicker":"Les désintégrations","titre":"Quatre façons de se désintégrer","type":"recap"}},"matiere":"Physique · Terminale","parties":[{"debut":"p01","sous_titre":"Désintégrations et décroissance"},{"debut":"p11","pont":{"dit":"Partie deux : l'énergie des réactions nucléaires, leurs applications, et comment s'en protéger.","texte":"Partie 2 : énergie, applications et radioprotection."},"sous_titre":"Énergie, applications et protection"}],"phrases":[{"dit":"Bienvenue dans ce cours de physique de terminale, consacré à la radioactivité : comment des noyaux instables se transforment, et ce que l'homme fait de ce phénomène.","ecran":"titre","id":"p01","pause_apres":0.7,"texte":"Introduction à la radioactivité."},{"dit":"En chimie, les réactions ne jouent que sur les électrons des atomes. Ici, c'est le noyau lui-même qui se transforme. Découverte par Henri Becquerel en mille huit cent quatre-vingt-seize, la radioactivité a été approfondie par Marie et Pierre Curie.","ecran":"intro","id":"p02","pause_apres":0.6,"texte":"Une découverte de Becquerel et des Curie, en 1896."},{"dit":"La radioactivité résulte de la désintégration spontanée d'un noyau instable : sans aucune aide extérieure, le noyau se transforme en un autre noyau, en émettant une particule ou un rayonnement. Les électrons périphériques ne jouent aucun rôle.","ecran":"definition","id":"p03","pause_apres":0.6,"texte":"Un noyau instable se désintègre spontanément."},{"dit":"Une réaction nucléaire s'écrit comme une équation-bilan, et elle obéit aux lois de conservation de Soddy : le nombre de nucléons A se conserve, la charge Z se conserve, ainsi que l'énergie et la quantité de mouvement. Ces deux conservations suffisent à identifier les noyaux formés.","ecran":"conservation","id":"p04","pause_apres":0.6,"texte":"Lois de Soddy : A et Z se conservent toujours."},{"dit":"Il existe quatre types de désintégration. Alpha : le noyau éjecte un noyau d'hélium, A chute de quatre, Z de deux. Bêta moins : un électron est éjecté, Z augmente d'un. Bêta plus : un positon est éjecté, Z diminue d'un. Et gamma : un simple rayonnement de désexcitation, sans changer ni A ni Z.","ecran":"types","id":"p05","pause_apres":0.6,"texte":"Quatre désintégrations : alpha, bêta moins, bêta plus, gamma."},{"dit":"Exemple, tiré des exercices du cours. Un noyau de polonium deux cent dix émet une particule alpha. Quel est le noyau fils ? On applique les conservations : A prime égale deux cent dix moins quatre, et Z prime égale quatre-vingt-quatre moins deux.","ecran":"ex_po","id":"p06","pause_apres":0.6,"texte":"Exemple : le polonium 210 émet une particule alpha."},{"dit":"Le noyau fils a deux cent six nucléons et quatre-vingt-deux protons : Z égale quatre-vingt-deux, c'est le plomb. Le polonium deux cent dix devient donc du plomb deux cent six, plus un noyau d'hélium.","ecran":"ex_po_res","id":"p07","pause_apres":0.7,"texte":"Résultat : le polonium 210 devient du plomb 206."},{"dit":"À l'échelle d'un échantillon, la désintégration d'un noyau donné est imprévisible, mais l'ensemble suit une loi exacte : le nombre de noyaux restants décroît exponentiellement, N de t égale N zéro fois exponentielle de moins lambda t. Lambda est la constante radioactive, propre à chaque isotope.","ecran":"decroissance","id":"p08","pause_apres":0.6,"texte":"La loi de décroissance : N(t) = N₀ e^(−λt)."},{"dit":"L'activité d'un échantillon, c'est le nombre de désintégrations par seconde : A égale lambda fois N. Elle se mesure en becquerels — un becquerel, une désintégration par seconde — et elle décroît exponentiellement, comme N.","ecran":"activite","id":"p09","pause_apres":0.6,"texte":"L'activité : A = λN, en becquerels."},{"dit":"On caractérise chaque isotope par sa demi-vie : le temps qu'il faut pour que la moitié des noyaux se désintègrent. Elle vaut logarithme de deux sur lambda. Après deux demi-vies, il reste un quart des noyaux ; après trois, un huitième.","ecran":"demivie","id":"p10","pause_apres":0.7,"texte":"La demi-vie : t½ = ln 2 / λ."},{"dit":"Les réactions nucléaires peuvent aussi être provoquées. La fission casse un noyau lourd en deux noyaux plus légers : c'est elle qui produit l'électricité des centrales, par réaction en chaîne. La fusion assemble deux noyaux légers : c'est la réaction du Soleil.","ecran":"fission_fusion","id":"p11","pause_apres":0.6,"texte":"Fission et fusion : deux réactions provoquées."},{"dit":"D'où vient l'énergie libérée ? Les noyaux produits pèsent, ensemble, un peu moins que les noyaux de départ. Cette masse perdue, le défaut de masse, s'est convertie en énergie selon la relation d'Einstein : E égale delta m fois c au carré.","ecran":"energie","id":"p12","pause_apres":0.6,"texte":"L'énergie libérée vient du défaut de masse."},{"dit":"Les applications sont partout. La datation au carbone quatorze retrouve l'âge des vestiges. En médecine, la scintigraphie au technétium quatre-vingt-dix-neuf m image les organes, et la radiothérapie au cobalt soixante détruit les tumeurs. L'industrie radiographie les soudures et produit de l'électricité sans rejeter de dioxyde de carbone.","ecran":"applications","id":"p13","pause_apres":0.6,"texte":"Datation, médecine, industrie : les applications de la radioactivité."},{"dit":"Mais ces rayonnements sont ionisants : ils arrachent des électrons à la matière qu'ils traversent. Dans le vivant, ils cassent l'ADN, directement, ou indirectement par les radicaux libres nés dans l'eau des cellules. Effets immédiats à forte dose, cancers à long terme : la prudence s'impose.","ecran":"dangers","id":"p14","pause_apres":0.6,"texte":"Des rayonnements ionisants, dangereux pour le vivant."},{"dit":"La radioprotection tient en trois réflexes. Réduire le temps passé près de la source. S'en éloigner : l'intensité diminue avec le carré de la distance. Et interposer le bon blindage : une feuille de papier arrête les alpha, l'aluminium arrête les bêta, il faut du plomb ou du béton pour atténuer les gamma.","ecran":"protection","id":"p15","pause_apres":0.6,"texte":"Temps, distance, blindage : les trois réflexes."},{"dit":"L'exercice du cours illustre le réflexe distance. Un technicien travaille deux heures à un mètre d'une source qui délivre dix millisieverts par heure : il reçoit vingt millisieverts. À deux mètres, l'intensité est divisée par quatre, et sa dose tombe à cinq millisieverts.","ecran":"ex_dose","id":"p16","pause_apres":0.6,"texte":"Exemple : s'éloigner divise la dose par quatre."},{"dit":"Retenez les lois de conservation, la décroissance exponentielle avec sa demi-vie, et les trois réflexes de protection : temps, distance, blindage.","ecran":"recap","id":"p17","pause_apres":0.5,"texte":"Radioactivité : lois, décroissance et protection — à retenir."}],"titre":"Introduction à la radioactivité"}
+{
+ "cours": 5913,
+ "ecrans": {
+  "activite": {
+   "kicker": "Activité radioactive",
+   "note": "A en becquerels (Bq) : une désintégration par seconde · l'activité décroît elle aussi de façon exponentielle",
+   "tex": "A(t) = \\lambda\\, N(t)",
+   "titre": "Le nombre de désintégrations par seconde",
+   "type": "formule"
+  },
+  "applications": {
+   "etapes": [
+    "Datation au carbone 14 : retrouver l'âge des vestiges organiques",
+    "Imagerie médicale : la scintigraphie au technétium-99m voit les organes de l'intérieur",
+    "Radiothérapie : le cobalt-60 détruit les cellules cancéreuses",
+    "Industrie : radiographie des soudures et production d'électricité par fission de l'uranium-235, sans émettre de CO₂"
+   ],
+   "kicker": "Applications",
+   "titre": "La radioactivité au service de l'homme",
+   "type": "recap"
+  },
+  "conservation": {
+   "kicker": "Lois de conservation (Soddy)",
+   "note": "S'y ajoutent la conservation de l'énergie et celle de la quantité de mouvement",
+   "tex": "A = A' + a \\qquad Z = Z' + z",
+   "titre": "Ce qui se conserve dans une réaction nucléaire",
+   "type": "formule"
+  },
+  "dangers": {
+   "kicker": "Effets sur le vivant",
+   "texte": "Ces rayonnements sont ionisants : ils arrachent des électrons, endommagent l'ADN, directement ou par les radicaux libres créés dans l'eau des cellules. La dose absorbée se mesure en grays.",
+   "type": "phrase",
+   "anim": {
+    "nom": "rayonnement",
+    "hauteur": 260
+   }
+  },
+  "decroissance": {
+   "anim": {
+    "hauteur": 320,
+    "nom": "decroissance"
+   },
+   "kicker": "Loi de décroissance radioactive",
+   "note": "λ : constante radioactive, caractéristique de chaque isotope · N₀ : nombre initial de noyaux",
+   "tex": "N(t) = N_0\\, e^{-\\lambda t}",
+   "titre": "De moins en moins de noyaux",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "texte": "La radioactivité est la désintégration spontanée d'un noyau instable. Elle ne concerne que le noyau : les électrons périphériques, ceux des réactions chimiques, ne sont pas impliqués.",
+   "type": "phrase",
+   "anim": {
+    "nom": "noyau",
+    "hauteur": 280
+   }
+  },
+  "demivie": {
+   "kicker": "Demi-vie",
+   "note": "Après chaque demi-vie, il reste moitié moins de noyaux : N₀/2, puis N₀/4, puis N₀/8…",
+   "tex": "t_{1/2} = \\frac{\\ln 2}{\\lambda}",
+   "titre": "Le temps pour diviser les noyaux par deux",
+   "type": "formule"
+  },
+  "energie": {
+   "kicker": "Énergie libérée",
+   "note": "La masse perdue par les noyaux, le défaut de masse Δm, réapparaît en énergie",
+   "tex": "E = \\Delta m\\, c^2",
+   "titre": "La masse devient énergie",
+   "type": "formule"
+  },
+  "ex_dose": {
+   "kicker": "Exemple · radioprotection",
+   "tex": [
+    "\\text{à } 1\\ \\text{m : } 10\\ \\text{mSv/h} \\times 2\\ \\text{h} = 20\\ \\text{mSv}",
+    "\\text{à } 2\\ \\text{m : intensité divisée par } 2^2 = 4",
+    "\\text{donc } 20 / 4 = 5\\ \\text{mSv}"
+   ],
+   "titre": "L'exercice du cours : la dose d'un technicien",
+   "type": "etape"
+  },
+  "ex_po": {
+   "kicker": "Exemple",
+   "tex": [
+    "{}^{210}_{84}\\text{Po} \\; \\longrightarrow \\; {}^{A'}_{Z'}\\text{X} \\; + \\; {}^{4}_{2}\\text{He}",
+    "A' = 210 - 4 = 206",
+    "Z' = 84 - 2 = 82"
+   ],
+   "titre": "Le polonium 210 émet une particule alpha",
+   "type": "etape"
+  },
+  "ex_po_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Z = 82 : c'est le plomb. Le polonium 210 devient du plomb 206",
+   "tex": "{}^{210}_{84}\\text{Po} \\; \\longrightarrow \\; {}^{206}_{82}\\text{Pb} \\; + \\; {}^{4}_{2}\\text{He}",
+   "titre": "Le noyau fils est identifié",
+   "type": "formule"
+  },
+  "fission_fusion": {
+   "etapes": [
+    "Fission : un noyau lourd, frappé par un neutron, se casse en deux noyaux plus légers, d'autres neutrons et de l'énergie — la réaction des centrales",
+    "Fusion : deux noyaux légers s'assemblent en un noyau plus lourd en libérant de l'énergie — la réaction qui fait briller le Soleil"
+   ],
+   "kicker": "Réactions nucléaires provoquées",
+   "titre": "Fission et fusion",
+   "type": "recap",
+   "anim": {
+    "nom": "fission",
+    "hauteur": 280
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Découverte par Henri Becquerel en 1896, puis étudiée par Marie et Pierre Curie, la radioactivité a révélé que le noyau des atomes pouvait se transformer.",
+   "type": "phrase"
+  },
+  "protection": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "penetration"
+   },
+   "kicker": "Radioprotection",
+   "texte": "Trois réflexes : réduire le temps d'exposition, s'éloigner — l'intensité chute avec le carré de la distance — et interposer un blindage adapté au rayonnement.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Lois de Soddy : A et Z se conservent ; quatre désintégrations : alpha, bêta moins, bêta plus, gamma",
+    "Décroissance exponentielle : N(t) = N₀ e^(−λt), activité A = λN en becquerels",
+    "Demi-vie : t½ = ln 2 / λ",
+    "Protection : temps court, distance, blindage — papier pour alpha, aluminium pour bêta, plomb pour gamma"
+   ],
+   "kicker": "À retenir",
+   "titre": "Introduction à la radioactivité",
+   "type": "recap",
+   "anim": {
+    "nom": "decroissance",
+    "hauteur": 100
+   }
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Désintégrations, décroissance exponentielle, applications et radioprotection",
+   "titre": "Introduction à la radioactivité",
+   "type": "titre",
+   "anim": {
+    "nom": "decroissance",
+    "hauteur": 250
+   }
+  },
+  "types": {
+   "etapes": [
+    "Alpha (α) : le noyau éjecte un noyau d'hélium — A diminue de 4, Z de 2",
+    "Bêta moins (β−) : un électron est éjecté — A inchangé, Z augmente de 1",
+    "Bêta plus (β+) : un positon est éjecté — A inchangé, Z diminue de 1",
+    "Gamma (γ) : un simple rayonnement, le noyau se désexcite — ni A ni Z ne changent"
+   ],
+   "kicker": "Les désintégrations",
+   "titre": "Quatre façons de se désintégrer",
+   "type": "recap",
+   "anim": {
+    "nom": "emissions",
+    "hauteur": 170
+   }
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Désintégrations et décroissance"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : l'énergie des réactions nucléaires, leurs applications, et comment s'en protéger.",
+    "texte": "Partie 2 : énergie, applications et radioprotection."
+   },
+   "sous_titre": "Énergie, applications et protection"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré à la radioactivité : comment des noyaux instables se transforment, et ce que l'homme fait de ce phénomène.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Introduction à la radioactivité."
+  },
+  {
+   "dit": "En chimie, les réactions ne jouent que sur les électrons des atomes. Ici, c'est le noyau lui-même qui se transforme. Découverte par Henri Becquerel en mille huit cent quatre-vingt-seize, la radioactivité a été approfondie par Marie et Pierre Curie.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Une découverte de Becquerel et des Curie, en 1896."
+  },
+  {
+   "dit": "La radioactivité résulte de la désintégration spontanée d'un noyau instable : sans aucune aide extérieure, le noyau se transforme en un autre noyau, en émettant une particule ou un rayonnement. Les électrons périphériques ne jouent aucun rôle.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Un noyau instable se désintègre spontanément."
+  },
+  {
+   "dit": "Une réaction nucléaire s'écrit comme une équation-bilan, et elle obéit aux lois de conservation de Soddy : le nombre de nucléons A se conserve, la charge Z se conserve, ainsi que l'énergie et la quantité de mouvement. Ces deux conservations suffisent à identifier les noyaux formés.",
+   "ecran": "conservation",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Lois de Soddy : A et Z se conservent toujours."
+  },
+  {
+   "dit": "Il existe quatre types de désintégration. Alpha : le noyau éjecte un noyau d'hélium, A chute de quatre, Z de deux. Bêta moins : un électron est éjecté, Z augmente d'un. Bêta plus : un positon est éjecté, Z diminue d'un. Et gamma : un simple rayonnement de désexcitation, sans changer ni A ni Z.",
+   "ecran": "types",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Quatre désintégrations : alpha, bêta moins, bêta plus, gamma."
+  },
+  {
+   "dit": "Exemple, tiré des exercices du cours. Un noyau de polonium deux cent dix émet une particule alpha. Quel est le noyau fils ? On applique les conservations : A prime égale deux cent dix moins quatre, et Z prime égale quatre-vingt-quatre moins deux.",
+   "ecran": "ex_po",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le polonium 210 émet une particule alpha."
+  },
+  {
+   "dit": "Le noyau fils a deux cent six nucléons et quatre-vingt-deux protons : Z égale quatre-vingt-deux, c'est le plomb. Le polonium deux cent dix devient donc du plomb deux cent six, plus un noyau d'hélium.",
+   "ecran": "ex_po_res",
+   "id": "p07",
+   "pause_apres": 0.7,
+   "texte": "Résultat : le polonium 210 devient du plomb 206."
+  },
+  {
+   "dit": "À l'échelle d'un échantillon, la désintégration d'un noyau donné est imprévisible, mais l'ensemble suit une loi exacte : le nombre de noyaux restants décroît exponentiellement, N de t égale N zéro fois exponentielle de moins lambda t. Lambda est la constante radioactive, propre à chaque isotope.",
+   "ecran": "decroissance",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La loi de décroissance : N(t) = N₀ e^(−λt)."
+  },
+  {
+   "dit": "L'activité d'un échantillon, c'est le nombre de désintégrations par seconde : A égale lambda fois N. Elle se mesure en becquerels — un becquerel, une désintégration par seconde — et elle décroît exponentiellement, comme N.",
+   "ecran": "activite",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "L'activité : A = λN, en becquerels."
+  },
+  {
+   "dit": "On caractérise chaque isotope par sa demi-vie : le temps qu'il faut pour que la moitié des noyaux se désintègrent. Elle vaut logarithme de deux sur lambda. Après deux demi-vies, il reste un quart des noyaux ; après trois, un huitième.",
+   "ecran": "demivie",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "La demi-vie : t½ = ln 2 / λ."
+  },
+  {
+   "dit": "Les réactions nucléaires peuvent aussi être provoquées. La fission casse un noyau lourd en deux noyaux plus légers : c'est elle qui produit l'électricité des centrales, par réaction en chaîne. La fusion assemble deux noyaux légers : c'est la réaction du Soleil.",
+   "ecran": "fission_fusion",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Fission et fusion : deux réactions provoquées."
+  },
+  {
+   "dit": "D'où vient l'énergie libérée ? Les noyaux produits pèsent, ensemble, un peu moins que les noyaux de départ. Cette masse perdue, le défaut de masse, s'est convertie en énergie selon la relation d'Einstein : E égale delta m fois c au carré.",
+   "ecran": "energie",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "L'énergie libérée vient du défaut de masse."
+  },
+  {
+   "dit": "Les applications sont partout. La datation au carbone quatorze retrouve l'âge des vestiges. En médecine, la scintigraphie au technétium quatre-vingt-dix-neuf m image les organes, et la radiothérapie au cobalt soixante détruit les tumeurs. L'industrie radiographie les soudures et produit de l'électricité sans rejeter de dioxyde de carbone.",
+   "ecran": "applications",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Datation, médecine, industrie : les applications de la radioactivité."
+  },
+  {
+   "dit": "Mais ces rayonnements sont ionisants : ils arrachent des électrons à la matière qu'ils traversent. Dans le vivant, ils cassent l'ADN, directement, ou indirectement par les radicaux libres nés dans l'eau des cellules. Effets immédiats à forte dose, cancers à long terme : la prudence s'impose.",
+   "ecran": "dangers",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Des rayonnements ionisants, dangereux pour le vivant."
+  },
+  {
+   "dit": "La radioprotection tient en trois réflexes. Réduire le temps passé près de la source. S'en éloigner : l'intensité diminue avec le carré de la distance. Et interposer le bon blindage : une feuille de papier arrête les alpha, l'aluminium arrête les bêta, il faut du plomb ou du béton pour atténuer les gamma.",
+   "ecran": "protection",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Temps, distance, blindage : les trois réflexes."
+  },
+  {
+   "dit": "L'exercice du cours illustre le réflexe distance. Un technicien travaille deux heures à un mètre d'une source qui délivre dix millisieverts par heure : il reçoit vingt millisieverts. À deux mètres, l'intensité est divisée par quatre, et sa dose tombe à cinq millisieverts.",
+   "ecran": "ex_dose",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Exemple : s'éloigner divise la dose par quatre."
+  },
+  {
+   "dit": "Retenez les lois de conservation, la décroissance exponentielle avec sa demi-vie, et les trois réflexes de protection : temps, distance, blindage.",
+   "ecran": "recap",
+   "id": "p17",
+   "pause_apres": 0.5,
+   "texte": "Radioactivité : lois, décroissance et protection — à retenir."
+  }
+ ],
+ "titre": "Introduction à la radioactivité"
+}

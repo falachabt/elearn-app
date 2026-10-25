@@ -4,7 +4,11 @@
   "adaptateur": {
    "kicker": "Application",
    "texte": "L'adaptateur secteur de vos chargeurs combine tout : un transformateur abaisseur, qui ramène les 220 volts du réseau à quelques volts, puis le redresseur, puis le lissage.",
-   "type": "phrase"
+   "type": "phrase",
+   "anim": {
+    "nom": "adaptateur",
+    "hauteur": 280
+   }
   },
   "capacite": {
    "kicker": "Dimensionnement",
@@ -16,7 +20,11 @@
   "diode": {
    "kicker": "Le composant clé",
    "texte": "La diode est un composant qui ne laisse passer le courant que dans un seul sens : celui de la flèche de son symbole. Dans l'autre sens, elle bloque tout.",
-   "type": "phrase"
+   "type": "phrase",
+   "anim": {
+    "nom": "diode",
+    "hauteur": 300
+   }
   },
   "double": {
    "anim": {
@@ -67,12 +75,20 @@
   "intro": {
    "kicker": "Introduction",
    "texte": "Le réseau distribue l'électricité en alternatif, mais nos téléphones et nos ordinateurs exigent du continu. Redresser, c'est forcer le courant à garder un seul sens.",
-   "type": "phrase"
+   "type": "phrase",
+   "anim": {
+    "nom": "conversion",
+    "hauteur": 280
+   }
   },
   "limite": {
    "kicker": "La limite du redressement seul",
    "texte": "La tension redressée pulse encore : il reste une composante alternative, l'ondulation, qui peut perturber les circuits électroniques sensibles.",
-   "type": "phrase"
+   "type": "phrase",
+   "anim": {
+    "nom": "ondulation",
+    "hauteur": 300
+   }
   },
   "recap": {
    "etapes": [
@@ -83,7 +99,11 @@
    ],
    "kicker": "À retenir",
    "titre": "Redressement et lissage",
-   "type": "recap"
+   "type": "recap",
+   "anim": {
+    "nom": "pont",
+    "hauteur": 100
+   }
   },
   "simple": {
    "anim": {
@@ -98,19 +118,26 @@
    "kicker": "Physique · Terminale",
    "sous": "De l'alternatif au continu : la diode, le pont de Graëtz et le lissage",
    "titre": "Le redressement des tensions",
-   "type": "titre"
+   "type": "titre",
+   "anim": {
+    "nom": "diode",
+    "hauteur": 260
+   }
   },
   "types": {
    "etapes": [
     "Diode Zener : réguler une tension",
     "Diode Schottky : commuter très vite",
     "LED : émettre de la lumière",
-    "Photodiode : détecter la lumière",
-    "Diode laser et diode varicap : optique et accord des fréquences"
+    "Photodiode : détecter la lumière"
    ],
    "kicker": "La famille des diodes",
    "titre": "D'autres diodes, d'autres métiers",
-   "type": "recap"
+   "type": "recap",
+   "anim": {
+    "nom": "diodes_types",
+    "hauteur": 170
+   }
   }
  },
  "matiere": "Physique · Terminale",

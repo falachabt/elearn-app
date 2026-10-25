@@ -244,8 +244,10 @@ const FIG = {
       `<path d="M 268 44 Q 326 150 268 256 Q 210 150 268 44 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
       `<path d="M 726 44 Q 686 150 726 256 Q 766 150 726 44 Z" fill="#10B981" fill-opacity=".3" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>` +
       ray +
+      `<circle cx="108" cy="150" r="8" fill="currentColor"/>` + mot(108, 192, 'F') +
       `<circle cx="428" cy="150" r="8" fill="currentColor"/>` + mot(428, 192, "F′") +
-      `<circle cx="612" cy="150" r="8" fill="currentColor"/>` + mot(612, 192, "F′"));
+      `<circle cx="612" cy="150" r="8" fill="currentColor"/>` + mot(612, 192, "F′") +
+      `<circle cx="840" cy="150" r="8" fill="currentColor"/>` + mot(840, 192, 'F'));
   },
   rayons(t) {
     const p = prog(t);
@@ -330,7 +332,7 @@ const FIG = {
       `<line x1="70" y1="88" x2="930" y2="88" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
       pts(x => 88 - 50 * sinu(x)) + ` stroke="#E8604C"/>` +
       mot(500, 26, "tension d'entrée : alternative", { c: '#E8604C', t: 26 }) +
-      `<line x1="500" y1="128" x2="500" y2="158" stroke="currentColor" stroke-width="6"/>${pointe(500, 166, 90, 'currentColor')}` +
+      `<line x1="500" y1="122" x2="500" y2="130" stroke="currentColor" stroke-width="5"/><polygon points="485,130 515,130 500,152" fill="currentColor"/><line x1="483" y1="156" x2="517" y2="156" stroke="currentColor" stroke-width="6"/><line x1="500" y1="156" x2="500" y2="164" stroke="currentColor" stroke-width="5"/>${pointe(500, 170, 90, 'currentColor')}` +
       `<line x1="70" y1="238" x2="930" y2="238" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
       pts(x => 238 - 50 * Math.max(0, sinu(x))) + ` stroke="#1A75FF"/>` +
       mot(500, 296, 'redressée simple alternance : le courant garde un seul sens', { c: '#1A75FF', t: 24 }));
@@ -412,6 +414,38 @@ const FIG = {
       mot(500, 302, 'les lignes de champ sortent du nord, rentrent au sud', { t: 25 }) +
       mot(856, 60, 'B', { c: '#1A75FF', t: 34, a: 'start' }));
   },
+  diode(t) {
+    return svgBoite(
+      `<line x1="270" y1="52" x2="700" y2="52" stroke="#E8604C" stroke-width="6"/>${pointe(708, 52, 0, '#E8604C')}` +
+      mot(485, 30, 'sens passant', { c: '#E8604C', t: 27 }) +
+      `<line x1="170" y1="150" x2="415" y2="150" stroke="currentColor" stroke-width="7"/>` +
+      `<polygon points="415,92 415,208 545,150" fill="currentColor"/>` +
+      `<line x1="545" y1="88" x2="545" y2="212" stroke="currentColor" stroke-width="11"/>` +
+      `<line x1="545" y1="150" x2="830" y2="150" stroke="currentColor" stroke-width="7"/>` +
+      mot(290, 116, 'A', { t: 40 }) + mot(672, 116, 'K', { t: 40 }) +
+      mot(290, 256, 'anode', { t: 27 }) + mot(672, 256, 'cathode', { t: 27 }) +
+      `<line x1="700" y1="282" x2="290" y2="282" stroke="currentColor" stroke-width="5" opacity=".45"/>` +
+      `<line x1="478" y1="266" x2="512" y2="298" stroke="#E8604C" stroke-width="7"/><line x1="512" y1="266" x2="478" y2="298" stroke="#E8604C" stroke-width="7"/>` +
+      mot(760, 292, 'sens bloqué', { t: 24, a: 'start' }));
+  },
+  diodes_types(t) {
+    const sym = (cx, barre, fleches) => {
+      let s = `<line x1="${cx - 88}" y1="140" x2="${cx - 42}" y2="140" stroke="currentColor" stroke-width="6"/>` +
+        `<polygon points="${cx - 42},102 ${cx - 42},178 ${cx + 8},140" fill="currentColor"/>` + barre(cx) +
+        `<line x1="${cx + 8}" y1="140" x2="${cx + 88}" y2="140" stroke="currentColor" stroke-width="6"/>`;
+      if (fleches === 'sortantes') s += `<line x1="${cx + 30}" y1="96" x2="${cx + 58}" y2="68" stroke="#B8860B" stroke-width="5"/>${pointe(cx + 60, 66, -45, '#B8860B')}<line x1="${cx + 56}" y1="104" x2="${cx + 84}" y2="76" stroke="#B8860B" stroke-width="5"/>${pointe(cx + 86, 74, -45, '#B8860B')}`;
+      if (fleches === 'entrantes') s += `<line x1="${cx + 58}" y1="62" x2="${cx + 32}" y2="90" stroke="#B8860B" stroke-width="5"/>${pointe(cx + 30, 92, 135, '#B8860B')}<line x1="${cx + 84}" y1="70" x2="${cx + 58}" y2="98" stroke="#B8860B" stroke-width="5"/>${pointe(cx + 56, 100, 135, '#B8860B')}`;
+      return s;
+    };
+    const barreSimple = cx => `<line x1="${cx + 8}" y1="100" x2="${cx + 8}" y2="180" stroke="currentColor" stroke-width="9"/>`;
+    const barreZener = cx => barreSimple(cx) + `<line x1="${cx + 8}" y1="100" x2="${cx - 10}" y2="86" stroke="currentColor" stroke-width="8"/><line x1="${cx + 8}" y1="180" x2="${cx + 26}" y2="194" stroke="currentColor" stroke-width="8"/>`;
+    const barreSchottky = cx => barreSimple(cx) + `<line x1="${cx + 8}" y1="100" x2="${cx - 12}" y2="100" stroke="currentColor" stroke-width="8"/><line x1="${cx - 12}" y1="100" x2="${cx - 12}" y2="116" stroke="currentColor" stroke-width="8"/><line x1="${cx + 8}" y1="180" x2="${cx + 28}" y2="180" stroke="currentColor" stroke-width="8"/><line x1="${cx + 28}" y1="180" x2="${cx + 28}" y2="164" stroke="currentColor" stroke-width="8"/>`;
+    return svgBoite(
+      sym(140, barreZener, '') + sym(380, barreSchottky, '') +
+      sym(620, barreSimple, 'sortantes') + sym(860, barreSimple, 'entrantes') +
+      mot(140, 240, 'Zener', { t: 25 }) + mot(380, 240, 'Schottky', { t: 25 }) +
+      mot(620, 240, 'LED', { t: 25 }) + mot(860, 240, 'photodiode', { t: 25 }), '0 40 1000 225');
+  },
   induction(t) {
     const p = prog(t);
     const decal = Math.round(60 * p);
@@ -425,6 +459,112 @@ const FIG = {
       (p > .45 ? `<path d="M 700 44 A 58 106 0 0 1 756 132" fill="none" stroke="#E8604C" stroke-width="6"/>${pointe(758, 140, 96, '#E8604C')}` : '') +
       mot(700, 292, 'le flux varie : un courant induit apparaît', { t: 25 }) +
       (p > .45 ? mot(806, 120, 'i', { c: '#E8604C', t: 38, a: 'start' }) : ''));
+  },
+  conversion(t) {
+    const p = prog(t);
+    let s = '';
+    const n = Math.max(2, Math.floor(60 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 70 + 340 * k / 60, y = 140 - 62 * Math.sin(2 * Math.PI * 2 * (x - 70) / 340);
+      s += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="56" y1="140" x2="424" y2="140" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
+      `<polyline points="${s}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+      mot(240, 52, 'le réseau : alternatif', { c: '#E8604C', t: 26 }) +
+      `<line x1="470" y1="140" x2="540" y2="140" stroke="currentColor" stroke-width="6"/>${pointe(548, 140, 0, 'currentColor')}` +
+      `<line x1="596" y1="140" x2="936" y2="140" stroke="#1A75FF" stroke-width="6" stroke-linecap="round"/>` +
+      `<circle cx="596" cy="140" r="7" fill="#1A75FF"/><circle cx="936" cy="140" r="7" fill="#1A75FF"/>` +
+      mot(766, 52, 'vos appareils : continu', { c: '#1A75FF', t: 26 }) +
+      mot(500, 262, 'le redressement fait le pont entre les deux', { t: 25 }));
+  },
+  ondulation(t) {
+    const p = prog(t);
+    let s = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 90 + 820 * k / 90, y = 240 - 140 * Math.abs(Math.sin(2 * Math.PI * 2 * (x - 90) / 820));
+      s += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="70" y1="240" x2="930" y2="240" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
+      `<polyline points="${s}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .6 ? `<line x1="90" y1="170" x2="910" y2="170" stroke="#1A75FF" stroke-width="4" stroke-dasharray="12 9"/>` + mot(500, 156, 'valeur moyenne', { c: '#1A75FF', t: 24 }) : '') +
+      mot(500, 292, 'la tension redressée pulse encore : c\u2019est l\u2019ondulation', { c: '#E8604C', t: 25 }));
+  },
+  adaptateur(t) {
+    const boite = (x, titre, sous) => `<rect x="${x}" y="104" width="218" height="96" rx="14" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="5"/>` + mot(x + 109, 146, titre, { t: 25 }) + mot(x + 109, 180, sous, { t: 21 });
+    const fl = x => `<line x1="${x}" y1="152" x2="${x + 34}" y2="152" stroke="currentColor" stroke-width="6"/>${pointe(x + 42, 152, 0, 'currentColor')}`;
+    return svgBoite(
+      boite(36, 'transformateur', '220 V → 5 V') + fl(254) +
+      boite(296, 'redresseur', 'alternatif → continu') + fl(514) +
+      boite(556, 'lissage', 'ondulation écrasée') + fl(774) +
+      `<rect x="824" y="82" width="86" height="140" rx="12" fill="none" stroke="currentColor" stroke-width="6"/><line x1="852" y1="100" x2="882" y2="100" stroke="currentColor" stroke-width="5"/><line x1="856" y1="200" x2="878" y2="200" stroke="currentColor" stroke-width="5"/>` +
+      mot(867, 262, 'le téléphone', { t: 23 }) +
+      mot(500, 292, 'la chaîne complète d\u2019un adaptateur secteur', { t: 24 }));
+  },
+  noyau(t) {
+    const p = prog(t);
+    const boules = [[398, 118, '#E8604C', 'p'], [452, 112, '#5B6B7B', 'n'], [428, 152, '#5B6B7B', 'n'], [392, 168, '#5B6B7B', 'n'], [466, 158, '#E8604C', 'p'], [430, 196, '#E8604C', 'p'], [402, 140, '#E8604C', 'p']].map(([x, y, c, l]) => `<circle cx="${x}" cy="${y}" r="21" fill="${c}"/>`).join('');
+    return svgBoite(
+      `<circle cx="430" cy="152" r="86" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="5"/>` + boules +
+      (p > .35 ? trait(506, 116, 668, 66, (p - .35) / .65, { c: '#B8860B', w: 5 }) + `<circle cx="690" cy="58" r="15" fill="#B8860B" stroke="currentColor" stroke-width="3"/>` : '') +
+      mot(700, 116, 'particule émise', { t: 24, a: 'start' }) +
+      mot(430, 282, 'un noyau instable se transforme en émettant une particule', { t: 25 }));
+  },
+  emissions(t) {
+    const p = prog(t);
+    let onde = '';
+    for (let k = 0; k <= 40; k++) {
+      const x = 260 + 400 * k / 40, y = 258 - 16 * Math.sin(2 * Math.PI * 3 * k / 40);
+      onde += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<circle cx="170" cy="152" r="52" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="5"/>` +
+      mot(170, 164, 'noyau', { t: 21 }) +
+      trait(222, 128, 640, 44, p, { c: '#E8604C', w: 9 }) + mot(668, 52, 'α : un noyau d\u2019hélium', { c: '#E8604C', t: 24, a: 'start' }) +
+      trait(222, 144, 646, 116, p, { c: '#B8860B', w: 4 }) + mot(668, 124, 'β− : un électron', { c: '#B8860B', t: 24, a: 'start' }) +
+      trait(222, 162, 646, 190, p, { c: '#10B981', w: 4 }) + mot(668, 198, 'β+ : un positon', { c: '#10B981', t: 24, a: 'start' }) +
+      `<polyline points="${onde}" fill="none" stroke="#7B2FF7" stroke-width="4"/>` + mot(668, 266, 'γ : un rayonnement', { c: '#7B2FF7', t: 24, a: 'start' }));
+  },
+  fission(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="92" cy="150" r="11" fill="#B8860B" stroke="currentColor" stroke-width="3"/>` +
+      (p > .1 ? trait(108, 150, 168, 150, Math.min(1, p * 1.6), { c: '#B8860B', w: 4 }) + pointe(176, 150, 0, '#B8860B') : '') +
+      `<circle cx="252" cy="150" r="64" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="5"/>` +
+      mot(252, 252, 'noyau lourd', { t: 24 }) +
+      `<line x1="352" y1="150" x2="430" y2="150" stroke="currentColor" stroke-width="6"/>${pointe(438, 150, 0, 'currentColor')}` +
+      `<circle cx="586" cy="102" r="40" fill="#1A75FF" fill-opacity=".25" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="586" cy="204" r="40" fill="#1A75FF" fill-opacity=".25" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="712" cy="76" r="11" fill="#B8860B" stroke="currentColor" stroke-width="3"/><circle cx="726" cy="150" r="11" fill="#B8860B" stroke="currentColor" stroke-width="3"/><circle cx="712" cy="228" r="11" fill="#B8860B" stroke="currentColor" stroke-width="3"/>` +
+      mot(620, 282, 'deux noyaux plus légers, des neutrons, de l\u2019énergie', { t: 24 }) +
+      mot(90, 84, 'neutron', { c: '#B8860B', t: 22, a: 'start' }));
+  },
+  rayonnement(t) {
+    const lame = a => {
+      const r = 100, cx = 500, cy = 142, a1 = (a - 30) * Math.PI / 180, a2 = (a + 30) * Math.PI / 180;
+      const x1 = Math.round(cx + r * Math.cos(a1)), y1 = Math.round(cy + r * Math.sin(a1));
+      const x2 = Math.round(cx + r * Math.cos(a2)), y2 = Math.round(cy + r * Math.sin(a2));
+      return `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z" fill="currentColor"/>`;
+    };
+    return svgBoite(
+      lame(-90) + lame(30) + lame(150) +
+      `<circle cx="500" cy="142" r="24" fill="currentColor"/>` +
+      mot(500, 292, 'le symbole des rayonnements ionisants', { t: 25 }));
+  },
+  lenz(t) {
+    const p = prog(t);
+    const decal = Math.round(46 * p);
+    return svgBoite(
+      `<ellipse cx="252" cy="150" rx="56" ry="104" fill="#1A75FF" fill-opacity=".08" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="${592 - decal}" y="118" width="220" height="64" fill="#5B6B7B" fill-opacity=".45" stroke="currentColor" stroke-width="5"/>` +
+      `<rect x="${592 - decal}" y="118" width="110" height="64" fill="#E8604C" fill-opacity=".55" stroke="currentColor" stroke-width="5"/>` +
+      mot(647 - decal, 160, 'N', { t: 36 }) + mot(757 - decal, 160, 'S', { t: 36 }) +
+      `<line x1="540" y1="82" x2="452" y2="82" stroke="currentColor" stroke-width="6"/>${pointe(444, 82, 180, 'currentColor')}` +
+      mot(496, 58, "l'aimant approche", { t: 23 }) +
+      (p > .4 ? `<line x1="330" y1="150" x2="470" y2="150" stroke="#E8604C" stroke-width="7"/>${pointe(478, 150, 0, '#E8604C')}` + mot(404, 122, 'champ induit', { c: '#E8604C', t: 23 }) : '') +
+      mot(500, 292, 'le champ induit s\u2019oppose à l\u2019approche de l\u2019aimant', { t: 25 }));
   },
 };
 

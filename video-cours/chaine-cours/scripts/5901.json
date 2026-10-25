@@ -55,7 +55,11 @@
   "intro": {
    "type": "phrase",
    "kicker": "Introduction",
-   "texte": "Trois lois empiriques, dégagées des observations du mouvement des planètes."
+   "texte": "Trois lois empiriques, dégagées des observations du mouvement des planètes.",
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 280
+   }
   },
   "loi2": {
    "kicker": "Deuxième loi",
@@ -99,13 +103,21 @@
     "Satellisation : v = √(GM/R) ; libération : √2 · v sat",
     "Période circulaire : T = 2π √(R³ / GM)"
    ],
-   "kicker": "À retenir"
+   "kicker": "À retenir",
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 100
+   }
   },
   "titre": {
    "kicker": "Physique · Terminale",
    "sous": "Orbites, aires et périodes des planètes",
    "titre": "Les lois de Kepler",
-   "type": "titre"
+   "type": "titre",
+   "anim": {
+    "nom": "kepler",
+    "hauteur": 250
+   }
   },
   "vlib": {
    "kicker": "Orbite circulaire",

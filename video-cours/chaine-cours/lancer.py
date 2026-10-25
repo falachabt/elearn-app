@@ -142,8 +142,15 @@ def decouper(script):
             phrases[0] = dict(phrases[0], ecran=titre_cle)
         else:
             phrases.insert(0, phrase_pont(partie, i))
-        ecrans = {titre_cle: {"type": "titre", "kicker": f"Partie {i + 1}",
-                              "titre": script["titre"], "sous": partie["sous_titre"]}}
+        ecran_titre = {"type": "titre", "kicker": f"Partie {i + 1}",
+                       "titre": script["titre"], "sous": partie["sous_titre"]}
+        # L'écran-titre de chaque partie hérite de la figure signature du
+        # cours (anim de l'écran « titre » du script) : titre illustré et
+        # miniature de la partie alignés (METHODE.md).
+        anim_titre = script["ecrans"].get("titre", {}).get("anim")
+        if anim_titre:
+            ecran_titre["anim"] = anim_titre
+        ecrans = {titre_cle: ecran_titre}
         for p in phrases:
             if p["ecran"] != titre_cle:
                 ecrans[p["ecran"]] = script["ecrans"][p["ecran"]]
@@ -209,6 +216,22 @@ def valider(script):
     print(f"durée estimée : {round(duree)} s -> {attendues} partie(s) attendue(s), {declarees} déclarée(s)")
     if attendues != declarees:
         print("ATTENTION : le nombre de parties déclarées ne suit pas la règle de découpage (voir METHODE.md)")
+    # Audit visuel (règle de Benny : jamais « juste du texte et une voix ») :
+    # un écran a un visuel s'il porte une animation/figure ou une carte KaTeX
+    # (formule, etape). Les écrans titre sont des enchaînements, hors audit.
+    sans_visuel = []
+    for p in script["phrases"]:
+        e = ecrans.get(p["ecran"], {})
+        if e.get("type") in ("titre", "formule", "etape"):
+            continue
+        if not (e.get("anim") or {}).get("nom"):
+            sans_visuel.append(f"{p['id']} ({p['ecran']})")
+    if sans_visuel:
+        print(f"AUDIT VISUEL : {len(sans_visuel)} écran(s) sans visuel ni carte : "
+              + ", ".join(sans_visuel)
+              + " — ajouter une figure (METHODE.md) ou assumer un écran d'enchaînement.")
+    else:
+        print("AUDIT VISUEL : tous les écrans ont un visuel ou une carte.")
 
 
 def voix(script, dossier):
