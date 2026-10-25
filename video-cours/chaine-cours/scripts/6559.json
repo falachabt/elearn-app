@@ -1,0 +1,576 @@
+{
+ "cours": 6559,
+ "titre": "Statistique et mécanique des gaz",
+ "matiere": "Concours Polytechnique L3",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours Polytechnique L3",
+   "titre": "Statistique et mécanique des gaz",
+   "sous": "Distribution de Boltzmann, fonction de partition et atmosphère isotherme : les méthodes du concours",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Le fil rouge du cours",
+   "texte": "Agitation thermique contre champ de force : Boltzmann arbitre.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 180
+   }
+  },
+  "boltzmann": {
+   "type": "formule",
+   "kicker": "La loi de Boltzmann",
+   "tex": "p(\\varepsilon) = \\frac{e^{-\\beta \\varepsilon}}{Z_1} \\qquad \\beta = \\frac{1}{k_B T}",
+   "note": "La constante de Boltzmann vaut environ 1,38×10⁻²³ joule par kelvin."
+  },
+  "energie": {
+   "type": "formule",
+   "kicker": "L'énergie d'une particule",
+   "tex": "\\varepsilon = E_c + E_p(\\vec{r}) \\qquad E_p(z) = m g z",
+   "note": "Dans la pesanteur, l'énergie potentielle croît linéairement avec l'altitude."
+  },
+  "partition": {
+   "type": "formule",
+   "kicker": "Fonction de partition et dégénérescence",
+   "tex": "Z_1 = \\sum_i e^{-\\beta E_i} \\qquad P(E_k) = \\frac{g_k\\, e^{-\\beta E_k}}{Z}",
+   "note": "Piège classique : la probabilité d'un micro-état n'est pas celle d'une énergie, qui compte la dégénérescence.",
+   "anim": {
+    "nom": "niveaux_fig",
+    "hauteur": 200
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en cinq temps",
+   "etapes": [
+    "Identifier le système, le champ et la température",
+    "Exprimer l'énergie potentielle du champ",
+    "Écrire la loi de Boltzmann",
+    "Normaliser : calculer la constante ou Z",
+    "Calculer, puis vérifier unités et limites"
+   ]
+  },
+  "moyennes_z": {
+   "type": "formule",
+   "kicker": "Moyennes et fluctuations par Z",
+   "tex": "\\langle E \\rangle = -\\frac{\\partial \\ln Z}{\\partial \\beta} \\qquad \\sigma_E^2 = \\frac{\\partial^2 \\ln Z}{\\partial \\beta^2}",
+   "note": "Deux dérivées du logarithme de Z donnent l'énergie moyenne et sa dispersion."
+  },
+  "gaz_z": {
+   "type": "etape",
+   "kicker": "Application par la fonction de partition",
+   "titre": "Le gaz en pesanteur",
+   "tex": [
+    "\\ln Z = C - \\frac{5}{2} \\ln \\beta",
+    "\\langle E \\rangle = \\frac{5}{2} k_B T \\qquad \\sigma_E^2 = \\frac{5}{2} (k_B T)^2",
+    "\\frac{\\sigma_E}{\\langle E \\rangle} \\sim \\frac{1}{\\sqrt{N}}"
+   ]
+  },
+  "deux_niveaux": {
+   "type": "formule",
+   "kicker": "Système à deux niveaux",
+   "tex": "Z = 2 \\cosh(\\beta \\Delta) \\qquad \\langle E \\rangle = -\\Delta \\tanh(\\beta \\Delta)",
+   "note": "À température nulle, l'état le plus bas ; à haute température, les deux états deviennent équiprobables.",
+   "anim": {
+    "nom": "niveaux_fig",
+    "hauteur": 200
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Bilan de la première partie",
+   "etapes": [
+    "Postulat : les micro-états accessibles sont équiprobables",
+    "Boltzmann : probabilité en exponentielle de moins l'énergie",
+    "Z normalise ; la dégénérescence compte les micro-états",
+    "Le logarithme de Z donne moyenne et fluctuations",
+    "Fluctuations relatives en un sur racine de N"
+   ]
+  },
+  "densite": {
+   "type": "formule",
+   "kicker": "La loi barométrique : la densité",
+   "tex": "n(z) = n_0\\, e^{-\\frac{m g z}{k_B T}}",
+   "note": "La densité au sol fixe la constante : pas d'intégrale de normalisation ici.",
+   "anim": {
+    "nom": "atmosphere_fig",
+    "hauteur": 220
+   }
+  },
+  "pression": {
+   "type": "formule",
+   "kicker": "Pression et hauteur d'échelle",
+   "tex": "P(z) = P_0\\, e^{-z/H} \\qquad H = \\frac{k_B T}{m g} = \\frac{R T}{M g}",
+   "note": "À une hauteur d'échelle, densité et pression sont divisées par environ 2,7.",
+   "anim": {
+    "nom": "atmosphere_fig",
+    "hauteur": 180
+   }
+  },
+  "hydrostatique": {
+   "type": "etape",
+   "kicker": "Seconde démonstration",
+   "titre": "La même loi par l'équilibre hydrostatique",
+   "tex": [
+    "\\frac{dP}{dz} = -\\, n(z)\\, m g",
+    "P = n k_B T \\ \\Rightarrow\\ \\frac{dP}{P} = -\\frac{dz}{H}",
+    "P(z) = P_0\\, e^{-z/H}"
+   ]
+  },
+  "chiffres_terre": {
+   "type": "etape",
+   "kicker": "Application numérique",
+   "titre": "L'atmosphère terrestre en chiffres",
+   "tex": [
+    "H = \\frac{R T}{M g} \\approx 8{,}8\\ \\mathrm{km}",
+    "z_{1/2} = H \\ln 2 \\approx 5{,}9\\ \\mathrm{km}",
+    "P(1500\\ \\mathrm{m}) \\approx 8{,}5 \\times 10^{4}\\ \\mathrm{Pa}"
+   ],
+   "anim": {
+    "nom": "atmosphere_fig",
+    "hauteur": 110
+   }
+  },
+  "proba_altitude": {
+   "type": "formule",
+   "kicker": "Probabilité de présence en altitude",
+   "tex": "p(z) = \\frac{1}{H}\\, e^{-z/H} \\qquad P(z > 2H) = e^{-2} \\approx 0{,}135",
+   "note": "La densité de probabilité d'altitude est la loi exponentielle elle-même.",
+   "anim": {
+    "nom": "atmosphere_fig",
+    "hauteur": 180
+   }
+  },
+  "lecture_altitude": {
+   "type": "etape",
+   "kicker": "Lectures pratiques de la loi",
+   "titre": "Une altitude, une probabilité d'intervalle",
+   "tex": [
+    "P_h = 0{,}75\\, P_0 \\ \\Rightarrow\\ h = H \\ln \\frac{4}{3} \\approx 0{,}29\\, H",
+    "P = e^{-1/2} - e^{-3/2} \\approx 0{,}38"
+   ]
+  },
+  "exoplanete": {
+   "type": "etape",
+   "kicker": "Exemple type concours",
+   "titre": "Exoplanète : une atmosphère de dioxyde de carbone",
+   "tex": [
+    "H = \\frac{R T}{M g} \\approx 8{,}1\\ \\mathrm{km}",
+    "P_1 = 0{,}40\\, P_0 \\ \\Rightarrow\\ z_1 = H \\ln 2{,}5 \\approx 7{,}5\\ \\mathrm{km}",
+    "v_{qm} = \\sqrt{\\frac{3 R T}{M}} \\approx 398\\ \\mathrm{m/s}"
+   ]
+  },
+  "energie_cinetique": {
+   "type": "formule",
+   "kicker": "L'énergie cinétique moyenne",
+   "tex": "\\langle E_c \\rangle = \\frac{3}{2} k_B T \\qquad v_{qm} = \\sqrt{\\frac{3 k_B T}{m}}",
+   "note": "Dans une atmosphère isotherme, l'énergie cinétique moyenne ne dépend pas de l'altitude."
+  },
+  "masse_colonne": {
+   "type": "etape",
+   "kicker": "Résultat élégant",
+   "titre": "La masse de la colonne d'air",
+   "tex": [
+    "m_{tot} = S \\int_0^{\\infty} \\mu_0\\, e^{-z/H}\\, dz = S \\mu_0 H",
+    "m_{tot} = \\frac{S P_0}{g}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Bilan de la deuxième partie",
+   "etapes": [
+    "Densité et pression décroissent en exponentielle de l'altitude",
+    "Hauteur d'échelle : énergie thermique contre pesanteur",
+    "Même loi par Boltzmann et par l'équilibre hydrostatique",
+    "Altitude de division par a : hauteur d'échelle fois ln a",
+    "L'énergie cinétique moyenne ne dépend que de la température"
+   ]
+  },
+  "densite_jointe": {
+   "type": "etape",
+   "kicker": "Normalisation complète",
+   "titre": "La densité jointe position-vitesse se factorise",
+   "tex": [
+    "f(z, \\vec{v}) = A\\, e^{-\\frac{m v^2}{2 k_B T}}\\, e^{-\\frac{m g z}{k_B T}}",
+    "A = \\frac{m g}{k_B T} \\left( \\frac{m}{2 \\pi k_B T} \\right)^{3/2}",
+    "n(z) = \\frac{m g}{k_B T}\\, e^{-\\frac{m g z}{k_B T}}"
+   ]
+  },
+  "hauteur_finie": {
+   "type": "etape",
+   "kicker": "Domaine borné",
+   "titre": "Récipient de hauteur finie : la normalisation change",
+   "tex": [
+    "n_0 = \\frac{N}{S}\\, \\frac{m g}{k_B T}\\, \\frac{1}{1 - e^{-m g h / (k_B T)}}",
+    "\\langle z \\rangle = \\frac{1}{\\alpha} - \\frac{h\\, e^{-\\alpha h}}{1 - e^{-\\alpha h}} \\qquad \\alpha = \\frac{m g}{k_B T}",
+    "h \\ll H \\ \\Rightarrow\\ \\langle E_p \\rangle \\approx 0"
+   ]
+  },
+  "energie_cube": {
+   "type": "formule",
+   "kicker": "Énergie interne d'un récipient cubique",
+   "tex": "U = \\frac{5}{2} N k_B T - N\\, \\frac{m g L}{e^{m g L / (k_B T)} - 1}",
+   "note": "La pesanteur concentre les molécules vers le bas et abaisse l'énergie potentielle moyenne."
+  },
+  "comptage": {
+   "type": "etape",
+   "kicker": "Comptage et loi binomiale",
+   "titre": "Discernables ou indiscernables",
+   "tex": [
+    "4\\ \\text{configurations discernables,}\\ 3\\ \\text{indiscernables}",
+    "P(k) = \\binom{N}{k}\\, p_1^{k}\\, (1 - p_1)^{N - k}",
+    "\\mathbb{E}[X] = N p"
+   ],
+   "anim": {
+    "nom": "tiroirs_fig",
+    "hauteur": 110
+   }
+  },
+  "conditionnelles": {
+   "type": "etape",
+   "kicker": "Probabilités conditionnelles",
+   "titre": "Dans la colonne, la loi n'est pas uniforme",
+   "tex": [
+    "P(\\text{tiers bas}) = \\frac{1 - e^{-\\beta m g H / 3}}{1 - e^{-\\beta m g H}}",
+    "P(\\text{sixième bas} \\mid \\text{tiers bas}) = \\frac{1 - e^{-\\beta m g H / 6}}{1 - e^{-\\beta m g H / 3}}"
+   ]
+  },
+  "sans_memoire": {
+   "type": "formule",
+   "kicker": "La loi exponentielle est sans mémoire",
+   "tex": "P(z > 3\\lambda \\mid z > 2\\lambda) = e^{-1} \\approx 0{,}37 \\qquad \\lambda = \\frac{k_B T}{m g}",
+   "note": "Le passé ne change pas la probabilité de la suite : aucun vieillissement."
+  },
+  "equipartition": {
+   "type": "etape",
+   "kicker": "Équipartition de l'énergie",
+   "titre": "Le bilan d'énergie d'une molécule",
+   "tex": [
+    "\\langle E_c \\rangle = \\frac{3}{2} k_B T \\qquad \\langle E_p \\rangle = k_B T",
+    "\\langle E \\rangle = \\frac{5}{2} k_B T",
+    "\\text{rotateur diatomique :} \\quad \\langle E \\rangle = \\frac{7}{2} k_B T"
+   ]
+  },
+  "diazote": {
+   "type": "etape",
+   "kicker": "Application numérique complète",
+   "titre": "Le diazote à trois cents kelvins",
+   "tex": [
+    "H = \\frac{k_B T}{m g} \\approx 9{,}1\\ \\mathrm{km}",
+    "\\langle E \\rangle = k_B T + \\langle \\varepsilon_{int} \\rangle = 3{,}5\\, k_B T",
+    "\\langle E \\rangle \\approx 1{,}45 \\times 10^{-20}\\ \\mathrm{J}"
+   ]
+  },
+  "ions": {
+   "type": "formule",
+   "kicker": "Autre champ : le champ électrique",
+   "tex": "\\frac{n(d)}{n(0)} = \\exp\\left( -\\frac{q V_0}{k_B T} \\right)",
+   "note": "Le produit de la charge et du potentiel remplace l'énergie de pesanteur : même exponentielle.",
+   "anim": {
+    "nom": "charge",
+    "hauteur": 150
+   }
+  },
+  "quadratique": {
+   "type": "formule",
+   "kicker": "Autre profil : le potentiel quadratique",
+   "tex": "p(z) = \\sqrt{\\frac{2 \\beta a}{\\pi}}\\, e^{-\\frac{\\beta a}{2} z^2} \\qquad \\langle z \\rangle = \\sqrt{\\frac{2 k_B T}{\\pi a}}",
+   "note": "Un potentiel quadratique donne une gaussienne ; chaque terme quadratique contribue un demi d'énergie thermique.",
+   "anim": {
+    "nom": "ressort",
+    "hauteur": 150
+   }
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Les pièges qui coûtent des points",
+   "etapes": [
+    "Normalisation oubliée : calculer Z avant toute moyenne",
+    "Bornes fausses : intégrer sur le domaine accessible",
+    "Confondre densité de particules et densité de probabilité",
+    "Équipartition réservée aux degrés quadratiques",
+    "Rapport demandé : la constante se simplifie, ne pas la calculer"
+   ]
+  },
+  "strategie": {
+   "type": "phrase",
+   "kicker": "La stratégie de copie",
+   "texte": "Modéliser, normaliser, calculer, vérifier : la copie gagnante.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 140
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "La carte complète du cours",
+   "etapes": [
+    "La loi de Boltzmann favorise les basses énergies",
+    "La fonction de partition normalise et donne les moyennes",
+    "Atmosphère isotherme : exponentielle et hauteur d'échelle",
+    "Normaliser avant de calculer probabilités et moyennes",
+    "Toujours vérifier unités, limites et sens physique"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours de préparation au concours Polytechnique, consacré à la statistique et à la mécanique des gaz : la distribution de Boltzmann, la fonction de partition et l'atmosphère isotherme, avec les méthodes et les pièges classiques des épreuves.",
+   "texte": "Statistique et mécanique des gaz : les méthodes du concours.",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Le fil rouge du cours est une compétition permanente. D'un côté, l'agitation thermique disperse les particules dans tous les états possibles ; de l'autre, un champ de force comme la pesanteur favorise les états de basse énergie. La distribution de Boltzmann arbitre cette compétition, et tout en découle : densités, pressions, probabilités et énergies moyennes.",
+   "texte": "Agitation thermique contre champ de force : Boltzmann arbitre.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "ecran": "boltzmann",
+   "dit": "Tout repose sur un postulat : à l'équilibre, les micro-états accessibles d'un système isolé sont équiprobables. En contact avec un thermostat, la probabilité d'un micro-état devient proportionnelle à l'exponentielle de moins son énergie, divisée par le produit de la constante de Boltzmann et de la température. Plus l'énergie est élevée, plus l'état est improbable.",
+   "texte": "La probabilité d'un état décroît exponentiellement avec son énergie.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "ecran": "energie",
+   "dit": "L'énergie d'une particule se décompose en énergie cinétique, liée à sa vitesse, et énergie potentielle, qui dépend de sa position dans le champ extérieur. Dans le champ de pesanteur uniforme, l'énergie potentielle croît linéairement avec l'altitude : c'est le produit de la masse, de la pesanteur et de l'altitude. Toute la physique du cours tient dans cette énergie potentielle.",
+   "texte": "Énergie cinétique plus énergie potentielle du champ.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "ecran": "partition",
+   "dit": "La fonction de partition est la somme des facteurs de Boltzmann sur tous les micro-états : elle sert à normaliser, pour que la probabilité totale vaille un. Piège classique : la probabilité d'un micro-état n'est pas la probabilité d'une énergie. Quand plusieurs micro-états partagent la même énergie, il faut les compter : c'est la dégénérescence, qui multiplie le facteur de Boltzmann.",
+   "texte": "Z normalise ; la dégénérescence compte les micro-états d'une énergie.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "ecran": "methode",
+   "dit": "Voici la démarche à appliquer à chaque problème, dans l'ordre. Identifier le système, le champ et la température. Exprimer l'énergie potentielle. Écrire la loi de Boltzmann. Normaliser, en calculant la constante ou la fonction de partition. Puis seulement calculer, et vérifier unités et cas limites. Cette discipline évite presque toutes les erreurs de copie.",
+   "texte": "La démarche : identifier, exprimer, écrire, normaliser, vérifier.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "ecran": "moyennes_z",
+   "dit": "La fonction de partition contient bien plus que la normalisation. Son logarithme, dérivé par rapport à l'inverse de la température, donne l'énergie moyenne, au signe près. Une seconde dérivée donne la variance de l'énergie, l'ampleur de ses fluctuations. Deux dérivations remplacent des intégrales redoutables : c'est l'outil de calcul central du cours.",
+   "texte": "Le logarithme de Z donne moyenne et fluctuations par dérivation.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "ecran": "gaz_z",
+   "dit": "Premier exemple : un gaz tridimensionnel dans le champ de pesanteur. La fonction de partition se factorise, et les deux dérivées donnent une énergie moyenne de cinq demis de l'énergie thermique : trois demis pour la cinétique, un entier pour la potentielle. Les fluctuations relatives décroissent comme l'inverse de la racine carrée du nombre de particules : négligeables pour un gaz macroscopique.",
+   "texte": "Cinq demis d'énergie thermique par particule, fluctuations en un sur racine de N.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "ecran": "deux_niveaux",
+   "dit": "La même mécanique s'applique aux niveaux discrets. Pour deux niveaux d'énergie symétriques, la fonction de partition est le double d'un cosinus hyperbolique, et l'énergie moyenne fait intervenir une tangente hyperbolique. À température nulle, le système occupe l'état le plus bas ; à haute température, les deux états deviennent équiprobables.",
+   "texte": "Deux niveaux : cosinus et tangente hyperboliques.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "ecran": "recap1",
+   "dit": "Bilan de cette première partie : le postulat d'équiprobabilité fonde la loi de Boltzmann, la fonction de partition normalise les probabilités et tient compte de la dégénérescence, et son logarithme fournit l'énergie moyenne et ses fluctuations. Passons à l'application reine du concours : l'atmosphère isotherme.",
+   "texte": "Bilan : postulat, loi de Boltzmann, fonction de partition.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "ecran": "densite",
+   "dit": "Plaçons un gaz parfait en équilibre à température constante dans le champ de pesanteur. L'énergie potentielle d'une molécule croît avec l'altitude, donc la densité de particules décroît : elle suit exactement l'exponentielle de Boltzmann. Le rythme de cette décroissance est fixé par une longueur caractéristique, définie dans un instant.",
+   "texte": "La densité décroît exponentiellement avec l'altitude.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "ecran": "pression",
+   "dit": "Le gaz parfait relie localement la pression à la densité : la pression suit donc la même exponentielle. On définit la hauteur d'échelle comme le quotient de l'énergie thermique par le poids d'une molécule ; en grandeurs molaires, la constante des gaz fois la température, divisée par la masse molaire fois la pesanteur. À une hauteur d'échelle, densité et pression sont divisées par environ deux virgule sept.",
+   "texte": "La hauteur d'échelle : énergie thermique contre pesanteur.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "ecran": "hydrostatique",
+   "dit": "On peut retrouver la même loi sans statistique, par la mécanique des fluides. L'équilibre hydrostatique dit que la variation de pression avec l'altitude compense le poids de la couche de gaz. Combinée à la loi des gaz parfaits, cette équation différentielle a pour solution exactement l'exponentielle de Boltzmann. Deux routes, un seul résultat : un excellent contrôle de cohérence.",
+   "texte": "L'équilibre hydrostatique redonne la même exponentielle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "ecran": "chiffres_terre",
+   "dit": "Mettons des chiffres sur l'atmosphère terrestre, à température ambiante, pour la masse molaire moyenne de l'air. La hauteur d'échelle vaut environ huit mille huit cents mètres. La pression est divisée par deux vers cinq mille neuf cents mètres, et vaut encore environ quatre-vingt-cinq mille pascals à mille cinq cents mètres. Règle générale : l'altitude de division par un facteur vaut la hauteur d'échelle fois le logarithme de ce facteur.",
+   "texte": "Hauteur d'échelle terrestre : environ huit mille huit cents mètres.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "ecran": "proba_altitude",
+   "dit": "Revenons à une seule molécule : sa probabilité de présence en altitude est une loi exponentielle, de densité inversement proportionnelle à la hauteur d'échelle. La probabilité de la trouver au-dessus de deux hauteurs d'échelle vaut l'exponentielle de moins deux, environ treize pour cent et demi. La plupart des molécules vivent dans les deux premières hauteurs d'échelle.",
+   "texte": "Au-dessus de deux hauteurs d'échelle : environ treize pour cent et demi.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "ecran": "lecture_altitude",
+   "dit": "Deux lectures pratiques de la même loi. Si la pression au sommet d'une montagne vaut les trois quarts de celle du pied, le logarithme donne une altitude d'environ vingt-neuf pour cent de la hauteur d'échelle. Et la probabilité de trouver une molécule entre une demi et trois demis hauteurs d'échelle vaut la différence de deux exponentielles, environ trente-huit pour cent.",
+   "texte": "Une altitude par un logarithme, une probabilité par une intégrale.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "ecran": "exoplanete",
+   "dit": "Changeons de planète : une atmosphère de dioxyde de carbone, plus lourd que l'air, sur une exoplanète à gravité plus faible. La hauteur d'échelle ressort à environ huit mille cent mètres. Un ballon mesurant quarante pour cent de la pression au sol se trouve à environ sept mille cinq cents mètres. La vitesse quadratique moyenne des molécules vaut environ trois cent quatre-vingt-dix-huit mètres par seconde.",
+   "texte": "Exoplanète au dioxyde de carbone : hauteur d'échelle de huit mille cent mètres.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "ecran": "energie_cinetique",
+   "dit": "Point subtil : l'énergie cinétique moyenne d'une molécule vaut trois demis de l'énergie thermique, à la surface comme en altitude. Dans une atmosphère isotherme, la température est la même partout, donc l'agitation moyenne aussi ; seul le nombre de molécules change avec l'altitude. Confondre raréfaction et refroidissement est une erreur classique.",
+   "texte": "L'énergie cinétique moyenne ne dépend que de la température.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "ecran": "masse_colonne",
+   "dit": "Dernier résultat élégant : la masse d'une colonne d'air isotherme, de section donnée, s'obtient en intégrant la masse volumique exponentielle. Elle se simplifie en le produit de la section et de la pression au sol, divisé par la pesanteur : c'est le poids que la pression au sol supporte. Et ce résultat ne dépend même pas de la température.",
+   "texte": "La masse de la colonne égale la pression au sol fois la section, divisée par g.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "ecran": "recap2",
+   "dit": "Bilan de l'atmosphère isotherme : densité et pression décroissent exponentiellement, la hauteur d'échelle fixe le rythme, la même loi se démontre par Boltzmann ou par l'hydrostatique, et les probabilités d'altitude sont des intégrales de l'exponentielle. Troisième partie : probabilités fines, domaines bornés et pièges de concours.",
+   "texte": "Bilan : exponentielle, hauteur d'échelle, double démonstration.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "ecran": "densite_jointe",
+   "dit": "Passons à la normalisation complète, position et vitesse ensemble. La densité jointe se factorise en deux exponentielles : l'une pour les vitesses, gaussienne, l'autre pour l'altitude. Chaque intégrale se calcule séparément. En les assemblant, on obtient la constante de normalisation, puis, en intégrant sur toutes les vitesses, on retombe sur la loi barométrique. La factorisation est le geste technique à maîtriser.",
+   "texte": "La densité jointe se factorise : gaussienne fois exponentielle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "ecran": "hauteur_finie",
+   "dit": "Que change un récipient de hauteur finie ? La normalisation se fait sur un intervalle borné, et un facteur correctif apparaît : un moins l'exponentielle de moins le rapport des deux hauteurs. La densité au fond et l'altitude moyenne en dépendent. Et quand la hauteur devient très petite devant la hauteur d'échelle, le gaz devient quasi uniforme et l'énergie potentielle moyenne tend vers zéro.",
+   "texte": "Hauteur finie : un facteur correctif dans la normalisation.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "ecran": "energie_cube",
+   "dit": "Pour un récipient cubique, le calcul complet donne l'énergie interne : cinq demis du produit du nombre de molécules et de l'énergie thermique, moins un terme correctif toujours positif. La pesanteur concentre les molécules vers le bas et abaisse leur énergie potentielle moyenne. Retenez la structure : un terme d'équipartition, moins une correction de champ.",
+   "texte": "Énergie interne : équipartition moins une correction de pesanteur.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "ecran": "comptage",
+   "dit": "Un détour par le comptage, qui fonde tout le reste. En statistique classique, les particules sont discernables : on peut les suivre individuellement. Deux molécules entre deux compartiments donnent quatre configurations discernables, contre trois si on les suppose indiscernables. Pour beaucoup de particules indépendantes, leur nombre dans un compartiment suit une loi binomiale, d'espérance le nombre total fois la probabilité individuelle.",
+   "texte": "Discernables : quatre configurations ; la répartition suit une loi binomiale.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "ecran": "conditionnelles",
+   "dit": "Les probabilités conditionnelles révèlent la non-uniformité de la loi d'altitude. La probabilité d'être dans le tiers inférieur d'une colonne est un rapport d'intégrales d'exponentielles. Et sachant qu'une molécule est dans ce tiers, la probabilité qu'elle soit dans le sixième inférieur n'est pas un demi, comme le suggérerait une loi uniforme : le conditionnement hérite de la décroissance de Boltzmann.",
+   "texte": "Conditionner ne rend pas la loi uniforme : la décroissance persiste.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "ecran": "sans_memoire",
+   "dit": "La loi exponentielle possède une propriété précieuse : elle est sans mémoire. Sachant qu'une molécule a déjà dépassé deux fois la longueur caractéristique, la probabilité qu'elle la dépasse une troisième fois vaut l'exponentielle de moins un, environ trente-sept pour cent. Le passé n'influence pas la suite : un résultat qui se récite sans calcul le jour du concours.",
+   "texte": "Sans mémoire : dépasser encore une longueur vaut l'exponentielle de moins un.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p27",
+   "ecran": "equipartition",
+   "dit": "Le bilan d'énergie d'une molécule se fait par équipartition : chaque degré de liberté quadratique contribue un demi de l'énergie thermique. Trois degrés de translation donnent trois demis pour la cinétique ; le potentiel linéaire de pesanteur ajoute une énergie thermique entière, fait remarquable, indépendant de la masse et de la pesanteur. Total : cinq demis. Pour une molécule diatomique, la rotation porte le total à sept demis.",
+   "texte": "Équipartition : trois demis plus un, sept demis pour un rotateur.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p28",
+   "ecran": "diazote",
+   "dit": "Application numérique complète, façon concours : le diazote à température ambiante. La hauteur d'échelle ressort à environ neuf mille cent mètres. L'énergie moyenne d'une molécule combine le terme de pesanteur, une énergie thermique, et l'énergie interne de la molécule diatomique, deux énergies thermiques et demie : au total trois énergies thermiques et demie, environ un virgule quarante-cinq fois dix puissance moins vingt joules.",
+   "texte": "Diazote : hauteur d'échelle de neuf mille cent mètres, énergie de trois demis plus deux demis plus un.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p29",
+   "ecran": "ions",
+   "dit": "La loi ne connaît pas que la pesanteur : tout champ conservatif y obéit. Des ions positifs entre deux plaques, dans un potentiel électrique croissant, se répartissent avec la même exponentielle, où le produit de la charge et du potentiel remplace l'énergie de pesanteur. Les ions fuient la plaque au potentiel élevé, comme les molécules fuient l'altitude.",
+   "texte": "Champ électrique : même exponentielle, autre énergie potentielle.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p30",
+   "ecran": "quadratique",
+   "dit": "Dernier profil à connaître : un potentiel quadratique, comme un piège harmonique ou un ressort. La densité de présence devient une gaussienne, et sur une demi-droite, sa normalisation fait apparaître la racine de pi. La position moyenne croît comme la racine carrée de la température et décroît avec la raideur du piège. L'équipartition redonne la moyenne du potentiel : un demi d'énergie thermique par terme quadratique.",
+   "texte": "Potentiel quadratique : une gaussienne, position moyenne en racine de température.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p31",
+   "ecran": "pieges",
+   "dit": "Les pièges qui coûtent le plus de points : oublier la normalisation avant une moyenne ; intégrer sur de mauvaises bornes, hors du domaine accessible ; confondre densité de particules et densité de probabilité ; appliquer l'équipartition à des degrés non quadratiques ; et calculer une constante alors qu'un simple rapport la fait disparaître.",
+   "texte": "Cinq pièges : normalisation, bornes, densités, équipartition, constantes inutiles.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p32",
+   "ecran": "strategie",
+   "dit": "La stratégie de copie tient en quatre temps : modéliser en écrivant les hypothèses, normaliser avant tout calcul, conduire le calcul littéral jusqu'au bout, puis vérifier unités, limites et sens physique. Un résultat littéral encadré, suivi d'une phrase d'interprétation, vaut mieux qu'un nombre sans commentaire.",
+   "texte": "Modéliser, normaliser, calculer, vérifier.",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p33",
+   "ecran": "recap_final",
+   "dit": "Pour terminer, gardez la carte complète du cours : une loi, la distribution de Boltzmann ; un outil, la fonction de partition ; une application reine, l'atmosphère isotherme et sa hauteur d'échelle ; une discipline, normaliser puis vérifier. Avec ces quatre réflexes, les problèmes de statistique des gaz deviennent des exercices de méthode, et donc des points assurés.",
+   "texte": "Une loi, un outil, une application, une discipline.",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La loi de Boltzmann et la fonction de partition"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "L'atmosphère isotherme",
+   "pont": {
+    "dit": "Partie deux : l'atmosphère isotherme, l'application reine de la loi de Boltzmann, avec la hauteur d'échelle, la loi barométrique et des exemples chiffrés, de la montagne terrestre à l'exoplanète.",
+    "texte": "Partie 2 : l'atmosphère isotherme et la hauteur d'échelle."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Probabilités, moyennes et pièges de concours",
+   "pont": {
+    "dit": "Partie trois : les probabilités fines et les énergies moyennes, les domaines bornés, les autres champs de force, et les pièges de concours à éviter absolument.",
+    "texte": "Partie 3 : probabilités, moyennes et pièges de concours."
+   }
+  }
+ ]
+}
