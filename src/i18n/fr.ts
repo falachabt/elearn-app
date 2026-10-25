@@ -379,6 +379,7 @@ export const fr = {
     legendeExercice: 'Exercice',
     legendeAnnale: 'Annale',
     legendeQuiz: 'Quiz',
+    legendeVideo: 'Vidéo',
     heuresMinutes: '{{h}} h {{m}} min',
     questions: '{{n}} questions',
     question: '{{n}} question',

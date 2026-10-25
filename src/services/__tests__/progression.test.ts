@@ -96,7 +96,7 @@ describe('progression : jamais bloquée par le réseau', () => {
       [aujourdHui]: {
         jour: aujourdHui,
         secondes: 1200, // 20 min
-        parType: { cours: 600, lecon: 0, quiz: 300, exercice: 0, annale: 300, mission: 0 },
+        parType: { cours: 600, lecon: 0, quiz: 300, exercice: 0, annale: 300, mission: 0, video: 120 },
         parMatiere: { Physique: 600, Maths: 600 },
         sessions: [
           { type: 'cours' as const, matiere: 'Physique', secondes: 600, quand: new Date().toISOString() },
@@ -107,8 +107,8 @@ describe('progression : jamais bloquée par le réseau', () => {
     };
 
     const p = calculerProgression([{ jour: aujourdHui, dureeS: 600, questions: 5, chapitres: [{ matiere: 'Maths', bonnes: 3, total: 5 }] }], new Date(), activites);
-    // 10 min de mission + 20 min d'activites = 30 min
-    expect(p.minutesSemaine).toBe(30);
+    // 10 min de mission + 22 min d'activites (dont 2 min de vidéo) = 32 min
+    expect(p.minutesSemaine).toBe(32);
     expect(p.globale?.totalLecons).toBe(1);
     expect(p.globale?.totalQuiz).toBe(1);
     expect(p.globale?.mois).toHaveLength(12);
@@ -119,6 +119,7 @@ describe('progression : jamais bloquée par le réseau', () => {
       exercice: 0,
       annale: 300,
       quiz: 300,
+      video: 120,
     });
   });
 });

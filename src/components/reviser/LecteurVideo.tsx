@@ -11,6 +11,7 @@ import { Ecran } from '@/components/Ecran';
 import { Etiquette } from '@/components/Etiquette';
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
 import { lireEntrainement, lireProgresChapitres, type Compteur, type ProgresChapitre } from '@/services/entrainement';
+import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
 import {
   formaterDuree,
@@ -33,7 +34,8 @@ import { BlocEntrainement, GroupeColle, LigneGroupe } from './BlocEntrainement';
  * rectangle en haut, le titre, la PLAYLIST du cours en dessous, et le bloc « S'entraîner sur ce cours »
  * épinglé en bas. L'écran vit dans le groupe (onglets) : le header de l'app (retour + titre du cours) et la
  * barre d'onglets restent visibles. La position est reprise là où l'élève s'était arrêté et sauvegardée
- * toutes les 5 secondes, à la pause et en quittant l'écran (suivi local ; la synchro serveur est un lot à part).
+ * toutes les 5 secondes, à la pause et en quittant l'écran (suivi local synchronisé au serveur, lot 2) ;
+ * le temps réellement visionné alimente les activités et la progression (lot 3).
  * Le lecteur natif est tenu en ref (création impérative), comme le lecteur audio de la certification.
  */
 export function LecteurVideo() {
@@ -73,6 +75,28 @@ export function LecteurVideo() {
     });
   }, [lecteur]);
 
+  // Temps réellement visionné (lot 3) : seuls les intervalles en lecture comptent (pas les sauts de
+  // position ni les pauses), mesurés par segments ouverts à la lecture et fermés à la pause, puis versés
+  // dans les activités comme les autres types quand l'élève quitte la vidéo ou l'écran.
+  const segmentDebut = useRef<number | null>(null);
+  const segmentTitre = useRef<string | null>(null);
+  const tempsLuS = useRef(0);
+  const fermerSegment = useCallback(() => {
+    if (segmentDebut.current !== null) {
+      tempsLuS.current += (Date.now() - segmentDebut.current) / 1000;
+      segmentDebut.current = null;
+    }
+  }, []);
+  const viderTempsLu = useCallback(() => {
+    fermerSegment();
+    const secondes = Math.round(tempsLuS.current);
+    tempsLuS.current = 0;
+    if (segmentTitre.current && secondes >= 3) {
+      void enregistrerTempsActivite({ type: 'video', dureeS: secondes, matiere: matiere ?? undefined, titre: segmentTitre.current });
+    }
+    segmentTitre.current = null;
+  }, [fermerSegment, matiere]);
+
   // Branchement des événements du lecteur (une seule fois) et libération en fin de vie.
   useEffect(() => {
     const p = lecteur;
@@ -86,9 +110,18 @@ export function LecteurVideo() {
       }),
       p.addListener('timeUpdate', () => sauvegarder()),
       p.addListener('playingChange', ({ isPlaying }) => {
-        if (!isPlaying) sauvegarder();
+        if (isPlaying) {
+          if (segmentDebut.current === null) {
+            segmentDebut.current = Date.now();
+            segmentTitre.current = couranteRef.current?.titre ?? null;
+          }
+        } else {
+          fermerSegment();
+          sauvegarder();
+        }
       }),
       p.addListener('playToEnd', () => {
+        fermerSegment();
         const v = couranteRef.current;
         if (!v) return;
         void marquerTerminee(v.id, v.cours, v.dureeS).then(() => {
@@ -111,7 +144,7 @@ export function LecteurVideo() {
       abonnements.forEach((a) => a.remove());
       p.release();
     };
-  }, [lecteur, sauvegarder]);
+  }, [lecteur, sauvegarder, fermerSegment]);
 
   // Chargement : les vidéos du cours, le suivi local et les compteurs d'entraînement du pied.
   useEffect(() => {
@@ -143,17 +176,19 @@ export function LecteurVideo() {
   // Changement de vidéo (playlist ou enchaînement) : on remplace la source, sans lecture automatique.
   useEffect(() => {
     if (!courante || sourceRef.current === courante.url) return;
+    viderTempsLu();
     sourceRef.current = courante.url;
     repriseFaite.current = null;
     lecteur.replace({ uri: courante.url });
     void noterDerniereVideo({ video: courante.id, cours: coursId });
-  }, [courante, coursId, lecteur]);
+  }, [courante, coursId, lecteur, viderTempsLu]);
 
   // En quittant l'écran (autre onglet, retour) : on sauvegarde et on met en pause.
   useFocusEffect(
     useCallback(() => {
       return () => {
         sauvegarder();
+        viderTempsLu();
         // La position fraîche part au serveur (au retour du réseau, la synchro suivante la poussera).
         void synchroniserSuivis(getSupabase());
         try {
@@ -162,7 +197,7 @@ export function LecteurVideo() {
           // Lecteur déjà libéré.
         }
       };
-    }, [lecteur, sauvegarder]),
+    }, [lecteur, sauvegarder, viderTempsLu]),
   );
 
   const retour = () => router.navigate({ pathname: '/cours/chapitre', params: { id: String(coursId), nom: nom ?? '', matiere: matiere ?? '' } });

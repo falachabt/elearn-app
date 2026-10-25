@@ -25,6 +25,7 @@ export type RepartitionActivite = {
   exercice: number;
   annale: number;
   quiz: number;
+  video: number;
 };
 
 /** Une colonne du graphique « Cette semaine » : lundi à dimanche. */
@@ -82,7 +83,8 @@ export function calculerProgression(
     const secExercice = activites[jour]?.parType?.exercice ?? 0;
     const secAnnale = activites[jour]?.parType?.annale ?? 0;
     const secQuiz = activites[jour]?.parType?.quiz ?? 0;
-    const secondesTotales = secMission + secCours + secExercice + secAnnale + secQuiz;
+    const secVideo = activites[jour]?.parType?.video ?? 0;
+    const secondesTotales = secMission + secCours + secExercice + secAnnale + secQuiz + secVideo;
     return {
       jour,
       minutes: Math.round(secondesTotales / 60),
@@ -92,6 +94,7 @@ export function calculerProgression(
         exercice: secExercice,
         annale: secAnnale,
         quiz: secQuiz,
+        video: secVideo,
       },
     };
   });
@@ -152,6 +155,7 @@ export function calculerProgression(
     let secExercice = 0;
     let secAnnale = 0;
     let secQuiz = 0;
+    let secVideo = 0;
     let secMissionAct = 0;
     for (const [j, act] of Object.entries(activites)) {
       if (j.startsWith(prefixe)) {
@@ -159,11 +163,12 @@ export function calculerProgression(
         secExercice += act.parType?.exercice ?? 0;
         secAnnale += act.parType?.annale ?? 0;
         secQuiz += act.parType?.quiz ?? 0;
+        secVideo += act.parType?.video ?? 0;
         secMissionAct += act.parType?.mission ?? 0;
       }
     }
     const totMission = secMission + secMissionAct;
-    const totalSecMois = totMission + secCours + secExercice + secAnnale + secQuiz;
+    const totalSecMois = totMission + secCours + secExercice + secAnnale + secQuiz + secVideo;
     return {
       mois: prefixe,
       libelle: NOMS_MOIS[m],
@@ -174,6 +179,7 @@ export function calculerProgression(
         exercice: secExercice,
         annale: secAnnale,
         quiz: secQuiz,
+        video: secVideo,
       },
     };
   });

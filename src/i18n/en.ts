@@ -378,6 +378,7 @@ export const en: Textes = {
     legendeExercice: 'Exercise',
     legendeAnnale: 'Paper',
     legendeQuiz: 'Quiz',
+    legendeVideo: 'Video',
     heuresMinutes: '{{h}} h {{m}} min',
     questions: '{{n}} questions',
     question: '{{n}} question',

@@ -24,9 +24,10 @@ const TYPES_ACTIVITES = [
   { cle: 'exercice', couleur: palette.orange[400], cleI18n: 'profil.legendeExercice' },
   { cle: 'annale', couleur: palette.soleil[400], cleI18n: 'profil.legendeAnnale' },
   { cle: 'quiz', couleur: palette.bleu[400], cleI18n: 'profil.legendeQuiz' },
+  { cle: 'video', couleur: palette.rose[400], cleI18n: 'profil.legendeVideo' },
 ] as const;
 
-function extraireSegments(repartition?: { mission: number; cours: number; exercice: number; annale: number; quiz: number }) {
+function extraireSegments(repartition?: { mission: number; cours: number; exercice: number; annale: number; quiz: number; video: number }) {
   if (!repartition) return [{ cle: 'mission', s: 1, couleur: palette.emeraude[500] }];
   const liste = [
     { cle: 'mission', s: repartition.mission, couleur: palette.emeraude[500] },

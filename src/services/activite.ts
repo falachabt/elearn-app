@@ -6,7 +6,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { jourLocal } from './mission';
 import { getSupabase } from './supabase';
 
-export type TypeActivite = 'cours' | 'lecon' | 'quiz' | 'exercice' | 'annale' | 'mission';
+export type TypeActivite = 'cours' | 'lecon' | 'quiz' | 'exercice' | 'annale' | 'mission' | 'video';
 
 export type SessionActivite = {
   id?: string;
@@ -123,7 +123,7 @@ export async function synchroniserActivitesServeur(client?: Pick<SupabaseClient,
       const existant = distantes[j] ?? {
         jour: j,
         secondes: 0,
-        parType: { cours: 0, lecon: 0, quiz: 0, exercice: 0, annale: 0, mission: 0 },
+        parType: { cours: 0, lecon: 0, quiz: 0, exercice: 0, annale: 0, mission: 0, video: 0 },
         parMatiere: {},
         sessions: [],
       };
@@ -196,7 +196,7 @@ export async function enregistrerTempsActivite(p: {
     const existant = tous[jour] ?? {
       jour,
       secondes: 0,
-      parType: { cours: 0, lecon: 0, quiz: 0, exercice: 0, annale: 0, mission: 0 },
+      parType: { cours: 0, lecon: 0, quiz: 0, exercice: 0, annale: 0, mission: 0, video: 0 },
       parMatiere: {},
       sessions: [],
     };
