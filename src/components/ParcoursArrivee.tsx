@@ -8,6 +8,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
+import { adopterProfil } from '@/services/changementProfil';
 import { drapeauPays, listerPays, nomPays } from '@/services/pays';
 import { chargerPaysFermes, estPaysFerme, filtrerPaysOuverts, usePaysFermes } from '@/services/paysOuverts';
 import { actualiserPlanningProfil } from '@/services/planning';
@@ -30,6 +31,7 @@ import { bord, cibleMin, espace, ombre, rayon, typo } from '@/theme/theme';
 import { Apparition } from './Apparition';
 import { Appui } from './Appui';
 import { LogoToeic } from './certification/LogoToeic';
+import { BlocChangementProfil, type EtatChangement } from './profil/BlocChangementProfil';
 import { Bouton } from './Bouton';
 import { Carte } from './Carte';
 import { Ecran } from './Ecran';
@@ -154,14 +156,32 @@ function memeProfil(a: Profil | null, b: Profil): boolean {
   );
 }
 
-/** A2 · Classe (ou concours) et pays, avec valeurs par défaut (M1-01, M1-02). */
+/** A2 · Classe (ou concours) et pays, avec valeurs par défaut (M1-01, M1-02). Route `/classe`. */
 export function ChoixClasse() {
-  const { t, langue, changerLangue } = useTraduction();
-  const { theme } = useTheme();
   const params = useLocalSearchParams<{ type?: string; modifier?: string }>();
   // H1 : depuis Moi, « Changer de classe » rouvre cet écran avec le profil actuel et revient à Moi.
-  const modifier = params.modifier === '1';
-  const [type, setType] = useState(params.type);
+  return <ChoixClasseContenu typeInitial={params.type} modifier={params.modifier === '1'} />;
+}
+
+type ChoixClasseContenuProps = {
+  typeInitial?: string;
+  modifier: boolean;
+  /**
+   * Dans la page de changement (issue #125) : les onglets remplacent les pastilles de statut, la page porte
+   * le retour et l'inset du haut, et un onglet d'une AUTRE famille que celle du profil actuel se termine par
+   * le bloc d'adoption (conséquences + confirmation) au lieu du simple « Enregistrer ».
+   */
+  dansPage?: boolean;
+  /** Profil mémorisé de la famille cible (départ TOEIC) : pré-remplit le formulaire à défaut du profil actuel. */
+  prefill?: Profil | null;
+  /** Abandon de l'adoption (« Rester sur mon profil actuel ») : la page revient à l'onglet de la famille actuelle. */
+  onAnnulerAdoption?: () => void;
+};
+
+export function ChoixClasseContenu({ typeInitial, modifier, dansPage = false, prefill = null, onAnnulerAdoption }: ChoixClasseContenuProps) {
+  const { t, langue, changerLangue } = useTraduction();
+  const { theme } = useTheme();
+  const [type, setType] = useState(typeInitial);
   const concours = type === 'concours';
   const [niveau, setNiveau] = useState<string>(concours ? CONCOURS[0] : '3e');
   const [monConcours, setMonConcours] = useState<ConcoursChoisi | null>(null);
@@ -173,6 +193,9 @@ export function ChoixClasse() {
   const [feuilleHorsLigne, setFeuilleHorsLigne] = useState(false);
   const [series, setSeries] = useState<SerieClasse[]>([]);
   const [serie, setSerie] = useState<SerieChoisie | null>(null);
+  // Profil actuel (famille d'origine) et état du bloc d'adoption, pour la page de changement (issue #125).
+  const [profilActuel, setProfilActuel] = useState<Profil | null>(null);
+  const [etatAdoption, setEtatAdoption] = useState<EtatChangement>('repos');
   // Pays fermés par la configuration serveur (M14-03) : retirés de la liste, donc non sélectionnables.
   // Tant que la configuration n'est pas connue (ou en échec), aucun filtrage.
   const fermes = usePaysFermes();
@@ -194,8 +217,11 @@ export function ChoixClasse() {
     };
   }, [modifier, langue, pays]);
   // Le concours se choisit sur son propre écran (filière puis concours), qui l'enregistre dans le profil.
+  // Dans la page de changement (issue #125), cet onglet est celui du Secondaire : le pré-remplissage concours
+  // y copierait la filière dans le niveau de classe — on l'ignore, chaque onglet a sa propre liste.
   useFocusEffect(
     useCallback(() => {
+      if (dansPage) return;
       let actif = true;
       lireProfil().then((p) => {
         if (!actif || p?.type !== 'concours' || !p.concours) return;
@@ -205,7 +231,7 @@ export function ChoixClasse() {
       return () => {
         actif = false;
       };
-    }, []),
+    }, [dansPage]),
   );
 
   useEffect(() => {
@@ -213,17 +239,23 @@ export function ChoixClasse() {
     let actif = true;
     lireProfil().then((p) => {
       if (!actif || !p) return;
+      setProfilActuel(p);
       // Le choix du profil (P2) impose le type ; un profil TOEIC ne fournit ni classe ni concours à réutiliser.
-      const cible = params.type ?? (p.type === 'certification' ? 'eleve' : p.type);
+      const cible = typeInitial ?? (p.type === 'certification' ? 'eleve' : p.type);
       setType(cible);
-      if (p.type !== 'certification' && p.type === cible && p.niveau) setNiveau(p.niveau);
-      if (p.pays) setPays(p.pays.toUpperCase());
-      if (p.type === 'eleve' && p.serie) setSerie(p.serie);
+      // Pré-remplissage : le profil de la famille cible d'abord (le profil actuel s'il est de cette famille,
+      // sinon le profil mémorisé de cette famille — départ TOEIC, issue #125) ; le pays suit la même source,
+      // à défaut celui du profil actuel.
+      const source = p.type === cible ? p : prefill && prefill.type === cible ? prefill : null;
+      if (source?.niveau) setNiveau(source.niveau);
+      const paysSource = source?.pays ?? p.pays;
+      if (paysSource) setPays(paysSource.toUpperCase());
+      if (source?.type === 'eleve' && source.serie) setSerie(source.serie);
     });
     return () => {
       actif = false;
     };
-  }, [modifier, params.type]);
+  }, [modifier, typeInitial, prefill]);
 
   useEffect(() => {
     if (concours) return;
@@ -329,10 +361,59 @@ export function ChoixClasse() {
     router.push('/premier-resultat');
   };
 
+  // Page de changement (issue #125) : cet onglet montre la famille Secondaire. Si le profil actuel est d'une
+  // autre famille, le pied devient le bloc d'adoption (conséquences + confirmation) : aucune bascule au seul
+  // toucher de l'onglet. Le départ TOEIC réutilise le texte de conséquences existant ; depuis Concours, le
+  // texte est une proposition rédigée au ton de l'app (signalée à Benny dans l'échange d'implémentation).
+  const adoption = dansPage && modifier && !concours && !!profilActuel && profilActuel.type !== 'eleve';
+
+  const confirmerAdoption = async () => {
+    // Même garde que le changement de classe (issue #74) : hors ligne, rien ne s'écrit et la feuille l'explique.
+    if (horsLigne) {
+      setFeuilleHorsLigne(true);
+      return;
+    }
+    const serieChoix = serie ? serie : null;
+    const cible: Profil = { type: 'eleve', niveau, pays, ...(serieChoix ? { serie: serieChoix } : {}), termine: true };
+    setEtatAdoption('charge');
+    try {
+      await adopterProfil(cible);
+      // La mission du jour gardée en cache était tirée pour l'ancien parcours.
+      await AsyncStorage.removeItem('mission.jour');
+      try {
+        void actualiserPlanningProfil(getSupabase(), niveau, pays, serieChoix?.id);
+      } catch {
+        // Pas de client Supabase configuré (tests unitaires) : rien à recalculer.
+      }
+      suivre('profile_class_changed', { niveau, pays, statut: 'eleve', ...(serieChoix ? { serie: serieChoix.nom } : {}) });
+      router.dismissAll();
+      router.replace('/');
+    } catch {
+      setEtatAdoption('erreur');
+    }
+  };
+
+  const pied = adoption ? (
+    <BlocChangementProfil
+      etat={etatAdoption}
+      titre={t('profilChoix.passerSecondaireTitre')}
+      texte={profilActuel?.type === 'certification' ? t('profilChoix.revenirTexte') : t('profilChoix.consequencesDepuisConcours')}
+      confirmer={t('profilChoix.passerSecondaireBouton')}
+      annuler={t('profilChoix.annuler')}
+      onConfirmer={() => void confirmerAdoption()}
+      onAnnuler={() => {
+        setEtatAdoption('repos');
+        onAnnulerAdoption?.();
+      }}
+    />
+  ) : (
+    <Bouton libelle={t(modifier ? 'classe.enregistrer' : 'classe.continuer')} onPress={continuer} retour />
+  );
+
   return (
-    <Ecran pied={<Bouton libelle={t(modifier ? 'classe.enregistrer' : 'classe.continuer')} onPress={continuer} retour />}>
-      <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} />
-      {modifier ? (
+    <Ecran insetHaut={!dansPage} pied={pied}>
+      {!dansPage ? <Bouton petit variante="texte" libelle={t('classe.retour')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/bienvenue'))} /> : null}
+      {modifier && !dansPage ? (
         // Depuis Moi : on peut aussi changer de statut (élève ou candidat à un concours).
         <View accessibilityRole="radiogroup" accessibilityLabel={t('classe.statut')} style={styles.pastilles}>
           {(['eleve', 'concours'] as const).map((s) => (

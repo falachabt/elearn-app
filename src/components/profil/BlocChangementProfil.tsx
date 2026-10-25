@@ -23,10 +23,11 @@ type Props = {
 };
 
 /**
- * Feuille de confirmation d'un changement de profil (P4, P5) avec ses états : en cours, bouton désactivé (P6-CHARGE),
- * et erreur où le profil reste inchangé (P6-ERR).
+ * Bloc d'adoption d'un changement de famille, affiché DANS la page de changement (issue #125 : les anciennes
+ * feuilles P4/P5 ont disparu). Ses états : repos (conséquences + confirmation), en cours, bouton désactivé
+ * (P6-CHARGE), et erreur où le profil reste inchangé (P6-ERR).
  */
-export function FeuilleChangementProfil({ etat, titre, texte, confirmer, annuler, onConfirmer, onAnnuler, children }: Props) {
+export function BlocChangementProfil({ etat, titre, texte, confirmer, annuler, onConfirmer, onAnnuler, children }: Props) {
   const { t } = useTraduction();
   const { theme } = useTheme();
 

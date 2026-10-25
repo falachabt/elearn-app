@@ -110,11 +110,11 @@ describe.each(['fr', 'en'] as const)('C1 à C3 · mission du jour (%s)', (langue
   const x = T[langue];
   beforeEach(() => act(() => changerLangue(langue)));
 
-  it('accueil : affiche le sélecteur avec la classe seule (3e), appui ouvre la page de modification de classe', async () => {
+  it('accueil : affiche le sélecteur avec la classe seule (3e), appui ouvre la page de changement de parcours', async () => {
     await monter(<Accueil maintenant={SOIR} />);
     await waitFor(() => expect(screen.getByText('3e')).toBeTruthy());
     await fireEvent.press(screen.getByText('3e'));
-    expect(router.push).toHaveBeenCalledWith({ pathname: '/classe', params: { modifier: '1' } });
+    expect(router.push).toHaveBeenCalledWith('/profil/changer');
   });
 
   it('accueil : avec un concours choisi, affiche uniquement le sigle', async () => {

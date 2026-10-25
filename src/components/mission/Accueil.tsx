@@ -92,7 +92,7 @@ export function SelecteurClasse({ profil }: { profil: Profil | null }) {
       <Appui
         accessibilityRole="button"
         accessibilityLabel={t('classe.selecteurA11y', { classe: libelle })}
-        onPress={() => router.push({ pathname: '/classe', params: { modifier: '1' } })}
+        onPress={() => router.push('/profil/changer')}
         rayon={rayon.s}
         decalage={2}
         hitSlop={4}

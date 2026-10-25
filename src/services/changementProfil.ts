@@ -17,6 +17,11 @@ async function lireMemoire(): Promise<MemoireProfil> {
   }
 }
 
+/** Mémoire des profils (dernier profil de chaque famille) : lue par la page de changement pour pré-remplir ses onglets. */
+export async function lireMemoireProfil(): Promise<MemoireProfil> {
+  return lireMemoire();
+}
+
 /**
  * Écrit la mémoire puis le profil. Une erreur d'écriture remonte à l'écran : le profil reste alors celui d'avant
  * (écran P6, « Changement impossible »). Aucune donnée d'élève n'est effacée : la mémoire ne fait que garder l'ancien profil.
@@ -46,4 +51,21 @@ export async function revenirAuSecondaire(): Promise<boolean> {
   if (!memoire.secondaire) return false;
   await basculer(memoire.secondaire, { ...memoire, ...(actuel?.type === 'certification' ? { toeic: actuel } : {}) });
   return true;
+}
+
+/**
+ * Adoption d'un profil d'une AUTRE famille depuis la page de changement (issue #125) : le profil quitté est gardé
+ * en mémoire (même invariant que `passerAuToeic` et `revenirAuSecondaire` : aucune donnée effacée, les profils
+ * permutent), puis le nouveau profil devient le profil courant. Une erreur d'écriture remonte à l'écran, qui
+ * affiche « Changement impossible » et garde l'ancien profil.
+ */
+export async function adopterProfil(suivant: Profil): Promise<void> {
+  const actuel = await lireProfil();
+  const memoire = await lireMemoire();
+  const maj: MemoireProfil = { ...memoire };
+  if (actuel && actuel.type !== suivant.type) {
+    if (actuel.type === 'certification') maj.toeic = actuel;
+    else maj.secondaire = actuel;
+  }
+  await basculer(suivant, maj);
 }
