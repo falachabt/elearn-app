@@ -396,21 +396,20 @@ const FIG = {
       rayon(66, 428, '#E8604C', 6, false) + rayon(152, 618, '#B8860B', 6, false) + rayon(238, 788, '#7B2FF7', 6, true) +
       `<circle cx="104" cy="66" r="13" fill="#E8604C"/><circle cx="104" cy="152" r="13" fill="#B8860B"/><circle cx="104" cy="238" r="13" fill="#7B2FF7"/>` +
       ecran(430, 30, 102, '#F2C94C') + ecran(620, 116, 188, '#9AA5B1') + ecran(790, 188, 288, '#5B6B7B') +
-      mot(440, 292, 'papier', { t: 22 }) + mot(630, 292, 'aluminium', { t: 22 }) + mot(800, 292, 'plomb', { t: 22 }) +
+      mot(440, 292, 'papier', { t: 22 }) + mot(630, 292, 'aluminium', { t: 22 }) + mot(800, 176, 'plomb', { t: 22 }) +
       mot(226, 40, 'α', { c: '#E8604C', t: 34, a: 'start' }) + mot(226, 126, 'β', { c: '#B8860B', t: 34, a: 'start' }) + mot(226, 212, 'γ', { c: '#7B2FF7', t: 34, a: 'start' }));
   },
   aimant(t) {
     const p = prog(t);
-    const arc = (d, delai) => `<path d="${d}" fill="none" stroke="#1A75FF" stroke-width="4.5" opacity="${Math.max(0, Math.min(1, p * 1.6 - delai))}"/>`;
+    const boucle = (rx, ry, delai) => `<ellipse cx="500" cy="151" rx="${rx}" ry="${ry}" fill="none" stroke="#1A75FF" stroke-width="4.5" opacity="${Math.max(0, Math.min(1, p * 1.8 - delai))}"/>`;
     return svgBoite(
-      arc('M 706 128 C 830 26, 176 26, 294 128', 0) + arc('M 706 150 C 880 84, 126 84, 294 150', .25) +
-      arc('M 706 174 C 830 276, 176 276, 294 174', .1) + arc('M 706 152 C 880 218, 126 218, 294 152', .35) +
-      (p > .5 ? pointe(294, 128, 180, '#1A75FF') + pointe(294, 174, 180, '#1A75FF') : '') +
+      boucle(258, 56, 0) + boucle(326, 90, .3) + boucle(394, 124, .6) +
+      (p > .55 ? pointe(500, 95, 180, '#1A75FF') + pointe(500, 207, 180, '#1A75FF') + pointe(442, 27, 180, '#1A75FF') : '') +
       `<rect x="300" y="118" width="400" height="66" fill="#5B6B7B" fill-opacity=".45" stroke="currentColor" stroke-width="5"/>` +
       `<rect x="500" y="118" width="200" height="66" fill="#E8604C" fill-opacity=".55" stroke="currentColor" stroke-width="5"/>` +
       `<line x1="500" y1="118" x2="500" y2="184" stroke="currentColor" stroke-width="5"/>` +
       mot(400, 162, 'S', { t: 40 }) + mot(600, 162, 'N', { t: 40 }) +
-      mot(500, 232, 'les lignes de champ sortent du nord, rentrent au sud', { t: 25 }) +
+      mot(500, 302, 'les lignes de champ sortent du nord, rentrent au sud', { t: 25 }) +
       mot(856, 60, 'B', { c: '#1A75FF', t: 34, a: 'start' }));
   },
   induction(t) {
