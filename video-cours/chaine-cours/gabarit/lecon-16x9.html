@@ -316,6 +316,56 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  chauffe(t) {
+    const p = prog(t), s1 = Math.min(1, p * 4), s2 = Math.max(0, Math.min(1, p * 4 - 1)), s3 = Math.max(0, Math.min(1, p * 4 - 2)), s4 = Math.max(0, p * 4 - 3);
+    return svgBoite(
+      `<line x1="170" y1="252" x2="900" y2="252" stroke="currentColor" stroke-width="5"/>${pointe(906, 252, 0)}` +
+      `<line x1="170" y1="252" x2="170" y2="46" stroke="currentColor" stroke-width="5"/>${pointe(170, 40, -90)}` +
+      mot(922, 260, 't', { t: 30, a: 'start' }) +
+      mot(146, 54, 'T (°C)', { t: 27, a: 'end' }) +
+      `<line x1="170" y1="176" x2="830" y2="176" stroke="currentColor" stroke-width="3" stroke-dasharray="8 8" opacity=".4"/>` +
+      `<line x1="170" y1="92" x2="830" y2="92" stroke="currentColor" stroke-width="3" stroke-dasharray="8 8" opacity=".4"/>` +
+      mot(152, 184, '0 °C', { t: 23, a: 'end' }) +
+      mot(152, 100, '100 °C', { t: 23, a: 'end' }) +
+      trait(170, 224, 380, 176, s1, { c: '#E8604C', w: 6 }) +
+      trait(380, 176, 520, 176, s2, { c: '#E8604C', w: 6 }) +
+      trait(520, 176, 640, 92, s3, { c: '#E8604C', w: 6 }) +
+      trait(640, 92, 830, 92, s4, { c: '#E8604C', w: 6 }) +
+      (p > .3 ? mot(450, 208, 'fusion', { t: 24 }) : '') +
+      (p > .8 ? mot(735, 66, 'vaporisation', { t: 24 }) : ''));
+  },
+  agitation(t) {
+    const froid = [[190, 120], [290, 200], [370, 110], [240, 230], [400, 190], [180, 180]];
+    const chaud = [[630, 110], [730, 210], [810, 120], [680, 180], [840, 200], [600, 220]];
+    let dots = '';
+    froid.forEach(([x, y], i) => {
+      const jx = Math.round(x + 3 * Math.sin(t * 2 + i * 1.7)), jy = Math.round(y + 3 * Math.cos(t * 1.7 + i * 2.3));
+      dots += `<circle cx="${jx}" cy="${jy}" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`;
+    });
+    chaud.forEach(([x, y], i) => {
+      const jx = Math.round(x + 9 * Math.sin(t * 5 + i * 2.1)), jy = Math.round(y + 9 * Math.cos(t * 4.3 + i * 1.3));
+      const vx = [26, -30, 22, -24, 28, -20][i], vy = [14, 10, -16, 12, -12, 16][i];
+      dots += `<line x1="${jx - vx}" y1="${jy - vy}" x2="${jx}" y2="${jy}" stroke="#E8604C" stroke-width="3" opacity=".5"/><circle cx="${jx}" cy="${jy}" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>`;
+    });
+    return svgBoite(
+      `<rect x="120" y="60" width="320" height="180" fill="#1A75FF" fill-opacity=".06" stroke="currentColor" stroke-width="5"/>` +
+      `<rect x="560" y="60" width="320" height="180" fill="#E8604C" fill-opacity=".06" stroke="currentColor" stroke-width="5"/>` + dots +
+      mot(280, 36, 'froid', { c: '#1A75FF', t: 26 }) +
+      mot(720, 36, 'chaud', { c: '#E8604C', t: 26 }) +
+      mot(280, 278, 'particules presque immobiles', { c: '#1A75FF', t: 23 }) +
+      mot(720, 278, 'particules très agitées', { c: '#E8604C', t: 23 }));
+  },
+  transfert(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="180" y="84" width="290" height="146" fill="#E8604C" fill-opacity=".22" stroke="currentColor" stroke-width="6"/>` +
+      `<rect x="530" y="84" width="290" height="146" fill="#1A75FF" fill-opacity=".18" stroke="currentColor" stroke-width="6"/>` +
+      mot(325, 146, 'chaud', { t: 28 }) + mot(325, 188, '80 °C', { t: 26 }) +
+      mot(675, 146, 'froid', { t: 28 }) + mot(675, 188, '20 °C', { t: 26 }) +
+      trait(452, 157, 540, 157, Math.min(1, p * 1.6), { c: '#E8604C', w: 13 }) + (p > .55 ? pointe(548, 157, 0, '#E8604C') : '') +
+      mot(500, 122, 'Q', { c: '#E8604C', t: 38 }) +
+      mot(500, 272, "la chaleur passe du chaud vers le froid, jusqu'à l'équilibre thermique", { t: 24 }));
+  },
   pendule(t) {
     const a = .55 * Math.cos(2 * Math.PI * t / 2.4), L = 170;
     const bx = Math.round(500 + L * Math.sin(a)), by = Math.round(40 + L * Math.cos(a));
