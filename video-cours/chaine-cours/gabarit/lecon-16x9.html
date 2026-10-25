@@ -676,6 +676,35 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  transport_energie_fig(t) {
+    return svgBoite(
+      mot(500, 62, 'la ligne haute tension', { t: 21 }) +
+      trait(140, 250, 880, 250, prog(t), { w: 3.5 }) +
+      trait(300, 92, 300, 250, prog(t), { w: 5.5 }) + trait(248, 112, 352, 112, prog(t), { w: 4.5 }) + trait(258, 142, 342, 142, prog(t), { w: 4.5 }) +
+      trait(300, 250, 268, 192, prog(t), { w: 3 }) + trait(300, 250, 332, 192, prog(t), { w: 3 }) +
+      trait(720, 122, 720, 250, prog(t), { w: 4.5 }) + trait(678, 138, 762, 138, prog(t), { w: 4 }) +
+      trait(720, 250, 696, 202, prog(t), { w: 3 }) + trait(720, 250, 744, 202, prog(t), { w: 3 }) +
+      `<path d="M 252 112 Q 480 172 684 138" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<path d="M 300 100 Q 505 156 720 126" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<path d="M 348 112 Q 560 172 758 138" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(500, 200, 'le courant transporte la puissance P = U I', { t: 18 }) +
+      mot(500, 282, "à puissance égale, monter U fait baisser I, donc les pertes R I²", { t: 18 }));
+  },
+  treuil_fig(t) {
+    return svgBoite(
+      trait(240, 62, 700, 62, prog(t), { w: 6 }) + trait(430, 62, 430, 88, prog(t), { w: 5 }) +
+      `<path d="M 366 106 A 68 68 0 0 1 430 62" fill="none" stroke="#E8604C" stroke-width="4"/>` + pointe(439, 62, 4, '#E8604C') +
+      mot(520, 68, 'le moment moteur', { c: '#E8604C', t: 19, a: 'start' }) +
+      `<circle cx="430" cy="130" r="42" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="5"/>` +
+      `<circle cx="430" cy="130" r="6" fill="currentColor"/>` +
+      trait(430, 130, 460, 100, prog(t), { w: 3 }) + mot(474, 96, 'R, le rayon du tambour', { t: 18, a: 'start' }) +
+      trait(472, 130, 472, 216, prog(t), { w: 3.5 }) +
+      `<rect x="440" y="216" width="64" height="38" fill="currentColor" fill-opacity=".2" stroke="currentColor" stroke-width="3.5"/>` +
+      mot(522, 242, 'la charge, de masse m', { t: 19, a: 'start' }) +
+      trait(472, 254, 472, 278, prog(t), { c: '#E8604C', w: 4 }) + pointe(472, 285, 90, '#E8604C') +
+      mot(486, 276, 'son poids mg', { c: '#E8604C', t: 18, a: 'start' }) +
+      mot(250, 282, 'le treuil enroule le câble', { t: 18 }));
+  },
   fresnel_rlc_fig(t) {
     return svgBoite(
       trait(330, 200, 560, 200, prog(t), { c: '#E8604C', w: 5 }) + pointe(568, 200, 0, '#E8604C') +

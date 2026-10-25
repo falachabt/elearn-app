@@ -1,0 +1,316 @@
+{
+ "cours": 6828,
+ "ecrans": {
+  "analogie": {
+   "etapes": [
+    "Les forces deviennent leurs moments par rapport à l'axe",
+    "La masse devient le moment d'inertie J",
+    "L'accélération devient l'accélération angulaire alpha"
+   ],
+   "kicker": "L'analogie avec la translation",
+   "type": "recap"
+  },
+  "equilibre": {
+   "kicker": "L'équilibre de rotation",
+   "note": "Le solide ne tourne pas, ou tourne à vitesse angulaire constante",
+   "tex": "\\sum \\mathcal{M}_\\Delta(\\vec{F}_i) = 0",
+   "titre": "Moment résultant nul, accélération angulaire nulle",
+   "type": "formule"
+  },
+  "grandeurs": {
+   "kicker": "Les grandeurs angulaires",
+   "tex": [
+    "\\omega = \\frac{d\\theta}{dt}",
+    "\\alpha = \\frac{d\\omega}{dt} = \\frac{d^2\\theta}{dt^2}"
+   ],
+   "titre": "Angle thêta, vitesse angulaire oméga, accélération angulaire alpha",
+   "type": "etape"
+  },
+  "inertie": {
+   "kicker": "Le moment d'inertie",
+   "note": "Pour un point matériel · pour un solide, J dépend de la répartition des masses autour de l'axe",
+   "tex": "J_\\Delta = m\\, r^2",
+   "titre": "La résistance du solide aux variations de rotation",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "torsion"
+   },
+   "kicker": "Introduction",
+   "texte": "Un solide est en rotation autour d'un axe fixe lorsque chaque point du solide décrit un cercle dont le centre appartient à l'axe, dans un plan perpendiculaire à cet axe.",
+   "type": "phrase"
+  },
+  "lien_lineaire": {
+   "kicker": "Du linéaire à l'angulaire",
+   "tex": [
+    "v_M = r\\, \\omega",
+    "a_T = r\\, \\alpha \\qquad a_N = r\\, \\omega^2"
+   ],
+   "titre": "Pour un point M situé à distance r de l'axe",
+   "type": "etape"
+  },
+  "methode": {
+   "etapes": [
+    "Choisir l'axe et un sens positif de rotation",
+    "Faire le bilan des forces appliquées",
+    "Calculer chaque moment avec son bras de levier",
+    "Écrire M = J alpha, puis les équations de liaison",
+    "Résoudre, puis intégrer pour obtenir oméga et thêta"
+   ],
+   "kicker": "La méthode générale, en six temps",
+   "type": "recap"
+  },
+  "moment": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "levier"
+   },
+   "kicker": "Le moment d'une force",
+   "note": "d : bras de levier, distance perpendiculaire de l'axe à la droite d'action · unité : le newton mètre",
+   "tex": "\\mathcal{M}_\\Delta(\\vec{F}) = F\\, d",
+   "titre": "L'efficacité d'une force à faire tourner",
+   "type": "formule"
+  },
+  "moment_constant": {
+   "kicker": "Moment résultant constant",
+   "tex": [
+    "\\omega(t) = \\omega_0 + \\alpha\\, t",
+    "\\theta(t) = \\theta_0 + \\omega_0\\, t + \\frac{1}{2}\\alpha\\, t^2"
+   ],
+   "titre": "Le mouvement uniformément varié de rotation",
+   "type": "etape"
+  },
+  "moment_resultant": {
+   "kicker": "Le moment résultant",
+   "tex": [
+    "\\mathcal{M}_\\Delta = \\sum_i \\mathcal{M}_\\Delta(\\vec{F}_i)"
+   ],
+   "titre": "La somme des moments de toutes les forces",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Grandeurs : thêta, oméga = d thêta/dt, alpha",
+    "Moment : M = F fois d, en newtons mètres",
+    "Relation fondamentale : M résultant = J alpha",
+    "J : la masse de la rotation"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "rfd_rotation": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "torsion"
+   },
+   "kicker": "La relation fondamentale de la rotation",
+   "note": "L'analogue de F = ma : les moments remplacent les forces, J remplace la masse",
+   "tex": "\\mathcal{M}_\\Delta = J_\\Delta \\, \\alpha",
+   "titre": "Moment résultant égale moment d'inertie fois accélération angulaire",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "torsion"
+   },
+   "kicker": "Physique · Mécanique",
+   "sous": "Grandeurs angulaires, moment d'inertie, moment d'une force, relation fondamentale et exemple du treuil",
+   "titre": "Rotation des solides",
+   "type": "titre"
+  },
+  "treuil_enonce": {
+   "kicker": "Exemple résolu : le treuil",
+   "texte": "Un treuil de moment d'inertie deux kilogrammes mètres carrés et de rayon vingt centimètres soulève une charge de dix kilogrammes, sous un moment moteur constant de trente newtons mètres. On néglige les frottements.",
+   "type": "phrase",
+   "anim": {
+    "nom": "treuil_fig",
+    "hauteur": 160
+   }
+  },
+  "treuil_equations": {
+   "kicker": "Exemple : les équations",
+   "tex": [
+    "\\mathcal{M}_m - T\\, R = J\\, \\alpha",
+    "T - m g = m\\, a \\qquad a = R\\, \\alpha"
+   ],
+   "titre": "Rotation du treuil, translation de la charge, liaison du câble",
+   "type": "etape",
+   "anim": {
+    "nom": "treuil_fig",
+    "hauteur": 110
+   }
+  },
+  "treuil_moments": {
+   "kicker": "Exemple : le bilan des moments",
+   "tex": [
+    "\\mathcal{M}_m = +30\\ \\text{N m}",
+    "\\mathcal{M}_\\Delta(\\vec{T}) = -T\\, R"
+   ],
+   "titre": "Moment moteur positif, moment de la tension résistant",
+   "type": "etape"
+  },
+  "treuil_resolution": {
+   "kicker": "Exemple : la résolution",
+   "tex": [
+    "\\alpha = \\frac{\\mathcal{M}_m - m g R}{J + m R^2}",
+    "\\alpha = \\frac{10{,}38}{2{,}40} = 4{,}3\\ \\text{rad/s}^2"
+   ],
+   "titre": "On élimine la tension T entre les deux équations",
+   "type": "etape"
+  },
+  "treuil_resultat": {
+   "kicker": "Exemple : le résultat pour la charge",
+   "note": "La liaison du câble convertit l'accélération angulaire en accélération linéaire",
+   "tex": "a = R\\, \\alpha = 0{,}20 \\times 4{,}3 = 0{,}87\\ \\text{m/s}^2",
+   "titre": "L'accélération linéaire de la charge, vers le haut",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Grandeurs angulaires, moment d'une force et relation fondamentale"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : un exemple complet, le treuil qui soulève une charge, puis la méthode générale de résolution.",
+    "texte": "Partie 2 : l'exemple du treuil, puis la méthode générale."
+   },
+   "sous_titre": "Exemple résolu du treuil et méthode générale"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours sur la rotation des solides autour d'un axe fixe. Nous définirons les grandeurs angulaires et le moment d'inertie, puis le moment d'une force et la relation fondamentale de la dynamique de rotation, avant de résoudre complètement l'exemple du treuil qui soulève une charge.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Rotation des solides : grandeurs, moments et relation fondamentale."
+  },
+  {
+   "dit": "Un solide est en mouvement de rotation autour d'un axe fixe lorsque chaque point du solide décrit un cercle dont le centre appartient à l'axe, et dont le plan est perpendiculaire à cet axe. Pensez à une porte sur ses gonds, ou au tambour d'un treuil : tous les points tournent ensemble, du même angle au même instant.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Rotation : chaque point décrit un cercle centré sur l'axe."
+  },
+  {
+   "dit": "Trois grandeurs décrivent cette rotation. L'angle de rotation, thêta, mesure l'angle balayé par un rayon du solide, en radians. Sa dérivée par rapport au temps est la vitesse angulaire, oméga, en radians par seconde. Et la dérivée de la vitesse angulaire est l'accélération angulaire, alpha, en radians par seconde carrée.",
+   "ecran": "grandeurs",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Thêta, oméga sa dérivée, alpha la dérivée d'oméga."
+  },
+  {
+   "dit": "Pour un point situé à distance r de l'axe, les grandeurs linéaires se déduisent des grandeurs angulaires : sa vitesse vaut r fois oméga ; son accélération tangentielle vaut r fois alpha ; et son accélération normale, dirigée vers l'axe, vaut r fois oméga au carré. Plus le point est loin de l'axe, plus il va vite.",
+   "ecran": "lien_lineaire",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Vitesse : r fois oméga. Accélérations : r fois alpha, r fois oméga carré."
+  },
+  {
+   "dit": "Un solide ne se laisse pas mettre en rotation sans résister : il s'oppose aux variations de sa vitesse angulaire par son moment d'inertie, noté J, en kilogrammes mètres carrés. Pour un point matériel de masse m à distance r de l'axe, J vaut m fois r au carré. Pour un solide entier, tout dépend de la répartition des masses autour de l'axe.",
+   "ecran": "inertie",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Le moment d'inertie : J vaut m fois r au carré pour un point."
+  },
+  {
+   "dit": "Pour faire tourner un solide, ce n'est pas la force seule qui compte, mais son moment par rapport à l'axe : M égale F fois d, où d est le bras de levier, la distance perpendiculaire entre l'axe et la droite d'action de la force. Le moment s'exprime en newtons mètres : pousser loin de l'axe est toujours plus efficace.",
+   "ecran": "moment",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Le moment : M égale F fois le bras de levier."
+  },
+  {
+   "dit": "Quand plusieurs forces s'appliquent, chacune produit son moment, avec un signe : positif si la force tend à faire tourner dans le sens positif choisi, négatif sinon. Le moment résultant, celui qui entre dans la loi de la rotation, est tout simplement la somme de tous ces moments.",
+   "ecran": "moment_resultant",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le moment résultant : la somme des moments, avec leurs signes."
+  },
+  {
+   "dit": "Voici la loi centrale du cours, la relation fondamentale de la dynamique de rotation : le moment résultant égale le moment d'inertie fois l'accélération angulaire. C'est l'exact analogue, pour la rotation, de la deuxième loi de Newton pour la translation : les moments jouent le rôle des forces, J celui de la masse, et alpha celui de l'accélération.",
+   "ecran": "rfd_rotation",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Relation fondamentale : moment résultant égale J fois alpha."
+  },
+  {
+   "dit": "Cas particulier immédiat : si le moment résultant est nul, l'accélération angulaire est nulle. Le solide ne tourne pas, ou bien il tourne à vitesse angulaire constante : c'est la condition d'équilibre de rotation, la somme des moments est nulle.",
+   "ecran": "equilibre",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Équilibre de rotation : la somme des moments est nulle."
+  },
+  {
+   "dit": "Si le moment résultant est constant, l'accélération angulaire est constante : le mouvement est uniformément varié. La vitesse angulaire croît linéairement avec le temps, et l'angle suit une loi en t au carré, exactement comme la position dans un mouvement de translation uniformément accéléré.",
+   "ecran": "moment_constant",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Moment constant : oméga affine en t, thêta en t au carré."
+  },
+  {
+   "dit": "Exemple résolu : un treuil, de moment d'inertie deux kilogrammes mètres carrés et de rayon vingt centimètres, soulève une charge de dix kilogrammes. Le moment moteur appliqué est constant et vaut trente newtons mètres ; on néglige les frottements. Il faut déterminer l'accélération angulaire du treuil et l'accélération linéaire de la charge.",
+   "ecran": "treuil_enonce",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Le treuil : J deux, rayon vingt centimètres, charge de dix kilogrammes."
+  },
+  {
+   "dit": "Premier temps : le bilan des moments sur le treuil. Le moment moteur vaut plus trente newtons mètres, dans le sens positif choisi. La tension du câble, elle, exerce un moment résistant : moins T fois R, car son bras de levier est exactement le rayon du tambour.",
+   "ecran": "treuil_moments",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Bilan : moment moteur positif, moment de la tension négatif."
+  },
+  {
+   "dit": "Deuxième temps : les équations. Pour le treuil, la relation fondamentale donne : moment moteur moins T fois R, égale J fois alpha. Pour la charge, en translation verticale : T moins m g égale m fois a. Et le câble, qui ne glisse pas, impose la liaison : a égale R fois alpha.",
+   "ecran": "treuil_equations",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Trois équations : rotation, translation, liaison du câble."
+  },
+  {
+   "dit": "Troisième temps : on élimine la tension entre les deux équations. Il vient alpha égale moment moteur moins m g R, divisé par J plus m R au carré. Application numérique : trente moins dix-neuf virgule soixante-deux, divisé par deux virgule quarante, soit quatre virgule trois radians par seconde carrée.",
+   "ecran": "treuil_resolution",
+   "id": "p14",
+   "pause_apres": 0.7,
+   "texte": "Alpha vaut quatre virgule trois radians par seconde carrée."
+  },
+  {
+   "dit": "Il ne reste qu'à repasser au linéaire par la liaison du câble : a égale R fois alpha, soit zéro virgule vingt fois quatre virgule trois, égale zéro virgule quatre-vingt-sept mètre par seconde carrée. La charge monte donc avec une accélération constante, tant que le moment moteur reste constant.",
+   "ecran": "treuil_resultat",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "La charge monte avec une accélération de zéro virgule quatre-vingt-sept."
+  },
+  {
+   "dit": "Retenez la méthode générale, en six temps : choisir l'axe et un sens positif ; faire le bilan des forces ; calculer le moment de chaque force avec son bras de levier ; écrire la relation fondamentale ; ajouter les équations de liaison s'il y a d'autres systèmes ; puis résoudre, et intégrer si l'on veut la vitesse et l'angle.",
+   "ecran": "methode",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "La méthode : axe, bilan, moments, relation fondamentale, liaisons, résolution."
+  },
+  {
+   "dit": "Remarque qui aide à tout retenir : la méthode est identique à celle de la translation. On remplace simplement les forces par leurs moments, la masse par le moment d'inertie, et les accélérations linéaires par les accélérations angulaires. Toute votre intuition de la mécanique du point se transpose.",
+   "ecran": "analogie",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Forces vers moments, masse vers J, accélérations vers alpha."
+  },
+  {
+   "dit": "À retenir : la rotation se décrit par thêta, oméga et alpha ; le moment d'une force vaut F fois son bras de levier ; la relation fondamentale, moment résultant égale J fois alpha, gouverne le mouvement ; et le moment d'inertie joue, pour la rotation, le rôle de la masse pour la translation.",
+   "ecran": "recap",
+   "id": "p18",
+   "pause_apres": 0.5,
+   "texte": "Rotation des solides : grandeurs, moments, relation fondamentale."
+  }
+ ],
+ "titre": "Rotation des solides"
+}
