@@ -1,0 +1,218 @@
+{
+ "cours": 5907,
+ "ecrans": {
+  "adaptateur": {
+   "kicker": "Application",
+   "texte": "L'adaptateur secteur de vos chargeurs combine tout : un transformateur abaisseur, qui ramène les 220 volts du réseau à quelques volts, puis le redresseur, puis le lissage.",
+   "type": "phrase"
+  },
+  "capacite": {
+   "kicker": "Dimensionnement",
+   "note": "C : capacité (F) · I : courant de charge (A) · f : fréquence du réseau (Hz) · V ond : ondulation acceptable (V)",
+   "titre": "La capacité du condensateur de lissage",
+   "type": "formule",
+   "tex": "C \\approx \\frac{I}{2\\, f\\, V_{\\text{ond}}}"
+  },
+  "diode": {
+   "kicker": "Le composant clé",
+   "texte": "La diode est un composant qui ne laisse passer le courant que dans un seul sens : celui de la flèche de son symbole. Dans l'autre sens, elle bloque tout.",
+   "type": "phrase"
+  },
+  "double": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "pont"
+   },
+   "kicker": "Redressement double alternance",
+   "texte": "Le pont de Graëtz, quatre diodes, rabat les alternances négatives en positives : toute l'onde est récupérée.",
+   "type": "phrase"
+  },
+  "ex_c": {
+   "kicker": "Exemple",
+   "tex": [
+    "I = 100\\ \\text{mA} = 0{,}1\\ \\text{A}",
+    "f = 50\\ \\text{Hz} \\quad V_{\\text{ond}} = 1\\ \\text{V}",
+    "C \\approx \\dfrac{0{,}1}{2 \\times 50 \\times 1}"
+   ],
+   "titre": "Dimensionner le filtre d'un redresseur double alternance",
+   "type": "etape"
+  },
+  "ex_c_res": {
+   "kicker": "Exemple · résultat",
+   "note": "On choisira en pratique une capacité un peu supérieure, par sécurité",
+   "titre": "La capacité à installer",
+   "type": "formule",
+   "tex": "C \\approx 1\\,000\\ \\mu\\text{F}"
+  },
+  "filtrage": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "lissage"
+   },
+   "kicker": "Filtrage capacitif",
+   "texte": "Un condensateur en parallèle sur la charge se charge au sommet de l'arche, puis se décharge lentement : l'ondulation s'écrase.",
+   "type": "phrase"
+  },
+  "filtres": {
+   "etapes": [
+    "Filtrage capacitif : courants faibles, typiquement sous 5 ampères",
+    "Filtrage inductif : une bobine en série lisse le courant, pour les courants forts",
+    "Filtre LC : les deux combinés, plus efficace mais plus encombrant et plus coûteux",
+    "Régulateurs : linéaires (simples) ou à découpage (meilleur rendement) pour une tension vraiment stable"
+   ],
+   "kicker": "Autres techniques",
+   "titre": "Compléter le lissage",
+   "type": "recap"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Le réseau distribue l'électricité en alternatif, mais nos téléphones et nos ordinateurs exigent du continu. Redresser, c'est forcer le courant à garder un seul sens.",
+   "type": "phrase"
+  },
+  "limite": {
+   "kicker": "La limite du redressement seul",
+   "texte": "La tension redressée pulse encore : il reste une composante alternative, l'ondulation, qui peut perturber les circuits électroniques sensibles.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "La diode ne laisse passer le courant que dans un sens",
+    "Simple alternance : une diode, une alternance sur deux perdue",
+    "Double alternance : le pont de Graëtz récupère toute l'onde",
+    "Le condensateur de lissage écrase l'ondulation : C ≈ I / (2 f V ond)"
+   ],
+   "kicker": "À retenir",
+   "titre": "Redressement et lissage",
+   "type": "recap"
+  },
+  "simple": {
+   "anim": {
+    "hauteur": 320,
+    "nom": "redressement"
+   },
+   "kicker": "Redressement simple alternance",
+   "texte": "Une seule diode en série avec la charge : elle laisse passer l'alternance positive et bloque la négative.",
+   "type": "phrase"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "De l'alternatif au continu : la diode, le pont de Graëtz et le lissage",
+   "titre": "Le redressement des tensions",
+   "type": "titre"
+  },
+  "types": {
+   "etapes": [
+    "Diode Zener : réguler une tension",
+    "Diode Schottky : commuter très vite",
+    "LED : émettre de la lumière",
+    "Photodiode : détecter la lumière",
+    "Diode laser et diode varicap : optique et accord des fréquences"
+   ],
+   "kicker": "La famille des diodes",
+   "titre": "D'autres diodes, d'autres métiers",
+   "type": "recap"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré au redressement des tensions : comment passer du courant alternatif du réseau au courant continu de nos appareils.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Le redressement des tensions : de l'alternatif au continu."
+  },
+  {
+   "dit": "Le courant livré par le réseau est alternatif : il change de sens à chaque demi-période. Mais un téléphone, un ordinateur, une montre connectée fonctionnent en courant continu. Redresser la tension, c'est transformer l'un en l'autre, en forçant le courant à circuler toujours dans le même sens.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Redresser : forcer le courant à garder un seul sens."
+  },
+  {
+   "dit": "L'outil de base, c'est la diode. Ce composant ne laisse passer le courant que dans un seul sens, celui de la flèche de son symbole ; dans l'autre sens, il se bloque. Toute la famille du redressement repose sur cette propriété.",
+   "ecran": "diode",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "La diode : le courant passe dans un sens, et un seul."
+  },
+  {
+   "dit": "Au passage, la diode à jonction P N, celle du redressement, a des cousines spécialisées : la Zener régule les tensions, la Schottky commute très vite, la LED émet de la lumière, la photodiode la détecte. Nous gardons la diode standard.",
+   "ecran": "types",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "La diode de redressement a des cousines spécialisées."
+  },
+  {
+   "dit": "Premier montage : le redressement simple alternance. Une seule diode, en série entre le générateur et la charge. Pendant l'alternance positive, la diode est passante ; pendant la négative, elle se bloque. Résultat : le courant reste toujours positif ou nul, mais une alternance sur deux est perdue.",
+   "ecran": "simple",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Simple alternance : une diode, le courant ne passe qu'une fois sur deux."
+  },
+  {
+   "dit": "Pour récupérer toute l'onde, on passe au redressement double alternance, avec un montage de quatre diodes appelé pont de Graëtz. Quelle que soit l'alternance, deux diodes conduisent et rabattent le courant dans le bon sens dans la charge : les alternances négatives deviennent positives.",
+   "ecran": "double",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Double alternance : le pont de Graëtz récupère toute l'onde."
+  },
+  {
+   "dit": "Mais la tension obtenue n'est pas encore du vrai continu : elle monte et retombe sans cesse. Cette composante alternative qui subsiste s'appelle l'ondulation. Trop forte, elle perturbe les circuits sensibles, use les composants et crée des interférences.",
+   "ecran": "limite",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Reste un défaut : l'ondulation de la tension redressée."
+  },
+  {
+   "dit": "Pour écraser cette ondulation, on branche un condensateur en parallèle sur la charge. Il se charge quand la tension redressée culmine, puis se décharge lentement dans la charge entre deux arches. Plus sa capacité est grande, plus la décharge est lente, et plus la tension est lisse.",
+   "ecran": "filtrage",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le condensateur en parallèle lisse la tension."
+  },
+  {
+   "dit": "On dimensionne ce condensateur avec une formule approchée : C égale I sur deux f V ondulation. Le courant de charge au numérateur ; au dénominateur, deux fois la fréquence du réseau, fois l'ondulation que l'on accepte.",
+   "ecran": "capacite",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "La formule de dimensionnement du condensateur."
+  },
+  {
+   "dit": "Exemple, tiré du cours. Un redresseur double alternance alimente une charge de cent milliampères, sur un réseau à cinquante hertz. On accepte une ondulation d'un volt. On applique la formule.",
+   "ecran": "ex_c",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Exemple : calculer la capacité nécessaire."
+  },
+  {
+   "dit": "On obtient environ mille microfarads. En pratique, on choisira une capacité un peu supérieure, pour garder une marge de sécurité.",
+   "ecran": "ex_c_res",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "Résultat : un condensateur d'au moins 1 000 microfarads."
+  },
+  {
+   "dit": "Le condensateur convient aux courants faibles, sous cinq ampères environ. Pour les courants forts, on lisse le courant avec une bobine en série, le filtrage inductif ; on peut aussi combiner les deux dans un filtre L C. Et pour une tension vraiment stable, on ajoute un régulateur, linéaire ou à découpage.",
+   "ecran": "filtres",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Bobine, filtre LC et régulateurs complètent le lissage."
+  },
+  {
+   "dit": "Tout cela se retrouve dans un objet du quotidien : l'adaptateur secteur de vos chargeurs. Il commence par abaisser la tension du réseau grâce à un transformateur — deux cent vingt volts deviennent cinq volts pour un téléphone — puis il redresse, puis il lisse.",
+   "ecran": "adaptateur",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "L'adaptateur secteur : transformateur, redresseur, lissage."
+  },
+  {
+   "dit": "Retenez le rôle de la diode, les deux redressements — simple et double alternance — et le principe du lissage par condensateur, avec sa formule de dimensionnement.",
+   "ecran": "recap",
+   "id": "p14",
+   "pause_apres": 0.5,
+   "texte": "Redressement et lissage : à retenir."
+  }
+ ],
+ "titre": "Le redressement des tensions"
+}

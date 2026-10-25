@@ -1,0 +1,360 @@
+{
+ "cours": 5916,
+ "ecrans": {
+  "aimant": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "aimant"
+   },
+   "kicker": "Lignes de champ",
+   "texte": "Autour d'un aimant, le champ magnétique se représente par des lignes qui sortent du pôle nord et rentrent par le pôle sud. Là où elles se resserrent, le champ est plus intense.",
+   "type": "phrase"
+  },
+  "applications": {
+   "etapes": [
+    "Énergie : alternateurs des centrales et transformateurs du réseau de transport",
+    "Télécommunications : ondes radio, Wi-Fi, téléphonie — et fibres optiques alimentées par des lasers",
+    "Transport : trains Maglev en lévitation et moteurs des véhicules électriques",
+    "Médecine : l'IRM image le corps sans rayons X ; industrie : accélérateurs de particules et contrôle des matériaux"
+   ],
+   "kicker": "Applications",
+   "titre": "L'électromagnétisme partout",
+   "type": "recap"
+  },
+  "autoinduction": {
+   "kicker": "Auto-induction",
+   "note": "Φ propre = L·i (L : inductance, en henrys) · l'énergie stockée vaut E = ½ L i²",
+   "tex": "e = -L\\, \\frac{di}{dt}",
+   "titre": "Le circuit s'induit lui-même",
+   "type": "formule"
+  },
+  "bobine_ex": {
+   "kicker": "Exemple",
+   "tex": [
+    "N = 100\\ \\text{spires}",
+    "\\Delta\\Phi = 0 - 0{,}2 = -0{,}2\\ \\text{Wb} \\quad \\Delta t = 0{,}1\\ \\text{s}",
+    "e = -N\\, \\dfrac{\\Delta\\Phi}{\\Delta t}"
+   ],
+   "titre": "Une bobine dont le flux s'annule",
+   "type": "etape"
+  },
+  "bobine_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Le signe moins, c'est la loi de Lenz : la f.é.m. s'oppose à la disparition du flux",
+   "tex": "e = -100 \\times \\frac{-0{,}2}{0{,}1} = 200\\ \\text{V}",
+   "titre": "La force électromotrice induite",
+   "type": "formule"
+  },
+  "cas_types": {
+   "kicker": "Trois champs à connaître",
+   "tex": [
+    "\\text{spire (centre) : } B = \\dfrac{\\mu_0 I}{2R}",
+    "\\text{solénoïde (intérieur) : } B = \\mu_0\\, n\\, I",
+    "\\text{n : nombre de spires par mètre}"
+   ],
+   "titre": "Spire et solénoïde",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "texte": "Le champ magnétique, noté B, est un champ de vecteurs créé par les aimants et par les charges électriques en mouvement — donc par les courants. Il s'exprime en teslas.",
+   "type": "phrase"
+  },
+  "faraday": {
+   "kicker": "Expérience de Faraday",
+   "texte": "Faraday approche un aimant d'une bobine : un courant naît dans le circuit, sans aucun générateur. Seule la variation du flux peut l'expliquer.",
+   "type": "phrase"
+  },
+  "fil": {
+   "kicker": "Champ d'un fil rectiligne",
+   "note": "Les lignes de champ sont des cercles autour du fil (sens : règle de la main droite) · exemple du cours : 5 A à 2 cm donnent B = 5 × 10⁻⁵ T, l'ordre du champ terrestre",
+   "tex": "B = \\frac{\\mu_0 I}{2\\pi r}",
+   "titre": "Un fil infini parcouru par un courant",
+   "type": "formule"
+  },
+  "flux": {
+   "kicker": "Flux magnétique",
+   "note": "Φ en webers (Wb) · θ : angle entre B et la normale à la surface · à flux constant, aucun phénomène d'induction",
+   "tex": "\\Phi = B\\, S\\, \\cos\\theta",
+   "titre": "Le flux à travers une surface",
+   "type": "formule"
+  },
+  "induction_fig": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "induction"
+   },
+   "kicker": "L'induction électromagnétique",
+   "texte": "Un champ magnétique variable engendre une force électromotrice, et donc un courant induit, dans un circuit conducteur.",
+   "type": "phrase"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "De la boussole des marins chinois au moteur électrique, le champ magnétique relie les charges en mouvement à des forces invisibles, capables de déplacer des objets et de générer de l'énergie.",
+   "type": "phrase"
+  },
+  "laplace": {
+   "kicker": "Force de Laplace",
+   "note": "C'est elle qui fait tourner les moteurs : un conducteur parcouru par un courant, placé dans un champ, est poussé",
+   "tex": "F = I\\, l\\, B\\, \\sin\\theta",
+   "titre": "Un conducteur dans un champ",
+   "type": "formule"
+  },
+  "lenz": {
+   "kicker": "Loi de Lenz",
+   "texte": "Le courant induit s'oppose, par ses effets, à la cause qui lui a donné naissance : si le flux augmente, il crée un champ qui le contrarie ; si le flux diminue, il le renforce.",
+   "type": "phrase"
+  },
+  "loi_faraday": {
+   "kicker": "Loi de Faraday",
+   "note": "Pour une bobine de N spires : e = −N dΦ/dt · le signe moins traduit la loi de Lenz",
+   "tex": "e = -\\frac{d\\Phi}{dt}",
+   "titre": "La force électromotrice induite",
+   "type": "formule"
+  },
+  "lorentz": {
+   "kicker": "Force de Lorentz",
+   "note": "Perpendiculaire à la vitesse et au champ : elle dévie les charges sans changer leur vitesse en norme",
+   "tex": "F = |q|\\, v\\, B\\, \\sin\\theta",
+   "titre": "Une charge en mouvement dans un champ",
+   "type": "formule"
+  },
+  "lorentz_ex": {
+   "kicker": "Exemple",
+   "tex": [
+    "q = 2\\ \\mu\\text{C} \\quad v = 10^{6}\\ \\text{m/s} \\quad B = 0{,}5\\ \\text{T}",
+    "\\text{vitesse perpendiculaire au champ : } \\sin\\theta = 1",
+    "F = 2 \\times 10^{-6} \\times 10^{6} \\times 0{,}5"
+   ],
+   "titre": "L'exercice du cours : une charge dans un champ",
+   "type": "etape"
+  },
+  "lorentz_res": {
+   "kicker": "Exemple · résultat",
+   "note": "Une force d'un newton sur une charge de deux microcoulombs : considérable à cette échelle",
+   "tex": "F = 1\\ \\text{N}",
+   "titre": "La force de Lorentz obtenue",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Champ B : fil B = μ₀I/(2πr), solénoïde B = μ₀nI, flux Φ = B S cos θ",
+    "Forces : Lorentz F = |q|vB sin θ sur une charge, Laplace F = IlB sin θ sur un conducteur",
+    "Induction : e = −dΦ/dt (Faraday), le courant induit s'oppose à la variation du flux (Lenz)",
+    "Transformateur idéal : U₂/U₁ = N₂/N₁ et les courants en rapport inverse"
+   ],
+   "kicker": "À retenir",
+   "titre": "Électromagnétisme",
+   "type": "recap"
+  },
+  "titre": {
+   "kicker": "Physique · Terminale",
+   "sous": "Champ magnétique, forces, induction et transformateur",
+   "titre": "Électromagnétisme",
+   "type": "titre"
+  },
+  "transfo_ex": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\text{rapport } 10 \\; (\\text{abaisseur}) \\quad U_1 = 220\\ \\text{V} \\quad I_1 = 1\\ \\text{A}",
+    "U_2 = 220 / 10 = 22\\ \\text{V}",
+    "I_2 = 1 \\times 10 = 10\\ \\text{A} \\quad (\\text{rendement } 100\\,\\%)"
+   ],
+   "titre": "L'exercice du cours : un transformateur abaisseur",
+   "type": "etape"
+  },
+  "transformateur": {
+   "kicker": "Le transformateur",
+   "note": "Le noyau ferromagnétique canalise les lignes de champ d'un enroulement à l'autre · courants en rapport inverse : I₁/I₂ = N₂/N₁",
+   "tex": "\\frac{U_2}{U_1} = \\frac{N_2}{N_1}",
+   "titre": "Changer la tension d'un alternatif",
+   "type": "formule"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le champ magnétique et ses forces"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Induction et applications",
+   "pont": {
+    "texte": "Partie 2 : l'induction électromagnétique et ses applications.",
+    "dit": "Partie deux : l'induction électromagnétique, ou comment un champ qui varie fabrique du courant, puis ses applications."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré à l'électromagnétisme : le champ magnétique, les forces qu'il exerce, puis l'induction, qui fabrique du courant avec un champ variable.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Électromagnétisme : champ magnétique et induction."
+  },
+  {
+   "dit": "Depuis l'Antiquité, les aimants naturels fascinent. La boussole des marins, puis le moteur électrique : derrière ces objets, un même phénomène, le champ magnétique, qui relie les charges électriques en mouvement à des forces invisibles.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Des aimants antiques au moteur électrique."
+  },
+  {
+   "dit": "Le champ magnétique, noté B, est un champ de vecteurs. Il est créé par les aimants, et par toutes les charges électriques en mouvement, c'est-à-dire par les courants électriques. Son intensité s'exprime en teslas.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "B : un champ créé par les aimants et les courants."
+  },
+  {
+   "dit": "On le dessine avec des lignes de champ : elles sortent du pôle nord de l'aimant, bouclent à l'extérieur et rentrent par le pôle sud. Là où les lignes se resserrent, le champ est intense ; là où elles s'écartent, il est faible. Et impossible de séparer un pôle nord d'un pôle sud.",
+   "ecran": "aimant",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Les lignes de champ : du nord vers le sud, à l'extérieur."
+  },
+  {
+   "dit": "Trois créateurs de champ à connaître. Un fil rectiligne infini, parcouru par un courant I : à la distance r, B égale mu zéro I sur deux pi r, et ses lignes de champ sont des cercles autour du fil.",
+   "ecran": "fil",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Le champ d'un fil : B = μ₀I / (2πr)."
+  },
+  {
+   "dit": "Une spire circulaire : en son centre, B égale mu zéro I sur deux R. Et un solénoïde, une bobine longue : à l'intérieur, le champ est uniforme, B égale mu zéro n I, où n est le nombre de spires par mètre.",
+   "ecran": "cas_types",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "Spire et solénoïde : deux champs uniformes à connaître."
+  },
+  {
+   "dit": "Pour mesurer la quantité de champ qui traverse un circuit, on définit le flux magnétique : phi égale B fois S fois cosinus thêta, où S est la surface et thêta l'angle entre le champ et la normale à la surface. Le flux s'exprime en webers.",
+   "ecran": "flux",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Le flux magnétique : Φ = B S cos θ."
+  },
+  {
+   "dit": "Le champ exerce des forces. Sur une charge en mouvement, c'est la force de Lorentz : F égale valeur absolue de q, fois v, fois B, fois sinus thêta. Elle est perpendiculaire à la vitesse et au champ : elle dévie la trajectoire sans accélérer ni freiner.",
+   "ecran": "lorentz",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "La force de Lorentz dévie les charges en mouvement."
+  },
+  {
+   "dit": "Exemple du cours : une charge de deux microcoulombs file à dix puissance six mètres par seconde, perpendiculairement à un champ d'un demi-tesla. Sinus thêta vaut un : on applique la formule de Lorentz.",
+   "ecran": "lorentz_ex",
+   "id": "p09",
+   "pause_apres": 0.7,
+   "texte": "Exemple : la force sur une charge de 2 µC."
+  },
+  {
+   "id": "p09b",
+   "ecran": "lorentz_res",
+   "pause_apres": 0.6,
+   "dit": "La force vaut un newton : considérable, à l'échelle d'une charge microscopique. La méthode est toujours la même : relever q, v, B et l'angle, puis appliquer la formule.",
+   "texte": "Résultat : F = 1 N."
+  },
+  {
+   "id": "p09c",
+   "ecran": "laplace",
+   "pause_apres": 0.7,
+   "dit": "Sur un conducteur entier parcouru par un courant, la même physique donne la force de Laplace : F égale I, l, B, sinus thêta. C'est elle qui pousse la barre des rails de Laplace, et qui fait tourner le rotor des moteurs électriques.",
+   "texte": "La force de Laplace fait tourner les moteurs."
+  },
+  {
+   "dit": "Deuxième grande partie du cours : l'induction électromagnétique. Un champ magnétique variable engendre une force électromotrice, et donc un courant électrique induit, dans un circuit conducteur.",
+   "ecran": "induction_fig",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "L'induction : un champ variable crée un courant."
+  },
+  {
+   "dit": "L'expérience fondatrice est celle de Faraday : il approche un aimant d'une bobine reliée à un galvanomètre, et un courant apparaît, sans aucun générateur. Quand l'aimant s'arrête, le courant cesse : seule la variation du flux compte.",
+   "ecran": "faraday",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "Faraday : le courant naît du mouvement de l'aimant."
+  },
+  {
+   "dit": "La loi de Faraday quantifie le phénomène : la force électromotrice induite est l'opposé de la dérivée du flux par rapport au temps. Pour une bobine de N spires, on multiplie par N. Plus le flux varie vite, plus la tension induite est grande.",
+   "ecran": "loi_faraday",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Loi de Faraday : e = −dΦ/dt."
+  },
+  {
+   "dit": "Le signe moins a son propre nom : la loi de Lenz. Le courant induit s'oppose, par ses effets, à la cause qui lui a donné naissance. Le flux augmente ? Le courant crée un champ qui le contrarie. Le flux diminue ? Il le renforce. C'est une opposition systématique.",
+   "ecran": "lenz",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Loi de Lenz : le courant induit s'oppose à la variation."
+  },
+  {
+   "dit": "Exemple du cours : une bobine de cent spires voit son flux passer de zéro virgule deux webers à zéro en un dixième de seconde. La variation de flux vaut moins zéro virgule deux webers. On applique la loi de Faraday avec le nombre de spires.",
+   "ecran": "bobine_ex",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Exemple : la f.é.m. d'une bobine de 100 spires."
+  },
+  {
+   "dit": "Résultat : deux cents volts. Le double moins se compense, et le signe restant rappelle la loi de Lenz : cette tension s'oppose à la disparition du flux qui l'a créée.",
+   "ecran": "bobine_res",
+   "id": "p15",
+   "pause_apres": 0.7,
+   "texte": "Résultat : une f.é.m. induite de 200 volts."
+  },
+  {
+   "dit": "Cas particulier : l'auto-induction. Un circuit parcouru par un courant variable crée son propre flux, proportionnel au courant : phi égale L i. Il s'induit alors lui-même une force électromotrice, moins L fois la dérivée du courant. La bobine stocke au passage une énergie magnétique, un demi de L i au carré.",
+   "ecran": "autoinduction",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "L'auto-induction : le circuit réagit à ses propres variations."
+  },
+  {
+   "dit": "Dernière machine du cours : le transformateur. Deux enroulements sur un même noyau de fer : le primaire, alimenté en alternatif, crée un flux variable que le noyau canalise jusqu'au secondaire, où il induit une nouvelle tension. Le rapport des tensions est le rapport des nombres de spires, et les courants suivent le rapport inverse.",
+   "ecran": "transformateur",
+   "id": "p17",
+   "pause_apres": 0.7,
+   "texte": "Le transformateur : U₂/U₁ = N₂/N₁."
+  },
+  {
+   "id": "p17b",
+   "ecran": "transfo_ex",
+   "pause_apres": 0.7,
+   "dit": "Vérifions avec l'exercice du cours : un abaisseur de rapport dix reçoit deux cent vingt volts et un ampère. À la sortie : vingt-deux volts, et dix ampères. La puissance est conservée, c'est la signature du transformateur idéal.",
+   "texte": "Exemple : 220 V et 1 A deviennent 22 V et 10 A."
+  },
+  {
+   "dit": "Ces principes irriguent toute la technologie moderne. Les alternateurs des centrales convertissent l'énergie mécanique en électricité par induction ; les transformateurs transportent cette énergie sur de longues distances en limitant les pertes.",
+   "ecran": "applications",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Alternateurs et transformateurs : le réseau électrique."
+  },
+  {
+   "dit": "Les ondes électromagnétiques portent la radio, la télévision, le Wi-Fi et la téléphonie mobile. Les trains Maglev lévitent sur des forces magnétiques, sans contact avec les rails. Les moteurs électriques font rouler voitures et drones.",
+   "ecran": "applications",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Ondes, Maglev, moteurs : les transports et les télécoms."
+  },
+  {
+   "dit": "En médecine, l'IRM utilise de puissants champs magnétiques pour imager l'intérieur du corps sans rayons X. Et dans le quotidien : fours à micro-ondes, chargeurs sans fil, cartes à puce RFID fonctionnent tous sur ces mêmes principes.",
+   "ecran": "applications",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "IRM, micro-ondes, chargeurs sans fil : l'électromagnétisme quotidien."
+  },
+  {
+   "dit": "Retenez les trois champs types et le flux, les forces de Lorentz et de Laplace, la loi de Faraday complétée par celle de Lenz, et le rapport de transformation. C'est le cœur de l'électromagnétisme de terminale.",
+   "ecran": "recap",
+   "id": "p21",
+   "pause_apres": 0.5,
+   "texte": "Électromagnétisme : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Électromagnétisme"
+}
