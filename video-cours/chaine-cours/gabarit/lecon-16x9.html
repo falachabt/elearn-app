@@ -676,6 +676,37 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  compton_fig(t) {
+    return svgBoite(
+      mot(180, 80, 'le photon X incident', { c: '#B8860B', t: 19, a: 'start' }) +
+      `<path d="M 180 108 l 34 10 l -8 16 l 34 10 l -8 16 l 34 10 l -8 16 l 34 10 l -8 16 l 34 8" fill="none" stroke="#B8860B" stroke-width="4" stroke-linejoin="round"/>` +
+      pointe(510, 148, 24, '#B8860B') +
+      `<circle cx="540" cy="158" r="17" fill="#1A75FF" fill-opacity=".22" stroke="#1A75FF" stroke-width="3.5"/>` +
+      mot(540, 166, 'e⁻', { c: '#1A75FF', t: 19 }) + mot(540, 204, "l'électron, d'abord au repos", { t: 18 }) +
+      `<path d="M 556 146 l 30 -22 l 12 12 l 30 -22 l 12 12 l 30 -22 l 12 12 l 28 -20" fill="none" stroke="#B8860B" stroke-width="4" stroke-linejoin="round"/>` +
+      pointe(768, 84, -34, '#B8860B') + mot(700, 52, 'le photon diffusé', { c: '#B8860B', t: 19 }) +
+      `<path d="M 566 138 A 62 62 0 0 0 590 106" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      mot(608, 118, 'θ', { t: 25, a: 'start' }) +
+      trait(562, 172, 668, 224, prog(t), { c: '#1A75FF', w: 4.5 }) + pointe(676, 228, 27, '#1A75FF') +
+      mot(690, 238, "l'électron éjecté", { c: '#1A75FF', t: 19, a: 'start' }) +
+      mot(500, 282, "le photon cède une partie de son énergie à l'électron", { t: 19 }));
+  },
+  fusion_fig(t) {
+    return svgBoite(
+      `<circle cx="300" cy="112" r="31" fill="#1A75FF" fill-opacity=".2" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(300, 121, '²H', { t: 23 }) + mot(300, 66, 'le deutérium', { t: 18 }) +
+      `<circle cx="300" cy="212" r="31" fill="#10B981" fill-opacity=".2" stroke="#10B981" stroke-width="4"/>` +
+      mot(300, 221, '³H', { t: 23 }) + mot(300, 262, 'le tritium', { t: 18 }) +
+      trait(342, 122, 434, 148, prog(t), { w: 4.5 }) + pointe(443, 151, 17) +
+      trait(342, 202, 434, 176, prog(t), { w: 4.5 }) + pointe(443, 173, -17) +
+      `<circle cx="522" cy="162" r="37" fill="#E8604C" fill-opacity=".2" stroke="#E8604C" stroke-width="4.5"/>` +
+      mot(522, 171, '⁴He', { c: '#E8604C', t: 24 }) + mot(522, 232, "l'hélium", { t: 18 }) +
+      mot(600, 173, '+', { t: 32 }) +
+      `<circle cx="662" cy="162" r="16" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="3.5"/>` +
+      mot(662, 169, 'n', { t: 20 }) + mot(690, 140, 'un neutron', { t: 18, a: 'start' }) +
+      mot(690, 216, 'et beaucoup d’énergie libérée', { c: '#B8860B', t: 18, a: 'start' }) +
+      mot(500, 290, 'deux noyaux légers s’assemblent en un noyau plus lourd', { t: 19 }));
+  },
   niveaux_atome_fig(t) {
     const niveau = (y, n, ev) =>
       trait(300, y, 720, y, prog(t), { w: 4.5 }) +
