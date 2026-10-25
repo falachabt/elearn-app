@@ -676,6 +676,65 @@ const FIG = {
       mot(706, 264, 'le miroir principal, concave', { t: 18, a: 'end' }) +
       mot(320, 282, 'le télescope de Newton', { t: 19 }));
   },
+  transistor_fig(t) {
+    return svgBoite(
+      `<circle cx="430" cy="150" r="80" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="3.5"/>` +
+      trait(268, 150, 392, 150, prog(t), { w: 4.5 }) + trait(392, 94, 392, 206, prog(t), { w: 6.5 }) +
+      mot(258, 158, 'B, la base', { t: 21, a: 'end' }) + mot(310, 126, 'I_B', { t: 18 }) +
+      trait(392, 106, 518, 62, prog(t), { w: 4.5 }) + trait(518, 62, 642, 62, prog(t), { w: 4.5 }) +
+      mot(652, 70, 'C, le collecteur', { t: 21, a: 'start' }) + mot(566, 46, 'I_C', { t: 18 }) +
+      trait(392, 194, 518, 238, prog(t), { w: 4.5 }) + pointe(527, 242, 37) + trait(524, 240, 642, 240, prog(t), { w: 4.5 }) +
+      mot(652, 248, "E, l'émetteur", { t: 21, a: 'start' }) + mot(566, 266, 'I_E', { t: 18 }) +
+      mot(500, 292, 'le transistor bipolaire NPN : la flèche sort par l’émetteur', { t: 18 }));
+  },
+  courbe_diode_fig(t) {
+    return svgBoite(
+      trait(430, 42, 430, 250, prog(t), { w: 4 }) + pointe(430, 34, -90) + mot(446, 44, 'I', { t: 22, a: 'start' }) +
+      trait(180, 190, 838, 190, prog(t), { w: 4 }) + pointe(846, 190, 0) + mot(852, 198, 'U', { t: 22, a: 'start' }) +
+      mot(412, 216, 'O', { t: 19, a: 'end' }) +
+      `<path d="M 432 189 L 545 189 C 592 187, 616 168, 640 118 C 656 86, 668 64, 682 46" fill="none" stroke="#E8604C" stroke-width="4.5"/>` +
+      trait(545, 190, 545, 100, prog(t), { w: 2.5, tiret: '6 5' }) +
+      mot(556, 92, 'le seuil, environ 0,7 volt', { c: '#E8604C', t: 18, a: 'start' }) +
+      mot(694, 128, 'passante en direct', { c: '#E8604C', t: 18, a: 'start' }) +
+      `<path d="M 428 191 L 302 191 C 282 193, 264 206, 252 236" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(196, 128, 'bloquée en inverse,', { c: '#1A75FF', t: 18, a: 'start' }) +
+      mot(196, 154, 'puis le claquage', { c: '#1A75FF', t: 18, a: 'start' }) +
+      mot(500, 282, 'la caractéristique de la diode : un seuil, puis le courant s’envole', { t: 18 }));
+  },
+  portes_logiques_fig(t) {
+    return svgBoite(
+      mot(198, 100, 'NON', { t: 21 }) + mot(462, 96, 'ET', { t: 21 }) + mot(762, 96, 'OU', { t: 21 }) +
+      trait(108, 150, 160, 150, prog(t), { w: 4 }) + mot(94, 158, 'A', { t: 21, a: 'end' }) +
+      `<path d="M 160 118 L 160 182 L 236 150 Z" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="244" cy="150" r="8.5" fill="none" stroke="currentColor" stroke-width="3.5"/>` +
+      trait(253, 150, 298, 150, prog(t), { w: 4 }) + mot(306, 158, 'S = Ā', { t: 19, a: 'start' }) +
+      trait(378, 131, 430, 131, prog(t), { w: 4 }) + trait(378, 169, 430, 169, prog(t), { w: 4 }) +
+      mot(364, 139, 'A', { t: 20, a: 'end' }) + mot(364, 177, 'B', { t: 20, a: 'end' }) +
+      `<path d="M 430 114 L 492 114 A 36 36 0 0 1 492 186 L 430 186 Z" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>` +
+      trait(528, 150, 574, 150, prog(t), { w: 4 }) + mot(582, 158, 'S = A · B', { t: 19, a: 'start' }) +
+      trait(670, 131, 724, 131, prog(t), { w: 4 }) + trait(670, 169, 724, 169, prog(t), { w: 4 }) +
+      mot(656, 139, 'A', { t: 20, a: 'end' }) + mot(656, 177, 'B', { t: 20, a: 'end' }) +
+      `<path d="M 714 114 Q 740 150 714 186 Q 792 166 814 150 Q 792 134 714 114 Z" fill="currentColor" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>` +
+      trait(814, 150, 856, 150, prog(t), { w: 4 }) + mot(864, 158, 'S = A + B', { t: 19, a: 'start' }) +
+      mot(500, 238, 'les trois portes de base de la logique', { t: 20 }) +
+      mot(500, 270, 'chaque porte combine des zéros et des uns', { t: 18 }));
+  },
+  diviseur_tension_fig(t) {
+    return svgBoite(
+      trait(300, 70, 434, 70, prog(t), { w: 4 }) + trait(562, 70, 700, 70, prog(t), { w: 4 }) +
+      `<path d="M 434 70 l 12 -12 l 16 24 l 16 -24 l 16 24 l 16 -24 l 16 24 l 12 -12" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      mot(498, 40, 'R₁', { t: 22 }) +
+      trait(700, 70, 700, 104, prog(t), { w: 4 }) + trait(700, 184, 700, 230, prog(t), { w: 4 }) +
+      `<path d="M 700 104 l 12 11 l -24 15 l 24 15 l -24 15 l 24 15 l -12 9" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      mot(732, 150, 'R₂', { t: 22, a: 'start' }) +
+      trait(300, 230, 700, 230, prog(t), { w: 4 }) +
+      trait(300, 70, 300, 116, prog(t), { w: 4 }) + trait(300, 136, 300, 230, prog(t), { w: 4 }) +
+      trait(270, 116, 330, 116, prog(t), { w: 6.5 }) + trait(283, 136, 317, 136, prog(t), { w: 6.5 }) +
+      mot(256, 162, "U, l'alimentation", { t: 19, a: 'end' }) +
+      trait(792, 106, 792, 182, prog(t), { w: 3 }) + pointe(792, 99, -90) + pointe(792, 189, 90) +
+      mot(806, 150, 'U_sortie, aux bornes de R₂', { t: 18, a: 'start' }) +
+      mot(500, 272, 'le diviseur de tension : la sortie prend sa part de la tension', { t: 18 }));
+  },
   transport_energie_fig(t) {
     return svgBoite(
       mot(500, 62, 'la ligne haute tension', { t: 21 }) +
