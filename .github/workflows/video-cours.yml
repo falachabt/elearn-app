@@ -1,0 +1,116 @@
+# Chaîne vidéo de cours (voir video-cours/METHODE.md).
+# Lancement manuel : onglet Actions > « Vidéo de cours » > Run workflow,
+# ou via l'API (workflow_dispatch), en donnant l'identifiant du cours.
+# Le script du cours (video-cours/chaine-cours/scripts/<id>.json) doit déjà
+# être commité sur la branche choisie : c'est la seule étape manuelle.
+#
+# Deux jobs :
+#  1. voix    — les phrases sont réparties entre 4 machines en parallèle
+#               (chacune génère ses clips OmniVoice, modèle mis en cache).
+#  2. montage — récupère les clips, monte la chronologie, rend la vidéo,
+#               produit la 720p et une planche de contact, le tout en artefact.
+name: Vidéo de cours
+
+on:
+  workflow_dispatch:
+    inputs:
+      cours:
+        description: "Identifiant du cours (ex. 5908)"
+        required: true
+        type: string
+
+env:
+  CHAINE_SUPABASE_URL: https://yhznbitjlzeslvudbsil.supabase.co
+  CHAINE_TRAVAIL: ${{ github.workspace }}/.travail
+  PARTIES: "4"
+
+jobs:
+  voix:
+    name: Voix (partie ${{ matrix.partie }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        partie: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: video-cours/chaine-cours/requirements-voix.txt
+      - name: Cache du modèle OmniVoice
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: omnivoice-k2-fsa-v1
+      - name: Installer les dépendances voix
+        run: pip install -r video-cours/chaine-cours/requirements-voix.txt
+      - name: Générer les voix de cette partie
+        env:
+          HF_HUB_DISABLE_XET: "1"
+        run: >
+          python video-cours/chaine-cours/lancer.py voix
+          ${{ inputs.cours }} ${{ matrix.partie }} ${{ env.PARTIES }}
+      - name: Publier les clips de cette partie
+        uses: actions/upload-artifact@v4
+        with:
+          name: voix-${{ inputs.cours }}-${{ matrix.partie }}
+          path: .travail/${{ inputs.cours }}/seg
+          if-no-files-found: ignore
+          retention-days: 7
+
+  montage:
+    name: Montage et rendu
+    needs: voix
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: video-cours/chaine-cours/requirements-rendu.txt
+      - name: Installer les dépendances de rendu
+        run: pip install -r video-cours/chaine-cours/requirements-rendu.txt
+      - name: Cache Chromium (Playwright)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-1.64.1
+      - name: Installer Chromium
+        run: python -m playwright install --with-deps chromium
+      - name: Récupérer les clips voix
+        uses: actions/download-artifact@v4
+        with:
+          pattern: voix-${{ inputs.cours }}-*
+          path: .morceaux
+      - name: Monter, rendre, compresser
+        env:
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_KEY }}
+        run: |
+          mkdir -p ".travail/${{ inputs.cours }}/seg"
+          find .morceaux -name '*.wav' -exec cp {} ".travail/${{ inputs.cours }}/seg/" \;
+          export CHAINE_CHROME="$(ls -d ~/.cache/ms-playwright/chromium-*/chrome-linux64/chrome | head -1)"
+          echo "Chromium : $CHAINE_CHROME"
+          cd video-cours/chaine-cours
+          python lancer.py ${{ inputs.cours }}
+          ffmpeg -v error -y -i "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4" \
+            -vf scale=1280:720 -c:v libx264 -crf 27 -c:a aac -b:a 96k \
+            "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-720p.mp4"
+          DUREE=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4")
+          ffmpeg -v error -y -i "sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4" \
+            -vf "fps=25/$DUREE,tile=5x5" -frames:v 1 "sorties/${{ inputs.cours }}/planche.png"
+          ls -lh "sorties/${{ inputs.cours }}/"
+      - name: Publier la vidéo
+        uses: actions/upload-artifact@v4
+        with:
+          name: video-${{ inputs.cours }}
+          path: |
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-16x9.mp4
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/cours-${{ inputs.cours }}-720p.mp4
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/sous-titres.vtt
+            video-cours/chaine-cours/sorties/${{ inputs.cours }}/planche.png
+          retention-days: 90
