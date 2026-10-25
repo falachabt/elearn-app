@@ -237,7 +237,8 @@ jobs:
           python-version: "3.12"
       - name: Inscrire les vidéos des fichiers d'inscriptions
         env:
-          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_KEY }}
+          # Écriture : clé service_role (le secret CHAINE_SUPABASE_KEY est en lecture seule)
+          CHAINE_SUPABASE_KEY: ${{ secrets.CHAINE_SUPABASE_SERVICE_KEY }}
         run: |
           cd video-cours/chaine-cours
           python inscrire_videos.py inscriptions/*.json
