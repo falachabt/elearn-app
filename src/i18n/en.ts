@@ -2302,6 +2302,27 @@ export const en: Textes = {
       voirResultat: 'See my result',
       envoiEchec: 'Your result is not computed yet. Your answers are kept: try again as soon as the connection is back.',
     },
+    tour: {
+      bouton: 'Let’s go',
+      audio: {
+        titre: 'One audio, several questions',
+        intro: 'This group has {{n}} questions about the same audio. Three things to know before you start:',
+        reponseTitre: 'One answer per question',
+        reponseTexte: 'To validate the group, choose an answer to every question.',
+        avanceTitre: 'It moves on by itself',
+        avanceTexte: 'As soon as you choose an answer, the next question appears.',
+        retourTitre: 'Go back whenever you want',
+        retourTexte: 'The “Question” tabs at the top take you back to any question in the group.',
+      },
+      partie7: {
+        titre: 'Several questions, several documents',
+        intro: 'This set has {{n}} questions and several documents. Two things to know:',
+        questionsTitre: 'Several questions',
+        questionsTexte: 'Answer each one: the “Question” tabs at the top let you move from one question to the next.',
+        documentsTitre: 'Several documents',
+        documentsTexte: 'Tap “Doc. 1”, “Doc. 2”… to switch from one document to another.',
+      },
+    },
     resultat: {
       entete: 'Your result',
       score: 'Estimated score',

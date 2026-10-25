@@ -8,6 +8,7 @@ import { lireConnectivite } from '@/services/connectivite';
 import { demarrerOuReprendre, progression, repondre } from '@/services/certification/diagnostic';
 import { obtenirReglages, type EtatDiagnostic } from '@/services/certification/etat';
 import { membresGroupe, numerosDuGroupe } from '@/services/certification/groupes';
+import { marquerTourDiagnosticVu, tourDiagnosticDejaVu, type MomentTourDiagnostic } from '@/services/certification/tourDiagnostic';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
 import { espace, typo } from '@/theme/theme';
@@ -16,9 +17,10 @@ import { Banniere } from '../Banniere';
 import { Bouton } from '../Bouton';
 import { Ecran } from '../Ecran';
 import { FeuilleQuitter } from './FeuilleQuitter';
+import { FeuilleTourDiagnostic } from './FeuilleTourDiagnostic';
 import { ConsignesPartie } from './ConsignesPartie';
 import { OngletsGroupe } from './OngletsGroupe';
-import { QuestionExercice } from './QuestionExercice';
+import { QuestionExercice, documentsDuPassage } from './QuestionExercice';
 import { BarreProgression, EnteteToeic } from './ui';
 
 /** Une nouvelle tentative silencieuse après une erreur passagère ; « contenu indisponible » n'est pas passager. */
@@ -47,6 +49,10 @@ export function Diagnostic() {
   const [incomplet, setIncomplet] = useState(false);
   /** Parties dont les consignes ont été lues (D-P1, D-P3). */
   const [partiesVues, setPartiesVues] = useState<number[]>([]);
+  /** #123 · Moment du tour de première fois dont la feuille est ouverte (null = aucune). */
+  const [rappel, setRappel] = useState<MomentTourDiagnostic | null>(null);
+  /** Groupe (index de sa première question) déjà contrôlé pour le tour : un seul contrôle par groupe atteint. */
+  const rappelVerifie = useRef(-1);
   const [quitter, setQuitter] = useState(false);
   const [delaiEchecS, setDelaiEchecS] = useState(20);
   const debut = useRef(0);
@@ -93,6 +99,34 @@ export function Diagnostic() {
   const complet = membres.length > 0 && membres.every((m) => m.id in reponses);
   const repondues = membres.filter((m) => m.id in reponses).length;
   const { faites, total } = etat ? progression(etat) : { faites: 0, total: 0 };
+
+  // #123 · Tour de première fois : à l'arrivée sur un groupe, après les consignes de sa partie, une feuille
+  // d'explication se présente une seule fois par appareil — au premier groupe audio (mécanique des groupes),
+  // puis à la première partie 7 multi-documents. Détection par les données, jamais par un numéro de partie en
+  // dur pour l'audio ; un groupe de partie 7 à document unique diffère le moment au groupe multi-documents
+  // suivant. C'est le drapeau (posé à la fermeture) qui décide, pas la position : la reprise ne rouvre rien.
+  useEffect(() => {
+    if (phase.nom !== 'question' || !etat || rappelVerifie.current === index) return;
+    const premiereQ = membres[0];
+    if (!premiereQ || membres.length <= 1) return;
+    if (!partiesVues.includes(premiereQ.part)) return;
+    rappelVerifie.current = index;
+    // Pas d'annulation au nettoyage : le garde-fou ci-dessus rend le contrôle unique par groupe, et une
+    // annulation perdrait l'ouverture quand un rendu intermédiaire survient pendant la lecture du drapeau.
+    void (async () => {
+      if (premiereQ.group?.audio_path) {
+        if (!(await tourDiagnosticDejaVu('audio'))) setRappel('audio');
+      } else if (premiereQ.part === 7 && documentsDuPassage(premiereQ.group?.passage).length > 1) {
+        if (!(await tourDiagnosticDejaVu('partie7'))) setRappel('partie7');
+      }
+    })();
+  }, [phase, etat, index, membres, partiesVues]);
+
+  /** Ferme la feuille du tour : le drapeau du moment se pose à la fermeture, quelle que soit la façon de fermer. */
+  const fermerRappel = useCallback(() => {
+    if (rappel) marquerTourDiagnosticVu(rappel);
+    setRappel(null);
+  }, [rappel]);
 
   /** Passe la question en cours ; quand tout le groupe a une réponse, il part au serveur. */
   const passer = () => {
@@ -196,6 +230,7 @@ export function Diagnostic() {
       />
       {incomplet && !complet ? <Banniere ton="alerte" titre={t('certification.exercice.pasToutRepondu')} /> : null}
       <FeuilleQuitter ouverte={quitter} onReprendre={() => setQuitter(false)} onQuitter={() => (setQuitter(false), router.replace('/certification/arrivee'))} />
+      <FeuilleTourDiagnostic moment={rappel} nombre={membres.length} onFermer={fermerRappel} />
     </Ecran>
   );
 }

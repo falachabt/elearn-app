@@ -4,9 +4,11 @@ import { router } from 'expo-router';
 
 import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
-import { definirApi } from '@/services/certification/api';
+import { definirApi, type CertApi } from '@/services/certification/api';
 import { demarrerOuReprendre, repondre, terminer } from '@/services/certification/diagnostic';
 import { lireDiagnostic } from '@/services/certification/etat';
+import { marquerTourDiagnosticVu } from '@/services/certification/tourDiagnostic';
+import type { Tentative } from '@/services/certification/types';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
 import { enregistrerProfil, lireProfil } from '@/services/profil';
 
@@ -237,6 +239,117 @@ describe('A6 · Diagnostic : validation par groupe (partie 6, texte à trous ent
     await passerConsignes();
     expect(await screen.findByText(entete(17), { exact: false })).toBeTruthy();
     expect((await lireDiagnostic())?.reponses).toHaveLength(16);
+  });
+});
+
+describe('A6 · Tour de première fois du diagnostic (#123)', () => {
+  /** Monte le diagnostic et avance, au « Passer », jusqu'au premier groupe audio (partie 3, questions 4 à 6). */
+  async function allerAuPremierGroupeAudio() {
+    await monter(<Diagnostic />);
+    await passerConsignes();
+    expect(await screen.findByText(entete(1), { exact: false })).toBeTruthy();
+    // Questions seules (parties 1 et 2) : aucune feuille ne se présente.
+    expect(screen.queryByText(t.tour.audio.titre)).toBeNull();
+    expect(screen.queryByText(t.tour.partie7.titre)).toBeNull();
+    for (let i = 0; i < 3; i++) {
+      await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+      await passerConsignes();
+    }
+    expect(await screen.findByText(entete(4), { exact: false })).toBeTruthy();
+  }
+
+  /** API fausse dont les groupes de partie 7 portent le nombre de documents demandé (1 = texte à plat, 2 = `docs`). */
+  function apiPartie7(documentsParGroupe: number[]): CertApi {
+    const base = creerApiFausse();
+    const rangs = new Map<string, number>();
+    const questions = base.questions.map((q) => {
+      if (q.part !== 7 || !q.group) return q;
+      if (!rangs.has(q.group.id)) rangs.set(q.group.id, rangs.size);
+      const nb = documentsParGroupe[rangs.get(q.group.id) ?? 0] ?? 1;
+      if (nb <= 1) return q;
+      const passage = { docs: [1, 2].map((i) => ({ kind: 'Document', head: `Document ${i}`, text: `Contenu du document ${i}.` })), multi: true };
+      return { ...q, group: { ...q.group, passage } };
+    });
+    return {
+      ...base.api,
+      demarrerDiagnostic: async (clientUuid: string) => {
+        const tentative: Tentative = { attempt_id: `att-${clientUuid}`, kind: 'diagnostic', part: null, length: questions.length, status: 'in_progress', started_at: '2026-10-15T10:00:00Z', credits_spent: 0, questions, replay: false };
+        return tentative;
+      },
+    };
+  }
+
+  it('la feuille « audio » s’ouvre au premier groupe audio ; « C’est parti » la ferme et pose le drapeau', async () => {
+    await allerAuPremierGroupeAudio();
+    expect(await screen.findByText(t.tour.audio.titre)).toBeTruthy();
+    expect(screen.getByText(t.tour.audio.reponseTitre)).toBeTruthy();
+    expect(screen.getByText(t.tour.audio.avanceTitre)).toBeTruthy();
+    expect(screen.getByText(t.tour.audio.retourTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: t.tour.bouton }));
+    await attendre();
+    expect(screen.queryByText(t.tour.audio.titre)).toBeNull();
+    expect(await AsyncStorage.getItem('cert.tourDiagnostic.audio.vue')).toBe('1');
+    expect(await AsyncStorage.getItem('cert.tourDiagnostic.partie7.vue')).toBeNull();
+  });
+
+  it('drapeau audio déjà posé : aucune feuille au premier groupe audio', async () => {
+    await marquerTourDiagnosticVu('audio');
+    await allerAuPremierGroupeAudio();
+    await attendre(150);
+    expect(screen.queryByText(t.tour.audio.titre)).toBeNull();
+  });
+
+  it('pas de seconde feuille au deuxième groupe audio (partie 4)', async () => {
+    await allerAuPremierGroupeAudio();
+    expect(await screen.findByText(t.tour.audio.titre)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: t.tour.bouton }));
+    // Le groupe se répond question par question (avancement automatique), puis se valide entier.
+    for (let i = 0; i < 3; i++) await fireEvent.press(screen.getByRole('button', { name: /^a/ }));
+    await fireEvent.press(screen.getByRole('button', { name: t.exercice.validerN.replace('{{n}}', '3').replace('{{total}}', '3') }));
+    await passerConsignes();
+    expect(await screen.findByText(entete(7), { exact: false })).toBeTruthy();
+    await attendre(150);
+    expect(screen.queryByText(t.tour.audio.titre)).toBeNull();
+  });
+
+  it('aucune feuille sur le groupe de partie 6 (texte à trous, sans audio ni documents)', async () => {
+    await avancerService(12);
+    await monter(<Diagnostic />);
+    await passerConsignes();
+    expect(await screen.findByText(entete(13), { exact: false })).toBeTruthy();
+    await attendre(150);
+    expect(screen.queryByText(t.tour.audio.titre)).toBeNull();
+    expect(screen.queryByText(t.tour.partie7.titre)).toBeNull();
+  });
+
+  it('la feuille « partie 7 » s’ouvre au premier groupe multi-documents et pose son propre drapeau', async () => {
+    definirApi(apiPartie7([2, 2]));
+    await avancerService(16);
+    await monter(<Diagnostic />);
+    await passerConsignes();
+    expect(await screen.findByText(t.tour.partie7.titre)).toBeTruthy();
+    expect(screen.getByText(t.tour.partie7.questionsTitre)).toBeTruthy();
+    expect(screen.getByText(t.tour.partie7.documentsTitre)).toBeTruthy();
+    await fireEvent.press(screen.getByRole('button', { name: t.tour.bouton }));
+    await attendre();
+    expect(screen.queryByText(t.tour.partie7.titre)).toBeNull();
+    expect(await AsyncStorage.getItem('cert.tourDiagnostic.partie7.vue')).toBe('1');
+    expect(await AsyncStorage.getItem('cert.tourDiagnostic.audio.vue')).toBeNull();
+  });
+
+  it('groupe de partie 7 à document unique : la feuille attend le groupe multi-documents suivant', async () => {
+    definirApi(apiPartie7([1, 2]));
+    await avancerService(16);
+    await monter(<Diagnostic />);
+    await passerConsignes();
+    expect(await screen.findByText(entete(17), { exact: false })).toBeTruthy();
+    await attendre(150);
+    expect(screen.queryByText(t.tour.partie7.titre)).toBeNull();
+    // Le premier groupe (2 questions) se passe ; le second, multi-documents, ouvre la feuille.
+    await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+    await fireEvent.press(screen.getByRole('button', { name: t.diagnostic.passer }));
+    expect(await screen.findByText(t.tour.partie7.titre)).toBeTruthy();
+    expect(await AsyncStorage.getItem('cert.tourDiagnostic.partie7.vue')).toBeNull();
   });
 });
 

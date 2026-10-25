@@ -2303,6 +2303,27 @@ export const fr = {
       voirResultat: 'Voir mon résultat',
       envoiEchec: 'Ton résultat n’est pas encore calculé. Tes réponses sont gardées : réessaie dès que la connexion revient.',
     },
+    tour: {
+      bouton: 'C’est parti',
+      audio: {
+        titre: 'Un audio, plusieurs questions',
+        intro: 'Ce groupe réunit {{n}} questions sur le même audio. Trois choses à savoir avant de commencer :',
+        reponseTitre: 'Une réponse par question',
+        reponseTexte: 'Pour valider le groupe, choisis une réponse à chaque question.',
+        avanceTitre: 'Ça avance tout seul',
+        avanceTexte: 'Dès que tu choisis une réponse, la question suivante s’affiche.',
+        retourTitre: 'Reviens quand tu veux',
+        retourTexte: 'Les onglets « Question » en haut te ramènent à n’importe quelle question du groupe.',
+      },
+      partie7: {
+        titre: 'Plusieurs questions, plusieurs documents',
+        intro: 'Cet ensemble réunit {{n}} questions et plusieurs documents. Deux choses à savoir :',
+        questionsTitre: 'Plusieurs questions',
+        questionsTexte: 'Réponds à chacune : les onglets « Question » en haut te permettent de passer de l’une à l’autre.',
+        documentsTitre: 'Plusieurs documents',
+        documentsTexte: 'Touche « Doc. 1 », « Doc. 2 »… pour passer d’un document à l’autre.',
+      },
+    },
     resultat: {
       entete: 'Ton résultat',
       score: 'Score estimé',
