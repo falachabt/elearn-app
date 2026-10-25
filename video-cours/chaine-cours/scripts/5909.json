@@ -1,0 +1,650 @@
+{
+ "cours": 5909,
+ "ecrans": {
+  "amorti": {
+   "etapes": [
+    "Régime sous-critique : des oscillations dont l'amplitude décroît exponentiellement",
+    "Régime critique : le retour à l'équilibre le plus rapide, sans oscillation",
+    "Régime sur-critique : un retour lent à l'équilibre, sans oscillation"
+   ],
+   "kicker": "Oscillations amorties",
+   "titre": "Trois régimes d'amortissement",
+   "type": "recap",
+   "anim": {
+    "nom": "regimes",
+    "hauteur": 170
+   }
+  },
+  "applications": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "kepler"
+   },
+   "etapes": [
+    "Machines simples : le pendule, traité par la conservation de l'énergie",
+    "Projectiles : une trajectoire parabolique, par les lois de Newton",
+    "Mécanique céleste : les planètes, par les lois de Kepler et de Newton",
+    "Ingénierie : ponts, véhicules et fusées calculés avec ces mêmes lois"
+   ],
+   "kicker": "Applications",
+   "titre": "La mécanique classique en action",
+   "type": "recap"
+  },
+  "centre_masse": {
+   "kicker": "Centre de masse",
+   "note": "M : masse totale du système · La moyenne des positions, pondérée par les masses : le centre est plus proche des points les plus lourds",
+   "tex": "\\vec{R} = \\dfrac{\\sum_i m_i\\, \\vec{r}_i}{M}",
+   "titre": "Le point d'équilibre d'un système",
+   "type": "formule"
+  },
+  "cinematique": {
+   "kicker": "Cinématique",
+   "note": "r : vecteur position · v en mètres par seconde · a en mètres par seconde carrée",
+   "tex": "\\vec{v} = \\dfrac{d\\vec{r}}{dt} \\qquad \\vec{a} = \\dfrac{d\\vec{v}}{dt}",
+   "titre": "Vitesse et accélération : deux dérivées",
+   "type": "formule"
+  },
+  "conservation_L": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "orbite"
+   },
+   "kicker": "Conservation du moment cinétique",
+   "texte": "Moment des forces extérieures nul : le moment cinétique reste constant.",
+   "type": "phrase"
+  },
+  "conservation_em": {
+   "kicker": "Énergie mécanique",
+   "note": "Seulement si les forces qui travaillent sont conservatives (poids, ressort) : les frottements font chuter l'énergie mécanique",
+   "tex": "E_m = E_c + E_p = \\text{constante}",
+   "titre": "La somme qui se conserve",
+   "type": "formule"
+  },
+  "conservation_p": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "vecteurs"
+   },
+   "kicker": "Conservation de la quantité de mouvement",
+   "texte": "Système isolé : la quantité de mouvement totale se conserve, elle se transfère sans jamais disparaître.",
+   "type": "phrase"
+  },
+  "couple": {
+   "kicker": "Dynamique de la rotation",
+   "note": "τ : couple résultant · α : accélération angulaire · Théorème de Huygens : I = I_cm + M d² pour un axe parallèle décalé de d",
+   "tex": "\\tau = I\\, \\alpha",
+   "titre": "L'équation fondamentale de la rotation",
+   "type": "formule"
+  },
+  "ec": {
+   "kicker": "Énergie cinétique",
+   "note": "En joules (J) · La vitesse compte au carré : deux fois plus vite, quatre fois plus d'énergie",
+   "tex": "E_c = \\frac{1}{2}\\, m\\, v^2",
+   "titre": "L'énergie du mouvement",
+   "type": "formule"
+  },
+  "ecrot": {
+   "kicker": "Énergie cinétique de rotation",
+   "note": "ω : vitesse angulaire, en radians par seconde · Même structure que l'énergie de translation, avec I à la place de la masse",
+   "tex": "E_{c,\\text{rot}} = \\frac{1}{2}\\, I\\, \\omega^2",
+   "titre": "L'énergie d'un corps qui tourne",
+   "type": "formule"
+  },
+  "ep": {
+   "kicker": "Énergie potentielle",
+   "tex": [
+    "E_{p} = m\\, g\\, h",
+    "E_{pe} = \\frac{1}{2}\\, k\\, x^2"
+   ],
+   "titre": "Deux énergies de position",
+   "type": "etape"
+  },
+  "ex_chariot": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 10\\ \\text{kg} \\qquad F = 20\\ \\text{N}",
+    "a = \\dfrac{F}{m}"
+   ],
+   "titre": "Un chariot poussé sans frottements",
+   "type": "etape"
+  },
+  "ex_chariot_res": {
+   "kicker": "Exemple · résultat",
+   "note": "L'accélération connue, les équations horaires décrivent ensuite tout le mouvement",
+   "tex": "a = \\dfrac{20}{10} = 2\\ \\text{m/s}^2",
+   "titre": "L'accélération du chariot",
+   "type": "formule"
+  },
+  "ex_collision": {
+   "kicker": "Exemple",
+   "tex": [
+    "m_1 = m_2 = 1\\ \\text{kg}",
+    "p_{\\text{avant}} = 1 \\times 2 + 1 \\times 0 = 2\\ \\text{kg}\\,\\text{m/s}",
+    "v_1' = 0 \\qquad v_2' = 2\\ \\text{m/s}"
+   ],
+   "titre": "Choc élastique entre deux billes identiques",
+   "type": "etape"
+  },
+  "ex_pendule": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "pendule"
+   },
+   "kicker": "Exemple",
+   "tex": [
+    "\\omega = \\sqrt{\\dfrac{g}{L}} = \\sqrt{9{,}81} \\approx 3{,}13\\ \\text{rad/s}",
+    "T = \\dfrac{2\\pi}{\\omega} \\approx 2\\ \\text{s} \\qquad f = \\dfrac{1}{T} \\approx 0{,}5\\ \\text{Hz}"
+   ],
+   "titre": "Le pendule simple d'un mètre",
+   "type": "etape"
+  },
+  "ex_puissance": {
+   "kicker": "Exemple",
+   "tex": [
+    "W = m\\, g\\, h = 100 \\times 10 \\times 5",
+    "W = 5000\\ \\text{J}",
+    "P = \\dfrac{5000}{2} = 2500\\ \\text{W}"
+   ],
+   "titre": "La puissance d'un moteur de levage",
+   "type": "etape"
+  },
+  "ex_roue": {
+   "kicker": "Exemple",
+   "tex": [
+    "\\omega = \\dfrac{100 \\times 2\\pi}{60} \\approx 10{,}5\\ \\text{rad/s}",
+    "I = \\frac{1}{2} \\times 1 \\times 0{,}35^2 \\approx 0{,}061\\ \\text{kg}\\,\\text{m}^2",
+    "E_{c,\\text{rot}} = \\frac{1}{2}\\, I\\, \\omega^2 \\approx 3{,}35\\ \\text{J}"
+   ],
+   "titre": "L'énergie de rotation d'une roue de vélo",
+   "type": "etape"
+  },
+  "ex_skieur": {
+   "kicker": "Exemple",
+   "tex": [
+    "m\\, g\\, h = \\frac{1}{2}\\, m\\, v^2",
+    "v = \\sqrt{2\\, g\\, h}",
+    "v = \\sqrt{2 \\times 9{,}81 \\times 20} \\approx 19{,}8\\ \\text{m/s}"
+   ],
+   "titre": "Le skieur : de la hauteur à la vitesse",
+   "type": "etape"
+  },
+  "ex_voiture": {
+   "kicker": "Exemple",
+   "tex": [
+    "m = 1000\\ \\text{kg} \\qquad v = 20\\ \\text{m/s}",
+    "E_{c,f} = \\frac{1}{2} \\times 1000 \\times 20^2",
+    "W = \\Delta E_c = 200\\,000\\ \\text{J}"
+   ],
+   "titre": "Le travail du moteur d'une voiture",
+   "type": "etape"
+  },
+  "impulsion": {
+   "kicker": "Impulsion",
+   "note": "L'impulsion, produit de la force par la durée, égale la variation de la quantité de mouvement",
+   "tex": "\\vec{F}\\, \\Delta t = \\Delta \\vec{p}",
+   "titre": "Une force appliquée pendant une durée",
+   "type": "formule"
+  },
+  "inertie": {
+   "kicker": "Moment d'inertie",
+   "note": "I en kilogrammes mètres carrés (kg·m²) · r_i : distance de chaque particule à l'axe de rotation",
+   "tex": "I = \\sum_i m_i\\, r_i^2",
+   "titre": "La masse de la rotation",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "vecteurs"
+   },
+   "kicker": "Introduction",
+   "texte": "La mécanique classique décrit le mouvement des objets macroscopiques, et ce chapitre en rassemble toutes les fondations.",
+   "type": "phrase"
+  },
+  "lois": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "vecteurs"
+   },
+   "etapes": [
+    "Première loi (inertie) : si la somme des forces est nulle, le centre d'inertie garde le repos ou un mouvement rectiligne uniforme",
+    "Deuxième loi : la somme des forces extérieures égale la masse fois l'accélération",
+    "Troisième loi : à toute action correspond une réaction égale et opposée"
+   ],
+   "kicker": "Les lois de Newton",
+   "type": "recap"
+  },
+  "mhs": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "pendule"
+   },
+   "kicker": "Mouvement harmonique simple",
+   "note": "k : constante de raideur · x : écart à la position d'équilibre · Le signe moins : la force ramène toujours vers l'équilibre",
+   "tex": "F = -k\\, x",
+   "titre": "Une force de rappel proportionnelle à l'écart",
+   "type": "formule"
+  },
+  "mhs_sol": {
+   "kicker": "Mouvement harmonique simple",
+   "tex": [
+    "x(t) = A\\, \\cos(\\omega t + \\varphi)",
+    "\\omega = \\sqrt{\\dfrac{k}{m}} \\qquad T = \\dfrac{2\\pi}{\\omega}"
+   ],
+   "titre": "Une élongation sinusoïdale",
+   "type": "etape"
+  },
+  "moment_cin": {
+   "kicker": "Moment cinétique",
+   "note": "L en kilogrammes mètres carrés par seconde · Pour un solide en rotation autour d'un axe fixe : L = I ω",
+   "tex": "\\vec{L} = \\vec{r} \\times \\vec{p} = I\\, \\vec{\\omega}",
+   "titre": "La quantité de mouvement de la rotation",
+   "type": "formule"
+  },
+  "mrua": {
+   "kicker": "Mouvements modèles",
+   "tex": [
+    "v(t) = v_0 + a\\, t",
+    "r(t) = r_0 + v_0\\, t + \\frac{1}{2}\\, a\\, t^2"
+   ],
+   "titre": "Les équations horaires du mouvement rectiligne uniformément accéléré",
+   "type": "etape"
+  },
+  "pfd": {
+   "kicker": "Principe fondamental de la dynamique",
+   "note": "Autre écriture : la dérivée de la quantité de mouvement par rapport au temps · Valable dans un référentiel galiléen",
+   "tex": "\\sum \\vec{F}_{\\text{ext}} = m\\, \\vec{a}_G",
+   "titre": "La deuxième loi, forme générale",
+   "type": "formule"
+  },
+  "puissance": {
+   "kicker": "Puissance mécanique",
+   "note": "P en watts (W) : un watt vaut un joule par seconde · v : vitesse du point d'application de la force",
+   "tex": "P = \\dfrac{W}{\\Delta t} = F\\, v",
+   "titre": "La rapidité du transfert d'énergie",
+   "type": "formule"
+  },
+  "qdm": {
+   "kicker": "Quantité de mouvement",
+   "note": "p en kilogrammes mètres par seconde (kg·m/s) · Même direction et même sens que la vitesse · Nulle au repos",
+   "tex": "\\vec{p} = m\\, \\vec{v}",
+   "titre": "L'inertie en mouvement",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Cinématique : v = dr/dt et a = dv/dt — décrire le mouvement avant de le prévoir",
+    "Dynamique : ΣF ext = m a ; quantité de mouvement p = m v, conservée pour un système isolé",
+    "Énergies : travail W = F d cos θ, théorème de l'énergie cinétique, énergie mécanique conservée sans frottements",
+    "Rotation : moment d'inertie I = Σ m r², couple τ = I α, moment cinétique conservé",
+    "Oscillations : force de rappel F = −k x, et résonance quand l'excitation rejoint la pulsation propre"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "referentiel": {
+   "anim": {
+    "hauteur": 300,
+    "nom": "referentiel"
+   },
+   "kicker": "Référentiel",
+   "texte": "Pas de mouvement sans référentiel : un solide de référence, un repère d'espace et une horloge.",
+   "type": "phrase"
+  },
+  "rendement": {
+   "kicker": "Rendement",
+   "note": "Exemple du cours : 2400 W utiles pour 3000 W fournis donnent un rendement de 80 %",
+   "tex": "\\eta = \\dfrac{P_{\\text{utile}}}{P_{\\text{fournie}}}",
+   "titre": "Ce que la machine restitue vraiment",
+   "type": "formule"
+  },
+  "resonance": {
+   "kicker": "Résonance",
+   "texte": "Excitation à la pulsation propre : l'amplitude des oscillations devient très grande.",
+   "type": "phrase",
+   "anim": {
+    "nom": "resonance",
+    "hauteur": 280
+   }
+  },
+  "tci": {
+   "kicker": "Théorème du centre d'inertie",
+   "note": "Les forces intérieures se compensent deux à deux : le centre de masse avance comme un point qui porterait toute la masse",
+   "tex": "\\sum \\vec{F}_{\\text{ext}} = M\\, \\vec{a}_G",
+   "titre": "Seules les forces extérieures comptent",
+   "type": "formule"
+  },
+  "tec": {
+   "kicker": "Théorème de l'énergie cinétique",
+   "note": "ΔEc = énergie cinétique finale moins énergie cinétique initiale, égale à la somme des travaux de toutes les forces",
+   "tex": "\\Delta E_c = W_{\\text{total}}",
+   "titre": "Le travail total fait varier l'énergie cinétique",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "pendule"
+   },
+   "kicker": "Physique · Terminale",
+   "sous": "Cinématique, lois de Newton, énergies, rotation et oscillations",
+   "titre": "Rappels de mécanique",
+   "type": "titre"
+  },
+  "travail": {
+   "kicker": "Travail d'une force",
+   "note": "θ : angle entre la force et le déplacement · θ < 90° : travail moteur · θ > 90° : résistant · θ = 90° : nul",
+   "tex": "W = \\vec{F} \\cdot \\vec{d} = F\\, d\\, \\cos\\theta",
+   "titre": "L'énergie transférée le long d'un déplacement",
+   "type": "formule"
+  },
+  "vecteurs": {
+   "anim": {
+    "hauteur": 280,
+    "nom": "vecteurs"
+   },
+   "kicker": "Le langage des vecteurs",
+   "texte": "Un vecteur : une direction, un sens, une norme — représenté par une flèche.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Physique · Terminale",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Cinématique et lois de Newton"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : la quantité de mouvement, le travail et les énergies.",
+    "texte": "Partie 2 : quantité de mouvement, travail et énergies."
+   },
+   "sous_titre": "Quantité de mouvement, travail et énergies"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : les systèmes de points, la rotation et les oscillations.",
+    "texte": "Partie 3 : centre de masse, rotation et oscillations."
+   },
+   "sous_titre": "Centre de masse, rotation et oscillations"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de physique de terminale, consacré aux rappels de mécanique : nous y reprenons, en un seul chapitre, toutes les lois qui décrivent le mouvement, des translations aux rotations et aux oscillations.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Rappels de mécanique : toutes les lois du mouvement."
+  },
+  {
+   "dit": "La mécanique classique décrit le mouvement des objets que nous voyons autour de nous. Ce chapitre de rappels en rassemble les fondations : la cinématique, les lois de Newton, les énergies, puis la rotation et les oscillations.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Le programme du chapitre : décrire, prévoir, puis compter l'énergie."
+  },
+  {
+   "dit": "Avant tout calcul, il faut choisir un référentiel : un solide de référence, muni d'un repère d'espace et d'une horloge. Le mouvement n'existe que par rapport à lui. Et le plus souvent, on assimile le solide étudié à un point matériel, son centre d'inertie.",
+   "ecran": "referentiel",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "Un référentiel d'abord, un point matériel ensuite."
+  },
+  {
+   "dit": "Position, vitesse, accélération, forces : toutes ces grandeurs sont des vecteurs. Un vecteur, c'est une direction, un sens et une norme, représentés par une flèche. C'est le langage de tout ce chapitre.",
+   "ecran": "vecteurs",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "Direction, sens, norme : le langage des vecteurs."
+  },
+  {
+   "dit": "La vitesse est la dérivée de la position par rapport au temps, et l'accélération est la dérivée de la vitesse. Décrire un mouvement, c'est donc suivre comment le vecteur position évolue au cours du temps.",
+   "ecran": "cinematique",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "v = dr/dt et a = dv/dt : décrire le mouvement."
+  },
+  {
+   "dit": "Deux mouvements modèles reviennent sans cesse. Le mouvement rectiligne uniforme, à vitesse constante et accélération nulle. Et le mouvement rectiligne uniformément accéléré, à accélération constante, dont voici les équations horaires.",
+   "ecran": "mrua",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "MRU et MRUA : les deux mouvements modèles."
+  },
+  {
+   "dit": "Les trois lois de Newton fondent toute la dynamique. Première loi, le principe d'inertie : sans force résultante, le centre d'inertie garde un mouvement rectiligne uniforme. Deuxième loi : la somme des forces extérieures égale la masse fois l'accélération. Troisième loi : à toute action correspond une réaction égale et opposée.",
+   "ecran": "lois",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "Les trois lois de Newton, piliers de la dynamique."
+  },
+  {
+   "dit": "La deuxième loi s'écrit de deux façons équivalentes : somme des forces extérieures égale masse fois accélération du centre d'inertie, ou encore dérivée de la quantité de mouvement par rapport au temps. Elle ne vaut que dans un référentiel galiléen.",
+   "ecran": "pfd",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Le principe fondamental de la dynamique."
+  },
+  {
+   "dit": "Exemple : on pousse un chariot de dix kilogrammes avec une force de vingt newtons, sans frottements. La deuxième loi de Newton donne directement son accélération : a égale F sur m.",
+   "ecran": "ex_chariot",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "Exemple : l'accélération d'un chariot poussé."
+  },
+  {
+   "dit": "L'accélération vaut vingt divisé par dix, soit deux mètres par seconde carrée. Retenez le réflexe : une force connue et une masse connue donnent l'accélération, puis tout le mouvement.",
+   "ecran": "ex_chariot_res",
+   "id": "p10",
+   "pause_apres": 0.7,
+   "texte": "Résultat : deux mètres par seconde carrée."
+  },
+  {
+   "dit": "La quantité de mouvement d'un point matériel est le produit de sa masse par son vecteur vitesse. C'est un vecteur, de même direction et de même sens que la vitesse, et elle se mesure en kilogrammes mètres par seconde.",
+   "ecran": "qdm",
+   "id": "p11",
+   "pause_apres": 0.6,
+   "texte": "La quantité de mouvement : p = m v."
+  },
+  {
+   "dit": "Une force appliquée pendant une certaine durée produit une impulsion, égale au produit de la force par la durée. Et cette impulsion égale exactement la variation de la quantité de mouvement : c'est le théorème de l'impulsion, au cœur de l'étude des chocs.",
+   "ecran": "impulsion",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Impulsion : F Δt = Δp."
+  },
+  {
+   "dit": "Conséquence majeure : pour un système isolé, sans force extérieure, la quantité de mouvement totale se conserve. Elle se transfère d'un corps à l'autre, mais ne disparaît jamais. C'est ce principe qui fait avancer les fusées et qui gouverne les collisions.",
+   "ecran": "conservation_p",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "Système isolé : la quantité de mouvement se conserve."
+  },
+  {
+   "dit": "Exemple du cours : deux billes de même masse, un kilogramme. La première arrive à deux mètres par seconde, la seconde est au repos. Dans un choc parfaitement élastique, elles échangent simplement leurs vitesses.",
+   "ecran": "ex_collision",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux billes échangent leurs vitesses."
+  },
+  {
+   "dit": "Le travail d'une force constante mesure l'énergie qu'elle transfère le long d'un déplacement. Il vaut le produit de la force par le déplacement et par le cosinus de l'angle entre les deux. Selon cet angle, le travail est moteur, résistant ou nul.",
+   "ecran": "travail",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Le travail : W = F d cos θ."
+  },
+  {
+   "dit": "L'énergie cinétique est l'énergie du mouvement : un demi de masse fois vitesse au carré. Elle croît très vite avec la vitesse : à vitesse doublée, elle est multipliée par quatre.",
+   "ecran": "ec",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Énergie cinétique : Ec = ½ m v²."
+  },
+  {
+   "dit": "Le théorème de l'énergie cinétique relie les deux notions : le travail total de toutes les forces appliquées à un corps égale la variation de son énergie cinétique. C'est souvent le chemin le plus rapide pour trouver une vitesse.",
+   "ecran": "tec",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Théorème de l'énergie cinétique : ΔEc = W total."
+  },
+  {
+   "dit": "Exemple du cours : une voiture de mille kilogrammes accélère de zéro à vingt mètres par seconde. Son énergie cinétique finale vaut un demi fois mille fois vingt au carré, soit deux cent mille joules : c'est exactement le travail fourni par le moteur.",
+   "ecran": "ex_voiture",
+   "id": "p18",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux cent mille joules pour lancer la voiture."
+  },
+  {
+   "dit": "À côté de l'énergie cinétique, l'énergie potentielle est une énergie de position, stockée et prête à se convertir. Pour la pesanteur, elle vaut masse fois g fois hauteur ; pour un ressort, un demi de constante de raideur fois l'allongement au carré.",
+   "ecran": "ep",
+   "id": "p19",
+   "pause_apres": 0.6,
+   "texte": "Énergie potentielle : mgh, et ½ k x² pour un ressort."
+  },
+  {
+   "dit": "L'énergie mécanique est la somme de l'énergie cinétique et de l'énergie potentielle. Si seules des forces conservatives travaillent, comme le poids, elle se conserve : l'énergie passe d'une forme à l'autre, mais le total ne change pas.",
+   "ecran": "conservation_em",
+   "id": "p20",
+   "pause_apres": 0.6,
+   "texte": "Énergie mécanique : Em = Ec + Ep, conservée sans frottements."
+  },
+  {
+   "dit": "Exemple du cours : un skieur descend une pente haute de vingt mètres, sans frottements. En bas, toute son énergie potentielle est devenue cinétique : sa vitesse vaut racine de deux g h, soit environ dix-neuf virgule huit mètres par seconde, et sa masse n'intervient pas.",
+   "ecran": "ex_skieur",
+   "id": "p21",
+   "pause_apres": 0.6,
+   "texte": "Exemple : le skieur arrive à près de vingt mètres par seconde."
+  },
+  {
+   "dit": "Deux machines peuvent fournir le même travail, mais pas dans le même temps. La puissance mesure la rapidité du transfert d'énergie : travail divisé par la durée, ou, pour une force constante, force fois vitesse. Elle se mesure en watts.",
+   "ecran": "puissance",
+   "id": "p22",
+   "pause_apres": 0.6,
+   "texte": "La puissance : P = W / Δt = F v."
+  },
+  {
+   "dit": "Exemple du cours : un moteur soulève une charge de cent kilogrammes de cinq mètres en deux secondes. Le travail vaut masse fois g fois hauteur, soit cinq mille joules avec g égal à dix. La puissance développée est donc de deux mille cinq cents watts.",
+   "ecran": "ex_puissance",
+   "id": "p23",
+   "pause_apres": 0.6,
+   "texte": "Exemple : deux mille cinq cents watts de levage."
+  },
+  {
+   "dit": "Aucune machine ne convertit tout : une partie de l'énergie part en chaleur et en frottements. Le rendement compare la puissance utile à la puissance fournie. Un moteur qui reçoit trois mille watts et en restitue deux mille quatre cents a un rendement de quatre-vingts pour cent.",
+   "ecran": "rendement",
+   "id": "p24",
+   "pause_apres": 0.7,
+   "texte": "Le rendement : quatre-vingts pour cent dans l'exemple du cours."
+  },
+  {
+   "dit": "Un solide réel n'est pas un point : c'est un système de points matériels. Son centre de masse, ou centre d'inertie, est la moyenne des positions de ses points, pondérée par leurs masses. C'est le point d'équilibre du système.",
+   "ecran": "centre_masse",
+   "id": "p25",
+   "pause_apres": 0.6,
+   "texte": "Le centre de masse : la moyenne pondérée des positions."
+  },
+  {
+   "dit": "Le théorème du centre d'inertie simplifie tout : les forces intérieures se compensent deux à deux, et seules les forces extérieures font bouger le centre de masse, comme s'il concentrait toute la masse du système.",
+   "ecran": "tci",
+   "id": "p26",
+   "pause_apres": 0.6,
+   "texte": "Seules les forces extérieures déplacent le centre de masse."
+  },
+  {
+   "dit": "Passons à la rotation. L'analogue de la masse s'appelle le moment d'inertie : c'est la somme, sur toutes les particules, de la masse fois le carré de la distance à l'axe. Plus la masse est loin de l'axe, plus il est dur de faire tourner le corps.",
+   "ecran": "inertie",
+   "id": "p27",
+   "pause_apres": 0.6,
+   "texte": "Moment d'inertie : I = Σ m r²."
+  },
+  {
+   "dit": "Le couple est l'analogue de la force pour la rotation. L'équation fondamentale s'écrit alors : couple égale moment d'inertie fois accélération angulaire. C'est la deuxième loi de Newton, transposée à la rotation.",
+   "ecran": "couple",
+   "id": "p28",
+   "pause_apres": 0.6,
+   "texte": "Rotation : τ = I α, la deuxième loi transposée."
+  },
+  {
+   "dit": "Un corps qui tourne possède une énergie cinétique de rotation : un demi du moment d'inertie fois la vitesse angulaire au carré. C'est la même structure que pour la translation, avec le moment d'inertie à la place de la masse.",
+   "ecran": "ecrot",
+   "id": "p29",
+   "pause_apres": 0.6,
+   "texte": "Énergie de rotation : ½ I ω²."
+  },
+  {
+   "dit": "Exemple du cours : une roue de vélo d'un kilogramme, de trente-cinq centimètres de rayon, tourne à cent tours par minute, soit environ dix virgule cinq radians par seconde. Son énergie cinétique de rotation vaut environ trois virgule trente-cinq joules.",
+   "ecran": "ex_roue",
+   "id": "p30",
+   "pause_apres": 0.6,
+   "texte": "Exemple : l'énergie de rotation d'une roue de vélo."
+  },
+  {
+   "dit": "Le moment cinétique décrit la rotation comme la quantité de mouvement décrit la translation : c'est le produit vectoriel du vecteur position par la quantité de mouvement. Pour un solide en rotation, il vaut simplement moment d'inertie fois vitesse angulaire.",
+   "ecran": "moment_cin",
+   "id": "p31",
+   "pause_apres": 0.6,
+   "texte": "Moment cinétique : L = r × p = I ω."
+  },
+  {
+   "dit": "Et voici son théorème : la dérivée du moment cinétique égale la somme des moments des forces extérieures. Si cette somme est nulle, le moment cinétique se conserve. La patineuse qui resserre ses bras diminue son moment d'inertie et tourne aussitôt plus vite.",
+   "ecran": "conservation_L",
+   "id": "p32",
+   "pause_apres": 0.6,
+   "texte": "La patineuse : le moment cinétique conservé en action."
+  },
+  {
+   "dit": "Dernier mouvement modèle : le mouvement harmonique simple. Il naît d'une force de rappel proportionnelle à l'écart à l'équilibre et toujours dirigée vers lui : F égale moins k x, comme la force d'un ressort.",
+   "ecran": "mhs",
+   "id": "p33",
+   "pause_apres": 0.6,
+   "texte": "Mouvement harmonique simple : F = −k x."
+  },
+  {
+   "dit": "La deuxième loi de Newton donne alors une équation différentielle dont la solution est une sinusoïde : l'élongation oscille entre moins A et plus A, avec une pulsation égale à racine de k sur m, et une période de deux pi sur la pulsation.",
+   "ecran": "mhs_sol",
+   "id": "p34",
+   "pause_apres": 0.6,
+   "texte": "Une solution sinusoïdale : x(t) = A cos(ωt + φ)."
+  },
+  {
+   "dit": "Exemple du cours : le pendule simple, aux petites oscillations, est un oscillateur harmonique de pulsation racine de g sur L. Pour une longueur d'un mètre, la pulsation vaut environ trois virgule treize radians par seconde, la période environ deux secondes et la fréquence zéro virgule cinq hertz.",
+   "ecran": "ex_pendule",
+   "id": "p35",
+   "pause_apres": 0.6,
+   "texte": "Exemple : un pendule d'un mètre bat la seconde."
+  },
+  {
+   "dit": "Dans la réalité, les frottements dissipent l'énergie et les oscillations s'amortissent. Selon l'intensité de l'amortissement, on distingue trois régimes : les oscillations qui s'éteignent peu à peu, le retour critique, le plus rapide sans oscillation, et le retour lent, sans oscillation non plus.",
+   "ecran": "amorti",
+   "id": "p36",
+   "pause_apres": 0.6,
+   "texte": "Trois régimes d'amortissement."
+  },
+  {
+   "dit": "Si l'on force l'oscillateur avec une excitation périodique, un phénomène spectaculaire apparaît lorsque la pulsation de l'excitation rejoint la pulsation propre : l'amplitude grandit fortement, c'est la résonance. Elle fait vibrer les instruments de musique, et elle a détruit des ponts.",
+   "ecran": "resonance",
+   "id": "p37",
+   "pause_apres": 0.6,
+   "texte": "La résonance : une amplitude qui s'emballe."
+  },
+  {
+   "dit": "Tout ce chapitre travaille autour de nous : la période d'un pendule règle les horloges, la trajectoire parabolique d'un projectile vient des lois de Newton, les planètes obéissent à la mécanique céleste, et ponts, véhicules et fusées sont dessinés avec ces mêmes lois.",
+   "ecran": "applications",
+   "id": "p38",
+   "pause_apres": 0.6,
+   "texte": "Pendules, projectiles, planètes et machines : la mécanique en action."
+  },
+  {
+   "dit": "Retenez l'enchaînement complet : décrire le mouvement par la position, la vitesse et l'accélération ; le prévoir par les lois de Newton ; le traiter par la quantité de mouvement et les bilans d'énergie ; et transposer le tout à la rotation et aux oscillations.",
+   "ecran": "recap",
+   "id": "p39",
+   "pause_apres": 0.5,
+   "texte": "Décrire, prévoir, compter l'énergie, transposer : à retenir."
+  }
+ ],
+ "titre": "Rappels de mécanique"
+}

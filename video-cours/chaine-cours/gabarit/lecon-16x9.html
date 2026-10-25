@@ -316,6 +316,46 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  regimes(t) {
+    const p = prog(t);
+    const courbe = (f, coul) => {
+      let pts = '';
+      const n = Math.max(2, Math.floor(80 * p));
+      for (let k = 0; k <= n; k++) {
+        const u = 690 * k / 80, x = 170 + u;
+        pts += `${Math.round(x)},${Math.round(f(u))} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    };
+    return svgBoite(
+      `<line x1="170" y1="150" x2="884" y2="150" stroke="currentColor" stroke-width="4"/>${pointe(890, 150, 0)}` +
+      `<line x1="170" y1="282" x2="170" y2="24" stroke="currentColor" stroke-width="4"/>${pointe(170, 18, -90)}` +
+      mot(906, 158, 't', { t: 30, a: 'start' }) +
+      mot(146, 30, 'x', { t: 28, a: 'end' }) +
+      courbe(u => 150 - 92 * Math.exp(-u / 250) * Math.cos(u / 36), '#E8604C') +
+      courbe(u => 150 - 92 * Math.exp(-u / 105) * (1 + u / 105), '#1A75FF') +
+      courbe(u => 150 - 92 * Math.exp(-u / 430), '#10B981') +
+      mot(648, 40, 'oscillant', { c: '#E8604C', t: 23, a: 'start' }) +
+      mot(648, 68, 'critique', { c: '#1A75FF', t: 23, a: 'start' }) +
+      mot(648, 96, 'lent', { c: '#10B981', t: 23, a: 'start' }));
+  },
+  resonance(t) {
+    const p = prog(t);
+    let pts = '';
+    const n = Math.max(2, Math.floor(90 * p));
+    for (let k = 0; k <= n; k++) {
+      const x = 190 + 670 * k / 90, y = 250 - 192 / (1 + Math.pow((x - 520) / 58, 2));
+      pts += `${Math.round(x)},${Math.round(y)} `;
+    }
+    return svgBoite(
+      `<line x1="170" y1="250" x2="884" y2="250" stroke="currentColor" stroke-width="5"/>${pointe(890, 250, 0)}` +
+      `<line x1="170" y1="250" x2="170" y2="46" stroke="currentColor" stroke-width="5"/>${pointe(170, 40, -90)}` +
+      mot(906, 258, 'ω', { t: 30, a: 'start' }) +
+      mot(146, 50, 'A', { t: 28, a: 'end' }) +
+      `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>` +
+      (p > .55 ? `<line x1="520" y1="58" x2="520" y2="250" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7" opacity=".6"/><circle cx="520" cy="58" r="8" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` + mot(548, 54, 'résonance', { c: '#E8604C', t: 25, a: 'start' }) + mot(520, 280, 'ω₀', { t: 26 }) : '') +
+      mot(500, 296, "à la pulsation propre, l'amplitude devient maximale", { t: 23 }));
+  },
   trajectoire(t) {
     const p = prog(t);
     let pts = '';
