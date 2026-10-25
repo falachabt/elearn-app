@@ -316,6 +316,65 @@ const FIG = {
       (p > .25 ? `<line x1="${sx}" y1="${sy}" x2="${tx}" y2="${ty}" stroke="#E8604C" stroke-width="5" stroke-linecap="round"/>${pointe(tx, ty, Math.atan2(ty - sy, tx - sx) * 180 / Math.PI, '#E8604C')}` + mot(tx, ty - 14, 'v', { c: '#E8604C', t: 32 }) : '') +
       mot(500, 292, 'mouvement circulaire uniforme', { t: 27 }));
   },
+  gaz(t) {
+    const reb = (d0, v, lo, hi) => { const L = hi - lo; let m = (d0 - lo + v * t) % (2 * L); if (m < 0) m += 2 * L; return lo + (m <= L ? m : 2 * L - m); };
+    let mols = '';
+    const graines = [[230, 90, 95, 61], [340, 200, -78, 88], [470, 80, 112, -54], [560, 210, -96, -72], [660, 110, 84, 97], [740, 190, -118, 49], [290, 150, 66, -103], [520, 140, -88, 66], [620, 230, 102, -81], [420, 230, -71, -92]];
+    for (const [x0, y0, vx, vy] of graines) {
+      const x = reb(x0, vx, 205, 795), y = reb(y0, vy, 75, 225);
+      mols += `<line x1="${(x - vx * .14).toFixed(0)}" y1="${(y - vy * .14).toFixed(0)}" x2="${x.toFixed(0)}" y2="${y.toFixed(0)}" stroke="#1A75FF" stroke-width="3" opacity=".45"/><circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`;
+    }
+    return svgBoite(
+      `<rect x="180" y="50" width="640" height="200" fill="#1A75FF" fill-opacity=".05" stroke="currentColor" stroke-width="6"/>` + mols +
+      mot(792, 92, 'V', { t: 36, a: 'end' }) +
+      mot(500, 288, 'des molécules en mouvement incessant, dans un volume V', { t: 25 }));
+  },
+  piston(t) {
+    const px = Math.round(600 - 170 * (Math.sin(t * .8) + 1) / 2);
+    const reb = (d0, v, lo, hi) => { const L = hi - lo; let m = (d0 - lo + v * t) % (2 * L); if (m < 0) m += 2 * L; return lo + (m <= L ? m : 2 * L - m); };
+    let mols = '';
+    const graines = [[210, 110, 88, 55], [280, 180, -74, 81], [350, 100, 99, -48], [410, 190, -85, -63], [240, 150, 63, -88], [380, 140, -92, 58], [300, 210, 79, -71], [440, 110, -68, 84]];
+    for (const [x0, y0, vx, vy] of graines) {
+      let x = reb(x0, vx, 178, 560); if (x > px - 16) x = px - 16 - (x % 23);
+      const y = reb(y0, vy, 102, 198);
+      mols += `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="7" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`;
+    }
+    return svgBoite(
+      `<rect x="150" y="84" width="700" height="132" fill="#1A75FF" fill-opacity=".05" stroke="currentColor" stroke-width="6"/>` + mols +
+      `<rect x="${px}" y="84" width="18" height="132" fill="currentColor"/>` +
+      `<line x1="${px + 18}" y1="150" x2="850" y2="150" stroke="currentColor" stroke-width="11"/>` +
+      mot(736, 62, 'piston mobile', { t: 24 }) +
+      mot(500, 262, 'on comprime : le volume diminue, les chocs se multiplient', { t: 25 }));
+  },
+  melange(t) {
+    const reb = (d0, v, lo, hi) => { const L = hi - lo; let m = (d0 - lo + v * t) % (2 * L); if (m < 0) m += 2 * L; return lo + (m <= L ? m : 2 * L - m); };
+    let mols = '';
+    const rouges = [[250, 100, 92, 58], [420, 210, -84, 76], [580, 90, 105, -51], [700, 200, -95, -66], [330, 160, 71, -95], [640, 140, -79, 88], [480, 120, 88, 63]];
+    const bleues = [[300, 210, -98, -59], [520, 200, 83, -77], [740, 100, -108, 52], [210, 140, 76, 94], [610, 230, -72, -86], [450, 80, 96, 69], [680, 170, 87, -61]];
+    for (const [x0, y0, vx, vy] of rouges) mols += `<circle cx="${reb(x0, vx, 205, 795).toFixed(0)}" cy="${reb(y0, vy, 75, 225).toFixed(0)}" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>`;
+    for (const [x0, y0, vx, vy] of bleues) mols += `<circle cx="${reb(x0, vx, 205, 795).toFixed(0)}" cy="${reb(y0, vy, 75, 225).toFixed(0)}" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`;
+    return svgBoite(
+      `<rect x="180" y="50" width="640" height="200" fill="#1A75FF" fill-opacity=".05" stroke="currentColor" stroke-width="6"/>` + mols +
+      `<circle cx="214" cy="76" r="7" fill="#E8604C"/>` + mot(232, 84, 'azote', { c: '#E8604C', t: 23, a: 'start' }) +
+      `<circle cx="214" cy="106" r="7" fill="#1A75FF"/>` + mot(232, 114, 'oxygène', { c: '#1A75FF', t: 23, a: 'start' }) +
+      mot(500, 288, "chaque gaz occupe tout le volume, comme s'il était seul", { t: 25 }));
+  },
+  phases(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<line x1="240" y1="240" x2="884" y2="240" stroke="currentColor" stroke-width="5"/>${pointe(890, 240, 0)}` +
+      `<line x1="240" y1="240" x2="240" y2="44" stroke="currentColor" stroke-width="5"/>${pointe(240, 38, -90)}` +
+      mot(900, 248, 'T', { t: 30, a: 'start' }) +
+      mot(216, 52, 'P', { t: 30, a: 'end' }) +
+      trait(300, 240, 384, 66, Math.min(1, p * 2), { w: 5 }) +
+      (p > .35 ? `<path d="M 300 240 Q 470 190 640 118" fill="none" stroke="currentColor" stroke-width="5"/>` : '') +
+      `<circle cx="300" cy="240" r="8" fill="currentColor"/>` +
+      mot(300, 272, 'point triple', { t: 23 }) +
+      (p > .35 ? `<circle cx="640" cy="118" r="8" fill="#E8604C" stroke="currentColor" stroke-width="3"/>` + mot(664, 110, 'C', { c: '#E8604C', t: 32, a: 'start' }) + mot(664, 142, 'point critique', { t: 23, a: 'start' }) : '') +
+      mot(310, 118, 'solide', { t: 24 }) +
+      mot(478, 92, 'liquide', { t: 24 }) +
+      mot(742, 204, 'gaz', { t: 24 }));
+  },
   vecteurs(t) {
     const p = prog(t), p1 = Math.min(1, p * 3), p2 = Math.max(0, Math.min(1, p * 3 - 1)), p3 = Math.max(0, p * 3 - 2);
     return svgBoite(
