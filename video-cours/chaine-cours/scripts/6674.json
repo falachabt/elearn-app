@@ -1,0 +1,325 @@
+{
+ "cours": 6674,
+ "titre": "Mesures et incertitudes",
+ "matiere": "Physique",
+ "lecons": [
+  9433
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Physique",
+   "titre": "Mesures et incertitudes",
+   "sous": "Incertitudes, intervalle de confiance et démarche de modélisation",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "Mesurer une grandeur",
+   "texte": "Mesurer, c'est comparer à une grandeur de même nature prise comme référence : l'unité. Toute mesure est entachée d'erreurs.",
+   "anim": {
+    "nom": "regle_incertitude_fig",
+    "hauteur": 180
+   }
+  },
+  "qualites": {
+   "type": "recap",
+   "kicker": "Qualités d'un instrument",
+   "titre": "Justesse et fidélité",
+   "etapes": [
+    "Justesse : une valeur moyenne proche de la valeur vraie",
+    "Fidélité : des résultats répétés groupés, reproductibles",
+    "Juste sans être fidèle, ou fidèle sans être juste"
+   ]
+  },
+  "erreurs": {
+   "type": "recap",
+   "kicker": "Types d'erreurs",
+   "titre": "Systématique ou aléatoire",
+   "etapes": [
+    "Systématique : défaut d'étalonnage ou mauvaise utilisation",
+    "Elle se reproduit à l'identique et peut être corrigée",
+    "Aléatoire : fluctuations imprévisibles des conditions",
+    "Elle se réduit en répétant les mesures"
+   ]
+  },
+  "serie": {
+   "type": "phrase",
+   "kicker": "Répéter les mesures",
+   "texte": "Des mesures répétées, dispersées autour d'une valeur centrale.",
+   "anim": {
+    "nom": "dispersion_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "Valeur moyenne",
+   "tex": "\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i",
+   "note": "La somme des n mesures, divisée par leur nombre"
+  },
+  "ecart_type": {
+   "type": "formule",
+   "kicker": "Écart-type expérimental",
+   "tex": "s = \\sqrt{\\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2}",
+   "note": "Il mesure la dispersion des valeurs autour de la moyenne"
+  },
+  "incertitude_type": {
+   "type": "formule",
+   "kicker": "Incertitude type",
+   "tex": "u(x) = \\frac{s}{\\sqrt{n}}",
+   "note": "Elle diminue quand le nombre de mesures augmente"
+  },
+  "exemple_donnees": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Cinq mesures de la longueur d'un pendule",
+   "tex": [
+    "45{,}2 \\quad 45{,}5 \\quad 45{,}1 \\quad 45{,}4 \\quad 45{,}3 \\ \\text{cm}"
+   ]
+  },
+  "exemple_calcul": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Moyenne, écart-type, incertitude type",
+   "tex": [
+    "\\bar{x} = \\frac{226{,}5}{5} = 45{,}3 \\ \\text{cm}",
+    "s \\approx 0{,}16 \\ \\text{cm}",
+    "u(x) = \\frac{0{,}16}{\\sqrt{5}} \\approx 0{,}07 \\ \\text{cm}"
+   ]
+  },
+  "elargie": {
+   "type": "formule",
+   "kicker": "Incertitude élargie",
+   "tex": "U = k \\times u(x)",
+   "note": "k : facteur d'élargissement, selon la confiance choisie"
+  },
+  "facteurs": {
+   "type": "recap",
+   "kicker": "Facteur d'élargissement",
+   "titre": "k et le niveau de confiance",
+   "etapes": [
+    "k = 1 : niveau de confiance de 68 %",
+    "k = 2 : niveau de confiance de 95 %",
+    "k = 3 : niveau de confiance de 99 %"
+   ]
+  },
+  "intervalle": {
+   "type": "etape",
+   "kicker": "Intervalle de confiance",
+   "titre": "Écrire le résultat d'une mesure",
+   "tex": [
+    "x = \\bar{x} \\pm U",
+    "[\\bar{x} - U \\ ; \\ \\bar{x} + U]"
+   ]
+  },
+  "exemple_resultat": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Le pendule, avec k = 2 (confiance 95 %)",
+   "tex": [
+    "U = 2 \\times 0{,}07 = 0{,}14 \\ \\text{cm}",
+    "L = 45{,}3 \\pm 0{,}1 \\ \\text{cm}"
+   ]
+  },
+  "organisation": {
+   "type": "phrase",
+   "kicker": "Organiser les données",
+   "texte": "Les mesures en tableau, puis le graphique y = f(x) : la mesurée en ordonnée, la contrôlée en abscisse.",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "loi": {
+   "type": "phrase",
+   "kicker": "Loi physique",
+   "texte": "Une loi est une relation mathématique validée expérimentalement : loi d'Ohm, loi des gaz parfaits. Valable seulement dans son domaine."
+  },
+  "modelisation": {
+   "type": "recap",
+   "kicker": "Démarche de modélisation",
+   "titre": "Trois temps pour modéliser",
+   "etapes": [
+    "Formuler des hypothèses simplificatrices",
+    "Tester les hypothèses par la mesure",
+    "Établir une loi mathématique simple"
+   ]
+  },
+  "critere": {
+   "type": "phrase",
+   "kicker": "Critère de validité",
+   "texte": "Les points expérimentaux doivent se situer dans les barres d'incertitude autour de la courbe théorique.",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 200
+   }
+  },
+  "exemple_ohm": {
+   "type": "phrase",
+   "kicker": "Exemple : tester la loi d'Ohm",
+   "texte": "Points (I, U) alignés sur une droite passant par l'origine : la loi est validée, la pente donne R.",
+   "anim": {
+    "nom": "circuit",
+    "hauteur": 200
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Synthèse",
+   "titre": "Mesures et incertitudes",
+   "etapes": [
+    "Toute mesure comporte une incertitude à estimer",
+    "Moyenne et écart-type décrivent une série de mesures",
+    "U = k × u(x) définit l'intervalle de confiance",
+    "Une loi n'est valable que dans son domaine précis",
+    "Hypothèses, tests par la mesure, puis une loi simple"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de physique consacré aux mesures et aux incertitudes. Nous allons apprendre à estimer l'incertitude d'une mesure, puis à organiser les données pour établir et tester une loi physique.",
+   "ecran": "titre",
+   "pause_apres": 0.7,
+   "texte": "Mesures et incertitudes : estimer, puis modéliser."
+  },
+  {
+   "id": "p02",
+   "dit": "Mesurer une grandeur physique, c'est la comparer à une grandeur de même nature prise comme référence : l'unité. Et il faut le savoir dès le départ : toute mesure est entachée d'erreurs.",
+   "ecran": "definition",
+   "pause_apres": 0.6,
+   "texte": "Mesurer : comparer à l'unité. Toute mesure est entachée d'erreurs."
+  },
+  {
+   "id": "p03",
+   "dit": "Un instrument se juge sur deux qualités. La justesse : sa valeur moyenne est proche de la valeur vraie. La fidélité : ses résultats répétés sont groupés. Il peut être juste sans être fidèle, fidèle sans être juste, ou les deux.",
+   "ecran": "qualites",
+   "pause_apres": 0.6,
+   "texte": "Justesse et fidélité : les deux qualités d'un instrument."
+  },
+  {
+   "id": "p04",
+   "dit": "Les erreurs de mesure sont de deux types. L'erreur systématique vient d'un défaut d'étalonnage ou d'une mauvaise utilisation : elle se reproduit et peut être corrigée. L'erreur aléatoire vient de fluctuations imprévisibles : elle se réduit en répétant les mesures.",
+   "ecran": "erreurs",
+   "pause_apres": 0.6,
+   "texte": "Systématique : reproductible. Aléatoire : fluctuante."
+  },
+  {
+   "id": "p05",
+   "dit": "Pour estimer une grandeur, on ne mesure pas une seule fois : on répète la mesure plusieurs fois. Les valeurs obtenues se dispersent autour d'une valeur centrale, et cette dispersion nous renseigne sur l'incertitude.",
+   "ecran": "serie",
+   "pause_apres": 0.6,
+   "texte": "Des mesures répétées, dispersées autour d'une valeur centrale."
+  },
+  {
+   "id": "p06",
+   "dit": "La valeur moyenne est la somme de toutes les mesures, divisée par leur nombre. C'est notre meilleure estimation de la grandeur.",
+   "ecran": "moyenne",
+   "pause_apres": 0.6,
+   "texte": "La moyenne : la somme des mesures, divisée par leur nombre."
+  },
+  {
+   "id": "p07",
+   "dit": "L'écart-type expérimental mesure la dispersion des valeurs autour de la moyenne : plus il est grand, plus les mesures sont étalées.",
+   "ecran": "ecart_type",
+   "pause_apres": 0.6,
+   "texte": "L'écart-type : la dispersion autour de la moyenne."
+  },
+  {
+   "id": "p08",
+   "dit": "L'incertitude type, notée u de x, s'obtient en divisant l'écart-type par la racine carrée du nombre de mesures. Répéter les mesures fait donc diminuer l'incertitude sur la moyenne.",
+   "ecran": "incertitude_type",
+   "pause_apres": 0.6,
+   "texte": "Incertitude type : l'écart-type divisé par la racine de n."
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : on mesure cinq fois la longueur d'un pendule. Les valeurs obtenues, en centimètres : quarante-cinq virgule deux ; quarante-cinq virgule cinq ; quarante-cinq virgule un ; quarante-cinq virgule quatre ; quarante-cinq virgule trois.",
+   "ecran": "exemple_donnees",
+   "pause_apres": 0.6,
+   "texte": "Cinq mesures d'un pendule, entre 45,1 et 45,5 cm."
+  },
+  {
+   "id": "p10",
+   "dit": "La moyenne de ces cinq valeurs vaut quarante-cinq virgule trois centimètres. L'écart-type vaut environ zéro virgule seize centimètre, et l'incertitude type, environ zéro virgule zéro sept centimètre.",
+   "ecran": "exemple_calcul",
+   "pause_apres": 0.6,
+   "texte": "Moyenne 45,3 cm, écart-type 0,16 cm, u(x) ≈ 0,07 cm."
+  },
+  {
+   "id": "p11",
+   "dit": "Pour annoncer un résultat prudent, on élargit l'incertitude : l'incertitude élargie, notée grand U, est l'incertitude type multipliée par un facteur d'élargissement, noté k.",
+   "ecran": "elargie",
+   "pause_apres": 0.6,
+   "texte": "Incertitude élargie : U = k × u(x)."
+  },
+  {
+   "id": "p12",
+   "dit": "Le facteur k dépend du niveau de confiance choisi : un pour soixante-huit pour cent de confiance, deux pour quatre-vingt-quinze pour cent, trois pour quatre-vingt-dix-neuf pour cent.",
+   "ecran": "facteurs",
+   "pause_apres": 0.6,
+   "texte": "k = 1, 2 ou 3 selon la confiance : 68 %, 95 %, 99 %."
+  },
+  {
+   "id": "p13",
+   "dit": "Le résultat s'écrit alors : x égale la moyenne, plus ou moins grand U. La valeur vraie se trouve, avec la probabilité du niveau de confiance choisi, dans l'intervalle allant de la moyenne moins U à la moyenne plus U.",
+   "ecran": "intervalle",
+   "pause_apres": 0.6,
+   "texte": "Résultat : x = moyenne ± U, et l'intervalle de confiance."
+  },
+  {
+   "id": "p14",
+   "dit": "Reprenons le pendule avec un facteur deux, pour une confiance de quatre-vingt-quinze pour cent : l'incertitude élargie vaut zéro virgule quatorze centimètre. On annonce : L égale quarante-cinq virgule trois, plus ou moins zéro virgule un centimètre.",
+   "ecran": "exemple_resultat",
+   "pause_apres": 0.6,
+   "texte": "L = 45,3 ± 0,1 cm, au niveau de confiance de 95 %."
+  },
+  {
+   "id": "p15",
+   "dit": "Les mesures s'organisent ensuite dans un tableau : la grandeur que l'on contrôle en première colonne, la grandeur mesurée en seconde. Le graphique visualise la relation : la grandeur mesurée en ordonnée, la grandeur contrôlée en abscisse.",
+   "ecran": "organisation",
+   "pause_apres": 0.6,
+   "texte": "Tableau des mesures, puis graphique y = f(x)."
+  },
+  {
+   "id": "p16",
+   "dit": "Une loi physique est une relation mathématique entre grandeurs, validée expérimentalement : par exemple la loi d'Ohm, ou la loi des gaz parfaits. Attention : toute loi n'est valable que dans un domaine précis. En dehors, elle ne s'applique plus.",
+   "ecran": "loi",
+   "pause_apres": 0.6,
+   "texte": "Une loi : une relation validée, dans un domaine limité."
+  },
+  {
+   "id": "p17",
+   "dit": "La démarche de modélisation suit trois temps. D'abord, formuler des hypothèses simplificatrices, en négligeant certains paramètres. Ensuite, tester ces hypothèses par la mesure. Enfin, établir une loi mathématique simple entre les grandeurs.",
+   "ecran": "modelisation",
+   "pause_apres": 0.6,
+   "texte": "Hypothèses, tests par la mesure, loi simple."
+  },
+  {
+   "id": "p18",
+   "dit": "Quand une hypothèse est-elle validée ? Si la courbe expérimentale est compatible avec le modèle dans l'intervalle d'incertitude : les points expérimentaux doivent se situer dans les barres d'incertitude autour de la courbe théorique.",
+   "ecran": "critere",
+   "pause_apres": 0.6,
+   "texte": "Validée si les points tiennent dans les barres d'incertitude."
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple : pour tester la loi d'Ohm, on mesure la tension pour différentes valeurs de l'intensité. Si les points sont alignés sur une droite passant par l'origine, dans les incertitudes, la loi est validée, et la pente donne la résistance.",
+   "ecran": "exemple_ohm",
+   "pause_apres": 0.6,
+   "texte": "Points (I, U) alignés par l'origine : loi d'Ohm validée."
+  },
+  {
+   "id": "p20",
+   "dit": "Pour résumer : toute mesure comporte une incertitude à estimer et exprimer. Moyenne et incertitude type se calculent sur une série, l'incertitude élargie définit l'intervalle de confiance, et une loi n'est valable que dans son domaine.",
+   "ecran": "recap",
+   "pause_apres": 0.5,
+   "texte": "Incertitude, intervalle de confiance, loi testée."
+  }
+ ]
+}
