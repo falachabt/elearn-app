@@ -1,0 +1,508 @@
+{
+ "cours": 5941,
+ "ecrans": {
+  "composants": {
+   "kicker": "Les composants d'une solution",
+   "tex": [
+    "\\text{solution} = \\text{solvant} + \\text{soluté(s)}",
+    "\\text{solvant : le composant majoritaire}",
+    "\\text{soluté : le corps dissous, minoritaire}"
+   ],
+   "titre": "Le solvant dissout, le soluté est dissous",
+   "type": "etape"
+  },
+  "conversion_acide": {
+   "kicker": "Conversion : pourcentage vers molarité",
+   "tex": [
+    "100\\ \\text{g de solution} \\Rightarrow 98\\ \\text{g de } \\mathrm{H_2SO_4}",
+    "n = \\tfrac{98}{98{,}08} \\approx 1\\ \\text{mol}",
+    "V = \\tfrac{100}{1{,}84} \\approx 54{,}35\\ \\text{mL}",
+    "C = \\tfrac{1}{0{,}05435} \\approx 18{,}4\\ \\text{mol/L}"
+   ],
+   "titre": "Un acide à 98 % : quelle molarité ?",
+   "type": "etape"
+  },
+  "conversion_sel": {
+   "kicker": "Conversion : molarité vers molalité",
+   "tex": [
+    "1\\ \\text{L} \\Rightarrow m_{\\text{solution}} = 1000 \\times 1{,}02 = 1020\\ \\text{g}",
+    "m_{\\text{solvant}} = 1020 - 58{,}44 = 961{,}56\\ \\text{g}",
+    "\\text{molalité} = \\frac{1}{0{,}96156} \\approx 1{,}04\\ \\text{mol/kg}"
+   ],
+   "titre": "La densité fait le pont",
+   "type": "etape"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "melange"
+   },
+   "kicker": "Qu'est-ce qu'une solution ?",
+   "texte": "Un mélange homogène de deux ou plusieurs substances : la composition est uniforme à l'échelle microscopique, et la concentration est la même en tout point de l'échantillon.",
+   "type": "phrase"
+  },
+  "dilution": {
+   "kicker": "La dilution",
+   "note": "C et V de la solution mère, puis de la solution diluée : la matière se conserve",
+   "tex": "C_1 V_1 = C_2 V_2",
+   "type": "formule"
+  },
+  "dilutions_sequentielles": {
+   "kicker": "Problème corrigé : diluer en chaîne",
+   "tex": [
+    "V_1 = \\frac{0{,}100 \\times 100}{12{,}0} = 0{,}833\\ \\text{mL}",
+    "V_1 = \\frac{0{,}050 \\times 50}{0{,}100} = 25\\ \\text{mL}"
+   ],
+   "titre": "D'un acide concentré à une solution fine",
+   "type": "etape"
+  },
+  "exemple_dilution": {
+   "kicker": "Exemple : diluer un acide",
+   "tex": [
+    "V_1 = \\frac{C_2 V_2}{C_1} = \\frac{0{,}05 \\times 100}{1} = 5\\ \\text{mL}"
+   ],
+   "titre": "De 1 mol/L à 0,05 mol/L",
+   "type": "etape"
+  },
+  "exemple_preparation": {
+   "kicker": "Exemple : la méthode en pratique",
+   "tex": [
+    "n = 0{,}1 \\times 0{,}250 = 0{,}025\\ \\text{mol}",
+    "m = 0{,}025 \\times 58{,}44 = 1{,}461\\ \\text{g}"
+   ],
+   "titre": "Un sel à 0,1 mol/L, dans 250 mL",
+   "type": "etape"
+  },
+  "exercice_complet": {
+   "kicker": "Exercice corrigé : la synthèse",
+   "tex": [
+    "n = \\tfrac{25{,}0}{58{,}44} = 0{,}428\\ \\text{mol}",
+    "C = \\tfrac{0{,}428}{0{,}500} = 0{,}856\\ \\text{mol/L}",
+    "x_{\\mathrm{NaCl}} = \\tfrac{0{,}428}{0{,}428 + 27{,}75} = 0{,}015"
+   ],
+   "titre": "Trois concentrations pour une même solution",
+   "type": "etape"
+  },
+  "exercice_cuivre": {
+   "kicker": "Exercice corrigé : la préparation",
+   "tex": [
+    "n = 0{,}100 \\times 0{,}250 = 0{,}0250\\ \\text{mol}",
+    "m = 0{,}0250 \\times 249{,}7 = 6{,}24\\ \\text{g}"
+   ],
+   "titre": "Le sulfate de cuivre pentahydraté",
+   "type": "etape"
+  },
+  "exercice_solubilite": {
+   "kicker": "Premier calcul de solubilité",
+   "tex": [
+    "V = 250\\ \\text{mL} = 0{,}250\\ \\text{L}",
+    "s = \\frac{10}{0{,}250} = 40\\ \\text{g/L}"
+   ],
+   "titre": "Peser, dissoudre, mesurer, diviser",
+   "type": "etape"
+  },
+  "fraction_molaire": {
+   "kicker": "La fraction molaire",
+   "tex": [
+    "x_i = \\frac{n_i}{\\sum_j n_j}",
+    "x_{\\text{glucose}} = \\frac{1}{1 + 9} = 0{,}1"
+   ],
+   "titre": "La part molaire de chaque composant",
+   "type": "etape"
+  },
+  "glucose": {
+   "kicker": "Exemple : la molarité en action",
+   "tex": [
+    "n = C \\times V = 0{,}5 \\times 0{,}25 = 0{,}125\\ \\text{mol}",
+    "m = n \\times M = 0{,}125 \\times 180 = 22{,}5\\ \\text{g}"
+   ],
+   "titre": "Préparer 250 mL de glucose à 0,5 mol/L",
+   "type": "etape"
+  },
+  "ion_commun": {
+   "kicker": "Facteur 4 : les autres ions",
+   "tex": [
+    "\\mathrm{AgCl} \\rightleftharpoons \\mathrm{Ag}^{+} + \\mathrm{Cl}^{-}",
+    "+\\ \\mathrm{NaCl} \\Rightarrow \\mathrm{Cl}^{-} \\text{ en excès}",
+    "\\text{Le Chatelier : l'équilibre recule, } s \\downarrow"
+   ],
+   "titre": "L'effet d'ion commun",
+   "type": "etape"
+  },
+  "materiel": {
+   "kicker": "Le matériel de précision",
+   "texte": "Fiole jaugée pour le volume exact, pipette jaugée pour le prélèvement précis, balance analytique pour la masse : trois instruments de précision, utilisés propres et secs.",
+   "type": "phrase",
+   "anim": {
+    "nom": "fiole_jaugee_fig",
+    "hauteur": 170
+   }
+  },
+  "methode_solide": {
+   "etapes": [
+    "Calculer la masse : n = C × V, puis m = n × M",
+    "Peser exactement à la balance analytique",
+    "Dissoudre dans un peu d'eau distillée, dans la fiole",
+    "Compléter au trait de jauge et homogénéiser"
+   ],
+   "kicker": "Préparer à partir d'un solide",
+   "type": "recap"
+  },
+  "molalite": {
+   "kicker": "La molalité",
+   "note": "par kilogramme de solvant : indépendante de la température",
+   "tex": "m = \\frac{n}{m_{\\text{solvant}}}",
+   "type": "formule"
+  },
+  "molarite": {
+   "kicker": "La molarité",
+   "note": "C en mol/L, n en mol, V en L : l'unité de concentration la plus utilisée",
+   "tex": "C = \\frac{n}{V}",
+   "type": "formule"
+  },
+  "pourcentages": {
+   "kicker": "Les pourcentages",
+   "note": "en masse ou en volume : la part du soluté pour cent parts de solution",
+   "tex": "\\%\\, m/m = \\frac{m_{\\text{soluté}}}{m_{\\text{solution}}} \\times 100",
+   "type": "formule"
+  },
+  "precautions": {
+   "etapes": [
+    "Sécurité : lunettes, gants, hotte si le produit est volatil",
+    "Propreté : verrerie propre, rincée à l'eau distillée",
+    "Précision : lire le ménisque, ne jamais dépasser le trait",
+    "Étiquetage : nom du soluté, concentration, date"
+   ],
+   "kicker": "Les précautions expérimentales",
+   "type": "recap"
+  },
+  "pression": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "piston"
+   },
+   "kicker": "Facteur 3 : la pression",
+   "texte": "Loi de Henry : la solubilité d'un gaz est proportionnelle à sa pression partielle au-dessus du liquide.",
+   "type": "phrase"
+  },
+  "proprietes": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "gaz"
+   },
+   "etapes": [
+    "Homogène : la composition est uniforme partout",
+    "Stable dans le temps si les conditions ne changent pas",
+    "Inséparable par simple filtration",
+    "Propriétés colligatives : elles ne dépendent que de la concentration"
+   ],
+   "kicker": "Les propriétés d'une solution",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Solution : un mélange homogène de substances",
+    "C = n/V ; molalité par kilo de solvant",
+    "Solubilité : nature, température, pression",
+    "Préparer : peser, dissoudre, jauger",
+    "Diluer : C1V1 = C2V2, la matière reste"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "saturation": {
+   "etapes": [
+    "Insaturée : on peut encore dissoudre du soluté",
+    "Saturée : le maximum est atteint, dissolution et précipitation s'équilibrent",
+    "Sursaturée : plus que le maximum, une solution métastable",
+    "Une perturbation fait précipiter l'excès d'un coup"
+   ],
+   "kicker": "Insaturée, saturée, sursaturée",
+   "type": "recap"
+  },
+  "semblable": {
+   "kicker": "Facteur 1 : la nature des partenaires",
+   "tex": [
+    "\\text{polaire} \\longrightarrow \\text{solvant polaire : l'eau}",
+    "\\text{apolaire} \\longrightarrow \\text{solvant apolaire : l'hexane}"
+   ],
+   "titre": "Le semblable dissout le semblable",
+   "type": "etape"
+  },
+  "solubilite_def": {
+   "kicker": "La solubilité",
+   "note": "masse maximale dissoute par litre, à température et pression fixées",
+   "tex": "s = \\frac{m}{V}",
+   "type": "formule"
+  },
+  "temperature": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "agitation"
+   },
+   "kicker": "Facteur 2 : la température",
+   "texte": "Un solide se dissout en général mieux à chaud, un gaz toujours moins bien : l'agitation thermique chasse les gaz hors du liquide.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "melange"
+   },
+   "kicker": "Chimie · Chimie des solutions",
+   "sous": "Concentrations, solubilité et préparation : les fondations",
+   "titre": "La chimie des solutions",
+   "type": "titre"
+  },
+  "types": {
+   "kicker": "Les types de solutions",
+   "tex": [
+    "\\text{liquide : eau salée, boissons gazeuses}",
+    "\\text{solide : alliages (bronze, acier, laiton)}",
+    "\\text{gazeuse : l'air que nous respirons}"
+   ],
+   "titre": "Le solvant décide de la famille",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  4707,
+  4708,
+  4709,
+  4710,
+  4711,
+  4712,
+  4713,
+  4714,
+  4715
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Solutions et concentrations"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : conversions et solubilité. Vous savez exprimer une concentration de cinq façons ; apprenons maintenant à passer de l'une à l'autre grâce à la densité, puis à comprendre ce qui limite la dissolution : la solubilité et ses quatre facteurs.",
+    "texte": "Partie 2 : convertir les unités, puis la solubilité et ses facteurs."
+   },
+   "sous_titre": "Conversions et solubilité"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : au laboratoire. Après la théorie, la pratique : le matériel de précision, la préparation par pesée, la dilution, et des exercices corrigés pour verrouiller la méthode.",
+    "texte": "Partie 3 : préparer une solution, par pesée ou par dilution."
+   },
+   "sous_titre": "Préparer une solution au laboratoire"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la chimie des solutions. Nous définirons d'abord ce qu'est une solution et ses propriétés, puis nous apprendrons à exprimer sa concentration de plusieurs façons et à convertir ces unités. Nous étudierons ensuite la solubilité et les facteurs qui la gouvernent, avant de passer au laboratoire : préparer une solution précise, par pesée ou par dilution.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "La chimie des solutions : concentrations, solubilité et préparation."
+  },
+  {
+   "dit": "Une solution est un mélange homogène de deux ou plusieurs substances. Homogène signifie que la composition est la même partout, à l'échelle microscopique : dans un verre d'eau sucrée, impossible de distinguer les molécules de sucre de celles de l'eau, même au microscope optique. Et en tout point de l'échantillon, la concentration est identique.",
+   "ecran": "definition",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Une solution : un mélange homogène, uniforme à l'échelle microscopique."
+  },
+  {
+   "dit": "Deux acteurs composent une solution. Le solvant est le composant présent en plus grande quantité : c'est lui qui dissout. Le soluté est le corps dissous, en plus faible quantité, et une solution peut contenir plusieurs solutés. Dans l'eau sucrée, l'eau est le solvant et le sucre le soluté ; dans l'eau de mer, l'eau dissout tout un cortège de sels minéraux.",
+   "ecran": "composants",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Solvant : le composant majoritaire. Soluté : le corps dissous."
+  },
+  {
+   "dit": "Les solutions ne sont pas toujours liquides : on les classe selon l'état physique du solvant. Avec un solvant liquide, le soluté peut être un solide, un liquide ou un gaz : c'est l'eau salée ou la boisson gazeuse. Avec un solvant solide, on obtient un alliage, comme le bronze, l'acier ou le laiton. Et avec un solvant gazeux, la solution est gazeuse : c'est l'air, mélange d'azote et d'oxygène.",
+   "ecran": "types",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Liquide, solide ou gazeuse : la famille dépend de l'état du solvant."
+  },
+  {
+   "dit": "Dissoudre n'est pas simplement juxtaposer : la solution possède des propriétés propres. Elle est homogène, stable dans le temps tant que température et pression ne changent pas, et le soluté ne peut pas en être séparé par simple filtration. Certaines propriétés, dites colligatives, ne dépendent que de la concentration du soluté, jamais de sa nature : l'abaissement du point de congélation, par exemple.",
+   "ecran": "proprietes",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Homogénéité, stabilité, pas de filtration, propriétés colligatives."
+  },
+  {
+   "dit": "Pour mesurer une concentration, l'unité reine est la molarité : le nombre de moles de soluté contenues dans un litre de solution. Une solution de chlorure de sodium à zéro virgule un mole par litre renferme un dixième de mole de sel dans chaque litre. Attention à un piège : comme elle repose sur un volume, la molarité varie légèrement avec la température.",
+   "ecran": "molarite",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "La molarité : des moles de soluté par litre de solution."
+  },
+  {
+   "dit": "Exemple : préparer deux cent cinquante millilitres d'une solution de glucose à zéro virgule cinq mole par litre, la masse molaire du glucose valant cent quatre-vingts grammes par mole. D'abord le nombre de moles : zéro virgule cinq fois zéro virgule vingt-cinq litres, soit zéro virgule cent vingt-cinq mole. Puis la masse : ce nombre de moles fois cent quatre-vingts, soit vingt-deux virgule cinq grammes à dissoudre.",
+   "ecran": "glucose",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Glucose 0,5 mol/L : 0,125 mole, donc 22,5 grammes à dissoudre."
+  },
+  {
+   "dit": "La molalité compte elle aussi des moles de soluté, mais elle les rapporte à la masse du solvant, en kilogrammes, et non au volume de la solution. Conséquence précieuse : une masse ne se dilate pas, donc la molalité ne dépend pas de la température. Moins utilisée au quotidien que la molarité, c'est elle qu'on choisit dès que la température entre en jeu.",
+   "ecran": "molalite",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La molalité : des moles par kilogramme de solvant, stable en température."
+  },
+  {
+   "dit": "La fraction molaire d'un composant, c'est sa part dans le nombre total de moles de la solution : ses moles divisées par la somme des moles de tous les composants. Elle n'a pas d'unité, et la somme de toutes les fractions molaires vaut toujours un. Exemple : une mole de glucose mélangée à neuf moles d'eau donne une fraction molaire de zéro virgule un pour le glucose. C'est l'outil des propriétés colligatives.",
+   "ecran": "fraction_molaire",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Fraction molaire : la part de chaque composant, sans unité, somme égale à un."
+  },
+  {
+   "dit": "Dernière famille d'unités : les pourcentages. Le pourcentage massique donne la masse de soluté pour cent grammes de solution, et le pourcentage volumique fait le même rapport avec les volumes. Retenez le tableau des unités : molarité en moles par litre, molalité en moles par kilogramme, fraction molaire sans unité, et les deux pourcentages. La partie suivante apprendra à les convertir.",
+   "ecran": "pourcentages",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Pourcentages massique et volumique : la part du soluté pour cent parts."
+  },
+  {
+   "dit": "Convertissons. Un acide sulfurique commercial affiche quatre-vingt-dix-huit pour cent en masse et une densité de un virgule quatre-vingt-quatre. Prenons cent grammes de solution : ils contiennent quatre-vingt-dix-huit grammes d'acide, soit environ une mole. Ces cent grammes occupent environ cinquante-quatre millilitres. Une mole dans cinquante-quatre millilitres : la molarité atteint dix-huit virgule quatre moles par litre.",
+   "ecran": "conversion_acide",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Acide sulfurique à 98 % : environ 18,4 moles par litre."
+  },
+  {
+   "dit": "Autre conversion : une solution de chlorure de sodium à une mole par litre, de densité un virgule zéro deux. Prenons un litre : il pèse mille vingt grammes, dont cinquante-huit virgule quarante-quatre grammes de sel, soit une mole. Le solvant pèse donc environ zéro virgule quatre-vingt-seize kilogramme. La molalité vaut alors environ un virgule zéro quatre mole par kilogramme. Dans ces conversions, la densité est le pont entre volumes et masses.",
+   "ecran": "conversion_sel",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "De la molarité à la molalité : la densité sert de pont."
+  },
+  {
+   "dit": "Changeons de question : jusqu'où peut-on dissoudre ? La solubilité est la quantité maximale de soluté qui peut se dissoudre dans une quantité donnée de solvant, à une température et une pression fixées. On l'exprime en grammes par litre ou en moles par litre. Pour le sel de cuisine dans l'eau, elle vaut environ trois cent soixante grammes par litre : au-delà, le sel ajouté ne se dissout plus et précipite.",
+   "ecran": "solubilite_def",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "La solubilité : la quantité maximale dissoute, à température et pression fixées."
+  },
+  {
+   "dit": "Premier pas vers les exercices : on dissout dix grammes de sel dans deux cent cinquante millilitres d'eau. La méthode tient en quatre gestes : peser précisément le soluté, le dissoudre complètement, mesurer le volume de la solution obtenue, puis diviser la masse par ce volume. Dix grammes divisés par zéro virgule deux cent cinquante litres : la solubilité vaut quarante grammes par litre.",
+   "ecran": "exercice_solubilite",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Solubilité du sel ici : 10 grammes dans 0,250 litre, soit 40 grammes par litre."
+  },
+  {
+   "dit": "Trois états décrivent une solution par rapport à sa solubilité. Insaturée : elle contient moins de soluté que le maximum, on peut encore en dissoudre. Saturée : le maximum est atteint, et un équilibre dynamique s'installe, le soluté se dissout et précipite à la même vitesse. Sursaturée : elle contient plus que le maximum ; cet état métastable peut s'effondrer à la moindre perturbation, en précipitant tout l'excès.",
+   "ecran": "saturation",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Insaturée, saturée en équilibre dynamique, ou sursaturée et métastable."
+  },
+  {
+   "dit": "Premier facteur de solubilité : la nature du soluté et du solvant, résumée par un dicton : le semblable dissout le semblable. Les solutés polaires se dissolvent bien dans les solvants polaires, car les attractions entre leurs molécules sont fortes ; les solutés apolaires préfèrent les solvants apolaires. Voilà pourquoi le sucre, polaire, fond dans l'eau, pourquoi l'huile, apolaire, refuse de s'y mélanger, et pourquoi le sel est insoluble dans l'hexane.",
+   "ecran": "semblable",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Le semblable dissout le semblable : polaire avec polaire, apolaire avec apolaire."
+  },
+  {
+   "dit": "Deuxième facteur : la température, et son effet dépend du bilan de chaleur de la dissolution. Si dissoudre absorbe de la chaleur, la dissolution est endothermique, et chauffer la favorise : c'est le cas de la plupart des solides, comme le sucre dans l'eau chaude. Pour les gaz, la dissolution dégage de la chaleur : elle est exothermique, et chauffer fait fuir le gaz hors du liquide.",
+   "ecran": "temperature",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Chauffer aide les solides endothermiques, mais chasse les gaz."
+  },
+  {
+   "dit": "Troisième facteur : la pression, qui ne compte vraiment que pour les gaz. D'après la loi de Henry, la solubilité d'un gaz est directement proportionnelle à sa pression partielle au-dessus du liquide : plus on comprime le gaz, plus il se dissout. C'est le principe des boissons gazeuses, où le dioxyde de carbone est dissous sous haute pression ; à l'ouverture, la pression chute et le gaz s'échappe en bulles.",
+   "ecran": "pression",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Loi de Henry : plus la pression du gaz est forte, plus il se dissout."
+  },
+  {
+   "dit": "Quatrième facteur : la présence d'autres ions. Ajouter un ion déjà produit par un sel peu soluble déplace son équilibre de dissolution vers le solide : c'est l'effet d'ion commun, une application du principe de Le Chatelier. Le chlorure d'argent, très peu soluble, le devient encore moins si l'on ajoute du chlorure de sodium, qui partage avec lui l'ion chlorure. À l'inverse, un acide sans ion commun, comme l'acide nitrique, ne change rien.",
+   "ecran": "ion_commun",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "L'ion commun déplace l'équilibre et fait chuter la solubilité."
+  },
+  {
+   "dit": "Préparer une solution précise exige un matériel précis. La fiole jaugée donne un volume exact, la pipette jaugée prélève un volume précis, la burette sert aux titrages, et la balance analytique pèse le soluté avec une grande précision. Bécher et erlenmeyer servent aux mélanges, la spatule et l'entonnoir aux transferts de solides. Et avant toute manipulation, le matériel doit être propre et sec : le moindre résidu fausserait le résultat.",
+   "ecran": "materiel",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Fioles et pipettes jaugées, balance analytique : la précision d'abord."
+  },
+  {
+   "dit": "La préparation à partir d'un solide suit quatre étapes. D'abord le calcul : le nombre de moles est le produit de la concentration par le volume, et la masse, ce nombre de moles multiplié par la masse molaire. Ensuite la pesée, précise, sans toucher le soluté avec les doigts. Puis la dissolution dans la fiole jaugée, avec un peu d'eau distillée. Enfin, on complète jusqu'au trait de jauge et l'on homogénéise en renversant doucement la fiole.",
+   "ecran": "methode_solide",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Calculer, peser, dissoudre, compléter au trait de jauge."
+  },
+  {
+   "dit": "Mettons la méthode en pratique : préparer deux cent cinquante millilitres de chlorure de sodium à zéro virgule un mole par litre. Le nombre de moles visé est zéro virgule un fois zéro virgule deux cent cinquante, soit zéro virgule zéro vingt-cinq mole. Multiplié par la masse molaire du sel, cinquante-huit virgule quarante-quatre, cela donne un virgule quatre cent soixante et un grammes à peser et à dissoudre, avant de compléter au trait de jauge.",
+   "ecran": "exemple_preparation",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "NaCl 0,1 mol/L dans 250 mL : peser 1,461 gramme de sel."
+  },
+  {
+   "dit": "Deuxième voie de préparation : la dilution. On part d'une solution concentrée, la solution mère, et l'on ajoute du solvant pour obtenir une solution plus diluée. Pendant l'opération, la quantité de matière de soluté ne change pas : elle est exactement la même avant et après. C'est ce principe de conservation qui donne la loi de dilution, reliant les deux concentrations et les deux volumes.",
+   "ecran": "dilution",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Diluer : ajouter du solvant, la quantité de soluté se conserve."
+  },
+  {
+   "dit": "Exemple : préparer cent millilitres d'acide chlorhydrique à zéro virgule zéro cinq mole par litre, à partir d'une solution mère à une mole par litre. La loi de dilution donne le volume à prélever : cinq millilitres. On les prélève à la pipette jaugée, on les verse dans une fiole de cent millilitres, puis on complète au trait. Et avec un acide, une règle d'or : toujours verser l'acide dans l'eau, jamais l'inverse.",
+   "ecran": "exemple_dilution",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Dilution d'un acide : prélever 5 millilitres de solution mère."
+  },
+  {
+   "dit": "Exercice de synthèse, corrigé dans les leçons : vingt-cinq grammes de chlorure de sodium dissous dans cinq cents millilitres d'eau. Le nombre de moles vaut vingt-cinq divisé par cinquante-huit virgule quarante-quatre, soit zéro virgule quatre cent vingt-huit mole. La molarité suit : zéro virgule huit cent cinquante-six mole par litre. La molalité aussi : un demi-kilogramme d'eau redonne la même valeur. Et la fraction molaire tombe à zéro virgule zéro quinze.",
+   "ecran": "exercice_complet",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Exercice corrigé : molarité, molalité et fraction molaire d'une même solution."
+  },
+  {
+   "dit": "Deuxième exercice corrigé : préparer deux cent cinquante millilitres de sulfate de cuivre pentahydraté à zéro virgule cent mole par litre. Il faut zéro virgule cent fois zéro virgule deux cent cinquante, soit zéro virgule zéro deux cent cinquante mole. La masse molaire du sel hydraté vaut deux cent quarante-neuf virgule sept : la masse à peser est donc de six virgule vingt-quatre grammes, dissous dans la fiole puis complétés au trait de jauge.",
+   "ecran": "exercice_cuivre",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Sulfate de cuivre 0,100 mol/L : peser 6,24 grammes de sel hydraté."
+  },
+  {
+   "dit": "Dernier problème corrigé : partir d'un acide chlorhydrique concentré à douze moles par litre. Pour obtenir cent millilitres à zéro virgule cent mole par litre, il suffit de prélever zéro virgule huit cent trente-trois millilitre de solution mère : moins d'un millilitre, d'où l'intérêt d'une étape intermédiaire. Deuxième étape : vingt-cinq millilitres de cette solution, complétés à cinquante millilitres, donnent la solution finale visée.",
+   "ecran": "dilutions_sequentielles",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Deux dilutions en chaîne : 0,833 millilitre, puis 25 millilitres."
+  },
+  {
+   "dit": "Quatre réflexes ferment ce cours. La sécurité d'abord : lunettes et gants toujours, hotte pour les produits volatils ou toxiques. La propreté ensuite : une verrerie propre et rincée à l'eau distillée. La précision : lire le ménisque à hauteur des yeux, et si le trait de jauge est dépassé, tout recommencer plutôt que corriger. Enfin, l'étiquetage : le nom du soluté, sa concentration et la date de préparation.",
+   "ecran": "precautions",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Sécurité, propreté, précision, étiquetage : les quatre réflexes du laboratoire."
+  },
+  {
+   "dit": "Récapitulons. Une solution est un mélange homogène, fait d'un solvant majoritaire et de solutés dissous. Sa concentration s'exprime en molarité, molalité, fraction molaire ou pourcentages, et la densité permet de convertir ces unités. Sa solubilité obéit à la nature des partenaires, à la température, à la pression pour les gaz et aux ions déjà présents. Et au laboratoire, tout tient en deux gestes : la préparation par pesée et la dilution.",
+   "ecran": "recap_final",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Solutions, concentrations, solubilité, préparation : les fondations sont posées."
+  }
+ ],
+ "titre": "La chimie des solutions : concentrations, solubilité et préparation"
+}
