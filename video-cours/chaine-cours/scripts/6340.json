@@ -1,0 +1,632 @@
+{
+ "cours": 6340,
+ "titre": "Écrire et équilibrer les équations chimiques",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Équations chimiques",
+   "titre": "Écrire et équilibrer les équations chimiques",
+   "sous": "Des formules aux coefficients : la grammaire des transformations",
+   "anim": {
+    "nom": "balance_atomes_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le théâtre des atomes",
+   "texte": "Un théâtre microscopique : les atomes sont les acteurs, la réaction est le scénario, l'équation est la partition."
+  },
+  "anatomie": {
+   "type": "etape",
+   "kicker": "Anatomie d'une équation",
+   "titre": "Les pièces du puzzle, sur la combustion du méthane",
+   "tex": [
+    "\\text{réactifs (à gauche)} \\longrightarrow \\text{produits (à droite)}",
+    "CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O",
+    "\\text{coefficients : le } 2 \\text{ devant } O_2 \\text{ et } H_2O",
+    "\\text{indices : le } 4 \\text{ de } CH_4, \\text{ le } 2 \\text{ de } O_2"
+   ]
+  },
+  "methane": {
+   "type": "formule",
+   "kicker": "L'exemple fil rouge",
+   "tex": "CH_4\\,(g) + 2\\,O_2\\,(g) \\rightarrow CO_2\\,(g) + 2\\,H_2O\\,(g)",
+   "note": "La combustion complète du méthane, le gaz naturel : ici, tout est gazeux.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 140
+   }
+  },
+  "lecture": {
+   "type": "etape",
+   "kicker": "Lire une équation : trois lectures",
+   "titre": "Molécules, moles ou volumes de gaz",
+   "tex": [
+    "1\\ \\text{molécule de } CH_4 + 2\\ \\text{molécules de } O_2",
+    "\\text{ou } 1\\ \\text{mol} + 2\\ \\text{mol : l'échelle molaire}",
+    "\\text{ou } 1\\ \\text{volume} + 2\\ \\text{volumes : gaz, mêmes conditions}"
+   ]
+  },
+  "lavoisier": {
+   "type": "formule",
+   "kicker": "La loi fondatrice : Lavoisier",
+   "tex": "m_{\\text{réactifs}} = m_{\\text{produits}}",
+   "note": "« Rien ne se perd, rien ne se crée, tout se transforme. » Les atomes se réarrangent, ils ne disparaissent pas."
+  },
+  "verification": {
+   "type": "etape",
+   "kicker": "Vérification : le bilan des atomes",
+   "titre": "Compter, atome par atome, pour prouver",
+   "tex": [
+    "C : 1 = 1 \\qquad H : 4 = 2 \\times 2",
+    "O : 2 \\times 2 = 4 \\quad ; \\quad 2 + 2 \\times 1 = 4",
+    "\\text{chaque atome est conservé : l'équation est équilibrée}"
+   ]
+  },
+  "desequilibre": {
+   "type": "etape",
+   "kicker": "Le piège : une équation déséquilibrée",
+   "titre": "Compter avant de croire",
+   "tex": [
+    "H_2 + O_2 \\rightarrow H_2O \\quad \\text{(écriture fautive)}",
+    "O : 2 \\text{ à gauche}, \\ 1 \\text{ à droite} \\Rightarrow \\text{Lavoisier violée}",
+    "2\\,H_2 + O_2 \\rightarrow 2\\,H_2O \\quad \\text{(écriture correcte)}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés : lire une équation",
+   "etapes": [
+    "Réactifs à gauche, produits à droite",
+    "Indices : dans la formule, intouchables",
+    "Coefficients : devant, ajustables",
+    "Lavoisier : les atomes se conservent",
+    "(s), (l), (g), (aq) : l'état physique"
+   ]
+  },
+  "symboles": {
+   "type": "etape",
+   "kicker": "Les symboles des éléments",
+   "titre": "Une majuscule, une minuscule au plus",
+   "tex": [
+    "Fe = \\text{fer (de } ferrum\\text{)} \\qquad Ag = \\text{argent (de } argentum\\text{)}",
+    "Co \\neq CO \\text{ : le cobalt n'est pas le monoxyde de carbone}",
+    "\\text{majuscule d'abord, minuscule ensuite : jamais deux majuscules}"
+   ]
+  },
+  "valences": {
+   "type": "etape",
+   "kicker": "La valence : le pouvoir de combinaison",
+   "titre": "Les valences courantes, d'après la table des leçons",
+   "tex": [
+    "H : 1 \\qquad O : 2 \\qquad Na : 1 \\qquad Cl : 1",
+    "Ca : 2 \\qquad Al : 3 \\qquad C : 4",
+    "\\text{cations (électrons perdus) : } Na^+, \\ Ca^{2+}, \\ Al^{3+}",
+    "\\text{anions (électrons gagnés) : } Cl^-, \\ O^{2-}, \\ NO_3^-"
+   ]
+  },
+  "croisee": {
+   "type": "etape",
+   "kicker": "La méthode croisée",
+   "titre": "La valence de l'un descend en indice de l'autre",
+   "tex": [
+    "Mg^{2+} + O^{2-} \\rightarrow Mg_2O_2 \\rightarrow MgO \\text{ (simplifié)}",
+    "Ca^{2+} + Cl^- \\rightarrow CaCl_2 \\text{ (l'indice } 1 \\text{ ne s'écrit pas)}",
+    "\\text{règle d'or : le composé ionique est électriquement neutre}"
+   ]
+  },
+  "polyatomiques": {
+   "type": "etape",
+   "kicker": "Les ions polyatomiques",
+   "titre": "Un groupe, une unité, des parenthèses",
+   "tex": [
+    "Al^{3+} + SO_4^{2-} \\rightarrow Al_2(SO_4)_3 \\text{ (charges : } +6 \\text{ et } -6\\text{)}",
+    "Ca^{2+} + PO_4^{3-} \\rightarrow Ca_3(PO_4)_2 \\text{ (multiple commun : } 6\\text{)}",
+    "\\text{sans parenthèses, le groupe semble éclaté : formule fausse}"
+   ]
+  },
+  "covalents": {
+   "type": "etape",
+   "kicker": "Les composés covalents : les préfixes parlent",
+   "titre": "Pas de croisement, pas de simplification",
+   "tex": [
+    "\\text{dioxyde de carbone : } CO_2 \\qquad \\text{tétrachlorure de carbone : } CCl_4",
+    "\\text{monoxyde de carbone : } CO \\text{ (mono- omis pour le premier élément)}",
+    "H_2, \\ N_2, \\ O_2, \\ F_2, \\ Cl_2, \\ Br_2, \\ I_2 \\text{ : les sept diatomiques}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés : écrire les formules",
+   "etapes": [
+    "Symbole : majuscule, puis minuscule",
+    "Valence : le pouvoir de combinaison",
+    "Méthode croisée, puis simplification",
+    "Polyatomique : parenthèses obligatoires",
+    "Covalent : les préfixes, sans simplifier"
+   ]
+  },
+  "outils": {
+   "type": "etape",
+   "kicker": "Indices et coefficients : deux outils",
+   "titre": "L'un nomme la molécule, l'autre la multiplie",
+   "tex": [
+    "\\text{indice : dans la formule (} H_2O \\text{ : } 2\\ H \\text{ pour } 1\\ O\\text{)}",
+    "\\text{coefficient : devant (} 2\\,H_2O \\text{ : } 4\\ H \\text{ et } 2\\ O \\text{ en tout)}",
+    "\\text{règle d'or : on ne touche jamais aux indices}",
+    "H_2O \\neq H_2O_2 \\text{ : l'eau n'est pas le peroxyde d'hydrogène}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode systématique en cinq temps",
+   "titre": "Inventaire, départ, ajustement, cascade, contrôle",
+   "tex": [
+    "\\text{1. inventaire : compter chaque atome, des deux côtés}",
+    "\\text{2. départ : l'élément le moins présent d'abord}",
+    "\\text{3. ajustement : un coefficient devant la formule}",
+    "\\text{4. cascade, puis 5. vérification finale, atome par atome}"
+   ]
+  },
+  "eau": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la synthèse de l'eau",
+   "titre": "Deux ajustements suffisent",
+   "tex": [
+    "H_2 + O_2 \\rightarrow H_2O \\quad O : 2 \\text{ contre } 1",
+    "H_2 + O_2 \\rightarrow 2\\,H_2O \\quad H : 2 \\text{ contre } 4",
+    "2\\,H_2 + O_2 \\rightarrow 2\\,H_2O \\quad H : 4 = 4, \\ O : 2 = 2"
+   ]
+  },
+  "methane_eq": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la combustion du méthane",
+   "titre": "Carbone, hydrogène, puis oxygène",
+   "tex": [
+    "CH_4 + O_2 \\rightarrow CO_2 + H_2O \\quad H : 4 \\text{ contre } 2",
+    "CH_4 + O_2 \\rightarrow CO_2 + 2\\,H_2O \\quad O : 2 \\text{ contre } 4",
+    "CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O \\quad C : 1, \\ H : 4, \\ O : 4"
+   ]
+  },
+  "propane": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la combustion du propane",
+   "titre": "Dix oxygènes à loger",
+   "tex": [
+    "C_3H_8 + O_2 \\rightarrow 3\\,CO_2 + H_2O \\quad (C : 3)",
+    "C_3H_8 + O_2 \\rightarrow 3\\,CO_2 + 4\\,H_2O \\quad (H : 8)",
+    "C_3H_8 + 5\\,O_2 \\rightarrow 3\\,CO_2 + 4\\,H_2O \\quad (O : 10 = 6 + 4)"
+   ]
+  },
+  "ammoniac": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la synthèse de l'ammoniac",
+   "titre": "Le procédé Haber-Bosch, engrais du monde entier",
+   "tex": [
+    "N_2 + H_2 \\rightarrow NH_3 \\quad N : 2 \\text{ contre } 1",
+    "N_2 + H_2 \\rightarrow 2\\,NH_3 \\quad H : 2 \\text{ contre } 6",
+    "N_2 + 3\\,H_2 \\rightarrow 2\\,NH_3 \\quad N : 2 = 2, \\ H : 6 = 6"
+   ]
+  },
+  "chlorate": {
+   "type": "etape",
+   "kicker": "Exemple résolu : décomposer le chlorate de potassium",
+   "titre": "Le multiple commun de trois et de deux",
+   "tex": [
+    "KClO_3 \\rightarrow KCl + O_2 \\quad O : 3 \\text{ contre } 2",
+    "2\\,KClO_3 \\rightarrow KCl + 3\\,O_2 \\quad O : 6 = 6",
+    "2\\,KClO_3 \\rightarrow 2\\,KCl + 3\\,O_2 \\quad K : 2, \\ Cl : 2"
+   ]
+  },
+  "groupes": {
+   "type": "etape",
+   "kicker": "L'astuce des groupes polyatomiques",
+   "titre": "Un groupe intact se compte comme un bloc",
+   "tex": [
+    "Ca(OH)_2 + H_3PO_4 \\rightarrow Ca_3(PO_4)_2 + H_2O",
+    "PO_4 \\text{ : un bloc à équilibrer} \\qquad OH \\text{ : un bloc aussi}",
+    "3\\,Ca(OH)_2 + 2\\,H_3PO_4 \\rightarrow Ca_3(PO_4)_2 + 6\\,H_2O"
+   ]
+  },
+  "recap3": {
+   "type": "recap",
+   "kicker": "Points clés : la méthode des coefficients",
+   "etapes": [
+    "Inventaire d'abord, toujours",
+    "L'élément le moins présent ouvre",
+    "Jamais les indices, que les coefficients",
+    "Groupes intacts : des blocs à compter",
+    "Vérification finale, atome par atome"
+   ]
+  },
+  "etats": {
+   "type": "etape",
+   "kicker": "Les symboles d'état : les didascalies",
+   "titre": "Quatre symboles entre parenthèses",
+   "tex": [
+    "(s)\\ \\text{solide, forme et volume propres} \\qquad (l)\\ \\text{liquide, volume défini}",
+    "(g)\\ \\text{gazeux, tout le volume offert} \\qquad (aq)\\ \\text{dissous dans l'eau}",
+    "\\text{(aq) n'est pas (l) : dissous n'est pas liquide pur}"
+   ],
+   "anim": {
+    "nom": "etats_matiere_fig",
+    "hauteur": 120
+   }
+  },
+  "neutralisation": {
+   "type": "etape",
+   "kicker": "Mise en scène : la neutralisation",
+   "titre": "Chaque acteur reçoit son état",
+   "tex": [
+    "HCl\\,(aq) + NaOH\\,(aq) \\rightarrow NaCl\\,(aq) + H_2O\\,(l)",
+    "\\text{acide et soude : utilisés en solution, donc (aq)}",
+    "\\text{le sel reste dissous (aq) ; l'eau, solvant, est (l)}"
+   ]
+  },
+  "precipitation": {
+   "type": "etape",
+   "kicker": "Étude de cas : la précipitation",
+   "titre": "Un solide naît au milieu de la solution",
+   "tex": [
+    "AgNO_3\\,(aq) + NaCl\\,(aq) \\rightarrow AgCl\\,(s) + NaNO_3\\,(aq)",
+    "Ag^+ + Cl^- \\rightarrow AgCl \\text{ : trop peu soluble, il précipite}",
+    "\\text{les ions } Na^+ \\text{ et } NO_3^- \\text{, spectateurs, restent en solution}"
+   ],
+   "anim": {
+    "nom": "precipite_fig",
+    "hauteur": 110
+   }
+  },
+  "zinc": {
+   "type": "etape",
+   "kicker": "Prédire l'observation : le zinc dans l'acide",
+   "titre": "Lire les états, deviner la scène",
+   "tex": [
+    "Zn\\,(s) + 2\\,HCl\\,(aq) \\rightarrow ZnCl_2\\,(aq) + H_2\\,(g)",
+    "\\text{(s) plongé dans (aq) : le métal se consume peu à peu}",
+    "\\text{(g) formé : des bulles de gaz s'échappent}"
+   ]
+  },
+  "sulfure": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le sulfure de diéthyle brûle",
+   "titre": "La fraction qui se résorbe en doublant tout",
+   "tex": [
+    "C_4H_{10}S + O_2 \\rightarrow 4\\,CO_2 + 5\\,H_2O + SO_2",
+    "O : 8 + 5 + 2 = 15 \\Rightarrow \\tfrac{15}{2}\\,O_2 \\text{ (une fraction !)}",
+    "2\\,C_4H_{10}S + 15\\,O_2 \\rightarrow 8\\,CO_2 + 10\\,H_2O + 2\\,SO_2"
+   ]
+  },
+  "octane": {
+   "type": "etape",
+   "kicker": "Exemple résolu : la combustion de l'octane",
+   "titre": "Douze et demi devient vingt-cinq",
+   "tex": [
+    "C_8H_{18} + O_2 \\rightarrow 8\\,CO_2 + 9\\,H_2O",
+    "O : 16 + 9 = 25 \\Rightarrow 12{,}5\\,O_2 \\text{ (une fraction)}",
+    "2\\,C_8H_{18} + 25\\,O_2 \\rightarrow 16\\,CO_2 + 18\\,H_2O"
+   ]
+  },
+  "algebrique": {
+   "type": "etape",
+   "kicker": "La méthode algébrique : l'artillerie lourde",
+   "titre": "Des lettres, un système, des coefficients",
+   "tex": [
+    "a\\,A + b\\,B \\rightarrow c\\,C + d\\,D \\text{ : une inconnue par formule}",
+    "\\text{une équation par élément, plus une pour la charge si ions}",
+    "\\text{fixer } a = 1, \\text{ résoudre, puis chasser les fractions}"
+   ]
+  },
+  "redox": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le dichromate et l'iodure",
+   "titre": "Égaliser les électrons échangés",
+   "tex": [
+    "Cr_2O_7^{2-} + 14\\,H^+ + 6\\,e^- \\rightarrow 2\\,Cr^{3+} + 7\\,H_2O",
+    "2\\,I^- \\rightarrow I_2 + 2\\,e^- \\quad (\\times 3 \\text{ pour égaliser})",
+    "Cr_2O_7^{2-} + 6\\,I^- + 14\\,H^+ \\rightarrow 2\\,Cr^{3+} + 3\\,I_2 + 7\\,H_2O"
+   ]
+  },
+  "controle": {
+   "type": "etape",
+   "kicker": "Le contrôle qui attrape les erreurs",
+   "titre": "Même une méthode systématique peut se tromper",
+   "tex": [
+    "2\\,MnO_4^- + 5\\,C_2O_4^{2-} + 16\\,H^+ \\rightarrow 2\\,Mn^{2+} + 10\\,CO_2 + 8\\,H_2O",
+    "O : 8 + 20 = 28 \\text{ à gauche} \\quad ; \\quad 20 + 8 = 28 \\text{ à droite}",
+    "\\text{charges : } -2 - 10 + 16 = +4 \\text{, comme les produits}"
+   ]
+  },
+  "strategies": {
+   "type": "etape",
+   "kicker": "La stratégie selon le type de réaction",
+   "titre": "Cinq familles, cinq réflexes",
+   "tex": [
+    "\\text{combinaison : l'élément le plus rare d'abord}",
+    "\\text{décomposition : repérer ce qui est déjà équilibré}",
+    "\\text{combustion : carbone, puis hydrogène, puis oxygène}",
+    "\\text{remplacement : les groupes en blocs ; acide-base : H et OH}"
+   ]
+  },
+  "defis": {
+   "type": "etape",
+   "kicker": "À vous de jouer : les défis des leçons, résolus",
+   "titre": "L'aluminium, puis l'oxyde de fer et le monoxyde",
+   "tex": [
+    "4\\,Al + 3\\,O_2 \\rightarrow 2\\,Al_2O_3",
+    "Fe_2O_3 + 3\\,CO \\rightarrow 2\\,Fe + 3\\,CO_2",
+    "\\text{à refaire seul, tableau de contrôle à l'appui}"
+   ]
+  },
+  "butane": {
+   "type": "etape",
+   "kicker": "Le bilan atomique complet : le butane",
+   "titre": "Le tableau final comme juge de paix",
+   "tex": [
+    "2\\,C_4H_{10} + 13\\,O_2 \\rightarrow 8\\,CO_2 + 10\\,H_2O",
+    "C : 8 = 8 \\qquad H : 20 = 20 \\qquad O : 26 = 26",
+    "\\text{inventaire de départ : tout était déséquilibré}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Le cours en cinq idées",
+   "etapes": [
+    "La formule s'écrit, jamais ne se touche",
+    "Lavoisier : rien ne se perd",
+    "Inventaire, ajustement, vérification",
+    "Les états racontent la scène",
+    "La vérification est une étape, pas un luxe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux équations chimiques, le langage universel des transformations de la matière. Nous apprendrons d'abord à lire une équation comme une partition : qui sont les réactifs, qui sont les produits, et pourquoi la loi de Lavoisier nous oblige à l'équilibrer. Nous verrons ensuite comment écrire les formules sans faute, puis comment équilibrer par la méthode des coefficients, des exemples les plus simples jusqu'aux équations complexes. À la fin, compter les atomes sera devenu un réflexe.",
+   "texte": "CH₄(g) + 2 O₂(g) → CO₂(g) + 2 H₂O(g) : la grammaire des transformations.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez un théâtre microscopique. Les acteurs, invisibles à l'œil nu, sont les atomes ; le scénario, une réaction chimique. Comment noter, de façon claire et universelle, leurs entrées en scène, leurs rencontres, leurs transformations et leurs sorties ? C'est le défi que relève l'équation chimique : la partition de la matière. Au début du dix-neuvième siècle, le chimiste suédois Berzelius a donné à ce théâtre son alphabet : un symbole fait de lettres pour chaque élément.",
+   "texte": "Berzelius donne aux atomes leur alphabet : des symboles de lettres.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Décortiquons notre exemple fil rouge, la combustion du méthane, le gaz naturel. À gauche de la flèche, les réactifs : les substances présentes au départ, qui vont être transformées. À droite, les produits : les substances nouvelles formées par la réaction. La flèche sépare les deux camps et indique le sens de la transformation. Devant certaines formules, des nombres : ce sont les coefficients, qui comptent les molécules engagées. Et dans les formules, de petits nombres en bas à droite : les indices, qui comptent les atomes dans chaque molécule.",
+   "texte": "Réactifs → produits ; coefficients devant, indices dedans.",
+   "ecran": "anatomie"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici l'équation complète de la combustion du méthane, avec les états physiques entre parenthèses : la lettre g pour gazeux, car ici tout est gazeux, même l'eau formée, qui s'échappe en vapeur. Une molécule de méthane réagit avec deux molécules de dioxygène pour donner une molécule de dioxyde de carbone et deux molécules d'eau. Retenez cette équation : elle nous servira de fil rouge ; nous la compterons, la lirons et la rééquilibrerons de nos mains au fil du cours.",
+   "texte": "CH₄(g) + 2 O₂(g) → CO₂(g) + 2 H₂O(g) : notre fil rouge.",
+   "ecran": "methane"
+  },
+  {
+   "id": "p05",
+   "dit": "Une équation équilibrée se lit de trois manières complémentaires. À l'échelle microscopique, elle parle en molécules : une molécule de méthane, deux molécules de dioxygène. À l'échelle du laboratoire, elle parle en moles : une mole de méthane contre deux moles de dioxygène, et c'est ainsi que les chimistes comptent leurs quantités. Pour les gaz, enfin, elle parle en volumes : dans les mêmes conditions, un volume de méthane consomme deux volumes de dioxygène. Application directe : brûler dix litres de méthane exige vingt litres de dioxygène. C'est la base de tout calcul stœchiométrique.",
+   "texte": "Molécules, moles ou volumes : 10 L de méthane brûlent dans 20 L de dioxygène.",
+   "ecran": "lecture"
+  },
+  {
+   "id": "p06",
+   "dit": "Toute équation repose sur un pilier énoncé par Antoine Lavoisier au dix-huitième siècle, après des pesées d'une rigueur nouvelle : rien ne se perd, rien ne se crée, tout se transforme. Traduction scientifique : au cours d'une réaction, les atomes ne sont ni créés ni détruits ; ils se réarrangent, tout simplement. Le nombre d'atomes de chaque élément doit donc être rigoureusement identique des deux côtés de la flèche, et la masse totale des réactifs égale celle des produits. C'est cette loi qui rend l'équilibrage à la fois nécessaire et possible.",
+   "texte": "Lavoisier : la masse se conserve, les atomes se réarrangent.",
+   "ecran": "lavoisier"
+  },
+  {
+   "id": "p07",
+   "dit": "Vérifions sur notre fil rouge, en comptant les atomes un par un. Le carbone : un à gauche dans le méthane, un à droite dans le dioxyde de carbone, il est conservé. L'hydrogène : quatre à gauche, et deux fois deux, donc quatre, dans les deux molécules d'eau, conservé aussi. L'oxygène : deux fois deux, donc quatre à gauche ; à droite, deux dans le dioxyde de carbone plus deux fois un dans l'eau, quatre encore. Chaque élément est conservé : l'équation est équilibrée, la masse est conservée.",
+   "texte": "C : 1 = 1. H : 4 = 4. O : 4 = 4. Équilibrée.",
+   "ecran": "verification"
+  },
+  {
+   "id": "p08",
+   "dit": "Mais attention au piège : écrire la formation de l'eau en plaçant simplement le dihydrogène et le dioxygène devant l'eau semble naturel, et c'est pourtant faux. Comptez l'oxygène : deux atomes à gauche, un seul à droite. Un atome a disparu par magie, la loi de Lavoisier est violée. L'écriture correcte place un coefficient deux devant le dihydrogène et un deux devant l'eau. Équilibrer, c'est ajuster ces coefficients devant les formules, sans jamais toucher aux indices qui font l'identité des molécules.",
+   "texte": "H₂ + O₂ → H₂O : un oxygène a disparu. Écriture fautive.",
+   "ecran": "desequilibre"
+  },
+  {
+   "id": "p09",
+   "dit": "Fixons les fondations. Une équation chimique décrit une transformation : réactifs à gauche, produits à droite, la flèche entre les deux. Les indices, à l'intérieur des formules, disent la composition des molécules et ne se modifient jamais ; les coefficients, devant les formules, se règlent pour équilibrer. La loi de conservation impose le même nombre d'atomes de chaque élément des deux côtés. Et les symboles d'état précisent si chaque substance est solide, liquide, gazeuse ou dissoute.",
+   "texte": "L'essentiel pour lire une équation.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p10",
+   "dit": "Passons à l'alphabet. Chaque élément possède un symbole unique, souvent hérité du latin : celui du fer vient de ferrum, celui de l'argent d'argentum. La règle d'écriture est absolue : la première lettre est toujours une majuscule, et la deuxième, quand elle existe, toujours une minuscule. Ce détail n'a rien d'esthétique : le symbole du cobalt s'écrit avec une majuscule suivie d'une minuscule ; écrivez les deux lettres en majuscules, et vous désignez le monoxyde de carbone, un gaz mortel. Une histoire de casse sépare un métal d'un poison.",
+   "texte": "Co = le cobalt, un métal ; CO = le monoxyde de carbone, un gaz mortel.",
+   "ecran": "symboles"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour assembler les atomes, il faut connaître leur pouvoir de combinaison : la valence. L'hydrogène et le sodium valent un ; l'oxygène et le calcium, deux ; l'aluminium, trois ; le carbone, quatre. Ce pouvoir vient des électrons échangés : un atome qui perd des électrons devient un cation, chargé positivement, comme l'ion sodium ou l'ion calcium ; un atome qui en gagne devient un anion, chargé négativement, comme l'ion chlorure ou l'ion oxyde. Certains éléments, comme le fer ou le cuivre, jouent sur plusieurs valences selon les conditions.",
+   "texte": "H : 1 ; O : 2 ; Ca : 2 ; Al : 3 ; C : 4. Cations +, anions −.",
+   "ecran": "valences"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour un composé de deux éléments, métal et non-métal, la méthode la plus fiable est la méthode croisée. On écrit les symboles, le métal d'abord ; on note la valence de chacun ; puis chaque valence descend en indice de l'autre élément. Pour l'oxyde de magnésium : le magnésium vaut deux, l'oxygène vaut deux ; le croisement donne deux indices égaux, que l'on simplifie : il reste un magnésium pour un oxygène. Pour le chlorure de calcium : le calcium vaut deux, le chlore vaut un ; le croisement donne un calcium pour deux chlores, et l'indice un, lui, ne s'écrit jamais. Derrière tout cela, une règle d'or : le composé formé est électriquement neutre.",
+   "texte": "Mg²⁺ et O²⁻ donnent MgO ; Ca²⁺ et Cl⁻ donnent CaCl₂.",
+   "ecran": "croisee"
+  },
+  {
+   "id": "p13",
+   "dit": "Certains groupes d'atomes voyagent ensemble et portent une charge globale : ce sont les ions polyatomiques, comme le sulfate, le nitrate, l'hydroxyde ou le phosphate. On les traite comme des unités indissociables. Pour le sulfate d'aluminium : l'aluminium porte trois charges positives, le sulfate deux charges négatives ; le croisement exige deux aluminiums et trois sulfates, pour que les charges s'annulent. Le groupe sulfate passe alors entre parenthèses, avec son indice à l'extérieur. Même geste pour le phosphate de calcium : trois calciums et deux phosphates s'équilibrent. Oublier les parenthèses est une faute grave : elle fait croire que les atomes du groupe sont séparés.",
+   "texte": "Al₂(SO₄)₃ et Ca₃(PO₄)₂ : les parenthèses sont obligatoires.",
+   "ecran": "polyatomiques"
+  },
+  {
+   "id": "p14",
+   "dit": "Entre deux non-métaux, pas de croisement : le nom du composé annonce lui-même les nombres, grâce aux préfixes mono, di, tri, tétra. Dioxyde de carbone : un carbone, deux oxygènes. Tétrachlorure de carbone : un carbone, quatre chlores. Et le préfixe mono s'omet pour le premier élément : le monoxyde de carbone garde donc une écriture très simple. Ici, on ne simplifie jamais : la formule dit exactement le contenu de la molécule. Retenez enfin les sept éléments qui vivent naturellement en molécules de deux atomes : le dihydrogène, le diazote, le dioxygène, le difluor, le dichlore, le dibrome et le diiode.",
+   "texte": "CO₂, CCl₄, CO : les préfixes dictent la formule, sans simplifier.",
+   "ecran": "covalents"
+  },
+  {
+   "id": "p15",
+   "dit": "Résumons l'écriture des formules. Le symbole d'un élément commence par une majuscule, suivie d'une minuscule au plus. La valence dit combien de liaisons chaque atome peut former. Pour les composés ioniques, la méthode croisée fait descendre chaque charge en indice de l'autre, puis on simplifie ; les groupes polyatomiques se protègent entre parenthèses. Pour les composés covalents, les préfixes du nom donnent les indices, sans simplification. Une formule juste est un mot juste : sans elle, aucune équation ne peut être correcte.",
+   "texte": "L'essentiel pour écrire les formules.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p16",
+   "dit": "Avant d'équilibrer, distinguons nos deux outils, que tout débutant confond. L'indice vit à l'intérieur de la formule : dans l'eau, le petit deux dit que chaque molécule réunit deux atomes d'hydrogène pour un d'oxygène. Le coefficient vit devant la formule : écrire deux devant l'eau, c'est prendre deux molécules entières, donc quatre hydrogènes et deux oxygènes en tout. La règle d'or découle de cette différence : on ne modifie jamais les indices d'une formule correcte. Changer l'indice de l'eau donnerait le peroxyde d'hydrogène, une tout autre substance. On équilibre uniquement en ajustant les coefficients.",
+   "texte": "Indice : dedans, intouchable. Coefficient : devant, ajustable.",
+   "ecran": "outils"
+  },
+  {
+   "id": "p17",
+   "dit": "Voici la méthode systématique, en cinq temps. Premier temps, l'inventaire : lister les éléments et compter leurs atomes des deux côtés. Deuxième temps, le point de départ : commencer par l'élément présent dans le moins de composés, en laissant l'hydrogène et l'oxygène pour la fin. Troisième temps, l'ajustement : placer un coefficient, le plus petit entier possible, devant la formule du côté où l'élément manque. Quatrième temps, la cascade : chaque ajustement peut déséquilibrer un autre élément ; on recalcule aussitôt et on corrige. Cinquième temps, la vérification finale : recompter tout, atome par atome. Patience et logique : c'est un puzzle, pas une devinette.",
+   "texte": "Inventaire, départ, ajustement, cascade, vérification.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p18",
+   "dit": "Premier exercice résolu : la synthèse de l'eau, déjà rencontrée sous sa forme fautive. L'inventaire accuse l'oxygène : deux à gauche, un à droite. On double donc l'eau à droite ; l'oxygène est équilibré, mais l'hydrogène passe à quatre à droite contre deux à gauche. On double alors le dihydrogène à gauche. Vérification : quatre hydrogènes et deux oxygènes des deux côtés. Deux ajustements ont suffi. Cette réaction, au passage, est celle qui propulse les moteurs de fusées, où dihydrogène et dioxygène liquides brûlent en ne rejetant que de l'eau.",
+   "texte": "2 H₂ + O₂ → 2 H₂O : la réaction des moteurs de fusées.",
+   "ecran": "eau"
+  },
+  {
+   "id": "p19",
+   "dit": "Deuxième exercice : rééquilibrer notre fil rouge, la combustion du méthane, en partant de son squelette. Le carbone est déjà équilibré, un de chaque côté. L'hydrogène accuse quatre à gauche contre deux à droite : on double l'eau, ce qui porte l'oxygène des produits à quatre, deux dans le dioxyde de carbone et deux dans les molécules d'eau. Il faut donc doubler le dioxygène à gauche. Vérification finale : carbone un, hydrogène quatre, oxygène quatre, des deux côtés. C'est exactement l'équation de notre première partie, maintenant construite de nos mains.",
+   "texte": "CH₄ + 2 O₂ → CO₂ + 2 H₂O : notre fil rouge, construit pas à pas.",
+   "ecran": "methane_eq"
+  },
+  {
+   "id": "p20",
+   "dit": "Troisième exercice : la combustion du propane, le gaz des bouteilles. On commence par le carbone : trois atomes à gauche imposent trois dioxydes de carbone à droite. Puis l'hydrogène : huit atomes à gauche imposent quatre molécules d'eau. Reste l'oxygène, toujours en dernier : à droite, trois fois deux plus quatre fois un, cela fait dix atomes. Comme le dioxygène livre ses atomes par paires, il en faut cinq molécules. Vérification : trois carbones, huit hydrogènes, dix oxygènes, tout est conservé. Retenez l'ordre des combustions : carbone, hydrogène, oxygène.",
+   "texte": "C₃H₈ + 5 O₂ → 3 CO₂ + 4 H₂O. Ordre : C, puis H, puis O.",
+   "ecran": "propane"
+  },
+  {
+   "id": "p21",
+   "dit": "Quatrième exercice : la synthèse de l'ammoniac, la réaction du procédé Haber-Bosch qui nourrit les engrais du monde entier. L'azote apparaît dans un seul composé de chaque côté : commençons par lui. Deux atomes à gauche imposent deux molécules d'ammoniac à droite. L'hydrogène passe alors à six à droite : il faut trois molécules de dihydrogène à gauche. Vérification : deux azotes et six hydrogènes des deux côtés. Les coefficients racontent les proportions du réacteur industriel : un volume de diazote, trois volumes de dihydrogène, deux volumes d'ammoniac.",
+   "texte": "N₂ + 3 H₂ → 2 NH₃ : les proportions du procédé Haber-Bosch.",
+   "ecran": "ammoniac"
+  },
+  {
+   "id": "p22",
+   "dit": "Cinquième exercice : la décomposition du chlorate de potassium, qui servait autrefois à fabriquer l'oxygène des sous-marins. Ici, le potassium et le chlore sont déjà équilibrés ; seul l'oxygène résiste : trois atomes à gauche, deux à droite. L'astuce : chercher le plus petit multiple commun de trois et de deux, qui est six. On double le chlorate pour obtenir six oxygènes à gauche, on triple le dioxygène pour en avoir six à droite, puis on double le chlorure de potassium pour rééquilibrer le potassium et le chlore. Vérification : deux, deux et six, partout pareil.",
+   "texte": "2 KClO₃ → 2 KCl + 3 O₂ : le multiple commun de 3 et 2 est 6.",
+   "ecran": "chlorate"
+  },
+  {
+   "id": "p23",
+   "dit": "Dernier exemple de cette partie, avec des ions polyatomiques. Quand un groupe reste intact pendant la réaction, comptez-le comme un bloc unique au lieu de détailler ses atomes. Dans la réaction entre l'hydroxyde de calcium et l'acide phosphorique, le groupe phosphate traverse la réaction sans se casser : on en compte deux à droite, dans le phosphate de calcium formé. On double donc l'acide phosphorique, on triple l'hydroxyde de calcium pour ajuster le calcium, et l'eau se règle à six pour fermer l'hydrogène et l'oxygène. Le tableau de contrôle confirme : tout est conservé.",
+   "texte": "Le groupe PO₄ compte comme un bloc : 3 Ca(OH)₂ + 2 H₃PO₄.",
+   "ecran": "groupes"
+  },
+  {
+   "id": "p24",
+   "dit": "Résumons la méthode des coefficients. Tout commence par un inventaire honnête des atomes. On attaque ensuite l'élément le moins présent, on ajuste par les coefficients, jamais par les indices, et on recalcule en cascade après chaque geste. Les groupes polyatomiques intacts se comptent comme des blocs. Les coefficients retenus sont les plus petits entiers possibles. Et l'on ne déclare jamais victoire sans la vérification finale, élément par élément : c'est elle qui transforme une recette en loi de la nature respectée.",
+   "texte": "L'essentiel de la méthode des coefficients.",
+   "ecran": "recap3"
+  },
+  {
+   "id": "p25",
+   "dit": "Une équation complète raconte aussi la mise en scène : l'état physique de chaque substance, noté entre parenthèses juste après sa formule. Quatre symboles suffisent : la lettre s pour un solide, de forme et de volume propres ; la lettre l pour un liquide, qui épouse son contenant ; la lettre g pour un gaz, qui occupe tout l'espace offert ; et les lettres a et q pour une substance dissoute dans l'eau. Attention au piège classique : dissous ne veut pas dire liquide. L'eau pure, solvant ou produit, se note l ; un acide dilué dans l'eau se note aq ; le même acide, pur et concentré, redevient l.",
+   "texte": "(s), (l), (g), (aq) : dissous dans l'eau n'est pas liquide pur.",
+   "ecran": "etats"
+  },
+  {
+   "id": "p26",
+   "dit": "Mettons en scène la neutralisation la plus célèbre : l'acide chlorhydrique rencontre la soude. Tous deux sont utilisés en solution aqueuse : aq pour chacun. Le sel produit, le chlorure de sodium, est soluble : il reste dissous dans l'eau, donc aq lui aussi. Et l'eau formée est le solvant lui-même : elle se note l. L'équation complète raconte alors une histoire claire : mélanger ces deux solutions donne de l'eau salée. Si l'on évaporait toute l'eau, le sel réapparaîtrait en cristaux, et il faudrait alors le noter s.",
+   "texte": "HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l) : de l'eau salée.",
+   "ecran": "neutralisation"
+  },
+  {
+   "id": "p27",
+   "dit": "Certaines réactions se définissent par un changement d'état spectaculaire : la précipitation. Mélangez une solution de nitrate d'argent et une solution de chlorure de sodium : les ions argent et les ions chlorure nagent librement dans le mélange. Mais leur composé, le chlorure d'argent, est très peu soluble : dès qu'ils se rencontrent, il se forme et tombe au fond du bécher en poudre blanche. C'est le seul produit noté s ; les ions sodium et nitrate, simples spectateurs, restent en solution. Un simple symbole s annonce donc le phénomène visible : le précipité.",
+   "texte": "AgCl(s) : un solide blanc naît au milieu de la solution.",
+   "ecran": "precipitation"
+  },
+  {
+   "id": "p28",
+   "dit": "Ces symboles permettent même de prédire ce que l'on va observer. Plongez du zinc solide dans une solution d'acide chlorhydrique : l'équation annonce un chlorure de zinc dissous et du dihydrogène gazeux. Avant même l'expérience, vous savez donc ce que vous verrez : le métal qui se consume peu à peu, attaqué par l'acide, et des bulles qui s'échappent, signe du gaz qui se dégage. Et pour identifier ce gaz, le test classique : il détonne doucement à l'approche d'une flamme. Lire les états, c'est déjà voir l'expérience.",
+   "texte": "Zn(s) + 2 HCl(aq) → ZnCl₂(aq) + H₂(g) : les bulles sont écrites.",
+   "ecran": "zinc"
+  },
+  {
+   "id": "p29",
+   "dit": "Attaquons les équations complexes, et d'abord ce qui les rend complexes : plusieurs éléments déséquilibrés en même temps, des groupes à préserver, parfois des charges à conserver. Premier cas : la combustion du sulfure de diéthyle, où l'oxygène apparaît dans trois produits différents. La hiérarchie s'applique : le soufre d'abord, puis le carbone, puis l'hydrogène, l'oxygène en tout dernier. On obtient quatre dioxydes de carbone, cinq eaux et un dioxyde de soufre. L'oxygène des produits totalise quinze atomes : il faudrait quinze demis de molécule de dioxygène, une fraction. On multiplie alors toute l'équation par deux, et tous les coefficients deviennent des entiers propres.",
+   "texte": "2 C₄H₁₀S + 15 O₂ → 8 CO₂ + 10 H₂O + 2 SO₂ : la fraction doublée.",
+   "ecran": "sulfure"
+  },
+  {
+   "id": "p30",
+   "dit": "Le même réflexe sert pour la combustion de l'octane, le carburant des moteurs. Le carbone impose huit dioxydes de carbone, l'hydrogène impose neuf molécules d'eau. L'oxygène des produits totalise vingt-cinq atomes : douze molécules et demie de dioxygène, une fraction encore. On double tout : deux octanes, vingt-cinq dioxygènes, seize dioxydes de carbone, dix-huit eaux. Moralité : un coefficient fractionnaire n'est pas une faute, c'est une étape. Dans l'écriture finale, on le chasse en multipliant toute l'équation par le dénominateur.",
+   "texte": "25 atomes d'oxygène côté produits : 12,5 O₂ — on double tout.",
+   "ecran": "octane"
+  },
+  {
+   "id": "p31",
+   "dit": "Quand l'inspection ne suffit plus, on sort l'artillerie lourde : la méthode algébrique. On attribue une lettre inconnue à chaque coefficient. Puis on écrit une équation par élément : autant d'atomes de cet élément à gauche qu'à droite. S'il y a des ions, on ajoute une équation pour la charge électrique totale. On fixe ensuite une inconnue de référence, la première égale à un par exemple, et l'on résout le système, patiemment. Si des fractions apparaissent, on multiplie l'ensemble par leur dénominateur commun. La méthode ne devine jamais : elle calcule.",
+   "texte": "a, b, c, d : une équation par élément, plus une pour la charge.",
+   "ecran": "algebrique"
+  },
+  {
+   "id": "p32",
+   "dit": "Pour les réactions d'oxydoréduction, une voie élégante combine deux demi-réactions. Cas d'école : le dichromate attaque l'iodure en milieu acide. Le chrome passe du degré plus six au degré plus trois : il gagne des électrons, c'est la réduction, et sa demi-équation consomme six électrons. L'iode passe du degré moins un au degré zéro : il perd des électrons, un par ion, c'est l'oxydation. Pour égaliser les électrons échangés, on triple la demi-oxydation, puis on additionne membre à membre : les électrons disparaissent du bilan, et l'équation globale est équilibrée, atomes et charges.",
+   "texte": "6 électrons gagnés d'un côté, 6 perdus de l'autre : on additionne.",
+   "ecran": "redox"
+  },
+  {
+   "id": "p33",
+   "dit": "Dernier avertissement, et il vient des leçons elles-mêmes : même une méthode systématique peut produire une solution fausse si une étape est mal exécutée. Dans l'exemple du permanganate et de l'oxalate traité par la méthode algébrique, la solution imprimée échoue à son propre contrôle : l'oxygène y compte vingt-huit atomes à gauche contre vingt-six à droite, et la charge ne s'équilibre pas non plus. La vérification n'est donc pas une politesse, c'est une étape à part entière. En refaisant le calcul avec soin, la bonne solution demande seize ions hydrogène et huit molécules d'eau : atomes et charges sont alors conservés, vingt-huit oxygènes des deux côtés, et une charge totale identique de chaque côté.",
+   "texte": "28 oxygènes contre 26 : le contrôle attrape l'erreur imprimée.",
+   "ecran": "controle"
+  },
+  {
+   "id": "p34",
+   "dit": "Pour finir, adaptons la stratégie au type de réaction, comme le résume le tableau des leçons. Réaction de combinaison : commencez par l'élément le plus rare. Décomposition : repérez d'abord les atomes déjà équilibrés. Combustion d'un hydrocarbure : carbone, puis hydrogène, puis oxygène en dernier, toujours. Double remplacement : traitez les ions polyatomiques comme des unités. Réaction acide-base : équilibrez l'hydrogène et les groupes hydroxyde presque séparément. Cinq familles, cinq réflexes : avec le type de réaction, vous savez par quel bout prendre l'équation.",
+   "texte": "Combinaison, décomposition, combustion, remplacement, acide-base.",
+   "ecran": "strategies"
+  },
+  {
+   "id": "p35",
+   "dit": "À vous de jouer, avec les deux défis de fin de cours, dont voici les solutions, à ne regarder qu'après avoir essayé. Premier défi : l'aluminium brûle dans le dioxygène et donne l'oxyde d'aluminium. La parade : quatre aluminiums et trois dioxygènes pour deux oxydes, ce qui équilibre l'oxygène à six atomes partout. Deuxième défi : l'oxyde de fer réagit avec le monoxyde de carbone pour donner le fer métallique et le dioxyde de carbone. Un coefficient trois devant le monoxyde et devant le dioxyde règle l'oxygène, et le fer se ferme à deux. Si vos tableaux de contrôle donnent les mêmes comptes, la méthode est acquise.",
+   "texte": "4 Al + 3 O₂ → 2 Al₂O₃ ; Fe₂O₃ + 3 CO → 2 Fe + 3 CO₂.",
+   "ecran": "defis"
+  },
+  {
+   "id": "p36",
+   "dit": "Clôturons par le bilan atomique complet de la combustion du butane, posé en exercice dans les leçons. L'inventaire de départ est sans pitié : carbone quatre contre un, hydrogène dix contre deux, oxygène deux contre trois ; tout est déséquilibré. La solution double le butane et multiplie le dioxygène par treize, pour huit dioxydes de carbone et dix molécules d'eau. Le tableau final fait office de juge de paix : carbone huit égal huit, hydrogène vingt égal vingt, oxygène vingt-six égal vingt-six. Chaque atome compte, et chacun est retrouvé.",
+   "texte": "2 C₄H₁₀ + 13 O₂ → 8 CO₂ + 10 H₂O : C 8, H 20, O 26.",
+   "ecran": "butane"
+  },
+  {
+   "id": "p37",
+   "dit": "Pour conclure ce cours : écrire et équilibrer une équation est un seul et même geste. On écrit des formules justes, dont on ne touche jamais les indices ; on ajuste des coefficients, les plus petits entiers possibles, jusqu'à ce que la loi de Lavoisier soit respectée, atome par atome et, s'il le faut, charge par charge. On met en scène chaque substance avec son état physique, et l'on termine toujours par la vérification, y compris sur les équations complexes, algébriques ou d'oxydoréduction. Rien ne se perd, rien ne se crée : entre vos mains, tout se compte.",
+   "texte": "Le cours en cinq idées.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Lire une équation et écrire les formules"
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "La méthode des coefficients, exemples résolus",
+   "pont": {
+    "texte": "Partie 2 : la méthode des coefficients, exemples résolus.",
+    "dit": "Partie deux : équilibrer, la méthode des coefficients. Nous avons des formules justes ; il faut maintenant les assembler en équations qui respectent la loi de Lavoisier. Nous distinguerons d'abord l'indice du coefficient, puis nous appliquerons la méthode systématique à une série d'exemples résolus : l'eau, le méthane, le propane, l'ammoniac, le chlorate de potassium, et un groupe polyatomique traité en bloc."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Les états physiques et les équations complexes",
+   "pont": {
+    "texte": "Partie 3 : les états physiques, puis les équations complexes.",
+    "dit": "Partie trois : mettre en scène l'équation, puis affronter les complexes. Nous donnerons d'abord à chaque substance son état physique, solide, liquide, gazeux ou dissous, et nous verrons une précipitation naître en solution. Puis nous attaquerons les équations qui résistent : coefficients fractionnaires, méthode algébrique, demi-réactions d'oxydoréduction. Et nous terminerons par la leçon des leçons : même une solution imprimée peut être fausse ; seule la vérification tranche."
+   }
+  }
+ ]
+}

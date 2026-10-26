@@ -3625,6 +3625,19 @@ const FIG = {
       mot(760, 225, 'étiré : chaînes alignées', { t: 20 }) +
       mot(500, 275, 'les ponts rappellent les chaînes : c’est l’élasticité', { t: 21 }));
   },
+  precipite_fig(t) {
+    let nuage = '';
+    const pts = [[430, 150], [470, 138], [520, 152], [560, 140], [500, 168], [545, 172], [455, 176], [590, 158]];
+    for (const [x, y] of pts) nuage += `<circle cx="${x}" cy="${y}" r="7" fill="#B8860B" fill-opacity=".75"/>`;
+    return svgBoite(
+      `<path d="M380 60 L620 60 L600 260 L400 260 Z" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` +
+      trait(392, 216, 608, 216, 1, { w: 3, tiret: '2 5' }) + nuage +
+      `<path d="M400 260 L600 260 L596 226 L404 226 Z" fill="#B8860B" fill-opacity=".55"/>` +
+      mot(500, 38, 'Ag⁺ + Cl⁻', { c: '#E8604C', t: 23 }) +
+      mot(212, 130, 'Na⁺, NO₃⁻', { t: 20, a: 'end' }) + mot(212, 156, 'ions spectateurs', { t: 17, a: 'end' }) +
+      mot(788, 130, 'AgCl (s)', { t: 21, a: 'start' }) + mot(788, 156, 'précipité blanc ↓', { c: '#B8860B', t: 18, a: 'start' }) +
+      mot(500, 292, 'trop peu soluble : il tombe au fond', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
