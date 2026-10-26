@@ -5515,20 +5515,26 @@ const FIG = {
     }
     return svgBoite(corps + mot(500, 296, 'chaque angle est proportionnel à la fréquence', { t: 20 }));
   },
-  boite_moustaches_fig(t) {
+  boite_moustaches_fig(t, o) {
     t = prog(t);
+    const fr = v => String(v).replace('.', ',').replace('-', '−');
+    const vmin = (o && o.vmin !== undefined) ? o.vmin : 8;
+    const q1 = (o && o.q1 !== undefined) ? o.q1 : 11;
+    const med = (o && o.med !== undefined) ? o.med : 14;
+    const q3 = (o && o.q3 !== undefined) ? o.q3 : 16;
+    const vmax = (o && o.vmax !== undefined) ? o.vmax : 20;
     const X = v => 130 + v * 33;
     let corps = trait(110, 250, 930, 250, t, { w: 4 }) + pointe(930, 250, 0, 'currentColor');
     for (const v of [0, 5, 10, 15, 20]) {
       corps += trait(X(v), 250, X(v), 262, t, { w: 3 }) + mot(X(v), 284, String(v), { t: 19 });
     }
-    corps += trait(X(8), 145, X(20), 145, t, { w: 4 });
-    corps += trait(X(8), 126, X(8), 164, t, { w: 4 }) + trait(X(20), 126, X(20), 164, t, { w: 4 });
-    corps += `<rect x="${X(11)}" y="105" width="${X(16) - X(11)}" height="80" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="4"/>`;
-    corps += trait(X(14), 105, X(14), 185, t, { w: 5, c: '#E8604C' });
-    corps += mot(X(11), 86, 'Q1 = 11', { t: 19, c: '#1A75FF' }) + mot(X(16), 86, 'Q3 = 16', { t: 19, c: '#1A75FF' });
-    corps += mot(X(14), 56, 'médiane 14', { t: 19, c: '#E8604C' });
-    corps += mot(X(8), 210, 'min 8', { t: 19 }) + mot(X(20), 210, 'max 20', { t: 19 });
+    corps += trait(X(vmin), 145, X(vmax), 145, t, { w: 4 });
+    corps += trait(X(vmin), 126, X(vmin), 164, t, { w: 4 }) + trait(X(vmax), 126, X(vmax), 164, t, { w: 4 });
+    corps += `<rect x="${X(q1)}" y="105" width="${X(q3) - X(q1)}" height="80" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="4"/>`;
+    corps += trait(X(med), 105, X(med), 185, t, { w: 5, c: '#E8604C' });
+    corps += mot(X(q1), 86, 'Q1 = ' + fr(q1), { t: 19, c: '#1A75FF' }) + mot(X(q3), 86, 'Q3 = ' + fr(q3), { t: 19, c: '#1A75FF' });
+    corps += mot(X(med), 56, 'médiane ' + fr(med), { t: 19, c: '#E8604C' });
+    corps += mot(X(vmin), 210, 'min ' + fr(vmin), { t: 19 }) + mot(X(vmax), 210, 'max ' + fr(vmax), { t: 19 });
     return svgBoite(corps + mot(500, 296, 'la moitié centrale des valeurs vit dans la boîte', { t: 20 }));
   },
   deux_distributions_fig(t) {
@@ -5982,6 +5988,62 @@ const FIG = {
     corps += `<circle cx="790" cy="134" r="27" fill="none" stroke="currentColor" stroke-width="3"/>`;
     corps += mot(790, 248, 'un carré recollé : un tore', { t: 20 });
     return svgBoite(corps + mot(500, 292, 'identifier des points, c\u2019est fabriquer de nouveaux espaces', { t: 20 }));
+  },
+  distribution_bars_fig(t) {
+    const p = prog(t);
+    const freqs = [0.07, 0.10, 0.13, 0.17, 0.20, 0.15, 0.11, 0.07];
+    const cums = [0.07, 0.17, 0.30, 0.47, 0.67, 0.82, 0.93, 1.00];
+    let corps = trait(110, 246, 940, 246, p, { w: 4 });
+    let pts = '';
+    freqs.forEach((f, i) => {
+      const x0 = 130 + i * 100 + 16, h = Math.round(f / 0.20 * 140);
+      corps += `<rect x="${x0}" y="${246 - h}" width="64" height="${h}" fill="#1A75FF" fill-opacity=".55" stroke="currentColor" stroke-width="2"/>`;
+      corps += mot(x0 + 32, 274, String(i + 1), { t: 20 });
+      pts += `${x0 + 64},${Math.round(246 - cums[i] * 190)} `;
+    });
+    corps += `<polyline points="${pts}" fill="none" stroke="#10B981" stroke-width="4" stroke-linejoin="round"/>`;
+    cums.forEach((c, i) => {
+      const x0 = 130 + i * 100 + 16;
+      corps += `<circle cx="${x0 + 64}" cy="${Math.round(246 - c * 190)}" r="6" fill="#10B981" stroke="white" stroke-width="2"/>`;
+    });
+    corps += mot(130, 30, 'fréquences', { t: 19, a: 'start', c: '#1A75FF' });
+    corps += mot(940, 30, 'cumulées', { t: 19, a: 'end', c: '#10B981' });
+    corps += mot(958, 250, '0 %', { t: 16, a: 'start' }) + mot(958, 155, '50 %', { t: 16, a: 'start' }) + mot(958, 60, '100 %', { t: 16, a: 'start' });
+    corps += mot(500, 30, 'note obtenue', { t: 19 });
+    return svgBoite(corps + mot(500, 296, 'les barres : les fréquences — la courbe verte : les fréquences cumulées', { t: 19 }));
+  },
+  mediatrice_exemple_fig(t) {
+    const p = prog(t);
+    let corps = trait(150, 185, 850, 185, p, { w: 5 });
+    corps += trait(500, 48, 500, 262, p, { w: 3, c: '#1A75FF', tiret: '9 7' });
+    corps += trait(500, 92, 150, 185, p, { w: 3, c: '#B8860B', tiret: '7 5' }) + trait(500, 92, 850, 185, p, { w: 3, c: '#B8860B', tiret: '7 5' });
+    corps += trait(330, 132, 340, 144, p, { w: 3, c: '#B8860B' }) + trait(660, 144, 670, 132, p, { w: 3, c: '#B8860B' });
+    corps += trait(500, 169, 516, 169, p, { w: 3 }) + trait(516, 169, 516, 185, p, { w: 3 });
+    corps += `<circle cx="150" cy="185" r="8" fill="currentColor"/>` + `<circle cx="850" cy="185" r="8" fill="currentColor"/>`;
+    corps += `<circle cx="500" cy="185" r="9" fill="#B8860B" stroke="white" stroke-width="2"/>`;
+    corps += `<circle cx="500" cy="92" r="9" fill="#B8860B" stroke="white" stroke-width="2"/>`;
+    corps += mot(150, 224, 'A', { t: 23 }) + mot(850, 224, 'B', { t: 23 });
+    corps += mot(524, 208, 'M, le milieu', { t: 19, a: 'start' });
+    corps += mot(524, 88, 'P', { t: 23, a: 'start', c: '#B8860B' });
+    corps += mot(500, 28, 'la médiatrice', { t: 21, c: '#1A75FF' });
+    corps += mot(310, 120, 'PA', { t: 19, c: '#B8860B' }) + mot(690, 120, 'PB', { t: 19, c: '#B8860B' });
+    return svgBoite(corps + mot(500, 296, 'tout point de la médiatrice est équidistant de A et de B', { t: 20 }));
+  },
+  lieu_equidistant_fig(t) {
+    const p = prog(t);
+    let corps = trait(90, 92, 920, 92, p, { w: 4, c: '#1A75FF' });
+    corps += trait(90, 216, 920, 216, p, { w: 6, c: '#E8604C' });
+    corps += trait(560, 92, 560, 216, p, { w: 3, tiret: '8 6' });
+    corps += `<rect x="196" y="188" width="34" height="28" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="3"/>`;
+    corps += trait(190, 188, 236, 188, p, { w: 3 }) + trait(213, 168, 190, 188, p, { w: 3 }) + trait(213, 168, 236, 188, p, { w: 3 });
+    corps += `<rect x="756" y="188" width="34" height="28" fill="currentColor" fill-opacity=".15" stroke="currentColor" stroke-width="3"/>`;
+    corps += trait(750, 188, 796, 188, p, { w: 3 }) + trait(773, 168, 750, 188, p, { w: 3 }) + trait(773, 168, 796, 188, p, { w: 3 });
+    corps += `<circle cx="560" cy="92" r="9" fill="#B8860B" stroke="white" stroke-width="2"/>`;
+    corps += mot(560, 62, 'P', { t: 23, c: '#B8860B' });
+    corps += mot(500, 34, 'le lieu : les points à 3 km de la route', { t: 21, c: '#1A75FF' });
+    corps += mot(580, 162, '3 km', { t: 20, a: 'start', c: '#B8860B' });
+    corps += mot(500, 254, 'la route', { t: 20, c: '#E8604C' });
+    return svgBoite(corps + mot(500, 296, 'une droite parallèle à la route, à distance fixe d\u2019elle', { t: 20 }));
   },
 };
 
