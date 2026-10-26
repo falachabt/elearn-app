@@ -783,6 +783,7 @@ export const en: Textes = {
     etiquette: 'Course videos · {{n}} / {{total}}',
     partie: 'Part {{n}}',
     enCours: 'In progress',
+    aReprendre: 'To resume',
     vue: 'Watched',
     terminee: 'Finished · Watch again',
     pasCommencee: 'Not watched yet',

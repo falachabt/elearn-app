@@ -784,6 +784,7 @@ export const fr = {
     etiquette: 'Vidéos du cours · {{n}} / {{total}}',
     partie: 'Partie {{n}}',
     enCours: 'En cours',
+    aReprendre: 'À reprendre',
     vue: 'Vue',
     terminee: 'Terminée · Revoir',
     pasCommencee: 'Pas encore regardée',
