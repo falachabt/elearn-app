@@ -1,0 +1,449 @@
+{
+  "cours": 6287,
+  "titre": "Les systèmes d'équations linéaires : méthodes et géométrie",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Systèmes linéaires",
+      "titre": "Les systèmes d'équations linéaires",
+      "sous": "Substitution, combinaison, matrices et Cramer : résoudre, puis voir géométriquement",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un système, c'est un équilibre entre plusieurs contraintes simultanées : chaque équation dit quelque chose, la solution doit tout satisfaire à la fois.",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 140
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Définition",
+      "tex": "\\begin{cases} a_1x + b_1y = c_1 \\\\ a_2x + b_2y = c_2 \\end{cases}",
+      "note": "Coefficients aij, constantes bi : la solution vérifie toutes les équations."
+    },
+    "restaurateur": {
+      "type": "etape",
+      "kicker": "Exemple 1 · le restaurateur",
+      "titre": "Dix sacs et cinq boîtes, cent vingt euros",
+      "tex": [
+        "10f + 5e = 120 \\qquad 6f + 8e = 108",
+        "f = \\tfrac{42}{5} = 8{,}4\\ \\text{euros} \\qquad e = \\tfrac{36}{5} = 7{,}2\\ \\text{euros}"
+      ]
+    },
+    "trois_cas": {
+      "type": "etape",
+      "kicker": "La vision géométrique",
+      "titre": "Trois destins pour deux droites",
+      "tex": [
+        "x + y = 5 \\quad 2x - y = 1 \\Rightarrow (2\\,;\\,3)",
+        "x + y = 5 \\quad x + y = 7 \\Rightarrow \\text{aucune solution}",
+        "x + y = 5 \\quad 2x + 2y = 10 \\Rightarrow \\text{une infinité}"
+      ],
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 120
+      }
+    },
+    "plans": {
+      "type": "phrase",
+      "kicker": "Trois inconnues · des plans",
+      "texte": "À trois inconnues, chaque équation devient un plan dans l'espace : la solution commune est l'intersection des plans.",
+      "anim": {
+        "nom": "plans_secants_fig",
+        "hauteur": 210
+      }
+    },
+    "subst_principe": {
+      "type": "formule",
+      "kicker": "Méthode 1 · la substitution",
+      "tex": "y = 5 - 2x",
+      "note": "Isoler l'inconnue au coefficient un, puis la remplacer dans l'autre équation."
+    },
+    "subst_ex": {
+      "type": "etape",
+      "kicker": "Substitution · exemple résolu",
+      "titre": "Deux inconnues, trois temps",
+      "tex": [
+        "2x + y = 5 \\qquad 3x - 2y = 4",
+        "y = 5 - 2x \\Rightarrow 3x - 2(5 - 2x) = 4",
+        "7x = 14 \\Rightarrow x = 2 \\qquad y = 5 - 4 = 1"
+      ]
+    },
+    "subst_3": {
+      "type": "etape",
+      "kicker": "Substitution · trois inconnues",
+      "titre": "La même idée, un étage de plus",
+      "tex": [
+        "x = 2 - y + z",
+        "-3y + 5z = 5 \\qquad 3y = 8 \\Rightarrow y = \\tfrac{8}{3}",
+        "z = \\tfrac{13}{5} \\qquad x = \\tfrac{29}{15}"
+      ]
+    },
+    "comb_principe": {
+      "type": "formule",
+      "kicker": "Méthode 2 · la combinaison linéaire",
+      "tex": "(2x + 3y) + (12x - 3y) = 12 + 18",
+      "note": "Multiplier, puis additionner membre à membre : une inconnue disparaît.",
+      "anim": {
+        "nom": "matrice_augmentee_fig",
+        "hauteur": 185
+      }
+    },
+    "comb_ex1": {
+      "type": "etape",
+      "kicker": "Combinaison · élimination directe",
+      "titre": "Un seul multiplicateur suffit",
+      "tex": [
+        "2x + 3y = 12 \\qquad 4x - y = 6",
+        "(4x - y = 6) \\times 3 \\Rightarrow 12x - 3y = 18",
+        "14x = 30 \\Rightarrow x = \\tfrac{15}{7} \\qquad y = \\tfrac{18}{7}"
+      ]
+    },
+    "comb_ex2": {
+      "type": "etape",
+      "kicker": "Combinaison · double multiplication",
+      "titre": "Le multiple commun décide",
+      "tex": [
+        "3x + 5y = -1 \\qquad 4x + 7y = 2",
+        "\\times 4 : 12x + 20y = -4",
+        "\\times 3 : 12x + 21y = 6",
+        "\\text{soustraction} : y = 10 \\qquad x = -17"
+      ]
+    },
+    "matrices": {
+      "type": "etape",
+      "kicker": "Le langage matriciel",
+      "titre": "Tout le système tient dans un tableau",
+      "tex": [
+        "A = \\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix} \\qquad B = \\begin{pmatrix} 8 \\\\ 1 \\end{pmatrix}",
+        "A\\vec{x} = \\vec{b}"
+      ]
+    },
+    "anatomie": {
+      "type": "formule",
+      "kicker": "Anatomie d'une matrice",
+      "tex": "a_{ij}",
+      "note": "a indice i j : l'élément à l'intersection de la ligne i et de la colonne j.",
+      "anim": {
+        "nom": "matrice_fig",
+        "hauteur": 210
+      }
+    },
+    "det2": {
+      "type": "formule",
+      "kicker": "Le déterminant · deux par deux",
+      "tex": "\\det\\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc",
+      "note": "Exemple du cours : pour (2, 3 ; 1, −1), det = −2 − 3 = −5."
+    },
+    "det3": {
+      "type": "etape",
+      "kicker": "Le déterminant · trois par trois",
+      "titre": "La règle de Sarrus",
+      "tex": [
+        "\\det = aei + bfg + cdh - ceg - bdi - afh",
+        "\\text{exemple : }",
+        "0 + 40 + 0 - 15 - 0 - 24 = 1"
+      ],
+      "anim": {
+        "nom": "determinant_dev_fig",
+        "hauteur": 140
+      }
+    },
+    "det_test": {
+      "type": "formule",
+      "kicker": "Le test d'unicité",
+      "tex": "\\det(A) \\neq 0 \\iff \\text{solution unique}",
+      "note": "det = 0 : aucune solution, ou une infinité — il faut regarder de plus près."
+    },
+    "cramer_principe": {
+      "type": "formule",
+      "kicker": "Méthode 3 · Cramer",
+      "tex": "x = \\frac{\\Delta_x}{\\Delta} \\qquad y = \\frac{\\Delta_y}{\\Delta}",
+      "note": "Δx : la colonne des x remplacée par les constantes. Condition : Δ ≠ 0."
+    },
+    "cramer_poules": {
+      "type": "etape",
+      "kicker": "Cramer · têtes et pattes",
+      "titre": "Trente-cinq têtes, quatre-vingt-quatorze pattes",
+      "tex": [
+        "\\Delta = 4 - 2 = 2 \\qquad \\Delta_x = 140 - 94 = 46",
+        "\\Delta_y = 94 - 70 = 24",
+        "x = \\tfrac{46}{2} = 23 \\text{ poules} \\qquad y = \\tfrac{24}{2} = 12 \\text{ lapins}"
+      ]
+    },
+    "cramer_circuit": {
+      "type": "etape",
+      "kicker": "Cramer · un circuit à trois mailles",
+      "titre": "Kirchhoff par les déterminants, valeurs vérifiées",
+      "tex": [
+        "I_1 - I_2 - I_3 = 0 \\qquad 5I_1 + 10I_2 = 10",
+        "10I_2 - 15I_3 = 5 \\qquad \\Delta = -275",
+        "\\Delta_{I_1} = -200 \\quad \\Delta_{I_2} = -175 \\quad \\Delta_{I_3} = -25",
+        "I_1 = \\tfrac{8}{11} \\qquad I_2 = \\tfrac{7}{11} \\qquad I_3 = \\tfrac{1}{11}\\ \\text{A}"
+      ]
+    },
+    "cramer_limites": {
+      "type": "etape",
+      "kicker": "Cramer · avantages et limites",
+      "titre": "Une formule élégante, mais pas pour les géants",
+      "tex": [
+        "\\text{pour } n \\text{ inconnues : } n + 1 \\text{ déterminants}",
+        "\\text{excellent à la main pour } n \\leq 3",
+        "\\text{grands systèmes : Gauss gagne}"
+      ]
+    },
+    "aire": {
+      "type": "formule",
+      "kicker": "Le déterminant, côté géométrie",
+      "tex": "\\text{Aire} = |\\det(\\vec{u}, \\vec{v})| = |ad - bc|",
+      "note": "Colonnes u(a, c) et v(b, d) : det nul, vecteurs colinéaires, aire nulle.",
+      "anim": {
+        "nom": "parallelogramme_det_fig",
+        "hauteur": 190
+      }
+    },
+    "marche": {
+      "type": "etape",
+      "kicker": "Application · l'équilibre du marché",
+      "titre": "Une intersection qui fixe un prix",
+      "tex": [
+        "Q_d = -2P + 100 \\qquad Q_o = 3P + 20",
+        "Q_d = Q_o \\Rightarrow 0 = -5P + 80",
+        "P^* = 16 \\qquad Q^* = 68"
+      ]
+    },
+    "chimie": {
+      "type": "etape",
+      "kicker": "Application · équilibrer une réaction",
+      "titre": "La combustion du propane, un système déguisé",
+      "tex": [
+        "3a = c \\qquad 8a = 2d \\qquad 2b = 2c + d",
+        "a = 1 \\Rightarrow c = 3,\\ d = 4,\\ b = 5",
+        "C_3H_8 + 5\\,O_2 \\rightarrow 3\\,CO_2 + 4\\,H_2O"
+      ]
+    },
+    "melange": {
+      "type": "etape",
+      "kicker": "Application · le mélange impossible",
+      "titre": "Quand le système dit non, il faut l'écouter",
+      "tex": [
+        "x + y + z = 100 \\qquad z = 2x",
+        "0{,}2x + 0{,}4y + 0{,}5z = 30 \\Rightarrow 40 = 30"
+      ]
+    },
+    "strategie": {
+      "type": "recap",
+      "kicker": "Choisir sa méthode",
+      "etapes": [
+        "Coefficient 1 ou −1 visible : substitution",
+        "Coefficients opposables : combinaison",
+        "Carré, petit, Δ ≠ 0 : Cramer direct",
+        "Dans tous les cas : vérifier à la fin"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Un système : plusieurs contraintes à la fois",
+        "Substitution : isoler, remplacer, remonter",
+        "Combinaison : éliminer par additions",
+        "Déterminant nul : pas de solution unique",
+        "Cramer : un rapport de déterminants"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Plusieurs contraintes, une même solution à trouver.",
+      "dit": "Bienvenue dans ce cours consacré aux systèmes d'équations linéaires. Une équation seule laisse souvent plusieurs possibilités ; plusieurs équations satisfaites en même temps peuvent n'en laisser qu'une. Nous apprendrons à résoudre ces systèmes par substitution, par combinaison linéaire, puis avec les matrices, les déterminants et la méthode de Cramer, sans jamais perdre de vue leur signification géométrique : des droites et des plans qui se rencontrent, ou pas."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "L'équilibre : satisfaire toutes les contraintes à la fois.",
+      "dit": "Imaginez un architecte qui dimensionne les colonnes d'un temple : trop larges, elles gaspillent le marbre ; trop étroites, elles s'effondrent. Chaque contrainte s'écrit comme une équation, et l'équilibre cherché est la solution commune à toutes. C'est exactement cela, un système : plusieurs équations, les mêmes inconnues, et des valeurs qui doivent vérifier toutes les équations simultanément."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "texte": "La solution vérifie toutes les équations à la fois.",
+      "dit": "Formellement, un système de m équations à n inconnues aligne des équations linéaires : dans chacune, les inconnues apparaissent au premier degré, multipliées par des coefficients, et leur somme égale un terme constant. Résoudre le système, c'est trouver toutes les valeurs des inconnues qui rendent chaque égalité vraie en même temps. Ni une équation sur deux, ni presque : toutes, simultanément."
+    },
+    {
+      "id": "p04",
+      "ecran": "restaurateur",
+      "texte": "Deux achats, deux équations, deux prix inconnus.",
+      "dit": "Premier exemple, celui du restaurateur. Dix sacs de farine et cinq boîtes d'œufs coûtent cent vingt euros ; six sacs et huit boîtes coûtent cent huit euros. En notant f le prix d'un sac et e celui d'une boîte, on obtient un système de deux équations à deux inconnues. Sa solution, que nos méthodes retrouveront : un sac coûte huit virgule quatre euros, et une boîte sept virgule deux euros. Vérifiez : les deux additions retombent juste."
+    },
+    {
+      "id": "p05",
+      "ecran": "trois_cas",
+      "texte": "Sécantes, parallèles ou confondues : trois destins.",
+      "dit": "Trois destins sont possibles, et la géométrie les montre d'un coup d'œil. Chaque équation à deux inconnues est une droite du plan ; résoudre, c'est chercher leur intersection. Si les droites se coupent en un point, la solution est unique : le système est compatible déterminé. Si elles sont parallèles et distinctes, aucune solution : le système est incompatible. Si elles sont confondues, une infinité de solutions : le système est compatible indéterminé."
+    },
+    {
+      "id": "p06",
+      "ecran": "plans",
+      "texte": "Trois inconnues : des plans, et leur intersection.",
+      "dit": "Avec trois inconnues, changez d'échelle : chaque équation représente alors un plan dans l'espace, et la solution du système est l'intersection commune de ces plans. Trois plans peuvent se couper en un unique point, la solution unique ; ne partager aucun point ; ou se recouper le long d'une droite, voire d'un plan entier, avec alors une infinité de solutions. Toute la suite du cours consiste à décider algébriquement dans quel cas l'on se trouve."
+    },
+    {
+      "id": "p07",
+      "ecran": "subst_principe",
+      "texte": "Substitution : isoler, remplacer, remonter.",
+      "dit": "Première méthode : la substitution. Le principe tient en une phrase : exprimer une inconnue en fonction des autres à partir d'une équation, puis substituer cette expression dans les autres équations. Le système perd une inconnue à chaque passage, jusqu'à une équation à une seule inconnue, que l'on résout, avant de remonter pour retrouver les autres. Le bon réflexe : isoler l'inconnue dont le coefficient vaut un ou moins un, pour éviter les fractions."
+    },
+    {
+      "id": "p08",
+      "ecran": "subst_ex",
+      "texte": "Isoler y, substituer, remonter : (2 ; 1).",
+      "dit": "Exemple complet. Dans la première équation, igrec a pour coefficient un : on l'isole, igrec égale cinq moins deux ixe. On remplace igrec par cette expression dans la seconde équation : trois ixe moins deux fois cinq moins deux ixe égale quatre. Développement : sept ixe égale quatorze, donc ixe égale deux. On remonte : igrec égale cinq moins quatre, donc un. Solution : le couple deux, un, et la vérification dans les deux équations confirme."
+    },
+    {
+      "id": "p09",
+      "ecran": "subst_3",
+      "texte": "Trois inconnues : réduire, résoudre, remonter.",
+      "dit": "À trois inconnues, la logique est identique, avec un étage de plus. On exprime ixe en fonction de igrec et de zède dans l'équation la plus simple, puis on substitue dans les deux autres : il reste un système de deux équations à deux inconnues. Ici, l'une d'elles donne directement igrec égale huit tiers ; l'autre fournit alors zède égale treize cinquièmes, et la remontée donne ixe égale vingt-neuf quinzièmes. La méthode fonctionne toujours, mais elle devient vite laborieuse : d'où la suivante."
+    },
+    {
+      "id": "p10",
+      "ecran": "comb_principe",
+      "texte": "Combiner les équations pour faire disparaître une inconnue.",
+      "dit": "Deuxième méthode : la combinaison linéaire, ou élimination. Au lieu d'isoler, on joue avec les équations entières : on peut multiplier une équation par un nombre non nul et additionner les équations membre à membre, sans changer l'ensemble des solutions. Bien choisis, les multiplicateurs rendent les coefficients d'une inconnue opposés : à l'addition, cette inconnue s'élimine. C'est la méthode que les mathématiciens chinois pratiquaient déjà il y a plus de deux mille ans, et que Gauss a systématisée."
+    },
+    {
+      "id": "p11",
+      "ecran": "comb_ex1",
+      "texte": "Un multiplicateur, une addition : y s'élimine.",
+      "dit": "Exemple. Les coefficients de igrec sont trois et moins un : en multipliant la seconde équation par trois, ils deviennent trois et moins trois, opposés. L'addition membre à membre élimine igrec : quatorze ixe égale trente, donc ixe égale quinze septièmes. On remplace dans l'équation la plus simple, et igrec vaut dix-huit septièmes. Géométriquement, nous venons de construire les coordonnées du point d'intersection des deux droites, sans jamais tracer."
+    },
+    {
+      "id": "p12",
+      "ecran": "comb_ex2",
+      "texte": "Multiple commun 12 : x disparaît, y = 10, x = −17.",
+      "dit": "Quand aucun coefficient n'est multiple de l'autre, on manipule les deux équations. Pour éliminer ixe, dont les coefficients sont trois et quatre, on vise leur multiple commun, douze : la première équation fois quatre, la seconde fois trois. La soustraction membre à membre fait disparaître ixe et donne immédiatement igrec égale dix. Retour dans la première équation : trois ixe plus cinquante égale moins un, donc ixe égale moins dix-sept. Solution : moins dix-sept, dix."
+    },
+    {
+      "id": "p13",
+      "ecran": "matrices",
+      "texte": "Ax = b : tout le système en une ligne.",
+      "dit": "Pour aller plus loin, changeons de point de vue : une matrice est un tableau rectangulaire de nombres, organisé en lignes et en colonnes. Le système entier tient alors dans trois objets : la matrice A des coefficients, le vecteur colonne des inconnues et le vecteur colonne des constantes. Et le système s'écrit en une seule ligne : A fois le vecteur inconnue égale le vecteur constante. Cette écriture compacte est le langage de toute l'algèbre linéaire moderne."
+    },
+    {
+      "id": "p14",
+      "ecran": "anatomie",
+      "texte": "a indice i j : ligne i, colonne j — et la matrice identité.",
+      "dit": "Anatomie d'une matrice : l'élément a indice i, j est celui qui se trouve à l'intersection de la i-ème ligne et de la j-ème colonne. Retenez aussi quelques formes spéciales : la matrice carrée, autant de lignes que de colonnes ; la matrice colonne, une seule colonne, comme nos vecteurs de constantes ; la matrice nulle, pleine de zéros ; et la matrice identité, des uns sur la diagonale et des zéros ailleurs, qui joue pour le produit le rôle du un pour les nombres."
+    },
+    {
+      "id": "p15",
+      "ecran": "det2",
+      "texte": "det = ad − bc : un nombre qui résume la matrice.",
+      "dit": "Associé à toute matrice carrée, un nombre la résume : son déterminant. Pour une matrice deux par deux, la formule est immédiate : a fois d, moins b fois c, le produit de la diagonale principale moins celui de l'autre diagonale. Exemple : pour la matrice de notre système, deux et trois en première ligne, un et moins un en seconde, le déterminant vaut moins deux moins trois, soit moins cinq. Retenez surtout ceci : un déterminant non nul annoncera une solution unique."
+    },
+    {
+      "id": "p16",
+      "ecran": "det3",
+      "texte": "Sarrus : recopier, descendre en plus, monter en moins.",
+      "dit": "Pour une matrice trois par trois, la règle de Sarrus organise le calcul : on recopie les deux premières colonnes à droite de la matrice, on additionne les produits des trois diagonales descendantes, et l'on soustrait les produits des trois diagonales montantes. Sur l'exemple du cours, les six produits donnent zéro, plus quarante, plus zéro, moins quinze, moins zéro, moins vingt-quatre : le déterminant vaut un. Un seul nombre, mais déjà toute une information sur le système."
+    },
+    {
+      "id": "p17",
+      "ecran": "det_test",
+      "texte": "det ≠ 0 : solution unique. det = 0 : danger.",
+      "dit": "Voici le test d'unicité, à connaître par cœur. Si le déterminant de la matrice des coefficients est différent de zéro, le système carré admet une solution unique, et une seule. S'il est nul, l'unicité est perdue : soit aucune solution, soit une infinité, et il faudra un examen plus fin pour trancher. Géométriquement, un déterminant nul en deux dimensions signifie des droites parallèles : distinctes, c'est l'impasse ; confondues, c'est la liberté."
+    },
+    {
+      "id": "p18",
+      "ecran": "cramer_principe",
+      "texte": "Cramer : chaque inconnue, un rapport de déterminants.",
+      "dit": "La méthode de Cramer, publiée au dix-huitième siècle, transforme ce test en formule directe. Pour chaque inconnue, on forme un déterminant en remplaçant, dans la matrice des coefficients, la colonne de cette inconnue par la colonne des constantes. L'inconnue vaut alors le rapport de ce déterminant au déterminant du système. Delta pour le système, delta ixe pour ixe, delta igrec pour igrec : chaque inconnue devient un quotient de deux nombres calculables séparément."
+    },
+    {
+      "id": "p19",
+      "ecran": "cramer_poules",
+      "texte": "35 têtes, 94 pattes : 23 poules, 12 lapins.",
+      "dit": "Exemple entièrement résolu, le classique des têtes et des pattes. Un agriculteur compte trente-cinq têtes et quatre-vingt-quatorze pattes entre ses poules et ses lapins. Le système : ixe plus igrec égale trente-cinq, et deux ixe plus quatre igrec égale quatre-vingt-quatorze. Delta vaut quatre moins deux, soit deux. Delta ixe vaut cent quarante moins quatre-vingt-quatorze, soit quarante-six. Delta igrec vaut quatre-vingt-quatorze moins soixante-dix, soit vingt-quatre. Donc vingt-trois poules et douze lapins, et le compte de pattes vérifie : quarante-six plus quarante-huit, quatre-vingt-quatorze."
+    },
+    {
+      "id": "p20",
+      "ecran": "cramer_circuit",
+      "texte": "Kirchhoff en 3×3 : I₁ = 8/11, I₂ = 7/11, I₃ = 1/11 A.",
+      "dit": "Passons à trois inconnues, avec un circuit électrique régi par les lois de Kirchhoff : un nœud et deux mailles donnent trois équations pour les intensités i un, i deux et i trois. Le déterminant du système vaut moins deux cent soixante-quinze. Les trois déterminants remplacés valent moins deux cents, moins cent soixante-quinze et moins vingt-cinq. Les intensités sont donc huit onzièmes, sept onzièmes et un onzième d'ampère, et vous pouvez vérifier chaque équation : tout retombe juste, au onzième près."
+    },
+    {
+      "id": "p21",
+      "ecran": "cramer_limites",
+      "texte": "Cramer : petit système ou théorie. Sinon, Gauss.",
+      "dit": "Il faut aussi connaître les limites de Cramer. Pour n inconnues, la méthode exige n plus un déterminants, et le coût explose avec la taille : en pratique, elle sert pour les petits systèmes, deux ou trois inconnues, pour les systèmes à paramètres et pour les démonstrations. Pour les grands systèmes numériques, l'élimination de Gauss, héritière directe de la combinaison linéaire, est bien plus rapide et plus stable. Élégance théorique d'un côté, efficacité de l'autre : à vous de choisir selon le problème."
+    },
+    {
+      "id": "p22",
+      "ecran": "aire",
+      "texte": "|det| : l'aire du parallélogramme des colonnes.",
+      "dit": "Le déterminant a aussi une âme géométrique. Prenez les deux colonnes d'une matrice deux par deux comme deux vecteurs du plan : la valeur absolue du déterminant est exactement l'aire du parallélogramme construit sur ces deux vecteurs. Tout s'éclaire : si le déterminant est nul, le parallélogramme est aplati, d'aire nulle, car les deux vecteurs sont colinéaires, alignés. Et les formules de Cramer deviennent des rapports d'aires : mesurer, encore et toujours."
+    },
+    {
+      "id": "p23",
+      "ecran": "marche",
+      "texte": "Offre contre demande : P* = 16, Q* = 68.",
+      "dit": "Application économique : l'équilibre d'un marché. La demande diminue avec le prix, l'offre augmente avec le prix : deux droites, l'une descendante, l'autre montante. L'équilibre est leur intersection, là où quantité demandée et quantité offerte coïncident. La soustraction des deux équations donne cinq P égale quatre-vingts, donc un prix d'équilibre de seize, et la quantité correspondante vaut soixante-huit. Un système linéaire vient de fixer le prix d'un marché entier."
+    },
+    {
+      "id": "p24",
+      "ecran": "chimie",
+      "texte": "Propane équilibré : 1, 5, 3, 4 — la plus simple des solutions.",
+      "dit": "En chimie, équilibrer une combustion est un système linéaire qui ne dit pas son nom. Pour le propane, on écrit la conservation de chaque élément : le carbone impose c égale trois a, l'hydrogène d égale quatre a, et l'oxygène relie b aux deux autres. Le système a une infinité de solutions proportionnelles ; la chimie choisit la plus simple, avec a égale un : un propane, cinq dioxygènes, trois dioxydes de carbone et quatre eaux. Les coefficients stœchiométriques sont une solution entière minimale."
+    },
+    {
+      "id": "p25",
+      "ecran": "melange",
+      "texte": "40 = 30 : incompatible — changer les contraintes.",
+      "dit": "Dernier cas d'école, et le plus instructif : un laboratoire veut cent litres d'acide à trente pour cent, en mélangeant des solutions à vingt, quarante et cinquante pour cent, avec deux fois plus de la troisième que de la première. Écrit en système, tout se simplifie jusqu'à l'absurde : la concentration obtenue vaudrait quarante, quoi qu'on fasse, jamais trente. Le système est incompatible, et c'est une information précieuse : aucune recette ne peut réussir, il faut changer les contraintes, pas les calculs."
+    },
+    {
+      "id": "p26",
+      "ecran": "strategie",
+      "texte": "La bonne méthode selon la forme du système.",
+      "dit": "Devant un système, choisissez l'outil selon sa forme. Un coefficient égal à un ou moins un invite la substitution. Des coefficients faciles à opposer appellent la combinaison linéaire. Un petit système carré, au déterminant non nul, se prête à Cramer. Et pour les grands systèmes, pensez Gauss. Dans tous les cas, terminez par le geste qui sauve des points : reporter la solution dans le système initial et vérifier chaque équation."
+    },
+    {
+      "id": "p27",
+      "ecran": "recap",
+      "texte": "L'essentiel des systèmes linéaires, en cinq points.",
+      "dit": "Pour conclure, retenez l'essentiel. Un système linéaire rassemble des contraintes qui doivent tenir ensemble, et sa solution se lit géométriquement comme une intersection de droites ou de plans. La substitution isole et remplace, la combinaison élimine, les matrices organisent, le déterminant teste l'unicité, et Cramer donne chaque inconnue comme un rapport de déterminants. Trois méthodes, une même idée : rendre les contraintes compatibles, puis lire la réponse."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir, voir, et résoudre par substitution"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Combinaison linéaire, matrices, déterminants et Cramer",
+      "pont": {
+        "texte": "Partie 2 : combinaison linéaire, matrices, déterminants, Cramer.",
+        "dit": "Partie deux : changer d'outil. Après la substitution, voici la combinaison linéaire, qui élimine les inconnues sans les isoler, puis le langage des matrices et des déterminants, qui prépare la formule directe de Cramer."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "Cramer à l'œuvre, géométrie et applications",
+      "pont": {
+        "texte": "Partie 3 : exemples de Cramer, géométrie et applications.",
+        "dit": "Partie trois : Cramer à l'œuvre, puis le retour de la géométrie. Nous résoudrons un problème de comptage d'animaux et un circuit électrique complet, nous lirons le déterminant comme une aire, et nous terminerons par les applications : marchés, chimie, et même un mélange impossible."
+      }
+    }
+  ]
+}
