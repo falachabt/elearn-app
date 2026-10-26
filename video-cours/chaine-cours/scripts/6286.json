@@ -1,0 +1,442 @@
+{
+  "cours": 6286,
+  "titre": "Notions de fonctions : définition, domaine, courbe et propriétés",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Fonctions",
+      "titre": "Notions de fonctions",
+      "sous": "Définition, domaine, courbe, variations : le langage qui décrit le changement",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Une machine à règle fixe : on entre un antécédent x, il en sort une unique image f(x). Toute la théorie tient dans ce mot : unique.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "La définition",
+      "tex": "f : D \\to \\mathbb{R}, \\quad x \\mapsto f(x)",
+      "titre": "Un antécédent, une seule image",
+      "note": "x est l'antécédent, f(x) son image : l'unicité de l'image définit la fonction."
+    },
+    "carre": {
+      "type": "etape",
+      "kicker": "Premier exemple · la fonction carré",
+      "titre": "Des images calculées une à une",
+      "tex": [
+        "f(3) = 3^2 = 9 \\qquad f(-2) = (-2)^2 = 4",
+        "f(0) = 0"
+      ],
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 150
+      }
+    },
+    "domaine": {
+      "type": "formule",
+      "kicker": "L'ensemble de définition",
+      "tex": "D_f = \\{ x \\in \\mathbb{R} \\mid f(x) \\text{ existe} \\}",
+      "titre": "Le territoire où la fonction existe",
+      "note": "Trois dangers : dénominateur nul, racine négative, logarithme non strictement positif."
+    },
+    "contraintes": {
+      "type": "etape",
+      "kicker": "Les trois conditions de base",
+      "titre": "Chaque danger, sa condition",
+      "tex": [
+        "f(x) = \\tfrac{1}{x - 2} \\quad \\Rightarrow \\quad D_f = \\mathbb{R} \\setminus \\{2\\}",
+        "g(x) = \\sqrt{x + 3} \\quad \\Rightarrow \\quad D_g = [-3, +\\infty[",
+        "h(x) = \\ln(x - 1) \\quad \\Rightarrow \\quad D_h = ]1, +\\infty["
+      ]
+    },
+    "ex_domaine": {
+      "type": "etape",
+      "kicker": "Exemple · combiner les conditions",
+      "titre": "Racine au numérateur, dénominateur à exclure",
+      "tex": [
+        "f(x) = \\tfrac{\\sqrt{5 - x}}{x^2 - 9}",
+        "5 - x \\geq 0 \\Rightarrow x \\leq 5",
+        "x^2 - 9 \\neq 0 \\Rightarrow x \\neq \\pm 3",
+        "D_f = ]-\\infty, -3[ \\cup ]-3, 3[ \\cup ]3, 5]"
+      ]
+    },
+    "ex_compose": {
+      "type": "etape",
+      "kicker": "Exemple · la condition la plus stricte",
+      "titre": "Quand les dangers se combinent",
+      "tex": [
+        "\\tfrac{\\sqrt{x - 2}}{x^2 - 9} : \\quad D_f = [2, 3[ \\cup ]3, +\\infty[",
+        "\\ln(\\sqrt{4 - x}) : \\quad D_f = ]-\\infty, 4["
+      ]
+    },
+    "courbe": {
+      "type": "formule",
+      "kicker": "La courbe représentative",
+      "tex": "C_f = \\{ (x, f(x)) \\mid x \\in D_f \\}",
+      "titre": "Tous les points (x, f(x))",
+      "note": "Test de la droite verticale : une abscisse, un seul point de la courbe.",
+      "anim": {
+        "nom": "test_verticale_fig",
+        "hauteur": 190
+      }
+    },
+    "valeurs": {
+      "type": "etape",
+      "kicker": "Construire la courbe · tableau de valeurs",
+      "titre": "La parabole de x² − 2x − 3",
+      "tex": [
+        "x \\quad -2 \\quad -1 \\quad 0 \\quad 1 \\quad 2 \\quad 3 \\quad 4",
+        "f(x) \\quad 5 \\quad 0 \\quad -3 \\quad -4 \\quad -3 \\quad 0 \\quad 5"
+      ]
+    },
+    "lecture": {
+      "type": "phrase",
+      "kicker": "Lire un graphique",
+      "texte": "Racines : les croisements avec l'axe des abscisses. Image de zéro : le croisement avec l'axe des ordonnées. Minimum : le point le plus bas de la courbe.",
+      "anim": {
+        "nom": "lecture_graphique_fig",
+        "hauteur": 190
+      }
+    },
+    "affine": {
+      "type": "etape",
+      "kicker": "Fonctions de référence · l'affine",
+      "titre": "Une droite : pente a, ordonnée à l'origine b",
+      "tex": [
+        "f(x) = 2x - 1",
+        "f(-2) = -5 \\qquad f(0) = -1 \\qquad f(3) = 5",
+        "f(x) > 0 \\iff x > \\tfrac{1}{2}"
+      ],
+      "anim": {
+        "nom": "droites_affines_fig",
+        "hauteur": 150
+      }
+    },
+    "inverse": {
+      "type": "phrase",
+      "kicker": "Fonctions de référence · l'inverse",
+      "texte": "f(x) = 1/x : une hyperbole en deux branches, qui frôle les axes sans jamais les toucher — les axes sont ses asymptotes.",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 190
+      }
+    },
+    "variations": {
+      "type": "formule",
+      "kicker": "Le sens de variation",
+      "tex": "a < b \\Rightarrow f(a) \\leq f(b) \\quad \\text{(croissante)}",
+      "titre": "Croissante : l'ordre est conservé",
+      "note": "Décroissante : l'ordre des images s'inverse. Le tableau de variations résume les deux avec des flèches.",
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 160
+      }
+    },
+    "methode_var": {
+      "type": "etape",
+      "kicker": "Démontrer une variation",
+      "titre": "Comparer deux images",
+      "tex": [
+        "f(x) = 2x + 3 \\qquad a < b",
+        "f(b) - f(a) = 2(b - a) > 0",
+        "\\text{donc } f \\text{ est strictement croissante sur } \\mathbb{R}"
+      ]
+    },
+    "exercice_g": {
+      "type": "etape",
+      "kicker": "Exercice guidé · variations complètes",
+      "titre": "Un maximum de un, atteint en deux",
+      "tex": [
+        "g(x) = -(x - 2)^2 + 1",
+        "\\text{croissante avant } 2, \\text{ décroissante après } 2"
+      ],
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 120
+      }
+    },
+    "parite": {
+      "type": "formule",
+      "kicker": "La parité",
+      "tex": "\\begin{aligned} &f(-x) = f(x) \\ \\text{(paire)} \\\\ &f(-x) = -f(x) \\ \\text{(impaire)} \\end{aligned}",
+      "titre": "Deux symétries, deux formules",
+      "note": "Domaine symétrique par rapport à 0 d'abord : paire, symétrie d'axe Oy ; impaire, symétrie de centre O.",
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 160
+      }
+    },
+    "ex_parite": {
+      "type": "etape",
+      "kicker": "Exemple · trois verdicts de parité",
+      "titre": "Paire, impaire, ni l'une ni l'autre",
+      "tex": [
+        "x^2 : (-x)^2 = x^2 \\quad \\text{paire}",
+        "x^3 : (-x)^3 = -x^3 \\quad \\text{impaire}",
+        "x^2 + x : (-x)^2 - x = x^2 - x",
+        "\\text{ni paire ni impaire}"
+      ]
+    },
+    "periodicite": {
+      "type": "formule",
+      "kicker": "La périodicité",
+      "tex": "f(x + T) = f(x)",
+      "titre": "Le même motif, indéfiniment",
+      "note": "T période ; la plus petite positive est la période fondamentale : 2π pour sin et cos, π pour tan.",
+      "anim": {
+        "nom": "sinusoide",
+        "hauteur": 190
+      }
+    },
+    "ex_periode": {
+      "type": "etape",
+      "kicker": "Exemple · une période à calculer",
+      "titre": "Deux pi sur trois",
+      "tex": [
+        "f(x) = 2\\cos\\left(3x - \\tfrac{\\pi}{4}\\right) + 1",
+        "T_0 = \\tfrac{2\\pi}{|3|} = \\tfrac{2\\pi}{3} \\qquad f\\left(x + \\tfrac{2\\pi}{3}\\right) = f(x)"
+      ]
+    },
+    "economie": {
+      "type": "phrase",
+      "kicker": "Symétries et périodes au travail",
+      "texte": "Parité : étudier sur les réels positifs, puis symétriser. Période : étudier sur un intervalle de longueur T, puis translater.",
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 150
+      }
+    },
+    "projectile": {
+      "type": "etape",
+      "kicker": "Atelier · le projectile",
+      "titre": "Quarante-cinq mètres au bout de trois secondes",
+      "tex": [
+        "h(t) = 30t - 5t^2 \\qquad h(0) = 0 \\quad h(1) = 25",
+        "h(3) = 45 \\quad \\text{(sommet)}",
+        "h(6) = 0 \\quad \\text{(retombée)}"
+      ],
+      "anim": {
+        "nom": "parabole_fig",
+        "hauteur": 140
+      }
+    },
+    "cout": {
+      "type": "etape",
+      "kicker": "Atelier · le coût de production",
+      "titre": "Rentable dès la troisième boîte",
+      "tex": [
+        "C(x) = \\tfrac{1}{2}x^2 + 20x + 100 \\qquad C(0) = 100",
+        "C(50) = 2350 \\qquad C(100) = 7100",
+        "B(x) = 70x - C(x) \\geq 0 \\text{ dès } x = 3"
+      ],
+      "anim": {
+        "nom": "boite_carton_fig",
+        "hauteur": 110
+      }
+    },
+    "morceaux": {
+      "type": "phrase",
+      "kicker": "Atelier · la fonction par morceaux",
+      "texte": "x² avant 0, 2x + 1 entre 0 et 2, puis 5 : un saut en 0 (de 0 vers 1), un raccord parfait en 2 (les deux formules donnent 5).",
+      "anim": {
+        "nom": "discontinuites_fig",
+        "hauteur": 170
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Image unique pour chaque antécédent",
+        "Domaine : dénominateur, racine, logarithme",
+        "Courbe : points (x, f(x)), lecture directe",
+        "Variations : comparer f(a) et f(b)",
+        "Parité, période : un seul motif suffit"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Fonctions : une entrée, une unique image.",
+      "dit": "Bienvenue dans ce cours consacré aux notions de fonctions. Une fonction numérique est un langage : elle associe à chaque nombre d'un ensemble de départ un unique nombre d'arrivée, son image. Nous construirons ce langage pas à pas : définition et ensemble de définition, courbe représentative et lecture graphique, variations, puis parité et périodicité, avant un atelier de problèmes complets."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Antécédent x, image f(x) : une seule sortie.",
+      "dit": "L'image à garder est celle d'une machine. On entre un nombre, la machine applique sa règle, et un seul nombre en sort. La machine à café de la leçon devient ici une règle de calcul : l'entrée s'appelle l'antécédent, noté ixe, et la sortie s'appelle l'image, notée f de ixe. Si une même entrée pouvait donner deux sorties différentes, la machine serait déréglée : ce ne serait plus une fonction."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "texte": "f : D → ℝ, x ↦ f(x) : l'image est unique.",
+      "dit": "Définition formelle : une fonction numérique f est une relation qui, à tout élément ixe d'une partie D des nombres réels, associe un et un seul réel, noté f de ixe. On écrit f, de D vers l'ensemble des réels, qui à ixe associe f de ixe. Deux mots à ne jamais confondre : ixe est l'antécédent, f de ixe est son image. L'unicité de l'image est la signature d'une fonction."
+    },
+    {
+      "id": "p04",
+      "ecran": "carre",
+      "texte": "Carré : f(3) = 9, f(−2) = 4, f(0) = 0.",
+      "dit": "Premier exemple, la fonction carré, qui à ixe associe ixe au carré. Pour ixe égale trois, l'image vaut neuf ; pour ixe égale moins deux, l'image vaut quatre, car le carré d'un nombre négatif est positif ; pour zéro, l'image vaut zéro. Deux antécédents opposés partagent la même image : c'est autorisé. Ce qui est interdit, rappelons-le, c'est une image double pour un même antécédent."
+    },
+    {
+      "id": "p05",
+      "ecran": "domaine",
+      "texte": "Le domaine : repérer, conditionner, combiner.",
+      "dit": "Toutes les entrées ne sont pas permises. L'ensemble de définition d'une fonction est l'ensemble des réels ixe pour lesquels f de ixe existe. La méthode tient en trois temps : repérer les opérations dangereuses dans la formule, traduire chacune en une condition sur ixe, puis combiner toutes les conditions. Trois dangers reviennent sans cesse : un dénominateur, une racine carrée et un logarithme."
+    },
+    {
+      "id": "p06",
+      "ecran": "contraintes",
+      "texte": "Dénominateur ≠ 0 ; racine ≥ 0 ; log > 0.",
+      "dit": "Les trois conditions de base, à connaître par cœur. Un dénominateur ne doit jamais s'annuler : pour un sur ixe moins deux, on exclut deux. Sous une racine carrée, l'expression doit rester positive ou nulle : pour racine de ixe plus trois, ixe doit être supérieur ou égal à moins trois. Dans un logarithme, l'argument doit être strictement positif : pour logarithme de ixe moins un, ixe doit dépasser strictement un."
+    },
+    {
+      "id": "p07",
+      "ecran": "ex_domaine",
+      "texte": "Exemple : domaine jusqu'à 5, sans −3 ni 3.",
+      "dit": "Exemple complet : la fonction qui à ixe associe racine de cinq moins ixe, le tout divisé par ixe au carré moins neuf. La racine impose cinq moins ixe positif ou nul, donc ixe inférieur ou égal à cinq. Le dénominateur impose ixe différent de trois et de moins trois. En combinant : tous les réels jusqu'à cinq, en retirant moins trois et trois. Chaque danger a laissé sa trace dans le domaine final."
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_compose",
+      "texte": "Combiner les conditions : la plus stricte gagne.",
+      "dit": "Deux exemples pour verrouiller la méthode. Avec racine de ixe moins deux au numérateur et ixe au carré moins neuf au dénominateur, la racine impose ixe supérieur ou égal à deux, et seul trois doit encore être exclu : le domaine commence à deux, saute trois, puis continue. Avec le logarithme d'une racine, la condition devient stricte : logarithme de racine de quatre moins ixe n'existe que pour ixe strictement inférieur à quatre, car une racine nulle donnerait un logarithme de zéro."
+    },
+    {
+      "id": "p09",
+      "ecran": "courbe",
+      "texte": "Courbe : les points (x, f(x)), test vertical.",
+      "dit": "Passons au dessin. La courbe représentative d'une fonction est l'ensemble des points de coordonnées ixe et f de ixe, quand ixe parcourt le domaine. Conséquence directe de l'unicité de l'image : une droite verticale ne peut couper la courbe qu'en un point au plus. C'est le test de la droite verticale : s'il échoue, la courbe tracée n'est pas celle d'une fonction."
+    },
+    {
+      "id": "p10",
+      "ecran": "valeurs",
+      "texte": "Sept points calculés : la parabole apparaît.",
+      "dit": "Construisons la courbe de la fonction qui à ixe associe ixe au carré moins deux ixe moins trois. Le tableau de valeurs donne, pour ixe égal à moins deux, moins un, zéro, un, deux, trois et quatre, les images cinq, zéro, moins trois, moins quatre, moins trois, zéro et cinq. En plaçant ces sept points puis en les reliant, une parabole apparaît : chaque point calculé devient un point du dessin."
+    },
+    {
+      "id": "p11",
+      "ecran": "lecture",
+      "texte": "Lire : racines −1 et 3, minimum −4 en 1.",
+      "dit": "Une courbe se lit comme un texte. Sur notre parabole, les croisements avec l'axe des abscisses donnent les antécédents de zéro : moins un et trois. Le croisement avec l'axe des ordonnées donne l'image de zéro : moins trois. Le point le plus bas donne le minimum : moins quatre, atteint en ixe égale un. Lire une image, c'est monter verticalement de l'abscisse à la courbe, puis repartir horizontalement vers l'ordonnée."
+    },
+    {
+      "id": "p12",
+      "ecran": "affine",
+      "texte": "Affine : une droite, pente a, départ b.",
+      "dit": "Cas particulier à reconnaître d'un coup d'œil : la fonction affine, qui à ixe associe a ixe plus bé, a pour courbe une droite. Pour deux ixe moins un, les points de coordonnées moins deux et moins cinq, zéro et moins un, trois et cinq sont alignés. La droite coupe l'axe des abscisses en ixe égale un demi : la fonction est donc positive après un demi, négative avant. La pente a donne la direction, l'ordonnée à l'origine bé donne le point de départ."
+    },
+    {
+      "id": "p13",
+      "ecran": "inverse",
+      "texte": "Inverse : hyperbole, les axes pour asymptotes.",
+      "dit": "Deuxième visage de référence : la fonction inverse, qui à ixe associe un sur ixe. Son domaine exclut zéro, et sa courbe, une hyperbole, possède deux branches qui s'approchent des axes sans jamais les toucher : les axes sont ses asymptotes. Quand ixe s'approche de zéro, l'image s'envole ; quand ixe s'éloigne, l'image s'écrase vers zéro. Retenez ce comportement : il réapparaîtra dans toutes les fonctions rationnelles."
+    },
+    {
+      "id": "p14",
+      "ecran": "variations",
+      "texte": "Croissante : l'ordre des images suit celui des x.",
+      "dit": "Étudions maintenant comment la fonction évolue. Elle est croissante sur un intervalle si les images rangent les antécédents dans le même ordre : a plus petit que bé entraîne f de a inférieur ou égal à f de bé. Elle est décroissante si l'ordre s'inverse. Graphiquement, en lisant de gauche à droite, la courbe monte dans le premier cas et descend dans le second. Le tableau de variations résume tout cela avec des flèches."
+    },
+    {
+      "id": "p15",
+      "ecran": "methode_var",
+      "texte": "f(b) − f(a) = 2(b − a) > 0 : strictement croissante.",
+      "dit": "Pour démontrer une variation sans courbe, on compare deux images. Prenons la fonction qui à ixe associe deux ixe plus trois, et deux antécédents a et bé avec a plus petit que bé. La différence des images vaut deux fois bé moins a, qui est positive puisque bé dépasse a. Les images sont donc rangées comme les antécédents : la fonction est strictement croissante sur tous les réels. Ce calcul de différence est la méthode algébrique de référence."
+    },
+    {
+      "id": "p16",
+      "ecran": "exercice_g",
+      "texte": "g(x) = −(x − 2)² + 1 : maximum 1 en x = 2.",
+      "dit": "Exercice guidé complet : la fonction g qui à ixe associe moins ixe au carré plus quatre ixe moins trois. Sa forme canonique est moins, parenthèse, ixe moins deux, au carré, plus un. Sa parabole est tournée vers le bas, avec un sommet en ixe égale deux. Elle est donc strictement croissante avant deux, strictement décroissante après deux, et son maximum vaut un, atteint en deux. Le tableau de variations tient en deux flèches et une valeur."
+    },
+    {
+      "id": "p17",
+      "ecran": "parite",
+      "texte": "Paire : axe Oy ; impaire : origine O.",
+      "dit": "Certaines courbes sont symétriques, et cela se lit dans la formule. Une fonction est paire si, pour tout ixe de son domaine, f de moins ixe égale f de ixe : sa courbe est symétrique par rapport à l'axe des ordonnées. Elle est impaire si f de moins ixe égale moins f de ixe : sa courbe est symétrique par rapport à l'origine. Condition préalable, souvent oubliée : le domaine lui-même doit être symétrique par rapport à zéro."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_parite",
+      "texte": "x² paire, x³ impaire, x² + x ni l'une ni l'autre.",
+      "dit": "Trois verdicts pour s'entraîner. La fonction carré est paire : le carré de moins ixe égale le carré de ixe. La fonction cube est impaire : le cube de moins ixe égale moins le cube de ixe. En revanche, la fonction qui à ixe associe ixe au carré plus ixe donne, en moins ixe, ixe au carré moins ixe, qui n'est ni l'image ni son opposée : elle n'est ni paire ni impaire. La plupart des fonctions n'ont aucune parité."
+    },
+    {
+      "id": "p19",
+      "ecran": "periodicite",
+      "texte": "f(x + T) = f(x) : le motif se répète.",
+      "dit": "Autre régularité : la périodicité. Une fonction est périodique s'il existe un réel strictement positif, noté té, tel que, pour tout ixe, f de ixe plus té égale f de ixe. Le motif se répète par translation horizontale de longueur té. La plus petite de ces périodes positives est la période fondamentale : deux pi pour le sinus et le cosinus, pi pour la tangente. Il suffit alors d'étudier la fonction sur un seul intervalle de longueur té."
+    },
+    {
+      "id": "p20",
+      "ecran": "ex_periode",
+      "texte": "Période de 2cos(3x − π/4) + 1 : 2π/3.",
+      "dit": "Exemple : la fonction qui à ixe associe deux cosinus de trois ixe moins pi sur quatre, plus un. Pour une forme en cosinus de bé ixe plus cé, la période fondamentale vaut deux pi divisé par la valeur absolue de bé. Ici bé vaut trois : la période vaut donc deux pi sur trois. Vérification immédiate : décaler ixe de deux pi sur trois ajoute deux pi à l'argument du cosinus, et le cosinus retrouve exactement la même valeur."
+    },
+    {
+      "id": "p21",
+      "ecran": "economie",
+      "texte": "Symétrie et période : étudier moins, conclure plus.",
+      "dit": "Parité et périodicité sont des machines à économiser le travail. Une fonction paire ou impaire s'étudie sur les seuls réels positifs, l'autre moitié de la courbe s'obtient par symétrie. Une fonction périodique s'étudie sur un intervalle d'une période, le reste s'obtient par translations. La fonction dent de scie, qui à ixe associe ixe moins sa partie entière, répète ainsi le même segment de droite à chaque unité : sa période fondamentale vaut un."
+    },
+    {
+      "id": "p22",
+      "ecran": "projectile",
+      "texte": "Projectile : sommet 45 m à 3 s, sol à 6 s.",
+      "dit": "Atelier, premier problème : un projectile dont la hauteur, en mètres, est donnée par h de té égale trente té moins cinq té au carré, té étant le temps en secondes. Les valeurs sont zéro, vingt-cinq, quarante, quarante-cinq, quarante, vingt-cinq et zéro, de la seconde zéro à la seconde six. La parabole culmine à quarante-cinq mètres au bout de trois secondes, puis le projectile retombe au sol à six secondes : domaine physique, de zéro à six."
+    },
+    {
+      "id": "p23",
+      "ecran": "cout",
+      "texte": "Coût fixe 100 € ; rentable dès 3 boîtes.",
+      "dit": "Deuxième problème : un coût de production. Pour ixe boîtes produites, le coût vaut zéro virgule cinq ixe au carré plus vingt ixe plus cent euros. Le coût fixe, sans aucune production, est de cent euros. Le coût atteint deux mille trois cent cinquante euros pour cinquante boîtes et sept mille cent euros pour cent boîtes. Si chaque boîte se vend soixante-dix euros, le bénéfice devient positif dès la troisième boîte : avant, l'entreprise perd encore de l'argent."
+    },
+    {
+      "id": "p24",
+      "ecran": "morceaux",
+      "texte": "Par morceaux : saut en 0, raccord en 2.",
+      "dit": "Troisième problème : une fonction par morceaux. Elle vaut ixe au carré avant zéro, deux ixe plus un entre zéro et deux, et cinq à partir de deux. Ses valeurs en moins deux, zéro, un, deux et trois sont quatre, un, trois, cinq et cinq. En zéro, la courbe saute de zéro à un : elle n'est pas continue. En deux, les deux formules se rejoignent à cinq : elle est continue. Ces fonctions par morceaux modélisent les tarifs par tranches et les barèmes."
+    },
+    {
+      "id": "p25",
+      "ecran": "recap",
+      "texte": "Fonctions : domaine, courbe, variations, symétries.",
+      "dit": "Pour finir, retenez la méthode complète d'étude d'une fonction. D'abord le domaine : dénominateur non nul, racine positive ou nulle, logarithme strictement positif. Ensuite la courbe : des points calculés, puis une lecture des images, des antécédents et des extrema. Puis les variations, démontrées en comparant deux images. Enfin, la parité et la période, qui réduisent le travail à une moitié de domaine ou à un seul motif."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définition et ensemble de définition"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "Courbe représentative et variations",
+      "pont": {
+        "texte": "Partie 2 : courbe représentative et variations.",
+        "dit": "Partie deux : voir la fonction. Nous construirons sa courbe point par point, nous apprendrons à y lire images, antécédents et extrema, puis nous étudierons ses variations, à la courbe comme au calcul."
+      }
+    },
+    {
+      "debut": "p17",
+      "sous_titre": "Parité, périodicité et atelier de synthèse",
+      "pont": {
+        "texte": "Partie 3 : parité, périodicité et problèmes de synthèse.",
+        "dit": "Partie trois : les symétries, la répétition et l'atelier. La parité et la périodicité réduisent l'étude à un domaine ou à un motif, puis trois problèmes complets, un projectile, un coût de production et une fonction par morceaux, réuniront tous les outils du cours."
+      }
+    }
+  ]
+}
