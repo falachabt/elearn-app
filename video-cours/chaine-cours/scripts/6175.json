@@ -1,0 +1,490 @@
+{
+ "cours": 6175,
+ "titre": "Géométrie analytique dans l'espace : repères, équations, sections et lieux",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Géométrie analytique dans l'espace",
+   "titre": "Géométrie analytique dans l'espace : repères, équations, sections et lieux",
+   "sous": "Coordonnées et vecteurs, équations de droites et de plans, sections de solides et lieux géométriques",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 250
+   }
+  },
+  "repere": {
+   "type": "etape",
+   "kicker": "Le repère de l'espace",
+   "titre": "Une origine, trois vecteurs non coplanaires",
+   "tex": [
+    "(O, \\vec{i}, \\vec{j}, \\vec{k}) \\quad \\text{base de l'espace}",
+    "\\vec{i} \\cdot \\vec{j} = \\vec{j} \\cdot \\vec{k} = \\vec{k} \\cdot \\vec{i} = 0",
+    "|\\vec{i}| = |\\vec{j}| = |\\vec{k}| = 1 \\quad \\text{: repère orthonormé}"
+   ]
+  },
+  "coord_point": {
+   "type": "formule",
+   "kicker": "Les coordonnées d'un point",
+   "tex": "\\overrightarrow{OM} = x\\vec{i} + y\\vec{j} + z\\vec{k}",
+   "note": "M(3, 4, 2) : trois mètres à droite, quatre devant, deux de haut."
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Les opérations sur les vecteurs",
+   "titre": "Coordonnée par coordonnée, comme dans le plan",
+   "tex": [
+    "\\vec{u} + \\vec{v} = (x_1 + x_2,\\ y_1 + y_2,\\ z_1 + z_2)",
+    "\\lambda\\vec{u} = (\\lambda x_1,\\ \\lambda y_1,\\ \\lambda z_1)",
+    "\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC} \\quad \\text{(Chasles)}"
+   ]
+  },
+  "norme": {
+   "type": "formule",
+   "kicker": "La norme d'un vecteur",
+   "tex": "|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}",
+   "note": "Et la distance entre deux points : la norme du vecteur qui les joint."
+  },
+  "ex_avion": {
+   "type": "etape",
+   "kicker": "Exemple : la navigation d'un avion",
+   "titre": "Départ (10, 20, 0), déplacement (30, −15, 5), en kilomètres",
+   "tex": [
+    "B = (10 + 30,\\ 20 - 15,\\ 0 + 5) = (40, 5, 5)",
+    "|\\vec{v}| = \\sqrt{30^2 + 15^2 + 5^2} = \\sqrt{1150}",
+    "|\\vec{v}| \\approx 33{,}91\\ \\text{km}"
+   ]
+  },
+  "scalaire": {
+   "type": "formule",
+   "kicker": "Le produit scalaire dans l'espace",
+   "tex": "\\vec{u} \\cdot \\vec{v} = xx' + yy' + zz'",
+   "note": "Nul : orthogonalité ; son quotient par les normes donne le cosinus de l'angle."
+  },
+  "ex_cube": {
+   "type": "etape",
+   "kicker": "Exemple : les angles du cube unité",
+   "titre": "Arête contre diagonale de face, puis contre grande diagonale",
+   "tex": [
+    "\\vec{AB} \\cdot \\vec{AC} = 1 \\qquad \\cos\\theta = \\tfrac{1}{\\sqrt{2}} \\Rightarrow \\theta = 45^\\circ",
+    "\\vec{AB} \\cdot \\vec{AG} = 1 \\qquad \\cos\\theta = \\tfrac{1}{\\sqrt{3}}",
+    "\\theta \\approx 54{,}7^\\circ \\quad \\text{(constante du cube)}"
+   ]
+  },
+  "milieu": {
+   "type": "formule",
+   "kicker": "Milieu d'un segment et théorème de la médiane",
+   "tex": "MA^2 + MB^2 = 2MI^2 + \\frac{AB^2}{2}",
+   "note": "I, milieu de [AB] : ses coordonnées sont les moyennes de celles des extrémités."
+  },
+  "methane": {
+   "type": "etape",
+   "kicker": "Application : la molécule de méthane",
+   "titre": "Quatre liaisons parfaitement symétriques",
+   "tex": [
+    "CH_1 = CH_2 = CH_3 = CH_4 = \\sqrt{3}",
+    "\\cos\\theta = \\tfrac{-1}{3} \\qquad \\theta \\approx 109{,}5^\\circ"
+   ],
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 120
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Repère orthonormé : trois axes unitaires",
+    "Coordonnées : l'adresse unique des points",
+    "Norme : Pythagore en trois dimensions",
+    "Scalaire : angles et orthogonalité"
+   ]
+  },
+  "droite_param": {
+   "type": "etape",
+   "kicker": "L'équation d'une droite",
+   "titre": "Un point, un directeur, un paramètre",
+   "tex": [
+    "M \\in (d) \\iff \\overrightarrow{AM} = t\\,\\vec{u}",
+    "x = x_A + at \\qquad y = y_A + bt \\qquad z = z_A + ct",
+    "\\text{ex. } A(1, -2, 3),\\ \\vec{u}(2, 1, -1) : t = 1 \\to M(3, -1, 2)"
+   ]
+  },
+  "plan_cart": {
+   "type": "formule",
+   "kicker": "L'équation cartésienne d'un plan",
+   "tex": "a(x - x_A) + b(y - y_A) + c(z - z_A) = 0",
+   "note": "Forme réduite : ax + by + cz + d = 0, et (a, b, c) est la normale.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_toit": {
+   "type": "phrase",
+   "kicker": "Exemple : le toit plat",
+   "texte": "Trois points à la cote 5 : le plan est horizontal, sa normale est verticale, et son équation se réduit à z = 5.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 200
+   }
+  },
+  "positions": {
+   "type": "etape",
+   "kicker": "Les positions relatives",
+   "titre": "Des tests algébriques sur deux vecteurs",
+   "tex": [
+    "\\text{plans : normales colinéaires} \\Rightarrow \\text{parallèles}",
+    "\\text{plans : sinon, sécants selon une droite}",
+    "\\text{droite-plan : } \\vec{u} \\cdot \\vec{n} = 0 \\Rightarrow \\text{parallèle ou incluse}",
+    "\\vec{u} \\text{ colinéaire à } \\vec{n} \\Rightarrow \\text{droite perpendiculaire au plan}"
+   ]
+  },
+  "section_cube": {
+   "type": "etape",
+   "kicker": "Section plane d'un cube, premier cas",
+   "titre": "Par les milieux de trois arêtes issues d'un sommet",
+   "tex": [
+    "I(1, 0, 0),\\quad J(0, 1, 0),\\quad K(0, 0, 1)",
+    "\\vec{n} = \\overrightarrow{IJ} \\wedge \\overrightarrow{IK} = (1, 1, 1)",
+    "x + y + z = 1 \\quad \\text{: un triangle équilatéral}"
+   ],
+   "anim": {
+    "nom": "section_cube_fig",
+    "hauteur": 130
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Droite : un point, un directeur, un paramètre",
+    "Plan : une équation, coefficients = normale",
+    "Positions : colinéarité ou orthogonalité",
+    "Section du cube : un triangle équilatéral"
+   ]
+  },
+  "lieu_sphere": {
+   "type": "formule",
+   "kicker": "Les lieux géométriques : la sphère",
+   "tex": "(x - x_A)^2 + (y - y_A)^2 + (z - z_A)^2 = k^2",
+   "note": "Le lieu des points à distance constante k d'un point fixe : une sphère.",
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 150
+   }
+  },
+  "plan_mediateur": {
+   "type": "formule",
+   "kicker": "Le plan médiateur d'un segment",
+   "tex": "2(x_B - x_A)x + 2(y_B - y_A)y + 2(z_B - z_A)z + c = 0",
+   "note": "Le lieu des points équidistants de A et B : un plan, perpendiculaire à [AB] en son milieu."
+  },
+  "sphere_diametre": {
+   "type": "formule",
+   "kicker": "La sphère de diamètre [AB]",
+   "tex": "\\left(x - \\frac{1}{2}\\right)^2 + y^2 + z^2 = \\frac{1}{4}",
+   "note": "Pour A(0, 0, 0) et B(1, 0, 0) : le lieu des angles droits qui s'appuient sur [AB].",
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_lieu": {
+   "type": "etape",
+   "kicker": "Exemple : le lieu des angles droits",
+   "titre": "A(1, 0, 0), B(0, 1, 0), triangle AMB rectangle en M",
+   "tex": [
+    "\\overrightarrow{MA} \\cdot \\overrightarrow{MB} = 0",
+    "x^2 + y^2 + z^2 - x - y = 0",
+    "\\Omega\\left(\\tfrac{1}{2}, \\tfrac{1}{2}, 0\\right) \\qquad R = \\tfrac{\\sqrt{2}}{2}"
+   ]
+  },
+  "cylindre": {
+   "type": "phrase",
+   "kicker": "Un lieu en cylindre",
+   "texte": "Les points à distance constante d'une droite forment un cylindre de révolution : la paroi d'un tunnel est partout à la même distance de son axe.",
+   "anim": {
+    "nom": "cylindre_fig",
+    "hauteur": 200
+   }
+  },
+  "section_sphere": {
+   "type": "etape",
+   "kicker": "La section d'une sphère par un plan",
+   "titre": "Sphère de rayon 5, plan 2x − y + 2z = 6",
+   "tex": [
+    "d(\\Omega, P) = \\tfrac{|6|}{\\sqrt{4 + 1 + 4}} = 2",
+    "r = \\sqrt{R^2 - d^2} = \\sqrt{25 - 4}",
+    "r = \\sqrt{21}"
+   ],
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 110
+   }
+  },
+  "ex_section_cube": {
+   "type": "etape",
+   "kicker": "Section du cube, le grand classique",
+   "titre": "Le plan qui coupe six arêtes en leurs milieux",
+   "tex": [
+    "x + y + z = \\tfrac{3}{2} \\qquad 1 < k < 2",
+    "\\text{six points milieux : un hexagone régulier}"
+   ],
+   "anim": {
+    "nom": "section_cube_fig",
+    "hauteur": 170,
+    "variante": "hexagone"
+   }
+  },
+  "ex_pyramide": {
+   "type": "etape",
+   "kicker": "Section d'une pyramide à mi-hauteur",
+   "titre": "Base carrée de côté 2, hauteur 4, plan de cote 2",
+   "tex": [
+    "z = 2 \\Rightarrow t = \\tfrac{1}{2} \\text{ sur chaque arête latérale}",
+    "I\\left(\\tfrac{1}{2}, \\tfrac{1}{2}, 2\\right) \\text{ et trois points analogues}",
+    "\\text{un carré de côté } 1 \\text{ : homothétie de rapport } \\tfrac{1}{2}"
+   ]
+  },
+  "sphere_circonscrite": {
+   "type": "etape",
+   "kicker": "Synthèse : la sphère circonscrite au tétraèdre",
+   "titre": "Trois plans médiateurs, un centre",
+   "tex": [
+    "\\Omega O = \\Omega A \\Rightarrow x = \\tfrac{1}{2}",
+    "y = \\tfrac{1}{2} \\qquad z = \\tfrac{1}{2}",
+    "R = \\sqrt{\\tfrac{3}{4}} = \\tfrac{\\sqrt{3}}{2} \\qquad \\Omega\\left(\\tfrac{1}{2}, \\tfrac{1}{2}, \\tfrac{1}{2}\\right)"
+   ]
+  },
+  "mediateur_AG": {
+   "type": "etape",
+   "kicker": "Le médiateur de la grande diagonale",
+   "titre": "Le plan de l'hexagone retrouvé par une autre voie",
+   "tex": [
+    "A(0, 0, 0),\\quad G(1, 1, 1) \\quad \\text{: diagonale du cube}",
+    "x + y + z = \\tfrac{3}{2} \\quad \\text{: son plan médiateur}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode des lieux et des sections",
+   "etapes": [
+    "Traduire la condition en coordonnées",
+    "Simplifier jusqu'à une forme connue",
+    "Reconnaître : sphère, plan, droite, cylindre",
+    "Vérifier les points particuliers",
+    "Interpréter géométriquement le résultat"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Repère : des adresses pour tout l'espace",
+    "Droites et plans : des équations lisibles",
+    "Le scalaire : longueurs, angles, lieux",
+    "Sections : des figures nées d'un plan",
+    "Lieux : une condition devient une surface"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de géométrie analytique dans l'espace. Capturer la position d'une étoile, décrire la trajectoire d'un satellite, modéliser une molécule : ces exploits partagent un même outil, un système de coordonnées pour décrire l'espace avec précision. Nous construirons cet outil en trois temps : d'abord le repère, les coordonnées et les vecteurs ; ensuite les équations des droites et des plans, et les sections de solides ; enfin les lieux géométriques, ces ensembles de points définis par une condition, qui culminent avec la sphère.",
+   "texte": "Repères, équations, sections et lieux.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un repère de l'espace se compose d'une origine et de trois vecteurs non coplanaires, qui forment une base : toute position s'atteint en combinant ces trois directions. Le repère est orthonormé quand les vecteurs de base sont deux à deux orthogonaux et tous de norme un : c'est le repère de travail de tout ce cours, celui où les formules de distance et de produit scalaire prennent leur forme simple. Pour l'orientation, retenez la règle de la main droite : l'index pour le premier axe, le majeur pour le deuxième, le pouce donne le troisième.",
+   "texte": "(O, i, j, k) orthonormé : trois axes, norme un.",
+   "ecran": "repere"
+  },
+  {
+   "id": "p03",
+   "dit": "Chaque point de l'espace reçoit alors une adresse unique : trois nombres, l'abscisse, l'ordonnée et la cote, qui sont les coefficients de la décomposition du vecteur origine-point sur la base. Exemple concret : modélisez une salle de classe, origine dans un coin au sol, un axe vers la droite, un vers l'avant, un vers le haut. Le point de coordonnées trois, quatre, deux désigne l'objet situé à trois mètres à droite, quatre mètres devant, et deux mètres de haut. Trois nombres, et le point est localisé sans ambiguïté dans tout l'espace.",
+   "texte": "M trois, quatre, deux : une adresse unique.",
+   "ecran": "coord_point"
+  },
+  {
+   "id": "p04",
+   "dit": "Les vecteurs se manipulent coordonnée par coordonnée. L'addition juxtapose les déplacements : on ajoute les abscisses, les ordonnées et les cotes séparément. La multiplication par un nombre réel dilate ou inverse le vecteur, en multipliant chaque coordonnée. Et la relation de Chasles enchaîne les trajets : aller de A à B puis de B à C revient à aller directement de A à C. Ces règles sont celles du plan, étendues sans surprise à la troisième coordonnée : l'algèbre des déplacements est la même, seul le décor grandit.",
+   "texte": "Addition, homothétie, Chasles.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p05",
+   "dit": "La norme d'un vecteur prolonge Pythagore : racine carrée de la somme des carrés des trois coordonnées. La distance entre deux points en découle aussitôt, en appliquant la norme au vecteur qui les joint. Retenez ce couple inséparable : une coordonnée de plus que dans le plan, la même recette. C'est cette norme qui transforme un triplet de nombres en une longueur mesurable, comparable, utilisable par un ingénieur ou un navigateur.",
+   "texte": "La norme : Pythagore en trois dimensions.",
+   "ecran": "norme"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple : un avion part du point A, de coordonnées dix, vingt, zéro, en kilomètres, et se déplace selon un vecteur de coordonnées trente, moins quinze, cinq. Sa position finale s'obtient en ajoutant le déplacement au départ : quarante, cinq, cinq. La distance parcourue est la norme du déplacement : racine de neuf cents, plus deux cent vingt-cinq, plus vingt-cinq, soit racine de mille cent cinquante, environ trente-trois virgule neuf un kilomètres. Position finale par addition, distance par norme : deux gestes à ne jamais confondre.",
+   "texte": "Arrivée quarante, cinq, cinq ; trente-trois kilomètres.",
+   "ecran": "ex_avion"
+  },
+  {
+   "id": "p07",
+   "dit": "Le produit scalaire, déjà rencontré pour les distances et les angles, a dans un repère orthonormé une expression d'une simplicité remarquable : la somme des produits des coordonnées correspondantes. Il mesure l'alignement de deux vecteurs : nul, ils sont orthogonaux ; positif, l'angle est aigu ; négatif, il est obtus. Et en isolant le cosinus, on obtient l'angle entre deux vecteurs à partir de leurs seules coordonnées. C'est le pont permanent de ce cours entre l'algèbre des coordonnées et la géométrie des formes.",
+   "texte": "Le scalaire : l'alignement en un nombre.",
+   "ecran": "scalaire"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple dans le cube unité, depuis un même sommet. L'arête A B et la diagonale de face A C forment un angle dont le cosinus vaut un sur racine de deux : quarante-cinq degrés, sans surprise. Plus remarquable : l'arête A B et la grande diagonale A G, qui traverse tout le cube, forment un angle dont le cosinus vaut un sur racine de trois, environ cinquante-quatre virgule sept degrés. Ce dernier angle ne dépend ni de la taille du cube, ni du sommet choisi : c'est une constante de la forme cubique elle-même.",
+   "texte": "Cube : quarante-cinq, puis cinquante-quatre degrés.",
+   "ecran": "ex_cube"
+  },
+  {
+   "id": "p09",
+   "dit": "Deux formules ferment cette partie. Le milieu d'un segment a pour coordonnées les moyennes des coordonnées des extrémités, axe par axe. Et le théorème de la médiane relie les distances d'un point quelconque aux extrémités d'un segment : la somme des carrés des distances vaut deux fois le carré de la distance au milieu, plus la moitié du carré de la longueur du segment. Ces deux résultats transforment des questions de distances en calculs de coordonnées, et ils serviront bientôt à reconnaître des sphères.",
+   "texte": "Milieu : les moyennes ; médiane : les carrés.",
+   "ecran": "milieu"
+  },
+  {
+   "id": "p10",
+   "dit": "Application spectaculaire : la molécule de méthane. Le carbone est à l'origine, et les quatre hydrogènes occupent les points de coordonnées un, un, un ; un, moins un, moins un ; moins un, un, moins un ; et moins un, moins un, un. Chacun est à distance racine de trois du carbone : la configuration est parfaitement symétrique. Le produit scalaire de deux liaisons vaut moins un, donc le cosinus de l'angle entre deux liaisons vaut moins un tiers, et l'angle environ cent neuf virgule cinq degrés : c'est l'angle tétraédrique, la signature géométrique du méthane, prédite par les seules coordonnées.",
+   "texte": "Méthane : un angle de cent neuf virgule cinq degrés.",
+   "ecran": "methane"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons. Le repère orthonormé donne à chaque point une adresse de trois nombres. Les vecteurs s'ajoutent coordonnée par coordonnée, leur norme prolonge Pythagore, et le produit scalaire, somme des produits de coordonnées, livre angles et orthogonalité. Dans la deuxième partie, ces outils vont parler : une droite deviendra un système d'équations paramétriques, un plan une unique équation cartésienne, et nous couperons des solides par des plans.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "Une droite de l'espace est déterminée par un point et un vecteur directeur. Un point M appartient à la droite si le vecteur A M est un multiple du directeur : c'est l'équation vectorielle. En coordonnées, elle se déploie en trois équations paramétriques : chaque coordonnée part de celle du point connu et avance au rythme du directeur, selon un même paramètre. Exemple : par le point de coordonnées un, moins deux, trois, dans la direction deux, un, moins un, le paramètre un donne le point trois, moins un, deux, et le paramètre moins deux donne moins trois, moins quatre, cinq. Un seul paramètre suffit, parce que l'alignement lie les trois coordonnées entre elles.",
+   "texte": "Droite : un point, une direction, un paramètre.",
+   "ecran": "droite_param"
+  },
+  {
+   "id": "p13",
+   "dit": "Un plan, lui, est déterminé par un point et un vecteur normal, perpendiculaire à toutes les droites du plan. Un point M appartient au plan exactement quand le vecteur A M est orthogonal à la normale, c'est-à-dire quand leur produit scalaire est nul. Développé en coordonnées, ce test donne l'équation cartésienne du plan : une seule équation linéaire, dont les trois coefficients sont précisément les coordonnées de la normale. C'est la forme la plus utile de tout le cours : lire un plan, c'est d'abord lire sa normale.",
+   "texte": "Plan : lire d'abord sa normale.",
+   "ecran": "plan_cart"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple minimal : un toit plat passe par trois points tous situés à la cote cinq. Le plan est donc horizontal, sa normale est verticale, et son équation se réduit à zède égale cinq. Retenez les trois plans de coordonnées déguisés en équations : cote constante, plan horizontal ; abscisse constante, plan vertical parallèle au mur du fond ; ordonnée constante, l'autre mur. Quand une coordonnée disparaît d'une équation de plan, le plan est parallèle à l'axe de cette coordonnée : ce réflexe de lecture fait gagner un temps précieux.",
+   "texte": "Toit plat : zède égale cinq.",
+   "ecran": "ex_toit"
+  },
+  {
+   "id": "p15",
+   "dit": "Avec les équations viennent les diagnostics. Deux plans sont parallèles quand leurs normales sont colinéaires ; sinon, ils se coupent selon une droite. Une droite est parallèle à un plan quand son directeur est orthogonal à la normale du plan, et perpendiculaire au plan quand son directeur est colinéaire à cette normale. Une droite, quant à elle, peut aussi se lire comme l'intersection de deux plans : deux équations cartésiennes dont les normales ne sont pas colinéaires. Chaque position relative devient ainsi un test algébrique sur deux vecteurs.",
+   "texte": "Positions : des tests sur deux vecteurs.",
+   "ecran": "positions"
+  },
+  {
+   "id": "p16",
+   "dit": "Première section plane : un cube de côté deux, et le plan qui passe par les milieux de trois arêtes issues de l'origine, les points de coordonnées un, zéro, zéro ; zéro, un, zéro ; et zéro, zéro, un. Le produit vectoriel de deux vecteurs du plan donne la normale un, un, un, et l'équation s'écrit : somme des trois coordonnées égale un. Comme toutes les coordonnées restent positives et que le plan coupe le cube tout près du sommet, la section est un triangle, dont les trois côtés valent racine de deux : un triangle équilatéral, né d'une seule équation.",
+   "texte": "Section : un triangle équilatéral.",
+   "ecran": "section_cube"
+  },
+  {
+   "id": "p17",
+   "dit": "Récapitulons. Une droite : un point, un directeur, un paramètre, ou deux plans qui se coupent. Un plan : un point, une normale, une équation cartésienne unique, dont les coefficients sont la normale. Les positions relatives se lisent sur ces vecteurs, par colinéarité ou orthogonalité. Dans la dernière partie, nous inverserons la démarche : au lieu de décrire des objets donnés, nous partirons d'une condition géométrique pour découvrir l'objet qu'elle dessine, sphère, plan, droite ou cylindre.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p18",
+   "dit": "Un lieu géométrique est l'ensemble des points qui vérifient une condition donnée. La démarche est toujours la même, en trois temps : traduire la condition avec les coordonnées d'un point générique, simplifier l'équation obtenue, puis reconnaître l'objet dessiné. Premier classique : les points situés à distance constante d'un point fixe forment, par définition même de la distance, une sphère centrée sur ce point, du rayon imposé. L'équation obtenue, somme de trois carrés égale au carré du rayon, est la carte d'identité de toute sphère.",
+   "texte": "Distance constante à un point : une sphère.",
+   "ecran": "lieu_sphere"
+  },
+  {
+   "id": "p19",
+   "dit": "Deuxième classique : les points équidistants de deux points fixes. En écrivant l'égalité des distances au carré, les termes quadratiques s'éliminent miraculeusement, et il reste une équation linéaire : un plan. C'est le plan médiateur du segment, perpendiculaire au segment en son milieu. Prolongement élégant : les points équidistants de trois points non alignés vérifient deux telles conditions, donc appartiennent à deux plans médiateurs ; leur lieu est une droite, l'axe du cercle circonscrit au triangle formé par les trois points.",
+   "texte": "Équidistance à deux points : un plan médiateur.",
+   "ecran": "plan_mediateur"
+  },
+  {
+   "id": "p20",
+   "dit": "Troisième classique : les points M d'où l'on voit un segment sous un angle droit. La condition s'écrit : le produit scalaire des vecteurs M A et M B est nul. En coordonnées, avec A à l'origine et B au point de coordonnées un, zéro, zéro, elle devient, après avoir complété le carré, l'équation d'une sphère de centre le milieu du segment et de rayon la moitié du segment. C'est le théorème de Thalès de l'espace : la sphère de diamètre A B est le lieu des sommets de tous les angles droits qui s'appuient sur A B.",
+   "texte": "Angle droit : la sphère de diamètre A B.",
+   "ecran": "sphere_diametre"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple entièrement calculé : A au point de coordonnées un, zéro, zéro, B au point de coordonnées zéro, un, zéro, et l'on cherche les points M tels que le triangle A M B soit rectangle en M. Le produit scalaire des vecteurs M A et M B donne l'équation : somme des carrés des coordonnées, moins l'abscisse, moins l'ordonnée, égale zéro. En complétant les carrés, on reconnaît une sphère de centre le point de coordonnées un demi, un demi, zéro, et de rayon racine de deux sur deux. Les points A et B vérifient l'équation, comme il se doit : ce sont les extrémités du diamètre, à exclure du lieu puisque le triangle y dégénère.",
+   "texte": "Une sphère de rayon racine de deux sur deux.",
+   "ecran": "ex_lieu"
+  },
+  {
+   "id": "p22",
+   "dit": "Quatrième lieu, plus surprenant : les points situés à distance constante d'une droite donnée. La distance d'un point à une droite se calcule avec le produit vectoriel ; l'ensemble obtenu est un cylindre de révolution, dont l'axe est la droite et le rayon la distance imposée. Pensez à la paroi d'un tunnel circulaire : chaque point de la paroi est exactement à la même distance de l'axe du tunnel. Retenez la correspondance : distance constante à un point, sphère ; à une droite, cylindre ; égalité de distances à deux points, plan.",
+   "texte": "Point : sphère ; droite : cylindre ; deux points : plan.",
+   "ecran": "cylindre"
+  },
+  {
+   "id": "p23",
+   "dit": "Les sections planes obéissent à un théorème net : toute section non vide d'une sphère par un plan est un cercle. Tout se joue dans la distance du centre au plan. Si elle dépasse le rayon, le plan manque la sphère ; si elle l'égale, le plan est tangent ; si elle est plus petite, la section est un cercle dont le rayon s'obtient par Pythagore. Exemple : sphère de centre l'origine et de rayon cinq, plan d'équation deux ixe, moins igrec, plus deux zède, égale six. La distance du centre au plan vaut six divisé par trois, c'est-à-dire deux ; le rayon du cercle section vaut racine de vingt-cinq moins quatre, soit racine de vingt et un.",
+   "texte": "Section de sphère : racine de vingt et un.",
+   "ecran": "section_sphere"
+  },
+  {
+   "id": "p24",
+   "dit": "Retour au cube, unité cette fois, avec le plan d'équation somme des coordonnées égale trois demis. Il coupe six arêtes, aux points milieux, et la section est un hexagone régulier : le plus grand que l'on puisse inscrire dans un cube. La méthode est systématique : paramétrer chaque arête, injecter dans l'équation du plan, résoudre, et ne garder que les paramètres entre zéro et un. Un plan peut donner un triangle, un quadrilatère, un pentagone ou un hexagone selon les arêtes rencontrées, jamais davantage, car chaque côté de la section vit sur une face du cube.",
+   "texte": "Cube : l'hexagone régulier des milieux.",
+   "ecran": "ex_section_cube"
+  },
+  {
+   "id": "p25",
+   "dit": "Autre section : une pyramide à base carrée de côté deux et de hauteur quatre, coupée par le plan horizontal de cote deux, exactement à mi-hauteur. Chaque arête latérale est coupée en son milieu, par exemple au point de coordonnées un demi, un demi, deux, sur l'arête issue de l'origine. La section est un carré de côté un, centré sur l'axe : c'est la base réduite par l'homothétie de centre le sommet et de rapport un demi. Toute section parallèle à la base d'une pyramide est ainsi une réduction de la base, dont le rapport est lu sur la hauteur.",
+   "texte": "Pyramide à mi-hauteur : un carré de côté un.",
+   "ecran": "ex_pyramide"
+  },
+  {
+   "id": "p26",
+   "dit": "Synthèse : trouver le centre de la sphère qui passe par les quatre sommets du tétraèdre de référence, l'origine et les points unité de chaque axe. Le centre est équidistant des quatre sommets : chaque égalité de distances donne un plan médiateur, et l'on obtient successivement abscisse un demi, ordonnée un demi, cote un demi. Le centre est donc le point de coordonnées un demi, un demi, un demi, et le rayon vaut racine de trois quarts, soit racine de trois sur deux. Trois plans médiateurs, un point : c'est la méthode générale des sphères circonscrites.",
+   "texte": "Trois médiateurs, un centre, un rayon.",
+   "ecran": "sphere_circonscrite"
+  },
+  {
+   "id": "p27",
+   "dit": "Bouclons la boucle avec le cube unité et sa grande diagonale, de l'origine au sommet opposé de coordonnées un, un, un. Le plan médiateur de cette diagonale a pour équation somme des coordonnées égale trois demis : c'est exactement le plan de notre hexagone régulier. Rien d'un hasard : ce plan est perpendiculaire à la diagonale en son milieu, et la symétrie du cube autour de ce point explique la régularité parfaite de la section. Médiateur, section et symétrie racontent ici une seule et même histoire.",
+   "texte": "Le médiateur de la diagonale : le plan de l'hexagone.",
+   "ecran": "mediateur_AG"
+  },
+  {
+   "id": "p28",
+   "dit": "La méthode des lieux et des sections tient en cinq gestes : traduire la condition en coordonnées, simplifier jusqu'à une forme reconnaissable, identifier l'objet obtenu, vérifier sur des points particuliers, et interpréter le résultat dans l'espace. Cette démarche dépasse la géométrie : modéliser, résoudre, interpréter est le schéma de toute démarche scientifique. Les équations ne sont pas une fin, ce sont des instruments pour voir ce que l'œil ne peut pas dessiner.",
+   "texte": "Traduire, simplifier, reconnaître, vérifier.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour conclure ce cours : un repère orthonormé donne à l'espace des adresses ; les vecteurs et le produit scalaire y mesurent longueurs et angles ; les droites et les plans y reçoivent des équations qui rendent leurs positions lisibles ; et les conditions géométriques, traduites en équations, dessinent des sphères, des plans médiateurs, des cylindres et des sections régulières. La géométrie analytique est un langage complet : tout ce qui se voit dans l'espace peut s'y écrire, se calculer et se vérifier.",
+   "texte": "Un langage complet pour décrire l'espace.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Repère, coordonnées et vecteurs : les fondations"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Équations des droites et des plans, premiers lieux géométriques",
+   "pont": {
+    "texte": "Partie 2 : équations des droites et des plans.",
+    "dit": "Partie deux : donner des équations aux droites et aux plans. Une droite sera décrite par un point, une direction et un paramètre ; un plan, par un point et son vecteur normal, en une seule équation. Nous terminerons en coupant un cube par un plan, pour voir naître une figure plane à l'intérieur d'un solide."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Lieux en action, cylindre et sections de solides",
+   "pont": {
+    "texte": "Partie 3 : lieux en action, cylindre et sections.",
+    "dit": "Partie trois : les lieux en action, puis les sections. Nous résoudrons d'abord complètement le lieu des angles droits annoncé dans la partie précédente, avant de découvrir le cylindre, les sections de la sphère et du cube, et la synthèse finale sur le tétraèdre."
+   }
+  }
+ ]
+}
