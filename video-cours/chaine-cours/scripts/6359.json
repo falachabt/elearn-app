@@ -1,0 +1,603 @@
+{
+ "cours": 6359,
+ "titre": "Le titrage acido-basique : mesurer au point juste",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Titrages acido-basiques",
+   "titre": "Le titrage acido-basique : mesurer au point juste",
+   "sous": "Principe et protocole, courbe et volume équivalent, calculs et choix de l'indicateur",
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "La quête du point juste, depuis le dix-huitième siècle."
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'un titrage ?",
+   "titre": "Deux solutions, une inconnue",
+   "tex": [
+    "\\text{analyte : solution de concentration inconnue}",
+    "\\text{titrant : solution de concentration connue}",
+    "\\text{ajout progressif jusqu'à la réaction complète : l'équivalence}"
+   ]
+  },
+  "principe": {
+   "type": "formule",
+   "kicker": "Le principe stœchiométrique",
+   "tex": "HA + BOH \\rightarrow BA + H_2O",
+   "note": "La rencontre de fond : H₃O⁺ + OH⁻ → 2 H₂O, la neutralisation."
+  },
+  "equivalence": {
+   "type": "etape",
+   "kicker": "Au point équivalent",
+   "titre": "Les quantités de matière se compensent",
+   "tex": [
+    "n_{acide} = n_{base} \\text{ à l'équivalence (réaction un pour un)}",
+    "C_{acide} \\times V_{acide} = C_{base} \\times V_{base}",
+    "C \\text{ en mol/L} \\qquad V \\text{ en litres}"
+   ]
+  },
+  "mesure_indirecte": {
+   "type": "phrase",
+   "kicker": "Réflexion critique",
+   "texte": "On mesure un volume ; la concentration se déduit.",
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 140
+   }
+  },
+  "avantages": {
+   "type": "etape",
+   "kicker": "Pourquoi le titrage persiste",
+   "titre": "Simple, précis, polyvalent, robuste",
+   "tex": [
+    "\\text{simplicité : matériel peu coûteux, principe clair}",
+    "\\text{précision : erreurs relatives souvent } < 0{,}1\\ \\%",
+    "\\text{polyvalence : de nombreux types de réactions}",
+    "\\text{robustesse : milieux industriels complexes}"
+   ]
+  },
+  "materiel": {
+   "type": "etape",
+   "kicker": "Anatomie du montage",
+   "titre": "Chaque pièce a un rôle",
+   "tex": [
+    "\\text{burette : } 25 \\text{ ou } 50\\ \\text{mL, robinet, } \\pm 0{,}05\\ \\text{mL}",
+    "\\text{erlenmeyer : l'analyte, agitation sans projections}",
+    "\\text{pipette jaugée : le volume exact de l'analyte}",
+    "\\text{indicateur coloré ou pH-mètre : le témoin du virage}"
+   ]
+  },
+  "deroulement": {
+   "type": "etape",
+   "kicker": "Le déroulement type",
+   "titre": "Une chorégraphie en quatre actes",
+   "tex": [
+    "\\text{acte un : préparer (rinçage, remplissage, prélèvement)}",
+    "\\text{acte deux : approcher (prétitrage rapide)}",
+    "\\text{acte trois : verser fin (goutte à goutte jusqu'au virage)}",
+    "\\text{acte quatre : interpréter (volume lu, calcul)}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Analyte inconnu, titrant connu",
+    "Équivalence : n acide = n base",
+    "Ca × Va = Cb × Vb à l'équivalence",
+    "Matériel : burette, erlenmeyer, pipette",
+    "Préparer, approcher, verser, calculer"
+   ]
+  },
+  "intro_protocole": {
+   "type": "phrase",
+   "kicker": "Entrée au laboratoire",
+   "texte": "Des gestes codifiés : la précision se joue à la main."
+  },
+  "acteurs": {
+   "type": "etape",
+   "kicker": "Les acteurs chimiques",
+   "titre": "Qui est où, et à quelles conditions",
+   "tex": [
+    "\\text{l'analyte (solution titrée) : dans l'erlenmeyer}",
+    "\\text{le titrant : dans la burette, versé progressivement}",
+    "\\text{la réaction : rapide, complète, stœchiométrique, identifiable}"
+   ]
+  },
+  "burette": {
+   "type": "etape",
+   "kicker": "La burette, pièce maîtresse",
+   "titre": "Rincer, remplir, lire sans parallaxe",
+   "tex": [
+    "\\text{rinçage : avec le titrant, jamais à l'eau seule}",
+    "\\text{remplissage : au-dessus du zéro, bulle d'air chassée}",
+    "\\text{lecture : bas du ménisque, œil à hauteur, } \\pm 0{,}02\\ \\text{mL}"
+   ]
+  },
+  "prelevement": {
+   "type": "etape",
+   "kicker": "Le prélèvement exact",
+   "titre": "Pipette jaugée et fiole jaugée",
+   "tex": [
+    "\\text{pipette jaugée rincée à la solution à titrer}",
+    "\\text{volume unique et exact : } 10{,}0 \\text{ ou } 20{,}0\\ \\text{mL}",
+    "\\text{ne jamais souffler la dernière goutte}"
+   ],
+   "anim": {
+    "nom": "fiole_jaugee_fig",
+    "hauteur": 110
+   }
+  },
+  "approche": {
+   "type": "etape",
+   "kicker": "Repérage, puis mesure",
+   "titre": "Rapide d'abord, lent ensuite",
+   "tex": [
+    "\\text{repérage : portions de } 1 \\text{ à } 2\\ \\text{mL, coloration persistante}",
+    "\\text{mesure : nouvel échantillon, ajout rapide jusqu'à } \\approx 90\\ \\%",
+    "\\text{puis goutte à goutte : la couleur naît, puis s'efface}"
+   ]
+  },
+  "virage": {
+   "type": "etape",
+   "kicker": "Le point de virage",
+   "titre": "L'instant décisif, à la demi-goutte",
+   "tex": [
+    "\\text{demi-gouttes : robinet à peine entrouvert}",
+    "\\text{virage : couleur persistante } \\geq 30\\ \\text{s après agitation}",
+    "\\text{arrêt immédiat : lire } V_{eq} \\text{ sur la burette}"
+   ]
+  },
+  "goutte_trop": {
+   "type": "formule",
+   "kicker": "Le prix d'une goutte de trop",
+   "tex": "\\text{erreur} = \\frac{0{,}05\\ \\text{mL}}{20{,}00\\ \\text{mL}} = 0{,}25\\ \\%",
+   "note": "Une goutte ≈ 0,05 mL : négligeable en apparence, dominante en haute précision."
+  },
+  "courbe": {
+   "type": "etape",
+   "kicker": "La courbe de titrage",
+   "titre": "La carte du territoire chimique",
+   "tex": [
+    "\\text{avant : pH faible, montée lente, l'acide domine}",
+    "\\text{équivalence : le saut brutal de pH}",
+    "\\text{après : pH élevé, montée lente, la base domine}"
+   ],
+   "anim": {
+    "nom": "courbe_titrage_fig",
+    "hauteur": 110
+   }
+  },
+  "saut": {
+   "type": "etape",
+   "kicker": "Le saut de pH",
+   "titre": "La signature de l'équivalence",
+   "tex": [
+    "\\text{une goutte suffit à faire basculer le pH}",
+    "\\text{détectable : pH-mètre ou indicateur coloré}",
+    "\\text{hauteur : selon les forces et les concentrations}"
+   ]
+  },
+  "lecture_veq": {
+   "type": "etape",
+   "kicker": "Lire le volume équivalent",
+   "titre": "Tangentes ou dérivées",
+   "tex": [
+    "\\text{tangentes : construction sur les deux branches}",
+    "\\text{dérivée première } \\tfrac{dpH}{dV} \\text{ : maximale à } V_{eq}",
+    "\\text{dérivée seconde : nulle au point d'inflexion}"
+   ]
+  },
+  "conductimetrie": {
+   "type": "phrase",
+   "kicker": "Un autre suivi : la conductimétrie",
+   "texte": "Deux segments qui se croisent : leur abscisse donne Veq."
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Le protocole : l'essentiel",
+   "etapes": [
+    "Rincer la burette au titrant",
+    "Ménisque lu par le bas",
+    "Virage : goutte à goutte, 30 s",
+    "Veq : tangentes ou dérivée",
+    "Conductimétrie : deux segments"
+   ]
+  },
+  "intro_calcul": {
+   "type": "phrase",
+   "kicker": "Le moment de vérité",
+   "texte": "La courbe est une histoire ; le chiffre est le dénouement."
+  },
+  "protocole_calcul": {
+   "type": "etape",
+   "kicker": "La marche à suivre",
+   "titre": "Un protocole de calcul en cinq temps",
+   "tex": [
+    "\\text{un : écrire l'équation-bilan, l'équilibrer}",
+    "\\text{deux : lire le volume équivalent } V_{eq}",
+    "\\text{trois : lister les données et l'inconnue}",
+    "\\text{quatre : appliquer la relation, volumes en litres}"
+   ]
+  },
+  "exemple_hcl": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "L'acide chlorhydrique dosé par la soude",
+   "tex": [
+    "V_a = 25{,}0\\ \\text{mL} \\qquad C_b = 0{,}100\\ \\text{mol/L} \\qquad V_e = 18{,}5\\ \\text{mL}",
+    "C_a \\times V_a = C_b \\times V_e \\text{ à l'équivalence}",
+    "C_a = \\tfrac{0{,}100 \\times 18{,}5}{25{,}0} = 0{,}0740\\ \\text{mol/L}"
+   ]
+  },
+  "exemple_precis": {
+   "type": "etape",
+   "kicker": "Exemple de précision",
+   "titre": "Quatre chiffres significatifs",
+   "tex": [
+    "V_a = 20{,}00\\ \\text{mL} \\qquad C_b = 0{,}1054\\ \\text{mol/L} \\qquad V_{eq} = 18{,}62\\ \\text{mL}",
+    "C_{HCl} = \\tfrac{0{,}1054 \\times 18{,}62}{20{,}00} = 0{,}0981\\ \\text{mol/L}",
+    "\\text{quatre chiffres significatifs : la précision des données}"
+   ]
+  },
+  "rapport_non_un": {
+   "type": "etape",
+   "kicker": "Quand le rapport n'est pas un pour un",
+   "titre": "L'acide sulfurique, un diacide",
+   "tex": [
+    "H_2SO_4 + 2\\,NaOH \\rightarrow Na_2SO_4 + 2\\,H_2O",
+    "n_{acide} = \\tfrac{n_{base}}{2} \\text{ : deux bases pour un acide}",
+    "\\tfrac{C_a V_a}{\\nu_a} = \\tfrac{C_b V_b}{\\nu_b} \\text{ : la formule générale}"
+   ]
+  },
+  "purete": {
+   "type": "etape",
+   "kicker": "Cas pratique : la pureté d'un solide",
+   "titre": "Le comprimé d'aspirine",
+   "tex": [
+    "n_{HAs} = C_b \\times V_{eq} = 0{,}100 \\times 0{,}0135 = 1{,}35 \\times 10^{-3}\\ \\text{mol}",
+    "m_{pur} = n \\times M = 1{,}35 \\times 10^{-3} \\times 180{,}0 = 0{,}243\\ \\text{g}",
+    "\\%\\,pureté = \\tfrac{0{,}243}{0{,}245} \\times 100 \\approx 99{,}2\\ \\%"
+   ]
+  },
+  "pieges": {
+   "type": "etape",
+   "kicker": "Les pièges courants",
+   "titre": "Quatre erreurs à ne plus commettre",
+   "tex": [
+    "\\text{équation non équilibrée : facteur deux ou trois d'erreur}",
+    "\\text{millilitres non convertis en litres}",
+    "V_{eq} \\text{ se lit en abscisse, jamais en ordonnée}",
+    "\\text{chiffres significatifs : pas plus que la donnée la plus faible}"
+   ]
+  },
+  "recap3": {
+   "type": "recap",
+   "kicker": "Calcul : l'essentiel",
+   "etapes": [
+    "Équation équilibrée d'abord",
+    "Relation adaptée aux coefficients",
+    "Volumes convertis en litres",
+    "Veq lu en abscisse de la courbe",
+    "Chiffres significatifs respectés"
+   ]
+  },
+  "indicateur": {
+   "type": "etape",
+   "kicker": "L'indicateur coloré",
+   "titre": "Une molécule à deux visages",
+   "tex": [
+    "HIn + H_2O \\rightleftharpoons In^- + H_3O^+",
+    "\\text{deux formes, deux couleurs : acide et basique}",
+    "\\text{zone de virage : } pK_{a,In} \\pm 1 \\text{ (rapport de } \\tfrac{1}{10} \\text{ à } 10\\text{)}"
+   ],
+   "anim": {
+    "nom": "ph",
+    "debut": 3,
+    "cible": 9,
+    "hauteur": 110
+   }
+  },
+  "choix_indicateur": {
+   "type": "etape",
+   "kicker": "L'art du choix",
+   "titre": "La zone de virage dans le saut de pH",
+   "tex": [
+    "\\text{fort + forte : } pH_{eq} = 7{,}0 \\rightarrow \\text{BBT } (6{,}0-7{,}6) \\text{ adapté}",
+    "\\text{phénolphtaléine } (8{,}2-10{,}0) \\text{ : vire après}",
+    "\\text{hélianthine } (3{,}1-4{,}4) \\text{ : vire bien avant}",
+    "\\text{faible + forte : } pH_{eq} > 7 \\rightarrow \\text{phénolphtaléine (vinaigre } \\approx 8{,}7\\text{)}"
+   ]
+  },
+  "cas_ammoniaque": {
+   "type": "etape",
+   "kicker": "Étude de cas : le mauvais choix",
+   "titre": "Titrer l'ammoniaque, une base faible",
+   "tex": [
+    "NH_3 + HCl \\text{ : base faible titrée par acide fort}",
+    "\\text{à l'équivalence : } NH_4^+ \\text{, acide faible, } pH_{eq} < 7",
+    "\\text{phénolphtaléine inadaptée ; hélianthine } (3{,}1-4{,}4) \\text{ adaptée}"
+   ]
+  },
+  "aquarium": {
+   "type": "etape",
+   "kicker": "Application : l'eau d'aquarium",
+   "titre": "L'alcalinité qui protège les coraux",
+   "tex": [
+    "HCO_3^- + H^+ \\rightarrow H_2CO_3 \\text{ : un proton par ion}",
+    "C = \\tfrac{0{,}100 \\times 4{,}5}{25{,}0} = 0{,}0180\\ \\text{mol/L}",
+    "\\times\\,M = 61{,}0 \\text{ g/mol} \\rightarrow \\approx 1\\ 098\\ \\text{mg/L}"
+   ]
+  },
+  "autres_titrages": {
+   "type": "etape",
+   "kicker": "Au-delà des acides et des bases",
+   "titre": "La même logique, d'autres échanges",
+   "tex": [
+    "\\text{redox : transferts d'électrons (fer dosé par permanganate)}",
+    "\\text{complexométrie : formation de complexes (calcium et EDTA)}",
+    "\\text{précipitation : méthode de Mohr pour les chlorures}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Zone de virage dans le saut de pH",
+    "pH d'équivalence : 7, < 7 ou > 7",
+    "Même logique : redox, complexes, précipités",
+    "Applications : vin, eaux, aspirine",
+    "Un volume mesuré, une concentration"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré au titrage acido-basique, l'art de mesurer une concentration inconnue grâce à une réaction menée jusqu'à son point juste. Nous découvrirons d'abord ce qu'est un titrage : son principe stœchiométrique, son matériel et sa chorégraphie en quatre actes. Nous apprendrons ensuite le protocole complet, de la burette rincée au point de virage, et la lecture des courbes qui livrent le volume équivalent. Enfin, nous transformerons ces volumes en concentrations calculées, puis nous choisirons l'indicateur adapté et appliquerons la méthode à des cas réels, du laboratoire au terrain.",
+   "texte": "Titrage acido-basique : mesurer au point juste.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez un chimiste du dix-huitième siècle, penché sur son banc, cherchant la pureté d'un échantillon de carbonate de sodium. Sans spectromètre ni chromatographe, il ne dispose que d'une ressource : observer une réaction chimique jusqu'à son terme précis, le moment où les réactifs sont combinés en proportions exactement stœchiométriques. Cette quête du point juste est l'essence même du titrage. Le mot vient du titre des métaux précieux, la proportion d'or ou d'argent pur qu'il fallait déterminer. Aujourd'hui encore, la méthode demeure une pierre angulaire de la chimie analytique, par sa simplicité et sa précision.",
+   "texte": "La quête du point juste, depuis le dix-huitième siècle.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Un titrage est une technique de dosage quantitative. On fait réagir un volume connu d'une solution de concentration inconnue, appelée l'analyte, avec une solution de concentration parfaitement connue, le titrant, ajoutée progressivement. L'ajout se poursuit jusqu'à ce que la réaction soit complète : ce point de complétion porte un nom, le point équivalent. Deux acteurs, donc : celui que l'on cherche à connaître, et celui que l'on connaît déjà et qui sert d'étalon de mesure. Toute la méthode tient dans cette rencontre contrôlée, menée goutte après goutte.",
+   "texte": "Analyte inconnu + titrant connu → le point équivalent.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Au cœur de chaque titrage repose une réaction chimique bien définie. Pour un titrage acido-basique générique, un acide réagit avec une base pour donner un sel et de l'eau. La réaction de fond, celle qui a vraiment lieu entre les espèces présentes, est la rencontre de l'ion oxonium et de l'ion hydroxyde, qui forment de l'eau. Condition indispensable : cette réaction doit être rapide, complète, stœchiométrique et identifiable. Sans ces quatre qualités, aucun dosage fiable n'est possible.",
+   "texte": "HA + BOH → sel + eau ; au fond : H₃O⁺ + OH⁻ → eau.",
+   "ecran": "principe"
+  },
+  {
+   "id": "p05",
+   "dit": "Au point équivalent, les quantités de matière des deux réactifs sont reliées par leur rapport stœchiométrique. Si la réaction est de un pour un, la quantité d'acide est exactement égale à la quantité de base. Or une quantité de matière est le produit d'une concentration par un volume. On obtient donc la relation maîtresse du titrage : la concentration de l'acide, multipliée par son volume, égale la concentration de la base, multipliée par le volume versé à l'équivalence. Les concentrations s'expriment en moles par litre, et les volumes en litres : gardez cette exigence en tête, elle reviendra dans les pièges du calcul.",
+   "texte": "À l'équivalence : Ca × Va = Cb × Vb (réaction 1:1).",
+   "ecran": "equivalence"
+  },
+  {
+   "id": "p06",
+   "dit": "Réflexion critique : un titrage mesure-t-il directement une concentration ? Non. Ce que l'on mesure, c'est un volume de titrant consommé, lu sur la burette. La concentration est déduite par le calcul, en remontant de l'effet observé, un changement de couleur ou un saut de la courbe, vers la quantité initiale. C'est ce raisonnement à rebours qui fait à la fois l'élégance et la rigueur de la méthode : on ne voit jamais la concentration, on la démontre.",
+   "texte": "On mesure un volume ; la concentration se déduit.",
+   "ecran": "mesure_indirecte"
+  },
+  {
+   "id": "p07",
+   "dit": "Dans un monde de spectromètres de masse et de chromatographes, pourquoi le titrage persiste-t-il ? D'abord par simplicité : un matériel peu coûteux, un principe facile à comprendre, idéal au laboratoire scolaire comme sur un site de contrôle qualité. Ensuite par précision : les erreurs relatives descendent souvent sous le dixième de pour cent, ce qu'exige le dosage des substances pharmaceutiques. Polyvalence ensuite : la logique s'adapte à de nombreuses réactions, de l'analyse environnementale à l'agroalimentaire. Robustesse enfin : la méthode tolère les milieux industriels complexes et les interférences mineures.",
+   "texte": "Simple, précis (< 0,1 %), polyvalent, robuste.",
+   "ecran": "avantages"
+  },
+  {
+   "id": "p08",
+   "dit": "L'anatomie du montage tient en quelques pièces. La burette, tube gradué de vingt-cinq ou cinquante millilitres muni d'un robinet, délivre le titrant avec une précision de quelques centièmes de millilitre. L'erlenmeyer, récipient conique, accueille l'analyte : sa forme permet d'agiter sans risque de projection. La pipette jaugée prélève le volume exact de solution à doser. L'indicateur coloré signale le virage, ou le pé-ache-mètre suit la réaction en continu. Un support maintient la burette verticale, et l'agitateur magnétique homogénéise le mélange sans introduire de bulles.",
+   "texte": "Burette, erlenmeyer, pipette jaugée, indicateur.",
+   "ecran": "materiel"
+  },
+  {
+   "id": "p09",
+   "dit": "Le déroulement type est une chorégraphie en quatre actes. Acte un, la préparation : rinçage de la burette avec le titrant, remplissage soigneux en éliminant les bulles d'air, prélèvement précis de l'analyte, ajout éventuel de l'indicateur. Acte deux, le prétitrage : on ajoute rapidement une grande partie du titrant, jusqu'à proximité de l'équivalence estimée, pour économiser du temps sans compromettre la précision. Acte trois, le titrage fin : l'ajout devient goutte à goutte, sous observation minutieuse, jusqu'au point de virage. Acte quatre, l'interprétation : lecture précise du volume consommé, puis calcul de la concentration inconnue.",
+   "texte": "Préparer, approcher, verser fin, interpréter.",
+   "ecran": "deroulement"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Le titrage fait réagir un analyte inconnu avec un titrant connu, jusqu'au point équivalent où les quantités de matière se compensent selon la stœchiométrie de la réaction. La relation entre concentrations et volumes est la clé de voûte du calcul. Le matériel est simple, la chorégraphie en quatre actes est fixée : place maintenant au protocole de précision.",
+   "texte": "Définition, principe, matériel : l'essentiel.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Entrons dans le laboratoire. Nous reprenons le fil du chimiste du prologue : mêmes questions, mais des gestes désormais codifiés. Chaque pièce de verrerie a un rôle, chaque rinçage a une raison, chaque lecture obéit à une règle. C'est cette rigueur du geste qui transforme une réaction chimique en mesure quantitative fiable, et qui sépare un résultat d'un bon résultat.",
+   "texte": "Des gestes codifiés : la précision se joue à la main.",
+   "ecran": "intro_protocole"
+  },
+  {
+   "id": "p12",
+   "dit": "Précisons le vocabulaire des acteurs chimiques. L'analyte est la solution dont on cherche la concentration : c'est la solution titrée, placée dans l'erlenmeyer. Le titrant est la solution de concentration connue : il est placé dans la burette et versé progressivement. Entre eux, la réaction de titrage doit remplir quatre conditions : être rapide, être complète, suivre une stœchiométrie connue, et offrir un moyen de repérer son terme. Sans ces quatre conditions, pas de dosage digne de ce nom.",
+   "texte": "Analyte dans l'erlenmeyer, titrant dans la burette.",
+   "ecran": "acteurs"
+  },
+  {
+   "id": "p13",
+   "dit": "La burette est la pièce maîtresse. On la rince d'abord avec quelques millilitres de solution titrante : un rinçage à l'eau laisserait un film qui diluerait le titrant et fausserait tout. On la remplit au-dessus du zéro, puis on ouvre brièvement le robinet pour chasser la bulle d'air éventuellement présente dans l'embout. Le niveau est ensuite ajusté à la graduation zéro, et chaque lecture se fait sur la partie inférieure du ménisque, l'œil placé exactement à sa hauteur pour éviter la parallaxe. C'est ce point le plus bas, dessiné par le mouillage des parois, qui définit le volume réel du liquide.",
+   "texte": "Rinçage au titrant, ménisque lu par le bas.",
+   "ecran": "burette"
+  },
+  {
+   "id": "p14",
+   "dit": "La précision commence avant même le premier versement. La pipette jaugée, rincée avec la solution à titrer, prélève un volume unique et exact, par exemple dix ou vingt millilitres, que l'on verse dans un erlenmeyer propre. Attention : on ne souffle jamais pour vider la dernière goutte, car le volume délivré est calibré sans elle. La fiole jaugée, elle, sert à préparer les solutions de concentration exacte, par dissolution ou par dilution, en ajustant le ménisque sur le trait de jauge.",
+   "texte": "Pipette jaugée : volume exact, sans souffler la goutte.",
+   "ecran": "prelevement"
+  },
+  {
+   "id": "p15",
+   "dit": "Vient le titrage approché, le repérage. On ajoute la solution titrante par portions de un à deux millilitres, en agitant, jusqu'à ce que la coloration persiste : on a dépassé l'équivalence, mais on connaît désormais son ordre de grandeur. On recommence alors avec un échantillon neuf pour la mesure précise : ajout rapide jusqu'à environ quatre-vingt-dix pour cent du volume repéré, puis ralentissement net. La coloration apparaît localement, puis disparaît à l'agitation : le virage approche, et chaque goutte va compter.",
+   "texte": "Repérage rapide, puis 90 % d'un trait, puis goutte à goutte.",
+   "ecran": "approche"
+  },
+  {
+   "id": "p16",
+   "dit": "Le point de virage est l'instant décisif. Quand la coloration met de plus en plus de temps à disparaître, on réduit l'ajout à des demi-gouttes, en entrouvrant à peine le robinet, ou en touchant la paroi de l'erlenmeyer avec la goutte accrochée au bout de la burette. Le virage est atteint lorsque la coloration persiste au moins trente secondes après une agitation vigoureuse. On arrête aussitôt l'addition, et on note avec précision le volume lu sur la burette : c'est le volume équivalent, le trésor de l'expérience.",
+   "texte": "Virage : couleur persistante 30 secondes → lire Veq.",
+   "ecran": "virage"
+  },
+  {
+   "id": "p17",
+   "dit": "Que coûte une goutte de trop ? Une goutte représente environ cinq centièmes de millilitre. Rapportée à un volume équivalent de vingt millilitres, elle introduit une erreur relative d'un quart de pour cent. Cela semble faible, mais pour des titrages très précis ou des concentrations très faibles, cette goutte unique peut devenir l'erreur dominante du résultat. Voilà pourquoi le geste final se fait à la demi-goutte près, et pourquoi le repérage préalable n'est jamais du temps perdu.",
+   "texte": "Une goutte ≈ 0,05 mL : 0,25 % d'erreur sur 20 mL.",
+   "ecran": "goutte_trop"
+  },
+  {
+   "id": "p18",
+   "dit": "Suivons maintenant la réaction au pé-ache-mètre : on obtient la courbe de titrage, la carte du territoire chimique. Chaque point est un couple formé d'un volume versé et d'un pé-ache mesuré. Trois régions s'y succèdent. Au départ, le pé-ache est faible et n'augmente que lentement : l'acide est en excès. Autour de l'équivalence, une quantité infime de titrant provoque une variation brutale : c'est le saut de pé-ache. Après l'équivalence, l'excès de base impose un pé-ache élevé, qui n'augmente plus que lentement. La courbe ne donne pas seulement un volume : elle raconte toute la réaction.",
+   "texte": "Trois régions, un saut : la carte de la réaction.",
+   "ecran": "courbe"
+  },
+  {
+   "id": "p19",
+   "dit": "Le saut de pé-ache est la signature visible de l'équivalence. Pourquoi un tel basculement ? Avant l'équivalence, il reste des ions oxonium en excès ; à son approche, leur concentration devient infime, et le système devient extrêmement sensible : une seule goutte fait passer le milieu d'un état où subsiste une trace d'acide à un état où la base est en excès. C'est un changement de régime fondamental. Ce saut rend l'équivalence détectable, au pé-ache-mètre comme à l'œil nu avec un indicateur. Sa hauteur dépend des forces de l'acide et de la base mis en jeu, ainsi que de leurs concentrations.",
+   "texte": "Une goutte bascule le pH : le saut signale l'équivalence.",
+   "ecran": "saut"
+  },
+  {
+   "id": "p20",
+   "dit": "Le point équivalent est un point théorique : il faut l'extraire de la courbe expérimentale. Première méthode, graphique : on trace les tangentes aux deux branches, avant et après le saut, et leur construction donne l'abscisse de l'équivalence. Deuxième méthode, la dérivée première : le volume équivalent est celui où la pente de la courbe est maximale. Troisième méthode, la dérivée seconde : elle s'annule exactement au point d'inflexion. Les méthodes par dérivation sont plus objectives que le tracé à l'œil, toujours un peu subjectif sur des points expérimentaux dispersés.",
+   "texte": "Tangentes, dérivée première, dérivée seconde.",
+   "ecran": "lecture_veq"
+  },
+  {
+   "id": "p21",
+   "dit": "Le pé-ache n'est pas la seule grandeur que l'on puisse suivre. La conductimétrie mesure la conductivité de la solution au fil des ajouts. La courbe obtenue présente typiquement deux segments de droites, de pentes différentes, qui se croisent : l'abscisse de leur intersection donne directement le volume équivalent. La méthode est particulièrement élégante quand les ions en jeu sont très mobiles, comme les ions oxonium et hydroxyde, et elle devient précieuse quand le saut de pé-ache est trop faible pour être exploité, par exemple avec un acide très faible.",
+   "texte": "Deux segments qui se croisent : leur abscisse donne Veq.",
+   "ecran": "conductimetrie"
+  },
+  {
+   "id": "p22",
+   "dit": "Récapitulons. Le protocole tient en gestes précis : burette rincée au titrant et lue au bas du ménisque, prélèvement à la pipette jaugée, approche rapide puis goutte à goutte jusqu'au virage persistant. La courbe de titrage raconte la réaction et livre le volume équivalent, par les tangentes, les dérivées ou la conductimétrie. Il ne reste qu'à convertir ce volume en concentration.",
+   "texte": "Protocole et courbe : l'essentiel.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p23",
+   "dit": "Vous avez devant vous une courbe, un volume équivalent soigneusement lu, une heure de laboratoire derrière vous. Mais la courbe n'est qu'une histoire visuelle : le véritable dénouement, la révélation finale, réside dans les chiffres que l'on en extrait. Ce chapitre est le pivot du cours : c'est ici que la technique expérimentale se transforme en connaissance quantitative.",
+   "texte": "La courbe est une histoire ; le chiffre est le dénouement.",
+   "ecran": "intro_calcul"
+  },
+  {
+   "id": "p24",
+   "dit": "Voici la marche à suivre, un protocole de calcul en cinq temps. Un : identifier et écrire l'équation-bilan de la réaction de titrage, et l'équilibrer soigneusement. Deux : repérer le point d'équivalence et déterminer le volume équivalent. Trois : lister les données connues et l'inconnue. Quatre : appliquer la relation stœchiométrique adaptée, en tenant compte des coefficients. Cinq : effectuer le calcul avec les unités appropriées, volumes convertis en litres, et exprimer le résultat avec le bon nombre de chiffres significatifs. Aucune de ces étapes ne se saute.",
+   "texte": "5 temps : équation, Veq, données, relation, unités.",
+   "ecran": "protocole_calcul"
+  },
+  {
+   "id": "p25",
+   "dit": "Premier exemple, celui des leçons. On titre vingt-cinq millilitres d'acide chlorhydrique de concentration inconnue par une soude à zéro virgule cent mole par litre. Le volume de soude versé à l'équivalence est de dix-huit virgule cinq millilitres. La réaction est de un pour un : à l'équivalence, la quantité d'acide égale la quantité de base. La concentration cherchée vaut donc le produit de la concentration de la soude par le volume équivalent, divisé par le volume d'acide. Le calcul donne soixante-quatorze millièmes de mole par litre, soit zéro virgule zéro sept cent quarante avec trois chiffres significatifs.",
+   "texte": "25,0 mL dosés, Veq = 18,5 mL → Ca = 0,0740 mol/L.",
+   "ecran": "exemple_hcl"
+  },
+  {
+   "id": "p26",
+   "dit": "Deuxième exemple, en conditions de précision. Vingt millilitres d'acide chlorhydrique, prélevés à la pipette jaugée, sont titrés par une soude étalon à zéro virgule un zéro cinq quatre mole par litre. La courbe montre un point d'équivalence net pour un volume versé de dix-huit virgule soixante-deux millilitres. Même relation de un pour un : la concentration inconnue vaut le produit de la concentration étalon par le volume équivalent, divisé par le volume d'acide. Résultat : zéro virgule zéro neuf huit un mole par litre, avec quatre chiffres significatifs, cohérents avec la précision des données de départ.",
+   "texte": "0,1054 × 18,62 / 20,00 → 0,0981 mol/L (4 chiffres).",
+   "ecran": "exemple_precis"
+  },
+  {
+   "id": "p27",
+   "dit": "Et si la réaction n'est pas de un pour un ? Prenons l'acide sulfurique, un diacide, titré par la soude : l'équation équilibrée exige deux moles de soude pour une mole d'acide. L'égalité d'équivalence devient alors : la quantité d'acide, divisée par son coefficient, égale la quantité de base, divisée par le sien. La formule générale s'écrit donc : concentration de l'acide fois volume de l'acide, divisés par le coefficient de l'acide, égale concentration de la base fois volume de la base, divisés par le coefficient de la base. Tout part de l'équation équilibrée : voilà pourquoi on l'écrit toujours en premier, avant tout calcul.",
+   "texte": "Rapport 1:2 → Ca·Va / νa = Cb·Vb / νb.",
+   "ecran": "rapport_non_un"
+  },
+  {
+   "id": "p28",
+   "dit": "Le titrage sert aussi à doser un solide. On dissout un comprimé d'aspirine de deux cent quarante-cinq milligrammes ; l'acide acétylsalicylique qu'il contient, qui ne cède qu'un seul proton, est titré par une soude à zéro virgule cent mole par litre. Le volume équivalent est de treize virgule cinq millilitres. La quantité d'acide vaut le produit de la concentration par le volume : un virgule trente-cinq millième de mole. Multipliée par la masse molaire, cent quatre-vingts grammes par mole, elle donne deux cent quarante-trois milligrammes d'acide pur. La pureté du comprimé atteint ainsi quatre-vingt-dix-neuf virgule deux pour cent.",
+   "texte": "Aspirine : 0,243 g pur sur 0,245 g → 99,2 %.",
+   "ecran": "purete"
+  },
+  {
+   "id": "p29",
+   "dit": "Quatre pièges classiques guettent le calculateur. Le plus grave : oublier d'équilibrer l'équation, ce qui fausse le résultat d'un facteur deux ou trois. Le plus fréquent : négliger la conversion des millilitres en litres, car la relation entre quantité, concentration et volume exige des litres. Le plus visuel : lire le volume équivalent à l'ordonnée de la courbe, alors qu'il se lit en abscisse, sur l'axe des volumes. Le plus discret : afficher plus de chiffres significatifs que la donnée la moins précise n'en autorise.",
+   "texte": "Équation, litres, abscisse, chiffres significatifs.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p30",
+   "dit": "Récapitulons le calcul. Toujours la même logique : l'équation équilibrée d'abord, le volume équivalent ensuite, puis la relation d'équivalence adaptée aux coefficients, et le résultat avec ses chiffres significatifs. Deux exemples d'acide chlorhydrique et une pureté d'aspirine le prouvent : un volume bien lu devient une concentration sûre. Reste le dernier choix, celui de l'indicateur.",
+   "texte": "Calcul d'équivalence : l'essentiel.",
+   "ecran": "recap3"
+  },
+  {
+   "id": "p31",
+   "dit": "Qu'est-ce qu'un indicateur coloré ? Une molécule à deux visages : un acide faible dont la forme acide et la forme basique portent des couleurs radicalement différentes. Son équilibre avec l'eau libère ou capte un ion oxonium selon le milieu. Notre œil ne distingue le changement de teinte que lorsque le rapport des deux formes se situe entre un dixième et dix fois : cette limite de perception définit la zone de virage. Elle s'étend, en général, sur une unité de pé-ache de part et d'autre du pé-ka-a de l'indicateur. Chaque indicateur est comme un drapeau planté sur l'axe des pé-ache : il faut le choisir exactement là où la courbe saute.",
+   "texte": "HIn ⇌ In⁻ : zone de virage = pKa de l'indicateur ± 1.",
+   "ecran": "indicateur"
+  },
+  {
+   "id": "p32",
+   "dit": "La règle d'or du choix : la zone de virage de l'indicateur doit être incluse dans le saut de pé-ache, et contenir le pé-ache à l'équivalence. Pour un acide fort titré par une base forte, l'équivalence est à sept : le bleu de bromothymol, qui vire entre six et sept virgule six, est adapté. La phénolphtaléine, qui vire entre huit virgule deux et dix, changerait après l'équivalence ; l'hélianthine, entre trois virgule un et quatre virgule quatre, bien avant. Pour un acide faible titré par une base forte, en revanche, l'équivalence dépasse sept : c'est la phénolphtaléine qu'il faut, comme pour doser le vinaigre, dont l'équivalence se situe vers huit virgule sept.",
+   "texte": "BBT pour pHeq = 7 ; phénolphtaléine si pHeq > 7.",
+   "ecran": "choix_indicateur"
+  },
+  {
+   "id": "p33",
+   "dit": "Étude de cas : un technicien doit titrer de l'ammoniaque, une base faible, par de l'acide chlorhydrique, un acide fort. Il choisit la phénolphtaléine. Résultat : un virage très progressif, difficile à observer, et un volume équivalent imprécis. L'explication tient en une phrase : à l'équivalence, la solution contient l'ion ammonium, un acide faible, donc le pé-ache d'équivalence est inférieur à sept, très loin de la zone de la phénolphtaléine. Le bon choix était l'hélianthine, qui vire en milieu acide. Ces erreurs de choix sont une source majeure d'inexactitude : elles peuvent dépasser cinq pour cent d'erreur relative.",
+   "texte": "NH₃ par HCl : pHeq < 7 → hélianthine, pas phénolphtaléine.",
+   "ecran": "cas_ammoniaque"
+  },
+  {
+   "id": "p34",
+   "dit": "Dernier terrain d'application : l'eau d'un aquarium marin, dont l'alcalinité protège la santé des coraux. Elle correspond, pour l'essentiel, aux ions hydrogénocarbonate. On titre vingt-cinq millilitres de cette eau par de l'acide chlorhydrique à zéro virgule cent mole par litre, jusqu'au virage d'un indicateur adapté au milieu acide, et le titrage doit être rapide après le prélèvement. Le volume équivalent est de quatre virgule cinq millilitres. La réaction consomme un proton par ion hydrogénocarbonate : la concentration vaut donc le produit de la concentration de l'acide par le volume équivalent, divisé par le volume d'eau, soit dix-huit millièmes de mole par litre. Convertie grâce à la masse molaire de l'ion, soixante et un grammes par mole, on obtient environ mille cent milligrammes par litre.",
+   "texte": "HCO₃⁻ : 4,5 mL de HCl pour 25,0 mL → ≈ 1 098 mg/L.",
+   "ecran": "aquarium"
+  },
+  {
+   "id": "p35",
+   "dit": "La logique du titrage dépasse les acides et les bases. En oxydoréduction, ce sont des électrons qui s'échangent : on dose ainsi le fer par le permanganate. En complexométrie, un réactif formant des complexes dose, par exemple, les ions calcium. En précipitation, un solide insoluble se forme : la méthode de Mohr dose ainsi les chlorures. Les indicateurs changent, les courbes changent, mais la logique fondamentale demeure : ajouter un réactif de concentration connue jusqu'à l'équivalence stœchiométrique, puis raisonner à rebours vers l'inconnue.",
+   "texte": "Redox, complexes, précipités : même logique d'équivalence.",
+   "ecran": "autres_titrages"
+  },
+  {
+   "id": "p36",
+   "dit": "Terminons par l'essentiel. Le titrage transforme une réaction complète et rapide en instrument de mesure : un volume de titrant, lu à la demi-goutte près, devient une concentration démontrée. La courbe raconte la réaction, le saut signale l'équivalence, et l'indicateur bien choisi la rend visible à l'œil nu. La même logique sert partout, du contrôle d'un vin au dosage d'un médicament, de l'eau d'aquarium à la pureté d'un comprimé. Vous avez appris la grammaire de ce langage : à vous, maintenant, de formuler vos propres questions à la matière.",
+   "texte": "Un volume mesuré, une concentration démontrée.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Principe, matériel et chorégraphie du titrage"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Le protocole de précision, la courbe et la méthode de calcul",
+   "pont": {
+    "dit": "Partie deux : le protocole de précision. Nous allons détailler les gestes qui séparent un résultat d'un bon résultat : le rinçage et la lecture de la burette, le prélèvement exact, l'approche du virage à la demi-goutte près. Puis nous tracerons la courbe de titrage et nous apprendrons à y lire le volume équivalent, par les tangentes, par les dérivées ou par la conductimétrie.",
+    "texte": "Partie 2 : protocole précis, courbe et volume équivalent."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Exemples résolus, pièges, indicateur et applications",
+   "pont": {
+    "dit": "Partie trois : les exemples, puis le choix de l'indicateur. Nous appliquerons la relation d'équivalence à des cas complets, y compris lorsque la réaction n'est pas de un pour un, et nous traquerons les pièges classiques du calcul. Puis nous choisirons l'indicateur dont la zone de virage épouse le saut de pé-ache, avant de conclure par des applications réelles, du vinaigre à l'eau d'aquarium.",
+    "texte": "Partie 3 : exemples, indicateur et applications."
+   }
+  }
+ ]
+}
