@@ -4924,6 +4924,85 @@ const FIG = {
     corps += trait(660, 52, 660, 128, p, { c: '#B8860B', w: 3, tiret: '7 6' }) + mot(684, 118, 'distance', { c: '#B8860B', t: 20, a: 'start' });
     return svgBoite(corps + mot(500, 288, 'un plan : un point, deux directeurs, une normale — et la distance d\u2019un point', { t: 21 }));
   },
+  flux_mondiaux_fig(t) {
+    const p = prog(t);
+    let corps = `<rect x="370" y="100" width="260" height="84" rx="12" fill="#FFD83D" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` + mot(500, 151, 'Cameroun', { t: 27 });
+    corps += trait(640, 84, 880, 84, p, { c: '#E8604C', w: 6 }) + pointe(888, 84, 0, '#E8604C') + mot(760, 58, 'exportations brutes', { c: '#E8604C', t: 20 });
+    corps += trait(880, 142, 640, 142, p, { c: '#1A75FF', w: 6 }) + pointe(632, 142, 180, '#1A75FF') + mot(760, 172, 'importations transformées', { c: '#1A75FF', t: 20 });
+    corps += trait(880, 216, 640, 216, p, { c: '#B8860B', w: 6 }) + pointe(632, 216, 180, '#B8860B') + mot(760, 246, 'investissements directs, aide', { c: '#B8860B', t: 20 });
+    corps += mot(190, 120, 'le monde', { t: 24 }) + mot(190, 152, 'achète, vend,', { t: 19 }) + mot(190, 178, 'investit', { t: 19 });
+    corps += trait(370, 84, 130, 84, p, { w: 3, tiret: '6 6' }) + trait(370, 216, 130, 216, p, { w: 3, tiret: '6 6' });
+    return svgBoite(corps + mot(500, 292, 'relié au monde par trois canaux : vendre, acheter, recevoir des capitaux', { t: 21 }));
+  },
+  courbe_prix_matiere_fig(t) {
+    const p = prog(t);
+    let corps = trait(120, 240, 900, 240, p, { w: 4 }) + trait(150, 240, 150, 30, p, { w: 4 });
+    let pts = '';
+    const profil = [[150, 90], [300, 74], [430, 96], [520, 84], [580, 196], [700, 208], [830, 188]];
+    profil.forEach(([x, y], i) => { if (i) corps += trait(profil[i - 1][0], profil[i - 1][1], x, y, p, { c: '#E8604C', w: 5 }); });
+    corps += trait(580, 60, 580, 220, p, { c: '#E8604C', w: 3, tiret: '7 6' }) + mot(580, 44, 'le choc : le prix chute', { c: '#E8604C', t: 21 });
+    corps += mot(300, 52, 'prix mondial du cacao, du pétrole…', { t: 20 });
+    corps += mot(916, 248, 'temps', { t: 20, a: 'start' }) + mot(126, 44, 'prix', { t: 21, a: 'end' });
+    return svgBoite(corps + mot(500, 282, 'la chute se transmet : recettes, budget, puis croissance', { t: 21 }));
+  },
+  frise_chocs_fig(t) {
+    const p = prog(t);
+    let corps = trait(80, 150, 920, 150, p, { w: 5 }) + pointe(928, 150, 0);
+    const evts = [[230, 'début 2000', 'crise du cacao', '#E8604C'], [500, '2008', 'crise financière mondiale', '#1A75FF'], [770, '2020', 'pandémie', '#10B981']];
+    evts.forEach(([x, an, s, coul], i) => {
+      corps += `<circle cx="${x}" cy="150" r="11" fill="${coul}" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x, 108, an, { c: coul, t: 23 }) + mot(x, 196, s, { t: 19 });
+    });
+    return svgBoite(corps + mot(500, 262, 'trois chocs venus de l\u2019extérieur, trois épreuves de résilience', { t: 21 }) + mot(500, 292, 'un choc exogène ne se choisit pas : il se subit, puis il se gère', { t: 20 }));
+  },
+  architecture_marches_fig(t) {
+    const p = prog(t);
+    let corps = `<circle cx="500" cy="150" r="56" fill="#FFD83D" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>` + mot(500, 142, 'BEAC', { t: 25 }) + mot(500, 170, 'banque centrale', { t: 15 });
+    const boites = [[60, 40, 'Marché monétaire', 'le court terme', '#E8604C'], [660, 40, 'Marché des capitaux', 'le long terme : la BVMAC', '#1A75FF'], [360, 216, 'Marché des changes', 'les devises', '#10B981']];
+    boites.forEach(([x, y, titre, sous, coul]) => {
+      corps += `<rect x="${x}" y="${y}" width="280" height="64" rx="10" fill="${coul}" fill-opacity=".16" stroke="currentColor" stroke-width="4"/>`;
+      corps += mot(x + 140, y + 28, titre, { c: coul, t: 21 }) + mot(x + 140, y + 52, sous, { t: 16 });
+    });
+    corps += trait(444, 122, 340, 96, p, { w: 3 }) + trait(556, 122, 660, 96, p, { w: 3 }) + trait(500, 206, 500, 216, p, { w: 3 });
+    return svgBoite(corps + mot(880, 282, 'trois marchés, une architecture', { t: 20, a: 'end' }));
+  },
+  refinancement_fig(t) {
+    const p = prog(t);
+    const boites = [['BEAC', 'injecte 10 milliards de F CFA', '#E8604C'], ['Banques', 'liquidité en hausse', '#1A75FF'], ['Crédits', 'taux en baisse, crédits en hausse', '#10B981'], ['Entreprises, ménages', 'l\u2019activité repart', '#B8860B']];
+    let corps = '';
+    boites.forEach(([titre, sous, coul], i) => {
+      const x = 30 + i * 244;
+      corps += `<rect x="${x}" y="92" width="216" height="84" rx="10" fill="${coul}" fill-opacity=".16" stroke="currentColor" stroke-width="4"/>`;
+      corps += mot(x + 108, 128, titre, { c: coul, t: titre.length > 12 ? 17 : 21 });
+      corps += mot(x + 108, 156, sous, { t: 14.5 });
+      if (i < 3) { corps += trait(x + 220, 134, x + 240, 134, p, { w: 5 }) + pointe(x + 246, 134, 0); }
+    });
+    return svgBoite(corps + mot(500, 226, 'une injection de liquidité se transmet de proche en proche', { t: 21 }) + mot(500, 282, 'c\u2019est le canal du refinancement, outil de la banque centrale', { t: 20 }));
+  },
+  change_parite_fig(t) {
+    const p = prog(t);
+    let corps = trait(120, 250, 900, 250, p, { w: 4 });
+    corps += trait(150, 120, 880, 120, p, { c: '#E8604C', w: 6 });
+    corps += mot(500, 92, '1 euro = 655,957 F CFA : la parité fixe, elle ne bouge pas', { c: '#E8604C', t: 22 });
+    let pts = '';
+    for (let k = 0; k <= 40; k++) { const x = 150 + 18 * k; pts += `${x},${Math.round(196 - 22 * Math.sin(k / 6))} `; }
+    corps += `<polyline points="${pts}" fill="none" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>`;
+    corps += mot(500, 238, 'face au dollar, le F CFA bouge… en suivant l\u2019euro', { c: '#1A75FF', t: 20 });
+    return svgBoite(corps + mot(500, 282, 'ancré à l\u2019euro, exposé au monde par l\u2019euro', { t: 21 }));
+  },
+  inclusion_mobile_fig(t) {
+    const p = prog(t);
+    let corps = `<rect x="428" y="36" width="144" height="216" rx="18" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="5"/>`;
+    corps += `<rect x="446" y="66" width="108" height="130" rx="6" fill="#10B981" fill-opacity=".25"/>`;
+    corps += mot(500, 122, 'mobile', { c: '#10B981', t: 23 }) + mot(500, 150, 'money', { c: '#10B981', t: 23 });
+    corps += `<circle cx="500" cy="222" r="10" fill="currentColor"/>`;
+    corps += trait(428, 110, 250, 80, p, { c: '#1A75FF', w: 4 }) + pointe(242, 78, 195, '#1A75FF');
+    corps += mot(210, 58, 'les agents', { c: '#1A75FF', t: 22 }) + mot(210, 84, 'partout dans le pays', { t: 17 });
+    corps += trait(572, 110, 750, 80, p, { c: '#E8604C', w: 4 }) + pointe(758, 78, -15, '#E8604C');
+    corps += mot(800, 58, 'les zones rurales', { c: '#E8604C', t: 22 }) + mot(800, 84, 'enfin bancarisées', { t: 17 });
+    corps += trait(500, 252, 500, 276, p, { w: 3 });
+    return svgBoite(corps + mot(500, 296, 'le téléphone devient une agence bancaire de poche', { t: 21 }));
+  },
 };
 
 Object.assign(ANIMS, FIG);
