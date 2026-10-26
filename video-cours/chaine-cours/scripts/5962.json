@@ -1,0 +1,580 @@
+{
+ "cours": 5962,
+ "ecrans": {
+  "applications": {
+   "etapes": [
+    "Pétrochimie : le craquage catalytique",
+    "Pharmacie : synthèse et durée de vie",
+    "Agroalimentaire : conserver plus longtemps",
+    "Environnement : dégrader les polluants"
+   ],
+   "kicker": "La cinétique en action",
+   "type": "recap"
+  },
+  "arrhenius": {
+   "kicker": "La loi d'Arrhenius",
+   "note": "R = 8,314 J/(mol·K) ; T en kelvins ; Ea : énergie d'activation.",
+   "tex": "k = A\\,e^{-\\frac{E_a}{R\\,T}}",
+   "type": "formule"
+  },
+  "catalyseur": {
+   "kicker": "Le catalyseur",
+   "texte": "Un catalyseur accélère la réaction sans être consommé : il ouvre un autre chemin, d'énergie d'activation plus faible, sans déplacer l'équilibre.",
+   "type": "phrase",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 180
+   }
+  },
+  "concentration": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "melange"
+   },
+   "kicker": "La concentration",
+   "texte": "Plus la concentration est élevée, plus les molécules sont nombreuses dans un même volume : les collisions sont plus fréquentes, et la réaction avance plus vite.",
+   "type": "phrase"
+  },
+  "concentration_temps": {
+   "kicker": "Exercice : concentration à un instant",
+   "tex": [
+    "[A] = [A]_0\\,e^{-k t} = 1 \\times e^{-0{,}05 \\times 20}",
+    "[A] = e^{-1} \\approx 0{,}37\\ \\mathrm{mol/L}"
+   ],
+   "titre": "Après vingt secondes",
+   "type": "etape"
+  },
+  "conclusion": {
+   "kicker": "Bilan du cours",
+   "texte": "Mesurer, calculer, prévoir : la vitesse d'une réaction obéit à des lois que l'on sait maintenant manier, de la loi de vitesse à la loi d'Arrhenius.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "La vitesse de réaction",
+   "note": "En moles par litre par seconde ; elle diminue au cours du temps.",
+   "tex": "v = -\\frac{\\Delta [A]}{\\Delta t} = +\\frac{\\Delta [B]}{\\Delta t}",
+   "type": "formule"
+  },
+  "definition_generale": {
+   "kicker": "La définition générale",
+   "tex": [
+    "a\\,\\mathrm{A} + b\\,\\mathrm{B} \\rightarrow c\\,\\mathrm{C} + d\\,\\mathrm{D}",
+    "v = -\\tfrac{1}{a}\\,\\tfrac{\\Delta [A]}{\\Delta t} = -\\tfrac{1}{b}\\,\\tfrac{\\Delta [B]}{\\Delta t}",
+    "v = +\\tfrac{1}{c}\\,\\tfrac{\\Delta [C]}{\\Delta t} = +\\tfrac{1}{d}\\,\\tfrac{\\Delta [D]}{\\Delta t}"
+   ],
+   "titre": "Diviser par le coefficient stœchiométrique",
+   "type": "etape"
+  },
+  "demi_reaction": {
+   "kicker": "Le temps de demi-réaction",
+   "tex": [
+    "\\text{ordre } 0 : t_{1/2} = \\tfrac{[A]_0}{2k}",
+    "\\text{ordre } 1 : t_{1/2} = \\tfrac{\\ln 2}{k}",
+    "\\text{ordre } 2 : t_{1/2} = \\tfrac{1}{k\\,[A]_0}"
+   ],
+   "titre": "Le temps de la moitié",
+   "type": "etape"
+  },
+  "distribution_boltzmann": {
+   "kicker": "La distribution des énergies",
+   "texte": "À température plus élevée, la distribution des énergies s'étale : la proportion de molécules capables de franchir l'énergie d'activation grandit nettement.",
+   "type": "phrase",
+   "anim": {
+    "nom": "distribution_boltzmann_fig",
+    "hauteur": 180
+   }
+  },
+  "etape_limitante": {
+   "kicker": "L'étape cinétiquement déterminante",
+   "tex": [
+    "\\mathrm{NO_2 + CO \\rightarrow NO + CO_2} \\quad ; \\quad v = k\\,[\\mathrm{NO_2}]^2",
+    "\\text{étape lente : } \\mathrm{2NO_2 \\rightarrow NO + NO_3}",
+    "\\text{étape rapide : } \\mathrm{NO_3 + CO \\rightarrow NO_2 + CO_2}"
+   ],
+   "titre": "L'étape lente impose sa vitesse",
+   "type": "etape"
+  },
+  "etapes_elementaires": {
+   "kicker": "Les étapes élémentaires",
+   "tex": [
+    "\\text{monomoléculaire : } \\mathrm{A \\rightarrow produits}",
+    "\\text{bimoléculaire : } \\mathrm{A + B \\rightarrow produits}",
+    "\\text{ou } \\mathrm{2A \\rightarrow produits} \\quad ; \\quad \\text{trimoléculaire : très rare}"
+   ],
+   "titre": "La molécularité",
+   "type": "etape"
+  },
+  "exemple_ordre_un": {
+   "kicker": "Exercice : demi-réaction",
+   "tex": [
+    "[A]_0 = 0{,}1 \\to [A] = 0{,}05\\ \\mathrm{mol/L} \\text{ en } 10\\ \\mathrm{min}",
+    "t_{1/2} = 10\\ \\mathrm{min}",
+    "k = \\tfrac{\\ln 2}{t_{1/2}} \\approx 0{,}069\\ \\mathrm{min^{-1}}"
+   ],
+   "titre": "Une décomposition d'ordre 1",
+   "type": "etape"
+  },
+  "exemple_vitesse": {
+   "kicker": "Premier calcul",
+   "tex": [
+    "\\mathrm{2H_2 + O_2 \\rightarrow 2H_2O}",
+    "v = -\\tfrac{1}{2}\\,\\tfrac{\\Delta [\\mathrm{H_2}]}{\\Delta t} = \\tfrac{1}{2} \\times \\tfrac{0{,}1}{10}",
+    "v = 0{,}005\\ \\mathrm{mol\\,L^{-1}\\,s^{-1}}"
+   ],
+   "titre": "La formation de l'eau",
+   "type": "etape"
+  },
+  "exercice_arrhenius": {
+   "kicker": "Exercice : effet de dix degrés",
+   "tex": [
+    "k(20\\,^\\circ\\mathrm{C}) = 1{,}0 \\times 10^{-3}\\ \\mathrm{s^{-1}} \\quad ; \\quad E_a = 50\\ \\mathrm{kJ/mol}",
+    "\\ln \\tfrac{k_2}{k_1} = -\\tfrac{E_a}{R}\\left(\\tfrac{1}{T_2} - \\tfrac{1}{T_1}\\right)",
+    "k(30\\,^\\circ\\mathrm{C}) \\approx 2{,}0 \\times 10^{-3}\\ \\mathrm{s^{-1}}"
+   ],
+   "titre": "La constante double presque",
+   "type": "etape"
+  },
+  "exercice_graphique": {
+   "kicker": "Exercice : la méthode graphique",
+   "tex": [
+    "[X] : 1{,}00 \\to 0{,}80 \\to 0{,}67 \\to 0{,}57",
+    "\\tfrac{1}{[X]} : 1{,}00 \\to 1{,}25 \\to 1{,}50 \\to 1{,}75 \\ \\text{(droite)}",
+    "\\text{ordre } 2 \\quad ; \\quad k \\approx 0{,}025\\ \\mathrm{L\\,mol^{-1}\\,s^{-1}}"
+   ],
+   "titre": "La décomposition du composé X",
+   "type": "etape"
+  },
+  "exercice_ordres": {
+   "kicker": "Exercice : à vous",
+   "tex": [
+    "[A] \\times 2 \\Rightarrow v \\times 4 \\Rightarrow \\text{ordre } 2 \\text{ en } A",
+    "[B] \\times 2 \\Rightarrow v \\times 2 \\Rightarrow \\text{ordre } 1 \\text{ en } B",
+    "v = k\\,[A]^2\\,[B] \\quad ; \\quad \\text{ordre global } 3"
+   ],
+   "titre": "Trois expériences, une loi",
+   "type": "etape"
+  },
+  "facteurs": {
+   "etapes": [
+    "La concentration des réactifs",
+    "La température du milieu",
+    "La surface de contact, si phases différentes",
+    "La présence d'un catalyseur"
+   ],
+   "kicker": "Les facteurs cinétiques",
+   "type": "recap"
+  },
+  "graphiques_ordres": {
+   "kicker": "Reconnaître l'ordre",
+   "tex": [
+    "[A] \\text{ droite} \\Rightarrow \\text{ordre } 0,\\ \\text{pente } -k",
+    "\\ln [A] \\text{ droite} \\Rightarrow \\text{ordre } 1,\\ \\text{pente } -k",
+    "\\tfrac{1}{[A]} \\text{ droite} \\Rightarrow \\text{ordre } 2,\\ \\text{pente } +k"
+   ],
+   "titre": "Quelle représentation est une droite ?",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Des réactions à toutes les vitesses",
+   "texte": "Un morceau de bois qui brûle, un aliment que l'on digère, de la rouille qui ronge une carrosserie : des transformations à des vitesses très différentes, mais régies par les mêmes lois.",
+   "type": "phrase"
+  },
+  "loi_vitesse": {
+   "kicker": "La loi de vitesse",
+   "note": "k : constante de vitesse ; x et y : ordres partiels, à déterminer.",
+   "tex": "v = k\\,[A]^x\\,[B]^y",
+   "type": "formule"
+  },
+  "lois_integrees": {
+   "kicker": "Les lois intégrées",
+   "tex": [
+    "\\text{ordre } 0 : [A] = [A]_0 - k\\,t",
+    "\\text{ordre } 1 : \\ln [A] = \\ln [A]_0 - k\\,t",
+    "\\text{ordre } 2 : \\tfrac{1}{[A]} = \\tfrac{1}{[A]_0} + k\\,t"
+   ],
+   "titre": "La concentration à chaque instant",
+   "type": "etape"
+  },
+  "methode_resolution": {
+   "etapes": [
+    "Analyser l'énoncé : données et inconnue",
+    "Choisir la loi selon l'ordre de réaction",
+    "Intégrer si l'on suit [A] dans le temps",
+    "Résoudre et vérifier unités et grandeur"
+   ],
+   "kicker": "La méthode de résolution",
+   "type": "recap"
+  },
+  "methodes_mesure": {
+   "etapes": [
+    "Gaz : suivre la variation de pression",
+    "Espèce colorée : la spectrophotométrie",
+    "Ions en solution : la conductimétrie",
+    "Prélèvements dosés par titrage"
+   ],
+   "kicker": "Mesurer la vitesse",
+   "type": "recap"
+  },
+  "moyenne_instantanee": {
+   "kicker": "Moyenne ou instantanée",
+   "tex": [
+    "v_{\\mathrm{moy}} = \\tfrac{\\Delta [C]}{\\Delta t}",
+    "v_{\\mathrm{inst}} = \\tfrac{d[C]}{dt}",
+    "\\text{pente de la tangente en ce point}"
+   ],
+   "titre": "La pente de la tangente",
+   "type": "etape",
+   "anim": {
+    "nom": "courbe_concentration_fig",
+    "hauteur": 110
+   }
+  },
+  "ordres_exemple": {
+   "kicker": "Lire une loi de vitesse",
+   "tex": [
+    "\\mathrm{2NO + O_2 \\rightarrow 2NO_2}",
+    "v = k\\,[\\mathrm{NO}]^2\\,[\\mathrm{O_2}]",
+    "\\text{ordres partiels : } 2 \\text{ et } 1 \\quad ; \\quad \\text{global : } 3"
+   ],
+   "titre": "Ordres partiels et ordre global",
+   "type": "etape"
+  },
+  "ozone": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "atmosphere_fig"
+   },
+   "kicker": "Étude de cas : l'ozone",
+   "texte": "Dans la stratosphère, des catalyseurs chlorés accélèrent la destruction de l'ozone : comprendre cette cinétique a conduit à réglementer les CFC.",
+   "type": "phrase"
+  },
+  "suivi_peroxyde": {
+   "kicker": "Un suivi classique",
+   "tex": [
+    "\\mathrm{2H_2O_2 \\rightarrow 2H_2O + O_2}",
+    "V(\\mathrm{O_2}) \\text{ recueilli dans une éprouvette graduée}"
+   ],
+   "titre": "La décomposition du peroxyde d'hydrogène",
+   "type": "etape"
+  },
+  "temperature": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "chauffe"
+   },
+   "kicker": "La température",
+   "texte": "Chauffer rend les molécules plus rapides et plus énergiques : les chocs sont plus fréquents, et surtout plus souvent efficaces.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "agitation"
+   },
+   "kicker": "Chimie · Cinétique chimique",
+   "sous": "Vitesse de réaction, lois de vitesse et facteurs",
+   "titre": "La cinétique chimique",
+   "type": "titre"
+  },
+  "types_catalyse": {
+   "etapes": [
+    "Homogène : même phase que les réactifs",
+    "Hétérogène : le platine du pot catalytique",
+    "Enzymatique : les enzymes du vivant",
+    "Inhibiteur : il bloque les sites actifs",
+    "Autocatalyse : un produit accélère tout"
+   ],
+   "kicker": "Les formes de catalyse",
+   "type": "recap"
+  },
+  "unite_k": {
+   "kicker": "L'unité de k",
+   "tex": [
+    "\\text{ordre } 0 : k \\text{ en } \\mathrm{mol\\,L^{-1}\\,s^{-1}}",
+    "\\text{ordre } 1 : k \\text{ en } \\mathrm{s^{-1}}",
+    "\\text{ordre } 2 : k \\text{ en } \\mathrm{L\\,mol^{-1}\\,s^{-1}}"
+   ],
+   "titre": "Elle révèle l'ordre global",
+   "type": "etape"
+  },
+  "variations_isolees": {
+   "kicker": "Déterminer les ordres",
+   "tex": [
+    "[B] \\text{ constante : } [A] \\times 2 \\Rightarrow v \\times 2 \\Rightarrow \\text{ordre } 1",
+    "[A] \\text{ constante : } [B] \\times 2 \\Rightarrow v \\times 4 \\Rightarrow \\text{ordre } 2",
+    "v = k\\,[A]\\,[B]^2"
+   ],
+   "titre": "La méthode des variations isolées",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  4926,
+  4927,
+  4928,
+  4929,
+  4930,
+  4931,
+  4932,
+  4933,
+  4934,
+  4935
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La vitesse de réaction : définition, mesure et facteurs"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : la loi de vitesse et l'ordre de réaction. Nous quantifions maintenant l'effet de la concentration : loi de vitesse, ordres partiels, méthodes de détermination, et lois intégrées qui décrivent l'évolution des concentrations au cours du temps.",
+    "texte": "Partie 2 : loi de vitesse, ordres et lois intégrées."
+   },
+   "sous_titre": "La loi de vitesse, l'ordre de réaction et les lois intégrées"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : température, catalyseurs et mécanismes. Nous verrons comment la chaleur et les catalyseurs gouvernent la constante de vitesse, puis comment les réactions se déroulent, étape par étape, à l'échelle des molécules.",
+    "texte": "Partie 3 : température, catalyseurs et mécanismes."
+   },
+   "sous_titre": "Température, catalyseurs et mécanismes réactionnels"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de cinétique chimique, la branche de la chimie qui étudie la vitesse des réactions. Nous définirons d'abord cette vitesse et ses méthodes de mesure, puis nous établirons la loi de vitesse et la notion d'ordre de réaction, avant d'étudier les lois intégrées, le temps de demi-réaction, et enfin l'influence de la température et des catalyseurs.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "La cinétique chimique : vitesse, lois de vitesse et facteurs."
+  },
+  {
+   "dit": "Un morceau de bois qui brûle, un aliment que l'on digère, de la rouille qui ronge une carrosserie : toutes ces transformations se font à des vitesses très différentes, mais toutes obéissent aux mêmes lois. Comprendre ces lois, c'est pouvoir prévoir, ralentir ou accélérer une réaction : c'est tout l'enjeu de la cinétique chimique, en laboratoire comme dans l'industrie.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Brûler, digérer, rouiller : des vitesses différentes, des lois communes."
+  },
+  {
+   "dit": "La vitesse de réaction mesure la rapidité d'une transformation : c'est la variation de concentration d'un réactif ou d'un produit, par unité de temps. Pour un réactif, dont la concentration diminue, on met un signe moins afin de garder une vitesse positive ; pour un produit, qui apparaît, le signe est plus. Elle s'exprime en moles par litre par seconde, et elle diminue au fil du temps, car les réactifs se consomment.",
+   "ecran": "definition",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Vitesse = variation de concentration par unité de temps."
+  },
+  {
+   "dit": "Pour une réaction quelconque, on divise chaque variation par le coefficient stœchiométrique de l'espèce suivie. Ainsi, la vitesse est la même, que l'on suive la disparition du réactif A, celle du réactif B ou l'apparition d'un produit. Le signe moins concerne les réactifs, le signe plus les produits, et la vitesse obtenue est toujours positive.",
+   "ecran": "definition_generale",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Une seule vitesse, quel que soit le réactif ou le produit suivi."
+  },
+  {
+   "dit": "Premier calcul, avec la formation de l'eau à partir du dihydrogène et du dioxygène. Si la concentration du dihydrogène diminue de zéro virgule un mole par litre en dix secondes, on divise cette variation par le coefficient deux du dihydrogène, puis par le temps : la vitesse vaut zéro virgule zéro zéro cinq mole par litre par seconde.",
+   "ecran": "exemple_vitesse",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Un premier calcul de vitesse, étape par étape."
+  },
+  {
+   "dit": "Sur un intervalle de temps fini, on calcule une vitesse moyenne : c'est une approximation. La vitesse instantanée, elle, est la vitesse à un instant précis : c'est la dérivée de la concentration par rapport au temps. Graphiquement, on la lit comme la pente de la tangente à la courbe de concentration au point choisi : plus la courbe est raide, plus la réaction est rapide à cet instant.",
+   "ecran": "moyenne_instantanee",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Instantanée : la pente de la tangente à la courbe."
+  },
+  {
+   "dit": "Comment suivre une réaction en pratique ? On choisit une grandeur qui évolue avec elle : la pression pour un gaz, l'absorbance pour une espèce colorée, la conductivité quand des ions participent, ou bien des prélèvements dosés par titrage. Chaque méthode transforme une mesure simple en une courbe de concentration au cours du temps.",
+   "ecran": "methodes_mesure",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Pression, absorbance, conductivité ou titrage."
+  },
+  {
+   "dit": "Exemple de suivi : la décomposition du peroxyde d'hydrogène en eau et en dioxygène. Le dioxygène formé est un gaz : on le recueille dans une éprouvette graduée et on note son volume au cours du temps, au chronomètre. En répétant l'expérience avec des concentrations initiales différentes, on mesure directement l'influence de la concentration sur la vitesse.",
+   "ecran": "suivi_peroxyde",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Suivre le volume de dioxygène dégagé, au cours du temps."
+  },
+  {
+   "dit": "Quatre facteurs gouvernent la vitesse d'une réaction : la concentration des réactifs, la température, la surface de contact quand les réactifs ne sont pas dans la même phase, et la présence d'un catalyseur. Nous allons les étudier un par un : d'abord la concentration, qui conduit à la loi de vitesse, puis la température et les catalyseurs.",
+   "ecran": "facteurs",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Concentration, température, surface de contact, catalyseur."
+  },
+  {
+   "dit": "Pourquoi la concentration accélère-t-elle une réaction ? Parce qu'une réaction commence par une rencontre : les molécules de réactifs doivent entrer en collision. Plus la concentration est élevée, plus les molécules sont nombreuses dans un même volume, plus les collisions sont fréquentes, et plus la réaction avance vite. C'est l'image de la salle de bal : bondée, les danseurs se rencontrent sans cesse ; presque vide, les rencontres sont rares.",
+   "ecran": "concentration",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Plus de molécules au même endroit : plus de collisions."
+  },
+  {
+   "dit": "La loi de vitesse traduit cet effet en formule : la vitesse est proportionnelle aux concentrations des réactifs, chacune élevée à une puissance. Ces puissances sont les ordres partiels de la réaction ; leur somme est l'ordre global. Point capital : ces ordres se mesurent expérimentalement, ils ne se lisent pas dans l'équation de la réaction.",
+   "ecran": "loi_vitesse",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "v = k [A]^x [B]^y : les ordres se mesurent, ils ne se devinent pas."
+  },
+  {
+   "dit": "Exemple : la formation du dioxyde d'azote à partir du monoxyde d'azote et du dioxygène. La loi mesurée donne un ordre deux par rapport au monoxyde d'azote et un ordre un par rapport au dioxygène. L'ordre global vaut donc trois : c'est la somme des ordres partiels.",
+   "ecran": "ordres_exemple",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Ordre global = somme des ordres partiels."
+  },
+  {
+   "dit": "Une astuce de concours : l'unité de la constante de vitesse révèle l'ordre global. La vitesse s'exprime toujours en moles par litre par seconde ; pour que la loi de vitesse soit homogène, l'unité de k s'ajuste : celle d'une vitesse pour l'ordre zéro, l'inverse d'un temps pour l'ordre un, et le litre par mole par seconde pour l'ordre deux.",
+   "ecran": "unite_k",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "L'unité de k change avec l'ordre : un indice précieux."
+  },
+  {
+   "dit": "Pour mesurer un ordre partiel, on utilise la méthode des variations isolées : on fait varier un seul réactif, les autres restant constants, et on compare les vitesses initiales. Dans l'exemple des leçons, à concentration de B constante, doubler A double la vitesse : l'ordre par rapport à A est un. À concentration de A constante, doubler B quadruple la vitesse : l'ordre par rapport à B est deux.",
+   "ecran": "variations_isolees",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Un seul réactif varie à la fois : on compare les vitesses initiales."
+  },
+  {
+   "dit": "À vous : pour une réaction entre A et B, les vitesses initiales montrent que doubler A, à B constant, multiplie la vitesse par quatre, tandis que doubler B, à A constant, la multiplie par deux. L'ordre par rapport à A est donc deux, celui par rapport à B est un, et l'ordre global vaut trois.",
+   "ecran": "exercice_ordres",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Doubler A quadruple v ; doubler B double v."
+  },
+  {
+   "dit": "Autre méthode, graphique cette fois : on suit la concentration au cours du temps et on cherche la représentation qui donne une droite. Pour la décomposition du composé X, ce sont les inverses des concentrations qui augmentent régulièrement, de quantités égales à intervalles égaux. La réaction est donc d'ordre deux, et la pente de la droite donne une constante proche de zéro virgule zéro vingt-cinq litre par mole par seconde.",
+   "ecran": "exercice_graphique",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Les inverses de [X] s'alignent : ordre 2."
+  },
+  {
+   "dit": "En intégrant la loi de vitesse, on obtient la concentration à chaque instant. Trois formes à connaître par cœur : décroissance linéaire pour l'ordre zéro, décroissance exponentielle pour l'ordre un, et inverse de la concentration linéaire pour l'ordre deux. Cas particulier : l'ordre zéro apparaît quand un autre facteur limite la réaction, comme la surface disponible d'un catalyseur solide.",
+   "ecran": "lois_integrees",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Trois lois intégrées à connaître par cœur."
+  },
+  {
+   "dit": "Ces trois lois se reconnaissent à leur graphique : si la concentration elle-même décroît en ligne droite, c'est l'ordre zéro ; si c'est son logarithme, c'est l'ordre un ; si c'est son inverse, c'est l'ordre deux. La pente de la droite donne la constante de vitesse, au signe près.",
+   "ecran": "graphiques_ordres",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "[A], ln[A] ou 1/[A] : la droite désigne l'ordre."
+  },
+  {
+   "dit": "Le temps de demi-réaction est le temps au bout duquel la moitié du réactif a disparu. Pour l'ordre zéro, il est proportionnel à la concentration initiale ; pour l'ordre deux, inversement proportionnel. Le cas de l'ordre un est remarquable : son temps de demi-réaction ne dépend pas de la concentration initiale. C'est le temps de demi-vie, constant, des désintégrations radioactives.",
+   "ecran": "demi_reaction",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Ordre 1 : un temps de demi-réaction constant, la demi-vie."
+  },
+  {
+   "dit": "Application : une décomposition d'ordre un part de zéro virgule un mole par litre et tombe à zéro virgule zéro cinq mole par litre en dix minutes. La concentration a exactement été divisée par deux : ces dix minutes sont donc le temps de demi-réaction. La constante vaut alors le logarithme de deux divisé par dix, soit environ zéro virgule zéro soixante-neuf par minute.",
+   "ecran": "exemple_ordre_un",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Divisée par deux en 10 minutes : k se déduit de la demi-vie."
+  },
+  {
+   "dit": "Dernier calcul de cette partie : une réaction d'ordre un, de constante zéro virgule zéro cinq par seconde, partant d'un mole par litre. Au bout de vingt secondes, l'exponentielle donne une concentration d'environ zéro virgule trente-sept mole par litre : il reste un peu plus du tiers du réactif initial.",
+   "ecran": "concentration_temps",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Il reste environ un tiers du réactif après 20 secondes."
+  },
+  {
+   "dit": "Passer de feu doux à feu vif accélère la cuisson : la température est un levier puissant. La théorie des collisions l'explique deux fois : les molécules, plus rapides, se rencontrent plus souvent ; et surtout, une plus grande proportion d'entre elles possède l'énergie minimale requise, l'énergie d'activation, pour que le choc soit efficace. C'est aussi pour cela qu'au réfrigérateur, les aliments se dégradent lentement.",
+   "ecran": "temperature",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Chauffer : des chocs plus fréquents et plus énergiques."
+  },
+  {
+   "dit": "La distribution de Maxwell et Boltzmann décrit la répartition des énergies des molécules. Quand la température monte, la courbe s'étale vers les grandes énergies : la zone située au-delà de l'énergie d'activation, celle des molécules capables de réagir, grandit nettement. C'est cette zone, bien plus que le nombre total de chocs, qui fait bondir la vitesse.",
+   "ecran": "distribution_boltzmann",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Chauffer étale la courbe : plus de molécules au-delà de Ea."
+  },
+  {
+   "dit": "La loi d'Arrhenius quantifie cet effet : la constante de vitesse croît de façon exponentielle avec la température. Elle fait intervenir l'énergie d'activation et un facteur pré-exponentiel, lié à la fréquence des collisions et à leur orientation. Conséquence pratique : quelques degrés de plus peuvent multiplier la vitesse par deux ou par trois.",
+   "ecran": "arrhenius",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "k croît exponentiellement avec la température."
+  },
+  {
+   "dit": "Application numérique : une réaction dont la constante vaut un millième par seconde à vingt degrés Celsius, avec une énergie d'activation de cinquante kilojoules par mole. En passant à trente degrés, la loi d'Arrhenius donne une constante presque doublée, environ deux millièmes par seconde : dix degrés ont suffi à doubler la vitesse.",
+   "ecran": "exercice_arrhenius",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "De 20 à 30 °C : la constante double presque."
+  },
+  {
+   "dit": "Un catalyseur est une substance qui accélère une réaction sans être consommée : on le retrouve intact à la fin. Son secret : il ouvre un chemin réactionnel différent, dont l'énergie d'activation est plus faible. Plus de molécules peuvent alors franchir la barrière, et la réaction avance plus vite. Mais il ne change ni les produits, ni l'équilibre final : seulement la rapidité avec laquelle on y arrive. Les enzymes du vivant en sont l'exemple le plus familier.",
+   "ecran": "catalyseur",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Ni consommé, ni dans les produits : il abaisse la barrière."
+  },
+  {
+   "dit": "On distingue la catalyse homogène, où le catalyseur est dans la même phase que les réactifs, la catalyse hétérogène, où il est dans une autre phase, comme le platine des pots catalytiques, et la catalyse enzymatique. À l'inverse, un inhibiteur ralentit la réaction en bloquant les sites actifs du catalyseur ; et dans une autocatalyse, c'est un produit formé qui joue le rôle de catalyseur.",
+   "ecran": "types_catalyse",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Homogène, hétérogène, enzymatique… et leurs contraires."
+  },
+  {
+   "dit": "À l'échelle microscopique, beaucoup de réactions se déroulent en plusieurs étapes élémentaires, chacune indécomposable. Pour une étape élémentaire, et seulement pour elle, l'ordre se lit dans l'équation : il est égal au nombre de molécules qui se rencontrent, sa molécularité. Une molécule seule : ordre un ; deux molécules : ordre deux ; trois molécules simultanées : c'est déjà très rare.",
+   "ecran": "etapes_elementaires",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Pour une étape élémentaire, l'ordre égale la molécularité."
+  },
+  {
+   "dit": "Quand une réaction comporte plusieurs étapes, la plus lente impose sa vitesse à l'ensemble : c'est l'étape cinétiquement déterminante. Exemple : le dioxyde d'azote et le monoxyde de carbone donnent du monoxyde d'azote et du dioxyde de carbone, mais la loi mesurée ne dépend que du dioxyde d'azote, au carré. Le mécanisme l'explique : deux molécules de dioxyde d'azote se rencontrent d'abord, lentement ; l'intermédiaire formé réagit ensuite très vite avec le monoxyde de carbone.",
+   "ecran": "etape_limitante",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "La loi en [NO₂]² désigne l'étape lente du mécanisme."
+  },
+  {
+   "dit": "Devant un problème de cinétique, adoptez la démarche des leçons : analysez l'énoncé pour repérer les données et l'inconnue, choisissez la loi adaptée à l'ordre de la réaction, intégrez-la si l'on suit une concentration dans le temps, résolvez, puis vérifiez les unités et l'ordre de grandeur de votre réponse.",
+   "ecran": "methode_resolution",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Analyser, choisir la loi, intégrer, résoudre, vérifier."
+  },
+  {
+   "dit": "La cinétique est partout. Dans l'industrie, elle fixe les conditions des procédés, du craquage du pétrole à la synthèse des médicaments, dont la durée de vie n'est autre qu'une cinétique de décomposition. En agroalimentaire, elle gouverne la conservation des aliments ; en environnement, elle prédit la disparition des polluants.",
+   "ecran": "applications",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Industrie, pharmacie, alimentation, environnement."
+  },
+  {
+   "dit": "Étude de cas : la couche d'ozone. Là-haut, l'ozone se décompose en dioxygène, et des catalyseurs comme les composés chlorés des anciens gaz réfrigérants accélèrent dramatiquement cette destruction. C'est la compréhension de cette cinétique qui a conduit à réglementer ces composés dans le monde entier.",
+   "ecran": "ozone",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "La cinétique de l'ozone a conduit à interdire les CFC."
+  },
+  {
+   "dit": "Bilan du cours : la vitesse d'une réaction se mesure, se calcule par une loi de vitesse, et se prévoit grâce aux lois intégrées et au temps de demi-réaction. La température agit par la loi d'Arrhenius, les catalyseurs en abaissant l'énergie d'activation. Vous avez maintenant les outils pour décrire, prévoir et contrôler la rapidité des réactions.",
+   "ecran": "conclusion",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Vous savez mesurer, calculer et prévoir une vitesse de réaction."
+  }
+ ],
+ "titre": "La cinétique chimique : vitesse de réaction, lois de vitesse et facteurs"
+}

@@ -3286,6 +3286,67 @@ const FIG = {
       becher(560, molecules(560) + ions(560, 1, 8), 'acide faible : α ≪ 1', '#1A75FF') +
       mot(500, 24, 'la dissociation : totale ou partielle', { t: 22 }));
   },
+  distribution_boltzmann_fig(t) {
+    const gauss = (mu, sig, amp) => {
+      let d = '';
+      for (let x = 110; x <= 930; x += 14) {
+        const y = 250 - amp * Math.exp(-((x - mu) ** 2) / (2 * sig * sig));
+        d += (x === 110 ? 'M ' : 'L ') + x + ' ' + Math.round(y) + ' ';
+      }
+      return `<path d="${d}" fill="none" stroke-width="5"/>`;
+    };
+    const queue = (mu, sig, amp, c) => {
+      let d = 'M 660 250 ';
+      for (let x = 660; x <= 930; x += 14) {
+        const y = 250 - amp * Math.exp(-((x - mu) ** 2) / (2 * sig * sig));
+        d += 'L ' + x + ' ' + Math.round(y) + ' ';
+      }
+      return `<path d="${d}L 930 250 Z" fill="${c}" fill-opacity=".35" stroke="none"/>`;
+    };
+    return svgBoite(
+      trait(90, 250, 950, 250, 1, { w: 4 }) + pointe(962, 250, 0, 'currentColor') +
+      trait(90, 250, 90, 26, 1, { w: 4 }) + pointe(90, 14, -90, 'currentColor') +
+      mot(950, 282, 'énergie cinétique', { t: 20, a: 'end' }) + mot(104, 40, 'nombre de molécules', { t: 19, a: 'start' }) +
+      queue(330, 95, 128, '#1A75FF') + queue(520, 150, 82, '#E8604C') +
+      `<g stroke="#1A75FF">${gauss(330, 95, 128)}</g>` + `<g stroke="#E8604C">${gauss(520, 150, 82)}</g>` +
+      trait(660, 36, 660, 250, 1, { w: 3, tiret: '8 7' }) + mot(660, 26, 'Ea', { c: '#B8860B', t: 22 }) +
+      mot(300, 96, 'température', { c: '#1A75FF', t: 19 }) + mot(300, 122, 'basse', { c: '#1A75FF', t: 19 }) +
+      mot(560, 140, 'température élevée', { c: '#E8604C', t: 19, a: 'start' }) +
+      mot(790, 282, 'au-delà de Ea : ça réagit', { c: '#B8860B', t: 18, a: 'end' }));
+  },
+  profil_energie_fig(t) {
+    const chemin = (pic) => {
+      const pts = [[120, 118], [280, 118], [360, 112], [440, pic + 26], [472, pic], [504, pic + 26], [590, 150], [660, 184], [920, 184]];
+      let s = '';
+      for (let i = 0; i < pts.length - 1; i++) s += trait(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], 1, { w: 5 });
+      return s;
+    };
+    return svgBoite(
+      trait(80, 258, 950, 258, 1, { w: 4 }) + pointe(962, 258, 0, 'currentColor') + mot(950, 286, 'avancement', { t: 20, a: 'end' }) +
+      mot(30, 60, 'énergie', { t: 20 }) +
+      `<g stroke="#E8604C">${chemin(38)}</g>` + `<g stroke="#10B981">${chemin(96)}</g>` +
+      mot(200, 104, 'réactifs', { t: 20 }) + mot(790, 170, 'produits', { t: 20 }) +
+      trait(400, 118, 400, 44, 1, { c: '#E8604C', w: 3, tiret: '6 5' }) + mot(392, 82, 'Ea sans', { c: '#E8604C', t: 18, a: 'end' }) + mot(392, 104, 'catalyseur', { c: '#E8604C', t: 18, a: 'end' }) +
+      trait(545, 118, 545, 100, 1, { c: '#10B981', w: 3, tiret: '6 5' }) + mot(556, 84, 'Ea avec catalyseur', { c: '#10B981', t: 18, a: 'start' }) +
+      trait(880, 118, 880, 184, 1, { c: '#B8860B', w: 3 }) + pointe(880, 112, -90, '#B8860B') + pointe(880, 190, 90, '#B8860B') +
+      mot(892, 156, 'ΔE inchangée', { c: '#B8860B', t: 18, a: 'start' }) +
+      mot(500, 292, 'le catalyseur abaisse la barrière, pas le bilan', { t: 22 }));
+  },
+  courbe_concentration_fig(t) {
+    const f = (x) => Math.round(244 - 168 * (1 - Math.exp(-(x - 110) / 260)));
+    let courbe = '';
+    for (let x = 110; x < 920; x += 26) courbe += trait(x, f(x), x + 26, f(x + 26), 1, { c: '#1A75FF', w: 5 });
+    return svgBoite(
+      trait(90, 252, 950, 252, 1, { w: 4 }) + pointe(962, 252, 0, 'currentColor') + mot(950, 282, 'temps', { t: 20, a: 'end' }) +
+      trait(90, 252, 90, 26, 1, { w: 4 }) + pointe(90, 14, -90, 'currentColor') + mot(30, 46, 'concen-', { t: 18 }) + mot(30, 68, 'tration', { t: 18 }) +
+      courbe +
+      trait(196, f(196) + 34, 560, f(560) - 12, 1, { c: '#E8604C', w: 3, tiret: '8 6' }) +
+      `<circle cx="230" cy="${f(230)}" r="7" fill="#E8604C"/><circle cx="520" cy="${f(520)}" r="7" fill="#E8604C"/>` +
+      mot(600, 92, 'sécante : vitesse', { c: '#E8604C', t: 19, a: 'start' }) + mot(600, 116, 'moyenne', { c: '#E8604C', t: 19, a: 'start' }) +
+      trait(300, f(380) + 44, 470, f(380) - 38, 1, { c: '#10B981', w: 4 }) +
+      `<circle cx="385" cy="${f(385)}" r="7" fill="#10B981"/>` +
+      mot(240, 236, 'tangente : vitesse instantanée', { c: '#10B981', t: 19, a: 'start' }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
