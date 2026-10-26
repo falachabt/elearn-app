@@ -1,0 +1,422 @@
+{
+ "cours": 6508,
+ "titre": "L'étude complète d'une fonction : domaine, limites, dérivée, tableau et courbe",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Étude de fonctions",
+   "titre": "L'étude complète d'une fonction : domaine, limites, dérivée, tableau et courbe",
+   "sous": "La méthode en cinq actes, des fonctions affines à la parabole",
+   "anim": {
+    "nom": "courbe_synthese_fig",
+    "hauteur": 250
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en cinq actes",
+   "etapes": [
+    "Acte un : le domaine de définition",
+    "Acte deux : limites et asymptotes",
+    "Acte trois : dérivée et variations",
+    "Acte quatre : le tableau de variation",
+    "Acte cinq : la représentation graphique"
+   ]
+  },
+  "benefice": {
+   "type": "etape",
+   "kicker": "Premier contact · le bénéfice",
+   "titre": "Une fonction affine née d'un problème concret",
+   "tex": [
+    "B(x) = 20x - (8x + 200)",
+    "B(x) = 12x - 200, \\quad B'(x) = 12",
+    "B(x) > 0 \\iff x > \\tfrac{200}{12} \\approx 16{,}7"
+   ]
+  },
+  "domaine_regles": {
+   "type": "etape",
+   "kicker": "Acte un · les contraintes",
+   "titre": "Trois interdits qui délimitent le territoire",
+   "tex": [
+    "\\text{dénominateur : jamais zéro}",
+    "\\text{racine carrée : quantité positive ou nulle}",
+    "\\text{logarithme : quantité strictement positive}",
+    "\\text{on intersecte toutes les conditions}"
+   ]
+  },
+  "domaine_exemples": {
+   "type": "etape",
+   "kicker": "Acte un · trois domaines de référence",
+   "titre": "Un interdit, un domaine à chaque fois",
+   "tex": [
+    "\\tfrac{1}{x - 2} : \\quad D = \\mathbb{R} \\setminus \\{2\\}",
+    "\\sqrt{x + 3} : \\quad D = [-3, +\\infty[",
+    "\\ln(2x - 4) : \\quad D = ]2, +\\infty["
+   ]
+  },
+  "domaine_mixte": {
+   "type": "etape",
+   "kicker": "Acte un · deux contraintes à la fois",
+   "titre": "Racine au numérateur, division en dessous",
+   "tex": [
+    "f(x) = \\tfrac{\\sqrt{x - 1}}{x - 3}",
+    "x - 1 \\geq 0 \\quad \\text{et} \\quad x - 3 \\neq 0",
+    "D_f = [1, 3[ \\cup ]3, +\\infty["
+   ]
+  },
+  "domaine_piege": {
+   "type": "etape",
+   "kicker": "Acte un · le piège de la simplification",
+   "titre": "Simplifier ne ressuscite pas une valeur interdite",
+   "tex": [
+    "f(x) = \\tfrac{x^2 - 4}{x - 2} = x + 2",
+    "\\text{mais } D_f = \\mathbb{R} \\setminus \\{2\\}"
+   ]
+  },
+  "limites_notion": {
+   "type": "phrase",
+   "kicker": "Acte deux · la notion de limite",
+   "texte": "La limite décrit la valeur dont la fonction s'approche quand la variable s'approche d'un point ou part à l'infini, sans forcément jamais l'atteindre.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 200
+   }
+  },
+  "asymptotes": {
+   "type": "etape",
+   "kicker": "Acte deux · les trois asymptotes",
+   "titre": "Verticale, horizontale ou oblique : une droite guide",
+   "tex": [
+    "x = a \\text{ si la limite en } a \\text{ est infinie}",
+    "y = L \\text{ si la limite en l'infini vaut } L",
+    "y = ax + b \\text{ si } f(x) - (ax + b) \\to 0"
+   ]
+  },
+  "limites_affine": {
+   "type": "etape",
+   "kicker": "Acte deux · exemple affine",
+   "titre": "La droite part aux infinis, en sens opposés",
+   "tex": [
+    "f(x) = 2x - 3",
+    "\\lim_{x \\to -\\infty} f(x) = -\\infty",
+    "\\lim_{x \\to +\\infty} f(x) = +\\infty"
+   ]
+  },
+  "limites_carree": {
+   "type": "etape",
+   "kicker": "Acte deux · exemple carré",
+   "titre": "La parabole monte des deux côtés",
+   "tex": [
+    "\\lim_{x \\to -\\infty} x^2 = +\\infty",
+    "\\lim_{x \\to +\\infty} x^2 = +\\infty"
+   ],
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 150
+   }
+  },
+  "hyperbole": {
+   "type": "etape",
+   "kicker": "Acte deux · l'hyperbole de référence",
+   "titre": "Deux asymptotes : les deux axes",
+   "tex": [
+    "f(x) = \\tfrac{1}{x}, \\quad D = \\mathbb{R}^{*}",
+    "\\lim_{x \\to 0} |f(x)| = +\\infty",
+    "\\lim_{x \\to \\pm\\infty} f(x) = 0"
+   ],
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 150
+   }
+  },
+  "derivee_sens": {
+   "type": "formule",
+   "kicker": "Acte trois · le signe commande",
+   "tex": "f'(x) > 0 \\Rightarrow f \\text{ croissante}",
+   "note": "Signe négatif : elle décroît. Nul en un point : extremum possible.",
+   "anim": {
+    "nom": "derive_fig",
+    "hauteur": 200
+   }
+  },
+  "derivee_affine": {
+   "type": "etape",
+   "kicker": "Acte trois · dérivées affines",
+   "titre": "Une pente positive, une pente négative",
+   "tex": [
+    "f(x) = 2x - 3 \\Rightarrow f'(x) = 2",
+    "k(x) = -x + 1 \\Rightarrow k'(x) = -1"
+   ]
+  },
+  "derivee_carree": {
+   "type": "etape",
+   "kicker": "Acte trois · dérivée de la fonction carrée",
+   "titre": "Le signe change exactement au sommet",
+   "tex": [
+    "g(x) = x^2 \\Rightarrow g'(x) = 2x",
+    "x < 0 : g'(x) < 0, \\quad x > 0 : g'(x) > 0",
+    "g'(0) = 0 : \\text{ minimum en } 0"
+   ]
+  },
+  "tableau_anatomie": {
+   "type": "recap",
+   "kicker": "Acte quatre · anatomie du tableau",
+   "etapes": [
+    "Première ligne : la variable et ses valeurs clés",
+    "Deuxième ligne : le signe de la dérivée",
+    "Troisième ligne : les flèches de variation",
+    "Aux valeurs clés : images et limites"
+   ]
+  },
+  "tableau_carree": {
+   "type": "etape",
+   "kicker": "Acte quatre · le tableau de la fonction carrée",
+   "titre": "Descendre vers zéro, puis remonter vers l'infini",
+   "tex": [
+    "x : \\quad -\\infty \\qquad 0 \\qquad +\\infty",
+    "g'(x) : \\quad - \\qquad 0 \\qquad +",
+    "g : \\quad +\\infty \\searrow 0 \\nearrow +\\infty"
+   ]
+  },
+  "trace_parabole": {
+   "type": "etape",
+   "kicker": "Acte cinq · tracer la parabole complète",
+   "titre": "Quatre points suffisent à guider le tracé",
+   "tex": [
+    "f(x) = x^2 - 4x + 3",
+    "(0, 3) \\qquad (1, 0)",
+    "(2, -1) \\qquad (3, 0)"
+   ],
+   "anim": {
+    "nom": "courbe_synthese_fig",
+    "hauteur": 150
+   }
+  },
+  "lecture_graphique": {
+   "type": "etape",
+   "kicker": "Acte cinq · lire la courbe",
+   "titre": "Une inéquation se lit sous l'axe",
+   "tex": [
+    "f(x) \\leq 0 \\iff x \\in [1, 3]",
+    "f(x) = 0 \\iff x = 1 \\text{ ou } x = 3"
+   ]
+  },
+  "etude_affine": {
+   "type": "etape",
+   "kicker": "Synthèse · étude complète d'une affine",
+   "titre": "Cinq actes sur une seule droite",
+   "tex": [
+    "f(x) = 2x - 3, \\quad D_f = \\mathbb{R}",
+    "\\lim_{-\\infty} f = -\\infty, \\ \\lim_{+\\infty} f = +\\infty",
+    "f'(x) = 2 > 0 : \\text{ croissante}",
+    "f(x) = 0 \\iff x = 1{,}5"
+   ]
+  },
+  "forme_canonique": {
+   "type": "formule",
+   "kicker": "Synthèse · la forme canonique",
+   "tex": "g(x) = (x - 2)^2 - 1",
+   "note": "Elle affiche le sommet sans calcul : abscisse deux, ordonnée moins un."
+  },
+  "comparaison": {
+   "type": "recap",
+   "kicker": "Synthèse · affine contre carrée",
+   "etapes": [
+    "Affine : dérivée constante, droite, aucun extremum",
+    "Carrée : dérivée affine, parabole, un minimum",
+    "Même méthode, deux histoires différentes",
+    "Le signe de la dérivée fait la différence"
+   ]
+  },
+  "defi": {
+   "type": "etape",
+   "kicker": "À vous · le défi final",
+   "titre": "Une parabole tournée vers le bas",
+   "tex": [
+    "h(x) = -2x^2 + 8x - 5",
+    "h'(x) = -4x + 8, \\quad h'(2) = 0",
+    "h(2) = 3 : \\text{ maximum en } x = 2"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un : domaine, sans valeur interdite",
+    "Deux : limites aux bornes du domaine",
+    "Trois : dérivée, puis étude de son signe",
+    "Quatre : tableau de variation complet",
+    "Cinq : courbe, points et asymptotes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à l'étude complète d'une fonction. Une fonction est une machine qui transforme chaque nombre admis en un unique résultat, et notre travail sera de dresser son portrait complet : où elle existe, comment elle se comporte aux frontières, où elle monte, où elle descend, et à quoi ressemble sa courbe.",
+   "texte": "L'étude complète : le portrait d'une fonction en cinq actes.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "La méthode tient en cinq actes, toujours dans le même ordre. Acte un : déterminer le domaine de définition, le territoire où la fonction existe. Acte deux : étudier les limites et les asymptotes, aux frontières de ce territoire. Acte trois : calculer la dérivée et son signe, pour savoir où la fonction monte et où elle descend. Acte quatre : résumer le tout dans le tableau de variation. Acte cinq : tracer la courbe.",
+   "texte": "La méthode : domaine, limites, dérivée, tableau, courbe.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p03",
+   "dit": "Premier contact, très concret : un vendeur de tee-shirts paie deux cents euros de frais fixes, huit euros de coût par tee-shirt, et vend chaque pièce vingt euros. Son bénéfice vaut douze ixe moins deux cents : une fonction affine. Sa dérivée vaut douze, toujours positive : chaque tee-shirt vendu ajoute douze euros. Et le bénéfice devient positif à partir de dix-sept tee-shirts vendus.",
+   "texte": "Le bénéfice : douze ixe moins deux cents.",
+   "ecran": "benefice"
+  },
+  {
+   "id": "p04",
+   "dit": "Acte un : le domaine de définition, l'ensemble des valeurs pour lesquelles l'expression a un sens. Trois interdits le délimitent. On ne divise jamais par zéro : le dénominateur doit rester non nul. On ne prend la racine carrée que d'une quantité positive ou nulle. Et le logarithme n'accepte que des quantités strictement positives. Toutes les conditions doivent tenir ensemble : on prend leur intersection.",
+   "texte": "Le domaine : trois interdits à intersecter.",
+   "ecran": "domaine_regles"
+  },
+  {
+   "id": "p05",
+   "dit": "Trois exemples de référence. La fonction inverse de ixe moins deux exclut seulement la valeur deux. La racine carrée de ixe plus trois exige ixe supérieur ou égal à moins trois. Le logarithme de deux ixe moins quatre exige ixe strictement supérieur à deux. À chaque fois, le même geste : repérer l'opération sensible, écrire la condition, la résoudre.",
+   "texte": "Trois domaines de référence à retenir.",
+   "ecran": "domaine_exemples"
+  },
+  {
+   "id": "p06",
+   "dit": "Quand deux contraintes cohabitent, on les traite l'une après l'autre. Pour la racine carrée de ixe moins un, divisée par ixe moins trois, la racine impose ixe supérieur ou égal à un, et la division exclut la valeur trois. Le domaine est donc l'intervalle de un inclus à trois exclu, réuni avec l'intervalle de trois exclu à plus l'infini. Deux branches de courbe vivront séparément, de part et d'autre de trois.",
+   "texte": "Deux contraintes : un domaine en deux morceaux.",
+   "ecran": "domaine_mixte"
+  },
+  {
+   "id": "p07",
+   "dit": "Le piège classique de cet acte : la simplification abusive. La fraction ixe au carré moins quatre, sur ixe moins deux, se simplifie en ixe plus deux, mais seulement pour ixe différent de deux. Le domaine reste donc tous les réels sauf deux, même si l'expression simplifiée semble définie partout. Le domaine se lit sur l'expression de départ, jamais sur l'expression simplifiée.",
+   "texte": "Simplifier ne supprime pas la valeur interdite.",
+   "ecran": "domaine_piege"
+  },
+  {
+   "id": "p08",
+   "dit": "Acte deux : les limites. La limite d'une fonction en un point est la valeur dont elle s'approche quand la variable s'approche de ce point, sans forcément l'atteindre. On étudie aussi les limites à l'infini : que devient la fonction quand la variable grandit sans borne, dans un sens ou dans l'autre ? Ces limites décrivent le comportement aux frontières du domaine, là où le tableau de variation commence et se termine.",
+   "texte": "La limite : approcher sans forcément atteindre.",
+   "ecran": "limites_notion"
+  },
+  {
+   "id": "p09",
+   "dit": "Quand une courbe s'approche indéfiniment d'une droite sans s'en écarter, cette droite est une asymptote, une ligne guide du tracé. Il en existe trois sortes. Verticale, d'équation ixe égale a, quand la fonction part à l'infini près de a. Horizontale, d'équation igrec égale L, quand la limite à l'infini est finie. Oblique, quand l'écart entre la fonction et une droite de pente non nulle tend vers zéro.",
+   "texte": "Trois asymptotes : verticale, horizontale, oblique.",
+   "ecran": "asymptotes"
+  },
+  {
+   "id": "p10",
+   "dit": "Sur la fonction affine deux ixe moins trois, tout est simple. À moins l'infini, elle tend vers moins l'infini, et à plus l'infini, vers plus l'infini : une droite n'a ni asymptote verticale, ni asymptote horizontale, elle part aux infinis en sens opposés. Et en tout point de son domaine, sa limite est simplement son image : on dit qu'elle est continue.",
+   "texte": "L'affine : moins l'infini d'un côté, plus l'infini de l'autre.",
+   "ecran": "limites_affine"
+  },
+  {
+   "id": "p11",
+   "dit": "La fonction carrée se comporte tout autrement. À plus l'infini, ixe au carré tend vers plus l'infini, et à moins l'infini aussi, car le carré d'un très grand nombre négatif est un très grand nombre positif. La parabole monte donc des deux côtés, plus vite que n'importe quelle droite : elle n'admet aucune asymptote, et cette absence est une information à part entière.",
+   "texte": "La carrée : plus l'infini des deux côtés.",
+   "ecran": "limites_carree"
+  },
+  {
+   "id": "p12",
+   "dit": "L'hyperbole de la fonction inverse illustre, elle, les deux asymptotes les plus simples. Son domaine exclut zéro. Près de zéro, ses valeurs explosent vers l'infini, en valeur absolue : l'axe des ordonnées est une asymptote verticale. À l'infini, ses valeurs tendent vers zéro : l'axe des abscisses est une asymptote horizontale. Deux branches, deux axes pour les guider.",
+   "texte": "L'inverse : les deux axes sont asymptotes.",
+   "ecran": "hyperbole"
+  },
+  {
+   "id": "p13",
+   "dit": "Acte trois : la dérivée, le cœur de l'étude. Retenez le principe qui commande tout le reste du cours : si la dérivée est strictement positive sur un intervalle, la fonction y est strictement croissante, et si elle est strictement négative, la fonction y est strictement décroissante. Quant aux points où la dérivée s'annule, ce sont les candidats aux extremums, les sommets et les creux possibles de la courbe.",
+   "texte": "Le signe de la dérivée commande les variations.",
+   "ecran": "derivee_sens"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour une fonction affine, la dérivée est constante : c'est sa pente. Deux ixe moins trois a pour dérivée deux, toujours positive : la fonction est strictement croissante sur tous les réels, sans aucun extremum. À l'inverse, moins ixe plus un a pour dérivée moins un, toujours négative : la fonction est strictement décroissante partout. Le signe de la pente décide donc du sens de variation, une fois pour toutes.",
+   "texte": "Affine : la pente décide du sens de variation.",
+   "ecran": "derivee_affine"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour la fonction carrée, la dérivée vaut deux ixe, et son signe dépend de ixe. Elle est négative avant zéro : la fonction décroît. Elle s'annule en zéro : c'est un point critique. Elle est positive après zéro : la fonction croît. La fonction carrée change donc de sens en zéro, où elle atteint son minimum, de valeur zéro. Tout le tableau de variation est déjà contenu dans cette étude de signe.",
+   "texte": "La carrée : décroissante, puis croissante, minimum en zéro.",
+   "ecran": "derivee_carree"
+  },
+  {
+   "id": "p16",
+   "dit": "Acte quatre : le tableau de variation, la synthèse de toute l'étude. Sa première ligne porte la variable et ses valeurs clés, bornes du domaine et points où la dérivée s'annule. Sa deuxième ligne porte le signe de la dérivée, intervalle par intervalle. Sa troisième ligne traduit ce signe en flèches, qui montent ou qui descendent, et aux valeurs clés on inscrit les images et les limites. Un tableau cohérent raconte toute la fonction en trois lignes.",
+   "texte": "Le tableau : trois lignes qui racontent tout.",
+   "ecran": "tableau_anatomie"
+  },
+  {
+   "id": "p17",
+   "dit": "Voici le tableau de la fonction carrée. En venant de moins l'infini, la fonction descend depuis plus l'infini, car sa dérivée est négative. Elle atteint son point le plus bas en zéro, où sa valeur est zéro. Puis elle remonte vers plus l'infini, car sa dérivée devient positive. Attention à la lecture : les infinis aux extrémités sont des limites, pas des valeurs atteintes, et le minimum, lui, est bien une valeur.",
+   "texte": "Le tableau de la carrée : descendre, toucher zéro, remonter.",
+   "ecran": "tableau_carree"
+  },
+  {
+   "id": "p18",
+   "dit": "Acte cinq : le tracé. Prenons la parabole f de ixe égale ixe au carré, moins quatre ixe, plus trois. Son tableau annonce une descente de plus l'infini vers moins un, en deux, puis une remontée. On place quatre points : l'intersection avec l'axe des ordonnées, en zéro et trois, les deux racines, en un et trois, et le sommet, en deux et moins un. Puis on joint en suivant les flèches du tableau.",
+   "texte": "La parabole complète : quatre points pour la guider.",
+   "ecran": "trace_parabole"
+  },
+  {
+   "id": "p19",
+   "dit": "Une fois tracée, la courbe devient un instrument de résolution. Résoudre f de ixe inférieur ou égal à zéro, c'est repérer la portion de courbe située sous l'axe des abscisses : ici, entre les deux racines, donc pour ixe entre un et trois inclus. Et résoudre f de ixe égale zéro, c'est lire les abscisses des intersections avec l'axe : un et trois. L'algèbre et le graphique se confirment mutuellement.",
+   "texte": "Lire une inéquation sur la courbe.",
+   "ecran": "lecture_graphique"
+  },
+  {
+   "id": "p20",
+   "dit": "Referons l'étude complète de la fonction affine deux ixe moins trois, d'un seul tenant. Domaine : tous les réels, aucune contrainte. Limites : moins l'infini à gauche, plus l'infini à droite. Dérivée : deux, toujours positive, donc fonction strictement croissante. Racine unique : un virgule cinq, là où la droite traverse l'axe des abscisses. En six : la courbe est la droite qui passe par ces repères, avec une pente de deux.",
+   "texte": "Étude complète de l'affine, d'un seul tenant.",
+   "ecran": "etude_affine"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour la parabole ixe au carré, moins quatre ixe, plus trois, un raccourci élégant existe : la forme canonique. L'expression se réécrit ixe moins deux, le tout au carré, moins un. Elle affiche directement le sommet : abscisse deux, ordonnée moins un, qui est le minimum global de la fonction. Elle affiche aussi l'axe de symétrie de la parabole, la droite verticale d'abscisse deux.",
+   "texte": "La forme canonique affiche le sommet.",
+   "ecran": "forme_canonique"
+  },
+  {
+   "id": "p22",
+   "dit": "Comparons nos deux études modèles. La fonction affine a une dérivée constante : variation uniforme, graphique en droite, aucun extremum. La fonction carrée a une dérivée affine : variation changeante, graphique en parabole, un extremum. Même méthode en cinq actes, deux histoires complètement différentes : c'est le signe de la dérivée, et son éventuel changement, qui fait toute la différence.",
+   "texte": "Affine contre carrée : même méthode, deux histoires.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p23",
+   "dit": "À vous de jouer, avec le défi du cours : la parabole h de ixe égale moins deux ixe au carré, plus huit ixe, moins cinq. Sa dérivée vaut moins quatre ixe plus huit, qui s'annule en deux. Et h de deux vaut trois : c'est un maximum, car le coefficient de ixe au carré est négatif et la parabole est tournée vers le bas. La méthode complète tient en ces trois calculs.",
+   "texte": "Le défi : un maximum de trois en deux.",
+   "ecran": "defi"
+  },
+  {
+   "id": "p24",
+   "dit": "Pour finir, gardez la boussole complète. Un : le domaine, sans valeur interdite oubliée. Deux : les limites aux bornes du domaine, et les asymptotes qui en découlent. Trois : la dérivée, puis l'étude de son signe. Quatre : le tableau de variation, qui synthétise tout. Cinq : la courbe, placée sur ses points et ses guides. Cinq actes, dans cet ordre, pour n'importe quelle fonction.",
+   "texte": "La boussole : cinq actes, toujours dans le même ordre.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La méthode en cinq actes et le domaine de définition"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Asymptotes, limites de référence et dérivée",
+   "pont": {
+    "texte": "Partie 2 : asymptotes, limites des fonctions de référence et dérivée.",
+    "dit": "Partie deux : les frontières et le moteur. Nous détaillerons les trois asymptotes, nous calculerons les limites des fonctions de référence, puis nous passerons au cœur de l'étude : la dérivée et son signe."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Tableau de variation, tracé et études complètes",
+   "pont": {
+    "texte": "Partie 3 : tableau de variation, tracé de la courbe et études complètes.",
+    "dit": "Partie trois : la synthèse. Nous lirons le tableau de variation de la fonction carrée, nous tracerons la parabole complète et nous lirons ses solutions sur la courbe, avant de referer deux études entières et de relever le défi final."
+   }
+  }
+ ]
+}
