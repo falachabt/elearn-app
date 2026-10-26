@@ -1,0 +1,389 @@
+{
+ "cours": 6180,
+ "titre": "Variables aléatoires : compter le hasard, mesurer le continu",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Variables aléatoires",
+   "titre": "Variables aléatoires : compter le hasard, mesurer le continu",
+   "sous": "Discrètes et continues : loi, répartition, espérance, densité, uniforme et exponentielle",
+   "anim": {
+    "nom": "surface_densite_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une variable aléatoire transforme le hasard en nombres : c'est le langage de tout le cours.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 190
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "X : \\Omega \\longrightarrow \\mathbb{R}",
+   "note": "Majuscule pour la variable, minuscule pour ses valeurs : P(X = x).",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "deux_familles": {
+   "type": "etape",
+   "kicker": "Deux familles",
+   "titre": "Des points isolés, ou tout un intervalle",
+   "tex": [
+    "\\text{discrète : valeurs finies ou dénombrables, points isolés}",
+    "\\text{continue : toutes les valeurs d'un intervalle de } \\mathbb{R}"
+   ]
+  },
+  "loi_discrete": {
+   "type": "formule",
+   "kicker": "La loi de probabilité",
+   "tex": "p_i = P(X = x_i), \\qquad p_i \\geq 0, \\qquad \\sum_i p_i = 1",
+   "note": "La loi donne, valeur par valeur, la probabilité exacte de chacune.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_pieces": {
+   "type": "etape",
+   "kicker": "Exemple · deux pièces équilibrées",
+   "titre": "Le nombre de faces en deux lancers",
+   "tex": [
+    "x_i : \\quad 0 \\qquad 1 \\qquad 2",
+    "p_i : \\quad \\tfrac{1}{4} \\qquad \\tfrac{1}{2} \\qquad \\tfrac{1}{4}",
+    "\\tfrac{1}{4} + \\tfrac{1}{2} + \\tfrac{1}{4} = 1"
+   ]
+  },
+  "repartition": {
+   "type": "formule",
+   "kicker": "La fonction de répartition",
+   "tex": "F_X(x) = P(X \\leq x)",
+   "note": "Elle cumule : F(0,5) = 0,25 ; F(1) = 0,75 ; F(3) = 1 pour les deux pièces.",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 170
+   }
+  },
+  "escalier": {
+   "type": "etape",
+   "kicker": "Répartition du dé",
+   "titre": "Un escalier qui saute d'un sixième à chaque face",
+   "tex": [
+    "F_X(3{,}5) = \\tfrac{1}{6} + \\tfrac{1}{6} + \\tfrac{1}{6} = \\tfrac{1}{2}",
+    "P(X = a) = F_X(a) - F_X(a^-)",
+    "P(a < X \\leq b) = F_X(b) - F_X(a)"
+   ],
+   "anim": {
+    "nom": "repartition_escalier_fig",
+    "hauteur": 130
+   }
+  },
+  "esperance": {
+   "type": "formule",
+   "kicker": "L'espérance",
+   "tex": "E(X) = \\sum_i x_i \\, p_i",
+   "note": "Linéarité, sans hypothèse : E(aX + bY) = aE(X) + bE(Y).",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 180
+   }
+  },
+  "ex_moments": {
+   "type": "etape",
+   "kicker": "Exemple · moments des deux pièces",
+   "titre": "Espérance un, variance un demi",
+   "tex": [
+    "E(X) = 0 \\times \\tfrac{1}{4} + 1 \\times \\tfrac{1}{2} + 2 \\times \\tfrac{1}{4} = 1",
+    "E(X^2) = \\tfrac{3}{2} \\qquad V(X) = \\tfrac{3}{2} - 1 = \\tfrac{1}{2}",
+    "\\sigma(X) = \\sqrt{\\tfrac{1}{2}} \\approx 0{,}71"
+   ]
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "La variance",
+   "tex": "V(X) = E(X^2) - [E(X)]^2, \\qquad \\sigma(X) = \\sqrt{V(X)}",
+   "note": "König-Huygens : l'espérance du carré, moins le carré de l'espérance."
+  },
+  "simulation": {
+   "type": "etape",
+   "kicker": "Simuler par inversion",
+   "titre": "Un nombre uniforme choisit le palier",
+   "tex": [
+    "\\text{générer } u \\sim \\mathcal{U}([0, 1])",
+    "\\text{prendre le plus petit } x \\text{ tel que } F_X(x) \\geq u",
+    "u = 0{,}73 \\;\\Rightarrow\\; F_X(5) = \\tfrac{5}{6} \\geq u \\;\\Rightarrow\\; \\text{dé simulé : } 5"
+   ]
+  },
+  "continu": {
+   "type": "phrase",
+   "kicker": "Le monde continu",
+   "texte": "Pour une variable continue, P(X = a) = 0 : on ne raisonne plus que sur des intervalles.",
+   "anim": {
+    "nom": "surface_densite_fig",
+    "hauteur": 200
+   }
+  },
+  "densite": {
+   "type": "formule",
+   "kicker": "La densité de probabilité",
+   "tex": "P(a \\leq X \\leq b) = \\int_a^b f(x) \\, dx",
+   "note": "f ≥ 0 partout, aire totale 1 : la probabilité est une aire, f(x) n'en est pas une.",
+   "anim": {
+    "nom": "surface_densite_fig",
+    "hauteur": 230
+   }
+  },
+  "repart_continue": {
+   "type": "formule",
+   "kicker": "Répartition continue",
+   "tex": "F(x) = \\int_{-\\infty}^{x} f(t) \\, dt, \\qquad F'(x) = f(x)",
+   "note": "F est continue et croissante, de 0 à 1 : plus d'escalier, une courbe lisse.",
+   "anim": {
+    "nom": "riemann_fig",
+    "hauteur": 170
+   }
+  },
+  "uniforme": {
+   "type": "formule",
+   "kicker": "La loi uniforme",
+   "tex": "f(x) = \\frac{1}{b - a} \\ \\text{ sur } [a, b], \\qquad E(X) = \\frac{a + b}{2}, \\qquad V(X) = \\frac{(b - a)^2}{12}",
+   "note": "Densité constante : seule la longueur du sous-intervalle compte."
+  },
+  "ex_uniforme": {
+   "type": "etape",
+   "kicker": "Exemple · le bus toutes les dix minutes",
+   "titre": "Attendre entre deux et cinq minutes",
+   "tex": [
+    "f(x) = \\tfrac{1}{10} \\ \\text{ sur } [0, 10]",
+    "P(2 \\leq X \\leq 5) = \\tfrac{1}{10} \\times (5 - 2) = \\tfrac{3}{10}",
+    "P(X = 3) = 0"
+   ]
+  },
+  "exponentielle": {
+   "type": "formule",
+   "kicker": "La loi exponentielle",
+   "tex": "f(x) = \\lambda e^{-\\lambda x} \\ (x \\geq 0), \\qquad F(x) = 1 - e^{-\\lambda x}",
+   "note": "λ : taux d'arrivée des événements, en événements par unité de temps.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 220
+   }
+  },
+  "ex_expo": {
+   "type": "etape",
+   "kicker": "Exemple · les appels, deux par heure",
+   "titre": "Le prochain appel dans le quart d'heure",
+   "tex": [
+    "\\lambda = 2 \\ \\text{h}^{-1} \\qquad P(X \\leq 0{,}25) = 1 - e^{-0{,}5}",
+    "1 - e^{-0{,}5} \\approx 0{,}393",
+    "P(X > 1) = e^{-2} \\approx 0{,}135"
+   ]
+  },
+  "sans_memoire": {
+   "type": "formule",
+   "kicker": "Sans mémoire",
+   "tex": "P(T > t + h \\mid T > t) = P(T > h)",
+   "note": "Médiane ln 2 / λ ≈ 0,693 / λ, plus petite que la moyenne 1 / λ."
+  },
+  "ex_duree": {
+   "type": "etape",
+   "kicker": "Exemple · durée de vie d'un composant",
+   "titre": "Une exponentielle de taux un millième par heure",
+   "tex": [
+    "P(T > 500) = e^{-0{,}5} \\approx 0{,}607",
+    "P(200 < T \\leq 800) = e^{-0{,}2} - e^{-0{,}8}",
+    "\\approx 0{,}819 - 0{,}449 \\approx 0{,}369"
+   ]
+  },
+  "choix": {
+   "type": "recap",
+   "kicker": "Choisir le bon modèle",
+   "etapes": [
+    "On compte : modèle discret",
+    "On mesure : modèle continu",
+    "Temps d'attente sans mémoire : exponentielle",
+    "Équiprobabilité sur un intervalle : uniforme"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Loi discrète : des p_i qui somment à 1",
+    "Répartition : l'escalier ou la courbe",
+    "Espérance et variance : centre et dispersion",
+    "Densité : la probabilité est une aire",
+    "Uniforme et exponentielle : les deux repères"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux variables aléatoires, le langage mathématique du hasard. Nous distinguerons deux grandes familles, les variables discrètes et les variables continues, puis nous construirons leurs outils communs : la loi de probabilité, la fonction de répartition, l'espérance et la variance, avant de rencontrer la densité et deux lois continues fondamentales, l'uniforme et l'exponentielle.",
+   "texte": "Variables aléatoires : le langage du hasard.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout commence par un geste simple : lancer un dé. Avant même qu'il retombe, on sait que le résultat sera un entier entre un et six, sans savoir lequel. Une variable aléatoire est exactement cela : une fonction qui associe un nombre réel à chaque issue d'une expérience aléatoire, ce qui transforme des événements qualitatifs, comme pile ou face, en quantités que l'on peut calculer.",
+   "texte": "Une fonction qui transforme le hasard en nombres.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "La définition formelle tient en une ligne : si oméga désigne l'ensemble des issues possibles, une variable aléatoire, notée avec une majuscule comme ixe, est une application de oméga dans l'ensemble des réels. Ses valeurs possibles s'écrivent avec des minuscules, et l'on note la probabilité que ixe prenne la valeur ixe minuscule. Attention au piège classique : la variable n'est pas sa valeur, on ne définit jamais une variable en lui donnant déjà un nombre.",
+   "texte": "X : Ω → ℝ, la variable n'est pas sa valeur.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Il faut dès maintenant distinguer deux familles. Une variable discrète prend des valeurs isolées, en nombre fini ou dénombrable : le nombre de clients dans un café entre huit et neuf heures, le nombre de composants défectueux dans un lot. Une variable continue peut prendre toutes les valeurs d'un intervalle : un temps d'attente, une durée de vie, une température. On compte dans un cas, on mesure dans l'autre, et les outils mathématiques ne seront pas les mêmes.",
+   "texte": "Compter ou mesurer : deux familles, deux outils.",
+   "ecran": "deux_familles"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour une variable discrète, tout est contenu dans sa loi de probabilité : la liste de ses valeurs possibles, chacune accompagnée de sa probabilité. Deux conditions doivent toujours être vérifiées : chaque probabilité est positive ou nulle, et leur somme vaut exactement un, car l'une des issues possibles se réalise forcément. On représente cette loi par un tableau ou par un diagramme en bâtons, dont les hauteurs sont les probabilités.",
+   "texte": "La loi : chaque valeur, sa probabilité, somme un.",
+   "ecran": "loi_discrete"
+  },
+  {
+   "id": "p06",
+   "dit": "Premier exemple, à connaître par cœur : on lance deux pièces équilibrées et ixe compte le nombre de faces. Les quatre issues sont équiprobables, donc ixe vaut zéro avec probabilité un quart, un avec probabilité un demi, et deux avec probabilité un quart. La somme fait bien un. Ce petit tableau est déjà une loi complète : il suffit pour répondre à toute question sur ce lancer double.",
+   "texte": "Deux pièces : un quart, un demi, un quart.",
+   "ecran": "ex_pieces"
+  },
+  {
+   "id": "p07",
+   "dit": "La fonction de répartition répond à une autre question : quelle est la probabilité d'obtenir au plus une valeur donnée ? Elle cumule les probabilités de toutes les valeurs inférieures ou égales au seuil. Pour nos deux pièces, la répartition vaut un quart jusqu'à un demi, trois quarts en un, et un dès que le seuil atteint deux. C'est l'outil des questions cumulées, comme au plus deux pannes ou au plus deux défectueux.",
+   "texte": "La répartition cumule : au plus, pas exactement.",
+   "ecran": "repartition"
+  },
+  {
+   "id": "p08",
+   "dit": "Graphiquement, la répartition d'une variable discrète est un escalier : constante entre deux valeurs possibles, elle saute exactement sur chaque valeur, et la hauteur du saut est la probabilité de cette valeur. Pour le dé, chaque marche vaut un sixième, et la valeur en trois et demi est un demi. Conséquence précieuse : la probabilité d'un intervalle est la différence des répartitions à ses bornes, et l'on retrouve chaque probabilité ponctuelle en mesurant le saut.",
+   "texte": "Un escalier : chaque saut est une probabilité.",
+   "ecran": "escalier"
+  },
+  {
+   "id": "p09",
+   "dit": "Comment résumer une loi en un seul nombre ? Par l'espérance : la moyenne des valeurs, pondérée par leurs probabilités. Si l'expérience se répète un grand nombre de fois, la moyenne observée se rapproche de l'espérance, c'est la loi des grands nombres. Son arme secrète est la linéarité : l'espérance d'une somme est toujours la somme des espérances, sans aucune hypothèse d'indépendance.",
+   "texte": "L'espérance : une moyenne pondérée, et linéaire.",
+   "ecran": "esperance"
+  },
+  {
+   "id": "p10",
+   "dit": "Sur l'exemple des deux pièces, l'espérance vaut zéro fois un quart, plus un fois un demi, plus deux fois un quart, soit un : on attend en moyenne une face par double lancer. Pour mesurer l'étalement autour de cette moyenne, on calcule d'abord l'espérance du carré, trois demis, puis la variance par la formule que voici.",
+   "texte": "Deux pièces : E(X) = 1, V(X) = 0,5.",
+   "ecran": "ex_moments"
+  },
+  {
+   "id": "p11",
+   "dit": "La variance est l'espérance du carré de l'écart à la moyenne. En pratique, on la calcule par la formule de König-Huygens : l'espérance du carré, moins le carré de l'espérance. Pour nos deux pièces, trois demis moins un donne un demi. Sa racine carrée, l'écart-type, vaut environ zéro virgule soixante et onze : c'est la dispersion typique, exprimée dans la même unité que la variable, là où la variance parle en unités au carré.",
+   "texte": "König-Huygens : E(X²) moins [E(X)]².",
+   "ecran": "variance"
+  },
+  {
+   "id": "p12",
+   "dit": "Dernier outil discret, très concret : la simulation. Pour simuler une variable, on tire un nombre uniforme entre zéro et un, puis on prend la plus petite valeur dont la répartition atteint ou dépasse ce nombre. C'est la méthode d'inversion. Avec un tirage de zéro virgule soixante-treize, le dé simulé tombe sur cinq, car sa répartition y vaut cinq sixièmes. Toute loi connue par sa répartition peut ainsi être jouée par un ordinateur.",
+   "texte": "Simuler : inverser la répartition.",
+   "ecran": "simulation"
+  },
+  {
+   "id": "p13",
+   "dit": "Changeons maintenant de monde. Pour une variable continue, comme le temps d'attente d'un bus, chaque valeur exacte a une probabilité nulle : il y a une infinité non dénombrable de durées possibles, et tomber sur exactement deux minutes, avec toutes ses décimales, ne pèse rien. On ne raisonne donc plus valeur par valeur, mais uniquement sur des intervalles.",
+   "texte": "En continu, une valeur exacte ne pèse rien.",
+   "ecran": "continu"
+  },
+  {
+   "id": "p14",
+   "dit": "L'outil du monde continu est la densité de probabilité. C'est une fonction positive ou nulle dont l'aire totale sous la courbe vaut un. La probabilité qu'une variable tombe dans un intervalle est l'aire sous la courbe au-dessus de cet intervalle, donc une intégrale. Attention : la hauteur de la densité n'est pas une probabilité, elle peut même dépasser un ; seule l'aire compte.",
+   "texte": "La densité : la probabilité est une aire.",
+   "ecran": "densite"
+  },
+  {
+   "id": "p15",
+   "dit": "La fonction de répartition reste le pont entre les deux mondes : c'est toujours la probabilité d'être au plus au seuil, mais elle devient l'intégrale de la densité depuis moins l'infini. Elle est maintenant continue, croissante, sans aucun saut, et sa dérivée redonne la densité. Pour le continu, inclure ou exclure une borne ne change rien, puisque chaque point isolé a une probabilité nulle.",
+   "texte": "Répartition continue : F′ = f, sans sauts.",
+   "ecran": "repart_continue"
+  },
+  {
+   "id": "p16",
+   "dit": "Première loi continue : la loi uniforme, l'équiprobabilité sur un intervalle. Sa densité est constante, et la normalisation impose sa hauteur : un divisé par la longueur de l'intervalle. Son espérance est le milieu de l'intervalle, et sa variance vaut le carré de la longueur, divisé par douze. Surtout, la probabilité d'un sous-intervalle ne dépend que de sa longueur, jamais de sa position.",
+   "texte": "Uniforme : seule la longueur compte.",
+   "ecran": "uniforme"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple : un bus passe toutes les dix minutes et vous arrivez au hasard, votre attente suit une loi uniforme sur zéro, dix, de densité un dixième. Attendre entre deux et cinq minutes, c'est un rectangle de largeur trois et de hauteur un dixième : probabilité trois dixièmes. Et attendre exactement trois minutes a une probabilité nulle, ce que confirme l'intégrale sur un intervalle de largeur zéro.",
+   "texte": "Le bus : trois dixièmes entre deux et cinq minutes.",
+   "ecran": "ex_uniforme"
+  },
+  {
+   "id": "p18",
+   "dit": "Deuxième loi continue, omniprésente : la loi exponentielle. Elle modélise les temps d'attente entre des événements qui arrivent à un taux constant, noté lambda : appels à un standard, désintégrations radioactives, durées de vie sans usure. Sa densité décroît exponentiellement, et sa répartition a une forme très simple : un moins l'exponentielle de moins lambda fois ixe.",
+   "texte": "Exponentielle : attendre des événements au taux λ.",
+   "ecran": "exponentielle"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple chiffré : un service reçoit en moyenne deux appels par heure, donc lambda vaut deux par heure. La probabilité que le prochain appel arrive dans le quart d'heure vaut un moins l'exponentielle de moins un demi, environ zéro virgule trois cent quatre-vingt-treize. Et la probabilité d'attendre plus d'une heure entière vaut l'exponentielle de moins deux, environ zéro virgule cent trente-cinq.",
+   "texte": "Deux appels par heure : 39,3 % dans le quart d'heure.",
+   "ecran": "ex_expo"
+  },
+  {
+   "id": "p20",
+   "dit": "La propriété signature de l'exponentielle est l'absence de mémoire : si vous attendez déjà depuis longtemps, la probabilité d'attendre encore une durée donnée est exactement la même qu'au départ. Le processus oublie le temps écoulé. Autre repère utile : la médiane, ln de deux sur lambda, est plus petite que la moyenne, un sur lambda, car la distribution est étalée vers la droite.",
+   "texte": "Sans mémoire : déjà attendre ne change rien.",
+   "ecran": "sans_memoire"
+  },
+  {
+   "id": "p21",
+   "dit": "Dernier calcul, complet : un composant a une durée de vie exponentielle de taux un millième par heure. La probabilité qu'il dure plus de cinq cents heures vaut l'exponentielle de moins un demi, environ zéro virgule six cent sept. Et la probabilité qu'il tombe en panne entre deux cents et huit cents heures est la différence des exponentielles de moins zéro virgule deux et de moins zéro virgule huit, soit environ zéro virgule trois cent soixante-neuf.",
+   "texte": "Durée de vie : 0,607 au-delà de 500 h, 0,369 entre 200 et 800 h.",
+   "ecran": "ex_duree"
+  },
+  {
+   "id": "p22",
+   "dit": "Avant de conclure, apprenons à choisir le modèle. On compte des objets ou des événements distincts : modèle discret. On mesure une grandeur physique, un temps, une taille : modèle continu. Un temps d'attente sans mémoire appelle une exponentielle ; une équiprobabilité sur un intervalle borné appelle une uniforme. Les deux mondes partagent d'ailleurs le même langage : loi, répartition, espérance et variance, avec des sommes d'un côté et des intégrales de l'autre.",
+   "texte": "Choisir : compter, mesurer, attendre, répartir.",
+   "ecran": "choix"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour finir, retenez l'enchaînement complet : une loi discrète se lit valeur par valeur et somme à un, une densité se lit en aires et intègre à un. La répartition cumule, en escalier pour le discret, en courbe lisse pour le continu. L'espérance situe le centre, la variance mesure la dispersion. Et deux lois continues servent de repères partout : l'uniforme et l'exponentielle sans mémoire.",
+   "texte": "Discrètes et continues : un même langage.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Variables discrètes : loi, répartition, premiers résumés"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Moments, simulation et passage au continu",
+   "pont": {
+    "texte": "Partie 2 : espérance, variance, simulation, puis le monde continu.",
+    "dit": "Partie deux : résumer une loi et changer de monde. Nous calculerons l'espérance et la variance sur un exemple complet, nous apprendrons à simuler une variable par inversion, puis nous franchirons le pas vers les variables continues, où chaque valeur exacte a une probabilité nulle et où la densité remplace la loi."
+   }
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Densité, loi uniforme et loi exponentielle",
+   "pont": {
+    "texte": "Partie 3 : uniforme, exponentielle et choix du modèle.",
+    "dit": "Partie trois : les deux lois continues repères. Nous détaillerons la loi uniforme et ses probabilités de rectangles, puis la loi exponentielle, son absence de mémoire et ses calculs de durées de vie, avant d'apprendre à choisir entre modèle discret et modèle continu."
+   }
+  }
+ ]
+}
