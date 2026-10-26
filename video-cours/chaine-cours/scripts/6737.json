@@ -1,0 +1,487 @@
+{
+ "cours": 6737,
+ "titre": "La structure de l'atome : le noyau et le cortège électronique",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Structure de l'atome",
+   "titre": "La structure de l'atome : le noyau et le cortège électronique",
+   "sous": "Rutherford et les nucléons, les nombres Z et A, les isotopes, puis les couches électroniques, Lewis et les ions",
+   "anim": {
+    "nom": "experience_rutherford_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "L'atome est presque entièrement vide, et pourtant toute sa masse tient dans son noyau."
+  },
+  "rutherford": {
+   "type": "etape",
+   "kicker": "L'expérience de Rutherford (1911)",
+   "titre": "Des particules alpha contre une feuille d'or",
+   "tex": [
+    "\\text{une fine feuille d'or bombardée de particules } \\alpha",
+    "\\text{la plupart traversent sans déviation}",
+    "\\text{quelques-unes déviées ; environ 1 sur 10 000 rebondit}"
+   ],
+   "anim": {
+    "nom": "experience_rutherford_fig",
+    "hauteur": 110
+   }
+  },
+  "conclusion_rutherford": {
+   "type": "etape",
+   "kicker": "La conclusion de Rutherford",
+   "titre": "Un atome vide, un noyau central",
+   "tex": [
+    "\\text{l'atome est essentiellement constitué de vide}",
+    "\\text{charge positive et presque toute la masse au centre}",
+    "\\text{le noyau : une région très petite et très dense}"
+   ]
+  },
+  "nucleons": {
+   "type": "etape",
+   "kicker": "La constitution du noyau",
+   "titre": "Les nucléons : protons et neutrons",
+   "tex": [
+    "\\text{nucléons : protons (p) et neutrons (n)}",
+    "p : +e = +1{,}6 \\times 10^{-19}\\ \\text{C} \\qquad m_p \\approx 1{,}67 \\times 10^{-27}\\ \\text{kg}",
+    "n : \\text{charge nulle} \\qquad m_n \\approx 1{,}67 \\times 10^{-27}\\ \\text{kg}",
+    "e^- : -e \\qquad m_e \\approx 9{,}1 \\times 10^{-31}\\ \\text{kg}"
+   ]
+  },
+  "tailles": {
+   "type": "etape",
+   "kicker": "Les ordres de grandeur",
+   "titre": "Un grain minuscule qui concentre la masse",
+   "tex": [
+    "\\text{diamètre du noyau : environ } 10^{-15}\\ \\text{m (un femtomètre)}",
+    "\\text{diamètre de l'atome : de l'ordre de } 10^{-10}\\ \\text{m}",
+    "\\text{noyau environ } 100\\,000 \\text{ fois plus petit ; plus de } 99{,}9\\ \\% \\text{ de la masse}"
+   ]
+  },
+  "z_et_a": {
+   "type": "etape",
+   "kicker": "Nombre de charge Z et nombre de masse A",
+   "titre": "Deux nombres pour décrire un noyau",
+   "tex": [
+    "Z \\text{ : nombre de protons ; il détermine l'élément}",
+    "Q_{noyau} = +Z \\times e",
+    "A \\text{ : nombre de nucléons} \\qquad N = A - Z \\text{ : nombre de neutrons}"
+   ]
+  },
+  "exemple_sodium": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le sodium",
+   "titre": "Onze protons, douze neutrons",
+   "tex": [
+    "\\text{le noyau contient 11 protons et 12 neutrons}",
+    "Z = 11 \\qquad A = 11 + 12 = 23",
+    "N = A - Z = 23 - 11 = 12 \\text{ neutrons}"
+   ]
+  },
+  "notation": {
+   "type": "formule",
+   "kicker": "La représentation symbolique d'un nucléide",
+   "tex": "{}^{A}_{Z}X",
+   "note": "X : symbole de l'élément ; A en haut à gauche, Z en bas à gauche."
+  },
+  "masse_noyau": {
+   "type": "formule",
+   "kicker": "La masse d'un noyau",
+   "tex": "m_{noyau} \\approx A \\times m_{nucléon}",
+   "note": "Masse d'un nucléon : environ 1,67 × 10⁻²⁷ kg, proton ou neutron."
+  },
+  "masse_exemple": {
+   "type": "etape",
+   "kicker": "Exemple résolu : peser le noyau de sodium",
+   "titre": "Et l'atome entier ne pèse guère plus",
+   "tex": [
+    "\\text{sodium } {}^{23}_{11}\\text{Na} : A = 23",
+    "m_{noyau} \\approx 23 \\times 1{,}67 \\times 10^{-27} \\approx 3{,}84 \\times 10^{-26}\\ \\text{kg}",
+    "m_e \\approx \\tfrac{1}{1836}\\,m_p \\text{ : électrons négligeables, } m_{atome} \\approx m_{noyau}"
+   ]
+  },
+  "isotopes": {
+   "type": "etape",
+   "kicker": "Les isotopes",
+   "titre": "Même élément, des neutrons en plus ou en moins",
+   "tex": [
+    "\\text{isotopes : même } Z\\text{, des } A \\text{ différents (neutrons différents)}",
+    "{}^{35}_{17}\\text{Cl} : 17\\ \\text{p},\\ 18\\ \\text{n} \\qquad {}^{37}_{17}\\text{Cl} : 17\\ \\text{p},\\ 20\\ \\text{n}",
+    "\\text{mêmes propriétés chimiques, des masses différentes}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Noyau : masse et charge + de l'atome",
+    "Nucléons : protons (Z) et neutrons",
+    "Nucléide : A en haut, Z en bas",
+    "Masse du noyau ≈ A × masse d'un nucléon",
+    "Isotopes : même Z, des A différents"
+   ]
+  },
+  "electron": {
+   "type": "etape",
+   "kicker": "L'électron : charge et masse",
+   "titre": "Découvert par Thomson en 1897",
+   "tex": [
+    "q_e = -1{,}6 \\times 10^{-19}\\ \\text{C} \\text{ : l'opposée de la charge du proton}",
+    "m_e = 9{,}1 \\times 10^{-31}\\ \\text{kg}",
+    "m_e \\approx \\tfrac{1}{1836}\\,m_p \\text{ : une particule très légère}"
+   ]
+  },
+  "couches": {
+   "type": "etape",
+   "kicker": "La répartition des électrons",
+   "titre": "Des couches électroniques autour du noyau",
+   "tex": [
+    "\\text{couches notées K, L, M, N... autour du noyau}",
+    "\\text{K : la plus proche du noyau, l'énergie la plus faible}",
+    "\\text{puis L, puis M : l'énergie augmente en s'éloignant}"
+   ],
+   "anim": {
+    "nom": "atome_bohr_fig",
+    "hauteur": 110
+   }
+  },
+  "capacites": {
+   "type": "etape",
+   "kicker": "La capacité des couches",
+   "titre": "Chaque couche a son nombre maximal d'électrons",
+   "tex": [
+    "\\text{nombre maximal d'électrons : } 2n^2",
+    "K\\ (n = 1) : 2 \\qquad L\\ (n = 2) : 8 \\qquad M\\ (n = 3) : 18",
+    "\\text{en seconde (18 premiers éléments) : } K \\leq 2\\text{, } L \\leq 8\\text{, } M \\leq 8"
+   ]
+  },
+  "remplissage": {
+   "type": "etape",
+   "kicker": "La règle de remplissage",
+   "titre": "De la couche la plus proche vers l'extérieur",
+   "tex": [
+    "\\text{on remplit d'abord la couche la plus proche du noyau}",
+    "\\text{une couche doit être complète avant la suivante}",
+    "\\text{structure électronique : la lettre, puis le nombre en exposant}"
+   ]
+  },
+  "exemple_soufre": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le soufre",
+   "titre": "Seize électrons à répartir",
+   "tex": [
+    "\\text{soufre : } Z = 16\\text{, donc 16 électrons à placer}",
+    "K : 2 \\text{ (saturée)} \\qquad L : 8 \\text{ (saturée)} \\qquad M : 16 - 2 - 8 = 6",
+    "\\text{structure électronique : } K^2\\ L^8\\ M^6"
+   ]
+  },
+  "lewis": {
+   "type": "etape",
+   "kicker": "La représentation de Lewis d'un atome",
+   "titre": "Le symbole entouré de ses électrons de valence",
+   "tex": [
+    "\\text{valence : les électrons de la couche externe}",
+    "\\text{un point par électron de valence autour du symbole}",
+    "\\text{les 4 premiers points seuls, puis on les apparie}"
+   ]
+  },
+  "lewis_oxygene": {
+   "type": "etape",
+   "kicker": "Exemple résolu : l'oxygène selon Lewis",
+   "titre": "Six électrons de valence à placer",
+   "tex": [
+    "\\text{oxygène : } Z = 8 \\qquad \\text{structure : } K^2\\ L^6",
+    "\\text{6 électrons de valence autour du symbole O}",
+    "\\text{quatre points seuls, puis deux points appariés}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Électron : charge −e, masse infime",
+    "Couches K, L, M remplies dans l'ordre",
+    "Capacités : 2, 8 et 18 électrons (2n²)",
+    "Structure : lettre + nombre en exposant",
+    "Lewis : les points de la couche externe"
+   ]
+  },
+  "duet_octet": {
+   "type": "etape",
+   "kicker": "Les règles du duet et de l'octet",
+   "titre": "Viser la configuration d'un gaz rare",
+   "tex": [
+    "\\text{duet (} Z \\leq 4\\text{) : 2 électrons externes, comme l'hélium } K^2",
+    "\\text{octet (} Z > 4\\text{) : 8 électrons externes, comme le néon}",
+    "\\text{ces règles expliquent la formation des ions}"
+   ]
+  },
+  "ions": {
+   "type": "etape",
+   "kicker": "La formation des ions monoatomiques",
+   "titre": "Gagner ou perdre des électrons",
+   "tex": [
+    "\\text{ion monoatomique : un atome qui gagne ou perd des électrons}",
+    "\\text{1, 2 ou 3 de valence : il cède, et devient un cation (}+\\text{)}",
+    "\\text{5, 6 ou 7 de valence : il gagne, et devient un anion (}-\\text{)}"
+   ],
+   "anim": {
+    "nom": "ion_formation_fig",
+    "hauteur": 110
+   }
+  },
+  "exemple_chlore": {
+   "type": "etape",
+   "kicker": "Exemple résolu : l'ion du chlore",
+   "titre": "Un électron gagné, et l'octet est satisfait",
+   "tex": [
+    "\\text{chlore : } K^2\\ L^8\\ M^7\\text{, soit 7 électrons de valence}",
+    "\\text{il gagne 1 électron pour saturer sa couche M à 8}",
+    "Cl^- : K^2\\ L^8\\ M^8\\text{, l'octet est satisfait}"
+   ]
+  },
+  "classification": {
+   "type": "etape",
+   "kicker": "Le lien avec la classification périodique",
+   "titre": "Même colonne, même nombre d'électrons de valence",
+   "tex": [
+    "\\text{classification par } Z \\text{ croissant ; propriétés analogues en colonne}",
+    "\\text{groupe 1 : } X^+ \\qquad \\text{groupe 2 : } X^{2+}",
+    "\\text{groupe 17 : } X^- \\qquad \\text{groupe 18 : gaz rares, stables}"
+   ],
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "hauteur": 110
+   }
+  },
+  "gaz_rares": {
+   "type": "etape",
+   "kicker": "Les gaz rares, les modèles de stabilité",
+   "titre": "Une couche externe déjà saturée",
+   "tex": [
+    "\\text{groupe 18 : couche externe complète (8, ou 2 pour l'hélium)}",
+    "\\text{stables : ils ne forment pas d'ions}",
+    "\\text{duet et octet : atteindre leur configuration}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode générale d'analyse d'un atome",
+   "titre": "Quatre gestes, dans l'ordre",
+   "tex": [
+    "\\text{1. déterminer la structure électronique à partir de } Z",
+    "\\text{2. repérer les électrons de valence}",
+    "\\text{3. écrire la représentation de Lewis}",
+    "\\text{4. appliquer duet ou octet pour prévoir l'ion}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Duet : 2 électrons, comme l'hélium",
+    "Octet : 8 électrons, comme le néon",
+    "Perdre des électrons : un cation",
+    "Gagner des électrons : un anion",
+    "Même colonne : propriétés analogues"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la structure de l'atome. Nous commencerons par son cœur : le noyau, mis en évidence par l'expérience de Rutherford, composé de protons et de neutrons, et décrit par deux nombres, le nombre de charge et le nombre de masse. Nous verrons ensuite comment peser ce noyau et reconnaître ses isotopes. Puis nous passerons au cortège électronique : la répartition des électrons en couches, la représentation de Lewis, et enfin les règles du duet et de l'octet, qui expliquent la formation des ions.",
+   "texte": "Un noyau, des couches, des ions : l'atome entier.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez un atome. On le dessine souvent comme une petite boule pleine, mais la réalité est bien différente : l'atome est essentiellement constitué de vide. Sa masse et sa charge positive tiennent dans un noyau minuscule, cent mille fois plus petit que lui, autour duquel se déplacent des électrons très légers. Comment le sait-on ? Tout commence en mille neuf cent onze, avec une expérience devenue célèbre, celle d'Ernest Rutherford.",
+   "texte": "Un atome presque vide, un noyau minuscule.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "En mille neuf cent onze, Rutherford bombarde une très fine feuille d'or avec des particules alpha, des noyaux d'hélium projetés à grande vitesse. Le résultat le surprend : la plupart des particules traversent la feuille sans aucune déviation, comme si elle n'existait pas. Quelques-unes sont légèrement déviées. Et fait extraordinaire, très peu, environ une sur dix mille, rebondissent en arrière, comme si elles avaient heurté un mur.",
+   "texte": "Particules α sur l'or : presque tout traverse.",
+   "ecran": "rutherford"
+  },
+  {
+   "id": "p04",
+   "dit": "Rutherford interprète ces résultats avec audace. Si presque toutes les particules traversent la feuille sans dévier, c'est que l'atome est essentiellement constitué de vide. Si quelques-unes rebondissent, c'est qu'elles rencontrent, en un point unique, quelque chose de très petit, de très dense et de chargé positivement. Ce quelque chose, c'est le noyau, situé au centre de l'atome. Autour de lui se déplacent les électrons, chargés négativement, qui occupent l'immense espace restant.",
+   "texte": "Le noyau : petit, dense, positif, au centre.",
+   "ecran": "conclusion_rutherford"
+  },
+  {
+   "id": "p05",
+   "dit": "De quoi le noyau est-il fait ? De deux types de particules, que l'on appelle collectivement les nucléons. Les protons portent une charge positive, exactement plus e, soit plus un virgule six dix puissance moins dix-neuf coulomb, et leur masse vaut environ un virgule soixante-sept dix puissance moins vingt-sept kilogrammes. Les neutrons sont électriquement neutres, avec une masse pratiquement égale à celle du proton. Le tableau donne aussi l'électron, qui porte la charge opposée, moins e, pour une masse presque deux mille fois plus faible.",
+   "texte": "Proton +e, neutron neutre, électron −e.",
+   "ecran": "nucleons"
+  },
+  {
+   "id": "p06",
+   "dit": "Les tailles donnent le vertige. Le diamètre du noyau est d'environ dix puissance moins quinze mètre, un femtomètre, alors que celui de l'atome est de l'ordre de dix puissance moins dix mètre. Le noyau est donc environ cent mille fois plus petit que l'atome qui l'abrite. Et pourtant, ce grain minuscule concentre à lui seul plus de quatre-vingt-dix-neuf virgule neuf pour cent de la masse totale de l'atome.",
+   "texte": "10⁻¹⁵ m contre 10⁻¹⁰ m : 100 000 fois plus petit.",
+   "ecran": "tailles"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux nombres suffisent à décrire un noyau. Le nombre de charge, noté zède, est le nombre de protons du noyau : il détermine l'élément chimique, et la charge du noyau vaut plus zède fois e. Le nombre de masse, noté grand a, est le nombre total de nucléons, c'est-à-dire protons plus neutrons. On en déduit le nombre de neutrons par une simple soustraction : les neutrons, c'est grand a moins zède.",
+   "texte": "Z protons, A nucléons, N = A − Z neutrons.",
+   "ecran": "z_et_a"
+  },
+  {
+   "id": "p08",
+   "dit": "Prenons l'exemple résolu des leçons : un noyau de sodium qui contient onze protons et douze neutrons. Son nombre de charge zède vaut donc onze, puisqu'il y a onze protons. Son nombre de masse grand a vaut onze plus douze, c'est-à-dire vingt-trois nucléons au total. Et le nombre de neutrons se retrouve bien par la soustraction annoncée : vingt-trois moins onze, égale douze.",
+   "texte": "Sodium : Z = 11, A = 23, N = 12.",
+   "ecran": "exemple_sodium"
+  },
+  {
+   "id": "p09",
+   "dit": "Un noyau caractérisé par ses nombres grand a et zède s'appelle un nucléide. Il se représente par un symbole complet : la lettre de l'élément chimique, avec le nombre de masse en haut à gauche et le nombre de charge en bas à gauche. Notre noyau de sodium s'écrit ainsi : sodium, vingt-trois en haut, onze en bas. À la lecture, on annonce : noyau de sodium vingt-trois, avec grand a égal vingt-trois et zède égal onze.",
+   "texte": "Le nucléide s'écrit ᴬZX : sodium 23, Z = 11.",
+   "ecran": "notation"
+  },
+  {
+   "id": "p10",
+   "dit": "Combien pèse un noyau ? Puisque les nucléons ont pratiquement la même masse, la masse du noyau est à peu près égale à la somme des masses de ses nucléons. Elle vaut donc simplement le nombre de nucléons, grand a, multiplié par la masse d'un nucléon, environ un virgule soixante-sept dix puissance moins vingt-sept kilogrammes. C'est une approximation, mais une excellente approximation, comme l'exemple suivant va le montrer.",
+   "texte": "Masse du noyau ≈ A × masse d'un nucléon.",
+   "ecran": "masse_noyau"
+  },
+  {
+   "id": "p11",
+   "dit": "Appliquons la formule au sodium vingt-trois : vingt-trois fois un virgule soixante-sept dix puissance moins vingt-sept donne environ trois virgule quatre-vingt-quatre dix puissance moins vingt-six kilogrammes. Et l'atome entier ? Il faut ajouter les électrons, mais leur masse est négligeable : un électron pèse environ un mille huit cent trente-sixième de la masse d'un proton. La masse de l'atome est donc, elle aussi, approximativement égale à celle de son noyau.",
+   "texte": "Sodium 23 : noyau ≈ 3,84 × 10⁻²⁶ kg.",
+   "ecran": "masse_exemple"
+  },
+  {
+   "id": "p12",
+   "dit": "Dernière notion de cette partie : les isotopes. Ce sont des nucléides d'un même élément chimique, donc avec le même nombre de protons zède, mais des nombres de neutrons différents, et par conséquent des nombres de masse différents. Le chlore en offre l'exemple classique, avec deux isotopes naturels : le chlore trente-cinq, dix-sept protons et dix-huit neutrons, et le chlore trente-sept, dix-sept protons et vingt neutrons. Même zède, donc mêmes propriétés chimiques, mais des masses différentes.",
+   "texte": "Chlore 35 et chlore 37 : même Z, A différents.",
+   "ecran": "isotopes"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons cette première partie. L'expérience de Rutherford révèle un atome presque vide, dont la masse et la charge positive sont concentrées dans un noyau central minuscule. Ce noyau réunit les nucléons, protons et neutrons, et deux nombres le décrivent : zède, le nombre de protons, et grand a, le nombre de nucléons. Sa masse vaut environ grand a fois la masse d'un nucléon, et ses isotopes partagent le même zède pour des nombres de masse différents.",
+   "texte": "Le noyau : nucléons, Z, A, masse, isotopes.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p14",
+   "dit": "L'électron est l'autre particule constitutive de l'atome. Il a été découvert par Thomson en mille huit cent quatre-vingt-dix-sept. Sa charge est négative : moins un virgule six dix puissance moins dix-neuf coulomb, exactement l'opposée de celle du proton. Sa masse, neuf virgule un dix puissance moins trente et un kilogrammes, est environ mille huit cent trente-six fois plus petite que celle du proton : c'est une particule extrêmement légère, dont la répartition autour du noyau obéit à des règles précises, que nous allons découvrir.",
+   "texte": "Électron : −1,6 × 10⁻¹⁹ C, 9,1 × 10⁻³¹ kg.",
+   "ecran": "electron"
+  },
+  {
+   "id": "p15",
+   "dit": "Dans un atome, les électrons ne sont pas répartis au hasard : ils occupent des couches électroniques, des niveaux d'énergie notés ka, elle, aime, aine, et ainsi de suite, autour du noyau. La couche ka est la plus proche du noyau : c'est elle qui a l'énergie la plus faible. Viennent ensuite la couche elle, puis la couche aime, toujours plus éloignées et plus énergétiques. Les électrons se rangent dans ces couches selon deux règles : une capacité maximale pour chacune, et un ordre de remplissage strict.",
+   "texte": "Couches K, L, M, N : K la plus proche du noyau.",
+   "ecran": "couches"
+  },
+  {
+   "id": "p16",
+   "dit": "Première règle : chaque couche ne peut contenir qu'un nombre maximal d'électrons. Ce maximum vaut deux fois le carré du numéro de la couche : deux électrons pour la couche ka, numéro un ; huit pour la couche elle, numéro deux ; dix-huit pour la couche aime, numéro trois. Dans le programme de seconde, on se limite aux dix-huit premiers éléments : seules les couches ka, elle et aime sont utilisées, et la couche aime n'y contient huit électrons au maximum.",
+   "texte": "Capacités 2n² : K = 2, L = 8, M = 18.",
+   "ecran": "capacites"
+  },
+  {
+   "id": "p17",
+   "dit": "Deuxième règle : l'ordre de remplissage. Les électrons occupent d'abord la couche la plus proche du noyau, celle de plus basse énergie. Une couche doit être complète, saturée, avant que l'on commence à remplir la couche suivante. Le résultat de cette répartition s'appelle la structure électronique de l'atome : on écrit la lettre de chaque couche, suivie, en exposant, du nombre d'électrons qu'elle contient.",
+   "texte": "On remplit K d'abord, couche complète avant la suivante.",
+   "ecran": "remplissage"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple résolu : la structure électronique du soufre, de numéro atomique zède égal seize, donc seize électrons à placer. La couche ka se sature avec deux électrons. La couche elle se sature avec huit électrons. Il en reste seize moins deux moins huit, c'est-à-dire six, qui vont dans la couche aime, sans la saturer. La structure électronique du soufre s'écrit donc : ka deux, elle huit, aime six.",
+   "texte": "Soufre (Z = 16) : K² L⁸ M⁶.",
+   "ecran": "exemple_soufre"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour dessiner un atome, les chimistes utilisent la représentation de Lewis. Le principe : on écrit le symbole de l'atome, entouré de ses seuls électrons de valence, c'est-à-dire les électrons de la dernière couche occupée, la couche externe. Chaque électron de valence est représenté par un point. Pour les dix-huit premiers éléments, ce sont donc uniquement les électrons de la couche ka, elle ou aime la plus externe qui comptent. La construction suit trois gestes : écrire la structure électronique, identifier les électrons de valence, puis placer un point par électron autour du symbole. Les quatre premiers points se placent seuls ; s'il y en a davantage, on les apparie avec les premiers.",
+   "texte": "Lewis : le symbole + les points de valence.",
+   "ecran": "lewis"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple résolu : la représentation de Lewis de l'oxygène, de numéro atomique huit. Sa structure électronique est ka deux, elle six : l'oxygène a donc six électrons de valence. On place six points autour de son symbole : quatre points seuls, un de chaque côté, puis deux points supplémentaires qui viennent s'apparier avec deux des premiers. Au final, l'oxygène affiche deux électrons célibataires et deux paires d'électrons, dessinés autour de la lettre O.",
+   "texte": "Oxygène : 6 points, deux seuls et deux paires.",
+   "ecran": "lewis_oxygene"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons. L'électron, découvert par Thomson, porte la charge moins e et une masse minuscule, mille huit cent trente-six fois plus faible que celle du proton. Les électrons d'un atome se répartissent en couches ka, elle et aime, de capacités deux, huit et dix-huit, en remplissant toujours la couche la plus interne d'abord. La structure électronique résume cette répartition, et la représentation de Lewis ne dessine que les électrons de la couche externe, ceux qui feront la chimie de l'atome.",
+   "texte": "Électron, couches, structure, Lewis.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Deux règles gouvernent la stabilité des atomes. La règle du duet concerne les atomes légers, de numéro atomique inférieur ou égal à quatre : ils tendent à acquérir la configuration électronique de l'hélium, c'est-à-dire deux électrons sur leur couche externe. La règle de l'octet concerne les autres atomes, de numéro atomique supérieur à quatre : ils tendent à acquérir la configuration électronique du néon, huit électrons sur leur couche externe. Pour y parvenir, un atome doit gagner ou perdre des électrons : c'est exactement le mécanisme de formation des ions.",
+   "texte": "Duet : viser 2 ; octet : viser 8 électrons externes.",
+   "ecran": "duet_octet"
+  },
+  {
+   "id": "p23",
+   "dit": "Un ion monoatomique est un atome qui a gagné ou perdu un ou plusieurs électrons. S'il gagne des électrons, il devient un anion, de charge négative ; s'il en perd, il devient un cation, de charge positive. En pratique, un atome qui possède un, deux ou trois électrons de valence tend à céder ces électrons, pour retrouver la couche interne, déjà saturée. Un atome qui en possède cinq, six ou sept tend au contraire à en gagner, pour compléter sa couche externe à huit électrons.",
+   "texte": "Perdre → cation (+) ; gagner → anion (−).",
+   "ecran": "ions"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple résolu : quel ion forme le chlore ? Sa structure électronique est ka deux, elle huit, aime sept : il possède sept électrons de valence. Pour saturer sa couche externe, il est bien plus simple de gagner un seul électron que d'en perdre sept. En capturant cet électron, le chlore complète sa couche aime à huit : l'octet est satisfait. Il devient l'anion chlorure, de structure ka deux, elle huit, aime huit.",
+   "texte": "Chlore + 1 électron → Cl⁻ : K² L⁸ M⁸.",
+   "ecran": "exemple_chlore"
+  },
+  {
+   "id": "p25",
+   "dit": "Tout se relie dans la classification périodique. Elle est organisée selon le numéro atomique croissant, et les éléments d'une même colonne, un groupe, possèdent le même nombre d'électrons de valence : ils présentent donc des propriétés chimiques analogues. Le groupe un compte un électron de valence, avec une tendance à former des cations X plus. Le groupe deux en compte deux : des cations X deux plus. Le groupe dix-sept en compte sept : des anions X moins. Quant au groupe dix-huit, avec huit électrons de valence, ce sont les gaz rares, stables, qui ne forment pas d'ions.",
+   "texte": "Groupes 1, 2, 17, 18 : X⁺, X²⁺, X⁻, gaz rares.",
+   "ecran": "classification"
+  },
+  {
+   "id": "p26",
+   "dit": "Arrêtons-nous un instant sur ces gaz rares du groupe dix-huit. Leur couche externe est déjà complète : huit électrons, ou deux pour l'hélium, le plus léger d'entre eux. Ils n'ont donc rien à gagner ni à perdre : ils sont stables et ne forment pas d'ions. C'est précisément leur configuration que tous les autres atomes cherchent à atteindre. Les règles du duet et de l'octet ne disent rien d'autre : devenir, par gain ou perte d'électrons, l'équivalent électronique d'un gaz rare.",
+   "texte": "Gaz rares : saturés, stables, le modèle à atteindre.",
+   "ecran": "gaz_rares"
+  },
+  {
+   "id": "p27",
+   "dit": "Voici donc la méthode générale pour analyser un atome, celle que les leçons dégagent en conclusion. Premier geste : déterminer sa structure électronique à partir de son numéro atomique zède. Deuxième geste : repérer ses électrons de valence, ceux de la couche externe. Troisième geste : écrire sa représentation de Lewis. Quatrième geste : appliquer la règle du duet ou celle de l'octet pour prévoir l'ion qu'il formera. Quatre gestes, et toute la chimie de l'atome devient lisible.",
+   "texte": "Méthode : structure, valence, Lewis, ion prévu.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p28",
+   "dit": "Terminons par l'essentiel de ce cours. Un atome, c'est un noyau minuscule et dense, fait de protons et de neutrons, qui concentre la masse et la charge positive, entouré d'électrons répartis en couches successives. Le nombre de protons, zède, fixe l'élément ; le nombre de nucléons, grand a, fixe la masse ; et les isotopes partagent le même zède pour des nombres de masse différents. Autour du noyau, les électrons remplissent les couches dans l'ordre, se dessinent selon Lewis, et obéissent aux règles du duet et de l'octet, qui expliquent les ions et organisent la classification périodique.",
+   "texte": "Noyau, couches, Lewis, duet et octet : l'atome complet.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le noyau atomique : Rutherford, nucléons, Z, A et isotopes"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "L'électron et les couches électroniques : structure et Lewis",
+   "pont": {
+    "texte": "Partie 2 : l'électron et les couches électroniques.",
+    "dit": "Partie deux : l'électron et les couches électroniques. Le noyau est en place ; occupons-nous maintenant de son cortège. Nous allons découvrir l'électron, apprendre comment les électrons se répartissent en couches autour du noyau, et représenter les atomes selon Lewis."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Duet, octet et formation des ions : le lien avec la classification",
+   "pont": {
+    "texte": "Partie 3 : duet, octet et formation des ions.",
+    "dit": "Partie trois : les règles du duet et de l'octet. Pourquoi les atomes gagnent-ils ou perdent-ils des électrons ? Nous allons voir la règle qui gouverne leur stabilité, prévoir les ions qu'ils forment, et relier le tout à la classification périodique."
+   }
+  }
+ ]
+}
