@@ -1,0 +1,464 @@
+{
+ "cours": 6107,
+ "titre": "Suites numériques et récurrence",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours ESSEC · Mathématiques générales",
+   "titre": "Suites numériques et récurrence",
+   "sous": "Arithmétiques, géométriques, convergence : définir, calculer, démontrer",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une suite est une liste ordonnée de nombres, indexée par les entiers : toute la difficulté est de passer du rang au terme, puis du terme au comportement à l'infini."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'une suite ?",
+   "tex": "u : \\mathbb{N} \\to \\mathbb{R}, \\quad n \\mapsto u_n",
+   "note": "u indice n : le terme de rang n. On note la suite (uₙ)."
+  },
+  "exemples": {
+   "type": "etape",
+   "kicker": "Trois suites à connaître",
+   "titre": "Pairs, carrés, Fibonacci",
+   "tex": [
+    "u_n = 2n : \\quad 0,\\, 2,\\, 4,\\, 6,\\, 8,\\, \\ldots",
+    "u_n = n^2 : \\quad 0,\\, 1,\\, 4,\\, 9,\\, 16,\\, \\ldots",
+    "\\text{Fibonacci : } 0,\\, 1,\\, 1,\\, 2,\\, 3,\\, 5,\\, 8,\\, \\ldots"
+   ],
+   "anim": {
+    "nom": "nuage_suite_fig",
+    "hauteur": 170
+   }
+  },
+  "modes": {
+   "type": "etape",
+   "kicker": "Définir une suite",
+   "titre": "Trois façons de donner une suite",
+   "tex": [
+    "\\text{explicite : } u_n = f(n) \\quad \\text{on calcule directement}",
+    "\\text{récurrence : } u_0 \\text{ donné, } u_{n+1} = f(u_n)",
+    "\\text{graphique : les points } (n,\\, u_n) \\text{ dans le plan}"
+   ],
+   "anim": {
+    "nom": "nuage_suite_fig",
+    "hauteur": 150
+   }
+  },
+  "arith_def": {
+   "type": "formule",
+   "kicker": "Suites arithmétiques",
+   "tex": "u_{n+1} = u_n + r",
+   "note": "r : la raison, l'écart constant entre deux termes consécutifs.",
+   "anim": {
+    "nom": "suite_arith_fig",
+    "hauteur": 170
+   }
+  },
+  "arith_terme": {
+   "type": "formule",
+   "kicker": "Arithmétique · terme général",
+   "tex": "u_n = u_0 + n\\,r",
+   "note": "On saute directement au rang voulu, sans calculer les termes intermédiaires."
+  },
+  "arith_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · raison trois",
+   "titre": "Premier terme un, raison trois : un, quatre, sept, dix…",
+   "tex": [
+    "u_{10} = 1 + 10 \\times 3 = 31",
+    "u_9 = 1 + 9 \\times 3 = 28",
+    "S = \\tfrac{10 \\times (1 + 28)}{2} = 145"
+   ]
+  },
+  "arith_somme": {
+   "type": "formule",
+   "kicker": "Arithmétique · somme",
+   "tex": "S_n = \\frac{n\\,(u_0 + u_{n-1})}{2}",
+   "note": "Nombre de termes fois la moyenne du premier et du dernier terme."
+  },
+  "geom_def": {
+   "type": "formule",
+   "kicker": "Suites géométriques",
+   "tex": "u_{n+1} = q \\times u_n",
+   "note": "q : la raison, le facteur constant d'un terme au suivant.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 170
+   }
+  },
+  "geom_terme": {
+   "type": "formule",
+   "kicker": "Géométrique · terme général",
+   "tex": "u_n = u_0 \\times q^n",
+   "note": "Si la suite démarre au rang un : u indice n égale u un fois q puissance n moins un."
+  },
+  "geom_comportement": {
+   "type": "etape",
+   "kicker": "Géométrique · comportements",
+   "titre": "Tout dépend de la raison q",
+   "tex": [
+    "q > 1 : \\text{ croissance, divergence vers } +\\infty",
+    "0 < q < 1 : \\text{ décroissance vers } 0",
+    "q = 1 : \\text{ suite constante} \\qquad q < 0 : \\text{ signes alternés}",
+    "q = 0 : \\text{ nulle dès le deuxième terme}"
+   ]
+  },
+  "geom_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · raison trois",
+   "titre": "Un, trois, neuf, vingt-sept, quatre-vingt-un",
+   "tex": [
+    "u_5 = 1 \\times 3^{5-1} = 81 \\quad \\text{(démarrage au rang un)}",
+    "S_5 = \\tfrac{1 - 3^5}{1 - 3} = 121",
+    "\\text{si } q = 1 : \\quad S_n = n \\times u_1"
+   ]
+  },
+  "geom_somme": {
+   "type": "formule",
+   "kicker": "Géométrique · somme",
+   "tex": "S_n = u_1 \\times \\frac{1 - q^n}{1 - q} \\quad (q \\neq 1)",
+   "note": "n : le nombre de termes. Si la valeur absolue de q est sous un, la somme tend vers une limite."
+  },
+  "recurrence_def": {
+   "type": "formule",
+   "kicker": "Suites définies par récurrence",
+   "tex": "u_0 \\text{ donné}, \\quad u_{n+1} = f(u_n)",
+   "note": "Condition initiale plus relation de récurrence : on avance pas à pas."
+  },
+  "fibonacci": {
+   "type": "etape",
+   "kicker": "Fibonacci, pas à pas",
+   "titre": "Chaque terme est la somme des deux précédents",
+   "tex": [
+    "u_0 = 0, \\quad u_1 = 1, \\quad u_{n+2} = u_{n+1} + u_n",
+    "n : \\quad 0 \\;\\; 1 \\;\\; 2 \\;\\; 3 \\;\\; 4 \\;\\; 5",
+    "u_n : \\quad 0 \\;\\; 1 \\;\\; 1 \\;\\; 2 \\;\\; 3 \\;\\; 5"
+   ]
+  },
+  "rec_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · calculer par récurrence",
+   "titre": "Un terme après l'autre, sans formule explicite",
+   "tex": [
+    "u_0 = 1, \\quad u_{n+1} = u_n + n",
+    "u_1 = 1, \\quad u_2 = 2, \\quad u_3 = 4, \\quad u_4 = 7, \\quad u_5 = 11",
+    "\\text{bactéries : } u_0 = 1000, \\; u_{n+1} = 2u_n \\Rightarrow u_{10} = 1\\,024\\,000"
+   ]
+  },
+  "rec_lineaire": {
+   "type": "etape",
+   "kicker": "Récurrentes linéaires d'ordre un",
+   "titre": "Le cas u indice n plus un égale a u indice n plus b",
+   "tex": [
+    "u_{n+1} = a\\,u_n + b",
+    "u_0 = 1, \\quad u_{n+1} = 2u_n + 3",
+    "u_n = 2^{n+2} - 3 : \\quad 1,\\, 5,\\, 13,\\, 29,\\, \\ldots"
+   ]
+  },
+  "convergence": {
+   "type": "formule",
+   "kicker": "Convergence et limite",
+   "tex": "\\forall \\varepsilon > 0,\\; \\exists N,\\; n > N \\Rightarrow |u_n - L| < \\varepsilon",
+   "note": "À partir d'un certain rang, tous les termes sont aussi proches de L que l'on veut.",
+   "anim": {
+    "nom": "bande_epsilon_fig",
+    "hauteur": 180
+   }
+  },
+  "conv_methodes": {
+   "type": "etape",
+   "kicker": "Trouver une limite",
+   "titre": "Quatre méthodes qui reviennent sans cesse",
+   "tex": [
+    "\\text{calcul direct : simplifier, garder le terme dominant}",
+    "\\text{opérations : somme, produit, quotient de limites}",
+    "\\text{encadrement : deux suites vers la même limite}",
+    "\\text{formes indéterminées : factoriser avant de conclure}"
+   ]
+  },
+  "conv_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · limite d'un quotient",
+   "titre": "Diviser par le terme dominant, en haut et en bas",
+   "tex": [
+    "u_n = \\tfrac{3n^2 + 2n}{n^2 - 5} = \\tfrac{3 + \\frac{2}{n}}{1 - \\frac{5}{n^2}}",
+    "\\tfrac{2}{n} \\to 0, \\quad \\tfrac{5}{n^2} \\to 0",
+    "u_n \\to \\tfrac{3}{1} = 3"
+   ]
+  },
+  "conv_oscillante": {
+   "type": "phrase",
+   "kicker": "Toutes les suites ne convergent pas",
+   "texte": "La suite des puissances de moins un vaut tour à tour moins un et un : elle oscille sans jamais se fixer, elle diverge. Une limite se démontre, elle ne se devine pas sur quelques termes.",
+   "anim": {
+    "nom": "bande_epsilon_fig",
+    "hauteur": 150
+   }
+  },
+  "demo_principe": {
+   "type": "etape",
+   "kicker": "Démontrer par récurrence",
+   "titre": "Initialisation, hérédité, conclusion : les dominos",
+   "tex": [
+    "\\text{initialisation : } P(n_0) \\text{ est vraie}",
+    "\\text{hérédité : } P(k) \\Rightarrow P(k+1)",
+    "\\text{conclusion : } P(n) \\text{ vraie pour tout } n \\geq n_0"
+   ],
+   "anim": {
+    "nom": "dominos_fig",
+    "hauteur": 180
+   }
+  },
+  "demo_exemple": {
+   "type": "etape",
+   "kicker": "Exemple · la somme des entiers",
+   "titre": "Un plus deux plus … plus n",
+   "tex": [
+    "1 + 2 + \\cdots + n = \\tfrac{n(n+1)}{2}",
+    "\\text{rang un : } 1 = \\tfrac{1 \\times 2}{2}",
+    "\\tfrac{k(k+1)}{2} + (k+1) = \\tfrac{(k+1)(k+2)}{2}"
+   ]
+  },
+  "demo_variantes": {
+   "type": "etape",
+   "kicker": "Les variantes de la récurrence",
+   "titre": "Adapter l'hypothèse au problème",
+   "tex": [
+    "\\text{forte : supposer } P(i) \\text{ pour tout } i \\leq k",
+    "\\text{double : supposer } P(k) \\text{ et } P(k+1)",
+    "\\text{descendante : redescendre de } k \\text{ vers } k-1"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "Applications · trois modèles",
+   "titre": "Finance, biologie, casse-tête",
+   "tex": [
+    "\\text{placement : } 1000 \\text{ euros à } 5\\% \\Rightarrow 1628{,}89 \\text{ euros en dix ans}",
+    "\\text{bactéries : } 100 \\times 2^6 = 6400 \\text{ en six heures}",
+    "\\text{Hanoï : } H_n = 2H_{n-1} + 1, \\quad H_n = 2^n - 1"
+   ]
+  },
+  "entrainement": {
+   "type": "etape",
+   "kicker": "Entraînement type concours",
+   "titre": "Trois réflexes à automatiser",
+   "tex": [
+    "u_n = 2n + 1 : \\text{ arithmétique, } u_5 = 11, \\; u_{10} = 21",
+    "u_{n+1} = \\tfrac{u_n + 2}{u_n + 1}, \\; u_0 = 1 \\Rightarrow L = \\sqrt{2}",
+    "\\tfrac{1}{n} \\to 0 : \\text{ lire la limite avant de calculer}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Arithmétique : on ajoute r, terme u₀ + nr",
+    "Géométrique : on multiplie par q, somme clé",
+    "Récurrence : initialisation, puis pas à pas",
+    "Convergence : ε, encadrement, terme dominant",
+    "Démontrer : initialiser, hériter, conclure"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours du concours ESSEC consacré aux suites numériques et à la récurrence. Nous allons définir une suite, calculer ses termes, étudier les suites arithmétiques et géométriques, puis les suites définies par récurrence, avant de traiter la convergence, la limite et la démonstration par récurrence, l'outil de preuve central du chapitre.",
+   "texte": "Suites numériques et récurrence : le cours complet.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est simple : une suite associe à chaque entier naturel un nombre. Toute la difficulté tient en trois questions. Comment la suite est-elle définie. Comment calcule-t-on un terme de rang donné. Et que deviennent ses termes quand le rang grandit indéfiniment.",
+   "texte": "Trois questions : définir, calculer, passer à la limite.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Formellement, une suite numérique est une application des entiers naturels dans les nombres réels, ou parfois complexes. On note u indice n le terme de rang n : le rang dit où l'on est dans la liste, le terme dit quelle valeur on y trouve. Ne confondez jamais ces deux rôles.",
+   "texte": "Une suite : une application des entiers dans les réels.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Trois exemples fondent l'intuition. La suite des nombres pairs associe à chaque rang son double. La suite des carrés associe à chaque rang son carré. La suite de Fibonacci, elle, ne se calcule pas directement : chaque terme est la somme des deux termes qui le précèdent, à partir de zéro et de un.",
+   "texte": "Pairs, carrés, Fibonacci : trois visages d'une suite.",
+   "ecran": "exemples"
+  },
+  {
+   "id": "p05",
+   "dit": "Une suite peut être définie de trois façons. Explicitement, par une formule qui donne le terme en fonction du seul rang. Par récurrence, en donnant le ou les premiers termes et une relation qui fabrique chaque terme à partir des précédents. Ou graphiquement, par les points de coordonnées rang et terme, qui rendent l'évolution visible d'un coup d'œil.",
+   "texte": "Explicite, récurrence ou graphique : choisir son entrée.",
+   "ecran": "modes"
+  },
+  {
+   "id": "p06",
+   "dit": "Une suite est arithmétique quand l'écart entre deux termes consécutifs ne change jamais. Cet écart constant s'appelle la raison. Pour reconnaître une suite arithmétique, calculez les différences entre termes successifs : si elles sont toutes égales, la suite est arithmétique ; sinon, elle ne l'est pas.",
+   "texte": "Arithmétique : un écart constant, la raison.",
+   "ecran": "arith_def"
+  },
+  {
+   "id": "p07",
+   "dit": "La régularité paie immédiatement : le terme de rang n s'obtient en ajoutant n fois la raison au premier terme. Inutile de calculer tous les termes intermédiaires, la formule donne directement n'importe quel rang, même très lointain.",
+   "texte": "Terme général : premier terme plus n fois la raison.",
+   "ecran": "arith_terme"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple complet. La suite un, quatre, sept, dix est arithmétique de premier terme un et de raison trois. Son terme de rang dix vaut un plus dix fois trois, soit trente et un. Attention au piège classique : les dix premiers termes vont du rang zéro au rang neuf, et le dernier d'entre eux vaut vingt-huit.",
+   "texte": "Rang dix : trente et un. Dix premiers termes : jusqu'à vingt-huit.",
+   "ecran": "arith_exemple"
+  },
+  {
+   "id": "p09",
+   "dit": "La somme des premiers termes se calcule aussi d'un coup : nombre de termes multiplié par la moyenne du premier et du dernier terme. Dans notre exemple, dix termes, premier terme un, dernier terme vingt-huit : la somme vaut dix fois vingt-neuf, divisé par deux, soit cent quarante-cinq. Retenez le réflexe : avant d'appliquer la formule, identifiez le vrai dernier terme.",
+   "texte": "Somme : cent quarante-cinq, avec le bon dernier terme.",
+   "ecran": "arith_somme"
+  },
+  {
+   "id": "p10",
+   "dit": "Changeons de régime : une suite est géométrique quand on passe d'un terme au suivant en multipliant toujours par le même nombre, la raison, souvent notée q. Là où la suite arithmétique avance à pas constants, la suite géométrique grandit ou décroît en proportion constante, ce qui produit des croissances beaucoup plus rapides.",
+   "texte": "Géométrique : un facteur constant, la raison q.",
+   "ecran": "geom_def"
+  },
+  {
+   "id": "p11",
+   "dit": "Le terme général suit la même logique : le premier terme, multiplié par la raison élevée à la puissance du rang. Si la suite démarre au rang un, l'exposant devient rang moins un. Cette puissance explique la violence des croissances géométriques : chaque rang multiplie encore.",
+   "texte": "Terme général : la raison élevée à la puissance du rang.",
+   "ecran": "geom_terme"
+  },
+  {
+   "id": "p12",
+   "dit": "Le comportement dépend entièrement de la raison. Au-dessus de un, la suite croît et diverge. Entre zéro et un, elle décroît vers zéro. Égale à un, elle est constante. Négative, elle alterne les signes à chaque rang. Nulle, elle s'annule dès le deuxième terme. Classer la raison, c'est déjà décrire la suite.",
+   "texte": "Tout le comportement se lit dans la raison.",
+   "ecran": "geom_comportement"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple : un, trois, neuf, vingt-sept, quatre-vingt-un est géométrique de raison trois. En démarrant au rang un, le cinquième terme vaut un fois trois puissance quatre, soit quatre-vingt-un. La somme des cinq premiers termes utilise la formule des sommes géométriques et vaut cent vingt et un.",
+   "texte": "Raison trois : cinquième terme quatre-vingt-un, somme cent vingt et un.",
+   "ecran": "geom_exemple"
+  },
+  {
+   "id": "p14",
+   "dit": "La formule de la somme géométrique vaut pour toute raison différente de un : premier terme multiplié par un moins la raison puissance nombre de termes, le tout divisé par un moins la raison. Si la raison vaut un, tous les termes sont égaux et la somme est simplement le nombre de termes fois le premier terme.",
+   "texte": "Somme géométrique : la formule, et le cas raison égale un.",
+   "ecran": "geom_somme"
+  },
+  {
+   "id": "p15",
+   "dit": "Une suite définie par récurrence ne donne pas directement son terme général : elle donne un point de départ, la condition initiale, et une règle de fabrication, la relation de récurrence, souvent de la forme terme suivant égale une fonction du terme actuel. Les suites arithmétiques et géométriques sont d'ailleurs des cas particuliers de ce schéma.",
+   "texte": "Récurrence : un départ, puis une règle de fabrication.",
+   "ecran": "recurrence_def"
+  },
+  {
+   "id": "p16",
+   "dit": "Fibonacci en est l'illustration parfaite, avec une récurrence d'ordre deux : il faut deux termes pour en fabriquer un troisième. Partant de zéro et de un, on obtient un, puis deux, puis trois, puis cinq, puis huit. Le tableau des premiers termes, écrit proprement, évite presque toutes les erreurs de décalage d'indice.",
+   "texte": "Fibonacci : zéro, un, un, deux, trois, cinq, huit.",
+   "ecran": "fibonacci"
+  },
+  {
+   "id": "p17",
+   "dit": "Calculer par récurrence demande seulement de la méthode. Avec un premier terme égal à un et la règle ajouter le rang, on obtient un, deux, quatre, sept, onze. Même geste en biologie : une population qui double chaque heure, partie de mille, dépasse le million après dix heures, car deux puissance dix vaut mille vingt-quatre.",
+   "texte": "Pas à pas : un, deux, quatre, sept, onze.",
+   "ecran": "rec_exemple"
+  },
+  {
+   "id": "p18",
+   "dit": "Cas important au concours : les récurrences linéaires d'ordre un, où le terme suivant est une combinaison affine du terme actuel. Pour celle qui double et ajoute trois, en partant de un, la résolution donne un terme général en puissance de deux : deux puissance rang plus deux, moins trois, ce qui redonne bien un, cinq, treize, vingt-neuf.",
+   "texte": "Récurrence affine : une formule explicite existe.",
+   "ecran": "rec_lineaire"
+  },
+  {
+   "id": "p19",
+   "dit": "Venons au comportement à long terme. Une suite converge vers une limite quand ses termes s'en rapprochent autant qu'on veut, à partir d'un certain rang. La définition formelle le dit avec un écart arbitrairement petit : quel que soit cet écart, il existe un rang au-delà duquel tous les termes restent à l'intérieur. Sinon, la suite diverge.",
+   "texte": "Converger : se rapprocher autant qu'on veut, durablement.",
+   "ecran": "convergence"
+  },
+  {
+   "id": "p20",
+   "dit": "Quatre méthodes reviennent sans cesse. Le calcul direct, en simplifiant l'expression. Les théorèmes d'opérations, qui combinent les limites de suites connues. L'encadrement, quand deux suites voisines convergent vers la même limite et serrent la nôtre entre elles. Et, devant une forme indéterminée, la factorisation par le terme dominant avant tout calcul de limite.",
+   "texte": "Quatre méthodes : direct, opérations, encadrement, dominant.",
+   "ecran": "conv_methodes"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple résolu : le quotient de trois n carré plus deux n, par n carré moins cinq. On divise le numérateur et le dénominateur par n carré : il reste trois plus deux sur n, divisé par un moins cinq sur n carré. Les deux corrections tendent vers zéro, et la limite vaut trois. C'est le terme dominant, n carré, qui a décidé du résultat.",
+   "texte": "Limite trois : le terme dominant décide.",
+   "ecran": "conv_exemple"
+  },
+  {
+   "id": "p22",
+   "dit": "Toutes les suites ne convergent pas. La suite qui alterne moins un et un ne se fixe jamais : aucun rang ne permet de rester près d'une seule valeur. Retenez aussi le piège inverse : quelques termes qui semblent se stabiliser ne prouvent rien, la convergence est une propriété de tous les termes à partir d'un rang, pas une impression visuelle.",
+   "texte": "Alterner moins un et un : aucune limite.",
+   "ecran": "conv_oscillante"
+  },
+  {
+   "id": "p23",
+   "dit": "La démonstration par récurrence prouve une propriété pour tous les entiers à partir d'un rang donné, en deux étapes seulement. L'initialisation vérifie la propriété au premier rang. L'hérédité montre que si elle est vraie à un rang, elle l'est au rang suivant. Comme des dominos : le premier tombe, et chaque domino fait tomber le suivant.",
+   "texte": "Récurrence : initialisation, hérédité, conclusion.",
+   "ecran": "demo_principe"
+  },
+  {
+   "id": "p24",
+   "dit": "Application : la somme des entiers de un à n vaut n fois n plus un, divisé par deux. Au rang un, l'égalité est immédiate. Supposons-la vraie au rang k : en ajoutant k plus un des deux côtés, l'algèbre redonne exactement la formule au rang k plus un. L'hérédité est démontrée, la formule vaut pour tout rang.",
+   "texte": "La somme des entiers, démontrée par récurrence.",
+   "ecran": "demo_exemple"
+  },
+  {
+   "id": "p25",
+   "dit": "Le principe se décline. En récurrence forte, on suppose la propriété vraie pour tous les rangs jusqu'au rang actuel, utile quand la fabrication mobilise plusieurs termes précédents, comme Fibonacci. En récurrence double, on initialise deux rangs et on propage de deux en deux. L'énoncé décide de la variante : lisez ce dont le rang suivant a réellement besoin.",
+   "texte": "Forte ou double : l'hypothèse suit le problème.",
+   "ecran": "demo_variantes"
+  },
+  {
+   "id": "p26",
+   "dit": "Ces outils modélisent le réel. En finance, un placement à intérêts composés suit une suite géométrique : mille euros à cinq pour cent valent environ mille six cent vingt-neuf euros après dix ans. En biologie, un doublement horaire mène de cent à six mille quatre cents bactéries en six heures. Et la tour de Hanoï cache une récurrence : déplacer n disques coûte deux fois le coût pour n moins un disques, plus un.",
+   "texte": "Finance, bactéries, Hanoï : la récurrence modélise.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p27",
+   "dit": "Entraînement type concours, en trois réflexes. D'abord, reconnaître la nature d'une suite : deux n plus un est arithmétique de raison deux. Ensuite, calculer sans se tromper d'indice : ses termes de rang cinq et dix valent onze et vingt et un. Enfin, pour une suite définie par une fraction en son terme, chercher le point fixe : ici, la limite éventuelle vérifie une équation qui mène à racine de deux.",
+   "texte": "Nature, indices, point fixe : les trois réflexes.",
+   "ecran": "entrainement"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour conclure, retenez l'enchaînement du chapitre. Arithmétique : on ajoute la raison. Géométrique : on multiplie par la raison. Récurrence : un départ et une règle. Convergence : un écart, un rang, un encadrement. Et pour démontrer : initialiser, transmettre, conclure. Ces cinq gestes couvrent l'essentiel des sujets du concours sur les suites.",
+   "texte": "Cinq gestes : ajouter, multiplier, itérer, borner, démontrer.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir une suite et les suites arithmétiques"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Suites géométriques et suites définies par récurrence",
+   "pont": {
+    "texte": "Partie 2 : géométriques, puis les suites définies par récurrence.",
+    "dit": "Partie deux : les suites géométriques, où l'on multiplie au lieu d'ajouter, puis les suites définies par récurrence, qui fabriquent chaque terme à partir des précédents, de Fibonacci aux récurrences linéaires."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Convergence, limite et démonstration par récurrence",
+   "pont": {
+    "texte": "Partie 3 : convergence, limite et démonstration par récurrence.",
+    "dit": "Partie trois : le comportement à l'infini. Nous définirons la convergence et la limite, nous calculerons une limite par le terme dominant, puis nous maîtriserons la démonstration par récurrence avant les applications."
+   }
+  }
+ ]
+}
