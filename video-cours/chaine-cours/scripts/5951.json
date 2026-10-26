@@ -1,0 +1,467 @@
+{
+ "cours": 5951,
+ "titre": "Amines, acides carboxyliques et acides α-aminés : nommer, réagir, synthétiser",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Chimie organique",
+   "titre": "Amines, acides carboxyliques et acides α-aminés",
+   "sous": "Nomenclature, propriétés, réactions et synthèses des trois familles",
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 250
+   }
+  },
+  "trois_familles": {
+   "type": "phrase",
+   "kicker": "Trois familles, trois signatures",
+   "texte": "L'azote pour les amines, le groupe carboxyle pour les acides carboxyliques, et les deux réunis sur un même carbone pour les acides α-aminés."
+  },
+  "amines_classes": {
+   "type": "etape",
+   "kicker": "Les amines",
+   "titre": "Des dérivés de l'ammoniac : un, deux ou trois groupes",
+   "tex": [
+    "\\mathrm{NH_3} \\quad \\text{ammoniac}",
+    "\\mathrm{CH_3-NH_2} \\quad \\text{méthylamine, primaire}",
+    "\\mathrm{(CH_3)_2NH} \\quad \\text{diméthylamine, secondaire}",
+    "\\mathrm{(CH_3)_3N} \\quad \\text{triméthylamine, tertiaire}"
+   ]
+  },
+  "nomenclature_amines": {
+   "type": "etape",
+   "kicker": "Nomenclature des amines",
+   "titre": "Le groupe alkyle, puis le suffixe « amine »",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH_2NH_2} \\quad \\text{propanamine}",
+    "\\mathrm{CH_3CH_2NHCH_3} \\quad \\text{N-méthyléthanamine}",
+    "\\mathrm{CH_3CH(NH_2)CH_2CH_3} \\quad \\text{butan-2-amine}"
+   ],
+   "anim": {
+    "nom": "formule_developpee_fig",
+    "hauteur": 110
+   }
+  },
+  "proprietes_amines": {
+   "type": "formule",
+   "kicker": "Propriétés des amines",
+   "tex": "\\mathrm{CH_3CH_2CH_2NH_2} : 48\\,^\\circ\\mathrm{C} \\qquad \\mathrm{CH_3CH_2CH_3} : -42\\,^\\circ\\mathrm{C}",
+   "note": "Propanamine contre propane : les liaisons hydrogène changent tout."
+  },
+  "basicite_amines": {
+   "type": "formule",
+   "kicker": "La basicité, propriété maîtresse",
+   "tex": "\\mathrm{R-NH_2 + H^+ \\rightleftharpoons R-NH_3^+}",
+   "note": "Le doublet non liant de l'azote capte un proton : ion ammonium."
+  },
+  "reactions_amines": {
+   "type": "etape",
+   "kicker": "Réactions des amines",
+   "titre": "Quatre réactions à retenir",
+   "tex": [
+    "\\mathrm{R-NH_2 + R'-X \\rightarrow R-NHR' + HX} \\quad \\text{alkylation}",
+    "\\mathrm{R-NH_2 + R'-COCl \\rightarrow R-NH-CO-R' + HCl} \\quad \\text{acylation}",
+    "\\mathrm{Ar-NH_2 + HNO_2 \\rightarrow Ar-N_2^+ + 2\\,H_2O} \\quad \\text{diazotation}",
+    "\\mathrm{R-NH_2 + R'-CHO \\rightarrow R-N{=}CH-R' + H_2O} \\quad \\text{imine}"
+   ]
+  },
+  "synthese_amines": {
+   "type": "etape",
+   "kicker": "Synthèse des amines",
+   "titre": "Réduire un composé azoté, plutôt qu'alkyler au hasard",
+   "tex": [
+    "\\mathrm{R-C \\equiv N \\xrightarrow{LiAlH_4} R-CH_2NH_2} \\quad \\text{nitrile}",
+    "\\mathrm{R-NO_2 \\xrightarrow{Fe\\,/\\,HCl} R-NH_2} \\quad \\text{nitrocomposé}",
+    "\\mathrm{C_6H_5CONH_2 \\xrightarrow{Br_2\\,/\\,NaOH} C_6H_5NH_2} \\quad \\text{Hofmann}"
+   ]
+  },
+  "applications_amines": {
+   "type": "phrase",
+   "kicker": "Des amines partout",
+   "texte": "Dopamine et sérotonine dans le cerveau, morphine en médecine, colorants et nylon dans l'industrie : les amines sont partout."
+  },
+  "recap_p1": {
+   "type": "recap",
+   "kicker": "Les amines : l'essentiel",
+   "etapes": [
+    "Amine : dérivé de l'ammoniac, primaire, secondaire ou tertiaire",
+    "Le doublet de l'azote capte un proton : les amines sont basiques",
+    "Alkylation, acylation, diazotation : la nucléophilie de l'azote",
+    "Synthèses : réductions, Gabriel, Hofmann ; éviter les mélanges"
+   ]
+  },
+  "carboxyle": {
+   "type": "etape",
+   "kicker": "Les acides carboxyliques",
+   "titre": "Le groupe carboxyle : un carbonyle et un hydroxyle",
+   "tex": [
+    "\\mathrm{HCOOH} \\quad \\text{acide méthanoïque (formique)}",
+    "\\mathrm{CH_3COOH} \\quad \\text{acide éthanoïque (acétique)}",
+    "\\mathrm{CH_3CH_2COOH} \\quad \\text{acide propanoïque (propionique)}",
+    "\\mathrm{CH_3CH_2CH_2COOH} \\quad \\text{acide butanoïque (butyrique)}"
+   ]
+  },
+  "nomenclature_acides": {
+   "type": "etape",
+   "kicker": "Nomenclature des acides",
+   "titre": "Substituants, insaturations et diacides",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH(CH_3)COOH} \\quad \\text{acide 2-méthylbutanoïque}",
+    "\\mathrm{CH_2{=}CHCOOH} \\quad \\text{acide prop-2-énoïque (acrylique)}",
+    "\\mathrm{HOOC-COOH} \\quad \\text{acide éthanedioïque (oxalique)}",
+    "\\mathrm{C_6H_{11}COOH} \\quad \\text{acide cyclohexanecarboxylique}"
+   ]
+  },
+  "proprietes_acides": {
+   "type": "formule",
+   "kicker": "Propriétés des acides carboxyliques",
+   "tex": "\\mathrm{CH_3CH_2CH_2COOH} : 164\\,^\\circ\\mathrm{C} \\qquad \\text{butane} : -0{,}5\\,^\\circ\\mathrm{C}",
+   "note": "Acide butanoïque contre butane : les liaisons hydrogène relient les molécules."
+  },
+  "reactions_acides": {
+   "type": "etape",
+   "kicker": "Réactions des acides carboxyliques",
+   "titre": "Les réactions du carboxyle",
+   "tex": [
+    "\\mathrm{RCOOH + R'OH \\rightleftharpoons RCOOR' + H_2O} \\quad \\text{ester}",
+    "\\mathrm{RCOOH + R'NH_2 \\rightarrow RCONHR' + H_2O} \\quad \\text{amide}",
+    "\\mathrm{RCOOH \\xrightarrow{LiAlH_4} RCH_2OH} \\quad \\text{alcool primaire}",
+    "\\mathrm{RCOOH \\rightarrow RH + CO_2} \\quad \\text{décarboxylation}"
+   ]
+  },
+  "synthese_acides": {
+   "type": "etape",
+   "kicker": "Synthèse des acides carboxyliques",
+   "titre": "Trois voies de synthèse",
+   "tex": [
+    "\\mathrm{R-CH_2OH \\xrightarrow{[O]} R-CHO \\xrightarrow{[O]} R-COOH}",
+    "\\mathrm{R-CN + 2\\,H_2O \\rightarrow R-COOH + NH_3}",
+    "\\mathrm{R-MgX + CO_2 \\xrightarrow{H_3O^+} R-COOH}"
+   ]
+  },
+  "exercice_acides": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Classer trois acides par acidité croissante",
+   "tex": [
+    "\\mathrm{CH_3CH_2COOH} \\quad \\text{le moins acide}",
+    "\\mathrm{CH_3COOH} \\quad \\text{intermédiaire}",
+    "\\mathrm{ClCH_2COOH} \\quad \\text{le plus acide}"
+   ]
+  },
+  "applications_acides": {
+   "type": "phrase",
+   "kicker": "Des acides au quotidien",
+   "texte": "Vinaigre, agrumes, produits laitiers fermentés, aspirine : les acides carboxyliques sont dans l'assiette et dans l'armoire à pharmacie."
+  },
+  "recap_p2": {
+   "type": "recap",
+   "kicker": "Les acides carboxyliques : l'essentiel",
+   "etapes": [
+    "Carboxyle : carbonyle + hydroxyle",
+    "Nom en -oïque, carbone 1 = carboxyle",
+    "Acide faible, renforcé par les attracteurs",
+    "Esters, amides, alcools : ses réactions",
+    "Oxydation, nitriles, Grignard : ses synthèses"
+   ]
+  },
+  "structure_aa": {
+   "type": "formule",
+   "kicker": "Les acides α-aminés",
+   "tex": "\\mathrm{H_2N-CH(R)-COOH}",
+   "note": "Glycine : R = H ; alanine : R = CH₃. Le carbone α porte tout.",
+   "anim": {
+    "nom": "fischer_fig",
+    "hauteur": 150
+   }
+  },
+  "nomenclature_aa": {
+   "type": "etape",
+   "kicker": "Nomenclature des acides α-aminés",
+   "titre": "Le préfixe amino, et des noms courants partout",
+   "tex": [
+    "\\mathrm{H_2N-CH_2-COOH} \\quad \\text{glycine (Gly, G)}",
+    "\\mathrm{CH_3-CH(NH_2)-COOH} \\quad \\text{alanine (Ala, A)}",
+    "\\mathrm{(CH_3)_2CH-CH(NH_2)-COOH} \\quad \\text{valine (Val, V)}"
+   ]
+  },
+  "proprietes_aa": {
+   "type": "etape",
+   "kicker": "Propriétés des acides α-aminés",
+   "titre": "Des solides cristallins et amphotères",
+   "tex": [
+    "\\mathrm{H_3N^+-CH(R)-COO^-} \\quad \\text{forme zwitterion}",
+    "\\text{alanine : point isoélectrique} = 6{,}0",
+    "T_\\mathrm{fusion} > 200\\,^\\circ\\mathrm{C}"
+   ]
+  },
+  "chaine_laterale": {
+   "type": "phrase",
+   "kicker": "La chaîne latérale décide",
+   "texte": "Sérine polaire et soluble, leucine apolaire, cystéine capable de ponts disulfures : la chaîne R règle la solubilité et la réactivité."
+  },
+  "chiralite": {
+   "type": "phrase",
+   "kicker": "Le monde miroir",
+   "texte": "Un carbone α asymétrique, deux énantiomères D et L : les protéines ne retiennent que les L.",
+   "anim": {
+    "nom": "enantiomeres_fig",
+    "hauteur": 200
+   }
+  },
+  "liaison_peptidique": {
+   "type": "formule",
+   "kicker": "La liaison peptidique",
+   "tex": "\\mathrm{-COOH + H_2N- \\rightarrow -CO-NH- + H_2O}",
+   "note": "Une condensation qui enchaîne les acides α-aminés, jusqu'aux protéines."
+  },
+  "reactions_aa": {
+   "type": "etape",
+   "kicker": "Réactions des acides α-aminés",
+   "titre": "Chaque groupe garde sa réactivité",
+   "tex": [
+    "\\mathrm{R-COOH + R'OH \\rightarrow R-COOR' + H_2O} \\quad \\text{ester}",
+    "\\mathrm{glutamate \\rightarrow GABA + CO_2} \\quad \\text{décarboxylation}",
+    "\\mathrm{R-NH_2 + (CH_3CO)_2O \\rightarrow R-NHCOCH_3} \\quad \\text{acylation}",
+    "\\mathrm{R-NH_2 + HNO_2 \\rightarrow R-N_2^+} \\quad \\text{diazotation}"
+   ]
+  },
+  "synthese_aa": {
+   "type": "etape",
+   "kicker": "Synthèse des acides α-aminés",
+   "titre": "La voie de Strecker, en deux temps",
+   "tex": [
+    "\\mathrm{R-CHO + HCN + NH_3 \\longrightarrow R-CH(NH_2)-C \\equiv N}",
+    "\\mathrm{R-CH(NH_2)-C \\equiv N + 2\\,H_2O \\longrightarrow R-CH(NH_2)-COOH + NH_3}"
+   ]
+  },
+  "isomerie": {
+   "type": "recap",
+   "kicker": "L'isomérie, en un coup d'œil",
+   "etapes": [
+    "Constitution : chaîne, position ou fonction différente",
+    "Amines : azote parfois chiral, mais inversion rapide",
+    "Acides α-aminés : carbone α chiral, énantiomères D et L",
+    "Les protéines ne gardent que la série L"
+   ]
+  },
+  "exercice_aa": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Nommer, puis dessiner à pH neutre",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH(NH_2)COOH} \\quad \\text{acide 2-aminobutanoïque}",
+    "\\mathrm{CH_3-CH(NH_3^+)-COO^-} \\quad \\text{alanine, forme zwitterion}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Le cours en quatre idées",
+   "etapes": [
+    "Amines : l'azote nucléophile et basique commande",
+    "Acides carboxyliques : le carboxyle, acide et condensable",
+    "Acides α-aminés : les deux groupes sur un même carbone",
+    "Enchaînés par les liaisons peptidiques, ils font les protéines"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à trois familles de molécules qui sont au cœur de la chimie organique et du vivant : les amines, les acides carboxyliques et les acides alpha-aminés. Nous allons apprendre à les nommer, à prévoir leurs propriétés, à écrire leurs réactions et à les synthétiser.",
+   "ecran": "titre",
+   "texte": "Amines, acides carboxyliques, acides α-aminés : trois familles."
+  },
+  {
+   "id": "p02",
+   "dit": "Le point commun de ces trois familles tient à leurs groupes caractéristiques : les amines portent un atome d'azote, les acides carboxyliques un groupe carboxyle, et les acides alpha-aminés portent les deux à la fois, sur le même carbone.",
+   "ecran": "trois_familles",
+   "texte": "Un azote, un carboxyle — ou les deux sur le même carbone."
+  },
+  {
+   "id": "p03",
+   "dit": "Une amine est un dérivé de l'ammoniac : on remplace un, deux ou trois atomes d'hydrogène par des groupes alkyles ou aryles. Avec un seul groupe, l'amine est primaire ; avec deux, elle est secondaire ; avec trois, elle est tertiaire. L'aniline, où l'azote est lié à un cycle benzénique, est l'amine aromatique de référence.",
+   "ecran": "amines_classes",
+   "texte": "NH₃ + 1, 2 ou 3 groupes : primaire, secondaire, tertiaire."
+  },
+  {
+   "id": "p04",
+   "dit": "Pour nommer une amine simple, on cite le groupe alkyle suivi du suffixe amine. Si un substituant est porté par l'azote, on le signale par la lettre N, comme dans la N-méthyléthanamine. Quand la chaîne est plus longue, on numérote au plus près du groupe amine : la butan-deux-amine porte donc son groupe amine sur le deuxième carbone.",
+   "ecran": "nomenclature_amines",
+   "texte": "Suffixe -amine ; N- pour les substituants portés par l'azote."
+  },
+  {
+   "id": "p05",
+   "dit": "Le groupe amine est polaire, et les amines primaires et secondaires forment des liaisons hydrogène entre elles : la propanamine bout ainsi à quarante-huit degrés, alors que le propane, de masse comparable, bout à moins quarante-deux degrés. Les petites amines sont solubles dans l'eau, mais la solubilité chute quand la chaîne carbonée s'allonge.",
+   "ecran": "proprietes_amines",
+   "texte": "Liaisons hydrogène : la propanamine bout à 48 °C, le propane à −42 °C."
+  },
+  {
+   "id": "p06",
+   "dit": "La propriété maîtresse des amines est leur basicité : le doublet non liant de l'azote peut capter un proton et former un ion ammonium. Les groupes alkyles, donneurs d'électrons, renforcent cette basicité ; les groupes aryles la diminuent, ce qui explique que l'aniline soit moins basique que l'ammoniac.",
+   "ecran": "basicite_amines",
+   "texte": "R–NH₂ + H⁺ → R–NH₃⁺ : le doublet de l'azote capte un proton."
+  },
+  {
+   "id": "p07",
+   "dit": "Quatre réactions structurent la chimie des amines. L'alkylation, avec un halogénure d'alkyle, fait monter l'amine en degré. L'acylation, avec un chlorure d'acyle, donne un amide. La diazotation transforme les amines aromatiques primaires en sels de diazonium, précieux pour fabriquer les colorants. Et avec un aldéhyde, une amine primaire forme une imine, appelée aussi base de Schiff.",
+   "ecran": "reactions_amines",
+   "texte": "Alkylation, acylation, diazotation, imine : quatre réactions."
+  },
+  {
+   "id": "p08",
+   "dit": "Pour synthétiser une amine, l'alkylation directe de l'ammoniac est piégeuse : elle donne un mélange d'amines de tous degrés et de sels d'ammonium, sauf si l'on emploie un large excès d'ammoniac. On préfère souvent réduire un composé azoté : nitrile, nitrocomposé, amide ou imine. La synthèse de Gabriel, elle, ne donne que l'amine primaire, et le réarrangement de Hofmann transforme un amide en amine primaire avec un carbone de moins, comme la benzamide qui devient l'aniline.",
+   "ecran": "synthese_amines",
+   "texte": "Réduire nitrile, nitro ou amide plutôt qu'alkyler au hasard."
+  },
+  {
+   "id": "p09",
+   "dit": "Les amines sont omniprésentes : la dopamine et la sérotonine, des neurotransmetteurs, sont des amines, tout comme la morphine. Dans l'industrie, elles servent à fabriquer des colorants, des pesticides et des polymères comme les polyamides, dont le nylon est l'exemple le plus connu.",
+   "ecran": "applications_amines",
+   "texte": "Dopamine, morphine, colorants, nylon : les amines sont partout."
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Une amine est un dérivé de l'ammoniac, classé selon le nombre de groupes portés par l'azote. Son doublet non liant la rend à la fois basique et nucléophile, ce qui commande ses réactions. Et pour la fabriquer proprement, on réduit un composé azoté ou on passe par Gabriel, plutôt que d'alkyler l'ammoniac au hasard.",
+   "ecran": "recap_p1",
+   "texte": "Le doublet de l'azote : basicité, nucléophilie, synthèses."
+  },
+  {
+   "id": "p11",
+   "dit": "Le groupe carboxyle associe un carbonyle et un hydroxyle sur le même carbone : c'est lui qui rend ces molécules acides. Pour les nommer, on prend l'alcane correspondant et on remplace la terminaison par oïque, précédée du mot acide. L'acide méthanoïque est l'acide formique des fourmis, et l'acide éthanoïque n'est autre que l'acide acétique du vinaigre. Le carbone du carboxyle porte toujours le numéro un.",
+   "ecran": "carboxyle",
+   "texte": "Le carboxyle : un acide en -oïque, et le carbone 1 toujours."
+  },
+  {
+   "id": "p12",
+   "dit": "Quand la chaîne porte un substituant, on numérote depuis le carbone du carboxyle et on cite le substituant avec sa position, par ordre alphabétique. Une double liaison transforme le suffixe en énoïque, comme dans l'acide acrylique. Deux groupes carboxyles donnent un diacide, comme l'acide oxalique, et sur un cycle, on ajoute le suffixe carboxylique au nom du cycle.",
+   "ecran": "nomenclature_acides",
+   "texte": "-oïque, -énoïque, diacides et acide carboxylique sur un cycle."
+  },
+  {
+   "id": "p13",
+   "dit": "Les acides carboxyliques forment de fortes liaisons hydrogène entre eux : l'acide butanoïque bout à cent soixante-quatre degrés, là où le butane bout dès moins zéro virgule cinq degré. Les acides courts, jusqu'à quatre carbones, sont solubles dans l'eau ; au-delà, la chaîne hydrophobe l'emporte. Ce sont des acides faibles, et un groupe électroattracteur, comme le fluor ou le chlore, augmente leur acidité en stabilisant l'anion carboxylate.",
+   "ecran": "proprietes_acides",
+   "texte": "L'acide butanoïque bout à 164 °C ; le butane à −0,5 °C."
+  },
+  {
+   "id": "p14",
+   "dit": "L'estérification de Fischer fait réagir un acide avec un alcool, sous catalyse acide, pour donner un ester et de l'eau : c'est un équilibre, que l'on déplace en éliminant l'eau au fur et à mesure. Avec une amine, l'acide donne un amide, dont la liaison est celle des protéines. Un réducteur puissant comme le tétrahydruroaluminate de lithium transforme l'acide en alcool primaire, et certains acides perdent leur carboxyle sous forme de dioxyde de carbone : c'est la décarboxylation.",
+   "ecran": "reactions_acides",
+   "texte": "Ester, amide, alcool primaire ou décarboxylation."
+  },
+  {
+   "id": "p15",
+   "dit": "Trois grandes voies mènent aux acides carboxyliques. L'oxydation d'un alcool primaire ou d'un aldéhyde, avec le dichromate ou le permanganate, passe par l'aldéhyde avant d'atteindre l'acide. L'hydrolyse d'un nitrile, acide ou basique, passe par un amide intermédiaire. Et la réaction d'un réactif de Grignard sur le dioxyde de carbone allonge la chaîne d'un carbone, ce qui en fait une méthode de choix.",
+   "ecran": "synthese_acides",
+   "texte": "Oxydation, hydrolyse de nitrile, Grignard + CO₂ : trois voies."
+  },
+  {
+   "id": "p16",
+   "dit": "Exercice : classer l'acide propanoïque, l'acide acétique et l'acide chloroacétique par acidité croissante. Un groupe alkyle, donneur d'électrons, déstabilise l'anion carboxylate : l'acide propanoïque est donc le moins acide. Le chlore, au contraire, attire les électrons et stabilise l'anion : l'acide chloroacétique est le plus acide des trois, et l'acide acétique se place entre les deux.",
+   "ecran": "exercice_acides",
+   "texte": "Acidité : propanoïque < acétique < chloroacétique."
+  },
+  {
+   "id": "p17",
+   "dit": "On croise les acides carboxyliques partout : l'acide acétique du vinaigre, l'acide citrique des agrumes, l'acide lactique des produits laitiers fermentés, ou l'acide salicylique, précurseur de l'aspirine. L'industrie les emploie aussi pour les fibres textiles, les cosmétiques et de nombreux médicaments.",
+   "ecran": "applications_acides",
+   "texte": "Vinaigre, agrumes, laitages, aspirine : les acides du quotidien."
+  },
+  {
+   "id": "p18",
+   "dit": "Récapitulons. Le groupe carboxyle, un carbonyle uni à un hydroxyle, donne son nom à l'acide en oïque et fait de lui un acide faible, que les groupes électroattracteurs renforcent. Ses réactions de condensation donnent les esters et les amides, et on le fabrique par oxydation, par hydrolyse de nitrile ou par la voie de Grignard.",
+   "ecran": "recap_p2",
+   "texte": "Un carboxyle : acide faible, prêt aux condensations."
+  },
+  {
+   "id": "p19",
+   "dit": "Un acide alpha-aminé réunit, sur un même carbone appelé carbone alpha, un groupe amine, un groupe carboxyle, un hydrogène et une chaîne latérale notée R. C'est cette chaîne qui fait la diversité de la famille : un simple hydrogène pour la glycine, la plus petite, un groupe méthyle pour l'alanine.",
+   "ecran": "structure_aa",
+   "texte": "H₂N–CH(R)–COOH : le carbone α porte tout."
+  },
+  {
+   "id": "p20",
+   "dit": "Le nom systématique ajoute le préfixe amino au nom de l'acide parent : l'alanine est l'acide deux-aminopropanoïque. Mais au quotidien, on utilise les noms courants et leurs abréviations : Gly pour la glycine, Ala pour l'alanine, Val pour la valine.",
+   "ecran": "nomenclature_aa",
+   "texte": "Préfixe amino ; Gly, Ala, Val : les abréviations du vivant."
+  },
+  {
+   "id": "p21",
+   "dit": "Les acides alpha-aminés sont des solides cristallins qui fondent au-delà de deux cents degrés, à cause des liaisons hydrogène entre leurs groupes. Ils sont amphotères : le carboxyle peut céder un proton, l'amine peut en capter un, et dans l'eau, la molécule existe souvent sous forme de zwitterion, portant à la fois une charge plus et une charge moins. Au point isoélectrique, la charge globale est nulle : il vaut six pour l'alanine.",
+   "ecran": "proprietes_aa",
+   "texte": "Amphotères et zwitterions ; pI de l'alanine : 6,0."
+  },
+  {
+   "id": "p22",
+   "dit": "La solubilité d'un acide alpha-aminé dépend de sa chaîne latérale : polaire, comme chez la sérine ou l'asparagine, elle rend la molécule très soluble dans l'eau ; apolaire, comme chez la leucine ou la valine, elle la rend moins soluble. Certaines chaînes réagissent pour leur propre compte, comme le groupe thiol de la cystéine, qui forme des ponts disulfures entre chaînes.",
+   "ecran": "chaine_laterale",
+   "texte": "Polaire ou apolaire : la chaîne R règle la solubilité."
+  },
+  {
+   "id": "p23",
+   "dit": "À l'exception de la glycine, le carbone alpha porte quatre groupes différents : il est asymétrique, et chaque acide alpha-aminé existe sous deux formes miroirs, les énantiomères D et L. Fait remarquable, les protéines des êtres vivants ne sont construites qu'avec des acides aminés de la série L.",
+   "ecran": "chiralite",
+   "texte": "Deux énantiomères D et L ; les protéines ne gardent que les L."
+  },
+  {
+   "id": "p24",
+   "dit": "La réaction la plus importante des acides alpha-aminés est la formation de la liaison peptidique : le carboxyle de l'un réagit avec l'amine de l'autre, en libérant une molécule d'eau. Enchaînés ainsi, les acides aminés forment des dipeptides, puis des polypeptides, et finalement les protéines.",
+   "ecran": "liaison_peptidique",
+   "texte": "–CO–NH– + H₂O : la condensation qui fait les protéines."
+  },
+  {
+   "id": "p25",
+   "dit": "Chaque groupe garde sa réactivité propre. Côté carboxyle : l'estérification, utile pour protéger le groupe pendant une synthèse, et la décarboxylation, qui transforme par exemple le glutamate en GABA, un neurotransmetteur. Côté amine : l'acylation et l'alkylation servent de protections, et la diazotation des amines primaires est utilisée en analyse pour identifier les acides aminés.",
+   "ecran": "reactions_aa",
+   "texte": "Chaque groupe réagit : ester, décarboxylation, acylation."
+  },
+  {
+   "id": "p26",
+   "dit": "La synthèse de Strecker part d'un aldéhyde : avec le cyanure d'hydrogène et l'ammoniac, elle forme un aminonitrile, dont l'hydrolyse donne l'acide alpha-aminé. La méthode de Gabriel passe par le phtalimide pour introduire l'azote sans produits secondaires. Dans la cellule, ce sont les enzymes appelées transaminases qui font le travail : elles transfèrent un groupe amine d'un acide aminé vers un acide alpha-céto, et fabriquent ainsi un nouvel acide aminé.",
+   "ecran": "synthese_aa",
+   "texte": "Strecker, Gabriel, transaminases : fabriquer un acide aminé."
+  },
+  {
+   "id": "p27",
+   "dit": "L'isomérie traverse tout le cours : isomérie de chaîne, de position ou de fonction quand l'ordre des liaisons change ; stéréo-isomérie quand seule la disposition dans l'espace change. Chez les amines, l'azote peut être chiral, mais son inversion en parapluie empêche le plus souvent de séparer ses énantiomères.",
+   "ecran": "isomerie",
+   "texte": "Constitution ou espace : l'isomérie traverse tout le cours."
+  },
+  {
+   "id": "p28",
+   "dit": "Dernier exercice : nommer la molécule dont le groupe amine est porté par le deuxième carbone d'une chaîne de quatre carbones terminée par un carboxyle. Le carbone du carboxyle est le numéro un, l'amine est donc en position deux : c'est l'acide deux-aminobutanoïque. Et à pH physiologique, l'alanine se dessine sous sa forme zwitterion : carboxyle déprotoné, amine protonée, charge globale nulle.",
+   "ecran": "exercice_aa",
+   "texte": "Acide 2-aminobutanoïque ; l'alanine en zwitterion à pH neutre."
+  },
+  {
+   "id": "p29",
+   "dit": "Pour conclure : chez les amines, tout part du doublet de l'azote, basique et nucléophile. Chez les acides carboxyliques, tout part du carboxyle, faiblement acide et prêt aux condensations. Les acides alpha-aminés réunissent les deux mondes sur un même carbone, et leurs liaisons peptidiques construisent les protéines. Trois familles, une même logique : la structure dicte la fonction.",
+   "ecran": "recap_final",
+   "texte": "Trois familles, une logique : la structure dicte la fonction."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les amines : les dérivés de l'ammoniac"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "texte": "Partie 2 : les acides carboxyliques.",
+    "dit": "Partie deux : les acides carboxyliques. Après l'azote des amines, nous passons au groupe carboxyle : sa nomenclature, son acidité, ses réactions de condensation et ses synthèses."
+   },
+   "sous_titre": "Les acides carboxyliques : le groupe carboxyle à l'œuvre"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "texte": "Partie 3 : les acides α-aminés, les briques du vivant.",
+    "dit": "Partie trois : les acides alpha-aminés. Nous réunissons maintenant les deux familles précédentes sur un même carbone : structure, propriétés amphotères, liaison peptidique et synthèses de ces briques du vivant."
+   },
+   "sous_titre": "Les acides α-aminés : les briques du vivant"
+  }
+ ]
+}
