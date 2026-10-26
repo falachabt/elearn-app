@@ -1,0 +1,428 @@
+{
+ "cours": 6168,
+ "ecrans": {
+  "cauchy": {
+   "kicker": "Le problème de Cauchy",
+   "tex": [
+    "y' = f(x, y)",
+    "y(x_0) = y_0",
+    "\\text{solution générale : } y = \\phi(x, C)"
+   ],
+   "titre": "Une équation, plus un point de départ",
+   "type": "etape"
+  },
+  "champ": {
+   "anim": {
+    "nom": "champ_pentes_fig",
+    "hauteur": 150
+   },
+   "kicker": "Voir avant de calculer",
+   "texte": "Le champ de directions : un segment de pente f(x, y) en chaque point.",
+   "type": "phrase"
+  },
+  "chauffage": {
+   "kicker": "Exemple complet : refroidissement avec chauffage",
+   "tex": [
+    "T' + 0{,}1 T = 2 + 10 e^{-t}",
+    "\\mu(t) = e^{0{,}1 t}",
+    "e^{0{,}1 t} T = 20 e^{0{,}1 t} - \\tfrac{100}{9} e^{-0{,}9 t} + C"
+   ],
+   "titre": "Mettre sous forme standard, puis appliquer la méthode",
+   "type": "etape"
+  },
+  "chauffage_resultat": {
+   "kicker": "Le résultat, avec la condition initiale",
+   "note": "T(0) = 100 °C, ambiance à 20 °C : à long terme, T tend vers 20 °C, les deux exponentielles s'éteignent.",
+   "tex": "T(t) = 20 - \\frac{100}{9} e^{-t} + \\frac{820}{9} e^{-0{,}1 t}",
+   "type": "formule"
+  },
+  "choix": {
+   "kicker": "Choisir sa méthode",
+   "texte": "Séparable ? On sépare. Linéaire ? Facteur intégrant. Ni l'un ni l'autre ? Un changement de variable peut ramener à l'un des deux.",
+   "type": "phrase",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 150
+   }
+  },
+  "circuit_rc": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "circuit_rc"
+   },
+   "kicker": "Application : la charge d'un condensateur",
+   "note": "C : capacité, E₀ : tension source constante, q(0) = 0. La constante de temps τ = RC règle la vitesse de charge.",
+   "tex": "q(t) = C E_0 \\left(1 - e^{-t/(RC)}\\right)",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "Qu'est-ce qu'une équation différentielle ?",
+   "note": "La dérivée première est la plus haute : c'est le premier ordre. Forme implicite : F(x, y, y′) = 0.",
+   "tex": "y' = f(x, y)",
+   "type": "formule"
+  },
+  "depreciation": {
+   "kicker": "Application : la dépréciation d'une machine",
+   "note": "Perte de 15 % par an : e^(−α) = 0,85, donc α = −ln(0,85) ≈ 0,1625. Même forme que la radioactivité.",
+   "tex": "V(t) = 50000 \\, e^{-0{,}1625 \\, t}",
+   "type": "formule"
+  },
+  "enquete": {
+   "kicker": "Étude de cas : l'heure du décès",
+   "tex": [
+    "e^{-k} = \\tfrac{26 - 20}{28 - 20} = \\tfrac{3}{4}",
+    "k = -\\ln \\tfrac{3}{4} \\approx 0{,}288 \\ \\text{h}^{-1}",
+    "37 - 20 = (28 - 20) e^{-k t_d} \\ \\Rightarrow \\ t_d \\approx -2{,}6 \\ \\text{h}"
+   ],
+   "titre": "Deux mesures de température suffisent",
+   "type": "etape"
+  },
+  "exemple_sep": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple complet : une équation séparable",
+   "tex": [
+    "\\tfrac{dy}{y} = 2x \\, dx",
+    "\\ln|y| = x^2 + C_1",
+    "y = C e^{x^2}"
+   ],
+   "titre": "Séparer, intégrer, exponentier",
+   "type": "etape"
+  },
+  "facteur": {
+   "kicker": "Le facteur intégrant",
+   "tex": [
+    "(\\mu y)' = \\mu' y + \\mu y'",
+    "\\mu' = a \\, \\mu",
+    "\\mu(x) = e^{\\int a(x) \\, dx}"
+   ],
+   "titre": "Faire apparaître la dérivée d'un produit",
+   "type": "etape"
+  },
+  "homogene": {
+   "kicker": "Astuce : les équations homogènes",
+   "tex": [
+    "y = v x \\qquad y' = v + x \\tfrac{dv}{dx}",
+    "v \\, dv = \\tfrac{dx}{x}",
+    "\\tfrac{y^2}{2 x^2} = \\ln|x| + C"
+   ],
+   "titre": "Un changement de variable qui rend séparable",
+   "type": "etape"
+  },
+  "idee": {
+   "kicker": "L'idée de départ",
+   "texte": "Une équation différentielle ne donne pas une valeur : elle donne une loi d'évolution, la pente en chaque point.",
+   "type": "phrase",
+   "anim": {
+    "nom": "tangente_courbe_fig",
+    "hauteur": 150
+   }
+  },
+  "lineaire": {
+   "kicker": "Deuxième famille : les équations linéaires",
+   "note": "y et y′ à la puissance 1, jamais multipliés entre eux. Si b(x) = 0, l'équation est dite homogène.",
+   "tex": "y' + a(x) \\, y = b(x)",
+   "type": "formule"
+  },
+  "logistique": {
+   "kicker": "Application : la croissance logistique",
+   "note": "r : taux intrinsèque ; K : capacité de charge. Croissance exponentielle au début, puis sigmoïde qui plafonne vers K.",
+   "tex": "\\frac{dP}{dt} = r P \\left(1 - \\frac{P}{K}\\right)",
+   "type": "formule",
+   "anim": {
+    "nom": "logistique_fig",
+    "hauteur": 190
+   }
+  },
+  "methode_sep": {
+   "kicker": "La méthode de séparation",
+   "tex": [
+    "\\textstyle \\frac{dy}{h(y)} = g(x) \\, dx",
+    "\\textstyle \\int \\frac{dy}{h(y)} = \\int g(x) \\, dx + C",
+    "\\textstyle \\text{puis isoler } y \\text{ si possible}",
+    "\\textstyle \\text{cas } h(y) = 0 \\text{ : solutions constantes}"
+   ],
+   "titre": "Quatre temps, toujours dans le même ordre",
+   "type": "etape"
+  },
+  "pieges": {
+   "kicker": "Pièges et subtilités",
+   "tex": [
+    "\\text{solutions constantes oubliées : } y' = y^2, \\ y = 0",
+    "\\text{domaines restreints : dénominateurs, logarithmes}",
+    "\\text{forme standard d'abord : coefficient de } y' \\text{ égal à un}",
+    "\\text{toujours vérifier en réinjectant la solution}"
+   ],
+   "titre": "Ce que la méthode peut faire oublier",
+   "type": "etape"
+  },
+  "radioactivite": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Application : désintégration et datation",
+   "tex": [
+    "N(t) = N_0 e^{-\\lambda t}",
+    "T_{1/2} = \\tfrac{\\ln 2}{\\lambda}",
+    "\\lambda = \\tfrac{\\ln 2}{5730} \\approx 1{,}21 \\times 10^{-4} \\ \\text{an}^{-1}"
+   ],
+   "titre": "La demi-vie fixe la constante",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Séparable : séparer, intégrer, vérifier",
+    "Linéaire : forme standard, facteur μ",
+    "Cauchy : la constante vient du départ",
+    "Newton, Malthus, RC : mêmes formes",
+    "Toujours interpréter la solution"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "y′ = f(x, y) : la pente dépend du point",
+    "Cauchy : équation + condition initiale",
+    "Séparable : dy/h(y) = g(x)dx, intégrer",
+    "Solutions constantes si h(y) = 0",
+    "Logistique : croissance freinée vers K"
+   ],
+   "kicker": "Modèles séparables : l'essentiel",
+   "type": "recap"
+  },
+  "refroidissement": {
+   "kicker": "Application : le refroidissement de Newton",
+   "tex": [
+    "\\tfrac{dT}{T - T_a} = -k \\, dt",
+    "\\ln|T - T_a| = -kt + C",
+    "T(t) = T_a + (T_0 - T_a) e^{-kt}"
+   ],
+   "titre": "Proportionnel à l'écart avec l'ambiance",
+   "type": "etape"
+  },
+  "reservoir": {
+   "kicker": "Application : le réservoir d'eau salée",
+   "tex": [
+    "S' = 1 - \\tfrac{S}{100}",
+    "S(t) = 100 \\left(1 - e^{-t/100}\\right)",
+    "S(0) = 0 \\qquad S \\to 100 \\ \\text{kg}"
+   ],
+   "titre": "Entrée moins sortie : un bilan de masse",
+   "type": "etape"
+  },
+  "separables": {
+   "kicker": "Première famille : variables séparables",
+   "note": "Un facteur qui ne dépend que de x, un facteur qui ne dépend que de y : on peut séparer.",
+   "tex": "\\frac{dy}{dx} = g(x) \\, h(y)",
+   "type": "formule"
+  },
+  "solution_lin": {
+   "kicker": "La solution générale linéaire",
+   "note": "Structure permanente : une solution homogène, plus une solution particulière du second membre.",
+   "tex": "y(x) = \\frac{1}{\\mu(x)} \\left( \\int \\mu(x) \\, b(x) \\, dx + C \\right)",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Mathématique · Équations différentielles",
+   "sous": "Variables séparables, facteur intégrant et modèles : refroidissement, populations, circuits",
+   "titre": "Équations différentielles du premier ordre : séparer, intégrer, modéliser",
+   "type": "titre"
+  },
+  "verification": {
+   "kicker": "Vérifier sa solution",
+   "note": "Dériver, réinjecter, comparer : la vérification prend dix secondes et évite les constantes perdues.",
+   "tex": "y = C e^{x^2} \\quad \\Rightarrow \\quad y' = 2x \\, C e^{x^2} = 2x y",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, séparer, intégrer"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Modèles séparables et facteur intégrant",
+   "pont": {
+    "texte": "Partie 2 : modèles séparables et facteur intégrant.",
+    "dit": "Partie deux : les modèles des équations séparables, puis les équations linéaires. Nous résoudrons le refroidissement de Newton, la croissance logistique et une équation rendue séparable par changement de variable, avant d'ouvrir la seconde grande méthode du cours, le facteur intégrant, appliquée à un problème complet de chauffage."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "Les modèles linéaires en action",
+   "pont": {
+    "texte": "Partie 3 : cinq modèles, les pièges, la synthèse.",
+    "dit": "Partie trois : les modèles linéaires en action. Un circuit qui se charge, un réservoir qui se sale, un atome qui se désintègre, une machine qui se déprécie et une enquête qui date un décès : cinq terrains, deux méthodes, et les pièges à éviter avant le récapitulatif final."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équations différentielles du premier ordre, le langage du changement. Une équation différentielle relie une fonction inconnue à sa dérivée, et sa solution raconte comment une température, une population ou une charge électrique évolue au fil du temps. Nous construirons deux méthodes complètes : la séparation des variables, puis le facteur intégrant des équations linéaires, avant de les appliquer à des problèmes réels, du café qui refroidit à la datation au carbone quatorze.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Premier ordre : séparer, intégrer, modéliser."
+  },
+  {
+   "dit": "L'idée de départ tient en une phrase : connaître la pente, c'est connaître l'évolution. Quand la dérivée d'une fonction dépend de la position et de la valeur de la fonction elle-même, chaque point du plan porte une indication de direction pour la solution qui passe par là. Résoudre, ce sera suivre ces indications, soit par le calcul exact, soit en dessinant le champ de directions pour deviner l'allure des courbes avant même de les obtenir.",
+   "ecran": "idee",
+   "id": "p02",
+   "texte": "Connaître la pente, c'est connaître l'évolution."
+  },
+  {
+   "dit": "Formellement, une équation différentielle du premier ordre s'écrit : la dérivée de igrec égale une fonction de ixe et de igrec. La dérivée première est la plus haute qui apparaît, d'où le nom de premier ordre. Une solution est une fonction qui, une fois dérivée et réinjectée dans l'équation, la vérifie en tout point de son intervalle de définition. La solution générale contient une constante arbitraire, qui paramètre toute une famille de courbes.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "y′ = f(x, y) : la pente dépend du point."
+  },
+  {
+   "dit": "Le problème de Cauchy est le problème standard du cours : une équation, plus une condition initiale qui dit par quel point la solution doit passer. La constante de la solution générale n'est pas un détail technique : elle encode exactement cette information de départ. Quand le problème est bien posé, à chaque point de départ correspond une trajectoire et une seule : les courbes solutions d'une même équation ne se croisent pas.",
+   "ecran": "cauchy",
+   "id": "p04",
+   "texte": "Cauchy : une équation, un point de départ."
+  },
+  {
+   "dit": "Avant tout calcul, regardons le champ de directions. En chaque point du plan, on trace un petit segment dont la pente est donnée par l'équation. Pour une décroissance simple, ces segments penchent de plus en plus fort quand on s'éloigne de l'axe, et ils guident l'œil pour esquisser les courbes solutions sans résoudre quoi que ce soit. C'est une manière puissante et intuitive de comprendre le comportement des solutions, et un excellent contrôle après un calcul.",
+   "ecran": "champ",
+   "id": "p05",
+   "texte": "Le champ de directions : voir sans calculer."
+  },
+  {
+   "dit": "Première famille : les équations à variables séparables. Elles s'écrivent comme un produit de deux facteurs : l'un ne dépend que de ixe, l'autre ne dépend que de igrec. Toute la méthode tient dans ce constat : si le membre de droite se factorise ainsi, on peut regrouper tous les termes en igrec d'un côté de l'égalité, tous les termes en ixe de l'autre, puis intégrer séparément. Leibniz, avec sa notation différentielle, a rendu ce geste naturel dès la fin du dix-septième siècle.",
+   "ecran": "separables",
+   "id": "p06",
+   "texte": "Séparable : dy/dx = g(x)·h(y)."
+  },
+  {
+   "dit": "La méthode suit quatre temps, toujours dans le même ordre. Un : identifier la forme séparable. Deux : séparer les variables, en traitant à part le cas où le facteur en igrec s'annule. Trois : intégrer les deux membres, sans oublier la constante. Quatre : exprimer la solution, explicitement si c'est possible, sous forme implicite sinon. Le point délicat est le deuxième temps : diviser par une expression qui peut s'annuler fait disparaître des solutions, et nous y reviendrons.",
+   "ecran": "methode_sep",
+   "id": "p07",
+   "texte": "Séparer, intégrer, exprimer : quatre temps."
+  },
+  {
+   "dit": "Exemple complet : résoudre la dérivée de igrec égale deux ixe fois igrec. L'équation est déjà séparable. En supposant igrec non nul, on sépare : différentielle de igrec sur igrec, égale deux ixe différentielle de ixe. On intègre : le logarithme de la valeur absolue de igrec égale ixe au carré, plus une constante. On exponentie, et la constante devient un facteur réel quelconque : igrec égale une constante fois l'exponentielle de ixe au carré. Le cas igrec nul est aussi solution, et il est inclus quand la constante vaut zéro.",
+   "ecran": "exemple_sep",
+   "id": "p08",
+   "texte": "dy/dx = 2xy → y = C·e^(x²), zéro inclus."
+  },
+  {
+   "dit": "Réflexe à garder pour tout le cours : vérifier sa solution. Dérivons la fonction obtenue : la dérivée de la constante fois l'exponentielle de ixe au carré vaut deux ixe fois cette même fonction, exactement le membre de droite de l'équation de départ. L'égalité est vérifiée, la solution est correcte. Cette vérification prend quelques secondes et rattrape la plupart des erreurs de constante ou de signe.",
+   "ecran": "verification",
+   "id": "p09",
+   "texte": "Vérification : dériver, réinjecter, comparer."
+  },
+  {
+   "dit": "Application fondatrice : la loi du refroidissement de Newton. La vitesse de refroidissement d'un objet est proportionnelle à l'écart entre sa température et la température ambiante. L'équation est séparable : on regroupe les écarts de température d'un côté, le temps de l'autre, on intègre, et l'on obtient une décroissance exponentielle vers la température ambiante. Un café posé dans une pièce suit exactement cette loi : l'écart initial se résorbe d'autant plus vite qu'il est grand au départ.",
+   "ecran": "refroidissement",
+   "id": "p10",
+   "texte": "Newton : décroissance exponentielle vers Ta."
+  },
+  {
+   "dit": "Deuxième modèle séparable : la croissance logistique de Verhulst. Une population croît d'abord presque exponentiellement, avec son taux intrinsèque, puis le facteur correctif freine la croissance à mesure qu'elle approche la capacité de charge, la population maximale que le milieu peut nourrir. La solution est une sigmoïde : lente au début, rapide au milieu, puis un plafond. C'est le modèle de référence pour une colonisation, une épidémie contenue ou la diffusion d'une innovation.",
+   "ecran": "logistique",
+   "id": "p11",
+   "texte": "Logistique : exponentielle, puis plafond K."
+  },
+  {
+   "dit": "Certaines équations deviennent séparables après un changement de variable. Quand le membre de droite ne dépend que du rapport igrec sur ixe, on pose igrec égal au produit de vé par ixe : la dérivée devient vé plus ixe fois la dérivée de vé, et l'équation se sépare en vé et ixe. Sur l'exemple du cours, on aboutit à vé différentielle de vé égale différentielle de ixe sur ixe, puis, en revenant à igrec, le carré de igrec sur deux ixe au carré égale le logarithme de ixe, plus une constante.",
+   "ecran": "homogene",
+   "id": "p12",
+   "texte": "Homogène : v = y/x la rend séparable."
+  },
+  {
+   "dit": "Récapitulons le bloc des équations séparables et de leurs modèles. Une équation du premier ordre donne la pente en chaque point, et le problème de Cauchy ajoute le point de départ qui fixe la constante. Une équation séparable se résout en séparant puis en intégrant, sans oublier les solutions constantes perdues lors de la division. Le refroidissement de Newton et la croissance logistique montrent que ces formes simples décrivent déjà des phénomènes réels, de la tasse de café à la population d'un lac.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Deuxième famille : les équations linéaires du premier ordre. Leur forme standard met la dérivée, plus une fonction de ixe multipliant igrec, égale à un second membre. La linéarité tient à ceci : igrec et sa dérivée n'apparaissent qu'à la puissance un, jamais multipliés entre eux, jamais dans un sinus ou une exponentielle. Si le second membre est nul, l'équation est dite homogène. La séparation échoue ici en général, car igrec reste mélangé aux deux membres : il faut une autre idée.",
+   "ecran": "lineaire",
+   "id": "p14",
+   "texte": "Linéaire : y′ + a(x)y = b(x)."
+  },
+  {
+   "dit": "Cette idée est le facteur intégrant. On cherche une fonction mu de ixe telle que, en multipliant toute l'équation par mu, le membre de gauche devienne la dérivée du produit de mu par igrec. En développant cette dérivée et en identifiant, on tombe sur une condition très simple : la dérivée de mu égale le coefficient de igrec fois mu. Cette condition est elle-même séparable, et sa solution donne le facteur intégrant : l'exponentielle d'une primitive du coefficient.",
+   "ecran": "facteur",
+   "id": "p15",
+   "texte": "Le facteur intégrant μ(x) = e^(∫a dx)."
+  },
+  {
+   "dit": "Une fois l'équation multipliée par le facteur intégrant, le membre de gauche est une dérivée toute faite : il ne reste qu'à intégrer le membre de droite, puis à diviser par mu. La formule générale qui en résulte a une structure à retenir : la solution est la somme d'une solution de l'équation homogène, qui porte la constante, et d'une solution particulière liée au second membre. C'est le principe de superposition, la signature de toutes les équations linéaires, et il reviendra au second ordre.",
+   "ecran": "solution_lin",
+   "id": "p16",
+   "texte": "Solution : homogène + particulière."
+  },
+  {
+   "dit": "Exemple complet : un objet à cent degrés, dans une pièce à vingt degrés, refroidit avec une constante de zéro virgule un par minute, mais un chauffage externe ajoute de la chaleur à un taux qui décroît exponentiellement. Mise sous forme standard, l'équation a pour coefficient zéro virgule un, et pour second membre deux plus dix fois l'exponentielle de moins té. Le facteur intégrant est l'exponentielle de zéro virgule un té, et l'intégration du second membre donne vingt fois cette exponentielle, moins cent sur neuf fois l'exponentielle de moins zéro virgule neuf té.",
+   "ecran": "chauffage",
+   "id": "p17",
+   "texte": "Chauffage : T′ + 0,1T = 2 + 10e^(−t)."
+  },
+  {
+   "dit": "On isole la température : vingt, moins cent sur neuf fois l'exponentielle de moins té, plus une constante fois l'exponentielle de moins zéro virgule un té. La condition initiale, cent degrés à l'instant zéro, fixe la constante à huit cent vingt sur neuf. L'interprétation est limpide : le terme constant est l'ambiance, le premier terme transitoire est l'effet du chauffage qui s'estompe vite, le second est le refroidissement naturel. À long terme, tout tend vers vingt degrés.",
+   "ecran": "chauffage_resultat",
+   "id": "p18",
+   "texte": "T(t) → 20 °C : les transitoires s'éteignent."
+  },
+  {
+   "dit": "Application électrique : dans un circuit série résistance-condensateur alimenté par une tension constante, la charge du condensateur obéit à une équation linéaire. Sa solution croît exponentiellement vers la charge finale, la capacité multipliée par la tension source, sans jamais l'atteindre tout à fait. Le produit de la résistance par la capacité est la constante de temps : au bout d'une constante de temps, environ soixante-trois pour cent de la charge finale est déjà acquise.",
+   "ecran": "circuit_rc",
+   "id": "p19",
+   "texte": "Circuit RC : τ = RC règle la charge."
+  },
+  {
+   "dit": "Application de mélange : un réservoir de mille litres d'eau pure reçoit de l'eau salée à dix litres par minute, avec un dixième de kilogramme de sel par litre, et le mélange ressort au même débit. Le bilan de masse donne une équation linéaire : le sel entre à un kilogramme par minute, et sort proportionnellement à la masse présente, un centième de cette masse par minute. La solution part de zéro et croît vers cent kilogrammes, la quantité qui équilibrerait exactement l'entrée et la sortie.",
+   "ecran": "reservoir",
+   "id": "p20",
+   "texte": "Réservoir : S(t) → 100 kg de sel."
+  },
+  {
+   "dit": "La désintégration radioactive suit la même forme séparable : le nombre d'atomes décroît proportionnellement à lui-même, et la solution est une exponentielle décroissante. La demi-vie, le temps au bout duquel il reste la moitié des atomes, vaut le logarithme de deux divisé par la constante de désintégration. Pour le carbone quatorze, de demi-vie cinq mille sept cent trente ans, cette constante vaut environ un virgule vingt et un fois dix puissance moins quatre par an : c'est elle qui rend la datation possible.",
+   "ecran": "radioactivite",
+   "id": "p21",
+   "texte": "Carbone 14 : λ ≈ 1,21×10⁻⁴ par an."
+  },
+  {
+   "dit": "Même équation, autre monde : la valeur d'une machine qui se déprécie proportionnellement à sa valeur. Une machine de cinquante mille euros perd quinze pour cent de sa valeur chaque année : après un an, il reste quatre-vingt-cinq pour cent, donc l'exponentielle de moins alpha vaut zéro virgule quatre-vingt-cinq, et alpha vaut environ zéro virgule seize vingt-cinq. La formule donne alors la valeur à n'importe quel instant, pas seulement aux anniversaires, ce qui sert aux contrats d'assurance et de location.",
+   "ecran": "depreciation",
+   "id": "p22",
+   "texte": "Dépréciation : V(t) = 50 000·e^(−0,1625t)."
+  },
+  {
+   "dit": "Étude de cas finale : la médecine légale. Un corps est retrouvé à dix heures à vingt-huit degrés, puis à vingt-six degrés une heure plus tard, dans une pièce à vingt degrés. Le rapport des écarts vaut six sur huit, soit trois quarts : c'est l'exponentielle de moins ka, donc ka vaut environ zéro virgule deux cent quatre-vingt-huit par heure. Au décès, la température valait trente-sept degrés : en remontant le modèle, on trouve environ deux virgule six heures avant dix heures, soit un décès vers sept heures vingt-trois. Un modèle simple, des hypothèses à critiquer, mais une vraie estimation.",
+   "ecran": "enquete",
+   "id": "p23",
+   "texte": "Enquête : k ≈ 0,288 /h, décès vers 7 h 23."
+  },
+  {
+   "dit": "Trois pièges à ne plus commettre. Premier : en séparant, on divise par une expression en igrec, et ses zéros donnent des solutions constantes souvent oubliées, comme la solution nulle de l'équation dont le membre de droite est igrec au carré. Deuxième : les solutions vivent sur des intervalles restreints, là où dénominateurs et logarithmes restent définis. Troisième : pour les équations linéaires, la forme standard est impérative, avec un coefficient de un devant la dérivée, sinon le facteur intégrant est faux.",
+   "ecran": "pieges",
+   "id": "p24",
+   "texte": "Pièges : solutions oubliées, domaines."
+  },
+  {
+   "dit": "Face à une équation nouvelle, le diagnostic précède toujours le calcul. Peut-elle s'écrire comme un produit d'un facteur en ixe par un facteur en igrec ? Alors on sépare. Est-elle linéaire, avec igrec et sa dérivée à la puissance un ? Alors forme standard et facteur intégrant. Ni l'une ni l'autre ? Un changement de variable, comme le rapport igrec sur ixe, peut la ramener à l'un des deux cas. Cette pause d'analyse évite les impasses et les calculs inutilement compliqués.",
+   "ecran": "choix",
+   "id": "p25",
+   "texte": "Choisir : séparable, linéaire, substitution."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : modéliser le changement par une équation, classifier l'équation, appliquer la méthode adaptée, fixer la constante par la condition initiale, puis interpréter la solution et critiquer le modèle. Séparation des variables et facteur intégrant sont les deux clés du premier ordre : avec elles, refroidissement, populations, circuits, mélanges et datations se lisent dans le même langage.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Premier ordre : à retenir."
+  }
+ ],
+ "titre": "Équations différentielles du premier ordre : séparer, intégrer, modéliser"
+}
