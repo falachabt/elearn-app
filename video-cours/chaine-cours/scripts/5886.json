@@ -1,0 +1,577 @@
+{
+ "cours": 5886,
+ "titre": "Dénombrer pour calculer : arrangements, combinaisons et probabilités",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Analyse combinatoire",
+   "titre": "Dénombrer pour calculer : arrangements, combinaisons et probabilités",
+   "sous": "Principes, permutations, inclusion-exclusion, fonctions génératrices : compter juste pour probabiliser juste",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Compter des possibilités semble simple, jusqu'au jour où l'ordre, les répétitions et les chevauchements s'en mêlent : ce cours donne la méthode pour ne plus jamais compter deux fois, ni oublier un cas.",
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 150
+   }
+  },
+  "pfd": {
+   "type": "formule",
+   "kicker": "Principe fondamental du dénombrement",
+   "tex": "3 \\times 2 \\times 2 = 12\\ \\text{tenues}",
+   "note": "Choix successifs indépendants : on multiplie les nombres de possibilités.",
+   "anim": {
+    "nom": "arbre_choix_fig",
+    "hauteur": 170
+   }
+  },
+  "choix_outil": {
+   "type": "etape",
+   "kicker": "La question qui décide de tout",
+   "titre": "Avant de calculer : ordre ? répétition ? tous les éléments ?",
+   "tex": [
+    "\\text{ordre important, sans répétition : arrangement}",
+    "\\text{ordre indifférent : combinaison}",
+    "\\text{répétitions permises : puissances}",
+    "\\text{tous les éléments ordonnés : permutation}"
+   ]
+  },
+  "arrangements": {
+   "type": "formule",
+   "kicker": "Les arrangements, sans répétition",
+   "tex": "A_n^k = \\frac{n!}{(n-k)!}",
+   "note": "On choisit k éléments parmi n, dans un ordre précis, sans les réutiliser."
+  },
+  "ex_medailles": {
+   "type": "etape",
+   "kicker": "Exemple · le podium",
+   "titre": "Trois médailles différentes pour cinq athlètes",
+   "tex": [
+    "A_5^3 = \\tfrac{5!}{(5-3)!}",
+    "= 5 \\times 4 \\times 3 = 60"
+   ]
+  },
+  "arr_repetition": {
+   "type": "etape",
+   "kicker": "Arrangements avec répétitions",
+   "titre": "Codes : avec répétition, puis sans répétition",
+   "tex": [
+    "\\text{avec répétition : } 10^4 = 10000",
+    "\\text{sans répétition : } A_{10}^{4} = 10 \\times 9 \\times 8 \\times 7 = 5040",
+    "\\text{avec répétition, trois chiffres : } 10^3 = 1000"
+   ]
+  },
+  "permutations": {
+   "type": "formule",
+   "kicker": "Les permutations",
+   "tex": "P_n = n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1",
+   "note": "Cas particulier des arrangements : on ordonne tous les éléments."
+  },
+  "perm_repetition": {
+   "type": "etape",
+   "kicker": "Permutations avec répétitions",
+   "titre": "BANANE : deux A, deux N, un B, un E",
+   "tex": [
+    "N = \\tfrac{6!}{2!\\,2!} = \\tfrac{720}{4} = 180"
+   ]
+  },
+  "perm_circulaire": {
+   "type": "formule",
+   "kicker": "Permutations circulaires",
+   "tex": "(n-1)! \\qquad (4-1)! = 3! = 6",
+   "note": "Autour d'une table ronde, les rotations ne créent pas de nouvel arrangement.",
+   "anim": {
+    "nom": "table_ronde_fig",
+    "hauteur": 180
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Choix successifs : on multiplie",
+    "Ordre important : arrangements A(n,k)",
+    "Tous ordonnés : permutations n!",
+    "Répétitions : diviser ou élever en puissance"
+   ]
+  },
+  "combinaisons": {
+   "type": "formule",
+   "kicker": "Les combinaisons",
+   "tex": "\\binom{n}{k} = \\frac{n!}{k!\\,(n-k)!}",
+   "note": "On choisit k éléments parmi n, sans tenir compte de leur ordre."
+  },
+  "ex_equipe": {
+   "type": "etape",
+   "kicker": "Exemple · choisir une équipe",
+   "titre": "Trois joueurs parmi dix, l'ordre ne compte pas",
+   "tex": [
+    "\\binom{10}{3} = \\tfrac{10!}{3!\\,7!} = \\tfrac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120"
+   ]
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des combinaisons",
+   "titre": "Symétrie, cas limites et relation de Pascal",
+   "tex": [
+    "\\binom{n}{k} = \\binom{n}{n-k} \\qquad \\binom{n}{0} = \\binom{n}{n} = 1",
+    "\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}",
+    "(x+y)^3 = y^3 + 3xy^2 + 3x^2y + x^3"
+   ]
+  },
+  "ex_urne_comb": {
+   "type": "etape",
+   "kicker": "Exemple · tirage simultané dans une urne",
+   "titre": "Exactement deux rouges et une bleue, sur sept rouges et cinq bleues",
+   "tex": [
+    "\\binom{7}{2} \\times \\binom{5}{1} = 21 \\times 5 = 105"
+   ],
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 140
+   }
+  },
+  "inclusion2": {
+   "type": "formule",
+   "kicker": "Inclusion-exclusion · deux ensembles",
+   "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+   "note": "On additionne, puis on retire ce qui a été compté deux fois.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 220
+   }
+  },
+  "ex_etudiants": {
+   "type": "etape",
+   "kicker": "Exemple · maths et informatique",
+   "titre": "Au moins une des deux matières",
+   "tex": [
+    "|A \\cup B| = 100 + 80 - 30 = 150"
+   ]
+  },
+  "inclusion3": {
+   "type": "etape",
+   "kicker": "Inclusion-exclusion · trois ensembles",
+   "titre": "Ajouter les simples, retirer les paires, rajouter le triple",
+   "tex": [
+    "|A \\cup B \\cup C| = |A| + |B| + |C|",
+    "-\\,|A \\cap B| - |A \\cap C| - |B \\cap C|",
+    " +\\,|A \\cap B \\cap C|"
+   ]
+  },
+  "ex_divisibles": {
+   "type": "etape",
+   "kicker": "Exemple · divisibles par deux, trois ou cinq",
+   "titre": "Parmi les entiers de un à cent",
+   "tex": [
+    "50 + 33 + 20 = 103 \\qquad 16 + 10 + 6 = 32",
+    "103 - 32 + 3 = 74"
+   ]
+  },
+  "fgo": {
+   "type": "etape",
+   "kicker": "Fonctions génératrices ordinaires",
+   "titre": "Coder une suite dans une série : le coefficient donne le compte",
+   "tex": [
+    "G(x) = \\sum_{n=0}^{\\infty} a_n x^n",
+    "1 + x + x^2 + \\cdots = \\tfrac{1}{1-x}"
+   ],
+   "anim": {
+    "nom": "coeff_serie_fig",
+    "hauteur": 100
+   }
+  },
+  "ex_pieces": {
+   "type": "etape",
+   "kicker": "Exemple · former cinq euros",
+   "titre": "Pièces de un et de deux euros : le coefficient parle",
+   "tex": [
+    "G(x) = \\tfrac{1}{(1-x)(1-x^2)}",
+    "\\text{coefficient de } x^5 : 3 \\text{ façons}"
+   ],
+   "anim": {
+    "nom": "coeff_serie_fig",
+    "hauteur": 140
+   }
+  },
+  "fge": {
+   "type": "etape",
+   "kicker": "Fonctions génératrices exponentielles",
+   "titre": "Diviser par les factorielles : pour les structures étiquetées",
+   "tex": [
+    "\\hat{G}(x) = \\sum_{n=0}^{\\infty} a_n \\tfrac{x^n}{n!}",
+    "e^x = \\sum_{n=0}^{\\infty} \\tfrac{x^n}{n!}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Sans ordre : combinaisons C(n,k)",
+    "Chevauchements : inclusion-exclusion",
+    "Venn : chaque région comptée une fois",
+    "Génératrices : lire un coefficient"
+   ]
+  },
+  "proba": {
+   "type": "formule",
+   "kicker": "Probabilités et dénombrement",
+   "tex": "P(A) = \\frac{\\text{cas favorables}}{\\text{cas possibles}}",
+   "note": "En équiprobabilité, probabiliser, c'est dénombrer deux fois.",
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 200
+   }
+  },
+  "ex_rois": {
+   "type": "etape",
+   "kicker": "Exemple · une paire de rois",
+   "titre": "Deux cartes tirées simultanément dans un jeu de cinquante-deux",
+   "tex": [
+    "P = \\tfrac{\\binom{4}{2}}{\\binom{52}{2}} = \\tfrac{6}{1326} = \\tfrac{1}{221}"
+   ]
+  },
+  "ex_loto": {
+   "type": "etape",
+   "kicker": "Exemple · le loto",
+   "titre": "Six numéros parmi quarante-neuf : une seule grille gagnante",
+   "tex": [
+    "\\binom{49}{6} = 13983816",
+    "P = \\tfrac{1}{13983816} \\approx 7{,}15 \\times 10^{-8}"
+   ]
+  },
+  "ex_des": {
+   "type": "etape",
+   "kicker": "Exemple · au moins un six",
+   "titre": "Six lancers de dé : passer par le complémentaire",
+   "tex": [
+    "P = 1 - \\left(\\tfrac{5}{6}\\right)^6 \\approx 0{,}665"
+   ],
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 140
+   }
+  },
+  "ex_rouges": {
+   "type": "etape",
+   "kicker": "Exemple · au moins une rouge",
+   "titre": "Trois boules simultanées : cinq rouges, trois bleues, deux vertes",
+   "tex": [
+    "P = 1 - \\tfrac{\\binom{5}{3}}{\\binom{10}{3}} = 1 - \\tfrac{10}{120} = \\tfrac{11}{12}"
+   ],
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 140
+   }
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode, en quatre temps",
+   "titre": "De l'énoncé au résultat, sans sauter d'étape",
+   "tex": [
+    "\\text{un : comprendre, repérer contraintes et but}",
+    "\\text{deux : choisir l'outil, ordre et répétitions}",
+    "\\text{trois : formaliser avec la bonne formule}",
+    "\\text{quatre : calculer, puis vérifier la vraisemblance}"
+   ]
+  },
+  "ex_synthese1": {
+   "type": "etape",
+   "kicker": "Synthèse · menus et mots de quatre lettres",
+   "titre": "Trois outils en un seul exercice",
+   "tex": [
+    "\\text{menus : } 5 \\times 3 \\times 2 = 30",
+    "\\text{ordre : } A_7^4 = 840 \\qquad \\text{sans ordre : } \\binom{7}{4} = 35",
+    "\\text{répétitions : } 7^4 = 2401"
+   ]
+  },
+  "ex_comite_femmes": {
+   "type": "etape",
+   "kicker": "Synthèse · un comité d'au moins deux femmes",
+   "titre": "Cinq personnes, dix hommes et huit femmes : soustraire l'interdit",
+   "tex": [
+    "\\binom{18}{5} - \\binom{10}{5} - 8 \\times \\binom{10}{4}",
+    "= 8568 - 252 - 1680 = 6636"
+   ]
+  },
+  "ex_full": {
+   "type": "etape",
+   "kicker": "Synthèse · le full aux cartes",
+   "titre": "Cinq cartes : un brelan et une paire",
+   "tex": [
+    "13 \\times \\binom{4}{3} \\times 12 \\times \\binom{4}{2} = 3744",
+    "P = \\tfrac{3744}{2598960} \\approx 0{,}00144"
+   ]
+  },
+  "ex_code": {
+   "type": "etape",
+   "kicker": "Synthèse · le code secret",
+   "titre": "Quatre chiffres, répétitions permises",
+   "tex": [
+    "10^4 = 10000 \\text{ codes}",
+    "P(\\text{du premier coup}) = \\tfrac{1}{10000}"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Dessiner ou schématiser l'énoncé",
+    "« Au moins » : penser complémentaire",
+    "Ordre ? répétition ? décider d'abord",
+    "Toujours vérifier la vraisemblance"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Multiplier les choix, diviser les doublons",
+    "Arrangements, permutations, combinaisons",
+    "Inclusion-exclusion et génératrices",
+    "Probabilité : favorables sur possibles"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de compléments d'analyse combinatoire, l'art de dénombrer sans se tromper. Nous partirons des principes fondamentaux, puis nous distinguerons arrangements, permutations et combinaisons, avant de traiter les ensembles qui se chevauchent, les fonctions génératrices, et enfin les applications aux probabilités, là où tout ce travail prend son sens.",
+   "texte": "Dénombrer pour calculer : le cours en un coup d'œil.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Compter paraît enfantin, et pourtant les erreurs de dénombrement sont parmi les plus fréquentes en mathématiques. On compte deux fois les mêmes cas, on en oublie d'autres, on confond un choix ordonné et un choix sans ordre. Tout ce cours tient en une discipline : avant chaque calcul, se demander si l'ordre compte, si les répétitions sont permises, et si certains cas se recouvrent.",
+   "texte": "Compter juste : ni doublons, ni oublis.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Le principe fondamental du dénombrement est la clé de voûte de tout l'édifice. Si un premier choix offre m possibilités et un second choix indépendant en offre n, alors les deux choix successifs en offrent m fois n. Exemple de la garde-robe : trois chemises, deux pantalons et deux paires de chaussures donnent trois fois deux fois deux, soit douze tenues différentes.",
+   "texte": "Le principe multiplicatif : trois fois deux fois deux, douze tenues.",
+   "ecran": "pfd"
+  },
+  {
+   "id": "p04",
+   "dit": "Avant tout calcul, trois questions décident de l'outil à employer. L'ordre des éléments choisis change-t-il le résultat ? Les éléments peuvent-ils se répéter ? Utilise-t-on tous les éléments, ou seulement une partie ? Selon les réponses, on mobilisera un arrangement, une combinaison, une permutation ou une simple puissance. Apprendre à poser ces questions, c'est déjà résoudre la moitié du problème.",
+   "texte": "Trois questions avant toute formule.",
+   "ecran": "choix_outil"
+  },
+  {
+   "id": "p05",
+   "dit": "Un arrangement, c'est un choix ordonné, sans répétition : on prend k éléments parmi n, et l'ordre dans lequel on les prend compte. Le premier élément peut être choisi de n façons, le suivant de n moins une façons, et ainsi de suite jusqu'au k-ième. En factorielles, le nombre d'arrangements s'écrit n factorielle divisé par n moins k factorielle.",
+   "texte": "Arrangements : l'ordre compte, sans répétition.",
+   "ecran": "arrangements"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple fondateur : attribuer trois médailles différentes, or, argent et bronze, à cinq athlètes. L'ordre compte, car recevoir l'or n'est pas recevoir le bronze : c'est un arrangement de trois éléments parmi cinq. Cinq choix pour l'or, quatre pour l'argent, trois pour le bronze : cinq fois quatre fois trois, soit soixante podiums possibles.",
+   "texte": "Le podium : soixante arrangements possibles.",
+   "ecran": "ex_medailles"
+  },
+  {
+   "id": "p07",
+   "dit": "Quand les répétitions sont permises, chaque position redevient libre : le nombre de suites devient n puissance k. Un code de quatre chiffres, avec répétitions, offre dix puissance quatre possibilités, soit dix mille codes. Sans répétition, on retombe sur un arrangement : dix fois neuf fois huit fois sept, soit cinq mille quarante codes. La répétition change donc profondément le décompte.",
+   "texte": "Avec répétition : dix mille codes ; sans : cinq mille quarante.",
+   "ecran": "arr_repetition"
+  },
+  {
+   "id": "p08",
+   "dit": "Une permutation ordonne tous les éléments d'un ensemble : c'est un arrangement où k égale n. Pour ranger des livres sur une étagère, le premier emplacement offre n choix, le suivant n moins un, jusqu'au dernier. Le total vaut donc n factorielle, le produit de tous les entiers de un à n. C'est la formule la plus simple du cours, et l'une des plus utilisées.",
+   "texte": "Permutations : n factorielle ordres possibles.",
+   "ecran": "permutations"
+  },
+  {
+   "id": "p09",
+   "dit": "Quand certains éléments sont identiques, permuter deux exemplaires interchangeables ne crée rien de nouveau : il faut diviser par les permutations internes de chaque famille. Pour le mot banane, six lettres dont deux a et deux n : six factorielle divisé par deux factorielle fois deux factorielle, soit cent quatre-vingts anagrammes distincts. Oublier cette division est l'erreur classique du chapitre.",
+   "texte": "BANANE : cent quatre-vingts anagrammes, pas soixante.",
+   "ecran": "perm_repetition"
+  },
+  {
+   "id": "p10",
+   "dit": "Autour d'une table ronde, deux dispositions qui se déduisent par une rotation sont identiques : on fixe la position d'une personne comme référence, et il reste n moins un personnes à ordonner. Le nombre de permutations circulaires vaut donc n moins un factorielle. Pour quatre convives : trois factorielle, soit six dispositions vraiment différentes.",
+   "texte": "Table ronde : (n − 1)! dispositions.",
+   "ecran": "perm_circulaire"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons cette première partie. Les choix successifs indépendants se multiplient. Quand l'ordre compte sans répétition, on utilise les arrangements ; quand on ordonne tout, les permutations et la factorielle ; quand les répétitions entrent en jeu, on divise par les permutations internes ou on élève en puissance. La partie suivante changera de regard : choisir sans se soucier de l'ordre.",
+   "texte": "Partie 1 : multiplier, ordonner, répéter.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "Une combinaison est un choix sans ordre : on retient seulement le sous-ensemble formé, pas la manière dont on l'a constitué. Pour passer des arrangements aux combinaisons, on divise par le nombre d'ordres possibles des k éléments choisis, c'est-à-dire k factorielle. On obtient le coefficient binomial : n factorielle divisé par k factorielle fois n moins k factorielle.",
+   "texte": "Combinaisons : choisir sans tenir compte de l'ordre.",
+   "ecran": "combinaisons"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple : choisir une équipe de trois joueurs parmi dix candidats. L'équipe formée des mêmes trois joueurs est unique, quel que soit l'ordre de l'annonce : c'est une combinaison. Dix factorielle divisé par trois factorielle fois sept factorielle, soit dix fois neuf fois huit divisé par six : cent vingt équipes possibles. Retenez ce nombre, il reviendra dans les probabilités.",
+   "texte": "Trois joueurs parmi dix : cent vingt équipes.",
+   "ecran": "ex_equipe"
+  },
+  {
+   "id": "p14",
+   "dit": "Trois propriétés rendent les combinaisons maniables. La symétrie : choisir k éléments revient à écarter les n moins k autres, donc les deux coefficients sont égaux. Les cas limites : choisir zéro ou tous les éléments n'offre qu'une possibilité. Et la relation de Pascal, qui construit le fameux triangle : chaque coefficient est la somme des deux qui le surmontent. Ces coefficients sont aussi ceux du développement du binôme de Newton.",
+   "texte": "Symétrie, Pascal et binôme de Newton.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p15",
+   "dit": "Les combinaisons se combinent entre elles grâce au principe multiplicatif. Dans une urne de sept boules rouges et cinq bleues, tirer simultanément trois boules dont exactement deux rouges et une bleue : on choisit les rouges, vingt et une façons, puis la bleue, cinq façons. Total : vingt et une fois cinq, soit cent cinq tirages. C'est le schéma de presque tous les problèmes d'urnes.",
+   "texte": "Urne : cent cinq tirages avec deux rouges et une bleue.",
+   "ecran": "ex_urne_comb"
+  },
+  {
+   "id": "p16",
+   "dit": "Que faire quand les ensembles se chevauchent ? Additionner leurs cardinaux compte deux fois leur intersection. Le principe d'inclusion-exclusion corrige ce double comptage : le cardinal de la réunion égale la somme des cardinaux, moins celui de l'intersection. Sur un diagramme de Venn, chaque région doit être comptée exactement une fois : c'est toute la philosophie de la formule.",
+   "texte": "Inclusion-exclusion : retirer le double comptage.",
+   "ecran": "inclusion2"
+  },
+  {
+   "id": "p17",
+   "dit": "Application immédiate : cent étudiants suivent les mathématiques, quatre-vingts l'informatique, et trente suivent les deux matières. Ceux qui suivent au moins l'une des deux sont cent plus quatre-vingts, moins les trente comptés deux fois : cent cinquante étudiants. Sans la soustraction, on aurait annoncé cent quatre-vingts, un résultat faux et pourtant très tentant.",
+   "texte": "Maths ou informatique : cent cinquante étudiants.",
+   "ecran": "ex_etudiants"
+  },
+  {
+   "id": "p18",
+   "dit": "Avec trois ensembles, le motif s'étend en alternant les signes : on ajoute les cardinaux simples, on retire les intersections deux à deux, puis on rajoute l'intersection des trois, retirée une fois de trop. L'alternance continue pour davantage d'ensembles : ajouter, retirer, rajouter, et chaque élément finit compté exactement une fois.",
+   "texte": "Trois ensembles : ajouter, retirer, rajouter.",
+   "ecran": "inclusion3"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple complet : parmi les entiers de un à cent, combien sont divisibles par deux, par trois ou par cinq ? Les simples donnent cinquante, trente-trois et vingt. Les intersections deux à deux donnent seize, dix et six. L'intersection des trois, les multiples de trente, donne trois. Total : cent trois, moins trente-deux, plus trois, soit soixante-quatorze entiers.",
+   "texte": "Divisibles par 2, 3 ou 5 : soixante-quatorze entiers.",
+   "ecran": "ex_divisibles"
+  },
+  {
+   "id": "p20",
+   "dit": "Certains dénombrements résistent aux formules directes : les fonctions génératrices les transforment en algèbre. On code une suite de nombres dans une série : le coefficient de la puissance n est le nombre cherché pour la taille n. La suite constante, un, un, un, se code par la série géométrique, un plus x plus x carré, dont la somme vaut un sur un moins x.",
+   "texte": "Une suite codée dans une série.",
+   "ecran": "fgo"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple : former des sommes avec des pièces de un et de deux euros. Chaque type de pièce contribue par un facteur : un sur un moins x pour les pièces de un, un sur un moins x carré pour celles de deux. Dans le produit, le coefficient de la puissance cinq vaut trois : cinq pièces de un, ou trois de un et une de deux, ou une de un et deux de deux. Trois façons, lues dans un coefficient.",
+   "texte": "Cinq euros en pièces de un et deux : trois façons.",
+   "ecran": "ex_pieces"
+  },
+  {
+   "id": "p22",
+   "dit": "Il existe une seconde famille, les fonctions génératrices exponentielles, où chaque coefficient est divisé par n factorielle. La distinction est essentielle : l'ordinaire convient aux choix où l'ordre ne compte pas, l'exponentielle aux structures étiquetées, où les éléments sont distingués et ordonnés. L'exemple canonique : l'exponentielle de x code la suite constante un, chaque taille admettant une seule structure d'ensemble.",
+   "texte": "Ordinaire ou exponentielle : selon que l'ordre compte ou non.",
+   "ecran": "fge"
+  },
+  {
+   "id": "p23",
+   "dit": "Récapitulons cette deuxième partie. Sans ordre, les combinaisons prennent le relais, avec leurs symétries et la relation de Pascal. Quand les ensembles se chevauchent, l'inclusion-exclusion compte chaque région une seule fois. Et quand le dénombrement devient trop touffu, les fonctions génératrices le transforment en lecture de coefficients. Il ne reste qu'à mettre ces outils au service des probabilités.",
+   "texte": "Partie 2 : combiner, corriger, coder.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p24",
+   "dit": "En situation d'équiprobabilité, la probabilité d'un événement est le quotient du nombre de cas favorables par le nombre de cas possibles. Probabiliser devient donc dénombrer deux fois : une fois l'univers entier, une fois l'événement. C'est pourquoi toutes les formules de ce cours, arrangements, permutations et surtout combinaisons, sont les vraies formules des probabilités finies.",
+   "texte": "Probabilité : favorables divisés par possibles.",
+   "ecran": "proba"
+  },
+  {
+   "id": "p25",
+   "dit": "Exemple : tirer simultanément deux cartes dans un jeu de cinquante-deux, et obtenir une paire de rois. L'univers compte les paires de cartes : combinaison de deux parmi cinquante-deux, mille trois cent vingt-six. Les cas favorables : choisir deux rois parmi quatre, six façons. La probabilité vaut six sur mille trois cent vingt-six, soit un sur deux cent vingt et un.",
+   "texte": "Paire de rois : un sur deux cent vingt et un.",
+   "ecran": "ex_rois"
+  },
+  {
+   "id": "p26",
+   "dit": "Le loto montre la puissance, et la cruauté, de ces nombres. Choisir six numéros parmi quarante-neuf offre près de quatorze millions de grilles, et une seule gagne le gros lot. La probabilité vaut donc un sur treize millions neuf cent quatre-vingt-trois mille huit cent seize, environ sept chances sur cent millions. Le dénombrement transforme une intuition vague en certitude chiffrée.",
+   "texte": "Loto : une chance sur près de quatorze millions.",
+   "ecran": "ex_loto"
+  },
+  {
+   "id": "p27",
+   "dit": "Devant un « au moins un », le réflexe est de passer par le complémentaire. Obtenir au moins un six en six lancers de dé, c'est le contraire de n'obtenir aucun six. Chaque lancer évite le six avec probabilité cinq sixièmes, donc aucun six en six lancers vaut cinq sixièmes puissance six. La réponse : un moins cette quantité, environ zéro virgule six six cinq, deux chances sur trois.",
+   "texte": "Au moins un six : environ deux chances sur trois.",
+   "ecran": "ex_des"
+  },
+  {
+   "id": "p28",
+   "dit": "Même réflexe pour les urnes : un sac contient cinq boules rouges, trois bleues et deux vertes, on en tire trois simultanément. Obtenir au moins une rouge, c'est le contraire de n'en obtenir aucune : choisir trois boules parmi les cinq non rouges, dix façons, sur cent vingt tirages possibles. Probabilité : un moins dix sur cent vingt, soit onze douzièmes.",
+   "texte": "Au moins une rouge : onze chances sur douze.",
+   "ecran": "ex_rouges"
+  },
+  {
+   "id": "p29",
+   "dit": "Face à un énoncé, la méthode tient en quatre temps. D'abord comprendre : quels éléments, quelles contraintes, quel but, avec un schéma si besoin. Ensuite choisir la technique, en tranchant les questions d'ordre et de répétition. Puis formaliser, en écrivant la formule avec les bonnes notations. Enfin calculer, et vérifier que le résultat est plausible dans le contexte. Cette discipline vaut pour tous les exercices qui suivent.",
+   "texte": "La méthode en quatre temps, toujours la même.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p30",
+   "dit": "Premier exercice de synthèse : un restaurant propose cinq entrées, trois plats et deux desserts, soit cinq fois trois fois deux, trente menus. Et avec sept lettres distinctes, former des mots de quatre lettres : si l'ordre compte, huit cent quarante ; sans ordre, trente-cinq ; avec répétitions permises, sept puissance quatre, soit deux mille quatre cent un. Trois énoncés voisins, trois outils différents.",
+   "texte": "Menus et mots : trente, huit cent quarante, trente-cinq, deux mille quatre cent un.",
+   "ecran": "ex_synthese1"
+  },
+  {
+   "id": "p31",
+   "dit": "Deuxième synthèse : former un comité de cinq personnes, parmi dix hommes et huit femmes, avec au moins deux femmes. Plutôt que d'additionner les cas deux, trois, quatre et cinq femmes, on soustrait l'interdit : tous les comités, moins ceux sans femme, moins ceux avec exactement une femme. Huit mille cinq cent soixante-huit, moins deux cent cinquante-deux, moins mille six cent quatre-vingts : six mille six cent trente-six comités.",
+   "texte": "Au moins deux femmes : six mille six cent trente-six comités.",
+   "ecran": "ex_comite_femmes"
+  },
+  {
+   "id": "p32",
+   "dit": "Troisième synthèse, aux cartes : la probabilité d'un full en tirant cinq cartes, c'est-à-dire un brelan d'une valeur et une paire d'une autre. On choisit la valeur du brelan, treize façons, ses trois cartes, quatre façons, la valeur de la paire, douze façons, et ses deux cartes, six façons : trois mille sept cent quarante-quatre mains favorables, sur près de deux millions six cent mille mains. Environ un virgule quatre pour mille.",
+   "texte": "Le full : environ une chance sur sept cents.",
+   "ecran": "ex_full"
+  },
+  {
+   "id": "p33",
+   "dit": "Dernier exercice : un code secret de quatre chiffres, avec répétitions, offre dix puissance quatre codes possibles, soit dix mille. Un intrus qui essaie au hasard a donc une probabilité de un sur dix mille de tomber juste du premier coup. Pour renforcer la sécurité, on allonge le code ou on élargit l'alphabet : chaque position libre multiplie le travail de l'attaquant.",
+   "texte": "Code secret : un sur dix mille au premier essai.",
+   "ecran": "ex_code"
+  },
+  {
+   "id": "p34",
+   "dit": "En épreuve, gardez ces réflexes. Schématisez l'énoncé, par un arbre, un diagramme de Venn ou une simple liste, avant d'écrire la moindre formule. Devant un « au moins », pensez immédiatement au complémentaire. Tranchez d'abord les questions d'ordre et de répétition : elles choisissent l'outil à votre place. Et vérifiez toujours la vraisemblance du résultat obtenu.",
+   "texte": "Quatre réflexes qui évitent la plupart des erreurs.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p35",
+   "dit": "Pour finir, retenez l'enchaînement complet de ce cours. Multiplier les choix successifs, diviser quand des cas se confondent ou se répètent. Distinguer arrangements, permutations et combinaisons selon l'ordre. Corriger les chevauchements par l'inclusion-exclusion, coder les suites par les fonctions génératrices. Et partout où une probabilité équiprobable se calcule, dénombrer les cas favorables et les cas possibles.",
+   "texte": "Dénombrer juste, c'est probabiliser juste.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Principes fondamentaux, arrangements et permutations"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Combinaisons, inclusion-exclusion et fonctions génératrices",
+   "pont": {
+    "texte": "Partie 2 : combinaisons, inclusion-exclusion et fonctions génératrices.",
+    "dit": "Partie deux : choisir sans ordre. Nous passerons des combinaisons et de leurs propriétés au principe d'inclusion-exclusion, qui corrige les doubles comptages quand les ensembles se chevauchent, puis aux fonctions génératrices, qui transforment un dénombrement en lecture de coefficient."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Applications aux probabilités et méthode de résolution",
+   "pont": {
+    "texte": "Partie 3 : probabilités et exercices de synthèse.",
+    "dit": "Partie trois : mettre le dénombrement au service des probabilités. Nous appliquerons les combinaisons aux cartes, au loto, aux dés et aux urnes, puis nous résoudrons des exercices de synthèse avec la méthode en quatre temps."
+   }
+  }
+ ]
+}

@@ -1570,6 +1570,59 @@ const FIG = {
       mot(722, 188, '+', { t: 26, a: 'start' }) + mot(722, 260, '−', { t: 26, a: 'start' }) +
       mot(500, 292, "le long d'un chemin on multiplie, entre chemins on additionne", { t: 20 }));
   },
+  coeff_serie_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      mot(286, 58, '(1 + x + x² + x³ + …)', { t: 24 }) +
+      mot(500, 58, '×', { t: 26 }) +
+      mot(700, 58, '(1 + x² + x⁴ + …)', { t: 24 }) +
+      trait(500, 84, 500, 122, p, { c: 'currentColor', w: 4 }) +
+      `<polygon points="500,136 490,120 510,120" fill="currentColor"/>` +
+      mot(500, 106, '', { t: 20 }) +
+      mot(168, 196, 'G(x) = 1 + x + 2x² + 2x³ + 3x⁴ +', { t: 23, a: 'start' }) +
+      `<rect x="618" y="164" width="76" height="44" fill="#E8604C" fill-opacity=".18" stroke="#E8604C" stroke-width="4"/>` +
+      mot(656, 196, '3x⁵', { t: 24, c: '#E8604C' }) +
+      mot(716, 196, '+ …', { t: 23, a: 'start' }) +
+      mot(656, 148, 'coefficient de x⁵ : 3', { t: 20, c: '#E8604C' }) +
+      mot(500, 262, "chaque coefficient compte les façons d'obtenir son exposant", { t: 20 }));
+  },
+  arbre_choix_fig(t) {
+    const p = prog(t);
+    let corps = '';
+    const n1 = [50, 150, 250], n2 = [25, 75, 125, 175, 225, 275];
+    const feuilles = Array.from({ length: 12 }, (_, k) => 14 + k * 25);
+    n1.forEach(y => { corps += trait(76, 150, 294, y, p, { c: 'currentColor', w: 3 }); });
+    n1.forEach((y, i) => { n2.slice(i * 2, i * 2 + 2).forEach(y2 => { corps += trait(306, y, 554, y2, p, { c: '#1A75FF', w: 3 }); }); });
+    n2.forEach((y, i) => { feuilles.slice(i * 2, i * 2 + 2).forEach(y3 => { corps += trait(566, y, 794, y3, p, { c: '#10B981', w: 2 }); }); });
+    corps += `<circle cx="70" cy="150" r="7" fill="currentColor"/>`;
+    n1.forEach(y => { corps += `<circle cx="300" cy="${y}" r="6" fill="currentColor"/>`; });
+    n2.forEach(y => { corps += `<circle cx="560" cy="${y}" r="5" fill="#1A75FF"/>`; });
+    feuilles.forEach(y => { corps += `<circle cx="800" cy="${y}" r="4" fill="#10B981"/>`; });
+    return svgBoite(
+      corps +
+      mot(300, 292, '3 chemises', { t: 20 }) +
+      mot(560, 292, '2 pantalons', { t: 20, c: '#1A75FF' }) +
+      mot(800, 292, '2 chaussures', { t: 20, c: '#10B981' }) +
+      mot(836, 142, '= 12', { t: 26, a: 'start' }) +
+      mot(836, 176, 'tenues', { t: 22, a: 'start' }));
+  },
+  table_ronde_fig(t) {
+    const sieges = [[430, 38, 'A'], [542, 150, 'B'], [430, 262, 'C'], [318, 150, 'D']];
+    let corps = `<circle cx="430" cy="150" r="100" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M 451 34 A 118 118 0 0 1 541 110" fill="none" stroke="#E8604C" stroke-width="4"/>`;
+    corps += `<polygon points="541,110 519,101 529,125" fill="#E8604C"/>`;
+    corps += `<path d="M 410 266 A 118 118 0 0 1 319 190" fill="none" stroke="#E8604C" stroke-width="4"/>`;
+    corps += `<polygon points="319,190 341,199 331,175" fill="#E8604C"/>`;
+    sieges.forEach(([x, y, lettre]) => {
+      corps += `<circle cx="${x}" cy="${y}" r="24" fill="none" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x, y + 8, lettre, { t: 22 });
+    });
+    return svgBoite(
+      corps +
+      mot(636, 118, 'tourner la table', { t: 22, a: 'start' }) +
+      mot(636, 150, 'ne change rien :', { t: 22, a: 'start' }) +
+      mot(636, 196, '(n − 1)! arrangements', { t: 24, c: '#B8860B', a: 'start' }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
