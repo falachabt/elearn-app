@@ -1,0 +1,474 @@
+{
+  "cours": 6299,
+  "titre": "Intégration : primitives, aires et théorème fondamental",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Intégration",
+      "titre": "Intégration : primitives, aires et théorème fondamental",
+      "sous": "Remonter d'une dérivée à sa fonction, puis mesurer l'aire sous une courbe",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "La dérivée dit comment une quantité varie. La primitive répond à la question inverse : de quelle fonction cette variation est-elle la dérivée ?",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'une primitive ?",
+      "tex": "F'(x) = f(x)",
+      "note": "F est une primitive de f sur un intervalle I si sa dérivée redonne f en tout point de I. Exemple : x au cube est une primitive de trois x au carré."
+    },
+    "famille": {
+      "type": "etape",
+      "kicker": "La constante d'intégration",
+      "titre": "Une infinité de primitives, à une constante près",
+      "tex": [
+        "F(x) = x^3, \\quad F(x) = x^3 + 5",
+        "\\int f(x)\\, dx = F(x) + C",
+        "G \\text{ primitive} \\Rightarrow G = F + C"
+      ]
+    },
+    "exemple_famille": {
+      "type": "etape",
+      "kicker": "Exemple détaillé : retrouver la famille",
+      "titre": "Primitives d'un polynôme, terme à terme",
+      "tex": [
+        "f(x) = 4x^3 - 2x + 1",
+        "F(x) = x^4 - x^2 + x + C",
+        "F'(x) = 4x^3 - 2x + 1 \\;\\checkmark"
+      ]
+    },
+    "puissances": {
+      "type": "formule",
+      "kicker": "Les puissances : la règle générale",
+      "tex": "\\int x^n\\, dx = \\frac{x^{n+1}}{n+1} + C",
+      "note": "Valable pour tout exposant différent de moins un : on augmente l'exposant d'une unité et on divise par le nouvel exposant."
+    },
+    "cas_log": {
+      "type": "formule",
+      "kicker": "Le cas singulier : un sur x",
+      "tex": "\\int \\frac{1}{x}\\, dx = \\ln|x| + C",
+      "note": "La règle des puissances diviserait par zéro : ce cas exceptionnel donne le logarithme népérien, avec la valeur absolue pour couvrir les x négatifs."
+    },
+    "trigo": {
+      "type": "etape",
+      "kicker": "Primitives trigonométriques",
+      "titre": "Le cycle sinus-cosinus, à l'envers",
+      "tex": [
+        "\\textstyle \\int \\cos(x)\\, dx = \\sin(x) + C",
+        "\\textstyle \\int \\sin(x)\\, dx = -\\cos(x) + C",
+        "\\textstyle \\int \\tfrac{1}{\\cos^2(x)}\\, dx = \\tan(x) + C"
+      ]
+    },
+    "expo": {
+      "type": "etape",
+      "kicker": "Primitives exponentielles",
+      "titre": "L'exponentielle se reproduit à l'identique",
+      "tex": [
+        "\\int e^x\\, dx = e^x + C",
+        "\\int a^x\\, dx = \\tfrac{a^x}{\\ln a} + C"
+      ]
+    },
+    "linearite": {
+      "type": "formule",
+      "kicker": "La linéarité : décomposer pour calculer",
+      "tex": "\\int (\\alpha f + \\beta g) = \\alpha \\int f + \\beta \\int g",
+      "note": "On traite chaque terme séparément et on sort les constantes. Attention : aucune règle simple pour un produit ou un quotient de fonctions."
+    },
+    "exemple_lineaire": {
+      "type": "etape",
+      "kicker": "Exemple complet par linéarité",
+      "titre": "Quatre termes, quatre formules du tableau",
+      "tex": [
+        "\\int (3x^4 - 2x + 5\\cos x - \\tfrac{7}{x})\\, dx",
+        "= \\tfrac{3}{5}x^5 - x^2 + 5\\sin x",
+        "\\quad - 7\\ln|x| + C"
+      ]
+    },
+    "condition_initiale": {
+      "type": "etape",
+      "kicker": "La condition initiale fixe la constante",
+      "titre": "Une dérivée et un point : la fonction est retrouvée",
+      "tex": [
+        "f'(x) = 2x - 3",
+        "f(x) = x^2 - 3x + C",
+        "f(1) = 4 \\Rightarrow C = 6"
+      ]
+    },
+    "position": {
+      "type": "etape",
+      "kicker": "Application : de la vitesse à la position",
+      "titre": "Un mobile dont on connaît la vitesse et le départ",
+      "tex": [
+        "v(t) = 3t^2 - 2t + 1, \\quad x(0) = 5",
+        "x(t) = t^3 - t^2 + t + C",
+        "C = 5 \\Rightarrow x(t) = t^3 - t^2 + t + 5"
+      ]
+    },
+    "riemann": {
+      "type": "etape",
+      "kicker": "Mesurer une aire : les sommes de Riemann",
+      "titre": "Des rectangles de plus en plus fins",
+      "tex": [
+        "\\textstyle \\Delta x = \\tfrac{b-a}{n}",
+        "\\textstyle S_n = \\sum_{i=1}^{n} f(c_i)\\, \\Delta x",
+        "\\textstyle \\int_a^b f(x)\\, dx = \\lim_{n \\to \\infty} S_n"
+      ]
+    },
+    "exemple_riemann": {
+      "type": "etape",
+      "kicker": "Exemple chiffré : la parabole en quatre rectangles",
+      "titre": "La fonction carré entre zéro et un",
+      "tex": [
+        "\\Delta x = 0{,}25",
+        "S_4^{\\text{gauche}} = 0{,}21875",
+        "S_4^{\\text{droite}} = 0{,}46875"
+      ]
+    },
+    "integrale_def": {
+      "type": "formule",
+      "kicker": "L'intégrale définie : une aire algébrique",
+      "tex": "\\int_a^b f(x)\\, dx",
+      "note": "Aire comptée positivement au-dessus de l'axe des abscisses, négativement en dessous : entre zéro et deux pi, le sinus donne zéro."
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Les propriétés de l'intégrale définie",
+      "titre": "Quatre réflexes de calcul",
+      "tex": [
+        "\\text{linéarité : sommes et constantes}",
+        "\\text{Chasles : couper l'intervalle en deux}",
+        "\\text{bornes inversées : le signe change}",
+        "\\text{comparaison : l'ordre est conservé}"
+      ]
+    },
+    "trapeze": {
+      "type": "etape",
+      "kicker": "Exemple : l'aire sous une droite",
+      "titre": "La fonction deux x plus un, entre zéro et trois",
+      "tex": [
+        "\\int_0^3 (2x+1)\\, dx = [x^2 + x]_0^3",
+        "= (9 + 3) - 0 = 12",
+        "\\text{contrôle : trapèze } \\tfrac{(1+7) \\times 3}{2} = 12"
+      ]
+    },
+    "entre_courbes": {
+      "type": "etape",
+      "kicker": "L'aire entre deux courbes",
+      "titre": "La droite au-dessus de la parabole, entre zéro et un",
+      "tex": [
+        "A = \\int_0^1 (x - x^2)\\, dx",
+        "= \\left[\\tfrac{x^2}{2} - \\tfrac{x^3}{3}\\right]_0^1",
+        "= \\tfrac{1}{2} - \\tfrac{1}{3} = \\tfrac{1}{6}"
+      ]
+    },
+    "tfc1": {
+      "type": "formule",
+      "kicker": "Le théorème fondamental, première partie",
+      "tex": "F(x) = \\int_a^x f(t)\\, dt \\;\\Rightarrow\\; F'(x) = f(x)",
+      "note": "La fonction aire accumulée est une primitive de f : dériver l'intégrale redonne la fonction de départ."
+    },
+    "tfc2": {
+      "type": "formule",
+      "kicker": "Le théorème fondamental, deuxième partie",
+      "tex": "\\int_a^b f(x)\\, dx = G(b) - G(a)",
+      "note": "G : n'importe quelle primitive de f. La constante s'annule dans la différence : c'est pourquoi toutes les primitives conviennent."
+    },
+    "exemple_tfc": {
+      "type": "etape",
+      "kicker": "Premier calcul par le théorème fondamental",
+      "titre": "La parabole entre un et trois, sans rectangles",
+      "tex": [
+        "G(x) = \\tfrac{x^3}{3}",
+        "\\int_1^3 x^2\\, dx = \\tfrac{27}{3} - \\tfrac{1}{3}",
+        "= \\tfrac{26}{3}"
+      ]
+    },
+    "exemple_complet": {
+      "type": "etape",
+      "kicker": "Exemple complet : le protocole en trois actes",
+      "titre": "Primitive, évaluation aux bornes, soustraction",
+      "tex": [
+        "\\int_1^3 (4x^3 - 2x + 5)\\, dx",
+        "[x^4 - x^2 + 5x]_1^3 = 87 - 5",
+        "= 82"
+      ]
+    },
+    "aire_parabole": {
+      "type": "etape",
+      "kicker": "Application : une aire délimitée par la courbe",
+      "titre": "Trouver d'abord les bornes : les racines",
+      "tex": [
+        "6x - x^2 = 0 \\Rightarrow x = 0 \\text{ ou } x = 6",
+        "\\int_0^6 (6x - x^2)\\, dx",
+        "[3x^2 - \\tfrac{x^3}{3}]_0^6 = 108 - 72 = 36"
+      ]
+    },
+    "signe_cubique": {
+      "type": "etape",
+      "kicker": "Aire algébrique contre aire géométrique",
+      "titre": "Une cubique qui change de signe",
+      "tex": [
+        "F(x) = \\tfrac{x^4}{4} - 2x^2",
+        "\\textstyle \\int_{-2}^{0} f = 4, \\quad \\int_0^2 f = -4",
+        "A = 4 + 4 = 8"
+      ],
+      "anim": {
+        "nom": "courbe_cubique_fig",
+        "hauteur": 110
+      }
+    },
+    "volume_terre": {
+      "type": "etape",
+      "kicker": "Application : un volume par une aire",
+      "titre": "Excaver un terrain de profil parabolique",
+      "tex": [
+        "A = \\int_{-4}^{4} (4 - \\tfrac{x^2}{4})\\, dx = \\tfrac{64}{3}",
+        "V = \\tfrac{64}{3} \\times 50 = \\tfrac{3200}{3}",
+        "\\approx 1066{,}67\\ \\text{m}^3"
+      ]
+    },
+    "ressort": {
+      "type": "etape",
+      "kicker": "Application physique : le travail d'un ressort",
+      "titre": "La force de Hooke, de zéro à dix centimètres",
+      "tex": [
+        "W = \\int_0^{0{,}1} 100x\\, dx",
+        "[50x^2]_0^{0{,}1} = 0{,}5\\ \\text{J}"
+      ],
+      "anim": {
+        "nom": "ressort",
+        "hauteur": 140
+      }
+    },
+    "vehicule": {
+      "type": "etape",
+      "kicker": "Application physique : la distance parcourue",
+      "titre": "Intégrer la vitesse entre la première et la quatrième seconde",
+      "tex": [
+        "\\int_1^4 (3t^2 - 2t + 5)\\, dt",
+        "[t^3 - t^2 + 5t]_1^4 = 68 - 5",
+        "= 63\\ \\text{m}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Primitive : F' = f, famille F + C",
+        "Puissances : exposant plus un, sauf 1/x : ln",
+        "Aire : limite des sommes de Riemann",
+        "Théorème fondamental : F(b) moins F(a)",
+        "Aire géométrique : découper selon le signe"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours d'intégration. Nous savons dériver presque toutes les fonctions ; nous allons maintenant faire le chemin inverse : retrouver une fonction à partir de sa dérivée, constituer le tableau des primitives usuelles, puis mesurer l'aire sous une courbe, et découvrir le théorème qui relie ces deux mondes.",
+      "texte": "Intégration : primitives, aires et théorème fondamental.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le point de départ est une question simple : si l'on vous donne deux ixe, pouvez-vous retrouver la fonction dont c'est la dérivée ? Cette remontée, de la variation vers la quantité elle-même, est la primitive. En physique, c'est passer de la vitesse à la position, ou de l'accélération à la vitesse.",
+      "texte": "Dériver descend, primitiver remonte.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Définition : une fonction est une primitive d'une autre sur un intervalle si sa dérivée redonne exactement cette autre fonction en tout point de l'intervalle. Exemple inaugural : ixe au cube est une primitive de trois ixe au carré, car dériver ixe au cube donne trois ixe au carré.",
+      "texte": "Une primitive : la fonction dont la dérivée est donnée.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Mais ixe au cube plus cinq convient aussi, et ixe au cube plus n'importe quelle constante : la dérivée d'une constante est nulle, elle disparaît. Réciproquement, deux primitives de la même fonction diffèrent toujours d'une constante. On note donc l'ensemble des primitives avec le symbole intégrale suivi de plus C, la constante d'intégration.",
+      "texte": "Une infinité de primitives, à une constante près.",
+      "ecran": "famille"
+    },
+    {
+      "id": "p05",
+      "dit": "Exemple détaillé : cherchons les primitives de quatre ixe au cube, moins deux ixe, plus un. Terme à terme : le premier donne ixe puissance quatre, le deuxième moins ixe au carré, le troisième ixe, sans oublier la constante. On vérifie toujours en dérivant le résultat : on doit retrouver exactement la fonction de départ.",
+      "texte": "Terme à terme, puis on vérifie en dérivant.",
+      "ecran": "exemple_famille"
+    },
+    {
+      "id": "p06",
+      "dit": "La règle des puissances s'inverse : pour primitiver ixe puissance n, on augmente l'exposant d'une unité et on divise par le nouvel exposant. Elle vaut pour les exposants entiers, fractionnaires, négatifs, à une exception près que le prochain écran va isoler : l'exposant moins un, pour lequel la division serait impossible.",
+      "texte": "Puissances : exposant plus un, divisé par lui-même.",
+      "ecran": "puissances"
+    },
+    {
+      "id": "p07",
+      "dit": "L'exception est célèbre : un sur ixe. Appliquer la règle donnerait une division par zéro. Sa primitive est le logarithme népérien de la valeur absolue de ixe : la valeur absolue est indispensable, car la fonction est définie aussi pour les ixe négatifs, où le logarithme simple n'existe pas. Historiquement, ce logarithme est né de l'aire sous l'hyperbole.",
+      "texte": "Un sur x : le logarithme, avec la valeur absolue.",
+      "ecran": "cas_log"
+    },
+    {
+      "id": "p08",
+      "dit": "Côté trigonométrie, le cycle se parcourt à l'envers : le cosinus se primitive en sinus, le sinus en moins cosinus — le signe moins est le piège classique — et un sur cosinus au carré donne la tangente. Vérifiez chaque ligne en dérivant : c'est le seul moyen d'être sûr du signe.",
+      "texte": "Trigonométrie : attention au moins du sinus.",
+      "ecran": "trigo"
+    },
+    {
+      "id": "p09",
+      "dit": "L'exponentielle est la fonction qui se reproduit à l'identique : elle est sa propre primitive, à une constante près. Pour une exponentielle de base a, on divise par le logarithme de la base, car écrire a puissance ixe comme une exponentielle naturelle fait apparaître ce facteur. Ces deux lignes du tableau servent constamment, de la croissance des populations à la décroissance radioactive.",
+      "texte": "L'exponentielle : sa propre primitive.",
+      "ecran": "expo"
+    },
+    {
+      "id": "p10",
+      "dit": "L'outil de décomposition est la linéarité : la primitive d'une somme est la somme des primitives, et une constante multiplicative sort de l'intégrale. Mais attention, la linéarité ne dit rien sur les produits, les quotients ou les compositions : ces cas relèveront de techniques avancées, substitution et intégration par parties, hors du périmètre de ce cours.",
+      "texte": "Linéarité : sommes oui, produits non.",
+      "ecran": "linearite"
+    },
+    {
+      "id": "p11",
+      "dit": "Application complète, par linéarité : trois ixe puissance quatre donne trois cinquièmes de ixe puissance cinq ; moins deux ixe donne moins ixe au carré ; cinq cosinus donne cinq sinus ; et moins sept sur ixe donne moins sept logarithmes de la valeur absolue. Quatre termes, quatre lignes du tableau, une seule constante à la fin.",
+      "texte": "Quatre termes décomposés : le résultat complet.",
+      "ecran": "exemple_lineaire"
+    },
+    {
+      "id": "p12",
+      "dit": "Une condition initiale transforme la famille en une fonction unique. Exemple : la dérivée vaut deux ixe moins trois, et la courbe passe par le point d'abscisse un et d'ordonnée quatre. La famille est ixe au carré, moins trois ixe, plus C ; imposer la valeur en un donne C égal à six. La fonction est entièrement retrouvée.",
+      "texte": "La condition initiale choisit la constante.",
+      "ecran": "condition_initiale"
+    },
+    {
+      "id": "p13",
+      "dit": "Même mécanisme en physique : un mobile a pour vitesse trois té au carré, moins deux té, plus un, et part de la position cinq mètres. La position est une primitive de la vitesse : té au cube, moins té au carré, plus té, plus C. La position initiale fixe C à cinq. Sans cette donnée, la trajectoire resterait indéterminée à une translation près.",
+      "texte": "De la vitesse à la position : la constante, c'est le départ.",
+      "ecran": "position"
+    },
+    {
+      "id": "p14",
+      "dit": "Changeons de monde : mesurer l'aire sous une courbe. L'idée de Riemann : découper l'intervalle en n bandes de même largeur, approcher chaque bande par un rectangle dont la hauteur est la valeur de la fonction en un point choisi, et sommer. Quand n grandit, les rectangles épousent la courbe et la somme tend vers l'aire exacte : c'est l'intégrale définie.",
+      "texte": "Des rectangles de plus en plus fins : la somme de Riemann.",
+      "ecran": "riemann"
+    },
+    {
+      "id": "p15",
+      "dit": "Exemple chiffré : la parabole ixe au carré entre zéro et un, découpée en quatre. Avec les points droits, la somme vaut environ zéro virgule quarante-sept ; avec les points gauches, zéro virgule vingt-deux. L'aire exacte, un tiers, est entre les deux : la fonction croissante est sous-estimée à gauche et surestimée à droite. En raffinant, les deux sommes convergent vers un tiers.",
+      "texte": "Quatre rectangles : l'aire exacte est encadrée.",
+      "ecran": "exemple_riemann"
+    },
+    {
+      "id": "p16",
+      "dit": "L'intégrale définie est donc une aire, mais algébrique : positive au-dessus de l'axe, négative en dessous. Exemple extrême : le sinus entre zéro et deux pi donne zéro, l'aire positive de la première arche compensant exactement l'aire négative de la seconde. Ce n'est pas l'aire totale, et cette distinction reviendra dans les applications.",
+      "texte": "Aire algébrique : le dessous de l'axe compte en négatif.",
+      "ecran": "integrale_def"
+    },
+    {
+      "id": "p17",
+      "dit": "Quatre propriétés structurent tous les calculs : la linéarité, déjà connue ; la relation de Chasles, qui coupe l'intervalle en deux morceaux que l'on additionne ; l'inversion des bornes, qui change le signe ; et la comparaison, qui conserve l'ordre entre deux fonctions. Chacune se lit directement sur le dessin des aires.",
+      "texte": "Chasles, inversion, comparaison : quatre réflexes.",
+      "ecran": "proprietes"
+    },
+    {
+      "id": "p18",
+      "dit": "Premier calcul complet : l'aire sous la droite deux ixe plus un, entre zéro et trois. Une primitive est ixe au carré plus ixe ; évaluée entre les bornes, elle donne douze. Contrôle géométrique : la région est un trapèze de bases un et sept et de hauteur trois, son aire vaut aussi douze. Quand deux méthodes indépendantes concordent, le résultat est sûr.",
+      "texte": "Aire sous une droite : douze, vérifiée par le trapèze.",
+      "ecran": "trapeze"
+    },
+    {
+      "id": "p19",
+      "dit": "L'aire entre deux courbes se ramène au même geste : intégrer la différence, la courbe du dessus moins celle du dessous. Entre zéro et un, la droite ixe est au-dessus de la parabole ixe au carré : l'aire vaut un demi moins un tiers, soit un sixième. La condition est de vérifier quelle courbe est au-dessus sur tout l'intervalle.",
+      "texte": "Entre deux courbes : intégrer la différence.",
+      "ecran": "entre_courbes"
+    },
+    {
+      "id": "p20",
+      "dit": "Voici le pont tant attendu, première partie du théorème fondamental. Définissez la fonction aire accumulée : l'intégrale de a jusqu'à la borne variable ixe. Sa dérivée redonne exactement la fonction de départ. Autrement dit, cette fonction d'aire est une primitive : ajouter une bande infinitésimale d'aire fait croître l'accumulation à la vitesse donnée par la hauteur de la courbe.",
+      "texte": "Dériver l'aire accumulée redonne la fonction.",
+      "ecran": "tfc1"
+    },
+    {
+      "id": "p21",
+      "dit": "Deuxième partie, celle qui calcule : l'intégrale de a à b est égale à une primitive quelconque évaluée en b, moins la même en a. Fini les limites de sommes de rectangles : une soustraction suffit. Et la constante d'intégration s'annule dans la différence, présente des deux côtés : c'est pour cela que n'importe quelle primitive convient.",
+      "texte": "Intégrer, c'est soustraire deux valeurs d'une primitive.",
+      "ecran": "tfc2"
+    },
+    {
+      "id": "p22",
+      "dit": "Application immédiate : la parabole entre un et trois. Une primitive est ixe au cube sur trois ; en trois, cela donne neuf, en un, un tiers ; la différence vaut vingt-six tiers. Comparez avec la peine qu'aurait demandée un calcul par rectangles : le théorème fondamental transforme un problème de limite en un problème d'algèbre.",
+      "texte": "La parabole entre un et trois : vingt-six tiers.",
+      "ecran": "exemple_tfc"
+    },
+    {
+      "id": "p23",
+      "dit": "Le protocole complet, en trois actes : trouver une primitive, l'évaluer aux deux bornes, soustraire la valeur en la borne inférieure de celle en la borne supérieure. Exemple : quatre ixe au cube, moins deux ixe, plus cinq, entre un et trois. La primitive donne quatre-vingt-sept en trois et cinq en un : l'intégrale vaut quatre-vingt-deux.",
+      "texte": "Primitive, bornes, soustraction : quatre-vingt-deux.",
+      "ecran": "exemple_complet"
+    },
+    {
+      "id": "p24",
+      "dit": "Quand la région est délimitée par la courbe elle-même et par l'axe, les bornes ne sont pas données : ce sont les racines de la fonction. Pour six ixe moins ixe au carré, les racines sont zéro et six, et la parabole est positive entre les deux. L'intégrale donne cent huit moins soixante-douze, soit trente-six unités d'aire.",
+      "texte": "Les bornes d'une aire fermée : les racines de la fonction.",
+      "ecran": "aire_parabole"
+    },
+    {
+      "id": "p25",
+      "dit": "Le piège majeur : l'aire géométrique quand la fonction change de signe. Pour ixe au cube moins quatre ixe, entre moins deux et deux, l'intégrale totale vaut zéro par compensation, mais l'aire réelle vaut huit : quatre au-dessus de l'axe, quatre en dessous pris en valeur absolue. La règle : découper aux racines, intégrer morceau par morceau, et additionner les valeurs absolues.",
+      "texte": "Signe changeant : découper, puis additionner en positif.",
+      "ecran": "signe_cubique"
+    },
+    {
+      "id": "p26",
+      "dit": "Application d'ingénierie : un terrain dont la coupe suit la parabole quatre moins ixe au carré sur quatre, entre moins quatre et quatre, sur une longueur de cinquante mètres. L'aire de la coupe vaut soixante-quatre tiers ; multipliée par la longueur, le volume à excaver vaut trois mille deux cents tiers de mètres cubes, environ mille soixante-sept.",
+      "texte": "Une aire fois une longueur : un volume de terre.",
+      "ecran": "volume_terre"
+    },
+    {
+      "id": "p27",
+      "dit": "En physique, le travail d'une force variable est l'intégrale de la force. Pour étirer un ressort selon la loi de Hooke, force égale à cent ixe, de zéro à dix centimètres : l'intégrale donne cent fois un demi-centième, soit un demi-joule. L'aire sous la droite de la force, c'est littéralement l'énergie dépensée.",
+      "texte": "Le travail d'un ressort : un demi-joule.",
+      "ecran": "ressort"
+    },
+    {
+      "id": "p28",
+      "dit": "Dernière application : la distance parcourue est l'intégrale de la vitesse. Pour une vitesse de trois té au carré, moins deux té, plus cinq, entre la première et la quatrième seconde, la primitive donne soixante-huit en quatre et cinq en un : la distance vaut soixante-trois mètres. Aires, distances, travaux, volumes : une même opération, l'accumulation.",
+      "texte": "Intégrer la vitesse : soixante-trois mètres parcourus.",
+      "ecran": "vehicule"
+    },
+    {
+      "id": "p29",
+      "dit": "Pour conclure : une primitive remonte d'une fonction à son origine, à une constante près que seule une condition initiale peut fixer ; l'intégrale définie mesure une aire algébrique, limite de sommes de rectangles ; et le théorème fondamental soude les deux, en remplaçant le passage à la limite par une simple différence de primitives. Devant un calcul, pensez signe, bornes et primitive : tout le reste suit.",
+      "texte": "Primitives et intégrales : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Les primitives : remonter de la dérivée à la fonction"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Fixer la constante, puis mesurer l'aire sous une courbe",
+      "pont": {
+        "texte": "Partie 2 : conditions initiales, position d'un mobile, sommes de Riemann et aire algébrique.",
+        "dit": "Partie deux : des primitives aux aires. Nous fixerons d'abord la constante par une condition initiale, nous retrouverons la position d'un mobile, puis nous mesurerons l'aire sous une courbe par des rectangles de plus en plus fins, jusqu'à l'intégrale définie et ses propriétés."
+      }
+    },
+    {
+      "debut": "p20",
+      "sous_titre": "Le théorème fondamental et ses applications",
+      "pont": {
+        "texte": "Partie 3 : le théorème fondamental, le protocole et les applications.",
+        "dit": "Partie trois : le théorème fondamental du calcul intégral. Nous établirons le pont entre primitives et aires, nous appliquerons le protocole de calcul en trois actes, et nous terminerons par les aires à signe changeant, un volume, un travail et une distance."
+      }
+    }
+  ]
+}
