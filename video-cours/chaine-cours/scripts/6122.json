@@ -1,0 +1,538 @@
+{
+ "cours": 6122,
+ "titre": "Les marchés financiers au Cameroun : fonctionnement, régulation et développement",
+ "matiere": "Économie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Économie · Concours ESSEC",
+   "titre": "Les marchés financiers au Cameroun : fonctionnement, régulation et développement",
+   "sous": "Dissertation économique : monétaire, bourse, changes — comment le Cameroun finance son économie",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "À quoi sert un marché financier",
+   "texte": "Un marché financier met en relation ceux qui ont des capitaux et ceux qui ont des projets : sans lui, l'épargne dort et les entreprises ne grandissent pas.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 160
+   }
+  },
+  "actifs": {
+   "type": "etape",
+   "kicker": "Définir · les actifs échangés",
+   "titre": "Quatre familles d'actifs financiers",
+   "tex": [
+    "\\text{actions : une part de propriété dans une entreprise}",
+    "\\text{obligations : un titre de créance, État ou entreprise}",
+    "\\text{dérivés : options et contrats à terme}",
+    "\\text{monnaie : l'actif financier de base}"
+   ]
+  },
+  "acteurs": {
+   "type": "etape",
+   "kicker": "Définir · les acteurs",
+   "titre": "Quatre rôles qui font le marché",
+   "tex": [
+    "\\text{émetteurs : entreprises, États, institutions financières}",
+    "\\text{investisseurs : particuliers et fonds d'investissement}",
+    "\\text{intermédiaires : banques, sociétés de gestion, courtiers}",
+    "\\text{régulateurs : la surveillance du marché financier}"
+   ]
+  },
+  "architecture": {
+   "type": "etape",
+   "kicker": "Le système camerounais en un regard",
+   "titre": "Trois marchés, trois horizons",
+   "tex": [
+    "\\text{marché monétaire : la liquidité à court terme}",
+    "\\text{marché des capitaux : le financement à long terme}",
+    "\\text{marché des changes : convertir les devises}"
+   ],
+   "anim": {
+    "nom": "architecture_marches_fig",
+    "hauteur": 150
+   }
+  },
+  "monetaire": {
+   "type": "etape",
+   "kicker": "Segment 1 · le marché monétaire",
+   "titre": "L'argent au quotidien : moins d'un an",
+   "tex": [
+    "\\text{financements à moins d'un an, très liquides}",
+    "\\text{risque faible, échanges rapides de trésorerie}",
+    "\\text{acteurs : BEAC, banques, établissements financiers, État}",
+    "\\text{à distinguer des capitaux, le long terme}"
+   ]
+  },
+  "instruments": {
+   "type": "etape",
+   "kicker": "Le marché monétaire · ses instruments",
+   "titre": "Quatre outils de trésorerie",
+   "tex": [
+    "\\text{avances sur titres : emprunter à la BEAC contre garantie}",
+    "\\text{bons du Trésor : l'État finance sa trésorerie}",
+    "\\text{refinancement : les facilités de la BEAC aux banques}",
+    "\\text{interbancaire : les banques se prêtent entre elles}"
+   ]
+  },
+  "beac_outils": {
+   "type": "etape",
+   "kicker": "Piloter le monétaire · les leviers de la BEAC",
+   "titre": "Stabilité des prix, liquidité des banques",
+   "tex": [
+    "\\text{taux directeurs : le prix du refinancement des banques}",
+    "\\text{open market : acheter ou vendre des titres}",
+    "\\text{contrôle du crédit : prévenir les risques systémiques}"
+   ]
+  },
+  "exemple_refinancement": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le refinancement de la BEAC",
+   "titre": "Dix milliards injectés : la chaîne des effets",
+   "tex": [
+    "\\text{injection : } 10 \\times 10^{9}\\ \\text{F CFA de la BEAC}",
+    "\\text{liquidité bancaire en hausse, taux interbancaires en baisse}",
+    "\\text{capacité de crédit des banques renforcée}"
+   ],
+   "anim": {
+    "nom": "refinancement_fig",
+    "hauteur": 150
+   }
+  },
+  "bourse": {
+   "type": "etape",
+   "kicker": "Segment 2 · le marché des capitaux",
+   "titre": "La BVMAC : financer le long terme",
+   "tex": [
+    "\\text{la bourse régionale de l'Afrique centrale}",
+    "\\text{émettre actions et obligations pour se financer}",
+    "\\text{les épargnants y diversifient leurs placements}",
+    "\\text{un marché encore jeune, au potentiel important}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Trois marchés, trois horizons de financement",
+    "Le monétaire gère la liquidité du quotidien",
+    "La BEAC pilote par ses taux et le refinancement",
+    "La bourse finance le long terme, encore jeune"
+   ]
+  },
+  "acteurs_bourse": {
+   "type": "etape",
+   "kicker": "La bourse · ses acteurs",
+   "titre": "Réguler, conseiller, coter, investir",
+   "tex": [
+    "\\text{le régulateur : transparence et stabilité du marché}",
+    "\\text{les sociétés de gestion et d'intermédiation}",
+    "\\text{les sociétés cotées : encore trop peu nombreuses}",
+    "\\text{les investisseurs : particuliers et institutions}"
+   ]
+  },
+  "defis_bourse": {
+   "type": "etape",
+   "kicker": "La bourse · ses défis",
+   "titre": "Petit marché, grands freins",
+   "tex": [
+    "\\text{capitalisation faible face aux autres marchés africains}",
+    "\\text{liquidité réduite : acheter et vendre reste difficile}",
+    "\\text{transparence limitée des informations financières}",
+    "\\text{investisseurs peu sensibilisés, cadre en évolution}"
+   ]
+  },
+  "changes": {
+   "type": "etape",
+   "kicker": "Segment 3 · le marché des changes",
+   "titre": "Convertir la monnaie, payer le monde",
+   "tex": [
+    "\\text{convertir le franc CFA en euros et en dollars}",
+    "\\text{un marché surtout interbancaire, autour de la BEAC}",
+    "\\text{banques, sociétés de change et opérateurs spécialisés}",
+    "\\text{un marché officiel régulé, un marché informel à côté}"
+   ]
+  },
+  "parite": {
+   "type": "formule",
+   "kicker": "La règle d'or · la parité fixe",
+   "titre": "L'ancrage du franc CFA à l'euro",
+   "tex": "1\\ \\text{euro} = 655{,}957\\ \\text{F CFA}",
+   "note": "Parité fixe CEMAC : face au dollar, le franc CFA suit l'euro.",
+   "anim": {
+    "nom": "change_parite_fig",
+    "hauteur": 180
+   }
+  },
+  "facteurs_change": {
+   "type": "etape",
+   "kicker": "Les changes · ce qui fait bouger les besoins",
+   "titre": "Six facteurs à connaître",
+   "tex": [
+    "\\text{balance commerciale} \\qquad \\text{investissements étrangers}",
+    "\\text{taux d'intérêt} \\qquad \\text{inflation comparée}",
+    "\\text{spéculation des opérateurs} \\qquad \\text{interventions de la BEAC}"
+   ]
+  },
+  "effets_change": {
+   "type": "etape",
+   "kicker": "Les changes · effets sur l'économie",
+   "titre": "Du cours des devises à la vie réelle",
+   "tex": [
+    "\\text{importations plus chères : l'inflation peut suivre}",
+    "\\text{exportations plus compétitives à l'extérieur}",
+    "\\text{stabilité du change : la confiance des investisseurs}",
+    "\\text{dette extérieure : un coût qui bouge avec les devises}"
+   ]
+  },
+  "institutions_beac": {
+   "type": "etape",
+   "kicker": "Institutions · la BEAC",
+   "titre": "La gardienne de la stabilité",
+   "tex": [
+    "\\text{rôle monétaire : masse monétaire, réserves, taux directeurs}",
+    "\\text{supervision : surveiller la solvabilité des banques}",
+    "\\text{prêteur en dernier ressort : éviter les faillites en cascade}"
+   ]
+  },
+  "systeme_bancaire": {
+   "type": "etape",
+   "kicker": "Institutions · le système bancaire",
+   "titre": "Une diversité d'acteurs",
+   "tex": [
+    "\\text{banques commerciales : comptes, crédits, financement}",
+    "\\text{banques de développement : les projets au long cours}",
+    "\\text{microfinance : le crédit pour les exclus du système}",
+    "\\text{gestion d'actifs : faire travailler l'épargne}"
+   ]
+  },
+  "regulation": {
+   "type": "etape",
+   "kicker": "La régulation · trois gardiens",
+   "titre": "Surveiller, encadrer, protéger",
+   "tex": [
+    "\\text{la CMF : surveiller les marchés, prévenir les abus}",
+    "\\text{la BEAC : superviser les banques, garder la stabilité}",
+    "\\text{le ministère des Finances : le cadre légal et fiscal}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Bourse : peu de cotées, peu de liquidité",
+    "Changes : parité fixe, réserves à surveiller",
+    "La BEAC, gardienne de la stabilité",
+    "Réguler : transparence et protection des investisseurs"
+   ]
+  },
+  "mecanismes_dev": {
+   "type": "etape",
+   "kicker": "Développement · les canaux de financement",
+   "titre": "Quatre canaux vers l'investissement",
+   "tex": [
+    "\\text{la bourse : attirer l'investissement, national et étranger}",
+    "\\text{le monétaire : financer le court terme des entreprises}",
+    "\\text{les banques : le canal dominant du financement}",
+    "\\text{les assurances : gérer les risques, protéger}"
+   ]
+  },
+  "imperfections": {
+   "type": "etape",
+   "kicker": "Développement · les imperfections",
+   "titre": "Quand l'allocation de l'épargne coince",
+   "tex": [
+    "\\text{asymétrie d'information : le risque mal évalué}",
+    "\\text{manque de transparence : des données peu fiables}",
+    "\\text{coûts de transaction élevés : l'accès reste cher}"
+   ]
+  },
+  "inclusion": {
+   "type": "etape",
+   "kicker": "Développement · pauvreté et inclusion",
+   "titre": "Faire entrer tout le monde dans le système",
+   "tex": [
+    "\\text{microfinance : financer les très petites entreprises} \\qquad \\text{inclusion : des services pour tous}",
+    "\\text{mobile money : Orange Money et MTN Mobile Money}",
+    "\\text{obstacle : les zones rurales encore mal desservies}"
+   ],
+   "anim": {
+    "nom": "inclusion_mobile_fig",
+    "hauteur": 140
+   }
+  },
+  "defis_perspectives": {
+   "type": "etape",
+   "kicker": "Défis · le programme de travail",
+   "titre": "Trois chantiers majeurs",
+   "tex": [
+    "\\text{réglementation complexe, protection à renforcer}",
+    "\\text{inclusion faible, surtout en milieu rural}",
+    "\\text{marché de capitaux étroit, peu d'entreprises cotées}",
+    "\\text{réponses : harmoniser, éduquer, promouvoir}"
+   ]
+  },
+  "fintech": {
+   "type": "etape",
+   "kicker": "Perspectives · l'innovation technologique",
+   "titre": "La finance dans le téléphone",
+   "tex": [
+    "\\text{mobile money et paiements en ligne en expansion}",
+    "\\text{financement participatif : de nouvelles sources de fonds}",
+    "\\text{condition : une cybersécurité à la hauteur}",
+    "\\text{la réglementation doit suivre l'innovation}"
+   ]
+  },
+  "integration_regionale": {
+   "type": "etape",
+   "kicker": "Perspectives · l'intégration régionale",
+   "titre": "Le bassin d'épargne de la CEMAC",
+   "tex": [
+    "\\text{un marché plus large que le marché national}",
+    "\\text{la BVMAC : la plateforme régionale des capitaux}",
+    "\\text{condition : harmoniser les règles entre pays}"
+   ]
+  },
+  "plan_action": {
+   "type": "etape",
+   "kicker": "Application · conseiller le gouvernement",
+   "titre": "Un plan de développement en quatre temps",
+   "tex": [
+    "\\text{diagnostiquer les obstacles au marché des capitaux}",
+    "\\text{mobiliser gouvernement, secteur privé, investisseurs}",
+    "\\text{fixer objectifs et stratégies de mise en œuvre}",
+    "\\text{mesurer par des indicateurs de performance}"
+   ]
+  },
+  "synthese_marches": {
+   "type": "etape",
+   "kicker": "Synthèse · le tableau du cours",
+   "titre": "Trois marchés, trois fonctions, un chantier",
+   "tex": [
+    "\\text{monétaire : gérer la liquidité, dépendance à la BEAC}",
+    "\\text{changes : les échanges extérieurs, réserves et stabilité}",
+    "\\text{capitaux : financer le long terme, liquidité à créer}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Financer l'investissement, créer des emplois",
+    "Allouer l'épargne vers les projets utiles",
+    "Inclusion et microfinance contre la pauvreté",
+    "Fintech et région : les deux accélérateurs",
+    "Transparence : la condition de la confiance"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Les marchés financiers au Cameroun, de la BEAC à la bourse.",
+   "dit": "Bienvenue dans ce cours de dissertation économique consacré aux marchés financiers au Cameroun. Nous définirons d'abord ce qu'est un marché financier et qui y intervient, puis nous visiterons le marché monétaire, la bourse et le marché des changes, avant d'étudier les institutions, la régulation et le rôle de ces marchés dans le développement du pays."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "texte": "Épargne d'un côté, projets de l'autre : le marché relie.",
+   "dit": "À quoi sert un marché financier. À mettre en relation des épargnants qui ont des capitaux et des entreprises ou des États qui ont des projets. Prenez une petite entreprise camerounaise qui veut développer une technologie agricole : sans émission de titres ni levée de fonds, son projet reste à l'état d'idée. Les marchés efficaces transforment l'épargne en investissement."
+  },
+  {
+   "id": "p03",
+   "ecran": "actifs",
+   "texte": "Actions, obligations, dérivés, monnaie : les actifs.",
+   "dit": "Quatre familles d'actifs s'échangent sur ces marchés. Les actions, qui représentent une part de propriété dans une entreprise. Les obligations, titres de créance par lesquels un État ou une entreprise emprunte. Les dérivés, comme les options et les contrats à terme, dont la valeur dépend d'un actif sous-jacent. Et la monnaie elle-même, actif de base de toutes les transactions."
+  },
+  {
+   "id": "p04",
+   "ecran": "acteurs",
+   "texte": "Émetteurs, investisseurs, intermédiaires, régulateurs.",
+   "dit": "Quatre acteurs font tourner la machine. Les émetteurs, entreprises, États et institutions financières, qui viennent chercher des fonds. Les investisseurs, particuliers et fonds, qui placent leur épargne. Les intermédiaires, banques, sociétés de gestion et courtiers, qui rapprochent les deux côtés et réduisent les asymétries d'information. Et les régulateurs, qui surveillent l'ensemble."
+  },
+  {
+   "id": "p05",
+   "ecran": "architecture",
+   "texte": "Monétaire, capitaux, changes : trois segments.",
+   "dit": "Au Cameroun, le système s'organise en trois segments. Le marché monétaire traite la liquidité à court terme entre banques et institutions financières. Le marché des capitaux, qui réunit la bourse et le marché obligataire, finance le long terme. Le marché des changes, enfin, convertit la monnaie nationale en devises. Trois horizons, trois fonctions, un même système."
+  },
+  {
+   "id": "p06",
+   "ecran": "monetaire",
+   "texte": "Le monétaire : l'argent à moins d'un an.",
+   "dit": "Premier segment : le marché monétaire, le marché de l'argent au quotidien. On y finance à court terme, en général à moins d'un an, avec une liquidité forte et un risque faible. Banques, entreprises et État viennent y placer ou y chercher de la trésorerie. La Banque des États de l'Afrique centrale y joue le rôle central : régulateur du système et prêteur en dernier ressort des banques."
+  },
+  {
+   "id": "p07",
+   "ecran": "instruments",
+   "texte": "Avances, bons du Trésor, refinancement, interbancaire.",
+   "dit": "Quatre instruments structurent ce marché. Les avances sur titres, par lesquelles une banque emprunte à la banque centrale contre des titres en garantie. Les bons du Trésor, titres de créance très liquides émis par l'État pour sa trésorerie. Les opérations de refinancement de la banque centrale. Et le marché interbancaire, où les banques se prêtent leurs liquidités entre elles."
+  },
+  {
+   "id": "p08",
+   "ecran": "beac_outils",
+   "texte": "Taux directeurs, open market, contrôle du crédit.",
+   "dit": "Comment la banque centrale pilote-t-elle ce marché. Par trois leviers. Ses taux directeurs, qui fixent le prix du refinancement et influencent tous les taux. Ses opérations d'open market, achats et ventes de titres qui ajustent la masse monétaire et la liquidité. Et le contrôle du crédit, qui encadre les banques pour prévenir les risques pour l'ensemble du système. Objectif permanent : la stabilité des prix."
+  },
+  {
+   "id": "p09",
+   "ecran": "exemple_refinancement",
+   "texte": "10 milliards de F CFA injectés : la chaîne d'effets.",
+   "dit": "L'exercice de la leçon, résolu pas à pas. La banque centrale injecte dix milliards de francs par une opération de refinancement. Premier effet : la liquidité des banques augmente, la masse monétaire s'élargit. Deuxième effet : les taux interbancaires, le prix auquel les banques se prêtent entre elles, tendent à baisser. Troisième effet : mieux pourvues en liquidités, les banques peuvent accorder davantage de crédits à l'économie."
+  },
+  {
+   "id": "p10",
+   "ecran": "bourse",
+   "texte": "La BVMAC : financer le long terme.",
+   "dit": "Deuxième segment : le marché des capitaux, et en son cœur la bourse, organisée au niveau régional par la Bourse des valeurs mobilières de l'Afrique centrale. Une entreprise peut y émettre des actions ou des obligations pour financer sa croissance, pendant que les épargnants y diversifient leurs placements. Au Cameroun, ce marché reste jeune et peu développé, mais son potentiel de financement est considérable."
+  },
+  {
+   "id": "p11",
+   "ecran": "recap1",
+   "texte": "Partie 1 : l'essentiel à retenir.",
+   "dit": "Récapitulons cette première partie. Un marché financier alloue les capitaux entre émetteurs et investisseurs, grâce aux intermédiaires et sous l'œil des régulateurs. Le Cameroun en compte trois : le monétaire pour le court terme, les capitaux pour le long terme, les changes pour les devises. Et la banque centrale régionale en est le chef d'orchestre."
+  },
+  {
+   "id": "p12",
+   "ecran": "acteurs_bourse",
+   "texte": "Régulateur, SGI, cotées, investisseurs.",
+   "dit": "Qui fait vivre la bourse au quotidien. Un régulateur, chargé de la transparence et de la stabilité. Des sociétés de gestion et d'intermédiation, qui conseillent les investisseurs et gèrent leurs portefeuilles. Des sociétés cotées, dont le nombre reste limité, signe d'un marché encore étroit. Et des investisseurs, particuliers comme institutions, qui achètent et vendent les titres."
+  },
+  {
+   "id": "p13",
+   "ecran": "defis_bourse",
+   "texte": "Capitalisation faible, liquidité faible.",
+   "dit": "Les défis de cette bourse sont connus. Une capitalisation modeste comparée aux autres marchés africains, qui limite son attractivité. Une liquidité faible : le petit nombre de transactions rend l'achat et la vente difficiles et risqués. Une transparence perfectible, quand l'information financière des sociétés cotées reste parcellaire. Et une population encore peu familière de ces placements."
+  },
+  {
+   "id": "p14",
+   "ecran": "changes",
+   "texte": "Convertir la monnaie : le marché des changes.",
+   "dit": "Troisième segment : le marché des changes. C'est là que la monnaie nationale se convertit en devises, principalement l'euro et le dollar, pour payer les importations, recevoir les exportations ou investir. Le marché est surtout interbancaire : banques commerciales, sociétés de change et opérateurs spécialisés y traitent, sous la régulation de la banque centrale, qui gère aussi les réserves de change du pays."
+  },
+  {
+   "id": "p15",
+   "ecran": "parite",
+   "texte": "1 euro = 655,957 F CFA : la parité fixe.",
+   "dit": "La règle d'or de ce marché tient en une parité : la monnaie de la Communauté économique et monétaire de l'Afrique centrale est arrimée à l'euro, à un taux fixe qui ne bouge pas au gré des offres et des demandes. Face au dollar ou aux autres devises, en revanche, sa valeur bouge, mais en suivant exactement les variations de l'euro. C'est cet ancrage qui donne au système sa stabilité, et ses contraintes."
+  },
+  {
+   "id": "p16",
+   "ecran": "facteurs_change",
+   "texte": "Commerce, capitaux, taux, inflation, anticipations.",
+   "dit": "Qu'est-ce qui fait alors bouger les besoins en devises. La balance commerciale : un déficit accroît la demande de devises, un excédent l'allège. Les investissements étrangers, qui font entrer des capitaux. Les écarts de taux d'intérêt et d'inflation avec l'extérieur. Les anticipations des opérateurs, parfois spéculatives. Et les interventions de la banque centrale, qui achète ou vend des devises pour défendre la stabilité."
+  },
+  {
+   "id": "p17",
+   "ecran": "effets_change",
+   "texte": "Cacao en hausse : les devises entrent.",
+   "dit": "Les effets sur l'économie sont directs. Une monnaie étrangère qui s'apprécie rend les importations plus chères et peut nourrir l'inflation, tandis que les exportations deviennent relativement plus compétitives. Prenez l'exemple de la leçon : si le prix du cacao, grande exportation camerounaise, augmente fortement, la balance commerciale s'améliore, les devises entrent et les réserves de la banque centrale se renforcent."
+  },
+  {
+   "id": "p18",
+   "ecran": "institutions_beac",
+   "texte": "La BEAC : émettre, superviser, secourir.",
+   "dit": "Au centre du système trône la banque centrale régionale, gardienne de la stabilité. Son rôle monétaire : contrôler la masse monétaire, gérer les réserves de change et fixer les taux directeurs. Son rôle de supervision : veiller à la solvabilité des banques pour prévenir les crises. Et son rôle de prêteur en dernier ressort : soutenir une banque en difficulté pour éviter les faillites en cascade, sans encourager pour autant les imprudences."
+  },
+  {
+   "id": "p19",
+   "ecran": "systeme_bancaire",
+   "texte": "Commerciales, développement, microfinance, gestion.",
+   "dit": "Autour d'elle, le système bancaire camerounais déploie ses acteurs. Les banques commerciales, qui offrent comptes, crédits et services aux particuliers comme aux entreprises. Les banques de développement, spécialisées dans les projets au long cours. Les établissements de microfinance, qui ouvrent le crédit aux populations exclues du système classique. Et les sociétés de gestion d'actifs, qui font travailler l'épargne confiée par leurs clients."
+  },
+  {
+   "id": "p20",
+   "ecran": "regulation",
+   "texte": "CMF, BEAC, ministère : trois gardiens.",
+   "dit": "Reste l'architecture de la régulation, répartie entre trois gardiens. La Commission des marchés financiers surveille les marchés de valeurs et prévient les abus. La banque centrale supervise les banques et définit les ratios de prudence. Le ministère des Finances fixe le cadre légal et la politique fiscale. Leurs textes protègent les investisseurs, imposent la transparence des informations et luttent contre le blanchiment d'argent."
+  },
+  {
+   "id": "p21",
+   "ecran": "recap2",
+   "texte": "Partie 2 : l'essentiel à retenir.",
+   "dit": "Récapitulons. La bourse camerounaise souffre d'une faible capitalisation et d'un manque de liquidité. Le marché des changes vit sous le régime de la parité fixe avec l'euro, qui stabilise sans supprimer les pressions extérieures. Et un trio d'institutions, commission des marchés, banque centrale et ministère, tient la régulation du système."
+  },
+  {
+   "id": "p22",
+   "ecran": "mecanismes_dev",
+   "texte": "Bourse, monétaire, banques, assurances : financer.",
+   "dit": "Premier rôle : financer le développement. La bourse peut attirer des investissements nationaux et étrangers vers les entreprises. Le marché monétaire finance le court terme des entreprises et de l'État. Les banques restent le canal dominant du financement de l'économie. Et les assurances protègent les investissements en gérant les risques. Ensemble, ces canaux transforment l'épargne en usines, en emplois et en croissance."
+  },
+  {
+   "id": "p23",
+   "ecran": "imperfections",
+   "texte": "Asymétrie, opacité, coûts : les imperfections.",
+   "dit": "Mais l'allocation n'est pas parfaite, et les leçons nomment trois imperfections. L'asymétrie d'information : l'investisseur peine à évaluer le risque réel des projets, d'où le rôle des régulateurs et de la notation. Le manque de transparence : des informations fiables sur les entreprises font défaut. Et des coûts de transaction élevés, que des plateformes électroniques pourraient réduire."
+  },
+  {
+   "id": "p24",
+   "ecran": "inclusion",
+   "texte": "Microfinance et mobile money : inclure.",
+   "dit": "Deuxième rôle, social celui-ci : réduire la pauvreté. La microfinance prête aux très petites entreprises et aux populations à faibles revenus, créant revenus et emplois, notamment en milieu rural. Le mobile money, porté par les opérateurs de téléphonie, a fait entrer les services financiers dans les téléphones. Mais l'inclusion reste inégale, et les zones rurales demeurent les moins bien desservies."
+  },
+  {
+   "id": "p25",
+   "ecran": "defis_perspectives",
+   "texte": "Règles, inclusion, capitaux : les trois chantiers.",
+   "dit": "Les défis, rassemblés, dessinent un programme. Une réglementation encore complexe, à harmoniser entre institutions. Une inclusion financière faible, freinée par le manque d'infrastructures et l'analphabétisme financier. Un marché de capitaux étroit, avec trop peu d'entreprises cotées. Les réponses existent : simplifier les règles, adopter les standards internationaux, éduquer les épargnants et promouvoir activement le marché."
+  },
+  {
+   "id": "p26",
+   "ecran": "fintech",
+   "texte": "Fintech : payer, financer, inclure autrement.",
+   "dit": "Premier accélérateur : l'innovation. Les technologies financières développent le mobile money, les paiements en ligne et même le financement participatif, qui peut révolutionner l'accès aux services. Deux conditions pour en profiter sans casse : renforcer la cybersécurité, car l'argent numérique attire la fraude, et faire évoluer la réglementation au rythme de ces nouveaux acteurs."
+  },
+  {
+   "id": "p27",
+   "ecran": "integration_regionale",
+   "texte": "CEMAC et BVMAC : changer d'échelle.",
+   "dit": "Deuxième accélérateur : l'intégration régionale. Un marché financier camerounais relié à ceux de la Communauté économique et monétaire de l'Afrique centrale offre un bassin d'épargne plus large et des sources de financement diversifiées. La plateforme régionale des capitaux en est l'outil. La condition du succès est connue : harmoniser les réglementations et coordonner les politiques entre pays membres."
+  },
+  {
+   "id": "p28",
+   "ecran": "plan_action",
+   "texte": "Un plan en quatre temps : conseiller le gouvernement.",
+   "dit": "L'exercice final de la leçon vous met en situation : conseiller du gouvernement, vous devez proposer un plan de cinq ans pour développer le marché des capitaux. La méthode attendue est claire : partir des obstacles identifiés, mobiliser les acteurs clés, gouvernement, secteur privé et investisseurs, fixer des objectifs et des stratégies, puis définir des indicateurs pour mesurer les résultats."
+  },
+  {
+   "id": "p29",
+   "ecran": "synthese_marches",
+   "texte": "Trois marchés, trois fonctions, un chantier.",
+   "dit": "La synthèse du cours tient en un tableau. Le marché monétaire gère la liquidité, mais dépend fortement de la banque centrale. Le marché des changes fixe les conditions des échanges avec l'extérieur, entre réserves et stabilité. Le marché des capitaux finance le long terme, mais manque encore de profondeur et de liquidité. Trois marchés complémentaires, un même chantier."
+  },
+  {
+   "id": "p30",
+   "ecran": "recap_final",
+   "texte": "Marchés financiers au Cameroun : à retenir.",
+   "dit": "Pour conclure, retenez la chaîne complète : des marchés qui allouent l'épargne vers l'investissement, une banque centrale qui garde la stabilité, une régulation qui protège la confiance, et deux promesses pour demain, l'inclusion par la technologie et l'élargissement par la région. C'est cette architecture qui fera des marchés financiers un moteur du développement camerounais."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Trois marchés, trois horizons : monétaire, capitaux, changes"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Changes, institutions et régulation du système",
+   "pont": {
+    "texte": "Partie 2 : changes, institutions et régulation.",
+    "dit": "Partie deux : les changes, les institutions et les règles du jeu. Nous ouvrirons le marché des changes avec sa règle d'or, la parité fixe avec l'euro, puis nous rencontrerons les institutions qui font vivre le système, de la banque centrale aux banques commerciales, et l'architecture de sa régulation."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Le rôle dans le développement : inclusion, innovation, région",
+   "pont": {
+    "texte": "Partie 3 : développement, inclusion et perspectives.",
+    "dit": "Partie trois : à quoi tout cela sert-il. Nous mesurerons le rôle des marchés financiers dans le développement du Cameroun, leurs imperfections, leur combat pour l'inclusion, puis les deux accélérateurs de demain : les technologies financières et l'intégration régionale."
+   }
+  }
+ ]
+}
