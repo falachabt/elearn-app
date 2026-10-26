@@ -1,0 +1,414 @@
+{
+  "cours": 6309,
+  "titre": "Schéma de Bernoulli et loi binomiale : compter les succès",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Probabilités",
+      "titre": "Schéma de Bernoulli et loi binomiale : compter les succès",
+      "sous": "D'une épreuve à deux issues au nombre de succès : la formule, les cumuls et les décisions",
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Répéter une épreuve à deux issues et compter les succès : tout le cours tient dans cette idée simple.",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 140
+      }
+    },
+    "epreuve": {
+      "type": "formule",
+      "kicker": "Épreuve de Bernoulli",
+      "tex": "P(S) = p \\qquad P(\\overline{S}) = 1 - p",
+      "note": "Succès de probabilité p, échec de probabilité q = 1 − p : deux issues seulement.",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 150
+      }
+    },
+    "exemples_bernoulli": {
+      "type": "etape",
+      "kicker": "Des exemples partout",
+      "titre": "Trois épreuves de Bernoulli du quotidien",
+      "tex": [
+        "\\text{pièce équilibrée : } p = 0{,}5",
+        "\\text{question vrai ou faux au hasard : } p = 0{,}5",
+        "\\text{composant défectueux : } p = 0{,}02"
+      ]
+    },
+    "schema": {
+      "type": "etape",
+      "kicker": "Schéma de Bernoulli",
+      "titre": "Les trois piliers du schéma",
+      "tex": [
+        "\\text{répétition : } n \\text{ fois la même épreuve}",
+        "\\text{indépendance : tirages sans mémoire}",
+        "\\text{stabilité : } p \\text{ constant à chaque épreuve}"
+      ],
+      "anim": {
+        "nom": "arbre_fig",
+        "hauteur": 120
+      }
+    },
+    "arbre": {
+      "type": "etape",
+      "kicker": "L'arbre des possibles",
+      "titre": "Chaque chemin est une suite de succès et d'échecs",
+      "tex": [
+        "n = 3 : \\quad 2^3 = 8 \\text{ chemins}",
+        "\\text{un chemin donné : } p^k (1-p)^{n-k}",
+        "\\text{combien de chemins pour } k \\text{ succès ?}"
+      ]
+    },
+    "ampoules": {
+      "type": "etape",
+      "kicker": "Exemple · contrôle qualité",
+      "titre": "Cinq ampoules, deux pour cent de défauts",
+      "tex": [
+        "X \\sim \\mathcal{B}(5,\\ 0{,}02)",
+        "P(X{=}1) = \\tbinom{5}{1} (0{,}02)(0{,}98)^4",
+        "\\approx 5 \\times 0{,}02 \\times 0{,}92 \\approx 0{,}092"
+      ]
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Loi binomiale",
+      "tex": "P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}",
+      "note": "X compte les succès sur n épreuves : X suit la loi B(n, p), k va de 0 à n.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "decomposition": {
+      "type": "etape",
+      "kicker": "Lire la formule",
+      "titre": "Trois facteurs, trois rôles",
+      "tex": [
+        "\\tbinom{n}{k} : \\text{ le nombre de chemins}",
+        "p^k : \\text{ la part des } k \\text{ succès}",
+        "(1-p)^{n-k} : \\text{ la part des } n-k \\text{ échecs}"
+      ]
+    },
+    "ex_qc": {
+      "type": "etape",
+      "kicker": "Exemple fondateur",
+      "titre": "Dix composants, cinq pour cent de défauts",
+      "tex": [
+        "X \\sim \\mathcal{B}(10,\\ 0{,}05), \\quad k = 2",
+        "P(X{=}2) = \\tbinom{10}{2}(0{,}05)^2(0{,}95)^8",
+        "= 45 \\times 0{,}0025 \\times 0{,}66 \\approx 0{,}075"
+      ]
+    },
+    "esperance": {
+      "type": "formule",
+      "kicker": "Espérance et variance",
+      "tex": "E(X) = np \\qquad V(X) = np(1-p)",
+      "note": "Écart-type : racine de la variance. La variance est maximale pour p égal à un demi.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "forme": {
+      "type": "etape",
+      "kicker": "Forme de la distribution",
+      "titre": "La silhouette change avec p, la cloche approche avec n",
+      "tex": [
+        "p = 0{,}5 : \\text{ symétrique, centrée sur } np",
+        "p < 0{,}5 : \\text{ étalée vers les petites valeurs}",
+        "n \\text{ grand : forme proche d'une cloche}"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 120
+      }
+    },
+    "coeff": {
+      "type": "formule",
+      "kicker": "Coefficient binomial",
+      "tex": "\\binom{n}{k} = \\frac{n!}{k!(n-k)!}",
+      "note": "k parmi n : choisir les positions des succès. Symétrie : C(n, k) = C(n, n − k)."
+    },
+    "pascal": {
+      "type": "etape",
+      "kicker": "Triangle de Pascal",
+      "titre": "Chaque nombre est la somme des deux du dessus",
+      "tex": [
+        "n = 3 : \\quad 1 \\quad 3 \\quad 3 \\quad 1",
+        "n = 4 : \\quad 1 \\quad 4 \\quad 6 \\quad 4 \\quad 1",
+        "n = 5 : \\quad 1 \\quad 5 \\quad 10 \\quad 10 \\quad 5 \\quad 1"
+      ]
+    },
+    "newton": {
+      "type": "formule",
+      "kicker": "Binôme de Newton",
+      "tex": "(p + q)^n = \\sum_{k=0}^{n} \\binom{n}{k} p^k q^{n-k}",
+      "note": "Avec q = 1 − p, la somme de toutes les probabilités vaut un : contrôle immédiat."
+    },
+    "ex_qcm7": {
+      "type": "etape",
+      "kicker": "Exemple pas à pas · QCM",
+      "titre": "Dix questions au hasard, exactement sept bonnes réponses",
+      "tex": [
+        "X \\sim \\mathcal{B}(10,\\ 0{,}25)",
+        "P(X{=}7) = \\tbinom{10}{7}(0{,}25)^7(0{,}75)^3",
+        "= 120 \\times 0{,}000061 \\times 0{,}42 \\approx 0{,}0031"
+      ]
+    },
+    "ex_archer": {
+      "type": "etape",
+      "kicker": "Exemple pas à pas · l'archer",
+      "titre": "Dix flèches, exactement quatre fois le centre",
+      "tex": [
+        "X \\sim \\mathcal{B}(10,\\ 0{,}3)",
+        "P(X{=}4) = \\tbinom{10}{4}(0{,}3)^4(0{,}7)^6",
+        "\\approx 210 \\times 0{,}0081 \\times 0{,}118 \\approx 0{,}20"
+      ]
+    },
+    "cumul": {
+      "type": "etape",
+      "kicker": "Probabilités cumulées",
+      "titre": "Au plus, au moins : la calculatrice tranche",
+      "tex": [
+        "P(X{=}5) \\approx 0{,}2023, \\ \\mathcal{B}(20,\\ 0{,}25)",
+        "P(X \\leq 3) \\approx 0{,}2252",
+        "P(X \\geq 10) = 1 - P(X \\leq 9) \\approx 0{,}0139"
+      ]
+    },
+    "controle50": {
+      "type": "etape",
+      "kicker": "Application · contrôle qualité",
+      "titre": "Cinquante pièces, au plus deux défectueuses",
+      "tex": [
+        "X \\sim \\mathcal{B}(50,\\ 0{,}02)",
+        "P(X \\leq 2) = \\sum_{k=0}^{2} P(X{=}k)",
+        "\\approx 0{,}364 + 0{,}372 + 0{,}186 \\approx 0{,}922"
+      ]
+    },
+    "sondage": {
+      "type": "formule",
+      "kicker": "Application · sondages",
+      "tex": "\\hat{p} \\pm 1{,}96 \\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}",
+      "note": "Exemple : 0,52 ± 0,031, soit de 0,489 à 0,551 : impossible de conclure à une avance.",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 150
+      }
+    },
+    "synth20": {
+      "type": "etape",
+      "kicker": "Problème de synthèse",
+      "titre": "Vingt composants, cinq pour cent de défauts",
+      "tex": [
+        "P(X{=}2) \\approx 0{,}189 \\qquad P(X \\leq 1) \\approx 0{,}736",
+        "P(X \\geq 3) = 1 - P(X \\leq 2) \\approx 0{,}076",
+        "\\text{rejeter un lot conforme : risque } \\approx 7{,}6\\,\\%"
+      ]
+    },
+    "vaccin": {
+      "type": "etape",
+      "kicker": "Problème de synthèse · vaccination",
+      "titre": "Trente élèves vaccinés, presque aucun malade",
+      "tex": [
+        "p = 0{,}10 \\times 0{,}05 = 0{,}005",
+        "Y \\sim \\mathcal{B}(30,\\ 0{,}005)",
+        "P(Y{=}0) \\approx 0{,}860 \\quad P(Y{>}2) \\approx 0{,}00046"
+      ]
+    },
+    "limites": {
+      "type": "phrase",
+      "kicker": "Limites du modèle",
+      "texte": "Sans remise, avec un p qui dérive ou des épreuves liées, la binomiale cesse de décrire la réalité : vérifier avant de calculer.",
+      "anim": {
+        "nom": "urne_fig",
+        "hauteur": 140
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Épreuve : deux issues, P(S) = p",
+        "Schéma : n fois, indépendant, p constant",
+        "Loi : P(X=k) = C(n,k) p^k (1-p)^(n-k)",
+        "E(X) = np ; V(X) = np(1-p)",
+        "Cumul : P(X≥k) = 1 − P(X≤k−1)"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré au schéma de Bernoulli et à la loi binomiale. Nous partirons d'une épreuve très simple, à deux issues seulement, nous la répéterons de façon indépendante, puis nous compterons les succès : c'est ce comptage qui obéit à la loi binomiale.",
+      "texte": "Schéma de Bernoulli et loi binomiale : compter les succès.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le point de départ est une question toute simple : quand on répète la même épreuve au hasard, combien de fois obtient-on le résultat qui nous intéresse. Un contrôle qualité, un sondage, un questionnaire au hasard : derrière ces situations très différentes se cache exactement le même mécanisme.",
+      "texte": "Compter les succès d'épreuves répétées et indépendantes.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Tout commence par l'épreuve de Bernoulli : une expérience aléatoire qui ne possède que deux issues possibles. On appelle succès l'issue qui nous intéresse, de probabilité pé, et échec l'autre issue, de probabilité un moins pé. Pile ou face, défectueux ou conforme, malade ou sain : le codage est toujours binaire.",
+      "texte": "Deux issues seulement : succès de probabilité p, échec sinon.",
+      "ecran": "epreuve"
+    },
+    {
+      "id": "p04",
+      "dit": "Ces épreuves sont partout. Lancer une pièce équilibrée donne un succès avec une probabilité d'un demi. Répondre au hasard à une question vrai ou faux aussi. Et dans une usine, déclarer un composant défectueux peut être un succès au sens du modèle, même si le mot surprend : le succès est simplement l'événement que l'on compte.",
+      "texte": "Le succès est l'événement compté, pas un jugement de valeur.",
+      "ecran": "exemples_bernoulli"
+    },
+    {
+      "id": "p05",
+      "dit": "Le schéma de Bernoulli naît quand on répète cette épreuve. Trois conditions doivent tenir ensemble : la répétition, un nombre fixé d'épreuves identiques ; l'indépendance, aucun résultat n'influence le suivant ; et la stabilité, la probabilité de succès reste la même à chaque fois. Sans remise dans un petit stock, l'indépendance tombe, et le modèle avec elle.",
+      "texte": "Répétition, indépendance, probabilité constante : les trois piliers.",
+      "ecran": "schema"
+    },
+    {
+      "id": "p06",
+      "dit": "L'arbre des possibles rend ce schéma visible. À chaque épreuve, le chemin bifurque entre succès et échec : pour trois épreuves, on obtient déjà huit chemins. Un chemin donné, avec ka succès dans un ordre précis, a pour probabilité pé puissance ka fois un moins pé puissance le reste. Reste à compter combien de chemins mènent au même total.",
+      "texte": "Huit chemins pour trois épreuves : compter ceux à k succès.",
+      "ecran": "arbre"
+    },
+    {
+      "id": "p07",
+      "dit": "Premier calcul complet : une usine produit des ampoules dont deux pour cent sont défectueuses, et on en prélève cinq au hasard dans une grande production. La probabilité d'en trouver exactement une défectueuse vaut cinq chemins possibles, fois la probabilité d'un défaut, fois celle de quatre ampoules saines : environ neuf pour cent.",
+      "texte": "Cinq ampoules, exactement une défectueuse : environ neuf pour cent.",
+      "ecran": "ampoules"
+    },
+    {
+      "id": "p08",
+      "dit": "On peut maintenant nommer l'objet central. La variable aléatoire ixe compte le nombre de succès sur ène épreuves : elle suit la loi binomiale de paramètres ène et pé. La probabilité d'obtenir exactement ka succès combine le nombre de chemins, la part des succès et la part des échecs. Cette formule unique gouverne tout le cours.",
+      "texte": "La formule : chemins fois succès fois échecs.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p09",
+      "dit": "Lisons cette formule facteur par facteur. Le coefficient binomial compte les chemins, c'est-à-dire les ordres possibles des succès et des échecs. Le facteur pé puissance ka porte la probabilité des ka succès d'un chemin précis. Et le dernier facteur porte celle des échecs restants. Multiplier les trois revient à additionner les probabilités de tous les chemins favorables.",
+      "texte": "Trois facteurs : dénombrer, puis peser chaque chemin.",
+      "ecran": "decomposition"
+    },
+    {
+      "id": "p10",
+      "dit": "Exemple fondateur du contrôle qualité : dix composants prélevés, cinq pour cent de défauts en production. La probabilité d'en trouver exactement deux défectueux se calcule directement : quarante-cinq chemins, fois le carré de cinq pour cent, fois la puissance huit de quatre-vingt-quinze pour cent. Résultat : environ sept pour cent et demi.",
+      "texte": "Exactement deux défauts sur dix : environ sept pour cent et demi.",
+      "ecran": "ex_qc"
+    },
+    {
+      "id": "p11",
+      "dit": "Deux nombres résument la loi. L'espérance vaut ène fois pé : sur cent lancers d'une pièce équilibrée, on attend en moyenne cinquante succès. La variance vaut ène fois pé fois un moins pé : elle mesure la dispersion, et elle est maximale quand pé vaut un demi, là où l'incertitude entre succès et échec est la plus grande.",
+      "texte": "Espérance np, variance np fois un moins p.",
+      "ecran": "esperance"
+    },
+    {
+      "id": "p12",
+      "dit": "La forme de la distribution raconte aussi une histoire. Pour pé égal à un demi, elle est symétrique et centrée sur l'espérance. Pour pé petit, elle s'étale vers les petites valeurs ; pour pé grand, c'est l'image miroir. Et quand le nombre d'épreuves grandit, la silhouette se régularise et commence à ressembler à une cloche.",
+      "texte": "Symétrique à p égal à un demi, proche d'une cloche quand n grandit.",
+      "ecran": "forme"
+    },
+    {
+      "id": "p13",
+      "dit": "Revenons sur le facteur qui compte les chemins : le coefficient binomial, lu ka parmi ène. Il donne le nombre de façons de choisir les positions des ka succès parmi les ène épreuves, sans tenir compte de l'ordre. Sa formule utilise les factorielles, et sa symétrie est limpide : choisir les succès revient à choisir les échecs.",
+      "texte": "Choisir k succès parmi n : le coefficient binomial.",
+      "ecran": "coeff"
+    },
+    {
+      "id": "p14",
+      "dit": "Le triangle de Pascal range tous ces coefficients dans un tableau où chaque nombre est la somme des deux nombres situés au-dessus de lui. La ligne de rang quatre affiche un, quatre, six, quatre, un : ce sont exactement les nombres de chemins pour quatre épreuves, de zéro à quatre succès. Pour les petits rangs, c'est une table de lecture immédiate.",
+      "texte": "Un, quatre, six, quatre, un : la ligne de rang quatre.",
+      "ecran": "pascal"
+    },
+    {
+      "id": "p15",
+      "dit": "Le lien avec l'algèbre est direct : développer pé plus q à la puissance ène par le binôme de Newton donne exactement les probabilités de la loi, une par valeur de ka. En posant q égal à un moins pé, la somme de toutes ces probabilités vaut donc un, comme il se doit. C'est un contrôle de cohérence gratuit, à utiliser après chaque calcul de distribution complète.",
+      "texte": "Le binôme de Newton garantit une somme totale égale à un.",
+      "ecran": "newton"
+    },
+    {
+      "id": "p16",
+      "dit": "Application pas à pas : un questionnaire de dix questions, quatre réponses par question, et un étudiant qui répond entièrement au hasard. La probabilité de succès par question vaut un quart. Obtenir exactement sept bonnes réponses donne cent vingt chemins, mais une probabilité minuscule, environ trois pour mille : à peine une chance sur trois cents.",
+      "texte": "Sept bonnes réponses au hasard : environ trois pour mille.",
+      "ecran": "ex_qcm7"
+    },
+    {
+      "id": "p17",
+      "dit": "Deuxième application : un archer touche le centre avec une probabilité de trois dixièmes à chaque flèche, sur dix tirs indépendants. La probabilité de toucher exactement quatre fois le centre vaut environ vingt pour cent. C'est cohérent avec l'espérance, qui vaut trois touches : les valeurs proches de la moyenne sont toujours les plus probables.",
+      "texte": "Quatre centres sur dix flèches : environ vingt pour cent.",
+      "ecran": "ex_archer"
+    },
+    {
+      "id": "p18",
+      "dit": "En pratique, on demande rarement une valeur exacte : on veut au plus, au moins, entre deux bornes. La calculatrice fournit la probabilité cumulée, par exemple au plus trois bonnes réponses sur vingt questions au hasard. Pour au moins dix, on passe par le complémentaire : un moins la probabilité d'en avoir au plus neuf, soit environ un pour cent et demi.",
+      "texte": "Au moins : toujours passer par le complémentaire.",
+      "ecran": "cumul"
+    },
+    {
+      "id": "p19",
+      "dit": "Le contrôle qualité utilise ces cumuls pour décider. Cinquante pièces prélevées, deux pour cent de défauts : la probabilité d'en trouver au plus deux défectueuses vaut environ quatre-vingt-douze pour cent. Un seuil d'acceptation se choisit ainsi, en chiffrant à la fois le risque de laisser passer un mauvais lot et celui de rejeter un bon lot.",
+      "texte": "Au plus deux défauts sur cinquante : environ quatre-vingt-douze pour cent.",
+      "ecran": "controle50"
+    },
+    {
+      "id": "p20",
+      "dit": "Les sondages vivent de la même variabilité. Mille personnes interrogées, cinq cent vingt favorables à un candidat : l'intervalle de confiance à quatre-vingt-quinze pour cent s'étend d'environ quarante-neuf à cinquante-cinq pour cent. Comme il contient des valeurs sous la moitié, impossible d'affirmer que ce candidat est réellement en tête : l'avance observée peut venir du seul échantillonnage.",
+      "texte": "Cinq cent vingt sur mille : l'avance n'est pas prouvée.",
+      "ecran": "sondage"
+    },
+    {
+      "id": "p21",
+      "dit": "Problème de synthèse : vingt composants, cinq pour cent de défauts. Exactement deux défauts, environ dix-neuf pour cent ; au plus un défaut, environ soixante-quatorze pour cent. Si le lot est rejeté dès trois défauts, la probabilité de rejeter à tort un lot conforme vaut environ sept pour cent et demi : c'est le prix du contrôle, à assumer en connaissance de cause.",
+      "texte": "Rejeter un lot conforme : environ sept pour cent et demi de risque.",
+      "ecran": "synth20"
+    },
+    {
+      "id": "p22",
+      "dit": "Dernier problème, en santé publique. Un élève vacciné a une probabilité d'un dixième d'être exposé, et le vaccin échoue alors une fois sur vingt : sa probabilité de tomber malade vaut cinq pour mille. Sur une classe de trente élèves indépendants, la probabilité qu'aucun ne tombe malade vaut environ quatre-vingt-six pour cent, et celle d'en voir plus de deux est infime.",
+      "texte": "Aucun malade sur trente vaccinés : environ quatre-vingt-six pour cent.",
+      "ecran": "vaccin"
+    },
+    {
+      "id": "p23",
+      "dit": "Terminons par les limites, car un modèle ne vaut que par ses hypothèses. Si la probabilité de succès dérive avec la fatigue ou l'usure, si les épreuves s'influencent, ou si le tirage se fait sans remise dans un petit stock, la loi binomiale ne décrit plus la situation. Le réflexe professionnel est donc toujours le même : vérifier le schéma avant d'appliquer la formule.",
+      "texte": "Vérifier les hypothèses avant d'appliquer la formule.",
+      "ecran": "limites"
+    },
+    {
+      "id": "p24",
+      "dit": "Pour retenir l'essentiel : une épreuve de Bernoulli n'a que deux issues ; le schéma répète cette épreuve de façon indépendante, à probabilité constante ; la loi binomiale donne alors la probabilité de chaque nombre de succès, avec son espérance et sa variance ; et les cumuls, souvent par le complémentaire, transforment ces probabilités en décisions.",
+      "texte": "L'essentiel du cours en cinq points.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "De l'épreuve de Bernoulli à la formule binomiale"
+    },
+    {
+      "debut": "p09",
+      "sous_titre": "Lire la formule, résumer la loi, compter les chemins",
+      "pont": {
+        "texte": "Partie 2 : lire la formule, espérance et variance, coefficients binomiaux.",
+        "dit": "Partie deux : lire la formule et compter les chemins. Nous décomposerons la probabilité en ses trois facteurs, nous résumerons la loi par son espérance et sa variance, puis nous étudierons le coefficient binomial, le triangle de Pascal et le binôme de Newton."
+      }
+    },
+    {
+      "debut": "p18",
+      "sous_titre": "Cumuls, applications et problèmes de synthèse",
+      "pont": {
+        "texte": "Partie 3 : probabilités cumulées, applications et problèmes de synthèse.",
+        "dit": "Partie trois : des cumuls aux décisions. Nous calculerons les probabilités au plus et au moins, souvent par le complémentaire, puis nous traiterons des problèmes complets de contrôle qualité, de sondage et de vaccination, avant de rappeler les limites du modèle."
+      }
+    }
+  ]
+}
