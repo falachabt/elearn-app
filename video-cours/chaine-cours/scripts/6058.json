@@ -1,0 +1,276 @@
+{
+ "cours": 6058,
+ "titre": "Théorie des graphes : sommets, arêtes et plus courts chemins",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Théorie des graphes",
+   "titre": "Théorie des graphes : sommets, arêtes et plus courts chemins",
+   "sous": "Définitions, degrés, graphes eulériens et hamiltoniens, arbres, Kruskal et Dijkstra",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Des îles et des ponts, un réseau, un plan de lignes : dès que des objets sont reliés entre eux, un graphe les modélise, et des algorithmes répondent aux questions de parcours et de coût minimal.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "def": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'un graphe",
+   "tex": "G = (V,\\ E)",
+   "note": "V : l'ensemble des sommets. E : l'ensemble des arêtes, des paires de sommets. Le nombre de sommets est l'ordre du graphe."
+  },
+  "types": {
+   "type": "etape",
+   "kicker": "Les types de graphes",
+   "titre": "Quatre distinctions à faire dès la lecture d'un énoncé",
+   "tex": [
+    "\\text{orienté : les arêtes ont un sens} \\qquad \\text{pondéré : chaque arête a un coût}",
+    "\\text{simple : ni boucle, ni arête multiple}",
+    "\\text{complet } K_n : \\tfrac{n(n-1)}{2} \\text{ arêtes, toutes les paires reliées}"
+   ]
+  },
+  "connexe": {
+   "type": "phrase",
+   "kicker": "Connexité et sous-graphes",
+   "texte": "Un graphe est connexe si une chaîne relie chaque paire de sommets. Retirer des arêtes donne un graphe partiel ; retirer des sommets, et les arêtes qui les touchent, donne un sous-graphe. Un sous-graphe complet s'appelle une clique.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "degre": {
+   "type": "formule",
+   "kicker": "Degrés et lemme des poignées de main",
+   "tex": "\\sum_{v \\in V} d(v) = 2\\,|E|",
+   "note": "Chaque arête compte pour deux degrés, un à chaque extrémité. En orienté, on distingue degré entrant et degré sortant."
+  },
+  "degre_ex": {
+   "type": "etape",
+   "kicker": "Exemple · lire des degrés",
+   "titre": "Degré d'un sommet, degré du graphe, graphe régulier",
+   "tex": [
+    "\\text{un sommet relié à quatre arêtes : } d(v_3) = 4",
+    "\\text{degré du graphe : le maximum des degrés, ici } 4",
+    "\\text{tous les degrés égaux à } k : \\text{ graphe } k\\text{-régulier}"
+   ]
+  },
+  "chaine": {
+   "type": "etape",
+   "kicker": "Chaînes et cycles",
+   "titre": "Le vocabulaire des parcours",
+   "tex": [
+    "\\text{chaîne : sommets et arêtes alternés ; longueur : nombre d'arêtes}",
+    "\\text{distance : plus courte chaîne ; diamètre : plus grande distance}",
+    "\\text{cycle : chaîne fermée simple, départ et arrivée confondus}"
+   ]
+  },
+  "euler": {
+   "type": "phrase",
+   "kicker": "Les ponts de Königsberg",
+   "texte": "En mille sept cent trente-six, Euler demande si l'on peut traverser chacun des sept ponts de Königsberg une seule fois et revenir au départ. Sa réponse négative fonde la théorie des graphes : tout tient aux degrés des sommets.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "euler_thm": {
+   "type": "formule",
+   "kicker": "Le théorème d'Euler",
+   "tex": "\\text{cycle eulérien} \\iff \\text{tous les degrés sont pairs}",
+   "note": "Une chaîne eulérienne, non fermée, existe si exactement deux sommets sont de degré impair : ce sont son départ et son arrivée."
+  },
+  "hamilton": {
+   "type": "etape",
+   "kicker": "Graphes hamiltoniens",
+   "titre": "Passer par chaque sommet, une seule fois",
+   "tex": [
+    "\\text{cycle hamiltonien : chaque sommet exactement une fois}",
+    "\\text{Dirac : } d(x) \\geq \\tfrac{n}{2} \\text{ pour tout } x \\Rightarrow \\text{hamiltonien}",
+    "\\text{Ore : sommets non adjacents, } d(x) + d(y) \\geq n \\Rightarrow \\text{hamiltonien}"
+   ]
+  },
+  "matrice": {
+   "type": "etape",
+   "kicker": "La matrice d'adjacence",
+   "titre": "Le graphe devient un tableau de nombres",
+   "tex": [
+    "A[i][j] = 1 \\text{ si } i \\text{ et } j \\text{ sont reliés, } 0 \\text{ sinon}",
+    "\\text{carrée, diagonale nulle sans boucle, symétrique si non orienté}",
+    "\\text{pondéré : } A[i][j] \\text{ contient le poids de l'arête}"
+   ]
+  },
+  "arbre": {
+   "type": "etape",
+   "kicker": "Les arbres",
+   "titre": "Connexe et sans cycle : quatre visages d'un même objet",
+   "tex": [
+    "\\text{arbre} \\iff \\text{connexe, sans cycle}",
+    "\\iff \\text{connexe avec } n - 1 \\text{ arêtes} \\iff \\text{une seule chaîne entre deux sommets}",
+    "\\text{tout arbre d'au moins deux sommets a au moins deux feuilles}"
+   ],
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 130
+   }
+  },
+  "kruskal": {
+   "type": "etape",
+   "kicker": "Kruskal : l'arbre couvrant de poids minimum",
+   "titre": "Glouton : la plus légère d'abord, jamais de cycle",
+   "tex": [
+    "\\text{trier les arêtes par poids croissant}",
+    "\\text{ajouter chaque arête si elle ne crée pas de cycle}",
+    "\\text{s'arrêter à } n - 1 \\text{ arêtes : arbre couvrant de poids minimum}"
+   ]
+  },
+  "dijkstra_principe": {
+   "type": "phrase",
+   "kicker": "Dijkstra : le plus court chemin",
+   "texte": "Depuis un sommet de départ, Dijkstra fixe progressivement les distances définitives : à chaque étape, le sommet non traité le plus proche du départ reçoit sa distance minimale, puis ses voisins sont mis à jour. Les poids doivent rester positifs.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 140
+   }
+  },
+  "dijkstra_ex": {
+   "type": "etape",
+   "kicker": "Exemple · Dijkstra mené jusqu'au bout",
+   "titre": "Cinq sommets, départ au sommet un",
+   "tex": [
+    "\\lambda = (0,\\ 12,\\ 11,\\ 9,\\ 4)",
+    "p = (\\text{NIL},\\ 4,\\ 5,\\ 5,\\ 1)",
+    "\\text{plus court chemin de } 1 \\text{ à } 4 : 1 - 5 - 4, \\text{ coût } 9"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un graphe : des sommets, des arêtes",
+    "Somme des degrés : deux fois les arêtes",
+    "Euler : degrés pairs, cycle eulérien",
+    "Arbre : connexe, sans cycle, n − 1 arêtes",
+    "Kruskal et Dijkstra : le minimum, pas à pas"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de théorie des graphes. Un graphe modélise des objets et leurs liens : des îles et des ponts, des villes et des routes. Au programme : vocabulaire, degrés, parcours eulériens et hamiltoniens, arbres, Kruskal et Dijkstra.",
+   "texte": "Théorie des graphes : modéliser les liens.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout commence par une modélisation : que représentent les sommets, que représentent les liens ? Ce choix fait, le graphe devient un objet précis, sur lequel on démontre et on calcule, au lieu de raisonner sur un dessin.",
+   "texte": "D'abord modéliser, ensuite calculer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un graphe est un couple : un ensemble de sommets et un ensemble d'arêtes, chaque arête reliant deux sommets. Le nombre de sommets est l'ordre du graphe. Pour les îles : les sommets sont les îles, les arêtes sont les ponts.",
+   "texte": "G : des sommets, des arêtes, un ordre.",
+   "ecran": "def"
+  },
+  {
+   "id": "p04",
+   "dit": "Quatre distinctions comptent. Orienté : les arêtes ont un sens. Pondéré : chaque arête porte un coût. Simple : ni boucle, ni arête multiple. Complet : chaque paire est reliée, soit n fois n moins un sur deux arêtes.",
+   "texte": "Orienté, pondéré, simple, complet.",
+   "ecran": "types"
+  },
+  {
+   "id": "p05",
+   "dit": "Un graphe est connexe si une chaîne relie chaque paire de sommets. Retirer des arêtes donne un graphe partiel ; retirer des sommets et leurs arêtes, un sous-graphe. Un sous-graphe complet s'appelle une clique.",
+   "texte": "Connexe, partiel, sous-graphe, clique.",
+   "ecran": "connexe"
+  },
+  {
+   "id": "p06",
+   "dit": "Le degré d'un sommet est le nombre d'arêtes qui le touchent. Lemme des poignées de main : la somme des degrés vaut deux fois le nombre d'arêtes, car chaque arête compte à ses deux extrémités. Le nombre de degrés impairs est donc toujours pair.",
+   "texte": "Somme des degrés : deux fois les arêtes.",
+   "ecran": "degre"
+  },
+  {
+   "id": "p07",
+   "dit": "Lisons des degrés. Un sommet relié à quatre arêtes a un degré de quatre ; si c'est le maximum, le degré du graphe vaut quatre. Si tous les sommets ont le même degré k, le graphe est dit k-régulier.",
+   "texte": "Degré quatre, graphe régulier : lire un graphe.",
+   "ecran": "degre_ex"
+  },
+  {
+   "id": "p08",
+   "dit": "Une chaîne alterne sommets et arêtes ; sa longueur est son nombre d'arêtes. La distance entre deux sommets est la plus courte chaîne qui les relie ; le diamètre est la plus grande de ces distances. Une chaîne fermée simple est un cycle.",
+   "texte": "Chaîne, distance, diamètre, cycle.",
+   "ecran": "chaine"
+  },
+  {
+   "id": "p09",
+   "dit": "Le problème fondateur, en mille sept cent trente-six : à Königsberg, sept ponts enjambent le fleuve autour d'une île. Peut-on traverser chaque pont exactement une fois ? Euler traduit la ville en graphe et répond non : la théorie des graphes est née.",
+   "texte": "Königsberg, 1736 : le problème d'Euler.",
+   "ecran": "euler"
+  },
+  {
+   "id": "p10",
+   "dit": "Le théorème d'Euler tranche. Dans un graphe connexe, un cycle eulérien, utilisant chaque arête une seule fois, existe si et seulement si tous les degrés sont pairs. Une chaîne eulérienne non fermée exige exactement deux degrés impairs : son départ et son arrivée.",
+   "texte": "Degrés pairs : cycle eulérien ; deux impairs : chaîne.",
+   "ecran": "euler_thm"
+  },
+  {
+   "id": "p11",
+   "dit": "Eulérien parle des arêtes, hamiltonien des sommets : un cycle hamiltonien passe par chaque sommet une seule fois. Deux conditions suffisantes : Dirac, chaque degré au moins égal à la moitié de l'ordre ; Ore, la somme des degrés de deux sommets non reliés au moins égale à l'ordre.",
+   "texte": "Hamiltonien : chaque sommet, une seule fois.",
+   "ecran": "hamilton"
+  },
+  {
+   "id": "p12",
+   "dit": "Sans dessin, un graphe se représente par sa matrice d'adjacence : un tableau carré, un s'il y a une arête, zéro sinon, ou le poids si le graphe est pondéré. Sans boucle, diagonale nulle ; non orienté, matrice symétrique.",
+   "texte": "La matrice d'adjacence : le graphe en nombres.",
+   "ecran": "matrice"
+  },
+  {
+   "id": "p13",
+   "dit": "Un arbre est connexe et sans cycle : entre deux sommets, une unique chaîne. Équivalences : connexe avec n moins un arêtes, ou sans cycle avec n moins un arêtes. Tout arbre a au moins deux feuilles, de degré un.",
+   "texte": "Arbre : connexe, sans cycle, n moins une arêtes.",
+   "ecran": "arbre"
+  },
+  {
+   "id": "p14",
+   "dit": "Kruskal construit l'arbre couvrant de poids minimum : trier les arêtes par poids croissant, les ajouter sans jamais créer de cycle, s'arrêter à n moins un arêtes. Dans l'exemple du cours, les arêtes de poids trois sont refusées : elles fermeraient un cycle.",
+   "texte": "Kruskal : la plus légère d'abord, sans cycle.",
+   "ecran": "kruskal"
+  },
+  {
+   "id": "p15",
+   "dit": "Dijkstra, en mille neuf cent cinquante-neuf, calcule les plus courts chemins depuis un sommet, pour des poids positifs. À chaque étape, le sommet non traité le plus proche reçoit sa distance définitive, puis ses voisins sont mis à jour, avec leur prédécesseur.",
+   "texte": "Dijkstra : fixer la plus petite distance, étape par étape.",
+   "ecran": "dijkstra_principe"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple du cours, cinq sommets, départ au sommet un : les distances finales sont zéro, douze, onze, neuf et quatre. Le plus court chemin vers le sommet quatre passe par le sommet cinq : son coût vaut neuf.",
+   "texte": "Distances : zéro, douze, onze, neuf, quatre.",
+   "ecran": "dijkstra_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "Devant un problème : identifier sommets et arêtes, repérer le type de graphe, compter les degrés, puis choisir l'outil. Euler pour les parcours d'arêtes, Dirac et Ore pour les sommets, Kruskal pour relier au moindre coût, Dijkstra pour le plus court chemin.",
+   "texte": "Degrés, puis le bon algorithme.",
+   "ecran": "recap"
+  },
+  {
+   "id": "p18",
+   "dit": "L'essentiel : un graphe relie des sommets par des arêtes ; la somme des degrés vaut deux fois les arêtes ; un cycle eulérien exige des degrés pairs ; un arbre a n moins un arêtes ; Kruskal et Dijkstra donnent les réseaux et chemins de coût minimum.",
+   "texte": "L'essentiel de la théorie des graphes.",
+   "ecran": "recap"
+  }
+ ]
+}
