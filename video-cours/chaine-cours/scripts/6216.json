@@ -1,0 +1,492 @@
+{
+ "cours": 6216,
+ "titre": "Configuration électronique et principe de stabilité",
+ "matiere": "Chimie",
+ "lecons": [
+  6660,
+  6661,
+  6662,
+  6663,
+  6664,
+  6665
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Configuration électronique",
+   "titre": "Configuration électronique et principe de stabilité",
+   "sous": "Le plan de construction des atomes",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 240
+   }
+  },
+  "scene": {
+   "type": "phrase",
+   "kicker": "Le théâtre atomique",
+   "texte": "Un atome est un vaste espace presque vide : un noyau dense au centre, et des électrons qui occupent des régions de probabilité, les orbitales, sans trajectoire précise.",
+   "anim": {
+    "nom": "orbitales_formes_fig",
+    "hauteur": 170
+   }
+  },
+  "nombres_quantiques": {
+   "type": "etape",
+   "kicker": "L'adresse quantique",
+   "titre": "Quatre nombres pour situer un électron",
+   "tex": [
+    "n = 1, 2, 3, \\ldots \\quad \\text{(le niveau)}",
+    "l = 0 \\text{ à } n - 1 \\quad \\text{(la forme)}",
+    "m_l = -l \\text{ à } +l \\quad \\text{(l'orientation)}",
+    "m_s = +\\tfrac{1}{2} \\text{ ou } -\\tfrac{1}{2} \\quad \\text{(le spin)}"
+   ]
+  },
+  "formes": {
+   "type": "etape",
+   "kicker": "L'adresse quantique",
+   "titre": "Les formes des orbitales",
+   "tex": [
+    "l = 0 : \\text{ s, une sphère, } 1 \\text{ orbitale}",
+    "l = 1 : \\text{ p, des haltères, } 3 \\text{ orbitales}",
+    "l = 2 : \\text{ d, formes complexes, } 5 \\text{ orbitales}",
+    "l = 3 : \\text{ f, très complexes, } 7 \\text{ orbitales}"
+   ]
+  },
+  "aufbau": {
+   "type": "formule",
+   "kicker": "Première règle : Aufbau",
+   "tex": "1s \\to 2s \\to 2p \\to 3s \\to 3p \\to 4s \\to 3d \\to 4p \\to 5s",
+   "note": "l'ordre de remplissage par énergie croissante : la 4s se remplit avant la 3d"
+  },
+  "klechkowsky": {
+   "type": "etape",
+   "kicker": "Première règle : Aufbau",
+   "titre": "La règle de Klechkowsky",
+   "tex": [
+    "\\text{on remplit par somme } (n + l) \\text{ croissante}",
+    "4s : 4 + 0 = 4 \\qquad 3d : 3 + 2 = 5",
+    "\\text{à somme égale, le plus petit } n \\text{ passe d'abord}"
+   ]
+  },
+  "pauli": {
+   "type": "formule",
+   "kicker": "Deuxième règle : Pauli",
+   "tex": "m_s = +\\tfrac{1}{2} \\qquad m_s = -\\tfrac{1}{2}",
+   "note": "deux électrons par orbitale au maximum, et toujours de spins opposés : jamais quatre nombres quantiques identiques"
+  },
+  "capacite": {
+   "type": "formule",
+   "kicker": "Deuxième règle : Pauli",
+   "tex": "2(2l + 1)",
+   "note": "la capacité d'une sous-couche : s reçoit 2 électrons, p en reçoit 6, d en reçoit 10, f en reçoit 14"
+  },
+  "hund": {
+   "type": "phrase",
+   "kicker": "Troisième règle : Hund",
+   "texte": "Dans des orbitales de même énergie, les électrons s'installent d'abord seuls, un par orbitale, avec des spins parallèles. L'appariement ne commence qu'ensuite. Le carbone place ainsi ses deux électrons p dans deux orbitales différentes.",
+   "anim": {
+    "nom": "cases_quantiques_fig",
+    "hauteur": 150
+   }
+  },
+  "potassium": {
+   "type": "etape",
+   "kicker": "Les règles en action",
+   "titre": "Construire le potassium, dix-neuf électrons",
+   "tex": [
+    "1s^2 \\ 2s^2 \\ 2p^6 \\ 3s^2 \\ 3p^6",
+    "1s^2 \\ 2s^2 \\ 2p^6 \\ 3s^2 \\ 3p^6 \\ 4s^1",
+    "\\text{en abrégé : } [\\mathrm{Ar}] \\ 4s^1"
+   ]
+  },
+  "titane": {
+   "type": "etape",
+   "kicker": "Les règles en action",
+   "titre": "Le titane, vingt-deux électrons",
+   "tex": [
+    "1s^2 \\ 2s^2 \\ 2p^6 \\ 3s^2 \\ 3p^6 \\ 4s^2 \\ 3d^2",
+    "[\\mathrm{Ar}] \\ 4s^2 \\ 3d^2"
+   ]
+  },
+  "alphabet": {
+   "type": "etape",
+   "kicker": "L'alphabet de la notation",
+   "titre": "Couches, sous-couches, capacités",
+   "tex": [
+    "\\text{couche } n \\text{ : au plus } 2n^2 \\text{ électrons}",
+    "n = 1 : 2 \\qquad n = 2 : 8 \\qquad n = 3 : 18 \\qquad n = 4 : 32",
+    "s : 2 \\qquad p : 6 \\qquad d : 10 \\qquad f : 14"
+   ]
+  },
+  "notation_azote": {
+   "type": "formule",
+   "kicker": "L'alphabet de la notation",
+   "tex": "2p^3",
+   "note": "lecture : couche deux, sous-couche p, trois électrons — la fin de la configuration de l'azote ; les lettres viennent des raies spectrales : sharp, principal, diffuse, fundamental"
+  },
+  "fer": {
+   "type": "etape",
+   "kicker": "Écrire une configuration",
+   "titre": "Le fer, vingt-six électrons",
+   "tex": [
+    "1s^2 \\ 2s^2 \\ 2p^6 \\ 3s^2 \\ 3p^6 \\ 4s^2 \\ 3d^6",
+    "[\\mathrm{Ar}] \\ 4s^2 \\ 3d^6"
+   ]
+  },
+  "exceptions": {
+   "type": "etape",
+   "kicker": "Les exceptions",
+   "titre": "Chrome et cuivre : la stabilité d'abord",
+   "tex": [
+    "\\mathrm{Cr} : [\\mathrm{Ar}] \\ 4s^1 \\ 3d^5 \\quad \\text{au lieu de } 4s^2 \\ 3d^4",
+    "\\mathrm{Cu} : [\\mathrm{Ar}] \\ 4s^1 \\ 3d^{10} \\quad \\text{au lieu de } 4s^2 \\ 3d^9"
+   ]
+  },
+  "oxygene_cases": {
+   "type": "phrase",
+   "kicker": "Les cases quantiques",
+   "texte": "Oxygène, deux p quatre : trois électrons seuls d'abord, puis le quatrième s'apparie dans la première case. Résultat : un doublet et deux électrons célibataires. Apparier trop tôt serait une erreur de Hund.",
+   "anim": {
+    "nom": "cases_quantiques_fig",
+    "hauteur": 150
+   }
+  },
+  "ions_regle": {
+   "type": "phrase",
+   "kicker": "Les configurations des ions",
+   "texte": "Pour former un ion, on retire d'abord les électrons les plus externes, ceux de la sous-couche s du plus grand niveau, même si elle s'est remplie avant la sous-couche d. L'ordre de départ n'est pas l'ordre d'arrivée."
+  },
+  "fer_ions": {
+   "type": "etape",
+   "kicker": "Les configurations des ions",
+   "titre": "Les ions du fer : partir de la quatre s",
+   "tex": [
+    "\\mathrm{Fe} : [\\mathrm{Ar}] \\ 4s^2 \\ 3d^6",
+    "\\mathrm{Fe}^{2+} : [\\mathrm{Ar}] \\ 3d^6",
+    "\\mathrm{Fe}^{3+} : [\\mathrm{Ar}] \\ 3d^5"
+   ]
+  },
+  "ions_gaz_noble": {
+   "type": "etape",
+   "kicker": "Les configurations des ions",
+   "titre": "Atteindre la configuration d'un gaz noble",
+   "tex": [
+    "\\mathrm{Na}^{+} : [\\mathrm{Ne}]",
+    "\\mathrm{Mg}^{2+} : [\\mathrm{Ne}] \\qquad \\mathrm{O}^{2-} : [\\mathrm{Ne}]",
+    "\\mathrm{Cl}^{-} : [\\mathrm{Ne}] \\ 3s^2 \\ 3p^6 = [\\mathrm{Ar}]"
+   ]
+  },
+  "charges_groupes": {
+   "type": "recap",
+   "kicker": "Prédire la charge d'un ion",
+   "etapes": [
+    "Groupe un : charge plus un",
+    "Groupe deux : charge plus deux",
+    "Groupe seize : charge moins deux",
+    "Groupe dix-sept : charge moins un",
+    "Le but : copier le gaz noble le plus proche"
+   ]
+  },
+  "gaz_nobles": {
+   "type": "etape",
+   "kicker": "Le principe de stabilité",
+   "titre": "Les gaz nobles, modèles de stabilité",
+   "tex": [
+    "\\mathrm{He} : 1s^2",
+    "\\mathrm{Ne} : 1s^2 \\ 2s^2 \\ 2p^6",
+    "\\mathrm{Ar} : 1s^2 \\ 2s^2 \\ 2p^6 \\ 3s^2 \\ 3p^6"
+   ]
+  },
+  "octet": {
+   "type": "phrase",
+   "kicker": "Le principe de stabilité",
+   "texte": "Les atomes tendent à gagner, perdre ou partager des électrons pour copier la configuration du gaz noble le plus proche : huit électrons externes, c'est l'octet ; deux pour l'hélium, c'est le duet.",
+   "anim": {
+    "nom": "transfert_partage_fig",
+    "hauteur": 150
+   }
+  },
+  "transfert": {
+   "type": "etape",
+   "kicker": "Première voie : le transfert",
+   "titre": "Du sodium au chlore, naissance du sel",
+   "tex": [
+    "\\mathrm{Na} : [\\mathrm{Ne}] \\ 3s^1 \\rightarrow \\mathrm{Na}^{+} : [\\mathrm{Ne}]",
+    "\\mathrm{Cl} : [\\mathrm{Ne}] \\ 3s^2 \\ 3p^5 \\rightarrow \\mathrm{Cl}^{-} : [\\mathrm{Ar}]"
+   ],
+   "anim": {
+    "nom": "transfert_partage_fig",
+    "hauteur": 110
+   }
+  },
+  "partage": {
+   "type": "phrase",
+   "kicker": "Deuxième voie : le partage",
+   "texte": "Dans le méthane, le carbone partage un électron avec chacun de ses quatre hydrogènes : il s'entoure de huit électrons, chaque hydrogène de deux. Entre deux chlores, même logique : une paire partagée, et chacun voit son octet.",
+   "anim": {
+    "nom": "transfert_partage_fig",
+    "hauteur": 150
+   }
+  },
+  "limites": {
+   "type": "etape",
+   "kicker": "Au-delà de l'octet",
+   "titre": "Les limites de la règle",
+   "tex": [
+    "\\mathrm{BF_3} : \\text{ six électrons autour du bore}",
+    "\\mathrm{PCl_5} : \\text{ dix électrons autour du phosphore}",
+    "\\text{les radicaux libres : un électron célibataire}"
+   ]
+  },
+  "mgo": {
+   "type": "etape",
+   "kicker": "Prédire les formules",
+   "titre": "L'oxyde de magnésium, un pour un",
+   "tex": [
+    "\\mathrm{Mg} : [\\mathrm{Ne}] \\ 3s^2 \\rightarrow \\mathrm{Mg}^{2+}",
+    "\\mathrm{O} : [\\mathrm{He}] \\ 2s^2 \\ 2p^4 \\rightarrow \\mathrm{O}^{2-}",
+    "\\mathrm{MgO} : \\text{ un magnésium pour un oxygène}"
+   ]
+  },
+  "alcalins": {
+   "type": "phrase",
+   "kicker": "La réactivité en action",
+   "texte": "Sodium et césium ont la même configuration externe : un seul électron s. Mais celui du césium est bien plus éloigné du noyau, écranté par les couches internes : il part plus facilement, et le césium réagit bien plus violemment avec l'eau.",
+   "anim": {
+    "nom": "ecran_alcalins_fig",
+    "hauteur": 150
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Aufbau : remplir par énergie croissante",
+    "Pauli : deux par orbitale, spins opposés",
+    "Hund : seuls d'abord, spins parallèles",
+    "Un ion part des électrons les plus externes",
+    "La cible : le gaz noble, duet ou octet"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours sur la configuration électronique et le principe de stabilité. Nous commencerons par les règles du jeu : les nombres quantiques, puis les trois lois du remplissage, Aufbau, Pauli et Hund. Nous apprendrons ensuite à écrire la configuration de n'importe quel atome et de ses ions. Nous terminerons par le principe de stabilité : pourquoi les atomes cherchent la configuration des gaz nobles, et comment cette quête fait naître les liaisons chimiques.",
+   "texte": "Configuration électronique : les règles, l'écriture, et la quête de stabilité.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "scene",
+   "dit": "La scène d'abord. Un atome n'est pas une boule pleine : c'est un espace presque entièrement vide, organisé autour d'un noyau dense qui concentre presque toute la masse. Les électrons occupent cet espace dans des régions de probabilité appelées orbitales : pas de trajectoire précise comme des planètes, mais des zones où l'on a le plus de chances de les trouver.",
+   "texte": "Un noyau dense, et des électrons dans des orbitales de probabilité.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "nombres_quantiques",
+   "dit": "Pour décrire où se trouve un électron, les physiciens utilisent quatre nombres quantiques, comme une adresse complète. Le nombre principal donne le niveau d'énergie, l'étage. Le nombre azimutal donne la forme de l'orbitale. Le nombre magnétique donne son orientation dans l'espace. Et le nombre de spin, plus un demi ou moins un demi, décrit l'état de rotation de l'électron sur lui-même.",
+   "texte": "Quatre nombres quantiques : niveau, forme, orientation, spin.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "formes",
+   "dit": "À chaque valeur du nombre azimutal correspond une famille de formes. Zéro : les orbitales s, sphériques, une seule par niveau. Un : les orbitales p, en forme d'haltères selon trois axes. Deux : les orbitales d, aux formes plus complexes, cinq orientations. Trois : les orbitales f, sept orientations et des formes très élaborées. Le nombre d'orbitales d'une famille fixera sa capacité en électrons.",
+   "texte": "s sphérique, p en haltères, d et f complexes : les formes des orbitales.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "aufbau",
+   "dit": "Première règle : le principe d'Aufbau, le principe de construction en allemand. Les électrons remplissent les orbitales en commençant par les plus basses en énergie, les plus proches du noyau. Mais attention, l'ordre n'est pas simplement celui des niveaux : il existe des chevauchements, et l'orbitale quatre s, par exemple, se remplit avant la trois d. Voici la séquence de référence.",
+   "texte": "Aufbau : remplir par énergie croissante, avec ses chevauchements.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "klechkowsky",
+   "dit": "Comment retrouver cet ordre sans l'apprendre par cœur ? Grâce à la règle de Klechkowsky : on classe les orbitales par somme du nombre principal et du nombre azimutal, en ordre croissant. La quatre s totalise quatre, la trois d totalise cinq : la quatre s passe donc d'abord. Et si deux orbitales ont la même somme, celle qui a le plus petit nombre principal gagne.",
+   "texte": "La somme n plus l décide de l'ordre de remplissage.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "pauli",
+   "dit": "Deuxième règle : le principe d'exclusion de Pauli, énoncé en mille neuf cent vingt-cinq. Deux électrons d'un même atome ne peuvent jamais avoir leurs quatre nombres quantiques identiques. Conséquence immédiate : une orbitale accueille au maximum deux électrons, et ils doivent avoir des spins opposés, l'un vers le haut, l'autre vers le bas.",
+   "texte": "Pauli : jamais deux électrons identiques en tous leurs nombres.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "capacite",
+   "dit": "De Pauli découle la capacité de chaque famille. Une sous-couche compte deux l plus une orbitales, et chacune reçoit deux électrons : la capacité totale vaut donc deux fois deux l plus un. Deux électrons pour les s, six pour les p, dix pour les d, quatorze pour les f : ces quatre nombres structurent tout le tableau périodique.",
+   "texte": "Les capacités : deux, six, dix, quatorze électrons par famille.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "hund",
+   "dit": "Troisième règle : la règle de Hund. Quand plusieurs orbitales ont la même énergie, comme les trois orbitales p, les électrons occupent d'abord le maximum d'orbitales, chacun seul, avec des spins parallèles. Ils ne commencent à s'apparier que lorsque chaque orbitale contient déjà un électron. Cette disposition minimise leurs répulsions et stabilise l'atome.",
+   "texte": "Hund : d'abord seuls et parallèles, l'appariement ensuite.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "potassium",
+   "dit": "Mettons les règles au travail avec le potassium, dix-neuf électrons. On remplit dans l'ordre : deux, deux, six, deux, six ; cela fait dix-huit électrons, exactement la configuration de l'argon. Le dix-neuvième électron va donc dans la quatre s, et non dans la trois d, puisque la quatre s est plus basse en énergie. En notation condensée, on écrit le cœur d'argon entre crochets, suivi de quatre s un.",
+   "texte": "Le potassium : le cœur d'argon, plus un électron quatre s.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "titane",
+   "dit": "Un cran plus loin : le titane, vingt-deux électrons. Après le cœur d'argon, la quatre s se remplit de deux électrons, puis la trois d commence avec deux électrons. Et Hund veille : ces deux électrons d occupent deux orbitales différentes, avec des spins parallèles, plutôt que de s'apparier dans la même orbitale.",
+   "texte": "Le titane : quatre s deux, trois d deux, spins parallèles.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "alphabet",
+   "dit": "Avant d'écrire des configurations complètes, maîtrisons l'alphabet. Une couche est numérotée par le nombre principal : la première accueille au plus deux électrons, la deuxième huit, la troisième dix-huit, la quatrième trente-deux, selon la formule deux n au carré. Dans chaque couche vivent les sous-couches s, p, d et f, avec leurs capacités propres.",
+   "texte": "Couches et sous-couches : les capacités à connaître par cœur.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "notation_azote",
+   "dit": "La notation spectroscopique tient en trois signes : le numéro de la couche, la lettre de la sous-couche, et le nombre d'électrons en exposant. Deux p trois se lit : dans la couche deux, la sous-couche p contient trois électrons ; c'est la fin de la configuration de l'azote. Petit héritage historique : les lettres viennent des mots anglais que les spectroscopistes utilisaient pour classer les raies lumineuses des éléments.",
+   "texte": "Deux p trois : couche deux, sous-couche p, trois électrons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "fer",
+   "dit": "Exemple complet : le fer, vingt-six électrons. On suit l'ordre d'Aufbau, quatre s avant trois d, et l'on obtient la configuration de l'écran. En notation condensée, le cœur d'argon remplace les dix-huit premiers électrons, et il ne reste que les électrons externes, ceux qui font la chimie. Attention à l'écriture : on réordonne par numéro de couche croissant, la quatre s reste donc écrite avant la trois d.",
+   "texte": "Le fer : un cœur d'argon, quatre s deux, trois d six.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "exceptions",
+   "dit": "La nature aime les exceptions qui confirment la règle. Le chrome devrait être quatre s deux, trois d quatre : il est en réalité quatre s un, trois d cinq. Le cuivre devrait finir en trois d neuf : il finit en trois d dix. Pourquoi ? Parce qu'une sous-couche à moitié remplie, ou complètement remplie, est particulièrement stable : le gain de stabilité paie la promotion d'un électron de la quatre s vers la trois d.",
+   "texte": "Chrome et cuivre : un électron promu pour une sous-couche d stable.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "oxygene_cases",
+   "dit": "Visualisons avec les cases quantiques : chaque orbitale est une case, chaque électron une flèche. Pour l'oxygène, quatre électrons sont à placer dans les trois cases p. Hund impose : un électron par case d'abord, avec des spins parallèles, puis seulement le quatrième vient s'apparier dans la première case. On obtient un doublet et deux électrons célibataires. Apparier dès le deuxième électron serait la faute classique.",
+   "texte": "Les cases de l'oxygène : un doublet, deux électrons célibataires.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "ions_regle",
+   "dit": "Passons aux ions, avec une subtilité cruciale. Pour ioniser un atome de transition, on retire d'abord les électrons les plus externes : ceux de la sous-couche s du niveau le plus élevé, même si elle s'est remplie avant la sous-couche d. Une fois occupées, les orbitales d passent en effet sous les s en énergie. L'ordre de départ des électrons n'est donc pas l'ordre inverse du remplissage.",
+   "texte": "Ioniser : on retire d'abord les électrons s les plus externes.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "fer_ions",
+   "dit": "Application au fer. Pour former l'ion fer deux plus, on enlève les deux électrons quatre s : il reste la configuration trois d six. Pour l'ion fer trois plus, on retire encore un électron d : trois d cinq, une sous-couche à moitié remplie, particulièrement stable. Voilà pourquoi le fer trois plus est si fréquent dans la nature, des roches rouges à notre propre sang.",
+   "texte": "Fer deux plus : trois d six. Fer trois plus : trois d cinq, très stable.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "ions_gaz_noble",
+   "dit": "Pour les éléments des blocs s et p, le schéma est limpide : on perd ou on gagne juste ce qu'il faut pour copier un gaz noble. Le sodium et le magnésium, en perdant leurs électrons externes, atteignent la configuration du néon ; l'oxygène aussi, en en gagnant deux. Et le chlore, en gagnant un électron, atteint celle de l'argon.",
+   "texte": "Sodium, magnésium, oxygène copient le néon ; le chlore copie l'argon.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "charges_groupes",
+   "dit": "On peut donc prédire les charges des ions sans aucun calcul : elles dépendent du groupe dans le tableau périodique. Les alcalins perdent un électron, charge plus un. Les alcalino-terreux en perdent deux. Les chalcogènes en gagnent deux, les halogènes un seul. Dans tous les cas, la cible est la même : la configuration du gaz noble le plus proche.",
+   "texte": "La charge d'un ion se lit dans son groupe du tableau périodique.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "gaz_nobles",
+   "dit": "Tout part des gaz nobles, la dernière colonne du tableau périodique : hélium, néon, argon, krypton, xénon et radon. Ils sont chimiquement inertes, presque indifférents au monde qui les entoure. Leur secret tient en une phrase : une couche externe complète. Deux électrons pour l'hélium, huit pour les autres, la fameuse configuration en octet.",
+   "texte": "Les gaz nobles : une couche externe complète, une inertie totale.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "octet",
+   "dit": "Voici le principe de stabilité, la grande loi de ce cours : les atomes tendent à acquérir, perdre ou partager des électrons pour atteindre la configuration du gaz noble le plus proche. Huit électrons sur la couche externe : c'est la règle de l'octet. Pour l'hélium, deux suffisent : c'est le duet. Ce n'est pas un dogme absolu, mais une tendance profonde, le moteur de toutes les liaisons chimiques.",
+   "texte": "L'octet et le duet : la tendance qui gouverne la chimie.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "transfert",
+   "dit": "Première voie vers la stabilité : le transfert d'électrons, la liaison ionique. Le sodium cède son électron solitaire au chlore, à qui il manquait exactement un électron. Le sodium atteint la configuration du néon, le chlore celle de l'argon. Les deux ions, de charges opposées, s'attirent alors électrostatiquement : c'est le chlorure de sodium, le sel de table, un édifice extrêmement stable.",
+   "texte": "Le transfert : le sodium donne, le chlore reçoit, le sel naît.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "partage",
+   "dit": "Deuxième voie : le partage, la liaison covalente. Dans le méthane, le carbone partage un électron avec chacun de ses quatre hydrogènes : il s'entoure ainsi de huit électrons, et chaque hydrogène de deux. Même astuce entre deux atomes de chlore : plutôt que de se voler un électron, ils en mettent un en commun, et chacun compte alors huit électrons autour de lui.",
+   "texte": "Le partage : chacun met un électron en commun, tous gagnent l'octet.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "limites",
+   "dit": "La règle a ses limites, et il faut les connaître. Le trifluorure de bore fonctionne avec seulement six électrons autour du bore : un composé déficient en électrons. Le pentachlorure de phosphore en compte dix autour du phosphore, grâce aux orbitales d de sa troisième couche : un composé hypervalent. Et les radicaux libres, avec leur électron célibataire, sont d'une réactivité redoutable, justement parce qu'ils cherchent à compléter leur entourage.",
+   "texte": "Déficients, hypervalents, radicaux : les exceptions de l'octet.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p26",
+   "ecran": "mgo",
+   "dit": "La configuration permet même de prédire les formules des composés. Le magnésium tend à perdre deux électrons, l'oxygène à en gagner deux : ils se compensent un pour un, et l'oxyde de magnésium associe un atome de chaque. Même principe pour les matériaux : le silicium a quatre électrons de valence, et le doper avec du phosphore, qui en a cinq, ou du bore, qui en a trois, permet de régler sa conductivité. C'est la base des semi-conducteurs.",
+   "texte": "Prédire une formule, régler un semi-conducteur : la configuration décide.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p27",
+   "ecran": "alcalins",
+   "dit": "Dernier cas d'école : pourquoi le césium réagit-il plus violemment avec l'eau que le sodium ? Leur configuration externe est identique, un seul électron s. Mais l'électron du césium loge bien plus loin du noyau, derrière de nombreuses couches internes qui font écran : il est moins fortement retenu, donc plus facile à arracher. Arracher le premier électron coûte moins d'énergie au césium qu'au sodium, et toute la réactivité des alcalins se lit dans ce détail de configuration.",
+   "texte": "Même configuration externe, mais un électron plus loin et mieux écranté.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p28",
+   "ecran": "recap_final",
+   "dit": "Vous détenez désormais le plan de construction de la matière. Trois règles pour placer les électrons, une écriture pour les décrire, et un principe pour tout expliquer : la quête de la configuration des gaz nobles. C'est elle qui fabrique les ions, les liaisons et les formules des composés, et jusqu'aux propriétés des matériaux. La configuration électronique n'est pas une simple notation : c'est le code source de la chimie.",
+   "texte": "Trois règles, une écriture, un principe : la stabilité.",
+   "pause_apres": 0.8
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les règles du remplissage"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Écrire les configurations : atomes et ions",
+   "pont": {
+    "dit": "Partie deux : écrire les configurations, des atomes aux ions. Après les règles, la pratique de l'écriture : l'alphabet des couches, les configurations complètes, leurs exceptions, et ce qui change quand l'atome devient un ion.",
+    "texte": "Partie 2 : écrire les configurations, atomes et ions."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "La stabilité, moteur de la chimie",
+   "pont": {
+    "dit": "Partie trois : la stabilité, le moteur de toute la chimie. Pourquoi les atomes font-ils tout cela ? Pour imiter les gaz nobles. Voici la règle de l'octet, ses deux grandes voies, le transfert et le partage, ainsi que ses limites.",
+    "texte": "Partie 3 : la stabilité, moteur de la chimie."
+   }
+  }
+ ]
+}

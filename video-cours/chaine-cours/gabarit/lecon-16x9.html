@@ -2892,6 +2892,70 @@ const FIG = {
       mot(874, 134, 'Ca2+', { c: '#10B981', t: 21, a: 'start' }) +
       mot(740, 282, 'les os : calcium Ca2+', { t: 23 }));
   },
+  orbitales_formes_fig(t) {
+    const p = prog(t);
+    const haltère = (cx, cy, r, angle) => {
+      const a = angle * Math.PI / 180, dx = Math.round(r * Math.cos(a)), dy = Math.round(r * Math.sin(a));
+      return `<ellipse cx="${cx + dx}" cy="${cy + dy}" rx="30" ry="19" transform="rotate(${angle} ${cx + dx} ${cy + dy})" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/><ellipse cx="${cx - dx}" cy="${cy - dy}" rx="30" ry="19" transform="rotate(${angle} ${cx - dx} ${cy - dy})" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="6" fill="currentColor"/>`;
+    };
+    return svgBoite(
+      `<circle cx="170" cy="140" r="62" fill="#10B981" fill-opacity=".25" stroke="currentColor" stroke-width="4"/>` +
+      mot(170, 232, 'orbitale s', { t: 23 }) + mot(170, 262, 'une sphère', { t: 19 }) +
+      (p > .3 ? haltère(430, 140, 34, 90) : '') + (p > .3 ? mot(430, 232, 'p x', { t: 22 }) : '') +
+      (p > .55 ? haltère(650, 140, 34, 0) : '') + (p > .55 ? mot(650, 232, 'p y', { t: 22 }) : '') +
+      (p > .8 ? haltère(860, 140, 34, 45) : '') + (p > .8 ? mot(860, 232, 'p z', { t: 22 }) : '') +
+      mot(500, 292, "les formes des orbitales : s sphérique, p en haltère", { t: 24 }));
+  },
+  cases_quantiques_fig(t) {
+    const p = prog(t);
+    const boite = (x, y) => `<rect x="${x}" y="${y}" width="46" height="52" fill="none" stroke="currentColor" stroke-width="3"/>`;
+    const fleche = (x, y, sens) => trait(x, y + (sens > 0 ? 18 : -18), x, y - (sens > 0 ? 18 : -18), 1, { w: 4, c: '#E8604C' }) + pointe(x, y - (sens > 0 ? 24 : -24), sens > 0 ? -90 : 90, '#E8604C');
+    return svgBoite(
+      mot(120, 66, '1s', { t: 22, a: 'start' }) + boite(180, 34) + fleche(196, 60, 1) + fleche(220, 60, -1) +
+      mot(300, 66, '2s', { t: 22, a: 'start' }) + boite(360, 34) + fleche(376, 60, 1) + fleche(400, 60, -1) +
+      mot(486, 66, '2p', { t: 22, a: 'start' }) + boite(546, 34) + boite(596, 34) + boite(646, 34) +
+      (p > .3 ? fleche(569, 60, 1) + fleche(619, 60, 1) + fleche(669, 60, 1) : '') +
+      (p > .65 ? fleche(593, 60, -1) : '') +
+      mot(760, 52, 'une flèche par case', { t: 21, a: 'start' }) +
+      mot(760, 82, 'avant d’apparier', { t: 21, a: 'start' }) +
+      mot(120, 160, 'exemple : le carbone (6 électrons)', { t: 22, a: 'start' }) +
+      mot(120, 200, '1s', { t: 22, a: 'start' }) + boite(180, 168) + fleche(196, 194, 1) + fleche(220, 194, -1) +
+      mot(300, 200, '2s', { t: 22, a: 'start' }) + boite(360, 168) + fleche(376, 194, 1) + fleche(400, 194, -1) +
+      mot(486, 200, '2p', { t: 22, a: 'start' }) + boite(546, 168) + boite(596, 168) + boite(646, 168) +
+      (p > .3 ? fleche(569, 194, 1) + fleche(619, 194, 1) : '') +
+      mot(500, 292, "règle de Hund : remplir chaque case avant d’apparier", { t: 24 }));
+  },
+  transfert_partage_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<circle cx="130" cy="120" r="34" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` + mot(130, 129, 'Na', { t: 21 }) +
+      `<circle cx="130" cy="52" r="8" fill="#E8604C"/>` +
+      (p > .3 ? trait(168, 66, 240, 66, (p - .3) / .7, { c: '#E8604C', w: 4 }) + pointe(252, 66, 0, '#E8604C') : '') +
+      `<circle cx="330" cy="120" r="38" fill="#10B981" fill-opacity=".2" stroke="currentColor" stroke-width="4"/>` + mot(330, 129, 'Cl', { t: 21 }) +
+      `<circle cx="330" cy="62" r="8" fill="#1A75FF"/><circle cx="282" cy="100" r="8" fill="#1A75FF"/><circle cx="378" cy="100" r="8" fill="#1A75FF"/>` +
+      (p > .3 ? `<circle cx="292" cy="66" r="8" fill="#E8604C"/>` : '') +
+      mot(230, 210, 'transfert', { t: 23 }) + mot(230, 240, 'liaison ionique', { t: 19 }) +
+      trait(500, 30, 500, 250, 1, { w: 3, tiret: true }) +
+      `<circle cx="650" cy="120" r="40" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` + mot(650, 129, 'H', { t: 21 }) +
+      `<circle cx="790" cy="120" r="40" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` + mot(790, 129, 'H', { t: 21 }) +
+      `<circle cx="706" cy="104" r="8" fill="#E8604C"/><circle cx="734" cy="136" r="8" fill="#E8604C"/>` +
+      mot(720, 210, 'partage', { t: 23 }) + mot(720, 240, 'liaison covalente', { t: 19 }) +
+      mot(500, 292, "gagner la stabilité : donner, recevoir ou partager", { t: 24 }));
+  },
+  ecran_alcalins_fig(t) {
+    const p = prog(t);
+    const anneau = (cx, cy, r) => `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="3" stroke-opacity=".45" stroke-dasharray="7 7"/>`;
+    return svgBoite(
+      anneau(215, 138, 40) + anneau(215, 138, 72) + anneau(215, 138, 102) +
+      `<circle cx="215" cy="138" r="26" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` + mot(215, 146, 'Na', { t: 20 }) +
+      `<circle cx="317" cy="138" r="10" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` +
+      mot(215, 282, 'sodium : 3 couches', { t: 21 }) +
+      (p > .35 ? [22, 38, 54, 70, 86, 104].map((r) => anneau(650, 138, r)).join('') : '') +
+      (p > .35 ? `<circle cx="650" cy="138" r="15" fill="#B8860B" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>` + mot(650, 144, 'Cs', { t: 17 }) : '') +
+      (p > .55 ? `<circle cx="754" cy="138" r="10" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` : '') +
+      (p > .55 ? mot(650, 282, 'césium : 6 couches, électron très loin', { t: 21 }) : '') +
+      mot(500, 40, 'les alcalins : un seul électron externe', { t: 24 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
