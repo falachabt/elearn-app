@@ -1,0 +1,575 @@
+{
+ "cours": 6125,
+ "titre": "Variables aléatoires discrètes : loi binomiale et loi de Poisson",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistiques et probabilités",
+   "titre": "Variables aléatoires discrètes : loi binomiale et loi de Poisson",
+   "sous": "Définir une variable et sa loi, la résumer par l'espérance et la variance, puis compter les succès et les événements rares",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un fil rouge : transformer le hasard en nombres, puis en lois."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Variable aléatoire",
+   "tex": "X : \\Omega \\longrightarrow \\mathbb{R}",
+   "note": "À chaque issue, un nombre réel : le hasard devient calculable."
+  },
+  "deux_pieces": {
+   "type": "etape",
+   "kicker": "Exemple · deux lancers de pièce",
+   "titre": "Compter les piles : zéro, un ou deux",
+   "tex": [
+    "\\Omega = \\{PP, PF, FP, FF\\}",
+    "X(PP) = 2, \\ X(PF) = X(FP) = 1, \\ X(FF) = 0",
+    "X \\ \\text{prend les valeurs } 0, 1, 2"
+   ],
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 140
+   }
+  },
+  "types": {
+   "type": "etape",
+   "kicker": "Discrète ou continue",
+   "titre": "Compter, ou mesurer dans un intervalle",
+   "tex": [
+    "\\text{discrète : valeurs finies ou dénombrables}",
+    "\\text{exemples : dé, nombre de voitures, fautes}",
+    "\\text{continue : toute valeur d'un intervalle}",
+    "\\text{exemples : taille, température, attente}"
+   ]
+  },
+  "masse": {
+   "type": "formule",
+   "kicker": "Loi de probabilité",
+   "tex": "P(X = x), \\qquad \\sum_x P(X = x) = 1",
+   "note": "Chaque probabilité est entre 0 et 1, et leur somme vaut 1."
+  },
+  "masse_pieces": {
+   "type": "etape",
+   "kicker": "La loi du nombre de piles",
+   "titre": "Un quart, un demi, un quart",
+   "tex": [
+    "P(X = 0) = \\tfrac{1}{4} \\qquad P(X = 1) = \\tfrac{2}{4}",
+    "P(X = 2) = \\tfrac{1}{4}",
+    "\\tfrac{1}{4} + \\tfrac{2}{4} + \\tfrac{1}{4} = 1"
+   ],
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 140
+   }
+  },
+  "repartition": {
+   "type": "formule",
+   "kicker": "Fonction de répartition",
+   "tex": "F(x) = P(X \\le x)",
+   "note": "F est croissante, entre 0 et 1 : elle cumule les probabilités jusqu'à x.",
+   "anim": {
+    "nom": "repartition_escalier_fig",
+    "hauteur": 190
+   }
+  },
+  "urne_loi": {
+   "type": "etape",
+   "kicker": "Exemple résolu · trois rouges, deux bleues",
+   "titre": "Deux tirages sans remise : la loi complète",
+   "tex": [
+    "P(X = 0) = \\tfrac{1}{10} \\qquad P(X = 1) = \\tfrac{6}{10}",
+    "P(X = 2) = \\tfrac{3}{10}",
+    "P(X \\le 1) = \\tfrac{1}{10} + \\tfrac{6}{10} = \\tfrac{7}{10}"
+   ],
+   "anim": {
+    "nom": "urne_fig",
+    "hauteur": 140
+   }
+  },
+  "des_loi": {
+   "type": "etape",
+   "kicker": "Exemple · le nombre de six en trois dés",
+   "titre": "Une loi en quatre valeurs",
+   "tex": [
+    "P(X = 0) = \\tfrac{125}{216} \\approx 0{,}579 \\qquad P(X = 1) = \\tfrac{75}{216} \\approx 0{,}347",
+    "P(X = 2) = \\tfrac{15}{216} \\approx 0{,}069 \\qquad P(X = 3) = \\tfrac{1}{216} \\approx 0{,}005",
+    "\\text{la somme des probabilités vaut } 1"
+   ],
+   "anim": {
+    "nom": "grille_des_fig",
+    "hauteur": 140
+   }
+  },
+  "esperance": {
+   "type": "formule",
+   "kicker": "Espérance",
+   "tex": "E(X) = \\sum_i x_i \\, P(X = x_i)",
+   "note": "Moyenne pondérée par les probabilités : le centre de la loi.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 180
+   }
+  },
+  "des_esperance": {
+   "type": "etape",
+   "kicker": "Exemple · espérance du nombre de six",
+   "titre": "Zéro virgule cinq six en moyenne",
+   "tex": [
+    "E(X) = 0 \\times 0{,}579 + 1 \\times 0{,}347 + 2 \\times 0{,}069 + 3 \\times 0{,}005",
+    "E(X) = 0{,}5",
+    "\\text{contrôle : } 3 \\times \\tfrac{1}{6} = 0{,}5"
+   ]
+  },
+  "variance": {
+   "type": "formule",
+   "kicker": "Variance et écart-type",
+   "tex": "V(X) = E\\left[(X - E(X))^2\\right] = E(X^2) - [E(X)]^2",
+   "note": "L'écart-type est la racine de la variance : même unité que X."
+  },
+  "des_variance": {
+   "type": "etape",
+   "kicker": "Exemple · variance du nombre de six",
+   "titre": "Dispersion autour de zéro virgule cinq",
+   "tex": [
+    "E(X^2) = 0{,}347 + 4 \\times 0{,}069 + 9 \\times 0{,}005 = \\tfrac{2}{3}",
+    "V(X) = \\tfrac{2}{3} - \\tfrac{1}{4} = \\tfrac{5}{12} \\approx 0{,}417",
+    "\\sigma(X) = \\sqrt{0{,}417} \\approx 0{,}646"
+   ]
+  },
+  "gain_de": {
+   "type": "etape",
+   "kicker": "Exemple résolu · un jeu au dé",
+   "titre": "Gagner dix ou perdre un : jeu équitable ?",
+   "tex": [
+    "X = 10 \\ (p = \\tfrac{1}{6}), \\quad X = -1 \\ (p = \\tfrac{5}{6})",
+    "E(X) = \\tfrac{10}{6} - \\tfrac{5}{6} = \\tfrac{5}{6} \\approx 0{,}83",
+    "V(X) = \\tfrac{605}{36} \\approx 16{,}81 \\qquad \\sigma \\approx 4{,}10"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Fondations et résumés : l'essentiel",
+   "etapes": [
+    "Variable aléatoire : une issue, un nombre",
+    "Loi : les P(X = x), de somme 1",
+    "Répartition : F(x) = P(X ≤ x)",
+    "Espérance : moyenne pondérée",
+    "Variance : dispersion, σ = √V"
+   ]
+  },
+  "binom_conditions": {
+   "type": "etape",
+   "kicker": "Loi binomiale · les conditions",
+   "titre": "Quatre conditions à vérifier avant tout",
+   "tex": [
+    "\\text{un nombre fixe } n \\text{ d'épreuves}",
+    "\\text{deux issues : succès ou échec}",
+    "\\text{épreuves indépendantes}",
+    "\\text{probabilité } p \\text{ constante}"
+   ]
+  },
+  "binom_formule": {
+   "type": "formule",
+   "kicker": "Loi binomiale",
+   "tex": "P(X = k) = \\binom{n}{k} p^k (1-p)^{n-k}",
+   "note": "X compte les succès : n épreuves, probabilité p à chaque épreuve.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 200
+   }
+  },
+  "binom_ex": {
+   "type": "etape",
+   "kicker": "Exemple · sept piles en dix lancers",
+   "titre": "Le calcul binomial de référence",
+   "tex": [
+    "\\binom{10}{7} = 120",
+    "P(X = 7) = 120 \\times (0{,}5)^{10} = \\tfrac{120}{1024}",
+    "P(X = 7) \\approx 0{,}117"
+   ],
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 95
+   }
+  },
+  "binom_moments": {
+   "type": "etape",
+   "kicker": "Espérance et variance binomiales",
+   "titre": "Deux formules à connaître par cœur",
+   "tex": [
+    "E(X) = np = 10 \\times 0{,}5 = 5",
+    "V(X) = np(1-p) = 2{,}5 \\qquad \\sigma \\approx 1{,}58"
+   ]
+  },
+  "basket": {
+   "type": "etape",
+   "kicker": "Exemple résolu · cinq lancers francs",
+   "titre": "Au moins quatre réussites sur cinq",
+   "tex": [
+    "P(X = 4) = 5 \\times 0{,}8^4 \\times 0{,}2 = 0{,}4096",
+    "P(X = 5) = 0{,}8^5 = 0{,}32768",
+    "P(X \\ge 4) \\approx 0{,}737"
+   ],
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 140
+   }
+  },
+  "ampoules": {
+   "type": "etape",
+   "kicker": "Exemple · contrôle de qualité",
+   "titre": "Trois ampoules défectueuses sur cent",
+   "tex": [
+    "n = 100, \\ p = 0{,}02, \\ k = 3",
+    "\\binom{100}{3} = 161700",
+    "P(X = 3) = 161700 \\times 0{,}02^3 \\times 0{,}98^{97} \\approx 0{,}182"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Binomiale : n épreuves, deux issues",
+    "Vérifier indépendance et p constant",
+    "P(X = k) = C(n,k) pᵏ (1−p)ⁿ⁻ᵏ",
+    "Espérance np, variance np(1−p)",
+    "« Au moins » : sommer ou compléter"
+   ]
+  },
+  "poisson_formule": {
+   "type": "formule",
+   "kicker": "Loi de Poisson",
+   "tex": "P(X = k) = \\frac{e^{-\\lambda} \\lambda^k}{k!}",
+   "note": "λ : nombre moyen d'événements sur l'intervalle. Événements rares et indépendants.",
+   "anim": {
+    "nom": "poisson_arrivees_fig",
+    "hauteur": 170
+   }
+  },
+  "poisson_moments": {
+   "type": "etape",
+   "kicker": "Espérance et variance de Poisson",
+   "titre": "Un seul paramètre gouverne tout",
+   "tex": [
+    "E(X) = \\lambda \\qquad V(X) = \\lambda",
+    "\\sigma(X) = \\sqrt{\\lambda} \\qquad \\text{signature : } E(X) = V(X)"
+   ]
+  },
+  "banque": {
+   "type": "etape",
+   "kicker": "Exemple · les clients d'un guichet",
+   "titre": "Exactement deux arrivées en une minute",
+   "tex": [
+    "\\lambda = 3, \\ k = 2",
+    "P(X = 2) = \\tfrac{e^{-3} \\times 3^2}{2!}",
+    "P(X = 2) \\approx 0{,}224"
+   ],
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 140
+   }
+  },
+  "appel_exact": {
+   "type": "etape",
+   "kicker": "Exemple · un centre d'appel",
+   "titre": "Exactement douze appels en une heure",
+   "tex": [
+    "\\lambda = 10, \\ k = 12",
+    "P(X = 12) = \\tfrac{e^{-10} \\times 10^{12}}{12!} \\approx 0{,}095"
+   ]
+  },
+  "appel_queues": {
+   "type": "etape",
+   "kicker": "Même centre d'appel · les extrêmes",
+   "titre": "Heures creuses et heures de pointe",
+   "tex": [
+    "P(X < 5) \\approx 0{,}029",
+    "P(X > 15) = 1 - P(X \\le 15) \\approx 0{,}049",
+    "\\text{la moyenne } 10 \\text{ ne dit pas tout}"
+   ]
+  },
+  "poisson_applis": {
+   "type": "etape",
+   "kicker": "Applications de la loi de Poisson",
+   "titre": "Compter des événements sur un intervalle",
+   "tex": [
+    "\\text{appels, sinistres, arrivées de clients}",
+    "\\text{particules radioactives, mutations}",
+    "\\text{demande d'un produit, files d'attente}",
+    "\\text{condition : événements rares et indépendants}"
+   ]
+  },
+  "autres_lois": {
+   "type": "etape",
+   "kicker": "Autres lois discrètes",
+   "titre": "Trois cousines à connaître",
+   "tex": [
+    "\\text{géométrique : essais jusqu'au premier succès}",
+    "\\text{binomiale négative : jusqu'au } r\\text{-ième succès}",
+    "\\text{uniforme discrète : valeurs équiprobables}",
+    "\\text{choisir selon la question posée}"
+   ]
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Binomiale ou Poisson",
+   "titre": "Deux questions différentes",
+   "tex": [
+    "\\text{binomiale : } n \\text{ fixé, succès comptés}",
+    "\\text{Poisson : intervalle, moyenne } \\lambda",
+    "\\text{limite : } n \\text{ grand, } p \\text{ petit, } \\lambda = np"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Identifier ce que compte la variable",
+    "Discrète ou continue : choisir le cadre",
+    "Binomiale si n est fixé et p constant",
+    "Poisson si on compte sur un intervalle",
+    "Toujours vérifier que la somme vaut 1"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Une loi se résume par E(X) et V(X)",
+    "Binomiale : P(X = k), E = np",
+    "Poisson : un seul paramètre λ",
+    "E = V = λ : la signature de Poisson",
+    "La bonne loi dépend de la situation"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de statistiques et probabilités pour le concours de l'ESSEC : les variables aléatoires discrètes, leur espérance et leur variance, puis les deux grandes lois du comptage, la loi binomiale et la loi de Poisson.",
+   "texte": "Variables aléatoires, binomiale et Poisson.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge est concret : transformer une expérience de hasard en nombres calculables. Trois étapes : associer un nombre à chaque issue, décrire la probabilité de chaque valeur, puis résumer la loi par son centre et sa dispersion.",
+   "texte": "Du hasard aux nombres : définir, décrire, résumer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Une variable aléatoire est une fonction qui associe un nombre réel à chaque issue d'une expérience aléatoire. On la note par une majuscule, comme ixe. Retenir le numéro d'un dé lancé, c'est déjà définir une variable aléatoire.",
+   "texte": "X : Ω → ℝ, une issue devient un nombre.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple fondateur : deux lancers de pièce. Les issues sont pile pile, pile face, face pile, face face. La variable ixe compte les piles : deux, un, un, zéro. Elle ne prend que trois valeurs, et cette liste ouvre la description de sa loi.",
+   "texte": "Deux lancers : X vaut 0, 1 ou 2 piles.",
+   "ecran": "deux_pieces"
+  },
+  {
+   "id": "p05",
+   "dit": "Deux familles de variables. Une variable discrète prend des valeurs que l'on peut compter, finies ou dénombrables : numéro de dé, nombre de voitures, nombre de fautes. Une variable continue prend toute valeur d'un intervalle : taille, température, attente. Ce cours porte sur les discrètes.",
+   "texte": "Discrète : on compte. Continue : on mesure.",
+   "ecran": "types"
+  },
+  {
+   "id": "p06",
+   "dit": "La loi d'une variable discrète donne la probabilité qu'elle prenne chaque valeur possible. Deux règles : chaque probabilité est entre zéro et un, et leur somme vaut exactement un. Une loi qui viole l'une de ces règles est fausse.",
+   "texte": "La loi : des probabilités de somme 1.",
+   "ecran": "masse"
+  },
+  {
+   "id": "p07",
+   "dit": "La loi du nombre de piles en deux lancers : zéro pile avec probabilité un quart, un pile avec probabilité un demi, deux piles avec probabilité un quart. La somme vaut un : la loi est complète, aucune valeur n'a été oubliée.",
+   "texte": "P(X=0)=1/4, P(X=1)=1/2, P(X=2)=1/4.",
+   "ecran": "masse_pieces"
+  },
+  {
+   "id": "p08",
+   "dit": "La fonction de répartition répond à une autre question : quelle est la probabilité que la variable reste inférieure ou égale à un seuil ? Elle cumule les probabilités depuis le début : elle est croissante, part de zéro et finit à un, pour les variables discrètes comme continues.",
+   "texte": "F(x) = P(X ≤ x) : cumuler jusqu'au seuil.",
+   "ecran": "repartition"
+  },
+  {
+   "id": "p09",
+   "dit": "Exercice résolu : un sac contient trois boules rouges et deux bleues ; on tire deux boules sans remise et ixe compte les rouges. Aucune rouge : un dixième. Une rouge : six dixièmes. Deux rouges : trois dixièmes. Au plus une rouge : sept dixièmes.",
+   "texte": "Sans remise : 1/10, 6/10, 3/10 ; P(X ≤ 1) = 7/10.",
+   "ecran": "urne_loi"
+  },
+  {
+   "id": "p10",
+   "dit": "Autre loi complète : le nombre de six en trois dés. Zéro six : cent vingt-cinq sur deux cent seize. Un six : soixante-quinze sur deux cent seize. Deux six : quinze sur deux cent seize. Trois six : un sur deux cent seize. La somme vaut un.",
+   "texte": "Trois dés : la loi du nombre de six.",
+   "ecran": "des_loi"
+  },
+  {
+   "id": "p11",
+   "dit": "L'espérance résume une loi par son centre : la moyenne des valeurs, pondérée par leurs probabilités. Sur beaucoup de répétitions, la moyenne observée s'en rapproche. C'est le premier des deux nombres qui résument une loi.",
+   "texte": "E(X) : la moyenne pondérée, le centre.",
+   "ecran": "esperance"
+  },
+  {
+   "id": "p12",
+   "dit": "Espérance du nombre de six en trois dés : un fois zéro virgule trois cent quarante-sept, plus deux fois zéro virgule zéro soixante-neuf, plus trois fois zéro virgule zéro zéro cinq. Total : zéro virgule cinq, confirmé par trois fois un sixième.",
+   "texte": "E(X) = 0,5 pour le nombre de six en trois dés.",
+   "ecran": "des_esperance"
+  },
+  {
+   "id": "p13",
+   "dit": "Le centre ne suffit pas : la variance mesure la dispersion, comme la moyenne des carrés des écarts à l'espérance. En pratique : l'espérance du carré, moins le carré de l'espérance. Son écart-type, la racine carrée, parle dans la même unité que la variable.",
+   "texte": "Variance : la dispersion autour du centre.",
+   "ecran": "variance"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour le nombre de six : l'espérance du carré vaut deux tiers. La variance vaut deux tiers moins un quart, soit cinq douzièmes, environ zéro virgule quatre cent dix-sept. L'écart-type vaut environ zéro virgule six cent quarante-six.",
+   "texte": "V(X) = 5/12 ≈ 0,417 ; σ ≈ 0,646.",
+   "ecran": "des_variance"
+  },
+  {
+   "id": "p15",
+   "dit": "Un joueur lance un dé : un six rapporte dix euros, tout autre résultat coûte un euro. Le gain vaut dix avec probabilité un sixième, moins un avec probabilité cinq sixièmes. Espérance : cinq sixièmes d'euro, environ zéro virgule quatre-vingt-trois. Le jeu avantage le joueur, il n'est pas équitable, avec un écart-type d'environ quatre euros dix.",
+   "texte": "Gain au dé : E(X) ≈ 0,83 €, jeu non équitable.",
+   "ecran": "gain_de"
+  },
+  {
+   "id": "p16",
+   "dit": "Faisons le point : une variable transforme les issues en nombres ; sa loi donne une probabilité à chaque valeur, de somme un ; la répartition cumule ; l'espérance centre et la variance disperse. Place aux lois toutes faites, à commencer par la binomiale.",
+   "texte": "Fondations et résumés : le point.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p17",
+   "dit": "La loi binomiale compte les succès d'une série d'épreuves. Quatre conditions à vérifier avant de l'utiliser : un nombre fixe d'épreuves, deux issues seulement, des épreuves indépendantes, et une probabilité de succès constante. Une seule condition en défaut, et la formule ne s'applique plus.",
+   "texte": "Binomiale : n fixe, deux issues, indépendance, p constant.",
+   "ecran": "binom_conditions"
+  },
+  {
+   "id": "p18",
+   "dit": "La formule donne la probabilité d'exactement k succès en n épreuves : le coefficient binomial n parmi k, qui place les succès, fois p puissance k pour les succès, fois un moins p puissance n moins k pour les échecs. Chaque facteur a son rôle.",
+   "texte": "P(X = k) = C(n,k) pᵏ (1−p)ⁿ⁻ᵏ.",
+   "ecran": "binom_formule"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple de référence : dix lancers d'une pièce équilibrée, exactement sept piles. Les façons de placer sept piles parmi dix lancers sont au nombre de cent vingt, et chaque suite précise a pour probabilité un sur mille vingt-quatre : résultat, environ zéro virgule cent dix-sept.",
+   "texte": "Sept piles sur dix : environ 0,117.",
+   "ecran": "binom_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "Pour la loi binomiale, l'espérance vaut n fois p et la variance n fois p fois un moins p. Sur dix lancers équilibrés : espérance cinq, variance deux virgule cinq, écart-type environ un virgule cinquante-huit. Deux formules à connaître par cœur.",
+   "texte": "Binomiale : E = np = 5, V = np(1−p) = 2,5.",
+   "ecran": "binom_moments"
+  },
+  {
+   "id": "p21",
+   "dit": "Exemple résolu : un basketteur réussit un lancer franc avec probabilité zéro virgule huit, sur cinq tirs. Au moins quatre réussites, c'est exactement quatre plus exactement cinq : environ zéro virgule quarante et un, plus environ zéro virgule trente-trois. Total : environ zéro virgule sept cent trente-sept.",
+   "texte": "Au moins 4 sur 5 : environ 0,737.",
+   "ecran": "basket"
+  },
+  {
+   "id": "p22",
+   "dit": "Contrôle de qualité : une ampoule est défectueuse avec probabilité deux pour cent, on en prélève cent. Exactement trois défectueuses suit une loi binomiale de paramètres cent et zéro virgule zéro deux : le calcul donne environ zéro virgule cent quatre-vingt-deux.",
+   "texte": "Trois défectueuses sur cent : environ 0,182.",
+   "ecran": "ampoules"
+  },
+  {
+   "id": "p23",
+   "dit": "Le point sur la loi binomiale : elle compte les succès d'épreuves indépendantes à probabilité constante ; son espérance vaut n fois p, sa variance n fois p fois un moins p. Reste la loi des événements rares sur un intervalle : la loi de Poisson.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p24",
+   "dit": "La loi de Poisson compte les événements survenant sur un intervalle de temps ou d'espace : clients, appels, véhicules. Un seul paramètre, lambda, leur nombre moyen sur l'intervalle. La probabilité de k événements combine l'exponentielle de moins lambda, lambda puissance k et factorielle k.",
+   "texte": "Poisson : P(X = k) = e^(−λ) λᵏ / k!.",
+   "ecran": "poisson_formule"
+  },
+  {
+   "id": "p25",
+   "dit": "La signature de la loi de Poisson est une égalité : son espérance vaut lambda, et sa variance vaut aussi lambda. L'écart-type est la racine carrée de lambda. Un seul paramètre fixe donc à la fois le centre et la dispersion.",
+   "texte": "Poisson : E(X) = V(X) = λ.",
+   "ecran": "poisson_moments"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple : trois clients en moyenne par minute à un guichet. Exactement deux arrivées dans la minute : lambda vaut trois, k vaut deux. La formule donne l'exponentielle de moins trois, fois neuf, divisé par deux : environ zéro virgule deux cent vingt-quatre.",
+   "texte": "λ = 3, k = 2 : environ 0,224.",
+   "ecran": "banque"
+  },
+  {
+   "id": "p27",
+   "dit": "Un centre d'appel reçoit dix appels par heure en moyenne. Exactement douze appels dans l'heure : lambda vaut dix, k vaut douze. L'exponentielle de moins dix, fois dix puissance douze, divisé par factorielle douze, donne environ zéro virgule zéro quatre-vingt-quinze.",
+   "texte": "λ = 10, k = 12 : environ 0,095.",
+   "ecran": "appel_exact"
+  },
+  {
+   "id": "p28",
+   "dit": "Le même centre, côté extrêmes : moins de cinq appels dans l'heure a une probabilité d'environ zéro virgule zéro vingt-neuf. Plus de quinze appels : environ zéro virgule zéro quarante-neuf, par le complémentaire. La moyenne de dix ne raconte donc pas toute l'histoire.",
+   "texte": "Moins de 5 : 0,029 ; plus de 15 : 0,049.",
+   "ecran": "appel_queues"
+  },
+  {
+   "id": "p29",
+   "dit": "On reconnaît les situations de Poisson à leur forme : compter des événements indépendants et plutôt rares sur un intervalle. Appels d'un centre, sinistres d'une assurance, particules radioactives, mutations génétiques, ou demande d'un produit en stock.",
+   "texte": "Poisson : appels, sinistres, particules, demande.",
+   "ecran": "poisson_applis"
+  },
+  {
+   "id": "p30",
+   "dit": "Trois cousines complètent le paysage. La loi géométrique compte les essais jusqu'au premier succès. La loi binomiale négative compte jusqu'au r-ième succès. La loi uniforme discrète donne la même probabilité à chaque valeur, comme un dé équilibré.",
+   "texte": "Géométrique, binomiale négative, uniforme.",
+   "ecran": "autres_lois"
+  },
+  {
+   "id": "p31",
+   "dit": "Binomiale ou Poisson ? La binomiale compte des succès dans un nombre fixé d'épreuves ; Poisson compte des événements sur un intervalle. Et elles se rejoignent : beaucoup d'épreuves, une petite probabilité, et la binomiale approche une loi de Poisson de paramètre n fois p.",
+   "texte": "Binomiale : n fixé. Poisson : un intervalle.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p32",
+   "dit": "La stratégie face à un énoncé : que compte la variable ? Un nombre fixé d'épreuves à probabilité constante oriente vers la binomiale. Des événements comptés sur un intervalle, avec une moyenne connue, orientent vers Poisson. Et on vérifie toujours que les probabilités somment à un.",
+   "texte": "Choisir la loi : épreuves fixées, ou intervalle ?",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p33",
+   "dit": "Pour conclure : une variable aléatoire transforme le hasard en nombres ; sa loi se résume par l'espérance et la variance ; la binomiale compte les succès d'épreuves répétées ; Poisson compte les événements d'un intervalle, avec espérance égale à la variance. Choisir la bonne loi, c'est résoudre la moitié du problème.",
+   "texte": "Variables, binomiale, Poisson : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir une variable aléatoire, sa loi et son espérance"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Variance et loi binomiale",
+   "pont": {
+    "texte": "Partie 2 : variance, écart-type et loi binomiale.",
+    "dit": "Partie deux : la dispersion, puis la loi binomiale. Après le centre d'une loi, nous mesurons son étalement avec la variance et l'écart-type, avant de compter les succès d'épreuves répétées grâce à la loi binomiale."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Loi de Poisson et choix d'une loi",
+   "pont": {
+    "texte": "Partie 3 : Poisson, autres lois et stratégie.",
+    "dit": "Partie trois : la loi de Poisson et le choix d'une loi. Nous compterons les événements rares sur un intervalle, comparerons la loi binomiale et la loi de Poisson, puis nous verrons comment choisir le bon modèle face à un énoncé."
+   }
+  }
+ ]
+}
