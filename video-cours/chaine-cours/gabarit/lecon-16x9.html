@@ -3361,6 +3361,47 @@ const FIG = {
       mot(500, 262, 'à l’équilibre, les deux vitesses sont égales', { t: 23 }) +
       mot(500, 40, 'un équilibre est dynamique, pas figé', { t: 23 }));
   },
+  mer_electrons_fig(t) {
+    const p = prog(t);
+    let cations = '', electrons = '';
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 6; c++) {
+      const x = 180 + c * 128, y = 70 + r * 78;
+      cations += `<circle cx="${x}" cy="${y}" r="27" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(x, y + 8, '+', { c: '#B8860B', t: 24 });
+    }
+    const pos = [[240, 108], [430, 62], [560, 150], [310, 196], [690, 96], [760, 200], [500, 226], [820, 140]];
+    pos.forEach(([x, y], i) => {
+      if (p < .12 * i) return;
+      electrons += mot(x, y, 'e⁻', { c: '#1A75FF', t: 21 });
+    });
+    return svgBoite(
+      cations + electrons +
+      mot(120, 40, 'cations fixes', { c: '#B8860B', t: 20, a: 'start' }) +
+      mot(880, 262, 'mer d’électrons délocalisés', { c: '#1A75FF', t: 21, a: 'end' }) +
+      mot(500, 292, 'les électrons circulent dans tout le métal', { t: 23 }));
+  },
+  graphite_diamant_fig(t) {
+    const atome = (x, y) => `<circle cx="${x}" cy="${y}" r="13" fill="#5B6B7B" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>`;
+    const dia = [[250, 60], [180, 140], [320, 140], [250, 130], [180, 220], [320, 220]];
+    let d = trait(250, 60, 180, 140, 1, { w: 4 }) + trait(250, 60, 320, 140, 1, { w: 4 }) + trait(250, 60, 250, 130, 1, { w: 4 }) +
+      trait(180, 140, 250, 130, 1, { w: 4 }) + trait(320, 140, 250, 130, 1, { w: 4 }) +
+      trait(180, 140, 180, 220, 1, { w: 4 }) + trait(320, 140, 320, 220, 1, { w: 4 }) + trait(250, 130, 180, 220, 1, { w: 4 }) + trait(250, 130, 320, 220, 1, { w: 4 });
+    dia.forEach(([x, y]) => { d += atome(x, y); });
+    const hex = (cx, cy) => {
+      let s = '';
+      const pts = [];
+      for (let k = 0; k < 6; k++) { const a = Math.PI / 3 * k; pts.push([Math.round(cx + 34 * Math.cos(a)), Math.round(cy + 34 * Math.sin(a))]); }
+      for (let k = 0; k < 6; k++) { const [x1, y1] = pts[k], [x2, y2] = pts[(k + 1) % 6]; s += trait(x1, y1, x2, y2, 1, { w: 4 }); }
+      pts.forEach(([x, y]) => { s += atome(x, y); });
+      return s;
+    };
+    return svgBoite(
+      mot(250, 30, 'diamant', { t: 23 }) + d +
+      mot(250, 268, 'électrons localisés : très dur', { t: 18 }) +
+      hex(640, 84) + hex(706, 84) + hex(672, 140) + hex(640, 196) + hex(706, 196) +
+      mot(673, 30, 'graphite', { t: 23 }) +
+      mot(770, 268, 'plans qui glissent : tendre et conducteur', { t: 18 }) +
+      mot(500, 292, 'deux carbones, deux réseaux', { t: 22 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
