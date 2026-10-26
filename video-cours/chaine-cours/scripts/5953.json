@@ -1,0 +1,621 @@
+{
+ "cours": 5953,
+ "ecrans": {
+  "activite_ph": {
+   "kicker": "Premiers calculs de pH",
+   "tex": [
+    "[\\mathrm{H_3O^+}] = 2{,}5 \\times 10^{-3} \\Rightarrow \\mathrm{pH} \\approx 2{,}6",
+    "\\mathrm{HCl}\\ 0{,}01\\ \\text{mol/L} : \\mathrm{pH} = 2",
+    "\\mathrm{HCl}\\ 0{,}1\\ \\text{mol/L} : \\mathrm{pH} = 1"
+   ],
+   "titre": "Le logarithme en action",
+   "type": "etape"
+  },
+  "applications": {
+   "etapes": [
+    "Santé : le sang, la digestion, les antiacides",
+    "Agriculture : ajuster le pH des sols",
+    "Alimentaire : fromages et conservation",
+    "Industrie : engrais, traitement de l'eau"
+   ],
+   "kicker": "Les acides et bases au quotidien",
+   "type": "recap"
+  },
+  "arrhenius": {
+   "kicker": "La définition d'Arrhenius",
+   "tex": [
+    "\\mathrm{HCl} \\rightarrow \\mathrm{H^+} + \\mathrm{Cl^-}",
+    "\\mathrm{NaOH} \\rightarrow \\mathrm{Na^+} + \\mathrm{OH^-}",
+    "\\mathrm{CH_3COOH} \\rightleftharpoons \\mathrm{CH_3COO^-} + \\mathrm{H^+}"
+   ],
+   "titre": "Dans l'eau : libérer H⁺ ou OH⁻",
+   "type": "etape"
+  },
+  "autoprotolyse": {
+   "kicker": "L'autoprotolyse de l'eau",
+   "note": "Kw = 10⁻¹⁴ à 25 °C : même pure, l'eau contient quelques ions",
+   "tex": "2\\,\\mathrm{H_2O} \\rightleftharpoons \\mathrm{H_3O^+} + \\mathrm{OH^-}",
+   "type": "formule"
+  },
+  "bronsted": {
+   "kicker": "La définition de Brønsted-Lowry",
+   "tex": [
+    "\\mathrm{HCl} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{H_3O^+} + \\mathrm{Cl^-}",
+    "\\text{HCl donne } \\mathrm{H^+} \\text{ : acide}",
+    "\\text{H}_2\\mathrm{O} \\text{ reçoit } \\mathrm{H^+} \\text{ : base}"
+   ],
+   "titre": "Un transfert de proton",
+   "type": "etape",
+   "anim": {
+    "nom": "transfert_proton_fig",
+    "hauteur": 110
+   }
+  },
+  "classement": {
+   "kicker": "Classer grâce au pKa",
+   "tex": [
+    "\\mathrm{HNO_3} : \\mathrm{p}K_a \\approx -1{,}3",
+    "\\mathrm{HCOOH} : 3{,}75 \\qquad \\mathrm{C_6H_5COOH} : 4{,}2",
+    "\\text{force croissante : } \\text{benzoïque} < \\text{formique} < \\mathrm{HNO_3}"
+   ],
+   "titre": "L'exercice des leçons, résolu",
+   "type": "etape"
+  },
+  "constantes": {
+   "kicker": "Ka et Kb : la force en constantes",
+   "tex": [
+    "K_a = \\tfrac{[\\mathrm{H^+}][\\mathrm{A^-}]}{[\\mathrm{HA}]}",
+    "K_b = \\tfrac{[\\mathrm{BH^+}][\\mathrm{OH^-}]}{[\\mathrm{B}]}",
+    "K_a \\cdot K_b = K_w = 10^{-14} \\text{ à } 25\\,^\\circ\\mathrm{C}"
+   ],
+   "titre": "Deux constantes d'équilibre",
+   "type": "etape"
+  },
+  "couples": {
+   "kicker": "Les couples acide-base conjugués",
+   "tex": [
+    "\\mathrm{HCl} / \\mathrm{Cl^-} \\qquad \\mathrm{H_3O^+} / \\mathrm{H_2O}",
+    "\\mathrm{HA} \\rightleftharpoons \\mathrm{A^-} + \\mathrm{H^+}",
+    "\\text{retirer } \\mathrm{H^+} \\text{ à l'acide donne sa base conjuguée}"
+   ],
+   "titre": "Inséparables : l'acide et sa base",
+   "type": "etape"
+  },
+  "courbe": {
+   "kicker": "La courbe de titrage",
+   "texte": "En suivant le pH pendant le versement, on obtient la courbe de titrage : le pH saute brutalement au point d'équivalence pour un acide fort dosé par une base forte, et bien plus progressivement pour un acide faible.",
+   "type": "phrase",
+   "anim": {
+    "nom": "courbe_titrage_fig",
+    "hauteur": 150
+   }
+  },
+  "dissociation": {
+   "kicker": "Le degré de dissociation",
+   "tex": [
+    "\\mathrm{HA} \\rightleftharpoons \\mathrm{H^+} + \\mathrm{A^-}",
+    "\\alpha = \\tfrac{[\\mathrm{H^+}]}{[\\mathrm{HA}]_0}",
+    "\\text{fort : } \\alpha \\approx 1 \\qquad \\text{faible : } \\alpha \\ll 1"
+   ],
+   "titre": "La fraction qui se dissocie",
+   "type": "etape",
+   "anim": {
+    "nom": "dissociation_fig",
+    "hauteur": 110
+   }
+  },
+  "eau_acide": {
+   "kicker": "L'eau joue les deux rôles",
+   "tex": [
+    "\\mathrm{NH_3} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{NH_4^+} + \\mathrm{OH^-}",
+    "\\text{couples : } \\mathrm{NH_4^+}/\\mathrm{NH_3} \\text{ et } \\mathrm{H_2O}/\\mathrm{OH^-}",
+    "\\text{l'eau donne } \\mathrm{H^+} \\text{ : rôle d'acide}"
+   ],
+   "titre": "Face à l'ammoniac, l'eau est l'acide",
+   "type": "etape"
+  },
+  "echelle_ph": {
+   "anim": {
+    "cible": 3,
+    "debut": 12,
+    "hauteur": 180,
+    "nom": "ph"
+   },
+   "kicker": "L'échelle de pH",
+   "note": "de 0 à 14 : acide sous 7, neutre à 7, basique au-dessus",
+   "tex": "\\mathrm{pH} = -\\log_{10}[\\mathrm{H_3O^+}]",
+   "type": "formule"
+  },
+  "entrainement_final": {
+   "kicker": "Derniers calculs",
+   "tex": [
+    "\\mathrm{HCl}\\ 0{,}1 : \\mathrm{pH} = 1",
+    "\\mathrm{NaOH}\\ 0{,}01 : \\mathrm{pOH} = 2 \\text{ donc } \\mathrm{pH} = 12",
+    "\\text{dosage : } C = \\tfrac{0{,}1 \\times 15}{25} = 0{,}06\\ \\text{mol/L}"
+   ],
+   "titre": "Trois réflexes à verrouiller",
+   "type": "etape"
+  },
+  "equilibre": {
+   "kicker": "L'équilibre acido-basique",
+   "tex": [
+    "\\mathrm{CH_3COOH} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{CH_3COO^-} + \\mathrm{H_3O^+}",
+    "K_a = \\tfrac{[\\mathrm{CH_3COO^-}][\\mathrm{H_3O^+}]}{[\\mathrm{CH_3COOH}]}",
+    "\\text{à l'équilibre, les quatre espèces coexistent}"
+   ],
+   "titre": "Une réaction incomplète",
+   "type": "etape"
+  },
+  "exemple_faible": {
+   "kicker": "Le pH d'un acide faible",
+   "tex": [
+    "[\\mathrm{H^+}] \\approx \\sqrt{K_a \\cdot C} = \\sqrt{1{,}8 \\times 10^{-5} \\times 0{,}1}",
+    "[\\mathrm{H^+}] \\approx 1{,}34 \\times 10^{-3}\\ \\text{mol/L}",
+    "\\mathrm{pH} \\approx 2{,}87"
+   ],
+   "titre": "L'acide acétique, pas à pas",
+   "type": "etape"
+  },
+  "exercice_prediction": {
+   "kicker": "Exercice des leçons",
+   "tex": [
+    "\\mathrm{HF} + \\mathrm{NH_3} \\rightleftharpoons \\mathrm{NH_4^+} + \\mathrm{F^-}",
+    "K_a(\\mathrm{HF}) = 7{,}2 \\times 10^{-4}",
+    "K_b(\\mathrm{NH_3}) = 1{,}8 \\times 10^{-5}",
+    "\\text{produits plus faibles} \\Rightarrow \\text{sens direct}"
+   ],
+   "titre": "L'acide fluorhydrique face à l'ammoniac",
+   "type": "etape"
+  },
+  "henderson": {
+   "kicker": "L'équation de Henderson-Hasselbalch",
+   "note": "le pH d'un mélange acide faible / base conjuguée : les tampons",
+   "tex": "\\mathrm{pH} = \\mathrm{p}K_a + \\log_{10}\\frac{[\\mathrm{A^-}]}{[\\mathrm{HA}]}",
+   "type": "formule"
+  },
+  "indicateurs": {
+   "kicker": "Choisir son indicateur",
+   "tex": [
+    "\\text{phénolphtaléine : } 8{,}2-10{,}0 \\text{, incolore} \\rightarrow \\text{rose}",
+    "\\text{bleu de bromothymol : } 6{,}0-7{,}6 \\text{, jaune} \\rightarrow \\text{bleu}",
+    "\\text{hélianthine : } 3{,}1-4{,}4 \\text{, rouge} \\rightarrow \\text{jaune}"
+   ],
+   "titre": "Le domaine de virage doit contenir l'équivalence",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "cible": 11,
+    "debut": 3,
+    "hauteur": 170,
+    "nom": "ph"
+   },
+   "kicker": "Une première rencontre",
+   "texte": "Un citron doit son goût acide à l'acide citrique ; le savon, son goût amer, à son caractère basique. Derrière ces sensations, des espèces chimiques aux propriétés opposées — et des réactions bien précises.",
+   "type": "phrase"
+  },
+  "lewis": {
+   "kicker": "La définition de Lewis",
+   "note": "acide de Lewis : il accepte une paire d'électrons ; base de Lewis : elle la donne",
+   "tex": "\\mathrm{NH_3} + \\mathrm{BF_3} \\rightarrow \\mathrm{H_3N-BF_3}",
+   "type": "formule"
+  },
+  "lewis_identifier": {
+   "kicker": "Identifier les acides de Lewis",
+   "tex": [
+    "\\mathrm{AlCl_3} + \\mathrm{Cl^-} \\rightarrow \\mathrm{AlCl_4^-}",
+    "\\mathrm{Fe^{3+}} + 6\\,\\mathrm{H_2O} \\rightarrow [\\mathrm{Fe(H_2O)_6}]^{3+}",
+    "\\text{AlCl}_3 \\text{ et } \\mathrm{Fe^{3+}} \\text{ acceptent : acides de Lewis}"
+   ],
+   "titre": "Qui accepte la paire ?",
+   "type": "etape"
+  },
+  "pka": {
+   "kicker": "Le pKa : la force en un nombre",
+   "tex": [
+    "\\mathrm{p}K_a = -\\log_{10} K_a",
+    "\\mathrm{HCl} : -7 \\qquad \\mathrm{CH_3COOH} : 4{,}76",
+    "\\mathrm{H_2CO_3} : 6{,}35 \\qquad \\mathrm{H_2O} : 14"
+   ],
+   "titre": "Plus il est petit, plus l'acide est fort",
+   "type": "etape"
+  },
+  "prediction": {
+   "kicker": "Prédire le sens d'une réaction",
+   "tex": [
+    "\\mathrm{CH_3COOH} + \\mathrm{OH^-} \\rightleftharpoons \\mathrm{CH_3COO^-} + \\mathrm{H_2O}",
+    "\\text{acide faible + base faible se forment}",
+    "\\Rightarrow \\text{sens direct favorisé}"
+   ],
+   "titre": "L'équilibre favorise les plus faibles",
+   "type": "etape"
+  },
+  "proton_solvate": {
+   "kicker": "Le proton n'existe pas nu",
+   "note": "en solution, le proton se fixe sur l'eau : c'est l'ion hydronium",
+   "tex": "\\mathrm{H^+} + \\mathrm{H_2O} \\rightarrow \\mathrm{H_3O^+}",
+   "type": "formule"
+  },
+  "recap_final": {
+   "etapes": [
+    "Trois définitions, de plus en plus larges",
+    "La force se lit dans Ka, Kb et pKa",
+    "L'équilibre favorise les plus faibles",
+    "Henderson-Hasselbalch pour les tampons",
+    "Le titrage dose par l'équivalence"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "recap_force": {
+   "etapes": [
+    "α : la fraction dissociée",
+    "Ka et Kb : la force chiffrée",
+    "pH = −log [H₃O⁺] : l'acidité",
+    "pKa petit : acide fort",
+    "But : prédire le sens des réactions"
+   ],
+   "kicker": "Bilan : mesurer la force",
+   "type": "recap"
+  },
+  "tableau_forces": {
+   "kicker": "Des forces très inégales",
+   "tex": [
+    "\\mathrm{HCl} : K_a \\text{ très grand} \\Rightarrow \\text{fort}",
+    "\\mathrm{CH_3COOH} : K_a = 1{,}8 \\times 10^{-5} \\Rightarrow \\text{faible}",
+    "\\mathrm{H_2CO_3} : K_a = 4{,}3 \\times 10^{-7} \\Rightarrow \\text{faible}",
+    "\\mathrm{NH_3} : K_b = 1{,}8 \\times 10^{-5} \\Rightarrow \\text{faible}"
+   ],
+   "titre": "Le tableau des constantes",
+   "type": "etape"
+  },
+  "tampon_exemple": {
+   "kicker": "Un tampon calculé",
+   "tex": [
+    "\\mathrm{CH_3COOH} : 0{,}1\\ \\text{mol/L}, \\quad \\mathrm{p}K_a = 4{,}76",
+    "\\mathrm{CH_3COO^-} : 0{,}1\\ \\text{mol/L}",
+    "\\mathrm{pH} = 4{,}76 + \\log\\tfrac{0{,}1}{0{,}1} = 4{,}76"
+   ],
+   "titre": "Équimolaire : le pH égale le pKa",
+   "type": "etape"
+  },
+  "tampon_principe": {
+   "anim": {
+    "cible": 7.4,
+    "debut": 7.4,
+    "hauteur": 170,
+    "nom": "ph"
+   },
+   "kicker": "Les solutions tampons",
+   "texte": "Un acide faible et sa base conjuguée mélangés : la solution résiste aux variations de pH. Dans le sang, le couple acide carbonique / hydrogénocarbonate maintient le pH entre 7,35 et 7,45.",
+   "type": "phrase"
+  },
+  "titrage_calcul": {
+   "kicker": "Exemple résolu des leçons",
+   "tex": [
+    "\\mathrm{HCl} + \\mathrm{NaOH} \\rightarrow \\mathrm{NaCl} + \\mathrm{H_2O}",
+    "n(\\mathrm{HCl}) = n(\\mathrm{NaOH}) \\text{ à l'équivalence}",
+    "C = \\tfrac{0{,}100 \\times 20{,}0}{25{,}0} = 0{,}0800\\ \\text{mol/L}"
+   ],
+   "titre": "Doser l'acide chlorhydrique",
+   "type": "etape"
+  },
+  "titrage_exercice": {
+   "kicker": "À vous de calculer",
+   "tex": [
+    "V(\\mathrm{CH_3COOH}) = 15{,}0\\ \\text{mL}",
+    "C(\\mathrm{NaOH}) = 0{,}150, \\quad V_{eq} = 18{,}5\\ \\text{mL}",
+    "C = \\tfrac{0{,}150 \\times 18{,}5}{15{,}0} = 0{,}185\\ \\text{mol/L}"
+   ],
+   "titre": "Doser l'acide acétique",
+   "type": "etape"
+  },
+  "titrage_principe": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "dosage_fig"
+   },
+   "kicker": "Le titrage acido-basique",
+   "texte": "On verse progressivement une solution de concentration connue, le titrant, dans la solution à doser, jusqu'au point d'équivalence : les quantités d'acide et de base y correspondent exactement à l'équation de la réaction.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "cible": 2,
+    "debut": 7,
+    "nom": "ph"
+   },
+   "kicker": "Chimie · Acides et bases",
+   "sous": "Trois définitions, la force, le pH et les titrages",
+   "titre": "Acides et bases",
+   "type": "titre"
+  },
+  "trois_theories": {
+   "etapes": [
+    "Arrhenius : H⁺ ou OH⁻, dans l'eau",
+    "Brønsted-Lowry : le transfert de H⁺",
+    "Lewis : les paires d'électrons",
+    "Chacune englobe la précédente"
+   ],
+   "kicker": "Les trois théories côte à côte",
+   "type": "recap"
+  }
+ },
+ "lecons": [
+  4842,
+  4843,
+  4844,
+  4845,
+  4846,
+  4847,
+  4848,
+  4849,
+  4850,
+  4851,
+  4852
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Trois définitions : Arrhenius, Brønsted-Lowry, Lewis"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : la force des acides et des bases. Après les définitions, nous allons mesurer cette force : degré de dissociation, constantes d'acidité et de basicité, échelle de pH et pKa, et l'équation de Henderson-Hasselbalch.",
+    "texte": "Partie 2 : mesurer la force — Ka, Kb, pH et pKa."
+   },
+   "sous_titre": "La force : dissociation, Ka, Kb, pH et pKa"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : équilibres, tampons et titrages. Nous étudions maintenant les équilibres en solution et les solutions tampons, avant la grande application pratique du chapitre : le titrage acido-basique.",
+    "texte": "Partie 3 : équilibres, tampons et titrages."
+   },
+   "sous_titre": "Équilibres, tampons et titrages"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux acides et aux bases. Nous commencerons par les trois grandes définitions, celles d'Arrhenius, de Brønsted et Lowry, puis de Lewis. Nous apprendrons ensuite à mesurer la force d'un acide ou d'une base, à calculer un pH, puis nous terminerons par les équilibres, les solutions tampons et les titrages.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Acides et bases : définitions, force, pH et titrages."
+  },
+  {
+   "dit": "Commençons par une sensation familière. Le citron pique la langue : il doit son goût acide à l'acide citrique. Le savon, au contraire, a un goût amer, caractéristique des bases. Ces sensations traduisent une réalité chimique : acides et bases ont des propriétés distinctes, et ils réagissent les uns avec les autres. Mais comment les définir proprement ?",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Le citron est acide, le savon est basique."
+  },
+  {
+   "dit": "Première définition, celle du chimiste suédois Arrhenius. Pour lui, tout se joue dans l'eau : un acide est une substance qui, dissoute dans l'eau, libère des ions hydrogène ; une base libère des ions hydroxyde. À l'écran, l'acide chlorhydrique et la soude se dissocient entièrement, tandis que l'acide acétique ne se dissocie qu'en partie.",
+   "ecran": "arrhenius",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Arrhenius : un acide libère H⁺, une base libère OH⁻."
+  },
+  {
+   "dit": "Cette définition a pourtant une limite importante : l'ion hydrogène nu, un simple proton, ne peut pas exister seul dans l'eau. Dès qu'il apparaît, il se fixe sur une molécule d'eau et forme l'ion hydronium. C'est donc l'ion hydronium qu'un acide produit réellement en solution. Autre limite : Arrhenius ne dit rien des réactions hors de l'eau.",
+   "ecran": "proton_solvate",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "H⁺ + H₂O → H₃O⁺ : le proton se fixe sur l'eau."
+  },
+  {
+   "dit": "En mille neuf cent vingt-trois, Brønsted et Lowry proposent indépendamment une définition plus large, fondée sur un transfert : un acide est une espèce capable de donner un proton, une base une espèce capable de le recevoir. Regardez l'acide chlorhydrique dans l'eau : il donne son proton à l'eau, qui joue donc le rôle de base, et il se forme l'ion hydronium et l'ion chlorure.",
+   "ecran": "bronsted",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Brønsted-Lowry : l'acide donne H⁺, la base le reçoit."
+  },
+  {
+   "dit": "Cette définition fait naître une notion centrale : le couple acide-base conjugué. Quand un acide donne son proton, ce qui reste de lui est sa base conjuguée ; quand une base reçoit un proton, elle devient son acide conjugué. L'acide chlorhydrique et l'ion chlorure forment un couple, l'ion hydronium et l'eau en forment un autre. Retirer un proton à l'acide, c'est obtenir sa base conjuguée.",
+   "ecran": "couples",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "À chaque acide sa base conjuguée."
+  },
+  {
+   "dit": "Certaines espèces savent jouer les deux rôles : on les dit amphiprotiques, et l'eau est la championne de cette catégorie. Face à l'ammoniac, par exemple, l'eau donne un proton : elle se comporte en acide, et l'ammoniac, qui le reçoit, en base. Il se forme l'ion ammonium et l'ion hydroxyde. Les deux couples de la réaction sont écrits à l'écran.",
+   "ecran": "eau_acide",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "NH₃ + H₂O : l'eau joue le rôle d'acide."
+  },
+  {
+   "dit": "Troisième définition, celle de Lewis, la plus générale des trois. Elle ne parle plus de protons, mais de paires d'électrons : un acide de Lewis accepte une paire d'électrons, grâce à une case vide ; une base de Lewis la donne, grâce à un doublet non liant. Ici, l'ammoniac donne la paire de son azote au trifluorure de bore : aucun proton n'est échangé.",
+   "ecran": "lewis",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Lewis : accepter ou donner une paire d'électrons."
+  },
+  {
+   "dit": "Entraînons-nous avec deux réactions des leçons. Le chlorure d'aluminium reçoit un ion chlorure : il accepte sa paire d'électrons, c'est donc l'acide de Lewis. De même, l'ion fer trois plus s'entoure de six molécules d'eau qui lui donnent leurs doublets pour former un complexe : il joue encore le rôle d'acide de Lewis. Les ions métalliques sont de grands acides de Lewis.",
+   "ecran": "lewis_identifier",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "AlCl₃ et Fe³⁺ : des acides de Lewis."
+  },
+  {
+   "dit": "Récapitulons les trois définitions. Arrhenius reste dans l'eau et parle d'ions libérés. Brønsted et Lowry généralisent avec le transfert de proton, dans n'importe quel solvant. Lewis englobe tout le monde avec les paires d'électrons, y compris les réactions sans proton. Chaque définition contient la précédente et la dépasse.",
+   "ecran": "trois_theories",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Trois définitions, chacune plus large que la précédente."
+  },
+  {
+   "dit": "Quand un acide se dissout, toutes ses molécules ne se dissocient pas forcément. Le degré de dissociation, noté alpha, mesure la fraction des molécules dissociées à l'équilibre. Pour un acide fort, alpha vaut pratiquement un : la dissociation est totale. Pour un acide faible, alpha est très petit : seule une faible fraction des molécules se dissocie.",
+   "ecran": "dissociation",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "α : la fraction des molécules dissociées."
+  },
+  {
+   "dit": "Pour chiffrer la force, on utilise les constantes d'équilibre : Ka pour la dissociation d'un acide, Kb pour la réaction d'une base avec l'eau. Plus Ka est grand, plus l'acide est fort ; plus Kb est grand, plus la base est forte. Pour un même couple conjugué, le produit Ka fois Kb vaut le produit ionique de l'eau : dix puissance moins quatorze à vingt-cinq degrés.",
+   "ecran": "constantes",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Ka et Kb mesurent la force ; Ka·Kb = Kw."
+  },
+  {
+   "dit": "Le tableau des leçons donne l'échelle de ces forces. L'acide chlorhydrique et la soude ont des constantes immenses : ce sont des espèces fortes, entièrement dissociées. L'acide acétique et l'ammoniac affichent des constantes voisines de deux fois dix puissance moins cinq : des espèces faibles. L'acide carbonique, avec dix puissance moins sept environ, est plus faible encore.",
+   "ecran": "tableau_forces",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "HCl et NaOH : forts ; CH₃COOH et NH₃ : faibles."
+  },
+  {
+   "dit": "Ces forces permettent de prédire le sens d'une réaction : elle favorise toujours la formation de l'acide le plus faible et de la base la plus faible. Exemple des leçons : l'acide acétique, faible, réagit avec l'ion hydroxyde, base forte. Les produits sont l'eau, acide très faible, et l'ion acétate, base faible : la réaction évolue donc vers la droite.",
+   "ecran": "prediction",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "La réaction favorise l'acide et la base les plus faibles."
+  },
+  {
+   "dit": "Exercice des leçons : l'acide fluorhydrique rencontre l'ammoniac, avec les constantes affichées à l'écran. Les produits sont l'ion ammonium, un acide plus faible que l'acide fluorhydrique, et l'ion fluorure, une base plus faible que l'ammoniac. La règle des plus faibles s'applique : la réaction évolue dans le sens direct.",
+   "ecran": "exercice_prediction",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "HF + NH₃ : le sens direct est favorisé."
+  },
+  {
+   "dit": "Pour mesurer l'acidité d'une solution, on utilise le pH, défini par Sørensen : c'est le cologarithme décimal de la concentration en ions hydronium. L'échelle va de zéro à quatorze. En dessous de sept, la solution est acide ; à sept, dans l'eau pure, elle est neutre ; au-dessus de sept, elle est basique, comme le montrent le jus de citron, l'eau pure et l'eau de Javel des leçons.",
+   "ecran": "echelle_ph",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "pH = −log[H₃O⁺] : acide sous 7, basique au-dessus."
+  },
+  {
+   "dit": "Premier calcul, celui de l'activité des leçons : avec une concentration en ions hydronium de deux virgule cinq fois dix puissance moins trois mole par litre, le pH vaut environ deux virgule six. Pour un acide fort, entièrement dissocié, le calcul est direct : à zéro virgule zéro un mole par litre, le pH vaut deux ; à zéro virgule un mole par litre, il vaut un.",
+   "ecran": "activite_ph",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "[H₃O⁺] = 2,5×10⁻³ mol/L → pH ≈ 2,6."
+  },
+  {
+   "dit": "Le pH d'un acide faible, maintenant : l'acide acétique à zéro virgule un mole par litre, de constante un virgule huit fois dix puissance moins cinq. Par l'approximation des acides faibles, la concentration en ions hydrogène est la racine carrée du produit de Ka par la concentration : environ un virgule trente-quatre fois dix puissance moins trois mole par litre. Le pH vaut donc environ deux virgule quatre-vingt-sept.",
+   "ecran": "exemple_faible",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "CH₃COOH 0,1 M : [H⁺] ≈ √(Ka·C), pH ≈ 2,87."
+  },
+  {
+   "dit": "Le pH mesure une solution ; le pKa caractérise l'acide lui-même : c'est le cologarithme de Ka. Plus le pKa est petit, plus l'acide est fort. Le tableau des leçons est parlant : moins sept pour l'acide chlorhydrique, quatre virgule soixante-seize pour l'acide acétique, six virgule trente-cinq pour l'acide carbonique, et quatorze pour l'eau.",
+   "ecran": "pka",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "pKa = −log Ka : petit pKa, acide fort."
+  },
+  {
+   "dit": "Le pKa sert aussi à classer, comme dans cet exercice des leçons. Trois acides : l'acide nitrique, de pKa voisin de moins un virgule trois ; l'acide formique, trois virgule soixante-quinze ; l'acide benzoïque, quatre virgule deux. Le plus petit pKa gagne : l'ordre de force croissante est donc benzoïque, puis formique, puis nitrique, le plus fort des trois.",
+   "ecran": "classement",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Classer par le pKa : benzoïque < formique < nitrique."
+  },
+  {
+   "dit": "Récapitulons la mesure de la force. Le degré de dissociation dit quelle fraction des molécules se dissocie. Ka et Kb chiffrent la force des acides et des bases, et le pKa la rend lisible d'un coup d'œil : petit pKa, acide fort. Le pH, enfin, mesure l'acidité de la solution obtenue. Dans la troisième partie, nous mettrons ces outils au travail : équilibres, tampons et titrages.",
+   "ecran": "recap_force",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "α, Ka, Kb, pKa : la force est mesurée."
+  },
+  {
+   "dit": "Toujours dans cette partie, voici l'équation de Henderson-Hasselbalch. Elle relie le pH d'une solution au pKa de l'acide et au rapport entre la concentration de sa base conjuguée et celle de l'acide. Son domaine de prédilection : les solutions tampons, ces mélanges d'un acide faible et de sa base conjuguée que nous allons rencontrer dans un instant.",
+   "ecran": "henderson",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Henderson-Hasselbalch : le pH des tampons."
+  },
+  {
+   "dit": "Appliquons-la au tampon des leçons : de l'acide acétique et de l'acétate de sodium, tous deux à zéro virgule un mole par litre. Le rapport des concentrations vaut un, son logarithme vaut zéro : le pH du tampon est donc exactement le pKa, quatre virgule soixante-seize. Retenez ce cas : à concentrations égales, le pH d'un tampon égale le pKa du couple.",
+   "ecran": "tampon_exemple",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Tampon équimolaire : pH = pKa = 4,76."
+  },
+  {
+   "dit": "Revenons un instant à l'eau, l'actrice de toutes ces réactions. Deux molécules d'eau peuvent échanger un proton entre elles : c'est l'autoprotolyse. L'équilibre est très largement déplacé vers la gauche, et sa constante, le produit ionique de l'eau, vaut dix puissance moins quatorze à vingt-cinq degrés. Même l'eau la plus pure contient donc quelques ions hydronium et hydroxyde.",
+   "ecran": "autoprotolyse",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "2H₂O ⇌ H₃O⁺ + OH⁻ : Kw = 10⁻¹⁴ à 25 °C."
+  },
+  {
+   "dit": "C'est le moment de regarder les équilibres en face. La plupart des réactions acido-basiques sont incomplètes : elles atteignent un équilibre dynamique où réactifs et produits coexistent. Pour l'acide acétique dans l'eau, la constante de cet équilibre est précisément Ka. Plus Ka est grand, plus l'équilibre est déplacé vers les produits, et plus l'acide est fort.",
+   "ecran": "equilibre",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "À l'équilibre, acide, base et produits coexistent."
+  },
+  {
+   "dit": "Les solutions tampons exploitent ces équilibres : un acide faible accompagné de sa base conjuguée résiste aux variations de pH quand on ajoute un peu d'acide ou de base. Le sang humain en dépend : le couple acide carbonique et ion hydrogénocarbonate y maintient le pH entre sept virgule trente-cinq et sept virgule quarante-cinq, une fourchette dont la moindre sortie serait grave.",
+   "ecran": "tampon_principe",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Le sang : un pH verrouillé entre 7,35 et 7,45."
+  },
+  {
+   "dit": "Changeons d'outil : le titrage, la technique qui dose une solution inconnue. On verse progressivement une solution de concentration connue, le titrant, dans la solution à doser, jusqu'au point d'équivalence, le moment où les quantités d'acide et de base correspondent exactement à l'équation de la réaction. La stœchiométrie fait ensuite le reste.",
+   "ecran": "titrage_principe",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Le titrage : verser le connu jusqu'à l'équivalence."
+  },
+  {
+   "dit": "Comment repérer l'équivalence ? Avec un indicateur coloré, qui change de couleur dans une zone précise, son domaine de virage. La phénolphtaléine vire entre huit et dix, de l'incolore au rose ; le bleu de bromothymol autour de sept, du jaune au bleu ; l'hélianthine en milieu acide, du rouge au jaune. Le domaine de virage doit contenir le pH à l'équivalence.",
+   "ecran": "indicateurs",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "L'indicateur vire dans son domaine : il contient l'équivalence."
+  },
+  {
+   "dit": "On peut aussi suivre le pH en continu pendant le versement : c'est la courbe de titrage. Pour un acide fort dosé par une base forte, le pH saute brutalement au voisinage de l'équivalence, et le point d'équivalence se lit au milieu de ce saut. Pour un acide faible, la montée est plus progressive : le choix de la méthode de lecture devient alors crucial.",
+   "ecran": "courbe",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "La courbe de titrage : le saut de pH à l'équivalence."
+  },
+  {
+   "dit": "Exemple résolu des leçons. On dose vingt-cinq millilitres d'acide chlorhydrique de concentration inconnue par de la soude à zéro virgule un mole par litre ; l'équivalence arrive après vingt millilitres versés. À l'équivalence, les quantités sont égales : le produit concentration fois volume de la soude égale celui de l'acide. On en déduit la concentration cherchée : zéro virgule zéro huit mole par litre.",
+   "ecran": "titrage_calcul",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "HCl dosé : C = (0,100 × 20,0)/25,0 = 0,0800 mol/L."
+  },
+  {
+   "dit": "À vous, avec l'exercice des leçons : quinze millilitres d'acide acétique dosés par de la soude à zéro virgule quinze mole par litre, avec une équivalence à dix-huit virgule cinq millilitres. Même réflexe : quantités égales à l'équivalence. La concentration de l'acide vaut donc zéro virgule quinze fois dix-huit virgule cinq, divisé par quinze : zéro virgule cent quatre-vingt-cinq mole par litre.",
+   "ecran": "titrage_exercice",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Acétique dosé : C = 0,185 mol/L."
+  },
+  {
+   "dit": "Ces réactions débordent le laboratoire. La santé : le pH du sang est verrouillé, l'estomac digère par son acidité, et les antiacides, des bases faibles, neutralisent les excès. L'agriculture ajuste le pH des sols. L'industrie alimentaire conserve et fermente sous contrôle du pH, et l'industrie lourde produit des engrais et traite les eaux.",
+   "ecran": "applications",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Santé, agriculture, alimentaire, industrie : partout."
+  },
+  {
+   "dit": "Trois derniers calculs, ceux de la synthèse des leçons. L'acide chlorhydrique à zéro virgule un mole par litre, acide fort : pH égal à un. La soude à zéro virgule zéro un : le pOH vaut deux, donc le pH vaut douze. Et le dosage d'un acide acétique par la soude, avec quinze millilitres versés pour vingt-cinq millilitres d'acide : la concentration vaut zéro virgule zéro six mole par litre.",
+   "ecran": "entrainement_final",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "pH = 1 ; pH = 12 ; dosage : 0,06 mol/L."
+  },
+  {
+   "dit": "Vous tenez l'ensemble du chapitre. Trois définitions qui se complètent, d'Arrhenius à Lewis. Une force mesurée par le degré de dissociation, Ka, Kb et le pKa. Une règle pour prédire le sens des réactions : l'équilibre favorise les espèces les plus faibles. Et deux applications : les tampons, par Henderson-Hasselbalch, et les titrages, qui dosent par l'équivalence.",
+   "ecran": "recap_final",
+   "id": "p34",
+   "pause_apres": 0.8,
+   "texte": "Définitions, force, prédiction, tampons, titrages."
+  }
+ ],
+ "titre": "Acides et bases : définitions, force, pH et titrages"
+}

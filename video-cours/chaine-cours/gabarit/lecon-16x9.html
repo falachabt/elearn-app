@@ -3224,6 +3224,68 @@ const FIG = {
       projete(310, 0, 'éclipsée', '#E8604C') + projete(690, 60, 'décalée', '#10B981') +
       mot(500, 292, 'projections de Newman de l’éthane', { t: 23 }));
   },
+  courbe_titrage_fig(t) {
+    const p = prog(t);
+    const Y = (ph) => Math.round(252 - ph * 15);
+    const seg = (pts, couleur, tiret) => {
+      let s = '';
+      const n = Math.floor(p * (pts.length - 1));
+      for (let i = 0; i < n; i++) s += trait(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], 1, { c: couleur, w: 5, tiret });
+      return s;
+    };
+    const fort = [[120, Y(1.2)], [420, Y(2.8)], [458, Y(5)], [472, Y(7)], [486, Y(10.5)], [560, Y(12.3)], [920, Y(12.6)]];
+    const faible = [[120, Y(3.4)], [300, Y(4.4)], [440, Y(5.8)], [472, Y(8.6)], [540, Y(10.6)], [920, Y(12)]];
+    return svgBoite(
+      trait(90, 252, 950, 252, 1, { w: 4 }) + pointe(962, 252, 0, 'currentColor') +
+      trait(90, 252, 90, 30, 1, { w: 4 }) + pointe(90, 18, -90, 'currentColor') +
+      mot(52, 40, 'pH', { t: 22 }) + mot(950, 282, 'volume de base versée', { t: 20, a: 'end' }) +
+      trait(90, Y(7), 950, Y(7), 1, { w: 2, tiret: '6 6' }) + mot(66, Y(7) + 6, '7', { t: 18 }) +
+      seg(faible, '#1A75FF', '9 7') + seg(fort, '#E8604C') +
+      (p > .55 ? `<circle cx="472" cy="${Y(7)}" r="10" fill="#B8860B" stroke="currentColor" stroke-width="3"/>` + mot(492, Y(7) - 12, 'E : point', { c: '#B8860B', t: 20, a: 'start' }) + mot(492, Y(7) + 14, 'd’équivalence', { c: '#B8860B', t: 20, a: 'start' }) : '') +
+      mot(200, 60, 'acide faible (pointillés)', { c: '#1A75FF', t: 19, a: 'start' }) +
+      mot(700, 236, 'acide fort', { c: '#E8604C', t: 19, a: 'start' }));
+  },
+  transfert_proton_fig(t) {
+    const p = prog(t);
+    const hx = Math.round(268 + 128 * Math.min(1, p * 1.4));
+    return svgBoite(
+      `<circle cx="190" cy="128" r="46" fill="#E8604C" fill-opacity=".2" stroke="currentColor" stroke-width="4"/>` + mot(190, 136, 'HCl', { t: 22 }) +
+      mot(190, 206, 'acide', { c: '#E8604C', t: 19 }) + mot(190, 230, 'donneur', { t: 17 }) +
+      `<circle cx="470" cy="128" r="46" fill="#1A75FF" fill-opacity=".2" stroke="currentColor" stroke-width="4"/>` + mot(470, 136, 'H₂O', { t: 22 }) +
+      mot(470, 206, 'base', { c: '#1A75FF', t: 19 }) + mot(470, 230, 'accepteur', { t: 17 }) +
+      (p > .15 ? `<circle cx="${hx}" cy="96" r="17" fill="#B8860B" stroke="currentColor" stroke-width="3"/>` + mot(hx, 103, 'H⁺', { t: 15 }) : '') +
+      trait(560, 128, 612, 128, 1, { w: 5 }) + pointe(624, 128, 0, 'currentColor') +
+      `<circle cx="716" cy="128" r="48" fill="#10B981" fill-opacity=".2" stroke="currentColor" stroke-width="4"/>` + mot(716, 136, 'H₃O⁺', { t: 20 }) +
+      mot(716, 206, 'acide conjugué', { c: '#10B981', t: 18 }) +
+      `<circle cx="880" cy="128" r="34" fill="#5B6B7B" fill-opacity=".25" stroke="currentColor" stroke-width="4"/>` + mot(880, 136, 'Cl⁻', { t: 19 }) +
+      mot(880, 206, 'base conjuguée', { t: 16 }) +
+      mot(500, 292, 'le proton passe de l’acide à la base', { t: 23 }));
+  },
+  dissociation_fig(t) {
+    const becher = (x, contenu, titre, c) =>
+      `<path d="M ${x} 60 L ${x + 16} 216 Q ${x + 18} 236 ${x + 40} 236 L ${x + 250} 236 Q ${x + 272} 236 ${x + 274} 216 L ${x + 290} 60" fill="#1A75FF" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="${x + 22}" y="120" width="246" height="106" fill="#1A75FF" fill-opacity=".18"/>` + contenu +
+      mot(x + 145, 268, titre, { c, t: 20 });
+    const ions = (x, n, dy) => {
+      let s = '';
+      const pos = [[50, 150], [120, 185], [195, 150], [85, 205], [235, 195], [160, 140]];
+      for (let i = 0; i < n; i++) {
+        s += `<circle cx="${x + pos[i][0]}" cy="${pos[i][1] + dy}" r="15" fill="#E8604C" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>` + mot(x + pos[i][0], pos[i][1] + dy + 5, 'H⁺', { t: 12 }) +
+             `<circle cx="${x + pos[i][0] + 26}" cy="${pos[i][1] + dy}" r="15" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>` + mot(x + pos[i][0] + 26, pos[i][1] + dy + 5, 'A⁻', { t: 12 });
+      }
+      return s;
+    };
+    const molecules = (x) => {
+      let s = '';
+      const pos = [[70, 155], [150, 190], [225, 150], [110, 140], [200, 205]];
+      pos.forEach(([dx, y]) => { s += `<circle cx="${x + dx}" cy="${y}" r="17" fill="#5B6B7B" fill-opacity=".3" stroke="currentColor" stroke-width="2"/>` + mot(x + dx, y + 6, 'HA', { t: 13 }); });
+      return s;
+    };
+    return svgBoite(
+      becher(70, ions(70, 5, 0), 'acide fort : α ≈ 1', '#E8604C') +
+      becher(560, molecules(560) + ions(560, 1, 8), 'acide faible : α ≪ 1', '#1A75FF') +
+      mot(500, 24, 'la dissociation : totale ou partielle', { t: 22 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
