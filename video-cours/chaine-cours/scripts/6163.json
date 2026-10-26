@@ -1,0 +1,451 @@
+{
+ "cours": 6163,
+ "ecrans": {
+  "applications": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Applications · physique, économie, ingénierie",
+   "texte": "Newton et la force, coûts marginaux croissants, courbure des poutres : f'' travaille partout.",
+   "type": "phrase"
+  },
+  "cinematique": {
+   "kicker": "Cinématique · un freinage uniforme",
+   "tex": [
+    "s(t) = 100 + 20t - 2t^2",
+    "v(t) = s'(t) = 20 - 4t \\qquad a(t) = s''(t) = -4",
+    "v(3) = 8 \\ \\text{m/s} \\qquad a(3) = -4 \\ \\text{m/s}^2"
+   ],
+   "titre": "Position, vitesse, accélération",
+   "type": "etape"
+  },
+  "convexite": {
+   "anim": {
+    "nom": "convexite_fig",
+    "hauteur": 190
+   },
+   "kicker": "Convexité et concavité",
+   "note": "Convexe : courbe sous ses cordes, au-dessus de ses tangentes.",
+   "tex": "f''(x) > 0 \\Rightarrow f \\text{ convexe} \\quad ; \\quad f''(x) < 0 \\Rightarrow f \\text{ concave}",
+   "type": "formule"
+  },
+  "cycles": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "sinusoide"
+   },
+   "kicker": "Des motifs qui tournent",
+   "tex": [
+    "(e^{kx})^{(n)} = k^n e^{kx}",
+    "\\sin \\to \\cos \\to -\\sin \\to -\\cos \\to \\sin",
+    "(\\sin x)^{(n)} = \\sin\\left(x + n\\tfrac{\\pi}{2}\\right)"
+   ],
+   "titre": "Exponentielle et sinus : cycles et puissances",
+   "type": "etape"
+  },
+  "def_seconde": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "La dérivée seconde",
+   "note": "La dérivée de la dérivée : le changement du changement.",
+   "tex": "f''(x) = (f')'(x) = \\lim_{h \\to 0} \\frac{f'(x+h)-f'(x)}{h}",
+   "type": "formule"
+  },
+  "dl_exp": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Développement limité · l'exponentielle",
+   "tex": [
+    "e^x = 1 + x + \\tfrac{x^2}{2} + o(x^2)",
+    "e^{0{,}1} \\approx 1{,}105 \\quad \\text{contre} \\ 1{,}105171",
+    "\\text{erreur : } 0{,}00017 \\ \\text{contre} \\ 0{,}005 \\ \\text{à l'ordre un}"
+   ],
+   "titre": "Un, plus x, plus x carré sur deux",
+   "type": "etape"
+  },
+  "dl_formule": {
+   "kicker": "Le développement limité d'ordre deux",
+   "note": "La parabole qui épouse la courbe : position, pente, courbure.",
+   "tex": "f(x) = f(a) + f'(a)(x-a) + \\frac{f''(a)}{2}(x-a)^2 + o((x-a)^2)",
+   "type": "formule",
+   "anim": {
+    "nom": "parabole_osculatrice_fig",
+    "hauteur": 190
+   }
+  },
+  "dl_log": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Développement limité · le logarithme",
+   "tex": [
+    "\\ln(1+x) = x - \\tfrac{x^2}{2} + o(x^2)",
+    "\\ln(1{,}05) \\approx 0{,}05 - 0{,}00125 = 0{,}04875"
+   ],
+   "titre": "Approcher un logarithme sans calculatrice",
+   "type": "etape"
+  },
+  "dl_racine": {
+   "kicker": "Application numérique · une racine carrée",
+   "tex": [
+    "f(x) = \\sqrt{x} \\ \\text{en} \\ a = 4 : f = 2,\\ f' = \\tfrac{1}{4},\\ f'' = -\\tfrac{1}{32}",
+    "\\sqrt{4{,}1} \\approx 2 + \\tfrac{1}{4}(0{,}1) - \\tfrac{1}{64}(0{,}1)^2",
+    "\\approx 2{,}02484 \\quad \\text{erreur} < 2 \\times 10^{-6}"
+   ],
+   "titre": "Racine de quatre virgule un, à deux millionièmes près",
+   "type": "etape"
+  },
+  "etude_complete2": {
+   "kicker": "Synthèse · étude complète et estimation",
+   "tex": [
+    "f(x) = x^3 - 3x^2 + 4 \\qquad f'(x) = 3x(x-2)",
+    "f''(x) = 6(x-1) \\Rightarrow \\text{inflexion en } (1\\,;\\,2)",
+    "\\text{DL en } 1 : f(x) \\approx 2 - 3(x-1) \\Rightarrow f(1{,}1) \\approx 1{,}7"
+   ],
+   "titre": "Variations, courbure, puis une estimation",
+   "type": "etape"
+  },
+  "ex_cubique2": {
+   "kicker": "Exemple · dériver deux fois",
+   "tex": [
+    "f(x) = x^3 - 3x^2 + 2x + 1",
+    "f'(x) = 3x^2 - 6x + 2 \\qquad f''(x) = 6x - 6",
+    "f''(2) = 6"
+   ],
+   "titre": "Dériver deux fois, pas à pas",
+   "type": "etape"
+  },
+  "ex_inflexion": {
+   "kicker": "Exemple · le point où la courbure bascule",
+   "tex": [
+    "f(x) = x^3 - 3x^2 + 2 \\qquad f''(x) = 6x - 6",
+    "x < 1 : \\text{concave} \\qquad x > 1 : \\text{convexe}",
+    "\\text{inflexion en } (1\\,;\\,0)"
+   ],
+   "titre": "Concave, puis convexe : le point d'inflexion",
+   "type": "etape",
+   "anim": {
+    "nom": "inflexion_fig",
+    "hauteur": 130
+   }
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "derive_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "La pente ne suffit pas : il faut savoir comment la pente elle-même évolue.",
+   "type": "phrase"
+  },
+  "leibniz": {
+   "kicker": "La formule de Leibniz",
+   "tex": [
+    "(uv)^{(3)} = u^{(3)}v + 3u''v' + 3u'v'' + u v^{(3)}",
+    "f(x) = x^2 e^{3x} \\Rightarrow f^{(3)}(x) = e^{3x}(27x^2 + 54x + 18)"
+   ],
+   "titre": "Dériver un produit n fois, comme un binôme",
+   "type": "etape"
+  },
+  "log_etude": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Exemple · convexité d'un logarithme",
+   "tex": [
+    "k(x) = \\ln(x^2+1) \\qquad k'(x) = \\tfrac{2x}{x^2+1}",
+    "k''(x) = \\tfrac{2(1-x^2)}{(x^2+1)^2}",
+    "\\text{inflexions en } x = -1 \\text{ et } x = 1 \\quad (\\ln 2)"
+   ],
+   "titre": "Deux points d'inflexion symétriques",
+   "type": "etape"
+  },
+  "methode_conv": {
+   "etapes": [
+    "Calculer f'(x) puis f''(x)",
+    "Résoudre f''(x) = 0 : les candidats",
+    "Tableau de signe de f''(x)",
+    "Convexe si f'' positive, concave sinon",
+    "Inflexion : zéro ET changement de signe"
+   ],
+   "kicker": "La méthode · convexité et inflexions",
+   "type": "recap"
+  },
+  "motif": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "hyperbole_fig"
+   },
+   "kicker": "Reconnaître un motif",
+   "tex": [
+    "f'(x) = \\tfrac{1}{(1-x)^2} \\qquad f''(x) = \\tfrac{2}{(1-x)^3}",
+    "f^{(n)}(x) = \\tfrac{n!}{(1-x)^{n+1}}"
+   ],
+   "titre": "Les premières dérivées devinent la n-ième",
+   "type": "etape"
+  },
+  "ordre_n": {
+   "kicker": "Jusqu'à l'ordre n",
+   "tex": [
+    "f^{(n+1)} = (f^{(n)})' \\qquad f^{(0)} = f",
+    "P(x) \\text{ de degré } n \\Rightarrow P^{(n)} = n! \\times a_n",
+    "k > n \\Rightarrow P^{(k)} = 0"
+   ],
+   "titre": "Itérer la dérivation, et les polynômes s'arrêtent",
+   "type": "etape"
+  },
+  "piege": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Le piège · s'annuler ne suffit pas",
+   "note": "f''(0) = 0 sans changement de signe : pas d'inflexion en 0.",
+   "tex": "f(x) = x^4 \\Rightarrow f''(x) = 12x^2 \\geq 0",
+   "type": "formule"
+  },
+  "position_tangente": {
+   "kicker": "Position par rapport à la tangente",
+   "tex": [
+    "f''(a) > 0 : \\text{courbe au-dessus de sa tangente}",
+    "f''(a) < 0 : \\text{courbe au-dessous de sa tangente}",
+    "f'(a) = 0,\\ f''(a) > 0 \\Rightarrow \\text{minimum local}"
+   ],
+   "titre": "Lire la position, prouver le test des extremums",
+   "type": "etape",
+   "anim": {
+    "nom": "parabole_osculatrice_fig",
+    "hauteur": 130
+   }
+  },
+  "rationnelle_inf": {
+   "kicker": "Exemple · une rationnelle à trois inflexions",
+   "tex": [
+    "f(x) = \\tfrac{x}{1+x^2} \\qquad f''(x) = \\tfrac{2x(x^2-3)}{(1+x^2)^3}",
+    "\\text{convexe : } ]-\\sqrt{3}, 0[ \\cup ]\\sqrt{3}, +\\infty[",
+    "\\text{concave : } ]-\\infty, -\\sqrt{3}[ \\cup ]0, \\sqrt{3}["
+   ],
+   "titre": "Trois zéros de f'', quatre intervalles de signe",
+   "type": "etape"
+  },
+  "recap_final": {
+   "etapes": [
+    "f'' : le changement du changement",
+    "Son signe donne convexité et concavité",
+    "Inflexion : f'' s'annule et change de signe",
+    "Le DL d'ordre 2 : une parabole locale",
+    "Position, pente, courbure en une formule"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sincos": {
+   "kicker": "Un cas élégant · sinus plus cosinus",
+   "tex": [
+    "f(x) = \\sin x + \\cos x \\qquad f''(x) = -f(x)",
+    "\\text{inflexions sur } [0, 2\\pi] : \\tfrac{3\\pi}{4} \\text{ et } \\tfrac{7\\pi}{4}"
+   ],
+   "titre": "La dérivée seconde est l'opposée de la fonction",
+   "type": "etape"
+  },
+  "taylor": {
+   "kicker": "Perspective · l'ordre n",
+   "note": "L'ordre 2 n'est qu'un début : chaque dérivée ajoute un terme.",
+   "tex": "f(x) = \\sum_{k=0}^{n} \\frac{f^{(k)}(a)}{k!}(x-a)^k + o((x-a)^n)",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Mathématique · Dérivées successives",
+   "sous": "Courbure, points d'inflexion et paraboles d'approximation : le comportement local en profondeur",
+   "titre": "Au-delà de la pente : dérivées successives, courbure et approximations d'ordre deux",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dériver encore : de la seconde à l'ordre n"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : la courbure des courbes. Le signe de la dérivée seconde distingue les bols des dômes, et ses changements de signe révèlent les points d'inflexion, ces moments où une courbe traverse sa tangente et change de nature.",
+    "texte": "Partie 2 : convexité, concavité et points d'inflexion."
+   },
+   "sous_titre": "Convexité, concavité et points d'inflexion"
+  },
+  {
+   "debut": "p17",
+   "pont": {
+    "dit": "Partie trois : approcher pour de bon. Les développements limités d'ordre deux remplacent localement une fonction par la parabole qui lui ressemble le plus, et transforment la courbure en précision de calcul.",
+    "texte": "Partie 3 : développements limités d'ordre deux et applications."
+   },
+   "sous_titre": "Développements limités d'ordre deux"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux dérivées successives. Après la pente, nous allons regarder la courbure : dériver la dérivée donne l'accélération en physique, le signe de la convexité en géométrie, et la clé des points d'inflexion. Nous finirons par les développements limités d'ordre deux, qui approchent une fonction par une parabole fidèle.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Dérivées successives, courbure et approximations."
+  },
+  {
+   "dit": "Conduire sur une route de montagne le résume bien : la dérivée première donne la vitesse, mais pour anticiper le virage, il faut savoir comment la vitesse elle-même évolue. Cette évolution de l'évolution, le changement du changement, est le fil rouge du cours : elle se calcule, elle se lit sur la courbe, et elle sert même à approcher les fonctions.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Le changement du changement : le fil rouge."
+  },
+  {
+   "dit": "La dérivée seconde d'une fonction est tout simplement la dérivée de sa dérivée première. Si la première mesure le taux de variation instantané, la seconde mesure le taux de variation de ce taux. En cinématique, la position donne la vitesse par une dérivation, puis l'accélération par une seconde dérivation : deux étages, une même opération répétée.",
+   "ecran": "def_seconde",
+   "id": "p03",
+   "texte": "f'' : la dérivée de la dérivée première."
+  },
+  {
+   "dit": "Exemple fondateur : ixe au cube, moins trois ixe au carré, plus deux ixe, plus un. Une première dérivation donne trois ixe au carré, moins six ixe, plus deux. Une seconde donne six ixe moins six. En deux, la dérivée seconde vaut six : positive, elle annonce déjà que la pente de la fonction augmente autour de ce point, une information que la seule dérivée première ne donnait pas.",
+   "ecran": "ex_cubique2",
+   "id": "p04",
+   "texte": "f''(2) = 6 : la pente augmente en 2."
+  },
+  {
+   "dit": "On peut continuer : dérivée troisième, quatrième, et ainsi de suite jusqu'à l'ordre n, chaque dérivée étant celle de la précédente. Les polynômes ont un comportement remarquable : chaque dérivation baisse leur degré d'un cran, la dérivée d'ordre n est une constante, et toutes les suivantes sont nulles. L'information d'un polynôme tient donc en un nombre fini de dérivées.",
+   "ecran": "ordre_n",
+   "id": "p05",
+   "texte": "Un polynôme de degré n s'arrête à l'ordre n."
+  },
+  {
+   "dit": "Certaines fonctions tournent en boucle. L'exponentielle de k ixe se reproduit à chaque dérivation, avec une puissance de k en plus. Le sinus, lui, suit un cycle de quatre pas : sinus, cosinus, moins sinus, moins cosinus, puis retour au sinus. Repérer ces motifs évite de refaire indéfiniment les mêmes calculs et prépare les formules générales d'ordre n.",
+   "ecran": "cycles",
+   "id": "p06",
+   "texte": "Exponentielle et sinus : des motifs cycliques."
+  },
+  {
+   "dit": "Pour dériver plusieurs fois un produit, la formule de Leibniz généralise la règle du produit, avec les coefficients binomiaux comme dans le binôme de Newton. Application : ixe au carré fois l'exponentielle de trois ixe. À l'ordre trois, les termes se combinent et il reste l'exponentielle de trois ixe, facteur d'un polynôme : vingt-sept ixe au carré, plus cinquante-quatre ixe, plus dix-huit.",
+   "ecran": "leibniz",
+   "id": "p07",
+   "texte": "Leibniz : f⁽³⁾(x) = e³ˣ(27x² + 54x + 18)."
+  },
+  {
+   "dit": "Autre motif à reconnaître : la fonction inverse de un moins ixe. Ses dérivées font apparaître les factorielles et des puissances croissantes au dénominateur : à l'ordre n, factorielle n divisée par un moins ixe, le tout à la puissance n plus un. La méthode est générale : calculer les premières dérivées, deviner le motif, puis le prouver par récurrence.",
+   "ecran": "motif",
+   "id": "p08",
+   "texte": "f⁽ⁿ⁾(x) = n! / (1 − x)ⁿ⁺¹, par récurrence."
+  },
+  {
+   "dit": "En physique, une voiture qui freine a pour position cent, plus vingt t, moins deux t au carré. Sa vitesse, vingt moins quatre t, diminue régulièrement, et son accélération, moins quatre mètres par seconde au carré, est constante : c'est un freinage uniforme. À trois secondes, la voiture roule encore à huit mètres par seconde, en ralentissant au même rythme.",
+   "ecran": "cinematique",
+   "id": "p09",
+   "texte": "v(3) = 8 m/s, a = −4 m/s² constant."
+  },
+  {
+   "dit": "Une fonction est convexe quand sa courbe, en forme de bol, reste sous ses cordes et au-dessus de ses tangentes ; concave quand elle forme un dôme, au-dessus de ses cordes. Le théorème central relie cette géométrie au calcul : dérivée seconde positive, fonction convexe ; dérivée seconde négative, fonction concave. Tout s'étudie donc par un signe.",
+   "ecran": "convexite",
+   "id": "p10",
+   "texte": "f'' > 0 : bol ; f'' < 0 : dôme."
+  },
+  {
+   "dit": "Sur ixe au cube, moins trois ixe au carré, plus deux, la dérivée seconde, six ixe moins six, est négative avant un et positive après. La fonction est donc concave puis convexe : en un, la courbure bascule. Ce point, d'ordonnée zéro, où la courbe traverse sa tangente en changeant de concavité, est un point d'inflexion, l'événement géométrique majeur de ce chapitre.",
+   "ecran": "ex_inflexion",
+   "id": "p11",
+   "texte": "Inflexion en (1 ; 0) : la courbure bascule."
+  },
+  {
+   "dit": "Étude complète sur le logarithme de ixe au carré plus un. Sa dérivée seconde a le signe de un moins ixe au carré : positive entre moins un et un, négative à l'extérieur. La fonction est donc convexe entre moins un et un, concave au-delà, avec deux points d'inflexion, en moins un et en un, tous deux à l'ordonnée logarithme de deux.",
+   "ecran": "log_etude",
+   "id": "p12",
+   "texte": "Inflexions en −1 et 1, ordonnée ln 2."
+  },
+  {
+   "dit": "Dernier exemple, et le plus piégeux : la fraction ixe sur un plus ixe au carré. Sa dérivée seconde s'annule en moins racine de trois, en zéro et en racine de trois, en changeant de signe à chaque fois : trois points d'inflexion. Mais attention aux intervalles : la fonction est convexe entre moins racine de trois et zéro, puis entre racine de trois et l'infini, et concave sur les deux intervalles complémentaires.",
+   "ecran": "rationnelle_inf",
+   "id": "p13",
+   "texte": "Convexe et concave alternent quatre fois."
+  },
+  {
+   "dit": "Le piège classique maintenant : annuler la dérivée seconde ne suffit pas. Pour ixe puissance quatre, la dérivée seconde, douze ixe au carré, s'annule en zéro mais reste positive des deux côtés : aucune bascule de courbure, donc aucun point d'inflexion. Retenez la condition complète : zéro de la dérivée seconde, et changement de signe, les deux à la fois.",
+   "ecran": "piege",
+   "id": "p14",
+   "texte": "x⁴ : f''(0) = 0, mais pas d'inflexion."
+  },
+  {
+   "dit": "La méthode d'étude tient en six gestes : calculer la dérivée première puis la seconde, chercher les zéros de la seconde, dresser son tableau de signe, en déduire les intervalles de convexité et de concavité, identifier les points d'inflexion véritables, et ne jamais oublier l'ordonnée du point. Un tableau de signe soigné fait tout le travail.",
+   "ecran": "methode_conv",
+   "id": "p15",
+   "texte": "Six gestes pour étudier une courbure."
+  },
+  {
+   "dit": "Un cas élégant pour finir cette partie : sinus ixe plus cosinus ixe. Sa dérivée seconde est exactement son opposée. Elle s'annule donc là où la fonction elle-même s'annule, en trois quarts de pi et en sept quarts de pi sur un tour complet : ce sont ses points d'inflexion. Quand la fonction repasse par zéro, sa courbure change de camp.",
+   "ecran": "sincos",
+   "id": "p16",
+   "texte": "f'' = −f : inflexions en 3π/4 et 7π/4."
+  },
+  {
+   "dit": "Au voisinage d'un point, une fonction régulière s'écrit comme sa valeur, plus sa pente fois l'écart, plus la moitié de sa dérivée seconde fois l'écart au carré, à un reste négligeable près. Le polynôme obtenu est une parabole qui partage avec la courbe la position, la pente et la courbure au point choisi : c'est le développement limité d'ordre deux.",
+   "ecran": "dl_formule",
+   "id": "p17",
+   "texte": "Une parabole : position, pente et courbure."
+  },
+  {
+   "dit": "Premier calcul : l'exponentielle en zéro. Toutes ses dérivées valent un en zéro, donc son développement est un, plus ixe, plus ixe au carré sur deux. Pour ixe égal zéro virgule un, on obtient un virgule cent cinq, très proche de la valeur exacte : l'erreur, inférieure à deux dix-millièmes, est environ trente fois plus petite que celle de la tangente.",
+   "ecran": "dl_exp",
+   "id": "p18",
+   "texte": "e⁰·¹ ≈ 1,105 : erreur sous 0,0002."
+  },
+  {
+   "dit": "Le logarithme de un plus ixe donne, en zéro, le développement ixe moins ixe au carré sur deux. Pour ixe égal cinq centièmes, on obtient zéro virgule zéro quatre huit sept cinq, là où la tangente donnait zéro virgule zéro cinq : le terme en ixe au carré corrige exactement l'excès de la droite, et l'approximation devient excellente.",
+   "ecran": "dl_log",
+   "id": "p19",
+   "texte": "ln(1,05) ≈ 0,04875 grâce au terme en x²."
+  },
+  {
+   "dit": "Application numérique spectaculaire : approcher la racine carrée de quatre virgule un, autour de quatre. La valeur est deux, la dérivée un quart, la dérivée seconde moins un trente-deuxième. Le développement donne deux virgule zéro deux quatre huit quatre environ, avec une erreur inférieure à deux millionièmes, là où la tangente se trompait de plus d'un dix-millième.",
+   "ecran": "dl_racine",
+   "id": "p20",
+   "texte": "√4,1 ≈ 2,02484 : erreur sous 2 millionièmes."
+  },
+  {
+   "dit": "Le développement limité explique aussi la géométrie : si la dérivée seconde est positive, le terme quadratique place la courbe au-dessus de sa tangente, c'est la convexité locale ; si elle est négative, la courbe passe au-dessous. Mieux : quand la dérivée première s'annule, le signe de la seconde décide seul entre minimum et maximum : voilà la preuve du test de la dérivée seconde.",
+   "ecran": "position_tangente",
+   "id": "p21",
+   "texte": "Le terme en x² prouve le test des extremums."
+  },
+  {
+   "dit": "Synthèse finale sur ixe au cube, moins trois ixe au carré, plus quatre. La dérivée première donne un maximum en zéro et un minimum en deux ; la seconde s'annule en un, point d'inflexion d'ordonnée deux. Son développement en un est exceptionnellement simple, deux moins trois fois l'écart, et il estime la valeur en un virgule un à un virgule sept, contre un virgule sept zéro un en exact.",
+   "ecran": "etude_complete2",
+   "id": "p22",
+   "texte": "Inflexion en (1 ; 2), f(1,1) ≈ 1,7."
+  },
+  {
+   "dit": "Ces outils travaillent partout : la loi de Newton relie la force à la dérivée seconde de la position ; en économie, une dérivée seconde positive du coût signifie des coûts marginaux croissants, et celle de l'utilité, négative, des satisfactions marginales décroissantes ; en ingénierie, la courbure des poutres et des ponts se lit dans la dérivée seconde de leur déformée.",
+   "ecran": "applications",
+   "id": "p23",
+   "texte": "Force, coûts marginaux, poutres : f'' partout."
+  },
+  {
+   "dit": "L'ordre deux n'est qu'une étape : la formule de Taylor-Young généralise à tout ordre, chaque dérivée successive ajoutant un terme, divisé par la factorielle de son rang. Au voisinage d'un point, une fonction régulière se comporte comme un polynôme : c'est l'idée qui rend possibles les calculs de limites délicates et les méthodes numériques modernes.",
+   "ecran": "taylor",
+   "id": "p24",
+   "texte": "Taylor-Young : un terme par dérivée."
+  },
+  {
+   "dit": "Pour finir, retenez la vision d'ensemble : la dérivée seconde est le changement du changement, son signe dessine la courbure, ses zéros avec changement de signe marquent les inflexions, et le développement limité d'ordre deux transforme position, pente et courbure en une parabole locale d'une précision remarquable.",
+   "ecran": "recap_final",
+   "id": "p25",
+   "texte": "Courbure et parabole locale : à retenir."
+  }
+ ],
+ "titre": "Au-delà de la pente : dérivées successives, courbure et approximations d'ordre deux"
+}
