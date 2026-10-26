@@ -1,0 +1,516 @@
+{
+ "cours": 6176,
+ "ecrans": {
+  "conv_droite": {
+   "kicker": "Conversion · paramétrique vers cartésien",
+   "tex": [
+    "x = 2 + 3t, \\quad y = 1 - t, \\quad z = 4 + 2t",
+    "t = 1 - y \\qquad x = 5 - 3y \\qquad z = 6 - 2y",
+    "x + 3y = 5 \\qquad 2y + z = 6"
+   ],
+   "titre": "Éliminer le paramètre t",
+   "type": "etape"
+  },
+  "conv_plan": {
+   "kicker": "Conversion · cartésien vers paramétrique",
+   "tex": [
+    "2x - y + 3z = 6 \\quad \\Longrightarrow \\quad y = 2x + 3z - 6",
+    "x = t, \\quad z = s : \\quad (x,\\; y,\\; z) = (t,\\; 2t + 3s - 6,\\; s)"
+   ],
+   "titre": "Introduire deux paramètres",
+   "type": "etape"
+  },
+  "critere": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "vecteurs"
+   },
+   "kicker": "Le critère du produit scalaire",
+   "note": "Non nul : la droite perce le plan. Nul : tester un point.",
+   "tex": "\\vec{u} \\cdot \\vec{n} = 0 \\iff D \\parallel \\mathcal{P}",
+   "type": "formule"
+  },
+  "dist_droite": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "projection_fig"
+   },
+   "kicker": "Distance d'un point à une droite",
+   "tex": [
+    "M_t(1 + 2t,\\; t,\\; 3 - t) \\qquad \\vec{BM_t} \\cdot \\vec{u} = 0",
+    "6t - 12 = 0 \\qquad t = 2 \\qquad H(5,\\; 2,\\; 1)",
+    "d(B,\\; D) = BH = \\sqrt{1 + 1 + 9} = \\sqrt{11}"
+   ],
+   "titre": "Le projeté rend le vecteur orthogonal",
+   "type": "etape"
+  },
+  "dist_plan": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "projection_fig"
+   },
+   "kicker": "Distance d'un point à un plan",
+   "note": "Valeur absolue au numérateur, norme du normal en dessous.",
+   "tex": "d(A,\\; \\mathcal{P}) = \\frac{|a x_A + b y_A + c z_A + d|}{\\sqrt{a^2 + b^2 + c^2}}",
+   "type": "formule"
+  },
+  "distance": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "repere3d_fig"
+   },
+   "kicker": "Distance entre deux points",
+   "note": "Pythagore généralisé : repère orthonormé seulement.",
+   "tex": "AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2 + (z_B - z_A)^2}",
+   "type": "formule"
+  },
+  "droite_cart": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "plans_secants_fig"
+   },
+   "kicker": "Équation cartésienne d'une droite",
+   "tex": [
+    "\\mathcal{D} = \\mathcal{P}_1 \\cap \\mathcal{P}_2",
+    "\\begin{cases} a_1x + b_1y + c_1z + d_1 = 0 \\\\ a_2x + b_2y + c_2z + d_2 = 0 \\end{cases}"
+   ],
+   "titre": "L'intersection de deux plans",
+   "type": "etape"
+  },
+  "droite_param": {
+   "kicker": "Équation paramétrique d'une droite",
+   "tex": [
+    "x = x_0 + t\\,a",
+    "y = y_0 + t\\,b",
+    "z = z_0 + t\\,c"
+   ],
+   "titre": "Point A, vecteur directeur u, paramètre t",
+   "type": "etape"
+  },
+  "drone": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "repere3d_fig"
+   },
+   "kicker": "Exemple · la trajectoire d'un drone",
+   "tex": [
+    "(x,\\; y,\\; z) = (1 + 2t,\\; 2 - t,\\; 3t)",
+    "t = 0 : (1,\\; 2,\\; 0) \\qquad t = 2 : (5,\\; 0,\\; 6)"
+   ],
+   "titre": "La position à chaque instant",
+   "type": "etape"
+  },
+  "ex_archi": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "pave_fig"
+   },
+   "kicker": "Exemple · quatre poteaux",
+   "tex": [
+    "A(2,1,0),\\; B(5,1,0),\\; C(5,4,0),\\; D(2,4,0)",
+    "AC = \\sqrt{3^2 + 3^2} = 3\\sqrt{2} \\qquad A'B' = B'C' = 3",
+    "M = \\left(\\tfrac{7}{2},\\; \\tfrac{5}{2},\\; 3\\right) \\qquad \\text{tour} = 4 \\times 3 = 12"
+   ],
+   "titre": "Un carré, une diagonale, un milieu",
+   "type": "etape"
+  },
+  "gauches": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "droites_trois_cas_fig"
+   },
+   "kicker": "Les droites gauches",
+   "texte": "Deux droites qui ne se coupent pas ne sont pas toujours parallèles.",
+   "type": "phrase"
+  },
+  "gauss": {
+   "kicker": "Méthode du pivot de Gauss",
+   "tex": [
+    "2x - y + 3z = 1 \\qquad x + y - z = 0",
+    "L_2 \\leftarrow 2L_2 - L_1 : \\qquad 3y - 5z = -1",
+    "y = \\tfrac{5}{3}t - \\tfrac{1}{3}, \\quad x = -\\tfrac{2}{3}t + \\tfrac{1}{3}, \\quad z = t"
+   ],
+   "titre": "Triangulariser par combinaisons de lignes",
+   "type": "etape"
+  },
+  "hauteur": {
+   "kicker": "Application · hauteur d'un tétraèdre",
+   "tex": [
+    "\\mathcal{P} : x + y + z = 1 \\qquad B(1,0,0),\\; C(0,1,0),\\; D(0,0,1)",
+    "h = d(O,\\; \\mathcal{P}) = \\frac{|-1|}{\\sqrt{3}} = \\frac{1}{\\sqrt{3}}"
+   ],
+   "titre": "La hauteur par la formule de distance",
+   "type": "etape"
+  },
+  "intersection": {
+   "kicker": "Intersection d'une droite et d'un plan",
+   "tex": [
+    "(1 + 2t) + 2(-3 + t) - (2 - t) = 5",
+    "5t - 7 = 5 \\qquad t = \\tfrac{12}{5}",
+    "I\\left(\\tfrac{29}{5},\\; -\\tfrac{3}{5},\\; -\\tfrac{2}{5}\\right)"
+   ],
+   "titre": "Substituer la droite dans le plan",
+   "type": "etape",
+   "anim": {
+    "nom": "percement_fig",
+    "hauteur": 130
+   }
+  },
+  "intersection2": {
+   "kicker": "Deuxième intersection droite et plan",
+   "tex": [
+    "(1 + 2t) - (-t) + 2(3 + t) - 5 = 0",
+    "5t + 2 = 0 \\qquad t = -\\tfrac{2}{5}",
+    "I\\left(\\tfrac{1}{5},\\; \\tfrac{2}{5},\\; \\tfrac{13}{5}\\right)"
+   ],
+   "titre": "Toujours substituer, résoudre, reporter",
+   "type": "etape",
+   "anim": {
+    "nom": "percement_fig",
+    "hauteur": 130
+   }
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Quitter la feuille pour construire dans le volume : il faut une troisième coordonnée.",
+   "type": "phrase"
+  },
+  "laser": {
+   "kicker": "Application · le faisceau laser",
+   "tex": [
+    "(x,\\; y,\\; z) = (3t,\\; 4t,\\; 10 - 5t)",
+    "z = 0 \\Rightarrow t = 2 \\qquad I(6,\\; 8,\\; 0)"
+   ],
+   "titre": "Un rayon, un écran : le point d'impact",
+   "type": "etape"
+  },
+  "milieu": {
+   "kicker": "Milieu d'un segment",
+   "note": "La moyenne des coordonnées, axe par axe.",
+   "tex": "I\\left(\\frac{x_A + x_B}{2},\\; \\frac{y_A + y_B}{2},\\; \\frac{z_A + z_B}{2}\\right)",
+   "type": "formule"
+  },
+  "plan_cart": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Équation cartésienne d'un plan",
+   "note": "Le vecteur (a, b, c) est normal au plan.",
+   "tex": "a\\,x + b\\,y + c\\,z + d = 0 \\qquad \\vec{n}(a,\\; b,\\; c)",
+   "type": "formule"
+  },
+  "plan_param": {
+   "kicker": "Équation paramétrique d'un plan",
+   "tex": [
+    "x = x_0 + t\\,a_1 + s\\,a_2",
+    "y = y_0 + t\\,b_1 + s\\,b_2",
+    "z = z_0 + t\\,c_1 + s\\,c_2"
+   ],
+   "titre": "Un point, deux vecteurs directeurs u et v",
+   "type": "etape"
+  },
+  "plans_coord": {
+   "kicker": "Les plans de coordonnées",
+   "tex": [
+    "(x,\\; y,\\; 0) : \\text{plan du sol } (xOy)",
+    "(x,\\; 0,\\; z) : \\text{plan } (xOz)",
+    "(0,\\; y,\\; z) : \\text{plan } (yOz)"
+   ],
+   "titre": "Une coordonnée nulle, un plan",
+   "type": "etape"
+  },
+  "positions": {
+   "kicker": "Positions relatives",
+   "tex": [
+    "\\text{droites : sécantes, parallèles, confondues, gauches}",
+    "\\text{droite et plan : sécants, parallèles, incluse}",
+    "\\text{plans : sécants, parallèles, confondus}",
+    "\\text{gauches : le cas propre à l'espace}"
+   ],
+   "titre": "Toutes les rencontres possibles",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Repère orthonormé : (x, y, z) et vecteur AB",
+    "Distance : Pythagore ; milieu : moyennes",
+    "Paramétrique : parcourir ; cartésien : tester",
+    "Intersection : substituer puis résoudre",
+    "Distance point–plan : la formule directe"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "repere": {
+   "kicker": "Le repère orthonormé de l'espace",
+   "note": "Abscisse, ordonnée, cote : axes perpendiculaires, même unité.",
+   "tex": "\\vec{OM} = x\\vec{i} + y\\vec{j} + z\\vec{k} \\qquad M(x,\\; y,\\; z)",
+   "type": "formule"
+  },
+  "robot": {
+   "kicker": "Application · le bras robotisé",
+   "tex": [
+    "(x,\\; y,\\; z) = (1 + 3t,\\; 2 + 4t,\\; 3), \\quad t \\in [0,\\; 1]",
+    "(1 + 3t) + 2(2 + 4t) - 3 = 5 \\Rightarrow 11t = 3, \\quad t = \\tfrac{3}{11}"
+   ],
+   "titre": "Détecter une collision par substitution",
+   "type": "etape"
+  },
+  "systeme": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "plans_secants_fig"
+   },
+   "kicker": "Intersection de deux plans",
+   "tex": [
+    "2x - y + z = 1 \\qquad x + y - 2z = -4",
+    "\\vec{n}(2,-1,1),\\; \\vec{n}'(1,1,-2) \\text{ non colinéaires}",
+    "x = t, \\quad y = 2 + 5t, \\quad z = 3 + 3t"
+   ],
+   "titre": "Deux plans sécants fabriquent une droite",
+   "type": "etape"
+  },
+  "test_appart": {
+   "kicker": "Tester l'appartenance d'un point",
+   "note": "A(2, 0, 0) : 0, il est dans le plan · B(1, 1, 1) : −4, dehors.",
+   "tex": "2x - 3y + z - 4 = 0 \\qquad \\vec{n}(2,\\; -3,\\; 1)",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "repere3d_fig"
+   },
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "sous": "Repères, équations paramétriques et cartésiennes, intersections et distances",
+   "titre": "Géométrie dans l'espace : coordonnées, droites et plans",
+   "type": "titre"
+  },
+  "trois_plans": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "plans_secants_fig"
+   },
+   "kicker": "Trois plans, un paramètre",
+   "texte": "a différent de −4 : un point unique · a égal à −4 : une droite ou rien.",
+   "type": "phrase"
+  },
+  "vecteur": {
+   "kicker": "Coordonnées d'un vecteur",
+   "note": "Finale moins initiale, coordonnée par coordonnée.",
+   "tex": "\\vec{u} = (x,\\; y,\\; z) \\qquad \\vec{AB} = (x_B - x_A,\\; y_B - y_A,\\; z_B - z_A)",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Coordonnées, distance, milieu et droites paramétriques"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les plans et les conversions. Nous décrirons les plans par leurs deux langages, paramétrique et cartésien, nous apprendrons à convertir les équations dans les deux sens, puis nous calculerons des intersections de droites et de plans, jusqu'à la distance d'un point à une droite.",
+    "texte": "Partie 2 : plans, conversions et intersections."
+   },
+   "sous_titre": "Plans, conversions et intersections"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : classer les rencontres et mesurer. Nous nommerons toutes les positions relatives des droites et des plans, nous résoudrons les systèmes qui les décident, avec le pivot de Gauss, puis nous mesurerons les distances d'un point à un plan, avec les applications au tétraèdre et au bras robotisé.",
+    "texte": "Partie 3 : positions relatives, systèmes et distances."
+   },
+   "sous_titre": "Positions relatives, systèmes et distances"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace, consacré aux coordonnées et aux équations des droites et des plans. Nous poserons d'abord le repère et les formules de distance et de milieu, puis nous décrirons les droites et les plans par leurs équations paramétriques et cartésiennes, avant de convertir ces descriptions, de calculer des intersections et des distances, et de classer toutes les positions relatives.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Géométrie dans l'espace : coordonnées, droites, plans."
+  },
+  {
+   "dit": "Imaginez un architecte qui quitte son plan dessiné sur une feuille pour construire dans le volume : il lui faut une troisième coordonnée, la hauteur. Ce passage du plan à l'espace est le fil de tout le cours : le repère donne des coordonnées à chaque point, et les équations décrivent ensuite des ensembles entiers de points, des droites et des plans, que l'on peut faire se rencontrer en résolvant des systèmes.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Du plan à l'espace : repérer, décrire, faire se rencontrer."
+  },
+  {
+   "dit": "Un repère orthonormé de l'espace associe à chaque point un triplet de nombres réels : l'abscisse, l'ordonnée et la cote. Le point m est l'extrémité du vecteur o m, qui se décompose sur les trois vecteurs de base : ixe fois le vecteur i, ajouté à igrec fois le vecteur j, ajouté à zède fois le vecteur k. Les trois axes sont deux à deux perpendiculaires et portent la même unité : c'est cette hypothèse qui rendra les formules de distance aussi simples.",
+   "ecran": "repere",
+   "id": "p03",
+   "texte": "M(x, y, z) : abscisse, ordonnée, cote."
+  },
+  {
+   "dit": "Les trois plans formés par les axes deux à deux partagent l'espace en huit octants. Le plan du sol réunit les points de cote nulle, le plan vertical de face ceux d'ordonnée nulle, et le dernier ceux d'abscisse nulle. Retenez le réflexe : une coordonnée nulle signifie que le point vit dans le plan des deux autres axes, et lire une coordonnée, c'est se projeter parallèlement aux axes.",
+   "ecran": "plans_coord",
+   "id": "p04",
+   "texte": "Plans de coordonnées : une coordonnée nulle, un plan."
+  },
+  {
+   "dit": "Un vecteur se décrit par le même triplet : ses coordonnées sont celles du point que l'on obtient en le ramenant à l'origine. Pour le vecteur a b, on retranche coordonnée par coordonnée : l'abscisse de b moins celle de a, l'ordonnée de b moins celle de a, la cote de b moins celle de a. C'est la règle finale moins initiale, et elle transforme toute question de direction en un simple calcul.",
+   "ecran": "vecteur",
+   "id": "p05",
+   "texte": "AB : coordonnées de B moins coordonnées de A."
+  },
+  {
+   "dit": "La distance entre deux points prolonge le théorème de Pythagore : on additionne les carrés des trois écarts de coordonnées, puis on prend la racine carrée de la somme. La formule n'est valable que dans un repère orthonormé, où les trois directions sont perpendiculaires et mesurées avec la même unité. C'est elle qui permettra de calculer des longueurs sans jamais dessiner la figure.",
+   "ecran": "distance",
+   "id": "p06",
+   "texte": "AB : racine de la somme des carrés des écarts."
+  },
+  {
+   "dit": "Le milieu d'un segment se calcule par la moyenne, coordonnée par coordonnée : moyenne des abscisses, moyenne des ordonnées, moyenne des cotes. Aucune racine, aucun carré : c'est la formule la plus simple du chapitre, et elle servira dès l'exemple qui suit pour placer un point à égale distance des deux extrémités d'un câble.",
+   "ecran": "milieu",
+   "id": "p07",
+   "texte": "Milieu : la moyenne des coordonnées, axe par axe."
+  },
+  {
+   "dit": "Exemple d'architecture : quatre poteaux dessinent au sol un carré de côté trois, de sommets a, b, c et d, et leurs sommets montent à la hauteur trois. La diagonale a c mesure racine de dix-huit, c'est-à-dire trois racine de deux. Le point d'accroche d'une bannière, à égale distance des deux sommets opposés du haut, est le milieu du câble : ses coordonnées sont trois et demi, deux et demi et trois. Et le câble qui fait le tour du sommet a pour longueur quatre fois trois, soit douze.",
+   "ecran": "ex_archi",
+   "id": "p08",
+   "texte": "Carré de côté 3 : diagonale 3√2, tour égal à 12."
+  },
+  {
+   "dit": "Une droite de l'espace est entièrement déterminée par un point et un vecteur directeur. Un point m appartient à la droite si le vecteur a m est un multiple du vecteur directeur : chaque coordonnée s'écrit alors comme la coordonnée du point de départ, plus le paramètre té fois la coordonnée correspondante du directeur. Quand té parcourt tous les réels, m parcourt toute la droite : le paramètre est un curseur qui fait voyager le long de la droite.",
+   "ecran": "droite_param",
+   "id": "p09",
+   "texte": "Droite : un point plus un paramètre fois une direction."
+  },
+  {
+   "dit": "Exemple du drone : il décolle du point de coordonnées un, deux et zéro, dans la direction de coordonnées deux, moins un et trois. Son équation paramétrique s'obtient en ajoutant té fois la direction au point de départ. Au temps zéro, il est au décollage ; au temps deux, ses coordonnées sont cinq, zéro et six. Vous voyez la force du paramétrique : il donne la position à chaque instant, pas seulement la trajectoire.",
+   "ecran": "drone",
+   "id": "p10",
+   "texte": "Drone : au temps deux, position cinq, zéro, six."
+  },
+  {
+   "dit": "Un plan demande deux directions : un point, et deux vecteurs directeurs non colinéaires. Chaque point du plan s'obtient en partant du point de référence et en avançant de té le long du premier vecteur et de esse le long du second. Deux paramètres, parce qu'une surface a deux degrés de liberté : en les faisant varier, on balaie toute la nappe du plan. Si le plan passe par trois points non alignés, les deux vecteurs formés par ces points fournissent les directions.",
+   "ecran": "plan_param",
+   "id": "p11",
+   "texte": "Plan paramétrique : un point, deux paramètres."
+  },
+  {
+   "dit": "L'autre visage du plan est son équation cartésienne : une seule relation linéaire entre ixe, igrec et zède. Les trois coefficients de cette relation sont exactement les coordonnées d'un vecteur normal, perpendiculaire à toutes les directions du plan. Pour tester si un point appartient au plan, on remplace ses coordonnées dans l'équation : si l'égalité est vérifiée, le point est dans le plan, sinon il en est dehors. Un seul calcul tranche.",
+   "ecran": "plan_cart",
+   "id": "p12",
+   "texte": "Une équation, un vecteur normal : le plan cartésien."
+  },
+  {
+   "dit": "Vérifions sur l'exemple affiché : le plan d'équation deux ixe, moins trois igrec, plus zède, moins quatre égale zéro a pour vecteur normal le vecteur de coordonnées deux, moins trois et un. Le point de coordonnées deux, zéro et zéro donne quatre moins quatre, soit zéro : il appartient au plan. Le point de coordonnées un, un et un donne moins quatre : il est hors du plan. Ce test d'appartenance est l'usage quotidien de la forme cartésienne.",
+   "ecran": "test_appart",
+   "id": "p13",
+   "texte": "Test : le point A est dans le plan, le point B dehors."
+  },
+  {
+   "dit": "Une droite, elle, ne peut pas tenir dans une seule équation cartésienne : une équation décrit un plan. Une droite est donc l'intersection de deux plans non parallèles, et son équation cartésienne est un système de deux équations. Cette représentation n'est pas unique : beaucoup de couples de plans se coupent selon la même droite, mais tous donnent le même ensemble de points.",
+   "ecran": "droite_cart",
+   "id": "p14",
+   "texte": "Une droite égale deux plans qui se coupent."
+  },
+  {
+   "dit": "Convertir, d'abord de la forme paramétrique vers la forme cartésienne : on élimine le paramètre. Pour la droite affichée, on exprime té à partir de l'équation la plus simple, puis on remplace dans les deux autres. On obtient deux relations entre les coordonnées, sans paramètre : la première lie ixe et igrec, la seconde lie igrec et zède. La droite est retrouvée comme intersection de deux plans.",
+   "ecran": "conv_droite",
+   "id": "p15",
+   "texte": "Paramétrique vers cartésien : éliminer le paramètre."
+  },
+  {
+   "dit": "Dans l'autre sens, on introduit des paramètres. Pour le plan d'équation deux ixe, moins igrec, plus trois zède égale six, on isole igrec en fonction de ixe et de zède, puis on pose ixe égal à té et zède égal à esse. Chaque couple de paramètres donne un point du plan, et tous les points du plan sont atteints. Paramétrer, c'est rendre explicites les degrés de liberté cachés dans la contrainte.",
+   "ecran": "conv_plan",
+   "id": "p16",
+   "texte": "Cartésien vers paramétrique : poser les paramètres."
+  },
+  {
+   "dit": "Application centrale : l'intersection d'une droite et d'un plan. On injecte les expressions paramétriques de la droite dans l'équation du plan : il reste une équation à une inconnue, le paramètre. Ici, elle donne té égal à douze cinquièmes. On reporte cette valeur dans la droite et l'on obtient le point de percée : vingt-neuf cinquièmes, moins trois cinquièmes et moins deux cinquièmes. Une solution unique signifie que la droite perce le plan en un point.",
+   "ecran": "intersection",
+   "id": "p17",
+   "texte": "Droite et plan : le point de percée par substitution."
+  },
+  {
+   "dit": "Deuxième exemple, même méthode : la droite de paramètre té rencontre le plan d'équation ixe, moins igrec, plus deux zède, moins cinq égale zéro. La substitution donne cinq té plus deux égale zéro, donc té égal à moins deux cinquièmes. Le point d'intersection a pour coordonnées un cinquième, deux cinquièmes et treize cinquièmes. Retenez le schéma : substituer, résoudre en té, reporter. Il ne change jamais.",
+   "ecran": "intersection2",
+   "id": "p18",
+   "texte": "Même méthode : substituer, résoudre, reporter."
+  },
+  {
+   "dit": "Le faisceau laser illustre la même idée dans un contexte concret : le rayon part du point de coordonnées zéro, zéro et dix, dans la direction de coordonnées trois, quatre et moins cinq, et il vise l'écran de cote nulle. L'intersection avec le plan de l'écran donne té égal à deux, et le point d'impact a pour coordonnées six, huit et zéro. Toute la modélisation tient en trois lignes : un point, une direction, une substitution.",
+   "ecran": "laser",
+   "id": "p19",
+   "texte": "Laser : impact en six, huit, zéro."
+  },
+  {
+   "dit": "La distance d'un point à une droite se calcule aussi par le paramètre. On écrit un point courant de la droite, puis le vecteur qui le joint au point donné : la distance est minimale quand ce vecteur est orthogonal au vecteur directeur, ce que traduit un produit scalaire nul. Ici, le paramètre optimal vaut deux, le projeté orthogonal a pour coordonnées cinq, deux et un, et la distance vaut racine de onze. L'orthogonalité a transformé une minimisation en une simple équation.",
+   "ecran": "dist_droite",
+   "id": "p20",
+   "texte": "Distance point et droite : racine de onze."
+  },
+  {
+   "dit": "Passons au vocabulaire des positions relatives, le classement de toutes les rencontres possibles. Deux droites peuvent être sécantes, parallèles distinctes, confondues, ou gauches, c'est-à-dire non coplanaires : ce dernier cas n'existe que dans l'espace. Une droite et un plan sont sécants, parallèles, ou la droite est incluse dans le plan. Deux plans sont sécants selon une droite, parallèles, ou confondus. Avant de calculer, on annonce le cas que l'on cherche à prouver.",
+   "ecran": "positions",
+   "id": "p21",
+   "texte": "Positions relatives : le vocabulaire des rencontres."
+  },
+  {
+   "dit": "Arrêtons-nous sur les droites gauches, la grande nouveauté de l'espace : deux droites qui ne se coupent pas ne sont pas forcément parallèles. Elles peuvent passer l'une à côté de l'autre sans partager aucun plan, comme deux avions sur des routes qui se croisent en projection mais à des altitudes différentes. Pour les reconnaître, il ne suffit pas de constater l'absence d'intersection : il faut aussi vérifier que les directions ne sont pas colinéaires.",
+   "ecran": "gauches",
+   "id": "p22",
+   "texte": "Droites gauches : ni sécantes, ni parallèles."
+  },
+  {
+   "dit": "Le critère qui décide entre droite et plan tient en un produit scalaire. Si le vecteur directeur de la droite et le vecteur normal du plan ont un produit scalaire non nul, la droite perce le plan. Si ce produit scalaire est nul, la droite est parallèle au plan ou incluse dedans : un test d'appartenance sur un de ses points permet de trancher. Un calcul d'une ligne donne donc la conjecture, le système donne ensuite la preuve et le point.",
+   "ecran": "critere",
+   "id": "p23",
+   "texte": "Produit scalaire nul ou non : le critère décisif."
+  },
+  {
+   "dit": "Pour deux plans, on résout le système de leurs deux équations. Dans l'exemple affiché, les vecteurs normaux ne sont pas colinéaires : les plans sont sécants. La résolution laisse une variable libre, que l'on prend comme paramètre, et l'ensemble des solutions s'écrit comme une représentation paramétrique : c'est la droite d'intersection, de point de coordonnées zéro, deux et trois, et de direction de coordonnées un, cinq et trois. Le système a littéralement fabriqué la droite.",
+   "ecran": "systeme",
+   "id": "p24",
+   "texte": "Deux plans sécants : leur intersection est une droite."
+  },
+  {
+   "dit": "La méthode du pivot de Gauss rend cette résolution systématique : on combine les lignes pour éliminer une inconnue dans la deuxième équation, jusqu'à obtenir un système triangulaire que l'on remonte. Sur l'exemple des deux plans du cours, une combinaison suffit : deux fois la deuxième ligne moins la première fait disparaître ixe et laisse une relation entre igrec et zède. Substitution et combinaison donnent toujours la même solution : choisissez la plus rapide, mais interprétez toujours le résultat géométriquement.",
+   "ecran": "gauss",
+   "id": "p25",
+   "texte": "Pivot de Gauss : triangulariser, puis remonter."
+  },
+  {
+   "dit": "Avec trois plans, le système a trois équations. Le cours traite un cas à paramètre : tant que le coefficient a est différent de moins quatre, les trois plans se coupent en un point unique. Pour a égal à moins quatre, tout dépend du second membre : avec la valeur moins cinq, les trois plans partagent une même droite, et sinon ils n'ont aucun point commun. Un déterminant nul signale toujours ces cas limites : c'est là que la géométrie change de nature.",
+   "ecran": "trois_plans",
+   "id": "p26",
+   "texte": "Trois plans : un point, une droite, ou rien."
+  },
+  {
+   "dit": "La distance d'un point à un plan possède une formule directe, la plus utile du chapitre : la valeur absolue de l'équation du plan évaluée au point, divisée par la norme du vecteur normal. Le numérateur mesure l'écart algébrique au plan, la division par la norme le convertit en vraie longueur. Retenez sa forme : elle évite de calculer le projeté quand seule la distance est demandée.",
+   "ecran": "dist_plan",
+   "id": "p27",
+   "texte": "Distance point et plan : la formule directe."
+  },
+  {
+   "dit": "Application au tétraèdre : les trois points de coordonnées un, zéro, zéro ; zéro, un, zéro ; et zéro, zéro, un définissent le plan d'équation ixe plus igrec plus zède égale un. La hauteur issue de l'origine est la distance de l'origine à ce plan : valeur absolue de moins un, divisée par racine de trois, soit un sur racine de trois. En deux lignes, la formule de distance a résolu un problème qui semblerait exiger une longue construction.",
+   "ecran": "hauteur",
+   "id": "p28",
+   "texte": "Hauteur du tétraèdre : un sur racine de trois."
+  },
+  {
+   "dit": "Dernier problème complet, celui du bras robotisé : il se déplace en ligne droite du point de coordonnées un, deux et trois vers le point de coordonnées quatre, six et trois, et un mur a pour équation ixe plus deux igrec moins zède égale cinq. En substituant la trajectoire paramétrique dans l'équation du mur, on obtient onze té plus deux égale cinq, donc té égal à trois onzièmes, entre zéro et un : le bras rencontre bien le mur sur son trajet, il faut dévier la trajectoire. Voilà comment un système d'une équation devient un détecteur de collision.",
+   "ecran": "robot",
+   "id": "p29",
+   "texte": "Robot : collision détectée par une équation."
+  },
+  {
+   "dit": "Pour conclure, retenez la démarche complète : repérer par des coordonnées, décrire par une équation adaptée au problème, convertir quand l'autre langage est plus simple, résoudre le système pour trouver les rencontres, et mesurer par les formules de distance. Paramétrique pour générer et parcourir, cartésien pour tester et intersecter : les deux langages se complètent, et savoir passer de l'un à l'autre est la compétence centrale de ce cours.",
+   "ecran": "recap",
+   "id": "p30",
+   "texte": "Repérer, décrire, convertir, résoudre, mesurer."
+  }
+ ],
+ "titre": "Géométrie dans l'espace : coordonnées, droites et plans"
+}
