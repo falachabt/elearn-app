@@ -1,0 +1,445 @@
+{
+ "cours": 6057,
+ "titre": "Vecteurs, barycentres et géométrie dans l'espace",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Calcul vectoriel",
+   "titre": "Vecteurs, barycentres et géométrie dans l'espace",
+   "sous": "Opérations, produits scalaire et vectoriel, droites et plans : la boîte à outils des concours",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un même fil rouge : représenter, calculer, démontrer. Le vecteur décrit un déplacement, le barycentre équilibre des points, les deux produits mesurent angles et aires, et tout se transporte du plan vers l'espace.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  },
+  "vecteur_def": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'un vecteur",
+   "tex": "\\vec{AB} : \\text{ direction, sens, norme } \\|\\vec{AB}\\|",
+   "note": "Un scalaire est un simple nombre ; un vecteur, lui, est orienté : déplacement, vitesse, force.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 170
+   }
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les vecteurs",
+   "titre": "Addition, multiplication par un scalaire, colinéarité",
+   "tex": [
+    "\\vec{u} + \\vec{v} : \\text{ parallélogramme ou bout à bout (Chasles)}",
+    "k\\vec{u} : \\text{ même direction, norme } |k| \\times \\|\\vec{u}\\|",
+    "\\vec{u} \\text{ et } \\vec{v} \\text{ colinéaires } \\iff \\vec{u} = k\\vec{v}"
+   ]
+  },
+  "ex_coord": {
+   "type": "etape",
+   "kicker": "Exemple · calculer en coordonnées",
+   "titre": "u = (2, 3) et v = (−1, 1) : somme, combinaison, colinéarité",
+   "tex": [
+    "\\vec{u} + \\vec{v} = (1,\\ 4)",
+    "3\\vec{u} - 2\\vec{v} = (8,\\ 7)",
+    "\\vec{a} = (1,\\ 2),\\ \\vec{b} = (2,\\ 4) = 2\\vec{a} : \\text{ colinéaires}"
+   ]
+  },
+  "droite_plane": {
+   "type": "etape",
+   "kicker": "Géométrie analytique plane",
+   "titre": "Une droite : un point, un vecteur directeur, une équation",
+   "tex": [
+    "M \\in (D) \\iff \\overrightarrow{AM} = k\\vec{u}",
+    "(D) : ax + by + c = 0",
+    "A(1,\\ 2),\\ \\vec{u}(3,\\ -1) : x + 3y - 7 = 0"
+   ]
+  },
+  "bary_def": {
+   "type": "formule",
+   "kicker": "Le barycentre",
+   "tex": "\\overrightarrow{OG} = \\frac{\\sum_i a_i \\, \\overrightarrow{OA_i}}{\\sum_i a_i}, \\qquad \\sum_i a_i \\neq 0",
+   "note": "Le point d'équilibre des points pondérés. Coefficients égaux à un et deux points : le milieu."
+  },
+  "bary_ex": {
+   "type": "etape",
+   "kicker": "Exemple · le barycentre en coordonnées",
+   "titre": "A(1, 2) poids un, B(3, 1) poids deux, C(2, 4) poids trois",
+   "tex": [
+    "G_x = \\tfrac{1 \\times 1 + 2 \\times 3 + 3 \\times 2}{6} = \\tfrac{13}{6}",
+    "G_y = \\tfrac{1 \\times 2 + 2 \\times 1 + 3 \\times 4}{6} = \\tfrac{8}{3}",
+    "G\\left( \\tfrac{13}{6},\\ \\tfrac{8}{3} \\right)"
+   ]
+  },
+  "bary_gravite": {
+   "type": "etape",
+   "kicker": "Le centre de gravité d'un triangle",
+   "titre": "Barycentre des trois sommets, sur chaque médiane",
+   "tex": [
+    "G = \\text{bar}\\{(A,\\ 1),\\ (B,\\ 1),\\ (C,\\ 1)\\}",
+    "\\overrightarrow{AG} = \\tfrac{2}{3} \\overrightarrow{AI}, \\quad I \\text{ milieu de } [BC]",
+    "\\text{les trois médianes sont concourantes en } G"
+   ],
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 130
+   }
+  },
+  "bary_applis": {
+   "type": "phrase",
+   "kicker": "Le barycentre démontre",
+   "texte": "Associativité, alignements conservés, concurrence des médianes, théorèmes de Céva et de Ménéläus : le barycentre remplace de longues démonstrations classiques par quelques lignes de calcul vectoriel.",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 140
+   }
+  },
+  "scal_def": {
+   "type": "formule",
+   "kicker": "Le produit scalaire",
+   "tex": "\\vec{u} \\cdot \\vec{v} = \\|\\vec{u}\\| \\, \\|\\vec{v}\\| \\cos\\theta = u_x v_x + u_y v_y + u_z v_z",
+   "note": "Un nombre réel, pas un vecteur. Nul si et seulement si les vecteurs sont orthogonaux."
+  },
+  "scal_ex": {
+   "type": "etape",
+   "kicker": "Exemple · produit scalaire et angle",
+   "titre": "u = (1, 2, 3) et v = (4, −1, 2)",
+   "tex": [
+    "\\vec{u} \\cdot \\vec{v} = 4 - 2 + 6 = 8",
+    "\\cos\\theta = \\tfrac{8}{\\sqrt{14} \\times \\sqrt{21}} \\approx 0{,}47",
+    "\\theta \\approx 62^{\\circ}"
+   ]
+  },
+  "proj": {
+   "type": "formule",
+   "kicker": "La projection orthogonale",
+   "tex": "\\text{proj}_{\\vec{v}} \\, \\vec{u} = \\frac{\\vec{u} \\cdot \\vec{v}}{\\|\\vec{v}\\|^2} \\, \\vec{v}",
+   "note": "Projeter, c'est garder la composante utile : distances, travail d'une force.",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 150
+   }
+  },
+  "proj_ex": {
+   "type": "etape",
+   "kicker": "Exemple · projection et travail",
+   "titre": "Projeter, puis appliquer à la physique",
+   "tex": [
+    "\\text{proj}_{(1,\\ 0)} \\, (3,\\ 4) = (3,\\ 0)",
+    "\\text{proj}_{(-1,\\ 1)} \\, (2,\\ 1) = \\left( \\tfrac{1}{2},\\ -\\tfrac{1}{2} \\right)",
+    "W = \\vec{F} \\cdot \\vec{d} = (2,\\ 3) \\cdot (1,\\ 1) = 5 \\ \\text{J}"
+   ],
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 140
+   }
+  },
+  "vect_def": {
+   "type": "formule",
+   "kicker": "Le produit vectoriel",
+   "tex": "\\|\\vec{u} \\wedge \\vec{v}\\| = \\|\\vec{u}\\| \\, \\|\\vec{v}\\| \\sin\\theta",
+   "note": "Un vecteur orthogonal à u et à v, orienté par la règle de la main droite. Anticommutatif : échanger u et v change le signe.",
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 170
+   }
+  },
+  "vect_ex": {
+   "type": "etape",
+   "kicker": "Exemple · produit vectoriel en coordonnées",
+   "titre": "u = (1, 2, 3) et v = (4, −1, 2), les mêmes qu'au produit scalaire",
+   "tex": [
+    "\\vec{u} \\wedge \\vec{v} = (2 \\times 2 - 3 \\times (-1),\\ 3 \\times 4 - 1 \\times 2,\\ 1 \\times (-1) - 2 \\times 4)",
+    "\\vec{u} \\wedge \\vec{v} = (7,\\ 10,\\ -9)",
+    "\\vec{u} \\cdot (\\vec{u} \\wedge \\vec{v}) = 0, \\quad \\vec{v} \\cdot (\\vec{u} \\wedge \\vec{v}) = 0"
+   ],
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 150
+   }
+  },
+  "vect_applis": {
+   "type": "etape",
+   "kicker": "Aires et volumes par le produit vectoriel",
+   "titre": "Les formules correctes, à connaître par cœur",
+   "tex": [
+    "\\text{parallélogramme : } \\mathcal{A} = \\|\\vec{a} \\wedge \\vec{b}\\|",
+    "\\text{triangle : } \\mathcal{A} = \\tfrac{1}{2} \\|\\vec{a} \\wedge \\vec{b}\\|",
+    "\\text{parallélépipède : } V = |(\\vec{a} \\wedge \\vec{b}) \\cdot \\vec{c}|"
+   ],
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 140
+   }
+  },
+  "plan": {
+   "type": "etape",
+   "kicker": "Le plan dans l'espace",
+   "titre": "Un vecteur normal, ou un point et deux directions",
+   "tex": [
+    "ax + by + cz + d = 0, \\quad \\vec{n} = (a,\\ b,\\ c)",
+    "\\overrightarrow{OM} = \\overrightarrow{OA} + \\lambda \\vec{u} + \\mu \\vec{v}",
+    "\\vec{n} = \\overrightarrow{AB} \\wedge \\overrightarrow{AC}"
+   ],
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 105
+   }
+  },
+  "plan_ex": {
+   "type": "etape",
+   "kicker": "Exemple · équation d'un plan par trois points",
+   "titre": "A(1, 0, 1), B(2, 1, 0), C(0, 1, 2)",
+   "tex": [
+    "\\overrightarrow{AB} = (1,\\ 1,\\ -1), \\quad \\overrightarrow{AC} = (-1,\\ 1,\\ 1)",
+    "\\vec{n} = \\overrightarrow{AB} \\wedge \\overrightarrow{AC} = (2,\\ 0,\\ 2)",
+    "2(x - 1) + 2(z - 1) = 0 \\iff x + z - 2 = 0"
+   ],
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 150
+   }
+  },
+  "droite_espace": {
+   "type": "etape",
+   "kicker": "La droite dans l'espace",
+   "titre": "Paramétrique d'abord, symétrique si tout est non nul",
+   "tex": [
+    "\\overrightarrow{OM} = \\overrightarrow{OA} + t\\vec{u}",
+    "A(1,\\ 2,\\ 3),\\ \\vec{u}(2,\\ -1,\\ 1) : (1 + 2t,\\ 2 - t,\\ 3 + t)",
+    "\\tfrac{x - x_A}{a} = \\tfrac{y - y_A}{b} = \\tfrac{z - z_A}{c}"
+   ]
+  },
+  "distance": {
+   "type": "formule",
+   "kicker": "Distance d'un point à un plan",
+   "tex": "d(M,\\ P) = \\frac{|a x_M + b y_M + c z_M + d|}{\\sqrt{a^2 + b^2 + c^2}}",
+   "note": "La projection orthogonale, encore elle : on projette sur le vecteur normal.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 150
+   }
+  },
+  "distance_ex": {
+   "type": "etape",
+   "kicker": "Exemple · une distance, une aire",
+   "titre": "Deux calculs types de concours, menés jusqu'au bout",
+   "tex": [
+    "d\\left( A(1,\\ 2,\\ 3),\\ 2x - y + 2z - 5 = 0 \\right) = \\tfrac{|2 - 2 + 6 - 5|}{3} = \\tfrac{1}{3}",
+    "\\overrightarrow{AB} \\wedge \\overrightarrow{AC} = (4,\\ 1,\\ 3)",
+    "\\mathcal{A}_{ABC} = \\tfrac{\\sqrt{26}}{2} \\approx 2{,}55"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie de concours",
+   "etapes": [
+    "Analyser l'énoncé avant tout calcul",
+    "Choisir l'outil : scalaire, vectoriel, barycentre",
+    "Mener le calcul jusqu'au résultat exact",
+    "Vérifier : orthogonalité, cas particuliers"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Vecteur : direction, sens et norme",
+    "Barycentre : moyenne pondérée des points",
+    "Produit scalaire : angle, orthogonalité",
+    "Produit vectoriel : aire et vecteur normal",
+    "Espace : plans, droites et distances"
+   ]
+  },
+  "positions": {
+   "type": "phrase",
+   "kicker": "Positions relatives dans l'espace",
+   "texte": "Deux droites : coplanaires ou non. Une droite et un plan : le directeur est orthogonal au vecteur normal exactement quand la droite est parallèle au plan, ou contenue dedans.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de calcul vectoriel et de géométrie, pensé pour les concours. Au programme : les vecteurs et leurs opérations, le barycentre, les produits scalaire et vectoriel, puis les droites, les plans et les distances, dans le plan comme dans l'espace. Chaque notion sera définie, formulée, puis appliquée à un exemple entièrement calculé.",
+   "texte": "Vecteurs, barycentres, produits : le cours des concours.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en trois verbes : représenter, calculer, démontrer. Un vecteur représente un déplacement, le barycentre équilibre un système de points, les deux produits mesurent des angles et des aires, et les mêmes idées, transportées dans l'espace, décrivent droites et plans. Gardez cette carte en tête : chaque chapitre ajoute un outil, jamais une formule isolée.",
+   "texte": "Représenter, calculer, démontrer : le fil rouge.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un vecteur est une grandeur orientée : une direction, un sens et une norme, c'est-à-dire une longueur. On le dessine comme une flèche, de son origine vers son extrémité, et on le note par ses deux points ou par une lettre. Un déplacement, une vitesse, une force sont des vecteurs ; une température ou une masse sont de simples nombres, des scalaires, sans aucune orientation.",
+   "texte": "Un vecteur : direction, sens et norme.",
+   "ecran": "vecteur_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Deux opérations fondent toute l'arithmétique vectorielle. L'addition se construit par la règle du parallélogramme, les deux vecteurs partant du même point, ou bout à bout grâce à la relation de Chasles. La multiplication par un nombre réel change l'échelle : même direction, norme multipliée par la valeur absolue du nombre, et sens inversé si le nombre est négatif. Quand un vecteur est le produit de l'autre par un nombre, les deux sont colinéaires : même direction, ou directions opposées.",
+   "texte": "Addition, échelle, colinéarité : les trois réflexes.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p05",
+   "dit": "Passons aux coordonnées, avec un exemple complet. Pour u de coordonnées deux, trois, et v de coordonnées moins un, un : la somme vaut un, quatre, en ajoutant composante par composante. Trois u moins deux v vaut huit, sept. Et pour la colinéarité : le vecteur de coordonnées deux, quatre est exactement le double de celui de coordonnées un, deux ; les deux vecteurs sont donc colinéaires. Retenez le geste : en coordonnées, chaque opération se fait composante par composante.",
+   "texte": "En coordonnées : composante par composante.",
+   "ecran": "ex_coord"
+  },
+  {
+   "id": "p06",
+   "dit": "Dans le plan, un point se repère par son vecteur position depuis l'origine, et une droite se décrit de deux façons. Vectoriellement : un point de départ et un vecteur directeur, tous les points s'obtenant en ajoutant un multiple du directeur. Algébriquement : une équation cartésienne, a ixe plus b igrec plus c égal zéro. Exemple : la droite par le point de coordonnées un, deux, de vecteur directeur trois, moins un, a pour équation ixe plus trois igrec moins sept égal zéro. Savoir passer d'une forme à l'autre est un savoir-faire d'examen.",
+   "texte": "Droite du plan : directeur ou équation cartésienne.",
+   "ecran": "droite_plane"
+  },
+  {
+   "id": "p07",
+   "dit": "Voici maintenant le barycentre : le point d'équilibre d'un système de points pondérés. Chaque point reçoit un coefficient, son poids ; si la somme des poids n'est pas nulle, il existe un unique point gé tel que le vecteur origine-gé soit la moyenne pondérée des vecteurs origine-points. L'image physique est celle du centre de masse : le point où un support équilibrerait le système. Cas de base : deux points de même poids, le barycentre est leur milieu.",
+   "texte": "Le barycentre : le point d'équilibre pondéré.",
+   "ecran": "bary_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple chiffré : le point a, de coordonnées un, deux, avec le poids un ; le point bé, trois, un, poids deux ; le point cé, deux, quatre, poids trois. La somme des poids vaut six. L'abscisse du barycentre : un fois un, plus deux fois trois, plus trois fois deux, le tout sur six : treize sixièmes. L'ordonnée : deux, plus deux, plus douze, sur six : huit tiers. Une simple moyenne, mais pondérée : chaque point tire le barycentre d'autant plus fort que son poids est grand.",
+   "texte": "Treize sixièmes, huit tiers : la moyenne pondérée.",
+   "ecran": "bary_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Le cas le plus célèbre : le centre de gravité d'un triangle, barycentre des trois sommets affectés du même poids un. Il se trouve sur chaque médiane, aux deux tiers de la médiane à partir du sommet, et au tiers à partir du milieu du côté opposé. La démonstration vectorielle tient en deux lignes : le vecteur a-gé vaut les deux tiers du vecteur a-i, où i est le milieu du côté opposé ; gé est donc sur la médiane, et le même calcul sur les autres sommets prouve la concurrence des trois médianes.",
+   "texte": "Centre de gravité : aux deux tiers de la médiane.",
+   "ecran": "bary_gravite"
+  },
+  {
+   "id": "p10",
+   "dit": "Le barycentre n'est pas qu'une formule de coordonnées : c'est une machine à démontrer. On peut regrouper les points, c'est l'associativité ; les alignements sont conservés ; et des théorèmes classiques comme ceux de Céva et de Ménéläus, sur la concurrence des droites d'un triangle, deviennent des calculs de coefficients. Devant un problème de concurrence ou d'alignement, le réflexe barycentre doit venir avant les longues constructions géométriques.",
+   "texte": "Concurrence, alignement : le réflexe barycentre.",
+   "ecran": "bary_applis"
+  },
+  {
+   "id": "p11",
+   "dit": "Les deux produits, maintenant. Le produit scalaire de deux vecteurs est un nombre réel. Géométriquement, c'est le produit des normes par le cosinus de l'angle entre les vecteurs ; en coordonnées, c'est la somme des produits des composantes correspondantes. Son signe lit l'angle : positif si l'angle est aigu, négatif s'il est obtus, et nul exactement quand les vecteurs sont orthogonaux. C'est ce test d'orthogonalité qui en fait l'outil central des démonstrations.",
+   "texte": "Partie 2 : le produit scalaire mesure les angles.",
+   "ecran": "scal_def"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple : u de coordonnées un, deux, trois, et v de coordonnées quatre, moins un, deux. Le produit scalaire vaut quatre, moins deux, plus six : huit. Les normes valent racine de quatorze et racine de vingt et un ; le cosinus de l'angle vaut donc huit sur leur produit, environ zéro virgule quarante-sept, et l'angle environ soixante-deux degrés. Et l'exercice jumeau à connaître : avec les vecteurs de coordonnées un, deux, et moins deux, un, le produit scalaire est nul : ils sont orthogonaux, l'angle est droit.",
+   "texte": "Produit huit, angle de soixante-deux degrés.",
+   "ecran": "scal_ex"
+  },
+  {
+   "id": "p13",
+   "dit": "Première grande application : la projection orthogonale. Projeter un vecteur u sur un vecteur v, c'est garder de u sa composante dans la direction de v ; la formule divise le produit scalaire par le carré de la norme de v, puis multiplie par v. Tout le reste du cours en découle : la distance d'un point à une droite ou à un plan est une projection sur un vecteur normal, et le travail d'une force est le produit scalaire de la force par le déplacement.",
+   "texte": "Projeter : garder la composante utile.",
+   "ecran": "proj"
+  },
+  {
+   "id": "p14",
+   "dit": "Trois calculs pour fixer la méthode. La projection du vecteur trois, quatre sur le vecteur un, zéro vaut trois, zéro : seule la première composante survit. La projection du vecteur deux, un sur le vecteur moins un, un vaut un demi, moins un demi : le produit scalaire vaut moins un, le carré de la norme deux. Et en physique : une force de coordonnées deux, trois, en newtons, déplaçant un objet de un mètre en ixe et un mètre en igrec, fournit un travail de deux plus trois, cinq joules.",
+   "texte": "Projections : trois, zéro ; un demi, moins un demi ; cinq joules.",
+   "ecran": "proj_ex"
+  },
+  {
+   "id": "p15",
+   "dit": "Le produit vectoriel, lui, rend un vecteur, pas un nombre. Le résultat est orthogonal aux deux vecteurs de départ, sa norme vaut le produit des normes par le sinus de l'angle, et son sens est donné par la règle de la main droite : doigts dans la direction du premier vecteur, repliés vers le second, le pouce donne le résultat. Attention au piège classique : échanger les deux vecteurs change le signe du produit ; le produit vectoriel est anticommutatif, et le produit d'un vecteur par lui-même est nul.",
+   "texte": "Le produit vectoriel : un vecteur orthogonal.",
+   "ecran": "vect_def"
+  },
+  {
+   "id": "p16",
+   "dit": "En coordonnées, chaque composante du produit est une différence de produits croisés. Reprenons nos deux vecteurs, un, deux, trois, et quatre, moins un, deux. Première composante : deux fois deux, moins trois fois moins un : sept. Deuxième : trois fois quatre, moins un fois deux : dix. Troisième : un fois moins un, moins deux fois quatre : moins neuf. Le produit vectoriel vaut donc sept, dix, moins neuf. Vérification immédiate, à faire systématiquement : son produit scalaire avec chacun des deux vecteurs de départ est nul, zéro plus zéro : il leur est bien orthogonal.",
+   "texte": "Sept, dix, moins neuf : et on vérifie par le scalaire.",
+   "ecran": "vect_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "Pourquoi ce produit compte-t-il autant ? Parce que sa norme est une aire : l'aire du parallélogramme construit sur les deux vecteurs. L'aire du triangle correspondant en vaut la moitié. Et avec un troisième vecteur, le produit mixte, le produit scalaire du troisième avec le produit vectoriel des deux premiers, pris en valeur absolue, donne le volume du parallélépipède. Retenez ces trois formules sous leur forme correcte, avec le produit vectoriel, jamais avec le produit scalaire : c'est une confusion fréquente, et coûteuse.",
+   "texte": "Norme du produit vectoriel : une aire.",
+   "ecran": "vect_applis"
+  },
+  {
+   "id": "p18",
+   "dit": "Place à l'espace. Un plan y est décrit de deux façons équivalentes. Par son équation cartésienne, a ixe plus b igrec plus c zède plus dé égal zéro, où les coefficients a, bé, cé sont exactement les composantes d'un vecteur normal au plan. Ou paramétriquement : un point du plan, plus toutes les combinaisons de deux vecteurs directeurs non colinéaires. Le pont entre les deux descriptions : le vecteur normal s'obtient comme le produit vectoriel de deux vecteurs du plan.",
+   "texte": "Partie 3 : le plan, un normal ou deux directions.",
+   "ecran": "plan"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple complet : le plan par les points a, un, zéro, un ; bé, deux, un, zéro ; cé, zéro, un, deux. Les vecteurs a-bé et a-cé valent un, un, moins un, et moins un, un, un. Leur produit vectoriel : deux, zéro, deux : c'est un vecteur normal. L'équation s'écrit deux fois ixe moins un, plus deux fois zède moins un, égal zéro, c'est-à-dire ixe plus zède moins deux égal zéro. La méthode est toujours la même : deux vecteurs du plan, un produit vectoriel, une équation.",
+   "texte": "Le plan exemple : ixe plus zède moins deux égal zéro.",
+   "ecran": "plan_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "Une droite de l'espace, elle, ne possède pas d'équation cartésienne unique comme dans le plan : on la décrit paramétriquement, un point plus un paramètre fois un vecteur directeur. Pour la droite par le point un, deux, trois, de directeur deux, moins un, un : les points ont pour coordonnées un plus deux té, deux moins té, trois plus té. Quand aucune composante du directeur n'est nulle, on peut éliminer le paramètre : c'est la forme symétrique, trois rapports égaux.",
+   "texte": "Droite de l'espace : le paramétrique d'abord.",
+   "ecran": "droite_espace"
+  },
+  {
+   "id": "p21",
+   "dit": "Un mot sur les positions relatives, présentes dans presque tous les sujets. Deux droites de l'espace ne sont pas toujours dans un même plan : elles peuvent être sécantes, parallèles, ou non coplanaires. Pour une droite et un plan, tout se lit sur les vecteurs : la droite est parallèle au plan exactement quand son vecteur directeur est orthogonal au vecteur normal du plan, ce qu'un seul produit scalaire vérifie ; sinon, elle coupe le plan en un point, que le paramétrique permet de calculer.",
+   "texte": "Positions relatives : un produit scalaire décide.",
+   "ecran": "positions"
+  },
+  {
+   "id": "p22",
+   "dit": "Reste la distance d'un point à un plan : la valeur absolue de l'expression du plan évaluée au point, divisée par la norme du vecteur normal. C'est, une fois encore, une projection orthogonale sur la direction normale. Toute la géométrie de l'espace tient dans cette chaîne : le produit vectoriel fabrique le normal, le produit scalaire projette et mesure.",
+   "texte": "Distance au plan : projeter sur le normal.",
+   "ecran": "distance"
+  },
+  {
+   "id": "p23",
+   "dit": "Deux calculs types pour terminer la partie technique. La distance du point un, deux, trois au plan deux ixe moins igrec plus deux zède moins cinq égal zéro : le numérateur vaut deux, moins deux, plus six, moins cinq, soit un en valeur absolue ; le dénominateur, racine de quatre plus un plus quatre, vaut trois ; la distance vaut un tiers. Et l'aire du triangle de sommets un, zéro, deux ; trois, un, moins un ; deux, deux, zéro : le produit vectoriel des deux côtés vaut quatre, un, trois, de norme racine de vingt-six ; l'aire vaut racine de vingt-six sur deux, environ deux virgule cinquante-cinq.",
+   "texte": "Un tiers pour la distance, racine de vingt-six sur deux pour l'aire.",
+   "ecran": "distance_ex"
+  },
+  {
+   "id": "p24",
+   "dit": "Le jour du concours, la différence se fait rarement sur les formules : elle se fait sur la méthode. Analysez l'énoncé avant tout calcul : que demande-t-on, quelles données possède-t-on, quel outil relie les deux ? Puis choisissez délibérément : scalaire pour les angles et l'orthogonalité, vectoriel pour les aires et les normaux, barycentre pour les concurrences. Menez le calcul jusqu'au résultat exact, et vérifiez par un test simple, une orthogonalité ou un cas particulier.",
+   "texte": "Analyser, choisir l'outil, calculer, vérifier.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour conclure, retenez la chaîne complète des outils. Un vecteur : direction, sens, norme. Le barycentre : une moyenne pondérée, reine des concurrences. Le produit scalaire : angles, orthogonalité, projections, distances. Le produit vectoriel : aires, volumes et vecteurs normaux. Et dans l'espace, les mêmes produits décrivent droites et plans. Maîtriser leurs conditions d'emploi, autant que leurs formules, c'est être prêt pour les épreuves.",
+   "texte": "La chaîne complète des outils vectoriels.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vecteurs, coordonnées et barycentres"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Produits scalaire et vectoriel",
+   "pont": {
+    "texte": "Partie 2 : produit scalaire, projections et produit vectoriel.",
+    "dit": "Partie deux : les deux produits. Le produit scalaire, un nombre qui lit les angles et teste l'orthogonalité ; ses applications, projections, distances et travail ; puis le produit vectoriel, un vecteur orthogonal aux deux facteurs, dont la norme est une aire."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Droites, plans et distances dans l'espace",
+   "pont": {
+    "texte": "Partie 3 : géométrie dans l'espace et stratégie de concours.",
+    "dit": "Partie trois : la géométrie dans l'espace. Les plans et leurs vecteurs normaux, les droites en paramétrique, les distances, puis deux calculs types de concours et la stratégie d'épreuve qui conclut le cours."
+   }
+  }
+ ]
+}
