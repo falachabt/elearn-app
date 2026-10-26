@@ -1,0 +1,575 @@
+{
+  "cours": 6291,
+  "titre": "Le produit scalaire : quand l'angle devient un calcul",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Produit scalaire",
+      "titre": "Le produit scalaire : quand l'angle devient un calcul",
+      "sous": "Deux définitions, un seul nombre : orthogonalité, angles, projections et distances",
+      "anim": {
+        "nom": "travail_angle_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux directions : comment mesurer leur alignement ? Le produit scalaire répond par un nombre.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 200
+      }
+    },
+    "travail": {
+      "type": "formule",
+      "kicker": "L'intuition physique : le travail",
+      "tex": "W = \\vec{F} \\cdot \\vec{d} = |\\vec{F}|\\,|\\vec{d}|\\,\\cos\\theta",
+      "note": "Seule la composante de la force alignée avec le déplacement travaille : le cosinus trie."
+    },
+    "def_geo": {
+      "type": "formule",
+      "kicker": "Définition géométrique",
+      "tex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}|\\,|\\vec{v}|\\,\\cos\\theta",
+      "note": "θ : angle géométrique entre les deux vecteurs, entre 0 et π. Le résultat est un nombre réel.",
+      "anim": {
+        "nom": "vecteurs_angle_fig",
+        "hauteur": 190
+      }
+    },
+    "signe": {
+      "type": "etape",
+      "kicker": "Le signe raconte l'angle",
+      "titre": "Aigu, droit ou obtus : le signe du produit tranche",
+      "tex": [
+        "\\theta = 0 : \\quad \\vec{u} \\cdot \\vec{v} = |\\vec{u}|\\,|\\vec{v}| > 0",
+        "\\theta = \\tfrac{\\pi}{2} : \\quad \\vec{u} \\cdot \\vec{v} = 0",
+        "\\theta = \\pi : \\quad \\vec{u} \\cdot \\vec{v} = -|\\vec{u}|\\,|\\vec{v}| < 0"
+      ],
+      "anim": {
+        "nom": "vecteurs_angle_fig",
+        "hauteur": 165
+      }
+    },
+    "def_ana": {
+      "type": "formule",
+      "kicker": "Définition analytique",
+      "tex": "\\vec{u} \\cdot \\vec{v} = xx' + yy'",
+      "note": "Repère orthonormé obligatoire. Dans l'espace, on ajoute zz' : même recette, un terme de plus."
+    },
+    "ex_orthog": {
+      "type": "etape",
+      "kicker": "Exemple : tester l'orthogonalité",
+      "titre": "u de coordonnées (3, 4) et v de coordonnées (−4, 3)",
+      "tex": [
+        "\\vec{u} \\cdot \\vec{v} = 3 \\times (-4) + 4 \\times 3",
+        "= -12 + 12 = 0"
+      ]
+    },
+    "ex_angle": {
+      "type": "etape",
+      "kicker": "Exemple : calculer un angle",
+      "titre": "u de coordonnées (1, 0) et v de coordonnées (1, √3)",
+      "tex": [
+        "|\\vec{u}| = 1 \\qquad |\\vec{v}| = \\sqrt{1 + 3} = 2",
+        "\\vec{u} \\cdot \\vec{v} = 1 \\times 1 + 0 \\times \\sqrt{3} = 1",
+        "\\cos\\theta = \\tfrac{1}{1 \\times 2} = \\tfrac{1}{2} \\qquad \\theta = \\tfrac{\\pi}{3}"
+      ]
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Les propriétés algébriques",
+      "titre": "Symétrie, bilinéarité, positivité : on calcule comme avec des nombres",
+      "tex": [
+        "\\vec{u} \\cdot \\vec{v} = \\vec{v} \\cdot \\vec{u}",
+        "(\\vec{u} + \\vec{v}) \\cdot \\vec{w} = \\vec{u} \\cdot \\vec{w} + \\vec{v} \\cdot \\vec{w}",
+        "\\vec{u} \\cdot \\vec{u} \\geq 0, \\quad = 0 \\iff \\vec{u} = \\vec{0}"
+      ]
+    },
+    "norme": {
+      "type": "formule",
+      "kicker": "La norme, fille du produit scalaire",
+      "tex": "|\\vec{u}| = \\sqrt{\\vec{u} \\cdot \\vec{u}} = \\sqrt{x^2 + y^2}",
+      "note": "Exemple : pour (3, 4), la norme vaut √(9 + 16) = 5. C'est Pythagore en personne."
+    },
+    "identites": {
+      "type": "etape",
+      "kicker": "Les identités à connaître",
+      "titre": "Développer un carré scalaire comme un carré ordinaire",
+      "tex": [
+        "|\\vec{u} + \\vec{v}|^2 = |\\vec{u}|^2 + 2\\,\\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2",
+        "|\\vec{u} - \\vec{v}|^2 = |\\vec{u}|^2 - 2\\,\\vec{u} \\cdot \\vec{v} + |\\vec{v}|^2",
+        "\\vec{u} \\cdot \\vec{v} = \\tfrac{1}{4}\\left(|\\vec{u} + \\vec{v}|^2 - |\\vec{u} - \\vec{v}|^2\\right)"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Géométrique : normes fois cosinus de l'angle",
+        "Analytique : xx' + yy', repère orthonormé",
+        "Produit nul : vecteurs orthogonaux",
+        "Symétrie, bilinéarité, positivité",
+        "La norme : racine du produit par lui-même"
+      ]
+    },
+    "ex_synthese": {
+      "type": "etape",
+      "kicker": "Exemple : la norme d'une combinaison",
+      "titre": "Normes 3 et 4, produit scalaire 5 : calculer la norme de 2u − 3v",
+      "tex": [
+        "|2\\vec{u} - 3\\vec{v}|^2 = 4|\\vec{u}|^2 - 12\\,\\vec{u} \\cdot \\vec{v} + 9|\\vec{v}|^2",
+        "= 4 \\times 9 - 12 \\times 5 + 9 \\times 16 = 120",
+        "|2\\vec{u} - 3\\vec{v}| = \\sqrt{120} = 2\\sqrt{30}"
+      ]
+    },
+    "orthogonalite": {
+      "type": "formule",
+      "kicker": "Le critère d'orthogonalité",
+      "tex": "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+      "note": "Pour des vecteurs non nuls. Le vecteur nul, lui, est orthogonal à tout vecteur par convention.",
+      "anim": {
+        "nom": "orthogonalite_fig",
+        "hauteur": 190
+      }
+    },
+    "parametre": {
+      "type": "etape",
+      "kicker": "Exemple dans l'espace : un paramètre",
+      "titre": "Trouver k pour que u(1, k, −2) et v(3, −1, 4) soient orthogonaux",
+      "tex": [
+        "\\vec{u} \\cdot \\vec{v} = 1 \\times 3 + k \\times (-1) + (-2) \\times 4",
+        "= 3 - k - 8 = -k - 5",
+        "-k - 5 = 0 \\qquad k = -5"
+      ]
+    },
+    "cauchy": {
+      "type": "formule",
+      "kicker": "L'inégalité de Cauchy-Schwarz",
+      "tex": "|\\vec{u} \\cdot \\vec{v}| \\leq |\\vec{u}|\\,|\\vec{v}|",
+      "note": "Elle vient de |cos θ| ≤ 1. Égalité si et seulement si les vecteurs sont colinéaires."
+    },
+    "projection": {
+      "type": "formule",
+      "kicker": "La projection orthogonale",
+      "tex": "\\mathrm{proj}_{\\vec{v}}(\\vec{u}) = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{v}|^2}\\,\\vec{v}",
+      "note": "Le coefficient dit combien de v tient dans u projeté.",
+      "anim": {
+        "nom": "projection_fig",
+        "hauteur": 170
+      }
+    },
+    "ex_projection": {
+      "type": "etape",
+      "kicker": "Exemple : projeter u(4, 2) sur v(1, 3)",
+      "titre": "Le coefficient vaut 1 : la projection est v lui-même",
+      "tex": [
+        "\\vec{u} \\cdot \\vec{v} = 4 \\times 1 + 2 \\times 3 = 10",
+        "|\\vec{v}|^2 = 1^2 + 3^2 = 10",
+        "\\mathrm{proj}_{\\vec{v}}(\\vec{u}) = \\tfrac{10}{10}\\,\\vec{v} = (1,\\ 3)"
+      ],
+      "anim": {
+        "nom": "projection_fig",
+        "hauteur": 110
+      }
+    },
+    "distance": {
+      "type": "formule",
+      "kicker": "Distance d'un point à une droite",
+      "tex": "d(M, D) = \\frac{|\\overrightarrow{AM} \\cdot \\vec{n}|}{|\\vec{n}|}",
+      "note": "n : vecteur normal à D ; A : point de D. Projeter sur la normale.",
+      "anim": {
+        "nom": "distance_point_droite_fig",
+        "hauteur": 170
+      }
+    },
+    "cas_angle": {
+      "type": "etape",
+      "kicker": "Étude de cas : l'angle d'un triangle",
+      "titre": "A(1, 1), B(4, 5), C(6, 2) : l'angle en A",
+      "tex": [
+        "\\overrightarrow{AB} = (3,\\ 4) \\qquad \\overrightarrow{AC} = (5,\\ 1)",
+        "\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 15 + 4 = 19",
+        "\\cos\\widehat{BAC} = \\tfrac{19}{5\\sqrt{26}} \\approx 0{,}745 \\quad \\widehat{BAC} \\approx 41{,}9^\\circ"
+      ]
+    },
+    "cas_distance": {
+      "type": "etape",
+      "kicker": "Étude de cas : distance et aire",
+      "titre": "La distance de A à la droite (BC), puis l'aire du triangle",
+      "tex": [
+        "d(A, (BC)) = \\tfrac{17}{\\sqrt{13}} \\approx 4{,}715",
+        "BC = \\sqrt{13} \\approx 3{,}606",
+        "\\text{Aire} = \\tfrac{1}{2} \\times \\sqrt{13} \\times \\tfrac{17}{\\sqrt{13}} = 8{,}5"
+      ]
+    },
+    "nature": {
+      "type": "etape",
+      "kicker": "La nature d'un triangle",
+      "titre": "Trois produits scalaires aux sommets classent le triangle",
+      "tex": [
+        "\\text{rectangle : un produit nul en un sommet}",
+        "\\text{acutangle : trois produits positifs}",
+        "\\text{obtusangle : un produit négatif}"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 110
+      }
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Orthogonalité : produit scalaire nul",
+        "Cauchy-Schwarz : le produit est borné",
+        "Projection : coefficient fois le vecteur",
+        "Distance : projeter sur la normale",
+        "Le signe aux sommets classe le triangle"
+      ]
+    },
+    "strategie": {
+      "type": "etape",
+      "kicker": "La méthode du géomètre",
+      "titre": "Trois étapes pour tout problème de géométrie",
+      "tex": [
+        "\\text{1. modéliser : des vecteurs partout}",
+        "\\text{2. traduire en produits scalaires}",
+        "\\text{3. résoudre, puis interpréter dans la figure}"
+      ]
+    },
+    "alkashi": {
+      "type": "formule",
+      "kicker": "Le théorème d'Al-Kashi",
+      "tex": "\\begin{aligned} &BC^2 = AB^2 + AC^2 \\\\ &- 2 \\times AB \\times AC \\times \\cos\\widehat{BAC} \\end{aligned}",
+      "note": "La loi des cosinus : Pythagore généralisé, démontré en développant un carré scalaire."
+    },
+    "losange": {
+      "type": "etape",
+      "kicker": "Exemple : les diagonales du losange",
+      "titre": "Côtés égaux : les diagonales sont perpendiculaires",
+      "tex": [
+        "\\overrightarrow{AC} = \\vec{u} + \\vec{v} \\qquad \\overrightarrow{BD} = \\vec{v} - \\vec{u}",
+        "\\overrightarrow{AC} \\cdot \\overrightarrow{BD} = |\\vec{v}|^2 - |\\vec{u}|^2 = 0"
+      ]
+    },
+    "lieu": {
+      "type": "etape",
+      "kicker": "Un lieu géométrique classique",
+      "titre": "Angle droit en M : le cercle de diamètre [AB]",
+      "tex": [
+        "\\overrightarrow{MA} \\cdot \\overrightarrow{MB} = 0",
+        "\\iff M \\text{ sur le cercle de diamètre } [AB]",
+        "M \\neq A, \\ M \\neq B"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 150
+      }
+    },
+    "mediatrice": {
+      "type": "etape",
+      "kicker": "Médiatrice et point le plus proche",
+      "titre": "Deux caractérisations par un produit nul",
+      "tex": [
+        "M \\text{ sur la médiatrice de } [AB]",
+        "\\iff \\overrightarrow{MO} \\cdot \\overrightarrow{AB} = 0",
+        "\\text{le plus proche : le projeté orthogonal}"
+      ]
+    },
+    "travail_ex": {
+      "type": "etape",
+      "kicker": "Exemple physique : le travail chiffré",
+      "titre": "Force de 50 newtons, déplacement de 10 mètres",
+      "tex": [
+        "\\alpha = 0^\\circ : \\quad W = 50 \\times 10 = 500\\ \\text{J}",
+        "\\alpha = 60^\\circ : \\quad W = 500 \\times \\tfrac{1}{2} = 250\\ \\text{J}",
+        "\\alpha = 90^\\circ : \\quad W = 0\\ \\text{J}"
+      ],
+      "anim": {
+        "nom": "travail_angle_fig",
+        "hauteur": 110
+      }
+    },
+    "espace": {
+      "type": "formule",
+      "kicker": "Et au-delà du plan",
+      "tex": "\\vec{u} \\cdot \\vec{v} = \\sum_{i=1}^{n} x_i\\, y_i",
+      "note": "Même formule en dimension n : l'angle se définit par le même cosinus.",
+      "anim": {
+        "nom": "repere3d_fig",
+        "hauteur": 170
+      }
+    },
+    "bases": {
+      "type": "etape",
+      "kicker": "Les bases orthonormales",
+      "titre": "Des coordonnées qui se lisent par un produit scalaire",
+      "tex": [
+        "v_i = \\vec{v} \\cdot \\vec{e}_i",
+        "\\text{Gram-Schmidt : orthogonaliser}",
+        "\\text{puis normaliser}"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Deux définitions équivalentes, un nombre",
+        "Nul : orthogonalité ; signe : type d'angle",
+        "Projection et distance : projeter juste",
+        "Traduire la géométrie, calculer, conclure",
+        "Al-Kashi et Cauchy-Schwarz : les deux piliers"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré au produit scalaire, l'outil qui transforme une question d'angle en un simple calcul. Nous partirons du travail d'une force, nous donnerons les deux définitions, géométrique et analytique, puis nous apprendrons à prouver l'orthogonalité, à projeter, à mesurer des distances et à classer les triangles.",
+      "texte": "Le produit scalaire : quand l'angle devient un calcul.",
+      "ecran": "titre",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p02",
+      "dit": "Deux forces qui tirent un objet, deux rayons qui se croisent, deux routes qui divergent : partout revient la même question, quel est l'angle entre ces deux directions, et comment mesurer leur alignement ou leur opposition. Le produit scalaire répond par un seul nombre réel, calculé à partir des deux vecteurs.",
+      "texte": "Mesurer l'alignement de deux directions par un nombre.",
+      "ecran": "intro",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "dit": "L'intuition vient de la physique. Poussez une brouette en biais : seule la partie de votre force dirigée le long du déplacement fait avancer la brouette, la partie perpendiculaire est perdue pour le mouvement. Le travail d'une force est le produit des normes de la force et du déplacement par le cosinus de l'angle entre eux : vous tenez déjà la définition géométrique.",
+      "texte": "Le travail d'une force : la définition est déjà là.",
+      "ecran": "travail",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "Voici la définition géométrique. Pour deux vecteurs non nuls u et v, leur produit scalaire est le produit de leurs normes par le cosinus de l'angle géométrique thêta qui les sépare, un angle toujours pris entre zéro et pi. Le résultat n'est pas un vecteur : c'est un nombre réel, positif, négatif ou nul, et ce signe va raconter l'angle.",
+      "texte": "Produit des normes par le cosinus : un nombre réel.",
+      "ecran": "def_geo",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Lisez le signe comme un verdict sur l'angle. Angle nul, les vecteurs pointent dans le même sens et le produit vaut le produit des normes. Angle droit, le cosinus s'annule et le produit est nul. Angle plat, sens opposés, le produit vaut le produit des normes changé de signe. Entre les deux, un produit positif signale un angle aigu, un produit négatif un angle obtus.",
+      "texte": "Le signe du produit raconte l'angle.",
+      "ecran": "signe",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "dit": "Deuxième visage, la définition analytique. Dans un repère orthonormé, si u a pour coordonnées ixe et igrec, et v ixe prime et igrec prime, le produit scalaire vaut ixe fois ixe prime plus igrec fois igrec prime. Dans l'espace, on ajoute simplement le produit des troisièmes coordonnées. Condition absolue : le repère doit être orthonormé, sinon la formule ne vaut plus.",
+      "texte": "Coordonnées : ix x' + y y', en repère orthonormé.",
+      "ecran": "def_ana",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "dit": "Premier exemple, le test d'orthogonalité. Prenez u de coordonnées trois et quatre, et v de coordonnées moins quatre et trois. Le produit vaut trois fois moins quatre, plus quatre fois trois, c'est-à-dire moins douze plus douze, donc zéro. Produit nul et vecteurs non nuls : les deux vecteurs sont orthogonaux, sans avoir tracé le moindre angle droit.",
+      "texte": "Produit nul : les vecteurs sont orthogonaux.",
+      "ecran": "ex_orthog",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "dit": "Deuxième exemple, le calcul d'un angle. Avec u de coordonnées un et zéro, et v de coordonnées un et racine carrée de trois, les normes valent un et deux, et le produit scalaire vaut un. Le cosinus de l'angle vaut donc un divisé par deux, soit un demi : l'angle est pi sur trois, soixante degrés. La méthode est toujours la même : les coordonnées donnent le produit, les normes donnent le cosinus.",
+      "texte": "Normes et produit donnent le cosinus, donc l'angle.",
+      "ecran": "ex_angle",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "dit": "Pour calculer librement, trois propriétés suffisent. La symétrie : échanger les deux vecteurs ne change rien. La bilinéarité : le produit se distribue sur les sommes et les coefficients sortent, des deux côtés. La positivité : un vecteur produit par lui-même donne un résultat positif ou nul, et nul uniquement pour le vecteur nul. Avec cela, on développe les produits scalaires comme des produits de nombres.",
+      "texte": "Symétrie, bilinéarité, positivité : calculer librement.",
+      "ecran": "proprietes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "dit": "Conséquence immédiate : la norme d'un vecteur est la racine carrée de son produit par lui-même, c'est-à-dire la racine de la somme des carrés des coordonnées. Pour le vecteur de coordonnées trois et quatre, on retrouve racine de vingt-cinq, donc cinq. Retenez le réflexe : dès qu'une longueur apparaît dans un problème, pensez carré scalaire, le calcul devient algébrique.",
+      "texte": "La norme : racine carrée du produit par lui-même.",
+      "ecran": "norme",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "dit": "La bilinéarité donne les identités remarquables des vecteurs. Le carré de la norme d'une somme ajoute deux fois le produit scalaire, celui d'une différence le retranche. Et l'identité de polarisation fait le chemin inverse : elle retrouve le produit scalaire à partir des seules normes d'une somme et d'une différence. Ces trois formules sont les couteaux suisses des démonstrations du chapitre.",
+      "texte": "Développer, réduire, retrouver le produit : les identités.",
+      "ecran": "identites",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "Récapitulons cette première partie. Le produit scalaire possède deux définitions équivalentes, l'une par les normes et le cosinus, l'autre par les coordonnées dans un repère orthonormé. Son signe classe l'angle, sa nullité signale l'orthogonalité, et ses propriétés algébriques, symétrie, bilinéarité et positivité, permettent de développer et de calculer les normes comme en algèbre ordinaire.",
+      "texte": "L'essentiel de la partie 1 : deux définitions, trois propriétés.",
+      "ecran": "recap1",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "dit": "Mettons les identités au travail. On donne deux vecteurs de normes trois et quatre, dont le produit scalaire vaut cinq, et on cherche la norme de deux u moins trois v. On développe le carré : quatre fois neuf, moins douze fois cinq, plus neuf fois seize, soit trente-six moins soixante plus cent quarante-quatre, égale cent vingt. La norme vaut donc racine de cent vingt, c'est-à-dire deux racine de trente.",
+      "texte": "Norme d'une combinaison : développer le carré scalaire.",
+      "ecran": "ex_synthese",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p14",
+      "dit": "Le critère central du cours tient en une équivalence : deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. Pour des vecteurs non nuls, c'est exactement dire que le cosinus de leur angle est nul, donc que l'angle est droit. Toute question de perpendicularité devient ainsi un calcul de coordonnées, sans équerre ni figure.",
+      "texte": "Orthogonaux si et seulement si le produit est nul.",
+      "ecran": "orthogonalite",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Application dans l'espace : trouver le réel ka pour que u de coordonnées un, ka et moins deux soit orthogonal à v de coordonnées trois, moins un et quatre. Le produit vaut trois, moins ka, moins huit, c'est-à-dire moins ka moins cinq. On l'annule : ka vaut moins cinq. Le schéma est toujours le même : écrire le produit, poser qu'il vaut zéro, résoudre l'équation.",
+      "texte": "Annuler le produit : le paramètre tombe.",
+      "ecran": "parametre",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p16",
+      "dit": "L'inégalité de Cauchy-Schwarz borne ce que le produit peut atteindre : sa valeur absolue ne dépasse jamais le produit des normes. Elle vient directement du fait que le cosinus reste entre moins un et un, et l'égalité n'a lieu que pour des vecteurs colinéaires. C'est elle qui garantit, en toute dimension, que le quotient qui définit le cosinus reste dans les limites d'un vrai cosinus.",
+      "texte": "Cauchy-Schwarz : le produit ne dépasse pas les normes.",
+      "ecran": "cauchy",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Projeter un vecteur sur une direction, c'est garder son ombre le long de cette direction. La projection orthogonale de u sur le vecteur non nul v est le produit scalaire de u et v, divisé par le carré de la norme de v, le tout multiplié par v. Le reste, u moins sa projection, est orthogonal à v : c'est exactement la hauteur dans les calculs de distance.",
+      "texte": "Projeter : l'ombre d'un vecteur le long d'une direction.",
+      "ecran": "projection",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple complet : projeter u de coordonnées quatre et deux sur v de coordonnées un et trois. Le produit scalaire vaut quatre plus six, donc dix, et le carré de la norme de v vaut un plus neuf, donc dix aussi. Le coefficient vaut un : la projection de u sur v est exactement le vecteur v. Vérifiez toujours le coefficient : s'il dépasse un en valeur absolue, la projection dépasse le vecteur qui la porte.",
+      "texte": "Coefficient 1 : la projection est v lui-même.",
+      "ecran": "ex_projection",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "dit": "La distance d'un point à une droite est la longueur de la perpendiculaire menée du point à la droite, et la projection la donne sans construction. Prenez un point A de la droite et un vecteur normal n : la distance est la valeur absolue du produit scalaire du vecteur A M par n, divisée par la norme de n. On projette sur la normale, jamais le long de la droite.",
+      "texte": "Distance point-droite : projeter sur la normale.",
+      "ecran": "distance",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "dit": "Étude de cas, le triangle de sommets A de coordonnées un et un, B quatre et cinq, C six et deux. Les vecteurs A B et A C ont pour coordonnées trois et quatre, puis cinq et un. Leur produit vaut quinze plus quatre, donc dix-neuf, et leurs normes cinq et racine de vingt-six. Le cosinus de l'angle en A vaut environ zéro virgule sept quatre cinq : l'angle mesure environ quarante et un virgule neuf degrés, il est aigu.",
+      "texte": "Angle en A : cosinus 0,745, environ 41,9 degrés.",
+      "ecran": "cas_angle",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "dit": "Toujours dans ce triangle, la distance du point A à la droite B C se calcule par la formule de projection sur un vecteur normal : elle vaut dix-sept sur racine de treize, environ quatre virgule sept un cinq. La base B C mesure racine de treize, et l'aire, moitié du produit de la base par la hauteur, vaut exactement huit virgule cinq. Les racines se simplifient : guettez toujours ce cadeau en fin de calcul.",
+      "texte": "Distance 17/√13, aire exacte : 8,5.",
+      "ecran": "cas_distance",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "Le même réflexe classe n'importe quel triangle. Calculez, en chaque sommet, le produit des deux vecteurs issus de ce sommet. Un produit nul révèle l'angle droit et le sommet où il se trouve. Trois produits strictement positifs : le triangle est acutangle. Un produit strictement négatif : le triangle est obtusangle, et le sommet concerné porte l'angle obtus.",
+      "texte": "Trois produits aux sommets classent le triangle.",
+      "ecran": "nature",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "dit": "Récapitulons cette deuxième partie. L'orthogonalité se teste par un produit nul, y compris pour déterminer un paramètre inconnu. Cauchy-Schwarz borne le produit par les normes. La projection orthogonale décompose un vecteur le long d'une direction, donne la distance d'un point à une droite par la normale, et le signe des produits aux sommets classe les triangles.",
+      "texte": "L'essentiel de la partie 2 : orthogonalité et projections.",
+      "ecran": "recap2",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "Devant un problème de géométrie, suivez la stratégie en trois temps. D'abord modéliser : remplacez points et figures par des vecteurs, avec un repère ou un point d'appui bien choisi. Ensuite traduire : angle droit devient produit nul, distance devient norme, alignement devient colinéarité. Enfin résoudre par le calcul, puis interpréter le résultat dans la figure de départ.",
+      "texte": "Modéliser, traduire, résoudre : la stratégie.",
+      "ecran": "strategie",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "dit": "Premier classique revisité : le théorème d'Al-Kashi, la loi des cosinus. Dans un triangle, le carré d'un côté égale la somme des carrés des deux autres, moins deux fois leur produit par le cosinus de l'angle compris. Sa démonstration est un développement de carré scalaire, celui du vecteur B C écrit comme une différence. Et si l'angle est droit, le terme en cosinus disparaît : on retrouve Pythagore.",
+      "texte": "Al-Kashi : Pythagore généralisé par un carré scalaire.",
+      "ecran": "alkashi",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Deuxième classique : dans un losange, les diagonales sont perpendiculaires. Écrivez les diagonales comme somme et différence des vecteurs côtés u et v. Leur produit se développe et les termes croisés s'annulent : il reste la différence des carrés des normes. Or un losange a ses côtés égaux, les normes sont les mêmes, la différence est nulle : les diagonales sont orthogonales, en quatre lignes de calcul.",
+      "texte": "Diagonales du losange : perpendiculaires, prouvé.",
+      "ecran": "losange",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p27",
+      "dit": "Troisième classique, un lieu géométrique. Pour deux points distincts A et B, où sont les points M tels que le produit des vecteurs M A et M B soit nul ? Cela dit exactement que l'angle en M est droit. Réponse : le cercle de diamètre A B, privé de ses extrémités A et B. Le produit scalaire transforme une condition d'angle en équation de cercle, et réciproquement.",
+      "texte": "MA · MB = 0 : le cercle de diamètre [AB].",
+      "ecran": "lieu",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p28",
+      "dit": "La médiatrice d'un segment se caractérise de la même façon : avec O le milieu de A B, un point M est sur la médiatrice si et seulement si le produit des vecteurs M O et A B est nul, c'est-à-dire si M O est perpendiculaire au segment. Même idée pour le point le plus proche : sur une droite, le point le plus proche d'un point extérieur est son projeté orthogonal, car tout autre chemin ajoute un terme positif au carré de la distance.",
+      "texte": "Médiatrice et plus proche voisin : le projeté.",
+      "ecran": "mediatrice",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p29",
+      "dit": "Retour à la physique, avec le tableau du travail. Une force de cinquante newtons déplace un chariot de dix mètres. Si la force est dans le sens du déplacement, le travail vaut cinq cents joules. À soixante degrés, le cosinus vaut un demi, le travail tombe à deux cent cinquante joules. À quatre-vingt-dix degrés, force perpendiculaire au déplacement : le travail est nul, comme pour la force centripète d'un mouvement circulaire.",
+      "texte": "Travail : 500 J, 250 J, puis 0 J à angle droit.",
+      "ecran": "travail_ex",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Tout ce cours se généralise sans effort. Dans l'espace, le produit ajoute le produit des troisièmes coordonnées, et en dimension n, c'est la somme des produits des coordonnées de même rang. Le cosinus de l'angle garde la même définition, rendue légitime par Cauchy-Schwarz, et l'orthogonalité reste un produit nul. C'est ce langage qui sert en science des données, où les vecteurs ont des milliers de coordonnées.",
+      "texte": "En dimension n : même somme, même cosinus.",
+      "ecran": "espace",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p31",
+      "dit": "Dernier outil : les bases orthonormales, des familles de vecteurs unitaires deux à deux orthogonaux. Dans une telle base, la coordonnée d'un vecteur le long d'un vecteur de base est simplement son produit scalaire avec ce vecteur de base : coordonnées et projections ne font qu'un. Le procédé de Gram-Schmidt fabrique ces bases en orthogonalisant pas à pas, par des projections successives, puis en normalisant.",
+      "texte": "Base orthonormale : la coordonnée est un produit.",
+      "ecran": "bases",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p32",
+      "dit": "Pour conclure ce cours, retenez l'enchaînement complet. Deux définitions équivalentes donnent un nombre ; son signe classe l'angle, sa nullité prouve l'orthogonalité. La bilinéarité développe les carrés de normes, la projection décompose les vecteurs et livre les distances. Traduire la géométrie en produits scalaires, calculer, puis interpréter : c'est la méthode qui démontre Al-Kashi, les diagonales du losange et les lieux en cercle.",
+      "texte": "Le produit scalaire : traduire, calculer, interpréter.",
+      "ecran": "recap_final",
+      "pause_apres": 0.6
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Deux définitions et l'algèbre des vecteurs"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Orthogonalité, projection et distances",
+      "pont": {
+        "texte": "Partie 2 : orthogonalité, projection et distances.",
+        "dit": "Partie deux : mettre le produit au travail. Le critère d'orthogonalité, l'inégalité de Cauchy-Schwarz, la projection orthogonale et les distances vont transformer chaque question de géométrie en un calcul de coordonnées, jusqu'à classer complètement les triangles."
+      }
+    },
+    {
+      "debut": "p24",
+      "sous_titre": "La méthode du géomètre : classiques et lieux",
+      "pont": {
+        "texte": "Partie 3 : la méthode du géomètre, classiques et lieux.",
+        "dit": "Partie trois : la méthode complète du géomètre. Nous appliquerons la stratégie en trois temps aux grands classiques, le théorème d'Al-Kashi, les diagonales du losange, le cercle de diamètre donné, avant d'ouvrir sur l'espace et les bases orthonormales."
+      }
+    }
+  ]
+}
