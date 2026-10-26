@@ -2,7 +2,7 @@
 
 - Date : 26 octobre 2026
 - Auteur : Muse
-- État : pris
+- État : fait (lots 1, 1bis, 2, 3, 4 livrés et poussés sur kw792g le 26/10/2026 ; CI verte sur chaque lot)
 - Zones touchées : `src/services/videos.ts`, `src/components/reviser/` (Chapitre, lecteur, carrousel), `src/app/(onglets)/video.tsx`, i18n, puis progression/activité et hors-ligne (lots 3 et 4). Aucune zone TOEIC.
 
 ## Décisions de Benny (26/10/2026, maquette validée)
@@ -18,3 +18,13 @@
 2. Suivi serveur (`video_progress`, elearn-supabase) + synchro + « Reprendre » accueil + historique « Mes vidéos ».
 3. Temps de visionnage dans l'activité et la progression (nouveau type `video`).
 4. Hors-ligne vidéo : téléchargement explicite par vidéo (720p), lecture locale, suppression.
+
+## Livraison (26/10/2026)
+
+- Lot 1 — commit kw792g `fe5d30e` (CI verte). Correctif inclus au lot 2 : `course_videos.id` est un uuid, pas un entier.
+- Lot 1bis (extension demandée par Benny à 00 h 49) — la « liste collée » devient le composant partagé `src/components/liste/ListeCollee.tsx` et s'applique aux pages Matière, S'entraîner (chapitres par matière), Annales (dossiers) et Entraînement d'un chapitre. Commit `dfa8441` (CI verte).
+- Lot 2 — app : commit `b932e26` (CI verte) ; base : PR elearn-supabase #175 fusionnée, migration `20261026010000_video_progress.sql` déployée en production (run de déploiement vert sur main, `09bc8b5`).
+- Lot 3 — commit `de03a7f` (CI verte).
+- Lot 4 — commit `466bca3` (CI verte).
+
+Choix notables : lecteur en 720p uniquement (forfaits limités, le 1080p viendra si besoin) ; route du lecteur dans le groupe (onglets) sans déclencheur pour garder header et barre d'onglets ; temps vidéo mesuré par segments de lecture réelle ; index des vidéos téléchargées traité comme un état (pas d'expiration), fichiers dans le dossier privé comme les documents.
