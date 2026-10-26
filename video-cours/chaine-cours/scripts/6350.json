@@ -1,0 +1,566 @@
+{
+ "cours": 6350,
+ "titre": "Les solutions : concentrations, dissolution et dilution",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les solutions",
+   "titre": "Les solutions : concentrations, dissolution et dilution",
+   "sous": "Définir le mélange, quantifier sa composition, le préparer à la paillasse",
+   "anim": {
+    "nom": "fiole_jaugee_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le théâtre de l'invisible",
+   "texte": "Un verre d'eau de mer : des milliards d'ions dissous, un spectacle invisible."
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'une solution ?",
+   "titre": "Un mélange homogène, deux rôles",
+   "tex": [
+    "\\text{solution : mélange homogène de deux substances ou plus}",
+    "\\text{solvant : le composant majoritaire, qui dissout (ici l'eau)}",
+    "\\text{soluté : la substance dissoute, minoritaire}",
+    "H_2O + NaCl \\rightarrow \\text{solution aqueuse}"
+   ]
+  },
+  "etats": {
+   "type": "etape",
+   "kicker": "L'état d'une solution",
+   "titre": "La solution prend l'état de son solvant",
+   "tex": [
+    "\\text{liquide : eau salée, sirop, vinaigre}",
+    "\\text{gaz : l'air, mélange d'azote et d'oxygène}",
+    "\\text{solide : les alliages, comme le laiton}"
+   ],
+   "anim": {
+    "nom": "etats_matiere_fig",
+    "hauteur": 110
+   }
+  },
+  "dissolution": {
+   "type": "etape",
+   "kicker": "La dissolution",
+   "titre": "Un solide ionique en trois actes",
+   "tex": [
+    "\\text{acte 1, dislocation : l'eau attaque le cristal de } NaCl",
+    "\\delta^- \\text{ vers } Na^+ \\qquad \\delta^+ \\text{ vers } Cl^-",
+    "\\text{acte 2, solvatation : chaque ion s'entoure d'eau (hydratation)}",
+    "\\text{acte 3, dispersion : } Na^+(aq),\\ Cl^-(aq) \\text{ partout}"
+   ]
+  },
+  "conc_massique": {
+   "type": "formule",
+   "kicker": "Concentration massique",
+   "tex": "C_m = \\frac{m_{\\text{soluté}}}{V_{\\text{solution}}}",
+   "note": "En grammes par litre : le sérum physiologique affiche 9,0 g/L de NaCl."
+  },
+  "conc_molaire": {
+   "type": "formule",
+   "kicker": "Concentration molaire",
+   "tex": "C = \\frac{n_{\\text{soluté}}}{V_{\\text{solution}}} \\qquad n = \\frac{m}{M}",
+   "note": "En moles par litre : compter les entités plutôt que les peser."
+  },
+  "pont": {
+   "type": "formule",
+   "kicker": "Le pont entre les deux",
+   "tex": "C_m = C \\times M \\qquad C = \\frac{C_m}{M}",
+   "note": "La masse molaire M : le pont entre les grammes et les moles."
+  },
+  "glucose": {
+   "type": "etape",
+   "kicker": "Exemple intégré : le glucose",
+   "titre": "Trois questions, une seule solution",
+   "tex": [
+    "C_6H_{12}O_6 \\text{ : } M = 180{,}0\\ \\text{g/mol} \\qquad C_m = 50{,}0\\ \\text{g/L}",
+    "C = \\tfrac{C_m}{M} = \\tfrac{50{,}0}{180{,}0} = 0{,}278\\ \\text{mol/L}",
+    "V = 0{,}500\\ \\text{L} \\Rightarrow m = C_m \\times V = 25{,}0\\ \\text{g}",
+    "n = 0{,}139\\ \\text{mol} \\Rightarrow N = n \\times N_A = 8{,}37 \\times 10^{22}\\ \\text{molécules}"
+   ]
+  },
+  "eau_mer": {
+   "type": "etape",
+   "kicker": "Application : l'eau de mer",
+   "titre": "Du gramme par litre à la mole par litre",
+   "tex": [
+    "C_m(NaCl) \\approx 35\\ \\text{g/L} \\qquad M(NaCl) \\approx 58{,}5\\ \\text{g/mol}",
+    "V = 0{,}250\\ \\text{L} \\Rightarrow m = 35 \\times 0{,}250 = 8{,}75\\ \\text{g de sel}",
+    "C = \\tfrac{C_m}{M} = \\tfrac{35}{58{,}5} \\approx 0{,}60\\ \\text{mol/L}"
+   ]
+  },
+  "pieges_cuivre": {
+   "type": "etape",
+   "kicker": "Exercice guidé : les pièges",
+   "titre": "Le sulfate de cuivre pentahydraté",
+   "tex": [
+    "M(CuSO_4{,}5H_2O) = 63{,}5 + 32{,}1 + 64{,}0 + 5 \\times 18{,}0 = 249{,}6\\ \\text{g/mol}",
+    "m = 2{,}5\\ \\text{g} \\Rightarrow n = \\tfrac{2{,}5}{249{,}6} = 0{,}0100\\ \\text{mol}",
+    "V = 0{,}250\\ \\text{L} \\Rightarrow C = \\tfrac{0{,}0100}{0{,}250} = 0{,}0400\\ \\text{mol/L}",
+    "[Cu^{2+}] = C \\text{ : un ion cuivre libéré par formule}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La démarche de calcul",
+   "titre": "Cinq étapes, dans l'ordre",
+   "tex": [
+    "\\text{1. identifier données et inconnues} \\qquad \\text{2. tout convertir}",
+    "\\text{3. choisir la formule} \\qquad \\text{4. calculer avec soin}",
+    "\\text{5. vérifier : ordre de grandeur, unités}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Solution : solvant + soluté dissous",
+    "Dissolution : hydratation puis dispersion",
+    "C_m = m/V, en grammes par litre",
+    "C = n/V, en moles par litre",
+    "Le pont : C_m = C × M"
+   ]
+  },
+  "materiel": {
+   "type": "etape",
+   "kicker": "Le matériel de précision",
+   "titre": "Chaque outil a un rôle, un seul",
+   "tex": [
+    "\\text{fiole jaugée : contenir un volume précis (trait unique, } 20^\\circ C\\text{)}",
+    "\\text{pipette jaugée : délivrer un volume précis, à la propipette}",
+    "\\text{balance : peser au milligramme} \\qquad \\text{bécher : jamais pour mesurer}"
+   ],
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 110
+   }
+  },
+  "masse_formule": {
+   "type": "formule",
+   "kicker": "La masse à peser",
+   "tex": "m = C \\times V \\times M",
+   "note": "De n = C × V et n = m/M : la formule de départ de toute préparation."
+  },
+  "calcul_cuivre": {
+   "type": "etape",
+   "kicker": "Exemple : le sulfate de cuivre",
+   "titre": "Le calcul avant le geste",
+   "tex": [
+    "C = 0{,}100\\ \\text{mol/L} \\qquad V = 0{,}250\\ \\text{L}",
+    "M(CuSO_4) = 63{,}5 + 32{,}1 + 4 \\times 16{,}0 = 159{,}6\\ \\text{g/mol}",
+    "m = C \\times V \\times M = 0{,}100 \\times 0{,}250 \\times 159{,}6 = 3{,}99\\ \\text{g}"
+   ]
+  },
+  "protocole_pesee": {
+   "type": "etape",
+   "kicker": "Protocole : pesée et dissolution",
+   "titre": "De la balance au bécher",
+   "tex": [
+    "\\text{pesée : tare, verre de montre, ajouter progressivement}",
+    "\\text{dissolution dans un bécher, avec une partie de l'eau}",
+    "\\text{jamais de soluté dans une fiole jaugée sèche}",
+    "\\text{si la dissolution chauffe : laisser refroidir}"
+   ]
+  },
+  "protocole_jaugeage": {
+   "type": "etape",
+   "kicker": "Protocole : transfert et jaugeage",
+   "titre": "Le trait de jauge, l'instant de vérité",
+   "tex": [
+    "\\text{transfert quantitatif : rincer bécher et entonnoir}",
+    "\\text{compléter aux deux tiers, homogénéiser}",
+    "\\text{ajuster : bas du ménisque sur le trait, œil au niveau}"
+   ],
+   "anim": {
+    "nom": "fiole_jaugee_fig",
+    "hauteur": 110
+   }
+  },
+  "pieges_lab": {
+   "type": "etape",
+   "kicker": "Les pièges chiffrés",
+   "titre": "Quatre erreurs, quatre effets mesurés",
+   "tex": [
+    "\\text{ménisque mal lu : erreur systématique, jusqu'à } 1\\ \\%",
+    "\\text{mesurer au bécher : erreur pouvant dépasser } 5\\ \\%",
+    "\\text{pipette rincée à l'eau : solution fille trop diluée}",
+    "\\text{jauger à chaud : trop concentrée après refroidissement}"
+   ]
+  },
+  "cas_soude": {
+   "type": "etape",
+   "kicker": "Cas d'école : la soude",
+   "titre": "Quand la pesée elle-même ment",
+   "tex": [
+    "m = 0{,}500 \\times 40{,}0 \\times 1{,}00 = 20{,}0\\ \\text{g de } NaOH",
+    "\\text{mais les pastilles sont hygroscopiques : elles boivent l'air}",
+    "\\text{la masse pesée contient de l'eau absorbée}",
+    "\\Rightarrow \\text{ concentration réelle inconnue : il faut titrer}"
+   ]
+  },
+  "etalons": {
+   "type": "etape",
+   "kicker": "Étalons et sécurité",
+   "titre": "La référence, et le geste qui protège",
+   "tex": [
+    "\\text{étalon primaire : pureté } \\geq 99{,}9\\ \\%\\text{, stable, grande masse molaire}",
+    "\\text{exemple : le phtalate acide de potassium étalonne la soude}",
+    "\\text{sécurité : toujours verser l'acide dans l'eau, jamais l'inverse}",
+    "\\text{consulter la fiche de sécurité, porter blouse, lunettes, gants}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "m = C × V × M : calculer avant de peser",
+    "Peser à la balance analytique",
+    "Dissoudre dans un bécher, puis transférer",
+    "Bas du ménisque sur le trait de jauge",
+    "Homogénéiser : dix retournements"
+   ]
+  },
+  "principe_dilution": {
+   "type": "formule",
+   "kicker": "Le principe de la dilution",
+   "tex": "C_i \\times V_i = C_f \\times V_f",
+   "note": "La quantité de matière se conserve : on ajoute du solvant, jamais du soluté."
+  },
+  "facteur": {
+   "type": "etape",
+   "kicker": "Le facteur de dilution",
+   "titre": "Combien de fois plus dilué ?",
+   "tex": [
+    "F = \\tfrac{C_i}{C_f} = \\tfrac{V_f}{V_i} \\qquad F > 1",
+    "\\text{au dixième : } F = 10 \\Rightarrow C_f = C_i / 10",
+    "\\text{au centième : } F = 100 \\Rightarrow C_f = C_i / 100",
+    "\\text{au millième : } F = 1000 \\Rightarrow C_f = C_i / 1000"
+   ]
+  },
+  "javel": {
+   "type": "etape",
+   "kicker": "Exemple : le désinfectant",
+   "titre": "L'eau de Javel, de 2,0 à 0,5",
+   "tex": [
+    "C_i = 2{,}0\\ \\text{mol/L} \\qquad C_f = 0{,}5\\ \\text{mol/L} \\qquad V_f = 500\\ \\text{mL}",
+    "V_i = \\tfrac{C_f \\times V_f}{C_i} = \\tfrac{0{,}5 \\times 0{,}500}{2{,}0} = 0{,}125\\ \\text{L} = 125\\ \\text{mL}",
+    "F = \\tfrac{2{,}0}{0{,}5} = 4 \\Rightarrow V_i = V_f / 4"
+   ],
+   "note": "Compléter à 500 mL : ne jamais ajouter 500 mL d'eau."
+  },
+  "protocole_dilution": {
+   "type": "etape",
+   "kicker": "Protocole de dilution",
+   "titre": "Cinq gestes, dans l'ordre",
+   "tex": [
+    "\\text{1. calculer } V_i \\text{, 2. prélever à la pipette rincée à la mère}",
+    "\\text{3. transférer dans la fiole de volume } V_f",
+    "\\text{4. compléter aux deux tiers, homogénéiser}",
+    "\\text{5. ajuster au trait, retourner au moins dix fois}"
+   ]
+  },
+  "dilution_cuivre": {
+   "type": "etape",
+   "kicker": "Exemple pas à pas : la dilution",
+   "titre": "Du sulfate de cuivre, dix fois plus dilué",
+   "tex": [
+    "C_m = 0{,}10 \\rightarrow C_f = 0{,}010\\ \\text{mol/L} \\qquad V_f = 250{,}0\\ \\text{mL}",
+    "V_m = \\tfrac{C_f \\times V_f}{C_m} = \\tfrac{0{,}010 \\times 0{,}250}{0{,}10} = 25{,}0\\ \\text{mL}",
+    "\\text{pipette jaugée de } 25{,}0\\ \\text{mL, rincée à la solution mère}"
+   ]
+  },
+  "serie_principe": {
+   "type": "etape",
+   "kicker": "Les dilutions en série",
+   "titre": "Quand un seul prélèvement ne suffit plus",
+   "tex": [
+    "\\text{direct, } F = 1000 \\text{ : } V_i = 0{,}1\\ \\text{mL, imprécis}",
+    "\\text{en série : } F_{total} = F_1 \\times F_2 \\times F_3 = 10 \\times 10 \\times 10",
+    "\\text{tubes : } 9{,}0\\ \\text{mL d'eau} + 1{,}0\\ \\text{mL de la précédente}",
+    "C_n = C_m \\times D^{-n}"
+   ]
+  },
+  "cascade": {
+   "type": "etape",
+   "kicker": "Exemple : la gamme étalon",
+   "titre": "Le permanganate en deux étapes",
+   "tex": [
+    "C_{m,i} = 2{,}00\\ \\text{g/L} \\qquad C_{m,f} = 0{,}0500\\ \\text{g/L}",
+    "\\text{direct : } V_i = \\tfrac{0{,}0500 \\times 0{,}1000}{2{,}00} = 2{,}50\\ \\text{mL, délicat}",
+    "\\text{étape 1 : } 10{,}0\\ \\text{mL} \\rightarrow 100\\ \\text{mL} \\Rightarrow 0{,}200\\ \\text{g/L}",
+    "\\text{étape 2 : } 25{,}0\\ \\text{mL} \\rightarrow 100\\ \\text{mL} \\Rightarrow 0{,}0500\\ \\text{g/L}"
+   ]
+  },
+  "gamme": {
+   "type": "etape",
+   "kicker": "Planifier une gamme",
+   "titre": "Le tableau du laborantin",
+   "tex": [
+    "\\text{A : } 0{,}50 \\rightarrow 0{,}050\\ \\text{mol/L}",
+    "\\text{A : prélever } 10{,}0\\ \\text{mL, compléter à } 100{,}0\\ \\text{mL}",
+    "\\text{B : } 2{,}0 \\times 10^{-3} \\text{ depuis A : } 2{,}0\\ \\text{mL} \\rightarrow 50{,}0\\ \\text{mL}",
+    "\\text{rinçage : pas de précision, l'éprouvette suffit}"
+   ]
+  },
+  "milieu": {
+   "type": "etape",
+   "kicker": "Application : le milieu de culture",
+   "titre": "Deux dilutions dans une même fiole",
+   "tex": [
+    "\\text{glucose : } 500 \\times V_i = 10{,}0 \\times 0{,}500 \\Rightarrow V_i = 10{,}0\\ \\text{mL}",
+    "\\text{NaCl : } 1{,}00 \\times V_i = 0{,}150 \\times 0{,}500 \\Rightarrow V_i = 75{,}0\\ \\text{mL}",
+    "\\text{fiole de } 500\\ \\text{mL : eau d'abord, puis NaCl, puis glucose}",
+    "\\text{compléter au trait : les volumes ne s'additionnent pas}"
+   ]
+  },
+  "acide": {
+   "type": "etape",
+   "kicker": "Problème de synthèse : l'acide du commerce",
+   "titre": "De l'étiquette à la solution de travaux pratiques",
+   "tex": [
+    "\\text{étiquette : } d = 1{,}19 \\text{, } 37{,}0\\ \\% \\text{ en masse, } M(HCl) = 36{,}5",
+    "1\\ \\text{L} \\rightarrow 1190\\ \\text{g} \\rightarrow 0{,}370 \\times 1190 = 440\\ \\text{g de HCl pur}",
+    "n = \\tfrac{440}{36{,}5} \\approx 12{,}1\\ \\text{mol} \\Rightarrow C \\approx 12{,}1\\ \\text{mol/L}",
+    "\\text{pour } 2{,}0\\ \\text{L à } 0{,}50 \\text{ : prélever environ } 83\\ \\text{mL}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "C_i × V_i = C_f × V_f : rien ne se perd",
+    "F = C_i/C_f : le facteur de dilution",
+    "Pipette rincée à la solution mère",
+    "En série : les facteurs se multiplient",
+    "Toujours compléter au trait de jauge"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours consacré aux solutions, le théâtre invisible de la chimie. Un verre d'eau de mer, un sérum physiologique, une perfusion : derrière chaque liquide limpide se cache une quantité précise de substance dissoute, et tout l'enjeu est de la connaître et de la maîtriser. Nous allons d'abord définir ce qu'est une solution et apprendre à quantifier sa composition, avec la concentration massique et la concentration molaire. Puis nous passerons à la paillasse : préparer une solution par dissolution, avec la fiole jaugée et la lecture du ménisque. Enfin, nous apprendrons à diluer, en conservant la quantité de matière, jusqu'aux dilutions en série.",
+   "texte": "Solutions : définir, quantifier, préparer, diluer."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Imaginez un simple verre d'eau de mer. À première vue, un liquide limpide, légèrement salé. En réalité, c'est un véritable théâtre chimique où se joue un spectacle invisible : des milliards de particules de sel, de magnésium, de calcium y sont dissoutes. Le médecin Paracelse le disait déjà au seizième siècle : tout est poison, rien n'est poison, seule la dose fait le poison. Autrement dit, tout dépend de la concentration. Ce cours est votre passeport pour ce monde microscopique, celui des solutions aqueuses, le fondement de toute la chimie des solutions.",
+   "texte": "Eau de mer : un théâtre chimique invisible."
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "dit": "Définissons l'essentiel. Une solution est un mélange homogène de deux ou plusieurs substances : homogène, c'est-à-dire identique en tout point, même au microscope. Deux acteurs se partagent la scène. Le solvant, composant majoritaire, est celui qui dissout : dans ce cours, ce sera presque toujours l'eau. Le soluté est la substance minoritaire qui est dissoute : le sel dans l'eau de mer, le sucre dans le café. Quand le solvant est l'eau, on parle de solution aqueuse, du latin aquosus, qui contient de l'eau. L'eau n'est pas toujours le solvant : pensez aux teintures à base d'alcool. Mais elle reste le solvant universel de la biologie et du laboratoire.",
+   "texte": "Solvant : il dissout. Soluté : il est dissous."
+  },
+  {
+   "id": "p04",
+   "ecran": "etats",
+   "dit": "Une solution n'est pas nécessairement liquide : elle prend l'état de son solvant. Solvant liquide, solution liquide : l'eau salée, le sirop, le vinaigre. Solvant gazeux, solution gazeuse : l'air qui nous entoure est une solution de gaz, l'oxygène dissous dans l'azote. Solvant solide, solution solide : les alliages, comme le laiton, et les minéraux. La leçon pose alors la question : l'acier est-il une solution ? Oui, au sens du tableau : comme les alliages, c'est une solution solide, où un métal joue le rôle de solvant.",
+   "texte": "Liquide, gaz ou solide : l'état du solvant décide."
+  },
+  {
+   "id": "p05",
+   "ecran": "dissolution",
+   "dit": "Comment un solide disparaît-il dans l'eau ? Prenons le chlorure de sodium. La dissolution se joue en trois actes. Acte un, la dislocation : les molécules d'eau, qui sont polaires, attaquent la structure cristalline du sel. Leurs oxygènes, porteurs d'une charge partielle négative, s'orientent vers les ions sodium positifs ; leurs hydrogènes, partiellement positifs, vers les ions chlorure négatifs. Acte deux, la solvatation : chaque ion arraché s'entoure d'une coquille de molécules d'eau, sa sphère de solvatation, qui le stabilise ; quand le solvant est l'eau, on parle d'hydratation. Acte trois, la dispersion : les ions hydratés diffusent dans tout le volume, et le mélange devient homogène. On les note alors avec le symbole aqueux, qui signifie hydraté.",
+   "texte": "Dislocation, hydratation, dispersion : Na⁺(aq), Cl⁻(aq)."
+  },
+  {
+   "id": "p06",
+   "ecran": "conc_massique",
+   "dit": "Pour quantifier un mélange, première approche : la concentration massique. Elle répond à une question simple : combien de grammes de soluté trouve-t-on dans un litre de solution ? C'est la masse de soluté divisée par le volume de la solution, en grammes par litre, ou en milligrammes par litre. C'est la mesure la plus intuitive, héritée des apothicaires d'autrefois, et elle reste omniprésente dans l'industrie alimentaire et pharmaceutique : le sérum physiologique, par exemple, contient neuf grammes de chlorure de sodium par litre.",
+   "texte": "C_m = m/V : des grammes par litre."
+  },
+  {
+   "id": "p07",
+   "ecran": "conc_molaire",
+   "dit": "Deuxième approche, plus chimique : la concentration molaire, notée C. Elle compte les entités plutôt qu'elle ne les pèse : combien de moles de soluté dans un litre de solution ? C'est la quantité de matière divisée par le volume, en moles par litre. Et la quantité de matière se relie à la masse par la masse molaire : n égale m sur M. C'est cette concentration-là qui sert dans les calculs de réactions, car les équations chimiques raisonnent en moles, jamais en grammes.",
+   "texte": "C = n/V : des moles par litre."
+  },
+  {
+   "id": "p08",
+   "ecran": "pont",
+   "dit": "Les deux concentrations décrivent la même réalité, et une relation capitale permet de passer de l'une à l'autre : la concentration massique égale la concentration molaire multipliée par la masse molaire. La masse molaire est le pont entre le monde macroscopique, celui des grammes que l'on pèse, et le monde microscopique, celui des moles que l'on compte. Retenez aussi le contraste du tableau comparatif : la concentration massique ne dépend pas de la nature chimique du soluté et se mesure directement à la balance ; la concentration molaire dépend de la masse molaire, mais elle est reliée au nombre d'entités, donc universelle pour les calculs chimiques.",
+   "texte": "C_m = C × M : la masse molaire fait le pont."
+  },
+  {
+   "id": "p09",
+   "ecran": "glucose",
+   "dit": "Mettons tout en œuvre sur le glucose, le sucre du sang. Sa masse molaire vaut cent quatre-vingts grammes par mole, et notre solution affiche une concentration massique de cinquante grammes par litre. Première question, la concentration molaire : cinquante divisé par cent quatre-vingts, soit zéro virgule deux cent soixante-dix-huit mole par litre. Deuxième question, la masse contenue dans cinq cents millilitres : concentration massique fois volume, vingt-cinq grammes. Troisième question, le nombre de molécules : la quantité de matière vaut zéro virgule cent trente-neuf mole ; multipliée par le nombre d'Avogadro, on obtient huit virgule trente-sept fois dix puissance vingt-deux molécules. Peser, compter, convertir : tout tient dans ces trois gestes.",
+   "texte": "Glucose : C = 0,278 mol/L ; 25,0 g ; 8,37×10²² molécules."
+  },
+  {
+   "id": "p10",
+   "ecran": "eau_mer",
+   "dit": "Retour au verre d'eau de mer du début. L'eau de mer contient environ trente-cinq grammes de sels dissous par litre : c'est sa concentration massique. Dans un prélèvement de deux cent cinquante millilitres, la masse de sel vaut donc trente-cinq fois zéro virgule deux cent cinquante, soit huit virgule soixante-quinze grammes. Et en concentration molaire ? La masse molaire du chlorure de sodium vaut environ cinquante-huit virgule cinq grammes par mole : trente-cinq divisé par cinquante-huit virgule cinq donne environ zéro virgule soixante mole par litre. Un même verre, deux langages, une seule réalité.",
+   "texte": "Mer : 35 g/L, 8,75 g dans 250 mL, ≈ 0,60 mol/L."
+  },
+  {
+   "id": "p11",
+   "ecran": "pieges_cuivre",
+   "dit": "Un exercice guidé, avec ses pièges. On dissout deux virgule cinq grammes de sulfate de cuivre pentahydraté dans de l'eau, pour obtenir deux cent cinquante millilitres de solution ; on demande la concentration en ions cuivre deux. Premier piège : le solide est hydraté, sa formule inclut cinq molécules d'eau, et sa masse molaire doit les compter : deux cent quarante-neuf virgule six grammes par mole. La quantité de matière vaut alors un virgule zéro fois dix puissance moins deux mole. Deuxième piège : le volume se convertit en litres. La concentration du composé vaut quatre virgule zéro fois dix puissance moins deux mole par litre. Troisième point : chaque formule libère exactement un ion cuivre deux, donc la concentration en ions est la même. Si l'on avait pris le sulfate de cuivre anhydre, la masse molaire changerait, et le résultat aussi : en chimie analytique, cette différence est cruciale.",
+   "texte": "Hydraté : M = 249,6 g/mol → [Cu²⁺] = 0,0400 mol/L."
+  },
+  {
+   "id": "p12",
+   "ecran": "methode",
+   "dit": "Avant de quitter les calculs, retenez la démarche en cinq étapes qui résout tous les problèmes de concentration. Un : identifier les données et les inconnues. Deux : convertir toutes les grandeurs dans des unités cohérentes, litres, grammes, moles. Trois : choisir la formule appropriée à ce qui est demandé. Quatre : calculer, en soignant les chiffres significatifs. Cinq : vérifier la cohérence du résultat, son ordre de grandeur et ses unités. Ces formules servent partout : en environnement, la norme des nitrates dans l'eau potable, cinquante milligrammes par litre, devient huit virgule un fois dix puissance moins quatre mole par litre une fois convertie, bien plus parlante pour comprendre la pollution.",
+   "texte": "Identifier, convertir, choisir, calculer, vérifier."
+  },
+  {
+   "id": "p13",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. Une solution est un mélange homogène d'un solvant, majoritaire, et d'un soluté dissous. La dissolution disperse le soluté, par dislocation, hydratation puis dispersion des ions. Deux concentrations quantifient le mélange : la massique, masse sur volume, en grammes par litre ; la molaire, quantité de matière sur volume, en moles par litre. Et la masse molaire fait le pont entre les deux.",
+   "texte": "Solutions et concentrations : l'essentiel."
+  },
+  {
+   "id": "p14",
+   "ecran": "materiel",
+   "dit": "Avant de manipuler, connaissez vos outils. La fiole jaugée est l'instrument roi : étalonnée pour contenir un volume précis à vingt degrés, son trait unique, gravé sur un long col étroit, minimise les erreurs de lecture ; sa forme actuelle a été standardisée au dix-neuvième siècle par le chimiste Karl Friedrich Mohr. La pipette jaugée, elle, est étalonnée pour délivrer un volume précis ; on l'utilise toujours avec une propipette, jamais à la bouche. La burette sert aux ajouts progressifs des dosages. La balance analytique garde la masse, au milligramme près, et parfois au dix-millième de gramme. Le bécher et l'erlenmeyer sont des récipients de travail : dissoudre, mélanger, chauffer, mais jamais mesurer un volume.",
+   "texte": "Fiole : contenir. Pipette : délivrer. Bécher : jamais mesurer."
+  },
+  {
+   "id": "p15",
+   "ecran": "masse_formule",
+   "dit": "Le principe de la préparation par dissolution tient en une formule. Pour préparer un volume V d'une solution de concentration C, il faut une quantité de matière n égale à C fois V. Or la quantité de matière, c'est aussi la masse divisée par la masse molaire. La masse à peser vaut donc C fois V fois M. Simple, en apparence. Mais attention aux cas réels : si le soluté est hygroscopique, il absorbe l'humidité de l'air, et si sa pureté n'est que de quatre-vingt-dix-huit pour cent, la masse pesée n'est pas la masse de produit pur. Nous retrouverons ce piège en fin de partie.",
+   "texte": "m = C × V × M : la masse à peser."
+  },
+  {
+   "id": "p16",
+   "ecran": "calcul_cuivre",
+   "dit": "Exemple concret, celui de la leçon : préparer deux cent cinquante millilitres d'une solution de sulfate de cuivre deux à zéro virgule cent mole par litre. La masse molaire du sulfate de cuivre anhydre se calcule depuis les masses atomiques : soixante-trois virgule cinq, plus trente-deux virgule un, plus quatre fois seize, soit cent cinquante-neuf virgule six grammes par mole. La masse à peser vaut alors zéro virgule cent fois zéro virgule deux cent cinquante fois cent cinquante-neuf virgule six : trois virgule quatre-vingt-dix-neuf grammes. Aucun geste avant ce calcul : c'est le plan de l'opération.",
+   "texte": "CuSO₄ : m = 3,99 g pour 250 mL à 0,100 mol/L."
+  },
+  {
+   "id": "p17",
+   "ecran": "protocole_pesee",
+   "dit": "Le protocole, première moitié. La pesée d'abord, l'acte de mesure le plus critique : on pose un verre de montre ou une coupelle sur la balance, on fait la tare, puis on ajoute le solide progressivement, à la spatule, jamais en versant directement depuis le flacon, jusqu'à la masse calculée. Vient la dissolution, et ici une règle d'or : on ne met jamais de soluté dans une fiole jaugée sèche. On dissout d'abord dans un bécher, avec une partie de l'eau distillée, en agitant jusqu'à dissolution complète. Si la dissolution dégage de la chaleur, comme celle de la soude, on laisse revenir à température ambiante avant de continuer : les volumes dépendent de la température.",
+   "texte": "Peser, dissoudre dans un bécher, refroidir si besoin."
+  },
+  {
+   "id": "p18",
+   "ecran": "protocole_jaugeage",
+   "dit": "Deuxième moitié du protocole. On transfère la solution dans la fiole jaugée du bon volume, à l'aide d'un entonnoir, et ce transfert doit être quantitatif, sans aucune perte : on rince le bécher et l'entonnoir à l'eau distillée, et les eaux de rinçage rejoignent la fiole, pour récupérer les derniers cristaux. On complète aux deux tiers, on bouche, on homogénéise. Puis vient l'instant de vérité, le jaugeage : on ajoute l'eau distillée à la pissette, puis goutte à goutte à la pipette Pasteur, jusqu'à ce que le bas du ménisque, cette courbure de la surface contre les parois, affleure exactement le trait de jauge, l'œil placé au niveau du trait. On bouche, et on homogénéise par au moins dix retournements complets. La solution est prête.",
+   "texte": "Transfert quantitatif, ménisque au trait, 10 retournements."
+  },
+  {
+   "id": "p19",
+   "ecran": "pieges_lab",
+   "dit": "La leçon chiffre les erreurs classiques, et leurs effets sont loin d'être négligeables. Une mauvaise lecture du ménisque, l'œil pas au niveau du trait, crée une erreur systématique pouvant atteindre un pour cent. Mesurer un volume au bécher, dont la graduation est approximative, peut dépasser cinq pour cent d'erreur : seuls les instruments jaugés mesurent. Rincer la pipette à l'eau distillée juste avant un prélèvement dilue l'échantillon : la solution fille sort trop diluée. Jauger à chaud, après une dissolution exothermique, donne une solution trop concentrée une fois refroidie, car le volume diminue. Et tout transfert non quantitatif fait perdre de la matière, donc de la concentration.",
+   "texte": "Ménisque : 1 %. Bécher : plus de 5 %. Rinçages : jamais à l'eau."
+  },
+  {
+   "id": "p20",
+   "ecran": "cas_soude",
+   "dit": "Cas d'école, celui de la soude. Un technicien doit préparer un litre de solution d'hydroxyde de sodium à zéro virgule cinq cents mole par litre. Il calcule la masse : vingt grammes de pastilles, les dissout, transfère, jauge. Le protocole semble parfait, et pourtant la concentration est fausse. L'erreur : les pastilles de soude sont très hygroscopiques, elles absorbent l'humidité de l'air pendant la pesée. Les vingt grammes contiennent donc de la soude et de l'eau absorbée : la quantité réelle de soude pure est inférieure à une demi-mole, d'une quantité inconnue. Impossible de calculer la concentration réelle. La pratique correcte : préparer une solution un peu plus concentrée, puis la titrer avec une solution étalon d'acide pour déterminer sa concentration exacte, et la diluer ensuite si besoin. C'est la routine pour tous les produits instables ou hygroscopiques.",
+   "texte": "NaOH hygroscopique : la pesée ment, on titre après."
+  },
+  {
+   "id": "p21",
+   "ecran": "etalons",
+   "dit": "Pour contrôler une concentration, il faut une référence : la solution étalon, préparée à partir d'une substance étalon primaire. Ses critères sont stricts : une pureté élevée et connue, au moins quatre-vingt-dix-neuf virgule neuf pour cent ; une stabilité à l'air et au séchage ; et une masse molaire élevée, qui minimise l'erreur relative de pesée. Le phtalate acide de potassium sert ainsi à étalonner les solutions de soude, exactement le remède au cas précédent. Et puisque ce cours manipule aussi des produits dangereux, rappelons la règle de sécurité, après consultation de la fiche de données de sécurité : pour diluer un acide concentré, on verse toujours l'acide dans l'eau, jamais l'inverse, pour éviter les projections violentes dues au dégagement de chaleur. Blouse, lunettes et gants complètent l'équipement de protection.",
+   "texte": "Étalon pur et stable ; l'acide dans l'eau, toujours."
+  },
+  {
+   "id": "p22",
+   "ecran": "recap2",
+   "dit": "Récapitulons la préparation par dissolution. Tout commence par le calcul : la masse à peser vaut concentration fois volume fois masse molaire. On pèse à la balance analytique, on dissout dans un bécher, on transfère sans perte dans la fiole jaugée. Le bas du ménisque doit affleurer le trait de jauge, l'œil au niveau du trait. Et on homogénéise par au moins dix retournements.",
+   "texte": "Dissolution : calculer, peser, jauger."
+  },
+  {
+   "id": "p23",
+   "ecran": "principe_dilution",
+   "dit": "La dilution repose sur un postulat d'une élégante simplicité. Quand on dilue, on ajoute du solvant, et rien d'autre : la quantité de soluté ne change pas, on ne rajoute ni ne retire une seule molécule. Le volume augmente, la concentration diminue, mais la quantité de matière avant égale la quantité de matière après. Comme la quantité de matière vaut concentration fois volume, on obtient la formule reine de la dilution : concentration initiale fois volume prélevé égale concentration finale fois volume final. Elle vaut aussi pour la concentration massique, puisque la masse de soluté se conserve elle aussi. C'est le cœur battant de tous les calculs de cette partie.",
+   "texte": "C_i × V_i = C_f × V_f : la quantité se conserve."
+  },
+  {
+   "id": "p24",
+   "ecran": "facteur",
+   "dit": "Le laborantin résume une dilution par son facteur, un nombre sans dimension qui dit combien de fois la solution a été diluée. C'est le rapport des concentrations, mère sur fille, ou, ce qui revient au même, du volume final au volume prélevé. Prélever dix millilitres et compléter à cent millilitres, c'est diluer au dixième : le facteur vaut dix, et la concentration finale est dix fois plus faible. Au vingtième, facteur vingt ; au centième, facteur cent ; au millième, facteur mille. Ce langage est né en microbiologie, à la fin du dix-neuvième siècle, dans les travaux de Robert Koch sur le dénombrement des bactéries.",
+   "texte": "F = C_i/C_f = V_f/V_i : au dixième, au centième…"
+  },
+  {
+   "id": "p25",
+   "ecran": "javel",
+   "dit": "Exemple détaillé, tiré d'un protocole de désinfection. Il faut une solution d'hypochlorite de sodium, l'eau de Javel, à zéro virgule cinq mole par litre, et la bouteille mère est à deux moles par litre. Objectif : cinq cents millilitres de solution désinfectante. On applique la formule reine : le volume à prélever vaut concentration finale fois volume final, divisés par concentration initiale, soit zéro virgule cent vingt-cinq litre, cent vingt-cinq millilitres. Le facteur de dilution vaut quatre, ce qui redonne le même résultat : cinq cents divisés par quatre. Conclusion pratique : prélever cent vingt-cinq millilitres de solution mère, et compléter avec de l'eau distillée jusqu'à cinq cents millilitres dans une fiole jaugée. Attention au piège : ajouter cent vingt-cinq millilitres d'eau aux cent vingt-cinq millilitres de mère ne donnerait ni le bon volume, ni la bonne concentration.",
+   "texte": "Javel : prélever 125 mL, compléter à 500 mL."
+  },
+  {
+   "id": "p26",
+   "ecran": "protocole_dilution",
+   "dit": "Passons à la paillasse, avec le protocole de dilution en cinq étapes. Un : calculer le volume de solution mère à prélever. Deux : le prélever à la pipette adaptée, rincée au préalable avec la solution mère elle-même, jamais à l'eau, nous avons vu pourquoi, et jamais à la bouche. Trois : introduire le prélèvement dans une fiole jaugée propre, du volume final voulu. Quatre : compléter aux deux tiers d'eau distillée, boucher et agiter pour homogénéiser. Cinq : ajuster goutte à goutte jusqu'au trait de jauge, bas du ménisque sur le trait, puis homogénéiser énergiquement par retournements. Et souvenez-vous : on complète toujours jusqu'au trait, on n'ajoute jamais un volume d'eau égal au volume prélevé.",
+   "texte": "Pipette rincée à la mère, fiole, trait de jauge."
+  },
+  {
+   "id": "p27",
+   "ecran": "dilution_cuivre",
+   "dit": "Suivons un cas complet : préparer deux cent cinquante millilitres d'une solution fille de sulfate de cuivre à zéro virgule zéro dix mole par litre, depuis une mère à zéro virgule dix mole par litre. Le calcul d'abord : le volume à prélever vaut concentration fille fois volume final, divisés par concentration mère, soit vingt-cinq millilitres. La préparation ensuite : on lave la fiole de deux cent cinquante millilitres et la pipette jaugée de vingt-cinq millilitres, on rince la pipette deux à trois fois avec la solution mère, on aspire à la poire jusqu'au trait en ajustant le ménisque, on essuie la pointe, puis on déverse dans la fiole. On complète aux deux tiers ou aux trois quarts, pas directement au trait, pour pouvoir agiter sans éclaboussures, puis on ajuste au compte-gouttes, œil au niveau du trait, et on retourne la fiole au moins dix fois.",
+   "texte": "0,10 → 0,010 mol/L : prélever 25,0 mL."
+  },
+  {
+   "id": "p28",
+   "ecran": "serie_principe",
+   "dit": "Parfois, la dilution visée est énorme : un facteur mille, dix mille, ou plus. En une seule étape, le volume à prélever deviendrait minuscule : pour un facteur mille et cent millilitres finaux, un dixième de millilitre, impossible à mesurer précisément. La solution : la dilution en série. On dilue une première fois, au dixième par exemple, puis on prélève dans cette première fille pour diluer encore, et ainsi de suite. Le facteur total est le produit des facteurs de chaque étape : dix fois dix fois dix, mille. En microbiologie, on travaille en tubes : neuf millilitres d'eau distillée, un millilitre de la solution précédente, et la concentration du tube de rang n vaut la concentration mère multipliée par le facteur, élevé à la puissance moins n. C'est ainsi que, pendant la pandémie, les tests sérologiques déterminaient le titre en anticorps d'un sérum.",
+   "texte": "F total = produit des facteurs ; C_n = C_m × D⁻ⁿ."
+  },
+  {
+   "id": "p29",
+   "ecran": "cascade",
+   "dit": "Exercice résolu : préparer cent millilitres d'une solution fille de permanganate de potassium à zéro virgule zéro cinq cents grammes par litre, depuis une mère à deux grammes par litre. La loi de la dilution donne un prélèvement direct de deux virgule cinquante millilitres : délicat, car il faudrait une pipette jaugée de deux virgule cinq millilitres, pas toujours disponible. La stratégie de la leçon : diluer en cascade. Étape un : prélever dix millilitres de mère, compléter à cent millilitres ; la solution intermédiaire tombe à zéro virgule deux cents grammes par litre. Étape deux : prélever vingt-cinq millilitres de cette intermédiaire, compléter à cent millilitres ; on obtient exactement zéro virgule zéro cinq cents grammes par litre. Pour les forts facteurs de dilution, la cascade est plus précise que le prélèvement minuscule.",
+   "texte": "Cascade : 2,00 → 0,200 → 0,0500 g/L."
+  },
+  {
+   "id": "p30",
+   "ecran": "gamme",
+   "dit": "Le laborantin expérimenté planifie avant de manipuler, dans un tableau. Exemple de la leçon : une solution de travail A à zéro virgule zéro cinquante mole par litre, cent millilitres, depuis une mère à zéro virgule cinquante : prélever dix millilitres à la pipette jaugée. Puis une solution étalon B, encore plus diluée, deux fois dix puissance moins trois mole par litre, cinquante millilitres : la mère, cette fois, c'est la solution A elle-même, dont on prélève deux millilitres, une dilution en chaîne, planifiée dès le départ. Et pour la simple solution de rinçage, aucune précision n'est requise : une éprouvette d'un litre suffit. Le bon instrument pour le bon objectif, voilà le métier.",
+   "texte": "A : 10,0 mL → 100 mL. B : 2,0 mL de A → 50 mL."
+  },
+  {
+   "id": "p31",
+   "ecran": "milieu",
+   "dit": "Étude de cas, en biologie : préparer cinq cents millilitres d'un milieu de culture contenant du glucose à dix grammes par litre et du chlorure de sodium à zéro virgule cent cinquante mole par litre, depuis deux stocks concentrés. Pour le glucose, stock à cinq cents grammes par litre : la loi de la dilution donne dix millilitres à prélever. Pour le sel, stock à une mole par litre : soixante-quinze millilitres. L'ordre de manipulation compte : dans la fiole de cinq cents millilitres, on introduit d'abord environ trois cents millilitres d'eau distillée stérile, puis les soixante-quinze millilitres de solution de sel, puis les dix millilitres de glucose, et on complète au trait. Les volumes ne s'additionnant pas parfaitement, le complément se fait au trait de jauge, jamais par soustraction.",
+   "texte": "Milieu : 10,0 mL de glucose + 75,0 mL de NaCl → 500 mL."
+  },
+  {
+   "id": "p32",
+   "ecran": "acide",
+   "dit": "Le défi final du laborantin, posé par la leçon : une bouteille d'acide chlorhydrique commercial, densité un virgule dix-neuf, trente-sept pour cent en masse d'acide pur. Quelle est sa concentration molaire ? Suivons l'indice de la leçon : prenons un litre de solution. Sa masse vaut mille cent quatre-vingt-dix grammes ; l'acide pur y pèse trente-sept pour cent, soit environ quatre cent quarante grammes ; divisé par la masse molaire, trente-six virgule cinq, on obtient environ douze virgule une mole par litre, un acide très concentré. Pour préparer deux litres de solution à zéro virgule cinq mole par litre, il faut une mole d'acide, donc prélever environ quatre-vingt-trois millilitres de la bouteille. Et la sécurité commande tout : acide corrosif et volatil, on verse l'acide dans l'eau, avec blouse, lunettes et gants.",
+   "texte": "HCl commercial : ≈ 12,1 mol/L ; 83 mL pour 2,0 L à 0,50."
+  },
+  {
+   "id": "p33",
+   "ecran": "recap_final",
+   "dit": "Pour conclure ce cours : une solution se définit, se quantifie par ses deux concentrations reliées par la masse molaire, se prépare par dissolution selon un protocole rigoureux — calcul, pesée, dissolution, transfert quantitatif, jaugeage au ménisque — et se dilue en conservant la quantité de matière, de la dilution simple aux séries planifiées. Chaque geste, du rinçage de la pipette à la lecture du ménisque, a son importance : préparer une solution, c'est déjà faire de la chimie quantitative.",
+   "texte": "Conserver la matière, maîtriser les gestes."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ce qu'est une solution, et comment la quantifier"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Préparer par dissolution : matériel et protocole",
+   "pont": {
+    "texte": "Partie 2 : préparer par dissolution, à la paillasse.",
+    "dit": "Partie deux : préparer une solution par dissolution. Nous quittons les calculs pour la paillasse : le matériel de précision, la masse à peser, puis le protocole complet, de la pesée au jaugeage, avec ses pièges classiques."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "La dilution : conservation, facteur et séries",
+   "pont": {
+    "texte": "Partie 3 : diluer, du principe aux dilutions en série.",
+    "dit": "Partie trois : la dilution. À partir d'une solution mère concentrée, nous allons fabriquer des solutions filles plus diluées, avec une seule loi, la conservation de la quantité de matière, puis nous enchaînerons les dilutions en série et les exercices de synthèse."
+   }
+  }
+ ]
+}
