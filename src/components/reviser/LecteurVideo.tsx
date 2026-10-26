@@ -8,6 +8,7 @@ import { ActivityIndicator, PanResponder, Pressable, StyleSheet, Text, View } fr
 import { useTraduction } from '@/i18n/useTraduction';
 import { Banniere } from '@/components/Banniere';
 import { Ecran } from '@/components/Ecran';
+import { DEPASSEMENT_CENTRAL } from '@/components/Onglet';
 import { Etiquette } from '@/components/Etiquette';
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
 import { lireEntrainement, lireProgresChapitres, type Compteur, type ProgresChapitre } from '@/services/entrainement';
@@ -312,15 +313,13 @@ export function LecteurVideo() {
     p.currentTime = cible;
     setPositionAffichee(cible);
   }, []);
-  const suiviCourante = courante ? suivis[courante.id] : undefined;
   const terminees = videos ? videos.filter((v) => suivis[v.id]?.terminee).length : 0;
 
   return (
     <Ecran
       // Écran d'onglets : la barre gère le bas (insetBas faux comme les autres écrans du groupe).
       // Sans cela, Ecran ajoute l'inset système + espace[5] sous le pied : la carte « S'entraîner »
-      // flottait avec un grand vide au-dessus de la barre (retour de Benny, test réel du 26/10/2026).
-      // piedStyle ne garde qu'une respiration espace[3] sous la carte.
+      // flottait avec un grand vide au-dessus de la barre. piedStyle la colle à la barre (voir le style).
       insetBas={false}
       piedStyle={styles.piedEntrainement}
       entete={
@@ -345,69 +344,80 @@ export function LecteurVideo() {
     >
       {videos !== null && videos.length === 0 ? <Banniere ton="erreur" titre={t('videos.erreur')} /> : null}
       {courante ? (
-        <>
-          <View style={[styles.cadreVideo, { borderColor: theme.bord.fort }]}>
-            <VideoView player={lecteur} style={styles.video} nativeControls contentFit="contain" fullscreenOptions={{ enable: true }} />
+        <View style={styles.zoneHaute}>
+          {/* Bloc lecteur resserré (retour de Benny, 26/10/2026) : vidéo, contrôles et barre forment un
+              groupe à petits écarts, au lieu d'hériter du grand écart entre blocs de l'écran — les boutons
+              flottaient loin sous la vidéo et la barre encore plus bas. Même resserrement pour toute la
+              zone haute (titre, en-tête de playlist) : un seul groupe compact plutôt qu'une suite de
+              blocs séparés par le grand écart de l'écran. */}
+          <View style={styles.blocLecteur}>
+            <View style={[styles.cadreVideo, { borderColor: theme.bord.fort }]}>
+              <VideoView player={lecteur} style={styles.video} nativeControls contentFit="contain" fullscreenOptions={{ enable: true }} />
+            </View>
+            {/* Contrôles maison (retour de Benny, 26/10/2026) : le lecteur intégré ne permettait ni de
+                déplacer le temps de lecture ni de passer à la partie suivante. Rangée en trois zones :
+                temps à gauche, précédent / lecture-pause / suivant CENTRÉS, zone vide à droite qui
+                équilibre la rangée. Barre déplaçable pleine largeur juste en dessous.
+                En plein écran, les contrôles natifs de VideoView prennent le relais. */}
+            <View style={styles.controles}>
+              <View style={styles.zoneTemps}>
+                <Text style={[typo.legende, { color: theme.texte.secondaire }]}>
+                  {formaterDuree(positionAffichee)} / {formaterDuree(dureeAffichee || courante.dureeS || 0)}
+                </Text>
+              </View>
+              <View style={styles.zoneBoutons}>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={t('videos.precedente')}
+                  accessibilityState={{ disabled: !precedente }}
+                  disabled={!precedente}
+                  hitSlop={6}
+                  onPress={() => precedente && choisirVideo(precedente)}
+                  style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !precedente && styles.boutonDesactive]}
+                >
+                  <SkipBack size={20} strokeWidth={2.4} color={theme.texte.principal} />
+                </Pressable>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={enLectureAffichee ? t('videos.pause') : t('videos.lecture')}
+                  hitSlop={6}
+                  onPress={basculerLecture}
+                  style={[styles.boutonLecture, { borderColor: theme.bord.fort, backgroundColor: theme.marque.principale }]}
+                >
+                  {enLectureAffichee ? (
+                    <Pause size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
+                  ) : (
+                    <Play size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
+                  )}
+                </Pressable>
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={t('videos.suivante')}
+                  accessibilityState={{ disabled: !suivante }}
+                  disabled={!suivante}
+                  hitSlop={6}
+                  onPress={() => suivante && choisirVideo(suivante)}
+                  style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !suivante && styles.boutonDesactive]}
+                >
+                  <SkipForward size={20} strokeWidth={2.4} color={theme.texte.principal} />
+                </Pressable>
+              </View>
+              <View style={styles.zoneTemps} />
+            </View>
+            <BarreRecherche position={positionAffichee} duree={dureeAffichee || courante.dureeS || 0} onChercher={chercher} libelle={t('videos.positionLecture')} />
           </View>
-          {/* Contrôles maison (retour de Benny, 26/10/2026) : le lecteur intégré ne permettait ni de
-              déplacer le temps de lecture ni de passer à la partie suivante. Rangée sous la vidéo :
-              précédent / lecture-pause / suivant, temps, et barre déplaçable pleine largeur.
-              En plein écran, les contrôles natifs de VideoView prennent le relais. */}
-          <View style={styles.controles}>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={t('videos.precedente')}
-              accessibilityState={{ disabled: !precedente }}
-              disabled={!precedente}
-              hitSlop={6}
-              onPress={() => precedente && choisirVideo(precedente)}
-              style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !precedente && styles.boutonDesactive]}
-            >
-              <SkipBack size={20} strokeWidth={2.4} color={theme.texte.principal} />
-            </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={enLectureAffichee ? t('videos.pause') : t('videos.lecture')}
-              hitSlop={6}
-              onPress={basculerLecture}
-              style={[styles.boutonLecture, { borderColor: theme.bord.fort, backgroundColor: theme.marque.principale }]}
-            >
-              {enLectureAffichee ? (
-                <Pause size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
-              ) : (
-                <Play size={22} strokeWidth={2.4} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
-              )}
-            </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={t('videos.suivante')}
-              accessibilityState={{ disabled: !suivante }}
-              disabled={!suivante}
-              hitSlop={6}
-              onPress={() => suivante && choisirVideo(suivante)}
-              style={[styles.boutonControle, { borderColor: theme.bord.fort, backgroundColor: theme.fond.surface }, !suivante && styles.boutonDesactive]}
-            >
-              <SkipForward size={20} strokeWidth={2.4} color={theme.texte.principal} />
-            </Pressable>
-            <Text style={[typo.legende, styles.temps, { color: theme.texte.secondaire }]}>
-              {formaterDuree(positionAffichee)} / {formaterDuree(dureeAffichee || courante.dureeS || 0)}
-            </Text>
-          </View>
-          <BarreRecherche position={positionAffichee} duree={dureeAffichee || courante.dureeS || 0} onChercher={chercher} libelle={t('videos.positionLecture')} />
+          {/* Zone épurée (retour de Benny, 26/10/2026) : étiquette + titre suffisent — la ligne de
+              description « matière · chapitre · téléchargée · reprendre à… » saturait l'écran alors que
+              le header affiche déjà le chapitre et la barre montre la position de reprise. */}
           <View style={styles.infos}>
             <Etiquette texte={t('videos.partie', { n: courante.numero })} />
             <Text numberOfLines={2} style={[typo.h3, { color: theme.texte.principal }]}>{courante.titre}</Text>
-            <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>
-              {[matiere, nom, telechargees[courante.id] ? t('videos.telechargee') : null, suiviCourante && !suiviCourante.terminee && suiviCourante.positionS > 3 ? t('videos.repriseAuto', { temps: formaterDuree(suiviCourante.positionS) }) : null]
-                .filter(Boolean)
-                .join(' · ')}
-            </Text>
           </View>
           {videos && videos.length >= 1 ? (
             <>
               <View style={styles.lignePlaylist}>
                 <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>
-                  {t('videos.playlist')} · {terminees} / {videos.length}
+                  {t('videos.playlist')} · {terminees}/{videos.length}
                 </Text>
                 {restantes.length ? (
                   <Pressable accessibilityRole="button" accessibilityLabel={t('videos.toutTelecharger')} onPress={() => void toutTelecharger()} disabled={toutDl} hitSlop={8}>
@@ -483,7 +493,7 @@ export function LecteurVideo() {
               </GroupeColle>
             </>
           ) : null}
-        </>
+        </View>
       ) : null}
     </Ecran>
   );
@@ -545,12 +555,19 @@ function BarreRecherche({ position, duree, onChercher, libelle }: { position: nu
 /* eslint-enable react-hooks/refs */
 
 const styles = StyleSheet.create({
-  piedEntrainement: { paddingBottom: espace[3] },
-  controles: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
+  // Pied « limite collé » à la barre d'onglets (retour de Benny, 26/10/2026) : le conteneur d'onglets
+  // réserve DEPASSEMENT_CENTRAL + espace[3] sous chaque écran pour le bouton central débordant — une
+  // réserve pensée pour le contenu défilant, pas pour un pied fixe. La marge négative récupère cette
+  // réserve (moins 4 px de filet) et le padding tombe à zéro : le bas de la carte arrive à 4 px de la barre.
+  piedEntrainement: { paddingBottom: 0, marginBottom: -(DEPASSEMENT_CENTRAL + espace[3] - 4) },
+  zoneHaute: { gap: espace[3] },
+  blocLecteur: { gap: espace[3] },
+  controles: { flexDirection: 'row', alignItems: 'center' },
+  zoneTemps: { flex: 1 },
+  zoneBoutons: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   boutonControle: { width: 40, height: 40, borderWidth: bord.normal, borderRadius: rayon.s, alignItems: 'center', justifyContent: 'center' },
   boutonLecture: { width: 46, height: 46, borderWidth: bord.normal, borderRadius: 23, alignItems: 'center', justifyContent: 'center' },
   boutonDesactive: { opacity: 0.35 },
-  temps: { marginLeft: 'auto' },
   barreZone: { height: 28, justifyContent: 'center' },
   barreFond: { height: 6, borderRadius: 3, overflow: 'hidden' },
   barrePlein: { height: '100%' },

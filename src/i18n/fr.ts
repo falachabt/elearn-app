@@ -792,7 +792,7 @@ export const fr = {
     reste: 'reste {{temps}}',
     enLecture: 'En lecture · {{position}} / {{duree}}',
     retourCours: 'Retour au cours',
-    playlist: 'Playlist · Vidéos du cours',
+    playlist: 'Vidéos du cours',
     repriseAuto: 'Reprise automatique à {{temps}}',
     suivante: 'Partie suivante',
     precedente: 'Partie précédente',
