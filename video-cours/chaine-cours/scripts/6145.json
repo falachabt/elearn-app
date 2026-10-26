@@ -1,0 +1,478 @@
+{
+ "cours": 6145,
+ "ecrans": {
+  "application": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Qu'est-ce qu'une application ?",
+   "tex": [
+    "f : E \\to F, \\qquad x \\mapsto f(x)",
+    "\\text{existence : tout } x \\in E \\text{ a une image}",
+    "\\text{unicité : cette image est unique}"
+   ],
+   "titre": "Chaque départ, une image unique",
+   "type": "etape"
+  },
+  "bijective": {
+   "kicker": "La bijectivité",
+   "note": "Réciproque f⁻¹ existe · Cantor : N et Z ont même cardinal.",
+   "tex": "f \\text{ bijective} \\iff \\forall y \\in F,\\ \\exists!\\, x \\in E,\\ f(x) = y",
+   "type": "formule"
+  },
+  "cardinal": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "venn"
+   },
+   "kicker": "Cardinal et inclusion-exclusion",
+   "note": "100 personnes : 60 anglais, 40 français, 20 les deux → 80 au moins une langue, 20 aucune.",
+   "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+   "type": "formule"
+  },
+  "comp_exemple": {
+   "kicker": "Exemple · l'ordre compte",
+   "tex": [
+    "f(x) = x + 1 \\qquad g(x) = 2x",
+    "(g \\circ f)(x) = 2x + 2 \\qquad (f \\circ g)(x) = 2x + 1",
+    "g \\circ f \\neq f \\circ g \\text{ : la composition n'est pas commutative}"
+   ],
+   "titre": "Ajouter un, doubler : deux composées différentes",
+   "type": "etape"
+  },
+  "composition": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La composition d'applications",
+   "note": "f d'abord, écrite à droite · Condition : l'arrivée de f est le départ de g.",
+   "tex": "(g \\circ f)(x) = g(f(x))",
+   "type": "formule"
+  },
+  "difference": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "venn"
+   },
+   "kicker": "Différence et complémentaire",
+   "note": "Univers de 1 à 6 : le complémentaire des pairs {2, 4, 6} est {1, 3, 5} · Nier deux fois, c'est affirmer.",
+   "tex": "A^c = \\{x \\in U \\mid x \\notin A\\}",
+   "type": "formule"
+  },
+  "ensemble": {
+   "kicker": "Qu'est-ce qu'un ensemble ?",
+   "tex": [
+    "x \\in A \\text{ : } x \\text{ est élément de } A",
+    "V = \\{a, e, i, o, u, y\\} \\text{ en extension}",
+    "B = \\{x \\mid x \\text{ pair positif}\\} \\text{ en compréhension}"
+   ],
+   "titre": "Appartenance, extension, compréhension",
+   "type": "etape"
+  },
+  "exercice_ens": {
+   "kicker": "Exercice · la mécanique des opérations",
+   "tex": [
+    "A \\cup B = \\{1,2,3,4,5,6\\} \\qquad A \\cap C = \\{2,4\\}",
+    "B \\setminus A = \\{5,6\\} \\qquad (A \\cap B) \\cup C = \\{2,3,4,6\\}",
+    "A \\times \\{0,1\\} \\text{ : huit couples ordonnés}"
+   ],
+   "titre": "A = {1,2,3,4}, B = {3,4,5,6}, C = {2,4,6}",
+   "type": "etape"
+  },
+  "images": {
+   "kicker": "Images directes et réciproques",
+   "tex": [
+    "f(A) = \\{f(x) \\mid x \\in A\\}",
+    "f^{-1}(B) = \\{x \\in E \\mid f(x) \\in B\\}",
+    "f^{-1}(B) \\text{ existe pour toute } f \\text{, bijective ou non}"
+   ],
+   "titre": "Faire agir f sur des ensembles entiers",
+   "type": "etape"
+  },
+  "inclusion": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "venn"
+   },
+   "kicker": "Inclusion et égalité",
+   "note": "Égalité = double inclusion · Un ensemble à n éléments a 2ⁿ parties.",
+   "tex": "A \\subseteq B \\iff (\\forall x,\\ x \\in A \\Rightarrow x \\in B)",
+   "type": "formule"
+  },
+  "injective": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "L'injectivité",
+   "note": "Au plus une flèche par cible · x² n'est pas injective sur ℝ : f(2) = f(−2) = 4.",
+   "tex": "f(x_1) = f(x_2) \\Rightarrow x_1 = x_2",
+   "type": "formule"
+  },
+  "inverse_composee": {
+   "kicker": "La réciproque d'une composée",
+   "tex": [
+    "(g \\circ f)^{-1} = f^{-1} \\circ g^{-1}",
+    "f(x) = x^2,\\ g(x) = x + 1 \\qquad (g \\circ f)(x) = x^2 + 1",
+    "(g \\circ f)^{-1}(y) = \\sqrt{y - 1}"
+   ],
+   "titre": "Défaire la dernière étape d'abord",
+   "type": "etape"
+  },
+  "langage": {
+   "kicker": "Le langage universel",
+   "texte": "Cantor fonde la théorie des ensembles : l'alphabet de toutes les mathématiques.",
+   "type": "phrase"
+  },
+  "preuve_inj": {
+   "kicker": "Démontrer · l'injectivité",
+   "tex": [
+    "f(x) = \\tfrac{x + 2}{x - 1} \\qquad f(x_1) = f(x_2)",
+    "(x_1 + 2)(x_2 - 1) = (x_2 + 2)(x_1 - 1)",
+    "3x_2 = 3x_1 \\qquad \\text{donc } x_1 = x_2"
+   ],
+   "titre": "L'égalité des images force celle des départs",
+   "type": "etape"
+  },
+  "preuve_surj": {
+   "kicker": "Démontrer · la surjectivité",
+   "tex": [
+    "\\tfrac{x + 2}{x - 1} = y \\iff x + 2 = y(x - 1)",
+    "x = \\tfrac{y + 2}{y - 1} \\qquad (y \\neq 1)",
+    "f \\text{ bijective, et } f^{-1} = f"
+   ],
+   "titre": "Résoudre l'équation f de x égale y",
+   "type": "etape"
+  },
+  "produit": {
+   "kicker": "Le produit cartésien",
+   "note": "Le plan : ℝ² = ℝ × ℝ · En général E × F ≠ F × E : l'ordre des coordonnées compte.",
+   "tex": "E \\times F = \\{(x, y) \\mid x \\in E,\\ y \\in F\\}",
+   "type": "formule"
+  },
+  "proprietes": {
+   "kicker": "L'algèbre des opérations",
+   "tex": [
+    "A \\cup B = B \\cup A \\qquad A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C)",
+    "\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B}",
+    "\\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}"
+   ],
+   "titre": "Commutativité, distributivité, De Morgan",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Ensemble : extension ou compréhension",
+    "Union = OU, intersection = ET, complémentaire = NON",
+    "De Morgan : nier échange union et intersection",
+    "Cardinal : inclusion-exclusion anti-double-compte",
+    "Produit cartésien : les couples ordonnés"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Application : une image unique par départ",
+    "Injective : au plus un antécédent par cible",
+    "Surjective : au moins un antécédent par cible",
+    "Bijective : exactement un, réciproque existe",
+    "Preuves : égalité des images, résolution"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Objets : ensembles, opérations, cardinal",
+    "Liens : applications, image unique",
+    "Classer : injective, surjective, bijective",
+    "Composer transmet, la réciproque renverse",
+    "Un langage pour toutes les mathématiques"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "reciproque": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Construire la réciproque",
+   "tex": [
+    "f(x) = 2x + 3 \\qquad y = 2x + 3 \\iff x = \\tfrac{y - 3}{2}",
+    "f^{-1}(y) = \\tfrac{y - 3}{2}"
+   ],
+   "titre": "La fonction affine deux x plus trois",
+   "type": "etape"
+  },
+  "stabilite": {
+   "kicker": "Stabilité par composition",
+   "tex": [
+    "f, g \\text{ injectives} \\Rightarrow g \\circ f \\text{ injective}",
+    "f, g \\text{ surjectives} \\Rightarrow g \\circ f \\text{ surjective}",
+    "f, g \\text{ bijectives} \\Rightarrow g \\circ f \\text{ bijective}"
+   ],
+   "titre": "Les propriétés se transmettent",
+   "type": "etape"
+  },
+  "surjective": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La surjectivité",
+   "note": "Au moins une flèche par cible · x² : R → R non surjective, R → ℝ⁺ surjective.",
+   "tex": "\\forall y \\in F,\\ \\exists x \\in E,\\ f(x) = y",
+   "type": "formule"
+  },
+  "synthese_ex": {
+   "kicker": "Synthèse · une base de clients",
+   "tex": [
+    "|A \\cup B| = 200 + 150 - 50 = 300",
+    "|A \\setminus B| = 200 - 50 = 150",
+    "\\text{aucun des deux} : 1000 - 300 = 700"
+   ],
+   "titre": "Mille clients, deux articles, un chevauchement",
+   "type": "etape"
+  },
+  "tiroirs": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "tiroirs_fig"
+   },
+   "kicker": "Le principe des tiroirs",
+   "texte": "Plus de chaussettes que de tiroirs : un tiroir reçoit au moins deux chaussettes, une collision est forcée.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "venn"
+   },
+   "kicker": "Mathématique · Ensembles et applications",
+   "sous": "Opérations sur les ensembles, produit cartésien, injectivité, surjectivité, bijectivité et composition",
+   "titre": "Ensembles et applications : le langage des mathématiques",
+   "type": "titre"
+  },
+  "union_inter": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "venn"
+   },
+   "kicker": "Union et intersection",
+   "tex": [
+    "A \\cup B = \\{x \\mid x \\in A \\text{ ou } x \\in B\\}",
+    "A \\cap B = \\{x \\mid x \\in A \\text{ et } x \\in B\\}",
+    "A = \\{1,2,3,4\\},\\ B = \\{3,4,5,6\\} : A \\cup B = \\{1..6\\},\\ A \\cap B = \\{3,4\\}"
+   ],
+   "titre": "Le ou inclusif, le et exigeant",
+   "type": "etape"
+  },
+  "vocabulaire": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Image et antécédent",
+   "texte": "De chaque élément de E part exactement une flèche ; compter les flèches reçues classera les applications.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le langage des ensembles : opérations, cardinal, produit"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les applications. Nous quittons les collections statiques pour les liens dynamiques : une application fait voyager chaque élément d'un ensemble de départ vers une image unique dans un ensemble d'arrivée. Toute la partie classera ces voyages : injectifs, surjectifs, bijectifs, avec leurs démonstrations types et la construction des réciproques.",
+    "texte": "Partie 2 : applications, injectivité, bijectivité."
+   },
+   "sous_titre": "Les applications : injectivité, surjectivité, bijectivité"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : composer, inverser, appliquer. Nous enchaînerons les applications comme des machines, nous verrons comment leurs propriétés se transmettent et comment la réciproque renverse l'ordre, avant de refermer le cours sur les images d'ensembles, le principe des tiroirs et un problème de synthèse.",
+    "texte": "Partie 3 : composition, réciproques et synthèse."
+   },
+   "sous_titre": "Composition, réciproques et problèmes de synthèse"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'ensembles et d'applications. Un ensemble est une collection d'objets ; une application est une règle qui fait voyager chaque élément d'un ensemble vers un élément d'un autre. Nous poserons d'abord le langage des ensembles et de leurs opérations, puis nous définirons les applications, avant de classer leurs comportements : injectivité, surjectivité, bijectivité, et de les composer et de les inverser.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Ensembles et applications : le socle des mathématiques."
+  },
+  {
+   "dit": "La théorie des ensembles naît à la fin du dix-neuvième siècle, sous la plume de Georg Cantor, et elle affronte d'emblée une résistance féroce : son mentor Kronecker la qualifie d'hérésie. Elle est pourtant devenue le langage dans lequel s'écrivent toutes les mathématiques. La maîtriser, ce n'est pas apprendre un chapitre de plus : c'est apprendre l'alphabet avec lequel tous les autres chapitres sont écrits, des fonctions à l'informatique.",
+   "ecran": "langage",
+   "id": "p02",
+   "texte": "Cantor : un langage pour toutes les mathématiques."
+  },
+  {
+   "dit": "Un ensemble est une collection bien définie d'objets distincts, ses éléments. On écrit x appartient à A quand x est élément de A. Pour décrire un ensemble, deux écritures : en extension, on liste ses éléments entre accolades, comme l'ensemble des voyelles ; en compréhension, on donne la propriété qui les caractérise, comme l'ensemble des entiers pairs. Retenez les ensembles de nombres usuels, emboîtés : naturels, relatifs, rationnels, réels, et l'ensemble vide, le zéro des ensembles.",
+   "ecran": "ensemble",
+   "id": "p03",
+   "texte": "Appartenance, extension, compréhension."
+  },
+  {
+   "dit": "Deux relations structurent les ensembles. L'inclusion : A est inclus dans B quand tout élément de A est aussi élément de B ; L'égalité : deux ensembles sont égaux quand ils ont exactement les mêmes éléments, ce qui se prouve presque toujours par une double inclusion, A inclus dans B et B inclus dans A. Un ensemble à n éléments possède deux puissance n parties : chaque élément offre un choix binaire, être dedans ou dehors.",
+   "ecran": "inclusion",
+   "id": "p04",
+   "texte": "Inclusion, double inclusion, deux puissance n parties."
+  },
+  {
+   "dit": "Deux opérations combinent les ensembles comme la logique combine les phrases. L'union de A et B rassemble les éléments dans A ou dans B, le ou étant inclusif. L'intersection ne garde que les éléments à la fois dans A et dans B. Exemple : A un, deux, trois, quatre et B trois, quatre, cinq, six ont pour union un à six, et pour intersection trois et quatre, les éléments communs. Quand l'intersection est vide, les ensembles sont dits disjoints, comme les pairs et les impairs.",
+   "ecran": "union_inter",
+   "id": "p05",
+   "texte": "Union = OU inclusif ; intersection = ET."
+  },
+  {
+   "dit": "La différence A privé de B garde les éléments de A hors de B. Le complémentaire exige un univers de référence : il rassemble tout ce qui est dans l'univers sans être dans A. Dans l'univers des entiers de un à six, le complémentaire des pairs deux, quatre, six est l'ensemble des impairs un, trois, cinq. Et appliquer deux fois le complémentaire redonne l'ensemble de départ : nier deux fois, c'est affirmer.",
+   "ecran": "difference",
+   "id": "p06",
+   "texte": "Différence et complémentaire : tout sauf A."
+  },
+  {
+   "dit": "Ces opérations obéissent à une algèbre. Union et intersection sont commutatives et associatives. Chacune distribue sur l'autre, ce qui n'a pas d'équivalent en arithmétique ordinaire. Elles sont idempotentes : A union A vaut A, A inter A vaut A. Et les lois de De Morgan gouvernent le complémentaire : le complémentaire d'une union est l'intersection des complémentaires, et celui d'une intersection est l'union des complémentaires. Nier un ou, c'est affirmer un et de négations.",
+   "ecran": "proprietes",
+   "id": "p07",
+   "texte": "Commutativité, distributivité, lois de De Morgan."
+  },
+  {
+   "dit": "Le cardinal d'un ensemble fini compte ses éléments. Piège classique : additionner deux cardinaux compte deux fois les éléments communs. La formule d'inclusion-exclusion corrige : le cardinal de l'union vaut la somme des cardinaux, moins celui de l'intersection. Sur cent personnes, soixante parlent anglais, quarante parlent français, et vingt parlent les deux langues. Au moins une langue : soixante plus quarante moins vingt, quatre-vingts personnes ; et vingt personnes ne parlent ni l'une ni l'autre.",
+   "ecran": "cardinal",
+   "id": "p08",
+   "texte": "Inclusion-exclusion : ne pas compter double."
+  },
+  {
+   "dit": "Dernière construction : le produit cartésien. A croix B est l'ensemble des couples ordonnés, un élément de A suivi d'un élément de B. L'ordre compte : en général, A croix B n'est pas B croix A. L'exemple fondateur est le plan : l'ensemble des couples de réels, R croix R, dont chaque point est un couple d'abscisse et d'ordonnée. C'est sur ce produit que vont vivre les relations et les applications : le graphe d'une application est un ensemble de couples.",
+   "ecran": "produit",
+   "id": "p09",
+   "texte": "A fois B : les couples ordonnés, l'ordre compte."
+  },
+  {
+   "dit": "Petit entraînement complet. Avec A égal un, deux, trois, quatre ; B égal trois, quatre, cinq, six ; et C égal deux, quatre, six : l'union de A et B donne un, deux, trois, quatre, cinq, six ; l'intersection de A et C donne deux, quatre ; B privé de A donne cinq, six ; et en croisant A avec l'ensemble zéro, un, on obtient huit couples. Problème de l'école : deux cents élèves, cent vingt sportifs, quatre-vingt-dix musiciens, cinquante qui cumulent ; union cent soixante, et quarante élèves sans sport ni musique.",
+   "ecran": "exercice_ens",
+   "id": "p10",
+   "texte": "Union, intersection, différence : la mécanique."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Un ensemble se décrit en extension ou en compréhension. L'union répond au ou, l'intersection au et, et le complémentaire à la négation, avec les lois de De Morgan pour passer de l'un à l'autre. Le cardinal se corrige par inclusion-exclusion pour ne jamais compter deux fois les éléments communs. Et le produit cartésien fabrique les couples des applications.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "Partie 1 : le langage des ensembles."
+  },
+  {
+   "dit": "Une application est un pont entre deux ensembles : à chaque élément du départ, elle associe un élément, et un seul, de l'arrivée. Deux exigences donc : l'existence, tout élément de départ part quelque part ; et l'unicité, aucun élément ne part à deux endroits. Son graphe est un ensemble de couples du produit cartésien. L'exemple de l'âge le montre : à chaque étudiant correspond un âge, et un seul ; la relation est le père de n'est pas une application : un homme peut n'avoir aucun enfant, ou en avoir plusieurs.",
+   "ecran": "application",
+   "id": "p12",
+   "texte": "Une application : chaque départ, une image unique."
+  },
+  {
+   "dit": "Fixons le vocabulaire. Pour une application f de E dans F : E est l'ensemble de départ, F l'ensemble d'arrivée ; f de x est l'image de x, et x est un antécédent de f de x. Sur le diagramme en flèches, la signature d'une application se reconnaît d'un coup d'œil : de chaque élément de E part exactement une flèche. Un élément de F, en revanche, peut recevoir zéro, une ou plusieurs flèches : c'est ce comptage qui va classer les applications.",
+   "ecran": "vocabulaire",
+   "id": "p13",
+   "texte": "Image, antécédent : compter les flèches."
+  },
+  {
+   "dit": "Première propriété : l'injectivité. Une application est injective quand deux éléments distincts ont toujours des images distinctes ; autrement dit, quand une égalité d'images force l'égalité des éléments de départ. Chaque élément de l'arrivée reçoit alors au plus une flèche. L'application qui associe à une ville son code postal n'est pas injective : plusieurs arrondissements partagent le même code. Test visuel pour une fonction numérique : chaque droite horizontale coupe la courbe au plus une fois ; le carré échoue à ce test, deux et moins deux ayant la même image, quatre.",
+   "ecran": "injective",
+   "id": "p14",
+   "texte": "Injective : images distinctes pour départs distincts."
+  },
+  {
+   "dit": "Deuxième propriété, miroir de la première : la surjectivité. Une application est surjective quand tout élément de l'ensemble d'arrivée possède au moins un antécédent : aucune cible n'est oubliée, chaque élément reçoit au moins une flèche. Le carré, de R dans R, n'est pas surjectif : les réels négatifs n'ont aucun antécédent. Mais le même carré, de R dans les réels positifs ou nuls, devient surjectif. La fonction cube, elle, est surjective de R dans R : tout réel possède une racine cubique.",
+   "ecran": "surjective",
+   "id": "p15",
+   "texte": "Surjective : toute cible a un antécédent."
+  },
+  {
+   "dit": "Une application à la fois injective et surjective est bijective : chaque élément de l'arrivée possède alors exactement un antécédent. C'est une correspondance parfaite, un appariement un à un, comme des spectateurs appariés à des sièges tous occupés. Conséquence majeure : toute bijection possède une réciproque, qui défait ce qu'elle fait. Et c'est la bijection qui définit la taille des ensembles, même infinis : deux ensembles ont même cardinal quand il existe une bijection entre eux, Cantor montre ainsi que naturels et relatifs ont la même taille d'infini.",
+   "ecran": "bijective",
+   "id": "p16",
+   "texte": "Bijective : exactement un antécédent par cible."
+  },
+  {
+   "dit": "Construisons une réciproque. La fonction affine qui envoie x sur deux x plus trois est bijective sur les réels : injective, car des images égales forcent des départs égaux ; surjective, car pour toute cible y, le départ y moins trois, le tout sur deux, convient. Sa réciproque envoie donc y sur y moins trois sur deux. Graphiquement, les deux courbes sont symétriques par rapport à la première bissectrice, y égale x : échanger les coordonnées échange départ et arrivée.",
+   "ecran": "reciproque",
+   "id": "p17",
+   "texte": "f de x = 2x + 3 ; réciproque : (y − 3)/2."
+  },
+  {
+   "dit": "Il faut savoir démontrer. Pour l'injectivité, la méthode est un réflexe : prenez deux éléments quelconques, supposez leurs images égales, et déduisez qu'ils sont égaux. Exemple du cours : la fonction qui envoie x sur x plus deux, sur x moins un, définie hors de un. L'égalité des images, après produits en croix et simplifications, conduit à trois x deux égale trois x un, donc à l'égalité des départs : la fonction est injective. L'égalité des images doit forcer, par le calcul, celle des antécédents.",
+   "ecran": "preuve_inj",
+   "id": "p18",
+   "texte": "Prouver l'injectivité : images égales, départs égaux."
+  },
+  {
+   "dit": "Pour la surjectivité, le réflexe symétrique : prenez une cible quelconque, et résolvez l'équation f de x égale y, en exhibant un antécédent. Pour la même fonction, hors de un et à valeurs hors de un, la résolution donne x égale y plus deux, sur y moins un : un antécédent explicite, différent de un, donc légitime. La fonction est ainsi surjective, donc bijective de l'ensemble des réels privés de un sur lui-même, et sa réciproque a exactement la même formule qu'elle : elle est son propre miroir.",
+   "ecran": "preuve_surj",
+   "id": "p19",
+   "texte": "Prouver la surjectivité : résoudre f de x égale y."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Une application envoie chaque élément de départ sur une image unique. Elle est injective si des départs distincts donnent des images distinctes, surjective si toute cible est atteinte, bijective si les deux tiennent ensemble. La bijection ouvre la réciproque et définit le cardinal, même infini. Les démonstrations gardent leurs formes canoniques : égalité des images, ou résolution de l'équation.",
+   "ecran": "recap2",
+   "id": "p20",
+   "texte": "Partie 2 : classer les applications."
+  },
+  {
+   "dit": "Composer deux applications, c'est les enchaîner comme deux machines d'une chaîne de montage : la première transforme la pièce, la seconde transforme le résultat. La composée de f puis g, notée g rond f, envoie x sur g de f de x. Attention à l'ordre, source d'erreur numéro un : la première application appliquée, f, s'écrit à droite, et la lecture se fait de droite à gauche. Condition de raccordement : l'arrivée de f doit être le départ de g.",
+   "ecran": "composition",
+   "id": "p21",
+   "texte": "g rond f : f d'abord, écrite à droite."
+  },
+  {
+   "dit": "Exemple élémentaire pour fixer l'ordre. Prenez f qui ajoute un, et g qui double. La composée g rond f ajoute d'abord un, puis double : elle envoie x sur deux x plus deux. La composée inverse, f rond g, double d'abord, puis ajoute un : elle envoie x sur deux x plus un. Les deux diffèrent : la composition n'est pas commutative. En revanche, elle est associative : avec trois applications, le parenthésage ne change rien, seul compte l'ordre d'enchaînement. Et l'application identité, qui ne change rien, joue le rôle d'élément neutre, comme le un de la multiplication.",
+   "ecran": "comp_exemple",
+   "id": "p22",
+   "texte": "g rond f différent de f rond g : l'ordre compte."
+  },
+  {
+   "dit": "Que deviennent les trois propriétés quand on compose ? Elles se transmettent : la composée de deux applications injectives est injective, la composée de deux surjectives est surjective, et la composée de deux bijectives est bijective. La démonstration tient en deux pas : si les images finales coïncident, l'injectivité de la seconde machine force l'égalité au stade intermédiaire, puis celle de la première force l'égalité des départs. En sens inverse, méfiance : une seule machine défaillante suffit à perdre la propriété.",
+   "ecran": "stabilite",
+   "id": "p23",
+   "texte": "Injectivité et surjectivité se transmettent par composition."
+  },
+  {
+   "dit": "Dernier théorème du cours, et le plus élégant : la réciproque d'une composée est la composée des réciproques, dans l'ordre inverse. La réciproque de g rond f est f réciproque rond g réciproque : pour défaire un enchaînement, on défait d'abord la dernière étape. Exemple du cours : f envoie x sur x au carré, sur les réels positifs, de réciproque la racine carrée ; g ajoute un, de réciproque retrancher un. La composée envoie x sur x au carré plus un ; sa réciproque envoie y sur la racine carrée de y moins un : on retranche un d'abord, on prend la racine ensuite, les réciproques composées en ordre renversé.",
+   "ecran": "inverse_composee",
+   "id": "p24",
+   "texte": "La réciproque d'une composée renverse l'ordre."
+  },
+  {
+   "dit": "Un dernier pont entre ensembles et applications : les images d'ensembles entiers. L'image directe d'une partie A par f rassemble les images de ses éléments ; l'image réciproque d'une partie B rassemble tous les départs dont l'image tombe dans B. Attention, cette image réciproque existe pour toute application, bijective ou non : la notation ne suppose aucune réciproque. Dans le club de photographie du cours, l'image de Alice et David est portrait et macro, et les antécédents du portrait sont Alice et Clara : sans injectivité, l'image réciproque d'une image grossit l'ensemble de départ.",
+   "ecran": "images",
+   "id": "p25",
+   "texte": "Images directes et réciproques d'ensembles."
+  },
+  {
+   "dit": "Finissons par un principe d'une simplicité redoutable : le principe des tiroirs. Si l'on range plus de chaussettes que de tiroirs, un tiroir contient forcément au moins deux chaussettes. Traduction : une application d'un ensemble fini vers un ensemble fini plus petit ne peut pas être injective. Application élégante : dans une assemblée, deux personnes ont toujours le même nombre d'amis en son sein, les cas zéro ami et ami de tous étant incompatibles.",
+   "ecran": "tiroirs",
+   "id": "p26",
+   "texte": "Tiroirs : plus d'objets que de cases, collision forcée."
+  },
+  {
+   "dit": "Dernier problème de synthèse, qui mélange tout. Une base de mille clients : deux cents ont acheté l'article A, cent cinquante l'article B, cinquante les deux. Au moins un article : deux cents plus cent cinquante moins cinquante, trois cents clients. L'article A seul : cent cinquante. Aucun des deux : sept cents. Le même schéma d'inclusion-exclusion sert partout où des catégories se chevauchent : enquêtes, bases de données, probabilités.",
+   "ecran": "synthese_ex",
+   "id": "p27",
+   "texte": "Inclusion-exclusion : trois cents clients concernés."
+  },
+  {
+   "dit": "Pour conclure ce cours, retenez l'architecture complète. Les ensembles fournissent les objets : appartenance, inclusion, union, intersection, complémentaire, cardinal et produit cartésien. Les applications fournissent les liens : image unique pour chaque départ, puis la grande classification, injective, surjective, bijective, qui commande l'existence des réciproques et la comparaison des cardinaux. La composition enchaîne les applications et transmet leurs propriétés, et sa réciproque renverse l'ordre. Objets et liens : le double langage de toutes les mathématiques qui suivent.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "Objets : les ensembles. Liens : les applications."
+  }
+ ],
+ "titre": "Ensembles et applications : le langage des mathématiques"
+}
