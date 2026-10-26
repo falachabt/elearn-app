@@ -1,0 +1,545 @@
+{
+ "cours": 6352,
+ "titre": "Acides et bases de Brønsted-Lowry : la danse des protons",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Acides et bases",
+   "titre": "Acides et bases de Brønsted-Lowry : la danse des protons",
+   "sous": "Couples et transferts, mesure du pH et force des acides, neutralisation et titrages",
+   "anim": {
+    "nom": "transfert_proton_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Vinaigre, savon, antiacide : un même transfert de proton."
+  },
+  "definitions": {
+   "type": "etape",
+   "kicker": "Les définitions de 1923",
+   "titre": "Donner ou capter un proton",
+   "tex": [
+    "\\text{acide : espèce capable de céder un proton } H^+",
+    "\\text{base : espèce capable de capter un proton } H^+",
+    "\\text{dans l'eau, le proton devient l'ion oxonium } H_3O^+"
+   ]
+  },
+  "couple": {
+   "type": "formule",
+   "kicker": "Le couple acide / base",
+   "tex": "\\text{Acide} \\rightleftharpoons \\text{Base} + H^+",
+   "note": "On note le couple : Acide / Base. Les deux espèces ne diffèrent que par un proton."
+  },
+  "couples_exemples": {
+   "type": "etape",
+   "kicker": "Des couples partout",
+   "titre": "Du laboratoire à notre propre corps",
+   "tex": [
+    "H_3O^+ / H_2O \\text{ : toute solution aqueuse}",
+    "CH_3COOH / CH_3COO^- \\text{ : le vinaigre}",
+    "NH_4^+ / NH_3 \\text{ : nettoyants et engrais}",
+    "HCl / Cl^- \\text{ : le suc gastrique}"
+   ]
+  },
+  "transfert": {
+   "type": "etape",
+   "kicker": "La réaction : un transfert",
+   "titre": "Deux couples se croisent, un proton voyage",
+   "tex": [
+    "\\text{Acide}_1 + \\text{Base}_2 \\rightleftharpoons \\text{Base}_1 + \\text{Acide}_2",
+    "HCl + NH_3 \\rightarrow NH_4^+ + Cl^-",
+    "\\text{produits : la base conjuguée et l'acide conjugué}"
+   ]
+  },
+  "eau_ampholyte": {
+   "type": "etape",
+   "kicker": "L'ampholyte : l'eau",
+   "titre": "Base face aux acides forts, acide face aux bases fortes",
+   "tex": [
+    "HCl + H_2O \\rightarrow H_3O^+ + Cl^- \\text{ : l'eau est la base}",
+    "NH_3 + H_2O \\rightleftharpoons NH_4^+ + OH^- \\text{ : l'eau est l'acide}",
+    "\\text{deux couples : } H_3O^+/H_2O \\text{ et } H_2O/OH^-"
+   ]
+  },
+  "bicarbonate": {
+   "type": "etape",
+   "kicker": "L'ampholyte : le bicarbonate",
+   "titre": "Un double visage au cœur du sang",
+   "tex": [
+    "HCO_3^- + H^+ \\rightarrow H_2CO_3 \\text{ : il joue la base}",
+    "HCO_3^- \\rightleftharpoons CO_3^{2-} + H^+ \\text{ : il joue l'acide}",
+    "\\text{couples : } H_2CO_3/HCO_3^- \\text{ et } HCO_3^-/CO_3^{2-}"
+   ]
+  },
+  "methode_ecriture": {
+   "type": "etape",
+   "kicker": "Écrire une réaction",
+   "titre": "La méthode en quatre étapes",
+   "tex": [
+    "\\text{1. identifier les deux couples en présence}",
+    "\\text{2. écrire le transfert, de l'acide vers la base}",
+    "\\text{3. équilibrer atomes et charges électriques}",
+    "CH_3COOH + H_2O \\rightleftharpoons CH_3COO^- + H_3O^+"
+   ]
+  },
+  "equilibre": {
+   "type": "formule",
+   "kicker": "L'équilibre et sa constante",
+   "tex": "K = \\frac{[\\text{base}_1] \\times [\\text{acide}_2]}{[\\text{acide}_1] \\times [\\text{base}_2]}",
+   "note": "K > 1 : produits favorisés, l'acide 1 est le plus fort. K < 1 : réactifs favorisés."
+  },
+  "avancement": {
+   "type": "etape",
+   "kicker": "Le tableau d'avancement",
+   "titre": "Mélange stœchiométrique d'acide fort et d'ammoniac",
+   "tex": [
+    "n_i = C \\times V = 0{,}010\\ \\text{mol de chaque réactif}",
+    "H_3O^+ + NH_3 \\rightarrow H_2O + NH_4^+ \\text{ : réaction totale}",
+    "[NH_4^+] = \\tfrac{0{,}010}{0{,}200} = 0{,}050\\ \\text{mol/L}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Acide : donneur de proton H⁺",
+    "Base : accepteur de proton",
+    "Couple : acide ⇌ base + H⁺",
+    "Deux couples, un seul transfert",
+    "Équilibre : K mesure l'avancée"
+   ]
+  },
+  "intro_mesure": {
+   "type": "phrase",
+   "kicker": "Du qualitatif au quantitatif",
+   "texte": "Qui donne, qui capte : bien. Mais de combien ? Il faut un nombre."
+  },
+  "definition_ph": {
+   "type": "formule",
+   "kicker": "La définition du pH",
+   "tex": "pH = -\\log [H_3O^+]",
+   "note": "Sørensen, 1909 : une échelle inventée pour contrôler la fermentation de la bière."
+  },
+  "reperes_ph": {
+   "type": "etape",
+   "kicker": "L'échelle de pH en repères",
+   "titre": "Chaque unité divise ou multiplie la concentration par dix",
+   "tex": [
+    "\\text{citron} \\approx 2 \\qquad \\text{vinaigre} \\approx 3",
+    "\\text{eau pure} = 7 \\qquad \\text{sang} \\approx 7{,}4",
+    "\\text{ammoniaque} \\approx 11 \\qquad \\text{soude} \\approx 14"
+   ],
+   "anim": {
+    "nom": "ph",
+    "debut": 2,
+    "cible": 12,
+    "hauteur": 110
+   }
+  },
+  "autoprotolyse": {
+   "type": "formule",
+   "kicker": "L'autoprotolyse de l'eau",
+   "tex": "2\\,H_2O \\rightleftharpoons H_3O^+ + OH^-",
+   "note": "Ke = [H₃O⁺][OH⁻] = 10⁻¹⁴ à 25 °C ; donc pH + pOH = 14."
+  },
+  "acide_fort": {
+   "type": "etape",
+   "kicker": "Acide fort : calcul direct",
+   "titre": "Dissociation totale, concentration transmise",
+   "tex": [
+    "HA + H_2O \\rightarrow H_3O^+ + A^- \\text{ : totale}",
+    "[H_3O^+] = C_a \\quad \\Rightarrow \\quad pH = -\\log C_a",
+    "HCl \\text{ à } 2{,}5 \\times 10^{-3}\\ \\text{mol/L : } pH = 2{,}60"
+   ]
+  },
+  "base_forte": {
+   "type": "etape",
+   "kicker": "Base forte : calcul direct",
+   "titre": "Passer par le pOH pour remonter au pH",
+   "tex": [
+    "[OH^-] = C_b \\quad \\Rightarrow \\quad pOH = -\\log C_b",
+    "pH = 14 - pOH \\text{ (à } 25\\,^\\circ C\\text{)}",
+    "\\text{soude à } 5{,}0 \\times 10^{-2} \\text{ : } pOH = 1{,}30 \\text{, } pH = 12{,}70"
+   ]
+  },
+  "acide_faible": {
+   "type": "etape",
+   "kicker": "Acide faible : l'équilibre",
+   "titre": "Dissociation partielle, racine carrée",
+   "tex": [
+    "AH + H_2O \\rightleftharpoons A^- + H_3O^+ \\text{ : partielle}",
+    "K_a = \\tfrac{x^2}{C_a - x} \\approx \\tfrac{x^2}{C_a}",
+    "x = \\sqrt{K_a C_a} \\text{ : acide acétique, } pH \\approx 2{,}87"
+   ],
+   "anim": {
+    "nom": "dissociation_fig",
+    "hauteur": 110
+   }
+  },
+  "echelle_pka": {
+   "type": "etape",
+   "kicker": "L'échelle des pKa",
+   "titre": "Plus le pKa est petit, plus l'acide est fort",
+   "tex": [
+    "pK_a = -\\log K_a",
+    "HCl : \\approx -7 \\qquad H_3O^+ : 0 \\qquad CH_3COOH : 4{,}74",
+    "NH_4^+ : 9{,}25 \\qquad H_2O : 15{,}7"
+   ]
+  },
+  "lien_conjugue": {
+   "type": "formule",
+   "kicker": "Le lien acide / base conjuguée",
+   "tex": "K_a \\times K_b = K_e = 10^{-14}",
+   "note": "Donc pKa + pKb = 14 : plus un acide est fort, plus sa base conjuguée est faible."
+  },
+  "regle_or": {
+   "type": "etape",
+   "kicker": "Prédire le sens d'une réaction",
+   "titre": "Le proton va de l'acide le plus fort vers la base la plus forte",
+   "tex": [
+    "\\text{la réaction fabrique l'acide le plus faible}",
+    "CH_3COOH\\ (4{,}7) + HCO_3^- \\rightarrow CH_3COO^- + H_2CO_3\\ (6{,}4)",
+    "\\text{puis } H_2CO_3 \\rightarrow CO_2 + H_2O \\text{ : effervescence}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "pH = −log [H₃O⁺]",
+    "Ke = 10⁻¹⁴ à 25 °C",
+    "Acide fort : pH = −log Ca",
+    "Acide faible : x = √(Ka·Ca)",
+    "pKa petit : acide fort"
+   ]
+  },
+  "intro_neutra": {
+   "type": "phrase",
+   "kicker": "La rencontre frontale",
+   "texte": "Acide + base : une annulation silencieuse et féconde."
+  },
+  "neutralisation": {
+   "type": "formule",
+   "kicker": "La neutralisation",
+   "tex": "H_3O^+ + OH^- \\rightarrow 2\\,H_2O",
+   "note": "L'acide le plus fort de l'eau rencontre la base forte : il ne reste que de l'eau."
+  },
+  "ph_equivalence": {
+   "type": "etape",
+   "kicker": "Le pH à l'équivalence",
+   "titre": "Neutre seulement si les deux partenaires sont forts",
+   "tex": [
+    "\\text{fort} + \\text{forte : } pH = 7 \\text{, sel neutre}",
+    "\\text{fort} + \\text{faible : } pH < 7 \\text{ (} NH_4Cl \\text{ acide)}",
+    "\\text{faible} + \\text{forte : } pH > 7 \\text{ (} CH_3COONa \\text{ basique)}"
+   ]
+  },
+  "titrage": {
+   "type": "etape",
+   "kicker": "Le titrage : doser par neutralisation",
+   "titre": "La burette transforme la rencontre en mesure",
+   "tex": [
+    "\\text{bécher : l'acide, concentration inconnue}",
+    "\\text{burette : la base titrante, concentration connue}",
+    "\\text{équivalence : } C_A V_A = C_B V_{B,eq}"
+   ],
+   "anim": {
+    "nom": "dosage_fig",
+    "hauteur": 110
+   }
+  },
+  "courbe_titrage": {
+   "type": "etape",
+   "kicker": "La courbe de titrage",
+   "titre": "Une falaise de pH à l'équivalence",
+   "tex": [
+    "\\text{avant : le pH monte lentement, l'acide domine}",
+    "\\text{équivalence : saut brutal du pH}",
+    "\\text{après : l'excès de base impose son pH}"
+   ],
+   "anim": {
+    "nom": "courbe_titrage_fig",
+    "hauteur": 110
+   }
+  },
+  "indicateurs": {
+   "type": "etape",
+   "kicker": "Les indicateurs colorés",
+   "titre": "Voir l'équivalence à l'œil nu",
+   "tex": [
+    "HIn \\rightleftharpoons H^+ + In^- \\text{ : deux formes, deux couleurs}",
+    "\\text{phénolphtaléine : incolore, puis rose de } 8{,}2 \\text{ à } 10",
+    "\\text{choisir : la zone de virage couvre le pH d'équivalence}"
+   ]
+  },
+  "corps": {
+   "type": "etape",
+   "kicker": "Le corps humain",
+   "titre": "Estomac acide, sang tamponné",
+   "tex": [
+    "\\text{estomac : } HCl \\text{, pH } 1{,}5 \\text{ à } 3 \\text{, la pepsine travaille}",
+    "CaCO_3 + 2\\,HCl \\rightarrow CaCl_2 + CO_2 + H_2O \\text{ : l'antiacide}",
+    "\\text{sang : tampon } H_2CO_3/HCO_3^- \\text{, pH voisin de } 7{,}4"
+   ]
+  },
+  "quotidien": {
+   "type": "etape",
+   "kicker": "Cuisine et environnement",
+   "titre": "Des protons à toutes les échelles",
+   "tex": [
+    "\\text{levure : } NaHCO_3 + H^+ \\rightarrow CO_2 \\text{, le gaz qui gonfle}",
+    "\\text{détartrage : le vinaigre dissout le calcaire } CaCO_3",
+    "\\text{pluies acides : } SO_2 \\rightarrow H_2SO_4 \\text{, pH} < 5{,}6",
+    "\\text{chaulage : } Ca(OH)_2 \\text{ neutralise les sols acides}"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "L'industrie",
+   "titre": "Engrais, eaux usées et savons",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\text{ : Haber-Bosch fabrique une base}",
+    "HNO_3 + NH_3 \\rightarrow NH_4NO_3 \\text{ : l'engrais azoté}",
+    "\\text{eaux usées : neutraliser entre } 6{,}5 \\text{ et } 8{,}5"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Neutralisation : H₃O⁺ + OH⁻ → eau",
+    "Équivalence : pH 7, < 7 ou > 7",
+    "Titrage : Ca·Va = Cb·Vb,éq",
+    "Indicateur adapté au saut de pH",
+    "Partout : sang, sols, industrie"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux acides et aux bases, selon la théorie de Brønsted et Lowry. Le piquant du vinaigre, le glissant du savon, le soulagement d'un antiacide : derrière ces expériences quotidiennes se cache un unique acteur, le proton, qui passe d'une espèce chimique à une autre. Nous apprendrons d'abord à reconnaître les donneurs et les accepteurs de protons, et à écrire leurs réactions. Puis nous mesurerons l'acidité avec le pé-ache et comparerons les forces grâce au pé-ka-a. Nous terminerons par la neutralisation, le titrage et les applications, du sang humain aux engrais.",
+   "texte": "Un proton qui voyage : toute la chimie acido-basique.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Regardez autour de vous. Le vinaigre pique vos frites, l'eau savonneuse glisse entre vos doigts, un comprimé antiacide soulage votre estomac. Trois scènes sans rapport apparent, et pourtant un seul phénomène les gouverne : le transfert d'un proton, ce minuscule ion hydrogène privé de son unique électron. Pendant des siècles, on a décrit les acides par leur goût et les bases par leur toucher. En mille neuf cent vingt-trois, deux chimistes, le Danois Brønsted et l'Anglais Lowry, ont eu indépendamment la même intuition : tout tient dans ce transfert. C'est cette clé que nous allons nous approprier.",
+   "texte": "Vinaigre, savon, antiacide : un même transfert de proton.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Voici les définitions fondatrices. Un acide de Brønsted et Lowry est une espèce chimique, molécule ou ion, capable de céder un proton. Une base est une espèce capable de capter un proton. Toute la théorie tient dans ce va-et-vient. Précision importante : le proton nu est bien trop petit et trop chargé pour exister libre dans l'eau ; dès qu'il est cédé, il s'accroche à une molécule d'eau et devient un ion oxonium. C'est donc toujours cet ion oxonium que l'on rencontre réellement en solution aqueuse.",
+   "texte": "Acide = donneur de H⁺ ; base = accepteur de H⁺.",
+   "ecran": "definitions"
+  },
+  {
+   "id": "p04",
+   "dit": "Lorsqu'un acide cède son proton, il ne disparaît pas : il se transforme en une nouvelle espèce, capable en retour de recapter un proton. Ces deux espèces, qui ne diffèrent que par un proton, forment un couple acide-base. On le note en écrivant l'acide, une barre oblique, puis la base. La relation du couple s'écrit comme un équilibre : l'acide se transforme en sa base conjuguée plus un proton. Retenez ce mot, conjuguée : chaque acide possède sa base conjuguée, et chaque base son acide conjugué.",
+   "texte": "Acide ⇌ Base + H⁺ : le couple ne diffère que d'un proton.",
+   "ecran": "couple"
+  },
+  {
+   "id": "p05",
+   "dit": "Ancron ces couples dans le réel, grâce au tableau des leçons. Le couple ion oxonium et eau est présent dans toute solution aqueuse : c'est le couple où l'eau joue le rôle de base. Le couple acide acétique et ion acétate est celui du vinaigre. Le couple ion ammonium et ammoniac se rencontre dans les produits nettoyants et les engrais. Et le couple acide chlorhydrique et ion chlorure est celui de notre suc gastrique, qui digère nos aliments. Quatre couples, quatre contextes, du laboratoire à notre propre corps.",
+   "texte": "H₃O⁺/H₂O, CH₃COOH/CH₃COO⁻, NH₄⁺/NH₃, HCl/Cl⁻.",
+   "ecran": "couples_exemples"
+  },
+  {
+   "id": "p06",
+   "dit": "Une réaction acido-basique est un transfert organisé entre deux couples. L'acide du premier couple cède son proton à la base du second couple. En cédant, il devient sa propre base conjuguée ; en captant, la base devient son acide conjugué. Exemple : l'acide chlorhydrique rencontre l'ammoniac. L'acide chlorhydrique donne son proton à l'ammoniac : il reste l'ion chlorure, base conjuguée, et naît l'ion ammonium, acide conjugué. Un seul proton a voyagé, et deux couples se sont croisés.",
+   "texte": "Acide₁ + Base₂ ⇌ Base₁ + Acide₂.",
+   "ecran": "transfert"
+  },
+  {
+   "id": "p07",
+   "dit": "Certaines espèces ont un double visage : on les appelle des ampholytes. L'exemple parfait est l'eau. Face à l'acide chlorhydrique, plus fort qu'elle, l'eau se comporte en base : elle capte le proton et devient ion oxonium. Face à l'ammoniac, base plus avide, l'eau se comporte en acide : elle cède un proton et devient ion hydroxyde. L'eau appartient donc à deux couples à la fois : comme base dans le couple ion oxonium et eau, comme acide dans le couple eau et ion hydroxyde. Le contexte décide de son rôle.",
+   "texte": "L'eau : base face à HCl, acide face à NH₃.",
+   "ecran": "eau_ampholyte"
+  },
+  {
+   "id": "p08",
+   "dit": "Autre ampholyte célèbre : l'ion hydrogénocarbonate, celui du bicarbonate de soude et de notre sang. En captant un proton, il joue le rôle de base et redevient de l'acide carbonique : c'est le couple acide carbonique et ion hydrogénocarbonate. En cédant un proton, il joue le rôle d'acide et devient l'ion carbonate : c'est le couple ion hydrogénocarbonate et ion carbonate. Cette double appartenance fait de lui un rouage central de la régulation du dioxyde de carbone dans le sang ; nous y reviendrons.",
+   "texte": "HCO₃⁻ : base vers H₂CO₃, acide vers CO₃²⁻.",
+   "ecran": "bicarbonate"
+  },
+  {
+   "id": "p09",
+   "dit": "Sauriez-vous écrire n'importe quelle réaction acido-basique ? Voici la méthode en quatre étapes. Un : identifier les deux couples en présence. Deux : écrire le transfert, de l'acide vers la base. Trois : équilibrer l'équation, atomes et charges électriques. Quatre : vérifier qu'un proton a bien voyagé de l'acide vers la base. Application : le vinaigre dilué dans l'eau. L'acide acétique, acide du premier couple, cède son proton à l'eau, base du second couple. On obtient l'ion acétate et l'ion oxonium, et l'équation est équilibrée.",
+   "texte": "4 étapes : couples, transfert, équilibre, vérification.",
+   "ecran": "methode_ecriture"
+  },
+  {
+   "id": "p10",
+   "dit": "Mais cette danse s'arrête rarement au bout : la plupart des réactions acido-basiques atteignent un équilibre dynamique, où les deux sens du transfert coexistent. On écrit alors une double flèche. Pour mesurer jusqu'où l'équilibre penche, on calcule la constante K : le produit des concentrations des produits, divisé par le produit des concentrations des réactifs, toutes prises à l'équilibre. Si K dépasse un, les produits sont favorisés et l'acide de départ est le plus fort des deux acides en présence. Si K est inférieur à un, l'équilibre reste du côté des réactifs.",
+   "texte": "K > 1 : produits favorisés ; K < 1 : réactifs favorisés.",
+   "ecran": "equilibre"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour quantifier une réaction, l'outil roi est le tableau d'avancement. Prenons le mélange des leçons : cent millilitres d'une solution d'acide chlorhydrique et cent millilitres d'ammoniac, tous deux à zéro virgule dix mole par litre. Chacun apporte dix millièmes de mole de réactif : les proportions sont exactement stœchiométriques. L'acide chlorhydrique étant un acide fort, entièrement dissocié en ions oxonium, la réaction avec l'ammoniac est totale : les deux réactifs disparaissent et forment dix millièmes de mole d'ion ammonium, dans un volume total de deux cents millilitres. Concentration finale de l'ion ammonium : zéro virgule zéro cinquante mole par litre.",
+   "texte": "Stœchiométrie exacte → [NH₄⁺] = 0,050 mol/L.",
+   "ecran": "avancement"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons cette première partie. Un acide donne un proton, une base en capte un, et les deux vivent en couples conjugués qui ne diffèrent que par ce proton. Toute réaction croise deux couples dans un transfert unique, qui mène le plus souvent à un équilibre mesuré par la constante K. Vous savez désormais lire et écrire ces échanges ; il nous faut maintenant apprendre à les mesurer et à comparer les forces en présence.",
+   "texte": "Couples et transfert : l'essentiel.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Jusqu'ici, tout était qualitatif : qui donne, qui capte. Mais un citron et un déboucheur ne se valent pas. Pour comparer, il faut un nombre. Ce nombre, c'est le pé-ache, et derrière lui toute une mécanique : le produit ionique de l'eau, les calculs pour les acides et les bases, forts ou faibles, et l'échelle des pé-ka-a qui classe les duellistes.",
+   "texte": "Du qualitatif au quantitatif : il faut un nombre.",
+   "ecran": "intro_mesure"
+  },
+  {
+   "id": "p14",
+   "dit": "Le pé-ache quantifie l'acidité d'une solution diluée : c'est l'opposé du logarithme décimal de la concentration en ions oxonium. Pourquoi un logarithme ? Parce que cette concentration varie dans des proportions immenses, d'environ une mole par litre jusqu'à des valeurs infinitésimales : le logarithme compresse cette immensité en une échelle lisible, typiquement de zéro à quatorze. Cette mesure a été inventée en mille neuf cent neuf par le chimiste danois Sørensen, qui voulait contrôler avec précision l'acidité de la bière pendant sa fermentation, à la brasserie Carlsberg.",
+   "texte": "pH = −log [H₃O⁺] : Sørensen, 1909, brasserie Carlsberg.",
+   "ecran": "definition_ph"
+  },
+  {
+   "id": "p15",
+   "dit": "Donnons des repères concrets, tirés du tableau des leçons. Le jus de citron affiche un pé-ache voisin de deux, le vinaigre voisin de trois : ce sont des milieux nettement acides. L'eau pure, neutre, est exactement à sept, et notre sang, finement régulé, à sept virgule quatre. Côté basique, l'ammoniaque domestique monte vers onze ou douze, et la soude concentrée approche quatorze. Regardez le curseur glisser sur l'échelle : chaque unité de pé-ache traversée multiplie ou divise par dix la concentration en ions oxonium.",
+   "texte": "Citron ≈ 2, eau = 7, sang ≈ 7,4, soude ≈ 14.",
+   "ecran": "reperes_ph"
+  },
+  {
+   "id": "p16",
+   "dit": "Pourquoi sept pour l'eau pure ? Parce que l'eau réagit avec elle-même, en permanence : deux molécules d'eau échangent un proton et donnent un ion oxonium et un ion hydroxyde. C'est l'autoprotolyse. Sa constante d'équilibre, le produit ionique de l'eau, vaut dix puissance moins quatorze à vingt-cinq degrés : dans toute solution aqueuse, le produit des concentrations en ions oxonium et en ions hydroxyde reste égal à cette valeur. Dans l'eau pure, les deux concentrations sont égales : chacune vaut dix puissance moins sept, d'où un pé-ache de sept. Conséquence pratique : pé-ache plus pé-o-ache égale quatorze.",
+   "texte": "Ke = [H₃O⁺][OH⁻] = 10⁻¹⁴ à 25 °C ; pH + pOH = 14.",
+   "ecran": "autoprotolyse"
+  },
+  {
+   "id": "p17",
+   "dit": "Calculons maintenant. Un acide fort, comme l'acide chlorhydrique, se dissocie totalement dans l'eau : chaque molécule donne un ion oxonium. La concentration en ions oxonium est donc simplement égale à la concentration initiale de l'acide, et le pé-ache vaut l'opposé du logarithme de cette concentration. Exemple des leçons : un acide chlorhydrique à deux virgule cinq fois dix puissance moins trois mole par litre donne un pé-ache de deux virgule soixante. Attention tout de même au piège des très grandes dilutions : en dessous de dix puissance moins six mole par litre, l'eau elle-même fournit des ions oxonium ; un acide fort à dix puissance moins sept mole par litre donne un pé-ache de six virgule soixante-dix-neuf, jamais sept.",
+   "texte": "Acide fort : [H₃O⁺] = Ca ; HCl 2,5×10⁻³ → pH 2,60.",
+   "ecran": "acide_fort"
+  },
+  {
+   "id": "p18",
+   "dit": "Même simplicité pour une base forte, comme la soude. Sa dissociation est totale : la concentration en ions hydroxyde égale la concentration initiale. On calcule alors le pé-o-ache, opposé du logarithme de cette concentration, puis on remonte au pé-ache en retranchant le résultat de quatorze. Exemple : une soude à cinq fois dix puissance moins deux mole par litre a un pé-o-ache de un virgule trente, donc un pé-ache de douze virgule soixante-dix. Deux lignes de calcul suffisent dès que la dissociation est totale.",
+   "texte": "Soude 5,0×10⁻² mol/L : pOH 1,30 → pH 12,70.",
+   "ecran": "base_forte"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour un acide faible, la dissociation n'est que partielle : regardez les deux béchers de la figure, presque toutes les molécules restent entières. L'équilibre est gouverné par la constante d'acidité, le ka-a. En notant x la concentration en ions oxonium à l'équilibre, le tableau d'avancement donne le ka-a comme le rapport de x au carré sur la concentration initiale moins x. Quand l'acide n'est ni trop faible ni trop dilué, x reste petit devant la concentration initiale : x vaut alors environ la racine carrée du produit du ka-a par la concentration. Exemple : l'acide acétique à zéro virgule dix mole par litre, de ka-a un virgule huit fois dix puissance moins cinq, donne x voisin de un virgule trente-quatre fois dix puissance moins trois, soit un pé-ache de deux virgule quatre-vingt-sept.",
+   "texte": "Acide acétique 0,10 mol/L → pH ≈ 2,87.",
+   "ecran": "acide_faible"
+  },
+  {
+   "id": "p20",
+   "dit": "Le ka-a varie sur des dizaines d'ordres de grandeur : on le compresse donc, comme le pé-ache, par un logarithme. Le pé-ka-a est l'opposé du logarithme décimal du ka-a, et la lecture est inversée : plus le pé-ka-a est petit, plus l'acide est fort. Voici le classement de référence des leçons. L'acide chlorhydrique, acide fort, affiche un pé-ka-a voisin de moins sept. L'ion oxonium, acide de référence, est à zéro. L'acide acétique est à quatre virgule soixante-quatorze, l'ion ammonium à neuf virgule vingt-cinq, et l'eau, acide extrêmement faible, à quinze virgule sept.",
+   "texte": "HCl ≈ −7 ; H₃O⁺ = 0 ; CH₃COOH = 4,74 ; NH₄⁺ = 9,25.",
+   "ecran": "echelle_pka"
+  },
+  {
+   "id": "p21",
+   "dit": "Un lien profond unit un acide à sa base conjuguée. Si l'on multiplie le ka-a de l'acide par le ka-bé de sa base conjuguée, on retombe exactement sur le produit ionique de l'eau : dix puissance moins quatorze. En version logarithmique, pé-ka-a plus pé-ka-bé égale quatorze. Conséquence immédiate : plus un acide est fort, plus sa base conjuguée est faible. L'ion chlorure, conjugué d'un acide fort, est une base indifférente qui ne reprend jamais le proton. À l'inverse, la base conjuguée d'un acide faible, comme l'ion acétate, le reprend volontiers.",
+   "texte": "Ka × Kb = Ke : acide fort ⇔ base conjuguée faible.",
+   "ecran": "lien_conjugue"
+  },
+  {
+   "id": "p22",
+   "dit": "Nous pouvons maintenant prédire le sens d'une réaction : c'est la règle d'or du pé-ka-a. Lors d'un transfert, l'acide le plus fort, donc celui de plus petit pé-ka-a, cède son proton à la base la plus forte, et la réaction fabrique l'acide le plus faible. Mélangez du vinaigre et du bicarbonate, le grand classique du nettoyage : l'acide acétique, de pé-ka-a quatre virgule sept, est plus fort que l'acide carbonique, de pé-ka-a six virgule quatre. Le transfert a donc lieu ; l'acide carbonique formé se décompose aussitôt en eau et en dioxyde de carbone : c'est l'effervescence que vous observez.",
+   "texte": "pKa 4,7 contre 6,4 : le vinaigre gagne, ça pétille.",
+   "ecran": "regle_or"
+  },
+  {
+   "id": "p23",
+   "dit": "Récapitulons. Le pé-ache mesure la concentration en ions oxonium, enracinée dans le produit ionique de l'eau. Dissociation totale, calcul direct ; dissociation partielle, le ka-a et l'approximation de la racine carrée prennent le relais. Et l'échelle des pé-ka-a classe toutes les forces : elle prédit même le sens des réactions. Reste à mettre ces armes au service d'une rencontre frontale : la neutralisation.",
+   "texte": "Mesurer, classer, prédire : l'essentiel.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p24",
+   "dit": "Une goutte de vinaigre rencontre une larme de soude. Pas d'explosion, pas de fumée : une transformation silencieuse, presque parfaite, où l'acide et la base s'annihilent. C'est la neutralisation, la plus célèbre des réactions acido-basiques, celle qui soigne les brûlures d'estomac, traite les eaux usées et nourrit l'analyse chimique.",
+   "texte": "Acide + base : une annulation silencieuse et féconde.",
+   "ecran": "intro_neutra"
+  },
+  {
+   "id": "p25",
+   "dit": "Au cœur de la neutralisation, une équation prototype : l'ion oxonium, l'acide le plus fort qui puisse exister dans l'eau, rencontre l'ion hydroxyde, base forte, et les deux donnent deux molécules d'eau. Toute neutralisation entre un acide fort et une base forte se ramène à cette rencontre. Elle est totale lorsque les quantités d'ions oxonium et d'ions hydroxyde sont rigoureusement égales : c'est le point d'équivalence, le moment exact où les deux adversaires se compensent.",
+   "texte": "H₃O⁺ + OH⁻ → 2 H₂O : la rencontre prototype.",
+   "ecran": "neutralisation"
+  },
+  {
+   "id": "p26",
+   "dit": "À quoi ressemble le pé-ache à l'équivalence ? Tout dépend des forces en présence, comme le résume le tableau des leçons. Acide fort et base forte : le sel formé est neutre, le pé-ache vaut sept. Acide fort et base faible, comme l'acide chlorhydrique et l'ammoniac : le sel formé, le chlorure d'ammonium, est acide, et le pé-ache passe sous sept. Acide faible et base forte, comme l'acide acétique et la soude : l'acétate de sodium formé est basique, et le pé-ache dépasse sept. L'équivalence n'est donc neutre que dans le premier cas.",
+   "texte": "Fort/forte : 7 ; fort/faible : < 7 ; faible/forte : > 7.",
+   "ecran": "ph_equivalence"
+  },
+  {
+   "id": "p27",
+   "dit": "Comment exploiter la neutralisation pour mesurer une concentration inconnue ? C'est le titrage. Dans un bécher, un volume précis de la solution acide à doser. Au-dessus, une burette graduée remplie d'une base de concentration connue, le titrant, que l'on verse goutte à goutte. À l'équivalence, les quantités de matière se compensent : la concentration inconnue multipliée par son volume égale la concentration connue multipliée par le volume versé à l'équivalence. Petit calcul tiré de la fin des leçons : pour neutraliser vingt-cinq millilitres d'acide chlorhydrique à zéro virgule zéro cinq mole par litre avec de la soude à zéro virgule un mole par litre, l'équivalence tombe à douze virgule cinq millilitres.",
+   "texte": "Ca·Va = Cb·Vb,éq : l'inconnue tombe.",
+   "ecran": "titrage"
+  },
+  {
+   "id": "p28",
+   "dit": "Si l'on suit le pé-ache au fil du volume versé, on obtient la courbe de titrage, la carte du voyage. Au départ, le pé-ache est bas et monte lentement : l'excès d'acide domine. Au voisinage de l'équivalence, tout bascule : pour une goutte de plus, le pé-ache saute brutalement de plusieurs unités, comme une falaise. Après l'équivalence, le pé-ache remonte lentement, porté par l'excès de base. La courbe pleine de la figure est celle d'un acide fort titré par une base forte ; en pointillés, celle d'un acide faible, qui démarre plus haut et saute moins haut.",
+   "texte": "Un saut brutal de pH signale l'équivalence.",
+   "ecran": "courbe_titrage"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour voir l'équivalence sans pé-ache-mètre, on utilise un indicateur coloré : un acide faible dont la forme acide et la forme basique ont des couleurs différentes. La phénolphtaléine, incolore en milieu acide, devient rose fuchsia en milieu basique, avec une zone de virage située entre huit virgule deux et dix. Elle convient parfaitement au titrage d'un acide fort par une base forte, car le saut de pé-ache traverse sa zone de virage. La règle de choix est simple : la zone de virage de l'indicateur doit contenir le pé-ache à l'équivalence.",
+   "texte": "Phénolphtaléine : incolore → rose, zone 8,2 à 10.",
+   "ecran": "indicateurs"
+  },
+  {
+   "id": "p30",
+   "dit": "Le corps humain est un théâtre permanent de neutralisations. L'estomac sécrète de l'acide chlorhydrique, à un pé-ache compris entre un virgule cinq et trois, qui active la pepsine, dénature les protéines et tue les microbes. Trop d'acidité ? Les antiacides, bases faibles comme le carbonate de calcium, neutralisent l'excès et libèrent du dioxyde de carbone, d'où les rots qui suivent parfois la prise. Et le sang maintient son pé-ache autour de sept virgule quatre grâce au tampon entre l'acide carbonique et l'ion hydrogénocarbonate : un écart de quelques dixièmes seulement serait critique.",
+   "texte": "Estomac acide, antiacides, sang tamponné à 7,4.",
+   "ecran": "corps"
+  },
+  {
+   "id": "p31",
+   "dit": "Dans la cuisine et l'environnement, même mécanique. La levure chimique associe le bicarbonate de sodium, une base, à un acide solide : au contact de l'eau ou à la chaleur, le proton est capté et du dioxyde de carbone se libère, dont les bulles font gonfler la pâte. Le vinaigre détartrise bouilloires et robinets en dissolvant le calcaire, un carbonate basique. À grande échelle, les oxydes de soufre des usines finissent en acide sulfurique dans la pluie, dont le pé-ache tombe sous cinq virgule six. Les agriculteurs répondent par le chaulage : épandre de la chaux, une base, pour neutraliser les sols trop acides.",
+   "texte": "Levure, détartrage, pluies acides, chaulage.",
+   "ecran": "quotidien"
+  },
+  {
+   "id": "p32",
+   "dit": "L'industrie, enfin, vit de ces équilibres. Le procédé Haber et Bosch fabrique l'ammoniac, une base selon Brønsted, puisqu'elle capte les protons ; converti en acide nitrique par le procédé d'Ostwald, cet ammoniac sert de matière première, et l'acide nitrique rencontre à nouveau de l'ammoniac dans une neutralisation qui donne le nitrate d'ammonium, un engrais majeur. Les eaux usées, acides ou basiques, sont neutralisées pour ramener leur pé-ache entre six virgule cinq et huit virgule cinq avant tout rejet, afin de protéger la vie aquatique. Et la saponification, l'attaque d'une graisse par la soude, produit nos savons depuis des millénaires.",
+   "texte": "Engrais, eaux usées, savons : l'industrie des protons.",
+   "ecran": "industrie"
+  },
+  {
+   "id": "p33",
+   "dit": "Terminons par l'essentiel. La neutralisation ramène un acide et une base à de l'eau, et son point d'équivalence voit son pé-ache fixé par les forces en présence. Le titrage transforme cette rencontre en mesure, repérée par le saut de pé-ache ou par la couleur d'un indicateur. Et partout autour de nous, dans le sang, la cuisine, les sols et les usines, des protons voyagent : vous savez désormais les reconnaître, les écrire, les mesurer et prédire leur route.",
+   "texte": "Neutraliser, doser, appliquer : le cours est bouclé.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, couples et écriture des réactions"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Le pH, les constantes et la force des acides",
+   "pont": {
+    "dit": "Partie deux : mesurer et comparer. Nous allons chiffrer l'acidité grâce au pé-ache, cette échelle logarithmique née dans une brasserie, puis calculer le pé-ache des solutions d'acides et de bases, forts ou faibles. Enfin, la constante d'acidité et son pé-ka-a nous donneront le classement des forces, et la règle pour prédire le sens d'une réaction.",
+    "texte": "Partie 2 : pH, Ka et pKa, la mesure des forces."
+   }
+  },
+  {
+   "debut": "p24",
+   "sous_titre": "Neutralisation, titrage et applications",
+   "pont": {
+    "dit": "Partie trois : neutraliser, doser, appliquer. Nous verrons la rencontre frontale entre un acide et une base, le point d'équivalence et son pé-ache qui dépend des forces en présence, puis le titrage, la technique qui transforme cette rencontre en instrument de mesure. Nous terminerons en sortant du laboratoire : dans le corps humain, la cuisine, les sols et l'industrie.",
+    "texte": "Partie 3 : neutralisation, titrage, applications."
+   }
+  }
+ ]
+}
