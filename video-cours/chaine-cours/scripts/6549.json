@@ -1,0 +1,515 @@
+{
+ "cours": 6549,
+ "titre": "Algèbre : groupes, arithmétique et algèbre linéaire",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Algèbre de concours",
+   "titre": "Algèbre : groupes, arithmétique et algèbre linéaire",
+   "sous": "Structures de groupes, congruences et équations diophantiennes, matrices, déterminants, systèmes et polynômes",
+   "anim": {
+    "nom": "matrice_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un même langage relie les symétries, les restes d'une division et les systèmes d'équations : celui des structures.",
+   "anim": {
+    "nom": "parties_fig",
+    "hauteur": 140
+   }
+  },
+  "groupe": {
+   "type": "etape",
+   "kicker": "Définition d'un groupe",
+   "titre": "Trois axiomes pour une structure",
+   "tex": [
+    "(a \\star b) \\star c = a \\star (b \\star c)",
+    "a \\star e = e \\star a = a",
+    "a \\star a' = a' \\star a = e"
+   ]
+  },
+  "exemples_groupes": {
+   "type": "etape",
+   "kicker": "Exemples fondamentaux",
+   "titre": "Des nombres aux matrices",
+   "tex": [
+    "(\\mathbb{Z}, +), (\\mathbb{Q}, +) : \\text{neutre } 0",
+    "(\\mathbb{R}, +) \\text{ : neutre } 0 \\text{ aussi}",
+    "(\\mathbb{R}^*, \\times) : \\text{neutre } 1",
+    "GL_n(\\mathbb{R}) : \\text{non abélien si } n \\geq 2"
+   ]
+  },
+  "sous_groupe": {
+   "type": "formule",
+   "kicker": "Le critère du sous-groupe",
+   "tex": "x, y \\in H \\Rightarrow x \\star y^{-1} \\in H",
+   "note": "Avec H non vide : un seul test remplace stabilité et inverses."
+  },
+  "cercle": {
+   "type": "etape",
+   "kicker": "Exemple corrigé · le cercle unité",
+   "titre": "Le cercle unité est un sous-groupe",
+   "tex": [
+    "1 \\in H \\quad \\text{car } |1| = 1",
+    "\\left|\\tfrac{x}{y}\\right| = \\tfrac{|x|}{|y|} = 1"
+   ],
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 140
+   }
+  },
+  "morphisme": {
+   "type": "formule",
+   "kicker": "Morphismes de groupes",
+   "tex": "f(x \\star y) = f(x) \\diamond f(y)",
+   "note": "Noyau et image sont des sous-groupes ; injectif si le noyau est trivial."
+  },
+  "exp_morph": {
+   "type": "etape",
+   "kicker": "Exemple · une exponentielle tournante",
+   "titre": "Une exponentielle qui tourne",
+   "tex": [
+    "\\ker f = 2\\mathbb{Z}",
+    "\\operatorname{Im}(f) = \\{z : |z| = 1\\}",
+    "f(0) = f(2) = 1 : \\text{non injectif}"
+   ],
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 140
+   }
+  },
+  "normal": {
+   "type": "formule",
+   "kicker": "Sous-groupes normaux",
+   "tex": "g \\, n \\, g^{-1} \\in N",
+   "note": "Stable par conjugaison ; dans un groupe abélien, tout sous-groupe est normal."
+  },
+  "sl2": {
+   "type": "etape",
+   "kicker": "Exemple type concours · déterminant un",
+   "titre": "Le groupe spécial linéaire est normal",
+   "tex": [
+    "\\det(g A g^{-1}) = \\det A",
+    "\\det A = 1 \\Rightarrow g A g^{-1} \\in SL_2(\\mathbb{R})"
+   ]
+  },
+  "congruence": {
+   "type": "formule",
+   "kicker": "Congruences",
+   "tex": "a \\equiv b \\pmod{n} \\iff n \\mid a - b",
+   "note": "Même reste dans la division par n ; on additionne, soustrait, multiplie."
+  },
+  "euclide": {
+   "type": "etape",
+   "kicker": "Algorithme d'Euclide étendu",
+   "titre": "Soixante-dix-huit et trente-trois, pas à pas",
+   "tex": [
+    "78 = 33 \\times 2 + 12 \\qquad 33 = 12 \\times 2 + 9",
+    "12 = 9 \\times 1 + 3 \\qquad 9 = 3 \\times 3 + 0",
+    "\\gcd(78, 33) = 3",
+    "78 \\times 3 + 33 \\times (-7) = 3"
+   ]
+  },
+  "diophantienne": {
+   "type": "etape",
+   "kicker": "Équation diophantienne · la méthode",
+   "titre": "Quatre étapes, toujours dans le même ordre",
+   "tex": [
+    "a x + b y = c : \\text{il faut } \\gcd(a, b) \\mid c",
+    "x = x_0 + b' k \\qquad y = y_0 - a' k"
+   ]
+  },
+  "dioph_ex": {
+   "type": "etape",
+   "kicker": "Exemple type concours corrigé",
+   "titre": "L'exemple diophantien entièrement corrigé",
+   "tex": [
+    "\\gcd(42, 35) = 7 \\mid 14 \\Rightarrow 6x - 5y = 2",
+    "x = 2 + 5k \\qquad y = 2 + 6k",
+    "(x, y) = (2, 2) \\text{ si } x + y \\leq 10"
+   ]
+  },
+  "produit": {
+   "type": "etape",
+   "kicker": "Multiplication matricielle",
+   "titre": "Ligne contre colonne, et jamais commutative",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & 2 \\\\ -1 & 0 \\end{pmatrix} \\quad B = \\begin{pmatrix} 3 & 1 \\\\ 0 & 2 \\end{pmatrix}",
+    "AB = \\begin{pmatrix} 3 & 5 \\\\ -3 & -1 \\end{pmatrix} \\neq BA"
+   ]
+  },
+  "inverse": {
+   "type": "etape",
+   "kicker": "Inversibilité · le test du déterminant",
+   "titre": "Inversible : le déterminant décide",
+   "tex": [
+    "\\det A = 2 \\times 3 - 4 \\times 1 = 2 \\neq 0",
+    "A^{-1} = \\tfrac{1}{2} \\begin{pmatrix} 3 & -4 \\\\ -1 & 2 \\end{pmatrix}"
+   ]
+  },
+  "determinant": {
+   "type": "formule",
+   "kicker": "Le déterminant",
+   "tex": "\\det(A) = a d - b c",
+   "note": "Triangulaire : produit de la diagonale ; nul si et seulement si non inversible."
+  },
+  "det_ex": {
+   "type": "etape",
+   "kicker": "Exemple type concours · taille quatre",
+   "titre": "Créer des zéros avant de développer",
+   "tex": [
+    "C_1 \\leftarrow C_1 + C_2 + C_3 + C_4",
+    "\\text{sommes de lignes égales à } 10",
+    "\\det A = 10 \\times 16 = 160"
+   ]
+  },
+  "gauss": {
+   "type": "etape",
+   "kicker": "Pivot de Gauss · le système",
+   "titre": "Trois équations, trois inconnues",
+   "tex": [
+    "x + 2y - z = 4 \\qquad 2x + y + z = 5",
+    "-x + y + 2z = 6"
+   ]
+  },
+  "gauss_res": {
+   "type": "etape",
+   "kicker": "Pivot de Gauss · la remontée",
+   "titre": "De la forme triangulaire à la solution",
+   "tex": [
+    "4z = 7 \\Rightarrow z = \\tfrac{7}{4}",
+    "-3y + 3z = -3 \\Rightarrow y = \\tfrac{11}{4}",
+    "x + 2y - z = 4 \\Rightarrow x = \\tfrac{1}{4}"
+   ]
+  },
+  "rang": {
+   "type": "formule",
+   "kicker": "Rang et compatibilité",
+   "tex": "\\operatorname{rg}(A) = \\operatorname{rg}([A \\mid B])",
+   "note": "Rouché-Fontené : solution unique si le rang égale le nombre d'inconnues."
+  },
+  "parametrique": {
+   "type": "etape",
+   "kicker": "Système paramétrique · discussion",
+   "titre": "Le déterminant désigne les valeurs critiques",
+   "tex": [
+    "\\det A(m) = -(m - 1)^2 (m + 2)",
+    "m \\neq 1, -2 : \\text{solution unique}",
+    "m = -2 : \\text{aucune} \\quad m = 1 : x + y + z = 1"
+   ]
+  },
+  "cramer": {
+   "type": "etape",
+   "kicker": "Critère de Cramer · taille deux",
+   "titre": "Des quotients de déterminants",
+   "tex": [
+    "\\Delta = -7 \\quad \\Delta_x = -14 \\quad \\Delta_y = -7",
+    "x = \\tfrac{-14}{-7} = 2 \\qquad y = \\tfrac{-7}{-7} = 1"
+   ]
+  },
+  "racines": {
+   "type": "etape",
+   "kicker": "Polynômes · racines rationnelles",
+   "titre": "Tester les candidats, puis diviser",
+   "tex": [
+    "P(X) = 2X^3 - 3X^2 - 8X - 3",
+    "P(3) = 54 - 27 - 24 - 3 = 0",
+    "P(X) = (X - 3)(X + 1)(2X + 1)"
+   ]
+  },
+  "eisenstein": {
+   "type": "formule",
+   "kicker": "Critère d'Eisenstein",
+   "tex": "X^5 + 6X^3 - 12X^2 + 9X - 21",
+   "note": "Premier trois : il divise tous les coefficients sauf le dominant, et neuf ne divise pas le terme constant.",
+   "titre": "Irréductible sur les rationnels"
+  },
+  "pgcd": {
+   "type": "etape",
+   "kicker": "Polynômes · PGCD par Euclide",
+   "titre": "Le dernier reste non nul, rendu unitaire",
+   "tex": [
+    "X^3 - 1 = X (X^2 - 1) + (X - 1)",
+    "X^2 - 1 = (X - 1)(X + 1) + 0",
+    "\\text{PGCD} = X - 1"
+   ]
+  },
+  "iso": {
+   "type": "formule",
+   "kicker": "Isomorphismes de groupes",
+   "tex": "f(x \\star y) = f(x) \\diamond f(y)",
+   "note": "Il faut en plus la bijectivité : morphisme ne suffit pas."
+  },
+  "iso_ex": {
+   "type": "etape",
+   "kicker": "Exemple type concours · ordre six",
+   "titre": "Ordre six : permutations et triangle",
+   "tex": [
+    "|S_3| = |D_3| = 6",
+    "r \\mapsto (1\\ 2\\ 3) \\qquad s \\mapsto (1\\ 2)",
+    "s r s^{-1} = r^{-1} : \\text{non abéliens}"
+   ]
+  },
+  "non_iso": {
+   "type": "etape",
+   "kicker": "Prouver une non-isomorphie",
+   "titre": "Les ordres des éléments tranchent",
+   "tex": [
+    "\\mathbb{Z}/4\\mathbb{Z} : \\text{un élément d'ordre } 4",
+    "\\text{Klein : ordres } 1 \\text{ ou } 2 \\text{ seulement}",
+    "\\text{donc non isomorphes}"
+   ]
+  },
+  "synthese": {
+   "type": "phrase",
+   "kicker": "Problèmes intégrés",
+   "texte": "Au concours, un même énoncé traverse les chapitres : reconnaître la structure, choisir l'outil, puis traduire le résultat dans l'autre langage.",
+   "anim": {
+    "nom": "matrice_fig",
+    "hauteur": 150
+   }
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Identifier la structure avant de calculer",
+    "Paramètre : factoriser le déterminant",
+    "Cas critiques : les traiter à part, par Gauss",
+    "Vérifier : réinjecter la solution trouvée",
+    "Isomorphisme : invariants d'abord"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Groupe : associatif, neutre, inverses",
+    "Sous-groupe : le critère en ixe igrec inverse",
+    "Diophantienne : PGCD puis Bézout",
+    "Déterminant nul : discuter par le rang",
+    "Isomorphisme : cardinal et ordres"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'algèbre de concours. Groupes et morphismes, arithmétique modulaire et équations diophantiennes, matrices, déterminants et systèmes linéaires, polynômes et isomorphismes : ces chapitres forment un seul langage, celui des structures. Nous suivrons partout la même discipline : identifier la structure, appliquer la méthode systématique, puis vérifier le résultat.",
+   "texte": "Algèbre : un langage commun, celui des structures.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en une phrase : avant de calculer, reconnaître la structure. Un ensemble muni d'une loi bien comportée devient un groupe ; des restes de division obéissent aux congruences ; un système d'équations se lit comme une matrice. Chaque chapitre fournira une méthode complète et un exemple de concours entièrement corrigé.",
+   "texte": "Reconnaître la structure avant de calculer.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un groupe est un ensemble non vide muni d'une loi interne vérifiant trois axiomes : l'associativité, l'existence d'un élément neutre, et l'existence d'un symétrique pour chaque élément. Si la loi est en plus commutative, le groupe est dit abélien. Avant de déclarer qu'un ensemble est un groupe, vérifiez systématiquement ces trois points, dans cet ordre.",
+   "texte": "Un groupe : associativité, neutre, symétriques.",
+   "ecran": "groupe"
+  },
+  {
+   "id": "p04",
+   "dit": "Les exemples fondamentaux : les entiers, les rationnels et les réels, pour l'addition, sont des groupes abéliens de neutre zéro. Les réels non nuls, pour la multiplication, forment un groupe abélien de neutre un. En revanche, les matrices carrées inversibles, pour le produit matriciel, forment un groupe non abélien dès la taille deux : l'ordre des facteurs compte.",
+   "texte": "Des nombres aux matrices : les groupes de référence.",
+   "ecran": "exemples_groupes"
+  },
+  {
+   "id": "p05",
+   "dit": "Un sous-groupe est une partie qui forme elle-même un groupe pour la même loi. En pratique, on utilise le critère compact : la partie est non vide, et pour tous ses éléments ixe et igrec, le produit de ixe par l'inverse de igrec reste dans la partie. Ce test unique prouve à la fois la stabilité par la loi et par passage à l'inverse : c'est le réflexe à adopter dans chaque copie.",
+   "texte": "Le critère du sous-groupe : un seul test.",
+   "ecran": "sous_groupe"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple corrigé : dans les complexes non nuls pour la multiplication, l'ensemble des complexes de module un est un sous-groupe. Il est non vide, car un y appartient. Pour deux de ses éléments, le quotient a pour module le quotient des modules, soit un divisé par un, donc un : le quotient reste dans l'ensemble. Le critère est vérifié, la démonstration tient en trois lignes.",
+   "texte": "Le cercle unité : un sous-groupe en trois lignes.",
+   "ecran": "cercle"
+  },
+  {
+   "id": "p07",
+   "dit": "Un morphisme de groupes est une application qui respecte les lois : l'image d'un produit est le produit des images. Il envoie toujours le neutre sur le neutre et l'inverse sur l'inverse. Deux sous-groupes lui sont attachés : son noyau, dans le groupe de départ, et son image, dans le groupe d'arrivée. Test capital : un morphisme est injectif si et seulement si son noyau se réduit au seul élément neutre.",
+   "texte": "Morphisme : noyau, image, test d'injectivité.",
+   "ecran": "morphisme"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : l'application qui à un réel té associe l'exponentielle de i pi té est un morphisme de l'addition vers la multiplication des complexes, par les règles des exponentielles. Son image est le cercle unité tout entier. Son noyau rassemble les réels dont l'exponentielle vaut un : ce sont les entiers pairs. Le noyau n'est pas trivial : l'application n'est donc pas injective, car zéro et deux ont la même image.",
+   "texte": "Une exponentielle tournante : noyau, les entiers pairs.",
+   "ecran": "exp_morph"
+  },
+  {
+   "id": "p09",
+   "dit": "Un sous-groupe est dit normal, ou distingué, quand il est stable par conjugaison : pour tout élément du groupe et tout élément du sous-groupe, le conjugué reste dans le sous-groupe. C'est la condition qui permettra de construire les groupes quotients. Dans un groupe abélien, tout sous-groupe est automatiquement normal, car la conjugaison ne change rien.",
+   "texte": "Normal : stable par toute conjugaison.",
+   "ecran": "normal"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple type de concours : dans les matrices inversibles de taille deux, celles de déterminant un forment le groupe spécial linéaire. C'est un sous-groupe par le critère, et il est normal : le déterminant d'un conjugué égale le déterminant de la matrice elle-même, car les déterminants des facteurs extrêmes se neutralisent. Une condition préservée par conjugaison donne presque toujours la normalité.",
+   "texte": "Le spécial linéaire : normal par le déterminant.",
+   "ecran": "sl2"
+  },
+  {
+   "id": "p11",
+   "dit": "Deuxième partie : l'arithmétique modulaire. Deux entiers sont congrus modulo enne quand leur différence est un multiple de enne, c'est-à-dire quand ils ont le même reste dans la division par enne. Comme sur une horloge : dix heures plus cinq heures donnent trois heures, modulo douze. On peut additionner, soustraire et multiplier les congruences, mais diviser exige que le facteur soit premier avec le modulo.",
+   "texte": "Congruences : même reste, mêmes calculs prudents.",
+   "ecran": "congruence"
+  },
+  {
+   "id": "p12",
+   "dit": "L'algorithme d'Euclide étendu calcule le plus grand commun diviseur et, en remontant, les coefficients de Bézout. Pour soixante-dix-huit et trente-trois : les divisions successives donnent les restes douze, neuf, puis trois ; le dernier reste non nul, trois, est le diviseur cherché. La remontée fournit l'identité : soixante-dix-huit fois trois, plus trente-trois fois moins sept, égale trois.",
+   "texte": "Euclide étendu : diviseur trois, coefficients trois et moins sept.",
+   "ecran": "euclide"
+  },
+  {
+   "id": "p13",
+   "dit": "Une équation diophantienne linéaire cherche des solutions entières à a ixe plus b igrec égale cé. Première vérification, obligatoire : le plus grand commun diviseur de a et b doit diviser cé, sinon aucune solution. On simplifie alors par ce diviseur, Bézout fournit une solution particulière, et toutes les autres s'en déduisent en ajoutant un multiple entier, avec des signes opposés sur les deux inconnues.",
+   "texte": "Diophantienne : existence, particulière, forme générale.",
+   "ecran": "diophantienne"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple entièrement corrigé : quarante-deux ixe, moins trente-cinq igrec, égale quatorze. Le diviseur de quarante-deux et trente-cinq est sept, qui divise quatorze : on simplifie en six ixe, moins cinq igrec, égale deux. Une solution particulière est deux, deux. La forme générale devient ixe égale deux plus cinq ka, igrec égale deux plus six ka. Avec ixe et igrec naturels et une somme au plus dix, il ne reste que le couple deux, deux.",
+   "texte": "L'exemple corrigé : une seule solution naturelle, deux, deux.",
+   "ecran": "dioph_ex"
+  },
+  {
+   "id": "p15",
+   "dit": "Troisième partie : les matrices. Le produit de deux matrices se calcule ligne contre colonne : chaque coefficient est la somme des produits des termes correspondants. La condition est stricte : le nombre de colonnes de la première doit égaler le nombre de lignes de la seconde. Et le piège capital : le produit n'est pas commutatif. Dans l'exemple affiché, les deux produits existent et ils sont différents.",
+   "texte": "Produit matriciel : ligne contre colonne, sans commuter.",
+   "ecran": "produit"
+  },
+  {
+   "id": "p16",
+   "dit": "Une matrice carrée est inversible quand une autre matrice la multiplie en donnant l'identité, des deux côtés. Le test décisif tient en un nombre, le déterminant : inversible si et seulement si le déterminant est non nul. Pour la matrice affichée, le déterminant vaut six moins quatre, soit deux : elle est inversible, et la formule de taille deux donne son inverse en échangeant la diagonale et en changeant deux signes.",
+   "texte": "Déterminant deux : inversible, inverse immédiat.",
+   "ecran": "inverse"
+  },
+  {
+   "id": "p17",
+   "dit": "Le déterminant mesure aussi un volume : en taille deux, c'est l'aire du parallélogramme formé par les colonnes. Ses propriétés font le calcul : échanger deux colonnes change le signe, ajouter à une colonne une combinaison des autres ne change rien, et une matrice triangulaire vaut le produit de sa diagonale. La méthode gagnante : créer des zéros, puis développer selon la ligne la plus creuse.",
+   "texte": "Le déterminant : créer des zéros avant de développer.",
+   "ecran": "determinant"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple de taille quatre : chaque ligne de la matrice a pour somme dix. On additionne donc toutes les colonnes dans la première : elle devient constante, on factorise dix, on crée des zéros par différences de lignes, et le déterminant restant, devenu triangulaire, vaut seize. Résultat final : dix fois seize, cent soixante. Repérer une somme de lignes constante est un grand classique des épreuves.",
+   "texte": "Somme de lignes constante : déterminant cent soixante.",
+   "ecran": "det_ex"
+  },
+  {
+   "id": "p19",
+   "dit": "Le pivot de Gauss résout n'importe quel système : on écrit la matrice augmentée, on élimine les inconnues ligne après ligne pour obtenir une forme triangulaire, puis on remonte. Sur le système affiché, la dernière ligne donne quatre zède égale sept. La ligne précédente donne alors igrec égale onze quarts, et la première donne ixe égale un quart. Vérifiez toujours la solution en la réinjectant dans une équation d'origine.",
+   "texte": "Gauss : solution un quart, onze quarts, sept quarts.",
+   "ecran": "gauss"
+  },
+  {
+   "id": "p19b",
+   "dit": "La remontée lit la forme triangulaire de bas en haut : d'abord zède, puis igrec, puis ixe. Chaque inconnue obtenue se remplace dans les lignes au-dessus, et la dernière vérification, dans une équation d'origine, protège contre toute erreur de calcul intermédiaire.",
+   "texte": "La remontée : zède, puis igrec, puis ixe.",
+   "ecran": "gauss_res"
+  },
+  {
+   "id": "p20",
+   "dit": "Le rang tranche les questions d'existence : c'est le nombre de pivots non nuls après échelonnement. Le théorème de Rouché-Fontené dit qu'un système a des solutions si et seulement si le rang de la matrice égale celui de la matrice augmentée. Si ce rang égale le nombre d'inconnues, la solution est unique ; sinon, il y en a une infinité, paramétrée par les variables libres.",
+   "texte": "Le rang : le test décisif d'existence et d'unicité.",
+   "ecran": "rang"
+  },
+  {
+   "id": "p21",
+   "dit": "Pour un système avec paramètre, la discussion suit le déterminant. Dans l'exemple des leçons, le déterminant se factorise en moins, ème moins un au carré, fois ème plus deux. Hors des valeurs un et moins deux : solution unique. Pour ème égale moins deux : les rangs diffèrent, aucune solution. Pour ème égale un : une seule équation subsiste, le plan ixe plus igrec plus zède égale un, une infinité de solutions. Ne divisez jamais par une expression qui peut s'annuler sans traiter son cas à part.",
+   "texte": "Paramètre : unique, aucune, ou un plan de solutions.",
+   "ecran": "parametrique"
+  },
+  {
+   "id": "p22",
+   "dit": "Quand le déterminant est non nul, le critère de Cramer exprime chaque inconnue comme un quotient de déterminants : on remplace la colonne de l'inconnue par le second membre. Sur le petit système affiché, le déterminant principal vaut moins sept, ceux des inconnues moins quatorze et moins sept : ixe égale deux, igrec égale un. Élégant, mais coûteux dès la taille quatre : Gauss reste l'outil de résolution par défaut.",
+   "texte": "Cramer : ixe égale deux, igrec égale un.",
+   "ecran": "cramer"
+  },
+  {
+   "id": "p23",
+   "dit": "Quatrième partie : les polynômes. Une racine permet de factoriser : si un polynôme s'annule en a, alors ixe moins a le divise. Pour un polynôme à coefficients entiers, les racines rationnelles candidates ont un numérateur qui divise le terme constant et un dénominateur qui divise le coefficient dominant. Dans l'exemple, trois est racine : la division abaisse le degré, et la factorisation complète apparaît.",
+   "texte": "Racines rationnelles : tester, diviser, factoriser.",
+   "ecran": "racines"
+  },
+  {
+   "id": "p24",
+   "dit": "Quand un polynôme résiste à toute factorisation, il est irréductible, et il faut un critère pour le prouver. Celui d'Eisenstein : s'il existe un nombre premier qui divise tous les coefficients sauf le coefficient dominant, et dont le carré ne divise pas le terme constant, le polynôme est irréductible sur les rationnels. Le polynôme affiché passe le test avec le premier trois.",
+   "texte": "Eisenstein : irréductible, avec le premier trois.",
+   "ecran": "eisenstein"
+  },
+  {
+   "id": "p25",
+   "dit": "Le plus grand commun diviseur de deux polynômes se calcule par l'algorithme d'Euclide : des divisions successives, jusqu'à un reste nul ; le dernier reste non nul, rendu unitaire, est le résultat. Pour ixe cube moins un et ixe carré moins un, la première division laisse le reste ixe moins un, la seconde tombe juste : le PGCD est ixe moins un, qui rassemble exactement la racine commune.",
+   "texte": "PGCD de polynômes : ixe moins un.",
+   "ecran": "pgcd"
+  },
+  {
+   "id": "p26",
+   "dit": "Deux groupes sont isomorphes quand une bijection entre eux respecte la loi : on peut les identifier, leur structure est la même. La méthode tient en trois étapes : proposer une application naturelle, vérifier que c'est un morphisme, puis vérifier la bijectivité. Avant tout, comparez les cardinaux : deux groupes finis de tailles différentes ne peuvent jamais être isomorphes.",
+   "texte": "Isomorphisme : même structure, autre habillage.",
+   "ecran": "iso"
+  },
+  {
+   "id": "p27",
+   "dit": "Exemple de concours : le groupe symétrique des permutations de trois éléments et le groupe diédral des symétries du triangle équilatéral sont isomorphes. Tous deux ont six éléments. On envoie la rotation sur le cycle, une symétrie sur une transposition, et la relation affichée, qui renverse la rotation par conjugaison, est préservée. À l'ordre six, il n'existe que deux structures : le cyclique abélien, et celle-ci, non abélienne.",
+   "texte": "Ordre six non abélien : une seule structure.",
+   "ecran": "iso_ex"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour prouver que deux groupes ne sont pas isomorphes, cherchez un invariant qui diffère : le cardinal, la commutativité, les ordres des éléments, le nombre de sous-groupes. Le groupe cyclique d'ordre quatre possède un élément d'ordre quatre ; dans le groupe de Klein, tout élément non neutre est d'ordre deux. Ces deux groupes d'ordre quatre ne sont donc pas isomorphes.",
+   "texte": "Non-isomorphie : les ordres des éléments tranchent.",
+   "ecran": "non_iso"
+  },
+  {
+   "id": "p29",
+   "dit": "Au concours, les énoncés intégrés mélangent tout : un groupe de matrices se reconnaît par l'algèbre linéaire, son cardinal se compte par l'arithmétique, et un isomorphisme transporte le problème vers un groupe plus simple, comme les complexes non nuls. La stratégie en trois temps : décoder la structure, choisir l'outil du chapitre adapté, puis réinterpréter le résultat dans l'autre langage.",
+   "texte": "Problèmes intégrés : décoder, choisir, traduire.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p30",
+   "dit": "La stratégie d'épreuve tient en quelques réflexes : identifier la structure avant tout calcul ; face à un paramètre, factoriser le déterminant et traiter chaque valeur critique à part, par Gauss ; après chaque résolution, réinjecter la solution pour vérifier ; et devant un isomorphisme, tester les invariants avant de construire quoi que ce soit.",
+   "texte": "La stratégie : cinq réflexes de concours.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p31",
+   "dit": "À retenir : un groupe se reconnaît à ses trois axiomes, un sous-groupe au critère en ixe fois inverse de igrec ; une équation diophantienne commence toujours par le PGCD et Bézout ; un déterminant nul impose une discussion par le rang, jamais une division aveugle ; et un isomorphisme conserve le cardinal, la commutativité et les ordres des éléments.",
+   "texte": "Algèbre de concours : l'essentiel à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Groupes, sous-groupes, morphismes et normalité"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Arithmétique modulaire, matrices et systèmes linéaires",
+   "pont": {
+    "texte": "Partie 2 : congruences et Bézout, puis matrices, déterminants et pivot de Gauss.",
+    "dit": "Partie deux : de l'arithmétique à l'algèbre linéaire. Nous manipulerons les congruences et l'algorithme d'Euclide étendu pour résoudre une équation diophantienne complète, puis nous passerons aux matrices : produit, déterminant, inverse, pivot de Gauss, rang et discussion des systèmes paramétriques."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Paramètres, polynômes, isomorphismes et synthèse",
+   "pont": {
+    "texte": "Partie 3 : discuter un système paramétrique, puis polynômes et isomorphismes.",
+    "dit": "Partie trois : la discussion des systèmes paramétriques, puis les polynômes et les isomorphismes. Nous factoriserons le déterminant pour isoler les valeurs critiques, nous chercherons des racines rationnelles, nous prouverons une irréductibilité par Eisenstein, et nous comparerons les groupes entre eux avant la synthèse."
+   }
+  }
+ ]
+}
