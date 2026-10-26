@@ -1,0 +1,575 @@
+{
+ "cours": 6109,
+ "titre": "Arithmétique : divisibilité, congruences et théorème de Fermat",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Arithmétique",
+   "titre": "Arithmétique : divisibilité, congruences et théorème de Fermat",
+   "sous": "Diviseurs et nombres premiers, plus grand commun diviseur et plus petit commun multiple, restes et petit théorème de Fermat",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Cinq chapitres, un seul fil : la structure des entiers."
+  },
+  "divisibilite": {
+   "type": "formule",
+   "kicker": "Divisibilité",
+   "tex": "b \\mid a \\iff \\exists k \\in \\mathbb{Z},\\ a = bk \\quad (b \\neq 0)",
+   "note": "Exemple : 3 | 12 car 12 = 3 × 4 ; 5 ne divise pas 12."
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés de la divisibilité",
+   "titre": "Trois réflexes qui servent partout",
+   "tex": [
+    "a \\mid a",
+    "a \\mid b \\ \\text{et}\\ b \\mid c \\Rightarrow a \\mid c",
+    "a \\mid b \\ \\text{et}\\ a \\mid c \\Rightarrow a \\mid (b+c) \\ \\text{et}\\ a \\mid (b-c)"
+   ]
+  },
+  "diviseurs36": {
+   "type": "etape",
+   "kicker": "Exemple · les diviseurs de trente-six",
+   "titre": "Factoriser d'abord, lister ensuite",
+   "tex": [
+    "36 = 2^2 \\times 3^2",
+    "\\text{diviseurs : } 1, 2, 3, 4, 6, 9, 12, 18, 36",
+    "(2+1)(2+1) = 9 \\ \\text{diviseurs}"
+   ]
+  },
+  "premiers": {
+   "type": "etape",
+   "kicker": "Nombres premiers",
+   "titre": "Les atomes de l'arithmétique",
+   "tex": [
+    "\\text{premier : } > 1, \\ \\text{diviseurs } 1 \\ \\text{et lui-même}",
+    "2, 3, 5, 7, 11, 13, \\dots",
+    "1 \\ \\text{n'est pas premier} \\qquad 4 = 2 \\times 2 \\ \\text{est composé}"
+   ],
+   "anim": {
+    "nom": "crible_fig",
+    "hauteur": 230
+   }
+  },
+  "tfa": {
+   "type": "formule",
+   "kicker": "Théorème fondamental de l'arithmétique",
+   "tex": "n = p_1^{\\alpha_1} p_2^{\\alpha_2} \\cdots p_k^{\\alpha_k}",
+   "note": "Décomposition unique, à l'ordre près. Exemple : 12 = 2² × 3."
+  },
+  "decomp72": {
+   "type": "etape",
+   "kicker": "Exemple · décomposer soixante-douze",
+   "titre": "Diviser par les premiers, dans l'ordre",
+   "tex": [
+    "72 = 2 \\times 36 = 2^2 \\times 18",
+    "72 = 2^3 \\times 9 = 2^3 \\times 3^2",
+    "\\sqrt{72} \\approx 8{,}5"
+   ]
+  },
+  "pgcd": {
+   "type": "formule",
+   "kicker": "Plus grand commun diviseur",
+   "tex": "\\mathrm{PGCD}(12, 18) = 6",
+   "note": "Diviseurs communs à 12 et 18 : 1, 2, 3, 6. Le plus grand est 6.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "pgcd_facteurs": {
+   "type": "etape",
+   "kicker": "PGCD par les facteurs premiers",
+   "titre": "Facteurs communs, plus petit exposant",
+   "tex": [
+    "12 = 2^2 \\times 3 \\qquad 18 = 2 \\times 3^2",
+    "\\mathrm{PGCD} = 2^1 \\times 3^1 = 6",
+    "\\text{chaque facteur commun, à son plus petit exposant}"
+   ]
+  },
+  "euclide": {
+   "type": "etape",
+   "kicker": "Algorithme d'Euclide",
+   "titre": "Remplacer le couple par le reste",
+   "tex": [
+    "72 = 48 \\times 1 + 24",
+    "48 = 24 \\times 2 + 0",
+    "\\mathrm{PGCD}(48, 72) = 24",
+    "\\text{dernier reste non nul : le PGCD}"
+   ]
+  },
+  "ppcm": {
+   "type": "formule",
+   "kicker": "Plus petit commun multiple",
+   "tex": "\\mathrm{PPCM}(a,b) = \\frac{|a \\times b|}{\\mathrm{PGCD}(a,b)}",
+   "note": "Pour 12 et 18 : 12 × 18 / 6 = 36, premier multiple commun."
+  },
+  "ppcm_ex": {
+   "type": "etape",
+   "kicker": "Le PPCM en exemples",
+   "titre": "Le premier rendez-vous des multiples",
+   "tex": [
+    "\\text{multiples de } 12 : 12, 24, 36, \\dots \\qquad 18 : 18, 36, \\dots",
+    "\\mathrm{PPCM}(12,18) = 36 \\qquad \\mathrm{PPCM}(48,72) = \\tfrac{48 \\times 72}{24} = 144",
+    "\\text{deux horloges, } 12 \\text{ et } 18 \\text{ min : ensemble à } 36 \\text{ min}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Divisibilité : b | a signifie a = b × k",
+    "Premier : divisible par 1 et lui-même",
+    "Décomposition en facteurs : unique",
+    "PGCD : facteurs communs, petit exposant",
+    "PPCM = produit divisé par le PGCD"
+   ]
+  },
+  "congruence": {
+   "type": "formule",
+   "kicker": "Congruences",
+   "tex": "a \\equiv b \\pmod{n} \\iff n \\mid (a - b)",
+   "note": "Même reste dans la division par n. Modulo 5 : 17, 22 et −3 donnent le reste 2.",
+   "anim": {
+    "nom": "horloge_modulaire_fig",
+    "hauteur": 190
+   }
+  },
+  "cong_prop": {
+   "type": "etape",
+   "kicker": "Propriétés des congruences",
+   "titre": "Ajouter et multiplier, comme des égalités",
+   "tex": [
+    "a \\equiv b,\\ c \\equiv d \\pmod{n} \\Rightarrow a + c \\equiv b + d",
+    "a \\equiv b,\\ c \\equiv d \\pmod{n} \\Rightarrow ac \\equiv bd",
+    "a \\equiv b \\ \\text{et}\\ b \\equiv c \\pmod{n} \\Rightarrow a \\equiv c"
+   ]
+  },
+  "cong_produit": {
+   "type": "etape",
+   "kicker": "Exemple · un produit modulo cinq",
+   "titre": "Remplacer chaque facteur par son reste",
+   "tex": [
+    "17 \\equiv 2 \\pmod{5} \\qquad 22 \\equiv 2 \\pmod{5}",
+    "17 \\times 22 \\equiv 2 \\times 2 \\pmod{5}",
+    "374 \\equiv 4 \\pmod{5}"
+   ]
+  },
+  "cong_eq": {
+   "type": "formule",
+   "kicker": "Équations de congruence",
+   "tex": "ax \\equiv b \\pmod{n}",
+   "note": "Solution seulement si PGCD(a, n) divise b ; si ce PGCD vaut 1, solution unique modulo n."
+  },
+  "cong_ex1": {
+   "type": "etape",
+   "kicker": "Exemple · résoudre modulo cinq",
+   "titre": "L'inverse modulaire débloque l'équation",
+   "tex": [
+    "3x \\equiv 2 \\pmod{5} \\qquad \\mathrm{PGCD}(3,5) = 1",
+    "3 \\times 2 = 6 \\equiv 1 \\pmod{5} : \\text{ inverse de } 3 = 2",
+    "x \\equiv 2 \\times 2 \\equiv 4 \\pmod{5}"
+   ]
+  },
+  "cong_ex2": {
+   "type": "etape",
+   "kicker": "Exemple · résoudre modulo onze",
+   "titre": "Même méthode, autre module",
+   "tex": [
+    "7x \\equiv 3 \\pmod{11}",
+    "7 \\times 8 \\equiv 1 \\pmod{11} : \\text{ inverse } 8",
+    "x \\equiv 8 \\times 3 = 24 \\equiv 2 \\pmod{11}"
+   ]
+  },
+  "fermat": {
+   "type": "formule",
+   "kicker": "Petit théorème de Fermat",
+   "tex": "a^{p-1} \\equiv 1 \\pmod{p}",
+   "note": "p premier, a non divisible par p. Forme générale : aᵖ ≡ a (mod p), pour tout a."
+  },
+  "fermat_ex": {
+   "type": "etape",
+   "kicker": "Fermat en chiffres",
+   "titre": "Deux vérifications complètes",
+   "tex": [
+    "2^{4} = 16 \\equiv 1 \\pmod{5}",
+    "3^{6} = 729 \\equiv 1 \\pmod{7}",
+    "\\text{contrôle : } 7 \\times 104 = 728, \\ \\text{reste } 1"
+   ]
+  },
+  "fermat_demo": {
+   "type": "etape",
+   "kicker": "Démonstration de Fermat",
+   "titre": "Les multiples de a permutent les restes",
+   "tex": [
+    "S = \\{a, 2a, \\dots, (p-1)a\\}",
+    "S \\equiv \\{1, 2, \\dots, p-1\\} \\pmod{p}",
+    "a^{p-1} (p-1)! \\equiv (p-1)! \\pmod{p}",
+    "\\text{on simplifie par } (p-1)! : a^{p-1} \\equiv 1 \\pmod{p}"
+   ]
+  },
+  "test_primalite": {
+   "type": "etape",
+   "kicker": "Application · test de primalité",
+   "titre": "Un échec de Fermat prouve la composition",
+   "tex": [
+    "2^{14} = 16384",
+    "16384 \\equiv 4 \\pmod{15}, \\ 4 \\neq 1",
+    "\\Rightarrow 15 \\ \\text{n'est pas premier}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Congruence : même reste modulo n",
+    "On peut ajouter et multiplier membre à membre",
+    "Équation ax ≡ b : regarder PGCD(a, n)",
+    "Inverse modulaire : Euclide étendu",
+    "Fermat : a^(p−1) ≡ 1 (mod p)"
+   ]
+  },
+  "rsa": {
+   "type": "etape",
+   "kicker": "Application · le chiffrement RSA",
+   "titre": "Multiplier est facile, factoriser est dur",
+   "tex": [
+    "n = p \\times q, \\ p \\ \\text{et}\\ q \\ \\text{premiers}",
+    "\\text{clé publique : } (n, e) \\qquad \\text{clé privée : } d",
+    "\\text{retrouver } p, q \\ \\text{depuis } n : \\text{ quasi impossible}"
+   ]
+  },
+  "horloge_coups": {
+   "type": "etape",
+   "kicker": "Problème · les coups de l'horloge",
+   "titre": "Une somme d'entiers, matin et après-midi",
+   "tex": [
+    "1 + 2 + \\cdots + 12 = \\tfrac{12 \\times 13}{2} = 78",
+    "\\text{matin } 78 + \\text{ après-midi } 78",
+    "\\text{total : } 156 \\ \\text{coups par jour}"
+   ]
+  },
+  "horloges_ppcm": {
+   "type": "etape",
+   "kicker": "Problème · deux horloges",
+   "titre": "Un rendez-vous qui est un PPCM",
+   "tex": [
+    "\\mathrm{PPCM}(30, 45) = 90 \\ \\text{min}",
+    "\\text{départ à midi} \\Rightarrow 13\\,\\text{h}\\,30"
+   ]
+  },
+  "synthese_pgcd": {
+   "type": "etape",
+   "kicker": "Synthèse · mille deux cent soixante et mille neuf cent quatre-vingts",
+   "titre": "PGCD et PPCM par les facteurs premiers",
+   "tex": [
+    "1260 = 2^2 \\times 3^2 \\times 5 \\times 7",
+    "1980 = 2^2 \\times 3^2 \\times 5 \\times 11",
+    "\\mathrm{PGCD} = 2^2 \\times 3^2 \\times 5 = 180",
+    "\\mathrm{PPCM} = \\tfrac{1260 \\times 1980}{180} = 13860"
+   ]
+  },
+  "mille_un": {
+   "type": "etape",
+   "kicker": "Synthèse · mille un est-il premier",
+   "titre": "Tester jusqu'à la racine, pas plus loin",
+   "tex": [
+    "\\sqrt{1001} \\approx 31{,}6",
+    "1001 = 7 \\times 143 = 7 \\times 11 \\times 13",
+    "\\Rightarrow 1001 \\ \\text{composé, pas premier}"
+   ]
+  },
+  "cong_synth": {
+   "type": "etape",
+   "kicker": "Synthèse · une congruence modulo sept",
+   "titre": "L'inverse de trois modulo sept est cinq",
+   "tex": [
+    "3x \\equiv 5 \\pmod{7}",
+    "3 \\times 5 \\equiv 1 \\pmod{7} : \\text{ inverse } 5",
+    "x \\equiv 5 \\times 5 = 25 \\equiv 4 \\pmod{7}"
+   ]
+  },
+  "fermat_calcul": {
+   "type": "etape",
+   "kicker": "Synthèse · une grande puissance modulo onze",
+   "titre": "Fermat remplace cent multiplications",
+   "tex": [
+    "2^{10} = 1024 \\equiv 1 \\pmod{11}",
+    "2^{100} = (2^{10})^{10}",
+    "2^{100} \\equiv 1^{10} = 1 \\pmod{11}"
+   ]
+  },
+  "coureurs": {
+   "type": "etape",
+   "kicker": "Problème · deux coureurs sur une piste",
+   "titre": "Retrouvailles au point de départ",
+   "tex": [
+    "\\mathrm{PPCM}(12, 15) = 60 \\ \\text{min}",
+    "\\text{retrouvailles au départ après } 60 \\ \\text{min}"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Factoriser avant de calculer un PGCD",
+    "Un reste suffit : penser congruence",
+    "Équation modulaire : chercher l'inverse",
+    "Fermat pour les grandes puissances",
+    "Un test de Fermat ne prouve pas la primalité"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Divisibilité et décomposition unique",
+    "PGCD et PPCM : deux lectures des facteurs",
+    "Congruences : calculer avec les restes",
+    "Fermat : a^(p−1) ≡ 1 (mod p)",
+    "Applications : RSA, horloges, rendez-vous"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'arithmétique pour le concours de l'ESSEC : divisibilité et nombres premiers, plus grand commun diviseur et plus petit commun multiple, congruences, petit théorème de Fermat, puis des problèmes de synthèse.",
+   "texte": "Arithmétique : des diviseurs au théorème de Fermat.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge tient en trois gestes : factoriser un entier, comparer deux nombres par leurs facteurs communs, et calculer avec les restes d'une division. Ce sont eux qui mènent, à la fin du cours, jusqu'à la cryptographie moderne.",
+   "texte": "Trois gestes : factoriser, comparer, calculer les restes.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un entier a est divisible par un entier b non nul lorsqu'il existe un entier k tel que a égale b fois k. On dit alors que b divise a. Exemple : trois divise douze, car douze égale trois fois quatre. Cinq, lui, ne divise pas douze.",
+   "texte": "Divisibilité : a = b × k, sans reste.",
+   "ecran": "divisibilite"
+  },
+  {
+   "id": "p04",
+   "dit": "Trois propriétés à retenir. Tout entier se divise lui-même. Si a divise b et b divise c, alors a divise c. Et si a divise deux nombres, il divise leur somme et leur différence : un outil qui servira dans tout le cours.",
+   "texte": "Réflexivité, transitivité, sommes et différences.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p05",
+   "dit": "Les diviseurs de trente-six s'obtiennent par sa factorisation : deux au carré fois trois au carré. Chaque diviseur choisit un exposant de zéro à deux pour deux, et autant pour trois : trois fois trois, neuf diviseurs, sans oubli.",
+   "texte": "36 = 2² × 3² : neuf diviseurs, aucun oublié.",
+   "ecran": "diviseurs36"
+  },
+  {
+   "id": "p06",
+   "dit": "Un nombre premier est un entier supérieur à un, dont les seuls diviseurs sont un et lui-même : deux, trois, cinq, sept, onze, treize. Un n'est pas premier, et quatre ne l'est pas car deux le divise. Ce sont les atomes des entiers.",
+   "texte": "Premiers : divisibles par 1 et eux-mêmes, seulement.",
+   "ecran": "premiers"
+  },
+  {
+   "id": "p07",
+   "dit": "Le théorème fondamental de l'arithmétique : tout entier supérieur à un s'écrit comme un produit de nombres premiers, et cette écriture est unique, à l'ordre près. Douze vaut deux au carré fois trois, et rien d'autre.",
+   "texte": "Décomposition en facteurs premiers : unique.",
+   "ecran": "tfa"
+  },
+  {
+   "id": "p08",
+   "dit": "Décomposons soixante-douze en divisant par les premiers dans l'ordre : deux, deux, deux, puis trois, trois. Résultat : deux au cube fois trois au carré. Pour tester un nombre, on essaie les premiers jusqu'à sa racine carrée.",
+   "texte": "72 = 2³ × 3², par divisions successives.",
+   "ecran": "decomp72"
+  },
+  {
+   "id": "p09",
+   "dit": "Le plus grand commun diviseur de douze et dix-huit est le plus grand entier qui les divise tous les deux. Leurs diviseurs communs sont un, deux, trois et six : le plus grand est six, la longueur maximale pour découper deux rubans de douze et dix-huit centimètres sans chute.",
+   "texte": "PGCD(12, 18) = 6 : le plus grand diviseur commun.",
+   "ecran": "pgcd"
+  },
+  {
+   "id": "p10",
+   "dit": "Par les facteurs premiers : on garde les facteurs communs, chacun à son plus petit exposant. Douze vaut deux au carré fois trois ; dix-huit, deux fois trois au carré. On prend donc deux puissance un et trois puissance un : six.",
+   "texte": "Facteurs communs, plus petit exposant : 6.",
+   "ecran": "pgcd_facteurs"
+  },
+  {
+   "id": "p11",
+   "dit": "L'algorithme d'Euclide remplace un couple par le couple formé du diviseur et du reste. Pour quarante-huit et soixante-douze : soixante-douze vaut quarante-huit fois un, plus vingt-quatre ; puis le reste devient zéro. Le dernier reste non nul, vingt-quatre, est le plus grand commun diviseur.",
+   "texte": "Euclide sur 48 et 72 : le PGCD vaut 24.",
+   "ecran": "euclide"
+  },
+  {
+   "id": "p12",
+   "dit": "Le plus petit commun multiple de deux nombres non nuls est le plus petit entier positif multiple des deux. Il se calcule par une formule : le produit des deux nombres, divisé par leur plus grand commun diviseur. Pour douze et dix-huit : trente-six.",
+   "texte": "PPCM = produit ÷ PGCD : ici, 36.",
+   "ecran": "ppcm"
+  },
+  {
+   "id": "p13",
+   "dit": "Contrôle par les multiples : douze, vingt-quatre, trente-six pour douze ; dix-huit, trente-six pour dix-huit : rendez-vous à trente-six. Pour quarante-huit et soixante-douze, la formule donne cent quarante-quatre. Deux horloges de périodes douze et dix-huit minutes sonnent ensemble après trente-six minutes.",
+   "texte": "PPCM(48, 72) = 144 ; rendez-vous à 36 minutes.",
+   "ecran": "ppcm_ex"
+  },
+  {
+   "id": "p14",
+   "dit": "Première partie, l'essentiel : la divisibilité structure les entiers, les premiers en sont les briques à décomposition unique, le plus grand commun diviseur retient les facteurs communs au plus petit exposant, et le plus petit commun multiple s'en déduit par le produit.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p15",
+   "dit": "Les congruences calculent avec les restes : deux entiers sont congrus modulo n lorsqu'ils ont le même reste dans la division par n, c'est-à-dire lorsque n divise leur différence. Modulo cinq, dix-sept, vingt-deux et moins trois ont le même reste : deux.",
+   "texte": "Congruence : même reste modulo n.",
+   "ecran": "congruence"
+  },
+  {
+   "id": "p16",
+   "dit": "Les congruences se manipulent presque comme des égalités : si a est congru à b et c congru à d modulo n, alors les sommes a plus c et b plus d sont congrues, et les produits a fois c et b fois d aussi. La relation est également transitive, comme une égalité en chaîne.",
+   "texte": "Ajouter et multiplier membre à membre.",
+   "ecran": "cong_prop"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple : dix-sept fois vingt-deux, modulo cinq. On remplace chaque facteur par son reste : dix-sept par deux, vingt-deux par deux, et le produit devient quatre. Contrôle : trois cent soixante-quatorze divisé par cinq laisse bien un reste de quatre, sans avoir calculé le grand produit.",
+   "texte": "17 × 22 ≡ 4 (mod 5), sans grand calcul.",
+   "ecran": "cong_produit"
+  },
+  {
+   "id": "p18",
+   "dit": "Résoudre a fois x congru à b, modulo n, dépend du plus grand commun diviseur de a et n. S'il ne divise pas b, aucune solution. S'il vaut un, la solution est unique modulo n, et elle s'obtient grâce à l'inverse modulaire de a : le nombre qui, multiplié par a, donne un reste de un.",
+   "texte": "Équation ax ≡ b : tout dépend de PGCD(a, n).",
+   "ecran": "cong_eq"
+  },
+  {
+   "id": "p19",
+   "dit": "Résolvons trois x congru à deux, modulo cinq. Le plus grand commun diviseur de trois et cinq vaut un : la solution existe. L'inverse de trois est deux, car trois fois deux vaut six, congru à un. En multipliant par deux des deux côtés, x est congru à quatre, modulo cinq : quatre, neuf, quatorze, et ainsi de suite.",
+   "texte": "3x ≡ 2 (mod 5) : x ≡ 4, par l'inverse 2.",
+   "ecran": "cong_ex1"
+  },
+  {
+   "id": "p20",
+   "dit": "Même méthode modulo onze : sept x congru à trois. L'inverse de sept est huit, car sept fois huit vaut cinquante-six, congru à un modulo onze. On multiplie par huit : x est congru à vingt-quatre, donc à deux. Contrôle : sept fois deux vaut quatorze, de reste trois.",
+   "texte": "7x ≡ 3 (mod 11) : x ≡ 2, par l'inverse 8.",
+   "ecran": "cong_ex2"
+  },
+  {
+   "id": "p21",
+   "dit": "Le petit théorème de Fermat : si p est premier et si a n'est pas divisible par p, alors a puissance p moins un est congru à un, modulo p. Forme équivalente, valable pour tout entier a : a puissance p est congru à a, modulo p. Une ligne d'énoncé, des conséquences immenses.",
+   "texte": "Fermat : a^(p−1) ≡ 1 (mod p).",
+   "ecran": "fermat"
+  },
+  {
+   "id": "p22",
+   "dit": "Deux vérifications. Pour p égal à cinq et a égal à deux : deux puissance quatre vaut seize, congru à un modulo cinq. Pour p égal à sept et a égal à trois : trois puissance six vaut sept cent vingt-neuf, et sept fois cent quatre font sept cent vingt-huit : le reste vaut un. Le théorème est confirmé deux fois.",
+   "texte": "2⁴ ≡ 1 (mod 5) et 3⁶ ≡ 1 (mod 7).",
+   "ecran": "fermat_ex"
+  },
+  {
+   "id": "p23",
+   "dit": "La démonstration en trois pas : les multiples a, deux a, jusqu'à p moins un fois a ont des restes distincts modulo p ; ce sont donc un, deux, jusqu'à p moins un, dans un autre ordre. En multipliant tout, factorielle p moins un apparaît des deux côtés ; p ne le divise pas, on simplifie, et le théorème tombe.",
+   "texte": "Démonstration : les multiples de a permutent les restes.",
+   "ecran": "fermat_demo"
+  },
+  {
+   "id": "p24",
+   "dit": "Application : prouver qu'un nombre est composé. Pour quinze, avec a égal à deux : deux puissance quatorze vaut seize mille trois cent quatre-vingt-quatre, de reste quatre modulo quinze, différent de un. Quinze n'est donc pas premier. Mais attention : une réussite à ce test ne prouve jamais qu'un nombre est premier.",
+   "texte": "2¹⁴ ≡ 4 (mod 15) : 15 est composé.",
+   "ecran": "test_primalite"
+  },
+  {
+   "id": "p25",
+   "dit": "Deuxième partie, l'essentiel : une congruence compare des restes et se manipule comme une égalité ; une équation modulaire se résout par l'inverse, quand le plus grand commun diviseur le permet ; et Fermat réduit les grandes puissances à de petits restes, avec un test de composition en prime.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p26",
+   "dit": "Place aux problèmes de synthèse, avec la cryptographie. Le chiffrement RSA publie le produit n de deux grands nombres premiers secrets, p et q, accompagné d'un exposant : c'est la clé publique. La clé privée se déduit de p et q. Multiplier est instantané ; retrouver les deux facteurs depuis n seul est hors de portée : toute la sécurité du système repose sur cet écart.",
+   "texte": "RSA : n = p × q publié, p et q secrets.",
+   "ecran": "rsa"
+  },
+  {
+   "id": "p27",
+   "dit": "Problème d'horlogerie : une horloge sonne un coup à une heure, deux coups à deux heures, jusqu'à douze coups à midi. La somme de un à douze vaut douze fois treize, divisé par deux : soixante-dix-huit coups le matin, autant l'après-midi, soit cent cinquante-six coups par jour, sans faire douze additions.",
+   "texte": "1 + … + 12 = 78 ; 156 coups par jour.",
+   "ecran": "horloge_coups"
+  },
+  {
+   "id": "p28",
+   "dit": "Deux horloges sonnent ensemble à midi, puis l'une toutes les trente minutes et l'autre toutes les quarante-cinq minutes. Leur prochain rendez-vous est le plus petit commun multiple de trente et quarante-cinq : quatre-vingt-dix minutes, donc treize heures trente. Tout rendez-vous périodique est un problème de plus petit commun multiple.",
+   "texte": "PPCM(30, 45) = 90 min : rendez-vous à 13 h 30.",
+   "ecran": "horloges_ppcm"
+  },
+  {
+   "id": "p29",
+   "dit": "Synthèse : les deux nombres mille deux cent soixante et mille neuf cent quatre-vingts. Leurs factorisations partagent deux au carré, trois au carré et cinq ; elles ne diffèrent que par sept contre onze. Le plus grand commun diviseur vaut donc cent quatre-vingts, et le plus petit commun multiple, produit divisé par cent quatre-vingts, vaut treize mille huit cent soixante.",
+   "texte": "PGCD = 180, PPCM = 13 860 pour 1260 et 1980.",
+   "ecran": "synthese_pgcd"
+  },
+  {
+   "id": "p30",
+   "dit": "Mille un est-il premier ? Sa racine carrée vaut environ trente et un virgule six : tester les premiers jusqu'à trente et un suffit. Et dès sept, la division tombe juste : mille un vaut sept fois cent quarante-trois, soit sept fois onze fois treize. Mille un est composé, produit de trois premiers distincts.",
+   "texte": "1001 = 7 × 11 × 13 : composé.",
+   "ecran": "mille_un"
+  },
+  {
+   "id": "p31",
+   "dit": "Synthèse modulaire : trois x congru à cinq, modulo sept. L'inverse de trois modulo sept est cinq, car trois fois cinq vaut quinze, congru à un. On multiplie par cinq : x est congru à vingt-cinq, donc à quatre. Contrôle immédiat : trois fois quatre vaut douze, de reste cinq modulo sept.",
+   "texte": "3x ≡ 5 (mod 7) : x ≡ 4, par l'inverse 5.",
+   "ecran": "cong_synth"
+  },
+  {
+   "id": "p32",
+   "dit": "Grande puissance, petit calcul : deux puissance cent, modulo onze. Fermat donne deux puissance dix congru à un. Deux puissance cent est deux puissance dix élevé à la puissance dix : il est donc congru à un puissance dix, c'est-à-dire à un. Cent multiplications remplacées par un théorème.",
+   "texte": "2¹⁰⁰ ≡ 1 (mod 11), par Fermat.",
+   "ecran": "fermat_calcul"
+  },
+  {
+   "id": "p33",
+   "dit": "Dernier rendez-vous : deux coureurs partent ensemble sur une piste, l'un boucle son tour en douze minutes, l'autre en quinze minutes. Ils se retrouvent au départ au plus petit commun multiple de douze et quinze : soixante minutes. Ni une somme, ni un produit : seul le plus petit commun multiple répond à ce type de question.",
+   "texte": "PPCM(12, 15) = 60 minutes.",
+   "ecran": "coureurs"
+  },
+  {
+   "id": "p34",
+   "dit": "La stratégie face à un énoncé : factoriser avant tout calcul de plus grand commun diviseur ; dès qu'un reste suffit, passer en congruences ; pour une équation modulaire, chercher l'inverse ; pour une grande puissance, invoquer Fermat ; et ne jamais conclure qu'un nombre est premier sur un seul test réussi.",
+   "texte": "La stratégie : cinq réflexes d'arithmétique.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p35",
+   "dit": "Pour conclure ce cours : la divisibilité et la décomposition unique structurent les entiers ; le plus grand commun diviseur et le plus petit commun multiple comparent deux nombres par leurs facteurs ; les congruences calculent avec les restes ; et le petit théorème de Fermat relie les puissances à la primalité. Réunis, ces outils protègent les transactions du monde entier.",
+   "texte": "Arithmétique : l'essentiel à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Divisibilité, nombres premiers, PGCD et PPCM"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Congruences et petit théorème de Fermat",
+   "pont": {
+    "texte": "Partie 2 : congruences, équations modulaires et Fermat.",
+    "dit": "Partie deux : les congruences et le petit théorème de Fermat. Nous allons calculer avec les restes d'une division, résoudre des équations modulaires grâce à l'inverse modulaire, puis réduire les grandes puissances."
+   }
+  },
+  {
+   "debut": "p26",
+   "sous_titre": "Applications et problèmes de synthèse",
+   "pont": {
+    "texte": "Partie 3 : RSA, horloges et synthèse.",
+    "dit": "Partie trois : les applications et les problèmes de synthèse. Cryptographie, horloges et rendez-vous périodiques, puis des exercices complets qui mobilisent la factorisation, les congruences et le théorème de Fermat."
+   }
+  }
+ ]
+}
