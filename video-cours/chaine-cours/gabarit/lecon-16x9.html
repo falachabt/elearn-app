@@ -1894,6 +1894,34 @@ const FIG = {
       mot(204, 196, '2R', { t: 21, a: 'end' }) +
       mot(500, 292, "un point de la roue trace la cycloïde, une arche après l'autre", { t: 19 }));
   },
+  plan_complexe_fig(t) {
+    const ox = 400, oy = 205;
+    const mx = 530, my = 103, mpx = 462, mpy = 52;
+    return svgBoite(
+      `<line x1="180" y1="${oy}" x2="782" y2="${oy}" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="782,${oy} 766,${oy - 6} 766,${oy + 6}" fill="currentColor"/>` +
+      `<line x1="${ox}" y1="288" x2="${ox}" y2="28" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="${ox},28 ${ox - 6},44 ${ox + 6},44" fill="currentColor"/>` +
+      `<line x1="${mx}" y1="${my}" x2="${mx}" y2="${oy}" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="${mx}" y1="${my}" x2="${ox}" y2="${my}" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      trait(ox, oy, mx, my, prog(t), { c: '#E8604C', w: 5 }) +
+      `<line x1="${ox}" y1="${oy}" x2="${mpx}" y2="${mpy}" stroke="#1A75FF" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<path d="M 546 91 A 185 185 0 0 0 469 33" fill="none" stroke="#1A75FF" stroke-width="3"/>` +
+      `<polygon points="469,33 450,31 459,49" fill="#1A75FF"/>` +
+      `<path d="M ${ox + 52} ${oy} A 52 52 0 0 0 ${Math.round(ox + 52 * Math.cos(0.66))} ${Math.round(oy - 52 * Math.sin(0.66))}" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="${mx}" cy="${my}" r="6" fill="#E8604C"/>` +
+      `<circle cx="${mpx}" cy="${mpy}" r="6" fill="#1A75FF"/>` +
+      mot(564, 96, 'M', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(478, 46, "M′", { t: 21, c: '#1A75FF', a: 'start' }) +
+      mot(466, 138, '|z|', { t: 21, c: '#E8604C' }) +
+      mot(474, 184, 'θ', { t: 20 }) +
+      mot(mx, oy + 24, 'a', { t: 20 }) +
+      mot(ox - 12, my, 'b', { t: 20, a: 'end' }) +
+      mot(ox - 12, oy + 24, 'O', { t: 20, a: 'end' }) +
+      mot(790, oy + 6, 'Réels', { t: 19, a: 'start' }) +
+      mot(ox + 12, 38, 'Imaginaires purs', { t: 18, a: 'start' }) +
+      mot(500, 292, "M, image de z = a + ib : OM donne le module, θ donne l'argument", { t: 19 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
