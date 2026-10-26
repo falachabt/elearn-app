@@ -1,0 +1,510 @@
+{
+  "cours": 6273,
+  "titre": "Relations et équivalences : classer pour quotienter",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Les relations",
+      "titre": "Relations et équivalences : classer pour quotienter",
+      "sous": "Relations binaires, classes d'équivalence, partitions et ensembles quotients",
+      "anim": {
+        "nom": "partition_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le langage caché des liens",
+      "texte": "Un lien entre éléments : ami, plus grand, même reste…",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Qu'est-ce qu'une relation binaire ?",
+      "tex": "R \\subseteq E \\times E, \\qquad x\\,R\\,y \\iff (x, y) \\in R",
+      "note": "E × E : toutes les paires ordonnées — R : celles que l'on retient.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 180
+      }
+    },
+    "representations": {
+      "type": "etape",
+      "kicker": "Deux représentations",
+      "titre": "La relation « aime », dans l'ordre Alice, Bruno, Clara, David",
+      "tex": [
+        "\\begin{pmatrix} 0 & 1 & 1 & 0 \\\\ 0 & 0 & 1 & 0 \\\\ 0 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}"
+      ]
+    },
+    "reflexivite": {
+      "type": "formule",
+      "kicker": "La réflexivité : le miroir de soi",
+      "tex": "\\forall x \\in E, \\quad x\\,R\\,x",
+      "note": "Diagramme : une boucle partout — matrice : diagonale de 1."
+    },
+    "symetrie": {
+      "type": "formule",
+      "kicker": "La symétrie : la réciprocité",
+      "tex": "\\forall x, y \\in E, \\quad x\\,R\\,y \\Rightarrow y\\,R\\,x",
+      "note": "Être parallèle, être perpendiculaire : symétriques — être le père de : non."
+    },
+    "transitivite": {
+      "type": "formule",
+      "kicker": "La transitivité : la chaîne des implications",
+      "tex": "(x\\,R\\,y \\ \\text{et} \\ y\\,R\\,z) \\Rightarrow x\\,R\\,z",
+      "note": "Être ancêtre de, diviser, impliquer : transitifs — être perpendiculaire : non."
+    },
+    "ordre": {
+      "type": "formule",
+      "kicker": "L'antisymétrie et les relations d'ordre",
+      "tex": "(x\\,R\\,y \\ \\text{et} \\ y\\,R\\,x) \\Rightarrow x = y",
+      "note": "L'antisymétrie : avec réflexivité et transitivité, elle définit un ordre.",
+      "anim": {
+        "nom": "hasse_inclusion_fig",
+        "hauteur": 190
+      }
+    },
+    "exercice_guide": {
+      "type": "etape",
+      "kicker": "Exercice guidé · analyser une relation",
+      "titre": "Analyser une relation donnée par ses paires",
+      "tex": [
+        "R = \\{(1,1),\\ (1,2),\\ (2,1),\\ (2,2),",
+        "(3,3),\\ (3,4),\\ (4,3),\\ (4,4)\\}",
+        "\\text{réflexive, symétrique, transitive}"
+      ]
+    },
+    "piege": {
+      "type": "etape",
+      "kicker": "Le piège classique",
+      "titre": "Le piège : une chaîne qui ne se referme pas",
+      "tex": [
+        "a\\,R\\,b \\qquad b\\,R\\,c \\qquad a\\,\\not R\\,c",
+        "\\text{réflexive, symétrique, pas transitive}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Relation : un choix de couples dans E×E",
+        "Réflexive : des boucles, diagonale de 1",
+        "Symétrique : toute flèche a son retour",
+        "Transitive : les chaînes se referment"
+      ]
+    },
+    "equivalence": {
+      "type": "formule",
+      "kicker": "La relation d'équivalence",
+      "tex": "\\sim \\ : \\ \\text{réflexive, symétrique et transitive}",
+      "note": "On note ∼ et on lit « est équivalent à » — exemples : égalité, même parité."
+    },
+    "congruence": {
+      "type": "formule",
+      "kicker": "La congruence modulo n",
+      "tex": "a \\equiv b \\pmod{n} \\iff n \\mid (a - b)",
+      "note": "Même reste dans la division par n — l'arithmétique des horloges.",
+      "anim": {
+        "nom": "horloge_modulaire_fig",
+        "hauteur": 200
+      }
+    },
+    "preuve_congruence": {
+      "type": "etape",
+      "kicker": "La congruence est une équivalence",
+      "titre": "La congruence est une équivalence : la preuve",
+      "tex": [
+        "a - a = 0 \\Rightarrow a \\equiv a \\pmod{n}",
+        "n \\mid (a-b) \\Rightarrow n \\mid (b-a)",
+        "n \\mid (a-b) \\ \\text{et} \\ n \\mid (b-c) \\Rightarrow n \\mid (a-c)"
+      ]
+    },
+    "exemples_contre": {
+      "type": "etape",
+      "kicker": "Équivalences et contre-exemples",
+      "titre": "Des équivalences, et deux relations qui n'en sont pas",
+      "tex": [
+        "\\text{des équivalences : } = \\ , \\ \\text{même parité}",
+        "\\text{triangles semblables}",
+        "\\leq \\ : \\ \\text{réflexive et transitive, pas symétrique}",
+        "\\perp \\ : \\ \\text{symétrique, ni réflexive ni transitive}"
+      ]
+    },
+    "classes": {
+      "type": "formule",
+      "kicker": "La classe d'équivalence",
+      "tex": "\\overline{a} = \\{x \\in E \\mid x \\sim a\\}",
+      "note": "La classe de a : tous ses équivalents — a en est un représentant.",
+      "anim": {
+        "nom": "partition_fig",
+        "hauteur": 190
+      }
+    },
+    "classes_mod3": {
+      "type": "etape",
+      "kicker": "Exemple fondateur · modulo trois",
+      "titre": "Modulo trois : trois classes suffisent",
+      "tex": [
+        "\\overline{0} = \\{\\dots,\\ -6,\\ -3,\\ 0,\\ 3,\\ 6,\\ \\dots\\}",
+        "\\overline{1} = \\{\\dots,\\ -5,\\ -2,\\ 1,\\ 4,\\ 7,\\ \\dots\\}",
+        "\\overline{2} = \\{\\dots,\\ -4,\\ -1,\\ 2,\\ 5,\\ 8,\\ \\dots\\}"
+      ],
+      "anim": {
+        "nom": "classes_mod3_fig",
+        "hauteur": 165
+      }
+    },
+    "proprietes_classes": {
+      "type": "etape",
+      "kicker": "Propriétés des classes",
+      "titre": "Égales ou disjointes : jamais entre les deux",
+      "tex": [
+        "a \\sim b \\iff \\overline{a} = \\overline{b}",
+        "a \\in \\overline{a}",
+        "\\overline{a} \\neq \\overline{b} \\Rightarrow \\overline{a} \\cap \\overline{b} = \\varnothing"
+      ]
+    },
+    "partition": {
+      "type": "formule",
+      "kicker": "La partition : découper en blocs",
+      "tex": "\\bigcup_{A \\in \\mathcal{P}} A = E, \\qquad A \\neq B \\Rightarrow A \\cap B = \\varnothing",
+      "note": "Une partition : des blocs non vides, disjoints, qui recouvrent E.",
+      "anim": {
+        "nom": "partition_fig",
+        "hauteur": 140
+      }
+    },
+    "quotient": {
+      "type": "formule",
+      "kicker": "L'ensemble quotient et la surjection canonique",
+      "tex": "E/{\\sim} = \\{\\overline{a} \\mid a \\in E\\}, \\qquad \\pi(a) = \\overline{a}",
+      "note": "La surjection canonique π : surjective, non injective en général."
+    },
+    "rationnels": {
+      "type": "etape",
+      "kicker": "Exemple avancé · les rationnels",
+      "titre": "Les fractions sont des classes d'équivalence",
+      "tex": [
+        "(a, b) \\sim (c, d) \\iff ad = bc",
+        "\\overline{(1, 2)} = \\{(1, 2),\\ (2, 4),\\ (-3, -6),\\ \\dots\\}",
+        "(\\mathbb{Z} \\times \\mathbb{Z}^*)/{\\sim} \\ = \\ \\mathbb{Q}"
+      ]
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Équivalence : réflexive, symétrique, transitive",
+        "Classe de a : tous les équivalents de a",
+        "Deux classes : égales ou disjointes",
+        "Quotient E/R : l'ensemble des classes"
+      ]
+    },
+    "lois_quotient": {
+      "type": "etape",
+      "kicker": "Calculer dans le quotient",
+      "titre": "Additionner et multiplier les classes",
+      "tex": [
+        "\\overline{a} + \\overline{b} = \\overline{a+b}",
+        "\\overline{a} \\times \\overline{b} = \\overline{a \\times b}",
+        "\\text{indépendant des représentants choisis}"
+      ]
+    },
+    "tables_mod3": {
+      "type": "etape",
+      "kicker": "Exemple résolu · modulo trois",
+      "titre": "Modulo trois : quatre calculs à vérifier",
+      "tex": [
+        "\\overline{1} + \\overline{2} = \\overline{0} \\qquad \\overline{2} + \\overline{2} = \\overline{1}",
+        "\\overline{2} \\times \\overline{2} = \\overline{1} \\qquad \\overline{1} \\times \\overline{2} = \\overline{2}"
+      ]
+    },
+    "factorisation": {
+      "type": "formule",
+      "kicker": "Le théorème de factorisation",
+      "tex": "x \\sim y \\Rightarrow f(x) = f(y), \\qquad \\overline{f}(\\overline{x}) = f(x)",
+      "note": "Exemple : la parité passe au quotient en une bijection vers {0, 1}."
+    },
+    "groupes_quotients": {
+      "type": "etape",
+      "kicker": "Groupes quotients",
+      "titre": "Groupes quotients : négliger un sous-groupe",
+      "tex": [
+        "x \\sim_H y \\iff x^{-1} y \\in H",
+        "\\pi : G \\to G/H, \\qquad \\ker(\\pi) = H",
+        "\\text{possible ssi } H \\text{ est distingué}"
+      ]
+    },
+    "espaces_quotients": {
+      "type": "phrase",
+      "kicker": "Espaces vectoriels quotients et topologie",
+      "texte": "E/F : dim E − dim F — recoller, c'est quotienter.",
+      "anim": {
+        "nom": "quotient_recollement_fig",
+        "hauteur": 200
+      }
+    },
+    "application_equivalence": {
+      "type": "formule",
+      "kicker": "Toute application fabrique une équivalence",
+      "tex": "x \\sim_f y \\iff f(x) = f(y)",
+      "note": "Exemple : deux fonctions de même intégrale sont équivalentes, sans être égales."
+    },
+    "exercice_carres": {
+      "type": "etape",
+      "kicker": "Exercice résolu · les carrés modulo trois",
+      "titre": "Exercice résolu : les carrés modulo trois",
+      "tex": [
+        "x\\,R\\,y \\iff 3 \\mid (x^2 - y^2)",
+        "x^2 \\pmod{3} \\in \\{0,\\ 1\\}",
+        "\\overline{0} = 3\\mathbb{Z} \\qquad |\\mathbb{Z}/R| = 2"
+      ]
+    },
+    "exercice_induite": {
+      "type": "etape",
+      "kicker": "Exercice résolu · la relation induite",
+      "titre": "Exercice résolu : la congruence modulo six, restreinte",
+      "tex": [
+        "\\{0,\\ 6\\}, \\ \\{1,\\ 7\\}, \\ \\{2,\\ 8\\}, \\ \\{3,\\ 9\\}, \\ \\{4\\}, \\ \\{5\\}",
+        "\\overline{x}^{R_A} = \\overline{x}^{R} \\cap A",
+        "|A/R_A| = 6"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Congruence : n divise a moins b",
+        "Z/nZ : addition et produit sur les classes",
+        "Bien défini : indépendant du représentant",
+        "Q : les classes des couples d'entiers",
+        "Factoriser : passer au quotient"
+      ]
+    },
+    "conclusion": {
+      "type": "phrase",
+      "kicker": "Conclusion · la boîte à outils",
+      "texte": "Classer, c'est identifier l'essentiel."
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "dit": "Bienvenue dans ce cours consacré aux relations binaires et aux relations d'équivalence. Nous verrons comment décrire un lien entre éléments d'un ensemble, comment trois propriétés, réflexivité, symétrie et transitivité, permettent de classer ces éléments en paquets disjoints, et comment ces paquets forment un nouvel ensemble, l'ensemble quotient, au cœur de l'algèbre moderne.",
+      "texte": "Relier, classer, quotienter : les relations."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "dit": "Les liens sont partout : être ami avec quelqu'un, être plus grand qu'un nombre, avoir le même reste dans une division, être parallèle à une droite. Une relation binaire formalise ces connexions : elle décide, pour chaque paire d'éléments, si le lien existe ou non. Toute la question est ensuite de reconnaître la personnalité du lien, grâce à trois propriétés que nous allons définir.",
+      "texte": "Un lien entre éléments : ami, plus grand, même reste…"
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "dit": "Formellement, une relation binaire sur un ensemble E est un sous-ensemble du produit cartésien E croix E, c'est-à-dire un choix de paires ordonnées parmi toutes les paires possibles. On note ixe R igrec lorsque la paire ixe, igrec fait partie des paires retenues. Un graphe orienté n'est rien d'autre qu'une relation sur l'ensemble de ses sommets : une flèche pour chaque paire choisie.",
+      "texte": "R ⊆ E × E : un choix de paires ordonnées."
+    },
+    {
+      "id": "p04",
+      "ecran": "representations",
+      "dit": "Deux représentations pour une relation sur un ensemble fini. Le diagramme sagittal dessine un point par élément et une flèche de ixe vers igrec quand ixe est en relation avec igrec. La matrice booléenne fait le même travail en tableau : un un si la paire est retenue, un zéro sinon. Ici, Alice aime Bruno et Clara, Bruno aime Clara, Clara aime David, et David n'aime personne : la première ligne vaut zéro, un, un, zéro.",
+      "texte": "Sagittal : des flèches — matrice : des 0 et des 1."
+    },
+    {
+      "id": "p05",
+      "ecran": "reflexivite",
+      "dit": "Première propriété : la réflexivité. Une relation est réflexive si tout élément est en relation avec lui-même. L'égalité et l'ordre large la possèdent, la divisibilité aussi, car tout entier non nul se divise lui-même. En revanche, être strictement plus grand n'est pas réflexif : aucun nombre n'est strictement plus grand que lui-même. Sur un diagramme sagittal, la réflexivité se voit aux boucles sur chaque point.",
+      "texte": "Réflexive : chacun est en relation avec soi."
+    },
+    {
+      "id": "p06",
+      "ecran": "symetrie",
+      "dit": "Deuxième propriété : la symétrie. Si ixe est en relation avec igrec, alors igrec doit être en relation avec ixe : toute flèche a sa flèche retour. Le parallélisme et la perpendicularité des droites sont symétriques, tout comme être marié à. En revanche, l'ordre large ne l'est pas : deux est inférieur ou égal à trois, mais trois n'est pas inférieur ou égal à deux. Et la relation aime ne l'est en général pas non plus.",
+      "texte": "Symétrique : toute flèche a son retour."
+    },
+    {
+      "id": "p07",
+      "ecran": "transitivite",
+      "dit": "Troisième propriété : la transitivité. Si ixe est en relation avec igrec et igrec avec zède, alors ixe doit être en relation avec zède : le lien se transmet le long des chaînes. L'égalité, l'ordre et la divisibilité sont transitifs. La perpendicularité ne l'est pas : si une droite est perpendiculaire à une deuxième, et la deuxième à une troisième, la première et la troisième sont parallèles, pas perpendiculaires.",
+      "texte": "Transitive : le lien se transmet par chaîne."
+    },
+    {
+      "id": "p08",
+      "ecran": "ordre",
+      "dit": "Une cousine de la symétrie joue un rôle majeur : l'antisymétrie. Si ixe est en relation avec igrec et igrec avec ixe, alors ixe et igrec sont égaux. Réflexive, antisymétrique et transitive : voilà une relation d'ordre. L'inclusion entre parties en est le modèle, et c'est un ordre partiel : le singleton a et le singleton b ne se comparent pas. L'ordre usuel des réels, lui, est total : deux réels sont toujours comparables.",
+      "texte": "Ordre : réflexif, antisymétrique, transitif."
+    },
+    {
+      "id": "p09",
+      "ecran": "exercice_guide",
+      "dit": "Exercice guidé : sur un, deux, trois et quatre, une relation donnée par huit paires, les diagonales, un-deux et deux-un, trois-quatre et quatre-trois. Réflexivité : les quatre boucles sont présentes, oui. Symétrie : chaque paire a sa réciproque, oui. Transitivité : les chaînes présentes se referment toutes, par exemple un-deux puis deux-un exige un-un, qui est là. Cette relation a donc les trois propriétés : la partie suivante dira pourquoi c'est précieux.",
+      "texte": "Trois fois oui : une relation très spéciale."
+    },
+    {
+      "id": "p10",
+      "ecran": "piege",
+      "dit": "Attention au piège classique. Sur a, b, c et d, prenons les boucles, a vers b et b vers a, b vers c et c vers b. La relation est réflexive et symétrique. Mais a est en relation avec b, et b avec c, sans que a soit en relation avec c : la transitivité échoue sur une seule chaîne. Pour réfuter une propriété, un seul contre-exemple suffit ; pour l'établir, il faut vérifier toutes les chaînes.",
+      "texte": "a R b et b R c, mais pas a R c : non transitive."
+    },
+    {
+      "id": "p11",
+      "ecran": "recap1",
+      "dit": "Récapitulons. Une relation binaire est un choix de paires dans le produit cartésien. On la représente par un diagramme sagittal ou une matrice booléenne. Sa personnalité tient en trois propriétés : la réflexivité, chacun est en relation avec soi, la symétrie, toute flèche a son retour, et la transitivité, les chaînes se referment. Une quatrième propriété, l'antisymétrie, mène aux relations d'ordre.",
+      "texte": "Partie 1 : l'essentiel des relations."
+    },
+    {
+      "id": "p12",
+      "ecran": "equivalence",
+      "dit": "Une relation d'équivalence est une relation à la fois réflexive, symétrique et transitive. On la note souvent avec un tilde, et on lit : est équivalent à. L'égalité en est le modèle le plus fin : chaque élément n'est équivalent qu'à lui-même. Avoir la même parité, pour des entiers, en est un autre : elle séparera les entiers en deux paquets, les pairs et les impairs. Classer, c'est exactement cela : décider ce que l'on considère comme équivalent.",
+      "texte": "Équivalence = réflexive + symétrique + transitive."
+    },
+    {
+      "id": "p13",
+      "ecran": "congruence",
+      "dit": "L'exemple roi : la congruence modulo n. Deux entiers sont congrus modulo n si leur différence est un multiple de n, autrement dit s'ils ont le même reste dans la division par n. Sur une horloge de cinq cases, dix-sept et deux tombent sur la même case, car dix-sept moins deux vaut quinze, un multiple de cinq. C'est l'arithmétique des horloges, et aussi celle de la cryptographie moderne.",
+      "texte": "a ≡ b (mod n) ⟺ n divise a − b."
+    },
+    {
+      "id": "p14",
+      "ecran": "preuve_congruence",
+      "dit": "Vérifions les trois propriétés pour la congruence. Réflexivité : a moins a vaut zéro, et n divise zéro. Symétrie : si n divise a moins b, il divise aussi son opposé, b moins a. Transitivité : si n divise a moins b et b moins c, il divise leur somme, qui se simplifie en a moins c, car les b se compensent. Trois lignes de calcul, et la congruence est une relation d'équivalence sur les entiers.",
+      "texte": "0, l'opposé, la somme : la preuve tient en 3 lignes."
+    },
+    {
+      "id": "p15",
+      "ecran": "exemples_contre",
+      "dit": "D'autres équivalences à reconnaître : l'égalité, la même parité, et la similitude des triangles, qui classe les triangles par leur forme, indépendamment de leur taille. En revanche, l'ordre large n'est pas une équivalence : il lui manque la symétrie. Et la perpendicularité n'en est pas une non plus : symétrique, certes, mais ni réflexive ni transitive. Savoir dire quelle propriété manque est la moitié du travail.",
+      "texte": "≤ : pas symétrique — ⊥ : ni réflexive ni transitive."
+    },
+    {
+      "id": "p16",
+      "ecran": "classes",
+      "dit": "La classe d'équivalence d'un élément a est l'ensemble de tous les éléments équivalents à a. N'importe quel membre de la classe peut la représenter : c'est ce qu'on appelle un représentant. Une relation d'équivalence découpe ainsi l'ensemble en paquets homogènes, exactement comme on regroupe les livres d'une bibliothèque par genre : chaque livre a un genre, et deux livres du même genre sont interchangeables pour ce classement.",
+      "texte": "La classe de a : tous les équivalents de a."
+    },
+    {
+      "id": "p17",
+      "ecran": "classes_mod3",
+      "dit": "Exemple fondateur : les entiers, avec la congruence modulo trois. La classe de zéro contient tous les multiples de trois. Celle de un, les entiers qui laissent le reste un : moins cinq, moins deux, un, quatre, sept. Celle de deux, les restes deux. Et il n'y a pas d'autre classe : tout entier tombe dans l'une des trois, selon son reste dans la division par trois.",
+      "texte": "Modulo 3 : les classes de 0, de 1 et de 2."
+    },
+    {
+      "id": "p18",
+      "ecran": "proprietes_classes",
+      "dit": "Trois propriétés gouvernent les classes. D'abord, deux éléments équivalents ont exactement la même classe, et réciproquement. Ensuite, tout élément appartient à sa propre classe, par réflexivité. Enfin, deux classes distinctes sont toujours disjointes : si elles partageaient un élément, la transitivité les ferait fusionner en une seule. Il n'y a pas d'entre-deux : égales, ou disjointes.",
+      "texte": "Deux classes : égales, ou d'intersection vide."
+    },
+    {
+      "id": "p19",
+      "ecran": "partition",
+      "dit": "Une partition d'un ensemble est un découpage en blocs non vides, deux à deux disjoints, dont la réunion redonne l'ensemble entier. Le théorème central du cours dit que partitions et relations d'équivalence se correspondent parfaitement : les classes d'une équivalence forment une partition, et réciproquement, déclarer équivalents les éléments d'un même bloc d'une partition définit une relation d'équivalence.",
+      "texte": "Équivalence ⟺ partition : les deux faces du classement."
+    },
+    {
+      "id": "p20",
+      "ecran": "quotient",
+      "dit": "L'ensemble quotient est l'ensemble de toutes les classes : ses éléments ne sont plus les objets de départ, mais leurs paquets. L'application canonique envoie chaque élément sur sa classe : elle est surjective par construction, car toute classe a des représentants, mais rarement injective, car tous les membres d'une classe ont la même image. Deux éléments ont la même image par cette application exactement quand ils sont équivalents.",
+      "texte": "E/∼ : les classes deviennent les éléments."
+    },
+    {
+      "id": "p21",
+      "ecran": "rationnels",
+      "dit": "Construction célèbre : les nombres rationnels. Un couple d'entiers, numérateur et dénominateur non nul, représente une fraction, mais un-deux et deux-quatre doivent désigner le même nombre. On déclare donc deux couples équivalents quand les produits en croix sont égaux. La classe du couple un, deux contient un-deux, deux-quatre, moins trois-moins six : c'est le nombre rationnel un demi. L'ensemble quotient tout entier est l'ensemble des rationnels.",
+      "texte": "(a, b) ∼ (c, d) ⟺ ad = bc — le quotient, c'est ℚ."
+    },
+    {
+      "id": "p22",
+      "ecran": "recap2",
+      "dit": "Récapitulons. Une relation d'équivalence réunit réflexivité, symétrie et transitivité : la congruence modulo n en est l'exemple roi. Chaque élément a une classe, l'ensemble de ses équivalents, et deux classes sont égales ou disjointes. Les classes forment une partition, et leur ensemble est l'ensemble quotient, atteint par la surjection canonique. Les fractions elles-mêmes sont des classes d'équivalence.",
+      "texte": "Partie 2 : l'essentiel des équivalences."
+    },
+    {
+      "id": "p23",
+      "ecran": "lois_quotient",
+      "dit": "Sur l'ensemble quotient modulo n, on peut calculer : la somme de deux classes est la classe de la somme de leurs représentants, et de même pour le produit. Point délicat : ce calcul n'a de sens que s'il ne dépend pas des représentants choisis. C'est vrai ici, car la congruence respecte l'addition et le produit ; on dit que les lois sont bien définies. L'ensemble obtenu, noté Z sur n Z, est un anneau commutatif unitaire.",
+      "texte": "ā + b̄ = classe de a + b — bien défini."
+    },
+    {
+      "id": "p24",
+      "ecran": "tables_mod3",
+      "dit": "Vérifions sur les tables modulo trois, que la leçon donne en entier. Un plus deux égale trois, donc la classe zéro. Deux plus deux égale quatre, qui est congru à un : la classe un. Deux fois deux égale quatre : encore la classe un. Et un fois deux reste deux. On calcule donc avec trois objets seulement, les classes de zéro, un et deux, comme sur une horloge à trois heures.",
+      "texte": "Dans ℤ/3ℤ : 2̄ + 2̄ = 1̄ et 2̄ × 2̄ = 1̄."
+    },
+    {
+      "id": "p25",
+      "ecran": "factorisation",
+      "dit": "Théorème de factorisation : si une application respecte une équivalence, au sens où deux éléments équivalents ont la même image, alors elle passe au quotient : on peut définir, sur les classes, une application qui envoie la classe de ixe sur f de ixe, et elle est bien définie précisément grâce à l'hypothèse. Exemple : la parité des entiers descend en une bijection entre le quotient modulo deux et l'ensemble formé de zéro et de un.",
+      "texte": "f respecte ∼ : elle descend au quotient."
+    },
+    {
+      "id": "p26",
+      "ecran": "groupes_quotients",
+      "dit": "En algèbre, quotienter un groupe par un sous-groupe H revient à déclarer négligeables les éléments de H. La relation associée compare deux éléments par leur quotient, qui doit tomber dans H. Pour que le quotient hérite d'une loi de groupe, il faut et il suffit que H soit distingué, c'est-à-dire stable par conjugaison. La projection canonique est alors un morphisme surjectif, dont le noyau est exactement H : c'est le premier pas vers les théorèmes d'isomorphisme.",
+      "texte": "G/H : un groupe, si H est distingué."
+    },
+    {
+      "id": "p27",
+      "ecran": "espaces_quotients",
+      "dit": "Même mécanisme pour les espaces vectoriels : deux vecteurs sont équivalents si leur différence appartient à un sous-espace fixé F. Les classes sont des translatés de F, et l'espace quotient a pour dimension la différence des dimensions. En topologie, on quotiente en recollant des points : une bande devient un cylindre, un carré devient un tore. Partout, quotienter signifie identifier ce que l'on décide de ne plus distinguer.",
+      "texte": "E/F : dim E − dim F — recoller, c'est quotienter."
+    },
+    {
+      "id": "p28",
+      "ecran": "application_equivalence",
+      "dit": "Astuce universelle : toute application fabrique une équivalence sur son ensemble de départ, en déclarant équivalents les éléments qui ont la même image. Les trois propriétés sont immédiates, car elles viennent de l'égalité. Exemple du cours : sur les fonctions continues d'un intervalle, déclarer équivalentes celles qui ont la même intégrale regroupe des fonctions très différentes : seule l'aire sous la courbe est conservée, tout le reste est oublié.",
+      "texte": "x ∼ y ⟺ f(x) = f(y) : toujours une équivalence."
+    },
+    {
+      "id": "p29",
+      "ecran": "exercice_carres",
+      "dit": "Exercice résolu : sur les entiers, ixe est en relation avec igrec si trois divise ixe carré moins igrec carré. Les carrés modulo trois ne valent que zéro, pour les multiples de trois, ou un, pour tous les autres. La relation revient donc à avoir des carrés congrus : c'est une équivalence, héritée de la congruence. Ses classes sont au nombre de deux : les multiples de trois, et tous les autres entiers.",
+      "texte": "x² mod 3 ∈ {0, 1} : deux classes seulement."
+    },
+    {
+      "id": "p30",
+      "ecran": "exercice_induite",
+      "dit": "Dernier exercice : restreignons la congruence modulo six aux entiers de zéro à neuf. La relation induite reste une équivalence, et la classe d'un élément dans le petit ensemble est simplement sa grande classe coupée par le petit ensemble. On obtient six classes : zéro-six, un-sept, deux-huit, trois-neuf, et les singletons quatre et cinq, dont les partenaires dépasseraient neuf. L'ensemble quotient restreint compte donc six éléments.",
+      "texte": "Modulo 6 sur {0,…,9} : 6 classes."
+    },
+    {
+      "id": "p31",
+      "ecran": "recap_final",
+      "dit": "Pour finir, retenez l'enchaînement complet. Une congruence identifie les entiers de même reste ; le quotient modulo n calcule avec les classes, à condition de vérifier que les lois sont bien définies. Les rationnels sont des classes de couples d'entiers, et toute application compatible avec une équivalence descend au quotient. Classifier, c'est identifier ce qui est essentiel, et oublier le reste.",
+      "texte": "Relations et quotients : à retenir."
+    },
+    {
+      "id": "p32",
+      "ecran": "conclusion",
+      "dit": "Vous disposez maintenant d'une boîte à outils complète : décrire un lien par ses paires, le tester par ses trois propriétés, le transformer en classement par les classes, et construire le nouvel ensemble où ces classes deviennent des éléments. Groupes quotients, anneaux quotients, espaces quotients : une grande partie de l'algèbre moderne n'est que ce geste, répété avec soin.",
+      "texte": "Classer, c'est identifier l'essentiel."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Relations binaires et leurs trois propriétés"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Relations d'équivalence, classes et ensemble quotient",
+      "pont": {
+        "texte": "Partie 2 : équivalences, classes et quotient.",
+        "dit": "Partie deux : les relations d'équivalence et leurs classes. En réunissant réflexivité, symétrie et transitivité, on obtient le plus bel outil de classement des mathématiques : il découpe tout ensemble en classes disjointes, et ces classes forment l'ensemble quotient."
+      }
+    },
+    {
+      "debut": "p23",
+      "sous_titre": "Calculer dans le quotient et constructions algébriques",
+      "pont": {
+        "texte": "Partie 3 : calculer dans le quotient, et s'entraîner.",
+        "dit": "Partie trois : le quotient au travail. Nous calculerons dans l'ensemble des classes modulo trois, nous verrons comment une application compatible passe au quotient, puis nous nous entraînerons sur deux exercices résolus, avant de regarder les grandes constructions : groupes quotients et espaces vectoriels quotients."
+      }
+    }
+  ]
+}
