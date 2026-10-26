@@ -1,0 +1,596 @@
+{
+ "cours": 6225,
+ "ecrans": {
+  "ammoniac_press": {
+   "kicker": "Exemple : le mélange en pressions",
+   "tex": [
+    "P_{N_2} = 2{,}0 \\ ; \\ P_{H_2} = 4{,}5 \\ ; \\ P_{NH_3} = 3{,}5\\ \\text{atm}",
+    "K_p = \\tfrac{(3{,}5)^2}{2{,}0 \\times (4{,}5)^3}",
+    "K_p \\approx 0{,}067"
+   ],
+   "titre": "L'ammoniac, lu en pressions partielles",
+   "type": "etape"
+  },
+  "caracteres": {
+   "etapes": [
+    "Dynamique : les deux sens continuent",
+    "Atteignable depuis les deux côtés",
+    "Constant en apparence macroscopique",
+    "Seule la température modifie K"
+   ],
+   "kicker": "Les quatre propriétés de l'équilibre",
+   "type": "recap"
+  },
+  "conversion": {
+   "kicker": "Exemple guidé : la conversion",
+   "tex": [
+    "T = 773\\ \\text{K} \\ ; \\ \\Delta n_g = 2 - 4 = -2",
+    "K_p = 0{,}40 \\times (0{,}0821 \\times 773)^{-2}",
+    "K_p \\approx 9{,}9 \\times 10^{-5}"
+   ],
+   "titre": "L'ammoniac à cinq cents degrés",
+   "type": "etape"
+  },
+  "echelle": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "balance_atomes_fig"
+   },
+   "kicker": "Interpréter la valeur de K",
+   "tex": [
+    "K \\gg 1 : \\text{produits quasi exclusifs}",
+    "K \\approx 1 : \\text{réactifs et produits coexistent}",
+    "K \\ll 1 : \\text{réactifs quasi exclusifs}"
+   ],
+   "titre": "L'échelle de K : trois régimes",
+   "type": "etape"
+  },
+  "ecriture_kp": {
+   "kicker": "Compter les moles de gaz",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 : \\Delta n_g = -2",
+    "N_2O_4 \\rightleftharpoons 2\\,NO_2 : \\Delta n_g = +1",
+    "K_p = \\frac{(P_{NO_2})^2}{P_{N_2O_4}}"
+   ],
+   "titre": "Écrire Kp, repérer delta n gaz",
+   "type": "etape"
+  },
+  "equilibre": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "L'équilibre dynamique",
+   "texte": "Vitesses directe et inverse égales : les concentrations se figent.",
+   "type": "phrase"
+  },
+  "equilibre_retrouve": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Quand Q rejoint K",
+   "texte": "Après évolution, Q rejoint K : le système est à l'équilibre.",
+   "type": "phrase"
+  },
+  "exemple_hi": {
+   "kicker": "Exemple complet : tableau d'avancement",
+   "tex": [
+    "H_2 + I_2 \\rightleftharpoons 2\\,HI",
+    "[H_2] = [I_2] = 0{,}22 \\ ; \\ [HI] = 1{,}56",
+    "K_c = \\tfrac{(1{,}56)^2}{(0{,}22)\\,(0{,}22)} \\approx 50"
+   ],
+   "titre": "L'iodure d'hydrogène, le classique",
+   "type": "etape"
+  },
+  "exemple_nh3": {
+   "kicker": "Exemple : mesures directes",
+   "tex": [
+    "K_c = \\frac{[NH_3]^2}{[N_2]\\,[H_2]^3}",
+    "K_c = \\tfrac{(1{,}50)^2}{(0{,}50)\\,(0{,}75)^3} = \\tfrac{2{,}25}{0{,}211}",
+    "K_c \\approx 10{,}7"
+   ],
+   "titre": "L'ammoniac, concentrations mesurées",
+   "type": "etape"
+  },
+  "haber_kc": {
+   "kicker": "Exemple : la synthèse de l'ammoniac",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3",
+    "K_c = \\tfrac{[NH_3]^2}{[N_2]\\,[H_2]^3}",
+    "K_c = \\tfrac{(0{,}25)^2}{(0{,}50)\\,(1{,}50)^3}",
+    "K_c \\approx 0{,}037"
+   ],
+   "titre": "Haber-Bosch, en une fraction",
+   "type": "etape"
+  },
+  "heterogene": {
+   "kicker": "Équilibre hétérogène",
+   "note": "Calcination du calcaire : les deux solides disparaissent.",
+   "tex": "K_c = [CO_2] \\qquad K_p = P_{CO_2}",
+   "type": "formule"
+  },
+  "histoires": {
+   "kicker": "Trois constantes, trois destins",
+   "tex": [
+    "2\\,H_2 + O_2 \\rightleftharpoons 2\\,H_2O : K_p \\sim 10^{40}",
+    "H_2 + I_2 \\rightleftharpoons 2\\,HI : K_c \\approx 50",
+    "2\\,NO \\rightleftharpoons N_2 + O_2 : K_p \\sim 10^{-30}"
+   ],
+   "titre": "Du quasi total au quasi impossible",
+   "type": "etape"
+  },
+  "kp_formule": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "gaz"
+   },
+   "kicker": "Kp : les pressions partielles",
+   "note": "P : pression partielle, celle du gaz seul dans le volume.",
+   "tex": "K_p = \\frac{(P_C)^c\\,(P_D)^d}{(P_A)^a\\,(P_B)^b}",
+   "type": "formule"
+  },
+  "limites": {
+   "etapes": [
+    "K ne dit rien de la vitesse",
+    "K ne vaut qu'à sa température",
+    "K dépend de l'écriture de l'équation",
+    "Équation divisée par deux : racine de K"
+   ],
+   "kicker": "Ce que K ne dit pas",
+   "type": "recap"
+  },
+  "loi_masse": {
+   "kicker": "La loi d'action de masse",
+   "note": "Guldberg et Waage, 1864 : la loi d'action de masse.",
+   "tex": "K_c = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b}",
+   "type": "formule"
+  },
+  "methode_kc": {
+   "etapes": [
+    "Écrire l'équation équilibrée",
+    "Écrire l'expression de Kc",
+    "Concentrations à l'équilibre",
+    "Calculer, puissances comprises"
+   ],
+   "kicker": "Calculer Kc : la méthode",
+   "type": "recap"
+  },
+  "n2o4": {
+   "kicker": "Exemple : Kp mesuré directement",
+   "tex": [
+    "P_{N_2O_4} = 0{,}821\\ \\text{atm} \\ ; \\ P_{NO_2} = 0{,}640\\ \\text{atm}",
+    "K_p = \\tfrac{(0{,}640)^2}{0{,}821}",
+    "K_p \\approx 0{,}50"
+   ],
+   "titre": "Le tétroxyde de diazote, en pressions",
+   "type": "etape"
+  },
+  "probleme1_kp": {
+   "kicker": "Problème 1 : conversion et volume",
+   "note": "Doubler le volume déplace l'équilibre vers les réactifs.",
+   "tex": "K_p = 0{,}182 \\times (63{,}46)^{-2} \\approx 4{,}5 \\times 10^{-5}",
+   "type": "formule"
+  },
+  "probleme1_x": {
+   "kicker": "Problème 1 : le tableau d'avancement",
+   "tex": [
+    "0{,}5 + 2x = 0{,}8 \\Rightarrow x = 0{,}15\\ \\text{mol}",
+    "[NH_3] = 0{,}40 \\ ; \\ [N_2] = 0{,}425 \\ ; \\ [H_2] = 1{,}275",
+    "K_c = \\tfrac{(0{,}40)^2}{(0{,}425)\\,(1{,}275)^3} \\approx 0{,}182"
+   ],
+   "titre": "L'ammoniac industriel, les quantités",
+   "type": "etape"
+  },
+  "probleme2": {
+   "kicker": "Problème 2 : équilibre hétérogène",
+   "tex": [
+    "K_p = P_{CO_2} = 0{,}220",
+    "K_c = [CO_2] \\approx 2{,}50 \\times 10^{-3}\\ \\text{mol/L}",
+    "m \\approx 0{,}250\\ \\text{g de } CaCO_3 \\text{ décomposé}"
+   ],
+   "titre": "Le calcaire et son seul gaz",
+   "type": "etape"
+  },
+  "quotient": {
+   "kicker": "Le quotient réactionnel Q",
+   "note": "Même forme que Kc, mais concentrations à l'instant présent.",
+   "tex": "Q_c = \\frac{[C]^c\\,[D]^d}{[A]^a\\,[B]^b}",
+   "type": "formule"
+  },
+  "reacteur1": {
+   "kicker": "Problème 3 : premier réflexe, vérifier",
+   "texte": "Réacteur 1 : Q vaut 16, pas 4 — les données ne décrivent pas un équilibre.",
+   "type": "phrase"
+  },
+  "reacteur2": {
+   "kicker": "Problème 3 : le second réacteur",
+   "tex": [
+    "Q_0 \\approx 4{,}57 > K_c = 4{,}00 : \\text{sens inverse}",
+    "3x^2 + 1{,}040\\,x - 0{,}00320 = 0",
+    "x \\approx 0{,}00305\\ \\text{M, et } Q = K_c = 4{,}00 \\text{ vérifié}"
+   ],
+   "titre": "Ajout de réactif, nouvel équilibre",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Équilibre : vitesses égales, danse continue",
+    "Kc : produits sur réactifs, à la puissance",
+    "Solides et liquides purs hors expression",
+    "Kc se calcule des concentrations d'équilibre",
+    "Kc ne dépend que de la température"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Équilibre dynamique : vitesses égales",
+    "Kc et Kp, deux langues, un même état",
+    "La valeur de K dit la position d'équilibre",
+    "Q comparé à K prédit le sens d'évolution",
+    "Le tableau d'avancement mène au calcul"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "reformage": {
+   "kicker": "Application : l'industrie de l'hydrogène",
+   "tex": [
+    "CH_4 + H_2O \\rightleftharpoons CO + 3\\,H_2",
+    "K_p = \\frac{P_{CO}\\,(P_{H_2})^3}{P_{CH_4}\\,P_{H_2O}}",
+    "K_p = \\tfrac{0{,}55 \\times (1{,}50)^3}{0{,}15 \\times 0{,}25} \\approx 49{,}5"
+   ],
+   "titre": "Le reformage du méthane",
+   "type": "etape"
+  },
+  "regle_or": {
+   "etapes": [
+    "K est la cible à atteindre",
+    "Q sous K : sens direct, vers les produits",
+    "Q égale K : équilibre atteint",
+    "Q sur K : sens inverse, vers les réactifs"
+   ],
+   "kicker": "La règle d'or : comparer Q et K",
+   "type": "recap"
+  },
+  "regles": {
+   "etapes": [
+    "Valeurs à l'équilibre uniquement",
+    "Solides et liquides purs exclus",
+    "Gaz et espèces (aq) inclus",
+    "Coefficients devenus exposants",
+    "K dépend de la température"
+   ],
+   "kicker": "Écrire l'expression : cinq règles",
+   "type": "recap"
+  },
+  "relation": {
+   "kicker": "Le pont entre Kc et Kp",
+   "note": "Delta n gaz : moles de gaz produits moins moles de gaz réactifs.",
+   "tex": "K_p = K_c\\,(R\\,T)^{\\Delta n_g}",
+   "type": "formule"
+  },
+  "scenarios_ab": {
+   "kicker": "Prédire : deux instantanés",
+   "tex": [
+    "K_c = 0{,}50 \\text{ pour la synthèse de } NH_3",
+    "Q = 0 < K_c : \\text{départ sans produit, sens direct}",
+    "Q \\approx 2{,}08 > K_c : \\text{trop de produit, sens inverse}"
+   ],
+   "titre": "Le même réacteur, deux verdicts",
+   "type": "etape"
+  },
+  "strategies": {
+   "etapes": [
+    "Calculer K : expression, tableau, valeurs",
+    "Prédire le sens : Q comparé à K",
+    "Concentrations : résoudre Q égale K",
+    "Perturbations : Le Chatelier, confirmé par Q",
+    "Seule la température modifie K"
+   ],
+   "kicker": "Quatre familles de problèmes",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "equilibre_dynamique_fig"
+   },
+   "kicker": "Chimie · Équilibres chimiques",
+   "sous": "Kc, Kp et le quotient réactionnel Q",
+   "titre": "Les constantes d'équilibre",
+   "type": "titre"
+  },
+  "traducteur": {
+   "kicker": "Le traducteur : les gaz parfaits",
+   "note": "La loi des gaz parfaits fait le pont entre les deux langues.",
+   "tex": "P_i = [i]\\,R\\,T",
+   "type": "formule"
+  },
+  "trois_visages": {
+   "kicker": "Le signe qui décide",
+   "tex": [
+    "\\Delta n_g = 0 : K_p = K_c \\text{ (} H_2 + I_2 \\rightleftharpoons 2\\,HI \\text{)}",
+    "\\Delta n_g > 0 : K_p > K_c \\text{ (} 2\\,O_3 \\rightleftharpoons 3\\,O_2 \\text{)}",
+    "\\Delta n_g < 0 : K_p < K_c \\text{ (synthèse de } NH_3 \\text{)}"
+   ],
+   "titre": "Les trois visages de delta n gaz",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  6722,
+  6723,
+  6724,
+  6725,
+  6726,
+  6727,
+  6728
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'équilibre dynamique et la constante Kc"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : l'équilibre côté gaz. Pour les mélanges gazeux, les pressions partielles sont souvent plus faciles à mesurer que les concentrations. Nous allons définir Kp, découvrir le pont qui le relie à Kc, apprendre à convertir l'un dans l'autre, puis lire la valeur de K comme un verdict sur la position de l'équilibre.",
+    "texte": "Partie 2 : Kp, et le pont entre les deux constantes."
+   },
+   "sous_titre": "Kp, le pont des constantes et la lecture de K"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : prédire, puis résoudre. Nous allons utiliser le quotient réactionnel Q pour prédire le sens d'évolution d'un mélange quelconque, puis résoudre trois problèmes complets, du tableau d'avancement au réacteur industriel en deux temps.",
+    "texte": "Partie 3 : prédire avec Q, puis résoudre."
+   },
+   "sous_titre": "Prédire avec Q et résoudre les problèmes d'équilibre"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans le cours des constantes d'équilibre. Une salle de bal où les couples se forment et se séparent sans relâche, jusqu'à ce que les deux mouvements se compensent exactement : voilà l'image d'une réaction réversible à l'équilibre. Nous allons apprendre à quantifier cet état avec deux constantes, Kc pour les concentrations et Kp pour les pressions des gaz, à passer de l'une à l'autre, puis à prédire le sens d'évolution d'un mélange grâce au quotient réactionnel Q.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Des couples qui se forment et se séparent : l'équilibre dynamique."
+  },
+  {
+   "dit": "Une réaction réversible avance dans les deux sens à la fois : les réactifs se transforment en produits, et les produits se retransforment en réactifs. L'équilibre dynamique est atteint lorsque les deux vitesses deviennent égales. Les concentrations cessent alors de changer, mais rien ne s'arrête : au niveau microscopique, la danse moléculaire continue, simplement sans vainqueur. C'est un équilibre de mouvements, pas un repos.",
+   "ecran": "equilibre",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "Vitesses directe et inverse égales : les concentrations se figent."
+  },
+  {
+   "dit": "Quatre propriétés définissent cet état. Il est dynamique, jamais statique. Il est atteignable depuis les deux côtés : partez des réactifs seuls ou des produits seuls, vous aboutirez au même point. Il paraît constant à notre échelle, car les concentrations n'évoluent plus. Et surtout, pour une réaction donnée, un seul facteur fait bouger sa constante : la température. Ni les concentrations de départ, ni la pression ne changent la valeur de K.",
+   "ecran": "caracteres",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Dynamique, réversible, constant en apparence, sensible à T."
+  },
+  {
+   "dit": "En mille huit cent soixante-quatre, les Norvégiens Guldberg et Waage énoncent la loi d'action de masse. À l'équilibre, formez le produit des concentrations des produits, chacune élevée à la puissance de son coefficient dans l'équation, et divisez par le même produit pour les réactifs. Ce rapport est constant : c'est Kc. Les crochets désignent la concentration molaire à l'équilibre, en moles par litre. Toute la suite du cours découle de cette fraction.",
+   "ecran": "loi_masse",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Kc = [produits]^coeff / [réactifs]^coeff, à l'équilibre."
+  },
+  {
+   "dit": "Exemple fondateur : la synthèse de l'ammoniac, le procédé Haber-Bosch des engrais. Un diazote et trois dihydrogènes donnent deux ammoniacs. Les produits montent au numérateur, avec l'exposant deux ; les réactifs descendent au dénominateur, l'hydrogène à la puissance trois. À quatre cent cinquante degrés, les concentrations mesurées donnent zéro virgule zéro trente-sept. Cette valeur modeste annonce déjà un équilibre plutôt favorable aux réactifs.",
+   "ecran": "haber_kc",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "N₂ + 3 H₂ ⇌ 2 NH₃ : Kc ≈ 0,037 à 450 °C."
+  },
+  {
+   "dit": "Cinq règles gouvernent l'écriture de ces expressions. On n'y met que les valeurs à l'équilibre, jamais les valeurs de départ. Les solides et les liquides purs n'y figurent pas : leur concentration constante est absorbée dans la valeur de K. Les gaz et les espèces en solution aqueuse, eux, apparaissent. Les coefficients de l'équation deviennent les exposants. Et l'expression dépend de l'écriture choisie : changer l'équation, c'est changer la constante.",
+   "ecran": "regles",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Solides et liquides purs : hors de l'expression."
+  },
+  {
+   "dit": "La calcination du calcaire illustre l'exclusion des solides. Le carbonate de calcium solide se décompose en oxyde de calcium solide et en dioxyde de carbone gazeux. Dans l'expression, les deux solides disparaissent : Kc se réduit à la concentration du dioxyde de carbone, et Kp à sa pression partielle. Même simplification en métallurgie, où l'oxyde de fer solide est réduit par le monoxyde de carbone : seuls les gaz comptent.",
+   "ecran": "heterogene",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "CaCO₃(s) ⇌ CaO(s) + CO₂(g) : Kc = [CO₂]."
+  },
+  {
+   "dit": "Passons au calcul, avec une méthode en quatre étapes. D'abord, écrire l'équation équilibrée : une erreur de coefficient fausserait tout. Ensuite, écrire l'expression algébrique de Kc d'après cette équation. Troisième étape, la plus délicate : déterminer toutes les concentrations à l'équilibre, souvent à l'aide d'un tableau d'avancement. Enfin, substituer et calculer, en respectant les puissances. Suivez l'ordre, les erreurs disparaissent presque toutes.",
+   "ecran": "methode_kc",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Équation, expression, concentrations, calcul."
+  },
+  {
+   "dit": "L'exemple classique est la synthèse de l'iodure d'hydrogène, étudiée par Guldberg et Waage eux-mêmes. Dans un litre, une mole d'hydrogène et une mole de diiode réagissent ; à l'équilibre, il reste zéro virgule vingt-deux mole d'hydrogène. Le tableau d'avancement livre alors les autres valeurs : autant de diiode, et une virgule cinquante-six mole d'iodure formé. Le calcul donne Kc voisin de cinquante : à l'équilibre, le produit domine nettement.",
+   "ecran": "exemple_hi",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "H₂ + I₂ ⇌ 2 HI : Kc ≈ 50 à 450 °C."
+  },
+  {
+   "dit": "Quand les concentrations à l'équilibre sont mesurées directement, le calcul devient une simple substitution. Pour la synthèse de l'ammoniac, dans deux litres : zéro virgule cinquante pour le diazote, zéro virgule soixante-quinze pour le dihydrogène, une virgule cinquante pour l'ammoniac. Attention au cube de l'hydrogène : son coefficient trois pèse lourd dans le résultat. On obtient Kc voisin de dix virgule sept, un équilibre modérément favorable aux produits.",
+   "ecran": "exemple_nh3",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Attention au cube : [H₂]³ pèse lourd."
+  },
+  {
+   "dit": "Récapitulons cette première partie. L'équilibre est un état dynamique où deux vitesses s'égalisent. La loi d'action de masse le quantifie par Kc : produits sur réactifs, chacun à la puissance de son coefficient, solides et liquides purs exclus. Kc se calcule à partir des concentrations à l'équilibre, retrouvées par le tableau d'avancement, et sa valeur ne dépend que de la température.",
+   "ecran": "recap1",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Kc : la loi d'action de masse, en une fraction."
+  },
+  {
+   "dit": "Pour les gaz, chaque espèce contribue à la pression totale selon sa part : sa pression partielle est la pression qu'elle exercerait si elle occupait seule tout le volume. Kp remplace alors les concentrations par ces pressions partielles dans la même fraction : produits au numérateur, réactifs au dénominateur, coefficients en exposants. Même grammaire que Kc, autre langue : celle des pressions.",
+   "ecran": "kp_formule",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "La pression partielle : la part de chaque gaz."
+  },
+  {
+   "dit": "Le traducteur entre les deux langues est la loi des gaz parfaits. Pour un gaz, la pression partielle égale sa concentration multipliée par R fois T : la constante des gaz parfaits, fois la température absolue en kelvins. Chaque pression de l'expression de Kp peut donc se réécrire en concentration. C'est cette substitution systématique qui va construire le pont entre les deux constantes.",
+   "ecran": "traducteur",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "P = [X] × RT : le traducteur universel."
+  },
+  {
+   "dit": "Écrire Kp commence par compter les moles de gaz. Pour la synthèse de l'ammoniac : deux moles de gaz produites contre quatre consommées, la variation vaut moins deux. Pour la dissociation du tétroxyde de diazote en deux dioxydes d'azote : deux moles contre une, la variation vaut plus un. Cette variation, delta n gaz, ne compte que les espèces gazeuses ; les solides et les liquides en sont exclus, comme des expressions elles-mêmes.",
+   "ecran": "ecriture_kp",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Δn gaz : produits moins réactifs, gaz seuls."
+  },
+  {
+   "dit": "Voici le pont, en une formule : Kp égale Kc multiplié par R T élevé à la puissance delta n gaz. Toute la physique tient dans l'exposant : la différence entre les moles de gaz des produits et celles des réactifs. Si la réaction ne change pas le nombre de moles gazeuses, le facteur vaut un et les deux constantes coïncident. Sinon, le facteur R T, presque toujours supérieur à un aux températures usuelles, creuse l'écart.",
+   "ecran": "relation",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Kp = Kc (RT)^Δn : le pont."
+  },
+  {
+   "dit": "Trois visages pour delta n gaz. S'il est nul, comme dans la synthèse de l'iodure d'hydrogène, Kp égale Kc, aucune conversion. S'il est positif, comme quand deux ozones deviennent trois dioxygènes, Kp dépasse Kc. S'il est négatif, comme dans la synthèse de l'ammoniac, Kp tombe sous Kc. Retenez le signe : il annonce à l'avance si la conversion gonfle ou écrase la valeur de la constante.",
+   "ecran": "trois_visages",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Δn nul, positif, négatif : trois conversions."
+  },
+  {
+   "dit": "Conversion complète, sur la synthèse de l'ammoniac à cinq cents degrés. Kc vaut zéro virgule quarante ; delta n gaz vaut moins deux ; la température absolue vaut sept cent soixante-treize kelvins, et R T environ soixante-trois virgule quarante-six. Kp égale donc zéro virgule quarante divisé par soixante-trois virgule quarante-six au carré : environ neuf virgule neuf fois dix puissance moins cinq. L'écart est immense, et le signe de delta n l'expliquait.",
+   "ecran": "conversion",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Kc = 0,40 → Kp ≈ 9,9 × 10⁻⁵ à 500 °C."
+  },
+  {
+   "dit": "Kp peut aussi se calculer directement, à partir des pressions mesurées. Le tétroxyde de diazote se dissocie en dioxyde d'azote, le gaz brun des flacons de laboratoire. À cent degrés, la pression totale et le nombre de moles donnent les pressions partielles : zéro virgule huit cent vingt et un atmosphère pour le tétroxyde, zéro virgule six cent quarante pour le dioxyde. Kp vaut environ zéro virgule cinquante : le dimère, côté réactifs, est légèrement favorisé.",
+   "ecran": "n2o4",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "N₂O₄ ⇌ 2 NO₂ : Kp ≈ 0,50 à 100 °C."
+  },
+  {
+   "dit": "Autre lecture du même équilibre, celle de l'élément visuel de la leçon : dans un mélange à dix atmosphères, le diazote pèse deux atmosphères, le dihydrogène quatre virgule cinq, l'ammoniac trois virgule cinq. La fraction de Kp donne environ zéro virgule zéro soixante-sept. Retenez le réflexe : des pressions partielles mesurées à l'équilibre suffisent, sans passer par les concentrations.",
+   "ecran": "ammoniac_press",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "P totale 10 atm : Kp ≈ 0,067."
+  },
+  {
+   "dit": "Application industrielle : le reformage du méthane produit l'hydrogène des raffineries. Méthane et vapeur d'eau y donnent monoxyde de carbone et trois dihydrogènes, avec un delta n gaz de plus deux. À mille kelvins, les pressions partielles mesurées conduisent à Kp voisin de quarante-neuf virgule cinq. Une constante largement supérieure à un : dans ces conditions, la réaction sert bien la production d'hydrogène, et les ingénieurs règlent le réacteur en conséquence.",
+   "ecran": "reformage",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Reformage du méthane : Kp ≈ 49,5 à 1000 K."
+  },
+  {
+   "dit": "Que raconte la valeur de K ? Imaginez une balance : à gauche les réactifs, à droite les produits. Si K est très grand devant un, le plateau des produits s'écrase : l'équilibre les favorise presque exclusivement, la réaction est quasi complète. Si K voisine un, les deux camps coexistent en quantités comparables. Si K est très petit devant un, les réactifs gardent presque tout : la réaction directe ne démarre pratiquement pas.",
+   "ecran": "echelle",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "K très grand, voisin de 1, très petit."
+  },
+  {
+   "dit": "Trois constantes, trois destins. La combustion du dihydrogène affiche un Kp de l'ordre de dix puissance quarante : mis ensemble, hydrogène et oxygène deviennent presque intégralement de la vapeur d'eau. La synthèse de l'iodure d'hydrogène, avec son Kc voisin de cinquante, garde un vrai mélange des trois espèces. Et la décomposition du monoxyde d'azote, Kp de l'ordre de dix puissance moins trente, n'a tout simplement pas lieu : le flacon reste intact.",
+   "ecran": "histoires",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "10⁴⁰, 50, 10⁻³⁰ : trois destins."
+  },
+  {
+   "dit": "Trois limites à garder en tête. D'abord, K ne dit rien de la vitesse : une réaction au verdict écrasant peut exiger un catalyseur ou ne jamais démarrer sans étincelle. Ensuite, K ne vaut qu'à la température où il est donné : il peut chuter ou grimper fortement quand elle change. Enfin, K dépend de l'écriture : diviser l'équation par deux remplace la constante par sa racine carrée. Le verdict qualitatif survit, le nombre change.",
+   "ecran": "limites",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "K ne parle ni de vitesse, ni d'une autre température."
+  },
+  {
+   "dit": "Pour un mélange quelconque, hors équilibre, on calcule le quotient réactionnel Q : exactement la même fraction que K, mais avec les concentrations ou les pressions de l'instant présent. Q est le sismographe du système : il photographie où il se trouve. K, lui, indique la cible, la composition d'équilibre. Toute la prédiction tient alors dans une comparaison entre la photographie et la cible.",
+   "ecran": "quotient",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Q : la même fraction, à l'instant présent."
+  },
+  {
+   "dit": "La règle d'or compte trois cas. Si Q est inférieur à K, le mélange manque de produits : la réaction avance dans le sens direct pour en fabriquer. Si Q égale K, le système est à l'équilibre : aucune évolution nette. Si Q dépasse K, les produits sont en excès : la réaction repart en sens inverse pour en consommer. Mnémonique : K est la cible, Q doit la rejoindre, par la gauche ou par la droite.",
+   "ecran": "regle_or",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Q < K : direct. Q = K : équilibre. Q > K : inverse."
+  },
+  {
+   "dit": "Démonstration sur la synthèse de l'ammoniac, pour une constante Kc de zéro virgule cinquante. Premier instantané : le réacteur ne contient que diazote et dihydrogène, aucun ammoniac. Q vaut zéro, très sous la cible : le système évolue dans le sens direct. Second instantané, plus tard : les concentrations donnent Q voisin de deux virgule zéro huit, au-dessus de la cible cette fois. Le système repart en sens inverse, et décompose une partie de l'ammoniac formé.",
+   "ecran": "scenarios_ab",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Q = 0 puis Q ≈ 2,08, pour Kc = 0,50."
+  },
+  {
+   "dit": "Le système évolue donc jusqu'à ce que Q rejoigne exactement K. À cet instant, les vitesses directe et inverse s'égalisent à nouveau : c'est l'équilibre dynamique du début du cours, retrouvé par le calcul. Tout ajout de réactif relancerait la machine : Q chuterait aussitôt sous K, et le sens direct reprendrait pour consommer une partie de l'ajout. Le système chasse toujours l'écart entre Q et K.",
+   "ecran": "equilibre_retrouve",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "L'évolution s'arrête quand Q rejoint K."
+  },
+  {
+   "dit": "Problème complet : la synthèse de l'ammoniac à cinq cents degrés, dans deux litres, avec un départ déjà chargé en ammoniac. À l'équilibre, on mesure zéro virgule huit mole d'ammoniac. Le tableau d'avancement donne l'avancement : zéro virgule cinq plus deux x égale zéro virgule huit, donc x vaut zéro virgule quinze mole. Les concentrations suivent : zéro virgule quarante pour l'ammoniac, zéro virgule quatre cent vingt-cinq pour le diazote, une virgule deux cent soixante-quinze pour l'hydrogène.",
+   "ecran": "probleme1_x",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "x = 0,15 mol : le tableau d'avancement parle."
+  },
+  {
+   "dit": "La substitution donne Kc environ zéro virgule cent quatre-vingt-deux. La conversion, avec delta n gaz de moins deux et R T de soixante-trois virgule quarante-six, livre Kp environ quatre virgule cinq fois dix puissance moins cinq. Dernière question : si l'on double le volume, les pressions chutent, et l'équilibre se déplace vers le côté le plus riche en moles de gaz, c'est-à-dire vers les réactifs ; à l'inverse, les hautes pressions du procédé Haber-Bosch poussent vers l'ammoniac.",
+   "ecran": "probleme1_kp",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Kp ≈ 4,5 × 10⁻⁵ ; doubler V déplace vers les réactifs."
+  },
+  {
+   "dit": "Second problème : la décomposition du carbonate de calcium, équilibre hétérogène par excellence. Seul le dioxyde de carbone est gazeux : Kp se réduit à sa pression d'équilibre, zéro virgule deux cent vingt atmosphère à huit cents degrés. Kc en découle, environ deux virgule cinquante fois dix puissance moins trois mole par litre. Conséquence concrète : dans un récipient d'un litre, le carbonate ne se décompose qu'à hauteur d'environ zéro virgule deux cent cinquante gramme, même si l'on en introduit davantage.",
+   "ecran": "probleme2",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Kp = P(CO₂) = 0,220 atm à 800 °C."
+  },
+  {
+   "dit": "Troisième problème, en milieu industriel : deux réacteurs en série pour une réaction dont Kc vaut quatre. Premier réflexe, vérifier le premier réacteur, annoncé à l'équilibre. Ses concentrations donnent Q égale seize, et non quatre. Verdict : malgré l'annonce, ce mélange n'est pas à l'équilibre ; il devrait encore évoluer en sens inverse. Ne croyez jamais une étiquette : calculez Q, puis comparez à K.",
+   "ecran": "reacteur1",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Q = 16 ≠ Kc = 4 : pas d'équilibre, malgré l'annonce."
+  },
+  {
+   "dit": "Le mélange passe dans le second réacteur, plus petit, augmenté d'un ajout du réactif A. Le quotient initial y vaut environ quatre virgule cinquante-sept, juste au-dessus de Kc : l'évolution repart donc en sens inverse, mais faiblement. Le tableau d'avancement conduit à une équation du second degré dont la racine physique donne x environ trois millièmes de mole par litre. Vérification faite, les concentrations finales redonnent exactement quatre : le nouvel équilibre est atteint.",
+   "ecran": "reacteur2",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Q₀ ≈ 4,57 > 4 : retour inverse, x ≈ 0,003 M."
+  },
+  {
+   "dit": "Quatre familles de problèmes, quatre stratégies. Pour calculer K : expression, tableau d'avancement, valeurs d'équilibre. Pour prédire un sens : calculer Q, le comparer à K. Pour trouver les concentrations finales : poser le tableau avec x, résoudre l'égalité de Q et de K, écarter les racines impossibles. Pour une perturbation : raisonner avec Le Chatelier, puis confirmer par le calcul de Q. Une constante traverse tout : seule la température modifie K.",
+   "ecran": "strategies",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Quatre familles de problèmes, quatre réflexes."
+  },
+  {
+   "dit": "Vous voici au bout du cours. L'équilibre chimique est une danse sans fin que deux constantes décrivent, Kc pour les concentrations, Kp pour les pressions, reliées par le facteur R T à la puissance delta n gaz. La valeur de K dit où siège l'équilibre ; la comparaison de Q à K dit où va le système ; le tableau d'avancement transforme ces verdicts en nombres. La loi d'action de masse de Guldberg et Waage, vieille de plus d'un siècle et demi, reste la boussole des réacteurs du monde entier.",
+   "ecran": "recap_final",
+   "id": "p34",
+   "pause_apres": 0.8,
+   "texte": "Kc, Kp, Q : la boussole des équilibres."
+  }
+ ],
+ "titre": "Les constantes d'équilibre : Kc, Kp et le quotient réactionnel"
+}
