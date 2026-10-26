@@ -3739,6 +3739,18 @@ const FIG = {
       trait(452, 150, 518, 150, 1, { w: 3 }) + pointe(522, 150, 0, 'currentColor') + pointe(448, 150, 180, 'currentColor') +
       mot(500, 262, 'deux formes mésomères : la charge voyage', { t: 20 }));
   },
+  quotient_q_fig(t) {
+    const becher = (x, trouble, depot) =>
+      `<path d="M${x} 70 L${x} 200 Q${x} 226 ${x + 26} 226 L${x + 134} 226 Q${x + 160} 226 ${x + 160} 200 L${x + 160} 70" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      (trouble ? `<rect x="${x + 8}" y="112" width="144" height="100" fill="#B8860B" fill-opacity=".16"/>` : '') +
+      (depot ? `<rect x="${x + 10}" y="204" width="140" height="14" fill="#B8860B" fill-opacity=".55"/>` : '');
+    return svgBoite(
+      becher(120, false, false) + becher(420, false, true) + becher(720, true, true) +
+      mot(200, 258, 'Q < Ks : insaturée', { t: 19 }) +
+      mot(500, 258, 'Q = Ks : équilibre', { c: '#1A75FF', t: 19 }) +
+      mot(800, 258, 'Q > Ks : précipité', { c: '#E8604C', t: 19 }) +
+      mot(500, 44, 'comparer Q au produit de solubilité Ks', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

@@ -1,0 +1,571 @@
+{
+ "cours": 6367,
+ "titre": "Les réactions de précipitation : quand les ions deviennent un solide",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Précipitations",
+   "titre": "Les réactions de précipitation : quand les ions deviennent un solide",
+   "sous": "Règles de solubilité, équations ioniques, produit de solubilité et applications",
+   "anim": {
+    "nom": "precipite_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Deux solutions limpides, un mélange : un solide apparaît."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La définition",
+   "tex": "A^{a+}(aq) + B^{b-}(aq) \\rightarrow AB_{(s)} \\downarrow",
+   "note": "Des ions dissous se combinent : un solide insoluble se sépare."
+  },
+  "acteurs": {
+   "type": "etape",
+   "kicker": "Les acteurs",
+   "titre": "Cations, anions et sels",
+   "tex": [
+    "\\text{cations : ions chargés positivement, } Na^+, Ca^{2+}, Ag^+, Pb^{2+}",
+    "\\text{anions : ions chargés négativement, } Cl^-, SO_4^{2-}, OH^-",
+    "\\text{sels : composés ioniques neutres, } NaCl, AgNO_3, BaSO_4"
+   ]
+  },
+  "regles_toujours": {
+   "type": "etape",
+   "kicker": "Les règles de solubilité",
+   "titre": "Toujours solubles, sans exception",
+   "tex": [
+    "\\text{nitrates } NO_3^- \\text{ : tous solubles}",
+    "\\text{acétates } CH_3COO^- \\text{ : tous solubles}",
+    "\\text{alcalins } (Li^+, Na^+, K^+) \\text{ et ammonium } NH_4^+ \\text{ : tous solubles}",
+    "\\text{moyen mnémotechnique : NAP SChé}"
+   ]
+  },
+  "regles_exceptions": {
+   "type": "etape",
+   "kicker": "Les règles de solubilité",
+   "titre": "Solubles, sauf exceptions à connaître",
+   "tex": [
+    "Cl^-, Br^-, I^- \\text{ solubles, sauf } Ag^+, Pb^{2+}, Hg_2^{2+}",
+    "SO_4^{2-} \\text{ solubles, sauf } Ca^{2+}, Sr^{2+}, Ba^{2+}, Pb^{2+}, Ag^+",
+    "OH^- \\text{ insolubles, sauf alcalins } (Ba^{2+}, Sr^{2+}, Ca^{2+} \\text{ modérés})",
+    "S^{2-}, CO_3^{2-}, PO_4^{3-} \\text{ insolubles, sauf alcalins et } NH_4^+"
+   ]
+  },
+  "test_chlorure": {
+   "type": "etape",
+   "kicker": "Application : le test des ions",
+   "titre": "Détecter les ions chlorure",
+   "tex": [
+    "\\text{échantillon} + \\text{quelques gouttes de } AgNO_3",
+    "Ag^+ + Cl^- \\rightarrow AgCl_{(s)} \\downarrow \\text{ : blanc, noircit à la lumière}",
+    "\\text{le nitrate reste spectateur : aucun précipité parasite}"
+   ],
+   "anim": {
+    "nom": "precipite_fig",
+    "hauteur": 110
+   }
+  },
+  "prediction": {
+   "type": "etape",
+   "kicker": "Prédire une précipitation",
+   "titre": "Nitrate d'argent et chlorure de sodium",
+   "tex": [
+    "\\text{ions présents : } Ag^+, NO_3^-, Na^+, Cl^-",
+    "\\text{paires possibles : } AgCl \\text{ et } NaNO_3",
+    "AgCl \\text{ insoluble : il précipite} \\qquad NaNO_3 \\text{ soluble : il reste dissous}"
+   ]
+  },
+  "trois_ecritures": {
+   "type": "etape",
+   "kicker": "Les trois écritures",
+   "titre": "La neige dorée : iodure de plomb",
+   "tex": [
+    "Pb(NO_3)_2 + 2\\,KI \\rightarrow PbI_{2(s)} \\downarrow + 2\\,KNO_3 \\text{ (moléculaire)}",
+    "Pb^{2+} + 2\\,NO_3^- + 2\\,K^+ + 2\\,I^- \\rightarrow PbI_{2(s)} + 2\\,K^+ + 2\\,NO_3^- \\text{ (complète)}",
+    "Pb^{2+} + 2\\,I^- \\rightarrow PbI_{2(s)} \\downarrow \\text{ (nette)}"
+   ]
+  },
+  "methode_equations": {
+   "type": "etape",
+   "kicker": "Le guide pratique",
+   "titre": "De la moléculaire à la nette",
+   "tex": [
+    "\\text{1. échanger les ions, repérer le composé insoluble}",
+    "\\text{2. équation moléculaire équilibrée, états précisés}",
+    "\\text{3. ionique complète : dissocier les électrolytes forts}",
+    "\\text{4. barrer les spectateurs} \\qquad \\text{5. nette : masse et charge vérifiées}"
+   ]
+  },
+  "baso4_cas": {
+   "type": "formule",
+   "kicker": "Étude de cas",
+   "tex": "Ba^{2+}(aq) + SO_4^{2-}(aq) \\rightarrow BaSO_{4(s)} \\downarrow",
+   "note": "Les ions baryum libres, toxiques, sont séquestrés par le solide."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Un précipité : un solide insoluble naît",
+    "Nitrates, acétates, alcalins : solubles",
+    "Exceptions : argent, plomb, baryum",
+    "Ionique nette : les spectateurs sortent",
+    "Masse et charge équilibrées, toujours"
+   ]
+  },
+  "equilibre": {
+   "type": "formule",
+   "kicker": "La solution saturée",
+   "tex": "A_xB_y(s) \\rightleftharpoons x\\,A^{y+}(aq) + y\\,B^{x-}(aq)",
+   "note": "À saturation, dissolution et précipitation avancent au même rythme."
+  },
+  "expression_ks": {
+   "type": "formule",
+   "kicker": "Le produit de solubilité",
+   "tex": "K_s = [A^{y+}]^x \\, [B^{x-}]^y",
+   "note": "Le solide pur est absent : sa concentration reste constante."
+  },
+  "methode_ks": {
+   "type": "etape",
+   "kicker": "La démarche",
+   "titre": "De la solubilité au produit",
+   "tex": [
+    "\\text{1. écrire la dissolution du composé}",
+    "\\text{2. concentrations des ions en fonction de } s",
+    "\\text{3. substituer dans l'expression de } K_s",
+    "\\text{4. calculer la valeur numérique}"
+   ]
+  },
+  "exemple_agcl": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un cation, un anion : le carré",
+   "tex": [
+    "AgCl_{(s)} \\rightleftharpoons Ag^+ + Cl^-",
+    "s = 1{,}3 \\times 10^{-5}\\ \\text{mol/L} \\qquad [Ag^+] = [Cl^-] = s",
+    "K_s = s \\times s = s^2 = (1{,}3 \\times 10^{-5})^2 = 1{,}7 \\times 10^{-10}"
+   ]
+  },
+  "exemple_caf2": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "Un cation, deux anions : quatre s cube",
+   "tex": [
+    "CaF_{2(s)} \\rightleftharpoons Ca^{2+} + 2\\,F^-",
+    "s = 2{,}1 \\times 10^{-4}\\ \\text{mol/L} \\qquad [Ca^{2+}] = s,\\ [F^-] = 2s",
+    "K_s = s \\times (2s)^2 = 4s^3 = 3{,}7 \\times 10^{-11}"
+   ]
+  },
+  "tableau_ks": {
+   "type": "etape",
+   "kicker": "Le tableau comparatif",
+   "titre": "Quatre sels, quatre ordres de grandeur",
+   "tex": [
+    "AgCl : K_s = s^2 = 1{,}7 \\times 10^{-10}",
+    "PbI_2 : K_s = 4s^3 = 1{,}4 \\times 10^{-8}",
+    "BaSO_4 : K_s = s^2 = 1{,}1 \\times 10^{-10}",
+    "Fe(OH)_3 : K_s = 27s^4 = 2{,}8 \\times 10^{-39}"
+   ]
+  },
+  "quotient_q": {
+   "type": "etape",
+   "kicker": "Le quotient ionique",
+   "titre": "Trois cas, trois destins",
+   "tex": [
+    "Q < K_s \\text{ : insaturée, rien ne précipite}",
+    "Q = K_s \\text{ : saturée, équilibre avec le solide}",
+    "Q > K_s \\text{ : sursaturée, le précipité se forme}"
+   ],
+   "anim": {
+    "nom": "quotient_q_fig",
+    "hauteur": 110
+   }
+  },
+  "detection_sulfate": {
+   "type": "etape",
+   "kicker": "Application : détecter les sulfates",
+   "titre": "Le quotient tranche : oui, des sulfates",
+   "tex": [
+    "[Ba^{2+}] = 0{,}01 \\qquad [SO_4^{2-}] = 0{,}005 \\qquad K_s(BaSO_4) = 1{,}1 \\times 10^{-10}",
+    "Q = 0{,}01 \\times 0{,}005 = 5{,}0 \\times 10^{-5}",
+    "Q \\gg K_s \\text{ : le précipité de } BaSO_4 \\text{ se forme}"
+   ]
+  },
+  "ion_commun": {
+   "type": "etape",
+   "kicker": "L'effet d'ion commun",
+   "titre": "Le Chatelier écrase la solubilité",
+   "tex": [
+    "AgCl \\text{ dans } NaCl\\ 0{,}1\\ \\text{mol/L} : [Cl^-] \\approx 0{,}1",
+    "s' = \\tfrac{K_s}{0{,}1} = \\tfrac{1{,}7 \\times 10^{-10}}{0{,}1} = 1{,}7 \\times 10^{-9}\\ \\text{mol/L}",
+    "\\text{solubilité divisée par environ } 7\\,600"
+   ]
+  },
+  "facteurs": {
+   "type": "etape",
+   "kicker": "pH et complexes",
+   "titre": "Acidifier ou complexer pour dissoudre",
+   "tex": [
+    "Mg(OH)_2 + 2\\,H_3O^+ \\rightarrow Mg^{2+} + 4\\,H_2O \\text{ : l'acide dissout}",
+    "\\text{les } OH^- \\text{ consommés déplacent l'équilibre vers la dissolution}",
+    "AgCl + 2\\,S_2O_3^{2-} \\rightarrow [Ag(S_2O_3)_2]^{3-} + Cl^- \\text{ : le fixateur photo}"
+   ]
+  },
+  "enquete_plomb": {
+   "type": "etape",
+   "kicker": "Exercice intégratif",
+   "titre": "Au seuil de précipitation, on lit la concentration",
+   "tex": [
+    "PbI_2 : K_s = 8{,}7 \\times 10^{-9} \\qquad [I^-] = 0{,}1\\ \\text{mol/L au seuil}",
+    "[Pb^{2+}] = \\tfrac{8{,}7 \\times 10^{-9}}{(0{,}1)^2} = 8{,}7 \\times 10^{-7}\\ \\text{mol/L}",
+    "\\text{soit } 0{,}18\\ \\text{mg/L, pour une norme de } 0{,}01\\ \\text{mg/L}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Ks : les ions à l'équilibre, en puissance",
+    "Depuis s : s², 4s³ ou 27s⁴ selon le sel",
+    "Q contre Ks : le destin du mélange",
+    "Ion commun : la solubilité s'effondre",
+    "pH et complexes déplacent l'équilibre"
+   ]
+  },
+  "separation": {
+   "type": "etape",
+   "kicker": "La précipitation sélective",
+   "titre": "Trois cations, deux réactifs, un ordre",
+   "tex": [
+    "\\text{mélange : } Ag^+, Ba^{2+}, Ni^{2+}",
+    "HCl \\text{ dilué} \\rightarrow AgCl_{(s)} \\text{ blanc : argent séparé}",
+    "H_2SO_4 \\text{ dilué} \\rightarrow BaSO_{4(s)} \\text{ blanc : baryum séparé}",
+    "\\text{le filtrat final ne garde que } Ni^{2+}"
+   ]
+  },
+  "mohr": {
+   "type": "etape",
+   "kicker": "Le titrage par précipitation",
+   "titre": "Le rouge brique annonce la fin",
+   "tex": [
+    "Ag^+ + Cl^- \\rightarrow AgCl_{(s)} \\text{ blanc, tant que les chlorures durent}",
+    "\\text{excès de } Ag^+ + CrO_4^{2-} \\rightarrow Ag_2CrO_4 \\text{ rouge brique}",
+    "V_{eq} = 20{,}0\\ \\text{mL de } AgNO_3\\ 0{,}100 \\Rightarrow C(Cl^-) = 0{,}200\\ \\text{mol/L}"
+   ]
+  },
+  "mesure_ks": {
+   "type": "etape",
+   "kicker": "Mesurer un produit de solubilité",
+   "titre": "Saturer, filtrer, titrer",
+   "tex": [
+    "\\text{solution saturée de } Ca(OH)_2 \\text{ filtrée, à température constante}",
+    "25{,}0\\ \\text{mL titrés par } HCl\\ 0{,}0500 : V = 10{,}4\\ \\text{mL}",
+    "[OH^-] = 0{,}0208 \\qquad [Ca^{2+}] = \\tfrac{1}{2}[OH^-] = 0{,}0104",
+    "K_s = [Ca^{2+}][OH^-]^2 \\approx 4{,}5 \\times 10^{-6}"
+   ]
+  },
+  "signatures": {
+   "type": "etape",
+   "kicker": "Les tests d'identification",
+   "titre": "Chaque précipité a sa couleur",
+   "tex": [
+    "Pb^{2+} + KI : PbI_2 \\text{ jaune vif}",
+    "Fe^{3+} + NaOH : Fe(OH)_3 \\text{ brun rouille}",
+    "Cl^- + AgNO_3 : AgCl \\text{ blanc, noircit à la lumière}",
+    "SO_4^{2-} + BaCl_2 : BaSO_4 \\text{ blanc, insoluble dans les acides}"
+   ]
+  },
+  "gravimetrie": {
+   "type": "etape",
+   "kicker": "La gravimétrie",
+   "titre": "Précipiter, filtrer, sécher, peser",
+   "tex": [
+    "\\text{acidifier : empêcher les coprécipitations}",
+    "BaCl_2 \\text{ en excès} : Ba^{2+} + SO_4^{2-} \\rightarrow BaSO_{4(s)}",
+    "\\text{filtrer, laver, sécher, peser } BaSO_4",
+    "\\text{la masse du solide donne la teneur en sulfate}"
+   ]
+  },
+  "eaux": {
+   "type": "etape",
+   "kicker": "Le traitement des eaux",
+   "titre": "Flocs, calcaire et phosphates",
+   "tex": [
+    "Al_2(SO_4)_3 \\text{ ou } FeCl_3 \\rightarrow Al(OH)_3, Fe(OH)_3 \\text{ gélatineux : les flocs}",
+    "Ca^{2+} + CO_3^{2-} \\rightarrow CaCO_{3(s)} \\qquad Mg^{2+} + 2\\,OH^- \\rightarrow Mg(OH)_{2(s)}",
+    "Fe^{3+} + PO_4^{3-} \\rightarrow FePO_{4(s)} \\quad K_s = 1{,}3 \\times 10^{-22}"
+   ]
+  },
+  "cas_phosphate": {
+   "type": "etape",
+   "kicker": "Étude de cas : les phosphates",
+   "titre": "Un abattement presque total",
+   "tex": [
+    "[PO_4^{3-}] = 5{,}0 \\times 10^{-4} \\qquad [Fe^{3+}] = 7{,}0 \\times 10^{-4}\\ \\text{mol/L}",
+    "Q = 3{,}5 \\times 10^{-7} \\gg K_s = 1{,}3 \\times 10^{-22}",
+    "[PO_4^{3-}]_{res} \\approx \\tfrac{K_s}{[Fe^{3+}]} \\approx 6{,}5 \\times 10^{-19}\\ \\text{mol/L}"
+   ]
+  },
+  "grottes": {
+   "type": "formule",
+   "kicker": "La géochimie des grottes",
+   "tex": "CaCO_{3(s)} + CO_2 + H_2O \\rightleftharpoons Ca^{2+} + 2\\,HCO_3^-",
+   "note": "Le dioxyde de carbone s'échappe : la calcite précipite, goutte à goutte."
+  },
+  "medecine": {
+   "type": "etape",
+   "kicker": "Médecine, reins et mines",
+   "titre": "Du baryum inerte aux calculs rénaux",
+   "tex": [
+    "BaSO_4 : s = 1{,}0 \\times 10^{-5}\\ \\text{mol/L de } Ba^{2+} \\text{ libre : inerte}",
+    "CaC_2O_4 \\text{ (calculs rénaux) : diluer pour garder } Q < K_s",
+    "Fe + Cu^{2+} \\rightarrow Fe^{2+} + Cu \\text{ : le ciment de cuivre des mines}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Prédire : règles, puis Q contre Ks",
+    "Écrire : moléculaire, ionique, nette",
+    "Séparer : la précipitation sélective",
+    "Doser : Mohr et gravimétrie",
+    "Purifier : eaux, médecine, industrie"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "texte": "Des ions en solution deviennent un solide.",
+   "dit": "Bienvenue dans ce cours consacré aux réactions de précipitation, ce moment spectaculaire où deux solutions limpides donnent naissance à un solide. Nous allons d'abord rencontrer le phénomène et ses acteurs, les ions, puis apprendre les règles de solubilité qui permettent de prédire la formation d'un précipité. Nous écrirons ensuite ces réactions à trois niveaux, de l'équation moléculaire à l'équation ionique nette. Enfin, nous quantifierons l'équilibre avec le produit de solubilité, avant de voir ces réactions à l'œuvre : traitement des eaux, analyse chimique et médecine."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "texte": "Deux solutions limpides, un mélange : un solide apparaît.",
+   "dit": "Imaginez deux solutions limpides, transparentes comme de l'eau de roche. Vous les mélangez doucement, et soudain un nuage opaque apparaît, se densifie, puis dépose au fond du récipient une poudre solide. Ce n'est pas de la magie : c'est une danse d'ions, régie par des lois précises. Pensez au sucre dans l'eau : il se dissout, jusqu'au moment où la solution, saturée, laisse les cristaux s'accumuler au fond. Le mélange de deux solutions peut créer d'un coup une sursaturation locale pour un composé donné, qui sort alors de la solution sous forme solide."
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "texte": "Un cation + un anion → un solide insoluble.",
+   "dit": "Voici la définition. Une réaction de précipitation est une réaction en solution aqueuse au cours de laquelle des ions dissous se combinent pour former un composé solide, insoluble, qui se sépare de la solution : ce solide est le précipité. Le principe est simple : lorsque la quantité d'ions dépasse la solubilité maximale du composé qu'ils peuvent former, ce composé sort de la solution. L'équation générale est à l'écran : un cation et un anion dissous donnent le solide, signalé par sa flèche vers le bas."
+  },
+  {
+   "id": "p04",
+   "ecran": "acteurs",
+   "texte": "Cations +, anions −, sels neutres.",
+   "dit": "Pour comprendre la précipitation, il faut connaître ses acteurs. Les cations sont les ions chargés positivement : sodium, calcium, argent ou plomb, par exemple. Les anions sont les ions chargés négativement : chlorure, sulfate ou hydroxyde. En se combinant, cations et anions forment des sels, composés ioniques électriquement neutres. La réaction de précipitation est alors une rencontre : celle d'un cation et d'un anion qui forment un sel dont la solubilité, dans les conditions de l'expérience, est très faible."
+  },
+  {
+   "id": "p05",
+   "ecran": "regles_toujours",
+   "texte": "Nitrates, acétates, alcalins : toujours solubles.",
+   "dit": "Comment prédire si un sel va précipiter ? Les chimistes disposent de règles de solubilité empiriques, forgées par des siècles d'observations. Premier bloc, les composés toujours solubles : tous les nitrates, sans aucune exception ; tous les acétates ; et tous les sels des métaux alcalins, lithium, sodium, potassium, ainsi que les sels d'ammonium. Pour les retenir, les leçons proposent un moyen mnémotechnique : NAP SChé, pour nitrates, alcalins, ammonium et potassium."
+  },
+  {
+   "id": "p06",
+   "ecran": "regles_exceptions",
+   "texte": "Halogénures, sulfates, hydroxydes : les exceptions.",
+   "dit": "Deuxième bloc : les familles solubles, mais avec des exceptions célèbres. Les chlorures, bromures et iodures sont solubles, sauf ceux de l'argent, du plomb et du mercure : c'est l'exception du chlorure d'argent, que nous retrouverons partout. Les sulfates sont solubles, sauf ceux du calcium, du strontium, du baryum, du plomb et de l'argent. À l'inverse, les hydroxydes sont presque tous insolubles, sauf ceux des alcalins, ceux du baryum, du strontium et du calcium restant modérément solubles. Enfin, les sulfures, carbonates et phosphates sont insolubles, sauf avec les alcalins et l'ammonium."
+  },
+  {
+   "id": "p07",
+   "ecran": "test_chlorure",
+   "texte": "AgNO₃ révèle les chlorures : AgCl blanc.",
+   "dit": "Ces règles font de la précipitation un outil d'analyse. Exemple des leçons : détecter une pollution aux ions chlorure dans une rivière. On prélève un échantillon d'eau, on y ajoute quelques gouttes de nitrate d'argent ; si un précipité blanc, qui noircit à la lumière, apparaît, la présence des ions chlorure est confirmée. Pourquoi le nitrate d'argent, et pas un autre sel d'argent ? Parce que l'ion nitrate est toujours soluble : il reste spectateur et ne crée aucun précipité parasite qui brouillerait le test."
+  },
+  {
+   "id": "p08",
+   "ecran": "prediction",
+   "texte": "Trois étapes pour prédire le précipité.",
+   "dit": "Mettons la méthode en pratique sur le mélange classique des leçons : nitrate d'argent et chlorure de sodium. Première étape : identifier les ions présents après dissociation, quatre ions en solution. Deuxième étape : échanger les partenaires pour former les paires possibles, chlorure d'argent et nitrate de sodium. Troisième étape : consulter les règles. Le chlorure d'argent fait partie des exceptions insolubles : il précipite. Le nitrate de sodium, lui, est toujours soluble : il reste en solution. Conclusion : un précipité blanc de chlorure d'argent se forme."
+  },
+  {
+   "id": "p09",
+   "ecran": "trois_ecritures",
+   "texte": "Moléculaire, ionique complète, ionique nette.",
+   "dit": "Une même réaction se décrit à trois niveaux, et les leçons les illustrent par la neige chimique : le mélange de nitrate de plomb et d'iodure de potassium fait tomber un précipité jaune vif d'iodure de plomb. L'équation moléculaire écrit tous les composés entiers : elle donne la vue d'ensemble et sert aux calculs de masse. L'équation ionique complète dissocie tout ce qui peut l'être : elle révèle le monde dissous, mais elle est encombrée. L'équation ionique nette, enfin, élimine les ions spectateurs, potassium et nitrate, inchangés des deux côtés : elle ne montre que la transformation réelle."
+  },
+  {
+   "id": "p10",
+   "ecran": "methode_equations",
+   "texte": "La méthode en cinq gestes.",
+   "dit": "Voici la procédure systématique pour passer d'une écriture à l'autre. Un : identifiez les produits possibles en échangeant les ions, et repérez le composé insoluble grâce aux règles. Deux : écrivez l'équation moléculaire équilibrée, avec les états physiques. Trois : passez à l'ionique complète en dissociant les électrolytes forts dissous, mais en laissant intacts le solide, les gaz, l'eau et les composés peu solubles. Quatre : barrez les ions spectateurs. Cinq : écrivez la nette, et vérifiez que masse et charge sont équilibrées des deux côtés."
+  },
+  {
+   "id": "p11",
+   "ecran": "baso4_cas",
+   "texte": "BaSO₄ : le baryum toxique, séquestré.",
+   "dit": "Étude de cas : le sulfate de baryum, celui du cocktail baryté des radiographies digestives. On le fabrique par précipitation, en mélangeant chlorure de baryum et sulfate de sodium ; l'équation ionique nette ne retient que le baryum et le sulfate. Paradoxe : les ions baryum libres sont très toxiques, et pourtant les patients avalent cette suspension sans danger. La réponse est dans la nette : le produit de solubilité du sulfate de baryum est si faible que la concentration en ions baryum libres est infinitésimale. Le précipité séquestre l'ion dangereux."
+  },
+  {
+   "id": "p12",
+   "ecran": "recap1",
+   "texte": "Phénomène, règles et équations : l'essentiel.",
+   "dit": "Récapitulons cette première partie. Une réaction de précipitation fait naître un solide insoluble à partir d'ions en solution, dès que leur quantité dépasse la solubilité du composé formé. Les règles de solubilité prédisent le phénomène : familles toujours solubles d'un côté, exceptions célèbres de l'autre. Et pour décrire la réaction, trois écritures se complètent : la moléculaire pour la vue d'ensemble, l'ionique complète pour le monde dissous, et la nette, la plus importante, qui ne garde que les acteurs réels. Reste une question : insoluble, oui, mais à quel point ?"
+  },
+  {
+   "id": "p13",
+   "ecran": "equilibre",
+   "texte": "Solide ⇌ ions : un équilibre dynamique.",
+   "dit": "Prenons du recul. Une solution saturée n'est pas un système figé : c'est un équilibre dynamique. Au contact du solide, des ions se détachent et passent en solution, pendant que d'autres ions se redéposent, exactement au même rythme. Le solide au fond ne disparaît pas, parce que les deux processus se compensent en permanence, comme les entrées et les sorties d'une salle de concert pleine. C'est cet équilibre, entre un sel peu soluble et ses ions, que nous allons maintenant écrire et quantifier."
+  },
+  {
+   "id": "p14",
+   "ecran": "expression_ks",
+   "texte": "Ks : le produit des ions à l'équilibre.",
+   "dit": "Pour cet équilibre, la constante s'appelle le produit de solubilité, noté ka-esse. Son expression est à l'écran : le produit des concentrations des ions à l'équilibre, chacune élevée à la puissance de son coefficient dans l'équation de dissolution. Point crucial : le solide pur n'apparaît pas dans l'expression. Sa concentration ne varie pas tant qu'il en reste au fond du récipient, elle est donc absorbée dans la constante. Seuls les ions dissous comptent, et plus le produit de solubilité est faible, plus le composé est insoluble."
+  },
+  {
+   "id": "p15",
+   "ecran": "methode_ks",
+   "texte": "Quatre gestes : de la solubilité à Ks.",
+   "dit": "Comment obtenir ce produit de solubilité à partir d'une mesure ? La démarche compte quatre gestes. D'abord, écrire l'équation de dissolution du composé. Ensuite, exprimer les concentrations des ions à l'équilibre en fonction de la solubilité, notée esse, c'est-à-dire la quantité de solide dissous par litre. Puis substituer ces expressions dans celle du produit de solubilité. Il ne reste qu'à calculer. Le point délicat est toujours le même : les coefficients de l'équation deviennent des exposants, et les concentrations des ions sont des multiples de la solubilité."
+  },
+  {
+   "id": "p16",
+   "ecran": "exemple_agcl",
+   "texte": "AgCl : Ks = s² = 1,7 × 10⁻¹⁰.",
+   "dit": "Premier exemple : le chlorure d'argent, notre précipité fil rouge. Sa dissolution libère un ion argent et un ion chlorure par unité dissoute : à l'équilibre, les deux concentrations valent donc la solubilité. Le produit de solubilité est le produit des deux, c'est-à-dire la solubilité au carré. Avec une solubilité de un virgule trois fois dix puissance moins cinq mole par litre, on obtient un produit de un virgule sept fois dix puissance moins dix. Retenez ce schéma : pour un sel un-un, le produit de solubilité est le carré de la solubilité."
+  },
+  {
+   "id": "p17",
+   "ecran": "exemple_caf2",
+   "texte": "CaF₂ : Ks = 4s³ = 3,7 × 10⁻¹¹.",
+   "dit": "Deuxième exemple, plus subtil : le fluorure de calcium. Chaque unité dissoute libère un ion calcium, mais deux ions fluorure : la concentration en fluorure vaut donc deux fois la solubilité. Dans le produit, ce deux devient un exposant et un facteur : le produit de solubilité vaut quatre fois la solubilité au cube. Avec une solubilité de deux virgule un fois dix puissance moins quatre, on obtient trois virgule sept fois dix puissance moins onze. La stœchiométrie change complètement la formule : c'est elle qu'il faut lire avant de comparer."
+  },
+  {
+   "id": "p18",
+   "ecran": "tableau_ks",
+   "texte": "Comparer les Ks : à stœchiométrie égale.",
+   "dit": "Le tableau des leçons compare quatre composés à vingt-cinq degrés. L'iodure de plomb, avec quatre esse cube, affiche le produit le plus élevé de la série. Le chlorure d'argent et le sulfate de baryum, tous deux en esse carré, sont voisins. L'hydroxyde de fer trois, lui, s'effondre à dix puissance moins trente-neuf, avec sa formule en vingt-sept esse puissance quatre. Leçon capitale : on ne compare directement deux produits de solubilité que si les sels ont la même stœchiométrie, car les exposants faussent les comparaisons brutes."
+  },
+  {
+   "id": "p19",
+   "ecran": "quotient_q",
+   "texte": "Q < Ks, Q = Ks, Q > Ks : trois destins.",
+   "dit": "Pour prédire, on introduit le quotient ionique, noté ku. Il a exactement la même expression que le produit de solubilité, mais calculé avec les concentrations du mélange à l'instant considéré, pas nécessairement à l'équilibre. La comparaison décide de tout. Si ku est inférieur au produit de solubilité, la solution est insaturée : aucun précipité, et un solide présent se dissoudrait. Si ku lui est égal, la solution est saturée, à l'équilibre. Si ku le dépasse, la solution est sursaturée : un précipité se forme, jusqu'à ramener ku à l'égalité."
+  },
+  {
+   "id": "p20",
+   "ecran": "detection_sulfate",
+   "texte": "Q très supérieur à Ks : précipité.",
+   "dit": "Application : tester les ions sulfate dans une eau minérale, en ajoutant du chlorure de baryum. Après mélange, la concentration en baryum vaut zéro virgule zéro un mole par litre, celle en sulfate zéro virgule zéro zéro cinq. Le quotient ionique est leur produit : cinq fois dix puissance moins cinq. Comparez au produit de solubilité du sulfate de baryum, un virgule un fois dix puissance moins dix : le quotient est très supérieur. Le verdict tombe : un précipité de sulfate de baryum se forme, et la présence des sulfates est confirmée."
+  },
+  {
+   "id": "p21",
+   "ecran": "ion_commun",
+   "texte": "Ion commun : solubilité divisée par 7 600.",
+   "dit": "Premier facteur qui déplace l'équilibre : l'effet d'ion commun. Ajouter un ion déjà présent dans l'équilibre diminue la solubilité du sel : c'est le principe de Le Chatelier à l'œuvre. Reprenons le chlorure d'argent, mais dissous dans une solution de chlorure de sodium à zéro virgule un mole par litre. La concentration en chlorure est alors imposée par le sel ajouté, et la nouvelle solubilité devient le produit de solubilité divisé par cette concentration : un virgule sept fois dix puissance moins neuf. La solubilité a été divisée par environ sept mille six cents."
+  },
+  {
+   "id": "p22",
+   "ecran": "facteurs",
+   "texte": "pH et complexes : dissoudre à la demande.",
+   "dit": "Deux autres leviers. Le pH d'abord : pour les sels dont l'anion est une base faible, comme les hydroxydes, carbonates ou phosphates, acidifier augmente la solubilité. Dans l'hydroxyde de magnésium, les ions hydroxyde libérés sont neutralisés par l'acide, et l'équilibre se décale vers la dissolution. Les complexes ensuite : certains ligands capturent les ions métalliques en complexes solubles. C'est le principe du fixateur photographique : le thiosulfate complexe les ions argent restants et dissout l'halogénure d'argent non exposé, stabilisant l'image."
+  },
+  {
+   "id": "p23",
+   "ecran": "enquete_plomb",
+   "texte": "Plomb : 0,18 mg/L, norme dépassée.",
+   "dit": "Exercice intégratif des leçons : une enquête environnementale. Une rivière, près d'une ancienne mine, est suspectée de contamination au plomb. On y ajoute de l'iodure de potassium : un précipité jaune apparaît, l'iodure de plomb. Au moment précis où il commence à se former, le quotient égale le produit de solubilité : on peut donc remonter à la concentration minimale en plomb, huit virgule sept fois dix puissance moins sept mole par litre. Convertie, elle donne zéro virgule dix-huit milligramme par litre : dix-huit fois la norme de potabilité. La contamination est confirmée, et chiffrée."
+  },
+  {
+   "id": "p24",
+   "ecran": "recap2",
+   "texte": "Produit de solubilité : prédire et calculer.",
+   "dit": "Récapitulons. Le produit de solubilité gouverne l'équilibre entre un solide et ses ions : il se calcule depuis la solubilité, avec des formules qui dépendent de la stœchiométrie, carré, quatre esse cube, vingt-sept esse puissance quatre. Le quotient ionique, calculé avec les concentrations du moment, prédit le destin du mélange par simple comparaison. Et trois leviers déplacent l'équilibre : l'ion commun, qui écrase la solubilité ; le pH, qui dissout les sels basiques ; et les complexes, qui capturent les ions. Place maintenant aux applications."
+  },
+  {
+   "id": "p25",
+   "ecran": "separation",
+   "texte": "Ag⁺, puis Ba²⁺ : Ni²⁺ reste seul.",
+   "dit": "Première application : la précipitation sélective, l'art de séparer les ions d'un mélange en exploitant leurs différences de solubilité. Protocole des leçons pour un mélange d'argent, de baryum et de nickel. On ajoute d'abord de l'acide chlorhydrique dilué : seul l'argent précipite, en chlorure d'argent blanc, car son produit de solubilité est très faible, tandis que les chlorures de baryum et de nickel sont solubles. On filtre, puis on ajoute de l'acide sulfurique dilué au filtrat : le baryum précipite en sulfate blanc. Le filtrat final ne contient plus que le nickel. L'ordre des réactifs est crucial : chaque étape ne doit faire tomber qu'un seul ion."
+  },
+  {
+   "id": "p26",
+   "ecran": "mohr",
+   "texte": "Mohr : le rouge brique signale l'équivalence.",
+   "dit": "Doser, maintenant : le titrage par précipitation de Mohr mesure les chlorures d'une eau. On verse du nitrate d'argent dans l'échantillon : tant qu'il reste des ions chlorure, chaque ion argent ajouté précipite en chlorure d'argent blanc. L'indicateur est le chromate de potassium : à l'équivalence, le moindre excès d'argent forme avec lui du chromate d'argent, un précipité rouge brique qui signale la fin du dosage. Son produit de solubilité est choisi pour qu'il ne précipite qu'après la disparition complète des chlorures. Dans l'exemple des leçons, vingt millilitres de réactif conduisent à une concentration de zéro virgule deux mole par litre."
+  },
+  {
+   "id": "p27",
+   "ecran": "mesure_ks",
+   "texte": "Ks de Ca(OH)₂ mesuré : ≈ 4,5 × 10⁻⁶.",
+   "dit": "Comment mesure-t-on un produit de solubilité au laboratoire ? Expérience des leçons avec l'hydroxyde de calcium. On agite un excès de solide dans l'eau distillée, à température constante, pour saturer la solution ; on filtre soigneusement, car le moindre grain d'excès fausserait tout. Puis on titre les ions hydroxyde du filtrat par un acide étalon : de leur concentration, la stœchiométrie de dissolution donne celle du calcium, moitié moindre. Le produit de solubilité suit : environ quatre virgule cinq fois dix puissance moins six. Saturée et filtrée : voilà les deux conditions de la mesure."
+  },
+  {
+   "id": "p28",
+   "ecran": "signatures",
+   "texte": "Jaune vif, rouille, blanc : les signatures.",
+   "dit": "En analyse qualitative, la couleur du précipité est une signature. L'ion plomb donne avec l'iodure un jaune vif, qui se dissout à chaud et recristallise en pluie d'or en refroidissant. L'ion fer trois donne avec la soude un brun rouille, l'hydroxyde de fer. Le chlorure donne le blanc du chlorure d'argent, qui noircit à la lumière ; le sulfate donne le blanc du sulfate de baryum, insoluble même dans les acides. Ces signatures, systématisées au dix-neuvième siècle, identifiaient les ions bien avant les spectromètres, et elles servent encore en criminalistique."
+  },
+  {
+   "id": "p29",
+   "ecran": "gravimetrie",
+   "texte": "Gravimétrie : la masse fait la mesure.",
+   "dit": "Autre dosage, le plus ancien : la gravimétrie, l'art de la pesée. Pour doser les sulfates d'une eau minérale, on acidifie l'échantillon afin d'empêcher d'autres anions de coprécipiter, puis on ajoute du chlorure de baryum en excès : le sulfate de baryum précipite quantitativement, grâce à son produit de solubilité extrêmement faible. On filtre, on lave, on sèche à haute température, et on pèse le solide sur une balance analytique. Sa masse, via la masse molaire, remonte à la teneur initiale en sulfate. Une rigueur absolue, qui a fait la culture des chimistes."
+  },
+  {
+   "id": "p30",
+   "ecran": "eaux",
+   "texte": "Eaux : flocs, tartre et phosphates traités.",
+   "dit": "À grande échelle, le traitement des eaux repose sur trois précipitations. La coagulation-floculation d'abord : un sel d'aluminium ou de fer forme des hydroxydes gélatineux qui neutralisent les charges des colloïdes et les agglomèrent en flocs, assez lourds pour sédimenter. L'adoucissement ensuite : la chaux et la soude précipitent le calcium en carbonate et le magnésium en hydroxyde, les deux responsables du tartre. La déphosphatation enfin : les sels de fer ou d'aluminium précipitent les phosphates en phosphate de fer, au produit de solubilité minuscule, avant qu'ils n'asphyxient les rivières par eutrophisation."
+  },
+  {
+   "id": "p31",
+   "ecran": "cas_phosphate",
+   "texte": "FePO₄ : le phosphate résiduel s'effondre.",
+   "dit": "Chiffrons la déphosphatation, avec l'étude de cas des leçons. L'eau usée contient cinq fois dix puissance moins quatre mole par litre de phosphate ; on ajoute du chlorure de fer trois pour atteindre sept fois dix puissance moins quatre en fer. Le quotient ionique vaut trois virgule cinq fois dix puissance moins sept : immense, face au produit de solubilité du phosphate de fer, dix puissance moins vingt-deux. La précipitation est donc quasi totale ; le phosphate limitant disparaît, et sa concentration résiduelle, fixée par le produit de solubilité et l'excès de fer, tombe vers dix puissance moins dix-neuf. Restent les défis pratiques : le coût du réactif et la gestion des boues."
+  },
+  {
+   "id": "p32",
+   "ecran": "grottes",
+   "texte": "Stalactites : le CO₂ commande la calcite.",
+   "dit": "La géologie obéit aux mêmes lois. L'eau de pluie, chargée en dioxyde de carbone, dissout le calcaire des roches et emporte calcium et hydrogénocarbonate. Quand cette eau goutte au plafond d'une grotte, le dioxyde de carbone s'échappe : l'équilibre bascule dans l'autre sens, et la calcite précipite, goutte après goutte, en stalactites et stalagmites. Le produit de solubilité du carbonate de calcium, environ trois virgule huit fois dix puissance moins neuf, gouverne la scène. Et ces concrétions, en grandissant, enregistrent le climat du passé : de véritables archives de pierre."
+  },
+  {
+   "id": "p33",
+   "ecran": "medecine",
+   "texte": "Médecine, reins et mines : Ks partout.",
+   "dit": "Dernier tour d'horizon. En médecine, le transit baryté exploite la solubilité du sulfate de baryum : un dix puissance moins cinq mole par litre d'ions baryum libres, une quantité infinitésimale, inerte et éliminée intacte, pendant que le solide opaque dessine le tube digestif aux rayons X. Les calculs rénaux, eux, sont l'envers du décor : des cristaux d'oxalate de calcium que l'on prévient en diluant les urines et en réduisant les oxalates, pour maintenir le quotient sous le produit de solubilité. Et dans les mines, la ferraille précipite le cuivre des eaux acides en un ciment rougeâtre récupérable : une précipitation de métal, cette fois."
+  },
+  {
+   "id": "p34",
+   "ecran": "recap_final",
+   "texte": "Précipitation : prédire, écrire, utiliser.",
+   "dit": "Au terme de ce cours, la précipitation n'a plus de secret. Vous savez la prédire, d'abord par les règles de solubilité, puis avec précision grâce au produit de solubilité et au quotient ionique. Vous savez l'écrire, de l'équation moléculaire à l'ionique nette, en écartant les spectateurs. Et vous savez l'utiliser : séparer des ions un à un, doser par titrage ou par pesée, identifier par la couleur, mesurer une constante, purifier les eaux et même lire les grottes. Quand les ions deviennent solide, c'est toute la chimie des solutions qui devient visible."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le phénomène, les règles et les équations"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Le produit de solubilité : prédire et calculer",
+   "pont": {
+    "texte": "Partie 2 : le produit de solubilité, prédire et calculer.",
+    "dit": "Partie deux : le produit de solubilité. Les règles de solubilité restent qualitatives : elles disent soluble ou insoluble, sans mesurer. Nous allons passer à la précision mathématique : un équilibre dynamique entre le solide et ses ions, une constante pour le gouverner, et un quotient pour prédire le destin de chaque mélange."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Séparer, doser, identifier : les applications",
+   "pont": {
+    "texte": "Partie 3 : séparer, doser, identifier, purifier.",
+    "dit": "Partie trois : les applications. Nous allons voir la précipitation au travail : séparer des ions un à un, doser par titrage ou par pesée, identifier par la couleur, mesurer un produit de solubilité en laboratoire, et purifier les eaux à grande échelle, des phosphates des stations d'épuration aux grottes calcaires."
+   }
+  }
+ ]
+}
