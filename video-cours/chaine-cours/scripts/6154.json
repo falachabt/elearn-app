@@ -1,0 +1,521 @@
+{
+ "cours": 6154,
+ "titre": "Bases et dimension : les coordonnées d'un espace vectoriel",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Bases et dimension",
+   "titre": "Bases et dimension : les coordonnées d'un espace vectoriel",
+   "sous": "Familles libres, familles génératrices, bases, théorème de la base incomplète et formule de Grassmann",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un espace, des directions fondamentales, un nombre : sa dimension.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 200
+   }
+  },
+  "espace_def": {
+   "type": "etape",
+   "kicker": "Espace vectoriel : la définition",
+   "titre": "Un ensemble où l'on combine linéairement",
+   "tex": [
+    "\\text{addition interne : } u + v \\in E \\qquad \\text{multiplication externe : } \\lambda u \\in E",
+    "\\text{neutre } \\vec{0}, \\text{ opposé } -\\vec{u}, \\text{ associativité, distributivité}",
+    "\\mathbb{R}^2,\\ \\mathbb{R}^3,\\ \\mathbb{R}^n,\\ \\mathbb{R}_n[X],\\ \\mathcal{M}_{p,q}(\\mathbb{R})",
+    "\\text{des vecteurs, mais aussi des polynômes, des matrices, des fonctions}"
+   ]
+  },
+  "combinaison": {
+   "type": "formule",
+   "kicker": "Combinaisons linéaires",
+   "tex": "\\vec{w} = \\alpha\\,\\vec{u} + \\beta\\,\\vec{v}",
+   "note": "En faisant varier les coefficients, on engendre une droite ou tout un plan.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 180
+   }
+  },
+  "exemple_r2": {
+   "type": "etape",
+   "kicker": "Exemple : la base canonique du plan",
+   "titre": "Chaque vecteur du plan est une combinaison",
+   "tex": [
+    "(x,\\ y) = x\\,e_1 + y\\,e_2 \\qquad e_1 = (1,\\ 0),\\ e_2 = (0,\\ 1)",
+    "(2,\\ 3) = 2e_1 + 3e_2 \\qquad (1,\\ 2,\\ 3) \\notin \\text{Vect}(e_1,\\ e_2) \\text{ dans } \\mathbb{R}^3"
+   ]
+  },
+  "generatrice": {
+   "type": "formule",
+   "kicker": "Familles génératrices",
+   "tex": "\\forall u \\in E,\\quad u = \\alpha_1 v_1 + \\dots + \\alpha_p v_p",
+   "note": "Vect de la famille égale l'espace entier : la famille couvre tout.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 170
+   }
+  },
+  "gen_exemple": {
+   "type": "etape",
+   "kicker": "Exemple : une famille génératrice de l'espace",
+   "titre": "Trois vecteurs qui couvrent tout l'espace",
+   "tex": [
+    "u = (1,\\ 0,\\ 0) \\qquad v = (1,\\ 1,\\ 0) \\qquad w = (0,\\ 1,\\ 1)",
+    "\\alpha + \\beta = a \\qquad \\beta + \\gamma = b \\qquad \\gamma = c",
+    "\\gamma = c \\qquad \\beta = b - c \\qquad \\alpha = a - b + c"
+   ]
+  },
+  "non_generatrice": {
+   "type": "etape",
+   "kicker": "Contre-exemple : deux vecteurs colinéaires",
+   "titre": "Elle n'engendre qu'une droite",
+   "tex": [
+    "u = (1,\\ 2,\\ 3) \\qquad v = (2,\\ 4,\\ 6) = 2u",
+    "\\alpha u + \\beta v = (\\alpha + 2\\beta,\\ 2\\alpha + 4\\beta,\\ 3\\alpha + 6\\beta)",
+    "\\text{deuxième coordonnée} = 2 \\times \\text{première} : (0,\\ 1,\\ 0) \\text{ est hors d'atteinte}"
+   ]
+  },
+  "libre": {
+   "type": "formule",
+   "kicker": "Familles libres",
+   "tex": "\\alpha_1 v_1 + \\dots + \\alpha_p v_p = \\vec{0} \\ \\Longrightarrow\\ \\alpha_1 = \\dots = \\alpha_p = 0",
+   "note": "Aucun vecteur superflu : aucun n'est combinaison des autres."
+  },
+  "libre_exemple": {
+   "type": "etape",
+   "kicker": "Exemple : une famille libre de l'espace",
+   "titre": "Le système homogène n'a que la solution nulle",
+   "tex": [
+    "u = (1,\\ 0,\\ 1) \\qquad v = (0,\\ 2,\\ 1) \\qquad w = (1,\\ 1,\\ 0)",
+    "\\alpha + \\gamma = 0 \\qquad 2\\beta + \\gamma = 0 \\qquad \\alpha + \\beta = 0",
+    "\\beta = \\gamma \\ \\Rightarrow\\ 3\\gamma = 0 \\ \\Rightarrow\\ \\alpha = \\beta = \\gamma = 0"
+   ]
+  },
+  "liee": {
+   "type": "etape",
+   "kicker": "Familles liées : les pièges",
+   "titre": "Le vecteur nul et les colinéaires tuent la liberté",
+   "tex": [
+    "2\\,(1,\\ 2) - 1\\,(2,\\ 4) = (0,\\ 0) : \\text{ la famille } ((1,2),(2,4)) \\text{ est liée}",
+    "\\text{toute famille contenant } \\vec{0} \\text{ est liée} \\qquad \\text{un vecteur seul : libre si et seulement si non nul}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Combiner : multiples et sommes de vecteurs",
+    "Génératrice : tout vecteur est combinaison",
+    "Libre : seule la combinaison nulle triviale",
+    "Vect de la famille : le sous-espace engendré"
+   ]
+  },
+  "base": {
+   "type": "formule",
+   "kicker": "La base : libre et génératrice",
+   "tex": "\\mathcal{B} = (e_1,\\ \\dots,\\ e_n) : \\text{ libre et génératrice}",
+   "note": "Conséquence : chaque vecteur se décompose d'une seule façon.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 170
+   }
+  },
+  "coordonnees": {
+   "type": "formule",
+   "kicker": "Coordonnées dans une base",
+   "tex": "v = \\alpha_1 e_1 + \\dots + \\alpha_n e_n",
+   "note": "Les coefficients sont les coordonnées de v dans la base : son passeport unique."
+  },
+  "base_canonique": {
+   "type": "etape",
+   "kicker": "Bases canoniques",
+   "titre": "Le plan, l'espace, les polynômes",
+   "tex": [
+    "e_1 = (1,\\ 0,\\ \\dots,\\ 0) \\qquad e_2 = (0,\\ 1,\\ \\dots,\\ 0)",
+    "(x_1,\\ \\dots,\\ x_n) = x_1 e_1 + \\dots + x_n e_n",
+    "\\mathbb{R}_n[X] : \\ (1,\\ X,\\ X^2,\\ \\dots,\\ X^n), \\quad P = a_0 + a_1 X + \\dots + a_n X^n"
+   ]
+  },
+  "plan_base": {
+   "type": "etape",
+   "kicker": "Exemple : une base d'un plan de l'espace",
+   "titre": "Un plan, deux directions indépendantes",
+   "tex": [
+    "P : \\ x + y - 2z = 0 \\qquad x = -y + 2z",
+    "(x,\\ y,\\ z) = y\\,(-1,\\ 1,\\ 0) + z\\,(2,\\ 0,\\ 1)",
+    "\\mathcal{B} = ((-1,\\ 1,\\ 0),\\ (2,\\ 0,\\ 1)) : \\text{ libre et génératrice de } P"
+   ],
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 140
+   }
+  },
+  "theoreme_base": {
+   "type": "etape",
+   "kicker": "Théorème de la base incomplète",
+   "titre": "Extraire, ou compléter",
+   "tex": [
+    "\\text{d'une famille génératrice finie, on peut extraire une base}",
+    "\\text{toute famille libre peut être complétée en une base}",
+    "\\text{compléter : tester les candidats un par un, garder ceux qui restent libres}",
+    "\\text{la base complétée n'est pas unique : elle dépend de l'ordre des tests}"
+   ]
+  },
+  "completion": {
+   "type": "etape",
+   "kicker": "Exemple : compléter dans l'espace",
+   "titre": "Un vecteur libre, puis deux directions canoniques",
+   "tex": [
+    "\\mathcal{L} = ((1,\\ 0,\\ 2)) : \\text{ un vecteur non nul, donc une famille libre}",
+    "e_1 = (1,\\ 0,\\ 0) \\text{ puis } e_2 = (0,\\ 1,\\ 0) \\text{ préservent la liberté}",
+    "\\mathcal{B} = ((1,\\ 0,\\ 2),\\ (1,\\ 0,\\ 0),\\ (0,\\ 1,\\ 0)), \\quad \\det = 2 \\neq 0"
+   ]
+  },
+  "extraction": {
+   "type": "etape",
+   "kicker": "Exemple : extraire une base",
+   "titre": "Quatre vecteurs, deux pivots",
+   "tex": [
+    "u_1 = (1,\\ 1,\\ 0) \\qquad u_2 = (2,\\ 0,\\ 1)",
+    "u_3 = (0,\\ 2,\\ -1) = 2u_1 - u_2 \\qquad u_4 = (1,\\ 3,\\ -1) = 3u_1 - u_2",
+    "\\text{pivots sur } u_1, u_2 : \\quad \\mathcal{B} = (u_1,\\ u_2), \\quad \\dim E = 2"
+   ]
+  },
+  "passage": {
+   "type": "formule",
+   "kicker": "Aperçu : changer de base",
+   "tex": "X = P\\,X'",
+   "note": "P, matrice de passage : ses colonnes sont les coordonnées de la nouvelle base dans l'ancienne."
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Base : libre et génératrice à la fois",
+    "Coordonnées : une décomposition unique",
+    "Base incomplète : extraire ou compléter",
+    "Un plan de l'espace : une base à deux vecteurs"
+   ]
+  },
+  "taille": {
+   "type": "etape",
+   "kicker": "Le théorème de la taille",
+   "titre": "Libre, génératrice, ou les deux, selon le nombre",
+   "tex": [
+    "\\text{famille libre : au plus } n \\text{ vecteurs}",
+    "\\text{famille génératrice : au moins } n \\text{ vecteurs}",
+    "n \\text{ vecteurs libres, ou } n \\text{ vecteurs générateurs : c'est une base}",
+    "\\text{plus de } n \\text{ vecteurs dans un espace de dimension } n : \\text{ famille liée}"
+   ]
+  },
+  "dimension": {
+   "type": "formule",
+   "kicker": "La dimension",
+   "tex": "\\dim E = n",
+   "note": "n : le nombre de vecteurs d'une base. Toutes les bases ont le même cardinal.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 160
+   }
+  },
+  "dim_exemples": {
+   "type": "etape",
+   "kicker": "Dimensions à connaître",
+   "titre": "Quatre espaces, quatre nombres",
+   "tex": [
+    "\\dim \\mathbb{R}^n = n \\qquad \\dim \\mathbb{R}_n[X] = n + 1",
+    "\\dim \\mathcal{M}_{p,q}(\\mathbb{R}) = p \\times q \\qquad \\dim \\mathcal{M}_2(\\mathbb{R}) = 4",
+    "\\dim \\{(0,\\ 0,\\ 0)\\} = 0 \\qquad \\text{un plan de } \\mathbb{R}^3 : 2",
+    "\\mathbb{R}[X] : \\text{ dimension infinie, la famille } (1,\\ X,\\ X^2,\\ \\dots) \\text{ est libre}"
+   ]
+  },
+  "sous_espace_dim": {
+   "type": "etape",
+   "kicker": "Exemple : dimension d'un plan",
+   "titre": "Une équation, un degré de liberté en moins",
+   "tex": [
+    "F : \\ x - 2y + z = 0 \\qquad x = 2y - z",
+    "(x,\\ y,\\ z) = y\\,(2,\\ 1,\\ 0) + z\\,(-1,\\ 0,\\ 1)",
+    "\\dim F = 2 : \\text{ un plan passant par l'origine}"
+   ],
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 140
+   }
+  },
+  "grassmann": {
+   "type": "formule",
+   "kicker": "Formule de Grassmann",
+   "tex": "\\dim(F + G) = \\dim F + \\dim G - \\dim(F \\cap G)",
+   "note": "L'analogue de l'inclusion-exclusion : on retire ce qui est compté deux fois.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 180
+   }
+  },
+  "grassmann_exemple": {
+   "type": "etape",
+   "kicker": "Exemple : Grassmann dans l'espace à quatre dimensions",
+   "titre": "Deux plans qui ne se recouvrent pas",
+   "tex": [
+    "F = \\text{Vect}((1,2,0,1),\\ (2,1,0,1)), \\quad \\dim F = 2",
+    "G : \\ x - y + z = 0,\\ x + t = 0, \\quad \\dim G = 2",
+    "F \\cap G = \\{0\\} : \\quad \\dim(F + G) = 2 + 2 - 0 = 4"
+   ]
+  },
+  "symetriques": {
+   "type": "formule",
+   "kicker": "Exemple : les matrices symétriques",
+   "tex": "\\dim S_n(\\mathbb{R}) = \\frac{n(n + 1)}{2}",
+   "note": "Pour n égal à trois : six. La diagonale et le dessus la déterminent."
+  },
+  "exercice_famille": {
+   "type": "etape",
+   "kicker": "Exercice corrigé : diagnostiquer une famille",
+   "titre": "Libre ou liée, le système tranche",
+   "tex": [
+    "v_1 = (1,\\ 2,\\ -1) \\qquad v_2 = (3,\\ 0,\\ 1) \\qquad v_3 = (5,\\ 4,\\ -1)",
+    "v_3 = 2v_1 + v_2 \\qquad -2v_1 - v_2 + v_3 = \\vec{0}",
+    "\\text{famille liée} : \\quad \\dim \\text{Vect}(v_1,\\ v_2,\\ v_3) = 2"
+   ]
+  },
+  "polynomes_exemple": {
+   "type": "etape",
+   "kicker": "Exercice corrigé : générer les polynômes",
+   "titre": "Un nouveau système de coordonnées",
+   "tex": [
+    "\\mathcal{G} = (1,\\ 1 + X,\\ X^2) \\quad \\text{dans } \\mathbb{R}_2[X]",
+    "\\lambda_0 + \\lambda_1 = c \\qquad \\lambda_1 = b \\qquad \\lambda_2 = a",
+    "\\lambda_2 = a \\qquad \\lambda_1 = b \\qquad \\lambda_0 = c - b : \\text{ toujours une solution}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Base : libre et génératrice, coordonnées uniques",
+    "Base incomplète : extraire ou compléter",
+    "Dimension : le cardinal de toute base",
+    "Grassmann : additionner, retirer l'intersection",
+    "n vecteurs libres ou générateurs : une base"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux bases et à la dimension d'un espace vectoriel. Nous partirons des combinaisons linéaires pour distinguer les familles qui couvrent tout l'espace et celles qui ne contiennent aucun vecteur superflu. Leur rencontre donnera la base, puis le nombre qui mesure l'espace tout entier : sa dimension.",
+   "texte": "Bases et dimension : les coordonnées d'un espace.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge tient en trois questions. Avons-nous assez de vecteurs pour tout décrire ? En avons-nous trop, avec des redondances ? Et quel est l'ensemble minimal et complet qui permet de repérer chaque vecteur par des coordonnées uniques ? Tout le cours répond à ces trois questions, dans cet ordre.",
+   "texte": "Trois questions : assez, trop, ou juste ce qu'il faut ?",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Un espace vectoriel est un ensemble muni de deux opérations : une addition interne, qui combine deux éléments de l'ensemble, et une multiplication externe, qui multiplie un élément par un scalaire. Ces opérations obéissent à des règles cohérentes : élément neutre, opposé, associativité, distributivité. Le plan et l'espace de la géométrie en sont des exemples, mais aussi les polynômes et les matrices, que l'on peut additionner et multiplier par un nombre.",
+   "texte": "Huit axiomes, un seul cadre pour combiner.",
+   "ecran": "espace_def"
+  },
+  {
+   "id": "p04",
+   "dit": "La notion centrale est la combinaison linéaire : un multiple d'un premier vecteur, plus un multiple d'un second, avec des coefficients réels quelconques. En faisant varier ces coefficients, on engendre tout un ensemble : une droite si les deux vecteurs sont alignés, tout le plan s'ils ne le sont pas. Retenez ce geste, il revient partout dans le cours.",
+   "texte": "Combiner : un multiple de u, plus un multiple de v.",
+   "ecran": "combinaison"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier exemple, dans le plan. Avec les deux vecteurs canoniques, celui des abscisses et celui des ordonnées, tout vecteur s'écrit comme une combinaison : son abscisse fois le premier, plus son ordonnée fois le second. Ainsi le vecteur de coordonnées deux et trois est deux fois le premier plus trois fois le second. En revanche, dans l'espace, un vecteur dont la troisième coordonnée est non nulle ne peut jamais être combinaison de ces deux seuls vecteurs, qui vivent dans un plan.",
+   "texte": "(x, y) = x·e₁ + y·e₂ : tout le plan est engendré.",
+   "ecran": "exemple_r2"
+  },
+  {
+   "id": "p06",
+   "dit": "Une famille est génératrice quand tout vecteur de l'espace peut s'écrire comme combinaison linéaire de ses vecteurs. Autrement dit, l'ensemble de toutes leurs combinaisons, le sous-espace engendré par la famille, remplit l'espace entier. Une famille génératrice peut contenir trop de vecteurs, avec des redondances : sa mission est de tout couvrir, pas d'être économique.",
+   "texte": "Génératrice : Vect de la famille égale l'espace.",
+   "ecran": "generatrice"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple complet, dans l'espace à trois dimensions. Prenons trois vecteurs : le premier canonique, puis un vecteur de coordonnées un, un, zéro, puis un vecteur de coordonnées zéro, un, un. Pour atteindre un vecteur quelconque, on résout le système de bas en haut : le troisième coefficient est la troisième coordonnée, le deuxième s'en déduit, puis le premier. Une solution existe toujours : la famille est génératrice.",
+   "texte": "Résoudre de bas en haut : toujours une solution.",
+   "ecran": "gen_exemple"
+  },
+  {
+   "id": "p08",
+   "dit": "Contre-exemple : deux vecteurs dont le second est le double du premier. Toute combinaison a sa deuxième coordonnée égale au double de la première, et sa troisième au triple. Un vecteur comme celui de coordonnées zéro, un, zéro est donc hors d'atteinte. La famille n'engendre qu'une droite : elle n'est pas génératrice de l'espace, et nous verrons qu'elle n'est pas libre non plus.",
+   "texte": "Colinéaires : une droite seulement, pas l'espace.",
+   "ecran": "non_generatrice"
+  },
+  {
+   "id": "p09",
+   "dit": "Une famille est libre, ou linéairement indépendante, quand la seule combinaison linéaire qui donne le vecteur nul est celle dont tous les coefficients sont nuls. L'intuition est l'économie : aucun vecteur de la famille n'est superflu, aucun ne peut s'exprimer comme combinaison des autres. Chacun apporte une direction nouvelle. Une famille qui n'est pas libre est dite liée.",
+   "texte": "Libre : aucun vecteur superflu, aucune redondance.",
+   "ecran": "libre"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple de famille libre, toujours dans l'espace. On écrit une combinaison nulle des trois vecteurs, ce qui donne un système de trois équations. En soustrayant la première équation de la troisième, on obtient que le deuxième et le troisième coefficient sont égaux. Reporté dans la deuxième équation, cela force ces coefficients à zéro, puis le premier aussi. La seule solution est la solution nulle : la famille est libre.",
+   "texte": "Le système homogène force tous les coefficients à zéro.",
+   "ecran": "libre_exemple"
+  },
+  {
+   "id": "p11",
+   "dit": "Les pièges classiques sont à connaître par cœur. Une famille contenant le vecteur nul est toujours liée, car on peut le multiplier par un coefficient non nul dans une combinaison nulle. Deux vecteurs sont liés exactement quand ils sont colinéaires, comme le montre la relation affichée. Et une famille réduite à un seul vecteur est libre exactement quand ce vecteur n'est pas nul.",
+   "texte": "Le vecteur nul et les colinéaires : famille liée.",
+   "ecran": "liee"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons cette première partie. Combiner linéairement est le geste de base. Une famille génératrice couvre tout l'espace, quitte à contenir des redondances. Une famille libre n'en contient aucune, mais elle ne couvre pas forcément tout. La notion idéale réunira les deux qualités : ce sera la base, objet de la deuxième partie.",
+   "texte": "L'essentiel de la partie un.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Une base est une famille à la fois libre et génératrice. Libre, donc sans redondance. Génératrice, donc complète. La conséquence est capitale : tout vecteur de l'espace se décompose en combinaison des vecteurs de la base d'une seule et unique façon. Sans cette unicité, les coordonnées seraient ambiguës, comme un système de navigation qui donnerait deux adresses différentes pour la même destination.",
+   "texte": "Une base : libre et génératrice à la fois.",
+   "ecran": "base"
+  },
+  {
+   "id": "p14",
+   "dit": "Les coefficients de cette décomposition unique s'appellent les coordonnées du vecteur dans la base. Changer de base, c'est changer de système de coordonnées : le vecteur ne bouge pas, mais ses nombres changent. Une base est donc le système de repérage intrinsèque de l'espace, et c'est elle qui permettra de définir les applications linéaires par les seules images de ses vecteurs.",
+   "texte": "Les coordonnées : le passeport unique de chaque vecteur.",
+   "ecran": "coordonnees"
+  },
+  {
+   "id": "p15",
+   "dit": "Les exemples canoniques sont à retenir. Dans l'espace à n dimensions, la base canonique est formée des vecteurs qui ont un un à une place et des zéros partout ailleurs : les coordonnées d'un vecteur y sont simplement ses composantes. Pour les polynômes de degré au plus n, la base naturelle est la suite des puissances de la variable, et les coordonnées d'un polynôme sont ses coefficients.",
+   "texte": "Bases canoniques : Rⁿ et les polynômes.",
+   "ecran": "base_canonique"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple cherché : une base d'un plan de l'espace, défini par une équation. On exprime la première coordonnée en fonction des deux autres, puis on décompose le vecteur général du plan suivant les deux paramètres libres. On obtient deux vecteurs : ils engendrent le plan, et ils sont libres car ils ne sont pas colinéaires. C'est donc une base du plan, qui a bien deux directions indépendantes, comme l'intuition l'annonçait.",
+   "texte": "Un plan : deux vecteurs, une base.",
+   "ecran": "plan_base"
+  },
+  {
+   "id": "p17",
+   "dit": "Comment construire une base en pratique ? Le théorème de la base incomplète donne les deux recettes. D'une famille génératrice finie, on peut extraire une base, en retirant les vecteurs qui sont combinaisons des précédents. Et toute famille libre peut être complétée en une base, en lui ajoutant des vecteurs bien choisis. Attention : la base obtenue n'est pas unique, elle dépend de l'ordre dans lequel on examine les candidats.",
+   "texte": "Extraire d'une génératrice, compléter une libre.",
+   "ecran": "theoreme_base"
+  },
+  {
+   "id": "p18",
+   "dit": "Illustrons la complétion dans l'espace à trois dimensions. On part d'un seul vecteur non nul, de coordonnées un, zéro, deux : à lui seul, il forme une famille libre. On teste les vecteurs canoniques dans l'ordre : le premier préserve la liberté, on le garde ; le deuxième aussi, on le garde. Nous avons trois vecteurs libres dans un espace qui en demande trois : c'est une base, et son déterminant, égal à deux, le confirme.",
+   "texte": "Compléter (1, 0, 2) par e₁ et e₂ : une base.",
+   "ecran": "completion"
+  },
+  {
+   "id": "p19",
+   "dit": "Illustrons maintenant l'extraction. Quatre vecteurs engendrent un sous-espace. En les plaçant en colonnes et en réduisant, les pivots tombent sur les deux premiers vecteurs. Les deux autres sont en fait des combinaisons des premiers : le troisième vaut deux fois le premier moins le second, le quatrième trois fois le premier moins le second. La base extraite a donc deux vecteurs, et le sous-espace est un plan.",
+   "texte": "Pivots sur u₁ et u₂ : base extraite, dimension deux.",
+   "ecran": "extraction"
+  },
+  {
+   "id": "p20",
+   "dit": "Un aperçu pour la suite : quand on connaît deux bases, la matrice de passage traduit les coordonnées de l'une dans l'autre. Ses colonnes sont les coordonnées des vecteurs de la nouvelle base, exprimés dans l'ancienne. Cette idée deviendra centrale avec les applications linéaires, où chaque transformation sera codée par une matrice relative à des bases choisies.",
+   "texte": "Matrice de passage : traduire les coordonnées.",
+   "ecran": "passage"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons cette deuxième partie. Une base est une famille libre et génératrice ; elle donne à chaque vecteur des coordonnées uniques. Le théorème de la base incomplète fournit les deux gestes de construction : extraire une base d'une famille génératrice, ou compléter une famille libre. Reste à mesurer l'espace lui-même : ce sera la dimension.",
+   "texte": "L'essentiel de la partie deux.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Voici le théorème qui rend la dimension possible. Dans un espace qui possède une famille génératrice de p vecteurs, toute famille de plus de p vecteurs est nécessairement liée. Autrement dit, une famille libre ne peut jamais dépasser une famille génératrice en nombre de vecteurs. Dans un espace de dimension n, une famille libre a donc au plus n vecteurs, une famille génératrice en a au moins n, et une famille de exactement n vecteurs qui est libre, ou génératrice, est automatiquement une base.",
+   "texte": "Libre : au plus n. Génératrice : au moins n.",
+   "ecran": "taille"
+  },
+  {
+   "id": "p23",
+   "dit": "La dimension d'un espace de dimension finie est le nombre de vecteurs d'une de ses bases. Cette définition n'a de sens que parce que toutes les bases d'un même espace ont le même nombre d'éléments : une base génératrice borne les familles libres, et réciproquement, ce qui force l'égalité des deux cardinaux. La dimension est donc un invariant de l'espace, indépendant de tout choix de base.",
+   "texte": "La dimension : un invariant, pas un choix.",
+   "ecran": "dimension"
+  },
+  {
+   "id": "p24",
+   "dit": "Quelques dimensions à connaître sans hésiter. L'espace à n dimensions a pour dimension n. Les polynômes de degré au plus n forment un espace de dimension n plus un, car leur base compte les puissances de zéro à n. Les matrices à p lignes et q colonnes forment un espace de dimension p fois q. Et certains espaces, comme celui de tous les polynômes, sont de dimension infinie : la famille de toutes les puissances y est libre, sans jamais s'arrêter.",
+   "texte": "dim Rⁿ = n, dim polynômes = n + 1, matrices = p × q.",
+   "ecran": "dim_exemples"
+  },
+  {
+   "id": "p25",
+   "dit": "Calculons la dimension d'un sous-espace défini par une équation dans l'espace. On résout l'équation : la première coordonnée s'exprime en fonction des deux autres. Le vecteur général se décompose alors suivant deux paramètres libres, en deux vecteurs non colinéaires. Ils forment une base : la dimension vaut deux. Règle pratique : une équation linéaire homogène indépendante fait perdre un degré de liberté, donc une dimension.",
+   "texte": "Une équation indépendante : une dimension en moins.",
+   "ecran": "sous_espace_dim"
+  },
+  {
+   "id": "p26",
+   "dit": "Pour deux sous-espaces, la formule de Grassmann relie les dimensions de leur somme et de leur intersection. La dimension de la somme vaut la somme des dimensions, moins la dimension de l'intersection : exactement comme le principe d'inclusion-exclusion des ensembles, on retire ce qui a été compté deux fois. C'est l'outil de calcul des dimensions quand les sous-espaces se recouvrent.",
+   "texte": "Grassmann : additionner, retirer l'intersection.",
+   "ecran": "grassmann"
+  },
+  {
+   "id": "p27",
+   "dit": "Application dans l'espace à quatre dimensions. Le premier sous-espace est engendré par deux vecteurs libres : dimension deux. Le second est défini par deux équations indépendantes : dimension deux aussi. Leur intersection se calcule en imposant les équations aux combinaisons du premier : on ne trouve que le vecteur nul. Grassmann donne alors une somme de dimension quatre : les deux sous-espaces sont supplémentaires dans l'espace entier.",
+   "texte": "Intersection réduite à zéro : somme de dimension quatre.",
+   "ecran": "grassmann_exemple"
+  },
+  {
+   "id": "p28",
+   "dit": "Autre terrain : les matrices symétriques. Une telle matrice est entièrement déterminée par ses coefficients diagonaux et ceux situés au-dessus de la diagonale, les autres s'en déduisent par symétrie. Le comptage donne la dimension affichée : pour des matrices de taille trois, six coefficients libres, donc une dimension de six. La même méthode, compter les coefficients indépendants, donne la dimension de beaucoup d'espaces de matrices.",
+   "texte": "Matrices symétriques : n(n + 1)/2 coefficients libres.",
+   "ecran": "symetriques"
+  },
+  {
+   "id": "p29",
+   "dit": "Exercice corrigé. Trois vecteurs de l'espace sont donnés. On cherche une combinaison nulle : le système a bien des solutions non triviales, la famille est liée. La relation exacte est que le troisième vecteur vaut deux fois le premier plus une fois le second, et non deux fois le premier seul, comme on le vérifie coordonnée par coordonnée. Le sous-espace engendré est donc de dimension deux, porté par les deux premiers vecteurs.",
+   "texte": "v₃ = 2v₁ + v₂ : la relation exacte, vérifiée.",
+   "ecran": "exercice_famille"
+  },
+  {
+   "id": "p30",
+   "dit": "Dernier exercice corrigé : une famille de trois polynômes, l'unité, l'unité plus la variable, et le carré de la variable. Pour écrire un polynôme quelconque de degré au plus deux, on identifie les coefficients : le système se résout toujours, de haut en bas. La famille est génératrice ; comme elle a trois vecteurs dans un espace de dimension trois, c'est même une base, un nouveau système de coordonnées pour les polynômes.",
+   "texte": "Trois polynômes générateurs : une base de R₂[X].",
+   "ecran": "polynomes_exemple"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour terminer, retenez l'enchaînement complet de ce cours. Une famille génératrice couvre, une famille libre ne répète rien, et une base fait les deux : elle donne à chaque vecteur des coordonnées uniques. La dimension compte les vecteurs de toute base, la base incomplète construit les bases, et Grassmann calcule avec les sous-espaces. Avec ces outils, un espace abstrait devient un territoire mesuré et cartographié.",
+   "texte": "Tout le cours en cinq idées.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Familles libres et familles génératrices"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "La base et le théorème de la base incomplète",
+   "pont": {
+    "texte": "Partie 2 : la base, les coordonnées et la construction des bases.",
+    "dit": "Partie deux : la base. Nous réunissons les deux qualités, libre et génératrice, pour obtenir le système de coordonnées d'un espace, puis nous apprendrons à construire des bases en extrayant ou en complétant des familles."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "La dimension et la formule de Grassmann",
+   "pont": {
+    "texte": "Partie 3 : la dimension, Grassmann et les exercices corrigés.",
+    "dit": "Partie trois : la dimension. Nous définirons le nombre qui mesure un espace, nous calculerons avec la formule de Grassmann, et nous terminerons par des exercices corrigés où chaque calcul est vérifié."
+   }
+  }
+ ]
+}
