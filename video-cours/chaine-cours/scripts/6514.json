@@ -1,0 +1,437 @@
+{
+  "cours": 6514,
+  "titre": "Séries statistiques et moyenne : organiser, représenter, résumer",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistiques descriptives",
+      "titre": "Séries statistiques et moyenne : organiser, représenter, résumer",
+      "sous": "Population, tableaux, graphiques, puis la moyenne simple et la moyenne pondérée",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Des données brutes ne disent rien : la statistique commence quand on les organise, puis quand on les résume par un centre, la moyenne.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 200
+      }
+    },
+    "vocab": {
+      "type": "etape",
+      "kicker": "Qu'est-ce qu'une série statistique ?",
+      "titre": "Trois mots pour poser l'étude",
+      "tex": [
+        "\\text{population : l'ensemble étudié}",
+        "\\text{individu : un élément de la population}",
+        "\\text{caractère : la propriété étudiée}"
+      ]
+    },
+    "caracteres": {
+      "type": "etape",
+      "kicker": "Les types de caractères",
+      "titre": "Catégories, valeurs isolées ou mesures",
+      "tex": [
+        "\\text{qualitatif : une catégorie, non numérique}",
+        "\\text{discret : des valeurs isolées, entières}",
+        "\\text{continu : toute valeur d'un intervalle}"
+      ]
+    },
+    "collecte": {
+      "type": "etape",
+      "kicker": "La collecte des données",
+      "titre": "Trois méthodes, un même exigence de rigueur",
+      "tex": [
+        "\\text{recensement : toute la population}",
+        "\\text{sondage : interroger un échantillon}",
+        "\\text{sources existantes : registres, capteurs}"
+      ]
+    },
+    "exemple_brut": {
+      "type": "etape",
+      "kicker": "Premier exemple · frères et sœurs",
+      "titre": "Dix élèves interrogés, une liste brute à trier",
+      "tex": [
+        "2,\\ 0,\\ 1,\\ 2,\\ 3,\\ 1,\\ 2,\\ 1,\\ 0,\\ 2",
+        "n_0 = 2 \\quad n_1 = 3 \\quad n_2 = 4 \\quad n_3 = 1"
+      ]
+    },
+    "tableau": {
+      "type": "etape",
+      "kicker": "Le tableau statistique",
+      "titre": "Valeurs, effectifs, effectif total",
+      "tex": [
+        "x_i : \\quad 0 \\quad 1 \\quad 2 \\quad 3",
+        "n_i : \\quad 2 \\quad 3 \\quad 4 \\quad 1",
+        "N = \\sum_{i=1}^{p} n_i = 10"
+      ]
+    },
+    "frequences": {
+      "type": "formule",
+      "kicker": "Les fréquences",
+      "tex": "f_i = \\frac{n_i}{N}",
+      "note": "Exemple : deux sur dix donne une fréquence de zéro virgule deux, soit vingt pour cent."
+    },
+    "classes": {
+      "type": "etape",
+      "kicker": "Caractère continu · les classes",
+      "titre": "Regrouper les tailles en intervalles semi-ouverts",
+      "tex": [
+        "[158;163[ \\quad [163;168[ \\quad [168;173[",
+        "[173;178[ \\quad [178;183[ \\quad [183;188[",
+        "\\text{centre de } [158;163[ : 160{,}5"
+      ]
+    },
+    "graphiques": {
+      "type": "etape",
+      "kicker": "Représenter la série",
+      "titre": "Un graphique adapté à chaque type de caractère",
+      "tex": [
+        "\\text{bâtons : caractère discret, barres séparées}",
+        "\\text{histogramme : continu, rectangles collés}",
+        "\\text{circulaire : des parts, en angles}"
+      ],
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 150
+      }
+    },
+    "angle": {
+      "type": "formule",
+      "kicker": "L'angle du diagramme circulaire",
+      "tex": "\\alpha_i = f_i \\times 360^\\circ",
+      "note": "Pour une fréquence de zéro virgule deux, l'angle vaut soixante-douze degrés."
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Une série : population, individus, caractère",
+        "Organiser : tri à plat, tableau, fréquences",
+        "Représenter : bâtons, histogramme, circulaire",
+        "Classes : intervalles semi-ouverts, centres"
+      ]
+    },
+    "moyenne": {
+      "type": "formule",
+      "kicker": "La moyenne arithmétique",
+      "tex": "\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i",
+      "note": "Le point d'équilibre de la série : la somme des valeurs, divisée par leur nombre.",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 180
+      }
+    },
+    "ex_notes": {
+      "type": "etape",
+      "kicker": "Exemple · sept notes sur vingt",
+      "titre": "Somme, effectif, division",
+      "tex": [
+        "12 + 15 + 8 + 14 + 15 + 9 + 17 = 90",
+        "n = 7",
+        "\\bar{x} = \\tfrac{90}{7} \\approx 12{,}86"
+      ]
+    },
+    "valeurs_repetees": {
+      "type": "etape",
+      "kicker": "Valeurs répétées · les jeunes plants",
+      "titre": "Le tableau abrège la somme",
+      "tex": [
+        "22 \\times 3 + 24 \\times 3 + 25 \\times 3 + 26 \\times 1",
+        "= 66 + 72 + 75 + 26 = 239",
+        "\\bar{x} = \\tfrac{239}{10} = 23{,}9\\ \\text{cm}"
+      ]
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Propriétés de la moyenne",
+      "titre": "Elle suit les changements d'échelle",
+      "tex": [
+        "x_i \\to a\\,x_i + b \\Rightarrow \\bar{x} \\to a\\,\\bar{x} + b",
+        "\\text{la moyenne suit les changements d'échelle}"
+      ]
+    },
+    "sensibilite": {
+      "type": "etape",
+      "kicker": "La sensibilité aux valeurs extrêmes",
+      "titre": "Cinq revenus dans un café",
+      "tex": [
+        "1300 + 1400 + 1500 + 1600 + 8500",
+        "\\bar{x} = \\tfrac{14300}{5} = 2860\\ \\text{euros}",
+        "\\text{quatre personnes sur cinq gagnent moins}"
+      ]
+    },
+    "feuilles": {
+      "type": "etape",
+      "kicker": "Exercice guidé · les feuilles",
+      "titre": "Une valeur extrême fait chuter la moyenne",
+      "tex": [
+        "\\bar{x} = \\tfrac{368}{8} = 46\\ \\text{mm}",
+        "\\bar{x} = \\tfrac{368 + 12}{9} \\approx 42{,}22\\ \\text{mm}"
+      ]
+    },
+    "ponderee": {
+      "type": "formule",
+      "kicker": "La moyenne pondérée",
+      "tex": "\\bar{x} = \\frac{\\sum_{i=1}^{n} p_i v_i}{\\sum_{i=1}^{n} p_i}",
+      "note": "Chaque valeur compte selon son poids : on divise par la somme des poids, jamais par leur nombre."
+    },
+    "ex_bulletin": {
+      "type": "etape",
+      "kicker": "Exemple · le bulletin à coefficients",
+      "titre": "Quatre matières, quatre coefficients",
+      "tex": [
+        "16 \\times 4 + 14 \\times 3 + 12 \\times 2 + 15 \\times 2 = 160",
+        "\\bar{x} = \\tfrac{160}{11} \\approx 14{,}55",
+        "\\text{sans coefficients : } \\tfrac{57}{4} = 14{,}25"
+      ]
+    },
+    "ex_ects": {
+      "type": "etape",
+      "kicker": "Exemple · les crédits universitaires",
+      "titre": "Des unités de crédits très différents",
+      "tex": [
+        "6 \\times 14 + 4 \\times 11 + 8 \\times 16 + 2 \\times 9 = 274",
+        "\\bar{x} = \\tfrac{274}{20} = 13{,}7"
+      ]
+    },
+    "ex_groupes": {
+      "type": "etape",
+      "kicker": "Données groupées en classes",
+      "titre": "Le centre de classe représente la tranche",
+      "tex": [
+        "1250 \\cdot 12 + 1750 \\cdot 25 + 2250 \\cdot 18",
+        "\\bar{x} = \\tfrac{99250}{55} \\approx 1804{,}55\\ \\text{euros}"
+      ]
+    },
+    "ex_satisfaction": {
+      "type": "etape",
+      "kicker": "Application · enquête de satisfaction",
+      "titre": "Pondérer les tranches d'âge par leurs effectifs",
+      "tex": [
+        "80 \\times 8{,}2 + 120 \\times 7{,}5 + 150 \\times 6{,}8",
+        "+ 50 \\times 9{,}0 = 3026",
+        "\\bar{x} = \\tfrac{3026}{400} \\approx 7{,}6\\ \\text{sur dix}"
+      ]
+    },
+    "pieges": {
+      "type": "etape",
+      "kicker": "Pièges et limites des pondérations",
+      "titre": "Le choix des poids n'est jamais neutre",
+      "tex": [
+        "\\text{pourcentages : diviser par les poids}",
+        "\\text{les coefficients : un choix jamais neutre}",
+        "\\text{la moyenne masque les disparités}"
+      ]
+    },
+    "meme_moyenne": {
+      "type": "etape",
+      "kicker": "La limite majeure de la moyenne",
+      "titre": "Même moyenne, deux classes incomparables",
+      "tex": [
+        "\\text{classe A : } 10,\\ 10,\\ 10,\\ 10,\\ 10",
+        "\\text{classe B : } 0,\\ 5,\\ 10,\\ 15,\\ 20"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 150
+      }
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Moyenne simple : somme divisée par l'effectif",
+        "Valeurs répétées : pondérer par les effectifs",
+        "Pondérée : diviser par la somme des poids",
+        "Toujours vérifier : entre minimum et maximum",
+        "Une moyenne seule ne dit pas la dispersion"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours d'introduction aux statistiques descriptives. Nous partirons d'une liste de données brutes pour apprendre à l'organiser en tableau, à la représenter par un graphique, puis à la résumer par son centre : d'abord la moyenne simple, ensuite la moyenne pondérée, sans jamais oublier les limites de ce résumé.",
+      "texte": "Séries statistiques et moyenne : organiser, représenter, résumer.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Une série statistique est un ensemble organisé de données recueillies sur un caractère, au sein d'une population définie. Brutes, les données ne disent presque rien : la statistique descriptive leur donne d'abord une structure lisible, avant de les résumer par quelques indicateurs bien choisis.",
+      "texte": "Organiser d'abord, résumer ensuite.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Trois mots posent toute étude. La population est l'ensemble des individus ou des objets étudiés, par exemple les élèves d'une classe. Chaque élève est un individu. Le caractère est la propriété que l'on mesure sur chacun : une note, une taille, un nombre de frères et sœurs. Une population doit toujours être définie précisément, jamais de façon vague.",
+      "texte": "Population, individu, caractère : le vocabulaire de base.",
+      "ecran": "vocab"
+    },
+    {
+      "id": "p04",
+      "dit": "Un caractère qualitatif prend des catégories non numériques, comme la couleur des yeux ou la filière choisie. Un caractère quantitatif prend des nombres : il est discret quand ses valeurs sont isolées, comme un nombre de frères et sœurs, et continu quand il peut prendre toute valeur d'un intervalle, comme une taille ou une durée que l'on mesure puis que l'on arrondit.",
+      "texte": "Qualitatif, discret ou continu : trois natures de caractères.",
+      "ecran": "caracteres"
+    },
+    {
+      "id": "p05",
+      "dit": "Collecter est la première étape, et une erreur commise ici est irrémédiable. Le recensement interroge toute la population : idéal, mais souvent coûteux ou impossible. Le sondage n'interroge qu'un échantillon, puis généralise avec prudence. On peut aussi exploiter des sources existantes : registres, capteurs ou fichiers. Dans tous les cas, la collecte doit être pertinente, fiable et sans biais.",
+      "texte": "Recensement, sondage ou sources existantes.",
+      "ecran": "collecte"
+    },
+    {
+      "id": "p06",
+      "dit": "Premier contact avec un exemple complet. Dix élèves sont interrogés sur leur nombre de frères et sœurs. Les réponses arrivent dans le désordre : deux, zéro, un, deux, trois, un, deux, un, zéro, deux. Le tri à plat compte combien de fois chaque valeur apparaît : zéro apparaît deux fois, un apparaît trois fois, deux apparaît quatre fois et trois apparaît une fois. La liste devient déjà lisible.",
+      "texte": "Dix réponses brutes, puis le tri à plat.",
+      "ecran": "exemple_brut"
+    },
+    {
+      "id": "p07",
+      "dit": "On présente ce comptage dans un tableau statistique. La première ligne donne les valeurs du caractère, notées x indice i. La deuxième donne leurs effectifs, notés n indice i : le nombre d'individus qui présentent chaque valeur. La somme de tous les effectifs donne l'effectif total, noté N : ici, deux plus trois plus quatre plus un font dix élèves.",
+      "texte": "Le tableau statistique : valeurs et effectifs.",
+      "ecran": "tableau"
+    },
+    {
+      "id": "p08",
+      "dit": "Pour comparer des séries de tailles différentes, les effectifs ne suffisent pas : on passe aux proportions. La fréquence d'une valeur est son effectif divisé par l'effectif total. Deux élèves sur dix donnent une fréquence de zéro virgule deux, soit vingt pour cent. Propriété fondamentale à retenir : la somme de toutes les fréquences vaut toujours un, ou cent pour cent en pourcentage.",
+      "texte": "La fréquence : l'effectif divisé par l'effectif total.",
+      "ecran": "frequences"
+    },
+    {
+      "id": "p09",
+      "dit": "Quand le caractère est continu, comme la taille, présenter chaque valeur serait illisible : on regroupe en classes. Les tailles de vingt élèves sont rangées dans des intervalles de cinq centimètres, de cent cinquante-huit inclus à cent quatre-vingt-huit exclu. La notation semi-ouverte évite qu'une valeur frontière soit comptée deux fois, et le centre de chaque classe servira de valeur représentative pour les calculs.",
+      "texte": "Le continu se regroupe en classes semi-ouvertes.",
+      "ecran": "classes"
+    },
+    {
+      "id": "p10",
+      "dit": "Chaque type de caractère a son graphique. Pour un caractère discret, le diagramme en bâtons : des barres séparées, dont la hauteur est proportionnelle à l'effectif ou à la fréquence. Pour un caractère continu groupé en classes, l'histogramme : des rectangles collés, dont l'aire représente l'effectif. Pour montrer des parts d'un tout, le diagramme circulaire, que le calcul suivant construit.",
+      "texte": "Bâtons, histogramme ou circulaire : choisir selon le caractère.",
+      "ecran": "graphiques"
+    },
+    {
+      "id": "p11",
+      "dit": "Dans un diagramme circulaire, le cercle entier représente l'effectif total. L'angle de chaque secteur est donc proportionnel à la fréquence de sa modalité : on multiplie la fréquence par trois cent soixante degrés. Pour la modalité qui représente une fréquence de zéro virgule deux, l'angle vaut zéro virgule deux fois trois cent soixante, soit soixante-douze degrés.",
+      "texte": "L'angle d'un secteur : la fréquence fois trois cent soixante.",
+      "ecran": "angle"
+    },
+    {
+      "id": "p12",
+      "dit": "Récapitulons cette première partie. Une série décrit un caractère mesuré sur une population d'individus. On l'organise par le tri à plat, le tableau d'effectifs et les fréquences, dont la somme vaut un. On la représente par un diagramme en bâtons, un histogramme ou un diagramme circulaire, et les caractères continus se regroupent en classes semi-ouvertes dont on retient les centres.",
+      "texte": "L'essentiel de la partie une.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p13",
+      "dit": "Passons au premier grand résumé d'une série : la moyenne arithmétique. C'est la valeur que prendrait chaque individu si le total était partagé de façon parfaitement égale entre tous. On additionne toutes les valeurs, puis on divise par leur nombre, noté n. L'image à garder est celle du point d'équilibre : placées sur une règle graduée, les données s'équilibrent exactement à la moyenne.",
+      "texte": "La moyenne : la somme divisée par le nombre de valeurs.",
+      "ecran": "moyenne"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple complet, en suivant la méthode. Sept notes sur vingt : douze, quinze, huit, quatorze, quinze, neuf et dix-sept. Première étape, la somme : quatre-vingt-dix. Deuxième étape, l'effectif : sept notes. Troisième étape, la division : quatre-vingt-dix divisé par sept donne environ douze virgule quatre-vingt-six. La note moyenne du groupe est donc d'environ douze virgule quatre-vingt-six sur vingt.",
+      "texte": "Sept notes : somme quatre-vingt-dix, moyenne environ douze virgule quatre-vingt-six.",
+      "ecran": "ex_notes"
+    },
+    {
+      "id": "p15",
+      "dit": "Quand des valeurs se répètent, le tableau abrège le calcul. Dix jeunes plants mesurent vingt-deux centimètres trois fois, vingt-quatre trois fois, vingt-cinq trois fois et vingt-six une fois. La somme devient un calcul par paquets : deux cent trente-neuf centimètres au total. Divisée par dix plants, la moyenne vaut vingt-trois virgule neuf centimètres. Vous venez de rencontrer, sans le savoir encore, une moyenne pondérée par les effectifs.",
+      "texte": "Valeurs répétées : multiplier chaque valeur par son effectif.",
+      "ecran": "valeurs_repetees"
+    },
+    {
+      "id": "p16",
+      "dit": "La moyenne possède une propriété de linéarité très utile. Si l'on ajoute le même nombre à toutes les valeurs, la moyenne augmente exactement de ce nombre. Si l'on multiplie toutes les valeurs par un même facteur, la moyenne est multipliée par ce facteur. Convertir des températures, changer d'unité ou appliquer un bonus uniforme à toute une classe : dans chaque cas, la moyenne se transforme exactement comme les données.",
+      "texte": "La moyenne suit les translations et les changements d'échelle.",
+      "ecran": "proprietes"
+    },
+    {
+      "id": "p17",
+      "dit": "Voici la limite la plus importante de la moyenne : sa sensibilité aux valeurs extrêmes. Cinq personnes dans un café gagnent mille trois cents, mille quatre cents, mille cinq cents, mille six cents et huit mille cinq cents euros. La somme vaut quatorze mille trois cents, et la moyenne deux mille huit cent soixante euros. Pourtant, quatre personnes sur cinq gagnent moins de mille six cents euros : cette moyenne ne représente presque personne.",
+      "texte": "Un seul revenu extrême tire la moyenne vers le haut.",
+      "ecran": "sensibilite"
+    },
+    {
+      "id": "p18",
+      "dit": "Exercice guidé, même mécanisme en sens inverse. Huit feuilles mesurent en moyenne quarante-six millimètres : leur somme vaut trois cent soixante-huit millimètres. On ajoute une neuvième feuille, anormalement petite, de douze millimètres. La nouvelle somme, trois cent quatre-vingts, divisée par neuf, donne environ quarante-deux virgule vingt-deux millimètres. Une seule valeur extrême a fait baisser la moyenne de près de quatre millimètres.",
+      "texte": "Une feuille malade fait passer la moyenne de quarante-six à quarante-deux.",
+      "ecran": "feuilles"
+    },
+    {
+      "id": "p19",
+      "dit": "Toutes les valeurs ne pèsent pas le même poids : c'est l'idée de la moyenne pondérée. Chaque valeur est multipliée par son poids, ou coefficient, on additionne ces produits, puis on divise par la somme des poids. Le piège classique est de diviser par le nombre de valeurs : c'est faux dès que les poids diffèrent. Et un contrôle rapide existe : le résultat doit toujours se situer entre la plus petite et la plus grande valeur.",
+      "texte": "La moyenne pondérée : diviser par la somme des poids.",
+      "ecran": "ponderee"
+    },
+    {
+      "id": "p20",
+      "dit": "Exemple central : un bulletin avec coefficients. Seize en mathématiques, coefficient quatre ; quatorze en physique, coefficient trois ; douze en français, coefficient deux ; quinze en histoire, coefficient deux. Les produits donnent soixante-quatre, quarante-deux, vingt-quatre et trente, soit cent soixante au total. On divise par la somme des coefficients, onze : environ quatorze virgule cinquante-cinq. Sans coefficients, la moyenne simple ne vaudrait que quatorze virgule vingt-cinq.",
+      "texte": "Le bulletin : cent soixante points, divisés par onze coefficients.",
+      "ecran": "ex_bulletin"
+    },
+    {
+      "id": "p21",
+      "dit": "Même formule, autre contexte : les unités d'enseignement universitaires, pondérées par leurs crédits. Six crédits avec quatorze, quatre crédits avec onze, huit crédits avec seize et deux crédits avec neuf. Les produits totalisent deux cent soixante-quatorze, et la somme des crédits vaut vingt. La moyenne pondérée vaut donc treize virgule sept. L'unité la plus lourde, celle de huit crédits, pèse quatre fois plus que la plus légère dans le résultat final.",
+      "texte": "Les crédits universitaires pondèrent les unités d'enseignement.",
+      "ecran": "ex_ects"
+    },
+    {
+      "id": "p22",
+      "dit": "Pour des données groupées en classes, on remplace chaque tranche par son centre, puis on pondère par les effectifs. Trois tranches de salaires, de centres mille deux cent cinquante, mille sept cent cinquante et deux mille deux cent cinquante euros, avec des effectifs de douze, vingt-cinq et dix-huit. Les produits totalisent quatre-vingt-dix-neuf mille deux cent cinquante. Divisés par cinquante-cinq salariés, ils donnent un salaire moyen approché d'environ mille huit cent quatre virgule cinquante-cinq euros.",
+      "texte": "Classes de salaires : les centres de classes font le calcul.",
+      "ecran": "ex_groupes"
+    },
+    {
+      "id": "p23",
+      "dit": "Dernier exemple guidé : une enquête de satisfaction sur la médiathèque, par tranches d'âge. Quatre-vingts jeunes donnent huit virgule deux sur dix, cent vingt adultes donnent sept virgule cinq, cent cinquante personnes donnent six virgule huit et cinquante seniors donnent neuf. Pondérés par les effectifs, les produits totalisent trois mille vingt-six, pour quatre cents personnes interrogées. La note globale vaut environ sept virgule six sur dix, avec un creux marqué chez les adultes d'âge moyen.",
+      "texte": "Satisfaction par âge : une moyenne globale pondérée.",
+      "ecran": "ex_satisfaction"
+    },
+    {
+      "id": "p24",
+      "dit": "Trois pièges à retenir. Avec des pourcentages, on divise toujours par la somme des poids réellement utilisés, jamais par un nombre arbitraire. Ensuite, les coefficients sont un choix : changer les poids peut changer un classement, comme dans une évaluation de fournisseurs, ils ne sont donc jamais neutres. Enfin, toute moyenne, même pondérée, résume et donc masque : elle ne montre ni les écarts internes, ni les cas extrêmes.",
+      "texte": "Coefficients, pourcentages : les pièges des pondérations.",
+      "ecran": "pieges"
+    },
+    {
+      "id": "p25",
+      "dit": "La preuve par l'exemple que la moyenne ne dit pas tout. Une première classe obtient dix partout : moyenne dix, classe parfaitement homogène. Une deuxième classe obtient zéro, cinq, dix, quinze et vingt : moyenne dix également, mais classe éclatée entre grande difficulté et excellence. Même centre, réalités opposées. Il manque donc un second type d'indicateur, celui qui mesure l'étalement des données autour du centre.",
+      "texte": "Même moyenne de dix : une classe homogène, une classe éclatée.",
+      "ecran": "meme_moyenne"
+    },
+    {
+      "id": "p26",
+      "dit": "Pour finir, retenez l'enchaînement complet. Organiser une série par son tableau, ses fréquences et ses graphiques. Calculer la moyenne simple en divisant la somme par l'effectif. Pondérer par les effectifs quand les valeurs se répètent, et par les coefficients quand les poids diffèrent, en divisant toujours par la somme des poids. Vérifier que le résultat reste entre le minimum et le maximum. Et ne jamais présenter une moyenne seule comme si elle disait tout.",
+      "texte": "Séries statistiques et moyenne : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Organiser et représenter une série statistique"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "La moyenne, simple puis pondérée",
+      "pont": {
+        "texte": "Partie 2 : la moyenne, simple puis pondérée.",
+        "dit": "Partie deux : résumer la série par son centre. Nous définirons la moyenne arithmétique, nous la calculerons pas à pas, puis nous passerons à la moyenne pondérée, celle des bulletins à coefficients."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Applications de la pondération et limites de la moyenne",
+      "pont": {
+        "texte": "Partie 3 : applications de la pondération et limites de la moyenne.",
+        "dit": "Partie trois : appliquer la pondération à de nouveaux contextes, des crédits universitaires aux enquêtes de satisfaction, puis mesurer les limites de toute moyenne face aux valeurs extrêmes et à la dispersion."
+      }
+    }
+  ]
+}
