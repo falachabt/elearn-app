@@ -1,0 +1,561 @@
+{
+ "cours": 5961,
+ "titre": "Introduction aux gaz parfaits",
+ "matiere": "Chimie",
+ "lecons": [
+  4917,
+  4918,
+  4919,
+  4920,
+  4921,
+  4922,
+  4923,
+  4924,
+  4925
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les gaz parfaits",
+   "titre": "Les gaz parfaits",
+   "sous": "Pression, équation d'état et transformations",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Un monde invisible",
+   "texte": "De l'air que nous respirons à la propulsion des fusées : un monde invisible, mais bien réel.",
+   "anim": {
+    "nom": "atmosphere_fig",
+    "hauteur": 170
+   }
+  },
+  "pression": {
+   "type": "formule",
+   "kicker": "La pression",
+   "tex": "P = \\frac{F}{A}",
+   "note": "la force exercée perpendiculairement, par unité de surface"
+  },
+  "unites": {
+   "type": "etape",
+   "kicker": "Les unités de pression",
+   "titre": "Les conversions à retenir",
+   "tex": [
+    "1\\ \\text{atm} = 101325\\ \\text{Pa}",
+    "1\\ \\text{bar} = 100000\\ \\text{Pa} = 10^{5}\\ \\text{Pa}",
+    "1\\ \\text{mmHg} \\approx 133{,}3\\ \\text{Pa}"
+   ],
+   "anim": {
+    "nom": "barometre_torricelli_fig",
+    "hauteur": 120
+   }
+  },
+  "modele": {
+   "type": "phrase",
+   "kicker": "Le modèle du gaz parfait",
+   "texte": "Un modèle théorique : des molécules ponctuelles, sans volume propre et sans interactions.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 170
+   }
+  },
+  "pression_partielle": {
+   "type": "phrase",
+   "kicker": "La pression partielle",
+   "texte": "La pression partielle : la pression qu'exercerait le gaz s'il occupait seul tout le volume.",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 170
+   }
+  },
+  "fraction_molaire": {
+   "type": "formule",
+   "kicker": "La fraction molaire",
+   "tex": "x_i = \\frac{n_i}{n_{\\text{total}}}",
+   "note": "la somme de toutes les fractions molaires d'un mélange vaut un"
+  },
+  "dalton": {
+   "type": "formule",
+   "kicker": "La loi de Dalton",
+   "tex": "P_{\\text{totale}} = P_1 + P_2 + P_3 + \\dots",
+   "note": "la pression totale est la somme des pressions partielles"
+  },
+  "lien_partielle": {
+   "type": "formule",
+   "kicker": "Le lien partielle-fraction",
+   "tex": "P_i = x_i \\times P_{\\text{totale}}",
+   "note": "la pression partielle est proportionnelle à la fraction molaire"
+  },
+  "exemple_air": {
+   "type": "etape",
+   "kicker": "Exemple : l'air sec",
+   "titre": "Les parts de l'azote et de l'oxygène",
+   "tex": [
+    "x_{\\mathrm{N}_2} \\approx 0{,}78 \\qquad x_{\\mathrm{O}_2} \\approx 0{,}21",
+    "P_{\\mathrm{N}_2} \\approx 0{,}78\\ \\text{atm} \\qquad P_{\\mathrm{O}_2} \\approx 0{,}21\\ \\text{atm}"
+   ]
+  },
+  "exercice_melange": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "Dihydrogène et diazote sous cinq atmosphères",
+   "tex": [
+    "x_{\\mathrm{H}_2} = \\frac{2}{5} = 0{,}4 \\qquad x_{\\mathrm{N}_2} = \\frac{3}{5} = 0{,}6",
+    "P_{\\mathrm{H}_2} = 0{,}4 \\times 5 = 2\\ \\text{atm}",
+    "P_{\\mathrm{N}_2} = 0{,}6 \\times 5 = 3\\ \\text{atm}"
+   ]
+  },
+  "recap_melanges": {
+   "type": "recap",
+   "kicker": "Premier bilan",
+   "etapes": [
+    "Pression : une force par unité de surface",
+    "Unités : pascal, atmosphère, bar, mmHg",
+    "Fraction molaire : la part de chaque gaz",
+    "Dalton : la totale, somme des partielles"
+   ]
+  },
+  "loi_gaz_parfaits": {
+   "type": "formule",
+   "kicker": "La loi des gaz parfaits",
+   "tex": "PV = nRT",
+   "note": "la constante des gaz parfaits vaut 8,314 joule par mole et par kelvin"
+  },
+  "exemple_volume": {
+   "type": "etape",
+   "kicker": "Premier calcul",
+   "titre": "Une mole de dioxygène à vingt-cinq degrés",
+   "tex": [
+    "T = 25 + 273{,}15 = 298{,}15\\ \\text{K} \\qquad P = 1\\ \\text{atm} = 101325\\ \\text{Pa}",
+    "V = \\frac{nRT}{P} = \\frac{1 \\times 8{,}314 \\times 298{,}15}{101325}",
+    "V \\approx 0{,}0245\\ \\text{m}^3 \\approx 24{,}5\\ \\text{L}"
+   ]
+  },
+  "masse_volumique": {
+   "type": "formule",
+   "kicker": "La masse volumique",
+   "tex": "\\rho = \\frac{PM}{RT}",
+   "note": "elle croît avec la pression et la masse molaire, décroît avec la température"
+  },
+  "exemple_air_densite": {
+   "type": "etape",
+   "kicker": "Exemple chiffré",
+   "titre": "La masse volumique de l'air sec",
+   "tex": [
+    "\\rho = \\frac{101325 \\times 0{,}029}{8{,}314 \\times 298}",
+    "\\rho \\approx 1{,}18\\ \\text{kg/m}^3"
+   ]
+  },
+  "volume_molaire": {
+   "type": "formule",
+   "kicker": "Le volume molaire",
+   "tex": "V_m = \\frac{RT}{P}",
+   "note": "le même pour tous les gaz parfaits, aux mêmes pression et température"
+  },
+  "cntp": {
+   "type": "etape",
+   "kicker": "La valeur fondamentale",
+   "titre": "Dans les conditions normales : CNTP",
+   "tex": [
+    "T = 273{,}15\\ \\text{K} \\qquad P = 101325\\ \\text{Pa}",
+    "V_m = \\frac{8{,}314 \\times 273{,}15}{101325} \\approx 22{,}4\\ \\text{L/mol}"
+   ]
+  },
+  "lien_rho_vm": {
+   "type": "formule",
+   "kicker": "Le lien entre les deux",
+   "tex": "\\rho = \\frac{M}{V_m}",
+   "note": "masse volumique et volume molaire : deux visages d'une même relation"
+  },
+  "exercice_masse_molaire": {
+   "type": "etape",
+   "kicker": "Exercice des leçons",
+   "titre": "Identifier un gaz par sa masse volumique",
+   "tex": [
+    "M = \\frac{\\rho R T}{P} = \\frac{1{,}5 \\times 8{,}314 \\times 298}{101325}",
+    "M \\approx 0{,}0367\\ \\text{kg/mol} \\approx 36{,}7\\ \\text{g/mol}"
+   ]
+  },
+  "equation_reduite": {
+   "type": "etape",
+   "kicker": "L'équation d'état réduite",
+   "titre": "Diviser par les valeurs critiques",
+   "tex": [
+    "P_r = \\frac{P}{P_c} \\qquad V_r = \\frac{V}{V_c} \\qquad T_r = \\frac{T}{T_c}",
+    "\\mathrm{CO}_2 : P_c = 72{,}9\\ \\text{atm}, \\quad T_c = 304{,}2\\ \\text{K}, \\quad V_c = 0{,}094\\ \\text{L/mol}"
+   ]
+  },
+  "recap_etat": {
+   "type": "recap",
+   "kicker": "Deuxième bilan",
+   "etapes": [
+    "PV = nRT : la loi centrale du cours",
+    "Température toujours en kelvins",
+    "Masse volumique : ρ = PM/(RT)",
+    "Volume molaire : 22,4 L/mol aux CNTP"
+   ]
+  },
+  "isotherme": {
+   "type": "formule",
+   "kicker": "La transformation isotherme",
+   "tex": "PV = \\text{constante}",
+   "note": "loi de Boyle-Mariotte, à température constante",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 130
+   }
+  },
+  "isobare": {
+   "type": "formule",
+   "kicker": "La transformation isobare",
+   "tex": "\\frac{V}{T} = \\text{constante}",
+   "note": "loi de Charles, à pression constante",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 130
+   }
+  },
+  "isochore": {
+   "type": "formule",
+   "kicker": "La transformation isochore",
+   "tex": "\\frac{P}{T} = \\text{constante}",
+   "note": "loi de Gay-Lussac, à volume constant",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 130
+   }
+  },
+  "adiabatique": {
+   "type": "formule",
+   "kicker": "La transformation adiabatique",
+   "tex": "PV^{\\gamma} = \\text{constante}",
+   "note": "aucun échange de chaleur ; gamma, indice adiabatique, dépend du gaz"
+  },
+  "tableau_transformations": {
+   "type": "recap",
+   "kicker": "Les quatre d'un coup d'œil",
+   "etapes": [
+    "Isobare : P constante, V proportionnel à T",
+    "Isochore : V constante, P proportionnel à T",
+    "Isotherme : T constante, PV = constante",
+    "Adiabatique : Q = 0, PV^γ = constante"
+   ]
+  },
+  "exercice_isobare": {
+   "type": "etape",
+   "kicker": "Exercice corrigé des leçons",
+   "titre": "Un volume qui double à pression constante",
+   "tex": [
+    "\\frac{V_1}{T_1} = \\frac{V_2}{T_2}",
+    "T_2 = T_1 \\times \\frac{V_2}{V_1} = 300 \\times \\frac{4}{2}",
+    "T_2 = 600\\ \\text{K}"
+   ]
+  },
+  "exercice_adiabatique": {
+   "type": "etape",
+   "kicker": "Exercice avancé des leçons",
+   "titre": "Détente adiabatique : la pression chute",
+   "tex": [
+    "P_2 = P_1 \\left(\\frac{V_1}{V_2}\\right)^{\\gamma} = 2 \\times \\left(\\frac{1}{2}\\right)^{1{,}4}",
+    "P_2 \\approx 0{,}76\\ \\text{atm}"
+   ]
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "La méthode des concours",
+   "texte": "Données, inconnue, transformation, schéma : quatre réflexes avant tout calcul.",
+   "anim": {
+    "nom": "clapeyron_fig",
+    "hauteur": 150
+   }
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Les pièges à éviter",
+   "etapes": [
+    "Convertir toutes les unités en SI",
+    "Température toujours en kelvins",
+    "Choisir l'équation selon la transformation",
+    "Vérifier que le résultat est plausible"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Les limites du modèle",
+   "texte": "Haute pression, basse température : les molécules se rapprochent, le modèle casse.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 150
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Pression : P = F/A, en pascals",
+    "Dalton : la totale, somme des partielles",
+    "Loi des gaz parfaits : PV = nRT",
+    "Quatre transformations, quatre lois",
+    "Kelvin et SI : les deux réflexes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours consacré aux gaz parfaits, ces entités invisibles qui nous entourent, de l'air que nous respirons à la propulsion des fusées. Nous commencerons par la pression et les mélanges de gaz, avec la loi de Dalton. Nous établirons ensuite la grande équation d'état, avant de terminer par les quatre transformations et la méthode des concours.",
+   "texte": "Les gaz parfaits : pression, équation d'état et transformations."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "pause_apres": 0.8,
+   "dit": "L'air que vous respirez en ce moment même est un gaz, ou plutôt un mélange de gaz. Invisible, il exerce pourtant une force bien réelle sur tout ce qu'il touche, y compris sur vous. Tout ce cours repose sur une question simple : comment décrire ce monde invisible avec quelques grandeurs mesurables, la pression, le volume, la température et la quantité de matière ?",
+   "texte": "De l'air respiré aux fusées : un monde invisible, mais bien réel."
+  },
+  {
+   "id": "p03",
+   "ecran": "pression",
+   "pause_apres": 0.8,
+   "dit": "Première grandeur : la pression. Imaginez un ballon de football bien gonflé : ce qui le maintient gonflé, c'est la force exercée par les molécules d'air sur sa paroi. La pression est le rapport de cette force, exercée perpendiculairement à la surface, par l'aire de la surface. C'est une grandeur scalaire, sans direction, et intensive : elle ne dépend pas de la quantité de gaz présente.",
+   "texte": "La pression : P = F/A, une force par unité de surface."
+  },
+  {
+   "id": "p04",
+   "ecran": "unites",
+   "pause_apres": 0.8,
+   "dit": "La pression s'exprime en pascals, l'unité du système international : un pascal vaut un newton par mètre carré. Mais vous rencontrerez aussi l'atmosphère, le bar et le millimètre de mercure, hérité du baromètre de Torricelli. Retenez les conversions de l'écran : elles servent dans presque tous les exercices, et une erreur d'unité peut ruiner un calcul entier.",
+   "texte": "1 atm = 101 325 Pa · 1 bar = 100 000 Pa · 1 mmHg ≈ 133,3 Pa."
+  },
+  {
+   "id": "p05",
+   "ecran": "modele",
+   "pause_apres": 0.8,
+   "dit": "Pour étudier les gaz, on simplifie : on invente le gaz parfait. C'est un modèle théorique, dans lequel les molécules sont ponctuelles, sans volume propre, et n'exercent aucune interaction les unes sur les autres. Aucun gaz réel ne remplit parfaitement ces conditions, mais à basse pression et à haute température, le modèle décrit remarquablement bien la réalité.",
+   "texte": "Le gaz parfait : un modèle, fidèle à basse pression et haute température."
+  },
+  {
+   "id": "p06",
+   "ecran": "pression_partielle",
+   "pause_apres": 0.8,
+   "dit": "Passons aux mélanges, car un gaz pur est rare : l'air contient de l'azote, de l'oxygène, de l'argon et bien d'autres gaz. Pour chacun, on définit sa pression partielle : c'est la pression qu'il exercerait s'il occupait seul tout le volume du mélange, à la même température. Elle mesure sa contribution personnelle à la pression totale.",
+   "texte": "Chaque gaz du mélange exerce sa propre pression partielle."
+  },
+  {
+   "id": "p07",
+   "ecran": "fraction_molaire",
+   "pause_apres": 0.8,
+   "dit": "Pour décrire la composition d'un mélange, on utilise la fraction molaire. Celle d'un gaz est le rapport du nombre de moles de ce gaz au nombre total de moles du mélange. C'est un nombre sans unité, compris entre zéro et un. Et comme le mélange n'est fait que de ses constituants, la somme de toutes les fractions molaires vaut exactement un.",
+   "texte": "La fraction molaire : la part de chaque gaz, et leur somme vaut 1."
+  },
+  {
+   "id": "p08",
+   "ecran": "dalton",
+   "pause_apres": 0.8,
+   "dit": "Voici maintenant la loi de Dalton, du nom du chimiste John Dalton. Dans un mélange de gaz parfaits, chaque gaz se comporte comme s'il était seul : les molécules n'interagissent pas, donc leurs contributions s'additionnent simplement. La pression totale du mélange est la somme des pressions partielles de chacun des gaz qui le composent.",
+   "texte": "Loi de Dalton : la pression totale est la somme des partielles."
+  },
+  {
+   "id": "p09",
+   "ecran": "lien_partielle",
+   "pause_apres": 0.8,
+   "dit": "Fraction molaire et pression partielle sont liées par une relation très simple : la pression partielle d'un gaz est égale à sa fraction molaire multipliée par la pression totale. Autrement dit, chaque gaz prend sa part de la pression totale, exactement au prorata de sa part dans le nombre de moles. C'est la relation la plus utilisée sur les mélanges.",
+   "texte": "Pᵢ = xᵢ × P totale : chacun prend sa part de la pression."
+  },
+  {
+   "id": "p10",
+   "ecran": "exemple_air",
+   "pause_apres": 0.8,
+   "dit": "Appliquons-la à l'air sec, l'exemple des leçons. L'air contient environ soixante-dix-huit pour cent d'azote et vingt et un pour cent d'oxygène : ce sont leurs fractions molaires. À la pression atmosphérique d'une atmosphère, la pression partielle de l'azote vaut donc environ zéro virgule soixante-dix-huit atmosphère, et celle de l'oxygène zéro virgule vingt et une atmosphère.",
+   "texte": "Air sec sous 1 atm : azote ≈ 0,78 atm, oxygène ≈ 0,21 atm."
+  },
+  {
+   "id": "p11",
+   "ecran": "exercice_melange",
+   "pause_apres": 0.8,
+   "dit": "À vous de jouer, avec l'exercice des leçons. Un ballon contient deux moles de dihydrogène et trois moles de diazote, cinq moles en tout, sous une pression totale de cinq atmosphères. La fraction molaire du dihydrogène vaut deux cinquièmes, soit zéro virgule quatre : sa pression partielle vaut deux atmosphères. Celle du diazote vaut trois atmosphères. Deux plus trois : on retrouve bien la pression totale.",
+   "texte": "Fractions 0,4 et 0,6 ; pressions partielles 2 atm et 3 atm."
+  },
+  {
+   "id": "p12",
+   "ecran": "recap_melanges",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons cette première partie. La pression est une force par unité de surface, mesurée en pascals. Dans un mélange, chaque gaz exerce sa pression partielle, proportionnelle à sa fraction molaire. Et la loi de Dalton affirme que la pression totale est la somme de ces pressions partielles. Dans la deuxième partie, nous écrirons la loi qui relie toutes ces grandeurs : l'équation d'état des gaz parfaits.",
+   "texte": "Pression, fractions molaires, loi de Dalton : les mélanges sont maîtrisés."
+  },
+  {
+   "id": "p13",
+   "ecran": "loi_gaz_parfaits",
+   "pause_apres": 0.8,
+   "dit": "Voici la loi centrale du cours : la loi des gaz parfaits. Pour un gaz parfait, le produit de la pression par le volume est égal au produit de la quantité de matière par la constante des gaz parfaits et par la température absolue. Cette constante vaut huit virgule trois cent quatorze joules par mole et par kelvin. Attention : la température s'exprime toujours en kelvins, jamais en degrés Celsius.",
+   "texte": "PV = nRT, avec R = 8,314 J/(mol·K) et T en kelvins."
+  },
+  {
+   "id": "p14",
+   "ecran": "exemple_volume",
+   "pause_apres": 0.8,
+   "dit": "Premier calcul : quel volume occupe une mole de dioxygène à vingt-cinq degrés et sous une atmosphère ? On convertit la température en kelvins : deux cent quatre-vingt-dix-huit virgule quinze. On isole le volume dans la loi des gaz parfaits, et l'on obtient environ zéro virgule zéro deux quatre cinq mètre cube, soit vingt-quatre virgule cinq litres.",
+   "texte": "Une mole de dioxygène à 25 °C et 1 atm : V ≈ 24,5 L."
+  },
+  {
+   "id": "p15",
+   "ecran": "masse_volumique",
+   "pause_apres": 0.8,
+   "dit": "De la loi des gaz parfaits, on tire une première propriété : la masse volumique, la masse du gaz contenue dans un volume donné. Pour un gaz parfait, elle vaut la pression multipliée par la masse molaire, divisée par la constante et par la température. Elle augmente donc avec la pression, et diminue quand le gaz se réchauffe : exactement ce que montre un ballon que l'on gonfle ou que l'on chauffe.",
+   "texte": "ρ = PM/(RT) : elle croît avec P, décroît avec T."
+  },
+  {
+   "id": "p16",
+   "ecran": "exemple_air_densite",
+   "pause_apres": 0.8,
+   "dit": "Calculons la masse volumique de l'air sec, à vingt-cinq degrés et sous la pression atmosphérique. La masse molaire moyenne de l'air vaut zéro virgule zéro vingt-neuf kilogramme par mole. L'application de la formule donne environ un virgule dix-huit kilogramme par mètre cube. C'est la valeur des leçons : un mètre cube d'air pèse à peine plus d'un kilogramme.",
+   "texte": "Air sec à 25 °C, 1 atm : ρ ≈ 1,18 kg/m³."
+  },
+  {
+   "id": "p17",
+   "ecran": "volume_molaire",
+   "pause_apres": 0.8,
+   "dit": "Deuxième propriété : le volume molaire, le volume occupé par une mole de gaz. En divisant la loi des gaz parfaits par la quantité de matière, on obtient qu'il vaut la constante multipliée par la température, divisée par la pression. Remarquez ce qui a disparu : la nature du gaz. À pression et température données, tous les gaz parfaits occupent le même volume par mole.",
+   "texte": "Vm = RT/P : le même pour tous les gaz parfaits."
+  },
+  {
+   "id": "p18",
+   "ecran": "cntp",
+   "pause_apres": 0.8,
+   "dit": "Dans les conditions normales de température et de pression, zéro degré Celsius et une atmosphère, le volume molaire vaut vingt-deux virgule quatre litres par mole. C'est une des valeurs fondamentales de la chimie, à connaître par cœur : une mole de n'importe quel gaz parfait occupe vingt-deux virgule quatre litres dans ces conditions.",
+   "texte": "CNTP (273,15 K, 101 325 Pa) : Vm ≈ 22,4 L/mol."
+  },
+  {
+   "id": "p19",
+   "ecran": "lien_rho_vm",
+   "pause_apres": 0.8,
+   "dit": "Masse volumique et volume molaire ne sont pas indépendants : la masse volumique est simplement la masse molaire divisée par le volume molaire. Plus un gaz a des molécules lourdes, plus il est dense ; plus son volume molaire est grand, plus il est léger. Ces deux grandeurs sont les deux visages d'une même relation.",
+   "texte": "ρ = M/Vm : deux visages de la même relation."
+  },
+  {
+   "id": "p20",
+   "ecran": "exercice_masse_molaire",
+   "pause_apres": 0.8,
+   "dit": "Exercice des leçons : un gaz inconnu a une masse volumique d'un virgule cinq kilogramme par mètre cube, à vingt-cinq degrés et sous une atmosphère. Quelle est sa masse molaire ? On inverse la formule de la masse volumique : la masse molaire vaut la masse volumique multipliée par la constante et par la température, divisée par la pression. Le calcul donne environ trente-six virgule sept grammes par mole : le gaz est identifié.",
+   "texte": "M = ρRT/P ≈ 36,7 g/mol : le gaz inconnu est identifié."
+  },
+  {
+   "id": "p21",
+   "ecran": "equation_reduite",
+   "pause_apres": 0.8,
+   "dit": "Terminons cette partie par un outil de comparaison : l'équation d'état réduite. Chaque gaz possède un point critique, au-delà duquel on ne distingue plus la phase liquide de la phase gazeuse. On divise alors la pression, le volume et la température par leurs valeurs critiques : on obtient des variables réduites, sans unité. Deux gaz au même état réduit se comportent de la même façon, même s'ils sont très différents.",
+   "texte": "Pr = P/Pc, Vr = V/Vc, Tr = T/Tc : comparer tous les gaz."
+  },
+  {
+   "id": "p22",
+   "ecran": "recap_etat",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons. La loi des gaz parfaits relie pression, volume, quantité de matière et température, avec la température toujours en kelvins. Elle donne la masse volumique, proportionnelle à la masse molaire, et le volume molaire, le même pour tous les gaz : vingt-deux virgule quatre litres par mole dans les conditions normales. Dans la dernière partie, nous ferons évoluer ces gaz : ce sont les transformations.",
+   "texte": "PV = nRT et ses deux filles : ρ = PM/(RT), Vm = RT/P."
+  },
+  {
+   "id": "p23",
+   "ecran": "isotherme",
+   "pause_apres": 0.8,
+   "dit": "Première transformation : l'isotherme, à température constante. Imaginez un gaz dans un cylindre muni d'un piston, que l'on comprime lentement. La température ne change pas, donc le produit de la pression par le volume reste constant : c'est la loi de Boyle-Mariotte. Si le volume est divisé par deux, la pression double. Dans un diagramme pression-volume, la courbe obtenue est une hyperbole.",
+   "texte": "Isotherme : T constante, PV = constante (Boyle-Mariotte)."
+  },
+  {
+   "id": "p24",
+   "ecran": "isobare",
+   "pause_apres": 0.8,
+   "dit": "Deuxième transformation : l'isobare, à pression constante. Un ballon de baudruche exposé au soleil se gonfle : la pression intérieure reste celle de l'atmosphère, mais le volume augmente avec la température. Le rapport du volume à la température reste constant : c'est la loi de Charles. Attention, la température doit être en kelvins : doubler la température absolue double le volume.",
+   "texte": "Isobare : P constante, V/T = constante (Charles)."
+  },
+  {
+   "id": "p25",
+   "ecran": "isochore",
+   "pause_apres": 0.8,
+   "dit": "Troisième transformation : l'isochore, à volume constant. Une bombe aérosol oubliée au soleil : le volume est figé, la température monte, et la pression grimpe en proportion. Le rapport de la pression à la température reste constant : c'est la loi de Gay-Lussac. C'est aussi pour cela qu'une bouteille scellée chauffée finit par devenir dangereuse.",
+   "texte": "Isochore : V constant, P/T = constante (Gay-Lussac)."
+  },
+  {
+   "id": "p26",
+   "ecran": "adiabatique",
+   "pause_apres": 0.8,
+   "dit": "Quatrième transformation : l'adiabatique, sans aucun échange de chaleur avec l'extérieur. Le système est parfaitement isolé, ou la transformation est si rapide que la chaleur n'a pas le temps de passer, comme la détente brusque d'une seringue bouchée. La relation devient : la pression multipliée par le volume élevé à la puissance gamma reste constante, où gamma est l'indice adiabatique du gaz.",
+   "texte": "Adiabatique : aucun échange de chaleur, PV^γ = constante."
+  },
+  {
+   "id": "p27",
+   "ecran": "tableau_transformations",
+   "pause_apres": 0.8,
+   "dit": "Comparons les quatre transformations dans le diagramme pression-volume, comme le fait le tableau des leçons. L'isobare y est une droite horizontale, l'isochore une droite verticale, l'isotherme une hyperbole. Et l'adiabatique dessine une courbe plus raide que l'isotherme : sans apport de chaleur, la pression chute plus vite quand le volume augmente.",
+   "texte": "Les quatre courbes du diagramme de Clapeyron."
+  },
+  {
+   "id": "p28",
+   "ecran": "exercice_isobare",
+   "pause_apres": 0.8,
+   "dit": "Exercice corrigé des leçons : un gaz subit une transformation isobare, son volume passe de deux litres à quatre litres, et sa température initiale est de trois cents kelvins. Quelle est sa température finale ? Le rapport du volume à la température est constant : la température finale vaut la température initiale multipliée par le rapport des volumes. Trois cents fois deux : six cents kelvins.",
+   "texte": "T₂ = 300 × 4/2 = 600 K : le volume double, la température double."
+  },
+  {
+   "id": "p29",
+   "ecran": "exercice_adiabatique",
+   "pause_apres": 0.8,
+   "dit": "Exercice plus avancé, tiré des leçons : un gaz se détend de manière adiabatique, de deux atmosphères et un litre, jusqu'à un volume de deux litres, avec un indice gamma d'un virgule quatre. La relation adiabatique entre l'état initial et l'état final donne une pression finale d'environ zéro virgule soixante-seize atmosphère : sans échange de chaleur, la chute est plus forte qu'en isotherme.",
+   "texte": "P₂ = 2 × (1/2)^1,4 ≈ 0,76 atm (dérivation par la relation du cours)."
+  },
+  {
+   "id": "p30",
+   "ecran": "methode",
+   "pause_apres": 0.8,
+   "dit": "Aux concours, un énoncé bien compris est déjà à moitié résolu. La méthode des leçons tient en quatre réflexes : identifier les données et leurs unités, identifier l'inconnue demandée, reconnaître le type de transformation, et dessiner un schéma du système, ou le diagramme pression-volume pour les transformations enchaînées. Seulement ensuite, on choisit la bonne équation.",
+   "texte": "Données, inconnue, transformation, schéma : avant tout calcul."
+  },
+  {
+   "id": "p31",
+   "ecran": "pieges",
+   "pause_apres": 0.8,
+   "dit": "Quelques pièges classiques ferment la marche. Le premier : les unités, toujours converties dans le système international avant de calculer. Le deuxième : la température, toujours en kelvins. Le troisième : un résultat doit être physiquement plausible, vérifiez son ordre de grandeur. Et le conseil qui les domine tous : entraînez-vous régulièrement, en variant les types de problèmes.",
+   "texte": "Unités SI, kelvins, cohérence : les pièges à éviter."
+  },
+  {
+   "id": "p32",
+   "ecran": "limites",
+   "pause_apres": 0.8,
+   "dit": "Il faut terminer par l'honnêteté du modèle : le gaz parfait est une approximation. À haute pression, les molécules se rapprochent et leurs interactions comptent. À basse température, les forces d'attraction peuvent même liquéfier le gaz. Et les gaz polaires, comme la vapeur d'eau, s'écartent du modèle. Pour les gaz réels, il faudra des équations plus fines, comme celle de Van der Waals.",
+   "texte": "Haute pression, basse température : le modèle trouve ses limites."
+  },
+  {
+   "id": "p33",
+   "ecran": "recap_final",
+   "pause_apres": 0.8,
+   "dit": "Vous avez maintenant la panoplie complète des gaz parfaits. La pression et les mélanges, avec la loi de Dalton. La grande équation d'état, et ses deux filles, la masse volumique et le volume molaire. Les quatre transformations et leurs lois. Et la méthode pour décrypter les énoncés de concours. La suite du programme : mettre ces outils au service de la thermodynamique.",
+   "texte": "Gaz parfaits : pression, Dalton, PV = nRT, transformations."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Pression, unités et mélanges gazeux"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "L'équation d'état, masse volumique et volume molaire",
+   "pont": {
+    "dit": "Partie deux : l'équation d'état des gaz parfaits. Après les mélanges, nous allons relier pression, volume, quantité de matière et température dans une seule loi, puis en tirer la masse volumique et le volume molaire.",
+    "texte": "Partie 2 : PV = nRT, masse volumique et volume molaire."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Les quatre transformations et la méthode des concours",
+   "pont": {
+    "dit": "Partie trois : les transformations et la méthode des concours. Après l'équation d'état, nous allons faire évoluer le gaz en gardant à chaque fois une grandeur constante, puis apprendre à décrypter les énoncés comme aux concours.",
+    "texte": "Partie 3 : isotherme, isobare, isochore, adiabatique, et la méthode."
+   }
+  }
+ ]
+}
