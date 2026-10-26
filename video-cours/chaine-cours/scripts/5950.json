@@ -1,0 +1,608 @@
+{
+ "cours": 5950,
+ "ecrans": {
+  "acidite_alcools": {
+   "kicker": "Les alcools, acides très faibles",
+   "tex": [
+    "\\mathrm{ROH} + \\mathrm{Na} \\rightarrow \\mathrm{RONa} + \\tfrac{1}{2}\\,\\mathrm{H_2}",
+    "\\text{plus le groupe R est encombrant, plus l'acidité baisse}",
+    "\\text{l'ion formé s'appelle un alcoolate : } \\mathrm{RO^-}"
+   ],
+   "titre": "Un proton à céder, un alcoolate à former",
+   "type": "etape"
+  },
+  "addition_nucleophile": {
+   "kicker": "Addition nucléophile sur le carbonyle",
+   "tex": [
+    "\\mathrm{Nu^-} \\text{ attaque le carbone électrophile du carbonyle}",
+    "\\text{intermédiaire tétraédrique : la charge passe sur l'oxygène}",
+    "\\text{protonation} \\Rightarrow \\text{produit d'addition}"
+   ],
+   "titre": "Le mécanisme central des aldéhydes et cétones",
+   "type": "etape"
+  },
+  "alcools_exercices": {
+   "kicker": "Entraînement : nommer les alcools",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH(CH_3)CH_2OH} : \\text{ 2-méthylbutan-1-ol}",
+    "\\mathrm{(CH_3)_3C{-}OH} : \\text{ 2-méthylpropan-2-ol}",
+    "\\mathrm{C_5H_9{-}OH} \\text{ (cycle)} : \\text{ cyclopentanol}"
+   ],
+   "titre": "Le corrigé des exercices des leçons",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "Applications : ces familles sont partout",
+   "texte": "Solvants et carburants pour les alcools, parfums et arômes pour les aldéhydes et les cétones : la vanille, la cannelle et l'acétone du quotidien en témoignent.",
+   "type": "phrase"
+  },
+  "cetones_reactivite": {
+   "kicker": "Cétones : une réactivité plus nuancée",
+   "tex": [
+    "\\text{encombrement stérique : l'approche du nucléophile est gênée}",
+    "\\text{effet inductif +I : le carbone est moins électrophile}",
+    "\\text{protection du carbonyle : acétals et cétals réversibles}",
+    "\\text{aldolisation : créer une liaison } \\mathrm{C{-}C}"
+   ],
+   "titre": "Même famille, caractère plus discret",
+   "type": "etape"
+  },
+  "chiralite": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "enantiomeres_fig"
+   },
+   "kicker": "Stéréoisomérie : le carbone asymétrique",
+   "texte": "Le butan-2-ol possède un carbone asymétrique, lié à quatre groupes différents : il existe en deux énantiomères, images miroir non superposables, notés R et S.",
+   "type": "phrase"
+  },
+  "choisir_synthese": {
+   "kicker": "Stratégie : choisir sa voie de synthèse",
+   "tex": [
+    "\\text{un aldéhyde : PCC doux, ou réduction de Rosenmund}",
+    "\\text{une cétone : alcool secondaire, ozonolyse, Friedel-Crafts}",
+    "\\text{un alcool : hydratation, réduction ou Grignard}",
+    "\\text{hexan-1-ol + PCC} \\Rightarrow \\text{hexanal (exercice des leçons)}"
+   ],
+   "titre": "Devant une cible, choisir la bonne route",
+   "type": "etape"
+  },
+  "densite": {
+   "kicker": "Densité : l'exercice corrigé des leçons",
+   "note": "l'éthanol est moins dense que l'eau ; le glycérol fait exception",
+   "tex": "d = \\frac{m}{V} = \\frac{7{,}89\\ \\text{g}}{10\\ \\text{mL}} = 0{,}789\\ \\text{g/mL}",
+   "type": "formule"
+  },
+  "deshydratation": {
+   "kicker": "Déshydratation des alcools",
+   "note": "élimination de type E1 ou E2 selon la structure et les conditions",
+   "tex": "\\mathrm{CH_3{-}CH(OH){-}CH_3} \\xrightarrow{\\mathrm{H_2SO_4},\\ \\Delta} \\mathrm{CH_3{-}CH{=}CH_2} + \\mathrm{H_2O}",
+   "type": "formule"
+  },
+  "ebullition": {
+   "kicker": "Points d'ébullition comparés",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH_3} : 44\\ \\text{g/mol},\\ -42\\,^\\circ\\mathrm{C}, \\text{ van der Waals}",
+    "\\mathrm{CH_3CH_2OH} : 46\\ \\text{g/mol},\\ 78\\,^\\circ\\mathrm{C}, \\text{ liaisons H}",
+    "\\mathrm{CH_3CH_2CHO} : 58\\ \\text{g/mol},\\ 49\\,^\\circ\\mathrm{C}, \\text{ dipôle-dipôle}",
+    "\\mathrm{CH_3COCH_3} : 58\\ \\text{g/mol},\\ 56\\,^\\circ\\mathrm{C}, \\text{ dipôle-dipôle}"
+   ],
+   "titre": "Pourquoi l'éthanol bout-il si haut ?",
+   "type": "etape"
+  },
+  "exercice_nomenclature": {
+   "kicker": "Entraînement : nommer, corrigé des leçons",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH(OH)CH_3} : \\text{ butan-2-ol}",
+    "\\mathrm{CH_3CH_2CHO} : \\text{ propanal}",
+    "\\mathrm{(CH_3)_2CO} : \\text{ propanone (acétone)}"
+   ],
+   "titre": "Trois composés, trois familles",
+   "type": "etape"
+  },
+  "exercice_reactions": {
+   "kicker": "Entraînement : prévoir les produits",
+   "tex": [
+    "\\text{propan-2-ol} + \\mathrm{K_2Cr_2O_7/H^+} \\Rightarrow \\text{propanone}",
+    "\\text{2-méthylpropène} + \\mathrm{H_2O} \\xrightarrow{\\mathrm{H_2SO_4}} \\text{2-méthylpropan-2-ol}"
+   ],
+   "titre": "Deux transformations classiques d'examen",
+   "type": "etape"
+  },
+  "familles": {
+   "kicker": "Trois familles oxygénées",
+   "tex": [
+    "\\text{alcools : } \\mathrm{R{-}OH}, \\text{ le groupe hydroxyle}",
+    "\\text{aldéhydes : } \\mathrm{R{-}CHO}, \\text{ carbonyle en bout de chaîne}",
+    "\\text{cétones : } \\mathrm{R{-}CO{-}R'}, \\text{ carbonyle interne}"
+   ],
+   "titre": "Un atome d'oxygène, trois caractères",
+   "type": "etape"
+  },
+  "grignard": {
+   "kicker": "Réactifs de Grignard sur les carbonyles",
+   "tex": [
+    "\\mathrm{CH_3CH_2CHO} + \\mathrm{CH_3MgBr} \\rightarrow \\text{butan-2-ol, secondaire}",
+    "\\text{aldéhyde + RMgX} \\Rightarrow \\text{alcool secondaire}",
+    "\\text{cétone + RMgX} \\Rightarrow \\text{alcool tertiaire}"
+   ],
+   "titre": "Construire un alcool, carbone par carbone",
+   "type": "etape"
+  },
+  "hydratation": {
+   "kicker": "Synthèse des alcools : hydratation des alcènes",
+   "tex": [
+    "\\mathrm{CH_3{-}CH{=}CH_2} + \\mathrm{H_2O} \\xrightarrow{\\mathrm{H^+}} \\text{propan-2-ol}",
+    "\\text{Markovnikov : OH sur le carbone le plus substitué}",
+    "\\text{but-1-ène} \\Rightarrow \\text{butan-2-ol majoritaire}"
+   ],
+   "titre": "Ajouter de l'eau à une double liaison",
+   "type": "etape"
+  },
+  "isomerie_exemples": {
+   "kicker": "Isomérie : les exemples des leçons",
+   "tex": [
+    "\\mathrm{C_4H_{10}O} : \\text{ butan-1-ol, butan-2-ol, 2-méthylpropan-2-ol}",
+    "\\mathrm{C_3H_6O} : \\text{ propanal (aldéhyde) ou propanone (cétone)}"
+   ],
+   "titre": "Une formule brute, plusieurs molécules",
+   "type": "etape"
+  },
+  "isomerie_rappel": {
+   "kicker": "Isomérie : les grandes familles",
+   "tex": [
+    "\\text{chaîne : le squelette carboné change}",
+    "\\text{position : la fonction se déplace}",
+    "\\text{fonction : le groupe fonctionnel change}",
+    "\\text{stéréo : l'arrangement dans l'espace change}"
+   ],
+   "titre": "Même formule brute, structures différentes",
+   "type": "etape"
+  },
+  "mecanisme_oxydation": {
+   "kicker": "Mécanisme : l'oxydation chromique",
+   "tex": [
+    "\\text{1 : l'alcool attaque le chrome, ester chromique}",
+    "\\text{2 : une base arrache le H du carbone porteur}",
+    "\\text{3 : la liaison } \\mathrm{C{=}O} \\text{ se forme, chrome réduit}",
+    "\\text{la cétone s'arrête là : plus de H sur son carbone}"
+   ],
+   "titre": "Trois temps, et un point d'arrêt",
+   "type": "etape"
+  },
+  "nomenclature_alcools": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "chaine_carbonee_fig"
+   },
+   "kicker": "Nommer les alcools",
+   "tex": [
+    "\\text{alcane} - \\text{e} + \\text{ol} \\Rightarrow \\text{alcool}",
+    "\\mathrm{CH_3{-}CH_2{-}CH_2{-}OH} : \\text{ propan-1-ol}",
+    "\\mathrm{CH_3{-}CH(CH_3){-}CH_2{-}OH} : \\text{ 2-méthylpropan-1-ol}"
+   ],
+   "titre": "Le suffixe -ol et le plus petit numéro",
+   "type": "etape"
+  },
+  "nomenclature_carbonyles": {
+   "kicker": "Nommer aldéhydes et cétones",
+   "tex": [
+    "\\mathrm{CH_3CHO} : \\text{ éthanal} \\qquad \\mathrm{CH_3COCH_3} : \\text{ propan-2-one}",
+    "\\mathrm{CH_3CH_2CH_2CHO} : \\text{ butanal}",
+    "\\mathrm{CH_3{-}CO{-}CH_2CH_3} : \\text{ butan-2-one}",
+    "\\mathrm{(CH_3)_2CH{-}CO{-}CH_3} : \\text{ 3-méthylbutan-2-one}"
+   ],
+   "titre": "-al en bout de chaîne, -one à l'intérieur",
+   "type": "etape"
+  },
+  "oxydation_alcools": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "transfert_electrons_fig"
+   },
+   "kicker": "Oxydation des alcools : le schéma clé",
+   "tex": [
+    "\\text{primaire + oxydant doux} \\Rightarrow \\text{aldéhyde}",
+    "\\text{primaire + oxydant fort} \\Rightarrow \\text{acide carboxylique}",
+    "\\text{secondaire} \\Rightarrow \\text{cétone} \\quad ; \\quad \\text{tertiaire : résiste}"
+   ],
+   "titre": "Le produit dépend de la classe de l'alcool",
+   "type": "etape"
+  },
+  "oxydation_exemples": {
+   "kicker": "Oxydation : exemples et exercice corrigé",
+   "tex": [
+    "\\mathrm{CH_3CH_2OH} \\rightarrow \\mathrm{CH_3CHO} \\rightarrow \\mathrm{CH_3COOH}",
+    "\\text{butan-1-ol + PCC} \\Rightarrow \\text{butanal}",
+    "\\text{butan-1-ol} + \\mathrm{K_2Cr_2O_7} \\Rightarrow \\text{acide butanoïque}",
+    "\\text{propan-2-ol} \\rightarrow \\text{propanone}"
+   ],
+   "titre": "De l'éthanol au vinaigre, pas à pas",
+   "type": "etape"
+  },
+  "recap_final": {
+   "etapes": [
+    "Nommer juste, du premier coup",
+    "Prévoir le produit d'oxydation",
+    "Choisir la voie de synthèse",
+    "Un carbone asymétrique : R ou S",
+    "S'entraîner, encore et toujours"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "recap_partie1": {
+   "etapes": [
+    "Trois familles, un oxygène",
+    "Suffixes : -ol, -al, -one",
+    "Ébullition : les liaisons H",
+    "Solubilité : la chaîne compte",
+    "Isomères : même formule brute"
+   ],
+   "kicker": "Bilan de la première partie",
+   "type": "recap"
+  },
+  "recap_partie2": {
+   "etapes": [
+    "Oxydation : selon la classe",
+    "Primaire : aldéhyde ou acide",
+    "Le carbonyle aime les nucléophiles",
+    "Tollens distingue les aldéhydes",
+    "Grignard : construire un alcool"
+   ],
+   "kicker": "Bilan : les réactions",
+   "type": "recap"
+  },
+  "reduction": {
+   "kicker": "Réduction des aldéhydes et cétones",
+   "tex": [
+    "\\mathrm{NaBH_4} : \\text{ doux, sélectif des aldéhydes et cétones}",
+    "\\mathrm{LiAlH_4} : \\text{ puissant, réduit aussi esters et acides}",
+    "\\mathrm{C_6H_5CHO} + \\mathrm{NaBH_4} \\rightarrow \\mathrm{C_6H_5CH_2OH}",
+    "\\text{mécanisme : } \\mathrm{H^-} \\text{ attaque, puis protonation}"
+   ],
+   "titre": "Deux hydrures, deux puissances",
+   "type": "etape"
+  },
+  "solubilite": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "melange"
+   },
+   "kicker": "Solubilité : l'importance de la polarité",
+   "texte": "Les alcools courts, jusqu'à quatre carbones environ, se mélangent à l'eau grâce aux liaisons hydrogène. Plus la chaîne s'allonge, plus la partie hydrophobe domine : la solubilité chute.",
+   "type": "phrase"
+  },
+  "substitutions": {
+   "kicker": "Substitution et estérification",
+   "tex": [
+    "\\mathrm{CH_3CH_2CH_2OH} + \\mathrm{HBr} \\rightarrow \\mathrm{CH_3CH_2CH_2Br} + \\mathrm{H_2O}",
+    "\\mathrm{CH_3COOH} + \\mathrm{CH_3CH_2OH} \\rightleftharpoons \\mathrm{CH_3COOCH_2CH_3} + \\mathrm{H_2O}",
+    "\\text{acide méthanoïque + propan-1-ol} \\Rightarrow \\text{méthanoate de propyle}"
+   ],
+   "titre": "Remplacer le groupe hydroxyle, ou former un ester",
+   "type": "etape"
+  },
+  "synthese_aldehydes": {
+   "kicker": "Synthèse des aldéhydes",
+   "tex": [
+    "\\text{propan-1-ol + PCC} \\Rightarrow \\text{propanal, sans sur-oxydation}",
+    "\\mathrm{R{-}COCl} + \\mathrm{H_2} \\xrightarrow{\\mathrm{Pd/BaSO_4}} \\mathrm{R{-}CHO} + \\mathrm{HCl}",
+    "\\mathrm{HC{\\equiv}CH} + \\mathrm{H_2O} \\rightarrow \\mathrm{CH_3CHO} \\text{ (via un énol)}"
+   ],
+   "titre": "Trois routes vers un aldéhyde",
+   "type": "etape"
+  },
+  "synthese_cetones": {
+   "kicker": "Synthèse des cétones",
+   "tex": [
+    "\\text{propan-2-ol} + \\mathrm{K_2Cr_2O_7} \\Rightarrow \\text{propanone}",
+    "\\text{2-méthylbut-2-ène} + \\mathrm{O_3} \\Rightarrow \\text{propanone + éthanal}",
+    "\\text{Friedel-Crafts : chlorure d'acyle + aromatique, } \\mathrm{AlCl_3}"
+   ],
+   "titre": "Trois routes vers une cétone",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "formule_developpee_fig"
+   },
+   "kicker": "Chimie · Chimie organique",
+   "sous": "Nomenclature, propriétés, réactions et synthèses",
+   "titre": "Alcools, aldéhydes et cétones",
+   "type": "titre"
+  },
+  "tollens": {
+   "kicker": "Oxydation des aldéhydes : le test de Tollens",
+   "tex": [
+    "\\mathrm{CH_3CHO} + [\\mathrm{O}] \\rightarrow \\mathrm{CH_3COOH}",
+    "\\text{Tollens : } \\mathrm{Ag^+} \\text{ réduit en } \\mathrm{Ag} \\text{ métallique}",
+    "\\text{les cétones ne réagissent pas : pas de H sur le carbonyle}"
+   ],
+   "titre": "Le miroir d'argent, signature des aldéhydes",
+   "type": "etape"
+  },
+  "voies_alcools": {
+   "kicker": "Synthèse des alcools : réduire ou construire",
+   "tex": [
+    "\\text{réduction : aldéhyde} \\Rightarrow \\text{primaire ; cétone} \\Rightarrow \\text{secondaire}",
+    "\\mathrm{CH_2O} + \\mathrm{CH_3MgBr} \\rightarrow \\mathrm{CH_3CH_2OH}",
+    "\\text{2-méthylbut-2-ène} + \\mathrm{H_2O} \\Rightarrow \\text{2-méthylbutan-2-ol}"
+   ],
+   "titre": "Le composé de départ fixe la classe obtenue",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  4803,
+  4804,
+  4805,
+  4806,
+  4807,
+  4808,
+  4809,
+  4810,
+  4811,
+  4812,
+  4813,
+  4814
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Nommer les trois familles et prévoir leurs propriétés"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les réactions. Après les noms et les propriétés, place aux transformations : oxydations, déshydratation, additions nucléophiles, réductions et réactifs de Grignard, sans oublier les mécanismes qui les expliquent.",
+    "texte": "Partie 2 : les réactions des alcools et des carbonyles."
+   },
+   "sous_titre": "Réactions et mécanismes des alcools, aldéhydes et cétones"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : fabriquer ces molécules. Nous passons aux synthèses des alcools, des aldéhydes et des cétones, puis à la chiralité, avant une séance d'entraînement complète, corrigée pas à pas.",
+    "texte": "Partie 3 : synthèses, chiralité et entraînement."
+   },
+   "sous_titre": "Synthèses, chiralité et entraînement corrigé"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce module consacré à trois grandes familles de la chimie organique : les alcools, les aldéhydes et les cétones. Nous apprendrons d'abord à les nommer et à prévoir leurs propriétés physiques. Puis nous plongerons dans leurs réactions et leurs mécanismes, avant d'apprendre à les synthétiser. Nous terminerons par l'isomérie et une séance d'entraînement complète.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Alcools, aldéhydes et cétones : trois familles oxygénées."
+  },
+  {
+   "dit": "Tout commence par un atome d'oxygène. Chez les alcools, il porte un hydrogène : c'est le groupe hydroxyle, lié à un carbone saturé, entouré de quatre liaisons simples. Chez les aldéhydes et les cétones, l'oxygène est lié au carbone par une double liaison : c'est le groupe carbonyle. En bout de chaîne, avec un hydrogène en prime, pour les aldéhydes ; à l'intérieur de la chaîne, entre deux carbones, pour les cétones.",
+   "ecran": "familles",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "R–OH ; R–CHO ; R–CO–R′ : un seul oxygène, trois familles."
+  },
+  {
+   "dit": "Pour nommer un alcool, on part de l'alcane correspondant et on remplace le e final par le suffixe ol. La chaîne carbonée est numérotée de façon à donner au carbone qui porte le groupe hydroxyle le numéro le plus bas possible. Si la molécule est ramifiée, on choisit la plus longue chaîne contenant ce carbone, et on cite les substituants avant le nom. Deux exemples à l'écran : le propan-un-ol, et un alcool ramifié, le deux-méthylpropan-un-ol.",
+   "ecran": "nomenclature_alcools",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "Suffixe -ol, et le carbone porteur du OH reçoit le plus petit numéro."
+  },
+  {
+   "dit": "À vous de vérifier avec le corrigé des exercices des leçons. Premier composé : une chaîne de quatre carbones, un groupe méthyle sur le deuxième carbone et le groupe hydroxyle au bout, c'est le deux-méthylbutan-un-ol. Deuxième : le groupe hydroxyle est porté par un carbone central entouré de trois méthyles, c'est le deux-méthylpropan-deux-ol, souvent appelé alcool tert-butylique. Troisième : un cycle à cinq carbones, simplement le cyclopentanol.",
+   "ecran": "alcools_exercices",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Corrigé : 2-méthylbutan-1-ol ; 2-méthylpropan-2-ol ; cyclopentanol."
+  },
+  {
+   "dit": "Pour les aldéhydes, le suffixe al remplace le e de l'alcane, et le carbone du carbonyle est forcément le premier : aucun numéro à préciser. L'éthanal en est l'exemple type. Pour les cétones, le suffixe est one, et on numérote pour donner au carbonyle le plus petit numéro : la propan-deux-one, que tout le monde appelle acétone. Le corrigé à l'écran ajoute le butanal, la butan-deux-one et la trois-méthylbutan-deux-one.",
+   "ecran": "nomenclature_carbonyles",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "-al pour l'aldéhyde terminal, -one pour la cétone interne."
+  },
+  {
+   "dit": "Pourquoi l'éthanol bout-il à soixante-dix-huit degrés, alors que le propane, de masse molaire voisine, bout à moins quarante-deux degrés ? La réponse tient aux liaisons hydrogène : le groupe hydroxyle permet aux molécules d'alcool de s'accrocher fortement les unes aux autres, et il faut beaucoup d'énergie pour les séparer. Les aldéhydes et les cétones, sans hydrogène sur l'oxygène, ne se lient que par des interactions dipôle-dipôle, plus faibles : leurs points d'ébullition sont intermédiaires.",
+   "ecran": "ebullition",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Liaisons hydrogène : l'éthanol bout à 78 °C, le propane à −42 °C."
+  },
+  {
+   "dit": "La solubilité dans l'eau suit la même logique. Le groupe hydroxyle forme des liaisons hydrogène avec les molécules d'eau, donc les petites molécules se mélangent bien. Mais chaque carbone ajouté renforce la partie hydrophobe, qui déteste l'eau : au-delà de quatre carbones environ, l'alcool devient peu soluble. Les aldéhydes et les cétones montrent le même comportement, avec une solubilité généralement un peu plus faible que les alcools comparables.",
+   "ecran": "solubilite",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Chaîne courte : soluble. Chaîne longue : hydrophobe."
+  },
+  {
+   "dit": "Un mot sur la densité, avec l'exercice corrigé des leçons. Dix millilitres d'éthanol pèsent sept virgule quatre-vingt-neuf grammes. La densité est le rapport de la masse au volume : sept virgule quatre-vingt-neuf divisé par dix, soit zéro virgule sept cent quatre-vingt-neuf gramme par millilitre. L'éthanol est donc moins dense que l'eau et flotte sur elle. La plupart de nos composés sont dans ce cas, sauf certains alcools à plusieurs groupes hydroxyle, comme le glycérol, plus dense que l'eau.",
+   "ecran": "densite",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "d = m/V : l'éthanol vaut 0,789 g/mL."
+  },
+  {
+   "dit": "Passons à l'isomérie, qui reviendra dans tout le module. Des isomères ont la même formule brute, mais pas la même structure. Si le squelette carboné change, on parle d'isomérie de chaîne ; si c'est la position de la fonction qui change, d'isomérie de position ; et si le groupe fonctionnel lui-même est différent, d'isomérie de fonction. À cela s'ajoute la stéréoisomérie, où la connectivité est la même mais l'arrangement dans l'espace diffère.",
+   "ecran": "isomerie_rappel",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Chaîne, position, fonction : la constitution. L'espace : la stéréo."
+  },
+  {
+   "dit": "Deux exemples des leçons pour ancrer ces idées. Avec la formule brute carbone quatre, hydrogène dix, oxygène, on construit trois alcools différents : le butan-un-ol, le butan-deux-ol, et un alcool ramifié, le deux-méthylpropan-deux-ol. Ils ne diffèrent que par la position du groupe hydroxyle et la forme du squelette. Plus frappant encore : la formule carbone trois, hydrogène six, oxygène correspond soit au propanal, un aldéhyde, soit à la propanone, une cétone. Même formule, deux familles différentes.",
+   "ecran": "isomerie_exemples",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "C₄H₁₀O : trois alcools. C₃H₆O : un aldéhyde ou une cétone."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Trois familles se distinguent par la place de l'oxygène : hydroxyle pour les alcools, carbonyle terminal pour les aldéhydes, carbonyle interne pour les cétones. Leurs noms se construisent avec les suffixes ol, al et one, en numérotant au plus bas. Leurs propriétés physiques s'expliquent presque toutes par les liaisons hydrogène et la longueur de la chaîne. Et une même formule brute peut cacher plusieurs molécules : ce sont les isomères.",
+   "ecran": "recap_partie1",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Nommer, prévoir l'ébullition, reconnaître les isomères."
+  },
+  {
+   "dit": "Entrons dans les réactions, en commençant par le caractère acide des alcools. Ce sont des acides très faibles : face à une base forte ou à un métal alcalin comme le sodium, ils cèdent le proton de leur groupe hydroxyle et forment un ion alcoolate. La réaction avec le sodium dégage du dihydrogène, comme le montre l'équation à l'écran. Retenez aussi la tendance : plus le groupe alkyle porté par le carbone est encombrant, plus l'alcool est faiblement acide.",
+   "ecran": "acidite_alcools",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "ROH + Na → RONa + ½ H₂ : l'alcoolate se forme."
+  },
+  {
+   "dit": "La grande réaction des alcools, c'est l'oxydation, et son produit dépend de la classe de l'alcool. Un alcool primaire, oxydé en douceur, donne un aldéhyde ; avec un oxydant fort, l'oxydation continue jusqu'à l'acide carboxylique. Un alcool secondaire donne une cétone, et l'oxydation s'arrête là. Un alcool tertiaire, lui, résiste : il n'a pas d'hydrogène sur le carbone qui porte le groupe hydroxyle, et dans les conditions normales, rien ne se passe. Ce tableau est à connaître par cœur.",
+   "ecran": "oxydation_alcools",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Primaire → aldéhyde ou acide ; secondaire → cétone ; tertiaire : rien."
+  },
+  {
+   "dit": "Illustration avec l'éthanol, qui s'oxyde en éthanal, puis en acide éthanoïque, l'acide du vinaigre. L'exercice corrigé des leçons applique le schéma au butan-un-ol. Avec le P C C, un oxydant doux, on s'arrête au butanal. Avec le dichromate de potassium, un oxydant fort, on arrive à l'acide butanoïque. Tout l'art consiste donc à choisir l'oxydant selon le produit visé. Dernier repère : le propan-deux-ol, alcool secondaire, donne la propanone, comme prévu par le tableau.",
+   "ecran": "oxydation_exemples",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "PCC : on s'arrête à l'aldéhyde. Dichromate : jusqu'à l'acide."
+  },
+  {
+   "dit": "Deuxième transformation des alcools : la déshydratation. Chauffé en présence d'un acide fort, comme l'acide sulfurique concentré, un alcool perd une molécule d'eau et devient un alcène. À l'écran, le propan-deux-ol donne le propène. Le mécanisme est une élimination, de type E un ou E deux selon la structure et les conditions. Le propan-deux-ol se déshydrate plus facilement que le propan-un-ol : l'intermédiaire formé en route, un carbocation secondaire, est plus stable qu'un carbocation primaire.",
+   "ecran": "deshydratation",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Propan-2-ol → propène + H₂O : la déshydratation."
+  },
+  {
+   "dit": "Le groupe hydroxyle peut aussi être remplacé. Avec un halogénure d'hydrogène comme l'acide bromhydrique, un alcool devient un halogénoalcane : à l'écran, le propan-un-ol donne le un-bromopropane. C'est une substitution nucléophile, souvent catalysée par un acide. Autre réaction fondatrice : l'estérification. Un acide carboxylique et un alcool donnent un ester et de l'eau, en présence d'un catalyseur acide. La réaction est un équilibre : pour améliorer le rendement, on élimine l'eau au fur et à mesure.",
+   "ecran": "substitutions",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "HBr remplace OH par Br ; un acide + un alcool donne un ester."
+  },
+  {
+   "dit": "Regardons l'oxydation de plus près, avec son mécanisme en trois temps, tel que les leçons le décrivent pour les oxydants au chrome. D'abord, l'oxygène de l'alcool attaque le chrome et forme un ester chromique. Ensuite, une base arrache l'hydrogène du carbone porteur, la double liaison carbone-oxygène se forme et le chrome est réduit. Enfin, si le produit est un aldéhyde, il peut repartir pour un tour et devenir un acide. La cétone, elle, s'arrête là : son carbone ne porte plus l'hydrogène qu'il faudrait arracher.",
+   "ecran": "mecanisme_oxydation",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Ester chromique, élimination, C=O : l'oxydation en trois temps."
+  },
+  {
+   "dit": "Changeons de famille : le groupe carbonyle des aldéhydes et des cétones a son mécanisme signature, l'addition nucléophile. Le carbone du carbonyle est électrophile : il attire les espèces riches en électrons. Un nucléophile l'attaque, la double liaison s'ouvre, et la charge négative passe sur l'oxygène : c'est l'intermédiaire tétraédrique. Une protonation finale donne le produit d'addition. Ce schéma unique explique presque toutes les réactions qui suivent, des réductions aux réactifs de Grignard.",
+   "ecran": "addition_nucleophile",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Nu⁻ attaque, intermédiaire tétraédrique, protonation."
+  },
+  {
+   "dit": "Les aldéhydes ont une faiblesse que les cétones n'ont pas : leur hydrogène sur le carbonyle les rend très faciles à oxyder, en acides carboxyliques. On en fait un test célèbre, le réactif de Tollens, une solution ammoniacale d'argent. L'aldéhyde réduit les ions argent en argent métallique, qui se dépose en miroir brillant sur les parois du tube. Les cétones, sans cet hydrogène, ne réagissent pas : le miroir d'argent distingue donc un aldéhyde d'une cétone à coup sûr.",
+   "ecran": "tollens",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Tollens : l'aldéhyde réduit Ag⁺ en miroir d'argent."
+  },
+  {
+   "dit": "Le carbonyle peut aussi être réduit en alcool, avec deux réactifs à bien distinguer. Le borohydrure de sodium est doux et sélectif : il réduit les aldéhydes et les cétones sans toucher au reste de la molécule. L'hydrure d'aluminium et de lithium est bien plus puissant : il réduit aussi les esters et les acides, mais exige des conditions rigoureuses. À l'écran, le benzaldéhyde devient l'alcool benzylique. Le mécanisme est l'addition nucléophile que nous connaissons : l'hydrure attaque le carbone, puis l'oxygène est protoné.",
+   "ecran": "reduction",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "NaBH₄ doux et sélectif ; LiAlH₄ puissant."
+  },
+  {
+   "dit": "Les réactifs de Grignard, des organomagnésiens de formule R M g X, sont les champions de la construction d'alcools. Leur carbone, riche en électrons, attaque le carbone du carbonyle ; après protonation de l'intermédiaire, on obtient un alcool enrichi d'un carbone supplémentaire. Exemple des leçons, avec le bon produit : le propanal réagit avec le bromure de méthylmagnésium et donne le butan-deux-ol, un alcool secondaire. Sur une cétone, la même réaction donne un alcool tertiaire.",
+   "ecran": "grignard",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "Propanal + CH₃MgBr → butan-2-ol : un alcool secondaire."
+  },
+  {
+   "dit": "Pourquoi les cétones réagissent-elles plus lentement que les aldéhydes ? Deux raisons, données par les leçons. D'abord l'encombrement : deux groupes alkyles entourent le carbonyle et gênent l'approche du nucléophile. Ensuite l'effet inductif donneur des groupes alkyles, qui rend le carbone du carbonyle moins électrophile. Deux réactions propres aux cétones et aux aldéhydes pour finir : la formation d'acétals et de cétals, qui protège le carbonyle de façon réversible, et les condensations comme l'aldolisation, qui créent des liaisons carbone-carbone.",
+   "ecran": "cetones_reactivite",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Stérie et effet +I : la cétone réagit plus lentement."
+  },
+  {
+   "dit": "Bilan de cette deuxième partie. Le groupe hydroxyle rend les alcools faiblement acides, déshydratables et substituables. Leur oxydation suit un schéma strictement déterminé par leur classe : primaire vers aldéhyde ou acide, secondaire vers cétone, tertiaire inerte. Le carbonyle, lui, est le théâtre de l'addition nucléophile : réduction par les hydrures, construction d'alcools par les réactifs de Grignard, et le test de Tollens trahit les aldéhydes. Ces quelques mécanismes prédisent l'essentiel des produits.",
+   "ecran": "recap_partie2",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Oxydations, additions, réductions : le cœur des réactions."
+  },
+  {
+   "dit": "Apprenons maintenant à fabriquer ces molécules, en commençant par les alcools. Première voie : l'hydratation d'un alcène, l'addition d'une molécule d'eau sur la double liaison, catalysée par un acide. La régiosélectivité suit la règle de Markovnikov : le proton se fixe sur le carbone le moins substitué, et le groupe hydroxyle sur le plus substitué. Le propène donne ainsi le propan-deux-ol. Et l'hydratation du but-un-ène donne principalement le butan-deux-ol, car le carbocation secondaire intermédiaire est plus stable que le primaire.",
+   "ecran": "hydratation",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Markovnikov : le OH va sur le carbone le plus substitué."
+  },
+  {
+   "dit": "Deux autres voies complètent la boîte à outils. La réduction des carbonyles, déjà rencontrée : un aldéhyde donne un alcool primaire, une cétone un alcool secondaire. Et la réaction de Grignard, qui construit la chaîne : le méthanal réagit avec le bromure de méthylmagnésium et donne l'éthanol. L'exercice corrigé des leçons combine tout : pour obtenir le deux-méthylbutan-deux-ol, un alcool tertiaire, on hydrate le deux-méthylbut-deux-ène en milieu acide, en suivant Markovnikov. Le choix du composé de départ décide de la classe de l'alcool obtenu.",
+   "ecran": "voies_alcools",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Réduction ou Grignard : le choix fixe la classe de l'alcool."
+  },
+  {
+   "dit": "Fabriquer un aldéhyde demande de la retenue : il faut oxyder sans aller trop loin. La voie royale est l'oxydation douce d'un alcool primaire, au P C C par exemple : le propan-un-ol donne le propanal, sans sur-oxydation en acide. Deuxième voie : la réduction de Rosenmund, qui transforme un chlorure d'acyle en aldéhyde grâce au dihydrogène et à un catalyseur au palladium ; le chlorure de benzoyle donne ainsi le benzaldéhyde. Troisième voie, plus détournée : l'hydratation de l'éthyne, qui passe par un énol instable et aboutit à l'éthanal.",
+   "ecran": "synthese_aldehydes",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "PCC, Rosenmund, hydratation de l'éthyne : cap sur l'aldéhyde."
+  },
+  {
+   "dit": "Pour les cétones, trois routes principales. La plus directe : oxyder un alcool secondaire, le propan-deux-ol devient la propanone avec le dichromate. La plus radicale : l'ozonolyse, qui coupe une double liaison carbone-carbone ; celle du deux-méthylbut-deux-ène donne la propanone et l'éthanal. Et pour les cétones aromatiques, l'acylation de Friedel-Crafts : un chlorure d'acyle réagit sur un composé aromatique, catalysé par le chlorure d'aluminium. C'est ainsi qu'on obtient par exemple la benzophénone, à partir du benzène et du chlorure de benzoyle.",
+   "ecran": "synthese_cetones",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Alcool secondaire oxydé, ozonolyse, Friedel-Crafts."
+  },
+  {
+   "dit": "Revenons à la stéréoisomérie, avec l'exemple des leçons : le butan-deux-ol. Son deuxième carbone porte quatre groupes différents : c'est un carbone asymétrique, dit chiral. La molécule existe alors sous deux formes, images l'une de l'autre dans un miroir, mais non superposables : les deux énantiomères, de configurations opposées R et S. Ce n'est pas un détail : en pharmacie, deux énantiomères peuvent avoir des effets très différents sur l'organisme, et dans l'agroalimentaire, des arômes différents.",
+   "ecran": "chiralite",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "Butan-2-ol : un carbone asymétrique, deux énantiomères."
+  },
+  {
+   "dit": "Séance d'entraînement, avec les exercices corrigés des leçons. Premier composé : une chaîne de quatre carbones et le groupe hydroxyle sur le deuxième, c'est le butan-deux-ol. Deuxième : trois carbones et un carbonyle terminal, c'est le propanal. Troisième : le carbonyle est au centre, entouré de deux méthyles, c'est la propanone, l'acétone. Si ces trois réponses vous viennent sans hésiter, la nomenclature est acquise. Sinon, revenez à la première partie : les suffixes et la numérotation sont la clé.",
+   "ecran": "exercice_nomenclature",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Butan-2-ol, propanal, propanone : le corrigé des leçons."
+  },
+  {
+   "dit": "Deuxième entraînement : prévoir les produits. Le propan-deux-ol, alcool secondaire, est oxydé par le dichromate de potassium en milieu acide : on obtient la propanone, en passant par l'ester chromique du mécanisme. Deuxième transformation : le deux-méthylpropène est hydraté en présence d'acide sulfurique. Markovnikov place le groupe hydroxyle sur le carbone le plus substitué, le carbone tertiaire : le produit est le deux-méthylpropan-deux-ol. Deux mécanismes, deux réflexes : identifier la classe, puis appliquer la règle.",
+   "ecran": "exercice_reactions",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "Propan-2-ol → propanone ; 2-méthylpropène → alcool tertiaire."
+  },
+  {
+   "dit": "Devant une molécule cible, le chimiste choisit sa route comme un stratège. Un aldéhyde ? Oxydation douce d'un alcool primaire, ou réduction de Rosenmund d'un chlorure d'acyle. Une cétone ? Oxydation d'un alcool secondaire, ozonolyse bien choisie, ou Friedel-Crafts si elle est aromatique. Un alcool ? Hydratation d'un alcène, réduction d'un carbonyle, ou Grignard pour allonger la chaîne. Dernier exercice des leçons : l'hexanal s'obtient à partir de l'hexan-un-ol, avec le P C C, l'oxydant doux qui évite de poursuivre jusqu'à l'acide.",
+   "ecran": "choisir_synthese",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "Une cible, plusieurs routes : choisir selon la fonction visée."
+  },
+  {
+   "dit": "Pourquoi tant d'efforts pour ces trois familles ? Parce qu'elles sont partout. Les alcools servent de solvants, de carburants et d'intermédiaires de synthèse. Les aldéhydes et les cétones parfument notre quotidien : la vanille et la cannelle doivent leurs arômes à des aldéhydes, et l'acétone dissout nos vernis. On les retrouve aussi dans les médicaments, les plastiques et les résines. Savoir les nommer, prévoir leurs réactions et les synthétiser, c'est tenir une des clés de la chimie organique moderne.",
+   "ecran": "applications",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Solvants, carburants, parfums : ces familles sont partout."
+  },
+  {
+   "dit": "Le module se referme. Vous savez nommer les alcools, les aldéhydes et les cétones, et relier leurs propriétés physiques aux liaisons hydrogène. Vous prévoyez leurs réactions : oxydation selon la classe, addition nucléophile sur le carbonyle, réduction, Grignard et test de Tollens. Vous savez aussi les fabriquer, par hydratation, réduction ou acylation, et reconnaître un carbone asymétrique. Il ne reste qu'une chose : pratiquer, car en chimie organique, c'est l'entraînement qui transforme les règles en réflexes.",
+   "ecran": "recap_final",
+   "id": "p33",
+   "pause_apres": 0.9,
+   "texte": "Nommer, réagir, synthétiser : le module est bouclé."
+  }
+ ],
+ "titre": "Alcools, aldéhydes et cétones : nomenclature, propriétés, réactions et synthèses"
+}
