@@ -1,0 +1,585 @@
+{
+ "cours": 5946,
+ "ecrans": {
+  "applications": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "transistor_fig"
+   },
+   "kicker": "Les liaisons dans le monde réel",
+   "texte": "Médicaments, matériaux, électronique, vivant : les liaisons commandent partout.",
+   "type": "phrase"
+  },
+  "coordinence": {
+   "kicker": "La liaison de coordinence",
+   "tex": [
+    "\\mathrm{NH}_3 + \\mathrm{H}^+ \\rightarrow \\mathrm{NH}_4^+",
+    "\\mathrm{NH}_3 : \\text{donneur, base de Lewis}",
+    "\\mathrm{H}^+ : \\text{accepteur, acide de Lewis}"
+   ],
+   "titre": "Un donneur, un accepteur",
+   "type": "etape"
+  },
+  "covalente": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "transfert_partage_fig"
+   },
+   "kicker": "La liaison covalente",
+   "texte": "Deux non-métaux mettent des électrons en commun : chacun complète son octet.",
+   "type": "phrase"
+  },
+  "duet": {
+   "kicker": "L'exception des petits atomes",
+   "note": "la couche K ne contient que deux places : H et He visent le duet",
+   "tex": "\\mathrm{H}\\cdot + \\cdot\\mathrm{H} \\rightarrow \\mathrm{H-H}",
+   "type": "formule"
+  },
+  "ebullition_exercice": {
+   "kicker": "Exercices des leçons, résolus",
+   "tex": [
+    "\\mathrm{CH}_4 < \\mathrm{CH}_3\\mathrm{Cl} < \\mathrm{CH}_3\\mathrm{OH}",
+    "\\mathrm{H}_2\\mathrm{O} \\gg \\mathrm{H}_2\\mathrm{S}"
+   ],
+   "titre": "Classer des points d'ébullition",
+   "type": "etape"
+  },
+  "echelle_en": {
+   "kicker": "L'échelle des leçons (image relue)",
+   "tex": [
+    "\\Delta\\chi = 0 : \\text{pure } (\\mathrm{H}_2)",
+    "\\Delta\\chi < 0{,}4 : \\text{non polaire } (\\mathrm{CH}_4)",
+    "0{,}4 \\le \\Delta\\chi \\le 1{,}7 : \\text{polaire } (\\mathrm{HF})",
+    "\\Delta\\chi > 1{,}7 : \\text{ionique } (\\mathrm{NaF})"
+   ],
+   "titre": "Trancher avec la différence d'électronégativité",
+   "type": "etape"
+  },
+  "exceptions_octet": {
+   "kicker": "Les exceptions à la règle",
+   "tex": [
+    "\\mathrm{BF}_3 : \\mathrm{B}\\ \\text{entouré de } 6\\ e^-",
+    "\\mathrm{SF}_6 : \\mathrm{S}\\ \\text{entouré de } 12\\ e^-",
+    "\\text{radicaux : un } e^-\\ \\text{non apparié}"
+   ],
+   "titre": "Quand l'octet n'est pas respecté",
+   "type": "etape"
+  },
+  "exemples_ioniques": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "tableau_periodique_fig"
+   },
+   "kicker": "Prédire une liaison ionique",
+   "texte": "Métaux à gauche, non-métaux à droite : les couples ioniques se repèrent dans le tableau.",
+   "type": "phrase"
+  },
+  "forces_faibles": {
+   "etapes": [
+    "London : dipôles instantanés, partout",
+    "Dipôle-dipôle : entre molécules polaires",
+    "Dipôle-induit : du polaire vers l'apolaire",
+    "Ion-dipôle : un ion attire un dipôle"
+   ],
+   "kicker": "Les autres forces intermoléculaires",
+   "type": "recap"
+  },
+  "geometrie_polarite": {
+   "kicker": "Polarité et géométrie",
+   "texte": "Des liaisons polaires ne suffisent pas : tout dépend de la géométrie de la molécule.",
+   "type": "phrase"
+  },
+  "hybridation": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "orbitales_formes_fig"
+   },
+   "kicker": "Le problème du méthane",
+   "texte": "Ni s ni p : le carbone du méthane mélange ses orbitales pour lier quatre hydrogènes identiques.",
+   "type": "phrase"
+  },
+  "hybridation_types": {
+   "kicker": "Le tableau des leçons",
+   "tex": [
+    "sp : \\text{linéaire},\\ 180^\\circ \\qquad sp^2 : \\text{trigonale plane},\\ 120^\\circ",
+    "sp^3 : \\text{tétraédrique},\\ 109{,}5^\\circ \\qquad sp^3d : \\text{bipyramidale}",
+    "sp^3d^2 : \\text{octaédrique}"
+   ],
+   "titre": "Les familles d'hybridation et leurs angles",
+   "type": "etape",
+   "note": "Exemples, dans l’ordre : BeCl₂, BF₃, CH₄, PCl₅ et SF₆."
+  },
+  "ionique": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "transfert_electrons_fig"
+   },
+   "kicker": "La liaison ionique",
+   "texte": "Un métal cède, un non-métal capte : les ions opposés s'attirent.",
+   "type": "phrase"
+  },
+  "lewis_eau": {
+   "kicker": "Exemple travaillé des leçons",
+   "tex": [
+    "\\mathrm{O} : 6\\ e^- \\quad \\mathrm{H} : 1\\ e^-",
+    "\\text{total} = 6 + 2 \\times 1 = 8\\ e^-",
+    "\\mathrm{H-O-H} : 2\\ \\text{liaisons simples}",
+    "\\text{reste} : 2\\ \\text{doublets non liants sur O}"
+   ],
+   "titre": "L'eau, construite pas à pas",
+   "type": "etape"
+  },
+  "liaison_h": {
+   "kicker": "La plus forte des faibles",
+   "texte": "Un hydrogène lié à O, N ou F attire l'atome électronégatif d'une molécule voisine.",
+   "type": "phrase"
+  },
+  "longueur_energie": {
+   "kicker": "Longueur et énergie de liaison",
+   "note": "en longueur, c'est l'inverse : la triple est la plus courte des trois",
+   "tex": "E_{\\text{triple}} > E_{\\text{double}} > E_{\\text{simple}}",
+   "type": "formule"
+  },
+  "metallique": {
+   "kicker": "La liaison métallique",
+   "texte": "Des cations plongés dans une mer d'électrons libres de circuler partout.",
+   "type": "phrase",
+   "anim": {
+    "nom": "mer_electrons_fig",
+    "hauteur": 180
+   }
+  },
+  "methode_lewis": {
+   "etapes": [
+    "Compter les électrons de valence",
+    "L'atome central : le moins électronégatif",
+    "Relier par des liaisons simples",
+    "Compléter les octets des atomes externes",
+    "Former des liaisons multiples si besoin"
+   ],
+   "kicker": "Construire un schéma de Lewis",
+   "type": "recap"
+  },
+  "moment_dipolaire": {
+   "kicker": "Le moment dipolaire",
+   "note": "δ : charge partielle de chaque atome ; d : distance entre les atomes liés",
+   "tex": "\\mu = \\delta \\times d",
+   "type": "formule"
+  },
+  "multiplicite": {
+   "kicker": "Simple, double, triple",
+   "tex": [
+    "\\mathrm{H-H} : 1\\ \\text{paire} \\quad \\text{simple}",
+    "\\mathrm{O=O} : 2\\ \\text{paires} \\quad \\text{double}",
+    "\\mathrm{N \\equiv N} : 3\\ \\text{paires} \\quad \\text{triple}"
+   ],
+   "titre": "Une, deux ou trois paires partagées",
+   "type": "etape"
+  },
+  "nacl": {
+   "kicker": "Exemple emblématique",
+   "tex": [
+    "\\mathrm{Na} \\rightarrow \\mathrm{Na}^+ + e^-",
+    "\\mathrm{Cl} + e^- \\rightarrow \\mathrm{Cl}^-",
+    "\\mathrm{Na}^+ + \\mathrm{Cl}^- \\rightarrow \\mathrm{NaCl}"
+   ],
+   "titre": "La naissance du chlorure de sodium",
+   "type": "etape"
+  },
+  "octet": {
+   "kicker": "La règle de l'octet",
+   "note": "le chlore : sept électrons de valence, un à gagner pour compléter l'octet",
+   "tex": "\\mathrm{Cl} : 3s^2\\,3p^5 \\quad \\Rightarrow \\quad 7 + 1 = 8",
+   "type": "formule"
+  },
+  "polarite": {
+   "kicker": "La polarité des liaisons",
+   "tex": [
+    "\\mathrm{H}^{\\delta+} - \\mathrm{Cl}^{\\delta-}",
+    "\\chi_{\\mathrm{Cl}} > \\chi_{\\mathrm{H}} \\Rightarrow \\text{nuage décalé vers Cl}"
+   ],
+   "titre": "Quand le partage devient inégal",
+   "type": "etape"
+  },
+  "proprietes_ioniques": {
+   "etapes": [
+    "Solides à température ambiante",
+    "Fusion et ébullition très élevées",
+    "Solubles dans l'eau, solvant polaire",
+    "Conduisent fondus ou en solution",
+    "Fragiles : le cristal se fracture"
+   ],
+   "kicker": "Propriétés des composés ioniques",
+   "type": "recap"
+  },
+  "proprietes_metaux": {
+   "etapes": [
+    "Conductivité électrique élevée",
+    "Conductivité thermique élevée",
+    "Malléables : martelés sans casser",
+    "Ductiles : étirés en fils fins",
+    "Éclat métallique caractéristique"
+   ],
+   "kicker": "Les propriétés des métaux",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Octet et duet : la stabilité visée",
+    "Ionique : transfert, réseau cristallin",
+    "Covalente : partage, simple à triple",
+    "VSEPR et hybridation : les formes",
+    "Forces faibles : des effets majeurs"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "sigma_pi": {
+   "kicker": "Hybridation et liaisons multiples",
+   "note": "éthylène : l'orbitale p non hybridée forme la liaison π, perpendiculaire",
+   "tex": "\\mathrm{C=C} : 1\\ \\text{liaison } \\sigma + 1\\ \\text{liaison } \\pi",
+   "type": "formule"
+  },
+  "stabilite": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Pourquoi les atomes se lient-ils ?",
+   "texte": "Seuls et stables, les gaz nobles ne se lient pas : les autres atomes cherchent à leur ressembler.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "transfert_electrons_fig"
+   },
+   "kicker": "Chimie · Liaisons chimiques",
+   "sous": "Règle de l'octet, Lewis, liaisons ionique, covalente et métallique, géométrie et forces faibles",
+   "titre": "Les liaisons chimiques",
+   "type": "titre"
+  },
+  "valence": {
+   "kicker": "La valence, pouvoir de liaison",
+   "note": "sept électrons de valence : il en manque un, la valence du chlore vaut un",
+   "tex": "\\mathrm{Cl} : 1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^5",
+   "type": "formule"
+  },
+  "vsepr_exemples": {
+   "kicker": "Exemples travaillés des leçons",
+   "tex": [
+    "\\mathrm{CH}_4 : 4\\ \\text{PL} + 0\\ \\text{PNL} \\to \\text{tétraédrique}",
+    "\\mathrm{NH}_3 : 3\\ \\text{PL} + 1\\ \\text{PNL} \\to \\text{pyramidale trigonale}",
+    "\\mathrm{H}_2\\mathrm{O} : 2\\ \\text{PL} + 2\\ \\text{PNL} \\to \\text{coudée}"
+   ],
+   "titre": "Trois exemples fondateurs",
+   "type": "etape"
+  },
+  "vsepr_methode": {
+   "etapes": [
+    "Dessiner le schéma de Lewis",
+    "Compter paires liantes et non liantes",
+    "Lire la géométrie électronique",
+    "En déduire la géométrie moléculaire"
+   ],
+   "kicker": "La méthode VSEPR en quatre temps",
+   "type": "recap"
+  },
+  "vsepr_principe": {
+   "kicker": "Le modèle VSEPR de Gillespie",
+   "texte": "Les paires d'électrons se repoussent : la molécule adopte la forme qui les écarte au maximum.",
+   "type": "phrase"
+  },
+  "vsepr_tableau": {
+   "kicker": "Le tableau des leçons",
+   "tex": [
+    "2\\ \\text{paires} \\to \\text{linéaire}",
+    "3\\ \\text{paires} \\to \\text{trigonale plane}",
+    "4\\ \\text{paires} \\to \\text{tétraédrique}",
+    "5\\ \\text{paires} \\to \\text{bipyramidale trigonale}",
+    "6\\ \\text{paires} \\to \\text{octaédrique}"
+   ],
+   "titre": "Le tableau des géométries électroniques",
+   "type": "etape"
+  }
+ },
+ "lecons": [
+  4755,
+  4756,
+  4757,
+  4758,
+  4759,
+  4760,
+  4761,
+  4762,
+  4763,
+  4764,
+  4765,
+  4766,
+  4767
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Octet, Lewis et liaison ionique"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : la liaison covalente, le partage des électrons. Nous verrons les liaisons simples, doubles et triples, la polarité et le moment dipolaire, la valence, puis la géométrie des molécules avec le modèle VSEPR.",
+    "texte": "Partie 2 : la liaison covalente, partage et géométrie."
+   },
+   "sous_titre": "La liaison covalente : partage, polarité et géométrie"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : hybridation, métaux et liaisons faibles. Nous mélangerons les orbitales pour expliquer les formes, nous plongerons dans la mer d'électrons des métaux, et nous terminerons par les forces qui relient les molécules entre elles.",
+    "texte": "Partie 3 : hybridation, métaux et liaisons faibles."
+   },
+   "sous_titre": "Hybridation, métaux et liaisons faibles"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux liaisons chimiques, ces forces qui unissent les atomes et donnent naissance à toutes les molécules. Nous partirons de la règle de l'octet et des schémas de Lewis, puis nous étudierons les liaisons ionique, covalente et métallique. Nous prédirons ensuite la géométrie des molécules, avant de découvrir les liaisons faibles, discrètes mais essentielles.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Les liaisons chimiques : pourquoi et comment les atomes s'unissent."
+  },
+  {
+   "dit": "Pourquoi les atomes se lient-ils ? Tout est une question de stabilité. Les gaz nobles, comme l'hélium, le néon ou l'argon, possèdent une couche externe complète : ils sont inertes et ne réagissent presque jamais. Les autres atomes, eux, cherchent à imiter cette configuration stable. Pour y parvenir, ils gagnent, perdent ou partagent des électrons : c'est la naissance des liaisons chimiques.",
+   "ecran": "stabilite",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "La stabilité des gaz nobles : le modèle à imiter."
+  },
+  {
+   "dit": "Le principe directeur s'appelle la règle de l'octet. Un atome tend à gagner, perdre ou partager des électrons jusqu'à en compter huit sur sa couche de valence, comme un gaz noble. Prenons le chlore : il possède sept électrons de valence. Il lui en manque exactement un pour compléter son octet, ce qui explique sa tendance à former une seule liaison ou à capter un électron.",
+   "ecran": "octet",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "La règle de l'octet : huit électrons de valence, comme les gaz nobles."
+  },
+  {
+   "dit": "Pour visualiser ces électrons, Lewis a inventé en mille neuf cent seize une notation simple : le symbole de l'élément, entouré de points qui représentent ses électrons de valence. Un trait entre deux atomes symbolise une paire partagée. La construction suit cinq étapes, affichées à l'écran : compter, choisir l'atome central, relier, compléter les octets, puis créer des liaisons multiples si nécessaire.",
+   "ecran": "methode_lewis",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Les schémas de Lewis : cinq étapes de construction."
+  },
+  {
+   "dit": "Appliquons la méthode à la molécule d'eau, l'exemple travaillé des leçons. L'oxygène apporte six électrons de valence, chaque hydrogène un seul : huit électrons au total. On relie chaque hydrogène à l'oxygène par une liaison simple, ce qui consomme quatre électrons. Les quatre restants se placent sur l'oxygène, en deux paires qui ne participent à aucune liaison : les doublets non liants.",
+   "ecran": "lewis_eau",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "H₂O : deux liaisons simples, deux doublets non liants sur l'oxygène."
+  },
+  {
+   "dit": "La règle de l'octet n'est pourtant pas une loi absolue, et les leçons signalent trois familles d'exceptions. Certains atomes restent en dessous de huit électrons, comme le bore dans le trifluorure de bore, entouré de six électrons seulement. D'autres dépassent l'octet, comme le soufre dans l'hexafluorure de soufre, entouré de douze électrons. Enfin, les radicaux portent un électron célibataire, non apparié.",
+   "ecran": "exceptions_octet",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Exceptions : BF₃ incomplet, SF₆ expansé, radicaux."
+  },
+  {
+   "dit": "Il existe une exception plus fondamentale, qui concerne les plus petits atomes : la règle du duet. L'hydrogène et l'hélium n'ont qu'une seule couche, la couche K, qui ne peut contenir que deux électrons. Leur stabilité correspond donc à deux électrons, la configuration de l'hélium. Dans la molécule de dihydrogène, chaque atome partage son unique électron et atteint ainsi son duet. Même en liaison ionique, comme dans l'hydrure de lithium, les deux ions formés adoptent cette configuration à deux électrons.",
+   "ecran": "duet",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "La règle du duet : deux électrons pour H et He."
+  },
+  {
+   "dit": "Passons au premier grand type de liaison : la liaison ionique. Elle naît d'un transfert d'électrons, et non d'un partage. Elle oppose deux atomes aux tendances contraires : un métal, peu électronégatif, qui cède facilement ses électrons, et un non-métal, très électronégatif, qui les capte. Le transfert crée deux ions de charges opposées, un cation positif et un anion négatif, qui s'attirent fortement.",
+   "ecran": "ionique",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "La liaison ionique : un transfert d'électrons, puis une attraction."
+  },
+  {
+   "dit": "L'exemple emblématique est le sel de table, le chlorure de sodium. Le sodium, métal alcalin, ne possède qu'un seul électron de valence : il le cède et devient un cation chargé positivement, avec la configuration stable du néon. Le chlore, halogène à sept électrons de valence, capte cet électron et devient un anion, avec la configuration de l'argon. L'attraction entre les deux ions opposés constitue la liaison.",
+   "ecran": "nacl",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "NaCl : Na cède son électron, Cl le capte, les ions s'attirent."
+  },
+  {
+   "dit": "Ces attractions puissantes se répètent dans tout le cristal et donnent aux composés ioniques leurs propriétés caractéristiques, résumées à l'écran. Ils sont solides à température ambiante et fondent à très haute température, car briser le réseau demande beaucoup d'énergie. Ils se dissolvent dans l'eau, mais ne conduisent le courant que fondus ou dissous, quand les ions deviennent mobiles. Enfin, ils sont fragiles : un choc aligne des ions de même charge, qui se repoussent et font éclater le cristal.",
+   "ecran": "proprietes_ioniques",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "Les propriétés des composés ioniques : une affaire de réseau."
+  },
+  {
+   "dit": "Les composés ioniques sont partout : l'oxyde de magnésium des matériaux réfractaires, le sulfate de calcium du gypse, et même les batteries au lithium, qui fonctionnent par déplacement d'ions. Pour prédire une liaison ionique, un réflexe suffit : elle unit presque toujours un métal et un non-métal, situés aux extrémités opposées du tableau périodique. Le sodium et l'oxygène, le magnésium et le chlore formeront donc des liaisons ioniques, mais pas le carbone et l'hydrogène.",
+   "ecran": "exemples_ioniques",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "MgO, CaSO₄, batteries au lithium : prédire par la position dans le tableau."
+  },
+  {
+   "dit": "Deuxième grand type de liaison : la liaison covalente, où les atomes partagent des électrons au lieu de les échanger. Elle unit généralement deux non-métaux. La paire partagée appartient aux deux atomes à la fois, et chacun complète ainsi son octet, ou son duet pour l'hydrogène. C'est la liaison des molécules : l'eau, le dioxygène, et l'immense famille des molécules organiques et biologiques.",
+   "ecran": "covalente",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "La liaison covalente : des électrons mis en commun."
+  },
+  {
+   "dit": "Le partage peut porter sur une, deux ou trois paires d'électrons. Une seule paire partagée forme une liaison simple, représentée par un tiret, comme dans le dihydrogène. Deux paires forment une liaison double, comme dans le dioxygène. Trois paires forment une liaison triple, comme dans le diazote de l'air. Le tableau des leçons résume cette classification, affichée à l'écran.",
+   "ecran": "multiplicite",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Simple (−), double (=), triple (≡) : H₂, O₂, N₂."
+  },
+  {
+   "dit": "Plus on partage de paires, plus la liaison devient forte et courte. La densité d'électrons entre les deux noyaux augmente, l'attraction se renforce, et les atomes se rapprochent. Résultat : une liaison triple est plus courte et demande plus d'énergie pour être rompue qu'une liaison double, elle-même plus courte et plus forte qu'une liaison simple. Longueur et énergie varient donc en sens inverse.",
+   "ecran": "longueur_energie",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "Triple : la plus courte et la plus forte des liaisons."
+  },
+  {
+   "dit": "Le partage n'est pas toujours équitable. Quand deux atomes d'électronégativités différentes se lient, l'atome le plus électronégatif attire davantage le nuage électronique. Il reçoit une charge partielle négative, notée delta moins, et son partenaire une charge partielle positive, delta plus. La liaison devient covalente polaire. Dans le chlorure d'hydrogène, le chlore, plus électronégatif, attire le doublet liant vers lui.",
+   "ecran": "polarite",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "HCl : δ+ sur H, δ− sur Cl, la liaison est polaire."
+  },
+  {
+   "dit": "Cette polarité se mesure par le moment dipolaire, noté mu. Sa norme vaut le produit de la charge partielle par la distance entre les deux atomes liés. Sur les schémas, on le représente par une flèche dirigée vers l'atome le plus électronégatif, avec un petit signe plus du côté positif. Une molécule qui possède un tel moment permanent est appelée un dipôle.",
+   "ecran": "moment_dipolaire",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "µ = δ × d : la mesure de la polarité d'une liaison."
+  },
+  {
+   "dit": "Comment décider du type d'une liaison ? Par la différence d'électronégativité entre les deux atomes, selon l'échelle des leçons affichée à l'écran. Différence nulle : liaison covalente pure. En dessous de zéro virgule quatre : non polaire. Entre zéro virgule quatre et un virgule sept : polaire. Au-delà : la liaison devient ionique. Vérifions avec l'exercice corrigé des leçons : hydrogène-hydrogène, non polaire ; carbone-hydrogène, faiblement polaire ; oxygène-hydrogène et carbone-chlore, polaires.",
+   "ecran": "echelle_en",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "Δχ : 0 pure, moins de 0,4 non polaire, 0,4 à 1,7 polaire, plus de 1,7 ionique."
+  },
+  {
+   "dit": "Attention à un piège classique : une molécule peut contenir des liaisons polaires sans être elle-même un dipôle. Tout dépend de sa géométrie. Dans l'eau, molécule coudée, les moments des deux liaisons s'ajoutent : l'eau est un dipôle. Dans le dioxyde de carbone, molécule linéaire, les deux moments opposés s'annulent exactement : la molécule est globalement apolaire. Pour être polaire, il faut des liaisons polarisées, et des barycentres de charges qui ne coïncident pas.",
+   "ecran": "geometrie_polarite",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "H₂O coudée : dipôle ; CO₂ linéaire : apolaire malgré ses liaisons polaires."
+  },
+  {
+   "dit": "Il existe un cas particulier de liaison covalente : la liaison de coordinence, ou liaison dative. Ici, la paire partagée est fournie par un seul des deux atomes. Exemple des leçons : l'ammoniac possède un doublet non liant sur son azote. Il peut le donner à un proton, qui l'accepte dans sa case vide. On obtient l'ion ammonium. L'ammoniac joue le rôle de base de Lewis, donneuse, et le proton celui d'acide de Lewis, accepteur.",
+   "ecran": "coordinence",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "NH₃ + H⁺ → NH₄⁺ : le doublet de l'azote crée la liaison."
+  },
+  {
+   "dit": "Un concept va nous aider à prédire les formules : la valence, le pouvoir de liaison d'un atome. Elle compte le nombre d'atomes d'hydrogène qu'un atome peut lier, ou de liaisons covalentes qu'il peut former. L'hydrogène a une valence de un, l'oxygène de deux, le carbone de quatre. Elle se lit sur la configuration électronique : le chlore, avec sept électrons de valence, n'a besoin que d'une liaison pour compléter son octet. Ne la confondez pas avec le nombre d'oxydation, qui lui peut être négatif.",
+   "ecran": "valence",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "La valence : H vaut 1, O vaut 2, C vaut 4, Cl vaut 1."
+  },
+  {
+   "dit": "Connaître les liaisons ne suffit pas : il faut aussi la forme de la molécule dans l'espace. Le modèle VSEPR, imaginé par Gillespie, la prédit avec une idée simple : les paires d'électrons de valence autour de l'atome central se repoussent et s'écartent au maximum, comme des ballons attachés au même point. On distingue les paires liantes, engagées dans les liaisons, et les paires non liantes, les doublets libres, qui repoussent plus fort car elles restent près de l'atome central.",
+   "ecran": "vsepr_principe",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "VSEPR : la répulsion des paires fixe la géométrie."
+  },
+  {
+   "dit": "La méthode suit quatre temps, résumés à l'écran. D'abord, dessiner le schéma de Lewis pour repérer l'atome central et ses paires d'électrons. Ensuite, compter le total des paires, liantes et non liantes. Ce total donne la géométrie électronique, la disposition de toutes les paires. Enfin, la géométrie moléculaire ne retient que la position des atomes : les doublets libres deviennent invisibles, mais leur répulsion déforme la molécule.",
+   "ecran": "vsepr_methode",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Lewis, comptage, géométrie électronique, géométrie moléculaire."
+  },
+  {
+   "dit": "Voici le tableau des leçons, à connaître : il relie le nombre total de paires autour de l'atome central à la géométrie électronique. Deux paires : linéaire. Trois paires : trigonale plane. Quatre paires : tétraédrique. Cinq paires : bipyramidale trigonale. Six paires : octaédrique. On classe aussi les molécules avec la notation A X E : A pour l'atome central, X pour ses voisins, E pour ses doublets non liants.",
+   "ecran": "vsepr_tableau",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "2 linéaire, 3 trigonale plane, 4 tétraédrique, 5 bipyramidale, 6 octaédrique."
+  },
+  {
+   "dit": "Appliquons aux trois exemples des leçons, tous construits sur quatre paires. Le méthane : quatre paires liantes, aucun doublet libre, la géométrie moléculaire est tétraédrique, comme la géométrie électronique. L'ammoniac : trois liaisons et un doublet libre, qui repousse les liaisons vers le bas, la molécule devient pyramidale trigonale. L'eau : deux liaisons et deux doublets libres, qui resserrent encore l'angle, la molécule est coudée. Par la même méthode, le dioxyde de soufre sort coudé, à cause du doublet libre du soufre, là où le dioxyde de carbone reste linéaire.",
+   "ecran": "vsepr_exemples",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "CH₄ tétraédrique, NH₃ pyramidale, H₂O coudée : les doublets libres déforment."
+  },
+  {
+   "dit": "Un mystère subsiste avec le méthane : ses quatre liaisons carbone-hydrogène sont rigoureusement identiques et tétraédriques, alors que les orbitales s et p du carbone ont des formes et des énergies différentes. La solution est l'hybridation : avant de se lier, l'atome combine ses orbitales atomiques en nouvelles orbitales, les orbitales hybrides, toutes équivalentes en forme et en énergie. Le nombre d'orbitales hybrides formées égale le nombre d'orbitales combinées.",
+   "ecran": "hybridation",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "L'hybridation : mélanger les orbitales pour des liaisons équivalentes."
+  },
+  {
+   "dit": "Le tableau des leçons associe à chaque hybridation les orbitales combinées, une géométrie et un angle. Une orbitale s et une p donnent deux orbitales s p, linéaires. Une s et deux p donnent trois orbitales s p deux, trigonales planes. Une s et trois p donnent quatre orbitales s p trois, tétraédriques : c'est le cas du carbone du méthane. Les hybridations avec orbitales d expliquent les géométries à cinq et six paires rencontrées avec VSEPR.",
+   "ecran": "hybridation_types",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "sp 180°, sp² 120°, sp³ 109,5° : l'hybridation fixe l'angle."
+  },
+  {
+   "dit": "L'hybridation éclaire aussi les liaisons multiples. Dans l'éthylène, chaque carbone est hybridé s p deux : il forme trois liaisons sigma dans un plan, dont celle qui le relie à l'autre carbone. Il lui reste une orbitale p non hybridée, perpendiculaire au plan. Le recouvrement latéral de ces deux orbitales p crée la liaison pi, le second volet de la double liaison. Une double liaison vaut donc une sigma plus une pi.",
+   "ecran": "sigma_pi",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "Double liaison C=C : une σ axiale et une π latérale."
+  },
+  {
+   "dit": "Troisième grande liaison : la liaison métallique, qui unit les atomes des métaux. Le modèle de la mer d'électrons la décrit simplement : les atomes métalliques mettent leurs électrons de valence en commun dans un nuage délocalisé qui baigne tout le cristal. Les noyaux, devenus des cations, baignent dans cette mer négative qui les attire tous à la fois. Aucun électron n'appartient à un atome précis : ils circulent dans tout le métal.",
+   "ecran": "metallique",
+   "id": "p28",
+   "pause_apres": 0.8,
+   "texte": "La liaison métallique : un océan d'électrons délocalisés."
+  },
+  {
+   "dit": "Ce modèle explique d'un coup toutes les propriétés des métaux, listées à l'écran avec leurs exemples des leçons. Les électrons mobiles transportent le courant et la chaleur : d'où le cuivre des câbles. Les couches d'atomes glissent sans rompre la liaison, retenues par la mer d'électrons : d'où l'or martelé en feuilles et le cuivre étiré en fils. La force de la liaison dépend du nombre d'électrons de valence, de la charge du noyau et du rayon atomique. C'est elle qui, trop faible chez le mercure, explique qu'il soit liquide à température ambiante.",
+   "ecran": "proprietes_metaux",
+   "id": "p29",
+   "pause_apres": 0.8,
+   "texte": "Conducteurs, malléables, ductiles : la mer d'électrons explique tout."
+  },
+  {
+   "dit": "Passons aux liaisons faibles, qui ne relient plus les atomes dans la molécule, mais les molécules entre elles. La plus forte est la liaison hydrogène. Elle se forme quand un hydrogène, lié à un atome très électronégatif comme l'oxygène, l'azote ou le fluor, est attiré par un atome électronégatif d'une molécule voisine. Entre molécules d'eau, ces liaisons expliquent l'ébullition étonnamment élevée, la forte tension superficielle et le pouvoir solvant de l'eau.",
+   "ecran": "liaison_h",
+   "id": "p30",
+   "pause_apres": 0.8,
+   "texte": "La liaison hydrogène : la plus forte des liaisons faibles."
+  },
+  {
+   "dit": "Les autres forces faibles forment la famille de Van der Waals, complétée par les interactions ion-dipôle. Les forces de London naissent des fluctuations du nuage électronique : des dipôles instantanés apparaissent et en induisent chez les voisins ; elles existent partout et grandissent avec la taille des molécules. Les forces dipôle-dipôle attirent les molécules polaires entre elles. Une molécule polaire peut aussi induire un dipôle chez une molécule apolaire voisine. Enfin, un ion attire la tête de charge opposée d'une molécule polaire : c'est ce qui dissout le sel dans l'eau.",
+   "ecran": "forces_faibles",
+   "id": "p31",
+   "pause_apres": 0.8,
+   "texte": "London, dipôle-dipôle, dipôle-induit, ion-dipôle : le reste de la famille."
+  },
+  {
+   "dit": "Entraînons-nous avec les exercices des leçons, résolus par la méthode des forces intermoléculaires. Premier classement : le méthane ne connaît que les forces de London, le chlorométhane ajoute les interactions dipôle-dipôle, et le méthanol forme des liaisons hydrogène ; leurs points d'ébullition croissent dans cet ordre. Deuxième comparaison : l'eau bout beaucoup plus haut que le sulfure d'hydrogène, pourtant plus lourd, car seul l'oxygène, très électronégatif, permet des liaisons hydrogène. Et le glycérol, avec ses trois groupes hydroxyle, est bien plus visqueux que l'éthanol.",
+   "ecran": "ebullition_exercice",
+   "id": "p32",
+   "pause_apres": 0.8,
+   "texte": "Exercices résolus : London, puis dipôle-dipôle, puis liaison hydrogène."
+  },
+  {
+   "dit": "Ces concepts gouvernent le monde réel, comme le montre le dernier chapitre. En pharmacie, un médicament comme l'aspirine agit par des interactions précises avec son enzyme cible. Dans les matériaux, le diamant, réseau covalent tridimensionnel, est extrêmement dur, tandis que le graphite, fait de feuillets retenus par des forces faibles, glisse et lubrifie. En électronique, le dopage du silicium ajuste la conductivité des semi-conducteurs. Et dans le vivant, les liaisons hydrogène tiennent la double hélice de l'ADN et plient les protéines.",
+   "ecran": "applications",
+   "id": "p33",
+   "pause_apres": 0.8,
+   "texte": "Aspirine, diamant et graphite, silicium dopé, ADN : les applications."
+  },
+  {
+   "dit": "Récapitulons le voyage. Les atomes cherchent la stabilité de l'octet, ou du duet pour les plus petits, et les schémas de Lewis permettent de suivre leurs électrons. Trois grandes liaisons fortes en découlent : ionique par transfert, covalente par partage, métallique par délocalisation. Le modèle VSEPR et l'hybridation prédisent les formes des molécules. Et les liaisons faibles, hydrogène et Van der Waals, relient les molécules entre elles et règlent leurs propriétés. Vous tenez la grammaire complète des liaisons chimiques.",
+   "ecran": "recap_final",
+   "id": "p34",
+   "pause_apres": 0.9,
+   "texte": "Octet, trois liaisons fortes, géométries, forces faibles : le cours est bouclé."
+  }
+ ],
+ "titre": "Les liaisons chimiques : de la règle de l'octet aux forces intermoléculaires"
+}
