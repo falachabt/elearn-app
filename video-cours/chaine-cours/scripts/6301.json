@@ -1,0 +1,532 @@
+{
+  "cours": 6301,
+  "titre": "Techniques d'intégration : par parties et par substitution",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Calcul intégral",
+      "titre": "Techniques d'intégration : par parties et par substitution",
+      "sous": "Deux piliers, puis leur combinaison : intégrales cycliques, relations de récurrence, Wallis et Gauss",
+      "anim": {
+        "nom": "primitives_famille_fig",
+        "hauteur": 250
+      }
+    },
+    "outils": {
+      "type": "phrase",
+      "kicker": "Introduction · la boîte à outils",
+      "texte": "L'intégration immédiate est le tournevis standard : face à un produit ou à une composée, il faut des outils spécialisés.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 200
+      }
+    },
+    "composee_premier": {
+      "type": "etape",
+      "kicker": "Premier exemple · une composée",
+      "titre": "Le facteur intérieur se compense exactement",
+      "tex": [
+        "\\int \\cos(3x + 5) \\, dx",
+        "u = 3x + 5, \\quad du = 3 \\, dx",
+        "= \\tfrac{1}{3} \\sin(3x + 5) + C"
+      ]
+    },
+    "ipp_formule": {
+      "type": "formule",
+      "kicker": "L'intégration par parties",
+      "tex": "\\int u \\, dv = uv - \\int v \\, du",
+      "note": "Née de (uv)' = u'v + uv' · La nouvelle intégrale doit être plus simple"
+    },
+    "liate": {
+      "type": "recap",
+      "kicker": "Choisir u · la règle LIATE",
+      "etapes": [
+        "L : logarithmiques (ln x)",
+        "I : inverses trigonométriques (arctan x)",
+        "A : algébriques (polynômes, racines)",
+        "T : trigonométriques (sin x, cos x)",
+        "E : exponentielles (e^x)"
+      ]
+    },
+    "xex": {
+      "type": "etape",
+      "kicker": "Exemple fondateur",
+      "titre": "Un degré qui tombe, une intégrale qui se libère",
+      "tex": [
+        "\\int x e^x \\, dx, \\quad u = x, \\ dv = e^x dx",
+        "= x e^x - \\int e^x \\, dx",
+        "= e^x (x - 1) + C"
+      ]
+    },
+    "ln_arctan": {
+      "type": "etape",
+      "kicker": "L'astuce du facteur un",
+      "titre": "Sans primitive directe : ln et arctan",
+      "tex": [
+        "\\int \\ln x \\, dx = x \\ln x - x + C",
+        "\\int \\arctan x \\, dx : \\ u = \\arctan x, \\ dv = dx",
+        "= x \\arctan x - \\tfrac{1}{2} \\ln(1 + x^2) + C"
+      ]
+    },
+    "x2cos": {
+      "type": "etape",
+      "kicker": "Exemple · parties itératives",
+      "titre": "Deux applications de suite sur un polynôme",
+      "tex": [
+        "I = \\int x^2 \\cos x \\, dx, \\quad u = x^2",
+        "I = x^2 \\sin x - \\int 2x \\sin x \\, dx",
+        "I = x^2 \\sin x + 2x \\cos x - 2 \\sin x + C"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Par parties : née d'un produit dérivé",
+        "Choisir u avec LIATE, dv à intégrer",
+        "Dériver u doit simplifier, toujours",
+        "Astuce du un : ln x, arctan x, arcsin x",
+        "Itérer fait tomber le degré du polynôme"
+      ]
+    },
+    "subst_formule": {
+      "type": "formule",
+      "kicker": "Le changement de variable",
+      "tex": "\\int f(g(x)) \\, g'(x) \\, dx = \\int f(u) \\, du",
+      "note": "La chaîne lue à l'envers · Poser u = g(x) : du = g'(x) dx, tout passe en u"
+    },
+    "chaine_exp": {
+      "type": "etape",
+      "kicker": "Exemple · la dérivée est déjà là",
+      "titre": "Reconnaître la forme composée complète",
+      "tex": [
+        "\\int 2x e^{x^2} \\, dx, \\quad u = x^2",
+        "du = 2x \\, dx \\quad \\Rightarrow \\quad \\int e^u \\, du",
+        "= e^{x^2} + C"
+      ]
+    },
+    "racine_subst": {
+      "type": "etape",
+      "kicker": "Exemple · numérateur providentiel",
+      "titre": "La dérivée du dénominateur, au numérateur",
+      "tex": [
+        "\\int \\tfrac{3x^2}{\\sqrt{x^3 + 1}} \\, dx, \\quad u = x^3 + 1",
+        "= \\int u^{-1/2} \\, du = 2 \\sqrt{u} + C",
+        "= 2 \\sqrt{x^3 + 1} + C"
+      ]
+    },
+    "bornes": {
+      "type": "etape",
+      "kicker": "Exemple · intégrale définie",
+      "titre": "Changer les bornes, ne jamais revenir en arrière",
+      "tex": [
+        "A = \\int_0^{\\pi/2} \\sin^3 x \\cos x \\, dx, \\quad u = \\sin x",
+        "x : 0 \\to \\tfrac{\\pi}{2} \\quad \\Rightarrow \\quad u : 0 \\to 1",
+        "A = \\int_0^1 u^3 \\, du = \\tfrac{1}{4}"
+      ]
+    },
+    "facteur": {
+      "type": "etape",
+      "kicker": "La dérivée à un facteur près",
+      "titre": "Ajuster la constante, puis substituer",
+      "tex": [
+        "\\int x e^{3x^2} \\, dx : \\ u = 3x^2, \\ du = 6x \\, dx",
+        "= \\tfrac{1}{6} \\int e^u \\, du",
+        "= \\tfrac{1}{6} e^{3x^2} + C"
+      ]
+    },
+    "pieges_subst": {
+      "type": "recap",
+      "kicker": "Les pièges de la substitution",
+      "etapes": [
+        "Tout convertir en u, dx compris",
+        "Définie : changer les bornes, ou revenir",
+        "Ne jamais mélanger les deux voies",
+        "Sans dérivée présente : changer d'outil"
+      ]
+    },
+    "composees_limite": {
+      "type": "phrase",
+      "kicker": "Les limites de la méthode",
+      "texte": "Une composée seule ne suffit pas : sans la dérivée de la fonction intérieure, la substitution ne démarre pas.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 180
+      }
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Repérer la fonction intérieure et sa dérivée",
+        "Poser u, convertir tout, dx compris",
+        "Intégrer en u, puis revenir en x",
+        "Définie : convertir les bornes en u",
+        "Facteur constant manquant : l'ajuster"
+      ]
+    },
+    "cyclique": {
+      "type": "etape",
+      "kicker": "Les intégrales cycliques",
+      "titre": "Quand l'intégrale de départ revient par la fenêtre",
+      "tex": [
+        "I = \\int e^x \\sin x \\, dx",
+        "I = e^x \\sin x - e^x \\cos x - I",
+        "I = \\tfrac{e^x}{2} (\\sin x - \\cos x) + C"
+      ]
+    },
+    "tabulaire": {
+      "type": "etape",
+      "kicker": "La méthode tabulaire",
+      "titre": "Dériver une colonne, intégrer l'autre, lire en diagonale",
+      "tex": [
+        "\\int x^3 e^{2x} \\, dx",
+        "= \\tfrac{1}{2} x^3 e^{2x} - \\tfrac{3}{4} x^2 e^{2x}",
+        "+ \\tfrac{3}{4} x e^{2x} - \\tfrac{3}{8} e^{2x} + C"
+      ]
+    },
+    "recap2b": {
+      "type": "recap",
+      "kicker": "Parties avancées : l'essentiel",
+      "etapes": [
+        "Cyclique : deux parties, puis une équation",
+        "Tabulaire : diagonales et signes alternés",
+        "Récurrence : relier un rang au précédent",
+        "Un mauvais choix se voit vite : on change"
+      ]
+    },
+    "comb1": {
+      "type": "etape",
+      "kicker": "Combinées · substituer puis parties",
+      "titre": "Préparer le terrain avant de démêler",
+      "tex": [
+        "\\int x^3 e^{x^2} \\, dx, \\quad u = x^2",
+        "= \\tfrac{1}{2} \\int u e^u \\, du",
+        "= \\tfrac{1}{2} e^{x^2} (x^2 - 1) + C"
+      ]
+    },
+    "comb2": {
+      "type": "etape",
+      "kicker": "Combinées · parties puis algèbre",
+      "titre": "Logarithme composé, arctan à la sortie",
+      "tex": [
+        "\\textstyle \\int \\ln(x^2 + 1) \\, dx, \\quad u = \\ln(x^2 + 1)",
+        "\\textstyle = x \\ln(x^2 + 1) - \\int \\tfrac{2x^2}{x^2 + 1} \\, dx",
+        "\\textstyle \\tfrac{2x^2}{x^2 + 1} = 2 - \\tfrac{2}{x^2 + 1}",
+        "\\textstyle = x \\ln(x^2 + 1) - 2x + 2 \\arctan x + C"
+      ]
+    },
+    "wallis": {
+      "type": "etape",
+      "kicker": "Les intégrales de Wallis",
+      "titre": "Une récurrence qui fabrique toutes les valeurs",
+      "tex": [
+        "W_n = \\int_0^{\\pi/2} \\sin^n x \\, dx",
+        "W_n = \\tfrac{n - 1}{n} W_{n - 2}",
+        "W_0 = \\tfrac{\\pi}{2}, \\ W_1 = 1, \\ W_2 = \\tfrac{\\pi}{4}"
+      ]
+    },
+    "gauss": {
+      "type": "etape",
+      "kicker": "L'intégrale de Gauss",
+      "titre": "Élever au carré pour pouvoir calculer",
+      "tex": [
+        "I = \\int_{-\\infty}^{+\\infty} e^{-x^2} \\, dx",
+        "I^2 = \\iint e^{-(x^2 + y^2)} \\, dx \\, dy",
+        "u = r^2 : \\quad I^2 = \\pi \\quad \\Rightarrow \\quad I = \\sqrt{\\pi}"
+      ]
+    },
+    "demisphere": {
+      "type": "etape",
+      "kicker": "Application · centre de masse",
+      "titre": "Une demi-sphère homogène, découpée en disques",
+      "tex": [
+        "\\int_0^R \\pi (R^2 - z^2) \\, dz = \\tfrac{2\\pi R^3}{3}",
+        "\\int_0^R \\pi (R^2 z - z^3) \\, dz = \\tfrac{\\pi R^4}{4}",
+        "z_G = \\tfrac{3R}{8}"
+      ]
+    },
+    "defi": {
+      "type": "etape",
+      "kicker": "Défi final · une aire",
+      "titre": "La courbe, l'axe et deux droites verticales",
+      "tex": [
+        "\\int_0^2 x e^{-x^2} \\, dx, \\quad u = -x^2",
+        "= -\\tfrac{1}{2} \\left[ e^u \\right]_0^{-4}",
+        "= \\tfrac{1}{2} \\left( 1 - e^{-4} \\right)"
+      ]
+    },
+    "tan_demi": {
+      "type": "etape",
+      "kicker": "Le joker · fractions en sinus et cosinus",
+      "titre": "La substitution universelle en tangente de l'angle moitié",
+      "tex": [
+        "\\int \\tfrac{dx}{2 + \\cos x}, \\quad t = \\tan \\tfrac{x}{2}",
+        "\\sin x = \\tfrac{2t}{1 + t^2}, \\ dx = \\tfrac{2\\,dt}{1 + t^2}",
+        "= \\tfrac{2}{\\sqrt{3}} \\arctan \\tfrac{\\tan(x/2)}{\\sqrt{3}} + C"
+      ]
+    },
+    "piege_domaine": {
+      "type": "phrase",
+      "kicker": "Le piège du domaine",
+      "texte": "Un calcul formel peut donner moins deux pour l'intégrale d'une fonction toujours positive : la singularité au milieu invalide tout."
+    },
+    "strategie": {
+      "type": "recap",
+      "kicker": "La stratégie générale",
+      "etapes": [
+        "Forme standard ? Intégrer directement",
+        "Dérivée de l'intérieur visible ? Substituer",
+        "Produit à simplifier en dérivant ? Parties",
+        "Les deux ? Substituer, puis parties, ou inverse",
+        "L'intégrale revient ? Résoudre l'équation"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Substitution : l'intérieur et sa dérivée",
+        "Par parties : dériver ce qui se simplifie",
+        "LIATE tranche le choix de u",
+        "Combiner : un outil, puis l'autre",
+        "Cyclique ou récurrente : résoudre, dérouler"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de techniques d'intégration. Si la dérivée répond à la question de la vitesse de changement, l'intégrale répond à celle de l'accumulation totale : aires, volumes, distances parcourues, probabilités et croissance des populations. Nous construirons les deux piliers qui débloquent presque toutes les intégrales non immédiates, l'intégration par parties et le changement de variable, puis nous apprendrons à les combiner.",
+      "texte": "Par parties et par substitution : les deux piliers.",
+      "ecran": "titre",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p02",
+      "dit": "Vous connaissez les intégrales immédiates, celles des tableaux de primitives usuelles. Mais face à un produit comme ixe fois exponentielle de ixe, ou à une composée comme le cosinus d'une expression affine, le tableau ne suffit plus. Imaginez une boîte à outils : l'intégration immédiate est le tournevis standard, parfait pour les vis classiques. Les produits et les composées sont des vis spéciales : il leur faut des outils spécialisés, et une stratégie pour choisir le bon.",
+      "texte": "Immédiat quand c'est standard, technique sinon.",
+      "ecran": "outils",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "dit": "Premier puzzle : intégrer le cosinus de trois ixe plus cinq. L'intuition propose le sinus de la même expression, mais sa dérivée produit un facteur trois en trop, venu de la dérivée de l'intérieur. Posons u égal à trois ixe plus cinq : sa différentielle vaut trois fois dé ixe, donc dé ixe vaut un tiers de dé u. L'intégrale devient un tiers de l'intégrale du cosinus, soit un tiers du sinus, et le facteur un tiers compense exactement le facteur intérieur. Voilà le changement de variable en action.",
+      "texte": "cos(3x + 5) : le facteur un tiers compense.",
+      "ecran": "composee_premier",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "L'intégration par parties naît de la règle de dérivation d'un produit : la dérivée de u fois v est u prime fois v, plus u fois v prime. En intégrant cette égalité puis en réarrangeant, on obtient la formule : l'intégrale de u fois dé v vaut u fois v, moins l'intégrale de v fois dé u. L'idée est un transfert : déplacer la difficulté d'un facteur vers l'autre, en espérant que la nouvelle intégrale soit plus simple que l'ancienne. Tout l'art sera de choisir qui dériver et qui intégrer.",
+      "texte": "Par parties : échanger une intégrale contre une autre.",
+      "ecran": "ipp_formule",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Pour choisir, l'acronyme LIATE classe les fonctions par ordre de préférence pour jouer le rôle de u, celle que l'on dérive : d'abord les logarithmiques, puis les inverses trigonométriques, puis les algébriques comme les polynômes, puis les trigonométriques, et enfin les exponentielles. La logique est double : u doit se simplifier en dérivant, comme un logarithme qui devient une fraction rationnelle, et dé v doit s'intégrer facilement. Un choix inversé complique presque toujours le problème au lieu de le résoudre.",
+      "texte": "LIATE : l'ordre de choix pour u.",
+      "ecran": "liate",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "dit": "Exemple fondateur : intégrer ixe fois exponentielle de ixe. LIATE désigne ixe comme u, algébrique avant exponentielle, et l'exponentielle comme dé v. Alors dé u vaut dé ixe et v vaut exponentielle de ixe. La formule donne ixe fois exponentielle de ixe, moins l'intégrale de l'exponentielle, qui est immédiate. Résultat : exponentielle de ixe facteur de ixe moins un, plus une constante. La dérivation a fait tomber le degré du polynôme : c'est le moteur de toute la méthode.",
+      "texte": "∫ x·eˣ dx = eˣ(x − 1) + C.",
+      "ecran": "xex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p07",
+      "dit": "Certaines fonctions n'ont aucune primitive directe dans les tableaux, et pourtant la méthode les atteint par une astuce : écrire un facteur un devant elles. Pour le logarithme, u est le logarithme et dé v est dé ixe : on obtient ixe fois logarithme de ixe, moins l'intégrale de un, soit ixe logarithme de ixe moins ixe. Pour l'arctangente, même choix : il reste l'intégrale de ixe sur un plus ixe au carré, qui se calcule par substitution et donne un demi-logarithme. Résultat : ixe arctangente de ixe, moins un demi du logarithme de un plus ixe au carré.",
+      "texte": "Le facteur un : ln x et arctan deviennent accessibles.",
+      "ecran": "ln_arctan",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "dit": "Quand le polynôme est de degré deux ou plus, on itère. Pour ixe au carré fois cosinus de ixe, on pose u égal à ixe au carré : la formule fait apparaître ixe au carré fois sinus de ixe, moins l'intégrale de deux ixe fois sinus de ixe. Une seconde intégration par parties, sur un polynôme de degré un cette fois, achève le travail. Résultat : ixe au carré sinus de ixe, plus deux ixe cosinus de ixe, moins deux sinus de ixe. Chaque passage fait tomber le degré d'un cran, jusqu'à une intégrale immédiate.",
+      "texte": "x²·cos x : deux parties de suite, le degré tombe.",
+      "ecran": "x2cos",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "dit": "Récapitulons cette première partie. L'intégration par parties échange une intégrale de produit contre une autre, née de la dérivée d'un produit. On choisit u selon LIATE, parmi les fonctions qui se simplifient en dérivant, et dé v parmi celles qui s'intègrent aisément. L'astuce du facteur un ouvre les logarithmes et les fonctions trigonométriques inverses, et l'itération vient à bout des polynômes de tout degré.",
+      "texte": "Partie 1 : l'essentiel.",
+      "ecran": "recap1",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p10",
+      "dit": "Le changement de variable est la règle de la chaîne lue à l'envers. Si une primitive composée se dérive en multipliant par la dérivée de l'intérieur, alors intégrer un produit où figure cette dérivée ramène à la primitive simple. La recette tient en trois temps : repérer une fonction intérieure et sa dérivée, présente telle quelle ou à un facteur constant près ; tout remplacer, y compris le dé ixe ; intégrer dans la nouvelle variable, puis revenir à l'ancienne.",
+      "texte": "Substitution : la chaîne, à l'envers.",
+      "ecran": "subst_formule",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "dit": "Exemple canonique : intégrer deux ixe fois exponentielle de ixe au carré. L'intérieur est ixe au carré, et sa dérivée, deux ixe, figure exactement comme facteur devant l'exponentielle. On pose donc u égal à ixe au carré, et dé u remplace deux ixe dé ixe d'un seul bloc. L'intégrale devient celle de l'exponentielle de u, immédiate, et le retour à ixe donne exponentielle de ixe au carré, plus une constante. Vérifiez toujours en dérivant : on retrouve l'expression de départ.",
+      "texte": "2x·e^(x²) : la dérivée est déjà là.",
+      "ecran": "chaine_exp",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "Deuxième motif : trois ixe au carré, divisé par la racine carrée de ixe au cube plus un. L'intérieur de la racine est ixe au cube plus un, et sa dérivée est précisément trois ixe au carré, le numérateur. On pose u égal à cet intérieur : l'intégrale devient celle de u puissance moins un demi, soit deux racine de u. Retour à ixe : deux fois la racine carrée de ixe au cube plus un, plus une constante. Le réflexe à acquérir : toujours comparer le numérateur à la dérivée de ce qui l'accompagne.",
+      "texte": "Le numérateur est la dérivée du dessous.",
+      "ecran": "racine_subst",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "dit": "Pour une intégrale définie, la substitution impose un choix : changer les bornes, ou revenir à l'ancienne variable avant d'évaluer. Exemple : l'intégrale, de zéro à pi sur deux, de sinus au cube de ixe fois cosinus de ixe. On pose u égal à sinus de ixe : quand ixe vaut zéro, u vaut zéro, et quand ixe vaut pi sur deux, u vaut un. L'intégrale devient celle de u au cube, de zéro à un, soit un quart. Les bornes converties, aucun retour en arrière n'est nécessaire.",
+      "texte": "Intégrale définie : changer aussi les bornes.",
+      "ecran": "bornes",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p14",
+      "dit": "Souvent, la dérivée de l'intérieur n'apparaît qu'à un facteur constant près, et ce n'est pas un obstacle. Pour ixe fois exponentielle de trois ixe au carré, la dérivée de l'intérieur est six ixe, alors que nous n'avons que ixe : on fait apparaître le facteur six et on compense par un sixième devant l'intégrale. Même famille : exponentielle de racine de ixe, divisée par racine de ixe, vaut deux exponentielle de racine de ixe, et cosinus de racine de ixe, divisé par racine de ixe, vaut deux sinus de racine de ixe.",
+      "texte": "Dérivée à un facteur près : ajuster la constante.",
+      "ecran": "facteur",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Trois pièges guettent. Premier : la substitution incomplète, laisser un ixe isolé dans l'intégrale alors que tout, dé ixe compris, doit passer en u. Deuxième : pour une intégrale définie, mélanger les deux voies, bornes en ixe avec une primitive en u. Troisième : forcer une substitution quand la dérivée de l'intérieur est absente et ne peut pas être fabriquée par une constante. Dans ce cas, ce n'est pas un échec : c'est le signal de changer d'outil, souvent vers les parties.",
+      "texte": "Substitution : les trois pièges classiques.",
+      "ecran": "pieges_subst",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p16",
+      "dit": "Car la méthode a une limite claire : elle exige la forme composée accompagnée de la dérivée de l'intérieur. Le sinus de ixe au carré, tout seul, ne contient pas le facteur deux ixe qui permettrait la substitution, et il résiste en fait à toutes les techniques élémentaires. À l'inverse, certaines substitutions sont trigonométriques : pour l'aire d'un demi-cercle, poser ixe égal à sinus de u transforme la racine en cosinus et débloque le calcul. Reconnaître quand la méthode s'applique est déjà la moitié du savoir-faire.",
+      "texte": "sin(x²) seul résiste : il manque la dérivée.",
+      "ecran": "composees_limite",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Récapitulons. Substituer, c'est repérer la fonction intérieure et sa dérivée, poser u, convertir intégralement l'expression, intégrer, puis revenir, sauf si les bornes ont été converties pour une intégrale définie. Un facteur constant manquant s'ajuste, un facteur variable manquant disqualifie la méthode. Dessinez le motif dans votre tête : composée fois dérivée de l'intérieur, c'est presque toujours une substitution qui s'annonce.",
+      "texte": "Partie 2 : l'essentiel.",
+      "ecran": "recap2",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p18",
+      "dit": "Cas fascinant : exponentielle de ixe fois sinus de ixe. Deux intégrations par parties de suite font réapparaître l'intégrale de départ, avec un signe moins. Ce retour n'est pas une impasse, c'est une équation : l'intégrale inconnue figure des deux côtés, on la regroupe, et deux fois l'intégrale vaut exponentielle de ixe facteur de sinus de ixe moins cosinus de ixe. On divise par deux. Le phénomène vient de ce que l'exponentielle et les fonctions trigonométriques se reproduisent en dérivant et en intégrant : la boucle se referme naturellement.",
+      "texte": "L'intégrale revient : c'est une équation en I.",
+      "ecran": "cyclique",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "dit": "Pour un polynôme de degré élevé multiplié par une exponentielle ou une fonction trigonométrique, la méthode tabulaire systématise les parties répétées. Une colonne dérive le polynôme jusqu'à zéro, l'autre intègre la seconde fonction autant de fois, les signes alternent, et on somme les produits diagonaux. Pour ixe au cube fois exponentielle de deux ixe, on obtient un demi de ixe au cube, moins trois quarts de ixe au carré, plus trois quarts de ixe, moins trois huitièmes, le tout fois l'exponentielle de deux ixe. Rapide, et bien moins risqué qu'une rédaction ligne à ligne.",
+      "texte": "Méthode tabulaire : x³·e^(2x) en diagonales.",
+      "ecran": "tabulaire",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "dit": "Ces parties avancées ajoutent deux réflexes. Devant un produit d'exponentielle et de trigonométrique, attendre le phénomène cyclique et préparer l'équation. Devant un polynôme de degré trois ou plus, passer en tableau plutôt que d'empiler les formules. Et dans tous les cas, un mauvais choix de u se détecte vite : si la nouvelle intégrale est plus laide que l'ancienne, on s'arrête et on recommence autrement.",
+      "texte": "Parties avancées : cyclique, tabulaire, récurrence.",
+      "ecran": "recap2b",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p21",
+      "dit": "Les intégrales sérieuses combinent les deux piliers, dans un ordre qui compte. Pour ixe au cube fois exponentielle de ixe au carré, les parties directes échoueraient : dériver l'exponentielle fait apparaître un facteur ixe qui aggrave tout. On substitue d'abord u égal à ixe au carré, en écrivant ixe au cube comme ixe au carré fois ixe : l'intégrale devient un demi de u fois exponentielle de u. Une intégration par parties, déjà connue, donne alors un demi d'exponentielle de ixe au carré, facteur de ixe au carré moins un.",
+      "texte": "D'abord substituer, ensuite par parties.",
+      "ecran": "comb1",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "Séquence inverse : le logarithme de ixe au carré plus un. Aucune substitution directe ne s'offre, alors on commence par les parties, avec l'astuce du facteur un : u est le logarithme, dé v est dé ixe. Il reste l'intégrale de deux ixe au carré sur ixe au carré plus un. Une réécriture algébrique la scinde en deux, moins deux fois l'intégrale de un sur ixe au carré plus un, qui est l'arctangente. Au total : ixe fois le logarithme, moins deux ixe, plus deux arctangente de ixe. Même esprit pour l'arcsinus, qui se traite en substituant puis en intégrant par parties.",
+      "texte": "Par parties d'abord, l'arctan sort à la fin.",
+      "ecran": "comb2",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "dit": "Les intégrales de Wallis, puissances du sinus intégrées de zéro à pi sur deux, montrent la puissance des récurrences. Une intégration par parties, en écrivant la puissance comme une puissance de moins un fois le sinus, relie chaque intégrale à celle de deux rangs avant : le facteur est le rang moins un, divisé par le rang. Avec les deux valeurs de départ, pi sur deux pour le rang zéro et un pour le rang un, on calcule toutes les autres, par exemple pi sur quatre pour le rang deux. De cette récurrence naît même un produit infini qui converge vers pi.",
+      "texte": "Wallis : W₂ = π/4 par récurrence.",
+      "ecran": "wallis",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "L'intégrale de Gauss, exponentielle de moins ixe au carré sur tout l'axe réel, fonde la loi normale, et aucune primitive élémentaire ne l'atteint. L'astuce, attribuée à Poisson, est de l'élever au carré : le produit de deux intégrales simples devient une intégrale double. En coordonnées polaires, la symétrie circulaire fait apparaître le facteur r du jacobien, exactement la dérivée de r au carré : une substitution achève le calcul, le carré de l'intégrale vaut pi, donc l'intégrale vaut racine de pi.",
+      "texte": "Gauss : I² en polaires, donc I = √π.",
+      "ecran": "gauss",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p25",
+      "dit": "Application géométrique : le centre de masse d'une demi-sphère homogène de rayon R. On la découpe en disques horizontaux : à la hauteur z, le rayon du disque est la racine de R au carré moins z au carré. Le volume total donne deux pi R au cube sur trois, et le moment donne pi R à la puissance quatre sur quatre. Le rapport des deux vaut trois huitièmes de R à partir de la base. Deux intégrales élémentaires, un résultat que l'intuition seule n'aurait pas deviné.",
+      "texte": "Demi-sphère : centre de masse à 3R/8.",
+      "ecran": "demisphere",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Défi de synthèse, une aire : la région sous la courbe d'équation y égal à ixe fois exponentielle de moins ixe au carré, entre zéro et deux. L'aire est l'intégrale de zéro à deux de cette fonction. On y reconnaît la dérivée de moins ixe au carré, qui est moins deux ixe : la substitution u égal à moins ixe au carré convertit les bornes, zéro devient zéro et deux devient moins quatre. Le calcul donne un demi, facteur de un moins exponentielle de moins quatre. Une reconnaissance de motif, et l'exercice est clos.",
+      "texte": "Aire finale : (1 − e⁻⁴)/2.",
+      "ecran": "defi",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p27",
+      "dit": "Dernier outil de la boîte : pour une fraction rationnelle en sinus et cosinus, la substitution universelle pose t égal à la tangente de l'angle moitié. Sinus devient deux t sur un plus t au carré, cosinus devient un moins t au carré sur un plus t au carré, et dé ixe devient deux dé t sur un plus t au carré. Pour l'intégrale de un sur deux plus cosinus de ixe, tout se simplifie en deux sur trois plus t au carré, qui s'intègre en arctangente : deux sur racine de trois, fois l'arctangente de la tangente de l'angle moitié, divisée par racine de trois.",
+      "texte": "t = tan(x/2) : le joker des fractions en sin et cos.",
+      "ecran": "tan_demi",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p28",
+      "dit": "Avertissement final : les techniques ne remplacent jamais l'analyse du domaine. L'intégrale de un sur ixe au carré, entre moins un et un, donnerait formellement moins deux avec la primitive moins un sur ixe. Absurde : la fonction est toujours positive, donc son intégrale ne peut pas être négative. Le vrai problème est la singularité en zéro, où la fonction explose sans être intégrable. Avant de calculer, toujours vérifier où la fonction vit et où elle casse.",
+      "texte": "Un résultat absurde signale un domaine fautif.",
+      "ecran": "piege_domaine",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p29",
+      "dit": "Face à une intégrale nouvelle, déroulez l'arbre de décision. Est-elle de forme standard ? Intégrez directement. La dérivée d'une fonction intérieure est-elle visible, ou fabriquable par une constante ? Substituez. Un produit contient-il un facteur qui se simplifie en dérivant, polynôme, logarithme ? Partez par parties. Les deux signaux sont-ils présents ? Combinez, dans l'ordre qui simplifie d'abord. L'intégrale revient-elle sur elle-même ? Posez l'équation et résolvez.",
+      "texte": "Choisir son outil : l'arbre de décision.",
+      "ecran": "strategie",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Pour conclure ce cours : deux piliers portent presque tout le calcul intégral élémentaire. La substitution reconnaît une composée accompagnée de la dérivée de son intérieur ; l'intégration par parties transfère la difficulté vers le facteur qui se simplifie en dérivant, avec LIATE pour arbitre. Combinées, itérées, parfois bouclées en équations ou en récurrences, elles atteignent les logarithmes, les arctangentes, les intégrales de Wallis et même celle de Gauss. La technique s'apprend, mais le choix de l'outil, lui, devient une intuition.",
+      "texte": "Techniques d'intégration : à retenir.",
+      "ecran": "recap_final",
+      "pause_apres": 0.5
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "L'intégration par parties : démêler les produits"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Le changement de variable, et les parties avancées",
+      "pont": {
+        "texte": "Partie 2 : substituer pour simplifier, puis pousser les parties plus loin.",
+        "dit": "Partie deux : le changement de variable, l'art de la métamorphose. Nous verrons sa recette en trois temps, ses exemples canoniques, ses pièges, puis deux formes avancées de l'intégration par parties : les intégrales cycliques et la méthode tabulaire."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Combiner les techniques : applications et synthèse",
+      "pont": {
+        "texte": "Partie 3 : combiner les deux piliers, de Wallis à Gauss, et choisir son outil.",
+        "dit": "Partie trois : combiner et synthétiser. Nous enchaînerons substitution et parties dans les deux ordres, établirons la récurrence de Wallis, calculerons l'intégrale de Gauss et le centre de masse d'une demi-sphère, avant de dresser l'arbre de décision final."
+      }
+    }
+  ]
+}
