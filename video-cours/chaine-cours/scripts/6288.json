@@ -1,0 +1,444 @@
+{
+  "cours": 6288,
+  "titre": "La géométrie vectorielle dans le plan : les vecteurs en action",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie vectorielle",
+      "titre": "La géométrie vectorielle dans le plan",
+      "sous": "Direction, sens, norme : le langage des déplacements, des coordonnées à la translation",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un voilier ne se décrit pas par sa position, mais par son cap et sa vitesse : direction et intensité, c'est déjà un vecteur.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 140
+      }
+    },
+    "definition": {
+      "type": "etape",
+      "kicker": "Qu'est-ce qu'un vecteur ?",
+      "titre": "Trois caractéristiques, et rien d'autre",
+      "tex": [
+        "\\text{direction : la droite qui porte le vecteur}",
+        "\\text{sens : l'orientation le long de cette droite}",
+        "\\text{norme : sa longueur, notée } \\|\\vec{u}\\|"
+      ],
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 130
+      }
+    },
+    "egalite": {
+      "type": "etape",
+      "kicker": "Égalité, opposé, vecteur nul",
+      "titre": "Quand deux flèches disent la même chose",
+      "tex": [
+        "\\overrightarrow{AB} = \\overrightarrow{CD}",
+        "\\iff ABDC \\text{ parallélogramme}",
+        "\\overrightarrow{BA} = -\\overrightarrow{AB} \\qquad \\overrightarrow{AA} = \\vec{0}"
+      ]
+    },
+    "coord_ab": {
+      "type": "formule",
+      "kicker": "Coordonnées d'un vecteur",
+      "tex": "\\overrightarrow{AB} = \\begin{pmatrix} x_B - x_A \\\\ y_B - y_A \\end{pmatrix}",
+      "note": "Exemple : A(2, 3), B(5, 7) → AB(3, 4), de norme 5."
+    },
+    "norme": {
+      "type": "formule",
+      "kicker": "La norme en coordonnées",
+      "tex": "\\|\\vec{u}\\| = \\sqrt{x^2 + y^2}",
+      "note": "Repère orthonormé exigé : c'est Pythagore, sur les deux composantes."
+    },
+    "chasles": {
+      "type": "formule",
+      "kicker": "Addition · la relation de Chasles",
+      "tex": "\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}",
+      "note": "Bout à bout : le second déplacement commence où le premier finit.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 210
+      }
+    },
+    "parallelogramme_somme": {
+      "type": "etape",
+      "kicker": "Addition · la règle du parallélogramme",
+      "titre": "Même origine : la diagonale donne la somme",
+      "tex": [
+        "\\overrightarrow{AB} + \\overrightarrow{AC} = \\overrightarrow{AD}",
+        "\\text{avec } ABDC \\text{ un parallélogramme}"
+      ],
+      "anim": {
+        "nom": "somme_vecteurs_fig",
+        "hauteur": 165
+      }
+    },
+    "soustraction": {
+      "type": "formule",
+      "kicker": "Soustraction · le vecteur différence",
+      "tex": "\\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA}",
+      "note": "Soustraire, c'est ajouter l'opposé : u − v = u + (−v)."
+    },
+    "scalaire": {
+      "type": "etape",
+      "kicker": "Multiplication par un scalaire",
+      "titre": "Étirer, inverser, annuler",
+      "tex": [
+        "k > 0 : \\text{même sens, norme multipliée par } k",
+        "k < 0 : \\text{sens opposé, norme } \\times |k|",
+        "k = 0 : \\ 0\\vec{u} = \\vec{0}"
+      ]
+    },
+    "operations_coord": {
+      "type": "etape",
+      "kicker": "Opérations en coordonnées",
+      "titre": "Tout devient composante par composante",
+      "tex": [
+        "\\vec{u} + \\vec{v} = (x + x',\\ y + y')",
+        "k\\vec{u} = (kx,\\ ky) \\quad \\vec{u} - \\vec{v} = (x - x',\\ y - y')",
+        "\\vec{u} = x\\vec{i} + y\\vec{j}"
+      ],
+      "anim": {
+        "nom": "combinaison_lineaire_fig",
+        "hauteur": 130
+      }
+    },
+    "bateau": {
+      "type": "etape",
+      "kicker": "Exemple · le bateau et les deux courants",
+      "titre": "La résultante en coordonnées",
+      "tex": [
+        "\\vec{v}_b = (0,\\ 5) \\qquad \\vec{v}_c = (3,\\ 0)",
+        "\\vec{v} = (3,\\ 5) \\qquad \\|\\vec{v}\\| = \\sqrt{34} \\approx 5{,}83"
+      ]
+    },
+    "colinearite": {
+      "type": "formule",
+      "kicker": "La colinéarité",
+      "tex": "\\vec{v} = k\\,\\vec{u}",
+      "note": "Même direction : l'un est un multiple de l'autre, k positif ou négatif.",
+      "anim": {
+        "nom": "colineaires_fig",
+        "hauteur": 190
+      }
+    },
+    "det_colin": {
+      "type": "formule",
+      "kicker": "Le test du déterminant",
+      "tex": "\\det(\\vec{u}, \\vec{v}) = xy' - x'y = 0",
+      "note": "Le test qui évite les divisions par zéro : proportionnalité des coordonnées."
+    },
+    "ex_colin": {
+      "type": "etape",
+      "kicker": "Colinéarité · exemple vérifié",
+      "titre": "Un déterminant nul, un multiple évident",
+      "tex": [
+        "\\vec{u}(2,\\ -1) \\qquad \\vec{v}(-6,\\ 3)",
+        "\\det(\\vec{u}, \\vec{v}) = 2 \\cdot 3 - (-6) \\cdot (-1) = 0",
+        "\\vec{v} = -3\\vec{u} \\ : \\text{colinéaires, sens opposés}"
+      ]
+    },
+    "alignement": {
+      "type": "etape",
+      "kicker": "Application · l'alignement de points",
+      "titre": "Trois points alignés : deux vecteurs colinéaires",
+      "tex": [
+        "\\overrightarrow{AB}(2,\\ 3) \\qquad \\overrightarrow{AC}(6,\\ 9)",
+        "2 \\times 9 - 6 \\times 3 = 0 \\Rightarrow A,\\ B,\\ C \\text{ alignés}"
+      ]
+    },
+    "parallelisme": {
+      "type": "formule",
+      "kicker": "Application · le parallélisme de droites",
+      "tex": "(AB) \\parallel (CD) \\iff \\overrightarrow{AB}, \\overrightarrow{CD} \\text{ colinéaires}",
+      "note": "Un déterminant non nul entre deux directeurs annonce une intersection."
+    },
+    "milieu": {
+      "type": "formule",
+      "kicker": "Le milieu d'un segment",
+      "tex": "\\overrightarrow{OM} = \\frac{1}{2}\\left(\\overrightarrow{OA} + \\overrightarrow{OB}\\right)",
+      "note": "En coordonnées : le milieu est la moyenne des extrémités."
+    },
+    "translation": {
+      "type": "formule",
+      "kicker": "Les translations",
+      "tex": "\\overrightarrow{MM'} = \\vec{u}",
+      "note": "Chaque point glisse de la même façon : direction, sens et longueur de u.",
+      "anim": {
+        "nom": "translation_triangle_fig",
+        "hauteur": 190
+      }
+    },
+    "translation_coord": {
+      "type": "etape",
+      "kicker": "Translation · le calcul en coordonnées",
+      "titre": "Translater un point : ajouter, simplement",
+      "tex": [
+        "x' = x + a \\qquad y' = y + b",
+        "A(1,\\ 2),\\ \\vec{u}(3,\\ 2) \\Rightarrow A'(4,\\ 4)"
+      ]
+    },
+    "composition": {
+      "type": "formule",
+      "kicker": "Composition de translations",
+      "tex": "t_{\\vec{v}} \\circ t_{\\vec{u}} = t_{\\vec{u} + \\vec{v}}",
+      "note": "Composer deux translations = translater par la somme des vecteurs.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 180
+      }
+    },
+    "droite_translatee": {
+      "type": "etape",
+      "kicker": "Translation · l'image d'une droite",
+      "titre": "Elle reste parallèle, l'équation glisse",
+      "tex": [
+        "d : y = 2x - 1 \\qquad \\vec{u}(3,\\ -2)",
+        "A(0,\\ -1) \\rightarrow A'(3,\\ -3)",
+        "d' : y = 2x - 9"
+      ]
+    },
+    "parallelogramme_critere": {
+      "type": "etape",
+      "kicker": "Le parallélogramme, critère roi",
+      "titre": "Démontrer sans mesurer un seul angle",
+      "tex": [
+        "\\overrightarrow{AB} = \\overrightarrow{DC} \\iff ABCD \\text{ parallélogramme}",
+        "\\overrightarrow{AB}(3,\\ 1),\\ \\overrightarrow{DC}(5 - x,\\ 6 - y) \\Rightarrow D(2,\\ 5)"
+      ]
+    },
+    "boucle": {
+      "type": "etape",
+      "kicker": "Synthèse · Chasles en boucle",
+      "titre": "La somme qui revient au départ",
+      "tex": [
+        "\\overrightarrow{AB}(2,\\ 2) \\quad \\overrightarrow{BC}(-3,\\ 2) \\quad \\overrightarrow{CA}(1,\\ -4)",
+        "\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CA} = \\vec{0}"
+      ]
+    },
+    "forces": {
+      "type": "etape",
+      "kicker": "Application · la résultante de forces",
+      "titre": "Additionner, puis mesurer",
+      "tex": [
+        "\\vec{F}_1(3,\\ 2) \\qquad \\vec{F}_2(-1,\\ 5)",
+        "\\vec{F} = (2,\\ 7) \\qquad \\|\\vec{F}\\| = \\sqrt{53} \\approx 7{,}28\\ \\text{N}"
+      ]
+    },
+    "pieges": {
+      "type": "recap",
+      "kicker": "Les pièges classiques",
+      "etapes": [
+        "Point ≠ vecteur : position contre déplacement",
+        "AB = −BA : l'ordre des lettres compte",
+        "Colinéarité : det = 0, pas xx′ + yy′",
+        "Un dessin suggère, seul le calcul démontre"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Un vecteur : direction, sens, norme",
+        "Chasles : les déplacements s'enchaînent",
+        "Coordonnées : arrivée moins départ",
+        "Colinéarité : xy′ − x′y = 0",
+        "Translation : chaque point glisse de u"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Un vecteur : où l'on va, dans quel sens, de combien.",
+      "dit": "Bienvenue dans ce cours de géométrie vectorielle dans le plan. Un point dit où l'on est ; un vecteur dit où l'on va, dans quelle direction, dans quel sens et de combien. Ce langage des déplacements décrira aussi bien un bateau porté par le courant que les forces sur un pont ou le mouvement d'un personnage de jeu vidéo. Nous définirons les vecteurs, nous apprendrons à calculer avec eux, en figures comme en coordonnées, puis nous lirons alignements et parallélismes dans la colinéarité, avant de faire agir les vecteurs : les translations."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Direction et intensité : l'essence d'un vecteur.",
+      "dit": "Observez un voilier au large : pour décrire son mouvement, vous ne diriez pas seulement il avance, mais il se déplace vers le nord-est, à telle vitesse. Votre phrase contient déjà l'essence d'un vecteur : une direction, celle du cap, et une intensité, celle de la vitesse. Le vent, une force qui pousse une porte, le déplacement d'une fourmi sur une feuille : partout, la nature parle en vecteurs. Apprenons son alphabet."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "texte": "Direction, sens, norme : le passeport d'un vecteur.",
+      "dit": "Définition. Un vecteur est entièrement déterminé par trois caractéristiques : sa direction, la droite qui le porte ; son sens, l'orientation le long de cette droite ; et sa norme, sa longueur. Le vecteur A B est le déplacement qui mène de A à B, mais attention : tous les déplacements de même direction, même sens et même longueur définissent le même vecteur, quel que soit leur point de départ. Un vecteur peut donc glisser librement dans le plan : c'est une classe de flèches équipollentes, pas une flèche attachée à un point."
+    },
+    {
+      "id": "p04",
+      "ecran": "egalite",
+      "texte": "Égaux : un parallélogramme. Inversés : des opposés.",
+      "dit": "Deux vecteurs sont égaux quand ils partagent direction, sens et norme : alors, les quatre points forment un parallélogramme, éventuellement aplati. Le vecteur B A, qui parcourt le même segment en sens inverse, est l'opposé du vecteur A B. Quant au vecteur A A, qui ne déplace de rien, c'est le vecteur nul : norme zéro, ni direction ni sens définis, et élément neutre de l'addition, exactement comme le zéro des nombres."
+    },
+    {
+      "id": "p05",
+      "ecran": "coord_ab",
+      "texte": "Coordonnées de AB : arrivée moins départ.",
+      "dit": "Dans un repère, un vecteur devient un couple de nombres : ses coordonnées. Pour le vecteur A B, elles se calculent par soustraction : abscisse de l'arrivée moins abscisse du départ, ordonnée de l'arrivée moins ordonnée du départ. Exemple : de A, deux et trois, vers B, cinq et sept, le déplacement avance de trois en abscisse et de quatre en ordonnée. Retenez le réflexe, valable partout dans ce cours : les coordonnées d'un déplacement, c'est toujours l'arrivée moins le départ."
+    },
+    {
+      "id": "p06",
+      "ecran": "norme",
+      "texte": "Norme = racine de (x² + y²) : Pythagore en coordonnées.",
+      "dit": "La norme se calcule alors par le théorème de Pythagore : pour un vecteur de coordonnées ixe et igrec, dans un repère orthonormé, la norme est la racine carrée de ixe au carré plus igrec au carré. Le vecteur de coordonnées trois et quatre a ainsi une norme de cinq : le fameux triangle trois, quatre, cinq. Deux précisions qui comptent : la formule exige un repère orthonormé, et la norme d'un produit par un scalaire vaut la valeur absolue du scalaire fois la norme de départ."
+    },
+    {
+      "id": "p07",
+      "ecran": "chasles",
+      "texte": "Chasles : AB + BC = AC, l'étape du milieu s'efface.",
+      "dit": "Additionner des vecteurs, c'est enchaîner des déplacements : on place le second bout à bout avec le premier, et la somme va directement du départ initial à l'arrivée finale. C'est la relation de Chasles : le vecteur A B plus le vecteur B C égale le vecteur A C, comme si l'étape intermédiaire B s'effaçait du trajet. La somme est commutative et associative, elle possède un élément neutre, le vecteur nul, et chaque vecteur a son opposé : l'addition des vecteurs se comporte comme celle des nombres."
+    },
+    {
+      "id": "p08",
+      "ecran": "parallelogramme_somme",
+      "texte": "Parallélogramme : la somme est la diagonale.",
+      "dit": "Seconde construction de la somme, quand les deux vecteurs partent de la même origine : on complète le parallélogramme construit sur eux, et la somme est la diagonale issue de cette origine commune. Bout à bout ou parallélogramme, les deux constructions donnent le même vecteur : la première lit la somme comme un trajet, la seconde comme une résultante, par exemple la résultante de deux forces appliquées au même point. Choisissez selon la figure que le problème vous offre."
+    },
+    {
+      "id": "p09",
+      "ecran": "soustraction",
+      "texte": "AB = OB − OA : la différence donne le déplacement.",
+      "dit": "La soustraction découle de l'addition : soustraire un vecteur, c'est ajouter son opposé. Conséquence majeure pour la géométrie analytique : si deux points A et B sont repérés depuis une même origine O, alors le vecteur A B s'obtient en soustrayant les vecteurs position, celui de l'arrivée moins celui du départ. C'est exactement le calcul de coordonnées déjà rencontré : la soustraction des vecteurs et celle des points racontent la même histoire."
+    },
+    {
+      "id": "p10",
+      "ecran": "scalaire",
+      "texte": "Le scalaire règle la taille ; son signe règle le sens.",
+      "dit": "Multiplier un vecteur par un nombre réel, un scalaire, ne change pas sa direction, mais règle sa taille et parfois son sens. Si le scalaire est positif, le sens est conservé et la norme est multipliée par le scalaire. S'il est négatif, le sens s'inverse et la norme est multipliée par sa valeur absolue : moins un demi fois un déplacement de cent mètres vers le nord donne cinquante mètres vers le sud. Et zéro annule tout : le produit est le vecteur nul."
+    },
+    {
+      "id": "p11",
+      "ecran": "operations_coord",
+      "texte": "Somme, produit, différence : composante par composante.",
+      "dit": "En coordonnées, toutes les opérations deviennent composante par composante : la somme additionne les abscisses entre elles et les ordonnées entre elles ; le produit par un scalaire multiplie chaque coordonnée ; la différence soustrait de même. Derrière ces règles, une écriture fondamentale : tout vecteur du plan se décompose de manière unique sur les deux vecteurs de base, ixe selon le vecteur i et igrec selon le vecteur j. Les coordonnées sont les coefficients de cette décomposition."
+    },
+    {
+      "id": "p12",
+      "ecran": "bateau",
+      "texte": "Nord 5, est 3 : résultante (3, 5), norme racine de 34.",
+      "dit": "Exemple complet, le bateau sur la rivière. Son moteur le pousse vers le nord à cinq kilomètres par heure ; le courant le pousse vers l'est à trois kilomètres par heure. En coordonnées, le vecteur moteur est zéro, cinq, et le vecteur courant est trois, zéro. La vitesse réelle est leur somme : trois, cinq. Sa norme vaut racine de trente-quatre, environ cinq virgule huit trois kilomètres par heure, et sa direction penche vers le nord-est : le bateau n'ira pas exactement où son cap pointe, et le calcul vectoriel le prévoit."
+    },
+    {
+      "id": "p13",
+      "ecran": "colinearite",
+      "texte": "Colinéaires : même direction, l'un multiple de l'autre.",
+      "dit": "Voici la propriété centrale de ce cours : la colinéarité. Deux vecteurs sont colinéaires quand ils ont la même direction, c'est-à-dire quand l'un est un multiple de l'autre : il existe un nombre réel k tel que le second égale k fois le premier. Si k est positif, ils ont le même sens ; s'il est négatif, des sens opposés. Le vecteur nul, lui, est colinéaire à tout vecteur. Retenez l'image : colinéaires, ce sont des flèches portées par des droites parallèles, comme les rails d'une voie ferrée."
+    },
+    {
+      "id": "p14",
+      "ecran": "det_colin",
+      "texte": "Test de colinéarité : xy′ − x′y = 0.",
+      "dit": "En coordonnées, la colinéarité se teste sans aucune division : deux vecteurs de coordonnées ixe, igrec et ixe prime, igrec prime sont colinéaires si et seulement si ixe fois igrec prime moins ixe prime fois igrec égale zéro. Cette quantité s'appelle le déterminant des deux vecteurs. Nul, il signale des coordonnées proportionnelles ; non nul, il certifie que les deux vecteurs forment une base du plan, c'est-à-dire qu'ils ouvrent toutes les directions."
+    },
+    {
+      "id": "p15",
+      "ecran": "ex_colin",
+      "texte": "det = 6 − 6 = 0, et v = −3u.",
+      "dit": "Vérifions sur un exemple. Le vecteur u a pour coordonnées deux et moins un ; le vecteur v, moins six et trois. Leur déterminant vaut deux fois trois, moins moins six fois moins un, c'est-à-dire six moins six : zéro. Les vecteurs sont donc colinéaires, et l'on peut même exhiber le coefficient : v égale moins trois fois u, ce que confirment les deux coordonnées. Sens opposés, même direction, rapport moins trois : le déterminant a tout détecté en un calcul."
+    },
+    {
+      "id": "p16",
+      "ecran": "alignement",
+      "texte": "AB(2, 3), AC(6, 9) : déterminant nul, alignés.",
+      "dit": "Première application géométrique : l'alignement. Trois points A, B et C sont alignés si et seulement si les vecteurs A B et A C sont colinéaires, puisqu'ils partagent alors la même droite. Prenons A en un, deux, B en trois, cinq et C en sept, onze. Le vecteur A B a pour coordonnées deux et trois ; le vecteur A C, six et neuf. Leur déterminant vaut dix-huit moins dix-huit : zéro. Les points sont alignés, et même mieux, A C vaut trois fois A B : C est exactement trois fois plus loin, sur la même droite."
+    },
+    {
+      "id": "p17",
+      "ecran": "parallelisme",
+      "texte": "Parallélisme de droites = colinéarité des directeurs.",
+      "dit": "Deuxième application : le parallélisme. Deux droites sont parallèles si et seulement si leurs vecteurs directeurs sont colinéaires. Toute la géométrie des directions se ramène ainsi à un calcul de déterminant : vérifier que deux murs d'un plan de construction sont parallèles, que deux trajectoires ne se croiseront pas, ou qu'un personnage de jeu regarde dans la même direction qu'un autre. Et le cas limite parle de lui-même : un déterminant non nul entre deux directeurs annonce une intersection."
+    },
+    {
+      "id": "p18",
+      "ecran": "milieu",
+      "texte": "Milieu : demi-somme des vecteurs, moyenne des points.",
+      "dit": "Le milieu d'un segment illustre la fusion de l'addition et du scalaire. Le point M, milieu de A B, vérifie que le vecteur O M est la demi-somme des vecteurs O A et O B, O étant l'origine du repère. En coordonnées, cela devient la règle que vous connaissez : les coordonnées du milieu sont les moyennes des coordonnées des extrémités. Une demi-somme de vecteurs, une moyenne de nombres : la géométrie et l'algèbre disent la même chose, chacune dans sa langue."
+    },
+    {
+      "id": "p19",
+      "ecran": "translation",
+      "texte": "Translation de vecteur u : MM′ = u, pour tout M.",
+      "dit": "Un vecteur ne décrit pas seulement un déplacement : il définit une transformation du plan entier, la translation. La translation de vecteur u envoie chaque point M sur l'unique point M prime tel que le vecteur M M prime égale u. Tous les points glissent de la même manière : même direction, même sens, même longueur. Une translation conserve les distances, les angles, les aires, l'alignement et le parallélisme : c'est une isométrie, un glissement sans déformation."
+    },
+    {
+      "id": "p20",
+      "ecran": "translation_coord",
+      "texte": "Image d'un point : (x + a, y + b).",
+      "dit": "En coordonnées, la translation est l'opération la plus simple qui soit : si le vecteur a pour coordonnées a et b, alors l'image d'un point de coordonnées ixe et igrec a pour coordonnées ixe plus a et igrec plus b. On ajoute le vecteur aux coordonnées du point, composante par composante. Exemple : le point A, un et deux, translaté par le vecteur de coordonnées trois et deux, arrive en quatre, quatre. C'est ce calcul, répété à chaque image, qui anime les sprites des jeux vidéo."
+    },
+    {
+      "id": "p21",
+      "ecran": "composition",
+      "texte": "Deux translations enchaînées : une seule, de vecteur u + v.",
+      "dit": "Que se passe-t-il quand on enchaîne deux translations ? On applique d'abord celle de vecteur u, puis celle de vecteur v : par la relation de Chasles, le déplacement total est la somme des deux vecteurs. La composée des deux translations est donc la translation de vecteur u plus v. Exemple en ville : quatre pâtés vers l'est et trois vers le nord, puis deux vers l'ouest et un vers le sud ; au total, deux vers l'est et deux vers le nord. L'addition vectorielle est la composition des déplacements, vue algébriquement."
+    },
+    {
+      "id": "p22",
+      "ecran": "droite_translatee",
+      "texte": "d : y = 2x − 1 devient d′ : y = 2x − 9.",
+      "dit": "Translatons maintenant une droite entière, celle d'équation igrec égale deux ixe moins un, par le vecteur de coordonnées trois et moins deux. Une translation envoie une droite sur une droite parallèle : le coefficient directeur reste deux. Pour fixer la nouvelle ordonnée à l'origine, on translate un point commode de la droite, le point zéro, moins un, qui arrive en trois, moins trois. La droite image passe par ce point avec la pente deux : son équation est igrec égale deux ixe moins neuf. Même direction, position décalée : la translation en une équation."
+    },
+    {
+      "id": "p23",
+      "ecran": "parallelogramme_critere",
+      "texte": "AB = DC : le parallélogramme devient un système.",
+      "dit": "Le parallélogramme est la figure emblématique de l'égalité vectorielle : un quadrilatère A B C D est un parallélogramme si et seulement si le vecteur A B égale le vecteur D C. Application : A en un, deux, B en quatre, trois et C en cinq, six ; cherchons D pour que A B C D soit un parallélogramme. Le vecteur A B vaut trois, un ; le vecteur D C vaut cinq moins ixe, six moins igrec. Leur égalité donne deux équations : ixe égale deux et igrec égale cinq. Le point D est donc en deux, cinq, démontré sans mesurer un seul angle."
+    },
+    {
+      "id": "p24",
+      "ecran": "boucle",
+      "texte": "AB + BC + CA = 0 : le tour complet s'annule.",
+      "dit": "Exercice de synthèse, pour vérifier que tout s'emboîte. Trois points : A en deux, un, B en quatre, trois, C en un, cinq. Les vecteurs du tour complet valent deux et deux, puis moins trois et deux, puis un et moins quatre. Leur somme : deux moins trois plus un en abscisse, deux plus deux moins quatre en ordonnée, c'est-à-dire le vecteur nul. Rien d'étonnant : la relation de Chasles en boucle ramène toujours au point de départ. Si votre tour ne donne pas zéro, c'est qu'une coordonnée s'est égarée en route."
+    },
+    {
+      "id": "p25",
+      "ecran": "forces",
+      "texte": "F₁ + F₂ = (2, 7) : résultante de norme racine de 53, environ 7,28 N.",
+      "dit": "Application physique, la résultante de forces. Un objet reçoit une première force de coordonnées trois et deux newtons, et une seconde de coordonnées moins un et cinq. La résultante est leur somme : deux et sept. Sa norme vaut racine de cinquante-trois, environ sept virgule deux huit newtons. Toute la mécanique du point commence ainsi : additionner les vecteurs force, puis lire la résultante, sa direction comme son intensité, avant même de parler de mouvement."
+    },
+    {
+      "id": "p26",
+      "ecran": "pieges",
+      "texte": "Les pièges : points, sens, mauvais test.",
+      "dit": "Avant de conclure, les erreurs classiques, à bannir définitivement. Confondre points et vecteurs d'abord : un point est une position, un vecteur un déplacement. Oublier l'orientation ensuite : le vecteur A B est l'opposé du vecteur B A, l'ordre des lettres est crucial. Confondre les tests enfin : la colinéarité se décide par le déterminant, pas par le produit des coordonnées croisées d'une autre formule. Et souvenez-vous qu'un dessin suggère une idée, mais que seule la démonstration algébrique la valide."
+    },
+    {
+      "id": "p27",
+      "ecran": "recap",
+      "texte": "Trois visages, une méthode : traduire, calculer, interpréter.",
+      "dit": "Pour conclure, gardez la carte complète du cours. Un vecteur possède trois visages : une flèche de direction, de sens et de norme donnés ; un couple de coordonnées, arrivée moins départ ; et une translation qui déplace tout le plan. L'addition enchaîne les déplacements par la relation de Chasles, le scalaire règle taille et sens, la colinéarité détecte alignements et parallélismes par un déterminant nul. Traduire la géométrie en calculs, calculer, puis retraduire : c'est toute la méthode vectorielle."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir et représenter les vecteurs"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Calculer en coordonnées et traquer la colinéarité",
+      "pont": {
+        "texte": "Partie 2 : scalaire, coordonnées et colinéarité.",
+        "dit": "Partie deux : le calcul vectoriel. Nous multiplierons les vecteurs par des nombres, nous calculerons toutes les opérations en coordonnées sur un bateau porté par deux courants, puis nous traquerons la colinéarité, la propriété qui décide des alignements et des parallélismes."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "Translations, parallélogrammes et synthèse",
+      "pont": {
+        "texte": "Partie 3 : translations, parallélogrammes, synthèse.",
+        "dit": "Partie trois : les vecteurs en action. Un vecteur définit une translation, les translations se composent comme les vecteurs s'additionnent, et le parallélogramme devient un critère démontrable. Nous terminerons par une synthèse et les erreurs classiques à ne plus commettre."
+      }
+    }
+  ]
+}
