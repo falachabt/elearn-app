@@ -16,7 +16,7 @@ const mockProfilToeicActif = jest.fn(async () => true);
 const mockEtapeCertification = jest.fn(async (_profil: unknown) => '/certification/arrivee' as string | null);
 const mockLireProfil = jest.fn(async (): Promise<unknown> => ({ type: 'certification', exam: 'toeic', termine: false }));
 const mockLireDiagnostic = jest.fn(async (): Promise<unknown> => null);
-const mockRestaurerDiagnostic = jest.fn(async (): Promise<unknown> => null);
+const mockRestaurerDiagnostic = jest.fn(async (_exam: string): Promise<unknown> => null);
 
 jest.mock('expo-router', () => ({
   Redirect: ({ href }: { href: string }) => {
