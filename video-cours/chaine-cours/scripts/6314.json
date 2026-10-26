@@ -1,0 +1,546 @@
+{
+  "cours": 6314,
+  "ecrans": {
+    "bernoulli": {
+      "kicker": "La brique de Bernoulli",
+      "tex": [
+        "X = X_1 + X_2 + \\cdots + X_n",
+        "E(X_i) = p \\qquad V(X_i) = p(1 - p)",
+        "E(X) = np \\qquad V(X) = np(1 - p)"
+      ],
+      "titre": "Une binomiale est une somme de Bernoulli indépendantes",
+      "type": "etape"
+    },
+    "binomiale_def": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "La loi binomiale",
+      "note": "Quatre conditions : nombre fixe d'épreuves, deux issues, probabilité constante, indépendance.",
+      "tex": "P(X = k) = \\binom{n}{k} p^k (1 - p)^{n - k}",
+      "type": "formule"
+    },
+    "binomiale_moments": {
+      "kicker": "Les deux formules de la binomiale",
+      "tex": [
+        "E(X) = np",
+        "V(X) = np(1 - p) \\qquad \\sigma = \\sqrt{np(1 - p)}"
+      ],
+      "titre": "Centre et dispersion du comptage de succès",
+      "type": "etape"
+    },
+    "definition": {
+      "kicker": "La variable aléatoire",
+      "note": "Une fonction : à chaque issue de l'expérience, elle associe un nombre réel.",
+      "tex": "X : \\Omega \\to \\mathbb{R}",
+      "type": "formule"
+    },
+    "densite": {
+      "kicker": "Le cas continu : la densité",
+      "note": "La densité est positive et son intégrale totale vaut 1 ; pour une valeur exacte, P(X = a) = 0.",
+      "tex": "P(a \\leq X \\leq b) = \\int_a^b f_X(x) \\, dx",
+      "type": "formule"
+    },
+    "esperance": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "L'espérance : définition",
+      "note": "En continu, la somme devient une intégrale de x fois la densité. Centre de gravité de la loi.",
+      "tex": "E(X) = \\sum_i x_i \\, p_i",
+      "type": "formule"
+    },
+    "ex_controle": {
+      "kicker": "Exemple · le contrôle qualité",
+      "tex": [
+        "E(X) = 50 \\times 0{,}02 = 1",
+        "V(X) = 50 \\times 0{,}02 \\times 0{,}98 = 0{,}98",
+        "\\sigma(X) = \\sqrt{0{,}98} \\approx 0{,}99"
+      ],
+      "titre": "Cinquante composants, deux pour cent de défauts",
+      "type": "etape"
+    },
+    "ex_de": {
+      "kicker": "Exemple · le dé équilibré",
+      "tex": [
+        "E(X) = \\tfrac{1 + 2 + 3 + 4 + 5 + 6}{6}",
+        "E(X) = \\tfrac{21}{6} = 3{,}5"
+      ],
+      "titre": "Six faces équiprobables",
+      "type": "etape"
+    },
+    "ex_de_variance": {
+      "kicker": "Exemple · la variance du dé",
+      "tex": [
+        "E(X^2) = \\tfrac{91}{6} \\approx 15{,}17",
+        "V(X) = \\tfrac{91}{6} - \\tfrac{49}{4} = \\tfrac{35}{12}",
+        "\\sigma(X) = \\sqrt{\\tfrac{35}{12}} \\approx 1{,}71"
+      ],
+      "titre": "Le même dé, vu côté dispersion",
+      "type": "etape"
+    },
+    "ex_flechettes": {
+      "kicker": "Exemple · les fléchettes",
+      "tex": [
+        "E(Y) = 1 \\times 0{,}3 + 5 \\times 0{,}5",
+        "+ \\ 10 \\times 0{,}2 = 4{,}8"
+      ],
+      "titre": "Trois zones, trois probabilités inégales",
+      "type": "etape"
+    },
+    "ex_gain": {
+      "kicker": "Exemple · un jeu favorable",
+      "tex": [
+        "E(G) = 5 \\times 0{,}5 - 2 \\times 0{,}5",
+        "E(G) = 2{,}5 - 1 = 1{,}5"
+      ],
+      "titre": "Face gagne cinq euros, Pile fait perdre deux euros",
+      "type": "etape"
+    },
+    "ex_jeu_de": {
+      "kicker": "Exemple · le jeu du six",
+      "tex": [
+        "E(G) = \\tfrac{10}{6} - \\tfrac{5}{6} = \\tfrac{5}{6}",
+        "E(G^2) = \\tfrac{105}{6} = 17{,}5",
+        "V(G) = 17{,}5 - 0{,}69 \\approx 16{,}81"
+      ],
+      "titre": "Dix euros sur un six, un euro perdu sinon",
+      "type": "etape"
+    },
+    "ex_lots": {
+      "kicker": "Exemple · les lots de pièces",
+      "tex": [
+        "E(T) = 20 + 10 \\times 50 = 520",
+        "V(T) = 10 \\times 4 = 40",
+        "\\text{corrélées : } V(T) = 100 \\times 4 = 400"
+      ],
+      "titre": "Dix pièces indépendantes, un emballage constant",
+      "type": "etape"
+    },
+    "ex_marketing": {
+      "kicker": "Exemple · la campagne d'e-mails",
+      "tex": [
+        "E(Y) = 10000 \\times 0{,}15 = 1500",
+        "V(Y) = 10000 \\times 0{,}15 \\times 0{,}85 = 1275",
+        "\\sigma(Y) = \\sqrt{1275} \\approx 35{,}7"
+      ],
+      "titre": "Dix mille envois, quinze pour cent d'ouvertures",
+      "type": "etape"
+    },
+    "ex_piece": {
+      "kicker": "Exemple · la pièce truquée",
+      "tex": [
+        "P(X = 2) = 0{,}6 \\qquad P(X = -1) = 0{,}4",
+        "E(X) = 2 \\times 0{,}6 - 1 \\times 0{,}4",
+        "E(X) = 1{,}2 - 0{,}4 = 0{,}8"
+      ],
+      "titre": "Face gagne deux euros, Pile fait perdre un euro",
+      "type": "etape"
+    },
+    "ex_piece_variance": {
+      "kicker": "Exemple · la dispersion du jeu truqué",
+      "tex": [
+        "V(X) = 3{,}24 \\times 0{,}4 + 1{,}44 \\times 0{,}6",
+        "V(X) = 1{,}296 + 0{,}864 = 2{,}16",
+        "\\sigma(X) = \\sqrt{2{,}16} \\approx 1{,}47"
+      ],
+      "titre": "Même espérance que le gain sûr, risque en plus",
+      "type": "etape"
+    },
+    "ex_quiz": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "grille_des_fig"
+      },
+      "kicker": "Exemple · le quiz au hasard",
+      "tex": [
+        "P(X = 5) = \\tbinom{10}{5} (0{,}25)^5 (0{,}75)^5",
+        "\\tbinom{10}{5} = 252",
+        "P(X = 5) \\approx 0{,}058"
+      ],
+      "titre": "Dix questions : exactement cinq bonnes réponses",
+      "type": "etape"
+    },
+    "ex_sondage": {
+      "kicker": "Exemple · le sondage de mille personnes",
+      "tex": [
+        "E(X) = 1000 \\times 0{,}42 = 420",
+        "V(X) = 1000 \\times 0{,}42 \\times 0{,}58",
+        "V(X) = 243{,}6 \\qquad \\sigma(X) \\approx 15{,}6"
+      ],
+      "titre": "Quarante-deux pour cent de favorables dans la population",
+      "type": "etape"
+    },
+    "ex_temperature": {
+      "kicker": "Exemple · Celsius et Fahrenheit",
+      "tex": [
+        "Y = 1{,}8X + 32 \\qquad V(X) = 4",
+        "V(Y) = 1{,}8^2 \\times 4 = 12{,}96"
+      ],
+      "titre": "Changer d'échelle étire la dispersion",
+      "type": "etape"
+    },
+    "facteur_p": {
+      "kicker": "Le facteur qui commande la dispersion",
+      "tex": [
+        "p = 0 \\text{ ou } 1 : \\quad V(X) = 0",
+        "p = 0{,}5 : \\quad p(1 - p) = 0{,}25",
+        "\\text{dispersion maximale, symétrique}"
+      ],
+      "titre": "L'incertitude est maximale quand les issues se valent",
+      "type": "etape"
+    },
+    "intervalle_sondage": {
+      "kicker": "L'intervalle des résultats plausibles",
+      "note": "À deux écarts-types près : entre 389 et 451 favorables dans environ 95 % des échantillons.",
+      "tex": "420 - 31 \\leq X \\leq 420 + 31",
+      "type": "formule"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "Deux nombres résument une variable aléatoire : où elle se centre, et combien elle s'étale autour de ce centre.",
+      "type": "phrase"
+    },
+    "linearite": {
+      "kicker": "La linéarité de l'espérance",
+      "tex": [
+        "E(aX + b) = aE(X) + b",
+        "E(X + Y) = E(X) + E(Y)",
+        "E(2X + 10) = 2 \\times 3{,}5 + 10 = 17"
+      ],
+      "titre": "L'arme de calcul la plus utile du cours",
+      "type": "etape"
+    },
+    "loi_discrete": {
+      "kicker": "La loi de probabilité discrète",
+      "note": "Deux conditions : chaque probabilité entre 0 et 1, et leur somme vaut 1.",
+      "tex": "p_X(x_i) = P(X = x_i)",
+      "type": "formule"
+    },
+    "piege_moments": {
+      "kicker": "Le piège à connaître",
+      "note": "L'espérance d'une fonction n'est pas la fonction de l'espérance, sauf si elle est linéaire.",
+      "tex": "E(X^2) \\neq [E(X)]^2",
+      "type": "formule"
+    },
+    "piege_remise": {
+      "kicker": "Le piège : les tirages sans remise",
+      "note": "Sans remise, la probabilité bouge à chaque tirage : loi hypergéométrique, dispersion plus faible.",
+      "tex": "V(X) = np(1 - p) \\times \\frac{N - n}{N - 1}",
+      "type": "formule"
+    },
+    "proportion": {
+      "kicker": "La proportion de succès",
+      "tex": [
+        "\\hat{p} = \\tfrac{X}{n} \\qquad E(\\hat{p}) = p",
+        "V(\\hat{p}) = \\tfrac{p(1 - p)}{n}",
+        "\\sigma(\\hat{p}) = \\sqrt{\\tfrac{p(1 - p)}{n}}"
+      ],
+      "titre": "L'erreur-type décroît comme la racine de la taille",
+      "type": "etape"
+    },
+    "proprietes_variance": {
+      "kicker": "Les propriétés de la variance",
+      "tex": [
+        "V(aX + b) = a^2 \\, V(X)",
+        "V(X + Y) = V(X) + V(Y)",
+        "+ 2\\,\\text{Cov}(X, Y)",
+        "\\text{indép. : } V(X + Y) = V(X) + V(Y)"
+      ],
+      "titre": "Le carré du facteur, et le rôle de l'indépendance",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Espérance : moyenne pondérée, centre de gravité",
+        "Linéarité : E(aX + b) = aE(X) + b, toujours",
+        "Variance : E(X²) − [E(X)]² ; σ = racine de V",
+        "V(aX + b) = a²V(X) ; sommes indépendantes",
+        "Binomiale : E = np et V = np(1 − p)"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "regle_empirique": {
+      "kicker": "L'écart-type et la règle empirique",
+      "tex": [
+        "68\\ \\% \\text{ dans } \\mu \\pm \\sigma",
+        "95\\ \\% \\text{ dans } \\mu \\pm 2\\sigma",
+        "99{,}7\\ \\% \\text{ dans } \\mu \\pm 3\\sigma"
+      ],
+      "titre": "Pour les lois en cloche : soixante-huit, quatre-vingt-quinze, presque tout",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "deux_distributions_fig"
+      },
+      "kicker": "Mathématique · Variables aléatoires",
+      "sous": "Le centre de gravité du hasard, sa dispersion, et le comptage des succès répétés",
+      "titre": "Espérance, variance et loi binomiale",
+      "type": "titre"
+    },
+    "types": {
+      "kicker": "Deux familles de variables",
+      "tex": [
+        "\\text{discrète : valeurs listables, dé, comptages}",
+        "\\text{continue : tout un intervalle, temps, taille}"
+      ],
+      "titre": "Discrète ou continue : la nature des valeurs décide",
+      "type": "etape"
+    },
+    "variance_def": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "deux_distributions_fig"
+      },
+      "kicker": "La variance : définition",
+      "note": "Les carrés empêchent les écarts positifs et négatifs de s'annuler.",
+      "tex": "V(X) = E\\left[(X - E(X))^2\\right]",
+      "type": "formule"
+    },
+    "variance_pratique": {
+      "kicker": "La formule pratique de la variance",
+      "note": "König-Huygens : l'espérance du carré, moins le carré de l'espérance.",
+      "tex": "V(X) = E(X^2) - [E(X)]^2",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Variables aléatoires et espérance"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : mesurer la dispersion, puis construire la loi binomiale. Nous définirons la variance et sa formule pratique, nous la calculerons sur le dé et sur le jeu truqué, nous verrons comment elle se transforme, et nous finirons en déduisant les formules de la binomiale des épreuves de Bernoulli.",
+        "texte": "Partie 2 : variance, écart-type, et la binomiale construite."
+      },
+      "sous_titre": "Variance, écart-type et naissance de la loi binomiale"
+    },
+    {
+      "debut": "p25",
+      "pont": {
+        "dit": "Partie trois : la dispersion binomiale en action. Nous étudierons le facteur qui la commande, puis nous appliquerons les deux formules aux quiz, aux sondages, au contrôle qualité et aux campagnes, avant la proportion de succès et le piège des tirages sans remise.",
+        "texte": "Partie 3 : dispersion binomiale et applications."
+      },
+      "sous_titre": "Dispersion binomiale et applications"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux variables aléatoires et à leurs deux nombres signatures : l'espérance, qui dit où elles se centrent, et la variance, qui dit combien elles s'étalent. Nous définirons d'abord la loi d'une variable, puis nous construirons l'espérance et ses propriétés, avant de mesurer la dispersion et de tout appliquer à la loi binomiale, le modèle du comptage des succès.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Espérance, variance et loi binomiale : décrire le hasard."
+    },
+    {
+      "dit": "Deux archers peuvent avoir la même moyenne et des niveaux très différents : l'une groupe toutes ses flèches au centre, l'autre les éparpille sur toute la cible. La moyenne seule ne raconte que la moitié de l'histoire. Ce cours apprend à raconter l'autre moitié : la dispersion, le risque, l'écart typique autour du centre.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Même moyenne, dispersion différente : il faut deux nombres."
+    },
+    {
+      "dit": "Une variable aléatoire n'est pas une variable d'algèbre : c'est une fonction qui associe un nombre réel à chaque issue d'une expérience aléatoire. Lancer un dé et noter le résultat, compter des clients, mesurer un temps d'attente : dans chaque cas, le hasard choisit l'issue, et la variable la traduit en nombre.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Une variable aléatoire traduit le hasard en nombres."
+    },
+    {
+      "dit": "Il existe deux grandes familles. Une variable discrète prend des valeurs que l'on peut lister : le résultat d'un dé, un nombre de succès, un comptage. Une variable continue peut prendre n'importe quelle valeur d'un intervalle : un temps d'attente, une taille, une température. La famille décide des outils : des sommes pour la première, des intégrales pour la seconde.",
+      "ecran": "types",
+      "id": "p04",
+      "texte": "Discrète : valeurs listables. Continue : tout un intervalle."
+    },
+    {
+      "dit": "Connaître les valeurs possibles ne suffit pas : il faut la loi de probabilité, c'est-à-dire la probabilité de chaque valeur. Pour une variable discrète, chaque probabilité est comprise entre zéro et un, et leur somme vaut exactement un : toute la masse de probabilité est distribuée, sans perte et sans création.",
+      "ecran": "loi_discrete",
+      "id": "p05",
+      "texte": "La loi : chaque probabilité, et une somme qui vaut un."
+    },
+    {
+      "dit": "Premier exemple complet : une pièce truquée tombe sur Face avec probabilité zéro virgule six, et sur Pile avec probabilité zéro virgule quatre. Face fait gagner deux euros, Pile fait perdre un euro. L'espérance du gain est la somme des valeurs multipliées par leurs probabilités : deux fois zéro virgule six, moins un fois zéro virgule quatre, ce qui donne zéro virgule huit euro par partie en moyenne. Le jeu est favorable au joueur.",
+      "ecran": "ex_piece",
+      "id": "p06",
+      "texte": "Pièce truquée : E(X) = 0,8 € par partie en moyenne."
+    },
+    {
+      "dit": "Pour une variable continue, on ne peut plus lister les probabilités valeur par valeur : la probabilité de tomber exactement sur une valeur donnée est nulle. On travaille alors avec une fonction de densité : la probabilité d'un intervalle est l'aire sous la courbe de la densité au-dessus de cet intervalle, et l'aire totale sous la courbe vaut un.",
+      "ecran": "densite",
+      "id": "p07",
+      "texte": "En continu : une probabilité est une aire sous la densité."
+    },
+    {
+      "dit": "Voici le premier nombre signature : l'espérance, la moyenne théorique des valeurs, chacune pondérée par sa probabilité. Imaginez des masses posées sur une tige, aux positions des valeurs, avec des poids égaux aux probabilités : l'espérance est exactement le point d'équilibre de cette tige, son centre de gravité. En continu, la somme pondérée devient une intégrale.",
+      "ecran": "esperance",
+      "id": "p08",
+      "texte": "L'espérance : le centre de gravité de la loi."
+    },
+    {
+      "dit": "Le calcul de référence est celui du dé équilibré : chaque face a probabilité un sixième, et l'espérance vaut la somme des six faces divisée par six, soit vingt et un sixièmes, trois virgule cinq. Remarquez que trois virgule cinq n'est le résultat d'aucun lancer : l'espérance est une moyenne de long terme, pas une valeur typique d'une partie.",
+      "ecran": "ex_de",
+      "id": "p09",
+      "texte": "Le dé : E(X) = 3,5, une moyenne, pas un lancer possible."
+    },
+    {
+      "dit": "Avec des probabilités inégales, la pondération fait toute la différence. Au jeu de fléchettes, la zone à un point est touchée avec probabilité zéro virgule trois, celle à cinq points avec probabilité zéro virgule cinq, et celle à dix points avec probabilité zéro virgule deux. L'espérance vaut un fois zéro virgule trois, plus cinq fois zéro virgule cinq, plus dix fois zéro virgule deux : quatre virgule huit points par lancer en moyenne.",
+      "ecran": "ex_flechettes",
+      "id": "p10",
+      "texte": "Fléchettes : E(Y) = 4,8 points par lancer."
+    },
+    {
+      "dit": "L'espérance possède la propriété qui rend presque tous les calculs faciles : la linéarité. Multiplier une variable par une constante multiplie son espérance par cette constante, ajouter une constante décale l'espérance d'autant, et surtout, l'espérance d'une somme est toujours la somme des espérances, même quand les variables dépendent l'une de l'autre. Pour le dé, l'espérance de deux fois le résultat plus dix vaut donc deux fois trois virgule cinq, plus dix : dix-sept, sans refaire aucun tableau de loi.",
+      "ecran": "linearite",
+      "id": "p11",
+      "texte": "Linéarité : l'espérance d'une somme est la somme des espérances."
+    },
+    {
+      "dit": "L'espérance sert d'abord à juger un jeu. À pile ou face équilibré, Face fait gagner cinq euros et Pile fait perdre deux euros : l'espérance du gain vaut cinq fois un demi, moins deux fois un demi, soit un euro et demi par partie en moyenne. Positive, elle annonce un jeu favorable sur le long terme. Mais elle ne dit rien du risque d'une partie isolée : c'est exactement la limite qui nous mène à la variance.",
+      "ecran": "ex_gain",
+      "id": "p12",
+      "texte": "Jeu à pile ou face : E(G) = 1,5 €, favorable en moyenne."
+    },
+    {
+      "dit": "Avant de passer à la dispersion, retenez le piège symétrique de la linéarité : elle ne s'étend pas aux fonctions quelconques. L'espérance du carré n'est pas le carré de l'espérance, et l'espérance d'un produit n'est le produit des espérances que sous indépendance. Loin d'être un détail, cet écart entre les deux quantités va devenir la définition même de la variance.",
+      "ecran": "piege_moments",
+      "id": "p13",
+      "texte": "Piège : E(X²) n'est pas [E(X)]² en général."
+    },
+    {
+      "dit": "Pourquoi ne pas moyenner simplement les écarts à l'espérance ? Parce que les écarts positifs et négatifs s'annulent exactement : leur moyenne vaut toujours zéro. La solution classique consiste à élever chaque écart au carré avant de moyenner : les signes disparaissent, et les grands écarts pèsent plus lourd. C'est la variance, l'espérance du carré de l'écart à l'espérance.",
+      "ecran": "variance_def",
+      "id": "p14",
+      "texte": "Partie 2 : variance et écart-type, la dispersion mesurée."
+    },
+    {
+      "dit": "Calculer la variance par sa définition serait fastidieux. En développant le carré et en utilisant la linéarité, on obtient la formule pratique de König-Huygens : la variance vaut l'espérance du carré, moins le carré de l'espérance. Deux quantités à calculer, une soustraction : c'est le chemin que prendront tous nos exemples, à commencer par le dé.",
+      "ecran": "variance_pratique",
+      "id": "p15",
+      "texte": "König-Huygens : V(X) = E(X²) − [E(X)]²."
+    },
+    {
+      "dit": "Pour le dé équilibré, l'espérance du carré vaut quatre-vingt-onze sixièmes, environ quinze virgule dix-sept. La variance vaut donc quatre-vingt-onze sixièmes moins quarante-neuf quarts, soit trente-cinq douzièmes, environ deux virgule quatre-vingt-douze. Sa racine carrée, l'écart-type, vaut environ un virgule soixante et onze : les résultats du dé s'écartent typiquement d'un peu moins de deux points autour de la moyenne trois virgule cinq.",
+      "ecran": "ex_de_variance",
+      "id": "p16",
+      "texte": "Dé : V(X) = 35/12 ≈ 2,92 et σ ≈ 1,71."
+    },
+    {
+      "dit": "Revenons au jeu de la pièce truquée, d'espérance zéro virgule huit. Par la définition, sa variance vaut le carré de l'écart pour moins un, fois zéro virgule quatre, plus le carré de l'écart pour deux, fois zéro virgule six : deux virgule seize, et un écart-type d'environ un virgule quarante-sept euro. Comparez avec un gain sûr de zéro virgule huit à chaque partie : même espérance, mais une variance nulle. Toute la différence entre les deux jeux est là.",
+      "ecran": "ex_piece_variance",
+      "id": "p17",
+      "texte": "Pièce truquée : V(X) = 2,16 et σ ≈ 1,47 €."
+    },
+    {
+      "dit": "L'écart-type a un avantage décisif sur la variance : il s'exprime dans la même unité que la variable, là où la variance parle en unités au carré. Pour les lois en forme de cloche, il donne la règle empirique : environ soixante-huit pour cent des valeurs à moins d'un écart-type de la moyenne, environ quatre-vingt-quinze pour cent à moins de deux écarts-types, et presque toutes à moins de trois. Un résultat situé à quatre écarts-types doit donc alerter, par exemple sur une chaîne de production.",
+      "ecran": "regle_empirique",
+      "id": "p18",
+      "texte": "Règle empirique : 68 %, 95 %, 99,7 % à 1, 2, 3 écarts-types."
+    },
+    {
+      "dit": "La variance réagit aux transformations autrement que l'espérance. Ajouter une constante décale la distribution sans l'étaler : la variance ne change pas. Multiplier par une constante étire l'échelle, et la variance est multipliée par le carré du facteur. Pour une somme, tout dépend de la dépendance : en général s'ajoute un terme de covariance, et ce n'est que sous indépendance que la variance de la somme devient simplement la somme des variances.",
+      "ecran": "proprietes_variance",
+      "id": "p19",
+      "texte": "V(aX + b) = a²V(X) ; l'indépendance additionne les variances."
+    },
+    {
+      "dit": "L'exemple des températures rend le carré du facteur très concret. Si une température en degrés Celsius a une variance de quatre, sa conversion en degrés Fahrenheit la multiplie par un virgule huit et lui ajoute trente-deux. La variance devient un virgule huit au carré fois quatre, soit douze virgule quatre-vingt-seize : le trente-deux n'y change rien, mais l'étirement de l'échelle, lui, amplifie la dispersion.",
+      "ecran": "ex_temperature",
+      "id": "p20",
+      "texte": "Fahrenheit : V(Y) = 1,8² × 4 = 12,96."
+    },
+    {
+      "dit": "Dernier calcul de cette partie : des pièces de poids moyen cinquante grammes et de variance quatre sont emballées par lots de dix, avec un emballage constant de vingt grammes. Par linéarité, le lot pèse en moyenne vingt plus dix fois cinquante, cinq cent vingt grammes. Si les pièces sont indépendantes, les variances s'ajoutent : quarante. Mais si leurs écarts étaient parfaitement corrélés, le lot se comporterait comme dix fois une seule pièce, et la variance grimperait à quatre cents : la dépendance change tout.",
+      "ecran": "ex_lots",
+      "id": "p21",
+      "texte": "Lots : E(T) = 520 g ; V(T) = 40 si indépendance, 400 si corrélation."
+    },
+    {
+      "dit": "Voici maintenant la loi binomiale, le modèle qui compte les succès. Elle apparaît dès qu'une même épreuve à deux issues, succès ou échec, est répétée un nombre fixe de fois, avec une probabilité de succès constante et des épreuves indépendantes. La probabilité d'obtenir exactement un certain nombre de succès combine trois facteurs : le nombre de façons de placer ces succès, la probabilité des succès, et celle des échecs.",
+      "ecran": "binomiale_def",
+      "id": "p22",
+      "texte": "Partie 3 : la loi binomiale, compter les succès répétés."
+    },
+    {
+      "dit": "La clé de voûte du modèle est une décomposition : une variable binomiale est la somme de variables de Bernoulli indépendantes, une par épreuve, qui valent un en cas de succès et zéro sinon. Chaque Bernoulli a pour espérance la probabilité de succès, et pour variance le produit de cette probabilité par son complémentaire. Il ne reste qu'à additionner : les propriétés de la partie précédente donnent les deux formules de la binomiale en trois lignes.",
+      "ecran": "bernoulli",
+      "id": "p23",
+      "texte": "Une binomiale = une somme de Bernoulli indépendantes."
+    },
+    {
+      "dit": "Retenez donc le couple de formules qui résume toute variable binomiale. Son espérance vaut le nombre d'épreuves multiplié par la probabilité de succès : dix lancers d'une pièce équilibrée donnent en moyenne cinq Faces. Sa variance vaut le même produit, multiplié encore par le complémentaire de la probabilité, et l'écart-type en est la racine carrée : pour nos dix lancers, une variance de deux virgule cinq et un écart-type d'environ un virgule cinquante-huit.",
+      "ecran": "binomiale_moments",
+      "id": "p24",
+      "texte": "Binomiale : E(X) = np, V(X) = np(1 − p)."
+    },
+    {
+      "dit": "Le facteur probabilité fois complémentaire mérite un arrêt. Si la probabilité de succès vaut zéro ou un, il s'annule : le résultat est certain, la variance est nulle. Il est maximal quand la probabilité vaut un demi, là où les deux issues se valent et où l'incertitude règne. La dispersion d'une binomiale est donc symétrique autour de ce point d'incertitude maximale, et elle diminue dès que l'issue devient prévisible.",
+      "ecran": "facteur_p",
+      "id": "p25",
+      "texte": "Dispersion maximale à p = 0,5 ; nulle à p = 0 ou p = 1."
+    },
+    {
+      "dit": "Application aux probabilités exactes : un étudiant répond au hasard à un questionnaire de dix questions à quatre choix. Le nombre de bonnes réponses suit une loi binomiale de paramètres dix et un quart. La probabilité d'en obtenir exactement cinq combine le nombre de façons de choisir ces cinq questions, deux cent cinquante-deux, la probabilité de cinq succès et celle de cinq échecs : environ zéro virgule zéro cinquante-huit, moins de six pour cent. Le hasard seul ne fait pas une bonne note.",
+      "ecran": "ex_quiz",
+      "id": "p26",
+      "texte": "Quiz au hasard : P(X = 5) ≈ 0,058, moins de 6 %."
+    },
+    {
+      "dit": "Application aux sondages : mille personnes interrogées, une proportion réelle de favorables de zéro virgule quarante-deux. Le nombre de favorables suit une loi binomiale dont l'espérance vaut mille fois zéro virgule quarante-deux, quatre cent vingt personnes. Sa variance vaut mille fois zéro virgule quarante-deux fois zéro virgule cinquante-huit, deux cent quarante-trois virgule six, et son écart-type environ quinze virgule six personnes : voilà l'ampleur typique des fluctuations d'échantillon en échantillon.",
+      "ecran": "ex_sondage",
+      "id": "p27",
+      "texte": "Sondage : E(X) = 420, σ ≈ 15,6 personnes."
+    },
+    {
+      "dit": "Traduisons cet écart-type en intervalle : à deux écarts-types de part et d'autre de l'espérance, le nombre de favorables se situera, dans environ quatre-vingt-quinze pour cent des échantillons, entre trois cent quatre-vingt-neuf et quatre cent cinquante et une personnes. C'est le principe des marges d'erreur des sondages : elles ne viennent pas d'un calcul arbitraire, mais directement de l'écart-type de la loi binomiale.",
+      "ecran": "intervalle_sondage",
+      "id": "p28",
+      "texte": "Marge du sondage : entre 389 et 451 favorables à 95 %."
+    },
+    {
+      "dit": "En contrôle qualité, les mêmes formules deviennent un détecteur d'anomalies. Avec deux pour cent de composants défectueux et des échantillons de cinquante pièces, le nombre de défauts a pour espérance un, pour variance zéro virgule quatre-vingt-dix-huit et pour écart-type presque un. Trouver quatre défauts un jour donné place le résultat à environ trois écarts-types de la moyenne : assez rare pour justifier une enquête sur la production de ce jour-là.",
+      "ecran": "ex_controle",
+      "id": "p29",
+      "texte": "Contrôle qualité : 4 défauts ≈ 3 écarts-types, alerte."
+    },
+    {
+      "dit": "À grande échelle, l'écart-type sépare la fluctuation de la performance. Une campagne de dix mille e-mails avec un taux d'ouverture de quinze pour cent promet en moyenne mille cinq cents ouvertures, avec une variance de mille deux cent soixante-quinze et un écart-type d'environ trente-cinq virgule sept. Observer mille cinq cent quatre-vingts ouvertures représente un écart d'environ deux virgule deux écarts-types : probablement une vraie amélioration, pas un simple coup de chance.",
+      "ecran": "ex_marketing",
+      "id": "p30",
+      "texte": "Campagne : 1 580 ouvertures ≈ 2,2 écarts-types au-dessus."
+    },
+    {
+      "dit": "Un dernier exemple complet, côté jeu : lancer un dé, gagner dix euros sur un six et perdre un euro sinon. L'espérance du gain vaut dix sixièmes moins cinq sixièmes, cinq sixièmes d'euro, environ zéro virgule quatre-vingt-trois : le jeu est favorable. Mais l'espérance du carré vaut dix-sept virgule cinq, d'où une variance d'environ seize virgule quatre-vingt-un et un écart-type de quatre virgule dix euros : le gain d'une partie reste très incertain. Espérance favorable et risque élevé peuvent parfaitement cohabiter.",
+      "ecran": "ex_jeu_de",
+      "id": "p31",
+      "texte": "Jeu du six : E(G) ≈ 0,83 €, mais σ ≈ 4,10 €."
+    },
+    {
+      "dit": "Souvent, ce n'est pas le nombre de succès qui intéresse, mais sa proportion dans l'échantillon. Cette proportion a pour espérance la probabilité théorique elle-même : elle vise juste, en moyenne. Sa variance est celle du comptage divisée par le carré de la taille, et son écart-type, appelé erreur-type, décroît comme un sur la racine carrée de la taille. Conséquence contre-intuitive et fondamentale : pour diviser la marge d'erreur d'un sondage par deux, il faut quadrupler l'échantillon.",
+      "ecran": "proportion",
+      "id": "p32",
+      "texte": "Proportion : diviser la marge par 2 exige 4 fois plus de réponses."
+    },
+    {
+      "dit": "Un piège pour terminer : les formules binomiales exigent une probabilité constante et des épreuves indépendantes. Dans un tirage sans remise, par exemple cinquante cartes dans un jeu de cinquante-deux, la probabilité change à chaque tirage : le bon modèle est la loi hypergéométrique. Son espérance reste le produit du nombre de tirages par la proportion, mais sa variance est réduite par un facteur de correction, car épuiser la population limite les surprises.",
+      "ecran": "piege_remise",
+      "id": "p33",
+      "texte": "Sans remise : même espérance, variance réduite."
+    },
+    {
+      "dit": "Pour conclure, retenez l'enchaînement complet : décrire la loi, centrer par l'espérance en profitant de sa linéarité, mesurer la dispersion par la variance et l'écart-type grâce à König-Huygens, puis reconnaître les situations binomiales pour appliquer directement leurs deux formules. Deux nombres bien calculés valent mieux qu'une intuition du hasard.",
+      "ecran": "recap",
+      "id": "p34",
+      "texte": "Espérance et variance : à retenir."
+    }
+  ],
+  "titre": "Espérance, variance et loi binomiale"
+}
