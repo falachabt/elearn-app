@@ -1,0 +1,402 @@
+{
+ "cours": 6148,
+ "titre": "Factoriser un polynôme : des racines évidentes à la factorisation complète",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Factorisation des polynômes",
+   "titre": "Factoriser un polynôme : des racines évidentes à la factorisation complète",
+   "sous": "Facteur commun, identités remarquables, racines rationnelles : décomposer pour résoudre",
+   "anim": {
+    "nom": "factorisation_fig",
+    "hauteur": 250
+   }
+  },
+  "pourquoi": {
+   "type": "phrase",
+   "kicker": "Pourquoi factoriser ?",
+   "texte": "Factoriser, c'est passer d'une somme à un produit : les racines deviennent visibles, les équations se résolvent par le produit nul, les fractions se simplifient et les limites se lèvent."
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Le vocabulaire du démanteleur",
+   "titre": "Degré, coefficient dominant, racine",
+   "tex": [
+    "P(x) = 4x^3 - 2x^2 + 7x - 5",
+    "\\deg P = 3 \\qquad \\text{coefficient dominant : } 4",
+    "a \\text{ racine} \\iff P(a) = 0"
+   ]
+  },
+  "facteur_commun": {
+   "type": "formule",
+   "kicker": "Premier réflexe : le facteur commun",
+   "tex": "ab + ac = a(b + c)",
+   "note": "La distributivité lue à l'envers : on « sort » ce que tous les termes partagent."
+  },
+  "ex_facteur": {
+   "type": "etape",
+   "kicker": "Exemple : le facteur commun, puis la suite",
+   "titre": "Le trinôme restant se factorise encore",
+   "tex": [
+    "Q(x) = 6x^4 - 9x^3 + 3x^2 = 3x^2(2x^2 - 3x + 1)",
+    "\\Delta = 9 - 8 = 1 \\qquad 2x^2 - 3x + 1 = (2x - 1)(x - 1)",
+    "Q(x) = 3x^2(2x - 1)(x - 1)"
+   ]
+  },
+  "diff_carres": {
+   "type": "formule",
+   "kicker": "Identité remarquable : différence de deux carrés",
+   "tex": "a^2 - b^2 = (a - b)(a + b)",
+   "note": "Deux termes, des carrés, un signe moins : le patron le plus rentable de la factorisation."
+  },
+  "ex_diff": {
+   "type": "etape",
+   "kicker": "Exemple : des différences emboîtées",
+   "titre": "Une factorisation peut en cacher une autre",
+   "tex": [
+    "25x^2 - 16 = (5x - 4)(5x + 4)",
+    "16x^4 - 81 = (4x^2 - 9)(4x^2 + 9)",
+    "16x^4 - 81 = (2x - 3)(2x + 3)(4x^2 + 9)"
+   ]
+  },
+  "carres_parfaits": {
+   "type": "etape",
+   "kicker": "Identité remarquable : le carré parfait",
+   "titre": "Trois termes, et le double produit à vérifier",
+   "tex": [
+    "x^2 + 6x + 9 = (x + 3)^2",
+    "9x^2 - 12x + 4 = (3x - 2)^2",
+    "\\text{test : le terme du milieu vaut } \\pm 2ab"
+   ]
+  },
+  "pieges": {
+   "type": "phrase",
+   "kicker": "Les pièges classiques",
+   "texte": "Sur les réels, a² + b² ne se factorise pas. Et un trinôme n'est un carré parfait que si le terme du milieu égale exactement le double produit : x² + 5x + 9 n'en est pas un."
+  },
+  "cubes": {
+   "type": "formule",
+   "kicker": "Identités remarquables : les cubes",
+   "tex": "a^3 - b^3 = (a - b)(a^2 + ab + b^2)",
+   "note": "Même patron pour la somme : a³ + b³ = (a + b)(a² − ab + b²), seul le signe du terme du milieu change."
+  },
+  "racine_facteur": {
+   "type": "formule",
+   "kicker": "Le théorème racine-facteur",
+   "tex": "P(\\alpha) = 0 \\iff (x - \\alpha) \\text{ divise } P(x)",
+   "note": "Trouver une racine, c'est trouver un facteur : P(x) = (x − α)·Q(x), et le degré baisse d'une unité."
+  },
+  "candidats": {
+   "type": "formule",
+   "kicker": "La chasse aux racines rationnelles",
+   "tex": "\\frac{p}{q} \\text{ racine} \\implies p \\mid a_0 \\ \\text{ et } \\ q \\mid a_n",
+   "note": "On teste dans l'ordre : zéro, un, moins un, deux, moins deux, puis les diviseurs du terme constant — sans oublier les fractions."
+  },
+  "horner": {
+   "type": "etape",
+   "kicker": "Exemple : Horner, la division rapide",
+   "titre": "Une racine trouvée, un quotient en trois lignes",
+   "tex": [
+    "P(x) = 2x^3 + 3x^2 - 11x - 6 \\qquad P(2) = 0",
+    "P(x) = (x - 2)(2x^2 + 7x + 3)",
+    "2x^2 + 7x + 3 = (x + 3)(2x + 1)"
+   ]
+  },
+  "ex_cubique": {
+   "type": "etape",
+   "kicker": "Exemple complet : un degré trois démonté",
+   "titre": "Racine évidente, quotient, trinôme",
+   "tex": [
+    "P(x) = x^3 - 2x^2 - x + 2 \\qquad P(1) = 0",
+    "P(x) = (x - 1)(x^2 - x - 2)",
+    "P(x) = (x - 1)(x + 1)(x - 2)"
+   ]
+  },
+  "discriminant": {
+   "type": "formule",
+   "kicker": "Le trinôme et son discriminant",
+   "tex": "ax^2 + bx + c = a(x - x_1)(x - x_2) \\quad \\text{si } \\Delta \\geq 0",
+   "note": "Δ = b² − 4ac. Δ positif : deux racines réelles ; Δ nul : une racine double ; Δ négatif : irréductible sur les réels."
+  },
+  "ex_synthese": {
+   "type": "etape",
+   "kicker": "Exemple de synthèse : deux fois la même racine",
+   "titre": "La symétrie des coefficients guide la chasse",
+   "tex": [
+    "P(x) = x^4 - 2x^3 + 2x^2 - 2x + 1 \\qquad P(1) = 0",
+    "P(x) = (x - 1)(x^3 - x^2 + x - 1) \\qquad Q(1) = 0",
+    "P(x) = (x - 1)^2(x^2 + 1)"
+   ]
+  },
+  "sur_C_sur_R": {
+   "type": "formule",
+   "kicker": "Sur les complexes, sur les réels",
+   "tex": "P(x) = a_n(x - r_1)(x - r_2)\\cdots(x - r_n)",
+   "note": "Sur les complexes : que des facteurs linéaires. Sur les réels : des linéaires et des trinômes irréductibles, de discriminant négatif.",
+   "anim": {
+    "nom": "plan_complexe_fig",
+    "hauteur": 190
+   }
+  },
+  "multiplicite": {
+   "type": "etape",
+   "kicker": "La multiplicité d'une racine",
+   "titre": "Simple, double : la courbe ne réagit pas pareil",
+   "tex": [
+    "P(x) = x(x - 1)^2(x - 2)",
+    "\\text{multiplicité } 1 : \\text{ la courbe traverse l'axe}",
+    "\\text{multiplicité paire : elle touche et rebondit}"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 130
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en cinq étapes",
+   "etapes": [
+    "Facteur commun : toujours d'abord",
+    "Identité remarquable ? Deux ou trois termes",
+    "Racines rationnelles : tester les candidats",
+    "Diviser, puis recommencer sur le quotient",
+    "Vérifier : redévelopper la factorisation"
+   ]
+  },
+  "grand_exemple": {
+   "type": "etape",
+   "kicker": "Exemple guidé : la méthode au complet",
+   "titre": "Ni facteur commun, ni identité : la chasse décide",
+   "tex": [
+    "P(x) = x^3 - 3x^2 - 4x + 12 \\qquad P(2) = 0",
+    "P(x) = (x - 2)(x^2 - x - 6) \\qquad \\Delta = 25",
+    "P(x) = (x - 2)(x + 2)(x - 3)"
+   ]
+  },
+  "bicarree": {
+   "type": "etape",
+   "kicker": "Exemple : l'équation bicarrée",
+   "titre": "Poser grand ixe égal ixe au carré",
+   "tex": [
+    "x^4 - 13x^2 + 36 = 0 \\qquad X = x^2",
+    "X^2 - 13X + 36 = 0 \\qquad X = 4 \\ \\text{ou} \\ X = 9",
+    "(x - 2)(x + 2)(x - 3)(x + 3) = 0"
+   ]
+  },
+  "produit_nul": {
+   "type": "formule",
+   "kicker": "Résoudre : la propriété du produit nul",
+   "tex": "A \\times B = 0 \\iff A = 0 \\ \\text{ou} \\ B = 0",
+   "note": "Une fois le polynôme factorisé, chaque facteur donne une équation élémentaire : la résolution devient de la logique."
+  },
+  "limite": {
+   "type": "etape",
+   "kicker": "Application : lever une indétermination",
+   "titre": "Le facteur commun au numérateur et au dénominateur",
+   "tex": [
+    "x^3 - 3x - 2 = (x - 2)(x + 1)^2",
+    "x^2 - 4 = (x - 2)(x + 2)",
+    "\\lim_{x \\to 2} \\tfrac{(x + 1)^2}{x + 2} = \\tfrac{9}{4}"
+   ]
+  },
+  "signes": {
+   "type": "etape",
+   "kicker": "Application : une inéquation par les signes",
+   "titre": "La forme factorisée nourrit le tableau de signes",
+   "tex": [
+    "P(x) = -x^3 + 4x^2 + x - 4 = -(x + 1)(x - 1)(x - 4)",
+    "P(x) \\leq 0 \\iff x \\in [-1, 1] \\cup [4, +\\infty)"
+   ],
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 140
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Factoriser : écrire un produit de facteurs simples",
+    "Facteur commun, identités, puis racines",
+    "Une racine donne un facteur, le degré baisse",
+    "Sur les réels : linéaires et trinômes irréductibles",
+    "Produit nul : factoriser, c'est déjà résoudre"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la factorisation des polynômes, l'art de décomposer une expression compliquée en un produit de facteurs plus simples. Nous partirons des deux réflexes de base, le facteur commun et les identités remarquables, puis nous apprendrons à chasser les racines, à diviser, et à enchaîner toutes ces techniques jusqu'à la factorisation complète, celle qui résout les équations, simplifie les fractions et lève les indéterminations.",
+   "texte": "Factoriser : décomposer en produit de facteurs simples.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi factoriser ? Parce qu'un produit se lit comme une somme ne le permet pas. Dans un produit, chaque facteur qui s'annule donne une solution : une équation devient un problème de logique. Les racines, ces valeurs qui annulent le polynôme, apparaissent en toutes lettres dans les facteurs. Et quand une fraction ou une limite résiste, c'est presque toujours un facteur commun, caché des deux côtés, qui bloque le calcul.",
+   "texte": "Un produit se lit, une somme se subit : les racines y sont visibles.",
+   "ecran": "pourquoi"
+  },
+  {
+   "id": "p03",
+   "dit": "Posons le vocabulaire. Un polynôme est une somme de monômes, des produits d'un coefficient par une puissance de la variable. Dans notre exemple, le degré, la plus grande puissance, vaut trois ; le coefficient dominant, celui du terme de plus haut degré, vaut quatre ; et le terme constant est celui sans variable. Le mot clé du cours est racine : une valeur qui annule le polynôme. Retenez dès maintenant le lien fondamental : si une valeur est racine, alors le binôme associé est un facteur.",
+   "texte": "Degré trois, coefficient dominant quatre, et le mot clé : racine.",
+   "ecran": "vocabulaire"
+  },
+  {
+   "id": "p04",
+   "dit": "Premier réflexe, le plus simple : mettre en évidence un facteur commun. C'est la distributivité lue à l'envers. Quand chaque terme d'une somme contient le même facteur, on le sort devant une parenthèse, et le polynôme devient un produit. Pour le repérer, on prend le plus grand diviseur commun des coefficients, et la plus petite puissance de la variable présente dans tous les termes. Ce geste, fait en premier, simplifie tout ce qui suit.",
+   "texte": "La distributivité à l'envers : sortir ce que tous les termes partagent.",
+   "ecran": "facteur_commun"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple. Les coefficients sont six, moins neuf et trois : leur plus grand diviseur commun est trois. La plus petite puissance de la variable est le carré. Le facteur commun est donc trois fois le carré de la variable, et il reste un trinôme. On ne s'arrête pas là : son discriminant vaut un, ses racines sont un et un demi, et il se factorise encore. La factorisation complète multiplie donc le monôme de départ par deux binômes. Leçon : après chaque étape, on regarde ce qui reste.",
+   "texte": "Facteur commun trois ixe carré, puis le trinôme achève le travail.",
+   "ecran": "ex_facteur"
+  },
+  {
+   "id": "p06",
+   "dit": "Deuxième réflexe : reconnaître une identité remarquable. La plus rentable est la différence de deux carrés : une différence de carrés est le produit d'une différence et d'une somme. Le patron se repère d'un coup d'oeil : exactement deux termes, chacun un carré parfait, reliés par un signe moins. Lue de gauche à droite, l'identité développe ; lue de droite à gauche, elle factorise. C'est cette lecture à rebours qui nous intéresse.",
+   "texte": "Différence de carrés : deux termes, un moins, deux facteurs.",
+   "ecran": "diff_carres"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple en deux temps. Vingt-cinq fois le carré de la variable, moins seize : ce sont les carrés de cinq fois la variable et de quatre, d'où deux facteurs. Plus retors : seize fois la variable puissance quatre, moins quatre-vingt-un. On reconnaît les carrés de quatre fois le carré de la variable et de neuf. Premier produit obtenu, mais le premier facteur est encore une différence de carrés : on le refend. La factorisation complète compte trois facteurs, et le dernier, une somme de carrés, est irréductible sur les réels.",
+   "texte": "Seize ixe puissance quatre moins quatre-vingt-un : trois facteurs.",
+   "ecran": "ex_diff"
+  },
+  {
+   "id": "p08",
+   "dit": "Autre patron, à trois termes cette fois : le carré parfait. Un trinôme est le carré d'une somme ou d'une différence quand ses termes extrêmes sont des carrés et que son terme du milieu est, au signe près, le double produit des deux racines carrées. Premier exemple : le carré de la variable, plus six fois la variable, plus neuf, est le carré d'une somme. Deuxième exemple, avec un signe moins au milieu : c'est le carré d'une différence. Le test du double produit est le juge de paix : sans lui, pas de carré parfait.",
+   "texte": "Carré parfait : extrêmes carrés, milieu égal au double produit.",
+   "ecran": "carres_parfaits"
+  },
+  {
+   "id": "p09",
+   "dit": "Deux pièges ferment ce premier bloc. Premier piège : la somme de deux carrés. Sur les nombres réels, elle ne se factorise pas ; vouloir l'écrire comme un carré ajoute un terme du milieu qui n'existe pas. Deuxième piège : le presque carré. Un trinôme dont les extrêmes sont des carrés mais dont le milieu diffère du double produit, même d'une unité, n'est pas un carré parfait. On ne force jamais une identité : on la vérifie, terme à terme.",
+   "texte": "Somme de carrés : irréductible sur les réels. Presque carré : non plus.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p10",
+   "dit": "Complétons la boîte à identités avec les cubes. La différence de deux cubes se factorise en un binôme différence, multiplié par un trinôme : carré du premier, plus produit des deux, plus carré du second. La somme de deux cubes suit le même patron, avec des signes alternés. Ces formules servent moins souvent, mais le jour où un degré trois affiche deux cubes, elles font gagner un temps précieux.",
+   "texte": "Différence de cubes : un binôme fois un trinôme.",
+   "ecran": "cubes"
+  },
+  {
+   "id": "p11",
+   "dit": "Changeons d'outil : la chasse aux racines. Le théorème qui la fonde tient en une équivalence : une valeur est racine d'un polynôme si et seulement si le binôme correspondant divise ce polynôme. Autrement dit, trouver une racine et trouver un facteur linéaire, c'est exactement la même chose. Une fois le facteur sorti, le quotient a un degré de moins, et la chasse recommence sur un polynôme plus petit. Toute la stratégie du cours tient dans cette boucle.",
+   "texte": "Une racine trouvée, un facteur sorti, un degré de moins.",
+   "ecran": "racine_facteur"
+  },
+  {
+   "id": "p12",
+   "dit": "Comment choisir les valeurs à tester ? Le théorème des racines rationnelles donne la liste des suspects : pour un polynôme à coefficients entiers, toute racine rationnelle a un numérateur qui divise le terme constant et un dénominateur qui divise le coefficient dominant. En pratique, on teste dans l'ordre : zéro quand le terme constant est nul, un, moins un, deux, moins deux, puis les autres diviseurs. Et on n'oublie pas les fractions dès que le coefficient dominant diffère de un : c'est l'oubli classique.",
+   "texte": "Les suspects : numérateur divisant le terme constant, dénominateur le coefficient dominant.",
+   "ecran": "candidats"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple guidé, avec la division de Horner, la méthode rapide pour diviser par un binôme. On soupçonne la valeur deux : elle annule bien le polynôme. Le tableau de Horner aligne les coefficients, multiplie et additionne en cascade, et livre le quotient, un trinôme de degré deux, avec un reste nul qui confirme la racine. Ce trinôme se factorise à son tour par le discriminant : ses racines sont moins trois et moins un demi. Au total, trois facteurs linéaires, au coefficient dominant près.",
+   "texte": "Horner : la valeur deux livre le quotient en une cascade.",
+   "ecran": "horner"
+  },
+  {
+   "id": "p14",
+   "dit": "Rejouons la boucle complète sur un degré trois plus simple. Les candidats sont un, moins un, deux et moins deux. La valeur un annule le polynôme : premier facteur sorti. Le quotient est un trinôme dont le discriminant vaut neuf ; ses racines sont moins un et deux. La factorisation complète aligne trois binômes, et l'équation correspondante a donc trois solutions, lues directement dans les facteurs. Vous voyez la mécanique : chaque racine trouvée rend la suivante plus facile à trouver.",
+   "texte": "Un, moins un, deux : trois racines, trois facteurs.",
+   "ecran": "ex_cubique"
+  },
+  {
+   "id": "p15",
+   "dit": "Arrêtons-nous sur le trinôme, qui revient à chaque étape. Son discriminant décide de tout. S'il est positif, deux racines réelles distinctes, et le trinôme est le produit du coefficient dominant par deux binômes. S'il est nul, une racine double, et le trinôme est un carré, au coefficient près. S'il est négatif, aucune racine réelle : le trinôme est irréductible sur les réels, et il reste tel quel dans la factorisation complète. Savoir quand s'arrêter fait partie de la méthode.",
+   "texte": "Discriminant positif, nul, négatif : factoriser, carré, irréductible.",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple de synthèse, où la même racine revient. Le polynôme est de degré quatre, et ses coefficients présentent une symétrie qui attire l'oeil. La valeur un l'annule : on divise. Surprise, le quotient cubique s'annule encore en un : on divise une seconde fois. Il reste un trinôme de discriminant négatif, irréductible sur les réels. La factorisation complète fait donc apparaître un facteur au carré : la racine un est double. C'est la notion de multiplicité, que nous retrouvons juste après.",
+   "texte": "La racine un, deux fois : un facteur au carré.",
+   "ecran": "ex_synthese"
+  },
+  {
+   "id": "p17",
+   "dit": "Que dit la théorie, au sommet ? Sur les nombres complexes, tout polynôme de degré n se décompose en exactement n facteurs linéaires, un par racine, multiplicités comprises : c'est le théorème fondamental que le cours suivant étudiera pour lui-même. Sur les nombres réels, la factorisation complète mélange des facteurs linéaires, pour les racines réelles, et des trinômes irréductibles, qui cachent les paires de racines complexes conjuguées. Deux écritures, un même polynôme : on choisit selon l'ensemble de travail.",
+   "texte": "Sur les complexes : n facteurs linéaires. Sur les réels : trinômes irréductibles en plus.",
+   "ecran": "sur_C_sur_R"
+  },
+  {
+   "id": "p18",
+   "dit": "Précisons la multiplicité. Une racine est de multiplicité m si le facteur correspondant apparaît à la puissance m dans la factorisation, et pas une fois de plus. Géométriquement, tout change selon la parité : multiplicité un, la courbe traverse l'axe des abscisses ; multiplicité paire, elle touche l'axe et rebondit ; multiplicité impaire supérieure à un, elle traverse en s'aplatissant. Dans notre exemple, zéro et deux sont simples, un est double : la somme des multiplicités redonne le degré, quatre.",
+   "texte": "Multiplicité : traverser, rebondir, ou traverser en s'aplatissant.",
+   "ecran": "multiplicite"
+  },
+  {
+   "id": "p19",
+   "dit": "Voici la méthode complète, dans l'ordre où on l'applique. D'abord le facteur commun, toujours. Ensuite l'identité remarquable, si la forme s'y prête. Puis la chasse aux racines rationnelles, avec sa liste de candidats. Puis la division, et on recommence sur le quotient, jusqu'aux facteurs irréductibles. Dernière étape, trop souvent sautée : vérifier en redéveloppant mentalement le produit obtenu. Une factorisation non vérifiée est une factorisation en sursis.",
+   "texte": "Cinq étapes : commun, identité, racines, division, vérification.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple guidé final, la méthode au complet. Ni facteur commun, ni identité remarquable : c'est la chasse qui décide. La valeur deux annule le polynôme ; la division livre un trinôme de discriminant vingt-cinq, dont les racines sont moins deux et trois. Trois facteurs linéaires, et l'équation associée a pour solutions moins deux, deux et trois. Remarquez l'enchaînement : aucun outil ne suffit seul, c'est leur succession ordonnée qui fait la factorisation.",
+   "texte": "La chasse décide : deux, puis moins deux et trois.",
+   "ecran": "grand_exemple"
+  },
+  {
+   "id": "p21",
+   "dit": "Cas particulier élégant : l'équation bicarrée, qui ne contient que la variable puissance quatre, son carré, et un terme constant. On pose grand ixe égal au carré de la variable : l'équation devient un trinôme ordinaire, dont les valeurs sont quatre et neuf. On revient alors à la variable : son carré vaut quatre ou neuf, ce qui donne quatre solutions, deux et moins deux, trois et moins trois, et quatre différences de carrés dans la factorisation.",
+   "texte": "Bicarrée : poser grand ixe, résoudre, revenir à la variable.",
+   "ecran": "bicarree"
+  },
+  {
+   "id": "p22",
+   "dit": "À quoi sert tout cela, d'abord ? À résoudre. La propriété du produit nul dit qu'un produit de facteurs est nul si et seulement si l'un au moins des facteurs est nul. Une fois l'équation mise sous la forme polynôme égal zéro, puis factorisée, elle éclate en équations élémentaires, une par facteur. Les solutions se lisent dans les facteurs, au signe près. C'est pour cela que factoriser complètement, et pas seulement partiellement, est le vrai objectif.",
+   "texte": "Produit nul : chaque facteur donne une solution.",
+   "ecran": "produit_nul"
+  },
+  {
+   "id": "p23",
+   "dit": "Deuxième service rendu : les limites. Face à une fraction dont le numérateur et le dénominateur s'annulent au même point, la forme indéterminée se lève en factorisant des deux côtés. Ici, le numérateur cache un facteur qui s'annule en deux, fois un carré parfait ; le dénominateur est une différence de carrés. Le facteur commun se simplifie, il reste une fraction ordinaire, et la limite vaut neuf quarts. Sans factorisation, ce calcul était bloqué.",
+   "texte": "Le facteur commun se simplifie : la limite vaut neuf quarts.",
+   "ecran": "limite"
+  },
+  {
+   "id": "p24",
+   "dit": "Troisième service : les inéquations. Pour étudier le signe d'un polynôme, on le factorise complètement, puis on lit le signe de chaque facteur dans un tableau. Attention, c'est ici qu'une erreur de signe coûte cher : pour notre exemple, le tableau donne un polynôme négatif ou nul entre moins un et un, puis à partir de quatre. On le vérifie toujours par une valeur test dans chaque intervalle : en moins deux, par exemple, le polynôme vaut dix-huit, positif, ce qui confirme le tableau.",
+   "texte": "Signes : négatif entre moins un et un, puis à partir de quatre.",
+   "ecran": "signes"
+  },
+  {
+   "id": "p25",
+   "dit": "Récapitulons. Factoriser, c'est écrire un produit de facteurs simples, irréductibles sur l'ensemble choisi. L'ordre des réflexes compte : facteur commun d'abord, identités remarquables ensuite, chasse aux racines et divisions pour les degrés supérieurs, discriminant pour clore les trinômes. Et le produit nul transforme chaque factorisation en résolution d'équation. Dans le cours suivant, nous verrons pourquoi cette décomposition est toujours possible sur les nombres complexes : c'est le théorème de D'Alembert-Gauss.",
+   "texte": "Factoriser complètement, c'est déjà résoudre.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Facteur commun et identités remarquables"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Chasser les racines, diviser, factoriser",
+   "pont": {
+    "texte": "Partie 2 : racines rationnelles, divisions et factorisation complète.",
+    "dit": "Partie deux : chasser les racines, diviser, factoriser. Le théorème racine-facteur transforme chaque racine trouvée en un facteur, la division abaisse le degré, et la factorisation complète apparaît, sur les réels comme sur les complexes."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "La méthode complète et ses applications",
+   "pont": {
+    "texte": "Partie 3 : la méthode en cinq étapes, puis résoudre, limiter, étudier les signes.",
+    "dit": "Partie trois : la méthode complète et ses applications. Nous ordonnons tous les outils en une stratégie en cinq étapes, nous la jouons sur des exemples guidés, puis nous récoltons les fruits : résoudre une équation, lever une indétermination, étudier un signe."
+   }
+  }
+ ]
+}
