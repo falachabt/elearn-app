@@ -1,0 +1,464 @@
+{
+ "cours": 6073,
+ "titre": "Primitives et intégrales : remonter la dérivation, mesurer une aire",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Primitives et intégrales",
+   "titre": "Primitives et intégrales",
+   "sous": "Remonter la dérivation, mesurer une aire, et les trois méthodes pour calculer",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Dériver mesure une variation. Primitiver fait le chemin inverse : retrouver la fonction dont on connaît la dérivée.",
+   "anim": {
+    "nom": "derive_fig",
+    "hauteur": 140
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition d'une primitive",
+   "tex": "F'(x) = f(x)",
+   "note": "F dérivable sur I, et sa dérivée vaut f en tout point de I."
+  },
+  "exemples_prim": {
+   "type": "etape",
+   "kicker": "Exemples simples",
+   "titre": "Quatre primitives à reconnaître d'un coup d'œil",
+   "tex": [
+    "f(x)=k \\Rightarrow F(x)=kx+C",
+    "f(x)=x^n \\Rightarrow F(x)=\\tfrac{x^{n+1}}{n+1}+C \\quad (n\\neq -1)",
+    "f(x)=e^x \\Rightarrow F(x)=e^x+C",
+    "f(x)=\\sin x \\Rightarrow F(x)=-\\cos x+C \\qquad f(x)=\\cos x \\Rightarrow F(x)=\\sin x+C"
+   ]
+  },
+  "unicite": {
+   "type": "etape",
+   "kicker": "Unicité à une constante près",
+   "titre": "Deux primitives ne diffèrent que d'une constante",
+   "tex": [
+    "(F_1-F_2)'(x)=F_1'(x)-F_2'(x)=0",
+    "F_1(x)-F_2(x)=C",
+    "\\text{toute primitive s'écrit } F(x)+C"
+   ],
+   "anim": {
+    "nom": "primitives_famille_fig",
+    "hauteur": 180
+   }
+  },
+  "linearite": {
+   "type": "etape",
+   "kicker": "Linéarité des primitives",
+   "titre": "Sommes et facteurs constants se primitivent terme à terme",
+   "tex": [
+    "(F+G)'(x)=F'(x)+G'(x)=f(x)+g(x)",
+    "(\\lambda F)'(x)=\\lambda F'(x)=\\lambda f(x)"
+   ]
+  },
+  "usuelles": {
+   "type": "etape",
+   "kicker": "Primitives des fonctions usuelles",
+   "titre": "Les lignes du tableau à connaître par cœur",
+   "tex": [
+    "f(x)=\\tfrac{1}{x} \\Rightarrow F(x)=\\ln|x|+C",
+    "f(x)=a^x \\Rightarrow F(x)=\\tfrac{a^x}{\\ln a}+C \\quad (a>0,\\ a\\neq 1)",
+    "f(x)=\\tan x \\Rightarrow F(x)=-\\ln|\\cos x|+C",
+    "f(x)=\\tfrac{1}{1+x^2} \\Rightarrow F=\\arctan x \\quad f(x)=\\tfrac{1}{\\sqrt{1-x^2}} \\Rightarrow F=\\arcsin x"
+   ]
+  },
+  "ex_poly": {
+   "type": "etape",
+   "kicker": "Exemple · un polynôme",
+   "titre": "Primitiver terme à terme par linéarité",
+   "tex": [
+    "3x^2 \\to x^3 \\qquad 2x \\to x^2 \\qquad -5 \\to -5x",
+    "F(x)=x^3+x^2-5x+C"
+   ]
+  },
+  "ex_exp_trigo": {
+   "type": "etape",
+   "kicker": "Exemples · exponentielle et trigonométrie",
+   "titre": "Préparer l'expression avant de primitiver",
+   "tex": [
+    "e^{2x} \\to \\tfrac{e^{2x}}{2}+C",
+    "\\sin x \\cos x = \\tfrac{\\sin 2x}{2} \\to -\\tfrac{\\cos 2x}{4}+C",
+    "\\sin^2 x = \\tfrac{1-\\cos 2x}{2} \\to \\tfrac{x}{2}-\\tfrac{\\sin 2x}{4}+C"
+   ],
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 120
+   }
+  },
+  "riemann": {
+   "type": "formule",
+   "kicker": "L'intégrale définie · sommes de Riemann",
+   "tex": "\\int_a^b f(x)\\,dx = \\lim_{n\\to\\infty} \\sum_{i=1}^{n} f(c_i)\\,\\Delta x_i",
+   "note": "Pour f positive : l'aire sous la courbe entre a et b ; sinon, une aire algébrique.",
+   "anim": {
+    "nom": "riemann_fig",
+    "hauteur": 190
+   }
+  },
+  "proprietes_int": {
+   "type": "etape",
+   "kicker": "Propriétés des intégrales définies",
+   "titre": "Linéarité et relation de Chasles",
+   "tex": [
+    "\\textstyle \\int_a^b [f(x)+g(x)]\\,dx=\\int_a^b f(x)\\,dx+\\int_a^b g(x)\\,dx",
+    "\\textstyle \\int_a^b k\\,f(x)\\,dx=k\\int_a^b f(x)\\,dx",
+    "\\textstyle \\int_a^b f=\\int_a^c f+\\int_c^b f \\qquad \\int_a^a f=0 \\qquad \\int_a^b f=-\\int_b^a f"
+   ]
+  },
+  "tfc": {
+   "type": "formule",
+   "kicker": "Théorème fondamental · Newton-Leibniz",
+   "tex": "\\int_a^b f(x)\\,dx = F(b) - F(a)",
+   "note": "F : une primitive de f · La fonction x ↦ ∫ de a à x a pour dérivée f."
+  },
+  "ex_integrales": {
+   "type": "etape",
+   "kicker": "Exemples · intégrales définies",
+   "titre": "Trouver la primitive, évaluer aux bornes",
+   "tex": [
+    "\\textstyle \\int_0^1 x^2\\,dx=\\left[\\tfrac{x^3}{3}\\right]_0^1=\\tfrac{1}{3}",
+    "\\textstyle \\int_0^{\\pi/2} \\sin x\\,dx=[-\\cos x]_0^{\\pi/2}=1",
+    "\\textstyle \\int_1^e \\ln x\\,dx=[x\\ln x-x]_1^e=1"
+   ]
+  },
+  "ex_abs": {
+   "type": "etape",
+   "kicker": "Exemple · la valeur absolue",
+   "titre": "Couper l'intégrale là où l'expression change",
+   "tex": [
+    "\\int_{-1}^{1}|x|\\,dx=\\int_{-1}^{0}(-x)\\,dx+\\int_0^1 x\\,dx",
+    "=\\left[-\\tfrac{x^2}{2}\\right]_{-1}^{0}+\\left[\\tfrac{x^2}{2}\\right]_0^1",
+    "=\\tfrac{1}{2}+\\tfrac{1}{2}=1"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "F′(x) = f(x) : la primitive remonte la dérivée",
+    "Unique à une constante près : F(x) + C",
+    "Intégrale définie : limite de sommes, une aire",
+    "Newton-Leibniz : intégrale = F(b) − F(a)"
+   ]
+  },
+  "ipp_formule": {
+   "type": "formule",
+   "kicker": "Intégration par parties",
+   "tex": "\\int u(x)\\,v'(x)\\,dx = u(x)\\,v(x) - \\int u'(x)\\,v(x)\\,dx",
+   "note": "Issue de (uv)′ = u′v + uv′ · En définie : le crochet [uv] de a à b, moins l'intégrale."
+  },
+  "ipp_ilate": {
+   "type": "etape",
+   "kicker": "Choisir u et v · ILATE",
+   "titre": "L'ordre de priorité pour choisir u",
+   "tex": [
+    "\\text{I : inverses} \\qquad \\text{L : logarithmiques} \\qquad \\text{A : algébriques}",
+    "\\text{T : trigonométriques} \\qquad \\text{E : exponentielles}",
+    "\\text{u se simplifie en dérivant ; } dv \\text{ est facile à intégrer}"
+   ]
+  },
+  "ipp_ex1": {
+   "type": "etape",
+   "kicker": "Exemples · intégration par parties",
+   "titre": "Deux classiques à savoir refaire",
+   "tex": [
+    "u=x, \\ dv=\\cos x\\,dx \\Rightarrow \\int x\\cos x\\,dx=x\\sin x+\\cos x+C",
+    "u=\\ln x, \\ dv=dx \\Rightarrow \\int \\ln x\\,dx=x\\ln x-x+C"
+   ]
+  },
+  "ipp_ex2": {
+   "type": "etape",
+   "kicker": "Exemple · deux fois par parties",
+   "titre": "Recommencer jusqu'à épuiser le polynôme",
+   "tex": [
+    "\\textstyle \\int x^2 e^x\\,dx=x^2 e^x-\\int 2x\\,e^x\\,dx",
+    "\\textstyle \\int 2x\\,e^x\\,dx=2x\\,e^x-2e^x",
+    "\\textstyle \\int x^2 e^x\\,dx=e^x(x^2-2x+2)+C"
+   ]
+  },
+  "ipp_boucle": {
+   "type": "etape",
+   "kicker": "Exemple · l'intégrale qui revient",
+   "titre": "Traiter l'intégrale retrouvée comme une inconnue",
+   "tex": [
+    "I=\\int e^x \\sin x\\,dx=e^x \\sin x-\\int e^x \\cos x\\,dx",
+    "\\int e^x \\cos x\\,dx=e^x \\cos x+I",
+    "2I=e^x(\\sin x-\\cos x) \\Rightarrow I=\\tfrac{e^x}{2}(\\sin x-\\cos x)+C"
+   ]
+  },
+  "subst_formule": {
+   "type": "formule",
+   "kicker": "Changement de variable",
+   "tex": "\\int f(g(t))\\,g'(t)\\,dt = \\int f(u)\\,du, \\quad u = g(t)",
+   "note": "En intégrale définie, les bornes changent aussi : a et b deviennent g(a) et g(b)."
+  },
+  "subst_ex": {
+   "type": "etape",
+   "kicker": "Exemples · substitution",
+   "titre": "Poser u égale l'intérieur de la composée",
+   "tex": [
+    "\\textstyle \\int \\cos 3x\\,dx=\\tfrac{1}{3}\\sin 3x+C \\quad (u=3x)",
+    "\\textstyle \\int x\\sqrt{1+x^2}\\,dx=\\tfrac{1}{3}(1+x^2)^{3/2}+C \\quad (u=1+x^2)",
+    "\\textstyle \\int \\tfrac{dx}{\\sqrt{1-x^2}}=\\arcsin x+C \\quad (x=\\sin u)"
+   ]
+  },
+  "subst_mixte": {
+   "type": "etape",
+   "kicker": "Exemple · substitution puis parties",
+   "titre": "Les méthodes se combinent",
+   "tex": [
+    "\\textstyle u=e^x : \\int e^{2x}\\sin(e^x)\\,dx=\\int u\\sin u\\,du",
+    "\\textstyle \\int u\\sin u\\,du=-u\\cos u+\\sin u+C",
+    "\\textstyle \\int e^{2x}\\sin(e^x)\\,dx=-e^x\\cos(e^x)+\\sin(e^x)+C"
+   ]
+  },
+  "rationnelles": {
+   "type": "etape",
+   "kicker": "Fonctions rationnelles · éléments simples",
+   "titre": "Factoriser, décomposer, intégrer chaque élément",
+   "tex": [
+    "\\int \\tfrac{dx}{x-a}=\\ln|x-a|+C",
+    "\\int \\tfrac{dx}{(x-a)^m}=-\\tfrac{1}{(m-1)(x-a)^{m-1}}+C \\quad (m>1)",
+    "\\tfrac{Bx+C}{x^2+px+q} : \\text{carré complété, } \\ln \\text{ et } \\arctan"
+   ]
+  },
+  "ex_rationnelle": {
+   "type": "etape",
+   "kicker": "Exemple complet · une fraction rationnelle",
+   "titre": "Trois facteurs linéaires, trois éléments simples",
+   "tex": [
+    "x^3-x=x(x-1)(x+1)",
+    "\\tfrac{3x^2+2}{x^3-x}=-\\tfrac{2}{x}+\\tfrac{5}{2(x-1)}+\\tfrac{5}{2(x+1)}",
+    "\\int \\tfrac{3x^2+2}{x^3-x}\\,dx=-2\\ln|x|+\\tfrac{5}{2}\\ln|x^2-1|+C"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Par parties : ∫uv′ = uv − ∫u′v, choix ILATE",
+    "Substitution : u = intérieur, bornes changées",
+    "Rationnelles : décomposer en éléments simples",
+    "Newton-Leibniz : l'intégrale vaut F(b) − F(a)",
+    "Contrôle final : dériver le résultat obtenu"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux primitives et aux intégrales. Nous partirons de l'opération inverse de la dérivation, la primitive, avant de donner un sens précis à l'intégrale définie, vue comme une aire, puis nous terminerons par les trois grandes méthodes de calcul : l'intégration par parties, le changement de variable et la décomposition en éléments simples.",
+   "texte": "Primitives et intégrales : définitions, propriétés et méthodes.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Dériver, c'est mesurer comment une fonction varie. Primitiver, c'est faire le chemin en sens inverse : retrouver une fonction dont on connaît la dérivée. Ce geste est partout : calculer une aire ou un volume, suivre une particule dont on connaît la vitesse, résoudre une équation différentielle. Toute la première partie repose sur une seule question : quelle fonction a pour dérivée la fonction donnée ?",
+   "texte": "Primitiver : remonter la dérivation.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Voici la définition. Sur un intervalle i, une fonction grand f est une primitive d'une fonction petit f si grand f est dérivable sur i et si, pour tout ixe de i, la dérivée de grand f en ixe vaut petit f de ixe. Autrement dit, primitiver, c'est chercher une fonction dont la dérivée redonne exactement la fonction de départ.",
+   "texte": "F′(x) = f(x) : la définition d'une primitive.",
+   "ecran": "definition",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Quelques exemples pour ancrer la définition. Une constante k a pour primitive k fois ixe. Une puissance ixe puissance n, avec n différent de moins un, a pour primitive ixe puissance n plus un, divisé par n plus un. L'exponentielle est sa propre primitive. Le sinus a pour primitive moins cosinus, et le cosinus a pour primitive le sinus. À chaque fois, on peut vérifier le résultat en dérivant.",
+   "texte": "Constante, puissance, exponentielle, sinus et cosinus.",
+   "ecran": "exemples_prim",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Une primitive n'est jamais unique, mais presque : si deux fonctions sont deux primitives de la même fonction, leur différence a une dérivée nulle, donc leur différence est une constante. Toutes les primitives d'une fonction s'obtiennent donc en ajoutant une constante quelconque, notée grand c, à l'une d'entre elles. C'est le fameux plus c de tous les calculs de primitives.",
+   "texte": "Toutes les primitives : F(x) + C, une seule famille.",
+   "ecran": "unicite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Les primitives se comportent bien vis-à-vis des opérations. La primitive d'une somme est la somme des primitives, et multiplier une fonction par un nombre réel lambda revient à multiplier sa primitive par lambda. Cette linéarité autorise la stratégie de base : découper une fonction compliquée en morceaux simples, primitiver chaque morceau, puis recoller le tout.",
+   "texte": "Linéarité : primitiver morceau par morceau.",
+   "ecran": "linearite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Le tableau des primitives usuelles vaut de l'or : il faut le connaître par cœur. Retenez en particulier la fonction inverse, dont la primitive est le logarithme népérien de la valeur absolue ; la fonction a puissance ixe, dont la primitive fait intervenir le logarithme de a ; la tangente ; et les deux formes qui donnent l'arctangente et l'arcsinus. Chaque ligne du tableau se vérifie en dérivant la primitive proposée.",
+   "texte": "Le tableau des usuelles : à connaître par cœur.",
+   "ecran": "usuelles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Premier calcul complet : une primitive de trois ixe carré plus deux ixe moins cinq. On traite chaque terme séparément. Trois ixe carré donne ixe au cube, deux ixe donne ixe carré, et la constante moins cinq donne moins cinq ixe. En recollant par linéarité, une primitive est donc ixe au cube plus ixe carré moins cinq ixe, plus la constante.",
+   "texte": "3x² + 2x − 5 → x³ + x² − 5x + C.",
+   "ecran": "ex_poly",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Trois exemples qui demandent une préparation. Pour exponentielle de deux ixe, on pose u égale deux ixe : il vient exponentielle de deux ixe sur deux. Pour sinus ixe fois cosinus ixe, l'identité du doublement donne sinus de deux ixe sur deux, dont une primitive est moins cosinus de deux ixe sur quatre. Pour sinus carré, la linéarisation donne un moins cosinus de deux ixe, le tout sur deux, et l'on obtient ixe sur deux moins sinus de deux ixe sur quatre.",
+   "texte": "Préparer avant de primitiver : substitution et identités.",
+   "ecran": "ex_exp_trigo",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p10",
+   "dit": "Passons à l'intégrale définie. On découpe l'intervalle de a à b en petits sous-intervalles, on choisit un point dans chacun, et l'on forme la somme des produits de la valeur de la fonction par la largeur du sous-intervalle : c'est une somme de Riemann, une somme d'aires de rectangles. L'intégrale définie est la limite de ces sommes quand les rectangles deviennent infiniment fins. Si la fonction est positive, cette limite est l'aire sous la courbe ; sinon, c'est une aire algébrique, les parties sous l'axe comptant en négatif.",
+   "texte": "L'intégrale : limite des sommes de Riemann, une aire algébrique.",
+   "ecran": "riemann",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "L'intégrale définie hérite de la linéarité : on peut intégrer une somme terme à terme et sortir les constantes. Elle possède aussi la relation de Chasles : intégrer de a à b, c'est intégrer de a à c, puis de c à b. Deux conséquences immédiates : une intégrale sur un intervalle réduit à un point vaut zéro, et inverser les bornes change le signe de l'intégrale.",
+   "texte": "Linéarité et relation de Chasles.",
+   "ecran": "proprietes_int",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Le théorème fondamental relie les deux mondes. D'un côté, la fonction qui à ixe associe l'intégrale de a à ixe est dérivable, et sa dérivée est la fonction de départ. De l'autre, la formule de Newton-Leibniz : si grand f est une primitive de petit f, alors l'intégrale de a à b vaut grand f de b moins grand f de a. Calculer une intégrale devient donc : trouver une primitive, puis l'évaluer aux deux bornes.",
+   "texte": "Newton-Leibniz : l'intégrale vaut F(b) − F(a).",
+   "ecran": "tfc",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Trois calculs d'intégrales définies. De zéro à un, ixe carré a pour primitive ixe au cube sur trois : l'intégrale vaut un tiers. De zéro à pi sur deux, le sinus a pour primitive moins cosinus : l'intégrale vaut un. De un à e, le logarithme a pour primitive ixe logarithme de ixe moins ixe : l'intégrale vaut encore un. Remarquez le point commun : tout repose sur la recherche d'une primitive.",
+   "texte": "Trois intégrales : un tiers, un, et encore un.",
+   "ecran": "ex_integrales",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Dernier exemple de la partie : intégrer la valeur absolue de ixe de moins un à un. La valeur absolue change d'expression en zéro, donc la relation de Chasles impose de couper l'intégrale en deux : moins ixe sur la partie négative, ixe sur la partie positive. Chaque morceau vaut un demi, et le total vaut un : c'est l'aire du triangle que dessine la fonction valeur absolue.",
+   "texte": "|x| sur [−1, 1] : couper en 0, total 1.",
+   "ecran": "ex_abs",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Récapitulons cette première partie. Une primitive est une fonction dont la dérivée est la fonction donnée, définie à une constante près. L'intégrale définie est un nombre, limite des sommes de Riemann, qui mesure une aire algébrique. Et le théorème fondamental, par la formule de Newton-Leibniz, transforme le calcul d'une intégrale en une recherche de primitive.",
+   "texte": "Partie 1 : l'essentiel à retenir.",
+   "ecran": "recap1",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p16",
+   "dit": "Première méthode : l'intégration par parties. Elle vient de la dérivée d'un produit : la dérivée de u fois v est u prime fois v plus u fois v prime. En intégrant et en réarrangeant, on obtient la formule : l'intégrale de u fois v prime vaut u fois v, moins l'intégrale de u prime fois v. On échange donc une intégrale contre une autre : tout l'art consiste à choisir u et v pour que la nouvelle intégrale soit plus simple.",
+   "texte": "∫uv′ = uv − ∫u′v : échanger contre plus simple.",
+   "ecran": "ipp_formule",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Comment choisir u ? L'acronyme i, l, a, t, e donne l'ordre de priorité : d'abord les fonctions inverses comme arcsinus ou arctangente, puis les logarithmiques, puis les algébriques comme les polynômes, puis les trigonométriques, et en dernier les exponentielles. La fonction choisie pour u doit devenir plus simple en dérivant, et ce qui reste, d v, doit être facile à intégrer.",
+   "texte": "ILATE : l'ordre de priorité pour choisir u.",
+   "ecran": "ipp_ilate",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Deux classiques. Pour ixe fois cosinus ixe, on prend u égale ixe et d v égale cosinus ixe d ixe : on obtient ixe sinus ixe plus cosinus ixe. Pour le logarithme de ixe, l'astuce est de prendre d v égale d ixe, donc v égale ixe : on obtient ixe logarithme de ixe moins ixe. Ce deuxième résultat servira à chaque fois qu'un logarithme apparaît seul sous une intégrale.",
+   "texte": "∫x·cos x = x·sin x + cos x · ∫ln x = x·ln x − x.",
+   "ecran": "ipp_ex1",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Quand une première intégration par parties ne suffit pas, on recommence. Pour ixe carré fois exponentielle de ixe, une première application fait apparaître deux ixe fois exponentielle de ixe ; une seconde application termine le travail. Le résultat se factorise élégamment : exponentielle de ixe, facteur de ixe carré moins deux ixe plus deux.",
+   "texte": "Double intégration par parties : eˣ(x² − 2x + 2).",
+   "ecran": "ipp_ex2",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Cas spectaculaire : exponentielle de ixe fois sinus ixe. Deux intégrations par parties successives font réapparaître l'intégrale de départ, de l'autre côté de l'égalité. On la traite alors comme une inconnue : deux fois l'intégrale vaut exponentielle de ixe facteur de sinus ixe moins cosinus ixe. L'intégrale cherchée est la moitié de cette expression.",
+   "texte": "L'intégrale revient : la traiter comme une inconnue.",
+   "ecran": "ipp_boucle",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p21",
+   "dit": "Deuxième méthode : le changement de variable, ou substitution. Si l'intégrande contient une fonction composée multipliée par la dérivée de l'intérieur, on pose u égale l'intérieur : tout se réécrit en u, et l'intégrale devient élémentaire. Pour une intégrale définie, il faut aussi changer les bornes : elles deviennent les images des anciennes bornes par la substitution.",
+   "texte": "Substitution : u = l'intérieur, bornes comprises.",
+   "ecran": "subst_formule",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Trois substitutions types. Pour cosinus de trois ixe, on pose u égale trois ixe, et il vient sinus de trois ixe sur trois. Pour ixe fois racine de un plus ixe carré, on pose u égale un plus ixe carré : le ixe d ixe devient d u sur deux, et le résultat est un tiers de un plus ixe carré, le tout à la puissance trois demis. Pour un sur racine de un moins ixe carré, la substitution ixe égale sinus de u conduit à l'arcsinus.",
+   "texte": "Trois substitutions types, trois résultats nets.",
+   "ecran": "subst_ex",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "dit": "Les méthodes se combinent. Pour exponentielle de deux ixe fois sinus d'exponentielle de ixe, la substitution u égale exponentielle de ixe transforme l'intégrale en u fois sinus de u, qui relève de l'intégration par parties. Au bout du compte : moins exponentielle de ixe fois cosinus d'exponentielle de ixe, plus sinus d'exponentielle de ixe.",
+   "texte": "Substitution, puis parties : les méthodes se combinent.",
+   "ecran": "subst_mixte",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "dit": "Troisième terrain : les fonctions rationnelles, quotients de deux polynômes. La méthode est systématique : factoriser le dénominateur, décomposer la fraction en éléments simples, puis intégrer chaque élément. Un sur ixe moins a donne le logarithme de la valeur absolue de ixe moins a ; les puissances supérieures donnent des fractions ; les facteurs quadratiques irréductibles donnent un mélange de logarithme et d'arctangente, après avoir complété le carré.",
+   "texte": "Rationnelles : factoriser, décomposer, intégrer.",
+   "ecran": "rationnelles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "Exemple complet : intégrer trois ixe carré plus deux, divisé par ixe au cube moins ixe. Le dénominateur se factorise en ixe, ixe moins un et ixe plus un. La décomposition donne moins deux sur ixe, plus cinq demis sur ixe moins un, plus cinq demis sur ixe plus un : les coefficients s'obtiennent en donnant à ixe les valeurs zéro, un et moins un. L'intégration est alors immédiate : moins deux logarithme de ixe, plus cinq demis de logarithme de ixe carré moins un, en valeur absolue.",
+   "texte": "(3x² + 2)/(x³ − x) : −2 ln|x| + (5/2) ln|x² − 1|.",
+   "ecran": "ex_rationnelle",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "dit": "Pour conclure ce cours : primitiver est l'inverse de dériver, et toute primitive se contrôle en la dérivant. L'intégrale définie se calcule par Newton-Leibniz dès qu'une primitive est connue. Pour la trouver, trois méthodes couvrent l'essentiel des cas : l'intégration par parties, guidée par i, l, a, t, e ; le changement de variable ; et la décomposition en éléments simples pour les fractions rationnelles.",
+   "texte": "Primitives et intégrales : le bilan du cours.",
+   "ecran": "recap_final",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les primitives : définition, propriétés et premiers calculs"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "L'intégrale définie et l'intégration par parties",
+   "pont": {
+    "texte": "Partie 2 : l'intégrale définie, Newton-Leibniz et l'intégration par parties.",
+    "dit": "Partie deux : de la primitive à l'intégrale définie. Nous donnerons un sens précis à l'intégrale comme limite de sommes de Riemann et comme aire, nous verrons le théorème fondamental qui la relie aux primitives, puis nous ouvrirons le chapitre des méthodes avec l'intégration par parties."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Substitution et fonctions rationnelles",
+   "pont": {
+    "texte": "Partie 3 : la boucle de l'intégration par parties, la substitution et les éléments simples.",
+    "dit": "Partie trois : les méthodes en action. Nous terminerons l'intégration par parties par le cas où l'intégrale réapparaît dans son propre calcul, puis nous passerons au changement de variable et à la décomposition en éléments simples pour les fonctions rationnelles."
+   }
+  }
+ ]
+}
