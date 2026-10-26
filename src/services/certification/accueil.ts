@@ -1,5 +1,5 @@
 import { lireProfil } from '../profil';
-import { lireDiagnostic, lirePlan, obtenirReglages } from './etat';
+import { lireDiagnostic, lirePlan, obtenirReglages, restaurerDiagnostic } from './etat';
 import { scoreEstime } from './certDiagnostic';
 import { jourDe, joursAvantTest } from './jours';
 import { chargerDonneesRevision, motsEchus, type DonneesRevision } from './revision';
@@ -50,7 +50,9 @@ export async function chargerAccueil(): Promise<DonneesAccueil> {
       seanceErreur = true;
     }
   } else seanceErreur = true;
-  const fin = diagnostic?.fin;
+  // Reconnexion : l'état local a pu être effacé à la déconnexion alors que le serveur garde le diagnostic
+  // terminé — on le restaure avant de décider (premier pas ou accueil normal, score affiché).
+  const fin = diagnostic?.fin ?? (await restaurerDiagnostic(exam))?.fin;
   return {
     exam,
     plan,

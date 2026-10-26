@@ -1,8 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { randomUUID } from 'expo-crypto';
 
 import { obtenirApi } from './api';
 import { lireReglages, type LigneReglage, type Reglages } from './reglages';
-import type { Examen, FinTentative, PlanEleve, ReponseEnvoyee, Tentative } from './types';
+import type { Examen, FinTentative, PlanEleve, ReponseEnvoyee, Tentative, TentativeListee } from './types';
 
 /** État local du profil TOEIC : l'élève peut tout faire sans compte et hors ligne (le serveur reprend au retour du réseau). */
 export const CLE_PLAN = 'cert.plan';
@@ -59,6 +60,53 @@ export type EtatDiagnostic = {
 export const lireDiagnostic = () => lireJson<EtatDiagnostic>(CLE_DIAGNOSTIC);
 export const ecrireDiagnostic = (etat: EtatDiagnostic) => ecrireJson(CLE_DIAGNOSTIC, etat);
 export const effacerDiagnostic = () => AsyncStorage.removeItem(CLE_DIAGNOSTIC).catch(() => {});
+
+/**
+ * Reconnexion ou nouvel appareil : la déconnexion efface tout l'état local (M2-14), donc aussi le diagnostic
+ * terminé gardé sur l'appareil — mais le serveur garde la tentative (historique des tentatives). Si l'appareil n'a
+ * ni résultat ni diagnostic en cours, l'état terminé est restauré depuis le serveur : l'accueil et la barre
+ * d'onglets reconnaissent le diagnostic fait sans dépendre du drapeau local perdu. Tout ou rien : si le serveur ne
+ * répond pas (hors ligne) ou si la tentative complète ne peut pas être relue, rien n'est écrit et le comportement
+ * actuel (premier pas) reste — la restauration repartira à la prochaine ouverture.
+ */
+export async function restaurerDiagnostic(exam: string): Promise<EtatDiagnostic | null> {
+  const existant = await lireDiagnostic();
+  if (existant?.fin || existant?.tentative) return existant;
+  try {
+    const api = obtenirApi();
+    const liste = await api.listerTentatives(exam);
+    const faite: TentativeListee | undefined = liste.find((t) => t.kind === 'diagnostic' && t.status === 'finished');
+    if (!faite) return existant;
+    const tentative = await api.lireTentative(faite.id);
+    if (tentative.kind !== 'diagnostic') return existant;
+    const etat: EtatDiagnostic = {
+      clientUuid: randomUUID(),
+      tentative,
+      reponses: [],
+      index: tentative.questions.length,
+      termine: true,
+      fin: {
+        status: 'finished',
+        attempt_id: faite.id,
+        kind: 'diagnostic',
+        // Le serveur estime le diagnostic dès qu'il a produit un score ou une fourchette (voir terminerTentative).
+        estimated: faite.score !== null || faite.scoreMin !== null,
+        score: faite.score ?? null,
+        score_min: faite.scoreMin,
+        score_max: faite.scoreMax,
+        per_part: faite.perPart ?? {},
+        // Le détail question par question (résultats, réponses) ne vit que sur l'appareil d'origine : la revue
+        // détaillée du diagnostic reste là-bas, l'historique serveur garde le score et la maîtrise.
+        results: [],
+        replay: false,
+      },
+    };
+    await ecrireDiagnostic(etat);
+    return etat;
+  } catch {
+    return existant;
+  }
+}
 
 // Listes servies par le serveur, gardées pour l'ouverture hors ligne (A2, R-04) --------------------------------------
 export async function obtenirExamens(): Promise<{ examens: Examen[]; depuisCache: boolean }> {

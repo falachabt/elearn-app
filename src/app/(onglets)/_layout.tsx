@@ -12,7 +12,7 @@ import { DEPASSEMENT_CENTRAL } from '@/components/Onglet';
 import { EtatReseau } from '@/components/reseau/EtatReseau';
 import { reprendreTelechargementHorsLigne } from '@/services/horsLigne';
 import { profilToeicActif } from '@/services/certification/accueil';
-import { lireDiagnostic } from '@/services/certification/etat';
+import { lireDiagnostic, restaurerDiagnostic } from '@/services/certification/etat';
 import { etapeCertification } from '@/services/certification/reprise';
 import { lireProfil, profilDepuisCompte } from '@/services/profil';
 import { useSession, useSessionPrete } from '@/session/SessionProvider';
@@ -69,6 +69,9 @@ export default function LayoutOnglets() {
     const compte = profilDepuisCompte(session?.user);
     void (async () => {
       const p = await lireProfil();
+      // Reconnexion : la déconnexion a effacé l'état local du diagnostic, pas l'historique du compte — on le
+      // restaure depuis le serveur avant de décider (reprise, barre masquée ou non).
+      if (p?.type === 'certification') await restaurerDiagnostic(p.exam ?? 'toeic');
       const etape = await etapeCertification(p);
       const diag = await lireDiagnostic();
       if (!actif) return;

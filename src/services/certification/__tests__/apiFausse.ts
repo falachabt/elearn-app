@@ -93,6 +93,8 @@ export function creerApiFausse(options: {
   echecsTerminer?: number; echecDemarrer?: boolean; echecsEnvoi?: number; echecSerie?: boolean; serieVide?: boolean; mots?: { total: number; theme: string | null };
   revision?: Revision | 'echec'; carnet?: MotCarnetServi[] | 'echec'; seance?: SeanceServie | 'echec'; fiche?: NotionFiche | 'echec'; echecsMots?: number;
   mini?: 'insufficient' | 'account_required' | 'echec'; stats?: Stats | 'echec'; gains?: EtatGains | 'echec'; reclamation?: ResultatGain; tentatives?: TentativeListee[] | 'echec';
+  /** Tentatives relues par identifiant (`lireTentative`), par exemple le diagnostic terminé d'un compte reconnecté. */
+  tentativeParId?: Record<string, Tentative>;
   abandon?: { rembourse: boolean };
   /** Surcharges de réglages `cert_settings` (par clé), fusionnées dans les lignes du seed. */
   reglages?: Record<string, unknown>;
@@ -255,6 +257,8 @@ export function creerApiFausse(options: {
       return { status: 'started', tentative, cout: 1, solde: 11 };
     },
     async lireTentative(id) {
+      const prete = options.tentativeParId?.[id];
+      if (prete) return prete;
       const m = minis.get(id);
       if (!m) throw new Error('tentative introuvable');
       return { attempt_id: id, kind: 'mini', part: m.part, length: m.questions.length, status: 'in_progress', started_at: new Date().toISOString(), credits_spent: 1, questions: m.questions, replay: false };

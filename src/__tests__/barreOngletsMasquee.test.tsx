@@ -16,6 +16,7 @@ const mockProfilToeicActif = jest.fn(async () => true);
 const mockEtapeCertification = jest.fn(async (_profil: unknown) => '/certification/arrivee' as string | null);
 const mockLireProfil = jest.fn(async (): Promise<unknown> => ({ type: 'certification', exam: 'toeic', termine: false }));
 const mockLireDiagnostic = jest.fn(async (): Promise<unknown> => null);
+const mockRestaurerDiagnostic = jest.fn(async (): Promise<unknown> => null);
 
 jest.mock('expo-router', () => ({
   Redirect: ({ href }: { href: string }) => {
@@ -51,7 +52,7 @@ jest.mock('@/components/reseau/EtatReseau', () => ({ EtatReseau: () => null }));
 jest.mock('@/i18n/useTraduction', () => ({ useTraduction: () => ({ t: (cle: string) => cle }) }));
 jest.mock('@/services/horsLigne', () => ({ reprendreTelechargementHorsLigne: async () => {} }));
 jest.mock('@/services/certification/accueil', () => ({ profilToeicActif: () => mockProfilToeicActif() }));
-jest.mock('@/services/certification/etat', () => ({ lireDiagnostic: () => mockLireDiagnostic() }));
+jest.mock('@/services/certification/etat', () => ({ lireDiagnostic: () => mockLireDiagnostic(), restaurerDiagnostic: (exam: string) => mockRestaurerDiagnostic(exam) }));
 jest.mock('@/services/certification/reprise', () => ({ etapeCertification: (p: unknown) => mockEtapeCertification(p) }));
 jest.mock('@/services/profil', () => ({
   lireProfil: () => mockLireProfil(),
@@ -86,6 +87,7 @@ beforeEach(() => {
   mockEtapeCertification.mockResolvedValue('/certification/arrivee');
   mockLireProfil.mockResolvedValue({ type: 'certification', exam: 'toeic', termine: false });
   mockLireDiagnostic.mockResolvedValue(null);
+  mockRestaurerDiagnostic.mockResolvedValue(null);
 });
 
 describe('Barre d’onglets masquée avant le diagnostic (issue #121)', () => {
@@ -113,6 +115,21 @@ describe('Barre d’onglets masquée avant le diagnostic (issue #121)', () => {
     expect(screen.getByText('onglets.tests')).toBeTruthy();
     expect(screen.getByText('onglets.statistiques')).toBeTruthy();
     // Réserve normale : dépassement du bouton central (22) + espace[3] (8).
+    expect(reserveBasse()).toBe(30);
+  });
+
+  it('profil TOEIC, reconnexion : diagnostic restauré depuis le serveur → la barre complète apparaît', async () => {
+    // Au montage, l'appareil n'a aucun état local (effacé à la déconnexion) ; la restauration, appelée avant la
+    // lecture, réécrit l'état terminé depuis l'historique du compte.
+    mockRestaurerDiagnostic.mockImplementation(async () => {
+      const restaure = { clientUuid: 'u1', tentative: { id: 't1' }, reponses: [], index: 21, termine: true, fin: { score: 745 } };
+      mockLireDiagnostic.mockResolvedValue(restaure);
+      return restaure;
+    });
+    await monterLayout();
+    await screen.findByTestId('barre-onglets');
+    expect(mockRestaurerDiagnostic).toHaveBeenCalledWith('toeic');
+    expect(affichageBarre()).toBeUndefined();
     expect(reserveBasse()).toBe(30);
   });
 
