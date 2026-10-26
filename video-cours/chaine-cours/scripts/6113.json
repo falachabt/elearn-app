@@ -1,0 +1,401 @@
+{
+ "cours": 6113,
+ "titre": "Les intérêts simples : faire travailler un capital, sans intérêts sur les intérêts",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Concours ESSEC",
+   "titre": "Les intérêts simples : le capital travaille, les intérêts ne travaillent pas",
+   "sous": "Formules, inconnues inversées et décisions : placements, prêts et comparaisons au concours ESSEC",
+   "anim": {
+    "nom": "montant_lineaire_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un capital prêté ou placé rapporte une rémunération proportionnelle : au temps, au taux, et à lui-même."
+  },
+  "definitions": {
+   "type": "etape",
+   "kicker": "Les cinq grandeurs",
+   "titre": "Le vocabulaire avant les formules",
+   "tex": [
+    "\\text{C : le capital, somme initiale prêtée ou placée}",
+    "\\text{t : le taux annuel, en décimal}",
+    "\\text{n : la durée, en années}",
+    "\\text{I : les intérêts, et M le montant final}"
+   ]
+  },
+  "formule_interets": {
+   "type": "formule",
+   "kicker": "La formule des intérêts simples",
+   "tex": "I = C \\times t \\times n",
+   "note": "Trois facteurs, un produit : capital, taux annuel en décimal, durée en années."
+  },
+  "ex_interets": {
+   "type": "etape",
+   "kicker": "Exemple : deux premiers calculs",
+   "titre": "Appliquer la formule, vérifier l'ordre de grandeur",
+   "tex": [
+    "I = 1000 \\times 0{,}04 \\times 3 = 120 \\qquad M = 1\\,120",
+    "I = 5000 \\times 0{,}06 \\times 2 = 600 \\qquad M = 5\\,600"
+   ]
+  },
+  "formule_montant": {
+   "type": "formule",
+   "kicker": "Le montant final en un seul calcul",
+   "tex": "M = C \\times (1 + t \\times n)",
+   "note": "Le facteur entre parenthèses grossit le capital : un, plus le rendement total de la période."
+  },
+  "ex_montant": {
+   "type": "etape",
+   "kicker": "Exemple : le montant final",
+   "titre": "Mille euros, deux chemins, un même résultat",
+   "tex": [
+    "M = 1000 \\times (1 + 0{,}03 \\times 5) = 1\\,150",
+    "I = 150 \\qquad t \\times n = 0{,}15"
+   ],
+   "anim": {
+    "nom": "montant_lineaire_fig",
+    "hauteur": 150
+   }
+  },
+  "conversions": {
+   "type": "etape",
+   "kicker": "Convertir la durée",
+   "titre": "Le taux est annuel : la durée doit l'être aussi",
+   "tex": [
+    "6 \\text{ mois} = \\tfrac{6}{12} = 0{,}5 \\text{ an}",
+    "18 \\text{ mois} = \\tfrac{18}{12} = 1{,}5 \\text{ an}",
+    "\\text{jours : diviser par } 360 \\text{ ou } 365 \\text{ selon la convention}"
+   ]
+  },
+  "ex_court_terme": {
+   "type": "etape",
+   "kicker": "Exemple : placements de six mois",
+   "titre": "La conversion d'abord, le calcul ensuite",
+   "tex": [
+    "5000 \\times 0{,}025 \\times 0{,}5 = 62{,}50 \\qquad M = 5\\,062{,}50",
+    "10\\,000 \\times 0{,}02 \\times 0{,}5 = 100 \\qquad M = 10\\,100"
+   ]
+  },
+  "pret": {
+   "type": "etape",
+   "kicker": "Exemple : le coût d'un emprunt",
+   "titre": "Côté emprunteur, les intérêts sont un coût",
+   "tex": [
+    "5000 \\times 0{,}05 \\times 2 = 500 \\qquad \\text{total : } 5\\,500",
+    "10\\,000 \\times 0{,}04 \\times 5 = 2\\,000 \\qquad \\text{total : } 12\\,000"
+   ]
+  },
+  "formule_taux": {
+   "type": "formule",
+   "kicker": "Inverser la formule : trouver le taux",
+   "tex": "t = \\frac{I}{C \\times n}",
+   "note": "On isole le taux : les intérêts divisés par le capital, puis par la durée."
+  },
+  "ex_taux": {
+   "type": "etape",
+   "kicker": "Exemple : retrouver un taux",
+   "titre": "Deux énoncés, la même inversion",
+   "tex": [
+    "t = \\tfrac{360}{2000 \\times 3} = 0{,}06 = 6\\%",
+    "t = \\tfrac{60}{2000 \\times 0{,}5} = 0{,}06 = 6\\%"
+   ]
+  },
+  "formule_duree": {
+   "type": "formule",
+   "kicker": "Inverser la formule : trouver la durée",
+   "tex": "n = \\frac{I}{C \\times t}",
+   "note": "La durée cherchée sort en années : convertir en mois seulement à la fin si besoin."
+  },
+  "ex_duree": {
+   "type": "etape",
+   "kicker": "Exemple : retrouver une durée",
+   "titre": "Combien de temps pour atteindre l'objectif ?",
+   "tex": [
+    "n = \\tfrac{600}{20\\,000 \\times 0{,}015} = 2 \\text{ ans}",
+    "n = \\tfrac{500}{10\\,000 \\times 0{,}05} = 1 \\text{ an}"
+   ]
+  },
+  "formule_capital": {
+   "type": "formule",
+   "kicker": "Inverser la formule : trouver le capital",
+   "tex": "C = \\frac{I}{t \\times n} \\qquad C = \\frac{M}{1 + t \\times n}",
+   "note": "Deux entrées possibles : depuis les intérêts visés, ou depuis le montant final visé."
+  },
+  "ex_capital": {
+   "type": "etape",
+   "kicker": "Exemple : retrouver un capital",
+   "titre": "Des intérêts connus, ou un montant cible",
+   "tex": [
+    "C = \\tfrac{300}{0{,}04 \\times 1{,}5} = 5\\,000",
+    "C = \\tfrac{8000}{1{,}10} \\approx 7\\,272{,}73"
+   ]
+  },
+  "comparer": {
+   "type": "etape",
+   "kicker": "Exemple : comparer deux placements",
+   "titre": "Mille euros, deux offres, un calcul chacune",
+   "tex": [
+    "A : 1000 \\times 0{,}05 \\times 5 = 250",
+    "B : 1000 \\times 0{,}04 \\times 6 = 240",
+    "\\text{A rapporte dix euros de plus}"
+   ]
+  },
+  "produit": {
+   "type": "etape",
+   "kicker": "Le piège des comparaisons",
+   "titre": "Seul le produit taux fois durée compte",
+   "tex": [
+    "0{,}03 \\times 1 = 0{,}015 \\times 2 = 0{,}03",
+    "0{,}06 \\times 1 = 0{,}03 \\times 2 = 0{,}06"
+   ],
+   "anim": {
+    "nom": "montant_lineaire_fig",
+    "hauteur": 150
+   }
+  },
+  "banques": {
+   "type": "etape",
+   "kicker": "Exemple type concours : deux banques, un emprunt",
+   "titre": "Quinze mille euros : le taux le plus bas ne gagne pas toujours",
+   "tex": [
+    "A : 15\\,000 \\times 0{,}06 \\times 2 = 1\\,800 \\qquad \\text{total : } 16\\,800",
+    "B : 15\\,000 \\times 0{,}055 \\times 3 = 2\\,475 \\qquad \\text{total : } 17\\,475",
+    "\\text{la banque A coûte moins cher}"
+   ]
+  },
+  "reinvestir": {
+   "type": "etape",
+   "kicker": "Exemple : réinvestir le montant final",
+   "titre": "Deux placements simples à la suite",
+   "tex": [
+    "8000 \\times 1{,}08 = 8\\,640",
+    "8\\,640 \\times 1{,}05 = 9\\,072",
+    "\\text{intérêts totaux : } 1\\,072"
+   ]
+  },
+  "amortissement": {
+   "type": "etape",
+   "kicker": "Au-delà de la finance : l'amortissement linéaire",
+   "titre": "Le même partage proportionnel, en comptabilité",
+   "tex": [
+    "\\tfrac{500\\,000}{20} = 25\\,000 \\text{ par an}",
+    "\\text{chaque année consomme la même fraction du coût}"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Les limites du modèle",
+   "texte": "Les intérêts simples ignorent les intérêts des intérêts : fidèles à court terme, ils sous-estiment les placements longs."
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Les pièges à éviter",
+   "etapes": [
+    "Taux en décimal : cinq pour cent devient zéro zéro cinq",
+    "Durée en années : les mois se divisent par douze",
+    "Intérêts sur le capital initial, jamais sur les intérêts",
+    "Distinguer intérêts gagnés et montant final"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en quatre temps",
+   "etapes": [
+    "Identifier les connues et l'inconnue du problème",
+    "Choisir la formule, directe ou inversée",
+    "Calculer, unités cohérentes, puis vérifier le sens",
+    "Interpréter : euros, pour cent ou années, selon la question"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "I égale C fois t fois n, taux en décimal",
+    "M égale C fois un plus t fois n",
+    "Inverser : taux, durée ou capital s'isolent",
+    "Comparer, c'est comparer les produits t fois n"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques financières pour le concours de l'ESSEC, entièrement consacré aux intérêts simples. Un capital placé ou prêté rapporte des intérêts calculés uniquement sur le capital de départ, jamais sur les intérêts déjà gagnés. Nous poserons les formules, nous apprendrons à les inverser pour retrouver un taux, une durée ou un capital, puis nous comparerons des offres comme le fait un jury de concours : chiffres à l'appui.",
+   "texte": "Intérêts simples : le socle des mathématiques financières.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Pourquoi commencer par les intérêts simples ? Parce qu'ils décrivent les placements et les prêts à court terme, et parce que leur mécanisme est parfaitement proportionnel : doublez le capital, la durée ou le taux, et les intérêts doublent. Cette proportionnalité rend les calculs directs, et les erreurs faciles à repérer par un simple contrôle d'ordre de grandeur.",
+   "texte": "Proportionnel au capital, au taux et au temps.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Cinq grandeurs suffisent. Le capital, noté C, est la somme initiale, placée ou empruntée. Le taux, noté t, est le pourcentage annuel, toujours converti en décimal : cinq pour cent devient zéro virgule zéro cinq. La durée, notée n, s'exprime en années. Les intérêts, notés I, sont la rémunération produite. Et le montant final, noté M, est le capital augmenté de ses intérêts. Toute la difficulté du chapitre tient dans les conversions : taux en décimal, durée en années.",
+   "texte": "C, t, n, I, M : cinq lettres, tout le cours.",
+   "ecran": "definitions"
+  },
+  {
+   "id": "p04",
+   "dit": "La formule centrale tient en un produit. Les intérêts valent le capital multiplié par le taux annuel, multiplié par la durée en années. Chaque facteur joue le même rôle multiplicatif : c'est la traduction exacte de la proportionnalité. Un capital de mille euros à quatre pour cent pendant trois ans rapporte mille fois zéro virgule zéro quatre fois trois, soit cent vingt euros d'intérêts.",
+   "texte": "I égale C fois t fois n.",
+   "ecran": "formule_interets"
+  },
+  {
+   "id": "p05",
+   "dit": "Vérifions sur deux exemples complets. Le premier : mille euros à quatre pour cent pendant trois ans donnent cent vingt euros d'intérêts, et un montant final de mille cent vingt euros. Le deuxième, un prêt cette fois : cinq mille euros à six pour cent pendant deux ans coûtent six cents euros d'intérêts, pour un remboursement total de cinq mille six cents euros. Même formule des deux côtés du guichet : gain pour le prêteur, coût pour l'emprunteur.",
+   "texte": "Cent vingt euros gagnés, six cents euros de coût de prêt.",
+   "ecran": "ex_interets"
+  },
+  {
+   "id": "p06",
+   "dit": "Le montant final se calcule aussi en un seul geste. Comme il vaut le capital plus les intérêts, on factorise : montant final égale capital fois, entre parenthèses, un plus taux fois durée. Le produit taux fois durée mesure le rendement total de la période : quinze pour cent, par exemple, signifie que le capital ressort grossi de quinze pour cent, quelle que soit la manière dont ce produit a été obtenu.",
+   "texte": "M égale C fois un plus t fois n.",
+   "ecran": "formule_montant"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple : mille euros placés à trois pour cent pendant cinq ans. Le produit taux fois durée vaut zéro virgule quinze. Le montant final vaut mille fois un virgule quinze, soit mille cent cinquante euros, dont cent cinquante euros d'intérêts. Retenez ce repère : trois pour cent pendant cinq ans et cinq pour cent pendant trois ans donnent exactement le même produit, donc le même montant final.",
+   "texte": "Mille euros deviennent mille cent cinquante euros.",
+   "ecran": "ex_montant"
+  },
+  {
+   "id": "p08",
+   "dit": "Le piège numéro un du concours : la durée. Le taux est annuel, donc la durée doit être exprimée en années. Six mois deviennent six douzièmes, soit zéro virgule cinq année. Dix-huit mois deviennent un virgule cinq année. Pour les jours, on divise par trois cent soixante ou trois cent soixante-cinq selon la convention bancaire de l'énoncé. Convertir d'abord, calculer ensuite : cet ordre évite presque toutes les erreurs du chapitre.",
+   "texte": "Six mois : zéro virgule cinq année, toujours convertir d'abord.",
+   "ecran": "conversions"
+  },
+  {
+   "id": "p09",
+   "dit": "Deux placements de six mois. Cinq mille euros à deux virgule cinq pour cent : cinq mille fois zéro virgule zéro vingt-cinq fois zéro virgule cinq donne soixante-deux euros et cinquante centimes d'intérêts, soit un montant final de cinq mille soixante-deux euros et cinquante centimes. Un héritage de dix mille euros à deux pour cent donne cent euros d'intérêts, soit dix mille cent euros au bout de six mois.",
+   "texte": "Six mois : soixante-deux euros cinquante, puis cent euros.",
+   "ecran": "ex_court_terme"
+  },
+  {
+   "id": "p10",
+   "dit": "Côté emprunteur, la lecture s'inverse : les intérêts sont un coût. Un prêt de cinq mille euros à cinq pour cent sur deux ans coûte cinq cents euros d'intérêts, pour un remboursement total de cinq mille cinq cents euros. Un prêt étudiant de dix mille euros à quatre pour cent sur cinq ans coûte deux mille euros d'intérêts, douze mille euros au total. Savoir chiffrer ce coût total, c'est pouvoir comparer et négocier une offre de prêt.",
+   "texte": "Le coût total d'un prêt : capital plus intérêts.",
+   "ecran": "pret"
+  },
+  {
+   "id": "p11",
+   "dit": "La formule se lit dans les deux sens. Si l'inconnue est le taux, on l'isole : le taux vaut les intérêts divisés par le capital, puis par la durée. C'est la première des trois inversions à maîtriser, et la démarche est toujours la même : écrire la formule de départ, isoler l'inconnue, remplacer, calculer, puis convertir le résultat décimal en pourcentage pour répondre.",
+   "texte": "Retrouver le taux : I divisé par C, puis par n.",
+   "ecran": "formule_taux"
+  },
+  {
+   "id": "p12",
+   "dit": "Deux exemples. Un capital de deux mille euros placé trois ans a rapporté trois cent soixante euros : trois cent soixante divisé par deux mille fois trois donne zéro virgule zéro six, soit un taux de six pour cent. Autre énoncé, même réponse : un prêt de deux mille euros remboursé deux mille soixante euros après six mois a produit soixante euros d'intérêts en une demi-année : soixante divisé par deux mille fois zéro virgule cinq donne encore six pour cent annuel.",
+   "texte": "Deux énoncés différents, un même taux : six pour cent.",
+   "ecran": "ex_taux"
+  },
+  {
+   "id": "p13",
+   "dit": "Deuxième inversion : la durée. Elle vaut les intérêts visés divisés par le produit du capital et du taux. Le résultat sort en années : si l'énoncé demande des mois, multipliez par douze seulement à la toute fin. Cette inversion répond à une question très concrète : combien de temps faut-il laisser travailler un capital pour atteindre un objectif d'intérêts donné ?",
+   "texte": "Retrouver la durée : I divisé par C fois t.",
+   "ecran": "formule_duree"
+  },
+  {
+   "id": "p14",
+   "dit": "Deux objectifs chiffrés. Une entreprise place vingt mille euros à un virgule cinq pour cent et vise six cents euros d'intérêts : six cents divisé par vingt mille fois zéro virgule zéro quinze donne deux ans. Un placement de dix mille euros à cinq pour cent visant cinq cents euros d'intérêts demande exactement un an. Dans les deux cas, vérifiez en refaisant le calcul direct : le produit capital, taux, durée doit redonner les intérêts visés.",
+   "texte": "Six cents euros visés : deux ans, puis un an.",
+   "ecran": "ex_duree"
+  },
+  {
+   "id": "p15",
+   "dit": "Troisième inversion : le capital. Depuis les intérêts, il vaut les intérêts divisés par le produit du taux et de la durée. Depuis un montant final visé, on divise ce montant par le facteur un plus taux fois durée. C'est l'inversion des questions de préparation : quelle somme faut-il engager aujourd'hui, ou quel capital a produit les intérêts que l'on constate ?",
+   "texte": "Retrouver le capital : par les intérêts, ou par le montant final.",
+   "ecran": "formule_capital"
+  },
+  {
+   "id": "p16",
+   "dit": "Deux lectures. Un placement a rapporté trois cents euros d'intérêts en dix-huit mois à quatre pour cent : trois cents divisé par zéro virgule zéro quatre fois un virgule cinq donne un capital de cinq mille euros. Et pour obtenir un montant final de huit mille euros dans deux ans à cinq pour cent, il faut placer huit mille divisé par un virgule dix, soit environ sept mille deux cent soixante-douze euros et soixante-treize centimes.",
+   "texte": "Cinq mille euros de capital, ou sept mille deux cent soixante-treize à placer.",
+   "ecran": "ex_capital"
+  },
+  {
+   "id": "p17",
+   "dit": "Comparer deux placements, c'est calculer les deux, sans raccourci. Premier choix : mille euros à cinq pour cent pendant cinq ans rapportent deux cent cinquante euros. Deuxième choix : mille euros à quatre pour cent pendant six ans rapportent deux cent quarante euros. Le premier placement gagne, de dix euros seulement : un taux plus faible mais une durée plus longue a failli renverser le classement. Aucune intuition ne remplace ces deux multiplications.",
+   "texte": "Deux cent cinquante contre deux cent quarante : le calcul tranche.",
+   "ecran": "comparer"
+  },
+  {
+   "id": "p18",
+   "dit": "L'explication de cette quasi-égalité tient en une phrase : à capital égal, seuls comptent les produits taux fois durée. Trois pour cent pendant un an et un virgule cinq pour cent pendant deux ans produisent le même rendement total de trois pour cent. Six pour cent pendant un an et trois pour cent pendant deux ans produisent six pour cent. Devant deux offres, comparez donc d'abord ces produits : c'est le réflexe rapide du concours.",
+   "texte": "À capital égal, comparer les produits t fois n.",
+   "ecran": "produit"
+  },
+  {
+   "id": "p19",
+   "dit": "Application complète, dans l'esprit du concours. Emprunter quinze mille euros pour une voiture. La banque A propose six pour cent sur deux ans : les intérêts valent mille huit cents euros, coût total seize mille huit cents euros. La banque B propose cinq virgule cinq pour cent sur trois ans : deux mille quatre cent soixante-quinze euros d'intérêts, dix-sept mille quatre cent soixante-quinze euros au total. La banque A, au taux pourtant plus élevé, coûte moins cher, parce que l'emprunt dure un an de moins.",
+   "texte": "La banque A gagne : mille huit cents contre deux mille quatre cent soixante-quinze.",
+   "ecran": "banques"
+  },
+  {
+   "id": "p20",
+   "dit": "Dernier type de problème : enchaîner deux placements simples. Huit mille euros à quatre pour cent pendant deux ans deviennent huit mille six cent quarante euros. Réinvestis un an à cinq pour cent, ils deviennent neuf mille soixante-douze euros. Les intérêts totaux valent mille soixante-douze euros. Attention au vocabulaire : les intérêts restent simples à chaque étape, car seul le montant de départ de chaque placement produit des intérêts, jamais un intérêt en cours de période.",
+   "texte": "Deux étapes : huit mille, huit mille six cent quarante, neuf mille soixante-douze.",
+   "ecran": "reinvestir"
+  },
+  {
+   "id": "p21",
+   "dit": "Les intérêts simples dépassent la banque. En comptabilité, l'amortissement linéaire répartit le coût d'un bien uniformément sur sa durée de vie : un bien de cinq cent mille euros amorti sur vingt ans perd vingt-cinq mille euros de valeur chaque année, exactement comme un capital produirait le même intérêt chaque année. On retrouve aussi cette croissance régulière, en première approximation, dans certains modèles démographiques simplifiés.",
+   "texte": "Amortissement linéaire : vingt-cinq mille euros par an.",
+   "ecran": "amortissement"
+  },
+  {
+   "id": "p22",
+   "dit": "Il faut enfin connaître les limites du modèle. Les intérêts simples supposent que les intérêts ne produisent jamais d'intérêts à leur tour : à long terme, ils sous-estiment donc la croissance réelle d'un placement, où chaque intérêt rejoint le capital et travaille à son tour. C'est pour cela qu'ils décrivent bien le court terme, prêts brefs et placements de trésorerie, et que les intérêts composés prendront le relais pour les durées longues.",
+   "texte": "Court terme : modèle fidèle. Long terme : il sous-estime.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p23",
+   "dit": "Quatre pièges concentrent l'essentiel des points perdus. Un taux gardé en pourcentage au lieu d'être converti en décimal fausse tout le calcul. Une durée en mois non convertie en années fait de même. Confondre intérêts et montant final fait répondre à côté de la question. Et appliquer les intérêts au montant en cours, au lieu du capital initial, transforme le problème en intérêts composés, qui sont un autre chapitre.",
+   "texte": "Décimal, années, capital initial, intérêts ou montant.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p24",
+   "dit": "La méthode tient en quatre temps. Identifier les grandeurs connues et l'inconnue demandée. Choisir la formule, directe si l'on cherche les intérêts ou le montant, inversée si l'on cherche le taux, la durée ou le capital. Calculer avec des unités cohérentes, puis vérifier que le résultat a le bon ordre de grandeur. Enfin interpréter : une réponse en euros, en pour cent ou en années, selon la question posée.",
+   "texte": "Identifier, choisir, calculer, interpréter.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour finir, retenez l'essentiel. Les intérêts valent capital fois taux fois durée, taux en décimal et durée en années. Le montant final multiplie le capital par un plus taux fois durée. La même formule, inversée, livre le taux, la durée ou le capital inconnu. Et comparer deux offres revient toujours à comparer leurs produits taux fois durée, jamais leurs seuls taux affichés.",
+   "texte": "Une formule, trois inversions, un produit à comparer.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Capital, taux, durée : les formules de base"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Court terme, prêts et formules inversées",
+   "pont": {
+    "texte": "Partie 2 : placements courts, coût des prêts et inconnues inversées.",
+    "dit": "Partie deux : le court terme et les formules inversées. Nous calculerons des placements de quelques mois et le coût réel des prêts, puis nous inverserons la formule pour retrouver, tour à tour, le taux, la durée et le capital inconnus."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Comparer, décider et dépasser la finance",
+   "pont": {
+    "texte": "Partie 3 : comparer des offres, réinvestir et connaître les limites du modèle.",
+    "dit": "Partie trois : comparer et décider. Nous départagerons des placements et des emprunts concurrents, nous enchaînerons deux placements simples, puis nous sortirons de la banque avec l'amortissement linéaire, avant de fixer les limites du modèle et la méthode complète."
+   }
+  }
+ ]
+}
