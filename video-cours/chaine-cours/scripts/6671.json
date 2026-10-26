@@ -1,0 +1,669 @@
+{
+  "cours": 6671,
+  "titre": "Barycentres, lieux géométriques, transformations et espaces vectoriels",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématiques · Géométrie et algèbre linéaire",
+      "titre": "Barycentres, lieux géométriques, transformations et espaces vectoriels",
+      "sous": "Points pondérés, arcs capables, composées de transformations, noyau et image",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction · Le barycentre",
+      "texte": "Le barycentre : le point d'équilibre de points pondérés, plus proche du plus lourd."
+    },
+    "def_barycentre": {
+      "type": "formule",
+      "kicker": "Barycentre · Définition",
+      "titre": "Le point d'équilibre de deux points pondérés",
+      "tex": "\\alpha\\,\\overrightarrow{GA} + \\beta\\,\\overrightarrow{GB} = \\overrightarrow{0}",
+      "note": "Condition d'existence : la somme des coefficients α + β est non nulle"
+    },
+    "construction": {
+      "type": "formule",
+      "kicker": "Barycentre · Construction",
+      "titre": "Placer G sur la droite (AB)",
+      "tex": "\\overrightarrow{AG} = \\frac{\\beta}{\\alpha + \\beta}\\,\\overrightarrow{AB}",
+      "note": "Coefficients de même signe : G est dans le segment ; sinon, à l'extérieur"
+    },
+    "construction_ex": {
+      "type": "etape",
+      "kicker": "Barycentre · Exemple",
+      "titre": "Barycentre de (A, 2) et (B, 3)",
+      "tex": [
+        "\\overrightarrow{AG} = \\tfrac{3}{2 + 3}\\,\\overrightarrow{AB}",
+        "\\overrightarrow{AG} = \\tfrac{3}{5}\\,\\overrightarrow{AB}"
+      ]
+    },
+    "proprietes": {
+      "type": "phrase",
+      "kicker": "Barycentre · Propriétés",
+      "texte": "Invariance par multiplication des poids ; poids égaux : le milieu ; G toujours sur (AB)."
+    },
+    "def_generale": {
+      "type": "formule",
+      "kicker": "Barycentre · Trois ou quatre points",
+      "titre": "La somme pondérée s'annule en G",
+      "tex": "\\textstyle\\sum_{i=1}^{n} \\alpha_i\\,\\overrightarrow{GA_i} = \\overrightarrow{0}",
+      "note": "Somme des coefficients non nulle ; valable pour trois ou quatre points"
+    },
+    "associativite": {
+      "type": "etape",
+      "kicker": "Barycentre · Associativité",
+      "titre": "Barycentres partiels : regrouper",
+      "tex": [
+        "H : \\text{barycentre de } (A, 1), (B, 2)",
+        "G : \\text{barycentre de } (H, 3), (C, 3)"
+      ]
+    },
+    "reduction": {
+      "type": "etape",
+      "kicker": "Barycentre · Réduction",
+      "titre": "Réduire une somme de vecteurs",
+      "tex": [
+        "\\textstyle\\sum_i \\alpha_i\\,\\overrightarrow{MA_i}",
+        "= \\left(\\textstyle\\sum_i \\alpha_i\\right)\\overrightarrow{MG}"
+      ]
+    },
+    "reduction_ex": {
+      "type": "etape",
+      "kicker": "Barycentre · Exemple",
+      "titre": "Deux vecteurs réduits en un seul",
+      "tex": [
+        "2\\,\\overrightarrow{MA} + 3\\,\\overrightarrow{MB}",
+        "= 5\\,\\overrightarrow{MG}"
+      ]
+    },
+    "ligne_somme": {
+      "type": "etape",
+      "kicker": "Lignes de niveau · Somme de carrés",
+      "titre": "Le seuil décide : cercle, point ou vide",
+      "tex": [
+        "MA^2 + MB^2 = 2\\,MI^2 + \\tfrac{AB^2}{2}",
+        "k < \\tfrac{AB^2}{2} : \\text{ensemble vide}",
+        "k = \\tfrac{AB^2}{2} : \\text{le point } I",
+        "k > \\tfrac{AB^2}{2} : \\text{cercle de centre } I"
+      ]
+    },
+    "autres_lignes": {
+      "type": "phrase",
+      "kicker": "Lignes de niveau · Les autres formes",
+      "texte": "Différence de carrés : une droite perpendiculaire à (AB). Produit scalaire : un cercle de centre I. Rapport : le cercle d'Apollonius."
+    },
+    "ligne_ex": {
+      "type": "etape",
+      "kicker": "Lignes de niveau · Exemple",
+      "titre": "Un cercle de centre G",
+      "tex": [
+        "|2\\,\\overrightarrow{MA} + 3\\,\\overrightarrow{MB}| = 10",
+        "5\\,MG = 10 \\qquad MG = 2"
+      ]
+    },
+    "arc_capable": {
+      "type": "phrase",
+      "kicker": "Arcs capables · Définition",
+      "texte": "Arcs capables : les points M qui voient le segment [AB] sous un angle constant, en deux arcs symétriques."
+    },
+    "arc_ex": {
+      "type": "etape",
+      "kicker": "Arcs capables · Exemple",
+      "titre": "Exemple : l'angle de pi sur trois",
+      "tex": [
+        "R = \\tfrac{4}{2\\sin 60^\\circ} = \\tfrac{4}{\\sqrt{3}}",
+        "h = R\\cos 60^\\circ = \\tfrac{2}{\\sqrt{3}}",
+        "\\widehat{AOB} = 2 \\times 60^\\circ = 120^\\circ"
+      ]
+    },
+    "angle_droit": {
+      "type": "phrase",
+      "kicker": "Arcs capables · L'angle droit",
+      "texte": "Angle droit : l'arc capable est le cercle de diamètre [AB], privé de A et de B.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 200
+      }
+    },
+    "oriente_2pi": {
+      "type": "phrase",
+      "kicker": "Arcs capables · Angle orienté",
+      "texte": "Modulo deux pi, le sens compte : un seul des deux arcs symétriques convient.",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 170
+      }
+    },
+    "oriente_ex": {
+      "type": "etape",
+      "kicker": "Arcs capables · Exemple",
+      "titre": "Un angle orienté de pi sur quatre",
+      "tex": [
+        "\\text{Mes}(\\overrightarrow{MA}, \\overrightarrow{MB})",
+        "= \\tfrac{\\pi}{4} + 2k\\pi \\qquad k \\in \\mathbb{Z}",
+        "\\widehat{AOB} = 2 \\times \\tfrac{\\pi}{4} = \\tfrac{\\pi}{2}"
+      ]
+    },
+    "mod_pi": {
+      "type": "phrase",
+      "kicker": "Arcs capables · Modulo pi",
+      "texte": "Modulo pi, le sens ne compte plus : les deux arcs se réunissent ; angle nul : la droite (AB) hors du segment."
+    },
+    "transformation_def": {
+      "type": "phrase",
+      "kicker": "Transformations · Définition",
+      "texte": "Une transformation du plan : une bijection. Composée et réciproque sont des transformations.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 190
+      }
+    },
+    "symetries": {
+      "type": "etape",
+      "kicker": "Transformations · Deux symétries",
+      "titre": "Deux symétries orthogonales composées",
+      "tex": [
+        "\\text{axes parallèles} : \\text{une translation}",
+        "|\\vec{v}| = 2d \\qquad \\vec{v} \\perp \\text{aux axes}",
+        "\\text{axes sécants} : \\text{rotation, angle } 2\\theta"
+      ]
+    },
+    "composees": {
+      "type": "etape",
+      "kicker": "Transformations · Translations et rotations",
+      "titre": "Composer : les angles s'ajoutent",
+      "tex": [
+        "t_{\\vec{v}} \\circ t_{\\vec{u}} = t_{\\vec{u} + \\vec{v}}",
+        "r(O, \\alpha) \\circ r(O, \\beta) = r(O, \\alpha + \\beta)",
+        "\\text{centres distincts} : \\text{rotation ou translation}"
+      ],
+      "anim": {
+        "nom": "translation_triangle_fig",
+        "hauteur": 130
+      }
+    },
+    "homothetie": {
+      "type": "formule",
+      "kicker": "Transformations · Homothétie",
+      "titre": "Dilater la figure depuis un centre",
+      "tex": "\\overrightarrow{OM'} = k\\,\\overrightarrow{OM} \\qquad k \\neq 0",
+      "note": "Deux homothéties composées : rapport produit ; produit un : une translation",
+      "anim": {
+        "nom": "rotation_homothetie_fig",
+        "hauteur": 160
+      }
+    },
+    "symetrie_glissee": {
+      "type": "phrase",
+      "kicker": "Transformations · Symétrie glissée",
+      "texte": "Translation et symétrie orthogonale composées : une symétrie suivie d'un glissement le long de l'axe."
+    },
+    "analytique": {
+      "type": "etape",
+      "kicker": "Transformations · Expressions analytiques",
+      "titre": "Les expressions analytiques",
+      "tex": [
+        "\\text{translation} : x' = x + a \\qquad y' = y + b",
+        "\\text{homothétie} : x' = x_0 + k(x - x_0)",
+        "y' = y_0 + k(y - y_0)"
+      ]
+    },
+    "composee_ex": {
+      "type": "etape",
+      "kicker": "Transformations · Exemple",
+      "titre": "Composer : substituer f dans g",
+      "tex": [
+        "f(x; y) = (x + 2;\\ y - 1)",
+        "g(x; y) = (2x;\\ 3y)",
+        "(g \\circ f)(x; y) = (2x + 4;\\ 3y - 3)"
+      ]
+    },
+    "medianes": {
+      "type": "phrase",
+      "kicker": "Transformations · Démontrer",
+      "texte": "Les médianes d'un triangle concourent en G : l'homothétie de centre G et de rapport moins un demi envoie chaque sommet sur le milieu opposé.",
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 160
+      }
+    },
+    "espace_vectoriel": {
+      "type": "phrase",
+      "kicker": "Espaces vectoriels · Définition",
+      "texte": "Un espace vectoriel : une addition, et une loi externe qui multiplie un vecteur par un réel.",
+      "anim": {
+        "nom": "combinaison_lineaire_fig",
+        "hauteur": 200
+      }
+    },
+    "sous_espace": {
+      "type": "formule",
+      "kicker": "Espaces vectoriels · Sous-espaces",
+      "titre": "Stable par combinaison linéaire",
+      "tex": "\\forall x, y \\in F,\\ \\forall \\lambda \\in \\mathbb{R} : \\lambda x + y \\in F",
+      "note": "Méthode : le vecteur nul est dans F, et F est stable par combinaison"
+    },
+    "sous_espace_ex": {
+      "type": "etape",
+      "kicker": "Espaces vectoriels · Exemple",
+      "titre": "La droite d'équation y = 2x",
+      "tex": [
+        "F = \\{(x, y) \\in \\mathbb{R}^2 : y = 2x\\}",
+        "(0, 0) \\in F \\qquad 0 = 2 \\times 0",
+        "\\lambda u + v = (\\lambda x + x',\\ 2(\\lambda x + x')) \\in F"
+      ]
+    },
+    "familles": {
+      "type": "etape",
+      "kicker": "Espaces vectoriels · Familles",
+      "titre": "Familles génératrices et familles libres",
+      "tex": [
+        "\\text{génératrice : } x = \\textstyle\\sum_i \\lambda_i v_i",
+        "\\text{libre : } \\textstyle\\sum_i \\lambda_i v_i = 0",
+        "\\Rightarrow \\text{tous les } \\lambda_i \\text{ sont nuls}"
+      ],
+      "anim": {
+        "nom": "combinaison_lineaire_fig",
+        "hauteur": 130
+      }
+    },
+    "base_libre": {
+      "type": "etape",
+      "kicker": "Espaces vectoriels · Exemple",
+      "titre": "Montrer que la famille est libre",
+      "tex": [
+        "\\alpha(1, 1) + \\beta(1, -1) = (0, 0)",
+        "\\alpha + \\beta = 0 \\qquad \\alpha - \\beta = 0",
+        "\\alpha = \\beta = 0 : \\text{famille libre}"
+      ]
+    },
+    "base_generatrice": {
+      "type": "etape",
+      "kicker": "Espaces vectoriels · Exemple",
+      "titre": "Libre et génératrice : une base",
+      "tex": [
+        "\\alpha = \\tfrac{x + y}{2} \\qquad \\beta = \\tfrac{x - y}{2}",
+        "\\text{libre et génératrice} : \\text{c'est une base}"
+      ]
+    },
+    "dimension": {
+      "type": "phrase",
+      "kicker": "Espaces vectoriels · Dimension",
+      "texte": "Toutes les bases ont le même cardinal : la dimension. Un pour les réels, deux pour les couples, trois pour les triplets."
+    },
+    "application_lineaire": {
+      "type": "formule",
+      "kicker": "Applications linéaires · Définition",
+      "titre": "Respecter les combinaisons linéaires",
+      "tex": "f(\\lambda x + y) = \\lambda f(x) + f(y)",
+      "note": "Endomorphisme : de E dans E ; isomorphisme : linéaire et bijective",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 170
+      }
+    },
+    "endomorphisme_ex": {
+      "type": "etape",
+      "kicker": "Applications linéaires · Exemple",
+      "titre": "Un endomorphisme des couples de réels",
+      "tex": [
+        "f(x, y) = (2x - y,\\ x + 3y)",
+        "f(\\lambda u + v) = \\lambda f(u) + f(v)",
+        "\\text{donc } f \\text{ est un endomorphisme}"
+      ]
+    },
+    "noyau_image": {
+      "type": "formule",
+      "kicker": "Applications linéaires · Noyau et image",
+      "titre": "Ce qui s'annule, ce qui est atteint",
+      "tex": "\\ker f = \\{x \\in E : f(x) = 0_F\\}",
+      "note": "Injective si et seulement si le noyau est réduit au vecteur nul",
+      "anim": {
+        "nom": "noyau_image_fig",
+        "hauteur": 180,
+        "accent": "ker"
+      }
+    },
+    "noyau_ex": {
+      "type": "etape",
+      "kicker": "Applications linéaires · Exemple",
+      "titre": "Exemple : noyau et image en pratique",
+      "tex": [
+        "f(x, y, z) = (x + y - z,\\ 2x - y)",
+        "y = 2x \\qquad z = 3x",
+        "\\ker f = \\text{Vect}\\,(1, 2, 3)"
+      ],
+      "anim": {
+        "nom": "noyau_image_fig",
+        "hauteur": 130,
+        "accent": "rang"
+      }
+    },
+    "rang": {
+      "type": "formule",
+      "kicker": "Applications linéaires · Théorème du rang",
+      "titre": "Le contrôle qui relie noyau et image",
+      "tex": "\\dim E = \\dim \\ker f + \\dim \\text{Im}\\, f",
+      "note": "Dans l'exemple : trois égale un plus deux, le compte est juste"
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Barycentre : α GA + β GB = 0 (vecteurs)",
+        "Lignes de niveau : cercles, droites, vide",
+        "Arcs capables : angle au centre double",
+        "Transformations : composer, reconnaître",
+        "Linéaire : noyau, image, théorème du rang"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de géométrie et d'algèbre linéaire : nous construirons le barycentre, point d'équilibre des points pondérés, nous traquerons les lieux géométriques définis par une égalité, nous composerons les transformations du plan, et nous finirons par les espaces vectoriels et les applications linéaires.",
+      "texte": "Barycentres, lieux, transformations, espaces vectoriels.",
+      "ecran": "titre",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p02",
+      "dit": "Le barycentre répond à une question d'équilibre : où placer le point qui équilibre plusieurs points, chacun muni d'un poids ? Comme le fléau d'une balance, il se rapproche du point le plus lourd. Toute la première partie tourne autour de ce point : sa construction, ses regroupements astucieux, et les lieux géométriques qu'il permet de décrire.",
+      "texte": "Le barycentre : le point d'équilibre des points pondérés.",
+      "ecran": "intro",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "dit": "Le barycentre de deux points pondérés est l'unique point gé tel que la somme pondérée des vecteurs gé a et gé bé soit le vecteur nul. Autrement dit, les deux vecteurs sont opposés et se compensent exactement : gé est en équilibre entre a et bé, compte tenu de leurs poids. L'existence et l'unicité tiennent à une seule condition : la somme des deux poids doit être non nulle.",
+      "texte": "Définition : α GA + β GB = 0 (vecteurs), α + β non nul.",
+      "ecran": "def_barycentre",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "De la définition, on tire une formule de construction : le vecteur a gé vaut la fraction du vecteur a bé donnée par le poids de bé, divisé par la somme des poids. Le barycentre est donc toujours sur la droite a bé. Si les deux poids ont le même signe, il tombe entre a et bé ; sinon, il sort du segment, du côté du poids le plus fort en valeur absolue.",
+      "texte": "Construction : AG = β/(α + β) AB (vecteurs).",
+      "ecran": "construction",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Exemple : le barycentre du point a affecté du poids deux et du point bé affecté du poids trois. Le vecteur a gé vaut trois cinquièmes du vecteur a bé : gé se place donc aux trois cinquièmes du segment, en partant de a. Il est plus proche de bé, le point le plus lourd, exactement comme l'équilibre d'une balance le suggère.",
+      "texte": "Exemple : AG = 3/5 AB, G plus proche de B.",
+      "ecran": "construction_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p06",
+      "dit": "Trois propriétés à connaître. D'abord, multiplier tous les poids par un même nombre non nul ne change pas le barycentre : seuls les rapports des poids comptent. Ensuite, quand les deux poids sont égaux, le barycentre est simplement le milieu du segment : c'est l'isobarycentre. Enfin, le barycentre de deux points est toujours aligné avec eux, puisqu'il vit sur leur droite.",
+      "texte": "Invariance, isobarycentre = milieu, alignement.",
+      "ecran": "proprietes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "dit": "La définition s'étend à trois ou quatre points : le barycentre est l'unique point gé où la somme pondérée de tous les vecteurs gé a indice i s'annule, dès que la somme totale des poids est non nulle. C'est le centre de gravité du système de points pondérés, et tout ce qui suit consiste à le calculer sans jamais repasser par les coordonnées.",
+      "texte": "Trois ou quatre points : la somme pondérée s'annule en G.",
+      "ecran": "def_generale",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "dit": "L'arme principale s'appelle l'associativité : on peut regrouper une partie des points en un barycentre partiel, affecté de la somme de leurs poids, puis terminer avec les points restants. Exemple : pour les poids un, deux et trois sur a, bé et cé, on construit d'abord le barycentre de a et bé, de poids total trois, puis le barycentre de ce point et de cé, chacun de poids trois : c'est le milieu du segment qui les joint.",
+      "texte": "Regrouper : H de poids 3, puis G milieu de [HC].",
+      "ecran": "associativite",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "dit": "Le théorème de réduction est la clé de voûte du chapitre : pour n'importe quel point ème, la somme pondérée des vecteurs ème a indice i se réduit à la somme des poids, multipliée par le seul vecteur ème gé. Une somme de plusieurs vecteurs devient un unique vecteur porté par la droite qui joint ème au barycentre. C'est lui qui débloquera toutes les lignes de niveau.",
+      "texte": "Réduction : la somme devient (Σ αi) MG (vecteurs).",
+      "ecran": "reduction",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "dit": "Exemple immédiat : réduire la somme deux vecteurs ème a plus trois vecteurs ème bé. On introduit le barycentre des points a et bé affectés des poids deux et trois. La réduction donne alors cinq vecteurs ème gé, en un seul geste. Sans ce théorème, il aurait fallu choisir un repère et calculer coordonnée par coordonnée.",
+      "texte": "Exemple : 2 MA + 3 MB = 5 MG (vecteurs).",
+      "ecran": "reduction_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p11",
+      "dit": "Une ligne de niveau est l'ensemble des points ème qui vérifient une égalité donnée. Pour la somme des carrés des distances à a et bé, on introduit i, le milieu du segment : la somme devient deux fois le carré de la distance de ème à i, plus la moitié du carré de a bé. Selon que la constante dépasse ou non ce seuil, on obtient un cercle de centre i, le seul point i, ou l'ensemble vide.",
+      "texte": "MA² + MB² = k : cercle de centre I, point I ou vide.",
+      "ecran": "ligne_somme",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "Les autres lignes classiques se traitent par le même milieu i. La différence des carrés des distances donne une droite perpendiculaire à la droite a bé. Le produit scalaire des vecteurs ème a et ème bé donne un cercle de centre i, ou le vide. Et le rapport des distances, quand il diffère de un, donne le cercle d'Apollonius, dont le centre est lui-même un barycentre bien choisi.",
+      "texte": "Différence : droite ; produit : cercle ; rapport : Apollonius.",
+      "ecran": "autres_lignes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "dit": "Exemple complet : la ligne de niveau où la norme de la somme deux vecteurs ème a plus trois vecteurs ème bé vaut dix. La réduction la transforme en cinq fois la distance de ème à gé, où gé est le barycentre des poids deux et trois. Cinq fois cette distance vaut dix, donc la distance vaut deux : la ligne cherchée est le cercle de centre gé et de rayon deux.",
+      "texte": "Exemple : 5 MG = 10, donc le cercle de centre G, rayon 2.",
+      "ecran": "ligne_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p14",
+      "dit": "Depuis quels points voit-on le segment a bé sous un angle donné ? La réponse forme les arcs capables : deux arcs de cercle passant par a et bé, symétriques par rapport à la droite a bé. Sur chacun de ces arcs, l'angle géométrique a ème bé garde exactement la même mesure. C'est le théorème de l'angle inscrit, lu à l'envers : l'angle constant désigne le cercle.",
+      "texte": "Arcs capables : voir [AB] sous un angle constant.",
+      "ecran": "arc_capable",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Exemple : a à l'origine et bé à quatre unités sur l'axe des abscisses, et un angle de pi sur trois, soit soixante degrés. L'angle au centre qui intercepte le segment vaut le double, cent vingt degrés. Le rayon du cercle support vaut quatre divisé par racine de trois, et son centre se place sur la médiatrice du segment, à deux divisé par racine de trois de la droite a bé. Les deux arcs symétriques ainsi construits forment l'ensemble cherché.",
+      "texte": "Exemple : R = 4/√3, angle au centre 120 degrés.",
+      "ecran": "arc_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p16",
+      "dit": "Le cas le plus célèbre est l'angle droit : pour un angle de pi sur deux, l'arc capable devient le cercle de diamètre a bé tout entier, privé de ses extrémités. C'est le théorème du cercle de diamètre : un point voit le segment sous un angle droit exactement quand il est sur ce cercle. Aux extrêmes, un angle nul ou plat renvoie à la droite a bé, privée du segment.",
+      "texte": "Angle droit : le cercle de diamètre [AB].",
+      "ecran": "angle_droit",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Passons aux angles orientés, modulo deux pi. Le modulo deux pi distingue le sens de parcours : selon le côté de la droite a bé où se trouve ème, l'angle orienté des vecteurs ème a et ème bé vaut plus thêta ou moins thêta. Une seule des deux branches symétriques convient donc : l'ensemble se réduit à un seul arc de cercle, l'arc capable orienté.",
+      "texte": "Modulo deux pi : un seul arc, le sens compte.",
+      "ecran": "oriente_2pi",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple : l'ensemble des points où l'angle orienté des vecteurs ème a et ème bé vaut pi sur quatre, modulo deux pi. On construit le cercle passant par a et bé dont l'angle au centre interceptant le segment vaut le double, pi sur deux. Puis on ne conserve que l'arc où le déplacement de a vers bé se fait dans le sens direct : c'est lui, et lui seul, qui réalise l'angle demandé.",
+      "texte": "Exemple : angle au centre pi sur deux, un arc orienté.",
+      "ecran": "oriente_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p19",
+      "dit": "Modulo pi, la situation change encore : ajouter pi revient à renverser le sens, donc le modulo pi ne distingue plus les deux côtés de la droite a bé. Les deux arcs symétriques se réunissent, comme dans le cas géométrique. Deux cas limites : un angle nul modulo pi donne la droite a bé privée du segment, et un angle droit modulo pi donne le cercle de diamètre entier.",
+      "texte": "Modulo pi : les deux arcs se réunissent.",
+      "ecran": "mod_pi",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "dit": "Une transformation du plan est une application bijective du plan dans lui-même : chaque point a une image, et chaque point est l'image d'un seul point. Composer deux transformations donne encore une transformation, et toute transformation possède une réciproque. Exemple élémentaire : l'application qui ajoute un en abscisse et retire deux en ordonnée est une transformation, de réciproque évidente.",
+      "texte": "Transformation : bijective, composée et réciproque.",
+      "ecran": "transformation_def",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "dit": "Le théorème de base compose deux symétries orthogonales. Si leurs axes sont parallèles, le résultat est une translation, dont le vecteur est perpendiculaire aux axes et de longueur deux fois la distance qui les sépare. Si leurs axes se coupent en un point, le résultat est la rotation de centre ce point, d'angle double de l'angle des axes. Réciproquement, toute translation et toute rotation se décomposent ainsi.",
+      "texte": "Deux symétries : une translation ou une rotation.",
+      "ecran": "symetries",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "Les composées élémentaires se retiennent facilement. Deux translations se composent en la translation de vecteur la somme des deux vecteurs. Deux rotations de même centre donnent la rotation d'angle la somme des angles. À centres distincts, on obtient une rotation si la somme des angles est non nulle, et une translation si elle s'annule.",
+      "texte": "Composer : les vecteurs et les angles s'ajoutent.",
+      "ecran": "composees",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "dit": "L'homothétie de centre o et de rapport k envoie chaque point ème sur le point ème prime tel que le vecteur o ème prime vaut k fois le vecteur o ème : elle dilate la figure depuis o. Composer deux homothéties multiplie les rapports : si le produit vaut un, le résultat est une translation ; sinon, c'est une homothétie de rapport le produit. Avec une rotation de même centre, on obtient une similitude directe.",
+      "texte": "Homothétie : les rapports se multiplient en composant.",
+      "ecran": "homothetie",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "Dernière composée au programme : une translation et une symétrie orthogonale donnent une symétrie glissée. On peut la voir comme une symétrie par rapport à un axe déplacé, suivie d'un glissement le long de cet axe : seule la composante du vecteur de translation parallèle à l'axe survit comme glissement, la composante perpendiculaire est absorbée par le déplacement de l'axe.",
+      "texte": "Translation plus symétrie : une symétrie glissée.",
+      "ecran": "symetrie_glissee",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "dit": "Dans un repère, chaque transformation s'écrit avec des formules. La translation ajoute les coordonnées de son vecteur aux coordonnées du point. L'homothétie recentre le calcul sur son centre : l'écart au centre est multiplié par le rapport, en abscisse comme en ordonnée. Savoir passer de la géométrie à ces écritures, et revenir, est le savoir-faire central du chapitre.",
+      "texte": "Analytique : translation et homothétie en formules.",
+      "ecran": "analytique",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Exemple de composée analytique : on applique d'abord èfe, qui ajoute deux en abscisse et retire un en ordonnée, puis gé, qui double les abscisses et triple les ordonnées. On substitue les expressions de èfe dans celles de gé : l'abscisse devient deux ixe plus quatre, et l'ordonnée trois igrec moins trois. La composée se calcule donc comme une substitution, jamais de tête sans cette étape d'écriture.",
+      "texte": "Exemple : la composée par substitution des expressions.",
+      "ecran": "composee_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p27",
+      "dit": "Les transformations servent aussi à démontrer. Exemple célèbre : les médianes d'un triangle sont concourantes. L'homothétie de centre le centre de gravité gé et de rapport moins un demi envoie chaque sommet sur le milieu du côté opposé. Les images des sommets sont donc sur les médianes, et les trois médianes passent par gé, le point invariant de cette homothétie : elles sont concourantes.",
+      "texte": "Les médianes concourent en G, par homothétie.",
+      "ecran": "medianes",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p28",
+      "dit": "Un espace vectoriel sur les réels combine deux opérations : une addition entre vecteurs, et une loi externe qui multiplie un vecteur par un nombre réel, le scalaire. Les exemples de référence sont les réels eux-mêmes, l'ensemble des couples de réels et celui des triplets, qui modélisent le plan et l'espace. Les éléments s'appellent des vecteurs, quel que soit leur habillage concret.",
+      "texte": "Espace vectoriel : addition et loi externe.",
+      "ecran": "espace_vectoriel",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p29",
+      "dit": "Un sous-espace vectoriel est une partie non vide stable par combinaison linéaire : dès que deux vecteurs y sont, toute combinaison d'un scalaire fois l'un, plus l'autre, y reste. En pratique, on vérifie deux choses : le vecteur nul appartient à la partie, et la stabilité par addition et par multiplication par un scalaire. C'est le test standard, à réciter dans cet ordre.",
+      "texte": "Sous-espace : stable par combinaison linéaire.",
+      "ecran": "sous_espace",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Exemple : la droite des couples dont l'ordonnée vaut deux fois l'abscisse, dans l'ensemble des couples de réels. Le vecteur nul y est, car zéro vaut deux fois zéro. Et si l'on prend deux couples de cette droite, toute combinaison garde une ordonnée double de l'abscisse : le calcul le montre en une ligne. C'est donc un sous-espace vectoriel, une droite qui passe par l'origine, comme toutes les droites sous-espaces.",
+      "texte": "Exemple : les couples (x, 2x) forment un sous-espace.",
+      "ecran": "sous_espace_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p31",
+      "dit": "Deux qualités opposées pour une famille de vecteurs. Elle est génératrice si tout vecteur de l'espace s'écrit comme combinaison linéaire de ses éléments : elle suffit à tout fabriquer. Elle est libre si la seule combinaison qui donne le vecteur nul est celle où tous les coefficients sont nuls : aucun de ses vecteurs ne dépend des autres. Une famille qui n'est pas libre est dite liée.",
+      "texte": "Génératrice : tout fabriquer ; libre : aucune dépendance.",
+      "ecran": "familles",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p32",
+      "dit": "Une famille libre et génératrice s'appelle une base : c'est le système de coordonnées idéal de l'espace. Exemple dans les couples de réels : la famille formée du couple un-un et du couple un-moins-un. Pour la liberté, on écrit qu'une combinaison donne le couple nul : la somme et la différence des coefficients sont nulles, donc les deux coefficients sont nuls. La famille est libre.",
+      "texte": "Exemple : la famille (1, 1) et (1, moins 1) est libre.",
+      "ecran": "base_libre",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p33",
+      "dit": "Reste le côté générateur : pour un couple quelconque d'abscisse ixe et d'ordonnée igrec, on cherche les deux coefficients. Le système donne le premier coefficient comme la demi-somme des coordonnées, et le second comme la demi-différence. Ces coefficients existent toujours : tout couple s'écrit donc comme combinaison des deux vecteurs. Libre et génératrice, la famille est une base des couples de réels.",
+      "texte": "Génératrice : les deux coefficients existent toujours.",
+      "ecran": "base_generatrice",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p34",
+      "dit": "Toutes les bases d'un espace ont le même nombre d'éléments : ce nombre commun s'appelle la dimension de l'espace. Les réels sont de dimension un, les couples de dimension deux, les triplets de dimension trois. La base canonique des couples est formée du couple un-zéro et du couple zéro-un : c'est elle qui donne les coordonnées habituelles d'un vecteur du plan.",
+      "texte": "Dimension : le cardinal commun à toutes les bases.",
+      "ecran": "dimension",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p35",
+      "dit": "Une application linéaire transporte la structure : l'image d'une combinaison linéaire est la combinaison linéaire des images, avec les mêmes coefficients. Elle respecte donc l'addition et la multiplication par un scalaire, en un seul test. De un espace dans lui-même, on parle d'endomorphisme ; bijective, d'isomorphisme. Et une application linéaire est entièrement déterminée par les images des vecteurs d'une base.",
+      "texte": "Linéaire : l'image d'une combinaison est la combinaison des images.",
+      "ecran": "application_lineaire",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p36",
+      "dit": "Exemple : l'application qui envoie le couple ixe-igrec sur le couple deux ixe moins igrec, ixe plus trois igrec. On vérifie la linéarité en calculant l'image d'une combinaison : les scalaires ressortent exactement comme la définition l'exige. Comme elle va des couples de réels dans eux-mêmes, c'est un endomorphisme de cet espace.",
+      "texte": "Exemple : un endomorphisme des couples de réels.",
+      "ecran": "endomorphisme_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p37",
+      "dit": "Deux ensembles décrivent une application linéaire. Le noyau rassemble les vecteurs envoyés sur le vecteur nul : l'application est injective exactement quand ce noyau est réduit au seul vecteur nul. L'image rassemble toutes les valeurs atteintes : l'application est surjective exactement quand l'image remplit tout l'espace d'arrivée. Noyau et image sont des sous-espaces, l'un de départ, l'autre d'arrivée.",
+      "texte": "Noyau : envoyé sur zéro ; image : toutes les valeurs.",
+      "ecran": "noyau_image",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p38",
+      "dit": "Exemple complet : l'application qui envoie un triplet sur le couple ixe plus igrec moins zède, deux ixe moins igrec. Son noyau impose igrec égal deux ixe, puis zède égal trois ixe : c'est la droite engendrée par le triplet un-deux-trois. Son image est engendrée par deux couples indépendants : c'est l'ensemble des couples tout entier. Le noyau est de dimension un, l'image de dimension deux.",
+      "texte": "Exemple : noyau Vect(1, 2, 3), image : tous les couples.",
+      "ecran": "noyau_ex",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p39",
+      "dit": "Le théorème du rang relie ces deux dimensions : la dimension de l'espace de départ égale la dimension du noyau plus celle de l'image. Dans notre exemple, trois égale un plus deux : le compte est juste. Ce théorème est un outil de contrôle permanent : si vos deux calculs ne satisfont pas l'égalité, l'un des deux est faux, et il faut le reprendre avant d'aller plus loin.",
+      "texte": "Théorème du rang : le contrôle des dimensions.",
+      "ecran": "rang",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p40",
+      "dit": "Pour terminer, gardez la chaîne complète de ce cours. Le barycentre équilibre des points pondérés et réduit les sommes de vecteurs. Les lignes de niveau et les arcs capables transforment une égalité en un lieu géométrique identifiable. Les transformations se composent selon des règles simples, géométriques ou analytiques. Et l'algèbre linéaire organise le tout : espaces, bases, noyau, image et rang.",
+      "texte": "Barycentres, lieux, transformations, algèbre linéaire.",
+      "ecran": "recap",
+      "pause_apres": 0.5
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Barycentres et lignes de niveau"
+    },
+    {
+      "debut": "p14",
+      "sous_titre": "Arcs capables et transformations du plan",
+      "pont": {
+        "texte": "Partie 2 : arcs capables et transformations du plan.",
+        "dit": "Partie deux : voir un angle constant, puis transformer le plan. Nous commencerons par les arcs capables, ces arcs de cercle depuis lesquels un segment est vu sous un angle fixé, en distinguant soigneusement angles géométriques et angles orientés. Nous composerons ensuite les grandes transformations du plan : symétries, translations, rotations et homothéties."
+      }
+    },
+    {
+      "debut": "p28",
+      "sous_titre": "Espaces vectoriels et applications linéaires",
+      "pont": {
+        "texte": "Partie 3 : espaces vectoriels et applications linéaires.",
+        "dit": "Partie trois : l'algèbre linéaire. Nous allons munir les ensembles de vecteurs d'une structure d'espace vectoriel, apprendre à reconnaître les sous-espaces, les familles libres et les bases, puis étudier les applications linéaires à travers leur noyau et leur image, reliés par le théorème du rang."
+      }
+    }
+  ]
+}
