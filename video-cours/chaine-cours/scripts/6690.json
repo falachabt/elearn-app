@@ -1,0 +1,478 @@
+{
+  "cours": 6690,
+  "titre": "Arithmétique et fractions : diviseurs, puissances et calculs",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Arithmétique et fractions",
+      "titre": "Arithmétique et fractions : diviseurs, puissances et calculs",
+      "sous": "Division euclidienne, nombres premiers et plus grand diviseur commun, puis toutes les opérations sur les fractions",
+      "anim": {
+        "nom": "crible_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le programme du cours",
+      "texte": "D'abord les entiers : divisions, diviseurs et multiples. Ensuite les fractions, de la comparaison aux quatre opérations."
+    },
+    "division": {
+      "type": "formule",
+      "kicker": "La division euclidienne",
+      "tex": "a = b \\times q + r \\qquad 0 \\leq r < b",
+      "note": "a dividende, b diviseur non nul, q quotient, r reste."
+    },
+    "division_ex": {
+      "type": "etape",
+      "kicker": "Exemple · une division euclidienne",
+      "titre": "Cent cinquante-sept divisé par six",
+      "tex": [
+        "157 = 6 \\times 26 + 1",
+        "q = 26 \\qquad r = 1 < 6"
+      ]
+    },
+    "criteres": {
+      "type": "etape",
+      "kicker": "Critères de divisibilité",
+      "titre": "Les deux derniers chiffres décident",
+      "tex": [
+        "\\text{divisible par } 4 \\text{ : deux derniers chiffres}",
+        "\\text{divisible par } 25 \\text{ : finit par } 00, 25, 50, 75"
+      ]
+    },
+    "criteres_ex": {
+      "type": "etape",
+      "kicker": "Exemple · appliquer les critères",
+      "titre": "Deux nombres, deux critères",
+      "tex": [
+        "3724 : 24 = 4 \\times 6 \\text{, divisible par } 4",
+        "3725 : \\text{ finit par } 25 \\text{, divisible par } 25"
+      ]
+    },
+    "puissances": {
+      "type": "formule",
+      "kicker": "Les puissances entières",
+      "tex": "a^n = a \\times a \\times \\cdots \\times a",
+      "note": "n facteurs égaux à a ; a puissance zéro vaut un, si a est non nul."
+    },
+    "puissances_prop": {
+      "type": "etape",
+      "kicker": "Propriétés des puissances",
+      "titre": "Même base, ou produit de bases",
+      "tex": [
+        "a^{n+m} = a^n \\times a^m",
+        "(ab)^n = a^n \\times b^n"
+      ]
+    },
+    "puissances_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un produit de puissances",
+      "titre": "Additionner les exposants",
+      "tex": [
+        "2^3 \\times 2^4 = 2^{3+4} = 2^7 = 128",
+        "\\text{on additionne les exposants}"
+      ]
+    },
+    "premiers": {
+      "type": "formule",
+      "kicker": "Les nombres premiers",
+      "tex": "2,\\ 3,\\ 5,\\ 7,\\ 11,\\ 13,\\ 17,\\ 19,\\ 23,\\ 29",
+      "note": "Exactement deux diviseurs : un et lui-même. Zéro et un exclus.",
+      "anim": {
+        "nom": "crible_fig",
+        "hauteur": 190
+      }
+    },
+    "decomposition": {
+      "type": "etape",
+      "kicker": "Décomposer en facteurs premiers",
+      "titre": "Quatre cent vingt, décomposé pas à pas",
+      "tex": [
+        "420 = 42 \\times 10 = (6 \\times 7) \\times (2 \\times 5)",
+        "420 = (2 \\times 3 \\times 7) \\times (2 \\times 5)",
+        "420 = 2^2 \\times 3 \\times 5 \\times 7"
+      ]
+    },
+    "decomposition_usage": {
+      "type": "phrase",
+      "kicker": "À quoi sert la décomposition",
+      "texte": "La décomposition sert à lister les diviseurs, trouver des multiples communs et simplifier les calculs."
+    },
+    "pgcd_def": {
+      "type": "etape",
+      "kicker": "Le plus grand diviseur commun",
+      "titre": "Le plus grand qui divise les deux",
+      "tex": [
+        "\\text{le plus grand diviseur commun}",
+        "\\text{méthode : lister les diviseurs}"
+      ]
+    },
+    "pgcd_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un plus grand diviseur commun",
+      "titre": "Vingt-quatre et trente-six",
+      "tex": [
+        "24 : 1, 2, 3, 4, 6, 8, 12, 24",
+        "36 : 1, 2, 3, 4, 6, 9, 12, 18, 36",
+        "\\text{communs : } 1, 2, 3, 4, 6, 12 \\Rightarrow PGCD = 12"
+      ]
+    },
+    "ppcm_def": {
+      "type": "etape",
+      "kicker": "Le plus petit multiple commun",
+      "titre": "Le plus petit qui les contient tous deux",
+      "tex": [
+        "\\text{le plus petit multiple commun}",
+        "\\text{méthode : lister les multiples}"
+      ]
+    },
+    "ppcm_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un plus petit multiple commun",
+      "titre": "Six et huit",
+      "tex": [
+        "6 : 6, 12, 18, 24, 30, 36",
+        "8 : 8, 16, 24, 32",
+        "\\text{premier commun : } 24 \\Rightarrow PPCM(6, 8) = 24"
+      ]
+    },
+    "probleme": {
+      "type": "etape",
+      "kicker": "Problème · des rendez-vous périodiques",
+      "titre": "Deux ampoules qui clignotent ensemble",
+      "tex": [
+        "12 : 12, 24, 36 \\qquad 18 : 18, 36",
+        "PPCM(12, 18) = 36"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Division : a = b × q + r, avec r < b",
+        "Critères : deux derniers chiffres",
+        "Puissances : on additionne les exposants",
+        "Premiers : exactement deux diviseurs",
+        "PGCD : diviseurs ; PPCM : multiples"
+      ]
+    },
+    "meme_denominateur": {
+      "type": "formule",
+      "kicker": "Réduire au même dénominateur",
+      "tex": "\\frac{a}{b} = \\frac{a \\times k}{b \\times k}",
+      "note": "Multiplier haut et bas par un même nombre non nul ne change rien."
+    },
+    "meme_denominateur_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un dénominateur commun",
+      "titre": "Trois quarts et cinq sixièmes",
+      "tex": [
+        "\\tfrac{3}{4} = \\tfrac{3 \\times 6}{4 \\times 6} = \\tfrac{18}{24}",
+        "\\tfrac{5}{6} = \\tfrac{5 \\times 4}{6 \\times 4} = \\tfrac{20}{24}"
+      ]
+    },
+    "irreductible": {
+      "type": "formule",
+      "kicker": "Les fractions irréductibles",
+      "tex": "\\frac{42}{56} = \\frac{3}{4}",
+      "note": "On divise haut et bas par le PGCD : ici quatorze."
+    },
+    "comparer": {
+      "type": "etape",
+      "kicker": "Comparer des fractions",
+      "titre": "Même dénominateur, ordre des numérateurs",
+      "tex": [
+        "\\text{au même dénominateur : les numérateurs}",
+        "\\tfrac{a}{b} < \\tfrac{c}{b} \\text{ si } a < c",
+        "\\text{avec } b > 0"
+      ]
+    },
+    "comparer_ex": {
+      "type": "etape",
+      "kicker": "Exemple · comparer deux fractions",
+      "titre": "Cinq sixièmes contre sept neuvièmes",
+      "tex": [
+        "\\tfrac{5}{6} = \\tfrac{45}{54}",
+        "\\tfrac{7}{9} = \\tfrac{42}{54}",
+        "45 > 42 \\Rightarrow \\tfrac{5}{6} > \\tfrac{7}{9}"
+      ]
+    },
+    "encadrer": {
+      "type": "etape",
+      "kicker": "Encadrer une fraction",
+      "titre": "Encadrer dix-sept septièmes au dixième",
+      "tex": [
+        "17 \\div 7 = 2{,}428\\ldots",
+        "2{,}4 < \\tfrac{17}{7} < 2{,}5"
+      ]
+    },
+    "addition": {
+      "type": "formule",
+      "kicker": "Addition et soustraction",
+      "tex": "\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c}",
+      "note": "Même dénominateur : numérateurs additionnés, dénominateur gardé."
+    },
+    "addition_ex": {
+      "type": "etape",
+      "kicker": "Exemple · une addition de fractions",
+      "titre": "Trois quarts plus cinq sixièmes",
+      "tex": [
+        "\\tfrac{3}{4} + \\tfrac{5}{6} = \\tfrac{9}{12} + \\tfrac{10}{12}",
+        "= \\tfrac{19}{12} \\text{, dénominateur commun } 12"
+      ]
+    },
+    "multiplication": {
+      "type": "formule",
+      "kicker": "Multiplier deux fractions",
+      "tex": "\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d}",
+      "note": "On multiplie les numérateurs entre eux, et les dénominateurs entre eux."
+    },
+    "multiplication_ex": {
+      "type": "etape",
+      "kicker": "Exemple · un produit de fractions",
+      "titre": "Deux tiers fois neuf quarts",
+      "tex": [
+        "\\tfrac{2}{3} \\times \\tfrac{9}{4} = \\tfrac{18}{12}",
+        "= \\tfrac{3}{2} \\text{ après simplification par } 6"
+      ]
+    },
+    "division_frac": {
+      "type": "formule",
+      "kicker": "Diviser par une fraction",
+      "tex": "\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c}",
+      "note": "Diviser par une fraction, c'est multiplier par son inverse."
+    },
+    "division_frac_ex": {
+      "type": "etape",
+      "kicker": "Exemple · une division de fractions",
+      "titre": "Sept cinquièmes divisé par deux tiers",
+      "tex": [
+        "\\tfrac{7}{5}\\div\\tfrac{2}{3}=\\tfrac{7}{5}\\times\\tfrac{3}{2}",
+        "= \\tfrac{21}{10}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Même dénominateur : multiplier haut et bas",
+        "Irréductible : diviser par le PGCD",
+        "Comparer : réduire, puis les numérateurs",
+        "Addition : numérateurs, dénominateur gardé",
+        "Division : multiplier par l'inverse"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours d'arithmétique et de fractions. Nous commencerons par les nombres entiers : la division euclidienne, les critères de divisibilité, les puissances, les nombres premiers et leur décomposition, puis le plus grand diviseur commun et le plus petit multiple commun. Nous terminerons par les fractions : les comparer, les encadrer et effectuer les quatre opérations.",
+      "texte": "Arithmétique d'abord, fractions ensuite : le programme.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Le fil conducteur est simple : bien connaître les entiers, c'est préparer tous les calculs sur les fractions. Les diviseurs serviront à simplifier, les multiples à trouver des dénominateurs communs, et la décomposition en facteurs premiers organisera les deux. Chaque notion sera illustrée par un exemple entièrement résolu.",
+      "texte": "Les entiers préparent les fractions.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Effectuer la division euclidienne d'un entier a par un entier b non nul, c'est trouver deux entiers naturels, le quotient q et le reste r, tels que a égale b fois q plus r, avec un reste toujours positif ou nul et strictement inférieur au diviseur b. Cette condition sur le reste est essentielle : c'est elle qui rend le quotient et le reste uniques.",
+      "texte": "a = b × q + r, avec 0 ≤ r < b.",
+      "ecran": "division"
+    },
+    {
+      "id": "p04",
+      "dit": "Exemple : la division euclidienne de cent cinquante-sept par six. Six fois vingt-six donne cent cinquante-six, et il reste un. On écrit donc cent cinquante-sept égale six fois vingt-six plus un. Le quotient est vingt-six et le reste est un, bien inférieur au diviseur six, comme l'exige la définition.",
+      "texte": "157 = 6 × 26 + 1 : quotient 26, reste 1.",
+      "ecran": "division_ex"
+    },
+    {
+      "id": "p05",
+      "dit": "Deux critères très pratiques ne regardent que les deux derniers chiffres d'un nombre. Un entier est divisible par quatre si le nombre formé par ses deux derniers chiffres est divisible par quatre. Il est divisible par vingt-cinq si ce même nombre est divisible par vingt-cinq, c'est-à-dire si le nombre se termine par zéro zéro, vingt-cinq, cinquante ou soixante-quinze.",
+      "texte": "Divisible par 4 ou par 25 : les deux derniers chiffres.",
+      "ecran": "criteres"
+    },
+    {
+      "id": "p06",
+      "dit": "Application immédiate : le nombre trois mille sept cent vingt-quatre est divisible par quatre, car vingt-quatre est divisible par quatre. Le nombre trois mille sept cent vingt-cinq, lui, est divisible par vingt-cinq, car il se termine par vingt-cinq. Aucune division à poser : la fin du nombre suffit à décider.",
+      "texte": "3724 divisible par 4 ; 3725 divisible par 25.",
+      "ecran": "criteres_ex"
+    },
+    {
+      "id": "p07",
+      "dit": "Une puissance entière raccourcit un produit de facteurs égaux : a puissance n est le produit de n facteurs tous égaux à a. Par convention, a puissance zéro vaut un, pour a non nul. L'exposant compte donc simplement combien de fois la base se multiplie par elle-même dans le produit écrit en entier.",
+      "texte": "aⁿ : n facteurs égaux à a ; a⁰ = 1.",
+      "ecran": "puissances"
+    },
+    {
+      "id": "p08",
+      "dit": "Deux propriétés font gagner un temps précieux. Pour une même base, le produit de deux puissances garde la base et additionne les exposants. Pour un produit de deux bases élevé à une puissance, chaque base reçoit l'exposant : le produit a b, le tout à la puissance n, égale a puissance n fois b puissance n.",
+      "texte": "Produit de puissances : les exposants s'additionnent.",
+      "ecran": "puissances_prop"
+    },
+    {
+      "id": "p09",
+      "dit": "Exemple : deux puissance trois fois deux puissance quatre. Même base, on additionne les exposants : deux puissance sept. Et deux puissance sept vaut cent vingt-huit, ce que confirme le calcul direct, huit fois seize. Retenez le réflexe : devant un produit de puissances de même base, ne jamais développer facteur par facteur.",
+      "texte": "2³ × 2⁴ = 2⁷ = 128.",
+      "ecran": "puissances_ex"
+    },
+    {
+      "id": "p10",
+      "dit": "Un nombre entier naturel est premier s'il possède exactement deux diviseurs distincts : un et lui-même. Zéro et un ne sont donc pas premiers, car un n'a qu'un seul diviseur et zéro en a une infinité. Les premiers nombres premiers sont deux, trois, cinq, sept, onze, treize, dix-sept, dix-neuf, vingt-trois et vingt-neuf.",
+      "texte": "Premiers : exactement deux diviseurs, 1 et lui-même.",
+      "ecran": "premiers"
+    },
+    {
+      "id": "p11",
+      "dit": "Tout entier supérieur ou égal à deux s'écrit de manière unique comme un produit de nombres premiers : c'est sa décomposition. Pour quatre cent vingt, on décompose en chaîne : quarante-deux fois dix, puis six fois sept, fois deux fois cinq, et enfin deux au carré fois trois fois cinq fois sept, après avoir regroupé les deux facteurs deux.",
+      "texte": "420 = 2² × 3 × 5 × 7, de manière unique.",
+      "ecran": "decomposition"
+    },
+    {
+      "id": "p12",
+      "dit": "Cette décomposition n'est pas un exercice gratuit : elle permet de déterminer tous les diviseurs d'un nombre, de trouver des multiples communs à plusieurs nombres, et de simplifier de nombreux calculs. C'est l'outil central de toute cette partie d'arithmétique, et il resservira directement pour rendre les fractions irréductibles.",
+      "texte": "Décomposer : diviseurs, multiples, simplifications.",
+      "ecran": "decomposition_usage"
+    },
+    {
+      "id": "p13",
+      "dit": "Le plus grand diviseur commun de deux entiers naturels est, comme son nom l'indique, le plus grand entier qui les divise simultanément tous les deux. La méthode la plus directe consiste à lister tous les diviseurs de chaque nombre, à repérer ceux qui sont communs, puis à choisir le plus grand d'entre eux.",
+      "texte": "PGCD : le plus grand diviseur partagé.",
+      "ecran": "pgcd_def"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple : les diviseurs de vingt-quatre sont un, deux, trois, quatre, six, huit, douze et vingt-quatre. Ceux de trente-six sont un, deux, trois, quatre, six, neuf, douze, dix-huit et trente-six. Les diviseurs communs sont un, deux, trois, quatre, six et douze : le plus grand est douze, qui est donc le plus grand diviseur commun cherché.",
+      "texte": "Diviseurs communs de 24 et 36 : PGCD = 12.",
+      "ecran": "pgcd_ex"
+    },
+    {
+      "id": "p15",
+      "dit": "Le pendant côté multiples : le plus petit multiple commun de deux entiers naturels est le plus petit entier strictement positif qui soit multiple des deux à la fois. La méthode consiste à lister les multiples successifs de chaque nombre, jusqu'à rencontrer le premier multiple qu'ils ont en commun.",
+      "texte": "PPCM : le plus petit multiple partagé.",
+      "ecran": "ppcm_def"
+    },
+    {
+      "id": "p16",
+      "dit": "Exemple : les multiples de six sont six, douze, dix-huit, vingt-quatre, trente, trente-six. Ceux de huit sont huit, seize, vingt-quatre, trente-deux. Le premier multiple rencontré dans les deux listes est vingt-quatre : c'est le plus petit multiple commun de six et de huit. Notez qu'il est inférieur à leur produit, car ils partagent déjà des facteurs.",
+      "texte": "Multiples de 6 et de 8 : PPCM = 24.",
+      "ecran": "ppcm_ex"
+    },
+    {
+      "id": "p17",
+      "dit": "Problème concret : deux ampoules clignotent, la première toutes les douze secondes, la seconde toutes les dix-huit secondes. Si elles clignotent ensemble à midi, quand clignoteront-elles de nouveau ensemble ? On cherche le plus petit multiple commun de douze et de dix-huit : les multiples de douze donnent douze, vingt-quatre, trente-six, et ceux de dix-huit donnent dix-huit, trente-six. Réponse : dans trente-six secondes.",
+      "texte": "Ampoules de 12 s et 18 s : rendez-vous à 36 s.",
+      "ecran": "probleme"
+    },
+    {
+      "id": "p18",
+      "dit": "Récapitulons cette première partie. La division euclidienne écrit a égale b fois q plus r, avec un reste inférieur au diviseur. Les critères par quatre et par vingt-cinq ne lisent que les deux derniers chiffres. Les puissances additionnent leurs exposants à base égale, les nombres premiers se reconnaissent à leurs deux seuls diviseurs, et diviseurs et multiples donnent le plus grand diviseur commun et le plus petit multiple commun.",
+      "texte": "Arithmétique : l'essentiel.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p19",
+      "dit": "Passons aux fractions. Réduire deux fractions au même dénominateur, c'est les transformer en fractions équivalentes qui partagent un même dénominateur. Le principe qui rend cela possible : on ne change pas la valeur d'une fraction en multipliant, ou en divisant, son numérateur et son dénominateur par un même nombre non nul. Pour deux fractions, le produit des dénominateurs fournit toujours un dénominateur commun.",
+      "texte": "Même dénominateur : multiplier haut et bas pareil.",
+      "ecran": "meme_denominateur"
+    },
+    {
+      "id": "p20",
+      "dit": "Exemple : réduire trois quarts et cinq sixièmes au même dénominateur. Le dénominateur commun vaut quatre fois six, soit vingt-quatre. Trois quarts devient trois fois six sur quatre fois six, soit dix-huit vingt-quatrièmes. Cinq sixièmes devient cinq fois quatre sur six fois quatre, soit vingt vingt-quatrièmes. Les deux fractions sont maintenant directement comparables et additionnables.",
+      "texte": "3/4 = 18/24 et 5/6 = 20/24.",
+      "ecran": "meme_denominateur_ex"
+    },
+    {
+      "id": "p21",
+      "dit": "Une fraction est irréductible lorsque son numérateur et son dénominateur n'ont aucun diviseur commun autre que un : ils sont premiers entre eux. Pour rendre une fraction irréductible, on divise le numérateur et le dénominateur par leur plus grand diviseur commun. Ainsi, quarante-deux sur cinquante-six, divisée haut et bas par quatorze, devient trois quarts, qui est irréductible.",
+      "texte": "42/56 = 3/4, après division par le PGCD 14.",
+      "ecran": "irreductible"
+    },
+    {
+      "id": "p22",
+      "dit": "Comparer deux fractions de même dénominateur est immédiat : elles sont rangées dans le même ordre que leurs numérateurs. La plus grande est celle qui a le plus grand numérateur, puisque les parts ont la même taille. Pour des dénominateurs différents, il suffit donc de réduire d'abord au même dénominateur, puis d'appliquer cette règle simple.",
+      "texte": "Même dénominateur : comparer les numérateurs.",
+      "ecran": "comparer"
+    },
+    {
+      "id": "p23",
+      "dit": "Exemple : comparer cinq sixièmes et sept neuvièmes. On réduit au dénominateur commun cinquante-quatre : cinq sixièmes devient quarante-cinq cinquante-quatrièmes, et sept neuvièmes devient quarante-deux cinquante-quatrièmes. Comme quarante-cinq est plus grand que quarante-deux, cinq sixièmes est plus grand que sept neuvièmes. La réduction a transformé une comparaison difficile en évidence.",
+      "texte": "5/6 = 45/54 > 42/54 = 7/9.",
+      "ecran": "comparer_ex"
+    },
+    {
+      "id": "p24",
+      "dit": "Encadrer une fraction entre deux nombres décimaux consécutifs du même ordre, c'est la coincer entre deux décimaux qui se suivent au rang choisi. La méthode : effectuer la division du numérateur par le dénominateur, puis tronquer au rang voulu. Pour dix-sept septièmes, la division donne deux virgule quatre deux huit et ainsi de suite ; tronqué au dixième, on obtient l'encadrement entre deux virgule quatre et deux virgule cinq.",
+      "texte": "2,4 < 17/7 < 2,5 : encadrement au dixième.",
+      "ecran": "encadrer"
+    },
+    {
+      "id": "p25",
+      "dit": "Pour additionner ou soustraire deux fractions de même dénominateur, on additionne ou on soustrait les numérateurs, et on conserve le dénominateur commun. Si les dénominateurs sont différents, on commence toujours par réduire au même dénominateur. Erreur à éviter absolument : additionner les dénominateurs entre eux, ce qui ne correspond à aucune réunion de parts.",
+      "texte": "Addition : numérateurs seuls, dénominateur gardé.",
+      "ecran": "addition"
+    },
+    {
+      "id": "p26",
+      "dit": "Exemple : trois quarts plus cinq sixièmes. Le dénominateur commun le plus simple ici est douze. Trois quarts devient neuf douzièmes, et cinq sixièmes devient dix douzièmes. La somme vaut neuf plus dix, soit dix-neuf douzièmes. Notez que le dénominateur commun douze, multiple commun des deux dénominateurs, donne un calcul plus léger que le produit vingt-quatre.",
+      "texte": "3/4 + 5/6 = 9/12 + 10/12 = 19/12.",
+      "ecran": "addition_ex"
+    },
+    {
+      "id": "p27",
+      "dit": "La multiplication est la plus simple des opérations sur les fractions : on multiplie les numérateurs entre eux, et les dénominateurs entre eux. Aucun dénominateur commun n'est nécessaire. Pensez ensuite à simplifier le résultat, en divisant le numérateur et le dénominateur par un diviseur commun, dès qu'il en existe un.",
+      "texte": "Multiplication : haut × haut, bas × bas.",
+      "ecran": "multiplication"
+    },
+    {
+      "id": "p28",
+      "dit": "Exemple : deux tiers fois neuf quarts. On multiplie : deux fois neuf donne dix-huit au numérateur, et trois fois quatre donne douze au dénominateur, soit dix-huit douzièmes. On simplifie par six : il reste trois demis. Simplifier avant de multiplier, en croisant les facteurs communs, aurait donné le même résultat avec des nombres plus petits.",
+      "texte": "2/3 × 9/4 = 18/12 = 3/2.",
+      "ecran": "multiplication_ex"
+    },
+    {
+      "id": "p29",
+      "dit": "L'inverse d'une fraction non nulle s'obtient en échangeant son numérateur et son dénominateur. Et la règle maîtresse : diviser par une fraction revient à multiplier par son inverse. La division, opération délicate, se transforme ainsi en une multiplication, que l'on sait déjà effectuer et simplifier.",
+      "texte": "Diviser : multiplier par l'inverse.",
+      "ecran": "division_frac"
+    },
+    {
+      "id": "p30",
+      "dit": "Exemple final : sept cinquièmes divisé par deux tiers. On remplace la division par la multiplication par l'inverse de deux tiers, qui est trois demis. Le produit donne sept fois trois au numérateur, soit vingt et un, et cinq fois deux au dénominateur, soit dix : le résultat est vingt et un dixièmes, une fraction plus grande que un, ce qui est cohérent avec une division par un nombre inférieur à un.",
+      "texte": "7/5 ÷ 2/3 = 7/5 × 3/2 = 21/10.",
+      "ecran": "division_frac_ex"
+    },
+    {
+      "id": "p31",
+      "dit": "Pour conclure, retenez la boîte à outils complète des fractions. Réduire au même dénominateur multiplie le haut et le bas par le même nombre. Rendre irréductible divise par le plus grand diviseur commun. Comparer passe par la réduction puis les numérateurs. L'addition garde le dénominateur, la multiplication multiplie tout, et la division se change en multiplication par l'inverse.",
+      "texte": "Fractions : la boîte à outils complète.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Division euclidienne, puissances et nombres premiers"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Diviseurs, multiples communs et fractions équivalentes",
+      "pont": {
+        "texte": "Partie 2 : PGCD, PPCM, puis dénominateur commun et irréductibles.",
+        "dit": "Partie deux : des diviseurs communs aux fractions équivalentes. Nous utiliserons la décomposition en facteurs premiers, nous calculerons le plus grand diviseur commun et le plus petit multiple commun, puis nous réduirons les fractions au même dénominateur et nous les rendrons irréductibles."
+      }
+    },
+    {
+      "debut": "p22",
+      "sous_titre": "Comparer, encadrer et calculer avec les fractions",
+      "pont": {
+        "texte": "Partie 3 : comparer, encadrer, puis les quatre opérations.",
+        "dit": "Partie trois : comparer, encadrer et calculer avec les fractions. Nous rangerons des fractions, nous les encadrerons entre deux décimaux, puis nous effectuerons l'addition, la multiplication et la division, chacune avec un exemple résolu."
+      }
+    }
+  ]
+}
