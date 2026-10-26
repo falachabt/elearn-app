@@ -1,0 +1,772 @@
+{
+ "cours": 5954,
+ "titre": "Le calcul du pH : acides, bases, tampons et mélanges",
+ "matiere": "Chimie",
+ "lecons": [
+  4853,
+  4855,
+  4856,
+  4857,
+  4860,
+  4862,
+  4863
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Le calcul du pH",
+   "titre": "Le calcul du pH des solutions aqueuses",
+   "sous": "Autoprotolyse, acides, bases, tampons et mélanges",
+   "anim": {
+    "nom": "ph",
+    "debut": 7,
+    "cible": 2
+   }
+  },
+  "eau_pouvoirs": {
+   "type": "phrase",
+   "kicker": "L'eau, un solvant à part",
+   "texte": "L'eau est un solvant polaire : charge partielle positive sur les hydrogènes, négative sur l'oxygène. Elle ionise les molécules polaires, dissocie les cristaux, solvate les ions et les disperse dans toute la solution.",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 150
+   }
+  },
+  "autoprotolyse": {
+   "type": "formule",
+   "kicker": "L'autoprotolyse de l'eau",
+   "tex": "2\\,\\mathrm{H_2O} \\rightleftharpoons \\mathrm{H_3O^+} + \\mathrm{OH^-}",
+   "note": "une molécule d'eau cède un proton à une autre : l'eau pure contient des ions"
+  },
+  "produit_ionique": {
+   "type": "formule",
+   "kicker": "Le produit ionique de l'eau",
+   "tex": "K_e = [\\mathrm{H_3O^+}]\\,[\\mathrm{OH^-}] = 10^{-14}\\ \\text{à } 25\\,^\\circ\\mathrm{C}",
+   "note": "pKe = −log Ke = 14 à 25 °C ; Ke ne varie qu'avec la température"
+  },
+  "definition_ph": {
+   "type": "formule",
+   "kicker": "La définition du pH (Sørensen)",
+   "tex": "\\mathrm{pH} = -\\log[\\mathrm{H_3O^+}]",
+   "note": "le cologarithme décimal de la concentration en ions hydronium"
+  },
+  "nature": {
+   "type": "etape",
+   "kicker": "Acide, neutre ou basique ?",
+   "titre": "Tout est affaire de comparaison",
+   "tex": [
+    "\\text{acide : } [\\mathrm{H_3O^+}] > [\\mathrm{OH^-}] \\iff \\mathrm{pH} < \\tfrac{1}{2}\\mathrm{p}K_e",
+    "\\text{neutre : } [\\mathrm{H_3O^+}] = [\\mathrm{OH^-}] \\iff \\mathrm{pH} = \\tfrac{1}{2}\\mathrm{p}K_e",
+    "\\text{basique : } [\\mathrm{H_3O^+}] < [\\mathrm{OH^-}] \\iff \\mathrm{pH} > \\tfrac{1}{2}\\mathrm{p}K_e"
+   ]
+  },
+  "exemple_hcl": {
+   "type": "etape",
+   "kicker": "Premier calcul",
+   "titre": "Un acide fort en action",
+   "tex": [
+    "\\mathrm{HCl} + \\mathrm{H_2O} \\rightarrow \\mathrm{H_3O^+} + \\mathrm{Cl^-}",
+    "[\\mathrm{H_3O^+}] = 0{,}01\\ \\text{mol/L}",
+    "\\mathrm{pH} = -\\log(0{,}01) = 2"
+   ]
+  },
+  "quatre_equations": {
+   "type": "recap",
+   "kicker": "Le cadre général du calcul",
+   "etapes": [
+    "Le produit ionique de l'eau",
+    "La loi d'action de masse (Ka ou Kb)",
+    "La conservation de la matière",
+    "L'électroneutralité de la solution"
+   ]
+  },
+  "acide_fort": {
+   "type": "formule",
+   "kicker": "L'acide fort",
+   "tex": "\\mathrm{HA} + \\mathrm{H_2O} \\rightarrow \\mathrm{H_3O^+} + \\mathrm{A^-}",
+   "note": "dissociation totale, une seule flèche : HCl, HNO₃, H₂SO₄"
+  },
+  "acide_fort_ph": {
+   "type": "etape",
+   "kicker": "Acide fort peu dilué",
+   "titre": "La formule directe",
+   "tex": [
+    "[\\mathrm{H_3O^+}] = x \\cdot C_a",
+    "\\mathrm{pH} = -\\log(x\\,C_a)",
+    "\\text{ex. } \\mathrm{HNO_3}\\ 0{,}05\\ \\text{mol/L} : \\mathrm{pH} \\approx 1{,}30"
+   ]
+  },
+  "acide_fort_dilue": {
+   "type": "etape",
+   "kicker": "Acide fort très dilué",
+   "titre": "L'eau n'est plus négligeable",
+   "tex": [
+    "[\\mathrm{H_3O^+}]^2 - C_a\\,[\\mathrm{H_3O^+}] - K_e = 0",
+    "[\\mathrm{H_3O^+}] = \\frac{C_a + \\sqrt{C_a^2 + 4K_e}}{2}"
+   ]
+  },
+  "acide_faible": {
+   "type": "formule",
+   "kicker": "L'acide faible",
+   "tex": "K_a = \\frac{[\\mathrm{H_3O^+}]\\,[\\mathrm{A^-}]}{[\\mathrm{HA}]}",
+   "note": "dissociation partielle : plus Ka est grand, plus l'acide faible est fort"
+  },
+  "acide_faible_ph": {
+   "type": "etape",
+   "kicker": "Acide faible peu dilué",
+   "titre": "La formule en demi-différence",
+   "tex": [
+    "K_a = \\frac{[\\mathrm{H_3O^+}]^2}{C_a}",
+    "\\mathrm{pH} = \\frac{1}{2}\\left(\\mathrm{p}K_a - \\log C_a\\right)"
+   ]
+  },
+  "exemples_faibles": {
+   "type": "etape",
+   "kicker": "Deux exemples calculés",
+   "titre": "Acétique et benzoïque",
+   "tex": [
+    "\\text{acétique } 0{,}1 : K_a = 1{,}8 \\times 10^{-5},\\ \\mathrm{p}K_a \\approx 4{,}74",
+    "\\mathrm{pH} = \\tfrac{1}{2}(4{,}74 - \\log 0{,}1) \\approx 2{,}87",
+    "\\text{benzoïque } 0{,}2 : K_a = 6{,}3 \\times 10^{-5},\\ \\mathrm{p}K_a \\approx 4{,}20",
+    "\\mathrm{pH} = \\tfrac{1}{2}(4{,}20 - \\log 0{,}2) \\approx 2{,}45"
+   ]
+  },
+  "acide_faible_dilue": {
+   "type": "etape",
+   "kicker": "Acide faible très dilué",
+   "titre": "On garde la conservation",
+   "tex": [
+    "[\\mathrm{HA}] = C_a - [\\mathrm{A^-}]",
+    "[\\mathrm{H_3O^+}]^2 + K_a\\,[\\mathrm{H_3O^+}] - K_a C_a = 0",
+    "[\\mathrm{H_3O^+}] = \\frac{-K_a + \\sqrt{K_a^2 + 4K_a C_a}}{2}"
+   ]
+  },
+  "recap_acides": {
+   "type": "recap",
+   "kicker": "Bilan : les acides",
+   "etapes": [
+    "Acide fort : pH = −log (x Ca), si pH < 6,5",
+    "Acide faible : pH = ½ (pKa − log Ca)",
+    "Contrainte du faible : pH ≤ pKa − 1",
+    "Très dilué : équation du second degré",
+    "Minéraux plutôt forts, organiques faibles"
+   ]
+  },
+  "base_forte": {
+   "type": "formule",
+   "kicker": "La base forte",
+   "tex": "\\mathrm{NaOH} \\rightarrow \\mathrm{Na^+} + \\mathrm{OH^-}",
+   "note": "dissociation totale : NaOH, KOH, Ba(OH)₂ libèrent leurs OH⁻"
+  },
+  "base_forte_ph": {
+   "type": "etape",
+   "kicker": "Base forte peu diluée",
+   "titre": "Passer par le pOH",
+   "tex": [
+    "\\mathrm{pOH} = -\\log[\\mathrm{OH^-}]",
+    "[\\mathrm{OH^-}] = x\\,C_b \\Rightarrow \\mathrm{pH} = \\mathrm{p}K_e + \\log(x\\,C_b)",
+    "\\text{ex. } \\mathrm{NaOH}\\ 0{,}01 : \\mathrm{pOH} = 2,\\ \\mathrm{pH} = 12"
+   ]
+  },
+  "base_forte_diluee": {
+   "type": "etape",
+   "kicker": "Base forte diluée",
+   "titre": "Le second degré, côté bases",
+   "tex": [
+    "[\\mathrm{OH^-}] = \\frac{C_b + \\sqrt{C_b^2 + 4K_e}}{2}",
+    "\\mathrm{pH} = \\mathrm{p}K_e - \\log 2 + \\log\\left(C_b + \\sqrt{C_b^2 + 4K_e}\\right)"
+   ]
+  },
+  "base_faible": {
+   "type": "etape",
+   "kicker": "La base faible",
+   "titre": "Un équilibre avec l'eau",
+   "tex": [
+    "\\mathrm{b} + \\mathrm{H_2O} \\rightleftharpoons \\mathrm{bH^+} + \\mathrm{OH^-}",
+    "K_b = \\frac{[\\mathrm{bH^+}]\\,[\\mathrm{OH^-}]}{[\\mathrm{b}]}"
+   ]
+  },
+  "base_faible_ph": {
+   "type": "etape",
+   "kicker": "Base faible peu diluée",
+   "titre": "La formule symétrique",
+   "tex": [
+    "[\\mathrm{OH^-}] = \\sqrt{K_b\\,C_b}",
+    "\\mathrm{pH} = \\frac{1}{2}\\left(\\mathrm{p}K_e + \\mathrm{p}K_a + \\log C_b\\right)"
+   ]
+  },
+  "exercices_bases": {
+   "type": "etape",
+   "kicker": "Entraînement corrigé",
+   "titre": "Une forte, une faible",
+   "tex": [
+    "\\mathrm{KOH}\\ 0{,}005 : \\mathrm{pOH} \\approx 2{,}30,\\ \\mathrm{pH} \\approx 11{,}70",
+    "\\text{pyridine } 0{,}2,\\ K_b = 1{,}7 \\times 10^{-9} : \\mathrm{pOH} \\approx 4{,}73",
+    "\\mathrm{pH} \\approx 14 - 4{,}73 \\approx 9{,}27"
+   ]
+  },
+  "ampholyte": {
+   "type": "etape",
+   "kicker": "L'ampholyte",
+   "titre": "Acide et base à la fois : HCO₃⁻",
+   "tex": [
+    "2\\,\\mathrm{HCO_3^-} \\rightleftharpoons \\mathrm{H_2CO_3} + \\mathrm{CO_3^{2-}}",
+    "K_{a1} \\cdot K_{a2} = [\\mathrm{H_3O^+}]^2",
+    "\\mathrm{pH} = \\frac{1}{2}\\left(\\mathrm{p}K_{a1} + \\mathrm{p}K_{a2}\\right)"
+   ]
+  },
+  "sels": {
+   "type": "etape",
+   "kicker": "Les sels en solution",
+   "titre": "Quatre familles, quatre comportements",
+   "tex": [
+    "\\mathrm{NaCl} : \\text{ fort/fort} \\Rightarrow \\text{neutre, pH} = 7",
+    "\\mathrm{NH_4Cl} : \\text{ fort/faible} \\Rightarrow \\text{acide faible}",
+    "\\mathrm{CH_3COONa} : \\text{ faible/fort} \\Rightarrow \\text{base faible}",
+    "\\text{faible/faible} : \\mathrm{pH} = \\tfrac{1}{2}\\left(\\mathrm{p}K_{a1} + \\mathrm{p}K_{a2}\\right)"
+   ]
+  },
+  "tampon_def": {
+   "type": "phrase",
+   "kicker": "La solution tampon",
+   "texte": "Un acide faible et sa base conjuguée, en concentrations élevées et voisines : la solution résiste aux variations de pH. Le sang humain, tamponné par le couple acide carbonique / hydrogénocarbonate, garde ainsi son pH à 7,4.",
+   "anim": {
+    "nom": "ph",
+    "debut": 7,
+    "cible": 7.4
+   }
+  },
+  "tampon_principe": {
+   "type": "etape",
+   "kicker": "Le principe d'action",
+   "titre": "Le Chatelier à la rescousse",
+   "tex": [
+    "\\mathrm{HA} \\rightleftharpoons \\mathrm{H^+} + \\mathrm{A^-}",
+    "\\text{ajout d'acide : } \\mathrm{A^-} + \\mathrm{H^+} \\rightarrow \\mathrm{HA}",
+    "\\text{ajout de base : } \\mathrm{HA} \\rightarrow \\mathrm{H^+} + \\mathrm{A^-}"
+   ]
+  },
+  "henderson": {
+   "type": "formule",
+   "kicker": "L'équation de Henderson-Hasselbalch",
+   "tex": "\\mathrm{pH} = \\mathrm{p}K_a + \\log\\frac{[\\mathrm{A^-}]}{[\\mathrm{HA}]}",
+   "note": "elle vaut aussi avec les quantités de matière du couple"
+  },
+  "exemple_tampon": {
+   "type": "etape",
+   "kicker": "Exemple corrigé des leçons",
+   "titre": "Acétique et acétate",
+   "tex": [
+    "\\mathrm{pH} = 4{,}76 + \\log\\frac{0{,}2}{0{,}1}",
+    "= 4{,}76 + \\log 2 \\approx 5{,}06"
+   ]
+  },
+  "capacite": {
+   "type": "phrase",
+   "kicker": "La capacité tampon",
+   "texte": "Un tampon n'est pas inépuisable : sa capacité est la quantité d'acide ou de base qu'il peut absorber avant que le pH ne bouge nettement. Elle grandit avec les concentrations du couple — et la dilution la fait chuter.",
+   "anim": {
+    "nom": "ph",
+    "debut": 5.06,
+    "cible": 5.06
+   }
+  },
+  "preparation": {
+   "type": "recap",
+   "kicker": "Préparer un tampon",
+   "etapes": [
+    "Choisir un acide de pKa proche du pH visé",
+    "Henderson donne le rapport des quantités",
+    "Peser et dissoudre dans un volume connu",
+    "Vérifier le pH au pH-mètre"
+   ]
+  },
+  "recap_partie2": {
+   "type": "recap",
+   "kicker": "Bilan : bases, sels, tampons",
+   "etapes": [
+    "Base forte : pH = pKe + log (x Cb)",
+    "Base faible : pH = ½ (pKe + pKa + log Cb)",
+    "Ampholyte : pH = ½ (pKa1 + pKa2)",
+    "Sel d'acide fort et base forte : neutre",
+    "Tampon : pH = pKa + log ([A⁻]/[HA])"
+   ]
+  },
+  "melanges_reflexe": {
+   "type": "phrase",
+   "kicker": "Le pH des mélanges",
+   "texte": "Le secret des mélanges : identifier toutes les espèces en solution, puis repérer la réaction prépondérante — la plus rapide et la plus quantitative. C'est elle qui fixe le pH final.",
+   "anim": {
+    "nom": "melange",
+    "hauteur": 170
+   }
+  },
+  "deux_acides_forts": {
+   "type": "etape",
+   "kicker": "Deux acides forts",
+   "titre": "Les hydroniums s'additionnent",
+   "tex": [
+    "C_1 = \\frac{C_{01} V_1}{V_1 + V_2}, \\quad C_2 = \\frac{C_{02} V_2}{V_1 + V_2}",
+    "[\\mathrm{H_3O^+}] = C_1 + C_2",
+    "\\mathrm{pH} = -\\log(C_1 + C_2)",
+    "\\text{fort + faible : le fort impose } \\mathrm{pH} = -\\log C_1"
+   ]
+  },
+  "deux_acides_faibles": {
+   "type": "etape",
+   "kicker": "Deux acides faibles",
+   "titre": "Comparer les pKa",
+   "tex": [
+    "\\mathrm{p}K_{a2}-\\mathrm{p}K_{a1} \\geq 4 : \\mathrm{pH} = \\tfrac{1}{2}(\\mathrm{p}K_{a1} - \\log C_1)",
+    "\\mathrm{p}K_{a2} - \\mathrm{p}K_{a1} < 4 : [\\mathrm{H_3O^+}]^2 = C_1 K_{a1} + C_2 K_{a2}"
+   ]
+  },
+  "bases_melanges": {
+   "type": "etape",
+   "kicker": "Mélanges de bases",
+   "titre": "Les hydroxydes s'additionnent aussi",
+   "tex": [
+    "\\text{deux fortes : } \\mathrm{pH} = \\mathrm{p}K_e + \\log(C_1 + C_2)",
+    "\\text{forte + faible : } \\mathrm{pH} = \\mathrm{p}K_e + \\log C_1"
+   ]
+  },
+  "deux_bases_faibles": {
+   "type": "etape",
+   "kicker": "Deux bases faibles",
+   "titre": "Comparer les pKb",
+   "tex": [
+    "\\mathrm{p}K_{b2}-\\mathrm{p}K_{b1} \\geq 4 : \\mathrm{pH} = \\tfrac{1}{2}(\\mathrm{p}K_a + \\mathrm{p}K_e + \\log C_1)",
+    "\\text{sinon : } \\mathrm{pH} = \\mathrm{p}K_e + \\frac{1}{2}\\log\\left(C'_1 K_{b1} + C'_2 K_{b2}\\right)"
+   ]
+  },
+  "acide_base_forts": {
+   "type": "etape",
+   "kicker": "Acide fort contre base forte",
+   "titre": "Tout dépend des quantités",
+   "tex": [
+    "\\mathrm{H_3O^+} + \\mathrm{OH^-} \\rightarrow 2\\,\\mathrm{H_2O}",
+    "n_a > n_b : \\mathrm{pH} = -\\log\\tfrac{n_a - n_b}{V_a + V_b}",
+    "n_a < n_b : \\mathrm{pH} = \\mathrm{p}K_e + \\log\\tfrac{n_b - n_a}{V_a + V_b}",
+    "n_a = n_b : \\mathrm{pH} = \\tfrac{1}{2}\\mathrm{p}K_e = 7"
+   ]
+  },
+  "exercice_melange_forts": {
+   "type": "etape",
+   "kicker": "Exercice des leçons, résolu",
+   "titre": "Égalité parfaite",
+   "tex": [
+    "n_a = 0{,}05 \\times 0{,}100 = 5\\ \\text{mmol}",
+    "n_b = 0{,}1 \\times 0{,}050 = 5\\ \\text{mmol}",
+    "n_a = n_b \\Rightarrow \\mathrm{pH} = 7"
+   ]
+  },
+  "faible_base_forte": {
+   "type": "etape",
+   "kicker": "Acide faible contre base forte",
+   "titre": "Trois cas, trois formules",
+   "tex": [
+    "\\mathrm{AH} + \\mathrm{OH^-} \\rightarrow \\mathrm{A^-} + \\mathrm{H_2O}",
+    "n_a > n_b : \\mathrm{pH} = \\mathrm{p}K_a + \\log\\tfrac{C_b V_b}{C_a V_a - C_b V_b}",
+    "n_a < n_b : \\mathrm{pH} = 14 + \\log\\tfrac{n_b - n_a}{V_a + V_b}",
+    "n_a = n_b : \\mathrm{pH} = \\tfrac{1}{2}\\left(\\mathrm{p}K_e + \\mathrm{p}K_a + \\log\\tfrac{n}{V_a + V_b}\\right)"
+   ]
+  },
+  "exercice_melange_tampon": {
+   "type": "etape",
+   "kicker": "Exercice des leçons, résolu",
+   "titre": "Un tampon né d'un mélange",
+   "tex": [
+    "n_a = 4\\ \\text{mmol}, \\quad n_b = 1\\ \\text{mmol}",
+    "\\text{reste } \\mathrm{AH} : 3\\ \\text{mmol}, \\quad \\text{formé } \\mathrm{A^-} : 1\\ \\text{mmol}",
+    "\\mathrm{pH} = 4{,}74 + \\log\\tfrac{1}{3} \\approx 4{,}27"
+   ]
+  },
+  "conjugue": {
+   "type": "formule",
+   "kicker": "Acide faible et sa base conjuguée",
+   "tex": "\\mathrm{pH} = \\mathrm{p}K_a + \\log\\frac{[\\mathrm{A^-}]}{[\\mathrm{HA}]}",
+   "note": "à l'équilibre : [A⁻] = CbVb/(Va+Vb) et [AH] = CaVa/(Va+Vb)"
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Le pH hors du laboratoire",
+   "texte": "Le sang doit rester à 7,4 pour ses enzymes ; fromages, bières et vins dépendent d'un pH contrôlé ; et le pH des pluies et des eaux révèle l'empreinte de la pollution sur les écosystèmes.",
+   "anim": {
+    "nom": "ph",
+    "debut": 5.6,
+    "cible": 7.4
+   }
+  },
+  "methode_concours": {
+   "type": "recap",
+   "kicker": "La méthode concours",
+   "etapes": [
+    "Identifier le type de solution",
+    "Écrire les équations de réaction",
+    "Construire le tableau d'avancement",
+    "Appliquer la formule adaptée",
+    "Vérifier la cohérence, puis interpréter"
+   ]
+  },
+  "entrainement_final": {
+   "type": "etape",
+   "kicker": "Derniers calculs",
+   "titre": "Tampon et ammoniac",
+   "tex": [
+    "\\text{tampon équimolaire : } \\mathrm{pH} = \\mathrm{p}K_a \\approx 4{,}74",
+    "\\mathrm{NH_3}\\ 0{,}1\\ \\text{mol/L} : \\mathrm{pOH} \\approx 2{,}87",
+    "\\mathrm{pH} \\approx 14 - 2{,}87 \\approx 11{,}13"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Identifier d'abord le type de solution",
+    "Forts : formules directes, avec contrainte",
+    "Faibles : Ka, Kb et second degré",
+    "Tampons : Henderson-Hasselbalch",
+    "Mélanges : la réaction prépondérante"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours entièrement consacré au calcul du pH des solutions aqueuses. Nous partirons de l'eau et de son autoprotolyse, nous apprendrons à calculer le pH des acides et des bases, forts ou faibles, puis celui des sels, des solutions tampons et des mélanges, avec la méthode qui fait la différence aux concours.",
+   "texte": "Le calcul du pH : acides, bases, tampons et mélanges."
+  },
+  {
+   "id": "p02",
+   "ecran": "eau_pouvoirs",
+   "pause_apres": 0.8,
+   "dit": "Tout commence avec l'eau. Sa molécule est polaire : les hydrogènes portent une charge partielle positive, l'oxygène une charge partielle négative. De là viennent ses quatre pouvoirs : ioniser les molécules polaires comme le chlorure d'hydrogène, dissocier les cristaux, solvater les ions en les entourant de molécules d'eau, puis les disperser dans toute la solution.",
+   "texte": "L'eau : un solvant polaire aux quatre pouvoirs."
+  },
+  {
+   "id": "p03",
+   "ecran": "autoprotolyse",
+   "pause_apres": 0.8,
+   "dit": "L'eau pure conduit très légèrement le courant : elle contient donc des ions. Ils naissent de l'autoprotolyse : une molécule d'eau cède un proton, un ion hydrogène, à une autre molécule d'eau. Il se forme un ion hydronium et un ion hydroxyde, et la réaction est un équilibre, symbolisé par la double flèche.",
+   "texte": "2H₂O ⇌ H₃O⁺ + OH⁻ : l'autoprotolyse de l'eau."
+  },
+  {
+   "id": "p04",
+   "ecran": "produit_ionique",
+   "pause_apres": 0.8,
+   "dit": "Cet équilibre possède une constante, le produit ionique de l'eau, noté Ke : c'est le produit des concentrations des ions hydronium et hydroxyde. À vingt-cinq degrés, il vaut dix puissance moins quatorze. Son cologarithme, le pKe, vaut donc quatorze, et Ke ne dépend que de la température.",
+   "texte": "Ke = [H₃O⁺][OH⁻] = 10⁻¹⁴ à 25 °C ; pKe = 14."
+  },
+  {
+   "id": "p05",
+   "ecran": "definition_ph",
+   "pause_apres": 0.8,
+   "dit": "Sørensen a défini le pH comme le cologarithme décimal de la concentration en ions hydronium : pH égale moins log de la concentration en ions hydronium. Retenez la remarque des leçons : cette relation est valable quelle que soit la nature de la solution, acide, neutre ou basique.",
+   "texte": "pH = −log[H₃O⁺], pour toute solution."
+  },
+  {
+   "id": "p06",
+   "ecran": "nature",
+   "pause_apres": 0.8,
+   "dit": "Comment décider de la nature d'une solution ? On compare les deux concentrations. Si les ions hydronium sont plus nombreux que les ions hydroxyde, la solution est acide et son pH est inférieur à la moitié du pKe. À égalité, elle est neutre. Si les ions hydroxyde dominent, elle est basique. À vingt-cinq degrés, la frontière vaut donc sept.",
+   "texte": "Acide si pH < ½pKe ; neutre si égal ; basique si supérieur."
+  },
+  {
+   "id": "p07",
+   "ecran": "exemple_hcl",
+   "pause_apres": 0.8,
+   "dit": "Premier calcul, celui des leçons : le pH d'une solution d'acide chlorhydrique de concentration zéro virgule zéro un mole par litre. L'acide se dissocie complètement : la concentration en ions hydronium vaut zéro virgule zéro un mole par litre. Le pH est le cologarithme de cette valeur, c'est-à-dire deux. La solution est nettement acide.",
+   "texte": "HCl 0,01 mol/L → [H₃O⁺] = 0,01 → pH = 2."
+  },
+  {
+   "id": "p08",
+   "ecran": "quatre_equations",
+   "pause_apres": 0.8,
+   "dit": "Avant d'attaquer les formules, posons le cadre général. Tout calcul de pH repose sur quatre relations : le produit ionique de l'eau, la loi d'action de masse, la conservation de la matière et l'électroneutralité. Combinées, elles mèneraient à une équation du troisième degré : nous passerons donc par des approximations, et chaque formule viendra avec sa contrainte à vérifier.",
+   "texte": "Quatre relations, une équation du 3ᵉ degré : vive les approximations."
+  },
+  {
+   "id": "p09",
+   "ecran": "acide_fort",
+   "pause_apres": 0.8,
+   "dit": "Un acide fort se dissocie complètement dans l'eau : chaque molécule libère son proton, la réaction est totale et s'écrit avec une seule flèche. L'acide chlorhydrique, l'acide nitrique et l'acide sulfurique sont des acides forts. Cette dissociation totale simplifie énormément le calcul du pH.",
+   "texte": "Acide fort : dissociation totale, flèche unique."
+  },
+  {
+   "id": "p10",
+   "ecran": "acide_fort_ph",
+   "pause_apres": 0.8,
+   "dit": "Quand la solution n'est pas trop diluée, les ions hydronium venus de l'eau sont négligeables devant ceux de l'acide : la concentration en ions hydronium égale celle de l'acide, multipliée par le nombre de protons échangés, deux pour un diacide comme l'acide sulfurique. Le pH vaut alors moins log de ce produit. Contrainte à ne jamais oublier : le pH obtenu doit rester inférieur à six virgule cinq.",
+   "texte": "pH = −log(x·Ca), à condition que pH < 6,5."
+  },
+  {
+   "id": "p11",
+   "ecran": "acide_fort_dilue",
+   "pause_apres": 0.8,
+   "dit": "Si l'acide fort est très dilué, l'autoprotolyse de l'eau n'est plus négligeable : il faut garder les deux sources d'ions hydronium. L'électroneutralité et la conservation de la matière conduisent à une équation du second degré, dont la racine positive donne la concentration cherchée, comme le montre l'écran.",
+   "texte": "Très dilué : [H₃O⁺] = (Ca + √(Ca² + 4Ke))/2."
+  },
+  {
+   "id": "p12",
+   "ecran": "acide_faible",
+   "pause_apres": 0.8,
+   "dit": "Un acide faible, lui, ne se dissocie que partiellement : un équilibre s'installe entre l'acide, les ions hydronium et sa base conjuguée. Cet équilibre est décrit par la constante d'acidité, Ka. Plus Ka est élevé, plus l'acide est fort, tout en restant un acide faible : c'est elle qui mesure sa force.",
+   "texte": "Acide faible : un équilibre, une constante Ka."
+  },
+  {
+   "id": "p13",
+   "ecran": "acide_faible_ph",
+   "pause_apres": 0.8,
+   "dit": "Pour un acide faible peu dilué, on suppose l'acide très peu dissocié : sa concentration reste presque égale à la concentration initiale, et Ka devient le carré de la concentration en ions hydronium divisé par la concentration initiale. On en tire la formule de l'écran : le pH vaut la moitié de pKa moins log de la concentration. Double contrainte : pH inférieur ou égal à pKa moins un, et inférieur à six virgule cinq.",
+   "texte": "pH = ½(pKa − log Ca), si pH ≤ pKa − 1 et pH < 6,5."
+  },
+  {
+   "id": "p14",
+   "ecran": "exemples_faibles",
+   "pause_apres": 0.8,
+   "dit": "Deux exemples. L'acide acétique, concentration zéro virgule un, constante Ka égale à un virgule huit fois dix puissance moins cinq, donc pKa voisin de quatre virgule soixante-quatorze : la formule donne un pH d'environ deux virgule quatre-vingt-sept. Et l'acide benzoïque des exercices, concentration zéro virgule deux, Ka égale à six virgule trois fois dix puissance moins cinq : pH d'environ deux virgule quarante-cinq, qui respecte bien la contrainte.",
+   "texte": "Acétique 0,1 M : pH ≈ 2,87 ; benzoïque 0,2 M : pH ≈ 2,45."
+  },
+  {
+   "id": "p15",
+   "ecran": "acide_faible_dilue",
+   "pause_apres": 0.8,
+   "dit": "Si l'acide faible est très dilué, on ne peut plus négliger la part dissociée : la conservation de la matière donne la concentration de l'acide restant, et Ka conduit à une équation du second degré en ions hydronium. Sa racine positive, à l'écran, donne le pH de ces solutions très diluées.",
+   "texte": "Très dilué : [H₃O⁺]² + Ka[H₃O⁺] − Ka·Ca = 0."
+  },
+  {
+   "id": "p16",
+   "ecran": "recap_acides",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons les acides. Fort et peu dilué : pH égale moins log de x fois la concentration, sans dépasser six virgule cinq. Faible et peu dilué : la formule en moitié de pKa moins log de la concentration, valable si le pH reste sous pKa moins un. Très dilué : retour à l'équation du second degré. Et pour reconnaître les forces : les acides minéraux sont plutôt forts, les acides organiques plutôt faibles.",
+   "texte": "Forts : formules directes. Faibles : Ka et contraintes."
+  },
+  {
+   "id": "p17",
+   "ecran": "base_forte",
+   "pause_apres": 0.8,
+   "dit": "Passons aux bases. Une base forte se dissocie complètement dans l'eau en libérant des ions hydroxyde : l'hydroxyde de sodium, l'hydroxyde de potassium et l'hydroxyde de baryum sont les exemples classiques des leçons. Comme pour les acides forts, cette ionisation totale simplifie le calcul.",
+   "texte": "Base forte : ionisation totale, des OH⁻ libérés."
+  },
+  {
+   "id": "p18",
+   "ecran": "base_forte_ph",
+   "pause_apres": 0.8,
+   "dit": "On passe par le pOH, le cologarithme de la concentration en ions hydroxyde, en rappelant que pH plus pOH égale pKe, donc quatorze à vingt-cinq degrés. Pour une base forte peu diluée, la concentration en ions hydroxyde égale celle de la base, fois le nombre d'hydroxydes libérés, et le pH vaut pKe plus log de ce produit. Exemple des leçons : la soude à zéro virgule zéro un donne un pOH de deux, donc un pH de douze. Contrainte : le pH trouvé doit dépasser sept virgule cinq.",
+   "texte": "pH = pKe + log(x·Cb) ; NaOH 0,01 M → pH = 12."
+  },
+  {
+   "id": "p19",
+   "ecran": "base_forte_diluee",
+   "pause_apres": 0.8,
+   "dit": "Base forte mais très diluée : les ions hydroxyde de l'autoprotolyse comptent à nouveau. Le même raisonnement que pour les acides conduit à une racine carrée, et le pH s'écrit avec le produit ionique, comme le montre l'écran. C'est la formule générale, valable à toute dilution.",
+   "texte": "Base forte diluée : [OH⁻] = (Cb + √(Cb² + 4Ke))/2."
+  },
+  {
+   "id": "p20",
+   "ecran": "base_faible",
+   "pause_apres": 0.8,
+   "dit": "Une base faible ne se dissocie que partiellement : elle capte un proton de l'eau et libère un ion hydroxyde, jusqu'à l'équilibre. Cet équilibre est décrit par la constante de basicité, Kb. L'ammoniac et l'ion acétate sont les bases faibles des leçons.",
+   "texte": "Base faible : un équilibre décrit par Kb."
+  },
+  {
+   "id": "p21",
+   "ecran": "base_faible_ph",
+   "pause_apres": 0.8,
+   "dit": "Pour une base faible peu diluée, la dissociation est très faible : la concentration en ions hydroxyde devient la racine carrée du produit de Kb par la concentration. Le pH prend alors la forme symétrique de celle des acides faibles : la moitié de pKe plus pKa plus log de la concentration. Contrainte : le pH trouvé doit dépasser pKa plus un.",
+   "texte": "pH = ½(pKe + pKa + log Cb), si pH > pKa + 1."
+  },
+  {
+   "id": "p22",
+   "ecran": "exercices_bases",
+   "pause_apres": 0.8,
+   "dit": "Deux entraînements. La potasse à zéro virgule zéro zéro cinq mole par litre, base forte : pOH voisin de deux virgule trente, pH voisin de onze virgule soixante-dix. Et la pyridine des exercices, base faible de constante Kb égale à un virgule sept fois dix puissance moins neuf, concentration zéro virgule deux : la formule des bases faibles donne un pOH voisin de quatre virgule soixante-treize, donc un pH voisin de neuf virgule vingt-sept.",
+   "texte": "KOH 0,005 M : pH ≈ 11,70 ; pyridine 0,2 M : pH ≈ 9,27."
+  },
+  {
+   "id": "p23",
+   "ecran": "ampholyte",
+   "pause_apres": 0.8,
+   "dit": "Certaines espèces jouent sur les deux tableaux : les ampholytes, acides et bases à la fois, comme l'ion hydrogénocarbonate. Deux de ses ions réagissent entre eux, et le produit des deux constantes d'acidité donne directement le carré de la concentration en ions hydronium. Résultat remarquable : le pH d'un ampholyte vaut la demi-somme des deux pKa, et il ne dépend pas de la concentration.",
+   "texte": "Ampholyte : pH = ½(pKa1 + pKa2), sans la concentration."
+  },
+  {
+   "id": "p24",
+   "ecran": "sels",
+   "pause_apres": 0.8,
+   "dit": "Un sel se dissocie en ions qui ne sont ni des protons ni des hydroxydes, et son pH dépend des forces de l'acide et de la base qui l'ont formé. Acide fort et base forte, comme le chlorure de sodium : solution neutre. Acide fort et base faible, comme le chlorure d'ammonium : le pH d'un acide faible. Acide faible et base forte, comme l'acétate de sodium : celui d'une base faible. Faible et faible : la demi-somme des deux pKa, indépendante de la concentration.",
+   "texte": "Le pH d'un sel dépend des forces de ses parents."
+  },
+  {
+   "id": "p25",
+   "ecran": "tampon_def",
+   "pause_apres": 0.8,
+   "dit": "Voici maintenant les solutions tampons : elles résistent aux variations de pH quand on leur ajoute un peu d'acide ou de base forte, ou quand on les dilue. Leur secret : un acide faible et sa base conjuguée présents ensemble, en concentrations élevées et voisines. Le sang humain en est l'exemple vital : le couple acide carbonique et ion hydrogénocarbonate y maintient le pH à sept virgule quatre.",
+   "texte": "Tampon : acide faible + base conjuguée ; le sang à 7,4."
+  },
+  {
+   "id": "p26",
+   "ecran": "tampon_principe",
+   "pause_apres": 0.8,
+   "dit": "Comment le tampon absorbe-t-il les chocs ? Par l'équilibre entre l'acide faible et sa base conjuguée, selon le principe de Le Chatelier. Un acide ajouté est capturé par la base conjuguée, qui se transforme en acide faible. Une base ajoutée consomme des ions hydronium, et l'acide faible se dissocie pour les remplacer. Dans les deux cas, le pH bouge à peine.",
+   "texte": "Le Chatelier : le tampon absorbe acides et bases ajoutés."
+  },
+  {
+   "id": "p27",
+   "ecran": "henderson",
+   "pause_apres": 0.8,
+   "dit": "Pour calculer le pH d'un tampon, un outil pratique : l'équation de Henderson-Hasselbalch. Le pH égale le pKa de l'acide faible, plus le log du rapport entre la concentration de la base conjuguée et celle de l'acide. Elle fonctionne aussi avec les quantités de matière, ce qui la rend précieuse pour les mélanges.",
+   "texte": "Henderson-Hasselbalch : pH = pKa + log([A⁻]/[HA])."
+  },
+  {
+   "id": "p28",
+   "ecran": "exemple_tampon",
+   "pause_apres": 0.8,
+   "dit": "L'exemple corrigé des leçons : un tampon contenant l'acide acétique à zéro virgule un mole par litre, de pKa quatre virgule soixante-seize, et l'acétate de sodium à zéro virgule deux. Le rapport des concentrations vaut deux, son log vaut environ zéro virgule trente : le pH vaut quatre virgule soixante-seize plus zéro virgule trente, soit environ cinq virgule zéro six.",
+   "texte": "pH = 4,76 + log 2 ≈ 5,06."
+  },
+  {
+   "id": "p29",
+   "ecran": "capacite",
+   "pause_apres": 0.8,
+   "dit": "Mais un tampon a ses limites : sa capacité est la quantité d'acide ou de base qu'il peut absorber avant que le pH ne change significativement. Plus les concentrations du couple sont élevées, plus la capacité est grande ; la dilution, elle, la réduit. Au-delà de la capacité, le système est saturé et le pH saute brusquement.",
+   "texte": "Capacité tampon : elle croît avec les concentrations."
+  },
+  {
+   "id": "p30",
+   "ecran": "preparation",
+   "pause_apres": 0.8,
+   "dit": "Préparer un tampon suit une méthode en quatre temps : choisir un acide faible dont le pKa est proche du pH souhaité, calculer les quantités avec Henderson-Hasselbalch, peser et dissoudre dans un volume connu, puis vérifier au pH-mètre. Pour viser un pH de quatre virgule sept avec l'acide acétique, le rapport cherché est voisin de un : on prend des concentrations égales, par exemple zéro virgule un mole par litre de chaque espèce.",
+   "texte": "Préparer un tampon de pH 4,7 : rapport voisin de 1."
+  },
+  {
+   "id": "p31",
+   "ecran": "recap_partie2",
+   "pause_apres": 0.8,
+   "dit": "Bilan de cette deuxième partie. Base forte : pH égale pKe plus log de x fois la concentration. Base faible : la formule en demi-somme avec pKe, pKa et log de la concentration. Ampholyte : la demi-somme des deux pKa, sans la concentration. Les sels héritent du comportement de leurs constituants. Et le tampon se calcule par Henderson-Hasselbalch.",
+   "texte": "Bases, sels, tampons : les formules sont en place."
+  },
+  {
+   "id": "p32",
+   "ecran": "melanges_reflexe",
+   "pause_apres": 0.8,
+   "dit": "Dernier grand chantier : les mélanges. Le secret de réussite, disent les leçons, tient en deux gestes : identifier toutes les espèces présentes en solution, puis repérer la réaction prépondérante, la plus rapide et la plus quantitative. C'est elle, et elle seule, qui impose le pH final du mélange.",
+   "texte": "Mélanges : espèces présentes + réaction prépondérante."
+  },
+  {
+   "id": "p33",
+   "ecran": "deux_acides_forts",
+   "pause_apres": 0.8,
+   "dit": "Deux acides forts mélangés ne réagissent pas entre eux : chacun se dissocie, et les ions hydronium s'additionnent, après avoir recalculé chaque concentration dans le volume total. Le pH est le cologarithme de cette somme. Si l'un des deux acides est faible, son apport est presque toujours négligeable : l'acide fort impose son pH.",
+   "texte": "Deux acides forts : pH = −log(C1 + C2)."
+  },
+  {
+   "id": "p34",
+   "ecran": "deux_acides_faibles",
+   "pause_apres": 0.8,
+   "dit": "Deux acides faibles : tout dépend de l'écart entre leurs pKa. Si le premier est plus fort d'au moins quatre unités de pKa, il prédomine et donne le pH par la formule habituelle des acides faibles. Sinon, les deux acides contribuent : le carré de la concentration en ions hydronium égale la somme des produits concentration fois Ka.",
+   "texte": "Deux acides faibles : comparer les pKa."
+  },
+  {
+   "id": "p35",
+   "ecran": "bases_melanges",
+   "pause_apres": 0.8,
+   "dit": "Côté bases, la logique est symétrique. Deux bases fortes : les ions hydroxyde s'additionnent, et le pH vaut pKe plus log de la somme des concentrations finales. Une base forte mélangée à une base faible impose son pH de la même façon, l'apport de la faible étant négligeable.",
+   "texte": "Bases mélangées : la forte impose son pH."
+  },
+  {
+   "id": "p36",
+   "ecran": "deux_bases_faibles",
+   "pause_apres": 0.8,
+   "dit": "Deux bases faibles : si leurs pKb diffèrent d'au moins quatre unités, la plus forte prédomine et la formule des bases faibles s'applique. Sinon, les deux contribuent : le pH vaut pKe plus la moitié du log de la somme des produits concentration fois Kb, comme le détaille l'écran.",
+   "texte": "Deux bases faibles : comparer les pKb."
+  },
+  {
+   "id": "p37",
+   "ecran": "acide_base_forts",
+   "pause_apres": 0.8,
+   "dit": "Le mélange le plus classique : un acide fort et une base forte. La réaction prépondérante est la neutralisation des ions hydronium par les ions hydroxyde, qui donne de l'eau. Tout dépend alors des quantités initiales : acide en excès, on calcule le pH de l'acide restant ; base en excès, celui de la base restante ; quantités égales, la solution est neutre, pH égal à la moitié du pKe.",
+   "texte": "Acide fort + base forte : comparer na et nb."
+  },
+  {
+   "id": "p38",
+   "ecran": "exercice_melange_forts",
+   "pause_apres": 0.8,
+   "dit": "L'exercice des leçons : cent millilitres d'acide chlorhydrique à zéro virgule zéro cinq mole par litre, et cinquante millilitres de potasse à zéro virgule un. Quantité d'acide : cinq millimoles. Quantité de base : cinq millimoles aussi. Égalité parfaite : après neutralisation complète, il ne reste que le sel et l'eau, et le pH vaut sept.",
+   "texte": "na = nb = 5 mmol : neutralisation complète, pH = 7."
+  },
+  {
+   "id": "p39",
+   "ecran": "faible_base_forte",
+   "pause_apres": 0.8,
+   "dit": "Acide faible contre base forte : la réaction prépondérante transforme l'acide faible en sa base conjuguée. Trois cas encore. Acide en excès : il reste un couple acide et base conjuguée, c'est un tampon, on applique Henderson avec les quantités. Base en excès : la base forte restante impose le pH. Quantités égales : il ne reste que la base faible formée, avec sa formule propre.",
+   "texte": "Acide faible + base forte : trois cas selon na et nb."
+  },
+  {
+   "id": "p40",
+   "ecran": "exercice_melange_tampon",
+   "pause_apres": 0.8,
+   "dit": "L'exercice des leçons : vingt millilitres d'acide acétique à zéro virgule deux, dix millilitres de soude à zéro virgule un. L'acide compte quatre millimoles, la base une seule : elle transforme une millimole d'acide en base conjuguée. Restent trois millimoles d'acide et une de base conjuguée : Henderson donne un pH d'environ quatre virgule vingt-sept.",
+   "texte": "Il reste 3 mmol d'acide, 1 mmol de base conjuguée : pH ≈ 4,27."
+  },
+  {
+   "id": "p41",
+   "ecran": "conjugue",
+   "pause_apres": 0.8,
+   "dit": "Dernier cas de mélange, déjà rencontré : un acide faible et sa propre base conjuguée. Chacun garde sa concentration finale, calculée dans le volume total, et Henderson-Hasselbalch donne directement le pH. C'est exactement la situation des solutions tampons de la partie précédente.",
+   "texte": "Acide faible + sa base conjuguée : Henderson direct."
+  },
+  {
+   "id": "p42",
+   "ecran": "applications",
+   "pause_apres": 0.8,
+   "dit": "À quoi sert tout cela hors du laboratoire ? En biologie, le sang doit garder son pH pour que les enzymes travaillent et que l'oxygène soit transporté. Dans l'industrie alimentaire, fromages, bières, vins et conserves exigent un pH maîtrisé. Et pour l'environnement, mesurer le pH des pluies et des eaux permet de suivre l'acidification et la pollution.",
+   "texte": "Sang, agroalimentaire, environnement : le pH partout."
+  },
+  {
+   "id": "p43",
+   "ecran": "methode_concours",
+   "pause_apres": 0.8,
+   "dit": "Pour les concours, les leçons donnent une stratégie en six temps, que voici ramenée à l'essentiel. Identifier le type de solution, écrire les équations, construire le tableau d'avancement, appliquer la formule adaptée, vérifier la cohérence du résultat — un pH négatif ou supérieur à quatorze doit alerter — puis interpréter dans le contexte du problème.",
+   "texte": "La méthode : identifier, écrire, avancer, calculer, vérifier."
+  },
+  {
+   "id": "p44",
+   "ecran": "entrainement_final",
+   "pause_apres": 0.8,
+   "dit": "Deux derniers calculs pour verrouiller. Le tampon équimolaire des exercices, acide acétique et acétate à concentrations égales : le rapport vaut un, son log vaut zéro, le pH égale donc le pKa, environ quatre virgule soixante-quatorze. Et l'ammoniac à zéro virgule un mole par litre, base faible : pOH voisin de deux virgule quatre-vingt-sept, pH voisin de onze virgule treize.",
+   "texte": "Tampon équimolaire : pH = pKa ; NH₃ 0,1 M : pH ≈ 11,13."
+  },
+  {
+   "id": "p45",
+   "ecran": "recap_final",
+   "pause_apres": 0.8,
+   "dit": "Vous disposez maintenant de toute la boîte à outils du pH. Identifier le type de solution avant tout calcul, appliquer la formule des forts ou des faibles sans oublier sa contrainte, traiter les tampons et les mélanges par la réaction prépondérante et Henderson. Il ne reste qu'une chose : vous entraîner, encore et encore.",
+   "texte": "Identifier, appliquer, vérifier : à vous de jouer."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'eau, l'autoprotolyse et le pH des acides"
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Bases, ampholytes, sels et solutions tampons",
+   "pont": {
+    "dit": "Partie deux : bases, ampholytes, sels et solutions tampons. Après les acides, nous passons de l'autre côté de l'échelle : les bases fortes et faibles, puis les espèces à double visage, les sels, et enfin les solutions tampons.",
+    "texte": "Partie 2 : bases, sels et solutions tampons."
+   }
+  },
+  {
+   "debut": "p32",
+   "sous_titre": "Le pH des mélanges et la méthode concours",
+   "pont": {
+    "dit": "Partie trois : le pH des mélanges et la méthode concours. Nous combinons maintenant acides et bases dans une même solution, avant de refermer le cours sur les applications et la stratégie d'épreuve.",
+    "texte": "Partie 3 : mélanges, applications et méthode concours."
+   }
+  }
+ ]
+}
