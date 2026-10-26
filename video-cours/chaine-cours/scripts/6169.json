@@ -1,0 +1,442 @@
+{
+ "cours": 6169,
+ "ecrans": {
+  "amorti_phrase": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "amortie"
+   },
+   "kicker": "Lire les trois régimes",
+   "texte": "Sur-amorti : retour lent. Critique : retour le plus rapide. Sous-amorti : oscillations qui s'éteignent.",
+   "type": "phrase"
+  },
+  "cas_complexe": {
+   "kicker": "Cas trois : racines complexes conjuguées",
+   "tex": [
+    "r^2 + 2r + 5 = 0 \\qquad \\Delta = -16",
+    "r = -1 \\pm 2i",
+    "y_h = e^{-t} \\left( C_1 \\cos 2t + C_2 \\sin 2t \\right)"
+   ],
+   "titre": "Des oscillations dans une enveloppe exponentielle",
+   "type": "etape"
+  },
+  "cas_double": {
+   "kicker": "Cas deux : racine double",
+   "tex": [
+    "r^2 + 4r + 4 = (r + 2)^2 = 0",
+    "r_0 = -2",
+    "y_h = (C_1 + C_2 t) \\, e^{-2t}"
+   ],
+   "titre": "Le facteur t crée la seconde solution",
+   "type": "etape"
+  },
+  "cas_reel": {
+   "kicker": "Cas un : deux racines réelles distinctes",
+   "tex": [
+    "r^2 - 3r + 2 = 0",
+    "r_1 = 1 \\qquad r_2 = 2",
+    "y_h = C_1 e^{t} + C_2 e^{2t}"
+   ],
+   "titre": "Deux exponentielles indépendantes",
+   "type": "etape"
+  },
+  "cauchy2": {
+   "kicker": "Exemple : un problème de Cauchy complet",
+   "tex": [
+    "r^2 + 9 = 0 \\qquad r = \\pm 3i",
+    "y = C_1 \\cos 3t + C_2 \\sin 3t",
+    "y(0) = 2, \\ y'(0) = -3 \\ \\Rightarrow \\ y = 2 \\cos 3t - \\sin 3t"
+   ],
+   "titre": "Oscillateur sans frottement : deux conditions, deux constantes",
+   "type": "etape"
+  },
+  "coeff_procedure": {
+   "kicker": "Coefficients indéterminés : la procédure",
+   "tex": [
+    "\\text{résoudre d'abord l'équation homogène associée}",
+    "\\text{deviner la forme de } y_p \\text{ d'après celle de } f",
+    "\\text{si la forme est déjà dans } y_h \\text{ : multiplier par } x",
+    "\\text{dériver, injecter, identifier les coefficients}"
+   ],
+   "titre": "Quatre étapes, et un piège : la résonance",
+   "type": "etape"
+  },
+  "discriminant": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "signe_parabole_fig"
+   },
+   "kicker": "Le discriminant : la boussole",
+   "note": "Le signe de Δ décide du régime avant tout calcul de racine : c'est le premier réflexe à avoir.",
+   "tex": "\\Delta = b^2 - 4 a c",
+   "type": "formule"
+  },
+  "euler": {
+   "kicker": "L'idée d'Euler : essayer une exponentielle",
+   "tex": [
+    "y = e^{r t}",
+    "y' = r e^{r t} \\qquad y'' = r^2 e^{r t}",
+    "a r^2 + b r + c = 0"
+   ],
+   "titre": "Le problème différentiel devient algébrique",
+   "type": "etape"
+  },
+  "forcees": {
+   "kicker": "Exemple : oscillations forcées",
+   "tex": [
+    "y_h = e^{-x} \\left( C_1 \\cos 2x + C_2 \\sin 2x \\right)",
+    "-4A + 6B = 0 \\qquad -6A - 4B = 4",
+    "y_p = -\\tfrac{6}{13} \\cos 3x - \\tfrac{4}{13} \\sin 3x"
+   ],
+   "titre": "Le système répond à la fréquence imposée",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Pourquoi le second ordre ?",
+   "texte": "Accélération, courbure, retour d'un ressort : dès qu'une force dépend de la position ou de la vitesse, la dérivée seconde entre en scène.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 150
+   }
+  },
+  "lagrange": {
+   "kicker": "Variation des constantes : le système de Lagrange",
+   "tex": [
+    "y_p = K_1(t) \\, y_1(t) + K_2(t) \\, y_2(t)",
+    "K_1' y_1 + K_2' y_2 = 0",
+    "K_1' y_1' + K_2' y_2' = \\tfrac{f(t)}{a}"
+   ],
+   "titre": "Deux conditions pour deux fonctions inconnues",
+   "type": "etape"
+  },
+  "oscillateur": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "ressort"
+   },
+   "kicker": "Application : l'oscillateur harmonique",
+   "note": "Période T = 2π/ω₀ = 2π√(m/k) : indépendante de l'amplitude, pour les petites oscillations.",
+   "tex": "x'' + \\omega_0^2 \\, x = 0 \\qquad \\omega_0 = \\sqrt{\\frac{k}{m}}",
+   "type": "formule"
+  },
+  "polynome": {
+   "kicker": "Exemple : un second membre polynômial",
+   "tex": [
+    "y_p = A x^2 + B x + C",
+    "2A = 4, \\quad -6A + 2B = 0, \\quad 2A - 3B + 2C = 0",
+    "y_p = 2x^2 + 6x + 7"
+   ],
+   "titre": "Deviner un polynôme de même degré",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Solution complète : y = yh + yp",
+    "Variation des constantes : toujours",
+    "Coefficients indéterminés : formes simples",
+    "Résonance : multiplier par x suffit",
+    "Transitoire + permanent : la physique"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Caractéristique : ar² + br + c = 0",
+    "Δ > 0 : deux exponentielles réelles",
+    "Δ = 0 : (C₁ + C₂x)e^(r₀x), critique",
+    "Δ < 0 : e^(αx)(cos βx, sin βx)",
+    "Cauchy : deux conditions fixent C₁, C₂"
+   ],
+   "kicker": "L'homogène : l'essentiel",
+   "type": "recap"
+  },
+  "resonance": {
+   "kicker": "La résonance : multiplier par x au carré",
+   "note": "2 est racine double de l'homogène : la forme naïve Ae^(2x) est déjà solution, elle ne peut pas répondre au second membre.",
+   "tex": "y_p = \\frac{3}{2} \\, x^2 \\, e^{2x}",
+   "type": "formule"
+  },
+  "resonance_forcee": {
+   "kicker": "La résonance forcée",
+   "texte": "Exciter un système à sa pulsation propre : sans amortissement, l'amplitude croît linéairement avec le temps.",
+   "type": "phrase",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 180
+   }
+  },
+  "rlc_ci": {
+   "kicker": "Synthèse RLC : les conditions initiales",
+   "tex": [
+    "A = \\tfrac{8}{125} \\qquad B = 4",
+    "q(t) = \\left( \\tfrac{8}{125} + 4t \\right) e^{-100 t} + q_p(t)",
+    "\\text{transitoire éteint, permanent sinusoïdal}"
+   ],
+   "titre": "Charge et courant nuls au départ",
+   "type": "etape"
+  },
+  "rlc_regimes": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "circuit_rlc"
+   },
+   "kicker": "Le circuit RLC : les trois régimes",
+   "tex": [
+    "\\text{sur-amorti : } R^2 > 4L/C \\text{, retour sans oscillation}",
+    "\\text{critique : } R^2 = 4L/C \\text{, retour le plus rapide}",
+    "\\text{sous-amorti : } R^2 < 4L/C \\text{, oscillations amorties}"
+   ],
+   "titre": "Même classification que le discriminant",
+   "type": "etape"
+  },
+  "rlc_synthese": {
+   "kicker": "Synthèse : un circuit RLC complet",
+   "tex": [
+    "q'' + 200 q' + 10000 q = 1000 \\sin 50t",
+    "q_h = (A + B t) \\, e^{-100 t} \\qquad \\Delta = 0",
+    "q_p = \\tfrac{1}{125} \\left( -8 \\cos 50t + 6 \\sin 50t \\right)"
+   ],
+   "titre": "Régime critique, excitation sinusoïdale",
+   "type": "etape"
+  },
+  "standard": {
+   "kicker": "La forme standard",
+   "note": "a ≠ 0, sinon l'ordre chute. Si f(x) = 0, l'équation est homogène : elle décrit le système libre.",
+   "tex": "a \\, y'' + b \\, y' + c \\, y = f(x)",
+   "type": "formule"
+  },
+  "structure": {
+   "kicker": "La structure de la solution",
+   "tex": [
+    "y = y_h + y_p",
+    "a y_h'' + b y_h' + c y_h = 0",
+    "\\text{libre : } y_h \\qquad \\text{forcée : } y_p"
+   ],
+   "titre": "Réponse propre, plus réponse au forçage",
+   "type": "etape"
+  },
+  "suspension": {
+   "kicker": "Étude de cas : une suspension de voiture",
+   "tex": [
+    "x'' + 5x' + 40x = 0 \\qquad \\Delta = -135",
+    "r = -2{,}5 \\pm 5{,}81 \\, i",
+    "x(t) = e^{-2{,}5 t} \\left( A \\cos 5{,}81 t + B \\sin 5{,}81 t \\right)"
+   ],
+   "titre": "Mille kilogrammes, ressort et amortisseur",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "amortie"
+   },
+   "kicker": "Mathématique · Équations différentielles",
+   "sous": "Équation caractéristique, discriminant, second membre : oscillateurs, circuits RLC et résonance",
+   "titre": "Le second ordre à coefficients constants : trois régimes, une méthode",
+   "type": "titre"
+  },
+  "variation_exemple": {
+   "kicker": "Exemple : variation des constantes",
+   "tex": [
+    "y_h = C_1 e^{t} + C_2 e^{2t}",
+    "K_1' = -e^{2t} \\qquad K_2' = e^{t}",
+    "y_p = \\tfrac{1}{2} e^{3t}"
+   ],
+   "titre": "Un second membre exponentiel",
+   "type": "etape"
+  },
+  "variation_principe": {
+   "kicker": "L'idée de Lagrange",
+   "texte": "Rendre variables les constantes de la solution homogène : la réponse libre devient le vocabulaire de la réponse forcée.",
+   "type": "phrase",
+   "anim": {
+    "nom": "derive_fig",
+    "hauteur": 150
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'équation homogène et ses trois régimes"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Cauchy, RLC et solutions particulières",
+   "pont": {
+    "texte": "Partie 2 : Cauchy, RLC et solutions particulières.",
+    "dit": "Partie deux : compléter l'équation homogène, puis attaquer le second membre. Un problème de Cauchy complet et les régimes du circuit résistance-bobine-condensateur bouclent le monde libre. Ensuite, place au forçage : la variation des constantes de Lagrange, puis la devinette des coefficients indéterminés, avec son piège signature, la résonance."
+   }
+  },
+  {
+   "debut": "p19",
+   "sous_titre": "La physique des solutions : oscillateurs et résonance",
+   "pont": {
+    "texte": "Partie 3 : oscillateurs, suspension, circuit et résonance.",
+    "dit": "Partie trois : la physique des solutions. Oscillations forcées, oscillateur harmonique, amortissement et suspension de voiture, circuit complet en régime critique et résonance forcée : nous lirons chaque solution comme un physicien, en séparant ce qui s'éteint, le transitoire, de ce qui persiste, le permanent."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équations différentielles linéaires du second ordre à coefficients constants. Un pendule qui oscille, un circuit qui vibre, une voiture qui absorbe une bosse : ces phénomènes parlent le même langage, celui de la dérivée seconde. Nous construirons la méthode complète : d'abord l'équation homogène et son équation caractéristique, qui livre trois régimes selon le signe du discriminant, puis le second membre, avec la variation des constantes et les coefficients indéterminés.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Second ordre : trois régimes, une méthode."
+  },
+  {
+   "dit": "Pourquoi le second ordre apparaît-il partout ? Parce que la loi fondamentale de la dynamique relie la force à l'accélération, et que l'accélération est la dérivée seconde de la position. Dès qu'une force dépend de la position, comme un ressort, ou de la vitesse, comme un frottement fluide, l'équation du mouvement contient la fonction, sa dérivée et sa dérivée seconde. C'est le cas du système masse-ressort-amortisseur, notre fil rouge, et du circuit électrique qui lui ressemble trait pour trait.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Newton : l'accélération est une dérivée seconde."
+  },
+  {
+   "dit": "La forme standard s'écrit : un coefficient constant fois la dérivée seconde, plus un coefficient fois la dérivée première, plus un coefficient fois la fonction, égale un second membre donné. Les trois coefficients sont des constantes réelles, et le premier ne doit jamais être nul, sinon l'équation retombe au premier ordre. Si le second membre est nul, l'équation est homogène : elle décrit le système libre, livré à lui-même. Sinon, elle décrit le système forcé, et le second membre est l'influence extérieure.",
+   "ecran": "standard",
+   "id": "p03",
+   "texte": "a·y′′ + b·y′ + c·y = f(x), avec a ≠ 0."
+  },
+  {
+   "dit": "Toute la méthode repose sur une décomposition : la solution générale de l'équation complète est la somme de la solution générale de l'équation homogène et d'une solution particulière de l'équation complète. La partie homogène décrit la réponse propre du système, ses vibrations naturelles, et elle porte les deux constantes que fixeront les conditions initiales. La partie particulière décrit la réponse spécifique au forçage. Trouver la première, puis une seule de la seconde : voilà le programme des deux parties du cours.",
+   "ecran": "structure",
+   "id": "p04",
+   "texte": "y = yh + yp : libre, plus forcée."
+  },
+  {
+   "dit": "L'idée d'Euler pour résoudre l'équation homogène est d'une simplicité géniale : chercher des solutions sous forme d'exponentielle, car la dérivée d'une exponentielle lui est proportionnelle. Posons la fonction égale à l'exponentielle de erre fois té. Sa dérivée première apporte un facteur erre, sa dérivée seconde un facteur erre au carré. En injectant dans l'équation, l'exponentielle, jamais nulle, se factorise, et il reste une simple équation du second degré en erre : l'équation caractéristique. Le problème différentiel est devenu algébrique.",
+   "ecran": "euler",
+   "id": "p05",
+   "texte": "Essayer e^(rt) : naît la caractéristique."
+  },
+  {
+   "dit": "L'équation caractéristique se lit à travers un seul nombre : son discriminant, le carré du coefficient du milieu moins quatre fois le produit des deux autres. Son signe décide de tout, avant même de calculer les racines. Positif : deux racines réelles distinctes. Nul : une racine double, le cas frontière. Négatif : deux racines complexes conjuguées. Trois signes, trois régimes physiques : retour sans oscillation, retour critique, ou oscillations amorties. C'est le premier réflexe à acquérir.",
+   "ecran": "discriminant",
+   "id": "p06",
+   "texte": "Δ = b² − 4ac : son signe décide du régime."
+  },
+  {
+   "dit": "Premier cas : discriminant strictement positif, deux racines réelles distinctes. Chacune fournit une solution exponentielle, et par superposition, toute combinaison des deux est encore solution : c'est la solution générale. Sur l'exemple du cours, les racines valent un et deux, et la solution est une combinaison de l'exponentielle de té et de l'exponentielle de deux té. Physiquement, ce régime est apériodique : selon le signe des racines, décroissance pure vers l'équilibre, ou croissance instable.",
+   "ecran": "cas_reel",
+   "id": "p07",
+   "texte": "Δ > 0 : yh = C₁e^(r₁t) + C₂e^(r₂t)."
+  },
+  {
+   "dit": "Deuxième cas : discriminant nul, une racine double. Il manque alors une seconde solution indépendante, car une équation du second ordre exige deux constantes. La réduction d'ordre la fournit : multiplier l'exponentielle par té donne une fonction nouvelle, linéairement indépendante, et la solution générale devient un polynôme de degré un en té, multipliant l'exponentielle de la racine double. Sur l'exemple, racine moins deux : c'est le régime d'amortissement critique, le retour à l'équilibre le plus rapide sans oscillation, celui des portes qui se referment doucement.",
+   "ecran": "cas_double",
+   "id": "p08",
+   "texte": "Δ = 0 : yh = (C₁ + C₂t)e^(r₀t), critique."
+  },
+  {
+   "dit": "Troisième cas : discriminant strictement négatif, deux racines complexes conjuguées, de partie réelle alpha et de partie imaginaire bêta en valeur absolue. La formule d'Euler transforme les exponentielles complexes en cosinus et sinus : la solution réelle est une oscillation de pulsation bêta, enveloppée par l'exponentielle de alpha fois té. Sur l'exemple, alpha vaut moins un et bêta deux : des oscillations de pulsation deux, dont l'amplitude décroît comme l'exponentielle de moins té, comme une corde de guitare qui s'éteint.",
+   "ecran": "cas_complexe",
+   "id": "p09",
+   "texte": "Δ < 0 : oscillations × e^(αt)."
+  },
+  {
+   "dit": "Assemblons avec un problème de Cauchy complet : un oscillateur sans frottement, de caractéristique racines imaginaires pures plus ou moins trois i. La solution générale combine cosinus et sinus de trois té. La première condition, position deux à l'instant zéro, fixe le coefficient du cosinus à deux. La seconde, vitesse moins trois, donne moins trois pour le coefficient du sinus. Le mouvement est une oscillation pure et perpétuelle, de période deux pi sur trois : sans frottement, rien ne s'amortit.",
+   "ecran": "cauchy2",
+   "id": "p10",
+   "texte": "Cauchy : y = 2cos(3t) − sin(3t), T = 2π/3."
+  },
+  {
+   "dit": "Le circuit résistance-bobine-condensateur en série obéit exactement à la même équation, avec l'inductance pour premier coefficient, la résistance pour deuxième, et l'inverse de la capacité pour troisième. La classification est identique : résistance forte, régime sur-amorti sans oscillation ; résistance ajustée, régime critique ; résistance faible, régime sous-amorti avec des oscillations de charge qui décroissent. Un seul discriminant gouverne donc la mécanique comme l'électricité : c'est la force de l'abstraction.",
+   "ecran": "rlc_regimes",
+   "id": "p11",
+   "texte": "RLC : R² face à 4L/C, trois régimes."
+  },
+  {
+   "dit": "Récapitulons le bloc de l'équation homogène. Pour l'équation homogène, on écrit l'équation caractéristique, on calcule le discriminant, et son signe donne la forme de la solution : deux exponentielles réelles, une exponentielle corrigée par un facteur té, ou des oscillations dans une enveloppe exponentielle. Les deux constantes se fixent ensuite par les deux conditions initiales du problème de Cauchy. Cette solution homogène est la réponse libre du système : tout le reste du cours consiste à lui ajouter la réponse au forçage.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Passons au second membre. L'idée de Lagrange, la variation des constantes, part de la solution homogène déjà connue, écrite comme combinaison de deux solutions de base. Au lieu de garder les coefficients constants, on les rend variables : on cherche une solution particulière où ces coefficients sont devenus des fonctions du temps, capables de s'adapter à l'influence extérieure. On utilise ainsi le vocabulaire des solutions libres pour construire la réponse forcée, et la méthode marche pour n'importe quel second membre continu.",
+   "ecran": "variation_principe",
+   "id": "p13",
+   "texte": "Lagrange : les constantes deviennent fonctions."
+  },
+  {
+   "dit": "La mise en œuvre impose deux conditions. La première, librement choisie, simplifie la dérivée première en annulant les termes en dérivées des nouvelles fonctions. La seconde vient de l'équation elle-même : après injection, tous les termes sans dérivée s'annulent, précisément parce que les solutions de base vérifient l'équation homogène, et il ne reste qu'une relation entre les dérivées cherchées et le second membre. On obtient un système de deux équations, dont le déterminant est le wronskien des solutions de base, jamais nul pour des solutions indépendantes.",
+   "ecran": "lagrange",
+   "id": "p14",
+   "texte": "Le système de Lagrange détermine K₁′ et K₂′."
+  },
+  {
+   "dit": "Exemple complet : un second membre exponentielle de trois té, pour une équation homogène de racines un et deux. Le système de Lagrange donne, pour les dérivées des deux fonctions, moins l'exponentielle de deux té et l'exponentielle de té. En intégrant, avec des constantes choisies nulles puisqu'une seule solution particulière suffit, on obtient une solution particulière égale à la moitié de l'exponentielle de trois té. La solution générale complète ajoute ce terme aux deux exponentielles libres de l'homogène.",
+   "ecran": "variation_exemple",
+   "id": "p15",
+   "texte": "Variation : yp = (1/2)e^(3t)."
+  },
+  {
+   "dit": "Quand le second membre a une forme simple, polynôme, exponentielle, sinus ou cosinus, une méthode plus rapide existe : les coefficients indéterminés. On devine une solution particulière de même forme que le second membre, avec des coefficients inconnus, on dérive, on injecte, et on identifie. Le piège est la résonance : si la forme devinée est déjà solution de l'équation homogène, elle donne zéro et ne peut pas répondre au second membre ; il faut alors la multiplier par ixe, autant de fois que la multiplicité de la racine l'exige.",
+   "ecran": "coeff_procedure",
+   "id": "p16",
+   "texte": "Deviner la forme, identifier les coefficients."
+  },
+  {
+   "dit": "Premier exemple de devinette : un second membre polynômial, quatre ixe au carré, pour une équation homogène de racines un et deux. Aucun polynôme n'est dans la solution homogène, donc on devine un polynôme complet de même degré, avec trois coefficients à déterminer. L'injection donne un système triangulaire : le coefficient dominant vaut deux, le suivant six, le terme constant sept. La solution particulière est donc deux ixe au carré plus six ixe plus sept, et la vérification par réinjection est immédiate.",
+   "ecran": "polynome",
+   "id": "p17",
+   "texte": "Polynôme : yp = 2x² + 6x + 7."
+  },
+  {
+   "dit": "Exemple de résonance pure : un second membre en exponentielle de deux ixe, alors que deux est racine double de l'équation homogène. La forme naïve est déjà solution libre, et même multipliée une fois par ixe elle l'est encore : il faut multiplier par ixe au carré. Le calcul donne un coefficient de trois demis. Physiquement, cette croissance en ixe au carré multipliant l'exponentielle est la signature de la résonance : le forçage, accordé sur la fréquence propre du système, accumule son effet au lieu de se compenser.",
+   "ecran": "resonance",
+   "id": "p18",
+   "texte": "Résonance : yp = (3/2)x²e^(2x)."
+  },
+  {
+   "dit": "Exemple d'oscillations forcées : un second membre en sinus de trois ixe, pour un oscillateur amorti de pulsation propre deux. On devine une combinaison de cosinus et de sinus de trois ixe, les deux à la fois, car la dérivation échange cosinus et sinus. L'identification donne moins six treizièmes pour le cosinus et moins quatre treizièmes pour le sinus. Au bout du compte, la partie homogène s'éteint exponentiellement : c'est le régime transitoire. Il ne reste que la réponse particulière : le système oscille à la fréquence imposée, trois, et non à sa fréquence propre, deux.",
+   "ecran": "forcees",
+   "id": "p19",
+   "texte": "Forcé : transitoire éteint, réponse à 3 rad/s."
+  },
+  {
+   "dit": "Application reine : l'oscillateur harmonique, une masse au bout d'un ressort sans frottement. L'équation oppose l'accélération à la position, avec la pulsation propre égale à la racine carrée du rapport de la raideur à la masse. La solution est une oscillation sinusoïdale perpétuelle, de période deux pi divisé par la pulsation propre : allonger la masse ralentit le mouvement, raidir le ressort l'accélère. Le pendule simple, pour les petites oscillations, suit la même loi, avec la gravité et la longueur à la place du ressort.",
+   "ecran": "oscillateur",
+   "id": "p20",
+   "texte": "Oscillateur : ω₀ = √(k/m), T = 2π/ω₀."
+  },
+  {
+   "dit": "Ajoutons le frottement : l'oscillateur devient amorti, et le discriminant sépare à nouveau les destins. Sur-amorti, le retour à l'équilibre est lent et sans oscillation. Critique, il est le plus rapide possible, le réglage visé pour les amortisseurs bien conçus. Sous-amorti, le système oscille, mais chaque oscillation est plus petite que la précédente, l'énergie se dissipant dans le frottement. Toute la conception d'une suspension consiste à naviguer entre confort et tenue de route, donc à placer le discriminant au bon endroit.",
+   "ecran": "amorti_phrase",
+   "id": "p21",
+   "texte": "Trois régimes : lent, critique, oscillant."
+  },
+  {
+   "dit": "Étude de cas : la suspension d'une voiture de mille kilogrammes, avec un ressort de quarante mille newtons par mètre et un amortisseur de cinq mille newtons seconde par mètre. L'équation réduite a pour discriminant vingt-cinq moins cent soixante, soit moins cent trente-cinq : régime sous-amorti. Les racines ont pour partie réelle moins deux virgule cinq et pour pulsation environ cinq virgule quatre-vingt-un, soit une fréquence proche de zéro virgule quatre-vingt-douze hertz. L'amplitude décroît avec un temps caractéristique de zéro virgule quatre seconde : la bosse est absorbée en quelques oscillations brèves.",
+   "ecran": "suspension",
+   "id": "p22",
+   "texte": "Suspension : Δ = −135, f ≈ 0,92 Hz."
+  },
+  {
+   "dit": "Synthèse finale : un circuit complet, d'inductance zéro virgule un henry, de résistance vingt ohms et de capacité un millième de farad, excité par une tension sinusoïdale. L'équation réduite a un discriminant exactement nul : le circuit est en régime critique, et sa solution homogène est un polynôme de degré un multiplié par l'exponentielle de moins cent té, un transitoire très bref. La solution particulière cherchée en cosinus et sinus de cinquante té donne, après identification, moins huit sur cent vingt-cinq pour le cosinus et six sur cent vingt-cinq pour le sinus.",
+   "ecran": "rlc_synthese",
+   "id": "p23",
+   "texte": "RLC critique : Δ = 0, transitoire en e^(−100t)."
+  },
+  {
+   "dit": "Il reste à appliquer les conditions initiales, charge et courant nuls au départ. La charge initiale fixe la première constante à huit sur cent vingt-cinq, et la condition sur la dérivée donne quatre pour la seconde. La solution complète est donc la somme du transitoire critique, qui s'éteint en quelques centièmes de seconde, et du régime permanent sinusoïdal, qui persiste tant que la source alimente le circuit. Transitoire plus permanent : c'est la lecture physique de toute solution complète de ce cours.",
+   "ecran": "rlc_ci",
+   "id": "p24",
+   "texte": "RLC : A = 8/125, B = 4, permanent sinusoïdal."
+  },
+  {
+   "dit": "Un dernier phénomène relie tout le cours : la résonance forcée. Quand la pulsation de l'excitation coïncide avec la pulsation propre et que l'amortissement est absent ou faible, la solution particulière fait intervenir un facteur temps qui multiplie l'oscillation : l'amplitude croît sans limite en théorie. En pratique, l'amortissement la plafonne, mais elle peut rester dangereusement grande : c'est la leçon retenue pour les ponts, les bâtiments et les circuits accordés, où l'on éloigne soigneusement les fréquences propres des excitations prévisibles.",
+   "ecran": "resonance_forcee",
+   "id": "p25",
+   "texte": "Résonance : l'amplitude croît avec le temps."
+  },
+  {
+   "dit": "Pour conclure : face à une équation du second ordre à coefficients constants, écrivez la caractéristique, lisez le discriminant, construisez la solution homogène, puis ajoutez une solution particulière par la variation des constantes si le second membre est quelconque, ou par les coefficients indéterminés s'il est simple, en surveillant la résonance. Lisez enfin la solution comme un physicien : un transitoire qui s'éteint, un permanent qui persiste, et des constantes qui racontent les conditions de départ.",
+   "ecran": "recap",
+   "id": "p26",
+   "texte": "Second ordre : à retenir."
+  }
+ ],
+ "titre": "Le second ordre à coefficients constants : trois régimes, une méthode"
+}
