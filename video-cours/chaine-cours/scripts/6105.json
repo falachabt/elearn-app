@@ -1,0 +1,504 @@
+{
+ "cours": 6105,
+ "titre": "Les fonctions : domaine, familles usuelles, limites et continuité",
+ "matiere": "Mathématiques générales (concours ESSEC)",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours ESSEC · Mathématiques générales",
+   "titre": "Les fonctions : domaine, familles usuelles, limites et continuité",
+   "sous": "Des droites aux exponentielles et aux logarithmes, jusqu'aux limites et à la continuité",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 250
+   }
+  },
+  "definition_fonction": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'une fonction ?",
+   "tex": "y = f(x), \\quad x \\in D_f",
+   "note": "À chaque x du domaine, un unique y : l'image · Exemple : f(x) = x², f(2) = 4, f(−1) = 1."
+  },
+  "domaine_image": {
+   "type": "etape",
+   "kicker": "Domaine et image",
+   "titre": "Les entrées acceptées, les sorties possibles",
+   "tex": [
+    "f(x)=\\sqrt{x} : D_f=[0,+\\infty[ \\quad Im_f=[0,+\\infty[",
+    "f(x)=x^2 : f(2)=4, \\ f(-1)=1, \\ f(0)=0"
+   ]
+  },
+  "lineaire": {
+   "type": "formule",
+   "kicker": "La fonction linéaire",
+   "tex": "f(x)=a\\,x",
+   "note": "a : coefficient directeur, la pente · Droite par l'origine · a > 0 croissante, a < 0 décroissante."
+  },
+  "affine": {
+   "type": "formule",
+   "kicker": "La fonction affine",
+   "tex": "f(x)=a\\,x+b",
+   "note": "b : ordonnée à l'origine, valeur de f en 0 · Exemple : coût total = 5x + 1 000."
+  },
+  "ex_affine": {
+   "type": "etape",
+   "kicker": "Exemples · lire une droite",
+   "titre": "Température et demande : pente et ordonnée en action",
+   "tex": [
+    "T(t)=-2t+25 : T(5)=15 \\quad T(t)=15 \\Rightarrow t=5\\ \\text{h}",
+    "D(p) : (10,\\ 1000),\\ (15,\\ 800) \\Rightarrow a=\\tfrac{800-1000}{15-10}=-40",
+    "D(p)=1400-40p \\Rightarrow D(20)=600"
+   ]
+  },
+  "quadratique": {
+   "type": "formule",
+   "kicker": "La fonction quadratique",
+   "tex": "f(x)=a x^2+b x+c, \\quad a\\neq 0",
+   "note": "Le graphe est une parabole : a > 0 vers le haut, a < 0 vers le bas."
+  },
+  "canonique": {
+   "type": "etape",
+   "kicker": "Forme canonique et sommet",
+   "titre": "Le sommet (α, β) rend la parabole lisible",
+   "tex": [
+    "f(x)=a(x-\\alpha)^2+\\beta, \\quad \\alpha=-\\tfrac{b}{2a}, \\quad \\beta=f(\\alpha)=-\\tfrac{\\Delta}{4a}",
+    "\\Delta=b^2-4ac",
+    "2x^2-4x+1=2(x-1)^2-1, \\quad \\text{sommet } (1,\\ -1)"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 160
+   }
+  },
+  "discriminant": {
+   "type": "etape",
+   "kicker": "Le discriminant et les racines",
+   "titre": "Δ compte les traversées de l'axe des abscisses",
+   "tex": [
+    "\\Delta>0 : \\text{deux racines } x=\\tfrac{-b\\pm\\sqrt{\\Delta}}{2a}",
+    "\\Delta=0 : \\text{une racine double}",
+    "\\Delta<0 : \\text{aucune racine réelle}"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_quad": {
+   "type": "etape",
+   "kicker": "Exemple complet · une parabole et un projectile",
+   "titre": "Tout se lit : sommet, racines, maximum",
+   "tex": [
+    "-x^2+6x-5=-(x-3)^2+4 \\qquad \\Delta=36-20=16",
+    "\\text{racines : } x=\\tfrac{6\\pm 4}{2}, \\text{ soit } 1 \\text{ et } 5",
+    "h(t)=-4{,}9t^2+v_0 t : \\text{maximum en } t=\\tfrac{v_0}{9{,}8}"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 150
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Fonction : une entrée, une image unique",
+    "Linéaire ax, affine ax + b : pente et origine",
+    "Quadratique : sommet (α, β), forme canonique",
+    "Discriminant Δ : le nombre de racines"
+   ]
+  },
+  "exponentielle": {
+   "type": "formule",
+   "kicker": "La fonction exponentielle",
+   "tex": "f(x)=a^x, \\quad a>0, \\ a\\neq 1",
+   "note": "a > 1 : croissance · 0 < a < 1 : décroissance · Base e : (eˣ)′ = eˣ.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 180
+   }
+  },
+  "exp_proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des exponentielles",
+   "titre": "Les règles des puissances, domaine et image",
+   "tex": [
+    "a^0=1 \\qquad a^x \\cdot a^y=a^{x+y} \\qquad (a^x)^y=a^{xy}",
+    "e\\approx 2{,}71828 \\qquad (e^x)'=e^x \\qquad D=\\mathbb{R}, \\ Im=]0,+\\infty["
+   ]
+  },
+  "ex_bacteries": {
+   "type": "etape",
+   "kicker": "Études de cas · croissance et décroissance",
+   "titre": "Bactéries qui doublent, isotope qui s'éteint",
+   "tex": [
+    "N(t)=100\\times 2^t \\Rightarrow N(5)=100\\times 32=3200",
+    "M(20)=100\\times \\tfrac{1}{4}=25\\ \\text{g après deux demi-vies}"
+   ],
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 140
+   }
+  },
+  "logarithme": {
+   "type": "formule",
+   "kicker": "La fonction logarithme",
+   "tex": "\\log_a(x)=y \\iff a^y=x",
+   "note": "x > 0, a > 0, a ≠ 1 · Base 10 : log · Base e : ln · log₂(8) = 3, ln(e) = 1, log(100) = 2.",
+   "anim": {
+    "nom": "log_courbes_fig",
+    "hauteur": 180
+   }
+  },
+  "log_proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des logarithmes",
+   "titre": "Transformer les opérations, et la dérivée de ln",
+   "tex": [
+    "\\log_a(xy)=\\log_a x+\\log_a y \\qquad \\log(10\\times 100)=3",
+    "\\log_a\\tfrac{x}{y}=\\log_a x-\\log_a y \\qquad \\ln\\tfrac{e}{e^2}=-1",
+    "\\log_a(x^p)=p\\log_a x \\qquad \\log 1000=3",
+    "\\log_a x=\\tfrac{\\log_b x}{\\log_b a} \\qquad (\\ln x)'=\\tfrac{1}{x}"
+   ]
+  },
+  "ex_log": {
+   "type": "etape",
+   "kicker": "Exemple · une équation logarithmique",
+   "titre": "Le domaine décide entre les candidats",
+   "tex": [
+    "\\log_2 x+\\log_2(x-2)=3 \\iff \\log_2[x(x-2)]=3",
+    "x(x-2)=2^3=8 \\iff x^2-2x-8=0 \\iff x\\in\\{4,\\ -2\\}",
+    "D=\\{x>2\\} \\Rightarrow x=4 \\qquad \\ln(x^2-4) : D=]-\\infty,-2[\\cup]2,+\\infty["
+   ]
+  },
+  "methodes_domaine": {
+   "type": "phrase",
+   "kicker": "Déterminer domaine et image · méthodes",
+   "texte": "Trois méthodes se complètent : l'analyse algébrique des interdits, la lecture du graphique, et l'étude des variations pour l'image.",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 140
+   }
+  },
+  "domaine_image2": {
+   "type": "etape",
+   "kicker": "Domaine et image · quatre références",
+   "titre": "Polynôme, rationnelle, racines : les couples à connaître",
+   "tex": [
+    "f(x)=x^2+2x+1=(x+1)^2 : D=\\mathbb{R}, \\ Im=[0,+\\infty)",
+    "g(x)=\\tfrac{1}{x-2} : D=\\mathbb{R}\\setminus\\{2\\}, \\ Im=\\mathbb{R}\\setminus\\{0\\}",
+    "h(x)=\\sqrt{x} : D=[0,+\\infty), \\ Im=[0,+\\infty)",
+    "i(x)=\\sqrt{4-x^2} : D=[-2,\\ 2], \\ Im=[0,\\ 2]"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Exponentielle aˣ : domaine ℝ, image ]0, +∞[",
+    "Logarithme : inverse, défini pour x > 0",
+    "log d'un produit = somme des logs",
+    "Domaine : dénominateur, racine, logarithme"
+   ]
+  },
+  "limite_def": {
+   "type": "formule",
+   "kicker": "Les limites · définition",
+   "tex": "\\lim_{x\\to a} f(x)=L",
+   "note": "La limite en a existe si limite à droite et limite à gauche coïncident.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 170
+   }
+  },
+  "limites_methodes": {
+   "type": "phrase",
+   "kicker": "Calculer une limite · techniques",
+   "texte": "Substitution directe si la fonction est continue, factorisation et simplification devant une forme indéterminée, limites usuelles connues par cœur.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 140
+   }
+  },
+  "limite_ex": {
+   "type": "etape",
+   "kicker": "Exemples · trois calculs de limites",
+   "titre": "Latérales différentes, factorisation, degrés comparés",
+   "tex": [
+    "\\lim_{x\\to 0^+}\\tfrac{|x|}{x}=1 \\qquad \\lim_{x\\to 0^-}\\tfrac{|x|}{x}=-1",
+    "\\lim_{x\\to 2}\\tfrac{x^2-4}{x-2}=\\lim_{x\\to 2}(x+2)=4",
+    "\\lim_{x\\to 0}\\tfrac{\\sin x}{x}=1 \\qquad \\lim_{x\\to+\\infty}\\tfrac{x^2+2x+1}{x^3-1}=0"
+   ]
+  },
+  "continuite_def": {
+   "type": "formule",
+   "kicker": "La continuité · définition",
+   "tex": "\\lim_{x\\to a} f(x)=f(a)",
+   "note": "Trois conditions : f(a) définie, la limite en a existe, et les deux sont égales."
+  },
+  "theoremes_continuite": {
+   "type": "etape",
+   "kicker": "Théorèmes sur la continuité",
+   "titre": "La continuité se propage par les opérations",
+   "tex": [
+    "f,\\ g \\text{ continues en } a \\Rightarrow f+g, \\ fg, \\ \\tfrac{f}{g} \\text{ continues } (g(a)\\neq 0)",
+    "g\\circ f \\text{ continue : } f \\text{ en } a, \\ g \\text{ en } f(a)",
+    "\\exp, \\ \\ln, \\ \\sin, \\ \\cos \\text{ : continues sur leur domaine}"
+   ]
+  },
+  "discontinuites": {
+   "type": "etape",
+   "kicker": "Les types de discontinuités",
+   "titre": "Saut, amovible, infinie : trois façons de rompre",
+   "tex": [
+    "\\text{saut : partie entière, limites latérales différentes}",
+    "f(x)=\\tfrac{x^2-1}{x-1}=x+1 \\ (x\\neq 1) : \\text{amovible en } 1",
+    "f(x)=\\tfrac{1}{x} : \\text{infinie en } 0, \\text{asymptote verticale}"
+   ],
+   "anim": {
+    "nom": "discontinuites_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_continuite": {
+   "type": "etape",
+   "kicker": "Exemple · réparer une discontinuité",
+   "titre": "Poser la bonne valeur au point manquant",
+   "tex": [
+    "f(x)=\\tfrac{x^2-4}{x-2}=x+2 \\ (x\\neq 2), \\quad \\lim_{x\\to 2} f(x)=4",
+    "f(2):=4 \\Rightarrow \\text{continue en } 2 \\qquad x^3+2x-1 \\text{ : continu sur } \\mathbb{R}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Fonction : une entrée, une image unique",
+    "Droites : a et b · Parabole : sommet et Δ",
+    "Exponentielle et logarithme : deux inverses",
+    "Domaine : traquer les interdits",
+    "Continuité : la limite en a vaut f(a)"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques générales pour le concours de l'ESSEC, consacré aux fonctions. Nous construirons le socle complet de l'analyse : ce qu'est une fonction, son domaine et son image, les familles usuelles, des droites aux exponentielles et aux logarithmes, puis les deux idées qui préparent le calcul différentiel : les limites et la continuité.",
+   "texte": "Les fonctions : le socle de l'analyse pour l'ESSEC.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Une fonction est une machine : elle reçoit une valeur en entrée, l'argument, et produit une valeur unique en sortie, l'image. Formellement, elle associe à chaque élément ixe de son domaine de définition un unique élément igrec d'un ensemble d'arrivée, noté igrec égale f de ixe. L'unicité de l'image est le point crucial : une relation qui donnerait deux sorties pour une même entrée n'est pas une fonction. Pour f de ixe égale ixe au carré, par exemple, f de deux vaut quatre et f de moins un vaut un.",
+   "texte": "Une entrée, une seule image : y = f(x).",
+   "ecran": "definition_fonction",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Le domaine est l'ensemble des entrées acceptées, et l'image l'ensemble des sorties possibles. La racine carrée, par exemple, n'accepte que les nombres positifs ou nuls : son domaine est l'intervalle zéro, plus l'infini, et son image est exactement le même intervalle. Sur un graphique, le domaine se lit par projection sur l'axe des abscisses, et l'image sur l'axe des ordonnées. Retenir dès maintenant ce couple domaine-image accompagnera chaque famille de fonctions du cours.",
+   "texte": "Domaine : les entrées possibles. Image : les sorties atteintes.",
+   "ecran": "domaine_image",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "La fonction linéaire est l'essence de la proportionnalité : f de ixe égale a fois ixe. Le coefficient a est la pente de la droite, qui passe toujours par l'origine : positif, la droite monte ; négatif, elle descend. Exemple concret : un trajet payé deux euros par kilomètre suit la fonction prix égale deux ixe. Une entreprise qui produit à cinq euros l'objet a un coût total de cinq ixe, soit cinq cents euros pour cent objets produits.",
+   "texte": "f(x) = ax : la proportionnalité, droite par l'origine.",
+   "ecran": "lineaire",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "La fonction affine ajoute une constante à la partie linéaire : f de ixe égale a ixe plus b. La droite ne passe plus forcément par l'origine, et b est l'ordonnée à l'origine, la valeur prise en zéro. C'est le modèle des coûts avec frais fixes : mille euros de coûts fixes et cinq euros par objet donnent un coût total de cinq ixe plus mille, où le mille se paie même si l'on ne produit rien.",
+   "texte": "f(x) = ax + b : b, la valeur en zéro.",
+   "ecran": "affine",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Deux lectures d'une même droite. La température suit moins deux fois le temps plus vingt-cinq : le moins deux dit qu'elle baisse de deux degrés par heure, et vingt-cinq est la température initiale. Après cinq heures, elle vaut quinze degrés, et c'est précisément à cinq heures qu'elle atteint quinze degrés. En économie, la demande baisse quand le prix monte : mille unités à dix euros et huit cents à quinze euros donnent une pente de moins quarante, une demande de mille quatre cents moins quarante fois le prix, et six cents unités prévues à vingt euros.",
+   "texte": "Température et demande : lire pente et ordonnée.",
+   "ecran": "ex_affine",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p07",
+   "dit": "La fonction quadratique est le polynôme de degré deux : a ixe carré plus b ixe plus c, avec a non nul, sans quoi ce n'est plus une parabole. Son graphe est une parabole : tournée vers le haut si a est positif, vers le bas si a est négatif. Elle modélise par exemple la trajectoire d'un projectile, un coût de production, ou le périmètre optimal d'un terrain.",
+   "texte": "f(x) = ax² + bx + c, a ≠ 0 : la parabole.",
+   "ecran": "quadratique",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "La forme canonique rend la parabole lisible : a facteur de ixe moins alpha, le tout au carré, plus bêta. Alpha est l'abscisse du sommet, moins b sur deux a ; bêta est l'ordonnée du sommet, la valeur extrême de la fonction, et la droite verticale d'abscisse alpha est l'axe de symétrie. Exemple : deux ixe carré moins quatre ixe plus un s'écrit deux facteur de ixe moins un au carré, moins un : le sommet est au point de coordonnées un et moins un, et c'est un minimum.",
+   "texte": "Forme canonique : le sommet devient visible.",
+   "ecran": "canonique",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Le discriminant, delta égale b carré moins quatre a c, décide du nombre de racines, les points où la parabole traverse l'axe des abscisses. Positif : deux racines distinctes, données par la formule avec la racine carrée de delta. Nul : une racine double, la parabole est tangente à l'axe. Négatif : aucune racine réelle, la parabole ne touche pas l'axe et garde un signe constant.",
+   "texte": "Δ décide : deux racines, une double, ou aucune.",
+   "ecran": "discriminant",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Appliquons tout sur moins ixe carré plus six ixe moins cinq : la forme canonique est moins, facteur de ixe moins trois au carré, plus quatre ; le sommet est en trois, quatre, et c'est un maximum. Le discriminant vaut seize, et les racines sont un et cinq. Autre application : un projectile a une hauteur en moins quatre virgule neuf fois le temps au carré plus la vitesse initiale fois le temps ; son maximum est atteint quand le temps vaut la vitesse initiale divisée par neuf virgule huit. Et pour clôturer mille mètres carrés avec le moins de grillage possible, c'est le carré qui est optimal.",
+   "texte": "Sommet (3, 4), racines 1 et 5 : tout se lit.",
+   "ecran": "ex_quad",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons cette première partie. Une fonction associe à chaque entrée une image unique ; son domaine et son image délimitent son territoire. La fonction linéaire traduit la proportionnalité, l'affine ajoute des frais fixes, et la quadratique se lit par sa forme canonique : sommet, axe de symétrie, et discriminant pour compter les racines.",
+   "texte": "Partie 1 : fonctions, droites et paraboles.",
+   "ecran": "recap1",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p12",
+   "dit": "La fonction exponentielle place la variable en exposant : f de ixe égale a puissance ixe, avec a positif et différent de un. Si a est supérieur à un, la fonction croît, et de plus en plus vite ; si a est entre zéro et un, elle décroît vers zéro. Parmi toutes les bases, la base e, le nombre d'Euler, joue un rôle unique : l'exponentielle de base e est égale à sa propre dérivée, ce qui simplifie énormément les calculs. Ses applications sont partout : croissance d'une population, désintégration radioactive, intérêts composés, début d'une épidémie.",
+   "texte": "aˣ : la variable est en exposant, e ≈ 2,71828.",
+   "ecran": "exponentielle",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Les règles de calcul des puissances restent valables avec des exposants réels : a puissance zéro vaut un, le produit de deux puissances de même base additionne les exposants, le quotient les soustrait, et une puissance de puissance multiplie les exposants. Le domaine d'une exponentielle est l'ensemble des réels tout entier, et son image est l'intervalle zéro, plus l'infini : une exponentielle ne s'annule jamais et ne devient jamais négative.",
+   "texte": "Puissances : additionner ou multiplier les exposants.",
+   "ecran": "exp_proprietes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Étude de cas : une colonie démarre à cent bactéries et double toutes les heures. Après t heures, l'effectif est cent fois deux puissance t ; après cinq heures, cent fois trente-deux, soit trois mille deux cents bactéries. Même forme, sens inverse : cent grammes d'un isotope dont la demi-vie est de dix ans ne pèsent plus que vingt-cinq grammes après vingt ans, c'est-à-dire après deux demi-vies. L'exponentielle décrit aussi bien ce qui explose que ce qui s'éteint.",
+   "texte": "100 × 2⁵ = 3 200 bactéries · 100 g → 25 g en 20 ans.",
+   "ecran": "ex_bacteries",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Le logarithme est l'inverse de l'exponentielle : le logarithme en base a de ixe est l'exposant auquel il faut élever a pour obtenir ixe. Il n'existe que pour ixe strictement positif. Deux bases dominent : le logarithme décimal, en base dix, et le logarithme népérien, en base e, noté l n. Ainsi, le logarithme en base deux de huit vaut trois, car deux à la puissance trois fait huit ; le logarithme népérien de e vaut un ; et le logarithme décimal de cent vaut deux.",
+   "texte": "logₐ(x) : à quelle puissance élever a pour obtenir x ?",
+   "ecran": "logarithme",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Les logarithmes transforment les opérations : le logarithme d'un produit est la somme des logarithmes, celui d'un quotient est leur différence, et celui d'une puissance fait descendre l'exposant en facteur. La formule de changement de base permet de tout ramener à une base connue, par exemple le logarithme népérien. Enfin, la dérivée du logarithme népérien est la fonction inverse, un sur ixe, et celle du logarithme en base a est un sur ixe logarithme de a : un pont direct vers le calcul intégral.",
+   "texte": "Produit → somme, quotient → différence, puissance → facteur.",
+   "ecran": "log_proprietes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Résolvons l'équation : logarithme en base deux de ixe, plus logarithme en base deux de ixe moins deux, égale trois. Le domaine exige d'abord ixe strictement supérieur à deux. La propriété du produit donne alors ixe fois ixe moins deux égale huit, soit ixe carré moins deux ixe moins huit égale zéro : les candidats sont quatre et moins deux. Le domaine élimine moins deux : la seule solution est quatre. Même réflexe pour le domaine de logarithme de ixe carré moins quatre : il faut ixe carré supérieur à quatre, donc ixe inférieur à moins deux ou supérieur à deux.",
+   "texte": "log₂(x) + log₂(x − 2) = 3 → x = 4, le domaine tranche.",
+   "ecran": "ex_log",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p18",
+   "dit": "Déterminer un domaine, c'est traquer les interdits : un dénominateur ne doit jamais s'annuler, l'intérieur d'une racine carrée doit rester positif ou nul, et l'argument d'un logarithme doit rester strictement positif. Trois méthodes se complètent : l'analyse algébrique de ces interdits, la lecture du graphique, et l'étude des variations, qui sert surtout à déterminer l'image, entre les extrema et les comportements aux bornes du domaine.",
+   "texte": "Domaine : traquer dénominateurs, racines et logarithmes.",
+   "ecran": "methodes_domaine",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Quatre couples domaine-image à savoir produire sans hésiter. Le polynôme ixe carré plus deux ixe plus un est le carré de ixe plus un : domaine tous les réels, image à partir de zéro. La fonction un sur ixe moins deux exclut deux du domaine et zéro de l'image. La racine carrée vit sur les positifs, en domaine comme en image. Et racine de quatre moins ixe carré n'existe qu'entre moins deux et deux, avec des valeurs entre zéro et deux : c'est un demi-cercle.",
+   "texte": "Quatre couples domaine-image de référence.",
+   "ecran": "domaine_image2",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons cette deuxième partie. L'exponentielle met la variable en exposant et ne prend que des valeurs strictement positives ; le logarithme est son inverse, défini sur les réels strictement positifs, et ses propriétés transforment les produits en sommes et les puissances en facteurs. Le domaine se trouve en traquant les interdits, et l'image en étudiant les variations de la fonction.",
+   "texte": "Partie 2 : l'essentiel à retenir.",
+   "ecran": "recap2",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p21",
+   "dit": "Une limite décrit une approche : quand ixe se rapproche d'une valeur a, sans forcément l'atteindre, vers quelle valeur f de ixe se rapproche-t-elle ? On distingue la limite à droite, par valeurs supérieures, et la limite à gauche, par valeurs inférieures : la limite en a n'existe que si les deux coïncident. Pour une fonction définie et continue en a, la limite est simplement la valeur au point ; ailleurs, la limite décrit le comportement même là où la fonction n'existe pas.",
+   "texte": "lim f(x) = L : approcher a, par la droite et par la gauche.",
+   "ecran": "limite_def",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Pour calculer une limite, on commence par la substitution directe quand la fonction est continue au point. Si une forme indéterminée apparaît, comme zéro sur zéro, on factorise et on simplifie avant de substituer à nouveau. Certaines limites usuelles se connaissent par cœur, comme sinus de ixe sur ixe, qui tend vers un quand ixe tend vers zéro. La règle de l'Hôpital, qui dérive numérateur et dénominateur, viendra compléter ces outils dans un chapitre ultérieur.",
+   "texte": "Substituer, factoriser, simplifier : l'ordre des réflexes.",
+   "ecran": "limites_methodes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "dit": "Trois calculs types. La fonction valeur absolue de ixe sur ixe vaut un à droite de zéro et moins un à gauche : les deux limites latérales diffèrent, donc il n'y a pas de limite en zéro. La fraction ixe carré moins quatre sur ixe moins deux se factorise en ixe moins deux facteur de ixe plus deux ; après simplification, la limite en deux vaut quatre, alors même que la fonction n'est pas définie en deux. Enfin, à l'infini, le degré du dénominateur l'emporte : un polynôme de degré deux divisé par un polynôme de degré trois tend vers zéro.",
+   "texte": "Pas de limite en 0 pour |x|/x · limite 4 en 2 après factorisation.",
+   "ecran": "limite_ex",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p24",
+   "dit": "Une fonction est continue en un point a si l'on peut tracer son graphe sans lever le crayon autour de ce point. Formellement, trois conditions doivent tenir ensemble : f de a est définie, la limite de f en a existe, et cette limite est exactement f de a. Si l'une des trois manque, il y a discontinuité en ce point. Les fonctions élémentaires, polynômes, exponentielles, logarithmiques et trigonométriques, sont continues sur tout leur domaine de définition.",
+   "texte": "Continue en a : la limite en a égale f(a).",
+   "ecran": "continuite_def",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "La continuité se propage par les opérations : la somme, le produit et le quotient de fonctions continues restent continus, tant que le dénominateur ne s'annule pas, et la composée de deux fonctions continues est continue. En pratique, on ne démontre presque jamais la continuité à la main : on décompose la fonction en briques élémentaires dont la continuité est déjà connue, et le théorème fait le reste.",
+   "texte": "Sommes, produits, quotients, composées : la continuité se propage.",
+   "ecran": "theoremes_continuite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "dit": "Il y a trois façons de ne pas être continue. La discontinuité de saut : les limites à gauche et à droite existent mais diffèrent, comme la fonction partie entière qui saute à chaque entier. La discontinuité amovible : la limite existe, mais la valeur au point manque ou diffère, et un simple recollement la répare. Et la discontinuité infinie : la fonction s'envole vers l'infini, comme la fonction inverse en zéro, le long d'une asymptote verticale.",
+   "texte": "Saut, amovible, infinie : trois façons de rompre.",
+   "ecran": "discontinuites",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p27",
+   "dit": "Exemple de réparation : la fonction ixe carré moins quatre, divisé par ixe moins deux, n'est pas définie en deux, mais sa limite en deux vaut quatre : la discontinuité est amovible. En posant la valeur en deux égale à quatre, la fonction devient continue partout. À l'inverse, sinus de un sur ixe, en zéro, oscille de plus en plus vite sans approcher aucune valeur : aucune réparation n'est possible. Et un polynôme comme ixe au cube plus deux ixe moins un est continu sur tous les réels, sans aucun travail.",
+   "texte": "Amovible en 2 : poser f(2) = 4 répare la fonction.",
+   "ecran": "ex_continuite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p28",
+   "dit": "Pour conclure ce cours : tout part de la définition d'une fonction, une entrée et une image unique, avec son domaine et son image. Les familles usuelles se lisent par leurs paramètres : pente et ordonnée pour les droites, sommet et discriminant pour les paraboles, base pour les exponentielles et les logarithmes. Et les limites, puis la continuité, décrivent le comportement local d'une fonction, y compris là où elle n'est pas définie.",
+   "texte": "Les fonctions : le bilan du cours.",
+   "ecran": "recap_final",
+   "pause_apres": 0.5
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Fonctions, droites et paraboles"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Exponentielles, logarithmes, domaine et image",
+   "pont": {
+    "texte": "Partie 2 : exponentielles, logarithmes, domaine et image.",
+    "dit": "Partie deux : les fonctions qui grandissent ou décroissent à toute vitesse, et le domaine repris en profondeur. Les exponentielles décrivent les croissances composées, les logarithmes sont leurs inverses et servent à résoudre les équations où l'inconnue est en exposant, et nous systématiserons la recherche du domaine et de l'image."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Limites et continuité",
+   "pont": {
+    "texte": "Partie 3 : limites et continuité.",
+    "dit": "Partie trois : approcher sans jamais toucher. Les limites décrivent le comportement d'une fonction près d'un point ou à l'infini, même là où elle n'est pas définie. La continuité dira ensuite quand ce comportement coïncide avec la valeur au point, et nous classerons les façons de ne pas être continue."
+   }
+  }
+ ]
+}
