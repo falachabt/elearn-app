@@ -1,0 +1,360 @@
+{
+ "cours": 6130,
+ "ecrans": {
+  "actualisation": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "capitalisation_fig"
+   },
+   "kicker": "Actualisation · le voyage inverse",
+   "note": "Exemple : 2 000 € dans 5 ans à 4 % valent 1 643,85 € aujourd'hui · Le taux reflète coût du capital et risque.",
+   "tex": "VA = \\frac{VF}{(1 + t)^n}",
+   "type": "formule"
+  },
+  "cap_exemple": {
+   "kicker": "Exemple · capitaliser",
+   "tex": [
+    "1000 \\times 1{,}05^3 = 1157{,}63\\ \\text{euros}",
+    "5000 \\times 1{,}05^3 = 5788{,}13\\ \\text{euros}",
+    "1000 \\times (1 + 0{,}05 \\times 3) = 1150\\ \\text{euros (simples)}"
+   ],
+   "titre": "Trois ans à cinq pour cent : simple contre composé",
+   "type": "etape"
+  },
+  "capitalisation": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "capitalisation_fig"
+   },
+   "kicker": "Capitalisation · intérêts composés",
+   "note": "Intérêts simples : VF = C₀(1 + t·n), croissance linéaire, toujours dépassée par les composés.",
+   "tex": "VF = C_0\\,(1 + t)^n",
+   "type": "formule"
+  },
+  "criteres": {
+   "kicker": "Les critères complémentaires",
+   "tex": [
+    "\\text{IP} = \\tfrac{\\text{VA des flux}}{I_0} > 1 \\text{ : rentable, classe sous budget limité}",
+    "\\text{délai de récupération : revoir sa mise au plus vite}",
+    "\\text{sensibilité : faire varier taux et flux, observer la VAN}",
+    "\\text{scénarios : optimiste, probable, pessimiste}"
+   ],
+   "titre": "Classer, rassurer, tester",
+   "type": "etape"
+  },
+  "fcf": {
+   "kicker": "Le flux de trésorerie disponible",
+   "note": "Start-up du cours, année 2 : 100 k€ d'exploitation − 20 k€ d'investissement = 80 k€ disponibles.",
+   "tex": "FCF = CFO - \\text{investissements}",
+   "type": "formule"
+  },
+  "flux": {
+   "kicker": "Flux de trésorerie · trois familles",
+   "tex": [
+    "\\text{exploitation : ventes, achats, salaires}",
+    "\\text{investissement : achats et reventes d'actifs}",
+    "\\text{financement : emprunts, remboursements, dividendes}"
+   ],
+   "titre": "Exploitation, investissement, financement",
+   "type": "etape"
+  },
+  "frontiere": {
+   "kicker": "La frontière efficiente",
+   "texte": "Pour chaque risque, le meilleur rendement ; pour chaque rendement, le moindre risque : tout portefeuille sous la frontière est dominé.",
+   "type": "phrase",
+   "anim": {
+    "nom": "frontiere_efficiente_fig",
+    "hauteur": 190
+   }
+  },
+  "immeuble": {
+   "kicker": "Étude de cas · un immeuble locatif",
+   "tex": [
+    "VA = 80000 \\times \\tfrac{1 - 1{,}08^{-10}}{0{,}08} \\approx 80000 \\times 6{,}71",
+    "VA \\approx 536807\\ \\text{euros}",
+    "VAN \\approx 536807 - 1000000 = -463193\\ \\text{euros}"
+   ],
+   "titre": "Un million d'euros, quatre-vingt mille de loyers, dix ans, huit pour cent",
+   "type": "etape"
+  },
+  "marche": {
+   "kicker": "Le fil du cours",
+   "texte": "Quatre temps : la valeur temps de l'argent, les flux de trésorerie, les critères de décision, puis le risque et le portefeuille.",
+   "type": "phrase"
+  },
+  "port_exemple": {
+   "kicker": "Exemple · le portefeuille soixante-quarante",
+   "tex": [
+    "E(R_p) = 0{,}6 \\times 10\\,\\% + 0{,}4 \\times 7\\,\\% = 8{,}8\\,\\%",
+    "\\sigma_p^2 = 0{,}36 \\times 15^2 + 0{,}16 \\times 10^2 + 2 \\times 0{,}24 \\times 0{,}3 \\times 15 \\times 10",
+    "\\sigma_p \\approx 10{,}9\\,\\% < 13\\,\\% \\text{ (moyenne pondérée)}"
+   ],
+   "titre": "Deux actifs, corrélation zéro virgule trois",
+   "type": "etape"
+  },
+  "portefeuille": {
+   "kicker": "Le portefeuille · rendement et risque",
+   "note": "Le risque ne se moyenne pas : il dépend des covariances · Sharpe : prime de rendement par unité de volatilité.",
+   "tex": "E(R_p) = \\sum_i w_i\\, E(R_i)",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Capitaliser projette, actualiser ramène",
+    "Taux effectif : corriger le taux nominal",
+    "Flux : exploitation, investissement, financement",
+    "FCF : la trésorerie disponible du projet",
+    "La VAN décide, le TRI confirme et classe"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Modéliser les flux, année par année, signés",
+    "Actualiser au taux du risque, la VAN tranche",
+    "Ne jamais lire un rendement sans sa dispersion",
+    "Diversifier pour dominer le risque",
+    "Le bon critère pour chaque question posée"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "risque_exemple": {
+   "kicker": "Exemple · deux actions, cinq ans",
+   "tex": [
+    "A : 10, -5, 15, 8, -2 \\qquad \\mu_A = 5{,}2\\,\\%",
+    "B : 5, 3, 7, 4, 6 \\qquad \\mu_B = 5\\,\\%",
+    "\\sigma_A \\approx 8{,}4\\,\\% \\qquad \\sigma_B \\approx 1{,}6\\,\\%"
+   ],
+   "titre": "Même moyenne, dispersions opposées",
+   "type": "etape"
+  },
+  "risque_mesure": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "dispersion_mesures_fig"
+   },
+   "kicker": "Mesurer le risque · la dispersion",
+   "note": "Coefficient de variation : σ/μ · Bêta supérieur à 1 : l'actif amplifie le marché ; inférieur à 1 : il l'amortit.",
+   "tex": "\\sigma = \\sqrt{\\frac{\\sum_i (R_i - \\mu)^2}{n - 1}}",
+   "type": "formule"
+  },
+  "taux_effectif": {
+   "kicker": "Taux nominal, taux effectif",
+   "note": "i : taux nominal · m : capitalisations par an · 6 % nominal mensuel donne 6,17 % effectif.",
+   "tex": "t_{\\text{eff}} = \\left(1 + \\frac{i}{m}\\right)^{m} - 1",
+   "type": "formule"
+  },
+  "taux_rendement": {
+   "kicker": "Taux de rendement · la performance",
+   "note": "1 000 € devenus 1 100 € en un an : R = 10 % · L'intérêt est promis, le rendement est constaté.",
+   "tex": "R = \\frac{V_f - V_i}{V_i}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "capitalisation_fig"
+   },
+   "kicker": "Mathématiques financières · Concours ESSEC",
+   "sous": "Capitalisation et actualisation, VAN et TRI, risque et diversification : décider chiffres à l'appui",
+   "titre": "L'investissement : valeur temps, critères de choix et gestion du risque",
+   "type": "titre"
+  },
+  "tri": {
+   "kicker": "Le taux de rentabilité interne",
+   "note": "Le TRI annule la VAN · TRI supérieur au coût du capital : rentable · Calcul itératif.",
+   "tex": "\\sum_{t=1}^{n} \\frac{CF_t}{(1 + TRI)^t} = I_0",
+   "type": "formule"
+  },
+  "tri_exemple": {
+   "kicker": "Exemple fil rouge · le TRI par essais",
+   "tex": [
+    "VAN(10\\,\\%) = +13723 \\qquad VAN(15\\,\\%) \\approx +565",
+    "VAN(16\\,\\%) \\approx -1771",
+    "TRI \\approx 15{,}2\\,\\% > 10\\,\\% \\text{ : projet rentable}"
+   ],
+   "titre": "Encadrer le taux qui annule la VAN",
+   "type": "etape"
+  },
+  "van": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "equivalence_fig"
+   },
+   "kicker": "La valeur actuelle nette",
+   "note": "VAN positive : accepter · VAN négative : refuser · r, le taux exigé, reflète le risque.",
+   "tex": "VAN = \\sum_{t=1}^{n} \\frac{CF_t}{(1 + r)^t} - I_0",
+   "type": "formule"
+  },
+  "van_exemple": {
+   "kicker": "Exemple fil rouge · la VAN pas à pas",
+   "tex": [
+    "\\tfrac{30000}{1{,}10} = 27273 \\qquad \\tfrac{30000}{1{,}10^2} = 24794",
+    "\\tfrac{30000}{1{,}10^3} = 22539 \\qquad \\tfrac{30000}{1{,}10^4} = 20490",
+    "\\tfrac{30000}{1{,}10^5} = 18627 \\qquad VAN = 113724 - 100000 = 13723"
+   ],
+   "titre": "Cent mille euros investis, trente mille par an, cinq ans, dix pour cent",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématiques financières",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Valeur temps de l'argent, taux et flux de trésorerie"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : décider. Après les flux, voici les critères qui tranchent : le flux de trésorerie disponible d'abord, puis la valeur actuelle nette et le taux de rentabilité interne sur un même projet fil rouge, l'indice de profitabilité, le délai de récupération, et une étude de cas immobilière qui refroidit les enthousiasmes.",
+    "texte": "Partie 2 : VAN, TRI et critères de choix."
+   },
+   "sous_titre": "Décider : VAN, TRI et critères complémentaires"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie trois : le risque et le portefeuille. Un bon rendement ne suffit pas : il faut mesurer la dispersion des rendements, comparer deux actions chiffrées, puis composer un portefeuille diversifié et le situer sur la frontière efficiente de Markowitz.",
+    "texte": "Partie 3 : risque, diversification, frontière efficiente."
+   },
+   "sous_titre": "Risque, diversification et frontière efficiente"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques financières consacré à l'investissement, au programme du concours ESSEC. Un même fil rouge le traverse de bout en bout : l'argent a une valeur dans le temps. Nous apprendrons à faire voyager un capital dans le temps, à lire ses flux de trésorerie, puis à décider avec la valeur actuelle nette et le taux de rentabilité interne, avant de mesurer le risque et de le réduire par la diversification.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "L'investissement : faire voyager l'argent dans le temps."
+  },
+  {
+   "dit": "Voici la marche à suivre, en quatre temps. D'abord, la valeur temps de l'argent : capitaliser pour projeter un capital vers l'avenir, actualiser pour ramener un flux futur au présent. Ensuite, les flux de trésorerie, le sang qui circule dans tout projet. Puis les critères de décision : valeur actuelle nette, taux interne, indice de profitabilité et délai de récupération. Enfin, le risque : le mesurer, puis le dompter en diversifiant.",
+   "ecran": "marche",
+   "id": "p02",
+   "texte": "Quatre temps : temps, flux, critères, risque."
+  },
+  {
+   "dit": "Capitaliser, c'est projeter un capital vers l'avenir. En intérêts composés, à chaque période, les intérêts rejoignent le capital et produisent eux-mêmes des intérêts : la valeur future est le capital multiplié par un plus le taux, le tout élevé à la puissance du nombre de périodes. En intérêts simples, au contraire, les intérêts ne portent que sur le capital de départ : la croissance est linéaire, et toujours plus lente dès que la durée s'allonge.",
+   "ecran": "capitalisation",
+   "id": "p03",
+   "texte": "VF = C₀(1 + t)ⁿ : les intérêts portent intérêt."
+  },
+  {
+   "dit": "Premier exemple, à savoir refaire les yeux fermés. Mille euros placés à cinq pour cent pendant trois ans, en intérêts composés : mille fois un virgule zéro cinq au cube, soit mille cent cinquante-sept euros et soixante-trois centimes. Le même taux appliqué à cinq mille euros donne cinq mille sept cent quatre-vingt-huit euros et treize centimes. En intérêts simples, les mille euros ne donneraient que mille cent cinquante euros : l'écart paraît mince sur trois ans, il devient énorme sur trente ans.",
+   "ecran": "cap_exemple",
+   "id": "p04",
+   "texte": "1 000 € à 5 % sur 3 ans : 1 157,63 € en composés."
+  },
+  {
+   "dit": "Actualiser, c'est le voyage inverse : ramener un flux futur à sa valeur d'aujourd'hui. On divise la valeur future par un plus le taux, élevé à la puissance du nombre de périodes. Ainsi, deux mille euros reçus dans cinq ans, actualisés à quatre pour cent, valent aujourd'hui mille six cent quarante-trois euros et quatre-vingt-cinq centimes. Le taux d'actualisation n'est pas un détail technique : il incarne le coût du capital et le risque du projet ; plus le projet est risqué, plus le taux exigé est élevé, et plus la valeur actuelle s'écrase.",
+   "ecran": "actualisation",
+   "id": "p05",
+   "texte": "Actualiser : VA = VF / (1 + t)ⁿ."
+  },
+  {
+   "dit": "Attention au taux affiché : un taux nominal de six pour cent, capitalisé chaque mois, ne rapporte pas six pour cent sur l'année. Chaque mois, le capital touche un douzième du taux nominal, et ces intérêts portent à leur tour intérêt : le taux effectif annuel atteint environ six virgule dix-sept pour cent. La règle est générale : le taux effectif vaut un plus le taux nominal divisé par le nombre de capitalisations, le tout à la puissance de ce nombre, moins un. Comparer deux placements, c'est toujours comparer leurs taux effectifs.",
+   "ecran": "taux_effectif",
+   "id": "p06",
+   "texte": "6 % nominal mensuel = 6,17 % effectif annuel."
+  },
+  {
+   "dit": "Ne confondez pas taux d'intérêt et taux de rendement. Le taux d'intérêt est le prix affiché de l'argent : un coût pour l'emprunteur, une rémunération promise pour l'épargnant. Le taux de rendement, lui, mesure la performance réellement obtenue : le gain net rapporté au capital investi, en tenant compte des variations de valeur. Mille euros devenus mille cent euros en un an donnent un rendement de dix pour cent. Un placement peut afficher un bel intérêt et délivrer un rendement médiocre si sa valeur chute entre-temps.",
+   "ecran": "taux_rendement",
+   "id": "p07",
+   "texte": "Intérêt : prix affiché. Rendement : performance réelle."
+  },
+  {
+   "dit": "Un projet d'investissement se lit comme une circulation d'argent, en trois familles de flux. Les flux d'exploitation naissent de l'activité courante : ventes, achats, salaires. Les flux d'investissement correspondent aux achats et aux ventes d'actifs, machines ou bâtiments : ils sortent d'abord, ils rentrent parfois à la revente. Les flux de financement racontent les relations avec les apporteurs de capitaux : emprunts reçus, dettes remboursées, dividendes versés. Pour prévoir ces flux, deux méthodes : la directe, poste par poste, précise mais lourde ; l'indirecte, qui part du résultat net et le corrige des éléments sans effet de trésorerie.",
+   "ecran": "flux",
+   "id": "p08",
+   "texte": "Trois flux : exploitation, investissement, financement."
+  },
+  {
+   "dit": "L'indicateur roi de cette circulation s'appelle le flux de trésorerie disponible, le free cash flow des Anglo-Saxons : c'est la trésorerie d'exploitation, diminuée des investissements de la période. C'est lui qui peut rémunérer les apporteurs de capitaux ou financer de nouveaux projets. Dans l'étude de cas d'une jeune pousse de biotechnologie, la deuxième année dégage cent mille euros d'exploitation et vingt mille euros d'investissement : le flux disponible atteint quatre-vingts mille euros, après une première année de démarrage encore négative.",
+   "ecran": "fcf",
+   "id": "p09",
+   "texte": "Free cash flow = exploitation − investissements."
+  },
+  {
+   "dit": "Voici le juge de paix des investissements : la valeur actuelle nette. On actualise chaque flux futur du projet au taux exigé, on additionne, et on retranche l'investissement initial. Si le résultat est positif, le projet crée de la valeur : il rapporte plus que le taux exigé, on l'accepte. S'il est négatif, il en détruit : on le refuse. Toute la décision tient dans ce signe, à condition d'avoir choisi un taux d'actualisation honnête, qui reflète le risque du projet.",
+   "ecran": "van",
+   "id": "p10",
+   "texte": "VAN positive : le projet crée de la valeur."
+  },
+  {
+   "dit": "Exemple complet, le fil rouge de ce cours. Un projet coûte cent mille euros et rapporte trente mille euros par an pendant cinq ans ; le taux exigé est de dix pour cent. On actualise flux par flux : vingt-sept mille deux cent soixante-treize euros la première année, puis vingt-quatre mille sept cent quatre-vingt-quatorze, vingt-deux mille cinq cent trente-neuf, vingt mille quatre cent quatre-vingt-dix et dix-huit mille six cent vingt-sept. La somme des valeurs actuelles atteint cent treize mille sept cent vingt-quatre euros : la valeur actuelle nette vaut treize mille sept cent vingt-trois euros, le projet est rentable.",
+   "ecran": "van_exemple",
+   "id": "p11",
+   "texte": "30 000 € par an, 5 ans, 10 % : VAN = +13 723 €."
+  },
+  {
+   "dit": "Le taux de rentabilité interne est le taux d'actualisation qui annule exactement la valeur actuelle nette. Autrement dit, c'est le taux de rendement que le projet porte en lui-même. La règle de décision miroite celle de la valeur actuelle nette : si le taux interne dépasse le coût du capital, le projet est rentable ; s'il lui est inférieur, on le refuse. Son calcul est itératif : on tâtonne, ou on laisse le tableur résoudre l'équation. Et gare à ses pièges : des flux qui changent plusieurs fois de signe peuvent produire plusieurs taux internes, et entre projets exclusifs, le taux interne peut contredire la valeur actuelle nette, qui reste alors le critère de référence.",
+   "ecran": "tri",
+   "id": "p12",
+   "texte": "Le TRI : le taux qui annule la VAN."
+  },
+  {
+   "dit": "Sur notre projet fil rouge, le taux interne se cherche par essais : à quinze pour cent, la valeur actuelle nette est encore légèrement positive ; à seize pour cent, elle devient négative. Le taux interne vaut donc environ quinze virgule deux pour cent, nettement au-dessus du coût du capital de dix pour cent : le verdict rejoint celui de la valeur actuelle nette. Retenez l'ordre des réflexes au concours : la valeur actuelle nette décide, le taux interne confirme et donne une lecture en pourcentage, parlante pour comparer à un taux d'emprunt.",
+   "ecran": "tri_exemple",
+   "id": "p13",
+   "texte": "TRI ≈ 15,2 % contre 10 % exigés : confirmé."
+  },
+  {
+   "dit": "Deux critères complètent la boîte à outils. L'indice de profitabilité rapporte la valeur actuelle des flux futurs à l'investissement initial : au-dessus de un, le projet est rentable ; notre fil rouge affiche un virgule quatorze, soit environ quatorze centimes de valeur créée par euro investi, ce qui classe les projets quand le budget est rationné. Le délai de récupération compte le temps nécessaire pour revoir sa mise : trois ans et quatre mois pour notre projet, quatre ans et trois mois en cumulant les flux actualisés. Simple et parlant, mais aveugle à tout ce qui se passe après le remboursement. Enfin, aucun chiffre ne se croit sur parole : la sensibilité et les scénarios, optimiste, probable, pessimiste, testent la solidité de la décision.",
+   "ecran": "criteres",
+   "id": "p14",
+   "texte": "IP = 1,14 ; délai : 3 ans 4 mois, 4 ans 3 mois actualisé."
+  },
+  {
+   "dit": "Étude de cas réelle pour finir les critères : un immeuble acheté un million d'euros, qui rapporte quatre-vingt mille euros de loyers nets par an pendant dix ans, avec un coût du capital de huit pour cent. La valeur actuelle des loyers est celle d'une annuité constante : quatre-vingt mille euros multipliés par le facteur d'annuité, environ six virgule soixante et onze, soit cinq cent trente-six mille huit cents euros. La valeur actuelle nette est donc négative, d'environ quatre cent soixante-trois mille euros : malgré des loyers confortables, l'immeuble est payé beaucoup trop cher. Leçon : un flux régulier ne fait pas une bonne affaire ; tout dépend du prix d'entrée.",
+   "ecran": "immeuble",
+   "id": "p15",
+   "texte": "Loyers 80 000 €, 10 ans, 8 % : VAN ≈ −463 000 €."
+  },
+  {
+   "dit": "Passons à l'autre face de la médaille : le risque. Sa mesure de base est l'écart-type des rendements : on calcule la moyenne des rendements, on moyenne les carrés des écarts à cette moyenne, et on prend la racine carrée. Un écart-type élevé signifie des rendements très dispersés, donc un investissement imprévisible. Son cousin, le coefficient de variation, divise l'écart-type par la moyenne : il compare le risque par unité de rendement entre placements d'espérances différentes. Enfin, le bêta mesure la sensibilité d'un actif au marché : au-dessus de un, l'actif amplifie les mouvements du marché ; en dessous, il les amortit.",
+   "ecran": "risque_mesure",
+   "id": "p16",
+   "texte": "Écart-type, coefficient de variation, bêta."
+  },
+  {
+   "dit": "Chiffrons sur deux actions suivies cinq ans. L'action A affiche dix, moins cinq, quinze, huit et moins deux pour cent : moyenne de cinq virgule deux pour cent, mais un écart-type d'environ huit virgule quatre pour cent. L'action B affiche cinq, trois, sept, quatre et six pour cent : même moyenne, cinq pour cent, mais un écart-type d'environ un virgule six pour cent seulement. À rendement moyen quasi égal, B est cinq fois plus régulière : c'est elle que choisira l'investisseur prudent. Moralité : un rendement moyen ne se lit jamais sans sa dispersion.",
+   "ecran": "risque_exemple",
+   "id": "p17",
+   "texte": "Même moyenne ≈ 5 % : σ ≈ 8,4 % contre σ ≈ 1,6 %."
+  },
+  {
+   "dit": "Un portefeuille ne se juge pas actif par actif, mais comme un tout. Son rendement espéré est simple : la moyenne des rendements de ses actifs, pondérée par leurs parts. Son risque, lui, ne se moyenne pas : il dépend des covariances entre actifs, c'est-à-dire de la façon dont leurs rendements bougent ensemble. C'est toute la découverte de Markowitz : deux actifs imparfaitement corrélés se compensent partiellement, et le portefeuille peut être moins risqué que chacun de ses composants. Le ratio de Sharpe complète le tableau : il rapporte la prime de rendement au-delà du taux sans risque à la volatilité, pour comparer les portefeuilles à risque ajusté.",
+   "ecran": "portefeuille",
+   "id": "p18",
+   "texte": "Rendement : moyenne pondérée. Risque : covariances."
+  },
+  {
+   "dit": "Exemple complet de diversification. Un portefeuille place soixante pour cent sur un actif A, d'espérance dix pour cent et d'écart-type quinze pour cent, et quarante pour cent sur un actif B, d'espérance sept pour cent et d'écart-type dix pour cent ; leur corrélation vaut zéro virgule trois. L'espérance du portefeuille vaut huit virgule huit pour cent. Sa variance combine les deux variances pondérées et le terme de covariance : elle donne un écart-type d'environ dix virgule neuf pour cent, inférieur à la moyenne pondérée des écarts-types, qui vaudrait treize pour cent. La diversification a raboté plus de deux points de risque, sans toucher à l'espérance.",
+   "ecran": "port_exemple",
+   "id": "p19",
+   "texte": "60/40, ρ = 0,3 : E = 8,8 %, σ ≈ 10,9 % contre 13 %."
+  },
+  {
+   "dit": "En faisant varier les pondérations, on obtient une famille de portefeuilles ; les meilleurs d'entre eux dessinent la frontière efficiente : pour chaque niveau de risque, le rendement maximal accessible, et pour chaque rendement visé, le risque minimal. Tout portefeuille situé sous cette frontière est dominé : on peut faire mieux à risque égal. L'investisseur choisit alors son point sur la frontière selon son aversion au risque : prudent près du portefeuille à variance minimale, audacieux plus haut sur la courbe. Diversifier, ce n'est donc pas empiler des actifs au hasard : c'est combiner des actifs faiblement corrélés, par classes, par zones géographiques et par secteurs.",
+   "ecran": "frontiere",
+   "id": "p20",
+   "texte": "Frontière efficiente : le meilleur rendement par risque."
+  },
+  {
+   "dit": "Récapitulons la première partie. L'argent a une valeur dans le temps : capitaliser projette, actualiser ramène. Le taux effectif corrige le taux nominal selon la fréquence de capitalisation, et le taux de rendement mesure la performance réelle. Un projet se lit par ses flux : exploitation, investissement, financement, synthétisés par le flux de trésorerie disponible. La valeur actuelle nette décide : positive, elle crée de la valeur ; le taux interne confirme, l'indice de profitabilité classe, le délai de récupération rassure sur la liquidité.",
+   "ecran": "recap1",
+   "id": "p21",
+   "texte": "Partie 1 : temps, flux et critères de décision."
+  },
+  {
+   "dit": "Pour conclure ce cours : décider d'investir, c'est enchaîner quatre gestes. Modéliser les flux du projet, année par année, avec leurs signes. Les actualiser au taux qui reflète le risque, et laisser la valeur actuelle nette trancher, le taux interne confirmer. Mesurer le risque par la dispersion des rendements, sans jamais lire une moyenne seule. Et composer le portefeuille en diversifiant, jusqu'à la frontière efficiente. Le concours ESSEC ne demande pas autre chose : des calculs exacts, et le critère adapté à chaque question.",
+   "ecran": "recap_final",
+   "id": "p22",
+   "texte": "Modéliser, actualiser, mesurer, diversifier."
+  }
+ ],
+ "titre": "L'investissement : valeur temps, critères de choix et gestion du risque"
+}
