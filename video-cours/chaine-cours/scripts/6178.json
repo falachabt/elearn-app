@@ -1,0 +1,458 @@
+{
+ "cours": 6178,
+ "titre": "La droite des moindres carrés : ajuster, corréler, prévoir",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Ajustement linéaire",
+   "titre": "La droite des moindres carrés : ajuster, corréler, prévoir",
+   "sous": "Nuage de points, droite optimale, coefficient de corrélation et prévisions responsables",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux variables semblent liées : comment le prouver, le mesurer, puis prévoir sans se tromper ?",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 180
+   }
+  },
+  "nuage": {
+   "type": "etape",
+   "kicker": "Le nuage de points",
+   "tex": [
+    "(x_1,\\, y_1),\\ (x_2,\\, y_2),\\ \\ldots,\\ (x_n,\\, y_n)",
+    "y = ax + b \\quad \\text{: le modèle affine cherché}"
+   ],
+   "titre": "Chaque individu devient un point du plan",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 140
+   }
+  },
+  "residu": {
+   "type": "formule",
+   "kicker": "Le résidu : l'écart vertical",
+   "tex": "e_i = y_i - \\hat{y}_i = y_i - (ax_i + b)",
+   "note": "Le résidu mesure, en vertical, l'écart entre l'observation et la droite.",
+   "anim": {
+    "nom": "residu_fig",
+    "hauteur": 190
+   }
+  },
+  "somme": {
+   "type": "formule",
+   "kicker": "Le critère des moindres carrés",
+   "tex": "S(a, b) = \\sum_{i=1}^{n} (y_i - ax_i - b)^2",
+   "note": "Les carrés empêchent les compensations et pénalisent les grands écarts."
+  },
+  "normales": {
+   "type": "etape",
+   "kicker": "Minimiser : les équations normales",
+   "tex": [
+    "\\frac{\\partial S}{\\partial a} = 0 \\qquad \\frac{\\partial S}{\\partial b} = 0",
+    "\\sum_i e_i = 0 \\qquad \\sum_i x_i e_i = 0"
+   ],
+   "titre": "On annule les deux dérivées partielles"
+  },
+  "formules": {
+   "type": "etape",
+   "kicker": "Les formules des moindres carrés",
+   "tex": [
+    "a = \\tfrac{\\mathrm{cov}(X, Y)}{\\mathrm{Var}(X)} = \\tfrac{\\sum_i (x_i - \\bar{x})(y_i - \\bar{y})}{\\sum_i (x_i - \\bar{x})^2}",
+    "b = \\bar{y} - a\\bar{x}"
+   ],
+   "titre": "La pente par la covariance, puis l'ordonnée"
+  },
+  "ex_rev_moy": {
+   "type": "etape",
+   "kicker": "Exemple · heures de révision et notes",
+   "tex": [
+    "\\bar{x} = \\tfrac{2 + 4 + 6 + 8 + 10}{5} = 6",
+    "\\bar{y} = \\tfrac{8 + 12 + 14 + 16 + 18}{5} = 13{,}6"
+   ],
+   "titre": "Cinq étudiants : les moyennes d'abord"
+  },
+  "ex_rev_droite": {
+   "type": "etape",
+   "kicker": "Exemple · heures de révision et notes",
+   "tex": [
+    "a = \\tfrac{48}{40} = 1{,}2 \\qquad b = 13{,}6 - 1{,}2 \\times 6 = 6{,}4",
+    "y = 1{,}2x + 6{,}4"
+   ],
+   "titre": "La droite, puis son interprétation"
+  },
+  "ex_pub_sommes": {
+   "type": "etape",
+   "kicker": "Exemple · publicité et chiffre d'affaires",
+   "tex": [
+    "\\sum x_i = 18{,}5 \\qquad \\sum y_i = 367",
+    "\\sum x_i y_i = 1222 \\qquad \\sum x_i^2 = 65{,}75"
+   ],
+   "titre": "Six mois : les sommes nécessaires"
+  },
+  "ex_pub_droite": {
+   "type": "etape",
+   "kicker": "Exemple · publicité et chiffre d'affaires",
+   "tex": [
+    "a = \\tfrac{90{,}42}{8{,}71} \\approx 10{,}38 \\qquad b \\approx 29{,}15",
+    "y \\approx 10{,}38x + 29{,}15"
+   ],
+   "titre": "La droite corrigée, calculée en valeurs exactes"
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés de la droite optimale",
+   "tex": [
+    "\\bar{y} = a\\bar{x} + b \\quad \\text{: la droite passe par le point moyen}",
+    "\\sum_i e_i = 0 \\qquad \\sum_i x_i e_i = 0"
+   ],
+   "titre": "Trois faits à connaître par cœur"
+  },
+  "deux_droites": {
+   "type": "etape",
+   "kicker": "Deux droites de régression",
+   "tex": [
+    "y = a_{yx} x + b_{yx} \\qquad a_{yx} = \\tfrac{\\mathrm{cov}(X, Y)}{\\mathrm{Var}(X)}",
+    "x = a_{xy} y + b_{xy} \\qquad a_{xy} = \\tfrac{\\mathrm{cov}(X, Y)}{\\mathrm{Var}(Y)}"
+   ],
+   "titre": "Régresser y en x, ou x en y, ne donne pas la même droite",
+   "anim": {
+    "nom": "droites_affines_fig",
+    "hauteur": 130
+   }
+  },
+  "correlation": {
+   "type": "formule",
+   "kicker": "Le coefficient de corrélation",
+   "tex": "r = \\frac{\\mathrm{cov}(X, Y)}{\\sigma_X \\, \\sigma_Y}",
+   "note": "Sans unité, toujours entre moins un et un : signe et force de la liaison linéaire.",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_revenu": {
+   "type": "etape",
+   "kicker": "Exemple · revenu et dépenses de loisirs",
+   "tex": [
+    "r = \\tfrac{5 \\times 46{,}25 - 17{,}5 \\times 12{,}7}{\\sqrt{(5 \\times 63{,}75 - 17{,}5^2)(5 \\times 33{,}57 - 12{,}7^2)}}",
+    "r = \\tfrac{9}{\\sqrt{82}} \\approx 0{,}994"
+   ],
+   "titre": "Cinq ménages : un calcul complet"
+  },
+  "echelle_r": {
+   "type": "recap",
+   "kicker": "Lire le coefficient r",
+   "etapes": [
+    "r = 1 : alignement positif parfait",
+    "0,7 à 1 : liaison positive forte",
+    "−0,3 à 0,3 : liaison faible ou nulle",
+    "−1 à −0,7 : liaison négative forte"
+   ]
+  },
+  "determination": {
+   "type": "formule",
+   "kicker": "Le coefficient de détermination",
+   "tex": "r^2 = \\frac{\\text{variance expliquée}}{\\text{variance totale}}",
+   "note": "Exemple : r = 0,9 donne r² = 0,81, soit quatre-vingt-un pour cent expliqués."
+  },
+  "ex_oiseaux": {
+   "type": "etape",
+   "kicker": "Exercice guidé · forêt et espèces d'oiseaux",
+   "tex": [
+    "\\sum x_i y_i = 3810 \\qquad \\sum x_i = 210 \\qquad \\sum y_i = 95",
+    "r = \\tfrac{6 \\times 3810 - 210 \\times 95}{\\sqrt{(6 \\times 9100 - 210^2)(6 \\times 1641 - 95^2)}} \\approx 0{,}991"
+   ],
+   "titre": "Six zones : superficie contre nombre d'espèces"
+  },
+  "carre": {
+   "type": "etape",
+   "kicker": "Le piège : r ne voit que le linéaire",
+   "tex": [
+    "y = x^2 \\quad \\text{sur } 1, 2, \\ldots, 10",
+    "r \\approx 0{,}975 \\quad \\text{pourtant la relation est quadratique}"
+   ],
+   "titre": "Une parabole parfaite peut donner un r élevé",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 130
+   }
+  },
+  "prevision": {
+   "type": "formule",
+   "kicker": "Prévoir par interpolation",
+   "tex": "\\hat{y} = 1{,}2 \\times 7 + 6{,}4 = 14{,}8",
+   "note": "Sept heures de révision, dans l'intervalle observé : prévision raisonnable."
+  },
+  "extrapolation": {
+   "type": "phrase",
+   "kicker": "Extrapoler : sortir du domaine observé",
+   "texte": "À trente heures, la même droite annoncerait plus de quarante sur vingt : un non-sens qui dénonce l'extrapolation.",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 140
+   }
+  },
+  "ohm": {
+   "type": "etape",
+   "kicker": "Application · la loi d'Ohm mesurée",
+   "tex": [
+    "U \\approx 10{,}04 \\, I - 0{,}01 \\qquad r \\approx 0{,}9999",
+    "\\text{pente} \\approx 10{,}04\\ \\Omega \\quad \\text{: la résistance estimée}"
+   ],
+   "titre": "Six mesures bruitées : la droite estime la résistance",
+   "anim": {
+    "nom": "graphique_mesures_fig",
+    "hauteur": 130
+   }
+  },
+  "tabac": {
+   "type": "etape",
+   "kicker": "Application · tabagisme et capacité respiratoire",
+   "tex": [
+    "Y \\approx -1{,}8 X + 95 \\qquad r \\approx -0{,}75",
+    "r^2 \\approx 0{,}56 \\quad \\text{: quarante-quatre pour cent restent inexpliqués}"
+   ],
+   "titre": "Une liaison négative, et sa part inexpliquée"
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Les pièges à éviter",
+   "etapes": [
+    "Corrélation ne veut pas dire causalité",
+    "Ne jamais extrapoler loin des données",
+    "Repérer les points aberrants au nuage",
+    "Un r faible peut cacher du non-linéaire"
+   ]
+  },
+  "aberrant": {
+   "type": "phrase",
+   "kicker": "Le point aberrant",
+   "texte": "Un seul point très éloigné peut tirer toute la droite vers lui : on l'examine, on ne le supprime jamais sans raison.",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 140
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode, en cinq gestes",
+   "etapes": [
+    "Dessiner le nuage de points d'abord",
+    "Calculer a et b par les moindres carrés",
+    "Calculer r, puis r carré, et les lire",
+    "Interpréter a et b dans le contexte",
+    "Prévoir dans l'intervalle observé"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "S(a, b) : minimiser les carrés des résidus",
+    "a = covariance sur variance de x",
+    "La droite passe par le point moyen",
+    "r entre −1 et 1, r² : part expliquée",
+    "Prévoir dedans, jamais loin dehors"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à l'ajustement linéaire et à la méthode des moindres carrés. Deux variables semblent évoluer ensemble : les heures de révision et les notes, la publicité et les ventes, la température et la consommation. Nous allons apprendre à résumer leur lien par une droite, à mesurer la force de ce lien, puis à prévoir avec prudence.",
+   "texte": "Ajustement linéaire : la droite qui résume un nuage.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en trois questions. D'abord, comment tracer objectivement la meilleure droite dans un nuage de points, sans la dessiner à l'œil ? Ensuite, comment savoir si cette droite décrit un lien réel ou une illusion ? Enfin, comment l'utiliser pour prévoir, et jusqu'où a-t-on le droit d'aller ?",
+   "texte": "Trois questions : ajuster, mesurer, prévoir.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Tout commence par le nuage de points. On mesure deux variables sur les mêmes individus : chaque individu devient un point, dont l'abscisse est la première variable et l'ordonnée la seconde. Si les points s'étirent le long d'une direction, on cherche un modèle affine : igrec égale a ixe plus bé, où a est la pente et bé l'ordonnée à l'origine.",
+   "texte": "Chaque individu devient un point (xᵢ, yᵢ).",
+   "ecran": "nuage"
+  },
+  {
+   "id": "p04",
+   "dit": "Trois formes de nuages doivent devenir un réflexe visuel. Un nuage allongé le long d'une droite annonce une liaison linéaire. Un nuage rond, sans direction, annonce une absence de liaison. Un nuage courbé annonce une relation réelle, mais non linéaire : forcer une droite dessus serait une erreur de modèle, avant même tout calcul.",
+   "texte": "Allongé, rond ou courbé : lire le nuage d'abord.",
+   "ecran": "nuage"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour juger une droite candidate, on compare chaque observation à la valeur prédite par la droite, au même ixe. La différence entre la valeur observée et la valeur prédite s'appelle le résidu : c'est un écart vertical, positif si le point est au-dessus de la droite, négatif s'il est au-dessous. Toute la méthode consiste à rendre ces résidus globalement les plus petits possibles.",
+   "texte": "Le résidu : l'écart vertical au modèle.",
+   "ecran": "residu"
+  },
+  {
+   "id": "p06",
+   "dit": "Pourquoi minimiser les carrés des résidus, et pas les résidus eux-mêmes ? Parce que des écarts positifs et négatifs pourraient s'annuler et donner une fausse impression de perfection. Les carrés sont toujours positifs, ils pénalisent davantage les grands écarts, et ils conduisent à des calculs de dérivation simples. On minimise donc la somme des carrés, notée S de a et bé.",
+   "texte": "Minimiser la somme des carrés des résidus.",
+   "ecran": "somme"
+  },
+  {
+   "id": "p07",
+   "dit": "La résolution est un problème d'optimisation à deux variables. Au minimum, les deux dérivées partielles de S s'annulent : on obtient les équations dites normales. Elles disent déjà deux choses remarquables : la somme des résidus est nulle, et les résidus sont orthogonaux aux abscisses. Autrement dit, la droite optimale ne laisse aucun déséquilibre systématique.",
+   "texte": "Au minimum, les dérivées partielles s'annulent.",
+   "ecran": "normales"
+  },
+  {
+   "id": "p08",
+   "dit": "La résolution donne les formules à retenir. La pente a est le quotient de la covariance des deux variables par la variance de ixe : elle augmente si les variables varient ensemble dans le même sens. L'ordonnée bé se déduit ensuite très simplement : bé égale igrec barre moins a fois ixe barre, où les barres désignent les moyennes.",
+   "texte": "a = cov(X, Y) / Var(X) ; b = ȳ − a·x̄.",
+   "ecran": "formules"
+  },
+  {
+   "id": "p09",
+   "dit": "Premier exemple complet : cinq étudiants, avec leurs heures de révision et leur note sur vingt. Les abscisses sont deux, quatre, six, huit et dix heures ; les notes sont huit, douze, quatorze, seize et dix-huit. Les moyennes valent six heures et treize virgule six points. C'est le point moyen, par lequel la droite devra obligatoirement passer.",
+   "texte": "Heures : 2 à 10 ; notes : 8 à 18 ; moyennes 6 et 13,6.",
+   "ecran": "ex_rev_moy"
+  },
+  {
+   "id": "p10",
+   "dit": "On calcule les écarts à la moyenne : la somme des produits des écarts vaut quarante-huit, et la somme des carrés des écarts en ixe vaut quarante. La pente vaut donc quarante-huit sur quarante, soit un virgule deux. L'ordonnée vaut treize virgule six moins un virgule deux fois six, soit six virgule quatre. Interprétation : chaque heure de révision supplémentaire est associée, en moyenne, à un gain de un virgule deux point.",
+   "texte": "Droite : y = 1,2x + 6,4 ; +1,2 point par heure.",
+   "ecran": "ex_rev_droite"
+  },
+  {
+   "id": "p11",
+   "dit": "Deuxième exemple, en économie : six mois de dépenses publicitaires, en milliers d'euros, contre le chiffre d'affaires. Les sommes nécessaires sont : somme des ixe, dix-huit virgule cinq ; somme des igrec, trois cent soixante-sept ; somme des produits, mille deux cent vingt-deux ; somme des carrés des ixe, soixante-cinq virgule soixante-quinze.",
+   "texte": "Six mois : Σx = 18,5 ; Σy = 367 ; Σxy = 1222.",
+   "ecran": "ex_pub_sommes"
+  },
+  {
+   "id": "p12",
+   "dit": "En valeurs exactes, la somme des produits des écarts vaut quatre-vingt-dix virgule quarante-deux, et celle des carrés des écarts vaut huit virgule soixante et onze. La pente vaut donc environ dix virgule trente-huit, et l'ordonnée environ vingt-neuf virgule quinze. Chaque millier d'euros de publicité supplémentaire est associé, en moyenne, à environ dix mille euros de chiffre d'affaires supplémentaire.",
+   "texte": "Droite corrigée : y ≈ 10,38x + 29,15.",
+   "ecran": "ex_pub_droite"
+  },
+  {
+   "id": "p13",
+   "dit": "Trois propriétés structurent tous les exercices. La droite passe toujours par le point moyen : c'est un contrôle immédiat de tout calcul. La somme des résidus est nulle : les écarts se compensent exactement. Et la somme des produits des abscisses par les résidus est aussi nulle : il ne reste aucune tendance exploitable dans ce qui n'est pas expliqué.",
+   "texte": "Point moyen, résidus de somme nulle : les contrôles.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p14",
+   "dit": "Attention, il existe en réalité deux droites de régression. Régresser igrec en ixe minimise les écarts verticaux ; régresser ixe en igrec minimise les écarts horizontaux. Leurs pentes sont différentes : covariance sur variance de ixe dans un cas, covariance sur variance de igrec dans l'autre. Les deux droites se croisent au point moyen, et ne coïncident que si les points sont parfaitement alignés.",
+   "texte": "Deux régressions, deux droites, un point moyen commun.",
+   "ecran": "deux_droites"
+  },
+  {
+   "id": "p15",
+   "dit": "Avoir une droite ne suffit pas : il faut juger sa pertinence. Le coefficient de corrélation linéaire, noté r, est le quotient de la covariance par le produit des écarts-types. Il est sans unité, et toujours compris entre moins un et un. Proche de un, la liaison linéaire croissante est forte ; proche de moins un, elle est forte mais décroissante ; proche de zéro, elle est faible ou absente.",
+   "texte": "r : sans unité, entre −1 et 1.",
+   "ecran": "correlation"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple complet : le revenu mensuel de cinq ménages, contre leurs dépenses de loisirs. Les sommes donnent un numérateur de neuf, et un dénominateur égal à la racine carrée de quatre-vingt-deux. Le coefficient vaut environ zéro virgule neuf cent quatre-vingt-quatorze. C'est une liaison linéaire positive extrêmement forte : dans cet échantillon, revenu et loisirs varient presque exactement ensemble.",
+   "texte": "Revenu et loisirs : r ≈ 0,994, liaison quasi parfaite.",
+   "ecran": "ex_revenu"
+  },
+  {
+   "id": "p17",
+   "dit": "Lire r demande une échelle, pas un réflexe binaire. Un en valeur absolue : alignement parfait. Entre zéro virgule sept et un : liaison forte. Entre moins zéro virgule trois et zéro virgule trois : liaison faible ou nulle, le nuage est rond. Et le signe donne le sens : positif si les variables montent ensemble, négatif si l'une monte quand l'autre descend.",
+   "texte": "L'échelle de lecture du coefficient r.",
+   "ecran": "echelle_r"
+  },
+  {
+   "id": "p18",
+   "dit": "Le carré de r, appelé coefficient de détermination, a une lecture très concrète : c'est la proportion de la variance de igrec expliquée par la relation linéaire avec ixe. Si r vaut zéro virgule neuf, r carré vaut zéro virgule quatre-vingt-un : quatre-vingt-un pour cent de la variabilité est expliquée, et dix-neuf pour cent relèvent d'autres facteurs. C'est souvent r carré qu'il faut citer pour juger un modèle.",
+   "texte": "r² : la part de variance expliquée par le modèle.",
+   "ecran": "determination"
+  },
+  {
+   "id": "p19",
+   "dit": "Exercice guidé : la superficie de six zones forestières, contre le nombre d'espèces d'oiseaux recensées. La somme des produits vaut trois mille huit cent dix, et l'application soigneuse de la formule donne r environ égal à zéro virgule neuf cent quatre-vingt-onze. La liaison est très forte, et r carré dépasse zéro virgule quatre-vingt-dix-huit : la superficie explique la quasi-totalité de la variation du nombre d'espèces, dans ces six zones.",
+   "texte": "Forêt et oiseaux : Σxy = 3810 ; r ≈ 0,991.",
+   "ecran": "ex_oiseaux"
+  },
+  {
+   "id": "p20",
+   "dit": "Dernier avertissement sur r : il ne détecte que le linéaire. Prenez la relation parfaitement quadratique igrec égale ixe au carré, pour ixe de un à dix. Son coefficient de corrélation linéaire vaut environ zéro virgule neuf cent soixante-quinze, élevé, alors que le bon modèle est une parabole, pas une droite. Un r élevé ne dispense donc jamais de regarder le nuage et les résidus.",
+   "texte": "y = x² donne r ≈ 0,975 : r ne voit que le linéaire.",
+   "ecran": "carre"
+  },
+  {
+   "id": "p21",
+   "dit": "La droite sert d'abord à prévoir, par interpolation : estimer igrec pour un ixe situé dans l'intervalle observé. Pour sept heures de révision, la droite des révisions donne un virgule deux fois sept plus six virgule quatre, soit quatorze virgule huit. La prévision est raisonnable, car sept heures se situent au cœur des données, entre deux et dix heures.",
+   "texte": "Interpolation à 7 h : prévision 14,8 sur 20.",
+   "ecran": "prevision"
+  },
+  {
+   "id": "p22",
+   "dit": "L'extrapolation, elle, estime en dehors de l'intervalle observé, et elle est dangereuse. À trente heures de révision, la même droite annoncerait quarante-deux virgule quatre sur vingt : un non-sens, car la relation linéaire ne peut pas se prolonger indéfiniment. Fatigue, saturation, plafond des notes : le monde réel finit toujours par courber la droite.",
+   "texte": "Extrapoler à 30 h : 42,4 sur 20, un non-sens.",
+   "ecran": "extrapolation"
+  },
+  {
+   "id": "p23",
+   "dit": "Application aux sciences : la loi d'Ohm relie la tension à l'intensité par une résistance. Avec six mesures bruitées, la droite des moindres carrés donne une pente d'environ dix virgule zéro quatre ohms : c'est l'estimation de la résistance. L'ordonnée est quasiment nulle, comme la théorie l'exige, et r est presque égal à un : le modèle linéaire est le bon.",
+   "texte": "Loi d'Ohm : pente ≈ 10,04 Ω ; r ≈ 0,9999.",
+   "ecran": "ohm"
+  },
+  {
+   "id": "p24",
+   "dit": "Autre lecture, en santé : les années de tabagisme contre un indice de capacité respiratoire. La droite estimée a une pente de moins un virgule huit, et r vaut environ moins zéro virgule soixante-quinze : liaison décroissante forte. Mais r carré ne vaut que zéro virgule cinquante-six environ : quarante-quatre pour cent de la variabilité viennent d'ailleurs, de la génétique, du sport ou d'autres expositions.",
+   "texte": "Tabac et respiration : r ≈ −0,75 ; 44 % inexpliqués.",
+   "ecran": "tabac"
+  },
+  {
+   "id": "p25",
+   "dit": "Les pièges du cours se résument en quatre interdits. Ne jamais conclure d'une corrélation à une causalité : les cigognes ne font pas les bébés, un facteur caché explique souvent les deux variables. Ne jamais extrapoler loin. Toujours repérer les points aberrants. Et ne jamais forcer du linéaire sur un nuage courbé.",
+   "texte": "Quatre pièges : causalité, extrapolation, aberrants, courbes.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p26",
+   "dit": "Le point aberrant mérite une phrase à lui seul. Un point très éloigné des autres, surtout en abscisse, exerce un effet de levier : il tire la droite vers lui et peut changer la pente du tout au tout. La bonne pratique n'est pas de le supprimer, mais de vérifier s'il s'agit d'une erreur de saisie, puis de comparer les résultats avec et sans lui.",
+   "texte": "Un point à levier peut tirer toute la droite.",
+   "ecran": "aberrant"
+  },
+  {
+   "id": "p27",
+   "dit": "La méthode complète tient en cinq gestes, dans l'ordre. Dessiner le nuage. Calculer la pente et l'ordonnée par les formules des moindres carrés. Calculer r, puis r carré, et les interpréter. Donner un sens concret à la pente et à l'ordonnée, dans les unités du problème. Et ne prévoir que dans l'intervalle observé.",
+   "texte": "La méthode en cinq gestes, dans l'ordre.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour finir, retenez l'enchaînement : un nuage que l'on regarde, une somme de carrés que l'on minimise, une pente égale à la covariance divisée par la variance, une droite qui passe par le point moyen, un coefficient r qui juge la liaison, et des prévisions qui restent dans le domaine observé. C'est toute la démarche de l'ajustement linéaire responsable.",
+   "texte": "Ajuster, corréler, prévoir : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le nuage, les résidus et les formules des moindres carrés"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Exemples chiffrés et coefficient de corrélation",
+   "pont": {
+    "texte": "Partie 2 : exemples chiffrés, propriétés et corrélation.",
+    "dit": "Partie deux : mettre les formules au travail. Nous calculerons deux droites complètes, publicité et chiffre d'affaires, puis nous jugerons la qualité de l'ajustement avec le coefficient de corrélation et son carré."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Prévoir, appliquer et éviter les pièges",
+   "pont": {
+    "texte": "Partie 3 : limite de r, prévisions, applications et pièges.",
+    "dit": "Partie trois : prévoir sans se tromper. Nous commencerons par la limite du coefficient de corrélation, qui ne voit que le linéaire, puis nous prévoirons par interpolation, nous verrons le danger de l'extrapolation, et deux applications, en physique et en santé, avant la méthode complète."
+   }
+  }
+ ]
+}
