@@ -2108,6 +2108,73 @@ const FIG = {
       mot(416, 144, 'vₙ − uₙ → 0', { t: 19, a: 'start' }) +
       mot(500, 288, "uₙ monte, vₙ descend : l'écart tend vers zéro, la limite est commune", { t: 19 }));
   },
+  heron_axe_fig(t) {
+    const X = v => Math.round(180 + (v - 1) / 0.5 * 700);
+    let graduations = '';
+    [1, 1.1, 1.2, 1.3, 1.4, 1.5].forEach(v => {
+      graduations += `<line x1="${X(v)}" y1="194" x2="${X(v)}" y2="206" stroke="currentColor" stroke-width="3"/>`;
+      graduations += mot(X(v), 232, v.toFixed(1).replace('.', ','), { t: 16 });
+    });
+    return svgBoite(
+      `<path d="M 180 196 Q 530 16 880 196" fill="none" stroke="currentColor" stroke-width="3" opacity=".55"/>` +
+      `<polygon points="880,196 862,188 866,206" fill="currentColor" opacity=".55"/>` +
+      `<path d="M 880 196 Q 826 108 770 192" fill="none" stroke="#1A75FF" stroke-width="3" opacity=".7"/>` +
+      `<polygon points="766,196 756,180 776,178" fill="#1A75FF" opacity=".7"/>` +
+      `<line x1="150" y1="200" x2="906" y2="200" stroke="currentColor" stroke-width="4"/>` +
+      graduations +
+      `<line x1="${X(1.41421)}" y1="168" x2="${X(1.41421)}" y2="200" stroke="#B8860B" stroke-width="4"/>` +
+      `<circle cx="180" cy="200" r="6" fill="currentColor"/>` +
+      `<circle cx="880" cy="200" r="6" fill="currentColor"/>` +
+      `<circle cx="${X(1.4167)}" cy="200" r="6" fill="#1A75FF"/>` +
+      `<circle cx="${X(1.41422)}" cy="200" r="6" fill="#E8604C"/>` +
+      mot(180, 262, 'x₀ = 1', { t: 19 }) +
+      mot(880, 262, 'x₁ = 1,5', { t: 19 }) +
+      mot(706, 84, 'x₂ ≈ 1,4167', { t: 19, c: '#1A75FF' }) +
+      `<line x1="742" y1="92" x2="760" y2="188" stroke="#1A75FF" stroke-width="2"/>` +
+      mot(668, 128, 'x₃ ≈ 1,41422', { t: 19, c: '#E8604C', a: 'end' }) +
+      `<line x1="676" y1="136" x2="752" y2="190" stroke="#E8604C" stroke-width="2"/>` +
+      mot(X(1.41421), 262, '√2 ≈ 1,41421', { t: 19, c: '#B8860B' }) +
+      mot(500, 292, 'chaque moyenne resserre les points sur la racine', { t: 19 }));
+  },
+  newton_parabole_fig(t) {
+    const ox = 330, oy = 215;
+    let courbe = '';
+    for (let k = 0; k <= 40; k++) {
+      const x = 0.35 + k * (1.95 / 40);
+      courbe += `${Math.round(ox + 130 * x)},${Math.round(oy - 42 * (x * x - 2))} `;
+    }
+    const racine = Math.round(ox + 130 * 1.41421);
+    return svgBoite(
+      `<line x1="200" y1="${oy}" x2="852" y2="${oy}" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="852,${oy} 836,${oy - 6} 836,${oy + 6}" fill="currentColor"/>` +
+      `<line x1="${ox}" y1="292" x2="${ox}" y2="34" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="${ox},34 ${ox - 6},50 ${ox + 6},50" fill="currentColor"/>` +
+      `<polyline points="${courbe}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>` +
+      `<line x1="408" y1="291" x2="562" y2="190" stroke="#1A75FF" stroke-width="4"/>` +
+      `<line x1="556" y1="172" x2="496" y2="232" stroke="#10B981" stroke-width="4"/>` +
+      `<circle cx="460" cy="257" r="6" fill="#1A75FF"/>` +
+      `<circle cx="525" cy="204" r="6" fill="#10B981"/>` +
+      `<line x1="${racine}" y1="${oy - 12}" x2="${racine}" y2="${oy + 12}" stroke="#B8860B" stroke-width="4"/>` +
+      mot(460, oy + 26, 'x₀ = 1', { t: 18 }) +
+      mot(racine - 8, oy + 26, '√2', { t: 19, c: '#B8860B', a: 'end' }) +
+      mot(548, oy + 26, 'x₁ = 1,5', { t: 18, a: 'start' }) +
+      mot(706, 84, 'y = x² − 2', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(500, 292, 'la tangente coupe l’axe au point suivant, toujours plus près de √2', { t: 18 }));
+  },
+  rectangle_moyenne_fig(t) {
+    return svgBoite(
+      `<rect x="240" y="102" width="490" height="62" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(485, 88, 'xₙ', { t: 21, c: '#1A75FF' }) +
+      mot(744, 140, 'S/xₙ', { t: 20, a: 'start' }) +
+      `<line x1="485" y1="172" x2="485" y2="196" stroke="currentColor" stroke-width="3"/>` +
+      `<polygon points="485,202 479,188 491,188" fill="currentColor"/>` +
+      mot(500, 190, 'moyenne', { t: 18, a: 'start' }) +
+      `<rect x="360" y="212" width="290" height="80" fill="#10B981" fill-opacity=".14" stroke="#10B981" stroke-width="4"/>` +
+      mot(505, 200, 'xₙ₊₁', { t: 21, c: '#10B981' }) +
+      mot(500, 258, 'presque un carré', { t: 18 }) +
+      mot(852, 140, 'aire S', { t: 19, a: 'start' }) +
+      mot(852, 258, 'aire S', { t: 19, a: 'start' }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';

@@ -1,0 +1,325 @@
+{
+ "cours": 5898,
+ "ecrans": {
+  "au_dela": {
+   "kicker": "Au-delà de la racine carrée",
+   "note": "Une équation non linéaire que Newton sait approcher, et pas Héron seul",
+   "tex": "f(x) = x^3 - 2x - 5 = 0",
+   "type": "formule"
+  },
+  "choix_depart": {
+   "kicker": "Le choix de la valeur initiale",
+   "tex": [
+    "S = 10 : \\quad 3^2 = 9 < 10 < 16 = 4^2",
+    "x_0 = 3 \\text{, proche de } \\sqrt{10} \\text{ : convergence rapide}"
+   ],
+   "titre": "Encadrer par un carré pour bien partir",
+   "type": "etape"
+  },
+  "depart_exact": {
+   "kicker": "Premier exemple : racine de vingt-cinq",
+   "tex": [
+    "S = 25 \\qquad x_0 = 5",
+    "x_1 = \\tfrac{1}{2}\\left(5 + \\tfrac{25}{5}\\right) = \\tfrac{1}{2}(5 + 5) = 5",
+    "\\sqrt{25} = 5 \\text{ : convergence immédiate}"
+   ],
+   "titre": "Un départ déjà exact",
+   "type": "etape"
+  },
+  "depart_loin": {
+   "kicker": "Même racine, départ lointain",
+   "tex": [
+    "S = 25 \\qquad x_0 = 10",
+    "x_1 = 6{,}25 \\qquad x_2 = 5{,}125",
+    "x_3 \\approx 5{,}0015 \\qquad x_4 \\approx 5{,}0000002"
+   ],
+   "titre": "Parti de dix, la racine de vingt-cinq revient à cinq",
+   "type": "etape"
+  },
+  "formule": {
+   "kicker": "La formule de récurrence",
+   "note": "xₙ : estimation à l'étape n · S : le nombre dont on cherche la racine",
+   "tex": "x_{n+1} = \\frac{1}{2}\\left(x_n + \\frac{S}{x_n}\\right)",
+   "type": "formule"
+  },
+  "heritage": {
+   "kicker": "Un algorithme intemporel",
+   "texte": "Près de deux mille ans plus tard, la même moyenne répétée fait tourner nos machines : une idée simple, un impact durable.",
+   "type": "phrase"
+  },
+  "informatique": {
+   "kicker": "L'algorithme en informatique",
+   "tex": [
+    "S = 10 \\qquad x \\leftarrow 3",
+    "\\text{répéter : } x \\leftarrow \\tfrac{1}{2}\\left(x + \\tfrac{S}{x}\\right)",
+    "\\text{afficher } x \\text{ après chaque tour de boucle}"
+   ],
+   "titre": "Une boucle de quelques lignes",
+   "type": "etape"
+  },
+  "intuition": {
+   "kicker": "Pourquoi la moyenne corrige",
+   "tex": [
+    "x_n < \\sqrt{S} \\;\\Rightarrow\\; \\tfrac{S}{x_n} > \\sqrt{S}",
+    "x_n > \\sqrt{S} \\;\\Rightarrow\\; \\tfrac{S}{x_n} < \\sqrt{S}",
+    "x_{n+1} = \\tfrac{1}{2}\\left(x_n + \\tfrac{S}{x_n}\\right) \\text{ : entre les deux}"
+   ],
+   "titre": "Les deux nombres encadrent la racine",
+   "type": "etape",
+   "anim": {
+    "nom": "rectangle_moyenne_fig",
+    "hauteur": 110
+   }
+  },
+  "methode": {
+   "kicker": "La méthode en quatre gestes",
+   "tex": [
+    "\\text{1. choisir } S > 0 \\text{ et } x_0 > 0",
+    "\\text{2. calculer } x_{n+1} = \\tfrac{1}{2}\\left(x_n + \\tfrac{S}{x_n}\\right)",
+    "\\text{3. répéter avec la nouvelle estimation}",
+    "\\text{4. s'arrêter quand } x_{n+1} \\approx x_n \\text{ à la précision voulue}"
+   ],
+   "titre": "Le schéma de tout algorithme itératif",
+   "type": "etape"
+  },
+  "newton": {
+   "kicker": "Le lien avec Newton-Raphson",
+   "note": "Pour f(x) = x² − S, cette formule redonne exactement celle d'Héron",
+   "tex": "x_{n+1} = x_n - \\frac{f(x_n)}{f'(x_n)}",
+   "type": "formule",
+   "anim": {
+    "nom": "newton_parabole_fig",
+    "hauteur": 180
+   }
+  },
+  "origine": {
+   "kicker": "Origine",
+   "texte": "Héron d'Alexandrie, premier siècle, décrit la méthode dans sa Métrique : des idées voisines existaient avant lui, il les rend utilisables.",
+   "type": "phrase"
+  },
+  "piege_zero": {
+   "kicker": "Le piège à éviter",
+   "note": "Règle : S strictement positif, et départ strictement positif, toujours",
+   "tex": "x_0 = 0 \\;\\Rightarrow\\; \\frac{S}{x_0} \\text{ indéfini}",
+   "type": "formule"
+  },
+  "principe": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Le principe itératif",
+   "texte": "Itérer : réappliquer la même transformation à chaque estimation, jusqu'à converger vers la racine.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Formule : xₙ₊₁ = ½(xₙ + S/xₙ)",
+    "La moyenne corrige : trop petit, trop grand",
+    "√2 ≈ 1,41421356 en quatre étapes",
+    "√10 ≈ 3,16227766 en trois étapes",
+    "Départ > 0 ; Newton généralise l'idée"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "sqrt10_debut": {
+   "kicker": "Deuxième exemple : racine de dix",
+   "tex": [
+    "S = 10 \\qquad x_0 = 3",
+    "x_1 = \\tfrac{1}{2}\\left(3 + \\tfrac{10}{3}\\right) \\approx 3{,}1667"
+   ],
+   "titre": "L'exercice des leçons, au départ de trois",
+   "type": "etape"
+  },
+  "sqrt10_suite": {
+   "kicker": "Racine de dix : deux étapes de plus",
+   "tex": [
+    "x_2 \\approx 3{,}1622807",
+    "x_3 \\approx 3{,}16227766 \\qquad \\sqrt{10} \\approx 3{,}16227766"
+   ],
+   "titre": "Trois itérations suffisent",
+   "type": "etape"
+  },
+  "sqrt2_bilan": {
+   "kicker": "Racine de deux : le résultat",
+   "note": "x₄ donne déjà huit décimales exactes : la convergence est quadratique",
+   "tex": "\\sqrt{2} \\approx 1{,}41421356",
+   "type": "formule"
+  },
+  "sqrt2_debut": {
+   "kicker": "Exemple central : racine de deux",
+   "tex": [
+    "S = 2 \\qquad x_0 = 1",
+    "x_1 = \\tfrac{1}{2}\\left(1 + \\tfrac{2}{1}\\right) = 1{,}5"
+   ],
+   "titre": "Un départ grossier, une première moyenne",
+   "type": "etape",
+   "anim": {
+    "nom": "heron_axe_fig",
+    "hauteur": 150
+   }
+  },
+  "sqrt2_suite": {
+   "kicker": "Racine de deux : la suite des moyennes",
+   "tex": [
+    "x_2 = \\tfrac{1}{2}\\left(1{,}5 + \\tfrac{2}{1{,}5}\\right) \\approx 1{,}4167",
+    "x_3 \\approx 1{,}4142157 \\qquad \\text{erreur} \\approx 2 \\times 10^{-6}"
+   ],
+   "titre": "L'erreur s'écrase à chaque étape",
+   "type": "etape",
+   "anim": {
+    "nom": "heron_axe_fig",
+    "hauteur": 150
+   }
+  },
+  "titre": {
+   "kicker": "Mathématique · Algorithme d'Héron",
+   "sous": "Partir d'une estimation, la corriger par une moyenne, et converger en quelques étapes",
+   "titre": "L'algorithme d'Héron : la racine carrée par moyennes successives",
+   "type": "titre",
+   "anim": {
+    "nom": "heron_axe_fig",
+    "hauteur": 250
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La formule de la moyenne et deux racines pas à pas"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le point de départ, les pièges et l'héritage. Au programme : le choix de l'estimation initiale, le piège du départ à zéro, la méthode en quatre gestes, puis le lien avec Newton et avec l'informatique.",
+    "texte": "Partie 2 : le point de départ, les pièges, Newton et l'informatique."
+   },
+   "sous_titre": "Le point de départ, les pièges et l'héritage de Newton"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à l'algorithme d'Héron, une méthode vieille de près de deux mille ans pour calculer une racine carrée. Son principe : partir d'une estimation, puis l'améliorer sans cesse par une moyenne astucieuse, jusqu'à approcher la racine exacte d'aussi près que l'on veut.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "L'algorithme d'Héron : approcher une racine par moyennes successives."
+  },
+  {
+   "dit": "L'algorithme porte le nom d'Héron d'Alexandrie, mathématicien grec du premier siècle, qui l'a décrit dans son ouvrage intitulé Métrique. Des techniques voisines existaient déjà avant lui, mais Héron les a formulées de façon claire et utilisable. Sans calculatrice, approcher une racine avec précision était un vrai savoir-faire.",
+   "ecran": "origine",
+   "id": "p02",
+   "texte": "Héron d'Alexandrie, premier siècle : la Métrique."
+  },
+  {
+   "dit": "On ne sait pas calculer directement la racine carrée d'un nombre, noté esse, mais on sait deviner une première estimation, puis la corriger. L'algorithme construit donc une suite d'estimations, chacune obtenue à partir de la précédente par la même transformation. C'est le sens du mot itératif : chaque répétition rapproche de la vraie racine, la suite converge.",
+   "ecran": "principe",
+   "id": "p03",
+   "texte": "Itérer : réappliquer la même transformation jusqu'à converger."
+  },
+  {
+   "dit": "Voici la formule au cœur de l'algorithme. On note ixe indice n l'estimation à l'étape n, et ixe indice n plus un l'estimation améliorée à l'étape suivante. Elle s'obtient en prenant la moyenne de deux nombres : l'estimation actuelle, et le quotient de esse par cette estimation. Toute la méthode tient dans cette ligne.",
+   "ecran": "formule",
+   "id": "p04",
+   "texte": "La moyenne de l'estimation et de S divisé par elle."
+  },
+  {
+   "dit": "Pourquoi cette moyenne améliore-t-elle l'estimation ? Si l'estimation est trop petite, le quotient de esse par elle est trop grand, car on divise par un nombre trop petit : les deux nombres encadrent la vraie racine, l'un par défaut, l'autre par excès. Si elle est trop grande, c'est l'inverse. La moyenne tombe entre les deux, donc plus près de la racine.",
+   "ecran": "intuition",
+   "id": "p05",
+   "texte": "Trop petit d'un côté, trop grand de l'autre : la moyenne corrige."
+  },
+  {
+   "dit": "Premier exemple, le plus simple : la racine carrée de vingt-cinq, en partant de l'estimation cinq. Le quotient de vingt-cinq par cinq vaut cinq, et la moyenne de cinq et cinq vaut cinq : l'estimation ne bouge plus. C'est logique, cinq est déjà la racine exacte. Quand le départ est exact, l'algorithme le détecte en une étape.",
+   "ecran": "depart_exact",
+   "id": "p06",
+   "texte": "Racine de vingt-cinq, départ cinq : déjà exact."
+  },
+  {
+   "dit": "Exemple central : la racine carrée de deux, qui n'a pas d'écriture décimale finie. On part d'une estimation grossière, un. Le quotient de deux par un vaut deux, et la moyenne de un et deux vaut un virgule cinq. En une étape, on passe d'un départ très grossier à un virgule cinq, alors que la vraie valeur vaut environ un virgule quatre cent quatorze.",
+   "ecran": "sqrt2_debut",
+   "id": "p07",
+   "texte": "Racine de deux, départ un : première moyenne, un virgule cinq."
+  },
+  {
+   "dit": "Continuons. À partir de un virgule cinq, deux divisé par ce nombre vaut environ un virgule trois cent trente-trois, et la moyenne donne environ un virgule quatre cent dix-sept : l'erreur tombe à deux millièmes et demi environ. Encore une étape, et la moyenne vaut environ un virgule quatre cent quatorze mille deux cent seize : l'erreur n'est plus que de deux millionièmes. L'erreur s'écrase.",
+   "ecran": "sqrt2_suite",
+   "id": "p08",
+   "texte": "La suite : un virgule quatre cent dix-sept, puis l'erreur s'écrase."
+  },
+  {
+   "dit": "Une quatrième étape donne un virgule quatre cent quatorze mille deux cent treize, qui coïncide déjà avec la racine carrée de deux à huit décimales près. Retenez cette rapidité : l'erreur est en quelque sorte élevée au carré à chaque étape, et le nombre de décimales exactes double approximativement.",
+   "ecran": "sqrt2_bilan",
+   "id": "p09",
+   "texte": "Racine de deux : huit décimales exactes en quatre étapes."
+  },
+  {
+   "dit": "Deuxième exemple, celui proposé en exercice dans les leçons : la racine carrée de dix, en partant de trois. Dix divisé par trois vaut environ trois virgule trois cent trente-trois, et la moyenne de trois et de ce quotient donne environ trois virgule cent soixante-sept. Trois était trop petit, le quotient trop grand : la moyenne est déjà très proche de la racine.",
+   "ecran": "sqrt10_debut",
+   "id": "p10",
+   "texte": "Racine de dix, départ trois : première moyenne proche du but."
+  },
+  {
+   "dit": "Deuxième étape : on réapplique la formule, et l'on obtient environ trois virgule cent soixante-deux mille huit cent sept. Troisième étape : environ trois virgule cent soixante-deux mille sept cent soixante-six, qui coïncide avec la racine de dix aux huit premières décimales. Quand deux estimations successives cessent de différer à la précision souhaitée, on s'arrête : c'est le critère d'arrêt.",
+   "ecran": "sqrt10_suite",
+   "id": "p11",
+   "texte": "Racine de dix : trois étapes, huit décimales communes."
+  },
+  {
+   "dit": "Le choix de l'estimation de départ a-t-il une importance ? Oui pour la vitesse, non pour le résultat. Une estimation proche de la racine fait gagner des étapes ; une estimation grossière converge aussi, en davantage d'étapes. Bonne habitude : partir d'un entier dont le carré encadre le nombre visé. Pour dix, trois convient, car son carré vaut neuf.",
+   "ecran": "choix_depart",
+   "id": "p12",
+   "texte": "Départ proche : plus vite. Départ grossier : même limite."
+  },
+  {
+   "dit": "Illustration : reprenons la racine carrée de vingt-cinq, mais en partant de dix, loin du compte. La première moyenne donne six virgule vingt-cinq, la deuxième cinq virgule cent vingt-cinq, la troisième environ cinq virgule zéro zéro quinze, et la quatrième coïncide avec cinq à sept décimales près. Parti de deux fois trop haut, l'algorithme rectifie tout seul.",
+   "ecran": "depart_loin",
+   "id": "p13",
+   "texte": "Racine de vingt-cinq depuis dix : la correction est automatique."
+  },
+  {
+   "dit": "Un piège, en revanche, est à éviter absolument : partir de zéro. La formule exige de diviser esse par l'estimation, et diviser par zéro est impossible : l'algorithme ne peut même pas démarrer. La règle est simple : l'estimation de départ doit être strictement positive. Tout départ positif convient, et la suite converge vers la racine positive.",
+   "ecran": "piege_zero",
+   "id": "p14",
+   "texte": "Départ zéro interdit : division par zéro, aucun démarrage."
+  },
+  {
+   "dit": "Résumons la méthode en quatre gestes. Un : choisir le nombre esse, strictement positif, et une estimation de départ strictement positive. Deux : appliquer la formule de la moyenne pour obtenir l'estimation suivante. Trois : répéter, en repartant du résultat que l'on vient de calculer. Quatre : s'arrêter lorsque deux estimations successives sont assez proches.",
+   "ecran": "methode",
+   "id": "p15",
+   "texte": "Initialiser, mettre à jour, boucler, s'arrêter."
+  },
+  {
+   "dit": "Plaçons Héron dans une famille plus vaste : la méthode de Newton-Raphson, qui approche les solutions d'équations très variées. Son idée est géométrique : au point d'abscisse l'estimation courante, on remplace la courbe par sa tangente, et l'on prend pour nouvelle estimation le point où elle coupe l'axe des abscisses. Pour ixe au carré moins esse égale zéro, on retrouve exactement Héron.",
+   "ecran": "newton",
+   "id": "p16",
+   "texte": "Newton : suivre la tangente jusqu'à l'axe des abscisses."
+  },
+  {
+   "dit": "L'intérêt de ce point de vue est l'extension : là où Héron ne calcule que des racines carrées, Newton attaque des équations non linéaires quelconques, comme celle affichée ici, tirée des leçons. Elle irrigue la physique, l'ingénierie et l'économie. Héron devient le cas le plus ancien d'une idée immense : approcher une courbe par sa tangente, encore et encore.",
+   "ecran": "au_dela",
+   "id": "p17",
+   "texte": "Au-delà des racines : les équations non linéaires quelconques."
+  },
+  {
+   "dit": "Côté informatique, l'algorithme tient en une boucle de quelques lignes : on initialise la variable à l'estimation de départ, puis, à chaque tour, on la remplace par la moyenne d'elle-même et du quotient de esse par elle-même. Les leçons donnent un exemple en Python, avec cinq tours pour la racine de dix au départ de trois : vous pouvez prévoir ses sorties, nous avons déjà calculé ces valeurs.",
+   "ecran": "informatique",
+   "id": "p18",
+   "texte": "En code : une boucle, cinq tours pour la racine de dix."
+  },
+  {
+   "dit": "Replaçons enfin la méthode dans l'histoire. Quand les outils de calcul étaient rudimentaires, obtenir une racine précise tenait de la prouesse ; cet algorithme la rendait accessible avec de simples opérations élémentaires, répétées patiemment. Près de deux mille ans plus tard, le même schéma fait tourner nos machines. Une moyenne, répétée, qui chasse l'erreur jusqu'à la faire disparaître.",
+   "ecran": "heritage",
+   "id": "p19",
+   "texte": "De l'Antiquité à l'ordinateur : la même moyenne répétée."
+  },
+  {
+   "dit": "Pour conclure : l'algorithme d'Héron calcule la racine carrée de esse par la moyenne répétée de l'estimation et du quotient de esse par l'estimation. Cette moyenne corrige automatiquement, car les deux nombres encadrent la racine. Quatre étapes pour la racine de deux, trois pour celle de dix. Le départ doit être strictement positif, et son choix ne change que la vitesse. Et derrière Héron se profile Newton.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "Héron : la moyenne répétée qui trouve la racine."
+  }
+ ],
+ "titre": "L'algorithme d'Héron : la racine carrée par moyennes successives"
+}
