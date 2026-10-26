@@ -412,6 +412,24 @@ describe('A7 · Résultat du diagnostic', () => {
     expect(suivre).toHaveBeenCalledWith('cert_diagnostic_completed', { score_min: 650, score_max: 730 });
   });
 
+  it('fin en forme « replay » (score exact, pas de clé estimated) : le score exact s’affiche, pas « Pas encore »', async () => {
+    await preparer();
+    const etat = await lireDiagnostic();
+    // Envoi de fin réessayé sur une tentative déjà terminée : la réponse replay de cert_attempt_finish ne porte
+    // pas `estimated`, mais porte le score exact (#129). Ce `fin` persisté rouvrait le résultat sur « Pas encore ».
+    await ecrireDiagnostic({
+      ...etat!,
+      fin: {
+        status: 'finished', attempt_id: etat!.fin!.attempt_id, kind: 'diagnostic',
+        score: 745, score_min: 720, score_max: 770,
+        per_part: etat!.fin!.per_part, results: etat!.fin!.results, replay: true,
+      },
+    } as never);
+    await monter(<ResultatDiagnostic />);
+    expect(await screen.findByText('745')).toBeTruthy();
+    expect(screen.queryByText(t.resultat.pasEstime)).toBeNull();
+  });
+
   it('fin ancien sans score exact : le milieu de la fourchette s’affiche en un chiffre, jamais la fourchette', async () => {
     await preparer();
     const etat = await lireDiagnostic();

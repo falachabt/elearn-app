@@ -88,4 +88,9 @@ describe('scoreEstime : score exact, repli sur le milieu de la fourchette', () =
     expect(scoreEstime({ estimated: false, score: null, score_min: null, score_max: null })).toBeNull();
     expect(scoreEstime(null)).toBeNull();
   });
+  it('forme « replay » du serveur (score exact présent, pas de clé estimated) : le score exact fait foi', () => {
+    // Réponse de cert_attempt_finish quand l'envoi de fin est réessayé sur une tentative déjà terminée :
+    // pas de `estimated`, mais le score exact depuis #129. Le `fin` persisté rouvrait A7 sur « Pas encore ».
+    expect(scoreEstime({ score: 745, score_min: 720, score_max: 770 })).toBe(745);
+  });
 });
