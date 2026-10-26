@@ -1,0 +1,666 @@
+{
+ "cours": 6337,
+ "titre": "Le tableau périodique : la carte qui prédit les propriétés des éléments",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Le tableau périodique",
+   "titre": "Le tableau périodique : la carte qui prédit les propriétés des éléments",
+   "sous": "Numéro atomique, configurations, tendances et familles : un seul tableau pour toute la chimie",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "familles",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Une bibliothèque sans classement",
+   "texte": "Au XIXe siècle, des dizaines d'éléments connus, aucun classement : Mendeleïev ose ranger, laisser des cases vides — et prédire les éléments manquants.",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "familles",
+    "hauteur": 150
+   }
+  },
+  "loi_periodique": {
+   "type": "formule",
+   "kicker": "Le principe organisateur",
+   "tex": "Z = \\text{le nombre de protons dans le noyau}",
+   "note": "Mendeleïev classait par masse ; Moseley montrera que c'est Z qui commande."
+  },
+  "moseley": {
+   "type": "etape",
+   "kicker": "Moseley : la correction de 1913",
+   "titre": "Les rayons X tranchent entre masse et numéro atomique",
+   "tex": [
+    "\\sqrt{\\nu} = a(Z - b)\\ \\text{: la loi de Moseley (1913)}",
+    "\\text{cobalt : } M = 58{,}93\\ \\text{mais } Z = 27 \\Rightarrow \\text{avant le nickel}",
+    "\\text{nickel : } M = 58{,}69\\ \\text{mais } Z = 28 \\Rightarrow \\text{après le cobalt}",
+    "\\text{tellure et iode : même inversion, corrigée par } Z"
+   ]
+  },
+  "couches": {
+   "type": "etape",
+   "kicker": "Les couches électroniques",
+   "titre": "Des couches numérotées, des capacités fixées",
+   "tex": [
+    "\\text{capacité maximale d'une couche : } 2n^2\\ \\text{électrons}",
+    "n = 1\\ (K) : 2 \\qquad n = 2\\ (L) : 8",
+    "n = 3\\ (M) : 18 \\qquad n = 4\\ (N) : 32"
+   ]
+  },
+  "sous_couches": {
+   "type": "etape",
+   "kicker": "Les sous-couches s, p, d, f",
+   "titre": "Quatre formes d'orbitales, quatre capacités",
+   "tex": [
+    "s : 1\\ \\text{orbitale} \\Rightarrow 2\\ e^- \\qquad p : 3\\ \\text{orbitales} \\Rightarrow 6\\ e^-",
+    "d : 5\\ \\text{orbitales} \\Rightarrow 10\\ e^- \\qquad f : 7\\ \\text{orbitales} \\Rightarrow 14\\ e^-",
+    "\\text{Pauli : } 2\\ e^-\\ \\text{par orbitale, spins opposés}"
+   ],
+   "anim": {
+    "nom": "orbitales_formes_fig",
+    "hauteur": 110
+   }
+  },
+  "remplissage": {
+   "type": "etape",
+   "kicker": "L'ordre de remplissage",
+   "titre": "Klechkowski et Hund : les deux règles du jeu",
+   "tex": [
+    "\\text{Klechkowski : } (n + l)\\ \\text{croissant, à égalité } n\\ \\text{croissant}",
+    "1s < 2s < 2p < 3s < 3p < 4s < 3d < 4p < 5s < \\ldots",
+    "\\text{Hund : un électron par orbitale avant d'apparier}"
+   ],
+   "anim": {
+    "nom": "cases_quantiques_fig",
+    "hauteur": 110
+   }
+  },
+  "configurations": {
+   "type": "etape",
+   "kicker": "Écrire une configuration",
+   "titre": "Le sodium et le fer, pas à pas",
+   "tex": [
+    "\\text{Na } (Z = 11) : 1s^2\\,2s^2\\,2p^6\\,3s^1 = [\\text{Ne}]\\,3s^1",
+    "\\text{Fe } (Z = 26) : [\\text{Ar}]\\,4s^2\\,3d^6",
+    "\\text{le } 4s \\text{ se remplit avant le } 3d",
+    "\\text{valence : les électrons de la couche externe}"
+   ]
+  },
+  "exceptions_config": {
+   "type": "etape",
+   "kicker": "Les exceptions qui confirment",
+   "titre": "Le chrome et le cuivre désobéissent… pour la stabilité",
+   "tex": [
+    "\\text{Cr : attendu } [\\text{Ar}]\\,4s^2\\,3d^4 \\;\\Rightarrow\\; \\text{observé } [\\text{Ar}]\\,4s^1\\,3d^5",
+    "\\text{Cu : attendu } [\\text{Ar}]\\,4s^2\\,3d^9 \\;\\Rightarrow\\; \\text{observé } [\\text{Ar}]\\,4s^1\\,3d^{10}",
+    "\\text{stabilité : sous-couche } d \\text{ demi-pleine } (d^5) \\text{ ou pleine } (d^{10})"
+   ]
+  },
+  "position": {
+   "type": "etape",
+   "kicker": "De la configuration à la position",
+   "titre": "La période et le groupe se lisent dans la configuration",
+   "tex": [
+    "\\text{période} = n_{\\max} \\text{ de la configuration}",
+    "\\text{groupe} = \\text{nombre d'électrons de valence}",
+    "\\text{Na } [\\text{Ne}]\\,3s^1 : \\text{période 3, groupe 1}",
+    "\\text{Mg } [\\text{Ne}]\\,3s^2 : \\text{période 3, groupe 2}"
+   ]
+  },
+  "blocs": {
+   "type": "etape",
+   "kicker": "Les quatre blocs",
+   "titre": "La sous-couche du dernier électron partage la carte",
+   "tex": [
+    "\\text{bloc } s : \\text{groupes 1-2} \\qquad \\text{bloc } p : \\text{groupes 13-18}",
+    "\\text{bloc } d : \\text{groupes 3-12, métaux de transition}",
+    "\\text{bloc } f : \\text{lanthanides et actinides, en bas du tableau}"
+   ],
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "blocs",
+    "hauteur": 120
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés : lire la carte",
+   "etapes": [
+    "Z : le nombre de protons, l'identité",
+    "Loi périodique : propriétés fonctions de Z",
+    "Couches 2n², sous-couches s, p, d, f",
+    "Période = n max, groupe = valence",
+    "Quatre blocs : s, p, d, f"
+   ]
+  },
+  "rayon_mesure": {
+   "type": "formule",
+   "kicker": "Mesurer la taille d'un atome",
+   "tex": "d_{A-A} = r_A + r_A = 2\\,r_A \\quad \\Rightarrow \\quad r_A = \\frac{d_{A-A}}{2}",
+   "note": "d : distance internucléaire entre deux atomes identiques liés."
+  },
+  "rayon_tendances": {
+   "type": "etape",
+   "kicker": "Le rayon : les deux voyages",
+   "titre": "Il diminue vers la droite, il grandit vers le bas",
+   "tex": [
+    "\\text{période } (\\rightarrow) : \\text{le rayon diminue}",
+    "\\text{Li} \\rightarrow \\text{Ne} : 152 \\rightarrow 67\\ \\text{pm}",
+    "\\text{groupe } (\\downarrow) : \\text{le rayon augmente}",
+    "\\text{Li} \\rightarrow \\text{Cs} : 152 \\rightarrow 265\\ \\text{pm}"
+   ]
+  },
+  "ionisation_def": {
+   "type": "formule",
+   "kicker": "Arracher un électron",
+   "tex": "A_{(g)} \\rightarrow A^{+}_{(g)} + e^- \\qquad \\Delta H = EI_1 > 0",
+   "note": "Atome gazeux isolé, état fondamental : la définition compte."
+  },
+  "ionisation_valeurs": {
+   "type": "etape",
+   "kicker": "Les chiffres de la période 2",
+   "titre": "Première énergie d'ionisation, en kilojoules par mole",
+   "tex": [
+    "\\text{période 2 : Li } 520,\\ \\text{Be } 900,\\ \\text{C } 1086,\\ \\text{N } 1402",
+    "\\text{F } 1681,\\ \\text{Ne } 2081\\ \\text{: la montée vers la droite}",
+    "\\text{alcalins : Li } 520 > \\text{Na } 496 > \\text{K } 419 > \\text{Cs } 376",
+    "\\text{unités : kJ/mol, première ionisation}"
+   ]
+  },
+  "ionisation_exceptions": {
+   "type": "etape",
+   "kicker": "Les deux trébuchements",
+   "titre": "Quand la tendance baisse : béryllium-bore, azote-oxygène",
+   "tex": [
+    "\\text{Be } [\\text{He}]\\,2s^2 : \\text{sous-couche } s \\text{ pleine, stable}",
+    "\\text{B } [\\text{He}]\\,2s^2\\,2p^1 : \\text{l'électron } 2p \\text{, plus externe, part plus facilement}",
+    "\\text{N } 2p^3 : \\text{demi-pleine, stable} \\qquad \\text{O } 2p^4 : \\text{appariement, répulsion}",
+    "EI : \\text{Be } 900 > \\text{B } 801 \\qquad \\text{N } 1402 > \\text{O } 1314"
+   ]
+  },
+  "affinite": {
+   "type": "formule",
+   "kicker": "Capturer un électron",
+   "tex": "A_{(g)} + e^- \\rightarrow A^{-}_{(g)} + \\text{énergie}",
+   "note": "Halogènes : les affinités les plus négatives du tableau."
+  },
+  "electronegativite": {
+   "type": "etape",
+   "kicker": "Attirer les électrons d'une liaison",
+   "titre": "L'électronégativité de Pauling : le fluor au sommet",
+   "tex": [
+    "\\chi\\ \\text{de Pauling : le fluor vaut } 4{,}0\\ \\text{(référence)}",
+    "\\text{période 2 : Li } 0{,}98 < \\text{B } 2{,}04 < \\text{N } 3{,}04 < \\text{F } 4{,}0",
+    "\\text{période 3 : Na } 0{,}93 < \\text{Si } 1{,}90 < \\text{Cl } 3{,}16",
+    "\\chi : \\nearrow\\ \\text{vers la droite}, \\searrow\\ \\text{en descendant}"
+   ]
+  },
+  "delta_chi": {
+   "type": "etape",
+   "kicker": "Δχ : le juge des liaisons",
+   "titre": "La différence d'électronégativité prédit la liaison",
+   "tex": [
+    "\\Delta\\chi \\approx 0 : \\text{covalente pure } (H_2,\\ Cl_2)",
+    "0 < \\Delta\\chi < 1{,}7 : \\text{covalente polarisée } (HCl : 0{,}96)",
+    "\\Delta\\chi > 1{,}7 : \\text{ionique } (NaCl : 2{,}23)"
+   ]
+  },
+  "caractere_metallique": {
+   "type": "etape",
+   "kicker": "La grande diagonale",
+   "titre": "Le caractère métallique, l'inverse de l'électronégativité",
+   "tex": [
+    "\\text{caractère métallique} : \\searrow\\ \\text{vers la droite}, \\nearrow\\ \\text{en descendant}",
+    "\\text{diagonale B} \\rightarrow \\text{At : métaux en bas à gauche}",
+    "\\text{sur la diagonale : les métalloïdes (Si, Ge)}"
+   ],
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "familles",
+    "hauteur": 110
+   }
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés : le relief",
+   "etapes": [
+    "Rayon : ↘ en période, ↗ en groupe",
+    "EI et χ : ↗ en période, ↘ en groupe",
+    "Exceptions EI : Be → B et N → O",
+    "L'affinité suit le même relief",
+    "Δχ annonce le type de liaison"
+   ]
+  },
+  "alcalins": {
+   "type": "etape",
+   "kicker": "Groupe 1 : les métaux alcalins",
+   "titre": "Un seul électron de valence, une réactivité extrême",
+   "tex": [
+    "\\text{valence } ns^1 : \\text{Li, Na, K, Rb, Cs, Fr}",
+    "M \\rightarrow M^+ + e^- : \\text{configuration du gaz noble précédent}",
+    "2Na_{(s)} + 2H_2O_{(l)} \\rightarrow 2NaOH_{(aq)} + H_{2(g)}",
+    "\\text{avec l'eau : violence croissante de Li à Cs}"
+   ]
+  },
+  "alcalino_terreux": {
+   "type": "etape",
+   "kicker": "Groupe 2 : les alcalino-terreux",
+   "titre": "Deux électrons de valence, un cran plus calmes",
+   "tex": [
+    "\\text{valence } ns^2 : \\text{Be, Mg, Ca, Sr, Ba, Ra}",
+    "M \\rightarrow M^{2+} + 2e^-",
+    "2Mg + O_2 \\rightarrow 2MgO \\qquad 3Mg + N_2 \\rightarrow Mg_3N_2",
+    "\\text{réactifs, mais un cran sous les alcalins}"
+   ]
+  },
+  "halogenes": {
+   "type": "etape",
+   "kicker": "Groupe 17 : les halogènes",
+   "titre": "À un électron de l'octet : des oxydants puissants",
+   "tex": [
+    "\\text{valence } ns^2\\,np^5 : \\text{F, Cl, Br, I, At}",
+    "X_2 + 2e^- \\rightarrow 2X^- : \\text{des oxydants puissants}",
+    "Cl_2 + 2NaBr \\rightarrow 2NaCl + Br_2 : \\text{le déplacement}",
+    "\\text{F}_2 \\text{ gaz}, \\text{Cl}_2 \\text{ gaz}, \\text{Br}_2 \\text{ liquide}, \\text{I}_2 \\text{ solide violet}"
+   ]
+  },
+  "gaz_nobles": {
+   "type": "etape",
+   "kicker": "Groupe 18 : les gaz nobles",
+   "titre": "La couche saturée : l'inertie érigée en principe",
+   "tex": [
+    "\\text{valence } ns^2\\,np^6\\ (\\text{He : } 1s^2) : \\text{couche saturée}",
+    "\\text{aucun ion simple, ébullition très basse}",
+    "\\text{He bout à } -268{,}9\\ ^\\circ C",
+    "\\text{1962 : Bartlett force le xénon } (XePtF_6)"
+   ]
+  },
+  "autres_familles": {
+   "type": "etape",
+   "kicker": "Les autres grandes familles",
+   "titre": "Pnictogènes, chalcogènes et métaux de transition",
+   "tex": [
+    "\\text{groupe 15 } (ns^2\\,np^3) : \\text{N, P, As, Sb, Bi — les pnictogènes}",
+    "\\text{groupe 16 } (ns^2\\,np^4) : \\text{O, S, Se, Te, Po — les chalcogènes}",
+    "\\text{groupes 3-12 : métaux de transition, sous-couche } d",
+    "\\text{oxydations multiples, composés colorés, catalyse}"
+   ]
+  },
+  "reactivite_metaux": {
+   "type": "etape",
+   "kicker": "Pourquoi un métal réagit",
+   "titre": "Tout est affaire d'énergie d'ionisation",
+   "tex": [
+    "\\text{métal réactif} \\Leftrightarrow EI\\ \\text{basse}",
+    "\\text{groupe } (\\downarrow) : \\text{rayon } \\nearrow, EI \\searrow \\Rightarrow \\text{réactivité } \\nearrow",
+    "\\text{période } (\\rightarrow) : \\text{rayon } \\searrow, EI \\nearrow \\Rightarrow \\text{réactivité } \\searrow",
+    "2M + 2H_2O \\rightarrow 2MOH + H_2 : \\text{plus violent en bas du groupe}"
+   ]
+  },
+  "reactivite_nonmetaux": {
+   "type": "etape",
+   "kicker": "Pourquoi un non-métal réagit",
+   "titre": "Tout est affaire d'attraction des électrons",
+   "tex": [
+    "\\text{non-métal réactif} \\Leftrightarrow \\chi\\ \\text{et } AE\\ \\text{élevées}",
+    "\\text{période } (\\rightarrow) : \\text{réactivité } \\nearrow, \\text{maximum au fluor}",
+    "\\text{groupe } (\\downarrow) : \\text{réactivité } \\searrow\\ (\\text{F} > \\text{Cl} > \\text{Br} > \\text{I})",
+    "2M + X_2 \\rightarrow 2MX : \\text{un sel ionique}"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "La réactivité devient technologie",
+   "titre": "Zinc protecteur, aluminium passif, cuivre conducteur",
+   "tex": [
+    "\\text{Zn galvanise Fe : plus réactif, il se corrode à sa place}",
+    "\\text{Al : } Al_2O_3 \\text{ le passive, malgré sa réactivité}",
+    "\\text{Cu : conducteur, peu réactif à l'air sec}",
+    "\\text{gaz nobles : soudure, enseignes, atmosphères inertes}"
+   ]
+  },
+  "prediction_potassium": {
+   "type": "etape",
+   "kicker": "Prédiction 1 : K contre Na",
+   "titre": "Qui réagit le plus violemment avec l'eau ?",
+   "tex": [
+    "\\text{Na et K : groupe 1, valence } ns^1",
+    "EI : \\text{Na } 496 > \\text{K } 419\\ \\text{kJ/mol} \\Rightarrow \\text{K cède plus facilement}",
+    "\\text{prédiction : K + eau plus violent que Na + eau}",
+    "\\text{vérifié : inflammation du } H_2 \\text{ dégagé}"
+   ]
+  },
+  "prediction_cao": {
+   "type": "etape",
+   "kicker": "Prédiction 2 : Ca rencontre O",
+   "titre": "Le type de liaison et la formule, sans calcul de structure",
+   "tex": [
+    "\\text{Ca (groupe 2) : perd } 2\\ e^- \\rightarrow Ca^{2+}",
+    "\\text{O (groupe 16) : gagne } 2\\ e^- \\rightarrow O^{2-}",
+    "\\Delta\\chi\\ \\text{grand} \\Rightarrow \\text{liaison ionique}",
+    "2+ \\text{ compense } 2- \\Rightarrow CaO\\ \\text{(chaux vive)}"
+   ]
+  },
+  "prediction_fusion": {
+   "type": "etape",
+   "kicker": "Prédiction 3 : la fusion des alcalins",
+   "titre": "La liaison métallique s'affaiblit en descendant",
+   "tex": [
+    "\\text{liaison métallique : cations + mer d'électrons}",
+    "\\text{en descendant : cations plus gros, attraction plus faible}",
+    "\\text{fusion : Li } 180 > \\text{Na } 98 > \\text{K } 63 > \\text{Rb } 39 > \\text{Cs } 28\\ ^\\circ C"
+   ]
+  },
+  "hf_verre": {
+   "type": "etape",
+   "kicker": "Le problème du laboratoire",
+   "titre": "Pourquoi HF ne se conserve pas dans le verre",
+   "tex": [
+    "\\text{F au-dessus de Cl (groupe 17) : } F^- \\text{ plus petit, plus agressif}",
+    "SiO_2 + 6HF \\rightarrow H_2SiF_6 + 2H_2O",
+    "\\text{HF attaque la silice du verre, HCl non}",
+    "\\text{stockage : bouteilles en plastique}"
+   ]
+  },
+  "limites": {
+   "type": "etape",
+   "kicker": "Les limites de la carte",
+   "titre": "Des guides précieux, pas des lois absolues",
+   "tex": [
+    "\\text{H et He : une première période à part}",
+    "\\text{bloc } d : \\text{tendances moins régulières}",
+    "\\chi\\ \\text{des gaz nobles : non définie}",
+    "\\text{superlourds : les effets relativistes en embuscade}"
+   ]
+  },
+  "methode": {
+   "type": "etape",
+   "kicker": "La méthode du chimiste",
+   "titre": "Six gestes pour prédire à coup sûr",
+   "tex": [
+    "\\text{1. localiser : groupe et période}",
+    "\\text{2. diagnostiquer : valence, métal ou non-métal}",
+    "\\text{3. comparer : suivre les flèches des tendances}",
+    "\\text{4. anticiper, puis nuancer : gare aux exceptions}"
+   ]
+  },
+  "conclusion": {
+   "type": "phrase",
+   "kicker": "La question qui explique tout",
+   "texte": "Le saut du sodium dans l'eau, la vapeur violette de l'iode, l'inertie de l'argon : tout s'explique par des positions dans la grille.",
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "familles",
+    "hauteur": 150
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Le cours en cinq idées",
+   "etapes": [
+    "Groupe 1 : ns¹, un électron à perdre",
+    "Groupe 17 : ns²np⁵, un à gagner",
+    "Groupe 18 : couche pleine, inertie",
+    "Position → tendances → réactivité",
+    "Prédire d'abord, vérifier ensuite"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours consacré au tableau périodique, la plus célèbre carte de la chimie. En mille huit cent soixante-neuf, Mendeleïev range les éléments connus et ose laisser des cases vides pour ceux qui restent à découvrir. Aujourd'hui, ce tableau ne se contente pas de classer : il prédit. Nous allons apprendre à le lire, du numéro atomique aux configurations électroniques, puis à suivre ses tendances, à rencontrer ses grandes familles, et enfin à prédire le comportement d'un élément à sa seule position.",
+   "texte": "Une case, une identité : le tableau prédit toute la chimie."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Imaginez une bibliothèque immense contenant tous les livres du monde, mais sans aucun système de classement : retrouver un ouvrage précis y serait presque impossible. Au dix-neuvième siècle, les chimistes vivaient cette situation face à la diversité croissante des éléments découverts. La réponse de Mendeleïev fut d'une élégance redoutable : classer les éléments et, là où ses contemporains voyaient des cases vides, annoncer des éléments inconnus, en décrivant par avance les propriétés de l'eka-aluminium, devenu le gallium, et de l'eka-silicium, devenu le germanium.",
+   "texte": "1869 : Mendeleïev classe 63 éléments… et prédit ceux qui manquent."
+  },
+  {
+   "id": "p03",
+   "ecran": "loi_periodique",
+   "dit": "Le principe qui organise toute la carte tient en une phrase, la loi périodique moderne : les propriétés physiques et chimiques des éléments sont des fonctions périodiques de leur numéro atomique. Périodiques, c'est-à-dire qu'elles se répètent à intervalles réguliers quand on parcourt le tableau. Et le numéro atomique, noté Z, n'est rien d'autre que le nombre de protons du noyau : c'est l'identifiant unique de chaque élément, celui qui décide de sa place.",
+   "texte": "Loi périodique : les propriétés sont des fonctions périodiques de Z."
+  },
+  {
+   "id": "p04",
+   "ecran": "moseley",
+   "dit": "En mille neuf cent treize, le physicien Henry Moseley, âgé de vingt-six ans seulement, bombarde les éléments de rayons X et découvre une loi d'une simplicité frappante : la racine carrée de la fréquence des rayons émis croît régulièrement avec le numéro atomique. Cette loi corrige les dernières incohérences du classement par masse : le cobalt, pourtant plus lourd que le nickel, passe avant lui, car son numéro atomique est plus petit. Même correction pour le tellure et l'iode.",
+   "texte": "Moseley, 1913 : √ν = a(Z − b). Z corrige les inversions de masse."
+  },
+  {
+   "id": "p05",
+   "ecran": "couches",
+   "dit": "Autour du noyau, les électrons ne se placent pas au hasard : ils occupent des couches, repérées par le nombre quantique principal n. La couche un, la plus proche du noyau, accueille au maximum deux électrons ; la couche deux, huit ; la couche trois, dix-huit ; la couche quatre, trente-deux. Une règle unique résume ces capacités : deux n au carré. C'est le remplissage progressif de ces couches qui, on le verra, dessine les lignes du tableau.",
+   "texte": "Capacité d'une couche : 2n² électrons (2, 8, 18, 32…)."
+  },
+  {
+   "id": "p06",
+   "ecran": "sous_couches",
+   "dit": "Chaque couche se subdivise en sous-couches, de formes différentes, que les chimistes nomment s, p, d et f. La sous-couche s compte une seule orbitale et reçoit deux électrons au plus ; la p en compte trois, donc six électrons ; la d, cinq orbitales et dix électrons ; la f, sept orbitales et quatorze électrons. Dans une même orbitale, deux électrons au maximum, et toujours de spins opposés : c'est le principe d'exclusion de Pauli.",
+   "texte": "s : 2 e⁻ · p : 6 e⁻ · d : 10 e⁻ · f : 14 e⁻. Pauli : 2 par orbitale."
+  },
+  {
+   "id": "p07",
+   "ecran": "remplissage",
+   "dit": "Dans quel ordre ces sous-couches se remplissent-elles ? La règle de Klechkowski répond : par somme n plus l croissante, et à somme égale, par n croissant. Concrètement, la sous-couche quatre s se remplit avant la trois d, ce qui surprend toujours au premier abord. Et la règle de Hund complète le tableau : dans des orbitales de même énergie, les électrons se placent d'abord seuls, un par orbitale, avant de s'apparier.",
+   "texte": "Ordre : 1s 2s 2p 3s 3p 4s 3d 4p… Le 4s passe avant le 3d."
+  },
+  {
+   "id": "p08",
+   "ecran": "configurations",
+   "dit": "Écrivons deux configurations complètes. Le sodium, numéro atomique onze, remplit un s deux, deux s deux, deux p six, puis place son dernier électron en trois s un : on l'écrit aussi crochet néon, trois s un, le crochet remplaçant le cœur de gaz noble. Le fer, numéro atomique vingt-six, devient crochet argon, quatre s deux, trois d six. Retenez surtout ceci : seuls comptent vraiment les électrons de la couche externe, les électrons de valence, car ce sont eux qui font la chimie.",
+   "texte": "Na : [Ne] 3s¹ · Fe : [Ar] 4s² 3d⁶. La valence fait la chimie."
+  },
+  {
+   "id": "p09",
+   "ecran": "exceptions_config",
+   "dit": "Deux éléments célèbres désobéissent à la règle de remplissage, et leur désobéissance est instructive. Le chrome devrait être quatre s deux, trois d quatre ; il est en réalité quatre s un, trois d cinq. Le cuivre devrait être quatre s deux, trois d neuf ; il est quatre s un, trois d dix. Dans les deux cas, l'atome gagne en stabilité : une sous-couche exactement à moitié remplie, ou complètement remplie, est un arrangement particulièrement favorable.",
+   "texte": "Cr : [Ar] 4s¹ 3d⁵ · Cu : [Ar] 4s¹ 3d¹⁰. Demi-plein ou plein = stable."
+  },
+  {
+   "id": "p10",
+   "ecran": "position",
+   "dit": "Voici maintenant le pont entre la configuration et la carte. La période d'un élément, sa ligne, est simplement le plus grand nombre quantique n présent dans sa configuration. Son groupe, sa colonne, se lit sur ses électrons de valence. Le sodium, crochet néon trois s un, possède une seule couche externe commencée, la couche trois, et un seul électron de valence : période trois, groupe un. Le magnésium, trois s deux, le suit immédiatement : période trois, groupe deux.",
+   "texte": "Période = n maximal · Groupe = électrons de valence."
+  },
+  {
+   "id": "p11",
+   "ecran": "blocs",
+   "dit": "Dernier trait d'architecture : le tableau se partage en quatre blocs, selon la sous-couche qui reçoit le dernier électron. Le bloc s couvre les groupes un et deux, le bloc p les groupes treize à dix-huit, le bloc d les groupes trois à douze, ceux des métaux de transition, et le bloc f rassemble les lanthanides et les actinides, dessinés sous le tableau pour garder la carte lisible. À l'écran, la même carte, colorée cette fois par blocs.",
+   "texte": "s à gauche, d au centre, p à droite, f en dessous."
+  },
+  {
+   "id": "p12",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. Le numéro atomique Z, nombre de protons, est l'identité de l'élément, et ses propriétés sont des fonctions périodiques de Z : c'est la loi périodique moderne, assise par Moseley. Les électrons se rangent en couches de capacité deux n au carré, subdivisées en sous-couches s, p, d et f, remplies selon Klechkowski et Hund, avec quelques exceptions de stabilité comme le chrome et le cuivre. Et la position se lit dans la configuration : la période donne le n maximal, le groupe le nombre d'électrons de valence.",
+   "texte": "Z → configuration → position : la chaîne est complète."
+  },
+  {
+   "id": "p13",
+   "ecran": "rayon_mesure",
+   "dit": "Comment mesure-t-on la taille d'un atome, dont la frontière est un nuage sans bord net ? Astuce des cristallographes : dans un corps simple, deux atomes identiques se touchent, et la distance entre leurs noyaux vaut deux fois le rayon. Le rayon atomique est donc la moitié de cette distance internucléaire. Simple, mesurable, et comparable d'un élément à l'autre : c'est notre première grandeur de tendance.",
+   "texte": "r = d/2 : la moitié de la distance entre deux noyaux voisins."
+  },
+  {
+   "id": "p14",
+   "ecran": "rayon_tendances",
+   "dit": "Suivons le rayon le long de la carte. Dans une période, de gauche à droite, il diminue : on ajoute des protons, la charge du noyau croît, mais les électrons entrent dans la même couche ; l'attraction renforcée resserre le nuage. Dans la période deux, on passe ainsi d'environ cent cinquante-deux picomètres pour le lithium à soixante-sept pour le néon. Dans un groupe, au contraire, le rayon augmente en descendant : chaque ligne ajoute une couche entière. Du lithium au césium, on grimpe de cent cinquante-deux à deux cent soixante-cinq picomètres.",
+   "texte": "Période → : 152 → 67 pm. Groupe ↓ : 152 → 265 pm."
+  },
+  {
+   "id": "p15",
+   "ecran": "ionisation_def",
+   "dit": "Deuxième grandeur : l'énergie d'ionisation. C'est l'énergie minimale à fournir pour arracher à un atome gazeux, isolé, son électron le plus externe, le plus faiblement lié. L'atome devient un cation, chargé positivement. Plus cette énergie est élevée, plus l'atome tient à ses électrons ; plus elle est basse, plus il les cède volontiers. C'est, on le verra, le thermomètre de la réactivité des métaux.",
+   "texte": "EI₁ : l'énergie pour arracher l'électron le plus externe."
+  },
+  {
+   "id": "p16",
+   "ecran": "ionisation_valeurs",
+   "dit": "Regardez la période deux défiler : cinq cent vingt kilojoules par mole pour le lithium, neuf cents pour le béryllium, mille quatre-vingt-six pour le carbone, mille six cent quatre-vingt-un pour le fluor, et deux mille quatre-vingt-un pour le néon, le record de la ligne. La tendance générale est claire : l'énergie d'ionisation augmente vers la droite, car le rayon diminue et la charge effective croît. Chez les alcalins, elle chute au contraire en descendant : cinq cent vingt pour le lithium, trois cent soixante-seize seulement pour le césium.",
+   "texte": "Période 2 : 520 → 2 081 kJ/mol. Alcalins : 520 → 376 kJ/mol."
+  },
+  {
+   "id": "p17",
+   "ecran": "ionisation_exceptions",
+   "dit": "Mais la courbe n'est pas régulière : elle trébuche deux fois, et ces trébuchements racontent la structure électronique. Du béryllium au bore, l'énergie d'ionisation baisse, de neuf cents à huit cent un : l'électron du bore occupe une orbitale deux p, plus externe et mieux écrantée que le deux s plein du béryllium. De l'azote à l'oxygène, nouvelle baisse, de mille quatre cent deux à mille trois cent quatorze : l'azote a sa sous-couche p exactement demi-pleine, très stable, tandis que le quatrième électron p de l'oxygène doit s'apparier et subit la répulsion de son voisin.",
+   "texte": "Deux chutes : Be → B (2p plus externe) et N → O (appariement)."
+  },
+  {
+   "id": "p18",
+   "ecran": "affinite",
+   "dit": "Troisième grandeur, le miroir de la précédente : l'affinité électronique. C'est l'énergie dégagée lorsqu'un atome gazeux capte un électron supplémentaire et devient un anion. Quand cette énergie est fortement négative, beaucoup d'énergie est libérée : l'anion formé est très stable et l'atome adore gagner un électron. Les championnes sont les halogènes, à un électron de l'octet. La tendance suit celle de l'ionisation : plus négative vers la droite d'une période, moins négative en descendant dans un groupe.",
+   "texte": "AE très négative = anion très stable. Championnes : les halogènes."
+  },
+  {
+   "id": "p19",
+   "ecran": "electronegativite",
+   "dit": "Quatrième grandeur, la plus utilisée au quotidien : l'électronégativité, notée chi. Elle mesure la capacité d'un atome, engagé dans une liaison, à attirer vers lui les électrons de cette liaison. Sur l'échelle de Pauling, le fluor, champion absolu, reçoit la valeur quatre. Suivez la période deux : zéro virgule quatre-vingt-dix-huit pour le lithium, deux virgule zéro quatre pour le bore, trois virgule zéro quatre pour l'azote, quatre pour le fluor. La période trois répète la même montée, de zéro virgule quatre-vingt-treize pour le sodium à trois virgule seize pour le chlore. Et comme l'énergie d'ionisation, l'électronégativité diminue en descendant dans un groupe.",
+   "texte": "χ (Pauling) : F = 4,0 au sommet, en haut à droite du tableau."
+  },
+  {
+   "id": "p20",
+   "ecran": "delta_chi",
+   "dit": "À quoi sert l'électronégativité ? À prédire la nature d'une liaison, par la différence entre les deux partenaires, delta chi. Si elle est quasi nulle, le partage est égal : liaison covalente pure, comme dans le dihydrogène. Si elle est intermédiaire, le partage devient inégal, la liaison se polarise et crée un dipôle : dans le chlorure d'hydrogène, delta chi vaut zéro virgule quatre-vingt-seize. Si elle dépasse environ un virgule sept, le transfert d'électron est quasi total : liaison ionique, comme dans le chlorure de sodium, delta chi deux virgule vingt-trois.",
+   "texte": "Δχ ≈ 0 : covalente pure · < 1,7 : polarisée · > 1,7 : ionique."
+  },
+  {
+   "id": "p21",
+   "ecran": "caractere_metallique",
+   "dit": "Une dernière tendance englobe les autres : le caractère métallique, la facilité à perdre des électrons. Il évolue exactement à l'inverse de l'électronégativité : il diminue vers la droite d'une période et augmente en descendant dans un groupe. Sur la carte, une diagonale approximative, du bore à l'astate, sépare les métaux, en bas à gauche, des non-métaux, en haut à droite. Les éléments posés sur cette frontière, comme le silicium et le germanium, sont les métalloïdes, aux propriétés intermédiaires, et ce sont eux qui font fonctionner toute notre électronique.",
+   "texte": "La diagonale B → At : métaux à gauche, non-métaux à droite."
+  },
+  {
+   "id": "p22",
+   "ecran": "recap2",
+   "dit": "Récapitulons le relief de la carte. Le rayon atomique diminue le long d'une période et augmente le long d'un groupe. L'énergie d'ionisation et l'électronégativité font le voyage inverse : elles augmentent vers la droite et diminuent vers le bas, avec deux exceptions à retenir, béryllium bore et azote oxygène. L'affinité électronique suit le même relief, et la différence d'électronégativité entre deux atomes annonce le type de leur liaison. Le fluor, en haut à droite, cumule les records d'attraction.",
+   "texte": "Rayon ↘ vers la droite ; EI et χ ↗ : le relief en deux flèches."
+  },
+  {
+   "id": "p23",
+   "ecran": "alcalins",
+   "dit": "Place aux familles, en commençant par les plus agitées : les métaux alcalins du groupe un, lithium, sodium, potassium, rubidium, césium et francium. Leur point commun tient en un mot : un seul électron de valence, configuration n s un. Toute leur chimie consiste à s'en débarrasser pour devenir un ion positif, à la configuration du gaz noble précédent. Avec l'eau, la réaction dégage du dihydrogène et devient plus violente à mesure qu'on descend : le lithium réagit vivement, le sodium peut s'enflammer, le potassium explose.",
+   "texte": "Groupe 1 : ns¹. Un électron à perdre, une violence croissante."
+  },
+  {
+   "id": "p24",
+   "ecran": "alcalino_terreux",
+   "dit": "Leurs voisins du groupe deux, les alcalino-terreux, béryllium, magnésium, calcium, strontium, baryum et radium, portent deux électrons de valence, configuration n s deux. Ils les perdent tous les deux et forment des ions doublement positifs. Il faut pour cela plus d'énergie que pour un alcalin : ils sont donc réactifs, mais un cran en dessous. Chauffé à l'air, le magnésium brûle d'une flamme blanche éblouissante en formant son oxyde ; avec l'azote chaud, il donne même un nitrure.",
+   "texte": "Groupe 2 : ns². Deux électrons à perdre, un cran plus calmes."
+  },
+  {
+   "id": "p25",
+   "ecran": "halogenes",
+   "dit": "À l'autre bout du tableau, les halogènes du groupe dix-sept : fluor, chlore, brome, iode et astate. Leur nom vient du grec : engendreurs de sels. Il leur manque un seul électron pour saturer leur couche, configuration n s deux, n p cinq : ce sont donc des oxydants puissants, qui arrachent des électrons pour devenir des ions négatifs. Leur état physique change en descendant : gaz jaune pâle pour le fluor, gaz verdâtre pour le chlore, liquide rouge brun pour le brome, et solide gris pour l'iode, qui se sublime en vapeur violette. Et la hiérarchie est stricte : le chlore déplace le brome de ses sels, car il est l'oxydant le plus fort des deux.",
+   "texte": "Groupe 17 : ns²np⁵. À un électron de l'octet : oxydants."
+  },
+  {
+   "id": "p26",
+   "ecran": "gaz_nobles",
+   "dit": "Le groupe dix-huit rassemble les gaz nobles : hélium, néon, argon, krypton, xénon et radon. Leur couche de valence est saturée, n s deux, n p six, octet complet, duet pour l'hélium. Résultat : une inertie chimique quasi totale, des points d'ébullition ridiculement bas, l'hélium bout à moins deux cent soixante-huit virgule neuf degrés, et aucun ion simple. Il faudra attendre mille neuf cent soixante-deux pour que Neil Bartlett force le xénon, le plus accommodant, à former un premier composé avec un oxydant surpuissant.",
+   "texte": "Groupe 18 : couche pleine. L'inertie érigée en principe."
+  },
+  {
+   "id": "p27",
+   "ecran": "autres_familles",
+   "dit": "Complétons la galerie. Le groupe quinze, les pnictogènes, azote, phosphore, arsenic, antimoine et bismuth, configuration n s deux, n p trois : l'azote forme le diazote quasi inerte de l'air, le phosphore alimente l'ATP, la monnaie d'énergie des cellules. Le groupe seize, les chalcogènes, oxygène, soufre, sélénium, tellure et polonium, tend à gagner deux électrons. Entre les deux, les groupes trois à douze forment les métaux de transition, dont la sous-couche d se remplit progressivement : états d'oxydation multiples, composés colorés, catalyseurs irremplaçables, du fer au platine.",
+   "texte": "15 : pnictogènes · 16 : chalcogènes · 3-12 : transition."
+  },
+  {
+   "id": "p28",
+   "ecran": "reactivite_metaux",
+   "dit": "Qu'est-ce qui rend un métal réactif ? Une seule chose : la facilité avec laquelle il perd ses électrons de valence, autrement dit une énergie d'ionisation basse. Les tendances découlent alors mécaniquement. Dans un groupe, en descendant, le rayon augmente, l'électron de valence s'éloigne du noyau, l'ionisation baisse : la réactivité augmente, et la réaction avec l'eau devient plus violente. Dans une période, vers la droite, le rayon diminue et la charge effective croît : arracher un électron coûte plus cher, la réactivité des métaux s'éteint.",
+   "texte": "Métal réactif = EI basse. En groupe, la réactivité monte en descendant."
+  },
+  {
+   "id": "p29",
+   "ecran": "reactivite_nonmetaux",
+   "dit": "Pour un non-métal, la réactivité se lit à l'envers : elle mesure sa capacité à attirer et capturer des électrons, donc une électronégativité et une affinité électronique élevées. Dans une période, vers la droite, les deux augmentent : la réactivité grimpe, jusqu'au sommet des halogènes, avec le fluor tout en haut. Dans un groupe, en descendant, le rayon augmente et l'attraction s'affaiblit : la réactivité diminue, ce qui place le fluor très loin devant le chlore, lui-même devant le brome et l'iode.",
+   "texte": "Non-métal réactif = χ et AE élevées. Le sommet : le fluor."
+  },
+  {
+   "id": "p30",
+   "ecran": "applications",
+   "dit": "Ces réactivités, bien lues, deviennent des technologies. Le zinc, plus réactif que le fer, se corrode à sa place : c'est la galvanisation, qui protège les coques et les toitures. L'aluminium est en réalité très réactif, mais il se recouvre instantanément d'une couche d'oxyde adhérente qui le passive : voilà pourquoi il domine l'aéronautique et l'emballage. Le cuivre, excellent conducteur et peu réactif à l'air sec, remplit nos câbles. Et les gaz nobles, justement parce qu'ils ne réagissent pas, protègent les soudures et font briller les enseignes.",
+   "texte": "Zn protège Fe · Al se passive · Cu conduit · gaz nobles protègent."
+  },
+  {
+   "id": "p31",
+   "ecran": "prediction_potassium",
+   "dit": "Premier exercice de prédiction, entièrement résolu par la carte. Le potassium réagit-il plus ou moins violemment que le sodium avec l'eau ? Tous deux sont des alcalins, groupe un, configuration n s un : ils perdent un électron. Le potassium est une période plus bas : rayon plus grand, énergie d'ionisation plus basse, quatre cent dix-neuf contre quatre cent quatre-vingt-seize kilojoules par mole. Il cède donc son électron plus facilement : prédiction, sa réaction avec l'eau est plus violente que celle du sodium, avec inflammation du dihydrogène dégagé. L'expérience confirme exactement cela.",
+   "texte": "K sous Na : EI 419 < 496 → réaction plus violente. Vérifié."
+  },
+  {
+   "id": "p32",
+   "ecran": "prediction_cao",
+   "dit": "Deuxième prédiction : quel composé forment le calcium et l'oxygène, et par quel type de liaison ? Le calcium, groupe deux, perd volontiers ses deux électrons de valence et devient un ion doublement positif, à configuration de gaz noble. L'oxygène, groupe seize, en gagne deux et devient un ion doublement négatif. Leur différence d'électronégativité est grande : la liaison est ionique. Une charge positive double compense exactement une charge négative double : la formule du composé est donc CaO, l'oxyde de calcium, la chaux vive. Aucun calcul de structure n'a été nécessaire : seulement des positions.",
+   "texte": "Ca perd 2 e⁻, O gagne 2 e⁻ : charges équilibrées → CaO."
+  },
+  {
+   "id": "p33",
+   "ecran": "prediction_fusion",
+   "dit": "Troisième prédiction, sur une propriété physique cette fois : comment évolue le point de fusion des alcalins, du lithium au césium ? La liaison métallique, c'est l'attraction entre les cations et la mer d'électrons délocalisés qui les baigne. En descendant dans le groupe, les cations grossissent, s'espacent, et retiennent moins fort cette mer : la liaison s'affaiblit, donc le point de fusion doit baisser. Vérification : cent quatre-vingts degrés pour le lithium, quatre-vingt-dix-huit pour le sodium, soixante-trois pour le potassium, trente-neuf pour le rubidium, vingt-huit pour le césium, qui fond presque dans la main.",
+   "texte": "Fusion des alcalins : 180 → 98 → 63 → 39 → 28 °C."
+  },
+  {
+   "id": "p34",
+   "ecran": "hf_verre",
+   "dit": "Dernier problème, un classique des laboratoires : pourquoi l'acide fluorhydrique ne se conserve-t-il jamais en bouteille de verre, contrairement à l'acide chlorhydrique ? Le fluor est au-dessus du chlore dans le groupe dix-sept : plus petit, plus électronégatif, son ion fluorure est minuscule et agressif. Il attaque la silice, le composant principal du verre, pour former l'acide hexafluorosilicique, tandis que l'ion chlorure, plus gros, en est incapable. Conclusion pratique, dictée par une simple position dans un groupe : l'acide fluorhydrique se stocke en bouteilles de plastique.",
+   "texte": "HF attaque SiO₂, HCl non : on stocke HF en plastique."
+  },
+  {
+   "id": "p35",
+   "ecran": "limites",
+   "dit": "Un bon prédicteur connaît les limites de son outil. Les tendances sont des guides, pas des lois absolues. L'hydrogène et l'hélium, première période sans couche p, jouent souvent leur propre partition. Dans le bloc d, le remplissage progressif rend les tendances moins régulières. L'électronégativité des gaz nobles n'est même pas définie, puisqu'ils ne forment pratiquement pas de liaisons. Et pour les éléments superlourds, des effets relativistes pourraient un jour brouiller la carte elle-même. Gardez donc toujours un œil critique derrière chaque prédiction.",
+   "texte": "Guides, pas des lois : H et He, bloc d, gaz nobles, superlourds."
+  },
+  {
+   "id": "p36",
+   "ecran": "methode",
+   "dit": "Voici, pour finir, l'algorithme mental du chimiste, en six gestes. Un : localiser l'élément, son groupe et sa période. Deux : diagnostiquer sa configuration de valence et son caractère, métal ou non-métal. Trois : le placer sur la carte des tendances. Quatre : comparer, en suivant les flèches, période ou groupe. Cinq : anticiper sa volonté de perdre ou de gagner des électrons. Six : nuancer, en pensant aux exceptions, sous-couches pleines ou demi-pleines. Six gestes, et le tableau cesse d'être un poster pour devenir un instrument de raisonnement.",
+   "texte": "Localiser → diagnostiquer → comparer → anticiper → nuancer."
+  },
+  {
+   "id": "p37",
+   "ecran": "conclusion",
+   "dit": "La prochaine fois que vous croiserez une équation chimique, un matériau nouveau ou une réaction spectaculaire, posez-vous la question qui ouvre toutes les portes : où sont ces éléments dans le tableau ? Le saut du sodium dans l'eau, la vapeur violette de l'iode, la rouille du fer, l'inertie d'une ampoule à l'argon : tout cela s'explique, élégamment, par des positions dans une grille née il y a plus d'un siècle et demi. Le tableau périodique n'est pas une liste à apprendre : c'est un langage pour penser la matière.",
+   "texte": "« Où sont ces éléments dans le tableau ? » : la question qui explique tout."
+  },
+  {
+   "id": "p38",
+   "ecran": "recap_final",
+   "dit": "Pour conclure ce cours, retenez la chaîne complète. Une position dans le tableau révèle une configuration de valence ; la configuration commande les tendances, rayon, ionisation, électronégativité ; et les tendances prédisent la réactivité, les liaisons et les formules des composés. Des alcalins qui donnent leur unique électron aux gaz nobles qui ne donnent rien, des halogènes qui arrachent tout au fluor qui attaque le verre, vous savez désormais lire la carte de Mendeleïev comme un chimiste : pour prédire, pas seulement pour classer.",
+   "texte": "Position → configuration → tendances → réactivité → prédiction."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "De Mendeleïev à la configuration électronique : lire la carte"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Les tendances périodiques et les grandes familles",
+   "pont": {
+    "texte": "Partie 2 : les tendances périodiques et les grandes familles.",
+    "dit": "Partie deux : les tendances et les familles. La carte est construite ; explorons maintenant son relief. Nous allons suivre quatre grandeurs qui varient de façon prévisible, le rayon atomique, l'énergie d'ionisation, l'affinité électronique et l'électronégativité, puis faire connaissance avec les grandes familles d'éléments, des alcalins frénétiques aux gaz nobles imperturbables."
+   }
+  },
+  {
+   "debut": "p28",
+   "sous_titre": "Réactivité et prédictions : la carte à l'œuvre",
+   "pont": {
+    "texte": "Partie 3 : réactivité et prédictions — la carte à l'œuvre.",
+    "dit": "Partie trois : la carte à l'œuvre. Il est temps de faire travailler tout ce que nous avons construit. Nous allons d'abord comprendre ce qui rend un métal ou un non-métal réactif, passer en revue quelques applications qui changent le monde, puis prédire, pas à pas, trois situations complètes, avant de formuler la méthode du chimiste et ses limites."
+   }
+  }
+ ]
+}
