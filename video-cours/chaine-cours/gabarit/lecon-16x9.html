@@ -3638,6 +3638,19 @@ const FIG = {
       mot(788, 130, 'AgCl (s)', { t: 21, a: 'start' }) + mot(788, 156, 'précipité blanc ↓', { c: '#B8860B', t: 18, a: 'start' }) +
       mot(500, 292, 'trop peu soluble : il tombe au fond', { t: 21 }));
   },
+  courbe_disparition_fig(t) {
+    const courbe = (tau, c) => { let d = ''; for (let i = 0; i <= 24; i++) { const x = 150 + i * 30, y = 240 - 165 * Math.exp(-(i * 30) / tau); d += (i ? ' L' : 'M') + x.toFixed(0) + ' ' + y.toFixed(0); } return `<path d="${d}" fill="none" stroke="${c}" stroke-width="4"/>`; };
+    return svgBoite(
+      trait(150, 240, 890, 240, 1, { w: 3 }) + trait(150, 240, 150, 52, 1, { w: 3 }) +
+      courbe(190, '#E8604C') + courbe(420, '#1A75FF') + courbe(760, '#10B981') +
+      trait(150, 75, 330, 168, 1, { w: 3, c: '#E8604C', tiret: '7 5' }) +
+      mot(905, 248, 't', { t: 21 }) + mot(108, 44, '[A]', { t: 21 }) +
+      mot(352, 96, 'tangente à l’origine', { c: '#E8604C', t: 17 }) +
+      mot(560, 120, 'courbe 1 : la plus pentue', { c: '#E8604C', t: 17 }) +
+      mot(700, 196, 'courbe 2', { c: '#1A75FF', t: 17 }) +
+      mot(700, 232, 'courbe 3', { c: '#10B981', t: 17 }) +
+      mot(500, 288, 'la concentration du réactif s’épuise', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
