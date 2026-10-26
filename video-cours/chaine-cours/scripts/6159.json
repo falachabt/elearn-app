@@ -1,0 +1,449 @@
+{
+ "cours": 6159,
+ "titre": "Limites de fonctions : approcher, calculer, lire les asymptotes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Limites de fonctions",
+   "titre": "Limites de fonctions : approcher, calculer, lire les asymptotes",
+   "sous": "Limite en un point, limite à l'infini, formes indéterminées et lecture graphique",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 250
+   }
+  },
+  "approche": {
+   "type": "phrase",
+   "kicker": "Introduction · le paradoxe de Zénon",
+   "texte": "Pour atteindre un point, il faut d'abord parcourir la moitié du chemin, puis la moitié du reste, et ainsi de suite : le mouvement semble impossible. Les limites résolvent ce paradoxe vieux de vingt-cinq siècles."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La limite en un point",
+   "tex": "\\lim_{x \\to a} f(x) = L",
+   "note": "f(x) arbitrairement proche de L, pour x assez proche de a.",
+   "anim": {
+    "nom": "bande_epsilon_fig",
+    "hauteur": 180
+   }
+  },
+  "epsilon": {
+   "type": "formule",
+   "kicker": "La définition rigoureuse · epsilon-delta",
+   "tex": "0 < |x - a| < \\delta \\Rightarrow |f(x) - L| < \\varepsilon",
+   "note": "Pour tout ε > 0, il existe δ > 0 : Cauchy et Weierstrass, au dix-neuvième siècle."
+  },
+  "laterales": {
+   "type": "etape",
+   "kicker": "Limites latérales",
+   "titre": "Égales des deux côtés, ou pas de limite",
+   "tex": [
+    "\\lim_{x \\to a^-} f(x) : \\text{ par valeurs inférieures}",
+    "\\lim_{x \\to a^+} f(x) : \\text{ par valeurs supérieures}",
+    "\\text{limite en } a \\iff \\text{ les deux latérales coïncident}"
+   ]
+  },
+  "ex_laterales": {
+   "type": "etape",
+   "kicker": "Exemple résolu · fonction par morceaux",
+   "titre": "En 2 : 3 à gauche, 3 à droite, limite 3",
+   "tex": [
+    "x + 1 \\text{ si } x < 2 \\qquad x^2 - 1 \\text{ si } x \\geq 2",
+    "\\lim_{x \\to 2^-} (x + 1) = 3 \\qquad \\lim_{x \\to 2^+} (x^2 - 1) = 3"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Technique 1 · substitution directe",
+   "titre": "Polynômes : remplacer suffit",
+   "tex": [
+    "\\lim_{x \\to 3} (2x^2 - 5x + 1) = 18 - 15 + 1 = 4",
+    "P(x) = 2x^3 - 5x^2 + 3x - 7 : \\; \\lim_{x \\to 1} P(x) = P(1) = -7",
+    "\\lim_{x \\to -2} P(x) = P(-2) = -49"
+   ]
+  },
+  "factorisation": {
+   "type": "etape",
+   "kicker": "Technique 2 · factoriser",
+   "titre": "0/0 : factoriser, simplifier, remplacer",
+   "tex": [
+    "\\tfrac{x^2 - 1}{x - 1} = \\tfrac{(x - 1)(x + 1)}{x - 1} = x + 1 \\quad (x \\neq 1)",
+    "\\lim_{x \\to 1} \\tfrac{x^2 - 1}{x - 1} = \\lim_{x \\to 1} (x + 1) = 2",
+    "\\tfrac{x^2 - 4}{x - 2} \\to 4 \\text{ en } 2 : \\text{ trou au point } (2, 4)"
+   ]
+  },
+  "rationalisation": {
+   "type": "etape",
+   "kicker": "Technique 3 · le conjugué",
+   "titre": "Une racine : multiplier par le conjugué",
+   "tex": [
+    "\\tfrac{\\sqrt{x} - 2}{x - 4} \\cdot \\tfrac{\\sqrt{x} + 2}{\\sqrt{x} + 2} = \\tfrac{1}{\\sqrt{x} + 2}",
+    "\\lim_{x \\to 4} \\tfrac{\\sqrt{x} - 2}{x - 4} = \\tfrac{1}{\\sqrt{4} + 2} = \\tfrac{1}{4}"
+   ]
+  },
+  "infinies": {
+   "type": "etape",
+   "kicker": "Limites infinies et limites absentes",
+   "titre": "En un point : exploser, ou ne pas exister",
+   "tex": [
+    "\\lim_{x \\to 0} \\tfrac{1}{x^2} = +\\infty",
+    "\\lim_{x \\to 0^-} \\tfrac{1}{x} = -\\infty \\qquad \\lim_{x \\to 0^+} \\tfrac{1}{x} = +\\infty",
+    "\\tfrac{|x|}{x} : -1 \\text{ à gauche}, \\; 1 \\text{ à droite : pas de limite en } 0"
+   ]
+  },
+  "scenarios": {
+   "type": "etape",
+   "kicker": "Lecture graphique · trois scénarios",
+   "titre": "Trois destins graphiques en un point",
+   "tex": [
+    "\\text{continue : } \\lim = f(a), \\text{ sans lever le crayon}",
+    "\\text{trou : } \\lim = L, \\text{ mais } f(a) \\text{ ailleurs ou absente}",
+    "\\text{saut ou explosion : la limite n'existe pas}"
+   ],
+   "anim": {
+    "nom": "discontinuites_fig",
+    "hauteur": 140
+   }
+  },
+  "asymptotes": {
+   "type": "formule",
+   "kicker": "Les asymptotes",
+   "tex": "x = a \\text{ verticale si } \\lim_{x \\to a} f(x) = \\pm\\infty",
+   "note": "Et y = L est horizontale si la limite à l'infini vaut L.",
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 200
+   }
+  },
+  "infini": {
+   "type": "formule",
+   "kicker": "Limite à l'infini",
+   "tex": "\\lim_{x \\to +\\infty} \\frac{1}{x} = 0 \\qquad \\lim_{x \\to -\\infty} \\frac{1}{x} = 0",
+   "note": "L'axe des abscisses, y = 0, est asymptote horizontale à l'hyperbole.",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 200
+   }
+  },
+  "rationnelle_infini": {
+   "type": "etape",
+   "kicker": "Rationnelle à l'infini · le calcul",
+   "titre": "Factoriser par le terme dominant",
+   "tex": [
+    "f(x) = \\tfrac{2x^2 - 3x + 1}{x^2 + 4}",
+    "f(x) = \\tfrac{2 - \\tfrac{3}{x} + \\tfrac{1}{x^2}}{1 + \\tfrac{4}{x^2}} \\to \\tfrac{2}{1} = 2",
+    "y = 2 : \\text{ asymptote horizontale}"
+   ]
+  },
+  "regles": {
+   "type": "etape",
+   "kicker": "La règle des degrés",
+   "titre": "Comparer les degrés, et conclure",
+   "tex": [
+    "n < m : \\lim = 0 \\qquad n = m : \\lim = \\tfrac{a_n}{b_m}",
+    "n > m : \\lim = \\pm\\infty \\text{, signe du quotient dominant}",
+    "\\text{polynôme : seul le terme de plus haut degré compte}"
+   ]
+  },
+  "polynome_infini": {
+   "type": "etape",
+   "kicker": "Polynôme à l'infini",
+   "titre": "2x³ − 5x² + 3x − 7, factorisé par x³",
+   "tex": [
+    "P(x) = x^3 \\left( 2 - \\tfrac{5}{x} + \\tfrac{3}{x^2} - \\tfrac{7}{x^3} \\right)",
+    "\\lim_{x \\to +\\infty} P(x) = +\\infty \\qquad \\lim_{x \\to -\\infty} P(x) = -\\infty"
+   ]
+  },
+  "forme_conjugue": {
+   "type": "etape",
+   "kicker": "Forme indéterminée · infini moins infini",
+   "titre": "∞ − ∞ : le conjugué tranche",
+   "tex": [
+    "\\sqrt{x^2 + 1} - x = \\tfrac{1}{\\sqrt{x^2 + 1} + x}",
+    "\\lim_{x \\to +\\infty} \\left( \\sqrt{x^2 + 1} - x \\right) = 0"
+   ]
+  },
+  "oblique": {
+   "type": "etape",
+   "kicker": "L'asymptote oblique",
+   "titre": "Le numérateur dépasse le dénominateur d'un degré",
+   "tex": [
+    "h(x) = \\tfrac{x^2 + 2x - 1}{x} = x + 2 - \\tfrac{1}{x}",
+    "\\lim_{x \\to \\pm\\infty} \\left[ h(x) - (x + 2) \\right] = 0",
+    "y = x + 2 : \\text{ asymptote oblique}"
+   ],
+   "anim": {
+    "nom": "branche_infinie_fig",
+    "hauteur": 140
+   }
+  },
+  "rationnelle_complete": {
+   "type": "recap",
+   "kicker": "Étude complète · une fonction rationnelle",
+   "etapes": [
+    "D_f = ℝ privé de −2 et 2",
+    "En 2 : −∞ à gauche, +∞ à droite",
+    "En −2 : +∞ à gauche, −∞ à droite",
+    "À l'infini : limite 2, asymptote horizontale y = 2"
+   ]
+  },
+  "oscillation": {
+   "type": "phrase",
+   "kicker": "Piège · osciller n'empêche pas de tendre",
+   "texte": "sin(x) n'a pas de limite à l'infini : il oscille sans se fixer. Mais sin(x)/x tend vers 0, et sin(x)/x + 2 traverse son asymptote y = 2 une infinité de fois.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 180
+   }
+  },
+  "vitesse": {
+   "type": "etape",
+   "kicker": "Application · la vitesse instantanée",
+   "titre": "Le coureur : de la moyenne à l'instantané",
+   "tex": [
+    "s(t) = 2t^2 + 3t + 1 \\qquad v_{moy}(2, 5) = \\tfrac{66 - 15}{3} = 17 \\ \\text{m/s}",
+    "\\tfrac{s(2 + h) - s(2)}{h} = 11 + 2h \\to 11 \\ \\text{m/s}"
+   ]
+  },
+  "logistique": {
+   "type": "formule",
+   "kicker": "Application · croissance logistique",
+   "tex": "P(t) = \\frac{100}{1 + 9e^{-0,5t}} \\to 100 \\text{ quand } t \\to +\\infty",
+   "note": "Initiale : 10 milliers. Limite : 100, la capacité d'accueil.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 170
+   }
+  },
+  "cout": {
+   "type": "phrase",
+   "kicker": "Application · le coût moyen",
+   "texte": "Coût moyen : C_m(x) = 5 + 100/x + 10/x² tend vers 5 — le coût unitaire minimal, jamais atteint, toujours approché quand la production grandit.",
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 180
+   }
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "La méthode en cinq réflexes",
+   "etapes": [
+    "Substitution directe, toujours d'abord",
+    "0/0 : factoriser, ou le conjugué",
+    "Latérales différentes : pas de limite",
+    "À l'infini : degrés et termes dominants",
+    "Asymptotes : verticale, horizontale, oblique"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "En un point : approcher des deux côtés",
+    "À l'infini : le terme dominant décide",
+    "Formes indéterminées : transformer d'abord",
+    "La limite prépare la dérivée"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux limites de fonctions, les notions de base. Une limite décrit ce vers quoi tendent les valeurs d'une fonction quand la variable s'approche d'un point, ou s'éloigne vers l'infini. Nous construirons l'intuition, les techniques de calcul en un point, puis les limites à l'infini, les asymptotes et la lecture graphique, avant deux applications.",
+   "texte": "Limites : approcher, calculer, lire les asymptotes.",
+   "ecran": "titre",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "dit": "Le philosophe Zénon affirmait que le mouvement est impossible : pour atteindre un point, il faut d'abord parcourir la moitié du chemin, puis la moitié du reste, et ainsi de suite, indéfiniment. Les limites résolvent ce paradoxe : elles décrivent une tendance, une valeur approchée d'aussi près que l'on veut, sans exiger qu'elle soit atteinte.",
+   "texte": "S'approcher sans toucher : l'idée de limite.",
+   "ecran": "approche",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Premier exemple. La fonction qui, à ixe, associe ixe au carré moins un, divisé par ixe moins un, n'est pas définie en un : zéro sur zéro. Pourtant, quand ixe s'approche de un, par la gauche comme par la droite, les valeurs se resserrent autour de deux : un virgule neuf, un virgule quatre-vingt-dix-neuf, un virgule neuf cent quatre-vingt-dix-neuf. On dit que la limite, quand ixe tend vers un, est égale à deux.",
+   "texte": "f(1) n'existe pas, mais la limite vaut 2.",
+   "ecran": "definition",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Pour les esprits rigoureux, la définition exacte tient en une phrase : pour toute marge d'erreur, aussi petite soit-elle, autour de la limite, il existe un couloir autour du point tel que toute valeur prise dans ce couloir, sauf au point lui-même, donne une image dans la marge. Formalisée par Cauchy et Weierstrass au dix-neuvième siècle, cette définition a rendu l'analyse incontestable.",
+   "texte": "Tout ε > 0 admet un δ > 0.",
+   "ecran": "epsilon",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "On peut approcher un point par la gauche, avec des valeurs inférieures, ou par la droite, avec des valeurs supérieures : ce sont les limites latérales. Le théorème fondamental affirme que la limite en un point existe si et seulement si les deux limites latérales existent et sont égales. Si elles diffèrent, il n'y a pas de limite : la direction d'approche change la réponse.",
+   "texte": "Limite = latérale gauche = latérale droite.",
+   "ecran": "laterales",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple : une fonction vaut ixe plus un avant deux, et ixe au carré moins un à partir de deux. À gauche de deux, elle tend vers deux plus un, soit trois. À droite, vers quatre moins un, soit trois. Les deux latérales coïncident : la limite en deux existe et vaut trois, malgré le changement de formule exactement au point étudié.",
+   "texte": "En 2 : 3 à gauche, 3 à droite, limite 3.",
+   "ecran": "ex_laterales",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Technique numéro un : la substitution directe. Si la fonction est continue au point, remplacer ixe par le point donne la limite. Pour les polynômes, c'est toujours le cas : la limite de deux ixe au carré moins cinq ixe plus un, quand ixe tend vers trois, vaut deux fois neuf, moins quinze, plus un, soit quatre. Aucune forme indéterminée ne menace un polynôme en un point fini.",
+   "texte": "Polynômes : lim P(x) = P(a), toujours.",
+   "ecran": "substitution",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Technique numéro deux : factoriser pour lever une forme indéterminée zéro sur zéro. Ixe au carré moins un se factorise en ixe moins un, facteur de ixe plus un. Pour ixe différent de un, on simplifie par ixe moins un : il reste ixe plus un, dont la limite en un vaut deux. Même geste pour ixe au carré moins quatre, sur ixe moins deux, en deux : la limite vaut quatre, et la courbe présente un trou au point de coordonnées deux et quatre.",
+   "texte": "0/0 : factoriser, simplifier, remplacer.",
+   "ecran": "factorisation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Technique numéro trois : le conjugué, pour les racines. Pour la limite de racine de ixe moins deux, sur ixe moins quatre, en quatre, on multiplie en haut et en bas par racine de ixe plus deux. Le numérateur devient ixe moins quatre, qui se simplifie avec le dénominateur : il reste un sur racine de ixe plus deux, et la limite vaut un quart.",
+   "texte": "Le conjugué fait disparaître la racine gênante.",
+   "ecran": "rationalisation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "Parfois, la fonction explose près du point. Un sur ixe au carré tend vers plus l'infini quand ixe tend vers zéro, des deux côtés. En revanche, un sur ixe tend vers moins l'infini à gauche de zéro et plus l'infini à droite : pas de limite. Autre absence : la valeur absolue de ixe divisée par ixe vaut moins un à gauche, un à droite. Et le sinus de un sur ixe oscille sans se décider : aucune limite.",
+   "texte": "Exploser d'un côté, osciller : pas de limite.",
+   "ecran": "infinies",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "Graphiquement, trois destins sont possibles en un point. Premier : la limite égale l'image, la courbe se trace sans lever le crayon. Deuxième : la limite existe mais l'image est ailleurs, ou absente : c'est le trou, comme celui rencontré en deux tout à l'heure. Troisième : saut, explosion ou oscillation : la limite n'existe pas. Savoir distinguer ces trois cas à l'œil est la moitié du travail.",
+   "texte": "Continue, trou, ou rien : trois destins.",
+   "ecran": "scenarios",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Quand la limite en un point est infinie, la droite verticale d'équation ixe égale a est une asymptote verticale : la courbe s'en approche en s'envolant. Vous tenez donc déjà la moitié du vocabulaire des asymptotes ; l'autre moitié, horizontale et oblique, concerne le comportement à l'infini, et c'est l'objet de la deuxième partie de ce cours.",
+   "texte": "x = a : asymptote verticale si la limite est infinie.",
+   "ecran": "asymptotes",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Direction l'infini, maintenant. Quand ixe grandit sans borne, un sur ixe se rapproche de zéro, et de même quand ixe s'éloigne vers les négatifs. La droite d'équation y égale zéro, l'axe des abscisses, est une asymptote horizontale de l'hyperbole : la courbe s'en approche indéfiniment, sans jamais la toucher. Étudier une limite à l'infini, c'est décrire le comportement à l'horizon.",
+   "texte": "1/x → 0 : l'horizon est l'axe des abscisses.",
+   "ecran": "infini",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "Pour une fonction rationnelle à l'infini, on factorise par le terme de plus haut degré. Exemple : deux ixe au carré moins trois ixe plus un, sur ixe au carré plus quatre. En factorisant par ixe au carré en haut et en bas, les termes en un sur ixe et un sur ixe au carré tendent vers zéro : la limite vaut deux sur un, soit deux. La droite y égale deux est asymptote horizontale.",
+   "texte": "(2x² − 3x + 1)/(x² + 4) → 2.",
+   "ecran": "rationnelle_infini",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "La règle générale compare les degrés du numérateur et du dénominateur. Numérateur plus petit : la limite est zéro. Degrés égaux : la limite est le quotient des coefficients dominants. Numérateur plus grand : la limite est infinie, avec le signe du quotient des termes dominants. Et pour un polynôme seul, un seul terme décide de tout à l'infini : celui de plus haut degré.",
+   "texte": "Comparer les degrés, et conclure.",
+   "ecran": "regles",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Illustration : le polynôme deux ixe au cube moins cinq ixe au carré plus trois ixe moins sept. Factorisé par ixe au cube, le facteur entre parenthèses tend vers deux. Comme ixe au cube tend vers plus l'infini à droite et moins l'infini à gauche, le polynôme fait de même. Les autres termes, même avec de gros coefficients, finissent toujours par perdre contre le terme dominant.",
+   "texte": "Le terme dominant impose sa loi à l'infini.",
+   "ecran": "polynome_infini",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Certaines formes résistent : infini moins infini. La différence entre la racine carrée de ixe au carré plus un et ixe semble hésiter, car les deux termes grandissent ensemble. Le conjugué tranche : la différence égale un, divisé par la somme des deux racines, qui grandit sans borne. La limite vaut donc zéro : les deux termes croissent exactement à la même vitesse.",
+   "texte": "∞ − ∞ : le conjugué donne 0.",
+   "ecran": "forme_conjugue",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Quand le degré du numérateur dépasse celui du dénominateur d'exactement un, la courbe suit une droite penchée : une asymptote oblique. Exemple : ixe au carré plus deux ixe moins un, le tout sur ixe, se réécrit ixe plus deux, moins un sur ixe. L'écart avec la droite d'équation y égale ixe plus deux tend vers zéro : c'est l'asymptote oblique, obtenue en général par la division euclidienne.",
+   "texte": "Degré +1 : asymptote oblique y = x + 2.",
+   "ecran": "oblique",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Étude complète, pour assembler toutes les pièces : la fonction qui, à ixe, associe deux ixe au carré moins trois ixe plus un, divisé par ixe au carré moins quatre. Domaine : les réels privés de deux et de moins deux. En deux, le numérateur vaut trois : explosion, moins l'infini à gauche, plus l'infini à droite. En moins deux, le numérateur vaut quinze : plus l'infini à gauche, moins l'infini à droite. À l'infini, degrés égaux : limite deux, asymptote horizontale.",
+   "texte": "Verticales x = ±2, horizontale y = 2.",
+   "ecran": "rationnelle_complete",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Deux pièges pour finir la théorie. D'abord, osciller n'interdit pas de tendre : le sinus de ixe, divisé par ixe, tend vers zéro, car l'oscillation est écrasée par le dénominateur. Ensuite, une courbe peut traverser son asymptote horizontale : sinus de ixe sur ixe, plus deux, égale deux à chaque multiple de pi, tout en tendant vers deux. Approcher ne veut pas dire ne jamais toucher.",
+   "texte": "Une courbe peut traverser son asymptote.",
+   "ecran": "oscillation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "dit": "Application fondatrice : la vitesse instantanée. Un coureur a pour position, en mètres, deux t au carré plus trois t plus un. Entre les instants deux et cinq, sa vitesse moyenne vaut soixante-six moins quinze, divisé par trois, soit dix-sept mètres par seconde. Entre deux et deux plus h, le taux d'accroissement vaut onze plus deux h : quand h tend vers zéro, il reste onze. C'est la vitesse à l'instant deux, la future dérivée.",
+   "texte": "Vitesse moyenne 17 m/s, instantanée 11 m/s.",
+   "ecran": "vitesse",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Application biologique : une population de bactéries suit un modèle logistique, cent divisé par un plus neuf fois l'exponentielle de moins zéro virgule cinq t. Au départ, elle compte dix milliers d'individus. Quand le temps grandit, l'exponentielle tend vers zéro et la population tend vers cent milliers : la capacité d'accueil du milieu, une asymptote horizontale pleine de sens.",
+   "texte": "P(t) → 100 : la capacité d'accueil.",
+   "ecran": "logistique",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "dit": "En économie, le coût moyen de production illustre la même idée : cinq, plus cent sur ixe, plus dix sur ixe au carré, quand ixe est la quantité produite. Les deux derniers termes s'évanouissent à l'infini : le coût moyen tend vers cinq, le coût unitaire minimal théorique, approché sans jamais être atteint. L'asymptote horizontale devient un objectif de gestion.",
+   "texte": "Coût moyen → 5 : le plancher théorique.",
+   "ecran": "cout",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "dit": "La méthode tient en cinq réflexes. D'abord, toujours essayer la substitution directe. Face à zéro sur zéro, factoriser ou utiliser le conjugué. Comparer systématiquement les limites latérales quand un doute existe. À l'infini, comparer les degrés et ne garder que les termes dominants. Enfin, traduire chaque résultat en asymptote : verticale, horizontale ou oblique.",
+   "texte": "Cinq réflexes pour toute limite.",
+   "ecran": "strategie",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "Pour conclure : en un point, on approche des deux côtés et on transforme les formes indéterminées ; à l'infini, le terme dominant décide et dessine les asymptotes. Cette notion d'approche prépare directement la continuité et la vitesse instantanée, donc la dérivée. Les limites sont la porte d'entrée de toute l'analyse : vous en tenez maintenant les clés.",
+   "texte": "L'essentiel des limites de fonctions.",
+   "ecran": "recap",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'intuition et les techniques de calcul en un point"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Limites infinies, asymptotes et limites à l'infini",
+   "pont": {
+    "texte": "Partie 2 : limites infinies, asymptotes et limites à l'infini.",
+    "dit": "Partie deux : quand la limite explose, puis le voyage vers l'infini. Nous verrons les limites infinies en un point, les trois scénarios graphiques et les asymptotes, avant de calculer les limites à l'infini grâce aux termes dominants."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Asymptote oblique, étude complète et applications",
+   "pont": {
+    "texte": "Partie 3 : asymptote oblique, étude complète et applications.",
+    "dit": "Partie trois : l'asymptote oblique, l'étude complète et les applications. Nous assemblerons toutes les pièces sur une fonction rationnelle, avant la vitesse instantanée du coureur et la croissance logistique d'une population."
+   }
+  }
+ ]
+}
