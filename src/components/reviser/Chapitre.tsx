@@ -154,7 +154,7 @@ export function Chapitre() {
                   {entrainement.exercices ? <PiluleCompteur type="exercice" faits={entrainement.progres.faits} total={entrainement.exercices} fini={false} /> : null}
                 </View>
               }
-              onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: id, nom: nom ?? '' } })}
+              onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: id, nom: nom ?? '', ...(matiere ? { matiere } : {}) } })}
             />
           ) : null}
         </GroupeColle>

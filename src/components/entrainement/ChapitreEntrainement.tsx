@@ -47,7 +47,7 @@ const SEUIL_VERT = 50;
 export function ChapitreEntrainement() {
   const { t } = useTraduction();
   const { theme } = useTheme();
-  const { cours, nom, onglet } = useLocalSearchParams<{ cours: string; nom?: string; onglet?: Filtre }>();
+  const { cours, nom, matiere, onglet } = useLocalSearchParams<{ cours: string; nom?: string; matiere?: string; onglet?: Filtre }>();
   const [etat, setEtat] = useEtatMemorise<Etat>(`entrainement.chapitre.${cours}`, { statut: 'chargement' });
   const [filtre, setFiltre] = useState<Filtre>(onglet === 'quiz' || onglet === 'exercices' ? onglet : 'tout');
   const pret = useSessionPrete();
@@ -148,7 +148,7 @@ export function ChapitreEntrainement() {
                 titre={titreExercice(el.e.titre, chapitre) || t('entrainement.exerciceN', { n: el.i + 1 })}
                 sousTitre={t('entrainement.exerciceRang', { n: el.i + 1, total: etat.exercices.length })}
                 droite={fait ? <Pastille texte={t('entrainement.fait')} vert /> : undefined}
-                onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours) } })}
+                onPress={() => router.push({ pathname: '/entrainement/exercice', params: { id: el.e.id, cours: String(cours), ...(matiere ? { matiere } : {}) } })}
               />
             );
             }}

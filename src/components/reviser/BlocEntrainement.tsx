@@ -15,6 +15,7 @@ export { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
 export function BlocEntrainement({
   cours,
   nom,
+  matiere,
   quiz,
   exercices,
   faits,
@@ -23,6 +24,7 @@ export function BlocEntrainement({
 }: {
   cours: string;
   nom: string;
+  matiere?: string;
   quiz: number;
   exercices: number;
   faits: number;
@@ -41,7 +43,7 @@ export function BlocEntrainement({
             {exercices ? <PiluleCompteur type="exercice" faits={faits} total={exercices} fini={false} /> : null}
           </View>
         }
-        onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours, nom } })}
+        onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours, nom, ...(matiere ? { matiere } : {}) } })}
       />
     </GroupeColle>
   );

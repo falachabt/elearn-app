@@ -56,7 +56,7 @@ export function FinChapitre() {
   const retour = () => versListeChapitres(matiere);
   if (!etat) return <Ecran>{null}</Ecran>;
   const complet = etat.lecons > 0 && etat.validees === etat.lecons;
-  const ouvrir = (onglet?: 'quiz' | 'exercices') => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '', ...(onglet ? { onglet } : {}) } });
+  const ouvrir = (onglet?: 'quiz' | 'exercices') => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(cours), nom: nom ?? '', ...(matiere ? { matiere } : {}), ...(onglet ? { onglet } : {}) } });
   const aEntrainement = etat.quiz.length > 0 || etat.exercices.length > 0;
   const pied = (
     <View style={styles.pied}>

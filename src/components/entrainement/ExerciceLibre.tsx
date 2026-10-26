@@ -57,9 +57,10 @@ export function ExerciceLibre() {
   const { t } = useTraduction();
   const { theme, sombre } = useTheme();
   const couleursCorrige = sombre ? corrigeCouleurs.dark : corrigeCouleurs.light;
-  const { id, cours, provenance, planningJour } = useLocalSearchParams<{
+  const { id, cours, matiere, provenance, planningJour } = useLocalSearchParams<{
     id: string;
     cours: string;
+    matiere?: string;
     provenance?: string;
     planningJour?: string;
   }>();
@@ -103,12 +104,16 @@ export function ExerciceLibre() {
         void enregistrerTempsActivite({
           type: 'exercice',
           dureeS,
-          matiere: cours ? String(cours) : undefined,
+          // Le nom de la matière vient des paramètres de route (chaîne suivie par les écrans appelants,
+          // comme QuizLecon et LecteurVideo). Ne JAMAIS y mettre l'identifiant du cours : il devenait
+          // une fausse « matière » (« 6145 » à 100 %) dans « Ma progression → Niveau par matière ».
+          // Sans matière connue, laisser undefined : l'activité tombe sous « Général », comme les quiz libres.
+          matiere: matiere || undefined,
           titre: exerciceRef.current?.titre,
         });
       }
     };
-  }, [cours, id]);
+  }, [id, matiere]);
 
   useEffect(() => {
     if (!pret) return;
@@ -231,7 +236,7 @@ export function ExerciceLibre() {
       retourProgramme();
       return;
     }
-    if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours) } });
+    if (suivant) router.replace({ pathname: '/entrainement/exercice', params: { id: suivant.id, cours: String(cours), ...(matiere ? { matiere } : {}) } });
     else retour();
   };
   const quitter = () => {

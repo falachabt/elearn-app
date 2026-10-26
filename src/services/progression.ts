@@ -121,6 +121,11 @@ export function calculerProgression(
   for (const [jour, act] of Object.entries(activites)) {
     if (jour < limite) continue;
     for (const [matiere, sec] of Object.entries(act.parMatiere)) {
+      // Défense : une clé purement numérique est un identifiant de cours, pas une matière.
+      // ExerciceLibre l'écrivait comme « matière » jusqu'au correctif du 26/10/2026 ; les sessions
+      // déjà enregistrées (téléphone et serveur) et les anciennes versions de l'app peuvent
+      // encore en contenir — elles ne doivent jamais devenir une ligne du niveau par matière.
+      if (/^\d+$/.test(matiere)) continue;
       if (!parMatiere.has(matiere) && sec > 0) {
         // La matière a été travaillée récemment en cours/annales/quiz
         parMatiere.set(matiere, { bonnes: 1, total: 1 });

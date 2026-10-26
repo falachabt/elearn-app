@@ -66,6 +66,36 @@ describe('progression hors ligne', () => {
   });
 });
 
+describe('progression : niveau par matière', () => {
+  it('une clé purement numérique dans parMatiere (identifiant de cours écrit par l’ancien bug d’ExerciceLibre) ne devient pas une matière', () => {
+    const activites = {
+      [aujourdHui]: {
+        jour: aujourdHui,
+        secondes: 1200,
+        parType: { cours: 0, lecon: 0, quiz: 0, exercice: 1200, annale: 0, mission: 0, video: 0 },
+        parMatiere: { '6145': 900, Physique: 300 },
+        sessions: [],
+      },
+    };
+    const p = calculerProgression([], new Date(), activites);
+    expect(p.matieres.map((m) => m.matiere)).toEqual(['Physique']);
+  });
+
+  it('sans la défense, l’identifiant de cours donnait une « matière » à 100 % : la vraie matière reste seule affichée', () => {
+    const activites = {
+      [aujourdHui]: {
+        jour: aujourdHui,
+        secondes: 600,
+        parType: { cours: 0, lecon: 0, quiz: 0, exercice: 600, annale: 0, mission: 0, video: 0 },
+        parMatiere: { '6261': 600 },
+        sessions: [],
+      },
+    };
+    const p = calculerProgression([], new Date(), activites);
+    expect(p.matieres).toEqual([]);
+  });
+});
+
 describe('progression : jamais bloquée par le réseau', () => {
   it('hors ligne déclaré : aucune requête serveur, réponse immédiate depuis le téléphone', async () => {
     mockEnLigne = false;

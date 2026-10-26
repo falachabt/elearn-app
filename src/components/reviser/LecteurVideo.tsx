@@ -333,6 +333,7 @@ export function LecteurVideo() {
           <BlocEntrainement
             cours={String(coursId)}
             nom={nom ?? ''}
+            matiere={matiere}
             quiz={entrainement.quiz}
             exercices={entrainement.exercices}
             faits={entrainement.progres.faits}

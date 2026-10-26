@@ -69,7 +69,7 @@ function ouvrir(e: ElementSeance, jour?: string | null) {
     return;
   }
   if (e.genre === 'exercice') {
-    router.push({ pathname: '/entrainement/exercice', params: { id: e.exerciceId, cours: String(e.coursId), ...planningParams } });
+    router.push({ pathname: '/entrainement/exercice', params: { id: e.exerciceId, cours: String(e.coursId), matiere: e.matiere ?? '', ...planningParams } });
     return;
   }
   if (e.genre === 'annales' && e.dossierId) {

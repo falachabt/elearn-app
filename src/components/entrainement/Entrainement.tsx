@@ -139,7 +139,7 @@ export function Entrainement({ matieres, cle }: Props) {
                       {n.exercices ? <PiluleCompteur type="exercice" faits={p.faits} total={n.exercices} fini={fini} /> : null}
                     </View>
                   }
-                  onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(c.id), nom: c.nom } })}
+                  onPress={() => router.push({ pathname: '/entrainement/chapitre', params: { cours: String(c.id), nom: c.nom, ...(c.matiere ? { matiere: c.matiere } : {}) } })}
                 />
               );
             })}

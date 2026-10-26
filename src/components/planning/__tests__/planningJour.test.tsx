@@ -130,7 +130,7 @@ describe.each(['clair', 'sombre'] as const)('Page d’une séance (%s)', (reglag
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Exo Fractions/ }));
     expect(router.push).toHaveBeenCalledWith({
       pathname: '/entrainement/exercice',
-      params: { id: 'ex1', cours: '1', provenance: 'planning', planningJour: '2026-10-20' },
+      params: { id: 'ex1', cours: '1', matiere: 'Mathématique', provenance: 'planning', planningJour: '2026-10-20' },
     });
 
     await fireEvent.press(screen.getByRole('button', { name: /Ouvrir Bac 2024/ }));
