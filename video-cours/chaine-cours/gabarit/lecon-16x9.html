@@ -3470,6 +3470,42 @@ const FIG = {
       mot(730, 268, 'μ total ≠ 0 : polaire', { c: '#10B981', t: 20 }) +
       mot(500, 30, 'des liaisons polaires, une molécule apolaire ou polaire', { t: 22 }));
   },
+  balance_atomes_fig(t) {
+    const h2 = (x, y) => `<circle cx="${x - 10}" cy="${y}" r="10" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/><circle cx="${x + 10}" cy="${y}" r="10" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>`;
+    const o2 = (x, y) => `<circle cx="${x - 13}" cy="${y}" r="13" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="2"/><circle cx="${x + 13}" cy="${y}" r="13" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="2"/>`;
+    const h2o = (x, y) => `<circle cx="${x}" cy="${y}" r="13" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="2"/><circle cx="${x - 15}" cy="${y + 10}" r="8" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/><circle cx="${x + 15}" cy="${y + 10}" r="8" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>`;
+    return svgBoite(
+      trait(180, 78, 820, 78, 1, { w: 6 }) +
+      trait(230, 78, 160, 168, 1, { w: 3 }) + trait(230, 78, 300, 168, 1, { w: 3 }) +
+      trait(770, 78, 700, 168, 1, { w: 3 }) + trait(770, 78, 840, 168, 1, { w: 3 }) +
+      `<path d="M150 172 Q230 196 310 172 L302 186 Q230 206 158 186 Z" fill="currentColor" fill-opacity=".75"/>` +
+      `<path d="M690 172 Q770 196 850 172 L842 186 Q770 206 698 186 Z" fill="currentColor" fill-opacity=".75"/>` +
+      h2(190, 150) + h2(262, 150) + o2(230, 118) +
+      h2o(738, 142) + h2o(806, 142) +
+      mot(230, 232, '2 H₂ + O₂', { t: 20 }) + mot(770, 232, '2 H₂O', { t: 20 }) +
+      trait(500, 78, 462, 150, 1, { w: 5 }) + trait(500, 78, 538, 150, 1, { w: 5 }) + trait(462, 150, 538, 150, 1, { w: 5 }) +
+      trait(500, 150, 500, 246, 1, { w: 6 }) + trait(420, 246, 580, 246, 1, { w: 7 }) +
+      mot(500, 282, 'mêmes atomes des deux côtés : 4 H et 2 O', { t: 21 }));
+  },
+  etats_matiere_fig(t) {
+    const rond = (x, y, r, c) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>`;
+    let s = '';
+    for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) s += rond(66 + c * 46, 96 + r * 44, 15, '#5B6B7B');
+    const liq = [[310, 92], [352, 100], [396, 90], [330, 138], [378, 142], [420, 134], [306, 182], [356, 186], [404, 180], [438, 96]];
+    liq.forEach(([x, y]) => { s += rond(x, y, 15, '#1A75FF'); });
+    const gazp = [[540, 92], [640, 130], [566, 186], [676, 84]];
+    gazp.forEach(([x, y]) => { s += rond(x, y, 13, '#10B981'); });
+    s += trait(584, 100, 616, 88, 1, { c: '#10B981', w: 3 }) + pointe(622, 86, -16, '#10B981') +
+      trait(600, 178, 628, 192, 1, { c: '#10B981', w: 3 }) + pointe(634, 195, 26, '#10B981');
+    const eau = (x, y) => rond(x, y, 9, '#E8604C') + rond(x - 10, y + 7, 5, '#1A75FF') + rond(x + 10, y + 7, 5, '#1A75FF');
+    s += eau(790, 96) + eau(872, 140) + eau(796, 182) + eau(918, 92) +
+      rond(848, 100, 13, '#B8860B') + mot(848, 106, '+', { t: 15 }) +
+      rond(902, 186, 14, '#10B981') + mot(902, 192, '−', { t: 16 });
+    return svgBoite(s +
+      mot(135, 248, '(s) solide', { t: 19 }) + mot(380, 248, '(l) liquide', { t: 19 }) +
+      mot(615, 248, '(g) gazeux', { t: 19 }) + mot(860, 248, '(aq) dissous dans l’eau', { t: 19 }) +
+      mot(500, 288, 'les codes d’état racontent l’organisation des particules', { t: 20 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
