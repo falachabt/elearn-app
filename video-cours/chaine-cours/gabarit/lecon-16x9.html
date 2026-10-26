@@ -2810,6 +2810,88 @@ const FIG = {
       trait(222, 162, 646, 190, p, { c: '#10B981', w: 4 }) + mot(668, 198, 'β+ : un positon', { c: '#10B981', t: 24, a: 'start' }) +
       `<polyline points="${onde}" fill="none" stroke="#7B2FF7" stroke-width="4"/>` + mot(668, 266, 'γ : un rayonnement', { c: '#7B2FF7', t: 24, a: 'start' }));
   },
+  atome_bohr_fig(t) {
+    const p = prog(t);
+    const boules = [[368, 128, '#E8604C'], [402, 120, '#5B6B7B'], [386, 156, '#5B6B7B'], [420, 148, '#E8604C'], [398, 182, '#E8604C']].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="15" fill="${c}"/>`).join('');
+    const orbite = (r) => `<circle cx="398" cy="150" r="${r}" fill="none" stroke="currentColor" stroke-width="3" stroke-opacity=".45" stroke-dasharray="7 7"/>`;
+    const electrons = (p > .3 ? `<circle cx="${398 + 58}" cy="150" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/><circle cx="${398 - 41}" cy="${150 - 41}" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` : '') +
+      (p > .55 ? `<circle cx="${398 - 100}" cy="150" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/><circle cx="${398 + 71}" cy="${150 + 71}" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/><circle cx="${398 + 20}" cy="${150 - 98}" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` : '') +
+      (p > .8 ? `<circle cx="${398 + 142}" cy="150" r="10" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>` : '');
+    return svgBoite(
+      orbite(58) + orbite(100) + orbite(142) +
+      `<circle cx="398" cy="150" r="42" fill="#1A75FF" fill-opacity=".1"/>` + boules + electrons +
+      mot(398, 226, 'noyau', { t: 21 }) +
+      mot(560, 84, 'n = 3', { t: 20, a: 'start' }) + mot(516, 168, 'n = 2', { t: 20, a: 'start' }) + mot(470, 268, 'n = 1', { t: 20, a: 'start' }) +
+      mot(760, 150, 'électrons', { c: '#1A75FF', t: 24, a: 'start' }) +
+      mot(500, 292, "des électrons sur des orbites autour du noyau", { t: 24 }));
+  },
+  vallee_stabilite_fig(t) {
+    const p = prog(t);
+    let stables = '', instables = '';
+    for (let k = 0; k <= 12; k++) {
+      const n = 120 + 52 * k, z = 262 - 15 * k - 0.011 * k * k * 9;
+      stables += `<circle cx="${n}" cy="${z}" r="8" fill="#10B981" stroke="currentColor" stroke-width="2"/>`;
+    }
+    [[300, 120], [430, 84], [560, 66], [230, 190], [680, 120], [760, 170]].forEach(([x, y]) => {
+      instables += `<circle cx="${x}" cy="${y}" r="8" fill="#E8604C" fill-opacity=".55" stroke="currentColor" stroke-width="2"/>`;
+    });
+    return svgBoite(
+      trait(90, 30, 90, 262, 1, { w: 4 }) + pointe(90, 22, -90, 'currentColor') +
+      trait(90, 262, 930, 262, 1, { w: 4 }) + pointe(938, 262, 0, 'currentColor') +
+      mot(70, 40, 'Z', { t: 26 }) + mot(918, 292, 'N', { t: 26 }) +
+      trait(90, 262, 800, 60, p, { c: 'currentColor', w: 3, tiret: true }) +
+      mot(812, 62, 'Z = N', { t: 21, a: 'start' }) +
+      (p > .3 ? instables : '') + (p > .5 ? stables : '') +
+      (p > .7 ? mot(560, 196, 'noyaux stables', { c: '#10B981', t: 24 }) + mot(300, 96, 'instables', { c: '#E8604C', t: 22 }) : '') +
+      mot(500, 292, "la vallée de stabilité : les noyaux stables suivent une bande", { t: 24 }));
+  },
+  ion_formation_fig(t) {
+    const p = prog(t);
+    const anneaux = (cx, r) => `<circle cx="${cx}" cy="140" r="${r}" fill="none" stroke="currentColor" stroke-width="3" stroke-opacity=".45" stroke-dasharray="7 7"/>`;
+    return svgBoite(
+      anneaux(210, 44) + anneaux(210, 78) + anneaux(210, 110) +
+      `<circle cx="210" cy="140" r="30" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` + mot(210, 149, 'Na', { t: 22 }) +
+      `<circle cx="264" cy="88" r="9" fill="#1A75FF"/><circle cx="140" cy="196" r="9" fill="#1A75FF"/><circle cx="298" cy="182" r="9" fill="#1A75FF"/>` +
+      (p > .25 ? `<circle cx="${210 + 110 + Math.round(90 * (p - .25) / .75)}" cy="${140 - Math.round(70 * (p - .25) / .75)}" r="10" fill="#E8604C" stroke="currentColor" stroke-width="2"/>` + mot(470, 52, 'électron perdu', { c: '#E8604C', t: 21 }) : '') +
+      mot(210, 282, 'atome de sodium', { t: 22 }) +
+      (p > .45 ? trait(390, 140, 520, 140, (p - .45) / .55, { c: '#B8860B', w: 6 }) + pointe(532, 140, 0, '#B8860B') : '') +
+      anneaux(730, 44) + anneaux(730, 78) +
+      `<circle cx="730" cy="140" r="30" fill="#10B981" fill-opacity=".18" stroke="currentColor" stroke-width="4"/>` + mot(730, 149, 'Na', { t: 22 }) +
+      `<circle cx="784" cy="88" r="9" fill="#1A75FF"/><circle cx="660" cy="196" r="9" fill="#1A75FF"/>` +
+      `<circle cx="792" cy="66" r="17" fill="#E8604C"/>` + mot(792, 74, '+', { t: 22, c: '#FFFFFF' }) +
+      mot(730, 282, 'ion sodium Na+', { t: 22 }) +
+      mot(500, 292, "perdre un électron donne un cation, chargé +", { t: 24 }));
+  },
+  ions_polyatomiques_fig(t) {
+    const p = prog(t);
+    const h = [[300, 78], [238, 128], [362, 128], [300, 182]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="19" fill="#FFFFFF" stroke="currentColor" stroke-width="3"/>`).join('');
+    const o = [[668, 72], [604, 124], [732, 124], [668, 182]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="21" fill="#E8604C" fill-opacity=".75" stroke="currentColor" stroke-width="3"/>`).join('');
+    return svgBoite(
+      h + `<circle cx="300" cy="130" r="27" fill="#1A75FF" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` + mot(300, 139, 'N', { t: 22 }) +
+      (p > .4 ? `<circle cx="352" cy="62" r="17" fill="#E8604C"/>` + mot(352, 70, '+', { t: 22, c: '#FFFFFF' }) : '') +
+      mot(300, 240, 'NH4+  ammonium', { t: 24 }) +
+      o + `<circle cx="668" cy="127" r="26" fill="#B8860B" fill-opacity=".5" stroke="currentColor" stroke-width="4"/>` + mot(668, 136, 'S', { t: 22 }) +
+      (p > .4 ? `<circle cx="724" cy="56" r="19" fill="#1A75FF"/>` + mot(724, 64, '2−', { t: 19, c: '#FFFFFF' }) : '') +
+      mot(668, 240, 'SO42−  sulfate', { t: 24 }) +
+      mot(500, 292, "des groupes d’atomes portant une charge", { t: 24 }));
+  },
+  ions_corps_fig(t) {
+    const p = prog(t);
+    const os = `<circle cx="676" cy="92" r="24" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="4"/><circle cx="724" cy="92" r="24" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="4"/><rect x="676" y="92" width="122" height="34" fill="#B8860B" fill-opacity=".3"/><rect x="676" y="92" width="122" height="34" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="798" cy="109" r="24" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="4"/><circle cx="798" cy="157" r="24" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="4"/><circle cx="676" cy="157" r="24" fill="#B8860B" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>`;
+    return svgBoite(
+      `<rect x="70" y="102" width="400" height="56" rx="28" fill="#1A75FF" fill-opacity=".12" stroke="currentColor" stroke-width="4"/>` +
+      `<circle cx="130" cy="82" r="16" fill="#E8604C"/>` + mot(130, 89, '+', { t: 19, c: '#FFFFFF' }) +
+      `<circle cx="216" cy="82" r="16" fill="#E8604C"/>` + mot(216, 89, '+', { t: 19, c: '#FFFFFF' }) +
+      `<circle cx="176" cy="186" r="16" fill="#7B2FF7"/>` + mot(176, 193, '+', { t: 19, c: '#FFFFFF' }) +
+      `<circle cx="262" cy="186" r="16" fill="#7B2FF7"/>` + mot(262, 193, '+', { t: 19, c: '#FFFFFF' }) +
+      mot(130, 52, 'Na+', { c: '#E8604C', t: 21 }) + mot(262, 226, 'K+', { c: '#7B2FF7', t: 21 }) +
+      (p > .4 ? trait(330, 130, 428, 130, (p - .4) / .6, { c: '#B8860B', w: 6 }) + pointe(440, 130, 0, '#B8860B') : '') +
+      mot(270, 282, 'le nerf : influx Na+ / K+', { t: 23 }) +
+      os +
+      `<circle cx="872" cy="100" r="17" fill="#10B981"/>` + mot(872, 107, '2+', { t: 16, c: '#FFFFFF' }) +
+      mot(874, 134, 'Ca2+', { c: '#10B981', t: 21, a: 'start' }) +
+      mot(740, 282, 'les os : calcium Ca2+', { t: 23 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

@@ -1,0 +1,517 @@
+{
+ "cours": 6215,
+ "titre": "Atomes, isotopes et ions : les briques fondamentales de la matière",
+ "matiere": "Chimie",
+ "lecons": [
+  6654,
+  6655,
+  6656,
+  6657,
+  6658,
+  6659
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les briques de la matière",
+   "titre": "Atomes, isotopes et ions",
+   "sous": "Les briques fondamentales de la matière",
+   "anim": {
+    "nom": "noyau",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Bienvenue dans l'infiniment petit",
+   "texte": "L'atome : la plus petite unité d'un élément qui en conserve les propriétés. On le croyait indivisible, il est en fait composé de particules subatomiques.",
+   "anim": {
+    "nom": "atome_bohr_fig",
+    "hauteur": 170
+   }
+  },
+  "structure": {
+   "type": "phrase",
+   "kicker": "L'architecture de l'atome",
+   "texte": "Le noyau concentre plus de 99,9 % de la masse dans un volume minuscule. Autour, les électrons forment un nuage de probabilité.",
+   "anim": {
+    "nom": "noyau",
+    "hauteur": 200
+   }
+  },
+  "numero_atomique": {
+   "type": "formule",
+   "kicker": "Le numéro atomique",
+   "tex": "Z = \\text{nombre de protons}",
+   "note": "hydrogène : 1 · carbone : 6 · oxygène : 8 · or : 79 — le tableau périodique classe les éléments par Z croissant"
+  },
+  "nombre_masse": {
+   "type": "formule",
+   "kicker": "Le nombre de masse",
+   "tex": "A = Z + N",
+   "note": "le carbone courant : 6 protons + 6 neutrons = 12 nucléons ; les électrons ne comptent presque pas dans la masse"
+  },
+  "notation": {
+   "type": "etape",
+   "kicker": "La notation symbolique",
+   "titre": "Écrire un atome complet",
+   "tex": [
+    "{}^{A}_{Z}X",
+    "{}^{12}_{6}\\mathrm{C} \\qquad {}^{16}_{8}\\mathrm{O} \\qquad {}^{23}_{11}\\mathrm{Na}"
+   ]
+  },
+  "helium": {
+   "type": "etape",
+   "kicker": "La neutralité électrique",
+   "titre": "L'hélium, un atome neutre",
+   "tex": [
+    "{}^{4}_{2}\\mathrm{He} : \\ 2 \\text{ protons}, \\ 2 \\text{ neutrons}, \\ 2 \\text{ électrons}",
+    "(+2) + (-2) = 0"
+   ]
+  },
+  "fluor": {
+   "type": "etape",
+   "kicker": "Premiers calculs",
+   "titre": "Lire la notation : le fluor",
+   "tex": [
+    "p = Z = 9",
+    "e = Z = 9 \\quad \\text{(atome neutre)}",
+    "n = A - Z = 19 - 9 = 10"
+   ]
+  },
+  "proton": {
+   "type": "etape",
+   "kicker": "Les trois particules",
+   "titre": "Le proton, l'identité de l'atome",
+   "tex": [
+    "q_p = +1{,}602 \\times 10^{-19}\\ \\text{C}",
+    "m_p = 1{,}6726 \\times 10^{-27}\\ \\text{kg}",
+    "m_p \\approx 1836 \\times m_e"
+   ]
+  },
+  "neutron": {
+   "type": "formule",
+   "kicker": "Les trois particules",
+   "tex": "q_n = 0 \\qquad m_n = 1{,}6749 \\times 10^{-27}\\ \\text{kg}",
+   "note": "découvert par Chadwick en 1932 ; très légèrement plus lourd que le proton, il est le ciment du noyau"
+  },
+  "electron": {
+   "type": "etape",
+   "kicker": "Les trois particules",
+   "titre": "L'électron, l'acteur des réactions",
+   "tex": [
+    "q_e = -1{,}602 \\times 10^{-19}\\ \\text{C}",
+    "m_e = 9{,}109 \\times 10^{-31}\\ \\text{kg}",
+    "m_e \\approx \\tfrac{m_p}{1836}"
+   ]
+  },
+  "sodium_ion": {
+   "type": "etape",
+   "kicker": "Décrypter une notation",
+   "titre": "Un avant-goût des ions : le sodium",
+   "tex": [
+    "{}^{23}_{11}\\mathrm{Na}^{+}",
+    "N = A - Z = 23 - 11 = 12",
+    "e = 11 - 1 = 10"
+   ]
+  },
+  "isotopes_carbone": {
+   "type": "formule",
+   "kicker": "Les isotopes",
+   "tex": "{}^{12}_{6}\\mathrm{C} \\qquad {}^{13}_{6}\\mathrm{C} \\qquad {}^{14}_{6}\\mathrm{C}",
+   "note": "trois isotopes du carbone : 6 protons, et 6, 7 ou 8 neutrons ; abondances : 98,93 %, 1,07 %, et une trace radioactive"
+  },
+  "stabilite_noyau": {
+   "type": "phrase",
+   "kicker": "Pourquoi les isotopes existent-ils ?",
+   "texte": "Deux forces s'affrontent dans le noyau : la répulsion électrique entre protons et l'interaction forte qui lie les nucléons. Les neutrons servent de ciment : c'est la vallée de stabilité.",
+   "anim": {
+    "nom": "vallee_stabilite_fig",
+    "hauteur": 160
+   }
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "La masse atomique moyenne",
+   "tex": "M = \\frac{\\sum (m_i \\times a_i)}{100}",
+   "note": "m_i : masse de l'isotope i, en unités de masse atomique (u) ; a_i : son abondance naturelle, en pour cent"
+  },
+  "chlore_donnees": {
+   "type": "etape",
+   "kicker": "Le mystère du chlore",
+   "titre": "Convertir les abondances",
+   "tex": [
+    "{}^{35}\\mathrm{Cl} : \\ 34{,}969\\ \\text{u}, \\ 75{,}77\\ \\% \\Rightarrow 0{,}7577",
+    "{}^{37}\\mathrm{Cl} : \\ 36{,}966\\ \\text{u}, \\ 24{,}23\\ \\% \\Rightarrow 0{,}2423"
+   ]
+  },
+  "chlore_calcul": {
+   "type": "etape",
+   "kicker": "Le mystère du chlore",
+   "titre": "La moyenne pondérée",
+   "tex": [
+    "M = 0{,}7577 \\times 34{,}969 + 0{,}2423 \\times 36{,}966",
+    "M = 26{,}499 + 8{,}956 = 35{,}455",
+    "M \\approx 35{,}45\\ \\text{u}"
+   ]
+  },
+  "datation": {
+   "type": "phrase",
+   "kicker": "Application : la datation au carbone 14",
+   "texte": "Le carbone 14 naît dans l'atmosphère et entre dans les êtres vivants. À leur mort, il se désintègre avec une demi-vie de 5 730 ans : le rapport carbone 14 sur carbone 12 donne l'âge, jusqu'à environ 50 000 ans.",
+   "anim": {
+    "nom": "decroissance",
+    "hauteur": 150
+   }
+  },
+  "applications_isotopes": {
+   "type": "phrase",
+   "kicker": "Des isotopes au travail",
+   "texte": "Médecine nucléaire : iode 131 pour la thyroïde, technétium 99m pour l'imagerie, cobalt 60 pour la radiothérapie. En géologie, les rapports isotopiques datent les roches et révèlent les climats passés.",
+   "anim": {
+    "nom": "emissions",
+    "hauteur": 140
+   }
+  },
+  "ion_definition": {
+   "type": "phrase",
+   "kicker": "La formation d'un ion",
+   "texte": "Un ion est un atome, ou un groupe d'atomes, qui a gagné ou perdu un ou plusieurs électrons. Perdre des électrons donne une charge positive ; en gagner, une charge négative. Le but : la configuration d'un gaz noble.",
+   "anim": {
+    "nom": "ion_formation_fig",
+    "hauteur": 150
+   }
+  },
+  "sodium_cation": {
+   "type": "formule",
+   "kicker": "Les cations",
+   "tex": "\\mathrm{Na} \\rightarrow \\mathrm{Na}^{+} + e^{-}",
+   "note": "le sodium perd son électron 3s : sa configuration devient 1s² 2s² 2p⁶, celle du néon"
+  },
+  "cations": {
+   "type": "etape",
+   "kicker": "Les cations",
+   "titre": "Perdre des électrons",
+   "tex": [
+    "\\mathrm{Na} \\rightarrow \\mathrm{Na}^{+} + e^{-}",
+    "\\mathrm{Mg} \\rightarrow \\mathrm{Mg}^{2+} + 2e^{-}",
+    "\\mathrm{Al} \\rightarrow \\mathrm{Al}^{3+} + 3e^{-}"
+   ]
+  },
+  "anions": {
+   "type": "etape",
+   "kicker": "Les anions",
+   "titre": "Gagner des électrons",
+   "tex": [
+    "\\mathrm{Cl} + e^{-} \\rightarrow \\mathrm{Cl}^{-}",
+    "\\mathrm{O} + 2e^{-} \\rightarrow \\mathrm{O}^{2-}",
+    "\\mathrm{N} + 3e^{-} \\rightarrow \\mathrm{N}^{3-}"
+   ]
+  },
+  "charge_calcul": {
+   "type": "etape",
+   "kicker": "Le calcul de charge",
+   "titre": "Le bilan des charges",
+   "tex": [
+    "\\mathrm{Mg}^{2+} : (+12) + (-10) = +2",
+    "\\mathrm{O}^{2-} : (+8) + (-10) = -2"
+   ]
+  },
+  "polyatomiques": {
+   "type": "phrase",
+   "kicker": "Les ions polyatomiques",
+   "texte": "NH₄⁺ ammonium · OH⁻ hydroxyde · NO₃⁻ nitrate · CO₃²⁻ carbonate · SO₄²⁻ sulfate · PO₄³⁻ phosphate : des groupes d'atomes liés, porteurs d'une charge commune.",
+   "anim": {
+    "nom": "ions_polyatomiques_fig",
+    "hauteur": 170
+   }
+  },
+  "grand_tri": {
+   "type": "recap",
+   "kicker": "Le grand tri",
+   "etapes": [
+    "Atome neutre : autant de protons que d'électrons",
+    "Isotopes : même Z, des neutrons différents",
+    "Ion : des électrons gagnés ou perdus",
+    "Le noyau signe l'identité, il ne change pas"
+   ],
+   "anim": {
+    "nom": "noyau",
+    "hauteur": 120
+   }
+  },
+  "detective": {
+   "type": "etape",
+   "kicker": "Le détective chimique",
+   "titre": "Trois espèces inconnues, douze protons",
+   "tex": [
+    "X : 12\\ p, \\ 12\\ n, \\ 12\\ e^{-} \\Rightarrow \\text{atome neutre}",
+    "Y : 12\\ p, \\ 13\\ n, \\ 12\\ e^{-} \\Rightarrow \\text{isotope}",
+    "Z : 12\\ p, \\ 12\\ n, \\ 10\\ e^{-} \\Rightarrow \\text{ion } \\mathrm{Mg}^{2+}"
+   ]
+  },
+  "datation_exercice": {
+   "type": "etape",
+   "kicker": "Dater un échantillon",
+   "titre": "Un rapport divisé par quatre",
+   "tex": [
+    "\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}",
+    "2 \\times 5730\\ \\text{ans} = 11\\,460\\ \\text{ans}"
+   ]
+  },
+  "ions_vie": {
+   "type": "phrase",
+   "kicker": "Les ions dans le monde réel",
+   "texte": "L'influx nerveux est une vague d'ions sodium et potassium, la contraction musculaire dépend des ions calcium, et nos os contiennent des ions calcium et phosphate. Les batteries déplacent des ions lithium.",
+   "anim": {
+    "nom": "ions_corps_fig",
+    "hauteur": 150
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Z, les protons : l'identité de l'élément",
+    "A = Z + N : les nucléons du noyau",
+    "Isotopes : même Z, des neutrons différents",
+    "La masse du tableau est une moyenne pondérée",
+    "Ion : une charge née des électrons"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré aux briques fondamentales de la matière : les atomes, les isotopes et les ions. Nous commencerons par l'architecture de l'atome et les nombres qui le définissent, puis nous rencontrerons ses trois particules. Nous découvrirons ensuite les isotopes et le calcul de la masse atomique moyenne, avant de terminer par les ions et par le grand tri qui distingue ces trois visages de la matière.",
+   "texte": "Atomes, isotopes et ions : les briques fondamentales de la matière.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "dit": "Un atome est la plus petite unité d'un élément chimique qui en conserve toutes les propriétés. Le mot atome vient du grec atomos, qui signifie indivisible : pendant plus de deux mille ans, on l'a cru insécable. Nous savons aujourd'hui qu'il est lui-même composé de particules plus petites, les particules subatomiques.",
+   "texte": "L'atome, longtemps cru indivisible, a une structure interne.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "structure",
+   "dit": "Au centre de l'atome se trouve le noyau : il concentre plus de quatre-vingt-dix-neuf pour cent de la masse, dans un volume minuscule. Si l'atome avait la taille d'un stade de football, son noyau serait un petit pois placé au centre du terrain. Autour de lui, les électrons forment un nuage de probabilité : on ne connaît pas leur position exacte, seulement les régions où ils ont le plus de chances de se trouver.",
+   "texte": "Un noyau minuscule et massif, un nuage d'électrons autour.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "numero_atomique",
+   "dit": "Le numéro atomique, c'est le nombre de protons du noyau : c'est l'empreinte digitale de l'élément. L'hydrogène en compte un, le carbone six, l'oxygène huit, et l'or soixante-dix-neuf. Le tableau périodique classe d'ailleurs les éléments par numéro atomique croissant, ce qui avait permis à Mendeleïev de prédire des éléments encore inconnus.",
+   "texte": "Le numéro atomique Z : le nombre de protons, l'identité de l'élément.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "nombre_masse",
+   "dit": "Le nombre de masse additionne les protons et les neutrons du noyau : c'est le nombre total de nucléons. Pour le carbone le plus courant, six protons plus six neutrons donnent un nombre de masse de douze. Retenez que les électrons, eux, ne comptent presque pas dans la masse.",
+   "texte": "Le nombre de masse A : protons plus neutrons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "notation",
+   "dit": "Pour écrire un atome complet, on utilise une notation très compacte : le symbole de l'élément, avec le nombre de masse en haut à gauche et le numéro atomique en bas à gauche. Ici, le carbone douze, l'oxygène seize et le sodium vingt-trois. En un coup d'œil, on connaît toute la composition du noyau.",
+   "texte": "La notation symbolique : A en haut, Z en bas, le symbole au centre.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "helium",
+   "dit": "Dans un atome neutre, les charges se compensent exactement : autant d'électrons que de protons. Prenons l'hélium : deux protons portent une charge totale de plus deux, deux électrons portent moins deux, et la somme est nulle. Les neutrons, eux, ne portent aucune charge.",
+   "texte": "Atome neutre : les charges des protons et des électrons se compensent.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "fluor",
+   "dit": "Lisons maintenant la notation du fluor, de nombre de masse dix-neuf et de numéro atomique neuf. Le numéro atomique donne directement neuf protons. L'atome est neutre, donc neuf électrons. Et les neutrons s'obtiennent par soustraction : dix-neuf moins neuf égale dix neutrons. Vérification : neuf plus dix redonnent bien dix-neuf.",
+   "texte": "Le fluor : neuf protons, neuf électrons, dix neutrons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "proton",
+   "dit": "Premier acteur : le proton, découvert par Rutherford en mille neuf cent dix-sept. Il porte la charge élémentaire positive, et il pèse environ mille huit cent trente-six fois plus qu'un électron. Son nom vient du grec prôton, le premier : c'est bien lui qui vient en premier, car son nombre définit l'élément.",
+   "texte": "Le proton : charge positive, masse élevée, il définit l'élément.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "neutron",
+   "dit": "Deuxième acteur : le neutron, découvert par Chadwick en mille neuf cent trente-deux. Sans charge, à peine plus lourd que le proton, il joue le rôle de ciment nucléaire : grâce à l'interaction forte, il maintient les nucléons liés et empêche le noyau d'éclater sous la répulsion électrique des protons.",
+   "texte": "Le neutron : neutre, il cimente le noyau par l'interaction forte.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "electron",
+   "dit": "Troisième acteur : l'électron, découvert par Thomson en mille huit cent quatre-vingt-dix-sept. Sa charge est exactement l'opposée de celle du proton, mais sa masse est infime : sa contribution à la masse de l'atome est négligeable, et l'atome est donc presque entièrement vide. Ce sont les électrons, surtout ceux de la couche externe, qui mènent les réactions chimiques.",
+   "texte": "L'électron : charge négative, masse négligeable, maître des réactions.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "sodium_ion",
+   "dit": "Dernier décryptage avant de changer de partie : un sodium de nombre de masse vingt-trois, portant une charge plus un. Onze protons, c'est du sodium. Les neutrons : vingt-trois moins onze égale douze. Et la charge plus un signale un électron en moins : il n'en reste que dix. Vous venez de lire un ion, nous y reviendrons dans la troisième partie.",
+   "texte": "Un ion sodium lu en entier : onze protons, douze neutrons, dix électrons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "isotopes_carbone",
+   "dit": "Les isotopes sont des atomes d'un même élément : même numéro atomique, donc mêmes protons, mais un nombre de neutrons différent, donc une masse différente. Le carbone en compte trois formes : le carbone douze, stable et ultra majoritaire, le carbone treize, stable lui aussi, et le carbone quatorze, radioactif mais précieux pour dater le passé.",
+   "texte": "Isotopes : même Z, des neutrons différents, des masses différentes.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "stabilite_noyau",
+   "dit": "Pourquoi plusieurs isotopes existent-ils ? Parce que la stabilité du noyau est un équilibre entre deux forces : la répulsion électrique, qui pousse les protons à s'écarter, et l'interaction forte, qui les colle à très courte portée. Les neutrons aident des deux côtés. Pour chaque nombre de protons, certains nombres de neutrons stabilisent le noyau : c'est la vallée de stabilité. Le technétium, lui, n'a aucun isotope stable.",
+   "texte": "La stabilité du noyau : un équilibre entre répulsion et interaction forte.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "moyenne",
+   "dit": "Un échantillon naturel mélange tous les isotopes : sa masse moyenne est une moyenne pondérée. Chaque isotope contribue à hauteur de son abondance : on multiplie sa masse par son pourcentage, on additionne toutes les contributions, et on divise par cent. C'est exactement le calcul d'une moyenne de notes avec des coefficients.",
+   "texte": "La masse atomique moyenne : une moyenne pondérée par les abondances.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "chlore_donnees",
+   "dit": "Appliquons au chlore, le grand mystère des masses non entières. Le chlore naturel contient deux isotopes : le chlore trente-cinq, environ les trois quarts des atomes, et le chlore trente-sept, environ un quart. Première étape : convertir les pourcentages d'abondance en fractions décimales, comme le montre l'écran.",
+   "texte": "Le chlore : deux isotopes, leurs masses et leurs abondances.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "chlore_calcul",
+   "dit": "Deuxième étape : la moyenne pondérée. Le premier terme vaut environ vingt-six et demi, le second environ neuf. Leur somme donne trente-cinq virgule quarante-cinq unités de masse atomique. C'est exactement la valeur inscrite dans le tableau périodique. Le mystère est résolu : la masse du chlore n'est pas un nombre entier parce que c'est une moyenne.",
+   "texte": "Le calcul aboutit à trente-cinq virgule quarante-cinq : la valeur du tableau.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "datation",
+   "dit": "Application célèbre : la datation au carbone quatorze. Tant qu'un organisme vit, il échange du carbone avec l'atmosphère et garde le même rapport entre carbone quatorze et carbone douze. À sa mort, l'échange cesse et le carbone quatorze se désintègre lentement, avec une demi-vie de cinq mille sept cent trente ans. En mesurant le rapport restant, les archéologues remontent le temps.",
+   "texte": "La datation au carbone 14 : une horloge radioactive pour les archéologues.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "applications_isotopes",
+   "dit": "Les isotopes travaillent aussi pour nous. En médecine, l'iode cent trente et un traite les cancers de la thyroïde, le technétium sert à l'imagerie médicale et le cobalt soixante à la radiothérapie. En géologie, les rapports entre isotopes fonctionnent comme des signatures : ils révèlent l'âge des roches les plus anciennes et les températures du passé, lues dans les carottes de glace.",
+   "texte": "Médecine nucléaire et géochimie : les isotopes en action.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "ion_definition",
+   "dit": "Un ion est un atome qui a gagné ou perdu un ou plusieurs électrons : son équilibre de charges est rompu, et il porte une charge nette. Pourquoi un atome fait-il cela ? Pour atteindre la configuration électronique stable du gaz noble le plus proche, avec une couche externe complète : c'est la règle de l'octet. Le sodium, par exemple, préfère perdre son unique électron externe plutôt que d'en gagner sept.",
+   "texte": "Un ion naît d'un gain ou d'une perte d'électrons, en quête de stabilité.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "sodium_cation",
+   "dit": "Regardez le sodium : un seul électron sur sa couche externe. En le perdant, il découvre dessous une couche complète, exactement la configuration du néon, un gaz noble. Il devient l'ion sodium, de charge plus un : c'est un cation, un ion positif formé par perte d'électrons, et il est plus petit que son atome.",
+   "texte": "Le sodium perd un électron et devient le cation Na plus, copie du néon.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "cations",
+   "dit": "Les cations naissent d'une perte d'électrons, le plus souvent chez les métaux. Le sodium en perd un, le magnésium en perd deux, l'aluminium trois. À chaque fois, la charge positive correspond au nombre d'électrons partis, et l'ion formé copie la configuration d'un gaz noble.",
+   "texte": "Cations : sodium plus un, magnésium plus deux, aluminium plus trois.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "anions",
+   "dit": "Les anions naissent d'un gain d'électrons, le plus souvent chez les non-métaux : le chlore en gagne un et devient chlorure, l'oxygène en gagne deux, l'azote trois. Un anion est plus grand que son atome : les électrons supplémentaires se repoussent et dilatent le nuage électronique.",
+   "texte": "Anions : chlorure moins un, oxyde moins deux, nitrure moins trois.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p24",
+   "ecran": "charge_calcul",
+   "dit": "La charge d'un ion se calcule par un simple bilan. Le magnésium garde ses douze protons mais n'a plus que dix électrons : plus douze, moins dix, la charge vaut plus deux. L'oxygène garde huit protons et passe à dix électrons : plus huit, moins dix, la charge vaut moins deux. Et le fer peut même jouer sur deux tableaux, en perdant deux ou trois électrons.",
+   "texte": "La charge : le bilan protons moins électrons, en charges élémentaires.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p25",
+   "ecran": "polyatomiques",
+   "dit": "Tous les ions ne sont pas des atomes solitaires : certains sont des groupes d'atomes liés entre eux, qui portent une charge commune et se comportent comme une seule unité dans les réactions. Retenez les plus courants, affichés à l'écran : l'ammonium, l'hydroxyde, le nitrate, le carbonate, le sulfate et le phosphate.",
+   "texte": "Les ions polyatomiques : des groupes d'atomes porteurs d'une charge.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p26",
+   "ecran": "grand_tri",
+   "dit": "Récapitulons le grand tri. L'atome neutre est l'état de référence : protons et électrons en nombre égal. Les isotopes changent les neutrons, donc la masse, sans changer l'élément ni la chimie. Les ions changent les électrons, donc la charge et les propriétés, sans jamais toucher au noyau.",
+   "texte": "Atome, isotope, ion : trois visages à ne plus confondre.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p27",
+   "ecran": "detective",
+   "dit": "À vous de jouer, en détective chimique. Trois espèces inconnues ont toutes douze protons : c'est donc du magnésium. La première a douze neutrons et douze électrons : un atome neutre ordinaire. La deuxième a treize neutrons : un isotope, plus lourd d'une unité de masse. La troisième n'a que dix électrons : un ion, de charge plus deux. Même élément, trois visages différents.",
+   "texte": "Douze protons partout : un atome, un isotope et un ion du magnésium.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p28",
+   "ecran": "datation_exercice",
+   "dit": "Dernier exercice : un échantillon ancien montre un rapport carbone quatorze sur carbone douze quatre fois plus faible que chez un être vivant. Diviser par deux correspond à une demi-vie ; diviser par quatre, c'est donc deux demi-vies. Deux fois cinq mille sept cent trente ans : l'échantillon a environ onze mille quatre cent soixante ans.",
+   "texte": "Un rapport divisé par quatre : deux demi-vies, environ onze mille ans.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p29",
+   "ecran": "ions_vie",
+   "dit": "Les ions ne vivent pas qu'au laboratoire. Votre influx nerveux est une vague d'ions sodium et de potassium le long des neurones, vos muscles se contractent grâce aux ions calcium, et vos os sont renforcés par des ions calcium et phosphate. Les batteries font circuler des ions lithium, et c'est encore le calcium et le magnésium dissous qui rendent une eau dure.",
+   "texte": "Nerfs, muscles, os, batteries : les ions sont partout.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p30",
+   "ecran": "recap_final",
+   "dit": "Vous détenez maintenant le plan des briques fondamentales de la matière. Les protons signent l'identité de l'élément, les neutrons créent les variantes de masse que sont les isotopes, et les électrons mènent la chimie et fabriquent les ions. La suite du cours réunira ces briques : ce seront les liaisons chimiques et les molécules.",
+   "texte": "Protons, identité ; neutrons, variantes ; électrons, chimie.",
+   "pause_apres": 0.8
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'atome et ses trois particules"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Les isotopes et la masse atomique moyenne",
+   "pont": {
+    "dit": "Partie deux : les isotopes et la masse atomique moyenne. Après l'atome et ses particules, voici ses variantes de masse, et la moyenne pondérée qui explique les masses du tableau périodique.",
+    "texte": "Partie 2 : les isotopes et la masse atomique moyenne."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Les ions et le grand tri",
+   "pont": {
+    "dit": "Partie trois : les ions et le grand tri. Après les variantes de masse, voici les variantes de charge : ce qui se passe quand un atome gagne ou perd des électrons, et comment distinguer sans hésiter atome, isotope et ion.",
+    "texte": "Partie 3 : les ions, puis le grand tri."
+   }
+  }
+ ]
+}
