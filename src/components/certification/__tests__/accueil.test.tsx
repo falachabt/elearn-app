@@ -205,6 +205,21 @@ describe('D2 · Séance du jour', () => {
     expect(await screen.findByText(t.seanceJour.erreurTitre)).toBeTruthy();
   });
 
+  it('bloc série en partie 6 au budget de base : l’aide annonce les 12 questions servies, pas le budget (I-4)', async () => {
+    installer({ seance: { minutes: 20, blocs: [{ type: 'serie', partie: 6, nombre: 10 }], pourquoi: { erreurs: 0, notion: null, motsEchus: 0 } } });
+    await monter(<SeanceDuJour />);
+    expect(await screen.findByText(t.seanceJour.serie)).toBeTruthy();
+    expect(screen.getByText(t.seanceJour.serieAide.replace('{{partie}}', '6').replace('{{n}}', '12'))).toBeTruthy();
+    expect(screen.queryByText(t.seanceJour.serieAide.replace('{{partie}}', '6').replace('{{n}}', '10'))).toBeNull();
+  });
+
+  it('bloc série en partie 6 au budget 5 : l’aide reste au budget (maximum atteignable non dérivable côté app)', async () => {
+    installer({ seance: { minutes: 10, blocs: [{ type: 'serie', partie: 6, nombre: 5 }], pourquoi: { erreurs: 0, notion: null, motsEchus: 0 } } });
+    await monter(<SeanceDuJour />);
+    expect(await screen.findByText(t.seanceJour.serie)).toBeTruthy();
+    expect(screen.getByText(t.seanceJour.serieAide.replace('{{partie}}', '6').replace('{{n}}', '5'))).toBeTruthy();
+  });
+
   it('séance vide : message dédié', async () => {
     installer({ seance: { minutes: 20, blocs: [], pourquoi: { erreurs: 0, notion: null, motsEchus: 0 } } });
     await monter(<SeanceDuJour />);

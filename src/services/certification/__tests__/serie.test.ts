@@ -8,6 +8,7 @@ import {
   avancer,
   demarrerSerie,
   lireSerieEnCours,
+  longueurSerieAnnoncee,
   questionRepondue,
   repondreSerie,
   reprendreOuDemarrer,
@@ -26,6 +27,25 @@ beforeEach(async () => {
   await AsyncStorage.clear();
 });
 afterEach(() => definirApi(null));
+
+describe('longueur annoncée du bloc série de la séance (I-4)', () => {
+  it('au budget de base, annonce la longueur servie de la partie : 12 pour les parties 3, 4 et 6, 10 sinon', () => {
+    // Réglages du seed : `test_mini_length_by_part` = {3: 12, 4: 12, 6: 12}, la règle que le serveur applique aux séries.
+    for (const partie of [3, 4, 6]) expect(longueurSerieAnnoncee(partie, 10, reglages)).toBe(12);
+    for (const partie of [1, 2, 5, 7]) expect(longueurSerieAnnoncee(partie, 10, reglages)).toBe(10);
+  });
+
+  it('aux budgets 5 et 15, l’annonce reste le budget (maximum atteignable en groupes entiers, non dérivable côté app)', () => {
+    for (const partie of [1, 2, 3, 4, 5, 6, 7]) {
+      expect(longueurSerieAnnoncee(partie, 5, reglages)).toBe(5);
+      expect(longueurSerieAnnoncee(partie, 15, reglages)).toBe(15);
+    }
+  });
+
+  it('sans le réglage des longueurs par partie, le budget de base annonce 10 pour toutes les parties', () => {
+    for (const partie of [1, 2, 3, 4, 5, 6, 7]) expect(longueurSerieAnnoncee(partie, 10, null)).toBe(10);
+  });
+});
 
 describe('série d’entraînement', () => {
   it('tire une série dans le périmètre demandé et la garde sur l’appareil', async () => {

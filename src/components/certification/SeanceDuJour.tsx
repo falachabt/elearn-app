@@ -10,6 +10,7 @@ import { ecrirePlan, obtenirReglages } from '@/services/certification/etat';
 import { jourDe } from '@/services/certification/jours';
 import type { Reglages } from '@/services/certification/reglages';
 import { avancement, changerDuree, chargerSeanceJour, commencer, indexBlocSuivant, pourquoiDeLaSeance, terminerBloc, type EtatSeanceJour } from '@/services/certification/seanceJour';
+import { longueurSerieAnnoncee } from '@/services/certification/serie';
 import type { BlocServi } from '@/services/certification/types';
 import { lireProfil } from '@/services/profil';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -93,7 +94,7 @@ export function SeanceDuJour() {
     if (b.type === 'cours') return { icone: BookOpen, titre: t('certification.seanceJour.cours'), aide: t('certification.seanceJour.coursAide', { notion: b.titre, n: b.minutes }) };
     if (b.type === 'mots') return { icone: NotebookPen, titre: t('certification.seanceJour.mots'), aide: b.nombre === 1 ? t('certification.seanceJour.motsAideUn') : t('certification.seanceJour.motsAide', { n: b.nombre }) };
     if (b.type === 'rejeu') return { icone: RotateCcw, titre: t('certification.seanceJour.rejeu'), aide: b.partie ? (b.nombre === 1 ? t('certification.seanceJour.rejeuAideUne', { partie: b.partie }) : t('certification.seanceJour.rejeuAide', { n: b.nombre, partie: b.partie })) : t('certification.seanceJour.rejeuAideSans', { n: b.nombre }) };
-    return { icone: Target, titre: t('certification.seanceJour.serie'), aide: t('certification.seanceJour.serieAide', { partie: b.partie, n: b.nombre }) };
+    return { icone: Target, titre: t('certification.seanceJour.serie'), aide: t('certification.seanceJour.serieAide', { partie: b.partie, n: longueurSerieAnnoncee(b.partie, b.nombre, reglages) }) };
   };
 
   const av = etat ? avancement(etat) : null;

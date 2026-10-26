@@ -4,6 +4,7 @@ import { randomUUID } from 'expo-crypto';
 import { obtenirApi, type PerimetreSerie } from './api';
 import { CLE_SERIE, ecrireJson, lireJson } from './etat';
 import { jourDe } from './jours';
+import { longueurMiniServie } from './miniTest';
 import type { Reglages } from './reglages';
 import type { MotCle, NotionLiee, QuestionServie, ReponseEnvoyee, ResultatReponse } from './types';
 
@@ -32,6 +33,20 @@ export type EtatSerie = {
 };
 
 const maintenant = () => jourDe(new Date());
+
+/** Budget de base des séries (réglage `session_budget.series` de la séance de 20 minutes, la durée par défaut). */
+export const BUDGET_SERIE_BASE = 10;
+
+/**
+ * Nombre de questions annoncé pour le bloc série d'une séance du jour (écart I-4 de l'audit du 25/10/2026) :
+ * au budget de base, le serveur sert la longueur de la partie — même règle que les mini-tests (réglage
+ * `test_mini_length_by_part`, lu par `longueurMiniServie`) : 12 pour les parties 3, 4 et 6, 10 sinon.
+ * Aux autres budgets (5 et 15), le serveur sert le maximum atteignable en groupes entiers sous le budget
+ * (partie 6 : 4 ou 12) : ce nombre dépend des tailles de groupes de la banque, que l'app ne reçoit pas —
+ * l'annonce reste donc le budget, faute de pouvoir le dériver proprement.
+ */
+export const longueurSerieAnnoncee = (partie: number, budget: number, r?: Pick<Reglages, 'miniLongueursParPartie'> | null): number =>
+  budget === BUDGET_SERIE_BASE ? longueurMiniServie(partie, r) : budget;
 const memePerimetre = (a: PerimetreSerie, b: PerimetreSerie) => (a.part ?? null) === (b.part ?? null) && (a.notion ?? null) === (b.notion ?? null) && !!a.rejeu === !!b.rejeu && !!a.ancrage === !!b.ancrage;
 
 export const lireSerieEnCours = () => lireJson<EtatSerie>(CLE_SERIE);
