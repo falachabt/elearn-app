@@ -1,0 +1,603 @@
+{
+  "cours": 6662,
+  "ecrans": {
+    "arithmetique": {
+      "kicker": "Suites arithmétiques",
+      "note": "Quatre n moins trois : raison quatre, premier terme moins trois.",
+      "tex": "u_{n + 1} = u_n + r \\qquad u_n = u_0 + nr",
+      "type": "formule"
+    },
+    "asymptotes": {
+      "kicker": "Asymptotes parallèles aux axes",
+      "tex": [
+        "\\lim_{x \\to \\pm\\infty} f(x) = L : y = L \\text{ horizontale}",
+        "\\lim_{x \\to a} f(x) = \\pm\\infty : x = a \\text{ verticale}",
+        "f(x) = \\tfrac{2x + 1}{x - 3} : y = 2, x = 3"
+      ],
+      "titre": "Horizontale à l'infini, verticale en un point",
+      "type": "etape"
+    },
+    "composee_affine": {
+      "kicker": "Composée avec une fonction affine",
+      "tex": [
+        "f(x) = (3x + 1)^5",
+        "f'(x) = 3 \\times 5(3x + 1)^4 = 15(3x + 1)^4"
+      ],
+      "titre": "Ne pas oublier le facteur intérieur",
+      "type": "etape"
+    },
+    "continuite": {
+      "kicker": "Continuité en un réel",
+      "note": "Continue en a : la limite égale l'image, à gauche comme à droite.",
+      "tex": "\\lim_{x \\to a} f(x) = f(a)",
+      "type": "formule"
+    },
+    "continuite_ex": {
+      "kicker": "Continuité sur un intervalle",
+      "tex": [
+        "f(x) = \\tfrac{x^2 + 1}{x - 3} \\qquad x > 3",
+        "\\text{numérateur et dénominateur polynômes}",
+        "v(x) \\neq 0 \\text{ sur } ]3; +\\infty[ : \\text{ continue}"
+      ],
+      "titre": "Un quotient de polynômes",
+      "type": "etape"
+    },
+    "cubique": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "courbe_cubique_fig"
+      },
+      "kicker": "Polynôme de degré trois",
+      "tex": [
+        "P(x) = x^3 - 3x^2 + 2",
+        "P'(x) = 3x(x - 2)",
+        "P(0)=2 \\text{ max.} \\qquad P(2)=-2 \\text{ min.}"
+      ],
+      "titre": "Croît, décroît, croît",
+      "type": "etape"
+    },
+    "ex_derive": {
+      "kicker": "Exemple · dériver le carré en trois",
+      "tex": [
+        "\\tfrac{x^2 - 9}{x - 3} = \\tfrac{(x - 3)(x + 3)}{x - 3}",
+        "\\textstyle = x + 3 \\qquad \\lim_{x \\to 3} (x + 3) = 6",
+        "f'(3) = 6"
+      ],
+      "titre": "Le taux se simplifie",
+      "type": "etape"
+    },
+    "ex_homographique": {
+      "kicker": "Exemple · une homographique",
+      "tex": [
+        "f(x) = \\tfrac{2x + 1}{x - 1} \\qquad x \\neq 1",
+        "ad - bc = -3 < 0",
+        "x = 1 \\text{ verticale} \\qquad y = 2 \\text{ horizontale}"
+      ],
+      "titre": "Décroissante sur chaque intervalle",
+      "type": "etape"
+    },
+    "ex_limite": {
+      "kicker": "Exemple · lever une indétermination",
+      "tex": [
+        "\\tfrac{x^2 - 4}{x - 2} = \\tfrac{(x - 2)(x + 2)}{x - 2}",
+        "\\textstyle = x + 2 \\quad (x \\neq 2)",
+        "\\textstyle \\lim_{x \\to 2} f(x) = 4"
+      ],
+      "titre": "Factoriser, simplifier, conclure",
+      "type": "etape"
+    },
+    "gendarmes": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "sinusoide"
+      },
+      "kicker": "Théorème des gendarmes",
+      "tex": [
+        "-\\tfrac{1}{x} \\leq \\tfrac{\\sin x}{x} \\leq \\tfrac{1}{x}",
+        "\\textstyle \\lim_{x \\to +\\infty} \\tfrac{\\sin x}{x} = 0"
+      ],
+      "titre": "Encadrer pour forcer la limite",
+      "type": "etape"
+    },
+    "geometrique": {
+      "kicker": "Suites géométriques",
+      "note": "Trois fois deux puissance n : raison deux, premier terme trois.",
+      "tex": "u_{n + 1} = q u_n \\qquad u_n = u_0 q^n",
+      "type": "formule"
+    },
+    "homographique": {
+      "kicker": "Fonctions homographiques",
+      "tex": [
+        "f(x) = \\tfrac{ax + b}{cx + d} \\qquad ad - bc \\neq 0",
+        "x = -\\tfrac{d}{c} : \\text{ asymptote verticale}",
+        "y = \\tfrac{a}{c} : \\text{ asymptote horizontale}"
+      ],
+      "titre": "Une hyperbole, deux asymptotes à lire",
+      "type": "etape"
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Domaine, limites, asymptotes, dérivée, variations, courbe : la démarche d'étude complète.",
+      "type": "phrase"
+    },
+    "limites_gd": {
+      "kicker": "Limites en un réel",
+      "tex": [
+        "\\lim_{x \\to a^-} f(x) : \\text{ par valeurs inférieures}",
+        "\\lim_{x \\to a^+} f(x) : \\text{ par valeurs supérieures}",
+        "\\text{limite en } a \\iff \\text{ gauche } = \\text{ droite}"
+      ],
+      "titre": "À gauche, à droite, puis en le point",
+      "type": "etape"
+    },
+    "limites_infini": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Limites à l'infini · usuelles",
+      "tex": [
+        "\\textstyle \\lim_{x \\to \\pm\\infty} \\tfrac{a}{x} = 0",
+        "\\textstyle \\lim_{x \\to +\\infty} x^n = +\\infty"
+      ],
+      "titre": "Les briques de base",
+      "type": "etape"
+    },
+    "methode_etude": {
+      "etapes": [
+        "Domaine de définition d'abord",
+        "Limites aux bornes du domaine",
+        "Asymptotes éventuelles",
+        "Dérivée, signe, variations",
+        "Courbe et éléments clés"
+      ],
+      "kicker": "Méthode d'étude complète",
+      "type": "recap"
+    },
+    "nb_derive": {
+      "kicker": "Nombre dérivé en un point",
+      "note": "Le taux d'accroissement tend vers le nombre dérivé.",
+      "tex": "f'(a) = \\lim_{x \\to a} \\frac{f(x) - f(a)}{x - a}",
+      "type": "formule"
+    },
+    "oblique": {
+      "kicker": "Asymptote oblique",
+      "tex": [
+        "f(x) = \\tfrac{2x^2 + x}{x + 1} \\qquad y = 2x - 1",
+        "f(x) - (2x - 1) = \\tfrac{1}{x + 1}",
+        "\\lim [f(x) - (2x - 1)] = 0 : \\text{ oblique}"
+      ],
+      "titre": "La différence doit tendre vers zéro",
+      "type": "etape"
+    },
+    "operations_derive": {
+      "kicker": "Opérations sur les dérivables",
+      "tex": [
+        "(u + v)'(a) = u'(a) + v'(a)",
+        "(ku)'(a) = k u'(a)",
+        "(uv)'(a) = u'(a)v(a) + u(a)v'(a)",
+        "(u \\circ v)'(a) = v'(a) \\cdot u'(v(a))"
+      ],
+      "titre": "Somme, produit, composée",
+      "type": "etape"
+    },
+    "prolongement": {
+      "kicker": "Prolongement par continuité",
+      "tex": [
+        "\\tfrac{x^2 - 1}{x - 1} = x + 1 \\quad (x \\neq 1)",
+        "\\textstyle \\lim_{x \\to 1} f(x) = 2",
+        "\\tilde{f}(x) = x + 1 \\text{ pour tout } x"
+      ],
+      "titre": "Combler un trou de la courbe",
+      "type": "etape"
+    },
+    "quotient_derive": {
+      "kicker": "Dérivée d'un quotient",
+      "note": "Haut dérivé fois bas, moins haut fois bas dérivé, sur bas au carré.",
+      "tex": "\\left(\\frac{u}{v}\\right)'(a) = \\frac{u'(a)v(a) - u(a)v'(a)}{[v(a)]^2}",
+      "type": "formule"
+    },
+    "quotient_point": {
+      "kicker": "Limite d'un quotient en un réel",
+      "tex": [
+        "v(a) \\neq 0 : \\lim f = \\tfrac{u(a)}{v(a)}",
+        "u(a) \\neq 0, v(a) = 0 : \\text{ limite infinie}",
+        "u(a) = v(a) = 0 : \\text{ factoriser}"
+      ],
+      "titre": "Trois cas selon le dénominateur",
+      "type": "etape"
+    },
+    "rationnelle_infini": {
+      "kicker": "Polynômes et rationnelles à l'infini",
+      "tex": [
+        "\\textstyle \\lim_{x \\to +\\infty} \\tfrac{3x^2 + 2x - 1}{x^2 + 5}",
+        "\\textstyle = \\lim_{x \\to +\\infty} \\tfrac{3x^2}{x^2} = 3"
+      ],
+      "titre": "Le plus haut degré décide",
+      "type": "etape"
+    },
+    "rationnelle_type": {
+      "kicker": "Quotient second degré sur affine",
+      "tex": [
+        "f(x) = \\tfrac{x^2 + 2x + 3}{x - 1} = x + 3 + \\tfrac{6}{x - 1}",
+        "y = x + 3 \\text{ oblique} \\qquad x = 1 \\text{ verticale}",
+        "f'(x) = 1 - \\tfrac{6}{(x - 1)^2}"
+      ],
+      "titre": "La division euclidienne donne l'oblique",
+      "type": "etape"
+    },
+    "recap_derive": {
+      "etapes": [
+        "Nombre dérivé : limite du taux",
+        "Produit et quotient : les formules",
+        "À gauche différent de droite : angle",
+        "Tangente en a : pente f prime de a",
+        "Signe de la dérivée : variations"
+      ],
+      "kicker": "Partie 2 : l'essentiel",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Limites et continuité ouvrent l'étude",
+        "La dérivée donne tangente et variations",
+        "Asymptotes : horizontale, verticale, oblique",
+        "Suites arithmétiques : on ajoute la raison",
+        "Suites géométriques : on multiplie par q"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "recap_limites": {
+      "etapes": [
+        "Limite en a : gauche égale droite",
+        "Zéro sur zéro : factoriser d'abord",
+        "À l'infini : le plus haut degré décide",
+        "Continuité : limite égale image",
+        "TVI : changer de signe, donc s'annuler"
+      ],
+      "kicker": "Partie 1 : l'essentiel",
+      "type": "recap"
+    },
+    "salaire": {
+      "kicker": "Application · un salaire qui augmente",
+      "tex": [
+        "u_0 = 120000 \\qquad r = 5000",
+        "u_8 = 120000 + 8 \\times 5000 = 160000"
+      ],
+      "titre": "Une addition constante chaque année",
+      "type": "etape"
+    },
+    "somme_arith": {
+      "kicker": "Somme d'une suite arithmétique",
+      "tex": [
+        "S_n = \\tfrac{(n + 1)(u_0 + u_n)}{2}",
+        "1 + 2 + \\dots + 100 = \\tfrac{100 \\times 101}{2} = 5050"
+      ],
+      "titre": "Nombre de termes fois la moyenne des extrêmes",
+      "type": "etape"
+    },
+    "somme_geo": {
+      "kicker": "Somme d'une suite géométrique",
+      "tex": [
+        "S_n = u_0 \\tfrac{1 - q^{n + 1}}{1 - q} \\qquad q \\neq 1",
+        "1 + 2 + \\dots + 2^9 = \\tfrac{1 - 2^{10}}{1 - 2} = 1023"
+      ],
+      "titre": "Premier terme fois le facteur de somme",
+      "type": "etape"
+    },
+    "suites_def": {
+      "kicker": "Suites numériques · définitions",
+      "tex": [
+        "u_n = 2n + 1 : u_0 = 1, u_1 = 3, u_5 = 11",
+        "v_0 = 2 \\qquad v_{n + 1} = 3v_n - 1",
+        "v_1 = 5 \\qquad v_2 = 14"
+      ],
+      "titre": "Explicite ou par récurrence",
+      "type": "etape"
+    },
+    "tangente": {
+      "kicker": "Tangente et approximation affine",
+      "note": "Pour x² en a = 2 : y = 4x − 4, et (2 + h)² ≈ 4 + 4h.",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Mathématique · Analyse",
+      "sous": "Limites, continuité, dérivation, asymptotes : la démarche complète, puis les suites",
+      "titre": "Fonctions et suites : limites, dérivation et représentations",
+      "type": "titre"
+    },
+    "tvi": {
+      "kicker": "Théorème des valeurs intermédiaires",
+      "note": "Une fonction continue qui change de signe s'annule au moins une fois.",
+      "tex": "f(a) \\times f(b) < 0 \\Rightarrow f(c) = 0",
+      "type": "formule"
+    },
+    "usuelles": {
+      "kicker": "Dérivées des fonctions usuelles",
+      "tex": [
+        "k \\mapsto 0 \\qquad x \\mapsto 1 \\qquad x^2 \\mapsto 2x",
+        "x^n \\mapsto n x^{n - 1}",
+        "\\tfrac{1}{x} \\mapsto -\\tfrac{1}{x^2}",
+        "\\sqrt{x} \\mapsto \\tfrac{1}{2\\sqrt{x}}"
+      ],
+      "titre": "La table à connaître par cœur",
+      "type": "etape"
+    },
+    "val_abs": {
+      "kicker": "Dérivabilité à gauche et à droite",
+      "tex": [
+        "f'_d(0) = 1 \\qquad f'_g(0) = -1",
+        "f'_d(0) \\neq f'_g(0) : \\text{ non dérivable en } 0"
+      ],
+      "titre": "La valeur absolue en zéro : un angle",
+      "type": "etape"
+    },
+    "variations": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "tableau_variations_fig"
+      },
+      "kicker": "Variations et extrema",
+      "tex": [
+        "f(x) = x^2 - 4x + 3 \\qquad f'(x) = 2x - 4",
+        "f'(2) = 0 \\qquad f(2) = -1 \\text{ minimum}"
+      ],
+      "titre": "Le signe de la dérivée commande",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Limites d'une fonction et continuité"
+    },
+    {
+      "debut": "p14",
+      "pont": {
+        "dit": "Partie deux : la dérivation. Nous définirons le nombre dérivé comme limite du taux d'accroissement, nous établirons les règles de calcul, nous rencontrerons un point anguleux, puis la tangente et le lien entre signe de la dérivée et variations.",
+        "texte": "Partie 2 : nombre dérivé, règles, tangente et variations."
+      },
+      "sous_titre": "Dérivation : nombre dérivé, règles et tangente"
+    },
+    {
+      "debut": "p24",
+      "pont": {
+        "dit": "Partie trois : les asymptotes, l'étude complète des fonctions, puis les suites. Nous lirons les comportements au bord du domaine, nous étudierons hyperboles et cubiques, nous appliquerons la méthode d'étude complète, et nous terminerons par les suites arithmétiques et géométriques, leurs termes généraux et leurs sommes.",
+        "texte": "Partie 3 : asymptotes, études de fonctions et suites."
+      },
+      "sous_titre": "Asymptotes, étude de fonctions et suites"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré à l'étude des fonctions et des suites. Nous commencerons par les limites, en un point et à l'infini, puis la continuité et le théorème des valeurs intermédiaires. Nous construirons ensuite la dérivation, des nombres dérivés aux tangentes et aux variations, avant d'étudier les asymptotes et trois familles de fonctions, et de terminer par les suites arithmétiques et géométriques.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Fonctions et suites : limites, dérivation et représentations."
+    },
+    {
+      "dit": "Le fil rouge est une démarche d'étude complète : domaine, limites, asymptotes, dérivée, variations, courbe. Chaque leçon ajoute un étage à cette démarche, et les suites en forment le versant discret : au lieu d'une variable réelle continue, on suit des termes indexés par les entiers. À la fin du cours, vous saurez mener une étude de fonction de bout en bout.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "La démarche complète : domaine, limites, dérivée, courbe."
+    },
+    {
+      "dit": "Dire que f de ixe tend vers une valeur limite quand ixe tend vers a, c'est dire que ses images se rapprochent autant qu'on veut de cette valeur quand ixe se rapproche de a. On distingue la limite à gauche, quand ixe arrive par valeurs inférieures, et la limite à droite, par valeurs supérieures. La limite en a existe exactement quand les deux limites latérales existent et coïncident. Si les images grandissent sans borne, la limite est infinie et la droite verticale d'équation ixe égal a devient une asymptote.",
+      "ecran": "limites_gd",
+      "id": "p03",
+      "texte": "Limite en a : la gauche et la droite doivent coïncider."
+    },
+    {
+      "dit": "Pour un quotient, trois cas se présentent en un point a. Si le dénominateur ne s'annule pas en a, la limite est simplement le quotient des images. Si le numérateur ne s'annule pas mais le dénominateur oui, la limite est infinie, avec un signe à déterminer de chaque côté. Si les deux s'annulent, c'est une forme indéterminée : il faut transformer l'expression, le plus souvent en factorisant, avant de conclure.",
+      "ecran": "quotient_point",
+      "id": "p04",
+      "texte": "Quotient en a : trois cas, dont zéro sur zéro."
+    },
+    {
+      "dit": "Exemple classique : la limite en deux du quotient de ixe carré moins quatre par ixe moins deux. En deux, numérateur et dénominateur s'annulent : forme indéterminée. On factorise le numérateur en ixe moins deux, facteur de ixe plus deux, puis on simplifie par ixe moins deux, licite car ixe est différent de deux quand on cherche une limite. Il reste ixe plus deux, dont la limite en deux vaut quatre.",
+      "ecran": "ex_limite",
+      "id": "p05",
+      "texte": "(x² − 4)/(x − 2) en 2 : la limite vaut 4."
+    },
+    {
+      "dit": "À l'infini, quelques limites usuelles servent de briques : un nombre divisé par ixe tend vers zéro, à droite comme à gauche, et les puissances de ixe tendent vers plus l'infini en plus l'infini. En moins l'infini, une puissance paire tend encore vers plus l'infini, tandis qu'une puissance impaire tend vers moins l'infini : la parité de l'exposant décide du signe.",
+      "ecran": "limites_infini",
+      "id": "p06",
+      "texte": "À l'infini : a/x tend vers 0, xⁿ explose."
+    },
+    {
+      "dit": "Deux règles règlent la plupart des cas à l'infini : un polynôme se comporte comme son terme de plus haut degré, et une fonction rationnelle comme le quotient des termes de plus haut degré. Exemple : le quotient de trois ixe carré plus deux ixe moins un par ixe carré plus cinq se comporte comme trois ixe carré sur ixe carré : sa limite en plus l'infini vaut trois, et la droite horizontale d'équation igrec égal trois est une asymptote.",
+      "ecran": "rationnelle_infini",
+      "id": "p07",
+      "texte": "Rationnelle à l'infini : (3x²)/(x²), limite 3."
+    },
+    {
+      "dit": "Le théorème des gendarmes encadre une fonction entre deux autres qui partagent la même limite : la fonction du milieu est forcée de suivre. Application : le quotient de sinus ixe par ixe, en plus l'infini. Le sinus reste entre moins un et un, donc le quotient reste entre moins un sur ixe et un sur ixe. Les deux bornes tendent vers zéro, donc le quotient tend vers zéro.",
+      "ecran": "gendarmes",
+      "id": "p08",
+      "texte": "Gendarmes : sin x sur x est coincé vers 0."
+    },
+    {
+      "dit": "Une fonction est continue en a quand sa limite en a égale son image en a : la courbe se trace sans lever le crayon au voisinage de ce point. La continuité en a équivaut à la continuité à gauche et à droite. Les fonctions usuelles, polynômes, rationnelles sur leur domaine, valeur absolue et trigonométriques, sont continues sur leur domaine, et les sommes, produits, quotients et composées de fonctions continues restent continus.",
+      "ecran": "continuite",
+      "id": "p09",
+      "texte": "Continuité en a : limite égale image."
+    },
+    {
+      "dit": "Exemple : la fonction qui à ixe associe le quotient de ixe carré plus un par ixe moins trois est continue sur l'intervalle ouvert de trois à plus l'infini. Son numérateur et son dénominateur sont des polynômes, donc continus partout, et le dénominateur ne s'annule pas sur cet intervalle : le quotient est donc continu. Pour une fonction définie par morceaux, on vérifie en plus le point de raccordement : limite à gauche, limite à droite et image doivent coïncider.",
+      "ecran": "continuite_ex",
+      "id": "p10",
+      "texte": "(x² + 1)/(x − 3) : continue sur ]3, +∞[."
+    },
+    {
+      "dit": "Quand une fonction n'est pas définie en un point mais possède une limite finie en ce point, on peut combler le trou : c'est le prolongement par continuité. Exemple : le quotient de ixe carré moins un par ixe moins un n'existe pas en un, mais il vaut ixe plus un dès que ixe est différent de un, donc sa limite en un vaut deux. Le prolongement est la fonction qui à ixe associe ixe plus un, désormais définie et continue partout.",
+      "ecran": "prolongement",
+      "id": "p11",
+      "texte": "Prolongement : (x² − 1)/(x − 1) devient x + 1."
+    },
+    {
+      "dit": "Le théorème des valeurs intermédiaires est la grande conséquence de la continuité : une fonction continue sur un intervalle fermé qui prend des valeurs de signes contraires aux deux bornes s'annule au moins une fois entre elles. Forme pratique : si le produit des images aux bornes est strictement négatif, l'équation f de ixe égal zéro admet au moins une solution. Corollaire utile : une fonction continue qui ne s'annule jamais sur un intervalle y garde un signe constant.",
+      "ecran": "tvi",
+      "id": "p12",
+      "texte": "TVI : changer de signe force un zéro."
+    },
+    {
+      "dit": "À retenir de cette première partie : une limite se lit des deux côtés, une forme zéro sur zéro se lève par factorisation, à l'infini le plus haut degré décide, et la continuité, limite égale image, ouvre la porte au théorème des valeurs intermédiaires.",
+      "ecran": "recap_limites",
+      "id": "p13",
+      "texte": "Partie 1 : l'essentiel."
+    },
+    {
+      "dit": "Le taux d'accroissement d'une fonction entre a et ixe mesure sa variation moyenne : différence des images, divisée par différence des abscisses. Si ce taux possède une limite finie quand ixe tend vers a, la fonction est dérivable en a, et cette limite est le nombre dérivé en a, noté f prime de a. Géométriquement, c'est la pente de la tangente à la courbe au point d'abscisse a.",
+      "ecran": "nb_derive",
+      "id": "p14",
+      "texte": "Nombre dérivé : la limite du taux d'accroissement."
+    },
+    {
+      "dit": "Exemple fondateur : la fonction carré, en a égal trois. Le taux vaut ixe carré moins neuf, sur ixe moins trois. On factorise le numérateur en ixe moins trois, facteur de ixe plus trois, on simplifie, et il reste ixe plus trois, dont la limite en trois vaut six. Le nombre dérivé du carré en trois est donc six : en ce point, la courbe monte avec une pente de six.",
+      "ecran": "ex_derive",
+      "id": "p15",
+      "texte": "Carré en 3 : le nombre dérivé vaut 6."
+    },
+    {
+      "dit": "Les règles de dérivation en un point prolongent celles des limites : la dérivée d'une somme est la somme des dérivées, celle d'un produit par une constante se factorise, et celle d'un produit mélange les deux fonctions, première dérivée fois seconde, plus première fois seconde dérivée. Pour une composée, on multiplie la dérivée extérieure, prise au bon point, par la dérivée intérieure. Le quotient, lui, demande une formule à part, que voici.",
+      "ecran": "operations_derive",
+      "id": "p16",
+      "texte": "Somme, produit, composée : les règles en un point."
+    },
+    {
+      "dit": "La dérivée d'un quotient se retient par son rythme : dérivée du haut fois le bas, moins le haut fois dérivée du bas, le tout sur le bas au carré. La condition est que le dénominateur ne s'annule pas au point considéré. C'est la formule la plus copiée de travers : l'ordre de la soustraction compte, et le carré du dénominateur ne se négocie pas.",
+      "ecran": "quotient_derive",
+      "id": "p17",
+      "texte": "Quotient : (u′v − uv′)/v², dans cet ordre."
+    },
+    {
+      "dit": "La dérivabilité peut échouer d'un côté : on parle alors de dérivées à gauche et à droite. Pour la valeur absolue en zéro, le taux à droite vaut un, car le quotient de ixe par ixe vaut un, et le taux à gauche vaut moins un. Les deux nombres dérivés latéraux diffèrent : la fonction n'est pas dérivable en zéro, et sa courbe présente un point anguleux, un coin, en ce point. Une fonction est dérivable en a exactement quand ses deux nombres latéraux existent et coïncident.",
+      "ecran": "val_abs",
+      "id": "p18",
+      "texte": "Valeur absolue en 0 : +1 à droite, −1 à gauche."
+    },
+    {
+      "dit": "Les dérivées usuelles forment la table de chevet du chapitre : une constante donne zéro, ixe donne un, ixe carré donne deux ixe, et ixe puissance ène donne ène fois ixe puissance ène moins un. L'inverse de ixe donne moins un sur ixe carré, et la racine carrée donne un sur deux racine de ixe, pour ixe strictement positif. Toutes les autres dérivées se ramènent à cette table par les règles d'opérations.",
+      "ecran": "usuelles",
+      "id": "p19",
+      "texte": "Usuelles : (xⁿ)′ = n xⁿ⁻¹, (1/x)′ = −1/x², (√x)′ = 1/(2√x)."
+    },
+    {
+      "dit": "Cas fréquent : dériver une puissance d'une expression affine. Pour f de ixe égal trois ixe plus un, le tout puissance cinq, la règle de la composée avec une affine donne le facteur intérieur trois, multiplié par la dérivée de la puissance : trois fois cinq fois trois ixe plus un, puissance quatre, soit quinze fois trois ixe plus un, puissance quatre. Oublier le facteur intérieur est l'erreur classique de ce calcul.",
+      "ecran": "composee_affine",
+      "id": "p20",
+      "texte": "(3x + 1)⁵ : dérivée 15(3x + 1)⁴."
+    },
+    {
+      "dit": "Si une fonction est dérivable en a, sa courbe possède une tangente au point d'abscisse a, d'équation igrec égal f prime de a, facteur de ixe moins a, plus f de a. Pour la fonction carré en deux, la tangente est igrec égal quatre ixe moins quatre. Près du point, la tangente approche la fonction : c'est l'approximation affine, deux plus h, le tout au carré, vaut environ quatre plus quatre h, pour h proche de zéro.",
+      "ecran": "tangente",
+      "id": "p21",
+      "texte": "Tangente : y = f′(a)(x − a) + f(a)."
+    },
+    {
+      "dit": "Le théorème fondamental relie le signe de la dérivée aux variations : dérivée strictement positive, fonction strictement croissante ; dérivée strictement négative, fonction strictement décroissante ; dérivée nulle partout, fonction constante. En un extremum intérieur où la fonction est dérivable, la dérivée s'annule. Exemple : le polynôme ixe carré moins quatre ixe plus trois a pour dérivée deux ixe moins quatre, négative avant deux, positive après : la fonction décroît puis croît, avec un minimum en deux qui vaut moins un.",
+      "ecran": "variations",
+      "id": "p22",
+      "texte": "Signe de f′ : les variations suivent."
+    },
+    {
+      "dit": "À retenir : le nombre dérivé est une limite de taux, les règles d'opérations font le reste des calculs, un point anguleux signale deux nombres latéraux différents, la tangente approche la courbe, et le signe de la dérivée commande les variations.",
+      "ecran": "recap_derive",
+      "id": "p23",
+      "texte": "Partie 2 : l'essentiel."
+    },
+    {
+      "dit": "Une asymptote est une droite dont la courbe se rapproche indéfiniment. Horizontale, quand la limite à l'infini est une valeur finie. Verticale, d'équation ixe égal a, quand la limite en a est infinie. Exemple de référence : le quotient de deux ixe plus un par ixe moins trois tend vers deux à l'infini, donc la droite horizontale est igrec égal deux, et il explose en trois, donc la droite verticale est ixe égal trois.",
+      "ecran": "asymptotes",
+      "id": "p24",
+      "texte": "Horizontale : limite finie ; verticale : limite infinie."
+    },
+    {
+      "dit": "Une droite d'équation igrec égal a ixe plus bé est une asymptote oblique quand la différence entre la fonction et la droite tend vers zéro à l'infini. Pour le montrer, on calcule cette différence et sa limite. Exemple : pour le quotient de deux ixe carré plus ixe par ixe plus un, la différence avec deux ixe moins un se simplifie en un sur ixe plus un, qui tend vers zéro : la droite d'équation igrec égal deux ixe moins un est bien l'asymptote oblique.",
+      "ecran": "oblique",
+      "id": "p25",
+      "texte": "Oblique : f(x) − (2x − 1) = 1/(x + 1) tend vers 0."
+    },
+    {
+      "dit": "Une fonction homographique est un quotient de deux fonctions affines, avec un dénominateur qui dépend vraiment de ixe et un déterminant a dé moins bé cé différent de zéro. Sa courbe est une hyperbole, avec deux asymptotes immédiates à lire : la verticale en la valeur interdite, moins dé sur cé, et l'horizontale en a sur cé, la limite à l'infini. Sur chaque intervalle de son domaine, elle est strictement monotone.",
+      "ecran": "homographique",
+      "id": "p26",
+      "texte": "Homographique : hyperbole, x = −d/c et y = a/c."
+    },
+    {
+      "dit": "Exemple : le quotient de deux ixe plus un par ixe moins un. Le domaine exclut un, la verticale est ixe égal un, l'horizontale est igrec égal deux. Le déterminant a dé moins bé cé vaut moins deux moins un, donc moins trois, strictement négatif : la fonction est décroissante sur chacun des deux intervalles de son domaine, de moins l'infini à un, et de un à plus l'infini.",
+      "ecran": "ex_homographique",
+      "id": "p27",
+      "texte": "(2x + 1)/(x − 1) : ad − bc = −3, décroissante."
+    },
+    {
+      "dit": "Les polynômes de degré au plus trois se lisent sans asymptote : une droite pour le degré un, une parabole pour le degré deux, une courbe cubique pour le degré trois, avec au plus deux extremums locaux. Exemple : ixe cube moins trois ixe carré plus deux. Sa dérivée, trois ixe facteur de ixe moins deux, est positive, puis négative, puis positive : la fonction croît, décroît, puis croît, avec un maximum en zéro qui vaut deux et un minimum en deux qui vaut moins deux.",
+      "ecran": "cubique",
+      "id": "p28",
+      "texte": "Cubique : maximum 2 en 0, minimum −2 en 2."
+    },
+    {
+      "dit": "Dernier type : un quotient où le numérateur est du second degré et le dénominateur affine. La division euclidienne du numérateur par le dénominateur fait apparaître une partie affine, qui donne l'asymptote oblique, plus un reste divisé par le dénominateur, qui tend vers zéro. Exemple : ixe carré plus deux ixe plus trois, sur ixe moins un, vaut ixe plus trois, plus six sur ixe moins un : oblique igrec égal ixe plus trois, verticale ixe égal un.",
+      "ecran": "rationnelle_type",
+      "id": "p29",
+      "texte": "(x² + 2x + 3)/(x − 1) = x + 3 + 6/(x − 1)."
+    },
+    {
+      "dit": "L'étude complète d'une fonction suit toujours le même ordre : déterminer le domaine, calculer les limites aux bornes, identifier les asymptotes, dériver et étudier le signe de la dérivée, dresser le tableau de variations, puis construire la courbe avec ses éléments caractéristiques. Appliquée aux quatre familles de ce cours, cette démarche systématique donne une représentation complète et rigoureuse.",
+      "ecran": "methode_etude",
+      "id": "p30",
+      "texte": "La méthode d'étude complète, en cinq temps."
+    },
+    {
+      "dit": "Une suite numérique est une fonction des entiers vers les réels : à chaque rang ène, elle associe un terme, noté u de ène. Elle peut être définie explicitement, comme u de ène égal deux ène plus un, qui donne un, trois, puis onze au rang cinq. Ou par récurrence, en donnant le premier terme et une règle de passage : avec v zéro égal deux et v de ène plus un égal trois v de ène moins un, on obtient cinq, puis quatorze. Graphiquement, on place les points de coordonnées ène et u de ène dans un repère.",
+      "ecran": "suites_def",
+      "id": "p31",
+      "texte": "Suite : uₙ = 2n + 1 donne 1, 3, 11 ; récurrence : 2, 5, 14."
+    },
+    {
+      "dit": "Une suite est arithmétique quand chaque terme s'obtient en ajoutant toujours le même nombre, sa raison, au terme précédent. Le terme général vaut le premier terme plus ène fois la raison, et entre deux rangs quelconques, on ajoute autant de fois la raison qu'il y a de pas. La suite quatre ène moins trois est arithmétique de raison quatre : la différence de deux termes consécutifs vaut constamment quatre. Avec un premier terme de cinq et une raison de moins deux, le terme de rang dix vaut cinq moins vingt, donc moins quinze.",
+      "ecran": "arithmetique",
+      "id": "p32",
+      "texte": "Arithmétique : uₙ = u₀ + n r ; 4n − 3, raison 4."
+    },
+    {
+      "dit": "La somme des termes consécutifs d'une suite arithmétique vaut le nombre de termes, multiplié par la moyenne du premier et du dernier terme. C'est le fameux calcul de la somme des entiers de un à cent : cent termes, premier terme un, dernier terme cent, soit cent fois cent un, le tout sur deux, donc cinq mille cinquante. Retenez la structure : nombre de termes, fois premier plus dernier, sur deux.",
+      "ecran": "somme_arith",
+      "id": "p33",
+      "texte": "1 + 2 + … + 100 = 5050 : le calcul de Gauss."
+    },
+    {
+      "dit": "Une suite est géométrique quand chaque terme s'obtient en multipliant le précédent par un même nombre, sa raison. Le terme général vaut le premier terme multiplié par la raison puissance ène. La suite trois fois deux puissance ène est géométrique de raison deux. Avec un premier terme de deux et une raison de trois, le terme de rang cinq vaut deux fois trois puissance cinq, soit deux fois deux cent quarante-trois, donc quatre cent quatre-vingt-six.",
+      "ecran": "geometrique",
+      "id": "p34",
+      "texte": "Géométrique : uₙ = u₀ qⁿ ; 2 × 3⁵ = 486."
+    },
+    {
+      "dit": "La somme des termes d'une suite géométrique, pour une raison différente de un, vaut le premier terme, multiplié par un moins la raison puissance le nombre de termes, le tout sur un moins la raison. Exemple : la somme des puissances de deux, de deux puissance zéro à deux puissance neuf, compte dix termes : un moins deux puissance dix, sur un moins deux, soit mille vingt-trois.",
+      "ecran": "somme_geo",
+      "id": "p35",
+      "texte": "1 + 2 + … + 2⁹ = 1023, avec la formule en q."
+    },
+    {
+      "dit": "Application concrète pour terminer : un salaire initial de cent vingt mille francs augmente chaque année de cinq mille francs. Les salaires annuels forment une suite arithmétique de raison cinq mille. Après huit ans, le terme de rang huit vaut cent vingt mille plus huit fois cinq mille, soit cent soixante mille francs. Le modèle arithmétique, une addition constante, décrit exactement une évolution à pas réguliers.",
+      "ecran": "salaire",
+      "id": "p36",
+      "texte": "Salaire : 120 000, +5 000 par an, 160 000 après 8 ans."
+    },
+    {
+      "dit": "Pour conclure ce cours : les limites décrivent les bords, la continuité soude les morceaux, la dérivée donne pentes et variations, les asymptotes cadrent la courbe, et les suites prolongent l'étude dans le monde discret, avec l'addition constante des arithmétiques et la multiplication constante des géométriques.",
+      "ecran": "recap_final",
+      "id": "p37",
+      "texte": "6662 : l'essentiel en cinq lignes."
+    }
+  ],
+  "titre": "Fonctions et suites : limites, dérivation et représentations"
+}
