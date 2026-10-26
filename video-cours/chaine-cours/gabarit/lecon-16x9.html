@@ -3506,6 +3506,34 @@ const FIG = {
       mot(615, 248, '(g) gazeux', { t: 19 }) + mot(860, 248, '(aq) dissous dans l’eau', { t: 19 }) +
       mot(500, 288, 'les codes d’état racontent l’organisation des particules', { t: 20 }));
   },
+  courbes_vitesses_fig(t) {
+    return svgBoite(
+      `<rect x="520" y="112" width="368" height="76" fill="#10B981" fill-opacity=".13"/>` +
+      trait(130, 250, 130, 36, 1, { w: 3 }) + pointe(130, 28, -90, 'currentColor') +
+      trait(130, 250, 896, 250, 1, { w: 3 }) + pointe(904, 250, 0, 'currentColor') +
+      `<path d="M140 66 C 300 72, 400 118, 520 146 L 884 150" fill="none" stroke="#E8604C" stroke-width="4"/>` +
+      `<path d="M140 238 C 300 234, 410 190, 520 158 L 884 152" fill="none" stroke="#1A75FF" stroke-width="4"/>` +
+      trait(520, 156, 520, 250, 1, { c: '#10B981', w: 3, tiret: '7 6' }) +
+      mot(104, 44, 'v', { t: 21 }) + mot(892, 276, 't', { t: 21 }) +
+      mot(196, 56, 'v_d', { c: '#E8604C', t: 21 }) + mot(196, 228, 'v_i', { c: '#1A75FF', t: 21 }) +
+      mot(520, 276, 't éq', { c: '#10B981', t: 19 }) +
+      mot(704, 100, 'équilibre dynamique', { c: '#10B981', t: 20 }) +
+      mot(500, 24, 'les deux vitesses finissent égales', { t: 21 }));
+  },
+  vant_hoff_graphe_fig(t) {
+    const graphe = (x0, monte, legende, couleur) => {
+      const y1 = monte ? 190 : 80, y2 = monte ? 80 : 190;
+      return trait(x0, 210, x0, 52, 1, { w: 3 }) + pointe(x0, 44, -90, 'currentColor') +
+        trait(x0, 210, x0 + 270, 210, 1, { w: 3 }) + pointe(x0 + 278, 210, 0, 'currentColor') +
+        trait(x0 + 18, y1, x0 + 252, y2, 1, { c: couleur, w: 5 }) +
+        mot(x0 - 14, 60, 'ln K', { t: 17, a: 'end' }) + mot(x0 + 262, 234, '1/T', { t: 17 }) +
+        mot(x0 + 135, 252, legende, { c: couleur, t: 18 });
+    };
+    return svgBoite(
+      graphe(150, true, 'endothermique : K augmente avec T', '#E8604C') +
+      graphe(580, false, 'exothermique : K diminue avec T', '#1A75FF') +
+      mot(500, 26, 'la droite de van ’t Hoff', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
