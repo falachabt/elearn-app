@@ -1,0 +1,451 @@
+{
+ "cours": 6228,
+ "titre": "Les facteurs cinétiques : piloter la vitesse des réactions",
+ "matiere": "Chimie",
+ "lecons": [
+  6742,
+  6743,
+  6744,
+  6745,
+  6746,
+  6747,
+  6748
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Cinétique chimique",
+   "titre": "Les facteurs cinétiques : piloter la vitesse des réactions",
+   "sous": "Concentration, température, pression, surface de contact et catalyseurs",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 250
+   }
+  },
+  "def_vitesse": {
+   "type": "formule",
+   "kicker": "Rappel : la vitesse de réaction",
+   "tex": "v = -\\frac{1}{a}\\,\\frac{\\Delta [A]}{\\Delta t}",
+   "note": "Grandeur intensive, exprimée en mole par litre et par seconde."
+  },
+  "chocs": {
+   "type": "phrase",
+   "kicker": "Le modèle des chocs efficaces",
+   "texte": "Pour réagir, les particules doivent se rencontrer, avec la bonne orientation et une énergie au moins égale à l'énergie d'activation.",
+   "anim": {
+    "nom": "agitation",
+    "hauteur": 170
+   }
+  },
+  "cinq_facteurs": {
+   "type": "recap",
+   "kicker": "Les cinq grands facteurs",
+   "etapes": [
+    "Concentration : davantage de chocs",
+    "Température : des chocs plus énergiques",
+    "Pression (gaz) : la concentration déguisée",
+    "Surface de contact : plus de sites de choc",
+    "Catalyseur : la barrière Ea abaissée"
+   ]
+  },
+  "loi_vitesse": {
+   "type": "formule",
+   "kicker": "Facteur 1 : la concentration",
+   "tex": "v = k\\,[A]^m\\,[B]^n",
+   "note": "m et n : ordres partiels, déterminés par l'expérience ; ordre global = m + n."
+  },
+  "ordres": {
+   "type": "etape",
+   "kicker": "Interpréter les ordres",
+   "titre": "Que devient la vitesse quand la concentration double ?",
+   "tex": [
+    "ordre\\ 0 : [A] \\times 2 \\Rightarrow v \\times 1",
+    "ordre\\ 1 : [A] \\times 2 \\Rightarrow v \\times 2",
+    "ordre\\ 2 : [A] \\times 2 \\Rightarrow v \\times 4"
+   ]
+  },
+  "ordre_zero": {
+   "type": "formule",
+   "kicker": "Cas particulier : l'ordre zéro",
+   "tex": "v = k \\qquad [A]_t = [A]_0 - k\\,t",
+   "note": "Exemples : protoxyde d'azote sur platine chaud ; enzyme saturée par son substrat."
+  },
+  "exercice_no": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "La formation du dioxyde d'azote",
+   "tex": [
+    "v = k\\,[NO]^2\\,[O_2] \\quad \\text{ordre global : } 2 + 1 = 3",
+    "[NO] \\times 3 \\Rightarrow v \\times 3^2 = 9",
+    "[NO] \\times 2 \\text{ et } [O_2] \\times 2 \\Rightarrow v \\times 4 \\times 2 = 8"
+   ]
+  },
+  "permanganate": {
+   "type": "etape",
+   "kicker": "L'expérience emblématique",
+   "titre": "Le permanganate : voir la concentration agir",
+   "tex": [
+    "2\\,MnO_4^- + 5\\,C_2O_4^{2-} + 16\\,H^+",
+    "\\rightarrow 2\\,Mn^{2+} + 10\\,CO_2 + 8\\,H_2O"
+   ],
+   "anim": {
+    "nom": "melange",
+    "hauteur": 120
+   }
+  },
+  "boltzmann": {
+   "type": "phrase",
+   "kicker": "Facteur 2 : la température",
+   "texte": "La température ne donne pas un peu d'énergie à tout le monde : elle augmente, de façon exponentielle, la fraction des molécules capables de franchir la barrière.",
+   "anim": {
+    "nom": "distribution_boltzmann_fig",
+    "hauteur": 180
+   }
+  },
+  "vant_hoff": {
+   "type": "formule",
+   "kicker": "La règle de van't Hoff",
+   "tex": "k(T + 10) \\approx \\gamma \\times k(T) \\qquad \\gamma \\approx 2\\ \\text{à}\\ 4",
+   "note": "Règle empirique de van't Hoff, premier prix Nobel de chimie, en 1901."
+  },
+  "frigo": {
+   "type": "etape",
+   "kicker": "Application : la conservation des aliments",
+   "titre": "Du réfrigérateur au comptoir : un facteur neuf",
+   "tex": [
+    "\\Delta T = 25 - 5 = 20\\ °C \\Rightarrow 2 \\text{ intervalles}",
+    "\\gamma^2 = 3^2 = 9",
+    "v_{25\\,°C} \\approx 9 \\times v_{5\\,°C}"
+   ]
+  },
+  "exercice_gamma": {
+   "type": "etape",
+   "kicker": "Exercice guidé",
+   "titre": "Hiver, été, et ralentissement extrême",
+   "tex": [
+    "\\gamma = 2{,}8 \\quad ; \\quad 0 \\rightarrow 30\\ °C : 3 \\text{ intervalles}",
+    "\\gamma^3 = 2{,}8^3 \\approx 22",
+    "\\gamma^n = 100 \\Rightarrow n \\approx 4{,}5 \\Rightarrow \\Delta T \\approx -45\\ °C"
+   ]
+  },
+  "pression": {
+   "type": "formule",
+   "kicker": "Facteur 3 : la pression (gaz)",
+   "tex": "P\\,V = n\\,R\\,T \\qquad [A] = \\frac{n}{V} = \\frac{P}{R\\,T}",
+   "note": "À température constante : doubler la pression double la concentration du gaz.",
+   "anim": {
+    "nom": "piston",
+    "hauteur": 130
+   }
+  },
+  "surface": {
+   "type": "etape",
+   "kicker": "Facteur 4 : la surface de contact",
+   "titre": "Le cube de sucre, du morceau à la poudre",
+   "tex": [
+    "S_{\\text{cube}} = 6 \\times (2 \\times 2) = 24\\ \\text{cm}^2",
+    "N = \\tfrac{8}{1{,}25 \\times 10^{-4}} = 64\\,000 \\text{ micro-cubes}",
+    "S_{\\text{poudre}} = 64\\,000 \\times 0{,}015 = 960\\ \\text{cm}^2",
+    "\\text{surface} \\times 40 \\Rightarrow \\text{réaction bien plus rapide}"
+   ]
+  },
+  "applications_surface": {
+   "type": "phrase",
+   "kicker": "La surface partout à l'œuvre",
+   "texte": "Digestion, corrosion, explosions de poussières : partout, la surface décide de la vitesse.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 150
+   }
+  },
+  "catalyseur": {
+   "type": "phrase",
+   "kicker": "Facteur 5 : le catalyseur",
+   "texte": "Un catalyseur accélère sans être consommé : il est régénéré en fin de cycle et ne déplace pas l'équilibre.",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 170
+   }
+  },
+  "arrhenius": {
+   "type": "formule",
+   "kicker": "Chiffrer le pouvoir du catalyseur",
+   "tex": "\\frac{k'}{k} = e^{\\frac{E_a - E_a'}{R\\,T}}",
+   "note": "À température égale, tout se joue dans l'exponentielle de l'écart des barrières."
+  },
+  "exemple_catalyse": {
+   "type": "etape",
+   "kicker": "Exemple chiffré",
+   "titre": "De cent à soixante-quinze kilojoules par mole",
+   "tex": [
+    "E_a = 100\\ \\text{kJ/mol} \\rightarrow E_a' = 75\\ \\text{kJ/mol}",
+    "\\tfrac{k'}{k} = e^{\\tfrac{100\\,000 - 75\\,000}{8{,}314 \\times 300}}",
+    "\\approx e^{10{,}02} \\approx 2{,}24 \\times 10^{4}"
+   ]
+  },
+  "pot_catalytique": {
+   "type": "etape",
+   "kicker": "Catalyse hétérogène",
+   "titre": "Le pot catalytique : adsorption, réaction, désorption",
+   "tex": [
+    "2\\,CO + O_2 \\xrightarrow{Pt/Pd} 2\\,CO_2",
+    "2\\,NO + 2\\,CO \\xrightarrow{Rh} N_2 + 2\\,CO_2",
+    "\\text{adsorption} \\rightarrow \\text{réaction de surface} \\rightarrow \\text{désorption}"
+   ]
+  },
+  "empoisonnement": {
+   "type": "phrase",
+   "kicker": "Sélectivité et empoisonnement",
+   "texte": "Un bon catalyseur est sélectif ; son talon d'Achille : l'empoisonnement de ses sites actifs."
+  },
+  "cas_reels": {
+   "type": "phrase",
+   "kicker": "Combiner les facteurs",
+   "texte": "Procédé de contact et digestion : dans la réalité, les facteurs ne jouent jamais seuls.",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 150
+   }
+  },
+  "haber": {
+   "type": "etape",
+   "kicker": "Étude de cas : Haber-Bosch",
+   "titre": "Le compromis qui a nourri le monde",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3",
+    "T \\approx 450\\ °C \\qquad P \\approx 200\\ \\text{atm}",
+    "\\text{catalyseur au fer} \\quad ; \\quad \\text{recyclage des réactifs}"
+   ]
+  },
+  "mecanisme_h2o2": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Quand deux concentrations doublent ensemble",
+   "tex": [
+    "v = k_1\\,[H_2O_2]\\,[I^-] \\quad \\text{(étape lente)}",
+    "[H_2O_2] \\times 2 \\Rightarrow v \\times 2",
+    "[I^-] \\times 2 \\Rightarrow v \\times 2",
+    "\\text{les deux} \\times 2 \\Rightarrow v \\times 4"
+   ],
+   "note": "Et +10 °C multiplie encore la vitesse par environ 2,2."
+  },
+  "colorant": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Le colorant alimentaire au réfrigérateur",
+   "tex": [
+    "k_{5\\,°C} = \\tfrac{2{,}5 \\times 10^{-3}}{3^2} \\approx 2{,}78 \\times 10^{-4}\\ \\text{s}^{-1}",
+    "t_{1/2} = \\tfrac{\\ln 2}{k} \\approx 2\\,490\\ \\text{s} \\approx 41\\ \\text{min}",
+    "t_{1/2}(25\\ °C) \\approx 277\\ \\text{s}"
+   ]
+  },
+  "pieges": {
+   "type": "recap",
+   "kicker": "Boîte à outils pour le bac",
+   "etapes": [
+    "Un catalyseur ne déplace pas l'équilibre",
+    "Pression : réactif gazeux indispensable",
+    "T agit via la fraction de chocs efficaces",
+    "Van't Hoff s'applique à k, pas au temps",
+    "Identifier, qualifier, quantifier, vérifier"
+   ]
+  },
+  "synthese": {
+   "type": "recap",
+   "kicker": "Synthèse du cours",
+   "etapes": [
+    "Concentration : plus de chocs par seconde",
+    "Température : plus de chocs efficaces",
+    "Pression (gaz) : concentration accrue",
+    "Surface : plus de sites de réaction",
+    "Catalyseur : barrière Ea abaissée"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux facteurs cinétiques, les leviers qui permettent de piloter la vitesse d'une réaction chimique. Une rouille qui met des années, une explosion qui dure un éclair : entre ces deux extrêmes, cinq facteurs font toute la différence. La concentration, la température, la pression, la surface de contact et les catalyseurs. Nous allons comprendre, un par un, comment ils agissent sur les collisions entre particules, puis apprendre à les combiner comme un ingénieur qui règle un procédé industriel.",
+   "texte": "Cinq leviers pour piloter la vitesse d'une réaction.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Rappelons d'abord ce que mesurer signifie. La vitesse d'une réaction mesure la rapidité avec laquelle les réactifs sont consommés et les produits formés. Pour une réaction générale, la vitesse moyenne de disparition d'un réactif s'écrit comme l'opposé de sa variation de concentration, divisée par l'intervalle de temps et par son coefficient stœchiométrique. Le signe moins garantit une vitesse positive, puisque la concentration du réactif diminue. L'unité usuelle : la mole par litre et par seconde.",
+   "texte": "v = −(1/a)·Δ[A]/Δt, en mol·L⁻¹·s⁻¹.",
+   "ecran": "def_vitesse"
+  },
+  {
+   "id": "p03",
+   "dit": "Pourquoi certaines rencontres produisent-elles une réaction et d'autres non ? Le modèle des chocs efficaces répond par trois conditions simultanées. D'abord, une collision : les particules doivent se rencontrer. Ensuite, une orientation favorable : elles doivent se heurter selon un angle qui permette de rompre et de former les liaisons. Enfin, une énergie suffisante : leur énergie cinétique doit atteindre au moins l'énergie d'activation, la barrière à franchir. Toute la suite du cours consiste à jouer sur la fréquence et l'efficacité de ces chocs.",
+   "texte": "Collision + orientation + énergie ≥ Ea : le choc efficace.",
+   "ecran": "chocs"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici la carte du cours : les cinq grands facteurs d'influence. Augmenter la concentration multiplie les rencontres. Augmenter la température rend les chocs plus énergiques et plus souvent efficaces. Pour les gaz, la pression agit comme une concentration déguisée. Diviser un solide augmente sa surface de contact, donc le nombre de sites où réagir. Enfin, un catalyseur abaisse la barrière d'activation en ouvrant un autre chemin. Chaque facteur va maintenant être examiné en détail.",
+   "texte": "Concentration, température, pression, surface, catalyseur.",
+   "ecran": "cinq_facteurs"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour quantifier l'effet de la concentration, les chimistes écrivent une loi de vitesse. La vitesse instantanée est le produit d'une constante de vitesse par les concentrations des réactifs, élevées à des puissances. Ces exposants sont les ordres partiels de la réaction. Point capital : ils se déterminent expérimentalement, et ne se lisent presque jamais dans les coefficients de l'équation bilan, car ils révèlent le mécanisme caché de la réaction. La somme des ordres partiels donne l'ordre global.",
+   "texte": "v = k·[A]^m·[B]^n : les ordres se mesurent, ils ne se lisent pas.",
+   "ecran": "loi_vitesse"
+  },
+  {
+   "id": "p06",
+   "dit": "Le tableau des ordres se lit comme un mode d'emploi. Si l'ordre partiel vaut zéro, doubler la concentration ne change rien : la vitesse est indépendante de ce réactif, une autre étape limite la réaction. S'il vaut un, la vitesse double avec la concentration. S'il vaut deux, elle quadruple, car l'étape limitante exige la collision de deux molécules du même réactif. Retenez ce réflexe : doubler la concentration multiplie la vitesse par deux puissance l'ordre.",
+   "texte": "Ordre 0 : ×1 ; ordre 1 : ×2 ; ordre 2 : ×4.",
+   "ecran": "ordres"
+  },
+  {
+   "id": "p07",
+   "dit": "Cas particulier déroutant : les réactions d'ordre zéro. Leur vitesse est constante, totalement indépendante de la concentration, et la concentration du réactif décroît alors linéairement avec le temps. On les rencontre quand un autre goulot étrangle la réaction : la décomposition du protoxyde d'azote sur un fil de platine chaud, limitée par la surface du métal, ou une enzyme déjà saturée par son substrat. Moralité : l'effet de la concentration dépend toujours du mécanisme intime de la réaction.",
+   "texte": "Ordre zéro : v = k, la concentration tombe en ligne droite.",
+   "ecran": "ordre_zero"
+  },
+  {
+   "id": "p08",
+   "dit": "Exercice d'application, entièrement tiré des leçons. La réaction entre le monoxyde d'azote et le dioxygène suit la loi de vitesse affichée. Premier point : l'ordre global vaut trois, somme des ordres partiels deux et un. Deuxième point : si l'on triple la concentration du monoxyde d'azote seule, la vitesse est multipliée par trois au carré, c'est-à-dire par neuf. Troisième point : si l'on double les deux concentrations, la vitesse est multipliée par quatre fois deux, c'est-à-dire par huit.",
+   "texte": "Ordre global 3 ; [NO] ×3 → v ×9 ; les deux ×2 → v ×8.",
+   "ecran": "exercice_no"
+  },
+  {
+   "id": "p09",
+   "dit": "Une expérience emblématique rend l'effet visible. En milieu acide, les ions permanganate, d'un violet intense, réagissent avec les ions oxalate, et la solution se décolore au fur et à mesure. Le temps de décoloration complète mesure donc, à l'envers, la vitesse. Dans un bécher pauvre en permanganate, la couleur s'efface lentement ; dans un bécher concentré, elle disparaît radicalement plus vite. Plus d'ions, plus de collisions efficaces par seconde : c'est la théorie des collisions sous vos yeux.",
+   "texte": "Le violet du permanganate s'efface d'autant plus vite qu'il est concentré.",
+   "ecran": "permanganate"
+  },
+  {
+   "id": "p10",
+   "dit": "Passons au facteur le plus puissant : la température. Les molécules d'un système n'ont pas toutes la même énergie : leurs énergies se répartissent selon la distribution de Maxwell et Boltzmann, une courbe en cloche. Chauffer déforme cette courbe et, surtout, augmente fortement l'aire située au-delà de l'énergie d'activation : la fraction des molécules assez énergétiques pour réagir. Cette fraction ne croît pas gentiment, elle croît de façon exponentielle. Voilà pourquoi un simple comprimé effervescent disparaît presque instantanément dans l'eau chaude.",
+   "texte": "Chauffer multiplie les molécules au-delà de Ea.",
+   "ecran": "boltzmann"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour estimer rapidement cet effet, le chimiste néerlandais van't Hoff a formulé une règle empirique précieuse : quand la température augmente de dix degrés, la constante de vitesse est multipliée par un facteur gamma, généralement compris entre deux et quatre. Attention, cette règle s'applique à la constante de vitesse, pas directement au temps de réaction. Et gamma n'est pas universel : il dépend de l'énergie d'activation, et il est d'autant plus grand que la barrière est haute.",
+   "texte": "+10 °C → k multipliée par γ ≈ 2 à 4.",
+   "ecran": "vant_hoff"
+  },
+  {
+   "id": "p12",
+   "dit": "Application immédiate. Une réaction de dégradation des aliments a un coefficient gamma égal à trois. En passant du réfrigérateur, à cinq degrés, au comptoir de la cuisine, à vingt-cinq degrés, l'écart de température vaut vingt degrés, soit deux intervalles de dix degrés. Le facteur d'augmentation est donc gamma au carré, trois au carré, égal à neuf. La réaction se déroule neuf fois plus vite à température ambiante : c'est exactement pour cela qu'un aliment oublié sur le comptoir se gâte si vite.",
+   "texte": "γ = 3 et ΔT = 20 °C : la dégradation va 9 fois plus vite.",
+   "ecran": "frigo"
+  },
+  {
+   "id": "p13",
+   "dit": "Exercice guidé des leçons, dont nous déroulons le calcul. Une décomposition a un coefficient gamma de deux virgule huit. De zéro degré, une nuit d'hiver, à trente degrés, un jour d'été, on franchit trois intervalles de dix degrés : la vitesse est multipliée par deux virgule huit au cube, environ vingt-deux. Question inverse : pour diviser la vitesse par cent, il faut environ quatre intervalles et demi, soit une baisse voisine de quarante-cinq degrés. Partant de vingt degrés, il faudrait donc descendre vers moins vingt-cinq degrés.",
+   "texte": "γ = 2,8 : ×22 de 0 à 30 °C ; ÷100 exige ≈ −45 °C.",
+   "ecran": "exercice_gamma"
+  },
+  {
+   "id": "p14",
+   "dit": "Troisième levier : la pression, mais seulement pour les gaz. La loi des gaz parfaits le montre : à température constante, augmenter la pression diminue le volume, et la concentration, quantité de matière divisée par le volume, augmente d'autant. Comprimer un gaz, c'est donc concentrer ses molécules et multiplier leurs collisions. C'est le principe du procédé Haber-Bosch : vers deux cents atmosphères, l'azote et l'hydrogène, comprimés, se rencontrent assez souvent pour produire l'ammoniac à un rythme industriel. Sur un liquide ou un solide, au contraire, la pression ne change pratiquement rien.",
+   "texte": "Comprimer un gaz = le concentrer : [A] = P/(RT).",
+   "ecran": "pression"
+  },
+  {
+   "id": "p15",
+   "dit": "Quatrième levier : la surface de contact. Une réaction avec un solide ne peut se produire qu'à sa surface, là où les rencontres ont lieu. Prenons un cube de sucre de deux centimètres d'arête : sa surface totale vaut vingt-quatre centimètres carrés. Broyons-le en micro-cubes d'un demi-millimètre : on obtient soixante-quatre mille particules, et une surface totale de neuf cent soixante centimètres carrés, quarante fois plus. Même quantité de matière, mais quarante fois plus de portes d'entrée pour la réaction : elle devient bien plus rapide.",
+   "texte": "24 cm² → 960 cm² : diviser un solide multiplie sa surface par 40.",
+   "ecran": "surface"
+  },
+  {
+   "id": "p16",
+   "dit": "La nature et l'industrie exploitent ce principe partout. Nos dents broient les aliments pour offrir aux enzymes une immense surface d'attaque. Une barre de fer rouille lentement, mais la poudre de fer, à surface immense, peut s'enflammer spontanément à l'air. Dans les centrales thermiques, on pulvérise le charbon en poudre fine et on souffle l'air sous pression : surface maximale et gaz concentré, les deux leviers combinés donnent une combustion quasi complète et très rapide. Et c'est aussi ce qui rend les poussières de grain ou de charbon explosives dans les silos.",
+   "texte": "Poudre + air comprimé : la combustion devient explosive.",
+   "ecran": "applications_surface"
+  },
+  {
+   "id": "p17",
+   "dit": "Cinquième levier, le plus subtil : le catalyseur. C'est une substance qui augmente la vitesse d'une réaction sans être consommée : elle participe au mécanisme, forme des intermédiaires, puis est régénérée à la fin du cycle. Son secret : proposer un chemin réactionnel différent, découpé en étapes dont les barrières sont plus basses que la barrière initiale. Trois piliers à retenir : il accélère, il n'est pas consommé, et il ne modifie pas la position de l'équilibre, car il accélère autant la réaction inverse que la réaction directe.",
+   "texte": "Le catalyseur ouvre un tunnel : barrières Ea′ plus basses.",
+   "ecran": "catalyseur"
+  },
+  {
+   "id": "p18",
+   "dit": "La loi d'Arrhenius permet de chiffrer ce pouvoir. La constante de vitesse dépend exponentiellement de l'opposé de l'énergie d'activation, divisée par le produit de la constante des gaz parfaits et de la température absolue. Si un catalyseur remplace la barrière initiale par une barrière plus faible, le rapport des constantes de vitesse devient l'exponentielle de l'écart des deux barrières, divisé par ce même produit. Comme c'est une exponentielle, même un écart modeste produit un effet gigantesque, comme le montre l'exemple chiffré qui suit.",
+   "texte": "k′/k = exp((Ea − Ea′)/RT) : l'écart de barrière devient exponentiel.",
+   "ecran": "arrhenius"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple numérique des leçons. Une réaction présente une énergie d'activation de cent kilojoules par mole. Un catalyseur l'abaisse à soixante-quinze kilojoules par mole, à la température de trois cents kelvins. L'écart de barrière, vingt-cinq mille joules par mole, divisé par le produit de la constante des gaz et de la température, donne un exposant voisin de dix. Le rapport des constantes vaut donc environ deux virgule vingt-quatre fois dix puissance quatre : le catalyseur accélère la réaction d'un facteur vingt-deux mille quatre cents. Voilà pourquoi la catalyse est au cœur de presque tous les procédés industriels.",
+   "texte": "Ea : 100 → 75 kJ/mol ⇒ vitesse × 22 400 à 300 K.",
+   "ecran": "exemple_catalyse"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple de catalyse hétérogène : le pot catalytique de votre voiture, une structure en nid d'abeille recouverte de platine, de palladium et de rhodium. Les gaz polluants s'y fixent sur les sites actifs du métal : c'est l'adsorption. Ils réagissent alors en surface : le monoxyde de carbone est oxydé en dioxyde de carbone, et les oxydes d'azote sont réduits en diazote. Les produits quittent ensuite la surface, c'est la désorption, libérant les sites pour un nouveau cycle. On distingue ainsi la catalyse hétérogène, où le catalyseur est dans une autre phase que les réactifs, de la catalyse homogène, où tous partagent la même phase.",
+   "texte": "Pt, Pd, Rh : les polluants entrent, CO₂, N₂ et H₂O ressortent.",
+   "ecran": "pot_catalytique"
+  },
+  {
+   "id": "p21",
+   "dit": "Deux notions complètent le portrait. La sélectivité d'abord : un bon catalyseur ne se contente pas d'accélérer, il oriente la réaction vers le produit souhaité parmi plusieurs possibles. L'empoisonnement ensuite, son talon d'Achille : certaines substances, même en traces, se lient de façon irréversible aux sites actifs et les bloquent. Le soufre empoisonne le fer du procédé Haber-Bosch, et le plomb des anciennes essences détruisait les pots catalytiques : c'est une des raisons majeures de l'interdiction de l'essence plombée.",
+   "texte": "Sélectivité contre empoisonnement : le soufre et le plomb bloquent les sites.",
+   "ecran": "empoisonnement"
+  },
+  {
+   "id": "p22",
+   "dit": "Dans les procédés réels, les facteurs se combinent. La production d'acide sulfurique par le procédé de contact associe une température d'environ quatre cent cinquante degrés, un catalyseur, le pentoxyde de vanadium, un excès de dioxygène et un recyclage continu des gaz. La digestion, elle, combine des catalyseurs biologiques, les enzymes, une température optimale de trente-sept degrés, un pH propre à chaque enzyme, et la mastication, qui augmente la surface de contact des aliments. Attention au piège : au-delà de quarante degrés, les enzymes se dénaturent et perdent toute activité.",
+   "texte": "Contact : 450 °C, V₂O₅, O₂ en excès. Digestion : enzymes, 37 °C, mastication.",
+   "ecran": "cas_reels"
+  },
+  {
+   "id": "p23",
+   "dit": "Le procédé Haber-Bosch, qui produit l'ammoniac des engrais, est le chef-d'œuvre de cette combinaison. Une température élevée accélère la réaction, mais déplace l'équilibre dans le mauvais sens : on choisit donc un compromis, environ quatre cent cinquante degrés. Une pression très élevée, vers deux cents atmosphères, concentre les gaz et favorise le produit. Un catalyseur à base de fer abaisse la barrière d'activation. Et les réactifs non consommés sont recyclés en continu. Aucun facteur seul ne suffit : c'est leur synergie qui rend le procédé viable.",
+   "texte": "450 °C, 200 atm, catalyseur au fer, recyclage : le compromis gagnant.",
+   "ecran": "haber"
+  },
+  {
+   "id": "p24",
+   "dit": "Exercice résolu des leçons. La décomposition de l'eau oxygénée est catalysée par les ions iodure, en deux étapes : une première étape lente, qui fixe la loi de vitesse, puis une étape rapide qui régénère l'ion iodure, fidèle au rôle d'un catalyseur. Doubler la concentration de l'eau oxygénée double la vitesse. Doubler celle des ions iodure la double aussi. Doubler les deux à la fois la multiplie par quatre : les effets de concentration se multiplient. Et élever la température de dix degrés la multiplierait encore par environ deux virgule deux.",
+   "texte": "Étape lente : v = k₁[H₂O₂][I⁻] ; doubler les deux → v ×4.",
+   "ecran": "mecanisme_h2o2"
+  },
+  {
+   "id": "p25",
+   "dit": "Dernier exercice, typique du baccalauréat. Un colorant alimentaire se décompose selon une cinétique d'ordre un, avec une constante de vitesse de deux virgule cinq fois dix puissance moins trois par seconde à vingt-cinq degrés. Au réfrigérateur, à cinq degrés, on perd deux intervalles de dix degrés : avec un facteur trois par intervalle, la constante est divisée par neuf et tombe à environ deux virgule soixante-dix-huit fois dix puissance moins quatre. Le temps de demi-réaction, logarithme de deux divisé par la constante, passe alors de deux cent soixante-dix-sept secondes à environ deux mille quatre cent quatre-vingt-dix secondes, soit quarante et une minutes.",
+   "texte": "k ÷ 9 au frigo : t½ passe de 277 s à ≈ 41 min.",
+   "ecran": "colorant"
+  },
+  {
+   "id": "p26",
+   "dit": "Avant de conclure, la boîte à outils du baccalauréat. Face à un problème de cinétique : identifiez les facteurs en jeu, qualifiez leur effet avec le modèle des collisions, quantifiez quand c'est possible, puis vérifiez la cohérence. Et méfiez-vous des pièges classiques : un catalyseur accélère l'atteinte de l'équilibre sans le déplacer ; la pression n'agit que si un réactif est gazeux ; dire que la température augmente la fréquence des chocs est vrai mais insuffisant, l'essentiel est la fraction de chocs efficaces ; et la règle de van't Hoff s'applique à la constante de vitesse, pas directement au temps.",
+   "texte": "Identifier, qualifier, quantifier, vérifier.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p27",
+   "dit": "Synthèse finale. Cinq facteurs, un seul modèle : celui des chocs. La concentration et la pression augmentent la fréquence des rencontres. La température augmente la fraction des chocs assez énergétiques. La surface de contact multiplie les sites où réagir. Le catalyseur abaisse la barrière elle-même. Retenez aussi que ces leviers interagissent : les combiner demande des compromis intelligents, entre vitesse et équilibre, entre efficacité et coût. Vous savez désormais non seulement ce qui change la vitesse d'une réaction, mais pourquoi, et comment le chiffrer.",
+   "texte": "Cinq leviers, un modèle : les chocs efficaces.",
+   "ecran": "synthese"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le modèle des chocs et la concentration"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Température, pression et surface de contact",
+   "pont": {
+    "dit": "Partie deux : la température, la pression et la surface de contact. Après le nombre de rencontres, nous allons nous intéresser à leur énergie, puis à l'espace dans lequel elles se produisent : ce qui se joue quand on chauffe, quand on comprime un gaz, et quand on divise un solide.",
+    "texte": "Partie 2 : chauffer, comprimer, diviser."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Le catalyseur et la synthèse des facteurs",
+   "pont": {
+    "dit": "Partie trois : le catalyseur, puis l'art de combiner tous les facteurs. Nous allons découvrir l'acteur qui abaisse la barrière énergétique elle-même, chiffrer son pouvoir spectaculaire, et terminer par des situations réelles où tous les leviers agissent ensemble, comme dans les problèmes du baccalauréat.",
+    "texte": "Partie 3 : catalyser, puis tout combiner."
+   }
+  }
+ ]
+}
