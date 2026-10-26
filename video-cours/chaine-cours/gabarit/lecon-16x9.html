@@ -3651,6 +3651,19 @@ const FIG = {
       mot(700, 232, 'courbe 3', { c: '#10B981', t: 17 }) +
       mot(500, 288, 'la concentration du réactif s’épuise', { t: 21 }));
   },
+  division_surface_fig(t) {
+    let grille = '';
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) grille += `<rect x="${640 + i * 62}" y="${70 + j * 62}" width="56" height="56" fill="#10B981" fill-opacity=".18" stroke="currentColor" stroke-width="3"/>`;
+    return svgBoite(
+      `<rect x="130" y="70" width="180" height="180" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` +
+      trait(310, 70, 356, 40, 1, { w: 3 }) + trait(356, 40, 356, 220, 1, { w: 3 }) + trait(310, 250, 356, 220, 1, { w: 3 }) + trait(130, 70, 176, 40, 1, { w: 3 }) + trait(176, 40, 356, 40, 1, { w: 3 }) +
+      grille +
+      trait(420, 160, 540, 160, 1, { w: 5 }) + pointe(548, 160, 0, '#E8604C') +
+      mot(484, 130, 'on divise', { c: '#E8604C', t: 19 }) +
+      mot(220, 282, 'un gros cube : S = 6a²', { t: 19 }) +
+      mot(733, 282, 'même volume, surface × n', { t: 19 }) +
+      mot(500, 40, 'diviser multiplie la surface, pas le volume', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
