@@ -1,0 +1,484 @@
+{
+ "cours": 6157,
+ "ecrans": {
+  "application": {
+   "kicker": "Application guidée : la saturation d'un marché",
+   "tex": [
+    "T_n = \\tfrac{100n^2}{n^2 + 5n + 1} - \\tfrac{10}{\\sqrt{n}}",
+    "\\tfrac{100n^2}{n^2 + 5n + 1} \\to 100 \\qquad \\tfrac{10}{\\sqrt{n}} \\to 0",
+    "\\lim T_n = 100 : \\text{ saturation à cent pour cent}"
+   ],
+   "titre": "Décomposer, traiter chaque morceau, recomposer",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "Applications : finance et algorithmes",
+   "tex": [
+    "C_n = C_0 (1 + t)^n : \\text{ intérêts composés, suite géométrique}",
+    "\\text{Newton : } e_{n+1} \\sim C e_n^2 : \\text{ convergence quadratique}",
+    "\\text{Richardson : } T_n = 2S_{2n} - S_n \\text{ élimine le terme en } \\tfrac{1}{n}"
+   ],
+   "titre": "Prévoir un capital, accélérer un algorithme",
+   "type": "etape"
+  },
+  "arith_geo": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "suite_arith_fig"
+   },
+   "kicker": "Les deux familles de base",
+   "tex": [
+    "u_{n+1} = u_n + r \\qquad u_n = u_0 + nr",
+    "u_{n+1} = q\\,u_n \\qquad u_n = u_0 \\, q^n"
+   ],
+   "titre": "Arithmétique : on ajoute. Géométrique : on multiplie",
+   "type": "etape"
+  },
+  "comparaison": {
+   "kicker": "Comparer les suites : domination et négligeabilité",
+   "tex": [
+    "u_n = O(v_n) : \\ |u_n| \\leq M v_n \\text{ à partir d'un rang}",
+    "u_n = o(v_n) : \\ \\tfrac{u_n}{v_n} \\to 0",
+    "3n^2 + 2n = O(n^2) : \\text{ le terme dominant commande}"
+   ],
+   "titre": "Grand O borne, petit o écrase",
+   "type": "etape"
+  },
+  "conjuguee": {
+   "kicker": "Forme infini moins infini : la quantité conjuguée",
+   "tex": [
+    "v_n = \\sqrt{n+1} - \\sqrt{n} : \\quad \\infty - \\infty",
+    "v_n = \\tfrac{(n+1) - n}{\\sqrt{n+1} + \\sqrt{n}} = \\tfrac{1}{\\sqrt{n+1} + \\sqrt{n}}",
+    "\\lim v_n = 0"
+   ],
+   "titre": "Multiplier par le conjugué fait apparaître un un au numérateur",
+   "type": "etape"
+  },
+  "convergence": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "bande_epsilon_fig"
+   },
+   "kicker": "La définition de la convergence",
+   "note": "La bande de largeur deux epsilon autour de ell finit par contenir tous les termes, sans exception.",
+   "tex": "\\forall \\varepsilon > 0, \\ \\exists N, \\ \\forall n \\geq N, \\ |u_n - \\ell| < \\varepsilon",
+   "type": "formule"
+  },
+  "definition": {
+   "kicker": "Qu'est-ce qu'une suite ?",
+   "note": "u indice n : le terme de rang n. L'indice est un entier naturel, la valeur un nombre réel.",
+   "tex": "u : \\mathbb{N} \\to \\mathbb{R}, \\qquad n \\mapsto u_n",
+   "type": "formule"
+  },
+  "dev_asympt": {
+   "kicker": "Le développement asymptotique",
+   "note": "Chaque terme corrige le précédent : après la limite, on décrit la vitesse et la manière d'approcher.",
+   "tex": "u_n = a_1 v_n^{(1)} + a_2 v_n^{(2)} + \\cdots + o\\left(v_n^{(k)}\\right)",
+   "type": "formule"
+  },
+  "dev_ex": {
+   "kicker": "Développement asymptotique : exemple complet",
+   "tex": [
+    "u_n = \\sqrt{n^2 + n + 1} - n",
+    "u_n = \\tfrac{1}{2} + \\tfrac{3}{8n} + o\\left(\\tfrac{1}{n}\\right)",
+    "\\ln(n+1) - \\ln n = \\tfrac{1}{n} - \\tfrac{1}{2n^2} + o\\left(\\tfrac{1}{n^2}\\right)"
+   ],
+   "titre": "Un demi, plus trois sur huit n, plus un reste négligeable",
+   "type": "etape"
+  },
+  "divergence": {
+   "kicker": "Divergences : trois destins différents",
+   "tex": [
+    "u_n \\to +\\infty : \\text{ tout seuil finit dépassé, pour toujours}",
+    "v_n = -n^2 \\to -\\infty",
+    "u_n = (-1)^n : \\text{ bornée, oscillante, sans limite}"
+   ],
+   "titre": "Vers plus l'infini, vers moins l'infini, ou nulle part",
+   "type": "etape"
+  },
+  "dominant": {
+   "kicker": "Forme infini sur infini : le terme dominant",
+   "tex": [
+    "u_n = \\tfrac{3n^2 - 5n + 1}{2n^2 + 7} = \\tfrac{3 - \\tfrac{5}{n} + \\tfrac{1}{n^2}}{2 + \\tfrac{7}{n^2}}",
+    "\\tfrac{1}{n} \\to 0, \\quad \\tfrac{1}{n^2} \\to 0",
+    "\\lim u_n = \\tfrac{3}{2}"
+   ],
+   "titre": "Factoriser par la plus haute puissance, puis simplifier",
+   "type": "etape"
+  },
+  "equivalent_ex": {
+   "kicker": "Équivalents en action",
+   "tex": [
+    "\\sqrt{n^2 + 3n} - n = n\\left(\\sqrt{1 + \\tfrac{3}{n}} - 1\\right)",
+    "\\sqrt{1 + x} = 1 + \\tfrac{x}{2} + o(x)",
+    "\\sqrt{n^2 + 3n} - n \\to \\tfrac{3}{2}"
+   ],
+   "titre": "Factoriser, développer, conclure",
+   "type": "etape"
+  },
+  "equivalents": {
+   "kicker": "Les suites équivalentes",
+   "note": "On peut multiplier, diviser, élever à une puissance deux équivalents. Jamais les additionner : c'est le piège classique.",
+   "tex": "u_n \\sim v_n \\iff \\frac{u_n}{v_n} \\to 1",
+   "type": "formule"
+  },
+  "extraites": {
+   "kicker": "Suites extraites : filtrer pour trancher",
+   "tex": [
+    "u_n = (-1)^n : \\quad u_{2n} \\to 1, \\quad u_{2n+1} \\to -1",
+    "\\text{deux extraites, deux limites} \\Rightarrow (u_n) \\text{ diverge}",
+    "\\text{toute suite bornée a une extraite convergente}"
+   ],
+   "titre": "Bolzano-Weierstrass : un filet dans toute suite bornée",
+   "type": "etape"
+  },
+  "forme_e": {
+   "kicker": "Forme un puissance infini : le nombre e",
+   "tex": [
+    "w_n = \\left(1 + \\tfrac{2}{n}\\right)^{3n} : \\quad 1^{\\infty}",
+    "w_n = \\left[\\left(1 + \\tfrac{2}{n}\\right)^{n/2}\\right]^{6}",
+    "\\left(1 + \\tfrac{1}{n}\\right)^n \\to e \\qquad \\lim w_n = e^6"
+   ],
+   "titre": "Faire apparaître l'exposant qui compense, puis élever",
+   "type": "etape"
+  },
+  "gendarmes": {
+   "kicker": "Le théorème des gendarmes",
+   "tex": [
+    "-1 \\leq \\sin n \\leq 1",
+    "2 - \\tfrac{1}{n} \\leq \\tfrac{\\sin n + 2n}{n} \\leq 2 + \\tfrac{1}{n}",
+    "\\lim \\tfrac{\\sin n + 2n}{n} = 2"
+   ],
+   "titre": "Encadrer entre deux suites qui ont la même limite",
+   "type": "etape"
+  },
+  "hierarchie": {
+   "kicker": "La hiérarchie des croissances",
+   "note": "Logarithme, puis puissances, puis exponentielle, puis factorielle : savoir qui écrase qui lève la plupart des indéterminations.",
+   "tex": "(\\ln n)^\\beta = o(n^\\alpha) \\qquad n^\\alpha = o(e^{\\beta n})",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une suite est le récit d'un processus discret : la question du cours est son destin quand le rang grandit sans fin.",
+   "type": "phrase"
+  },
+  "inverse": {
+   "kicker": "Premier exemple prouvé : un sur n",
+   "tex": [
+    "\\left| \\tfrac{1}{n} \\right| < \\varepsilon \\iff n > \\tfrac{1}{\\varepsilon}",
+    "\\text{on choisit } N > \\tfrac{1}{\\varepsilon} \\qquad \\lim \\tfrac{1}{n} = 0"
+   ],
+   "titre": "Pour chaque epsilon, fabriquer le rang à partir duquel tout tient",
+   "type": "etape"
+  },
+  "modes": {
+   "kicker": "Deux manières de définir une suite",
+   "tex": [
+    "u_n = \\tfrac{n^2 + 1}{3n - 1} : \\text{ explicite, accès direct}",
+    "u_{n+1} = 2u_n - 3, \\ u_0 = 1 : \\text{ récurrence d'ordre un}",
+    "F_{n+2} = F_{n+1} + F_n : \\text{ Fibonacci, ordre deux}"
+   ],
+   "titre": "La formule directe, ou la règle de proche en proche",
+   "type": "etape"
+  },
+  "monotone": {
+   "kicker": "Le théorème de la limite monotone",
+   "tex": [
+    "\\text{croissante et majorée} \\Rightarrow \\text{convergente}",
+    "u_0 = 2, \\quad u_{n+1} = \\tfrac{u_n}{2} + \\tfrac{1}{u_n}",
+    "\\ell = \\tfrac{\\ell}{2} + \\tfrac{1}{\\ell} \\Rightarrow \\ell^2 = 2 \\Rightarrow \\ell = \\sqrt{2}"
+   ],
+   "titre": "L'algorithme de Héron : converger sans connaître la limite",
+   "type": "etape"
+  },
+  "nuage": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "nuage_suite_fig"
+   },
+   "kicker": "Voir une suite : le nuage de points",
+   "texte": "Les points de coordonnées (n, u_n) : alignés pour une suite arithmétique, courbés ou en escalier pour les autres.",
+   "type": "phrase"
+  },
+  "operations": {
+   "kicker": "Opérations sur les limites",
+   "tex": [
+    "\\lim (u_n + v_n) = \\ell + \\ell'",
+    "\\lim (u_n v_n) = \\ell \\, \\ell' \\qquad \\lim \\tfrac{u_n}{v_n} = \\tfrac{\\ell}{\\ell'} \\ (\\ell' \\neq 0)",
+    "\\text{formes indéterminées : } \\infty - \\infty, \\ 0 \\times \\infty",
+    "\\tfrac{\\infty}{\\infty} \\text{ et } \\tfrac{0}{0} : \\text{ une analyse plus fine s'impose}"
+   ],
+   "titre": "Sommes, produits, quotients : et les quatre formes interdites",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Une suite : une fonction de n vers les réels",
+    "Explicite ou récurrente : deux moteurs",
+    "Arithmétique : plus r. Géométrique : fois q",
+    "Variation : le signe de u(n+1) − u(n)"
+   ],
+   "kicker": "Point d'étape : définitions et convergence",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Références d'abord : 1/n, ln n, q^n, n!",
+    "Infini sur infini : le terme dominant",
+    "Racines : la quantité conjuguée",
+    "Gendarmes : encadrer, puis conclure"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Converger : la bande epsilon finit pleine",
+    "Monotone et bornée : convergence assurée",
+    "Forme indéterminée : factoriser, conjuguer",
+    "Équivalents : produits oui, sommes non",
+    "Développement : la limite, puis la vitesse"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "references": {
+   "kicker": "Les limites de référence",
+   "tex": [
+    "\\tfrac{1}{n} \\to 0 \\qquad \\ln n \\to +\\infty \\qquad n! \\text{ explose}",
+    "q^n : \\to 0 \\text{ si } |q| < 1, \\quad \\to +\\infty \\text{ si } q > 1",
+    "\\text{polynômes : le terme de plus haut degré décide}",
+    "\\text{ces limites sont les briques de tous les calculs}"
+   ],
+   "titre": "Le socle à connaître par cœur",
+   "type": "etape"
+  },
+  "stirling": {
+   "kicker": "La formule de Stirling",
+   "note": "Pour n égal dix : trois millions cinq cent quatre-vingt-dix-huit mille contre trois millions six cent vingt-huit mille huit cents exacts, moins d'un pour cent d'erreur.",
+   "tex": "n! \\sim \\sqrt{2\\pi n} \\left(\\frac{n}{e}\\right)^n",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "nuage_suite_fig"
+   },
+   "kicker": "Mathématique · Suites numériques",
+   "sous": "Converger, diverger, comparer : le destin des suites quand l'indice grandit sans fin",
+   "titre": "Suites numériques : limites, équivalents et développements asymptotiques",
+   "type": "titre"
+  },
+  "variation": {
+   "kicker": "Sens de variation : la tendance",
+   "tex": [
+    "u_n = \\tfrac{n}{n+1}",
+    "u_{n+1} - u_n = \\tfrac{1}{(n+1)(n+2)} > 0",
+    "\\text{strictement croissante, et elle se rapproche de } 1"
+   ],
+   "titre": "Étudier le signe de la différence de deux termes consécutifs",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, représenter, converger ou diverger"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : prouver la convergence, puis calculer les limites pour de bon. Nous commencerons par deux preuves sans calcul, la limite monotone et les suites extraites, avant la boîte à outils complète : limites de référence, terme dominant, quantité conjuguée, nombre e et théorème des gendarmes.",
+    "texte": "Partie 2 : prouver la convergence et calculer les limites."
+   },
+   "sous_titre": "Prouver la convergence et calculer les limites"
+  },
+  {
+   "debut": "p21",
+   "pont": {
+    "dit": "Partie trois : comparer et zoomer. Deux suites se comparent par la domination, la négligeabilité et l'équivalence ; puis le développement asymptotique décrit la manière fine d'approcher la limite, jusqu'à la formule de Stirling et aux applications en finance et en algorithmique.",
+    "texte": "Partie 3 : comparaison, équivalents et développements asymptotiques."
+   },
+   "sous_titre": "Comparer, équivaloir et développer à l'infini"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux suites numériques et à leur comportement asymptotique. Une suite est une succession infinie de nombres rangés dans un ordre : toute la question est de savoir ce qu'ils deviennent quand le rang grandit sans fin. Se rapprochent-ils d'une valeur limite, s'envolent-ils vers l'infini, oscillent-ils sans se décider ? Nous poserons d'abord les définitions et la notion de limite, puis nous apprendrons à calculer ces limites, et enfin à comparer les suites et à décrire finement leur approche.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Suites numériques : quel destin quand n grandit ?"
+  },
+  {
+   "dit": "Pensez à une suite comme à une file de perles numérotées à l'infini : chaque perle a une position, son rang, et une valeur. Formellement, une suite est une fonction qui, à chaque entier naturel n, associe un nombre réel noté u indice n, le terme de rang n. Le terme initial s'appelle u zéro, puis viennent u un, u deux, et ainsi de suite. Étudier une suite, c'est étudier l'évolution de ces valeurs le long de la file, sans jamais arriver au bout.",
+   "ecran": "definition",
+   "id": "p02",
+   "texte": "(uₙ) : à chaque rang n, un terme uₙ."
+  },
+  {
+   "dit": "Il y a deux grandes manières de fabriquer une suite. La définition explicite donne le terme directement en fonction du rang : pour connaître le terme de rang cent, on remplace n par cent dans la formule, sans calculer les précédents. La définition par récurrence donne le passage d'un terme au suivant, avec un terme initial : chaque état dépend de l'état présent, comme dans les phénomènes dynamiques et les algorithmes. La suite de Fibonacci, où chaque terme est la somme des deux précédents, exige elle deux termes initiaux.",
+   "ecran": "modes",
+   "id": "p03",
+   "texte": "Explicite : accès direct. Récurrence : de proche en proche."
+  },
+  {
+   "dit": "Pour voir une suite, on place les points de coordonnées n et u indice n dans un repère : c'est le nuage de points. Une suite arithmétique y dessine des points parfaitement alignés, signature de sa régularité. Pour une suite récurrente, on utilise aussi la représentation en escalier, avec la droite d'équation igrec égale ixe et la courbe de la fonction de récurrence, qui montre le passage d'un terme au suivant et devine déjà si la suite se stabilise.",
+   "ecran": "nuage",
+   "id": "p04",
+   "texte": "Le nuage de points (n, uₙ) : voir avant de calculer."
+  },
+  {
+   "dit": "Deux familles dominent ce bestiaire. Une suite arithmétique ajoute toujours la même raison r : son terme général vaut u zéro plus n fois r, comme un compte où l'on dépose la même somme chaque mois, et son nuage est aligné. Une suite géométrique multiplie toujours par la même raison q : son terme général vaut u zéro fois q puissance n. Si la valeur absolue de q dépasse un, la croissance est explosive : la légende des grains de riz doublés sur chaque case de l'échiquier en est l'illustration célèbre. Entre zéro et un, elle s'éteint ; négative, elle alterne.",
+   "ecran": "arith_geo",
+   "id": "p05",
+   "texte": "Arithmétique : + r. Géométrique : × q, croissance explosive."
+  },
+  {
+   "dit": "Avant le comportement à l'infini, la tendance immédiate : une suite est croissante si chaque terme dépasse le précédent, décroissante dans le cas contraire. Trois méthodes pour trancher : le signe de la différence de deux termes consécutifs, la comparaison du rapport à un pour les suites positives, ou l'étude de la fonction associée. Exemple : pour u indice n égale n sur n plus un, la différence de deux termes consécutifs vaut un sur le produit de n plus un par n plus deux, toujours positive : la suite est strictement croissante, et l'on sent déjà qu'elle se rapproche de un.",
+   "ecran": "variation",
+   "id": "p06",
+   "texte": "n/(n+1) : strictement croissante, elle vise 1."
+  },
+  {
+   "dit": "La question profonde du cours arrive : que devient la suite quand n tend vers l'infini ? On dit qu'elle converge vers un réel ell si ses termes finissent par être aussi proches de ell que l'on veut, et y rester. La définition rigoureuse le dit avec deux lettres : pour tout epsilon strictement positif, il existe un rang grand N tel que, dès que n dépasse N, l'écart entre u indice n et ell est inférieur à epsilon. Imaginez une bande centrée sur ell, aussi fine soit-elle : à partir d'un certain rang, tous les termes sont dedans.",
+   "ecran": "convergence",
+   "id": "p07",
+   "texte": "Converger : tout epsilon a son rang N."
+  },
+  {
+   "dit": "Premier exemple prouvé de bout en bout : la suite des inverses, un sur n, converge vers zéro. Donnons-nous un epsilon : il faut que un sur n soit plus petit que epsilon, ce qui revient à demander n plus grand que un sur epsilon. Il suffit donc de choisir pour grand N n'importe quel entier dépassant un sur epsilon : à partir de ce rang, tous les termes sont dans la bande. Remarquez la logique de la définition : epsilon est donné d'abord, et c'est à nous de fabriquer le rang qui répond.",
+   "ecran": "inverse",
+   "id": "p08",
+   "texte": "1/n → 0 : choisir N plus grand que 1/ε."
+  },
+  {
+   "dit": "Si une suite converge, sa limite est unique : deux limites distinctes finiraient par exiger que les termes soient simultanément dans deux bandes disjointes, ce qui est impossible. Toute suite qui ne converge pas est divergente, mais la divergence a plusieurs visages : tendre vers plus l'infini, quand tout seuil finit par être dépassé et pour toujours ; tendre vers moins l'infini, comme moins n au carré ; ou osciller sans limite, comme la suite alternée un, moins un, bornée mais sans destination.",
+   "ecran": "divergence",
+   "id": "p09",
+   "texte": "Une seule limite si elle existe ; sinon, trois destins."
+  },
+  {
+   "dit": "Quand deux suites convergent, leurs sommes, leurs produits et leurs quotients convergent vers la somme, le produit et le quotient des limites, sous réserve que le dénominateur ne tende pas vers zéro. Mais quatre combinaisons échappent à ces règles : infini moins infini, zéro fois infini, infini sur infini et zéro sur zéro. Ce sont les formes indéterminées : elles ne sont pas des réponses, mais des signaux qu'une analyse plus fine est nécessaire. Toute la deuxième partie du cours leur sera consacrée.",
+   "ecran": "operations",
+   "id": "p10",
+   "texte": "Quatre formes indéterminées : ∞ − ∞, 0 × ∞, ∞/∞, 0/0."
+  },
+  {
+   "dit": "Un théorème puissant permet de prouver une convergence sans connaître la limite à l'avance : toute suite croissante et majorée converge, toute suite décroissante et minorée converge, et réciproquement une suite croissante non majorée part vers plus l'infini. Application historique : l'algorithme de Héron, qui part de deux et remplace chaque terme par la moyenne de lui-même et de deux divisé par lui-même. La suite décroît en restant au-dessus de racine de deux ; elle converge donc, et en passant à la limite dans la récurrence, on trouve racine de deux.",
+   "ecran": "monotone",
+   "id": "p11",
+   "texte": "Héron : décroissante et minorée, sa limite est √2."
+  },
+  {
+   "dit": "Dernier outil de cette partie : les suites extraites, obtenues en ne gardant que certains termes, dans l'ordre. Si une suite converge, toutes ses extraites convergent vers la même limite. La contraposée est un détecteur de divergence redoutable : pour la suite alternée, l'extraite des rangs pairs tend vers un et celle des rangs impairs vers moins un, donc la suite diverge. Et le théorème de Bolzano-Weierstrass promet que de toute suite bornée, on peut extraire une sous-suite convergente : il y a toujours de l'ordre caché dans le borné.",
+   "ecran": "extraites",
+   "id": "p12",
+   "texte": "Deux extraites, deux limites : la suite diverge."
+  },
+  {
+   "dit": "Récapitulons ces fondations. Une suite est une fonction des entiers vers les réels, définie explicitement ou par récurrence ; les familles arithmétique et géométrique en sont les prototypes. Elle converge si la bande epsilon finit par contenir tous ses termes, et sa limite est alors unique ; sinon elle diverge, vers l'infini ou par oscillation. Limite monotone et suites extraites donnent déjà deux preuves de convergence ou de divergence sans aucun calcul de limite.",
+   "ecran": "recap1",
+   "id": "p13",
+   "texte": "Point d'étape : les fondations des suites."
+  },
+  {
+   "dit": "Toute boîte à outils commence par des pièces de référence. Retenez le comportement des suites élémentaires : un sur n tend vers zéro ; le logarithme de n part lentement vers l'infini ; la factorielle explose plus vite que tout. Pour les puissances q puissance n, tout dépend de q : extinction entre moins un et un, explosion au-delà de un, oscillation sans limite en dessous de moins un. Et pour un polynôme en n, c'est le terme de plus haut degré qui décide de tout le comportement à l'infini.",
+   "ecran": "references",
+   "id": "p14",
+   "texte": "1/n → 0, ln n → +∞, qⁿ selon q : le socle."
+  },
+  {
+   "dit": "Première forme indéterminée : infini sur infini, typique des quotients de polynômes. La technique reine consiste à factoriser, au numérateur et au dénominateur, par la plus haute puissance de n, ici n au carré. Il vient trois moins cinq sur n plus un sur n au carré, le tout sur deux plus sept sur n au carré. Comme un sur n et un sur n au carré tendent vers zéro, la limite est trois sur deux : seul le rapport des coefficients dominants survit. Retenez le réflexe : devant un quotient de polynômes, comparer les degrés et les coefficients de tête.",
+   "ecran": "dominant",
+   "id": "p15",
+   "texte": "(3n² − 5n + 1)/(2n² + 7) → 3/2."
+  },
+  {
+   "dit": "Deuxième forme : infini moins infini, fréquente avec les racines carrées. Pour racine de n plus un moins racine de n, l'astuce est la quantité conjuguée : multiplier et diviser par la somme des deux racines. Le numérateur devient n plus un moins n, c'est-à-dire un, par l'identité remarquable. La suite vaut alors un sur la somme des deux racines, dont le dénominateur part vers l'infini : la limite est zéro. Les deux racines se rapprochent donc indéfiniment, même si chacune s'envole.",
+   "ecran": "conjuguee",
+   "id": "p16",
+   "texte": "√(n+1) − √n → 0 : le conjugué débloque."
+  },
+  {
+   "dit": "Troisième forme célèbre : un puissance infini. Le repère est le nombre e, limite de un plus un sur n, le tout à la puissance n, comme un capital composé de plus en plus souvent. Pour un plus deux sur n, le tout à la puissance trois n, on réécrit l'exposant pour faire apparaître le compensateur : la parenthèse élevée à n sur deux tend vers e, et il reste à élever le tout à la puissance six, puisque trois n vaut six fois n sur deux. La limite est e puissance six : ni zéro, ni un, ni l'infini, mais une vraie compétition équilibrée.",
+   "ecran": "forme_e",
+   "id": "p17",
+   "texte": "(1 + 2/n)³ⁿ → e⁶ : reconnaître le nombre e."
+  },
+  {
+   "dit": "Quand le calcul direct bloque, on encadre. Le théorème des gendarmes dit que si une suite est prise en sandwich entre deux suites de même limite, elle partage cette limite. Exemple : sinus de n plus deux n, le tout sur n. Le sinus oscille sans limite, mais il reste entre moins un et un, donc la suite est encadrée par deux moins un sur n et deux plus un sur n, qui tendent toutes deux vers deux. Conclusion : la limite est deux. Le terme oscillant, divisé par n, devient négligeable : c'est déjà une première comparaison.",
+   "ecran": "gendarmes",
+   "id": "p18",
+   "texte": "(sin n + 2n)/n → 2 : encadrer pour conclure."
+  },
+  {
+   "dit": "Application complète, façon analyste : le taux de saturation d'un marché après n campagnes vaut cent n au carré sur n au carré plus cinq n plus un, moins dix sur racine de n. On décompose. Le premier morceau est un quotient de polynômes de même degré : factorisation par n au carré, sa limite est cent. Le second morceau tend vers zéro, car la racine part vers l'infini. Par somme, le taux tend vers cent : le marché finit saturé à cent pour cent, les frictions initiales s'estompant lentement, en un sur racine de n.",
+   "ecran": "application",
+   "id": "p19",
+   "texte": "Saturation : 100 à long terme, frictions en 1/√n."
+  },
+  {
+   "dit": "Récapitulons la boîte à outils du calcul. D'abord, connaître les limites de référence et les règles opératoires. Devant un quotient de polynômes, factoriser par le terme dominant. Devant une différence de racines, passer par la quantité conjuguée. Devant un un puissance infini, reconnaître le nombre e. Et quand rien ne calcule directement, encadrer et invoquer les gendarmes ou la limite monotone. Chaque forme indéterminée a sa clé : le travail consiste à reconnaître la serrure.",
+   "ecran": "recap2",
+   "id": "p20",
+   "texte": "L'essentiel de la partie deux."
+  },
+  {
+   "dit": "Comparer deux suites, c'est décider de leur rapport de force à l'infini. On dit que u est dominée par v, noté grand O de v, si u reste, à partir d'un certain rang, bornée par une constante fois v : c'est la notation de la complexité des algorithmes. On dit que u est négligeable devant v, noté petit o de v, si leur rapport tend vers zéro : u devient insignifiant à côté de v. Ainsi, trois n au carré plus deux n est un grand O de n au carré, et même, son terme en deux n est un petit o de n au carré.",
+   "ecran": "comparaison",
+   "id": "p21",
+   "texte": "O domine et borne, o néglige et écrase."
+  },
+  {
+   "dit": "Ces comparaisons ordonnent toutes les croissances en une hiérarchie qu'il faut connaître par cœur : le logarithme est négligeable devant toute puissance de n, même minuscule ; toute puissance de n est négligeable devant toute exponentielle ; et l'exponentielle elle-même est écrasée par la factorielle. Logarithme, puissances, exponentielle, factorielle : quand deux de ces mondes se rencontrent dans un quotient, le plus fort décide seul de la limite, et la plupart des indéterminations se lèvent d'elles-mêmes.",
+   "ecran": "hierarchie",
+   "id": "p22",
+   "texte": "ln n ≪ n^α ≪ e^(βn) ≪ n! : la hiérarchie."
+  },
+  {
+   "dit": "Au sommet de la finesse, l'équivalence : deux suites sont équivalentes si leur rapport tend vers un. Elles deviennent indiscernables à l'infini, comme n au carré plus trois n plus un et n au carré. Les équivalents se multiplient, se divisent et s'élèvent à une puissance comme les suites elles-mêmes, ce qui en fait des raccourcis de calcul précieux. Mais attention au piège classique : on n'additionne jamais des équivalents. Deux suites équivalentes peuvent différer d'une quantité qui tend vers l'infini, comme n plus racine de n et n.",
+   "ecran": "equivalents",
+   "id": "p23",
+   "texte": "uₙ ~ vₙ : même rythme à l'infini."
+  },
+  {
+   "dit": "Exemple complet : racine de n au carré plus trois n, moins n. On factorise par n sous la racine, puis on utilise le développement de racine de un plus ixe au voisinage de zéro : un plus ixe sur deux, plus un reste négligeable. Il vient n fois trois sur deux n, c'est-à-dire trois sur deux, plus un reste qui tend vers zéro. La suite, qui avait la forme infini moins infini, tend donc vers trois sur deux, et son équivalent est simplement la constante trois sur deux. La quantité conjuguée donnerait le même résultat, plus lentement.",
+   "ecran": "equivalent_ex",
+   "id": "p24",
+   "texte": "√(n² + 3n) − n → 3/2 par les équivalents."
+  },
+  {
+   "dit": "L'équivalent ne donne que le premier terme de l'histoire. Le développement asymptotique la raconte en entier : on écrit la suite comme une somme de termes de référence de plus en plus petits, chacun négligeable devant le précédent, plus un reste négligeable devant le dernier terme gardé. C'est l'analogue, à l'infini, des développements de Taylor au voisinage d'un point : une précision croissante, terme après terme, qui décrit non seulement la destination, mais la manière de s'en approcher.",
+   "ecran": "dev_asympt",
+   "id": "p25",
+   "texte": "Développer : la limite, puis ses corrections."
+  },
+  {
+   "dit": "Exemple à retenir : racine de n au carré plus n plus un, moins n. On factorise par n, puis on développe racine de un plus ixe jusqu'au terme en ixe au carré. Le calcul livre un développement à l'ordre un : un demi, plus trois sur huit n, plus un petit o de un sur n. La suite tend donc vers un demi, par au-dessus, et son écart à la limite décroît comme trois sur huit n. Même mécanique pour la différence de deux logarithmes consécutifs : un sur n, moins un sur deux n au carré, plus un sur trois n au cube.",
+   "ecran": "dev_ex",
+   "id": "p26",
+   "texte": "√(n²+n+1) − n = 1/2 + 3/(8n) + o(1/n)."
+  },
+  {
+   "dit": "Le joyau de cette théorie est la formule de Stirling : la factorielle de n est équivalente à racine de deux pi n, fois n sur e à la puissance n. Pour n égal dix, cette approximation donne environ trois millions six cent mille, contre trois millions six cent vingt-huit mille huit cents pour la valeur exacte : moins d'un pour cent d'erreur, alors même que la factorielle explose. Un développement plus poussé ajoute des corrections en un sur n, et l'approximation devient d'une précision redoutable.",
+   "ecran": "stirling",
+   "id": "p27",
+   "texte": "Stirling : n! ~ √(2πn)·(n/e)ⁿ."
+  },
+  {
+   "dit": "Ces outils servent partout. En finance, un capital placé à taux constant forme une suite géométrique : il explose si le taux est positif, s'éteint s'il est négatif. En analyse numérique, la méthode de Newton approche une racine avec une erreur qui se comporte comme le carré de l'erreur précédente : le nombre de décimales exactes double à chaque pas, voilà une convergence quadratique. Et l'extrapolation de Richardson combine deux approximations pour éliminer le terme d'erreur en un sur n, fabriquant une suite qui converge nettement plus vite vers la même limite.",
+   "ecran": "applications",
+   "id": "p28",
+   "texte": "Finance, Newton, Richardson : les suites au travail."
+  },
+  {
+   "dit": "Pour conclure ce cours : une suite converge quand la bande epsilon finit par contenir tous ses termes ; monotone et bornée, elle converge à coup sûr. Les formes indéterminées se lèvent par le terme dominant, la quantité conjuguée, le nombre e ou les gendarmes. Et quand la limite ne suffit plus, la comparaison classe les croissances, l'équivalence donne le terme principal, et le développement asymptotique décrit l'approche dans ses moindres détails. Vous tenez la boussole des comportements à l'infini.",
+   "ecran": "recap_final",
+   "id": "p29",
+   "texte": "Limites, équivalents, développements : à retenir."
+  }
+ ],
+ "titre": "Suites numériques : limites, équivalents et développements asymptotiques"
+}
