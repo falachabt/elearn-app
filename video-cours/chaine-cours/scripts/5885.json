@@ -1,0 +1,525 @@
+{
+ "cours": 5885,
+ "ecrans": {
+  "arbre": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "arbre_fig"
+   },
+   "kicker": "L'arbre de probabilités",
+   "tex": [
+    "\\text{branches d'un même nœud : la somme vaut } 1",
+    "\\text{un chemin : on multiplie les probabilités}",
+    "P(\\text{pile puis pile}) = \\tfrac{1}{2} \\times \\tfrac{1}{2} = \\tfrac{1}{4}"
+   ],
+   "titre": "Multiplier le long d'un chemin, additionner entre chemins",
+   "type": "etape"
+  },
+  "axiomes": {
+   "kicker": "Les axiomes de Kolmogorov",
+   "note": "La dernière égalité vaut pour A et B disjoints. Complémentaire : P(Ā) = 1 − P(A).",
+   "tex": "P(\\Omega) = 1 \\qquad P(A) \\geq 0 \\qquad P(A \\cup B) = P(A) + P(B)",
+   "type": "formule"
+  },
+  "bayes": {
+   "kicker": "Le théorème de Bayes",
+   "note": "Le dénominateur P(B) se calcule par les probabilités totales.",
+   "tex": "P(A|B) = \\frac{P(B|A) \\times P(A)}{P(B)}",
+   "type": "formule"
+  },
+  "bayes_quinze": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Même mécanisme, autres chiffres",
+   "tex": [
+    "P(+) = 0{,}9 \\times 0{,}01 + 0{,}05 \\times 0{,}99 = 0{,}0585",
+    "P(M|+) = \\tfrac{0{,}009}{0{,}0585}",
+    "P(M|+) \\approx 0{,}154"
+   ],
+   "titre": "Prévalence un pour cent, sensibilité quatre-vingt-dix pour cent",
+   "type": "etape"
+  },
+  "cartes": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "venn"
+   },
+   "kicker": "Exemple · un jeu de cartes",
+   "tex": [
+    "P(B) = \\tfrac{26}{52} \\qquad P(A \\cap B) = \\tfrac{2}{52}",
+    "P(A|B) = \\tfrac{2/52}{26/52}",
+    "P(A|B) = \\tfrac{2}{26} = \\tfrac{1}{13}"
+   ],
+   "titre": "Un roi, sachant que la carte est rouge",
+   "type": "etape"
+  },
+  "compose_exercice": {
+   "kicker": "Entraînement · trois contextes, un même produit",
+   "tex": [
+    "P(\\text{deux lancers francs}) = 0{,}8 \\times 0{,}8 = 0{,}64",
+    "P(\\text{deux composants défectueux}) = 0{,}05^2 = 0{,}0025",
+    "P(\\text{pluie matin et après-midi}) = 0{,}3 \\times 0{,}6 = 0{,}18"
+   ],
+   "titre": "Indépendants ou conditionnés : choisir le bon produit",
+   "type": "etape"
+  },
+  "composee": {
+   "kicker": "Probabilités composées",
+   "note": "Si A et B sont indépendants, P(B|A) = P(B) : le produit se simplifie.",
+   "tex": "P(A \\cap B) = P(A) \\times P(B|A)",
+   "type": "formule"
+  },
+  "conditionnelle": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "venn"
+   },
+   "kicker": "Probabilité conditionnelle",
+   "note": "Condition : P(B) > 0. Savoir que B a eu lieu restreint l'univers à B.",
+   "tex": "P(A|B) = \\frac{P(A \\cap B)}{P(B)}",
+   "type": "formule"
+  },
+  "des_somme": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "grille_des_fig"
+   },
+   "kicker": "Exemple · deux dés équilibrés",
+   "tex": [
+    "|\\Omega| = 6 \\times 6 = 36",
+    "\\text{couples favorables : } (1,6), (2,5), (3,4), (4,3), (5,2), (6,1)",
+    "P(A) = \\tfrac{6}{36} = \\tfrac{1}{6}"
+   ],
+   "titre": "Obtenir une somme égale à sept",
+   "type": "etape"
+  },
+  "deux_enfants": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "venn"
+   },
+   "kicker": "Problème · le paradoxe des deux enfants",
+   "tex": [
+    "\\Omega = \\{FF, FG, GF, GG\\}",
+    "\\text{sachant au moins une fille : } \\{FF, FG, GF\\}",
+    "P(FF|\\text{au moins une fille}) = \\tfrac{1}{3}"
+   ],
+   "titre": "Au moins une fille : que reste-t-il ?",
+   "type": "etape"
+  },
+  "ex_indep_chiffres": {
+   "kicker": "Exemple · deux événements indépendants",
+   "tex": [
+    "P(A) = 0{,}4 \\qquad P(B) = 0{,}6 \\qquad P(A \\cap B) = 0{,}24",
+    "P(A \\cup B) = 0{,}4 + 0{,}6 - 0{,}24 = 0{,}76",
+    "P(A|B) = 0{,}4 = P(A)"
+   ],
+   "titre": "Intersection, union et conditionnelle",
+   "type": "etape"
+  },
+  "ex_indep_des": {
+   "kicker": "Exemple · un dé, deux événements",
+   "tex": [
+    "P(A) = \\tfrac{3}{6} = \\tfrac{1}{2} \\qquad P(B) = \\tfrac{3}{6} = \\tfrac{1}{2}",
+    "P(A \\cap B) = \\tfrac{2}{6} = \\tfrac{1}{3}",
+    "\\tfrac{1}{3} \\neq \\tfrac{1}{2} \\times \\tfrac{1}{2} = \\tfrac{1}{4} \\quad \\text{: dépendants}"
+   ],
+   "titre": "Pair, et supérieur à trois : dépendants",
+   "type": "etape"
+  },
+  "finance": {
+   "kicker": "Application · finance et diversification",
+   "tex": [
+    "P(\\text{deux actions en baisse}) = 0{,}20 \\times 0{,}20 = 0{,}04",
+    "P(\\text{trois actions en baisse}) = 0{,}15^3",
+    "0{,}15^3 = 0{,}003375"
+   ],
+   "titre": "Des pertes indépendantes se multiplient",
+   "type": "etape"
+  },
+  "incompat": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "venn"
+   },
+   "kicker": "Indépendance ou incompatibilité",
+   "tex": [
+    "\\text{incompatibles : } A \\cap B = \\varnothing",
+    "\\text{indépendants : } P(A \\cap B) = P(A) \\times P(B)",
+    "\\text{pair et impair : incompatibles, donc dépendants}"
+   ],
+   "titre": "Deux notions à ne jamais confondre",
+   "type": "etape"
+  },
+  "independance": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "grille_des_fig"
+   },
+   "kicker": "Indépendance de deux événements",
+   "note": "Savoir que B a eu lieu ne change rien à la probabilité de A.",
+   "tex": "P(A \\cap B) = P(A) \\times P(B) \\iff P(A|B) = P(A)",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "venn"
+   },
+   "kicker": "Introduction",
+   "texte": "Le hasard obéit à des lois : une information nouvelle change les probabilités, et ce cours apprend à calculer ce changement.",
+   "type": "phrase"
+  },
+  "medical_calcul": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Diagnostic médical · le calcul",
+   "tex": [
+    "P(M \\cap +) = 0{,}95 \\times 0{,}001 = 0{,}00095",
+    "P(\\overline{M} \\cap +) = 0{,}01 \\times 0{,}999 = 0{,}00999",
+    "P(+) = 0{,}00095 + 0{,}00999 = 0{,}01094"
+   ],
+   "titre": "Maladie rare : un malade sur mille",
+   "type": "etape"
+  },
+  "medical_resultat": {
+   "kicker": "Diagnostic médical · le résultat",
+   "note": "Test positif : environ 8,7 % de malades réels. Test négatif : VPN proche de 100 %.",
+   "tex": "P(M|+) = \\frac{0{,}00095}{0{,}01094} \\approx 0{,}087",
+   "type": "formule"
+  },
+  "medical_vocab": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Diagnostic médical · le vocabulaire",
+   "tex": [
+    "Se = P(+|M) \\qquad Sp = P(-|\\overline{M})",
+    "VPP = P(M|+) \\qquad VPN = P(\\overline{M}|-)"
+   ],
+   "titre": "Sensibilité, spécificité, valeur prédictive",
+   "type": "etape"
+  },
+  "methode": {
+   "etapes": [
+    "Nommer les événements avant tout calcul",
+    "Lire l'arbre : multiplier, puis additionner",
+    "Tester l'indépendance par le produit",
+    "Bayes : totales au dénominateur, toujours"
+   ],
+   "kicker": "La méthode en quatre gestes",
+   "type": "recap"
+  },
+  "recap": {
+   "etapes": [
+    "Conditionner : P(A|B) = P(A∩B) / P(B)",
+    "Composer : multiplier le long d'un chemin",
+    "Indépendance : l'intersection vaut le produit",
+    "Totales : décomposer selon une partition",
+    "Bayes : inverser, penser à la prévalence"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "retard": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Exemple · trois chemins, un retard",
+   "tex": [
+    "P(A) = 0{,}1 \\times 0{,}5 + 0{,}3 \\times 0{,}3 + 0{,}5 \\times 0{,}2",
+    "P(A) = 0{,}05 + 0{,}09 + 0{,}10",
+    "P(A) = 0{,}24"
+   ],
+   "titre": "Décomposer selon le chemin choisi",
+   "type": "etape"
+  },
+  "second_test": {
+   "kicker": "Et si le test est refait ?",
+   "tex": [
+    "P(++|M) = 0{,}95^2 \\qquad P(++|\\overline{M}) = 0{,}01^2",
+    "P(M \\cap ++) = 0{,}9025 \\times 0{,}001 = 0{,}0009025",
+    "P(M|++) \\approx 0{,}90"
+   ],
+   "titre": "Deux tests positifs indépendants changent tout",
+   "type": "etape"
+  },
+  "spam": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Application · intelligence artificielle",
+   "texte": "Un filtre anti-spam estime la probabilité qu'un message soit indésirable, sachant les mots qu'il contient.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Mathématique · Probabilités",
+   "sous": "Probabilités conditionnelles, indépendance, probabilités totales et théorème de Bayes",
+   "titre": "Savoir change les chances : conditionner, composer, inverser",
+   "type": "titre"
+  },
+  "totales": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "arbre_fig"
+   },
+   "kicker": "Formule des probabilités totales",
+   "note": "Les B_i forment une partition : disjoints, et leur réunion est tout l'univers.",
+   "tex": "P(A) = \\sum_{i=1}^{n} P(A|B_i) \\times P(B_i)",
+   "type": "formule"
+  },
+  "urne_composee": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "urne_fig"
+   },
+   "kicker": "Exemple · deux rouges sans remise",
+   "tex": [
+    "P(R_1) = \\tfrac{5}{8} \\qquad P(R_2|R_1) = \\tfrac{4}{7}",
+    "P(R_1 \\cap R_2) = \\tfrac{5}{8} \\times \\tfrac{4}{7}",
+    "P(R_1 \\cap R_2) = \\tfrac{20}{56} = \\tfrac{5}{14}"
+   ],
+   "titre": "Une urne de cinq rouges et trois bleues",
+   "type": "etape"
+  },
+  "urne_cond": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "urne_fig"
+   },
+   "kicker": "Exemple · une urne sans remise",
+   "tex": [
+    "\\text{urne : } 5 \\text{ rouges, } 3 \\text{ bleues}",
+    "\\text{première bleue retirée : il reste } 5 \\text{ rouges sur } 7",
+    "P(R_2|B_1) = \\tfrac{5}{7}"
+   ],
+   "titre": "La deuxième boule, sachant la première bleue",
+   "type": "etape"
+  },
+  "vocabulaire": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "venn"
+   },
+   "kicker": "Le vocabulaire du hasard",
+   "tex": [
+    "\\Omega = \\{1, 2, 3, 4, 5, 6\\} \\qquad A = \\{2, 4, 6\\}",
+    "P(\\overline{A}) = 1 - P(A)",
+    "\\overline{A \\cup B} = \\overline{A} \\cap \\overline{B} \\qquad \\overline{A \\cap B} = \\overline{A} \\cup \\overline{B}"
+   ],
+   "titre": "Univers, événements, complémentaire",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Conditionner et composer les probabilités"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : indépendance, probabilités totales et théorème de Bayes. Nous testerons quand deux événements s'ignorent, nous décomposerons un événement selon toutes ses causes possibles, puis nous inverserons le conditionnement pour arriver à l'exemple du diagnostic médical.",
+    "texte": "Partie 2 : indépendance, probabilités totales et Bayes."
+   },
+   "sous_titre": "Indépendance, probabilités totales et théorème de Bayes"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : Bayes en action. Nous verrons ce qu'un deuxième test positif change au diagnostic, puis comment l'indépendance protège un portefeuille en finance, avant un dernier problème qui piège l'intuition et la méthode finale du cours.",
+    "texte": "Partie 3 : confirmer un test, diversifier, et le paradoxe des deux enfants."
+   },
+   "sous_titre": "Bayes en action : confirmer, diversifier, raisonner"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux probabilités conditionnelles et à l'indépendance. Une information nouvelle change les chances qu'un événement se produise : nous allons apprendre à mesurer ce changement, à composer les probabilités le long d'un arbre, puis à inverser le raisonnement grâce au théorème de Bayes, jusqu'à son application la plus frappante, le diagnostic médical.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Conditionner, composer, inverser : le programme du cours."
+  },
+  {
+   "dit": "Le hasard semble imprévisible, et pourtant il obéit à des lois. Lancez une pièce un grand nombre de fois : la fréquence de pile se stabilise autour d'une valeur. Cette régularité permet de définir une probabilité, et tout le cours repose sur une idée simple : quand on apprend quelque chose, l'univers des possibles se rétrécit, et les probabilités doivent être recalculées dans cet univers réduit.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Le hasard obéit à des lois : savoir rétrécit l'univers."
+  },
+  {
+   "dit": "Posons le vocabulaire. Une expérience aléatoire est une expérience dont on connaît tous les résultats possibles sans pouvoir prévoir lequel sortira. Leur ensemble forme l'univers, noté oméga. Un événement est un sous-ensemble de l'univers : pour un dé, l'événement pair regroupe deux, quatre et six. Le complémentaire d'un événement, c'est sa négation, et les lois de De Morgan relient union, intersection et complémentaires.",
+   "ecran": "vocabulaire",
+   "id": "p03",
+   "texte": "Univers Ω, événements, complémentaire, De Morgan."
+  },
+  {
+   "dit": "Trois axiomes, dus à Kolmogorov, fondent toutes les règles du cours. Une probabilité est toujours positive ou nulle. La probabilité de l'univers entier vaut un : quelque chose se produit forcément. Et pour deux événements disjoints, qui ne peuvent pas arriver ensemble, la probabilité de leur union est la somme de leurs probabilités. Première conséquence immédiate : la probabilité du complémentaire vaut un moins la probabilité de l'événement.",
+   "ecran": "axiomes",
+   "id": "p04",
+   "texte": "Kolmogorov : positivité, total un, additivité si disjoints."
+  },
+  {
+   "dit": "Premier calcul complet : on lance deux dés équilibrés, quelle est la probabilité d'obtenir une somme égale à sept ? L'univers compte six fois six couples, soit trente-six résultats équiprobables. Les couples favorables sont au nombre de six : un et six, deux et cinq, trois et quatre, et leurs symétriques. La probabilité vaut donc six sur trente-six, c'est-à-dire un sixième.",
+   "ecran": "des_somme",
+   "id": "p05",
+   "texte": "Deux dés, somme sept : 6 cas sur 36, soit 1/6."
+  },
+  {
+   "dit": "Entrons dans le cœur du cours. La probabilité conditionnelle de a sachant b répond à cette question : quelle est la probabilité de a, maintenant que l'on sait que b s'est produit ? Elle se calcule en divisant la probabilité que a et b se produisent ensemble par la probabilité de b, à condition que cette dernière soit strictement positive. Savoir, c'est restreindre l'univers à b, puis mesurer la part de a dans ce nouvel univers.",
+   "ecran": "conditionnelle",
+   "id": "p06",
+   "texte": "P(A|B) = P(A∩B) / P(B), si P(B) > 0."
+  },
+  {
+   "dit": "Exemple avec un jeu de cinquante-deux cartes. On tire une carte, et on apprend qu'elle est rouge : quelle est la probabilité que ce soit un roi ? Il y a vingt-six cartes rouges, et parmi elles deux rois. La formule donne deux sur cinquante-deux divisé par vingt-six sur cinquante-deux, soit deux sur vingt-six, c'est-à-dire un treizième. Remarquez que la condition a bien restreint l'univers aux seules cartes rouges.",
+   "ecran": "cartes",
+   "id": "p07",
+   "texte": "Un roi sachant rouge : 2/26, soit 1/13."
+  },
+  {
+   "dit": "Autre exemple, dans une urne de cinq boules rouges et trois bleues, tirées sans remise. Sachant que la première boule tirée est bleue, quelle est la probabilité que la deuxième soit rouge ? La bleue est sortie et ne revient pas : il reste sept boules, dont les cinq rouges intactes. La probabilité cherchée vaut donc cinq septièmes. Le conditionnement, ici, se lit directement dans l'urne transformée par la première information.",
+   "ecran": "urne_cond",
+   "id": "p08",
+   "texte": "Première bleue retirée : deuxième rouge à 5/7."
+  },
+  {
+   "dit": "Pour organiser ces calculs en plusieurs étapes, on dessine un arbre de probabilités. Chaque nœud se partage en branches qui portent des probabilités conditionnelles, et les branches issues d'un même nœud totalisent toujours un. Pour suivre un chemin complet, on multiplie les probabilités rencontrées : pile puis pile, par exemple, vaut un demi fois un demi, soit un quart. Pour réunir plusieurs chemins, on additionne leurs probabilités.",
+   "ecran": "arbre",
+   "id": "p09",
+   "texte": "Arbre : multiplier le long d'un chemin."
+  },
+  {
+   "dit": "L'arbre repose sur le principe des probabilités composées : la probabilité que a et b se produisent tous les deux vaut la probabilité de a, multipliée par la probabilité de b sachant a. Autrement dit, on avance étape par étape, en tenant compte à chaque fois de ce qui s'est déjà produit. Si les événements sont indépendants, la condition ne change rien et le produit devient simplement celui des deux probabilités.",
+   "ecran": "composee",
+   "id": "p10",
+   "texte": "P(A∩B) = P(A) × P(B|A) : avancer étape par étape."
+  },
+  {
+   "dit": "Application complète : dans l'urne de cinq rouges et trois bleues, quelle est la probabilité de tirer deux rouges de suite, sans remise ? La première rouge sort avec probabilité cinq huitièmes. Il reste alors quatre rouges sur sept boules : la deuxième rouge, sachant la première, vaut quatre septièmes. On multiplie le long du chemin : cinq huitièmes fois quatre septièmes donne vingt sur cinquante-six, soit cinq quatorzièmes.",
+   "ecran": "urne_composee",
+   "id": "p11",
+   "texte": "Deux rouges sans remise : 5/8 × 4/7 = 5/14."
+  },
+  {
+   "dit": "Deux événements sont indépendants quand la réalisation de l'un n'apprend strictement rien sur l'autre. La définition se teste par un produit : la probabilité de leur intersection doit égaler le produit de leurs probabilités. De façon équivalente, la probabilité de a sachant b doit rester égale à la probabilité de a. Deux lancers d'une même pièce sont indépendants : le second lancer ignore complètement le premier.",
+   "ecran": "independance",
+   "id": "p12",
+   "texte": "Indépendants : l'intersection vaut le produit."
+  },
+  {
+   "dit": "Attention, l'intuition trompe parfois : testons sur un dé. Soit a l'événement obtenir un nombre pair, et b l'événement obtenir un nombre supérieur à trois. Chacun a pour probabilité un demi. Leur intersection regroupe quatre et six, donc deux cas sur six, soit un tiers. Or le produit des probabilités vaut un quart. Un tiers n'est pas un quart : les événements sont dépendants, savoir que le nombre est pair change bien la probabilité qu'il dépasse trois.",
+   "ecran": "ex_indep_des",
+   "id": "p13",
+   "texte": "1/3 contre 1/4 : pair et plus de trois sont dépendants."
+  },
+  {
+   "dit": "Ne confondez surtout pas indépendance et incompatibilité. Deux événements incompatibles ne peuvent jamais se produire ensemble : leur intersection est vide, comme pair et impair sur un même lancer de dé. Des événements indépendants, eux, peuvent très bien arriver ensemble, avec une probabilité qui est le produit des deux. Et remarquez le piège : deux événements incompatibles de probabilités non nulles sont toujours dépendants, puisque apprendre que l'un s'est produit annule les chances de l'autre.",
+   "ecran": "incompat",
+   "id": "p14",
+   "texte": "Incompatibles : jamais ensemble. Indépendants : sans influence."
+  },
+  {
+   "dit": "Exercice complet sur l'indépendance : deux événements indépendants ont pour probabilités zéro virgule quatre et zéro virgule six. Leur intersection vaut le produit, zéro virgule vingt-quatre. Leur union s'obtient en additionnant, puis en retirant l'intersection comptée deux fois : zéro virgule soixante-seize. Et la probabilité du premier sachant le second reste zéro virgule quatre, exactement sa probabilité de départ : c'est la signature de l'indépendance.",
+   "ecran": "ex_indep_chiffres",
+   "id": "p15",
+   "texte": "Indépendants : ∩ = 0,24, ∪ = 0,76, P(A|B) = P(A)."
+  },
+  {
+   "dit": "Comment calculer la probabilité d'un événement qui peut arriver par plusieurs chemins ? On le décompose selon une partition de l'univers : des événements disjoints qui, réunis, couvrent toutes les possibilités. La formule des probabilités totales additionne alors, pour chaque cause possible, la probabilité conditionnelle de l'événement sachant cette cause, multipliée par la probabilité de la cause. C'est exactement la lecture d'un arbre : un produit par chemin, puis une somme.",
+   "ecran": "totales",
+   "id": "p16",
+   "texte": "Probabilités totales : décomposer selon une partition."
+  },
+  {
+   "dit": "Exemple : trois chemins mènent à une destination, choisis avec des probabilités un demi, trois dixièmes et un cinquième. Les risques d'arriver en retard valent respectivement un dixième, trois dixièmes et un demi. On applique les probabilités totales : un dixième fois un demi, plus trois dixièmes fois trois dixièmes, plus un demi fois un cinquième. Cela donne cinq centièmes, plus neuf centièmes, plus dix centièmes, soit vingt-quatre centièmes de retard au total.",
+   "ecran": "retard",
+   "id": "p17",
+   "texte": "Retard total : 0,05 + 0,09 + 0,10 = 0,24."
+  },
+  {
+   "dit": "Le théorème de Bayes inverse le conditionnement. Souvent, on connaît la probabilité de l'effet sachant la cause, mais on veut celle de la cause sachant l'effet observé. Bayes répond : la probabilité de a sachant b vaut la probabilité de b sachant a, multipliée par la probabilité de a, le tout divisé par la probabilité de b. Et ce dénominateur, en pratique, se calcule presque toujours grâce aux probabilités totales.",
+   "ecran": "bayes",
+   "id": "p18",
+   "texte": "Bayes inverse le conditionnement."
+  },
+  {
+   "dit": "Voici l'exemple central du cours : un test de dépistage. La sensibilité est la probabilité que le test soit positif chez un malade. La spécificité est la probabilité qu'il soit négatif chez une personne saine. Mais le patient ne demande ni l'une ni l'autre : testé positif, il veut connaître la probabilité d'être réellement malade. C'est la valeur prédictive positive, le conditionnement inverse de la sensibilité, et Bayes va la calculer.",
+   "ecran": "medical_vocab",
+   "id": "p19",
+   "texte": "Sensibilité, spécificité, valeur prédictive : trois rôles."
+  },
+  {
+   "dit": "Prenons les chiffres : la maladie touche une personne sur mille, la sensibilité vaut quatre-vingt-quinze pour cent, et la spécificité quatre-vingt-dix-neuf pour cent, donc un pour cent de faux positifs chez les personnes saines. Multiplions le long de l'arbre. Malade et positif : quatre-vingt-quinze pour cent d'un millième, soit zéro virgule zéro zéro zéro quatre-vingt-quinze. Sain et positif : un pour cent de zéro virgule neuf cent quatre-vingt-dix-neuf, soit environ zéro virgule zéro un. Au total, un test positif a une probabilité d'environ zéro virgule zéro onze.",
+   "ecran": "medical_calcul",
+   "id": "p20",
+   "texte": "Positifs : 0,00095 vrais, 0,00999 faux, total 0,01094."
+  },
+  {
+   "dit": "Bayes donne alors le verdict : parmi les tests positifs, la part des vrais malades vaut zéro virgule zéro zéro zéro quatre-vingt-quinze divisé par zéro virgule zéro un zéro neuf quatre, soit environ zéro virgule zéro quatre-vingt-sept. Autrement dit, environ huit virgule sept pour cent seulement. Plus de neuf positifs sur dix sont de fausses alertes, parce que les personnes saines sont mille fois plus nombreuses que les malades. En revanche, un test négatif rassure presque complètement.",
+   "ecran": "medical_resultat",
+   "id": "p21",
+   "texte": "Positif : seulement 8,7 % de malades réels."
+  },
+  {
+   "dit": "Et si le même test, indépendant du premier, est refait et donne encore un résultat positif ? Les probabilités se composent : deux positifs chez un malade valent la sensibilité au carré, et chez une personne saine, le taux de faux positifs au carré, devenu minuscule. Bayes donne alors une probabilité d'être malade d'environ quatre-vingt-dix pour cent. Le deuxième test a presque renversé la conclusion : voilà pourquoi un dépistage positif se confirme toujours par un second examen.",
+   "ecran": "second_test",
+   "id": "p22",
+   "texte": "Deux positifs indépendants : environ 90 % de malades."
+  },
+  {
+   "dit": "Vérifions que le mécanisme est bien compris avec d'autres chiffres des leçons : une maladie présente chez un pour cent de la population, un test qui détecte quatre-vingt-dix pour cent des malades et donne cinq pour cent de faux positifs. La probabilité d'un test positif vaut zéro virgule zéro cinq huit cinq, et celle d'être malade sachant le test positif environ zéro virgule cent cinquante-quatre, soit quinze virgule quatre pour cent. Même avec un bon test, la rareté de la maladie plafonne la conclusion.",
+   "ecran": "bayes_quinze",
+   "id": "p23",
+   "texte": "Autre réglage : positif, donc 15,4 % de malades."
+  },
+  {
+   "dit": "L'indépendance sert aussi hors des urnes. En finance, si deux actions ont chacune une probabilité de vingt pour cent de perdre de la valeur, et si leurs baisses sont indépendantes, la probabilité qu'elles baissent toutes les deux vaut vingt pour cent fois vingt pour cent, soit quatre pour cent. Avec trois actions indépendantes à quinze pour cent, la baisse simultanée tombe à environ zéro virgule trois pour cent : c'est le principe même de la diversification d'un portefeuille.",
+   "ecran": "finance",
+   "id": "p24",
+   "texte": "Diversification : des baisses indépendantes se multiplient."
+  },
+  {
+   "dit": "Les probabilités conditionnelles travaillent aussi dans les ordinateurs. Un filtre anti-spam apprend, sur des milliers de messages déjà classés, la fréquence de certains mots dans les courriers indésirables et dans les courriers légitimes. Quand un nouveau message arrive, le théorème de Bayes combine ces fréquences avec la proportion de départ des courriers indésirables, et estime la probabilité que ce message précis soit un spam, sachant les mots qu'il contient. Même formule qu'au cabinet médical, autre terrain d'application.",
+   "ecran": "spam",
+   "id": "p25",
+   "texte": "Filtres anti-spam : Bayes classe les messages."
+  },
+  {
+   "dit": "Un dernier entraînement sur les probabilités composées, dans trois contextes différents. Un joueur de basket réussit un lancer franc avec une probabilité de zéro virgule huit : ses deux lancers étant indépendants, il réussit les deux avec une probabilité de zéro virgule soixante-quatre. Deux composants électroniques, défectueux chacun avec une probabilité de zéro virgule zéro cinq, le sont tous les deux avec une probabilité de zéro virgule zéro zéro vingt-cinq. Et quand la pluie du matin rend celle de l'après-midi plus probable, on multiplie zéro virgule trois par la conditionnelle zéro virgule six : zéro virgule dix-huit.",
+   "ecran": "compose_exercice",
+   "id": "p26",
+   "texte": "Lancers, composants, pluie : 0,64, 0,0025, 0,18."
+  },
+  {
+   "dit": "Dernier problème, un classique qui piège l'intuition : une famille a deux enfants, et l'on sait qu'au moins l'un des deux est une fille. Quelle est la probabilité que les deux soient des filles ? L'univers compte quatre couples équiprobables. La condition élimine le couple de deux garçons : il reste fille et fille, fille et garçon, garçon et fille. Un seul cas sur trois convient : la réponse est un tiers, et non un demi comme on le répond trop vite.",
+   "ecran": "deux_enfants",
+   "id": "p27",
+   "texte": "Au moins une fille : deux filles avec probabilité 1/3."
+  },
+  {
+   "dit": "Retenez la méthode en quatre gestes. D'abord, nommer clairement les événements avant tout calcul. Ensuite, lire l'arbre correctement : multiplier le long d'un chemin, additionner entre les chemins. Puis tester l'indépendance par le produit, sans jamais la confondre avec l'incompatibilité. Enfin, pour inverser un conditionnement, appliquer Bayes en calculant toujours son dénominateur par les probabilités totales.",
+   "ecran": "methode",
+   "id": "p28",
+   "texte": "La méthode en quatre gestes."
+  },
+  {
+   "dit": "Pour conclure, gardez l'enchaînement complet : conditionner, c'est restreindre l'univers ; composer, c'est multiplier le long des chemins ; l'indépendance se reconnaît au produit ; les probabilités totales décomposent selon toutes les causes ; et Bayes inverse le raisonnement, à condition de ne jamais oublier la fréquence de départ, la prévalence dans l'exemple médical. C'est elle qui, plus que la qualité du test, décide de ce qu'un résultat positif signifie vraiment.",
+   "ecran": "recap",
+   "id": "p29",
+   "texte": "À retenir : la prévalence décide du sens d'un test."
+  }
+ ],
+ "titre": "Savoir change les chances : conditionner, composer, inverser"
+}
