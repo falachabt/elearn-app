@@ -5242,6 +5242,295 @@ const FIG = {
     corps += mot(460, 170, '1', { t: 16 }) + mot(504, 142, 'a', { t: 19, a: 'start' });
     return svgBoite(corps + mot(500, 296, 'même pente a ; b décale la droite sur l\u2019axe des ordonnées', { t: 21 }));
   },
+  tableau_variations_fig(t) {
+    t = prog(t);
+    let corps = `<rect x="110" y="52" width="790" height="196" fill="white" fill-opacity=".45" stroke="currentColor" stroke-width="3"/>`;
+    corps += trait(110, 118, 900, 118, t, { w: 3 }) + trait(110, 168, 900, 168, t, { w: 3 }) + trait(216, 52, 216, 248, t, { w: 3 });
+    corps += trait(478, 52, 478, 132, t, { w: 3 }) + trait(478, 158, 478, 248, t, { w: 3 });
+    corps += trait(688, 52, 688, 132, t, { w: 3 }) + trait(688, 158, 688, 248, t, { w: 3 });
+    corps += mot(163, 94, 'x', { t: 24 }) + mot(320, 94, '−∞', { t: 22 }) + mot(478, 94, '0', { t: 22 }) + mot(688, 94, '2', { t: 22 }) + mot(838, 94, '+∞', { t: 22 });
+    corps += mot(163, 152, 'f′', { t: 24, c: '#1A75FF' }) + mot(352, 152, '+', { t: 26, c: '#1A75FF' }) + mot(478, 152, '0', { t: 22 }) + mot(583, 152, '−', { t: 26, c: '#E8604C' }) + mot(688, 152, '0', { t: 22 }) + mot(800, 152, '+', { t: 26, c: '#1A75FF' });
+    corps += mot(163, 214, 'f', { t: 24 });
+    corps += trait(268, 226, 448, 186, t, { w: 4, c: '#10B981' }) + pointe(456, 184, -24, '#10B981');
+    corps += mot(478, 178, '2', { t: 22 });
+    corps += trait(508, 190, 658, 228, t, { w: 4, c: '#E8604C' }) + pointe(666, 230, 24, '#E8604C');
+    corps += mot(688, 240, '−2', { t: 22 });
+    corps += trait(718, 226, 852, 188, t, { w: 4, c: '#10B981' }) + pointe(860, 186, -24, '#10B981');
+    return svgBoite(corps + mot(500, 292, 'le signe de f′, puis les flèches de f', { t: 21 }));
+  },
+  enclos_fig(t) {
+    t = prog(t);
+    let corps = `<rect x="238" y="52" width="20" height="196" fill="currentColor" fill-opacity=".8"/>`;
+    for (let y = 66; y < 244; y += 22) corps += trait(216, y + 14, 236, y, t, { w: 3 });
+    corps += mot(196, 158, 'le mur', { t: 21, a: 'end' });
+    corps += trait(258, 66, 726, 66, t, { w: 5, c: '#1A75FF', tiret: '12 8' });
+    corps += trait(726, 66, 726, 238, t, { w: 5, c: '#1A75FF', tiret: '12 8' });
+    corps += trait(258, 238, 726, 238, t, { w: 5, c: '#1A75FF', tiret: '12 8' });
+    corps += mot(492, 50, 'x', { t: 24, c: '#1A75FF' }) + mot(492, 272, 'x', { t: 24, c: '#1A75FF' });
+    corps += mot(746, 160, 'y = 100 − 2x', { t: 22, a: 'start', c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 296, 'trois côtés à clôturer : x, x et 100 − 2x', { t: 21 }));
+  },
+  boite_carton_fig(t) {
+    t = prog(t);
+    let corps = `<rect x="270" y="30" width="400" height="216" fill="white" fill-opacity=".4" stroke="currentColor" stroke-width="4"/>`;
+    const coins = [[270, 30], [596, 30], [270, 172], [596, 172]];
+    for (const [cx, cy] of coins) {
+      corps += `<rect x="${cx}" y="${cy}" width="74" height="74" fill="#E8604C" fill-opacity=".25" stroke="#E8604C" stroke-width="3"/>`;
+      for (let i = 12; i < 74; i += 15) corps += trait(cx + i, cy, cx, cy + i, t, { w: 2, c: '#E8604C' });
+    }
+    corps += `<rect x="344" y="104" width="252" height="68" fill="#1A75FF" fill-opacity=".12" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += trait(344, 30, 344, 246, t, { w: 3, tiret: '8 6', c: '#1A75FF' }) + trait(596, 30, 596, 246, t, { w: 3, tiret: '8 6', c: '#1A75FF' });
+    corps += trait(270, 104, 670, 104, t, { w: 3, tiret: '8 6', c: '#1A75FF' }) + trait(270, 172, 670, 172, t, { w: 3, tiret: '8 6', c: '#1A75FF' });
+    corps += mot(310, 24, 'x', { t: 22, c: '#E8604C' }) + mot(470, 146, 'la base : 30 − 2x', { t: 21, c: '#1A75FF' });
+    corps += mot(470, 22, 'feuille carrée de 30 cm', { t: 20 });
+    return svgBoite(corps + mot(500, 292, 'on découpe quatre carrés de côté x, puis on replie', { t: 21 }));
+  },
+  convexite_fig(t) {
+    t = prog(t);
+    let corps = '';
+    let bol = '';
+    for (let k = 0; k <= 24; k++) { const x = 150 + k * 12.5, u = (k - 12) / 12; bol += `${Math.round(x)},${Math.round(204 - 108 * u * u)} `; }
+    corps += `<polyline points="${bol}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(178, 100, 422, 100, t, { w: 4, c: '#1A75FF' });
+    corps += trait(188, 147, 288, 207, t, { w: 4, c: '#10B981' }) + trait(312, 207, 412, 147, t, { w: 4, c: '#10B981' });
+    corps += mot(300, 80, 'corde au-dessus', { t: 19, c: '#1A75FF' }) + mot(300, 268, 'convexe : f″ > 0', { t: 21 });
+    let dome = '';
+    for (let k = 0; k <= 24; k++) { const x = 560 + k * 12.5, u = (k - 12) / 12; dome += `${Math.round(x)},${Math.round(96 + 108 * u * u)} `; }
+    corps += `<polyline points="${dome}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(588, 167, 832, 167, t, { w: 4, c: '#1A75FF' });
+    corps += trait(585, 159, 685, 87, t, { w: 4, c: '#10B981' }) + trait(735, 87, 835, 159, t, { w: 4, c: '#10B981' });
+    corps += mot(710, 200, 'corde au-dessous', { t: 19, c: '#1A75FF' }) + mot(710, 268, 'concave : f″ < 0', { t: 21 });
+    return svgBoite(corps + mot(500, 296, 'convexe : sous les cordes, au-dessus des tangentes', { t: 20 }));
+  },
+  inflexion_fig(t) {
+    t = prog(t);
+    let pts = '';
+    for (let k = 0; k <= 40; k++) {
+      const u = -0.7 + k * (2.9 / 40);
+      const fx = u * u * u - 3 * u * u + 2;
+      pts += `${Math.round(500 + 148 * (u - 1))},${Math.round(150 - 55 * fx)} `;
+    }
+    let corps = `<polyline points="${pts}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(430, 72, 570, 228, t, { w: 4, c: '#1A75FF', tiret: '10 7' });
+    corps += `<circle cx="500" cy="150" r="9" fill="#1A75FF" stroke="white" stroke-width="3"/>`;
+    corps += mot(524, 140, 'I(1 ; 0)', { t: 22, a: 'start', c: '#1A75FF' });
+    corps += mot(262, 60, 'concave ∩', { t: 21 }) + mot(748, 262, 'convexe ∪', { t: 21 });
+    corps += mot(600, 96, 'la tangente', { t: 19, a: 'start', c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 296, 'au point d\u2019inflexion, la courbe traverse sa tangente', { t: 20 }));
+  },
+  parabole_osculatrice_fig(t) {
+    t = prog(t);
+    const ox = 300, oy = 250;
+    let courbe = '', parab = '';
+    for (let k = 0; k <= 40; k++) {
+      const x = -0.4 + k * (2.6 / 40);
+      courbe += `${Math.round(ox + 190 * x)},${Math.round(oy - 62 * (Math.exp(0.55 * x) - 1))} `;
+      parab += `${Math.round(ox + 190 * x)},${Math.round(oy - 62 * (0.55 * x + 0.151 * x * x))} `;
+    }
+    let corps = trait(140, oy, 920, oy, t, { w: 4 }) + pointe(920, oy, 0, 'currentColor') + trait(ox, 288, ox, 26, t, { w: 4 }) + pointe(ox, 26, -90, 'currentColor');
+    corps += `<polyline points="${courbe}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += `<polyline points="${parab}" fill="none" stroke="#10B981" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(224, 264, 718, 176, t, { w: 4, c: '#1A75FF' });
+    corps += `<circle cx="${ox}" cy="${oy}" r="8" fill="currentColor"/>`;
+    corps += mot(ox - 16, oy - 14, 'a', { t: 23, a: 'end' });
+    corps += mot(756, 92, 'la courbe', { t: 20, a: 'start', c: '#E8604C' });
+    corps += mot(756, 142, 'la parabole du DL₂', { t: 20, a: 'start', c: '#10B981' });
+    corps += mot(756, 192, 'la tangente', { t: 20, a: 'start', c: '#1A75FF' });
+    return svgBoite(corps + mot(420, 296, 'la parabole épouse la courbe mieux que la tangente', { t: 20 }));
+  },
+  entre_courbes_fig(t) {
+    t = prog(t);
+    const ox = 170, oy = 246;
+    const F = v => 200 - 78 * Math.sin(Math.PI * v / 6.2);
+    const G = v => 200 - 30 * Math.sin(Math.PI * v / 6.2);
+    let haut = '', bas = '';
+    for (let k = 0; k <= 30; k++) { const x = k * (560 / 30); haut += `${Math.round(ox + 60 + x)},${Math.round(F(x / 90))} `; bas += `${Math.round(ox + 60 + x)},${Math.round(G(x / 90))} `; }
+    let corps = trait(110, oy, 930, oy, t, { w: 4 }) + pointe(930, oy, 0, 'currentColor') + trait(ox, 282, ox, 30, t, { w: 4 }) + pointe(ox, 30, -90, 'currentColor');
+    corps += `<polygon points="${haut} ${bas.split(' ').filter(Boolean).reverse().join(' ')}" fill="#1A75FF" fill-opacity=".16"/>`;
+    corps += `<polyline points="${haut}" fill="none" stroke="#1A75FF" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += `<polyline points="${bas}" fill="none" stroke="#10B981" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(ox + 60, 60, ox + 60, oy, t, { w: 3, tiret: '7 6' }) + trait(ox + 620, 60, ox + 620, oy, t, { w: 3, tiret: '7 6' });
+    corps += mot(ox + 60, 274, 'a', { t: 23 }) + mot(ox + 620, 274, 'b', { t: 23 });
+    corps += mot(500, 108, 'f, dessus', { t: 21, c: '#1A75FF' }) + mot(500, 176, 'g, dessous', { t: 21, c: '#10B981' });
+    return svgBoite(corps + mot(500, 296, 'aire entre deux courbes : ∫ de a à b de (f − g)', { t: 20 }));
+  },
+  valeur_moyenne_fig(t) {
+    t = prog(t);
+    const ox = 170, oy = 240;
+    let courbe = '';
+    for (let k = 0; k <= 36; k++) { const x = k * (600 / 36); courbe += `${Math.round(ox + 70 + x)},${Math.round(168 - 74 * Math.sin(x / 105) - x * 0.055)} `; }
+    let corps = trait(110, oy, 930, oy, t, { w: 4 }) + pointe(930, oy, 0, 'currentColor') + trait(ox, 284, ox, 30, t, { w: 4 }) + pointe(ox, 30, -90, 'currentColor');
+    corps += `<path d="M ${ox + 70} ${oy} L ${courbe.trim().split(/\s+/).join(' L ')} L ${ox + 670} ${oy} Z" fill="#10B981" fill-opacity=".14"/>`;
+    corps += `<rect x="${ox + 70}" y="128" width="600" height="${oy - 128}" fill="#1A75FF" fill-opacity=".13" stroke="#1A75FF" stroke-width="4"/>`;
+    corps += `<polyline points="${courbe}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(ox + 70, 44, ox + 70, oy, t, { w: 3, tiret: '7 6' }) + trait(ox + 670, 44, ox + 670, oy, t, { w: 3, tiret: '7 6' });
+    corps += mot(ox + 70, 270, 'a', { t: 23 }) + mot(ox + 670, 270, 'b', { t: 23 });
+    corps += mot(ox + 44, 138, 'f_moy', { t: 21, a: 'end', c: '#1A75FF' });
+    corps += mot(560, 196, 'même aire', { t: 20, c: '#10B981' });
+    return svgBoite(corps + mot(500, 296, 'la hauteur du rectangle égale l\u2019aire sous la courbe', { t: 20 }));
+  },
+  logistique_fig(t) {
+    t = prog(t);
+    const ox = 170, oy = 244;
+    let pts = '';
+    for (let k = 0; k <= 44; k++) { const x = k * (640 / 44); const L = 1 / (1 + Math.exp(-(x - 320) / 74)); pts += `${Math.round(ox + 60 + x)},${Math.round(218 - 168 * L)} `; }
+    let corps = trait(110, oy, 930, oy, t, { w: 4 }) + pointe(930, oy, 0, 'currentColor') + trait(ox, 284, ox, 26, t, { w: 4 }) + pointe(ox, 26, -90, 'currentColor');
+    corps += trait(ox + 60, 50, ox + 760, 50, t, { w: 3, tiret: '8 6', c: '#B8860B' });
+    corps += mot(ox + 776, 58, 'K', { t: 24, a: 'start', c: '#B8860B' });
+    corps += `<polyline points="${pts}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>`;
+    corps += trait(430, 196, 670, 82, t, { w: 4, c: '#1A75FF' });
+    corps += `<circle cx="550" cy="134" r="8" fill="#1A75FF" stroke="white" stroke-width="3"/>`;
+    corps += mot(566, 168, 'inflexion à K/2', { t: 20, a: 'start', c: '#1A75FF' });
+    corps += mot(ox + 40, 214, 'P₀', { t: 21, a: 'end' });
+    corps += mot(330, 122, 'départ exponentiel', { t: 20, c: '#E8604C' });
+    return svgBoite(corps + mot(500, 296, 'départ exponentiel, inflexion à K/2, puis le plafond K', { t: 20 }));
+  },
+  cube_diagonales_fig(t) {
+    t = prog(t);
+    const A = [300, 255], B = [540, 255], C = [540, 105], D = [300, 105], E = [390, 200], F = [630, 200], G = [630, 50], H = [390, 50];
+    const aretes = [[A, B], [B, C], [C, D], [D, A], [E, F], [F, G], [G, H], [H, E], [A, E], [B, F], [C, G], [D, H]];
+    let corps = '';
+    for (const [p1, p2] of aretes) corps += trait(p1[0], p1[1], p2[0], p2[1], t, { w: 3 });
+    corps += trait(A[0], A[1], G[0], G[1], t, { w: 5, c: '#E8604C' });
+    corps += trait(B[0], B[1], H[0], H[1], t, { w: 5, c: '#1A75FF' });
+    corps += `<circle cx="465" cy="152" r="8" fill="#B8860B" stroke="white" stroke-width="3"/>`;
+    corps += mot(486, 138, 'θ', { t: 26, a: 'start', c: '#B8860B' });
+    const noms = [[A, 'A', -14, 268], [B, 'B', 552, 268], [C, 'C', 552, 100], [D, 'D', 288, 100], [E, 'E', 378, 222], [F, 'F', 642, 222], [G, 'G', 642, 46], [H, 'H', 378, 46]];
+    for (const [p, n, lx, ly] of noms) corps += mot(lx, ly, n, { t: 20, a: lx < p[0] ? 'end' : 'start' });
+    corps += mot(330, 292, 'AG en rouge, BH en bleu', { t: 19, c: '#E8604C' });
+    return svgBoite(corps + mot(690, 292, 'cos θ = 1/3', { t: 20, c: '#B8860B' }));
+  },
+  distance_point_droite_fig(t) {
+    t = prog(t);
+    let corps = trait(180, 230, 700, 80, t, { w: 5, c: '#1A75FF' }) + pointe(708, 78, -16, '#1A75FF');
+    corps += mot(168, 252, 'A', { t: 22, a: 'end' }) + mot(676, 118, 'u', { t: 23, c: '#1A75FF' });
+    corps += trait(430, 60, 456, 150, t, { w: 4, c: '#10B981', tiret: '9 6' });
+    corps += `<path d="M 441 154 L 436 139 L 451 135" fill="none" stroke="#10B981" stroke-width="3"/>`;
+    corps += `<circle cx="430" cy="60" r="9" fill="#E8604C" stroke="white" stroke-width="3"/>`;
+    corps += `<circle cx="456" cy="150" r="7" fill="#10B981" stroke="white" stroke-width="2"/>`;
+    corps += mot(430, 40, 'M₀', { t: 23, c: '#E8604C' }) + mot(474, 172, 'H', { t: 22, a: 'start', c: '#10B981' });
+    corps += mot(424, 108, 'd', { t: 24, a: 'end', c: '#10B981' });
+    corps += mot(250, 130, 'la droite D', { t: 20, c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 296, 'la distance de M₀ à D : la longueur M₀H, perpendiculaire', { t: 20 }));
+  },
+  droites_gauches_fig(t, o) {
+    t = prog(t);
+    o = o || {};
+    const F1 = [250, 120], F2 = [560, 120], F3 = [560, 260], F4 = [250, 260], B1 = [360, 60], B2 = [670, 60], B3 = [670, 200], B4 = [360, 200];
+    const aretes = [[F1, F2], [F2, F3], [F3, F4], [F4, F1], [B1, B2], [B2, B3], [B3, B4], [B4, B1], [F1, B1], [F2, B2], [F3, B3], [F4, B4]];
+    let corps = '';
+    for (const [p1, p2] of aretes) corps += trait(p1[0], p1[1], p2[0], p2[1], t, { w: 2, c: '#999999' });
+    corps += trait(262, 138, 664, 78, t, { w: 5, c: '#1A75FF' }) + pointe(672, 77, -8, '#1A75FF');
+    corps += trait(348, 252, 724, 148, t, { w: 5, c: '#E8604C' }) + pointe(732, 146, -14, '#E8604C');
+    corps += mot(252, 128, 'D₁', { t: 22, a: 'end', c: '#1A75FF' }) + mot(690, 66, 'u', { t: 22, c: '#1A75FF' });
+    corps += mot(338, 276, 'D₂', { t: 22, a: 'end', c: '#E8604C' }) + mot(742, 140, 'v', { t: 22, a: 'start', c: '#E8604C' });
+    if (o.perpendiculaire) {
+      corps += trait(472, 110, 524, 204, t, { w: 5, c: '#10B981' });
+      corps += `<circle cx="472" cy="110" r="6" fill="#10B981"/>` + `<circle cx="524" cy="204" r="6" fill="#10B981"/>`;
+      corps += mot(540, 152, 'd', { t: 24, a: 'start', c: '#10B981' });
+      return svgBoite(corps + mot(500, 296, 'la perpendiculaire commune mesure la distance', { t: 20 }));
+    }
+    return svgBoite(corps + mot(500, 296, 'ni sécantes, ni parallèles : des droites gauches', { t: 20 }));
+  },
+  percement_fig(t) {
+    t = prog(t);
+    let corps = `<polygon points="240,190 700,150 800,235 340,275" fill="#1A75FF" fill-opacity=".10" stroke="#1A75FF" stroke-width="3"/>`;
+    corps += trait(300, 36, 646, 288, t, { w: 5, c: '#E8604C' }) + pointe(652, 294, 54, '#E8604C');
+    corps += trait(472, 163, 428, 66, t, { w: 4, c: '#1A75FF' }) + pointe(426, 58, -96, '#1A75FF');
+    corps += `<circle cx="472" cy="163" r="9" fill="#B8860B" stroke="white" stroke-width="3"/>`;
+    corps += mot(494, 156, 'I', { t: 24, a: 'start', c: '#B8860B' });
+    corps += mot(408, 62, 'n', { t: 23, a: 'end', c: '#1A75FF' });
+    corps += mot(612, 238, 'u', { t: 23, c: '#E8604C' });
+    corps += mot(292, 28, 'la droite D', { t: 20, c: '#E8604C' }) + mot(792, 138, 'le plan P', { t: 20, a: 'end', c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 296, 'la droite perce le plan en I : on résout en t', { t: 20 }));
+  },
+  cylindre_fig(t) {
+    t = prog(t);
+    let corps = trait(500, 26, 500, 268, t, { w: 3, tiret: '9 6' });
+    corps += `<ellipse cx="500" cy="62" rx="150" ry="34" fill="#1A75FF" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M 350 232 A 150 34 0 0 0 650 232" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += trait(350, 62, 350, 232, t, { w: 4 }) + trait(650, 62, 650, 232, t, { w: 4 });
+    corps += trait(500, 150, 650, 150, t, { w: 5, c: '#10B981' });
+    corps += `<path d="M 634 150 L 634 134 L 650 134" fill="none" stroke="#10B981" stroke-width="3"/>`;
+    corps += `<circle cx="650" cy="150" r="8" fill="#E8604C" stroke="white" stroke-width="3"/>`;
+    corps += mot(575, 138, 'R', { t: 24, c: '#10B981' }) + mot(664, 156, 'M', { t: 22, a: 'start', c: '#E8604C' });
+    corps += mot(516, 42, 'axe (D)', { t: 21, a: 'start' });
+    return svgBoite(corps + mot(500, 296, 'le cylindre : tous les points à distance R de l\u2019axe', { t: 20 }));
+  },
+  section_cube_fig(t, o) {
+    t = prog(t);
+    o = o || {};
+    const A = [300, 255], B = [540, 255], C = [540, 105], D = [300, 105], E = [390, 200], F = [630, 200], G = [630, 50], H = [390, 50];
+    const aretes = [[A, B], [B, C], [C, D], [D, A], [E, F], [F, G], [G, H], [H, E], [A, E], [B, F], [C, G], [D, H]];
+    let corps = '';
+    for (const [p1, p2] of aretes) corps += trait(p1[0], p1[1], p2[0], p2[1], t, { w: 3 });
+    if (o.variante === 'hexagone') {
+      corps += `<polygon points="345,78 420,105 540,180 585,228 510,200 390,125" fill="#1A75FF" fill-opacity=".22" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>`;
+      for (const [px, py] of [[345, 78], [420, 105], [540, 180], [585, 228], [510, 200], [390, 125]]) corps += `<circle cx="${px}" cy="${py}" r="7" fill="#1A75FF" stroke="white" stroke-width="2"/>`;
+      corps += mot(140, 158, 'plan x + y + z = 3/2', { t: 20, c: '#1A75FF' });
+      corps += `<polygon points="905,150 865,219 785,219 745,150 785,81 865,81" fill="#1A75FF" fill-opacity=".22" stroke="#1A75FF" stroke-width="4" stroke-linejoin="round"/>`;
+      corps += mot(825, 268, 'la section vue de face', { t: 19, c: '#1A75FF' });
+      return svgBoite(corps + mot(560, 292, 'six milieux : la section est un hexagone régulier', { t: 20 }));
+    }
+    corps += `<polygon points="540,255 300,105 390,200" fill="#B8860B" fill-opacity=".28" stroke="#B8860B" stroke-width="4" stroke-linejoin="round"/>`;
+    corps += mot(556, 268, 'I', { t: 21, a: 'start', c: '#B8860B' }) + mot(284, 98, 'J', { t: 21, a: 'end', c: '#B8860B' }) + mot(374, 192, 'K', { t: 21, a: 'end', c: '#B8860B' });
+    return svgBoite(corps + mot(560, 292, 'la section est un triangle équilatéral', { t: 20 }));
+  },
+  residu_fig(t) {
+    t = prog(t);
+    const ox = 150, oy = 245;
+    let corps = trait(110, oy, 930, oy, t, { w: 4 }) + pointe(930, oy, 0, 'currentColor') + trait(ox, 282, ox, 30, t, { w: 4 }) + pointe(ox, 30, -90, 'currentColor');
+    corps += mot(906, 272, 'x', { t: 22 }) + mot(128, 42, 'y', { t: 22, a: 'end' });
+    corps += trait(200, 205, 880, 80, t, { w: 5, c: '#1A75FF' });
+    const pts = [[250, 190], [320, 150], [395, 168], [545, 132], [620, 88], [700, 96], [790, 58]];
+    for (const [x, y] of pts) corps += `<circle cx="${x}" cy="${y}" r="7" fill="currentColor"/>`;
+    corps += trait(470, 96, 470, 155, t, { w: 4, c: '#E8604C', tiret: '8 5' });
+    corps += `<circle cx="470" cy="96" r="9" fill="#E8604C" stroke="white" stroke-width="3"/>`;
+    corps += `<circle cx="470" cy="155" r="7" fill="#10B981" stroke="white" stroke-width="2"/>`;
+    corps += mot(488, 116, 'eᵢ = yᵢ − ŷᵢ', { t: 21, a: 'start', c: '#E8604C' });
+    corps += mot(488, 172, 'le projeté (xᵢ, ŷᵢ)', { t: 19, a: 'start', c: '#10B981' });
+    corps += mot(760, 128, 'la droite des moindres carrés', { t: 19, c: '#1A75FF' });
+    return svgBoite(corps + mot(500, 296, 'le résidu : l\u2019écart vertical entre le point et la droite', { t: 20 }));
+  },
+  camembert_fig(t) {
+    const cx = 420, cy = 148, r = 104;
+    const secteurs = [
+      { part: 0.25, c: '#1A75FF' },
+      { part: 0.40, c: '#10B981' },
+      { part: 0.20, c: '#E8604C' },
+      { part: 0.15, c: '#B8860B' },
+    ];
+    let corps = '', angle = -90;
+    for (const s of secteurs) {
+      const a1 = angle * Math.PI / 180, a2 = (angle + s.part * 360) * Math.PI / 180;
+      const x1 = Math.round(cx + r * Math.cos(a1)), y1 = Math.round(cy + r * Math.sin(a1));
+      const x2 = Math.round(cx + r * Math.cos(a2)), y2 = Math.round(cy + r * Math.sin(a2));
+      corps += `<path d="M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2} Z" fill="${s.c}" fill-opacity=".75" stroke="white" stroke-width="3"/>`;
+      angle += s.part * 360;
+    }
+    const legende = [['Bus : 40 %', '#10B981', 84], ['Voiture : 25 %', '#1A75FF', 132], ['Vélo : 20 %', '#E8604C', 180], ['Marche : 15 %', '#B8860B', 228]];
+    for (const [txt, c, y] of legende) {
+      corps += `<rect x="592" y="${y - 20}" width="26" height="26" fill="${c}" fill-opacity=".8" stroke="white" stroke-width="2"/>`;
+      corps += mot(632, y + 2, txt, { t: 21, a: 'start' });
+    }
+    return svgBoite(corps + mot(500, 296, 'chaque angle est proportionnel à la fréquence', { t: 20 }));
+  },
+  boite_moustaches_fig(t) {
+    t = prog(t);
+    const X = v => 130 + v * 33;
+    let corps = trait(110, 250, 930, 250, t, { w: 4 }) + pointe(930, 250, 0, 'currentColor');
+    for (const v of [0, 5, 10, 15, 20]) {
+      corps += trait(X(v), 250, X(v), 262, t, { w: 3 }) + mot(X(v), 284, String(v), { t: 19 });
+    }
+    corps += trait(X(8), 145, X(20), 145, t, { w: 4 });
+    corps += trait(X(8), 126, X(8), 164, t, { w: 4 }) + trait(X(20), 126, X(20), 164, t, { w: 4 });
+    corps += `<rect x="${X(11)}" y="105" width="${X(16) - X(11)}" height="80" fill="#1A75FF" fill-opacity=".14" stroke="#1A75FF" stroke-width="4"/>`;
+    corps += trait(X(14), 105, X(14), 185, t, { w: 5, c: '#E8604C' });
+    corps += mot(X(11), 86, 'Q1 = 11', { t: 19, c: '#1A75FF' }) + mot(X(16), 86, 'Q3 = 16', { t: 19, c: '#1A75FF' });
+    corps += mot(X(14), 56, 'médiane 14', { t: 19, c: '#E8604C' });
+    corps += mot(X(8), 210, 'min 8', { t: 19 }) + mot(X(20), 210, 'max 20', { t: 19 });
+    return svgBoite(corps + mot(500, 296, 'la moitié centrale des valeurs vit dans la boîte', { t: 20 }));
+  },
 };
 
 Object.assign(ANIMS, FIG);
