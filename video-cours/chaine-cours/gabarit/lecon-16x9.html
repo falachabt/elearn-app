@@ -3534,6 +3534,24 @@ const FIG = {
       graphe(580, false, 'exothermique : K diminue avec T', '#1A75FF') +
       mot(500, 26, 'la droite de van ’t Hoff', { t: 21 }));
   },
+  benzene_fig(t) {
+    const cx = 500, cy = 138, R = 82;
+    let hex = '', sommets = '';
+    const pts = [];
+    for (let k = 0; k < 6; k++) { const a = Math.PI / 6 + k * Math.PI / 3; pts.push([Math.round(cx + R * Math.cos(a)), Math.round(cy + R * Math.sin(a))]); }
+    for (let k = 0; k < 6; k++) { const [x1, y1] = pts[k], [x2, y2] = pts[(k + 1) % 6]; hex += trait(x1, y1, x2, y2, 1, { w: 5 }); }
+    pts.forEach(([x, y]) => { sommets += `<circle cx="${x}" cy="${y}" r="7" fill="currentColor"/>`; });
+    let electrons = '';
+    [-52, 0, 52].forEach(dx => {
+      electrons += mot(cx + dx, cy - R - 26, 'e⁻', { c: '#E8604C', t: 19 }) + mot(cx + dx, cy + R + 40, 'e⁻', { c: '#E8604C', t: 19 });
+    });
+    return svgBoite(
+      hex + sommets +
+      `<circle cx="${cx}" cy="${cy}" r="46" fill="none" stroke="#E8604C" stroke-width="4"/>` +
+      electrons +
+      mot(cx, cy + 6, 'C₆H₆', { t: 22 }) +
+      mot(500, 292, '6 électrons π délocalisés — règle de Hückel : 4n + 2', { t: 20 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
