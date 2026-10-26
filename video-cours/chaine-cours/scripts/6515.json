@@ -1,0 +1,426 @@
+{
+  "cours": 6515,
+  "titre": "Médiane, variance et écart-type : le centre et la dispersion",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistiques descriptives",
+      "titre": "Médiane, variance et écart-type : le centre et la dispersion",
+      "sous": "Un centre robuste, puis la mesure de l'étalement : les indicateurs qui complètent la moyenne",
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux entreprises, un même salaire moyen de trois mille euros, et deux réalités opposées : la moyenne seule est aveugle à la dispersion.",
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 200
+      }
+    },
+    "familles": {
+      "type": "etape",
+      "kicker": "Deux familles d'indicateurs",
+      "titre": "Deux questions à poser à toute série",
+      "tex": [
+        "\\text{tendance centrale : où est le centre ?}",
+        "\\text{dispersion : les données sont-elles étalées ?}",
+        "\\text{moyenne, médiane ; variance, écart-type}"
+      ]
+    },
+    "mediane_def": {
+      "type": "etape",
+      "kicker": "La médiane · définition",
+      "titre": "La valeur qui partage la série ordonnée en deux",
+      "tex": [
+        "n \\text{ impair} : \\quad M_e = x_{(n+1)/2}",
+        "n \\text{ pair} : \\quad M_e = \\tfrac{x_{n/2} + x_{n/2+1}}{2}"
+      ]
+    },
+    "ex_mediane": {
+      "type": "etape",
+      "kicker": "Exemple · neuf notes sur vingt",
+      "titre": "Ordonner, repérer la position, lire la valeur",
+      "tex": [
+        "7,\\ 10,\\ 12,\\ 12,\\ 13,\\ 14,\\ 15,\\ 16,\\ 18",
+        "\\tfrac{9 + 1}{2} = 5 \\quad \\text{(position)}",
+        "M_e = 13"
+      ]
+    },
+    "ex_effectifs": {
+      "type": "etape",
+      "kicker": "Médiane avec effectifs · les enfants par famille",
+      "titre": "Les effectifs cumulés désignent la classe du milieu",
+      "tex": [
+        "n_i : 3,\\ 6,\\ 7,\\ 3,\\ 1 \\quad N = 20",
+        "\\text{cumulés : } 3,\\ 9,\\ 16,\\ 19,\\ 20",
+        "M_e = 2 \\quad \\text{(dixième et onzième valeurs)}"
+      ]
+    },
+    "interpolation": {
+      "type": "formule",
+      "kicker": "Médiane en classes · interpolation linéaire",
+      "tex": "M_e = L_i + \\frac{\\frac{N}{2} - F_{i-1}}{f_i} \\times c_i",
+      "note": "Salaires : classe médiane deux et demi à trois, cumul avant vingt, effectif quinze, amplitude zéro et demi."
+    },
+    "ex_interpolation": {
+      "type": "etape",
+      "kicker": "Exemple · les salaires en classes",
+      "titre": "Appliquer l'interpolation dans la classe médiane",
+      "tex": [
+        "M_e = 2{,}5 + \\tfrac{25 - 20}{15} \\times 0{,}5",
+        "M_e \\approx 2{,}5 + 0{,}17 \\approx 2{,}67"
+      ]
+    },
+    "robustesse": {
+      "type": "etape",
+      "kicker": "La robustesse face aux extrêmes",
+      "titre": "Une valeur à cent laisse la médiane à douze",
+      "tex": [
+        "A : 10,\\ 11,\\ 12,\\ 13,\\ 14",
+        "B : 10,\\ 11,\\ 12,\\ 13,\\ 100",
+        "\\bar{x}_B = 29{,}2 \\quad M_e = 12"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 150
+      }
+    },
+    "attente": {
+      "type": "etape",
+      "kicker": "Application · les temps d'attente aux urgences",
+      "titre": "Médiane cinquante minutes, moyenne tirée vers le haut",
+      "tex": [
+        "\\text{série ordonnée : de } 25 \\text{ à } 180\\ \\text{min}",
+        "M_e = 50\\ \\text{min} \\quad \\bar{x} \\approx 68{,}2\\ \\text{min}"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "La médiane partage la série en deux moitiés",
+        "Série ordonnée d'abord, toujours",
+        "Effectifs : passer par les cumulés",
+        "Classes : interpoler dans la classe médiane"
+      ]
+    },
+    "variance": {
+      "type": "formule",
+      "kicker": "La variance",
+      "tex": "V = \\frac{1}{n} \\sum_{i=1}^{n} (x_i - \\bar{x})^2",
+      "note": "La moyenne des carrés des écarts à la moyenne : elle mesure l'étalement autour du centre.",
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 180
+      }
+    },
+    "pourquoi_carres": {
+      "type": "etape",
+      "kicker": "Pourquoi des carrés ?",
+      "titre": "Trois raisons de mettre les écarts au carré",
+      "tex": [
+        "\\text{sans carrés, les écarts s'annulent}",
+        "\\text{le carré rend tous les écarts positifs}",
+        "\\text{le carré amplifie les grands écarts}"
+      ]
+    },
+    "ex_quartiers": {
+      "type": "etape",
+      "kicker": "Exemple · deux quartiers, même moyenne",
+      "titre": "Une variance 260 fois plus grande",
+      "tex": [
+        "V_H = 25000/5 = 5000",
+        "V_C = 6500000/5 = 1300000",
+        "V_C/V_H = 260"
+      ]
+    },
+    "groupee": {
+      "type": "formule",
+      "kicker": "Variance pour données groupées",
+      "tex": "V = \\frac{1}{N} \\sum_{i=1}^{p} n_i (x_i - \\bar{x})^2",
+      "note": "Chaque écart au carré est pondéré par l'effectif de sa valeur, puis divisé par l'effectif total."
+    },
+    "ex_groupee": {
+      "type": "etape",
+      "kicker": "Exemple groupé · les notes de vingt élèves",
+      "titre": "Moyenne, variance et écart-type pas à pas",
+      "tex": [
+        "\\bar{x} = \\tfrac{234}{20} = 11{,}7",
+        "V = \\tfrac{82{,}2}{20} = 4{,}11",
+        "\\sigma = \\sqrt{4{,}11} \\approx 2{,}03"
+      ]
+    },
+    "ecart_type": {
+      "type": "formule",
+      "kicker": "L'écart-type",
+      "tex": "\\sigma = \\sqrt{V}",
+      "note": "Harmonie : environ soixante-dix euros. Contraste : environ mille cent quarante euros.",
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 170
+      }
+    },
+    "regle": {
+      "type": "etape",
+      "kicker": "La règle empirique des distributions en cloche",
+      "titre": "Soixante-huit, quatre-vingt-quinze, quatre-vingt-dix-neuf",
+      "tex": [
+        "[\\bar{x} - \\sigma\\ ;\\ \\bar{x} + \\sigma] : \\approx 68\\ \\%",
+        "[\\bar{x} - 2\\sigma\\ ;\\ \\bar{x} + 2\\sigma] : \\approx 95\\ \\%",
+        "[\\bar{x} - 3\\sigma\\ ;\\ \\bar{x} + 3\\sigma] : \\approx 99{,}7\\ \\%"
+      ],
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_tailles": {
+      "type": "etape",
+      "kicker": "Application · les tailles",
+      "titre": "Quatre-vingt-quinze pour cent entre deux bornes",
+      "tex": [
+        "\\bar{x} = 175\\ \\text{cm} \\quad \\sigma = 7\\ \\text{cm}",
+        "175 - 2 \\times 7 = 161 \\quad 175 + 2 \\times 7 = 189"
+      ]
+    },
+    "cv": {
+      "type": "formule",
+      "kicker": "Le coefficient de variation",
+      "tex": "CV = \\frac{\\sigma}{\\bar{x}}",
+      "note": "Dispersion relative : vingt pour cent contre cinq pour cent, la première série est la plus dispersée."
+    },
+    "autres_dispersion": {
+      "type": "etape",
+      "kicker": "Deux autres mesures de dispersion",
+      "titre": "L'étendue et l'écart interquartile",
+      "tex": [
+        "\\text{étendue} = \\max - \\min",
+        "IQR = Q_3 - Q_1"
+      ]
+    },
+    "trio": {
+      "type": "etape",
+      "kicker": "Synthèse · trois villages, trois histoires",
+      "titre": "Même centre parfois, dispersions opposées",
+      "tex": [
+        "A : \\bar{x} = 25,\\ M_e = 25,\\ V = 13{,}6",
+        "B : \\bar{x} = 47,\\ M_e = 25,\\ V = 1426",
+        "C : \\bar{x} = 25,\\ M_e = 25,\\ V = 0{,}5"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 150
+      }
+    },
+    "choix": {
+      "type": "etape",
+      "kicker": "Quel indicateur choisir ?",
+      "titre": "Le bon outil selon la forme de la série",
+      "tex": [
+        "\\text{médiane : extrêmes ou série asymétrique}",
+        "\\text{moyenne : série symétrique}",
+        "\\text{variance : toujours à côté de la moyenne}"
+      ]
+    },
+    "synthese_salaires": {
+      "type": "etape",
+      "kicker": "Exercice de synthèse · les salaires et le directeur",
+      "titre": "Dix salaires, dont un salaire extrême",
+      "tex": [
+        "\\bar{x} = \\tfrac{440}{10} = 44",
+        "M_e = \\tfrac{38 + 40}{2} = 39",
+        "V = 332{,}2 \\quad \\sigma \\approx 18{,}23"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Médiane : le milieu, robuste aux extrêmes",
+        "Variance : moyenne des carrés des écarts",
+        "Écart-type : la racine, dans l'unité des données",
+        "Règle 68, 95, 99,7 pour les cloches",
+        "Centre et dispersion : toujours ensemble"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux indicateurs qui complètent la moyenne. Nous découvrirons d'abord la médiane, la valeur du milieu, robuste face aux valeurs extrêmes, puis la variance et l'écart-type, qui mesurent l'étalement des données autour de leur centre, avant d'apprendre à choisir le bon indicateur selon la situation.",
+      "texte": "Médiane, variance et écart-type : le centre et la dispersion.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Deux petites entreprises déclarent le même salaire moyen : trois mille euros par mois. Dans la première, les salaires sont deux mille cinq cents, trois mille et trois mille cinq cents euros. Dans la seconde : mille, trois mille et cinq mille euros. La moyenne est identique, mais la seconde entreprise est bien plus inégalitaire. Un seul nombre ne suffit donc jamais : il faut un centre robuste, et une mesure de la dispersion.",
+      "texte": "Même moyenne de trois mille euros, deux réalités opposées.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Les indicateurs statistiques forment deux familles. Ceux de tendance centrale répondent à la question : où se situe le centre de la série. Ceux de dispersion répondent à la question : les données sont-elles resserrées autour de ce centre, ou très étalées. Les protagonistes de ce cours sont la médiane pour le centre, et la variance avec son acolyte l'écart-type pour la dispersion.",
+      "texte": "Tendance centrale et dispersion : les deux familles.",
+      "ecran": "familles"
+    },
+    {
+      "id": "p04",
+      "dit": "La médiane est la valeur qui partage la série, d'abord ordonnée par valeurs croissantes, en deux groupes de même effectif. Si l'effectif est impair, c'est la valeur centrale : pour neuf valeurs, la cinquième. Si l'effectif est pair, c'est la moyenne des deux valeurs centrales : pour dix valeurs, la moyenne de la cinquième et de la sixième. Le piège fondateur est d'oublier d'ordonner la série avant de chercher son milieu.",
+      "texte": "La médiane partage la série ordonnée en deux groupes égaux.",
+      "ecran": "mediane_def"
+    },
+    {
+      "id": "p05",
+      "dit": "Exemple complet. Neuf notes sur vingt : douze, dix-huit, sept, quinze, quatorze, douze, dix, seize et treize. On ordonne : sept, dix, douze, douze, treize, quatorze, quinze, seize, dix-huit. L'effectif neuf est impair, la position médiane est la cinquième, et la cinquième valeur vaut treize. La médiane est donc treize : la moitié des élèves a obtenu au plus treize, l'autre moitié au moins treize.",
+      "texte": "Neuf notes ordonnées : la cinquième vaut treize.",
+      "ecran": "ex_mediane"
+    },
+    {
+      "id": "p06",
+      "dit": "Avec des effectifs, on passe par les effectifs cumulés croissants. Vingt familles sont classées selon leur nombre d'enfants : trois familles sans enfant, six avec un, sept avec deux, trois avec trois et une avec quatre. Les cumulés valent trois, neuf, seize, dix-neuf et vingt. L'effectif est pair : la médiane se situe entre la dixième et la onzième valeur, et toutes deux tombent dans la catégorie deux enfants. La médiane vaut donc deux enfants.",
+      "texte": "Vingt familles : les cumulés désignent deux enfants.",
+      "ecran": "ex_effectifs"
+    },
+    {
+      "id": "p07",
+      "dit": "Quand les données sont groupées en classes, la médiane ne se lit plus directement : on l'estime par interpolation linéaire à l'intérieur de la classe médiane. On part de la borne inférieure de cette classe, puis on avance proportionnellement : l'écart entre la moitié de l'effectif total et le cumulé précédent, divisé par l'effectif de la classe, le tout multiplié par l'amplitude de la classe.",
+      "texte": "En classes, on interpole dans la classe médiane.",
+      "ecran": "interpolation"
+    },
+    {
+      "id": "p08",
+      "dit": "Application aux salaires de cinquante salariés, en milliers d'euros. La vingt-cinquième valeur tombe dans la classe de deux et demi à trois, dont le cumulé précédent vaut vingt et l'effectif quinze, pour une amplitude de zéro et demi. Le calcul donne deux et demi, plus cinq quinzièmes de zéro et demi, soit environ deux virgule soixante-sept. La moitié des salariés gagne donc moins d'environ deux mille six cent soixante-dix euros par mois.",
+      "texte": "Salaires en classes : médiane environ deux virgule soixante-sept.",
+      "ecran": "ex_interpolation"
+    },
+    {
+      "id": "p09",
+      "dit": "Pourquoi la médiane est-elle dite robuste ? Comparez deux séries. La première : dix, onze, douze, treize, quatorze ; moyenne et médiane valent douze. La seconde remplace quatorze par cent : la moyenne explose à vingt-neuf virgule deux, mais la médiane reste exactement douze. La valeur extrême, erreur de mesure ou cas exceptionnel, déforme la moyenne et laisse la médiane intacte. C'est le super-pouvoir de la médiane sur les distributions asymétriques, comme les revenus ou les prix immobiliers.",
+      "texte": "Une valeur extrême explose la moyenne, pas la médiane.",
+      "ecran": "robustesse"
+    },
+    {
+      "id": "p10",
+      "dit": "Application aux temps d'attente aux urgences, en minutes, pour onze patients. La série ordonnée va de vingt-cinq à cent quatre-vingts minutes. La position médiane est la sixième : la médiane vaut cinquante minutes. La moyenne, elle, vaut environ soixante-huit virgule deux minutes, tirée vers le haut par les deux attentes très longues, de cent vingt et cent quatre-vingts minutes. Pour décrire l'expérience typique d'un patient, la médiane est ici la plus honnête.",
+      "texte": "Temps d'attente : médiane cinquante minutes, moyenne soixante-huit.",
+      "ecran": "attente"
+    },
+    {
+      "id": "p11",
+      "dit": "Récapitulons cette première partie. La médiane partage la série ordonnée en deux groupes de même effectif : valeur centrale si l'effectif est impair, moyenne des deux valeurs centrales s'il est pair. Avec des effectifs, on la repère grâce aux cumulés croissants ; en classes, on l'interpole dans la classe médiane. Et elle résiste aux valeurs extrêmes là où la moyenne se déforme.",
+      "texte": "L'essentiel de la partie une.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p12",
+      "dit": "Connaître le centre ne suffit pas : deux quartiers peuvent partager le même revenu moyen et vivre des réalités opposées. La variance mesure la dispersion autour de la moyenne. Pour chaque valeur, on calcule son écart à la moyenne, on le met au carré, puis on fait la moyenne de ces carrés. Plus la variance est grande, plus les données sont étalées ; proche de zéro, elles sont resserrées.",
+      "texte": "La variance : la moyenne des carrés des écarts à la moyenne.",
+      "ecran": "variance"
+    },
+    {
+      "id": "p13",
+      "dit": "Pourquoi mettre les écarts au carré ? D'abord parce que les écarts simples s'annulent : les écarts positifs compensent exactement les écarts négatifs, et leur moyenne vaut toujours zéro. Ensuite parce que le carré rend chaque écart positif : moins trois au carré vaut neuf, comme trois au carré. Enfin parce que le carré amplifie les grands écarts : un écart de cinq devient vingt-cinq, ce qui donne plus de poids aux valeurs éloignées du centre.",
+      "texte": "Pourquoi les carrés : éviter l'annulation, amplifier les écarts.",
+      "ecran": "pourquoi_carres"
+    },
+    {
+      "id": "p14",
+      "dit": "Exemple central, entièrement calculé. Le quartier Harmonie réunit cinq revenus resserrés autour de deux mille cinq cents euros : les carrés des écarts totalisent vingt-cinq mille, et la variance vaut cinq mille. Le quartier Contraste réunit mille, mille cinq cents, deux mille cinq cents, trois mille cinq cents et quatre mille euros, de même moyenne : les carrés totalisent six millions cinq cent mille, et la variance vaut un million trois cent mille. Elle est deux cent soixante fois plus grande : la dispersion est enfin chiffrée.",
+      "texte": "Même moyenne de deux mille cinq cents, variances de cinq mille et un million trois cents mille.",
+      "ecran": "ex_quartiers"
+    },
+    {
+      "id": "p15",
+      "dit": "Quand les données arrivent avec des effectifs, la formule de la variance s'adapte : chaque écart au carré est multiplié par l'effectif de sa valeur, on additionne ces produits, puis on divise par l'effectif total. C'est exactement le même principe que la moyenne pondérée, appliqué aux carrés des écarts. L'exemple suivant la met en œuvre de bout en bout.",
+      "texte": "Variance groupée : pondérer chaque écart par son effectif.",
+      "ecran": "groupee"
+    },
+    {
+      "id": "p16",
+      "dit": "Exemple groupé complet : les notes de vingt élèves, deux fois huit, cinq fois dix, huit fois douze, quatre fois quatorze et une fois seize. La somme pondérée vaut deux cent trente-quatre, donc la moyenne vaut onze virgule sept. Les carrés des écarts, pondérés par les effectifs, totalisent quatre-vingt-deux virgule deux : la variance vaut quatre virgule onze, et son écart-type environ deux virgule zéro trois points. Retenez la démarche : moyenne d'abord, écarts ensuite, pondération toujours.",
+      "texte": "Notes groupées : moyenne onze virgule sept, variance quatre virgule onze.",
+      "ecran": "ex_groupee"
+    },
+    {
+      "id": "p17",
+      "dit": "La variance s'exprime en unités au carré : des euros carrés ne parlent à personne. L'écart-type corrige cela : c'est simplement la racine carrée de la variance, et il s'exprime dans la même unité que les données. Pour le quartier Harmonie, il vaut environ soixante et onze euros ; pour le quartier Contraste, environ mille cent quarante euros, plus de seize fois plus. L'écart-type se lit comme un écart typique à la moyenne : c'est lui que l'on cite dans les rapports.",
+      "texte": "L'écart-type : la racine de la variance, dans l'unité des données.",
+      "ecran": "ecart_type"
+    },
+    {
+      "id": "p18",
+      "dit": "Pour les distributions en forme de cloche, proches de la loi normale, l'écart-type obéit à une règle empirique remarquable. Environ soixante-huit pour cent des données se situent à moins d'un écart-type de la moyenne. Environ quatre-vingt-quinze pour cent à moins de deux écarts-types. Et environ quatre-vingt-dix-neuf virgule sept pour cent à moins de trois écarts-types. Une valeur au-delà de trois écarts-types est donc suspecte : on la considère souvent comme potentiellement aberrante.",
+      "texte": "La règle soixante-huit, quatre-vingt-quinze, quatre-vingt-dix-neuf virgule sept.",
+      "ecran": "regle"
+    },
+    {
+      "id": "p19",
+      "dit": "Application immédiate de la règle. Si la taille moyenne des hommes est de cent soixante-quinze centimètres avec un écart-type de sept centimètres, alors environ quatre-vingt-quinze pour cent d'entre eux mesurent entre cent soixante-quinze moins deux fois sept, soit cent soixante et un centimètres, et cent soixante-quinze plus deux fois sept, soit cent quatre-vingt-neuf centimètres. Deux nombres, la moyenne et l'écart-type, suffisent à décrire l'essentiel de la distribution.",
+      "texte": "Tailles : quatre-vingt-quinze pour cent entre cent soixante et un et cent quatre-vingt-neuf.",
+      "ecran": "ex_tailles"
+    },
+    {
+      "id": "p20",
+      "dit": "Comparer deux écarts-types n'a de sens que si les moyennes sont proches. Une série de moyenne dix avec un écart-type de deux semble moins dispersée qu'une série de moyenne mille avec un écart-type de cinquante. Relativement, c'est l'inverse : le coefficient de variation, l'écart-type divisé par la moyenne, vaut vingt pour cent pour la première et cinq pour cent pour la seconde. Sans unité, souvent en pourcentage, il rend les dispersions comparables entre séries d'échelles très différentes.",
+      "texte": "Le coefficient de variation compare les dispersions relatives.",
+      "ecran": "cv"
+    },
+    {
+      "id": "p21",
+      "dit": "Deux autres mesures complètent la panoplie. L'étendue est la différence entre la plus grande et la plus petite valeur : immédiate, mais elle ne dépend que des deux extrêmes. L'écart interquartile est la différence entre le troisième et le premier quartile : il mesure l'étalement de la moitié centrale des données et résiste aux valeurs extrêmes, ce qui en fait le compagnon naturel de la médiane quand la série contient des cas aberrants.",
+      "texte": "Étendue et écart interquartile : deux mesures simples et robustes.",
+      "ecran": "autres_dispersion"
+    },
+    {
+      "id": "p22",
+      "dit": "Synthèse par les trois villages. Le village Harmonie a une moyenne et une médiane de vingt-cinq, avec une variance de treize virgule six : une société équilibrée. Le village Dualité a une moyenne de quarante-sept mais une médiane de vingt-cinq, avec une variance de mille quatre cent vingt-six : quelques très hauts revenus tirent la moyenne, la majorité vit bien en dessous. Le village Uniformité a moyenne et médiane de vingt-cinq et une variance de zéro et demi : une société presque sans écarts. Aucun de ces portraits n'existe sans le trio complet.",
+      "texte": "Trois villages : le trio moyenne, médiane, variance à l'œuvre.",
+      "ecran": "trio"
+    },
+    {
+      "id": "p23",
+      "dit": "Comment choisir en pratique ? Privilégiez la médiane quand la série contient des valeurs extrêmes ou une forte asymétrie : revenus, prix immobiliers, temps d'attente. Privilégiez la moyenne quand la distribution est à peu près symétrique, et quand l'indicateur doit servir à des calculs ultérieurs, comme la variance elle-même. Et dans tous les cas, accompagnez le centre d'une dispersion : une moyenne sans écart-type est une information à moitié aveugle.",
+      "texte": "Choisir : médiane si asymétrie, moyenne si symétrie, variance toujours.",
+      "ecran": "choix"
+    },
+    {
+      "id": "p24",
+      "dit": "Dernier exercice, qui mobilise tout le cours. Dix salaires annuels, en milliers d'euros, dont celui du directeur à quatre-vingt-seize. La somme vaut quatre cent quarante, donc la moyenne vaut quarante-quatre mille euros. La médiane, moyenne de la cinquième et de la sixième valeur, vaut trente-neuf mille euros. La variance vaut trois cent trente-deux virgule deux et l'écart-type environ dix-huit virgule vingt-trois. Le directeur peut vanter la moyenne ; pour négocier au nom de la majorité des salariés, c'est la médiane qu'il faut brandir.",
+      "texte": "Exercice de synthèse : moyenne quarante-quatre, médiane trente-neuf.",
+      "ecran": "synthese_salaires"
+    },
+    {
+      "id": "p25",
+      "dit": "Pour conclure, retenez le trio et son usage. La médiane donne le milieu de la série ordonnée et résiste aux valeurs extrêmes. La variance moyenne les carrés des écarts à la moyenne et quantifie la dispersion. L'écart-type, sa racine carrée, se lit dans l'unité des données et alimente la règle des soixante-huit, quatre-vingt-quinze et quatre-vingt-dix-neuf virgule sept pour les distributions en cloche. Centre et dispersion se présentent toujours ensemble : c'est la signature d'une analyse honnête.",
+      "texte": "Médiane, variance et écart-type : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La médiane, le centre robuste"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Variance et écart-type : mesurer la dispersion",
+      "pont": {
+        "texte": "Partie 2 : variance et écart-type, la mesure de la dispersion.",
+        "dit": "Partie deux : mesurer la dispersion. Après le centre robuste, il faut quantifier l'étalement des données autour de la moyenne : ce seront la variance, moyenne des carrés des écarts, et l'écart-type, sa racine carrée, avec la règle empirique des distributions en cloche."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Choisir et combiner les indicateurs",
+      "pont": {
+        "texte": "Partie 3 : choisir et combiner les indicateurs.",
+        "dit": "Partie trois : choisir et combiner. Nous compléterons la panoplie avec l'étendue et l'écart interquartile, nous comparerons trois villages avec le trio complet, puis nous trancherons la question pratique : quel indicateur présenter, selon la forme de la série."
+      }
+    }
+  ]
+}
