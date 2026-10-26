@@ -3114,6 +3114,49 @@ const FIG = {
       (p > .7 ? `<rect x="700" y="206" width="190" height="16" rx="6" fill="#5B6B7B" fill-opacity=".5" stroke="currentColor" stroke-width="3"/>` + trait(724, 206, 724, 178, 1, { w: 4 }) + trait(866, 206, 866, 178, 1, { w: 4 }) + `<rect x="712" y="160" width="166" height="20" rx="6" fill="#FFFFFF" stroke="currentColor" stroke-width="3"/>` + mot(795, 252, 'balance analytique', { t: 19 }) : '') +
       mot(500, 24, 'le matériel de précision du laboratoire', { t: 22 }));
   },
+  experience_rutherford_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="60" y="118" width="70" height="64" rx="10" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` +
+      mot(95, 158, 'α', { c: '#E8604C', t: 30 }) +
+      mot(95, 216, 'source', { t: 19 }) + mot(95, 240, 'de particules α', { t: 19 }) +
+      trait(400, 40, 400, 260, 1, { c: '#B8860B', w: 8 }) +
+      mot(400, 288, "feuille d’or", { c: '#B8860B', t: 21 }) +
+      trait(132, 138, 398, 138, p, { w: 3 }) + (p > .5 ? trait(402, 138, 700, 138, (p - .5) / .5, { w: 3 }) + pointe(712, 138, 0, 'currentColor') : '') +
+      trait(132, 168, 398, 168, p, { w: 3 }) + (p > .6 ? trait(402, 168, 640, 84, (p - .6) / .4, { c: '#E8604C', w: 3 }) + pointe(652, 78, -52, '#E8604C') : '') +
+      (p > .7 ? trait(132, 152, 398, 152, .7, { w: 3 }) + trait(398, 152, 240, 196, (p - .7) / .3, { c: '#1A75FF', w: 3 }) + pointe(228, 202, 160, '#1A75FF') : '') +
+      `<path d="M 700 60 A 190 190 0 0 1 700 240" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="8 7"/>` +
+      mot(716, 154, 'écran', { t: 20, a: 'start' }) +
+      mot(560, 40, 'la plupart traversent', { t: 20 }) +
+      mot(700, 292, 'une sur des milliers rebondit : le noyau', { t: 22 }));
+  },
+  modele_thomson_fig(t) {
+    const electrons = [[400, 110], [520, 90], [620, 140], [460, 190], [580, 210], [380, 230], [680, 110], [700, 200], [500, 150]];
+    let els = '';
+    electrons.forEach(([x, y], i) => { els += `<circle cx="${x}" cy="${y}" r="17" fill="#1A75FF" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` + mot(x, y + 7, '−', { c: '#1A75FF', t: 22 }); });
+    return svgBoite(
+      `<circle cx="530" cy="155" r="118" fill="#E8604C" fill-opacity=".14" stroke="#E8604C" stroke-width="3" stroke-dasharray="10 8"/>` +
+      els +
+      mot(180, 120, 'charge positive', { c: '#E8604C', t: 21, a: 'start' }) + mot(180, 148, 'diffuse', { c: '#E8604C', t: 21, a: 'start' }) +
+      trait(330, 128, 420, 118, 1, { w: 3 }) +
+      mot(830, 250, 'électrons', { c: '#1A75FF', t: 21, a: 'start' }) + trait(742, 232, 700, 208, 1, { w: 3 }) +
+      mot(500, 292, 'le « pudding » de Thomson', { t: 24 }));
+  },
+  tube_rayons_cathodiques_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="90" y="86" width="820" height="128" rx="60" fill="#1A75FF" fill-opacity=".07" stroke="currentColor" stroke-width="4"/>` +
+      `<rect x="120" y="104" width="26" height="92" fill="#5B6B7B" stroke="currentColor" stroke-width="3"/>` +
+      mot(133, 246, 'cathode', { t: 20 }) +
+      `<rect x="854" y="104" width="26" height="92" fill="#5B6B7B" stroke="currentColor" stroke-width="3"/>` +
+      mot(867, 246, 'anode', { t: 20 }) +
+      trait(150, 150, 480, 150, p, { c: '#10B981', w: 6 }) +
+      (p > .45 ? trait(480, 150, 850, 118, (p - .45) / .55, { c: '#10B981', w: 6 }) + pointe(860, 116, -8, '#10B981') : '') +
+      `<rect x="470" y="66" width="150" height="14" fill="#E8604C" fill-opacity=".6" stroke="currentColor" stroke-width="3"/>` + mot(545, 54, 'plaque +', { c: '#E8604C', t: 19 }) +
+      `<rect x="470" y="220" width="150" height="14" fill="#1A75FF" fill-opacity=".6" stroke="currentColor" stroke-width="3"/>` + mot(545, 262, 'plaque −', { c: '#1A75FF', t: 19 }) +
+      mot(300, 128, 'faisceau', { c: '#10B981', t: 20 }) + mot(300, 178, 'd’électrons', { c: '#10B981', t: 20 }) +
+      mot(500, 292, 'le faisceau est dévié vers la plaque positive', { t: 23 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
