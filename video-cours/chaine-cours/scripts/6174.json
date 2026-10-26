@@ -1,0 +1,482 @@
+{
+ "cours": 6174,
+ "titre": "Distances et angles dans l'espace : le produit scalaire aux commandes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Distances et angles dans l'espace",
+   "titre": "Distances et angles dans l'espace : le produit scalaire aux commandes",
+   "sous": "Produit scalaire, projections et produits vectoriel et mixte : mesurer l'espace en trois dimensions",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Une image pour tout le cours",
+   "texte": "La lumière sur une surface inclinée : pleine face, elle est maximale ; de biais, elle diminue ; parallèle, elle s'annule. C'est exactement le comportement du produit scalaire.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 140
+   }
+  },
+  "vecteur": {
+   "type": "etape",
+   "kicker": "Les vecteurs dans l'espace",
+   "titre": "Trois coordonnées, une norme : Pythagore prolongé",
+   "tex": [
+    "\\vec{u} = x\\vec{i} + y\\vec{j} + z\\vec{k}",
+    "|\\vec{d}| = \\sqrt{3^2 + 4^2 + 5^2} = \\sqrt{50} \\approx 7{,}07\\ \\text{m}"
+   ]
+  },
+  "scalaire_geo": {
+   "type": "formule",
+   "kicker": "Le produit scalaire, définition géométrique",
+   "tex": "\\vec{u} \\cdot \\vec{v} = |\\vec{u}|\\,|\\vec{v}| \\cos\\theta",
+   "note": "Positif si l'angle est aigu, nul s'il est droit, négatif s'il est obtus."
+  },
+  "scalaire_ana": {
+   "type": "formule",
+   "kicker": "Le produit scalaire, expression analytique",
+   "tex": "\\vec{u} \\cdot \\vec{v} = x_1x_2 + y_1y_2 + z_1z_2",
+   "note": "Dans un repère orthonormé : trois produits de coordonnées, une somme."
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Les propriétés du produit scalaire",
+   "titre": "Trois règles pour tous les calculs",
+   "tex": [
+    "\\vec{u} \\cdot \\vec{v} = \\vec{v} \\cdot \\vec{u} \\qquad \\text{(symétrie)}",
+    "(\\lambda\\vec{u} + \\mu\\vec{v}) \\cdot \\vec{w} = \\lambda\\,\\vec{u} \\cdot \\vec{w} + \\mu\\,\\vec{v} \\cdot \\vec{w}",
+    "\\vec{u} \\cdot \\vec{u} = |\\vec{u}|^2 \\geq 0"
+   ]
+  },
+  "angle_formule": {
+   "type": "formule",
+   "kicker": "Calculer un angle entre vecteurs",
+   "tex": "\\cos\\theta = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{u}|\\,|\\vec{v}|}",
+   "note": "Le numérateur vient des coordonnées, les normes de Pythagore."
+  },
+  "ex_angle": {
+   "type": "etape",
+   "kicker": "Exemple : un angle calculé de bout en bout",
+   "titre": "Deux vecteurs, un produit, un cosinus, un angle",
+   "tex": [
+    "\\vec{a} \\cdot \\vec{b} = 4 - 2 + 6 = 8",
+    "|\\vec{a}| = \\sqrt{14} \\qquad |\\vec{b}| = \\sqrt{21}",
+    "\\cos\\theta = \\tfrac{8}{\\sqrt{294}} \\approx 0{,}467 \\qquad \\theta \\approx 62{,}1^\\circ"
+   ]
+  },
+  "orthogonalite": {
+   "type": "formule",
+   "kicker": "Le test d'orthogonalité",
+   "tex": "\\vec{u} \\cdot \\vec{v} = 0 \\iff \\vec{u} \\perp \\vec{v}",
+   "note": "Trois produits, une somme : si le total vaut zéro, la perpendicularité est prouvée."
+  },
+  "projection": {
+   "type": "formule",
+   "kicker": "La projection orthogonale d'un vecteur",
+   "tex": "\\text{proj}_{\\vec{v}}(\\vec{u}) = \\frac{\\vec{u} \\cdot \\vec{v}}{|\\vec{v}|^2}\\,\\vec{v}",
+   "note": "Sa longueur vaut la valeur absolue du produit scalaire, divisée par la norme de v.",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 150
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Vecteurs : trois coordonnées, une norme",
+    "Scalaire : normes fois cosinus, ou somme xx′",
+    "Angles par un quotient, orthogonalité par 0",
+    "Projection : la composante utile d'un vecteur"
+   ]
+  },
+  "dist_points": {
+   "type": "formule",
+   "kicker": "La distance entre deux points",
+   "tex": "AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2 + (z_B - z_A)^2}",
+   "note": "La grande diagonale du parallélépipède construit sur les deux points."
+  },
+  "projection_point": {
+   "type": "phrase",
+   "kicker": "Le projeté orthogonal, le point le plus proche",
+   "texte": "Le projeté de M sur une droite ou un plan est le pied de la perpendiculaire menée de M : c'est le point de l'objet le plus proche de M. Toute distance de ce cours est une longueur perpendiculaire.",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 200
+   }
+  },
+  "dist_droite": {
+   "type": "formule",
+   "kicker": "Distance d'un point à une droite",
+   "tex": "d(M, D) = \\frac{|\\overrightarrow{AM} \\wedge \\vec{u}|}{|\\vec{u}|}",
+   "note": "Le produit vectoriel donne l'aire du parallélogramme ; l'aire divisée par la base donne la hauteur.",
+   "anim": {
+    "nom": "produit_vectoriel_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_droite": {
+   "type": "etape",
+   "kicker": "Exemple : le drone et la ligne électrique",
+   "titre": "A(1, 0, 2), direction (2, 1, −1), drone M(3, 4, 1)",
+   "tex": [
+    "\\overrightarrow{AM} = (2, 4, -1) \\qquad \\vec{u} = (2, 1, -1)",
+    "\\overrightarrow{AM} \\wedge \\vec{u} = (-3, 0, -6) \\qquad |\\overrightarrow{AM} \\wedge \\vec{u}| = 3\\sqrt{5}",
+    "d = \\tfrac{3\\sqrt{5}}{\\sqrt{6}} = \\tfrac{\\sqrt{30}}{2} \\approx 2{,}74"
+   ]
+  },
+  "ex_droite2": {
+   "type": "etape",
+   "kicker": "Exemple : la même méthode, d'autres nombres",
+   "titre": "Point (1, 3, 2), droite par (0, 1, 1), même direction",
+   "tex": [
+    "\\overrightarrow{AB} = (1, 2, 1) \\qquad \\vec{u} = (2, 1, -1)",
+    "\\overrightarrow{AB} \\wedge \\vec{u} = (-3, 3, -3) \\qquad |\\overrightarrow{AB} \\wedge \\vec{u}| = 3\\sqrt{3}",
+    "d = \\tfrac{3\\sqrt{3}}{\\sqrt{6}} = \\tfrac{3\\sqrt{2}}{2} \\approx 2{,}12"
+   ]
+  },
+  "dist_plan": {
+   "type": "formule",
+   "kicker": "Distance d'un point à un plan",
+   "tex": "d(M, P) = \\frac{|ax_0 + by_0 + cz_0 + d|}{\\sqrt{a^2 + b^2 + c^2}}",
+   "note": "Évaluer l'équation au point, valeur absolue, diviser par la norme de la normale.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 150
+   }
+  },
+  "ex_plan": {
+   "type": "etape",
+   "kicker": "Exemple : l'épaisseur d'une couche géologique",
+   "titre": "Plan 2x − y + 3z − 5 = 0, point M(1, −2, 4)",
+   "tex": [
+    "|2 \\times 1 + (-1) \\times (-2) + 3 \\times 4 - 5| = |11| = 11",
+    "|\\vec{n}| = \\sqrt{2^2 + (-1)^2 + 3^2} = \\sqrt{14}",
+    "d = \\tfrac{11}{\\sqrt{14}} \\approx 2{,}94"
+   ]
+  },
+  "ex_lampe": {
+   "type": "etape",
+   "kicker": "Exemple express : la hauteur d'une lampe",
+   "titre": "Sol 2x − y + 2z − 3 = 0, lampe L(1, 4, 2)",
+   "tex": [
+    "|2 \\times 1 - 4 + 2 \\times 2 - 3| = |-1| = 1",
+    "d = \\tfrac{1}{\\sqrt{4 + 1 + 4}} = \\tfrac{1}{3}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Deux points : Pythagore en trois dimensions",
+    "Point-droite : le produit vectoriel",
+    "Point-plan : le scalaire et la normale",
+    "Le projeté est toujours le point le plus proche"
+   ]
+  },
+  "positions": {
+   "type": "etape",
+   "kicker": "Deux droites : les positions relatives",
+   "titre": "Coplanaires ou gauches : le produit mixte tranche",
+   "tex": [
+    "\\text{sécantes, parallèles, confondues}",
+    "\\text{gauches : ni parallèles, ni sécantes}",
+    "(\\overrightarrow{A_1A_2}, \\vec{u}_1, \\vec{u}_2) = \\overrightarrow{A_1A_2} \\cdot (\\vec{u}_1 \\wedge \\vec{u}_2)",
+    "\\text{exemple : mixte} = -1 \\neq 0 \\Rightarrow \\text{gauches}"
+   ]
+  },
+  "dist_paralleles": {
+   "type": "formule",
+   "kicker": "Distance entre deux droites parallèles",
+   "tex": "d(D_1, D_2) = \\frac{|\\overrightarrow{A_1A_2} \\wedge \\vec{u}|}{|\\vec{u}|}",
+   "note": "Un point quelconque de la première droite, et sa distance à la seconde."
+  },
+  "dist_gauches": {
+   "type": "formule",
+   "kicker": "Distance entre deux droites gauches",
+   "tex": "d(D_1, D_2) = \\frac{|(\\overrightarrow{A_1A_2}, \\vec{u_1}, \\vec{u_2})|}{|\\vec{u_1} \\wedge \\vec{u_2}|}",
+   "note": "Volume du parallélépipède divisé par l'aire de sa base : la hauteur entre les deux droites."
+  },
+  "ex_gauches": {
+   "type": "etape",
+   "kicker": "Exemple : deux droites gauches, leur écart",
+   "titre": "A(1, 2, 3), direction (1, 0, 1) ; B(4, 1, 0), direction (0, 2, 1)",
+   "tex": [
+    "\\overrightarrow{AB} = (3, -1, -3) \\qquad \\vec{u} \\wedge \\vec{v} = (-2, -1, 2)",
+    "|\\vec{u} \\wedge \\vec{v}| = 3 \\qquad \\overrightarrow{AB} \\cdot (\\vec{u} \\wedge \\vec{v}) = -11",
+    "d = \\tfrac{11}{3} \\approx 3{,}67"
+   ]
+  },
+  "angle_droites": {
+   "type": "formule",
+   "kicker": "L'angle entre deux droites",
+   "tex": "\\alpha = \\arccos\\left(\\frac{|\\vec{u} \\cdot \\vec{v}|}{|\\vec{u}|\\,|\\vec{v}|}\\right)",
+   "note": "L'angle aigu des directions : zéro si parallèles, droit si le produit scalaire est nul.",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 150
+   }
+  },
+  "angle_droite_plan": {
+   "type": "formule",
+   "kicker": "L'angle entre une droite et un plan",
+   "tex": "\\sin\\beta = \\frac{|\\vec{u} \\cdot \\vec{n}|}{|\\vec{u}|\\,|\\vec{n}|}",
+   "note": "L'angle avec la droite et celui avec la normale sont complémentaires.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 150
+   }
+  },
+  "angle_plans": {
+   "type": "formule",
+   "kicker": "L'angle entre deux plans, l'angle dièdre",
+   "tex": "\\gamma = \\arccos\\left(\\frac{|\\vec{n_1} \\cdot \\vec{n_2}|}{|\\vec{n_1}|\\,|\\vec{n_2}|}\\right)",
+   "note": "L'angle aigu des deux normales : la méthode du toit à deux pans.",
+   "anim": {
+    "nom": "plans_secants_fig",
+    "hauteur": 180
+   }
+  },
+  "tetra": {
+   "type": "etape",
+   "kicker": "Synthèse : le tétraèdre régulier",
+   "titre": "Hauteur et angle entre faces, deux signatures",
+   "tex": [
+    "h = a\\sqrt{\\tfrac{2}{3}} \\approx 0{,}816\\,a",
+    "\\cos\\theta = \\tfrac{1}{3} \\qquad \\theta \\approx 70{,}53^\\circ",
+    "\\text{normales : } \\vec{n_1} = (0, 0, 1) \\text{ pour la base}"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "La stratégie face à un problème",
+   "etapes": [
+    "Traduire : points, directeurs, normales",
+    "Distance point-plan : produit scalaire",
+    "Distance point-droite : produit vectoriel",
+    "Angles : cosinus ou sinus via le scalaire",
+    "Vérifier : cas particuliers, distance nulle"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Produit scalaire : alignement, angles",
+    "Projection : la plus courte distance",
+    "Point-plan : le scalaire et la normale",
+    "Deux droites : le produit mixte",
+    "Angles : droites, droite-plan, plans"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux distances et aux angles dans l'espace. Un architecte qui tend un câble en diagonale, un drone qui doit garder ses distances avec une ligne électrique, un géologue qui mesure l'épaisseur d'une couche rocheuse : tous posent la même question, quelle est la plus courte distance, et quel est l'angle exact. Nous construirons la réponse en trois temps : d'abord le produit scalaire, l'outil qui mesure l'alignement ; ensuite les distances, d'un point à une droite, à un plan, et entre deux droites ; enfin les angles, entre droites, entre une droite et un plan, et entre deux plans.",
+   "texte": "Distances et angles : le scalaire aux commandes.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout commence par une image simple : la lumière du soleil qui frappe une surface inclinée. L'énergie reçue dépend de l'angle d'incidence : pleine face, elle est maximale ; de biais, elle diminue ; parallèle à la surface, elle s'annule. Ce comportement est exactement celui du produit scalaire, qui mesure combien un vecteur pointe dans la direction d'un autre. Gardez cette image en tête : derrière chaque formule de ce cours, il y a une ombre, une projection, un alignement plus ou moins parfait entre deux directions de l'espace.",
+   "texte": "Le scalaire mesure l'alignement de deux directions.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Rappelons d'abord ce qu'est un vecteur de l'espace : une direction, un sens, et une norme, c'est-à-dire une longueur. Dans un repère orthonormé, il s'écrit de manière unique comme une combinaison des trois vecteurs de base, avec trois coordonnées. Premier calcul, celui d'un drone qui se déplace selon le vecteur de coordonnées trois, quatre et cinq, en mètres : sa distance parcourue est la norme de ce vecteur, racine carrée de neuf plus seize plus vingt-cinq, soit racine de cinquante, environ sept virgule zéro sept mètres. C'est le théorème de Pythagore, prolongé à la troisième dimension.",
+   "texte": "Un vecteur : direction, sens, norme.",
+   "ecran": "vecteur"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici la définition géométrique du produit scalaire. Pour deux vecteurs non nuls, le produit scalaire est le produit de leurs normes par le cosinus de l'angle qu'ils forment. Si l'angle est aigu, le produit est positif : les vecteurs pointent globalement dans le même sens. Si l'angle est droit, le produit est nul. Si l'angle est obtus, le produit devient négatif : les vecteurs s'opposent partiellement. Un seul nombre résume donc l'alignement de deux directions, avec son signe et son intensité.",
+   "texte": "u·v = |u|·|v|·cos θ : le signe dit l'alignement.",
+   "ecran": "scalaire_geo"
+  },
+  {
+   "id": "p05",
+   "dit": "La même quantité se calcule algébriquement, sans connaître l'angle. Dans un repère orthonormé, le produit scalaire de deux vecteurs est la somme des produits de leurs coordonnées correspondantes : première fois première, deuxième fois deuxième, troisième fois troisième. Cette formule, qui découle du théorème d'Al-Kashi, est celle que vous utiliserez en pratique : trois multiplications, deux additions, et vous tenez l'alignement de deux vecteurs, sans aucun dessin.",
+   "texte": "Trois produits de coordonnées, une somme.",
+   "ecran": "scalaire_ana"
+  },
+  {
+   "id": "p06",
+   "dit": "Trois propriétés structurent tous les calculs. La symétrie : échanger les deux vecteurs ne change rien. La bilinéarité : le produit scalaire se distribue sur les sommes et les coefficients sortent du calcul, ce qui permet de développer comme en algèbre ordinaire. Et la positivité : le produit d'un vecteur par lui-même vaut le carré de sa norme, toujours positif ou nul, et nul uniquement pour le vecteur nul. Retenez surtout ce cas particulier : un vecteur contre lui-même donne sa longueur au carré, c'est le pont entre le scalaire et les distances.",
+   "texte": "Symétrie, bilinéarité, u·u = |u|².",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p07",
+   "dit": "Première application immédiate : calculer un angle. On isole le cosinus dans la définition géométrique : le cosinus de l'angle entre deux vecteurs vaut leur produit scalaire divisé par le produit de leurs normes. On calcule le numérateur avec les coordonnées, les normes avec Pythagore, et une fonction arccosinus donne l'angle. C'est la méthode universelle de ce cours : chaque fois qu'un angle est demandé entre deux directions, ce quotient est le point de départ.",
+   "texte": "cos θ = (u·v) / (|u|·|v|) : la formule des angles.",
+   "ecran": "angle_formule"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple complet, à savoir refaire sans hésiter. Prenons les vecteurs a de coordonnées un, deux, trois, et b de coordonnées quatre, moins un, deux. Le produit scalaire vaut quatre, moins deux, plus six : huit. La norme de a est racine de quatorze, celle de b racine de vingt et un. Le cosinus vaut donc huit sur racine de deux cent quatre-vingt-quatorze, environ zéro virgule quatre six sept. L'angle entre les deux vecteurs est d'environ soixante-deux virgule un degrés : ni alignés, ni perpendiculaires, nettement inclinés l'un vers l'autre.",
+   "texte": "a·b = 8, cos θ ≈ 0,467, θ ≈ 62,1°.",
+   "ecran": "ex_angle"
+  },
+  {
+   "id": "p09",
+   "dit": "Cas limite fondamental : deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. C'est le test le plus rapide de tout le cours : trois produits de coordonnées, une somme, et si le total vaut zéro, la perpendicularité est prouvée. En robotique, on vérifie ainsi qu'un bras est parfaitement vertical, en le comparant à une direction horizontale. Toute la géométrie des plans, des projections et des distances de la suite repose sur ce seul test.",
+   "texte": "Orthogonalité : un produit scalaire nul.",
+   "ecran": "orthogonalite"
+  },
+  {
+   "id": "p10",
+   "dit": "Dernière brique de cette partie : la projection orthogonale d'un vecteur sur un autre. Le projeté de u sur v est un multiple de v, dont le coefficient est le produit scalaire de u et v divisé par le carré de la norme de v. Sa longueur vaut la valeur absolue du produit scalaire, divisée par la norme de v : c'est l'ombre du premier vecteur sur la direction du second, quand la lumière tombe perpendiculairement. Retenez ce mécanisme : projeter, c'est isoler la composante utile d'un vecteur.",
+   "texte": "Projeter : isoler la composante utile.",
+   "ecran": "projection"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons. Un vecteur de l'espace a trois coordonnées, et sa norme prolonge Pythagore. Le produit scalaire mesure l'alignement : géométriquement, normes fois cosinus ; algébriquement, somme des produits de coordonnées. Il donne les angles par un quotient, la perpendicularité par un test de nullité, et les projections par une formule unique. Dans la deuxième partie, ce même produit scalaire, aidé de son cousin le produit vectoriel, va mesurer toutes les distances de l'espace.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "La distance la plus élémentaire relie deux points. Dans un repère orthonormé, la distance entre deux points est la racine carrée de la somme des carrés des différences de coordonnées : c'est la grande diagonale du parallélépipède rectangle construit sur les deux points. Un satellite situé à mille deux cents, quatre mille cinq cents et cinq mille cent kilomètres d'une station au sol se trouve ainsi à environ six mille neuf cent six virgule cinq kilomètres d'elle : trois soustractions, trois carrés, une racine. Les carrés effacent les signes, la distance est toujours positive.",
+   "texte": "AB : Pythagore en trois dimensions.",
+   "ecran": "dist_points"
+  },
+  {
+   "id": "p13",
+   "dit": "Pour les distances vers une droite ou un plan, tout repose sur un point clé : le projeté orthogonal. Le projeté d'un point M sur une droite ou sur un plan est le pied de la perpendiculaire menée de M sur cet objet. Propriété fondamentale : ce projeté est le point de l'objet le plus proche de M. La distance cherchée est donc toujours une longueur perpendiculaire : distance d'un point à une droite, longueur du segment qui joint le point à son projeté ; distance à un plan, même principe. Toute la suite n'est que l'art de calculer cette longueur sans construire le point.",
+   "texte": "Le projeté : le point le plus proche.",
+   "ecran": "projection_point"
+  },
+  {
+   "id": "p14",
+   "dit": "Distance d'un point à une droite, premier outil : le produit vectoriel. Si la droite passe par un point A et suit la direction u, la distance du point M à la droite vaut la norme du produit vectoriel des vecteurs A M et u, divisée par la norme de u. L'idée est visuelle : le produit vectoriel mesure l'aire du parallélogramme construit sur les deux vecteurs ; cette aire est aussi base fois hauteur, et la hauteur est exactement la distance cherchée. Le produit scalaire mesurait le long de la direction ; le produit vectoriel mesure à côté, perpendiculairement.",
+   "texte": "d(M, D) = |AM ∧ u| / |u| : l'aire donne la hauteur.",
+   "ecran": "dist_droite"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple chiffré, celui du drone et de la ligne électrique. La droite passe par A, de coordonnées un, zéro, deux, et suit le vecteur u de coordonnées deux, un, moins un ; le drone est en M, trois, quatre, un. Le vecteur A M vaut deux, quatre, moins un. Son produit vectoriel avec u donne moins trois, zéro, moins six, de norme racine de quarante-cinq, soit trois racine de cinq. On divise par la norme de u, racine de six : la distance vaut racine de trente sur deux, environ deux virgule sept quatre unités. Voilà la distance minimale de sécurité entre le drone et la ligne.",
+   "texte": "Drone : d = √30/2 ≈ 2,74 unités.",
+   "ecran": "ex_droite"
+  },
+  {
+   "id": "p16",
+   "dit": "Deuxième exemple, même méthode, autres nombres. Un drone en un, trois, deux ; une ligne passant par zéro, un, un, de même direction deux, un, moins un. Le vecteur qui joint le point de la droite au drone vaut un, deux, un ; son produit vectoriel avec le vecteur directeur donne moins trois, trois, moins trois, de norme trois racine de trois. Division par racine de six : la distance vaut trois racine de deux sur deux, environ deux virgule un deux unités. Une fois la méthode comprise, seul le produit vectoriel demande de la vigilance : une erreur de signe y est fréquente, vérifiez toujours chaque coordonnée.",
+   "texte": "Même méthode : d = 3√2/2 ≈ 2,12 unités.",
+   "ecran": "ex_droite2"
+  },
+  {
+   "id": "p17",
+   "dit": "Distance d'un point à un plan, l'outil redevient le produit scalaire. Si le plan passe par un point et admet un vecteur normal, la distance vaut la valeur absolue du produit scalaire du vecteur joint au point et de la normale, divisée par la norme de la normale. Et si le plan est donné par son équation cartésienne, la formule devient mécanique : on évalue le premier membre de l'équation au point, on prend la valeur absolue, on divise par la racine de la somme des carrés des trois coefficients. Le vecteur normal se lit directement dans l'équation.",
+   "texte": "d(M, P) : évaluer, valeur absolue, diviser.",
+   "ecran": "dist_plan"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple : un géologue modélise une couche sédimentaire par un plan d'équation deux ixe, moins igrec, plus trois zède, moins cinq, égale zéro. Le point de mesure M a pour coordonnées un, moins deux, quatre. On évalue : deux, plus deux, plus douze, moins cinq, total onze, en valeur absolue. La norme du vecteur normal est racine de quatorze. La distance vaut donc onze sur racine de quatorze, environ deux virgule neuf quatre unités : c'est l'épaisseur perpendiculaire entre le point de mesure et la couche, la seule qui compte pour un forage.",
+   "texte": "Couche géologique : d = 11/√14 ≈ 2,94.",
+   "ecran": "ex_plan"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple express, pour ancrer le réflexe. Le sol d'une pièce a pour équation deux ixe, moins igrec, plus deux zède, moins trois, égale zéro ; une lampe est accrochée au point de coordonnées un, quatre, deux. On évalue : deux, moins quatre, plus quatre, moins trois, soit moins un, valeur absolue un. La norme du vecteur normal vaut racine de neuf, c'est-à-dire trois. La hauteur de la lampe au-dessus du sol est donc un tiers d'unité, environ trente-trois centimètres si l'unité est le mètre. Retenez le schéma : évaluer, valeur absolue, diviser par la norme.",
+   "texte": "Lampe : d = 1/3 d'unité au-dessus du sol.",
+   "ecran": "ex_lampe"
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons les distances. Entre deux points : Pythagore en trois dimensions. D'un point à une droite : le produit vectoriel donne l'aire, l'aire donne la hauteur. D'un point à un plan : le produit scalaire avec la normale, ou l'équation évaluée au point, toujours divisés par une norme. Et dans tous les cas, le projeté orthogonal est le point le plus proche. Dans la dernière partie, nous mesurerons les écarts entre deux droites, puis tous les angles de l'espace.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p21",
+   "dit": "Deux droites de l'espace peuvent être sécantes, parallèles, confondues, ou gauches, c'est-à-dire ni parallèles ni sécantes, parce qu'elles ne vivent pas dans un même plan. Pour trancher, on utilise le produit mixte : le produit scalaire du vecteur qui joint un point de chaque droite avec le produit vectoriel des deux vecteurs directeurs. S'il est nul, les droites sont coplanaires ; sinon, elles sont gauches. Exemple : avec les directions un, un, zéro et zéro, un, un, et le vecteur joint moins un, un, un, le produit mixte vaut moins un, différent de zéro : les droites sont gauches, leur distance sera strictement positive.",
+   "texte": "Produit mixte nul ou non : le verdict.",
+   "ecran": "positions"
+  },
+  {
+   "id": "p22",
+   "dit": "Si les deux droites sont parallèles, leur distance est constante le long des droites. La méthode tient en une phrase : prenez un point quelconque de la première droite, et calculez sa distance à la deuxième droite, par la formule du produit vectoriel déjà apprise. C'est ainsi qu'un architecte vérifie que deux poutres parallèles restent équidistantes sur toute leur longueur, et qu'un écart local signale un défaut de pose. Aucune formule nouvelle : la distance entre parallèles est une distance point-droite déguisée.",
+   "texte": "Parallèles : une distance point-droite déguisée.",
+   "ecran": "dist_paralleles"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour deux droites gauches, il existe un unique segment perpendiculaire aux deux droites à la fois : sa longueur est leur distance. La formule est d'une élégance rare : la valeur absolue du produit mixte, divisée par la norme du produit vectoriel des directeurs. Interprétation : le produit mixte est le volume d'un parallélépipède, le produit vectoriel est l'aire de sa base, et volume divisé par aire donne la hauteur, qui est exactement la distance entre les plans parallèles contenant chaque droite. Cette formule ne dépend ni des points choisis sur les droites, ni de leur ordre.",
+   "texte": "Gauches : volume divisé par aire.",
+   "ecran": "dist_gauches"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple complet. Première droite : un point de coordonnées un, deux, trois, direction un, zéro, un. Deuxième droite : un point de coordonnées quatre, un, zéro, direction zéro, deux, un. Le vecteur qui joint les deux points vaut trois, moins un, moins trois. Le produit vectoriel des directions vaut moins deux, moins un, deux, de norme trois. Le produit mixte vaut moins six, plus un, moins six : moins onze, en valeur absolue onze. Les droites sont bien gauches, puisque ce produit n'est pas nul, et leur distance vaut onze tiers, environ trois virgule six sept unités. Vérifiez le réflexe : produit mixte non nul d'abord, division ensuite.",
+   "texte": "Droites gauches : d = 11/3 ≈ 3,67.",
+   "ecran": "ex_gauches"
+  },
+  {
+   "id": "p25",
+   "dit": "Passons aux angles. L'angle entre deux droites est l'angle aigu formé par leurs vecteurs directeurs, que les droites se coupent ou non : seules les directions comptent, pas les positions. La formule reprend celle des vecteurs, avec une valeur absolue au numérateur pour garantir l'angle aigu, entre zéro et quatre-vingt-dix degrés. Cas limites : directeurs colinéaires, angle nul ; produit scalaire nul, angle droit, et l'on parle de droites orthogonales, même si elles ne se rencontrent jamais.",
+   "texte": "Angle de droites : celui de leurs directeurs.",
+   "ecran": "angle_droites"
+  },
+  {
+   "id": "p26",
+   "dit": "L'angle entre une droite et un plan est l'angle aigu entre la droite et sa projection orthogonale sur le plan : zéro si la droite est parallèle au plan, quatre-vingt-dix degrés si elle lui est perpendiculaire. Le calcul passe par la normale : cet angle et celui que fait la droite avec la normale sont complémentaires. On calcule donc le sinus de l'angle cherché, égal à la valeur absolue du produit scalaire du directeur et de la normale, divisée par le produit de leurs normes. C'est la méthode du cadran solaire : l'inclinaison du style sur le cadran se lit dans la normale du cadran.",
+   "texte": "Droite-plan : passer par la normale, en sinus.",
+   "ecran": "angle_droite_plan"
+  },
+  {
+   "id": "p27",
+   "dit": "Dernier angle : celui de deux plans, appelé angle dièdre. Deux plans sécants se coupent selon une droite ; leur angle se mesure entre les deux perpendiculaires à cette intersection, une dans chaque plan. Mais le calcul, lui, est beaucoup plus simple : l'angle de deux plans est l'angle aigu de leurs vecteurs normaux. Une seule formule, identique à celle des droites, avec les normales à la place des directeurs. Pensez au toit à deux pans : l'angle du faîte, qui règle la pente et l'écoulement de la pluie, est l'angle des normales des deux pans.",
+   "texte": "Angle de plans : l'angle des normales.",
+   "ecran": "angle_plans"
+  },
+  {
+   "id": "p28",
+   "dit": "Synthèse finale, sur le tétraèdre régulier d'arête a. Placé astucieusement dans un repère, son sommet se projette au centre de la base, et sa hauteur vaut a racine de deux tiers, environ zéro virgule huit seize a. L'angle entre deux de ses faces se calcule par les normales : son cosinus vaut exactement un tiers, soit environ soixante-dix virgule cinq trois degrés. Ce nombre, un tiers, est une signature du tétraèdre régulier : on le retrouve en cristallographie, chaque fois que quatre directions parfaitement symétriques se partagent l'espace.",
+   "texte": "Tétraèdre régulier : cos θ = 1/3.",
+   "ecran": "tetra"
+  },
+  {
+   "id": "p29",
+   "dit": "Face à un problème, la stratégie tient en quatre gestes. Un : traduire, donner des coordonnées à tous les éléments et extraire les bons vecteurs, directeurs pour les droites, normaux pour les plans. Deux : choisir l'outil selon la question, scalaire pour les plans et les angles, vectoriel pour les droites, mixte pour les droites entre elles. Trois : appliquer la formule en gardant les valeurs exactes jusqu'au bout. Quatre : vérifier, une distance est positive, un angle de droites ou de plans est aigu, et un point sur l'objet donne une distance nulle.",
+   "texte": "Traduire, choisir l'outil, calculer, vérifier.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p30",
+   "dit": "Pour conclure ce cours : le produit scalaire est le maître outil de l'espace. Il mesure l'alignement, donne les angles, teste la perpendicularité, projette les vecteurs et livre la distance d'un point à un plan. Le produit vectoriel prend le relais pour les distances aux droites, et le produit mixte pour l'écart entre deux droites gauches. Distances et angles ne sont plus des impressions visuelles : ce sont des calculs, reproductibles et vérifiables. Vous disposez maintenant de la boîte à outils complète de la géométrie métrique de l'espace.",
+   "texte": "Scalaire, vectoriel, mixte : la boîte complète.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le produit scalaire : alignement, angles, projections"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Les distances : point, droite, plan",
+   "pont": {
+    "texte": "Partie 2 : points, droites et plans, les distances.",
+    "dit": "Partie deux : mesurer les distances. Nous partirons de la distance entre deux points, puis nous verrons comment la projection orthogonale donne la distance d'un point à une droite et à un plan, avec deux exemples chiffrés complets, celui du drone et de la ligne électrique, et celui de la couche géologique."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Entre deux droites, puis tous les angles",
+   "pont": {
+    "texte": "Partie 3 : droites entre elles, et tous les angles.",
+    "dit": "Partie trois : entre droites, puis les angles. Nous classerons d'abord les positions de deux droites, avec le test du produit mixte, avant de calculer leur distance, parallèles ou gauches. Puis viendront les trois angles de l'espace : entre deux droites, entre une droite et un plan, et entre deux plans."
+   }
+  }
+ ]
+}
