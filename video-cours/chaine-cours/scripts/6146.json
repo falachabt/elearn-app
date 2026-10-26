@@ -1,0 +1,462 @@
+{
+ "cours": 6146,
+ "titre": "Relations binaires et relations d'équivalence",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Relations binaires",
+   "titre": "Relations binaires et relations d'équivalence",
+   "sous": "Des liens entre éléments aux classes qui classent : réflexivité, symétrie, transitivité",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Amitiés, routes, hiérarchies : partout, des liens entre des éléments.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 140
+   }
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "La relation binaire",
+   "tex": "\\mathcal{R} \\subseteq E \\times E \\qquad a\\,\\mathcal{R}\\,b \\iff (a, b) \\in \\mathcal{R}",
+   "note": "Un critère qui décide, pour chaque couple, s'il est en relation ou non.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 200
+   }
+  },
+  "couples": {
+   "type": "formule",
+   "kicker": "Représentation 1 · les couples",
+   "tex": "\\mathcal{R} = \\{(1,2), (1,3), (1,4), (2,3), (2,4), (3,4)\\}",
+   "note": "La relation « strictement inférieur à » sur {1, 2, 3, 4}, écrite en extension."
+  },
+  "matrice": {
+   "type": "formule",
+   "kicker": "Représentation 2 · la matrice booléenne",
+   "tex": "M = \\begin{pmatrix} 0 & 1 & 1 & 1 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 1 \\\\ 0 & 0 & 0 & 0 \\end{pmatrix}",
+   "note": "Un pour « en relation », zéro sinon : triangulaire supérieure, zéros sur la diagonale."
+  },
+  "reflexive": {
+   "type": "formule",
+   "kicker": "Propriété 1 · la réflexivité",
+   "tex": "\\forall x \\in E, \\quad x\\,\\mathcal{R}\\,x",
+   "note": "Sur le diagramme : une boucle sur chaque point. Sur la matrice : une diagonale de uns.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 150
+   }
+  },
+  "symetrique": {
+   "type": "formule",
+   "kicker": "Propriété 2 · la symétrie",
+   "tex": "\\forall x, y \\in E, \\quad x\\,\\mathcal{R}\\,y \\implies y\\,\\mathcal{R}\\,x",
+   "note": "Sur le diagramme : toute flèche est double. La matrice est symétrique."
+  },
+  "transitive": {
+   "type": "formule",
+   "kicker": "Propriété 3 · la transitivité",
+   "tex": "x\\,\\mathcal{R}\\,y \\ \\text{et} \\ y\\,\\mathcal{R}\\,z \\implies x\\,\\mathcal{R}\\,z",
+   "note": "Le raccourci direct existe toujours : les liens s'enchaînent."
+  },
+  "profils": {
+   "type": "etape",
+   "kicker": "Quatre relations, quatre profils",
+   "titre": "Réflexive, symétrique, transitive : le tableau des profils",
+   "tex": [
+    "= \\ : R, S, T \\qquad \\leq \\ : R, T",
+    "< \\ : T \\qquad \\neq \\ : S"
+   ]
+  },
+  "clotures": {
+   "type": "etape",
+   "kicker": "Compléter une relation · les clôtures",
+   "titre": "Ajouter le minimum pour gagner une propriété",
+   "tex": [
+    "\\text{réflexive : } R \\cup \\Delta_E",
+    "\\text{symétrique : } R \\cup R^{-1}",
+    "\\text{transitive : } R^+ = \\bigcup_{n \\geq 1} R^n"
+   ]
+  },
+  "equivalence_def": {
+   "type": "formule",
+   "kicker": "La relation d'équivalence",
+   "tex": "x \\sim y \\iff \\text{réflexive, symétrique et transitive}",
+   "note": "Le symbole tilde, qui généralise l'idée d'égalité : être équivalent à.",
+   "anim": {
+    "nom": "partition_fig",
+    "hauteur": 190
+   }
+  },
+  "congruence": {
+   "type": "formule",
+   "kicker": "Exemple fondateur · la congruence modulo cinq",
+   "tex": "a \\equiv b \\pmod{5} \\iff 5 \\mid (a - b)",
+   "note": "Deux entiers sont congrus si leur différence est un multiple de cinq."
+  },
+  "congruence_preuve": {
+   "type": "etape",
+   "kicker": "Vérifier les trois propriétés",
+   "titre": "La congruence modulo cinq, propriété par propriété",
+   "tex": [
+    "a - a = 0 \\qquad 5 \\mid 0",
+    "b - a = -(a - b)",
+    "a - c = (a - b) + (b - c)"
+   ]
+  },
+  "ami": {
+   "type": "phrase",
+   "kicker": "Un contre-exemple du quotidien",
+   "texte": "« Être ami avec » : symétrique, mais pas transitive, donc pas une équivalence.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 140
+   }
+  },
+  "etape_bilan": {
+   "type": "recap",
+   "kicker": "Point d'étape",
+   "etapes": [
+    "Équivalence : les trois propriétés réunies",
+    "Congruence mod n : preuve en trois pas",
+    "« Être ami » : pas transitive, pas équivalence",
+    "Direction : les classes découpent l'ensemble"
+   ]
+  },
+  "classe_def": {
+   "type": "formule",
+   "kicker": "La classe d'équivalence",
+   "tex": "[a] = \\{x \\in E \\mid a\\,\\mathcal{R}\\,x\\}",
+   "note": "Tous les éléments que la relation ne distingue pas de a : ses compagnons.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 200
+   }
+  },
+  "parite": {
+   "type": "etape",
+   "kicker": "Premier exemple · la parité",
+   "titre": "Deux classes seulement pour tous les naturels",
+   "tex": [
+    "[0] = \\{0, 2, 4, 6, \\dots\\} \\qquad \\text{les pairs}",
+    "[1] = \\{1, 3, 5, 7, \\dots\\} \\qquad \\text{les impairs}"
+   ]
+  },
+  "lemme": {
+   "type": "etape",
+   "kicker": "Le lemme des classes",
+   "titre": "Trois faits qui font toute la structure",
+   "tex": [
+    "a \\in [a] \\qquad a\\,\\mathcal{R}\\,b \\iff [a] = [b]",
+    "[a] \\cap [b] \\neq \\varnothing \\implies [a] = [b]"
+   ]
+  },
+  "partition_ex": {
+   "type": "etape",
+   "kicker": "Exemple fini · une partition donnée",
+   "titre": "Lire les classes directement dans les blocs",
+   "tex": [
+    "\\mathcal{P} = \\{\\{1, 3, 5\\}, \\{2, 4\\}, \\{6\\}\\}",
+    "[3] = \\{1, 3, 5\\} \\qquad [4] = \\{2, 4\\} \\qquad [6] = \\{6\\}"
+   ]
+  },
+  "theoreme": {
+   "type": "formule",
+   "kicker": "Le théorème fondamental",
+   "tex": "E/\\mathcal{R} = \\{[a] \\mid a \\in E\\}",
+   "note": "Équivalence et partition se correspondent exactement, dans les deux sens.",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 180
+   }
+  },
+  "horloge": {
+   "type": "formule",
+   "kicker": "Application · l'horloge modulo douze",
+   "tex": "14 \\equiv 2 \\pmod{12} \\qquad [3] = \\{\\dots, 3, 15, 27, \\dots\\}",
+   "note": "Douze classes, douze positions sur le cadran : l'ensemble quotient au quotidien.",
+   "anim": {
+    "nom": "horloge_modulaire_fig",
+    "hauteur": 220
+   }
+  },
+  "quotient_mod": {
+   "type": "etape",
+   "kicker": "L'ensemble quotient modulo n",
+   "titre": "n classes infinies, un quotient fini",
+   "tex": [
+    "[k] = k + n\\mathbb{Z}",
+    "\\mathbb{Z}/n\\mathbb{Z} = \\{[0], [1], \\dots, [n-1]\\}",
+    "\\text{dans } \\mathbb{Z}/5\\mathbb{Z} : [2] + [4] = [1]"
+   ]
+  },
+  "paralleles": {
+   "type": "etape",
+   "kicker": "En géométrie · le parallélisme",
+   "titre": "La classe d'une droite, c'est sa direction",
+   "tex": [
+    "\\text{parallélisme : réflexif, symétrique, transitif}",
+    "\\text{perpendicularité : symétrique seulement}"
+   ]
+  },
+  "meme_image": {
+   "type": "formule",
+   "kicker": "Le modèle universel · la même image",
+   "tex": "x \\sim y \\iff f(x) = f(y)",
+   "note": "Les classes sont les fibres de f : tous les antécédents d'une même valeur.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "construction_q": {
+   "type": "etape",
+   "kicker": "Construire les rationnels",
+   "titre": "Une fraction est une classe d'équivalence",
+   "tex": [
+    "(a, b) \\sim (c, d) \\iff ad = bc",
+    "[(1, 2)] = [(2, 4)] = \\tfrac{1}{2}"
+   ]
+  },
+  "mystere": {
+   "type": "etape",
+   "kicker": "Exemple complet · la relation mystère",
+   "titre": "Quatre éléments, deux classes",
+   "tex": [
+    "\\text{tous les couples de } \\{a, b, c\\}, \\text{ plus } (d, d)",
+    "[a] = \\{a, b, c\\} \\qquad [d] = \\{d\\} \\qquad |E/R| = 2"
+   ]
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège classique",
+   "texte": "Symétrique et transitive n'implique pas réflexive : l'élément isolé échappe.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 150
+   }
+  },
+  "comptage": {
+   "type": "formule",
+   "kicker": "Compter les relations",
+   "tex": "2^{n^2} \\text{ relations sur } n \\text{ éléments}",
+   "note": "Pour quatre éléments : soixante-cinq mille cinq cent trente-six relations possibles."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Relation : un sous-ensemble de E × E",
+    "Équivalence : réflexive, symétrique, transitive",
+    "Classe [a] : les éléments en relation avec a",
+    "Classes : identiques ou disjointes, partition",
+    "Quotient : congruence, directions, fractions"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux relations binaires et aux relations d'équivalence. Amitiés sur un réseau social, routes entre des villes, hiérarchie dans une entreprise : partout, des liens relient des éléments. Nous allons apprendre à décrire ces liens, à tester leurs trois grandes propriétés, puis à regrouper les éléments en classes d'équivalence, ces groupes homogènes qui découpent un ensemble en une partition.",
+   "texte": "Relations binaires et équivalences : classer par classes.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ est simple : une relation binaire sur un ensemble est un critère qui, pour deux éléments quelconques, répond oui ou non à la question : sont-ils en relation ? Comparer des nombres, relier des droites, regrouper des étudiants : dans chaque cas, tout repose sur ce choix de couples. C'est ce langage des liens que nous construisons maintenant.",
+   "texte": "Partout des liens : un critère pour chaque couple.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Définition formelle : soit grand E un ensemble. Une relation binaire sur E est un sous-ensemble du produit cartésien E croix E, c'est-à-dire un ensemble de couples ordonnés. Si le couple a, b fait partie de la relation, on écrit a en relation avec b. Tout le cours tient dans ce choix : quels couples sont retenus, et lesquels ne le sont pas ?",
+   "texte": "Une relation : un sous-ensemble de E × E.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Première représentation : l'ensemble des couples, écrit en extension. Sur les entiers un, deux, trois et quatre, la relation strictement inférieur à contient exactement six couples : un avant deux, un avant trois, un avant quatre, deux avant trois, deux avant quatre, et trois avant quatre. Aucun couple ne part d'un élément vers un plus petit, et aucun élément n'est en relation avec lui-même.",
+   "texte": "Six couples pour « strictement inférieur à ».",
+   "ecran": "couples"
+  },
+  {
+   "id": "p05",
+   "dit": "Deuxième représentation : la matrice booléenne. La ligne i et la colonne j contiennent un un si i est en relation avec j, un zéro sinon. Pour notre exemple, la matrice est triangulaire supérieure, avec des zéros sur toute la diagonale : c'est la signature visuelle d'un ordre strict sur un ensemble totalement ordonné. Troisième représentation, le graphe orienté : chaque élément devient un sommet, chaque couple devient une flèche, et le diagramme sagittal dessine la relation.",
+   "texte": "Matrice booléenne et graphe orienté : deux autres lectures.",
+   "ecran": "matrice"
+  },
+  {
+   "id": "p06",
+   "dit": "Première propriété, la réflexivité : tout élément est en relation avec lui-même. L'égalité la vérifie, la divisibilité aussi ; en revanche, être strictement plus grand que la refuse, car aucun nombre n'est plus grand que lui-même. Sur le diagramme sagittal, la réflexivité se voit immédiatement : chaque point porte une boucle.",
+   "texte": "Réflexivité : chacun est en relation avec soi-même.",
+   "ecran": "reflexive"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième propriété, la symétrie : chaque fois que a est en relation avec b, b est en relation avec a. Être marié à, être différent de : ces relations sont symétriques. Être inférieur ou égal à ne l'est pas : trois est inférieur ou égal à cinq, mais cinq n'est pas inférieur ou égal à trois. Sur le diagramme, toute flèche devient une double flèche.",
+   "texte": "Symétrie : chaque lien va dans les deux sens.",
+   "ecran": "symetrique"
+  },
+  {
+   "id": "p08",
+   "dit": "Troisième propriété, la transitivité : si a est en relation avec b et b en relation avec c, alors a est en relation avec c. Être plus petit que, être un ancêtre de : ces relations enchaînent les liens. Être perpendiculaire à ne le fait pas : deux droites perpendiculaires à une même troisième sont parallèles entre elles, et non perpendiculaires.",
+   "texte": "Transitivité : les liens s'enchaînent en raccourci.",
+   "ecran": "transitive"
+  },
+  {
+   "id": "p09",
+   "dit": "Ces trois propriétés sont indépendantes : une relation peut en posséder certaines et pas d'autres. L'égalité les réunit toutes les trois. Inférieur ou égal est réflexive et transitive, mais pas symétrique. Strictement inférieur n'est que transitive. Différent de n'est que symétrique : remarquez qu'un est différent de deux et deux différent de un, sans que un soit différent de lui-même. Retenez ces profils, ils reviennent sans cesse.",
+   "texte": "Quatre relations, quatre profils à connaître.",
+   "ecran": "profils"
+  },
+  {
+   "id": "p10",
+   "dit": "Quand une propriété manque, on peut compléter la relation au minimum : c'est la clôture. Ajouter toutes les boucles donne la clôture réflexive ; ajouter le retour de chaque flèche donne la clôture symétrique ; ajouter tous les raccourcis donnés par les chemins donne la clôture transitive. Exemple : avec les couples a vers b et b vers c, la clôture transitive ajoute simplement le couple a vers c.",
+   "texte": "Clôtures : compléter au minimum, propriété par propriété.",
+   "ecran": "clotures"
+  },
+  {
+   "id": "p11",
+   "dit": "Nous pouvons maintenant définir l'objet central du cours. Une relation d'équivalence est une relation binaire qui est à la fois réflexive, symétrique et transitive. On la note souvent avec un tilde, et on lit a équivalent à b. Elle formalise l'idée de ressemblance parfaite selon un critère : même âge, même reste, même direction. Les trois propriétés ensemble garantissent un classement sans ambiguïté.",
+   "texte": "Réflexive, symétrique, transitive : l'équivalence.",
+   "ecran": "equivalence_def"
+  },
+  {
+   "id": "p12",
+   "dit": "L'exemple fondateur est la congruence modulo cinq, sur les entiers relatifs. Deux entiers sont congrus modulo cinq si leur différence est un multiple de cinq. Dix-sept et deux sont congrus, car leur différence vaut quinze. C'est la relation qui fait fonctionner les horloges, les calendriers et, en informatique, l'arithmétique des restes.",
+   "texte": "Congruence modulo cinq : même reste, même classe.",
+   "ecran": "congruence"
+  },
+  {
+   "id": "p13",
+   "dit": "Vérifions les trois propriétés, c'est la méthode à appliquer partout. Réflexivité : la différence d'un entier avec lui-même vaut zéro, qui est un multiple de cinq. Symétrie : si cinq divise a moins b, il divise aussi son opposé, b moins a. Transitivité : a moins c est la somme de a moins b et de b moins c, deux multiples de cinq, donc un multiple de cinq. La congruence est bien une relation d'équivalence.",
+   "texte": "La preuve type : réflexivité, symétrie, transitivité.",
+   "ecran": "congruence_preuve"
+  },
+  {
+   "id": "p14",
+   "dit": "Attention aux fausses équivalences. La relation être ami avec est à peu près symétrique, mais elle n'est pas transitive : l'ami de mon ami n'est pas forcément mon ami. Il lui manque donc une propriété, et elle ne découpe pas l'ensemble des personnes en groupes disjoints : les réseaux d'amis forment des structures qui se recouvrent, pas une partition. Une seule propriété en défaut suffit à tout changer.",
+   "texte": "« Être ami » échoue sur la transitivité.",
+   "ecran": "ami"
+  },
+  {
+   "id": "p15",
+   "dit": "Point d'étape. Une relation d'équivalence réunit la réflexivité, la symétrie et la transitivité, et la congruence modulo cinq nous a donné la preuve type de ces trois propriétés, dans l'ordre. À l'inverse, la relation être ami avec échoue sur la transitivité et ne peut donc pas classer. Il reste à voir ce qu'une équivalence fait à l'ensemble tout entier : elle le découpe en classes, et c'est l'objet de la suite.",
+   "texte": "Point d'étape : l'équivalence en quatre idées.",
+   "ecran": "etape_bilan"
+  },
+  {
+   "id": "p16",
+   "dit": "Voici la notion clé de cette deuxième partie : la classe d'équivalence d'un élément a, notée a entre crochets, est l'ensemble de tous les éléments en relation avec a, tous ses compagnons selon le critère choisi. Par réflexivité, a appartient toujours à sa propre classe : aucune classe n'est jamais vide. Tout élément d'une classe peut la représenter : on parle alors de représentant de la classe.",
+   "texte": "La classe de a : tous ses compagnons.",
+   "ecran": "classe_def"
+  },
+  {
+   "id": "p17",
+   "dit": "Premier exemple : la parité, sur les entiers naturels. La classe de zéro rassemble tous les nombres pairs ; la classe de un rassemble tous les nombres impairs. Et remarquez : la classe de deux est celle de zéro, la classe de trois est celle de un. Pour cette relation, il n'existe que deux classes distinctes, alors que l'ensemble de départ est infini : le regroupement simplifie radicalement la description.",
+   "texte": "Parité : deux classes pour tous les naturels.",
+   "ecran": "parite"
+  },
+  {
+   "id": "p18",
+   "dit": "Trois faits structurent toutes les classes. D'abord, chaque élément appartient à sa classe. Ensuite, deux éléments sont en relation si et seulement si leurs classes sont égales : être en relation et partager la même classe sont une seule et même information. Enfin, deux classes qui se rencontrent sont forcément identiques : les classes sont donc soit égales, soit disjointes. Aucun recouvrement partiel n'est possible.",
+   "texte": "Identiques ou disjointes : jamais entre les deux.",
+   "ecran": "lemme"
+  },
+  {
+   "id": "p19",
+   "dit": "Lisons ce lemme sur un exemple fini. Une partition de l'ensemble de un à six en trois blocs : un, trois, cinq ; deux, quatre ; et six tout seul. Déclarer deux éléments en relation quand ils partagent le même bloc définit une équivalence, et ses classes se lisent directement : la classe de trois est le premier bloc, celle de quatre le deuxième, celle de six le troisième. Pour le premier bloc, trois choix de représentant sont possibles.",
+   "texte": "Une partition donnée, des classes immédiates.",
+   "ecran": "partition_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "C'est le théorème fondamental du sujet : toute relation d'équivalence découpe l'ensemble en une partition, la famille de ses classes, et réciproquement toute partition définit une relation d'équivalence, être dans le même bloc. La famille des classes s'appelle l'ensemble quotient, noté E barre relation. Classer et partitionner sont donc deux visages d'une même opération.",
+   "texte": "Équivalence et partition : une correspondance exacte.",
+   "ecran": "theoreme"
+  },
+  {
+   "id": "p21",
+   "dit": "Retrouvons la congruence dans la vie courante : l'horloge à douze heures. Quatorze heures et deux heures désignent la même position sur le cadran, car quatorze est congru à deux modulo douze. La classe de trois contient trois heures, quinze heures, vingt-sept heures, et ainsi de suite. L'ensemble quotient possède exactement douze classes : les douze positions du cadran.",
+   "texte": "Modulo douze : les positions du cadran.",
+   "ecran": "horloge"
+  },
+  {
+   "id": "p22",
+   "dit": "Plus généralement, la congruence modulo n découpe les entiers en exactement n classes : celle de zéro, celle de un, et ainsi de suite jusqu'à celle de n moins un. Chaque classe est infinie, mais le quotient, lui, est fini : c'est l'ensemble noté Z barre n Z. On peut même y calculer : dans le quotient modulo cinq, la classe de deux plus la classe de quatre donne la classe de un, car six est congru à un modulo cinq. C'est la base de l'arithmétique modulaire et de la cryptographie.",
+   "texte": "Z/nZ : n classes, et on peut y calculer.",
+   "ecran": "quotient_mod"
+  },
+  {
+   "id": "p23",
+   "dit": "En géométrie, le parallélisme des droites du plan est une relation d'équivalence, à condition de convenir qu'une droite est parallèle à elle-même. La classe d'une droite rassemble toutes les droites qui lui sont parallèles : on l'appelle sa direction. Le quotient est alors l'ensemble de toutes les directions du plan. Contraste utile : la perpendicularité est symétrique, mais ni réflexive ni transitive, donc pas une équivalence.",
+   "texte": "La classe d'une droite : sa direction.",
+   "ecran": "paralleles"
+  },
+  {
+   "id": "p24",
+   "dit": "Un modèle universel produit des équivalences à volonté : fixez une fonction f, et déclarez deux éléments équivalents quand ils ont la même image par f. Réflexivité, symétrie et transitivité viennent alors gratuitement de l'égalité des images. Les classes sont les fibres de la fonction : tous les antécédents d'une même valeur. Même nationalité, même promotion, même reste modulo n : toutes ces équivalences sont de cette forme.",
+   "texte": "Même image par f : le modèle universel.",
+   "ecran": "meme_image"
+  },
+  {
+   "id": "p25",
+   "dit": "Cette machine à classer construit même les nombres. Une fraction n'est rien d'autre qu'une classe d'équivalence : les couples un, deux et deux, quatre représentent le même rationnel, car un fois quatre égale deux fois deux. La condition générale compare les produits en croix. De la même façon, les entiers relatifs se construisent comme classes de couples de naturels, et les réels comme classes de suites de Cauchy : partitionner pour mieux unifier.",
+   "texte": "Une fraction est une classe d'équivalence.",
+   "ecran": "construction_q"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple complet, à savoir refaire : sur les éléments a, b, c, d, prenons la relation qui contient la diagonale et tous les couples formés de a, b, c dans les deux sens, d restant seul avec lui-même. Elle est réflexive, symétrique et transitive : c'est une équivalence. Ses classes sont le bloc a, b, c et le bloc d tout seul ; le quotient compte donc deux classes seulement.",
+   "texte": "Exemple complet : deux classes sur quatre éléments.",
+   "ecran": "mystere"
+  },
+  {
+   "id": "p27",
+   "dit": "Un piège classique des exercices : une relation symétrique et transitive n'est pas automatiquement réflexive. Elle l'est pour tout élément qui est en relation avec au moins un autre élément, car on peut alors revenir sur ses pas. Mais un élément isolé, en relation avec personne, pas même avec lui-même, échappe à la réflexivité. Avant de conclure, cherchez toujours l'élément isolé.",
+   "texte": "Le piège : l'élément isolé échappe à la réflexivité.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour mesurer la richesse du sujet, comptons : sur un ensemble de n éléments, il existe deux puissance n au carré relations binaires possibles, car chaque couple peut être choisi ou non. Pour quatre éléments, cela fait déjà soixante-cinq mille cinq cent trente-six relations. Les relations d'équivalence sont bien plus rares : leur nombre, pour chaque taille, s'appelle le nombre de Bell, et il compte en fait les partitions de l'ensemble.",
+   "texte": "Compter : 2^(n²) relations, les Bell pour les équivalences.",
+   "ecran": "comptage"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour finir, retenez l'enchaînement complet de ce cours : décrire une relation par ses couples, sa matrice ou son graphe ; tester réflexivité, symétrie et transitivité, dans cet ordre ; si les trois passent, décrire les classes et le quotient. La congruence modulo n, les directions de droites et les fractions montrent que ce même schéma classe les nombres, les figures et les objets du quotidien.",
+   "texte": "Relations et équivalences : à retenir.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Relations binaires : représentations et trois propriétés"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Relations d'équivalence et classes",
+   "pont": {
+    "texte": "Partie 2 : équivalences, congruence et classes.",
+    "dit": "Partie deux : les relations d'équivalence. Après les trois propriétés, nous définissons l'équivalence, nous la prouvons sur la congruence modulo cinq, puis nous regroupons les éléments en classes et nous énonçons le théorème qui identifie équivalences et partitions."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Quotients à l'œuvre : horloge, directions, fractions",
+   "pont": {
+    "texte": "Partie 3 : les quotients à l'œuvre, de l'horloge aux fractions.",
+    "dit": "Partie trois : les ensembles quotients à l'œuvre. De l'horloge modulo douze aux directions de droites, des fibres d'une fonction à la construction des fractions, nous verrons comment les classes fabriquent de nouveaux objets mathématiques."
+   }
+  }
+ ]
+}
