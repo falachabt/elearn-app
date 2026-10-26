@@ -1,0 +1,451 @@
+{
+ "cours": 5887,
+ "ecrans": {
+  "amortissement": {
+   "kicker": "Finance · l'amortissement d'un prêt",
+   "tex": [
+    "M = \\tfrac{C \\times i}{1 - (1+i)^{-N}} \\quad C = 10000, \\ i = \\tfrac{0{,}05}{12}, \\ N = 60",
+    "M \\approx 188{,}71 \\ \\text{euros par mois pendant cinq ans}",
+    "\\text{intérêts totaux} \\approx 1322{,}74 \\ \\text{euros}"
+   ],
+   "titre": "Un prêt de dix mille euros à cinq pour cent, sur cinq ans",
+   "type": "etape"
+  },
+  "arith_def": {
+   "kicker": "Suites arithmétiques · définition",
+   "note": "Exemple : 2, 5, 8, 11... la raison vaut 3, et les points (n, uₙ) sont alignés sur une droite.",
+   "tex": "u_{n+1} = u_n + r",
+   "type": "formule"
+  },
+  "arith_exemple": {
+   "kicker": "Exemple · deux termes connus",
+   "tex": [
+    "v_5 - v_1 = 4r = 19 - 7 = 12 \\qquad r = 3",
+    "v_n = v_1 + (n-1)\\,r = 7 + 3(n-1)",
+    "v_n = 3n + 4 \\qquad v_5 = 3 \\times 5 + 4 = 19"
+   ],
+   "titre": "Retrouver la raison et le terme général",
+   "type": "etape"
+  },
+  "arith_terme": {
+   "kicker": "Suites arithmétiques · terme général",
+   "note": "Exemple : u₁ = 2 et r = 3 donnent u₁₀ = 2 + 9 × 3 = 29, sans calculer les termes intermédiaires.",
+   "tex": "u_n = u_p + (n - p)\\,r",
+   "type": "formule"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Qu'est-ce qu'une suite ?",
+   "note": "Une suite est une fonction de l'indice n : à chaque rang, un nombre. Ici, les nombres impairs.",
+   "tex": "u_n = 2n + 1 \\qquad u_0 = 1,\\ u_1 = 3,\\ u_2 = 5,\\ u_3 = 7",
+   "type": "formule"
+  },
+  "dominos": {
+   "kicker": "La récurrence · la métaphore des dominos",
+   "texte": "Un premier domino qui tombe, et chaque domino qui entraîne le suivant : toute la rangée tombe.",
+   "type": "phrase",
+   "anim": {
+    "nom": "dominos_fig",
+    "hauteur": 190
+   }
+  },
+  "geo_def": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Suites géométriques · définition",
+   "note": "Exemple : 2, 6, 18, 54... la raison vaut 3 : la croissance devient exponentielle.",
+   "tex": "u_{n+1} = q \\times u_n",
+   "type": "formule"
+  },
+  "geo_exemple": {
+   "kicker": "Exemple · croissance bactérienne",
+   "tex": [
+    "u_0 = 1000 \\qquad q = 2 \\text{ (doublement horaire)}",
+    "u_5 = 1000 \\times 2^5 = 1000 \\times 32",
+    "u_5 = 32000 \\text{ bactéries après cinq heures}"
+   ],
+   "titre": "Une population qui double toutes les heures",
+   "type": "etape"
+  },
+  "geo_terme": {
+   "kicker": "Suites géométriques · terme général",
+   "note": "Exemple : u₁ = 2 et q = 3 donnent u₇ = 2 × 3⁶ = 1 458.",
+   "tex": "u_n = u_p \\times q^{\\,n-p}",
+   "type": "formule"
+  },
+  "interets": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Finance · les intérêts composés",
+   "note": "Après 10 ans : 1 628,89 euros. Après 20 ans : 2 653,30 euros, soit le capital multiplié par 2,65.",
+   "tex": "C_n = C_0 \\times (1 + t)^n = 1000 \\times 1{,}05^{\\,n}",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un placement qui grossit, des bactéries qui doublent, une balle qui rebondit : des suites partout.",
+   "type": "phrase"
+  },
+  "limite_def": {
+   "kicker": "Limite d'une suite · définition",
+   "note": "Pour tout epsilon positif, il existe un rang N : au-delà, tous les termes sont à moins de epsilon de l.",
+   "tex": "\\lim_{n \\to +\\infty} u_n = l",
+   "type": "formule"
+  },
+  "limite_exemples": {
+   "kicker": "Limites · trois comportements",
+   "tex": [
+    "u_n = \\tfrac{1}{n} \\to 0 \\text{ quand } n \\to +\\infty",
+    "u_n = \\tfrac{2n^2 + 3n - 1}{n^2 + 5} \\to 2 \\quad \\text{en divisant par } n^2",
+    "u_n = (-1)^n \\text{ : } -1, 1, -1, 1 \\ldots \\text{ aucune limite}"
+   ],
+   "titre": "Converger, diverger, osciller",
+   "type": "etape"
+  },
+  "limite_intuition": {
+   "kicker": "Limite d'une suite · intuition",
+   "texte": "Quand n grandit, les termes se resserrent autour d'une valeur : c'est la limite.",
+   "type": "phrase",
+   "anim": {
+    "nom": "suite_convergente_fig",
+    "hauteur": 190
+   }
+  },
+  "limite_proprietes": {
+   "kicker": "Limites · opérations",
+   "tex": [
+    "\\lim (a\\,u_n + b\\,v_n) = a\\,\\lim u_n + b\\,\\lim v_n",
+    "\\lim (u_n \\times v_n) = \\lim u_n \\times \\lim v_n",
+    "\\lim \\tfrac{u_n}{v_n} = \\tfrac{\\lim u_n}{\\lim v_n} \\quad (\\lim v_n \\neq 0)"
+   ],
+   "titre": "Somme, produit, quotient : les limites se combinent",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Une suite : une fonction de l'indice n",
+    "Arithmétique : ajouter r à chaque pas",
+    "Géométrique : multiplier par q",
+    "Terme général : sauter au rang voulu",
+    "Deux termes connus donnent la raison"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Converger : tendre vers une limite l",
+    "Osciller ou diverger : pas de limite",
+    "Récurrence : initialisation puis hérédité",
+    "Une preuve pour une infinité de rangs"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Sigma : écrire une somme en une ligne",
+    "Somme arithmétique : termes × moyenne",
+    "Somme géométrique : la raison décide",
+    "Télescopage : les intérieurs s'annulent",
+    "Finance : (1 + t)ⁿ et les mensualités"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "recurrence_exemple": {
+   "kicker": "Exemple · une formule prouvée par récurrence",
+   "tex": [
+    "S_1 = 1 = \\tfrac{1 \\times 2}{2} \\quad \\text{(initialisation)}",
+    "S_n = \\tfrac{n(n+1)}{2} \\quad \\text{(hypothèse au rang } n\\text{)}",
+    "S_{n+1} = S_n + (n+1) = \\tfrac{n(n+1)}{2} + (n+1)",
+    "S_{n+1} = \\tfrac{(n+1)(n+2)}{2} \\quad \\text{(hérédité prouvée)}"
+   ],
+   "titre": "La somme des n premiers entiers",
+   "type": "etape"
+  },
+  "recurrence_principe": {
+   "kicker": "Le principe de récurrence",
+   "tex": [
+    "\\text{initialisation : la propriété est vraie au premier rang}",
+    "\\text{hérédité : vraie au rang } n \\Rightarrow \\text{ vraie au rang } n + 1",
+    "\\text{conclusion : elle est vraie pour tout rang}"
+   ],
+   "titre": "Deux étapes pour une infinité de rangs",
+   "type": "etape"
+  },
+  "serie_balle": {
+   "kicker": "Une série infinie · la balle qui rebondit",
+   "tex": [
+    "d = 1 + 2\\,(0{,}8 + 0{,}8^2 + 0{,}8^3 + \\cdots)",
+    "\\tfrac{0{,}8}{1 - 0{,}8} = 4 \\quad \\text{(série géométrique, } |q| < 1\\text{)}",
+    "d = 1 + 2 \\times 4 = 9 \\ \\text{mètres}"
+   ],
+   "titre": "Une distance totale finie, en un nombre infini de rebonds",
+   "type": "etape"
+  },
+  "sigma": {
+   "kicker": "Sommes partielles et notation sigma",
+   "note": "Sₙ est la somme partielle. Si elle tend vers une limite quand n grandit, la série converge.",
+   "tex": "S_n = \\sum_{k=1}^{n} a_k = a_1 + a_2 + \\cdots + a_n",
+   "type": "formule",
+   "anim": {
+    "nom": "escalier_sommes_fig",
+    "hauteur": 170
+   }
+  },
+  "somme_arith": {
+   "kicker": "Somme d'une suite arithmétique",
+   "note": "Le nombre de termes, fois la moyenne du premier et du dernier. Les cent premiers impairs : 100 × 100 = 10 000.",
+   "tex": "S_n = (n - p + 1) \\times \\frac{u_p + u_n}{2}",
+   "type": "formule"
+  },
+  "somme_arith_exemple": {
+   "kicker": "Exemple · une somme arithmétique",
+   "tex": [
+    "u_{20} = 3 + 19 \\times 4 = 79",
+    "S_{20} = 20 \\times \\tfrac{3 + 79}{2} = 20 \\times 41",
+    "S_{20} = 820"
+   ],
+   "titre": "Trois, sept, onze, quinze... : les vingt premiers termes",
+   "type": "etape"
+  },
+  "somme_geo": {
+   "kicker": "Somme d'une suite géométrique",
+   "note": "Exemple : 2 + 6 + 18 + 54 + 162 = 242, et la formule donne le même résultat en un seul calcul.",
+   "tex": "S_n = u_p \\times \\frac{1 - q^{\\,n-p+1}}{1 - q} \\qquad (q \\neq 1)",
+   "type": "formule"
+  },
+  "telescopage": {
+   "kicker": "La sommation par télescopage",
+   "tex": [
+    "a_k = \\tfrac{1}{k} - \\tfrac{1}{k+1}",
+    "\\text{écrits bout à bout, les termes intérieurs s'annulent}",
+    "\\sum_{k=1}^{n} a_k = 1 - \\tfrac{1}{n+1} \\qquad n = 99 : \\tfrac{99}{100}"
+   ],
+   "titre": "Les termes intérieurs s'annulent deux à deux",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Mathématique · Suites numériques",
+   "sous": "Arithmétiques, géométriques, limites, récurrence : les formules et les sommes qui comptent",
+   "titre": "Suites numériques et sommations",
+   "type": "titre"
+  },
+  "types": {
+   "kicker": "Les grandes familles de suites",
+   "tex": [
+    "\\text{arithmétique : on ajoute la raison } r \\text{ à chaque pas}",
+    "\\text{géométrique : on multiplie par la raison } q \\text{ à chaque pas}",
+    "\\text{récurrente : chaque terme dépend des précédents (Fibonacci)}"
+   ],
+   "titre": "Trois familles à reconnaître d'un coup d'œil",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir une suite, les suites arithmétiques et géométriques"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : le comportement à l'infini et la preuve par récurrence. Nous regarderons d'abord vers quoi tend une suite quand le rang grandit indéfiniment, puis nous apprendrons à démontrer une propriété pour tous les rangs à la fois, grâce à la métaphore des dominos.",
+    "texte": "Partie 2 : limites de suites et raisonnement par récurrence."
+   },
+   "sous_titre": "Limites de suites et raisonnement par récurrence"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : additionner les termes. Nous écrirons les sommes avec la notation sigma, nous retrouverons les formules des sommes arithmétiques et géométriques, puis la technique du télescopage et les séries infinies, avant de terminer en finance, avec les intérêts composés et l'amortissement d'un prêt.",
+    "texte": "Partie 3 : sommes partielles, séries et applications en finance."
+   },
+   "sous_titre": "Sommes partielles, séries infinies et finance"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux suites numériques et à leurs sommations. Nous partirons d'une idée simple, une liste de nombres rangés dans un ordre précis, pour construire les deux grandes familles que sont les suites arithmétiques et géométriques, comprendre leurs limites, apprendre à prouver leurs propriétés par récurrence, et enfin additionner leurs termes, jusqu'aux séries infinies et à leurs applications en finance.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Suites et sommations : des premiers termes aux séries infinies."
+  },
+  {
+   "dit": "Une suite, vous en croisez partout sans le savoir : le solde d'un placement qui grossit chaque année, des bactéries qui doublent d'heure en heure, une balle qui rebondit de moins en moins haut. À chaque fois, les mêmes questions se posent : comment décrire tous ces nombres d'un coup, prédire celui qui viendra dans dix ou cent étapes, et calculer leur somme sans les additionner un par un. C'est exactement le programme de ce cours.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Décrire, prédire, additionner : le programme du cours."
+  },
+  {
+   "dit": "Formellement, une suite numérique est une fonction qui, à chaque entier naturel, associe un nombre. L'entier est le rang, ou l'indice, et le nombre obtenu est le terme de ce rang. Prenons la suite définie par u indice n égale deux n plus un : au rang zéro, on obtient un ; au rang un, trois ; au rang deux, cinq ; au rang trois, sept. Vous reconnaissez les nombres impairs, et les points de coordonnées n et u indice n, placés dans un repère, dessinent une droite.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "uₙ = 2n + 1 : 1, 3, 5, 7... les nombres impairs."
+  },
+  {
+   "dit": "Parmi l'infinité des suites, trois familles reviennent sans cesse. Les suites arithmétiques avancent par additions constantes, les suites géométriques par multiplications constantes, et les suites récurrentes définissent chaque terme à partir des précédents : la plus célèbre est celle de Fibonacci, un, un, deux, trois, cinq, huit, où chaque terme est la somme des deux qui le précèdent. Savoir reconnaître la famille d'une suite, c'est déjà savoir quels outils appliquer.",
+   "ecran": "types",
+   "id": "p04",
+   "texte": "Arithmétique, géométrique, récurrente : trois familles."
+  },
+  {
+   "dit": "Une suite est arithmétique lorsque l'on passe d'un terme au suivant en ajoutant toujours le même nombre, appelé la raison et noté r. Autrement dit, le terme de rang n plus un égale le terme de rang n, plus r. Avec un premier terme égal à deux et une raison de trois, on obtient deux, cinq, huit, onze, et ainsi de suite. La croissance est parfaitement régulière : c'est la progression linéaire, celle d'une épargne alimentée par un versement fixe chaque mois.",
+   "ecran": "arith_def",
+   "id": "p05",
+   "texte": "Arithmétique : uₙ₊₁ = uₙ + r, un pas constant."
+  },
+  {
+   "dit": "Cette régularité permet de calculer n'importe quel terme directement, sans dérouler toute la suite. Pour aller du rang p au rang n, on franchit n moins p pas, chacun ajoutant la raison : le terme de rang n égale donc le terme de rang p, plus n moins p fois r. Dans notre exemple, le dixième terme vaut le premier, deux, plus neuf pas de trois, c'est-à-dire vingt-neuf. Retenez la logique du nombre de pas : c'est elle qui évite les erreurs d'indice, si fréquentes sur ces questions.",
+   "ecran": "arith_terme",
+   "id": "p06",
+   "texte": "Terme général : premier terme + nombre de pas × raison."
+  },
+  {
+   "dit": "Exercice type : une suite arithmétique vérifie v indice un égale sept et v indice cinq égale dix-neuf. Retrouver sa raison. Entre le premier et le cinquième terme, on franchit quatre pas, et la valeur augmente de dix-neuf moins sept, soit douze : chaque pas vaut donc trois, et la raison est trois. Le terme général s'écrit alors sept plus trois fois n moins un, c'est-à-dire trois n plus quatre, et l'on vérifie qu'au rang cinq, on retrouve bien dix-neuf.",
+   "ecran": "arith_exemple",
+   "id": "p07",
+   "texte": "Quatre pas pour passer de 7 à 19 : la raison vaut 3."
+  },
+  {
+   "dit": "Changeons de rythme : une suite est géométrique lorsque l'on passe d'un terme au suivant en multipliant toujours par le même nombre, la raison, notée q. Le terme de rang n plus un égale donc q fois le terme de rang n. Avec un premier terme de deux et une raison de trois, on obtient deux, six, dix-huit, cinquante-quatre : ça ne croît plus régulièrement, ça explose. C'est la croissance exponentielle, celle des épidémies, des populations et des intérêts composés.",
+   "ecran": "geo_def",
+   "id": "p08",
+   "texte": "Géométrique : uₙ₊₁ = q × uₙ, la croissance exponentielle."
+  },
+  {
+   "dit": "Le terme général suit la même logique de comptage de pas : pour aller du rang p au rang n, on applique n moins p multiplications par q. Le terme de rang n égale donc le terme de rang p, multiplié par q puissance n moins p. Dans notre exemple, le septième terme vaut deux fois trois puissance six, soit deux fois sept cent vingt-neuf, c'est-à-dire mille quatre cent cinquante-huit. Et si la raison est négative, les signes alternent d'un terme à l'autre : la suite oscille en grandissant, ou en décroissant.",
+   "ecran": "geo_terme",
+   "id": "p09",
+   "texte": "Terme général géométrique : uₙ = uₚ × qⁿ⁻ᵖ."
+  },
+  {
+   "dit": "Application directe : une population de bactéries double toutes les heures, à partir de mille individus. C'est une suite géométrique de raison deux, et son terme général s'écrit mille fois deux puissance n. Après cinq heures, on obtient mille fois deux puissance cinq, soit mille fois trente-deux : trente-deux mille bactéries. Le même calcul, avec une raison de un virgule zéro cinq, décrira tout à l'heure un capital placé à cinq pour cent.",
+   "ecran": "geo_exemple",
+   "id": "p10",
+   "texte": "1 000 × 2⁵ = 32 000 bactéries après cinq heures."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Une suite est une fonction de l'indice : à chaque rang correspond un terme. Si l'on ajoute toujours la même raison, la suite est arithmétique et sa croissance est linéaire ; si l'on multiplie toujours par la même raison, elle est géométrique et sa croissance est exponentielle. Dans les deux cas, le terme général compte les pas entre deux rangs et permet de sauter directement au terme voulu, et deux termes connus suffisent à retrouver la raison.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Que devient une suite quand le rang grandit indéfiniment ? Imaginez un coureur dont la vitesse, mesurée seconde après seconde, se stabilise peu à peu autour de dix kilomètres par heure : on dit que sa vitesse tend vers dix. Pour une suite, c'est la même idée : si ses termes se rapprochent autant qu'on veut d'une valeur fixe, cette valeur est la limite de la suite, et l'on dit que la suite converge. Attention, la suite n'a pas besoin d'atteindre sa limite : seule compte la tendance.",
+   "ecran": "limite_intuition",
+   "id": "p12",
+   "texte": "Tendre vers une valeur fixe : la suite converge."
+  },
+  {
+   "dit": "La définition rigoureuse tient en une phrase : pour tout écart epsilon, aussi petit soit-il, il existe un rang à partir duquel tous les termes sont à moins de epsilon de la limite. Autrement dit, passé un certain rang, la suite entière vit dans un voisinage aussi étroit qu'on veut autour de sa limite. Si une telle valeur n'existe pas, la suite diverge : elle peut partir vers l'infini, ou osciller sans jamais se fixer, et nous allons voir les deux cas.",
+   "ecran": "limite_def",
+   "id": "p13",
+   "texte": "À partir d'un certain rang, tout est à moins de ε de l."
+  },
+  {
+   "dit": "Trois comportements à connaître. La suite des inverses, un sur n, tend vers zéro : pour être à moins de epsilon de zéro, il suffit de prendre un rang plus grand que un sur epsilon. La suite deux n carré plus trois n moins un, le tout sur n carré plus cinq, tend vers deux : on divise le numérateur et le dénominateur par n carré, et tout ce qui contient n au dénominateur disparaît. Enfin, la suite moins un puissance n saute sans cesse entre moins un et un : elle n'a aucune limite.",
+   "ecran": "limite_exemples",
+   "id": "p14",
+   "texte": "1/n → 0 · une fraction rationnelle → 2 · (−1)ⁿ oscille."
+  },
+  {
+   "dit": "Les limites se combinent comme les nombres : la limite d'une somme est la somme des limites, celle d'un produit le produit des limites, et celle d'un quotient le quotient des limites, à condition que celle du dénominateur ne soit pas nulle. Mais certaines formes résistent à ce calcul direct : infini moins infini, zéro fois infini, infini sur infini, zéro sur zéro. Ce sont les formes indéterminées, et on lève l'indétermination en factorisant, en divisant par le terme dominant, ou en comparant à une suite connue.",
+   "ecran": "limite_proprietes",
+   "id": "p15",
+   "texte": "Formes indéterminées : factoriser, diviser, comparer."
+  },
+  {
+   "dit": "Comment prouver maintenant une propriété pour tous les rangs d'un coup, alors qu'il y en a une infinité ? Par la métaphore des dominos. Imaginez une rangée infinie de dominos : pour être certain qu'ils tomberont tous, il suffit de deux choses. D'abord, faire tomber le premier. Ensuite, montrer que chaque domino, en tombant, entraîne le suivant. Si ces deux points sont acquis, la chute se propage d'elle-même jusqu'à n'importe quel rang, aussi lointain soit-il.",
+   "ecran": "dominos",
+   "id": "p16",
+   "texte": "Le premier tombe, chaque chute entraîne la suivante."
+  },
+  {
+   "dit": "Le raisonnement par récurrence formalise cette image en deux étapes. L'initialisation vérifie la propriété au premier rang : c'est le premier domino qui tombe. L'hérédité suppose la propriété vraie à un rang n quelconque, c'est l'hypothèse de récurrence, et démontre qu'elle est alors vraie au rang suivant : c'est la transmission de la chute. On conclut que la propriété vaut pour tous les rangs. Il existe une variante, la récurrence forte, où l'on suppose la propriété vraie pour tous les rangs jusqu'à n.",
+   "ecran": "recurrence_principe",
+   "id": "p17",
+   "texte": "Initialisation, hérédité, conclusion : la récurrence."
+  },
+  {
+   "dit": "Démonstration complète : la somme des n premiers entiers vaut n fois n plus un, le tout divisé par deux. Initialisation : pour n égale un, la somme vaut un, et la formule donne un fois deux sur deux, c'est-à-dire un. Hérédité : supposons la formule vraie au rang n. La somme au rang suivant ajoute le nouvel entier, n plus un, à la somme précédente ; on factorise par n plus un, et l'on obtient exactement la formule au rang n plus un, avec n plus deux à la place de n plus un. La propriété se transmet : elle est donc vraie pour tout n.",
+   "ecran": "recurrence_exemple",
+   "id": "p18",
+   "texte": "1 + 2 + ... + n = n(n + 1)/2, prouvé par récurrence."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Une suite converge quand ses termes se resserrent indéfiniment autour d'une valeur, sa limite ; sinon elle diverge, vers l'infini ou en oscillant. Les limites se calculent par opérations, en levant les formes indéterminées quand elles se présentent. Et pour démontrer une propriété à tous les rangs, la récurrence suffit : une initialisation vérifiée, une hérédité démontrée, et la conclusion vaut pour une infinité de cas.",
+   "ecran": "recap2",
+   "id": "p19",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "Passons à l'addition. Pour une suite quelconque, la somme des n premiers termes s'appelle la somme partielle, et la notation sigma l'écrit en une seule ligne : sigma, pour k allant de un à n, des a indice k, signifie a indice un plus a indice deux, et ainsi de suite jusqu'à a indice n. Ainsi, la somme des cinq premiers entiers s'écrit avec sigma et vaut quinze. Si, lorsque n grandit indéfiniment, cette somme partielle tend vers une limite, on obtient ce qu'on appelle une série convergente.",
+   "ecran": "sigma",
+   "id": "p20",
+   "texte": "Σ : la somme partielle en une ligne, la série à l'infini."
+  },
+  {
+   "dit": "Pour une suite arithmétique, la somme se calcule d'un coup : elle vaut le nombre de termes, multiplié par la moyenne du premier et du dernier terme. La raison en est simple : en appariant le premier terme avec le dernier, le deuxième avec l'avant-dernier, chaque paire donne la même somme. Exemple immédiat : les cent premiers nombres impairs forment une suite arithmétique de raison deux ; leur somme vaut cent fois la moyenne de un et de cent quatre-vingt-dix-neuf, c'est-à-dire cent fois cent : dix mille.",
+   "ecran": "somme_arith",
+   "id": "p21",
+   "texte": "Somme arithmétique : nombre de termes × moyenne des extrêmes."
+  },
+  {
+   "dit": "Autre application : la somme des vingt premiers termes de la suite trois, sept, onze, quinze, de raison quatre. Le vingtième terme vaut trois plus dix-neuf pas de quatre, soit soixante-dix-neuf. La formule donne alors vingt fois la moyenne de trois et de soixante-dix-neuf, c'est-à-dire vingt fois quarante et un : huit cent vingt. Sans la formule, il aurait fallu écrire et additionner les vingt termes un par un.",
+   "ecran": "somme_arith_exemple",
+   "id": "p22",
+   "texte": "3 + 7 + ... + 79 = 820, en un seul calcul."
+  },
+  {
+   "dit": "Pour une suite géométrique de raison différente de un, la somme des termes vaut le premier terme, multiplié par un moins q puissance le nombre de termes, le tout divisé par un moins q. Vérifions sur notre suite de raison trois : deux plus six plus dix-huit plus cinquante-quatre plus cent soixante-deux égale deux cent quarante-deux, et la formule donne exactement deux cent quarante-deux en un seul calcul. Remarquez que tout dépend de la raison : c'est elle qui décide si la somme reste sage ou explose.",
+   "ecran": "somme_geo",
+   "id": "p23",
+   "texte": "Somme géométrique : S₅ = 242 pour 2, 6, 18, 54, 162."
+  },
+  {
+   "dit": "Quand le terme général se dédouble en une différence, la somme devient un jeu de dominos à l'envers. Prenons le terme a indice k égale un sur k moins un sur k plus un. Écrits bout à bout, les termes se dévorent les uns les autres : le moins un demi du premier morceau annule le plus un demi du suivant, et ainsi de suite. Il ne survit que le premier morceau du premier terme et le dernier du dernier : la somme vaut un moins un sur n plus un. Pour quatre-vingt-dix-neuf termes, cela fait quatre-vingt-dix-neuf centièmes.",
+   "ecran": "telescopage",
+   "id": "p24",
+   "texte": "Télescopage : il ne reste que les deux bouts, 1 − 1/(n + 1)."
+  },
+  {
+   "dit": "Et lorsque la somme devient infinie ? Tout dépend encore de la raison. Si sa valeur absolue est inférieure à un, la somme géométrique infinie converge vers le premier terme divisé par un moins la raison. Illustration : une balle lâchée d'un mètre rebondit à chaque fois à quatre-vingts pour cent de sa hauteur précédente. Sa distance totale vaut la chute initiale, un mètre, plus deux fois la série des rebonds, zéro virgule huit sur un moins zéro virgule huit, soit quatre. Au total : neuf mètres, parcourus en une infinité de rebonds de plus en plus petits.",
+   "ecran": "serie_balle",
+   "id": "p25",
+   "texte": "Rebonds à 80 % : une distance totale de 9 mètres."
+  },
+  {
+   "dit": "Retour à la finance, où les suites géométriques règnent. Un capital placé à intérêts composés augmente chaque année du même pourcentage : c'est la multiplication par un plus le taux, répétée chaque année. Mille euros à cinq pour cent donnent donc, après n années, mille fois un virgule zéro cinq puissance n. Après dix ans : mille six cent vingt-huit euros et quatre-vingt-neuf centimes. Après vingt ans : deux mille six cent cinquante-trois euros et trente centimes. Le temps fait le travail, parce que les intérêts produisent eux-mêmes des intérêts.",
+   "ecran": "interets",
+   "id": "p26",
+   "texte": "1 000 € à 5 % : 1 628,89 € en 10 ans, 2 653,30 € en 20 ans."
+  },
+  {
+   "dit": "Dernier calcul, celui d'un prêt remboursé par mensualités constantes. La mensualité équilibrée combine le capital, le taux mensuel et le nombre de mensualités, dans une formule issue des sommes géométriques. Pour un prêt de dix mille euros à cinq pour cent annuels sur cinq ans, le taux mensuel proportionnel vaut cinq pour cent divisé par douze, et il y a soixante mensualités. Le calcul donne une mensualité d'environ cent quatre-vingt-huit euros et soixante et onze centimes. Au total, les intérêts coûtent environ mille trois cent vingt-deux euros : c'est la durée du prêt qui les fait gonfler.",
+   "ecran": "amortissement",
+   "id": "p27",
+   "texte": "10 000 € sur 5 ans : 188,71 € par mois, 1 322,74 € d'intérêts."
+  },
+  {
+   "dit": "Pour conclure ce cours, gardez la chaîne complète en tête. Décrire une suite par son terme général, reconnaître si elle est arithmétique ou géométrique, décider de sa limite, prouver ses propriétés par récurrence, puis additionner ses termes avec la notation sigma et les bonnes formules, arithmétique, géométrique ou par télescopage. Et quand la somme devient infinie, tout se joue sur la raison : inférieure à un en valeur absolue, la série converge, comme pour notre balle et pour les intérêts qui s'accumulent sagement au fil des ans.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "Décrire, reconnaître, limiter, prouver, additionner."
+  }
+ ],
+ "titre": "Suites numériques et sommations : arithmétiques, géométriques, limites et séries"
+}

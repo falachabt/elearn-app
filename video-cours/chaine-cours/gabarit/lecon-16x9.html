@@ -1623,6 +1623,55 @@ const FIG = {
       mot(636, 150, 'ne change rien :', { t: 22, a: 'start' }) +
       mot(636, 196, '(n − 1)! arrangements', { t: 24, c: '#B8860B', a: 'start' }));
   },
+  dominos_fig(t) {
+    const p = prog(t);
+    const positions = [196, 292, 388, 484, 580, 676];
+    const etiquettes = ['1', '2', '3', '…', 'n', 'n + 1'];
+    let corps = `<line x1="150" y1="238" x2="790" y2="238" stroke="currentColor" stroke-width="4"/>`;
+    positions.forEach((x, i) => {
+      if (i === 0) {
+        corps += `<g transform="rotate(24 ${x + 17} 238)"><rect x="${x}" y="98" width="34" height="140" fill="#E8604C" fill-opacity=".3" stroke="#E8604C" stroke-width="4"/></g>`;
+      } else {
+        corps += `<rect x="${x}" y="98" width="34" height="140" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-width="4"/>`;
+      }
+      corps += mot(x + 17, 272, etiquettes[i], { t: 21 });
+    });
+    corps += trait(240, 66, 716, 66, p, { c: '#E8604C', w: 4 });
+    corps += `<polygon points="730,66 712,57 712,75" fill="#E8604C"/>`;
+    return svgBoite(
+      corps +
+      mot(500, 40, 'si un domino tombe, le suivant tombe aussi', { t: 21, c: '#E8604C' }) +
+      mot(880, 150, 'le premier', { t: 21, a: 'start' }) +
+      mot(880, 180, 'est tombé', { t: 21, a: 'start' }));
+  },
+  suite_convergente_fig(t) {
+    let points = '';
+    for (let n = 1; n <= 10; n++) {
+      const x = 190 + n * 62, y = Math.round(230 - 185 / n);
+      points += `<circle cx="${x}" cy="${y}" r="6" fill="#1A75FF"/>`;
+    }
+    return svgBoite(
+      `<line x1="160" y1="252" x2="880" y2="252" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="160" y1="252" x2="160" y2="30" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="176" y1="230" x2="864" y2="230" stroke="#E8604C" stroke-width="3" stroke-dasharray="9 7"/>` +
+      points +
+      mot(150, 36, 'uₙ', { t: 22, a: 'end' }) +
+      mot(872, 226, 'limite l', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(880, 276, 'n', { t: 22 }) +
+      mot(500, 292, 'uₙ = 1/n : les termes se resserrent sur la limite', { t: 20 }));
+  },
+  escalier_sommes_fig(t) {
+    const marches = [[230, 56, 'S₁', 'u₁'], [362, 102, 'S₂', 'u₂'], [494, 140, 'S₃', 'u₃'], [626, 168, 'S₄', 'u₄']];
+    let corps = `<line x1="190" y1="252" x2="830" y2="252" stroke="currentColor" stroke-width="4"/>`;
+    marches.forEach(([x, h, s, u], i) => {
+      corps += `<rect x="${x}" y="${252 - h}" width="132" height="${h}" fill="#1A75FF" fill-opacity="${0.16 + i * 0.07}" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x + 66, 236, s, { t: 21 });
+      corps += mot(x + 66, 252 - h - 12, `+ ${u}`, { t: 19, c: '#1A75FF' });
+    });
+    return svgBoite(
+      corps +
+      mot(500, 34, 'une somme partielle se construit terme à terme', { t: 21 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
