@@ -1,0 +1,412 @@
+{
+  "cours": 6298,
+  "titre": "Lieux géométriques : quand une condition dessine une courbe",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Lieux géométriques",
+      "titre": "Lieux géométriques : quand une condition dessine une courbe",
+      "sous": "Médiatrice, bissectrice, cercle et coniques : tous les points qui obéissent à une même loi",
+      "anim": {
+        "nom": "lieu_equidistant_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un lieu géométrique, c'est une chasse au trésor : on cherche tous les points qui respectent une règle donnée, et seulement eux.",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 150
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "La définition fondamentale",
+      "tex": "\\mathcal{L} = \\{ M \\mid C(M) \\}",
+      "note": "Tous les points M qui vérifient la condition C, et aucun autre : le lieu est parfaitement délimité."
+    },
+    "traductions": {
+      "type": "etape",
+      "kicker": "Du langage courant au langage mathématique",
+      "titre": "Trois conditions, trois figures immédiates",
+      "tex": [
+        "MA = MB \\;\\Rightarrow\\; \\text{médiatrice de } [AB]",
+        "OM = r \\;\\Rightarrow\\; \\text{cercle de centre } O",
+        "\\widehat{AMB} = 90^\\circ \\Rightarrow \\text{cercle diam. } [AB]"
+      ]
+    },
+    "methode": {
+      "type": "etape",
+      "kicker": "La méthode en quatre temps",
+      "titre": "Comprendre, conjecturer, prouver, discuter",
+      "tex": [
+        "\\text{1. reformuler la condition}",
+        "\\text{2. placer quelques points, conjecturer}",
+        "\\text{3. prouver dans les deux sens}",
+        "\\text{4. discuter : points exclus, cas limites}"
+      ]
+    },
+    "mediatrice": {
+      "type": "formule",
+      "kicker": "Premier lieu : la médiatrice",
+      "tex": "\\begin{aligned} &M \\in \\text{médiatrice de } [AB] \\\\ &\\iff MA = MB \\end{aligned}",
+      "note": "Définition classique : la perpendiculaire à [AB] passant par son milieu. Les deux définitions sont équivalentes.",
+      "anim": {
+        "nom": "mediatrice_exemple_fig",
+        "hauteur": 200
+      }
+    },
+    "construction_med": {
+      "type": "etape",
+      "kicker": "Construction à la règle et au compas",
+      "titre": "Deux arcs de même rayon, une droite",
+      "tex": [
+        "r > \\tfrac{AB}{2}",
+        "P, Q : \\text{ arcs centrés en } A, B",
+        "(PQ) \\text{ est la médiatrice de } [AB]"
+      ],
+      "anim": {
+        "nom": "symetrie_fig",
+        "hauteur": 120
+      }
+    },
+    "analytique": {
+      "type": "etape",
+      "kicker": "La méthode analytique",
+      "titre": "La médiatrice de A(0, 0) et B(4, 0), par les coordonnées",
+      "tex": [
+        "PA = PB \\iff PA^2 = PB^2",
+        "x^2 + y^2 = (x-4)^2 + y^2",
+        "x^2 = x^2 - 8x + 16 \\;\\Rightarrow\\; x = 2"
+      ]
+    },
+    "bissectrice": {
+      "type": "formule",
+      "kicker": "Deuxième lieu : la bissectrice",
+      "tex": "d(M, (Ox)) = d(M, (Oy))",
+      "note": "M intérieur à l'angle xOy : la bissectrice est l'ensemble des points équidistants des deux côtés de l'angle."
+    },
+    "constr_bissectrice": {
+      "type": "etape",
+      "kicker": "Construire la bissectrice",
+      "titre": "Un arc, une corde, sa médiatrice",
+      "tex": [
+        "\\text{arc de centre } O : A \\in [Ox),\\ B \\in [Oy)",
+        "OA = OB \\;\\Rightarrow\\; O \\in \\text{médiatrice de } [AB]",
+        "\\text{cette médiatrice est la bissectrice cherchée}"
+      ]
+    },
+    "inscrit": {
+      "type": "etape",
+      "kicker": "Application : le cercle inscrit",
+      "titre": "Le centre est à l'intersection de deux bissectrices",
+      "tex": [
+        "d(O, (AB)) = d(O, (BC))",
+        "\\Rightarrow O \\in \\text{bissectrice de } \\widehat{ABC}",
+        "\\Rightarrow O \\in \\text{bissectrice de } \\widehat{BCA}"
+      ]
+    },
+    "cercle": {
+      "type": "formule",
+      "kicker": "Le cercle comme lieu",
+      "tex": "(x-a)^2 + (y-b)^2 = r^2",
+      "note": "Centre O de coordonnées (a, b), rayon r : OM = r. Avec OM ≤ r, on obtiendrait le disque, pas seulement le cercle.",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 150
+      }
+    },
+    "angle_cercle": {
+      "type": "formule",
+      "kicker": "Voir un segment sous un angle constant",
+      "tex": "\\widehat{AMB} = \\alpha \\text{ constant}",
+      "note": "Le lieu est un arc de cercle passant par A et B : l'arc capable. Pour un angle droit, c'est le cercle de diamètre [AB], privé de A et B."
+    },
+    "ellipse": {
+      "type": "formule",
+      "kicker": "Les coniques comme lieux · l'ellipse",
+      "tex": "MF + MF' = 2a, \\quad 2a > FF'",
+      "note": "Construction du jardinier : deux piquets aux foyers, une corde de longueur 2a tendue par le point M. Kepler : les planètes suivent des ellipses."
+    },
+    "hyperbole": {
+      "type": "formule",
+      "kicker": "Les coniques comme lieux · l'hyperbole",
+      "tex": "|MF - MF'| = 2a, \\quad 0 < 2a < FF'",
+      "note": "Deux branches, selon le signe de la différence : c'est le lieu des navigateurs du système LORAN.",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 150
+      }
+    },
+    "parabole": {
+      "type": "formule",
+      "kicker": "Les coniques comme lieux · la parabole",
+      "tex": "MF = d(M, d)",
+      "note": "F est le foyer, d la directrice, qui ne passe pas par F. Miroirs paraboliques : les rayons parallèles convergent au foyer."
+    },
+    "cardioide": {
+      "type": "formule",
+      "kicker": "D'autres courbes, d'autres conditions",
+      "tex": "r = a(1 + \\cos\\theta)",
+      "note": "La cardioïde : le lieu d'un point d'un cercle qui roule sans glisser sur un cercle de même rayon. La lemniscate, elle, fixe le produit des distances.",
+      "anim": {
+        "nom": "cardioide_fig",
+        "hauteur": 150
+      }
+    },
+    "apollonius": {
+      "type": "formule",
+      "kicker": "Un rapport constant : le cercle d'Apollonius",
+      "tex": "\\frac{MA}{MB} = k, \\quad k > 0,\\ k \\neq 1",
+      "note": "En élevant au carré et en calculant en coordonnées, on obtient l'équation d'un cercle dont le centre est sur la droite (AB)."
+    },
+    "intersection": {
+      "type": "formule",
+      "kicker": "La méthode des lieux : le principe",
+      "tex": "P \\in L_1 \\cap L_2",
+      "note": "Deux conditions indépendantes, deux lieux : le point cherché est à leur intersection. Reste à vérifier qu'il satisfait tout l'énoncé."
+    },
+    "triangle": {
+      "type": "etape",
+      "kicker": "Problème type : construire un triangle",
+      "titre": "Côté a, hauteur h et médiane m donnés",
+      "tex": [
+        "d(A, (BC)) = h_a \\Rightarrow \\text{deux parallèles}",
+        "IA = m_a \\;\\Rightarrow\\; \\mathcal{C}(I, m_a)",
+        "A \\in \\mathcal{C}(I, m_a) \\cap d_1 \\text{ ou } d_2"
+      ]
+    },
+    "extremum": {
+      "type": "etape",
+      "kicker": "Problème d'extremum : le plus court chemin",
+      "titre": "Minimiser MA + MB quand M parcourt une droite",
+      "tex": [
+        "A' \\text{ symétrique de } A \\text{ par rapport à } d",
+        "MA + MB = MA' + MB",
+        "\\text{minimum quand } M \\in d \\cap (A'B)"
+      ]
+    },
+    "phares": {
+      "type": "etape",
+      "kicker": "Étude de cas : les deux phares",
+      "titre": "Différence de distances constante : 6, phares distants de 10",
+      "tex": [
+        "2c = 10,\\ 2a = 6 \\;\\Rightarrow\\; c = 5,\\ a = 3",
+        "b^2 = c^2 - a^2 = 25 - 9 = 16",
+        "\\tfrac{x^2}{9} - \\tfrac{y^2}{16} = 1"
+      ],
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 100
+      }
+    },
+    "sommes_carres": {
+      "type": "etape",
+      "kicker": "Problème synthèse : une somme de carrés constante",
+      "titre": "Segment de longueur 8, somme des carrés égale à 100",
+      "tex": [
+        "A(-4,0),\\ B(4,0),\\ M(x,y)",
+        "MA^2 + MB^2 = 2x^2 + 2y^2 + 32 = 100",
+        "x^2 + y^2 = 34, \\quad R = \\sqrt{34}"
+      ]
+    },
+    "centre_trois_points": {
+      "type": "etape",
+      "kicker": "Application : retrouver un centre perdu",
+      "titre": "Le centre du cercle passant par trois points",
+      "tex": [
+        "O \\in \\text{médiatrice de } [AB]",
+        "O \\in \\text{médiatrice de } [BC]",
+        "OA = OB = OC = \\text{rayon cherché}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Un lieu : tous les points d'une condition",
+        "MA = MB : la médiatrice du segment",
+        "Distances aux côtés égales : bissectrice",
+        "Somme constante : ellipse, écart : hyperbole",
+        "Deux conditions : intersection de deux lieux"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours consacré aux lieux géométriques, ces ensembles de points qui obéissent tous à une même loi. Nous partirons de la définition, nous construirons la médiatrice, la bissectrice et le cercle, puis nous découvrirons les coniques, avant de résoudre des problèmes complets par l'intersection de deux lieux.",
+      "texte": "Lieux géométriques : quand une condition dessine une courbe.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "Imaginez une chasse au trésor sur une feuille quadrillée : on ne cherche pas un point unique, mais tous les endroits secrets où une règle est respectée, par exemple être à égale distance de deux phares. Cette quête est l'essence du lieu géométrique, une notion que les Grecs utilisaient déjà pour définir les coniques, et qui sert encore, des antennes paraboliques à la robotique.",
+      "texte": "Tous les points qui respectent une règle, et seulement eux.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "La définition tient en trois exigences : un ensemble de tous les points, une condition que ces points satisfont, et seulement ces points, aucun intrus. Autrement dit, pour tester un point, une seule question : vérifie-t-il la condition ? Si oui, il est dans le lieu ; si non, il en est exclu.",
+      "texte": "Trois exigences : tous les points, la condition, rien d'autre.",
+      "ecran": "definition"
+    },
+    {
+      "id": "p04",
+      "dit": "Traduisons trois phrases en figures. Être à égale distance de deux points fixes donne la médiatrice du segment. Être à distance constante d'un point fixe donne un cercle. Voir un segment sous un angle droit donne le cercle de diamètre ce segment, privé de ses extrémités. Retenez ce réflexe : chaque condition a sa figure.",
+      "texte": "Trois conditions, trois figures à reconnaître d'un coup d'œil.",
+      "ecran": "traductions"
+    },
+    {
+      "id": "p05",
+      "dit": "Face à un énoncé, suivez la démarche en quatre temps : reformuler la condition et repérer les éléments fixes, placer quelques points pour conjecturer la forme, prouver dans les deux sens, le lieu puis la réciproque, et enfin discuter les points exclus et les cas limites. Une conjecture sans preuve ne suffit jamais.",
+      "texte": "Comprendre, conjecturer, prouver, discuter.",
+      "ecran": "methode"
+    },
+    {
+      "id": "p06",
+      "dit": "Premier lieu fondamental : la médiatrice d'un segment. Vue comme un lieu, c'est l'ensemble des points équidistants des deux extrémités. Cette définition donne un critère de test immédiat, et elle est équivalente à la définition classique : la perpendiculaire au segment passant par son milieu, qui est aussi son axe de symétrie.",
+      "texte": "La médiatrice : les points à égale distance de A et de B.",
+      "ecran": "mediatrice"
+    },
+    {
+      "id": "p07",
+      "dit": "La construction au compas découle directement de la définition. On trace deux arcs de même rayon, supérieur à la moitié du segment, centrés aux deux extrémités. Leurs deux intersections sont équidistantes des extrémités par construction : la droite qui les joint est la médiatrice. Deux points équidistants suffisent à la tracer entièrement.",
+      "texte": "Deux arcs de même rayon : leurs croisements donnent la médiatrice.",
+      "ecran": "construction_med"
+    },
+    {
+      "id": "p08",
+      "dit": "La méthode analytique confirme le résultat par le calcul. Avec un point A à l'origine et un point B d'abscisse quatre sur l'axe, l'égalité des distances, élevée au carré, se simplifie terme à terme : il reste une équation qui dit que l'abscisse vaut deux. Le lieu est la droite verticale passant par le milieu, comme prévu.",
+      "texte": "Par les coordonnées : l'abscisse vaut deux, le milieu.",
+      "ecran": "analytique"
+    },
+    {
+      "id": "p09",
+      "dit": "Deuxième lieu fondamental : la bissectrice d'un angle. C'est l'ensemble des points intérieurs à l'angle qui sont équidistants de ses deux côtés, la distance à un côté étant mesurée perpendiculairement. Là encore, la définition par équidistance équivaut à la définition classique : la demi-droite qui partage l'angle en deux angles égaux, son axe de symétrie.",
+      "texte": "La bissectrice : équidistance aux deux côtés de l'angle.",
+      "ecran": "bissectrice"
+    },
+    {
+      "id": "p10",
+      "dit": "Pour la construire, tracez un arc de cercle centré au sommet : il coupe les deux côtés en deux points situés à même distance du sommet. Le sommet appartient donc à la médiatrice du segment joignant ces deux points, et cette médiatrice n'est autre que la bissectrice cherchée. Une construction d'Euclide, vieille de plus de deux mille ans.",
+      "texte": "Un arc, une corde, sa médiatrice : la bissectrice.",
+      "ecran": "constr_bissectrice"
+    },
+    {
+      "id": "p11",
+      "dit": "Première application : le centre du cercle inscrit dans un triangle. Ce centre est à égale distance des trois côtés. L'égalité des distances à deux côtés le place sur une bissectrice, l'égalité pour deux autres côtés le place sur une deuxième bissectrice : il est donc à leur intersection, et il appartient alors aussi à la troisième.",
+      "texte": "Le centre du cercle inscrit : intersection de bissectrices.",
+      "ecran": "inscrit"
+    },
+    {
+      "id": "p12",
+      "dit": "Troisième lieu fondamental : le cercle, ensemble des points situés à distance fixe d'un centre. En coordonnées, cette condition devient l'équation du cercle, somme de deux carrés égale au carré du rayon. Attention au piège : si la condition devient une inégalité, distance inférieure ou égale au rayon, le lieu n'est plus le cercle mais le disque plein.",
+      "texte": "Le cercle : distance au centre exactement égale au rayon.",
+      "ecran": "cercle"
+    },
+    {
+      "id": "p13",
+      "dit": "Le cercle apparaît aussi sous un autre visage : le lieu des points d'où l'on voit un segment fixe sous un angle constant est un arc de cercle passant par les extrémités du segment. Pour un angle droit, on retrouve le cercle de diamètre le segment. Les navigateurs utilisaient ce principe pour se situer grâce à l'angle entre deux repères.",
+      "texte": "Angle constant sur un segment : un arc de cercle.",
+      "ecran": "angle_cercle"
+    },
+    {
+      "id": "p14",
+      "dit": "Passons aux coniques. L'ellipse est le lieu des points dont la somme des distances à deux points fixes, les foyers, est constante et supérieure à la distance des foyers. La construction du jardinier la trace avec deux piquets et une corde tendue. Et ce n'est pas un jeu : les planètes décrivent des ellipses dont le Soleil occupe un foyer, selon la première loi de Kepler.",
+      "texte": "L'ellipse : la somme des distances aux foyers est constante.",
+      "ecran": "ellipse"
+    },
+    {
+      "id": "p15",
+      "dit": "Sa cousine, l'hyperbole, fixe non plus la somme mais la différence des distances aux deux foyers, en valeur absolue, constante et inférieure à la distance focale. La valeur absolue explique ses deux branches. Nous la retrouverons dans l'étude de cas des deux phares, car mesurer une différence de distances, c'est exactement naviguer sur une hyperbole.",
+      "texte": "L'hyperbole : la différence des distances est constante.",
+      "ecran": "hyperbole"
+    },
+    {
+      "id": "p16",
+      "dit": "Troisième conique : la parabole, lieu des points équidistants d'un point fixe, le foyer, et d'une droite fixe, la directrice, qui ne passe pas par le foyer. Pour la construire point par point, on croise des parallèles à la directrice avec des cercles centrés au foyer de même rayon. Sa propriété de réflexion concentre les rayons parallèles au foyer : fours solaires et antennes l'exploitent.",
+      "texte": "La parabole : équidistance au foyer et à la directrice.",
+      "ecran": "parabole"
+    },
+    {
+      "id": "p17",
+      "dit": "D'autres conditions donnent d'autres courbes : un point d'un cercle roulant sans glisser sur un cercle de même rayon trace la cardioïde, en forme de cœur ; fixer le produit des distances à deux points donne la lemniscate, en forme de huit. Chaque courbe remarquable est la réponse visible à une condition précise.",
+      "texte": "Cardioïde, lemniscate : chaque condition a sa courbe.",
+      "ecran": "cardioide"
+    },
+    {
+      "id": "p18",
+      "dit": "Un dernier lieu classique : fixer le rapport des distances à deux points fixes, rapport positif et différent de un. Le calcul en coordonnées, après élévation au carré, donne l'équation d'un cercle dont le centre est sur la droite des deux points : le cercle d'Apollonius. Quand le rapport vaut un, on retombe sur la médiatrice, une droite, cas limite du cercle.",
+      "texte": "Rapport des distances constant : le cercle d'Apollonius.",
+      "ecran": "apollonius"
+    },
+    {
+      "id": "p19",
+      "dit": "Voici maintenant le principe qui transforme ces lieux en méthode de résolution. Si un point doit satisfaire deux conditions indépendantes, il appartient au premier lieu et au second : il est donc à leur intersection. La recette : traduire chaque condition en un lieu connu, construire les lieux, prendre leurs intersections, puis vérifier que les points obtenus satisfont tout l'énoncé.",
+      "texte": "Deux conditions, deux lieux : la solution est à l'intersection.",
+      "ecran": "intersection"
+    },
+    {
+      "id": "p20",
+      "dit": "Problème type : construire un triangle dont on connaît un côté, la hauteur et la médiane issues du sommet opposé. La hauteur place le sommet sur l'une des deux droites parallèles au côté, à la distance donnée ; la médiane le place sur le cercle centré au milieu du côté, de rayon la médiane. Les intersections donnent les positions possibles : aucune, deux ou quatre solutions selon les données.",
+      "texte": "Construire un triangle : une parallèle croise un cercle.",
+      "ecran": "triangle"
+    },
+    {
+      "id": "p21",
+      "dit": "Autre classique : sur une droite, trouver le point qui minimise la somme des distances à deux points situés du même côté. L'astuce est une symétrie : remplacez un point par son symétrique par rapport à la droite, la somme ne change pas pour un point de la droite, et elle devient minimale quand les trois points sont alignés. Le point cherché est l'intersection de la droite avec le segment joignant le symétrique à l'autre point.",
+      "texte": "Le plus court chemin passe par le symétrique.",
+      "ecran": "extremum"
+    },
+    {
+      "id": "p22",
+      "dit": "Étude de cas complète : deux phares distants de dix kilomètres, un navire dont la différence des distances aux phares vaut six kilomètres. On place les foyers symétriquement : la demi-distance focale vaut cinq, la demi-différence vaut trois, et la relation des hyperboles donne le second paramètre, quatre. Le navire est sur l'hyperbole d'équation réduite correspondante : c'est le principe historique de la navigation LORAN, avant le GPS.",
+      "texte": "Différence de six, phares à dix : une hyperbole de navigation.",
+      "ecran": "phares"
+    },
+    {
+      "id": "p23",
+      "dit": "Problème synthèse, traité par l'analytique : un segment de longueur huit, et les points dont la somme des carrés des distances aux extrémités vaut cent. En plaçant le milieu à l'origine, les termes croisés s'annulent : il reste un cercle centré au milieu du segment, de rayon racine de trente-quatre. C'est un cas particulier du théorème de la médiane : fixer la somme des carrés, c'est fixer la médiane.",
+      "texte": "Somme des carrés constante : un cercle centré au milieu.",
+      "ecran": "sommes_carres"
+    },
+    {
+      "id": "p24",
+      "dit": "Dernier problème : trois fragments d'un artefact circulaire sont retrouvés. Le centre cherché est équidistant des trois points, donc sur la médiatrice des deux premiers, et aussi sur la médiatrice des deux derniers : c'est leur intersection, et la distance commune donne le rayon. Si les trois points étaient alignés, les médiatrices seraient parallèles : aucun centre, aucun cercle.",
+      "texte": "Retrouver un centre : croiser deux médiatrices.",
+      "ecran": "centre_trois_points"
+    },
+    {
+      "id": "p25",
+      "dit": "Pour conclure, retenez l'enchaînement : une condition sur un point définit un lieu ; les conditions d'équidistance donnent la médiatrice et la bissectrice ; somme, différence, rapport ou équidistance à un point et une droite donnent les coniques et le cercle d'Apollonius ; et deux conditions à la fois se résolvent par une intersection de lieux. C'est toute la méthode, du plan à vos prochains problèmes de construction.",
+      "texte": "Lieux géométriques : à retenir.",
+      "ecran": "recap"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir et construire : médiatrice et bissectrice"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Le cercle, l'arc capable et les coniques",
+      "pont": {
+        "texte": "Partie 2 : le cercle sous toutes ses formes, puis ellipse, hyperbole, parabole.",
+        "dit": "Partie deux : le cercle et les coniques comme lieux géométriques. Nous verrons le cercle comme équidistance à un centre, puis comme arc capable, avant de fixer une somme, une différence, un rapport de distances, ou une équidistance entre un point et une droite."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "La méthode des lieux : problèmes résolus par intersection",
+      "pont": {
+        "texte": "Partie 3 : résoudre par l'intersection de deux lieux.",
+        "dit": "Partie trois : la méthode des lieux en action. Nous croiserons deux conditions à la fois pour construire un triangle, trouver un plus court chemin, situer un navire entre deux phares et retrouver le centre d'un cercle perdu."
+      }
+    }
+  ]
+}
