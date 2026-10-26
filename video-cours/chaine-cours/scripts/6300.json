@@ -1,0 +1,568 @@
+{
+  "cours": 6300,
+  "titre": "Statistiques descriptives : décrire une série à une variable",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Statistiques descriptives",
+      "titre": "Statistiques descriptives : décrire une série à une variable",
+      "sous": "Population, tableaux, graphiques, moyenne, médiane, écart-type et échantillonnage",
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Des données brutes sont un bruit de fond : les statistiques descriptives sont la grammaire qui les transforme en histoire lisible.",
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 220
+      }
+    },
+    "pop_ech": {
+      "type": "etape",
+      "kicker": "Population et échantillon",
+      "titre": "La cible et l'extrait qu'on étudie vraiment",
+      "tex": [
+        "N : \\text{effectif de la population}",
+        "n : \\text{effectif de l'échantillon}",
+        "\\mu, \\sigma : \\text{paramètres (population)}",
+        "\\bar{x}, s : \\text{statistiques (échantillon)}"
+      ]
+    },
+    "collecte": {
+      "type": "recap",
+      "kicker": "Collecter les données",
+      "etapes": [
+        "Observation directe : mesurer sans interférer",
+        "Expérimentation : manipuler une variable",
+        "Enquête : interroger par questionnaire",
+        "Sources existantes : données déjà là"
+      ]
+    },
+    "sport": {
+      "type": "etape",
+      "kicker": "Organiser · le tableau statistique",
+      "titre": "Heures de sport par semaine, vingt étudiants",
+      "tex": [
+        "x_i : 0,\\ 1,\\ 2,\\ 3,\\ 4,\\ 5,\\ 6,\\ 7",
+        "n_i : 2,\\ 1,\\ 4,\\ 6,\\ 3,\\ 2,\\ 1,\\ 1",
+        "f_i = \\tfrac{n_i}{N}, \\qquad \\sum f_i = 1"
+      ],
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 140
+      }
+    },
+    "classes": {
+      "type": "formule",
+      "kicker": "Données continues · les classes",
+      "tex": "c_i = \\frac{a_i + b_i}{2}",
+      "note": "Centre de [160 ; 165[ : 162,5 · Sturges : six ou sept classes pour cinquante"
+    },
+    "conso": {
+      "type": "etape",
+      "kicker": "Exemple résolu · vingt appartements",
+      "titre": "Consommation électrique mensuelle, en kilowattheures",
+      "tex": [
+        "x : 280,\\ 285,\\ \\dots,\\ 435",
+        "\\sum x_i = 7150, \\quad \\bar{x} = \\tfrac{7150}{20} = 357{,}5",
+        "M_e = \\tfrac{365 + 370}{2} = 367{,}5 \\ \\text{kWh}"
+      ],
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 140
+      }
+    },
+    "batons": {
+      "type": "etape",
+      "kicker": "Le diagramme en bâtons",
+      "titre": "Frères et sœurs : cinquante étudiants",
+      "tex": [
+        "x_i : 0,\\ 1,\\ 2,\\ 3 \\qquad N = 50",
+        "n_i : 8,\\ 22,\\ 15,\\ 5",
+        "f_i : 0{,}16,\\ 0{,}44,\\ 0{,}30,\\ 0{,}10"
+      ],
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 140
+      }
+    },
+    "histogramme": {
+      "type": "formule",
+      "kicker": "L'histogramme · la densité",
+      "tex": "d_i = \\frac{n_i}{a_i}",
+      "note": "Trajets : densité 4,0 pour [20 ; 30[ ; densité 1,0 pour [30 ; 60[ (aire 30)"
+    },
+    "circulaire": {
+      "type": "formule",
+      "kicker": "Le diagramme circulaire",
+      "tex": "\\text{Angle} = f_i \\times 360^\\circ",
+      "note": "Un frère ou une sœur : 0,44 × 360° ≈ 158° · Illisible au-delà de sept parts",
+      "anim": {
+        "nom": "camembert_fig",
+        "hauteur": 190
+      }
+    },
+    "cumulees": {
+      "type": "etape",
+      "kicker": "Les fréquences cumulées",
+      "titre": "Sommer progressivement, lire les quantiles",
+      "tex": [
+        "F_i = f_1 + f_2 + \\dots + f_i",
+        "F : 0{,}16,\\ 0{,}60,\\ 0{,}90,\\ 1{,}00",
+        "M_e : \\text{lecture à } F = 0{,}5"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Définir la cible : population, échantillon",
+        "Organiser : effectifs n_i, fréquences f_i",
+        "Continu : classes, centre, densité n_i/a_i",
+        "Bâtons = discret, histogramme = continu",
+        "Circulaire = parts, cumulées = quantiles"
+      ]
+    },
+    "moyenne": {
+      "type": "formule",
+      "kicker": "La moyenne arithmétique",
+      "tex": "\\bar{x} = \\frac{1}{n} \\sum_{i=1}^{n} x_i",
+      "note": "Notes : (12 + 15 + 8 + 18 + 14) / 5 = 13,4 · Écarts à la moyenne : somme zéro"
+    },
+    "mediane": {
+      "type": "etape",
+      "kicker": "La médiane",
+      "titre": "Trier, puis prendre le centre",
+      "tex": [
+        "8,\\ 12,\\ 14,\\ 15,\\ 18 \\ \\Rightarrow \\ M_e = 14",
+        "8,\\ 12,\\ 14,\\ 15,\\ 16,\\ 18",
+        "M_e = \\tfrac{14 + 15}{2} = 14{,}5"
+      ]
+    },
+    "salaires": {
+      "type": "etape",
+      "kicker": "Exemple · le paradoxe des salaires",
+      "titre": "Dix salaires, dont celui du dirigeant",
+      "tex": [
+        "\\bar{x} = \\tfrac{580}{10} = 58 \\ \\text{milliers d'euros}",
+        "M_e = \\tfrac{40 + 42}{2} = 41",
+        "9 \\text{ salaires sur } 10 < \\bar{x}"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 140
+      }
+    },
+    "etendue": {
+      "type": "formule",
+      "kicker": "L'étendue",
+      "tex": "E = x_{\\max} - x_{\\min}",
+      "note": "Quartier A : 2 600 − 2 400 = 200 € · Quartier B : 3 500 − 1 500 = 2 000 €"
+    },
+    "variance": {
+      "type": "formule",
+      "kicker": "Variance et écart-type",
+      "tex": "s^2 = \\frac{1}{n-1} \\sum_{i=1}^{n} (x_i - \\bar{x})^2",
+      "note": "Échantillon : diviser par n − 1 (Bessel) · Population : diviser par N, noté σ"
+    },
+    "notes_ecart": {
+      "type": "etape",
+      "kicker": "Exemple résolu · cinq notes",
+      "titre": "L'écart-type, pas à pas",
+      "tex": [
+        "\\bar{x} = \\tfrac{75}{5} = 15",
+        "\\sum (x_i - \\bar{x})^2 = 9 + 1 + 0 + 1 + 9 = 20",
+        "s^2 = \\tfrac{20}{4} = 5, \\quad s = \\sqrt{5} \\approx 2{,}24"
+      ],
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 140
+      }
+    },
+    "quartiers": {
+      "type": "etape",
+      "kicker": "Exemple · deux quartiers, même moyenne",
+      "titre": "Revenus mensuels de cinq habitants, en euros",
+      "tex": [
+        "A : \\bar{x} = 2500, \\quad s \\approx 79",
+        "B : \\bar{x} = 2500, \\quad s \\approx 791",
+        "E_A = 200 \\qquad E_B = 2000"
+      ],
+      "anim": {
+        "nom": "deux_distributions_fig",
+        "hauteur": 140
+      }
+    },
+    "regle": {
+      "type": "formule",
+      "kicker": "La règle empirique",
+      "tex": "[\\bar{x} - 2s \\ ; \\ \\bar{x} + 2s] : \\approx 95\\,\\%",
+      "note": "En cloche : 68 % à un écart-type, 95 % à deux, 99,7 % à trois",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 150
+      }
+    },
+    "quartiles": {
+      "type": "formule",
+      "kicker": "Quartiles et écart interquartile",
+      "tex": "EIQ = Q_3 - Q_1",
+      "note": "Les 50 % centraux · Boîte à moustaches : Q1, médiane, Q3 et extrêmes",
+      "anim": {
+        "nom": "boite_moustaches_fig",
+        "hauteur": 190,
+        "vmin": 5,
+        "q1": 12,
+        "med": 15,
+        "q3": 17.5,
+        "vmax": 19
+      }
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Moyenne : sensible aux extrêmes",
+        "Médiane : robuste, valeur centrale",
+        "Moyenne > médiane : queue à droite",
+        "Étendue : max − min, très fragile",
+        "Écart-type : racine de la variance"
+      ]
+    },
+    "methodes_ech": {
+      "type": "recap",
+      "kicker": "Les méthodes d'échantillonnage",
+      "etapes": [
+        "Aléatoire simple : même chance pour tous",
+        "Stratifié : tirer dans chaque sous-groupe",
+        "Par grappes : quartiers ou écoles tirés",
+        "Systématique : un individu tous les k"
+      ]
+    },
+    "biais": {
+      "type": "phrase",
+      "kicker": "Le biais de sélection",
+      "texte": "En 1936, un magazine prédit le mauvais vainqueur après 2,4 millions de réponses : son échantillon excluait les électeurs les plus pauvres."
+    },
+    "param_stat": {
+      "type": "etape",
+      "kicker": "Paramètres, statistiques, erreur",
+      "titre": "Gauchers : le paramètre contre l'estimation",
+      "tex": [
+        "\\mu, \\sigma : \\text{paramètres, population}",
+        "\\bar{x}, s : \\text{statistiques, échantillon}",
+        "\\hat{p} = 0{,}10 \\quad \\text{contre} \\quad \\pi = 0{,}12",
+        "\\text{erreur} = 0{,}02 \\text{ (deux points)}"
+      ]
+    },
+    "distrib_ech": {
+      "type": "formule",
+      "kicker": "La distribution d'échantillonnage",
+      "tex": "\\sigma_{\\bar{x}} = \\frac{\\sigma}{\\sqrt{n}}",
+      "note": "Théorème central limite : les moyennes se resserrent en cloche autour de μ",
+      "anim": {
+        "nom": "cloche_ic_fig",
+        "hauteur": 140
+      }
+    },
+    "taille": {
+      "type": "phrase",
+      "kicker": "Taille d'échantillon et précision",
+      "texte": "L'erreur tombe en racine carrée de n : pour la diviser par deux, il faut quatre fois plus d'individus, jamais deux fois.",
+      "anim": {
+        "nom": "marge_racine_fig",
+        "hauteur": 220
+      }
+    },
+    "cafe": {
+      "type": "etape",
+      "kicker": "Étude de cas · le café La Tasse",
+      "titre": "Temps d'attente de vingt clients, en minutes",
+      "tex": [
+        "\\bar{x} = \\tfrac{96}{20} = 4{,}8 \\ \\text{min}",
+        "M_e = \\tfrac{4 + 5}{2} = 4{,}5, \\quad E = 10 - 1 = 9",
+        "s \\approx 2{,}3, \\quad \\text{modes} : 4 \\text{ et } 5"
+      ],
+      "anim": {
+        "nom": "histogramme_fig",
+        "hauteur": 140
+      }
+    },
+    "applications": {
+      "type": "recap",
+      "kicker": "Applications",
+      "etapes": [
+        "Médecine : comparer traité et placebo",
+        "Industrie : moyenne juste, écart-type faible",
+        "Revenus : moyenne contre médiane = inégalités",
+        "École : dispersion = homogénéité d'une classe"
+      ]
+    },
+    "critique": {
+      "type": "phrase",
+      "kicker": "L'esprit critique",
+      "texte": "Devant chaque chiffre : d'où vient-il, comment est-il résumé, et quelle est sa variabilité ? Trois questions, aucun chiffre subi.",
+      "anim": {
+        "nom": "dispersion_mesures_fig",
+        "hauteur": 200
+      }
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Décrire : tableaux et graphiques d'abord",
+        "Centrer : moyenne et médiane se complètent",
+        "Disperser : étendue, EIQ, écart-type",
+        "Échantillonner : représentatif avant grand",
+        "Interpréter : un centre, avec sa dispersion"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours de statistiques descriptives à une variable. Nous apprendrons à décrire une série de données de bout en bout : définir la population étudiée, collecter et organiser les valeurs, les représenter en graphiques, puis les résumer par la moyenne, la médiane et l'écart-type, avant de comprendre ce qu'un échantillon permet vraiment de conclure.",
+      "texte": "Statistiques à une variable : décrire, résumer, échantillonner.",
+      "ecran": "titre",
+      "pause_apres": 0.8
+    },
+    {
+      "id": "p02",
+      "dit": "Des données brutes ressemblent à une conversation dans une langue inconnue : les sons sont là, le sens échappe. Les statistiques descriptives sont la grammaire qui transforme ce bruit en histoire. Au début du dix-neuvième siècle, le médecin Pierre Charles Alexandre Louis révolutionna la médecine par un geste simple : compter et comparer les décès des patients saignés et des autres. Organiser, compter, comparer : voilà notre programme.",
+      "texte": "Compter et comparer : la naissance des statistiques.",
+      "ecran": "intro",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p03",
+      "dit": "Toute étude commence par deux définitions. La population est l'ensemble complet des individus que l'on veut étudier, par exemple tous les électeurs inscrits. L'échantillon est le sous-ensemble que l'on interroge vraiment, par exemple mille personnes dans un sondage. Piège classique : mesurer la taille de cinq amis basketteurs et croire décrire tous les jeunes de leur âge. L'échantillon est biaisé, et sa moyenne dépasse celle de la population.",
+      "texte": "Population : la cible. Échantillon : l'extrait étudié.",
+      "ecran": "pop_ech",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "dit": "Comment capturer les données ? Quatre voies principales. L'observation directe mesure sans interférer, comme compter les piétons à un feu. L'expérimentation manipule une variable, comme comparer deux méthodes d'enseignement sur deux groupes. L'enquête interroge par questionnaire, très courante en sciences sociales. Et l'exploitation de sources existantes réutilise administrations, bases publiques et capteurs : c'est l'ère des données massives.",
+      "texte": "Observer, expérimenter, enquêter, réutiliser.",
+      "ecran": "collecte",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "dit": "Voici vingt étudiants interrogés sur leurs heures de sport hebdomadaires. Le tableau statistique regroupe chaque valeur avec son effectif : combien d'étudiants déclarent zéro heure, une heure, et ainsi de suite. La fréquence est l'effectif divisé par le total : elle vaut une somme de un sur l'ensemble des valeurs. Ici, la valeur la plus fréquente, le mode, est trois heures, déclarée par six étudiants, soit trente pour cent de l'effectif.",
+      "texte": "Heures de sport : le mode est à trois heures (30 %).",
+      "ecran": "sport",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "dit": "Quand la variable est continue, comme une taille ou une consommation, on regroupe les valeurs en classes, des intervalles du type de cent soixante à cent soixante-cinq centimètres. Le centre de classe, moyenne des deux bornes, devient la valeur représentative pour les calculs. Combien de classes créer ? La règle de Sturges en propose environ une plus le logarithme en base deux de l'effectif : six ou sept classes pour cinquante individus. Trop de classes perdent le résumé, trop peu perdent l'information.",
+      "texte": "Continu : des classes, et leur centre pour calculer.",
+      "ecran": "classes",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "dit": "Exemple complet : la consommation électrique de vingt appartements. Après tri, la somme des valeurs vaut sept mille cent cinquante kilowattheures, donc la moyenne vaut trois cent cinquante-sept virgule cinq. La médiane, moyenne des dixième et onzième valeurs, vaut trois cent soixante-sept virgule cinq. Le tableau en classes compte cinq appartements dans la première classe et cinq entre quatre cents et quatre cent trente : ce sont les deux classes modales. Et la moyenne, inférieure à la médiane, signale déjà une légère asymétrie.",
+      "texte": "Consommations : moyenne 357,5 kWh, médiane 367,5 kWh.",
+      "ecran": "conso",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p08",
+      "dit": "Pour une variable discrète ou qualitative, le diagramme en bâtons place chaque modalité sur l'axe horizontal et dresse un bâton de hauteur proportionnelle à l'effectif ou à la fréquence. Sur cinquante étudiants, le nombre de frères et sœurs donne quatre bâtons : le plus haut est celui d'un frère ou d'une sœur unique, vingt-deux étudiants, quarante-quatre pour cent. Les bâtons restent espacés, signe d'une variable discontinue : ne reliez jamais leurs sommets par une ligne.",
+      "texte": "Bâtons : mode = 1 frère ou sœur (44 %).",
+      "ecran": "batons",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "dit": "L'histogramme est le graphique des variables continues groupées en classes, et sa règle est subtile : ce n'est pas la hauteur, mais l'aire de chaque rectangle qui est proportionnelle à l'effectif. La hauteur est une densité, l'effectif divisé par l'amplitude de la classe. Pour les temps de trajet de cent personnes, la classe de vingt à trente minutes a une densité de quatre, la plus forte. La classe de trente à soixante minutes est trois fois plus large, sa densité tombe à un, mais son aire vaut bien trente, son effectif.",
+      "texte": "Histogramme : l'aire, pas la hauteur.",
+      "ecran": "histogramme",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "dit": "Le diagramme circulaire découpe un disque en secteurs dont l'angle est proportionnel à la fréquence : fréquence fois trois cent soixante degrés. Le secteur d'un frère ou d'une sœur unique, dans notre enquête, occupe environ cent cinquante-huit degrés. Ce graphique montre bien la composition d'un tout, mais il se réserve à peu de catégories : au-delà de six ou sept parts, il devient illisible, et il ne montre aucune évolution dans le temps.",
+      "texte": "Circulaire : des parts d'un tout, avec parcimonie.",
+      "ecran": "circulaire",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "dit": "La fréquence cumulée additionne les fréquences au fur et à mesure : pour les frères et sœurs, on lit zéro virgule seize, puis zéro virgule soixante, zéro virgule quatre-vingt-dix, et un. La courbe des cumulées, croissante et souvent en forme de esse allongé, répond à deux questions : quelle proportion se situe jusqu'à telle valeur, et en dessous de quelle valeur trouve-t-on telle proportion ? À cinquante pour cent, on lit directement la médiane : c'est l'outil graphique des quantiles.",
+      "texte": "Cumulées : combien jusqu'à, et jusqu'où pour.",
+      "ecran": "cumulees",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "dit": "Récapitulons cette première partie. On définit d'abord la cible, population ou échantillon, puis on collecte avec la méthode adaptée. On organise les données en tableaux d'effectifs et de fréquences, en classes pour le continu. On choisit enfin le graphique selon la question : bâtons pour comparer, histogramme pour une distribution, circulaire pour des parts, courbe cumulée pour des quantiles.",
+      "texte": "Partie 1 : l'essentiel.",
+      "ecran": "recap1",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p13",
+      "dit": "La moyenne arithmétique est la valeur que prendrait chaque individu si le total était réparti également entre tous : la somme des valeurs, divisée par leur nombre. Pour les notes douze, quinze, huit, dix-huit et quatorze, la somme vaut soixante-sept et la moyenne treize virgule quatre sur vingt. Deux propriétés la rendent précieuse : la somme des écarts à la moyenne est toujours nulle, c'est un point d'équilibre, et chaque valeur la fait bouger, sans exception.",
+      "texte": "La moyenne : répartir le total également.",
+      "ecran": "moyenne",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p14",
+      "dit": "La médiane est la valeur qui partage la série triée en deux groupes de même effectif. Effectif impair : c'est la valeur centrale, comme quatorze pour nos cinq notes triées. Effectif pair : c'est la moyenne des deux valeurs centrales, comme quatorze virgule cinq quand on ajoute une note de seize. Elle ne demande que l'ordre des valeurs, pas leur somme : c'est ce qui la rendra si robuste face aux valeurs extrêmes, comme le montre l'exemple suivant.",
+      "texte": "La médiane : la valeur du milieu, après tri.",
+      "ecran": "mediane",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "dit": "Une entreprise de dix personnes affiche des salaires de vingt-huit à cinquante-deux milliers d'euros, plus celui du dirigeant : deux cent vingt milliers. La moyenne vaut cinquante-huit milliers d'euros, et pourtant neuf employés sur dix gagnent moins qu'elle. Une seule valeur extrême tire la moyenne vers le haut. La médiane, moyenne de quarante et quarante-deux, vaut quarante et un milliers : bien plus proche du salaire typique. Retenez le diagnostic : quand la moyenne dépasse nettement la médiane, la distribution est étirée vers la droite.",
+      "texte": "Salaires : moyenne 58 000 €, médiane 41 000 €.",
+      "ecran": "salaires",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p16",
+      "dit": "Premier indicateur de dispersion, l'étendue : la valeur maximale moins la valeur minimale. Pour les deux quartiers que nous comparerons bientôt, elle vaut deux cents euros dans un cas, deux mille euros dans l'autre. Simple et immédiate, elle ne regarde pourtant que deux valeurs et ignore toute la répartition intérieure. Deux séries très différentes, une, deux, trois, quatre, cent, et une, cinquante, cinquante, cinquante, cent, ont la même étendue de quatre-vingt-dix-neuf. Il faut une mesure qui écoute toutes les données.",
+      "texte": "L'étendue : vite fait, mais deux valeurs seulement.",
+      "ecran": "etendue",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "dit": "Construisons cette mesure. Les écarts à la moyenne ont une somme toujours nulle : impossible d'en faire directement la moyenne. On les élève donc au carré, ce qui élimine les signes, puis on moyenne ces carrés : c'est la variance. Pour un échantillon, on divise par l'effectif moins un, la correction de Bessel, qui compense l'usage de la moyenne de l'échantillon à la place de celle de la population. La racine carrée de la variance redonne une mesure dans l'unité de départ : l'écart-type.",
+      "texte": "Variance : la moyenne des carrés des écarts.",
+      "ecran": "variance",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "dit": "Application pas à pas sur cinq notes : douze, quatorze, quinze, seize et dix-huit. La moyenne vaut quinze. Les écarts sont moins trois, moins un, zéro, un et trois ; leurs carrés somment à vingt. La variance d'échantillon vaut vingt divisé par quatre, soit cinq, et l'écart-type est la racine de cinq, environ deux virgule vingt-quatre points. Interprétation concrète : les notes s'écartent typiquement d'un peu plus de deux points autour de la moyenne.",
+      "texte": "Notes : écart-type ≈ 2,24 points.",
+      "ecran": "notes_ecart",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "dit": "Retour aux deux quartiers de revenus moyens identiques, deux mille cinq cents euros. Le quartier A, resserré, a une étendue de deux cents euros et un écart-type d'environ soixante-dix-neuf euros. Le quartier B, très inégal, a une étendue de deux mille euros et un écart-type d'environ sept cent quatre-vingt-onze euros, dix fois plus. Même centre, réalités sociales opposées : voilà exactement ce que la moyenne seule ne pouvait pas voir, et que la dispersion révèle.",
+      "texte": "Même moyenne, écart-type dix fois plus grand.",
+      "ecran": "quartiers",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p20",
+      "dit": "Pour une distribution en forme de cloche, la règle empirique donne un sens concret à l'écart-type : environ soixante-huit pour cent des données se trouvent à moins d'un écart-type de la moyenne, quatre-vingt-quinze pour cent à moins de deux, et presque toutes à moins de trois. Des hommes de taille moyenne cent soixante-quinze centimètres, avec un écart-type de sept centimètres : quatre-vingt-quinze pour cent mesurent entre cent soixante et un et cent quatre-vingt-neuf centimètres. En industrie comme en finance, c'est ce réflexe qui transforme un écart-type en décision.",
+      "texte": "Règle 68 – 95 – 99,7 : lire un écart-type.",
+      "ecran": "regle",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "dit": "Les quartiles découpent la série triée en quatre parts égales. L'écart interquartile, troisième quartile moins premier quartile, mesure l'étalement des cinquante pour cent centraux, et il est robuste : les valeurs extrêmes ne le touchent pas. La boîte à moustaches résume tout cela en un dessin : premier quartile, médiane, troisième quartile et extrêmes. Quand l'écart-type est suspect à cause de valeurs aberrantes, c'est vers cet indicateur qu'on se tourne.",
+      "texte": "EIQ = Q3 − Q1 : la dispersion des 50 % centraux.",
+      "ecran": "quartiles",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "dit": "Récapitulons. La moyenne utilise toutes les valeurs mais craint les extrêmes ; la médiane, centrale et robuste, les ignore. Leur écart diagnostique la forme de la distribution. L'étendue donne une première alerte, la variance et l'écart-type mesurent la dispersion de référence, et l'écart interquartile offre l'alternative robuste. Un centre sans dispersion ne raconte jamais que la moitié de l'histoire.",
+      "texte": "Partie 2 : l'essentiel.",
+      "ecran": "recap2",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p23",
+      "dit": "Passons à l'inférence : comment choisir l'échantillon ? Quatre méthodes dominent. L'aléatoire simple donne à chacun la même chance d'être tiré. Le stratifié divise la population en sous-groupes homogènes, par âge par exemple, et tire dans chacun. Par grappes, on tire des groupes entiers, quartiers ou écoles, quand la population est dispersée. Systématique, on prend un individu tous les k, où k est le rapport de la taille de la population à celle de l'échantillon visé.",
+      "texte": "Échantillonner : quatre méthodes pour représenter.",
+      "ecran": "methodes_ech",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "dit": "La taille ne sauve pas un mauvais échantillon. En mille neuf cent trente-six, un magazine américain prédit le mauvais vainqueur de la présidentielle après deux millions quatre cent mille réponses : son fichier venait d'annuaires téléphoniques et d'immatriculations, donc des électeurs les plus aisés. C'est le biais de sélection. Une étude de dix mille personnes mal choisies peut valoir moins qu'une étude de cent personnes tirées au hasard : la qualité prime sur la quantité.",
+      "texte": "2,4 millions de réponses, et le mauvais vainqueur.",
+      "ecran": "biais",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "dit": "Le vocabulaire de l'inférence distingue le paramètre, caractéristique fixe mais souvent inconnue de la population, et la statistique, sa version calculée sur l'échantillon. Exemple : la vraie proportion de gauchers est de douze pour cent, mais un échantillon de cent personnes en compte dix. L'écart, deux points de pourcentage, est l'erreur d'échantillonnage : inévitable, car chaque échantillon diffère, mais quantifiable, et c'est elle que la fin du cours apprend à dompter.",
+      "texte": "Paramètre contre statistique : l'erreur d'échantillonnage.",
+      "ecran": "param_stat",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "dit": "Imaginez tous les échantillons possibles de même taille, et la moyenne de chacun : ces moyennes forment la distribution d'échantillonnage. Le théorème central limite affirme qu'elle est approximativement en cloche dès que la taille est suffisante, centrée sur la vraie moyenne de la population. Surtout, son écart-type, appelé erreur standard, vaut l'écart-type de la population divisé par la racine carrée de la taille : plus l'échantillon grandit, plus les moyennes se resserrent autour de la vérité.",
+      "texte": "Les moyennes d'échantillons forment une cloche.",
+      "ecran": "distrib_ech",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p27",
+      "dit": "Conséquence directe de la racine carrée : pour diviser l'erreur par deux, il faut quadrupler la taille de l'échantillon, pas la doubler. La précision se paie de plus en plus cher, et aucun budget ne remplace la représentativité. Sondages politiques, contrôles qualité sur cinquante pièces parmi dix mille, essais médicaux, audits financiers : partout, on généralise d'un échantillon vers une population, en connaissant le prix et la limite de cette généralisation.",
+      "texte": "Quatre fois plus d'individus : erreur divisée par deux.",
+      "ecran": "taille",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p28",
+      "dit": "Étude de cas finale : les temps d'attente de vingt clients d'un café, de une à dix minutes. La somme vaut quatre-vingt-seize minutes, donc la moyenne vaut quatre virgule huit minutes, et la médiane quatre minutes et demie. Deux modes ex aequo, quatre et cinq minutes, chacun observé quatre fois. L'écart-type vaut environ deux virgule trois minutes et l'étendue neuf minutes. Verdict : le service habituel est régulier, mais les pics à huit, neuf et dix minutes signalent des affluences mal absorbées : un renfort aux heures de pointe s'impose.",
+      "texte": "Café La Tasse : 4,8 min en moyenne, pics à 10 min.",
+      "ecran": "cafe",
+      "pause_apres": 0.7
+    },
+    {
+      "id": "p29",
+      "dit": "Ces outils décident partout. En médecine, on compare la moyenne d'un groupe traité à celle d'un groupe placebo, et l'écart-type dit si l'effet est homogène. En industrie, une moyenne juste ne suffit pas : seul un faible écart-type garantit des pièces dans les tolérances. En économie, l'écart entre salaire moyen et salaire médian mesure les inégalités. En éducation, une moyenne basse avec un faible écart-type signale une classe entière en difficulté, pas quelques élèves isolés.",
+      "texte": "La statistique décide : médecine, industrie, société.",
+      "ecran": "applications",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p30",
+      "dit": "Votre meilleur atout, dans un monde saturé de chiffres, est l'esprit critique. Devant chaque statistique publiée, posez trois questions. D'où vient-elle : population entière ou échantillon, et lequel ? Comment est-elle résumée : moyenne ou médiane, et pourquoi ce choix ? Quelle est sa variabilité : quel écart-type, quel écart interquartile ? Un chiffre sans ces réponses est une carte sans légende.",
+      "texte": "Trois questions devant chaque chiffre.",
+      "ecran": "critique",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p31",
+      "dit": "Pour conclure : décrire une série, c'est d'abord l'organiser et la dessiner, puis la centrer par la moyenne et la médiane, la disperser par l'étendue, l'écart interquartile et l'écart-type, et enfin savoir d'où elle vient, population ou échantillon représentatif. La statistique à une variable est la grammaire des données : les probabilités et l'inférence, qui viennent ensuite, écriront des phrases entières avec ces mots-là.",
+      "texte": "Statistiques à une variable : à retenir.",
+      "ecran": "recap_final",
+      "pause_apres": 0.5
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Collecter, organiser et représenter les données"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Moyenne, médiane et dispersion",
+      "pont": {
+        "texte": "Partie 2 : résumer par des nombres — position et dispersion.",
+        "dit": "Partie deux : résumer par des nombres. Après les tableaux et les graphiques, voici les indicateurs : la moyenne et la médiane pour situer le centre, puis l'étendue, la variance et l'écart-type pour mesurer la dispersion, sans oublier l'alternative robuste des quartiles."
+      }
+    },
+    {
+      "debut": "p23",
+      "sous_titre": "Échantillonner, généraliser, conclure",
+      "pont": {
+        "texte": "Partie 3 : de l'échantillon à la population, avec esprit critique.",
+        "dit": "Partie trois : échantillonner et généraliser. Nous verrons comment choisir un échantillon sans biais, ce qui sépare un paramètre d'une statistique, pourquoi les moyennes d'échantillons se resserrent en cloche, et nous terminerons par une étude de cas complète."
+      }
+    }
+  ]
+}
