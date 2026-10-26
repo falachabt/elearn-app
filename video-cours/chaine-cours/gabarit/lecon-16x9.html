@@ -2175,6 +2175,61 @@ const FIG = {
       mot(852, 140, 'aire S', { t: 19, a: 'start' }) +
       mot(852, 258, 'aire S', { t: 19, a: 'start' }));
   },
+  contraposee_fig(t) {
+    return svgBoite(
+      `<rect x="150" y="86" width="270" height="84" fill="#1A75FF" fill-opacity=".1" stroke="#1A75FF" stroke-width="4"/>` +
+      mot(285, 140, 'P ⇒ Q', { t: 30, c: '#1A75FF' }) +
+      `<rect x="580" y="86" width="270" height="84" fill="#E8604C" fill-opacity=".1" stroke="#E8604C" stroke-width="4"/>` +
+      mot(715, 140, '¬Q ⇒ ¬P', { t: 30, c: '#E8604C' }) +
+      `<line x1="428" y1="116" x2="572" y2="116" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="428,116 444,107 444,125" fill="currentColor"/>` +
+      `<polygon points="572,116 556,107 556,125" fill="currentColor"/>` +
+      `<line x1="428" y1="142" x2="572" y2="142" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="428,142 444,133 444,151" fill="currentColor"/>` +
+      `<polygon points="572,142 556,133 556,151" fill="currentColor"/>` +
+      mot(500, 66, 'équivalentes', { t: 20, c: '#B8860B' }) +
+      mot(500, 226, "la contraposée a toujours la même valeur de vérité que l'implication", { t: 19 }) +
+      mot(500, 262, 'prouver ¬Q ⇒ ¬P, c’est prouver P ⇒ Q', { t: 19 }));
+  },
+  venn_morgan_fig(t) {
+    const panneau = (x0, union) => {
+      const c1 = [x0 + 110, 150], c2 = [x0 + 210, 150];
+      let s = `<rect x="${x0}" y="60" width="320" height="180" fill="#E8604C" fill-opacity=".13" stroke="currentColor" stroke-width="3"/>`;
+      if (union) {
+        s += `<circle cx="${c1[0]}" cy="150" r="70" fill="#10B981" fill-opacity=".3"/><circle cx="${c2[0]}" cy="150" r="70" fill="#10B981" fill-opacity=".3"/>`;
+      } else {
+        s += `<circle cx="${c1[0]}" cy="150" r="70" fill="#E8604C" fill-opacity=".13"/><circle cx="${c2[0]}" cy="150" r="70" fill="#E8604C" fill-opacity=".13"/>`;
+        s += `<path d="M ${x0 + 160} 101 A 70 70 0 0 1 ${x0 + 160} 199 A 70 70 0 0 1 ${x0 + 160} 101 Z" fill="#10B981" fill-opacity=".45"/>`;
+      }
+      s += `<circle cx="${c1[0]}" cy="150" r="70" fill="none" stroke="currentColor" stroke-width="3"/>`;
+      s += `<circle cx="${c2[0]}" cy="150" r="70" fill="none" stroke="currentColor" stroke-width="3"/>`;
+      s += mot(c1[0] - 34, 120, 'A', { t: 20 }) + mot(c2[0] + 34, 120, 'B', { t: 20 });
+      return s;
+    };
+    return svgBoite(
+      panneau(170, false) + panneau(510, true) +
+      mot(330, 272, '¬(A ∩ B) = ¬A ∪ ¬B', { t: 19 }) +
+      mot(670, 272, '¬(A ∪ B) = ¬A ∩ ¬B', { t: 19 }) +
+      mot(500, 34, 'le complémentaire échange ∩ et ∪', { t: 20 }));
+  },
+  table_conjonction_fig(t) {
+    const table = (cx, titre, col3) => {
+      const lignes = [['V', 'V', col3[0]], ['V', 'F', col3[1]], ['F', 'V', col3[2]], ['F', 'F', col3[3]]];
+      let s = mot(cx, 52, titre, { t: 21 });
+      s += mot(cx - 62, 92, 'P', { t: 19 }) + mot(cx, 92, 'Q', { t: 19 }) + mot(cx + 66, 92, titre.split(' ').pop(), { t: 19 });
+      s += `<line x1="${cx - 100}" y1="104" x2="${cx + 100}" y2="104" stroke="currentColor" stroke-width="3"/>`;
+      lignes.forEach(([a, b, c], i) => {
+        const y = 138 + i * 36;
+        s += mot(cx - 62, y, a, { t: 19 }) + mot(cx, y, b, { t: 19 });
+        s += mot(cx + 66, y, c, { t: 19, c: c === 'V' ? '#10B981' : '#E8604C' });
+      });
+      return s;
+    };
+    return svgBoite(
+      table(300, 'P ∧ Q', ['V', 'F', 'F', 'F']) +
+      table(700, 'P ∨ Q', ['V', 'V', 'V', 'F']) +
+      mot(500, 292, 'et : vrai si les deux · ou : faux si les deux sont faux', { t: 18 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
