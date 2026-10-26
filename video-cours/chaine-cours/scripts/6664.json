@@ -1,0 +1,507 @@
+{
+ "cours": 6664,
+ "titre": "Statistique, dénombrement et graphes : décrire, compter, relier",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Statistique, dénombrement, graphes",
+   "titre": "Statistique, dénombrement et graphes : décrire, compter, relier",
+   "sous": "Paramètres d'une série groupée, outils de comptage et premiers graphes",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Trois questions : décrire des données, compter des possibilités, relier des objets.",
+   "anim": {
+    "nom": "histogramme_fig",
+    "hauteur": 180
+   }
+  },
+  "cumuls_def": {
+   "type": "etape",
+   "kicker": "Effectifs et fréquences cumulés",
+   "titre": "Cumuler, dans un sens ou dans l'autre",
+   "tex": [
+    "\\text{ECC : somme jusqu'à la classe}",
+    "\\text{ECD : somme depuis la classe}",
+    "\\text{fréquence cumulée} = \\tfrac{\\text{effectif cumulé}}{N}"
+   ]
+  },
+  "cumuls_tab": {
+   "type": "etape",
+   "kicker": "Exemple · trente valeurs en quatre classes",
+   "titre": "Le tableau de la série fil rouge",
+   "tex": [
+    "[0;10[ : 5 \\qquad [10;20[ : 12",
+    "[20;30[ : 8 \\qquad [30;40[ : 5",
+    "ECC : 5, 17, 25, 30 \\qquad ECD : 30, 25, 13, 5"
+   ]
+  },
+  "moyenne": {
+   "type": "formule",
+   "kicker": "Caractéristiques de position · la moyenne",
+   "titre": "La moyenne d'une série groupée",
+   "tex": "\\bar{x} = \\frac{\\sum_{i=1}^{k} n_i c_i}{N} = \\sum_{i=1}^{k} f_i c_i",
+   "note": "c_i : centre de la classe i · f_i : sa fréquence",
+   "anim": {
+    "nom": "distribution_bars_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_moyenne": {
+   "type": "etape",
+   "kicker": "Exemple · la moyenne de la série fil rouge",
+   "titre": "Centres cinq, quinze, vingt-cinq, trente-cinq",
+   "tex": [
+    "5 \\times 5 + 12 \\times 15 = 25 + 180",
+    "8 \\times 25 + 5 \\times 35 = 200 + 175",
+    "\\bar{x} = \\tfrac{580}{30} \\approx 19{,}33"
+   ]
+  },
+  "mode": {
+   "type": "etape",
+   "kicker": "Classe modale et mode",
+   "titre": "La classe la plus fréquente",
+   "tex": [
+    "\\text{classe modale} : [10;20[",
+    "\\text{mode} = 15 \\text{, centre de cette classe}"
+   ]
+  },
+  "mediane_form": {
+   "type": "formule",
+   "kicker": "Intervalle médian et médiane",
+   "titre": "Interpoler dans l'intervalle médian",
+   "tex": "Me = a + \\frac{\\frac{N}{2} - E}{n_m} \\times (b - a)",
+   "note": "a, b : bornes de l'intervalle · E : cumulé avant · n_m : son effectif"
+  },
+  "mediane_calc": {
+   "type": "etape",
+   "kicker": "Exemple · la médiane de la série fil rouge",
+   "titre": "Le cumulé dépasse quinze en deuxième classe",
+   "tex": [
+    "Me = 10 + \\tfrac{15 - 5}{12} \\times 10",
+    "Me = 10 + \\tfrac{100}{12} \\approx 18{,}33"
+   ]
+  },
+  "dispersion": {
+   "type": "formule",
+   "kicker": "Caractéristiques de dispersion",
+   "titre": "Variance et écart-type",
+   "tex": "V = \\frac{\\sum_{i=1}^{k} n_i (c_i - \\bar{x})^2}{N} \\qquad \\sigma = \\sqrt{V}",
+   "note": "Écart moyen : moyenne des écarts absolus à la moyenne",
+   "anim": {
+    "nom": "dispersion_mesures_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_dispersion": {
+   "type": "etape",
+   "kicker": "Exemple · la dispersion de la série fil rouge",
+   "titre": "Écart moyen, variance, écart-type",
+   "tex": [
+    "\\textstyle EM = \\tfrac{71{,}67 + 52 + 45{,}33 + 78{,}33}{30}",
+    "EM = \\tfrac{247{,}33}{30} \\approx 8{,}24",
+    "V \\approx 91{,}22 \\qquad \\sigma \\approx 9{,}55"
+   ]
+  },
+  "graphiques": {
+   "type": "etape",
+   "kicker": "Représentations graphiques",
+   "titre": "Histogramme et courbe des cumulés",
+   "tex": [
+    "\\text{histogramme : aire} \\propto \\text{effectif}",
+    "\\text{densité } d_i = \\tfrac{f_i}{\\text{amplitude}}",
+    "Me \\text{ lue sur la courbe à } y = \\tfrac{N}{2}"
+   ]
+  },
+  "venn": {
+   "type": "formule",
+   "kicker": "Dénombrement · cardinal et inclusion-exclusion",
+   "titre": "Compter une réunion sans double compte",
+   "tex": "|A \\cup B| = |A| + |B| - |A \\cap B|",
+   "note": "Le cardinal : le nombre d'éléments d'un ensemble fini",
+   "anim": {
+    "nom": "venn",
+    "hauteur": 220
+   }
+  },
+  "ex_venn": {
+   "type": "etape",
+   "kicker": "Exemple · football et basketball",
+   "titre": "Trente élèves, deux sports",
+   "tex": [
+    "|F \\cup B| = 18 + 12 - 5 = 25",
+    "\\text{aucun des deux sports} : 30 - 25 = 5"
+   ]
+  },
+  "tableaux": {
+   "type": "phrase",
+   "kicker": "Tableaux à double entrée",
+   "texte": "Croiser deux critères en lignes et en colonnes pour organiser le comptage."
+  },
+  "arbres": {
+   "type": "phrase",
+   "kicker": "Arbres de choix",
+   "texte": "Chaque chemin de la racine à une feuille est un résultat possible.",
+   "anim": {
+    "nom": "arbre_fig",
+    "hauteur": 200
+   }
+  },
+  "uplets": {
+   "type": "etape",
+   "kicker": "P-uplets avec répétition",
+   "titre": "Listes ordonnées, répétitions permises",
+   "tex": [
+    "\\text{nombre de } p\\text{-uplets} : n^p",
+    "\\text{codes à quatre chiffres} : 10^4 = 10000"
+   ]
+  },
+  "arrangements": {
+   "type": "etape",
+   "kicker": "Arrangements · sans répétition",
+   "titre": "Listes ordonnées d'éléments distincts",
+   "tex": [
+    "A(n,p) = \\tfrac{n!}{(n-p)!}",
+    "A(10,3) = 10 \\times 9 \\times 8 = 720"
+   ]
+  },
+  "combinaisons": {
+   "type": "formule",
+   "kicker": "Combinaisons · l'ordre ne compte pas",
+   "titre": "Choisir une partie, pas une liste",
+   "tex": "C(n,p) = \\binom{n}{p} = \\frac{n!}{p!(n-p)!}",
+   "note": "Relation clé : A(n,p) = C(n,p) × p!"
+  },
+  "ex_comb": {
+   "type": "etape",
+   "kicker": "Exemple · mains de cartes et parties",
+   "titre": "Cinq cartes parmi trente-deux",
+   "tex": [
+    "C(32,5) = \\tfrac{32!}{5! \\, 27!} = 201376",
+    "\\text{toutes les parties} : 2^5 = 32"
+   ]
+  },
+  "pascal_binome": {
+   "type": "etape",
+   "kicker": "Triangle de Pascal et binôme de Newton",
+   "titre": "Chaque coefficient, somme des deux du dessus",
+   "tex": [
+    "\\tbinom{n}{p} = \\tbinom{n-1}{p-1} + \\tbinom{n-1}{p}",
+    "\\textstyle (a+b)^n = \\sum_{p=0}^{n} \\tbinom{n}{p} a^{n-p} b^p",
+    "(a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4"
+   ]
+  },
+  "synthese_denomb": {
+   "type": "etape",
+   "kicker": "Synthèse · choisir le bon comptage",
+   "titre": "Ordre et répétition décident de la formule",
+   "tex": [
+    "\\text{ordonné, avec répétition} : n^p",
+    "\\text{ordonné, sans répétition} : A(n,p)",
+    "\\text{sans ordre} : C(n,p) \\qquad \\text{parties} : 2^n"
+   ]
+  },
+  "graphe_def": {
+   "type": "formule",
+   "kicker": "Graphes · sommets et arêtes",
+   "titre": "Relier des objets par des liens",
+   "tex": "G = (S, A) \\qquad n = |S|",
+   "note": "S : les sommets · A : les arêtes · n : l'ordre du graphe",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 200
+   }
+  },
+  "degre": {
+   "type": "etape",
+   "kicker": "Degré, adjacence, sommet isolé",
+   "titre": "Quatre amis et leurs liens d'amitié",
+   "tex": [
+    "d(\\text{Aline}) = 2 \\qquad d(\\text{David}) = 0",
+    "\\text{David : sommet isolé}",
+    "\\text{adjacents : reliés par une arête}"
+   ]
+  },
+  "types_graphes": {
+   "type": "etape",
+   "kicker": "Types de graphes",
+   "titre": "Simple, orienté, complet",
+   "tex": [
+    "\\text{simple : ni boucle, ni arête multiple}",
+    "\\text{orienté : des arcs, avec un sens}",
+    "\\text{complet } K_4 \\text{ : toutes les paires reliées}"
+   ]
+  },
+  "somme_degres": {
+   "type": "formule",
+   "kicker": "Propriété fondamentale des graphes",
+   "titre": "Chaque arête compte pour deux degrés",
+   "tex": "\\sum_{s \\in S} d(s) = 2 \\times |A|",
+   "note": "Degrés deux, deux, deux, zéro : somme six, pour trois arêtes"
+  },
+  "ex_degres": {
+   "type": "etape",
+   "kicker": "Exemple · vérifier la propriété",
+   "titre": "Le graphe des quatre amis",
+   "tex": [
+    "2 + 2 + 2 + 0 = 6",
+    "2 \\times 3 \\text{ arêtes} = 6"
+   ]
+  },
+  "arbre_couvrant": {
+   "type": "phrase",
+   "kicker": "Application · relier au moindre coût",
+   "texte": "Réseau d'eau d'un village : relier toutes les maisons au coût total minimal.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "kruskal": {
+   "type": "etape",
+   "kicker": "Algorithme de Kruskal",
+   "titre": "L'algorithme de Kruskal, en trois gestes",
+   "tex": [
+    "\\text{trier les arêtes par coût croissant}",
+    "\\text{ajouter sans créer de cycle}",
+    "\\text{arrêter quand tous sont reliés}"
+   ]
+  },
+  "modeliser": {
+   "type": "phrase",
+   "kicker": "Modéliser par un graphe",
+   "texte": "Sommets pour les objets, arêtes pour les relations, arcs si le sens compte.",
+   "anim": {
+    "nom": "graphe_fig",
+    "hauteur": 170
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Position : moyenne, mode, médiane interpolée",
+    "Dispersion : écart moyen, variance, écart-type",
+    "Dénombrer : puissances, arrangements, choix",
+    "Pascal et binôme : développer une puissance",
+    "Graphes : somme des degrés, double des arêtes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours qui réunit trois outils essentiels des mathématiques discrètes et de la statistique. Nous allons d'abord décrire une série de données groupées en classes, avec ses paramètres de position et de dispersion. Puis nous apprendrons à dénombrer des listes et des parties. Enfin, nous découvrirons les graphes, qui relient des objets par des liens.",
+   "texte": "Statistique, dénombrement, graphes : le programme.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Trois questions traversent tout le cours. Comment résumer des données nombreuses par quelques nombres fidèles ? Comment compter des possibilités trop nombreuses pour être listées une à une ? Et comment modéliser des relations entre objets, comme des amitiés ou des trajets ? Chaque partie répond à l'une de ces questions, toujours sur des exemples entièrement calculés.",
+   "texte": "Décrire, compter, relier : trois questions, trois outils.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par les cumuls. Pour une série regroupée en classes, l'effectif cumulé croissant jusqu'à une classe additionne les effectifs de toutes les classes précédentes et de cette classe. L'effectif cumulé décroissant, lui, additionne la classe et toutes les suivantes. En divisant ces cumuls par l'effectif total, on obtient les fréquences cumulées, croissantes ou décroissantes.",
+   "texte": "ECC en montant, ECD en descendant, fréquences en divisant par N.",
+   "ecran": "cumuls_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Voici la série qui nous servira de fil rouge : trente valeurs réparties en quatre classes. Cinq valeurs dans la première classe, douze dans la deuxième, huit dans la troisième et cinq dans la dernière. Les effectifs cumulés croissants sont cinq, dix-sept, vingt-cinq et trente. Les décroissants sont trente, vingt-cinq, treize et cinq. Deux contrôles immédiats : le dernier cumulé croissant et le premier décroissant valent l'effectif total.",
+   "texte": "La série fil rouge : 5, 12, 8, 5 — total 30.",
+   "ecran": "cumuls_tab"
+  },
+  {
+   "id": "p05",
+   "dit": "La moyenne d'une série groupée ne se calcule pas sur les valeurs inconnues, mais sur les centres des classes : le milieu de chaque intervalle représente toutes ses valeurs. On pondère chaque centre par l'effectif de sa classe, on additionne, puis on divise par l'effectif total. La même formule s'écrit avec les fréquences : la moyenne est la somme des produits des fréquences par les centres.",
+   "texte": "La moyenne : les centres de classes, pondérés par les effectifs.",
+   "ecran": "moyenne"
+  },
+  {
+   "id": "p06",
+   "dit": "Appliquons la formule à notre série. Les centres sont cinq, quinze, vingt-cinq et trente-cinq. Les produits donnent vingt-cinq, cent quatre-vingts, deux cents et cent soixante-quinze, pour une somme de cinq cent quatre-vingts. Divisée par trente, la moyenne vaut environ dix-neuf virgule trente-trois. Retenez la démarche : centres d'abord, produits ensuite, division à la fin.",
+   "texte": "Moyenne de la série : 580 ÷ 30 ≈ 19,33.",
+   "ecran": "ex_moyenne"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux autres paramètres de position décrivent la série. La classe modale est la classe de plus grand effectif : ici, la classe de dix à vingt, qui compte douze valeurs. Son centre, quinze, s'appelle le mode de la série. La classe modale se repère d'un coup d'œil dans le tableau, et elle prend tout son sens sur l'histogramme, où elle correspond au rectangle le plus haut quand les classes ont même amplitude.",
+   "texte": "Classe modale [10;20[, mode 15 : la plus fréquente.",
+   "ecran": "mode"
+  },
+  {
+   "id": "p08",
+   "dit": "La médiane partage la série en deux moitiés égales. On repère d'abord l'intervalle médian : la classe où le cumulé croissant atteint ou dépasse la moitié de l'effectif total. Puis on affine par interpolation linéaire : on avance dans la classe au prorata du chemin qu'il reste à parcourir pour atteindre cette moitié. La formule à l'écran donne cette avance, proportionnelle à la largeur de la classe.",
+   "texte": "La médiane : repérer la classe, puis interpoler.",
+   "ecran": "mediane_form"
+  },
+  {
+   "id": "p09",
+   "dit": "Sur notre série, la moitié de l'effectif vaut quinze. Le cumulé croissant atteint dix-sept dans la classe de dix à vingt : c'est l'intervalle médian. Avant cette classe, le cumulé valait cinq, et la classe contient douze valeurs. La médiane vaut donc dix, plus dix douzièmes de la largeur dix, soit environ dix-huit virgule trente-trois. La moitié des valeurs se situe donc en dessous de cette valeur seuil.",
+   "texte": "Médiane ≈ 18,33 : la moitié des valeurs en dessous.",
+   "ecran": "mediane_calc"
+  },
+  {
+   "id": "p10",
+   "dit": "Position ne suffit pas : il faut mesurer l'étalement. L'écart moyen est la moyenne des écarts absolus entre les centres et la moyenne. La variance, elle, moyenne les carrés de ces écarts, ce qui pénalise davantage les valeurs lointaines. Sa racine carrée, l'écart-type, s'exprime dans la même unité que les données : c'est le paramètre de dispersion le plus utilisé.",
+   "texte": "Variance : moyenne des carrés des écarts ; σ, sa racine.",
+   "ecran": "dispersion"
+  },
+  {
+   "id": "p11",
+   "dit": "Calculons pour notre série, avec une moyenne de dix-neuf virgule trente-trois. Les écarts absolus pondérés totalisent environ deux cent quarante-sept virgule trente-trois, ce qui donne un écart moyen d'environ huit virgule vingt-quatre. Pour la variance, les carrés des écarts pondérés conduisent à environ quatre-vingt-onze virgule vingt-deux. L'écart-type vaut alors environ neuf virgule cinquante-cinq : les valeurs s'écartent typiquement de près de dix unités autour de la moyenne.",
+   "texte": "Écart moyen ≈ 8,24 · variance ≈ 91,22 · σ ≈ 9,55.",
+   "ecran": "ex_dispersion"
+  },
+  {
+   "id": "p12",
+   "dit": "Deux graphiques résument la série. L'histogramme dresse un rectangle par classe, dont l'aire est proportionnelle à l'effectif ; à amplitudes égales, la hauteur suffit. À amplitudes différentes, on porte la densité de fréquence, quotient de la fréquence par l'amplitude. La courbe des cumulés relie les cumuls portés aux bornes supérieures des classes : la médiane s'y lit à l'intersection avec la droite horizontale d'ordonnée égale à la moitié de l'effectif.",
+   "texte": "Histogramme et courbe des cumulés : la médiane se lit.",
+   "ecran": "graphiques"
+  },
+  {
+   "id": "p13",
+   "dit": "Passons au dénombrement. Le cardinal d'un ensemble fini est simplement son nombre d'éléments. Pour compter une réunion de deux ensembles, on additionne leurs cardinaux, mais l'intersection a alors été comptée deux fois : il faut la retrancher une fois. C'est le principe d'inclusion-exclusion, que les diagrammes de Venn rendent visible : deux disques qui se recouvrent, et une zone commune à ne compter qu'une seule fois.",
+   "texte": "|A ∪ B| = |A| + |B| − |A ∩ B| : ne rien compter deux fois.",
+   "ecran": "venn"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : dans une classe de trente élèves, dix-huit pratiquent le football et douze le basketball, et cinq pratiquent les deux sports. La réunion compte dix-huit plus douze moins cinq, soit vingt-cinq élèves. Ceux qui ne pratiquent aucun des deux sports sont donc trente moins vingt-cinq, c'est-à-dire cinq. Sans la correction de l'intersection, on aurait compté les sportifs deux fois et trouvé un résultat absurde.",
+   "texte": "Football et basketball : 25 sportifs, 5 sans sport.",
+   "ecran": "ex_venn"
+  },
+  {
+   "id": "p15",
+   "dit": "Avant les formules, deux outils d'organisation. Un tableau à double entrée croise deux critères, l'un en lignes et l'autre en colonnes : chaque case compte les éléments qui vérifient les deux critères à la fois, et les totaux en bordure contrôlent le comptage. Bien rempli, un tel tableau transforme un énoncé confus en additions simples, et il prépare directement les calculs de probabilités conditionnelles.",
+   "texte": "Le tableau à double entrée : croiser pour compter juste.",
+   "ecran": "tableaux"
+  },
+  {
+   "id": "p16",
+   "dit": "Quand une expérience se déroule en étapes successives, l'arbre de choix dessine toutes les possibilités : à chaque étape, les branches se ramifient selon les choix offerts. Chaque chemin complet, de la racine jusqu'à une feuille, correspond à un résultat possible, et le nombre total de résultats est le nombre de feuilles. L'arbre évite les oublis et les doubles comptes des listes improvisées.",
+   "texte": "L'arbre de choix : un chemin, un résultat.",
+   "ecran": "arbres"
+  },
+  {
+   "id": "p17",
+   "dit": "Première famille de listes : les p-uplets avec répétition. Un p-uplet est une liste ordonnée de p éléments, où un même élément peut revenir plusieurs fois. À chaque position, on a autant de choix qu'il y a d'éléments dans l'ensemble : le nombre total est donc une puissance. Exemple immédiat : un code à quatre chiffres offre dix choix à chaque position, soit dix puissance quatre, dix mille codes possibles.",
+   "texte": "Avec répétition et ordre : n puissance p.",
+   "ecran": "uplets"
+  },
+  {
+   "id": "p18",
+   "dit": "Si les éléments d'une liste doivent être tous distincts, on parle d'arrangement. Le premier choix en offre n, le suivant n moins un, et ainsi de suite en diminuant d'une unité à chaque position. Le nombre d'arrangements s'écrit avec les factorielles : factorielle n divisée par factorielle de n moins p. Exemple : les podiums de trois places parmi dix coureurs sont au nombre de dix fois neuf fois huit, soit sept cent vingt.",
+   "texte": "Arrangements : 720 podiums parmi 10 coureurs.",
+   "ecran": "arrangements"
+  },
+  {
+   "id": "p19",
+   "dit": "Quand l'ordre ne compte plus, une liste devient une partie : on parle de combinaison. Chaque partie de p éléments correspond à autant d'arrangements qu'il y a de façons de l'ordonner, c'est-à-dire factorielle p. Le nombre de combinaisons est donc le nombre d'arrangements divisé par factorielle p. C'est le coefficient binomial, qui reviendra dans le triangle de Pascal et dans le binôme de Newton.",
+   "texte": "Combinaisons : choisir sans ordonner.",
+   "ecran": "combinaisons"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple emblématique : les mains de cinq cartes dans un jeu de trente-deux. L'ordre des cartes dans la main ne compte pas : le nombre de mains est le coefficient binomial de cinq parmi trente-deux, soit deux cent un mille trois cent soixante-seize. Autre résultat à connaître : un ensemble de n éléments possède deux puissance n parties en tout, en comptant la partie vide et l'ensemble lui-même ; pour cinq éléments, cela fait trente-deux parties.",
+   "texte": "Mains de 5 cartes parmi 32 : 201 376.",
+   "ecran": "ex_comb"
+  },
+  {
+   "id": "p21",
+   "dit": "Le triangle de Pascal organise tous les coefficients binomiaux en lignes : chaque coefficient est la somme des deux coefficients situés au-dessus de lui. Cette relation de Pascal construit le triangle ligne après ligne, sans aucun calcul de factorielle. La formule du binôme de Newton utilise ces coefficients pour développer une puissance d'une somme : chaque terme associe un coefficient, une puissance décroissante du premier terme et une puissance croissante du second.",
+   "texte": "Pascal construit, Newton développe : (a+b)⁴ déployé.",
+   "ecran": "pascal_binome"
+  },
+  {
+   "id": "p22",
+   "dit": "Résumons le choix de l'outil de comptage par deux questions. L'ordre des éléments compte-t-il ? Et un même élément peut-il se répéter ? Ordre et répétition donnent les puissances ; ordre sans répétition donne les arrangements ; sans ordre, ce sont les combinaisons. Ajoutez le nombre total de parties, deux puissance n, et vous disposez de toute la boîte à outils du dénombrement de ce cours.",
+   "texte": "Deux questions : ordre ? répétition ? Puis la formule.",
+   "ecran": "synthese_denomb"
+  },
+  {
+   "id": "p23",
+   "dit": "Dernière partie : les graphes. Un graphe est formé de sommets, que l'on peut imaginer comme des points, reliés par des arêtes, qui sont des liens entre deux sommets. On le note avec deux ensembles : celui des sommets et celui des arêtes. Le plan d'un métro en est l'image parfaite : les stations sont les sommets, et les trajets directs entre stations voisines sont les arêtes. Le nombre de sommets s'appelle l'ordre du graphe.",
+   "texte": "Un graphe G = (S, A) : des sommets, des arêtes.",
+   "ecran": "graphe_def"
+  },
+  {
+   "id": "p24",
+   "dit": "Le degré d'un sommet compte les arêtes qui le touchent. Dans le graphe d'amitié de quatre personnes, Aline est reliée à Bruno et à Chloé : son degré vaut deux. David, relié à personne, a un degré nul : on dit que c'est un sommet isolé. Deux sommets reliés directement par une arête sont dits adjacents : Aline et Bruno le sont, Aline et David ne le sont pas.",
+   "texte": "Degré d'Aline : 2 · David, isolé : degré 0.",
+   "ecran": "degre"
+  },
+  {
+   "id": "p25",
+   "dit": "Trois types de graphes reviennent constamment. Un graphe simple n'a ni boucle, une arête qui reviendrait sur son propre sommet, ni arêtes multiples entre deux mêmes sommets. Un graphe orienté donne un sens à ses liens, que l'on appelle alors des arcs : suivre quelqu'un sur un réseau social ne vaut que dans un sens. Un graphe complet relie toutes les paires de sommets : pour quatre sommets, on le note avec la lettre K suivie de l'indice quatre.",
+   "texte": "Simple, orienté, complet : trois types à distinguer.",
+   "ecran": "types_graphes"
+  },
+  {
+   "id": "p26",
+   "dit": "Voici la propriété fondamentale des graphes : la somme des degrés de tous les sommets vaut le double du nombre d'arêtes. La raison est lumineuse : chaque arête possède deux extrémités, donc elle contribue pour un au degré de chacun de ses deux sommets. Compter les degrés revient donc à compter chaque arête exactement deux fois. Cette propriété contrôle rapidement la cohérence d'un graphe décrit par ses degrés.",
+   "texte": "Somme des degrés = 2 × nombre d'arêtes.",
+   "ecran": "somme_degres"
+  },
+  {
+   "id": "p27",
+   "dit": "Vérifions sur le graphe des quatre amis, où Aline est reliée à Bruno et à Chloé, et Bruno à Chloé. Les degrés sont deux pour Aline, deux pour Bruno, deux pour Chloé et zéro pour David : la somme vaut six. Le graphe compte trois arêtes, et deux fois trois donne bien six. La propriété est vérifiée, et elle aurait immédiatement signalé une erreur si les deux comptes avaient différé.",
+   "texte": "Degrés 2, 2, 2, 0 : somme 6 = 2 × 3 arêtes.",
+   "ecran": "ex_degres"
+  },
+  {
+   "id": "p28",
+   "dit": "Les graphes servent concrètement à optimiser des réseaux. Dans un village de cinq maisons, on veut installer un réseau d'eau qui relie toutes les maisons au moindre coût : chaque maison est un sommet, chaque liaison possible est une arête pondérée par son coût. La solution est un arbre couvrant minimal : un ensemble de liaisons sans cycle, qui relie tous les sommets au coût total le plus faible, et que des algorithmes comme celui de Kruskal construisent pas à pas.",
+   "texte": "Relier toutes les maisons au coût minimal : Kruskal.",
+   "ecran": "arbre_couvrant"
+  },
+  {
+   "id": "p29",
+   "dit": "L'algorithme de Kruskal construit cet arbre couvrant minimal pas à pas. On trie d'abord toutes les liaisons possibles par coût croissant. On les examine ensuite dans cet ordre : on retient chaque liaison si elle ne crée pas de cycle avec celles déjà choisies, on l'écarte sinon. Quand toutes les maisons sont reliées, on s'arrête : l'ensemble obtenu relie tous les sommets, sans cycle, au coût total minimal.",
+   "texte": "Kruskal : trier, ajouter sans cycle, arrêter.",
+   "ecran": "kruskal"
+  },
+  {
+   "id": "p30",
+   "dit": "La vraie compétence de ce chapitre est de savoir modéliser. Devant un problème, demandez-vous quels sont les objets, qui deviennent les sommets, et quelles relations les lient, qui deviennent les arêtes. Amitiés entre personnes, trajets entre stations, liaisons entre maisons, abonnements entre comptes : si la relation a un sens unique, le graphe sera orienté ; si elle porte un coût ou une distance, il sera pondéré. Le bon modèle choisi, les propriétés du cours font le reste.",
+   "texte": "Modéliser : objets en sommets, relations en arêtes.",
+   "ecran": "modeliser"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour conclure, retenez les trois gestes du cours. Décrire une série par sa moyenne, sa médiane, son mode et son écart-type, en vérifiant chaque calcul sur les cumuls. Dénombrer en choisissant l'outil selon l'ordre et la répétition, sans jamais compter deux fois la même chose. Et modéliser des relations par un graphe, dont la somme des degrés contrôle toujours le nombre d'arêtes.",
+   "texte": "Décrire, compter, relier : les trois gestes du cours.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Statistique : décrire une série groupée"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Dénombrement : listes, parties et binôme",
+   "pont": {
+    "texte": "Partie 2 : dénombrer sans se tromper.",
+    "dit": "Partie deux : le dénombrement. Après avoir décrit des données, nous allons compter des possibilités : réunions d'ensembles, listes ordonnées avec ou sans répétition, parties d'un ensemble, et le binôme de Newton qui les relie toutes."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Graphes : sommets, degrés et réseaux",
+   "pont": {
+    "texte": "Partie 3 : les graphes, relier des objets.",
+    "dit": "Partie trois : les graphes. Nous quittons les listes pour les réseaux : des sommets reliés par des arêtes, un degré pour chaque sommet, et une propriété fondamentale qui relie la somme des degrés au nombre d'arêtes."
+   }
+  }
+ ]
+}
