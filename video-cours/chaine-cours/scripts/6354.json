@@ -1,0 +1,617 @@
+{
+ "cours": 6354,
+ "titre": "Aldéhydes et cétones : le groupe carbonyle à l'œuvre",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Aldéhydes et cétones",
+   "titre": "Aldéhydes et cétones : le groupe carbonyle à l'œuvre",
+   "sous": "Polarité, réactivité, synthèses et tests : le carbonyle dans tous ses rôles",
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Vanille, cannelle, dissolvant : trois odeurs, une même signature, le carbonyle."
+  },
+  "carbonyle": {
+   "type": "formule",
+   "kicker": "Le groupe carbonyle",
+   "tex": "\\overset{\\delta+}{C}=\\overset{\\delta-}{O}",
+   "note": "χ(O) = 3,44 contre χ(C) = 2,55 : l'oxygène attire les électrons."
+  },
+  "distinction": {
+   "type": "etape",
+   "kicker": "Deux familles, un groupe",
+   "titre": "Un hydrogène contre un second groupe carboné",
+   "tex": [
+    "R\\text{-}CHO \\text{ : l'aldéhyde, toujours en bout de chaîne}",
+    "R\\text{-}CO\\text{-}R' \\text{ : la cétone, au cœur de la chaîne}",
+    "\\text{suffixes : -al pour l'aldéhyde, -one pour la cétone}"
+   ],
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 110
+   }
+  },
+  "geometrie": {
+   "type": "etape",
+   "kicker": "La géométrie du carbonyle",
+   "titre": "Un carbone plan, exposé de face",
+   "tex": [
+    "C \\text{ hybridé } sp^2 \\text{ : trois liaisons dans un plan}",
+    "\\text{angles d'environ } 120^\\circ \\text{ entre les substituants}",
+    "\\text{le nucléophile attaque perpendiculairement au plan}"
+   ]
+  },
+  "nommer_aldehydes": {
+   "type": "etape",
+   "kicker": "Nommer les aldéhydes",
+   "titre": "Suffixe -al, et le carbonyle est le carbone un",
+   "tex": [
+    "H\\text{-}CHO \\text{ : méthanal (formaldéhyde)}",
+    "CH_3\\text{-}CH_2\\text{-}CH_2\\text{-}CHO \\text{ : butanal}",
+    "CH_3\\text{-}CH(Cl)\\text{-}CHO \\text{ : 2-chloropropanal}",
+    "C_6H_5\\text{-}CHO \\text{ : benzaldéhyde, odeur d'amande amère}"
+   ]
+  },
+  "nommer_cetones": {
+   "type": "etape",
+   "kicker": "Nommer les cétones",
+   "titre": "Suffixe -one, et le plus petit numéro possible",
+   "tex": [
+    "CH_3\\text{-}CO\\text{-}CH_3 \\text{ : propan-2-one (acétone)}",
+    "CH_3\\text{-}CO\\text{-}CH_2\\text{-}CH_3 \\text{ : butan-2-one}",
+    "CH_3\\text{-}CH_2\\text{-}CO\\text{-}CH_2\\text{-}CH_3 \\text{ : pentan-3-one}",
+    "CH_3\\text{-}CO\\text{-}CH_2\\text{-}CH_2\\text{-}CH_3 \\text{ : pentan-2-one, jamais 4-one}"
+   ]
+  },
+  "atelier_nom": {
+   "type": "etape",
+   "kicker": "Atelier de nomenclature",
+   "titre": "Quatre structures, quatre noms à construire",
+   "tex": [
+    "CH_3\\text{-}CH_2\\text{-}CH(CH_3)\\text{-}CHO \\text{ : 2-méthylbutanal}",
+    "CH_3\\text{-}CO\\text{-}CH(CH_3)\\text{-}CH_2\\text{-}CH_3 \\text{ : 3-méthylpentan-2-one}",
+    "C_6H_5\\text{-}CO\\text{-}CH_3 \\text{ : acétophénone}",
+    "CH_3\\text{-}CO\\text{-}CH_2\\text{-}CH(CH_3)\\text{-}CH_2\\text{-}CH_3 \\text{ : 4-méthylhexan-2-one}"
+   ]
+  },
+  "omnipresence": {
+   "type": "etape",
+   "kicker": "Une famille omniprésente",
+   "titre": "Du rétinal aux hormones, du formol à la Bakélite",
+   "tex": [
+    "\\text{vision : le rétinal, un aldéhyde de la vitamine A}",
+    "\\text{testostérone, progestérone : des cétones stéroïdiennes}",
+    "\\text{vanilline, cinnamaldéhyde : les arômes naturels}",
+    "\\text{formaldéhyde : formol, résines, Bakélite (1907)}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés",
+   "etapes": [
+    "Le carbonyle C=O, polarisé δ+/δ−",
+    "Aldéhyde : R-CHO, terminal, -al",
+    "Cétone : R-CO-R′, interne, -one",
+    "Carbone sp2, plan, angles de 120°",
+    "Partout : nature, industrie, vivant"
+   ]
+  },
+  "ebullition": {
+   "type": "etape",
+   "kicker": "Les points d'ébullition",
+   "titre": "Entre l'hydrocarbure et l'alcool",
+   "tex": [
+    "C_4H_{10} \\text{ (butane)} : -0{,}5\\ ^\\circ\\text{C, forces de London}",
+    "(CH_3)_2C{=}O \\text{ (acétone)} : 56\\ ^\\circ\\text{C, dipôle-dipôle}",
+    "CH_3CH_2CH_2OH \\text{ (propan-1-ol)} : 97\\ ^\\circ\\text{C, liaisons H}",
+    "\\text{le carbonyle : accepteur de liaison H, jamais donneur}"
+   ]
+  },
+  "solubilite": {
+   "type": "etape",
+   "kicker": "La solubilité dans l'eau",
+   "titre": "L'oxygène accroche l'eau, la chaîne la fuit",
+   "tex": [
+    "R_2C{=}O \\cdots H\\text{-}O\\text{-}H \\text{ : liaison H avec l'eau}",
+    "\\text{acétone : miscible à l'eau en toutes proportions}",
+    "\\text{au-delà d'environ 5 carbones : solubilité négligeable}"
+   ]
+  },
+  "mecanisme": {
+   "type": "etape",
+   "kicker": "La grande réaction",
+   "titre": "L'addition nucléophile, en deux temps",
+   "tex": [
+    "Nu^- + C^{\\delta+} \\text{ : attaque, la liaison } \\pi \\text{ bascule sur O}",
+    "R_2C{=}O + NuH \\rightarrow R_2C(OH)Nu",
+    "\\text{contrairement à } C{=}C \\text{, attaqué par les électrophiles}"
+   ]
+  },
+  "cyanohydrine": {
+   "type": "etape",
+   "kicker": "Exemple guidé : le cyanure",
+   "titre": "Trois étapes, et la chaîne gagne un carbone",
+   "tex": [
+    "HCN + OH^- \\rightleftharpoons CN^- + H_2O",
+    "CH_3CHO + CN^- \\rightarrow CH_3CH(CN)O^-",
+    "CH_3CH(CN)O^- + H_2O \\rightarrow CH_3CH(CN)OH + OH^-",
+    "\\text{cyanohydrine : vers les } \\alpha\\text{-hydroxyacides}"
+   ]
+  },
+  "facteurs": {
+   "type": "etape",
+   "kicker": "Ce qui règle la réactivité",
+   "titre": "Effets électroniques et encombrement",
+   "tex": [
+    "\\text{H (aldéhyde) : élevée} \\qquad \\text{alkyle : moyenne}",
+    "\\text{aryle : faible} \\qquad \\text{halogène : très élevée}",
+    "\\text{un seul groupe R : l'aldéhyde est peu encombré}",
+    "\\text{deux groupes R : la cétone réagit plus lentement}"
+   ]
+  },
+  "activation": {
+   "type": "etape",
+   "kicker": "L'activation acide",
+   "titre": "Protoner l'oxygène, puis piéger en acétal",
+   "tex": [
+    "R_2C{=}\\overset{+}{O}H \\text{ : le } \\delta+ \\text{ du carbone est renforcé}",
+    "RCHO + 2\\,ROH \\xrightarrow{H^+} RCH(OR)_2 + H_2O \\text{ (acétal)}",
+    "\\text{acétal : stable en milieu basique, hydrolysé en acide}",
+    "\\text{un groupe protecteur du carbonyle en synthèse}"
+   ]
+  },
+  "grignard_hydrures": {
+   "type": "etape",
+   "kicker": "Deux nucléophiles majeurs",
+   "titre": "Grignard construit, les hydrures réduisent",
+   "tex": [
+    "R'\\text{-}MgX + R_2C{=}O \\xrightarrow{H_3O^+} R_2C(OH)R' \\text{ : liaison C-C neuve}",
+    "R_2C{=}O + H^- \\xrightarrow{H_3O^+} R_2CH\\text{-}OH \\text{ (un alcool)}",
+    "NaBH_4 \\text{ : doux, sélectif} \\qquad LiAlH_4 \\text{ : puissant}"
+   ]
+  },
+  "derives_azotes": {
+   "type": "etape",
+   "kicker": "Les dérivés azotés",
+   "titre": "Imines, hydrazones, et un précipité qui parle",
+   "tex": [
+    "R_2C{=}O + RNH_2 \\rightarrow R_2C{=}NR + H_2O \\text{ (imine)}",
+    "R_2C{=}O + H_2N\\text{-}NH_2 \\rightarrow R_2C{=}N\\text{-}NH_2 + H_2O \\text{ (hydrazone)}",
+    "\\text{2,4-DNPH : précipité jaune-orangé caractéristique}"
+   ]
+  },
+  "alpha": {
+   "type": "etape",
+   "kicker": "Les hydrogènes en alpha",
+   "titre": "Un énolate naît, chargé et stabilisé",
+   "tex": [
+    "pK_a \\approx 20 \\text{ (H en } \\alpha) \\qquad pK_a \\approx 50 \\text{ (alcane)}",
+    "{}^-CH_2\\text{-}CO\\text{-}CH_3 \\leftrightarrow CH_2{=}C(O^-)\\text{-}CH_3 \\text{ : l'énolate}",
+    "\\text{l'énolate : un nucléophile carbone puissant}"
+   ]
+  },
+  "aldol": {
+   "type": "etape",
+   "kicker": "L'aldolisation",
+   "titre": "L'énolate attaque un second carbonyle",
+   "tex": [
+    "CH_3CHO + OH^- \\rightleftharpoons CH_2{=}CH\\text{-}O^- + H_2O \\text{ (énolate)}",
+    "CH_2{=}CH\\text{-}O^- + CH_3CHO \\rightarrow CH_3\\text{-}CH(OH)\\text{-}CH_2\\text{-}CHO",
+    "CH_3\\text{-}CH(OH)\\text{-}CH_2\\text{-}CHO \\rightarrow CH_3\\text{-}CH{=}CH\\text{-}CHO + H_2O",
+    "\\text{le crotonaldéhyde : un énal, la chaîne a doublé}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés",
+   "etapes": [
+    "Ébullition : entre alcane et alcool",
+    "Solubles tant que la chaîne est courte",
+    "Addition nucléophile sur le C δ+",
+    "Acide, Grignard, hydrures, imines",
+    "En alpha : énolate et aldolisation"
+   ]
+  },
+  "oxydation_alcools": {
+   "type": "etape",
+   "kicker": "Préparer par oxydation",
+   "titre": "Le degré de l'alcool décide du produit",
+   "tex": [
+    "R\\text{-}CH_2\\text{-}OH \\text{ (primaire)} \\rightarrow R\\text{-}CHO \\rightarrow R\\text{-}COOH",
+    "R_1R_2CH\\text{-}OH \\text{ (secondaire)} \\rightarrow \\text{cétone, et stop}",
+    "R_1R_2R_3C\\text{-}OH \\text{ (tertiaire)} \\rightarrow \\text{pas de réaction}",
+    "\\text{le tertiaire n'a pas d'H sur le carbone porteur du -OH}"
+   ]
+  },
+  "chrome": {
+   "type": "etape",
+   "kicker": "Les oxydants au chrome",
+   "titre": "Forts et colorés : la réaction se suit à l'œil",
+   "tex": [
+    "3\\,R\\text{-}CH_2OH + K_2Cr_2O_7 + 4\\,H_2SO_4 \\rightarrow 3\\,R\\text{-}CHO + Cr_2(SO_4)_3 + K_2SO_4 + 7\\,H_2O",
+    "\\text{la couleur vire de l'orange au vert : on suit la réaction}",
+    "\\text{Jones : } CrO_3 / H_2SO_4 \\text{, version plus contrôlée}",
+    "\\text{piège : distiller l'aldéhyde avant qu'il s'oxyde}"
+   ]
+  },
+  "pcc": {
+   "type": "formule",
+   "kicker": "L'oxydant qui sait s'arrêter",
+   "tex": "\\text{Alcool primaire} + \\text{PCC} \\xrightarrow[\\text{anhydre}]{CH_2Cl_2} \\text{Aldéhyde}",
+   "note": "Sans eau, pas d'hydrate : l'oxydation s'arrête net à l'aldéhyde."
+  },
+  "autres_voies": {
+   "type": "etape",
+   "kicker": "Trois autres voies",
+   "titre": "Couper un alcène, hydrater un alcyne, acyler un arène",
+   "tex": [
+    "R_1R_2C{=}CR_3R_4 \\xrightarrow[\\text{Zn}/H_2O]{O_3} R_1R_2C{=}O + O{=}CR_3R_4",
+    "RC{\\equiv}CH \\xrightarrow[HgSO_4]{H_2SO_4} [R\\text{-}C(OH){=}CH_2] \\rightarrow R\\text{-}CO\\text{-}CH_3",
+    "C_6H_6 + R\\text{-}COCl \\xrightarrow{AlCl_3} C_6H_5\\text{-}COR + HCl \\text{ (Friedel-Crafts)}"
+   ]
+  },
+  "strategie": {
+   "type": "etape",
+   "kicker": "Choisir sa voie",
+   "titre": "Trois cibles, trois stratégies",
+   "tex": [
+    "\\text{butanal} \\leftarrow \\text{butan-1-ol} + \\text{PCC (anhydre)}",
+    "\\text{propiophénone} \\leftarrow \\text{benzène} + CH_3CH_2COCl / AlCl_3",
+    "\\text{alcène inconnu} \\rightarrow \\text{ozonolyse : identifier les fragments}"
+   ]
+  },
+  "principe_tests": {
+   "type": "formule",
+   "kicker": "Identifier : le principe",
+   "tex": "R\\text{-}CHO + [O] \\rightarrow R\\text{-}COOH",
+   "note": "Oxydants doux : l'aldéhyde cède, la cétone résiste."
+  },
+  "tollens": {
+   "type": "etape",
+   "kicker": "Le test de Tollens",
+   "titre": "Le miroir d'argent de Tollens (1881)",
+   "tex": [
+    "2\\,AgNO_3 + 2\\,NaOH \\rightarrow Ag_2O_{(s)} + 2\\,NaNO_3 + H_2O \\text{ (précipité brun)}",
+    "Ag_2O + 4\\,NH_3 + H_2O \\rightarrow 2\\,[Ag(NH_3)_2]^+ + 2\\,OH^-",
+    "R\\text{-}CHO + 2\\,[Ag(NH_3)_2]^+ + 3\\,OH^- \\rightarrow R\\text{-}COO^- + 2\\,Ag_{(s)} + 4\\,NH_3 + 2\\,H_2O"
+   ],
+   "anim": {
+    "nom": "miroir_argent_fig",
+    "hauteur": 110
+   }
+  },
+  "autres_tests": {
+   "type": "etape",
+   "kicker": "Les autres tests colorés",
+   "titre": "Rouge brique, violet qui s'efface, rose éclatant",
+   "tex": [
+    "R\\text{-}CHO + 2\\,Cu^{2+} + 5\\,OH^- \\rightarrow R\\text{-}COO^- + Cu_2O_{(s)} + 3\\,H_2O",
+    "\\text{Fehling/Benedict : précipité rouge brique de } Cu_2O",
+    "KMnO_4 \\text{ violet décoloré ; Schiff : rose-violet intense}",
+    "\\text{stratégie : préliminaire, spécificité, confirmation}"
+   ]
+  },
+  "recap3": {
+   "type": "recap",
+   "kicker": "Points clés : les tests",
+   "etapes": [
+    "Tollens : miroir d'argent éclatant",
+    "Fehling : précipité rouge brique",
+    "Benedict : les sucres réducteurs",
+    "Schiff : rose-violet, très sensible",
+    "Permanganate : violet décoloré"
+   ]
+  },
+  "aromes": {
+   "type": "etape",
+   "kicker": "Le règne des arômes",
+   "titre": "Vanille, amande, cannelle, citron",
+   "tex": [
+    "\\text{vanilline : la vanille} \\qquad \\text{benzaldéhyde : l'amande amère}",
+    "\\text{cinnamaldéhyde : la cannelle} \\qquad \\text{citral : le citron}",
+    "\\text{cétone de framboise, muscone : le musc synthétisé}",
+    "\\text{Chanel N°5 (1921) : les aldéhydes gras } C_7 \\text{ à } C_{12}"
+   ]
+  },
+  "carrefour": {
+   "type": "etape",
+   "kicker": "Un carrefour de synthèse",
+   "titre": "Cinq transformations autour du carbonyle",
+   "tex": [
+    "\\text{réduction } (NaBH_4) \\text{ : aldéhyde} \\rightarrow \\text{alcool primaire}",
+    "\\text{oxydation : aldéhyde} \\rightarrow \\text{acide carboxylique}",
+    "HCN \\text{ : cyanohydrine} \\qquad RMgX \\text{ : alcool, liaison C-C neuve}",
+    "\\text{Cannizzaro (sans H en } \\alpha) \\text{ : alcool + acide}"
+   ]
+  },
+  "ibuprofen": {
+   "type": "etape",
+   "kicker": "Étude de cas",
+   "titre": "L'ibuprofène passe par une cétone",
+   "tex": [
+    "\\text{isobutylbenzène} + CH_3COCl \\xrightarrow{AlCl_3} \\text{cétone aromatique}",
+    "\\text{réaction de Darzens} \\rightarrow \\text{acide propionique substitué}",
+    "\\text{purification} \\rightarrow \\text{l'ibuprofène, anti-inflammatoire}"
+   ]
+  },
+  "geants": {
+   "type": "etape",
+   "kicker": "L'échelle industrielle",
+   "titre": "Formaldéhyde et acétone, géants industriels",
+   "tex": [
+    "2\\,CH_3OH + O_2 \\xrightarrow[\\text{Ag ou Fe/Mo}]{\\Delta} 2\\,HCHO + 2\\,H_2O",
+    "\\text{formaldéhyde : résines, colles, formol désinfectant}",
+    "\\text{acétone : solvant universel, vers le Plexiglas}",
+    "\\text{et le bisphénol A, précurseur des polycarbonates}"
+   ]
+  },
+  "biologie": {
+   "type": "etape",
+   "kicker": "Le carbonyle dans le vivant",
+   "titre": "Énergie, vision et hormones",
+   "tex": [
+    "\\text{glycéraldéhyde-3-P} \\rightleftharpoons \\text{dihydroxyacétone-P} \\rightarrow \\text{pyruvate} \\rightarrow ATP",
+    "\\text{vision : le rétinal passe de 11-cis à tout-trans}",
+    "\\text{progestérone, testostérone : la cétone des stéroïdes}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés",
+   "etapes": [
+    "Carbonyle polarisé : C δ+, O δ−",
+    "Aldéhyde oxydable, cétone résistante",
+    "Addition nucléophile et énolates",
+    "PCC, ozonolyse, Friedel-Crafts",
+    "Tollens tranche : miroir ou rien"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux aldéhydes et aux cétones, les deux familles du groupe carbonyle. L'arôme de la vanille, le parfum de la cannelle, le dissolvant du vernis à ongles : derrière ces odeurs familières se cache la même signature, un carbone doublement lié à un oxygène. Nous allons d'abord apprendre à reconnaître ces molécules et à les nommer. Puis nous verrons comment la polarité du carbonyle gouverne leurs propriétés et leur réactivité. Enfin, nous apprendrons à les préparer, à les identifier par des tests spectaculaires, et à mesurer leur place dans l'industrie et dans le vivant.",
+   "texte": "Bienvenue : le carbonyle, une signature partout.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Fermez les yeux et imaginez trois odeurs. La douceur de la vanille dans un dessert. La chaleur de la cannelle dans un vin chaud. L'odeur piquante du dissolvant pour vernis à ongles. Trois mondes très différents, et pourtant une seule signature moléculaire les relie : le groupe carbonyle, un carbone lié à un oxygène par une double liaison. Ce groupe est le héros de ce cours : il structure deux grandes familles, les aldéhydes et les cétones, et il explique presque tout de leur comportement.",
+   "texte": "Trois odeurs, un même groupe : C=O.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par la définition. Le groupe carbonyle est un atome de carbone lié à un atome d'oxygène par une double liaison. Cette liaison est fortement polarisée : l'oxygène, bien plus électronégatif que le carbone, attire les électrons vers lui. Il porte donc une charge partielle négative, tandis que le carbone porte une charge partielle positive. Retenez ce couple de charges : le carbone positif sera la cible des attaques, et l'oxygène négatif jouera le rôle de base. Toute la réactivité du cours découle de cette polarité.",
+   "texte": "C δ+, O δ− : la polarité commande tout.",
+   "ecran": "carbonyle"
+  },
+  {
+   "id": "p04",
+   "dit": "Le carbonyle se décline en deux familles, selon ce qui entoure le carbone. Dans un aldéhyde, le carbone du carbonyle porte au moins un atome d'hydrogène, et il se trouve toujours à l'extrémité de la chaîne : c'est le groupe aldéhyde. Dans une cétone, le même carbone est encadré par deux groupes carbonés : il siège au cœur de la chaîne. Cette différence, qui semble minuscule, change tout : l'aldéhyde, avec son hydrogène, pourra s'oxyder facilement, alors que la cétone résistera. Nous y reviendrons sans cesse.",
+   "texte": "Aldéhyde terminal, cétone interne : tout change.",
+   "ecran": "distinction"
+  },
+  {
+   "id": "p05",
+   "dit": "Regardons la géométrie de ce groupe. Le carbone du carbonyle est hybridé esse pé deux : ses trois liaisons forment un plan, avec des angles d'environ cent vingt degrés entre elles, comme les branches d'une étoile à trois branches. La double liaison avec l'oxygène verrouille cette planéité. Conséquence majeure : le carbone est plat et exposé, sans protection. Un réactif pourra l'attaquer de face, perpendiculairement au plan. C'est exactement ce que feront les nucléophiles dans la deuxième partie.",
+   "texte": "Un carbone plan, à 120°, exposé aux attaques.",
+   "ecran": "geometrie"
+  },
+  {
+   "id": "p06",
+   "dit": "Passons à la nomenclature, le langage qui permet de nommer sans ambiguïté. Pour un aldéhyde, le carbone du carbonyle est toujours le carbone numéro un de la chaîne principale, et le nom se termine par le suffixe al. Le plus simple est le méthanal, que tout le monde connaît sous le nom de formaldéhyde. Avec quatre carbones, on obtient le butanal. Si la chaîne porte un chlore sur le deuxième carbone, cela donne le deux-chloropropanal. Et greffé sur un cycle de benzène, l'aldéhyde devient le benzaldéhyde, célèbre pour son odeur d'amande amère.",
+   "texte": "Méthanal, butanal, benzaldéhyde : le suffixe -al.",
+   "ecran": "nommer_aldehydes"
+  },
+  {
+   "id": "p07",
+   "dit": "Pour les cétones, le suffixe devient one, et l'on numérote la chaîne de façon à donner au carbonyle le plus petit numéro possible. La plus célèbre est la propan-deux-one, notre acétone de tous les jours. Avec quatre carbones, la butan-deux-one place son carbonyle en deuxième position. Sur cinq carbones, on distingue la pentan-trois-one, symétrique, de la pentan-deux-one. Attention au piège classique : on n'écrit jamais pentan-quatre-one, car en numérotant dans l'autre sens, le même carbonyle devient le numéro deux.",
+   "texte": "Suffixe -one, plus petit numéro : jamais 4-one.",
+   "ecran": "nommer_cetones"
+  },
+  {
+   "id": "p08",
+   "dit": "Entraînons-nous, car nommer juste est une compétence d'examen. Premier cas : une chaîne de quatre carbones terminée par un aldéhyde, avec un méthyle sur le deuxième carbone : c'est le deux-méthylbutanal. Deuxième cas : une cétone en position deux, un méthyle en position trois, sur cinq carbones : la trois-méthylpentan-deux-one. Troisième cas : un cycle de benzène portant un petit groupe acétyle : l'acétophénone, une cétone aromatique. Dernier cas, le plus complet : six carbones, carbonyle en deux, méthyle en quatre : la quatre-méthylhexan-deux-one. La méthode est toujours la même : la chaîne la plus longue, le plus petit numéro, les substituants par ordre alphabétique.",
+   "texte": "Quatre noms construits par les règles du cours.",
+   "ecran": "atelier_nom"
+  },
+  {
+   "id": "p09",
+   "dit": "Avant de refermer cette partie, mesurons l'omniprésence de ces molécules. Dans votre œil, le rétinal, un aldéhyde dérivé de la vitamine A, rend la vision possible. Dans votre corps, la testostérone et la progestérone sont des cétones. Dans la cuisine, la vanilline parfume les desserts et le cinnamaldéhyde embaume la cannelle. Dans l'industrie, l'acétone dissout les vernis, le formaldéhyde conserve les échantillons biologiques, et dès mille neuf cent sept, le formaldéhyde durci avec le phénol donnait la Bakélite, le premier plastique de synthèse. Le carbonyle est partout.",
+   "texte": "Vision, hormones, arômes, plastiques : partout.",
+   "ecran": "omnipresence"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Le groupe carbonyle, un carbone doublement lié à un oxygène, est fortement polarisé : carbone positif, oxygène négatif. S'il porte un hydrogène en bout de chaîne, c'est un aldéhyde, nommé avec le suffixe al. Encadré par deux groupes carbonés, c'est une cétone, nommée avec le suffixe one et le plus petit numéro possible. Le carbone, hybridé esse pé deux, est plan et exposé aux attaques. Et ces molécules nous entourent, de la vision aux hormones, des arômes aux plastiques.",
+   "texte": "L'essentiel : reconnaître et nommer.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Comparons trois molécules de masses voisines, autour de soixante grammes par mole. Le butane, sans oxygène, bout à moins zéro virgule cinq degré : seules les faibles forces de London retiennent ses molécules. L'acétone, avec son carbonyle polaire, bout à cinquante-six degrés : les dipôles s'attirent, il faut plus d'énergie pour les séparer. Le propan-un-ol, enfin, bout à quatre-vingt-dix-sept degrés, car ses molécules sont liées par des liaisons hydrogène, bien plus fortes. Le carbonyle se situe donc entre les deux : intermédiaire, comme sa polarité. Et retenez le point clé : il accepte les liaisons hydrogène, mais ne peut pas en donner, car il n'a pas d'hydrogène sur son oxygène.",
+   "texte": "−0,5 °C, 56 °C, 97 °C : la polarité grimpe.",
+   "ecran": "ebullition"
+  },
+  {
+   "id": "p12",
+   "dit": "La même polarité explique la solubilité. L'oxygène du carbonyle, chargé négativement, forme des liaisons hydrogène avec les molécules d'eau : les petites molécules se dissolvent très bien, et l'acétone est même miscible à l'eau en toutes proportions. Mais la partie carbonée, elle, déteste l'eau. Quand la chaîne dépasse environ cinq carbones, sa répulsion l'emporte et la solubilité devient négligeable. C'est le même duel que chez les alcools : une tête qui aime l'eau, une queue qui la fuit, et la longueur de la queue décide du vainqueur.",
+   "texte": "Miscible pour l'acétone, négligeable après 5 C.",
+   "ecran": "solubilite"
+  },
+  {
+   "id": "p13",
+   "dit": "Voici la réaction signature du carbonyle : l'addition nucléophile. Un nucléophile, c'est un réactif riche en électrons, porteur d'une charge négative ou d'un doublet libre, qui cherche un centre positif. Or le carbone du carbonyle, positif, est une cible parfaite. Premier temps : le nucléophile attaque ce carbone, et les électrons de la double liaison basculent sur l'oxygène, qui devient négatif. Deuxième temps : cet oxygène capte un proton, et l'on obtient un alcool. Remarquez le contraste avec la double liaison carbone-carbone des alcènes, non polarisée, qui attire au contraire les électrophiles.",
+   "texte": "Attaque du C δ+, puis protonation : deux temps.",
+   "ecran": "mecanisme"
+  },
+  {
+   "id": "p14",
+   "dit": "Détaillons ce mécanisme avec l'addition du cyanure d'hydrogène sur l'acétaldéhyde. D'abord, une base arrache le proton de l'acide cyanhydrique et libère l'ion cyanure, le vrai nucléophile. Ensuite, cet ion attaque le carbone du carbonyle : l'intermédiaire porte l'oxygène négatif et le nouveau groupe cyanure. Enfin, l'oxygène capte un proton de l'eau, et le produit final est une cyanohydrine. L'intérêt dépasse l'exercice : la chaîne a gagné un carbone, et ces cyanohydrines ouvrent la voie aux acides alpha-hydroxylés, précieux en synthèse.",
+   "texte": "Le cyanure s'ajoute : un carbone de plus.",
+   "ecran": "cyanohydrine"
+  },
+  {
+   "id": "p15",
+   "dit": "Tous les carbonyles ne réagissent pas à la même vitesse, et deux facteurs commandent. D'abord, les effets électroniques des groupes voisins : un groupe qui donne des électrons, comme un alkyle, adoucit la charge positive du carbone et ralentit l'attaque ; les aldéhydes, avec leur simple hydrogène, sont les plus réactifs ; un aryle ralentit encore ; un halogène, qui attire les électrons, rend le carbone très positif et la réaction très rapide. Ensuite, l'encombrement : une cétone, flanquée de deux groupes, gêne l'approche du nucléophile, alors que l'aldéhyde, avec son petit hydrogène, laisse le passage libre. Au bilan, les aldéhydes gagnent presque toujours la course.",
+   "texte": "Donneurs, attracteurs, encombrement : la vitesse.",
+   "ecran": "facteurs"
+  },
+  {
+   "id": "p16",
+   "dit": "Un acide peut réveiller un carbonyle paresseux. Le proton se fixe sur l'oxygène et renforce la charge positive du carbone : le nucléophile, même faible, peut alors attaquer. L'application reine est l'acétalisation : en milieu acide, un aldéhyde réagit avec deux molécules d'alcool pour former un acétal, en libérant de l'eau que l'on élimine pour déplacer l'équilibre. Les acétals ont un super-pouvoir : stables en milieu basique, ils protègent le carbonyle pendant que l'on travaille ailleurs sur la molécule, puis un simple acide aqueux les démasque. C'est le groupe protecteur classique des synthèses délicates.",
+   "texte": "Un acide réveille le carbonyle : l'acétal.",
+   "ecran": "activation"
+  },
+  {
+   "id": "p17",
+   "dit": "Deux nucléophiles méritent un écran à part. Le réactif de Grignard, un organomagnésien, est un nucléophile carbone : il s'additionne au carbonyle et, après traitement acide, donne un alcool. Surtout, il crée une liaison carbone-carbone toute neuve : c'est un outil de construction, pas seulement de transformation. Les ions hydrure jouent l'autre grand rôle : fournis par le borohydrure de sodium, doux et sélectif, ou par l'hydrure de lithium et d'aluminium, beaucoup plus puissant, ils réduisent le carbonyle en alcool. Nous retrouverons ces deux acteurs dans la partie synthèse.",
+   "texte": "Grignard construit du C-C, hydrures réduisent.",
+   "ecran": "grignard_hydrures"
+  },
+  {
+   "id": "p18",
+   "dit": "L'azote aussi attaque le carbonyle. Une amine primaire s'additionne, puis l'eau s'élimine : on obtient une imine, avec une double liaison carbone-azote. Avec l'hydrazine, le produit est une hydrazone. Et voici le pont vers la partie suivante : avec un réactif particulier, la deux quatre dinitrophénylhydrazine, le produit formé est un solide jaune orangé qui précipite immédiatement. Ce précipité spectaculaire deviendra l'un de nos tests d'identification : si cela précipite en jaune orangé, un carbonyle est présent.",
+   "texte": "Imines, hydrazones, précipité jaune-orangé.",
+   "ecran": "derives_azotes"
+  },
+  {
+   "id": "p19",
+   "dit": "Changeons de point de vue : regardons les hydrogènes portés par le carbone voisin du carbonyle, le carbone en alpha. Surprise : ils sont étonnamment acides. Leur pé ka vaut environ vingt, contre environ cinquante pour un hydrogène d'alcane ordinaire : trente ordres de grandeur séparent les deux acidités. Une base peut donc les arracher, et l'ion obtenu, l'énolate, est stabilisé par résonance : sa charge négative se partage entre le carbone et l'oxygène. Cet énolate est un nucléophile carbone puissant, et il va nous offrir une réaction en or.",
+   "texte": "En alpha : pKa 20 contre 50, l'énolate naît.",
+   "ecran": "alpha"
+  },
+  {
+   "id": "p20",
+   "dit": "Voici cette réaction en or : l'aldolisation. L'énolate formé à partir d'une première molécule d'éthanal attaque le carbonyle d'une seconde molécule, exactement comme un nucléophile classique. Le produit est un aldol, à la fois alcool et aldéhyde, et la chaîne a doublé. Souvent, cet aldol perd ensuite une molécule d'eau et donne un aldéhyde insaturé, ici le crotonaldéhyde. L'enjeu est immense : former des liaisons carbone-carbone, assembler des sucres, bâtir des molécules complexes. La nature s'en sert partout, avec des enzymes spécialisées, les aldolases.",
+   "texte": "L'aldolisation : la chaîne double, C-C neuf.",
+   "ecran": "aldol"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons cette deuxième partie. La polarité du carbonyle place les points d'ébullition entre ceux des alcanes et ceux des alcools, et rend les petites molécules solubles dans l'eau. La grande réaction est l'addition nucléophile sur le carbone positif, réglée par les effets électroniques et par l'encombrement, et réveillée au besoin par un acide. Grignard et hydrures fournissent les alcools, les amines donnent les imines, et les hydrogènes en alpha engendrent les énolates, rois de l'aldolisation.",
+   "texte": "L'essentiel : le carbonyle réagit.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Première voie de préparation : oxyder un alcool, monter d'un cran sans casser la chaîne. Tout dépend du degré de l'alcool de départ. Un alcool primaire donne d'abord un aldéhyde, mais l'oxydation continue facilement jusqu'à l'acide carboxylique : c'est le piège de la sur-oxydation. Un alcool secondaire donne une cétone, et l'histoire s'arrête là : les cétones résistent, pas de sur-oxydation possible. Un alcool tertiaire, enfin, ne réagit pas : il n'a aucun hydrogène sur le carbone qui porte le groupe hydroxyle, et l'oxydant n'a rien à lui arracher.",
+   "texte": "Primaire, secondaire, tertiaire : trois destins.",
+   "ecran": "oxydation_alcools"
+  },
+  {
+   "id": "p23",
+   "dit": "Les oxydants classiques sont les composés du chrome, comme le dichromate de potassium en milieu acide. Leur signature est un spectacle : la solution, orange au départ, vire au vert à mesure que la réaction avance, ce qui permet de la suivre à l'œil nu. Le réactif de Jones, à base de trioxyde de chrome, est une version plus contrôlée de la même famille. Mais ces oxydants sont forts, trop forts pour s'arrêter poliment à l'aldéhyde : si l'on vise un aldéhyde, il faut le distiller dès qu'il se forme, avant qu'il ne s'oxyde à son tour en acide.",
+   "texte": "Dichromate : orange au départ, vert à l'arrivée.",
+   "ecran": "chrome"
+  },
+  {
+   "id": "p24",
+   "dit": "Heureusement, il existe un oxydant qui sait s'arrêter : le chlorochromate de pyridinium, abrégé pé cé cé, utilisé dans un solvant sans eau, le dichlorométhane. Pourquoi l'absence d'eau change-t-elle tout ? Parce que l'étape qui mène de l'aldéhyde à l'acide passe par son hydrate, une forme qui exige de l'eau. Milieu sec, pas d'hydrate, pas de sur-oxydation : l'aldéhyde est obtenu proprement, avec d'excellents rendements. C'est l'outil de choix pour préparer un aldéhyde au laboratoire.",
+   "texte": "PCC anhydre : arrêt net à l'aldéhyde.",
+   "ecran": "pcc"
+  },
+  {
+   "id": "p25",
+   "dit": "Trois autres voies complètent la boîte à outils. L'ozonolyse coupe la double liaison d'un alcène et coiffe chaque carbone d'un oxygène : un cyclohexène donne ainsi un unique produit portant un aldéhyde à chaque bout. L'hydratation d'un alcyne, catalysée par un sel de mercure, suit la règle de Markovnikov : l'eau se fixe du côté le plus substitué, et l'énol intermédiaire se réarrange en méthylcétone. Enfin, l'acylation de Friedel et Crafts greffe un groupe carbonyle sur un cycle aromatique grâce à un chlorure d'acyle et au chlorure d'aluminium : c'est la porte des cétones aromatiques.",
+   "texte": "Ozonolyse, hydratation, Friedel-Crafts.",
+   "ecran": "autres_voies"
+  },
+  {
+   "id": "p26",
+   "dit": "Mettons ces voies en situation, comme dans un problème de synthèse. Objectif butanal : on part du butan-un-ol et l'on choisit le pé cé cé en milieu anhydre, pour s'arrêter à l'aldéhyde sans filer vers l'acide. Objectif propiophénone, une cétone aromatique : on part du benzène, et l'acylation de Friedel et Crafts avec le chlorure de propionyle installe le carbonyle directement sur le cycle. Objectif identifier un alcène inconnu : on le soumet à l'ozonolyse, et les aldéhydes et cétones obtenus révèlent, comme des pièces de puzzle, où se trouvait la double liaison.",
+   "texte": "Butanal, propiophénone, alcène : à chaque cible sa voie.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p27",
+   "dit": "Comment distinguer un aldéhyde d'une cétone dans un flacon sans étiquette ? En exploitant leur grande différence : l'aldéhyde s'oxyde facilement en acide carboxylique, même avec des oxydants doux, alors que la cétone résiste et exige des conditions brutales. Tous les tests qui suivent reposent sur ce contraste : un oxydant doux, un changement visible, et le verdict tombe. Couleur, précipité ou miroir : la chimie d'identification est un art de l'observation.",
+   "texte": "L'aldéhyde s'oxyde, la cétone résiste : le verdict.",
+   "ecran": "principe_tests"
+  },
+  {
+   "id": "p28",
+   "dit": "Le plus beau de ces tests est celui de Tollens. On prépare le réactif à l'instant : le nitrate d'argent et la soude donnent un précipité brun d'oxyde d'argent, que l'ammoniaque dissout en un complexe limpide. On ajoute l'échantillon, on chauffe doucement au bain-marie, et si un aldéhyde est présent, l'argent se dépose sur les parois du tube en un miroir parfait. Un simple dépôt gris ou noir est également positif. Avec une cétone, rien ne se passe. Deux précautions : le réactif se prépare frais, et ses résidus se détruisent, car une fois secs, ils peuvent devenir explosifs.",
+   "texte": "Tollens : le miroir d'argent tranche.",
+   "ecran": "tollens"
+  },
+  {
+   "id": "p29",
+   "dit": "Les liqueurs de Fehling et de Benedict jouent la même partition avec le cuivre : chauffées avec un aldéhyde, elles donnent un précipité rouge brique d'oxyde de cuivre. Fehling ne détecte que les aldéhydes aliphatiques, tandis que Benedict, plus douce, sert à traquer les sucres réducteurs, jusque dans les bandelettes des diabétiques. Le permanganate de potassium, lui, perd sa couleur violette au contact de tout composé oxydable : utile en test préliminaire, mais peu spécifique. Le réactif de Schiff, enfin, vire au rose-violet intense, avec une sensibilité remarquable. La stratégie complète enchaîne les tests du moins spécifique au plus fin, et se confirme par le dérivé solide à la deux quatre dinitrophénylhydrazine.",
+   "texte": "Rouge brique, violet effacé, rose-violet.",
+   "ecran": "autres_tests"
+  },
+  {
+   "id": "p30",
+   "dit": "Récapitulons les tests. Tollens donne un miroir d'argent pour tous les aldéhydes. Fehling précipite en rouge brique, mais seulement pour les aldéhydes aliphatiques : un Tollens positif avec un Fehling négatif désigne donc un aldéhyde aromatique. Benedict traque les sucres réducteurs, Schiff vire au rose-violet avec une grande sensibilité, et le permanganate décolore vite mais sans spécificité. En cascade, ces tests transforment un flacon inconnu en identification certaine.",
+   "texte": "L'essentiel : identifier un aldéhyde.",
+   "ecran": "recap3"
+  },
+  {
+   "id": "p31",
+   "dit": "Ouvrons le dernier volet : les applications, en commençant par le nez. La vanilline embaume la vanille, synthétisée dès le dix-neuvième siècle et produite aujourd'hui à grande échelle. Le benzaldéhyde sent l'amande amère, le cinnamaldéhyde la cannelle, le citral le citron. Côté cétones, la cétone de framboise parfume les bonbons, et la muscone, une grande cétone cyclique, imite le musc naturel. Le coup de génie date de mille neuf cent vingt et un : le parfum Chanel numéro cinq doit son éclat à des aldéhydes gras, de sept à douze carbones, dosés à des concentrations inédites pour l'époque.",
+   "texte": "Vanilline, benzaldéhyde, citral : le règne des odeurs.",
+   "ecran": "aromes"
+  },
+  {
+   "id": "p32",
+   "dit": "En synthèse, le carbonyle est un carrefour où tout se croise. Réduit par un hydrure, l'aldéhyde devient un alcool primaire. Oxydé, il devient un acide carboxylique. Additionné d'acide cyanhydrique, il donne une cyanohydrine, tremplin vers les acides alpha-hydroxylés. Additionné d'un réactif de Grignard, il donne un alcool avec une liaison carbone-carbone neuve. Et cas particulier : un aldéhyde sans hydrogène en alpha, comme le formaldéhyde, subit la réaction de Cannizzaro et se partage en un alcool et un acide. Une seule fonction, cinq destins : voilà pourquoi les chimistes l'adorent.",
+   "texte": "Un carrefour : réduction, oxydation, additions.",
+   "ecran": "carrefour"
+  },
+  {
+   "id": "p33",
+   "dit": "Un médicament mondialement connu naît d'une cétone. Pour fabriquer l'ibuprofène, le procédé historique part de l'isobutylbenzène et pratique une acylation de Friedel et Crafts : la cétone aromatique obtenue est l'intermédiaire clé. Une réaction de Darzens, puis les étapes finales, conduisent à l'acide recherché. Moralité : la cétone n'est pas seulement une cible de synthèse, c'est souvent une étape obligée vers des molécules bien plus complexes, y compris celles qui soignent.",
+   "texte": "Étude de cas : l'ibuprofène naît d'une cétone.",
+   "ecran": "ibuprofen"
+  },
+  {
+   "id": "p34",
+   "dit": "À l'échelle industrielle, deux géants dominent. Le formaldéhyde, fabriqué en oxydant le méthanol sur un catalyseur d'argent ou de fer et de molybdène, alimente les résines et les colles des panneaux de bois, les plastiques comme la Bakélite, et le formol des désinfectants. L'acétone, elle, est le solvant universel des laboratoires et des industries, mais aussi un précurseur : elle mène au méthacrylate de méthyle du Plexiglas et au bisphénol A des polycarbonates. Deux petites molécules, une place immense dans l'industrie moderne.",
+   "texte": "Formaldéhyde et acétone : deux géants industriels.",
+   "ecran": "geants"
+  },
+  {
+   "id": "p35",
+   "dit": "Terminons dans le vivant, où le carbonyle travaille en silence. Dans la glycolyse, la voie qui brûle le glucose, un aldéhyde et une cétone se convertissent l'un en l'autre avant de mener au pyruvate et à l'énergie de la cellule. Dans l'œil, le rétinal change de forme sous la lumière, passant de la forme onze cis à la forme tout trans : ce basculement déclenche le signal visuel. Et les hormones stéroïdiennes, comme la progestérone et la testostérone, portent leur fonction cétone comme une carte d'identité. Du laboratoire à la cellule, le carbonyle est le même acteur.",
+   "texte": "Glycolyse, rétinal, hormones : le vivant aussi.",
+   "ecran": "biologie"
+  },
+  {
+   "id": "p36",
+   "dit": "Récapitulons l'ensemble du cours. Le groupe carbonyle, polarisé et plan, définit deux familles : les aldéhydes, terminaux et oxydables, et les cétones, internes et résistantes. Sa réaction signature est l'addition nucléophile, complétée par la chimie des énolates en alpha. On prépare ces molécules par oxydation ménagée des alcools, par ozonolyse, par hydratation des alcynes ou par acylation aromatique. On les identifie par des tests colorés, dont le miroir d'argent de Tollens. Et on les retrouve partout : parfums, médicaments, plastiques, et au cœur du vivant.",
+   "texte": "L'essentiel du cours, en cinq lignes.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Reconnaître et nommer les deux familles"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Propriétés et réactivité du carbonyle",
+   "pont": {
+    "texte": "Partie 2 : propriétés physiques et addition nucléophile.",
+    "dit": "Partie deux : propriétés et réactivité. Maintenant que nous savons reconnaître et nommer ces molécules, regardons comment la polarité du carbonyle gouverne leurs propriétés physiques, puis leur grande réaction, l'addition nucléophile, et la chimie inattendue des hydrogènes en alpha."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Préparer, identifier, utiliser",
+   "pont": {
+    "texte": "Partie 3 : synthèses, tests d'identification, applications.",
+    "dit": "Partie trois : préparer, identifier, utiliser. Nous allons apprendre à fabriquer aldéhydes et cétones sans les détruire, puis à les distinguer par des tests spectaculaires comme le miroir d'argent, avant de mesurer leur place dans l'industrie, les parfums et le vivant."
+   }
+  }
+ ]
+}

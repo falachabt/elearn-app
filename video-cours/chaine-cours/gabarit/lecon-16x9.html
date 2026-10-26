@@ -3704,6 +3704,18 @@ const FIG = {
       mot(290, 196, 'donneur', { t: 18 }) + mot(492, 196, 'accepteur', { t: 18 }) +
       mot(421, 262, 'un pont fragile entre deux molécules', { t: 21 }));
   },
+  miroir_argent_fig(t) {
+    return svgBoite(
+      `<path d="M330 60 L330 220 Q330 248 358 248 L412 248 Q440 248 440 220 L440 60" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<path d="M334 120 L334 218 Q334 240 356 240 L414 240 Q436 240 436 218 L436 120 Z" fill="#1A75FF" fill-opacity=".18"/>` +
+      mot(385, 40, 'cétone', { t: 20 }) +
+      `<path d="M590 60 L590 220 Q590 248 618 248 L672 248 Q700 248 700 220 L700 60" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<path d="M598 96 L598 224 Q598 240 612 240 L678 240 Q692 240 692 224 L692 96 Z" fill="#B8860B" fill-opacity=".45"/>` +
+      mot(645, 40, 'aldéhyde', { t: 20 }) +
+      mot(385, 292, 'aucun changement', { t: 19 }) +
+      mot(645, 292, 'miroir d’argent : Ag(s) déposé', { c: '#B8860B', t: 19 }) +
+      mot(515, 278, 'réactif de Tollens', { t: 16 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
