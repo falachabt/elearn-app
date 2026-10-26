@@ -3057,6 +3057,51 @@ const FIG = {
       mot(444, 292, 'erlenmeyer : titré inconnu', { t: 20 }) +
       mot(120, 160, 'on verse jusqu’à', { t: 21, a: 'start' }) + mot(120, 190, 'l’équivalence', { t: 21, a: 'start' }));
   },
+  tableau_periodique_fig(t, o) {
+    const mode = (o && o.mode) || 'familles';
+    const X0 = 70, DX = 48.5, Y0 = 34, DY = 29;
+    const caseEl = (col, lig, fond, symbole) => {
+      const x = Math.round(X0 + (col - 1) * DX), y = Math.round(Y0 + (lig - 1) * DY);
+      return `<rect x="${x}" y="${y}" width="42" height="24" rx="5" fill="${fond}" fill-opacity=".55" stroke="currentColor" stroke-width="2"/>` +
+        (symbole ? mot(x + 21, y + 17, symbole, { t: 14 }) : '');
+    };
+    const GRIS = '#9AA5B1', ROUGE = '#E8604C', DORE = '#B8860B', BLEU = '#1A75FF', VERT = '#10B981', VIOLET = '#7B2FF7';
+    const couleur = (col, lig) => {
+      if (mode === 'blocs') {
+        if (lig === 8) return VIOLET;
+        if (col <= 2) return ROUGE;
+        if (col >= 3 && col <= 12 && lig >= 4) return DORE;
+        return BLEU;
+      }
+      if (lig === 8) return GRIS;
+      if (col === 1 && lig > 1) return ROUGE;
+      if (col === 2) return DORE;
+      if (col >= 3 && col <= 12 && lig >= 4) return BLEU;
+      if (col === 17) return VIOLET;
+      if (col === 18) return VERT;
+      return GRIS;
+    };
+    const symboles = { '1,1': 'H', '18,1': 'He', '1,2': 'Li', '13,2': 'C', '14,2': 'N', '15,2': 'O', '16,2': 'F', '1,3': 'Na', '17,3': 'Cl', '1,4': 'K', '8,4': 'Fe', '1,6': 'Cs' };
+    let grille = '';
+    const presente = (col, lig) => {
+      if (lig === 1) return col === 1 || col === 18;
+      if (lig === 2 || lig === 3) return col <= 2 || col >= 13;
+      return true;
+    };
+    for (let lig = 1; lig <= 7; lig++) for (let col = 1; col <= 18; col++)
+      if (presente(col, lig)) grille += caseEl(col, lig, couleur(col, lig), symboles[col + ',' + lig]);
+    let ligneF = '';
+    for (let k = 0; k < 14; k++) {
+      const x = Math.round(X0 + 2 * DX + k * DX * 0.98), y = Math.round(Y0 + 7 * DY + 8);
+      ligneF += `<rect x="${x}" y="${y}" width="42" height="24" rx="5" fill="${couleur(3, 8)}" fill-opacity=".55" stroke="currentColor" stroke-width="2"/>`;
+    }
+    const legende = mode === 'blocs'
+      ? mot(500, 292, 'les blocs : s à gauche, d au centre, p à droite, f en dessous', { t: 22 })
+      : mot(500, 292, 'alcalins · alcalino-terreux · transition · halogènes · gaz nobles', { t: 22 });
+    return svgBoite(
+      mot(940, 22, 'groupes →', { t: 19, a: 'end' }) + mot(70, 22, 'périodes ↓', { t: 19, a: 'start' }) +
+      grille + ligneF + legende);
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
