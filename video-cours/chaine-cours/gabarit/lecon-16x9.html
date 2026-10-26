@@ -3587,6 +3587,44 @@ const FIG = {
       mot(788, 92, 'pointillés : vers l’arrière', { t: 18, a: 'end' }) +
       mot(500, 292, 'la projection de Cram du (R)-2-butanol', { t: 21 }));
   },
+  chaine_polymere_fig(t) {
+    let chaine = trait(170, 130, 226, 130, 1, { w: 4 });
+    for (let i = 0; i < 5; i++) { const x = 226 + i * 108; chaine += `<rect x="${x}" y="104" width="72" height="52" rx="10" fill="none" stroke="currentColor" stroke-width="3"/>` + mot(x + 36, 140, 'M', { t: 24 }) + trait(x + 72, 130, x + 108, 130, 1, { w: 4 }); }
+    return svgBoite(chaine +
+      trait(226, 92, 226, 168, 1, { w: 3 }) + trait(226, 92, 238, 92, 1, { w: 3 }) + trait(226, 168, 238, 168, 1, { w: 3 }) +
+      trait(766, 92, 766, 168, 1, { w: 3 }) + trait(754, 92, 766, 92, 1, { w: 3 }) + trait(754, 168, 766, 168, 1, { w: 3 }) +
+      mot(800, 142, 'n', { c: '#B8860B', t: 30 }) +
+      mot(320, 55, 'monomère', { t: 20 }) + mot(496, 205, 'motif répété', { t: 20 }) + mot(800, 205, 'degré de polymérisation n', { t: 20 }) +
+      mot(500, 268, 'un même motif, répété des milliers de fois', { t: 22 }));
+  },
+  architectures_fig(t) {
+    let lin = trait(60, 110, 300, 110, 1, { w: 5 });
+    for (let i = 0; i < 4; i++) lin += `<circle cx="${95 + i * 55}" cy="110" r="8" fill="#1A75FF" stroke="currentColor" stroke-width="2"/>`;
+    let ram = trait(60, 110, 300, 110, 1, { w: 5 }) + trait(130, 110, 130, 66, 1, { w: 4 }) + trait(205, 110, 205, 66, 1, { w: 4 }) + trait(168, 110, 168, 154, 1, { w: 4 });
+    for (let i = 0; i < 4; i++) ram += `<circle cx="${95 + i * 55}" cy="110" r="8" fill="#10B981" stroke="currentColor" stroke-width="2"/>`;
+    ram += `<circle cx="130" cy="60" r="7" fill="#10B981" stroke="currentColor" stroke-width="2"/><circle cx="205" cy="60" r="7" fill="#10B981" stroke="currentColor" stroke-width="2"/><circle cx="168" cy="160" r="7" fill="#10B981" stroke="currentColor" stroke-width="2"/>`;
+    let ret = trait(380, 80, 620, 80, 1, { w: 5 }) + trait(380, 140, 620, 140, 1, { w: 5 }) + trait(440, 80, 440, 140, 1, { w: 4 }) + trait(500, 80, 500, 140, 1, { w: 4 }) + trait(560, 80, 560, 140, 1, { w: 4 });
+    for (let i = 0; i < 3; i++) { ret += `<circle cx="${440 + i * 60}" cy="80" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/><circle cx="${440 + i * 60}" cy="140" r="8" fill="#E8604C" stroke="currentColor" stroke-width="2"/>`; }
+    return svgBoite(
+      `<g transform="translate(0,20)">${lin}</g>` + mot(180, 190, 'linéaire', { t: 21 }) +
+      `<g transform="translate(340,20)">${ram}</g>` + mot(520, 190, 'ramifié', { t: 21 }) +
+      `<g transform="translate(340,0)">${ret}</g>` + mot(840, 190, 'réticulé', { t: 21 }) +
+      mot(840, 110, 'ponts', { c: '#E8604C', t: 18 }) +
+      mot(500, 262, 'trois architectures de chaînes', { t: 22 }));
+  },
+  pelote_elastomere_fig(t) {
+    let pelotes = '';
+    for (let i = 0; i < 3; i++) { const cx = 150 + i * 110; pelotes += `<circle cx="${cx}" cy="130" r="42" fill="none" stroke="#1A75FF" stroke-width="3" stroke-dasharray="7 5"/>`; }
+    pelotes += trait(150, 88, 260, 172, 1, { w: 3, c: '#E8604C' }) + trait(260, 88, 370, 172, 1, { w: 3, c: '#E8604C' });
+    let alignees = '';
+    for (let i = 0; i < 3; i++) { const y = 92 + i * 38; alignees += trait(620, y, 900, y, 1, { w: 4, c: '#10B981' }); }
+    alignees += trait(690, 92, 690, 168, 1, { w: 3, c: '#E8604C' }) + trait(830, 92, 830, 168, 1, { w: 3, c: '#E8604C' });
+    return svgBoite(pelotes + alignees +
+      trait(590, 130, 610, 130, 1, { w: 5 }) + pointe(614, 130, 0, '#E8604C') + trait(910, 130, 890, 130, 1, { w: 5 }) + pointe(886, 130, 180, '#E8604C') +
+      mot(260, 225, 'au repos : pelotes désordonnées', { t: 20 }) +
+      mot(760, 225, 'étiré : chaînes alignées', { t: 20 }) +
+      mot(500, 275, 'les ponts rappellent les chaînes : c’est l’élasticité', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
