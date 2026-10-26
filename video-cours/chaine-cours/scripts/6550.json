@@ -1,0 +1,606 @@
+{
+  "cours": 6550,
+  "titre": "Analyse de concours : racines, séries et équations différentielles",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Analyse de concours",
+      "titre": "Analyse de concours : racines, séries et équations différentielles",
+      "sous": "Compter les racines, développer en séries, résoudre les équations différentielles et intégrer",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "L'analyse étudie le changement : limites, dérivées et variations commandent tout le cours, des racines d'équations aux équations différentielles et aux intégrales multiples.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 150
+      }
+    },
+    "continuite": {
+      "type": "formule",
+      "kicker": "Continuité et dérivabilité",
+      "tex": "\\lim_{x \\to a} f(x) = f(a)",
+      "note": "Dérivable : le taux d'accroissement a une limite finie, testée des deux côtés.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 170
+      }
+    },
+    "ex_derivable": {
+      "type": "etape",
+      "kicker": "Exemple corrigé · un piège classique",
+      "titre": "Ixe carré sinus de un sur ixe, en zéro",
+      "tex": [
+        "f(x) = x^2 \\sin\\left(\\tfrac{1}{x}\\right), \\quad f(0)=0",
+        "|f(x)| \\le x^2 \\to 0",
+        "\\tfrac{f(x)-f(0)}{x} = x\\sin\\left(\\tfrac{1}{x}\\right)",
+        "\\left| x\\sin\\left(\\tfrac{1}{x}\\right) \\right| \\le |x| \\to 0"
+      ]
+    },
+    "tvi_taf": {
+      "type": "formule",
+      "kicker": "TVI et TAF, deux rôles distincts",
+      "tex": "f(b)-f(a) = f'(c)(b-a)",
+      "note": "TVI : une valeur est prise. TAF : relier variation et dérivée, encadrer.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 170
+      }
+    },
+    "ex_racine_unique": {
+      "type": "etape",
+      "kicker": "Exemple type concours · existence et unicité",
+      "titre": "Exponentielle contre logarithme",
+      "tex": [
+        "f(x) = e^{-x} - \\ln(x+1), \\quad x > -1",
+        "f'(x) = -e^{-x} - \\tfrac{1}{x+1} < 0",
+        "\\lim_{-1^+} f = +\\infty \\qquad \\lim_{+\\infty} f = -\\infty"
+      ]
+    },
+    "speciales": {
+      "type": "etape",
+      "kicker": "Fonctions spéciales à connaître par cœur",
+      "titre": "Exponentielle, logarithme, arctangente",
+      "tex": [
+        "(e^x)' = e^x \\qquad (\\ln x)' = \\tfrac{1}{x}",
+        "(\\arctan x)' = \\tfrac{1}{1+x^2}",
+        "\\arctan x \\to \\pm \\tfrac{\\pi}{2} \\quad (x \\to \\pm\\infty)"
+      ]
+    },
+    "fourier_intro": {
+      "type": "phrase",
+      "kicker": "Séries de Fourier · l'intuition",
+      "texte": "Un signal périodique se décompose en sinusoïdes : la série de Fourier donne ses coordonnées sur une base orthogonale de cosinus et de sinus.",
+      "anim": {
+        "nom": "sinusoide",
+        "hauteur": 200
+      }
+    },
+    "fourier_coeffs": {
+      "type": "formule",
+      "kicker": "Séries de Fourier · la décomposition",
+      "tex": "f \\sim \\tfrac{a_0}{2} + \\sum_{n\\ge1} (a_n\\cos n\\omega t + b_n\\sin n\\omega t)",
+      "note": "Intégrales sur une période, facteur deux sur T. Parité d'abord.",
+      "anim": {
+        "nom": "sinusoide",
+        "hauteur": 140
+      }
+    },
+    "fourier_carre": {
+      "type": "etape",
+      "kicker": "Exemple type concours · ixe carré",
+      "titre": "Une fonction paire, des cosinus seulement",
+      "tex": [
+        "f(x) = x^2 \\qquad b_n = 0 \\ \\text{(f paire)}",
+        "a_0 = \\tfrac{2\\pi^2}{3} \\qquad a_n = \\tfrac{4(-1)^n}{n^2}",
+        "x^2 \\sim \\tfrac{\\pi^2}{3} + \\sum_{n\\ge1} a_n \\cos(nx)"
+      ]
+    },
+    "fourier_sommes": {
+      "type": "etape",
+      "kicker": "Fourier · payer en sommes de séries",
+      "titre": "Deux sommes par Dirichlet et Parseval",
+      "tex": [
+        "\\textstyle\\sum_{n\\ge1} \\tfrac{1}{n^2} = \\tfrac{\\pi^2}{6}",
+        "\\textstyle\\sum_{n\\ge1} \\tfrac{1}{n^4} = \\tfrac{\\pi^4}{90}"
+      ],
+      "anim": {
+        "nom": "decroissance",
+        "hauteur": 130
+      }
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : l'essentiel",
+      "etapes": [
+        "Continuité : tester les deux côtés du point",
+        "TVI pour exister, monotonie pour l'unicité",
+        "Fonctions spéciales : dérivées et limites",
+        "Fourier : projeter, parité d'abord"
+      ]
+    },
+    "rayon": {
+      "type": "etape",
+      "kicker": "Séries entières · le rayon de convergence",
+      "titre": "D'Alembert et Cauchy donnent le rayon",
+      "tex": [
+        "\\ell = \\lim \\left|\\tfrac{a_{n+1}}{a_n}\\right|",
+        "R = \\tfrac{1}{\\ell}",
+        "\\sum \\tfrac{x^n}{n!} : R=+\\infty \\qquad \\sum n!\\,x^n : R=0"
+      ]
+    },
+    "dse_usuels": {
+      "type": "etape",
+      "kicker": "Développements en série entière usuels",
+      "titre": "Trois développements à connaître par cœur",
+      "tex": [
+        "\\textstyle\\tfrac{1}{1-x} = \\sum_{n\\ge0} x^n \\quad (|x|<1)",
+        "\\textstyle e^x = \\sum_{n\\ge0} \\tfrac{x^n}{n!}",
+        "\\textstyle\\ln(1+x) = \\sum_{n\\ge1} (-1)^{n-1}\\tfrac{x^n}{n}"
+      ]
+    },
+    "serie_edo_rec": {
+      "type": "etape",
+      "kicker": "Équation différentielle par série entière",
+      "titre": "Injecter, réindexer, identifier",
+      "tex": [
+        "y = \\sum_{n\\ge0} a_n x^n \\qquad y(0)=1, \\ y'(0)=0",
+        "(n+2)(n+1)a_{n+2} = (n+1)a_n",
+        "a_{n+2} = \\tfrac{a_n}{n+2} \\qquad a_0=1, \\ a_1=0"
+      ]
+    },
+    "serie_edo_sol": {
+      "type": "formule",
+      "kicker": "La solution reconnue",
+      "tex": "y(x) = e^{x^2/2}",
+      "note": "Pairs : un sur deux puissance k factorielle k ; impairs nuls.",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 180
+      }
+    },
+    "edo_caract": {
+      "type": "formule",
+      "kicker": "Équations à coefficients constants",
+      "tex": "r^2 - 4r + 13 = 0 \\;\\Rightarrow\\; r = 2 \\pm 3i",
+      "note": "Chercher une exponentielle : l'exposant obéit à l'équation caractéristique.",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 150
+      }
+    },
+    "edo_exemple": {
+      "type": "etape",
+      "kicker": "Exemple type concours · second membre mixte",
+      "titre": "Homogène plus particulière : la générale",
+      "tex": [
+        "y''-3y'+2y = 4x + e^{3x}",
+        "y_h = C_1 e^x + C_2 e^{2x}",
+        "y_p = 2x + 3 + \\tfrac{1}{2}e^{3x}"
+      ]
+    },
+    "resonance": {
+      "type": "etape",
+      "kicker": "Le cas de résonance",
+      "titre": "Quand le second membre est déjà solution",
+      "tex": [
+        "y''-4y'+4y = e^{2x} \\qquad r_0 = 2 \\text{ double}",
+        "y_p = \\tfrac{1}{2}x^2 e^{2x} \\qquad y = y_h + y_p"
+      ],
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 130
+      }
+    },
+    "var_const": {
+      "type": "etape",
+      "kicker": "Variation de la constante · premier ordre",
+      "titre": "Faire varier la constante",
+      "tex": [
+        "y_h = C e^{-A(x)} \\qquad A' = a",
+        "C'(x) = b(x) e^{A(x)}"
+      ],
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 130
+      }
+    },
+    "var_exemple": {
+      "type": "etape",
+      "kicker": "Exemple complet · variation de la constante",
+      "titre": "Exemple complet avec condition initiale",
+      "tex": [
+        "y' + \\tfrac{2x}{1+x^2}y = \\tfrac{1}{(1+x^2)^2}",
+        "y_h = \\tfrac{C}{1+x^2} \\qquad C'(x) = \\tfrac{1}{1+x^2}",
+        "y(x) = \\tfrac{1 + \\arctan x}{1+x^2} \\quad (y(0)=1)"
+      ]
+    },
+    "euler_bernoulli": {
+      "type": "etape",
+      "kicker": "Coefficients variables · deux détours",
+      "titre": "Euler et Bernoulli : deux détours utiles",
+      "tex": [
+        "x^2 y'' + 3x y' + y = 0 \\Rightarrow r = -1",
+        "y = \\tfrac{C_1 + C_2 \\ln|x|}{x} \\quad \\text{(Euler)}",
+        "y' + a y = b y^{\\alpha} \\;\\Rightarrow\\; z = y^{1-\\alpha}"
+      ]
+    },
+    "recap2": {
+      "type": "recap",
+      "kicker": "Partie 2 : l'essentiel",
+      "etapes": [
+        "Série entière : réindexer avant d'identifier",
+        "Caractéristique : les racines font la forme",
+        "Résonance : multiplier par x^m selon la racine",
+        "Constante variée : elle devient fonction"
+      ]
+    },
+    "jacobien": {
+      "type": "formule",
+      "kicker": "Intégrales multiples · changer de variables",
+      "tex": "\\iint_D f = \\iint_{D'} f \\; |J| \\; du\\, dv",
+      "note": "En polaires il vaut rho ; en sphériques, rho carré sinus phi.",
+      "anim": {
+        "nom": "plan_complexe_fig",
+        "hauteur": 160
+      }
+    },
+    "ex_polaire": {
+      "type": "etape",
+      "kicker": "Exemple · le quart de disque",
+      "titre": "Quart de disque : le jacobien vaut rho",
+      "tex": [
+        "D : x^2+y^2 \\le 4, \\ x\\ge0, \\ y\\ge0",
+        "I = \\int_0^{\\pi/2} \\int_0^2 \\rho^3 \\, d\\rho \\, d\\theta",
+        "I = \\tfrac{\\pi}{2} \\times \\tfrac{16}{4} = 2\\pi"
+      ]
+    },
+    "spheriques": {
+      "type": "etape",
+      "kicker": "Coordonnées sphériques",
+      "titre": "La boule devient un pavé de bornes",
+      "tex": [
+        "dx\\,dy\\,dz = \\rho^2 \\sin\\varphi \\, d\\rho\\, d\\varphi\\, d\\theta",
+        "V = \\tfrac{4}{3}\\pi R^3 \\quad I_{\\text{cone}} = \\tfrac{\\pi}{8}"
+      ],
+      "anim": {
+        "nom": "sphere_fig",
+        "hauteur": 140
+      }
+    },
+    "dl_exemple": {
+      "type": "etape",
+      "kicker": "Développements limités · lever une forme zéro sur zéro",
+      "titre": "Développement limité : voir l'ordre deux",
+      "tex": [
+        "e^x = 1 + x + \\tfrac{x^2}{2} + o(x^2)",
+        "\\cos x = 1 - \\tfrac{x^2}{2} + o(x^2)",
+        "\\tfrac{e^x - \\cos x - x}{x^2} \\to 1"
+      ]
+    },
+    "ipp_chgt": {
+      "type": "etape",
+      "kicker": "Intégration par parties et changement de variable",
+      "titre": "Parties et changement de variable",
+      "tex": [
+        "\\textstyle\\int_0^{\\pi/2} x\\cos x\\,dx = \\tfrac{\\pi}{2}-1",
+        "\\textstyle\\int_0^1 x\\sqrt{1-x^2}\\,dx = \\tfrac{1}{3}",
+        "\\int u'v = [uv] - \\int u v'"
+      ]
+    },
+    "arctan_f": {
+      "type": "etape",
+      "kicker": "Compter les racines · l'exemple arctangente",
+      "titre": "Compter les racines : la dérivée d'abord",
+      "tex": [
+        "f(x) = x^3 + 1 - 3\\arctan x",
+        "f'(x) = \\tfrac{3(x^4+x^2-1)}{1+x^2}",
+        "\\alpha = \\tfrac{-1+\\sqrt{5}}{2} \\approx 0{,}618"
+      ]
+    },
+    "arctan_valeurs": {
+      "type": "etape",
+      "kicker": "Compter les racines · les valeurs qui tranchent",
+      "titre": "Trois branches, trois traversées",
+      "tex": [
+        "f(-\\sqrt{\\alpha}) > 0 \\qquad f(\\sqrt{\\alpha}) \\approx -0{,}509",
+        "f(0)=1 \\qquad \\lim_{\\pm\\infty} f = \\pm\\infty"
+      ],
+      "anim": {
+        "nom": "tableau_variations_fig",
+        "hauteur": 140
+      }
+    },
+    "synthese_serie": {
+      "type": "etape",
+      "kicker": "Problème de synthèse · série et équation",
+      "titre": "Synthèse : une récurrence en miroir",
+      "tex": [
+        "(1+x^2)y'' + 4xy' + 2y = 0",
+        "a_{n+2} = -a_n \\qquad R = 1",
+        "a_{2p} = (-1)^p a_0 \\qquad a_{2p+1} = (-1)^p a_1"
+      ]
+    },
+    "synthese_sol": {
+      "type": "formule",
+      "kicker": "Problème de synthèse · la fonction reconnue",
+      "tex": "y(x) = \\frac{\\lambda + \\mu x}{1+x^2}",
+      "note": "La série paire redonne un sur un plus ixe carré, sur toute la droite.",
+      "anim": {
+        "nom": "graphe_fig",
+        "hauteur": 160
+      }
+    },
+    "existence_finale": {
+      "type": "etape",
+      "kicker": "Existence et unicité · le piège final",
+      "titre": "Le piège final : une seule racine",
+      "tex": [
+        "f(x) = x^2 \\ln x - x + 1 \\qquad f(1) = 0",
+        "g = f' \\qquad g'(x) = 2\\ln x + 3",
+        "g(1)=0 \\qquad f \\text{ minimale en } 1"
+      ]
+    },
+    "non_unicite": {
+      "type": "etape",
+      "kicker": "Quand l'unicité tombe, et quand elle tient",
+      "titre": "Cauchy-Lipschitz a ses conditions",
+      "tex": [
+        "y' = \\sqrt{|y|} \\qquad y(0)=0",
+        "y \\equiv 0 \\quad \\text{et} \\quad y_c(x)=\\tfrac{(x-c)^2}{4}",
+        "\\ln x = kx \\iff 0 < k < \\tfrac{1}{e} \\;(2 \\text{ sol.})"
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "DL : l'ordre du dénominateur commande",
+        "IPP et changement : ramener au connu",
+        "Compter : une racine par branche monotone",
+        "Synthèse : série, puis fonction reconnue",
+        "Existence sans unicité : vérifier Lipschitz"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "dit": "Bienvenue dans ce cours d'analyse pour les concours : compter les racines d'une équation, décomposer une fonction en série de Fourier, développer en série entière, résoudre des équations différentielles et calculer des intégrales multiples, avec une obsession commune, justifier chaque existence et chaque unicité.",
+      "texte": "Analyse de concours : la méthode avant les calculs.",
+      "ecran": "titre"
+    },
+    {
+      "id": "p02",
+      "dit": "L'analyse est le langage du changement : une limite dit comment une fonction se comporte près d'un point ou à l'infini, une dérivée mesure sa variation instantanée, et le signe de cette dérivée organise tout le reste. Gardez ce fil : étudier les variations d'abord, appliquer les théorèmes ensuite, calculer en dernier.",
+      "texte": "Le fil du cours : variations, théorèmes, calculs.",
+      "ecran": "intro"
+    },
+    {
+      "id": "p03",
+      "dit": "Une fonction est continue en un point quand sa limite en ce point égale sa valeur : la courbe se trace sans lever le crayon. Elle est dérivable quand, en plus, son taux d'accroissement tend vers une limite finie. Au point suspect, on calcule donc séparément les limites à gauche et à droite, puis on compare à la valeur.",
+      "texte": "Continue : la limite égale la valeur.",
+      "ecran": "continuite"
+    },
+    {
+      "id": "p04",
+      "dit": "Premier piège, et il est classique : la fonction qui vaut ixe carré fois sinus de un sur ixe hors de zéro, et zéro en zéro. Majorée par ixe carré, elle tend vers zéro : elle est continue. Son taux d'accroissement vaut ixe fois sinus de un sur ixe, lui-même majoré en valeur absolue par ixe : il tend aussi vers zéro. Elle est donc dérivable en zéro, de dérivée nulle, contrairement à l'intuition.",
+      "texte": "Ixe carré sinus de un sur ixe : dérivable en zéro.",
+      "ecran": "ex_derivable"
+    },
+    {
+      "id": "p05",
+      "dit": "Deux théorèmes organisent les preuves d'existence. Le théorème des valeurs intermédiaires dit qu'une fonction continue prend toutes les valeurs entre celles des bornes : il sert à prouver qu'une racine existe. Le théorème des accroissements finis relie l'accroissement total à une dérivée en un point intérieur : il sert à encadrer et à comparer. Ne les confondez jamais.",
+      "texte": "TVI pour exister, TAF pour relier.",
+      "ecran": "tvi_taf"
+    },
+    {
+      "id": "p06",
+      "dit": "Exemple fondateur : l'équation exponentielle de moins ixe égale logarithme de ixe plus un. On pose f égale à la différence : sa dérivée est partout strictement négative sur son domaine, donc f décroît strictement, de plus l'infini vers moins l'infini. Une fonction strictement monotone ne traverse l'axe qu'une fois : l'équation admet exactement une solution, et non deux.",
+      "texte": "Exponentielle contre logarithme : une seule solution.",
+      "ecran": "ex_racine_unique"
+    },
+    {
+      "id": "p07",
+      "dit": "Trois fonctions spéciales reviennent partout. L'exponentielle est sa propre dérivée et transforme les sommes en produits. Le logarithme, défini sur les réels strictement positifs, a pour dérivée un sur ixe. L'arctangente a pour dérivée un sur un plus ixe carré, et tend vers plus ou moins pi sur deux à l'infini : ces limites font les asymptotes horizontales.",
+      "texte": "Exponentielle, logarithme, arctangente : par cœur.",
+      "ecran": "speciales"
+    },
+    {
+      "id": "p08",
+      "dit": "Passons aux séries de Fourier. L'idée est géométrique : comme un vecteur se projette sur des axes orthogonaux, une fonction périodique se projette sur les cosinus et les sinus. Ses coefficients de Fourier sont ses coordonnées dans cette base, et leur somme reconstruit le signal, oscillation par oscillation.",
+      "texte": "Fourier : projeter une fonction sur des sinusoïdes.",
+      "ecran": "fourier_intro"
+    },
+    {
+      "id": "p09",
+      "dit": "Concrètement, la pulsation fondamentale vaut deux pi sur la période, et chaque coefficient est l'intégrale sur une période du produit de la fonction par un cosinus ou un sinus. Avant tout calcul, regardez la parité : une fonction paire n'a aucun coefficient en sinus, une fonction impaire n'a aucun coefficient en cosinus, pas même le terme constant.",
+      "texte": "Les coefficients : des intégrales sur une période.",
+      "ecran": "fourier_coeffs"
+    },
+    {
+      "id": "p10",
+      "dit": "L'exemple canonique est la fonction ixe carré, périodisée sur moins pi, pi. Elle est paire : seuls les cosinus subsistent. Deux intégrations par parties successives donnent le terme constant, deux pi carré sur trois, et des coefficients en quatre fois moins un puissance n sur n carré. La série ne contient donc que des cosinus, avec des amplitudes qui décroissent en un sur n carré.",
+      "texte": "Ixe carré : des coefficients en un sur n carré.",
+      "ecran": "fourier_carre"
+    },
+    {
+      "id": "p11",
+      "dit": "Cette série paie deux fois. Évaluée en pi, où la fonction est continue, le théorème de Dirichlet donne la somme des inverses des carrés : pi carré sur six, le fameux problème de Bâle. Et l'égalité de Parseval, qui compare l'énergie de la fonction à celle de ses coefficients, donne la somme des inverses des puissances quatre : pi puissance quatre sur quatre-vingt-dix.",
+      "texte": "Dirichlet : pi carré sur six. Parseval : pi puissance quatre sur quatre-vingt-dix.",
+      "ecran": "fourier_sommes"
+    },
+    {
+      "id": "p12",
+      "dit": "Récapitulons cette première partie : continuité et dérivabilité se testent des deux côtés du point, le théorème des valeurs intermédiaires donne l'existence et la stricte monotonie l'unicité, les fonctions spéciales se connaissent par cœur, et une série de Fourier se calcule par projections, en exploitant la parité avant d'intégrer.",
+      "texte": "Partie une : racines et Fourier, l'essentiel.",
+      "ecran": "recap1"
+    },
+    {
+      "id": "p13",
+      "dit": "Une série entière est un polynôme de degré infini : sa première question est celle de son domaine de vie, mesuré par le rayon de convergence. Le critère de d'Alembert compare deux coefficients consécutifs : la limite de leur rapport donne l'inverse du rayon. Pour la série exponentielle, ce rapport tend vers zéro et le rayon est infini ; pour les factorielles, il explose et le rayon est nul.",
+      "texte": "Le rayon : d'Alembert compare les coefficients.",
+      "ecran": "rayon"
+    },
+    {
+      "id": "p14",
+      "dit": "Trois développements usuels servent de briques : un sur un moins ixe, somme géométrique, l'exponentielle, et le logarithme de un plus ixe. On en fabrique d'autres par dérivation, intégration ou changement de variable : dériver la série géométrique donne ainsi un sur un moins ixe, le tout au carré, avec des coefficients égaux à n plus un.",
+      "texte": "Trois briques : géométrique, exponentielle, logarithme.",
+      "ecran": "dse_usuels"
+    },
+    {
+      "id": "p15",
+      "dit": "Les séries entières résolvent aussi des équations différentielles. Pour l'équation dérivée seconde, moins ixe fois dérivée, moins la fonction, égale zéro, on cherche une solution sous forme de série, on dérive terme à terme, on réindexe pour aligner les puissances, et l'identification des coefficients donne une récurrence de deux en deux.",
+      "texte": "Injecter la série, réindexer, identifier.",
+      "ecran": "serie_edo_rec"
+    },
+    {
+      "id": "p16",
+      "dit": "Avec la valeur un en zéro et une dérivée nulle en zéro, tous les coefficients impairs s'annulent, et les coefficients pairs fabriquent exactement la série de l'exponentielle de ixe carré sur deux. La solution est donc cette exponentielle, définie sur la droite réelle entière : reconnaître la fonction cachée dans la série termine le problème proprement.",
+      "texte": "La série cachait l'exponentielle de ixe carré sur deux.",
+      "ecran": "serie_edo_sol"
+    },
+    {
+      "id": "p17",
+      "dit": "Pour les équations linéaires à coefficients constants, la méthode est mécanique : on cherche des solutions exponentielles, et l'exposant doit annuler l'équation caractéristique. Racines réelles distinctes, racine double ou racines complexes conjuguées : chaque cas impose sa forme. Ici, deux plus ou moins trois fois l'unité imaginaire donne une exponentielle fois un cosinus et un sinus.",
+      "texte": "Caractéristique : les racines dictent la forme.",
+      "ecran": "edo_caract"
+    },
+    {
+      "id": "p18",
+      "dit": "Exemple complet : dérivée seconde, moins trois dérivées, plus deux fonctions, égale quatre ixe plus exponentielle de trois ixe. L'homogène donne les exponentielles de ixe et de deux ixe. Pour le second membre, on cherche un polynôme de degré un plus une exponentielle : l'identification donne deux ixe plus trois, plus un demi d'exponentielle de trois ixe.",
+      "texte": "Homogène plus particulière : la solution générale.",
+      "ecran": "edo_exemple"
+    },
+    {
+      "id": "p19",
+      "dit": "Le piège de cette méthode est la résonance : quand le second membre est déjà solution de l'homogène, la forme naïve échoue. Si l'exposant est racine double, on multiplie la forme cherchée par ixe carré. Pour un second membre en exponentielle de deux ixe et une racine double en deux, la particulière est un demi de ixe carré fois cette exponentielle.",
+      "texte": "Résonance : multiplier par ixe à la puissance de la multiplicité.",
+      "ecran": "resonance"
+    },
+    {
+      "id": "p20",
+      "dit": "Quand les coefficients varient, la variation de la constante prend le relais au premier ordre. On résout d'abord l'homogène, dont la solution est une constante fois une exponentielle d'une primitive changée de signe. Puis on laisse cette constante devenir une fonction : en réinjectant, presque tout se simplifie, et il reste une seule intégrale à calculer.",
+      "texte": "La constante devient une fonction : une intégrale reste.",
+      "ecran": "var_const"
+    },
+    {
+      "id": "p21",
+      "dit": "Application complète : après division par un plus ixe carré, l'homogène donne une constante sur un plus ixe carré. La fonction inconnue a pour dérivée un sur un plus ixe carré, donc c'est l'arctangente. La solution générale est donc un plus arctangente de ixe, le tout sur un plus ixe carré, et la condition initiale en zéro fixe la constante à un.",
+      "texte": "Solution : un plus arctangente, sur un plus ixe carré.",
+      "ecran": "var_exemple"
+    },
+    {
+      "id": "p22",
+      "dit": "Deux familles à coefficients variables ont leur raccourci. Les équations d'Euler se testent avec des puissances de ixe : ici une racine double en moins un donne un numérateur en constantes et logarithme, divisé par ixe. Les équations de Bernoulli, avec une puissance de la fonction au second membre, deviennent linéaires par le changement de variable qui prend cette puissance complémentaire.",
+      "texte": "Euler par les puissances, Bernoulli par un changement.",
+      "ecran": "euler_bernoulli"
+    },
+    {
+      "id": "p23",
+      "dit": "Récapitulons cette deuxième partie : une série entière se manipule après avoir fixé son rayon et en réindexant avec soin, une équation à coefficients constants se lit sur son équation caractéristique en surveillant la résonance, et la variation de la constante ramène le cas variable à une intégrale.",
+      "texte": "Partie deux : séries et équations différentielles.",
+      "ecran": "recap2"
+    },
+    {
+      "id": "p24",
+      "dit": "Pour les intégrales doubles et triples, le bon système de coordonnées change tout : déformer le domaine en un rectangle de nouvelles variables a un prix, le déterminant jacobien, qui mesure la déformation locale des aires et des volumes. En polaires, ce prix vaut rho ; en sphériques, rho carré fois sinus de phi. Oublier ce facteur est la faute classique du chapitre.",
+      "texte": "Le jacobien : le prix de la déformation.",
+      "ecran": "jacobien"
+    },
+    {
+      "id": "p25",
+      "dit": "Exemple : intégrer ixe carré plus igrec carré sur le quart de disque de rayon deux du premier quadrant. En polaires, la fonction devient rho carré, le jacobien ajoute un rho, et l'intégrale se factorise : un angle de pi sur deux, fois l'intégrale de rho cube qui vaut quatre. Le résultat est deux pi, obtenu en trois lignes là où les coordonnées cartésiennes auraient exigé des racines carrées partout.",
+      "texte": "Quart de disque en polaires : deux pi.",
+      "ecran": "ex_polaire"
+    },
+    {
+      "id": "p26",
+      "dit": "En dimension trois, les cylindriques ajoutent la hauteur aux polaires, et les sphériques décrivent une boule par trois bornes constantes. Le volume de la boule se calcule alors en trois intégrales séparées et redonne quatre tiers de pi fois le rayon au cube. Même outil pour le domaine entre un cône et la sphère unité, dont l'intégrale de la hauteur vaut pi sur huit.",
+      "texte": "Sphériques : la boule devient des bornes constantes.",
+      "ecran": "spheriques"
+    },
+    {
+      "id": "p27",
+      "dit": "Côté calcul pur, le développement limité est la loupe des formes indéterminées locales. Pour le quotient de l'exponentielle, moins le cosinus, moins ixe, par ixe carré, on développe à l'ordre deux : les constantes et les termes en ixe s'annulent, il reste ixe carré au numérateur, et la limite vaut un. L'ordre du développement est commandé par le dénominateur.",
+      "texte": "Développement limité à l'ordre deux : limite un.",
+      "ecran": "dl_exemple"
+    },
+    {
+      "id": "p28",
+      "dit": "Deux autres réflexes de calcul : l'intégration par parties transfère la dérivation d'un facteur à l'autre, et donne, pour ixe fois cosinus entre zéro et pi sur deux, pi sur deux moins un. Le changement de variable repère une dérivée cachée : avec u égal à un moins ixe carré, l'intégrale de ixe fois la racine de un moins ixe carré, entre zéro et un, vaut un tiers.",
+      "texte": "Parties : pi sur deux moins un. Changement : un tiers.",
+      "ecran": "ipp_chgt"
+    },
+    {
+      "id": "p29",
+      "dit": "Revenons au comptage des racines, avec l'équation ixe cube plus un égale trois arctangente de ixe. La dérivée de la différence se met au même dénominateur : son signe est celui d'un trinôme en ixe carré, dont la racine positive est le nombre d'or moins un, environ zéro virgule six cent dix-huit. La fonction change donc de sens en moins et plus racine de ce nombre.",
+      "texte": "Compter : le signe de la dérivée fait les branches.",
+      "ecran": "arctan_f"
+    },
+    {
+      "id": "p30",
+      "dit": "Les valeurs aux points critiques tranchent : en moins racine de alpha, la fonction est strictement positive ; en plus racine de alpha, elle vaut environ moins zéro virgule cinq cent neuf. Chaque branche monotone traverse donc l'axe exactement une fois : une racine par branche, trois branches, exactement trois solutions réelles, et non deux comme l'annonçait l'énoncé.",
+      "texte": "Trois branches monotones : exactement trois racines.",
+      "ecran": "arctan_valeurs"
+    },
+    {
+      "id": "p31",
+      "dit": "Les problèmes de synthèse enchaînent ces outils. Pour l'équation un plus ixe carré fois dérivée seconde, plus quatre ixe fois dérivée, plus deux fonctions, égale zéro, la recherche en série entière donne une récurrence en miroir : chaque coefficient est l'opposé de celui d'il y a deux rangs. Les suites paire et impaire sont donc géométriques, de rayon un.",
+      "texte": "Synthèse : chaque coefficient, l'opposé du précédent pair.",
+      "ecran": "synthese_serie"
+    },
+    {
+      "id": "p32",
+      "dit": "La série paire se reconnaît alors : c'est le développement de un sur un plus ixe carré, et la série impaire celui de ixe sur un plus ixe carré. La solution générale est donc un numérateur affine, lambda plus mu fois ixe, sur un plus ixe carré, valable sur la droite entière : la fonction reconnue prolonge la série bien au-delà de son disque.",
+      "texte": "Solution générale : un numérateur affine sur un plus ixe carré.",
+      "ecran": "synthese_sol"
+    },
+    {
+      "id": "p33",
+      "dit": "Dernier piège d'existence : la fonction ixe carré logarithme de ixe, moins ixe, plus un, sur les réels strictement positifs. Sa dérivée a pour propre dérivée deux logarithmes plus trois, et elle s'annule exactement en un, où la fonction vaut zéro et atteint son minimum. Elle ne s'annule donc qu'en un : exactement une solution, malgré les apparences d'un énoncé qui en promettait deux.",
+      "texte": "Minimum en un, valeur zéro : une seule racine.",
+      "ecran": "existence_finale"
+    },
+    {
+      "id": "p34",
+      "dit": "Et l'unicité n'est jamais automatique. L'équation dérivée égale racine de la valeur absolue de la fonction, avec valeur nulle en zéro, admet la solution nulle, mais aussi une famille de solutions qui dorment jusqu'à un seuil arbitraire puis décollent en parabole : la racine carrée n'est pas lipschitzienne en zéro. En revanche, logarithme de ixe égale k fois ixe a exactement deux solutions si et seulement si k est entre zéro et un sur e.",
+      "texte": "Sans Lipschitz, l'unicité peut tomber.",
+      "ecran": "non_unicite"
+    },
+    {
+      "id": "p35",
+      "dit": "Pour finir, retenez la méthode complète : développer à l'ordre utile, intégrer en ramenant au connu, compter les racines branche monotone par branche monotone, reconnaître la fonction cachée dans une série, et ne jamais conclure à l'unicité sans avoir vérifié l'hypothèse qui la porte.",
+      "texte": "À retenir : la méthode complète du cours.",
+      "ecran": "recap_final"
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Compter les racines et décomposer en série de Fourier"
+    },
+    {
+      "debut": "p13",
+      "sous_titre": "Séries entières et équations différentielles",
+      "pont": {
+        "texte": "Partie 2 : séries entières et équations différentielles.",
+        "dit": "Partie deux : séries entières et équations différentielles. Nous fixerons d'abord le rayon de convergence, puis nous résoudrons des équations en injectant une série, avant de systématiser les coefficients constants et la variation de la constante."
+      }
+    },
+    {
+      "debut": "p24",
+      "sous_titre": "Intégrales, techniques de calcul et preuves d'existence",
+      "pont": {
+        "texte": "Partie 3 : intégrales multiples, calculs et existence.",
+        "dit": "Partie trois : intégrales, techniques de calcul et preuves d'existence. Les changements de variables ouvriront la voie, puis les développements limités et le comptage rigoureux des racines mèneront aux problèmes de synthèse."
+      }
+    }
+  ]
+}
