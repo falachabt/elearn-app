@@ -1,0 +1,249 @@
+{
+ "cours": 6118,
+ "titre": "Intérêts simples et composés : la valeur temporelle de l'argent",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Concours ESSEC · Mathématiques financières",
+   "titre": "Intérêts simples et composés",
+   "sous": "La valeur temporelle de l'argent : capitaliser, comparer, décider",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un euro aujourd'hui ne vaut pas un euro demain : ce cours apprend à chiffrer exactement cet écart, avec les intérêts simples et les intérêts composés."
+  },
+  "valeur_temps": {
+   "type": "etape",
+   "kicker": "La valeur temporelle de l'argent",
+   "titre": "Pourquoi un euro demain vaut moins qu'un euro aujourd'hui",
+   "tex": [
+    "\\text{inflation : le pouvoir d'achat s'érode}",
+    "\\text{opportunité : l'argent placé produit des revenus}",
+    "\\text{risque : l'avenir incertain se paie par une prime}"
+   ]
+  },
+  "taux": {
+   "type": "etape",
+   "kicker": "Taux nominal, taux effectif",
+   "titre": "La fréquence de capitalisation change le rendement réel",
+   "tex": [
+    "\\text{nominal } 10\\% \\text{ capitalisé par semestre : } (1{,}05)^2 - 1 = 10{,}25\\%",
+    "\\text{nominal } 10\\% \\text{ capitalisé par mois : } \\approx 10{,}47\\%",
+    "\\text{effectif : le taux annuel réellement gagné}"
+   ]
+  },
+  "simple_def": {
+   "type": "formule",
+   "kicker": "Intérêts simples",
+   "tex": "VF = CI \\times (1 + t \\times i)",
+   "note": "Les intérêts ne portent que sur le capital initial : la croissance est linéaire."
+  },
+  "simple_ex": {
+   "type": "etape",
+   "kicker": "Exemple · intérêts simples",
+   "titre": "Mille euros à cinq pour cent pendant trois ans",
+   "tex": [
+    "VF = 1000 \\times (1 + 3 \\times 0{,}05) = 1150 \\text{ euros}",
+    "\\text{chaque année : } +\\,50 \\text{ euros, toujours les mêmes}",
+    "\\text{autre cas : } 5000 \\text{ à } 4\\% \\text{ sur cinq ans} \\Rightarrow 6000 \\text{ euros}"
+   ]
+  },
+  "compose_def": {
+   "type": "formule",
+   "kicker": "Intérêts composés",
+   "tex": "VF = CI \\times (1 + i)^t",
+   "note": "Chaque année, les intérêts rejoignent le capital et produisent à leur tour des intérêts.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 160
+   }
+  },
+  "compose_ex": {
+   "type": "etape",
+   "kicker": "Exemple · intérêts composés",
+   "titre": "Même placement, régime composé",
+   "tex": [
+    "VF = 1000 \\times (1{,}05)^3 = 1157{,}63 \\text{ euros}",
+    "\\text{écart avec le régime simple : } 1157{,}63 - 1150 = 7{,}63 \\text{ euros}",
+    "\\text{petit au début, cet écart grandit chaque année}"
+   ]
+  },
+  "tableau_court": {
+   "type": "etape",
+   "kicker": "Comparaison · cent euros à dix pour cent",
+   "titre": "Deux ans suffisent à ouvrir un écart",
+   "tex": [
+    "\\text{simple : } 110 \\text{ puis } 120 \\text{ euros}",
+    "\\text{composé : } 110 \\text{ puis } 121 \\text{ euros}",
+    "\\text{l'écart : les intérêts de la deuxième année}"
+   ]
+  },
+  "tableau_long": {
+   "type": "etape",
+   "kicker": "Comparaison · mille euros à cinq pour cent",
+   "titre": "Sur dix ans, la capitalisation creuse l'écart",
+   "tex": [
+    "\\text{un an : } 1050 \\text{ et } 1050 \\qquad \\text{cinq ans : } 1250 \\text{ et } 1276{,}28",
+    "\\text{dix ans : } 1500 \\text{ et } 1628{,}89",
+    "\\text{écart à dix ans : } 128{,}89 \\text{ euros}"
+   ],
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 170
+   }
+  },
+  "effet_temps": {
+   "type": "etape",
+   "kicker": "L'effet du temps et du taux",
+   "titre": "Deux mille euros à six pour cent pendant dix ans",
+   "tex": [
+    "\\text{simple : } 2000 \\times (1 + 10 \\times 0{,}06) = 3200 \\text{ euros}",
+    "\\text{composé : } 2000 \\times (1{,}06)^{10} = 3581{,}70 \\text{ euros}",
+    "\\text{écart : } 381{,}70 \\text{ euros, sans aucun apport}"
+   ],
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 180
+   }
+  },
+  "calculs_types": {
+   "type": "etape",
+   "kicker": "Deux calculs types du concours",
+   "titre": "Inverser la formule, ou l'appliquer longtemps",
+   "tex": [
+    "\\text{capital à placer (simple) : } \\tfrac{10000}{1 + 10 \\times 0{,}06} = 6250 \\text{ euros}",
+    "\\text{valeur future (composée) : } 5000 \\times (1{,}08)^5 = 7346{,}64 \\text{ euros}",
+    "\\text{toujours : identifier, choisir la formule, calculer, interpréter}"
+   ]
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "La méthode en quatre temps",
+   "etapes": [
+    "Identifier : capital, taux, durée, fréquence",
+    "Choisir : simple ou composé, la bonne formule",
+    "Calculer : puissances avec soin, arrondir à la fin",
+    "Interpréter : l'écart, en euros et en contexte"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "Applications concrètes",
+   "titre": "Où ces deux régimes travaillent",
+   "tex": [
+    "\\text{épargne longue : le composé fait l'essentiel du gain}",
+    "\\text{emprunts : lire le coût réel avant de signer}",
+    "\\text{bourse : la croissance se modélise en composé}"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Un euro demain vaut moins qu'aujourd'hui",
+    "Simple : intérêts sur le capital seul, linéaire",
+    "Composé : intérêts sur intérêts, exponentiel",
+    "Nominal ou effectif : la fréquence compte",
+    "Comparer toujours à durée et taux égaux"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques financières du concours ESSEC, consacré aux intérêts simples et aux intérêts composés. Nous poserons le principe fondateur, la valeur temporelle de l'argent, puis nous calculerons dans les deux régimes et nous les comparerons.",
+   "texte": "Intérêts simples et composés : le langage de l'investissement.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le point de départ tient en une phrase : recevoir cent euros aujourd'hui est préférable à recevoir cent euros dans un an. Ce cours apprend à chiffrer cet écart : combien vaut un capital après plusieurs années, et que faut-il placer aujourd'hui pour atteindre un objectif.",
+   "texte": "Un euro aujourd'hui plutôt que demain : chiffrer l'écart.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Trois raisons expliquent cette préférence. L'inflation : le pouvoir d'achat d'une somme diminue avec le temps. Les opportunités : un capital disponible peut être investi et produire des revenus. Le risque : un versement futur n'est jamais certain, et il se paie par une prime.",
+   "texte": "Inflation, opportunité, risque : trois raisons, un prix.",
+   "ecran": "valeur_temps"
+  },
+  {
+   "id": "p04",
+   "dit": "Un taux ne se lit jamais seul : il faut sa fréquence de capitalisation. Le taux nominal est le taux affiché ; le taux effectif est le rendement annuel réel. Dix pour cent nominal capitalisé par semestre donne dix virgule vingt-cinq pour cent effectif.",
+   "texte": "Nominal ou effectif : la fréquence fait la différence.",
+   "ecran": "taux"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier régime : les intérêts simples. Les intérêts ne portent que sur le capital initial, jamais sur les intérêts déjà gagnés. La valeur future est le capital multiplié par un plus la durée fois le taux : la croissance est linéaire, chaque année ajoute le même montant.",
+   "texte": "Intérêts simples : toujours le capital initial seul.",
+   "ecran": "simple_def"
+  },
+  {
+   "id": "p06",
+   "dit": "Exemple : mille euros à cinq pour cent en simple pendant trois ans donnent mille cent cinquante euros, soit cinquante euros par an. Autre repère : cinq mille euros à quatre pour cent sur cinq ans donnent six mille euros.",
+   "texte": "Mille euros, trois ans, cinq pour cent : mille cent cinquante.",
+   "ecran": "simple_ex"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième régime, le plus utilisé en finance : les intérêts composés. Chaque année, les intérêts gagnés rejoignent le capital, et l'année suivante calcule ses intérêts sur ce capital augmenté. La valeur future est le capital fois un plus le taux, puissance la durée : la croissance est exponentielle.",
+   "texte": "Intérêts composés : les intérêts produisent des intérêts.",
+   "ecran": "compose_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Même placement en composé : mille euros à cinq pour cent pendant trois ans donnent environ mille cent cinquante-sept euros et soixante-trois centimes. L'écart avec le régime simple n'est que de sept euros et soixante-trois centimes, mais c'est un écart qui se nourrit de lui-même.",
+   "texte": "Sept euros d'écart en trois ans : le début d'une boule de neige.",
+   "ecran": "compose_ex"
+  },
+  {
+   "id": "p09",
+   "dit": "Le tableau de la leçon le montre sur cent euros à dix pour cent. Après un an, les deux régimes donnent cent dix euros. Après deux ans, cent vingt euros en simple contre cent vingt et un en composé : l'euro supplémentaire, ce sont les intérêts des intérêts de la première année.",
+   "texte": "Cent euros à dix pour cent : cent vingt contre cent vingt et un.",
+   "ecran": "tableau_court"
+  },
+  {
+   "id": "p10",
+   "dit": "Allongeons : mille euros à cinq pour cent. À un an, égalité, mille cinquante euros. À cinq ans, mille deux cent cinquante en simple contre mille deux cent soixante-seize en composé. À dix ans, mille cinq cents contre mille six cent vingt-neuf environ : cent vingt-neuf euros d'écart, sans aucun apport.",
+   "texte": "Dix ans : cent vingt-neuf euros d'écart, sans apport.",
+   "ecran": "tableau_long"
+  },
+  {
+   "id": "p11",
+   "dit": "L'écart grandit avec la durée et le taux. Deux mille euros à six pour cent pendant dix ans donnent trois mille deux cents euros en simple, et environ trois mille cinq cent quatre-vingt-deux en composé : près de trois cent quatre-vingt-deux euros de différence, l'effet boule de neige.",
+   "texte": "Durée et taux élevés : l'écart devient massif.",
+   "ecran": "effet_temps"
+  },
+  {
+   "id": "p12",
+   "dit": "Deux calculs types. Inverser le simple : pour obtenir dix mille euros dans dix ans à six pour cent, il faut placer six mille deux cent cinquante euros. Appliquer le composé : cinq mille euros à huit pour cent sur cinq ans donnent environ sept mille trois cent quarante-sept euros.",
+   "texte": "Inverser en simple, appliquer en composé : deux réflexes.",
+   "ecran": "calculs_types"
+  },
+  {
+   "id": "p13",
+   "dit": "La méthode est toujours la même, en quatre temps. Identifier les données : capital, taux, durée, fréquence. Choisir la formule du bon régime. Calculer, en gardant les arrondis pour la fin. Et interpréter : un écart en euros ne signifie rien sans la durée et le capital de départ.",
+   "texte": "Identifier, choisir, calculer, interpréter.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p14",
+   "dit": "Ces régimes sont partout. L'épargne longue repose presque entièrement sur la capitalisation composée. Les emprunts se lisent avec les mêmes formules, côté coût. Et la croissance d'un investissement en bourse se modélise le plus souvent en composé.",
+   "texte": "Épargne, emprunts, bourse : les mêmes formules.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour conclure : un euro demain vaut moins qu'un euro aujourd'hui, et les taux chiffrent cet écart. En simple, seul le capital initial travaille, la croissance est linéaire. En composé, les intérêts travaillent à leur tour, la croissance devient exponentielle. Comparez toujours les deux régimes avant de décider.",
+   "texte": "Simple ou composé : comparer avant de décider.",
+   "ecran": "recap"
+  }
+ ]
+}
