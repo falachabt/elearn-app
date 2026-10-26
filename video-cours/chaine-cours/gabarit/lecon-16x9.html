@@ -3347,6 +3347,20 @@ const FIG = {
       `<circle cx="385" cy="${f(385)}" r="7" fill="#10B981"/>` +
       mot(240, 236, 'tangente : vitesse instantanée', { c: '#10B981', t: 19, a: 'start' }));
   },
+  equilibre_dynamique_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="90" y="96" width="230" height="84" rx="14" fill="#E8604C" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` +
+      mot(205, 146, 'réactifs', { c: '#E8604C', t: 25 }) +
+      `<rect x="680" y="96" width="230" height="84" rx="14" fill="#1A75FF" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` +
+      mot(795, 146, 'produits', { c: '#1A75FF', t: 25 }) +
+      trait(330, 118, 660, 118, p, { c: '#E8604C', w: 6 }) + (p > .8 ? pointe(672, 118, 0, '#E8604C') : '') +
+      mot(495, 100, 'v directe', { c: '#E8604C', t: 20 }) +
+      trait(670, 162, 340, 162, p, { c: '#1A75FF', w: 6 }) + (p > .8 ? pointe(328, 162, 180, '#1A75FF') : '') +
+      mot(495, 196, 'v inverse', { c: '#1A75FF', t: 20 }) +
+      mot(500, 262, 'à l’équilibre, les deux vitesses sont égales', { t: 23 }) +
+      mot(500, 40, 'un équilibre est dynamique, pas figé', { t: 23 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
