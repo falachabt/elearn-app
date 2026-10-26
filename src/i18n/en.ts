@@ -798,6 +798,7 @@ export const en: Textes = {
     telecharger: 'Download to watch offline',
     supprimerTelechargement: 'Delete the download',
     toutTelecharger: 'Download all',
+    telechargementEnCours: 'Downloading…',
     mesVideos: 'My videos',
     mesVideosSousTitre: 'Watch again the videos you started or finished.',
     mesVideosVide: 'You have not watched any course video yet.',

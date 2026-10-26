@@ -1,9 +1,9 @@
 import { Image } from 'expo-image';
 import { createVideoPlayer, VideoView, type VideoPlayer } from 'expo-video';
-import { Check } from 'lucide-react-native';
+import { Check, Download, Trash2 } from 'lucide-react-native';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { Banniere } from '@/components/Banniere';
@@ -15,13 +15,19 @@ import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
 import {
   formaterDuree,
+  lireTelechargees,
   lireVideos,
   marquerTerminee,
   noterDerniereVideo,
   noterPosition,
+  supprimerVideoTelechargee,
   synchroniserSuivis,
+  telechargerVideo,
+  telechargerVideos,
+  videoLocale,
   type SuivisVideos,
   type VideoCours,
+  type VideoTelechargee,
 } from '@/services/videos';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -48,7 +54,45 @@ export function LecteurVideo() {
   const [suivis, setSuivis] = useState<SuivisVideos>({});
   const [couranteId, setCouranteId] = useState<string | null>(video ?? null);
   const [entrainement, setEntrainement] = useState<(Compteur & { progres: ProgresChapitre }) | null>(null);
+  const [telechargees, setTelechargees] = useState<Record<string, VideoTelechargee>>({});
+  const [dlEnCours, setDlEnCours] = useState<string | null>(null);
+  const [toutDl, setToutDl] = useState(false);
   const courante = videos?.find((v) => v.id === couranteId) ?? videos?.[0] ?? null;
+  const restantes = videos ? videos.filter((v) => !telechargees[v.id]) : [];
+
+  const rafraichirTelechargees = useCallback(() => {
+    void lireTelechargees().then(setTelechargees).catch(() => undefined);
+  }, []);
+
+  // Téléchargement explicite d'une vidéo (lot 4) : le bouton de sa ligne de playlist la garde sur le
+  // téléphone ; la même touche la supprime quand elle y est déjà.
+  const basculerTelechargement = useCallback(
+    async (v: VideoCours) => {
+      if (dlEnCours) return;
+      if (videoLocale(v.id)) {
+        await supprimerVideoTelechargee(v.id).catch(() => undefined);
+        rafraichirTelechargees();
+        return;
+      }
+      setDlEnCours(v.id);
+      try {
+        await telechargerVideo(v);
+      } catch {
+        // Échec (réseau, place) : la vidéo reste en ligne seulement, rien n'est inscrit.
+      }
+      setDlEnCours(null);
+      rafraichirTelechargees();
+    },
+    [dlEnCours, rafraichirTelechargees],
+  );
+
+  const toutTelecharger = useCallback(async () => {
+    if (!videos || toutDl) return;
+    setToutDl(true);
+    await telechargerVideos(videos.filter((v) => !videoLocale(v.id))).catch(() => undefined);
+    setToutDl(false);
+    rafraichirTelechargees();
+  }, [videos, toutDl, rafraichirTelechargees]);
 
   // Créé une fois, source vide : les vidéos du cours arrivent ensuite et remplacent la source.
   const [lecteur] = useState<VideoPlayer>(() => {
@@ -157,6 +201,7 @@ export function LecteurVideo() {
         if (!actif) return;
         setVideos(v);
         setSuivis(s);
+        rafraichirTelechargees();
         setCouranteId((avant) => avant ?? v[0]?.id ?? null);
       } catch {
         if (actif) setVideos([]);
@@ -171,15 +216,18 @@ export function LecteurVideo() {
     return () => {
       actif = false;
     };
-  }, [coursId, pret]);
+  }, [coursId, pret, rafraichirTelechargees]);
 
   // Changement de vidéo (playlist ou enchaînement) : on remplace la source, sans lecture automatique.
+  // Une copie téléchargée (lot 4) est préférée au flux — décidée au moment du choix de la vidéo.
   useEffect(() => {
-    if (!courante || sourceRef.current === courante.url) return;
+    if (!courante) return;
+    const uri = videoLocale(courante.id) ?? courante.url;
+    if (sourceRef.current === uri) return;
     viderTempsLu();
-    sourceRef.current = courante.url;
+    sourceRef.current = uri;
     repriseFaite.current = null;
-    lecteur.replace({ uri: courante.url });
+    lecteur.replace({ uri });
     void noterDerniereVideo({ video: courante.id, cours: coursId });
   }, [courante, coursId, lecteur, viderTempsLu]);
 
@@ -236,16 +284,23 @@ export function LecteurVideo() {
             <Etiquette texte={t('videos.partie', { n: courante.numero })} />
             <Text numberOfLines={2} style={[typo.h3, { color: theme.texte.principal }]}>{courante.titre}</Text>
             <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>
-              {[matiere, nom, suiviCourante && !suiviCourante.terminee && suiviCourante.positionS > 3 ? t('videos.repriseAuto', { temps: formaterDuree(suiviCourante.positionS) }) : null]
+              {[matiere, nom, telechargees[courante.id] ? t('videos.telechargee') : null, suiviCourante && !suiviCourante.terminee && suiviCourante.positionS > 3 ? t('videos.repriseAuto', { temps: formaterDuree(suiviCourante.positionS) }) : null]
                 .filter(Boolean)
                 .join(' · ')}
             </Text>
           </View>
-          {videos && videos.length > 1 ? (
+          {videos && videos.length >= 1 ? (
             <>
-              <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>
-                {t('videos.playlist')} · {terminees} / {videos.length}
-              </Text>
+              <View style={styles.lignePlaylist}>
+                <Text style={[typo.etiquette, { color: theme.texte.secondaire }]}>
+                  {t('videos.playlist')} · {terminees} / {videos.length}
+                </Text>
+                {restantes.length ? (
+                  <Pressable accessibilityRole="button" accessibilityLabel={t('videos.toutTelecharger')} onPress={() => void toutTelecharger()} disabled={toutDl} hitSlop={8}>
+                    <Text style={[typo.legende, { color: theme.marque.principale }]}>{toutDl ? t('videos.telechargementEnCours') : t('videos.toutTelecharger')}</Text>
+                  </Pressable>
+                ) : null}
+              </View>
               <GroupeColle>
                 {videos.map((v, i) => {
                   const s = suivis[v.id];
@@ -255,6 +310,7 @@ export function LecteurVideo() {
                     : s?.terminee
                       ? t('videos.terminee')
                       : formaterDuree(v.dureeS) || t('videos.pasCommencee');
+                  const gardee = !!telechargees[v.id];
                   return (
                     <LigneGroupe
                       key={v.id}
@@ -267,8 +323,33 @@ export function LecteurVideo() {
                         </View>
                       }
                       titre={v.titre}
-                      sousTitre={sousTitre}
-                      droite={s?.terminee ? <Check size={20} strokeWidth={3} color={theme.marque.principale} /> : undefined}
+                      sousTitre={gardee ? `${sousTitre} · ${t('videos.telechargee')}` : sousTitre}
+                      droite={
+                        <View style={styles.actionsVideo}>
+                          {s?.terminee ? <Check size={20} strokeWidth={3} color={theme.marque.principale} /> : null}
+                          {dlEnCours === v.id ? (
+                            <ActivityIndicator size="small" color={theme.texte.secondaire} />
+                          ) : gardee ? (
+                            <Pressable
+                              accessibilityRole="button"
+                              accessibilityLabel={t('videos.supprimerTelechargement')}
+                              hitSlop={10}
+                              onPress={() => void basculerTelechargement(v)}
+                            >
+                              <Trash2 size={19} strokeWidth={2.2} color={theme.texte.secondaire} />
+                            </Pressable>
+                          ) : (
+                            <Pressable
+                              accessibilityRole="button"
+                              accessibilityLabel={t('videos.telecharger')}
+                              hitSlop={10}
+                              onPress={() => void basculerTelechargement(v)}
+                            >
+                              <Download size={19} strokeWidth={2.2} color={theme.texte.secondaire} />
+                            </Pressable>
+                          )}
+                        </View>
+                      }
                       onPress={() => setCouranteId(v.id)}
                     />
                   );
@@ -287,6 +368,8 @@ const styles = StyleSheet.create({
   cadreVideo: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden', backgroundColor: '#000' },
   video: { width: '100%', aspectRatio: 16 / 9 },
   infos: { gap: espace[1] },
+  lignePlaylist: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[3] },
+  actionsVideo: { flexDirection: 'row', alignItems: 'center', gap: espace[3] },
   mini: { width: 86, height: 50, borderWidth: bord.fin, borderRadius: rayon.s, overflow: 'hidden', backgroundColor: '#000' },
   miniImage: { width: '100%', height: '100%' },
 });

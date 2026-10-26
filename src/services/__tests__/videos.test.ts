@@ -1,5 +1,34 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const mockFichiers = new Map<string, number>();
+jest.mock('expo-file-system', () => {
+  class Directory {
+    exists = true;
+    create() {}
+    delete() {}
+  }
+  class File {
+    uri: string;
+    constructor(_d: unknown, nom: string) {
+      this.uri = `file:///videos/${nom}`;
+    }
+    get exists() {
+      return mockFichiers.has(this.uri);
+    }
+    get size() {
+      return mockFichiers.get(this.uri) ?? 0;
+    }
+    delete() {
+      mockFichiers.delete(this.uri);
+    }
+    static async downloadFileAsync(_u: string, f: File) {
+      mockFichiers.set(f.uri, 12345);
+      return f;
+    }
+  }
+  return { Directory, File, Paths: { document: 'doc' } };
+});
+
 import {
   compterTerminees,
   fusionnerSuivis,
@@ -12,9 +41,15 @@ import {
   lireSuivis,
   lireVideos,
   marquerTerminee,
+  nomFichierVideo,
   noterDerniereVideo,
   noterPosition,
+  lireTelechargees,
+  supprimerVideoTelechargee,
+  telechargerVideo,
+  telechargerVideos,
   titreSansPartie,
+  videoLocale,
   versVideos,
   type VideoCours,
 } from '../videos';
@@ -207,5 +242,46 @@ describe('synchronisation serveur (lot 2)', () => {
     const client = { auth: { getSession: async () => ({ data: { session: null } }) }, from: () => { throw new Error('ne doit pas être appelé'); } };
     const fusion = await synchroniserSuivis(client as never);
     expect(fusion.v2.positionS).toBe(90);
+  });
+});
+
+describe('hors-ligne vidéo (lot 4)', () => {
+  const video = (id: string, numero = 1): VideoCours => ({ id, cours: 42, titre: `Titre ${id}`, numero, dureeS: 100, url: `https://x/${id}.mp4`, url1080: null, miniature: null, ordre: numero - 1 });
+
+  beforeEach(async () => {
+    await AsyncStorage.clear();
+    mockFichiers.clear();
+  });
+
+  it('nom de fichier stable, tiré de l’identifiant', () => {
+    expect(nomFichierVideo('abc-123')).toBe('abc-123.mp4');
+  });
+
+  it('télécharger : le fichier devient la source locale et l’index le retient', async () => {
+    expect(videoLocale('v1')).toBeNull();
+    await telechargerVideo(video('v1'));
+    expect(videoLocale('v1')).toBe('file:///videos/v1.mp4');
+    const index = await lireTelechargees();
+    expect(index.v1).toMatchObject({ cours: 42, numero: 1, taille: 12345 });
+  });
+
+  it('supprimer : le fichier et l’index partent', async () => {
+    await telechargerVideo(video('v1'));
+    await supprimerVideoTelechargee('v1');
+    expect(videoLocale('v1')).toBeNull();
+    expect(await lireTelechargees()).toEqual({});
+  });
+
+  it('tout télécharger : seulement celles qui manquent, et le compte est juste', async () => {
+    await telechargerVideo(video('v1'));
+    const n = await telechargerVideos([video('v1'), video('v2', 2), video('v3', 3)]);
+    expect(n).toBe(2);
+    expect(Object.keys(await lireTelechargees()).sort()).toEqual(['v1', 'v2', 'v3']);
+  });
+
+  it('un index orphelin (fichier disparu) n’est pas annoncé comme téléchargé', async () => {
+    await telechargerVideo(video('v1'));
+    mockFichiers.clear();
+    expect(await lireTelechargees()).toEqual({});
   });
 });

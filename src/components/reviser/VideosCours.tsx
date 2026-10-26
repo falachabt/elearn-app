@@ -11,10 +11,12 @@ import {
   formaterDuree,
   indiceCarrousel,
   lireDerniereVideo,
+  lireTelechargees,
   lireVideos,
   synchroniserSuivis,
   type SuivisVideos,
   type VideoCours,
+  type VideoTelechargee,
 } from '@/services/videos';
 import { useSessionPrete } from '@/session/SessionProvider';
 import { useTheme } from '@/theme/ThemeProvider';
@@ -37,6 +39,7 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
   const pret = useSessionPrete();
   const [videos, setVideos] = useState<VideoCours[] | null>(null);
   const [suivis, setSuivis] = useState<SuivisVideos>({});
+  const [telechargees, setTelechargees] = useState<Record<string, VideoTelechargee>>({});
   const [avant, setAvant] = useState(0);
   const defilement = useRef<ScrollView>(null);
   const positionne = useRef(false);
@@ -46,11 +49,12 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
       if (!pret) return;
       let actif = true;
       positionne.current = false;
-      void Promise.all([lireVideos(getSupabase(), cours).catch(() => [] as VideoCours[]), synchroniserSuivis(getSupabase()), lireDerniereVideo()])
-        .then(([v, s, d]) => {
+      void Promise.all([lireVideos(getSupabase(), cours).catch(() => [] as VideoCours[]), synchroniserSuivis(getSupabase()), lireDerniereVideo(), lireTelechargees().catch(() => ({}) as Record<string, VideoTelechargee>)])
+        .then(([v, s, d, tel]) => {
           if (!actif) return;
           setVideos(v);
           setSuivis(s);
+          setTelechargees(tel);
           setAvant(indiceCarrousel(v, s, d));
         })
         .catch(() => actif && setVideos([]));
@@ -84,11 +88,12 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
           const suivi = suivis[v.id];
           const enCours = !!suivi && !suivi.terminee && suivi.positionS > 0;
           const progression = suivi?.dureeS ? Math.min(1, suivi.positionS / suivi.dureeS) : 0;
-          const sousTitre = suivi?.terminee
+          const sousTitreBase = suivi?.terminee
             ? t('videos.terminee')
             : enCours
               ? `${t('videos.reprendreA', { temps: formaterDuree(suivi.positionS) })} · ${t('videos.reste', { temps: formaterDuree((suivi.dureeS ?? 0) - suivi.positionS) })}`
               : t('videos.pasCommencee');
+          const sousTitre = telechargees[v.id] ? `${sousTitreBase} · ${t('videos.telechargee')}` : sousTitreBase;
           return (
             <Appui
               key={v.id}

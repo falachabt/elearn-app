@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { SupabaseClient } from '@supabase/supabase-js';
+import { Directory, File, Paths } from 'expo-file-system';
 
 type Client = Pick<SupabaseClient, 'from'>;
 
@@ -234,6 +235,94 @@ export function lignesAEnvoyer(locaux: SuivisVideos, serveur: readonly LigneProg
     .map(([video, s]) => ({ user_id: userId, ...ligneDepuisSuivi(video, s) }));
 }
 
+// ---------------------------------------------------------------------------
+// Hors-ligne vidéo (lot 4) : téléchargement EXPLICITE, vidéo par vidéo, en 720p
+// uniquement — jamais dans le pack hors-ligne complet (trop lourd). Les fichiers
+// vivent dans le dossier privé de l'app (même patron que les documents), et un
+// petit index AsyncStorage dit lesquelles sont là. L'index est un état de
+// téléchargement, pas un contenu : il n'est pas soumis à l'expiration des
+// contenus hors ligne (comme l'index des documents). La position, elle, est
+// déjà locale (suivi) et synchronisée au retour du réseau par le lot 2.
+// ---------------------------------------------------------------------------
+
+const CLE_TELECHARGEES = 'videos.telechargees';
+
+const dossierVideos = () => new Directory(Paths.document, 'videos');
+
+/** Nom de fichier d'une vidéo téléchargée : son identifiant (uuid), stable. */
+export function nomFichierVideo(video: string): string {
+  return `${video}.mp4`;
+}
+
+function fichierVideo(video: string): File {
+  const d = dossierVideos();
+  if (!d.exists) d.create({ intermediates: true, idempotent: true });
+  return new File(d, nomFichierVideo(video));
+}
+
+/** L'adresse locale de la vidéo si elle est téléchargée (et non vide), sinon null : le lecteur la préfère au flux. */
+export function videoLocale(video: string): string | null {
+  try {
+    const f = fichierVideo(video);
+    return f.exists && f.size > 0 ? f.uri : null;
+  } catch {
+    return null;
+  }
+}
+
+export type VideoTelechargee = { cours: number; titre: string; numero: number; taille: number; le: string };
+
+async function lireIndexTelechargees(): Promise<Record<string, VideoTelechargee>> {
+  try {
+    const brut = await AsyncStorage.getItem(CLE_TELECHARGEES);
+    return brut ? (JSON.parse(brut) as Record<string, VideoTelechargee>) : {};
+  } catch {
+    return {};
+  }
+}
+
+/** Les vidéos téléchargées dont le fichier est encore là, par identifiant de vidéo. */
+export async function lireTelechargees(): Promise<Record<string, VideoTelechargee>> {
+  const index = await lireIndexTelechargees();
+  return Object.fromEntries(Object.entries(index).filter(([id]) => videoLocale(id)));
+}
+
+/** Télécharge une vidéo (720p) sur le téléphone et l'inscrit dans l'index. Échoue sans rien inscrire si le fichier est vide. */
+export async function telechargerVideo(v: VideoCours): Promise<void> {
+  const fichier = await File.downloadFileAsync(encodeURI(v.url), fichierVideo(v.id), { idempotent: true });
+  if (fichier.size <= 0) throw new Error('téléchargement vidéo vide');
+  const index = await lireIndexTelechargees();
+  index[v.id] = { cours: v.cours, titre: v.titre, numero: v.numero, taille: fichier.size, le: new Date().toISOString() };
+  await AsyncStorage.setItem(CLE_TELECHARGEES, JSON.stringify(index));
+}
+
+/** Télécharge toutes les vidéos d'un cours qui ne le sont pas encore, l'une après l'autre ; renvoie combien ont été gardées. */
+export async function telechargerVideos(videos: readonly VideoCours[]): Promise<number> {
+  let n = 0;
+  for (const v of videos) {
+    if (videoLocale(v.id)) continue;
+    try {
+      await telechargerVideo(v);
+      n++;
+    } catch {
+      // Une vidéo en échec n'empêche pas les autres.
+    }
+  }
+  return n;
+}
+
+/** Retire une vidéo téléchargée du téléphone (fichier et index). */
+export async function supprimerVideoTelechargee(video: string): Promise<void> {
+  try {
+    const f = fichierVideo(video);
+    if (f.exists) f.delete();
+  } catch {
+    // Déjà absente.
+  }
+  const index = await lireIndexTelechargees();
+  delete index[video];
+  await AsyncStorage.setItem(CLE_TELECHARGEES, JSON.stringify(index));
+}
 /**
  * Met en commun le suivi du téléphone et celui du compte : les positions du compte reviennent sur le
  * téléphone (autre appareil), celles du téléphone partent au serveur. Sans réseau ou sans session,

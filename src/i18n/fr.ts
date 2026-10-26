@@ -799,6 +799,7 @@ export const fr = {
     telecharger: 'Télécharger pour regarder hors ligne',
     supprimerTelechargement: 'Supprimer le téléchargement',
     toutTelecharger: 'Tout télécharger',
+    telechargementEnCours: 'Téléchargement…',
     mesVideos: 'Mes vidéos',
     mesVideosSousTitre: 'Revoir les vidéos commencées ou terminées.',
     mesVideosVide: 'Tu n’as pas encore regardé de vidéo de cours.',
