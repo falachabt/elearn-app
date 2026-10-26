@@ -1,0 +1,574 @@
+{
+ "cours": 6161,
+ "ecrans": {
+  "approx": {
+   "kicker": "Approximation affine",
+   "tex": [
+    "f(x) = \\sqrt{x}, \\quad f'(x) = \\tfrac{1}{2\\sqrt{x}}, \\quad f'(25) = \\tfrac{1}{10}",
+    "\\sqrt{26} \\approx f(25) + f'(25) (26 - 25) = 5 + 0{,}1",
+    "\\sqrt{26} \\approx 5{,}1 \\qquad \\text{(valeur réelle : } 5{,}099)"
+   ],
+   "titre": "√26 sans calculatrice, par la tangente en 25",
+   "type": "etape"
+  },
+  "boite": {
+   "kicker": "Optimisation · la boîte optimale",
+   "tex": [
+    "V(x) = x (30 - 2x)^2 = 4x^3 - 120x^2 + 900x",
+    "V'(x) = 12x^2 - 240x + 900 = 12 (x^2 - 20x + 75)",
+    "V'(x) = 0 \\iff x = 5 \\text{ ou } x = 15 \\text{ (hors domaine)}",
+    "x = 5 \\text{ cm} : V_{max} = 5 \\times 20^2 = 2000\\ \\text{cm}^3"
+   ],
+   "titre": "Feuille de 30 cm, découpe x aux coins",
+   "type": "etape"
+  },
+  "chaine": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Règle de la chaîne (composition)",
+   "note": "Notation de Leibniz : dy/dx = dy/du × du/dx — les taux se multiplient.",
+   "tex": "(f \\circ u)'(x) = f'(u(x)) \\times u'(x)",
+   "type": "formule"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "derive_fig"
+   },
+   "kicker": "Définition de la dérivée",
+   "note": "Pente de la tangente en a · vitesse instantanée · coût marginal.",
+   "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}",
+   "type": "formule"
+  },
+  "ex_bacteries": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple · croissance d'une population",
+   "tex": [
+    "P(t) = 1000\\, e^{0{,}05 t}",
+    "P'(t) = 1000 \\times 0{,}05\\, e^{0{,}05 t} = 50\\, e^{0{,}05 t}",
+    "P'(10) = 50\\, e^{0{,}5} \\approx 82{,}4 \\text{ bactéries/h}"
+   ],
+   "titre": "La dérivée donne la vitesse de croissance",
+   "type": "etape"
+  },
+  "ex_carre": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Exemple · dériver x² par la définition",
+   "tex": [
+    "\\tfrac{(a + h)^2 - a^2}{h} = \\tfrac{2ah + h^2}{h}",
+    "= 2a + h \\xrightarrow[h \\to 0]{} 2a",
+    "f(x) = x^2 \\Rightarrow f'(a) = 2a \\text{ pour tout } a"
+   ],
+   "titre": "Le taux tend vers 2a",
+   "type": "etape"
+  },
+  "ex_chaine1": {
+   "kicker": "Exemple · composition",
+   "tex": [
+    "f(x) = (x^2 + 3x + 1)^5, \\quad u = x^2 + 3x + 1",
+    "u'(x) = 2x + 3",
+    "f'(x) = 5 (x^2 + 3x + 1)^4 (2x + 3)"
+   ],
+   "titre": "Repérer l'intérieur, le dériver, le garder",
+   "type": "etape"
+  },
+  "ex_chaine2": {
+   "kicker": "Exemple · trois couches",
+   "tex": [
+    "(e^{\\sin x})' = \\cos x \\cdot e^{\\sin x}",
+    "h(x) = \\sin^3 (x^2) = [\\sin (x^2)]^3",
+    "h'(x) = 3 \\sin^2 (x^2) \\cdot \\cos (x^2) \\cdot 2x"
+   ],
+   "titre": "Couche par couche, sans en sauter aucune",
+   "type": "etape"
+  },
+  "ex_polynome": {
+   "kicker": "Exemple · un polynôme terme à terme",
+   "tex": [
+    "f(x) = 3x^4 - 2x^3 + 5x - 7",
+    "f'(x) = 3 \\times 4x^3 - 2 \\times 3x^2 + 5 - 0",
+    "f'(x) = 12x^3 - 6x^2 + 5"
+   ],
+   "titre": "La règle de la puissance fait tout le travail",
+   "type": "etape"
+  },
+  "ex_produit": {
+   "kicker": "Exemple · produit",
+   "tex": [
+    "h(x) = x^2 e^x",
+    "h'(x) = 2x\\, e^x + x^2 e^x",
+    "h'(x) = e^x (x^2 + 2x) = e^x \\cdot x (x + 2)"
+   ],
+   "titre": "x²·eˣ, puis factoriser",
+   "type": "etape"
+  },
+  "ex_quotient": {
+   "kicker": "Exemple · quotient",
+   "tex": [
+    "f(x) = \\tfrac{x^2 + 1}{x - 3}, \\quad u = x^2 + 1, \\quad v = x - 3",
+    "f'(x) = \\tfrac{2x (x - 3) - (x^2 + 1)}{(x - 3)^2}",
+    "f'(x) = \\tfrac{x^2 - 6x - 1}{(x - 3)^2} \\qquad (\\tan x)' = \\tfrac{1}{\\cos^2 x}"
+   ],
+   "titre": "Et la tangente au passage",
+   "type": "etape"
+  },
+  "ex_tangente": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Exemple · tangente à la parabole",
+   "tex": [
+    "f(x) = x^2, \\quad f'(x) = 2x, \\quad f'(1) = 2, \\quad f(1) = 1",
+    "y = 2 (x - 1) + 1",
+    "y = 2x - 1"
+   ],
+   "titre": "Au point d'abscisse 1",
+   "type": "etape"
+  },
+  "ex_vitesse": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Exemple · vitesse moyenne",
+   "tex": [
+    "\\tau = \\tfrac{f(3) - f(1)}{3 - 1} = \\tfrac{150 - 60}{2}",
+    "= \\tfrac{90}{2} = 45\\ \\text{km/h}",
+    "\\text{une moyenne : ni freinages, ni accélérations ne s'y voient}"
+   ],
+   "titre": "Un véhicule entre 1 h et 3 h",
+   "type": "etape"
+  },
+  "fonction_derivee": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "derive_fig"
+   },
+   "kicker": "La fonction dérivée",
+   "note": "Chute libre : y(t) trinôme ⇒ y′(t) = −gt + v₀, la vitesse instantanée.",
+   "tex": "f(x) = x^2 \\Rightarrow f'(x) = 2x",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Entre 1 h et 3 h, 90 km parcourus : 45 km/h en moyenne. Mais à 2 h précises ? Il faudra resserrer l'intervalle jusqu'à zéro.",
+   "type": "phrase"
+  },
+  "mobile": {
+   "kicker": "Vitesse, accélération, coût marginal",
+   "tex": [
+    "s(t) = t^3 - 6t^2 + 9t + 2",
+    "v(t) = s'(t) = 3t^2 - 12t + 9 \\qquad a(t) = s''(t) = 6t - 12",
+    "C'(q) = 0{,}3 q^2 - 4q + 50, \\quad C'(10) = 40"
+   ],
+   "titre": "Dériver une fois, dériver deux fois",
+   "type": "etape"
+  },
+  "produit": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Règle du produit (Leibniz)",
+   "note": "Chaque facteur varie à son tour, l'autre restant figé.",
+   "tex": "(f \\times g)'(x) = f'(x)\\, g(x) + f(x)\\, g'(x)",
+   "type": "formule"
+  },
+  "quotient": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Règle du quotient",
+   "note": "Dérivée du haut fois le bas, moins le haut fois dérivée du bas, sur le bas au carré.",
+   "tex": "\\left( \\frac{u}{v} \\right)' = \\frac{u' v - u v'}{v^2}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Dérivée : limite du taux d'accroissement",
+    "Tangente : y = f′(a)(x − a) + f(a)",
+    "Signe de f′ = variations de f",
+    "Quatre règles : +, ×, ÷, ∘",
+    "Optimiser : résoudre f′(x) = 0"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Taux : pente de sécante, une moyenne",
+    "Dérivée : limite du taux, pente de tangente",
+    "(x²)′ = 2x, par la définition",
+    "Dérivable ⇒ continue (réciproque fausse)",
+    "|x| : continue, non dérivable en 0"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Usuelles : puissances, exp, logarithmes",
+    "Somme : terme à terme",
+    "Produit : f′g + fg′ (deux termes)",
+    "Quotient : (u′v − uv′)/v²",
+    "Chaîne : f′(u)·u′, ne pas oublier u′"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "resserre": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "derive_fig"
+   },
+   "kicker": "Resserrer l'intervalle",
+   "tex": [
+    "[1{,}5 \\,;\\, 2{,}5] : \\tfrac{135 - 90}{1} = 45\\ \\text{km/h}",
+    "[1{,}9 \\,;\\, 2{,}1] : \\tfrac{126 - 114}{0{,}2} = 60\\ \\text{km/h}",
+    "[1{,}99 \\,;\\, 2{,}01] : \\tfrac{120{,}6 - 119{,}4}{0{,}02} = 60\\ \\text{km/h}"
+   ],
+   "titre": "Autour de t = 2, les moyennes se stabilisent",
+   "type": "etape"
+  },
+  "somme": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Règle de la somme",
+   "note": "Exemple : (x³ + cos x)′ = 3x² − sin x. Les constantes additives disparaissent.",
+   "tex": "(f + g)'(x) = f'(x) + g'(x)",
+   "type": "formule"
+  },
+  "strategie": {
+   "etapes": [
+    "Identifier la structure extérieure",
+    "Appliquer la règle correspondante",
+    "Descendre couche par couche (chaîne)",
+    "Simplifier et factoriser pour le signe"
+   ],
+   "kicker": "Stratégie de dérivation",
+   "type": "recap"
+  },
+  "synthese_log": {
+   "kicker": "Synthèse · réécrire avant de dériver",
+   "tex": [
+    "f(x) = \\ln \\left( \\tfrac{x^2 e^{3x}}{\\sqrt{x + 1}} \\right) = 2 \\ln x + 3x - \\tfrac{1}{2} \\ln (x + 1)",
+    "f'(x) = \\tfrac{2}{x} + 3 - \\tfrac{1}{2 (x + 1)}"
+   ],
+   "titre": "Le logarithme désarme le quotient",
+   "type": "etape"
+  },
+  "tangente": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Équation de la tangente",
+   "note": "Approximation affine : près de a, la courbe ≈ sa tangente.",
+   "tex": "y = f'(a)\\, (x - a) + f(a)",
+   "type": "formule"
+  },
+  "taux": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Le taux d'accroissement",
+   "note": "Pente de la sécante joignant A(a, f(a)) et B(b, f(b)).",
+   "tex": "\\tau_{[a,b]} = \\frac{f(b) - f(a)}{b - a}",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "derive_fig"
+   },
+   "kicker": "Mathématique · Dérivation",
+   "sous": "Définition par la limite, dérivées usuelles, règles de calcul et applications",
+   "titre": "Dérivation : de la vitesse moyenne à la tangente",
+   "type": "titre"
+  },
+  "usuelles1": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "derive_fig"
+   },
+   "kicker": "Dérivées usuelles · puissances",
+   "tex": [
+    "(x^n)' = n\\, x^{n - 1}",
+    "(\\sqrt{x})' = \\tfrac{1}{2\\sqrt{x}} \\qquad \\left( \\tfrac{1}{x} \\right)' = -\\tfrac{1}{x^2}",
+    "(c)' = 0 \\qquad (x)' = 1"
+   ],
+   "titre": "L'exposant descend et diminue d'une unité",
+   "type": "etape"
+  },
+  "usuelles2": {
+   "kicker": "Dérivées usuelles · exponentielle et logarithme",
+   "tex": [
+    "(e^x)' = e^x",
+    "(a^x)' = a^x \\ln(a)",
+    "(\\ln x)' = \\tfrac{1}{x} \\quad (x > 0)",
+    "(\\log_a x)' = \\tfrac{1}{x \\ln(a)}"
+   ],
+   "titre": "eˣ est sa propre dérivée",
+   "type": "etape"
+  },
+  "valeur_abs": {
+   "kicker": "Dérivable implique continue, pas l'inverse",
+   "tex": [
+    "\\text{à gauche de } 0 : \\tfrac{|h|}{h} = -1 \\quad (h < 0)",
+    "\\text{à droite de } 0 : \\tfrac{|h|}{h} = +1 \\quad (h > 0)",
+    "\\text{limites différentes : } |x| \\text{ non dérivable en } 0"
+   ],
+   "titre": "La valeur absolue en 0 : un point anguleux",
+   "type": "etape"
+  },
+  "variations": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "signe_parabole_fig"
+   },
+   "kicker": "Signe de la dérivée et variations",
+   "tex": [
+    "f(x) = x^3 - 3x + 2",
+    "f'(x) = 3x^2 - 3 = 3 (x - 1) (x + 1)",
+    "f' > 0, < 0, > 0 : \\text{max } 4 \\text{ en } -1, \\text{ min } 0 \\text{ en } 1"
+   ],
+   "titre": "x³ − 3x + 2 : maximum 4, minimum 0",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Du taux d'accroissement à la dérivée"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les règles de calcul. Dériver par la définition serait interminable : voici les dérivées des fonctions usuelles, puis les règles de la somme, du produit, du quotient et de la composition, qui permettent de dériver presque toutes les fonctions construites à partir d'elles.",
+    "texte": "Partie 2 : usuelles et règles de calcul."
+   },
+   "sous_titre": "Dérivées usuelles et règles de calcul"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : la dérivée en action. Une dérivée calculée sert à écrire des tangentes, à lire les variations d'une fonction, à optimiser un volume ou un profit, et à approcher des valeurs inaccessibles au calcul exact. Nous terminerons par une synthèse qui combine toutes les règles.",
+    "texte": "Partie 3 : tangentes, variations, optimisation."
+   },
+   "sous_titre": "Tangentes, variations et optimisation"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la dérivation. Comment décrire le changement à un instant précis, et non plus en moyenne ? La réponse tient en un passage à la limite : le taux d'accroissement devient la dérivée, la sécante devient la tangente. Nous poserons la définition, nous apprendrons les formules des fonctions usuelles et toutes les règles de calcul, puis nous mettrons la dérivée au travail : tangentes, variations et optimisation.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La dérivée : le changement instantané."
+  },
+  {
+   "dit": "Le problème fondateur est celui de la vitesse. Entre une heure et trois heures, un véhicule parcourt quatre-vingt-dix kilomètres : sa vitesse moyenne est de quarante-cinq kilomètres par heure. Mais à deux heures précises, roulait-il à quarante, à soixante, à quatre-vingts kilomètres par heure ? La moyenne ne le dit pas. Pour répondre, il faudra resserrer l'intervalle autour de l'instant visé, jusqu'à le faire tendre vers zéro : c'est le geste de toute la dérivation.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Vitesse moyenne 45 km/h… et à 2 h précises ?"
+  },
+  {
+   "dit": "Le taux d'accroissement mesure le changement moyen d'une fonction entre deux points a et b : différence des images, divisée par différence des abscisses. Géométriquement, c'est la pente de la droite qui joint les deux points de la courbe, la sécante. Toute la dérivation consiste à faire vivre ce quotient quand les deux points se rapprochent l'un de l'autre.",
+   "ecran": "taux",
+   "id": "p03",
+   "texte": "τ = (f(b) − f(a))/(b − a) : pente de la sécante."
+  },
+  {
+   "dit": "Sur notre exemple : à une heure, soixante kilomètres parcourus ; à trois heures, cent cinquante. Le taux vaut cent cinquante moins soixante, divisé par trois moins un, soit quatre-vingt-dix divisé par deux : quarante-cinq kilomètres par heure. C'est bien la vitesse moyenne sur les deux heures. Mais elle mélange les accélérations et les freinages : pour l'instant précis, il faut resserrer.",
+   "ecran": "ex_vitesse",
+   "id": "p04",
+   "texte": "(150 − 60)/(3 − 1) = 45 km/h en moyenne."
+  },
+  {
+   "dit": "Resserrons autour de deux heures. Sur l'intervalle de une virgule cinq à deux virgule cinq heures, la vitesse moyenne vaut encore quarante-cinq. Sur un intervalle bien plus petit, de une virgule neuf à deux virgule un, elle vaut soixante. Sur un intervalle encore dix fois plus petit, elle vaut encore soixante. Les moyennes se stabilisent : cette valeur limite, soixante kilomètres par heure, est la vitesse instantanée à deux heures.",
+   "ecran": "resserre",
+   "id": "p05",
+   "texte": "Intervalles resserrés : 45, puis 60, puis 60."
+  },
+  {
+   "dit": "Nous y sommes : la dérivée d'une fonction en un point a est la limite, si elle existe, du taux d'accroissement quand l'accroissement h tend vers zéro. On la note f prime de a. Géométriquement, quand le second point glisse vers le premier, la sécante pivote vers une droite limite : la tangente à la courbe au point a. La dérivée est la pente de cette tangente. Cinématiquement, c'est la vitesse instantanée ; économiquement, un coût marginal.",
+   "ecran": "definition",
+   "id": "p06",
+   "texte": "f′(a) = limite du taux quand h → 0 : la tangente."
+  },
+  {
+   "dit": "Premier calcul complet, avec la définition : la fonction carré. Le taux d'accroissement entre a et a plus h vaut a plus h au carré moins a carré, le tout sur h. On développe : deux a h plus h carré, sur h. Pour h non nul, on simplifie par h : il reste deux a plus h. Quand h tend vers zéro, ce taux tend vers deux a. La dérivée du carré en a vaut donc deux a, et la pente de la tangente à la parabole double avec l'abscisse.",
+   "ecran": "ex_carre",
+   "id": "p07",
+   "texte": "x² → 2a : la définition, de bout en bout."
+  },
+  {
+   "dit": "Quand la dérivée existe en tout point d'un intervalle, elle forme une nouvelle fonction, la fonction dérivée, qui associe à chaque abscisse la pente de la tangente en ce point. Pour le carré, cette fonction est simplement le double. Application immédiate en physique : la hauteur d'un objet en chute libre est un trinôme du temps ; sa dérivée donne la vitesse instantanée, la gravité multipliée par le temps avec un signe moins, plus la vitesse initiale. Dériver, c'est passer de la position à la vitesse.",
+   "ecran": "fonction_derivee",
+   "id": "p08",
+   "texte": "f′ : la fonction des pentes. Position → vitesse."
+  },
+  {
+   "dit": "Attention au sens des implications : une fonction dérivable en un point y est toujours continue, mais une fonction continue n'y est pas toujours dérivable. Contre-exemple canonique : la valeur absolue en zéro. Elle y est continue, son graphe ne saute pas. Mais le taux d'accroissement vaut moins un à gauche de zéro et plus un à droite : deux limites différentes, donc pas de dérivée en zéro. Le graphe forme un angle, un point anguleux où aucune tangente unique n'existe.",
+   "ecran": "valeur_abs",
+   "id": "p09",
+   "texte": "|x| : continue en 0, non dérivable en 0."
+  },
+  {
+   "dit": "Récapitulons. Le taux d'accroissement est une pente de sécante, une moyenne. Sa limite, quand l'intervalle se resserre, est la dérivée : pente de la tangente, vitesse instantanée. La dérivée du carré vaut deux fois l'abscisse. Et la dérivabilité entraîne la continuité, sans réciproque, comme le prouve la valeur absolue. Il nous manque l'essentiel pour aller vite : les formules toutes prêtes.",
+   "ecran": "recap1",
+   "id": "p10",
+   "texte": "L'essentiel de la partie 1."
+  },
+  {
+   "dit": "Commençons par les puissances. Une constante a pour dérivée zéro : elle ne varie pas. La fonction identité a pour dérivée un. Et la règle maîtresse : la dérivée de ixe puissance n est n fois ixe puissance n moins un, l'exposant descend en facteur et diminue d'une unité. Elle vaut aussi pour les exposants fractionnaires : la racine carrée, puissance un demi, a pour dérivée un sur deux racine de ixe, et l'inverse de ixe a pour dérivée moins un sur ixe carré.",
+   "ecran": "usuelles1",
+   "id": "p11",
+   "texte": "(xⁿ)′ = n·xⁿ⁻¹ ; √x → 1/(2√x)."
+  },
+  {
+   "dit": "Deux fonctions stars. L'exponentielle est sa propre dérivée : sa vitesse de variation est exactement égale à sa valeur, c'est pourquoi elle modélise les croissances proportionnelles à l'état présent. Pour une base quelconque a, un facteur logarithme de a apparaît. Le logarithme népérien, lui, a pour dérivée l'inverse de ixe : plus ixe grandit, plus le logarithme ralentit. Et le logarithme de base a divise encore par le logarithme népérien de a.",
+   "ecran": "usuelles2",
+   "id": "p12",
+   "texte": "(eˣ)′ = eˣ ; (ln x)′ = 1/x."
+  },
+  {
+   "dit": "Application immédiate : dériver le polynôme trois ixe puissance quatre, moins deux ixe au cube, plus cinq ixe, moins sept. Terme à terme, par la règle de la puissance et la règle de la somme : trois fois quatre ixe au cube, soit douze ixe au cube ; moins deux fois trois ixe carré, soit moins six ixe carré ; plus cinq ; et la constante disparaît. Résultat : douze ixe au cube, moins six ixe carré, plus cinq. Aucun passage à la limite : les formules font le travail.",
+   "ecran": "ex_polynome",
+   "id": "p13",
+   "texte": "3x⁴ − 2x³ + 5x − 7 → 12x³ − 6x² + 5."
+  },
+  {
+   "dit": "Exemple réel : une population de bactéries suit mille fois l'exponentielle de zéro virgule zéro cinq fois le temps, en heures. Sa vitesse de croissance est la dérivée : mille fois zéro virgule zéro cinq, soit cinquante, fois la même exponentielle. Après dix heures, cette vitesse vaut cinquante fois l'exponentielle de zéro virgule cinq, environ quatre-vingt-deux virgule quatre bactéries par heure. La dérivée transforme une loi de population en vitesse de croissance, à tout instant.",
+   "ecran": "ex_bacteries",
+   "id": "p14",
+   "texte": "P′(10) ≈ 82,4 bactéries par heure."
+  },
+  {
+   "dit": "Première règle d'assemblage : la dérivée d'une somme est la somme des dérivées. Dériver ixe au cube plus cosinus de ixe donne donc trois ixe carré moins sinus de ixe, chaque terme traité séparément. La règle s'étend à toute combinaison linéaire : une constante multiplicative traverse la dérivation, et les constantes additives disparaissent. C'est la linéarité de la dérivation, le socle de tous les calculs qui suivent.",
+   "ecran": "somme",
+   "id": "p15",
+   "texte": "(f + g)′ = f′ + g′ : terme à terme."
+  },
+  {
+   "dit": "Le produit, lui, réserve une surprise : la dérivée d'un produit n'est pas le produit des dérivées. Contre-exemple immédiat : ixe fois ixe vaut ixe carré, de dérivée deux ixe, alors que le produit des dérivées vaudrait un. La vraie règle, dite de Leibniz, compte deux termes : dérivée de la première fonction fois la seconde intacte, plus la première intacte fois dérivée de la seconde. Chaque facteur varie à son tour, l'autre restant figé.",
+   "ecran": "produit",
+   "id": "p16",
+   "texte": "(fg)′ = f′g + fg′ — jamais f′g′."
+  },
+  {
+   "dit": "Application : dériver ixe carré fois exponentielle de ixe. Première fonction, ixe carré, de dérivée deux ixe ; seconde, l'exponentielle, égale à sa dérivée. La règle donne deux ixe fois exponentielle, plus ixe carré fois exponentielle. On factorise par l'exponentielle : il reste ixe carré plus deux ixe, que l'on peut encore factoriser en ixe fois ixe plus deux. Cette factorisation n'est pas un luxe : elle prépare l'étude du signe, donc des variations.",
+   "ecran": "ex_produit",
+   "id": "p17",
+   "texte": "(x²eˣ)′ = eˣ·x(x + 2)."
+  },
+  {
+   "dit": "Pour un quotient, la formule comporte un moins et un carré, à ne jamais oublier : dérivée du numérateur fois dénominateur, moins numérateur fois dérivée du dénominateur, le tout sur le dénominateur au carré. Cas particulier précieux : la dérivée de l'inverse d'une fonction vaut moins la dérivée de cette fonction, divisée par son carré. C'est cette formule qui donne, par exemple, la dérivée de la tangente.",
+   "ecran": "quotient",
+   "id": "p18",
+   "texte": "(u/v)′ = (u′v − uv′)/v²."
+  },
+  {
+   "dit": "Application : le quotient de ixe carré plus un par ixe moins trois. Numérateur dérivé : deux ixe ; dénominateur dérivé : un. La formule donne deux ixe fois ixe moins trois, moins ixe carré plus un, sur ixe moins trois au carré. On développe le numérateur : ixe carré moins six ixe moins un. Même mécanique pour la tangente, quotient du sinus par le cosinus : on obtient un sur cosinus carré, toujours positif, ce qui explique la croissance de la tangente sur chaque intervalle.",
+   "ecran": "ex_quotient",
+   "id": "p19",
+   "texte": "(x² + 1)/(x − 3) → (x² − 6x − 1)/(x − 3)²."
+  },
+  {
+   "dit": "Dernière règle, la plus puissante : la composition. Quand une fonction s'applique à l'intérieur d'une autre, les taux de variation se multiplient : la dérivée de la composée est la dérivée de la fonction extérieure, évaluée au point intérieur, multipliée par la dérivée de la fonction intérieure. Dans la notation de Leibniz, tout se passe comme si les différentielles se simplifiaient en chaîne. L'erreur classique est d'oublier ce second facteur : la dérivée intérieure.",
+   "ecran": "chaine",
+   "id": "p20",
+   "texte": "(f∘u)′ = f′(u)·u′ : ne pas oublier u′."
+  },
+  {
+   "dit": "Application : la puissance cinq de ixe carré plus trois ixe plus un. Fonction extérieure : la puissance cinq, de dérivée cinq fois la quantité puissance quatre. Fonction intérieure : le trinôme, de dérivée deux ixe plus trois. La règle de la chaîne multiplie les deux : cinq fois le trinôme puissance quatre, fois deux ixe plus trois. Le réflexe à automatiser : repérer l'intérieur, le dériver, et ne jamais le perdre en route.",
+   "ecran": "ex_chaine1",
+   "id": "p21",
+   "texte": "(u⁵)′ = 5u⁴·u′ avec u = x² + 3x + 1."
+  },
+  {
+   "dit": "Les chaînes peuvent compter trois maillons. Pour l'exponentielle du sinus de ixe, un seul suffit : la dérivée est le cosinus de ixe, fois l'exponentielle du sinus de ixe. Pour le sinus de ixe carré porté au cube, on déroule trois couches : le cube donne trois fois le sinus au carré, le sinus donne le cosinus de ixe carré, et l'intérieur donne deux ixe. Produit final : six ixe, fois sinus carré de ixe carré, fois cosinus de ixe carré. Couche par couche, sans en sauter aucune.",
+   "ecran": "ex_chaine2",
+   "id": "p22",
+   "texte": "Trois couches : 6x·sin²(x²)·cos(x²)."
+  },
+  {
+   "dit": "Récapitulons cette boîte à outils. Les usuelles : puissances, racine, exponentielle, logarithmes. Les règles : somme terme à terme, produit en deux termes croisés, quotient avec son moins et son carré au dénominateur, et composition où les dérivées se multiplient. La stratégie est toujours la même : identifier la structure extérieure de la fonction, appliquer sa règle, puis descendre récursivement dans les morceaux.",
+   "ecran": "recap2",
+   "id": "p23",
+   "texte": "L'essentiel de la partie 2."
+  },
+  {
+   "dit": "Premier usage : l'équation de la tangente. Au point d'abscisse a, la tangente a pour coefficient directeur la dérivée en a, et elle passe par le point de la courbe. Son équation s'écrit donc : igrec égale dérivée en a, fois ixe moins a, plus image de a. Au voisinage du point, la courbe et sa tangente se confondent presque : remplacer la fonction par sa tangente, c'est l'approximation affine, notre outil de calcul approché.",
+   "ecran": "tangente",
+   "id": "p24",
+   "texte": "y = f′(a)(x − a) + f(a)."
+  },
+  {
+   "dit": "Exemple : la tangente à la parabole ixe carré au point d'abscisse un. La dérivée vaut deux ixe, donc deux en un ; l'image en un vaut un. L'équation donne igrec égale deux fois ixe moins un, plus un, c'est-à-dire deux ixe moins un. Cette droite effleure la parabole au point de coordonnées un, un, et épouse localement sa direction : tout le reste de la courbe reste au-dessus d'elle.",
+   "ecran": "ex_tangente",
+   "id": "p25",
+   "texte": "Tangente à y = x² en x = 1 : y = 2x − 1."
+  },
+  {
+   "dit": "Deuxième usage, le plus rentable en examen : le signe de la dérivée commande les variations. Dérivée positive, fonction croissante ; dérivée négative, fonction décroissante ; dérivée qui s'annule en changeant de signe, extremum local. Exemple : ixe au cube moins trois ixe plus deux a pour dérivée trois fois ixe carré moins un, soit trois fois ixe moins un fois ixe plus un. Elle est positive avant moins un, négative entre moins un et un, positive après : maximum local quatre en moins un, minimum local zéro en un.",
+   "ecran": "variations",
+   "id": "p26",
+   "texte": "f = x³ − 3x + 2 : max 4 en −1, min 0 en 1."
+  },
+  {
+   "dit": "Troisième usage : l'optimisation. Une feuille carrée de trente centimètres de côté ; on découpe des carrés de côté ixe aux quatre coins pour former une boîte ouverte. Son volume vaut ixe fois trente moins deux ixe, le tout au carré. La dérivée vaut douze fois ixe carré moins vingt ixe plus soixante-quinze ; elle s'annule pour ixe égal à cinq et pour ixe égal à quinze, hors domaine. Le volume maximal, deux mille centimètres cubes, est donc obtenu pour une découpe de cinq centimètres.",
+   "ecran": "boite",
+   "id": "p27",
+   "texte": "Boîte : x = 5 cm, V max = 2 000 cm³."
+  },
+  {
+   "dit": "Quatrième usage : le calcul approché par la tangente. Comment estimer la racine carrée de vingt-six sans calculatrice ? On connaît la racine de vingt-cinq : cinq. La dérivée de la racine en vingt-cinq vaut un sur deux fois cinq, soit un dixième. L'approximation affine donne cinq, plus un dixième fois un, soit cinq virgule un. La vraie valeur est cinq virgule zéro neuf neuf : l'erreur est de deux centièmes de pour cent. La tangente remplace la courbe, localement, avec une précision remarquable.",
+   "ecran": "approx",
+   "id": "p28",
+   "texte": "√26 ≈ 5 + 1/10 = 5,1 (vrai : 5,099)."
+  },
+  {
+   "dit": "Cinquième usage, le retour aux sources : un mobile suit la loi horaire temps au cube, moins six temps carré, plus neuf temps, plus deux, en mètres. Sa vitesse est la dérivée première : trois temps carré, moins douze temps, plus neuf. Son accélération est la dérivée seconde, celle de la vitesse : six temps moins douze. En économie, même geste : le coût marginal d'une entreprise est la dérivée de son coût total ; pour un coût en zéro virgule un q au cube, moins deux q carré, plus cinquante q, plus cent, le coût marginal à dix unités vaut exactement quarante.",
+   "ecran": "mobile",
+   "id": "p29",
+   "texte": "s → v = s′, a = s″ ; coût marginal C′(10) = 40."
+  },
+  {
+   "dit": "Synthèse finale des règles, sur une fonction qui semble redoutable : le logarithme du quotient de ixe carré fois exponentielle de trois ixe par la racine de ixe plus un. Plutôt que dériver le quotient sous le logarithme, on réécrit d'abord : deux logarithme de ixe, plus trois ixe, moins un demi de logarithme de ixe plus un. La dérivée devient alors limpide : deux sur ixe, plus trois, moins un sur deux fois ixe plus un. Retenez la leçon : une réécriture avant le calcul vaut souvent mieux qu'une formule appliquée tête baissée.",
+   "ecran": "synthese_log",
+   "id": "p30",
+   "texte": "ln(u) réécrit → 2/x + 3 − 1/(2(x + 1))."
+  },
+  {
+   "dit": "Face à toute fonction à dériver, la méthode tient en quatre temps. Un : identifier la structure extérieure, somme, produit, quotient ou composition. Deux : appliquer la règle correspondante, en écrivant chaque morceau. Trois : descendre dans les sous-parties, couche par couche, sans oublier aucune dérivée intérieure. Quatre : simplifier et factoriser, car une dérivée factorisée révèle son signe, donc les variations de la fonction.",
+   "ecran": "strategie",
+   "id": "p31",
+   "texte": "Structure, règle, couches, factorisation."
+  },
+  {
+   "dit": "Pour conclure : la dérivée est la limite du taux d'accroissement, la pente de la tangente, la vitesse instantanée. Les fonctions usuelles fournissent les briques, les quatre règles les assemblent : somme, produit, quotient, composition. Et les applications suivent : équation de tangente, tableau de variations par le signe, optimisation par les zéros de la dérivée, approximations par la tangente. Vous tenez le langage du changement : à vous de le parler couramment, en pratiquant.",
+   "ecran": "recap",
+   "id": "p32",
+   "texte": "Dérivation : à retenir."
+  }
+ ],
+ "titre": "Dérivation : de la vitesse moyenne à la tangente"
+}
