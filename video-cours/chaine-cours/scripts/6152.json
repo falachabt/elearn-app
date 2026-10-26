@@ -1,0 +1,418 @@
+{
+ "cours": 6152,
+ "titre": "Systèmes d'équations linéaires : résoudre, diagnostiquer, interpréter",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Systèmes linéaires",
+   "titre": "Systèmes d'équations linéaires : résoudre, diagnostiquer, interpréter",
+   "sous": "Substitution, combinaison, pivot de Gauss : trois méthodes, un diagnostic par le rang, et la géométrie des droites et des plans",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Plusieurs conditions à satisfaire en même temps : c'est cela, un système."
+  },
+  "forme": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'un système linéaire ?",
+   "titre": "m équations, n inconnues, chaque inconnue à la puissance un",
+   "tex": [
+    "a_{11}x_1 + a_{12}x_2 + \\dots + a_{1n}x_n = b_1",
+    "a_{21}x_1 + a_{22}x_2 + \\dots + a_{2n}x_n = b_2",
+    "\\text{linéaire : aucun produit d'inconnues, aucune puissance}"
+   ]
+  },
+  "cafe": {
+   "type": "etape",
+   "kicker": "Exemple fil rouge : le café",
+   "titre": "x croissants, y cafés : vingt articles, trente-deux euros",
+   "tex": [
+    "x + y = 20 \\qquad \\text{(les articles)}",
+    "x + 2y = 32 \\qquad \\text{(le chiffre d'affaires)}"
+   ]
+  },
+  "cafe_subst": {
+   "type": "etape",
+   "kicker": "Le café, résolu par substitution",
+   "titre": "Isoler, substituer, résoudre, remonter",
+   "tex": [
+    "x = 20 - y",
+    "(20 - y) + 2y = 32 \\quad \\Rightarrow \\quad y = 12",
+    "x = 20 - 12 = 8 \\qquad \\text{vérification : } 8 + 12 = 20,\\ 8 + 24 = 32"
+   ]
+  },
+  "trois_cas": {
+   "type": "etape",
+   "kicker": "Trois destins possibles",
+   "titre": "En deux inconnues : deux droites, trois positions relatives",
+   "tex": [
+    "\\text{sécantes : une solution unique}",
+    "\\text{parallèles distinctes : aucune solution}",
+    "\\text{confondues : une infinité de solutions}"
+   ],
+   "anim": {
+    "nom": "droites_trois_cas_fig",
+    "hauteur": 130
+   }
+  },
+  "vocab": {
+   "type": "phrase",
+   "kicker": "Le vocabulaire du diagnostic",
+   "texte": "Compatible ou incompatible, homogène, solution : les mots avant les calculs.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 140
+   }
+  },
+  "subst": {
+   "type": "etape",
+   "kicker": "Méthode un : la substitution",
+   "titre": "Un exemple complet, avec des fractions assumées",
+   "tex": [
+    "2x + 3y = 13 \\qquad x - y = 1 \\quad \\Rightarrow \\quad x = y + 1",
+    "2(y + 1) + 3y = 13 \\quad \\Rightarrow \\quad 5y = 11",
+    "y = \\tfrac{11}{5} \\qquad x = \\tfrac{16}{5} \\qquad \\text{contrôle : } \\tfrac{32}{5} + \\tfrac{33}{5} = 13"
+   ]
+  },
+  "comb_principe": {
+   "type": "formule",
+   "kicker": "Méthode deux : la combinaison linéaire",
+   "tex": "\\alpha E_1 + \\beta E_2 \\quad \\text{garde les mêmes solutions}",
+   "note": "Principe clé : toute combinaison d'équations vraies ensemble reste vraie."
+  },
+  "comb_ex1": {
+   "type": "etape",
+   "kicker": "Combinaison : éliminer x",
+   "titre": "Un système trois par trois, première élimination",
+   "tex": [
+    "x + 2y - z = 4 \\qquad 2x + y + z = 5 \\qquad 3x - y + 2z = 7",
+    "2(1) - (2) : \\quad y - z = 1",
+    "3(1) - (3) : \\quad 7y - 5z = 5"
+   ]
+  },
+  "comb_ex2": {
+   "type": "etape",
+   "kicker": "Combinaison : éliminer y, puis remonter",
+   "titre": "La remontée donne une inconnue à la fois",
+   "tex": [
+    "7(2') - (3') : \\quad -2z = 2 \\quad \\Rightarrow \\quad z = -1",
+    "y = z + 1 = 0 \\qquad x = 4 - 2y + z = 3",
+    "(x,\\ y,\\ z) = (3,\\ 0,\\ -1) \\quad \\text{à vérifier dans les trois équations}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Un système : des conditions simultanées",
+    "0, 1 ou une infinité de solutions",
+    "Substitution : isoler puis remplacer",
+    "Combinaison : éliminer puis remonter",
+    "Toujours vérifier dans les équations de départ"
+   ]
+  },
+  "augmentee": {
+   "type": "formule",
+   "kicker": "La matrice augmentée",
+   "tex": "[A \\mid b] = \\left[\\begin{array}{ccc|c} 2 & 3 & -1 & 5 \\\\ 4 & -1 & 2 & 3 \\\\ 1 & 2 & 3 & 7 \\end{array}\\right]",
+   "note": "Le système du pivot : coefficients à gauche, constantes à droite de la barre."
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Les trois opérations élémentaires",
+   "titre": "Elles ne changent jamais l'ensemble des solutions",
+   "tex": [
+    "L_i \\leftrightarrow L_j \\quad \\text{échanger deux lignes}",
+    "L_i \\leftarrow k L_i, \\ k \\neq 0 \\quad \\text{multiplier une ligne}",
+    "L_i \\leftarrow L_i + \\lambda L_j \\quad \\text{ajouter un multiple d'une ligne}"
+   ]
+  },
+  "gauss1": {
+   "type": "etape",
+   "kicker": "Pivot de Gauss : première colonne",
+   "titre": "Échanger L1 et L3, puis éliminer sous le pivot un",
+   "tex": [
+    "\\left[\\begin{array}{ccc|c} 1 & 2 & 3 & 7 \\\\ 0 & -9 & -10 & -25 \\\\ 0 & -1 & -7 & -9 \\end{array}\\right]"
+   ]
+  },
+  "gauss2": {
+   "type": "etape",
+   "kicker": "Pivot de Gauss : deuxième colonne",
+   "titre": "Normaliser chaque pivot au fur et à mesure",
+   "tex": [
+    "\\left[\\begin{array}{ccc|c} 1 & 2 & 3 & 7 \\\\ 0 & 1 & \\tfrac{10}{9} & \\tfrac{25}{9} \\\\ 0 & 0 & 1 & \\tfrac{56}{53} \\end{array}\\right]"
+   ]
+  },
+  "remontee": {
+   "type": "etape",
+   "kicker": "La remontée, calculs vérifiés",
+   "titre": "De la dernière ligne vers la première",
+   "tex": [
+    "z = \\tfrac{56}{53}",
+    "y = \\tfrac{25}{9} - \\tfrac{10}{9} z = \\tfrac{85}{53}",
+    "x = 7 - 2y - 3z = \\tfrac{33}{53} \\qquad \\text{contrôle par substitution : exact}"
+   ]
+  },
+  "diag_contra": {
+   "type": "etape",
+   "kicker": "Diagnostic : le signal d'alarme",
+   "titre": "Une ligne impossible signale un système incompatible",
+   "tex": [
+    "x + 2y = 3 \\qquad x + 2y = 5",
+    "0x + 0y = 2 \\quad \\Rightarrow \\quad \\text{aucune solution : droites parallèles}"
+   ]
+  },
+  "diag_param": {
+   "type": "etape",
+   "kicker": "Diagnostic : le signal de liberté",
+   "titre": "Trois équations proportionnelles, un seul plan de solutions",
+   "tex": [
+    "x + 2y - 3z = 4 \\quad \\text{(les deux autres sont ses multiples)}",
+    "y = s, \\quad z = t \\qquad s,\\ t \\in \\mathbb{R}",
+    "x = 4 - 2s + 3t \\quad : \\text{ un plan de solutions dans } \\mathbb{R}^3"
+   ]
+  },
+  "rang": {
+   "type": "formule",
+   "kicker": "Le rang : compter les pivots",
+   "tex": "\\dim(\\text{solutions}) = n - \\mathrm{rang}(A)",
+   "note": "Rang deux, trois inconnues compatibles : une droite de solutions. Rang un : un plan."
+  },
+  "plans": {
+   "type": "phrase",
+   "kicker": "La géométrie des plans",
+   "texte": "Trois plans : un point, une droite, un plan, ou rien — le rang le prédit.",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 230
+   }
+  },
+  "homogene": {
+   "type": "formule",
+   "kicker": "Le cas homogène",
+   "tex": "A x = 0 \\quad \\Rightarrow \\quad x = 0 \\text{ toujours solution}",
+   "note": "Homogène : seconds membres nuls. La question devient : y a-t-il d'autres solutions ?"
+  },
+  "chimie": {
+   "type": "etape",
+   "kicker": "Application : équilibrer une réaction",
+   "titre": "La combustion du propane devient un système homogène",
+   "tex": [
+    "3a - c = 0 \\qquad 8a - 2d = 0 \\qquad 2b - 2c - d = 0",
+    "a = 1 \\ \\Rightarrow \\ c = 3, \\ d = 4, \\ b = 5",
+    "C_3H_8 + 5\\,O_2 \\rightarrow 3\\,CO_2 + 4\\,H_2O"
+   ]
+  },
+  "ressources": {
+   "type": "etape",
+   "kicker": "Application : répartir des ressources",
+   "titre": "Trois produits, trois ressources épuisées exactement",
+   "tex": [
+    "2x + y + 3z = 100 \\qquad 3x + 2y + z = 80 \\qquad x + 2y + z = 70",
+    "(2) - (3) : \\quad 2x = 10 \\quad \\Rightarrow \\quad x = 5",
+    "x = 5, \\quad y = 21, \\quad z = 23 \\quad : \\text{ solution unique et positive}"
+   ]
+  },
+  "choix": {
+   "type": "recap",
+   "kicker": "Choisir sa méthode",
+   "etapes": [
+    "Variable isolée : substitution directe",
+    "Coefficients opposés : combinaison rapide",
+    "Grand système : pivot de Gauss, sans hésiter",
+    "Paramètres : Gauss en gardant les lettres"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Trois méthodes, un même ensemble solution",
+    "Le pivot rend le système triangulaire",
+    "Ligne impossible : aucune solution",
+    "Rang : il compte les degrés de liberté",
+    "Vérifier par substitution, toujours"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux systèmes d'équations linéaires. Un système, c'est un ensemble de conditions qui doivent être satisfaites en même temps par les mêmes inconnues. Nous apprendrons à le résoudre par substitution, par combinaison linéaire, puis par la méthode du pivot de Gauss écrite en matrice augmentée. Nous saurons aussi diagnostiquer les systèmes sans solution ou à solutions infinies, grâce au rang, et lire chaque réponse géométriquement, en droites dans le plan et en plans dans l'espace.",
+   "texte": "Systèmes linéaires : résoudre, diagnostiquer, interpréter.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "L'idée de départ tient en une phrase : linéaire signifie que chaque inconnue apparaît à la puissance un, sans produit entre inconnues et sans puissance supérieure. Un système général compte m équations et n inconnues, avec des coefficients connus et des seconds membres connus. Une solution est un n-uplet de valeurs qui, substitué aux inconnues, satisfait toutes les équations simultanément. Tout le cours consiste à trouver cet ensemble de solutions, ou à prouver qu'il est vide.",
+   "texte": "Linéaire : chaque inconnue à la puissance un, jamais multipliée.",
+   "ecran": "forme"
+  },
+  {
+   "id": "p03",
+   "dit": "Notre exemple fil rouge vient d'un petit café. Un croissant coûte un euro, un café deux euros. Hier, vingt articles ont été vendus pour un total de trente-deux euros. En notant ixe le nombre de croissants et igrec le nombre de cafés, la première équation compte les articles, et la seconde compte le chiffre d'affaires. Deux conditions, deux inconnues : voilà un système, né d'une question très concrète.",
+   "texte": "Le café : vingt articles, trente-deux euros, deux inconnues.",
+   "ecran": "cafe"
+  },
+  {
+   "id": "p04",
+   "dit": "Résolvons-le par substitution. De la première équation, on tire ixe égal à vingt moins igrec. On remplace ixe par cette expression dans la seconde équation : vingt moins igrec, plus deux igrec, égalent trente-deux, donc igrec vaut douze. On remonte ensuite : ixe vaut vingt moins douze, soit huit. Huit croissants et douze cafés. Et on vérifie toujours : huit plus douze font vingt, et huit plus vingt-quatre font trente-deux.",
+   "texte": "Huit croissants et douze cafés, vérifiés dans les deux équations.",
+   "ecran": "cafe_subst"
+  },
+  {
+   "id": "p05",
+   "dit": "Avant d'aller plus loin, regardons la géométrie. À deux inconnues, chaque équation est une droite du plan, et résoudre le système, c'est chercher l'intersection des deux droites. Trois destins sont possibles : les droites sont sécantes et la solution est unique, elles sont parallèles distinctes et il n'y a aucune solution, ou elles sont confondues et toute la droite est solution. Aucun autre cas n'existe : zéro, un, ou une infinité de solutions.",
+   "texte": "Sécantes, parallèles, confondues : zéro, une, une infinité.",
+   "ecran": "trois_cas"
+  },
+  {
+   "id": "p06",
+   "dit": "Fixons le vocabulaire du diagnostic. Un système est compatible quand il admet au moins une solution, et incompatible dans le cas contraire. Il est homogène quand tous ses seconds membres sont nuls, et nous verrons qu'il admet alors toujours au moins la solution formée de zéros. Ces mots ne sont pas décoratifs : ils permettent d'annoncer la nature d'un système avant même de finir les calculs, et de comprendre ce que la méthode du pivot est en train de révéler.",
+   "texte": "Compatible, incompatible, homogène : diagnostiquer avant de conclure.",
+   "ecran": "vocab"
+  },
+  {
+   "id": "p07",
+   "dit": "Première méthode, la substitution : isoler une inconnue, la remplacer partout, résoudre, puis remonter. Sur cet exemple, la deuxième équation donne immédiatement ixe égal à igrec plus un. La substitution dans la première donne cinq igrec égal à onze, donc igrec vaut onze cinquièmes et ixe seize cinquièmes. Les fractions ne sont pas un échec : le contrôle par substitution dans les deux équations de départ confirme la solution, au centième près comme à l'unité près.",
+   "texte": "Substitution : igrec onze cinquièmes, ixe seize cinquièmes.",
+   "ecran": "subst"
+  },
+  {
+   "id": "p08",
+   "dit": "Deuxième méthode, la combinaison linéaire. Son principe est limpide : si deux équations sont vraies ensemble, alors toute combinaison de ces équations, c'est-à-dire la première multipliée par un nombre plus la seconde multipliée par un autre nombre, reste vraie pour les mêmes solutions. En choisissant bien ces multiplicateurs, on fait disparaître une inconnue d'une équation. C'est l'élimination, l'ancêtre direct du pivot de Gauss.",
+   "texte": "Combiner des équations vraies garde les mêmes solutions.",
+   "ecran": "comb_principe"
+  },
+  {
+   "id": "p09",
+   "dit": "Appliquons-la à un système de trois équations à trois inconnues. Pour éliminer ixe de la deuxième équation, on calcule deux fois la première moins la deuxième : il reste igrec moins zède égal à un. Pour l'éliminer de la troisième, on calcule trois fois la première moins la troisième : il reste sept igrec moins cinq zède égal à cinq. Le système est devenu plus petit : deux équations, deux inconnues, que l'on traite exactement de la même façon.",
+   "texte": "Éliminer ixe : deux équations en igrec et zède subsistent.",
+   "ecran": "comb_ex1"
+  },
+  {
+   "id": "p10",
+   "dit": "On élimine maintenant igrec : sept fois la première de ces deux équations, moins la seconde, donne moins deux zède égal à deux, donc zède vaut moins un. La remontée suit : igrec vaut zède plus un, donc zéro, et ixe vaut quatre moins deux igrec plus zède, donc trois. Solution : trois, zéro, moins un. Dernière étape, non négociable : substituer ce triplet dans les trois équations d'origine pour le vérifier.",
+   "texte": "Trois, zéro, moins un : solution du système trois par trois.",
+   "ecran": "comb_ex2"
+  },
+  {
+   "id": "p11",
+   "dit": "Récapitulons cette première partie. Un système rassemble des conditions simultanées, et il admet zéro, une ou une infinité de solutions, ce que la géométrie des droites rend visible. La substitution isole puis remplace, la combinaison élimine puis remonte, et dans les deux cas la vérification par substitution dans les équations d'origine clôt le travail. Il reste à systématiser tout cela pour les grands systèmes : c'est le rôle des matrices et du pivot de Gauss.",
+   "texte": "L'essentiel de la partie un.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p12",
+   "dit": "Pour systématiser, on cesse d'écrire les inconnues à chaque ligne : on range les coefficients dans un tableau, la matrice augmentée. À gauche de la barre verticale, les coefficients des inconnues, ligne par ligne ; à droite, les seconds membres. Notre système d'exemple, deux ixe plus trois igrec moins zède égal à cinq, quatre ixe moins igrec plus deux zède égal à trois, ixe plus deux igrec plus trois zède égal à sept, tient désormais dans un seul tableau de nombres.",
+   "texte": "La matrice augmentée : les nombres seuls, en tableau.",
+   "ecran": "augmentee"
+  },
+  {
+   "id": "p13",
+   "dit": "Sur ce tableau, trois opérations sont autorisées, car chacune laisse l'ensemble des solutions rigoureusement inchangé : échanger deux lignes, multiplier une ligne par un nombre non nul, et ajouter à une ligne un multiple d'une autre ligne. Ce sont exactement les gestes de la combinaison linéaire, écrits sans les inconnues. Toute la méthode du pivot consiste à enchaîner ces opérations jusqu'à rendre le système triangulaire.",
+   "texte": "Trois opérations sur les lignes, les solutions ne bougent pas.",
+   "ecran": "operations"
+  },
+  {
+   "id": "p14",
+   "dit": "Commençons le pivot sur notre exemple. On échange d'abord la première et la troisième ligne pour placer un pivot égal à un en haut à gauche. Puis on élimine sous ce pivot : la deuxième ligne reçoit la deuxième moins quatre fois la première, et la troisième ligne reçoit la troisième moins deux fois la première. La première colonne ne contient plus que le pivot et des zéros : ixe a disparu des deux dernières équations, comme avec la combinaison, mais en notation matricielle.",
+   "texte": "Premier pivot : ixe éliminé sous la première ligne.",
+   "ecran": "gauss1"
+  },
+  {
+   "id": "p15",
+   "dit": "On passe à la deuxième colonne. On normalise la deuxième ligne en la divisant par moins neuf : son pivot devient un, au prix de fractions en neuvièmes. On élimine alors sous ce deuxième pivot en ajoutant la deuxième ligne à la troisième : il ne reste qu'un coefficient sous la diagonale, moins cinquante-trois neuvièmes. Une dernière normalisation rend le troisième pivot égal à un, et la matrice est échelonnée : chaque pivot est strictement à droite de celui de la ligne précédente.",
+   "texte": "Forme échelonnée : trois pivots, en escalier.",
+   "ecran": "gauss2"
+  },
+  {
+   "id": "p16",
+   "dit": "Vient la remontée. La dernière ligne donne directement zède égal à cinquante-six cinquante-troisièmes. La deuxième ligne donne alors igrec : vingt-cinq neuvièmes, moins dix neuvièmes de zède, ce qui vaut quatre-vingt-cinq cinquante-troisièmes. La première ligne donne enfin ixe : sept, moins deux igrec, moins trois zède, soit trente-trois cinquante-troisièmes. Et le contrôle par substitution dans les trois équations d'origine est exact : c'est ce réflexe qui distingue un calcul fini d'un calcul juste.",
+   "texte": "Remontée : trente-trois, quatre-vingt-cinq, cinquante-six, sur cinquante-trois.",
+   "ecran": "remontee"
+  },
+  {
+   "id": "p17",
+   "dit": "Le pivot sert aussi de détecteur. Si une ligne devient entièrement nulle à gauche de la barre, avec un second membre non nul, elle se lit zéro égal à un nombre différent de zéro : une contradiction. Le système correspondant à deux droites parallèles distinctes, ixe plus deux igrec égal à trois et ixe plus deux igrec égal à cinq, produit exactement ce signal. Le diagnostic est alors définitif : le système est incompatible, il n'admet aucune solution, et aucun calcul supplémentaire n'y changera rien.",
+   "texte": "Ligne zéro égal à deux : incompatible, aucune solution.",
+   "ecran": "diag_contra"
+  },
+  {
+   "id": "p18",
+   "dit": "Le signal inverse est une ligne entièrement nulle, second membre compris : cette équation n'apporte aucune contrainte nouvelle, elle est redondante. Quand trois équations sont proportionnelles entre elles, tout se réduit à une seule équation, ixe plus deux igrec moins trois zède égal à quatre. Deux inconnues restent libres, on les note s et t comme paramètres, et la troisième s'exprime en fonction d'elles : l'ensemble des solutions est un plan entier de l'espace.",
+   "texte": "Une seule équation utile : un plan de solutions, deux paramètres.",
+   "ecran": "diag_param"
+  },
+  {
+   "id": "p19",
+   "dit": "Le rang condense ce diagnostic en un nombre : c'est le nombre de pivots de la forme échelonnée, c'est-à-dire le nombre d'équations réellement indépendantes. Pour un système compatible, la dimension de l'ensemble des solutions vaut le nombre d'inconnues moins le rang. Rang égal au nombre d'inconnues : solution unique. Rang deux pour trois inconnues : une droite de solutions. Rang un : un plan. Le rang se lit sur la forme échelonnée, sans résoudre complètement.",
+   "texte": "Dimension des solutions : inconnues moins rang.",
+   "ecran": "rang"
+  },
+  {
+   "id": "p20",
+   "dit": "Replaçons tout cela dans l'espace. À trois inconnues, chaque équation est un plan, et résoudre, c'est intersecter les plans. Trois plans en position générale se coupent en un point unique, comme dans notre étude de cas du cours où les trois plans passent tous par le point de coordonnées un, un, un. Plans parallèles distincts : aucune intersection. Plans coupés selon une même droite : une infinité de solutions alignées. La géométrie et le rang racontent exactement la même histoire.",
+   "texte": "Trois plans : un point, une droite, un plan, ou le vide.",
+   "ecran": "plans"
+  },
+  {
+   "id": "p21",
+   "dit": "Un cas mérite une mention spéciale : le système homogène, dont tous les seconds membres sont nuls. Il admet toujours la solution triviale, formée uniquement de zéros, car géométriquement tous ses plans passent par l'origine. Il est donc toujours compatible. La vraie question devient : le rang est-il égal au nombre d'inconnues, auquel cas la solution triviale est la seule, ou inférieur, auquel cas il existe une infinité d'autres solutions ? Les équilibrages de réactions chimiques sont exactement de cette nature.",
+   "texte": "Homogène : la solution nulle toujours, d'autres parfois.",
+   "ecran": "homogene"
+  },
+  {
+   "id": "p22",
+   "dit": "Justement, équilibrer la combustion du propane est un système homogène. On cherche les coefficients a, b, c et d tels que a molécules de propane plus b de dioxygène donnent c de dioxyde de carbone et d d'eau. La conservation de chaque élément fournit trois équations : trois a égal à c pour le carbone, huit a égal à deux d pour l'hydrogène, et deux b égal à deux c plus d pour l'oxygène. En fixant a égal à un, on trouve c égal à trois, d égal à quatre et b égal à cinq : la réaction équilibrée est sous les yeux.",
+   "texte": "Propane équilibré : un, cinq, trois, quatre.",
+   "ecran": "chimie"
+  },
+  {
+   "id": "p23",
+   "dit": "Dernier exemple complet, tiré des problèmes de répartition du cours : trois produits consomment trois ressources, travail, matières et énergie, et l'on veut épuiser exactement les stocks de cent, quatre-vingts et soixante-dix unités. Le système s'écrit directement. Astuce de résolution : la deuxième équation moins la troisième fait disparaître igrec et zède d'un coup et donne deux ixe égal à dix, donc ixe égal à cinq. Le pivot ou une combinaison bien choisie conduisent ensuite à igrec égal à vingt et un et zède égal à vingt-trois, une solution unique et, fait décisif pour l'entreprise, entièrement positive.",
+   "texte": "Répartition : cinq, vingt et un, vingt-trois, tout est positif.",
+   "ecran": "ressources"
+  },
+  {
+   "id": "p24",
+   "dit": "Comment choisir sa méthode face à un système neuf ? Si une inconnue est déjà isolée, la substitution s'impose. Si des coefficients sont opposés ou égaux, la combinaison élimine en un geste. Dès que le système grandit, ou qu'un paramètre apparaît, le pivot de Gauss est l'outil systématique : il ne demande aucun flair, seulement de la rigueur, et il diagnostique au passage les cas sans solution ou à solutions infinies. Et quel que soit l'outil, on termine toujours de la même façon : vérifier la solution dans les équations d'origine.",
+   "texte": "Choisir : substitution, combinaison, ou pivot systématique.",
+   "ecran": "choix"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour terminer, retenez l'enchaînement complet de ce cours. Un système linéaire énonce des conditions simultanées ; la substitution, la combinaison et le pivot de Gauss sont trois écritures d'une même idée, l'élimination. La forme échelonnée diagnostique : ligne impossible, aucune solution ; lignes nulles, paramètres libres ; et le rang compte exactement ces degrés de liberté. Droites et plans donnent l'image mentale, la vérification par substitution donne la certitude.",
+   "texte": "Systèmes linéaires : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, modéliser et résoudre à la main"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "La combinaison en grand, puis le pivot de Gauss en matrice",
+   "pont": {
+    "texte": "Partie 2 : l'exemple trois par trois, la matrice augmentée et le pivot.",
+    "dit": "Partie deux : de la combinaison au pivot de Gauss. Nous terminerons d'abord l'exemple de système de trois équations par combinaison linéaire, puis nous passerons à l'écriture en matrice augmentée et aux trois opérations sur les lignes, jusqu'à la forme échelonnée et à la remontée complète."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Diagnostiquer par le rang et appliquer",
+   "pont": {
+    "texte": "Partie 3 : diagnostic, rang, géométrie des plans et applications.",
+    "dit": "Partie trois : diagnostiquer et appliquer. Le pivot révèle les systèmes incompatibles et les systèmes à paramètres libres, le rang compte les degrés de liberté, et la géométrie des plans donne l'image mentale. Nous terminerons par les systèmes homogènes, l'équilibrage d'une réaction chimique et un problème de répartition de ressources."
+   }
+  }
+ ]
+}
