@@ -1,0 +1,731 @@
+{
+ "cours": 6231,
+ "titre": "Les hydrocarbures : familles, réactivité et combustion",
+ "matiere": "Chimie",
+ "lecons": [
+  6760,
+  6761,
+  6762,
+  6763,
+  6764,
+  6765,
+  6766
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les hydrocarbures",
+   "titre": "Les hydrocarbures : familles, réactivité et combustion",
+   "sous": "Alcanes, alcènes, alcynes, aromatiques — et la combustion qui les unit",
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "La définition fondamentale",
+   "texte": "Un hydrocarbure est un composé constitué exclusivement d'atomes de carbone et d'hydrogène. Les carbones forment le squelette de la molécule — chaînes droites, ramifiées ou cycliques — et les hydrogènes viennent l'habiller en saturant les liaisons restantes. Le plus simple de tous, le méthane, est le constituant majeur du gaz naturel.",
+   "anim": {
+    "nom": "gaz",
+    "hauteur": 150
+   }
+  },
+  "classification": {
+   "type": "etape",
+   "kicker": "La classification : tout est dans la liaison",
+   "titre": "Saturés contre insaturés",
+   "tex": [
+    "\\text{hydrocarbure : } C_nH_m \\text{, C et H seulement}",
+    "\\text{saturés : que des liaisons simples } C-C",
+    "\\text{insaturés : au moins une liaison } C{=}C \\text{ ou } C{\\equiv}C",
+    "\\text{saturé} \\Rightarrow \\text{substitution} \\ ; \\ \\text{insaturé} \\Rightarrow \\text{addition}"
+   ]
+  },
+  "familles": {
+   "type": "etape",
+   "kicker": "Les quatre familles",
+   "titre": "Quatre familles, trois formules générales",
+   "tex": [
+    "\\text{alcanes : } C_nH_{2n+2} \\quad \\text{suffixe -ane}",
+    "\\text{alcènes : } C_nH_{2n} \\quad \\text{suffixe -ène}",
+    "\\text{alcynes : } C_nH_{2n-2} \\quad \\text{suffixe -yne}",
+    "\\text{aromatiques : le cycle du benzène } C_6H_6"
+   ]
+  },
+  "representations": {
+   "type": "etape",
+   "kicker": "Représenter une molécule",
+   "titre": "Le butane, en trois niveaux de langage",
+   "tex": [
+    "\\text{brute : } C_4H_{10}",
+    "\\text{semi-développée : } CH_3-CH_2-CH_2-CH_3",
+    "\\text{but-1-ène : } CH_2{=}CH-CH_2-CH_3",
+    "\\text{but-1-yne : } CH{\\equiv}C-CH_2-CH_3"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés des fondations",
+   "etapes": [
+    "C et H seulement : CₙHₘ",
+    "La liaison C–C décide de la famille",
+    "Alcanes CₙH₂ₙ₊₂, saturés",
+    "Alcènes CₙH₂ₙ, alcynes CₙH₂ₙ₋₂",
+    "Aromatiques : le cycle du benzène"
+   ]
+  },
+  "serie_homologue": {
+   "type": "etape",
+   "kicker": "Les alcanes : la série homologue",
+   "titre": "Du méthane au pentane, les points d'ébullition montent",
+   "tex": [
+    "CH_4 \\ : \\ -162\\ ^\\circ\\text{C} \\qquad C_2H_6 \\ : \\ -89\\ ^\\circ\\text{C}",
+    "C_3H_8 \\ : \\ -42\\ ^\\circ\\text{C} \\qquad C_4H_{10} \\ : \\ -0{,}5\\ ^\\circ\\text{C}",
+    "C_5H_{12} \\ : \\ +36\\ ^\\circ\\text{C}"
+   ]
+  },
+  "isomerie": {
+   "type": "etape",
+   "kicker": "L'isomérie de constitution",
+   "titre": "Même formule brute, deux architectures",
+   "tex": [
+    "C_4H_{10} \\ : \\ CH_3-CH_2-CH_2-CH_3 \\ \\text{(butane)}",
+    "C_4H_{10} \\ : \\ CH_3-CH(CH_3)-CH_3 \\ \\text{(2-méthylpropane)}",
+    "T_{\\text{éb}} \\ : \\ -0{,}5\\ ^\\circ\\text{C} \\ \\text{contre} \\ -11{,}7\\ ^\\circ\\text{C}"
+   ],
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 110
+   }
+  },
+  "proprietes_alcanes": {
+   "type": "etape",
+   "kicker": "Propriétés des alcanes",
+   "titre": "Apolaires, peu denses, presque inertes",
+   "tex": [
+    "\\text{insolubles dans l'eau, solubles dans les solvants apolaires}",
+    "\\text{forces de London : } T_{\\text{éb}} \\nearrow \\text{ avec la masse molaire}",
+    "\\rho < 1\\ \\text{g/cm}^3 \\ : \\ \\text{ils flottent sur l'eau}",
+    "\\text{paraffines : liaisons } \\sigma \\text{ fortes, faible réactivité}"
+   ]
+  },
+  "substitution_bilan": {
+   "type": "formule",
+   "kicker": "La réaction phare des alcanes",
+   "tex": "CH_4 + Cl_2 \\xrightarrow{h\\nu} CH_3Cl + HCl",
+   "note": "Un hydrogène remplacé par un chlore, sous l'effet de la lumière UV."
+  },
+  "mecanisme_radicalaire": {
+   "type": "etape",
+   "kicker": "Le mécanisme en chaîne",
+   "titre": "Initiation, propagation, terminaison",
+   "tex": [
+    "\\text{initiation : } Cl_2 \\xrightarrow{h\\nu} 2\\,Cl^{\\bullet}",
+    "\\text{propagation : } Cl^{\\bullet} + CH_4 \\rightarrow HCl + CH_3^{\\bullet}",
+    "CH_3^{\\bullet} + Cl_2 \\rightarrow CH_3Cl + Cl^{\\bullet}",
+    "\\text{terminaison : } 2\\ \\text{radicaux} \\rightarrow \\text{molécule stable}"
+   ]
+  },
+  "selectivite": {
+   "type": "etape",
+   "kicker": "Sélectivité de la substitution",
+   "titre": "Tous les hydrogènes ne se valent pas",
+   "tex": [
+    "\\text{réactivité : } H\\ 3^{\\circ} > H\\ 2^{\\circ} > H\\ 1^{\\circ} > CH_4",
+    "CH_3-CH_2-CH_3 + Cl_2 \\xrightarrow{h\\nu} CH_3-CH_2-CH_2Cl + CH_3-CHCl-CH_3",
+    "\\text{majoritaire : le 2-chloropropane (radical secondaire)}",
+    "\\text{polyhalogénation : } CH_2Cl_2, \\ CHCl_3, \\ CCl_4"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Alcanes : CₙH₂ₙ₊₂, série homologue",
+    "Isomérie dès le butane (C₄H₁₀)",
+    "Apolaires : forces de London, ρ < 1",
+    "Substitution radicalaire sous UV",
+    "Chaîne : initiation, propagation, fin"
+   ]
+  },
+  "double_liaison": {
+   "type": "etape",
+   "kicker": "Les alcènes : la double liaison",
+   "titre": "Une liaison sigma, une liaison pi",
+   "tex": [
+    "C{=}C \\ : \\ \\sigma \\ (sp^2) + \\pi \\ (p \\parallel p)",
+    "\\text{nuage } \\pi \\text{ au-dessus et au-dessous du plan}",
+    "\\text{riche en électrons : la cible des électrophiles}",
+    "\\text{rotation bloquée : géométrie plane, angles de } 120^\\circ"
+   ]
+  },
+  "cistrans": {
+   "type": "etape",
+   "kicker": "L'isomérie géométrique",
+   "titre": "Cis, trans : le but-2-ène a deux visages",
+   "tex": [
+    "\\text{cis : groupes du même côté ; trans : opposés}",
+    "\\text{Z (ensemble) / E (opposé) : priorités CIP}"
+   ],
+   "anim": {
+    "nom": "cistrans_fig",
+    "hauteur": 150
+   }
+  },
+  "addition_mecanisme": {
+   "type": "etape",
+   "kicker": "Les additions électrophiles",
+   "titre": "La double liaison s'ouvre en deux temps",
+   "tex": [
+    "C{=}C + A-B \\rightarrow A-C-C-B",
+    "\\text{étape 1 (lente) : } E^+ + C{=}C \\rightarrow \\text{carbocation}",
+    "\\text{étape 2 (rapide) : } Nu^- + \\text{carbocation} \\rightarrow \\text{produit}"
+   ]
+  },
+  "additions": {
+   "type": "etape",
+   "kicker": "Les grandes additions",
+   "titre": "Quatre réactifs, quatre produits",
+   "tex": [
+    "+ \\ Br_2 \\rightarrow \\text{dibromoalcane : l'eau de brome se décolore}",
+    "+ \\ HX \\rightarrow \\text{halogénoalcane (Markovnikov)}",
+    "+ \\ H_2O \\xrightarrow{H^+} \\text{alcool}",
+    "+ \\ H_2 \\xrightarrow{Ni,\\,Pd,\\,Pt} \\text{alcane}"
+   ]
+  },
+  "markovnikov": {
+   "type": "etape",
+   "kicker": "La règle de Markovnikov",
+   "titre": "L'hydrogène rejoint le carbone le plus hydrogéné",
+   "tex": [
+    "CH_3-CH{=}CH_2 + HBr \\rightarrow CH_3-CHBr-CH_3 \\ \\text{(majoritaire)}",
+    "\\text{passage par le carbocation secondaire, le plus stable}",
+    "\\text{inverse : } R-CH_2-CH_2-OH \\xrightarrow[\\Delta]{H_2SO_4} R-CH{=}CH_2 + H_2O"
+   ]
+  },
+  "recap3": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "C=C : σ + π, carbone sp², plan",
+    "Rotation bloquée : cis/trans, Z/E",
+    "Additions : la liaison π s'ouvre",
+    "Markovnikov : carbocation stable",
+    "Br₂ décoloré : le test d'insaturation"
+   ]
+  },
+  "alcynes_structure": {
+   "type": "etape",
+   "kicker": "Les alcynes : la triple liaison",
+   "titre": "Esse pé, linéaire, deux liaisons pi",
+   "tex": [
+    "C \\equiv C \\ : \\ 1\\ \\text{liaison } \\sigma + 2\\ \\text{liaisons } \\pi",
+    "sp^3 : 109{,}5^\\circ \\quad sp^2 : 120^\\circ \\quad sp : 180^\\circ \\ (\\text{linéaire})",
+    "HC{\\equiv}CH \\ \\text{éthyne} \\ ; \\ CH_3-C{\\equiv}CH \\ \\text{propyne}"
+   ]
+  },
+  "acidite_alcynes": {
+   "type": "etape",
+   "kicker": "L'acidité des alcynes terminaux",
+   "titre": "Un hydrogène presque acide",
+   "tex": [
+    "pK_a \\ : \\ H_2O \\approx 15{,}7 > HC{\\equiv}CH \\approx 25 > NH_3 \\approx 38",
+    "CH_2{=}CH_2 \\approx 44 > CH_3-CH_3 \\approx 50",
+    "HC{\\equiv}CH + NaNH_2 \\rightarrow HC{\\equiv}C^-Na^+ + NH_3",
+    "\\text{caractère s : } sp\\ 50\\,\\% > sp^2\\ 33\\,\\% > sp^3\\ 25\\,\\%"
+   ]
+  },
+  "preparation_alcynes": {
+   "type": "etape",
+   "kicker": "Préparer un alcyne",
+   "titre": "Éliminer deux fois, ou prolonger la chaîne",
+   "tex": [
+    "CH_2Br-CH_2Br \\xrightarrow[\\text{alcool}]{2\\,KOH} HC{\\equiv}CH + 2\\,KBr + 2\\,H_2O",
+    "R-C{\\equiv}C^-Na^+ + R'-X \\rightarrow R-C{\\equiv}C-R' + NaX"
+   ]
+  },
+  "additions_alcynes": {
+   "type": "etape",
+   "kicker": "Les additions des alcynes",
+   "titre": "Un ou deux équivalents, au choix",
+   "tex": [
+    "+ \\ 2\\,Br_2 \\rightarrow \\text{tétrabromoalcane}",
+    "+ \\ 2\\,HCl \\rightarrow CH_3-CHCl_2 \\ \\text{(géminé, Markovnikov)}",
+    "+ \\ H_2O \\xrightarrow[HgSO_4]{H_2SO_4} [CH_2{=}CH-OH] \\rightleftharpoons CH_3-CHO",
+    "+ \\ H_2 \\xrightarrow{Lindlar} \\text{alcène cis} \\ ; \\ \\xrightarrow{Pd} \\text{alcane}"
+   ]
+  },
+  "benzene": {
+   "type": "etape",
+   "kicker": "Les aromatiques : le benzène",
+   "titre": "Un cycle pas comme les autres",
+   "tex": [
+    "C_6H_6 \\ : \\ \\text{cycle plan, } 6\\ e^- \\pi \\text{ délocalisés}",
+    "\\text{énergie de résonance} \\approx 150\\ \\text{kJ/mol}",
+    "\\text{Kekulé (1865) : deux formes en résonance, un cercle}"
+   ],
+   "anim": {
+    "nom": "benzene_fig",
+    "hauteur": 130
+   }
+  },
+  "huckel": {
+   "type": "etape",
+   "kicker": "La règle de Hückel",
+   "titre": "Quatre conditions, un compte d'électrons",
+   "tex": [
+    "\\text{cyclique, plane, conjuguée, } (4n+2)\\ e^- \\pi",
+    "\\text{benzène : } 6 = 4 \\times 1 + 2 \\ ; \\ \\text{naphtalène : } 10 = 4 \\times 2 + 2",
+    "\\text{cyclobutadiène : } 4\\ e^- \\pi \\Rightarrow \\text{anti-aromatique}"
+   ]
+  },
+  "nomenclature_aromatiques": {
+   "type": "etape",
+   "kicker": "Nommer les dérivés du benzène",
+   "titre": "Phényle, toluène, ortho, méta, para",
+   "tex": [
+    "C_6H_5- \\ : \\ \\text{groupe phényle}",
+    "C_6H_5-CH_3 \\ \\text{toluène} \\ ; \\ C_6H_5-OH \\ \\text{phénol} \\ ; \\ C_6H_5-NH_2 \\ \\text{aniline}",
+    "\\text{ortho (1,2) ; méta (1,3) ; para (1,4)}"
+   ]
+  },
+  "sear": {
+   "type": "etape",
+   "kicker": "La réactivité du benzène",
+   "titre": "Substitution plutôt qu'addition",
+   "tex": [
+    "\\text{alcène + } Br_2 \\ : \\ \\text{addition rapide, décoloration}",
+    "\\text{benzène + } Br_2 \\ : \\ \\text{substitution lente (catalyseur)}",
+    "\\text{hydrogénation : } -208 \\text{ contre } -360\\ \\text{kJ/mol attendus}",
+    "E^+ \\text{ remplace } H^+ \\ : \\ \\text{aromaticité conservée}"
+   ]
+  },
+  "recap4": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Alcynes : sp, 180°, pKa ≈ 25",
+    "Hydratation d'alcyne → carbonyle",
+    "Benzène : 6 e⁻ π délocalisés",
+    "Hückel : 4n + 2 électrons π",
+    "SEAr : l'aromaticité survit"
+   ]
+  },
+  "combustion_generale": {
+   "type": "formule",
+   "kicker": "La combustion complète",
+   "tex": "C_xH_y + \\left(x + \\tfrac{y}{4}\\right) O_2 \\rightarrow x\\,CO_2 + \\tfrac{y}{2}\\,H_2O",
+   "note": "Méthode : équilibrer C, puis H, puis compter les oxygènes des produits.",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 140
+   }
+  },
+  "combustion_exemples": {
+   "type": "etape",
+   "kicker": "La combustion, famille par famille",
+   "titre": "Quatre équations à connaître",
+   "tex": [
+    "CH_4 + 2\\,O_2 \\rightarrow CO_2 + 2\\,H_2O",
+    "C_3H_8 + 5\\,O_2 \\rightarrow 3\\,CO_2 + 4\\,H_2O",
+    "C_8H_{18} + \\tfrac{25}{2}\\,O_2 \\rightarrow 8\\,CO_2 + 9\\,H_2O",
+    "C_6H_6 + \\tfrac{15}{2}\\,O_2 \\rightarrow 6\\,CO_2 + 3\\,H_2O"
+   ]
+  },
+  "exemple_butane": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le butane",
+   "titre": "Équilibrer, pas à pas",
+   "tex": [
+    "C_4H_{10} + O_2 \\rightarrow CO_2 + H_2O",
+    "\\text{carbone : } 4\\,CO_2 \\ ; \\ \\text{hydrogène : } 5\\,H_2O",
+    "\\text{oxygène : } 8 + 5 = 13 \\Rightarrow \\tfrac{13}{2}\\,O_2",
+    "2\\,C_4H_{10} + 13\\,O_2 \\rightarrow 8\\,CO_2 + 10\\,H_2O"
+   ]
+  },
+  "combustion_incomplete": {
+   "type": "etape",
+   "kicker": "La combustion incomplète",
+   "titre": "Quand l'oxygène vient à manquer",
+   "tex": [
+    "C_xH_y + \\left(\\tfrac{x}{2} + \\tfrac{y}{4}\\right) O_2 \\rightarrow x\\,CO + \\tfrac{y}{2}\\,H_2O",
+    "C_xH_y + \\tfrac{y}{4}\\,O_2 \\rightarrow x\\,C + \\tfrac{y}{2}\\,H_2O \\ \\text{(suie)}",
+    "\\text{CO : affinité pour l'hémoglobine} \\approx 200 \\times \\text{celle de } O_2"
+   ]
+  },
+  "pouvoir_calorifique": {
+   "type": "etape",
+   "kicker": "Le pouvoir calorifique",
+   "titre": "Plus d'hydrogène, plus d'énergie par kilo",
+   "tex": [
+    "\\text{PCI méthane : } 50{,}0\\ \\text{MJ/kg} \\ ; \\ \\text{propane : } 46{,}3",
+    "\\text{butane : } 45{,}7 \\ ; \\ \\text{octane : } 44{,}4 \\ ; \\ \\text{dodécane : } 43{,}9",
+    "\\Delta H_{\\text{comb}}(CH_4) \\approx -890\\ \\text{kJ/mol}",
+    "Q = m_{\\text{eau}} \\cdot c_{\\text{eau}} \\cdot (T_f - T_i) \\ \\text{(calorimétrie)}"
+   ]
+  },
+  "moteurs_environnement": {
+   "type": "etape",
+   "kicker": "Moteurs et environnement",
+   "titre": "Quatre temps, des polluants, des parades",
+   "tex": [
+    "\\text{cycle : admission, compression, détente, échappement}",
+    "N_2 + O_2 \\rightleftharpoons 2\\,NO \\ ; \\ 2\\,NO + O_2 \\rightarrow 2\\,NO_2",
+    "\\text{pot 3 voies : } CO, \\ HC, \\ NO_x \\rightarrow CO_2, \\ H_2O, \\ N_2",
+    "\\text{indice d'octane : isooctane} = 100 \\ ; \\ \\text{heptane} = 0"
+   ]
+  },
+  "recap5": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Combustion : CxHy + (x + y/4) O₂",
+    "Complète : CO₂ + H₂O seulement",
+    "Incomplète : CO mortel, suie",
+    "PCI : le méthane mène, 50 MJ/kg",
+    "ΔH négative : réaction exothermique"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "Du pétrole aux produits",
+   "titre": "Raffiner, craquer, polymériser",
+   "tex": [
+    "\\text{distillation : gaz, naphta, kérosène, gazole, bitume}",
+    "C_{16}H_{34} \\xrightarrow{\\Delta} C_8H_{18} + C_4H_8 + C_2H_4 + C_2H_6",
+    "n\\,CH_2{=}CH_2 \\rightarrow \\text{polyéthylène (PE)}",
+    "CH_2{=}CHCl \\rightarrow \\text{PVC} \\ ; \\ \\text{styrène} \\rightarrow \\text{polystyrène}"
+   ]
+  },
+  "benzene_nylon": {
+   "type": "etape",
+   "kicker": "Le cas d'école industriel",
+   "titre": "Du benzène au nylon, en trois actes",
+   "tex": [
+    "\\text{nitration : benzène} \\rightarrow \\text{nitrobenzène}",
+    "\\text{réduction : nitrobenzène} \\rightarrow \\text{aniline } C_6H_5NH_2",
+    "\\text{polycondensation} \\rightarrow \\text{nylon (polyamide)}"
+   ]
+  },
+  "avenir": {
+   "type": "etape",
+   "kicker": "Au-delà du pétrole",
+   "titre": "Recycler, biosourcer, synthétiser",
+   "tex": [
+    "\\text{craquage des plastiques} \\rightarrow \\text{naphta recyclé}",
+    "C_2H_5OH \\xrightarrow[\\text{catalyseur}]{\\Delta} CH_2{=}CH_2 + H_2O \\ \\text{(bioéthylène)}",
+    "CO + H_2 \\xrightarrow{\\text{Fischer-Tropsch}} \\text{hydrocarbures liquides}",
+    "C_2H_5OH + 3\\,O_2 \\rightarrow 2\\,CO_2 + 3\\,H_2O \\ \\text{(bioéthanol)}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "La liaison C–C choisit la réaction",
+    "Saturés : substitution ; insaturés : addition",
+    "Aromatiques : substitution, Hückel",
+    "Combustion : l'énergie des liaisons",
+    "Du puits de pétrole au polymère"
+   ]
+  }
+ },
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Fondations et alcanes : la famille saturée"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Alcènes, alcynes et aromatiques : le règne des liaisons multiples",
+   "pont": {
+    "texte": "Partie 2 : alcènes, alcynes et aromatiques — le règne des liaisons multiples.",
+    "dit": "Partie deux : les hydrocarbures insaturés et les aromatiques. Nous allons découvrir la double liaison des alcènes et ses réactions d’addition, puis la triple liaison des alcynes, capable d’additions en deux temps et dotée d’une acidité surprenante. Nous terminerons par le benzène, ce cycle aromatique qui refuse les additions et préfère les substitutions pour protéger sa stabilité."
+   }
+  },
+  {
+   "debut": "p29",
+   "sous_titre": "La combustion et les applications : du pétrole aux matériaux",
+   "pont": {
+    "texte": "Partie 3 : la combustion, puis du pétrole aux matériaux.",
+    "dit": "Partie trois : la combustion et les applications. Nous allons écrire la combustion complète de n’importe quel hydrocarbure grâce à une équation générale, la résoudre pas à pas sur le butane, puis affronter la combustion incomplète et son poison, le monoxyde de carbone. Nous chiffrerons l’énergie libérée avec les pouvoirs calorifiques, avant de suivre les hydrocarbures du puits de pétrole jusqu’aux plastiques et aux médicaments, et de regarder au-delà du pétrole."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours consacré aux hydrocarbures, la grande famille fondatrice de la chimie organique. Un hydrocarbure ne contient que du carbone et de l’hydrogène, et pourtant cette simplicité cache quatre familles aux caractères bien différents : les alcanes, les alcènes, les alcynes et les aromatiques. Nous allons apprendre à les reconnaître à leurs liaisons, à prévoir leurs réactions signature, substitution pour les uns, addition pour les autres, puis à écrire leur combustion, la réaction qui fait tourner nos moteurs. Objectif : passer de la structure d’une molécule à ses propriétés, puis à ses applications.",
+   "texte": "Hydrocarbures : C et H seulement, quatre familles."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "pause_apres": 0.8,
+   "dit": "Commençons par la définition. Un hydrocarbure est un composé chimique constitué exclusivement d’atomes de carbone et d’atomes d’hydrogène : c’est la famille la plus simple et la plus fondamentale de la chimie organique. L’image à retenir est celle du squelette et de la chair : les atomes de carbone, capables de se lier entre eux par des liaisons fortes, forment le squelette de la molécule, des chaînes droites, ramifiées ou refermées en cycles ; les atomes d’hydrogène viennent se greffer sur ce squelette et saturer les liaisons encore disponibles. Le plus simple des hydrocarbures, le méthane, est le constituant majeur du gaz naturel, et on le retrouve jusque dans l’atmosphère de Jupiter.",
+   "texte": "Carbone + hydrogène : le squelette et sa chair."
+  },
+  {
+   "id": "p03",
+   "ecran": "classification",
+   "pause_apres": 0.8,
+   "dit": "Comment classer ces molécules ? Tout est dans la liaison entre les atomes de carbone. Si la molécule ne contient que des liaisons simples, chaque carbone est saturé d’hydrogènes : l’hydrocarbure est dit saturé, et sa réactivité est plutôt faible, dominée par les réactions de substitution. Si la molécule contient au moins une liaison double ou une liaison triple, elle est insaturée : elle porte moins d’hydrogènes que le maximum possible, et la liaison multiple devient un site très réactif, où se font les additions. Retenez ce réflexe : saturé rime avec substitution, insaturé rime avec addition.",
+   "texte": "Liaisons simples → saturés ; multiples → insaturés."
+  },
+  {
+   "id": "p04",
+   "ecran": "familles",
+   "pause_apres": 0.8,
+   "dit": "Voici les quatre familles à connaître. Les alcanes, hydrocarbures saturés de suffixe ane, suivent la formule générale cé n h deux n plus deux : c’est le maximum d’hydrogènes possible. Les alcènes portent au moins une double liaison, suffixe ène, et leur formule est cé n h deux n. Les alcynes portent au moins une triple liaison, suffixe yne, formule cé n h deux n moins deux. Enfin, les aromatiques sont bâtis sur le cycle du benzène : malgré leurs doubles liaisons apparentes, ils forment une classe à part, d’une stabilité exceptionnelle. Observez la tendance : chaque liaison multiple fait perdre deux hydrogènes.",
+   "texte": "Alcanes CₙH₂ₙ₊₂ · alcènes CₙH₂ₙ · alcynes CₙH₂ₙ₋₂."
+  },
+  {
+   "id": "p05",
+   "ecran": "representations",
+   "pause_apres": 0.8,
+   "dit": "Pour décrire une molécule, le chimiste dispose de trois niveaux de langage. La formule brute donne la composition, par exemple cé quatre h dix pour le butane, mais elle ne dit rien de l’enchaînement : plusieurs isomères peuvent partager la même formule brute. La formule développée dessine tous les atomes et toutes les liaisons : très claire, mais vite lourde. La formule semi-développée, la plus utilisée, regroupe chaque hydrogène avec son carbone et met en évidence la chaîne carbonée, ainsi que la liaison multiple quand il y en a une : c’est elle qui servira dans tout le cours.",
+   "texte": "Brute, développée, semi-développée : trois niveaux."
+  },
+  {
+   "id": "p06",
+   "ecran": "recap1",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons ces fondations. Un hydrocarbure ne contient que du carbone et de l’hydrogène, et sa formule brute s’écrit cé n h m. La nature des liaisons carbone-carbone décide de la famille : saturé s’il n’y a que des liaisons simples, insaturé dès qu’apparaît une liaison multiple. Les alcanes suivent la formule cé n h deux n plus deux, les alcènes cé n h deux n, les alcynes cé n h deux n moins deux, et les aromatiques forment une classe à part autour du benzène. Pour écrire ces molécules, la formule semi-développée offre le meilleur compromis entre clarté et compacité. Entrons maintenant dans la première famille : les alcanes.",
+   "texte": "Fondations posées : direction les alcanes."
+  },
+  {
+   "id": "p07",
+   "ecran": "serie_homologue",
+   "pause_apres": 0.8,
+   "dit": "Les alcanes forment une série homologue : chaque terme diffère du précédent par un groupe cé h deux supplémentaire, et les propriétés évoluent graduellement. Le méthane bout à moins cent soixante-deux degrés, l’éthane à moins quatre-vingt-neuf, le propane à moins quarante-deux, le butane à moins zéro virgule cinq, et le pentane, liquide, à plus trente-six degrés. Cette progression régulière s’explique par les forces de London : plus la molécule grandit, plus ces faibles attractions entre molécules s’additionnent, et plus il faut d’énergie pour les séparer.",
+   "texte": "CH₄ −162 °C → C₅H₁₂ +36 °C : l’effet de la taille."
+  },
+  {
+   "id": "p08",
+   "ecran": "isomerie",
+   "pause_apres": 0.8,
+   "dit": "À partir du butane apparaît l’isomérie de constitution : une même formule brute, cé quatre h dix, mais deux enchaînements différents. Le butane ordinaire a une chaîne linéaire ; le deux-méthylpropane, ou isobutane, a une chaîne ramifiée. Cette simple différence d’architecture change les propriétés : l’isobutane bout à moins onze virgule sept degrés, soit plus de dix degrés plus bas que son isomère linéaire, parce que sa forme compacte offre moins de surface de contact aux forces de London. C’est pour cela que le gaz des briquets mélange les deux isomères : il se vaporise plus facilement.",
+   "texte": "C₄H₁₀ : linéaire −0,5 °C, ramifié −11,7 °C."
+  },
+  {
+   "id": "p09",
+   "ecran": "proprietes_alcanes",
+   "pause_apres": 0.8,
+   "dit": "Les propriétés des alcanes découlent de leur nature apolaire : les liaisons carbone-carbone et carbone-hydrogène ne créent presque aucune charge partielle. Conséquence directe, ils sont insolubles dans l’eau, qui est polaire, mais solubles dans les solvants organiques apolaires : qui se ressemble s’assemble. Leur densité est toujours inférieure à celle de l’eau, c’est pourquoi une nappe de pétrole flotte sur l’océan. Enfin, leurs liaisons sigma sont fortes et peu polarisées, ce qui les rend peu réactifs : on les surnomme paraffines, d’un mot latin qui signifie peu d’affinité. Ils ignorent les acides, les bases et les oxydants doux.",
+   "texte": "Apolaires, ρ < 1, « paraffines » peu réactives."
+  },
+  {
+   "id": "p10",
+   "ecran": "substitution_bilan",
+   "pause_apres": 0.8,
+   "dit": "La grande réaction des alcanes est la substitution radicalaire : un atome d’hydrogène est remplacé par un autre atome, typiquement un halogène comme le chlore. Voici le bilan de la chloration du méthane : sous l’effet de la lumière ultraviolette, le méthane réagit avec le dichlore pour donner du chlorométhane et du chlorure d’hydrogène. À première vue, un échange anodin ; en réalité, cette réaction cache un mécanisme en chaîne spectaculaire, fait de radicaux libres, ces espèces porteuses d’un électron célibataire, d’une réactivité extrême.",
+   "texte": "CH₄ + Cl₂ →(hν) CH₃Cl + HCl : la substitution."
+  },
+  {
+   "id": "p11",
+   "ecran": "mecanisme_radicalaire",
+   "pause_apres": 0.8,
+   "dit": "Le mécanisme se joue en trois actes. Acte un, l’initiation : la lumière ultraviolette brise la liaison chlore-chlore de façon homolytique, chaque atome repart avec un électron, et deux radicaux chlore naissent. Acte deux, la propagation : un radical chlore arrache un hydrogène au méthane, ce qui forme du chlorure d’hydrogène et un radical méthyle ; ce radical attaque à son tour une molécule de dichlore, produit le chlorométhane et régénère un radical chlore. Le cycle peut se répéter des milliers de fois : c’est une réaction en chaîne. Acte trois, la terminaison : deux radicaux se rencontrent et se combinent, la chaîne s’éteint.",
+   "texte": "Initiation → propagation en chaîne → terminaison."
+  },
+  {
+   "id": "p12",
+   "ecran": "selectivite",
+   "pause_apres": 0.8,
+   "dit": "Avec un alcane plus complexe, plusieurs produits sont possibles, car tous les hydrogènes ne se valent pas. La réactivité croît des hydrogènes primaires vers les secondaires, puis les tertiaires, car le radical formé est alors plus stable. Le propane possède six hydrogènes primaires et seulement deux secondaires ; pourtant, le produit majoritaire est le deux-chloropropane, formé par l’attaque des hydrogènes secondaires. Attention aussi à la polyhalogénation : le chlorométhane peut être attaqué à son tour et mener au dichlorométhane, au chloroforme, puis au tétrachlorométhane. Pour favoriser un seul produit, on travaille avec un grand excès d’alcane.",
+   "texte": "Propane → 2-chloropropane majoritaire."
+  },
+  {
+   "id": "p13",
+   "ecran": "recap2",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons le chapitre des alcanes. Ce sont des hydrocarbures saturés, de formule cé n h deux n plus deux, rangés en série homologue où chaque terme gagne un groupe cé h deux. L’isomérie de constitution apparaît dès le butane, et la ramification abaisse le point d’ébullition. Molécules apolaires, moins denses que l’eau, les alcanes sont peu réactifs ; leur réaction signature est la substitution radicalaire, un mécanisme en chaîne en trois actes, initiation, propagation, terminaison, dont la sélectivité suit la stabilité des radicaux. Changeons maintenant de monde : que se passe-t-il quand on introduit une double liaison ?",
+   "texte": "Alcanes bouclés : place à la double liaison."
+  },
+  {
+   "id": "p14",
+   "ecran": "double_liaison",
+   "pause_apres": 0.8,
+   "dit": "Entrons dans le monde des alcènes. Leur double liaison n’est pas la somme de deux liaisons simples : elle associe une liaison sigma, formée par le recouvrement frontal d’orbitales hybrides esse pé deux, et une liaison pi, née du recouvrement latéral de deux orbitales p parallèles, au-dessus et au-dessous du plan de la molécule. Le nuage pi est diffus et riche en électrons : il constitue une cible de choix pour les électrophiles, ces espèces avides d’électrons. Autre conséquence capitale : pour garder les orbitales p parallèles, la rotation autour de la double liaison est bloquée. La géométrie est plane, avec des angles de cent vingt degrés, et les substituants sont figés dans l’espace.",
+   "texte": "C=C : σ + π ; rotation bloquée, géométrie plane."
+  },
+  {
+   "id": "p15",
+   "ecran": "cistrans",
+   "pause_apres": 0.8,
+   "dit": "Cette rotation bloquée fait naître l’isomérie géométrique. Dans le but-deux-ène, si les deux groupes méthyle sont du même côté de la double liaison, on obtient l’isomère cis ; s’ils sont de part et d’autre, l’isomère trans. Ce sont deux molécules distinctes, aux propriétés physiques légèrement différentes. Quand les substituants sont trop variés pour parler de cis et de trans, on passe à la nomenclature Z E, fondée sur les priorités de Cahn, Ingold et Prelog : Z, de l’allemand zusammen, ensemble, si les deux groupes prioritaires sont du même côté ; E, entgegen, opposé, dans le cas contraire.",
+   "texte": "But-2-ène : cis ou trans ; nomenclature Z/E."
+  },
+  {
+   "id": "p16",
+   "ecran": "addition_mecanisme",
+   "pause_apres": 0.8,
+   "dit": "La réaction signature des alcènes est l’addition : la double liaison se rompt et deux nouvelles liaisons simples se forment, la molécule invitée se partageant entre les deux carbones. La plupart de ces additions suivent un mécanisme électrophile en deux temps. Premier temps, le plus lent : l’électrophile, attiré par le nuage pi, s’y fixe ; la liaison pi se rompt pour créer la nouvelle liaison, et l’autre carbone devient un carbocation, porteur d’une charge positive. Deuxième temps, rapide : le nucléophile, souvent l’anion partenaire de l’électrophile, attaque ce carbocation instable et forme la seconde liaison. Tout le chapitre découle de ce scénario.",
+   "texte": "Addition : E⁺ d’abord (carbocation), Nu⁻ ensuite."
+  },
+  {
+   "id": "p17",
+   "ecran": "additions",
+   "pause_apres": 0.8,
+   "dit": "Quatre additions sont à connaître. L’addition d’un halogène, comme le brome, donne un dibromoalcane : le brome, liquide rouge-brun, se décolore au contact d’un alcène, et cette décoloration sert de test visuel pour repérer une insaturation. L’addition d’un halogénure d’hydrogène donne un halogénoalcane, avec une question de régiosélectivité que tranchera la règle de Markovnikov. L’hydratation, addition d’eau en milieu acide, produit un alcool : c’est ainsi que l’éthylène industriel devient de l’éthanol. Enfin, l’hydrogénation, addition de dihydrogène sur un catalyseur métallique, redonne un alcane : elle sert à durcir les huiles végétales en margarines.",
+   "texte": "Br₂ (test), HX, H₂O → alcool, H₂ → alcane."
+  },
+  {
+   "id": "p18",
+   "ecran": "markovnikov",
+   "pause_apres": 0.8,
+   "dit": "Reste à prévoir de quel côté se fixe chaque atome. La règle de Markovnikov, dans sa version simple, dit que l’hydrogène de l’acide se fixe sur le carbone de la double liaison qui porte déjà le plus d’hydrogènes. Sur le propène, l’hydrogène rejoint donc le carbone terminal, et le produit majoritaire est le deux-bromopropane. Pourquoi ? Parce que l’étape lente passe par le carbocation le plus stable : un carbocation secondaire, stabilisé par l’effet donneur des groupes alkyle, plutôt qu’un carbocation primaire. Enfin, la réaction inverse existe : éliminer l’eau d’un alcool, à chaud et en présence d’acide sulfurique concentré, régénère l’alcène. Addition et élimination sont les deux faces d’une même pièce.",
+   "texte": "Markovnikov : via le carbocation le plus stable."
+  },
+  {
+   "id": "p19",
+   "ecran": "recap3",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons le chapitre des alcènes. La double liaison associe une liaison sigma et une liaison pi portée par des carbones esse pé deux ; le nuage pi, riche en électrons, fait toute la réactivité, et la rotation bloquée crée l’isomérie cis-trans, ou Z E. Les alcènes réagissent par additions électrophiles en deux temps, en passant par un carbocation ; la règle de Markovnikov prédit le produit majoritaire, celui du carbocation le plus stable. Le test à l’eau de brome, qui se décolore, trahit leur présence. Poussons l’insaturation à son comble : après la double liaison, la triple.",
+   "texte": "Alcènes bouclés : la triple liaison arrive."
+  },
+  {
+   "id": "p20",
+   "ecran": "alcynes_structure",
+   "pause_apres": 0.8,
+   "dit": "Les alcynes portent une triple liaison : une liaison sigma et deux liaisons pi, formées par deux paires d’orbitales p perpendiculaires entre elles. Le carbone y est hybridé esse pé, et la géométrie autour de la triple liaison est linéaire, avec des angles de cent quatre-vingts degrés. Retenez le fil conducteur de tout le cours : carbone esse pé trois, géométrie tétraédrique et angles de cent neuf virgule cinq degrés pour les alcanes ; esse pé deux, géométrie plane et cent vingt degrés pour les alcènes ; esse pé, géométrie linéaire et cent quatre-vingts degrés pour les alcynes. L’éthyne, ou acétylène, est l’alcyne le plus simple ; le propyne et le pent-deux-yne montrent comment la nomenclature numérote la chaîne pour donner à la triple liaison le plus petit indice possible.",
+   "texte": "sp : 180° ; sp² : 120° ; sp³ : 109,5°."
+  },
+  {
+   "id": "p21",
+   "ecran": "acidite_alcynes",
+   "pause_apres": 0.8,
+   "dit": "Les alcynes terminaux, ceux dont la triple liaison est au bout de la chaîne, réservent une surprise : leur hydrogène terminal est nettement acide, pour un hydrocarbure. Son pé ka vaut environ vingt-cinq, contre trente-huit pour l’ammoniac, quarante-quatre pour l’éthylène et cinquante pour l’éthane : il reste bien moins acide que l’eau, de pé ka quinze virgule sept, mais l’écart avec les autres hydrocarbures est immense. L’explication tient à l’hybridation : l’orbitale esse pé contient cinquante pour cent de caractère s, contre trente-trois pour esse pé deux et vingt-cinq pour esse pé trois ; l’électron de la liaison est donc plus proche du noyau, et le proton part plus facilement. Avec une base forte comme l’amidure de sodium, l’alcyne donne alors un alcynure, un nucléophile puissant, très utile en synthèse.",
+   "texte": "pKa ≈ 25 : l’alcyne terminal forme des alcynures."
+  },
+  {
+   "id": "p22",
+   "ecran": "preparation_alcynes",
+   "pause_apres": 0.8,
+   "dit": "Comment fabrique-t-on un alcyne ? Deux méthodes sont au programme. La première est la double élimination : on part d’un dihalogénoalcane, vicinal ou géminé, et une base forte en excès, potasse alcoolique ou amidure de sodium, arrache deux fois les éléments d’un halogénure d’hydrogène ; à partir du dibromoéthane vicinal, on arrive ainsi jusqu’à l’éthyne. La deuxième méthode exploite l’acidité que nous venons de voir : l’alcynure, nucléophile, attaque un halogénure d’alkyle primaire et prolonge la chaîne carbone-carbone. C’est une des grandes stratégies de construction des molécules organiques : allonger le squelette, un maillon à la fois.",
+   "texte": "Double élimination, ou alcynure + halogénure primaire."
+  },
+  {
+   "id": "p23",
+   "ecran": "additions_alcynes",
+   "pause_apres": 0.8,
+   "dit": "Côté réactivité, les alcynes jouent le même jeu que les alcènes, mais en double : la triple liaison peut additionner deux équivalents de réactif. Deux équivalents de brome mènent au tétrabromoalcane ; deux équivalents d’acide chlorhydrique donnent un dihalogénoalcane géminé, les deux halogènes sur le même carbone, toujours selon Markovnikov. L’hydratation, catalysée par l’acide sulfurique et le sulfate de mercure, passe par un énol instable qui se réarrange aussitôt en composé carbonylé : un aldéhyde pour l’éthyne, des cétones pour les alcynes internes. Quant à l’hydrogénation, elle se pilote : totale sur palladium, elle donne l’alcane ; partielle avec le catalyseur de Lindlar, elle s’arrête à l’alcène cis ; avec le sodium dans l’ammoniac liquide, on obtient l’alcène trans. L’acétylène, lui, brûle dans l’oxygène avec une flamme dépassant trois mille deux cents degrés : c’est le chalumeau de soudage, et son dérivé, le chlorure de vinyle, est le monomère du PVC.",
+   "texte": "Deux équivalents possibles ; hydratation → carbonyle."
+  },
+  {
+   "id": "p24",
+   "ecran": "benzene",
+   "pause_apres": 0.8,
+   "dit": "Changeons de décor avec les aromatiques. Le benzène, de formule cé six h six, a dérouté les chimistes du dix-neuvième siècle : sa formule suggère une forte insaturation, mais il refuse le comportement des alcènes. Kekulé proposa en mille huit cent soixante-cinq un cycle hexagonal alternant liaisons simples et doubles, idée née, dit-on, d’un rêve de serpent se mordant la queue. La vision moderne est plus subtile : le benzène est un hybride de résonance entre les deux formes de Kekulé, et ses six électrons pi sont délocalisés sur tout le cycle, ce que symbolise le cercle inscrit dans l’hexagone. Cette délocalisation lui confère une stabilité exceptionnelle, chiffrée par une énergie de résonance d’environ cent cinquante kilojoules par mole.",
+   "texte": "C₆H₆ : 6 e⁻ π délocalisés, ≈ 150 kJ/mol gagnés."
+  },
+  {
+   "id": "p25",
+   "ecran": "huckel",
+   "pause_apres": 0.8,
+   "dit": "Tous les cycles conjugués ne sont pas aromatiques. La règle de Hückel fixe quatre conditions : la molécule doit être cyclique, plane, dotée d’un système conjugué continu où chaque atome du cycle porte une orbitale p, et son nombre d’électrons pi doit suivre la série quatre n plus deux. Le benzène, avec six électrons pi, correspond à n égal un ; le naphtalène, avec dix électrons, à n égal deux : tous deux sont aromatiques. Le cyclobutadiène, avec quatre électrons pi, échappe à la série : il est anti-aromatique et très instable. Même des ions peuvent être aromatiques : l’anion cyclopentadiényle et le cation tropylium comptent six électrons pi et sont remarquablement stables.",
+   "texte": "Hückel : cyclique, plan, conjugué, 4n + 2 e⁻ π."
+  },
+  {
+   "id": "p26",
+   "ecran": "nomenclature_aromatiques",
+   "pause_apres": 0.8,
+   "dit": "Quelques noms suffisent à décrire les dérivés du benzène. Le groupe cé six h cinq, obtenu en retirant un hydrogène au benzène, s’appelle le groupe phényle. Le méthylbenzène est le toluène, l’hydroxybenzène le phénol, l’aminobenzène l’aniline : trois noms communs à connaître. Pour deux substituants, on précise leurs positions relatives : ortho pour les positions un et deux, voisins ; méta pour un et trois ; para pour un et quatre, face à face. Le dichlorobenzène existe ainsi sous trois formes isomères, ortho, méta et para, aux propriétés distinctes.",
+   "texte": "Phényle C₆H₅– ; ortho 1,2 · méta 1,3 · para 1,4."
+  },
+  {
+   "id": "p27",
+   "ecran": "sear",
+   "pause_apres": 0.8,
+   "dit": "La réactivité du benzène découle de sa stabilité : une addition détruirait la délocalisation des électrons pi, donc l’aromaticité, et le benzène s’y refuse. Là où le cyclohexène décolore instantanément le brome par addition, le benzène ne réagit que lentement, par substitution, et avec un catalyseur. Même contraste avec le permanganate de potassium, décoloré par les alcènes mais sans effet sur le benzène. Les chiffres confirment : hydrogéner le benzène ne libère que deux cent huit kilojoules par mole, contre trois cent soixante attendus pour trois doubles liaisons indépendantes. La réaction signature est donc la substitution électrophile aromatique : un électrophile remplace un hydrogène du cycle, et l’aromaticité, un instant menacée, est restaurée dans le produit.",
+   "texte": "SEAr : E⁺ remplace H⁺, l’aromaticité survit."
+  },
+  {
+   "id": "p28",
+   "ecran": "recap4",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons ce bloc insaturé. Les alcynes, carbones esse pé et géométrie linéaire, additionnent jusqu’à deux équivalents de réactif ; leur hydrogène terminal, de pé ka voisin de vingt-cinq, donne des alcynures nucléophiles, et leur hydratation mène aux composés carbonylés. Le benzène, lui, doit sa personnalité à ses six électrons pi délocalisés : la règle de Hückel, quatre n plus deux, décide de l’aromaticité, et le cycle préfère la substitution électrophile à l’addition pour conserver sa stabilité. Il reste la réaction que toutes ces familles partagent, celle qui les brûle : la combustion.",
+   "texte": "Insaturés et aromatiques bouclés : brûlons-les."
+  },
+  {
+   "id": "p29",
+   "ecran": "combustion_generale",
+   "pause_apres": 0.8,
+   "dit": "La combustion est une oxydoréduction rapide et exothermique : le combustible, notre hydrocarbure, est oxydé, et le comburant, le dioxygène de l’air, est réduit. Elle exige la réunion de trois éléments, le fameux triangle du feu : un combustible, un comburant et une énergie d’activation, étincelle ou flamme, pour démarrer. En excès de dioxygène, la combustion est complète et ne produit que du dioxyde de carbone et de l’eau. L’équation générale, pour un hydrocarbure de formule cé x h y, se construit par une méthode systématique : on équilibre d’abord les carbones, puis les hydrogènes, et l’on compte enfin les oxygènes des produits pour fixer le coefficient du dioxygène, x plus y sur quatre.",
+   "texte": "CxHy + (x + y/4) O₂ → x CO₂ + (y/2) H₂O."
+  },
+  {
+   "id": "p30",
+   "ecran": "combustion_exemples",
+   "pause_apres": 0.8,
+   "dit": "Appliquons la formule générale aux quatre familles. Le méthane brûle avec deux dioxygènes et donne un dioxyde de carbone et deux eaux. Le propane en demande cinq, pour trois dioxydes de carbone et quatre eaux. L’octane, molécule de l’essence, exige vingt-cinq demis de dioxygène, soit douze et demi, pour huit dioxydes de carbone et neuf eaux : on préfère souvent doubler tous les coefficients pour éviter les fractions. Le benzène, lui, brûle avec quinze demis de dioxygène et donne six dioxydes de carbone et trois eaux. Remarquez que la méthode ne change jamais : seuls les coefficients suivent la formule de l’hydrocarbure.",
+   "texte": "CH₄ : 2 O₂ · C₃H₈ : 5 O₂ · C₈H₁₈ : 25/2 O₂."
+  },
+  {
+   "id": "p31",
+   "ecran": "exemple_butane",
+   "pause_apres": 0.8,
+   "dit": "Exemple résolu, posé par les leçons : équilibrer la combustion du butane. Première étape, le carbone : quatre atomes à gauche, donc quatre dioxydes de carbone à droite. Deuxième étape, l’hydrogène : dix atomes, donc cinq molécules d’eau. Troisième étape, l’oxygène : les produits en contiennent huit plus cinq, treize ; il faut donc treize demis de dioxygène. Pour écrire l’équation sans fraction, on double tout : deux butanes réagissent avec treize dioxygènes pour donner huit dioxydes de carbone et dix eaux. La question des leçons tombe alors d’elle-même : brûler complètement deux moles de butane consomme exactement treize moles de dioxygène.",
+   "texte": "2 C₄H₁₀ + 13 O₂ → 8 CO₂ + 10 H₂O : treize moles pour deux."
+  },
+  {
+   "id": "p32",
+   "ecran": "combustion_incomplete",
+   "pause_apres": 0.8,
+   "dit": "Quand le dioxygène vient à manquer, la combustion devient incomplète et les produits changent de nature. Au lieu du dioxyde de carbone, on obtient du monoxyde de carbone, voire du carbone pur, la suie, l’eau étant toujours formée. Le monoxyde de carbone est un poison redoutable : incolore, inodore, indétectable sans appareil, il se fixe sur l’hémoglobine avec une affinité environ deux cents fois supérieure à celle du dioxygène, et il est responsable d’intoxications mortelles chaque hiver, avec des chauffages défectueux. La combustion incomplète a pourtant des usages : la production du noir de carbone pour les pneus et les encres, et autrefois les gazogènes des véhicules en temps de pénurie.",
+   "texte": "Manque d’O₂ → CO (mortel) ou suie."
+  },
+  {
+   "id": "p33",
+   "ecran": "pouvoir_calorifique",
+   "pause_apres": 0.8,
+   "dit": "Côté énergie, on compare les combustibles par leur pouvoir calorifique : la chaleur dégagée par la combustion complète d’un kilogramme. Le méthane mène le classement avec cinquante mégajoules par kilogramme, devant le propane, le butane, l’octane de l’essence et le dodécane du kérosène, tous entre quarante-quatre et quarante-six. La tendance est claire : plus le rapport entre hydrogènes et carbones est élevé, plus le pouvoir calorifique est grand. Pour le méthane, la variation d’enthalpie de combustion vaut environ moins huit cent quatre-vingt-dix kilojoules par mole : seize grammes brûlés libèrent de quoi porter deux litres et demi d’eau de vingt degrés à l’ébullition. En laboratoire, on mesure cette énergie par calorimétrie : la chaleur reçue par l’eau égale sa masse, fois sa capacité thermique, fois l’élévation de température.",
+   "texte": "PCI : CH₄ 50,0 MJ/kg en tête ; ΔH ≈ −890 kJ/mol."
+  },
+  {
+   "id": "p34",
+   "ecran": "moteurs_environnement",
+   "pause_apres": 0.8,
+   "dit": "Ces combustions font tourner les moteurs à quatre temps : admission du mélange, compression, combustion et détente sous l’effet de l’étincelle, puis échappement. Un bon carburant doit résister à l’auto-allumage, le cliquetis : c’est l’indice d’octane, étalonné entre l’heptane, indice zéro, et l’isooctane, indice cent. Mais les gaz d’échappement posent problème : dioxyde de carbone, gaz à effet de serre ; monoxyde de carbone et imbrûlés des combustions incomplètes ; oxydes d’azote formés à haute température quand le diazote de l’air réagit avec le dioxygène ; et les particules de suie. Les parades existent : le pot catalytique trois voies convertit monoxyde de carbone, imbrûlés et oxydes d’azote en dioxyde de carbone, eau et diazote, et les filtres à particules piègent les suies des moteurs diesel.",
+   "texte": "Moteur quatre temps ; NOₓ à chaud ; pot trois voies en parade."
+  },
+  {
+   "id": "p35",
+   "ecran": "recap5",
+   "pause_apres": 0.8,
+   "dit": "Récapitulons la combustion. C’est une oxydoréduction exothermique qui réclame combustible, comburant et énergie d’activation. Complète, elle suit l’équation générale et ne donne que dioxyde de carbone et eau ; la méthode d’équilibrage est toujours la même, carbone, hydrogène, puis oxygène. Incomplète, elle produit le monoxyde de carbone, poison invisible, et la suie. Son énergie se chiffre par le pouvoir calorifique, maximal pour le méthane, et par une enthalpie de combustion négative. Il ne reste qu’à suivre ces molécules dans le monde réel : du pétrole brut aux objets qui nous entourent.",
+   "texte": "Combustion bouclée : du pétrole aux produits."
+  },
+  {
+   "id": "p36",
+   "ecran": "industrie",
+   "pause_apres": 0.8,
+   "dit": "Tout commence au raffinage : la distillation fractionnée trie le pétrole brut selon les tailles, des gaz légers au naphta, du kérosène et du gazole jusqu’aux résidus lourds, bitume et fioul. Le cœur de la pétrochimie est le vapocraquage : vers huit cents degrés, les longues chaînes du naphta se brisent en molécules plus petites et insaturées ; un alcane en cé seize peut ainsi donner un octane, un butène, de l’éthylène et de l’éthane. L’éthylène et le propylène deviennent les briques de base de l’industrie. Par polyaddition, des milliers de molécules d’éthylène s’enchaînent en polyéthylène ; le chlorure de vinyle donne le PVC, le styrène le polystyrène. Et par additions simples, l’éthylène mène à l’éthanol ou aux halogénoalcanes, points de départ d’autres synthèses.",
+   "texte": "Craquage ≈ 800 °C : l’éthylène, brique de base."
+  },
+  {
+   "id": "p37",
+   "ecran": "benzene_nylon",
+   "pause_apres": 0.8,
+   "dit": "Un cas d’école résume toute la logique du cours : la route qui mène du benzène au nylon. Première étape, une substitution : la nitration du benzène donne le nitrobenzène. Deuxième étape, une réduction : le nitrobenzène devient l’aniline, cette molécule aromatique porteuse d’une fonction amine. Troisième étape, une polycondensation : l’aniline réagit avec un dérivé acide pour former un polyamide, le nylon, aux propriétés mécaniques exceptionnelles. Trois réactions en cascade transforment un hydrocarbure fondamental en fibre technique. La pharmacie suit la même philosophie : l’aspirine possède un noyau aromatique, et la plupart des principes actifs se construisent sur des intermédiaires issus du pétrole.",
+   "texte": "Benzène → nitrobenzène → aniline → nylon."
+  },
+  {
+   "id": "p38",
+   "ecran": "avenir",
+   "pause_apres": 0.8,
+   "dit": "Reste le défi : des ressources fossiles qui s’épuisent et des émissions de dioxyde de carbone. La chimie répond sur trois fronts. Le recyclage chimique craque les déchets plastiques pour les ramener à l’état de naphta ou d’hydrocarbures légers, refermant la boucle. La chimie biosourcée produit de l’éthylène par déshydratation du bioéthanol issu de la fermentation des sucres ; et ce bioéthanol brûle lui-même comme un carburant, avec un bilan en dioxyde de carbone théoriquement neutre, puisqu’il avait été capté par les plantes. Enfin, le procédé Fischer-Tropsch synthétise des hydrocarbures liquides à partir d’un gaz de synthèse, monoxyde de carbone et dihydrogène, issu de biomasse ou de dioxyde de carbone capturé. L’enjeu est de conserver ce que les hydrocarbures ont d’irremplaçable, densité énergétique et facilité de stockage, en changeant leur source de carbone.",
+   "texte": "Recycler, biosourcer, synthétiser (Fischer-Tropsch)."
+  },
+  {
+   "id": "p39",
+   "ecran": "recap_final",
+   "pause_apres": 0.8,
+   "dit": "Vous détenez maintenant la carte complète des hydrocarbures. Tout part de la liaison carbone-carbone : simple, elle donne les alcanes saturés, qui réagissent par substitution radicalaire et servent de carburants ; double ou triple, elle ouvre les additions électrophiles des alcènes et des alcynes, réglées par la stabilité des carbocations et la règle de Markovnikov ; délocalisée dans un cycle, elle crée l’aromaticité du benzène, gardée jalousement par les substitutions. Toutes ces familles se rejoignent dans la combustion, dont l’équation générale et le pouvoir calorifique règlent nos moteurs, et dans l’industrie, qui les transforme en plastiques, fibres et médicaments. Retenez la règle du jeu : la structure commande la réactivité, et la réactivité commande les applications.",
+   "texte": "Structure → réactivité → applications : la règle du jeu."
+  }
+ ]
+}
