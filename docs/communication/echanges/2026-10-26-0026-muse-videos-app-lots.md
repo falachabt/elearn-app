@@ -27,4 +27,6 @@
 - Lot 3 — commit `de03a7f` (CI verte).
 - Lot 4 — commit `466bca3` (CI verte).
 
-Choix notables : lecteur en 720p uniquement (forfaits limités, le 1080p viendra si besoin) ; route du lecteur dans le groupe (onglets) sans déclencheur pour garder header et barre d'onglets ; temps vidéo mesuré par segments de lecture réelle ; index des vidéos téléchargées traité comme un état (pas d'expiration), fichiers dans le dossier privé comme les documents.
+Choix notables : lecteur en 720p uniquement (forfaits limités, le 1080p viendra si besoin) ; route du lecteur dans le groupe (onglets) pour garder header et barre d'onglets ; temps vidéo mesuré par segments de lecture réelle ; index des vidéos téléchargées traité comme un état (pas d'expiration), fichiers dans le dossier privé comme les documents.
+
+Correctif de vérification (26/10/2026, après captures sur l'app réelle) : expo-router/ui n'enregistre comme écrans que les routes déclarées en `TabTrigger` — sans déclencheur, `/video` retombait sur l'accueil (web et natif). Le layout des onglets déclare donc un déclencheur « video » invisible (aucun bouton dans la barre) qui enregistre l'écran. Vérifié ensuite en captures clair/sombre : lecteur complet (header, playlist, téléchargements, bloc S'entraîner au-dessus de la barre). Même revue : garde-fou de sauvegarde — avant la reprise effective, le lecteur annonce 0 et écraserait la position sauvegardée ; ces premiers événements sont ignorés tant qu'une position plus avancée est connue.

@@ -114,8 +114,13 @@ export function LecteurVideo() {
   const sauvegarder = useCallback(() => {
     const v = couranteRef.current;
     if (!v) return;
+    // Avant la reprise effective (le lecteur n'est pas encore calé sur la position sauvegardée), ses
+    // premiers événements annoncent 0 : les écrire écraserait la position à reprendre. On ne sauvegarde
+    // un retour sous les 3 premières secondes que si rien de plus avancé n'est déjà connu.
+    const avant = suivisRef.current[v.id];
+    if (avant && avant.positionS > 3 && lecteur.currentTime < 3 && !avant.terminee) return;
     void noterPosition(v.id, v.cours, lecteur.currentTime, v.dureeS ?? (lecteur.duration || null)).then((s) => {
-      setSuivis((avant) => ({ ...avant, [v.id]: s }));
+      setSuivis((apres) => ({ ...apres, [v.id]: s }));
     });
   }, [lecteur]);
 

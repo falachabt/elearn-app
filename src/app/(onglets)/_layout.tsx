@@ -142,6 +142,12 @@ export default function LayoutOnglets() {
             <TabTrigger name="moi" href="/moi" asChild>
               <Onglet libelle={t('onglets.moi')} icone="person-outline" iconeActive="person" />
             </TabTrigger>
+            {/* Lecteur vidéo : écran de détail SANS bouton dans la barre, mais le déclencheur doit exister —
+                expo-router/ui n'enregistre comme écrans que les routes déclarées en TabTrigger, sans quoi
+                la navigation vers /video retombe sur l'accueil. Il est donc là, invisible et inactif. */}
+            <TabTrigger name="video" href="/video" asChild>
+              <View style={styles.declencheurCache} />
+            </TabTrigger>
           </View>
         </TabList>
       </Tabs>
@@ -155,4 +161,6 @@ const styles = StyleSheet.create({
   barre: { flexDirection: 'row', borderTopWidth: bord.normal },
   // Barre masquée avant le diagnostic (issue #121) : montée pour le navigateur, mais ni vue, ni touchable.
   masquee: { display: 'none' },
+  // Déclencheur du lecteur vidéo : présent pour le navigateur, invisible dans la barre.
+  declencheurCache: { display: 'none' },
 });
