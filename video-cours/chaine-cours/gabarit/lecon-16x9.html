@@ -3691,6 +3691,19 @@ const FIG = {
       mot(268, 130, 'ordre 1', { t: 17 }) + mot(700, 200, 'ordre 0 : saturation', { t: 17 }) +
       mot(500, 292, 'plus de substrat, puis un plateau', { t: 21 }));
   },
+  liaison_hydrogene_fig(t) {
+    return svgBoite(
+      mot(212, 148, 'R', { c: '#B8860B', t: 24 }) + trait(234, 140, 268, 140, 1, { w: 4 }) +
+      `<circle cx="290" cy="140" r="17" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(290, 146, 'O', { c: '#E8604C', t: 18 }) +
+      trait(307, 140, 336, 140, 1, { w: 4 }) + mot(350, 148, 'H', { t: 22 }) +
+      trait(372, 140, 470, 140, 1, { w: 4, tiret: '4 7' }) +
+      `<circle cx="492" cy="140" r="17" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(492, 146, 'O', { c: '#E8604C', t: 18 }) +
+      trait(509, 140, 544, 140, 1, { w: 4 }) + mot(560, 148, 'H', { t: 22 }) + trait(576, 140, 610, 140, 1, { w: 4 }) + mot(632, 148, 'R', { c: '#B8860B', t: 24 }) +
+      mot(350, 108, 'δ+', { c: '#1A75FF', t: 20 }) + mot(492, 108, 'δ−', { c: '#E8604C', t: 20 }) +
+      mot(421, 108, 'liaison hydrogène', { c: '#10B981', t: 19 }) +
+      mot(290, 196, 'donneur', { t: 18 }) + mot(492, 196, 'accepteur', { t: 18 }) +
+      mot(421, 262, 'un pont fragile entre deux molécules', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

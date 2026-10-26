@@ -1,0 +1,561 @@
+{
+ "cours": 6351,
+ "titre": "Les alcools : le groupe hydroxyle à l'œuvre",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les alcools",
+   "titre": "Les alcools : le groupe hydroxyle à l'œuvre",
+   "sous": "Reconnaître, classer, nommer — puis oxyder, déshydrater, estérifier",
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Trois scènes, un point commun invisible : le groupe hydroxyle."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "R-OH",
+   "note": "Le -OH doit siéger sur un carbone saturé : sinon, acide carboxylique ou phénol."
+  },
+  "liaison": {
+   "type": "etape",
+   "kicker": "La liaison C-O-H",
+   "titre": "Un pôle de réactivité à deux visages",
+   "tex": [
+    "O-H \\text{ polarisée : } \\delta^- \\text{ sur O}, \\delta^+ \\text{ sur H}",
+    "\\text{l'hydrogène : acide faible, il peut partir en } H^+",
+    "\\text{l'oxygène : base de Lewis, donneur de doublet}"
+   ]
+  },
+  "classes": {
+   "type": "etape",
+   "kicker": "La classification",
+   "titre": "On compte les carbones voisins du carbone fonctionnel",
+   "tex": [
+    "\\text{on regarde le carbone qui porte le -OH}",
+    "\\text{primaire : lié à un seul autre carbone}",
+    "\\text{secondaire : deux} \\qquad \\text{tertiaire : trois}"
+   ]
+  },
+  "classes_exemples": {
+   "type": "etape",
+   "kicker": "Trois exemples",
+   "titre": "De l'éthanol au tert-butanol",
+   "tex": [
+    "CH_3-CH_2-OH \\text{ : éthanol, primaire}",
+    "CH_3-CH(OH)-CH_3 \\text{ : propan-2-ol, secondaire}",
+    "(CH_3)_3C-OH \\text{ : 2-méthylpropan-2-ol, tertiaire}"
+   ]
+  },
+  "nomenclature": {
+   "type": "etape",
+   "kicker": "Nomenclature IUPAC",
+   "titre": "Le suffixe -ol et la chasse à la plus longue chaîne",
+   "tex": [
+    "\\text{le suffixe -ol remplace le -e de l'alcane}",
+    "\\text{chaîne la plus longue portant le -OH}",
+    "\\text{numéroter : le plus petit numéro pour le -OH}"
+   ]
+  },
+  "exemple_nom": {
+   "type": "etape",
+   "kicker": "Nommer pas à pas",
+   "titre": "Du pentan-2-ol au cas corsé",
+   "tex": [
+    "CH_3-CH(OH)-CH_2-CH_2-CH_3 \\text{ : pentan-2-ol}",
+    "\\text{chaîne de cinq, -OH sur le carbone deux}",
+    "\\text{avec Cl et } CH_3 \\text{ : 3-chloro-2-méthylpentan-3-ol}"
+   ]
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Cas particuliers",
+   "titre": "Insaturés, cycliques et polyols",
+   "tex": [
+    "CH_2=CH-CH_2-OH \\text{ : prop-2-èn-1-ol}",
+    "\\text{cycle : cyclohexanol, le -OH en position un}",
+    "HO-CH_2-CH(OH)-CH_2-OH \\text{ : propane-1,2,3-triol}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Un alcool : -OH sur carbone saturé",
+    "Pas alcool : acide ou phénol",
+    "Primaire, secondaire, tertiaire",
+    "Nommer : chaîne, numéro bas, -ol",
+    "Polyols : suffixes -diol, -triol"
+   ]
+  },
+  "proprietes_intro": {
+   "type": "phrase",
+   "kicker": "Une tête polaire, une queue apolaire",
+   "texte": "La tête -OH veut l'eau, la queue carbonée la fuit : toutes les propriétés naissent de cette tension."
+  },
+  "liaison_h": {
+   "type": "etape",
+   "kicker": "La liaison hydrogène",
+   "titre": "Un réseau qui relie les molécules entre elles",
+   "tex": [
+    "\\text{le H } \\delta^+ \\text{ d'une molécule vise l'oxygène } \\delta^- \\text{ d'une autre}",
+    "\\text{un réseau de liaisons hydrogène relie les molécules}",
+    "\\text{possible aussi avec l'eau : la solvatation}"
+   ],
+   "anim": {
+    "nom": "liaison_hydrogene_fig",
+    "hauteur": 110
+   }
+  },
+  "ebullition": {
+   "type": "etape",
+   "kicker": "Points d'ébullition",
+   "titre": "Même masse, autre destin",
+   "tex": [
+    "\\text{éthane : } -89\\ ^\\circ\\text{C} \\qquad \\text{méthoxyméthane : } -24\\ ^\\circ\\text{C}",
+    "\\text{éthanol : } +78\\ ^\\circ\\text{C} \\qquad \\text{eau : } +100\\ ^\\circ\\text{C}",
+    "\\text{masses voisines : la liaison H fait la différence}"
+   ]
+  },
+  "solubilite": {
+   "type": "etape",
+   "kicker": "Solubilité dans l'eau",
+   "titre": "La tête gagne, puis la queue prend le dessus",
+   "tex": [
+    "\\text{méthanol, éthanol, propanol : miscibles en toutes proportions}",
+    "\\text{la chaîne grandit : la part hydrophobe gagne}",
+    "\\text{octan-1-ol : pratiquement insoluble}"
+   ]
+  },
+  "amphotere": {
+   "type": "etape",
+   "kicker": "Acide et base à la fois",
+   "titre": "Le comportement amphotère",
+   "tex": [
+    "R-OH + B^- \\rightarrow R-O^- + H-B \\text{ : il cède un proton}",
+    "R-OH + H^+ \\rightarrow R-OH_2^+ \\text{ : il en accepte un}",
+    "pK_a \\text{ : éthanol} \\approx 16 \\quad \\text{eau} \\approx 15{,}7 \\quad \\text{acide acétique} \\approx 4{,}8"
+   ]
+  },
+  "alcoolate": {
+   "type": "formule",
+   "kicker": "Rupture de la liaison O-H",
+   "tex": "2\\,R-OH + 2\\,Na \\rightarrow 2\\,R-O^-\\,Na^+ + H_2 \\uparrow",
+   "note": "L'ion alcoolate R-O⁻ : une base forte et un nucléophile puissant."
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Rupture de la liaison C-O",
+   "titre": "Protoner pour faire partir le groupe hydroxyle",
+   "tex": [
+    "\\text{-OH : mauvais groupe partant} \\rightarrow \\text{on le protonne en } H_2O",
+    "R-OH + HX \\rightarrow R-X + H_2O",
+    "\\text{tertiaire : carbocation} \\qquad \\text{primaire : attaque directe}"
+   ]
+  },
+  "oxydation_schema": {
+   "type": "etape",
+   "kicker": "L'oxydation",
+   "titre": "La réaction signature : le destin dépend de la classe",
+   "tex": [
+    "\\text{primaire} \\rightarrow \\text{aldéhyde} \\rightarrow \\text{acide carboxylique}",
+    "\\text{secondaire} \\rightarrow \\text{cétone : pas de sur-oxydation}",
+    "\\text{tertiaire} \\rightarrow \\text{aucune réaction}"
+   ],
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 110
+   }
+  },
+  "oxydants": {
+   "type": "etape",
+   "kicker": "Les oxydants",
+   "titre": "Une chimie que l'on voit à l'œil nu",
+   "tex": [
+    "\\text{dichromate, milieu acide : orange} \\rightarrow \\text{vert}",
+    "\\text{permanganate : violet} \\rightarrow \\text{brun ou incolore}",
+    "\\text{le milieu règle la force de l'oxydant}"
+   ]
+  },
+  "primaire_ox": {
+   "type": "etape",
+   "kicker": "Oxydation des primaires",
+   "titre": "Deux étapes : s'arrêter à l'aldéhyde ou aller à l'acide",
+   "tex": [
+    "CH_3-CH_2-OH + [O] \\rightarrow CH_3-CHO + H_2O \\text{ : contrôlée}",
+    "CH_3-CHO + [O] \\rightarrow CH_3-COOH \\text{ : poussée}",
+    "\\text{astuce : distiller l'aldéhyde dès sa formation}"
+   ]
+  },
+  "secondaire_tertiaire": {
+   "type": "etape",
+   "kicker": "Secondaires et tertiaires",
+   "titre": "La cétone stable, et l'inertie des tertiaires",
+   "tex": [
+    "CH_3-CH(OH)-CH_3 + [O] \\rightarrow CH_3-CO-CH_3 + H_2O",
+    "\\text{tertiaire : aucun H sur le carbone du -OH}",
+    "\\text{test de Jones : vert si } 1^\\circ \\text{ ou } 2^\\circ \\text{, orange si } 3^\\circ"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Liaison H : ébullition élevée",
+    "Petits alcools miscibles à l'eau",
+    "Amphotère : acide et base",
+    "Primaire → aldéhyde → acide",
+    "Secondaire → cétone ; tertiaire inerte"
+   ]
+  },
+  "deshydratation": {
+   "type": "etape",
+   "kicker": "La déshydratation",
+   "titre": "Éliminer l'eau : un alcène ou un éther",
+   "tex": [
+    "R-CH_2-CH_2-OH \\xrightarrow{H_2SO_4,\\ \\Delta} R-CH=CH_2 + H_2O",
+    "\\text{catalyseur acide et chaleur : les deux ingrédients}",
+    "\\text{deux issues : l'alcène ou l'éther}"
+   ],
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 110
+   }
+  },
+  "mecanisme_e1": {
+   "type": "etape",
+   "kicker": "La voie alcène",
+   "titre": "Trois étapes, un carbocation",
+   "tex": [
+    "R-OH + H^+ \\rightleftharpoons R-OH_2^+ \\text{ : protonation}",
+    "R-OH_2^+ \\rightarrow R^+ + H_2O \\text{ : le carbocation, étape lente}",
+    "R^+ \\xrightarrow{-H^+} \\text{alcène : la double liaison naît}"
+   ]
+  },
+  "ether": {
+   "type": "etape",
+   "kicker": "La voie éther",
+   "titre": "À température modérée, les molécules s'attaquent entre elles",
+   "tex": [
+    "2\\,CH_3CH_2OH \\xrightarrow{H_2SO_4,\\ 140\\,^\\circ C} (CH_3CH_2)_2O + H_2O",
+    "\\text{une molécule en attaque une autre : intermoléculaire}",
+    "\\text{à chaud (} > 170\\,^\\circ C\\text{), l'alcène prend le dessus}"
+   ]
+  },
+  "zaitsev": {
+   "type": "etape",
+   "kicker": "La règle de Zaitsev",
+   "titre": "L'alcène le plus substitué est le produit majoritaire",
+   "tex": [
+    "\\text{butan-2-ol} \\rightarrow \\text{but-2-ène majoritaire}",
+    "\\text{but-1-ène : moins substitué, minoritaire}",
+    "\\text{règle de Zaitsev : l'alcène le plus substitué gagne}"
+   ]
+  },
+  "esterification": {
+   "type": "etape",
+   "kicker": "L'estérification",
+   "titre": "Alcool + acide : un équilibre à déplacer",
+   "tex": [
+    "R-COOH + R'-OH \\rightleftharpoons R-COO-R' + H_2O",
+    "\\text{catalyse } H^+ \\text{ : le carbonyle activé, l'alcool attaque}",
+    "\\text{équilibre : excès d'un réactif ou eau éliminée}"
+   ]
+  },
+  "esters_noms": {
+   "type": "etape",
+   "kicker": "Nommer les esters",
+   "titre": "Des molécules qui sentent les fruits",
+   "tex": [
+    "\\text{acétate d'isoamyle : banane} \\qquad \\text{butanoate d'éthyle : ananas}",
+    "\\text{éthanoate de pentyle : poire}",
+    "\\text{salicylate de méthyle : gaulthérie}"
+   ]
+  },
+  "hydrolyse": {
+   "type": "etape",
+   "kicker": "L'hydrolyse des esters",
+   "titre": "Le retour en arrière, et les savons",
+   "tex": [
+    "\\text{hydrolyse acide : l'inverse exact de l'estérification}",
+    "R-COO-R' + NaOH \\rightarrow R-COO^-\\,Na^+ + R'-OH",
+    "\\text{saponification : totale, elle donne les savons}"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "Produire les alcools",
+   "titre": "Trois voies industrielles",
+   "tex": [
+    "C_2H_4 + H_2O \\xrightarrow{H_3PO_4} CH_3CH_2OH \\text{ : hydratation}",
+    "C_6H_{12}O_6 \\xrightarrow{\\text{levures}} 2\\,CH_3CH_2OH + 2\\,CO_2 \\text{ : fermentation}",
+    "\\text{procédé OXO : un carbone de plus, alcools longs}"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "Les alcools au travail",
+   "titre": "Solvants, cosmétiques, carburants, antigels",
+   "tex": [
+    "\\text{méthanol} \\rightarrow \\text{formaldéhyde} \\rightarrow \\text{résines et colles}",
+    "\\text{éthanol : antiseptique à } 70^\\circ \\text{, carburants E10 et E85}",
+    "\\text{glycérol : humectant} \\qquad \\text{glycol : antigel jusqu'à } -37\\,^\\circ C"
+   ]
+  },
+  "etude_pet": {
+   "type": "etape",
+   "kicker": "Étude de cas",
+   "titre": "Du pétrole au t-shirt",
+   "tex": [
+    "HO-CH_2-CH_2-OH + \\text{acide téréphtalique}",
+    "\\rightarrow \\text{PET} + 2n\\,H_2O \\text{ : l'estérification répétée}",
+    "\\text{du pétrole au t-shirt : quatre étapes}"
+   ],
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 110
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Déshydrater : alcène ou éther",
+    "140 °C : éther ; 170 °C : alcène",
+    "Zaitsev : l'alcène le plus substitué",
+    "Estérification : équilibre à déplacer",
+    "Industrie : hydratation, fermentation"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux alcools, la famille du groupe hydroxyle. Un chirurgien qui se désinfecte les mains, un parfumeur qui compose une fragrance, un moteur qui tourne au biocarburant : derrière ces trois scènes se cache la même signature, un atome d'oxygène lié à un atome d'hydrogène, greffé sur un squelette de carbone. Nous allons apprendre à reconnaître un alcool, à le classer et à le nommer sans ambiguïté. Puis nous verrons comment ses liaisons expliquent ses propriétés, avant de parcourir ses grandes réactions : oxydation, déshydratation, estérification, et ses applications industrielles.",
+   "texte": "Un groupe -OH sur un carbone : toute une famille.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Un liquide transparent et volatil pour désinfecter des mains avant une opération. Une goutte visqueuse et odorante sur la bande de papier d'un parfumeur. Un carburant qui brûle dans un moteur. Trois situations sans rapport apparent, et pourtant un point commun invisible à l'œil nu : la présence du groupe hydroxyle. C'est lui qui fait les alcools, des désinfectants aux parfums, des solvants industriels aux molécules du vivant comme le cholestérol ou les sucres. Toute la chimie de ce cours tient dans cette petite association d'un oxygène et d'un hydrogène.",
+   "texte": "Désinfectant, parfum, carburant : le même groupe -OH.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Un alcool est un composé organique qui contient au moins un groupe hydroxyle lié à un carbone tétravalent et saturé, c'est-à-dire un carbone engagé dans quatre liaisons simples. La formule générale d'un alcool à un seul groupe hydroxyle s'écrit : un groupe alkyle, noté R, lié au groupe hydroxyle. Attention au piège : si le groupe hydroxyle est lié à un carbone de carbonyle, on obtient un acide carboxylique ; s'il est lié directement à un cycle aromatique, on obtient un phénol. Deux familles aux propriétés radicalement différentes.",
+   "texte": "R-OH : un hydroxyle sur un carbone saturé.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "La clé du comportement des alcools tient dans leurs liaisons. L'oxygène, plus électronégatif, attire vers lui le doublet de la liaison oxygène-hydrogène : il porte une charge partielle négative, et l'hydrogène une charge partielle positive. La liaison carbone-oxygène est elle aussi polaire, mais moins. Résultat : le groupe hydroxyle possède deux sites de réactivité. Son hydrogène, acide faible, peut être cédé sous forme de proton. Son oxygène, porteur de deux doublets non liants, peut accepter un proton ou donner un doublet. Cette dualité fait de l'alcool un acteur central des réactions organiques.",
+   "texte": "O δ−, H δ+ : deux sites de réactivité.",
+   "ecran": "liaison"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour classer un alcool, un seul critère : la nature du carbone qui porte le groupe hydroxyle. On compte le nombre d'atomes de carbone auxquels ce carbone fonctionnel est lui-même lié, sans compter l'oxygène. Un seul carbone voisin : l'alcool est primaire. Deux carbones voisins : il est secondaire. Trois : il est tertiaire. Retenez l'image du chef d'entreprise : le primaire n'a qu'un subordonné direct, le secondaire en a deux, le tertiaire en compte trois. Cette étiquette n'a rien d'anodin : elle prédit déjà le comportement de l'alcool face aux oxydants.",
+   "texte": "1, 2 ou 3 carbones voisins : primaire, secondaire, tertiaire.",
+   "ecran": "classes"
+  },
+  {
+   "id": "p06",
+   "dit": "Trois exemples pour ancrer la classification. L'éthanol, l'alcool des boissons, des désinfectants et des biocarburants : son carbone fonctionnel n'est lié qu'au carbone du groupe méthyle, c'est un alcool primaire. Le propan-deux-ol, l'alcool isopropylique des produits antiseptiques et des dégivrants : son carbone fonctionnel est lié à deux autres carbones, il est secondaire. Le deux-méthylpropan-deux-ol, ou tert-butanol, additif pour essence et solvant : son carbone fonctionnel est lié à trois carbones, il est tertiaire.",
+   "texte": "Éthanol 1°, propan-2-ol 2°, tert-butanol 3°.",
+   "ecran": "classes_exemples"
+  },
+  {
+   "id": "p07",
+   "dit": "Comment nommer un alcool pour que tout chimiste, de Tokyo à Toronto, visualise la même molécule ? La nomenclature IUPAC répond en trois règles. Premièrement, la fonction alcool se signale par le suffixe ol, qui remplace le e final de l'alcane : le méthane donne le méthanol, l'éthane donne l'éthanol. Deuxièmement, on choisit la chaîne carbonée la plus longue qui contient le groupe hydroxyle : c'est elle qui donne le nom de base. Troisièmement, on numérote cette chaîne pour attribuer le plus petit numéro possible au carbone qui porte le groupe hydroxyle : la fonction a toujours la priorité sur les ramifications.",
+   "texte": "Suffixe -ol, plus longue chaîne, numéro le plus bas.",
+   "ecran": "nomenclature"
+  },
+  {
+   "id": "p08",
+   "dit": "Mettons les règles au travail. Premier cas : un groupe hydroxyle sur une chaîne de cinq carbones. La chaîne la plus longue qui le contient compte cinq carbones : nous sommes chez les pentanols. En numérotant pour donner le plus petit numéro au carbone fonctionnel, le groupe hydroxyle tombe sur le carbone deux : voici le pentan-deux-ol. Deuxième cas, plus corsé : la même chaîne porte en plus un chlore et un méthyle. On numérote depuis l'extrémité qui avantage le groupe hydroxyle, puis on cite les substituants par ordre alphabétique : chloro avant méthyl. Le nom complet devient : trois-chloro-deux-méthylpentan-trois-ol.",
+   "texte": "Pentan-2-ol, puis 3-chloro-2-méthylpentan-3-ol.",
+   "ecran": "exemple_nom"
+  },
+  {
+   "id": "p09",
+   "dit": "Trois cas particuliers à connaître. Si la chaîne contient une double liaison, celle-ci entre dans la construction du nom : l'alcool allylique devient le prop-deux-èn-un-ol. Pour un alcool cyclique, on ajoute le préfixe cyclo et le carbone du groupe hydroxyle reçoit le numéro un : c'est le cyclohexanol, et le menthol, la molécule de la fraîcheur, est un cyclohexanol substitué. Enfin, quand la molécule porte plusieurs groupes hydroxyle, le suffixe se décline : diol, triol. Le propane-un-deux-trois-triol n'est autre que le glycérol, le fameux alcool des corps gras et des crèmes hydratantes.",
+   "texte": "Prop-2-èn-1-ol, cyclohexanol, propane-1,2,3-triol.",
+   "ecran": "cas_particuliers"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Un alcool se reconnaît à son groupe hydroxyle porté par un carbone saturé, et il se classe en primaire, secondaire ou tertiaire selon le nombre de carbones voisins de ce carbone fonctionnel. Pour le nommer, on choisit la plus longue chaîne qui porte le groupe hydroxyle, on numérote au plus bas pour lui, et on termine par le suffixe ol. Ces trois réflexes, reconnaître, classer, nommer, vont maintenant nous servir à prédire les propriétés.",
+   "texte": "Reconnaître, classer, nommer : les bases.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Remplacez un hydrogène de l'eau par un groupe carboné, et vous obtenez un alcool. De cette filiation naît une personnalité double : une tête polaire, le groupe hydroxyle, et une queue apolaire, la chaîne carbonée. Tout le chapitre va jouer sur cette tension : la tête veut former des liaisons hydrogène et se dissoudre dans l'eau, la queue s'y refuse. C'est aussi cette tête qui concentre la réactivité : c'est là que les liaisons se rompent et se forment.",
+   "texte": "Une tête polaire, une queue apolaire.",
+   "ecran": "proprietes_intro"
+  },
+  {
+   "id": "p12",
+   "dit": "Le phénomène clé des propriétés physiques s'appelle la liaison hydrogène. L'hydrogène du groupe hydroxyle, appauvri en électrons, est attiré par un doublet non liant de l'oxygène d'une molécule voisine, qu'elle soit un autre alcool ou une molécule d'eau. Il se tisse ainsi un réseau d'interactions entre molécules, bien plus fort que les simples forces de Van der Waals. Retenez cette image du réseau : elle explique à elle seule les points d'ébullition élevés et la solubilité des petits alcools, que nous allons chiffrer.",
+   "texte": "Le H δ+ vise un doublet voisin : le réseau H se tisse.",
+   "ecran": "liaison_h"
+  },
+  {
+   "id": "p13",
+   "dit": "Comparons quatre composés de masses molaires voisines. L'éthane bout à moins quatre-vingt-neuf degrés, le méthoxyméthane à moins vingt-quatre degrés : sans groupe hydroxyle, seules les faibles forces de Van der Waals retiennent les molécules. L'éthanol, lui, bout à soixante-dix-huit degrés, et l'eau à cent degrés. Pour faire bouillir un alcool, il faut rompre les liaisons hydrogène qui relient ses molécules : cela coûte de l'énergie, donc de la température. Entre l'éthanol et le propane, de masses pourtant similaires, l'écart atteint cent vingt degrés.",
+   "texte": "Éthanol +78 °C contre propane −42 °C : merci la liaison H.",
+   "ecran": "ebullition"
+  },
+  {
+   "id": "p14",
+   "dit": "Même logique pour la solubilité dans l'eau. Les petits alcools, méthanol, éthanol et propanol, sont miscibles à l'eau en toutes proportions : leur groupe hydroxyle forme des liaisons hydrogène avec les molécules d'eau, qui les enveloppent d'une coquille de solvatation. Mais à mesure que la chaîne carbonée s'allonge, sa partie hydrophobe, qui craint l'eau, prend le dessus : la solubilité chute. Le butan-un-ol n'est que partiellement soluble, et l'octan-un-ol est pratiquement insoluble : c'est une huile.",
+   "texte": "Chaîne courte : miscible. Chaîne longue : insoluble.",
+   "ecran": "solubilite"
+  },
+  {
+   "id": "p15",
+   "dit": "L'alcool est un ampholyte : il joue deux rôles opposés. En acide de Brønsted, il peut céder le proton de son groupe hydroxyle à une base forte, et devenir un ion alcoolate. Son acidité reste faible : le pé-ka-a de l'éthanol vaut environ seize, proche de celui de l'eau, et très loin de celui de l'acide acétique. L'ordre d'acidité va du méthanol vers les tertiaires, de moins en moins acides, car les groupes alkyle donneurs déstabilisent l'ion alcoolate. En base de Lewis, au contraire, l'oxygène accepte un proton grâce à ses doublets : l'ion oxonium formé sera la clé des substitutions.",
+   "texte": "Acide faible (pKa ≈ 16), base de Lewis : un ampholyte.",
+   "ecran": "amphotere"
+  },
+  {
+   "id": "p16",
+   "dit": "Faisons réagir un alcool avec un métal alcalin comme le sodium : la liaison oxygène-hydrogène se rompt, du dihydrogène se dégage, et il reste un alcoolate, le sel de l'alcool. L'éthanolate de sodium s'obtenait autrefois ainsi, dans une réaction vive au contact du métal. L'ion alcoolate obtenu est à la fois une base forte et un nucléophile puissant : un réactif de choix en synthèse. C'est la première de nos réactions par rupture de la liaison oxygène-hydrogène ; la seconde, l'estérification, aura droit à sa propre partie.",
+   "texte": "Alcool + sodium → alcoolate + H₂.",
+   "ecran": "alcoolate"
+  },
+  {
+   "id": "p17",
+   "dit": "Passons aux ruptures de la liaison carbone-oxygène. Le groupe hydroxyle est un mauvais groupe partant : pour le faire partir, on commence par le protonner, ce qui le transforme en une molécule d'eau, excellent groupe partant. Un halogénure d'hydrogène peut alors mener la substitution : l'alcool devient un halogénoalcane. Le mécanisme dépend de la classe : l'alcool tertiaire passe par un carbocation stable, l'alcool primaire subit une attaque directe du nucléophile. La même protonation ouvre aussi la voie de l'élimination, que nous retrouverons dans la déshydratation.",
+   "texte": "OH protoné en H₂O : la substitution devient possible.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p18",
+   "dit": "Voici la réaction signature des alcools : l'oxydation, qui perd des électrons, gagne de l'oxygène ou perd de l'hydrogène. Son résultat est entièrement dicté par la classe. Un alcool primaire s'oxyde d'abord en aldéhyde, puis, si l'oxydation est poussée, en acide carboxylique. Un alcool secondaire donne directement une cétone, qui résiste ensuite à l'oxydation. Un alcool tertiaire, lui, ne réagit pas avec les oxydants courants. Cette signature fait de l'oxydation un véritable test d'identification de la classe d'un alcool inconnu.",
+   "texte": "1° → aldéhyde → acide ; 2° → cétone ; 3° → rien.",
+   "ecran": "oxydation_schema"
+  },
+  {
+   "id": "p19",
+   "dit": "Comment voit-on une oxydation ? Les oxydants classiques ont une signature visuelle spectaculaire. Le dichromate, orange vif en milieu acide, vire au vert quand il oxyde : c'était le principe des premiers éthylotests, où l'haleine du conducteur soufflait dans un ballon de dichromate. Le permanganate, violet intense, devient brun ou incolore. Le milieu réactionnel est un paramètre décisif : l'acide sulfurique active fortement le dichromate, tandis que le permanganate, très énergique, est souvent moins sélectif. Une chimie que l'on peut voir à l'œil nu.",
+   "texte": "Dichromate orange → vert : l'oxydation se voit.",
+   "ecran": "oxydants"
+  },
+  {
+   "id": "p20",
+   "dit": "Détails du destin des primaires, en deux étapes. En oxydation contrôlée, avec un oxydant doux, l'alcool primaire perd deux hydrogènes et devient un aldéhyde : l'éthanol donne l'éthanal, ce composé responsable en partie de la gueule de bois. Mais l'aldéhyde est fragile : laissé au contact de l'oxydant, il s'oxyde à son tour en acide carboxylique ; l'oxydation vigoureuse de l'éthanol produit ainsi l'acide acétique, le vinaigre. Pour isoler l'aldéhyde, l'astuce consiste à le distiller au fur et à mesure de sa formation, ou à employer un oxydant spécifique comme celui de Swern.",
+   "texte": "Éthanol → éthanal → acide acétique.",
+   "ecran": "primaire_ox"
+  },
+  {
+   "id": "p21",
+   "dit": "Les secondaires ont un destin plus simple : leur carbone fonctionnel perd son unique hydrogène, une double liaison carbone-oxygène se forme, et l'on obtient une cétone, stable face aux oxydants classiques. L'oxydation du propan-deux-ol donne ainsi l'acétone, le solvant bien connu. Les tertiaires, eux, n'ont aucun hydrogène sur leur carbone fonctionnel : pas de voie directe vers la double liaison, donc pas d'oxydation. Au test de Jones, le dichromate reste orange avec un tertiaire, et vire au vert avec un primaire ou un secondaire : un diagnostic en un coup d'œil.",
+   "texte": "Propan-2-ol → acétone ; le tertiaire reste orange.",
+   "ecran": "secondaire_tertiaire"
+  },
+  {
+   "id": "p22",
+   "dit": "Récapitulons. La liaison hydrogène explique les points d'ébullition élevés et la solubilité des petits alcools. Amphotère, l'alcool donne des alcoolates avec les métaux et se protonne pour subir les substitutions. Enfin, l'oxydation signe la classe : aldéhyde puis acide pour les primaires, cétone pour les secondaires, inertie pour les tertiaires. Il nous reste deux grandes transformations à explorer : perdre de l'eau, ou s'unir à un acide.",
+   "texte": "Propriétés et oxydation : l'essentiel.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p23",
+   "dit": "La déshydratation est une élimination : l'alcool perd une molécule d'eau entière. Comme un sculpteur qui retire de la matière, on obtient un composé radicalement différent. La réaction demande un catalyseur acide, acide sulfurique ou phosphorique concentré, et de la chaleur. Mais attention : déshydrater ne mène pas toujours au même produit. Selon la température et la classe de l'alcool, la même réaction donnera un alcène ou un éther. C'est cette dualité que nous allons démêler.",
+   "texte": "− H₂O, acide et chaleur : alcène ou éther.",
+   "ecran": "deshydratation"
+  },
+  {
+   "id": "p24",
+   "dit": "Voici la voie qui mène aux alcènes, un mécanisme en trois étapes. D'abord, l'oxygène capte un proton de l'acide : l'alcool protonné devient un excellent groupe partant. Ensuite vient l'étape lente, déterminante : la molécule d'eau s'échappe et laisse un carbocation. Enfin, une base arrache rapidement un proton au carbone voisin : la double liaison se forme, l'alcène est né. Ce mécanisme explique pourquoi les alcools tertiaires, dont le carbocation est le plus stable, se déshydratent le plus facilement : le deux-méthylpropan-deux-ol donne ainsi le deux-méthylpropène, un monomère important.",
+   "texte": "Protonation, carbocation, double liaison.",
+   "ecran": "mecanisme_e1"
+  },
+  {
+   "id": "p25",
+   "dit": "L'autre visage de la déshydratation apparaît à température modérée, autour de cent quarante degrés, surtout pour les alcools primaires : la réaction devient intermoléculaire. Une molécule d'éthanol protonée est attaquée par une seconde molécule d'éthanol, qui joue les nucléophiles ; après départ d'eau et perte d'un proton, on obtient l'éther diéthylique, l'un des premiers anesthésiques de l'histoire. À plus haute température, au-delà de cent soixante-dix degrés, la dissociation en carbocation gagne et l'alcène redevient majoritaire : la cinétique d'abord, la thermodynamique ensuite.",
+   "texte": "Vers 140 °C : l'éther. Au-delà de 170 °C : l'alcène.",
+   "ecran": "ether"
+  },
+  {
+   "id": "p26",
+   "dit": "Quand un alcool non symétrique se déshydrate, plusieurs alcènes sont possibles : lequel gagne ? La règle de Zaitsev répond : l'alcène le plus substitué, celui dont la double liaison porte le plus de groupes alkyle, est le produit majoritaire. Ainsi le butan-deux-ol donne surtout le but-deux-ène plutôt que le but-un-ène, et le but-deux-ène existe lui-même en formes cis et trans. Les groupes alkyle, donneurs d'électrons, stabilisent la double liaison : le produit majoritaire est simplement le plus stable. Un piège guette cependant les carbocations intermédiaires : ils peuvent se réarranger vers une forme plus stable, et livrer un alcène inattendu.",
+   "texte": "Zaitsev : le but-2-ène bat le but-1-ène.",
+   "ecran": "zaitsev"
+  },
+  {
+   "id": "p27",
+   "dit": "Changeons de réaction : l'estérification. Un alcool et un acide carboxylique s'unissent, libèrent une molécule d'eau, et donnent un ester : c'est une condensation, réversible et limitée, étudiée quantitativement dès mille huit cent soixante-deux par Berthelot et Péan de Saint-Gilles. Le catalyseur acide active le carbonyle de l'acide, l'oxygène de l'alcool attaque, des transferts de protons s'enchaînent, l'eau s'élimine et le catalyseur se régénère. Pour déplacer l'équilibre vers l'ester, le principe de Le Chatelier commande : excès du réactif le moins cher, ou élimination de l'eau au fur et à mesure.",
+   "texte": "Acide + alcool ⇌ ester + eau : un équilibre.",
+   "ecran": "esterification"
+  },
+  {
+   "id": "p28",
+   "dit": "Le nom d'un ester se construit en deux morceaux : la partie qui vient de l'acide prend le suffixe ate, et celle qui vient de l'alcool se nomme comme un groupe alkyle. L'acétate d'éthyle, né de l'éthanol et de l'acide acétique, est le solvant à l'odeur de vernis à ongles. L'acétate d'isoamyle, fait d'acide acétique et d'alcool isoamylique, sent la banane ; le butanoate d'éthyle sent l'ananas, l'éthanoate de pentyle la poire, et le salicylate de méthyle la gaulthérie. Ces parfums de fruits sont une stratégie des plantes pour attirer les animaux qui disperseront leurs graines : la chimie au service de la reproduction.",
+   "texte": "Acétate d'isoamyle : banane. Butanoate d'éthyle : ananas.",
+   "ecran": "esters_noms"
+  },
+  {
+   "id": "p29",
+   "dit": "Toute estérification a son ombre : l'hydrolyse, la réaction inverse. En milieu acide, elle ramène l'ester à son acide et à son alcool, dans un équilibre symétrique. En milieu basique, tout change : l'ion hydroxyde attaque l'ester et la réaction devient totale et irréversible. Le produit est un sel de carboxylate, qui n'est autre qu'un savon lorsque la chaîne est longue, plus l'alcool libéré. C'est la saponification, l'une des plus anciennes réactions de l'industrie chimique, et elle clôt la boucle ouverte par l'estérification.",
+   "texte": "Hydrolyse basique = saponification : des savons.",
+   "ecran": "hydrolyse"
+  },
+  {
+   "id": "p30",
+   "dit": "À l'échelle industrielle, trois voies produisent les alcools. L'hydratation des alcènes, la voie pétrochimique reine : l'éthylène reçoit une molécule d'eau sur un catalyseur d'acide phosphorique, à chaud et sous pression, et donne un éthanol très pur, dit de synthèse. L'hydroformylation, ou procédé OXO, allonge la chaîne d'un carbone : l'alcène devient aldéhyde, puis alcool primaire, source des alcools gras des détergents. Et la fermentation, la voie biologique millénaire : les levures transforment le glucose en éthanol et en dioxyde de carbone, au prix d'un débat toujours vif entre nourriture et carburant.",
+   "texte": "Hydratation, procédé OXO, fermentation.",
+   "ecran": "industrie"
+  },
+  {
+   "id": "p31",
+   "dit": "Où travaillent les alcools ? Le méthanol, matière première star, mène au formaldéhyde et aux résines des meubles en bois aggloméré : la chimie d'un alcool à un seul carbone finit dans votre salon. L'éthanol est le solvant universel de la pharmacie et des cosmétiques, l'antiseptique à soixante-dix degrés des gels hydroalcooliques, et le biocarburant des essences E dix et E quatre-vingt-cinq. Le glycérol retient l'eau dans les crèmes hydratantes, et l'éthylène glycol, avec ses deux groupes hydroxyle, empêche l'eau des circuits de refroidissement de geler jusqu'à moins trente-sept degrés.",
+   "texte": "Méthanol → résines ; éthanol → carburants ; glycol → antigel.",
+   "ecran": "applications"
+  },
+  {
+   "id": "p32",
+   "dit": "Suivons une molécule du pétrole au t-shirt. Le pétrole est craqué en éthylène ; l'éthylène est oxydé puis hydraté en éthylène glycol, notre diol. Ce diol rencontre alors l'acide téréphtalique : l'estérification, répétée des milliers de fois, construit le polyéthylène téréphtalate, le PET. Fondu, filé, tissé, il devient le tissu d'un vêtement technique. Toute la chaîne tient en une phrase : une réaction de laboratoire, l'estérification d'un alcool, amplifiée à l'échelle industrielle, habille la planète.",
+   "texte": "Éthylène → glycol → PET → t-shirt.",
+   "ecran": "etude_pet"
+  },
+  {
+   "id": "p33",
+   "dit": "Récapitulons cette dernière partie. La déshydratation élimine l'eau : éther à température modérée, alcène le plus substitué à chaud, selon la règle de Zaitsev. L'estérification unit alcool et acide dans un équilibre que l'on déplace, et son inverse basique donne les savons. À l'échelle du monde, hydratation, hydroformylation et fermentation nourrissent les solvants, les cosmétiques, les carburants et les polymères. Un seul groupe hydroxyle, et tout un pan de la chimie industrielle tient dessus.",
+   "texte": "Transformer, estérifier, produire.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Reconnaître, classer et nommer les alcools"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Liaisons hydrogène, amphoterie et oxydation",
+   "pont": {
+    "dit": "Partie deux : les propriétés des alcools, ou comment un petit groupe hydroxyle gouverne le comportement d'une molécule entière. Nous verrons d'abord la liaison hydrogène, responsable de points d'ébullition étonnamment élevés et d'une solubilité remarquable. Puis nous explorerons le double visage acide-base de l'alcool, ses substitutions, et sa réaction signature : l'oxydation, dont le résultat dépend entièrement de la classe.",
+    "texte": "Partie 2 : liaison hydrogène, amphoterie, oxydation."
+   }
+  },
+  {
+   "debut": "p23",
+   "sous_titre": "Déshydratation, estérification et industrie",
+   "pont": {
+    "dit": "Partie trois : transformer les alcools. Nous verrons d'abord la déshydratation, qui élimine une molécule d'eau pour fabriquer des alcènes ou des éthers selon la température. Puis l'estérification, cette réaction d'équilibre qui unit un alcool à un acide carboxylique et parfume notre quotidien. Nous terminerons à l'échelle industrielle, de l'hydratation des alcènes au t-shirt en polyester.",
+    "texte": "Partie 3 : déshydratation, estérification, industrie."
+   }
+  }
+ ]
+}
