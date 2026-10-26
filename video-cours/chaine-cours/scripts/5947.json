@@ -1,0 +1,399 @@
+{
+ "cours": "5947",
+ "titre": "Niveaux d'énergie atomique",
+ "matiere": "Chimie",
+ "lecons": [
+  4768,
+  4770,
+  4771,
+  4772,
+  4773,
+  4774,
+  4775
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Niveaux d'énergie atomique",
+   "titre": "Niveaux d'énergie atomique",
+   "sous": "Quantification, modèle de Bohr et spectre de l'hydrogène",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 240
+   }
+  },
+  "quantification": {
+   "type": "phrase",
+   "kicker": "La quantification de l'énergie",
+   "texte": "En physique classique, l'énergie d'un pendule varie de façon continue. Dans un atome, l'énergie de l'électron ne prend que des valeurs discrètes : elle est quantifiée. Une rampe contre un escalier : on tient sur une marche, jamais entre deux.",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 150
+   }
+  },
+  "spectre": {
+   "type": "phrase",
+   "kicker": "Le spectre atomique",
+   "texte": "Un gaz chauffé émet une lumière ; décomposée par un spectroscope, elle donne des raies colorées séparées par du noir, propres à chaque élément. Chaque raie correspond à une transition d'un électron entre deux niveaux d'énergie.",
+   "anim": {
+    "nom": "spectre_raies_fig",
+    "hauteur": 150
+   }
+  },
+  "classique_echec": {
+   "type": "phrase",
+   "kicker": "L'échec du modèle classique",
+   "texte": "Classiquement, l'électron-planète, charge accélérée, devrait rayonner, perdre son énergie et spiraler vers le noyau : l'atome s'effondrerait. Or les atomes sont stables. La physique classique est prise en défaut.",
+   "anim": {
+    "nom": "orbite",
+    "hauteur": 150
+   }
+  },
+  "bohr_intro": {
+   "type": "phrase",
+   "kicker": "Le modèle de Bohr",
+   "texte": "En 1913, Niels Bohr garde les orbites circulaires mais impose des règles nouvelles : seules certaines orbites sont permises, et sur ces orbites stationnaires, l'électron ne rayonne pas.",
+   "anim": {
+    "nom": "atome_bohr_fig",
+    "hauteur": 170
+   }
+  },
+  "postulats": {
+   "type": "etape",
+   "kicker": "Les postulats de Bohr",
+   "titre": "Trois règles qui changent tout",
+   "tex": [
+    "L = n\\hbar \\quad \\text{(moment angulaire quantifié)}",
+    "E_n = -\\frac{E_0}{n^2} \\quad \\text{(énergie quantifiée)}",
+    "\\Delta E = h\\nu \\quad \\text{(le photon de la transition)}"
+   ]
+  },
+  "energie_formule": {
+   "type": "formule",
+   "kicker": "L'énergie des niveaux",
+   "tex": "E_n = -\\frac{E_0}{n^2}",
+   "note": "E0 ≈ 13,6 eV : le signe moins dit que l'électron est lié au noyau",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 170
+   }
+  },
+  "niveaux_valeurs": {
+   "type": "etape",
+   "kicker": "L'énergie des niveaux",
+   "titre": "Les premières marches de l'hydrogène",
+   "tex": [
+    "E_1 = -13{,}6\\ \\text{eV} \\qquad E_2 = -3{,}40\\ \\text{eV}",
+    "E_3 \\approx -1{,}51\\ \\text{eV} \\qquad E_4 = -0{,}85\\ \\text{eV}",
+    "E_\\infty = 0 \\quad \\text{(électron libre : ionisation)}"
+   ]
+  },
+  "transitions": {
+   "type": "formule",
+   "kicker": "Les transitions électroniques",
+   "tex": "\\Delta E = h\\nu = \\frac{hc}{\\lambda}",
+   "note": "descente : un photon est émis ; montée : un photon est absorbé"
+  },
+  "series_intro": {
+   "type": "phrase",
+   "kicker": "Les séries spectrales",
+   "texte": "Les transitions qui aboutissent sur un même niveau forment une série spectrale, nommée d'après son découvreur. Chaque série occupe un domaine du spectre : ultraviolet, visible ou infrarouge.",
+   "anim": {
+    "nom": "spectre_raies_fig",
+    "hauteur": 170
+   }
+  },
+  "series": {
+   "type": "etape",
+   "kicker": "Les séries spectrales",
+   "titre": "Cinq séries, du niveau un au niveau cinq",
+   "tex": [
+    "\\text{Lyman : } n \\to 1 \\text{ (UV)} \\qquad \\text{Balmer : } n \\to 2 \\text{ (visible)}",
+    "\\text{Paschen : } n \\to 3 \\text{ (IR)} \\qquad \\text{Brackett : } n \\to 4 \\text{ (IR)}",
+    "\\text{Pfund : } n \\to 5 \\text{ (infrarouge)}"
+   ]
+  },
+  "balmer": {
+   "type": "formule",
+   "kicker": "La formule de Balmer",
+   "tex": "\\lambda = B \\, \\frac{n^2}{n^2 - 2^2}",
+   "note": "Balmer, 1885 : la série visible décrite, mais pas encore expliquée"
+  },
+  "rydberg": {
+   "type": "formule",
+   "kicker": "La formule de Rydberg",
+   "tex": "\\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n_1^2} - \\frac{1}{n_2^2} \\right)",
+   "note": "R_H ≈ 1,097 × 10⁷ m⁻¹ : toutes les séries dans une seule formule"
+  },
+  "exemple_balmer": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "La raie rouge de Balmer : de n = 3 vers n = 2",
+   "tex": [
+    "E_2 = \\tfrac{-13{,}6}{2^2} = -3{,}40\\ \\text{eV}",
+    "E_3 = \\tfrac{-13{,}6}{3^2} \\approx -1{,}51\\ \\text{eV}",
+    "\\Delta E = E_3 - E_2 = 1{,}89\\ \\text{eV}",
+    "\\lambda = \\tfrac{hc}{\\Delta E} \\approx 656\\ \\text{nm}"
+   ]
+  },
+  "ionisation": {
+   "type": "phrase",
+   "kicker": "L'ionisation",
+   "texte": "Arracher l'électron depuis le niveau fondamental coûte 13,6 eV : c'est l'énergie d'ionisation de l'hydrogène, et la limite vers laquelle s'accumulent les raies de Lyman.",
+   "anim": {
+    "nom": "niveaux_atome_fig",
+    "hauteur": 160
+   }
+  },
+  "hydrogenoides": {
+   "type": "etape",
+   "kicker": "Les ions hydrogénoïdes",
+   "titre": "Un seul électron, mais Z protons",
+   "tex": [
+    "\\mathrm{He}^+ : Z = 2 \\quad \\text{(hélium ionisé)}",
+    "\\mathrm{Li}^{2+} : Z = 3 \\quad \\text{(lithium doublement ionisé)}"
+   ]
+  },
+  "energie_z": {
+   "type": "formule",
+   "kicker": "Les ions hydrogénoïdes",
+   "tex": "E_n = -\\frac{Z^2 E_0}{n^2}",
+   "note": "Z protons attirent plus fort : niveaux plus profonds, raies décalées"
+  },
+  "exemple_helium": {
+   "type": "etape",
+   "kicker": "Exemple résolu",
+   "titre": "L'hélium ionisé : de n = 2 vers n = 1",
+   "tex": [
+    "E_1 = -2^2 \\times 13{,}6 = -54{,}4\\ \\text{eV}",
+    "E_2 = \\tfrac{-54{,}4}{2^2} = -13{,}6\\ \\text{eV}",
+    "\\Delta E = E_2 - E_1 = 40{,}8\\ \\text{eV}",
+    "\\lambda = \\tfrac{hc}{\\Delta E} \\approx 30{,}4\\ \\text{nm}"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Les limites du modèle",
+   "texte": "Bohr échoue pour les atomes à plusieurs électrons, ne prédit pas l'intensité des raies, ignore les effets Zeeman et Stark, et contredit la nature ondulatoire de l'électron. Une théorie plus profonde est nécessaire."
+  },
+  "quantique": {
+   "type": "phrase",
+   "kicker": "Vers la mécanique quantique",
+   "texte": "Plus de trajectoire : le principe d'incertitude de Heisenberg interdit de tout connaître de l'électron. Une fonction d'onde donne ses probabilités de présence : ce sont les orbitales. Les niveaux d'énergie, eux, demeurent.",
+   "anim": {
+    "nom": "orbitales_formes_fig",
+    "hauteur": 150
+   }
+  },
+  "applications": {
+   "type": "phrase",
+   "kicker": "Applications : la spectroscopie",
+   "texte": "Le spectre est une signature : décomposer la lumière d'une étoile révèle sa composition ; au laboratoire, on détecte ainsi des métaux lourds dans l'eau ou la concentration d'un élément dans un échantillon.",
+   "anim": {
+    "nom": "spectre_em_fig",
+    "hauteur": 150
+   }
+  },
+  "usages": {
+   "type": "phrase",
+   "kicker": "Applications : les technologies",
+   "texte": "Les lasers font descendre des atomes excités en cadence ; les semi-conducteurs manipulent les niveaux des électrons dans les cristaux par le dopage ; la chimie quantique calcule les niveaux des molécules pour concevoir médicaments et matériaux."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "L'énergie de l'électron est quantifiée",
+    "Bohr : orbites stationnaires, trois postulats",
+    "Un saut de niveau émet ou absorbe un photon",
+    "Rydberg prédit toutes les raies de l'hydrogène",
+    "Hydrogénoïdes : la charge compte au carré"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours sur les niveaux d'énergie atomique. Nous partirons d'une surprise : dans un atome, l'énergie n'est pas continue, elle avance par marches, comme un escalier. Nous verrons comment le spectre de l'hydrogène, une suite de raies colorées, trahit cette structure, puis comment le modèle de Bohr l'explique avec trois postulats et une formule célèbre. Nous calculerons des raies réelles, nous étendrons le modèle aux ions hydrogénoïdes, et nous terminerons par ses limites et ses applications, de la spectroscopie aux lasers.",
+   "texte": "Niveaux d'énergie atomique : quantification, Bohr et spectre de l'hydrogène.",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "ecran": "quantification",
+   "dit": "Commençons par le contraste fondateur. Un pendule, un objet du monde classique, voit son énergie varier de façon continue : toutes les valeurs sont permises, comme sur une rampe lisse. Dans un atome, c'est tout l'inverse : l'énergie de l'électron ne peut prendre que certaines valeurs discrètes, séparées par des écarts interdits. Imaginez un escalier : on se tient sur une marche ou sur une autre, jamais entre les deux. On dit que l'énergie est quantifiée, et chaque marche autorisée s'appelle un niveau d'énergie.",
+   "texte": "Continu dans le monde classique, quantifié dans l'atome : la rampe contre l'escalier.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p03",
+   "ecran": "spectre",
+   "dit": "Comment sait-on que ces niveaux existent ? Grâce à la lumière. Chauffez un gaz d'hydrogène : il émet une lumière que l'on peut décomposer avec un spectroscope. Au lieu d'un arc-en-ciel continu, on obtient quelques raies colorées, séparées par du noir. Chaque élément possède sa propre combinaison de raies : c'est son empreinte digitale lumineuse, le spectre atomique. Et chaque raie, nous le verrons, correspond à un saut d'électron entre deux niveaux.",
+   "texte": "Le spectre de raies : l'empreinte digitale lumineuse de chaque élément.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p04",
+   "ecran": "classique_echec",
+   "dit": "Pourquoi la physique classique ne peut-elle pas expliquer ces marches ? Dans son image de l'atome, l'électron tourne autour du noyau comme une planète autour du Soleil. Mais une charge accélérée rayonne de l'énergie : l'électron devrait donc perdre peu à peu son énergie, spiraler vers le noyau et s'y écraser en une fraction de seconde. Or les atomes sont stables, et leurs électrons ne tombent pas. Il fallait une idée nouvelle.",
+   "texte": "Le modèle classique condamne l'atome à s'effondrer : il faut une idée nouvelle.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p05",
+   "ecran": "bohr_intro",
+   "dit": "Cette idée, Niels Bohr la propose en mille neuf cent treize. Il garde l'image des orbites circulaires autour du noyau, mais il impose des règles du jeu inédites, trois postulats qui brident l'électron. Seules certaines orbites sont permises, et sur ces orbites, contrairement à tout ce que disait la physique classique, l'électron ne rayonne pas. C'est un modèle simplifié, presque un pari, mais il va tout débloquer.",
+   "texte": "Bohr, 1913 : des orbites permises, et un électron qui ne rayonne pas.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p06",
+   "ecran": "postulats",
+   "dit": "Voici les trois postulats. Premier : l'électron n'occupe que des orbites circulaires particulières, dites stationnaires, et son moment angulaire y est quantifié : c'est un multiple entier de la constante de Planck réduite. Deuxième : sur une orbite stationnaire, l'énergie est fixée par le nombre quantique principal, le numéro de l'orbite. Troisième : l'électron ne gagne ou ne perd de l'énergie qu'en sautant d'une orbite à l'autre, et le saut s'accompagne d'un photon.",
+   "texte": "Les trois postulats de Bohr : orbites, énergie, transitions.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p07",
+   "ecran": "energie_formule",
+   "dit": "Voici la formule centrale du cours : l'énergie du niveau numéro n vaut moins E zéro divisé par n au carré. E zéro, l'énergie du niveau fondamental prise en valeur absolue, vaut environ treize virgule six électronvolts pour l'hydrogène, soit deux virgule dix-huit fois dix puissance moins dix-huit joules. Le signe moins est essentiel : il dit que l'électron est lié au noyau, et qu'il faut fournir de l'énergie pour l'en arracher. Plus n grandit, plus l'énergie remonte vers zéro.",
+   "texte": "Eₙ = −E₀/n² : le signe moins, c'est la liaison au noyau.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p08",
+   "ecran": "niveaux_valeurs",
+   "dit": "Appliquons la formule. Au niveau fondamental, le niveau un, l'énergie vaut moins treize virgule six électronvolts : c'est le fond du puits. Au niveau deux, moins trois virgule quarante ; au niveau trois, environ moins un virgule cinquante et un ; au niveau quatre, moins zéro virgule quatre-vingt-cinq. Et à la limite, quand n tend vers l'infini, l'énergie atteint zéro : l'électron est libre, l'atome est ionisé. Remarquez que les marches se resserrent quand on monte.",
+   "texte": "Les marches se resserrent en montant : −13,6, −3,40, −1,51, −0,85, puis zéro.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p09",
+   "ecran": "transitions",
+   "dit": "Reste le troisième postulat, celui qui fabrique la lumière. Quand un électron descend d'un niveau vers un niveau plus bas, l'atome perd de l'énergie : l'excédent part sous la forme d'un photon, dont l'énergie égale exactement la différence entre les deux niveaux. C'est une émission. Quand un photon arrive avec exactement la bonne énergie, l'électron peut au contraire l'absorber et monter d'un niveau. La fréquence du photon se calcule avec la constante de Planck, et sa longueur d'onde avec la vitesse de la lumière.",
+   "texte": "Descendre émet un photon, monter en absorbe un : ΔE = hν = hc/λ.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p10",
+   "ecran": "series_intro",
+   "dit": "Regroupons maintenant les raies observées. Toutes les transitions qui se terminent sur le même niveau forment une famille, une série spectrale. Les séries portent le nom de leur découvreur, et chacune occupe un domaine du spectre électromagnétique : ultraviolet, visible ou infrarouge. La plus célèbre est la série de Balmer, la seule qui tombe dans le domaine visible.",
+   "texte": "Les raies se rangent en séries, selon le niveau d'arrivée de l'électron.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p11",
+   "ecran": "series",
+   "dit": "Voici les cinq séries de l'hydrogène. Celles de Lyman se terminent sur le niveau un et tombent dans l'ultraviolet. Celles de Balmer arrivent sur le niveau deux, dans le visible. Celles de Paschen arrivent sur le niveau trois, dans l'infrarouge, et celles de Brackett et de Pfund, sur les niveaux quatre et cinq, plus loin encore dans l'infrarouge. Pour les retenir, la leçon propose un moyen mnémotechnique : Ly, Ba, Pa, Bra, Pfund.",
+   "texte": "Lyman, Balmer, Paschen, Brackett, Pfund : Ly-Ba-Pa-Bra-Pfund.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p12",
+   "ecran": "balmer",
+   "dit": "Avant Bohr, un instituteur suisse, Johann Balmer, avait déjà trouvé en mille huit cent quatre-vingt-cinq une recette numérique qui décrivait les longueurs d'onde de la série visible. Sa formule relie la longueur d'onde au numéro du niveau de départ, avec une simple constante. Mais c'était une recette sans explication : personne ne savait pourquoi elle marchait, ni d'où sortait sa constante. Il manquait la physique.",
+   "texte": "Balmer, 1885 : la bonne recette, mais sans l'explication.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p13",
+   "ecran": "rydberg",
+   "dit": "Le modèle de Bohr fournit l'explication, et il débouche sur la formule de Rydberg. L'inverse de la longueur d'onde d'une raie égale la constante de Rydberg multipliée par la différence des inverses des carrés des deux niveaux. Cette constante vaut environ un virgule un fois dix puissance sept par mètre pour l'hydrogène. Une seule formule prédit alors toutes les raies, de toutes les séries : c'est le triomphe quantitatif du modèle.",
+   "texte": "Une seule formule pour toutes les raies : la formule de Rydberg.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p14",
+   "ecran": "exemple_balmer",
+   "dit": "Vérifions sur la plus célèbre des raies : la transition du niveau trois vers le niveau deux. L'énergie du niveau deux vaut moins trois virgule quarante électronvolts, celle du niveau trois environ moins un virgule cinquante et un. La différence, un virgule quatre-vingt-neuf électronvolts, est l'énergie du photon émis. En divisant la constante de Planck fois la vitesse de la lumière par cette énergie, on obtient une longueur d'onde d'environ six cent cinquante-six nanomètres : une belle raie rouge, exactement là où les spectroscopes la voyaient.",
+   "texte": "De n = 3 vers n = 2 : ΔE = 1,89 eV, λ ≈ 656 nm, la raie rouge Hα.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p15",
+   "ecran": "ionisation",
+   "dit": "Un cas limite mérite le détour : l'ionisation. Pour arracher complètement l'électron depuis le niveau fondamental, il faut lui donner treize virgule six électronvolts, exactement la profondeur du puits de départ. C'est l'énergie d'ionisation de l'hydrogène, et c'est aussi la limite vers laquelle s'accumulent les raies de la série de Lyman quand le niveau de départ grandit. Au-delà, le spectre devient continu : l'électron part libre, avec l'énergie en trop en poche.",
+   "texte": "Ioniser depuis le fondamental : 13,6 eV, la limite de la série de Lyman.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p16",
+   "ecran": "hydrogenoides",
+   "dit": "Généralisons. Un ion hydrogénoïde est un ion qui ne conserve qu'un seul électron, mais dont le noyau peut contenir plusieurs protons : deux pour l'hélium ionisé, trois pour le lithium doublement ionisé, et ainsi de suite. Le problème reste un problème à deux corps, un noyau et un électron, exactement comme l'hydrogène : tout l'arsenal de Bohr reste donc utilisable, à un détail près, la charge du noyau.",
+   "texte": "Un seul électron, mais Z protons : He⁺, Li²⁺ et leurs cousins.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p17",
+   "ecran": "energie_z",
+   "dit": "Ce détail change tout, par un simple facteur : la charge du noyau multiplie l'attraction, et l'énergie de chaque niveau est multipliée par le carré du nombre de protons. Pour l'hélium ionisé, deux protons : chaque niveau est quatre fois plus profond que dans l'hydrogène. Les marches de l'escalier s'écartent, les photons deviennent plus énergétiques, et tout le spectre glisse vers les courtes longueurs d'onde. La formule de l'hydrogène n'était que le cas particulier où la charge vaut un.",
+   "texte": "Eₙ = −Z²E₀/n² : l'hydrogène n'était que le cas Z = 1.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p18",
+   "ecran": "exemple_helium",
+   "dit": "Calculons la raie principale de l'hélium ionisé, la transition du niveau deux vers le niveau un. Le niveau fondamental tombe à moins cinquante-quatre virgule quatre électronvolts, le niveau deux à moins treize virgule six. Le photon emporte donc quarante virgule huit électronvolts, et sa longueur d'onde descend à environ trente virgule quatre nanomètres, en plein ultraviolet. Même transition que la première raie de Lyman, mais quatre fois plus énergétique : voilà l'effet du carré de la charge.",
+   "texte": "He⁺, de n = 2 vers n = 1 : ΔE = 40,8 eV, λ ≈ 30,4 nm, ultraviolet.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p19",
+   "ecran": "limites",
+   "dit": "Il faut maintenant être honnête : le modèle de Bohr a des frontières nettes. Il échoue dès qu'un deuxième électron entre en jeu, car les électrons se repoussent entre eux, et le modèle ne sait pas traiter ces interactions. Il ne prédit pas l'intensité des raies, seulement leur position. Il reste muet devant le dédoublement des raies sous un champ magnétique ou électrique, les effets Zeeman et Stark. Et surtout, son électron ponctuel, sagement posé sur une orbite, contredit la nature ondulatoire de la matière.",
+   "texte": "Les frontières de Bohr : plusieurs électrons, intensités, Zeeman, Stark.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p20",
+   "ecran": "quantique",
+   "dit": "La mécanique quantique, qui prend le relais, change le portrait : l'électron n'a plus de trajectoire du tout. Le principe d'incertitude de Heisenberg interdit de connaître à la fois sa position et sa vitesse avec précision. On le décrit alors par une fonction d'onde, qui donne la probabilité de le trouver en chaque endroit : ce sont les orbitales que vous avez rencontrées dans le cours de configuration électronique. Les niveaux d'énergie, eux, survivent au changement de théorie : c'était l'acquis définitif de Bohr.",
+   "texte": "Adieu les orbites : des orbitales, des probabilités, mais les mêmes niveaux.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p21",
+   "ecran": "applications",
+   "dit": "À quoi tout cela sert-il ? D'abord à identifier la matière par sa lumière : c'est la spectroscopie. Chaque élément signe son spectre, donc en décomposant la lumière d'une étoile, on lit sa composition sans jamais l'approcher. Le même principe, au laboratoire, permet de repérer des traces de métaux lourds dans l'eau potable ou de mesurer la concentration d'un élément dans un échantillon. Le spectre est devenu un instrument d'analyse universel.",
+   "texte": "La spectroscopie : lire la composition des étoiles et des échantillons.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p22",
+   "ecran": "usages",
+   "dit": "Les applications ne s'arrêtent pas là. Les lasers fonctionnent en faisant descendre des atomes excités d'un niveau à l'autre, en cadence. Les semi-conducteurs de nos téléphones reposent sur la manipulation des niveaux d'énergie des électrons dans les cristaux, notamment par le dopage. Et la chimie quantique calcule les niveaux des molécules pour prévoir leur stabilité et leur réactivité, avant même de synthétiser un nouveau médicament ou un nouveau matériau. L'escalier de Bohr est devenu un outil d'ingénieur.",
+   "texte": "Lasers, semi-conducteurs, molécules sur mesure : l'escalier devient outil.",
+   "pause_apres": 0.8
+  },
+  {
+   "id": "p23",
+   "ecran": "recap_final",
+   "dit": "Récapitulons le voyage. Dans l'atome, l'énergie est quantifiée : des niveaux discrets, comme les marches d'un escalier. Bohr les a décrits avec trois postulats, et sa formule en un sur n au carré donne les niveaux de l'hydrogène. Chaque saut d'électron émet ou absorbe un photon : la formule de Rydberg prédit alors toutes les raies du spectre, et le carré de la charge étend le modèle aux ions hydrogénoïdes. Le modèle a ses limites, que la mécanique quantique dépasse, mais ses niveaux d'énergie restent la clé qui ouvre la spectroscopie, les lasers et l'électronique moderne.",
+   "texte": "Quantification, Bohr, Rydberg, hydrogénoïdes : la carte du cours.",
+   "pause_apres": 0.8
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Quantification et modèle de Bohr"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Les séries spectrales et la formule de Rydberg",
+   "pont": {
+    "dit": "Partie deux : le spectre de l'hydrogène, ses séries et la formule de Rydberg. Nous avons des niveaux et des sauts ; il est temps de prédire les raies une à une, et de vérifier le modèle sur un calcul complet.",
+    "texte": "Partie 2 : les séries spectrales et la formule de Rydberg."
+   }
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Hydrogénoïdes, limites et applications",
+   "pont": {
+    "dit": "Partie trois : au-delà de l'hydrogène. Nous allons généraliser le modèle aux ions qui ne gardent qu'un seul électron, puis regarder en face ce que le modèle ne sait pas expliquer, et ce à quoi tout cela sert concrètement.",
+    "texte": "Partie 3 : hydrogénoïdes, limites et applications."
+   }
+  }
+ ]
+}
