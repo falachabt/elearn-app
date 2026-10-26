@@ -1,0 +1,449 @@
+{
+ "cours": 6739,
+ "ecrans": {
+  "accroche": {
+   "kicker": "Prologue",
+   "texte": "Des éléments en désordre, jusqu'au génie de Mendeleïev.",
+   "type": "phrase"
+  },
+  "atomicite": {
+   "kicker": "Atomicité et formes",
+   "tex": [
+    "\\text{atomicité = nombre total d'atomes de la molécule}",
+    "H_2O : 3, \\text{ coudée} \\qquad NH_3 : 4, \\text{ pyramidale}",
+    "CO_2 : 3, \\text{ linéaire} \\qquad CH_4 : 5, \\text{ tétraédrique}"
+   ],
+   "titre": "Compter les atomes, lire la forme",
+   "type": "etape"
+  },
+  "avogadro": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "gaz"
+   },
+   "kicker": "La loi d'Avogadro-Ampère",
+   "tex": [
+    "\\text{mêmes T et P : même nombre de molécules par volume}",
+    "0\\,^\\circ C,\\ 1\\ \\text{atm} : V_m = 22{,}4\\ \\text{L par mole}",
+    "20\\,^\\circ C,\\ 1\\ \\text{atm} : V_m = 24\\ \\text{L par mole}"
+   ],
+   "titre": "Le même volume molaire pour tous les gaz",
+   "type": "etape"
+  },
+  "exemple_magnesium": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "Z = 12 \\text{ : } 1s^2\\,2s^2\\,2p^6\\,3s^2",
+    "\\text{couche externe } n = 3 \\Rightarrow \\text{3e période}",
+    "\\text{2 électrons de valence (} 3s^2\\text{)} \\Rightarrow \\text{groupe 2}"
+   ],
+   "titre": "Le magnésium, numéro atomique 12",
+   "type": "etape"
+  },
+  "exemple_oxygene": {
+   "kicker": "Exemple résolu",
+   "tex": [
+    "\\text{données : } V = 4{,}8\\ \\text{L de } O_2 \\text{ à } 20\\,^\\circ C,\\ V_m = 24\\ \\text{L par mole}",
+    "n = \\tfrac{V}{V_m} = \\tfrac{4{,}8}{24} = 0{,}2\\ \\text{mol}"
+   ],
+   "titre": "Compter le dioxygène",
+   "type": "etape"
+  },
+  "exercice_oxygene": {
+   "kicker": "Exercice d'application",
+   "tex": [
+    "\\text{élément X : } 1s^2\\,2s^2\\,2p^4",
+    "\\text{couche externe } n = 2 \\Rightarrow \\text{2e période ; 6 de valence} \\Rightarrow \\text{groupe 16}",
+    "Z = 2 + 2 + 4 = 8 \\Rightarrow \\text{oxygène ; même groupe : le soufre}"
+   ],
+   "titre": "Un élément X à identifier, corrigé des leçons",
+   "type": "etape"
+  },
+  "familles": {
+   "anim": {
+    "hauteur": 110,
+    "mode": "familles",
+    "nom": "tableau_periodique_fig"
+   },
+   "kicker": "Les familles remarquables",
+   "tex": [
+    "\\text{groupe 1 : alcalins, 1 électron, très réactifs}",
+    "\\text{groupe 2 : alcalino-terreux, 2 électrons, réactifs}",
+    "\\text{groupe 17 : halogènes, 7 électrons} \\qquad \\text{groupe 18 : gaz nobles, inertes}"
+   ],
+   "titre": "Quatre groupes à connaître",
+   "type": "etape"
+  },
+  "gaz_parfaits": {
+   "kicker": "La loi des gaz parfaits",
+   "note": "R = 8,314 J/(mol·K) ; P en Pa, V en m³, T en K.",
+   "tex": "P \\cdot V = n \\cdot R \\cdot T",
+   "type": "formule"
+  },
+  "geometrie": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "vsepr_formes_fig"
+   },
+   "kicker": "La géométrie des molécules",
+   "tex": [
+    "\\text{les doublets (liants et non liants) se repoussent au maximum}",
+    "CH_4 : \\text{ tétraèdre, angles de } 109{,}5^\\circ",
+    "H_2O : \\text{ coudée, } \\approx 104{,}5^\\circ \\text{ ; les non liants compriment}"
+   ],
+   "titre": "Les doublets se repoussent",
+   "type": "etape"
+  },
+  "groupes": {
+   "kicker": "Les groupes",
+   "tex": [
+    "\\text{groupe = colonne verticale ; il y en a 18}",
+    "\\text{même groupe : même nombre d'électrons de valence}",
+    "Z = 17 \\text{ (Cl) : } 3s^2\\,3p^5 \\Rightarrow 2 + 5 = 7 \\text{ de valence} \\Rightarrow \\text{groupe 17}"
+   ],
+   "titre": "Dix-huit colonnes, une même couche externe",
+   "type": "etape"
+  },
+  "intro_gaz": {
+   "kicker": "Compter les gaz",
+   "texte": "Compter les gaz : des litres aux moles.",
+   "type": "phrase"
+  },
+  "intro_liaisons": {
+   "kicker": "Lier les atomes",
+   "texte": "Atomes isolés ou liés : la course à l'octet.",
+   "type": "phrase"
+  },
+  "ionique": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "transfert_partage_fig"
+   },
+   "kicker": "L'autre liaison",
+   "tex": [
+    "\\text{covalente : partage d'électrons}",
+    "\\text{ionique : transfert d'électrons, attraction entre ions}",
+    "NaCl : Na^+ \\text{ et } Cl^- \\text{ ; solides, conducteurs fondus ou en solution}"
+   ],
+   "titre": "Partager ou transférer : la liaison ionique",
+   "type": "etape"
+  },
+  "lecture_inverse": {
+   "kicker": "La lecture inverse",
+   "tex": [
+    "\\text{groupe 16, 3e période : 3 couches, } 16 - 10 = 6 \\text{ électrons de valence}",
+    "1s^2\\,2s^2\\,2p^6\\,3s^2\\,3p^4",
+    "Z = 2 + 2 + 6 + 2 + 4 = 16 \\Rightarrow \\text{le soufre (S)}"
+   ],
+   "titre": "De la position à la configuration",
+   "type": "etape"
+  },
+  "mendeleiev": {
+   "kicker": "Le principe de construction",
+   "tex": [
+    "\\text{1869 : Mendeleïev classe par masses atomiques croissantes}",
+    "\\text{propriétés périodiques, cases vides : prédictions vérifiées}",
+    "\\text{classification moderne : rangement par } Z \\text{ croissant}"
+   ],
+   "titre": "Des masses atomiques au numéro atomique",
+   "type": "etape"
+  },
+  "methode_position": {
+   "kicker": "Déterminer une position",
+   "tex": [
+    "\\text{1. écrire la configuration (Aufbau, Hund, Pauli)}",
+    "\\text{2. période = plus grande valeur de } n",
+    "\\text{3. groupe : valence, ou valence} + 10 \\text{ (groupes 13 à 18)}"
+   ],
+   "titre": "Trois gestes pour placer un élément",
+   "type": "etape"
+  },
+  "modeles": {
+   "kicker": "Les modèles moléculaires",
+   "tex": [
+    "\\text{modèles : visualiser valence, géométrie et octet}",
+    "NH_3 : \\text{ azote (boule à 3 trous)} + 3\\,H \\text{ (1 trou chacun)}",
+    "\\text{molécule pyramidale, un doublet non liant sur l'azote}"
+   ],
+   "titre": "Boules et bâtonnets : voir les molécules",
+   "type": "etape"
+  },
+  "octet": {
+   "kicker": "La règle de l'octet",
+   "tex": [
+    "\\text{octet : 8 électrons sur la couche externe (gaz noble)}",
+    "\\text{duet : 2 électrons pour les atomes légers (H)}",
+    "\\text{liaison covalente : 2 électrons mis en commun (doublet liant)}"
+   ],
+   "titre": "Huit électrons, la configuration rêvée",
+   "type": "etape"
+  },
+  "periodes": {
+   "kicker": "Les périodes",
+   "tex": [
+    "\\text{période = ligne horizontale ; il y en a 7}",
+    "\\text{numéro de période = nombre de couches occupées}",
+    "Z = 11 \\text{ (Na) : } 1s^2\\,2s^2\\,2p^6\\,3s^1 \\Rightarrow \\text{3 couches, 3e période}"
+   ],
+   "titre": "Sept lignes, autant de couches occupées",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Z croissant : le rangement moderne",
+    "Période = nombre de couches",
+    "Groupe = électrons de valence",
+    "Groupes 13 à 18 : valence + 10",
+    "Gaz nobles : couche saturée, inertes"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Octet : 8 électrons, duet : 2",
+    "Valence = nombre de liaisons",
+    "Lewis : liants et non liants",
+    "Doublets repoussés : géométrie",
+    "CH₄ tétraèdre, H₂O coudée"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Tableau : Z, période, groupe",
+    "Octet et valence construisent",
+    "Géométrie : doublets repoussés",
+    "Vm identique pour tous les gaz",
+    "Gaz parfaits : P·V = n·R·T"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "representations": {
+   "anim": {
+    "hauteur": 110,
+    "nom": "lewis_co2_fig"
+   },
+   "kicker": "Représenter une molécule",
+   "tex": [
+    "\\text{brute : nature et nombre d'atomes (ex. l'eau)}",
+    "\\text{développée : chaque liaison est un tiret, } H-O-H",
+    "\\text{Lewis : doublets liants et non liants dessinés}"
+   ],
+   "titre": "Trois écritures pour une molécule",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "mode": "familles",
+    "nom": "tableau_periodique_fig"
+   },
+   "kicker": "Chimie · Structure de la matière",
+   "sous": "Lire le tableau de Mendeleïev, construire les molécules par la règle de l'octet, puis compter les gaz",
+   "titre": "La classification périodique et les liaisons chimiques",
+   "type": "titre"
+  },
+  "valence": {
+   "kicker": "La valence",
+   "tex": [
+    "\\text{valence = nombre de liaisons covalentes formées}",
+    "\\text{valence = électrons manquants pour l'octet (ou le duet)}",
+    "H : 1 \\qquad O : 2 \\qquad N : 3 \\qquad C : 4"
+   ],
+   "titre": "Compter les liaisons possibles",
+   "type": "etape"
+  },
+  "volume_molaire": {
+   "kicker": "Le volume molaire",
+   "note": "Vm : volume d'une mole de gaz, en litres par mole ; V en litres.",
+   "tex": "n = \\frac{V}{V_m}",
+   "type": "formule"
+  }
+ },
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le tableau périodique : périodes, groupes et familles"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : les liaisons chimiques. Après le classement des éléments, voyons comment leurs atomes s'assemblent : la règle de l'octet, la valence, les représentations de Lewis et la géométrie des molécules.",
+    "texte": "Partie 2 : la liaison covalente, l'octet et la géométrie."
+   },
+   "sous_titre": "La liaison covalente : octet, valence et géométrie"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : compter les gaz. Nous verrons le volume molaire et la loi d'Avogadro et Ampère, puis la loi des gaz parfaits, avant de comparer la liaison ionique à la liaison covalente et de visualiser les molécules en modèles.",
+    "texte": "Partie 3 : les gaz, la liaison ionique et les modèles."
+   },
+   "sous_titre": "Les gaz : volume molaire et loi des gaz parfaits"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de structure de la matière, en trois temps. D'abord, le tableau périodique : comment il est construit, comment on y lit la période et le groupe d'un élément à partir de sa configuration électronique, et comment on fait le chemin inverse. Ensuite, les liaisons chimiques : la règle de l'octet, la valence, les représentations des molécules et leur géométrie. Enfin, les gaz : le volume molaire, la loi d'Avogadro et Ampère, et la loi des gaz parfaits.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Classer les éléments, lier les atomes, compter les gaz."
+  },
+  {
+   "dit": "Au dix-neuvième siècle, les chimistes connaissent déjà de nombreux éléments, mais leurs propriétés semblent désordonnées, sans logique apparente. En mille huit cent soixante-neuf, le chimiste russe Dimitri Mendeleïev propose de les classer par masses atomiques croissantes. Il remarque alors que certaines propriétés chimiques se répètent périodiquement, et il ose laisser des cases vides pour des éléments encore inconnus, dont il prédit les propriétés. L'histoire lui donnera raison.",
+   "ecran": "accroche",
+   "id": "p02",
+   "texte": "Des éléments en désordre, jusqu'au génie de Mendeleïev."
+  },
+  {
+   "dit": "Le classement de Mendeleïev repose sur les masses atomiques croissantes et sur la répétition périodique des propriétés. La classification moderne, elle, est fondée sur une grandeur plus fondamentale : le numéro atomique, noté Z, c'est-à-dire le nombre de protons du noyau. Les éléments y sont rangés par numéro atomique croissant, et l'on observe la même périodicité : les éléments dont les configurations électroniques externes se ressemblent présentent des comportements chimiques analogues. Le tableau sert alors à regrouper les éléments, à prédire leur comportement et à déterminer leur structure.",
+   "ecran": "mendeleiev",
+   "id": "p03",
+   "texte": "Le classement moderne suit Z, le nombre de protons."
+  },
+  {
+   "dit": "Une période est une ligne horizontale du tableau ; il en existe sept, numérotées de un à sept. La propriété essentielle est simple : le numéro de la période correspond au nombre de couches électroniques occupées par l'élément. Exemple résolu des leçons : l'atome de sodium, de numéro atomique onze, a pour structure électronique un s deux, deux s deux, deux p six, trois s un. Il possède trois couches occupées, les couches un, deux et trois : il se trouve donc dans la troisième période.",
+   "ecran": "periodes",
+   "id": "p04",
+   "texte": "Le sodium : 3 couches occupées, donc 3e période."
+  },
+  {
+   "dit": "Un groupe, ou famille, est une colonne verticale du tableau ; il en existe dix-huit, numérotés de un à dix-huit. Les éléments d'un même groupe possèdent le même nombre d'électrons sur leur couche externe, leurs électrons de valence, ce qui explique leurs propriétés chimiques semblables. Cas particulier à retenir : pour les groupes un et deux, le numéro du groupe correspond au nombre d'électrons de valence ; pour les groupes treize à dix-huit, ce nombre vaut le numéro du groupe moins dix. Exemple résolu : le chlore, numéro atomique dix-sept, a pour couche externe trois s deux, trois p cinq, soit deux plus cinq égale sept électrons de valence ; sept plus dix égale dix-sept, c'est le groupe dix-sept.",
+   "ecran": "groupes",
+   "id": "p05",
+   "texte": "Le chlore : 7 électrons de valence, groupe 17."
+  },
+  {
+   "dit": "Voici la méthode générale pour déterminer la position d'un élément à partir de son numéro atomique. Premier geste : écrire la configuration électronique, en respectant les règles de remplissage, le principe d'Aufbau, la règle de Hund et le principe d'exclusion de Pauli. Deuxième geste : la période est le numéro de la couche externe, la plus grande valeur de n. Troisième geste : le groupe se déduit du nombre d'électrons de valence, directement pour les groupes un et deux, en ajoutant dix pour les groupes treize à dix-huit.",
+   "ecran": "methode_position",
+   "id": "p06",
+   "texte": "Configuration, plus grand n, électrons de valence."
+  },
+  {
+   "dit": "Exemple résolu complet : déterminer la position du magnésium, de numéro atomique douze, dans le tableau périodique. Sa configuration électronique s'écrit un s deux, deux s deux, deux p six, trois s deux. La couche externe est la couche n égale trois : c'est donc la troisième période. Cette couche porte deux électrons de valence, ceux de la sous-couche trois s : c'est le groupe deux. Le magnésium se trouve donc dans le groupe deux, troisième période.",
+   "ecran": "exemple_magnesium",
+   "id": "p07",
+   "texte": "Magnésium : groupe 2, 3e période."
+  },
+  {
+   "dit": "La lecture peut aussi se faire dans l'autre sens, du tableau vers la structure électronique. Exemple résolu : l'élément situé dans le groupe seize, troisième période. Troisième période signifie trois couches occupées. Groupe seize signifie six électrons de valence, seize moins dix. Sa structure électronique est donc un s deux, deux s deux, deux p six, trois s deux, trois p quatre. Additionnons : deux plus deux plus six plus deux plus quatre égale seize. Le numéro atomique vaut seize : c'est le soufre.",
+   "ecran": "lecture_inverse",
+   "id": "p08",
+   "texte": "Groupe 16, période 3 : c'est le soufre, Z = 16."
+  },
+  {
+   "dit": "Le tableau des leçons distingue quatre familles remarquables. Groupe un : les métaux alcalins, un seul électron de valence, très réactifs. Groupe deux : les métaux alcalino-terreux, deux électrons de valence, réactifs. Groupe dix-sept : les halogènes, sept électrons, très réactifs eux aussi. Et groupe dix-huit : les gaz nobles, dont la couche externe est saturée, huit électrons, sauf l'hélium avec deux ; cette configuration particulièrement stable, celle de la règle de l'octet, les rend chimiquement inertes.",
+   "ecran": "familles",
+   "id": "p09",
+   "texte": "Alcalins, alcalino-terreux, halogènes, gaz nobles."
+  },
+  {
+   "dit": "Exercice d'application, avec son corrigé. L'élément X a pour configuration électronique un s deux, deux s deux, deux p quatre. Première question, sa période et son groupe : sa couche externe est la couche deux, c'est la deuxième période ; elle compte six électrons de valence, c'est le groupe seize. Deuxième question, son numéro atomique : deux plus deux plus quatre égale huit, c'est l'oxygène. Troisième question, un élément du même groupe : le soufre, qui possède lui aussi six électrons de valence.",
+   "ecran": "exercice_oxygene",
+   "id": "p10",
+   "texte": "X = l'oxygène : période 2, groupe 16, Z = 8."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Le tableau moderne range les éléments par numéro atomique croissant, et les propriétés chimiques se répètent périodiquement. La période se lit sur le nombre de couches occupées, le groupe sur le nombre d'électrons de valence, en ajoutant dix pour les groupes treize à dix-huit. Et la méthode fonctionne dans les deux sens : de la configuration vers la position, et de la position vers la configuration. Prochaine étape : ce que les atomes font de leurs électrons externes, c'est-à-dire les liaisons.",
+   "ecran": "recap1",
+   "id": "p11",
+   "texte": "Lire le tableau dans les deux sens."
+  },
+  {
+   "dit": "Les éléments sont classés ; reste à comprendre comment leurs atomes s'assemblent en molécules. Un atome isolé cherche la stabilité du gaz noble le plus proche : pour l'atteindre, il partage des électrons avec ses voisins. C'est la liaison covalente, gouvernée par la règle de l'octet.",
+   "ecran": "intro_liaisons",
+   "id": "p12",
+   "texte": "Atomes isolés ou liés : la course à l'octet."
+  },
+  {
+   "dit": "Un atome tend à acquérir la configuration électronique du gaz noble le plus proche, c'est-à-dire huit électrons sur sa couche externe : c'est la règle de l'octet. Pour les atomes légers, le compte est de deux électrons : c'est la règle du duet, le cas de l'hydrogène. Pour y parvenir, les atomes mettent en commun des électrons externes. Une liaison covalente est précisément cette mise en commun de deux électrons, un doublet liant, entre deux atomes.",
+   "ecran": "octet",
+   "id": "p13",
+   "texte": "Octet ou duet : partager pour se stabiliser."
+  },
+  {
+   "dit": "La valence d'un atome est le nombre de liaisons covalentes qu'il peut former. Elle correspond au nombre d'électrons qui manquent sur sa couche externe pour atteindre l'octet, ou le duet. Les exemples des leçons : l'hydrogène a la valence un, l'oxygène la valence deux, l'azote la valence trois, et le carbone la valence quatre. Retenez ce quatuor : il construit presque toutes les molécules de ce chapitre.",
+   "ecran": "valence",
+   "id": "p14",
+   "texte": "Valences : H = 1, O = 2, N = 3, C = 4."
+  },
+  {
+   "dit": "Trois représentations à distinguer. La formule brute indique la nature et le nombre d'atomes, par exemple celle de l'eau. La formule développée dessine chaque liaison covalente par un tiret entre les atomes. La représentation de Lewis, illustrée à l'écran, va plus loin : chaque doublet liant est un tiret, et les doublets non liants sont des points ou des tirets autour des atomes. Exemple résolu, la molécule d'eau : l'oxygène compte six électrons externes et a la valence deux ; il forme deux liaisons avec deux hydrogènes et conserve deux doublets non liants. Au bilan, l'oxygène respecte l'octet, et chaque hydrogène respecte le duet.",
+   "ecran": "representations",
+   "id": "p15",
+   "texte": "Brute, développée, Lewis : trois niveaux de détail."
+  },
+  {
+   "dit": "L'atomicité d'une molécule est le nombre total d'atomes qui la constituent. Le tableau des leçons associe à chaque molécule son atomicité et sa forme géométrique : le dihydrogène, le dichlore, le dioxygène et le diazote, deux atomes chacun, sont linéaires ; l'eau, trois atomes, est coudée, avec un angle d'environ cent quatre virgule cinq degrés ; l'ammoniac, quatre atomes, est pyramidal ; le dioxyde de carbone, trois atomes, est linéaire ; et le méthane, cinq atomes, est tétraédrique. Reste à comprendre d'où viennent ces formes.",
+   "ecran": "atomicite",
+   "id": "p16",
+   "texte": "Atomicité et forme : le tableau des leçons."
+  },
+  {
+   "dit": "La règle de géométrie est mécanique : les doublets, liants et non liants, disposés autour d'un atome central, se repoussent et s'orientent à distance maximale les uns des autres. Les doublets non liants occupent plus d'espace et compriment les angles entre les liaisons. Exemple résolu, le méthane : le carbone, de valence quatre, forme quatre liaisons avec quatre atomes d'hydrogène ; les quatre doublets liants se disposent en tétraèdre, avec des angles de cent neuf virgule cinq degrés, et la molécule est non plane. C'est le même raisonnement qui explique l'eau coudée : ses deux doublets non liants resserrent l'angle.",
+   "ecran": "geometrie",
+   "id": "p17",
+   "texte": "CH₄ tétraédrique (109,5°) ; H₂O coudée (104,5°)."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Les atomes se lient pour atteindre l'octet, ou le duet : ils mettent en commun des doublets d'électrons. La valence compte les liaisons possibles, la représentation de Lewis dessine tous les doublets, liants et non liants, et leur répulsion mutuelle fixe la géométrie : tétraèdre pour le méthane, molécule coudée pour l'eau, pyramide pour l'ammoniac. Il reste un dernier volet : les gaz, que l'on compte en moles et en litres, puis les autres liaisons et les modèles qui aident à tout visualiser.",
+   "ecran": "recap2",
+   "id": "p18",
+   "texte": "Octet, valence, Lewis, géométrie."
+  },
+  {
+   "dit": "Changeons d'échelle : après les molécules une à une, voici les gaz en quantité de matière. Une mole de gaz occupe un volume étonnamment universel, et une seule équation relie sa pression, son volume et sa température. Nous terminerons par la liaison ionique, l'autre grande façon de lier les atomes, et par les modèles moléculaires, qui rendent tout cela visible.",
+   "ecran": "intro_gaz",
+   "id": "p19",
+   "texte": "Compter les gaz : des litres aux moles."
+  },
+  {
+   "dit": "Deux définitions d'abord. Le volume molaire d'un gaz, noté V m, est le volume occupé par une mole de ce gaz ; il s'exprime en litres par mole. La quantité de matière, notée n, représente le nombre de moles d'une espèce chimique. Elle se calcule par la relation à l'écran : n égale V divisé par V m, où V est le volume du gaz, en litres, et V m le volume molaire, en litres par mole.",
+   "ecran": "volume_molaire",
+   "id": "p20",
+   "texte": "n = V / Vm : passer des litres aux moles."
+  },
+  {
+   "dit": "La loi d'Avogadro et Ampère affirme que, dans les mêmes conditions de température et de pression, tous les gaz parfaits contiennent le même nombre de molécules pour un volume donné. Conséquence directe : le volume molaire est le même pour tous les gaz, dans des conditions identiques. Les conditions usuelles des leçons : à la température de zéro degré Celsius, soit deux cent soixante-treize kelvins, et sous la pression d'un atmosphère, le volume molaire vaut vingt-deux virgule quatre litres par mole ; à vingt degrés Celsius et un atmosphère, il vaut vingt-quatre litres par mole.",
+   "ecran": "avogadro",
+   "id": "p21",
+   "texte": "Vm = 22,4 L/mol à 0 °C ; 24 L/mol à 20 °C."
+  },
+  {
+   "dit": "Exemple résolu des leçons : on dispose de quatre virgule huit litres de dioxygène à vingt degrés Celsius, sous la pression atmosphérique ; le volume molaire y vaut donc vingt-quatre litres par mole. Calculer la quantité de matière : on divise le volume par le volume molaire, quatre virgule huit divisé par vingt-quatre, ce qui donne zéro virgule deux mole. Trois lignes de calcul, et le gaz est compté.",
+   "ecran": "exemple_oxygene",
+   "id": "p22",
+   "texte": "4,8 L de O₂ à 20 °C : n = 0,2 mol."
+  },
+  {
+   "dit": "La loi des gaz parfaits relie quatre grandeurs d'un gaz : la pression P, le volume V, la quantité de matière n et la température absolue T. Elle s'écrit P fois V égale n fois R fois T, où R est la constante des gaz parfaits, huit virgule trois cent quatorze joules par mole et par kelvin. Attention aux unités du système international : la pression en pascals, le volume en mètres cubes, et la température en kelvins.",
+   "ecran": "gaz_parfaits",
+   "id": "p23",
+   "texte": "PV = nRT : l'équation d'état des gaz parfaits."
+  },
+  {
+   "dit": "Outre la liaison covalente, il existe la liaison ionique : elle résulte de l'attraction électrostatique entre des ions de charges opposées, par exemple l'ion sodium et l'ion chlorure dans le chlorure de sodium. La différence avec la covalente est nette : la liaison covalente partage les électrons, la liaison ionique implique un transfert d'électrons, comme le montre la figure. Les composés ioniques sont solides à température ambiante, et ils conduisent le courant à l'état fondu ou en solution, lorsque leurs ions deviennent mobiles.",
+   "ecran": "ionique",
+   "id": "p24",
+   "texte": "Ionique : transfert d'électrons, ions attirés."
+  },
+  {
+   "dit": "Méthode pratique pour finir : l'utilisation de modèles moléculaires, boules et bâtonnets, permet de visualiser la valence de chaque atome, par le nombre de trous de sa boule, la géométrie de la molécule, et le respect de la règle de l'octet. Exercice type des leçons : construire le modèle de l'ammoniac. L'azote est une boule à trois trous, liée à trois atomes d'hydrogène à un trou chacun. La molécule obtenue est pyramidale, avec un doublet non liant sur l'azote, exactement comme l'annonçait la règle de répulsion des doublets.",
+   "ecran": "modeles",
+   "id": "p25",
+   "texte": "NH₃ en modèle : pyramidale, un doublet libre."
+  },
+  {
+   "dit": "Récapitulons le cours entier. Le tableau périodique range les éléments par numéro atomique croissant : la période compte les couches occupées, le groupe compte les électrons de valence, et l'on sait lire cette position dans les deux sens. Les atomes se lient par la règle de l'octet : la valence fixe le nombre de liaisons, les doublets dessinés par Lewis se repoussent et imposent la géométrie, tétraèdre, pyramide ou molécule coudée ; la liaison ionique, elle, transfère les électrons. Enfin, les gaz se comptent par le volume molaire, identique pour tous à conditions égales, et obéissent à la loi des gaz parfaits. Classer, lier, compter : vous tenez les trois gestes de base de la chimie.",
+   "ecran": "recap_final",
+   "id": "p26",
+   "texte": "Classer, lier, compter : l'essentiel du cours."
+  }
+ ],
+ "titre": "La classification périodique et les liaisons chimiques"
+}
