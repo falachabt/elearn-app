@@ -1,0 +1,364 @@
+{
+ "cours": 5958,
+ "titre": "Chapitre 3 : Oxydoréduction par Voie Sèche",
+ "matiere": "Chimie",
+ "lecons": [
+  4894,
+  4895,
+  4896,
+  4897,
+  4898,
+  4899,
+  4900,
+  4901
+ ],
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Oxydoréduction",
+   "titre": "L'oxydoréduction par voie sèche",
+   "sous": "Le nombre d'oxydation, des demi-équations à la thermite",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "L'oxydoréduction",
+   "texte": "L'oxydoréduction, ou réaction redox, est un transfert d'électrons entre deux espèces chimiques : celle qui perd des électrons est oxydée, celle qui en gagne est réduite.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 170
+   }
+  },
+  "voie_seche": {
+   "type": "phrase",
+   "kicker": "La voie sèche",
+   "texte": "Une réaction redox par voie sèche se déroule sans solvant liquide : entre solides, ou entre un solide et un gaz, souvent à haute température.",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 170
+   }
+  },
+  "rouille": {
+   "type": "formule",
+   "kicker": "Premier exemple",
+   "tex": "4\\,\\mathrm{Fe(s)} + 3\\,\\mathrm{O_2(g)} \\longrightarrow 2\\,\\mathrm{Fe_2O_3(s)}",
+   "note": "Le fer passe de 0 à +3 : oxydé. L'oxygène passe de 0 à -2 : réduit."
+  },
+  "no_definition": {
+   "type": "phrase",
+   "kicker": "Le nombre d'oxydation",
+   "texte": "Le nombre d'oxydation est un entier attribué à un atome : la charge fictive qu'il porterait si toutes ses liaisons étaient purement ioniques, les électrons allant au plus électronégatif.",
+   "anim": {
+    "nom": "ion_formation_fig",
+    "hauteur": 160
+   }
+  },
+  "regles": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Les six règles du nombre d'oxydation",
+   "tex": [
+    "\\text{Corps simple : } 0 \\qquad \\text{Ion monoatomique : sa charge}",
+    "\\text{Oxygène : } -2 \\qquad \\text{Hydrogène : } +1",
+    "\\sum \\text{n.o.} = 0 \\ \\text{(molécule neutre)} \\qquad \\sum \\text{n.o.} = \\text{charge (ion)}"
+   ]
+  },
+  "methode_no": {
+   "type": "recap",
+   "kicker": "Le nombre d'oxydation",
+   "etapes": [
+    "Écrire la formule de l'espèce étudiée",
+    "Attribuer les nombres d'oxydation connus",
+    "Poser l'équation : la somme des nombres",
+    "Résoudre l'équation pour l'inconnue",
+    "Vérifier la cohérence du résultat"
+   ]
+  },
+  "exemple_kmno4": {
+   "type": "etape",
+   "kicker": "Le nombre d'oxydation",
+   "titre": "Exemple : le manganèse du permanganate",
+   "tex": [
+    "\\mathrm{KMnO_4} : \\quad \\text{K} = +1 \\qquad \\text{O} = -2",
+    "(+1) + x + 4 \\times (-2) = 0",
+    "x = +7"
+   ]
+  },
+  "exemples_calcules": {
+   "type": "etape",
+   "kicker": "Exercices corrigés",
+   "titre": "Quatre résultats à vérifier",
+   "tex": [
+    "\\mathrm{MnO_2} : \\text{Mn} = +4 \\qquad \\mathrm{K_2Cr_2O_7} : \\text{Cr} = +6",
+    "\\mathrm{H_2SO_4} : \\text{S} = +6 \\qquad \\mathrm{NH_4^+} : \\text{N} = -3",
+    "\\mathrm{Fe_3O_4} : \\text{Fe} = +\\frac{8}{3} \\ \\text{(moyenne)}"
+   ]
+  },
+  "combustion": {
+   "type": "formule",
+   "kicker": "Les réactions par voie sèche",
+   "tex": "\\mathrm{C(s)} + \\mathrm{O_2(g)} \\longrightarrow \\mathrm{CO_2(g)}",
+   "note": "Carbone : de 0 à +4, oxydé. Oxygène : de 0 à -2, réduit."
+  },
+  "metallurgie": {
+   "type": "formule",
+   "kicker": "Les réactions par voie sèche",
+   "tex": "\\mathrm{Fe_2O_3(s)} + 3\\,\\mathrm{C(s)} \\longrightarrow 2\\,\\mathrm{Fe(s)} + 3\\,\\mathrm{CO(g)}",
+   "note": "Fer : de +3 à 0, réduit. Carbone : de 0 à +2, oxydé."
+  },
+  "synthese_fes": {
+   "type": "formule",
+   "kicker": "Les réactions par voie sèche",
+   "tex": "\\mathrm{Fe(s)} + \\mathrm{S(s)} \\longrightarrow \\mathrm{FeS(s)}",
+   "note": "À haute température : le fer s'oxyde, le soufre se réduit."
+  },
+  "equilibrage_pourquoi": {
+   "type": "phrase",
+   "kicker": "Équilibrer une équation redox",
+   "texte": "Une équation équilibrée conserve la masse, atome par atome, et la charge, car des électrons sont transférés : sans elle, impossible de prévoir les quantités."
+  },
+  "demi_equations": {
+   "type": "recap",
+   "kicker": "Équilibrer une équation redox",
+   "etapes": [
+    "Séparer oxydation et réduction",
+    "Équilibrer les atomes hors O et H",
+    "Oxygène par l'eau, hydrogène selon le milieu",
+    "Équilibrer les charges par les électrons",
+    "Égaler les électrons, puis additionner"
+   ]
+  },
+  "exemple_demi": {
+   "type": "etape",
+   "kicker": "Équilibrer une équation redox",
+   "titre": "Exemple : le permanganate et le fer, en milieu acide",
+   "tex": [
+    "\\mathrm{Fe^{2+} \\longrightarrow Fe^{3+} + e^-} \\quad \\text{(oxydation)}",
+    "\\mathrm{MnO_4^- + 8\\,H^+ + 5\\,e^- \\longrightarrow Mn^{2+} + 4\\,H_2O}",
+    "\\mathrm{MnO_4^- + 5\\,Fe^{2+} + 8\\,H^+ \\longrightarrow Mn^{2+} + 5\\,Fe^{3+} + 4\\,H_2O}"
+   ]
+  },
+  "sens_evolution": {
+   "type": "phrase",
+   "kicker": "Prévoir le sens d'évolution",
+   "texte": "Le sens d'évolution est gouverné par les potentiels redox : le couple au potentiel le plus élevé se réduit, celui au potentiel le plus faible s'oxyde.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 150
+   }
+  },
+  "prevision_regles": {
+   "type": "recap",
+   "kicker": "Prévoir le sens d'évolution",
+   "etapes": [
+    "Chaque élément tend vers son nombre d'oxydation le plus stable",
+    "Les alcalins visent +1, les halogènes visent -1",
+    "Une grande variation du nombre rend la réaction plus probable",
+    "Prédiction qualitative : la cinétique peut encore bloquer"
+   ]
+  },
+  "cuivre_argent": {
+   "type": "etape",
+   "kicker": "Prévoir le sens d'évolution",
+   "titre": "Le cuivre face au nitrate d'argent",
+   "tex": [
+    "\\mathrm{Cu \\longrightarrow Cu^{2+} + 2\\,e^-} \\quad \\text{(oxydation)}",
+    "\\mathrm{Ag^+ + e^- \\longrightarrow Ag} \\quad \\text{(réduction)}",
+    "\\mathrm{Cu + 2\\,AgNO_3 \\longrightarrow Cu(NO_3)_2 + 2\\,Ag}"
+   ]
+  },
+  "thermite": {
+   "type": "formule",
+   "kicker": "La thermite",
+   "tex": "2\\,\\mathrm{Al(s)} + \\mathrm{Fe_2O_3(s)} \\longrightarrow \\mathrm{Al_2O_3(s)} + 2\\,\\mathrm{Fe(l)}",
+   "note": "Une chaleur immense : le fer produit est liquide.",
+   "anim": {
+    "nom": "chauffe",
+    "hauteur": 160
+   }
+  },
+  "exercice_final": {
+   "type": "etape",
+   "kicker": "Exercice de synthèse",
+   "titre": "L'aluminium réduit le dioxyde de manganèse",
+   "tex": [
+    "\\mathrm{MnO_2(s) + Al(s) \\longrightarrow Mn(s) + Al_2O_3(s)}",
+    "\\mathrm{3\\,MnO_2 + 4\\,Al \\longrightarrow 3\\,Mn + 2\\,Al_2O_3}"
+   ]
+  },
+  "applications": {
+   "type": "recap",
+   "kicker": "Les applications",
+   "etapes": [
+    "La métallurgie : extraire les métaux des minerais",
+    "La céramique : des matériaux synthétisés à chaud",
+    "La synthèse chimique en phase solide",
+    "La corrosion : la rouille, une redox lente"
+   ]
+  },
+  "conclusion": {
+   "type": "phrase",
+   "kicker": "Pour conclure",
+   "texte": "Électrons perdus, électrons gagnés : dans toute réaction redox, les comptes sont toujours égaux."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours d'oxydoréduction par voie sèche, ces réactions sans solvant qui font rouiller le fer, brûler le charbon et fondre le minerai dans les hauts fourneaux. Notre fil conducteur sera le nombre d'oxydation : nous apprendrons à le calculer, puis à équilibrer les équations redox, et enfin à prévoir le sens d'évolution d'une réaction.",
+   "texte": "L'oxydoréduction par voie sèche : le programme."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "dit": "Une réaction d'oxydoréduction, ou réaction redox, est un transfert d'électrons entre deux espèces chimiques. L'espèce qui perd des électrons est oxydée, celle qui en gagne est réduite, et les deux processus sont inséparables : il ne peut pas y avoir d'oxydation sans réduction simultanée.",
+   "texte": "L'oxydoréduction : un transfert d'électrons."
+  },
+  {
+   "id": "p03",
+   "ecran": "voie_seche",
+   "dit": "La voie sèche, c'est la redox sans solvant liquide : les réactifs sont des solides, ou un solide et un gaz, et la réaction demande souvent de hautes températures. Pas d'eau, pas de solution : juste la matière qui réagit à chaud.",
+   "texte": "La voie sèche : sans solvant, souvent à chaud."
+  },
+  {
+   "id": "p04",
+   "ecran": "rouille",
+   "dit": "Premier exemple, la formation de la rouille : quatre atomes de fer réagissent avec trois molécules de dioxygène pour donner deux unités d'oxyde de fer. Le fer perd des électrons, il est oxydé ; le dioxygène en gagne, il est réduit.",
+   "texte": "La rouille : le fer s'oxyde, l'oxygène se réduit."
+  },
+  {
+   "id": "p05",
+   "ecran": "no_definition",
+   "dit": "Pour suivre ces électrons, un outil : le nombre d'oxydation. C'est un nombre entier, positif, négatif ou nul, attribué à chaque atome. Il représente la charge fictive que porterait cet atome si toutes ses liaisons étaient purement ioniques, c'est-à-dire si les électrons de liaison étaient entièrement donnés à l'atome le plus électronégatif. Fictive, donc : ce n'est pas une charge réelle mesurable, mais un compteur d'électrons d'une redoutable efficacité.",
+   "texte": "Le nombre d'oxydation : une charge fictive."
+  },
+  {
+   "id": "p06",
+   "ecran": "regles",
+   "dit": "Le calcul repose sur six règles. Un corps simple est à zéro. Un ion monoatomique porte sa charge. L'oxygène est à moins deux, sauf dans les peroxydes où il est à moins un, et dans le difluorure d'oxygène où il monte à plus deux. L'hydrogène est à plus un, sauf dans les hydrures métalliques où il est à moins un. Enfin, la somme de tous les nombres vaut zéro pour une molécule neutre, et la charge de l'ion pour un ion polyatomique.",
+   "texte": "Les six règles du nombre d'oxydation."
+  },
+  {
+   "id": "p07",
+   "ecran": "methode_no",
+   "dit": "La méthode tient en cinq gestes : écrire la formule, attribuer les nombres déjà connus grâce aux règles, poser l'équation de la somme, résoudre pour l'inconnue, puis vérifier que le résultat est cohérent avec la chimie de l'atome.",
+   "texte": "La méthode de calcul en cinq gestes."
+  },
+  {
+   "id": "p08",
+   "ecran": "exemple_kmno4",
+   "dit": "Exemple guidé : le manganèse dans le permanganate de potassium. Le potassium est un alcalin, il vaut plus un ; l'oxygène vaut moins deux ; la molécule est neutre. On pose : plus un, plus x, plus quatre fois moins deux, égale zéro. Il reste x égale plus sept.",
+   "texte": "Exemple : le manganèse du permanganate, plus sept."
+  },
+  {
+   "id": "p09",
+   "ecran": "exemples_calcules",
+   "dit": "À vous de vérifier ces quatre résultats, tous tirés des exercices corrigés : le manganèse du dioxyde de manganèse est à plus quatre ; le chrome du dichromate de potassium est à plus six ; le soufre de l'acide sulfurique est à plus six ; et l'azote de l'ion ammonium est à moins trois. Cas piège : dans l'oxyde mixte de fer, le fer affiche en moyenne plus huit tiers, parce que le composé mélange en réalité du fer au degré plus deux et du fer au degré plus trois.",
+   "texte": "Exercices corrigés : quatre nombres d'oxydation."
+  },
+  {
+   "id": "p10",
+   "ecran": "combustion",
+   "dit": "Place aux réactions par voie sèche. Premier cas, la combustion du carbone : le carbone brûle dans le dioxygène et donne du dioxyde de carbone. Le carbone passe de zéro à plus quatre, il est oxydé ; l'oxygène passe de zéro à moins deux, il est réduit. Et la réaction dégage la chaleur caractéristique des combustions.",
+   "texte": "La combustion du carbone."
+  },
+  {
+   "id": "p11",
+   "ecran": "metallurgie",
+   "dit": "Deuxième cas, la métallurgie : dans un haut fourneau, le carbone réduit l'oxyde de fer trois et libère le métal. Le fer passe de plus trois à zéro, il gagne des électrons ; le carbone passe de zéro à plus deux dans le monoxyde de carbone, il en perd. C'est ainsi qu'on extrait le fer de son minerai, à très haute température.",
+   "texte": "Le haut fourneau : le carbone réduit le fer."
+  },
+  {
+   "id": "p12",
+   "ecran": "synthese_fes",
+   "dit": "Troisième cas, une synthèse : chauffés ensemble, le fer et le soufre se combinent en sulfure de fer deux. Le fer est oxydé, le soufre est réduit, et le produit est un composé ionique, formé sans la moindre goutte de solvant.",
+   "texte": "La synthèse du sulfure de fer."
+  },
+  {
+   "id": "p13",
+   "ecran": "equilibrage_pourquoi",
+   "dit": "Pourquoi équilibrer une équation redox ? Parce qu'une équation fidèle respecte deux conservations : celle de la masse, chaque atome se compte des deux côtés de la flèche, et celle de la charge, car des électrons sont transférés. Sans cet équilibre, impossible de prévoir les quantités de réactifs et de produits en jeu.",
+   "texte": "Équilibrer : conserver la masse et la charge."
+  },
+  {
+   "id": "p14",
+   "ecran": "demi_equations",
+   "dit": "La méthode des demi-équations découpe le travail : on sépare la réaction en une demi-équation d'oxydation et une demi-équation de réduction. Dans chacune, on équilibre d'abord les atomes autres que l'oxygène et l'hydrogène, puis l'oxygène avec des molécules d'eau, puis l'hydrogène avec des ions hydrogène en milieu acide, ou des ions hydroxyde en milieu basique. On équilibre ensuite les charges avec des électrons, on multiplie pour égaler les électrons échangés, et on additionne en simplifiant.",
+   "texte": "La méthode des demi-équations."
+  },
+  {
+   "id": "p15",
+   "ecran": "exemple_demi",
+   "dit": "Exemple complet, en milieu acide : les ions fer deux face aux ions permanganate. Le fer deux perd un électron et devient fer trois : c'est l'oxydation. Le permanganate gagne cinq électrons et devient manganèse deux : c'est la réduction. On multiplie donc l'oxydation par cinq pour égaler les électrons, puis on additionne : les électrons disparaissent, et l'équation globale est équilibrée, atomes et charges.",
+   "texte": "Exemple : permanganate et fer en milieu acide."
+  },
+  {
+   "id": "p16",
+   "ecran": "sens_evolution",
+   "dit": "Peut-on prévoir si une réaction aura lieu ? Le sens d'évolution est gouverné par les potentiels redox des couples en présence : le couple au potentiel le plus élevé se réduit, celui au potentiel le plus faible s'oxyde. Imaginez deux réservoirs d'eau à des hauteurs différentes : l'eau s'écoule spontanément du plus haut vers le plus bas. Les électrons font de même, du couple de faible potentiel vers celui de potentiel élevé.",
+   "texte": "Les électrons coulent vers le potentiel le plus élevé."
+  },
+  {
+   "id": "p17",
+   "ecran": "prevision_regles",
+   "dit": "Sans les valeurs des potentiels, une approche qualitative reste possible, fondée sur la stabilité : chaque élément tend vers son nombre d'oxydation le plus stable. Retenez aussi qu'une variation importante du nombre d'oxydation suggère une force motrice plus grande, donc une réaction plus probable. Mais gardez la tête froide : cette prédiction est probable, jamais certaine, car la vitesse de la réaction peut aussi tout bloquer.",
+   "texte": "Prévoir sans les potentiels : les tendances."
+  },
+  {
+   "id": "p18",
+   "ecran": "cuivre_argent",
+   "dit": "Testons cette prévision : un fil de cuivre plongé dans une solution de nitrate d'argent. Le cuivre tend à s'oxyder vers le degré plus deux ; l'ion argent, au degré plus un, tend à se réduire vers le métal. L'azote du nitrate, lui, reste à plus cinq : simple spectateur. La réaction a donc bien lieu : le cuivre se dissout pendant que l'argent métallique se dépose.",
+   "texte": "Le cuivre déplace l'argent : prévision vérifiée."
+  },
+  {
+   "id": "p19",
+   "ecran": "thermite",
+   "dit": "Application spectaculaire de la voie sèche : la thermite, un mélange de poudre d'aluminium et d'oxyde de fer trois. L'aluminium, très avide d'oxygène, réduit l'oxyde : il passe de zéro à plus trois, le fer de plus trois à zéro, et il fond sous la chaleur dégagée. La réaction est extrêmement exothermique, car les liaisons aluminium-oxygène formées sont beaucoup plus stables que les liaisons de départ : on s'en sert pour souder, et même pour démolir.",
+   "texte": "La thermite : la voie sèche spectaculaire."
+  },
+  {
+   "id": "p20",
+   "ecran": "exercice_final",
+   "dit": "Dernier exercice, tiré de la synthèse du cours : l'aluminium peut-il réduire le dioxyde de manganèse ? Le manganèse passe de plus quatre à zéro, il gagne quatre électrons ; l'aluminium passe de zéro à plus trois, il en perd trois. Le plus petit nombre commun vaut douze électrons : trois dioxydes de manganèse pour quatre aluminiums. L'équation est équilibrée, et la réaction est bien une oxydoréduction par voie sèche.",
+   "texte": "Exercice de synthèse : aluminium et dioxyde de manganèse."
+  },
+  {
+   "id": "p21",
+   "ecran": "applications",
+   "dit": "Au-delà des exercices, la voie sèche est partout : la métallurgie qui extrait les métaux des minerais dans les hauts fourneaux, la céramique dont les matériaux naissent à chaud, les synthèses chimiques en phase solide, et même la corrosion lente de nos objets en fer.",
+   "texte": "La voie sèche dans l'industrie et la nature."
+  },
+  {
+   "id": "p22",
+   "ecran": "conclusion",
+   "dit": "Récapitulons : une réaction redox est un transfert d'électrons, et en voie sèche il se joue sans solvant, souvent à haute température. Le nombre d'oxydation suit cet échange atome par atome ; les demi-équations équilibrent les atomes et les charges ; et les tendances de stabilité permettent de prévoir le sens probable d'une réaction. Électrons perdus, électrons gagnés : dans toute redox, les comptes sont toujours égaux.",
+   "texte": "Deux moitiés d'un même échange d'électrons."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le nombre d'oxydation"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Réactions à chaud et équilibrage des équations",
+   "pont": {
+    "dit": "Partie deux : les réactions par voie sèche en action, et l'équilibrage des équations. Le nombre d'oxydation est en poche : passons aux réactions elles-mêmes, la combustion, le haut fourneau, une synthèse, puis apprenons à équilibrer une équation redox avec les demi-équations.",
+    "texte": "Partie 2 : réactions à chaud et équilibrage."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Prévoir le sens d'évolution",
+   "pont": {
+    "dit": "Partie trois : prévoir le sens d'évolution d'une réaction. Nous savons calculer les nombres d'oxydation et équilibrer les équations : reste à prévoir si une réaction aura lieu, avant de rencontrer la plus spectaculaire des réactions par voie sèche, la thermite.",
+    "texte": "Partie 3 : prévoir le sens d'évolution."
+   }
+  }
+ ]
+}
