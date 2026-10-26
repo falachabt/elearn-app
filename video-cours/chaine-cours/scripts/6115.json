@@ -1,0 +1,304 @@
+{
+ "cours": 6115,
+ "titre": "Les intérêts composés : la capitalisation qui fait grandir l'épargne",
+ "matiere": "Mathématiques financières",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématiques financières · Concours ESSEC",
+   "titre": "Les intérêts composés : la capitalisation qui fait grandir l'épargne",
+   "sous": "Simple ou composé, fréquence de capitalisation, et les quatre inconnues de la formule",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un capital qui produit des intérêts, dont les intérêts produisent à leur tour des intérêts : cette boucle est le moteur de l'épargne longue et du coût des emprunts."
+  },
+  "duel": {
+   "type": "etape",
+   "kicker": "Simple ou composé · mille euros à cinq pour cent",
+   "titre": "Année après année, l'écart se creuse",
+   "tex": [
+    "\\text{simple : } +50 \\text{ chaque année} \\qquad 1000 \\to 1150 \\text{ en trois ans}",
+    "\\text{composé : } +50,\\ +52{,}50,\\ +55{,}13 \\qquad 1000 \\to 1157{,}63",
+    "\\text{la base grandit : les intérêts portent eux-mêmes des intérêts}"
+   ],
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 180
+   }
+  },
+  "formule": {
+   "type": "formule",
+   "kicker": "La formule des intérêts composés",
+   "tex": "M = C \\, (1 + t)^n",
+   "note": "M : montant final, C : capital initial, t : taux par période en décimal, n : nombre de périodes.",
+   "anim": {
+    "nom": "exponentielle_fig",
+    "hauteur": 180
+   }
+  },
+  "ex_formule": {
+   "type": "etape",
+   "kicker": "Exemple · cinq mille euros à sept pour cent, dix ans",
+   "titre": "Le placement double presque",
+   "tex": [
+    "M = 5000 \\times (1{,}07)^{10}",
+    "(1{,}07)^{10} \\approx 1{,}9672",
+    "M \\approx 9835{,}76"
+   ]
+  },
+  "frequence": {
+   "type": "formule",
+   "kicker": "Capitaliser plus souvent",
+   "tex": "M = C \\left(1 + \\frac{t}{p}\\right)^{n p}",
+   "note": "p capitalisations par an : deux pour le semestriel, quatre pour le trimestriel, douze pour le mensuel."
+  },
+  "ex_frequence": {
+   "type": "etape",
+   "kicker": "Exemple · mille euros à cinq pour cent, trois ans",
+   "titre": "Plus c'est fréquent, plus ça rapporte",
+   "tex": [
+    "\\text{annuel : } 1157{,}63 \\qquad \\text{semestriel : } 1159{,}69",
+    "\\text{mensuel : } 1161{,}47",
+    "\\text{l'écart reste faible à taux modéré, il grandit avec le taux et la durée}"
+   ]
+  },
+  "taux_effectif": {
+   "type": "formule",
+   "kicker": "Taux nominal, taux effectif",
+   "tex": "i_{eff} = \\left(1 + \\frac{t}{p}\\right)^p - 1",
+   "note": "Dix pour cent nominal capitalisé par semestre : un taux effectif de dix virgule vingt-cinq pour cent."
+  },
+  "inverser": {
+   "type": "etape",
+   "kicker": "Une formule, quatre inconnues",
+   "titre": "Isoler le capital, le taux ou la durée",
+   "tex": [
+    "C = \\tfrac{M}{(1 + t)^n}",
+    "t = \\left(\\tfrac{M}{C}\\right)^{1/n} - 1",
+    "n = \\tfrac{\\ln(M / C)}{\\ln(1 + t)}"
+   ]
+  },
+  "ex_taux": {
+   "type": "etape",
+   "kicker": "Exemple · retrouver le taux et la durée",
+   "titre": "Deux inconnues, deux résolutions",
+   "tex": [
+    "5000 \\to 6000 \\text{ en cinq ans : } t = (1{,}2)^{1/5} - 1 \\approx 0{,}0371",
+    "\\text{doubler à sept pour cent : } n = \\tfrac{\\ln 2}{\\ln 1{,}07} \\approx 10{,}24 \\text{ ans}"
+   ]
+  },
+  "long_terme": {
+   "type": "etape",
+   "kicker": "Exemple · dix mille euros à cinq pour cent, vingt ans",
+   "titre": "Le temps fait la différence",
+   "tex": [
+    "\\text{composé : } 10000 \\times (1{,}05)^{20} = 26532{,}98",
+    "\\text{simple : } 10000 + 10000 \\times 0{,}05 \\times 20 = 20000",
+    "\\text{écart dû à la capitalisation : } 6532{,}98"
+   ]
+  },
+  "mensualite": {
+   "type": "formule",
+   "kicker": "L'annuité constante d'un emprunt",
+   "tex": "a = C \\times \\frac{i \\, (1 + i)^n}{(1 + i)^n - 1}",
+   "note": "Prêt de deux cent mille euros à deux pour cent sur vingt-cinq ans : environ huit cent quarante-sept euros et soixante et onze centimes par mois."
+  },
+  "inflation": {
+   "type": "formule",
+   "kicker": "Le taux réel, corrigé de l'inflation",
+   "tex": "t_{reel} \\approx t_{nom} - t_{inf}",
+   "note": "Approximation usuelle : sept pour cent nominaux avec trois pour cent d'inflation donnent environ quatre pour cent réels."
+  },
+  "ex_inflation": {
+   "type": "etape",
+   "kicker": "Exemple · cinq mille euros, dix ans",
+   "titre": "Le rendement qu'on voit, et celui qu'on garde",
+   "tex": [
+    "\\text{nominal à sept pour cent : } 9835{,}76",
+    "\\text{en pouvoir d'achat, à quatre pour cent réels : } 7401{,}22",
+    "\\text{l'inflation mange la différence, silencieusement}"
+   ]
+  },
+  "flux": {
+   "type": "etape",
+   "kicker": "Exemple · des apports irréguliers",
+   "titre": "Chaque apport capitalise pendant sa propre durée",
+   "tex": [
+    "1000 \\times (1{,}05)^2 = 1102{,}50 \\qquad 1500 \\times 1{,}05 = 1575",
+    "2000 \\text{ versés au bout de deux ans : aucun intérêt encore}",
+    "\\text{valeur à deux ans : } 1102{,}50 + 1575 + 2000 = 4677{,}50"
+   ]
+  },
+  "van_tir": {
+   "type": "phrase",
+   "kicker": "Deux outils d'évaluation",
+   "texte": "La valeur actuelle nette actualise tous les flux futurs : positive, l'investissement crée de la valeur. Le taux interne de rendement est le taux qui l'annule : on le compare au coût du capital."
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Le duel sur la durée · mille euros à cinq pour cent",
+   "titre": "Dix ans, vingt ans : la courbe s'échappe",
+   "tex": [
+    "\\text{dix ans : simple } 1500 \\qquad \\text{composé } 1628{,}89",
+    "\\text{vingt ans : simple } 2000 \\qquad \\text{composé } 2653{,}30",
+    "\\text{l'écart passe de cent vingt-neuf à six cent cinquante-trois euros}"
+   ],
+   "anim": {
+    "nom": "capitalisation_fig",
+    "hauteur": 170
+   }
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "La méthode en quatre temps",
+   "texte": "Identifier les variables, choisir la forme de la formule, convertir taux et durée dans la même périodicité, puis vérifier que le résultat est réaliste : quatre gestes avant tout calcul."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Composé : les intérêts portent des intérêts",
+    "Formule : M = C fois (1 + t) puissance n",
+    "Capitaliser plus souvent rapporte un peu plus",
+    "Taux effectif : comparer à périodicité égale",
+    "Inflation : raisonner en taux réel"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de mathématiques financières consacré aux intérêts composés, le mécanisme central de l'épargne, des placements et des emprunts, et un incontournable du concours.",
+   "texte": "Les intérêts composés : le moteur de l'épargne longue.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout repose sur une idée simple : à la fin de chaque période, les intérêts gagnés s'ajoutent au capital, et la période suivante calcule ses intérêts sur ce capital augmenté. Les intérêts produisent donc eux-mêmes des intérêts. Répétée période après période, cette capitalisation transforme une croissance régulière en croissance exponentielle.",
+   "texte": "Les intérêts s'ajoutent au capital : la boucle est lancée.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Comparons sur mille euros à cinq pour cent. En intérêt simple, vous gagnez cinquante euros chaque année, toujours calculés sur le capital de départ : mille cent cinquante euros au bout de trois ans. En intérêt composé, vous gagnez cinquante euros, puis cinquante-deux euros et cinquante centimes, puis cinquante-cinq euros et treize centimes : mille cent cinquante-sept euros et soixante-trois centimes. L'écart semble mince, il ne fait que commencer.",
+   "texte": "Trois ans : mille cent cinquante contre mille cent cinquante-sept euros.",
+   "ecran": "duel"
+  },
+  {
+   "id": "p04",
+   "dit": "La formule condense le mécanisme en quatre lettres. Le montant final égale le capital initial, multiplié par un plus le taux, élevé à la puissance du nombre de périodes. Chaque période multiplie le capital par le même facteur, un plus le taux : c'est une suite géométrique, et c'est pour cela que la croissance devient exponentielle avec le temps.",
+   "texte": "M égale C fois un plus t, puissance n.",
+   "ecran": "formule"
+  },
+  {
+   "id": "p05",
+   "dit": "Application directe : cinq mille euros placés à sept pour cent pendant dix ans. Le facteur de capitalisation, un virgule zéro sept puissance dix, vaut environ un virgule neuf six sept deux. Le montant final atteint neuf mille huit cent trente-cinq euros et soixante-seize centimes : le placement a presque doublé, sans aucun versement supplémentaire.",
+   "texte": "Cinq mille euros à sept pour cent : neuf mille huit cent trente-cinq euros en dix ans.",
+   "ecran": "ex_formule"
+  },
+  {
+   "id": "p06",
+   "dit": "La capitalisation n'est pas toujours annuelle. Quand les intérêts sont ajoutés chaque semestre, chaque trimestre ou chaque mois, on divise le taux annuel par le nombre de périodes par an, et on multiplie le nombre d'années par ce même nombre. La formule s'adapte donc en changeant à la fois le taux par période et le nombre de périodes.",
+   "texte": "Diviser le taux, multiplier les périodes : la formule s'adapte.",
+   "ecran": "frequence"
+  },
+  {
+   "id": "p07",
+   "dit": "Reprenons mille euros à cinq pour cent pendant trois ans. En capitalisation annuelle : mille cent cinquante-sept euros et soixante-trois centimes. En semestrielle : mille cent cinquante-neuf euros et soixante-neuf centimes. En mensuelle : mille cent soixante et un euros et quarante-sept centimes. Capitaliser plus souvent rapporte donc davantage, mais l'écart reste modeste à ce niveau de taux.",
+   "texte": "Annuel, semestriel, mensuel : mille cent soixante et un euros au mieux.",
+   "ecran": "ex_frequence"
+  },
+  {
+   "id": "p08",
+   "dit": "Pour comparer honnêtement deux placements, il faut convertir leur taux nominal en taux effectif annuel, celui qui intègre la fréquence de capitalisation. Un taux nominal de dix pour cent, capitalisé chaque semestre, donne cinq pour cent par semestre, soit un taux effectif de dix virgule vingt-cinq pour cent par an. À nominal égal, la capitalisation la plus fréquente gagne toujours.",
+   "texte": "Dix pour cent nominaux par semestre : dix virgule vingt-cinq effectifs.",
+   "ecran": "taux_effectif"
+  },
+  {
+   "id": "p09",
+   "dit": "La même formule se lit dans les quatre sens. Retrouver le capital de départ : diviser le montant visé par le facteur de capitalisation, c'est l'actualisation. Retrouver le taux : prendre la racine énième du rapport des montants, moins un. Retrouver la durée : passer par les logarithmes, le logarithme du rapport des montants divisé par le logarithme du facteur.",
+   "texte": "Quatre inconnues possibles : une seule formule, quatre lectures.",
+   "ecran": "inverser"
+  },
+  {
+   "id": "p10",
+   "dit": "Deux résolutions complètes. Un placement de cinq mille euros est devenu six mille euros en cinq ans : le taux vaut la racine cinquième de un virgule deux, moins un, soit environ trois virgule soixante et onze pour cent par an. Autre question : combien de temps pour doubler un capital à sept pour cent ? Le logarithme de deux divisé par le logarithme de un virgule zéro sept donne environ dix virgule vingt-quatre années, donc dix ans et trois mois environ.",
+   "texte": "Retrouver un taux : trois virgule soixante et onze pour cent ; doubler : dix ans et trois mois.",
+   "ecran": "ex_taux"
+  },
+  {
+   "id": "p11",
+   "dit": "Mesurons maintenant la puissance du temps. Dix mille euros à cinq pour cent pendant vingt ans donnent, en intérêts composés, vingt-six mille cinq cent trente-deux euros et quatre-vingt-dix-huit centimes. Le même placement en intérêt simple ne donnerait que vingt mille euros. Les six mille cinq cent trente-deux euros et quatre-vingt-dix-huit centimes d'écart ne viennent que d'une chose : les intérêts des intérêts, accumulés année après année.",
+   "texte": "Vingt ans : vingt-six mille cinq cent trente-deux euros, contre vingt mille en simple.",
+   "ecran": "long_terme"
+  },
+  {
+   "id": "p12",
+   "dit": "Les intérêts composés gouvernent aussi les dettes. Un emprunt se rembourse par mensualités constantes, calculées par la formule d'annuité que voici. Pour un prêt de deux cent mille euros à deux pour cent sur vingt-cinq ans, avec un taux mensuel égal au taux annuel divisé par douze, la mensualité ressort à environ huit cent quarante-sept euros et soixante et onze centimes, hors assurance et frais.",
+   "texte": "Un emprunt de deux cent mille euros : environ huit cent quarante-huit euros par mois.",
+   "ecran": "mensualite"
+  },
+  {
+   "id": "p13",
+   "dit": "Un rendement affiché n'est pas un rendement réel. Si vos placements rapportent sept pour cent pendant que les prix augmentent de trois pour cent, votre pouvoir d'achat ne progresse que d'environ quatre pour cent : c'est le taux réel, approximé par la différence entre le taux nominal et l'inflation. C'est lui qu'il faut comparer à vos objectifs d'épargne.",
+   "texte": "Sept pour cent nominaux, trois d'inflation : quatre pour cent réels.",
+   "ecran": "inflation"
+  },
+  {
+   "id": "p14",
+   "dit": "Chiffrons cet écart sur cinq mille euros pendant dix ans. Au taux nominal de sept pour cent, le montant atteint neuf mille huit cent trente-cinq euros et soixante-seize centimes. Mais exprimé en pouvoir d'achat d'aujourd'hui, au taux réel d'environ quatre pour cent, il ne vaut que sept mille quatre cent un euros et vingt-deux centimes. L'inflation a discrètement prélevé la différence.",
+   "texte": "Neuf mille huit cent trente-cinq euros affichés, sept mille quatre cent un en pouvoir d'achat.",
+   "ecran": "ex_inflation"
+  },
+  {
+   "id": "p15",
+   "dit": "Dernier cas : les apports irréguliers. Vous versez mille euros aujourd'hui, mille cinq cents euros dans un an, et deux mille euros dans deux ans, à cinq pour cent. Chaque apport capitalise pendant sa propre durée : mille cent deux euros et cinquante centimes pour le premier, mille cinq cent soixante-quinze euros pour le deuxième, deux mille euros pour le troisième, tout juste versé. Total à deux ans : quatre mille six cent soixante-dix-sept euros et cinquante centimes.",
+   "texte": "Apports irréguliers : chaque versement capitalise pour son compte.",
+   "ecran": "flux"
+  },
+  {
+   "id": "p16",
+   "dit": "Ces calculs débouchent sur deux outils d'évaluation. La valeur actuelle nette ramène tous les flux futurs à aujourd'hui : positive, le projet crée de la valeur. Le taux interne de rendement est le taux qui annule cette valeur actuelle nette : le projet est intéressant s'il dépasse le coût du capital.",
+   "texte": "Valeur actuelle nette positive : le projet crée de la valeur.",
+   "ecran": "van_tir"
+  },
+  {
+   "id": "p17",
+   "dit": "Avant de conclure, la méthode qui évite les erreurs de concours. Identifier chaque variable et l'inconnue. Choisir la forme de la formule adaptée. Convertir le taux et la durée dans la même périodicité, car un taux mensuel avec une durée en années fausse tout. Et vérifier le résultat : un taux retrouvé doit rester plausible.",
+   "texte": "Identifier, choisir, convertir, vérifier : quatre gestes.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p18",
+   "dit": "Revenons au duel du début, sur la longue durée. Mille euros à cinq pour cent : à dix ans, l'intérêt simple donne mille cinq cents euros, le composé mille six cent vingt-huit euros et quatre-vingt-neuf centimes. À vingt ans, deux mille euros contre deux mille six cent cinquante-trois euros et trente centimes. L'écart passe de cent vingt-huit euros et quatre-vingt-neuf centimes à six cent cinquante-trois euros et trente centimes : c'est la signature de l'exponentielle.",
+   "texte": "Dix ans, vingt ans : l'écart explose avec la durée.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour conclure : capitaliser période après période avec la formule de base, adapter le taux et le nombre de périodes à la fréquence, comparer les placements en taux effectif, inverser la formule pour retrouver capital, taux ou durée, et raisonner en taux réel sur les horizons longs.",
+   "texte": "La capitalisation, maîtrisée dans les quatre sens.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le mécanisme : capitaliser, plus souvent, au vrai taux"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Résolutions et applications : temps long, emprunts, inflation",
+   "pont": {
+    "texte": "Partie 2 : résoudre pour le taux et la durée, puis appliquer.",
+    "dit": "Partie deux : les résolutions et les grandes applications. Nous allons retrouver le taux ou la durée d'un placement, mesurer la puissance du temps long, calculer une mensualité d'emprunt, puis corriger le rendement de l'inflation."
+   }
+  }
+ ]
+}
