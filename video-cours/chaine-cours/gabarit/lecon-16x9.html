@@ -2956,6 +2956,42 @@ const FIG = {
       (p > .55 ? mot(650, 282, 'césium : 6 couches, électron très loin', { t: 21 }) : '') +
       mot(500, 40, 'les alcalins : un seul électron externe', { t: 24 }));
   },
+  echelle_redox_fig(t) {
+    const p = prog(t);
+    const y = (e) => Math.round(30 + (2.87 - e) * 41.6);
+    const couples = [
+      [2.87, 'F2 / F−', '+2,87 V', 1], [1.36, 'Cl2 / Cl−', '+1,36 V', -1],
+      [1.23, 'O2 / H2O', '+1,23 V', 1], [0.77, 'Fe3+ / Fe2+', '+0,77 V', -1],
+      [0.34, 'Cu2+ / Cu', '+0,34 V', 1], [0, 'H+ / H2', '0 V', -1],
+      [-0.44, 'Fe2+ / Fe', '−0,44 V', 1], [-0.76, 'Zn2+ / Zn', '−0,76 V', -1],
+      [-2.71, 'Na+ / Na', '−2,71 V', 1]];
+    let pts = '';
+    couples.forEach(([e, nom, val, cote], i) => {
+      if (p < .15 + i * .09) return;
+      const yy = y(e), x2 = cote > 0 ? 560 : 440;
+      pts += `<circle cx="500" cy="${yy}" r="7" fill="#B8860B" stroke="currentColor" stroke-width="2"/>` +
+        trait(500 + cote * 12, yy, x2, yy, 1, { w: 2 }) +
+        mot(x2 + cote * 10, yy + 7, nom + '  ' + val, { t: 19, a: cote > 0 ? 'start' : 'end' });
+    });
+    return svgBoite(
+      trait(500, 22, 500, 268, 1, { w: 4 }) + pointe(500, 14, -90, 'currentColor') +
+      mot(70, 52, 'oxydants', { c: '#E8604C', t: 25, a: 'start' }) + mot(70, 82, 'forts', { c: '#E8604C', t: 25, a: 'start' }) +
+      mot(70, 238, 'réducteurs', { c: '#1A75FF', t: 25, a: 'start' }) + mot(70, 268, 'forts', { c: '#1A75FF', t: 25, a: 'start' }) +
+      pts +
+      mot(500, 292, "l’échelle des potentiels standard, en volts", { t: 24 }));
+  },
+  corrosion_fig(t) {
+    const p = prog(t);
+    return svgBoite(
+      `<rect x="180" y="176" width="640" height="34" fill="#5B6B7B" fill-opacity=".55" stroke="currentColor" stroke-width="4"/>` +
+      mot(500, 240, 'plaque de fer', { t: 22 }) +
+      `<ellipse cx="500" cy="160" rx="150" ry="42" fill="#1A75FF" fill-opacity=".3" stroke="#1A75FF" stroke-width="3"/>` +
+      mot(500, 128, "goutte d’eau", { c: '#1A75FF', t: 22 }) +
+      (p > .3 ? mot(352, 196, 'Fe → Fe2+', { c: '#E8604C', t: 21 }) : '') +
+      (p > .5 ? trait(648, 96, 590, 140, (p - .5) / .5, { c: '#10B981', w: 4 }) + pointe(584, 146, 135, '#10B981') + mot(660, 92, 'O2 de l’air', { c: '#10B981', t: 21, a: 'start' }) : '') +
+      (p > .7 ? `<circle cx="636" cy="182" r="10" fill="#B8860B"/><circle cx="668" cy="190" r="8" fill="#B8860B"/><circle cx="330" cy="188" r="8" fill="#B8860B"/>` + mot(700, 196, 'rouille', { c: '#B8860B', t: 22, a: 'start' }) : '') +
+      mot(500, 292, "la rouille : le fer s’oxyde sous l’eau et l’air", { t: 24 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
