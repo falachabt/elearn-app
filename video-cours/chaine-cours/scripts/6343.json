@@ -1,0 +1,536 @@
+{
+ "cours": 6343,
+ "titre": "Les liaisons chimiques : partager, transférer, collectiviser",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Les liaisons chimiques",
+   "titre": "Les liaisons chimiques : partager, transférer, collectiviser",
+   "sous": "Octet, électronégativité, structures de Lewis : prédire les liaisons et les propriétés de la matière",
+   "anim": {
+    "nom": "graphite_diamant_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le paradoxe de la matière",
+   "texte": "Des atomes isolés et instables... et pourtant des montagnes, des océans, des êtres vivants.",
+   "anim": {
+    "nom": "atome_bohr_fig",
+    "hauteur": 150
+   }
+  },
+  "octet": {
+   "type": "etape",
+   "kicker": "La règle de l'octet (Lewis, 1916)",
+   "titre": "Gagner, perdre ou partager pour compléter l'octet",
+   "tex": [
+    "\\text{gaz nobles : } 8\\ e^- \\text{ de valence, chimiquement inertes}",
+    "Na : 1s^2\\ 2s^2\\ 2p^6\\ 3s^1 \\Rightarrow 1\\ e^- \\text{ à perdre}",
+    "Cl : 1s^2\\ 2s^2\\ 2p^6\\ 3s^2\\ 3p^5 \\Rightarrow 7\\ e^- \\text{, un à gagner}"
+   ],
+   "anim": {
+    "nom": "ion_formation_fig",
+    "hauteur": 110
+   }
+  },
+  "limites": {
+   "type": "etape",
+   "kicker": "Les limites du modèle",
+   "titre": "Duet, octets incomplets et octets étendus",
+   "tex": [
+    "H \\text{ vise le duet : } 2\\ e^- \\text{, comme He}",
+    "BF_3 \\text{ : le bore se contente de } 6\\ e^- \\text{ (octet incomplet)}",
+    "PCl_5 \\text{ : } 10\\ e^- \\qquad SF_6 \\text{ : } 12\\ e^- \\text{ (octets étendus)}"
+   ]
+  },
+  "energie": {
+   "type": "formule",
+   "kicker": "Le bilan énergétique",
+   "tex": "E_{\\text{libérée}} = E_{\\text{séparé}} - E_{\\text{lié}} > 0",
+   "note": "Plus l'énergie de liaison est grande, plus la liaison est forte."
+  },
+  "electronegativite": {
+   "type": "etape",
+   "kicker": "L'électronégativité",
+   "titre": "Les valeurs de Pauling à connaître",
+   "tex": [
+    "\\chi_F = 3{,}98 \\qquad \\chi_O = 3{,}44 \\qquad \\chi_{Cl} = 3{,}16",
+    "\\chi_N = 3{,}04 \\qquad \\chi_C = 2{,}55 \\qquad \\chi_H = 2{,}20",
+    "\\chi_{Na} = 0{,}93 \\qquad \\chi_K = 0{,}82",
+    "\\text{échelle de Pauling : le fluor en tête, le francium en queue}"
+   ]
+  },
+  "nonpolaire": {
+   "type": "etape",
+   "kicker": "Covalente non polaire",
+   "titre": "Le partage équitable entre atomes identiques ou presque",
+   "tex": [
+    "H_2,\\ Cl_2,\\ O_2,\\ N_2 \\text{ : } \\Delta\\chi = 0",
+    "CH_4 \\text{ : } \\Delta\\chi_{C-H} = 0{,}35 \\text{ seulement}",
+    "\\text{tétraèdre symétrique} \\Rightarrow \\text{molécule non polaire}"
+   ]
+  },
+  "polaire": {
+   "type": "etape",
+   "kicker": "Covalente polaire",
+   "titre": "Le partage inégal crée des pôles",
+   "tex": [
+    "\\chi_H = 2{,}20 \\qquad \\chi_{Cl} = 3{,}16 \\Rightarrow \\Delta\\chi = 0{,}96",
+    "H^{\\delta+} - Cl^{\\delta-} \\text{ : charges partielles}",
+    "\\vec{\\mu} \\text{ : du pôle } \\delta+ \\text{ vers le pôle } \\delta-"
+   ]
+  },
+  "eau": {
+   "type": "etape",
+   "kicker": "Le cas de l'eau",
+   "titre": "L'eau, la molécule polaire par excellence",
+   "tex": [
+    "\\Delta\\chi_{O-H} = 3{,}44 - 2{,}20 = 1{,}24",
+    "H_2O \\text{ coudée : les dipôles s'ajoutent} \\Rightarrow \\text{molécule polaire}"
+   ]
+  },
+  "geometrie": {
+   "type": "etape",
+   "kicker": "Le rôle de la géométrie",
+   "titre": "La symétrie décide du bilan",
+   "tex": [
+    "CO_2 \\text{ linéaire} \\quad BF_3 \\text{ plan} \\quad CH_4,\\ CCl_4 \\text{ tétraédriques}",
+    "\\text{dipôles opposés} \\Rightarrow \\text{annulation : molécule non polaire}",
+    "H_2O \\text{ coudée},\\ NH_3 \\text{ pyramidale} \\Rightarrow \\text{molécules polaires}"
+   ],
+   "anim": {
+    "nom": "dipoles_co2_h2o_fig",
+    "hauteur": 110
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés : stabilité et partage",
+   "etapes": [
+    "L'octet : gagner, perdre ou partager",
+    "χ de Pauling : du francium au fluor",
+    "Δχ nulle : covalente non polaire",
+    "Δχ modérée : polaire, δ+ et δ−",
+    "La géométrie tranche la polarité"
+   ]
+  },
+  "transfert": {
+   "type": "etape",
+   "kicker": "La liaison ionique",
+   "titre": "Le sodium donne, le chlore prend",
+   "tex": [
+    "Na \\rightarrow Na^+ + e^- \\qquad 1s^2\\ 2s^2\\ 2p^6 \\text{ (comme Ne)}",
+    "Cl + e^- \\rightarrow Cl^- \\qquad 1s^2\\ 2s^2\\ 2p^6\\ 3s^2\\ 3p^6 \\text{ (comme Ar)}",
+    "\\text{attraction électrostatique (Coulomb)} \\Rightarrow \\text{liaison ionique}"
+   ],
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 120
+   }
+  },
+  "reseau": {
+   "type": "etape",
+   "kicker": "Le réseau cristallin",
+   "titre": "Des ions au cristal : l'édifice infini",
+   "tex": [
+    "\\text{attraction dans toutes les directions} \\Rightarrow \\text{réseau cristallin géant}",
+    "\\text{coordinence } 6 \\text{ : chaque } Na^+ \\text{ entouré de } 6\\ Cl^-",
+    "CaCl_2 \\text{ : un } Ca^{2+} \\text{ pour deux } Cl^- \\text{ (neutralité)}",
+    "\\text{la formule donne un rapport, pas une molécule}"
+   ]
+  },
+  "proprietes_ioniques": {
+   "type": "etape",
+   "kicker": "Propriétés des composés ioniques",
+   "titre": "La signature du réseau ionique",
+   "tex": [
+    "T_f(NaCl) = 801\\ ^\\circ\\text{C} \\qquad T_f(MgO) > 2800\\ ^\\circ\\text{C}",
+    "\\text{durs mais cassants : le choc aligne les charges de même signe}",
+    "\\text{solide : isolant, les ions sont fixes}",
+    "\\text{fondu ou dissous : conducteur, les ions sont mobiles}"
+   ]
+  },
+  "lewis_ionique": {
+   "type": "etape",
+   "kicker": "Lewis des composés ioniques",
+   "titre": "Dessiner le transfert : crochets et charges",
+   "tex": [
+    "Ca \\rightarrow Ca^{2+} + 2\\,e^- \\qquad 2\\,F + 2\\,e^- \\rightarrow 2\\,F^-",
+    "CaF_2 \\text{ : un donneur, deux receveurs}",
+    "Al_2O_3 \\text{ : } 2 \\times 3\\ e^- \\text{ donnés} = 3 \\times 2\\ e^- \\text{ reçus}"
+   ]
+  },
+  "polyatomiques": {
+   "type": "etape",
+   "kicker": "Les ions polyatomiques",
+   "titre": "Des ions qui sont des groupes d'atomes",
+   "tex": [
+    "NH_4^+ \\text{ : le cation polyatomique de référence}",
+    "CO_3^{2-},\\ SO_4^{2-},\\ NO_3^-,\\ OH^- \\text{ : les anions courants}",
+    "NaNO_3 \\text{ : covalent dans } NO_3^- \\text{, ionique entre les ions}"
+   ],
+   "anim": {
+    "nom": "ions_polyatomiques_fig",
+    "hauteur": 110
+   }
+  },
+  "metallique": {
+   "type": "etape",
+   "kicker": "La liaison métallique",
+   "titre": "Le modèle de la mer d'électrons délocalisés",
+   "tex": [
+    "\\text{cations métalliques disposés en réseau régulier}",
+    "\\text{électrons de valence délocalisés : la mer d'électrons}",
+    "\\text{cohésion : l'attraction cations } \\leftrightarrow \\text{ mer d'électrons}"
+   ],
+   "anim": {
+    "nom": "mer_electrons_fig",
+    "hauteur": 120
+   }
+  },
+  "proprietes_metaux": {
+   "type": "etape",
+   "kicker": "Propriétés des métaux",
+   "titre": "Quatre propriétés, une seule cause : les électrons libres",
+   "tex": [
+    "Fe : T_f = 1538\\ ^\\circ\\text{C} \\qquad W : 3422\\ ^\\circ\\text{C} \\qquad Hg : -39\\ ^\\circ\\text{C}",
+    "\\text{électrons mobiles} \\Rightarrow \\text{conduction électrique et thermique}",
+    "\\text{glissement des plans sans rupture} \\Rightarrow \\text{malléable et ductile}",
+    "\\text{lumière absorbée puis réémise} \\Rightarrow \\text{éclat métallique}"
+   ]
+  },
+  "facteurs_alliages": {
+   "type": "etape",
+   "kicker": "Renforcer ou affaiblir la liaison",
+   "titre": "Charge, rayon... et l'art des alliages",
+   "tex": [
+    "Na^+ \\text{ : } 102\\ \\text{pm, } T_f = 97{,}8\\ ^\\circ\\text{C}",
+    "Mg^{2+} \\text{ : } 72\\ \\text{pm, } T_f = 650\\ ^\\circ\\text{C}",
+    "Al^{3+} \\text{ : } 53{,}5\\ \\text{pm, } T_f = 660{,}3\\ ^\\circ\\text{C}",
+    "\\text{alliages : atomes étrangers, glissement bloqué, dureté en hausse}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés : transfert et métaux",
+   "etapes": [
+    "Ionique : un transfert, puis un réseau",
+    "Coordinence 6, formule = rapport simple",
+    "Solide isolant, fondu conducteur",
+    "Métaux : des cations dans une mer d'e⁻",
+    "Alliages : bloquer le glissement"
+   ]
+  },
+  "lewis_methode": {
+   "type": "etape",
+   "kicker": "Les structures de Lewis",
+   "titre": "La méthode de Lewis en cinq temps",
+   "tex": [
+    "\\text{1. compter les électrons de valence (charge comprise)}",
+    "\\text{2. squelette : le moins électronégatif au centre}",
+    "\\text{3. distribuer : l'octet des périphériques d'abord}",
+    "\\text{4. liaisons multiples si besoin, 5. charges formelles}"
+   ]
+  },
+  "lewis_exemples": {
+   "type": "etape",
+   "kicker": "Lewis en pratique",
+   "titre": "Trois exemples pas à pas",
+   "tex": [
+    "CO_2 \\text{ : } 4 + 2 \\times 6 = 16\\ e^- \\Rightarrow O{=}C{=}O",
+    "H_2O \\text{ : } 8\\ e^- \\text{, deux doublets non liants sur O}",
+    "NH_4^+ \\text{ : } 5 + 4 - 1 = 8\\ e^- \\text{, quatre liaisons N-H}"
+   ],
+   "anim": {
+    "nom": "lewis_co2_fig",
+    "hauteur": 110
+   }
+  },
+  "tendances": {
+   "type": "etape",
+   "kicker": "Les tendances périodiques",
+   "titre": "Le relief de l'électronégativité",
+   "tex": [
+    "\\chi \\text{ augmente sur une période : plus de protons, même couche}",
+    "\\chi \\text{ diminue sur un groupe : distance et écrantage}",
+    "\\chi_F > \\chi_O > \\chi_{Cl} > \\chi_N > \\chi_{Br} > \\chi_C \\approx \\chi_H > \\chi_{Na} > \\chi_K"
+   ],
+   "anim": {
+    "nom": "tableau_periodique_fig",
+    "mode": "familles",
+    "hauteur": 110
+   }
+  },
+  "prediction": {
+   "type": "etape",
+   "kicker": "Prédire la liaison",
+   "titre": "La règle d'or : trois zones, un continuum",
+   "tex": [
+    "\\Delta\\chi = |\\chi_A - \\chi_B|",
+    "\\Delta\\chi < 0{,}4 \\Rightarrow \\text{covalente non polaire}",
+    "0{,}4 \\lesssim \\Delta\\chi \\lesssim 1{,}7 \\Rightarrow \\text{covalente polaire}",
+    "\\Delta\\chi \\gtrsim 1{,}7 \\Rightarrow \\text{ionique}"
+   ],
+   "note": "À Δχ = 1,7, le caractère ionique vaut déjà environ 50 %."
+  },
+  "atelier": {
+   "type": "etape",
+   "kicker": "Atelier de prédiction",
+   "titre": "L'atelier du détective chimique",
+   "tex": [
+    "KF \\text{ : } \\Delta\\chi = |0{,}82 - 3{,}98| = 3{,}16 \\Rightarrow \\text{ionique}",
+    "NH_3 \\text{ : } \\Delta\\chi_{N-H} = 0{,}84 \\Rightarrow \\text{covalente polaire}",
+    "CCl_4 \\text{ : } \\Delta\\chi_{C-Cl} = 0{,}61 \\Rightarrow \\text{polaire, molécule non polaire}"
+   ]
+  },
+  "moleculaire": {
+   "type": "etape",
+   "kicker": "Propriétés : covalents moléculaires",
+   "titre": "Des molécules presque libres",
+   "tex": [
+    "CH_4 \\text{ fond à } -182\\ ^\\circ\\text{C} \\text{, } NaCl \\text{ à } 801\\ ^\\circ\\text{C}",
+    "\\text{forces entre molécules faibles} \\Rightarrow \\text{fusion et ébullition basses}",
+    "\\text{aucun porteur de charge libre} \\Rightarrow \\text{isolants électriques}",
+    "\\text{le semblable dissout le semblable}"
+   ]
+  },
+  "reticule": {
+   "type": "etape",
+   "kicker": "Propriétés : covalents réticulés",
+   "titre": "Le cristal géant de liaisons fortes",
+   "tex": [
+    "\\text{diamant : } 3550\\ ^\\circ\\text{C} \\quad ; \\quad SiO_2 \\text{ : } 1610\\ ^\\circ\\text{C}",
+    "\\text{réseau tridimensionnel de liaisons fortes} \\Rightarrow \\text{dureté extrême}",
+    "\\text{graphite : feuillets glissants et conducteur, l'exception}"
+   ],
+   "anim": {
+    "nom": "graphite_diamant_fig",
+    "hauteur": 130
+   }
+  },
+  "bilan": {
+   "type": "etape",
+   "kicker": "La synthèse du cours",
+   "titre": "La chaîne complète : de la structure aux propriétés",
+   "tex": [
+    "E_{\\text{réseau}} \\propto \\tfrac{Q^+ \\times Q^-}{r} \\text{ : la loi de Coulomb}",
+    "MgO \\text{ : charges doubles, } T_f = 2852\\ ^\\circ\\text{C} \\text{ ; } NaCl \\text{ : } 801\\ ^\\circ\\text{C}",
+    "\\text{métal + non-métal : ionique ; deux non-métaux : covalent}",
+    "\\text{structure} \\rightarrow \\text{liaisons} \\rightarrow \\text{propriétés}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir du cours",
+   "etapes": [
+    "Partager, transférer ou collectiviser",
+    "Δχ prédit la liaison, Lewis la dessine",
+    "Ionique et métallique : des réseaux",
+    "Molécules : fusion basse, isolants",
+    "Structure → liaisons → propriétés"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "pause_apres": 0.9,
+   "dit": "Bienvenue dans ce cours consacré aux liaisons chimiques, la force invisible qui assemble la matière. Des atomes isolés, souvent instables, naissent les montagnes, les océans et les êtres vivants : tout repose sur une question simple, pourquoi et comment les atomes se lient-ils ? Nous suivrons le fil des électrons : d'abord la quête de la stabilité et la règle de l'octet, puis le partage covalent, équitable ou non. Viendront ensuite le transfert ionique et la mer d'électrons des métaux, le langage de Lewis pour tout dessiner, et enfin l'art de prédire une liaison et ses propriétés.",
+   "texte": "Partager, transférer, collectiviser : les trois stratégies des atomes pour se lier."
+  },
+  {
+   "id": "p02",
+   "ecran": "accroche",
+   "dit": "Imaginez l'univers à ses débuts : un chaos de particules élémentaires, des atomes isolés qui ne tiennent pas en place. Et pourtant, de ce chaos est né l'ordre que nous observons : le granit des montagnes, l'eau des océans, l'air que nous respirons. Comment des atomes seuls et instables ont-ils pu s'assembler pour créer une telle diversité ? La réponse tient en deux mots : la liaison chimique. C'est elle, la colle invisible du monde, que nous allons explorer de bout en bout.",
+   "texte": "Des atomes instables, et pourtant un monde ordonné : le paradoxe que la liaison chimique résout."
+  },
+  {
+   "id": "p03",
+   "ecran": "octet",
+   "dit": "Tout commence par une quête : celle de la stabilité. En mille neuf cent seize, Gilbert Lewis remarque que les gaz nobles, comme le néon ou l'argon, ne réagissent avec presque rien. Leur secret ? Une couche externe complète de huit électrons. De là naît la règle de l'octet : les atomes gagnent, perdent ou partagent des électrons pour entourer leur noyau de huit électrons de valence. Le sodium n'en possède qu'un seul sur sa couche externe : il a tout intérêt à le perdre. Le chlore en compte sept : il lui en manque un. Cette complémentarité est le moteur de toutes les liaisons.",
+   "texte": "Huit électrons de valence : la configuration des gaz nobles, cible de tous les atomes."
+  },
+  {
+   "id": "p04",
+   "ecran": "limites",
+   "dit": "Attention, la règle de l'octet a ses limites, et il faut les connaître dès maintenant. L'hydrogène, lui, ne vise que deux électrons : c'est le duet, à l'image de l'hélium. À l'inverse, certains éléments des périodes trois et au-delà, comme le phosphore ou le soufre, peuvent s'entourer de plus de huit électrons. Nous croiserons aussi des octets incomplets : dans le trifluorure de bore, le bore se contente de six électrons. L'octet est donc un guide précieux, pas une loi absolue.",
+   "texte": "Duet pour l'hydrogène, plus de huit pour P ou S : l'octet est un guide, pas une loi."
+  },
+  {
+   "id": "p05",
+   "ecran": "energie",
+   "dit": "Se lier n'est jamais un acte gratuit : c'est une affaire d'énergie. Quand deux atomes s'approchent, leurs nuages électroniques et leurs noyaux se repoussent, mais chaque noyau attire aussi les électrons de l'autre. Il existe une distance où l'attraction l'emporte et où l'énergie du système est minimale : c'est la longueur de liaison, la position d'équilibre. L'énergie libérée lors de la formation est l'énergie de liaison : plus elle est grande, plus la liaison est forte et stable. Une liaison ne se forme que si le bilan est gagnant.",
+   "texte": "Attraction contre répulsion : à la longueur de liaison, l'énergie est minimale."
+  },
+  {
+   "id": "p06",
+   "ecran": "electronegativite",
+   "dit": "Tous les atomes ne tirent pas les électrons avec la même force. Imaginez un tir à la corde : l'électron partagé reste plus près du plus fort. Cette force d'attraction, au sein d'une liaison, s'appelle l'électronégativité. Linus Pauling l'a mise en échelle : le fluor, tout en haut à droite du tableau, est le champion, proche de quatre ; le francium, en bas à gauche, ferme la marche, sous un. Retenez les valeurs affichées : celles du fluor, de l'oxygène, du chlore, de l'azote, du carbone, de l'hydrogène, du sodium et du potassium. Toute la suite du cours s'appuie dessus.",
+   "texte": "L'électronégativité χ : la force de traction d'un atome sur les électrons partagés."
+  },
+  {
+   "id": "p07",
+   "ecran": "nonpolaire",
+   "dit": "Premier cas, le partage parfaitement équitable : la liaison covalente non polaire. Quand deux atomes identiques se lient, comme dans le dihydrogène, le dichlore, le dioxygène ou le diazote, aucun ne tire plus fort que l'autre : leur différence d'électronégativité est nulle et le nuage électronique reste centré. Le méthane est presque dans ce cas : la différence entre carbone et hydrogène est faible, et sa géométrie tétraédrique parfaitement symétrique achève d'équilibrer la molécule.",
+   "texte": "Δχ = 0 : nuage centré, aucun pôle — H₂, Cl₂, O₂, N₂, et presque CH₄."
+  },
+  {
+   "id": "p08",
+   "ecran": "polaire",
+   "dit": "Deuxième cas, le partage inégal : la liaison covalente polaire. Dans le chlorure d'hydrogène, le chlore attire le doublet partagé bien plus fort que l'hydrogène. Le nuage électronique glisse vers le chlore, qui porte alors une charge partielle négative, delta moins, tandis que l'hydrogène porte une charge partielle positive, delta plus. La liaison devient un petit dipôle électrique, décrit par le moment dipolaire, un vecteur dirigé du pôle positif vers le pôle négatif.",
+   "texte": "HCl : Δχ = 0,96 — le doublet glisse vers Cl, la liaison devient un dipôle."
+  },
+  {
+   "id": "p09",
+   "ecran": "eau",
+   "dit": "L'exemple à retenir entre tous est celui de l'eau. Chaque liaison entre l'oxygène et un hydrogène est très polaire : l'oxygène capte les électrons et porte une charge partielle négative, chaque hydrogène une charge partielle positive. Et comme la molécule est coudée, les deux dipôles s'ajoutent au lieu de s'annuler : l'eau est une molécule polaire. C'est cette polarité qui fait d'elle un solvant exceptionnel, qui crée les ponts hydrogène entre molécules et qui explique son point d'ébullition étonnamment élevé.",
+   "texte": "Δχ(O–H) = 1,24 : l'eau coudée est polaire — solvant universel, ponts hydrogène."
+  },
+  {
+   "id": "p10",
+   "ecran": "geometrie",
+   "dit": "Nuance capitale pour finir ce partage : une molécule peut contenir des liaisons polaires sans être polaire elle-même. Tout dépend de la géométrie. Dans le dioxyde de carbone, linéaire, les deux dipôles se font face et s'annulent. Même annulation dans le trifluorure de bore, plan, et dans le méthane ou le tétrachlorure de carbone, tétraédriques. En revanche, l'eau coudée et l'ammoniac pyramidal gardent un dipôle global. Conséquence pratique : le tétrachlorure de carbone dissout les graisses, pas l'eau ; le semblable dissout le semblable.",
+   "texte": "CO₂, BF₃, CH₄, CCl₄ : dipôles annulés. H₂O, NH₃ : dipôles conservés."
+  },
+  {
+   "id": "p11",
+   "ecran": "recap1",
+   "dit": "Récapitulons cette première partie. Les atomes cherchent l'octet, la configuration des gaz nobles, en gagnant, perdant ou partageant des électrons. L'électronégativité de Pauling mesure leur force de traction sur les électrons partagés. Si la différence est nulle, le partage est équitable et la liaison covalente non polaire ; si elle est modérée, le partage devient inégal et crée des pôles partiels. Et c'est toujours la géométrie de la molécule qui décide de sa polarité globale.",
+   "texte": "L'octet comme boussole, Δχ comme jauge, la géométrie comme arbitre."
+  },
+  {
+   "id": "p12",
+   "ecran": "transfert",
+   "dit": "Voici le transfert en action, avec le chlorure de sodium. Le sodium perd son unique électron de valence : il devient l'ion sodium, positif, dont la configuration est celle du néon. Le chlore capte cet électron : il devient l'ion chlorure, négatif, avec la configuration de l'argon. Les deux ions portent des charges opposées et s'attirent par la force électrostatique de Coulomb. Cette attraction, et elle seule, est la liaison ionique. Le processus global libère de l'énergie : arracher l'électron coûte, mais la capture et l'assemblage des ions rapportent bien davantage.",
+   "texte": "Na → Na⁺ + e⁻ ; Cl + e⁻ → Cl⁻ : l'attraction des contraires devient la liaison."
+  },
+  {
+   "id": "p13",
+   "ecran": "reseau",
+   "dit": "Oubliez l'image d'une molécule de sel : elle n'existe pas. L'attraction entre ions n'a pas de direction privilégiée, alors chaque ion s'entoure du plus grand nombre possible d'ions de charge opposée : six pour le chlorure de sodium. Le résultat est un réseau cristallin géant, ordonné et répétitif, qui peut compter des milliards d'ions. La formule du composé ne désigne donc pas une molécule, mais le rapport le plus simple entre cations et anions : un calcium deux plus exige deux chlorures pour rester neutre, d'où le chlorure de calcium.",
+   "texte": "Pas de molécule NaCl : un réseau géant, chaque ion entouré de 6 contraires."
+  },
+  {
+   "id": "p14",
+   "ecran": "proprietes_ioniques",
+   "dit": "Les propriétés des sels découlent directement de ce réseau. Ils sont solides et cristallins, et leurs températures de fusion sont très élevées : plus de huit cents degrés pour le sel de table, près de trois mille pour l'oxyde de magnésium, tant les attractions sont fortes. Ils sont durs, mais cassants : un choc peut aligner des ions de même charge, qui se repoussent et font éclater le cristal. Enfin, ils ne conduisent pas l'électricité à l'état solide, où les ions sont fixes, mais la conduisent une fois fondus ou dissous, quand les ions deviennent mobiles.",
+   "texte": "NaCl : 801 °C ; MgO : plus de 2 800 °C. Durs, cassants, isolants solides — conducteurs fondus."
+  },
+  {
+   "id": "p15",
+   "ecran": "lewis_ionique",
+   "dit": "On peut dessiner ce transfert avec les structures de Lewis : les ions entre crochets, avec leur charge. Prenons le fluorure de calcium. Le calcium, qui possède deux électrons de valence, les perd et devient un ion calcium deux plus. Chaque fluor n'en accepte qu'un : il faut donc deux fluors, devenus deux ions fluorure avec leur octet complet. Et le défi laissé en exercice se résout par le même bilan : deux aluminiums donnent six électrons, trois oxygènes en reçoivent exactement six ; voilà pourquoi l'alumine associe deux aluminiums et trois oxygènes.",
+   "texte": "CaF₂ : 1 donneur, 2 receveurs. Al₂O₃ : 2 × 3 e⁻ donnés = 3 × 2 e⁻ reçus."
+  },
+  {
+   "id": "p16",
+   "ecran": "polyatomiques",
+   "dit": "Certains ions sont eux-mêmes des petites molécules. Un ion polyatomique est un groupe d'atomes liés entre eux par des liaisons covalentes, mais qui porte une charge globale. Vous connaissez déjà l'ion ammonium, positif, et des anions comme le carbonate, le sulfate, le nitrate ou l'hydroxyde. Dans le nitrate de sodium, la liaison à l'intérieur du groupe nitrate est covalente, tandis que l'attraction entre le sodium positif et le nitrate négatif est ionique : les deux mondes cohabitent dans le même cristal.",
+   "texte": "NH₄⁺, CO₃²⁻, SO₄²⁻, NO₃⁻, OH⁻ : covalents dedans, ioniques dehors."
+  },
+  {
+   "id": "p17",
+   "ecran": "metallique",
+   "dit": "Changeons de décor : bienvenue chez les métaux. Ici, pas de partage entre deux atomes ni de transfert vers un voisin précis. Chaque atome métallique cède ses électrons de valence à l'ensemble : ils deviennent délocalisés, libres de circuler dans tout le cristal. Le métal est alors un réseau régulier de cations positifs, baignant dans une mer d'électrons négatifs qui assure la cohésion de l'ensemble. C'est ce modèle de la mer d'électrons, imaginé au début du vingtième siècle, qui explique toutes les propriétés des métaux.",
+   "texte": "Des cations en réseau, une mer d'électrons délocalisés : la cohésion des métaux."
+  },
+  {
+   "id": "p18",
+   "ecran": "proprietes_metaux",
+   "dit": "Tout s'explique par ces électrons libres. Sous une tension, ils se déplacent de manière ordonnée : c'est le courant électrique ; ils transportent aussi la chaleur à travers le matériau. Quand on déforme un métal, les couches de cations glissent les unes sur les autres pendant que la mer d'électrons se réajuste : le métal est malléable et ductile, sans se briser. Les électrons libres absorbent la lumière et la réémettent aussitôt : c'est l'éclat métallique. Les températures de fusion sont le plus souvent élevées, mais très variables : le mercure, exception célèbre, est liquide à température ambiante.",
+   "texte": "Électrons libres : courant, chaleur, éclat. Plans qui glissent : malléabilité."
+  },
+  {
+   "id": "p19",
+   "ecran": "facteurs_alliages",
+   "dit": "Tous les métaux ne se valent pas : deux facteurs règlent la force de leur liaison. Plus la charge du cation est élevée, plus l'attraction sur la mer d'électrons est forte ; et plus l'ion est petit, plus les charges se rapprochent. Le sodium, gros ion à charge simple, est mou et fond sous les cent degrés, quand le magnésium et l'aluminium, plus petits et plus chargés, sont bien plus réfractaires. L'homme exploite ces réglages dans les alliages : un atome étranger bloque le glissement des plans, et le matériau devient plus dur, comme le laiton, le bronze ou l'acier.",
+   "texte": "Charge élevée + petit rayon = liaison forte. Laiton (Cu+Zn), bronze (Cu+Sn), acier (Fe+C)."
+  },
+  {
+   "id": "p20",
+   "ecran": "recap2",
+   "dit": "Récapitulons. La liaison ionique naît d'un transfert d'électrons entre un métal et un non-métal ; les ions formés s'assemblent en un réseau cristallin géant, dur, cassant, à haute température de fusion, qui ne conduit l'électricité que lorsque les ions deviennent mobiles. La liaison métallique, elle, collectivise les électrons de valence dans une mer délocalisée : les métaux conduisent, brillent et se déforment sans rompre. Et les alliages montrent que l'on peut régler ces propriétés en perturbant le réseau.",
+   "texte": "Transfert pour les sels, mise en commun pour les métaux."
+  },
+  {
+   "id": "p21",
+   "ecran": "lewis_methode",
+   "dit": "Pour représenter tout cela, Gilbert Lewis a inventé un langage d'une simplicité géniale : des points pour les électrons de valence, des traits pour les paires partagées. La méthode compte cinq temps. D'abord, compter tous les électrons de valence, en tenant compte de la charge pour un ion. Ensuite, dessiner le squelette : l'atome le moins électronégatif prend la place centrale. Puis distribuer les électrons restants, en complétant d'abord l'octet des atomes périphériques. Si l'atome central reste incomplet, on convertit des doublets non liants en liaisons doubles ou triples. Enfin, on vérifie les charges formelles pour retenir la structure la plus stable.",
+   "texte": "Compter, squelette, distribuer, liaisons multiples, charges formelles."
+  },
+  {
+   "id": "p22",
+   "ecran": "lewis_exemples",
+   "dit": "Mettons la méthode au travail. Pour le dioxyde de carbone : le carbone apporte quatre électrons, chaque oxygène six, soit seize au total ; le squelette relie les deux oxygènes au carbone, et il faut deux liaisons doubles pour que chacun atteigne l'octet. Pour l'eau, huit électrons suffisent : deux liaisons simples, et il reste deux doublets non liants sur l'oxygène. Pour l'ion ammonium, enfin : cinq électrons de l'azote, quatre des hydrogènes, moins un pour la charge positive, huit au total, engagés dans quatre liaisons simples.",
+   "texte": "CO₂ : 16 e⁻, deux doubles liaisons. H₂O : 8 e⁻. NH₄⁺ : 8 e⁻, quatre liaisons."
+  },
+  {
+   "id": "p23",
+   "ecran": "tendances",
+   "dit": "Revenons à l'électronégativité, notre outil de prédiction, et regardons comment elle varie dans le tableau périodique. Le long d'une période, elle augmente de gauche à droite : le nombre de protons croît, le noyau attire plus fort des électrons qui restent dans la même couche. Le long d'un groupe, elle diminue de haut en bas : les électrons de valence s'éloignent du noyau et sont de mieux en mieux écrantés par les couches internes. Résultat : le maximum se situe en haut à droite, chez le fluor, et le minimum en bas à gauche.",
+   "texte": "χ croît vers la droite, décroît vers le bas : maximum en haut à droite."
+  },
+  {
+   "id": "p24",
+   "ecran": "prediction",
+   "dit": "Voici maintenant la règle d'or du détective chimique. On calcule la différence d'électronégativité entre les deux atomes, en valeur absolue. Si elle est presque nulle, la liaison est covalente non polaire. Entre environ zéro virgule quatre et un virgule sept, elle est covalente polaire. Au-delà d'un virgule sept, le transfert l'emporte : la liaison est ionique. Mais attention, ce sont des repères, pas des frontières : le caractère ionique grandit progressivement, et à la valeur seuil, la liaison est déjà ionique à moitié, selon la formule empirique de Pauling.",
+   "texte": "Δχ = |χA − χB| : trois zones, mais un continuum — à 1,7, déjà 50 % ionique."
+  },
+  {
+   "id": "p25",
+   "ecran": "atelier",
+   "dit": "À vous de jouer : trois prédictions, comme en exercice. Le fluorure de potassium oppose le potassium, très peu électronégatif, au fluor, le champion : l'écart est immense, la liaison est ionique. Dans l'ammoniac, l'écart entre l'azote et l'hydrogène est modéré : la liaison azote-hydrogène est covalente polaire. Dans le tétrachlorure de carbone, chaque liaison carbone-chlore est polaire, mais rappelez-vous la leçon de géométrie : le tétraèdre est symétrique, les dipôles s'annulent, et la molécule est globalement non polaire. Trois verdicts, une seule méthode.",
+   "texte": "KF : Δχ = 3,16, ionique. NH₃ : 0,84, polaire. CCl₄ : 0,61, molécule non polaire."
+  },
+  {
+   "id": "p26",
+   "ecran": "moleculaire",
+   "dit": "Dernier acte : relier les liaisons aux propriétés. Premier monde, les composés covalents moléculaires : des molécules discrètes, comme l'eau, le dioxyde de carbone ou le diiode, maintenues entre elles par des forces faibles. Il faut donc peu d'énergie pour les séparer : ces substances sont gazeuses, liquides ou des solides mous, avec des températures de fusion basses ; le méthane fond ainsi à moins cent quatre-vingt-deux degrés, quand le sel exige huit cent un degrés. Sans porteurs de charge libres, elles ne conduisent pas l'électricité, et leur solubilité suit la règle du semblable qui dissout le semblable.",
+   "texte": "Molécules discrètes, forces faibles : fusion basse, isolation — CH₄ fond à −182 °C."
+  },
+  {
+   "id": "p27",
+   "ecran": "reticule",
+   "dit": "Deuxième monde covalent, radicalement différent : les réseaux covalents, où les liaisons fortes se prolongent dans tout le cristal. Le diamant en est l'emblème : chaque carbone est lié à quatre voisins, le réseau est d'une rigidité extrême, et il faut dépasser trois mille cinq cents degrés pour le fondre. La silice des verres et du quartz obéit à la même logique. Ces matériaux sont insolubles, très durs et isolants. Le graphite fait exception : ses feuillets d'hexagones glissent les uns sur les autres, il est mou, lubrifiant, et il conduit l'électricité le long de ses feuillets.",
+   "texte": "Diamant : réseau 3D, fusion vers 3 550 °C. Graphite : feuillets glissants, conducteur."
+  },
+  {
+   "id": "p28",
+   "ecran": "bilan",
+   "dit": "Tout se tient, et une dernière loi le résume pour les composés ioniques : l'énergie du réseau croît avec le produit des charges des ions et diminue avec leur distance. C'est pourquoi l'oxyde de magnésium, dont les ions portent des charges doubles, fond à deux mille huit cent cinquante-deux degrés, très loin devant le chlorure de sodium et ses charges simples. Retenez la chaîne complète de ce cours : la structure électronique décide des liaisons, et les liaisons sculptent les propriétés. Un métal face à un non-métal annonce un composé ionique ; deux non-métaux, un composé covalent, moléculaire ou en réseau ; un métal pur, la liaison métallique.",
+   "texte": "E ∝ Q⁺Q⁻/r : MgO fond à 2 852 °C, NaCl à 801 °C. Structure → liaisons → propriétés."
+  },
+  {
+   "id": "p29",
+   "ecran": "recap_final",
+   "dit": "Terminons par l'essentiel. Pour atteindre la stabilité, les atomes partagent leurs électrons dans la liaison covalente, les transfèrent dans la liaison ionique, ou les collectivisent dans la liaison métallique. La différence d'électronégativité permet de prédire laquelle de ces stratégies l'emportera, la géométrie corrige le verdict pour la molécule entière, et les structures de Lewis dessinent le résultat. Surtout, chaque type de liaison porte en lui les propriétés de la substance : voilà la clef pour comprendre, et un jour concevoir, les matériaux qui nous entourent.",
+   "texte": "Trois stratégies, un outil de prédiction, un langage : les liaisons expliquent la matière."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Pourquoi les atomes se lient : octet, électronégativité et partage covalent"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Le transfert ionique et la mer d'électrons des métaux",
+   "pont": {
+    "texte": "Partie 2 : le transfert ionique, puis la mer d'électrons des métaux.",
+    "dit": "Partie deux : le transfert et la collectivisation. Quand l'écart d'appétit devient extrême, le partage ne suffit plus : un atome donne ses électrons, l'autre les prend, et des ions naissent. Nous verrons comment ces ions s'organisent en cristaux géants, puis nous changerons de monde avec les métaux, où tous les électrons de valence sont mis en commun dans une véritable mer électronique."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Dessiner avec Lewis, prédire avec la différence d'électronégativité, lire les propriétés",
+   "pont": {
+    "texte": "Partie 3 : dessiner avec Lewis, prédire avec Δχ, lire les propriétés.",
+    "dit": "Partie trois : dessiner, prédire, comprendre. Nous allons d'abord apprendre le langage des structures de Lewis, qui permet de représenter toutes ces liaisons sur le papier. Puis nous deviendrons détectives : en calculant la différence d'électronégativité, nous prédirons le type de liaison avant même de la voir. Enfin, nous relierons chaque type de liaison aux propriétés observables des substances, du diamant au graphite."
+   }
+  }
+ ]
+}
