@@ -1,0 +1,597 @@
+{
+ "cours": 6349,
+ "titre": "La catalyse : abaisser la barrière, accélérer le monde",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · La catalyse",
+   "titre": "La catalyse : abaisser la barrière, accélérer le monde",
+   "sous": "Homogène, hétérogène, enzymatique : un même principe, l'énergie d'activation abaissée",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "L'art invisible de l'accélération",
+   "texte": "Sans catalyse, l'ammoniac prendrait des décennies : la catalyse fait tourner le monde."
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'un catalyseur ?",
+   "titre": "Une définition en trois idées",
+   "tex": [
+    "\\text{il augmente la vitesse : la cinétique, pas le bilan}",
+    "\\text{il n'apparaît pas dans les produits : il est régénéré}",
+    "\\text{il n'est pas consommé : une trace transforme des tonnes}"
+   ]
+  },
+  "deux_visages": {
+   "type": "etape",
+   "kicker": "Les deux visages de la catalyse",
+   "titre": "La phase du catalyseur décide de la mise en œuvre",
+   "tex": [
+    "\\text{homogène : même phase, souvent liquide}",
+    "\\text{hétérogène : phases différentes, solide et gaz}",
+    "\\text{contact : moléculaire, ou à une interface}",
+    "\\text{séparation : difficile, ou par simple filtration}"
+   ]
+  },
+  "homogene": {
+   "type": "etape",
+   "kicker": "La catalyse homogène",
+   "titre": "Une intimité moléculaire en solution",
+   "tex": [
+    "\\text{catalyseur et réactifs dissous dans une même phase}",
+    "\\text{dispersion moléculaire parfaite : tout site est accessible}",
+    "\\text{activité élevée, sélectivité fine}"
+   ]
+  },
+  "cycle_homogene": {
+   "type": "etape",
+   "kicker": "Le mécanisme en trois actes",
+   "titre": "Un cycle qui se referme sur lui-même",
+   "tex": [
+    "A + Cat \\rightleftharpoons [A\\text{-}Cat] \\quad \\text{(complexation)}",
+    "[A\\text{-}Cat] \\rightarrow [B\\text{-}Cat] \\quad \\text{(transformation)}",
+    "[B\\text{-}Cat] \\rightarrow B + Cat \\quad \\text{(libération)}",
+    "\\text{le cycle se referme : } [Cat] \\text{ reste constante}"
+   ]
+  },
+  "catalyse_acide": {
+   "type": "etape",
+   "kicker": "Étude de cas : la catalyse acide",
+   "titre": "L'hydrolyse d'un ester, pilotée par les protons",
+   "tex": [
+    "R\\text{-}COO\\text{-}R' + H^+ \\rightleftharpoons R\\text{-}C^+(OH)\\text{-}O\\text{-}R'",
+    "+ H_2O \\rightarrow R\\text{-}C(OH)_2\\text{-}O\\text{-}R' + H^+",
+    "R\\text{-}C(OH)_2\\text{-}O\\text{-}R' \\rightleftharpoons R\\text{-}COOH + R'\\text{-}OH",
+    "\\text{le proton polarise } C{=}O \\text{ : l'eau peut attaquer}"
+   ]
+  },
+  "monsanto": {
+   "type": "etape",
+   "kicker": "Les métaux de transition en solution",
+   "titre": "Le procédé Monsanto : le cycle du rhodium",
+   "tex": [
+    "CH_3OH + CO \\rightarrow CH_3COOH",
+    "CH_3OH + HI \\rightarrow CH_3I + H_2O \\quad \\text{(activation)}",
+    "CH_3I + [Rh(CO)_2I_2]^- \\rightarrow [CH_3\\text{-}Rh(CO)_2I_3]^-",
+    "[CH_3\\text{-}CO\\text{-}Rh(CO)I_3]^- \\rightarrow CH_3COI + [Rh(CO)_2I_2]^-"
+   ],
+   "note": "Puis l'iodure d'acétyle est hydrolysé en acide acétique, HI est relâché."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Un catalyseur : plus vite, sans être consommé",
+    "Homogène : même phase, sélectivité fine",
+    "Hétérogène : autre phase, séparation facile",
+    "Le cycle : complexation puis libération",
+    "Monsanto : CH₃OH + CO → CH₃COOH"
+   ]
+  },
+  "heterogene": {
+   "type": "etape",
+   "kicker": "La catalyse hétérogène",
+   "titre": "Un solide, une surface, une frontière",
+   "tex": [
+    "\\text{un solide, des réactifs gazeux ou liquides}",
+    "\\text{la réaction a lieu sur la surface, à l'interface}",
+    "\\text{séparation facile : filtration ou décantation}",
+    "\\text{stable à chaud : le favori de l'industrie}"
+   ]
+  },
+  "cinq_actes": {
+   "type": "etape",
+   "kicker": "Le modèle d'adsorption, en cinq actes",
+   "titre": "Le voyage d'une molécule sur la surface",
+   "tex": [
+    "\\text{1. diffusion : les réactifs atteignent la surface} \\qquad \\text{2. adsorption : fixation sur les sites actifs}",
+    "\\text{3. réaction de surface : les espèces adsorbées réagissent}",
+    "\\text{4. désorption, 5. diffusion : les produits s'éloignent}"
+   ],
+   "anim": {
+    "nom": "surface_adsorption_fig",
+    "hauteur": 110
+   }
+  },
+  "adsorption": {
+   "type": "etape",
+   "kicker": "L'adsorption, l'étape clé",
+   "titre": "Se fixer, mais pas trop fort",
+   "tex": [
+    "\\text{physisorption : forces de van der Waals, faible, réversible}",
+    "\\text{chimisorption : vraies liaisons, forte, spécifique}",
+    "\\text{elle affaiblit les liaisons du réactif : l'étape clé}"
+   ]
+  },
+  "site_actif": {
+   "type": "etape",
+   "kicker": "Le site actif",
+   "titre": "Toute la surface ne travaille pas",
+   "tex": [
+    "\\text{site actif : défaut, marche ou coin de la surface}",
+    "\\text{surface spécifique élevée : poudres, nanoporeux, nid d'abeille}",
+    "\\text{Langmuir, Nobel 1932 : la science des surfaces}"
+   ],
+   "anim": {
+    "nom": "division_surface_fig",
+    "hauteur": 110
+   }
+  },
+  "haber_surface": {
+   "type": "etape",
+   "kicker": "Haber-Bosch, vu de la surface",
+   "titre": "Casser la triple liaison du diazote",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\qquad \\Delta H < 0",
+    "\\text{catalyseur : fer finement divisé, promoteurs } Al_2O_3, K_2O",
+    "N_2 \\text{ chimisorbé : la triple liaison } N{\\equiv}N \\text{ s'affaiblit}",
+    "\\text{impact : les engrais azotés du monde entier}"
+   ]
+  },
+  "contact_soufre": {
+   "type": "etape",
+   "kicker": "Le procédé Contact",
+   "titre": "Vers l'acide sulfurique, le plus fabriqué au monde",
+   "tex": [
+    "2\\,SO_2 + O_2 \\rightleftharpoons 2\\,SO_3",
+    "\\text{catalyseur : } V_2O_5 \\text{ sur support de silice}",
+    "SO_3 + H_2O \\rightarrow H_2SO_4 \\text{ : le plus fabriqué au monde}"
+   ]
+  },
+  "arrhenius": {
+   "type": "formule",
+   "kicker": "La loi d'Arrhenius",
+   "tex": "k = A \\cdot e^{-\\frac{E_a}{RT}}",
+   "note": "A : fréquence des collisions ; R = 8,314 J/(mol·K) ; T : température absolue."
+  },
+  "escalier": {
+   "type": "etape",
+   "kicker": "Le chemin en escalier",
+   "titre": "Plusieurs petites marches au lieu d'un grand saut",
+   "tex": [
+    "\\text{sans catalyseur : } A + B \\rightarrow AB \\text{, un seul saut } E_a",
+    "A + [C] \\rightarrow [A\\text{-}C] \\qquad E_{a1} < E_a",
+    "[A\\text{-}C] + B \\rightarrow AB + [C] \\qquad E_{a2} < E_a"
+   ],
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 110
+   }
+  },
+  "peroxyde": {
+   "type": "etape",
+   "kicker": "Étude de cas : le peroxyde d'hydrogène",
+   "titre": "Deux catalyseurs pour une même décomposition",
+   "tex": [
+    "2\\,H_2O_2 \\rightarrow 2\\,H_2O + O_2",
+    "H_2O_2 + I^- \\rightarrow H_2O + IO^- \\quad \\text{(étape lente)}",
+    "H_2O_2 + IO^- \\rightarrow H_2O + O_2 + I^- \\quad \\text{(rapide)}",
+    "MnO_2 \\text{ solide : la surface affaiblit la liaison } O\\text{-}O"
+   ]
+  },
+  "explosion_vitesse": {
+   "type": "etape",
+   "kicker": "L'effet chiffré de la baisse de Ea",
+   "titre": "Vingt kilojoules en moins, trois mille fois plus vite",
+   "tex": [
+    "\\Delta E_a = 20\\ \\text{kJ/mol} \\qquad T = 300\\ \\text{K}",
+    "\\tfrac{k_c}{k_0} = e^{20000/(8{,}314 \\times 300)} \\approx e^{8{,}02}",
+    "\\approx 3040 \\text{ : la vitesse est multipliée par trois mille}"
+   ]
+  },
+  "ne_change_pas": {
+   "type": "etape",
+   "kicker": "Ce que le catalyseur ne fait pas",
+   "titre": "La thermodynamique reste intacte",
+   "tex": [
+    "\\text{l'enthalpie } \\Delta_r H \\text{ : inchangée}",
+    "\\text{la constante } K \\text{ : inchangée } (\\Delta_r G^\\circ = -RT \\ln K)",
+    "\\text{l'équilibre est atteint plus vite, au même point}",
+    "\\text{sens direct et sens inverse accélérés autant}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Cinq actes, de la diffusion à la désorption",
+    "La chimisorption active les molécules",
+    "Le chemin catalysé : un escalier bas",
+    "20 kJ/mol de moins : vitesse × 3 040",
+    "ΔH, K et équilibre : inchangés"
+   ]
+  },
+  "loi_vitesse": {
+   "type": "formule",
+   "kicker": "La loi de vitesse catalytique",
+   "tex": "v = k_{obs}\\,[A]^n\\,[Cat]^m",
+   "note": "m vaut souvent 1 : doubler le catalyseur double en général la vitesse."
+  },
+  "michaelis": {
+   "type": "etape",
+   "kicker": "Le modèle de Michaelis-Menten",
+   "titre": "La cinétique des enzymes, dès 1913",
+   "tex": [
+    "E + S \\rightleftharpoons ES \\rightarrow E + P",
+    "v = \\tfrac{V_{max}\\,[S]}{K_M + [S]}",
+    "V_{max} = k_2\\,[E]_0 \\qquad K_M = \\tfrac{k_{-1} + k_2}{k_1}",
+    "\\text{un } K_M \\text{ faible : une forte affinité enzyme-substrat}"
+   ]
+  },
+  "saturation": {
+   "type": "etape",
+   "kicker": "Deux régimes selon le substrat",
+   "titre": "D'ordre un à ordre zéro : la saturation",
+   "tex": [
+    "[S] \\ll K_M : v \\approx \\tfrac{V_{max}}{K_M}\\,[S] \\text{, ordre un}",
+    "[S] \\gg K_M : v \\approx V_{max} \\text{, ordre zéro}",
+    "\\text{enzyme saturée : la transformation devient limitante}"
+   ],
+   "anim": {
+    "nom": "michaelis_fig",
+    "hauteur": 110
+   }
+  },
+  "etape_limitante": {
+   "type": "etape",
+   "kicker": "L'étape limitante",
+   "titre": "Le maillon lent impose son rythme",
+   "tex": [
+    "\\text{la plus lente des étapes impose son rythme à toutes}",
+    "\\text{Haber-Bosch : la dissociation de } N_2 \\text{ sur le fer}",
+    "\\text{stratégie : cibler l'étape lente pour accélérer le tout}"
+   ]
+  },
+  "compromis_haber": {
+   "type": "etape",
+   "kicker": "Un équilibre cinétiquement contrôlé",
+   "titre": "Le compromis de température de Haber-Bosch",
+   "tex": [
+    "N_2 + 3\\,H_2 \\rightleftharpoons 2\\,NH_3 \\qquad \\Delta H < 0",
+    "\\text{équilibre favorisé à froid, mais vitesse trop lente}",
+    "\\text{compromis : } 400 \\text{ à } 500\\,^\\circ C \\text{, } 150 \\text{ à } 300\\ \\text{atm}",
+    "\\text{le fer accélère précisément l'étape lente}"
+   ]
+  },
+  "pot_catalytique": {
+   "type": "etape",
+   "kicker": "Le convertisseur catalytique",
+   "titre": "Un orchestre de réactions en cascade",
+   "tex": [
+    "2\\,CO + O_2 \\xrightarrow{Pt/Pd} 2\\,CO_2",
+    "2\\,NO + 2\\,CO \\xrightarrow{Rh} N_2 + 2\\,CO_2",
+    "\\text{nid d'abeille céramique, alumine, Pt, Pd et Rh}"
+   ]
+  },
+  "cracking": {
+   "type": "etape",
+   "kicker": "Industrie 1 : le cracking catalytique",
+   "titre": "Casser le pétrole brut en essence",
+   "tex": [
+    "C_{20+} \\xrightarrow{\\text{zéolithes}} C_5\\text{-}C_{12} \\text{ (essence)}",
+    "\\text{zéolithes Y ou ZSM-5, vers } 500\\,^\\circ C",
+    "\\text{sans catalyseur : pyrolyse, plus chaude, coke en prime}"
+   ]
+  },
+  "ostwald": {
+   "type": "etape",
+   "kicker": "Industrie 2 : le procédé Ostwald",
+   "titre": "Oxyder juste assez, jamais trop",
+   "tex": [
+    "4\\,NH_3 + 5\\,O_2 \\xrightarrow{Pt\\text{-}Rh} 4\\,NO + 6\\,H_2O",
+    "NO \\rightarrow NO_2 \\rightarrow HNO_3 \\text{ (acide nitrique)}",
+    "\\text{la toile Pt-Rh vise NO, pas la combustion totale en } N_2"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "Le panorama industriel",
+   "titre": "Neuf procédés sur dix, et la catalyse verte",
+   "tex": [
+    "\\text{neuf procédés industriels sur dix sont catalysés}",
+    "\\text{HDS : } CoMo/Al_2O_3 \\text{ retire le soufre des carburants}",
+    "\\text{métallocènes : la tacticité des plastiques sur mesure}",
+    "CO_2 + H_2 \\rightarrow CH_3OH \\text{ : valoriser le dioxyde de carbone}"
+   ]
+  },
+  "enzymes": {
+   "type": "etape",
+   "kicker": "Les enzymes, championnes du vivant",
+   "titre": "Des protéines d'une efficacité stupéfiante",
+   "tex": [
+    "\\text{des protéines : un site actif en forme de poche}",
+    "\\text{ajustement induit : l'enzyme épouse son substrat}",
+    "\\text{accélération jusqu'à un facteur } 10^{17}",
+    "\\text{conditions douces : température ambiante, pH neutre}"
+   ]
+  },
+  "facteurs_enzymes": {
+   "type": "etape",
+   "kicker": "Les facteurs d'activité enzymatique",
+   "titre": "Un environnement à régler finement",
+   "tex": [
+    "\\text{température : un optimum, puis la dénaturation}",
+    "\\text{pH : un optimum propre à chaque enzyme}",
+    "\\text{inhibiteurs : compétitifs ou non compétitifs}",
+    "\\text{cofacteurs : } Mg^{2+}, Zn^{2+} \\text{ ou coenzymes } NAD^+, FAD"
+   ]
+  },
+  "applications_enzymes": {
+   "type": "etape",
+   "kicker": "Les enzymes au travail",
+   "titre": "De la fromagerie au glucomètre",
+   "tex": [
+    "\\text{fromages : la présure coagule le lait}",
+    "\\text{lessives : protéases et lipases à basse température}",
+    "C_6H_{12}O_6 + O_2 \\rightarrow C_6H_{10}O_6 + H_2O_2 \\text{ (glucomètre)}",
+    "\\text{la lactase : une coévolution entre gènes et culture}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "La plus lente des étapes donne le tempo",
+    "Michaelis-Menten : saturation à Vmax",
+    "90 % des procédés industriels catalysés",
+    "Enzymes : spécifiques, douces, très rapides",
+    "Toujours le même principe : Ea abaissée"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à la catalyse, l'art invisible de l'accélération. Imaginez un monde où fabriquer l'ammoniac des engrais prendrait des décennies, où transformer le pétrole en carburant serait désespérément lent : ce monde serait le nôtre sans les catalyseurs. Ces substances accélèrent les réactions sans être consommées, en leur ouvrant un chemin moins coûteux en énergie. Nous verrons d'abord ce qui définit un catalyseur et ses deux visages, homogène et hétérogène, puis le mécanisme intime de l'abaissement de l'énergie d'activation, et enfin la cinétique des cycles catalytiques, les grandes applications industrielles et les championnes du vivant : les enzymes.",
+   "texte": "Un catalyseur : plus vite, sans être consommé.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Commençons par mesurer l'ampleur du phénomène. Près de quatre-vingt-dix pour cent des procédés chimiques industriels font appel à un catalyseur. Plastiques, carburants, médicaments, engrais : sans catalyse, notre civilisation matérielle serait tout simplement impossible. Le terme lui-même date de mille huit cent trente-cinq : le chimiste suédois Berzelius observe des réactions accélérées par la simple présence d'une substance qui semble inerte, et il forge le mot catalyse pour désigner cette force mystérieuse. Deux siècles plus tard, nous savons exactement comment cette force opère, et c'est ce que ce cours va démontrer.",
+   "texte": "90 % des procédés industriels sont catalysés.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Définissons proprement le héros de ce cours. Un catalyseur est une substance qui augmente la vitesse d'une réaction chimique, sans apparaître dans les produits finaux et sans être consommée. Trois idées à retenir. D'abord, il modifie la cinétique, le déroulement dans le temps, jamais la thermodynamique, c'est-à-dire le bilan énergétique global : une réaction spontanée mais très lente devient rapide. Ensuite, il n'est pas un réactif : il participe, puis il est régénéré à la fin du cycle. Enfin, il n'est pas consommé : en théorie, une quantité infime pourrait transformer une quantité infinie de réactifs ; en pratique, l'usure et l'empoisonnement limitent sa durée de vie.",
+   "texte": "La cinétique change, jamais le bilan énergétique.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "On classe les catalyses selon la phase du catalyseur par rapport aux réactifs. En catalyse homogène, catalyseur et réactifs partagent la même phase, généralement liquide : le contact est intime, au niveau moléculaire, et les mécanismes sont souvent bien définis, mais la séparation du catalyseur est difficile et coûteuse. En catalyse hétérogène, les phases diffèrent : un catalyseur solide accueille des réactifs gazeux ou liquides, le contact se fait à une interface, et la séparation devient triviale, par simple filtration. C'est pour cette raison économique que l'industrie préfère souvent l'hétérogène, malgré des mécanismes parfois moins sélectifs. Deux exemples pour fixer les idées : l'estérification catalysée par les protons, en homogène, et la synthèse de l'ammoniac sur fer, en hétérogène.",
+   "texte": "Même phase, ou phases différentes : deux visages.",
+   "ecran": "deux_visages"
+  },
+  {
+   "id": "p05",
+   "dit": "Plongeons dans la catalyse homogène. Catalyseur et réactifs sont dissous dans une même phase, le plus souvent une solution liquide, et cette intimité moléculaire permet des interactions directes et finement contrôlées. Le principe reste celui de tout le cours : proposer un chemin réactionnel alternatif d'énergie d'activation plus faible, sans être consommé. La dispersion du catalyseur est parfaite : chaque molécule de catalyseur est accessible aux réactifs. Il en résulte une activité spécifique élevée, c'est-à-dire beaucoup de produit formé par atome de catalyseur, et une sélectivité fine, la capacité de favoriser un produit précis parmi plusieurs possibles.",
+   "texte": "Dispersion parfaite : activité et sélectivité fines.",
+   "ecran": "homogene"
+  },
+  {
+   "id": "p06",
+   "dit": "Le mécanisme homogène suit une chorégraphie en trois actes, qui forme un cycle. Acte un, la complexation : le catalyseur, noté Cat, s'associe au réactif A pour former un complexe intermédiaire. Acte deux, la transformation : ce complexe se réarrange, ou réagit avec un autre réactif, pour donner un complexe porteur du produit B. Acte trois, la libération : le produit se détache, et le catalyseur ressort exactement dans sa forme initiale. Le cycle est bouclé, la concentration du catalyseur reste constante au cours du temps, et il peut enchaîner les cycles, encore et encore, comme un convive discret qui présente les molécules les unes aux autres sans jamais danser lui-même.",
+   "texte": "Complexation, transformation, libération : le cycle.",
+   "ecran": "cycle_homogene"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier exemple clé : la catalyse acide, où les protons d'un acide fort catalysent, entre autres, l'hydrolyse des esters. Étape un : l'oxygène du carbonyle de l'ester, riche en électrons, capte un proton ; le cation formé devient beaucoup plus électrophile, beaucoup plus avide de nucléophiles que l'ester neutre. Étape deux : une molécule d'eau attaque ce carbone électrophile, et un proton est temporairement relâché. Étape trois : l'intermédiaire se réarrange, perd un proton et expulse l'alcool ; on obtient l'acide carboxylique et l'alcool. Le rôle du catalyseur est clair : en polarisant fortement la double liaison carbone-oxygène, il rend l'ester vulnérable à l'attaque de l'eau et abaisse la barrière de l'étape limitante.",
+   "texte": "H⁺ polarise C=O : l'ester devient attaquable.",
+   "ecran": "catalyse_acide"
+  },
+  {
+   "id": "p08",
+   "dit": "Deuxième exemple : les métaux de transition en solution, capables d'échanger des électrons et de coordonner des ligands. Le procédé Monsanto transforme le méthanol et le monoxyde de carbone en acide acétique, grâce à un complexe de rhodium et d'iodure. Le cycle démarre par une activation : le méthanol et l'acide iodhydrique donnent l'iodure de méthyle. Celui-ci s'insère sur le rhodium, puis le monoxyde de carbone s'insère dans la liaison rhodium-carbone. L'iodure d'acétyle est alors libéré, le catalyseur au rhodium est régénéré, et l'hydrolyse fournit l'acide acétique en relâchant l'acide iodhydrique. Chaque atome de métal peut ainsi produire des millions de molécules de produit, avec une sélectivité remarquable.",
+   "texte": "Monsanto : méthanol + CO → acide acétique.",
+   "ecran": "monsanto"
+  },
+  {
+   "id": "p09",
+   "dit": "Récapitulons cette première partie. Un catalyseur augmente la vitesse d'une réaction sans apparaître dans les produits et sans être consommé. En catalyse homogène, catalyseur et réactifs partagent la même phase : la sélectivité est fine, la séparation difficile. En catalyse hétérogène, les phases diffèrent : la séparation est facile. Le mécanisme homogène est un cycle : complexation, transformation, libération, et le catalyseur est régénéré. La catalyse acide illustre le rôle des protons, et le procédé Monsanto celui des complexes de métaux de transition.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p10",
+   "dit": "Changeons de décor : la catalyse hétérogène, la plus répandue dans l'industrie mondiale. Ici, le catalyseur est un solide, et les réactifs sont gazeux ou liquides : la réaction ne se produit pas dans un volume, mais sur une frontière, une surface. Le solide fournit une surface active où les réactifs se fixent, se réarrangent, puis se détachent sous forme de produits. Ses atouts sont décisifs : une séparation aisée, par filtration ou décantation, qui permet la réutilisation ; une haute stabilité thermique, qui autorise des réactions rapides à chaud ; et des phases distinctes par définition, puisque la frontière entre le solide et le fluide est la condition même du processus.",
+   "texte": "Le solide accueille, la surface réagit.",
+   "ecran": "heterogene"
+  },
+  {
+   "id": "p11",
+   "dit": "Suivons le parcours d'une molécule dans le modèle de Langmuir et Hinshelwood, en cinq actes. Acte un, la diffusion : les molécules de réactifs se déplacent jusqu'à la surface du solide. Acte deux, l'adsorption : elles se fixent sur les sites actifs. Acte trois, la réaction de surface : proches et activées, elles réagissent entre elles pour former les produits, encore liés à la surface. Acte quatre, la désorption : les produits se détachent et libèrent les sites. Acte cinq, la diffusion des produits, qui s'éloignent dans la phase fluide. L'interface est régénérée, le cycle peut recommencer. Si la désorption était trop lente, les sites resteraient bloqués et la réaction s'étoufferait elle-même.",
+   "texte": "Diffusion, adsorption, réaction, désorption, diffusion.",
+   "ecran": "cinq_actes"
+  },
+  {
+   "id": "p12",
+   "dit": "Arrêtons-nous sur l'acte deux, l'étape clé. Il existe deux manières de se fixer à une surface. La physisorption est une simple attraction par les forces de van der Waals : faible, réversible, non spécifique. La chimisorption, elle, crée de véritables liaisons chimiques entre la molécule et la surface : forte et spécifique, elle est essentielle à l'activité catalytique. Pourquoi ? Parce qu'en se liant, la molécule est déformée et certaines de ses liaisons internes sont affaiblies : elle est préparée à réagir. Mais l'équilibre est subtil : une liaison trop forte empêcherait les produits de se détacher. Ni trop faible, ni trop fort : c'est toute la science du choix d'un catalyseur.",
+   "texte": "Chimisorption : ni trop faible, ni trop forte.",
+   "ecran": "adsorption"
+  },
+  {
+   "id": "p13",
+   "dit": "Toute la surface du solide n'est pas catalytiquement active. L'activité réside en des endroits précis, les sites actifs : des défauts, des marches, des coins, des atomes métalliques particuliers, là où la chimisorption est optimale. Irving Langmuir, prix Nobel de chimie en mille neuf cent trente-deux, a fondé cette science des surfaces. Pour multiplier les sites, on conçoit des catalyseurs de surface spécifique très élevée, c'est-à-dire une énorme surface exposée par gramme de matière : poudres fines, matériaux nanoporeux, ou structures en nid d'abeille comme celles des pots catalytiques. Plus la surface est grande, plus le nombre de sites actifs est élevé, et plus la réaction est rapide.",
+   "texte": "Le site actif : là où la réaction se joue.",
+   "ecran": "site_actif"
+  },
+  {
+   "id": "p14",
+   "dit": "Illustration historique : le procédé Haber-Bosch, la synthèse de l'ammoniac à partir du diazote et du dihydrogène, sur un catalyseur de fer finement divisé, promu par l'alumine et la potasse. Le problème est la molécule de diazote : sa triple liaison est extrêmement stable. Sur le fer, le diazote et le dihydrogène se chimisorbent ; la triple liaison, considérablement affaiblie, peut se rompre, et les atomes adsorbés réagissent pas à pas jusqu'à l'ammoniac, qui se désorbe. Mise au point au début du vingtième siècle, cette synthèse a révolutionné l'agriculture : les engrais azotés qu'elle rend possibles nourrissent aujourd'hui près de la moitié de l'humanité.",
+   "texte": "N₂ + 3 H₂ ⇌ 2 NH₃ : la triple liaison s'affaiblit sur Fe.",
+   "ecran": "haber_surface"
+  },
+  {
+   "id": "p15",
+   "dit": "Deuxième géant industriel : l'oxydation du dioxyde de soufre en trioxyde de soufre, sur pentoxyde de vanadium déposé sur silice — c'est le procédé Contact. Le trioxyde obtenu est ensuite hydraté en acide sulfurique, le produit chimique le plus fabriqué au monde, au point qu'on l'utilise comme indicateur de l'activité économique d'un pays. Retenez le schéma commun de ces procédés : un gaz qui arrive, une surface qui adsorbe et active, un produit qui repart. La catalyse hétérogène est la colonne vertébrale de la chimie lourde et du raffinage pétrolier.",
+   "texte": "2 SO₂ + O₂ → 2 SO₃ sur V₂O₅ : l'acide sulfurique.",
+   "ecran": "contact_soufre"
+  },
+  {
+   "id": "p16",
+   "dit": "Venons-en au cœur quantitatif du mécanisme. Pour réagir, les molécules doivent entrer en collision avec une orientation favorable et une énergie cinétique suffisante : cette énergie minimale est l'énergie d'activation. La loi d'Arrhenius relie la constante de vitesse à cette barrière : k égale A fois l'exponentielle de moins E a sur R T. A est le facteur pré-exponentiel, lié à la fréquence des collisions ; R est la constante des gaz parfaits ; T, la température absolue. Le point décisif est l'exponentielle : la constante de vitesse dépend de façon exponentielle de l'énergie d'activation. Une petite baisse de la barrière produit donc une énorme augmentation de la vitesse. Formalisé par Svante Arrhenius en mille huit cent quatre-vingt-neuf, ce concept est un pilier de la cinétique chimique.",
+   "texte": "k = A·e^(−Ea/RT) : la barrière commande la vitesse.",
+   "ecran": "arrhenius"
+  },
+  {
+   "id": "p17",
+   "dit": "Comment le catalyseur abaisse-t-il concrètement la barrière ? Il ne la rase pas : il propose un autre chemin. Sans catalyseur, la réaction de A et B en A B exige un seul grand saut énergétique. Avec le catalyseur, le parcours devient un escalier : d'abord A se lie au catalyseur pour former un complexe, première marche d'énergie d'activation E a un ; puis ce complexe réagit avec B pour donner le produit et régénérer le catalyseur, deuxième marche E a deux. Chaque marche est plus basse que le saut initial. Et remarquez le bilan : la somme des enthalpies des étapes égale l'enthalpie globale de la réaction ; seul le profil du chemin change, jamais les altitudes de départ et d'arrivée.",
+   "texte": "Un escalier de petites marches au lieu d'un grand saut.",
+   "ecran": "escalier"
+  },
+  {
+   "id": "p18",
+   "dit": "Exemple concret, à retenir : la décomposition du peroxyde d'hydrogène en eau et dioxygène. Seule, elle est très lente à température ambiante, car sa barrière est élevée. Les ions iodure la catalysent en solution : première étape, lente, le peroxyde oxyde l'ion iodure en ion hypoiodite ; deuxième étape, rapide, un second peroxyde réagit avec l'hypoiodite pour redonner de l'eau, du dioxygène et l'ion iodure, le catalyseur régénéré. L'ion hypoiodite, lui, est un intermédiaire réactionnel : créé puis consommé, il n'apparaît pas dans le bilan. Même réaction, autre catalyseur : le dioxyde de manganèse solide, dont la surface adsorbe le peroxyde et affaiblit sa liaison oxygène-oxygène.",
+   "texte": "2 H₂O₂ → 2 H₂O + O₂ : I⁻ catalyse, IO⁻ intermédiaire.",
+   "ecran": "peroxyde"
+  },
+  {
+   "id": "p19",
+   "dit": "Chiffrons l'effet, avec le calcul du chapitre. Supposons qu'un catalyseur abaisse l'énergie d'activation de vingt kilojoules par mole, à trois cents kelvins. Le rapport des constantes de vitesse, avec et sans catalyseur, vaut l'exponentielle de la différence des barrières divisée par R T, soit l'exponentielle de vingt mille divisé par le produit de huit virgule trois un quatre par trois cents. Le calcul donne l'exponentielle de huit virgule zéro deux, environ trois mille quarante. Vingt petits kilojoules de barrière en moins, et la réaction va plus de trois mille fois plus vite. Voilà pourquoi un bon catalyseur change tout, et pourquoi la catalyse est un levier d'une puissance spectaculaire.",
+   "texte": "ΔEa de 20 kJ/mol en moins : vitesse × 3 040.",
+   "ecran": "explosion_vitesse"
+  },
+  {
+   "id": "p20",
+   "dit": "Il est tout aussi crucial de savoir ce qu'un catalyseur ne fait pas. Il ne modifie pas l'enthalpie de réaction : il ne change ni les réactifs ni les produits, donc ni la chaleur dégagée ni celle absorbée. Il ne modifie pas la constante d'équilibre, qui ne dépend que de l'enthalpie libre de la réaction : il n'augmente donc pas le rendement d'une réaction limitée par l'équilibre, il permet seulement de l'atteindre plus rapidement. Et la composition à l'équilibre reste identique, car le catalyseur accélère autant la réaction directe que la réaction inverse. Wilhelm Ostwald, prix Nobel en mille neuf cent neuf, l'a résumé ainsi : un catalyseur modifie la vitesse d'une réaction sans apparaître dans les produits finaux, et sans aucun effet sur l'équilibre.",
+   "texte": "ΔH, K, équilibre : le catalyseur n'y touche pas.",
+   "ecran": "ne_change_pas"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons cette deuxième partie. Sur un catalyseur solide, le mécanisme suit cinq actes : diffusion, adsorption, réaction de surface, désorption, diffusion des produits. La chimisorption, qui affaiblit les liaisons des réactifs, est l'étape clé, et elle se joue sur les sites actifs. Le catalyseur remplace le grand saut énergétique unique par un escalier de petites marches : vingt kilojoules par mole de barrière en moins suffisent à multiplier la vitesse par environ trois mille. Mais l'enthalpie, la constante d'équilibre et la composition à l'équilibre restent rigoureusement inchangées.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Comment mesure-t-on le rythme d'un mécanisme catalytique ? Par sa loi de vitesse. Pour une réaction où A donne B sous l'action d'un catalyseur, la vitesse s'écrit souvent : v égale k observé, fois la concentration de A à la puissance n, fois la concentration du catalyseur à la puissance m. La constante apparente regroupe les constantes des étapes élémentaires ; n est l'ordre partiel par rapport au réactif ; et m, l'ordre par rapport au catalyseur, vaut souvent un. Conséquence industrielle immédiate : doubler la quantité de catalyseur double en général la vitesse. Mais attention, ce raisonnement suppose que les sites actifs ne sont pas saturés ; s'ils le sont, ajouter du substrat ne sert plus à rien, comme le montre le modèle suivant.",
+   "texte": "v = k·[A]ⁿ·[Cat]ᵐ : le rythme du cycle.",
+   "ecran": "loi_vitesse"
+  },
+  {
+   "id": "p23",
+   "dit": "Le modèle de référence est celui de la catalyse enzymatique, dû à Leonor Michaelis et Maud Menten, en mille neuf cent treize. Le mécanisme tient en deux étapes : l'enzyme E se lie au substrat S pour former le complexe E S, de façon réversible ; puis le complexe se transforme et libère le produit P en régénérant l'enzyme. En supposant le complexe en état quasi stationnaire, on obtient l'équation de Michaelis-Menten : la vitesse initiale vaut V max fois la concentration de substrat, divisée par K M plus la concentration de substrat. V max est la vitesse maximale, atteinte quand toute l'enzyme est saturée ; K M, la constante de Michaelis, mesure l'affinité : un K M faible signifie une enzyme qui capte avidement son substrat.",
+   "texte": "E + S ⇌ ES → E + P : le modèle de 1913.",
+   "ecran": "michaelis"
+  },
+  {
+   "id": "p24",
+   "dit": "Lisons cette équation comme un graphique. À faible concentration de substrat, très inférieure à K M, la vitesse est proportionnelle à la concentration : la réaction est d'ordre un par rapport au substrat, car la plupart des sites actifs sont libres et la formation du complexe est déterminante. À forte concentration, très supérieure à K M, la vitesse plafonne à V max : la réaction devient d'ordre zéro, l'enzyme est saturée, tous ses sites sont occupés, et c'est la transformation du complexe en produit qui devient l'étape limitante. On retrouve la même logique sur tout catalyseur : au-delà d'une certaine charge, les sites actifs sont pleins, et le débit n'augmente plus.",
+   "texte": "Saturation : v plafonne à Vmax, ordre zéro.",
+   "ecran": "saturation"
+  },
+  {
+   "id": "p25",
+   "dit": "C'est le concept qui organise tout mécanisme en plusieurs étapes : l'étape la plus lente impose son rythme à l'ensemble du processus, comme le maillon le plus faible d'une chaîne. En catalyse hétérogène, pour la synthèse de l'ammoniac, c'est l'adsorption et la dissociation du diazote sur le fer qui sont généralement limitantes : on cherche donc des catalyseurs qui activent l'azote plus facilement. En catalyse enzymatique, c'est le plus souvent la transformation du complexe en produit. En catalyse homogène par complexes métalliques, ce peut être l'insertion d'un réactif dans une liaison métal-ligand, ou l'élimination du produit. Identifier l'étape limitante, c'est savoir exactement où agir pour accélérer la réaction globale.",
+   "texte": "La plus lente des étapes impose son tempo.",
+   "ecran": "etape_limitante"
+  },
+  {
+   "id": "p26",
+   "dit": "Le procédé Haber-Bosch illustre le pilotage de cette cinétique. La synthèse de l'ammoniac est exothermique : son rendement à l'équilibre augmente quand la température baisse. Pourtant, on opère vers quatre cents à cinq cents degrés. Pourquoi ce paradoxe ? Parce qu'à basse température, la vitesse, et singulièrement l'étape limitante de dissociation du diazote, devient beaucoup trop lente pour une production industrielle. On choisit donc un compromis : une température modérée et une haute pression, de cent cinquante à trois cents atmosphères, qui offrent une vitesse acceptable tout en gardant un rendement exploitable. Le catalyseur de fer, oxyde de fer promu par l'alumine et la potasse, est là pour accélérer précisément l'étape lente. C'est un équilibre cinétiquement contrôlé.",
+   "texte": "Haber-Bosch : chaud pour la vitesse, malgré l'équilibre.",
+   "ecran": "compromis_haber"
+  },
+  {
+   "id": "p27",
+   "dit": "Autre chef-d'œuvre de cinétique appliquée : le convertisseur catalytique de votre voiture, qui orchestre plusieurs réactions simultanément, sur un support céramique en nid d'abeille imprégné de platine, de palladium et de rhodium. Le platine et le palladium oxydent le monoxyde de carbone et les hydrocarbures imbrûlés en dioxyde de carbone et en eau : oxygène adsorbé et dissocié, monoxyde adsorbé, réaction de surface, désorption. Le rhodium réduit les oxydes d'azote en diazote, en utilisant le monoxyde de carbone comme réducteur. Le tout doit fonctionner sur une large plage de températures et de compositions de gaz : un véritable orchestre de réactions en cascade, logé dans un tuyau d'échappement.",
+   "texte": "Pt/Pd oxydent, Rh réduit : le pot catalytique.",
+   "ecran": "pot_catalytique"
+  },
+  {
+   "id": "p28",
+   "dit": "Premier procédé de notre tour industriel : le cracking catalytique, qui casse les longues chaînes du pétrole brut, de vingt carbones et plus, en molécules légères de cinq à douze carbones, celles de l'essence. Le catalyseur est une zéolithe, un aluminosilicate cristallin microporeux, souvent de type Y ou Z S M cinq, dont la surface acide adsorbe les hydrocarbures ; vers cinq cents degrés, les liaisons carbone-carbone se rompent de façon orientée. Sans catalyseur, il faudrait recourir à la pyrolyse, beaucoup plus chaude, moins sélective, produisant davantage de coke et de gaz indésirables, et bien plus gourmande en énergie. Le catalyseur oriente la réaction vers les produits les plus utiles : c'est sa sélectivité qui fait sa valeur.",
+   "texte": "Zéolithes : C₂₀₊ cassé en essence C₅–C₁₂.",
+   "ecran": "cracking"
+  },
+  {
+   "id": "p29",
+   "dit": "Procédé suivant : la fabrication de l'acide nitrique par le procédé Ostwald, un modèle d'oxydation sélective. L'ammoniac est oxydé en monoxyde d'azote sur une toile de platine et de rhodium, vers neuf cents degrés ; le monoxyde d'azote est ensuite oxydé en dioxyde d'azote, puis absorbé dans l'eau pour donner l'acide nitrique. Pourquoi un catalyseur aussi coûteux ? Parce que sa sélectivité vers le monoxyde d'azote est inégalée : sans lui, l'ammoniac brûlerait complètement en diazote, et le produit serait perdu. La toile dure des années, ce qui justifie l'investissement. Brûler un composé est simple ; le brûler de manière contrôlée, pour obtenir un produit précis, c'est tout l'art de l'oxydation catalytique.",
+   "texte": "Pt–Rh : NH₃ → NO, sans brûler en N₂.",
+   "ecran": "ostwald"
+  },
+  {
+   "id": "p30",
+   "dit": "Le tableau d'ensemble est éloquent : environ neuf procédés chimiques industriels sur dix font appel à un catalyseur. L'hydrodésulfuration retire le soufre des carburants sur des catalyseurs cobalt-molybdène ou nickel-molybdène déposés sur alumine. La polymérisation, par métallocènes homogènes ou catalyseurs de Ziegler-Natta hétérogènes, contrôle la longueur des chaînes et la tacticité : un polypropylène isotactique est un plastique rigide, un atactique une pâte amorphe. Et la catalyse de demain se veut verte : remplacer les métaux rares et critiques par du fer, du cobalt ou du nickel abondants, et même transformer le dioxyde de carbone, ce déchet, en méthanol, carburant et matière première, par hydrogénation catalytique.",
+   "texte": "Sélectivité et métaux abondants : la catalyse verte.",
+   "ecran": "industrie"
+  },
+  {
+   "id": "p31",
+   "dit": "Terminons par les catalyseurs les plus sophistiqués : les enzymes, ces protéines qui orchestrent les milliers de réactions du vivant. Leur site actif est une poche tridimensionnelle où se fixe le substrat ; le modèle moderne est celui de l'ajustement induit : l'enzyme se déforme légèrement pour épouser son substrat, le déformer à son tour et stabiliser l'état de transition. Leurs performances dépassent nos catalyseurs industriels : une accélération pouvant atteindre dix puissance dix-sept fois la réaction non catalysée, une spécificité remarquable — la plupart ne catalysent qu'une seule réaction — et des conditions douces : température ambiante, pression atmosphérique, pH proche de la neutralité. La catalase de nos cellules, par exemple, décompose des millions de molécules de peroxyde d'hydrogène toxique chaque seconde.",
+   "texte": "Site actif, ajustement induit : jusqu'à 10¹⁷ fois plus vite.",
+   "ecran": "enzymes"
+  },
+  {
+   "id": "p32",
+   "dit": "L'activité d'une enzyme n'est pas constante : elle dépend de son environnement. La température l'augmente jusqu'à un optimum, puis la fait chuter quand la chaleur dénature la protéine. Le pH possède aussi un optimum, propre à chaque enzyme, car il règle l'état d'ionisation des groupes du site actif. La concentration en substrat augmente la vitesse jusqu'à la saturation, déjà décrite par le modèle de Michaelis-Menten. Les inhibiteurs diminuent ou abolissent l'activité : compétitifs quand ils bloquent le site actif, non compétitifs quand ils déforment l'enzyme. Enfin, certaines enzymes exigent des cofacteurs : des ions métalliques comme le magnésium ou le zinc, ou des coenzymes comme N A D et F A D.",
+   "texte": "Température, pH, inhibiteurs, cofacteurs.",
+   "ecran": "facteurs_enzymes"
+  },
+  {
+   "id": "p33",
+   "dit": "Les enzymes travaillent déjà partout. Dans l'alimentation : la présure coagule le lait des fromages, les amylases améliorent le pain et brassent la bière. Dans les lessives, protéases et lipases éliminent les taches organiques à basse température, en économisant l'énergie. Dans les diagnostics, la glucose oxydase des glucomètres mesure notre glycémie en produisant du peroxyde d'hydrogène. Et l'histoire de la lactase montre leur rôle culturel : chez la plupart des mammifères, elle disparaît après le sevrage ; mais dans les populations d'éleveurs, une mutation la maintient à l'âge adulte — une coévolution entre les gènes et la culture laitière. Les enzymes ne sont pas que des outils : ce sont des acteurs de notre histoire biologique.",
+   "texte": "Fromage, lessives, glucomètres : les enzymes au travail.",
+   "ecran": "applications_enzymes"
+  },
+  {
+   "id": "p34",
+   "dit": "Pour conclure ce cours : un catalyseur abaisse l'énergie d'activation en proposant un chemin alternatif, et il en ressort régénéré. Dans tout mécanisme, l'étape la plus lente donne le tempo, et la cinétique — loi de vitesse, saturation, étape limitante — dit comment piloter la réaction. À l'échelle du monde, la catalyse fait tourner neuf procédés industriels sur dix, des engrais aux carburants dé soufrés, et les enzymes montrent jusqu'où la nature a poussé cet art : spécificité, douceur, efficacité. Homogène, hétérogène ou enzymatique, le principe est un et universel.",
+   "texte": "Le catalyseur, accélérateur universel.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Ce qu'est un catalyseur : définition et deux visages"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "La surface à l'œuvre et la barrière abaissée",
+   "pont": {
+    "dit": "Partie deux : la catalyse hétérogène et le secret de l'énergie d'activation. Nous suivrons une molécule sur la surface d'un solide, en cinq actes, avant de comprendre comment le catalyseur remplace un grand saut énergétique par un escalier de petites marches, et de chiffrer l'explosion de vitesse qui en résulte.",
+    "texte": "Partie 2 : surface, adsorption et barrière abaissée."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Cinétique des mécanismes, industrie et enzymes",
+   "pont": {
+    "dit": "Partie trois : mesurer le rythme, puis passer à l'échelle du monde. Nous écrirons la loi de vitesse des mécanismes catalytiques, avec le modèle de Michaelis-Menten et l'étape limitante, avant de parcourir les grandes applications industrielles et de finir chez les enzymes, les catalyseurs du vivant.",
+    "texte": "Partie 3 : cinétique, industrie et enzymes."
+   }
+  }
+ ]
+}

@@ -3664,6 +3664,33 @@ const FIG = {
       mot(733, 282, 'même volume, surface × n', { t: 19 }) +
       mot(500, 40, 'diviser multiplie la surface, pas le volume', { t: 21 }));
   },
+  surface_adsorption_fig(t) {
+    let sites = '';
+    for (let i = 0; i < 9; i++) sites += `<circle cx="${270 + i * 58}" cy="196" r="5" fill="#B8860B"/>`;
+    return svgBoite(
+      `<rect x="220" y="204" width="560" height="26" fill="#1A75FF" fill-opacity=".25" stroke="currentColor" stroke-width="3"/>` + sites +
+      `<circle cx="330" cy="168" r="17" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` + mot(330, 175, 'A', { c: '#E8604C', t: 18 }) +
+      `<circle cx="446" cy="168" r="17" fill="#10B981" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` + mot(446, 175, 'B', { c: '#10B981', t: 18 }) +
+      trait(560, 168, 540, 118, 1, { w: 4 }) + pointe(536, 112, -115, '#E8604C') +
+      `<circle cx="600" cy="96" r="15" fill="#E8604C" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` + mot(600, 103, 'A', { c: '#E8604C', t: 16 }) +
+      `<circle cx="632" cy="96" r="15" fill="#10B981" fill-opacity=".35" stroke="currentColor" stroke-width="3"/>` + mot(632, 103, 'B', { c: '#10B981', t: 16 }) +
+      mot(330, 262, 'adsorption sur les sites actifs •', { t: 19 }) +
+      mot(680, 262, 'désorption : AB s’échappe, le site se libère', { t: 19 }) +
+      mot(500, 52, 'la réaction se fait à la surface', { t: 21 }));
+  },
+  michaelis_fig(t) {
+    let d = '';
+    for (let i = 0; i <= 24; i++) { const x = 160 + i * 29, y = 240 - 150 * (i * 29) / (i * 29 + 260); d += (i ? ' L' : 'M') + x.toFixed(0) + ' ' + y.toFixed(0); }
+    return svgBoite(
+      trait(160, 240, 890, 240, 1, { w: 3 }) + trait(160, 240, 160, 52, 1, { w: 3 }) +
+      trait(160, 90, 860, 90, 1, { w: 2, tiret: '6 5' }) + `<path d="${d}" fill="none" stroke="#E8604C" stroke-width="4"/>` +
+      trait(420, 240, 420, 165, 1, { w: 2, tiret: '6 5' }) +
+      mot(120, 96, 'v', { t: 21 }) + mot(898, 248, '[S]', { t: 19 }) +
+      mot(700, 74, 'Vmax', { c: '#E8604C', t: 20 }) +
+      mot(420, 262, 'K_M', { t: 19 }) +
+      mot(268, 130, 'ordre 1', { t: 17 }) + mot(700, 200, 'ordre 0 : saturation', { t: 17 }) +
+      mot(500, 292, 'plus de substrat, puis un plateau', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
