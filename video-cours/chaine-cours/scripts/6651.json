@@ -1,0 +1,641 @@
+{
+ "cours": 6651,
+ "titre": "La chimie organique : hydrocarbures et composés oxygénés",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Chimie organique",
+   "titre": "La chimie organique : hydrocarbures et composés oxygénés",
+   "sous": "Alcanes, alcènes et alcynes, puis alcools, aldéhydes et cétones",
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Essence, gaz de cuisson, cire, alcool : le carbone est partout."
+  },
+  "definition_alcane": {
+   "type": "etape",
+   "kicker": "Les alcanes : définition",
+   "titre": "Des hydrocarbures saturés, tout en liaisons simples",
+   "tex": [
+    "\\text{hydrocarbure saturé : que des liaisons simples } \\sigma",
+    "CH_4 \\text{ : méthane, tétraèdre régulier, } 109{,}5^\\circ",
+    "\\text{carbone tétragonal : 4 substituants, hybridation } sp^3",
+    "\\text{chaînes linéaires, ramifiées ou cycliques (cyclanes)}"
+   ]
+  },
+  "cram": {
+   "type": "etape",
+   "kicker": "Représenter dans l'espace",
+   "titre": "La représentation de Cram",
+   "tex": [
+    "\\text{trait plein : liaison dans le plan}",
+    "\\text{trait épais : liaison vers l'avant}",
+    "\\text{pointillés : liaison vers l'arrière}"
+   ],
+   "anim": {
+    "nom": "cram_fig",
+    "hauteur": 110
+   }
+  },
+  "conformations": {
+   "type": "etape",
+   "kicker": "La rotation autour de C–C",
+   "titre": "Les conformations de l'éthane",
+   "tex": [
+    "\\text{rotation libre autour de la liaison } C-C",
+    "\\text{conformation décalée : la plus stable}",
+    "\\text{conformation éclipsée : la moins stable}"
+   ],
+   "anim": {
+    "nom": "newman_fig",
+    "hauteur": 110
+   }
+  },
+  "formules_alcanes": {
+   "type": "etape",
+   "kicker": "Formules des alcanes",
+   "titre": "Une formule générale, deux écritures",
+   "tex": [
+    "C_nH_{2n+2} \\text{ : formule générale (acycliques)}",
+    "\\text{développée : toutes les liaisons dessinées}",
+    "CH_3-CH_2-CH_3 \\text{ : semi-développée du propane}"
+   ],
+   "anim": {
+    "nom": "formule_developpee_fig",
+    "hauteur": 110
+   }
+  },
+  "isomerie_alcanes": {
+   "type": "etape",
+   "kicker": "L'isomérie de chaîne",
+   "titre": "Même formule brute, deux architectures",
+   "tex": [
+    "\\text{isomères : même formule brute, développées différentes}",
+    "C_4H_{10} \\text{ : } CH_3-CH_2-CH_2-CH_3 \\text{, le butane linéaire}",
+    "C_4H_{10} \\text{ : } CH_3-CH(CH_3)-CH_3 \\text{, le 2-méthylpropane}"
+   ]
+  },
+  "nomenclature_regles": {
+   "type": "etape",
+   "kicker": "La nomenclature",
+   "titre": "Nommer un alcane en quatre règles",
+   "tex": [
+    "\\text{1. repérer la chaîne carbonée la plus longue}",
+    "\\text{2. numéroter depuis la ramification la plus proche}",
+    "\\text{3. nommer les substituants avec leur position}",
+    "\\text{4. ordre alphabétique, puis la chaîne : suffixe } -ane"
+   ]
+  },
+  "exemple_nom": {
+   "type": "formule",
+   "kicker": "Exemple résolu",
+   "tex": "CH_3-CH(CH_3)-CH_2-CH_3 \\longrightarrow \\text{2-méthylbutane}",
+   "note": "Chaîne principale : butane ; substituant méthyl en position 2."
+  },
+  "proprietes_physiques": {
+   "type": "etape",
+   "kicker": "Propriétés physiques",
+   "titre": "Non polaires, et un état par taille de chaîne",
+   "tex": [
+    "\\text{non polaires : insolubles dans l'eau}",
+    "C_1\\text{-}C_4 \\text{ gaz} \\qquad C_5\\text{-}C_{16} \\text{ liquides} \\qquad \\text{au-delà : solides}",
+    "\\text{ébullition : elle croît avec la masse molaire (van der Waals)}"
+   ],
+   "anim": {
+    "nom": "etats_matiere_fig",
+    "hauteur": 110
+   }
+  },
+  "combustion_alcanes": {
+   "type": "etape",
+   "kicker": "Réaction 1 : la combustion",
+   "titre": "Brûler complètement : carbone et eau",
+   "tex": [
+    "C_nH_{2n+2} + \\tfrac{3n+1}{2}\\,O_2 \\rightarrow n\\,CO_2 + (n+1)\\,H_2O",
+    "2\\,C_4H_{10} + 13\\,O_2 \\rightarrow 8\\,CO_2 + 10\\,H_2O \\text{ (butane)}"
+   ]
+  },
+  "substitution": {
+   "type": "etape",
+   "kicker": "Réaction 2 : la substitution",
+   "titre": "Un hydrogène échangé contre un halogène",
+   "tex": [
+    "CH_4 + Cl_2 \\xrightarrow{UV} CH_3Cl + HCl",
+    "C_nH_{2n+2} + X_2 \\xrightarrow{UV} C_nH_{2n+1}X + HX \\text{ (mécanisme général)}",
+    "\\text{puis } CH_2Cl_2,\\ CHCl_3,\\ CCl_4 \\text{ si la réaction se poursuit}"
+   ]
+  },
+  "preparation_methane": {
+   "type": "etape",
+   "kicker": "Au laboratoire",
+   "titre": "Préparer le méthane",
+   "tex": [
+    "CH_3COONa + NaOH \\xrightarrow{\\Delta} CH_4 + Na_2CO_3",
+    "\\text{chaux sodée chauffée, gaz recueilli par déplacement d'eau}",
+    "\\text{test : le méthane brûle avec une flamme bleue peu lumineuse}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Saturés : que des liaisons simples σ",
+    "Formule générale CnH2n+2",
+    "Carbone tétragonal sp3, 109,5°",
+    "Combustion : CO2 + H2O + énergie",
+    "Substitution UV : H contre halogène"
+   ]
+  },
+  "intro_insaturation": {
+   "type": "phrase",
+   "kicker": "Les insaturés",
+   "texte": "Une liaison multiple change tout : géométrie et réactivité."
+  },
+  "definitions_insatures": {
+   "type": "etape",
+   "kicker": "Alcènes et alcynes",
+   "titre": "Deux familles, deux formules générales",
+   "tex": [
+    "\\text{alcènes : double liaison } C=C \\text{, insaturés}",
+    "C_nH_{2n} \\qquad (n \\geq 2)",
+    "\\text{alcynes : triple liaison } C \\equiv C",
+    "C_nH_{2n-2} \\qquad (n \\geq 2)"
+   ]
+  },
+  "geometrie_insatures": {
+   "type": "etape",
+   "kicker": "Hybridation et géométrie",
+   "titre": "Plan à 120 degrés, ou linéaire à 180 degrés",
+   "tex": [
+    "\\text{alcènes : carbones trigonaux } sp^2 \\text{, plan, } 120^\\circ",
+    "\\text{alcynes : carbones digonaux } sp \\text{, linéaires, } 180^\\circ",
+    "\\text{double liaison : } \\sigma + \\pi \\qquad \\text{triple : } \\sigma + 2\\pi"
+   ]
+  },
+  "nomenclature_insatures": {
+   "type": "etape",
+   "kicker": "Nommer les insaturés",
+   "titre": "Suffixes -ène et -yne, indice le plus bas",
+   "tex": [
+    "\\text{suffixes : } -ène \\text{ (alcènes), } -yne \\text{ (alcynes)}",
+    "CH_3-CH{=}CH-CH_3 \\text{ : but-2-ène}",
+    "CH \\equiv C-CH_2-CH_3 \\text{ : but-1-yne, indice le plus bas}"
+   ]
+  },
+  "isomerie_ze": {
+   "type": "etape",
+   "kicker": "L'isomérie Z/E",
+   "titre": "La double liaison fige les positions",
+   "tex": [
+    "\\text{la double liaison bloque la rotation}",
+    "\\text{priorités : règle de Cahn-Ingold-Prelog}",
+    "Z \\text{ : prioritaires du même côté} \\qquad E \\text{ : côtés opposés}"
+   ],
+   "anim": {
+    "nom": "cistrans_fig",
+    "hauteur": 110
+   }
+  },
+  "combustion_insatures": {
+   "type": "formule",
+   "kicker": "La combustion des insaturés",
+   "tex": "C_2H_4 + 3\\,O_2 \\rightarrow 2\\,CO_2 + 2\\,H_2O",
+   "note": "Alcènes et alcynes brûlent dans le dioxygène : dioxyde de carbone et eau."
+  },
+  "additions": {
+   "type": "etape",
+   "kicker": "Les réactions d'addition",
+   "titre": "La liaison π s'ouvre, deux atomes se fixent",
+   "tex": [
+    "H_2 \\text{ (Ni, Pd ou Pt)} \\rightarrow \\text{alcane : hydrogénation}",
+    "H_2O \\text{ (} H^+\\text{)} \\rightarrow \\text{alcool : hydratation}",
+    "HCl \\rightarrow \\text{chloroalcane}",
+    "Cl_2 \\text{ ou } Br_2 \\rightarrow \\text{dihalogénoalcane}"
+   ]
+  },
+  "markovnikov": {
+   "type": "etape",
+   "kicker": "La règle de Markovnikov",
+   "titre": "L'hydrogène choisit le carbone le plus hydrogéné",
+   "tex": [
+    "\\text{H se fixe sur le carbone le plus hydrogéné}",
+    "CH_2{=}CH_2 + H_2O \\xrightarrow{H^+} CH_3-CH_2OH \\text{ (éthanol)}",
+    "CH_3-CH{=}CH_2 + HCl \\rightarrow CH_3-CHCl-CH_3 \\text{ (2-chloropropane)}"
+   ]
+  },
+  "polymerisation": {
+   "type": "etape",
+   "kicker": "La polymérisation",
+   "titre": "Des monomères qui s'enchaînent",
+   "tex": [
+    "n\\,(CH_2{=}CH_2) \\rightarrow [-CH_2-CH_2-]_n \\text{ : polyéthylène}",
+    "CH_2{=}CHCl \\rightarrow \\text{PVC, polychlorure de vinyle}",
+    "C_6H_5-CH{=}CH_2 \\text{ (styrène)} \\rightarrow \\text{polystyrène}"
+   ],
+   "anim": {
+    "nom": "chaine_polymere_fig",
+    "hauteur": 110
+   }
+  },
+  "preparation_acetylene": {
+   "type": "etape",
+   "kicker": "Au laboratoire",
+   "titre": "Préparer l'acétylène",
+   "tex": [
+    "CaC_2 + 2\\,H_2O \\rightarrow C_2H_2 + Ca(OH)_2",
+    "\\text{eau goutte à goutte (ampoule de coulée) sur le carbure de calcium}",
+    "\\text{gaz recueilli par déplacement d'eau ; flamme lumineuse et fuligineuse}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Alcènes CnH2n, alcynes CnH2n-2",
+    "sp2 plan à 120°, sp linéaire à 180°",
+    "Double liaison bloquée : isomères Z/E",
+    "La liaison π s'ouvre : additions",
+    "Markovnikov : H sur le plus hydrogéné"
+   ]
+  },
+  "intro_oxygenes": {
+   "type": "phrase",
+   "kicker": "Les composés oxygénés",
+   "texte": "Un atome d'oxygène suffit à créer une famille."
+  },
+  "fonctions": {
+   "type": "etape",
+   "kicker": "Les groupes fonctionnels",
+   "titre": "Trois fonctions oxygénées à connaître",
+   "tex": [
+    "\\text{alcool : } -OH \\text{ (hydroxyle), } R-OH",
+    "\\text{aldéhyde : } -CHO \\text{ en bout de chaîne, } R-CHO",
+    "\\text{cétone : } >C{=}O \\text{ dans la chaîne, } R-CO-R'"
+   ],
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 110
+   }
+  },
+  "classes_alcools": {
+   "type": "etape",
+   "kicker": "Les trois classes d'alcools",
+   "titre": "Compter les carbones voisins du carbone fonctionnel",
+   "tex": [
+    "\\text{primaire : } R-CH_2OH \\text{, un seul carbone voisin}",
+    "\\text{secondaire : } R_1-CHOH-R_2 \\text{, deux carbones voisins}",
+    "\\text{tertiaire : } R_1R_2R_3C-OH \\text{, trois carbones voisins}"
+   ]
+  },
+  "carbonyle": {
+   "type": "etape",
+   "kicker": "Le groupe carbonyle",
+   "titre": "Terminal chez l'aldéhyde, interne chez la cétone",
+   "tex": [
+    "\\text{le point commun : le groupe carbonyle } >C{=}O",
+    "\\text{aldéhyde : carbonyle terminal, lié à un } H",
+    "\\text{cétone : carbonyle interne, deux groupes carbonés}"
+   ]
+  },
+  "nomenclature_oxygenes": {
+   "type": "etape",
+   "kicker": "Nommer les oxygénés",
+   "titre": "Trois suffixes : -ol, -al, -one",
+   "tex": [
+    "\\text{alcools : suffixe } -ol \\qquad CH_3-CHOH-CH_3 \\text{ : propan-2-ol}",
+    "\\text{aldéhydes : suffixe } -al \\qquad CH_3-CH_2-CHO \\text{ : propanal}",
+    "\\text{cétones : suffixe } -one \\qquad CH_3-CO-CH_2-CH_3 \\text{ : butan-2-one}"
+   ]
+  },
+  "isomerie_oxygenes": {
+   "type": "etape",
+   "kicker": "L'isomérie de fonction",
+   "titre": "Même formule brute, fonctions différentes",
+   "tex": [
+    "C_3H_8O \\text{ : propan-1-ol, alcool primaire}",
+    "C_3H_8O \\text{ : propan-2-ol, alcool secondaire}",
+    "C_3H_6O \\text{ : propanal, un aldéhyde}",
+    "C_3H_6O \\text{ : propanone, une cétone — isomères de fonction}"
+   ]
+  },
+  "proprietes_alcools": {
+   "type": "etape",
+   "kicker": "Propriétés des alcools",
+   "titre": "Les liaisons hydrogène changent tout",
+   "tex": [
+    "\\text{liaison } O-H \\text{ polarisée : liaisons hydrogène entre molécules}",
+    "\\text{ébullition élevée, par rapport aux alcanes proches}",
+    "\\text{petits alcools solubles ; la solubilité baisse quand } R \\text{ grandit}"
+   ],
+   "anim": {
+    "nom": "liaison_hydrogene_fig",
+    "hauteur": 110
+   }
+  },
+  "polyalcools": {
+   "type": "etape",
+   "kicker": "Les polyalcools",
+   "titre": "Plusieurs groupes -OH sur une même molécule",
+   "tex": [
+    "HO-CH_2-CH_2-OH \\text{ : glycol (éthane-1,2-diol), un antigel}",
+    "HO-CH_2-CHOH-CH_2-OH \\text{ : glycérol, visqueux et hygroscopique}"
+   ]
+  },
+  "test_dnph": {
+   "type": "etape",
+   "kicker": "Le test à la 2,4-DNPH",
+   "titre": "Le carbonyle se révèle en jaune-orange",
+   "tex": [
+    "\\text{2,4-DNPH : précipité jaune-orange}",
+    "\\text{positif si un carbonyle est présent : aldéhyde ou cétone}"
+   ]
+  },
+  "tests_aldehydes": {
+   "type": "etape",
+   "kicker": "Les tests des aldéhydes",
+   "titre": "Seuls les aldéhydes, réducteurs, répondent",
+   "tex": [
+    "\\text{Schiff : la fuchsine décolorée redevient rose}",
+    "\\text{Fehling : } Cu^{2+} \\text{ bleu} \\rightarrow Cu_2O \\text{ rouge brique}",
+    "\\text{Tollens : } [Ag(NH_3)_2]^+ \\rightarrow \\text{miroir d'argent}"
+   ],
+   "anim": {
+    "nom": "miroir_argent_fig",
+    "hauteur": 110
+   }
+  },
+  "tollens_equation": {
+   "type": "etape",
+   "kicker": "Exemple résolu : le bilan de Tollens",
+   "titre": "L'éthanal face au réactif de Tollens",
+   "tex": [
+    "CH_3-CHO + 2\\,[Ag(NH_3)_2]^+ + 3\\,OH^- \\rightarrow CH_3-COO^- + 2\\,Ag_{(s)} + 4\\,NH_3 + 2\\,H_2O",
+    "\\text{l'aldéhyde est oxydé : il cède des électrons ; } Ag^+ \\text{ est réduit}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Trois fonctions : –OH, –CHO, >C=O",
+    "Alcools : primaire, secondaire, tertiaire",
+    "Suffixes : -ol, -al, -one",
+    "DNPH : le carbonyle se révèle",
+    "Schiff, Fehling, Tollens : l'aldéhyde"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de chimie organique, consacré aux grandes familles construites sur le carbone. Nous commencerons par les alcanes, les hydrocarbures saturés : leur structure tétraédrique, leur nomenclature et leurs deux grandes réactions, la combustion et la substitution. Nous passerons ensuite aux hydrocarbures insaturés, alcènes et alcynes, dont les liaisons multiples ouvrent la porte aux réactions d'addition et à la polymérisation. Nous terminerons par les composés oxygénés : alcools, aldéhydes et cétones, et les tests chimiques qui permettent de les distinguer.",
+   "texte": "Trois familles : alcanes, insaturés, composés oxygénés.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Regardez autour de vous : l'essence des moteurs, le gaz des cuisinières, la cire des bougies, le plastique des bouteilles, l'alcool des désinfectants. Derrière tous ces produits du quotidien se cache un même élément, le carbone, capable de s'enchaîner à lui-même en longues chaînes et de s'associer à l'hydrogène, puis à l'oxygène. Ce cours pose les fondations de la chimie organique : trois familles, des règles de nommage communes, et des réactions qui se lisent sur la structure des molécules.",
+   "texte": "Essence, gaz, cire, plastiques : des familles à organiser.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par la famille la plus simple : les alcanes. Un alcane est un hydrocarbure saturé : ses atomes de carbone ne sont liés entre eux et avec les hydrogènes que par des liaisons simples, les liaisons sigma. Le méthane, cé-ache-quatre, est le plus simple : son carbone unique est au centre d'un tétraèdre régulier, avec des angles de cent neuf virgule cinq degrés. L'éthane suit, avec deux carbones liés entre eux. Ce carbone lié à quatre substituants, disposés aux sommets d'un tétraèdre, s'appelle un carbone tétragonal ; son hybridation est dite esse-pé-trois. Les chaînes, enfin, peuvent être linéaires, ramifiées, ou refermées en cycles : ce sont alors des cyclanes, comme le cyclohexane.",
+   "texte": "Alcanes : saturés, liaisons simples σ, carbone tétragonal sp3.",
+   "ecran": "definition_alcane"
+  },
+  {
+   "id": "p04",
+   "dit": "Pour représenter ces molécules en trois dimensions sur une feuille plate, on utilise la représentation de Cram, dont la figure montre le principe sur un carbone central. Le trait plein désigne une liaison située dans le plan de la feuille. Le trait épais, en forme de coin, désigne une liaison qui pointe vers l'avant, vers l'observateur. Les pointillés, eux, désignent une liaison qui s'éloigne vers l'arrière. Retenez ce code : il reviendra chaque fois qu'une molécule devra être dessinée dans l'espace.",
+   "texte": "Cram : plein = plan, coin = avant, pointillés = arrière.",
+   "ecran": "cram"
+  },
+  {
+   "id": "p05",
+   "dit": "Autour d'une liaison simple carbone-carbone, les deux moitiés de la molécule peuvent tourner : c'est cette rotation qui crée les conformations, des arrangements spatiaux différents pour une même molécule. Pour l'éthane, la projection de Newman, à l'écran, regarde la molécule dans l'axe de la liaison. Quand les hydrogènes des deux carbones sont décalés les uns par rapport aux autres, la conformation est dite décalée : c'est la plus stable. Quand ils se font face, alignés, la conformation est éclipsée : c'est la moins stable.",
+   "texte": "Conformations de l'éthane : décalée stable, éclipsée instable.",
+   "ecran": "conformations"
+  },
+  {
+   "id": "p06",
+   "dit": "Tous les alcanes acycliques obéissent à une même formule générale : cé-enne-ache-deux-enne-plus-deux, où enne compte les atomes de carbone. Pour décrire une molécule précise, deux écritures coexistent. La formule développée dessine toutes les liaisons, comme sur la figure. La formule semi-développée, plus rapide, sous-entend les liaisons entre carbone et hydrogène : le propane s'écrit alors cé-ache-trois, cé-ache-deux, cé-ache-trois. C'est cette écriture compacte que nous utiliserons dans tout le cours.",
+   "texte": "Formule générale CnH2n+2 ; développée ou semi-développée.",
+   "ecran": "formules_alcanes"
+  },
+  {
+   "id": "p07",
+   "dit": "Une même formule brute peut cacher plusieurs molécules : ce sont des isomères, des composés de même formule brute mais de formules développées différentes. Exemple résolu des leçons, pour la formule cé-quatre-ache-dix. Première possibilité : une chaîne linéaire de quatre carbones, c'est le butane. Deuxième possibilité : une chaîne de trois carbones portant un groupe méthyle sur le carbone central, c'est le deux-méthylpropane. Même inventaire d'atomes, architecture différente : l'isomérie de chaîne commence dès quatre carbones.",
+   "texte": "C4H10 : butane linéaire ou 2-méthylpropane ramifié.",
+   "ecran": "isomerie_alcanes"
+  },
+  {
+   "id": "p08",
+   "dit": "Pour nommer un alcane ramifié sans ambiguïté, on suit quatre règles. Premièrement, identifier la chaîne carbonée la plus longue : c'est la chaîne principale, elle donne le nom de base, terminé par le suffixe ane. Deuxièmement, numéroter cette chaîne à partir de l'extrémité la plus proche d'une ramification. Troisièmement, nommer chaque substituant, méthyle ou éthyle par exemple, et indiquer sa position par le numéro du carbone qui le porte. Quatrièmement, citer les substituants par ordre alphabétique, avant le nom de la chaîne principale.",
+   "texte": "Nommer : plus longue chaîne, numéroter, substituants, alphabet.",
+   "ecran": "nomenclature_regles"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple résolu : nommons la molécule à l'écran. Sa chaîne la plus longue compte quatre carbones : ce sera donc un butane. Un groupe méthyle est accroché au carbone numéro deux. On cite le substituant avec sa position, puis la chaîne : la molécule s'appelle le deux-méthylbutane. Vérifiez toujours les deux pièges classiques : une chaîne plus longue cachée par le dessin, et une numérotation partie du mauvais bout.",
+   "texte": "Exemple : chaîne de 4 C, méthyle en 2 → 2-méthylbutane.",
+   "ecran": "exemple_nom"
+  },
+  {
+   "id": "p10",
+   "dit": "Côté propriétés physiques, les alcanes sont des molécules discrètes. Leurs liaisons sont très peu polarisées : ils sont non polaires, donc insolubles dans l'eau, mais solubles dans les solvants organiques. Leur état dépend de la taille de la chaîne : de un à quatre carbones, ce sont des gaz ; de cinq à seize carbones, des liquides ; au-delà, des solides, comme les paraffines. Enfin, leurs températures d'ébullition augmentent avec la masse molaire, car les forces de van der Waals entre molécules deviennent plus intenses quand la chaîne s'allonge.",
+   "texte": "Non polaires ; gaz, liquides puis solides selon la chaîne.",
+   "ecran": "proprietes_physiques"
+  },
+  {
+   "id": "p11",
+   "dit": "Passons aux réactions. La première est la combustion complète : dans le dioxygène, un alcane brûle en donnant du dioxyde de carbone et de l'eau, selon l'équation générale à l'écran. Pour le butane, l'exemple résolu des leçons, deux molécules de butane réagissent avec treize molécules de dioxygène pour donner huit molécules de dioxyde de carbone et dix molécules d'eau. Cette réaction est fortement exothermique : elle dégage beaucoup d'énergie, et c'est exactement pour cela que les alcanes sont nos combustibles quotidiens, du gaz de ville à l'essence.",
+   "texte": "Combustion complète : CO2 + H2O, énergie dégagée.",
+   "ecran": "combustion_alcanes"
+  },
+  {
+   "id": "p12",
+   "dit": "Deuxième réaction caractéristique : la substitution, aussi appelée halogénation. Sous l'effet de la lumière ultraviolette, un halogène comme le dichlore ou le dibrome remplace un atome d'hydrogène de l'alcane. Pour le méthane, on obtient le chlorométhane et du chlorure d'hydrogène. L'équation générale est à l'écran : un hydrogène échangé contre un halogène. Et la réaction peut se poursuivre, hydrogène après hydrogène, jusqu'au tétrachlorométhane. Les dérivés halogénés ainsi obtenus sont des intermédiaires précieux : ils servent à préparer d'autres composés, comme les alcools ou les amines, ainsi que des solvants et des médicaments.",
+   "texte": "Substitution (UV) : un H remplacé par un halogène.",
+   "ecran": "substitution"
+  },
+  {
+   "id": "p13",
+   "dit": "Terminons cette première partie par une préparation classique de laboratoire : celle du méthane. On chauffe un mélange d'acétate de sodium et de chaux sodée, un mélange de soude et de chaux, dans un tube à essais : la réaction, à l'écran, libère du méthane et laisse du carbonate de sodium. Le gaz dégagé est recueilli par déplacement d'eau, car il est très peu soluble. Pour le reconnaître, un test simple : le méthane brûle avec une flamme bleue peu lumineuse. Retenez ce schéma de préparation, il resservira pour l'acétylène dans la partie suivante.",
+   "texte": "Méthane au labo : acétate de sodium + chaux sodée, chauffés.",
+   "ecran": "preparation_methane"
+  },
+  {
+   "id": "p14",
+   "dit": "Récapitulons cette première partie. Les alcanes sont les hydrocarbures saturés : uniquement des liaisons simples sigma, des carbones tétragonaux d'hybridation esse-pé-trois, et une formule générale en cé-enne-ache-deux-enne-plus-deux. On les nomme en repérant la plus longue chaîne et ses substituants. Non polaires, ils changent d'état avec la taille de leur chaîne. Leurs deux réactions à retenir : la combustion complète, qui fournit notre énergie, et la substitution sous ultraviolets, qui ouvre la voie aux dérivés halogénés.",
+   "texte": "Alcanes : structure, nom, combustion, substitution.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p15",
+   "dit": "Qu'est-ce qui distingue un hydrocarbure insaturé ? Il lui manque des hydrogènes par rapport à l'alcane correspondant, parce qu'une ou plusieurs liaisons multiples remplacent des liaisons simples. Cette insaturation n'est pas un détail : la liaison pi, plus fragile que la liaison sigma, devient le point d'attaque des réactions. Toute cette deuxième partie tourne autour d'elle : d'abord la structure et la géométrie, ensuite les réactions d'addition qu'elle rend possibles.",
+   "texte": "Une liaison multiple change tout : géométrie et réactivité.",
+   "ecran": "intro_insaturation"
+  },
+  {
+   "id": "p16",
+   "dit": "Deux familles d'insaturés sont au programme. Les alcènes possèdent une double liaison carbone-carbone ; leur formule générale est cé-enne-ache-deux-enne, pour enne au moins égal à deux. Les alcynes possèdent une triple liaison carbone-carbone ; leur formule générale est cé-enne-ache-deux-enne-moins-deux. Retenez le compte d'hydrogènes : par rapport à l'alcane de même chaîne, la double liaison retire deux hydrogènes, et la triple liaison en retire quatre. C'est la marque de l'insaturation.",
+   "texte": "Alcènes CnH2n (C=C) ; alcynes CnH2n-2 (C≡C).",
+   "ecran": "definitions_insatures"
+  },
+  {
+   "id": "p17",
+   "dit": "La géométrie change avec la liaison multiple, et le tableau des leçons la résume. Dans un alcène, les carbones de la double liaison sont trigonaux, d'hybridation esse-pé-deux : la molécule est plane autour d'eux, avec des angles de cent vingt degrés ; c'est le cas de l'éthylène. Dans un alcyne, les carbones de la triple liaison sont digonaux, d'hybridation esse-pé : la molécule est linéaire, avec des angles de cent quatre-vingts degrés ; c'est le cas de l'éthyne, l'acétylène. Le secret de ces géométries : la double liaison combine un recouvrement sigma, fort, et un recouvrement pi, plus faible ; la triple liaison ajoute un second recouvrement pi.",
+   "texte": "sp2 : plan, 120° ; sp : linéaire, 180°.",
+   "ecran": "geometrie_insatures"
+  },
+  {
+   "id": "p18",
+   "dit": "La nomenclature suit celle des alcanes, avec deux adaptations. Le suffixe devient ène pour les alcènes et yne pour les alcynes. Et la chaîne principale doit contenir la liaison multiple : on la numérote de façon à donner à cette liaison l'indice le plus bas possible, indice qui s'insère dans le nom. Exemples à l'écran : la chaîne de quatre carbones dont la double liaison commence au carbone deux est le but-deux-ène ; celle dont la triple liaison commence au premier carbone est le but-un-yne.",
+   "texte": "-ène et -yne : indice le plus bas pour la liaison multiple.",
+   "ecran": "nomenclature_insatures"
+  },
+  {
+   "id": "p19",
+   "dit": "La double liaison a une conséquence spectaculaire : elle empêche la rotation, car tourner casserait le recouvrement pi. Les substituants de chaque carbone trigonal restent donc figés dans le plan, d'un côté ou de l'autre. Pour décrire ces arrangements, on classe les groupes de chaque carbone selon la règle de Cahn, Ingold et Prelog : priorité au plus grand numéro atomique. Si les deux groupes prioritaires sont du même côté, l'isomère est noté Z ; s'ils sont de côtés opposés, il est noté E. La figure l'illustre sur le but-deux-ène : les deux groupes méthyle, prioritaires face aux hydrogènes, sont tantôt voisins, tantôt opposés.",
+   "texte": "Z : même côté ; E : côtés opposés (règle CIP).",
+   "ecran": "isomerie_ze"
+  },
+  {
+   "id": "p20",
+   "dit": "Côté réactions, alcènes et alcynes partagent d'abord la combustion : comme les alcanes, ils brûlent dans le dioxygène en donnant du dioxyde de carbone et de l'eau. Pour l'éthylène, l'équation est à l'écran : une molécule d'éthylène et trois molécules de dioxygène donnent deux molécules de dioxyde de carbone et deux molécules d'eau. Mais la réaction signature des insaturés est ailleurs : c'est l'addition, que nous détaillons juste après.",
+   "texte": "Combustion de l'éthylène : CO2 et H2O.",
+   "ecran": "combustion_insatures"
+  },
+  {
+   "id": "p21",
+   "dit": "Voici le cœur de la réactivité des alcènes : les réactions d'addition. La liaison pi, riche en électrons, s'ouvre et se transforme en deux liaisons sigma nouvelles : deux atomes viennent se fixer sur les deux carbones de l'ancienne double liaison. Le tableau des leçons recense quatre additions à connaître. L'hydrogénation, avec le dihydrogène sur catalyseur de nickel, de palladium ou de platine, redonne un alcane. L'hydratation, avec l'eau en milieu acide, donne un alcool. L'addition de chlorure d'hydrogène donne un chloroalcane. Et l'addition d'un dihalogène, dichlore ou dibrome, donne un dihalogénoalcane.",
+   "texte": "Addition : H2, H2O, HCl ou X2 ouvrent la double liaison.",
+   "ecran": "additions"
+  },
+  {
+   "id": "p22",
+   "dit": "Quand le réactif est asymétrique et l'alcène aussi, deux produits sont imaginables : une règle tranche, la règle de Markovnikov. Lors de l'addition, l'atome d'hydrogène du réactif se fixe sur le carbone de la double liaison qui est déjà le plus hydrogéné. Deux exemples résolus. L'hydratation de l'éthylène, symétrique, donne l'éthanol. Et le propène, asymétrique, réagit avec le chlorure d'hydrogène pour donner principalement le deux-chloropropane : le chlore se retrouve sur le carbone central, l'hydrogène ayant rejoint le carbone le plus hydrogéné.",
+   "texte": "Markovnikov : H sur le carbone le plus hydrogéné.",
+   "ecran": "markovnikov"
+  },
+  {
+   "id": "p23",
+   "dit": "Dernière réaction des alcènes, et non la moindre : la polymérisation par addition. Les doubles liaisons s'ouvrent les unes après les autres et les molécules, les monomères, s'enchaînent en une très longue chaîne, le polymère, comme le montre la figure. Avec l'éthylène, on obtient le polyéthylène, le plastique le plus courant. Avec le chloroéthène, on obtient le polychlorure de vinyle, le fameux pé-vé-cé des tuyaux et des fenêtres. Et le styrène, lui, donne le polystyrène des emballages.",
+   "texte": "Polymérisation : n monomères → un polymère (PE, PVC…).",
+   "ecran": "polymerisation"
+  },
+  {
+   "id": "p24",
+   "dit": "Refermons cette partie sur une préparation de laboratoire, celle de l'acétylène, l'éthyne des soudeurs. On fait réagir de l'eau, goutte à goutte grâce à une ampoule de coulée, sur du carbure de calcium placé dans un ballon : la réaction à l'écran dégage l'acétylène et laisse de la chaux éteinte, l'hydroxyde de calcium. Le gaz, peu soluble dans l'eau, est recueilli par déplacement d'eau dans une éprouvette retournée, exactement comme le méthane de la première partie. Son test de reconnaissance : il brûle avec une flamme très lumineuse et fuligineuse, signe de sa forte teneur en carbone.",
+   "texte": "Acétylène : carbure de calcium + eau, goutte à goutte.",
+   "ecran": "preparation_acetylene"
+  },
+  {
+   "id": "p25",
+   "dit": "Récapitulons. Les alcènes portent une double liaison et répondent à la formule cé-enne-ache-deux-enne ; les alcynes portent une triple liaison et perdent encore deux hydrogènes. Géométrie plane et angles de cent vingt degrés pour les premiers, linéaire et cent quatre-vingts degrés pour les seconds. La double liaison, bloquée en rotation, crée l'isomérie Z et E. Sa liaison pi s'ouvre dans les additions, guidées par la règle de Markovnikov, et enchaîne les monomères dans la polymérisation. Reste la troisième famille : celle où l'oxygène entre en scène.",
+   "texte": "Insaturés : géométrie, Z/E, additions, polymères.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p26",
+   "dit": "Qu'est-ce qu'un composé oxygéné ? Un composé organique contenant au moins un atome d'oxygène lié à un atome de carbone. Toute la chimie de ces molécules tient dans leur groupe fonctionnel : l'atome, ou le groupement d'atomes, qui confère à la molécule ses propriétés chimiques caractéristiques. Deux groupes fonctionnels dominent cette partie : le groupe hydroxyle, qui définit les alcools, et le groupe carbonyle, partagé par les aldéhydes et les cétones. Apprendre à les reconnaître, c'est prévoir le comportement de la molécule.",
+   "texte": "Un atome d'oxygène suffit à créer une famille.",
+   "ecran": "intro_oxygenes"
+  },
+  {
+   "id": "p27",
+   "dit": "Le tableau des leçons présente les trois fonctions à connaître, et la figure les replace parmi les familles oxygénées. L'alcool porte le groupe hydroxyle, un oxygène lié à un hydrogène, et sa formule générale s'écrit erre-o-ache. L'aldéhyde porte le groupe carbonyle en bout de chaîne, lié à au moins un hydrogène : formule erre-cé-ache-o. La cétone porte le même carbonyle, mais au milieu de la chaîne, entre deux groupes carbonés : formule erre-cé-o-erre-prime. La position du carbonyle, terminale ou interne, sera la clé de toute la fin du cours.",
+   "texte": "Alcool –OH ; aldéhyde –CHO terminal ; cétone C=O interne.",
+   "ecran": "fonctions"
+  },
+  {
+   "id": "p28",
+   "dit": "Chez les alcools, on distingue trois classes selon le carbone fonctionnel, celui qui porte le groupe hydroxyle. Si ce carbone n'est lié qu'à un seul autre atome de carbone, l'alcool est primaire : formule erre-cé-ache-deux-o-ache. S'il est lié à deux atomes de carbone, l'alcool est secondaire. S'il est lié à trois atomes de carbone, l'alcool est tertiaire. Cette classification, qui ne dépend que du voisinage du carbone fonctionnel, commande la réactivité des alcools, notamment leur oxydation.",
+   "texte": "Primaire, secondaire ou tertiaire : compter les voisins du C–OH.",
+   "ecran": "classes_alcools"
+  },
+  {
+   "id": "p29",
+   "dit": "Regardons de plus près le groupe carbonyle, ce carbone doublement lié à un oxygène, commun aux aldéhydes et aux cétones. Dans un aldéhyde, ce carbone est terminal : il se trouve en bout de chaîne et il est lié à au moins un atome d'hydrogène, ce qui permettra de l'oxyder encore. Dans une cétone, le carbone du carbonyle est lié à deux groupements carbonés : aucun hydrogène à arracher, et l'oxydation devient impossible sans casser la chaîne. Retenez cette différence minuscule, un hydrogène : elle explique pourquoi seuls les aldéhydes réussissent les tests de la fin du cours.",
+   "texte": "Carbonyle terminal (aldéhyde) ou interne (cétone).",
+   "ecran": "carbonyle"
+  },
+  {
+   "id": "p30",
+   "dit": "La nomenclature prolonge celle des hydrocarbures : on garde la chaîne principale et on change le suffixe. Pour un alcool, le suffixe est ol, et le carbone portant le groupe hydroxyle reçoit l'indice le plus bas : l'exemple à l'écran est le propan-deux-ol. Pour un aldéhyde, le suffixe est al, et la numérotation commence au carbone du groupe carbonyle, toujours numéro un : voici le propanal. Pour une cétone, le suffixe est one, avec l'indice le plus bas pour le carbonyle : voici la butan-deux-one. Trois suffixes à ne pas confondre le jour de l'examen.",
+   "texte": "-ol, -al, -one : le suffixe dit la fonction.",
+   "ecran": "nomenclature_oxygenes"
+  },
+  {
+   "id": "p31",
+   "dit": "L'isomérie revient chez les oxygénés, sous sa forme de fonction. Premier exemple résolu : la formule brute cé-trois-ache-huit-o admet deux alcools isomères, le propan-un-ol, primaire, et le propan-deux-ol, secondaire, déjà rencontré. Deuxième exemple : la formule cé-trois-ache-six-o admet le propanal, un aldéhyde, et la propanone, une cétone. Même formule brute, mais des groupes fonctionnels différents : ce sont des isomères de fonction, aux propriétés nettement distinctes malgré leur inventaire identique.",
+   "texte": "C3H8O : deux alcools ; C3H6O : aldéhyde ou cétone.",
+   "ecran": "isomerie_oxygenes"
+  },
+  {
+   "id": "p32",
+   "dit": "Pourquoi les alcools sont-ils si différents des alcanes ? À cause de leur liaison oxygène-hydrogène, fortement polarisée par l'électronégativité de l'oxygène. Les molécules d'alcool s'associent entre elles par des liaisons hydrogène, ces ponts fragiles que la figure montre entre deux molécules. Conséquence directe : leurs températures d'ébullition sont élevées par rapport aux alcanes de masse molaire comparable. Autre conséquence : les petits alcools, à chaîne courte, sont solubles dans l'eau, avec laquelle ils forment aussi des liaisons hydrogène ; mais la solubilité diminue quand la chaîne carbonée, hydrophobe, s'allonge.",
+   "texte": "Liaisons hydrogène : ébullition haute, petits alcools solubles.",
+   "ecran": "proprietes_alcools"
+  },
+  {
+   "id": "p33",
+   "dit": "Certains alcools portent plusieurs groupes hydroxyle : ce sont les polyalcools. Le plus simple est le glycol, ou éthane-un-deux-diol, avec un hydroxyle sur chaque carbone : on l'utilise comme antigel, car il empêche l'eau des circuits de geler. Le glycérol, ou propane-un-deux-trois-triol, en porte trois : c'est un liquide visqueux qui attire l'eau, dit hygroscopique, employé dans les crèmes et les cosmétiques. Plus une molécule porte de groupes hydroxyle, plus ses liaisons hydrogène la rendent épaisse et avide d'eau.",
+   "texte": "Glycol l'antigel, glycérol l'hydratant : les polyalcools.",
+   "ecran": "polyalcools"
+  },
+  {
+   "id": "p34",
+   "dit": "Venons-en aux tests chimiques, les expériences qui identifient une fonction. Le premier, le test à la deux-quatre-dinitrophénylhydrazine, abrégée dé-éne-pé-ache, caractérise le groupe carbonyle dans son ensemble. Si l'échantillon contient un aldéhyde ou une cétone, il se forme un précipité jaune-orange caractéristique. Attention à sa portée : ce test dit s'il y a un carbonyle, mais il ne distingue pas un aldéhyde d'une cétone. Pour trancher entre les deux, il faut les tests spécifiques qui suivent.",
+   "texte": "2,4-DNPH : précipité jaune-orange = un carbonyle.",
+   "ecran": "test_dnph"
+  },
+  {
+   "id": "p35",
+   "dit": "Les aldéhydes, eux, sont des réducteurs : leur carbone du carbonyle, porteur d'un hydrogène, peut encore s'oxyder en acide carboxylique, ce qui est impossible à une cétone sans rupture de chaîne. Trois tests exploitent ce pouvoir réducteur, et la figure montre le plus célèbre. Le réactif de Schiff, une fuchsine décolorée, redevient rose en présence d'un aldéhyde. La liqueur de Fehling, bleue, laisse déposer un précipité rouge brique d'oxyde de cuivre quand on la chauffe avec un aldéhyde. Et le réactif de Tollens dépose un miroir d'argent métallique sur les parois du tube. Une cétone, elle, laisse les trois réactifs indifférents.",
+   "texte": "Schiff rose, Fehling rouge brique, Tollens miroir d'argent.",
+   "ecran": "tests_aldehydes"
+  },
+  {
+   "id": "p36",
+   "dit": "Détaillons le bilan du test de Tollens sur l'éthanal, l'exemple résolu des leçons. L'éthanal réagit avec deux ions diamminoargent et des ions hydroxyde : il donne l'ion éthanoate, deux atomes d'argent métallique, de l'ammoniac et de l'eau. Le bilan électronique est limpide : l'aldéhyde est oxydé, car il cède des électrons ; les ions argent sont réduits, car ils gagnent ces électrons et deviennent le métal du miroir. Une cétone ne peut pas jouer ce rôle de réducteur : c'est toute la logique de la distinction.",
+   "texte": "Tollens : l'aldéhyde s'oxyde, Ag+ se réduit en Ag.",
+   "ecran": "tollens_equation"
+  },
+  {
+   "id": "p37",
+   "dit": "Récapitulons cette troisième partie, et le cours entier. Une pincée d'oxygène crée trois fonctions : l'alcool et son hydroxyle, classé primaire, secondaire ou tertiaire ; l'aldéhyde et son carbonyle terminal ; la cétone et son carbonyle interne. On les nomme par leurs suffixes, ol, al et one. Les liaisons hydrogène expliquent les propriétés des alcools. Et les tests tranchent : la dé-éne-pé-ache révèle le carbonyle, puis Schiff, Fehling et Tollens désignent l'aldéhyde, seul réducteur de la bande. Des alcanes aux composés oxygénés, vous tenez désormais la carte des grandes familles organiques et les réactions qui les relient.",
+   "texte": "Oxygénés : fonctions, noms, propriétés, tests.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les alcanes : les hydrocarbures saturés"
+  },
+  {
+   "debut": "p15",
+   "sous_titre": "Alcènes et alcynes : les hydrocarbures insaturés",
+   "pont": {
+    "texte": "Partie 2 : alcènes et alcynes, les hydrocarbures insaturés.",
+    "dit": "Partie deux : les hydrocarbures insaturés. Après les alcanes tout en liaisons simples, voici les alcènes et les alcynes, qui portent des liaisons multiples, double ou triple. Ces liaisons changent la géométrie des molécules, bloquent les rotations, et surtout ouvrent une réactivité nouvelle : les réactions d'addition, puis la polymérisation, à l'origine de nos plastiques."
+   }
+  },
+  {
+   "debut": "p26",
+   "sous_titre": "Les composés oxygénés : alcools, aldéhydes et cétones",
+   "pont": {
+    "texte": "Partie 3 : les composés oxygénés, alcools, aldéhydes et cétones.",
+    "dit": "Partie trois : les composés oxygénés. Nous quittons les hydrocarbures pour les molécules qui portent un atome d'oxygène lié au carbone. Cet oxygène crée des groupes fonctionnels, hydroxyle et carbonyle, qui dictent les propriétés et offrent des tests chimiques spectaculaires, du précipité jaune-orange au miroir d'argent."
+   }
+  }
+ ]
+}
