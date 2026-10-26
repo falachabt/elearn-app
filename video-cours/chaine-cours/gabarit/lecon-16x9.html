@@ -3716,6 +3716,29 @@ const FIG = {
       mot(645, 292, 'miroir d’argent : Ag(s) déposé', { c: '#B8860B', t: 19 }) +
       mot(515, 278, 'réactif de Tollens', { t: 16 }));
   },
+  carboxyle_fig(t) {
+    return svgBoite(
+      trait(330, 150, 396, 150, 1, { w: 4 }) + mot(300, 162, 'R', { c: '#B8860B', t: 26 }) +
+      mot(430, 162, 'C', { t: 28 }) +
+      trait(452, 132, 452, 88, 1, { w: 4 }) + trait(466, 132, 466, 88, 1, { w: 4 }) +
+      mot(459, 74, 'O', { c: '#E8604C', t: 24 }) +
+      trait(462, 158, 520, 186, 1, { w: 4 }) +
+      mot(548, 200, 'O', { c: '#1A75FF', t: 24 }) + trait(568, 192, 600, 184, 1, { w: 4 }) + mot(618, 196, 'H', { c: '#1A75FF', t: 24 }) +
+      mot(300, 218, 'R : alkyle ou aryle', { t: 18 }) +
+      mot(459, 262, 'carbonyle C=O', { c: '#E8604C', t: 19 }) +
+      mot(640, 262, 'hydroxyle –OH, H acide', { c: '#1A75FF', t: 19 }) +
+      mot(500, 40, 'le groupe carboxyle', { t: 21 }));
+  },
+  carboxylate_resonance_fig(t) {
+    const forme = (x, haut) => trait(x, 150, x + 52, 150, 1, { w: 3 }) + mot(x + 66, 162, 'C', { t: 21 }) +
+      (haut ? trait(x + 84, 134, x + 84, 102, 1, { w: 3 }) + trait(x + 93, 134, x + 93, 102, 1, { w: 3 }) + mot(x + 88, 90, 'O', { c: '#E8604C', t: 20 }) : trait(x + 80, 138, x + 80, 106, 1, { w: 3 }) + mot(x + 88, 94, 'O⁻', { c: '#E8604C', t: 19 })) +
+      trait(x + 90, 158, x + 132, 182, 1, { w: 3 }) +
+      (haut ? trait(x + 140, 190, x + 140, 222, 1, { w: 3 }) + mot(x + 148, 234, 'O⁻', { c: '#1A75FF', t: 19 }) : trait(x + 136, 186, x + 136, 214, 1, { w: 3 }) + trait(x + 145, 186, x + 145, 214, 1, { w: 3 }) + mot(x + 148, 234, 'O', { c: '#1A75FF', t: 20 }));
+    return svgBoite(
+      forme(230, true) + forme(560, false) +
+      trait(452, 150, 518, 150, 1, { w: 3 }) + pointe(522, 150, 0, 'currentColor') + pointe(448, 150, 180, 'currentColor') +
+      mot(500, 262, 'deux formes mésomères : la charge voyage', { t: 20 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

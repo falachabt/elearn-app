@@ -1,0 +1,612 @@
+{
+ "cours": 6358,
+ "titre": "Les acides carboxyliques : structure, acidité et dérivés",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Acides carboxyliques",
+   "titre": "Les acides carboxyliques : structure, acidité et dérivés",
+   "sous": "Le groupe carboxyle, la force acide, puis les sels, les esters et les chlorures d'acyle",
+   "anim": {
+    "nom": "carboxyle_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Vinaigre, citron, graisses, polyester : une même signature."
+  },
+  "carboxyle": {
+   "type": "formule",
+   "kicker": "Le groupe carboxyle",
+   "tex": "R-COOH",
+   "note": "Un carbonyle et un hydroxyle portés par le même carbone."
+  },
+  "formique": {
+   "type": "etape",
+   "kicker": "Le plus simple des acides",
+   "titre": "Un seul carbone, un hydrogène à la place du groupe R",
+   "tex": [
+    "H-C(=O)-OH \\text{ : forme développée}",
+    "\\text{acide méthanoïque, dit acide formique}",
+    "\\text{aucun groupe alkyle donneur d'électrons}"
+   ]
+  },
+  "nomenclature": {
+   "type": "etape",
+   "kicker": "Nommer sans ambiguïté",
+   "titre": "Les quatre règles de l'IUPAC",
+   "tex": [
+    "\\text{1. plus longue chaîne contenant le } COOH",
+    "\\text{2. le carbone du } COOH \\text{ est toujours le C1}",
+    "\\text{3. } -e \\text{ final de l'alcane} \\rightarrow -o\\text{ïque}",
+    "\\text{4. préfixe : acide (dioïque si deux } COOH\\text{)}"
+   ]
+  },
+  "serie": {
+   "type": "etape",
+   "kicker": "La série homologue",
+   "titre": "Noms systématiques et noms triviaux",
+   "tex": [
+    "HCOOH \\text{ : méthanoïque (formique)}",
+    "CH_3COOH \\text{ : éthanoïque (acétique)}",
+    "CH_3CH_2COOH \\text{ : propanoïque (propionique)}",
+    "CH_3(CH_2)_2COOH \\text{ : butanoïque (butyrique)}"
+   ]
+  },
+  "ramifies": {
+   "type": "etape",
+   "kicker": "Chaînes ramifiées",
+   "titre": "Localiser les substituants depuis le C1",
+   "tex": [
+    "HOOC-CH_2-CH(CH_3)-CH_2-CH_3",
+    "\\text{chaîne principale : cinq carbones}",
+    "\\text{un méthyle sur le carbone trois}",
+    "\\text{acide 3-méthylpentanoïque}"
+   ]
+  },
+  "dicarboxy": {
+   "type": "etape",
+   "kicker": "Insaturés et dicarboxyliques",
+   "titre": "Doubles liaisons et doubles fonctions",
+   "tex": [
+    "\\text{acide oléique : } (Z)\\text{-9-octadécénoïque, 18 C}",
+    "HOOC-COOH \\text{ : éthanedioïque (oxalique)}",
+    "HOOC-(CH_2)_2-COOH \\text{ : butanedioïque (succinique)}"
+   ]
+  },
+  "aromatiques": {
+   "type": "etape",
+   "kicker": "Les acides aromatiques",
+   "titre": "Le carboxyle accroché au benzène",
+   "tex": [
+    "C_6H_5-COOH \\text{ : acide benzoïque}",
+    "\\text{acide salicylique : } o\\text{-hydroxybenzoïque}",
+    "\\text{acide téréphtalique : benzène-1,4-dicarboxylique}"
+   ]
+  },
+  "exercice_nom": {
+   "type": "etape",
+   "kicker": "Exercice guidé",
+   "titre": "Nommer une molécule à deux carboxyles",
+   "tex": [
+    "Cl-CH_2-CH(COOH)-CH_2-CH{=}CH-COOH",
+    "\\text{chaîne de six carbones, deux carboxyles}",
+    "\\text{numéroter pour la double liaison la plus basse}",
+    "\\text{acide 5-(chlorométhyl)hex-2-ènedioïque}"
+   ]
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Premières propriétés physiques",
+   "titre": "Des dimères qui tiennent tête à la chaleur",
+   "tex": [
+    "CH_3COOH\\ (60\\ \\text{g/mol}) \\text{ : } 118\\,^\\circ C",
+    "\\text{propanol, même masse : } 97\\,^\\circ C",
+    "\\text{propanal : } 49\\,^\\circ C \\text{, pas de liaison H}",
+    "\\text{de } C_1 \\text{ à } C_4 \\text{ : miscibles à l'eau}"
+   ],
+   "anim": {
+    "nom": "liaison_hydrogene_fig",
+    "hauteur": 110
+   }
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "–COOH : carbonyle + hydroxyle liés",
+    "Le carbone du COOH est toujours C1",
+    "Acide …oïque ; dioïque si deux COOH",
+    "Dimères par liaisons H : ébullition haute",
+    "C1 à C4 : miscibles à l'eau"
+   ]
+  },
+  "dissociation": {
+   "type": "formule",
+   "kicker": "L'équilibre de dissociation",
+   "tex": "R-COOH + H_2O \\rightleftharpoons R-COO^- + H_3O^+",
+   "note": "Le proton n'existe pas libre : il devient l'ion oxonium H₃O⁺.",
+   "anim": {
+    "nom": "transfert_proton_fig",
+    "hauteur": 130
+   }
+  },
+  "ka": {
+   "type": "formule",
+   "kicker": "La constante d'acidité",
+   "tex": "K_a = \\frac{[R-COO^-]\\,[H_3O^+]}{[R-COOH]}",
+   "note": "pKa = −log Ka : plus le pKa est petit, plus l'acide est fort."
+  },
+  "reperes_pka": {
+   "type": "etape",
+   "kicker": "Repères de pKa",
+   "titre": "Des acides faibles, mais pas comme les alcools",
+   "tex": [
+    "HCOOH \\text{ : } pK_a = 3{,}75",
+    "CH_3COOH \\text{ : } pK_a = 4{,}76",
+    "C_2H_5COOH \\text{ : } pK_a = 4{,}88",
+    "HCl \\approx -7 \\qquad \\text{éthanol} \\approx 16"
+   ]
+  },
+  "resonance": {
+   "type": "etape",
+   "kicker": "Le secret : la résonance",
+   "titre": "La charge négative partagée entre deux oxygènes",
+   "tex": [
+    "R-C(=O)-O^- \\longleftrightarrow R-C(-O^-){=}O",
+    "\\text{deux formes mésomères équivalentes}",
+    "\\text{charge partagée entre les deux oxygènes} \\qquad \\text{liaisons C–O identiques (diffraction X)}"
+   ],
+   "anim": {
+    "nom": "carboxylate_resonance_fig",
+    "hauteur": 110
+   }
+  },
+  "effet_moins_i": {
+   "type": "etape",
+   "kicker": "L'effet inductif attracteur (−I)",
+   "titre": "Chaque chlore renforce l'acide",
+   "tex": [
+    "CH_3COOH \\text{ : } pK_a = 4{,}76",
+    "ClCH_2COOH \\text{ : } pK_a = 2{,}86",
+    "Cl_2CHCOOH \\text{ : } pK_a = 1{,}48 \\qquad Cl_3CCOOH \\text{ : } pK_a = 0{,}70"
+   ]
+  },
+  "effet_plus_i": {
+   "type": "formule",
+   "kicker": "L'effet inductif donneur (+I)",
+   "tex": "CH_3 \\text{ donneur } (+I) \\Rightarrow \\text{proton moins labile}",
+   "note": "Un alkyle pousse les électrons vers le carboxyle : l'acidité chute."
+  },
+  "duel": {
+   "type": "etape",
+   "kicker": "Le duel : acétique contre benzoïque",
+   "titre": "Le phényle attire, le méthyle donne",
+   "tex": [
+    "C_6H_5COOH \\text{ : } pK_a = 4{,}20",
+    "CH_3COOH \\text{ : } pK_a = 4{,}76",
+    "K_a \\text{ du benzoïque} \\approx 3{,}5 \\times \\text{celui de l'acétique}"
+   ],
+   "anim": {
+    "nom": "benzene_fig",
+    "hauteur": 110
+   }
+  },
+  "substituants_benzoiques": {
+   "type": "etape",
+   "kicker": "Substituants sur le cycle",
+   "titre": "Inductif, mésomère et effet de proximité",
+   "tex": [
+    "4\\text{-}NO_2 \\text{ : } pK_a = 3{,}41 \\text{ (attracteur } -I, -M\\text{)}",
+    "4\\text{-}CH_3 \\text{ : } pK_a = 4{,}35 \\qquad 4\\text{-}OH \\text{ : } pK_a = 4{,}58",
+    "\\text{acide salicylique (ortho-OH) : } pK_a = 2{,}98"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Acidité = stabilité du carboxylate",
+    "Résonance : la charge sur deux O",
+    "Attracteur (−I) : acide plus fort",
+    "Donneur (+I) : acide plus faible",
+    "Benzoïque 4,20 bat acétique 4,76"
+   ]
+  },
+  "sels": {
+   "type": "formule",
+   "kicker": "La formation des sels",
+   "tex": "R-COOH + NaOH \\rightarrow R-COO^-\\,Na^+ + H_2O",
+   "note": "Avec NaHCO₃ : effervescence de CO₂, test du groupe carboxyle."
+  },
+  "sels_proprietes": {
+   "type": "etape",
+   "kicker": "Acide contre sel",
+   "titre": "Même molécule, autre monde",
+   "tex": [
+    "C_6H_5COOH \\text{ : } \\approx 3\\ \\text{g/L dans l'eau}",
+    "C_6H_5COONa \\text{ : } > 600\\ \\text{g/L}",
+    "\\text{solide ionique, conducteur, inodore}",
+    "\\text{solution basique : l'anion recapte } H^+"
+   ]
+  },
+  "sels_applications": {
+   "type": "etape",
+   "kicker": "Les sels au quotidien",
+   "titre": "Savons, conservateurs, purification",
+   "tex": [
+    "\\text{stéarate de sodium : le savon de Marseille}",
+    "\\text{propionate de calcium : le pain sans moisissures}",
+    "\\text{sels de Na ou K : médicaments plus solubles}",
+    "\\text{basifier, extraire, acidifier : purifier}"
+   ]
+  },
+  "esterification": {
+   "type": "formule",
+   "kicker": "L'estérification",
+   "tex": "R-COOH + R'-OH \\rightleftharpoons R-COO-R' + H_2O",
+   "note": "Équilibre de Fischer : éliminer l'eau ou mettre l'alcool en excès."
+  },
+  "mecanisme_fischer": {
+   "type": "etape",
+   "kicker": "Le mécanisme de Fischer",
+   "titre": "Une danse protonique en quatre temps",
+   "tex": [
+    "\\text{1. protonation du carbonyle : C plus électrophile}",
+    "\\text{2. attaque de l'alcool : intermédiaire tétraédrique}",
+    "\\text{3. transfert de proton, départ de l'eau}",
+    "\\text{4. déprotonation : l'ester neutre}"
+   ]
+  },
+  "esters_exemples": {
+   "type": "etape",
+   "kicker": "Les esters en exemples",
+   "titre": "Les parfums de la famille",
+   "tex": [
+    "CH_3COOH + CH_3CH_2OH \\rightleftharpoons CH_3COOCH_2CH_3 + H_2O",
+    "\\text{acétate d'isoamyle : l'odeur de banane}",
+    "\\text{salicylate de méthyle : baumes musculaires}",
+    "\\text{polyesters : la même réaction, en chaîne}"
+   ]
+  },
+  "halogenures_synthese": {
+   "type": "etape",
+   "kicker": "Fabriquer un chlorure d'acyle",
+   "titre": "Remplacer –OH par un chlore",
+   "tex": [
+    "R-COOH + SOCl_2 \\rightarrow R-COCl + SO_2 \\uparrow + HCl \\uparrow",
+    "3\\,R-COOH + PCl_3 \\rightarrow 3\\,R-COCl + H_3PO_3",
+    "R-COOH + PCl_5 \\rightarrow R-COCl + POCl_3 + HCl"
+   ]
+  },
+  "halogenures_reactivite": {
+   "type": "etape",
+   "kicker": "Halogenures d'acyle : réactivité",
+   "titre": "Des réactifs de combat",
+   "tex": [
+    "R-COCl + H_2O \\rightarrow R-COOH + HCl",
+    "\\text{odeurs piquantes, lacrymogènes}",
+    "\\text{point d'ébullition bas : pas de liaisons H}",
+    "\\delta^+ \\text{ fort sur le carbone : } Cl > O > R"
+   ]
+  },
+  "halogenures_applications": {
+   "type": "etape",
+   "kicker": "Halogenures d'acyle : usages",
+   "titre": "La voie rapide vers tous les dérivés",
+   "tex": [
+    "R-COCl + R'-OH \\rightarrow R-COO-R' + HCl \\text{ : ester total}",
+    "R-COCl + 2\\,R''-NH_2 \\rightarrow R-CONH-R'' + \\text{sel d'ammonium}",
+    "R-COCl + R-COO^- \\rightarrow (R-CO)_2O \\text{ : anhydride}",
+    "\\text{Friedel-Crafts : acyler un aromatique}"
+   ]
+  },
+  "gradient": {
+   "type": "etape",
+   "kicker": "Le gradient de réactivité",
+   "titre": "Un seul critère : la qualité du groupe partant",
+   "tex": [
+    "\\text{chlorures} > \\text{anhydrides} > \\text{esters} > \\text{amides} > \\text{acides}",
+    "Cl^- \\text{ : base faible, excellent groupe partant}",
+    "RO^- \\text{ et } NH_2^- \\text{ : bases fortes, mauvais partants}"
+   ]
+  },
+  "reseau": {
+   "type": "etape",
+   "kicker": "La carte des interconversions",
+   "titre": "Le chlorure, gare centrale des transformations",
+   "tex": [
+    "R-COCl \\xrightarrow{H_2O} R-COOH \\qquad \\xrightarrow{R'OH} R-COO-R'",
+    "R-COCl \\xrightarrow{NH_3} R-CONH_2 \\qquad \\xrightarrow{RCOO^-} (R-CO)_2O",
+    "R-COOH \\xrightarrow{SOCl_2} R-COCl \\text{ : la boucle se referme}"
+   ]
+  },
+  "polymeres": {
+   "type": "etape",
+   "kicker": "Les polymères",
+   "titre": "Des chaînes qui ont changé le monde",
+   "tex": [
+    "n\\,ClOC-(CH_2)_4-COCl + n\\,H_2N-(CH_2)_6-NH_2",
+    "\\rightarrow [-OC-(CH_2)_4-CONH-(CH_2)_6-NH-]_n + 2n\\,HCl",
+    "\\text{nylon-6,6 : six carbones de chaque côté}",
+    "\\text{les polyesters : } \\approx 18\\,\\% \\text{ des polymères mondiaux}"
+   ]
+  },
+  "pharma": {
+   "type": "etape",
+   "kicker": "La pharmacie",
+   "titre": "Aspirine, pénicillines, paracétamol",
+   "tex": [
+    "HO-C_6H_4-COOH + (CH_3CO)_2O \\rightarrow \\text{aspirine} + CH_3COOH",
+    "\\beta\\text{-lactames : amide cyclique tendu, arme antibactérienne}",
+    "\\text{paracétamol : l'anhydride acétique comme acylant}"
+   ]
+  },
+  "verte": {
+   "type": "etape",
+   "kicker": "Chimie verte et matériaux",
+   "titre": "Vers une chimie des dérivés plus propre",
+   "tex": [
+    "\\text{chlorures d'acyle : } HCl \\text{ corrosif à gérer}",
+    "\\text{lipases : des esters formés par des enzymes}",
+    "\\text{flux continu : maîtriser les réactions vives}",
+    "CO_2 \\text{ comme brique : la source de carbonyle de demain}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Le carboxyle : un carrefour de réactions",
+    "L'acidité se lit sur l'anion carboxylate",
+    "Sels, esters, chlorures : trois portes",
+    "Le groupe partant fixe la réactivité",
+    "PET, nylon, aspirine : partout autour de nous"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux acides carboxyliques, la famille du vinaigre, du citron et des acides gras. Leur signature commune tient en un seul groupe d'atomes, le groupe carboxyle, que nous allons d'abord apprendre à reconnaître et à nommer. Puis nous disséquerons leur propriété emblématique, l'acidité : pourquoi elle existe, et comment la structure de la molécule la renforce ou l'affaiblit. Enfin, nous suivrons le groupe carboxyle dans ses transformations : les sels, les esters, les chlorures d'acyle, et jusqu'aux polymères et aux médicaments qui en descendent.",
+   "texte": "Une famille, un groupe : le carboxyle –COOH.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Regardez autour de vous : ils sont partout. La pointe d'acidité d'une vinaigrette vient de l'acide acétique ; le piquant du citron, de l'acide citrique ; nos vêtements en polyester naissent de l'acide téréphtalique ; et les graisses de notre alimentation sont construites sur des acides gras à longue chaîne. Même la piqûre de fourmi doit sa brûlure à l'acide formique, isolé pour la première fois au dix-septième siècle par distillation de fourmis rouges, d'où son nom, tiré du mot latin qui désigne la fourmi. Un point commun à toutes ces molécules : un même groupe fonctionnel, le groupe carboxyle.",
+   "texte": "Vinaigre, citron, graisses, polyester : une même signature.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Voici le cœur du cours : le groupe carboxyle. Il associe deux groupes que vous connaissez déjà, un groupe carbonyle, un carbone doublement lié à un oxygène, et un groupe hydroxyle, un oxygène porteur d'un hydrogène, mais tous deux accrochés au même atome de carbone. Cette unité, notée erre-cé-o-o-ache, possède des propriétés émergentes, très différentes de celles d'un aldéhyde ou d'un alcool pris séparément. Le reste de la molécule, noté erre, est un groupe alkyle, comme un méthyle, ou un groupe aryle, comme un cycle benzénique.",
+   "texte": "–COOH : carbonyle C=O + hydroxyle –OH sur le même C.",
+   "ecran": "carboxyle"
+  },
+  {
+   "id": "p04",
+   "dit": "Le plus simple des acides carboxyliques est l'acide méthanoïque, l'acide formique. Son groupe erre se réduit à un seul atome d'hydrogène : la formule s'écrit ache-cé-o-o-ache. En représentation développée, le carbone central porte une double liaison vers un oxygène, une liaison simple vers le groupe hydroxyle, et son hydrogène. Retenez ce cas limite : n'ayant aucun groupe alkyle donneur d'électrons, l'acide formique sera, nous le verrons, le plus fort des acides carboxyliques simples.",
+   "texte": "HCOOH : le plus simple, et le plus fort des simples.",
+   "ecran": "formique"
+  },
+  {
+   "id": "p05",
+   "dit": "Comment nommer ces molécules ? L'Union internationale de chimie pure et appliquée a fixé des règles simples. Premièrement, on repère la plus longue chaîne carbonée qui contient le carbone du groupe carboxyle. Deuxièmement, ce carbone est toujours le carbone numéro un : la numérotation part de lui. Troisièmement, on remplace le e final de l'alcane correspondant par le suffixe oïque. Quatrièmement, on fait précéder le tout du mot acide. S'il y a deux groupes carboxyle, le suffixe devient dioïque ; et les substituants se citent en préfixe, avec leur position.",
+   "texte": "Chaîne la plus longue, C1 = COOH, suffixe -oïque.",
+   "ecran": "nomenclature"
+  },
+  {
+   "id": "p06",
+   "dit": "Voici la série des premiers acides, avec leurs deux noms. Un carbone : acide méthanoïque, nom trivial formique. Deux carbones : acide éthanoïque, dit acétique, celui du vinaigre, dont le nom vient du latin acetum. Trois carbones : acide propanoïque, dit propionique. Quatre carbones : acide butanoïque, dit butyrique, responsable de l'odeur du beurre rance, du latin butyrum, le beurre. Les noms triviaux persistent parce qu'ils portent l'histoire de la découverte de ces molécules ; mais le nom systématique, lui, décrit la structure sans ambiguïté.",
+   "texte": "Méthanoïque, éthanoïque, propanoïque, butanoïque.",
+   "ecran": "serie"
+  },
+  {
+   "id": "p07",
+   "dit": "Quand la chaîne porte des substituants, on les localise en numérotant depuis le carboxyle. Exemple résolu des leçons : une chaîne de cinq carbones, le carboxyle en position un, et un groupe méthyle accroché au carbone trois. Le nom se construit dans l'ordre : acide, position, substituant, chaîne, suffixe. Cela donne l'acide trois-méthylpentanoïque. Même logique pour les halogènes : la molécule cé-ache-trois, cé-ache porteur d'un chlore, cé-o-o-ache devient l'acide deux-chloropropanoïque. Piège classique : appeler notre exemple acide deux-éthylbutanoïque serait faux, car la chaîne la plus longue compte bien cinq carbones.",
+   "texte": "Acide 3-méthylpentanoïque : position, substituant, chaîne.",
+   "ecran": "ramifies"
+  },
+  {
+   "id": "p08",
+   "dit": "Deux extensions du système. Les insaturations font partie de la chaîne principale, et leur position s'indique par un numéro inséré avant le suffixe : l'acide oléique, l'acide gras vedette de l'huile d'olive, est ainsi l'acide zède-neuf-octadécénoïque, dix-huit carbones et une double liaison en position neuf, de configuration cis. Et avec deux groupes carboxyle, le suffixe devient dioïque : l'acide éthanedioïque, dit oxalique, présent dans la rhubarbe, ne contient que les deux carboxyles face à face ; l'acide butanedioïque, dit succinique, les sépare par deux groupes méthylène.",
+   "texte": "Oléique (Z)-9-octadécénoïque ; dioïque si deux –COOH.",
+   "ecran": "dicarboxy"
+  },
+  {
+   "id": "p09",
+   "dit": "Lorsque le carboxyle est porté par un cycle benzénique, le composé parent est l'acide benzoïque. Les substituants du cycle se repèrent par les préfixes ortho, méta et para, le carbone du carboxyle restant le numéro un. L'acide ortho-hydroxybenzoïque est bien plus connu sous son nom trivial : acide salicylique, le précurseur de l'aspirine. Et l'acide benzène-un-quatre-dicarboxylique, dit téréphtalique, porte ses deux carboxyles face à face : c'est le monomère du polyester des bouteilles en plastique.",
+   "texte": "Benzoïque, salicylique, téréphtalique : le cycle mène la danse.",
+   "ecran": "aromatiques"
+  },
+  {
+   "id": "p10",
+   "dit": "Exercice guidé : nommez la molécule à l'écran, qui porte deux carboxyles, une double liaison et un chlore. D'abord, la chaîne principale : la plus longue qui contient les deux carbones de carboxyle en compte six. Ensuite, la numérotation : on part du carboxyle terminal, de façon à donner à la double liaison le plus petit numéro possible ; elle tombe en position deux. Reste le substituant : le chlore est porté par un carbone extérieur à la chaîne, en position cinq ; ce groupe se nomme chlorométhyle. Nom complet : acide cinq-chlorométhylhex-deux-ènedioïque.",
+   "texte": "Exercice : deux –COOH, une double liaison, un Cl à placer.",
+   "ecran": "exercice_nom"
+  },
+  {
+   "id": "p11",
+   "dit": "Premières propriétés physiques, dictées par la polarité du carboxyle et ses liaisons hydrogène. Deux molécules d'acide peuvent s'associer en dimère, par deux liaisons hydrogène entre le carbonyle de l'une et l'hydroxyle de l'autre : la figure montre ce pont hydrogène entre deux molécules. Résultat : des points d'ébullition très élevés. À masse molaire égale, soixante grammes par mole, l'acide éthanoïque bout à cent dix-huit degrés, contre quatre-vingt-dix-sept pour le propanol, qui ne forme que des liaisons hydrogène simples, et quarante-neuf pour le propanal, qui n'en forme pas. Côté solubilité, les quatre premiers acides sont miscibles à l'eau ; au-delà de cinq carbones, la chaîne apolaire prend le dessus et la solubilité s'effondre.",
+   "texte": "Dimères par liaisons H : 118 °C contre 97 et 49 °C.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons. Le groupe carboxyle unit un carbonyle et un hydroxyle sur le même carbone, et il commande la nomenclature : toujours numéro un, suffixe oïque, dioïque s'il est doublé. Ses liaisons hydrogène, en dimères, expliquent les points d'ébullition élevés et la bonne solubilité des courtes chaînes. Reste la propriété qui donne son nom à la famille : l'acidité. C'est elle que nous allons maintenant disséquer.",
+   "texte": "Structure, noms, propriétés : l'essentiel.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Pourquoi ces molécules sont-elles acides ? Parce que le proton de leur groupe hydroxyle peut partir. Dans l'eau, la dissociation s'écrit comme un équilibre : l'acide carboxylique plus l'eau donnent l'ion carboxylate plus l'ion oxonium. Point clé : le proton n'existe jamais libre en solution ; il est immédiatement capté par une molécule d'eau, comme le montre le transfert de la figure. C'est donc l'interaction avec le solvant qui fait l'acidité. L'ion formé, le carboxylate, est la base conjuguée de l'acide.",
+   "texte": "RCOOH + H₂O ⇌ RCOO⁻ + H₃O⁺ : un équilibre.",
+   "ecran": "dissociation"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour quantifier cette force, on écrit la constante d'acidité, le ka-a : le produit des concentrations de l'ion carboxylate et de l'ion oxonium, divisé par la concentration de l'acide restant, toutes prises à l'équilibre. Plus le ka-a est grand, plus l'acide se dissocie, plus il est fort. Comme ces valeurs s'étalent sur des ordres de grandeur, on utilise leur cologarithme, le pé-ka-a. Retenez la lecture inversée : plus le pé-ka-a est faible, plus l'acide est fort.",
+   "texte": "Ka mesure la dissociation ; pKa petit = acide fort.",
+   "ecran": "ka"
+  },
+  {
+   "id": "p15",
+   "dit": "Quelques repères, tirés du tableau des leçons. Les acides carboxyliques simples affichent des pé-ka-a entre quatre et cinq : trois soixante-quinze pour l'acide formique, le plus fort des trois, quatre soixante-seize pour l'acide acétique, quatre quatre-vingt-huit pour l'acide propanoïque. Ce sont des acides faibles, mais sans commune mesure avec un alcool comme l'éthanol, dont le pé-ka-a grimpe vers seize. À l'autre extrême, l'acide chlorhydrique, acide fort, descend vers moins sept. Pourquoi l'acide carboxylique lâche-t-il son proton tellement plus facilement que l'alcool ? La réponse tient en un mot : résonance.",
+   "texte": "Formique 3,75 ; acétique 4,76 ; éthanol ≈ 16.",
+   "ecran": "reperes_pka"
+  },
+  {
+   "id": "p16",
+   "dit": "Le secret est dans la base conjuguée. Principe fondamental : plus la base conjuguée est stable, plus l'acide est fort, car l'équilibre de dissociation penche vers elle. Or, dans l'ion carboxylate, la charge négative n'est pas enfermée sur un seul oxygène : elle est délocalisée par résonance entre les deux atomes d'oxygène, comme le montrent les deux formes mésomères à l'écran. La structure réelle est un hybride des deux : la charge est partagée également, et la diffraction des rayons X le confirme, les deux liaisons carbone-oxygène ont exactement la même longueur, intermédiaire entre simple et double. Chez un alcoolate, au contraire, la charge reste localisée sur un seul oxygène : l'anion est bien moins stable, et l'alcool bien moins acide. Ce concept de mésomérie, développé par Linus Pauling dans les années mille neuf cent trente, vaut à lui seul l'écart d'acidité entre les deux familles.",
+   "texte": "Le carboxylate délocalise sa charge : il est stable.",
+   "ecran": "resonance"
+  },
+  {
+   "id": "p17",
+   "dit": "La résonance est commune à tous les carboxylates ; ce qui différencie les acides, ce sont les effets électroniques du groupe erre. Premier cas : l'effet inductif attracteur, dit effet moins i. Un atome très électronégatif, comme le chlore, aspire la densité électronique le long des liaisons et disperse la charge négative de l'anion : le carboxylate est stabilisé, l'acide renforcé. Regardez la série des leçons : un chlore fait chuter le pé-ka-a de quatre soixante-seize à deux quatre-vingt-six ; deux chlores, un quarante-huit ; trois chlores, zéro soixante-dix. L'acide trichloroacétique est si fort qu'on l'utilise en biochimie pour précipiter les protéines.",
+   "texte": "Un Cl : 2,86 ; deux Cl : 1,48 ; trois Cl : 0,70.",
+   "ecran": "effet_moins_i"
+  },
+  {
+   "id": "p18",
+   "dit": "Effet inverse : l'effet inductif donneur, dit plus i. Un groupe alkyle, comme le méthyle, pousse au contraire la densité électronique vers le carboxyle. La charge négative de l'anion s'y concentre au lieu de se disperser : le carboxylate est déstabilisé, le proton part moins facilement, l'acide s'affaiblit. C'est exactement pour cela que l'acide formique, qui n'a aucun groupe alkyle, est plus fort que l'acide acétique, handicapé par son méthyle donneur. Retenez la règle : un substituant attracteur renforce l'acide, un substituant donneur l'affaiblit.",
+   "texte": "+I donneur : l'acide s'affaiblit.",
+   "ecran": "effet_plus_i"
+  },
+  {
+   "id": "p19",
+   "dit": "Duel au sommet, entre l'acide acétique et l'acide benzoïque, celui du cycle benzénique de la figure. Verdict des pé-ka-a : quatre vingt pour le benzoïque, quatre soixante-seize pour l'acétique ; le benzoïque est le plus fort, avec un ka-a environ trois fois et demie supérieur. L'explication tient aux effets inductifs : le méthyle de l'acétate est donneur et déstabilise son anion, tandis que les carbones du phényle, hybridés esse-pé-deux, plus électronégatifs, exercent un léger effet attracteur qui stabilise le benzoate. Attention à une idée reçue : la charge du carboxylate ne se délocalise pas dans le cycle aromatique ; les orbitales ne sont pas alignées pour cela. Tout se joue sur l'effet inductif, faible mais suffisant pour inverser le duel.",
+   "texte": "Benzoïque 4,20 contre acétique 4,76 : le phényle gagne.",
+   "ecran": "duel"
+  },
+  {
+   "id": "p20",
+   "dit": "Sur le cycle benzoïque, inductif et mésomère se combinent. Un groupe nitro en para, attracteur par les deux effets, fait tomber le pé-ka-a à trois quarante et un : la charge de l'anion trouve même des formes de résonance supplémentaires vers les oxygènes du nitro. Un méthyle en para, faiblement donneur, remonte à quatre trente-cinq ; un hydroxyle en para remonte à quatre cinquante-huit, car son effet donneur par résonance domine son effet attracteur inductif. Cas d'école : l'acide salicylique, hydroxyle en ortho, plonge à deux quatre-vingt-dix-huit ; la proximité permet une liaison hydrogène interne qui stabilise directement l'anion.",
+   "texte": "NO₂ renforce, CH₃ et OH affaiblissent, ortho-OH surprend.",
+   "ecran": "substituants_benzoiques"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons la mécanique de l'acidité. Tout part de la résonance, qui stabilise le carboxylate en partageant sa charge entre deux oxygènes. Ensuite, le groupe erre règle la force : attracteur, il disperse la charge et renforce l'acide ; donneur, il la concentre et l'affaiblit ; sur un cycle, l'effet mésomère et les effets de proximité s'en mêlent. Cette acidité n'est pas qu'une affaire de constantes : elle réagit. Et sa réaction la plus directe transforme l'acide en sel.",
+   "texte": "L'acidité se règle à la structure.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Voici cette réaction : la formation des sels. Un acide carboxylique rencontre une base, la soude par exemple : le proton est transféré, et il reste l'ion carboxylate associé au cation sodium, plus une molécule d'eau. Avec une base forte, la réaction est quantitative. Même le bicarbonate, base faible, réagit complètement : le dioxyde de carbone formé s'échappe en effervescence et déplace l'équilibre jusqu'au bout, selon le principe de Le Chatelier. Cette effervescence au bicarbonate est d'ailleurs le test caractéristique du groupe carboxyle, celui de la goutte de vinaigre sur le bicarbonate de soude de votre cuisine.",
+   "texte": "Acide + base → carboxylate : la neutralisation.",
+   "ecran": "sels"
+  },
+  {
+   "id": "p23",
+   "dit": "Former le sel, c'est changer de monde. L'acide benzoïque, conservateur alimentaire, ne se dissout qu'à trois grammes par litre d'eau ; son sel, le benzoate de sodium, dépasse six cents grammes par litre : c'est sous cette forme soluble qu'on l'emploie dans les boissons et les sauces. De façon générale, le sel est un solide cristallin ionique, à point de fusion élevé, inodore là où l'acide piquait, et sa solution conduit le courant. Elle est même légèrement basique : l'ion carboxylate, base conjuguée, reprend un peu de proton à l'eau. Et tout est réversible : acidifiez le benzoate, l'acide benzoïque insoluble reprécipite en fins cristaux blancs.",
+   "texte": "Benzoate : plus de 600 g/L, contre 3 pour l'acide.",
+   "ecran": "sels_proprietes"
+  },
+  {
+   "id": "p24",
+   "dit": "Les applications des sels jalonnent notre quotidien. Le savon d'abord : l'acide stéarique des graisses, traité par la soude, donne le stéarate de sodium, le constituant du savon de Marseille ; la légende fait naître le mot savon du mont Sapo, où la graisse des sacrifices coulait sur les cendres riches en potasse. Dans l'alimentaire, les carboxylates servent de conservateurs : le propionate de calcium empêche les moisissures du pain. En pharmacie, transformer un médicament acide peu soluble en sel de sodium ou de potassium facilite son absorption. Et au laboratoire, le sel est un outil de purification : basifier envoie l'acide, devenu ion, dans la phase aqueuse ; séparer, puis acidifier le fait reprécipiter, purifié.",
+   "texte": "Savon, conservateurs, médicaments, extraction.",
+   "ecran": "sels_applications"
+  },
+  {
+   "id": "p25",
+   "dit": "Premier dérivé : l'ester. L'estérification fait réagir un acide carboxylique avec un alcool : le groupe hydroxyle de l'acide et l'hydrogène de l'alcool partent en molécule d'eau, et les deux fragments se soudent. C'est une condensation, mais attention : un équilibre, catalysé par un acide minéral concentré. Pour le déplacer vers l'ester, la chimie applique Le Chatelier : éliminer l'eau au fur et à mesure, avec un séparateur d'eau, ou employer l'alcool en excès. Le produit, l'ester, a perdu le proton acide : il n'est plus acide du tout.",
+   "texte": "Acide + alcool ⇌ ester + eau : un équilibre.",
+   "ecran": "esterification"
+  },
+  {
+   "id": "p26",
+   "dit": "Le mécanisme de Fischer se danse en plusieurs temps. Un : l'oxygène du carbonyle est protoné par le catalyseur acide, ce qui rend le carbone bien plus électrophile. Deux : l'alcool, nucléophile, attaque ce carbone ; naît un intermédiaire tétraédrique, où le carbone porte quatre liaisons simples. Trois : les protons se réorganisent, une molécule d'eau est éliminée et le carbonyle se reforme. Quatre : la perte du proton en trop livre l'ester neutre, et le catalyseur est régénéré. Retenez ce schéma, attaque nucléophile puis élimination : c'est la grammaire de toutes les réactions des dérivés carboxyliques.",
+   "texte": "Protoner, attaquer, éliminer l'eau, déprotoner.",
+   "ecran": "mecanisme_fischer"
+  },
+  {
+   "id": "p27",
+   "dit": "Les esters sont les parfumeurs de la famille. L'acide acétique et l'éthanol donnent l'acétate d'éthyle, solvant et arôme. L'acétate d'isoamyle est l'odeur même de la banane mûre, synthétisée dès le dix-neuvième siècle : sa découverte a lancé l'industrie des arômes artificiels. L'acide salicylique et le méthanol donnent le salicylate de méthyle, l'huile de wintergreen des baumes musculaires. Et en répétant l'estérification en chaîne sur des molécules à deux fonctions, on obtient les polyesters, dont le pé-eu-té des bouteilles et des fibres textiles.",
+   "texte": "Banane, wintergreen, solvants, polyesters.",
+   "ecran": "esters_exemples"
+  },
+  {
+   "id": "p28",
+   "dit": "Deuxième dérivé : l'halogénure d'acyle, de formule erre-cé-o-x, où x est un halogène, presque toujours le chlore. On le fabrique en remplaçant le groupe hydroxyle de l'acide par le chlore. La méthode la plus propre utilise le chlorure de thionyle : les sous-produits, dioxyde de soufre et chlorure d'hydrogène, sont gazeux et s'échappent, ce qui laisse un produit facile à purifier. Les halogénures de phosphore, trichlorure pour les acides aliphatiques et pentachlorure, plus énergique, pour les aromatiques, complètent la panoplie.",
+   "texte": "SOCl₂ : la méthode propre, les gaz s'échappent.",
+   "ecran": "halogenures_synthese"
+  },
+  {
+   "id": "p29",
+   "dit": "Ces chlorures d'acyle sont les réactifs de combat de la famille. L'halogène, très électronégatif, retire la densité électronique du carbonyle : le carbone devient exceptionnellement électrophile, affamé de nucléophiles. Conséquences pratiques : des odeurs piquantes et lacrymogènes, un point d'ébullition plus bas que l'acide parent, car plus aucune liaison hydrogène ne retient les molécules, et une hydrolyse immédiate à l'air humide, qui régénère l'acide et dégage du chlorure d'hydrogène. On les conserve donc loin de toute trace d'eau.",
+   "texte": "Électrophiles extrêmes : l'eau les détruit.",
+   "ecran": "halogenures_reactivite"
+  },
+  {
+   "id": "p30",
+   "dit": "Pourquoi fabriquer un intermédiaire si agressif ? Parce qu'il ouvre la voie rapide vers tous les autres dérivés. Avec un alcool, il donne un ester en une réaction rapide et totale, là où l'estérification directe plafonnait à un équilibre. Avec une amine, employée en double quantité, un équivalent pour réagir, un pour neutraliser l'acide chlorhydrique formé, il donne un amide. Avec un carboxylate, un anhydride d'acide. Et sur un cycle aromatique, catalysé par le chlorure d'aluminium, c'est la réaction de Friedel et Crafts, grande voie des cétones aromatiques.",
+   "texte": "Esters, amides, anhydrides, Friedel-Crafts.",
+   "ecran": "halogenures_applications"
+  },
+  {
+   "id": "p31",
+   "dit": "Nous pouvons maintenant classer toute la famille. La réactivité décroît des chlorures d'acyle aux anhydrides, puis aux esters, puis aux amides, les acides eux-mêmes fermant la marche, incapables de réagir sans activation préalable. Un seul critère explique ce gradient : la qualité du groupe partant. Dans l'étape clé, le groupe qui s'en va emporte la charge négative ; or l'ion chlorure est une base très faible, donc un excellent groupe partant, tandis que l'alcoolate et l'ion amidure sont des bases fortes, réticentes à partir. La basicité du partant prédit la réactivité du dérivé : c'est la loi de la famille.",
+   "texte": "Chlorures > anhydrides > esters > amides > acides.",
+   "ecran": "gradient"
+  },
+  {
+   "id": "p32",
+   "dit": "Assemblons la carte complète des interconversions. Le chlorure d'acyle y joue la gare centrale : l'eau le ramène à l'acide, un alcool le conduit à l'ester, l'ammoniac ou une amine à l'amide, un carboxylate à l'anhydride. L'anhydride, un cran en dessous, descend vers l'ester, l'amide ou l'acide. L'ester peut être hydrolysé en acide ou converti en amide. Et l'acide remonte au chlorure par le chlorure de thionyle : la boucle est bouclée. Toute la stratégie de synthèse consiste à monter vers le dérivé réactif, puis à redescendre vers la cible.",
+   "texte": "Un réseau : monter au chlorure, redescendre à la cible.",
+   "ecran": "reseau"
+  },
+  {
+   "id": "p33",
+   "dit": "Côté matériaux, ces réactions construisent des mondes. Le nylon six-six naît de la rencontre entre un chlorure d'acide dicarboxylique à six carbones et une diamine à six carbones : la liaison amide se répète en chaîne, et le chlorure d'hydrogène s'échappe. C'est la rapidité de la réaction chlorure-amine qui rend cette polymérisation si efficace, là où l'acide et l'amine directs se neutraliseraient en sel inerte. Découvert en mille neuf cent trente-cinq chez DuPont, le nylon a d'abord équipé les poils de brosse à dents avant les bas de mille neuf cent quarante. Les polyesters, eux, représentent environ dix-huit pour cent de la production mondiale de polymères.",
+   "texte": "Nylon-6,6 : un chlorure + une diamine, en chaîne.",
+   "ecran": "polymeres"
+  },
+  {
+   "id": "p34",
+   "dit": "Côté pharmacie, même grammaire. L'aspirine est l'ester formé entre l'acide salicylique et l'anhydride acétique : en mille huit cent quatre-vingt-dix-sept, Felix Hoffmann, chez Bayer, cherchait un dérivé de l'écorce de saule moins irritant pour l'estomac ; on choisit l'anhydride plutôt que le chlorure d'acétyle, plus coûteux et plus dangereux à manier. Les pénicillines cachent un amide cyclique à quatre chaînons, le bêta-lactame : tendu comme un ressort, son carbonyle acyle les enzymes de la paroi bactérienne et les bloque. Et la rétrosynthèse du paracétamol aboutit à la même leçon : on acyle le para-aminophénol par l'anhydride acétique, jamais par l'acide acétique, trop peu réactif et producteur d'eau.",
+   "texte": "L'anhydride, l'outil d'acylation des médicaments.",
+   "ecran": "pharma"
+  },
+  {
+   "id": "p35",
+   "dit": "Cette chimie a néanmoins un coût : les chlorures d'acyle génèrent du chlorure d'hydrogène corrosif, les solvants sont souvent toxiques et les rendements atomiques parfois faibles. Les réponses émergent. La catalyse enzymatique : les lipases forment des esters en milieu aqueux ou dans des solvants verts. La chimie en flux continu : un contrôle fin des réactions les plus vives et moins de déchets. Et un rêve de laboratoire : utiliser le dioxyde de carbone comme brique carbonyle pour fabriquer les acides eux-mêmes. Les dérivés carboxyliques ouvrent aussi des matériaux nouveaux : polyesters bactériens biodégradables, gels d'amides, et réseaux métal-organiques construits sur des ligands carboxylates, pour stocker les gaz ou délivrer des médicaments.",
+   "texte": "Enzymes, flux continu, CO₂ : la relève verte.",
+   "ecran": "verte"
+  },
+  {
+   "id": "p36",
+   "dit": "Terminons par l'essentiel. Un seul groupe, le carboxyle, commande tout : sa structure fixe le nom de la molécule, sa résonance explique l'acidité, ses effets de substituants la règlent au dixième de pé-ka-a près. Ses réactions ouvrent les dérivés : sels qui changent la solubilité du tout au tout, esters équilibrés et parfumés, chlorures d'acyle qui mènent le réseau des interconversions, au rythme du gradient de réactivité dicté par le groupe partant. Et au bout de ces flèches, le monde réel : polyester et nylon, aspirine et antibiotiques, savons et conservateurs. Vous tenez désormais l'alphabet, la grammaire et le vocabulaire de cette famille : à vous d'écrire vos propres phrases moléculaires.",
+   "texte": "Un groupe, une famille, un monde d'applications.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le groupe carboxyle et l'art de nommer"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "L'acidité : équilibre, résonance, effets structuraux, puis les sels",
+   "pont": {
+    "texte": "Partie 2 : l'acidité, du Ka aux effets structuraux, puis les sels.",
+    "dit": "Partie deux : l'acidité, puis les sels. Nous allons quantifier la force acide par la constante d'acidité et son pé-ka-a, découvrir le secret de l'ion carboxylate, la résonance, puis classer les effets des substituants, attracteurs ou donneurs. Nous terminerons par la réaction la plus utile de cette propriété : la formation des sels, qui change radicalement la solubilité."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Esters, halogénures d'acyle et le réseau des dérivés",
+   "pont": {
+    "texte": "Partie 3 : esters, chlorures d'acyle et grandes applications.",
+    "dit": "Partie trois : les grands dérivés. Après les sels, nous verrons les esters, nés d'un équilibre délicat avec les alcools, puis les halogénures d'acyle, les réactifs de combat de la famille. Nous lirons ensuite la carte complète des interconversions, son gradient de réactivité, et nous finirons là où ces molécules changent le monde : polymères, médicaments et chimie verte."
+   }
+  }
+ ]
+}
