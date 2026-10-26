@@ -1,0 +1,229 @@
+{
+ "cours": 6117,
+ "ecrans": {
+  "acteurs": {
+   "kicker": "Les acteurs d'un emprunt",
+   "tex": [
+    "\\text{l'emprunteur : la personne ou l'entité qui reçoit l'argent}",
+    "\\text{le prêteur : banque ou institution, il fournit l'argent}"
+   ],
+   "titre": "Deux acteurs, au minimum",
+   "type": "etape"
+  },
+  "amortissable": {
+   "kicker": "Types d'emprunts · amortissable",
+   "tex": [
+    "\\text{chaque mensualité paie les intérêts et une part du capital}",
+    "\\text{la part de capital remboursé augmente avec le temps}"
+   ],
+   "titre": "Chaque mensualité rembourse un peu de capital",
+   "type": "etape",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 170,
+    "mode": "tableau"
+   }
+  },
+  "courtier": {
+   "kicker": "Les intermédiaires",
+   "texte": "Le courtier en crédit facilite la mise en relation entre emprunteurs et prêteurs.",
+   "type": "phrase"
+  },
+  "cout_intro": {
+   "kicker": "Le vrai coût d'un emprunt",
+   "texte": "Le coût total d'un emprunt ne se limite pas au taux d'intérêt nominal.",
+   "type": "phrase"
+  },
+  "frais_assurances": {
+   "kicker": "Le coût · frais et assurances",
+   "tex": [
+    "\\text{frais de dossier : les frais administratifs du prêteur}",
+    "\\text{assurances : décès, perte d'emploi, obligatoires ou non}"
+   ],
+   "titre": "Ce qui s'ajoute au taux nominal",
+   "type": "etape"
+  },
+  "in_fine": {
+   "kicker": "Types d'emprunts · in fine",
+   "tex": [
+    "\\text{les intérêts sont payés régulièrement}",
+    "\\text{le capital est remboursé en une fois, à la fin de la durée}"
+   ],
+   "titre": "Le capital, en une seule fois à la fin",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Maison, études, véhicule : les emprunts sont partout — ce chapitre pose les bases, sans aucun calcul.",
+   "type": "phrase"
+  },
+  "lecture": {
+   "kicker": "Lire le scénario",
+   "texte": "L'offre B affiche le taux le plus bas, mais des frais plus lourds et douze mois d'intérêts de plus.",
+   "type": "phrase"
+  },
+  "penalites": {
+   "kicker": "Le coût · rembourser plus tôt",
+   "texte": "Rembourser avant la date prévue peut coûter : ce sont les pénalités de remboursement anticipé.",
+   "type": "phrase"
+  },
+  "piege": {
+   "kicker": "Le piège des comparaisons rapides",
+   "texte": "Même taux nominal, deux offres : celle qui ajoute frais et assurances élevés coûte plus cher au total.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Deux acteurs : emprunteur et prêteur",
+    "Fixe ou variable, amortissable ou in fine",
+    "Le coût total dépasse le taux nominal",
+    "Comparer : taux, frais, assurances, durée"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "scenario": {
+   "kicker": "Premier exercice · deux offres pour une voiture",
+   "tex": [
+    "\\text{offre A : } 5\\ \\% \\text{, frais } 200 \\text{ euros, } 36 \\text{ mois}",
+    "\\text{offre B : } 4\\ \\% \\text{, frais } 500 \\text{ euros, } 48 \\text{ mois}",
+    "\\text{laquelle semble la plus avantageuse, et pourquoi ?}"
+   ],
+   "titre": "Dix mille euros, deux offres, aucun calcul pour l'instant",
+   "type": "etape"
+  },
+  "suite": {
+   "kicker": "La suite du programme",
+   "texte": "Chapitres suivants : calcul des mensualités, coût total d'un emprunt, cas d'application plus complexes.",
+   "type": "phrase"
+  },
+  "taux_fixe": {
+   "kicker": "Types d'emprunts · taux fixe",
+   "tex": [
+    "\\text{le taux d'intérêt reste constant pendant toute la durée}",
+    "\\text{solution prévisible : le budget se gère sans surprise}"
+   ],
+   "titre": "Le taux ne bouge pas",
+   "type": "etape"
+  },
+  "taux_variable": {
+   "kicker": "Types d'emprunts · taux variable",
+   "tex": [
+    "\\text{le taux fluctue selon un indice de référence : l'EURIBOR}",
+    "\\text{plus risqué, mais moins coûteux si les taux baissent}"
+   ],
+   "titre": "Le taux suit un indice",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Concours ESSEC · Mathématiques financières",
+   "sous": "Emprunteur, prêteur, taux fixe ou variable, amortissable ou in fine : les bases avant les calculs",
+   "titre": "Introduction aux emprunts : acteurs, types et vrai coût",
+   "type": "titre",
+   "anim": {
+    "nom": "emprunt_fig",
+    "hauteur": 240
+   }
+  }
+ },
+ "matiere": "Mathématique",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce chapitre d'introduction aux emprunts, au cœur des mathématiques financières du concours ESSEC. Avant les formules des chapitres suivants, nous posons les bases : les acteurs d'un emprunt, ses grands types, et le vrai coût d'un prêt.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Introduction aux emprunts : les bases avant les calculs."
+  },
+  {
+   "dit": "Les emprunts sont omniprésents : achat d'une maison, financement d'études supérieures, acquisition d'un véhicule. Les comprendre sert deux fois : pour le concours, et pour comparer sereinement des offres et éviter les pièges des coûts cachés, tout au long de votre vie.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Des emprunts partout : comprendre avant de signer."
+  },
+  {
+   "dit": "Un emprunt implique toujours au minimum deux acteurs. L'emprunteur est la personne ou l'entité qui reçoit l'argent. Le prêteur est celui qui le fournit : une banque, une institution financière, ou même un particulier.",
+   "ecran": "acteurs",
+   "id": "p03",
+   "texte": "Emprunteur et prêteur : le duo de base."
+  },
+  {
+   "dit": "Il existe également des intermédiaires, comme les courtiers en crédit. Leur rôle : faciliter la mise en relation entre les emprunteurs et les prêteurs, en comparant les offres du marché.",
+   "ecran": "courtier",
+   "id": "p04",
+   "texte": "Le courtier : l'intermédiaire qui rapproche."
+  },
+  {
+   "dit": "Premier type : l'emprunt à taux fixe. Le taux d'intérêt reste constant pendant toute la durée de l'emprunt. C'est une solution prévisible, qui permet de mieux gérer son budget, sans mauvaise surprise.",
+   "ecran": "taux_fixe",
+   "id": "p05",
+   "texte": "Taux fixe : constant, donc prévisible."
+  },
+  {
+   "dit": "Deuxième type : l'emprunt à taux variable. Le taux fluctue en fonction d'un indice de référence, par exemple l'EURIBOR. C'est plus risqué, mais potentiellement moins coûteux si les taux viennent à baisser.",
+   "ecran": "taux_variable",
+   "id": "p06",
+   "texte": "Taux variable : un pari sur l'évolution des taux."
+  },
+  {
+   "dit": "Autre classement, selon le remboursement. Dans un emprunt amortissable, les mensualités comprennent à la fois le remboursement du capital et le paiement des intérêts, et le montant du capital remboursé augmente progressivement au fil du temps.",
+   "ecran": "amortissable",
+   "id": "p07",
+   "texte": "Amortissable : intérêts et capital dans chaque mensualité."
+  },
+  {
+   "dit": "Dans un emprunt in fine, le schéma est inversé : les intérêts sont payés régulièrement, pendant toute la durée, tandis que le capital n'est remboursé qu'en une seule fois, à la fin de l'emprunt.",
+   "ecran": "in_fine",
+   "id": "p08",
+   "texte": "In fine : le capital attend la dernière échéance."
+  },
+  {
+   "dit": "Venons-en au coût. Le coût total d'un emprunt ne se limite pas au taux d'intérêt nominal affiché par la banque : plusieurs postes s'y ajoutent, et ils peuvent changer le classement de deux offres.",
+   "ecran": "cout_intro",
+   "id": "p09",
+   "texte": "Le taux nominal ne dit pas tout."
+  },
+  {
+   "dit": "D'abord, les frais de dossier : des frais administratifs facturés par l'établissement prêteur. Ensuite, les assurances, obligatoires ou facultatives, comme l'assurance décès ou l'assurance perte d'emploi.",
+   "ecran": "frais_assurances",
+   "id": "p10",
+   "texte": "Frais de dossier et assurances : les deux premiers ajouts."
+  },
+  {
+   "dit": "Dernier poste à connaître : les pénalités de remboursement anticipé. Ce sont des frais appliqués si l'emprunteur rembourse son prêt avant la date prévue au contrat.",
+   "ecran": "penalites",
+   "id": "p11",
+   "texte": "Rembourser trop tôt peut aussi coûter."
+  },
+  {
+   "dit": "Imaginez deux offres de prêt avec le même taux d'intérêt nominal. Celle qui porte des frais de dossier et des assurances élevés sera finalement plus coûteuse que celle aux frais moins importants. Le taux seul ne départage donc jamais deux offres.",
+   "ecran": "piege",
+   "id": "p12",
+   "texte": "Même taux affiché, coût final différent."
+  },
+  {
+   "dit": "Premier exercice de réflexion. Vous voulez acheter une voiture d'occasion pour dix mille euros. Offre A : taux annuel de cinq pour cent, frais de dossier de deux cents euros, durée de trente-six mois. Offre B : taux de quatre pour cent, frais de cinq cents euros, durée de quarante-huit mois. Sans effectuer de calculs pour le moment, quelle offre semble a priori la plus avantageuse ?",
+   "ecran": "scenario",
+   "id": "p13",
+   "texte": "Voiture à dix mille euros : offre A contre offre B."
+  },
+  {
+   "dit": "L'offre B séduit par son taux plus bas. Mais elle affiche des frais de dossier plus lourds, et une durée plus longue de douze mois, donc des intérêts payés pendant un an de plus. Trancher exigera les calculs des chapitres suivants.",
+   "ecran": "lecture",
+   "id": "p14",
+   "texte": "Le taux le plus bas n'est pas forcément l'offre la moins chère."
+  },
+  {
+   "dit": "Ce chapitre a posé les bases de l'exploration des emprunts. Les chapitres suivants aborderont le calcul des mensualités, le coût total d'un emprunt, et des cas d'application plus complexes.",
+   "ecran": "suite",
+   "id": "p15",
+   "texte": "La suite : mensualités, coût total, cas complexes."
+  },
+  {
+   "dit": "Pour terminer, retenez l'essentiel. Un emprunt relie un emprunteur et un prêteur, parfois par un courtier. Il est à taux fixe ou variable, amortissable ou in fine. Et son coût total dépasse le seul taux nominal : frais, assurances, pénalités et durée comptent autant dans une comparaison.",
+   "ecran": "recap",
+   "id": "p16",
+   "texte": "Les bases des emprunts : acteurs, types, vrai coût."
+  }
+ ],
+ "titre": "Introduction aux emprunts : acteurs, types et vrai coût"
+}
