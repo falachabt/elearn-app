@@ -1,0 +1,626 @@
+{
+ "cours": 6369,
+ "titre": "Les réactions organiques : mécanismes et synthèse",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Mécanismes et synthèse organique",
+   "titre": "Les réactions organiques : mécanismes et synthèse",
+   "sous": "Classer (substitution, addition, élimination, redox), comprendre les mécanismes, puis enchaîner : la rétrosynthèse",
+   "anim": {
+    "nom": "profil_energie_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Prologue",
+   "texte": "Un atelier d'horloger, une danse d'électrons : bienvenue en chimie organique."
+  },
+  "familles": {
+   "type": "etape",
+   "kicker": "Classer les réactions",
+   "titre": "Quatre familles, selon le changement de connectivité",
+   "tex": [
+    "\\text{Substitution : } R\\!-\\!Br + OH^- \\rightarrow R\\!-\\!OH + Br^-",
+    "\\text{Addition : } CH_2{=}CH_2 + Br_2 \\rightarrow Br\\!-\\!CH_2\\!-\\!CH_2\\!-\\!Br",
+    "\\text{Élimination : } CH_3\\!-\\!CH_2\\!-\\!OH \\rightarrow CH_2{=}CH_2 + H_2O",
+    "\\text{Redox : } CH_3CH_2OH \\rightarrow CH_3CHO \\text{ (oxydation)}"
+   ]
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Le vocabulaire essentiel",
+   "titre": "Cinq mots pour décrire toutes les réactions",
+   "tex": [
+    "\\text{Nucléophile : riche en électrons} \\qquad OH^-,\\ CN^-,\\ NH_3,\\ H_2O",
+    "\\text{Électrophile : pauvre en électrons} \\qquad H^+,\\ Br_2,\\ CH_3^+",
+    "\\text{Groupe partant : base faible et stable} \\qquad Br^-,\\ I^-,\\ TsO^-",
+    "\\text{Intermédiaire : carbocation, carbanion (durée de vie mesurable)}"
+   ]
+  },
+  "mecanisme": {
+   "type": "etape",
+   "kicker": "Le mécanisme réactionnel",
+   "titre": "Le scénario pas à pas de la danse des électrons",
+   "tex": [
+    "\\text{Réactifs} \\rightarrow \\text{état de transition (énergie maximale)}",
+    "\\rightarrow \\text{intermédiaire réactionnel} \\rightarrow \\text{produits}",
+    "\\text{Ingold, père de la mécanistique : le comment avant le bilan}"
+   ]
+  },
+  "sn2": {
+   "type": "etape",
+   "kicker": "La substitution nucléophile bimoléculaire",
+   "titre": "SN2 : une seule étape, une attaque par l'arrière",
+   "tex": [
+    "Nu^- + R\\!-\\!LG \\rightarrow [Nu \\cdots R \\cdots LG]^{\\ddagger} \\rightarrow Nu\\!-\\!R + LG^-",
+    "\\text{le nucléophile arrive à l'opposé du groupe partant}",
+    "\\text{il entre, le groupe partant sort : en même temps}"
+   ]
+  },
+  "sn2_cinetique": {
+   "type": "formule",
+   "kicker": "Cinétique et stéréochimie de la SN2",
+   "tex": "v = k\\,[R\\!-\\!LG]\\,[Nu^-]",
+   "note": "Second ordre ; inversion de Walden si le carbone attaqué est chiral."
+  },
+  "sn2_facteurs": {
+   "type": "etape",
+   "kicker": "Ce qui accélère la SN2",
+   "titre": "Place, force, départ, solvant",
+   "tex": [
+    "\\text{Substrat : } 1^\\circ > 2^\\circ \\gg 3^\\circ \\text{ (encombrement)}",
+    "\\text{Nucléophile fort : } OH^- > H_2O \\qquad I^- > F^-",
+    "\\text{Groupe partant : } TsO^- > I^- > Br^- > Cl^- \\gg F^-",
+    "\\text{Solvant polaire aprotique : acétone, DMSO}"
+   ]
+  },
+  "sn1": {
+   "type": "etape",
+   "kicker": "La substitution nucléophile unimoléculaire",
+   "titre": "SN1 : deux étapes, un carbocation au milieu",
+   "tex": [
+    "R\\!-\\!LG \\rightarrow R^+ + LG^- \\text{ (lente : le carbocation naît)}",
+    "R^+ + Nu^- \\rightarrow R\\!-\\!Nu \\text{ (rapide)}",
+    "\\text{carbocation plan } sp^2 \\text{ : attaque des deux côtés, racémisation}"
+   ]
+  },
+  "sn1_facteurs": {
+   "type": "etape",
+   "kicker": "Ce qui favorise la SN1",
+   "titre": "Tout tourne autour de la stabilité du carbocation",
+   "tex": [
+    "\\text{Substrat : } 3^\\circ > 2^\\circ \\gg 1^\\circ \\text{ (stabilité du carbocation)}",
+    "\\text{Résonance : allyle et benzyle très favorables}",
+    "\\text{Solvant polaire protique : eau, éthanol (stabilise les ions)}",
+    "v = k\\,[R\\!-\\!LG] \\text{ : le nucléophile ne compte pas dans la vitesse}"
+   ]
+  },
+  "zone_grise": {
+   "type": "etape",
+   "kicker": "Application et zone grise",
+   "titre": "Williamson, puis la compétition des mécanismes",
+   "tex": [
+    "\\text{Williamson : } CH_3CH_2O^- + CH_3I \\rightarrow CH_3CH_2OCH_3 + I^-",
+    "\\text{Substrats secondaires : } S_N1 \\text{ et } S_N2 \\text{ en compétition}",
+    "\\text{Base forte : arracher un proton } \\beta \\text{, c'est l'élimination}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Quatre familles : S, A, E, redox",
+    "Nucléophile donne, électrophile reçoit",
+    "SN2 : une étape, attaque arrière, inversion",
+    "SN1 : carbocation plan, racémisation",
+    "Substrat, solvant, nucléophile décident"
+   ]
+  },
+  "addition": {
+   "type": "formule",
+   "kicker": "Le principe de l'addition",
+   "tex": "C{=}C + A\\!-\\!B \\rightarrow A\\!-\\!C\\!-\\!C\\!-\\!B",
+   "note": "La liaison π disparaît, deux liaisons σ naissent : la molécule grossit."
+  },
+  "addition_mecanisme": {
+   "type": "etape",
+   "kicker": "Le mécanisme électrophile",
+   "titre": "Trois temps, un carbocation qui décide",
+   "tex": [
+    "\\text{la liaison } \\pi \\text{, riche en électrons, attire l'électrophile}",
+    "C{=}C + A^+ \\rightarrow \\text{carbocation (étape lente)}",
+    "\\text{le nucléophile } B^- \\text{ se fixe sur le carbocation (rapide)}"
+   ]
+  },
+  "brome": {
+   "type": "etape",
+   "kicker": "Addition des halogènes",
+   "titre": "Le brome, via un ion bromonium cyclique",
+   "tex": [
+    "CH_2{=}CH_2 + Br_2 \\rightarrow Br\\!-\\!CH_2\\!-\\!CH_2\\!-\\!Br",
+    "\\text{via un ion bromonium cyclique : addition anti}",
+    "\\text{test à l'eau de brome : la couleur orange disparaît}"
+   ]
+  },
+  "markovnikov": {
+   "type": "etape",
+   "kicker": "Addition des halogénures d'hydrogène",
+   "titre": "La règle de Markovnikov (1870)",
+   "tex": [
+    "\\text{Markovnikov : H sur le carbone le plus hydrogéné}",
+    "CH_3\\!-\\!CH{=}CH_2 + HBr \\rightarrow CH_3\\!-\\!CHBr\\!-\\!CH_3",
+    "\\text{via le carbocation secondaire, plus stable que le primaire}"
+   ]
+  },
+  "carbocations": {
+   "type": "etape",
+   "kicker": "La stabilité des carbocations",
+   "titre": "L'échelle qui explique Markovnikov et la SN1",
+   "tex": [
+    "\\text{primaire } R\\!-\\!CH_2^+ \\text{ : faible}",
+    "\\text{secondaire } R_2CH^+ \\text{ : intermédiaire}",
+    "\\text{tertiaire } R_3C^+ \\text{ : élevée}",
+    "\\text{allylique, benzylique : très élevée (résonance)}"
+   ]
+  },
+  "hydratation_hydrogenation": {
+   "type": "etape",
+   "kicker": "Deux additions industrielles",
+   "titre": "Hydratation des alcènes, hydrogénation sur catalyseur",
+   "tex": [
+    "CH_3\\!-\\!CH{=}CH_2 + H_2O \\xrightarrow{H_3O^+} CH_3\\!-\\!CH(OH)\\!-\\!CH_3",
+    "C{=}C + H_2 \\xrightarrow{Pd} CH\\!-\\!CH \\text{ (addition syn)}",
+    "\\text{hydrogénation : durcir les huiles en margarines}"
+   ],
+   "anim": {
+    "nom": "surface_adsorption_fig",
+    "hauteur": 110
+   }
+  },
+  "elimination": {
+   "type": "formule",
+   "kicker": "Le principe de l'élimination",
+   "tex": "A\\!-\\!C\\!-\\!C\\!-\\!B \\rightarrow C{=}C + A\\!-\\!B",
+   "note": "Inverse de l'addition : une petite molécule part, une insaturation naît."
+  },
+  "e2": {
+   "type": "etape",
+   "kicker": "L'élimination bimoléculaire",
+   "titre": "E2 : concertée, avec une géométrie stricte",
+   "tex": [
+    "B^- + H\\!-\\!C_{\\beta}\\!-\\!C_{\\alpha}\\!-\\!LG \\rightarrow C_{\\beta}{=}C_{\\alpha} + BH + LG^-",
+    "v = k\\,[\\text{substrat}]\\,[\\text{base}] \\text{ : concertée, une étape}",
+    "\\text{géométrie anti-périplanaire : H et LG opposés à } 180^\\circ"
+   ]
+  },
+  "e1": {
+   "type": "etape",
+   "kicker": "L'élimination unimoléculaire",
+   "titre": "E1 : le même carbocation que la SN1",
+   "tex": [
+    "R\\!-\\!C_{\\alpha}\\!-\\!LG \\rightarrow R\\!-\\!C_{\\alpha}^+ + LG^- \\text{ (ionisation lente)}",
+    "\\text{une base arrache un proton } \\beta \\text{ au carbocation}",
+    "v = k\\,[\\text{substrat}] \\text{ : même départ que la } S_N1"
+   ]
+  },
+  "zaitsev": {
+   "type": "etape",
+   "kicker": "Quel alcène se forme ?",
+   "titre": "La règle de Zaïtsev (1875), et son exception",
+   "tex": [
+    "\\text{Zaïtsev : l'alcène le plus substitué est majoritaire}",
+    "\\text{2-bromobutane} \\rightarrow \\text{but-2-ène (majeur)} + \\text{but-1-ène}",
+    "\\text{exception Hofmann : base encombrée, alcène le moins substitué}"
+   ]
+  },
+  "equilibre": {
+   "type": "etape",
+   "kicker": "Addition contre élimination",
+   "titre": "Un équilibre que Le Chatelier permet de piloter",
+   "tex": [
+    "\\text{alcène} + H_2O \\rightleftharpoons \\text{alcool} \\qquad (H^+)",
+    "\\text{addition : excès d'eau, température modérée}",
+    "\\text{élimination : retirer l'eau, chauffer}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Addition : la liaison π devient deux σ",
+    "Markovnikov : H sur le C le plus hydrogéné",
+    "Le carbocation le plus stable gagne",
+    "E2 concertée, E1 en deux temps",
+    "Zaïtsev : l'alcène le plus substitué"
+   ]
+  },
+  "redox": {
+   "type": "etape",
+   "kicker": "L'oxydoréduction organique",
+   "titre": "Suivre les électrons grâce au nombre d'oxydation",
+   "tex": [
+    "\\text{oxydation : le nombre d'oxydation du carbone augmente}",
+    "\\text{réduction : le nombre d'oxydation diminue}",
+    "\\text{OIL RIG : l'oxydation perd des électrons, la réduction en gagne}"
+   ]
+  },
+  "no_calcul": {
+   "type": "etape",
+   "kicker": "Calculer le nombre d'oxydation",
+   "titre": "Compter liaison par liaison, exemple du méthanol",
+   "tex": [
+    "\\text{liaison à H ou métal : } -1 \\qquad \\text{à O, Cl ou N : } +1 \\qquad \\text{C-C : } 0",
+    "\\text{somme des contributions + charge formelle = N.O.}",
+    "\\text{méthanol } CH_3OH \\text{ : } (3 \\times -1) + (+1) = -2"
+   ]
+  },
+  "echelle_no": {
+   "type": "etape",
+   "kicker": "L'échelle des nombres d'oxydation",
+   "titre": "Du carbone le plus réduit au plus oxydé",
+   "tex": [
+    "CH_4 \\text{ (alcane) : } -IV \\text{, le plus réduit}",
+    "R\\!-\\!CH_2OH \\text{ (alcool primaire) : } -I",
+    "R\\!-\\!CHO \\text{ (aldéhyde) : } +I \\qquad R\\!-\\!COOH \\text{ (acide) : } +III",
+    "CO_2 \\text{ : } +IV \\text{, le plus oxydé}"
+   ]
+  },
+  "oxydants": {
+   "type": "etape",
+   "kicker": "Les grands oxydants",
+   "titre": "Énergiques, ciblés ou doux : chacun son rôle",
+   "tex": [
+    "KMnO_4 \\text{ énergique} \\qquad K_2Cr_2O_7 \\text{ : orange} \\rightarrow \\text{vert}",
+    "HIO_4 \\text{ : coupe les diols vicinaux} \\qquad PCC \\text{ : doux, stoppe à l'aldéhyde}",
+    "\\text{Tollens } [Ag(NH_3)_2]^+ \\text{ : aldéhydes, miroir d'argent}"
+   ],
+   "anim": {
+    "nom": "miroir_argent_fig",
+    "hauteur": 110
+   }
+  },
+  "reducteurs": {
+   "type": "etape",
+   "kicker": "Les grands réducteurs",
+   "titre": "Fort, doux, sélectif ou catalytique",
+   "tex": [
+    "LiAlH_4 \\text{ : fort, acides et esters en alcools (jamais d'eau)}",
+    "NaBH_4 \\text{ : doux, aldéhydes et cétones en alcools}",
+    "DIBAL\\!-\\!H \\text{ : sélectif, ester en aldéhyde à froid}",
+    "H_2 / Pd, Pt, Ni \\text{ : hydrogénation des liaisons multiples}"
+   ]
+  },
+  "oxydation_alcools": {
+   "type": "etape",
+   "kicker": "L'oxydation des alcools",
+   "titre": "Choisir l'oxydant selon l'étape visée",
+   "tex": [
+    "R\\!-\\!CH_2OH \\xrightarrow{PCC} R\\!-\\!CHO \\text{ (aldéhyde)}",
+    "R\\!-\\!CH_2OH \\xrightarrow{KMnO_4} R\\!-\\!COOH \\text{ (acide)}",
+    "R_2CH\\!-\\!OH \\rightarrow R_2C{=}O \\text{ (cétone)}",
+    "\\text{alcool tertiaire : pas de H sur le carbone, il résiste}"
+   ]
+  },
+  "reduction_carbonyles": {
+   "type": "etape",
+   "kicker": "La réduction des carbonylés",
+   "titre": "Descendre l'échelle, un étage à la fois",
+   "tex": [
+    "R\\!-\\!CHO \\xrightarrow{NaBH_4} R\\!-\\!CH_2OH \\qquad R_2C{=}O \\xrightarrow{NaBH_4} R_2CH\\!-\\!OH",
+    "R\\!-\\!COOH \\xrightarrow{LiAlH_4} R\\!-\\!CH_2OH \\text{ (puis } H_3O^+\\text{)}",
+    "\\text{ester : } R\\!-\\!COOR' \\xrightarrow{LiAlH_4} R\\!-\\!CH_2OH + R'\\!-\\!OH"
+   ]
+  },
+  "vie_redox": {
+   "type": "phrase",
+   "kicker": "La vie est redox",
+   "texte": "Respiration, photosynthèse : la vie est une affaire d'électrons échangés.",
+   "anim": {
+    "nom": "transfert_electrons_fig",
+    "hauteur": 170
+   }
+  },
+  "retrosynthese": {
+   "type": "etape",
+   "kicker": "La rétrosynthèse (Corey)",
+   "titre": "Raisonner à l'envers, de la cible aux précurseurs",
+   "tex": [
+    "\\text{cible} \\Rightarrow \\text{précurseurs plus simples, jusqu'au commerce}",
+    "CH_3COOCH_2CH_3 \\Rightarrow CH_3COOH + CH_3CH_2OH",
+    "\\text{déconnecter près des groupes fonctionnels}"
+   ]
+  },
+  "cas_grignard": {
+   "type": "etape",
+   "kicker": "Étude de cas : un alcool tertiaire",
+   "titre": "Le 2-méthylbutan-2-ol, par un réactif de Grignard",
+   "tex": [
+    "(CH_3)_2C(OH)CH_2CH_3 \\Rightarrow (CH_3)_2C{=}O + CH_3CH_2MgBr",
+    "CH_3CH_2Br + Mg \\xrightarrow{\\text{éther}} CH_3CH_2MgBr",
+    "(CH_3)_2C{=}O + CH_3CH_2MgBr \\xrightarrow{H_3O^+} (CH_3)_2C(OH)CH_2CH_3"
+   ]
+  },
+  "protection": {
+   "type": "etape",
+   "kicker": "Protéger pour mieux réagir",
+   "titre": "Masquer un groupe, travailler sur l'autre, libérer",
+   "tex": [
+    "HO\\!-\\!CH_2CH_2CH_2\\!-\\!OH \\text{ : deux alcools à distinguer}",
+    "\\text{protéger un alcool (éther silylé), oxyder l'autre au PCC}",
+    "\\xrightarrow{PCC} \\text{aldéhyde protégé} \\xrightarrow{H_3O^+} HO\\!-\\!CH_2CH_2\\!-\\!CHO",
+    "\\text{introduire les groupes sensibles en fin de séquence}"
+   ]
+  },
+  "adipique": {
+   "type": "etape",
+   "kicker": "Synthèse multi-étapes",
+   "titre": "L'acide adipique (nylon) depuis le cyclohexène",
+   "tex": [
+    "\\text{cyclohexène} \\xrightarrow{\\text{hydroxylation}} \\text{cyclohexane-1,2-diol}",
+    "\\xrightarrow{HIO_4} OHC\\!-\\!(CH_2)_4\\!-\\!CHO \\text{ (le cycle s'ouvre)}",
+    "\\xrightarrow{KMnO_4 / H^+} HOOC\\!-\\!(CH_2)_4\\!-\\!COOH \\text{ (acide adipique)}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Redox : suivre le nombre d'oxydation",
+    "PCC doux, KMnO₄ fort, DIBAL sélectif",
+    "Rétrosynthèse : raisonner à l'envers",
+    "Déconnecter près des groupes fonctionnels",
+    "Protéger, ordonner, vérifier"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de chimie organique, consacré aux réactions qui transforment les molécules et à l'art de les enchaîner. Nous commencerons par classer les réactions en quatre grandes familles, puis nous étudierons en détail la substitution nucléophile et ses deux mécanismes rivaux. Viendront ensuite l'addition et l'élimination, deux mouvements inverses qui gouvernent les doubles liaisons, puis l'oxydoréduction, suivie à la trace grâce au nombre d'oxydation. Enfin, nous changerons de posture : au lieu de subir les réactions, nous apprendrons à les planifier, grâce à la rétrosynthèse, pour construire des molécules cibles pas à pas.",
+   "texte": "Quatre familles de réactions, leurs mécanismes, puis la synthèse.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez un atelier d'horloger : chaque rouage, chaque ressort doit s'emboîter au dixième de millimètre pour que le mécanisme fonctionne. La chimie organique, c'est exactement cela, mais à l'échelle des électrons : des particules invisibles dont les déplacements forment et rompent les liaisons, et décident du destin de chaque molécule. Dans ce cours, nous allons apprendre à classer ces mouvements, à les anticiper, puis à les diriger. Car un chimiste qui comprend les mécanismes ne collectionne plus des recettes : il prévoit le comportement de molécules qu'il n'a encore jamais rencontrées.",
+   "texte": "Un atelier d'horloger, une danse d'électrons.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Première étape : mettre de l'ordre. La chimie organique compte des milliers de réactions, mais presque toutes se rangent dans quatre grandes familles, selon le changement de connectivité des atomes de carbone. Dans une substitution, un groupe en remplace un autre sur le squelette, comme lorsqu'un hydroxyle prend la place d'un brome. Dans une addition, deux entités se combinent sur une liaison multiple et la molécule grossit. Dans une élimination, inverse de la précédente, la molécule perd des éléments et une insaturation apparaît. Enfin, l'oxydoréduction modifie l'état d'oxydation du carbone, par transfert d'électrons.",
+   "texte": "Substitution, addition, élimination, redox : la boussole.",
+   "ecran": "familles"
+  },
+  {
+   "id": "p04",
+   "dit": "Pour décrire ces réactions, il faut cinq mots. Le nucléophile, qui aime le noyau, est riche en électrons et offre une paire à un centre déficient : l'ion hydroxyle, le cyanure ou l'ammoniac en sont. L'électrophile, au contraire, est pauvre en électrons et cherche à en accepter : un proton ou un carbocation, par exemple. Le groupe partant est celui qui quitte la molécule avec la paire d'électrons de sa liaison ; un bon groupe partant est une base faible et stable, comme le bromure. L'état de transition, arrangement de plus haute énergie, ne peut pas être isolé, tandis que l'intermédiaire réactionnel, carbocation ou carbanion, vit assez longtemps pour influencer la suite.",
+   "texte": "Nucléophile, électrophile, groupe partant : le lexique.",
+   "ecran": "vocabulaire"
+  },
+  {
+   "id": "p05",
+   "dit": "Classer une réaction dit ce qui se passe, mais pas comment. Le mécanisme réactionnel est le scénario détaillé, étape par étape, du mouvement des électrons. Sur le chemin qui mène des réactifs aux produits, la molécule franchit un état de transition, sommet d'énergie impossible à isoler, et peut traverser un intermédiaire réactionnel, espèce instable mais réelle. C'est Christopher Ingold, chimiste britannique du siècle dernier, qui a fait passer la discipline du catalogue de recettes à la science prédictive, en systématisant cette étude des mécanismes. Toute la suite du cours est écrite dans ce langage.",
+   "texte": "Le mécanisme : le scénario électronique, signé Ingold.",
+   "ecran": "mecanisme"
+  },
+  {
+   "id": "p06",
+   "dit": "Entrons dans le premier mécanisme canonique : la substitution nucléophile bimoléculaire, dite esse-ène-deux. Tout se joue en une seule étape, concertée. Le nucléophile attaque le carbone qui porte le groupe partant, mais pas de n'importe quel côté : il arrive par l'arrière, exactement à l'opposé de la liaison qui va se rompre. Pendant un instant, le carbone est lié aux deux partenaires à la fois, dans un état de transition dit pentacoordiné ; puis le groupe partant s'en va avec sa paire d'électrons. La synthèse de Williamson, qui fabrique les éthers, utilise exactement ce mécanisme.",
+   "texte": "SN2 : une étape, une attaque par l'arrière.",
+   "ecran": "sn2"
+  },
+  {
+   "id": "p07",
+   "dit": "Deux signatures trahissent la esse-ène-deux. D'abord sa cinétique : la vitesse dépend des concentrations du substrat et du nucléophile, c'est un second ordre, car les deux partenaires participent à l'unique étape. Ensuite sa stéréochimie : l'attaque par l'arrière retourne la configuration du carbone attaqué, comme une ombrelle que le vent renverse. C'est l'inversion de Walden : si le carbone est chiral et de configuration donnée, le produit possède la configuration opposée, et un seul énantiomère se forme. Retenez ce geste : en esse-ène-deux, on entre par derrière et la molécule se retourne.",
+   "texte": "v = k[S][Nu] ; inversion de Walden.",
+   "ecran": "sn2_cinetique"
+  },
+  {
+   "id": "p08",
+   "dit": "Quatre facteurs règlent la vitesse d'une esse-ène-deux. Le substrat d'abord : l'attaque arrière exige de la place, donc les substrats primaires réagissent vite, les secondaires lentement, et les tertiaires pratiquement pas, faute d'accès au carbone. Le nucléophile ensuite : plus il est fort et polarisable, plus l'attaque est rapide ; l'iodure surpasse ainsi le fluorure. Le groupe partant doit être une base faible et stable, du tosylate à l'iodure. Enfin, le solvant : un solvant polaire mais aprotique, comme l'acétone ou le diméthylsulfoxyde, laisse le nucléophile nu, donc redoutablement réactif.",
+   "texte": "Substrat dégagé, nucléophile fort, solvant aprotique.",
+   "ecran": "sn2_facteurs"
+  },
+  {
+   "id": "p09",
+   "dit": "Le mécanisme rival, la substitution nucléophile unimoléculaire, dite esse-ène-un, avance en deux temps. D'abord, lentement, la liaison entre le carbone et le groupe partant se rompt toute seule : c'est l'hétérolyse, qui livre un carbocation, ion carbone positif, et l'anion du groupe partant. Cette étape, la plus coûteuse en énergie, décide de la vitesse de toute la réaction. Ensuite, très vite, le nucléophile s'empare du carbocation affamé d'électrons. Le carbocation intermédiaire est plan, hybridé esse-pé-deux : le nucléophile peut l'attaquer par l'une ou l'autre face, avec des chances égales.",
+   "texte": "SN1 : le carbocation d'abord, l'attaque ensuite.",
+   "ecran": "sn1"
+  },
+  {
+   "id": "p10",
+   "dit": "Conséquence de ce plan : si le carbocation est chiral, les deux attaques donnent les deux énantiomères en quantités égales, un mélange racémique ; la stéréochimie de départ est perdue. Tout, dans la esse-ène-un, tourne autour de la stabilité du carbocation : les substrats tertiaires, qui le stabilisent par l'effet donneur de leurs trois groupes alkyle, réagissent le mieux, et la résonance des carbocations allyliques ou benzyliques est un atout puissant. Un solvant polaire et protique, eau ou éthanol, aide en solvatant les deux ions naissants. Quant au nucléophile, il intervient après l'étape lente : sa force ne change presque rien à la vitesse, et même l'eau, nucléophile faible, peut suffire. C'est ainsi que l'hydrolyse du chlorure de tert-butyle a historiquement révélé ce mécanisme.",
+   "texte": "Carbocation plan : racémisation ; v = k[S] seulement.",
+   "ecran": "sn1_facteurs"
+  },
+  {
+   "id": "p11",
+   "dit": "En pratique, la frontière entre les deux mécanismes n'est pas un mur. Les substrats secondaires vivent dans une zone grise où esse-ène-un et esse-ène-deux entrent en compétition, et le chimiste tranche par les conditions : nucléophile fort et concentré, solvant aprotique et température modérée poussent vers la esse-ène-deux ; nucléophile faible, solvant protique et chauffage favorisent la esse-ène-un. Et une troisième voie rôde toujours : l'élimination. Une base forte peut préférer arracher un proton voisin plutôt que d'attaquer le carbone. C'est le duel que nous retrouverons dans la deuxième partie.",
+   "texte": "Secondaires : SN1 et SN2 en compétition, E rôde.",
+   "ecran": "zone_grise"
+  },
+  {
+   "id": "p12",
+   "dit": "Récapitulons cette première partie. Quatre familles classent les réactions organiques : substitution, addition, élimination et oxydoréduction. La substitution nucléophile connaît deux mécanismes : la esse-ène-deux, concertée, qui entre par l'arrière et inverse la configuration, et la esse-ène-un, qui passe par un carbocation plan et mélange les configurations. Le substrat, le nucléophile, le groupe partant et le solvant décident de la voie suivie. Nous allons maintenant voir le couple dynamique formé par l'addition et l'élimination.",
+   "texte": "Quatre familles, deux mécanismes de substitution.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p13",
+   "dit": "Une réaction d'addition combine un réactif en deux fragments qui se fixent sur une molécule insaturée, alcène ou alcyne. La liaison pi, la plus fragile de la double liaison, disparaît, et deux nouvelles liaisons sigma, plus solides, prennent sa place : la molécule grossit et se sature. C'est la plus ancienne des additions décrites, celle du brome sur l'éthylène, qui sert encore de test pour repérer les insaturations. Toute la question est de savoir quel fragment se fixe sur quel carbone : c'est la régiosélectivité, et elle obéit à des règles précises.",
+   "texte": "C=C + A–B → A–C–C–B : la molécule grossit.",
+   "ecran": "addition"
+  },
+  {
+   "id": "p14",
+   "dit": "La plupart des additions sur les alcènes sont électrophiles, en trois temps. La double liaison, riche en électrons pi, se comporte en nucléophile et attire la partie positive du réactif. Cette attaque forme un carbocation intermédiaire : c'est l'étape lente, celle qui fixe la vitesse. Enfin, la partie négative du réactif, le nucléophile, se fixe rapidement sur le carbocation. Aucun mystère donc : c'est la stabilité du carbocation formé dans la première étape qui commande l'orientation de toute l'addition. Gardons ce fil conducteur pour la règle qui vient.",
+   "texte": "Le carbocation décide de l'orientation.",
+   "ecran": "addition_mecanisme"
+  },
+  {
+   "id": "p15",
+   "dit": "Premier exemple : l'addition des halogènes, comme le brome. Elle ne passe pas par un carbocation ordinaire, mais par un ion bromonium cyclique, un petit pont à trois centres au-dessus de la double liaison. Conséquence : le second brome ne peut arriver que par la face opposée ; l'addition est dite anti. Sur l'éthylène, on obtient le un-deux-dibromoéthane. En laboratoire, cette réaction est un test visuel imbattable : la solution orange de brome se décolore dès qu'elle rencontre une insaturation, dans une huile végétale ou un polymère par exemple.",
+   "texte": "Ion bromonium : addition anti, test à l'eau de brome.",
+   "ecran": "brome"
+  },
+  {
+   "id": "p16",
+   "dit": "Avec les halogénures d'hydrogène, comme l'acide bromhydrique, les deux fragments sont différents : il faut choisir leur place. La règle de Markovnikov, énoncée au dix-neuvième siècle, tranche : l'hydrogène se fixe sur le carbone de la double liaison qui porte déjà le plus d'hydrogènes. Sur le propène, le produit majeur est donc le deux-bromopropane. Le mécanisme éclaire la règle : le proton se fixe d'abord de façon à laisser le carbocation le plus stable, ici le secondaire plutôt que le primaire, et le bromure suit. Markovnikov n'est pas une formule magique : c'est la stabilité du carbocation qui parle.",
+   "texte": "Markovnikov : le 2-bromopropane gagne.",
+   "ecran": "markovnikov"
+  },
+  {
+   "id": "p17",
+   "dit": "Puisque tout se joue sur le carbocation, classons leur stabilité. Un carbocation primaire, dont la charge n'est portée que par un carbone entouré d'un seul groupe alkyle, est le moins stable. Le secondaire fait mieux ; le tertiaire, entouré de trois groupes donneurs d'électrons, est nettement plus stable. Au sommet, les carbocations allyliques et benzyliques : leur charge se délocalise par résonance sur plusieurs atomes, ce qui les rend très stables. Cette échelle unique explique la règle de Markovnikov, la vitesse des esse-ène-un et bien des réarrangements : la chimie des carbocations est une affaire de stabilité.",
+   "texte": "3° > 2° > 1° ; allylique et benzylique au sommet.",
+   "ecran": "carbocations"
+  },
+  {
+   "id": "p18",
+   "dit": "Deux additions industrielles majeures. L'hydratation, catalysée par un acide, ajoute l'eau selon Markovnikov : le propène donne le propan-deux-ol, et l'éthylène hydraté produit des millions de tonnes d'éthanol. L'hydrogénation, elle, ajoute le dihydrogène sur la double liaison, mais seulement en présence d'un catalyseur métallique, palladium, platine ou nickel, à la surface duquel le gaz s'adsorbe : les deux hydrogènes se fixent du même côté, c'est une addition syn. L'industrie alimentaire l'utilise pour durcir les huiles végétales insaturées en margarines. Et sur un alcyne, l'addition peut se répéter : le propyne, avec deux équivalents d'acide bromhydrique, donne le deux-deux-dibromopropane.",
+   "texte": "Hydratation Markovnikov ; hydrogénation syn sur Pd.",
+   "ecran": "hydratation_hydrogenation"
+  },
+  {
+   "id": "p19",
+   "dit": "Retournons le film : l'élimination fait exactement l'inverse de l'addition. Une molécule saturée perd deux fragments portés par deux carbones voisins, et une double liaison naît à leur place, pendant qu'une petite molécule, eau ou halogénure d'hydrogène, s'échappe. La déshydratation des alcools, qui donne des alcènes, en est l'exemple emblématique. Là où l'addition habillait la molécule, l'élimination la sculpte : elle crée l'insaturation, donc la réactivité, que les additions exploiteront ensuite. Deux mécanismes, là encore, se partagent la scène.",
+   "texte": "Élimination : l'inverse de l'addition.",
+   "ecran": "elimination"
+  },
+  {
+   "id": "p20",
+   "dit": "L'élimination bimoléculaire, dite eu-deux, est la cousine concertée de la esse-ène-deux. En une seule étape, une base forte arrache un proton porté par le carbone voisin, dit carbone bêta, pendant que le groupe partant quitte le carbone alpha et que la double liaison se forme. La vitesse dépend donc du substrat et de la base : second ordre. Mais la eu-deux a une exigence géométrique stricte : l'hydrogène arraché et le groupe partant doivent être diamétralement opposés, dans le même plan, en position anti-périplanaire, pour que les orbitales se recouvrent au mieux.",
+   "texte": "E2 : base forte, H β, anti-périplanaire.",
+   "ecran": "e2"
+  },
+  {
+   "id": "p21",
+   "dit": "L'élimination unimoléculaire, dite eu-un, suit le chemin de la esse-ène-un : d'abord l'ionisation lente, qui forme le même carbocation intermédiaire ; puis une base, souvent le solvant lui-même, arrache un proton bêta au lieu de s'additionner au carbone. Sa vitesse ne dépend que du substrat : premier ordre. Elle donne un mélange d'alcènes, dominé par le plus stable. On comprend alors la compétition permanente : devant un carbocation, le nucléophile hésite entre se fixer, voie de substitution, ou déprotoner le voisin, voie d'élimination. Solvants protiques, température élevée et carbocation stable favorisent ce couple esse-ène-un et eu-un.",
+   "texte": "E1 : le carbocation hésite entre SN1 et élimination.",
+   "ecran": "e1"
+  },
+  {
+   "id": "p22",
+   "dit": "Quand plusieurs protons bêta peuvent partir, quel alcène l'emporte ? La règle de Zaïtsev, contemporaine de celle de Markovnikov, répond : l'alcène le plus substitué, celui dont la double liaison porte le plus de groupes alkyle, car c'est le plus stable. L'élimination de l'acide bromhydrique du deux-bromobutane donne ainsi majoritairement le but-deux-ène plutôt que le but-un-ène. Mais il existe une exception célèbre, la règle de Hofmann : une base très encombrée, comme le tert-butoxyde de potassium, arrache le proton le plus accessible, souvent sur le carbone le moins substitué, et l'alcène minoritaire de Zaïtsev devient majoritaire.",
+   "texte": "Zaïtsev : l'alcène le plus substitué ; Hofmann, l'exception.",
+   "ecran": "zaitsev"
+  },
+  {
+   "id": "p23",
+   "dit": "Addition et élimination sont donc les deux sens d'un même équilibre, que le principe de Le Chatelier permet de piloter. Pour hydrater un alcène, on inonde le milieu d'eau et l'on garde une température modérée : l'addition gagne. Pour déshydrater un alcool, on fait l'inverse : on retire l'eau au fur et à mesure, par distillation par exemple, et l'on chauffe : l'élimination gagne. Ingold comparait la esse-ène-deux et la eu-deux à une fourche sur un chemin : la même base forte peut attaquer le carbone ou le proton voisin, et ce sont la force de la base, l'encombrement, le groupe partant et la température qui choisissent la branche.",
+   "texte": "Excès d'eau : addition ; retirer l'eau : élimination.",
+   "ecran": "equilibre"
+  },
+  {
+   "id": "p24",
+   "dit": "Récapitulons. L'addition transforme une liaison pi en deux liaisons sigma, souvent par un mécanisme électrophile passant par un carbocation ; Markovnikov oriente le produit vers le carbocation le plus stable. L'élimination, son inverse, crée la double liaison : concertée et exigeante sur la géométrie pour la eu-deux, en deux temps via le carbocation pour la eu-un. Zaïtsev désigne l'alcène gagnant, le plus substitué, sauf base encombrée. Reste la quatrième famille, l'oxydoréduction, puis le passage à la synthèse.",
+   "texte": "Addition et élimination : un équilibre à piloter.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p25",
+   "dit": "L'oxydoréduction organique ne ressemble pas toujours à un transfert d'électrons visible : les liaisons y sont covalentes, partagées. On la repère donc à un thermomètre électronique, le nombre d'oxydation du carbone. Si ce nombre augmente, le carbone a perdu du contrôle sur ses électrons : c'est une oxydation. S'il diminue, le carbone en a gagné : c'est une réduction. Le moyen mnémotechnique anglais le résume : oil rig, l'oxydation perd des électrons, la réduction en gagne. Oxyder un alcool en aldéhyde, ou réduire un aldéhyde en alcool, c'est faire monter ou descendre ce nombre.",
+   "texte": "Oxydation : N.O. qui monte ; réduction : N.O. qui baisse.",
+   "ecran": "redox"
+  },
+  {
+   "id": "p26",
+   "dit": "Comment calcule-t-on ce nombre pour un carbone ? On fait les comptes liaison par liaison. Une liaison avec un atome moins électronégatif que le carbone, hydrogène ou métal, rapporte moins un. Une liaison avec un atome plus électronégatif, oxygène, chlore ou azote, coûte plus un ; une double liaison compte double. Une liaison carbone-carbone ne rapporte rien. On ajoute la charge formelle, et l'on obtient le nombre d'oxydation. Exemple des leçons, le méthanol : trois liaisons avec l'hydrogène font moins trois, une liaison avec l'oxygène fait plus un ; total, moins deux pour son carbone.",
+   "texte": "Méthanol : (3 × −1) + (+1) = −2.",
+   "ecran": "no_calcul"
+  },
+  {
+   "id": "p27",
+   "dit": "Alignons les grandes fonctions sur cette échelle. Tout en bas, le plus réduit, l'alcane : le carbone du méthane est à moins quatre. L'alcool primaire grimpe à moins un. L'aldéhyde franchit le zéro pour atteindre plus un ; l'acide carboxylique monte à plus trois ; et le dioxyde de carbone, à plus quatre, est le carbone le plus oxydé qui soit. Cette échelle explique un fait d'expérience : les hydrocarbures sont des carburants, car leur oxydation complète, jusqu'au dioxyde de carbone, libère l'énergie emmagasinée dans leur état très réduit.",
+   "texte": "De −IV (CH₄) à +IV (CO₂) : l'échelle du carbone.",
+   "ecran": "echelle_no"
+  },
+  {
+   "id": "p28",
+   "dit": "Côté oxydants, le laboratoire a ses classiques. Le permanganate de potassium est l'oxydant énergique, reconnaissable à sa couleur violette qui vire au brun quand il se réduit. Le dichromate de potassium oxyde les alcools, et son orange de chrome six vire au vert du chrome trois : un changement de couleur qui a longtemps servi d'éthylotest chimique. L'acide périodique est le spécialiste de la coupure des diols vicinaux. Le réactif de Tollens, doux et sélectif, n'oxyde que les aldéhydes et dépose alors un miroir d'argent sur le verre. Et le chlorochromate de pyridinium, le pé-cé-cé, oxyde doucement les alcools primaires en s'arrêtant à l'aldéhyde.",
+   "texte": "KMnO₄ violet, Cr(VI) orange → vert, Tollens argenté.",
+   "ecran": "oxydants"
+  },
+  {
+   "id": "p29",
+   "dit": "Côté réducteurs, quatre outils couvrent presque tous les besoins. L'hydrure de lithium et d'aluminium est le plus fort et le plus polyvalent : il réduit esters, acides, aldéhydes, cétones et nitriles en alcools, mais il réagit violemment avec l'eau et exige un solvant sec. Le borohydrure de sodium est son cousin doux et sûr, utilisable dans l'eau ou les alcools, mais il ne touche ni aux esters ni aux acides : il ne réduit que les aldéhydes et les cétones. Le dibal, hydrure de diisobutylaluminium, est le sélectif : à basse température, il arrête la réduction des esters au stade aldéhyde. Enfin, l'hydrogénation catalytique réduit les liaisons multiples et les groupes nitro.",
+   "texte": "LiAlH₄ fort, NaBH₄ doux, DIBAL-H sélectif.",
+   "ecran": "reducteurs"
+  },
+  {
+   "id": "p30",
+   "dit": "Le parcours d'oxydation des alcools est le scénario classique à maîtriser. Un alcool primaire, oxydé doucement par le pé-cé-cé, s'arrête à l'aldéhyde. Le même alcool, traité par un oxydant fort en milieu aqueux, permanganate chaud ou dichromate acide, va jusqu'à l'acide carboxylique : impossible de s'arrêter en route. Un alcool secondaire donne une cétone, avec la plupart des oxydants. Quant à l'alcool tertiaire, il résiste : son carbone porteur de l'hydroxyle n'a aucun hydrogène à perdre, et seule une oxydation brutale le casse en morceaux. Tout l'art consiste donc à choisir l'oxydant selon l'étape visée.",
+   "texte": "PCC stoppe à l'aldéhyde ; KMnO₄ va jusqu'à l'acide.",
+   "ecran": "oxydation_alcools"
+  },
+  {
+   "id": "p31",
+   "dit": "Le parcours inverse descend l'échelle. Un aldéhyde ou une cétone, réduits par le borohydrure de sodium ou l'hydrure de lithium et d'aluminium, donnent respectivement un alcool primaire ou secondaire. Un acide carboxylique ou un ester exigent le réducteur fort, l'hydrure de lithium et d'aluminium, suivi d'une hydrolyse acide, pour aboutir à un alcool primaire ; l'ester transite d'ailleurs par un aldéhyde intermédiaire, immédiatement réduit à son tour. Retenez la symétrie : les oxydants font monter le carbone d'un étage, les réducteurs le font descendre, et le choix du réactif fixe l'étage d'arrivée.",
+   "texte": "NaBH₄ descend d'un étage ; LiAlH₄ jusqu'à l'alcool.",
+   "ecran": "reduction_carbonyles"
+  },
+  {
+   "id": "p32",
+   "dit": "Ces échanges d'électrons ne sont pas une affaire de laboratoire seulement : la vie entière est redox. La respiration réduit le dioxygène en eau en oxydant le glucose ; la photosynthèse fait l'inverse, en réduisant le dioxyde de carbone grâce à l'oxydation de l'eau. Un domaine en plein essor, l'électrochimie organique, fournit ou prélève les électrons directement à une électrode, sans réactifs coûteux ni polluants : la chimie verte en action. Et quand la réduction d'une cétone crée un centre chiral, choisir un réducteur chiral permet d'obtenir un énantiomère plutôt que le mélange racémique, enjeu majeur pour les médicaments.",
+   "texte": "Respiration, photosynthèse : la vie est redox.",
+   "ecran": "vie_redox"
+  },
+  {
+   "id": "p33",
+   "dit": "Changeons maintenant de posture. Le synthéticien ne part pas du réactif en se demandant ce qu'il peut en faire : il part de la molécule cible et raisonne à l'envers, comme on résout un labyrinthe depuis la sortie. C'est la rétrosynthèse, formalisée par Elias James Corey, prix Nobel. Chaque coupure imaginaire d'une liaison, symbolisée par une double flèche, s'appelle une déconnection : elle révèle des précurseurs plus simples, jusqu'aux composés du commerce. L'éthanoate d'éthyle, par exemple, se déconnecte en acide éthanoïque et éthanol, les deux partenaires de l'estérification de Fischer. Les groupes fonctionnels sont les poignées par lesquelles on saisit la molécule.",
+   "texte": "Raisonner à l'envers, de la cible aux précurseurs.",
+   "ecran": "retrosynthese"
+  },
+  {
+   "id": "p34",
+   "dit": "Étude de cas : fabriquer le deux-méthylbutan-deux-ol, un alcool tertiaire à cinq carbones. La déconnection classique coupe une liaison carbone-carbone voisine de l'hydroxyle : la cible provient alors d'une cétone, l'acétone, et d'un organométallique, le bromure d'éthylmagnésium. Le schéma direct suit : le bromoéthane et le magnésium, dans l'éther sec, donnent le réactif de Grignard ; celui-ci s'additionne sur l'acétone, et une hydrolyse acide libère l'alcool attendu. On aurait aussi pu déconnecter autrement, bromure de méthylmagnésium et butan-deux-one : deux voies valables, tranchées par le coût et la disponibilité des réactifs.",
+   "texte": "Acétone + EtMgBr → 2-méthylbutan-2-ol.",
+   "ecran": "cas_grignard"
+  },
+  {
+   "id": "p35",
+   "dit": "Un piège classique guette le synthéticien : un groupe fonctionnel gênant réagit à la place de celui qu'on vise. La parade est la protection : on masque temporairement le groupe, on travaille ailleurs, puis on le libère. Pour obtenir le trois-hydroxypropanal depuis le propane-un-trois-diol, on protège l'un des deux alcools en éther silylé, on oxyde l'autre, resté libre, en aldéhyde grâce au pé-cé-cé, puis on déprotège en douceur sans toucher à l'aldéhyde fragile. Comme l'ouvrier qui masque la poignée de la porte avant de peindre. Règle associée : introduire les groupes les plus sensibles en fin de séquence, jamais au début.",
+   "texte": "Protéger, travailler, déprotéger.",
+   "ecran": "protection"
+  },
+  {
+   "id": "p36",
+   "dit": "Dernier exemple, intégratif : l'acide adipique, le monomère du nylon, depuis le cyclohexène. Il faut ouvrir le cycle et placer un acide à chaque extrémité de la chaîne de six carbones. Première étape, une addition : l'hydroxylation du cyclohexène donne le cyclohexane-un-deux-diol. Deuxième étape, une oxydation ciblée : l'acide périodique coupe la liaison entre les deux carbones porteurs d'hydroxyle, et le cycle s'ouvre en un dialdéhyde, l'hexanedial. Troisième étape, une oxydation franche au permanganate acide transforme les deux aldéhydes en acides : l'acide adipique est là. Trois familles de réactions enchaînées, et un squelette méconnaissable transformé en cible.",
+   "texte": "Cyclohexène → diol → hexanedial → acide adipique.",
+   "ecran": "adipique"
+  },
+  {
+   "id": "p37",
+   "dit": "Récapitulons l'ensemble. Les réactions organiques se classent en substitution, addition, élimination et oxydoréduction, chacune avec ses mécanismes, ses règles et ses facteurs de contrôle. Le nombre d'oxydation suit les électrons à la trace et guide le choix des oxydants et des réducteurs. Et la rétrosynthèse assemble le tout en stratégies : analyser la cible, déconnecter près des groupes fonctionnels, protéger ce qui gêne, ordonner les étapes. Vous ne voyez plus une molécule comme une formule figée, mais comme le bout d'un chemin que vous savez désormais tracer.",
+   "texte": "Mécanismes maîtrisés, synthèse planifiée.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Quatre familles, puis la substitution nucléophile"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Addition et élimination : le couple dynamique",
+   "pont": {
+    "texte": "Partie 2 : addition et élimination, le couple dynamique.",
+    "dit": "Partie deux : l'addition et l'élimination. Après la substitution, voici les deux mouvements qui créent et qui suppriment les doubles liaisons : l'addition, qui fonctionnalise les alcènes, et son inverse, l'élimination, qui sculpte les molécules saturées. Nous verrons leurs mécanismes, leurs règles de régiosélectivité, celles de Markovnikov et de Zaïtsev, et l'équilibre qui les relie."
+   }
+  },
+  {
+   "debut": "p25",
+   "sous_titre": "Oxydoréduction organique et art de la synthèse",
+   "pont": {
+    "texte": "Partie 3 : l'oxydoréduction organique, puis l'art de la synthèse.",
+    "dit": "Partie trois : l'oxydoréduction, puis la synthèse. Nous suivrons d'abord les électrons à la trace grâce au nombre d'oxydation, et nous passerons en revue les grands oxydants et réducteurs du laboratoire. Puis nous changerons de métier : de mécaniciens des réactions, nous deviendrons architectes, en apprenant la rétrosynthèse et ses études de cas."
+   }
+  }
+ ]
+}
