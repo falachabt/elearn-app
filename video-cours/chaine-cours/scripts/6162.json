@@ -1,0 +1,503 @@
+{
+ "cours": 6162,
+ "ecrans": {
+  "boite": {
+   "kicker": "Synthèse · la boîte en carton",
+   "tex": [
+    "V(x) = x(30-2x)^2 = 4x^3 - 120x^2 + 900x",
+    "V'(x) = 12x^2 - 240x + 900 = 0 \\Rightarrow x = 5 \\ \\text{ou} \\ 15",
+    "x = 5 \\ \\text{cm} \\qquad V(5) = 2000 \\ \\text{cm}^3"
+   ],
+   "titre": "Découper, replier, maximiser le volume",
+   "type": "etape",
+   "anim": {
+    "nom": "boite_carton_fig",
+    "hauteur": 130
+   }
+  },
+  "conserve_calcul": {
+   "kicker": "La boîte de conserve · le calcul",
+   "tex": [
+    "A'(r) = -\\tfrac{2000}{r^2} + 4\\pi r = 0 \\Rightarrow r^3 = \\tfrac{500}{\\pi}",
+    "r \\approx 5{,}42 \\ \\text{cm} \\qquad h = 2r \\approx 10{,}84 \\ \\text{cm}",
+    "A''(r) = \\tfrac{4000}{r^3} + 4\\pi > 0 \\Rightarrow \\text{minimum}"
+   ],
+   "titre": "La hauteur optimale vaut deux fois le rayon",
+   "type": "etape"
+  },
+  "conserve_modele": {
+   "kicker": "Optimisation · la boîte de conserve",
+   "tex": [
+    "V = \\pi r^2 h = 1000 \\Rightarrow h = \\tfrac{1000}{\\pi r^2}",
+    "A(r) = 2\\pi r h + 2\\pi r^2",
+    "A(r) = \\tfrac{2000}{r} + 2\\pi r^2"
+   ],
+   "titre": "Un volume fixé, une aire à minimiser",
+   "type": "etape"
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "La définition",
+   "note": "La pente de la tangente en a : un taux devenu instantané.",
+   "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h)-f(a)}{h}",
+   "type": "formule"
+  },
+  "domaine": {
+   "kicker": "Le domaine d'abord",
+   "tex": [
+    "f(x) = \\tfrac{\\sqrt{x-2}}{x^2-9} \\qquad x-2 \\geq 0,\\ x^2-9 \\neq 0",
+    "D_f = [2, 3[ \\cup ]3, +\\infty["
+   ],
+   "titre": "Une racine et un dénominateur à surveiller",
+   "type": "etape"
+  },
+  "enclos": {
+   "kicker": "Optimisation · l'enclos contre un mur",
+   "tex": [
+    "A(x) = x(100 - 2x) \\qquad x \\in [0, 50]",
+    "A'(x) = 100 - 4x = 0 \\Rightarrow x = 25",
+    "y = 50 \\ \\text{m} \\qquad A(25) = 1250 \\ \\text{m}^2"
+   ],
+   "titre": "Cent mètres de clôture, un mur en cadeau",
+   "type": "etape",
+   "anim": {
+    "nom": "enclos_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_cubique": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "signe_parabole_fig"
+   },
+   "kicker": "Exemple · les deux tests à l'œuvre",
+   "tex": [
+    "f(x) = x^3 - 3x \\qquad f'(x) = 3x^2 - 3 \\qquad f''(x) = 6x",
+    "f''(-1) = -6 < 0 \\Rightarrow \\text{maximum} \\ (-1\\,;\\,2)",
+    "f''(1) = 6 > 0 \\Rightarrow \\text{minimum} \\ (1\\,;\\,-2)"
+   ],
+   "titre": "Un maximum, un minimum, deux méthodes",
+   "type": "etape"
+  },
+  "ex_polynome": {
+   "kicker": "Exemple · dériver un polynôme",
+   "tex": [
+    "f(x) = 3x^4 - 2x^3 + 5x - 7",
+    "f'(x) = 12x^3 - 6x^2 + 5"
+   ],
+   "titre": "Un polynôme, terme à terme",
+   "type": "etape"
+  },
+  "ex_rationnelle": {
+   "kicker": "Étude complète · une fonction rationnelle",
+   "tex": [
+    "f(x) = \\tfrac{2x^2 - 3x + 1}{x^2 - 4}",
+    "f'(x) = \\tfrac{3x^2 - 18x + 12}{(x^2-4)^2}",
+    "3 - \\sqrt{5} \\approx 0{,}76 \\ \\text{maximum}",
+    "3 + \\sqrt{5} \\approx 5{,}24 \\ \\text{minimum}"
+   ],
+   "titre": "Factoriser la dérivée pour trouver les extremums",
+   "type": "etape"
+  },
+  "ex_variations": {
+   "anim": {
+    "nom": "tableau_variations_fig",
+    "hauteur": 140
+   },
+   "kicker": "Exemple · tableau de variations",
+   "tex": [
+    "\\textstyle f(x) = x^3 - 3x^2 + 2, \\quad f'(x) = 3x(x - 2)",
+    "\\textstyle f(0) = 2 \\text{ (max)}, \\quad f(2) = -2 \\text{ (min)}",
+    "\\lim_{x \\to -\\infty} f(x) = -\\infty, \\quad \\lim_{x \\to +\\infty} f(x) = +\\infty"
+   ],
+   "titre": "Monter, descendre, remonter",
+   "type": "etape"
+  },
+  "fermat": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Le théorème de Fermat",
+   "note": "Nécessaire, pas suffisant : pour x³ en 0, f'(0) = 0 sans extremum.",
+   "tex": "f \\text{ extremum local en } a \\Rightarrow f'(a) = 0",
+   "type": "formule"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Introduction",
+   "texte": "Vitesse, coût marginal, croissance : une même question, comment ça varie ici et maintenant ?",
+   "type": "phrase"
+  },
+  "limites_rat": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "branche_infinie_fig"
+   },
+   "kicker": "Limites et asymptotes",
+   "note": "Asymptote horizontale y = 2 ; verticales x = −2 et x = 2.",
+   "tex": "\\lim_{x \\to \\pm\\infty} f(x) = 2",
+   "type": "formule"
+  },
+  "methode_opt": {
+   "etapes": [
+    "Modéliser : variables, contrainte",
+    "Réduire à une seule variable",
+    "Dériver et résoudre f'(x) = 0",
+    "Vérifier : signe de f' ou f''",
+    "Conclure dans le contexte réel"
+   ],
+   "kicker": "La méthode d'optimisation",
+   "type": "recap"
+  },
+  "notations": {
+   "kicker": "Notations",
+   "tex": [
+    "f'(x) \\ \\text{ou} \\ y' \\quad \\text{(Lagrange)}",
+    "\\tfrac{dy}{dx} \\quad \\text{(Leibniz)}",
+    "\\dot{x} \\quad \\text{(Newton, en mécanique)}"
+   ],
+   "titre": "Trois notations, une même idée",
+   "type": "etape"
+  },
+  "pointe": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Continue ne veut pas dire dérivable",
+   "texte": "La valeur absolue en 0 : une pointe, deux pentes, aucune tangente unique.",
+   "type": "phrase"
+  },
+  "population": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Application · croissance d'une population",
+   "tex": [
+    "P(t) = 1000 + 50t + 3t^2",
+    "P'(t) = 50 + 6t",
+    "P'(2) = 62 \\ \\text{bactéries par heure}"
+   ],
+   "titre": "Un taux de croissance qui s'accélère",
+   "type": "etape"
+  },
+  "profit": {
+   "kicker": "Optimisation · le profit maximal",
+   "tex": [
+    "P(x) = -0{,}001x^3 + 0{,}2x^2 + 50x - 1000",
+    "P'(x) = -0{,}003x^2 + 0{,}4x + 50 = 0 \\Rightarrow x \\approx 212",
+    "P''(212) \\approx -0{,}87 < 0 \\Rightarrow \\text{maximum}"
+   ],
+   "titre": "Deux cent douze lampes, pas une de plus",
+   "type": "etape"
+  },
+  "protocole": {
+   "etapes": [
+    "1. Domaine de définition",
+    "2. Parité et périodicité",
+    "3. Limites et asymptotes",
+    "4. Dérivée, signe, variations",
+    "5. Extremums, tableau, courbe"
+   ],
+   "kicker": "Le protocole d'étude complète",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "La dérivée : un taux instantané",
+    "Son signe donne les variations",
+    "f'(a) = 0 : candidat, pas verdict",
+    "Optimiser : modéliser puis dériver",
+    "Toujours vérifier domaine et bornes"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "regles": {
+   "kicker": "Les règles de dérivation",
+   "tex": [
+    "(x^n)' = n\\,x^{n-1} \\qquad (e^x)' = e^x \\qquad (\\ln x)' = \\tfrac{1}{x}",
+    "(u+v)' = u' + v' \\qquad (uv)' = u'v + uv'",
+    "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2} \\qquad v \\neq 0"
+   ],
+   "titre": "Les règles qui font gagner du temps",
+   "type": "etape"
+  },
+  "sans_extremum": {
+   "kicker": "Garde-fou · quand la dérivée ne s'annule jamais",
+   "tex": [
+    "f(x) = \\tfrac{x^2-4}{x-1} \\qquad f'(x) = \\tfrac{x^2-2x+4}{(x-1)^2}",
+    "\\Delta = -12 < 0 \\Rightarrow f'(x) > 0 \\ \\text{toujours : aucun extremum}"
+   ],
+   "titre": "Strictement croissante, sans aucun extremum",
+   "type": "etape"
+  },
+  "sauveteur": {
+   "kicker": "Optimisation · le temps minimal de Fermat",
+   "tex": [
+    "T(x) = \\tfrac{x}{5} + \\tfrac{\\sqrt{(100-x)^2 + 3600}}{3}",
+    "T'(x) = \\tfrac{1}{5} - \\tfrac{100-x}{3\\sqrt{(100-x)^2 + 3600}}",
+    "T'(x) = 0 \\Rightarrow x = 55 \\ \\text{m}"
+   ],
+   "titre": "Courir, puis nager : le point d'entrée optimal",
+   "type": "etape"
+  },
+  "signe": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Signe de la dérivée et variations",
+   "tex": [
+    "f'(x) > 0 \\ \\text{sur } I \\Rightarrow f \\text{ croissante sur } I",
+    "f'(x) < 0 \\ \\text{sur } I \\Rightarrow f \\text{ décroissante sur } I"
+   ],
+   "titre": "Le signe de f' dessine les variations de f",
+   "type": "etape"
+  },
+  "strategie": {
+   "etapes": [
+    "Commencer par le domaine",
+    "Un point critique n'est qu'un candidat",
+    "Sur intervalle fermé : tester les bornes",
+    "Ne pas confondre local et global",
+    "Finir par l'interprétation concrète"
+   ],
+   "kicker": "Les réflexes d'épreuve",
+   "type": "recap"
+  },
+  "taux_carre": {
+   "kicker": "Du taux moyen au taux instantané",
+   "tex": [
+    "\\tfrac{f(3)-f(2)}{3-2} = \\tfrac{9-4}{1} = 5",
+    "\\tfrac{f(2+h)-f(2)}{h} = 4 + h",
+    "\\lim_{h \\to 0} (4+h) = 4 \\qquad f'(2) = 4"
+   ],
+   "titre": "La fonction carré, resserrée autour de deux",
+   "type": "etape"
+  },
+  "tests": {
+   "kicker": "Reconnaître un extremum",
+   "tex": [
+    "f'(x) : + \\text{ puis } - \\Rightarrow \\text{maximum local}",
+    "f'(x) : - \\text{ puis } + \\Rightarrow \\text{minimum local}",
+    "f'(a) = 0,\\ f''(a) > 0 \\Rightarrow \\text{minimum}",
+    "f'(a) = 0,\\ f''(a) < 0 \\Rightarrow \\text{maximum}"
+   ],
+   "titre": "Deux tests pour trancher",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "derive_fig"
+   },
+   "kicker": "Mathématique · Applications de la dérivation",
+   "sous": "Du taux instantané au tableau de variations, puis aux décisions d'optimisation",
+   "titre": "La dérivée en action : variations, extremums et optimisation",
+   "type": "titre"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le taux instantané : définition et calculs"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : lire une fonction dans sa dérivée. Le signe de la dérivée dessine les variations, ses zéros désignent les extremums possibles, et un protocole complet permet d'étudier n'importe quelle fonction, domaine, limites et asymptotes compris.",
+    "texte": "Partie 2 : variations, extremums et étude complète d'une fonction."
+   },
+   "sous_titre": "Variations, extremums et étude complète"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : optimiser. Après la théorie, les décisions : le plus grand enclos, la boîte la moins coûteuse, le profit maximal et même le trajet le plus rapide, tous se trouvent en annulant une dérivée, à condition de vérifier le domaine et les bornes.",
+    "texte": "Partie 3 : optimiser, de l'enclos au trajet le plus rapide."
+   },
+   "sous_titre": "Optimiser : enclos, boîtes, profits et trajets"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la dérivée et à ses applications. Nous partirons de sa définition, le taux de variation instantané, puis nous apprendrons à lire les variations d'une fonction dans le signe de sa dérivée, à repérer ses extremums, et enfin à résoudre de vrais problèmes d'optimisation, de l'enclos de l'agriculteur à la boîte de conserve.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La dérivée en action : variations et optimisation."
+  },
+  {
+   "dit": "La dérivée est le langage du changement. Une vitesse sur un compteur, un coût marginal en économie, un taux de croissance en biologie : partout, la même question revient, comment une grandeur varie-t-elle ici, maintenant, en un point précis ? Toute la vidéo répond à cette question, d'abord en calculant, ensuite en utilisant le calcul pour décider.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Le langage universel du changement."
+  },
+  {
+   "dit": "La dérivée d'une fonction en un point a est la limite du taux d'accroissement lorsque l'écart tend vers zéro. Géométriquement, c'est la pente de la tangente à la courbe en ce point. Si la fonction donne une position en fonction du temps, sa dérivée est tout simplement la vitesse instantanée, comme celle qu'affiche le compteur d'une voiture.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "f'(a) : la limite du taux d'accroissement."
+  },
+  {
+   "dit": "Prenons la fonction carré. Entre deux et trois, le taux moyen vaut cinq : l'aire du carré passe de quatre à neuf quand le côté passe de deux à trois. Resserrons autour de deux : le taux devient quatre plus h. Quand h tend vers zéro, il tend vers quatre. Voilà le nombre dérivé en deux : quatre, la pente de la tangente à la parabole en ce point.",
+   "ecran": "taux_carre",
+   "id": "p04",
+   "texte": "Taux moyen 5, taux instantané 4 en x = 2."
+  },
+  {
+   "dit": "Pour calculer vite, on retient les dérivées des fonctions de référence et trois règles : la dérivée d'une somme est la somme des dérivées, celle d'un produit fait intervenir les deux facteurs à tour de rôle, et celle d'un quotient demande une vigilance particulière sur les signes. La linéarité fait le reste : on dérive terme à terme.",
+   "ecran": "regles",
+   "id": "p05",
+   "texte": "Somme, produit, quotient : dériver terme à terme."
+  },
+  {
+   "dit": "Trois notations cohabitent : celle de Lagrange, f prime, commode pour les calculs ; celle de Leibniz, d igrec sur d ixe, qui rappelle que la dérivée compare deux variations ; et celle de Newton, un point au-dessus de la lettre, favorite des mécaniciens pour les dérivées par rapport au temps. Une même idée, trois écritures selon le contexte.",
+   "ecran": "notations",
+   "id": "p06",
+   "texte": "Lagrange, Leibniz, Newton : trois écritures."
+  },
+  {
+   "dit": "Exemple complet : la fonction trois ixe puissance quatre, moins deux ixe au cube, plus cinq ixe, moins sept. On dérive chaque terme : la puissance baisse d'un cran et passe en coefficient. Il vient douze ixe au cube, moins six ixe au carré, plus cinq. La constante, elle, disparaît : une quantité qui ne change pas a un taux de variation nul.",
+   "ecran": "ex_polynome",
+   "id": "p07",
+   "texte": "f'(x) = 12x³ − 6x² + 5, terme à terme."
+  },
+  {
+   "dit": "Un avertissement avant d'aller plus loin : une fonction peut être continue sans être dérivable. La valeur absolue en zéro forme une pointe : à gauche la pente vaut moins un, à droite plus un, et aucune tangente unique n'existe au sommet de la pointe. La dérivabilité est donc une propriété plus exigeante que la continuité, à vérifier point par point.",
+   "ecran": "pointe",
+   "id": "p08",
+   "texte": "Continue en 0, mais aucune dérivée en 0."
+  },
+  {
+   "dit": "Une population de bactéries suit le modèle mille, plus cinquante t, plus trois t au carré, où t est le temps en heures. Sa dérivée, cinquante plus six t, donne le taux de croissance instantané. À deux heures, il vaut soixante-deux bactéries par heure. Et comme la dérivée grandit avec le temps, la croissance elle-même s'accélère.",
+   "ecran": "population",
+   "id": "p09",
+   "texte": "P'(2) = 62 bactéries par heure."
+  },
+  {
+   "dit": "Le signe de la dérivée commande les variations. Si la dérivée est positive sur un intervalle, les tangentes montent et la fonction est croissante. Si elle est négative, les tangentes descendent et la fonction décroît. Et quand elle s'annule, la tangente est horizontale : sommet, creux ou simple palier, tout devient possible, et c'est là que l'enquête commence.",
+   "ecran": "signe",
+   "id": "p10",
+   "texte": "f' positive : ça monte ; négative : ça descend."
+  },
+  {
+   "dit": "Étudions ixe au cube, moins trois ixe au carré, plus deux. Sa dérivée se factorise en trois ixe facteur de ixe moins deux : positive avant zéro, négative entre zéro et deux, puis positive. La fonction monte donc jusqu'au point de coordonnées zéro, deux, qui est un maximum local, descend jusqu'au point deux, moins deux, minimum local, puis remonte sans fin.",
+   "ecran": "ex_variations",
+   "id": "p11",
+   "texte": "Maximum en (0 ; 2), minimum en (2 ; −2)."
+  },
+  {
+   "dit": "Le théorème de Fermat donne la condition nécessaire d'un extremum : si une fonction dérivable atteint un maximum ou un minimum local en un point intérieur, sa dérivée y est nulle. Attention, la réciproque est fausse : pour ixe au cube en zéro, la dérivée s'annule, mais la fonction continue de croître, c'est un point d'inflexion, ni sommet ni creux.",
+   "ecran": "fermat",
+   "id": "p12",
+   "texte": "Extremum intérieur et dérivable : f'(a) = 0."
+  },
+  {
+   "dit": "Pour décider de la nature d'un point critique, deux tests se complètent. Le premier lit le changement de signe de la dérivée : de plus à moins, c'est un maximum ; de moins à plus, un minimum. Le second, souvent plus rapide, évalue la dérivée seconde au point : positive, la courbe se creuse vers le haut et c'est un minimum ; négative, c'est un maximum.",
+   "ecran": "tests",
+   "id": "p13",
+   "texte": "Changement de signe de f', ou signe de f''."
+  },
+  {
+   "dit": "Vérifions sur ixe au cube moins trois ixe. La dérivée s'annule en moins un et en un. La dérivée seconde, six ixe, vaut moins six en moins un : c'est un maximum local, de valeur deux. Elle vaut plus six en un : c'est un minimum local, de valeur moins deux. Les deux tests, signe de la dérivée et dérivée seconde, racontent exactement la même histoire.",
+   "ecran": "ex_cubique",
+   "id": "p14",
+   "texte": "f''(−1) = −6 : maximum ; f''(1) = 6 : minimum."
+  },
+  {
+   "dit": "Une étude complète suit un protocole en sept temps : domaine de définition, parité et périodicité éventuelles, limites aux bornes, asymptotes, variations par la dérivée, extremums, puis tableau et courbe en synthèse. Cette discipline évite l'erreur la plus coûteuse : calculer une dérivée en un point où la fonction n'existe même pas.",
+   "ecran": "protocole",
+   "id": "p15",
+   "texte": "Sept temps pour une étude complète."
+  },
+  {
+   "dit": "Premier réflexe sur un exemple : la racine carrée de ixe moins deux, divisée par ixe au carré moins neuf. La racine impose ixe supérieur ou égal à deux ; le dénominateur interdit trois et moins trois. Le domaine est donc l'intervalle de deux à trois, ouvert en trois, réuni avec l'intervalle de trois à plus l'infini. Tout le reste vient après.",
+   "ecran": "domaine",
+   "id": "p16",
+   "texte": "D = [2, 3[ ∪ ]3, +∞[ : le domaine d'abord."
+  },
+  {
+   "dit": "Reprenons la fraction deux ixe au carré moins trois ixe plus un, sur ixe au carré moins quatre. La règle du quotient donne une dérivée dont le numérateur se factorise avec racine de cinq : les points critiques sont trois moins racine de cinq, environ zéro virgule soixante-seize, et trois plus racine de cinq, environ cinq virgule vingt-quatre. Le premier est un maximum local, le second un minimum local.",
+   "ecran": "ex_rationnelle",
+   "id": "p17",
+   "texte": "Points critiques : 3 − √5 et 3 + √5."
+  },
+  {
+   "dit": "Aux infinis, cette même fonction tend vers deux : sa courbe admet l'asymptote horizontale d'équation igrec égale deux. Près de moins deux et de deux, elle explose vers l'infini : ce sont deux asymptotes verticales. Limites, asymptotes, variations et extremums se rejoignent alors dans un tableau unique, le portrait complet de la fonction.",
+   "ecran": "limites_rat",
+   "id": "p18",
+   "texte": "Limite 2 à l'infini : asymptote y = 2."
+  },
+  {
+   "dit": "Optimiser, c'est-à-dire trouver le meilleur sous contrainte. La méthode tient en cinq gestes : modéliser avec des variables et une contrainte, réduire à une fonction d'une seule variable, dériver et annuler la dérivée, vérifier qu'il s'agit bien de l'extremum cherché, puis conclure dans le langage du problème de départ.",
+   "ecran": "methode_opt",
+   "id": "p19",
+   "texte": "Modéliser, réduire, dériver, vérifier, conclure."
+  },
+  {
+   "dit": "Un agriculteur dispose de cent mètres de clôture et d'un mur qui dispense de clôturer un côté. Si ixe est la longueur perpendiculaire au mur, l'aire vaut ixe facteur de cent moins deux ixe. Sa dérivée s'annule en vingt-cinq : le côté parallèle mesure alors cinquante mètres et l'aire maximale atteint mille deux cent cinquante mètres carrés.",
+   "ecran": "enclos",
+   "id": "p20",
+   "texte": "x = 25 m, y = 50 m, aire 1 250 m²."
+  },
+  {
+   "dit": "Passons à la minimisation : une boîte de conserve cylindrique doit contenir mille centimètres cubes, en utilisant le moins de métal possible. Le volume relie la hauteur au rayon, et l'aire totale devient une fonction du seul rayon : deux mille sur r, plus deux pi r au carré. Réduire à une variable, c'est déjà à moitié résoudre le problème.",
+   "ecran": "conserve_modele",
+   "id": "p21",
+   "texte": "A(r) = 2000/r + 2πr² : une seule variable."
+  },
+  {
+   "dit": "La dérivée s'annule lorsque r au cube vaut cinq cents sur pi, soit un rayon d'environ cinq virgule quarante-deux centimètres. La dérivée seconde est positive : c'est bien un minimum. La hauteur optimale vaut alors le double du rayon, environ dix virgule quatre-vingt-quatre centimètres. Regardez vos boîtes de conserve : leurs proportions racontent ce calcul.",
+   "ecran": "conserve_calcul",
+   "id": "p22",
+   "texte": "r ≈ 5,42 cm et h = 2r ≈ 10,84 cm."
+  },
+  {
+   "dit": "En économie, même démarche : une entreprise vend des lampes dont le prix baisse quand la production augmente. Son profit est un polynôme du troisième degré dont la dérivée est un trinôme. Elle s'annule pour environ deux cent douze lampes, et la dérivée seconde y est négative : c'est un maximum. Au-delà, chaque lampe coûte plus cher à produire qu'elle ne rapporte.",
+   "ecran": "profit",
+   "id": "p23",
+   "texte": "Profit maximal vers 212 lampes."
+  },
+  {
+   "dit": "Le principe de Fermat, en physique, est une optimisation déguisée : un sauveteur court sur le sable puis nage, plus lentement, vers une personne en difficulté. Le temps total dépend du point d'entrée dans l'eau. Annuler sa dérivée donne un point d'entrée à cinquante-cinq mètres : c'est exactement la loi de la réfraction de la lumière, découverte par le calcul.",
+   "ecran": "sauveteur",
+   "id": "p24",
+   "texte": "Entrée dans l'eau à 55 m : la réfraction."
+  },
+  {
+   "dit": "Synthèse avec la boîte en carton : on découpe des carrés de côté ixe dans une feuille carrée de trente centimètres, puis on replie. Le volume vaut ixe facteur de trente moins deux ixe, le tout au carré. La dérivée s'annule en cinq et en quinze ; quinze est hors du domaine physique, il reste cinq centimètres, pour un volume maximal de deux mille centimètres cubes.",
+   "ecran": "boite",
+   "id": "p25",
+   "texte": "x = 5 cm, volume maximal 2 000 cm³."
+  },
+  {
+   "dit": "Dernier garde-fou : une dérivée peut ne jamais s'annuler. Pour la fraction ixe au carré moins quatre, sur ixe moins un, le numérateur de la dérivée a un discriminant négatif : la dérivée garde un signe constant, positif. La fonction est strictement croissante sur chaque intervalle de son domaine, sans aucun extremum. Un candidat absent vaut mieux qu'un candidat forcé.",
+   "ecran": "sans_extremum",
+   "id": "p26",
+   "texte": "Δ négatif : f' ne s'annule jamais."
+  },
+  {
+   "dit": "Face à un problème, gardez ces réflexes : commencer par le domaine, traiter tout point critique comme un simple candidat, tester les bornes sur un intervalle fermé, distinguer extremum local et extremum global, et toujours retraduire le résultat dans le contexte. C'est cette rigueur, plus que les formules, qui sépare une copie correcte d'une copie juste.",
+   "ecran": "strategie",
+   "id": "p27",
+   "texte": "Les réflexes qui évitent les pièges."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet : la dérivée mesure un changement instantané, son signe dessine les variations, ses zéros désignent les candidats aux extremums, et l'optimisation transforme ce savoir en décisions. Un seul outil, du compteur de vitesse au profit maximal : la dérivation est bien le langage universel du changement.",
+   "ecran": "recap_final",
+   "id": "p28",
+   "texte": "La dérivée, du calcul à la décision."
+  }
+ ],
+ "titre": "La dérivée en action : variations, extremums et optimisation"
+}
