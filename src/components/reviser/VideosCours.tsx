@@ -2,7 +2,7 @@ import { Image } from 'expo-image';
 import { Check, Play } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { getSupabase } from '@/services/supabase';
@@ -23,9 +23,6 @@ import { useTheme } from '@/theme/ThemeProvider';
 import { bord, espace, ombre, rayon, typo } from '@/theme/theme';
 
 import { Appui } from '../Appui';
-import { GroupeColle, LigneGroupe } from '../liste/ListeCollee';
-
-type Traducteur = ReturnType<typeof useTraduction>['t'];
 
 /** État d'une vidéo pour l'élève : terminée, en cours (commencée, pas finie) ou pas encore regardée. */
 function etatDe(suivi?: SuiviVideo): 'terminee' | 'enCours' | 'neuve' {
@@ -34,24 +31,15 @@ function etatDe(suivi?: SuiviVideo): 'terminee' | 'enCours' | 'neuve' {
   return 'neuve';
 }
 
-/** Sous-titre d'une ligne « autre partie » : l'état, puis la durée (maquette façon A). */
-function sousTitreLigne(t: Traducteur, v: VideoCours, suivi: SuiviVideo | undefined, telechargee: boolean): string {
-  const etat = etatDe(suivi);
-  const base =
-    etat === 'terminee'
-      ? `✓ ${t('videos.terminee')}`
-      : etat === 'enCours'
-        ? t('videos.reprendreA', { temps: formaterDuree(suivi!.positionS) })
-        : t('videos.pasCommencee');
-  return [base, formaterDuree(v.dureeS), telechargee ? t('videos.telechargee') : null].filter(Boolean).join(' · ');
-}
-
 /**
- * D1e · Vidéos du cours (façon A validée par Benny le 26/10/2026, après l'abandon du carrousel testé trop
- * petit en réel) : en haut de la page du cours, seulement si le cours a au moins une vidéo prête — une
- * GRANDE CARTE pleine largeur pour la vidéo à reprendre (celle en cours de visionnage, sinon la Partie 1),
- * puis TOUTES les autres parties en liste collée à grandes miniatures, avec leur état. Toucher une vidéo
- * ouvre le lecteur à sa position.
+ * D1e · Vidéos du cours : en haut de la page du cours, seulement si le cours a au moins une vidéo
+ * prête — une GRANDE CARTE pleine largeur pour la vidéo à reprendre (celle en cours de visionnage,
+ * sinon la Partie 1), puis juste en dessous une PLAYLIST HORIZONTALE DÉFILANTE DE MINIATURES SEULES
+ * (maquette validée par Benny le 26/10/2026 à 07 h 27, fonction carteMiniStrip : vignettes 118×66
+ * sans titres, badge « Pn », durée en coin, ✓ verte si terminée, barre de progression si en cours,
+ * micro-légende d'état dessous). La liste collée verticale des autres parties et les grandes cartes
+ * horizontales à titres ont été rejetées par Benny le matin même. Toucher une vignette ouvre le
+ * lecteur sur cette partie.
  */
 export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: string; matiere?: string }) {
   const { t } = useTraduction();
@@ -84,7 +72,6 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
   if (!videos?.length) return null;
   const terminees = compterTerminees(videos, suivis);
   const vedette = videos[Math.min(avant, videos.length - 1)];
-  const autres = videos.filter((v) => v.id !== vedette.id);
   const suiviVedette = suivis[vedette.id];
   const etatVedette = etatDe(suiviVedette);
   const progression = suiviVedette?.dureeS ? Math.min(1, suiviVedette.positionS / suiviVedette.dureeS) : 0;
@@ -111,13 +98,16 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
         decalage={2}
         couleurOmbre={theme.ombre}
       >
-        <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: etatVedette === 'enCours' ? theme.marque.principale : theme.bord.fort }, etatVedette === 'enCours' && styles.enCours]}>
+        {/* Bordure neutre standard, même pour la vidéo en cours (retour de Benny, 26/10/2026 : la
+            grosse bordure verte « donnait trop de couleur à la page »). Le badge « EN COURS » et la
+            ligne de reprise suffisent à distinguer la carte à reprendre. */}
+        <View style={[styles.carte, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
           <View style={styles.visuel}>
             {vedette.miniature ? <Image source={{ uri: vedette.miniature }} style={styles.miniature} contentFit="cover" /> : <View style={[styles.miniature, { backgroundColor: theme.fond.creux }]} />}
             {etatVedette === 'terminee' ? (
               <View style={[styles.badge, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
                 <Check size={11} strokeWidth={3.5} color={theme.texte.surCouleur} />
-                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('videos.vue')}</Text>
+                <Text style={[typo.etiquette, { color: theme.texte.surCouleur }]}>{t('videos.badgeTerminee')}</Text>
               </View>
             ) : etatVedette === 'enCours' ? (
               <View style={[styles.badge, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
@@ -132,9 +122,9 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
                 <Text style={styles.dureeTexte}>{formaterDuree(vedette.dureeS)}</Text>
               </View>
             ) : null}
-            {etatVedette === 'enCours' ? (
+            {etatVedette !== 'neuve' ? (
               <View style={styles.progressionFond}>
-                <View style={[styles.progression, { width: `${Math.round(progression * 100)}%`, backgroundColor: theme.marque.principale }]} />
+                <View style={[styles.progression, { width: `${etatVedette === 'terminee' ? 100 : Math.round(progression * 100)}%`, backgroundColor: theme.marque.principale }]} />
               </View>
             ) : null}
           </View>
@@ -149,29 +139,52 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
           </View>
         </View>
       </Appui>
-      {autres.length ? (
-        <GroupeColle style={styles.autres}>
-          {autres.map((v, i) => (
-            <LigneGroupe
-              key={v.id}
-              premier={i === 0}
-              haut={<Text style={[typo.etiquette, { color: theme.marque.forte }]}>{t('videos.partie', { n: v.numero })}</Text>}
-              gauche={
-                <View style={[styles.mini, { borderColor: theme.bord.fort }]}>
-                  {v.miniature ? <Image source={{ uri: v.miniature }} style={styles.miniImage} contentFit="cover" /> : null}
-                  {v.dureeS ? (
-                    <View style={styles.dureeMini}>
-                      <Text style={styles.dureeMiniTexte}>{formaterDuree(v.dureeS)}</Text>
+      {videos.length > 1 ? (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.bande} contentContainerStyle={styles.bandeContenu}>
+          {videos.map((v) => {
+            const s = suivis[v.id];
+            const etat = etatDe(s);
+            const pct = etat === 'enCours' && s?.dureeS ? Math.min(100, Math.round((s.positionS / s.dureeS) * 100)) : 0;
+            const legende = etat === 'enCours' ? t('videos.enCours') : etat === 'terminee' ? t('videos.badgeTerminee') : t('videos.partie', { n: v.numero });
+            return (
+              <Appui
+                key={v.id}
+                accessibilityRole="button"
+                accessibilityLabel={`${t('videos.partie', { n: v.numero })}. ${v.titre}. ${legende}`}
+                onPress={() => ouvrir(v)}
+                rayon={rayon.s}
+                ombre={ombre.carte}
+                decalage={2}
+                couleurOmbre={theme.ombre}
+              >
+                <View style={styles.carteMini}>
+                  <View style={[styles.vignette, { borderColor: theme.bord.fort }]}>
+                    {v.miniature ? <Image source={{ uri: v.miniature }} style={styles.miniImage} contentFit="cover" /> : <View style={[styles.miniImage, { backgroundColor: theme.fond.creux }]} />}
+                    <View style={styles.numMini}>
+                      <Text style={styles.numMiniTexte}>P{v.numero}</Text>
                     </View>
-                  ) : null}
+                    {etat === 'terminee' ? (
+                      <View style={[styles.vuMini, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+                        <Check size={11} strokeWidth={3.5} color={theme.texte.surCouleur} />
+                      </View>
+                    ) : null}
+                    {v.dureeS ? (
+                      <View style={styles.dureeMini}>
+                        <Text style={styles.dureeMiniTexte}>{formaterDuree(v.dureeS)}</Text>
+                      </View>
+                    ) : null}
+                    {etat === 'enCours' ? (
+                      <View style={styles.progressionFondMini}>
+                        <View style={[styles.progressionMini, { width: `${pct}%`, backgroundColor: theme.marque.principale }]} />
+                      </View>
+                    ) : null}
+                  </View>
+                  <Text style={[styles.legendeMini, { color: etat === 'enCours' ? theme.marque.forte : theme.texte.secondaire }]}>{legende}</Text>
                 </View>
-              }
-              titre={v.titre}
-              sousTitre={sousTitreLigne(t, v, suivis[v.id], !!telechargees[v.id])}
-              onPress={() => ouvrir(v)}
-            />
-          ))}
-        </GroupeColle>
+              </Appui>
+            );
+          })}
+        </ScrollView>
       ) : null}
     </View>
   );
@@ -180,7 +193,6 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
 const styles = StyleSheet.create({
   etiquette: { marginBottom: espace[2] },
   carte: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden' },
-  enCours: { borderWidth: bord.epais },
   visuel: { width: '100%', aspectRatio: 16 / 9, position: 'relative', backgroundColor: '#000' },
   miniature: { width: '100%', height: '100%' },
   badge: { position: 'absolute', left: espace[2], top: espace[2], flexDirection: 'row', alignItems: 'center', gap: 3, borderWidth: bord.fin, borderRadius: rayon.pilule, paddingHorizontal: espace[2], paddingVertical: 1 },
@@ -192,8 +204,18 @@ const styles = StyleSheet.create({
   texte: { padding: espace[3], gap: espace[1] },
   titre: { fontSize: 15, lineHeight: 20 },
   gras: { fontWeight: '700' },
-  autres: { marginTop: espace[4] },
-  mini: { width: 118, height: 66, borderWidth: bord.fin, borderRadius: rayon.s, overflow: 'hidden', backgroundColor: '#000', position: 'relative' },
+  // Bande horizontale de vignettes (maquette carteMiniStrip) : elle casse la marge horizontale de la
+  // page pour défiler bord à bord, son contenu la réapplique en padding.
+  bande: { marginHorizontal: -espace[6], marginTop: espace[3] },
+  bandeContenu: { paddingHorizontal: espace[6], gap: espace[3], paddingVertical: espace[1] },
+  carteMini: { width: 118 },
+  vignette: { width: 118, height: 66, borderWidth: bord.normal, borderRadius: rayon.s, overflow: 'hidden', backgroundColor: '#000', position: 'relative' },
+  numMini: { position: 'absolute', left: 4, top: 4, backgroundColor: 'rgba(10,10,10,0.85)', borderRadius: rayon.pilule, paddingHorizontal: 6, paddingVertical: 1 },
+  numMiniTexte: { color: '#FFF7E3', fontSize: 9.5, fontWeight: '700' },
+  vuMini: { position: 'absolute', right: 4, top: 4, width: 19, height: 19, borderRadius: 10, borderWidth: bord.fin, alignItems: 'center', justifyContent: 'center' },
+  progressionFondMini: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 5, backgroundColor: 'rgba(10,10,10,0.45)' },
+  progressionMini: { height: '100%' },
+  legendeMini: { fontSize: 11, fontWeight: '700', textAlign: 'center', marginTop: espace[2], letterSpacing: 0.4, textTransform: 'uppercase' },
   miniImage: { width: '100%', height: '100%' },
   dureeMini: { position: 'absolute', right: 4, bottom: 4, backgroundColor: 'rgba(10,10,10,0.85)', borderRadius: rayon.pilule, paddingHorizontal: 5, paddingVertical: 1 },
   dureeMiniTexte: { color: '#FFF7E3', fontSize: 9.5, fontWeight: '700' },
