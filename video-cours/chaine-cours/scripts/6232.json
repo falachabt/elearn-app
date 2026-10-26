@@ -1,0 +1,550 @@
+{
+ "cours": 6232,
+ "titre": "Les composés oxygénés : alcools, aldéhydes, cétones et acides carboxyliques",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Chimie organique",
+   "titre": "Les composés oxygénés : alcools, aldéhydes, cétones et acides carboxyliques",
+   "sous": "Polarité, oxydation, estérification : la chimie des quatre familles de l'oxygène",
+   "anim": {
+    "nom": "familles_oxygenees_fig",
+    "hauteur": 250
+   }
+  },
+  "oxygene": {
+   "type": "etape",
+   "kicker": "Le point commun : l'oxygène",
+   "titre": "Un atome très électronégatif, des liaisons polarisées",
+   "tex": [
+    "\\chi(O) = 3{,}44 \\text{ : la plus forte des trois}",
+    "C-O \\text{ et } O-H \\text{ : liaisons polarisées}",
+    "\\delta^- \\text{ sur O} \\qquad \\delta^+ \\text{ sur C et H}",
+    "\\text{doublets libres de O} \\Rightarrow \\text{liaisons hydrogène}"
+   ]
+  },
+  "galerie": {
+   "type": "etape",
+   "kicker": "Quatre familles oxygénées",
+   "titre": "Quatre groupes, quatre familles",
+   "tex": [
+    "R-OH \\qquad \\text{alcool (hydroxyle)}",
+    "R-CHO \\qquad \\text{aldéhyde (carbonyle terminal)}",
+    "R-CO-R' \\qquad \\text{cétone (carbonyle interne)}",
+    "R-COOH \\qquad \\text{acide carboxylique (carboxyle)}"
+   ]
+  },
+  "contrastes": {
+   "type": "etape",
+   "kicker": "Pourquoi l'oxygène change tout",
+   "titre": "Des points d'ébullition qui parlent",
+   "tex": [
+    "\\text{éthane : } -89\\,^\\circ C \\qquad \\text{éthanol : } +78\\,^\\circ C",
+    "\\text{éther diéthylique : } 34{,}6\\,^\\circ C \\qquad \\text{butan-1-ol : } 118\\,^\\circ C",
+    "\\text{forces de London} \\ll \\text{liaisons hydrogène}"
+   ]
+  },
+  "echelle": {
+   "type": "etape",
+   "kicker": "Le fil conducteur du cours",
+   "titre": "L'échelle d'oxydation",
+   "tex": [
+    "\\text{alcool I} \\rightarrow \\text{aldéhyde} \\rightarrow \\text{acide carboxylique}",
+    "\\text{alcool II} \\rightarrow \\text{cétone (étape finale)}",
+    "\\text{oxyder une cétone} \\Rightarrow \\text{rompre } C-C \\text{ : trop coûteux}"
+   ]
+  },
+  "alcools_nom": {
+   "type": "etape",
+   "kicker": "Nommer les alcools",
+   "titre": "Le suffixe -ol et le plus petit indice",
+   "tex": [
+    "R-OH \\text{ sur un carbone saturé } (sp^3)",
+    "-e \\rightarrow -ol \\qquad CH_3CH_2OH \\text{ : éthanol}",
+    "CH_3-CH(OH)-CH_3 \\text{ : propan-2-ol}",
+    "\\text{numéroter : plus petit indice pour } -OH"
+   ]
+  },
+  "alcools_classes": {
+   "type": "etape",
+   "kicker": "Primaire, secondaire, tertiaire",
+   "titre": "Trois classes d'alcools",
+   "tex": [
+    "\\text{primaire : 1 groupe } R \\text{ (propan-1-ol)}",
+    "\\text{secondaire : 2 groupes } R \\text{ (propan-2-ol)}",
+    "\\text{tertiaire : 3 groupes } R \\text{ (2-méthylpropan-2-ol)}",
+    "\\text{la classe prédit le destin face aux oxydants}"
+   ]
+  },
+  "carbonyles": {
+   "type": "etape",
+   "kicker": "Le groupement carbonyle",
+   "titre": "Aldéhyde terminal, cétone interne",
+   "tex": [
+    "C=O \\qquad \\text{le groupement carbonyle}",
+    "\\text{aldéhyde : } R-CHO, \\text{ terminal, suffixe -al}",
+    "\\text{cétone : } R-CO-R', \\text{ interne, suffixe -one}",
+    "\\text{méthanal, éthanal ; propanone, butan-2-one}"
+   ]
+  },
+  "acides": {
+   "type": "etape",
+   "kicker": "Les acides carboxyliques",
+   "titre": "Le carboxyle : carbonyle + hydroxyle",
+   "tex": [
+    "\\text{carboxyle} = C=O + -OH \\text{ sur le même } C",
+    "R-COOH \\qquad \\text{acide ...-oïque, } C_1 = \\text{carboxyle}",
+    "\\text{formique, acétique, propionique, benzoïque}",
+    "R-COO^- \\text{ : charge partagée entre les deux O (résonance)}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Oxygène : polarité et liaisons H",
+    "4 familles : -OH, -CHO, >C=O, -COOH",
+    "Échelle : alcool → aldéhyde → acide",
+    "Suffixes : -ol, -al, -one, -oïque",
+    "Alcool : primaire, secondaire, tertiaire"
+   ]
+  },
+  "polarite": {
+   "type": "etape",
+   "kicker": "Cohésion et points d'ébullition",
+   "titre": "Donneurs et accepteurs de liaisons H",
+   "tex": [
+    "\\delta^- O \\cdots H-\\delta^+ \\text{ : la liaison hydrogène}",
+    "\\text{alcools : donneurs ET accepteurs}",
+    "\\text{carbonyles, éthers : accepteurs seulement}",
+    "\\text{éthanol : } 78\\,^\\circ C \\qquad \\text{butane : } -1\\,^\\circ C"
+   ]
+  },
+  "solubilite": {
+   "type": "etape",
+   "kicker": "Solubilité dans l'eau",
+   "titre": "Une tête hydrophile, une queue hydrophobe",
+   "tex": [
+    "\\text{éthanol, acétone, acide acétique : miscibles}",
+    "\\text{octan-1-ol : } \\approx 0{,}05\\ \\text{g pour 100 mL}",
+    "\\text{chaîne longue} \\Rightarrow \\text{insoluble}"
+   ]
+  },
+  "acidite": {
+   "type": "etape",
+   "kicker": "L'échelle d'acidité",
+   "titre": "Du carboxylate stabilisé à l'alcane inerte",
+   "tex": [
+    "pK_a \\text{ : acétique} \\approx 4{,}8 \\qquad \\text{phénol} \\approx 10",
+    "pK_a \\text{ : eau} = 15{,}7 \\qquad \\text{éthanol} \\approx 16",
+    "pK_a \\text{ : acétone} \\approx 20 \\qquad \\text{éthane} \\approx 50",
+    "\\text{acide} \\gg \\text{phénol} > \\text{alcool} \\approx \\text{eau} > \\text{carbonyle} > \\text{alcane}"
+   ]
+  },
+  "sites": {
+   "type": "etape",
+   "kicker": "Où ça réagit ?",
+   "titre": "Les sites réactifs des trois familles",
+   "tex": [
+    "\\text{alcool : } H \\text{ acide, } O \\text{ nucléophile}",
+    "\\text{carbonyle : } C \\text{ électrophile } (\\delta^+)",
+    "\\text{attaque des nucléophiles : } HCN,\\ NaBH_4, \\text{Grignard}",
+    "\\text{aldéhyde} > \\text{cétone : moins encombré}"
+   ]
+  },
+  "dichromate": {
+   "type": "etape",
+   "kicker": "Les oxydants minéraux",
+   "titre": "Le dichromate, d'orange à vert",
+   "tex": [
+    "Cr_2O_7^{2-} + 14\\,H^+ + 6\\,e^- \\rightarrow 2\\,Cr^{3+} + 7\\,H_2O",
+    "\\text{orange} \\rightarrow \\text{vert : le principe de l'éthylotest}",
+    "KMnO_4 \\text{ : violet} \\rightarrow \\text{brun ou incolore}"
+   ]
+  },
+  "destin": {
+   "type": "etape",
+   "kicker": "Le destin des alcools oxydés",
+   "titre": "Selon la classe, selon la vigueur",
+   "tex": [
+    "\\text{primaire, doux} \\rightarrow \\text{aldéhyde}",
+    "\\text{primaire, vigoureux} \\rightarrow \\text{acide carboxylique}",
+    "\\text{secondaire} \\rightarrow \\text{cétone (stable)}",
+    "\\text{tertiaire} \\rightarrow \\text{pas d'oxydation}"
+   ]
+  },
+  "oxydants_doux": {
+   "type": "etape",
+   "kicker": "Oxydants doux et sélectifs",
+   "titre": "S'arrêter exactement à l'aldéhyde",
+   "tex": [
+    "PCC / CH_2Cl_2 \\text{ sec : alcool I} \\rightarrow \\text{aldéhyde}",
+    "\\text{Swern : oxydation douce des alcools}",
+    "Ag_2O \\text{ : aldéhydes} \\rightarrow \\text{acides (sucres)}",
+    "\\text{les cétones traversent sans réagir}"
+   ]
+  },
+  "reductions": {
+   "type": "etape",
+   "kicker": "Réduire les carbonyles",
+   "titre": "Deux hydrures, deux puissances",
+   "tex": [
+    "NaBH_4 \\text{ : doux, aldéhydes et cétones seulement}",
+    "R-CHO \\rightarrow R-CH_2OH \\qquad R-CO-R' \\rightarrow R-CHOH-R'",
+    "LiAlH_4 \\text{ : puissant, tous les carbonyles}",
+    "\\text{ester} + LiAlH_4 \\rightarrow \\text{deux alcools}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés de la partie",
+   "etapes": [
+    "Liaisons H : alcools donneurs + accepteurs",
+    "Solubilité : la chaîne décide",
+    "pKa : acide ≈ 5, alcool ≈ 16, alcane ≈ 50",
+    "Oxydation : Cr(VI) orange → vert",
+    "Réduction : NaBH4 doux, LiAlH4 fort"
+   ]
+  },
+  "esterification": {
+   "type": "etape",
+   "kicker": "L'estérification de Fischer",
+   "titre": "Un acide et un alcool donnent un ester et de l'eau",
+   "tex": [
+    "R-COOH + R'-OH \\rightleftharpoons R-COO-R' + H_2O",
+    "K \\approx 1 \\text{ : lente et réversible}",
+    "\\text{déplacer : excès de réactif, éliminer } H_2O"
+   ]
+  },
+  "mecanisme": {
+   "type": "etape",
+   "kicker": "Le mécanisme de Fischer",
+   "titre": "Cinq temps, un catalyseur régénéré",
+   "tex": [
+    "1 \\text{ : protonation du carbonyle } (C \\text{ plus électrophile)}",
+    "2 \\text{ : attaque nucléophile de l'alcool}",
+    "3 \\text{ : transfert de proton}",
+    "4 \\text{ : élimination d'eau} \\quad 5 \\text{ : déprotonation}"
+   ]
+  },
+  "savons": {
+   "type": "etape",
+   "kicker": "Hydrolyses et saponification",
+   "titre": "Le chemin inverse, en deux versions",
+   "tex": [
+    "R-COO-R' + OH^- \\rightarrow R-COO^- + R'-OH",
+    "\\text{saponification : irréversible (savons)}",
+    "\\text{hydrolyse acide : Fischer à l'envers}",
+    "\\text{micelles : tête hydrophile, queue hydrophobe}"
+   ]
+  },
+  "aromes": {
+   "type": "etape",
+   "kicker": "Applications : parfums et matières",
+   "titre": "Les esters parfument, les carbonyles aussi",
+   "tex": [
+    "\\text{acétate d'isoamyle : banane ; de benzyle : jasmin}",
+    "\\text{vanilline, cinnamaldéhyde, benzaldéhyde}",
+    "PET \\text{ : un polyester ; biodiesel : transestérification}",
+    "\\text{triglycérides : triesters du glycérol}"
+   ]
+  },
+  "industrie": {
+   "type": "etape",
+   "kicker": "Les alcools dans l'industrie",
+   "titre": "Méthanol, éthanol, glycérol : trois géants",
+   "tex": [
+    "\\text{méthanol : } > 100\\ \\text{millions de t/an (syngaz)}",
+    "C_6H_{12}O_6 \\rightarrow 2\\,C_2H_5OH + 2\\,CO_2 \\text{ (fermentation)}",
+    "\\text{éthanol antiseptique à } 70\\,\\%",
+    "\\text{glycérol : graisses et nitroglycérine}"
+   ]
+  },
+  "formaldehyde": {
+   "type": "etape",
+   "kicker": "Zoom : le méthanal",
+   "titre": "Le formaldéhyde, utile et dangereux",
+   "tex": [
+    "HCHO \\text{ : formol en solution à } 37\\,\\%",
+    "\\text{résines, colles, panneaux de bois (MDF)}",
+    "\\text{fixateur de tissus, désinfectant}",
+    "\\text{cancérogène : protections obligatoires}"
+   ]
+  },
+  "acides_vie": {
+   "type": "etape",
+   "kicker": "Applications : trois molécules",
+   "titre": "Acétique, citrique, aspirine",
+   "tex": [
+    "\\text{acétique : vinaigre } \\approx 8\\,\\% \\text{, colles, PET}",
+    "\\text{citrique : } > 2\\ \\text{Mt/an, E330, cycle de Krebs}",
+    "\\text{salicylique} \\rightarrow \\text{aspirine (acétylation)}",
+    "\\text{acétone} \\rightarrow \\text{bisphénol A} \\rightarrow \\text{polycarbonates}"
+   ]
+  },
+  "detective": {
+   "type": "etape",
+   "kicker": "Exercice 1 : l'inconnu",
+   "titre": "Quatre tests, deux structures",
+   "tex": [
+    "U : C_4H_8O",
+    "NaHCO_3 \\text{ : rien} \\quad \\text{Tollens : miroir} \\quad \\text{DNPH : précipité}",
+    "\\text{ni acide, ni alcool} \\Rightarrow \\text{un aldéhyde}",
+    "\\text{butanal ou 2-méthylpropanal}"
+   ]
+  },
+  "synthese": {
+   "type": "etape",
+   "kicker": "Exercice 2 : synthèse en deux étapes",
+   "titre": "De l'éthanol à l'éthanoate de butyle",
+   "tex": [
+    "CH_3CH_2OH \\rightarrow CH_3COOH \\text{ (dichromate en excès)}",
+    "CH_3COOH + \\text{butan-1-ol} \\rightleftharpoons \\text{ester} + H_2O",
+    "\\text{reflux, catalyse acide, alcool en excès (Le Chatelier)}"
+   ]
+  },
+  "metabolisme": {
+   "type": "etape",
+   "kicker": "Exercice 3 : la chimie du vivant",
+   "titre": "Une oxydation d'aldéhyde dans la glycolyse",
+   "tex": [
+    "\\text{glycéraldéhyde-3-phosphate} \\rightarrow \\text{acide}",
+    "\\text{oxydant biologique : la coenzyme } NAD^+",
+    "\\text{oxydation couplée à la production d'ATP}"
+   ]
+  },
+  "boite": {
+   "type": "etape",
+   "kicker": "Le tableau de bord final",
+   "titre": "Identifier une famille en quelques tests",
+   "tex": [
+    "\\text{alcool I : Lucas lent ; alcool II : plus rapide}",
+    "\\text{aldéhyde : Tollens (miroir d'argent), DNPH}",
+    "\\text{cétone : DNPH positif, Tollens négatif}",
+    "\\text{acide : } NaHCO_3 \\rightarrow CO_2 \\text{ (bulles)}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Points clés du cours",
+   "etapes": [
+    "Estérification : un équilibre à déplacer",
+    "Fischer : 5 étapes, catalyseur régénéré",
+    "Saponification : irréversible, savons",
+    "Tests : Tollens, DNPH, Lucas, NaHCO3",
+    "Structure → propriétés → réactions"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux composés oxygénés, les molécules organiques qui portent un atome d'oxygène. Quatre grandes familles nous occuperont : les alcools, les aldéhydes, les cétones et les acides carboxyliques. L'éthanol des désinfectants, l'acétone des dissolvants, l'acide acétique du vinaigre : tous obéissent aux mêmes règles, dictées par la polarité de leurs liaisons avec l'oxygène. Nous verrons d'abord ces familles et leurs noms, puis leurs propriétés et leurs réactions d'oxydation et de réduction, et nous terminerons par l'estérification, les applications et des exercices de synthèse.",
+   "texte": "Alcools, aldéhydes, cétones, acides : les familles de l'oxygène.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Tout commence par un déséquilibre. L'oxygène est beaucoup plus électronégatif que le carbone et l'hydrogène : son électronégativité vaut trois virgule quarante-quatre sur l'échelle de Pauling. Dans une liaison carbone-oxygène ou oxygène-hydrogène, les électrons se déplacent vers l'oxygène, qui porte une charge partielle négative, notée delta moins, tandis que le carbone et l'hydrogène portent un delta plus. Et comme l'oxygène garde des doublets d'électrons libres, il peut en plus former des liaisons hydrogène avec les molécules voisines. Polarité et liaisons hydrogène : voilà les deux clés de tout ce cours.",
+   "texte": "χ(O) = 3,44 : δ− sur O, δ+ sur C et H.",
+   "ecran": "oxygene"
+  },
+  {
+   "id": "p03",
+   "dit": "Voici nos quatre familles. L'alcool porte un groupe hydroxyle, un oxygène lié à un hydrogène, accroché à un carbone saturé. L'aldéhyde porte un carbonyle en bout de chaîne, toujours lié à au moins un hydrogène. La cétone porte le même carbonyle, mais au milieu de la chaîne, entre deux carbones. Et l'acide carboxylique fusionne les deux : un carbonyle et un hydroxyle sur le même carbone, c'est le groupe carboxyle. Retenez leurs visages dans la vie courante : l'éthanol des désinfectants, le formaldéhyde des fixateurs, l'acétone des dissolvants et l'acide acétique du vinaigre.",
+   "texte": "R–OH, R–CHO, R–CO–R′, R–COOH.",
+   "ecran": "galerie"
+  },
+  {
+   "id": "p04",
+   "dit": "Pourquoi l'oxygène change-t-il tout ? Comparez l'éthane et l'éthanol : même squelette à deux carbones, mais l'éthane bout à moins quatre-vingt-neuf degrés, tenu par de faibles forces de London, quand l'éthanol bout à plus soixante-dix-huit degrés, parce que ses molécules se tiennent entre elles par des liaisons hydrogène. La leçon pose aussi une belle question : l'éther diéthylique et le butan-un-ol ont des masses voisines, pourtant l'éther bout à trente-quatre degrés et l'alcool à cent dix-huit. La raison ? L'éther n'a pas d'hydrogène lié à son oxygène : il ne peut pas créer de liaisons hydrogène entre ses propres molécules.",
+   "texte": "Éthane −89 °C, éthanol +78 °C : les liaisons H.",
+   "ecran": "contrastes"
+  },
+  {
+   "id": "p05",
+   "dit": "Un fil conducteur traverse tout le cours : l'échelle d'oxydation. Un alcool primaire s'oxyde en aldéhyde, qui s'oxyde à son tour en acide carboxylique. Un alcool secondaire s'oxyde en cétone, et là, l'échelle s'arrête : pour oxyder davantage une cétone, il faudrait rompre une liaison carbone-carbone, ce que les oxydants doux ne savent pas faire. Cette échelle explique aussi, dans l'autre sens, les réductions : chaque marche peut se redescendre. Gardez-la en tête, elle organise toutes les transformations que nous allons rencontrer.",
+   "texte": "Alcool → aldéhyde → acide : l'échelle d'oxydation.",
+   "ecran": "echelle"
+  },
+  {
+   "id": "p06",
+   "dit": "Nommons d'abord les alcools. Leur groupe hydroxyle est porté par un carbone saturé, lié uniquement par des liaisons simples. En nomenclature, on remplace le e final de l'alcane par le suffixe ol, et l'on numérote la chaîne pour donner le plus petit indice possible au carbone qui porte le groupe. L'alcool à deux carbones est l'éthanol ; celui à trois carbones avec le groupe au milieu est le propan-deux-ol ; avec le groupe au bout, le butan-un-ol. Trois exemples simples, mais la règle est générale : la chaîne la plus longue portant le groupe, numérotée au plus bas.",
+   "texte": "Suffixe -ol, plus petit indice pour -OH.",
+   "ecran": "alcools_nom"
+  },
+  {
+   "id": "p07",
+   "dit": "Les alcools se classent selon le nombre de groupes carbonés attachés au carbone qui porte l'hydroxyle. Un seul groupe : alcool primaire, comme le propan-un-ol. Deux groupes : alcool secondaire, comme le propan-deux-ol. Trois groupes : alcool tertiaire, comme le deux-méthylpropan-deux-ol, où le carbone fonctionnel ne porte plus aucun hydrogène. Cette classification n'est pas un détail de vocabulaire : elle prédit le destin de l'alcool face aux oxydants, nous le verrons dans la deuxième partie. Un alcool primaire peut monter deux marches de l'échelle, un secondaire une seule, un tertiaire aucune.",
+   "texte": "Primaire, secondaire, tertiaire : la classe décide.",
+   "ecran": "alcools_classes"
+  },
+  {
+   "id": "p08",
+   "dit": "Aldéhydes et cétones partagent le même groupe vedette : le carbonyle, un carbone doublement lié à un oxygène. Toute la différence est dans la position. Chez l'aldéhyde, le carbonyle est terminal, au bout de la chaîne, et il porte toujours un hydrogène ; son suffixe est al, et son carbone est forcément le numéro un : méthanal, éthanal, propanal. Chez la cétone, le carbonyle est interne, encadré par deux carbones ; son suffixe est one, et l'on numérote pour lui donner le plus petit indice : propanone, butan-deux-one. Le méthanal, vous le connaissez : c'est le formaldéhyde, à l'odeur piquante.",
+   "texte": "Carbonyle terminal : -al ; interne : -one.",
+   "ecran": "carbonyles"
+  },
+  {
+   "id": "p09",
+   "dit": "Quatrième famille : les acides carboxyliques. Leur groupe carboxyle réunit sur le même carbone un carbonyle et un hydroxyle : c'est cette union qui crée l'acidité. Leur nom se forme avec le mot acide suivi du nom de la chaîne terminé par oïque, et le carbone du carboxyle est toujours le numéro un. Leurs noms communs racontent leur histoire : l'acide formique des fourmis et des orties, l'acide acétique du vinaigre, l'acide propionique des fromages, l'acide benzoïque, conservateur alimentaire connu sous le code e deux cent dix. Quand l'acide perd son proton, il donne un ion carboxylate, dont la charge se partage entre les deux oxygènes : c'est la résonance, la clé de son acidité.",
+   "texte": "Carboxyle = C=O + -OH ; suffixe -oïque.",
+   "ecran": "acides"
+  },
+  {
+   "id": "p10",
+   "dit": "Résumons cette première partie. Un seul atome, l'oxygène, crée quatre familles selon la façon dont il se lie au carbone : hydroxyle, carbonyle terminal, carbonyle interne, carboxyle. Sa forte électronégativité polarise les liaisons et autorise les liaisons hydrogène, qui renforcent la cohésion des liquides. Les noms suivent des suffixes réguliers : ol, al, one, oïque. Et l'échelle d'oxydation relie déjà toutes ces familles entre elles.",
+   "texte": "Polarité, suffixes -ol/-al/-one/-oïque, échelle d'oxydation.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Première propriété : la cohésion. Pour former une liaison hydrogène, il faut un hydrogène lié à un oxygène, côté donneur, et un oxygène porteur de doublets libres, côté accepteur. Les alcools jouent les deux rôles, donneurs et accepteurs : leurs liquides sont donc très cohésifs. Les aldéhydes, les cétones et les éthers, eux, n'ont pas d'hydrogène lié à l'oxygène : ils sont accepteurs seulement. Résultat pratique : à masse comparable, un alcool bout beaucoup plus haut qu'une cétone ou qu'un éther. L'éthanol bout à soixante-dix-huit degrés, là où le butane, sans oxygène, bout autour de zéro.",
+   "texte": "Alcools : donneurs et accepteurs de liaisons H.",
+   "ecran": "polarite"
+  },
+  {
+   "id": "p12",
+   "dit": "Même logique pour la solubilité dans l'eau. Le groupe oxygéné adore l'eau, la chaîne carbonée la fuit : tout est affaire de proportion. Les petites molécules sont miscibles à l'eau en toutes proportions : éthanol, acétaldéhyde, acétone, acide acétique. Mais quand la chaîne s'allonge, la partie hydrophobe prend le dessus : l'octan-un-ol, avec ses huit carbones, ne se dissout pratiquement plus, environ cinq centièmes de gramme pour cent millilitres d'eau. Retenez l'image : une tête hydrophile accrochée à une queue hydrophobe de plus en plus longue.",
+   "texte": "Miscible si la chaîne est courte, insoluble si elle s'allonge.",
+   "ecran": "solubilite"
+  },
+  {
+   "id": "p13",
+   "dit": "Venons-en à l'acidité, mesurée par le pé-ka-a : plus il est petit, plus l'acide est fort. L'échelle de nos familles est spectaculaire. L'acide acétique affiche un pé-ka-a voisin de cinq ; le phénol, dix ; l'eau, quinze virgule sept ; l'éthanol, environ seize ; l'acétone, vingt ; et l'éthane, cinquante, autant dire pas acide du tout. Pourquoi un tel écart entre l'acide et l'alcool ? Parce que l'ion carboxylate répartit sa charge négative sur deux oxygènes, par résonance, là où l'ion alcoolate la garde localisée. Les effets des substituants confirment le mécanisme : un groupe fluoré attire les électrons et renforce l'acide, un groupe alkyle les repousse et l'affaiblit.",
+   "texte": "pKa : acide ≈ 5, alcool ≈ 16, alcane ≈ 50.",
+   "ecran": "acidite"
+  },
+  {
+   "id": "p14",
+   "dit": "Où se font les réactions ? Sur les sites que la polarité désigne. Chez l'alcool, l'hydrogène de l'hydroxyle est un peu acide, et l'oxygène, riche en doublets, est nucléophile. Chez l'aldéhyde et la cétone, le carbone du carbonyle, delta plus, est électrophile : c'est lui que les nucléophiles attaquent, comme les ions cyanure, les hydrures réducteurs ou les réactifs de Grignard. Et les aldéhydes sont plus réactifs que les cétones : leur carbone est moins encombré et moins stabilisé par des groupes donneurs. Chez l'acide, enfin, la réactivité est duale : le carbonyle et l'hydroxyle peuvent tous deux être attaqués.",
+   "texte": "Le carbone du carbonyle, δ+, attire les nucléophiles.",
+   "ecran": "sites"
+  },
+  {
+   "id": "p15",
+   "dit": "L'oxydant de référence du cours est le dichromate, en milieu acide. Sa demi-équation tient en une ligne : l'ion dichromate, plus quatorze protons, plus six électrons, donne deux ions chrome trois et sept molécules d'eau. Le spectacle est visible à l'œil nu : la solution orange de départ devient verte, la couleur des ions chrome trois. C'est ce changement de couleur qui fait fonctionner l'éthylotest chimique. Le permanganate de potassium joue le même rôle : violet au départ, il devient brun en milieu peu acide, ou incolore en acide fort.",
+   "texte": "Dichromate : orange → vert, le principe de l'éthylotest.",
+   "ecran": "dichromate"
+  },
+  {
+   "id": "p16",
+   "dit": "Que devient un alcool face à ces oxydants ? Tout dépend de sa classe. Un alcool primaire, oxydé doucement, s'arrête à l'aldéhyde, surtout si on le distille au fur et à mesure ; oxydé vigoureusement, il continue jusqu'à l'acide carboxylique. Un alcool secondaire donne une cétone, et s'y arrête : la cétone est stable. Un alcool tertiaire, lui, ne s'oxyde pas : son carbone fonctionnel ne porte aucun hydrogène à arracher ; sous contrainte, il préfère perdre de l'eau, c'est une déshydratation. Vous retrouvez exactement les marches de l'échelle d'oxydation de la première partie.",
+   "texte": "Primaire → aldéhyde ou acide ; secondaire → cétone ; tertiaire : rien.",
+   "ecran": "destin"
+  },
+  {
+   "id": "p17",
+   "dit": "Pour s'arrêter précisément à l'aldéhyde, le chimiste choisit des oxydants doux et sélectifs. Le réactif appelé pé-cé-cé, dans le dichlorométhane sec, transforme un alcool primaire en aldéhyde sans aller plus loin. L'oxydation de Swern, elle aussi, travaille en douceur. À l'inverse, l'oxyde d'argent oxyde sélectivement les aldéhydes en acides, ce qui sert à doser les sucres. Et les cétones traversent toutes ces conditions sans réagir : encore une fois, les oxyder exigerait de rompre une liaison carbone-carbone, trop coûteuse en énergie.",
+   "texte": "PCC et Swern : s'arrêter à l'aldéhyde.",
+   "ecran": "oxydants_doux"
+  },
+  {
+   "id": "p18",
+   "dit": "Redescendons l'échelle, avec les réducteurs. Le borohydrure de sodium est le doux : il réduit les aldéhydes et les cétones en alcools, et rien d'autre ; un aldéhyde redevient un alcool primaire, une cétone un alcool secondaire. L'hydrure de lithium et d'aluminium est le puissant : il réduit tous les carbonyles, même les acides et les esters, et un ester donne alors deux alcools. Attention, il réagit violemment avec l'eau en dégageant du dihydrogène inflammable : on l'utilise dans des solvants parfaitement secs. Troisième voie : l'hydrogénation catalytique, celle qui fabrique par exemple le sorbitol à partir du glucose.",
+   "texte": "NaBH4 doux ; LiAlH4 puissant ; H2 catalytique.",
+   "ecran": "reductions"
+  },
+  {
+   "id": "p19",
+   "dit": "Résumons. La polarité de l'oxygène explique la cohésion, la solubilité et l'acidité : les alcools sont donneurs et accepteurs de liaisons hydrogène, et l'ion carboxylate, stabilisé par résonance, fait la force des acides. Côté réactions, le dichromate et le permanganate oxydent les alcools selon leur classe, les oxydants doux s'arrêtent à l'aldéhyde, et les hydrures réduisent les carbonyles en alcools. Une échelle, deux sens de parcours.",
+   "texte": "Polarité → propriétés ; hydrures → alcools.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p20",
+   "dit": "Assemblons maintenant un acide carboxylique et un alcool, en présence d'un catalyseur acide et en chauffant : c'est l'estérification de Fischer. Le produit est un ester, plus une molécule d'eau. Mais la réaction est lente et réversible : sa constante d'équilibre est souvent voisine de un, ce qui signifie qu'elle s'arrête bien avant d'être complète. Pour la pousser, on joue sur l'équilibre : mettre un réactif en excès, ou éliminer l'eau au fur et à mesure, par distillation ou avec un piège à eau. C'est le principe de Le Chatelier en action, et c'est ainsi que l'industrie fabrique les arômes de fruits.",
+   "texte": "Fischer : K ≈ 1, un équilibre à déplacer.",
+   "ecran": "esterification"
+  },
+  {
+   "id": "p21",
+   "dit": "Regardons le mécanisme de Fischer en cinq temps, parce qu'il condense tout le cours. Un : le catalyseur acide protone l'oxygène du carbonyle, ce qui rend le carbone encore plus électrophile. Deux : l'alcool attaque ce carbone, et l'on obtient un intermédiaire tétraédrique. Trois : un proton migre d'un oxygène à l'autre. Quatre : une molécule d'eau s'élimine. Cinq : l'intermédiaire perd son proton excédentaire, l'ester est formé, et le catalyseur est régénéré, prêt à recommencer. Chaque étape est une conséquence directe de la polarité du carbonyle vue en première partie.",
+   "texte": "Protoner, attaquer, transférer, éliminer, déprotoner.",
+   "ecran": "mecanisme"
+  },
+  {
+   "id": "p22",
+   "dit": "Le chemin inverse existe, en deux versions. L'hydrolyse acide d'un ester refait un acide et un alcool : c'est exactement le mécanisme de Fischer lu à l'envers. La saponification, elle, utilise une base : l'ester donne un ion carboxylate et un alcool, et la réaction est irréversible, parce que l'ion carboxylate ne réagit plus avec l'alcool. C'est la réaction des savons : les ions carboxylate à longue chaîne s'organisent en micelles, la tête hydrophile vers l'eau, la queue hydrophobe vers les graisses. Le savon n'est rien d'autre qu'un ester hydrolysé.",
+   "texte": "Saponification irréversible ; hydrolyse acide, inverse de Fischer.",
+   "ecran": "savons"
+  },
+  {
+   "id": "p23",
+   "dit": "Les esters sont les parfumeurs de la chimie. L'acétate d'isoamyle sent la banane, l'acétate de benzyle sent le jasmin : une poignée d'esters suffit à parfumer bonbons, boissons et cosmétiques. Les carbonyles ont aussi leurs arômes : la vanilline de la vanille, le cinnamaldéhyde de la cannelle, le benzaldéhyde de l'amande amère. Et les esters servent bien au-delà des odeurs : le plastique des bouteilles, le P-E-T, est un polyester ; le biodiesel naît d'une réaction cousine, la transestérification des huiles ; et les graisses de nos cellules, les triglycérides, sont des triesters du glycérol.",
+   "texte": "Banane, jasmin, vanille : les esters et carbonyles parfument.",
+   "ecran": "aromes"
+  },
+  {
+   "id": "p24",
+   "dit": "Côté industrie, les alcools sont des géants. Le méthanol dépasse les cent millions de tonnes par an, fabriqué à partir du gaz de synthèse ; une grande partie est oxydée en formaldéhyde pour les résines, et il sert aussi de carburant. L'éthanol vient de la fermentation du glucose par les levures, qui dégage du dioxyde de carbone : il sert d'antiseptique, à soixante-dix pour cent, de carburant et de matière première. Le glycérol, un trialcool, forme le squelette des graisses et entre dans la nitroglycérine. Trois alcools, trois échelles du monde réel.",
+   "texte": "Méthanol > 100 Mt/an ; éthanol de fermentation ; glycérol.",
+   "ecran": "industrie"
+  },
+  {
+   "id": "p25",
+   "dit": "Zoom sur le plus simple des aldéhydes : le formaldéhyde, ou méthanal. C'est un gaz que l'on conserve en solution à trente-sept pour cent, le formol. Il fixe et conserve les tissus biologiques, désinfecte, et surtout il nourrit l'industrie des résines : colles pour panneaux de bois, plastiques thermodurcissables. C'est aussi un précurseur de grandes synthèses, vers le pentaérythritol ou les polyuréthanes. Mais c'est un produit cancérogène avéré : on ne le manipule qu'avec des protections sérieuses. Retenez le paradoxe : la plus petite molécule de sa famille est l'une des plus produites, et l'une des plus dangereuses.",
+   "texte": "Formol 37 % : résines et fixateur, mais cancérogène.",
+   "ecran": "formaldehyde"
+  },
+  {
+   "id": "p26",
+   "dit": "Terminons le tour des applications par trois molécules qui changent le monde. L'acide acétique : vinaigre à environ huit pour cent, mais aussi matière première des colles blanches et du P-E-T. L'acide citrique : plus de deux millions de tonnes par an, produites par un champignon, conservateur alimentaire et acteur du cycle de Krebs, le moteur énergétique de nos cellules. Et l'acide salicylique, tiré de l'écorce de saule : en l'acétylant, on obtient l'aspirine, moins irritante pour l'estomac et capable de bloquer durablement les enzymes de la douleur. Ajoutez l'acétone, devenue bisphénol A puis polycarbonates et Plexiglas, et vous voyez que nos quatre familles écrivent une grande partie de la chimie du quotidien.",
+   "texte": "Vinaigre, E330, aspirine : les acides au quotidien.",
+   "ecran": "acides_vie"
+  },
+  {
+   "id": "p27",
+   "dit": "Premier exercice d'intégration : le détective chimiste. Un composé inconnu, de formule brute cé quatre ache huit o, passe quatre tests. Avec le bicarbonate de sodium : aucune bulle, ce n'est donc pas un acide. Avec le réactif de Tollens : un miroir d'argent, c'est un aldéhyde. Avec la dé-èn-pé-ache : un précipité orange, le carbonyle est confirmé. Avec le réactif de Lucas : rien à froid, ce qui est cohérent avec un aldéhyde. Deux structures seulement conviennent : le butanal, à chaîne droite, et le deux-méthylpropanal, à chaîne ramifiée. Pour les départager, on compare leurs dérivés : les solides formés avec la dé-èn-pé-ache n'ont pas le même point de fusion.",
+   "texte": "Tollens et DNPH positifs = aldéhyde : butanal ou 2-méthylpropanal.",
+   "ecran": "detective"
+  },
+  {
+   "id": "p28",
+   "dit": "Deuxième exercice : fabriquer l'éthanoate de butyle, l'ester à l'odeur de poire, en partant de l'éthanol. Première étape : oxyder l'éthanol en acide éthanoïque, avec le dichromate en excès et des conditions énergiques, pour ne pas s'arrêter à l'aldéhyde. Deuxième étape : estérifier cet acide avec le butan-un-ol, sous catalyse acide, en chauffant à reflux pour accélérer sans perdre les réactifs volatils. Et comme l'estérification est un équilibre, on met l'alcool en excès pour déplacer la réaction vers l'ester : c'est le principe de Le Chatelier, déjà rencontré. Deux étapes, trois notions du cours : oxydation, estérification, équilibre.",
+   "texte": "Oxyder, puis estérifier en excès d'alcool : éthanoate de butyle.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p29",
+   "dit": "Troisième exercice : la même chimie, dans la cellule. Pendant la glycolyse, qui dégrade le glucose, une étape oxyde un aldéhyde, le glycéraldéhyde-trois-phosphate, en un acide. L'oxydant n'est pas le dichromate, évidemment : c'est une coenzyme, l'ène-a-dé plus, qui joue le rôle d'accepteur d'électrons. Et cette oxydation est couplée à la fabrication d'une liaison très riche en énergie, qui permettra ensuite de produire de l'A-T-P, la monnaie énergétique de la cellule. Leçon de l'exercice : les réactions de nos tubes à essai sont les mêmes que celles du vivant ; la cellule les catalyse et les couple avec une efficacité remarquable.",
+   "texte": "Glycolyse : NAD+ oxyde un aldéhyde, l'énergie devient ATP.",
+   "ecran": "metabolisme"
+  },
+  {
+   "id": "p30",
+   "dit": "Gardez la boîte à outils du chimiste, notre tableau de bord final. Un alcool primaire s'oxyde en aldéhyde puis en acide, et répond lentement au test de Lucas ; un alcool secondaire donne une cétone et réagit plus vite. Un aldéhyde s'oxyde en acide, donne le miroir d'argent de Tollens et précipite avec la dé-èn-pé-ache. Une cétone résiste aux oxydants doux mais précipite aussi avec la dé-èn-pé-ache. Un acide fait des bulles de dioxyde de carbone avec le bicarbonate et se transforme en ester. Face à un inconnu, ces tests, combinés, identifient la famille en quelques minutes.",
+   "texte": "Lucas, Tollens, DNPH, NaHCO3 : la famille en quatre tests.",
+   "ecran": "boite"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour terminer, retenez l'enchaînement complet. La structure commande les propriétés : la polarité de l'oxygène explique la cohésion, la solubilité et l'acidité. Les propriétés commandent les réactions : oxydations le long de l'échelle, réductions en sens inverse, estérification équilibrée. Et ces réactions, maîtrisées, deviennent des synthèses, des médicaments, des plastiques et même le métabolisme de nos cellules. Un atome d'oxygène, quatre familles, et toute une chimie qui tient ensemble.",
+   "texte": "Structure → propriétés → réactions → synthèse.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Quatre familles autour d'un oxygène"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Propriétés, oxydation et réduction",
+   "pont": {
+    "dit": "Partie deux : les propriétés et les grandes réactions. Nous allons voir comment la polarité explique l'ébullition, la solubilité et l'acidité de nos familles, puis suivre leurs transformations : oxydations par le dichromate ou le permanganate, et réductions par les hydrures.",
+    "texte": "Partie 2 : propriétés, oxydation, réduction."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Estérification, applications et exercices",
+   "pont": {
+    "dit": "Partie trois : l'estérification et les applications. Nous allons assembler un acide et un alcool pour fabriquer un ester, comprendre le mécanisme de Fischer, puis parcourir les applications industrielles et biologiques, avant de tout réunir dans trois exercices de synthèse.",
+    "texte": "Partie 3 : esters, applications, exercices."
+   }
+  }
+ ]
+}

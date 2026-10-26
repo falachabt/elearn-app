@@ -3552,6 +3552,26 @@ const FIG = {
       mot(cx, cy + 6, 'C₆H₆', { t: 22 }) +
       mot(500, 292, '6 électrons π délocalisés — règle de Hückel : 4n + 2', { t: 20 }));
   },
+  familles_oxygenees_fig(t) {
+    const O = (x, y) => `<circle cx="${x}" cy="${y}" r="17" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(x, y + 6, 'O', { c: '#E8604C', t: 19 });
+    const grp = (x, txt) => mot(x, 120, txt, { c: '#B8860B', t: 24 });
+    return svgBoite(
+      grp(140, 'R') + trait(162, 120, 196, 120, 1, { w: 4 }) + O(218, 120) + trait(235, 120, 258, 120, 1, { w: 4 }) + mot(272, 128, 'H', { t: 22 }) +
+      mot(180, 190, 'alcool', { t: 21 }) + mot(180, 216, 'groupe hydroxyle', { t: 16 }) +
+      grp(330, 'R') + trait(352, 120, 380, 120, 1, { w: 4 }) + mot(398, 128, 'C', { t: 23 }) +
+      trait(392, 108, 392, 76, 1, { w: 4 }) + trait(404, 108, 404, 76, 1, { w: 4 }) + O(398, 56) +
+      trait(414, 124, 436, 138, 1, { w: 4 }) + mot(448, 148, 'H', { t: 20 }) +
+      mot(400, 190, 'aldéhyde', { t: 21 }) + mot(400, 216, 'carbonyle terminal', { t: 16 }) +
+      grp(560, 'R') + trait(582, 120, 610, 120, 1, { w: 4 }) + mot(628, 128, 'C', { t: 23 }) +
+      trait(622, 108, 622, 76, 1, { w: 4 }) + trait(634, 108, 634, 76, 1, { w: 4 }) + O(628, 56) +
+      trait(644, 120, 672, 120, 1, { w: 4 }) + mot(690, 128, 'R′', { c: '#B8860B', t: 22 }) +
+      mot(625, 190, 'cétone', { t: 21 }) + mot(625, 216, 'carbonyle interne', { t: 16 }) +
+      grp(790, 'R') + trait(812, 120, 840, 120, 1, { w: 4 }) + mot(858, 128, 'C', { t: 23 }) +
+      trait(852, 108, 852, 76, 1, { w: 4 }) + trait(864, 108, 864, 76, 1, { w: 4 }) + O(858, 56) +
+      trait(874, 120, 896, 120, 1, { w: 4 }) + O(918, 120) + trait(935, 120, 954, 120, 1, { w: 4 }) + mot(966, 128, 'H', { t: 20 }) +
+      mot(870, 190, 'acide carboxylique', { t: 21 }) + mot(870, 216, 'groupe carboxyle', { t: 16 }) +
+      mot(500, 272, 'quatre familles, un même oxygène', { t: 22 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
