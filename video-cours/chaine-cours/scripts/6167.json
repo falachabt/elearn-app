@@ -1,0 +1,444 @@
+{
+ "cours": 6167,
+ "ecrans": {
+  "arctan": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Hybride · parties, puis substitution",
+   "tex": [
+    "\\textstyle \\int \\arctan x\\,dx = \\int 1 \\cdot \\arctan x\\,dx",
+    "\\textstyle = x \\arctan x - \\int \\tfrac{x}{1+x^2}\\,dx",
+    "\\textstyle = x \\arctan x - \\tfrac{1}{2}\\ln(1+x^2) + C"
+   ],
+   "titre": "Un produit caché, puis la substitution t égal à un plus x carré",
+   "type": "etape"
+  },
+  "boucle": {
+   "kicker": "Le phénomène de la boucle",
+   "tex": [
+    "\\textstyle I = \\int e^x \\sin x\\,dx = -e^x \\cos x + \\int e^x \\cos x\\,dx",
+    "\\textstyle J = e^x \\sin x - I",
+    "\\textstyle 2I = e^x(\\sin x - \\cos x)",
+    "\\textstyle I = \\tfrac{e^x}{2}(\\sin x - \\cos x) + C"
+   ],
+   "titre": "L'intégrale de départ réapparaît : on résout une équation",
+   "type": "etape"
+  },
+  "centre_masse": {
+   "kicker": "Application · le centre de masse d'une tige",
+   "tex": [
+    "\\lambda(x) = kx^2 \\qquad \\bar{x} = \\tfrac{\\int_0^L x\\,\\lambda(x)\\,dx}{\\int_0^L \\lambda(x)\\,dx}",
+    "\\bar{x} = \\tfrac{\\int_0^L x^3\\,dx}{\\int_0^L x^2\\,dx} = \\tfrac{L^4/4}{L^3/3}",
+    "\\bar{x} = \\tfrac{3L}{4}"
+   ],
+   "titre": "Une densité en x carré : le centre est aux trois quarts",
+   "type": "etape"
+  },
+  "choix": {
+   "kicker": "Choisir u et dv · la règle LIATE",
+   "tex": [
+    "\\textstyle \\text{L : logarithme, I : inverse}",
+    "\\textstyle \\text{A : algébrique, T : trigonométrique}",
+    "\\textstyle \\text{E : exponentielle, u au plus haut}",
+    "\\textstyle du = u'\\,dx \\qquad v = \\int dv"
+   ],
+   "titre": "Attribuer, différencier, appliquer, résoudre",
+   "type": "etape"
+  },
+  "cycloide": {
+   "anim": {
+    "nom": "cycloide_fig",
+    "hauteur": 100
+   },
+   "kicker": "Application · l'aire sous une arche de cycloïde",
+   "tex": [
+    "\\textstyle A = R^2 \\int_0^{2\\pi} (1 - \\cos t)^2\\,dt, \\quad \\cos^2 t = \\tfrac{1 + \\cos 2t}{2}",
+    "\\textstyle A = R^2 \\int_0^{2\\pi} \\left(\\tfrac{3}{2} - 2\\cos t + \\tfrac{1}{2}\\cos 2t\\right) dt",
+    "\\textstyle A = 3\\pi R^2"
+   ],
+   "titre": "Trois fois l'aire du cercle qui roule",
+   "type": "etape"
+  },
+  "diagnostic": {
+   "kicker": "Le diagnostic avant le calcul",
+   "tex": [
+    "\\int x\\,e^{x^2}\\,dx : \\text{ composition déguisée, substitution}",
+    "\\int x\\,e^{x}\\,dx : \\text{ produit de familles, par parties}",
+    "\\text{même apparence, deux méthodes opposées}"
+   ],
+   "titre": "Composition ou produit : regarder avant d'agir",
+   "type": "etape"
+  },
+  "esperance_exp": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Application · l'espérance de la loi exponentielle",
+   "tex": [
+    "\\textstyle E[X] = \\int_0^{\\infty} x\\,\\lambda e^{-\\lambda x}\\,dx",
+    "\\textstyle u = x, \\quad dv = \\lambda e^{-\\lambda x}\\,dx",
+    "\\textstyle E[X] = \\tfrac{1}{\\lambda}"
+   ],
+   "titre": "Un calcul par parties au cœur des probabilités",
+   "type": "etape"
+  },
+  "ex_ln": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "log_courbes_fig"
+   },
+   "kicker": "Exemple · le logarithme seul",
+   "tex": [
+    "\\textstyle \\int \\ln x\\,dx = \\int 1 \\cdot \\ln x\\,dx",
+    "\\textstyle u = \\ln x \\Rightarrow du = \\tfrac{1}{x}dx \\qquad dv = dx \\Rightarrow v = x",
+    "\\textstyle \\int \\ln x\\,dx = x \\ln x - x + C"
+   ],
+   "titre": "Écrire un fois le logarithme : le produit caché",
+   "type": "etape"
+  },
+  "ex_subst1": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "exponentielle_fig"
+   },
+   "kicker": "Exemple · la substitution parfaite",
+   "tex": [
+    "\\textstyle u = x^2 \\Rightarrow du = 2x\\,dx",
+    "\\textstyle \\int 2x\\,e^{x^2}\\,dx = \\int e^u\\,du",
+    "\\textstyle = e^{x^2} + C"
+   ],
+   "titre": "L'intérieur est x carré, et sa dérivée est présente",
+   "type": "etape"
+  },
+  "ex_subst_def": {
+   "kicker": "Exemple · une intégrale définie par substitution",
+   "tex": [
+    "u = x^2 + 1, \\quad du = 2x\\,dx, \\quad \\text{bornes : } 1 \\text{ et } 5",
+    "\\int_0^2 \\tfrac{x}{(x^2+1)^2}\\,dx = \\tfrac{1}{2}\\int_1^5 u^{-2}\\,du",
+    "= \\tfrac{1}{2}\\left[-\\tfrac{1}{u}\\right]_1^5 = \\tfrac{2}{5}"
+   ],
+   "titre": "Changer aussi les bornes : un calcul sans retour en arrière",
+   "type": "etape"
+  },
+  "ex_tan": {
+   "kicker": "Exemple · la tangente, en intégrale définie",
+   "tex": [
+    "\\tan x = \\tfrac{\\sin x}{\\cos x}, \\quad u = \\cos x, \\quad du = -\\sin x\\,dx",
+    "\\int_0^{\\pi/4} \\tan x\\,dx = \\left[-\\ln|u|\\right] \\text{ bornes changées}",
+    "= -\\ln\\left(\\tfrac{\\sqrt{2}}{2}\\right) = \\tfrac{1}{2}\\ln 2"
+   ],
+   "titre": "La dérivée du dénominateur est presque le numérateur",
+   "type": "etape"
+  },
+  "ex_xex": {
+   "kicker": "Exemple fondateur · x fois exponentielle x",
+   "tex": [
+    "u = x \\Rightarrow du = dx \\qquad dv = e^x dx \\Rightarrow v = e^x",
+    "\\int x e^x\\,dx = x e^x - \\int e^x\\,dx",
+    "= x e^x - e^x + C = e^x(x - 1) + C"
+   ],
+   "titre": "Dériver le polynôme, intégrer l'exponentielle",
+   "type": "etape"
+  },
+  "hybride": {
+   "kicker": "Combinaison · substitution, puis parties",
+   "tex": [
+    "t = \\sqrt{x} \\Rightarrow dx = 2t\\,dt",
+    "\\int e^{\\sqrt{x}}\\,dx = 2\\int t e^t\\,dt",
+    "= 2e^{\\sqrt{x}}\\left(\\sqrt{x} - 1\\right) + C"
+   ],
+   "titre": "La racine bloque tout : on la remplace d'abord",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Dériver est mécanique, intégrer est un art : il n'existe pas de règle de l'intégrale d'un produit. Deux techniques, héritées des règles de dérivation, prennent le relais.",
+   "type": "phrase"
+  },
+  "iteree": {
+   "kicker": "Par parties, deux fois de suite",
+   "tex": [
+    "\\textstyle \\int x^2 e^x\\,dx = x^2 e^x - \\int 2x e^x\\,dx",
+    "\\textstyle \\int x e^x\\,dx = x e^x - e^x + C",
+    "\\textstyle \\int x^2 e^x\\,dx = e^x\\left(x^2 - 2x + 2\\right) + C"
+   ],
+   "titre": "Chaque application fait baisser le degré de un",
+   "type": "etape"
+  },
+  "parties_formule": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Intégration par parties · la formule",
+   "note": "Issue de la dérivée d'un produit, intégrée des deux côtés. On échange une intégrale contre une autre, plus simple.",
+   "tex": "\\int u\\,dv = uv - \\int v\\,du",
+   "type": "formule"
+  },
+  "piege": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Le piège du mauvais choix",
+   "texte": "Choisir u = eˣ pour ∫ x eˣ dx donne v = x²/2 et une intégrale en x²eˣ : plus dure que le départ. Le degré qui monte, c'est le signal de revenir en arrière.",
+   "type": "phrase"
+  },
+  "quart_cercle": {
+   "kicker": "Substitution trigonométrique · le quart de cercle",
+   "tex": [
+    "x = R\\sin\\theta \\Rightarrow dx = R\\cos\\theta\\,d\\theta",
+    "A = R^2 \\int_0^{\\pi/2} \\cos^2\\theta\\,d\\theta",
+    "A = \\tfrac{\\pi R^2}{4}"
+   ],
+   "titre": "La racine de R carré moins x carré devient un cosinus",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Produit de familles : par parties, règle LIATE",
+    "Composition et sa dérivée : substitution",
+    "Le degré baisse, ou la boucle se résout",
+    "Bornes changées, ou retour à la variable",
+    "Toujours vérifier en dérivant le résultat"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "strategie": {
+   "etapes": [
+    "Composition repérée : substitution d'abord",
+    "Produit de familles différentes : par parties",
+    "Racine carrée : substitution trigonométrique",
+    "Aucune des deux : combiner, preparer, itérer"
+   ],
+   "kicker": "Stratégie d'épreuve",
+   "type": "recap"
+  },
+  "subst_arcsin": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "graphe_fig"
+   },
+   "kicker": "Substitution trigonométrique · la forme en racine",
+   "tex": [
+    "\\textstyle x = \\sin t \\Rightarrow dx = \\cos t\\,dt",
+    "\\textstyle \\sqrt{1 - x^2} = \\cos t \\quad \\text{sur } \\left[-\\tfrac{\\pi}{2}, \\tfrac{\\pi}{2}\\right]",
+    "\\textstyle \\int \\tfrac{dx}{\\sqrt{1-x^2}} = \\int dt = \\arcsin x + C"
+   ],
+   "titre": "Poser x égal à sinus t fait disparaître la racine",
+   "type": "etape"
+  },
+  "subst_formule": {
+   "anim": {
+    "hauteur": 210,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Changement de variable · la formule",
+   "note": "L'analogue de la dérivation en chaîne : repérer une fonction intérieure dont la dérivée, à un facteur près, est présente.",
+   "tex": "\\int f(g(x))\\,g'(x)\\,dx = \\int f(u)\\,du, \\quad u = g(x)",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "primitives_famille_fig"
+   },
+   "kicker": "Mathématique · Techniques d'intégration",
+   "sous": "Intégration par parties, changement de variable, et l'art de les combiner",
+   "titre": "Techniques d'intégration : par parties et par substitution",
+   "type": "titre"
+  },
+  "valeur_actuelle": {
+   "anim": {
+    "hauteur": 100,
+    "nom": "escompte_fig"
+   },
+   "kicker": "Application · la valeur actuelle d'un revenu continu",
+   "tex": [
+    "\\textstyle V = \\int_0^{10} 5000\\,e^{0{,}05t}\\,e^{-0{,}07t}\\,dt = 5000\\int_0^{10} e^{-0{,}02t}\\,dt",
+    "\\textstyle V = 250000\\left(1 - e^{-0{,}2}\\right)",
+    "\\textstyle V \\approx 45\\,317 \\text{ dollars}"
+   ],
+   "titre": "Deux exponentielles qui se combinent en une seule",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "L'intégration par parties : défaire un produit"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : le changement de variable. Nous verrons la formule de substitution, ses exemples fondateurs avec le changement des bornes, le diagnostic qui distingue une composition déguisée d'un vrai produit, et les premières combinaisons des deux méthodes.",
+    "texte": "Partie 2 : le changement de variable, le diagnostic et les premières combinaisons."
+   },
+   "sous_titre": "Le changement de variable : changer de perspective"
+  },
+  {
+   "debut": "p17",
+   "pont": {
+    "dit": "Partie trois : combiner et appliquer. Les substitutions trigonométriques, la combinaison des deux méthodes dans les deux sens, puis les applications : aire de la cycloïde, centre de masse, espérance d'une loi exponentielle et valeur actuelle d'un revenu continu.",
+    "texte": "Partie 3 : substitutions trigonométriques, combinaisons et applications."
+   },
+   "sous_titre": "Combinaisons et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux techniques d'intégration. Jusqu'ici, vous connaissiez les primitives immédiates, pour des fonctions simples. Mais face à un produit comme x fois exponentielle x, ou à une composition comme exponentielle de x carré, ces formules ne suffisent plus. Nous allons maîtriser les deux grandes méthodes de base : l'intégration par parties et le changement de variable.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Par parties et par substitution : les deux grandes méthodes."
+  },
+  {
+   "dit": "Pourquoi faut-il des techniques ? Parce que dériver et intégrer ne se ressemblent pas. Dériver un produit ou une composée suit des règles mécaniques, valables à tous les coups. Intégrer n'a pas de règle du produit : chercher une primitive est un art de reconnaissance. Chaque grande technique est donc l'ombre renversée d'une règle de dérivation, et tout le cours consiste à apprendre à les reconnaître.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Pas de règle du produit en intégration : un art."
+  },
+  {
+   "dit": "Première méthode : l'intégration par parties, née de la dérivée d'un produit. Intégrez des deux côtés la formule de dérivation de u fois v : le terme en u v survit, et il reste une égalité entre deux intégrales. En la réarrangeant, on obtient la formule canonique : l'intégrale de u fois d v vaut u v moins l'intégrale de v fois d u. On échange une intégrale contre une autre, en espérant qu'elle soit plus simple.",
+   "ecran": "parties_formule",
+   "id": "p03",
+   "texte": "∫u dv = uv − ∫v du : échanger une difficulté."
+  },
+  {
+   "dit": "Tout le succès tient au choix de u et de d v. La règle LIATE classe les familles par priorité pour u : logarithme d'abord, puis inverse trigonométrique, puis algébrique, puis trigonométrique, et exponentielle en dernier. La démarche suit quatre étapes : attribuer u et d v, calculer d u et v, appliquer la formule, puis résoudre l'intégrale restante. Si elle est plus dure que le départ, le choix était mauvais.",
+   "ecran": "choix",
+   "id": "p04",
+   "texte": "LIATE : L, I, A, T, E — choisir u au plus haut."
+  },
+  {
+   "dit": "Exemple fondateur : l'intégrale de x fois exponentielle x. La règle donne u égal à x, famille algébrique avant l'exponentielle. Alors d u vaut d x, et v est exponentielle x. La formule donne x exponentielle x moins l'intégrale de l'exponentielle, c'est-à-dire x exponentielle x moins exponentielle x. Vérification par dérivation : on retombe exactement sur x exponentielle x.",
+   "ecran": "ex_xex",
+   "id": "p05",
+   "texte": "∫x eˣ dx = eˣ(x − 1) + C : le cas d'école."
+  },
+  {
+   "dit": "Deuxième classique, plus astucieux : l'intégrale du logarithme de x, où aucun produit n'est visible. L'astuce consiste à écrire un fois logarithme x. Le logarithme, prioritaire, devient u ; sa dérivée est un sur x ; et v vaut x. Il vient x logarithme x moins l'intégrale de un, soit x logarithme x moins x. Un résultat fondamental, à connaître par cœur.",
+   "ecran": "ex_ln",
+   "id": "p06",
+   "texte": "∫ln x dx = x ln x − x + C : le produit caché."
+  },
+  {
+   "dit": "Parfois, une application ne suffit pas. Pour x carré fois exponentielle x, la première application fait apparaître deux fois l'intégrale de x exponentielle x, que l'on sait calculer par une seconde application. Le polynôme perd un degré à chaque passage, jusqu'à disparaître. Résultat : exponentielle x fois la quantité x carré moins deux x plus deux.",
+   "ecran": "iteree",
+   "id": "p07",
+   "texte": "Itérer : le degré baisse de un à chaque passage."
+  },
+  {
+   "dit": "Le cas le plus élégant est celui de la boucle. Pour exponentielle x fois sinus x, deux applications successives font réapparaître l'intégrale de départ dans le résultat. Au lieu de tourner en rond, on la traite comme une inconnue : on obtient une équation, deux fois l'intégrale égale exponentielle x fois sinus x moins cosinus x, et l'on divise par deux. Le cycle devient la solution.",
+   "ecran": "boucle",
+   "id": "p08",
+   "texte": "La boucle : 2I = eˣ(sin x − cos x), on résout."
+  },
+  {
+   "dit": "Le piège symétrique est le mauvais choix. Si, pour x exponentielle x, vous prenez u égal à l'exponentielle, alors v vaut x carré sur deux et la nouvelle intégrale contient x carré fois l'exponentielle : le degré a augmenté, le problème est devenu plus dur. Ce signal doit vous faire revenir en arrière et inverser le choix, sans insister.",
+   "ecran": "piege",
+   "id": "p09",
+   "texte": "Le degré monte ? Revenir en arrière et inverser."
+  },
+  {
+   "dit": "Deuxième grande méthode : le changement de variable, ou substitution, l'analogue de la dérivation en chaîne. Si l'intégrande contient une fonction composée dont la dérivée est aussi présente, à un facteur constant près, posez u égal à la fonction intérieure. Toute l'intégrale se réécrit en u, souvent sous une forme immédiate, puis on revient à la variable de départ.",
+   "ecran": "subst_formule",
+   "id": "p10",
+   "texte": "Substitution : poser u = l'intérieur de la composée."
+  },
+  {
+   "dit": "L'exemple parfait : l'intégrale de deux x fois exponentielle de x carré. L'intérieur de la composée est x carré, et sa dérivée, deux x, est exactement le facteur présent. Poser u égal à x carré transforme l'intégrale en celle de l'exponentielle de u, immédiate. En revenant à x, le résultat est exponentielle de x carré, plus une constante.",
+   "ecran": "ex_subst1",
+   "id": "p11",
+   "texte": "∫2x e^(x²) dx = e^(x²) + C : le signal parfait."
+  },
+  {
+   "dit": "Avec une intégrale définie, il faut aussi changer les bornes. Exemple : la tangente entre zéro et pi sur quatre, écrite comme sinus sur cosinus. On pose u égal à cosinus x, dont la dérivée est moins sinus x, presque le numérateur. Les bornes deviennent un et racine de deux sur deux, et le calcul donne moins le logarithme de racine de deux sur deux, c'est-à-dire un demi de logarithme de deux.",
+   "ecran": "ex_tan",
+   "id": "p12",
+   "texte": "∫₀^(π/4) tan x dx = (1/2) ln 2 : bornes changées."
+  },
+  {
+   "dit": "Autre intégrale définie : x divisé par le carré de x carré plus un, entre zéro et deux. On pose u égal à x carré plus un ; alors d u vaut deux x d x, et les bornes deviennent un et cinq. L'intégrale se réduit à un demi de l'intégrale de u puissance moins deux, et le calcul donne deux cinquièmes. Changer les bornes évite tout retour en arrière : c'est la voie la plus propre.",
+   "ecran": "ex_subst_def",
+   "id": "p13",
+   "texte": "∫₀² x/(x²+1)² dx = 2/5 : sans retour en arrière."
+  },
+  {
+   "dit": "Le vrai savoir-faire est le diagnostic. Comparez deux intégrales presque jumelles. Celle de x fois exponentielle de x carré ressemble à un produit, mais la dérivée de x carré est présente : c'est une composition déguisée, la substitution donne un demi d'exponentielle de x carré. Celle de x fois exponentielle x est un vrai produit de deux familles : c'est l'intégration par parties. Regarder avant d'agir, voilà la compétence centrale.",
+   "ecran": "diagnostic",
+   "id": "p14",
+   "texte": "x e^(x²) : substitution. x eˣ : par parties."
+  },
+  {
+   "dit": "Les deux méthodes se combinent souvent. Pour l'arc tangente de x, on commence par parties, avec le produit caché un fois arc tangente. Il reste l'intégrale de x sur un plus x carré, qui se résout par la substitution t égal à un plus x carré. Résultat : x arc tangente x moins un demi de logarithme de un plus x carré. Parties d'abord, substitution ensuite : un enchaînement à retenir.",
+   "ecran": "arctan",
+   "id": "p15",
+   "texte": "∫arctan x dx : parties, puis substitution."
+  },
+  {
+   "dit": "Les racines carrées appellent une substitution trigonométrique ciblée. Devant la racine de a carré moins x carré, posez x égal à a fois sinus thêta : la racine devient un cosinus. Application immédiate : l'intégrale de un sur racine de un moins x carré devient l'intégrale de un, et l'on obtient arc sinus x. La géométrie du cercle vient de démontrer un résultat d'analyse.",
+   "ecran": "subst_arcsin",
+   "id": "p16",
+   "texte": "x = sin t : la racine devient cos t, ∫ = arcsin."
+  },
+  {
+   "dit": "Grande application géométrique : l'aire sous une arche de cycloïde, la courbe tracée par un point d'un cercle qui roule. L'intégrale fait apparaître un moins cosinus t, le tout au carré. On linéarise le carré du cosinus grâce à l'identité avec le cosinus de deux t, et chaque terme s'intègre directement. L'aire vaut trois pi R carré : trois fois l'aire du cercle qui roule.",
+   "ecran": "cycloide",
+   "id": "p17",
+   "texte": "Arche de cycloïde : aire = 3πR²."
+  },
+  {
+   "dit": "En physique, cherchons le centre de masse d'une tige de longueur L dont la densité varie comme k fois x carré. Le centre est le quotient de deux intégrales : celle de x cube sur celle de x carré, les constantes se simplifiant. On obtient L puissance quatre sur quatre divisé par L cube sur trois, soit trois L sur quatre : le centre penche vers l'extrémité la plus dense, comme l'intuition l'exige.",
+   "ecran": "centre_masse",
+   "id": "p18",
+   "texte": "Centre de masse : 3L/4, côté dense."
+  },
+  {
+   "dit": "Retour à la géométrie, par substitution trigonométrique : l'aire d'un quart de cercle de rayon R est l'intégrale de la racine de R carré moins x carré. Poser x égal à R sinus thêta transforme l'intégrale en R carré fois l'intégrale du carré du cosinus, que l'on linéarise. Le résultat est pi R carré sur quatre : exactement le quart de l'aire du cercle complet, retrouvée par le calcul.",
+   "ecran": "quart_cercle",
+   "id": "p19",
+   "texte": "Quart de cercle par substitution : πR²/4."
+  },
+  {
+   "dit": "Combinaison dans l'autre sens : substitution d'abord, parties ensuite. L'intégrale de l'exponentielle de racine de x résiste aux deux méthodes séparées. Posez t égal à racine de x : d x vaut deux t d t, et l'intégrale devient deux fois celle de t exponentielle t, un cas d'école par parties. Résultat final : deux exponentielle de racine de x, fois racine de x moins un.",
+   "ecran": "hybride",
+   "id": "p20",
+   "texte": "∫e^(√x) dx = 2e^(√x)(√x − 1) + C."
+  },
+  {
+   "dit": "En probabilités, l'espérance de la loi exponentielle de paramètre lambda est l'intégrale de x fois lambda exponentielle moins lambda x, de zéro à l'infini. Une intégration par parties, avec u égal à x, la ramène à une intégrale élémentaire, et donne un sur lambda. C'est le temps d'attente moyen d'un phénomène sans mémoire : un paramètre, une méthode, un résultat net.",
+   "ecran": "esperance_exp",
+   "id": "p21",
+   "texte": "Loi exponentielle : E[X] = 1/λ, par parties."
+  },
+  {
+   "dit": "En finance enfin, la valeur actuelle d'un revenu continu qui croît à cinq pour cent, actualisé à sept pour cent pendant dix ans, est l'intégrale du produit de deux exponentielles. Elles se combinent en une seule, d'exposant moins zéro virgule zéro deux t. Le calcul donne deux cent cinquante mille fois un moins exponentielle moins zéro virgule deux, soit environ quarante-cinq mille trois cent dix-sept dollars.",
+   "ecran": "valeur_actuelle",
+   "id": "p22",
+   "texte": "Valeur actuelle ≈ 45 317 $ : les exponentielles se combinent."
+  },
+  {
+   "dit": "En résumé stratégique : une composition dont la dérivée est présente appelle la substitution ; un produit de fonctions de familles différentes appelle l'intégration par parties ; une racine carrée de forme adaptée appelle la substitution trigonométrique ; et quand rien ne marche seul, on prépare le terrain par une substitution, puis on termine par parties, ou l'on itère.",
+   "ecran": "strategie",
+   "id": "p23",
+   "texte": "La stratégie : diagnostiquer avant de calculer."
+  },
+  {
+   "dit": "Pour conclure, retenez la démarche complète. Diagnostiquez d'abord : composition, produit, racine. Choisissez u selon LIATE pour les parties, posez u égal à l'intérieur pour la substitution, changez les bornes des intégrales définies ou revenez à la variable d'origine. Et dans tous les cas, vérifiez votre résultat en le dérivant : c'est le contrôle qualité de l'intégrateur.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Diagnostiquer, calculer, vérifier en dérivant."
+  }
+ ],
+ "titre": "Techniques d'intégration : par parties et par substitution"
+}
