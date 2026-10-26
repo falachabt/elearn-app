@@ -2058,6 +2058,56 @@ const FIG = {
       mot(620, 120, 'A a pour coordonnées', { t: 20, a: 'start' }) +
       mot(620, 150, '(2, 3, 1)', { t: 22, c: '#E8604C', a: 'start' }));
   },
+  diviseurs_parfaits_fig(t) {
+    const valeurs = ['1', '2', '4', '7', '14'];
+    let corps = mot(500, 38, 'les diviseurs propres de 28', { t: 20 });
+    valeurs.forEach((v, i) => {
+      const x = 250 + i * 110;
+      corps += `<rect x="${x - 34}" y="66" width="68" height="50" fill="#10B981" fill-opacity=".12" stroke="#10B981" stroke-width="3"/>`;
+      corps += mot(x, 99, v, { t: 23 });
+      if (i < 4) corps += mot(x + 55, 99, '+', { t: 24 });
+    });
+    corps += trait(726, 91, 760, 91, prog(t), { c: '#10B981', w: 4 });
+    corps += `<polygon points="774,91 758,83 758,99" fill="#10B981"/>`;
+    corps += mot(786, 99, '= 28', { t: 26, c: '#10B981', a: 'start' });
+    corps += mot(310, 208, '6 =', { t: 22, a: 'end' });
+    ['1', '2', '3'].forEach((v, i) => {
+      const x = 352 + i * 76;
+      corps += `<rect x="${x - 23}" y="184" width="46" height="38" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x, 210, v, { t: 20 });
+      if (i < 2) corps += mot(x + 38, 210, '+', { t: 20 });
+    });
+    return svgBoite(
+      corps +
+      mot(500, 272, 'un nombre parfait égale la somme de ses diviseurs propres', { t: 19 }));
+  },
+  suites_adjacentes_fig(t) {
+    const pt = (n, haut) => {
+      const x = 240 + n * 80;
+      const ecart = 95 * Math.pow(0.62, n);
+      return [x, Math.round(haut ? 140 - ecart : 140 + ecart)];
+    };
+    let corps = `<line x1="170" y1="245" x2="852" y2="245" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<polygon points="852,245 836,239 836,251" fill="currentColor"/>`;
+    corps += `<line x1="200" y1="140" x2="830" y2="140" stroke="#10B981" stroke-width="3" stroke-dasharray="9 7"/>`;
+    let ligneU = '', ligneV = '';
+    for (let n = 0; n <= 7; n++) {
+      const [ux, uy] = pt(n, false), [vx, vy] = pt(n, true);
+      ligneU += `${ux},${uy} `; ligneV += `${vx},${vy} `;
+      corps += `<circle cx="${ux}" cy="${uy}" r="6" fill="#1A75FF"/><circle cx="${vx}" cy="${vy}" r="6" fill="#E8604C"/>`;
+    }
+    corps = `<polyline points="${ligneV}" fill="none" stroke="#E8604C" stroke-width="3" opacity=".5"/>` +
+      `<polyline points="${ligneU}" fill="none" stroke="#1A75FF" stroke-width="3" opacity=".5"/>` + corps;
+    corps += `<line x1="400" y1="108" x2="400" y2="172" stroke="currentColor" stroke-width="3"/>`;
+    corps += `<polygon points="400,104 394,118 406,118" fill="currentColor"/><polygon points="400,176 394,162 406,162" fill="currentColor"/>`;
+    return svgBoite(
+      corps +
+      mot(842, 146, 'ℓ', { t: 22, c: '#10B981', a: 'start' }) +
+      mot(228, 232, 'uₙ', { t: 20, c: '#1A75FF', a: 'end' }) +
+      mot(228, 56, 'vₙ', { t: 20, c: '#E8604C', a: 'end' }) +
+      mot(416, 144, 'vₙ − uₙ → 0', { t: 19, a: 'start' }) +
+      mot(500, 288, "uₙ monte, vₙ descend : l'écart tend vers zéro, la limite est commune", { t: 19 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';

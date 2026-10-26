@@ -1,0 +1,373 @@
+{
+ "cours": 5897,
+ "titre": "Nombres parfaits et suites adjacentes",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Deux volets : arithmétique et analyse",
+   "titre": "Nombres parfaits et suites adjacentes",
+   "sous": "Égaux à leurs diviseurs, ou resserrées sur leur limite : deux façons de cerner un nombre",
+   "anim": {
+    "nom": "diviseurs_parfaits_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Deux façons de cerner un nombre : le décomposer en diviseurs et additionner, ou l'enfermer entre deux suites qui se resserrent."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition · nombre parfait",
+   "tex": "n \\text{ parfait } \\iff \\sum_{d \\mid n,\\ d<n} d = n",
+   "note": "s(n) désigne la somme des diviseurs propres : n est parfait si s(n) = n."
+  },
+  "ex_parfaits": {
+   "type": "etape",
+   "kicker": "Premiers exemples · vérifiés à la main",
+   "titre": "Six et vingt-huit, vérifiés à la main",
+   "tex": [
+    "6 = 1 + 2 + 3",
+    "28 = 1 + 2 + 4 + 7 + 14",
+    "\\text{les deux seuls parfaits sous } 100"
+   ],
+   "anim": {
+    "nom": "diviseurs_parfaits_fig",
+    "hauteur": 130
+   }
+  },
+  "test_nombres": {
+   "type": "etape",
+   "kicker": "La méthode directe · tester un nombre",
+   "titre": "Douze et cent : abondants, pas parfaits",
+   "tex": [
+    "12 :\\ 1+2+3+4+6 = 16 > 12",
+    "100 :\\ 1+2+4+5+10+20+25+50 = 117 > 100",
+    "s(n) > n :\\ \\text{abondant} \\qquad s(n) < n :\\ \\text{déficient}"
+   ]
+  },
+  "euclide": {
+   "type": "formule",
+   "kicker": "La formule d'Euclide",
+   "tex": "n = 2^{p-1}\\left(2^{p}-1\\right)",
+   "note": "Valable dès que 2^p − 1 est un nombre premier de Mersenne, avec p premier."
+  },
+  "euclide_table": {
+   "type": "etape",
+   "kicker": "La recette d'Euclide à l'œuvre",
+   "titre": "Quatre valeurs de p, quatre parfaits",
+   "tex": [
+    "p=2 :\\ 2^{p}-1 = 3 \\qquad n = 2 \\times 3 = 6",
+    "p=3 :\\ 2^{p}-1 = 7 \\qquad n = 4 \\times 7 = 28",
+    "p=5 :\\ 2^{p}-1 = 31 \\qquad n = 16 \\times 31 = 496",
+    "p=7 :\\ 2^{p}-1 = 127 \\qquad n = 64 \\times 127 = 8128"
+   ]
+  },
+  "grand_nombre": {
+   "type": "formule",
+   "kicker": "La même recette, un cran plus loin",
+   "tex": "2^{13}-1 = 8191 \\quad\\Rightarrow\\quad n = 2^{12} \\times 8191 = 33550336",
+   "note": "8191 est premier : le parfait associé dépasse trente-trois millions."
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des parfaits pairs",
+   "titre": "Trois propriétés à retenir",
+   "tex": [
+    "6,\\ 28,\\ 496,\\ 8128 :\\ \\text{terminaison } 6 \\text{ ou } 8",
+    "\\sum_{d \\mid n} \\tfrac{1}{d} = 2 \\quad (n \\text{ compris})",
+    "n = 1 + 2 + \\cdots + (2^{p}-1) = T_{2^{p}-1}"
+   ]
+  },
+  "histoire": {
+   "type": "etape",
+   "kicker": "D'Euclide à Euler",
+   "titre": "La boucle est bouclée au dix-huitième siècle",
+   "tex": [
+    "\\text{Euclide : la forme } 2^{p-1}(2^{p}-1) \\text{ donne un parfait}",
+    "\\text{Euler : tout parfait pair est de cette forme}",
+    "\\text{parfaits pairs } \\Longleftrightarrow \\text{ premiers de Mersenne}"
+   ]
+  },
+  "mystere": {
+   "type": "phrase",
+   "kicker": "Le mystère des impairs",
+   "texte": "Aucun nombre parfait impair n'a jamais été trouvé, et l'infinité des parfaits pairs reste inconnue : 52 connus, tous pairs."
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Volet 1 · à retenir",
+   "etapes": [
+    "Parfait : égal à ses diviseurs propres",
+    "Euclide : un Mersenne premier donne un parfait",
+    "Ils se terminent par 6 ou par 8",
+    "Parfait impair : existence inconnue"
+   ]
+  },
+  "def_adj": {
+   "type": "etape",
+   "kicker": "Définition · suites adjacentes",
+   "titre": "Deux suites, trois conditions",
+   "tex": [
+    "u_n \\text{ croissante}, \\quad v_n \\text{ décroissante}",
+    "u_n \\le v_n \\quad \\text{pour tout } n",
+    "v_n - u_n \\longrightarrow 0"
+   ],
+   "anim": {
+    "nom": "suites_adjacentes_fig",
+    "hauteur": 120
+   }
+  },
+  "theoreme": {
+   "type": "formule",
+   "kicker": "Le théorème des suites adjacentes",
+   "tex": "u_n \\le \\ell \\le v_n \\qquad u_n \\to \\ell,\\ v_n \\to \\ell",
+   "note": "Erreur à chaque rang : au plus l'écart (v_n - u_n), qui tend vers zéro.",
+   "anim": {
+    "nom": "suites_adjacentes_fig",
+    "hauteur": 190
+   }
+  },
+  "encadrement": {
+   "type": "etape",
+   "kicker": "Premier exemple · encadrement décimal",
+   "titre": "L'encadrement décimal de la racine de deux",
+   "tex": [
+    "1{,}4 < \\sqrt{2} < 1{,}5",
+    "1{,}41 < \\sqrt{2} < 1{,}42",
+    "1{,}414 < \\sqrt{2} < 1{,}415"
+   ]
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège à éviter",
+   "texte": "La suite harmonique avance par pas 1/n, qui tendent vers zéro, et diverge pourtant : monotonie et encadrement sont indispensables."
+  },
+  "somme": {
+   "type": "etape",
+   "kicker": "Exemple classique · la somme des inverses des carrés",
+   "titre": "Un encadrement de pi au carré sur six",
+   "tex": [
+    "a_n = \\sum_{k=1}^{n} \\tfrac{1}{k^2} \\qquad b_n = a_n + \\tfrac{1}{n}",
+    "a_{10} \\approx 1{,}55 \\qquad b_{10} \\approx 1{,}65",
+    "b_n - a_n = \\tfrac{1}{n} \\to 0 \\qquad \\ell = \\tfrac{\\pi^2}{6} \\approx 1{,}645"
+   ]
+  },
+  "agm": {
+   "type": "etape",
+   "kicker": "Exemple · la moyenne arithmético-géométrique",
+   "titre": "Deux moyennes qui se poursuivent",
+   "tex": [
+    "a_0 = 2 \\qquad b_0 = 1",
+    "a_{n+1} = \\tfrac{a_n + b_n}{2} \\qquad b_{n+1} = \\sqrt{a_n\\, b_n}",
+    "\\text{a décroît, b croît : elles se resserrent}"
+   ]
+  },
+  "agm_calc": {
+   "type": "etape",
+   "kicker": "L'AGM en chiffres",
+   "titre": "Deux pas suffisent presque",
+   "tex": [
+    "a_1 = 1{,}5 \\qquad b_1 = \\sqrt{2} \\approx 1{,}4142",
+    "a_2 \\approx 1{,}4571 \\qquad b_2 \\approx 1{,}4565",
+    "a_2 - b_2 \\approx 0{,}0006 \\qquad \\ell \\approx 1{,}4568"
+   ]
+  },
+  "heron": {
+   "type": "etape",
+   "kicker": "Application · l'algorithme de Héron",
+   "titre": "La racine carrée par moyennes successives",
+   "tex": [
+    "x_0 = 1{,}5 \\qquad x_{n+1} = \\tfrac{1}{2}\\left(x_n + \\tfrac{2}{x_n}\\right)",
+    "x_1 \\approx 1{,}4167 \\qquad x_2 \\approx 1{,}414216",
+    "x_n \\to \\sqrt{2} \\approx 1{,}414214"
+   ]
+  },
+  "dichotomie": {
+   "type": "etape",
+   "kicker": "Application · la dichotomie",
+   "titre": "Couper, garder la bonne moitié, recommencer",
+   "tex": [
+    "b_0 - a_0 = L",
+    "b_n - a_n = \\tfrac{L}{2^n} \\longrightarrow 0",
+    "\\text{après } 10 \\text{ pas : précision divisée par } 1024"
+   ]
+  },
+  "applications": {
+   "type": "etape",
+   "kicker": "À quoi servent les encadrements",
+   "titre": "Approcher ce qu'on ne sait pas calculer",
+   "tex": [
+    "\\text{racines et constantes sans formule exacte}",
+    "\\text{équations résolues par encadrements successifs}",
+    "\\text{la précision se lit dans l'écart final}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Adjacentes : sens opposés, écart vers zéro",
+    "Même limite, encadrée à chaque rang",
+    "AGM de 1 et 2 : environ 1,4568",
+    "Héron et dichotomie : approcher juste"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "texte": "Nombres parfaits et suites adjacentes : deux volets.",
+   "dit": "Bienvenue dans ce cours de mathématiques en deux volets. Premier volet : les nombres parfaits, égaux à la somme de leurs diviseurs propres, connus depuis Euclide. Deuxième volet : les suites adjacentes, deux suites qui se resserrent et enferment leur limite commune. Une même exigence : vérifier chaque calcul."
+  },
+  {
+   "id": "p02",
+   "ecran": "intro",
+   "texte": "Deux sujets, une exigence : tout vérifier.",
+   "dit": "Pourquoi réunir ces deux sujets ? Parce qu'ils illustrent deux façons de cerner un nombre. Pour un parfait, on le décompose et l'on additionne ses morceaux. Pour une limite, on l'approche par deux suites qui l'encadrent de plus en plus près. Dans les deux cas, aucun calcul sans vérification."
+  },
+  {
+   "id": "p03",
+   "ecran": "definition",
+   "texte": "Parfait : égal à la somme de ses diviseurs propres.",
+   "dit": "Définition. Un entier positif est dit parfait lorsqu'il est égal à la somme de ses diviseurs propres, c'est-à-dire de tous ses diviseurs positifs, lui-même excepté. On note s de enne cette somme : enne est parfait exactement quand s de enne vaut enne. Tout le volet tient dans cette phrase."
+  },
+  {
+   "id": "p04",
+   "ecran": "ex_parfaits",
+   "texte": "6 = 1 + 2 + 3 et 28 = 1 + 2 + 4 + 7 + 14.",
+   "dit": "Premier exemple, le plus petit des parfaits : six. Ses diviseurs propres sont un, deux et trois, et un plus deux plus trois font six. Deuxième exemple : vingt-huit, de diviseurs propres un, deux, quatre, sept et quatorze, dont la somme fait exactement vingt-huit. Les deux seuls parfaits sous cent."
+  },
+  {
+   "id": "p05",
+   "ecran": "test_nombres",
+   "texte": "Tester : lister les diviseurs propres, additionner.",
+   "dit": "La méthode directe : lister les diviseurs propres, puis les additionner. Douze a pour diviseurs propres un, deux, trois, quatre et six, de somme seize, supérieure à douze : douze est dit abondant. Cent donne une somme de cent dix-sept : abondant aussi. En dessous, on parlerait de déficient."
+  },
+  {
+   "id": "p06",
+   "ecran": "euclide",
+   "texte": "Euclide : 2^(p−1) × (2^p − 1), si 2^p − 1 est premier.",
+   "dit": "Comment fabriquer des parfaits sans tout tester ? Euclide a la recette pour les pairs. Choisissez un nombre premier, noté pé. Si deux puissance pé moins un est lui-même premier, c'est un nombre premier de Mersenne. Alors la puissance de deux d'exposant pé moins un, multipliée par deux puissance pé moins un, donne un parfait pair."
+  },
+  {
+   "id": "p07",
+   "ecran": "euclide_table",
+   "texte": "p = 2, 3, 5, 7 donnent 6, 28, 496, 8128.",
+   "dit": "Pour pé égal deux, Mersenne vaut trois, et le parfait vaut deux fois trois, six. Pour pé égal trois, Mersenne vaut sept, et le parfait vaut quatre fois sept, vingt-huit. Pour pé égal cinq, seize fois trente et un donne quatre cent quatre-vingt-seize. Pour pé égal sept, soixante-quatre fois cent vingt-sept donne huit mille cent vingt-huit."
+  },
+  {
+   "id": "p08",
+   "ecran": "grand_nombre",
+   "texte": "p = 13 donne 33 550 336, le suivant de la famille.",
+   "dit": "Un cran plus loin : pour pé égal treize, le nombre de Mersenne vaut huit mille cent quatre-vingt-onze, qui est premier, et le parfait associé dépasse trente-trois millions. La chasse aux grands premiers de Mersenne mobilise des réseaux d'ordinateurs bénévoles : chaque nouveau premier livre un nouveau parfait pair."
+  },
+  {
+   "id": "p09",
+   "ecran": "proprietes",
+   "texte": "Fin en 6 ou 8, inverses de somme 2, triangulaires.",
+   "dit": "Trois propriétés. Tous les parfaits pairs se terminent par six ou par huit. Ensuite, la somme des inverses de tous les diviseurs d'un parfait, lui-même compris, vaut deux. Enfin, tout parfait pair est triangulaire : la somme des entiers de un jusqu'à son nombre de Mersenne."
+  },
+  {
+   "id": "p10",
+   "ecran": "histoire",
+   "texte": "Euclide fabrique, Euler prouve que tout vient de là.",
+   "dit": "Euclide démontre sa formule dans les Éléments, il y a plus de deux mille ans. Il faut attendre Euler, au dix-huitième siècle, pour la réciproque : tout parfait pair est nécessairement de la forme d'Euclide. Parfaits pairs et premiers de Mersenne : c'est donc le même problème."
+  },
+  {
+   "id": "p11",
+   "ecran": "mystere",
+   "texte": "Un parfait impair ? Une infinité ? Toujours ouvert.",
+   "dit": "Deux questions restent ouvertes, parmi les plus anciennes. Existe-t-il un parfait impair ? Personne n'en a trouvé, et personne n'a prouvé qu'il n'en existe pas ; un tel nombre, s'il existe, serait immense. Et existe-t-il une infinité de parfaits pairs ? Là encore, silence. On en connaît cinquante-deux, tous pairs."
+  },
+  {
+   "id": "p12",
+   "ecran": "recap1",
+   "texte": "Volet 1 : l'essentiel des nombres parfaits.",
+   "dit": "Récapitulons. Un parfait est égal à la somme de ses diviseurs propres. Euclide fabrique les parfaits pairs à partir des premiers de Mersenne, et Euler a montré qu'il n'y en a pas d'autres. Ils se terminent par six ou par huit, et le cas impair reste un mystère complet."
+  },
+  {
+   "id": "p13",
+   "ecran": "def_adj",
+   "texte": "Adjacentes : sens opposés, u ≤ v, écart vers zéro.",
+   "dit": "Définition, et elle concerne deux suites à la fois. Deux suites, u et vé, sont adjacentes lorsque l'une est croissante, l'autre décroissante, lorsque u reste toujours au-dessous de vé, et lorsque l'écart vé moins u tend vers zéro. Les trois conditions ensemble : c'est leur conjonction qui fait la force du théorème."
+  },
+  {
+   "id": "p14",
+   "ecran": "theoreme",
+   "texte": "Même limite, avec uₙ ≤ ℓ ≤ vₙ à tout rang.",
+   "dit": "Le théorème des suites adjacentes affirme que les deux suites convergent, vers la même limite, notée elle. Mieux : à chaque rang, cette limite est coincée entre u indice enne et vé indice enne. La limite est approchée avec une erreur inférieure à l'écart du moment : un certificat de précision intégré."
+  },
+  {
+   "id": "p15",
+   "ecran": "encadrement",
+   "texte": "Racine de deux : l'écart fond, décimale après décimale.",
+   "dit": "Premier exemple, l'encadrement décimal de la racine carrée de deux. Elle est entre un virgule quatre et un virgule cinq, puis entre un virgule quatre un et un virgule quatre deux, puis entre un virgule quatre un quatre et un virgule quatre un cinq. Chaque étape ajoute une décimale exacte : écart un millième au troisième rang."
+  },
+  {
+   "id": "p16",
+   "ecran": "piege",
+   "texte": "Écart vers zéro tout seul ne fait pas converger.",
+   "dit": "Attention au piège. Qu'un écart entre termes consécutifs tende vers zéro ne suffit pas à faire converger une suite. La suite des sommes de la série harmonique avance par pas de un sur enne, qui tendent vers zéro, et pourtant elle grandit sans borne et diverge. Sans monotonie ni encadrement, pas de théorème."
+  },
+  {
+   "id": "p17",
+   "ecran": "somme",
+   "texte": "Somme des 1/k² encadrée : limite pi²/6, environ 1,645.",
+   "dit": "Exemple classique, calculable. Posons a indice enne égal à la somme des inverses des carrés, de un à enne, et bé indice enne égal à a indice enne plus un sur enne. La première croît, la seconde décroît, leur écart un sur enne tend vers zéro : elles sont adjacentes. Au rang dix, l'encadrement va de un virgule cinquante-cinq à un virgule soixante-cinq, limite pi au carré sur six."
+  },
+  {
+   "id": "p18",
+   "ecran": "agm",
+   "texte": "AGM : moyenne arithmétique contre moyenne géométrique.",
+   "dit": "Deuxième exemple, la moyenne arithmético-géométrique de un et deux, de Gauss. On part de bé zéro égal un et a zéro égal deux. À chaque pas, a devient la moyenne arithmétique des deux nombres, et bé leur moyenne géométrique, la racine carrée de leur produit. La suite a décroît, la suite bé croît, dans le bon ordre dès le premier pas."
+  },
+  {
+   "id": "p19",
+   "ecran": "agm_calc",
+   "texte": "En deux pas, l'écart tombe à environ 0,0006.",
+   "dit": "Calculons. Au premier pas, a vaut un virgule cinq et bé environ un virgule quatre un quatre deux. Au deuxième pas, a vaut environ un virgule quatre cinq sept un et bé un virgule quatre cinq six cinq : l'écart n'est plus que d'environ six dix-millièmes. Au pas suivant, elles coïncident presque, vers un virgule quatre cinq six huit."
+  },
+  {
+   "id": "p20",
+   "ecran": "heron",
+   "texte": "Héron : racine de deux approchée en deux pas.",
+   "dit": "Troisième application, la plus ancienne : Héron, pour la racine carrée de deux. On part de un virgule cinq, et l'on remplace chaque valeur par la moyenne entre elle-même et deux divisé par elle-même. On obtient environ un virgule quatre un six sept, puis un virgule quatre un quatre deux un six : cinq décimales correctes en deux pas."
+  },
+  {
+   "id": "p21",
+   "ecran": "dichotomie",
+   "texte": "Dichotomie : l'intervalle fond d'un facteur deux.",
+   "dit": "Autre algorithme d'encadrement : la dichotomie. Pour localiser une racine, on coupe l'intervalle en deux, on garde la moitié qui contient la racine, et l'on recommence. Les deux bornes forment deux suites adjacentes, et la longueur est divisée par deux à chaque étape : après dix étapes, la précision initiale est divisée par environ mille."
+  },
+  {
+   "id": "p22",
+   "ecran": "applications",
+   "texte": "Approcher, encadrer, certifier la précision.",
+   "dit": "Où servent ces suites ? Partout où l'on approche un nombre sans calcul direct : racines, constantes comme pi, solutions d'équations. Le principe : produire deux suites qui encadrent la cible, prouver qu'elles sont adjacentes, et lire la précision dans leur écart. Une méthode, pas seulement un théorème."
+  },
+  {
+   "id": "p23",
+   "ecran": "recap_final",
+   "texte": "Suites adjacentes : à retenir.",
+   "dit": "Pour conclure. Un nombre parfait se reconnaît à ses diviseurs et se fabrique par la formule d'Euclide. Deux suites adjacentes, monotonies opposées et écart qui tend vers zéro, livrent leur limite commune dans un encadrement qui se resserre. Même morale partout : un résultat n'existe que vérifié."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Les nombres parfaits : diviseurs, formule d'Euclide et mystère impair"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Les suites adjacentes : encadrer une limite commune",
+   "pont": {
+    "texte": "Partie 2 : deux suites qui se resserrent sur leur limite.",
+    "dit": "Partie deux : les suites adjacentes. Nous quittons les diviseurs pour les suites : l'une monte, l'autre descend, l'écart s'écrase vers zéro, et à l'arrivée une limite commune, encadrée à chaque étape."
+   }
+  }
+ ]
+}
