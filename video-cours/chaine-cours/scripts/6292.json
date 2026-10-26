@@ -1,0 +1,454 @@
+{
+  "cours": 6292,
+  "ecrans": {
+    "applications": {
+      "kicker": "Applications : vitesse et coût marginal",
+      "tex": [
+        "\\text{position } x(t) \\; \\Rightarrow \\; \\text{vitesse } v(t) = x'(t)",
+        "\\text{coût } C(q) \\Rightarrow \\text{ marginal } C_m(q) \\approx C'(q)"
+      ],
+      "titre": "Un même nombre, de la physique à l'économie",
+      "type": "etape"
+    },
+    "approx": {
+      "kicker": "L'approximation affine",
+      "tex": [
+        "f(x) \\approx f(a) + f'(a)(x - a)",
+        "\\sqrt{4{,}1} \\approx 2 + \\tfrac{1}{4} \\times 0{,}1 = 2{,}025"
+      ],
+      "titre": "Remplacer la courbe par sa tangente, tout près du point",
+      "type": "etape"
+    },
+    "chaine": {
+      "anim": {
+        "hauteur": 110,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "La règle de la chaîne : les composées",
+      "tex": [
+        "(g \\circ f)' = g'(f(x)) \\times f'(x)",
+        "h(x) = (3x^2 + 2)^5",
+        "h'(x) = 5(3x^2 + 2)^4 \\times 6x = 30x(3x^2 + 2)^4"
+      ],
+      "titre": "Dériver l'extérieur, puis multiplier par l'intérieur",
+      "type": "etape"
+    },
+    "contre_exemples": {
+      "kicker": "Continue mais pas dérivable",
+      "tex": [
+        "|x| \\text{ en } 0 : \\text{ taux } 1 \\text{ à droite}, -1 \\text{ à gauche}",
+        "\\sqrt{x} \\text{ en } 0 : \\text{ taux } = \\tfrac{1}{\\sqrt{h}} \\to +\\infty",
+        "\\text{continue ne veut pas dire dérivable}"
+      ],
+      "titre": "Point anguleux et tangente verticale",
+      "type": "etape",
+      "anim": {
+        "nom": "point_anguleux_fig",
+        "hauteur": 165
+      }
+    },
+    "deriv_cont": {
+      "kicker": "Dérivabilité et continuité",
+      "tex": [
+        "f \\text{ dérivable en } a \\; \\Rightarrow \\; f \\text{ continue en } a",
+        "f(x) - f(a) = \\tfrac{f(x) - f(a)}{x - a} \\times (x - a)",
+        "\\to f'(a) \\times 0 = 0"
+      ],
+      "titre": "Dérivable entraîne continue : la preuve en une ligne",
+      "type": "etape"
+    },
+    "extremums": {
+      "kicker": "Extremums : la condition de Fermat",
+      "tex": [
+        "\\text{extremum local en } a, f \\text{ dérivable}",
+        "\\Rightarrow f'(a) = 0",
+        "\\text{réciproque fausse : } f(x) = x^3, \\ f'(0) = 0",
+        "\\text{et pas d'extremum}"
+      ],
+      "titre": "Dérivée nulle : nécessaire, jamais suffisante",
+      "type": "etape"
+    },
+    "fonction_derivee": {
+      "kicker": "La fonction dérivée",
+      "note": "À chaque x, le nombre dérivé en x : une nouvelle fonction.",
+      "tex": "f' : x \\mapsto \\lim_{h \\to 0} \\frac{f(x + h) - f(x)}{h}",
+      "type": "formule"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "lecture_graphique_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "Partout, des quantités changent : la dérivation mesure ce changement, instant par instant.",
+      "type": "phrase"
+    },
+    "nombre_derive": {
+      "kicker": "Le nombre dérivé",
+      "note": "Forme équivalente : le quotient [f(x) − f(a)]/(x − a), quand x tend vers a.",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a + h) - f(a)}{h}",
+      "type": "formule",
+      "anim": {
+        "nom": "secante_tangente_fig",
+        "hauteur": 190
+      }
+    },
+    "optimisation": {
+      "kicker": "Optimisation : le champ contre la rivière",
+      "tex": [
+        "A(x) = x(200 - 2x) = 200x - 2x^2",
+        "x \\in [0, 100]",
+        "A'(x) = 200 - 4x = 0 \\iff x = 50",
+        "A(50) = 50 \\times 100 = 5000 \\ \\text{m}^2"
+      ],
+      "titre": "Dériver, annuler, conclure : le maximum",
+      "type": "etape"
+    },
+    "pieges": {
+      "kicker": "Les pièges classiques",
+      "tex": [
+        "\\text{produit : } (fg)' \\neq f'g' \\text{, jamais}",
+        "\\text{quotient : ne pas oublier le carré en bas}",
+        "\\text{chaîne : la dérivée intérieure}"
+      ],
+      "titre": "Trois erreurs qui coûtent des points",
+      "type": "etape"
+    },
+    "premieres": {
+      "kicker": "Premières dérivées par la limite",
+      "tex": [
+        "f(x) = c \\; \\Rightarrow \\; f'(x) = 0",
+        "f(x) = x \\; \\Rightarrow \\; f'(x) = 1",
+        "f(x) = x^2 \\; \\Rightarrow \\; f'(x) = 2x"
+      ],
+      "titre": "Constante, identité, carré : le début du tableau",
+      "type": "etape"
+    },
+    "produit": {
+      "kicker": "La règle du produit",
+      "tex": [
+        "(f \\times g)' = f'g + fg'",
+        "h(x) = (3x^2 + 2x)(x^3 - 1)",
+        "h'(x) = 15x^4 + 8x^3 - 6x - 2"
+      ],
+      "titre": "La dérivée d'un produit n'est pas le produit des dérivées",
+      "type": "etape"
+    },
+    "quotient": {
+      "kicker": "La règle du quotient",
+      "tex": [
+        "\\left(\\tfrac{f}{g}\\right)' = \\tfrac{f'g - fg'}{g^2} \\quad (g \\neq 0)",
+        "q(x) = \\tfrac{2x + 1}{x^2 - 3}",
+        "q'(x) = \\tfrac{-2x^2 - 2x - 6}{(x^2 - 3)^2}"
+      ],
+      "titre": "Haut dérivé fois bas, moins haut fois bas dérivé, sur bas au carré",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Le taux : la pente de la sécante (AM)",
+        "Nombre dérivé : la limite du taux, h → 0",
+        "f′(a) : pente de la tangente en A",
+        "Dérivable en a ⇒ continue en a"
+      ],
+      "kicker": "Fondations : l'essentiel",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Le taux devient le nombre dérivé par limite",
+        "f′(a) : pente de la tangente, vitesse locale",
+        "Règles : somme, produit, quotient, chaîne",
+        "Signe de f′ : le sens de variation",
+        "f′(a) = 0 + changement de signe : extremum"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "signe": {
+      "kicker": "Le signe de la dérivée commande les variations",
+      "tex": [
+        "\\text{si } f'(x) > 0 \\text{ sur } I : f \\text{ croissante}",
+        "\\text{si } f'(x) < 0 \\text{ sur } I : f \\text{ décroissante}",
+        "\\text{si } f'(x) = 0 \\text{ en } a : \\text{ tangente horizontale}",
+        "\\text{méthode : dériver, factoriser, signer}"
+      ],
+      "titre": "Positive, elle monte ; négative, elle descend",
+      "type": "etape"
+    },
+    "somme": {
+      "kicker": "La règle de la somme",
+      "tex": [
+        "(f + g)' = f' + g'",
+        "P(x) = 3x^2 + 5x - 2 \\; \\Rightarrow \\; P'(x) = 6x + 5"
+      ],
+      "titre": "Les variations qui se superposent s'additionnent",
+      "type": "etape"
+    },
+    "synthese": {
+      "kicker": "Synthèse : variations et tangentes horizontales",
+      "tex": [
+        "f'(x) = 3x^2 - 6x = 3x(x - 2)",
+        "\\text{tangente en } 0 : y = 2",
+        "\\text{tangente en } 2 : y = -2",
+        "\\text{deux tangentes horizontales parallèles}"
+      ],
+      "titre": "Maximum local en 0, minimum local en 2",
+      "type": "etape"
+    },
+    "tangente_eq": {
+      "kicker": "L'équation de la tangente",
+      "note": "Une droite : le point A(a ; f(a)) pour ancre, f′(a) pour pente.",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "type": "formule",
+      "anim": {
+        "nom": "secante_tangente_fig",
+        "hauteur": 190
+      }
+    },
+    "tangente_exemple": {
+      "kicker": "Exemple : tangente à la fonction inverse",
+      "tex": [
+        "f(x) = \\tfrac{1}{x}, \\quad a = 2 : \\quad f'(2) = -\\tfrac{1}{4}",
+        "y = -\\tfrac{1}{4}(x - 2) + \\tfrac{1}{2} = -\\tfrac{1}{4}x + 1"
+      ],
+      "titre": "En 2 : pente moins un quart, équation complète",
+      "type": "etape"
+    },
+    "taux_def": {
+      "kicker": "Le taux d'accroissement",
+      "note": "C'est la pente de la sécante qui joint A(a ; f(a)) et M(a + h ; f(a + h)).",
+      "tex": "\\tau(a, h) = \\frac{f(a + h) - f(a)}{h}",
+      "type": "formule",
+      "anim": {
+        "nom": "secante_tangente_fig",
+        "hauteur": 190
+      }
+    },
+    "taux_exemple": {
+      "kicker": "Exemple : le taux pour la fonction carré",
+      "tex": [
+        "\\tau(1, h) = \\tfrac{f(1 + h) - f(1)}{h} = \\tfrac{(1 + h)^2 - 1}{h}",
+        "\\tau(1, h) = \\tfrac{2h + h^2}{h} = 2 + h \\quad (h \\neq 0)",
+        "\\text{pour } f(x) = x^2 \\text{ et } a = 1"
+      ],
+      "titre": "Un taux qui se simplifie en deux plus h",
+      "type": "etape"
+    },
+    "titre": {
+      "kicker": "Mathématique · Dérivation",
+      "sous": "Du taux d'accroissement à la tangente, puis aux règles de calcul et aux variations",
+      "titre": "Dérivation : taux, tangente et variations",
+      "type": "titre",
+      "anim": {
+        "nom": "secante_tangente_fig",
+        "hauteur": 240
+      }
+    },
+    "variations": {
+      "kicker": "Étude complète : signe, variations, extremums",
+      "tex": [
+        "f'(x) = 3x^2 - 3 = 3(x - 1)(x + 1)",
+        "f' > 0 \\text{ avant } -1, \\quad f' < 0 \\text{ entre } -1 \\text{ et } 1",
+        "f(-1) = 4 \\text{ : max}, \\quad f(1) = 0 \\text{ : min}"
+      ],
+      "titre": "Un polynôme du troisième degré passé au crible",
+      "type": "etape",
+      "anim": {
+        "nom": "tableau_variations_cubique_fig",
+        "hauteur": 165
+      }
+    },
+    "vitesse_moyenne": {
+      "kicker": "De la vitesse moyenne à la vitesse instantanée",
+      "tex": [
+        "s(t) = t^2 \\qquad s(1) = 1, \\quad s(3) = 9",
+        "v_{moy} = \\tfrac{s(3) - s(1)}{3 - 1} = \\tfrac{9 - 1}{2} = 4 \\ \\text{km/h}"
+      ],
+      "titre": "Quatre kilomètres par heure en moyenne, et à un instant ?",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Taux d'accroissement, nombre dérivé et tangente"
+    },
+    {
+      "debut": "p11",
+      "pont": {
+        "dit": "Partie deux : le lien avec la continuité et les règles de calcul. Nous prouverons que dérivable entraîne continue, nous rencontrerons les fonctions continues mais non dérivables, puis nous construirons les quatre règles générales : somme, produit, quotient et composition.",
+        "texte": "Partie 2 : continuité et règles de dérivation."
+      },
+      "sous_titre": "Dérivabilité, continuité et règles de calcul"
+    },
+    {
+      "debut": "p19",
+      "pont": {
+        "dit": "Partie trois : les variations et l'optimisation. La dérivée devient un instrument de portrait complet : approximation affine par la tangente, signe et tableau de variations, extremums, problème d'optimisation, pièges à éviter et synthèse finale.",
+        "texte": "Partie 3 : variations, extremums et optimisation."
+      },
+      "sous_titre": "Variations, extremums et optimisation"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de dérivation, le langage mathématique du changement. Nous partirons d'une question concrète, à quelle vitesse une quantité change à un instant précis, pour construire le taux d'accroissement, puis sa limite, le nombre dérivé. Ensuite viendront la tangente, les règles de calcul, et l'étude des variations, jusqu'à l'optimisation.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Dérivation : mesurer le changement instantané."
+    },
+    {
+      "dit": "Tout autour de nous, des quantités changent par rapport à d'autres : une distance selon le temps, une hauteur selon les jours, un coût selon le nombre d'articles fabriqués. La question fondamentale est toujours la même : à quelle vitesse ce changement se produit-il, exactement à cet instant ? Toute la dérivation naît de cette question, et sa réponse tient en une limite, comme nous allons le construire pas à pas.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "À quelle vitesse, exactement à cet instant ?"
+    },
+    {
+      "dit": "Exemple conducteur : une voiture dont la position, en kilomètres, est donnée par le carré du temps, en heures. À une heure, elle est au kilomètre un ; à trois heures, au kilomètre neuf. Sa vitesse moyenne sur l'intervalle vaut la distance parcourue divisée par le temps écoulé : neuf moins un, sur trois moins un, soit quatre kilomètres par heure. Utile, mais muet sur la vitesse exacte à un instant donné, par exemple à une heure précise.",
+      "ecran": "vitesse_moyenne",
+      "id": "p03",
+      "texte": "Vitesse moyenne sur [1 ; 3] : 4 km/h."
+    },
+    {
+      "dit": "Généralisons. Pour une fonction, entre un point d'abscisse donnée et un point voisin décalé d'un petit écart, le taux d'accroissement est le quotient de la variation des valeurs par la variation de la variable : la valeur au point décalé, moins la valeur au point de départ, le tout divisé par l'écart. Géométriquement, ce quotient est la pente de la sécante, la droite qui joint les deux points de la courbe correspondants.",
+      "ecran": "taux_def",
+      "id": "p04",
+      "texte": "Le taux : variation des valeurs sur variation de la variable."
+    },
+    {
+      "dit": "Calculons ce taux pour la fonction carré, au point d'abscisse un. Le numérateur est le carré de un plus l'écart, moins un : en développant, deux fois l'écart plus l'écart au carré. En divisant par l'écart, non nul, et en simplifiant, le taux vaut simplement deux plus l'écart. Cette petite formule résume tout : pour un écart de deux, on retrouve la vitesse moyenne quatre ; pour un écart d'un dixième, deux virgule un ; pour un centième, deux virgule zéro un.",
+      "ecran": "taux_exemple",
+      "id": "p05",
+      "texte": "Pour x² en 1 : le taux vaut exactement 2 + h."
+    },
+    {
+      "dit": "Faisons maintenant tendre l'écart vers zéro : le point voisin glisse le long de la courbe vers le point de départ, et le taux, deux plus l'écart, se resserre vers deux. Cette limite, quand elle existe et qu'elle est finie, porte un nom : le nombre dérivé de la fonction au point de départ. Pour la fonction carré en un, nous venons de prouver que le nombre dérivé vaut deux : c'est la vitesse instantanée cherchée.",
+      "ecran": "nombre_derive",
+      "id": "p06",
+      "texte": "Nombre dérivé : la limite finie du taux."
+    },
+    {
+      "dit": "La même méthode par la limite donne les premières dérivées. Une fonction constante ne change pas : sa dérivée est nulle. La fonction identité change exactement comme sa variable : sa dérivée vaut un. La fonction carré, calculée en un point quelconque, donne le double de la variable : en chaque point, le nombre dérivé est le double de l'abscisse. En faisant varier le point, on passe du nombre dérivé, un simple nombre, à la fonction dérivée, une nouvelle fonction.",
+      "ecran": "premieres",
+      "id": "p07",
+      "texte": "Constante : 0. Identité : 1. Carré : 2x."
+    },
+    {
+      "dit": "Interprétation géométrique, la plus belle : quand le point voisin tend vers le point de départ, la sécante pivote et adopte une position limite, la tangente à la courbe au point de départ. Sa pente n'est autre que le nombre dérivé. Connaissant le point et la pente, l'équation de cette droite s'écrit à partir du nombre dérivé, de l'écart à l'abscisse du point, et de la valeur de la fonction en ce point. La tangente est le meilleur substitut rectiligne de la courbe, tout près du point.",
+      "ecran": "tangente_eq",
+      "id": "p08",
+      "texte": "La tangente : position limite de la sécante."
+    },
+    {
+      "dit": "Exemple complet : la fonction inverse, au point d'abscisse deux. Le calcul du taux d'accroissement, mené jusqu'à la limite, donne un nombre dérivé de moins un quart. La tangente passe par le point de coordonnées deux et un demi, avec cette pente négative : son équation fait apparaître moins un quart de la variable, plus un. La courbe descend donc en ce point, doucement, et la droite l'effleure sans la traverser localement.",
+      "ecran": "tangente_exemple",
+      "id": "p09",
+      "texte": "Inverse en 2 : pente −1/4, tangente y = −x/4 + 1."
+    },
+    {
+      "dit": "Le même nombre sert partout. En physique, si la position d'un mobile est une fonction du temps, sa dérivée est la vitesse instantanée : pour une chute libre, une position proportionnelle au carré du temps donne une vitesse proportionnelle au temps. En économie, la dérivée du coût total est le coût marginal, le coût approché de la production d'une unité supplémentaire, et c'est elle qui guide les décisions de production.",
+      "ecran": "applications",
+      "id": "p10",
+      "texte": "Vitesse instantanée, coût marginal : un même outil."
+    },
+    {
+      "dit": "Premier grand théorème : si une fonction est dérivable en un point, alors elle y est continue. La preuve tient en une ligne : l'écart entre les valeurs de la fonction en deux points proches est le produit du taux d'accroissement par l'écart des abscisses ; le premier facteur tend vers le nombre dérivé, le second vers zéro, donc l'écart des valeurs tend vers zéro. Autrement dit, pas de tangente sans courbe d'un seul tenant.",
+      "ecran": "deriv_cont",
+      "id": "p11",
+      "texte": "Dérivable en a ⇒ continue en a."
+    },
+    {
+      "dit": "Mais la réciproque est fausse : continue ne veut pas dire dérivable. La valeur absolue est continue en zéro, mais ses taux valent un à droite et moins un à gauche : la limite n'existe pas, la courbe fait un point anguleux, avec deux demi-tangentes différentes. La racine carrée, elle, est continue à droite en zéro, mais son taux explose vers l'infini : la tangente devient verticale, et il n'y a pas de nombre dérivé fini.",
+      "ecran": "contre_exemples",
+      "id": "p12",
+      "texte": "|x| : point anguleux. √x : tangente verticale."
+    },
+    {
+      "dit": "Avant d'attaquer les règles de calcul, récapitulons les fondations. Le taux d'accroissement mesure un changement moyen et donne la pente d'une sécante ; sa limite, quand l'écart tend vers zéro, est le nombre dérivé, pente de la tangente et vitesse instantanée à la fois. Être dérivable en un point entraîne être continue, mais pas l'inverse : points anguleux et tangentes verticales sont les contre-exemples à garder en tête.",
+      "ecran": "recap1",
+      "id": "p13",
+      "texte": "Les fondations avant les règles de calcul."
+    },
+    {
+      "dit": "Si le nombre dérivé existe en chaque point d'un intervalle, on obtient une nouvelle fonction, la fonction dérivée, qui à chaque abscisse associe la pente locale de la courbe. C'est elle que nous allons apprendre à calculer d'un coup, pour toute une famille de fonctions à la fois, grâce aux règles opératoires : somme, produit, quotient et composition, toutes conséquences de la définition par la limite.",
+      "ecran": "fonction_derivee",
+      "id": "p14",
+      "texte": "La fonction dérivée : la pente, en chaque point."
+    },
+    {
+      "dit": "Règle de la somme : la dérivée d'une somme est la somme des dérivées, et multiplier par une constante multiplie la dérivée par cette constante. Quand deux phénomènes se superposent, leurs variations s'additionnent, comme votre vitesse au sol additionne la vôtre et celle du tapis roulant. Exemple : trois carrés de la variable, plus cinq fois la variable, moins deux, a pour dérivée six fois la variable, plus cinq : la constante, elle, disparaît.",
+      "ecran": "somme",
+      "id": "p15",
+      "texte": "Somme : on dérive terme à terme."
+    },
+    {
+      "dit": "Règle du produit, la plus piégeuse : la dérivée d'un produit n'est pas le produit des dérivées. C'est la dérivée de la première, fois la seconde, plus la première, fois la dérivée de la seconde, la formule de Leibniz. Pensez à un rectangle dont la longueur et la largeur changent ensemble : l'aire varie par les deux côtés à la fois. L'exemple corrigé à l'écran donne, après développement, quinze fois la variable puissance quatre, plus huit fois son cube, moins six fois la variable, moins deux.",
+      "ecran": "produit",
+      "id": "p16",
+      "texte": "Produit : f′g + fg′, jamais f′g′."
+    },
+    {
+      "dit": "Règle du quotient : dérivée du haut fois le bas, moins le haut fois dérivée du bas, le tout sur le bas au carré, sans jamais oublier ce carré. Exemple : deux fois la variable plus un, sur le carré de la variable moins trois. Le numérateur de la dérivée devient moins deux carrés de la variable, moins deux fois la variable, moins six, sur le dénominateur au carré. Application directe : dériver un coût moyen, qui est un coût total divisé par une quantité.",
+      "ecran": "quotient",
+      "id": "p17",
+      "texte": "Quotient : tout sur le bas au carré."
+    },
+    {
+      "dit": "Règle de la chaîne, la plus puissante : pour une fonction composée, on dérive la fonction extérieure, évaluée en la fonction intérieure, puis on multiplie par la dérivée de la fonction intérieure. Les taux de variation se multiplient le long de la chaîne des dépendances. Exemple : trois carrés de la variable plus deux, le tout puissance cinq. L'extérieur donne cinq fois la parenthèse puissance quatre ; l'intérieur donne six fois la variable ; au total, trente fois la variable, fois la parenthèse puissance quatre.",
+      "ecran": "chaine",
+      "id": "p18",
+      "texte": "Composée : extérieur dérivé × intérieur dérivé."
+    },
+    {
+      "dit": "La tangente sert aussi à calculer sans calculatrice : c'est l'approximation affine. Près du point, on remplace la courbe par sa tangente. Pour la racine de quatre virgule un, on part de quatre, dont la racine est deux et la dérivée de la racine un quart : deux, plus un quart d'un dixième, donne deux virgule zéro vingt-cinq. La vraie valeur est deux virgule zéro deux quatre huit environ : l'erreur est inférieure à deux dix-millièmes.",
+      "ecran": "approx",
+      "id": "p19",
+      "texte": "√4,1 ≈ 2,025 : erreur sous 0,0002."
+    },
+    {
+      "dit": "Le signe de la dérivée commande les variations : dérivée positive sur un intervalle, la fonction monte ; dérivée négative, elle descend, car le signe de la pente locale se transmet au comportement global. La méthode est toujours la même : calculer la dérivée, la factoriser, résoudre l'équation dérivée égale zéro, étudier son signe, puis dresser le tableau de variations, la carte routière complète de la fonction.",
+      "ecran": "signe",
+      "id": "p20",
+      "texte": "Dérivée positive : ça monte. Négative : ça descend."
+    },
+    {
+      "dit": "Étude complète : le cube de la variable, moins trois fois la variable, plus deux. Sa dérivée, trois carrés de la variable moins trois, se factorise en trois fois la variable moins un, fois la variable plus un, et s'annule en moins un et en un. Elle est positive avant moins un, négative entre moins un et un, positive après : la fonction monte, descend, puis remonte. En moins un, un maximum local de valeur quatre ; en un, un minimum local de valeur zéro.",
+      "ecran": "variations",
+      "id": "p21",
+      "texte": "x³ − 3x + 2 : max 4 en −1, min 0 en 1."
+    },
+    {
+      "dit": "Condition nécessaire d'extremum, le théorème de Fermat : si une fonction dérivable présente un maximum ou un minimum local en un point intérieur, sa dérivée y est nulle, la tangente y est horizontale. Mais attention, la réciproque est fausse : pour le cube de la variable en zéro, la dérivée est nulle, la tangente est horizontale, et pourtant il n'y a ni sommet ni vallée, juste un point d'inflexion. Seul le changement de signe de la dérivée tranche.",
+      "ecran": "extremums",
+      "id": "p22",
+      "texte": "f′(a) = 0 ne suffit pas : il faut le changement de signe."
+    },
+    {
+      "dit": "Application royale : l'optimisation. Un agriculteur dispose de deux cents mètres de clôture pour un champ rectangulaire adossé à une rivière, un côté restant ouvert. Si la variable est le côté perpendiculaire, l'autre côté vaut deux cents moins deux fois la variable, et l'aire est le produit des deux. Sa dérivée, deux cents moins quatre fois la variable, s'annule en cinquante : l'aire maximale, cinq mille mètres carrés, est atteinte pour cinquante mètres sur cent mètres.",
+      "ecran": "optimisation",
+      "id": "p23",
+      "texte": "Champ optimal : 50 m × 100 m, aire 5 000 m²."
+    },
+    {
+      "dit": "Trois pièges classiques à éviter le jour de l'examen. Un : croire que la dérivée d'un produit est le produit des dérivées. Deux : oublier le carré du dénominateur dans la règle du quotient. Trois : dans une composée, oublier de multiplier par la dérivée de la fonction intérieure. Et toujours vérifier les conditions : fonctions dérivables aux points considérés, dénominateurs non nuls.",
+      "ecran": "pieges",
+      "id": "p24",
+      "texte": "Produit, quotient, chaîne : les trois pièges."
+    },
+    {
+      "dit": "Synthèse finale, qui relie algèbre et géométrie : le cube de la variable, moins trois fois son carré, plus deux. Sa dérivée, trois carrés de la variable moins six fois la variable, se factorise en trois fois la variable, fois la variable moins deux. En zéro comme en deux, la dérivée est nulle : les tangentes y sont horizontales, d'ordonnées deux et moins deux. Deux tangentes horizontales sont parallèles entre elles : la fonction présente donc un maximum local en zéro et un minimum local en deux.",
+      "ecran": "synthese",
+      "id": "p25",
+      "texte": "En 0 et en 2 : tangentes horizontales parallèles."
+    },
+    {
+      "dit": "Pour conclure ce cours : le nombre dérivé naît comme limite d'un taux d'accroissement, se lit comme la pente d'une tangente, se calcule par quatre règles générales, et gouverne les variations, les extremums et les optimisations. Un seul concept, trois visages, algébrique, géométrique et physique : c'est la force du calcul différentiel, et la porte d'entrée vers l'étude complète des fonctions.",
+      "ecran": "recap_final",
+      "id": "p26",
+      "texte": "Dérivation : à retenir."
+    }
+  ],
+  "titre": "Dérivation : taux, tangente et variations"
+}
