@@ -1,0 +1,222 @@
+{
+ "cours": 6126,
+ "titre": "Statistique à deux caractères : lire un nuage de points",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Concours ESSEC",
+   "titre": "Statistique à deux caractères : lire un nuage de points",
+   "sous": "Données bivariées, représentations graphiques et interprétation : la première lecture avant tout calcul",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 230
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Deux questions, deux variables",
+   "texte": "Temps sur les réseaux et résultats ? Prix d'un logement selon sa surface ? Deux variables à relier."
+  },
+  "definition": {
+   "type": "phrase",
+   "kicker": "Univariée ou bivariée",
+   "texte": "Un seul caractère : univariée. Deux caractères étudiés ensemble : bivariée, pour chercher un lien."
+  },
+  "types": {
+   "type": "etape",
+   "kicker": "Les types de variables",
+   "titre": "Quantitatives ou qualitatives, le choix du graphique en dépend",
+   "tex": [
+    "\\text{quantitative : mesurable, poids, température, surface, prix}",
+    "\\text{qualitative : une catégorie, couleur des yeux, type de logement}",
+    "\\text{exemple du cours : surface en mètres carrés, prix en euros}"
+   ]
+  },
+  "choix": {
+   "type": "etape",
+   "kicker": "Choisir la représentation selon les types",
+   "titre": "Le tableau du cours, à connaître",
+   "tex": [
+    "\\text{quantitative et quantitative : nuage de points}",
+    "\\text{quantitative et qualitative : bâtons, diagramme circulaire}",
+    "\\text{qualitative et qualitative : tableau de contingence}"
+   ]
+  },
+  "nuage": {
+   "type": "phrase",
+   "kicker": "Le nuage de points",
+   "texte": "Chaque observation devient un point, placé selon ses deux valeurs : la forme du nuage parle.",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 190
+   }
+  },
+  "formes": {
+   "type": "etape",
+   "kicker": "Trois formes de nuage, trois lectures",
+   "titre": "Le sens de la pente donne le signe du lien",
+   "tex": [
+    "\\text{corrélation positive : le nuage monte, les deux variables grandissent ensemble}",
+    "\\text{corrélation négative : le nuage descend, l'une grandit, l'autre diminue}",
+    "\\text{absence de corrélation : points dispersés, aucun alignement}"
+   ],
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 170
+   }
+  },
+  "lecture": {
+   "type": "phrase",
+   "kicker": "Exemple du cours · révisions et note",
+   "texte": "Heures de révision en abscisse, note en ordonnée : le nuage dira si le lien se voit.",
+   "anim": {
+    "nom": "nuage_points_fig",
+    "hauteur": 160
+   }
+  },
+  "autres": {
+   "type": "etape",
+   "kicker": "D'autres représentations, selon les données",
+   "titre": "Chaque outil a son terrain",
+   "tex": [
+    "\\text{diagramme de dispersion : données regroupées en classes, grands effectifs}",
+    "\\text{bâtons croisés : variables qualitatives ou discrètes, peu de modalités}",
+    "\\text{carte de corrélation : plusieurs paires de variables à la fois}"
+   ]
+  },
+  "lecture_critique": {
+   "type": "etape",
+   "kicker": "Lire un graphique : trois questions",
+   "titre": "Forme, points atypiques, force du lien",
+   "tex": [
+    "\\text{la forme : linéaire, parabolique, exponentielle, ou rien}",
+    "\\text{les points atypiques : erreur de mesure, ou observation réelle}",
+    "\\text{la force : points serrés autour de la tendance, ou dispersés}"
+   ]
+  },
+  "atypiques": {
+   "type": "phrase",
+   "kicker": "Les points atypiques",
+   "texte": "Un point loin du nuage n'est pas à effacer : il faut d'abord comprendre pourquoi il est là."
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège à ne jamais oublier",
+   "texte": "Corrélation n'est pas causalité : une troisième variable, cachée, peut expliquer les deux."
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Les limites de l'œil",
+   "texte": "Un lien non linéaire peut échapper au nuage ; la suite du cours le mesurera par un coefficient."
+  },
+  "avant_calculs": {
+   "type": "phrase",
+   "kicker": "La visualisation d'abord",
+   "texte": "Avant corrélation et régression : regarder. Le graphique oriente tous les calculs qui suivent."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Deux variables à la fois : statistique bivariée",
+    "Le nuage de points : une observation, un point",
+    "Lire la forme, la force et les points atypiques",
+    "Selon les types : bâtons croisés ou contingence",
+    "Corrélation n'implique jamais causalité"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours du concours ESSEC consacré à la statistique à deux caractères. Les deux leçons disponibles posent les fondations : ce qu'est une donnée à double caractère, comment la représenter, et comment lire ces graphiques sans se tromper. Aucun calcul ici : d'abord regarder.",
+   "texte": "Statistique à deux caractères : regarder avant de calculer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Deux questions ouvrent le cours. Faut-il relier le temps passé sur les réseaux sociaux aux résultats des employés ? Peut-on prédire le prix d'une maison depuis sa superficie et son emplacement ? Une seule variable ne suffit jamais : il faut en étudier deux ensemble.",
+   "texte": "Deux variables à relier : le terrain de la statistique bivariée.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "La statistique univariée étudie une variable isolée, par exemple la taille des étudiants. La statistique à double caractère, dite bivariée, analyse la relation entre deux variables mesurées sur les mêmes observations. On ne décrit plus seulement : on cherche un lien.",
+   "texte": "Univariée : décrire. Bivariée : chercher un lien.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p04",
+   "dit": "Une variable quantitative se mesure par un nombre : un poids, une température. Une variable qualitative décrit une catégorie : une couleur des yeux, un type de logement. L'exemple du cours couple deux quantitatives : la superficie d'un appartement et son prix, en euros.",
+   "texte": "Quantitative : un nombre. Qualitative : une catégorie.",
+   "ecran": "types"
+  },
+  {
+   "id": "p05",
+   "dit": "Le type des deux variables décide de la représentation. Deux quantitatives : un nuage de points. Une quantitative et une qualitative : un diagramme en bâtons ou circulaire segmenté. Deux qualitatives : un tableau de contingence. Le mauvais graphique rend les données illisibles.",
+   "texte": "Le type des variables choisit le graphique.",
+   "ecran": "choix"
+  },
+  {
+   "id": "p06",
+   "dit": "Pour deux quantitatives, l'outil central est le nuage de points. Chaque observation devient un point, placé selon ses deux valeurs : la première en abscisse, la seconde en ordonnée. La forme d'ensemble du nuage révèle, au premier coup d'œil, la présence ou l'absence d'une relation.",
+   "texte": "Une observation, un point : le nuage rend le lien visible.",
+   "ecran": "nuage"
+  },
+  {
+   "id": "p07",
+   "dit": "Trois lectures possibles. Le nuage monte : corrélation positive, les deux variables grandissent ensemble. Le nuage descend : corrélation négative, l'une grandit quand l'autre diminue. Les points sont dispersés sans tendance : aucune corrélation linéaire apparente.",
+   "texte": "Montant : positif. Descendant : négatif. Dispersé : rien.",
+   "ecran": "formes"
+  },
+  {
+   "id": "p08",
+   "dit": "L'exemple du cours : les heures de révision en abscisse, la note à l'examen en ordonnée. Le nuage montre si les notes montent avec les heures, si la tendance est droite ou courbée, et si quelques élèves s'écartent nettement des autres. C'est ce regard qu'il faut porter avant tout coefficient.",
+   "texte": "Heures de révision et note : lire avant de mesurer.",
+   "ecran": "lecture"
+  },
+  {
+   "id": "p09",
+   "dit": "Le nuage n'est pas le seul outil. Le diagramme de dispersion convient mieux aux données regroupées en classes et aux grands effectifs. Les bâtons croisés servent pour des variables qualitatives ou discrètes à peu de modalités. La carte de corrélation, elle, compare plusieurs paires de variables à la fois.",
+   "texte": "Dispersion, bâtons croisés, carte : à chaque donnée son outil.",
+   "ecran": "autres"
+  },
+  {
+   "id": "p10",
+   "dit": "Lire un graphique est un travail actif, en trois questions. Quelle est la forme du nuage : linéaire, parabolique, exponentielle, ou rien ? Y a-t-il des points atypiques, éloignés des autres ? Et quelle est la force du lien : points serrés autour de la tendance, ou largement dispersés ?",
+   "texte": "Forme, points atypiques, force : les trois questions.",
+   "ecran": "lecture_critique"
+  },
+  {
+   "id": "p11",
+   "dit": "Les points atypiques méritent un arrêt. Un point isolé peut être une erreur de mesure, à corriger, ou une observation bien réelle, qui raconte quelque chose d'important. On ne l'écarte donc jamais d'office : on l'identifie sur le graphique, puis on cherche son explication.",
+   "texte": "Un point atypique s'explique avant de s'écarter.",
+   "ecran": "atypiques"
+  },
+  {
+   "id": "p12",
+   "dit": "Le piège majeur : la corrélation n'implique pas la causalité. Même un lien fort sur le nuage ne prouve pas qu'une variable cause l'autre. Une troisième variable, cachée, dite confondante, peut influencer les deux et fabriquer un lien trompeur. Gardez ce réflexe pour tout le cours.",
+   "texte": "Corrélation n'est pas causalité : gare aux variables cachées.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p13",
+   "dit": "L'œil a ses limites : une relation réelle mais non linéaire peut échapper à une lecture rapide, et la force d'un lien ne se juge pas à l'impression. Les chapitres suivants quantifieront donc la relation par un coefficient de corrélation. Ce cours-ci s'arrête à la lecture, mais il la rend rigoureuse.",
+   "texte": "L'œil repère, le coefficient mesurera : chacun son rôle.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p14",
+   "dit": "La leçon de méthode : la représentation graphique est une étape à part entière, jamais un décor avant les calculs. Elle révèle la forme du lien, signale les points atypiques et protège des conclusions hâtives sur la causalité. Regarder d'abord, calculer ensuite : dans cet ordre.",
+   "texte": "La visualisation d'abord : elle oriente tous les calculs.",
+   "ecran": "avant_calculs"
+  },
+  {
+   "id": "p15",
+   "dit": "À retenir : la statistique bivariée étudie deux variables ensemble. Le nuage de points se lit en trois questions : la forme, les points atypiques, la force du lien. Les autres types de variables appellent d'autres représentations. Et une corrélation, même forte, ne prouve jamais une causalité.",
+   "texte": "Deux variables, un nuage, trois questions, un piège.",
+   "ecran": "recap"
+  }
+ ]
+}
