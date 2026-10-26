@@ -1,0 +1,411 @@
+{
+  "cours": 6285,
+  "titre": "Les déterminants d'ordre deux et trois",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Déterminants",
+      "titre": "Les déterminants d'ordre deux et trois",
+      "sous": "Calculer, voir, décider : l'aire, le volume, l'inversibilité et la solution unique",
+      "anim": {
+        "nom": "determinant_dev_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Deux vecteurs déploient un parallélogramme, trois vecteurs déploient une boîte oblique : le déterminant mesure l'espace ainsi déployé, et son signe donne l'orientation.",
+      "anim": {
+        "nom": "matrice_fig",
+        "hauteur": 170
+      }
+    },
+    "matrice2": {
+      "type": "formule",
+      "kicker": "La matrice carrée · ordre 2",
+      "tex": "A = \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix}",
+      "titre": "Deux lignes, deux colonnes",
+      "note": "a et b en première ligne, c et d en seconde : l'ordre est le nombre commun de lignes et de colonnes."
+    },
+    "matrice3": {
+      "type": "formule",
+      "kicker": "La matrice carrée · ordre 3",
+      "tex": "A = \\begin{pmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\\\ a_{31} & a_{32} & a_{33} \\end{pmatrix}",
+      "titre": "Neuf coefficients indexés",
+      "note": "a indice i j : ligne i, colonne j. Un déterminant 3×3 combine six produits de trois facteurs."
+    },
+    "det2": {
+      "type": "formule",
+      "kicker": "Le déterminant d'ordre 2",
+      "tex": "\\det(A) = \\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc",
+      "titre": "La différence des produits en croix",
+      "note": "Diagonale principale moins diagonale secondaire, jamais l'inverse."
+    },
+    "ex_det2": {
+      "type": "etape",
+      "kicker": "Exemple · premier calcul",
+      "titre": "Un déterminant qui vaut quatorze",
+      "tex": [
+        "M = \\begin{pmatrix} 3 & 2 \\\\ -1 & 4 \\end{pmatrix}",
+        "\\det(M) = 3 \\times 4 - 2 \\times (-1) = 12 + 2 = 14"
+      ]
+    },
+    "aire": {
+      "type": "formule",
+      "kicker": "L'intuition géométrique",
+      "tex": "A = |\\det(\\vec{u}, \\vec{v})| = |ad - bc|",
+      "titre": "Le déterminant est une aire signée",
+      "note": "Colonnes lues comme vecteurs u(a, c) et v(b, d) : valeur absolue, l'aire ; signe, l'orientation.",
+      "anim": {
+        "nom": "vecteurs",
+        "hauteur": 190
+      }
+    },
+    "ex_aire": {
+      "type": "etape",
+      "kicker": "Exemple · l'aire en chiffres",
+      "titre": "Onze unités d'aire",
+      "tex": [
+        "\\vec{u} = (3, 1) \\qquad \\vec{v} = (1, 4)",
+        "\\det = 3 \\times 4 - 1 \\times 1 = 11 \\quad A = |11| = 11"
+      ]
+    },
+    "colineaire": {
+      "type": "phrase",
+      "kicker": "Le cas dégénéré",
+      "texte": "Vecteurs colinéaires : le parallélogramme s'aplatit sur une droite, son aire tombe à zéro — et le déterminant avec elle.",
+      "anim": {
+        "nom": "combinaison_lineaire_fig",
+        "hauteur": 180
+      }
+    },
+    "proprietes": {
+      "type": "etape",
+      "kicker": "Les propriétés à connaître",
+      "titre": "Des règles qui font gagner du temps",
+      "tex": [
+        "\\det(I_2) = 1",
+        "\\det(AB) = \\det(A) \\times \\det(B)",
+        "\\text{échanger deux lignes change le signe}",
+        "\\text{triangulaire : produit de la diagonale}"
+      ]
+    },
+    "inversible": {
+      "type": "formule",
+      "kicker": "Le critère d'inversibilité",
+      "tex": "A \\text{ inversible} \\iff \\det(A) \\neq 0",
+      "titre": "Un seul nombre décide",
+      "note": "Pour l'ordre 2, A⁻¹ = (1/det A) · (d, −b ; −c, a) : diviser par det A exige det A ≠ 0."
+    },
+    "ex_inversible": {
+      "type": "etape",
+      "kicker": "Exemple · deux verdicts",
+      "titre": "Inversible, ou singulière",
+      "tex": [
+        "A = \\begin{pmatrix} 2 & 1 \\\\ 4 & 3 \\end{pmatrix} \\quad \\det(A) = 2 \\neq 0",
+        "B = \\begin{pmatrix} 1 & 2 \\\\ 2 & 4 \\end{pmatrix} \\quad \\det(B) = 0"
+      ]
+    },
+    "sarrus": {
+      "type": "etape",
+      "kicker": "La règle de Sarrus · ordre 3",
+      "titre": "Recopier, descendre, monter",
+      "tex": [
+        "\\det(B) = aei + bfg + cdh",
+        "- ceg - bdi - afh"
+      ],
+      "anim": {
+        "nom": "determinant_dev_fig",
+        "hauteur": 200
+      }
+    },
+    "ex_sarrus": {
+      "type": "etape",
+      "kicker": "Exemple · Sarrus pas à pas",
+      "titre": "Dix moins moins huit : dix-huit",
+      "tex": [
+        "2 \\cdot 4 \\cdot 1 + (-1) \\cdot (-2) \\cdot 1 + 3 \\cdot 0 \\cdot 5",
+        "3 \\cdot 4 \\cdot 1 + 2 \\cdot (-2) \\cdot 5 + (-1) \\cdot 0 \\cdot 1",
+        "\\det(B) = 10 - (-8) = 18"
+      ]
+    },
+    "cofacteurs": {
+      "type": "formule",
+      "kicker": "Le développement par cofacteurs",
+      "tex": "C_{ij} = (-1)^{i+j} M_{ij}",
+      "titre": "Mineurs signés en damier",
+      "note": "Mij : déterminant obtenu en supprimant la ligne i et la colonne j ; on développe selon une ligne ou une colonne."
+    },
+    "ex_cofacteurs": {
+      "type": "etape",
+      "kicker": "Exemple · développer par les zéros",
+      "titre": "Deux cofacteurs suffisent",
+      "tex": [
+        "C_{22} = -1 \\qquad C_{23} = -11",
+        "\\det(B) = 4 \\times (-1) + (-2) \\times (-11)",
+        "= -4 + 22 = 18"
+      ]
+    },
+    "volume": {
+      "type": "phrase",
+      "kicker": "Le volume dans l'espace",
+      "texte": "Trois vecteurs, une boîte oblique : la valeur absolue du déterminant d'ordre trois est le volume du parallélépipède, et son signe donne l'orientation du triplet.",
+      "anim": {
+        "nom": "pave_fig",
+        "hauteur": 200
+      }
+    },
+    "ex_volume": {
+      "type": "etape",
+      "kicker": "Exemple · un volume de quinze",
+      "titre": "Treize moins moins deux",
+      "tex": [
+        "1 \\times 1 \\times 1 + 0 \\times (-1) \\times 0 + 2 \\times 3 \\times 2 = 13",
+        "2 \\cdot 1 \\cdot 0 + 1 \\cdot (-1) \\cdot 2 + 0 \\cdot 3 \\cdot 1 = -2",
+        "\\det = 13 - (-2) = 15 \\qquad V = |15| = 15"
+      ]
+    },
+    "cramer2": {
+      "type": "formule",
+      "kicker": "La méthode de Cramer · 2×2",
+      "tex": "x = \\frac{D_x}{D} \\qquad y = \\frac{D_y}{D}",
+      "titre": "Chaque inconnue, un rapport de déterminants",
+      "note": "Dx (resp. Dy) : la colonne de x (resp. y) remplacée par le second membre B."
+    },
+    "ex_cramer2": {
+      "type": "etape",
+      "kicker": "Exemple · Cramer en chiffres",
+      "titre": "Vingt-trois au dénominateur",
+      "tex": [
+        "D = 3 \\times 5 - (-2) \\times 4 = 23",
+        "D_x = 12 \\times 5 - (-2) \\times (-8) = 44",
+        "D_y = 3 \\times (-8) - 12 \\times 4 = -72",
+        "x = \\tfrac{44}{23} \\qquad y = -\\tfrac{72}{23}"
+      ]
+    },
+    "cramer3": {
+      "type": "etape",
+      "kicker": "Cramer à l'ordre 3",
+      "titre": "Trois rapports, une solution",
+      "tex": [
+        "D = -20 \\qquad D_x = -34",
+        "D_y = -30 \\qquad D_z = -14",
+        "x = \\tfrac{17}{10} \\qquad y = \\tfrac{3}{2} \\qquad z = \\tfrac{7}{10}"
+      ]
+    },
+    "cas_nul": {
+      "type": "phrase",
+      "kicker": "Quand le déterminant est nul",
+      "texte": "D = 0 : soit les droites sont parallèles et distinctes (aucune solution), soit elles sont confondues (une infinité de solutions).",
+      "anim": {
+        "nom": "droites_trois_cas_fig",
+        "hauteur": 190
+      }
+    },
+    "triangle": {
+      "type": "etape",
+      "kicker": "Application · l'aire d'un triangle",
+      "titre": "La moitié du parallélogramme",
+      "tex": [
+        "\\overrightarrow{AB} = (4, 0) \\qquad \\overrightarrow{AC} = (2, 3)",
+        "\\text{Aire} = \\tfrac{1}{2} |4 \\times 3 - 0 \\times 2| = 6"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 140
+      }
+    },
+    "limites": {
+      "type": "phrase",
+      "kicker": "Les limites de Cramer",
+      "texte": "Cramer demande n + 1 déterminants, chacun en un nombre factoriel d'opérations : au-delà de l'ordre 3, l'élimination de Gauss prend le relais."
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Ordre 2 : det = ad − bc, produits en croix",
+        "Ordre 3 : Sarrus, ou cofacteurs par les zéros",
+        "Valeur absolue : aire, puis volume orienté",
+        "det ≠ 0 : inversible, solution unique",
+        "Cramer : x = Dx/D, D = 0 a deux cas"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Déterminants d'ordre 2 et 3 : calculer, voir, décider.",
+      "dit": "Bienvenue dans ce cours consacré aux déterminants d'ordre deux et d'ordre trois. Un déterminant est un nombre unique associé à une matrice carrée, et ce nombre dit presque tout : l'aire ou le volume que la matrice déploie, si elle est inversible, et si un système d'équations possède une solution unique. Nous apprendrons à le calculer, à le voir géométriquement, puis à l'utiliser pour résoudre des systèmes."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Une matrice carrée : autant de lignes que de colonnes.",
+      "dit": "Commençons par le cadre. Une matrice est un tableau de nombres rangés en lignes et en colonnes ; elle est carrée quand ces deux nombres coïncident, et ce nombre commun s'appelle son ordre. Les matrices carrées décrivent des transformations géométriques, des systèmes d'équations et des changements d'échelle : c'est pour elles, et pour elles seulement, que le déterminant existe."
+    },
+    {
+      "id": "p03",
+      "ecran": "matrice2",
+      "texte": "Ordre 2 : quatre coefficients, a, b, c, d.",
+      "dit": "Voici une matrice carrée d'ordre deux : deux lignes, deux colonnes, quatre coefficients que nous noterons a, bé, cé et dé. La première ligne porte a et bé, la seconde cé et dé. Retenez la place de chaque coefficient : tout le calcul du déterminant tiendra dans la façon de croiser ces quatre nombres, diagonale contre diagonale."
+    },
+    {
+      "id": "p04",
+      "ecran": "matrice3",
+      "texte": "Ordre 3 : neuf coefficients, de a₁₁ à a₃₃.",
+      "dit": "À l'ordre trois, la matrice compte trois lignes et trois colonnes, soit neuf coefficients. On les note avec des indices : a indice un un pour la première ligne et la première colonne, et ainsi de suite jusqu'à a indice trois trois. Le déterminant existera encore, mais son calcul combinera six produits de trois facteurs : c'est la factorielle de trois qui commence à se faire sentir."
+    },
+    {
+      "id": "p05",
+      "ecran": "det2",
+      "texte": "det(A) = ad − bc : diagonale principale moins secondaire.",
+      "dit": "Le déterminant d'ordre deux se calcule par la différence des produits en croix : a fois dé, moins bé fois cé. On le note dét de A, ou entre deux barres verticales. Le premier produit suit la diagonale principale, de haut gauche vers bas droit ; le second suit l'autre diagonale. Toute la difficulté est dans l'ordre : principale moins secondaire, jamais l'inverse."
+    },
+    {
+      "id": "p06",
+      "ecran": "ex_det2",
+      "texte": "Exemple : det = 12 − (−2) = 14.",
+      "dit": "Premier calcul complet. Pour la matrice de coefficients trois et deux sur la première ligne, moins un et quatre sur la seconde, la diagonale principale donne trois fois quatre, soit douze. L'autre diagonale donne deux fois moins un, soit moins deux. Le déterminant vaut douze moins moins deux, c'est-à-dire quatorze."
+    },
+    {
+      "id": "p07",
+      "ecran": "aire",
+      "texte": "|det| = aire du parallélogramme ; signe = orientation.",
+      "dit": "Voici le cœur géométrique du cours. Lisez les deux colonnes comme deux vecteurs du plan, u de coordonnées a et cé, vé de coordonnées bé et dé. La valeur absolue du déterminant est exactement l'aire du parallélogramme construit sur ces deux vecteurs. Le signe, lui, donne l'orientation : positif si vé est à gauche de u dans le sens trigonométrique, négatif sinon."
+    },
+    {
+      "id": "p08",
+      "ecran": "ex_aire",
+      "texte": "Exemple : det = 11, aire 11, orientation directe.",
+      "dit": "Vérifions sur un exemple. Avec u de coordonnées trois et un, et vé de coordonnées un et quatre, le déterminant vaut trois fois quatre moins un fois un, soit onze. L'aire du parallélogramme vaut donc onze unités d'aire, et le signe positif dit que le couple de vecteurs est directement orienté. Un calcul de deux produits devient une mesure d'aire : c'est ce pont entre algèbre et géométrie qu'il faut retenir."
+    },
+    {
+      "id": "p09",
+      "ecran": "colineaire",
+      "texte": "det = 0 ⇔ vecteurs colinéaires : l'aire s'écrase.",
+      "dit": "Cas limite, décisif pour la suite : si les deux vecteurs sont colinéaires, le parallélogramme s'aplatit sur une droite et son aire tombe à zéro. Exemple : u de coordonnées deux et un, vé de coordonnées quatre et deux, le double de u. Le déterminant vaut deux fois deux moins quatre fois un, soit zéro. Déterminant nul et vecteurs alignés disent exactement la même chose."
+    },
+    {
+      "id": "p10",
+      "ecran": "proprietes",
+      "texte": "Identité, échanges, triangulaire, produit : les règles.",
+      "dit": "Le déterminant obéit à quelques règles qui font gagner un temps précieux. Celui de l'identité vaut un. Échanger deux lignes ou deux colonnes change son signe. Multiplier une colonne par un nombre multiplie le déterminant par ce même nombre. Pour une matrice triangulaire, il se réduit au produit des coefficients diagonaux. Enfin, le déterminant d'un produit est le produit des déterminants."
+    },
+    {
+      "id": "p11",
+      "ecran": "inversible",
+      "texte": "Inversible ⇔ det ≠ 0 : le théorème central.",
+      "dit": "Le théorème central : une matrice carrée est inversible si et seulement si son déterminant est différent de zéro. Géométriquement, un déterminant nul écrase l'espace sur une droite ou un plan : l'information est perdue, le retour en arrière est impossible. La formule de l'inverse, pour l'ordre deux, divise par le déterminant : on comprend pourquoi un déterminant nul interdit toute inversion."
+    },
+    {
+      "id": "p12",
+      "ecran": "ex_inversible",
+      "texte": "det = 2 : inversible ; det = 0 : singulière.",
+      "dit": "Deux verdicts immédiats. La matrice de coefficients deux, un, quatre et trois a pour déterminant six moins quatre, soit deux : différent de zéro, elle est inversible. La matrice de coefficients un, deux, deux et quatre a pour déterminant quatre moins quatre, soit zéro : ses colonnes sont proportionnelles, elle est singulière, sans inverse. Un seul calcul tranche la question."
+    },
+    {
+      "id": "p13",
+      "ecran": "sarrus",
+      "texte": "Sarrus : recopier, descendre (+), monter (−).",
+      "dit": "Passons à l'ordre trois avec la règle de Sarrus. Recopiez les deux premières colonnes à droite de la matrice. Additionnez les trois produits des diagonales descendantes, puis soustrayez les trois produits des diagonales ascendantes : six produits de trois facteurs, trois positifs et trois négatifs. Attention, cette règle visuelle ne vaut que pour l'ordre trois, jamais au-delà."
+    },
+    {
+      "id": "p14",
+      "ecran": "ex_sarrus",
+      "texte": "Sarrus : 10 − (−8) = 18.",
+      "dit": "Appliquons Sarrus à notre matrice d'exemple, de première ligne deux, moins un, trois. Les diagonales descendantes donnent huit, plus deux, plus zéro : dix. Les diagonales ascendantes donnent douze, moins vingt, et zéro : moins huit. Le déterminant vaut dix moins moins huit, soit dix-huit. Le point délicat est le produit deux fois moins deux fois cinq, qui vaut moins vingt et devient plus vingt après la soustraction."
+    },
+    {
+      "id": "p15",
+      "ecran": "cofacteurs",
+      "texte": "Cofacteurs : mineur signé en damier, développement.",
+      "dit": "Deuxième méthode, généralisable à tous les ordres : le développement par cofacteurs. Le mineur d'un coefficient est le déterminant d'ordre deux obtenu en supprimant sa ligne et sa colonne ; le cofacteur y ajoute un signe, plus ou moins selon la parité de la somme des indices, en damier. On développe ensuite selon une ligne ou une colonne : somme des produits de chaque coefficient par son cofacteur."
+    },
+    {
+      "id": "p16",
+      "ecran": "ex_cofacteurs",
+      "texte": "Par les zéros : −4 + 22 = 18, comme Sarrus.",
+      "dit": "Reprenons la même matrice en développant selon sa deuxième ligne, celle qui contient un zéro. Le terme en zéro disparaît : il ne reste que deux cofacteurs à calculer, qui valent moins un et moins onze. Le déterminant vaut quatre fois moins un, plus moins deux fois moins onze, soit moins quatre plus vingt-deux : dix-huit. Même résultat que Sarrus, avec un calcul plus court grâce au zéro bien choisi."
+    },
+    {
+      "id": "p17",
+      "ecran": "volume",
+      "texte": "|det| = volume du parallélépipède ; signe = orientation.",
+      "dit": "Dans l'espace, trois vecteurs définissent un parallélépipède, une boîte oblique. La valeur absolue de leur déterminant d'ordre trois est le volume de cette boîte, et son signe dit si le triplet est direct, au sens de la règle de la main droite, ou indirect. Si les trois vecteurs sont coplanaires, la boîte s'aplatit, le volume et le déterminant tombent à zéro ensemble."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_volume",
+      "texte": "Exemple : 13 − (−2) = 15 unités de volume.",
+      "dit": "Exemple chiffré : trois vecteurs de coordonnées un, zéro, deux ; trois, un, moins un ; et zéro, deux, un. Par Sarrus, les produits descendants donnent un, plus zéro, plus douze : treize. Les produits ascendants donnent zéro, moins deux, plus zéro : moins deux. Le déterminant vaut treize moins moins deux, soit quinze : le volume du parallélépipède est de quinze unités de volume."
+    },
+    {
+      "id": "p19",
+      "ecran": "cramer2",
+      "texte": "Cramer : x = Dx/D, y = Dy/D si D ≠ 0.",
+      "dit": "Venons-en aux systèmes. Un système carré s'écrit A fois X égale B, où A est la matrice des coefficients. Si son déterminant, noté dé, est différent de zéro, la solution est unique et la méthode de Cramer la donne par deux rapports : ixe vaut D ixe sur D et igrec vaut D igrec sur D, où le déterminant du numérateur remplace la colonne de l'inconnue cherchée par le second membre."
+    },
+    {
+      "id": "p20",
+      "ecran": "ex_cramer2",
+      "texte": "Cramer : x = 44/23, y = −72/23.",
+      "dit": "Résolvons le système : trois ixe moins deux igrec égale douze, quatre ixe plus cinq igrec égale moins huit. Le déterminant principal vaut quinze plus huit, soit vingt-trois. En remplaçant la première colonne par le second membre, on obtient quarante-quatre ; pour la seconde colonne, moins soixante-douze. La solution est donc ixe égale quarante-quatre vingt-troisièmes et igrec égale moins soixante-douze vingt-troisièmes, ce qu'une substitution dans la première équation confirme."
+    },
+    {
+      "id": "p21",
+      "ecran": "cramer3",
+      "texte": "Cramer 3×3 : x = 17/10, y = 3/2, z = 7/10.",
+      "dit": "Même principe à l'ordre trois, sur le système : ixe plus deux igrec moins zède égale quatre ; trois ixe moins igrec plus deux zède égale cinq ; deux ixe plus igrec plus trois zède égale sept. Le déterminant principal vaut moins vingt. Les trois déterminants de remplacement valent moins trente-quatre, moins trente et moins quatorze. La solution unique est donc ixe égale dix-sept dixièmes, igrec égale trois demis et zède égale sept dixièmes : vérifiez-la dans la première équation, elle tombe juste."
+    },
+    {
+      "id": "p22",
+      "ecran": "cas_nul",
+      "texte": "D = 0 : parallèles distinctes ou droites confondues.",
+      "dit": "Que se passe-t-il si le déterminant principal est nul ? Deux cas seulement. Si un déterminant de remplacement est différent de zéro, le système est incompatible : les droites sont parallèles et distinctes, aucune solution. Si tous les déterminants sont nuls, les équations sont proportionnelles : les droites sont confondues et les solutions sont en nombre infini, tous les points d'une même droite."
+    },
+    {
+      "id": "p23",
+      "ecran": "triangle",
+      "texte": "Aire du triangle : moitié du parallélogramme, ici 6.",
+      "dit": "Un dernier pont géométrique : l'aire d'un triangle vaut la moitié de l'aire du parallélogramme construit sur deux de ses côtés. Pour le triangle de sommets l'origine, le point de coordonnées quatre et zéro, et le point de coordonnées deux et trois, les côtés issus de l'origine ont pour coordonnées quatre et zéro, puis deux et trois. Le déterminant vaut quatre fois trois moins zéro fois deux, soit douze ; l'aire du triangle vaut donc la moitié de douze : six unités d'aire."
+    },
+    {
+      "id": "p24",
+      "ecran": "limites",
+      "texte": "Cramer coûte factoriel : au-delà, place à Gauss.",
+      "dit": "Reste une mise en garde d'efficacité. La méthode de Cramer exige un déterminant de plus que le nombre d'inconnues, et chaque déterminant coûte un nombre d'opérations qui explose comme une factorielle. Parfaite pour les ordres deux et trois, elle devient impraticable ensuite : pour les grands systèmes, l'élimination de Gauss, bien plus sobre, prend le relais. Cramer reste le détour le plus clair pour comprendre le rôle du déterminant."
+    },
+    {
+      "id": "p25",
+      "ecran": "recap",
+      "texte": "Déterminants : calculer, voir, décider.",
+      "dit": "Pour finir, retenez l'enchaînement complet. Un déterminant se calcule : produits en croix à l'ordre deux, Sarrus ou cofacteurs à l'ordre trois. Il se voit : aire d'un parallélogramme, volume d'un parallélépipède, avec un signe qui donne l'orientation. Et il décide : différent de zéro, la matrice est inversible et le système a une solution unique, que Cramer écrit comme un rapport de déterminants."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Ordre deux : calcul et interprétation géométrique"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Propriétés, inversibilité et ordre trois",
+      "pont": {
+        "texte": "Partie 2 : propriétés, inversibilité et ordre 3.",
+        "dit": "Partie deux : les propriétés, l'inversibilité et l'ordre trois. Nous verrons les règles de calcul qui font gagner du temps, le théorème qui lie déterminant et inverse, puis le calcul à l'ordre trois, par Sarrus ou par cofacteurs, jusqu'au volume dans l'espace."
+      }
+    },
+    {
+      "debut": "p19",
+      "sous_titre": "Résoudre les systèmes : la méthode de Cramer",
+      "pont": {
+        "texte": "Partie 3 : la méthode de Cramer et ses cas limites.",
+        "dit": "Partie trois : résoudre les systèmes. La méthode de Cramer écrit la solution unique comme un rapport de déterminants, à l'ordre deux comme à l'ordre trois, et nous terminerons par le cas délicat du déterminant nul, l'aire d'un triangle et les limites de la méthode."
+      }
+    }
+  ]
+}
