@@ -1672,6 +1672,44 @@ const FIG = {
       corps +
       mot(500, 34, 'une somme partielle se construit terme à terme', { t: 21 }));
   },
+  cercle_trigo_fig(t) {
+    const p = prog(t);
+    const cx = 420, cy = 158, r = 102;
+    const mx = Math.round(cx + r * Math.cos(0.61)), my = Math.round(cy - r * Math.sin(0.61));
+    let remarq = '';
+    [[30, 'π/6'], [45, 'π/4'], [60, 'π/3']].forEach(([deg, lab]) => {
+      const a = deg * Math.PI / 180;
+      const px = Math.round(cx + r * Math.cos(a)), py = Math.round(cy - r * Math.sin(a));
+      const lx = Math.round(cx + (r + 24) * Math.cos(a)), ly = Math.round(cy - (r + 24) * Math.sin(a)) + 6;
+      remarq += `<circle cx="${px}" cy="${py}" r="4" fill="#B8860B"/>` + mot(lx, ly, lab, { t: 17, c: '#B8860B' });
+    });
+    return svgBoite(
+      `<line x1="238" y1="${cy}" x2="652" y2="${cy}" stroke="currentColor" stroke-width="3"/>` +
+      `<polygon points="652,${cy} 638,${cy - 6} 638,${cy + 6}" fill="currentColor"/>` +
+      `<line x1="${cx}" y1="284" x2="${cx}" y2="26" stroke="currentColor" stroke-width="3"/>` +
+      `<polygon points="${cx},26 ${cx - 6},40 ${cx + 6},40" fill="currentColor"/>` +
+      `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="4"/>` +
+      trait(cx, cy, mx, my, p, { c: '#E8604C', w: 4 }) +
+      `<line x1="${mx}" y1="${my}" x2="${mx}" y2="${cy}" stroke="#E8604C" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<line x1="${mx}" y1="${my}" x2="${cx}" y2="${my}" stroke="#1A75FF" stroke-width="3" stroke-dasharray="7 6"/>` +
+      `<path d="M ${cx + 36} ${cy} A 36 36 0 0 0 ${Math.round(cx + 36 * Math.cos(0.61))} ${Math.round(cy - 36 * Math.sin(0.61))}" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      `<circle cx="${mx}" cy="${my}" r="6" fill="#E8604C"/>` +
+      remarq +
+      mot(cx + r + 14, cy + 6, '0', { t: 17, c: '#B8860B', a: 'start' }) +
+      mot(cx, cy - r - 12, 'π/2', { t: 17, c: '#B8860B' }) +
+      mot(mx + 12, my - 4, 'M', { t: 21, a: 'start' }) +
+      mot(Math.round((cx + mx) / 2) - 8, Math.round((cy + my) / 2) + 2, '1', { t: 19, a: 'end' }) +
+      mot(cx + 52, cy - 12, 'θ', { t: 20 }) +
+      mot(mx, cy + 24, 'cos θ', { t: 19, c: '#E8604C' }) +
+      mot(cx - 12, my, 'sin θ', { t: 19, c: '#1A75FF', a: 'end' }) +
+      mot(cx - 12, cy + 22, 'O', { t: 20, a: 'end' }) +
+      mot(664, cy + 6, 'x', { t: 21, a: 'start' }) +
+      mot(cx - 12, 34, 'y', { t: 21, a: 'end' }) +
+      mot(836, 128, "l'abscisse de M", { t: 20, a: 'start' }) +
+      mot(836, 156, 'donne cos θ,', { t: 20, a: 'start' }) +
+      mot(836, 184, "l'ordonnée", { t: 20, a: 'start' }) +
+      mot(836, 212, 'donne sin θ', { t: 20, a: 'start' }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';

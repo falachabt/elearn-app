@@ -1,0 +1,487 @@
+{
+ "cours": 5888,
+ "ecrans": {
+  "addition": {
+   "kicker": "Formules d'addition",
+   "tex": [
+    "\\sin(x + y) = \\sin x \\cos y + \\cos x \\sin y",
+    "\\cos(x + y) = \\cos x \\cos y - \\sin x \\sin y",
+    "\\tan(x + y) = \\tfrac{\\tan x + \\tan y}{1 - \\tan x \\tan y}"
+   ],
+   "titre": "Le sinus et le cosinus d'une somme d'angles",
+   "type": "etape"
+  },
+  "applications": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "sphere_fig"
+   },
+   "kicker": "Astronomie, navigation, images",
+   "texte": "Parallaxe, navigation, images en trois dimensions : les mêmes sinus.",
+   "type": "phrase"
+  },
+  "avion": {
+   "kicker": "Exemple résolu · la distance d'un avion",
+   "tex": [
+    "d = \\tfrac{10000}{\\tan 30^\\circ} \\approx 17321 \\ \\text{m}",
+    "\\text{soit environ } 17{,}3 \\ \\text{km}"
+   ],
+   "titre": "Dix mille mètres d'altitude, vu à trente degrés",
+   "type": "etape"
+  },
+  "cas": {
+   "kicker": "La méthode · reconnaître le cas",
+   "tex": [
+    "\\text{deux angles + un côté} \\rightarrow \\text{loi des sinus}",
+    "\\text{deux côtés + angle compris} \\rightarrow \\text{Al-Kashi}",
+    "\\text{trois côtés} \\rightarrow \\text{Al-Kashi}",
+    "\\text{deux côtés + angle opposé} \\rightarrow \\text{cas ambigu}"
+   ],
+   "titre": "Les données connues choisissent la loi",
+   "type": "etape"
+  },
+  "cercle": {
+   "kicker": "Le cercle trigonométrique",
+   "note": "Cercle de rayon 1 : le cosinus est l'abscisse, le sinus l'ordonnée du point.",
+   "tex": "\\cos\\theta = x \\qquad \\sin\\theta = y \\qquad \\tan\\theta = \\frac{y}{x}",
+   "type": "formule",
+   "anim": {
+    "nom": "cercle_trigo_fig",
+    "hauteur": 175
+   }
+  },
+  "double": {
+   "kicker": "Angles doubles",
+   "tex": [
+    "\\sin 2x = 2 \\sin x \\cos x",
+    "\\cos 2x = \\cos^2 x - \\sin^2 x = 2\\cos^2 x - 1 = 1 - 2\\sin^2 x",
+    "\\tan 2x = \\tfrac{2 \\tan x}{1 - \\tan^2 x}"
+   ],
+   "titre": "Doubler l'angle : trois écritures pour le cosinus",
+   "type": "etape"
+  },
+  "ex_alkashi": {
+   "kicker": "Exemple résolu · loi des cosinus",
+   "tex": [
+    "c^2 = 5^2 + 7^2 - 2 \\times 5 \\times 7 \\cos 60^\\circ",
+    "c^2 = 25 + 49 - 35 = 39",
+    "c = \\sqrt{39} \\approx 6{,}24"
+   ],
+   "titre": "Côtés cinq et sept, angle compris de soixante degrés",
+   "type": "etape"
+  },
+  "ex_arbre": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Exemple résolu · la hauteur d'un arbre",
+   "tex": [
+    "\\tan 30^\\circ = \\tfrac{h}{10} \\qquad h = 10 \\tan 30^\\circ",
+    "h \\approx 5{,}77 \\ \\text{m}"
+   ],
+   "titre": "Une ombre de dix mètres, un soleil à trente degrés",
+   "type": "etape"
+  },
+  "ex_cos": {
+   "kicker": "Exemple résolu · retrouver un cosinus",
+   "tex": [
+    "\\sin\\theta = \\tfrac{3}{5} \\qquad \\cos^2\\theta = 1 - \\tfrac{9}{25} = \\tfrac{16}{25}",
+    "\\theta \\text{ aigu} \\Rightarrow \\cos\\theta = \\tfrac{4}{5}"
+   ],
+   "titre": "Le sinus vaut trois cinquièmes, l'angle est aigu",
+   "type": "etape"
+  },
+  "ex_simplif": {
+   "kicker": "Exemple résolu · simplifier",
+   "tex": [
+    "\\sin^2 x + \\cos^2 x + \\tan^2 x = 1 + \\tan^2 x",
+    "1 + \\tan^2 x = \\sec^2 x"
+   ],
+   "titre": "Remplacer bloc par bloc, jusqu'à la sécante",
+   "type": "etape"
+  },
+  "ex_sin75": {
+   "kicker": "Exemple résolu · sinus de soixante-quinze degrés",
+   "tex": [
+    "75^\\circ = 45^\\circ + 30^\\circ",
+    "\\sin 75^\\circ = \\tfrac{\\sqrt{2}}{2} \\cdot \\tfrac{\\sqrt{3}}{2} + \\tfrac{\\sqrt{2}}{2} \\cdot \\tfrac{1}{2}",
+    "\\sin 75^\\circ = \\tfrac{\\sqrt{6} + \\sqrt{2}}{4} \\approx 0{,}966"
+   ],
+   "titre": "Soixante-quinze, c'est quarante-cinq plus trente",
+   "type": "etape"
+  },
+  "ex_sinus": {
+   "kicker": "Exemple résolu · loi des sinus",
+   "tex": [
+    "C = 180^\\circ - 45^\\circ - 60^\\circ = 75^\\circ",
+    "b = \\tfrac{10 \\sin 60^\\circ}{\\sin 45^\\circ} \\approx 12{,}25",
+    "c = \\tfrac{10 \\sin 75^\\circ}{\\sin 45^\\circ} \\approx 13{,}66"
+   ],
+   "titre": "Angles de quarante-cinq et soixante degrés, côté dix",
+   "type": "etape"
+  },
+  "forces": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "vecteurs"
+   },
+   "kicker": "Physique · décomposer une force",
+   "tex": [
+    "F_x = 100 \\cos 30^\\circ \\approx 86{,}6 \\ \\text{N}",
+    "F_y = 100 \\sin 30^\\circ = 50 \\ \\text{N}"
+   ],
+   "titre": "Cent newtons à trente degrés de l'horizontale",
+   "type": "etape"
+  },
+  "geodesie": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Géodésie · la triangulation en chiffres",
+   "tex": [
+    "C = 180^\\circ - 45^\\circ - 60^\\circ = 75^\\circ",
+    "AC = \\tfrac{500 \\sin 60^\\circ}{\\sin 75^\\circ}",
+    "AC \\approx 448 \\ \\text{m}"
+   ],
+   "titre": "Base de cinq cents mètres, viser sans approcher",
+   "type": "etape"
+  },
+  "histoire": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Un peu d'histoire",
+   "texte": "Des pyramides aux tables d'Hipparque : mesurer pour bâtir et observer.",
+   "type": "phrase"
+  },
+  "identite": {
+   "kicker": "L'identité fondamentale",
+   "note": "Pythagore dans le cercle unité : x² + y² = 1, le rayon au carré.",
+   "tex": "\\sin^2\\theta + \\cos^2\\theta = 1",
+   "type": "formule",
+   "anim": {
+    "nom": "cercle_trigo_fig",
+    "hauteur": 150
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Mesurer les triangles : des angles vers les longueurs, et inversement.",
+   "type": "phrase"
+  },
+  "linearite": {
+   "kicker": "Formules de linéarisation",
+   "tex": [
+    "\\sin a \\cos b = \\tfrac{1}{2} \\left[ \\sin(a + b) + \\sin(a - b) \\right]",
+    "\\cos a \\cos b = \\tfrac{1}{2} \\left[ \\cos(a + b) + \\cos(a - b) \\right]",
+    "\\sin p + \\sin q = 2 \\sin \\tfrac{p + q}{2} \\cos \\tfrac{p - q}{2}"
+   ],
+   "titre": "Des produits vers les sommes, et retour",
+   "type": "etape"
+  },
+  "lois": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Triangles quelconques · les lois",
+   "tex": [
+    "\\tfrac{a}{\\sin A} = \\tfrac{b}{\\sin B} = \\tfrac{c}{\\sin C} \\qquad \\text{(loi des sinus)}",
+    "c^2 = a^2 + b^2 - 2ab \\cos C \\qquad \\text{(Al-Kashi)}",
+    "a^2 + b^2 = c^2 \\qquad \\text{(Pythagore, cas rectangle)}"
+   ],
+   "titre": "Loi des sinus, loi des cosinus dite d'Al-Kashi",
+   "type": "etape"
+  },
+  "ondes": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "sinusoide"
+   },
+   "kicker": "Des fonctions qui oscillent",
+   "texte": "Pendule, ondes sonores et lumineuses : tout oscille en sinusoïde.",
+   "type": "phrase"
+  },
+  "periodicite": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "sinusoide"
+   },
+   "kicker": "Périodicité et symétries",
+   "note": "Période 2π pour sinus et cosinus, π pour la tangente.",
+   "tex": "\\sin(x + 2\\pi) = \\sin x \\qquad \\cos(x + 2\\pi) = \\cos x",
+   "type": "formule"
+  },
+  "quotient": {
+   "kicker": "Quotient et réciproques",
+   "tex": [
+    "\\tan x = \\tfrac{\\sin x}{\\cos x} \\qquad \\sec x = \\tfrac{1}{\\cos x}",
+    "\\csc x = \\tfrac{1}{\\sin x} \\qquad \\cot x = \\tfrac{1}{\\tan x}"
+   ],
+   "titre": "La tangente est un quotient, les autres des inverses",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Sinus : côtés proportionnels aux sinus",
+    "Al-Kashi : Pythagore généralisé",
+    "Deux angles et un côté : loi des sinus",
+    "Angle compris ou trois côtés : Al-Kashi",
+    "Triangulation : mesurer sans approcher"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "recap1": {
+   "etapes": [
+    "Cercle unité : cos = abscisse, sin = ordonnée",
+    "Triangle : opposé, adjacent, hypoténuse",
+    "Identité : sin² + cos² = 1, toujours",
+    "Tangente : sinus divisé par cosinus",
+    "Addition et double : décomposer les angles"
+   ],
+   "kicker": "Les identités : l’essentiel",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Mathématique · Trigonométrie",
+   "sous": "Cercle, identités, résolution de triangles et triangulation",
+   "titre": "Trigonométrie : le langage des angles et des distances",
+   "type": "titre"
+  },
+  "triangle_def": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Dans le triangle rectangle",
+   "tex": [
+    "\\sin\\theta = \\tfrac{\\text{opposé}}{\\text{hypoténuse}}",
+    "\\cos\\theta = \\tfrac{\\text{adjacent}}{\\text{hypoténuse}}",
+    "\\tan\\theta = \\tfrac{\\text{opposé}}{\\text{adjacent}}"
+   ],
+   "titre": "Trois rapports de longueurs pour un angle aigu",
+   "type": "etape"
+  },
+  "triangulation": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "triangle_fig"
+   },
+   "kicker": "De la triangulation aux cartes",
+   "texte": "Un réseau de triangles pour cartographier un pays entier.",
+   "type": "phrase"
+  },
+  "valeurs": {
+   "kicker": "Les valeurs remarquables",
+   "tex": [
+    "\\sin 30^\\circ = \\tfrac{1}{2} \\qquad \\cos 30^\\circ = \\tfrac{\\sqrt{3}}{2}",
+    "\\sin 45^\\circ = \\cos 45^\\circ = \\tfrac{\\sqrt{2}}{2} \\qquad \\tan 45^\\circ = 1",
+    "\\sin 60^\\circ = \\tfrac{\\sqrt{3}}{2} \\qquad \\cos 60^\\circ = \\tfrac{1}{2}"
+   ],
+   "titre": "Trente, quarante-cinq et soixante degrés : à connaître par cœur",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Cercle trigonométrique, définitions et identité fondamentale"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : les identités en action, puis les lois des triangles. Nous compléterons la famille des fonctions avec le quotient et les réciproques, décomposerons les angles grâce aux formules d’addition et d’angle double, puis nous énoncerons la loi des sinus et celle d’Al-Kashi, avec la méthode pour choisir la bonne loi.",
+    "texte": "Partie 2 : identités avancées, loi des sinus et loi d’Al-Kashi."
+   },
+   "sous_titre": "Identités avancées et lois des triangles"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : résoudre et mesurer pour de vrai. Nous appliquerons les lois à des calculs complets, de la hauteur d’un arbre aux côtés d’un triangle quelconque, puis viendront la triangulation des géomètres, la décomposition d’une force et la distance d’un avion.",
+    "texte": "Partie 3 : exemples résolus, triangulation et applications."
+   },
+   "sous_titre": "Exemples résolus, triangulation et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de trigonométrie, le langage des angles et des distances. Du cercle trigonométrique aux identités, de la résolution des triangles à la triangulation des géomètres, nous allons relier les angles aux longueurs, et apprendre à mesurer ce que l'on ne peut pas toucher.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Trigonométrie : des angles aux distances inaccessibles."
+  },
+  {
+   "dit": "La trigonométrie signifie littéralement mesure des triangles. Son idée centrale tient en une phrase : dans un triangle, connaître des angles permet de calculer des longueurs, et inversement. C'est ce dictionnaire entre angles et distances que nous allons construire, pas à pas.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "L'idée centrale : un dictionnaire angles-distances."
+  },
+  {
+   "dit": "Cette science est née de besoins très concrets : arpenter les terres et bâtir les pyramides en Égypte, observer le ciel à Babylone. Hipparque de Nicée, considéré comme le père de la trigonométrie, a dressé les premières tables de cordes, ancêtres de nos tables de sinus et de cosinus.",
+   "ecran": "histoire",
+   "id": "p03",
+   "texte": "Née pour arpenter, bâtir et observer le ciel."
+  },
+  {
+   "dit": "Au cœur du cours se trouve le cercle trigonométrique : un cercle de rayon un, centré à l'origine du repère. Un angle thêta y désigne un point du cercle, d'abscisse ixe et d'ordonnée igrec. Le cosinus de thêta est ixe, le sinus est igrec, et la tangente est le rapport de igrec sur ixe, défini quand ixe n'est pas nul.",
+   "ecran": "cercle",
+   "id": "p04",
+   "texte": "cos θ = x, sin θ = y, tan θ = y/x."
+  },
+  {
+   "dit": "Certaines valeurs se lisent sur le cercle et se retiennent par cœur. À trente degrés, le sinus vaut un demi et le cosinus racine de trois sur deux. À quarante-cinq degrés, sinus et cosinus valent racine de deux sur deux, et la tangente vaut un. À soixante degrés, sinus et cosinus échangent leurs valeurs de trente degrés.",
+   "ecran": "valeurs",
+   "id": "p05",
+   "texte": "30°, 45°, 60° : les valeurs à connaître par cœur."
+  },
+  {
+   "dit": "Dans un triangle rectangle, les mêmes fonctions deviennent des rapports de longueurs. Pour un angle aigu thêta, le sinus est le côté opposé divisé par l'hypoténuse, le cosinus est le côté adjacent divisé par l'hypoténuse, et la tangente est le côté opposé divisé par le côté adjacent.",
+   "ecran": "triangle_def",
+   "id": "p06",
+   "texte": "Sinus, cosinus, tangente : trois rapports de longueurs."
+  },
+  {
+   "dit": "Ces fonctions se répètent indéfiniment. Sinus et cosinus sont périodiques de période deux pi : après un tour complet du cercle, on retrouve les mêmes valeurs. La tangente se répète deux fois plus vite, avec une période de pi. Quant aux symétries, le sinus est impair, le cosinus est pair, et la tangente est impaire.",
+   "ecran": "periodicite",
+   "id": "p07",
+   "texte": "Périodes : 2π pour sin et cos, π pour tan."
+  },
+  {
+   "dit": "Voilà pourquoi ces fonctions décrivent tous les phénomènes qui oscillent : le balancement d'un pendule, les ondes sonores et lumineuses, les marées. À chaque fois qu'une grandeur monte et descend régulièrement, une sinusoïde la modélise, et le cercle tournant en est le moteur caché.",
+   "ecran": "ondes",
+   "id": "p08",
+   "texte": "Tout ce qui oscille se modélise en sinusoïde."
+  },
+  {
+   "dit": "Les trois fonctions sont liées par une identité que l'on retrouvera partout : le carré du sinus plus le carré du cosinus égale un. Ce n'est rien d'autre que le théorème de Pythagore appliqué dans le cercle unité, puisque ixe au carré plus igrec au carré vaut le carré du rayon, donc un.",
+   "ecran": "identite",
+   "id": "p09",
+   "texte": "sin²θ + cos²θ = 1 : Pythagore dans le cercle unité."
+  },
+  {
+   "dit": "Premier calcul, tiré des exercices du cours. On donne le sinus d'un angle aigu égal à trois cinquièmes, et l'on cherche son cosinus. L'identité fondamentale donne le carré du cosinus égal à un moins neuf vingt-cinquièmes, soit seize vingt-cinquièmes. L'angle étant aigu, le cosinus est positif : il vaut quatre cinquièmes.",
+   "ecran": "ex_cos",
+   "id": "p10",
+   "texte": "sin θ = 3/5, angle aigu : cos θ = 4/5."
+  },
+  {
+   "dit": "La tangente n'est pas une fonction indépendante : elle est le quotient du sinus par le cosinus, et elle cesse d'exister quand le cosinus s'annule. Trois fonctions réciproques complètent la famille : la sécante, inverse du cosinus, la cosécante, inverse du sinus, et la cotangente, inverse de la tangente.",
+   "ecran": "quotient",
+   "id": "p11",
+   "texte": "tan = sin/cos · sec, csc, cot : les inverses."
+  },
+  {
+   "dit": "Entraînons-nous à simplifier. L'expression sinus carré plus cosinus carré plus tangente carré se réduit en deux gestes : le premier bloc vaut un, par l'identité fondamentale, et un plus tangente carré n'est autre que sécante carré. Ces remplacements en chaîne sont le geste de base des identités.",
+   "ecran": "ex_simplif",
+   "id": "p12",
+   "texte": "sin² + cos² + tan² = sec², en deux gestes."
+  },
+  {
+   "dit": "Comment calculer le sinus d'une somme d'angles ? Les formules d'addition répondent : le sinus de ixe plus igrec mêle les sinus et les cosinus des deux angles, et le cosinus de la somme fait apparaître une soustraction là où l'on attendrait une addition. En remplaçant igrec par moins igrec, on obtient les formules de différence.",
+   "ecran": "addition",
+   "id": "p13",
+   "texte": "Addition : décomposer une somme d'angles."
+  },
+  {
+   "dit": "Application immédiate : soixante-quinze degrés n'est pas un angle usuel, mais c'est la somme de quarante-cinq et de trente degrés, que nous connaissons. La formule d'addition donne sinus soixante-quinze égal à racine de six plus racine de deux, le tout sur quatre, environ zéro virgule neuf cent soixante-six.",
+   "ecran": "ex_sin75",
+   "id": "p14",
+   "texte": "sin 75° = (√6 + √2)/4 ≈ 0,966."
+  },
+  {
+   "dit": "Cas particulier des formules d'addition : l'angle double. Le sinus de deux ixe vaut deux fois le sinus fois le cosinus. Pour le cosinus de deux ixe, trois écritures équivalentes coexistent, entièrement en cosinus, entièrement en sinus, ou en différence des carrés : on choisit selon l'expression à simplifier.",
+   "ecran": "double",
+   "id": "p15",
+   "texte": "Angle double : sin 2x et cos 2x en trois formes."
+  },
+  {
+   "dit": "En sens inverse, les produits de fonctions se transforment en sommes : ce sont les formules de linéarisation, utiles pour simplifier des expressions et analyser des signaux. Et une somme de deux sinus devient un produit, avec la demi-somme et la demi-différence des angles. Tout le chapitre tient dans ces allers-retours.",
+   "ecran": "linearite",
+   "id": "p16",
+   "texte": "Linéariser : produits en sommes, sommes en produits."
+  },
+  {
+   "dit": "Récapitulons les identités. Le cercle unité définit sinus, cosinus et tangente pour tout angle, et le triangle rectangle les lit comme des rapports de longueurs. L'identité fondamentale relie sinus et cosinus, le quotient définit la tangente, et les formules d'addition, d'angle double et de linéarisation décomposent les angles.",
+   "ecran": "recap1",
+   "id": "p17",
+   "texte": "Les identités : l’essentiel à retenir."
+  },
+  {
+   "dit": "Pour un triangle quelconque, deux lois prennent le relais. La loi des sinus affirme que chaque côté est proportionnel au sinus de l'angle qui lui fait face : les trois rapports sont égaux. La loi des cosinus, ou théorème d'Al-Kashi, généralise Pythagore : le carré d'un côté fait intervenir les deux autres côtés et le cosinus de l'angle compris entre eux.",
+   "ecran": "lois",
+   "id": "p18",
+   "texte": "a/sin A = b/sin B = c/sin C · Al-Kashi généralise Pythagore."
+  },
+  {
+   "dit": "Toute la méthode consiste à reconnaître le cas de figure. Deux angles et un côté connus : la loi des sinus suffit. Deux côtés et l'angle compris, ou les trois côtés connus : c'est la loi des cosinus qui ouvre le calcul. Reste le cas ambigu, deux côtés et un angle opposé, où la loi des sinus peut donner zéro, une ou deux solutions.",
+   "ecran": "cas",
+   "id": "p19",
+   "texte": "Reconnaître le cas avant de choisir la loi."
+  },
+  {
+   "dit": "Exemple résolu du cours : un arbre projette une ombre de dix mètres, et l'angle d'élévation du soleil vaut trente degrés. La hauteur cherchée est le côté opposé, l'ombre le côté adjacent : la tangente relie les deux. La hauteur vaut dix fois la tangente de trente degrés, environ cinq mètres soixante-dix-sept.",
+   "ecran": "ex_arbre",
+   "id": "p20",
+   "texte": "h = 10 × tan 30° ≈ 5,77 m."
+  },
+  {
+   "dit": "Passons à un triangle quelconque : deux côtés de cinq et sept, avec un angle compris de soixante degrés. La loi des cosinus donne le carré du troisième côté : vingt-cinq plus quarante-neuf, moins deux fois cinq fois sept fois le cosinus de soixante degrés, soit trente-neuf. Le côté cherché vaut racine de trente-neuf, environ six virgule vingt-quatre.",
+   "ecran": "ex_alkashi",
+   "id": "p21",
+   "texte": "c² = 39, donc c = √39 ≈ 6,24."
+  },
+  {
+   "dit": "Avec la loi des sinus maintenant : un triangle a pour angles quarante-cinq et soixante degrés, et le côté opposé au premier angle mesure dix. Le troisième angle vaut soixante-quinze degrés. La loi des sinus donne les deux autres côtés : environ douze virgule vingt-cinq et treize virgule soixante-six.",
+   "ecran": "ex_sinus",
+   "id": "p22",
+   "texte": "Loi des sinus : b ≈ 12,25 et c ≈ 13,66."
+  },
+  {
+   "dit": "Voici l'application emblème du chapitre : la triangulation des géomètres. On mesure une base accessible, cinq cents mètres entre deux points, puis les angles sous lesquels on vise un point inaccessible, ici quarante-cinq et soixante degrés. La loi des sinus livre la distance cherchée, environ quatre cent quarante-huit mètres, sans traverser l'obstacle.",
+   "ecran": "geodesie",
+   "id": "p23",
+   "texte": "Base 500 m : AC ≈ 448 m par la loi des sinus."
+  },
+  {
+   "dit": "En répétant ce geste de proche en proche, on couvre un pays entier d'un réseau de triangles : une seule base mesurée au sol, des angles relevés au théodolite, et toutes les distances se calculent. C'est ainsi que l'on a cartographié les continents et mesuré la Terre, bien avant les satellites.",
+   "ecran": "triangulation",
+   "id": "p24",
+   "texte": "De proche en proche : cartographier un continent."
+  },
+  {
+   "dit": "En physique, la même trigonométrie décompose les forces et les vitesses. Une force de cent newtons, appliquée à trente degrés de l'horizontale, se partage en une composante horizontale de cent fois le cosinus de trente degrés, environ quatre-vingt-six virgule six newtons, et une composante verticale de cent fois le sinus, soit cinquante newtons exactement.",
+   "ecran": "forces",
+   "id": "p25",
+   "texte": "100 N à 30° : 86,6 N horizontal, 50 N vertical."
+  },
+  {
+   "dit": "Dernier calcul, le défi du cours : un avion vole à dix mille mètres d'altitude, vu sous un angle d'élévation de trente degrés. La distance horizontale qui nous sépare de son aplomb est l'altitude divisée par la tangente de trente degrés : environ dix-sept mille trois cent vingt et un mètres, plus de dix-sept kilomètres.",
+   "ecran": "avion",
+   "id": "p26",
+   "texte": "d = 10 000 / tan 30° ≈ 17 321 m."
+  },
+  {
+   "dit": "Le même outil sert partout : la parallaxe trigonométrique mesure la distance des étoiles proches, la navigation situe navires et avions, et l'infographie fait tourner les objets en trois dimensions grâce aux sinus et aux cosinus. Partout, un même principe : des angles mesurables donnent des longueurs inaccessibles.",
+   "ecran": "applications",
+   "id": "p27",
+   "texte": "Des angles mesurables, des longueurs inaccessibles."
+  },
+  {
+   "dit": "Pour terminer, retenez la boîte à outils complète. Le cercle définit les fonctions, l'identité fondamentale et les formules d'addition les relient, la loi des sinus et celle d'Al-Kashi résolvent tous les triangles, et la triangulation transforme ces lois en instruments de mesure du monde réel.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "Trigonométrie : à retenir."
+  }
+ ],
+ "titre": "Trigonométrie : le langage des angles et des distances"
+}
