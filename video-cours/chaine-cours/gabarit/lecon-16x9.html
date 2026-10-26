@@ -3751,6 +3751,19 @@ const FIG = {
       mot(800, 258, 'Q > Ks : précipité', { c: '#E8604C', t: 19 }) +
       mot(500, 44, 'comparer Q au produit de solubilité Ks', { t: 21 }));
   },
+  maille_nacl_fig(t) {
+    const F = [[380, 60], [660, 60], [660, 260], [380, 260]], B = [[470, 20], [750, 20], [750, 220], [470, 220]];
+    let s = '';
+    for (let i = 0; i < 4; i++) { s += trait(F[i][0], F[i][1], F[(i + 1) % 4][0], F[(i + 1) % 4][1], 1, { w: 2 }); s += trait(B[i][0], B[i][1], B[(i + 1) % 4][0], B[(i + 1) % 4][1], 1, { w: 2 }); s += trait(F[i][0], F[i][1], B[i][0], B[i][1], 1, { w: 2 }); }
+    const cl = [...F, ...B, [520, 160], [610, 120], [565, 40], [565, 240], [425, 140], [705, 140]];
+    const na = [[520, 60], [660, 160], [520, 260], [380, 160], [610, 20], [750, 120], [610, 220], [470, 120], [425, 40], [705, 40], [705, 240], [425, 240], [565, 140]];
+    for (const p of cl) s += `<circle cx="${p[0]}" cy="${p[1]}" r="13" fill="#10B981" fill-opacity=".45" stroke="currentColor" stroke-width="2"/>`;
+    for (const p of na) s += `<circle cx="${p[0]}" cy="${p[1]}" r="8" fill="#E8604C" fill-opacity=".6" stroke="currentColor" stroke-width="2"/>`;
+    return svgBoite(s +
+      mot(300, 66, 'Cl⁻', { c: '#10B981', t: 21 }) + trait(316, 62, 366, 60, 1, { w: 2 }) +
+      mot(300, 166, 'Na⁺', { c: '#E8604C', t: 21 }) + trait(322, 162, 372, 160, 1, { w: 2 }) +
+      mot(565, 292, 'la maille de NaCl : chaque ion en touche six', { t: 20 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
