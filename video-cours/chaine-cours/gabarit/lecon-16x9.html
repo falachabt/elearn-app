@@ -3402,6 +3402,74 @@ const FIG = {
       mot(770, 268, 'plans qui glissent : tendre et conducteur', { t: 18 }) +
       mot(500, 292, 'deux carbones, deux réseaux', { t: 22 }));
   },
+  vsepr_formes_fig(t) {
+    const A = (x, y, r, c) => `<circle cx="${x}" cy="${y}" r="${r || 11}" fill="${c || '#1A75FF'}" fill-opacity=".45" stroke="currentColor" stroke-width="2"/>`;
+    const C = (x, y) => `<circle cx="${x}" cy="${y}" r="12" fill="#B8860B" fill-opacity=".55" stroke="currentColor" stroke-width="2"/>`;
+    const L = (x1, y1, x2, y2) => trait(x1, y1, x2, y2, 1, { w: 3 });
+    const paire = (x, y) => `<circle cx="${x - 5}" cy="${y}" r="4" fill="#E8604C"/><circle cx="${x + 5}" cy="${y}" r="4" fill="#E8604C"/>`;
+    return svgBoite(
+      L(70, 74, 170, 74) + C(120, 74) + A(64, 74) + A(176, 74) + mot(120, 128, 'linéaire 180°', { t: 15 }) +
+      L(370, 74, 370, 28) + L(370, 74, 330, 104) + L(370, 74, 410, 104) + C(370, 74) + A(370, 24) + A(326, 108) + A(414, 108) + mot(370, 128, 'trigonale 120°', { t: 15 }) +
+      L(620, 74, 620, 28) + L(620, 74, 578, 106) + L(620, 74, 662, 106) + L(620, 74, 646, 52) + C(620, 74) + A(620, 24) + A(574, 110) + A(666, 110) + A(650, 48) + mot(620, 128, 'tétraédrique 109,5°', { t: 15 }) +
+      L(872, 74, 872, 26) + L(872, 74, 872, 122) + L(872, 74, 826, 74) + L(872, 74, 918, 74) + C(872, 74) + A(872, 22) + A(872, 126) + A(822, 74) + A(922, 74) + mot(872, 152, 'bipyramide 90°/120°', { t: 15 }) +
+      paire(200, 176) + L(200, 208, 154, 246) + L(200, 208, 246, 246) + L(200, 208, 200, 252) + C(200, 208) + A(150, 250) + A(250, 250) + A(200, 256) + mot(200, 292, 'pyramidale ~107°', { t: 15 }) +
+      paire(478, 172) + paire(522, 172) + L(500, 204, 456, 244) + L(500, 204, 544, 244) + C(500, 204) + A(452, 248) + A(548, 248) + mot(500, 292, 'coudée ~104,5°', { t: 15 }) +
+      L(812, 212, 812, 166) + L(812, 212, 812, 258) + L(812, 212, 766, 212) + L(812, 212, 858, 212) + L(812, 212, 830, 190) + C(812, 212) + A(812, 162) + A(812, 262) + A(762, 212) + A(862, 212) + A(834, 186) + mot(812, 292, 'octaédrique 90°', { t: 15 }));
+  },
+  compression_angles_fig(t) {
+    const A = (x, y, txt) => `<circle cx="${x}" cy="${y}" r="13" fill="#1A75FF" fill-opacity=".4" stroke="currentColor" stroke-width="2"/>` + mot(x, y + 5, txt || 'H', { t: 13 });
+    const C = (x, y, txt) => `<circle cx="${x}" cy="${y}" r="14" fill="#B8860B" fill-opacity=".5" stroke="currentColor" stroke-width="2"/>` + mot(x, y + 5, txt, { t: 14 });
+    const paire = (x, y) => `<circle cx="${x - 5}" cy="${y}" r="4" fill="#E8604C"/><circle cx="${x + 5}" cy="${y}" r="4" fill="#E8604C"/>`;
+    return svgBoite(
+      trait(170, 118, 170, 66, 1, { w: 3 }) + trait(170, 118, 124, 156, 1, { w: 3 }) + trait(170, 118, 216, 156, 1, { w: 3 }) + trait(170, 118, 196, 92, 1, { w: 3 }) +
+      C(170, 118, 'C') + A(170, 60) + A(118, 162) + A(222, 162) + A(202, 86) +
+      mot(170, 216, 'CH₄ : 109,5°', { t: 19 }) +
+      paire(500, 66) + trait(500, 118, 452, 158, 1, { w: 3 }) + trait(500, 118, 548, 158, 1, { w: 3 }) + trait(500, 118, 500, 164, 1, { w: 3 }) +
+      C(500, 118, 'N') + A(446, 164) + A(554, 164) + A(500, 170) +
+      mot(500, 216, 'NH₃ : 107°', { t: 19 }) +
+      paire(806, 62) + paire(854, 62) + trait(830, 118, 784, 158, 1, { w: 3 }) + trait(830, 118, 876, 158, 1, { w: 3 }) +
+      C(830, 118, 'O') + A(778, 164) + A(882, 164) +
+      mot(830, 216, 'H₂O : 104,5°', { t: 19 }) +
+      mot(500, 268, 'chaque doublet libre resserre l’angle', { c: '#E8604C', t: 21 }));
+  },
+  lewis_co2_fig(t) {
+    const atome = (x, txt, c) => `<circle cx="${x}" cy="128" r="24" fill="${c}" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(x, 136, txt, { t: 20 });
+    const paires = (x, n) => {
+      let s = '';
+      const pos = [[-34, -14], [-34, 14], [0, -34]];
+      for (let i = 0; i < n; i++) s += `<circle cx="${x + pos[i][0] - 3}" cy="${128 + pos[i][1]}" r="4" fill="#E8604C"/><circle cx="${x + pos[i][0] + 3}" cy="${128 + pos[i][1]}" r="4" fill="#E8604C"/>`;
+      return s;
+    };
+    return svgBoite(
+      trait(116, 128, 146, 128, 1, { w: 4 }) + trait(194, 128, 224, 128, 1, { w: 4 }) +
+      atome(92, 'O', '#E8604C') + atome(170, 'C', '#B8860B') + atome(248, 'O', '#E8604C') +
+      mot(170, 216, '1 · le squelette', { t: 19 }) +
+      trait(446, 128, 476, 128, 1, { w: 4 }) + trait(524, 128, 554, 128, 1, { w: 4 }) +
+      atome(422, 'O', '#E8604C') + atome(500, 'C', '#B8860B') + atome(578, 'O', '#E8604C') + paires(422, 3) + paires(578, 3) +
+      mot(500, 216, '2 · les octets périphériques', { t: 19 }) +
+      trait(776, 121, 806, 121, 1, { w: 4 }) + trait(776, 135, 806, 135, 1, { w: 4 }) +
+      trait(854, 121, 884, 121, 1, { w: 4 }) + trait(854, 135, 884, 135, 1, { w: 4 }) +
+      atome(752, 'O', '#E8604C') + atome(830, 'C', '#B8860B') + atome(908, 'O', '#E8604C') + paires(752, 2) + paires(908, 2) +
+      mot(830, 216, '3 · les doubles liaisons', { t: 19 }) +
+      mot(500, 268, 'construire la structure de Lewis du dioxyde de carbone', { t: 21 }));
+  },
+  dipoles_co2_h2o_fig(t) {
+    return svgBoite(
+      `<circle cx="180" cy="140" r="24" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(180, 148, 'O', { t: 20 }) + mot(180, 108, 'δ−', { c: '#E8604C', t: 18 }) +
+      `<circle cx="300" cy="140" r="24" fill="#B8860B" fill-opacity=".4" stroke="currentColor" stroke-width="3"/>` + mot(300, 148, 'C', { t: 20 }) + mot(300, 108, 'δ+', { t: 18 }) +
+      `<circle cx="420" cy="140" r="24" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(420, 148, 'O', { t: 20 }) + mot(420, 108, 'δ−', { c: '#E8604C', t: 18 }) +
+      trait(268, 140, 222, 140, 1, { c: '#B8860B', w: 5 }) + pointe(210, 140, 180, '#B8860B') +
+      trait(332, 140, 378, 140, 1, { c: '#B8860B', w: 5 }) + pointe(390, 140, 0, '#B8860B') +
+      mot(300, 216, 'μ total = 0 : apolaire', { t: 20 }) +
+      `<circle cx="730" cy="92" r="24" fill="#E8604C" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(730, 100, 'O', { t: 20 }) + mot(730, 56, 'δ−', { c: '#E8604C', t: 18 }) +
+      `<circle cx="652" cy="196" r="19" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(652, 203, 'H', { t: 17 }) + mot(628, 236, 'δ+', { t: 17 }) +
+      `<circle cx="808" cy="196" r="19" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>` + mot(808, 203, 'H', { t: 17 }) + mot(832, 236, 'δ+', { t: 17 }) +
+      trait(676, 172, 706, 122, 1, { c: '#B8860B', w: 5 }) + pointe(712, 112, -52, '#B8860B') +
+      trait(784, 172, 754, 122, 1, { c: '#B8860B', w: 5 }) + pointe(748, 112, -128, '#B8860B') +
+      trait(730, 178, 730, 128, 1, { c: '#10B981', w: 7 }) + pointe(730, 116, -90, '#10B981') +
+      mot(730, 268, 'μ total ≠ 0 : polaire', { c: '#10B981', t: 20 }) +
+      mot(500, 30, 'des liaisons polaires, une molécule apolaire ou polaire', { t: 22 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

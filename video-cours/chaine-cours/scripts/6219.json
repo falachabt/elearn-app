@@ -1,0 +1,498 @@
+{
+ "cours": 6219,
+ "ecrans": {
+  "annulation": {
+   "kicker": "La somme vectorielle",
+   "texte": "Dipôles opposés : ils s'annulent ou s'additionnent.",
+   "type": "phrase",
+   "anim": {
+    "nom": "dipoles_co2_h2o_fig",
+    "hauteur": 170
+   }
+  },
+  "applications": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "melange"
+   },
+   "kicker": "Pourquoi la polarité compte",
+   "texte": "Le semblable dissout le semblable.",
+   "type": "phrase"
+  },
+  "atelier_nh3": {
+   "kicker": "Atelier de prédiction",
+   "tex": [
+    "NH_3 : \\text{azote central, trois liaisons, une paire libre}",
+    "4 \\text{ domaines} \\Rightarrow \\text{disposition tétraédrique}",
+    "\\text{Forme réelle : pyramidale trigonale}",
+    "\\text{Dipôles non compensés} \\Rightarrow \\text{molécule polaire}"
+   ],
+   "titre": "L'ammoniac, étape par étape",
+   "type": "etape"
+  },
+  "bipyramide": {
+   "kicker": "Cinq domaines",
+   "texte": "Cinq domaines : trois équatoriaux, deux axiaux.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vsepr_formes_fig",
+    "hauteur": 150
+   }
+  },
+  "compression": {
+   "kicker": "La compression des angles",
+   "tex": [
+    "CH_4 \\quad AX_4 \\quad 109{,}5^\\circ \\quad \\text{tétraédrique}",
+    "NH_3 \\quad AX_3E \\quad \\approx 107^\\circ \\quad \\text{pyramidale trigonale}",
+    "H_2O \\quad AX_2E_2 \\quad \\approx 104{,}5^\\circ \\quad \\text{coudée}"
+   ],
+   "titre": "Du méthane à l'eau : l'angle se referme",
+   "type": "etape",
+   "anim": {
+    "nom": "compression_angles_fig",
+    "hauteur": 110
+   }
+  },
+  "coordination": {
+   "kicker": "Les formes avancées au travail",
+   "tex": [
+    "[Co(NH_3)_6]^{3+} \\text{ et } [Fe(CN)_6]^{4-} : \\text{octaédriques}",
+    "\\text{Perovskites : un réseau d'octaèdres (énergie solaire)}",
+    "\\text{Hème du sang : le fer, octaédrique, y fixe } O_2"
+   ],
+   "titre": "Coordination, matériaux et biologie",
+   "type": "etape"
+  },
+  "corrections": {
+   "kicker": "Atelier de prédiction",
+   "tex": [
+    "SF_4 : AX_4E, \\text{ balançoire, polaire}",
+    "ICl_3 : AX_3E_2, \\text{ forme en T, polaire}",
+    "XeF_4 : AX_4E_2, \\text{ plan carré, apolaire}",
+    "H_3O^+ : AX_3E, \\text{ pyramidal, très polaire}"
+   ],
+   "titre": "Quatre molécules, quatre verdicts",
+   "type": "etape"
+  },
+  "dipole": {
+   "kicker": "Le moment dipolaire",
+   "note": "Il se mesure en debye : celui de la liaison hydrogène-fluor vaut presque deux.",
+   "tex": "\\mu = q \\times d \\qquad \\vec{\\mu}_{mol} = \\sum \\vec{\\mu}_{liaison}",
+   "type": "formule"
+  },
+  "domaines": {
+   "kicker": "Le principe VSEPR",
+   "tex": [
+    "NS = \\text{atomes liés à l'atome central} + \\text{paires non liantes}",
+    "\\text{Un domaine = une liaison (simple, double, triple) ou un doublet libre}",
+    "\\text{Géométrie des domaines : tous les doublets}",
+    "\\text{Géométrie moléculaire : les atomes seuls}"
+   ],
+   "titre": "Le vocabulaire : domaines et nombre stérique",
+   "type": "etape"
+  },
+  "duel": {
+   "kicker": "Le duel des molécules",
+   "tex": [
+    "CF_4 \\text{ tétraédrique apolaire contre } SF_4 \\text{ balançoire}",
+    "CO_2 \\text{ linéaire apolaire contre } SO_2 \\text{ coudé polaire}",
+    "BF_3 \\text{ plan apolaire contre } NF_3 \\text{ pyramidal polaire}"
+   ],
+   "titre": "Trois paires, un seul facteur changeant",
+   "type": "etape"
+  },
+  "exceptions": {
+   "kicker": "Les structures de Lewis",
+   "note": "Incomplet chez BF₃, étendu chez SF₆ ; l'hydrogène vise le duet : deux électrons.",
+   "tex": "BF_3 : 6\\ e^- \\text{ autour de B} \\qquad SF_6 : 12\\ e^- \\text{ autour de S}",
+   "type": "formule"
+  },
+  "exercice_clo2": {
+   "kicker": "Exercice guidé",
+   "tex": [
+    "ClO_2^- : 7 + 2 \\times 6 + 1 = 20 \\text{ électrons de valence}",
+    "\\text{Cl central : une double, une simple, un doublet libre}",
+    "AX_2E : \\text{domaines tétraédriques, molécule coudée}"
+   ],
+   "titre": "L'ion chlorite passé au crible VSEPR",
+   "type": "etape"
+  },
+  "exercice_scn": {
+   "kicker": "Atelier de prédiction",
+   "tex": [
+    "SCN^- : \\text{le carbone est l'atome central}",
+    "[S - C \\equiv N]^- \\leftrightarrow S = C = N^- \\text{ (résonance)}",
+    "\\text{Deux domaines dans les deux formes} \\Rightarrow \\text{linéaire}"
+   ],
+   "titre": "Le piège de la résonance : l'ion thiocyanate",
+   "type": "etape"
+  },
+  "formes_base": {
+   "kicker": "Les formes de base",
+   "tex": [
+    "2 \\text{ domaines : linéaire, } 180^\\circ \\quad CO_2,\\ BeCl_2",
+    "3 \\text{ domaines : trigonale plane, } 120^\\circ \\quad BF_3,\\ SO_3",
+    "4 \\text{ domaines : tétraédrique, } 109{,}5^\\circ \\quad CH_4,\\ CCl_4"
+   ],
+   "titre": "Deux, trois, quatre domaines : les formes sans paire libre",
+   "type": "etape",
+   "anim": {
+    "nom": "vsepr_formes_fig",
+    "hauteur": 110
+   }
+  },
+  "formes_libres": {
+   "kicker": "Le catalogue des distorsions",
+   "tex": [
+    "AX_2E : \\text{coudée, } < 120^\\circ \\quad SO_2,\\ O_3",
+    "AX_4E : \\text{balançoire} \\quad SF_4",
+    "AX_3E_2 : \\text{forme en T} \\quad ClF_3",
+    "AX_2E_3 : \\text{linéaire, } 180^\\circ \\quad XeF_2"
+   ],
+   "titre": "Les formes créées par les paires libres",
+   "type": "etape"
+  },
+  "hierarchie": {
+   "kicker": "La hiérarchie des répulsions",
+   "note": "Plus proche du noyau, la paire libre occupe plus de place et repousse plus fort.",
+   "tex": "\\text{libre} - \\text{libre} > \\text{libre} - \\text{liante} > \\text{liante} - \\text{liante}",
+   "type": "formule"
+  },
+  "lewis": {
+   "kicker": "Les structures de Lewis",
+   "texte": "Points et traits : Lewis cartographie les électrons de valence.",
+   "type": "phrase",
+   "anim": {
+    "nom": "lewis_co2_fig",
+    "hauteur": 170
+   }
+  },
+  "lewis_etapes": {
+   "kicker": "Les structures de Lewis",
+   "tex": [
+    "CO_2 : 4 + 2 \\times 6 = 16 \\text{ électrons de valence}",
+    "\\text{Squelette } O - C - O \\text{ : C, le moins électronégatif}",
+    "\\text{Liaisons simples, octets des oxygènes d'abord}",
+    "\\text{Carbone à 4 électrons} \\Rightarrow O = C = O"
+   ],
+   "titre": "Construire la structure de Lewis du dioxyde de carbone",
+   "type": "etape"
+  },
+  "limites": {
+   "kicker": "Les limites du modèle",
+   "tex": [
+    "C_6H_6 : \\text{électrons } \\pi \\text{ délocalisés, domaines flous}",
+    "\\text{Atomes volumineux : les répulsions entre atomes comptent}",
+    "[Cu(NH_3)_6]^{2+} : \\text{octaèdre parfois allongé (distorsion)}"
+   ],
+   "titre": "Ce que VSEPR ne voit pas",
+   "type": "etape"
+  },
+  "methode": {
+   "etapes": [
+    "Dessiner la structure de Lewis",
+    "Compter les domaines électroniques",
+    "Placer les domaines : géométrie électronique",
+    "Ignorer les paires libres : forme réelle",
+    "Sommer les dipôles : la polarité"
+   ],
+   "kicker": "La méthode en cinq temps",
+   "type": "recap"
+  },
+  "octaedre": {
+   "kicker": "Six domaines",
+   "tex": [
+    "AX_6 : \\text{octaédrique, } 90^\\circ \\quad SF_6",
+    "AX_5E : \\text{pyramide à base carrée} \\quad BrF_5",
+    "AX_4E_2 : \\text{carrée plane} \\quad XeF_4"
+   ],
+   "titre": "L'octaèdre et ses dérivés",
+   "type": "etape"
+  },
+  "postulat": {
+   "kicker": "Le principe VSEPR",
+   "texte": "Les doublets se repoussent : ils s'écartent au maximum.",
+   "type": "phrase",
+   "anim": {
+    "nom": "vsepr_formes_fig",
+    "hauteur": 150
+   }
+  },
+  "recap_avancees": {
+   "etapes": [
+    "Paire libre : plus volumineuse, plus répulsive",
+    "Compression : 109,5°, puis 107°, puis 104,5°",
+    "Cinq domaines : paire libre en équatoriale",
+    "Six domaines : octaèdre, positions équivalentes"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_bases": {
+   "etapes": [
+    "Lewis : compter les électrons de valence",
+    "VSEPR : les doublets se repoussent au maximum",
+    "Nombre stérique = atomes liés + paires libres",
+    "Sans paire libre : 180°, 120°, 109,5°"
+   ],
+   "kicker": "Points clés de la partie",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Lewis donne la connectivité et les doublets",
+    "VSEPR : les doublets se repoussent au maximum",
+    "La paire libre déforme et referme les angles",
+    "La forme décide si les dipôles s'annulent",
+    "Symétrie parfaite : molécule apolaire"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "symetrie": {
+   "kicker": "Symétrie et polarité",
+   "tex": [
+    "BF_3 : \\text{trois dipôles à } 120^\\circ \\Rightarrow \\text{somme nulle}",
+    "H_2CO : \\text{même plan, liaisons différentes} \\Rightarrow \\text{polaire}",
+    "CH_4 \\text{ et } CCl_4 : \\text{tétraèdres symétriques, apolaires}",
+    "CHCl_3 : \\text{un hydrogène remplace un chlore} \\Rightarrow \\text{polaire}"
+   ],
+   "titre": "Quand les dipôles se compensent, ou pas",
+   "type": "etape"
+  },
+  "titre": {
+   "kicker": "Chimie · Géométrie moléculaire",
+   "sous": "Lewis, VSEPR et polarité",
+   "titre": "La géométrie des molécules",
+   "type": "titre",
+   "anim": {
+    "nom": "vsepr_formes_fig",
+    "hauteur": 250
+   }
+  }
+ },
+ "lecons": [
+  6680,
+  6681,
+  6682,
+  6683,
+  6684,
+  6685,
+  6686
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Structures de Lewis et formes de base"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : les paires libres entrent en scène. Plus volumineuses que les paires liantes, elles déforment les géométries idéales, referment les angles, et ouvriront la voie aux formes avancées à cinq et six domaines.",
+    "texte": "Partie 2 : les paires libres déforment les formes."
+   },
+   "sous_titre": "Paires libres, distorsions et géométries avancées"
+  },
+  {
+   "debut": "p17",
+   "pont": {
+    "dit": "Partie trois : la forme décide de la polarité. Nous additionnerons les moments dipolaires comme des vecteurs, nous nous entraînerons sur des molécules réelles, et nous terminerons par les applications et les limites du modèle.",
+    "texte": "Partie 3 : de la forme à la polarité."
+   },
+   "sous_titre": "Polarité, atelier de prédiction et synthèse"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la géométrie des molécules. Une goutte d'eau, un gaz qui s'échappe, un cristal de quartz : derrière ces objets familiers se cachent des architectures invisibles, précises, que la chimie sait prédire à partir d'une simple formule. Nous partirons des structures de Lewis, qui cartographient les électrons de valence, puis la théorie VSEPR nous donnera la forme réelle des molécules, et nous verrons enfin comment cette forme décide de leur polarité.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "De la formule brute à la forme réelle des molécules."
+  },
+  {
+   "dit": "En mille neuf cent seize, le chimiste américain Gilbert Lewis propose une représentation révolutionnaire de la liaison chimique. Les atomes ne sont plus des sphères inertes : ils cherchent la configuration stable du gaz noble le plus proche. Sa structure de Lewis dessine cette quête : le symbole de l'élément, des points pour les électrons de valence, des traits pour les paires partagées. Regardez le dioxyde de carbone : le carbone, au centre, partage deux paires d'électrons avec chaque oxygène, et chacun complète son octet.",
+   "ecran": "lewis",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "1916 : Lewis dessine les électrons de valence."
+  },
+  {
+   "dit": "Construisons cette structure pas à pas. D'abord, comptons les électrons de valence : quatre pour le carbone, six pour chaque oxygène, seize au total. Ensuite, dessinons le squelette : l'atome central est le moins électronégatif, ici le carbone, entre les deux oxygènes. Formons des liaisons simples et complétons les octets des atomes périphériques. Le carbone ne compte alors que quatre électrons : il faut convertir des paires non liantes en liaisons multiples. Deux doubles liaisons, et chaque atome a son octet.",
+   "ecran": "lewis_etapes",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "CO₂ : seize électrons, deux doubles liaisons, octet complet."
+  },
+  {
+   "dit": "La règle de l'octet est-elle une loi universelle ? Non, et les leçons nous donnent deux contre-exemples nets. Dans le trifluorure de bore, le bore se contente de six électrons : son octet est incomplet, et la molécule reste stable. Dans l'hexafluorure de soufre, le soufre s'entoure de douze électrons : son octet est étendu, au-delà de huit. L'octet est un guide précieux, pas une loi absolue ; l'hydrogène, lui, vise plus modestement le duet du gaz hélium.",
+   "ecran": "exceptions",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "BF₃ s'arrête à six électrons, SF₆ monte à douze."
+  },
+  {
+   "dit": "Une structure de Lewis est une carte en deux dimensions, mais les molécules vivent en trois dimensions. Dans les années cinquante, Ronald Gillespie et Ronald Nyholm énoncent le postulat de la théorie VSEPR : les paires d'électrons de la couche de valence, liantes ou non liantes, se repoussent mutuellement. Elles s'arrangent donc dans l'espace pour s'écarter au maximum et minimiser les répulsions. Imaginez des ballons chargés négativement, attachés au même point : ils s'écarteraient naturellement le plus possible les uns des autres.",
+   "ecran": "postulat",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Gillespie et Nyholm : les paires se repoussent au maximum."
+  },
+  {
+   "dit": "Pour appliquer ce postulat, il faut le bon vocabulaire. Un domaine électronique est une région où les électrons se concentrent : une liaison, simple, double ou triple, compte pour un seul domaine, et une paire non liante aussi. Le nombre stérique additionne les atomes liés à l'atome central et ses paires non liantes. Retenez surtout la distinction clé : la géométrie des domaines décrit tous les doublets, tandis que la géométrie moléculaire ne décrit que les atomes. Ce sont elles qui divergeront dès qu'une paire libre sera présente.",
+   "ecran": "domaines",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Nombre stérique = atomes liés + paires non liantes."
+  },
+  {
+   "dit": "Commençons par les molécules sans paire libre : la forme des domaines est alors la forme de la molécule. Deux domaines se placent en ligne droite, à cent quatre-vingts degrés : le dioxyde de carbone et le chlorure de béryllium sont linéaires. Trois domaines dessinent un triangle équilatéral dans un plan, à cent vingt degrés : c'est le trifluorure de bore. Quatre domaines exigent la troisième dimension : ils pointent vers les sommets d'un tétraèdre, à cent neuf virgule cinq degrés, comme dans le méthane.",
+   "ecran": "formes_base",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "180°, 120°, 109,5° : les angles des formes parfaites."
+  },
+  {
+   "dit": "Récapitulons cette première partie. La structure de Lewis donne l'inventaire : connectivité des atomes et place des électrons de valence. La théorie VSEPR transforme cet inventaire en forme : les doublets se repoussent et s'écartent au maximum. Le nombre stérique compte les domaines, et sans paire libre, deux, trois et quatre domaines donnent les angles de cent quatre-vingts, cent vingt et cent neuf virgule cinq degrés.",
+   "ecran": "recap_bases",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Lewis inventorie, VSEPR prédit la forme."
+  },
+  {
+   "dit": "Toutes les paires ne se repoussent pas avec la même force. Une paire non liante n'est attirée que par le noyau central : elle reste près de lui, plus diffuse, et occupe un volume plus important qu'une paire liante, étirée entre deux noyaux. D'où la hiérarchie des répulsions, à retenir par cœur : la répulsion entre deux paires libres est la plus forte, celle entre une paire libre et une paire liante vient ensuite, et celle entre deux paires liantes est la plus faible.",
+   "ecran": "hierarchie",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "Libre-libre, puis libre-liante, puis liante-liante."
+  },
+  {
+   "dit": "Voici cette hiérarchie à l'œuvre, dans une famille célèbre. Le méthane, avec quatre paires liantes identiques, est un tétraèdre parfait : cent neuf virgule cinq degrés. Dans l'ammoniac, une paire libre remplace une liaison : plus volumineuse, elle repousse les trois liaisons et referme l'angle à environ cent sept degrés ; la forme visible devient une pyramide trigonale. Dans l'eau, deux paires libres écrasent encore davantage : l'angle tombe à cent quatre virgule cinq degrés, et la molécule est coudée.",
+   "ecran": "compression",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "109,5° pour CH₄, 107° pour NH₃, 104,5° pour H₂O."
+  },
+  {
+   "dit": "Le tableau des formes issues des paires libres se lit comme un catalogue. Avec trois domaines dont un libre, la molécule est coudée, sous les cent vingt degrés : c'est le dioxyde de soufre et l'ozone. À cinq domaines, une paire libre donne la balançoire du tétrafluorure de soufre, deux paires libres donnent la forme en té du trifluorure de chlore, et trois paires libres alignent le difluorure de xénon. La paire libre ne se voit pas, mais c'est elle qui sculpte la forme.",
+   "ecran": "formes_libres",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Coudée, balançoire, forme en T, linéaire."
+  },
+  {
+   "dit": "Cinq paires d'électrons ne tiennent plus dans les formes précédentes : elles adoptent la bipyramide trigonale, confirmée par la diffraction électronique sur le pentachlorure de phosphore. Trois positions forment un triangle équatorial, deux positions axiales se dressent au-dessus et au-dessous. Mais ces positions ne se valent pas : une position axiale compte trois voisins à quatre-vingt-dix degrés, contre deux seulement pour une position équatoriale. Les paires libres, plus exigeantes, choisissent donc toujours les positions équatoriales.",
+   "ecran": "bipyramide",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Positions équatoriales : moins de voisins à 90°."
+  },
+  {
+   "dit": "Six paires d'électrons atteignent la perfection géométrique : l'octaèdre. Toutes les positions y sont équivalentes, à quatre-vingt-dix degrés de leurs quatre voisines et à cent quatre-vingts degrés de leur opposée. L'hexafluorure de soufre en est l'exemple classique, si stable qu'on l'utilise comme isolant dans les équipements à haute tension. Retirez une paire liante, remplacée par une paire libre : vous obtenez la pyramide à base carrée du pentafluorure de brome. Deux paires libres opposées donnent le plan carré du tétrafluorure de xénon.",
+   "ecran": "octaedre",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "SF₆ : l'octaèdre parfait, à 90° et 180°."
+  },
+  {
+   "dit": "À vous de jouer, avec l'ion chlorite. Comptons ses électrons de valence : sept pour le chlore, six pour chaque oxygène, un de plus pour la charge négative : vingt au total. Le chlore est l'atome central. Pour satisfaire les octets, la structure de Lewis stable combine une liaison double, une liaison simple et un doublet non liant sur le chlore. La double liaison compte pour un seul domaine : nous sommes dans le cas A X deux E, aux domaines tétraédriques. La géométrie moléculaire est donc coudée, comme celle du dioxyde de soufre.",
+   "ecran": "exercice_clo2",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "ClO₂⁻ : vingt électrons, cas AX₂E, molécule coudée."
+  },
+  {
+   "dit": "Ces formes avancées ne sont pas des curiosités de manuel. La chimie de coordination, fondée par Alfred Werner, prix Nobel en mille neuf cent treize, regorge de complexes octaédriques : le cobalt entouré de six ammoniacs, le fer entouré de six cyanures. Les perovskites, matériaux stars des cellules solaires, sont des réseaux d'octaèdres qui partagent leurs sommets. Et dans notre sang, le fer du groupe hème de l'hémoglobine siège dans un environnement presque octaédrique : c'est là qu'il fixe le dioxygène que nous respirons.",
+   "ecran": "coordination",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Werner, les perovskites et le fer de l'hémoglobine."
+  },
+  {
+   "dit": "Récapitulons. La paire libre, plus proche du noyau, repousse plus fort que la paire liante : elle referme les angles, de cent neuf virgule cinq à cent sept puis cent quatre virgule cinq degrés. À cinq domaines, elle s'installe en position équatoriale et fait naître balançoire et forme en té. À six domaines, l'octaèdre règne, et ses dérivés, pyramide à base carrée et plan carré, héritent de sa symétrie.",
+   "ecran": "recap_avancees",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "La paire libre déforme, l'octaèdre équilibre."
+  },
+  {
+   "dit": "Passons à la polarité. Quand deux atomes d'électronégativités différentes partagent des électrons, le partage est inégal : la liaison devient polaire et porte un moment dipolaire, un vecteur qui pointe de la charge partielle positive vers la charge partielle négative. Ce moment est le produit de la charge par la distance qui la sépare, et il se mesure en debye : celui de la liaison entre l'hydrogène et le fluor, très polaire, approche les deux debye. Toute la question sera désormais vectorielle.",
+   "ecran": "dipole",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "μ = q × d : le moment dipolaire se mesure en debye."
+  },
+  {
+   "dit": "Une molécule est polaire si la somme vectorielle de ses moments de liaison n'est pas nulle, et la géométrie décide du résultat. Le dioxyde de carbone possède deux liaisons très polaires, mais sa forme linéaire les place en opposition exacte : les deux vecteurs, égaux et contraires, s'annulent, et la molécule est apolaire. L'eau, au contraire, est coudée : ses deux moments ne peuvent plus s'annuler, leur résultante pointe vers l'oxygène, et l'eau est fortement polaire. Le monoxyde de carbone, linéaire mais à une seule liaison polaire, est polaire lui aussi.",
+   "ecran": "annulation",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "CO₂ apolaire, H₂O polaire : tout est vectoriel."
+  },
+  {
+   "dit": "La symétrie est le juge suprême de la polarité. Le trifluorure de bore place trois dipôles identiques à cent vingt degrés : leur somme est nulle. Le formaldéhyde a la même forme plane, mais ses liaisons ne sont pas identiques : les moments ne se compensent plus, la molécule est polaire. Même logique dans les tétraèdres : le méthane et le tétrachlorure de carbone, parfaitement symétriques, sont apolaires. Mais remplacez un chlore par un hydrogène, et le chloroforme devient polaire : un seul atome différent brise l'équilibre des dipôles.",
+   "ecran": "symetrie",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Un seul atome différent suffit à briser l'annulation."
+  },
+  {
+   "dit": "Voici votre algorithme de prédiction, en cinq temps. Dessinez la structure de Lewis. Comptez les domaines autour de l'atome central. Placez ces domaines pour obtenir la géométrie électronique. Ignorez mentalement les paires libres : il reste la géométrie moléculaire, la forme réelle. Enfin, dessinez les dipôles de liaison et additionnez-les comme des vecteurs : somme nulle, molécule apolaire ; somme non nulle, molécule polaire.",
+   "ecran": "methode",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Cinq étapes : Lewis, domaines, forme, dipôles."
+  },
+  {
+   "dit": "Appliquons la méthode à l'ammoniac, l'exemple classique de la paire libre. L'azote central porte trois liaisons vers les hydrogènes et une paire non liante : quatre domaines, donc une disposition électronique tétraédrique. En ne regardant que les atomes, la forme est une pyramide à base trigonale. Les liaisons azote-hydrogène sont polaires, et la géométrie pyramidale empêche toute compensation : l'ammoniac est une molécule polaire. Sa forme explique même son inversion rapide, exploitée dans les premiers masers.",
+   "ecran": "atelier_nh3",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "NH₃ : pyramide trigonale, molécule polaire."
+  },
+  {
+   "dit": "Un cas piège maintenant : l'ion thiocyanate, qui possède deux formes de résonance. Dans les deux formes, l'atome central est le carbone, le moins électronégatif des trois atomes. Qu'il soit lié par une triple liaison et une simple, ou par deux doubles, le carbone ne porte que deux domaines électroniques. La résonance délocalise les électrons, mais elle ne change pas le nombre de domaines. Conclusion : l'ion thiocyanate est linéaire.",
+   "ecran": "exercice_scn",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "SCN⁻ : la résonance ne change pas le nombre de domaines."
+  },
+  {
+   "dit": "Dernier entraînement, avec les réponses des leçons. Le tétrafluorure de soufre compte cinq domaines, dont une paire libre en position équatoriale : forme en balançoire, molécule polaire. Le trichlorure d'iode, avec deux paires libres, prend la forme en té. Le tétrafluorure de xénon place ses deux paires libres à l'opposé l'une de l'autre : plan carré, et parfaitement apolaire. L'ion hydronium, enfin, ressemble à l'ammoniac : pyramide trigonale, très polaire. C'est lui qui rend les solutions acides.",
+   "ecran": "corrections",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "SF₄, ICl₃, XeF₄, H₃O⁺ : le corrigé des leçons."
+  },
+  {
+   "dit": "Terminons l'atelier par trois duels de la synthèse. Le tétrafluorure de carbone est un tétraèdre apolaire ; le tétrafluorure de soufre, déformé par sa paire libre, est une balançoire polaire. Le dioxyde de carbone est linéaire et apolaire ; le dioxyde de soufre, coudé par sa paire libre, est polaire. Le trifluorure de bore est plan et apolaire ; le trifluorure d'azote, pyramidal à cause de sa paire libre, est polaire. À chaque fois, la paire libre fait toute la différence.",
+   "ecran": "duel",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Trois duels : la paire libre fait la différence."
+  },
+  {
+   "dit": "Pourquoi tant d'attention à la polarité ? Parce qu'elle gouverne le monde physique. La solubilité d'abord : le semblable dissout le semblable, les solvants polaires dissolvent les solutés polaires ou ioniques, les solvants apolaires dissolvent les graisses et les huiles. Les températures de changement d'état ensuite : les molécules polaires s'attirent plus fort, et l'eau bout à cent degrés quand le sulfure d'hydrogène, bien moins polaire, bout à moins soixante. Les membranes de nos cellules, enfin, sont bâties sur des molécules amphiphiles, à tête polaire et queue apolaire.",
+   "ecran": "applications",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Solubilité, ébullition, membranes : la polarité gouverne."
+  },
+  {
+   "dit": "Restons honnêtes : la théorie VSEPR est un modèle, pas la réalité quantique complète. Dans le benzène, les électrons pi sont délocalisés sur tout le cycle, et la notion de domaine localisé devient floue. Quand les atomes périphériques sont très volumineux, leurs répulsions mutuelles, et pas seulement celles des doublets, déforment la géométrie. Et certains octaèdres, comme le cuivre entouré de six ammoniacs, s'allongent le long d'un axe sans que le modèle simple l'explique. Le modèle prédit les formes, il ne calcule pas les angles au dixième de degré.",
+   "ecran": "limites",
+   "id": "p26",
+   "pause_apres": 0.8,
+   "texte": "Benzène, gros atomes, distorsions : les limites du modèle."
+  },
+  {
+   "dit": "Vous détenez désormais la méthode complète. La structure de Lewis inventorie les électrons, la théorie VSEPR transforme cet inventaire en forme tridimensionnelle, la hiérarchie des répulsions explique les déformations, et la somme vectorielle des dipôles tranche la question de la polarité. De la formule brute à la propriété macroscopique, tout s'enchaîne : c'est la forme qui fait le destin chimique d'une molécule.",
+   "ecran": "recap_final",
+   "id": "p27",
+   "pause_apres": 0.8,
+   "texte": "De la formule à la propriété : la forme fait le destin."
+  }
+ ],
+ "titre": "Géométrie moléculaire : structures de Lewis, théorie VSEPR et polarité"
+}
