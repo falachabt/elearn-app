@@ -3073,6 +3073,7 @@ export const en: Textes = {
       complet: 'Full test',
       resultat: '{{c}} of {{n}}',
       estimation: 'estimate {{min}} to {{max}}',
+      scoreExact: '{{score}} out of 990',
       abandonne: 'Abandoned',
       rembourse: 'Refunded',
       vide: 'No test taken yet.',

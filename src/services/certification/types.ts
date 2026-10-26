@@ -212,7 +212,7 @@ export type TentativeListee = {
   part: number | null;
   length: number;
   status: Tentative['status'];
-  /** Score exact d'un demi-test ou du test complet (une valeur) ; `null` pour les autres tentatives. */
+  /** Score exact (diagnostic depuis #129, demi-test ou test complet : une valeur) ; `null` pour les autres tentatives. */
   score?: number | null;
   scoreMin: number | null;
   scoreMax: number | null;

@@ -490,6 +490,7 @@ describe('T4 · historique et T7 · détail', () => {
     LIGNE({ id: 'b' }),
     LIGNE({ id: 'c', status: 'abandoned', perPart: null, finishedAt: null }),
     LIGNE({ id: 'd', kind: 'diagnostic', part: null, length: 20, scoreMin: 600, scoreMax: 700 }),
+    LIGNE({ id: 'e', kind: 'diagnostic', part: null, length: 21, score: 745, scoreMin: 720, scoreMax: 770 }),
   ];
 
   it('liste chaque test avec son résultat, du plus récent au plus ancien, et la mention d’estimation', async () => {
@@ -499,6 +500,8 @@ describe('T4 · historique et T7 · détail', () => {
     expect(screen.getByText(`${t.historique.miniPartie.replace('{{n}}', '5')} · 8 sur 10`)).toBeTruthy();
     expect(screen.getByText(`${t.historique.miniPartie.replace('{{n}}', '5')} · ${t.historique.abandonne}`)).toBeTruthy();
     expect(screen.getByText(`${t.historique.diagnostic} · estimation 600 à 700`)).toBeTruthy();
+    expect(screen.getByText(`${t.historique.diagnostic} · ${t.historique.scoreExact.replace('{{score}}', '745')}`)).toBeTruthy();
+    expect(screen.queryByText('720 à 770', { exact: false })).toBeNull();
     expect(screen.getByText(t.historique.mention)).toBeTruthy();
     expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
   });
@@ -527,8 +530,17 @@ describe('T4 · historique et T7 · détail', () => {
     await monter(<DetailTentative />);
     expect(await screen.findByText('estimation 650 à 730')).toBeTruthy();
     expect(screen.getByText(t.tentative.minutes.replace('{{min}}', '8'))).toBeTruthy();
+    expect(screen.queryByText('745 sur 990')).toBeNull();
     expect(screen.getByText(t.tentative.lignePartie.replace('{{n}}', '1'))).toBeTruthy();
     expect(screen.getByText('10 sur 15')).toBeTruthy();
+  });
+
+  it('détail d’un diagnostic : le score exact s’affiche, pas la fourchette', async () => {
+    installer({ tentatives: liste });
+    mockParams = { id: 'e' };
+    await monter(<DetailTentative />);
+    expect(await screen.findByText('745 sur 990')).toBeTruthy();
+    expect(screen.queryByText('720 à 770', { exact: false })).toBeNull();
   });
 
   it('détail d’un test abandonné : pas de bilan', async () => {

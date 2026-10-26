@@ -3074,6 +3074,7 @@ export const fr = {
       complet: 'Test complet',
       resultat: '{{c}} sur {{n}}',
       estimation: 'estimation {{min}} à {{max}}',
+      scoreExact: '{{score}} sur 990',
       abandonne: 'Abandonné',
       rembourse: 'Remboursé',
       vide: 'Aucun test fait pour l’instant.',

@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useTraduction } from '@/i18n/useTraduction';
 import { suivre } from '@/services/analytics';
 import { obtenirApi } from '@/services/certification/api';
-import { maitriseParGroupe, pointsFaibles, type LigneMaitrise, type PointFaible } from '@/services/certification/certDiagnostic';
+import { maitriseParGroupe, pointsFaibles, scoreEstime, type LigneMaitrise, type PointFaible } from '@/services/certification/certDiagnostic';
 import { lireDiagnostic, obtenirReglages } from '@/services/certification/etat';
 import { titreAffiche } from '@/services/certification/titre';
 import { enregistrerProfil, lireProfil } from '@/services/profil';
@@ -37,7 +37,9 @@ export function ResultatDiagnostic() {
       }
       const mots = await obtenirApi().motsARevoir().catch(() => ({ total: 0, theme: null }));
       const fin = etat.fin;
-      const score = fin.estimated && fin.score !== null ? String(fin.score) : null;
+      // Score exact du serveur (#129) ; un `fin` ancien sans score retombe sur le milieu de la fourchette (patron de l'accueil et de Moi), jamais sur la fourchette affichée.
+      const estime = scoreEstime(fin);
+      const score = estime !== null ? String(estime) : null;
       if (!actif) return;
       setD({ score, lignes: maitriseParGroupe(fin.per_part, r), faibles: pointsFaibles(etat.tentative.questions, fin.results, mots, r) });
       suivre('cert_diagnostic_completed', { score_min: fin.score_min, score_max: fin.score_max });

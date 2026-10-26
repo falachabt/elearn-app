@@ -6,7 +6,7 @@ import { fr } from '@/i18n/fr';
 import { suivre } from '@/services/analytics';
 import { definirApi, type CertApi } from '@/services/certification/api';
 import { demarrerOuReprendre, repondre, terminer } from '@/services/certification/diagnostic';
-import { lireDiagnostic } from '@/services/certification/etat';
+import { ecrireDiagnostic, lireDiagnostic } from '@/services/certification/etat';
 import { marquerTourDiagnosticVu } from '@/services/certification/tourDiagnostic';
 import type { Tentative } from '@/services/certification/types';
 import { creerApiFausse } from '@/services/certification/__tests__/apiFausse';
@@ -410,6 +410,16 @@ describe('A7 · Résultat du diagnostic', () => {
     expect(screen.getByText(t.resultat.motsDuBureau)).toBeTruthy();
     expect(screen.getByText(t.resultat.aTravailler.replace('{{n}}', '3'))).toBeTruthy();
     expect(suivre).toHaveBeenCalledWith('cert_diagnostic_completed', { score_min: 650, score_max: 730 });
+  });
+
+  it('fin ancien sans score exact : le milieu de la fourchette s’affiche en un chiffre, jamais la fourchette', async () => {
+    await preparer();
+    const etat = await lireDiagnostic();
+    // Résultat calculé avant le score exact serveur (#129) : le `fin` gardé sur l'appareil n'a pas de `score`.
+    await ecrireDiagnostic({ ...etat!, fin: { ...etat!.fin!, score: null } });
+    await monter(<ResultatDiagnostic />);
+    expect(await screen.findByText('690')).toBeTruthy();
+    expect(screen.queryByText('650 à 730', { exact: false })).toBeNull();
   });
 
   it('« Revoir mes réponses » ouvre la revue question par question du diagnostic', async () => {
