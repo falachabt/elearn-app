@@ -1,9 +1,12 @@
 import { Image } from 'expo-image';
-import { Check, Play } from 'lucide-react-native';
+import { Check, Lock, Play } from 'lucide-react-native';
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { PuceCout } from '@/components/credits/PuceCout';
+import { useDepenseCredits } from '@/components/credits/useDepenseCredits';
+import { useOuverts } from '@/components/credits/useOuverts';
 import { useTraduction } from '@/i18n/useTraduction';
 import { getSupabase } from '@/services/supabase';
 import {
@@ -49,6 +52,10 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
   const [suivis, setSuivis] = useState<Record<string, SuiviVideo>>({});
   const [telechargees, setTelechargees] = useState<Record<string, VideoTelechargee>>({});
   const [avant, setAvant] = useState(0);
+  // Crédits (26/10/2026) : quelles vidéos sont déjà débloquées, et le parcours de déblocage existant
+  // (feuille de coût, crédits épuisés, recharge) pour celles qui ne le sont pas.
+  const acces = useOuverts('course_video', videos?.map((v) => v.id) ?? []);
+  const { lancer, feuilles } = useDepenseCredits();
 
   useFocusEffect(
     useCallback(() => {
@@ -83,16 +90,27 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
         : t('videos.pasCommencee');
   const sousTitreVedetteComplet = telechargees[vedette.id] ? `${sousTitreVedette} · ${t('videos.telechargee')}` : sousTitreVedette;
 
-  const ouvrir = (v: VideoCours) =>
+  const verrouillee = (v: VideoCours) => acces.etat(v.id) === 'payant' && !telechargees[v.id];
+
+  const ouvrir = async (v: VideoCours) => {
+    // Vidéo verrouillée : le parcours de déblocage des contenus payants d'abord (raison, prix, solde,
+    // recharge si besoin) ; on n'ouvre le lecteur que si le déblocage aboutit.
+    if (verrouillee(v)) {
+      const r = await lancer('course_video', v.id);
+      if (!r) return;
+      void acces.relire();
+    }
     router.push({ pathname: '/video', params: { cours: String(cours), video: v.id, nom: nom ?? '', matiere: matiere ?? '' } });
+  };
 
   return (
     <View>
+      {feuilles}
       <Text style={[typo.etiquette, styles.etiquette, { color: theme.texte.secondaire }]}>{t('videos.etiquette', { n: terminees, total: videos.length })}</Text>
       <Appui
         accessibilityRole="button"
-        accessibilityLabel={`${t('videos.partie', { n: vedette.numero })}. ${vedette.titre}. ${sousTitreVedetteComplet}`}
-        onPress={() => ouvrir(vedette)}
+        accessibilityLabel={`${t('videos.partie', { n: vedette.numero })}. ${vedette.titre}. ${verrouillee(vedette) ? t('videos.aDebloquer') : sousTitreVedetteComplet}`}
+        onPress={() => void ouvrir(vedette)}
         rayon={rayon.m}
         ombre={ombre.carte}
         decalage={2}
@@ -115,7 +133,11 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
               </View>
             ) : null}
             <View style={[styles.boutonLecture, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
-              <Play size={21} strokeWidth={2.5} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
+              {verrouillee(vedette) ? (
+                <Lock size={21} strokeWidth={2.5} color={theme.texte.surCouleur} />
+              ) : (
+                <Play size={21} strokeWidth={2.5} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
+              )}
             </View>
             {vedette.dureeS ? (
               <View style={styles.duree}>
@@ -129,9 +151,12 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
             ) : null}
           </View>
           <View style={styles.texte}>
-            <Text style={[typo.etiquette, { color: theme.marque.forte }]}>
-              {etatVedette === 'enCours' ? `${t('videos.partie', { n: vedette.numero })} · ${t('videos.aReprendre')}` : t('videos.partie', { n: vedette.numero })}
-            </Text>
+            <View style={styles.lignePartie}>
+              <Text style={[typo.etiquette, { color: theme.marque.forte }]}>
+                {etatVedette === 'enCours' ? `${t('videos.partie', { n: vedette.numero })} · ${t('videos.aReprendre')}` : t('videos.partie', { n: vedette.numero })}
+              </Text>
+              {verrouillee(vedette) ? <PuceCout cout={acces.cout} etat="payant" /> : null}
+            </View>
             <Text numberOfLines={2} style={[typo.texteFort, styles.titre, { color: theme.texte.principal }]}>{vedette.titre}</Text>
             <Text numberOfLines={1} style={[typo.legende, { color: etatVedette === 'enCours' ? theme.marque.forte : theme.texte.secondaire }, etatVedette === 'enCours' && styles.gras]}>
               {sousTitreVedetteComplet}
@@ -145,13 +170,14 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
             const s = suivis[v.id];
             const etat = etatDe(s);
             const pct = etat === 'enCours' && s?.dureeS ? Math.min(100, Math.round((s.positionS / s.dureeS) * 100)) : 0;
-            const legende = etat === 'enCours' ? t('videos.enCours') : etat === 'terminee' ? t('videos.badgeTerminee') : t('videos.partie', { n: v.numero });
+            const verrou = verrouillee(v);
+            const legende = verrou ? t('videos.aDebloquer') : etat === 'enCours' ? t('videos.enCours') : etat === 'terminee' ? t('videos.badgeTerminee') : t('videos.partie', { n: v.numero });
             return (
               <Appui
                 key={v.id}
                 accessibilityRole="button"
                 accessibilityLabel={`${t('videos.partie', { n: v.numero })}. ${v.titre}. ${legende}`}
-                onPress={() => ouvrir(v)}
+                onPress={() => void ouvrir(v)}
                 rayon={rayon.s}
                 ombre={ombre.carte}
                 decalage={2}
@@ -166,6 +192,10 @@ export function VideosCours({ cours, nom, matiere }: { cours: number; nom?: stri
                     {etat === 'terminee' ? (
                       <View style={[styles.vuMini, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
                         <Check size={11} strokeWidth={3.5} color={theme.texte.surCouleur} />
+                      </View>
+                    ) : verrou ? (
+                      <View style={[styles.vuMini, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                        <Lock size={11} strokeWidth={3} color={theme.texte.surCouleur} />
                       </View>
                     ) : null}
                     {v.dureeS ? (
@@ -202,6 +232,7 @@ const styles = StyleSheet.create({
   progressionFond: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 6, backgroundColor: 'rgba(10,10,10,0.45)' },
   progression: { height: '100%' },
   texte: { padding: espace[3], gap: espace[1] },
+  lignePartie: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[2] },
   titre: { fontSize: 15, lineHeight: 20 },
   gras: { fontWeight: '700' },
   // Bande horizontale de vignettes (maquette carteMiniStrip) : elle casse la marge horizontale de la

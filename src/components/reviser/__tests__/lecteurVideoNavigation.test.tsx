@@ -49,7 +49,11 @@ jest.mock('expo-video', () => ({
 }));
 
 // Session non prête : l'écran ne charge rien, mais son en-tête (avec le bouton retour) est rendu.
-jest.mock('@/session/SessionProvider', () => ({ useSessionPrete: () => false }));
+// useSession sert au parcours crédits (verrou des vidéos), inactif tant que la session n'est pas prête.
+jest.mock('@/session/SessionProvider', () => ({
+  useSessionPrete: () => false,
+  useSession: () => ({ statut: 'chargement', session: null, erreur: null }),
+}));
 
 jest.mock('@/services/supabase', () => ({ getSupabase: () => ({}) }));
 

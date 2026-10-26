@@ -8,7 +8,7 @@ import { suivre } from './analytics';
 type Client = Pick<SupabaseClient, 'from' | 'rpc' | 'channel' | 'removeChannel'>;
 
 /** Actions payantes en crédits (M18). Les coûts viennent du serveur (credit_actions), jamais de l'app. */
-export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation' | 'cert_mock_mini_ten' | 'cert_mock_mini_twenty' | 'cert_mock_half' | 'cert_mock_full' | 'cert_mock_review';
+export type ActionCredit = 'quiz_explanation' | 'exercise_solution' | 'document_pdf' | 'exam_correction' | 'ai_question' | 'cert_explanation' | 'cert_mock_mini_ten' | 'cert_mock_mini_twenty' | 'cert_mock_half' | 'cert_mock_full' | 'cert_mock_review' | 'course_video';
 
 export type Solde = {
   total: number;
@@ -190,6 +190,17 @@ export async function lireOuverts(client: Client, action: ActionCredit, refs: st
 /** Documents gratuits qu'il reste à l'élève (credit_settings.free_documents moins ceux déjà ouverts gratuitement). */
 export async function lireDocumentsGratuits(client: Client): Promise<number> {
   const { data, error } = await client.rpc('my_free_documents_left');
+  if (error) throw error;
+  return typeof data === 'number' ? data : 0;
+}
+
+/**
+ * Vidéos de cours gratuites de découverte encore disponibles (décision de Benny, 26/10/2026 : une seule,
+ * tous cours confondus, consommée dès l'ouverture). Le serveur compte : un élève qui a déjà regardé des
+ * vidéos avant l'arrivée des crédits a sa découverte déjà consommée.
+ */
+export async function lireVideosGratuites(client: Client): Promise<number> {
+  const { data, error } = await client.rpc('my_free_videos_left');
   if (error) throw error;
   return typeof data === 'number' ? data : 0;
 }

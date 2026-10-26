@@ -1,16 +1,20 @@
 import { Image } from 'expo-image';
 import { createVideoPlayer, VideoView, type VideoPlayer } from 'expo-video';
-import { Check, Download, Pause, Play, SkipBack, SkipForward, Trash2 } from 'lucide-react-native';
+import { Check, Download, Lock, Pause, Play, SkipBack, SkipForward, Trash2 } from 'lucide-react-native';
 import { router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { useTraduction } from '@/i18n/useTraduction';
 import { Banniere } from '@/components/Banniere';
+import { PuceCout } from '@/components/credits/PuceCout';
+import { useDepenseCredits } from '@/components/credits/useDepenseCredits';
+import { useOuverts } from '@/components/credits/useOuverts';
 import { Ecran } from '@/components/Ecran';
 import { DEPASSEMENT_CENTRAL } from '@/components/Onglet';
 import { Etiquette } from '@/components/Etiquette';
 import { BoutonFermer } from '@/components/arrivee/MiniTest';
+import { peutVoir } from '@/services/credits';
 import { lireEntrainement, lireProgresChapitres, type Compteur, type ProgresChapitre } from '@/services/entrainement';
 import { enregistrerTempsActivite } from '@/services/activite';
 import { getSupabase } from '@/services/supabase';
@@ -61,12 +65,57 @@ export function LecteurVideo() {
   const courante = videos?.find((v) => v.id === couranteId) ?? videos?.[0] ?? null;
   const restantes = videos ? videos.filter((v) => !telechargees[v.id]) : [];
 
+  // Crédits (26/10/2026) : une vidéo verrouillée ne se lit ni ne se télécharge. L'accès se confirme
+  // AVANT de charger la moindre source : déjà débloquée (le serveur compte aussi les vidéos regardées
+  // avant l'arrivée des crédits), copie téléchargée sur l'appareil (elle n'existe que débloquée), pass
+  // illimité, ou déblocage à l'instant par le parcours existant des contenus payants — la première vidéo
+  // ouverte, tous cours confondus, est gratuite et se consomme ici, côté serveur, dès l'ouverture.
+  const acces = useOuverts('course_video', videos?.map((v) => v.id) ?? []);
+  const { lancer, feuilles } = useDepenseCredits();
+  const [accesSession, setAccesSession] = useState<ReadonlySet<string>>(new Set());
+  const [bloqueeId, setBloqueeId] = useState<string | null>(null);
+  const accesSessionRef = useRef<Set<string>>(new Set());
+  const tentativeRef = useRef<string | null>(null);
+  const accesRef = useRef(acces);
+  const lancerRef = useRef(lancer);
+  useEffect(() => {
+    accesRef.current = acces;
+    lancerRef.current = lancer;
+  });
+
+  /** Demande l'accès à une vidéo (feuilles de coût / crédits épuisés comprises) ; vrai si elle peut se lire. */
+  const demanderAcces = useCallback(async (v: VideoCours): Promise<boolean> => {
+    if (videoLocale(v.id) || accesSessionRef.current.has(v.id)) return true;
+    // Le serveur d'abord : déblocage existant, pass, ou vidéo déjà regardée (ancienneté) — aucun parcours.
+    try {
+      if (await peutVoir(getSupabase(), 'course_video', v.id)) {
+        accesSessionRef.current.add(v.id);
+        setAccesSession(new Set(accesSessionRef.current));
+        return true;
+      }
+    } catch {
+      // Sans réponse du serveur, le parcours de dépense tranchera (feuille « connexion » si besoin).
+    }
+    let r;
+    try {
+      r = await lancerRef.current('course_video', v.id, { deja: accesRef.current.sansFrais(v.id) });
+    } catch {
+      return false;
+    }
+    if (!r || r.statut === 'insufficient' || r.statut === 'limit') return false;
+    accesSessionRef.current.add(v.id);
+    setAccesSession(new Set(accesSessionRef.current));
+    void accesRef.current.relire();
+    return true;
+  }, []);
+
   const rafraichirTelechargees = useCallback(() => {
     void lireTelechargees().then(setTelechargees).catch(() => undefined);
   }, []);
 
   // Téléchargement explicite d'une vidéo (lot 4) : le bouton de sa ligne de playlist la garde sur le
-  // téléphone ; la même touche la supprime quand elle y est déjà.
+  // téléphone ; la même touche la supprime quand elle y est déjà. Une vidéo verrouillée ne se télécharge
+  // pas : le bouton propose d'abord le déblocage (même parcours que la lecture), puis télécharge.
   const basculerTelechargement = useCallback(
     async (v: VideoCours) => {
       if (dlEnCours) return;
@@ -75,6 +124,7 @@ export function LecteurVideo() {
         rafraichirTelechargees();
         return;
       }
+      if (accesRef.current.etat(v.id) === 'payant' && !(await demanderAcces(v))) return;
       setDlEnCours(v.id);
       try {
         await telechargerVideo(v);
@@ -84,13 +134,14 @@ export function LecteurVideo() {
       setDlEnCours(null);
       rafraichirTelechargees();
     },
-    [dlEnCours, rafraichirTelechargees],
+    [dlEnCours, rafraichirTelechargees, demanderAcces],
   );
 
   const toutTelecharger = useCallback(async () => {
     if (!videos || toutDl) return;
     setToutDl(true);
-    await telechargerVideos(videos.filter((v) => !videoLocale(v.id))).catch(() => undefined);
+    // Les vidéos verrouillées sont ignorées : « Tout télécharger » ne débloque rien tout seul.
+    await telechargerVideos(videos.filter((v) => !videoLocale(v.id) && accesRef.current.etat(v.id) !== 'payant')).catch(() => undefined);
     setToutDl(false);
     rafraichirTelechargees();
   }, [videos, toutDl, rafraichirTelechargees]);
@@ -246,10 +297,43 @@ export function LecteurVideo() {
     };
   }, [coursId, pret, rafraichirTelechargees]);
 
+  // Verrou crédits : à chaque nouvelle vidéo courante, l'accès est confirmé avant toute lecture (voir
+  // demanderAcces). Un refus — feuille de coût fermée, crédits épuisés — laisse la vidéo bloquée : le
+  // panneau de déblocage prend la place du lecteur et son bouton relance le parcours. Une seule
+  // tentative automatique par vidéo et par passage sur l'écran.
+  useEffect(() => {
+    if (!courante) return;
+    if (videoLocale(courante.id) || acces.ouverts.has(courante.id) || accesSession.has(courante.id)) return;
+    if (tentativeRef.current === courante.id) return;
+    tentativeRef.current = courante.id;
+    const id = courante.id;
+    // Le verdict s'applique même si l'effet a tourné entre-temps : pendant que la feuille attend la
+    // réponse de l'élève, la relecture des déblocages (nouvel ensemble) relance cet effet — annuler le
+    // verdict au nettoyage laisserait la vidéo en limbe, ni panneau ni lecture (vécu en capture réelle).
+    // La tentative est unique par vidéo (tentativeRef), un verdict tardif reste donc le bon.
+    void demanderAcces(courante).then((ok) => {
+      if (!ok) setBloqueeId(id);
+    });
+  }, [courante, acces.ouverts, accesSession, demanderAcces]);
+
+  const reessayerDeblocage = useCallback(async () => {
+    const v = couranteRef.current;
+    if (!v) return;
+    tentativeRef.current = null;
+    setBloqueeId(null);
+    if (!(await demanderAcces(v))) {
+      tentativeRef.current = v.id;
+      setBloqueeId(v.id);
+    }
+  }, [demanderAcces]);
+
   // Changement de vidéo (playlist ou enchaînement) : on remplace la source, sans lecture automatique.
   // Une copie téléchargée (lot 4) est préférée au flux — décidée au moment du choix de la vidéo.
   useEffect(() => {
     if (!courante) return;
+    // Verrou crédits : tant que l'accès n'est pas établi, aucune source n'est chargée — une vidéo
+    // verrouillée ne se lit pas, même en connaissant son adresse.
+    if (!videoLocale(courante.id) && !acces.ouverts.has(courante.id) && !accesSession.has(courante.id)) return;
     const uri = videoLocale(courante.id) ?? courante.url;
     if (sourceRef.current === uri) return;
     viderTempsLu();
@@ -262,7 +346,7 @@ export function LecteurVideo() {
     setEnLectureAffichee(false);
     lecteur.replace({ uri });
     void noterDerniereVideo({ video: courante.id, cours: coursId });
-  }, [courante, coursId, lecteur, viderTempsLu]);
+  }, [courante, coursId, lecteur, viderTempsLu, acces.ouverts, accesSession]);
 
   // En quittant l'écran (autre onglet, retour) : on sauvegarde et on met en pause.
   useFocusEffect(
@@ -314,6 +398,10 @@ export function LecteurVideo() {
     setPositionAffichee(cible);
   }, []);
   const terminees = videos ? videos.filter((v) => suivis[v.id]?.terminee).length : 0;
+  // Bloquée = le parcours a refusé ET l'accès n'est toujours pas établi par ailleurs (déblocage appris
+  // depuis, copie téléchargée entre-temps) : l'état posé par l'effet se relit donc toujours frais.
+  const couranteBloquee =
+    !!courante && bloqueeId === courante.id && !videoLocale(courante.id) && !acces.ouverts.has(courante.id) && !accesSession.has(courante.id);
 
   return (
     <Ecran
@@ -343,6 +431,7 @@ export function LecteurVideo() {
         ) : undefined
       }
     >
+      {feuilles}
       {videos !== null && videos.length === 0 ? <Banniere ton="erreur" titre={t('videos.erreur')} /> : null}
       {courante ? (
         <View style={styles.zoneHaute}>
@@ -351,6 +440,29 @@ export function LecteurVideo() {
               flottaient loin sous la vidéo et la barre encore plus bas. Même resserrement pour toute la
               zone haute (titre, en-tête de playlist) : un seul groupe compact plutôt qu'une suite de
               blocs séparés par le grand écart de l'écran. */}
+          {couranteBloquee ? (
+            // Vidéo verrouillée (crédits) : pas de lecteur, la miniature voilée, la raison, le prix et
+            // le bouton qui relance le parcours de déblocage existant.
+            <View style={[styles.cadreVerrouille, { borderColor: theme.bord.fort }]}>
+              {courante.miniature ? <Image source={{ uri: courante.miniature }} style={styles.fondVerrouille} contentFit="cover" /> : null}
+              <View style={styles.voileVerrouille}>
+                <View style={[styles.badgeVerrou, { backgroundColor: theme.accent.soleil, borderColor: theme.bord.fort }]}>
+                  <Lock size={22} strokeWidth={2.4} color={theme.texte.surCouleur} />
+                </View>
+                <Text style={[typo.texteFort, { color: '#FFF7E3' }]}>{t('videos.verrouillee')}</Text>
+                <Text style={[typo.legende, styles.texteVerrouille, { color: '#FFF7E3' }]}>{t('videos.verrouilleeTexte')}</Text>
+                <PuceCout cout={acces.cout} etat={acces.etat(courante.id)} />
+                <Pressable
+                  accessibilityRole="button"
+                  accessibilityLabel={t('videos.debloquer')}
+                  onPress={() => void reessayerDeblocage()}
+                  style={[styles.boutonDebloquer, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}
+                >
+                  <Text style={[typo.texteFort, { color: theme.texte.surCouleur }]}>{t('videos.debloquer')}</Text>
+                </Pressable>
+              </View>
+            </View>
+          ) : (
           <View style={styles.blocLecteur}>
             <View style={[styles.cadreVideo, { borderColor: theme.bord.fort }]}>
               <VideoView player={lecteur} style={styles.video} nativeControls contentFit="contain" fullscreenOptions={{ enable: true }} />
@@ -407,6 +519,7 @@ export function LecteurVideo() {
             </View>
             <BarreRecherche position={positionAffichee} duree={dureeAffichee || courante.dureeS || 0} onChercher={chercher} libelle={t('videos.positionLecture')} />
           </View>
+          )}
           {/* Zone épurée (retour de Benny, 26/10/2026) : étiquette + titre suffisent — la ligne de
               description « matière · chapitre · téléchargée · reprendre à… » saturait l'écran alors que
               le header affiche déjà le chapitre et la barre montre la position de reprise. */}
@@ -430,12 +543,17 @@ export function LecteurVideo() {
                 {videos.map((v, i) => {
                   const s = suivis[v.id];
                   const enLecture = v.id === courante.id;
-                  const sousTitre = enLecture
-                    ? t('videos.enLecture', { position: formaterDuree(s?.positionS ?? 0), duree: formaterDuree(v.dureeS) })
-                    : s?.terminee
-                      ? t('videos.terminee')
-                      : formaterDuree(v.dureeS) || t('videos.pasCommencee');
                   const gardee = !!telechargees[v.id];
+                  // Verrouillée (crédits) et pas de copie locale : cadenas, pas de téléchargement —
+                  // toucher la ligne lance le parcours de déblocage via le changement de vidéo.
+                  const verrou = acces.etat(v.id) === 'payant' && !gardee;
+                  const sousTitre = verrou
+                    ? t('videos.aDebloquer')
+                    : enLecture
+                      ? t('videos.enLecture', { position: formaterDuree(s?.positionS ?? 0), duree: formaterDuree(v.dureeS) })
+                      : s?.terminee
+                        ? t('videos.terminee')
+                        : formaterDuree(v.dureeS) || t('videos.pasCommencee');
                   return (
                     <LigneGroupe
                       key={v.id}
@@ -456,6 +574,10 @@ export function LecteurVideo() {
                               </View>
                               <View style={[styles.barreTerminee, { backgroundColor: theme.marque.principale }]} />
                             </>
+                          ) : verrou ? (
+                            <View style={styles.badgeVerrouMini}>
+                              <Lock size={13} strokeWidth={2.6} color="#FFF7E3" />
+                            </View>
                           ) : null}
                         </View>
                       }
@@ -464,7 +586,9 @@ export function LecteurVideo() {
                       droite={
                         <View style={styles.actionsVideo}>
                           {s?.terminee ? <Check size={20} strokeWidth={3} color={theme.marque.principale} /> : null}
-                          {dlEnCours === v.id ? (
+                          {verrou ? (
+                            <Lock size={19} strokeWidth={2.2} color={theme.texte.secondaire} />
+                          ) : dlEnCours === v.id ? (
                             <ActivityIndicator size="small" color={theme.texte.secondaire} />
                           ) : gardee ? (
                             <Pressable
@@ -578,6 +702,13 @@ const styles = StyleSheet.create({
   barreTerminee: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 4 },
   titreEntete: { flex: 1, fontSize: 15, lineHeight: 20 },
   cadreVideo: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden', backgroundColor: '#000' },
+  cadreVerrouille: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: 'hidden', backgroundColor: '#000', position: 'relative' },
+  fondVerrouille: { position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, width: '100%', height: '100%' },
+  voileVerrouille: { backgroundColor: 'rgba(10,10,10,0.78)', padding: espace[4], gap: espace[2], alignItems: 'center' },
+  badgeVerrou: { width: 46, height: 46, borderRadius: 23, borderWidth: bord.normal, alignItems: 'center', justifyContent: 'center' },
+  texteVerrouille: { textAlign: 'center' },
+  boutonDebloquer: { borderWidth: bord.normal, borderRadius: rayon.s, paddingHorizontal: espace[4], paddingVertical: espace[2] },
+  badgeVerrouMini: { position: 'absolute', left: '50%', top: '50%', marginLeft: -11, marginTop: -11, width: 22, height: 22, borderRadius: 11, backgroundColor: 'rgba(10,10,10,0.72)', alignItems: 'center', justifyContent: 'center' },
   video: { width: '100%', aspectRatio: 16 / 9 },
   infos: { gap: espace[1] },
   lignePlaylist: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: espace[3] },
