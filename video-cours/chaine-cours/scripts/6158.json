@@ -1,0 +1,474 @@
+{
+ "cours": 6158,
+ "titre": "Fonctions numériques : domaine, courbes et variations",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Fonctions numériques",
+   "titre": "Fonctions numériques : domaine, courbes et variations",
+   "sous": "Définir, représenter, reconnaître les symétries et décrire les variations",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Une fonction fait correspondre à chaque nombre de départ un unique nombre d'arrivée : c'est le langage qui décrit comment une quantité dépend d'une autre, de la trajectoire d'un ballon au coût d'une production."
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition d'une fonction",
+   "tex": "f : A \\to B, \\quad x \\mapsto y = f(x)",
+   "note": "À chaque x de A, un seul y : la règle d'unicité de l'image.",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 200
+   }
+  },
+  "vocabulaire": {
+   "type": "etape",
+   "kicker": "Vocabulaire essentiel",
+   "titre": "Image et antécédents : ne pas les confondre",
+   "tex": [
+    "x : \\text{ l'antécédent, le nombre de départ}",
+    "f(x) : \\text{ l'image, le nombre d'arrivée}",
+    "9 \\text{ a deux antécédents par } x^2 : 3 \\text{ et } -3"
+   ],
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 130
+   }
+  },
+  "domaine": {
+   "type": "formule",
+   "kicker": "Le domaine de définition",
+   "tex": "D_f = \\{ x \\in \\mathbb{R} \\mid f(x) \\text{ existe} \\}",
+   "note": "Exemple : 1/(x − 2) n'existe pas en 2, donc D = ℝ privé de 2."
+  },
+  "interdits": {
+   "type": "etape",
+   "kicker": "Les trois interdits fondamentaux",
+   "titre": "Ce qui exclut une valeur du domaine",
+   "tex": [
+    "\\tfrac{a}{0} : \\text{ division par zéro, interdite}",
+    "\\sqrt{u} \\text{ exige } u \\geq 0",
+    "\\ln(u) \\text{ exige } u > 0"
+   ]
+  },
+  "ex_domaine": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le domaine",
+   "titre": "Deux contraintes à satisfaire en même temps",
+   "tex": [
+    "f(x) = \\tfrac{\\sqrt{x-2}}{x^2-9}",
+    "x - 2 \\geq 0 \\Rightarrow x \\geq 2 \\qquad x^2 - 9 \\neq 0 \\Rightarrow x \\neq 3",
+    "D_f = [2, 3[ \\, \\cup \\, ]3, +\\infty["
+   ]
+  },
+  "courbe": {
+   "type": "formule",
+   "kicker": "La courbe représentative",
+   "tex": "\\mathcal{C}_f = \\{ M(x, f(x)) \\mid x \\in D_f \\}",
+   "note": "La projection de la courbe sur l'axe des abscisses redonne le domaine.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 220
+   }
+  },
+  "points_carre": {
+   "type": "etape",
+   "kicker": "Construire une courbe par points",
+   "titre": "La fonction carré, point par point",
+   "tex": [
+    "(-2, 4), \\; (-1, 1), \\; (0, 0), \\; (1, 1), \\; (2, 4)",
+    "\\text{relier les points : une parabole, symétrique par rapport à } (Oy)"
+   ]
+  },
+  "lecture": {
+   "type": "phrase",
+   "kicker": "Lire sur la courbe",
+   "texte": "Lire une image : monter verticalement jusqu'à la courbe, puis lire l'ordonnée. Lire un antécédent : le trajet inverse, de l'ordonnée vers les abscisses possibles.",
+   "anim": {
+    "nom": "lecture_graphique_fig",
+    "hauteur": 190
+   }
+  },
+  "test_vertical": {
+   "type": "phrase",
+   "kicker": "Le test de la droite verticale",
+   "texte": "Si une droite verticale coupe la courbe en deux points, ce n'est pas la courbe d'une fonction : un même x aurait deux images. Un cercle échoue à ce test.",
+   "anim": {
+    "nom": "test_verticale_fig",
+    "hauteur": 190
+   }
+  },
+  "parite": {
+   "type": "formule",
+   "kicker": "Parité · les symétries",
+   "tex": "f(-x) = f(x) \\text{ : paire} \\qquad f(-x) = -f(x) \\text{ : impaire}",
+   "note": "Condition préalable : un domaine symétrique par rapport à zéro.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 180
+   }
+  },
+  "ex_parite": {
+   "type": "etape",
+   "kicker": "Exemple résolu · la parité",
+   "titre": "h(x) = x/(x² + 1) est impaire",
+   "tex": [
+    "h(-x) = \\tfrac{-x}{(-x)^2 + 1} = \\tfrac{-x}{x^2 + 1}",
+    "h(-x) = -h(x) \\text{ : } h \\text{ est impaire}",
+    "\\text{étude sur } [0, +\\infty[ \\text{ puis symétrie centrale}"
+   ]
+  },
+  "periodicite": {
+   "type": "formule",
+   "kicker": "Périodicité · le motif qui se répète",
+   "tex": "f(x + T) = f(x)",
+   "note": "T est une période ; la plus petite, strictement positive, est la fondamentale.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 220
+   }
+  },
+  "ex_periode": {
+   "type": "etape",
+   "kicker": "Exemple résolu · la période",
+   "titre": "sin² a pour période π, pas 2π",
+   "tex": [
+    "f(x + \\pi) = \\sin^2(x + \\pi) = (-\\sin x)^2",
+    "f(x + \\pi) = \\sin^2 x = f(x)"
+   ]
+  },
+  "affine": {
+   "type": "etape",
+   "kicker": "Fonctions linéaires et affines",
+   "titre": "Linéaire : par l'origine. Affine : décalée de b",
+   "tex": [
+    "f(x) = ax \\text{ : droite par } O, \\text{ pente } a",
+    "f(x) = ax + b \\text{ : droite coupant } (Oy) \\text{ en } b",
+    "a > 0 \\text{ : croissante} \\qquad a < 0 \\text{ : décroissante}"
+   ],
+   "anim": {
+    "nom": "droites_affines_fig",
+    "hauteur": 130
+   }
+  },
+  "determiner": {
+   "type": "etape",
+   "kicker": "Déterminer une fonction affine",
+   "titre": "La droite par A(1 ; 4) et B(3 ; 10)",
+   "tex": [
+    "a = \\tfrac{10 - 4}{3 - 1} = \\tfrac{6}{2} = 3",
+    "b = 4 - 3 \\times 1 = 1 \\qquad f(x) = 3x + 1"
+   ]
+  },
+  "parabole_poly": {
+   "type": "etape",
+   "kicker": "Polynômes du second degré",
+   "titre": "x² − 4x + 3 : sommet et racines",
+   "tex": [
+    "x_S = -\\tfrac{b}{2a} = 2 \\qquad f(2) = -1 \\qquad S(2, -1)",
+    "\\Delta = 16 - 12 = 4 \\qquad x_1 = 1, \\; x_2 = 3"
+   ],
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 150
+   }
+  },
+  "variations": {
+   "type": "etape",
+   "kicker": "Sens de variation",
+   "titre": "Croissante, décroissante : l'ordre des images",
+   "tex": [
+    "x_1 < x_2 \\Rightarrow f(x_1) \\leq f(x_2) : \\text{ croissante}",
+    "x_1 < x_2 \\Rightarrow f(x_1) \\geq f(x_2) : \\text{ décroissante}",
+    "\\text{toujours préciser l'intervalle } I"
+   ]
+  },
+  "refs": {
+   "type": "etape",
+   "kicker": "Fonctions de référence",
+   "titre": "Trois références à connaître",
+   "tex": [
+    "x^2 : \\text{ décroissante sur } ]-\\infty, 0], \\text{ croissante sur } [0, +\\infty[",
+    "\\tfrac{1}{x} : \\text{ décroissante sur chaque branche, jamais sur } \\mathbb{R}^* \\text{ entier}",
+    "\\sqrt{x} : \\text{ croissante sur } [0, +\\infty["
+   ],
+   "anim": {
+    "nom": "hyperbole_fig",
+    "hauteur": 140
+   }
+  },
+  "extrema": {
+   "type": "etape",
+   "kicker": "Les extrema",
+   "titre": "Global ou local : tout dépend du territoire",
+   "tex": [
+    "M \\text{ maximum global : } f(x) \\leq M \\text{ pour tout } x \\text{ de } I",
+    "m \\text{ minimum global : } f(x) \\geq m \\text{ pour tout } x \\text{ de } I",
+    "\\text{local : le plus grand, ou le plus petit, dans un voisinage}"
+   ]
+  },
+  "tableau_var": {
+   "type": "etape",
+   "kicker": "Le tableau de variations",
+   "titre": "x² − 4x + 3 en un coup d'œil",
+   "tex": [
+    "x : \\; -\\infty \\qquad\\qquad 2 \\qquad\\qquad +\\infty",
+    "f : \\; +\\infty \\; \\searrow \\; -1 \\; \\nearrow \\; +\\infty",
+    "\\text{minimum global } -1 \\text{ atteint en } x = 2"
+   ]
+  },
+  "optimisation": {
+   "type": "etape",
+   "kicker": "Application · optimiser une aire",
+   "titre": "L'enclos contre le mur : maximum en x = 25",
+   "tex": [
+    "A(x) = x(100 - 2x) = -2x^2 + 100x, \\quad x \\in ]0, 50[",
+    "x_0 = -\\tfrac{100}{2 \\times (-2)} = 25 \\qquad A(25) = 1250 \\ \\text{m}^2",
+    "\\text{dimensions optimales : } 25 \\ \\text{m} \\times 50 \\ \\text{m}"
+   ]
+  },
+  "ballon": {
+   "type": "formule",
+   "kicker": "Application · le lancer de ballon",
+   "tex": "h(t) = -5t^2 + 20t, \\quad t \\in [0, 4]",
+   "note": "Sommet en t = 2 : hauteur maximale de 20 m. Retour au sol en t = 4.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 180
+   }
+  },
+  "marees": {
+   "type": "phrase",
+   "kicker": "Application · les marées",
+   "texte": "Les marées : H(t) = 2 + 1,5 sin(πt/6), de période douze heures — un motif qui se répète, entre zéro mètre cinq et trois mètres cinq.",
+   "anim": {
+    "nom": "sinusoide",
+    "hauteur": 180
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Une image unique pour chaque antécédent",
+    "Domaine : exclure les trois interdits",
+    "Courbe : les points (x, f(x)), test vertical",
+    "Parité, période : moitié ou motif suffit",
+    "Variations et extrema : le tableau résume"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours d'introduction aux fonctions numériques. Une fonction est une machine qui, à chaque nombre de départ, associe un unique nombre d'arrivée. Nous apprendrons à la définir, à déterminer son domaine, à la représenter par une courbe, à reconnaître ses symétries et ses répétitions, puis à décrire ses variations et ses extrema.",
+   "texte": "Fonctions numériques : le langage des dépendances.",
+   "ecran": "titre",
+   "pause_apres": 0.7
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez une machine à café : vous choisissez un bouton, la machine exécute toujours le même programme et vous sert toujours le même café. Une fonction fonctionne ainsi : une entrée, un traitement, une sortie, jamais deux sorties pour la même entrée. C'est cette règle d'unicité qui la rend fiable, pour convertir des devises comme pour doser un médicament.",
+   "texte": "Une entrée, un traitement, une seule sortie.",
+   "ecran": "intro",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p03",
+   "dit": "Formellement, une fonction f, d'un ensemble A vers un ensemble B, associe à tout élément ixe de A un unique élément de B, noté f de ixe. Ixe est l'antécédent, f de ixe est son image. Retenez le triplet qui définit une fonction : un domaine de départ, un ensemble d'arrivée et une règle d'association. Changer le domaine, c'est changer la fonction, même à formule identique.",
+   "texte": "f : A → B, x ↦ f(x) : la règle d'unicité.",
+   "ecran": "definition",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p04",
+   "dit": "Fixons le vocabulaire avec la fonction carré. L'image de trois est neuf, car trois au carré vaut neuf. En sens inverse, neuf possède deux antécédents : trois et moins trois, qui ont tous deux pour carré neuf. Une image peut donc avoir plusieurs antécédents, mais un antécédent n'a jamais qu'une seule image. Toute la définition tient dans cette asymétrie.",
+   "texte": "Image de 3 : 9. Antécédents de 9 : 3 et −3.",
+   "ecran": "vocabulaire",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p05",
+   "dit": "Le domaine de définition, noté D de f, rassemble tous les réels pour lesquels f de ixe existe. Prenez la fonction qui, à ixe, associe un sur ixe moins deux. En trois, elle vaut un : aucun problème. En deux, le dénominateur s'annule : division par zéro, impossible. Le domaine est donc l'ensemble des réels privé du nombre deux.",
+   "texte": "D_f : les x pour lesquels f(x) existe.",
+   "ecran": "domaine",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p06",
+   "dit": "Trois interdits fondamentaux excluent des valeurs du domaine. Premier interdit : diviser par zéro. Deuxième : prendre la racine carrée d'un nombre négatif, impossible dans les réels. Troisième : prendre le logarithme d'un nombre négatif ou nul. Chercher un domaine, c'est inspecter l'expression à la recherche de ces trois dangers.",
+   "texte": "Division par 0, racine d'un négatif, ln d'un non-positif.",
+   "ecran": "interdits",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple complet : la fonction qui, à ixe, associe la racine carrée de ixe moins deux, divisée par ixe au carré moins neuf. La racine impose ixe supérieur ou égal à deux. La division impose ixe différent de trois et de moins trois. En combinant : le domaine va de deux inclus à plus l'infini, en excluant trois, la condition sur moins trois étant déjà couverte.",
+   "texte": "√(x−2)/(x²−9) : D = [2, 3[ ∪ ]3, +∞[.",
+   "ecran": "ex_domaine",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p08",
+   "dit": "Pour voir une fonction, on la dessine. Dans un repère, on place pour chaque ixe du domaine le point de coordonnées ixe et f de ixe : leur ensemble forme la courbe représentative, notée C de f. Le lien est total : la projection de la courbe sur l'axe des abscisses redonne exactement le domaine. La courbe de la racine carrée, par exemple, ne commence qu'en zéro.",
+   "texte": "C_f : tous les points (x, f(x)).",
+   "ecran": "courbe",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p09",
+   "dit": "Construisons la courbe de la fonction carré par points. Pour moins deux et deux, l'image est quatre ; pour moins un et un, l'image est un ; pour zéro, zéro. En reliant ces points, on obtient une parabole, parfaitement symétrique par rapport à l'axe des ordonnées. Vous venez de rencontrer votre première fonction paire.",
+   "texte": "x² par points : une parabole symétrique.",
+   "ecran": "points_carre",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p10",
+   "dit": "La courbe sert aussi à lire. Pour l'image d'un nombre, on monte verticalement de son abscisse jusqu'à la courbe, puis on lit l'ordonnée. Pour les antécédents d'une valeur, trajet inverse : on part de l'ordonnée et on cherche toutes les abscisses à cette hauteur. Un point appartient à la courbe si et seulement si ses coordonnées vérifient y égale f de ixe.",
+   "texte": "Lire une image, lire des antécédents.",
+   "ecran": "lecture",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p11",
+   "dit": "Comment savoir si une courbe est bien celle d'une fonction ? Tracez des droites verticales : si l'une d'elles coupe la courbe en deux points, ce n'est pas une fonction, car un même ixe aurait deux images. C'est la traduction graphique de la règle d'unicité. Un cercle échoue à ce test : ce n'est pas la courbe d'une fonction.",
+   "texte": "Droite verticale : au plus un point commun.",
+   "ecran": "test_vertical",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p12",
+   "dit": "Certaines fonctions sont symétriques. Si f de moins ixe égale f de ixe pour tout ixe, la fonction est paire : sa courbe est symétrique par rapport à l'axe des ordonnées, comme la parabole du carré. Si f de moins ixe égale moins f de ixe, elle est impaire : symétrie par rapport à l'origine, comme la courbe du cube. Condition indispensable : un domaine lui-même symétrique par rapport à zéro.",
+   "texte": "Paire : axe (Oy). Impaire : centre O.",
+   "ecran": "parite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p13",
+   "dit": "Méthode en trois temps, sur la fonction h qui, à ixe, associe ixe divisé par ixe au carré plus un. D'abord le domaine : le dénominateur ne s'annule jamais, c'est l'ensemble des réels, bien symétrique. Ensuite, h de moins ixe : le numérateur change de signe, le dénominateur non. Enfin, on compare : h de moins ixe égale moins h de ixe, la fonction est impaire, et son étude se réduit aux réels positifs, complétée par symétrie centrale.",
+   "texte": "h(−x) = −h(x) : h est impaire.",
+   "ecran": "ex_parite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p14",
+   "dit": "D'autres fonctions répètent un motif à l'infini. Une fonction est périodique s'il existe un nombre strictement positif, noté T, tel que pour tout ixe, f de ixe plus T égale f de ixe. Graphiquement, décaler la courbe de T la superpose à elle-même. La plus petite de ces périodes est la période fondamentale : deux pi pour le sinus et le cosinus, pi pour la tangente.",
+   "texte": "f(x + T) = f(x) : le motif se répète.",
+   "ecran": "periodicite",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p15",
+   "dit": "Piège classique : la fonction qui, à ixe, associe le carré du sinus de ixe. On croirait sa période égale à deux pi, celle du sinus. Mais décaler de pi change le sinus en son opposé, et le carré efface ce signe : la fonction se répète déjà après pi. Sa période fondamentale est pi, la moitié de celle du sinus. Élever au carré a doublé la fréquence du motif.",
+   "texte": "sin²(x) : période π, pas 2π.",
+   "ecran": "ex_periode",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p16",
+   "dit": "Passons aux familles usuelles. Une fonction linéaire, de la forme a fois ixe, modélise une proportionnalité : sa courbe est une droite par l'origine, de pente a. Une fonction affine ajoute une constante b : sa droite coupe l'axe des ordonnées en b. Si a est positif, elle est croissante ; négatif, décroissante ; nul, constante. Un tarif avec abonnement fixe plus prix par minute est une fonction affine.",
+   "texte": "ax : par l'origine. ax + b : décalée de b.",
+   "ecran": "affine",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p17",
+   "dit": "Retrouver une fonction affine par deux points : la droite passe par A, de coordonnées un et quatre, et par B, de coordonnées trois et dix. La pente est la différence des ordonnées divisée par celle des abscisses : dix moins quatre, divisé par trois moins un, égale trois. Puis b, avec le point A : quatre égale trois fois un plus b, donc b égale un. La fonction est ixe associé à trois ixe plus un.",
+   "texte": "Par A(1 ; 4) et B(3 ; 10) : f(x) = 3x + 1.",
+   "ecran": "determiner",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p18",
+   "dit": "Un cran au-dessus : les polynômes du second degré, de la forme a ixe au carré plus b ixe plus c, dont la courbe est une parabole. Exemple : ixe au carré moins quatre ixe plus trois. Son sommet a pour abscisse moins b sur deux a, soit deux, et pour ordonnée moins un. Son discriminant vaut quatre : la parabole coupe l'axe des abscisses en un et en trois, tournée vers le haut car a est positif.",
+   "texte": "x² − 4x + 3 : sommet (2 ; −1), racines 1 et 3.",
+   "ecran": "parabole_poly",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p19",
+   "dit": "Décrire une fonction, c'est dire où elle monte et où elle descend. Elle est croissante sur un intervalle si les images se rangent dans le même ordre que les nombres, décroissante si l'ordre s'inverse. Graphiquement, on parcourt la courbe de gauche à droite : elle monte, ou elle descend. Et on précise toujours l'intervalle : la fonction carré descend puis monte, tout dépend d'où l'on regarde.",
+   "texte": "Croissante : l'ordre conservé. Décroissante : inversé.",
+   "ecran": "variations",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p20",
+   "dit": "Trois références à connaître par cœur. La fonction carré décroît sur les réels négatifs et croît sur les positifs. La fonction inverse décroît sur chacun de ses deux intervalles, mais attention : elle n'est pas décroissante sur son domaine entier, car moins un est plus petit que un, et son image moins un est aussi plus petite que un. La racine carrée, elle, croît de zéro à plus l'infini.",
+   "texte": "Carré, inverse, racine : les références.",
+   "ecran": "refs",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p21",
+   "dit": "Les extrema sont les sommets et les vallées de la courbe. Un maximum global est la plus grande valeur atteinte sur tout l'intervalle étudié ; un minimum global, la plus petite. Un extremum local n'est le plus grand, ou le plus petit, que dans son voisinage. Sur l'intervalle de moins deux à trois, la fonction carré a pour minimum global zéro, en zéro, et pour maximum global neuf, en trois.",
+   "texte": "Global : tout l'intervalle. Local : le voisinage.",
+   "ecran": "extrema",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p22",
+   "dit": "Le tableau de variations résume tout en deux lignes. Pour notre parabole : la fonction part de plus l'infini, descend jusqu'à moins un, atteint en deux, puis remonte vers plus l'infini. Strictement décroissante avant deux, strictement croissante après. Une flèche qui descend, une valeur, une flèche qui monte : la fiche d'identité dynamique de la fonction.",
+   "texte": "↘ jusqu'à −1 en x = 2, puis ↗.",
+   "ecran": "tableau_var",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p23",
+   "dit": "À quoi servent les extrema ? À optimiser. Un agriculteur clôt un enclos rectangulaire contre un mur, avec cent mètres de clôture pour les trois autres côtés. Si ixe est la longueur perpendiculaire au mur, l'autre vaut cent moins deux ixe, et l'aire est une parabole tournée vers le bas. Son sommet est en vingt-cinq : vingt-cinq mètres sur cinquante, pour une aire maximale de mille deux cent cinquante mètres carrés.",
+   "texte": "Enclos optimal : 25 m × 50 m, aire 1 250 m².",
+   "ecran": "optimisation",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p24",
+   "dit": "Application physique : un ballon lancé verticalement à vingt mètres par seconde. Sa hauteur en fonction du temps est moins cinq t au carré plus vingt t. Le domaine physique va du lancer au retour au sol : l'expression s'annule en zéro et en quatre secondes. La parabole, tournée vers le bas, culmine à son sommet, en deux secondes : hauteur maximale, vingt mètres.",
+   "texte": "h(t) = −5t² + 20t : sommet 20 m en t = 2 s.",
+   "ecran": "ballon",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p25",
+   "dit": "Dernier modèle : les marées d'un port, approchées par une fonction sinusoïdale du temps, deux plus un virgule cinq fois le sinus de pi t sur six. Le motif se répète quand pi sur six fois T égale deux pi, donc pour T égale douze heures : le cycle semi-diurne des marées. La hauteur oscille entre zéro mètre cinq et trois mètres cinq, autour d'un niveau moyen de deux mètres.",
+   "texte": "Marées : période 12 h, entre 0,5 m et 3,5 m.",
+   "ecran": "marees",
+   "pause_apres": 0.6
+  },
+  {
+   "id": "p26",
+   "dit": "Récapitulons. Une fonction associe à chaque antécédent une image unique ; son domaine s'obtient en excluant les trois interdits ; sa courbe se lit dans les deux sens et passe le test de la droite verticale. Parité et périodicité réduisent l'étude à une moitié ou à un motif. Variations et extrema, résumés par le tableau de variations, transforment la courbe en outil de décision. Le prochain cours animera ce vocabulaire avec les limites.",
+   "texte": "L'essentiel des fonctions numériques.",
+   "ecran": "recap",
+   "pause_apres": 0.6
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, délimiter et représenter"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Lire la courbe, symétries, répétitions et fonctions affines",
+   "pont": {
+    "texte": "Partie 2 : lecture graphique, parité, périodicité et fonctions affines.",
+    "dit": "Partie deux : lire la courbe et reconnaître les régularités. Nous apprendrons à lire images et antécédents, à passer le test de la droite verticale, puis à reconnaître parité et périodicité, avant de construire les fonctions affines."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Paraboles, variations, extrema et applications",
+   "pont": {
+    "texte": "Partie 3 : paraboles, variations, extrema et applications.",
+    "dit": "Partie trois : les paraboles et les variations. Nous étudierons les polynômes du second degré, le sens de variation et les extrema, avec le tableau de variations, puis nous appliquerons le tout à un enclos, un ballon et des marées."
+   }
+  }
+ ]
+}
