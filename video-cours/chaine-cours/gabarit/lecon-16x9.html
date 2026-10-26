@@ -3157,6 +3157,73 @@ const FIG = {
       mot(300, 128, 'faisceau', { c: '#10B981', t: 20 }) + mot(300, 178, 'd’électrons', { c: '#10B981', t: 20 }) +
       mot(500, 292, 'le faisceau est dévié vers la plaque positive', { t: 23 }));
   },
+  cistrans_fig(t) {
+    const cc = (cx) => {
+      const c1 = cx - 42, c2 = cx + 42, y = 148;
+      return trait(c1, y - 7, c2, y - 7, 1, { w: 5 }) + trait(c1, y + 7, c2, y + 7, 1, { w: 5 }) +
+        `<circle cx="${c1}" cy="${y}" r="10" fill="currentColor"/><circle cx="${c2}" cy="${y}" r="10" fill="currentColor"/>`;
+    };
+    const branche = (x1, y1, x2, y2, txt, c) => trait(x1, y1, x2, y2, 1, { w: 4 }) + mot(x2, y2 + (y2 < 148 ? -12 : 24), txt, { t: 21, c });
+    return svgBoite(
+      cc(290) +
+      branche(248, 141, 200, 92, 'CH₃', '#E8604C') + branche(248, 155, 200, 204, 'H', undefined) +
+      branche(332, 141, 380, 92, 'CH₃', '#E8604C') + branche(332, 155, 380, 204, 'H', undefined) +
+      mot(290, 262, 'cis : du même côté', { c: '#E8604C', t: 22 }) +
+      cc(710) +
+      branche(668, 141, 620, 92, 'CH₃', '#E8604C') + branche(668, 155, 620, 204, 'H', undefined) +
+      branche(752, 141, 800, 92, 'H', undefined) + branche(752, 155, 800, 204, 'CH₃', '#E8604C') +
+      mot(710, 262, 'trans : en diagonale', { c: '#1A75FF', t: 22 }) +
+      mot(500, 40, 'le but-2-ène et ses deux formes', { t: 24 }));
+  },
+  enantiomeres_fig(t) {
+    const mol = (cx, inverse) => {
+      const g = inverse ? -1 : 1;
+      return `<circle cx="${cx}" cy="140" r="20" fill="#5B6B7B" fill-opacity=".35" stroke="currentColor" stroke-width="4"/>` + mot(cx, 148, 'C', { t: 19 }) +
+        trait(cx, 120, cx, 66, 1, { w: 4 }) + mot(cx, 52, 'OH', { c: '#E8604C', t: 21 }) +
+        trait(cx - 16 * g, 152, cx - 66 * g, 178, 1, { w: 4 }) + mot(cx - 84 * g, 186, 'H', { t: 21, a: g > 0 ? 'end' : 'start' }) +
+        trait(cx + 16 * g, 152, cx + 66 * g, 178, 1, { w: 4 }) + mot(cx + 84 * g, 186, 'CH₃', { c: '#1A75FF', t: 21, a: g > 0 ? 'start' : 'end' }) +
+        trait(cx, 160, cx, 208, 1, { w: 4 }) + mot(cx, 238, 'COOH', { c: '#B8860B', t: 20 });
+    };
+    return svgBoite(
+      mol(290, false) + mol(710, true) +
+      trait(500, 26, 500, 252, 1, { w: 3, tiret: '10 8' }) +
+      mot(500, 20, 'miroir', { t: 19 }) +
+      mot(500, 292, 'deux énantiomères : non superposables', { t: 23 }));
+  },
+  fischer_fig(t) {
+    const croix = (cx, ohDroite, lettre, c) => {
+      const ohx = ohDroite ? cx + 86 : cx - 86, hx = ohDroite ? cx - 86 : cx + 86;
+      return trait(cx, 58, cx, 222, 1, { w: 5 }) + trait(cx - 78, 140, cx + 78, 140, 1, { w: 5 }) +
+        mot(cx, 46, 'CHO', { t: 20 }) + mot(cx, 252, 'CH₂OH', { t: 20 }) +
+        mot(ohx, 148, 'OH', { c: '#E8604C', t: 21, a: ohDroite ? 'start' : 'end' }) +
+        mot(hx, 148, 'H', { t: 21, a: ohDroite ? 'end' : 'start' }) +
+        mot(cx, 292, lettre, { c, t: 26 });
+    };
+    return svgBoite(
+      croix(320, true, 'forme D', '#E8604C') + croix(680, false, 'forme L', '#1A75FF') +
+      mot(500, 24, 'le glycéraldéhyde en projection de Fischer', { t: 23 }));
+  },
+  newman_fig(t) {
+    const projete = (cx, decale, titre, c) => {
+      let s = `<circle cx="${cx}" cy="138" r="56" fill="none" stroke="currentColor" stroke-width="4"/>` +
+        `<circle cx="${cx}" cy="138" r="6" fill="currentColor"/>`;
+      const angles = [-90, 30, 150];
+      angles.forEach(a => {
+        const r1 = a * Math.PI / 180, x2 = Math.round(cx + 56 * Math.cos(r1)), y2 = Math.round(138 + 56 * Math.sin(r1));
+        s += trait(cx, 138, x2, y2, 1, { w: 5 }) + mot(Math.round(cx + 76 * Math.cos(r1)), Math.round(138 + 76 * Math.sin(r1)) + 7, 'H', { t: 19 });
+      });
+      angles.forEach(a => {
+        const r1 = (a + decale) * Math.PI / 180;
+        const x1 = Math.round(cx + 30 * Math.cos(r1)), y1 = Math.round(138 + 30 * Math.sin(r1));
+        const x2 = Math.round(cx + 56 * Math.cos(r1)), y2 = Math.round(138 + 56 * Math.sin(r1));
+        s += trait(x1, y1, x2, y2, 1, { w: 5, c: '#B8860B' }) + mot(Math.round(cx + 76 * Math.cos(r1)), Math.round(138 + 76 * Math.sin(r1)) + 7, 'H', { t: 19, c: '#B8860B' });
+      });
+      return s + mot(cx, 252, titre, { c, t: 22 });
+    };
+    return svgBoite(
+      projete(310, 0, 'éclipsée', '#E8604C') + projete(690, 60, 'décalée', '#10B981') +
+      mot(500, 292, 'projections de Newman de l’éthane', { t: 23 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
