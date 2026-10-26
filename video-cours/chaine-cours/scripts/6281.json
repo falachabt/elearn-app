@@ -1,0 +1,453 @@
+{
+  "cours": 6281,
+  "ecrans": {
+    "applications": {
+      "kicker": "Applications · les cubiques au travail",
+      "texte": "Van der Waals, duplication du cube, courbes de Bézier : les cubiques modélisent le réel.",
+      "type": "phrase"
+    },
+    "astuces": {
+      "kicker": "Cas particuliers · repérage express",
+      "tex": [
+        "a + b + c + d = 0 \\Rightarrow 1 \\text{ est racine}",
+        "a - b + c - d = 0 \\Rightarrow -1 \\text{ est racine}",
+        "d = 0 \\Rightarrow 0 \\text{ est racine, } x \\text{ en facteur}"
+      ],
+      "titre": "Trois sommes à calculer avant tout test",
+      "type": "etape"
+    },
+    "boite": {
+      "kicker": "Application · optimisation de volume",
+      "tex": [
+        "V(x) = x(30 - 2x)^2 = 1000",
+        "x^3 - 30x^2 + 225x - 250 = 0,\\quad x = 10",
+        "x = 10 \\pm 5\\sqrt{3} \\approx 1{,}34 \\text{ ou } 18{,}66"
+      ],
+      "titre": "Volume 1000 : trois racines, deux plausibles (x < 15)",
+      "type": "etape",
+      "anim": {
+        "nom": "boite_carton_fig",
+        "hauteur": 170
+      }
+    },
+    "cardan": {
+      "kicker": "Les formules de Cardan",
+      "note": "Δ = n²/4 + m³/27 · les deux racines cubiques vérifient uv = −m/3",
+      "tex": "y = \\sqrt[3]{-\\frac{n}{2} + \\sqrt{\\Delta}} + \\sqrt[3]{-\\frac{n}{2} - \\sqrt{\\Delta}}",
+      "type": "formule"
+    },
+    "cas": {
+      "kicker": "Les trois cas selon le discriminant",
+      "tex": [
+        "\\Delta > 0 : \\text{une racine réelle, deux complexes}",
+        "\\Delta = 0 : \\text{racines réelles, deux égales}",
+        "\\Delta < 0 : \\text{trois racines réelles distinctes}"
+      ],
+      "titre": "Le signe de Δ décide du nombre de racines réelles",
+      "type": "etape"
+    },
+    "casus": {
+      "kicker": "Le cas irréductible · un paradoxe historique",
+      "texte": "x³ − 3x + 1 : trois racines réelles, Δ = −3/4, et pourtant Cardan passe par les complexes.",
+      "type": "phrase"
+    },
+    "division": {
+      "kicker": "La division euclidienne des polynômes",
+      "note": "R = 0 si et seulement si r est racine : un test et une factorisation en un geste",
+      "tex": "P(x) = (x - r)\\, Q(x) + R,\\quad R = P(r)",
+      "type": "formule"
+    },
+    "double": {
+      "kicker": "Le cas des racines multiples",
+      "tex": [
+        "P(2) = 8 - 20 + 16 - 4 = 0",
+        "P(x) = (x - 2)(x^2 - 3x + 2)",
+        "P(x) = (x - 1)(x - 2)^2"
+      ],
+      "titre": "Une racine peut revenir : 2 est racine double",
+      "type": "etape"
+    },
+    "ex1": {
+      "kicker": "Exemple complet · la racine évidente",
+      "tex": [
+        "P(1) = 1 - 2 - 5 + 6 = 0",
+        "P(x) = (x - 1)(x^2 - x - 6)",
+        "\\Delta = 25,\\quad S = \\{-2,\\ 1,\\ 3\\}"
+      ],
+      "titre": "x³ − 2x² − 5x + 6 = 0 : la racine 1 ouvre tout",
+      "type": "etape"
+    },
+    "ex2": {
+      "kicker": "Exemple complet · coefficient dominant quelconque",
+      "tex": [
+        "P(-2) = -16 - 12 + 22 + 6 = 0",
+        "P(x) = (x + 2)(2x^2 - 7x + 3)",
+        "\\Delta = 25,\\quad S = \\{-2,\\ \\tfrac{1}{2},\\ 3\\}"
+      ],
+      "titre": "2x³ − 3x² − 11x + 6 = 0 : candidats en p/q, racine −2",
+      "type": "etape"
+    },
+    "ex_cardan": {
+      "kicker": "Exemple complet · Cardan en action",
+      "tex": [
+        "x = y + 1 \\Rightarrow y^3 = \\tfrac{1}{2}",
+        "y = \\sqrt[3]{\\tfrac{1}{2}},\\quad j\\sqrt[3]{\\tfrac{1}{2}},\\quad j^2\\sqrt[3]{\\tfrac{1}{2}}",
+        "x_1 = 1 + \\sqrt[3]{\\tfrac{1}{2}}"
+      ],
+      "titre": "2x³ − 6x² + 6x − 3 = 0, résolu par la méthode générale",
+      "type": "etape"
+    },
+    "forme": {
+      "kicker": "La forme générale",
+      "note": "a : terme cubique · b : quadratique · c : linéaire · d : constant",
+      "tex": "a x^3 + b x^2 + c x + d = 0,\\quad a \\neq 0",
+      "type": "formule"
+    },
+    "geometrie": {
+      "kicker": "La géométrie derrière l'algèbre",
+      "texte": "Une courbe en S, des extrémités opposées : au moins une racine réelle, parfois trois.",
+      "type": "phrase",
+      "anim": {
+        "nom": "courbe_cubique_fig",
+        "hauteur": 200
+      }
+    },
+    "histoire": {
+      "kicker": "Un peu d'histoire · la bataille des cubiques",
+      "texte": "Del Ferro garde le secret, Tartaglia gagne le duel, Cardano publie dans l'Ars Magna (1545).",
+      "type": "phrase"
+    },
+    "horner": {
+      "anim": {
+        "a": 1,
+        "coeffs": [
+          1,
+          -6,
+          11,
+          -6
+        ],
+        "hauteur": 130,
+        "nom": "horner_fig"
+      },
+      "kicker": "La méthode de Horner · le tableau qui factorise",
+      "tex": [
+        "P(x) = x^3 - 6x^2 + 11x - 6,\\quad r = 1",
+        "Q(x) = x^2 - 5x + 6,\\quad \\Delta = 1",
+        "S = \\{1,\\ 2,\\ 3\\}"
+      ],
+      "titre": "x³ − 6x² + 11x − 6, divisé par (x − 1)",
+      "type": "etape"
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Le fil rouge du cours : réduire le degré. Une racine connue, et la cubique retombe sur le second degré.",
+      "type": "phrase"
+    },
+    "param": {
+      "kicker": "Exercice · un paramètre à déterminer",
+      "tex": [
+        "8 - 12 + 2k - 6 = 0 \\Rightarrow k = 5",
+        "P(x) = (x - 2)(x^2 - x + 3)",
+        "\\Delta = 1 - 12 = -11 < 0"
+      ],
+      "titre": "Trouver k pour que 2 soit racine",
+      "type": "etape"
+    },
+    "principe": {
+      "kicker": "Le théorème de factorisation",
+      "note": "Pour une cubique, Q est de degré 2 : le produit nul ramène au second degré",
+      "tex": "P(r) = 0 \\iff P(x) = (x - r)\\, Q(x)",
+      "type": "formule"
+    },
+    "rationnelles": {
+      "kicker": "Le théorème des racines rationnelles",
+      "note": "Coefficients entiers exigés · tester ±1, ±2… avant les fractions",
+      "tex": "\\frac{p}{q} \\text{ racine} \\Rightarrow p \\mid d \\ \\text{et}\\ q \\mid a",
+      "type": "formule"
+    },
+    "recap": {
+      "etapes": [
+        "Réduire le degré : une racine suffit",
+        "Cardan : x = y − p/3, puis y = u + v",
+        "Δ > 0 : une réelle · Δ < 0 : trois réelles",
+        "Contrôle de Viète : somme = −b/a"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Forme : ax³ + bx² + cx + d = 0, a ≠ 0",
+        "Candidats : p divise d, q divise a",
+        "Horner : quotient et reste en un tableau",
+        "Le quotient se résout par Δ"
+      ],
+      "kicker": "À retenir · la factorisation",
+      "type": "recap"
+    },
+    "reduite": {
+      "kicker": "Cardan · étape 1 : le déplacement",
+      "note": "Le décalage −p/3 élimine le terme en y² après développement",
+      "tex": "x^3 + p x^2 + q x + r = 0,\\quad x = y - \\frac{p}{3}",
+      "type": "formule"
+    },
+    "reduite2": {
+      "kicker": "Cardan · l'équation réduite",
+      "note": "m = q − p²/3 · n = 2p³/27 − pq/3 + r",
+      "tex": "y^3 + m y + n = 0",
+      "type": "formule"
+    },
+    "strategie": {
+      "etapes": [
+        "Diagnostiquer : forme, coefficients, symétries",
+        "Tester les candidats, simples d'abord",
+        "Factoriser par Horner dès qu'une racine tombe",
+        "Résoudre le quotient par le discriminant",
+        "Sinon : Cardan ou méthode numérique"
+      ],
+      "kicker": "Stratégie d'épreuve · l'arbre de décision",
+      "type": "recap"
+    },
+    "titre": {
+      "anim": {
+        "nom": "courbe_cubique_fig",
+        "hauteur": 240
+      },
+      "kicker": "Mathématique · Équations polynomiales",
+      "sous": "Racines évidentes, division euclidienne, schéma de Horner et formule de Cardan",
+      "titre": "Les équations du troisième degré",
+      "type": "titre"
+    },
+    "trigo": {
+      "kicker": "La méthode trigonométrique de Viète",
+      "note": "Poser y = 2√(−m/3)·cos θ : l'équation devient un arccosinus",
+      "tex": "\\cos 3\\theta = 4 \\cos^3\\theta - 3 \\cos\\theta",
+      "type": "formule"
+    },
+    "uv": {
+      "kicker": "Cardan · étape 2 : l'astuce u + v",
+      "tex": [
+        "y = u + v,\\quad u v = -\\tfrac{m}{3}",
+        "u^3 + v^3 = -n,\\quad u^3 v^3 = -\\tfrac{m^3}{27}",
+        "t^2 + n t - \\tfrac{m^3}{27} = 0 \\quad \\text{(résolvante)}"
+      ],
+      "titre": "Une cubique transformée en équation du second degré",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Découvrir les cubiques et deviner une racine"
+    },
+    {
+      "debut": "p10",
+      "pont": {
+        "dit": "Partie deux : factoriser pour de bon, puis préparer Cardan. Nous posons la division euclidienne, nous accélérons avec le schéma de Horner, nous traitons les racines doubles et une vraie application de volume, avant de déplacer l'équation pour la ramener à sa forme réduite.",
+        "texte": "Partie 2 : factoriser par division et Horner, puis réduire l'équation."
+      },
+      "sous_titre": "Factoriser par division et Horner, puis réduire l'équation"
+    },
+    {
+      "debut": "p19",
+      "pont": {
+        "dit": "Partie trois : les formules de Cardan. L'astuce u plus v a produit une résolvante du second degré ; il ne reste qu'à en extraire les racines cubiques, à classer les solutions selon le signe de delta, et à regarder les cubiques travailler dans le monde réel.",
+        "texte": "Partie 3 : les formules de Cardan, les trois cas et les applications."
+      },
+      "sous_titre": "Les formules de Cardan, les trois cas et les applications"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré aux équations du troisième degré, les cubiques. Nous apprendrons à les résoudre complètement : d'abord par la recherche d'une racine évidente et la factorisation, puis, quand aucune racine ne se présente, par la méthode générale de Cardan.",
+      "ecran": "titre",
+      "id": "p01",
+      "pause_apres": 0.7,
+      "texte": "Les équations du troisième degré : de la racine évidente à Cardan."
+    },
+    {
+      "dit": "Le fil rouge du cours tient en une idée : réduire le degré. Une équation du troisième degré dont on connaît une seule racine se factorise et retombe sur une équation du second degré, que l'on sait résoudre depuis longtemps. Toute la stratégie consiste donc à trouver cette première racine, puis à laisser la mécanique de la factorisation faire le reste.",
+      "ecran": "intro",
+      "id": "p02",
+      "pause_apres": 0.6,
+      "texte": "Réduire le degré : la stratégie de tout le cours."
+    },
+    {
+      "dit": "Une équation du troisième degré s'écrit a ixe cube plus b ixe carré plus c ixe plus d égale zéro, avec a différent de zéro : si a s'annulait, le terme cubique disparaîtrait et l'équation retomberait à un degré inférieur. Chaque terme a son nom : cubique, quadratique, linéaire et constant. Le degré d'un polynôme, c'est la plus grande puissance de l'inconnue présente avec un coefficient non nul.",
+      "ecran": "forme",
+      "id": "p03",
+      "pause_apres": 0.6,
+      "texte": "ax³ + bx² + cx + d = 0, avec a ≠ 0."
+    },
+    {
+      "dit": "La fonction associée dessine une courbe en forme de esse, dont les deux extrémités partent dans des directions opposées : si a est positif, elle vient de moins l'infini et monte vers plus l'infini. Une courbe continue qui traverse ainsi le plan coupe forcément l'axe des abscisses : toute cubique possède donc au moins une racine réelle, et elle peut en avoir trois lorsque la courbe ondule assez pour traverser trois fois.",
+      "ecran": "geometrie",
+      "id": "p04",
+      "pause_apres": 0.6,
+      "texte": "Des extrémités opposées : au moins une traversée de l'axe."
+    },
+    {
+      "dit": "Cette résolution fut le grand défi du seizième siècle italien. Vers mille cinq cent quinze, Scipione del Ferro trouve une méthode pour certaines cubiques et la garde secrète. Son élève Fior défie Tartaglia, qui redécouvre la méthode et remporte le duel. Cardano obtient le secret sous promesse de silence, puis le publie dans son Ars Magna en mille cinq cent quarante-cinq : la querelle qui s'ensuit rappelle que les mathématiques sont aussi une aventure humaine.",
+      "ecran": "histoire",
+      "id": "p05",
+      "pause_apres": 0.6,
+      "texte": "Secrets, duels et trahison : la Renaissance des cubiques."
+    },
+    {
+      "dit": "Premier outil, le théorème de factorisation : si r est racine du polynôme, c'est-à-dire si p de r vaut zéro, alors le facteur ixe moins r divise le polynôme. Pour une cubique, il reste un quotient de degré deux. Résoudre l'équation devient alors un produit nul : soit ixe moins r vaut zéro, soit le quotient vaut zéro, et ce second problème relève du discriminant.",
+      "ecran": "principe",
+      "id": "p06",
+      "pause_apres": 0.6,
+      "texte": "P(r) = 0 : le facteur (x − r) divise P."
+    },
+    {
+      "dit": "Comment deviner cette première racine ? Le théorème des racines rationnelles borne la recherche : pour un polynôme à coefficients entiers, toute racine rationnelle, écrite p sur q sous forme irréductible, vérifie que p divise le terme constant et q divise le coefficient dominant. En pratique, on teste d'abord les petits entiers, positifs et négatifs, avant les fractions.",
+      "ecran": "rationnelles",
+      "id": "p07",
+      "pause_apres": 0.6,
+      "texte": "Candidats p/q : p divise d, q divise a."
+    },
+    {
+      "dit": "Trois raccourcis valent de l'or. Si la somme des coefficients est nulle, un est racine. Si la somme alternée, a moins b plus c moins d, est nulle, moins un est racine. Et si le terme constant est nul, zéro est racine : on peut mettre ixe en facteur immédiatement. Ces tests prennent quelques secondes et font gagner un temps précieux le jour de l'épreuve.",
+      "ecran": "astuces",
+      "id": "p08",
+      "pause_apres": 0.6,
+      "texte": "Somme nulle : 1 · somme alternée nulle : −1 · d nul : 0."
+    },
+    {
+      "dit": "Premier exemple complet : ixe cube moins deux ixe carré moins cinq ixe plus six égale zéro. Les diviseurs de six donnent les candidats ; un fonctionne : un moins deux moins cinq plus six vaut zéro. On factorise par ixe moins un, le quotient est ixe carré moins ixe moins six, dont le discriminant vaut vingt-cinq : ses racines sont trois et moins deux. L'équation a donc trois solutions : moins deux, un et trois.",
+      "ecran": "ex1",
+      "id": "p09",
+      "pause_apres": 0.7,
+      "texte": "x³ − 2x² − 5x + 6 = 0 : S = {−2, 1, 3}."
+    },
+    {
+      "dit": "Pour obtenir le quotient, l'outil est la division euclidienne des polynômes, l'analogue de la division posée des nombres. On divise le polynôme par ixe moins r et l'on obtient un quotient, plus un reste constant. Ce reste vaut exactement p de r : il est nul si et seulement si r est bien une racine, ce qui fait de la division un test et une factorisation en un seul geste.",
+      "ecran": "division",
+      "id": "p10",
+      "pause_apres": 0.6,
+      "texte": "Diviser par (x − r) : quotient Q, reste R = P(r)."
+    },
+    {
+      "dit": "Le schéma de Horner fait la même division en un petit tableau, plus rapide et moins exposé aux erreurs de signe. Pour ixe cube moins six ixe carré plus onze ixe moins six, avec r égal à un : on aligne les coefficients, on abaisse le premier, on multiplie par r, on additionne, et l'on répète. La dernière case donne le reste, zéro, et les autres nombres sont les coefficients du quotient : ixe carré moins cinq ixe plus six, dont les racines sont deux et trois.",
+      "ecran": "horner",
+      "id": "p11",
+      "pause_apres": 0.7,
+      "texte": "Horner : coefficients 1, −6, 11, −6 et r = 1 → quotient x² − 5x + 6."
+    },
+    {
+      "dit": "Deuxième exemple, avec un coefficient dominant différent de un : deux ixe cube moins trois ixe carré moins onze ixe plus six. Les candidats sont les fractions formées des diviseurs de six sur les diviseurs de deux. Moins deux fonctionne : moins seize, moins douze, plus vingt-deux, plus six, total zéro. Horner donne le quotient deux ixe carré moins sept ixe plus trois, de discriminant vingt-cinq : les autres racines sont un demi et trois.",
+      "ecran": "ex2",
+      "id": "p12",
+      "pause_apres": 0.7,
+      "texte": "2x³ − 3x² − 11x + 6 = 0 : S = {−2, 1/2, 3}."
+    },
+    {
+      "dit": "Une racine peut aussi revenir plusieurs fois. Pour ixe cube moins cinq ixe carré plus huit ixe moins quatre, deux est racine, et la division donne ixe carré moins trois ixe plus deux, qui se factorise encore en ixe moins un fois ixe moins deux. Le polynôme est donc ixe moins un fois ixe moins deux au carré : deux est une racine double, et l'ensemble des solutions ne compte que deux nombres, un et deux.",
+      "ecran": "double",
+      "id": "p13",
+      "pause_apres": 0.6,
+      "texte": "(x − 1)(x − 2)² : la racine double ne compte qu'une fois dans S."
+    },
+    {
+      "dit": "Application concrète : une feuille carrée de trente centimètres, des carrés de côté ixe découpés aux quatre coins, et l'on veut une boîte de volume mille centimètres cubes. L'équation devient ixe cube moins trente ixe carré plus deux cent vingt-cinq ixe moins deux cent cinquante égale zéro ; dix est racine évidente. Le quotient donne dix plus ou moins cinq racine de trois. Trois solutions mathématiques, mais ixe doit rester inférieur à quinze : seules deux valeurs conviennent, dix, et dix moins cinq racine de trois, environ un virgule trois centimètre.",
+      "ecran": "boite",
+      "id": "p14",
+      "pause_apres": 0.7,
+      "texte": "Boîte de 1000 cm³ : x = 10 ou x ≈ 1,34 cm."
+    },
+    {
+      "dit": "Retenons l'enchaînement de ce bloc : écrire la forme générale, lister les candidats du théorème des racines rationnelles, tester en commençant par les plus simples, puis factoriser par Horner ou par la division posée, et conclure par le discriminant du quotient. La cubique est vaincue dès que sa première racine tombe.",
+      "ecran": "recap1",
+      "id": "p15",
+      "pause_apres": 0.6,
+      "texte": "Factorisation : tester, diviser, conclure par Δ."
+    },
+    {
+      "dit": "La méthode de Cardan commence par un déplacement. On divise d'abord par a pour rendre l'équation unitaire : ixe cube plus p ixe carré plus q ixe plus r. Puis on pose ixe égale igrec moins p sur trois. Ce décalage, égal au tiers du coefficient du terme carré, fait exactement disparaître le terme en igrec carré après développement : les contributions en igrec carré se compensent.",
+      "ecran": "reduite",
+      "id": "p16",
+      "pause_apres": 0.6,
+      "texte": "x = y − p/3 : le terme en y² disparaît."
+    },
+    {
+      "dit": "L'équation réduite s'écrit igrec cube plus m igrec plus n égale zéro. Les coefficients se calculent à partir des précédents : m vaut q moins p carré sur trois, et n vaut deux p cube sur vingt-sept, moins p q sur trois, plus r. Toute cubique, aussi compliquée soit-elle, se ramène ainsi à cette forme épurée qui ne dépend que de deux paramètres.",
+      "ecran": "reduite2",
+      "id": "p17",
+      "pause_apres": 0.6,
+      "texte": "y³ + my + n = 0 : la forme que Cardan sait résoudre."
+    },
+    {
+      "dit": "L'astuce de Cardan : chercher igrec comme une somme de deux nombres, u plus v, en imposant que leur produit u v vaille moins m sur trois. En développant le cube et en regroupant les termes, u cube et v cube deviennent les deux racines d'une simple équation du second degré, la résolvante : t carré plus n t moins m cube sur vingt-sept égale zéro. Un problème cubique se change en problème quadratique.",
+      "ecran": "uv",
+      "id": "p18",
+      "pause_apres": 0.6,
+      "texte": "y = u + v avec uv = −m/3 : la résolvante est quadratique."
+    },
+    {
+      "dit": "On en tire la formule de Cardan : igrec est la somme de deux racines cubiques, celle de moins n sur deux plus racine carrée de delta, et celle de moins n sur deux moins racine carrée de delta, où delta vaut n carré sur quatre plus m cube sur vingt-sept. Il reste à choisir les racines cubiques de sorte que le produit u v vaille bien moins m sur trois, puis à revenir à ixe par le décalage initial.",
+      "ecran": "cardan",
+      "id": "p19",
+      "pause_apres": 0.6,
+      "texte": "y = ∛(−n/2 + √Δ) + ∛(−n/2 − √Δ)."
+    },
+    {
+      "dit": "Le signe de delta classe les solutions. S'il est strictement positif : une seule racine réelle, et deux racines complexes conjuguées. S'il est nul : des racines réelles, dont deux sont égales. S'il est strictement négatif : trois racines réelles distinctes. Ce petit nombre décide donc de toute la géométrie de la courbe et du nombre de traversées de l'axe des abscisses.",
+      "ecran": "cas",
+      "id": "p20",
+      "pause_apres": 0.6,
+      "texte": "Δ > 0 : une réelle · Δ = 0 : une double · Δ < 0 : trois réelles."
+    },
+    {
+      "dit": "Exemple complet : deux ixe cube moins six ixe carré plus six ixe moins trois égale zéro. Division par deux, puis décalage ixe égale igrec plus un : tout se simplifie en igrec cube égale un demi. La racine réelle est la racine cubique d'un demi, et les deux autres s'en déduisent en multipliant par les racines cubiques complexes de l'unité. En revenant à ixe : un plus racine cubique d'un demi, et ses deux compagnes complexes.",
+      "ecran": "ex_cardan",
+      "id": "p21",
+      "pause_apres": 0.7,
+      "texte": "Après décalage : y³ = 1/2, puis x = 1 + ∛(1/2)."
+    },
+    {
+      "dit": "Le cas delta négatif cache un paradoxe historique : l'équation ixe cube moins trois ixe plus un possède trois racines réelles, son delta vaut moins trois quarts, et pourtant la formule de Cardan les exprime avec des racines cubiques de nombres complexes. C'est ce cas irréductible, où le réel oblige à passer par l'imaginaire, qui a forcé les mathématiciens à accepter les nombres complexes.",
+      "ecran": "casus",
+      "id": "p22",
+      "pause_apres": 0.6,
+      "texte": "Le cas irréductible : le réel force l'imaginaire."
+    },
+    {
+      "dit": "Pour rester dans les réels quand delta est négatif, la méthode trigonométrique de Viète pose igrec proportionnel à un cosinus. L'identité du cosinus de l'angle triple transforme alors l'équation cubique en un simple calcul d'arccosinus, dont les trois valeurs, décalées d'un tiers de tour, donnent les trois racines. C'est la voie à privilégier pour un calcul numérique propre.",
+      "ecran": "trigo",
+      "id": "p23",
+      "pause_apres": 0.6,
+      "texte": "Viète : un cosinus remplace les racines cubiques complexes."
+    },
+    {
+      "dit": "Dernier exercice, avec un paramètre : pour quelles valeurs de k l'équation ixe cube moins trois ixe carré plus k ixe moins six admet-elle deux comme racine ? On remplace ixe par deux : huit moins douze plus deux k moins six égale zéro, donc k vaut cinq. La factorisation donne alors ixe moins deux fois ixe carré moins ixe plus trois, dont le discriminant, moins onze, est négatif : deux est l'unique racine réelle.",
+      "ecran": "param",
+      "id": "p24",
+      "pause_apres": 0.7,
+      "texte": "k = 5, et le quotient n'a aucune racine réelle."
+    },
+    {
+      "dit": "Les cubiques travaillent partout : équation d'état de van der Waals en thermodynamique, duplication du cube en géométrie, courbes de Bézier cubiques qui dessinent les lettres et les formes en infographie, volumes et coûts optimisés en ingénierie et en économie. Chaque fois, le même réflexe : chercher une racine, réduire le degré, conclure.",
+      "ecran": "applications",
+      "id": "p25",
+      "pause_apres": 0.6,
+      "texte": "Physique, géométrie, infographie, économie : partout des cubiques."
+    },
+    {
+      "dit": "Face à une cubique, l'arbre de décision tient en cinq gestes : diagnostiquer la forme et les coefficients particuliers, tester les candidats rationnels en commençant par les plus simples, factoriser dès qu'une racine tombe, résoudre le quotient par le discriminant, et seulement alors, si rien n'a fonctionné, sortir l'artillerie de Cardan ou une méthode numérique.",
+      "ecran": "strategie",
+      "id": "p26",
+      "pause_apres": 0.6,
+      "texte": "Cinq gestes, dans cet ordre, face à toute cubique."
+    },
+    {
+      "dit": "Pour finir, retenez la philosophie du cours : une seule racine suffit à réduire le degré, Cardan prend le relais quand aucune n'est évidente, le signe de delta annonce le nombre de racines réelles, et les relations de Viète, somme et produit des racines, offrent un contrôle gratuit de tout résultat.",
+      "ecran": "recap",
+      "id": "p27",
+      "pause_apres": 0.5,
+      "texte": "Les équations du troisième degré : à retenir."
+    }
+  ],
+  "titre": "Les équations du troisième degré"
+}
