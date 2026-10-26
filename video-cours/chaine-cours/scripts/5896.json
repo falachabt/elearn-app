@@ -1,0 +1,484 @@
+{
+ "cours": 5896,
+ "ecrans": {
+  "angle": {
+   "kicker": "Distances et angles · l'angle entre deux vecteurs",
+   "tex": [
+    "\\cos\\theta = \\tfrac{\\vec{u}\\cdot\\vec{v}}{\\|\\vec{u}\\|\\,\\|\\vec{v}\\|} = \\tfrac{8}{\\sqrt{14}\\,\\sqrt{21}}",
+    "\\cos\\theta \\approx 0{,}47 \\qquad \\theta \\approx 62^\\circ"
+   ],
+   "titre": "Le produit scalaire donne le cosinus",
+   "type": "etape"
+  },
+  "applications": {
+   "kicker": "Applications concrètes",
+   "texte": "Architecture et ponts, GPS et cartographie, jeux vidéo et modélisation 3D : partout, on repère, on mesure et on transforme dans l'espace.",
+   "type": "phrase"
+  },
+  "bases": {
+   "kicker": "Les outils fondamentaux",
+   "tex": [
+    "\\text{point : une position, sans dimension}",
+    "\\text{droite : définie par deux points distincts}",
+    "\\text{plan : défini par trois points non alignés}"
+   ],
+   "titre": "Point, droite, plan : les trois briques de l'espace",
+   "type": "etape",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 105
+   }
+  },
+  "coordonnees": {
+   "kicker": "Repérage dans l'espace",
+   "tex": [
+    "O(0, 0, 0) \\quad \\text{origine, axes } Ox, Oy, Oz \\text{ perpendiculaires}",
+    "A(2, 3, 1) \\qquad B(0, -1, 4) \\qquad C(-2, 0, 0)"
+   ],
+   "titre": "Trois axes, trois coordonnées",
+   "type": "etape",
+   "anim": {
+    "nom": "repere3d_fig",
+    "hauteur": 140
+   }
+  },
+  "distance": {
+   "kicker": "Distance entre deux points",
+   "note": "Exemple : A(1, 2, 3) et B(4, 1, −1) donnent AB = √26.",
+   "tex": "AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2 + (z_B - z_A)^2}",
+   "type": "formule"
+  },
+  "droite_param": {
+   "kicker": "Droites dans l'espace · équations paramétriques",
+   "tex": [
+    "x = x_A + a t",
+    "y = y_A + b t",
+    "z = z_A + c t \\qquad t \\in \\mathbb{R}"
+   ],
+   "titre": "Un point, un vecteur directeur, un paramètre",
+   "type": "etape"
+  },
+  "ex_final": {
+   "kicker": "Problèmes concrets · mise en pratique",
+   "tex": [
+    "V_{\\text{pavé}} = 5 \\times 8 \\times 12 = 480\\ \\text{cm}^3",
+    "V_{\\text{pyramide}} = \\tfrac{1}{3} \\times 36 \\times 10 = 120\\ \\text{cm}^3",
+    "d = 3 + 5 = 8\\ \\text{cm} \\quad \\text{(sphères tangentes extérieurement)}"
+   ],
+   "titre": "Un pavé, une pyramide, deux sphères tangentes",
+   "type": "etape"
+  },
+  "ex_homothetie": {
+   "kicker": "Homothétie · exemples",
+   "tex": [
+    "\\text{cube : } 2 \\times 3 = 6\\ \\text{cm}",
+    "\\text{tétraèdre : } 5 \\times |-2| = 10\\ \\text{cm, } B' \\text{ opposé à } B \\text{ par rapport à } A"
+   ],
+   "titre": "Agrandir, réduire, et le rôle du signe",
+   "type": "etape"
+  },
+  "ex_plan": {
+   "kicker": "Exemple résolu · le plan par trois points",
+   "tex": [
+    "\\overrightarrow{AB} = (1, 1, -1) \\qquad \\overrightarrow{AC} = (-1, 1, 1)",
+    "\\vec{n} = \\overrightarrow{AB} \\times \\overrightarrow{AC} = (2, 0, 2)",
+    "\\text{plan : } x + z - 2 = 0"
+   ],
+   "titre": "A(1, 0, 1), B(2, 1, 0), C(0, 1, 2)",
+   "type": "etape"
+  },
+  "ex_vecteurs": {
+   "kicker": "Exemple résolu · opérations sur les vecteurs",
+   "tex": [
+    "\\vec{u} + \\vec{v} = (4, 2, 1)",
+    "2\\vec{u} - \\vec{v} = (-1, 4, -4)",
+    "\\vec{u} \\cdot \\vec{v} = 3 + 0 - 2 = 1"
+   ],
+   "titre": "u = (1, 2, −1) et v = (3, 0, 2)",
+   "type": "etape"
+  },
+  "ex_volumes": {
+   "kicker": "Exemples résolus · volumes",
+   "tex": [
+    "V_{\\text{prisme}} = 10 \\times 5 = 50\\ \\text{cm}^3",
+    "V_{\\text{pyramide}} = \\tfrac{1}{3} \\times 16 \\times 6 = 32\\ \\text{cm}^3",
+    "V_{\\text{sphère}} = 36\\pi \\Rightarrow r^3 = 27 \\Rightarrow r = 3\\ \\text{cm}"
+   ],
+   "titre": "Prisme, pyramide, et le rayon d'une sphère",
+   "type": "etape"
+  },
+  "homothetie": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "L'homothétie dans l'espace",
+   "note": "k supérieur à 1 : agrandissement ; entre 0 et 1 : réduction ; k négatif : symétrie centrale en plus.",
+   "tex": "\\overrightarrow{OM'} = k\\, \\overrightarrow{OM}",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Quitter la feuille plate pour penser en volume : longueur, largeur et hauteur, avec des points, des droites et des plans.",
+   "type": "phrase"
+  },
+  "operations": {
+   "kicker": "Opérations sur les vecteurs",
+   "tex": [
+    "\\vec{u} + \\vec{v} = (x + x', y + y', z + z')",
+    "k\\vec{v} = (kx, ky, kz)",
+    "\\vec{u} \\cdot \\vec{v} = xx' + yy' + zz'"
+   ],
+   "titre": "Tout se fait composante par composante",
+   "type": "etape"
+  },
+  "plan": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Plans dans l'espace · équation cartésienne",
+   "note": "Le vecteur de composantes a, b, c est normal au plan : orthogonal à toutes ses directions.",
+   "tex": "a x + b y + c z + d = 0",
+   "type": "formule"
+  },
+  "positions": {
+   "kicker": "Positions relatives",
+   "tex": [
+    "\\text{droites : parallèles, sécantes, confondues ou gauches}",
+    "\\text{droite et plan : parallèle, sécante ou incluse}",
+    "\\text{plans : parallèles, confondus ou sécants selon une droite}"
+   ],
+   "titre": "Se rencontrer, se fuir, ou passer à côté",
+   "type": "etape",
+   "anim": {
+    "nom": "pave_fig",
+    "hauteur": 105
+   }
+  },
+  "positions_dp": {
+   "kicker": "Positions relatives · droites et plans",
+   "tex": [
+    "\\text{droite parallèle au plan : } \\vec{u} \\cdot \\vec{n} = 0",
+    "\\text{plans parallèles : vecteurs normaux colinéaires}",
+    "\\text{plans sécants : leur intersection est une droite}"
+   ],
+   "titre": "Le vecteur normal tranche",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Solides : volumes en B×h, πr²h, 4πr³/3",
+    "Repérage : un point, trois coordonnées",
+    "Scalaire nul si et seulement si orthogonalité",
+    "Plan : ax + by + cz + d = 0, normale (a, b, c)",
+    "Homothétie : distances multipliées par |k|"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "rotation": {
+   "kicker": "La rotation autour de l'axe des z",
+   "tex": [
+    "x' = x\\cos\\theta - y\\sin\\theta",
+    "y' = x\\sin\\theta + y\\cos\\theta \\qquad z' = z",
+    "P(1, 1, 0) \\xrightarrow{90^\\circ / z} P'(-1, 1, 0)"
+   ],
+   "titre": "Tourner sans déformer, la cote ne bouge pas",
+   "type": "etape"
+  },
+  "scalaire": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "vecteurs"
+   },
+   "kicker": "Le produit scalaire : mesurer l'alignement",
+   "note": "Le résultat est un nombre : nul si les vecteurs sont orthogonaux, maximal s'ils sont alignés dans le même sens.",
+   "tex": "\\vec{u} \\cdot \\vec{v} = \\|\\vec{u}\\|\\, \\|\\vec{v}\\| \\cos\\theta",
+   "type": "formule"
+  },
+  "scalaire_coord": {
+   "kicker": "Produit scalaire · calcul en coordonnées",
+   "tex": [
+    "\\vec{u} \\cdot \\vec{v} = 1 \\times 4 + 2 \\times (-1) + 3 \\times 2 = 8",
+    "\\vec{u} \\cdot \\vec{v} = 0 \\iff \\vec{u} \\perp \\vec{v}"
+   ],
+   "titre": "u = (1, 2, 3) et v = (4, −1, 2)",
+   "type": "etape"
+  },
+  "solides_poly": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Les solides · prismes et pyramides",
+   "tex": [
+    "V_{\\text{prisme}} = B \\times h",
+    "V_{\\text{pyramide}} = \\tfrac{1}{3} B \\times h"
+   ],
+   "titre": "Deux bases parallèles, ou un sommet qui rassemble",
+   "type": "etape"
+  },
+  "solides_ronds": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "sphere_fig"
+   },
+   "kicker": "Les solides ronds · cylindre, cône, sphère",
+   "tex": [
+    "V_{\\text{cylindre}} = \\pi r^2 h",
+    "V_{\\text{cône}} = \\tfrac{1}{3} \\pi r^2 h",
+    "V_{\\text{sphère}} = \\tfrac{4}{3} \\pi r^3 \\qquad S_{\\text{sphère}} = 4\\pi r^2"
+   ],
+   "titre": "Quand les cercles prennent du volume",
+   "type": "etape"
+  },
+  "symetries": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "symetrie_fig"
+   },
+   "kicker": "Les symétries dans l'espace",
+   "tex": [
+    "\\text{centrale : } O \\text{ est le milieu de } [MM']",
+    "\\text{planaire : le plan est le plan médiateur de } [MM']",
+    "\\text{axiale : demi-tour autour de la droite}"
+   ],
+   "titre": "Un centre, un plan ou une droite comme miroir",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "sphere_fig"
+   },
+   "kicker": "Mathématique · Géométrie dans l'espace",
+   "sous": "Repérer, mesurer et transformer en trois dimensions : solides, coordonnées, produits de vecteurs, équations et mouvements",
+   "titre": "Géométrie dans l'espace : solides, vecteurs, droites et plans",
+   "type": "titre"
+  },
+  "translation": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "La translation : un déplacement simple",
+   "note": "Exemple : P(2, 3, 1) translaté par le vecteur (1, −2, 3) donne P prime (3, 1, 4).",
+   "tex": "P'(x + a,\\ y + b,\\ z + c)",
+   "type": "formule"
+  },
+  "vecteurs_def": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "vecteurs"
+   },
+   "kicker": "Vecteurs dans l'espace",
+   "note": "Direction, sens et norme : le vecteur (2, 3, 1) part de l'origine et arrive au point de mêmes coordonnées.",
+   "tex": "\\vec{v} = (x, y, z) \\qquad \\|\\vec{v}\\| = \\sqrt{x^2 + y^2 + z^2}",
+   "type": "formule"
+  },
+  "vectoriel": {
+   "kicker": "Le produit vectoriel : un vecteur perpendiculaire",
+   "tex": [
+    "\\|\\vec{u} \\times \\vec{v}\\| = \\|\\vec{u}\\|\\, \\|\\vec{v}\\| \\sin\\theta",
+    "\\vec{c} \\times \\vec{d} = (2, 5, -1) \\qquad \\|\\vec{c} \\times \\vec{d}\\| = \\sqrt{30}"
+   ],
+   "titre": "Perpendiculaire aux deux, norme égale à une aire",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Solides et repérage dans l'espace"
+  },
+  {
+   "debut": "p10",
+   "pont": {
+    "dit": "Partie deux : les vecteurs et leurs produits. Nous définirons les vecteurs de l'espace et leurs opérations, puis le produit scalaire qui détecte l'orthogonalité et le produit vectoriel qui donne la normale d'un plan, avant d'écrire les équations des droites et des plans.",
+    "texte": "Partie 2 : vecteurs de l'espace, produits scalaire et vectoriel, équations des droites et des plans."
+   },
+   "sous_titre": "Vecteurs, produits et équations de droites et de plans"
+  },
+  {
+   "debut": "p20",
+   "pont": {
+    "dit": "Partie trois : mesurer, puis déplacer, tourner et agrandir. Nous calculerons un angle entre deux vecteurs grâce au produit scalaire, puis nous verrons la translation, la rotation, l'homothétie et les symétries, avant d'appliquer tous les outils du cours à des problèmes concrets.",
+    "texte": "Partie 3 : mesurer un angle entre vecteurs, puis translations, rotations, homothéties, symétries et applications concrètes."
+   },
+   "sous_titre": "Angles, transformations de l'espace et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie dans l'espace. Nous quittons la feuille plate pour penser en volume : décrire les solides, repérer les points par trois coordonnées, calculer avec les vecteurs, écrire les équations des droites et des plans, mesurer distances et angles, puis déplacer, tourner et agrandir les figures.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Géométrie dans l'espace : solides, vecteurs, droites et plans."
+  },
+  {
+   "dit": "Notre monde possède longueur, largeur et hauteur, et une figure plane ne suffit plus à le décrire : un cube, une sphère ou une pyramide perdent leur essence sur une simple feuille. La géométrie dans l'espace fournit les outils pour représenter ces objets, situer leurs points et raisonner sur leurs positions relatives.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Passer du plan à l'espace : la troisième dimension."
+  },
+  {
+   "dit": "Tout repose sur trois éléments. Le point marque une position précise, sans dimension. La droite est une ligne infinie, entièrement déterminée par deux points distincts. Le plan est une surface infinie à deux dimensions, déterminée par trois points non alignés, ou par une droite et un point extérieur à cette droite.",
+   "ecran": "bases",
+   "id": "p03",
+   "texte": "Point, droite, plan : les trois briques de l'espace."
+  },
+  {
+   "dit": "Dans l'espace, les positions relatives s'enrichissent. Deux droites peuvent être parallèles, sécantes, confondues, ou gauches, c'est-à-dire non coplanaires, sans aucun point commun et sans être parallèles : c'est la grande nouveauté par rapport au plan. Une droite peut être parallèle à un plan, le couper en un point, ou y être incluse. Deux plans sont parallèles, confondus, ou sécants selon une droite.",
+   "ecran": "positions",
+   "id": "p04",
+   "texte": "Nouveauté de l'espace : les droites gauches, ni sécantes ni parallèles."
+  },
+  {
+   "dit": "Première famille de solides, les polyèdres. Le prisme possède deux bases parallèles et superposables, reliées par des faces latérales qui sont des parallélogrammes : le cube et le pavé droit en sont des cas particuliers. Son volume vaut l'aire de la base multipliée par la hauteur. La pyramide, elle, rassemble une base polygonale et des faces triangulaires qui convergent vers un sommet : son volume vaut le tiers de celui du prisme de même base et de même hauteur.",
+   "ecran": "solides_poly",
+   "id": "p05",
+   "texte": "Prisme : B × h. Pyramide : le tiers du prisme."
+  },
+  {
+   "dit": "Deuxième famille, les solides ronds. Le cylindre relie deux disques parallèles par une surface courbe, et son volume vaut pi fois le rayon au carré fois la hauteur. Le cône pointe vers un sommet depuis un disque : même base que le cylindre, mais un tiers de son volume. La sphère rassemble tous les points situés à la même distance, le rayon, d'un centre : son volume vaut quatre tiers de pi fois le rayon au cube, et sa surface quatre pi fois le rayon au carré.",
+   "ecran": "solides_ronds",
+   "id": "p06",
+   "texte": "Cylindre πr²h, cône πr²h/3, sphère 4πr³/3."
+  },
+  {
+   "dit": "Trois calculs pour ancrer ces formules. Un prisme dont la base a une aire de dix centimètres carrés et dont la hauteur vaut cinq centimètres a un volume de cinquante centimètres cubes. Une pyramide à base carrée de côté quatre centimètres et de hauteur six centimètres a un volume de trente-deux centimètres cubes. Enfin, une sphère de volume trente-six pi centimètres cubes a un rayon de trois centimètres, car son cube vaut vingt-sept.",
+   "ecran": "ex_volumes",
+   "id": "p07",
+   "texte": "Volumes : 50 cm³, 32 cm³, et un rayon de 3 cm."
+  },
+  {
+   "dit": "Pour repérer un point dans l'espace, on ajoute un troisième axe aux deux du plan : l'abscisse, l'ordonnée et la cote, portées par trois axes perpendiculaires qui se croisent à l'origine. Chaque point reçoit alors un triplet de coordonnées. Le point A, de coordonnées deux, trois, un, se lit comme une adresse complète : avancer, reculer et monter sont devenus des nombres.",
+   "ecran": "coordonnees",
+   "id": "p08",
+   "texte": "Un point = un triplet (x, y, z)."
+  },
+  {
+   "dit": "La distance entre deux points prolonge le théorème de Pythagore : on prend la racine carrée de la somme des carrés des écarts sur chaque axe. Pour le point A de coordonnées un, deux, trois et le point B de coordonnées quatre, un, moins un, les écarts valent trois, moins un et moins quatre : la distance vaut la racine carrée de vingt-six.",
+   "ecran": "distance",
+   "id": "p09",
+   "texte": "Distance : Pythagore en trois dimensions, √26 ici."
+  },
+  {
+   "dit": "Un vecteur de l'espace se décrit comme dans le plan, avec une composante de plus : une direction, un sens et une norme, qui est sa longueur. En coordonnées, le vecteur de composantes deux, trois, un part de l'origine et arrive au point de mêmes coordonnées, et sa norme vaut la racine carrée de la somme des carrés de ses trois composantes.",
+   "ecran": "vecteurs_def",
+   "id": "p10",
+   "texte": "Vecteur : direction, sens, norme, trois composantes."
+  },
+  {
+   "dit": "Les opérations se font composante par composante. Pour additionner deux vecteurs, on additionne les abscisses, puis les ordonnées, puis les cotes. Multiplier par un nombre multiplie chaque composante par ce nombre. Et le produit scalaire, que nous détaillerons dans la deuxième partie, additionne les produits des composantes correspondantes : son résultat est un nombre, pas un vecteur.",
+   "ecran": "operations",
+   "id": "p11",
+   "texte": "Addition, multiplication, produit scalaire : composante par composante."
+  },
+  {
+   "dit": "Exemple complet : u de composantes un, deux, moins un, et v de composantes trois, zéro, deux. Leur somme a pour composantes quatre, deux, un. Deux u moins v a pour composantes moins un, quatre, moins quatre. Et leur produit scalaire vaut trois, plus zéro, moins deux, c'est-à-dire un. Retenez ce réflexe : toujours écrire les trois composantes, ligne par ligne, avant de conclure.",
+   "ecran": "ex_vecteurs",
+   "id": "p12",
+   "texte": "u + v = (4, 2, 1) et u · v = 1."
+  },
+  {
+   "dit": "Le produit scalaire mesure l'alignement de deux vecteurs : il vaut le produit de leurs normes par le cosinus de l'angle qu'ils forment. S'ils pointent dans le même sens, il est maximal et positif ; s'ils sont opposés, il est négatif ; et s'ils sont orthogonaux, il est nul, car le cosinus d'un angle droit vaut zéro. C'est aussi le travail d'une force le long d'un déplacement.",
+   "ecran": "scalaire",
+   "id": "p13",
+   "texte": "Scalaire = ‖u‖ × ‖v‖ × cos θ : l'alignement en un nombre."
+  },
+  {
+   "dit": "En coordonnées, le calcul est mécanique : pour u de composantes un, deux, trois et v de composantes quatre, moins un, deux, on obtient quatre, moins deux, plus six, c'est-à-dire huit. Le critère à retenir pour tous les exercices : deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. Nous l'utiliserons pour les droites et les plans.",
+   "ecran": "scalaire_coord",
+   "id": "p14",
+   "texte": "Produit scalaire de u et v : 8. Nul ⇔ orthogonaux."
+  },
+  {
+   "dit": "Le produit vectoriel, lui, fabrique un nouveau vecteur, perpendiculaire aux deux vecteurs de départ, orienté par la règle de la main droite. Sa norme vaut le produit des normes par le sinus de l'angle : c'est l'aire du parallélogramme construit sur les deux vecteurs. Pour c de composantes un, zéro, deux et d de composantes trois, moins un, un, le produit vectoriel a pour composantes deux, cinq, moins un, et sa norme vaut la racine carrée de trente.",
+   "ecran": "vectoriel",
+   "id": "p15",
+   "texte": "Produit vectoriel : perpendiculaire, norme = aire du parallélogramme."
+  },
+  {
+   "dit": "Une droite de l'espace ne se décrit pas par une seule équation comme dans le plan : on la donne par un point et un vecteur directeur, sous forme paramétrique. Chaque coordonnée s'écrit comme celle du point, plus la composante du directeur multipliée par un même paramètre réel. Faire varier ce paramètre fait parcourir toute la droite, point par point.",
+   "ecran": "droite_param",
+   "id": "p16",
+   "texte": "Droite : un point + un vecteur directeur + un paramètre t."
+  },
+  {
+   "dit": "Un plan, en revanche, possède une équation cartésienne unique à un facteur près : a ixe plus b igrec plus c zed plus d égale zéro. Le point capital est que les coefficients a, b et c sont les composantes d'un vecteur normal au plan, c'est-à-dire orthogonal à toutes les droites du plan. Toute la géométrie des positions relatives va se lire sur ce vecteur normal.",
+   "ecran": "plan",
+   "id": "p17",
+   "texte": "Plan : ax + by + cz + d = 0, et (a, b, c) est la normale."
+  },
+  {
+   "dit": "Exemple résolu : le plan qui passe par A de coordonnées un, zéro, un, B de coordonnées deux, un, zéro et C de coordonnées zéro, un, deux. Les vecteurs A B et A C ont pour composantes un, un, moins un et moins un, un, un. Leur produit vectoriel donne un vecteur normal de composantes deux, zéro, deux, que l'on simplifie en un, zéro, un. Le plan a donc pour équation ixe plus zed moins deux égale zéro, et le point A la vérifie bien.",
+   "ecran": "ex_plan",
+   "id": "p18",
+   "texte": "Plan par trois points : le produit vectoriel donne la normale."
+  },
+  {
+   "dit": "Avec le vecteur normal, les positions relatives deviennent des calculs. Une droite est parallèle à un plan quand son vecteur directeur est orthogonal au vecteur normal, donc quand leur produit scalaire est nul ; sinon, elle coupe le plan en un point, ou elle y est incluse. Deux plans sont parallèles quand leurs vecteurs normaux sont colinéaires ; sinon, ils sont sécants selon une droite.",
+   "ecran": "positions_dp",
+   "id": "p19",
+   "texte": "Parallélisme : un produit scalaire nul, ou des normales colinéaires."
+  },
+  {
+   "dit": "Le produit scalaire sert aussi à mesurer un angle : son cosinus vaut le produit scalaire divisé par le produit des normes. Pour u de composantes un, deux, trois et v de composantes quatre, moins un, deux, le produit scalaire vaut huit, les normes valent racine de quatorze et racine de vingt et un : le cosinus vaut environ zéro virgule quarante-sept, et l'angle environ soixante-deux degrés.",
+   "ecran": "angle",
+   "id": "p20",
+   "texte": "Angle entre vecteurs : cos θ ≈ 0,47, donc θ ≈ 62°."
+  },
+  {
+   "dit": "Passons aux transformations. La translation déplace chaque point dans une même direction, d'une même distance : elle est entièrement définie par son vecteur. En coordonnées, on ajoute simplement les composantes du vecteur à celles du point. Le point P de coordonnées deux, trois, un, translaté par le vecteur de composantes un, moins deux, trois, devient le point de coordonnées trois, un, quatre.",
+   "ecran": "translation",
+   "id": "p21",
+   "texte": "Translation : ajouter le vecteur, coordonnée par coordonnée."
+  },
+  {
+   "dit": "La rotation fait tourner les points autour d'un axe, d'un angle donné, sans déformer la figure. Autour de l'axe des cotes, la cote ne change pas, et les deux autres coordonnées se mélangent par les cosinus et sinus de l'angle. Un quart de tour envoie ainsi le point de coordonnées un, un, zéro sur le point de coordonnées moins un, un, zéro.",
+   "ecran": "rotation",
+   "id": "p22",
+   "texte": "Rotation autour de Oz : z fixe, x et y se mélangent."
+  },
+  {
+   "dit": "L'homothétie agrandit ou réduit une figure depuis un centre, en multipliant toutes les distances par un même rapport, noté k. Le point image vérifie que le vecteur centre-image égale k fois le vecteur centre-point. Si k est supérieur à un, la figure grandit ; entre zéro et un, elle rapetisse ; et si k est négatif, elle change en plus de côté par rapport au centre.",
+   "ecran": "homothetie",
+   "id": "p23",
+   "texte": "Homothétie : toutes les distances multipliées par k."
+  },
+  {
+   "dit": "Deux exemples. Un cube de côté deux centimètres, transformé par une homothétie de rapport trois, devient un cube de côté six centimètres. Un tétraèdre d'arêtes cinq centimètres, transformé depuis l'un de ses sommets par une homothétie de rapport moins deux, donne un tétraèdre d'arêtes dix centimètres, placé de l'autre côté du centre par rapport à l'original.",
+   "ecran": "ex_homothetie",
+   "id": "p24",
+   "texte": "Rapport 3 : côté 6 cm. Rapport −2 : arêtes de 10 cm, côté opposé."
+  },
+  {
+   "dit": "Les symétries de l'espace généralisent celles du plan. La symétrie centrale retourne la figure autour d'un point, qui devient le milieu de chaque segment reliant un point à son image. La symétrie par rapport à un plan utilise ce plan comme un miroir : c'est le plan médiateur de chaque segment. Et la symétrie par rapport à une droite fait faire un demi-tour autour de cette droite.",
+   "ecran": "symetries",
+   "id": "p25",
+   "texte": "Symétries : centrale, par rapport à un plan, par rapport à une droite."
+  },
+  {
+   "dit": "Ces outils servent partout. En architecture et en ingénierie, on calcule des volumes, des angles de câbles et la stabilité des structures. En cartographie, la géodésie et le positionnement par satellite reposent sur des coordonnées et des distances dans l'espace. Et toute la modélisation en trois dimensions, des jeux vidéo à la conception assistée par ordinateur, manipule vecteurs, plans et transformations à chaque image.",
+   "ecran": "applications",
+   "id": "p26",
+   "texte": "Architecture, GPS, modélisation 3D : la géométrie spatiale au travail."
+  },
+  {
+   "dit": "Dernier entraînement, en trois problèmes. Un pavé droit de dimensions cinq, huit et douze centimètres a un volume de quatre cent quatre-vingts centimètres cubes. Une pyramide régulière à base carrée de côté six centimètres et de hauteur dix centimètres a un volume de cent vingt centimètres cubes. Et deux sphères de rayons trois et cinq centimètres, tangentes extérieurement, ont leurs centres distants de huit centimètres : la somme des deux rayons.",
+   "ecran": "ex_final",
+   "id": "p27",
+   "texte": "Pavé : 480 cm³. Pyramide : 120 cm³. Centres distants de 8 cm."
+  },
+  {
+   "dit": "Pour retenir l'essentiel : les volumes des solides se ramènent à la base, à la hauteur et au rayon ; un point se repère par trois coordonnées et la distance prolonge Pythagore ; le produit scalaire détecte l'orthogonalité et mesure les angles, le produit vectoriel fournit la normale d'un plan ; et translations, rotations et homothéties déplacent, tournent et redimensionnent les figures sans les déformer.",
+   "ecran": "recap",
+   "id": "p28",
+   "texte": "L'essentiel du cours en cinq idées."
+  }
+ ],
+ "titre": "Géométrie dans l'espace : solides, vecteurs, droites et plans"
+}

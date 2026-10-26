@@ -2017,6 +2017,47 @@ const FIG = {
       `<line x1="560" y1="166" x2="622" y2="166" stroke="#B8860B" stroke-width="3"/>` +
       mot(634, 174, '72 = 2³ × 3²', { t: 24, c: '#B8860B', a: 'start' }));
   },
+  pave_fig(t) {
+    const A = [330, 215], B = [590, 215], C = [680, 165], D = [420, 165];
+    const E = [330, 95], F = [590, 95], G = [680, 45], H = [420, 45];
+    const seg = (P, Q, o) => trait(P[0], P[1], Q[0], Q[1], prog(t), o || { c: 'currentColor', w: 4 });
+    const point = (P, coul) => `<circle cx="${P[0]}" cy="${P[1]}" r="5" fill="${coul || 'currentColor'}"/>`;
+    return svgBoite(
+      seg(A, D, { c: 'currentColor', w: 3, tiret: true }) + seg(D, C, { c: 'currentColor', w: 3, tiret: true }) + seg(D, H, { c: 'currentColor', w: 3, tiret: true }) +
+      seg(A, B) + seg(B, C) + seg(B, F) + seg(C, G) + seg(E, F) + seg(F, G) + seg(G, H) + seg(H, E) + seg(A, E) +
+      seg(A, G, { c: '#E8604C', w: 5 }) +
+      `<polyline points="354,215 354,191 330,191" fill="none" stroke="currentColor" stroke-width="3"/>` +
+      point(A) + point(B) + point(C) + point(D) + point(E) + point(F) + point(G, '#E8604C') + point(H) +
+      mot(316, 234, 'A', { t: 20, a: 'end' }) + mot(604, 234, 'B', { t: 20, a: 'start' }) +
+      mot(694, 172, 'C', { t: 20, a: 'start' }) + mot(406, 158, 'D', { t: 20, a: 'end' }) +
+      mot(316, 92, 'E', { t: 20, a: 'end' }) + mot(604, 92, 'F', { t: 20, a: 'start' }) +
+      mot(694, 42, 'G', { t: 20, c: '#E8604C', a: 'start' }) + mot(406, 38, 'H', { t: 20, a: 'end' }) +
+      mot(500, 282, 'le pavé droit et sa grande diagonale AG, en perspective cavalière', { t: 19 }));
+  },
+  repere3d_fig(t) {
+    const O = [400, 215], A = [375, 223], Axy = [375, 275], piedX = [504, 215], piedY = [271, 275];
+    const dash = (P, Q) => `<line x1="${P[0]}" y1="${P[1]}" x2="${Q[0]}" y2="${Q[1]}" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>`;
+    return svgBoite(
+      trait(O[0], O[1], 660, 215, prog(t), { c: 'currentColor', w: 4 }) +
+      `<polygon points="660,215 644,209 644,221" fill="currentColor"/>` +
+      trait(O[0], O[1], 270, 275, prog(t), { c: 'currentColor', w: 4 }) +
+      `<polygon points="270,275 288,272 280,260" fill="currentColor"/>` +
+      trait(O[0], O[1], 400, 55, prog(t), { c: 'currentColor', w: 4 }) +
+      `<polygon points="400,55 394,71 406,71" fill="currentColor"/>` +
+      dash(A, Axy) + dash(Axy, piedX) + dash(Axy, piedY) +
+      `<line x1="${O[0]}" y1="${O[1]}" x2="${A[0]}" y2="${A[1]}" stroke="#E8604C" stroke-width="3" opacity=".6"/>` +
+      `<circle cx="${A[0]}" cy="${A[1]}" r="6" fill="#E8604C"/>` +
+      mot(360, 204, 'A', { t: 21, c: '#E8604C', a: 'end' }) +
+      mot(386, 240, 'O', { t: 20, a: 'end' }) +
+      mot(672, 221, 'x', { t: 21, a: 'start' }) +
+      mot(256, 292, 'y', { t: 21, a: 'end' }) +
+      mot(386, 50, 'z', { t: 21, a: 'end' }) +
+      mot(504, 240, '2', { t: 19 }) +
+      mot(323, 294, '3', { t: 19 }) +
+      mot(390, 254, '1', { t: 19, a: 'start' }) +
+      mot(620, 120, 'A a pour coordonnées', { t: 20, a: 'start' }) +
+      mot(620, 150, '(2, 3, 1)', { t: 22, c: '#E8604C', a: 'start' }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
