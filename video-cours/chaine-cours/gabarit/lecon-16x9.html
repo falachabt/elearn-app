@@ -3041,6 +3041,22 @@ const FIG = {
       (p > .75 ? trait(432, 146, 452, 208, 1, { w: 4 }) : '') +
       mot(500, 292, "l’analyse élémentaire par combustion", { t: 24 }));
   },
+  dosage_fig(t) {
+    const p = prog(t);
+    let grad = '';
+    for (let k = 0; k < 6; k++) grad += trait(438, 44 + 16 * k, 452, 44 + 16 * k, 1, { w: 3 });
+    return svgBoite(
+      `<rect x="424" y="26" width="40" height="118" fill="#1A75FF" fill-opacity=".18" stroke="currentColor" stroke-width="4"/>` + grad +
+      `<rect x="436" y="144" width="16" height="30" fill="currentColor"/>` +
+      trait(444, 174, 444, 196, 1, { w: 4 }) +
+      (p > .35 ? `<circle cx="444" cy="${Math.round(196 + 26 * ((p - .35) / .65))}" r="7" fill="#E8604C"/>` : '') +
+      mot(392, 66, 'burette', { t: 22, a: 'end' }) + mot(392, 94, 'titrant connu', { t: 18, a: 'end' }) +
+      `<path d="M 398 268 L 424 208 L 464 208 L 490 268 Z" fill="#10B981" fill-opacity=".15" stroke="currentColor" stroke-width="4"/>` +
+      `<path d="M 410 252 L 478 252 L 490 268 L 398 268 Z" fill="#10B981" fill-opacity=".45"/>` +
+      (p > .55 ? trait(540, 238, 596, 222, (p - .55) / .45, { c: '#B8860B', w: 4 }) + pointe(604, 219, -20, '#B8860B') + mot(612, 224, 'agitation', { c: '#B8860B', t: 20, a: 'start' }) : '') +
+      mot(444, 292, 'erlenmeyer : titré inconnu', { t: 20 }) +
+      mot(120, 160, 'on verse jusqu’à', { t: 21, a: 'start' }) + mot(120, 190, 'l’équivalence', { t: 21, a: 'start' }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
