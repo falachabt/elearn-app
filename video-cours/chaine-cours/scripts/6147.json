@@ -1,0 +1,476 @@
+{
+ "cours": 6147,
+ "titre": "Polynômes : opérations, division et racines",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Polynômes",
+   "titre": "Polynômes : opérations, division et racines",
+   "sous": "Additionner, multiplier, diviser selon les puissances décroissantes, puis factoriser pour résoudre",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Trajectoires, coûts, aires et volumes : les polynômes modélisent partout.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 140
+   }
+  },
+  "forme": {
+   "type": "formule",
+   "kicker": "Qu'est-ce qu'un polynôme ?",
+   "tex": "P(x) = a_n x^n + a_{n-1} x^{n-1} + \\dots + a_1 x + a_0",
+   "note": "Une somme finie de termes a·x^k. Familles : constante, affine, trinôme, cubique."
+  },
+  "anatomie": {
+   "type": "etape",
+   "kicker": "Anatomie d'un polynôme",
+   "titre": "Lire 4x³ − 2x + 7 pièce par pièce",
+   "tex": [
+    "P(x) = 4x^3 - 2x + 7",
+    "\\deg(P) = 3 \\qquad \\text{coefficient dominant : } 4",
+    "\\text{termes : } 4x^3, \\ -2x, \\ 7 \\text{ (constante)}"
+   ]
+  },
+  "valeurs": {
+   "type": "etape",
+   "kicker": "Un polynôme est une fonction",
+   "titre": "Évaluer P en trois points",
+   "tex": [
+    "P(x) = 2x^2 - 3x + 1",
+    "P(0) = 1 \\qquad P(2) = 8 - 6 + 1 = 3",
+    "P(-1) = 2 + 3 + 1 = 6"
+   ]
+  },
+  "canonique": {
+   "type": "etape",
+   "kicker": "La forme canonique",
+   "titre": "Ordonner, regrouper, omettre les termes nuls",
+   "tex": [
+    "5 + 0x^4 - 2x + 3x^3 + x^2 - x^2 + 7x^5",
+    "7x^5 + 3x^3 - 2x + 5"
+   ]
+  },
+  "addition": {
+   "type": "etape",
+   "kicker": "Additionner des polynômes",
+   "titre": "Regrouper les termes semblables, degré par degré",
+   "tex": [
+    "P(x) = 2x^3 - 4x^2 + x - 7 \\quad Q(x) = -x^3 + 5x^2 + 3x + 2",
+    "(2-1)x^3 + (-4+5)x^2 + (1+3)x + (-7+2)",
+    "S(x) = x^3 + x^2 + 4x - 5"
+   ]
+  },
+  "soustraction": {
+   "type": "etape",
+   "kicker": "Soustraire : ajouter l'opposé",
+   "titre": "Le signe moins se distribue sur tous les termes",
+   "tex": [
+    "P - Q = P + (-Q) \\text{ : changer tous les signes de } Q",
+    "D(x) = 3x^3 - 9x^2 - 2x - 9"
+   ]
+  },
+  "perimetre": {
+   "type": "etape",
+   "kicker": "Application · un périmètre",
+   "titre": "Rectangle et triangle accolés : un seul polynôme",
+   "tex": [
+    "P_t(x) = 2(3x - 1) + (5x + 2) + 2(2x + 4)",
+    "P_t(x) = 15x + 8 \\qquad P_t(10) = 158\\ \\text{m}"
+   ]
+  },
+  "bilan_add": {
+   "type": "recap",
+   "kicker": "Point d'étape",
+   "etapes": [
+    "Degré : plus grande puissance présente",
+    "Addition : regrouper les termes semblables",
+    "Soustraction : ajouter l'opposé, signes",
+    "Forme canonique : puissances décroissantes"
+   ]
+  },
+  "produit": {
+   "type": "formule",
+   "kicker": "Multiplier des polynômes",
+   "tex": "\\deg(P \\times Q) = \\deg(P) + \\deg(Q)",
+   "note": "Distributivité généralisée : chaque terme de P multiplie chaque terme de Q."
+  },
+  "produit_ex": {
+   "type": "etape",
+   "kicker": "Exemple de produit",
+   "titre": "(3x² − 2x + 5) par (x − 4), pas à pas",
+   "tex": [
+    "(3x^2 - 2x + 5)(x - 4)",
+    "= 3x^3 - 12x^2 - 2x^2 + 8x + 5x - 20",
+    "= 3x^3 - 14x^2 + 13x - 20"
+   ]
+  },
+  "identites": {
+   "type": "etape",
+   "kicker": "Les identités remarquables",
+   "titre": "Des raccourcis à reconnaître au premier coup d'œil",
+   "tex": [
+    "(a + b)^2 = a^2 + 2ab + b^2",
+    "(a - b)^2 = a^2 - 2ab + b^2",
+    "(a + b)(a - b) = a^2 - b^2",
+    "(3x - 4)^2 = 9x^2 - 24x + 16 \\quad (2x + 5)(2x - 5) = 4x^2 - 25"
+   ]
+  },
+  "produit_tab": {
+   "type": "etape",
+   "kicker": "Produit organisé par degrés",
+   "titre": "Additionner colonne par colonne, degré par degré",
+   "tex": [
+    "x^4 : 2x^4 \\qquad x^3 : 4x^3 - 3x^3 = x^3",
+    "x^2 : -2x^2 - 6x^2 + x^2 = -7x^2",
+    "(2x^2 - 3x + 1)(x^2 + 2x - 1) = 2x^4 + x^3 - 7x^2 + 5x - 1"
+   ]
+  },
+  "division": {
+   "type": "formule",
+   "kicker": "La division euclidienne",
+   "tex": "A(x) = B(x)\\,Q(x) + R(x) \\qquad \\deg(R) < \\deg(B)",
+   "note": "Comme 17 = 5 × 3 + 2 : le reste est plus petit que le diviseur, en degré.",
+   "anim": {
+    "nom": "division_euclidienne_fig",
+    "hauteur": 190
+   }
+  },
+  "division_ex": {
+   "type": "etape",
+   "kicker": "Division selon les puissances décroissantes",
+   "titre": "(2x³ + 3x² − 5x + 1) divisé par (x² + x − 1)",
+   "tex": [
+    "\\tfrac{2x^3}{x^2} = 2x \\qquad \\text{reste partiel : } x^2 - 3x + 1",
+    "\\tfrac{x^2}{x^2} = 1 \\qquad \\text{reste : } -4x + 2",
+    "Q(x) = 2x + 1 \\qquad R(x) = -4x + 2"
+   ]
+  },
+  "division_x2": {
+   "type": "etape",
+   "kicker": "Diviser par (x − 2)",
+   "titre": "Trois cycles : diviser, multiplier, soustraire",
+   "tex": [
+    "3x^3 - 2x^2 + 5x - 7 = (x - 2)(3x^2 + 4x + 13) + 19",
+    "Q(x) = 3x^2 + 4x + 13 \\qquad R = 19"
+   ]
+  },
+  "horner": {
+   "type": "etape",
+   "kicker": "Le schéma de Horner",
+   "titre": "La même division, en une grille de nombres",
+   "tex": [
+    "3 \\quad -2 \\quad 5 \\quad -7 \\qquad a = 2",
+    "\\downarrow \\qquad +6 \\qquad +8 \\qquad +26",
+    "3 \\qquad 4 \\qquad 13 \\qquad 19 \\text{ (reste)}"
+   ],
+   "anim": {
+    "nom": "horner_fig",
+    "hauteur": 130,
+    "coeffs": [
+     3,
+     -2,
+     5,
+     -7
+    ],
+    "a": 2
+   }
+  },
+  "division_ex2": {
+   "type": "etape",
+   "kicker": "Exercice de division",
+   "titre": "Un dividende de degré quatre, un diviseur de degré deux",
+   "tex": [
+    "(2x^4 - 3x^3 + 4x^2 - 5x + 6) \\div (x^2 - x + 1)",
+    "Q(x) = 2x^2 - x + 1",
+    "R(x) = -3x + 5"
+   ]
+  },
+  "facteur_commun": {
+   "type": "etape",
+   "kicker": "Factoriser · le facteur commun",
+   "titre": "Mettre en évidence ce que tous les termes partagent",
+   "tex": [
+    "6x^3y^2 - 9x^2y + 3xy",
+    "= 3xy\\,(2x^2y - 3x + 1)"
+   ]
+  },
+  "facto_id": {
+   "type": "etape",
+   "kicker": "Factoriser · les identités remarquables",
+   "titre": "Reconnaître un carré parfait, une différence de carrés",
+   "tex": [
+    "4x^2 + 12x + 9 = (2x + 3)^2",
+    "16 - 25x^2 = (4 - 5x)(4 + 5x)"
+   ]
+  },
+  "facto_complete": {
+   "type": "etape",
+   "kicker": "Factoriser · racine évidente et division",
+   "titre": "x³ − 2x² − x + 2, décomposé entièrement",
+   "tex": [
+    "R(1) = 0 \\implies (x - 1) \\text{ est un facteur}",
+    "R(x) = (x - 1)(x^2 - x - 2)",
+    "R(x) = (x - 1)(x - 2)(x + 1)"
+   ]
+  },
+  "discriminant": {
+   "type": "formule",
+   "kicker": "Résoudre le second degré",
+   "tex": "x = \\frac{-b \\pm \\sqrt{\\Delta}}{2a} \\qquad \\Delta = b^2 - 4ac",
+   "note": "Delta positif : deux racines ; nul : une racine double ; négatif : aucune réelle.",
+   "anim": {
+    "nom": "signe_parabole_fig",
+    "hauteur": 180
+   }
+  },
+  "bicarree": {
+   "type": "etape",
+   "kicker": "Équation bicarrée",
+   "titre": "Poser X égal à x au carré pour redescendre au degré deux",
+   "tex": [
+    "X = x^2 \\quad \\Longrightarrow \\quad X^2 - 5X + 4 = 0",
+    "\\Delta = 9 \\qquad X = 4 \\text{ ou } X = 1",
+    "x^2 = 4 \\text{ ou } x^2 = 1 : x = -2, -1, 1, 2"
+   ]
+  },
+  "rationnelles": {
+   "type": "etape",
+   "kicker": "Le théorème des racines rationnelles",
+   "titre": "Où chercher : p divise le terme constant, q le coefficient dominant",
+   "tex": [
+    "p \\mid a_0 \\text{ et } q \\mid a_n \\qquad P(3) = 0",
+    "2x^3 - 3x^2 - 11x + 6 = (x - 3)(2x^2 + 3x - 2)",
+    "\\text{racines : } 3, \\ \\tfrac{1}{2}, \\ -2"
+   ]
+  },
+  "synthese_eq": {
+   "type": "etape",
+   "kicker": "Équation de synthèse",
+   "titre": "Une racine double débusquée en deux divisions",
+   "tex": [
+    "P(1) = 0 \\text{ puis } Q(1) = 0 : \\text{racine double}",
+    "x^4 - 3x^3 - 3x^2 + 11x - 6 = (x - 1)^2 (x^2 - x - 6)",
+    "\\text{solutions : } 1 \\text{ (double)}, -2, 3"
+   ]
+  },
+  "limites": {
+   "type": "phrase",
+   "kicker": "Limites et méthodes numériques",
+   "texte": "Degré cinq et plus : pas de formule générale, place aux approximations.",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 140
+   }
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Addition : regrouper les termes semblables",
+    "Produit : chaque terme fois chaque terme",
+    "Division : A = BQ + R, degré du reste",
+    "Racine a : P(a) = 0, facteur (x − a)",
+    "Factoriser pour résoudre P(x) = 0"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux polynômes : leurs opérations et leur division. Trajectoire d'un projectile, coût de production, aire d'un champ, volume d'une boîte : dès qu'une grandeur dépend d'une autre par des puissances entières, un polynôme apparaît. Nous allons apprendre à les additionner, les soustraire et les multiplier, puis à les diviser selon les puissances décroissantes, et enfin à factoriser pour résoudre les équations.",
+   "texte": "Polynômes : opérations, division et racines.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un polynôme est une somme finie de termes, chaque terme étant un nombre, le coefficient, multiplié par une puissance entière de la variable. L'exemple d'atelier du cours parle de lui-même : un coût total formé de frais fixes, d'un coût proportionnel au nombre d'objets et d'un terme en carré qui croît plus vite que la production. Trois termes, trois rôles : c'est déjà toute la grammaire des polynômes.",
+   "texte": "Une somme de termes : coefficients et puissances.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "La forme générale s'écrit avec des coefficients indicés, du terme de plus haut degré jusqu'au terme constant. Le degré du polynôme est la plus grande puissance dont le coefficient est non nul. Selon le degré, on parle de polynôme constant, de polynôme affine, de trinôme du second degré ou de polynôme cubique : chaque famille a sa courbe et ses méthodes propres, et le degré annonce déjà le nombre maximal de racines.",
+   "texte": "Forme générale et degré : la carte d'identité.",
+   "ecran": "forme"
+  },
+  {
+   "id": "p04",
+   "dit": "Anatomie complète sur un exemple : le polynôme quatre x au cube, moins deux x, plus sept. Son degré est trois, son coefficient dominant est quatre, ses termes sont quatre x au cube, moins deux x et la constante sept. Attention au piège : le terme en x au carré est absent, ce qui signifie simplement que son coefficient vaut zéro. Savoir lire un polynôme ainsi, c'est préparer toutes les opérations qui suivent.",
+   "texte": "Anatomie : degré trois, coefficient dominant quatre.",
+   "ecran": "anatomie"
+  },
+  {
+   "id": "p05",
+   "dit": "Un polynôme définit une fonction : remplacer la variable par un nombre donne une valeur. Pour le polynôme deux x au carré, moins trois x, plus un, la valeur en zéro est un, la valeur en deux est trois, et la valeur en moins un est six. En plaçant tous ces points, on obtient une courbe continue et lisse : ici, une parabole. Évaluer un polynôme en un point deviendra bientôt notre test décisif pour traquer ses racines.",
+   "texte": "Évaluer : en zéro, un ; en deux, trois ; en moins un, six.",
+   "ecran": "valeurs"
+  },
+  {
+   "id": "p06",
+   "dit": "L'écriture suit des conventions qui rendent les calculs fiables : on ordonne les termes par puissances décroissantes, on regroupe les termes de même puissance, on sous-entend le coefficient un et la puissance un, et on omet les termes de coefficient nul. Exercice de style du cours : une expression désordonnée, avec deux termes en x au carré qui s'annulent, se réécrit proprement sept x puissance cinq, plus trois x au cube, moins deux x, plus cinq.",
+   "texte": "Forme canonique : ordonner, regrouper, omettre.",
+   "ecran": "canonique"
+  },
+  {
+   "id": "p07",
+   "dit": "Additionner deux polynômes repose sur une seule règle : on ne peut regrouper que les termes semblables, ceux qui portent exactement la même puissance. On additionne alors leurs coefficients en gardant la puissance inchangée. Exemple du cours : la somme de deux polynômes de degré trois se réduit degré par degré, des cubes aux constantes, et donne x au cube, plus x au carré, plus quatre x, moins cinq. L'opération est commutative et associative : l'ordre des regroupements est libre.",
+   "texte": "Addition : seuls les termes semblables se regroupent.",
+   "ecran": "addition"
+  },
+  {
+   "id": "p08",
+   "dit": "La soustraction est le piège numéro un du chapitre. Soustraire un polynôme, c'est ajouter son opposé : il faut changer le signe de chacun de ses termes, sans exception. Avec les mêmes polynômes que pour l'addition, la différence donne cette fois trois x au cube, moins neuf x au carré, moins deux x, moins neuf. Comparez les deux résultats : tout l'écart vient de cette distribution du signe moins.",
+   "texte": "Soustraction : changer le signe de chaque terme.",
+   "ecran": "soustraction"
+  },
+  {
+   "id": "p09",
+   "dit": "Application concrète : le périmètre d'un terrain formé d'un rectangle et d'un triangle accolés, dont les dimensions sont des polynômes en x. En additionnant les côtés extérieurs, les termes se regroupent et le périmètre total devient le polynôme quinze x plus huit. Pour x égal à dix mètres, ce périmètre vaut cent cinquante-huit mètres : l'algèbre des polynômes sert ici de formule de calcul réutilisable.",
+   "texte": "Un périmètre, un polynôme : quinze x plus huit.",
+   "ecran": "perimetre"
+  },
+  {
+   "id": "p10",
+   "dit": "Point d'étape. Le degré identifie un polynôme ; l'addition regroupe les termes semblables ; la soustraction ajoute l'opposé en changeant tous les signes ; et la forme canonique, puissances décroissantes, prépare tous les calculs. Nous passons maintenant à l'opération qui combine vraiment les termes entre eux : la multiplication, puis à l'opération inverse, la division.",
+   "texte": "Point d'étape : additions maîtrisées.",
+   "ecran": "bilan_add"
+  },
+  {
+   "id": "p11",
+   "dit": "La multiplication change de nature : chaque terme du premier polynôme doit multiplier chaque terme du second, par distributivité généralisée. Les exposants s'additionnent quand les puissances de x se multiplient. Conséquence immédiate et précieuse pour vérifier ses calculs : le degré du produit est la somme des degrés des deux facteurs. Un degré trois par un degré deux donnera toujours un degré cinq.",
+   "texte": "Produit : chaque terme rencontre chaque terme.",
+   "ecran": "produit"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple complet : multiplier trois x au carré, moins deux x, plus cinq, par x moins quatre. On distribue terme à terme, puis on regroupe les semblables : les carrés se combinent, les x se combinent, et le résultat est trois x au cube, moins quatorze x au carré, plus treize x, moins vingt. Vérification rapide : le degré du produit, trois, est bien la somme des degrés deux et un des facteurs.",
+   "texte": "Exemple : trois x au cube, moins quatorze x au carré.",
+   "ecran": "produit_ex"
+  },
+  {
+   "id": "p13",
+   "dit": "Certains produits reviennent si souvent qu'on les mémorise : ce sont les identités remarquables. Le carré d'une somme, le carré d'une différence, et le produit de la somme par la différence, qui donne une différence de carrés. Applications immédiates : le carré de trois x moins quatre donne neuf x au carré, moins vingt-quatre x, plus seize ; et deux x plus cinq, par deux x moins cinq, donne quatre x au carré, moins vingt-cinq.",
+   "texte": "Identités remarquables : trois raccourcis à retenir.",
+   "ecran": "identites"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour les gros produits, organisez le calcul par degrés, en additionnant colonne par colonne. Dans le produit de deux polynômes de degré deux, le terme en puissance quatre vient d'un seul produit, ceux en puissance trois se regroupent, ceux en puissance deux aussi : le résultat final est deux x puissance quatre, plus x au cube, moins sept x au carré, plus cinq x, moins un. Même méthode, autre visage : un volume se calcule en deux produits successifs, en commençant par les deux premiers facteurs.",
+   "texte": "Organiser par degrés : colonnes et regroupements.",
+   "ecran": "produit_tab"
+  },
+  {
+   "id": "p15",
+   "dit": "Voici l'opération inverse de la multiplication : la division euclidienne. Pour deux polynômes A et B, B non nul, il existe un unique quotient Q et un unique reste R tels que A égale B fois Q plus R, avec le degré du reste strictement inférieur au degré du diviseur. C'est exactement la division des entiers, où dix-sept égale cinq fois trois plus deux, le reste deux étant plus petit que le diviseur cinq : ici, ce sont les degrés qui se comparent.",
+   "texte": "Division euclidienne : A égal B fois Q plus R.",
+   "ecran": "division"
+  },
+  {
+   "id": "p16",
+   "dit": "La méthode suit toujours la même chorégraphie : diviser le terme dominant du dividende par celui du diviseur, multiplier le diviseur par le terme obtenu, soustraire, et recommencer sur le reste partiel. Pour deux x au cube, plus trois x au carré, moins cinq x, plus un, divisé par x au carré, plus x, moins un : le premier terme du quotient est deux x, le second est un, et on s'arrête sur le reste moins quatre x plus deux, de degré un, inférieur au degré deux du diviseur. Le quotient est deux x plus un.",
+   "texte": "La chorégraphie : diviser, multiplier, soustraire.",
+   "ecran": "division_ex"
+  },
+  {
+   "id": "p17",
+   "dit": "Deuxième division, par un binôme : trois x au cube, moins deux x au carré, plus cinq x, moins sept, divisé par x moins deux. Trois cycles de la même danse donnent le quotient trois x au carré, plus quatre x, plus treize, et le reste dix-neuf. Vérification par une valeur : en zéro, le dividende vaut moins sept, et le produit du diviseur par le quotient plus le reste donne moins vingt-six plus dix-neuf, soit moins sept. L'égalité tient.",
+   "texte": "Diviser par x moins deux : reste dix-neuf.",
+   "ecran": "division_x2"
+  },
+  {
+   "id": "p18",
+   "dit": "Pour diviser par un binôme de la forme x moins a, le schéma de Horner condense toute la division en une grille de nombres. On écrit les coefficients du dividende, ici trois, moins deux, cinq, moins sept ; on fait descendre le premier, puis on multiplie par a, on additionne, on remultiplie. La dernière ligne donne les coefficients du quotient, trois, quatre, treize, et le reste, dix-neuf : exactement le résultat de la division posée, en quelques secondes.",
+   "texte": "Horner : la division condensée en une grille.",
+   "ecran": "horner"
+  },
+  {
+   "id": "p19",
+   "dit": "Exercice de synthèse de la méthode : diviser deux x puissance quatre, moins trois x au cube, plus quatre x au carré, moins cinq x, plus six, par x au carré, moins x, plus un. Trois cycles donnent le quotient deux x au carré, moins x, plus un, et le reste moins trois x plus cinq, de degré un, bien inférieur au degré deux du diviseur. Avant de conclure, vérifiez toujours deux choses : le degré du reste, et l'égalité en développant le produit.",
+   "texte": "Exercice : quotient degré deux, reste degré un.",
+   "ecran": "division_ex2"
+  },
+  {
+   "id": "p20",
+   "dit": "La division ouvre la porte de la factorisation, et sa première technique est la mise en évidence d'un facteur commun. Pour six x au cube y au carré, moins neuf x au carré y, plus trois x y : le plus grand commun diviseur des coefficients est trois, et chaque terme contient au moins un x et un y. Le facteur commun est donc trois x y, et le polynôme s'écrit trois x y facteur de deux x au carré y, moins trois x, plus un.",
+   "texte": "Facteur commun : trois x y mis en évidence.",
+   "ecran": "facteur_commun"
+  },
+  {
+   "id": "p21",
+   "dit": "Deuxième technique : reconnaître les identités remarquables à rebours. Quatre x au carré, plus douze x, plus neuf est un carré parfait : c'est le carré de deux x plus trois, car le terme central vaut bien deux fois deux x fois trois. Et seize, moins vingt-cinq x au carré, est une différence de carrés : c'est le produit de quatre moins cinq x par quatre plus cinq x. Attention au piège : une somme de carrés, comme x au carré plus neuf, ne se factorise pas dans les réels.",
+   "texte": "Identités à rebours : carrés parfaits et différences.",
+   "ecran": "facto_id"
+  },
+  {
+   "id": "p22",
+   "dit": "Troisième technique, la plus complète : une racine évidente plus une division. Pour le polynôme x au cube, moins deux x au carré, moins x, plus deux, on teste les diviseurs du terme constant : en un, le polynôme s'annule, donc x moins un est un facteur. La division donne le quotient x au carré, moins x, moins deux, qui se factorise encore en x moins deux, facteur de x plus un. Factorisation complète obtenue, et les racines se lisent dessus : un, deux et moins un.",
+   "texte": "Racine évidente, division, factorisation complète.",
+   "ecran": "facto_complete"
+  },
+  {
+   "id": "p23",
+   "dit": "Résoudre un polynôme, c'est trouver ses racines, les valeurs qui l'annulent. Pour le second degré, la méthode est fermée : on calcule le discriminant, delta égal à b au carré moins quatre a c, et les racines s'écrivent avec la racine carrée de delta. Si delta est positif, deux racines réelles et la parabole coupe l'axe en deux points ; s'il est nul, une racine double et la parabole est tangente ; s'il est négatif, aucune racine réelle.",
+   "texte": "Second degré : le discriminant décide.",
+   "ecran": "discriminant"
+  },
+  {
+   "id": "p24",
+   "dit": "Certaines équations de degré supérieur se ramènent au second degré par un changement d'inconnue. Pour x puissance quatre, moins cinq x au carré, plus quatre, égal à zéro, on pose grand X égal à x au carré : l'équation devient un trinôme en X, de discriminant neuf, dont les solutions sont quatre et un. On revient ensuite à x : x au carré égal à quatre ou à un, d'où quatre solutions, moins deux, moins un, un et deux.",
+   "texte": "Bicarrée : quatre solutions par un trinôme.",
+   "ecran": "bicarree"
+  },
+  {
+   "id": "p25",
+   "dit": "Où chercher une racine évidente ? Le théorème des racines rationnelles répond : pour un polynôme à coefficients entiers, toute racine rationnelle p sur q, en fraction irréductible, vérifie que p divise le terme constant et q divise le coefficient dominant. Pour deux x au cube, moins trois x au carré, moins onze x, plus six, la liste des candidates est courte ; trois est racine, la division donne deux x au carré, plus trois x, moins deux, et les trois racines sont trois, un demi et moins deux.",
+   "texte": "Racines rationnelles : une liste courte à tester.",
+   "ecran": "rationnelles"
+  },
+  {
+   "id": "p26",
+   "dit": "Équation de synthèse du cours : x puissance quatre, moins trois x au cube, moins trois x au carré, plus onze x, moins six, égal à zéro. Un est racine ; après division, le quotient s'annule encore en un : un est donc racine double. La deuxième division laisse un trinôme de discriminant vingt-cinq, dont les racines sont moins deux et trois. Solutions finales : un, racine double, moins deux et trois. Toute la boîte à outils du cours a servi en quatre lignes.",
+   "texte": "Synthèse : racine double un, puis moins deux et trois.",
+   "ecran": "synthese_eq"
+  },
+  {
+   "id": "p27",
+   "dit": "Il faut aussi connaître les limites de ces méthodes. Pour les degrés cinq et plus, il n'existe aucune formule générale par radicaux : c'est le théorème d'Abel et de Galois. On bascule alors vers les méthodes numériques, comme la dichotomie ou la méthode de Newton, qui approchent les racines d'aussi près qu'on veut. Savoir résoudre, c'est aussi savoir quand changer d'outil.",
+   "texte": "Degré cinq : pas de formule, place au numérique.",
+   "ecran": "limites"
+  },
+  {
+   "id": "p28",
+   "dit": "Pour conclure ce cours, retenez la boîte à outils complète : additionner en regroupant les termes semblables, multiplier en distribuant chaque terme contre chaque terme, diviser selon les puissances décroissantes jusqu'à un reste de degré inférieur, et factoriser pour résoudre, car un produit est nul exactement quand l'un de ses facteurs est nul. Degré, racine, quotient et facteur : quatre mots qui décrivent désormais la même mécanique.",
+   "texte": "Polynômes : la boîte à outils complète.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir, évaluer, additionner, soustraire"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Multiplier, puis diviser selon les puissances décroissantes",
+   "pont": {
+    "texte": "Partie 2 : le produit, puis la division euclidienne et Horner.",
+    "dit": "Partie deux : multiplier, puis diviser. Nous commencerons par le produit des polynômes et ses identités remarquables, puis nous inverserons l'opération avec la division euclidienne selon les puissances décroissantes, jusqu'au schéma de Horner, sa version condensée pour les binômes."
+   }
+  },
+  {
+   "debut": "p20",
+   "sous_titre": "Factoriser et résoudre les équations",
+   "pont": {
+    "texte": "Partie 3 : factoriser pour résoudre les équations.",
+    "dit": "Partie trois : factoriser et résoudre. La factorisation transforme un polynôme en un produit de facteurs lisibles, et résoudre l'équation devient alors immédiat. Nous combinerons facteur commun, identités remarquables, racines évidentes et théorème des racines rationnelles."
+   }
+  }
+ ]
+}
