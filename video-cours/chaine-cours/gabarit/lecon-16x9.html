@@ -1922,6 +1922,101 @@ const FIG = {
       mot(ox + 12, 38, 'Imaginaires purs', { t: 18, a: 'start' }) +
       mot(500, 292, "M, image de z = a + ib : OM donne le module, θ donne l'argument", { t: 19 }));
   },
+  crible_fig(t) {
+    const premiers = new Set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
+    let corps = '';
+    for (let n = 2; n <= 30; n++) {
+      const idx = n - 2, col = idx % 10, lig = Math.floor(idx / 10);
+      const x = 224 + col * 68, y = 66 + lig * 62;
+      if (premiers.has(n)) {
+        corps += `<circle cx="${x}" cy="${y}" r="24" fill="#10B981" fill-opacity=".16" stroke="#10B981" stroke-width="4"/>`;
+        corps += mot(x, y + 7, String(n), { t: 21, c: '#10B981' });
+      } else {
+        corps += mot(x, y + 7, String(n), { t: 21 });
+        if (n % 2 === 0) corps += `<line x1="${x - 15}" y1="${y - 12}" x2="${x + 15}" y2="${y + 12}" stroke="#E8604C" stroke-width="3"/>`;
+        if (n % 3 === 0) corps += `<line x1="${x - 15}" y1="${y + 12}" x2="${x + 15}" y2="${y - 12}" stroke="#1A75FF" stroke-width="3"/>`;
+      }
+    }
+    return svgBoite(
+      corps +
+      mot(500, 278, 'barrer les multiples : ce qui reste, ce sont les nombres premiers', { t: 19 }));
+  },
+  euclide_fig(t) {
+    const marches = [
+      [180, 46, '48 = 18 × 2 + 12', 610, 46],
+      [330, 118, '18 = 12 × 1 + 6', 724, 118],
+      [480, 190, '12 = 6 × 2 + 0', 838, 190]
+    ];
+    let corps = '';
+    marches.forEach(([x, y, texte], i) => {
+      corps += `<rect x="${x}" y="${y}" width="380" height="56" fill="currentColor" fill-opacity="${0.05 + i * 0.03}" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x + 190, y + 36, texte, { t: 22 });
+    });
+    corps += `<rect x="424" y="60" width="38" height="30" fill="none" stroke="#E8604C" stroke-width="3"/>`;
+    corps += `<rect x="580" y="132" width="30" height="30" fill="#B8860B" fill-opacity=".3" stroke="#B8860B" stroke-width="4"/>`;
+    corps += `<rect x="726" y="204" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2"/>`;
+    return svgBoite(
+      corps +
+      mot(724, 152, 'PGCD', { t: 20, c: '#B8860B', a: 'start' }) +
+      mot(500, 284, 'on continue jusqu’au reste nul : le dernier reste non nul gagne', { t: 19 }));
+  },
+  modulo_fig(t) {
+    const cx = 400, cy = 150, r = 105;
+    const pt = (deg, rr) => [Math.round(cx + rr * Math.cos(deg * Math.PI / 180)), Math.round(cy - rr * Math.sin(deg * Math.PI / 180))];
+    let corps = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<path d="M ${cx} ${cy} L ${pt(18, r)[0]} ${pt(18, r)[1]} A ${r} ${r} 0 0 0 ${pt(90, r)[0]} ${pt(90, r)[1]} Z" fill="#10B981" fill-opacity=".25"/>`;
+    [90, 162, 234, 306, 18].forEach(deg => {
+      const [x, y] = pt(deg, r);
+      corps += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="currentColor" stroke-width="3"/>`;
+    });
+    const numeros = [[54, '2', '#10B981', 24], [342, '3', null, 20], [270, '4', null, 20], [198, '0', null, 20], [126, '1', null, 20]];
+    numeros.forEach(([deg, lab, coul, taille]) => {
+      const [x, y] = pt(deg, 64);
+      corps += mot(x, y + 7, lab, coul ? { t: taille, c: coul } : { t: taille });
+    });
+    return svgBoite(
+      corps +
+      mot(600, 96, '17 ≡ 2', { t: 22, a: 'start' }) +
+      mot(600, 140, '2 ≡ 2', { t: 22, a: 'start', c: '#10B981' }) +
+      mot(600, 184, '−3 ≡ 2', { t: 22, a: 'start' }) +
+      mot(600, 226, '(mod 5)', { t: 19, a: 'start' }) +
+      mot(500, 290, 'même reste, même case : les nombres se rangent par reste', { t: 19 }));
+  },
+  permutation_restes_fig(t) {
+    const xs = [250, 380, 510, 640, 770];
+    const haut = ['1', '2', '3', '…', 'p − 1'], bas = ['a', '2a', '3a', '…', '(p−1)a'];
+    let corps = '';
+    xs.forEach((x, i) => {
+      corps += `<rect x="${x - 52}" y="56" width="104" height="46" fill="currentColor" fill-opacity=".07" stroke="currentColor" stroke-width="3"/>`;
+      corps += mot(x, 86, haut[i], { t: 21 });
+      corps += `<rect x="${x - 52}" y="182" width="104" height="46" fill="#1A75FF" fill-opacity=".1" stroke="#1A75FF" stroke-width="3"/>`;
+      corps += mot(x, 212, bas[i], { t: 21, c: '#1A75FF' });
+      corps += `<line x1="${x}" y1="108" x2="${x}" y2="168" stroke="currentColor" stroke-width="3"/>`;
+      corps += `<polygon points="${x},176 ${x - 6},162 ${x + 6},162" fill="currentColor"/>`;
+    });
+    return svgBoite(
+      corps +
+      mot(315, 146, '×a', { t: 20, c: '#B8860B' }) +
+      mot(500, 272, 'multiplier par a permute les restes modulo p', { t: 20 }));
+  },
+  divisions_fig(t) {
+    const valeurs = ['72', '36', '18', '9', '3', '1'];
+    const diviseurs = ['÷ 2', '÷ 2', '÷ 2', '÷ 3', '÷ 3'];
+    let corps = '';
+    valeurs.forEach((v, i) => {
+      const y = 40 + i * 42;
+      corps += mot(500, y + 8, v, { t: 22 });
+      if (i < 5) {
+        corps += `<line x1="500" y1="${y + 14}" x2="500" y2="${y + 30}" stroke="currentColor" stroke-width="3"/>`;
+        corps += `<polygon points="500,${y + 36} 494,${y + 26} 506,${y + 26}" fill="currentColor"/>`;
+        corps += mot(522, y + 30, diviseurs[i], { t: 17, a: 'start' });
+      }
+    });
+    return svgBoite(
+      corps +
+      `<line x1="560" y1="166" x2="622" y2="166" stroke="#B8860B" stroke-width="3"/>` +
+      mot(634, 174, '72 = 2³ × 3²', { t: 24, c: '#B8860B', a: 'start' }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
