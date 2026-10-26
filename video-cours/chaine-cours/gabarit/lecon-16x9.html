@@ -2992,6 +2992,55 @@ const FIG = {
       (p > .7 ? `<circle cx="636" cy="182" r="10" fill="#B8860B"/><circle cx="668" cy="190" r="8" fill="#B8860B"/><circle cx="330" cy="188" r="8" fill="#B8860B"/>` + mot(700, 196, 'rouille', { c: '#B8860B', t: 22, a: 'start' }) : '') +
       mot(500, 292, "la rouille : le fer s’oxyde sous l’eau et l’air", { t: 24 }));
   },
+  chaine_carbonee_fig(t) {
+    const p = prog(t);
+    const c = (x, y) => `<circle cx="${x}" cy="${y}" r="15" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="3"/>`;
+    const zig = [[80, 170], [150, 112], [220, 170], [290, 112]];
+    let lin = '';
+    for (let i = 0; i < 3; i++) lin += trait(zig[i][0], zig[i][1], zig[i + 1][0], zig[i + 1][1], 1, { w: 5 });
+    lin += zig.map(([x, y]) => c(x, y)).join('');
+    const ram = [[420, 170], [490, 112], [560, 170]];
+    let ramifiee = '';
+    for (let i = 0; i < 2; i++) ramifiee += trait(ram[i][0], ram[i][1], ram[i + 1][0], ram[i + 1][1], 1, { w: 5 });
+    ramifiee += trait(490, 112, 490, 196, 1, { w: 5 }) + ram.map(([x, y]) => c(x, y)).join('') + c(490, 212);
+    let cyc = '';
+    const cx = 790, cy = 140, r = 62;
+    const sommets = [];
+    for (let k = 0; k < 6; k++) { const a = Math.PI / 3 * k - Math.PI / 2; sommets.push([Math.round(cx + r * Math.cos(a)), Math.round(cy + r * Math.sin(a))]); }
+    for (let k = 0; k < 6; k++) { const [x1, y1] = sommets[k], [x2, y2] = sommets[(k + 1) % 6]; cyc += trait(x1, y1, x2, y2, 1, { w: 5 }); }
+    cyc += sommets.map(([x, y]) => c(x, y)).join('');
+    return svgBoite(
+      lin + mot(185, 252, 'linéaire', { t: 22 }) +
+      (p > .35 ? ramifiee + mot(490, 262, 'ramifiée', { t: 22 }) : '') +
+      (p > .65 ? cyc + mot(790, 252, 'cyclique', { t: 22 }) : '') +
+      mot(500, 292, 'les trois formes de chaînes carbonées', { t: 24 }));
+  },
+  formule_developpee_fig(t) {
+    const p = prog(t);
+    const h = (x, y) => `<circle cx="${x}" cy="${y}" r="14" fill="#FFFFFF" stroke="currentColor" stroke-width="3"/>` + mot(x, y + 6, 'H', { t: 16 });
+    return svgBoite(
+      trait(452, 140, 548, 140, 1, { w: 6 }) +
+      trait(420, 140, 366, 140, 1, { w: 4 }) + trait(420, 118, 420, 66, 1, { w: 4 }) + trait(420, 162, 420, 214, 1, { w: 4 }) +
+      trait(580, 140, 634, 140, 1, { w: 4 }) + trait(580, 118, 580, 66, 1, { w: 4 }) + trait(580, 162, 580, 214, 1, { w: 4 }) +
+      `<circle cx="420" cy="140" r="24" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` + mot(420, 148, 'C', { t: 21 }) +
+      `<circle cx="580" cy="140" r="24" fill="#1A75FF" fill-opacity=".3" stroke="currentColor" stroke-width="4"/>` + mot(580, 148, 'C', { t: 21 }) +
+      h(352, 140) + h(420, 52) + h(420, 228) + h(648, 140) + h(580, 52) + h(580, 228) +
+      (p > .5 ? mot(800, 130, 'éthane', { t: 24, a: 'start' }) + mot(800, 162, 'C2H6', { t: 22, a: 'start' }) : '') +
+      mot(500, 292, 'chaque trait = une liaison covalente', { t: 24 }));
+  },
+  analyseur_combustion_fig(t) {
+    const p = prog(t);
+    const boite = (x, y, l, hgt) => `<rect x="${x}" y="${y}" width="${l}" height="${hgt}" rx="12" fill="#1A75FF" fill-opacity=".1" stroke="currentColor" stroke-width="4"/>`;
+    return svgBoite(
+      boite(60, 104, 210, 84) + mot(165, 140, 'échantillon', { t: 21 }) + mot(165, 168, 'inconnu', { t: 18 }) +
+      (p > .3 ? trait(278, 146, 420, 146, (p - .3) / .7, { c: '#E8604C', w: 6 }) + pointe(432, 146, 0, '#E8604C') : '') +
+      mot(350, 116, 'combustion', { c: '#E8604C', t: 20 }) + mot(350, 186, 'dans O2', { t: 19 }) +
+      (p > .55 ? boite(450, 46, 480, 74) + mot(690, 90, 'CO2 mesuré → carbone', { t: 22 }) : '') +
+      (p > .75 ? boite(450, 172, 480, 74) + mot(690, 216, 'H2O mesurée → hydrogène', { t: 22 }) : '') +
+      (p > .55 ? trait(432, 146, 452, 84, 1, { w: 4 }) : '') +
+      (p > .75 ? trait(432, 146, 452, 208, 1, { w: 4 }) : '') +
+      mot(500, 292, "l’analyse élémentaire par combustion", { t: 24 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(

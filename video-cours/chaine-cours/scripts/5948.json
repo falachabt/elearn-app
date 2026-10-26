@@ -1,0 +1,437 @@
+{
+ "cours": 5948,
+ "ecrans": {
+  "analyse_intro": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "melange"
+   },
+   "kicker": "Identifier une molécule inconnue",
+   "texte": "Un échantillon inconnu, prélevé dans un sol ou synthétisé au laboratoire : l'analyse élémentaire donne la proportion de chaque élément qu'il contient.",
+   "type": "phrase"
+  },
+  "applications": {
+   "kicker": "À quoi ça sert ?",
+   "texte": "Pureté des médicaments en pharmacie, composition des aliments en agroalimentaire, analyse des polluants pour l'environnement : le pourcentage massique est partout.",
+   "type": "phrase"
+  },
+  "carbone": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Le carbone, un bâtisseur",
+   "tex": [
+    "\\mathrm{C} : 1s^2\\,2s^2\\,2p^2",
+    "4\\ \\text{électrons de valence}",
+    "\\Rightarrow 4\\ \\text{liaisons covalentes possibles}"
+   ],
+   "titre": "Quatre électrons de valence, quatre liaisons",
+   "type": "etape"
+  },
+  "chaines": {
+   "kicker": "Des chaînes à l'infini",
+   "texte": "Le carbone se lie à lui-même : chaînes linéaires, ramifiées ou cycliques. Autour de lui gravitent l'oxygène, l'azote, le soufre et les halogènes.",
+   "type": "phrase",
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 180
+   }
+  },
+  "combustion": {
+   "kicker": "L'analyse par combustion",
+   "tex": [
+    "\\mathrm{C_2H_5OH} + 3\\,\\mathrm{O_2} \\rightarrow 2\\,\\mathrm{CO_2} + 3\\,\\mathrm{H_2O}",
+    "\\mathrm{CO_2} \\Rightarrow \\mathrm{C}",
+    "\\mathrm{H_2O} \\Rightarrow \\mathrm{H}"
+   ],
+   "titre": "Brûler pour révéler",
+   "type": "etape",
+   "anim": {
+    "nom": "analyseur_combustion_fig",
+    "hauteur": 120
+   }
+  },
+  "definition": {
+   "kicker": "Qu'est-ce que la chimie organique ?",
+   "texte": "L'étude des composés à base de carbone : autrefois « chimie des composés du vivant », aujourd'hui la chimie de millions de molécules, au cœur de la biochimie, de la pharmacie et des matériaux.",
+   "type": "phrase"
+  },
+  "definition_precise": {
+   "kicker": "Une définition plus précise",
+   "note": "du carbone, mais classés minéraux : le critère est la liaison carbone-hydrogène",
+   "tex": "\\mathrm{CO_2} \\qquad \\mathrm{CaCO_3}",
+   "type": "formule"
+  },
+  "echantillon": {
+   "kicker": "Un premier exemple chiffré",
+   "tex": [
+    "\\frac{6\\ \\text{mg}}{10\\ \\text{mg}} \\times 100 = 60\\ \\%\\ \\text{(carbone)}",
+    "\\frac{1\\ \\text{mg}}{10\\ \\text{mg}} \\times 100 = 10\\ \\%\\ \\text{(hydrogène)}",
+    "100 - 60 - 10 = 30\\ \\%\\ \\text{(oxygène, par différence)}"
+   ],
+   "titre": "Dix milligrammes à la loupe",
+   "type": "etape"
+  },
+  "empirique": {
+   "kicker": "Le chemin inverse",
+   "tex": [
+    "n_{\\mathrm{C}} = \\tfrac{40}{12} \\approx 3{,}33 \\qquad n_{\\mathrm{O}} = \\tfrac{53{,}33}{16} \\approx 3{,}33",
+    "n_{\\mathrm{H}} = \\tfrac{6{,}67}{1} = 6{,}67",
+    "\\div 3{,}33 \\Rightarrow 1\\,;\\,2\\,;\\,1 \\Rightarrow \\mathrm{CH_2O}"
+   ],
+   "titre": "Des pourcentages à la formule empirique",
+   "type": "etape"
+  },
+  "ethanol": {
+   "kicker": "Exemple guidé : l'éthanol",
+   "tex": [
+    "M(\\mathrm{C_2H_6O}) = 2 \\times 12{,}01 + 6 \\times 1{,}01 + 16{,}00 = 46{,}08\\ \\text{g/mol}",
+    "\\%\\,\\mathrm{C} = \\tfrac{24{,}02}{46{,}08} \\times 100 \\approx 52{,}1\\ \\%",
+    "\\%\\,\\mathrm{H} = \\tfrac{6{,}06}{46{,}08} \\times 100 \\approx 13{,}1\\ \\%",
+    "\\%\\,\\mathrm{O} = \\tfrac{16{,}00}{46{,}08} \\times 100 \\approx 34{,}7\\ \\%"
+   ],
+   "titre": "Trois éléments, trois pourcentages",
+   "type": "etape"
+  },
+  "formule_brute": {
+   "kicker": "La formule brute",
+   "note": "le glucose : le nombre de chaque atome, mais rien sur leur arrangement",
+   "tex": "\\mathrm{C_6H_{12}O_6}",
+   "type": "formule"
+  },
+  "formule_condensee": {
+   "kicker": "La formule condensée",
+   "tex": [
+    "\\mathrm{C_4H_{10}}",
+    "\\mathrm{CH_3CH_2CH_2CH_3} \\quad \\text{(n-butane)}",
+    "(\\mathrm{CH_3})_3\\mathrm{CH} \\quad \\text{(méthylpropane)}"
+   ],
+   "titre": "Le butane et ses deux isomères",
+   "type": "etape"
+  },
+  "formule_developpee": {
+   "kicker": "La formule développée",
+   "tex": [
+    "\\mathrm{C-C} : 1",
+    "\\mathrm{C-H} : 6",
+    "\\text{total : 7 liaisons}"
+   ],
+   "titre": "L'éthane, liaison par liaison",
+   "type": "etape",
+   "anim": {
+    "nom": "formule_developpee_fig",
+    "hauteur": 120
+   }
+  },
+  "formule_molecule": {
+   "kicker": "La version « molécule »",
+   "note": "n : nombre d'atomes de X dans la molécule ; M : masse molaire de la molécule",
+   "tex": "\\%\\,\\mathrm{X} = \\frac{n_{\\mathrm{X}}\\,M_{\\mathrm{X}}}{M} \\times 100",
+   "type": "formule"
+  },
+  "formule_semi": {
+   "kicker": "La formule semi-développée",
+   "tex": [
+    "\\mathrm{CH_3-CH_3} \\quad \\text{(éthane)}",
+    "\\mathrm{CH_3-CH_2-OH} \\quad \\text{(éthanol)}",
+    "\\mathrm{CH_3-CH_2-CH_3} \\quad \\text{(propane)}"
+   ],
+   "titre": "Les hydrogènes regroupés par carbone",
+   "type": "etape"
+  },
+  "liaisons": {
+   "kicker": "Les trois liaisons du carbone",
+   "tex": [
+    "\\text{simple } (\\sigma) : \\mathrm{C-H} \\text{ dans } \\mathrm{CH_4}",
+    "\\text{double } (\\sigma + \\pi) : \\mathrm{C=C} \\text{ dans } \\mathrm{C_2H_4}",
+    "\\text{triple } (\\sigma + 2\\pi) : \\mathrm{C \\equiv C} \\text{ dans } \\mathrm{C_2H_2}"
+   ],
+   "titre": "Simple, double, triple",
+   "type": "etape"
+  },
+  "methane": {
+   "kicker": "Exemple guidé : le méthane",
+   "tex": [
+    "M(\\mathrm{CH_4}) = 12{,}01 + 4 \\times 1{,}01 = 16{,}05\\ \\text{g/mol}",
+    "\\%\\,\\mathrm{C} = \\frac{12{,}01}{16{,}05} \\times 100 \\approx 74{,}8\\ \\%"
+   ],
+   "titre": "Le carbone pèse les trois quarts",
+   "type": "etape"
+  },
+  "methode": {
+   "kicker": "La méthode en trois temps",
+   "tex": [
+    "M = \\sum n_i\\,M_i \\quad \\text{(masse molaire)}",
+    "m_{\\mathrm{X}} = n_{\\mathrm{X}}\\,M_{\\mathrm{X}} \\quad \\text{(part de X dans une mole)}",
+    "\\%\\,\\mathrm{X} = \\frac{m_{\\mathrm{X}}}{M} \\times 100"
+   ],
+   "titre": "De la formule aux pourcentages",
+   "type": "etape"
+  },
+  "moleculaire": {
+   "kicker": "De l'empirique à la moléculaire",
+   "note": "l'empirique pèse 30 g/mol ; six fois plus pour 180 g/mol : le glucose",
+   "tex": "\\mathrm{CH_2O} \\times 6 = \\mathrm{C_6H_{12}O_6}",
+   "type": "formule"
+  },
+  "pourcentage_def": {
+   "kicker": "Le pourcentage massique",
+   "note": "la part de la masse d'un élément dans la masse totale de l'échantillon",
+   "tex": "\\%\\,\\mathrm{X} = \\frac{m_{\\mathrm{X}}}{m_{\\text{échantillon}}} \\times 100",
+   "type": "formule"
+  },
+  "recap_final": {
+   "etapes": [
+    "Organique : du carbone lié à l'hydrogène",
+    "Le carbone forme quatre liaisons covalentes",
+    "Quatre représentations, du brut au condensé",
+    "La combustion révèle la composition",
+    "Pourcentage massique : la part de chaque élément"
+   ],
+   "kicker": "Points clés du cours",
+   "type": "recap"
+  },
+  "representations_intro": {
+   "kicker": "Un langage universel",
+   "texte": "Comme l'architecte choisit entre croquis, plan et maquette, le chimiste dispose de plusieurs formules pour une même molécule : chacune montre un niveau de détail différent.",
+   "type": "phrase"
+  },
+  "representations_recap": {
+   "etapes": [
+    "Brute : le type et le nombre des atomes",
+    "Développée : toutes les liaisons en traits",
+    "Semi-développée : les H regroupés par carbone",
+    "Condensée : les groupes entre parenthèses"
+   ],
+   "kicker": "Quatre représentations, un choix",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "atome_bohr_fig"
+   },
+   "kicker": "Chimie · Chimie organique",
+   "sous": "Le règne du carbone et le pourcentage massique",
+   "titre": "Introduction à la chimie organique",
+   "type": "titre"
+  },
+  "wohler": {
+   "kicker": "L'anecdote de Wöhler",
+   "texte": "En 1828, Friedrich Wöhler synthétise l'urée, un composé organique, à partir de composés inorganiques : la « force vitale » s'effondre, la chimie organique devient une chimie comme les autres.",
+   "type": "phrase"
+  }
+ },
+ "lecons": [
+  4776,
+  4777,
+  4778,
+  4779,
+  4780,
+  4781,
+  4782,
+  4783
+ ],
+ "matiere": "Chimie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Le règne du carbone et ses liaisons"
+  },
+  {
+   "debut": "p08",
+   "pont": {
+    "dit": "Partie deux : représenter les molécules. Après le carbone et ses liaisons, apprenons le langage qui permet d'écrire une molécule de quatre façons, de la plus simple à la plus détaillée, puis ouvrons le chantier de son identification.",
+    "texte": "Partie 2 : les quatre représentations d'une molécule."
+   },
+   "sous_titre": "Représenter les molécules"
+  },
+  {
+   "debut": "p16",
+   "pont": {
+    "dit": "Partie trois : le pourcentage massique en pratique. La combustion a révélé la composition de notre inconnue ; il reste à la quantifier proprement, avec la méthode, deux exemples guidés, et le chemin inverse, des pourcentages vers la formule.",
+    "texte": "Partie 3 : le pourcentage massique, méthode et exemples."
+   },
+   "sous_titre": "Le pourcentage massique en pratique"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce premier chapitre de chimie organique, la chimie du carbone. Nous allons d'abord définir ce qui rend un composé organique, puis rencontrer le carbone et ses trois types de liaisons. Nous apprendrons ensuite à représenter les molécules de quatre façons, avant de terminer par l'outil de calcul du chapitre : le pourcentage massique.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.9,
+   "texte": "Chimie organique : le règne du carbone, puis le pourcentage massique."
+  },
+  {
+   "dit": "La chimie organique étudie les composés à base de carbone. Autrefois, on la définissait comme la chimie des composés du vivant, par opposition à la chimie minérale, celle des sels et des métaux. Mais cette frontière entre le vivant et le non-vivant allait s'effondrer dès le dix-neuvième siècle.",
+   "ecran": "definition",
+   "id": "p02",
+   "pause_apres": 0.8,
+   "texte": "La chimie organique : l'étude des composés du carbone."
+  },
+  {
+   "dit": "Petite anecdote fondatrice : on croyait alors que seuls les organismes vivants pouvaient fabriquer des composés organiques, grâce à une mystérieuse force vitale. En mille huit cent vingt-huit, Friedrich Wöhler synthétise de l'urée, un composé organique, à partir de composés purement inorganiques. Une révolution : la chimie organique devient une chimie comme les autres.",
+   "ecran": "wohler",
+   "id": "p03",
+   "pause_apres": 0.8,
+   "texte": "1828 : Wöhler synthétise l'urée, la « force vitale » s'effondre."
+  },
+  {
+   "dit": "Attention pourtant : contenir du carbone ne suffit pas. Le dioxyde de carbone et le carbonate de calcium contiennent bien du carbone, mais ils sont classés parmi les composés inorganiques. La définition moderne est donc plus fine : un composé organique est un composé du carbone qui présente des liaisons carbone-hydrogène, souvent accompagné d'oxygène, d'azote, de soufre ou d'halogènes.",
+   "ecran": "definition_precise",
+   "id": "p04",
+   "pause_apres": 0.8,
+   "texte": "Composé organique : du carbone lié à des hydrogènes."
+  },
+  {
+   "dit": "Pourquoi le carbone joue-t-il ce rôle central ? Sa configuration électronique compte quatre électrons sur sa couche externe, ses électrons de valence. Il peut donc former quatre liaisons covalentes, fortes et stables : avec l'hydrogène, avec l'oxygène, avec l'azote, et surtout avec d'autres atomes de carbone. C'est cette tétravalence qui fait de lui un bâtisseur de molécules.",
+   "ecran": "carbone",
+   "id": "p05",
+   "pause_apres": 0.8,
+   "texte": "Le carbone : quatre électrons de valence, quatre liaisons covalentes."
+  },
+  {
+   "dit": "Un atome de carbone peut se lier à un autre, qui se lie à un autre, et ainsi de suite : les molécules organiques forment des chaînes carbonées. Ces chaînes peuvent être linéaires, comme un collier tendu, ramifiées, avec des embranchements, ou cycliques, refermées en anneau. Résultat : des millions de molécules différentes, base de la biochimie, de la pharmacologie et des matériaux.",
+   "ecran": "chaines",
+   "id": "p06",
+   "pause_apres": 0.8,
+   "texte": "Chaînes linéaires, ramifiées ou cycliques : des millions de molécules."
+  },
+  {
+   "dit": "Entre deux atomes, les électrons se partagent par paires. Une seule paire partagée : c'est la liaison simple, notée sigma, et la rotation autour de son axe est libre, comme dans le méthane. Deux paires : la liaison double, un sigma plus un pi, et la rotation devient restreinte, comme entre les deux carbones de l'éthylène. Trois paires : la liaison triple, un sigma et deux pi, rotation très restreinte, comme dans l'éthyne.",
+   "ecran": "liaisons",
+   "id": "p07",
+   "pause_apres": 0.8,
+   "texte": "Simple, double, triple : une, deux ou trois paires d'électrons partagées."
+  },
+  {
+   "dit": "Comment écrire une molécule sur le papier ? Imaginez un architecte : selon le besoin, il présente un croquis, un plan détaillé ou une maquette. Pour les molécules, c'est la même chose : il existe plusieurs représentations, du simple inventaire des atomes jusqu'au dessin de toutes les liaisons. Savoir passer de l'une à l'autre est un savoir-faire d'examen.",
+   "ecran": "representations_intro",
+   "id": "p08",
+   "pause_apres": 0.8,
+   "texte": "Plusieurs représentations, comme croquis, plan et maquette."
+  },
+  {
+   "dit": "Premier niveau : la formule brute. Elle indique simplement le type et le nombre des atomes présents. Pour le glucose : six atomes de carbone, douze d'hydrogène, six d'oxygène. C'est rapide, mais elle ne dit rien de l'enchaînement des atomes : or, c'est l'enchaînement qui fait les propriétés de la molécule.",
+   "ecran": "formule_brute",
+   "id": "p09",
+   "pause_apres": 0.8,
+   "texte": "La formule brute : un inventaire des atomes, sans structure."
+  },
+  {
+   "dit": "Deuxième niveau : la formule développée. Ici, chaque liaison covalente devient un trait entre deux atomes, et l'on dessine tout. Pour l'éthane : les deux carbones sont liés entre eux, et chacun porte trois hydrogènes, soit une liaison carbone-carbone et six liaisons carbone-hydrogène, sept traits au total. C'est la représentation la plus précise, mais elle devient vite encombrante pour les grosses molécules.",
+   "ecran": "formule_developpee",
+   "id": "p10",
+   "pause_apres": 0.8,
+   "texte": "La formule développée : chaque liaison dessinée par un trait."
+  },
+  {
+   "dit": "Troisième niveau, le compromis : la formule semi-développée. On ne dessine plus les liaisons carbone-hydrogène ; les hydrogènes s'écrivent simplement à la suite de leur carbone. L'éthane devient deux groupes méthyle liés entre eux, l'éthanol garde visible sa liaison vers l'oxygène, et le propane s'écrit en une seule ligne. On garde l'information de structure, en beaucoup plus lisible.",
+   "ecran": "formule_semi",
+   "id": "p11",
+   "pause_apres": 0.8,
+   "texte": "Semi-développée : les H regroupés, les autres liaisons conservées."
+  },
+  {
+   "dit": "Quatrième niveau : la formule condensée, la plus compacte. Les hydrogènes d'un même carbone sont regroupés, et les groupes répétés se notent entre parenthèses. Regardez le butane : sa formule brute compte quatre carbones et dix hydrogènes, mais il existe en deux versions, la chaîne droite et la chaîne ramifiée, le méthylpropane. Même formule brute, deux molécules différentes : ce sont des isomères.",
+   "ecran": "formule_condensee",
+   "id": "p12",
+   "pause_apres": 0.8,
+   "texte": "Condensée : le butane et le méthylpropane, deux isomères pour C₄H₁₀."
+  },
+  {
+   "dit": "Récapitulons les quatre écritures. La brute donne l'inventaire des atomes. La développée dessine toutes les liaisons. La semi-développée regroupe les hydrogènes sur leur carbone, et la condensée compresse le tout en groupes. Plus on condense, plus il faut connaître les conventions pour relire la structure.",
+   "ecran": "representations_recap",
+   "id": "p13",
+   "pause_apres": 0.8,
+   "texte": "Brute, développée, semi-développée, condensée : choisir selon le besoin."
+  },
+  {
+   "dit": "Changeons de point de vue : on vous tend une molécule inconnue, découverte dans un échantillon de sol ou fraîchement synthétisée au laboratoire. Comment trouver sa formule ? Par l'analyse élémentaire : on détermine la proportion de chaque élément, carbone, hydrogène, oxygène, azote, qu'elle contient. C'est le point de départ de presque toutes les identifications de molécules.",
+   "ecran": "analyse_intro",
+   "id": "p14",
+   "pause_apres": 0.8,
+   "texte": "L'analyse élémentaire : la composition d'une molécule inconnue."
+  },
+  {
+   "dit": "La technique reine est l'analyse par combustion. Un petit échantillon est brûlé dans un excès d'oxygène pur, à l'intérieur d'un analyseur élémentaire. La combustion complète produit du dioxyde de carbone, de l'eau, et parfois de l'azote ou des oxydes de soufre. Voici à l'écran la combustion de l'éthanol. En mesurant le dioxyde de carbone formé, on remonte au carbone ; en mesurant l'eau, à l'hydrogène.",
+   "ecran": "combustion",
+   "id": "p15",
+   "pause_apres": 0.8,
+   "texte": "Combustion complète : CO₂ pour le carbone, H₂O pour l'hydrogène."
+  },
+  {
+   "dit": "Les résultats de l'analyse s'expriment en pourcentage massique : pour chaque élément, la part de sa masse dans la masse totale de l'échantillon, multipliée par cent. Si un échantillon de dix milligrammes contient six milligrammes de carbone, son pourcentage massique de carbone est de soixante pour cent. Exprimer les compositions ainsi permet de comparer facilement les substances entre elles.",
+   "ecran": "pourcentage_def",
+   "id": "p16",
+   "pause_apres": 0.8,
+   "texte": "Le pourcentage massique : la part de chaque élément, en pour cent."
+  },
+  {
+   "dit": "Terminons cet exemple : le même échantillon de dix milligrammes contient un milligramme d'hydrogène, soit dix pour cent. Et l'oxygène ? On ne l'a pas mesuré directement, mais on l'obtient par différence : cent moins soixante moins dix, il reste trente pour cent d'oxygène. Ce calcul par différence est valable quand tous les autres éléments majeurs ont été quantifiés.",
+   "ecran": "echantillon",
+   "id": "p17",
+   "pause_apres": 0.8,
+   "texte": "60 % de carbone, 10 % d'hydrogène, 30 % d'oxygène par différence."
+  },
+  {
+   "dit": "Quand on connaît la formule de la molécule, le pourcentage massique se calcule directement, sans brûler quoi que ce soit. On prend la masse de l'élément dans une mole de molécule : sa masse atomique multipliée par son nombre d'atomes. On divise par la masse molaire de la molécule, et on multiplie par cent. C'est exactement la même définition, appliquée à l'échelle de la mole.",
+   "ecran": "formule_molecule",
+   "id": "p18",
+   "pause_apres": 0.8,
+   "texte": "Pourcentage d'un élément : sa masse dans une mole, sur la masse molaire."
+  },
+  {
+   "dit": "Voici la méthode complète, en trois temps. D'abord, calculer la masse molaire : la somme des masses atomiques de tous les atomes, chacune multipliée par son nombre d'atomes dans la molécule. Ensuite, isoler la masse de l'élément étudié dans une mole. Enfin, faire le rapport et multiplier par cent. Appliquons-la tout de suite.",
+   "ecran": "methode",
+   "id": "p19",
+   "pause_apres": 0.8,
+   "texte": "Masse molaire, masse de l'élément, rapport : la méthode en trois temps."
+  },
+  {
+   "dit": "Premier exemple guidé : le méthane. Masse molaire : douze virgule zéro un pour le carbone, plus quatre fois un virgule zéro un pour les hydrogènes, égale seize virgule zéro cinq grammes par mole. Le pourcentage de carbone vaut alors douze virgule zéro un divisé par seize virgule zéro cinq, multiplié par cent : environ soixante-quatorze virgule huit pour cent. Avec les masses arrondies, douze et un, on trouverait soixante-quinze pour cent.",
+   "ecran": "methane",
+   "id": "p20",
+   "pause_apres": 0.8,
+   "texte": "Le méthane : 16,05 g/mol, et 74,8 % de carbone."
+  },
+  {
+   "dit": "Deuxième exemple, l'éthanol, notre molécule fil rouge depuis le début du chapitre. Sa masse molaire vaut quarante-six virgule zéro huit grammes par mole. Le carbone y pèse cinquante-deux virgule un pour cent, l'hydrogène treize virgule un pour cent, et l'oxygène trente-quatre virgule sept pour cent. Vérifiez : la somme redonne bien cent pour cent, aux arrondis près. Ces trois nombres sont la signature massique de l'éthanol.",
+   "ecran": "ethanol",
+   "id": "p21",
+   "pause_apres": 0.8,
+   "texte": "L'éthanol : 52,1 % C, 13,1 % H, 34,7 % O."
+  },
+  {
+   "dit": "Et dans l'autre sens ? On peut remonter des pourcentages vers la formule. Prenez un composé à quarante pour cent de carbone, six virgule soixante-sept pour cent d'hydrogène et cinquante-trois virgule trente-trois pour cent d'oxygène, pour cent grammes d'échantillon. Convertissez chaque masse en quantité de matière, puis divisez tout par la plus petite valeur : les rapports deviennent un, deux, un. La formule empirique, la plus simple, est donc cé hache deux o.",
+   "ecran": "empirique",
+   "id": "p22",
+   "pause_apres": 0.8,
+   "texte": "Des pourcentages aux rapports entiers : la formule empirique CH₂O."
+  },
+  {
+   "dit": "Dernière marche : la formule moléculaire, la vraie. La formule empirique donne les proportions, mais pas le nombre réel d'atomes ; il faut pour cela la masse molaire du composé. Notre formule empirique pèse trente grammes par mole : si le composé pèse cent quatre-vingts grammes par mole, c'est six fois plus, et la molécule est le glucose. Avec soixante grammes par mole, c'était l'acide acétique. Empirique plus masse molaire égale formule moléculaire.",
+   "ecran": "moleculaire",
+   "id": "p23",
+   "pause_apres": 0.8,
+   "texte": "Empirique + masse molaire = formule moléculaire."
+  },
+  {
+   "dit": "Ces calculs ne sont pas qu'un exercice d'école. En pharmacie, le pourcentage massique vérifie la pureté et la qualité des médicaments. Dans l'agroalimentaire, il contrôle la composition des aliments et des boissons. Et pour l'environnement, il sert à analyser la composition des polluants. Derrière chaque étiquette de composition, il y a une analyse élémentaire.",
+   "ecran": "applications",
+   "id": "p24",
+   "pause_apres": 0.8,
+   "texte": "Pharmacie, agroalimentaire, environnement : des usages quotidiens."
+  },
+  {
+   "dit": "Vous avez maintenant les bases de la chimie organique. D'un côté, le langage : le carbone tétravalent, ses trois types de liaisons, et quatre façons d'écrire une molécule. De l'autre, l'analyse : brûler, mesurer, et convertir les masses en pourcentages, puis en formules. La suite du cours s'appuiera dessus en permanence : les familles de composés et la nomenclature arrivent.",
+   "ecran": "recap_final",
+   "id": "p25",
+   "pause_apres": 0.8,
+   "texte": "Le langage des molécules, et l'outil pour les analyser."
+  }
+ ],
+ "titre": "Chapitre 1 : Introduction à la chimie organique et notion de pourcentage massique"
+}
