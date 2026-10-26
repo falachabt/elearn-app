@@ -1,0 +1,524 @@
+{
+ "cours": 6172,
+ "titre": "Le produit scalaire dans l'espace : angles, projections et distances",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Produit scalaire dans l'espace",
+   "titre": "Le produit scalaire dans l'espace : angles, projections et distances",
+   "sous": "Trois définitions, un test d'orthogonalité, puis les distances point, droite et plan",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un satellite, deux antennes, un angle à vérifier : le produit scalaire tranche.",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 180
+   }
+  },
+  "def_geo": {
+   "type": "formule",
+   "kicker": "Définition géométrique",
+   "tex": "\\vec{u}\\cdot\\vec{v}=\\|\\vec{u}\\|\\,\\|\\vec{v}\\|\\cos\\theta",
+   "note": "θ : angle des deux vecteurs, entre 0 et π · vecteur nul : produit nul par convention",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 180
+   }
+  },
+  "signe": {
+   "type": "etape",
+   "kicker": "Le signe raconte l'angle",
+   "titre": "Positif, nul ou négatif : trois cas",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{v}>0\\ \\text{: angle aigu}",
+    "\\vec{u}\\cdot\\vec{v}=0\\ \\text{: angle droit}",
+    "\\vec{u}\\cdot\\vec{v}<0\\ \\text{: angle obtus}"
+   ],
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 120
+   }
+  },
+  "analytique": {
+   "type": "formule",
+   "kicker": "Définition analytique · repère orthonormé",
+   "tex": "\\vec{u}\\cdot\\vec{v}=xx'+yy'+zz'",
+   "note": "u(x, y, z) et v(x', y', z') : somme des produits des coordonnées correspondantes"
+  },
+  "ex1": {
+   "type": "etape",
+   "kicker": "Premier calcul en coordonnées",
+   "titre": "u(1, −2, 3) et v(4, 0, −1)",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{v}=1\\times4+(-2)\\times0+3\\times(-1)",
+    "=4+0-3=1"
+   ]
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés algébriques",
+   "titre": "La grammaire du produit scalaire",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{v}=\\vec{v}\\cdot\\vec{u}",
+    "\\vec{u}\\cdot(\\vec{v}+\\vec{w})=\\vec{u}\\cdot\\vec{v}+\\vec{u}\\cdot\\vec{w}",
+    "(a\\vec{u})\\cdot\\vec{v}=a\\,(\\vec{u}\\cdot\\vec{v})"
+   ]
+  },
+  "norme": {
+   "type": "formule",
+   "kicker": "La norme par le produit scalaire",
+   "tex": "\\|\\vec{u}\\|=\\sqrt{\\vec{u}\\cdot\\vec{u}}=\\sqrt{x^{2}+y^{2}+z^{2}}",
+   "note": "Exemple : w(3, −4, 12) a pour norme √(9 + 16 + 144) = √169 = 13"
+  },
+  "angle": {
+   "type": "formule",
+   "kicker": "Calculer un angle",
+   "tex": "\\cos\\theta=\\frac{\\vec{u}\\cdot\\vec{v}}{\\|\\vec{u}\\|\\,\\|\\vec{v}\\|}",
+   "note": "Puis θ = arccos de ce quotient, avec θ entre 0 et π"
+  },
+  "ex_angle": {
+   "type": "etape",
+   "kicker": "Exemple · un angle en trois temps",
+   "titre": "u(1, 2, 2) et v(3, 0, 4)",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{v}=3+0+8=11",
+    "\\|\\vec{u}\\|=3\\qquad \\|\\vec{v}\\|=5",
+    "\\cos\\theta=\\tfrac{11}{15}\\approx0{,}73\\ \\Rightarrow\\ \\theta\\approx42{,}8^{\\circ}"
+   ]
+  },
+  "orthog": {
+   "type": "formule",
+   "kicker": "Orthogonalité",
+   "tex": "\\vec{u}\\perp\\vec{v}\\iff \\vec{u}\\cdot\\vec{v}=0",
+   "note": "Le test le plus utilisé du cours : un seul calcul en coordonnées",
+   "anim": {
+    "nom": "vecteurs",
+    "hauteur": 170
+   }
+  },
+  "ex_orthog": {
+   "type": "etape",
+   "kicker": "Exemple · tester un angle droit",
+   "titre": "a(2, −1, 3) et b(1, 5, 1)",
+   "tex": [
+    "\\vec{a}\\cdot\\vec{b}=2\\times1+(-1)\\times5+3\\times1",
+    "=2-5+3=0\\ \\Rightarrow\\ \\vec{a}\\perp\\vec{b}"
+   ]
+  },
+  "cube": {
+   "type": "etape",
+   "kicker": "Exemple · les diagonales d'un cube",
+   "titre": "AG(1, 1, 1) et BH(−1, 1, 1), arête 1",
+   "tex": [
+    "\\overrightarrow{AG}\\cdot\\overrightarrow{BH}=-1+1+1=1",
+    "\\|\\overrightarrow{AG}\\|=\\|\\overrightarrow{BH}\\|=\\sqrt{3}",
+    "\\cos\\theta=\\tfrac{1}{3}\\ \\Rightarrow\\ \\theta\\approx70{,}5^{\\circ}"
+   ],
+   "anim": {
+    "nom": "cube_diagonales_fig",
+    "hauteur": 130
+   }
+  },
+  "alkashi": {
+   "type": "formule",
+   "kicker": "Théorème d'Al-Kashi",
+   "tex": "a^{2}=b^{2}+c^{2}-2bc\\cos\\theta",
+   "note": "Pythagore généralisé : il vient de ‖v − u‖² développé par le produit scalaire",
+   "anim": {
+    "nom": "triangle_fig",
+    "hauteur": 190
+   }
+  },
+  "cauchy": {
+   "type": "formule",
+   "kicker": "Inégalité de Cauchy-Schwarz",
+   "tex": "|\\vec{u}\\cdot\\vec{v}|\\leq \\|\\vec{u}\\|\\,\\|\\vec{v}\\|",
+   "note": "Égalité si et seulement si les vecteurs sont colinéaires : c'est cos θ entre −1 et 1"
+  },
+  "projection": {
+   "type": "formule",
+   "kicker": "Projection orthogonale",
+   "tex": "\\mathrm{proj}_{\\vec{v}}(\\vec{u})=\\left(\\frac{\\vec{u}\\cdot\\vec{v}}{\\|\\vec{v}\\|^{2}}\\right)\\vec{v}",
+   "note": "Colinéaire à v, et u moins sa projection est orthogonal à v · si v est unitaire : (u·v) v",
+   "anim": {
+    "nom": "projection_fig",
+    "hauteur": 220
+   }
+  },
+  "ex_proj": {
+   "type": "etape",
+   "kicker": "Exemple · projeter pas à pas",
+   "titre": "u(2, 1, 3) projeté sur v(1, 0, 2)",
+   "tex": [
+    "\\vec{u}\\cdot\\vec{v}=2+0+6=8\\qquad \\|\\vec{v}\\|^{2}=5",
+    "k=\\tfrac{8}{5}=1{,}6",
+    "\\mathrm{proj}_{\\vec{v}}(\\vec{u})=(1{,}6\\ ;\\ 0\\ ;\\ 3{,}2)"
+   ]
+  },
+  "decomp": {
+   "type": "etape",
+   "kicker": "Décomposer un vecteur",
+   "titre": "Une part parallèle, une part orthogonale",
+   "tex": [
+    "\\vec{u}_{\\parallel}=(1{,}6\\ ;\\ 0\\ ;\\ 3{,}2)",
+    "\\vec{u}_{\\perp}=\\vec{u}-\\vec{u}_{\\parallel}=(0{,}4\\ ;\\ 1\\ ;\\ -0{,}2)",
+    "\\vec{u}_{\\perp}\\cdot\\vec{v}=0{,}4+0-0{,}4=0"
+   ]
+  },
+  "dist_points": {
+   "type": "formule",
+   "kicker": "Distance entre deux points",
+   "tex": "AB=\\sqrt{(x_B-x_A)^{2}+(y_B-y_A)^{2}+(z_B-z_A)^{2}}",
+   "note": "C'est la norme du vecteur AB : Pythagore en trois dimensions"
+  },
+  "ex_dist_points": {
+   "type": "etape",
+   "kicker": "Exemple · distance entre deux points",
+   "titre": "A(1, −2, 3) et B(4, 1, 7)",
+   "tex": [
+    "\\overrightarrow{AB}=(3\\ ;\\ 3\\ ;\\ 4)",
+    "AB=\\sqrt{9+9+16}=\\sqrt{34}\\approx5{,}83"
+   ]
+  },
+  "dist_plan": {
+   "type": "formule",
+   "kicker": "Distance d'un point à un plan",
+   "tex": "d(M_0,\\mathcal{P})=\\frac{|ax_0+by_0+cz_0+d|}{\\sqrt{a^{2}+b^{2}+c^{2}}}",
+   "note": "Plan ax + by + cz + d = 0, de vecteur normal n(a, b, c) : on projette sur la normale",
+   "anim": {
+    "nom": "plan_espace_fig",
+    "hauteur": 170
+   }
+  },
+  "ex_plan": {
+   "type": "etape",
+   "kicker": "Exemple · distance au plan",
+   "titre": "M(2, −1, 3) et P : 2x − y + 3z − 5 = 0",
+   "tex": [
+    "|2\\times2+1+9-5|=9",
+    "\\sqrt{2^{2}+(-1)^{2}+3^{2}}=\\sqrt{14}",
+    "d=\\tfrac{9}{\\sqrt{14}}\\approx2{,}41"
+   ]
+  },
+  "dist_droite": {
+   "type": "formule",
+   "kicker": "Distance d'un point à une droite",
+   "tex": "d(M_0,\\mathcal{D})=\\sqrt{\\|\\overrightarrow{AM_0}\\|^{2}-\\frac{(\\overrightarrow{AM_0}\\cdot\\vec{u})^{2}}{\\|\\vec{u}\\|^{2}}}",
+   "note": "Pythagore : l'hypoténuse AM₀ moins la projection sur le vecteur directeur u de la droite",
+   "anim": {
+    "nom": "distance_point_droite_fig",
+    "hauteur": 190
+   }
+  },
+  "ex_droite": {
+   "type": "etape",
+   "kicker": "Exemple · distance à une droite",
+   "titre": "A(1, 0, 2), u(2, 1, −1), M₀(3, 2, 1)",
+   "tex": [
+    "\\textstyle \\overrightarrow{AM_0}=(2\\ ;\\ 2\\ ;\\ -1)\\qquad \\|\\overrightarrow{AM_0}\\|=3",
+    "\\textstyle \\overrightarrow{AM_0}\\cdot\\vec{u}=7\\qquad \\|\\vec{u}\\|=\\sqrt{6}",
+    "\\textstyle d=\\sqrt{9-\\tfrac{49}{6}}=\\sqrt{\\tfrac{5}{6}}\\approx0{,}91"
+   ],
+   "anim": {
+    "nom": "distance_point_droite_fig",
+    "hauteur": 100
+   }
+  },
+  "gauches": {
+   "type": "formule",
+   "kicker": "Distance entre deux droites gauches",
+   "tex": "d(\\mathcal{D}_1,\\mathcal{D}_2)=\\frac{|\\overrightarrow{A_1A_2}\\cdot(\\vec{u}_1\\wedge\\vec{u}_2)|}{\\|\\vec{u}_1\\wedge\\vec{u}_2\\|}",
+   "note": "Le produit vectoriel, admis ici, donne la perpendiculaire commune : volume divisé par aire",
+   "anim": {
+    "nom": "droites_gauches_fig",
+    "hauteur": 190,
+    "perpendiculaire": true
+   }
+  },
+  "ex_gauches": {
+   "type": "etape",
+   "kicker": "Exemple · deux droites gauches",
+   "titre": "D₁ par l'origine, u₁(1, 0, 0) · D₂ par (0, 1, 0), u₂(0, 1, 1)",
+   "tex": [
+    "\\vec{u}_1\\wedge\\vec{u}_2=(0\\ ;\\ -1\\ ;\\ 1)",
+    "\\overrightarrow{A_1A_2}\\cdot(\\vec{u}_1\\wedge\\vec{u}_2)=-1",
+    "d=\\tfrac{1}{\\sqrt{2}}\\approx0{,}71"
+   ],
+   "anim": {
+    "nom": "droites_gauches_fig",
+    "hauteur": 130,
+    "perpendiculaire": true
+   }
+  },
+  "tetra": {
+   "type": "etape",
+   "kicker": "Synthèse · le tétraèdre régulier",
+   "titre": "Deux arêtes opposées : orthogonales",
+   "tex": [
+    "\\overrightarrow{AB}\\cdot\\overrightarrow{CD}=0",
+    "\\cos\\alpha=\\tfrac{0}{a\\times a}=0\\ \\Rightarrow\\ \\alpha=90^{\\circ}",
+    "\\text{arêtes opposées perpendiculaires, sans se couper}"
+   ]
+  },
+  "sphere": {
+   "type": "etape",
+   "kicker": "Synthèse · un lieu géométrique",
+   "titre": "MA · MB = 0 : la sphère de diamètre AB",
+   "tex": [
+    "A(1,0,-1)\\quad B(2,1,1)",
+    "I=\\left(\\tfrac{3}{2},\\tfrac{1}{2},0\\right)\\qquad R=\\tfrac{\\sqrt{6}}{2}",
+    "\\overrightarrow{MA}\\cdot\\overrightarrow{MB}=0\\iff M\\in\\text{sphère de diamètre }AB"
+   ],
+   "anim": {
+    "nom": "sphere_fig",
+    "hauteur": 130
+   }
+  },
+  "travail": {
+   "type": "etape",
+   "kicker": "Application · le travail d'une force",
+   "titre": "F(3, −2, 5) newtons, déplacement d(4, 1, −3) mètres",
+   "tex": [
+    "W=\\vec{F}\\cdot\\vec{d}=12-2-15",
+    "W=-5\\ \\text{J : la force s'oppose au déplacement}"
+   ]
+  },
+  "strategie": {
+   "type": "recap",
+   "kicker": "Stratégie d'épreuve",
+   "etapes": [
+    "Repère orthonormé exigé pour xx' + yy' + zz'",
+    "Orthogonalité : viser le produit nul",
+    "Angle : produit, normes, puis arccos",
+    "Distance : projeter sur la bonne direction"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "u · v = ‖u‖ ‖v‖ cos θ = xx' + yy' + zz'",
+    "Orthogonaux si et seulement si u · v = 0",
+    "Projection : le produit fixe le coefficient",
+    "Distances : point, plan, droite, gauches"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré au produit scalaire dans l'espace. Un ingénieur spatial vérifie si la vitesse d'un satellite est bien orientée, ou si deux antennes sont parfaitement perpendiculaires : dans les deux cas, une seule opération répond, le produit scalaire, qui associe à deux vecteurs un nombre réel.",
+   "texte": "Produit scalaire dans l'espace : angles, projections et distances.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le produit scalaire est un capteur géométrique. Un résultat positif signale deux directions qui tendent à pointer du même côté, un résultat nul signale un angle droit parfait, et un résultat négatif révèle une opposition. Tout le cours consiste à calculer ce nombre, puis à lire ce qu'il raconte sur les angles, les projections et les distances.",
+   "texte": "Un nombre qui raconte l'alignement de deux directions.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Première définition, la définition géométrique. Pour deux vecteurs non nuls, le produit scalaire est le produit de leurs normes par le cosinus de l'angle qu'ils forment. Si l'un des vecteurs est nul, l'angle n'est plus défini : par convention, le produit scalaire vaut alors zéro.",
+   "texte": "u · v = ‖u‖ ‖v‖ cos θ : la définition géométrique.",
+   "ecran": "def_geo"
+  },
+  {
+   "id": "p04",
+   "dit": "Le signe du résultat se lit directement sur cette formule. Les normes sont positives, donc tout dépend du cosinus. Angle aigu, cosinus positif et produit positif. Angle droit, cosinus nul et produit nul. Angle obtus, cosinus négatif et produit négatif. Retenez ce dictionnaire, il sert dans chaque exercice.",
+   "texte": "Le signe du produit dit si l'angle est aigu, droit ou obtus.",
+   "ecran": "signe"
+  },
+  {
+   "id": "p05",
+   "dit": "Deuxième définition, la définition analytique, celle qui sert à calculer. Dans un repère orthonormé, on multiplie les coordonnées correspondantes et on additionne : abscisse par abscisse, ordonnée par ordonnée, cote par cote. Attention, cette formule simple exige un repère orthonormé, avec des vecteurs de base unitaires et orthogonaux deux à deux.",
+   "texte": "En coordonnées : xx' + yy' + zz', repère orthonormé obligatoire.",
+   "ecran": "analytique"
+  },
+  {
+   "id": "p06",
+   "dit": "Premier calcul complet. Le premier vecteur a pour coordonnées un, moins deux et trois ; le second, quatre, zéro et moins un. On multiplie terme à terme : quatre, plus zéro, moins trois. Le produit scalaire vaut un. Il est positif, donc l'angle des deux vecteurs est aigu, sans que nous ayons eu à le mesurer.",
+   "texte": "Premier calcul : 4 + 0 − 3 = 1, angle aigu.",
+   "ecran": "ex1"
+  },
+  {
+   "id": "p07",
+   "dit": "Le produit scalaire obéit à une grammaire simple. Il est commutatif : échanger les deux vecteurs ne change rien. Il se distribue sur l'addition des vecteurs, et un coefficient réel peut sortir du produit. Enfin, un vecteur multiplié par lui-même donne le carré de sa norme, car l'angle avec lui-même est nul et son cosinus vaut un.",
+   "texte": "Commutativité, distributivité, et u · u = ‖u‖².",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p08",
+   "dit": "Conséquence immédiate : la norme d'un vecteur est la racine carrée de son produit scalaire avec lui-même, donc la racine carrée de la somme des carrés de ses coordonnées. C'est le théorème de Pythagore en trois dimensions. Exemple : le vecteur de coordonnées trois, moins quatre et douze a pour norme la racine de cent soixante-neuf, c'est-à-dire treize.",
+   "texte": "La norme : racine de la somme des carrés, ici 13.",
+   "ecran": "norme"
+  },
+  {
+   "id": "p09",
+   "dit": "En réunissant les deux définitions, on obtient le goniomètre algébrique : le cosinus de l'angle entre deux vecteurs non nuls est leur produit scalaire divisé par le produit de leurs normes. On calcule le produit en coordonnées, on calcule les normes, on divise, et la fonction arccosinus rend l'angle, toujours entre zéro et pi.",
+   "texte": "cos θ = produit divisé par le produit des normes.",
+   "ecran": "angle"
+  },
+  {
+   "id": "p10",
+   "dit": "Exemple complet. Premier vecteur : un, deux, deux. Second vecteur : trois, zéro, quatre. Leur produit scalaire vaut trois, plus zéro, plus huit, soit onze. Leurs normes valent trois et cinq. Le cosinus vaut donc onze quinzièmes, environ zéro virgule soixante-treize, et l'angle vaut environ quarante-deux virgule huit degrés.",
+   "texte": "Angle : produit 11, normes 3 et 5, environ 42,8 degrés.",
+   "ecran": "ex_angle"
+  },
+  {
+   "id": "p11",
+   "dit": "Le cas le plus utile est l'angle droit. Deux vecteurs sont orthogonaux si et seulement si leur produit scalaire est nul. Dans l'espace, visualiser un angle droit est trompeur, la perspective écrase tout : le calcul, lui, tranche en une ligne. C'est le test de perpendicularité que vous utiliserez partout, pour les vecteurs, les droites et les plans.",
+   "texte": "Orthogonalité : produit scalaire nul, et réciproquement.",
+   "ecran": "orthog"
+  },
+  {
+   "id": "p12",
+   "dit": "Vérifions sur un exemple. Le premier vecteur a pour coordonnées deux, moins un et trois ; le second, un, cinq et un. Produit : deux, moins cinq, plus trois, total zéro. Les deux vecteurs sont donc orthogonaux. Remarquez la méthode : aucune figure, aucune mesure, seulement la formule en coordonnées appliquée avec soin.",
+   "texte": "2 − 5 + 3 = 0 : vecteurs orthogonaux.",
+   "ecran": "ex_orthog"
+  },
+  {
+   "id": "p13",
+   "dit": "Un classique des solides : l'angle entre deux diagonales d'un cube d'arête un. La grande diagonale a pour vecteur un, un, un ; une diagonale issue d'un sommet voisin a pour vecteur moins un, un, un. Leur produit vaut un, leurs normes valent racine de trois, le cosinus vaut un tiers, et l'angle vaut environ soixante-dix virgule cinq degrés.",
+   "texte": "Diagonales du cube : cos θ = 1/3, environ 70,5 degrés.",
+   "ecran": "cube"
+  },
+  {
+   "id": "p14",
+   "dit": "Le produit scalaire démontre aussi le théorème d'Al-Kashi, le théorème de Pythagore généralisé. On forme le triangle des deux vecteurs et de leur différence, on développe le carré scalaire de cette différence, et la loi des cosinus apparaît : le carré d'un côté égale la somme des carrés des deux autres, moins deux fois leur produit par le cosinus de l'angle opposé.",
+   "texte": "Al-Kashi : Pythagore généralisé par le produit scalaire.",
+   "ecran": "alkashi"
+  },
+  {
+   "id": "p15",
+   "dit": "Autre conséquence du cosinus, compris entre moins un et un : l'inégalité de Cauchy-Schwarz. La valeur absolue du produit scalaire ne dépasse jamais le produit des normes. L'égalité n'a lieu que pour des vecteurs colinéaires. C'est aussi elle qui explique pourquoi un coefficient de corrélation, en statistiques, reste toujours entre moins un et un.",
+   "texte": "Cauchy-Schwarz : |u · v| ≤ ‖u‖ ‖v‖.",
+   "ecran": "cauchy"
+  },
+  {
+   "id": "p16",
+   "dit": "Nous passons à la projection orthogonale, l'ombre portée d'un vecteur sur une direction. Projeter le premier vecteur sur le second, c'est chercher le multiple du second tel que le reste soit orthogonal au second. Cette condition donne le coefficient : le produit scalaire divisé par le carré de la norme du vecteur directeur. Si ce vecteur est unitaire, la formule devient simplement le produit scalaire, fois le vecteur.",
+   "texte": "Projection : coefficient = produit divisé par ‖v‖².",
+   "ecran": "projection"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple détaillé. On projette le vecteur de coordonnées deux, un et trois sur le vecteur de coordonnées un, zéro et deux. Le produit scalaire vaut huit, le carré de la norme du second vaut cinq, le coefficient vaut donc huit cinquièmes, soit un virgule six. La projection a pour coordonnées un virgule six, zéro et trois virgule deux.",
+   "texte": "Projection : coefficient 8/5, résultat (1,6 ; 0 ; 3,2).",
+   "ecran": "ex_proj"
+  },
+  {
+   "id": "p18",
+   "dit": "Tout vecteur se décompose alors en deux parts uniques : sa projection, parallèle à la direction choisie, et le reste, orthogonal à cette direction. Dans notre exemple, la part orthogonale a pour coordonnées zéro virgule quatre, un et moins zéro virgule deux, et son produit scalaire avec le vecteur directeur vaut bien zéro. En physique, seule la part parallèle à un déplacement travaille.",
+   "texte": "Décomposer : une part parallèle, une part orthogonale.",
+   "ecran": "decomp"
+  },
+  {
+   "id": "p19",
+   "dit": "Passons aux distances, le grand terrain d'application. La distance entre deux points est la norme du vecteur qui les joint : racine carrée de la somme des carrés des écarts de coordonnées, en abscisse, en ordonnée et en cote. Rien de nouveau, c'est encore Pythagore, lu dans le produit scalaire.",
+   "texte": "Distance entre points : la norme du vecteur AB.",
+   "ecran": "dist_points"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple : le premier point a pour coordonnées un, moins deux et trois ; le second, quatre, un et sept. Le vecteur qui les joint a pour coordonnées trois, trois et quatre. Sa norme est la racine de neuf, plus neuf, plus seize, soit racine de trente-quatre, environ cinq virgule quatre-vingt-trois.",
+   "texte": "AB = √34 ≈ 5,83.",
+   "ecran": "ex_dist_points"
+  },
+  {
+   "id": "p21",
+   "dit": "La distance d'un point à un plan est la longueur du segment perpendiculaire mené du point au plan. On la calcule sans chercher le projeté : on évalue l'équation du plan au point, on prend la valeur absolue, et on divise par la norme du vecteur normal, dont les coordonnées sont les coefficients des inconnues dans l'équation.",
+   "texte": "Distance au plan : valeur absolue divisée par ‖n‖.",
+   "ecran": "dist_plan"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple complet. Le point a pour coordonnées deux, moins un et trois, et le plan a pour équation deux x, moins y, plus trois z, moins cinq, égale zéro. Au numérateur : quatre, plus un, plus neuf, moins cinq, soit neuf en valeur absolue. Au dénominateur : racine de quatorze. La distance vaut neuf sur racine de quatorze, environ deux virgule quarante et un.",
+   "texte": "Distance au plan : 9/√14 ≈ 2,41.",
+   "ecran": "ex_plan"
+  },
+  {
+   "id": "p23",
+   "dit": "La distance d'un point à une droite se ramène à Pythagore. On joint le point à un point de la droite, on projette ce vecteur sur le vecteur directeur : la projection donne un côté de l'angle droit, la distance cherchée est l'autre côté. On peut aussi la lire comme la norme du reste, après projection, ce qui relie ce calcul au chapitre précédent.",
+   "texte": "Distance à une droite : Pythagore après projection.",
+   "ecran": "dist_droite"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple : la droite passe par le point de coordonnées un, zéro et deux, avec un vecteur directeur de coordonnées deux, un et moins un. Le point extérieur a pour coordonnées trois, deux et un. Le vecteur joint a pour norme trois, son produit scalaire avec le directeur vaut sept, et la distance vaut racine de neuf moins quarante-neuf sixièmes, soit racine de cinq sixièmes, environ zéro virgule quatre-vingt-onze.",
+   "texte": "Distance à la droite : √(5/6) ≈ 0,91.",
+   "ecran": "ex_droite"
+  },
+  {
+   "id": "p25",
+   "dit": "Le cas le plus délicat : deux droites gauches, non parallèles et non sécantes. Leur distance est portée par leur perpendiculaire commune. Le produit vectoriel des deux vecteurs directeurs, que nous admettons ici comme outil, donne cette direction commune, et la distance devient un produit mixte divisé par la norme de ce produit vectoriel : un volume divisé par une aire, donc une hauteur.",
+   "texte": "Droites gauches : un volume divisé par une aire.",
+   "ecran": "gauches"
+  },
+  {
+   "id": "p26",
+   "dit": "Exemple simplifié. La première droite passe par l'origine, dirigée par l'axe des abscisses. La seconde passe par le point de coordonnées zéro, un et zéro, avec un vecteur directeur de coordonnées zéro, un et un. Le produit vectoriel des directeurs a pour coordonnées zéro, moins un et un, le produit mixte vaut moins un, et la distance vaut un sur racine de deux, environ zéro virgule soixante et onze.",
+   "texte": "Droites gauches : distance 1/√2 ≈ 0,71.",
+   "ecran": "ex_gauches"
+  },
+  {
+   "id": "p27",
+   "dit": "Synthèse sur un solide parfait : dans un tétraèdre régulier, deux arêtes opposées sont orthogonales. Leurs vecteurs directeurs ont un produit scalaire nul, donc l'angle qu'elles forment est un angle droit, alors même qu'elles ne se coupent pas. C'est le piège classique de l'intuition plane : dans l'espace, être perpendiculaires n'exige pas de se rencontrer.",
+   "texte": "Tétraèdre régulier : arêtes opposées orthogonales.",
+   "ecran": "tetra"
+  },
+  {
+   "id": "p28",
+   "dit": "Dernier lieu géométrique : les points dont les vecteurs vers deux points fixes ont un produit scalaire nul forment la sphère de diamètre le segment joignant ces deux points. Pour les points de coordonnées un, zéro, moins un et deux, un, un, le centre est le milieu, de coordonnées trois demis, un demi et zéro, et le rayon vaut racine de six sur deux. C'est le théorème de l'angle droit dans un cercle, devenu sphère.",
+   "texte": "MA · MB = 0 : la sphère de diamètre AB.",
+   "ecran": "sphere"
+  },
+  {
+   "id": "p29",
+   "dit": "Retour à la physique pour fermer le cours : le travail d'une force est le produit scalaire de la force par le déplacement. Une force de coordonnées trois, moins deux et cinq newtons, pour un déplacement de coordonnées quatre, un et moins trois mètres, donne douze, moins deux, moins quinze, soit moins cinq joules. Le signe négatif dit que la force freine globalement le mouvement.",
+   "texte": "Travail : W = F · d = −5 J, la force freine.",
+   "ecran": "travail"
+  },
+  {
+   "id": "p30",
+   "dit": "Face à un exercice, gardez la stratégie : vérifier que le repère est orthonormé avant d'utiliser les coordonnées, viser le produit nul pour une orthogonalité, enchaîner produit et normes pour un angle, et projeter sur la bonne direction pour une distance. Quatre réflexes, un seul outil.",
+   "texte": "Quatre réflexes : repère, produit nul, angle, projection.",
+   "ecran": "strategie"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour finir, retenez l'enchaînement complet. Le produit scalaire se définit par les normes et le cosinus, se calcule par les coordonnées, teste l'orthogonalité par le zéro, fixe le coefficient d'une projection, et mesure toutes les distances de l'espace, d'un point à un plan comme entre deux droites gauches.",
+   "texte": "Le produit scalaire : angles, projections et distances.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, coordonnées, angles et orthogonalité"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Angles dans les solides, projection et distances",
+   "pont": {
+    "texte": "Partie 2 : diagonales du cube, projection orthogonale, distances entre points et au plan.",
+    "dit": "Partie deux : les angles dans les solides, la projection et les distances. Nous appliquerons le produit scalaire aux diagonales d'un cube, nous décomposerons un vecteur selon une direction, puis nous mesurerons les distances entre deux points et d'un point vers un plan."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Distances avancées, lieux et applications",
+   "pont": {
+    "texte": "Partie 3 : distance au plan en action, droite, droites gauches, sphère et travail.",
+    "dit": "Partie trois : les distances avancées et les applications. Nous appliquerons d'abord la formule de distance d'un point à un plan, puis nous traiterons la distance à une droite, la distance entre droites gauches, un lieu sphérique et le travail d'une force."
+   }
+  }
+ ]
+}
