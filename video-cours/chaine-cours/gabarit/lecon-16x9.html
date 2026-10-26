@@ -1760,6 +1760,25 @@ const FIG = {
       mot(514, 248, 'a', { t: 21, a: 'start' }) +
       mot(500, 292, 'la chaînette : y = a · cosh(x/a)', { t: 20 }));
   },
+  matrice_fig(t) {
+    const cols = [452, 542, 632], rows = [96, 152, 208];
+    const subs = ['₁', '₂', '₃'];
+    let corps = `<rect x="404" y="72" width="276" height="48" fill="#1A75FF" fill-opacity=".12"/>`;
+    corps += `<rect x="410" y="72" width="84" height="160" fill="#E8604C" fill-opacity=".10"/>`;
+    rows.forEach((y, i) => {
+      cols.forEach((x, j) => {
+        corps += mot(x, y + 8, `a${subs[i]}${subs[j]}`, { t: 26 });
+      });
+    });
+    corps += `<path d="M 388 62 L 362 62 L 362 242 L 388 242" fill="none" stroke="currentColor" stroke-width="5"/>`;
+    corps += `<path d="M 696 62 L 722 62 L 722 242 L 696 242" fill="none" stroke="currentColor" stroke-width="5"/>`;
+    return svgBoite(
+      corps +
+      mot(296, 160, 'A =', { t: 30 }) +
+      mot(736, 102, 'ligne 1', { t: 19, c: '#1A75FF', a: 'start' }) +
+      mot(452, 272, 'colonne 1', { t: 19, c: '#E8604C' }) +
+      mot(542, 34, 'le coefficient aᵢⱼ : ligne i, colonne j', { t: 20 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';

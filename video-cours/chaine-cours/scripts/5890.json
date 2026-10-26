@@ -1,0 +1,529 @@
+{
+ "cours": 5890,
+ "ecrans": {
+  "app_exemple": {
+   "kicker": "Exemple : une application, sa matrice",
+   "tex": [
+    "f(x,\\ y) = (2x + y,\\ x - y)",
+    "f(1,\\ 0) = (2,\\ 1) \\qquad f(0,\\ 1) = (1,\\ -1)",
+    "A = \\begin{pmatrix} 2 & 1 \\\\ 1 & -1 \\end{pmatrix} \\qquad \\det A = -3"
+   ],
+   "titre": "Les images des vecteurs de base deviennent les colonnes",
+   "type": "etape"
+  },
+  "app_lineaire": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Applications linéaires",
+   "note": "Additivité et homogénéité : la structure est respectée.",
+   "tex": "f(\\alpha\\vec{u} + \\beta\\vec{v}) = \\alpha f(\\vec{u}) + \\beta f(\\vec{v})",
+   "type": "formule"
+  },
+  "axb": {
+   "kicker": "Des équations à la matrice",
+   "tex": [
+    "2x + 3y = 7 \\qquad x - y = 1",
+    "A = \\begin{pmatrix} 2 & 3 \\\\ 1 & -1 \\end{pmatrix}, \\quad x = \\begin{pmatrix} x \\\\ y \\end{pmatrix}, \\quad b = \\begin{pmatrix} 7 \\\\ 1 \\end{pmatrix}",
+    "Ax = b \\qquad x = A^{-1} b = (2,\\ 1)"
+   ],
+   "titre": "Le système devient A x = b",
+   "type": "etape"
+  },
+  "combinaison": {
+   "kicker": "Combinaisons linéaires",
+   "note": "En faisant varier α et β, on engendre une droite ou tout le plan.",
+   "tex": "\\vec{w} = \\alpha\\, \\vec{u} + \\beta\\, \\vec{v}",
+   "type": "formule"
+  },
+  "det_2x2": {
+   "kicker": "Le déterminant, taille deux",
+   "note": "Exemple : det de (2, −1 ; 3, 4) = 8 + 3 = 11.",
+   "tex": "\\det \\begin{pmatrix} a & b \\\\ c & d \\end{pmatrix} = ad - bc",
+   "type": "formule"
+  },
+  "det_geo": {
+   "anim": {
+    "hauteur": 230,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Le déterminant : le sens géométrique",
+   "texte": "|det| : le facteur d'aire ou de volume. Zéro : tout s'écrase.",
+   "type": "phrase"
+  },
+  "det_proprietes": {
+   "kicker": "Propriétés des déterminants",
+   "tex": [
+    "\\det(A^T) = \\det A \\qquad \\det(AB) = \\det A \\cdot \\det B",
+    "\\det(kA) = k^n \\det A \\qquad (n : \\text{taille de } A)",
+    "\\text{ligne nulle ou deux lignes égales : } \\det A = 0",
+    "\\det A \\neq 0 \\iff A \\text{ est inversible}"
+   ],
+   "titre": "Quatre propriétés pour simplifier les calculs",
+   "type": "etape"
+  },
+  "det_sarrus": {
+   "kicker": "Le déterminant, taille trois : Sarrus",
+   "tex": [
+    "\\text{descendants : } -6 - 4 - 60 = -70",
+    "\\text{montants : } 8 + 10 - 18 = 0",
+    "\\det A = -70 - 0 = -70"
+   ],
+   "titre": "A = (2, −1, −2 ; 6, −1, 1 ; 4, 5, 3), diagonales contre diagonales",
+   "type": "etape"
+  },
+  "echelle_symetrie": {
+   "kicker": "Échelle et symétrie",
+   "tex": [
+    "\\text{échelle : } \\begin{pmatrix} 2 & 0 \\\\ 0 & 3 \\end{pmatrix}, \\quad (1,\\ 1) \\mapsto (2,\\ 3)",
+    "\\text{symétrie, axe des } x : \\begin{pmatrix} 1 & 0 \\\\ 0 & -1 \\end{pmatrix}",
+    "\\text{composer : multiplier les matrices, dans l'ordre}"
+   ],
+   "titre": "Deux transformations qui se lisent sur la diagonale",
+   "type": "etape"
+  },
+  "espace_def": {
+   "kicker": "Espace vectoriel : la définition",
+   "tex": [
+    "\\text{addition et multiplication par un scalaire, internes}",
+    "\\text{élément neutre } \\vec{0}, \\text{ opposé } -\\vec{u} \\text{ pour tout } \\vec{u}",
+    "\\text{associativité, commutativité, distributivité}",
+    "\\mathbb{R}^2,\\ \\mathbb{R}^3,\\ \\mathbb{R}^n,\\ \\text{polynômes, fonctions}"
+   ],
+   "titre": "Huit axiomes, un seul cadre",
+   "type": "etape"
+  },
+  "g_exemple": {
+   "kicker": "Exemple : de l'espace vers le plan",
+   "tex": [
+    "g(x,\\ y,\\ z) = (x + y,\\ y - z)",
+    "\\ker g : \\quad x + y = 0, \\quad y - z = 0",
+    "\\ker g = \\{(t,\\ -t,\\ -t),\\ t \\in \\mathbb{R}\\} \\qquad \\text{Im}\\, g = \\mathbb{R}^2"
+   ],
+   "titre": "Deux équations pour le noyau, un degré de liberté",
+   "type": "etape"
+  },
+  "gauss_etapes": {
+   "kicker": "Élimination de Gauss : la résolution",
+   "tex": [
+    "2L_2 + 3L_1 : \\quad y + z = 2 \\qquad L_3 + L_1 : \\quad 2y + z = 5",
+    "y = 3 \\qquad z = 2 - y = -1",
+    "2x = 8 - y + z = 4 \\qquad x = 2"
+   ],
+   "titre": "Éliminer x, puis remonter une inconnue à la fois",
+   "type": "etape"
+  },
+  "gauss_jordan": {
+   "kicker": "Gauss-Jordan : l'inverse par les lignes",
+   "tex": [
+    "\\text{former la matrice augmentée } [A \\mid I]",
+    "\\text{opérations sur les lignes : transformer } A \\text{ en } I",
+    "\\text{la partie de droite devient alors } A^{-1}"
+   ],
+   "titre": "La méthode pratique pour les grandes matrices",
+   "type": "etape"
+  },
+  "gauss_sys": {
+   "kicker": "Élimination de Gauss : le système",
+   "tex": [
+    "2x + y - z = 8",
+    "-3x - y + 2z = -11",
+    "-2x + y + 2z = -3"
+   ],
+   "titre": "Trois équations, trois inconnues, aucune devinette",
+   "type": "etape"
+  },
+  "graphique_intro": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "triangle_fig"
+   },
+   "kicker": "Informatique graphique",
+   "texte": "Chaque point est un vecteur, chaque transformation une matrice.",
+   "type": "phrase"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "vecteurs"
+   },
+   "kicker": "Introduction",
+   "texte": "Un même geste partout : combiner, transformer, résoudre.",
+   "type": "phrase"
+  },
+  "inverse_def": {
+   "kicker": "L'inverse d'une matrice",
+   "note": "Adjointe : la transposée de la matrice des cofacteurs.",
+   "tex": "A^{-1} = \\frac{1}{\\det A} \\times \\text{adj}(A)",
+   "type": "formule"
+  },
+  "inverse_exemple": {
+   "kicker": "Exemple : inverser une matrice deux par deux",
+   "tex": [
+    "A = \\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \\end{pmatrix} \\qquad \\det A = 2 - 1 = 1",
+    "\\text{cofacteurs : } \\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix} \\qquad A^{-1} = \\begin{pmatrix} 1 & -1 \\\\ -1 & 2 \\end{pmatrix}"
+   ],
+   "titre": "Déterminant, cofacteurs, adjointe, puis contrôle",
+   "type": "etape"
+  },
+  "matrice_add": {
+   "kicker": "Addition et multiplication par un scalaire",
+   "tex": [
+    "A = \\begin{pmatrix} 1 & 2 \\\\ 5 & 6 \\end{pmatrix} \\qquad B = \\begin{pmatrix} 3 & 4 \\\\ 7 & 8 \\end{pmatrix}",
+    "A + B = \\begin{pmatrix} 4 & 6 \\\\ 12 & 14 \\end{pmatrix} \\qquad 3A = \\begin{pmatrix} 3 & 6 \\\\ 15 & 18 \\end{pmatrix}"
+   ],
+   "titre": "Mêmes dimensions, coefficient par coefficient",
+   "type": "etape"
+  },
+  "matrice_generale": {
+   "kicker": "Les matrices",
+   "note": "a indice i j : ligne i, colonne j. Ici, une matrice carrée.",
+   "tex": "A = \\begin{pmatrix} a_{11} & a_{12} & a_{13} \\\\ a_{21} & a_{22} & a_{23} \\\\ a_{31} & a_{32} & a_{33} \\end{pmatrix}",
+   "type": "formule",
+   "anim": {
+    "nom": "matrice_fig",
+    "hauteur": 175
+   }
+  },
+  "meubles": {
+   "kicker": "Application : chaises et tables",
+   "tex": [
+    "2c + 3t = 12 \\ \\text{(heures)} \\qquad c + 2t = 7 \\ \\text{(bois)}",
+    "\\det = 4 - 3 = 1 \\neq 0 : \\text{ solution unique}",
+    "c = 3 \\text{ chaises}, \\qquad t = 2 \\text{ tables}"
+   ],
+   "titre": "Douze heures, sept mètres carrés de bois",
+   "type": "etape"
+  },
+  "noyau_image": {
+   "kicker": "Noyau et image",
+   "note": "Pour f : noyau réduit à 0, image égale au plan entier.",
+   "tex": "\\ker f = \\{\\vec{u} \\mid f(\\vec{u}) = \\vec{0}\\}",
+   "type": "formule"
+  },
+  "produit": {
+   "kicker": "Le produit matriciel",
+   "tex": [
+    "A\\ (2 \\times 3), \\quad B\\ (3 \\times 2) \\ \\Rightarrow\\ AB\\ (2 \\times 2)",
+    "1 \\times 4 + 2 \\times 7 + 3 \\times 0 = 18 \\qquad 1 \\times 5 + 2 \\times 8 + 3 \\times 0 = 21",
+    "4 \\times 4 + 5 \\times 7 + 6 \\times 0 = 51 \\qquad 4 \\times 5 + 5 \\times 8 + 6 \\times 0 = 60"
+   ],
+   "titre": "Ligne contre colonne ; B a pour troisième ligne (0, 0)",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Vecteur : addition, produit par un scalaire",
+    "Espace vectoriel : huit axiomes, zéro inclus",
+    "Application linéaire : la structure gardée",
+    "Noyau et image : deux sous-espaces clés"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Matrice : produit ligne contre colonne",
+    "Déterminant : ad − bc, Sarrus en taille trois",
+    "|det| : facteur d'aire ou de volume",
+    "Inverse : existe si et seulement si det ≠ 0"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Vecteurs et espaces : la structure d'abord",
+    "Matrices : addition, produit ligne × colonne",
+    "Déterminant nul : pas d'inverse, tout s'écrase",
+    "Systèmes : Ax = b, Gauss mène à la solution"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reseaux": {
+   "kicker": "Réseaux : la matrice d'adjacence",
+   "note": "Trois personnes, toutes amies deux à deux : matrice symétrique.",
+   "tex": "\\begin{pmatrix} 0 & 1 & 1 \\\\ 1 & 0 & 1 \\\\ 1 & 1 & 0 \\end{pmatrix}",
+   "type": "formule"
+  },
+  "rotation": {
+   "kicker": "La rotation d'un quart de tour",
+   "note": "En général : cosinus et sinus placés en croix, déterminant un.",
+   "tex": "R = \\begin{pmatrix} 0 & -1 \\\\ 1 & 0 \\end{pmatrix}",
+   "type": "formule"
+  },
+  "sous_espace": {
+   "kicker": "Sous-espaces vectoriels",
+   "note": "Stable par somme et par multiple, contient 0 : un sous-espace.",
+   "tex": "W = \\{(x,\\ 2x) \\mid x \\in \\mathbb{R}\\}",
+   "type": "formule"
+  },
+  "speciales": {
+   "kicker": "Matrices spéciales",
+   "tex": [
+    "\\text{carrée : autant de lignes que de colonnes}",
+    "I = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\qquad AI = IA = A",
+    "\\text{diagonale : des zéros hors de la diagonale}",
+    "A^{T} \\text{ : lignes et colonnes échangées}"
+   ],
+   "titre": "Identité, diagonales et transposée",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Mathématique · Algèbre linéaire",
+   "sous": "Espaces vectoriels, applications linéaires, déterminants, inverses : le langage des transformations",
+   "titre": "L'algèbre linéaire : vecteurs, matrices et systèmes",
+   "type": "titre"
+  },
+  "vecteur_def": {
+   "kicker": "Les vecteurs",
+   "note": "Exemple : v = (2, 3), la flèche de l'origine au point (2, 3).",
+   "tex": "\\vec{v} = (x,\\ y) \\qquad \\|\\vec{v}\\| = \\sqrt{x^2 + y^2}",
+   "type": "formule"
+  },
+  "vecteur_ops": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "vecteurs"
+   },
+   "kicker": "Opérations sur les vecteurs",
+   "tex": [
+    "\\vec{u} = (1,\\ 2) \\qquad \\vec{v} = (3,\\ -1)",
+    "\\vec{u} + \\vec{v} = (4,\\ 1) \\qquad 2\\vec{u} = (2,\\ 4)",
+    "-\\vec{v} = (-3,\\ 1) \\qquad \\vec{u} - \\vec{v} = (-2,\\ 3)"
+   ],
+   "titre": "Coordonnée par coordonnée : somme et multiple",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Espaces vectoriels et applications linéaires"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : les matrices, leur déterminant et leur inverse. Après les espaces et les applications, voici l'outil de calcul : un tableau de nombres qui encode une transformation, que l'on additionne, multiplie, et dont un seul nombre, le déterminant, dira s'il peut être défait.",
+    "texte": "Partie 2 : matrices, déterminant et inverse."
+   },
+   "sous_titre": "Matrices, déterminants et inverse"
+  },
+  {
+   "debut": "p25",
+   "pont": {
+    "dit": "Partie trois : résoudre les systèmes et transformer les images. Tous les outils sont en place : traduisons les équations en matrices, résolvons par élimination de Gauss, puis voyons ces mêmes matrices animer les transformations de l'informatique graphique.",
+    "texte": "Partie 3 : systèmes linéaires et transformations graphiques."
+   },
+   "sous_titre": "Systèmes linéaires et transformations graphiques"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours d'algèbre linéaire, le langage des vecteurs, des matrices et des systèmes. Nous partirons des flèches du plan pour construire les espaces vectoriels, puis les applications linéaires qui les relient. Nous apprendrons ensuite à calculer avec les matrices, à lire leur déterminant et à les inverser, avant de résoudre des systèmes et de transformer des images comme en informatique graphique.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Vecteurs, matrices, systèmes : le langage des transformations."
+  },
+  {
+   "dit": "Le fil rouge est simple : beaucoup de problèmes, en géométrie, en physique ou en informatique, deviennent linéaires quand on les regarde bien. Additionner des vecteurs, multiplier par un nombre, appliquer la même règle partout : ces gestes modestes, répétés et organisés, décrivent des rotations, des réseaux, des équations et même les images de vos écrans.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Modéliser d'abord : le linéaire est partout."
+  },
+  {
+   "dit": "Un vecteur, vous le connaissez comme une flèche : une direction, un sens et une longueur. En algèbre linéaire, on le retient surtout par ses coordonnées. Dans le plan, le vecteur vé, de coordonnées deux et trois, est la flèche qui part de l'origine et arrive au point de mêmes coordonnées. Sa longueur se calcule par le théorème de Pythagore : racine carrée de la somme des carrés des coordonnées.",
+   "ecran": "vecteur_def",
+   "id": "p03",
+   "texte": "Un vecteur : des coordonnées, une longueur par Pythagore."
+  },
+  {
+   "dit": "Deux opérations fondent tout le reste. Additionner deux vecteurs, c'est additionner leurs coordonnées une à une, ce qui correspond, pour les flèches, à la règle du parallélogramme. Multiplier un vecteur par un scalaire, c'est multiplier chaque coordonnée par ce nombre : la flèche s'allonge, se raccourcit, ou change de sens si le scalaire est négatif. Avec u de coordonnées un et deux, et vé de coordonnées trois et moins un, la somme vaut quatre et un.",
+   "ecran": "vecteur_ops",
+   "id": "p04",
+   "texte": "Somme (4, 1), double (2, 4) : coordonnée par coordonnée."
+  },
+  {
+   "dit": "En mélangeant ces deux opérations, on fabrique des combinaisons linéaires : un multiple de u, plus un multiple de vé. Les coefficients sont des nombres réels quelconques, et en les faisant varier, on engendre tout un ensemble de vecteurs : une droite si les deux vecteurs sont alignés, tout le plan s'ils ne le sont pas. Cette idée d'engendrer un ensemble par combinaisons reviendra partout.",
+   "ecran": "combinaison",
+   "id": "p05",
+   "texte": "Combiner : un multiple de u, plus un multiple de v."
+  },
+  {
+   "dit": "Un espace vectoriel est un ensemble de vecteurs muni de ces deux opérations, qui doivent obéir à huit axiomes : l'addition est associative et commutative, il existe un vecteur nul, chaque vecteur a un opposé, et la multiplication par un scalaire respecte les distributivités. Le plan et l'espace de la géométrie en sont des exemples, mais aussi les polynômes et les fonctions, que l'on peut additionner et multiplier par un nombre.",
+   "ecran": "espace_def",
+   "id": "p06",
+   "texte": "Huit axiomes : le cadre des espaces vectoriels."
+  },
+  {
+   "dit": "Un sous-espace vectoriel est un morceau d'un espace qui est lui-même un espace vectoriel. Pour le vérifier, trois contrôles suffisent : le vecteur nul est dedans, la somme de deux vecteurs du morceau y reste, et tout multiple scalaire y reste aussi. Exemple : l'ensemble des vecteurs dont la deuxième coordonnée vaut deux fois la première forme une droite qui passe par l'origine, et c'est bien un sous-espace du plan.",
+   "ecran": "sous_espace",
+   "id": "p07",
+   "texte": "La droite y = 2x : un sous-espace du plan."
+  },
+  {
+   "dit": "Une application linéaire est une fonction entre espaces vectoriels qui respecte les deux opérations : l'image d'une somme est la somme des images, et l'image d'un multiple est le multiple de l'image. En une phrase : elle envoie toute combinaison linéaire sur la combinaison linéaire des images, avec les mêmes coefficients. C'est cette fidélité à la structure qui la rend prévisible, et calculable par une matrice.",
+   "ecran": "app_lineaire",
+   "id": "p08",
+   "texte": "Linéaire : les combinaisons sont conservées."
+  },
+  {
+   "dit": "Exemple complet : ef envoie un point de coordonnées ixe et igrec sur le point de coordonnées deux ixe plus igrec, et ixe moins igrec. Les images des deux vecteurs de la base canonique deviennent les colonnes de sa matrice : deux et un pour le premier, un et moins un pour le second. Le déterminant de cette matrice vaut moins trois : il n'est pas nul, et nous allons voir ce que cela implique.",
+   "ecran": "app_exemple",
+   "id": "p09",
+   "texte": "f(x, y) = (2x + y, x − y) : sa matrice, det −3."
+  },
+  {
+   "dit": "Le noyau d'une application linéaire rassemble tous les vecteurs envoyés sur le vecteur nul ; son image rassemble tous les vecteurs atteints. Ce sont toujours des sous-espaces. Pour notre exemple, résoudre le système donne une seule solution, le vecteur nul : le noyau est réduit à zéro, donc l'application ne confond jamais deux vecteurs différents, et son image est le plan tout entier.",
+   "ecran": "noyau_image",
+   "id": "p10",
+   "texte": "Noyau : ce qui s'annule. Image : ce qui est atteint."
+  },
+  {
+   "dit": "Deuxième exemple, d'un espace vers un autre de dimension différente : gé envoie un triplet sur un couple, ixe plus igrec, et igrec moins zède. Son noyau impose deux équations, ixe plus igrec égale zéro et igrec moins zède égale zéro : il reste un degré de liberté, et le noyau est la droite des triplets formés d'un nombre, de son opposé et encore de son opposé. Son image, elle, couvre tout le plan d'arrivée.",
+   "ecran": "g_exemple",
+   "id": "p11",
+   "texte": "Noyau de g : la droite des (t, −t, −t)."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Un vecteur se manipule par ses coordonnées, avec une addition et une multiplication par un scalaire. Un espace vectoriel est le cadre où ces opérations obéissent à huit axiomes, et ses sous-espaces se reconnaissent à leur stabilité. Une application linéaire respecte ces opérations ; son noyau et son image, deux sous-espaces, disent comment elle transforme.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie un."
+  },
+  {
+   "dit": "Une matrice est un tableau rectangulaire de nombres, rangés en lignes et en colonnes. Le coefficient a, indice i j, se lit à l'intersection de la ligne i et de la colonne j : la ligne d'abord, la colonne ensuite. Une matrice qui a autant de lignes que de colonnes est dite carrée, et c'est seulement pour elle que déterminant et inverse auront un sens.",
+   "ecran": "matrice_generale",
+   "id": "p13",
+   "texte": "a indice i j : la ligne d'abord, la colonne ensuite."
+  },
+  {
+   "dit": "Additionner deux matrices de mêmes dimensions, c'est additionner leurs coefficients un à un, en gardant chaque position. La soustraction suit la même règle, et multiplier une matrice par un scalaire multiplie tous ses coefficients par ce nombre. Avec nos deux matrices exemples, la somme affiche quatre et six sur la première ligne, douze et quatorze sur la seconde, et la différence ne contient que des moins deux.",
+   "ecran": "matrice_add",
+   "id": "p14",
+   "texte": "Somme : (4, 6 ; 12, 14). Différence : que des −2."
+  },
+  {
+   "dit": "Le produit matriciel est plus subtil : il n'existe que si le nombre de colonnes de la première matrice égale le nombre de lignes de la seconde. Chaque coefficient du résultat est un produit scalaire : une ligne de la première, contre une colonne de la seconde, en multipliant terme à terme et en additionnant. Ici, la seconde matrice a pour lignes quatre cinq, sept huit, puis zéro zéro : le produit donne dix-huit, vingt et un, cinquante et un et soixante. Et attention, en général, l'ordre compte : A B n'est pas B A.",
+   "ecran": "produit",
+   "id": "p15",
+   "texte": "Produit AB : 18, 21, 51, 60. L'ordre compte."
+  },
+  {
+   "dit": "Quelques matrices jouent des rôles particuliers. La matrice identité, avec des uns sur la diagonale et des zéros ailleurs, est le neutre du produit : multiplier par elle ne change rien, comme multiplier un nombre par un. Une matrice diagonale n'a de coefficients éventuellement non nuls que sur sa diagonale. Et la transposée d'une matrice s'obtient en échangeant ses lignes et ses colonnes, comme un reflet le long de la diagonale.",
+   "ecran": "speciales",
+   "id": "p16",
+   "texte": "Identité : le neutre du produit, comme le un."
+  },
+  {
+   "dit": "Le déterminant d'une matrice carrée est un nombre qui la résume. Pour une matrice de taille deux, il se calcule en croix : le produit de la diagonale principale, moins le produit de l'autre diagonale. Exemple : deux fois quatre, moins moins un fois trois, c'est-à-dire huit plus trois, égale onze. Retenez le motif en croix, il resservira dans les déterminants plus grands et dans la formule de l'inverse.",
+   "ecran": "det_2x2",
+   "id": "p17",
+   "texte": "Déterminant deux par deux : le produit en croix."
+  },
+  {
+   "dit": "Pour la taille trois, la règle de Sarrus organise le calcul : on recopie les deux premières colonnes à droite de la matrice, puis on suit les diagonales. Les produits descendants s'ajoutent, les produits montants se soustraient. Sur notre exemple, les descendants donnent moins six, moins quatre et moins soixante, total moins soixante-dix ; les montants donnent huit, plus dix, moins dix-huit, total zéro. Le déterminant vaut donc moins soixante-dix.",
+   "ecran": "det_sarrus",
+   "id": "p18",
+   "texte": "Sarrus : descendants −70, montants 0, det −70."
+  },
+  {
+   "dit": "Que signifie ce nombre ? En valeur absolue, c'est le facteur par lequel la transformation multiplie les aires dans le plan, et les volumes dans l'espace. Un déterminant de deux double toutes les aires. Un déterminant négatif retourne en outre l'orientation, comme un miroir. Et un déterminant nul écrase tout : les aires deviennent nulles, la transformation aplatit l'espace sur une droite ou un plan, et aucune marche arrière n'est possible.",
+   "ecran": "det_geo",
+   "id": "p19",
+   "texte": "Le déterminant mesure l'écrasement ou l'étirement."
+  },
+  {
+   "dit": "Quatre propriétés rendent les déterminants maniables. Transposer ne change rien. Le déterminant d'un produit est le produit des déterminants. Multiplier une matrice de taille n par un scalaire multiplie son déterminant par ce scalaire à la puissance n, car chaque ligne est multipliée. Enfin, une ligne nulle, ou deux lignes égales, annulent le déterminant, ce qui rejoint l'image de l'écrasement.",
+   "ecran": "det_proprietes",
+   "id": "p20",
+   "texte": "det(AB) = det A fois det B : le produit se factorise."
+  },
+  {
+   "dit": "Une matrice carrée est inversible quand il existe une matrice qui défait son action : leur produit, dans les deux sens, donne la matrice identité. Le test est immédiat : elle est inversible si et seulement si son déterminant est différent de zéro. Quand il existe, l'inverse se construit à partir des cofacteurs : on calcule chaque cofacteur, on transpose la matrice obtenue pour former l'adjointe, puis on divise par le déterminant.",
+   "ecran": "inverse_def",
+   "id": "p21",
+   "texte": "Inversible si et seulement si le déterminant est non nul."
+  },
+  {
+   "dit": "Exemple complet sur la matrice de coefficients deux, un, un, un. Son déterminant vaut deux moins un, donc un. Ses cofacteurs forment la matrice un, moins un, moins un, deux ; elle est symétrique, donc son adjointe, qui est sa transposée, lui est égale. Diviser par le déterminant, qui vaut un, ne change rien : l'inverse est cette même matrice. Le contrôle est simple : le produit de la matrice par son inverse donne bien l'identité.",
+   "ecran": "inverse_exemple",
+   "id": "p22",
+   "texte": "Inverse de (2, 1 ; 1, 1) : (1, −1 ; −1, 2)."
+  },
+  {
+   "dit": "Pour les grandes matrices, on préfère la méthode de Gauss-Jordan. On écrit la matrice côte à côte avec l'identité, dans une matrice augmentée. Puis, par des opérations élémentaires sur les lignes, échanger, multiplier par un nombre non nul, ajouter un multiple d'une ligne à une autre, on transforme la partie de gauche en identité. Les mêmes opérations, appliquées à droite, y font apparaître l'inverse, sans aucun déterminant à calculer.",
+   "ecran": "gauss_jordan",
+   "id": "p23",
+   "texte": "Gauss-Jordan : transformer A en I, l'inverse apparaît."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Une matrice se lit ligne par ligne et colonne par colonne ; son produit se calcule ligne contre colonne et n'est pas commutatif. Son déterminant se calcule en croix en taille deux, par Sarrus en taille trois, et mesure le facteur d'aire ou de volume de la transformation. Enfin, l'inverse existe exactement quand ce déterminant est différent de zéro, et se construit par les cofacteurs ou par Gauss-Jordan.",
+   "ecran": "recap2",
+   "id": "p24",
+   "texte": "L'essentiel de la partie deux."
+  },
+  {
+   "dit": "Un système d'équations se traduit mot pour mot en matrice : les coefficients forment la matrice A, les inconnues forment le vecteur ixe, les seconds membres forment le vecteur bé, et le système devient A ixe égale bé. Pour notre exemple, deux ixe plus trois igrec égale sept, et ixe moins igrec égale un, la matrice est inversible : multiplier les deux membres par son inverse donne directement ixe égale deux et igrec égale un, que l'on peut vérifier dans les deux équations.",
+   "ecran": "axb",
+   "id": "p25",
+   "texte": "2x + 3y = 7, x − y = 1 : solution (2, 1) par l'inverse."
+  },
+  {
+   "dit": "Quand le système grandit, l'élimination de Gauss est la méthode systématique : on élimine une inconnue à la fois, équation après équation, jusqu'à rendre le système triangulaire, puis on remonte. Voici un système de trois équations à trois inconnues, tiré des exercices du cours, que nous allons résoudre entièrement, sans jamais deviner.",
+   "ecran": "gauss_sys",
+   "id": "p26",
+   "texte": "Le système à résoudre par élimination de Gauss."
+  },
+  {
+   "dit": "Première élimination : deux fois la deuxième équation, plus trois fois la première, supprime ixe et livre igrec plus zède égale deux. La troisième équation, plus la première, supprime aussi ixe et livre deux igrec plus zède égale cinq. La différence des deux donne igrec égale trois ; on remonte alors : zède vaut deux moins trois, donc moins un, et ixe vaut quatre divisé par deux, donc deux. Solution : deux, trois, moins un, vérifiable dans les trois équations de départ.",
+   "ecran": "gauss_etapes",
+   "id": "p27",
+   "texte": "Solution : x = 2, y = 3, z = −1."
+  },
+  {
+   "dit": "Application concrète, tirée du cours : un fabricant dispose de douze heures de travail et de sept mètres carrés de bois. Une chaise demande deux heures et un mètre carré, une table trois heures et deux mètres carrés. Le système s'écrit aussitôt en matrices, son déterminant vaut un, donc la solution est unique : trois chaises et deux tables épuisent exactement les deux ressources. C'est le schéma de tous les problèmes d'allocation : des contraintes linéaires, une traduction matricielle, une résolution.",
+   "ecran": "meubles",
+   "id": "p28",
+   "texte": "Trois chaises et deux tables épuisent les ressources."
+  },
+  {
+   "dit": "Dernier terrain de jeu : l'informatique graphique. À l'écran, chaque point d'une image est un vecteur, et chaque transformation, rotation, mise à l'échelle ou symétrie, est une matrice qui multiplie ce vecteur. Transformer un objet entier, c'est appliquer la même multiplication à tous ses points : le triangle de l'écran tourne et s'étire comme un seul bloc. Composer deux transformations, c'est simplement multiplier leurs matrices, dans le bon ordre.",
+   "ecran": "graphique_intro",
+   "id": "p29",
+   "texte": "Graphique : la même matrice pour tous les points."
+  },
+  {
+   "dit": "La matrice de rotation d'un angle thêta a une forme à connaître : cosinus et moins sinus sur la première ligne, sinus et cosinus sur la seconde. Pour un quart de tour dans le sens anti-horaire, le cosinus vaut zéro et le sinus vaut un : la matrice envoie le point de coordonnées un et zéro sur le point de coordonnées zéro et un, exactement comme le montre le calcul. Une rotation conserve les longueurs et les angles : son déterminant vaut un.",
+   "ecran": "rotation",
+   "id": "p30",
+   "texte": "Quart de tour : (1, 0) devient (0, 1)."
+  },
+  {
+   "dit": "Deux autres transformations de base se lisent directement sur leur diagonale. La mise à l'échelle multiplie chaque coordonnée par son facteur : deux sur l'axe des ixe, trois sur l'axe des igrec envoie le point un, un sur le point deux, trois. La symétrie par rapport à l'axe des ixe change le signe de la deuxième coordonnée : sa matrice est diagonale, avec un et moins un. Attention à la translation : elle n'est pas linéaire, et elle ne devient une matrice qu'en coordonnées homogènes, avec une dimension de plus.",
+   "ecran": "echelle_symetrie",
+   "id": "p31",
+   "texte": "Échelle (2, 3) et symétrie : deux matrices diagonales."
+  },
+  {
+   "dit": "Les matrices servent aussi hors de la géométrie : un réseau se décrit par sa matrice d'adjacence, où un un marque une connexion entre deux sommets, et un zéro son absence. Ici, trois personnes toutes amies deux à deux donnent une matrice symétrique, avec des zéros sur la diagonale, car on ne se connecte pas à soi-même, et des uns partout ailleurs. Multiplier de telles matrices compte même les chemins du réseau, mais c'est une autre histoire.",
+   "ecran": "reseaux",
+   "id": "p32",
+   "texte": "Adjacence : un pour une connexion, zéro sinon."
+  },
+  {
+   "dit": "Pour terminer, retenez l'enchaînement complet de ce cours. Les vecteurs vivent dans des espaces vectoriels, les applications linéaires les transforment en respectant les combinaisons, et les matrices rendent ces transformations calculables. Le déterminant dit si la transformation écrase l'espace ou si elle se défait par une inverse. Et les systèmes, de la géométrie aux réseaux et aux images, se ramènent tous à une même équation : A ixe égale bé.",
+   "ecran": "recap_final",
+   "id": "p33",
+   "texte": "Tout le cours en quatre idées."
+  }
+ ],
+ "titre": "L'algèbre linéaire : vecteurs, matrices et systèmes"
+}
