@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { router, useFocusEffect } from "expo-router";
+import { Play } from "lucide-react-native";
 import { useCallback, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -13,9 +14,10 @@ import { getSupabase } from "@/services/supabase";
 import { titreExercice } from "@/services/titres";
 import { useSessionPrete } from "@/session/SessionProvider";
 import { useTheme } from "@/theme/ThemeProvider";
-import { espace, typo } from "@/theme/theme";
+import { bord, espace, ombre, rayon, typo } from "@/theme/theme";
 
 import { Apparition } from "../Apparition";
+import { Appui } from "../Appui";
 import { libelleQuiz } from "../entrainement/libelles";
 import { CarteListe } from "../liste/CarteListe";
 import { PastilleType } from "../liste/PastilleType";
@@ -92,27 +94,69 @@ export function Reprise() {
           }
           if (e.type === "video") {
             const v = e.video;
+            // Carte « lecteur » (retour de Benny, 26/10/2026) : pour une vidéo, la reprise montre le
+            // lecteur complet — grande miniature 16:9, bouton lecture au centre, durée en coin et
+            // barre de progression de reprise — au lieu d'une ligne de liste qui se confondait avec
+            // un exercice ou une leçon. Les autres types gardent leur CarteListe.
+            const progression = v.dureeS ? Math.min(1, v.positionS / v.dureeS) : 0;
+            const sousTitreVideo = detail(
+              [
+                t("videos.reprendreA", { temps: formaterDuree(v.positionS) }),
+                v.dureeS ? t("videos.reste", { temps: formaterDuree(Math.max(0, v.dureeS - v.positionS)) }) : null,
+              ]
+                .filter(Boolean)
+                .join(" · "),
+            );
             return (
-              <CarteListe
+              <Appui
                 key="video"
-                gauche={
-                  v.miniature ? (
-                    <View style={[styles.miniVideo, { borderColor: theme.bord.fort }]}>
-                      <Image source={{ uri: v.miniature }} style={styles.miniVideoImage} contentFit="cover" />
-                    </View>
-                  ) : (
-                    <PastilleType type="lecon" play />
-                  )
-                }
-                titre={`${t("videos.partie", { n: v.numero })} — ${v.titre}`}
-                sousTitre={detail(t("videos.reprendreA", { temps: formaterDuree(v.positionS) }))}
+                accessibilityRole="button"
+                accessibilityLabel={`${t("videos.partie", { n: v.numero })}. ${v.titre}. ${sousTitreVideo}`}
                 onPress={() =>
                   router.push({
                     pathname: "/video",
                     params: { cours: String(v.cours), video: v.id, nom: e.chapitre, matiere: e.matiere },
                   })
                 }
-              />
+                rayon={rayon.m}
+                ombre={ombre.carte}
+                decalage={2}
+                couleurOmbre={theme.ombre}
+              >
+                <View style={[styles.carteVideo, { backgroundColor: theme.fond.surface, borderColor: theme.bord.fort }]}>
+                  <View style={styles.visuelVideo}>
+                    {v.miniature ? (
+                      <Image source={{ uri: v.miniature }} style={styles.visuelVideoImage} contentFit="cover" />
+                    ) : (
+                      <View style={[styles.visuelVideoImage, { backgroundColor: theme.fond.creux }]} />
+                    )}
+                    <View style={[styles.boutonLectureVideo, { backgroundColor: theme.marque.principale, borderColor: theme.bord.fort }]}>
+                      <Play size={21} strokeWidth={2.5} color={theme.texte.surCouleur} fill={theme.texte.surCouleur} />
+                    </View>
+                    {v.dureeS ? (
+                      <View style={styles.dureeVideo}>
+                        <Text style={styles.dureeVideoTexte}>{formaterDuree(v.dureeS)}</Text>
+                      </View>
+                    ) : null}
+                    {progression > 0 ? (
+                      <View style={styles.progressionVideoFond}>
+                        <View style={[styles.progressionVideo, { width: `${Math.round(progression * 100)}%`, backgroundColor: theme.marque.principale }]} />
+                      </View>
+                    ) : null}
+                  </View>
+                  <View style={styles.texteVideo}>
+                    <Text style={[typo.etiquette, { color: theme.marque.forte }]}>
+                      {t("videos.partie", { n: v.numero })} · {t("videos.aReprendre")}
+                    </Text>
+                    <Text numberOfLines={2} style={[typo.texteFort, styles.titreVideo, { color: theme.texte.principal }]}>
+                      {v.titre}
+                    </Text>
+                    <Text numberOfLines={1} style={[typo.legende, { color: theme.texte.secondaire }]}>
+                      {sousTitreVideo}
+                    </Text>
+                  </View>
+                </View>
+              </Appui>
             );
           }
           const d = e.dernier;
@@ -164,6 +208,14 @@ export function Reprise() {
 
 const styles = StyleSheet.create({
   groupe: { gap: espace[4] },
-  miniVideo: { width: 62, height: 40, borderWidth: 2, borderRadius: 6, overflow: "hidden", backgroundColor: "#000" },
-  miniVideoImage: { width: "100%", height: "100%" },
+  carteVideo: { borderWidth: bord.normal, borderRadius: rayon.m, overflow: "hidden" },
+  visuelVideo: { width: "100%", aspectRatio: 16 / 9, position: "relative", backgroundColor: "#000" },
+  visuelVideoImage: { width: "100%", height: "100%" },
+  boutonLectureVideo: { position: "absolute", left: "50%", top: "50%", marginLeft: -25, marginTop: -25, width: 50, height: 50, borderRadius: 25, borderWidth: bord.normal, alignItems: "center", justifyContent: "center" },
+  dureeVideo: { position: "absolute", right: espace[2], bottom: espace[2], backgroundColor: "rgba(10,10,10,0.85)", borderRadius: rayon.pilule, paddingHorizontal: espace[2], paddingVertical: 1 },
+  dureeVideoTexte: { color: "#FFF7E3", fontSize: 11, fontWeight: "700" },
+  progressionVideoFond: { position: "absolute", left: 0, right: 0, bottom: 0, height: 6, backgroundColor: "rgba(10,10,10,0.45)" },
+  progressionVideo: { height: "100%" },
+  texteVideo: { padding: espace[3], gap: espace[1] },
+  titreVideo: { fontSize: 15, lineHeight: 20 },
 });
