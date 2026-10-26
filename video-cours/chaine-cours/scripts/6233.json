@@ -1,0 +1,533 @@
+{
+ "cours": 6233,
+ "titre": "L'isomérie : même formule, des molécules différentes",
+ "matiere": "Chimie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Chimie · Isomérie et stéréochimie",
+   "titre": "L'isomérie : même formule, des molécules différentes",
+   "sous": "Constitution, géométrie Z/E, chiralité : l'architecture décide de tout",
+   "anim": {
+    "nom": "enantiomeres_fig",
+    "hauteur": 250
+   }
+  },
+  "accroche": {
+   "type": "phrase",
+   "kicker": "Le mystère des molécules jumelles",
+   "texte": "Deux architectes, la même liste de matériaux : l'un construit une maison moderne, l'autre un cottage. En chimie, les atomes jouent le même jeu."
+  },
+  "c2h6o": {
+   "type": "formule",
+   "kicker": "La formule brute ne dit pas tout",
+   "tex": "\\text{éthanol : } CH_3-CH_2-OH \\qquad \\text{méthoxyméthane : } CH_3-O-CH_3",
+   "note": "Même formule brute C₂H₆O : un liquide miscible à l'eau, un gaz d'aérosol."
+  },
+  "deux_royaumes": {
+   "type": "etape",
+   "kicker": "La carte du cours",
+   "titre": "Deux grandes familles d'isomères",
+   "tex": [
+    "\\text{même formule brute, molécules différentes}",
+    "\\text{constitution : les connexions changent}",
+    "\\text{stéréoisomérie : seul l'espace change}"
+   ]
+  },
+  "chaine_butane": {
+   "type": "etape",
+   "kicker": "Isomérie de chaîne",
+   "titre": "Le butane et son isomère ramifié",
+   "tex": [
+    "\\text{butane : } CH_3-CH_2-CH_2-CH_3 \\quad T_{eb} = -0{,}5\\ ^\\circ C",
+    "\\text{2-méthylpropane : } (CH_3)_3CH \\quad T_{eb} = -11{,}7\\ ^\\circ C"
+   ],
+   "anim": {
+    "nom": "chaine_carbonee_fig",
+    "hauteur": 130
+   }
+  },
+  "pentane": {
+   "type": "etape",
+   "kicker": "Isomérie de chaîne",
+   "titre": "Le pentane et l'explosion des possibilités",
+   "tex": [
+    "\\text{pentane : } CH_3-CH_2-CH_2-CH_2-CH_3",
+    "\\text{2-méthylbutane : } CH_3-CH(CH_3)-CH_2-CH_3",
+    "\\text{2,2-diméthylpropane : } C(CH_3)_4",
+    "\\text{heptane : } 9 \\text{ isomères} \\qquad \\text{décane : } 75 \\qquad \\text{pentadécane : } 4\\,347"
+   ]
+  },
+  "position": {
+   "type": "etape",
+   "kicker": "Isomérie de position",
+   "titre": "Le groupe hydroxyle change de place",
+   "tex": [
+    "\\text{propan-1-ol : } CH_3-CH_2-CH_2OH",
+    "\\text{propan-2-ol : } CH_3-CH(OH)-CH_3",
+    "\\text{dichlorobenzènes : ortho } 1{,}2 \\text{, méta } 1{,}3 \\text{, para } 1{,}4"
+   ]
+  },
+  "fonction": {
+   "type": "etape",
+   "kicker": "Isomérie de fonction",
+   "titre": "Même formule, trois familles différentes",
+   "tex": [
+    "\\text{acide propanoïque : } CH_3-CH_2-COOH",
+    "\\text{éthanoate de méthyle : } CH_3-COO-CH_3",
+    "\\text{hydroxypropanone : } CH_3-CO-CH_2OH"
+   ]
+  },
+  "exercice_constitution": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Isomères ou pas ? Trois tests",
+   "tex": [
+    "\\text{test 1 : } CH_3CH_2OH / CH_3OCH_3 \\Rightarrow \\text{fonction}",
+    "\\text{test 2 : } C_3H_8 / C_2H_6 \\Rightarrow \\text{pas isomères}",
+    "\\text{test 3 : propène retourné} \\Rightarrow \\text{même molécule}",
+    "C_4H_8 : \\text{des butènes et le cyclobutane}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Points clés de la constitution",
+   "etapes": [
+    "Même formule brute, molécules différentes",
+    "Chaîne : le squelette carboné change",
+    "Position : le groupe change de place",
+    "Fonction : la famille chimique change",
+    "Toujours vérifier la formule brute d'abord"
+   ]
+  },
+  "double_liaison": {
+   "type": "etape",
+   "kicker": "La double liaison, un pivot bloqué",
+   "titre": "Une liaison sigma, une liaison pi, zéro rotation",
+   "tex": [
+    "C{=}C : 1\\ \\text{liaison } \\sigma + 1\\ \\text{liaison } \\pi",
+    "\\text{la liaison } \\pi \\text{ bloque la rotation}",
+    "\\text{les groupes sont figés dans l'espace}"
+   ]
+  },
+  "ze": {
+   "type": "etape",
+   "kicker": "L'isomérie Z/E",
+   "titre": "Zusammen : ensemble ; Entgegen : opposé",
+   "tex": [
+    "Z\\ \\text{(Zusammen) : groupes prioritaires du même côté}",
+    "E\\ \\text{(Entgegen) : groupes prioritaires opposés}"
+   ],
+   "anim": {
+    "nom": "cistrans_fig",
+    "hauteur": 140
+   }
+  },
+  "cip": {
+   "type": "etape",
+   "kicker": "Les règles de Cahn-Ingold-Prelog",
+   "titre": "Qui est prioritaire ? Les règles CIP",
+   "tex": [
+    "\\text{règle 1 : le plus grand numéro atomique gagne}",
+    "\\text{règle 2 : à égalité, on avance atome par atome}",
+    "\\text{règle 3 : une liaison double compte double}",
+    "-OH > -CH_3 > -H \\qquad -CH_2CH_3 > -CH_3"
+   ]
+  },
+  "but2ene": {
+   "type": "etape",
+   "kicker": "Application : le but-2-ène",
+   "titre": "Deux géométries, des propriétés mesurables",
+   "tex": [
+    "CH_3-CH{=}CH-CH_3 : \\text{sur chaque carbone, } -CH_3 > -H",
+    "(Z) : T_{eb} \\approx 4\\ ^\\circ C \\text{, plus polaire, moins stable}",
+    "(E) : T_{eb} \\approx 1\\ ^\\circ C \\text{, moins polaire, plus stable}"
+   ]
+  },
+  "exercice_ze": {
+   "type": "etape",
+   "kicker": "Exercice résolu",
+   "titre": "Nommer l'acide 3-méthylpent-2-énoïque",
+   "tex": [
+    "CH_3-CH{=}C(COOH)-CH_2-CH_3",
+    "C_2 : -CH_3 > -H",
+    "C_3 : -COOH > -CH_2CH_3 \\quad (C \\text{ de } COOH : O, O, O)",
+    "\\text{même côté} \\Rightarrow (Z) \\qquad \\text{opposés} \\Rightarrow (E)"
+   ]
+  },
+  "retinal": {
+   "type": "formule",
+   "kicker": "La vision, un interrupteur Z/E",
+   "tex": "\\text{11-cis-rétinal } (Z) \\xrightarrow{h\\nu} \\text{tout-trans-rétinal } (E)",
+   "note": "Un photon suffit : ce basculement déclenche le signal de la vision."
+  },
+  "chiralite": {
+   "type": "phrase",
+   "kicker": "La chiralité : des mains aux molécules",
+   "texte": "Vos deux mains sont images miroir l'une de l'autre, mais impossibles à superposer. Certaines molécules partagent cette propriété : c'est la chiralité.",
+   "anim": {
+    "nom": "enantiomeres_fig",
+    "hauteur": 160
+   }
+  },
+  "carbone_asymetrique": {
+   "type": "etape",
+   "kicker": "Le carbone asymétrique",
+   "titre": "Quatre substituants, tous différents",
+   "tex": [
+    "C^* : \\text{quatre substituants tous différents}",
+    "\\text{acide lactique : } CH_3-CH(OH)-COOH",
+    "C^* \\text{ lié à } -H,\\ -OH,\\ -CH_3,\\ -COOH"
+   ]
+  },
+  "proprietes_enantiomeres": {
+   "type": "etape",
+   "kicker": "Énantiomères : les propriétés",
+   "titre": "Identiques partout, sauf face au chiral",
+   "tex": [
+    "\\text{fusion, ébullition, solubilité : identiques}",
+    "\\text{activité optique : opposée } (+ \\text{ contre } -)",
+    "\\text{réactif achiral : même réactivité}",
+    "\\text{enzyme chirale : réactivité très différente}"
+   ]
+  },
+  "activite_optique": {
+   "type": "formule",
+   "kicker": "L'activité optique",
+   "tex": "\\alpha = [\\alpha]_{\\lambda}^{T} \\times l \\times c",
+   "note": "l : trajet en décimètres ; c : concentration en grammes par millilitre."
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Points clés de la troisième dimension",
+   "etapes": [
+    "C=C : rotation bloquée, groupes figés",
+    "Z : prioritaires du même côté",
+    "E : prioritaires de part et d'autre",
+    "CIP : le numéro atomique décide",
+    "Un carbone asymétrique → deux énantiomères"
+   ]
+  },
+  "fischer": {
+   "type": "etape",
+   "kicker": "La projection de Fischer",
+   "titre": "Le code : verticales derrière, horizontales devant",
+   "tex": [
+    "\\text{chaîne verticale, groupe le plus oxydé en haut}",
+    "\\text{liaisons verticales : en arrière du plan}",
+    "\\text{liaisons horizontales : en avant du plan}"
+   ],
+   "anim": {
+    "nom": "fischer_fig",
+    "hauteur": 110
+   }
+  },
+  "fischer_manipulations": {
+   "type": "etape",
+   "kicker": "Projection de Fischer : les manipulations",
+   "titre": "Tourner de 180 degrés oui, de 90 degrés non",
+   "tex": [
+    "\\text{rotation de } 180^\\circ \\text{ dans le plan : permise}",
+    "\\text{rotation de } 90^\\circ \\text{ : interdite, elle inverse tout}",
+    "\\text{un échange : énantiomère ; deux échanges : retour au départ}"
+   ]
+  },
+  "cram": {
+   "type": "etape",
+   "kicker": "La projection de Cram",
+   "titre": "La perspective : coins et pointillés",
+   "tex": [
+    "\\text{traits pleins : substituants dans le plan} \\qquad \\text{coin plein : substituant vers l'avant}",
+    "\\text{pointillés : substituant vers l'arrière}",
+    "(R)\\text{-2-butanol : priorités } OH > C_2H_5 > CH_3 > H"
+   ],
+   "anim": {
+    "nom": "cram_fig",
+    "hauteur": 110
+   }
+  },
+  "configuration_rs": {
+   "type": "etape",
+   "kicker": "La configuration absolue R/S",
+   "titre": "Nommer chaque énantiomère sans ambiguïté",
+   "tex": [
+    "\\text{priorités CIP : } CHBrClF : Br\\ (1) > Cl\\ (2) > F\\ (3) > H\\ (4)",
+    "\\text{le } n^\\circ\\,4 \\text{ à l'arrière, on lit } 1 \\rightarrow 2 \\rightarrow 3",
+    "\\text{sens horaire : } R\\ \\text{(rectus)} \\qquad \\text{antihoraire : } S\\ \\text{(sinister)}"
+   ]
+  },
+  "pieges": {
+   "type": "etape",
+   "kicker": "Deux pièges classiques",
+   "titre": "R/S ne dit pas +/−, et méso n'est pas chiral",
+   "tex": [
+    "\\text{configuration } R/S \\neq \\text{signe du pouvoir rotatoire } +/-",
+    "\\text{forme méso : deux } C^* \\text{ et un plan de symétrie interne}",
+    "\\text{méso : optiquement inactive malgré ses } C^*"
+   ]
+  },
+  "arbre": {
+   "type": "etape",
+   "kicker": "La méthode : l'arbre de décision",
+   "titre": "Quatre questions, dans l'ordre",
+   "tex": [
+    "\\text{1. même formule brute ? non} \\Rightarrow \\text{pas isomères}",
+    "\\text{2. connexions différentes} \\Rightarrow \\text{constitution}",
+    "\\text{3. } C{=}C \\text{ ou cycle rigide} \\Rightarrow Z/E \\text{, diastéréoisomères}",
+    "\\text{4. carbone asymétrique} \\Rightarrow \\text{énantiomères}"
+   ]
+  },
+  "exercice_c4h8": {
+   "type": "etape",
+   "kicker": "Problème synthèse résolu",
+   "titre": "La formule C₄H₈ passée au crible",
+   "tex": [
+    "C_4H_8 : \\text{but-1-ène, but-2-ène, 2-méthylprop-1-ène}",
+    "\\text{+ cyclobutane, méthylcyclopropane (fonction)}",
+    "\\text{seul le but-2-ène présente } Z/E",
+    "\\text{aucun } C^* : \\text{aucune molécule chirale}"
+   ]
+  },
+  "exercice_final": {
+   "type": "etape",
+   "kicker": "Entraînement final",
+   "titre": "Deux molécules, deux réponses différentes",
+   "tex": [
+    "\\text{acide hex-3-ènoïque : } C{=}C \\Rightarrow \\text{couple } Z/E",
+    "\\text{acide lactique : un } C^* \\Rightarrow \\text{énantiomères } (R) \\text{ et } (S)",
+    "\\text{Fischer : } COOH \\text{ en haut, } -OH \\text{ à droite ou à gauche}"
+   ]
+  },
+  "enjeux": {
+   "type": "phrase",
+   "kicker": "Pourquoi le vivant ne reconnaît qu'une seule main",
+   "texte": "Thalidomide, ibuprofène, carvone : dans le vivant, une image miroir peut soigner, l'autre nuire. Les enzymes ne reconnaissent qu'une seule main.",
+   "anim": {
+    "nom": "enantiomeres_fig",
+    "hauteur": 140
+   }
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Le cours en cinq idées",
+   "etapes": [
+    "Constitution : chaîne, position, fonction",
+    "Z/E : la double liaison fige la géométrie",
+    "Énantiomères : miroir non superposable",
+    "Fischer : horizontal devant, vertical derrière",
+    "L'arbre de décision avant tout calcul"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré à l'isomérie, l'un des chapitres les plus visuels de la chimie organique. Deux molécules peuvent contenir exactement les mêmes atomes, en mêmes nombres, et pourtant se comporter comme deux substances différentes : l'une soigne, l'autre nuit ; l'une sent la menthe, l'autre le carvi. Nous allons d'abord explorer l'isomérie de constitution, puis la géométrie des doubles liaisons, et enfin la chiralité, ce monde des images miroir qui gouverne le vivant.",
+   "texte": "Même formule brute, des substances différentes : bienvenue dans l'isomérie.",
+   "ecran": "titre",
+   "pause_apres": 0.9
+  },
+  {
+   "id": "p02",
+   "dit": "Imaginez deux architectes qui reçoivent exactement la même liste de matériaux : le même nombre de briques, de poutres et de fenêtres. L'un construit une maison moderne aux lignes épurées, l'autre un cottage traditionnel. En chimie organique, c'est pareil : des composés distincts peuvent partager la même formule brute, c'est-à-dire le même nombre d'atomes de chaque élément, tout en différant par l'agencement de ces atomes. C'est cela, l'isomérie.",
+   "texte": "Mêmes atomes, architectures différentes : c'est l'isomérie.",
+   "ecran": "accroche"
+  },
+  {
+   "id": "p03",
+   "dit": "Prenons la formule brute C deux H six O. Deux substances célèbres lui correspondent. L'éthanol, le principe actif des boissons alcoolisées, est un liquide miscible à l'eau : son oxygène porte un hydrogène, c'est le groupe hydroxyle. Le méthoxyméthane, lui, est un gaz utilisé comme propulseur dans les aérosols : son oxygène est au centre, lié à deux groupes méthyle. Mêmes atomes, enchaînement différent, propriétés opposées.",
+   "texte": "C₂H₆O : éthanol (liquide) ou méthoxyméthane (gaz).",
+   "ecran": "c2h6o"
+  },
+  {
+   "id": "p04",
+   "dit": "L'isomérie se divise en deux grandes familles. Dans l'isomérie de constitution, la séquence des liaisons change : c'est le plan de montage qui diffère. Dans la stéréoisomérie, les connexions sont identiques, mais l'orientation des atomes dans l'espace diffère, comme vos deux mains, images miroir l'une de l'autre. Ce cours suit exactement cette carte : la constitution d'abord, l'espace ensuite.",
+   "texte": "Constitution : les liaisons changent. Stéréoisomérie : seul l'espace change.",
+   "ecran": "deux_royaumes"
+  },
+  {
+   "id": "p05",
+   "dit": "Premier visage de la constitution : l'isomérie de chaîne. Le squelette carboné change, tout en gardant la même formule brute. Pour C quatre H dix, le butane étire ses quatre carbones en ligne droite, tandis que le deux-méthylpropane se ramifie. Résultat mesurable : le butane bout à moins zéro virgule cinq degré, son isomère ramifié à moins onze virgule sept degrés. La forme de la chaîne se lit donc sur le thermomètre.",
+   "texte": "C₄H₁₀ : chaîne droite −0,5 °C, chaîne ramifiée −11,7 °C.",
+   "ecran": "chaine_butane"
+  },
+  {
+   "id": "p06",
+   "dit": "Avec cinq carbones, la formule C cinq H douze donne déjà trois isomères de chaîne : le pentane linéaire, le deux-méthylbutane ramifié et le deux-deux-diméthylpropane très ramifié. Et le nombre d'isomères explose ensuite : neuf pour l'heptane, soixante-quinze pour le décane, plus de quatre mille pour le pentadécane. Voilà une des raisons de l'incroyable richesse de la chimie du carbone.",
+   "texte": "C₅H₁₂ : 3 isomères. C₁₅H₃₂ : 4 347 isomères de chaîne.",
+   "ecran": "pentane"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième visage : l'isomérie de position. Le squelette est identique, mais un groupe caractéristique change de place le long de la chaîne. Le propan-un-ol porte son groupe hydroxyle en bout de chaîne : c'est un solvant industriel. Le propan-deux-ol le porte au centre : c'est l'alcool antiseptique des pharmacies. Même logique sur le cycle benzénique, où deux chlores voisins, séparés ou face à face donnent les isomères ortho, méta et para.",
+   "texte": "Propan-1-ol ≠ propan-2-ol : la place du –OH change tout.",
+   "ecran": "position"
+  },
+  {
+   "id": "p08",
+   "dit": "Troisième visage, le plus radical : l'isomérie de fonction. Les isomères n'ont même plus le même groupe fonctionnel, ils changent de famille chimique. Pour C trois H six O deux, l'acide propanoïque est un acide carboxylique à l'odeur de vinaigre, l'éthanoate de méthyle est un ester fruité utilisé comme solvant, et l'hydroxypropanone cumule une cétone et un alcool. Trois familles, trois comportements, une seule formule brute.",
+   "texte": "C₃H₆O₂ : un acide, un ester ou une cétone-alcool.",
+   "ecran": "fonction"
+  },
+  {
+   "id": "p09",
+   "dit": "Entraînons-nous avec l'exercice des leçons. Première paire : l'éthanol et le méthoxyméthane ont bien la même formule brute, ce sont des isomères de fonction. Deuxième paire : le propane et l'éthane n'ont pas la même formule brute, ils ne sont donc pas isomères. Troisième paire : le propène écrit dans un sens ou dans l'autre, c'est la même molécule. Et pour C quatre H huit, on trouve les butènes et même le cyclobutane, isomère de fonction des alcènes.",
+   "texte": "Réflexe n° 1 : comparer les formules brutes.",
+   "ecran": "exercice_constitution"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. Des isomères partagent la même formule brute. Si le squelette carboné change, c'est une isomérie de chaîne ; si un groupe change de place sur le même squelette, c'est une isomérie de position ; si le groupe fonctionnel lui-même change, c'est une isomérie de fonction. Et le premier réflexe, toujours : comparer les formules brutes.",
+   "texte": "Chaîne, position, fonction : le trio de la constitution.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Pour comprendre la stéréoisomérie, il faut saisir la nature de la double liaison carbone carbone. Elle réunit une liaison sigma et une liaison pi, née du recouvrement latéral des orbitales. Ce recouvrement impose une contrainte majeure : la rotation autour de la double liaison est bloquée. Les groupes portés par chaque carbone sont donc figés dans l'espace, et deux arrangements distincts, non interchangeables, deviennent possibles.",
+   "texte": "C=C : σ + π. La rotation est bloquée, les groupes sont figés.",
+   "ecran": "double_liaison"
+  },
+  {
+   "id": "p12",
+   "dit": "Si les deux groupes prioritaires sont du même côté du plan de la double liaison, l'isomère est dit Z, de l'allemand Zusammen, ensemble. S'ils sont de part et d'autre, c'est l'isomère E, d'Entgegen, opposé. Sur l'écran, l'ancien langage cis trans du but-deux-ène montre l'idée : les deux groupes méthyle du même côté, ou en diagonale. Mais pour trancher dans tous les cas, il faut une règle de priorité.",
+   "texte": "Z : même côté. E : côtés opposés. Reste à définir « prioritaire ».",
+   "ecran": "ze"
+  },
+  {
+   "id": "p13",
+   "dit": "Les règles de Cahn, Ingold et Prelog classent les groupes sans ambiguïté. Règle un : on compare les numéros atomiques des atomes directement liés ; le plus élevé est prioritaire, ainsi l'oxygène bat le carbone, qui bat l'hydrogène. Règle deux : à égalité, on avance dans la chaîne, atome par atome, jusqu'à la première différence ; un groupe éthyle bat donc un groupe méthyle. Règle trois : une liaison multiple vaut liaison répétée, l'atome partenaire est compté plusieurs fois.",
+   "texte": "CIP : 1) numéro atomique, 2) la chaîne départage, 3) double = doublé.",
+   "ecran": "cip"
+  },
+  {
+   "id": "p14",
+   "dit": "Appliquons au but-deux-ène. Sur chaque carbone de la double liaison, le groupe méthyle est prioritaire devant l'hydrogène. Les deux isomères existent et leurs propriétés diffèrent, comme le montre le tableau des leçons : l'isomère Z, plus polaire car ses moments dipolaires ne s'annulent pas, bout vers quatre degrés, mais il est moins stable, car ses groupes méthyle se gênent. L'isomère E, plus stable, bout vers un degré.",
+   "texte": "(Z)-but-2-ène : ≈ 4 °C, plus polaire. (E) : ≈ 1 °C, plus stable.",
+   "ecran": "but2ene"
+  },
+  {
+   "id": "p15",
+   "dit": "Exercice guidé des leçons : l'acide trois-méthylpent-deux-énoïque. La double liaison relie les carbones deux et trois. Sur le carbone deux, le méthyle bat l'hydrogène. Sur le carbone trois, le groupe carboxyle bat l'éthyle, car son carbone est compté comme lié à trois oxygènes, grâce à la règle des liaisons multiples. Selon que les deux groupes prioritaires sont du même côté ou non, on obtient l'isomère Z ou l'isomère E, deux molécules distinctes.",
+   "texte": "Sur C3, –COOH compte comme lié à (O, O, O) : il gagne.",
+   "ecran": "exercice_ze"
+  },
+  {
+   "id": "p16",
+   "dit": "Cette géométrie travaille au fond de vos yeux. Le rétinal, la molécule clé de la vision, possède une double liaison qui, sous l'effet d'un photon, bascule de la forme Z vers la forme E. Ce minuscule changement de géométrie déforme la protéine qui l'héberge et déclenche le signal nerveux interprété comme une image. Vous lisez ces lignes grâce à une isomérisation Z E.",
+   "texte": "11-cis-rétinal (Z) + photon → tout-trans-rétinal (E).",
+   "ecran": "retinal"
+  },
+  {
+   "id": "p17",
+   "dit": "Deuxième grande famille de stéréoisomères : les énantiomères. En mille huit cent quarante-huit, Louis Pasteur sépare à la pince deux sortes de cristaux d'acide tartrique, images miroir l'un de l'autre, et découvre que leurs solutions font tourner la lumière polarisée en sens contraires. Comme vos deux mains, ces molécules sont des images miroir non superposables : c'est la chiralité, du grec kheir, la main.",
+   "texte": "Pasteur, 1848 : deux cristaux miroirs, deux rotations contraires.",
+   "ecran": "chiralite"
+  },
+  {
+   "id": "p18",
+   "dit": "La source la plus fréquente de chiralité est le carbone asymétrique : un carbone lié à quatre substituants tous différents. Pour le repérer, on cherche les carbones à quatre liaisons simples et on examine leurs quatre partenaires. Dans l'acide lactique, le carbone central porte un hydrogène, un hydroxyle, un méthyle et un carboxyle : quatre groupes distincts. Il existe donc deux acides lactiques, images miroir l'un de l'autre.",
+   "texte": "C* : –H, –OH, –CH₃, –COOH. Quatre différents → chiral.",
+   "ecran": "carbone_asymetrique"
+  },
+  {
+   "id": "p19",
+   "dit": "Deux énantiomères ont des propriétés physiques identiques : mêmes températures de fusion et d'ébullition, même solubilité dans un solvant ordinaire. Une seule propriété physique les distingue : l'activité optique ; l'un fait tourner la lumière polarisée vers la droite, l'autre vers la gauche, du même angle. En revanche, face à un partenaire chiral, comme une enzyme, leurs réactivités deviennent très différentes : la clé et la serrure, encore.",
+   "texte": "Tout est identique… sauf le signe de rotation et le vivant.",
+   "ecran": "proprietes_enantiomeres"
+  },
+  {
+   "id": "p20",
+   "dit": "L'angle de rotation, mesuré au polarimètre, suit une loi simple : il est proportionnel au pouvoir rotatoire spécifique du composé, à la longueur de la cuve en décimètres et à la concentration. L'énantiomère qui tourne la lumière vers la droite est dit dextrogyre, noté plus ; son image miroir est lévogyre, notée moins. Attention, ce signe expérimental ne se déduit pas de la géométrie : il se mesure.",
+   "texte": "α = [α] × l × c : (+) dextrogyre, (−) lévogyre.",
+   "ecran": "activite_optique"
+  },
+  {
+   "id": "p21",
+   "dit": "Récapitulons. La double liaison bloque la rotation et fige les groupes dans l'espace : naît l'isomérie Z E, tranchée par les priorités de Cahn, Ingold et Prelog. Quand les connexions restent identiques mais que l'arrangement spatial devient image miroir non superposable, on parle d'énantiomères, le plus souvent nés d'un carbone asymétrique. Ils ne se distinguent que par la lumière polarisée et par le vivant.",
+   "texte": "Z/E d'un côté, énantiomères de l'autre : l'espace tranche.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p22",
+   "dit": "Comment écrire la troisième dimension sur une feuille ? Emil Fischer, en mille huit cent quatre-vingt-onze, propose un code strict. La chaîne carbonée se place verticalement, le groupe le plus oxydé en haut. Le carbone asymétrique est à l'intersection des deux traits, implicite. Convention capitale : les liaisons verticales partent en arrière du plan, les liaisons horizontales pointent vers vous. Sur l'écran, le glycéraldéhyde et ses deux formes, D et L.",
+   "texte": "Fischer : vertical = arrière, horizontal = avant.",
+   "ecran": "fischer"
+  },
+  {
+   "id": "p23",
+   "dit": "Une projection de Fischer ne se manipule pas librement. La faire tourner de cent quatre-vingts degrés dans son plan est permis : la configuration est conservée. La tourner de quatre-vingt-dix degrés est interdit : l'avant et l'arrière s'inversent, et l'on obtient l'énantiomère. De même, échanger deux substituants donne l'image miroir, tandis que deux échanges ramènent à la molécule de départ. C'est la source d'erreur numéro un des copies.",
+   "texte": "180° : permis. 90° : interdit. Un échange : énantiomère.",
+   "ecran": "fischer_manipulations"
+  },
+  {
+   "id": "p24",
+   "dit": "Donald Cram propose, dans les années mille neuf cent cinquante, une représentation plus intuitive, en perspective. Deux substituants restent dans le plan, dessinés en traits pleins. Un troisième sort vers l'avant, en coin plein. Le dernier part vers l'arrière, en pointillés. Pour le deux-butanol, les priorités sont hydroxyle, puis éthyle, puis méthyle, puis hydrogène ; avec l'hydrogène à l'arrière, la lecture des trois autres donne directement la configuration.",
+   "texte": "Cram : coin = avant, pointillés = arrière, traits = dans le plan.",
+   "ecran": "cram"
+  },
+  {
+   "id": "p25",
+   "dit": "Reste à nommer chaque énantiomère de façon absolue : c'est la configuration R ou S. On attribue les priorités un à quatre selon les règles CIP ; pour le bromochlorofluorométhane, brome d'abord, puis chlore, fluor et hydrogène. On oriente ensuite la molécule pour placer le groupe de priorité quatre à l'arrière. Si la séquence un, deux, trois tourne dans le sens horaire, la configuration est R, de rectus ; dans le sens contraire, elle est S, de sinister.",
+   "texte": "R = sens horaire, S = antihoraire, le n° 4 derrière.",
+   "ecran": "configuration_rs"
+  },
+  {
+   "id": "p26",
+   "dit": "Deux pièges à déjouer. Premier piège : la configuration R ou S décrit un arrangement dans l'espace, le signe plus ou moins mesure un effet sur la lumière ; aucun lien prévisible ne les relie, un composé R peut être dextrogyre ou lévogyre. Deuxième piège : l'acide tartrique possède une forme méso, avec deux carbones asymétriques et un plan de symétrie interne ; elle est superposable à son image miroir et optiquement inactive.",
+   "texte": "R/S ≠ +/−. Et un méso a des C* sans être chiral.",
+   "ecran": "pieges"
+  },
+  {
+   "id": "p27",
+   "dit": "Voici la méthode qui organise tout le cours : l'arbre de décision des leçons. Question un : les formules brutes sont-elles identiques ? Sinon, ce ne sont pas des isomères. Question deux : les connexions sont-elles les mêmes ? Sinon, isomérie de constitution, chaîne, position ou fonction. Question trois : une double liaison ou un cycle peut-il figer la géométrie ? Alors Z E, donc diastéréoisomères. Question quatre : un carbone asymétrique ? Alors énantiomères.",
+   "texte": "Brute → connexions → C=C → C* : l'arbre tranche tout.",
+   "ecran": "arbre"
+  },
+  {
+   "id": "p28",
+   "dit": "Problème synthèse des leçons : la formule C quatre H huit avec une double liaison. Les isomères de constitution alcènes sont le but-un-ène, le but-deux-ène et le deux-méthylprop-un-ène ; en isomères de fonction, on ajoute le cyclobutane et le méthylcyclopropane. Parmi les alcènes, seul le but-deux-ène présente une isomérie Z E, car chaque carbone de sa double liaison porte deux groupes différents. Aucune de ces structures n'a de carbone asymétrique : pas de chiralité ici.",
+   "texte": "C₄H₈ : 5 constitutions, un seul couple Z/E, zéro chiral.",
+   "ecran": "exercice_c4h8"
+  },
+  {
+   "id": "p29",
+   "dit": "Dernier entraînement, tiré de la leçon de synthèse. L'acide hex-trois-énoïque possède une double liaison dont chaque carbone porte un hydrogène et un groupe différent : il existe donc en deux formes géométriques, Z et E. L'acide lactique, lui, possède un carbone asymétrique : il existe en deux énantiomères, R et S, que l'on représente en projection de Fischer avec le groupe carboxyle en haut et l'hydroxyle à droite ou à gauche.",
+   "texte": "C=C → Z/E. C* → R/S. Deux questions, deux outils.",
+   "ecran": "exercice_final"
+  },
+  {
+   "id": "p30",
+   "dit": "Pourquoi tant de rigueur ? Parce que le vivant est chiral et ne reconnaît qu'une seule main. La thalidomide en est le drame historique : un énantiomère calmait les nausées, l'autre provoquait de graves malformations, et le médicament vendu mélangeait les deux. L'ibuprofène est vendu en mélange, mais seule sa forme S est anti-inflammatoire. Et la carvone change même d'odeur selon la main : menthe verte d'un côté, carvi de l'autre.",
+   "texte": "Thalidomide : une main soigne, l'autre nuit.",
+   "ecran": "enjeux"
+  },
+  {
+   "id": "p31",
+   "dit": "Pour conclure : même formule brute, et tout peut différer. La constitution distingue la chaîne, la position et la fonction. La double liaison fige une géométrie que les règles CIP nomment Z ou E. Le carbone asymétrique crée des énantiomères, images miroir que Fischer et Cram savent dessiner et que la lettre R ou S nomme sans ambiguïté. Face à n'importe quelle paire de molécules, déployez l'arbre de décision : c'est votre meilleure alliée le jour du bac.",
+   "texte": "Même formule, tout peut différer : à vous de classer.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Isomérie de constitution : chaîne, position, fonction"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "La troisième dimension : géométrie Z/E et chiralité",
+   "pont": {
+    "texte": "Partie 2 : la troisième dimension — géométrie Z/E et chiralité.",
+    "dit": "Partie deux : la troisième dimension. Nous quittons les connexions pour l'espace lui-même : la double liaison carbone carbone, dont la rotation est bloquée, crée la géométrie Z E, puis le carbone asymétrique ouvre le monde des énantiomères, ces molécules images miroir que la lumière polarisée sait distinguer."
+   }
+  },
+  {
+   "debut": "p22",
+   "sous_titre": "Représenter, nommer, décider : Fischer, Cram, R/S et la méthode du bac",
+   "pont": {
+    "texte": "Partie 3 : représenter, nommer, décider — Fischer, Cram, R/S.",
+    "dit": "Partie trois : représenter, nommer, décider. Pour travailler sur ces molécules en trois dimensions avec du papier et un crayon, les chimistes ont inventé deux langages, les projections de Fischer et de Cram, et un nom absolu pour chaque énantiomère, la configuration R ou S. Nous terminerons par la méthode complète qui permet de classer n'importe quelle paire de molécules le jour du bac."
+   }
+  }
+ ]
+}

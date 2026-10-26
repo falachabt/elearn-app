@@ -3572,6 +3572,21 @@ const FIG = {
       mot(870, 190, 'acide carboxylique', { t: 21 }) + mot(870, 216, 'groupe carboxyle', { t: 16 }) +
       mot(500, 272, 'quatre familles, un même oxygène', { t: 22 }));
   },
+  cram_fig(t) {
+    let pointilles = '';
+    for (let i = 0; i < 5; i++) { const y = 168 + i * 13, w = 4 + i * 4; pointilles += trait(500 - w, y, 500 + w, y, 1, { w: 3 }); }
+    return svgBoite(
+      `<path d="M492 138 L508 138 L522 62 L478 62 Z" fill="#E8604C" fill-opacity=".55"/>` +
+      pointilles +
+      trait(492, 148, 396, 192, 1, { w: 4 }) + trait(508, 148, 604, 192, 1, { w: 4 }) +
+      `<circle cx="500" cy="142" r="15" fill="#B8860B" fill-opacity=".5" stroke="currentColor" stroke-width="3"/>` + mot(500, 148, 'C', { t: 16 }) +
+      mot(500, 40, 'OH', { c: '#E8604C', t: 23 }) +
+      mot(500, 252, 'H', { t: 21 }) +
+      mot(352, 200, 'CH₃', { t: 21 }) + mot(656, 200, 'C₂H₅', { t: 21 }) +
+      mot(212, 92, 'coin plein : vers l’avant', { c: '#E8604C', t: 18, a: 'start' }) +
+      mot(788, 92, 'pointillés : vers l’arrière', { t: 18, a: 'end' }) +
+      mot(500, 292, 'la projection de Cram du (R)-2-butanol', { t: 21 }));
+  },
   fission(t) {
     const p = prog(t);
     return svgBoite(
