@@ -1,0 +1,525 @@
+{
+ "cours": 6150,
+ "ecrans": {
+  "balle": {
+   "kicker": "Exemple : quand la balle touche-t-elle le sol ?",
+   "tex": [
+    "h(t) = -5t^2 + 20t + 1{,}5 = 0 \\quad \\Rightarrow \\quad -10t^2 + 40t + 3 = 0",
+    "\\Delta = 40^2 - 4 \\times (-10) \\times 3 = 1720",
+    "t \\approx 4{,}07 \\ \\text{s} \\quad \\text{(l'autre racine, négative, est rejetée)}"
+   ],
+   "titre": "Une hauteur, un discriminant, un temps de vol",
+   "type": "etape"
+  },
+  "bicaree": {
+   "kicker": "Changement de variable : les bicarrées",
+   "tex": [
+    "x^4 - 5x^2 + 4 = 0 \\qquad X = x^2 \\ \\Rightarrow \\ X^2 - 5X + 4 = 0",
+    "X = 1 \\ \\text{ou} \\ 4 \\quad \\Rightarrow \\quad x = \\pm 1 \\ \\text{ou} \\ \\pm 2"
+   ],
+   "titre": "Poser X égale x au carré, et le degré quatre devient deux",
+   "type": "etape"
+  },
+  "contre_exemple": {
+   "kicker": "Quand aucun candidat ne marche",
+   "tex": [
+    "P(x) = 2x^3 - 3x - 5 \\qquad \\text{candidats : } \\pm 1, \\pm 5, \\pm \\tfrac{1}{2}, \\pm \\tfrac{5}{2}",
+    "P\\left(\\tfrac{5}{2}\\right) = \\tfrac{75}{4} \\neq 0 \\qquad P(1) = -6 \\neq 0",
+    "\\text{aucune racine rationnelle : méthodes numériques}"
+   ],
+   "titre": "Tester tous les candidats ne garantit pas une racine",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Qu'est-ce qu'une équation polynomiale ?",
+   "note": "Exemple : 3x⁴ − 2x² + 7x − 5 = 0, de degré 4. Le degré donne le nombre maximal de racines.",
+   "tex": "P(x) = a_n x^n + a_{n-1} x^{n-1} + \\cdots + a_1 x + a_0 = 0",
+   "type": "formule"
+  },
+  "degre1": {
+   "kicker": "Le premier degré",
+   "note": "Principe de la balance : toute opération faite d'un côté se fait aussi de l'autre.",
+   "tex": "ax + b = 0 \\quad (a \\neq 0) \\quad \\Rightarrow \\quad x = -\\frac{b}{a}",
+   "type": "formule",
+   "anim": {
+    "nom": "droite_racine_fig",
+    "hauteur": 180
+   }
+  },
+  "detection": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "derive_fig"
+   },
+   "kicker": "Détecter : le polynôme dérivé",
+   "tex": [
+    "P(x) = x^3 - 3x + 2 \\qquad P'(x) = 3x^2 - 3",
+    "P(1) = 0 \\quad \\text{et} \\quad P'(1) = 0 \\quad \\Rightarrow \\quad 1 \\text{ racine double}",
+    "P(x) = (x - 1)^2 (x + 2)"
+   ],
+   "titre": "Racine de P et de P prime à la fois : racine multiple",
+   "type": "etape"
+  },
+  "discriminant": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "signe_parabole_fig"
+   },
+   "kicker": "Le discriminant décide",
+   "tex": [
+    "\\Delta > 0 \\quad \\Rightarrow \\quad \\text{deux racines réelles distinctes}",
+    "\\Delta = 0 \\quad \\Rightarrow \\quad \\text{une racine double}",
+    "\\Delta < 0 \\quad \\Rightarrow \\quad \\text{aucune racine réelle}"
+   ],
+   "titre": "Un seul nombre, trois destins pour la parabole",
+   "type": "etape"
+  },
+  "ex_cubique": {
+   "kicker": "Exemple : une cubique résolue entièrement",
+   "tex": [
+    "P(x) = x^3 - 4x^2 + x + 6 \\qquad P(2) = 8 - 16 + 2 + 6 = 0",
+    "P(x) = (x - 2)(x^2 - 2x - 3)",
+    "x^2 - 2x - 3 = 0 \\quad (\\Delta = 16) \\quad \\Rightarrow \\quad S = \\{-1,\\ 2,\\ 3\\}"
+   ],
+   "titre": "Tester, factoriser, retomber sur un trinôme",
+   "type": "etape"
+  },
+  "ex_degre1": {
+   "kicker": "Exemples : le premier degré en action",
+   "tex": [
+    "3x - 7 = 5 \\quad \\Rightarrow \\quad x = 4 \\qquad 3 \\times 4 - 7 = 5",
+    "\\tfrac{2x}{3} + \\tfrac{1}{4} = \\tfrac{5}{6} \\quad \\Rightarrow \\quad 8x + 3 = 10 \\quad \\Rightarrow \\quad x = \\tfrac{7}{8}"
+   ],
+   "titre": "Isoler, diviser, vérifier",
+   "type": "etape"
+  },
+  "ex_rationnelles": {
+   "kicker": "Exemple : la recherche systématique",
+   "tex": [
+    "P(x) = 2x^3 - 3x^2 - 11x + 6 \\qquad P(3) = 54 - 27 - 33 + 6 = 0",
+    "P(x) = (x - 3)(2x^2 + 3x - 2) = (x - 3)(2x - 1)(x + 2)",
+    "S = \\{-2,\\ \\tfrac{1}{2},\\ 3\\}"
+   ],
+   "titre": "Douze candidats, un seul gagnant à tester d'abord",
+   "type": "etape"
+  },
+  "facto_intro": {
+   "kicker": "Degrés supérieurs : la stratégie",
+   "texte": "Pas de formule simple au-delà : on factorise, on divise, on fait baisser le degré, un facteur à la fois.",
+   "type": "phrase",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 170
+   }
+  },
+  "horner": {
+   "kicker": "Diviser vite : le schéma de Horner",
+   "tex": [
+    "P(x) = x^3 - 4x^2 + 5x - 2 \\qquad P(1) = 0",
+    "\\text{Horner, } r = 1 \\text{ : quotients } 1,\\ -3,\\ 2, \\text{ reste } 0",
+    "P(x) = (x - 1)(x^2 - 3x + 2)"
+   ],
+   "titre": "Évaluer et diviser par (x − r) en un seul tableau",
+   "type": "etape",
+   "anim": {
+    "nom": "horner_fig",
+    "hauteur": 130,
+    "coeffs": [
+     1,
+     -4,
+     5,
+     -2
+    ],
+    "a": 1
+   }
+  },
+  "identites": {
+   "kicker": "Identités remarquables avancées",
+   "note": "Application : x⁶ − 64 = (x²)³ − 4³ = (x² − 4)(x⁴ + 4x² + 16).",
+   "tex": "a^3 - b^3 = (a - b)(a^2 + ab + b^2)",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Une trajectoire de balle, un budget, une aire à partager : derrière ces problèmes, une même forme, P(x) = 0.",
+   "type": "phrase",
+   "anim": {
+    "nom": "parabole_fig",
+    "hauteur": 170
+   }
+  },
+  "jardin": {
+   "kicker": "Exemple : compléter le carré",
+   "tex": [
+    "x(x + 3) = 10 \\quad \\Rightarrow \\quad x^2 + 3x - 10 = 0",
+    "\\left(x + \\tfrac{3}{2}\\right)^2 = \\tfrac{49}{4} \\quad \\Rightarrow \\quad x = 2 \\ \\text{ou} \\ -5",
+    "x = 2 \\ \\text{m} \\qquad \\text{longueur} = 5 \\ \\text{m}"
+   ],
+   "titre": "Un parterre de dix mètres carrés, longueur égale largeur plus trois",
+   "type": "etape"
+  },
+  "limites": {
+   "kicker": "Les limites des formules",
+   "texte": "Degré cinq et plus : aucune formule générale par radicaux, d'après Abel et Galois. Dichotomie et Newton prennent le relais.",
+   "type": "phrase"
+  },
+  "multiples_def": {
+   "kicker": "Qu'est-ce qu'une racine multiple ?",
+   "note": "m vaut 1 : racine simple ; 2 : double ; 3 : triple. La courbe traverse, tangente ou inflechit.",
+   "tex": "P(x) = (x - r)^m \\cdot Q(x), \\qquad Q(r) \\neq 0",
+   "type": "formule"
+  },
+  "projectile": {
+   "kicker": "Application : la portée d'un ballon",
+   "tex": [
+    "h(x) = 0{,}577x - 0{,}0163x^2",
+    "h(x) = 0 \\quad \\Rightarrow \\quad x \\approx 35{,}4 \\ \\text{m (portée)}",
+    "\\text{sommet : } x \\approx 17{,}7 \\ \\text{m}, \\quad h_{max} \\approx 5{,}1 \\ \\text{m}"
+   ],
+   "titre": "Vingt mètres par seconde, trente degrés, pesanteur neuf virgule huit",
+   "type": "etape"
+  },
+  "puissance4": {
+   "kicker": "Exemple : des multiplicités quatre et deux",
+   "tex": [
+    "x^4 - 4x^3 + 6x^2 - 4x + 1 = (x - 1)^4",
+    "x^4 - 2x^2 + 1 = (x^2 - 1)^2 = (x - 1)^2 (x + 1)^2"
+   ],
+   "titre": "Reconnaître un développement de binôme, et un carré de bicarrée",
+   "type": "etape"
+  },
+  "racine_evidente": {
+   "kicker": "L'idée maîtresse : la racine évidente",
+   "note": "Si r annule P, alors résoudre P(x) = 0 revient à x = r ou Q(x) = 0, de degré inférieur.",
+   "tex": "P(x) = (x - r) \\times Q(x)",
+   "type": "formule"
+  },
+  "rationnelles": {
+   "kicker": "Le théorème des racines rationnelles",
+   "note": "Coefficients entiers : p divise le terme constant, q divise le coefficient dominant.",
+   "tex": "\\frac{p}{q} \\ \\text{racine} \\ \\Rightarrow \\ p \\mid a_0 \\ \\text{ et } \\ q \\mid a_n",
+   "type": "formule"
+  },
+  "recap1": {
+   "etapes": [
+    "Premier degré : x = −b/a, une seule solution",
+    "Δ = b² − 4ac décide du nombre de racines",
+    "Δ > 0 : deux racines ; Δ = 0 : une double",
+    "Viète : somme −b/a, produit c/a"
+   ],
+   "kicker": "Partie 1 : l'essentiel",
+   "type": "recap"
+  },
+  "recap2": {
+   "etapes": [
+    "Racine évidente : tester les diviseurs de a₀",
+    "Rationnelles : p divise a₀, q divise aₙ",
+    "Horner : diviser par (x − r), degré −1",
+    "Bicarrées et identités : changer de variable"
+   ],
+   "kicker": "Partie 2 : l'essentiel",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Racine multiple : P(r) = 0 et P′(r) = 0",
+    "Double : tangence ; triple : inflexion",
+    "Toujours vérifier dans le contexte",
+    "Degré ≥ 5 : pas de formule générale",
+    "Modéliser, résoudre, interpréter"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reconstruction": {
+   "kicker": "Reconstruire un polynôme par ses racines",
+   "tex": [
+    "P(x) = 3(x - 2)^2 (x + 1)",
+    "P(x) = 3x^3 - 9x^2 + 12 \\qquad P(1) = 6"
+   ],
+   "titre": "Racine double deux, racine simple moins un, coefficient dominant trois",
+   "type": "etape"
+  },
+  "rectangle": {
+   "kicker": "Application : retrouver des dimensions",
+   "tex": [
+    "(l + 5)(l + 2) = l(l + 3) + 38 \\quad \\Rightarrow \\quad 4l = 28",
+    "l = 7 \\ \\text{cm} \\qquad L = l + 3 = 10 \\ \\text{cm}"
+   ],
+   "titre": "Chaque côté grandit de deux, l'aire grandit de trente-huit",
+   "type": "etape"
+  },
+  "second": {
+   "kicker": "Le second degré : la formule universelle",
+   "note": "Forme standard : ax² + bx + c = 0, avec a différent de zéro.",
+   "tex": "\\Delta = b^2 - 4ac \\qquad x_{1,2} = \\frac{-b \\pm \\sqrt{\\Delta}}{2a}",
+   "type": "formule"
+  },
+  "strategie": {
+   "etapes": [
+    "Ordonner et simplifier le polynôme",
+    "Tester 0, 1, −1 et les racines rationnelles",
+    "Factoriser, puis diviser pour baisser le degré",
+    "Second degré : discriminant ou Viète",
+    "Aucune racine exacte : méthodes numériques"
+   ],
+   "kicker": "La méthode en cinq gestes",
+   "type": "recap"
+  },
+  "tangence": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Lire la multiplicité sur la courbe",
+   "texte": "Simple : la courbe traverse l'axe. Double : elle lui est tangente. Triple : point d'inflexion sur l'axe.",
+   "type": "phrase"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "parabole_fig"
+   },
+   "kicker": "Mathématique · Équations polynomiales",
+   "sous": "Discriminant, factorisation, racines rationnelles et racines multiples : la boîte à outils complète",
+   "titre": "Équations polynomiales : du premier degré aux racines multiples",
+   "type": "titre"
+  },
+  "trains": {
+   "kicker": "Application : deux trains l'un vers l'autre",
+   "tex": [
+    "80t + 120t = 500",
+    "200t = 500 \\qquad t = 2{,}5 \\ \\text{heures}"
+   ],
+   "titre": "Cinq cents kilomètres, quatre-vingts et cent vingt kilomètres par heure",
+   "type": "etape"
+  },
+  "viete": {
+   "kicker": "Factoriser et relations de Viète",
+   "tex": [
+    "x^2 - 5x + 6 = 0 \\quad \\Rightarrow \\quad (x - 2)(x - 3) = 0",
+    "S = x_1 + x_2 = -\\tfrac{b}{a} = 5 \\qquad P = x_1 x_2 = \\tfrac{c}{a} = 6"
+   ],
+   "titre": "Somme et produit : deviner les racines",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Premier et second degré : balance, discriminant et Viète"
+  },
+  {
+   "debut": "p13",
+   "pont": {
+    "dit": "Partie deux : attaquer les degrés supérieurs. Faute de formule simple, notre arme sera la factorisation : trouver une racine évidente, diviser par ixe moins erre, et recommencer sur un polynôme de degré plus petit, jusqu'à retomber sur le second degré.",
+    "texte": "Partie 2 : factorisation, racines rationnelles et schéma de Horner."
+   },
+   "sous_titre": "Degrés supérieurs : factoriser, diviser, réduire"
+  },
+  {
+   "debut": "p24",
+   "pont": {
+    "dit": "Partie trois : les racines multiples et le retour au réel. Nous apprendrons à détecter les racines qui se répètent grâce au polynôme dérivé, à les lire sur la courbe, puis à appliquer toute la boîte à outils à des problèmes de physique, de géométrie et de reconstruction.",
+    "texte": "Partie 3 : racines multiples, géométrie et applications."
+   },
+   "sous_titre": "Racines multiples et applications"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux équations polynomiales. Du premier degré aux racines multiples, nous allons construire une boîte à outils complète : le discriminant pour le second degré, la factorisation et les racines rationnelles pour les degrés supérieurs, et le polynôme dérivé pour traquer les racines qui se répètent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Équations polynomiales : la boîte à outils complète."
+  },
+  {
+   "dit": "Une trajectoire de balle, un budget de livres, une aire de terrain à partager : des problèmes très différents, mais une même forme mathématique les relie. Chacun se traduit par un polynôme que l'on annule, et résoudre l'équation, c'est trouver les valeurs qui rendent ce polynôme égal à zéro : ses racines.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un même geste partout : chercher les racines de P(x) = 0."
+  },
+  {
+   "dit": "Un polynôme est une somme de puissances de l'inconnue, chacune multipliée par un coefficient. La plus grande puissance dont le coefficient n'est pas nul s'appelle le degré. Ici, trois ixe puissance quatre, moins deux ixe au carré, plus sept ixe, moins cinq : le degré vaut quatre, et le théorème fondamental de l'algèbre garantit quatre racines dans les nombres complexes, en comptant les racines multiples.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Le degré : le nombre maximal de racines."
+  },
+  {
+   "dit": "Commençons par le premier degré : a ixe plus bé égale zéro, avec a différent de zéro. Le principe est celui d'une balance en équilibre : toute opération effectuée sur un membre doit l'être aussi sur l'autre. On soustrait bé des deux côtés, puis on divise par a. La solution est unique : ixe égale moins bé sur a. Graphiquement, c'est l'abscisse du point où la droite traverse l'axe horizontal.",
+   "ecran": "degre1",
+   "id": "p04",
+   "texte": "Premier degré : une balance, une solution unique."
+  },
+  {
+   "dit": "Deux exemples pour ancrer le geste. Trois ixe moins sept égale cinq : on ajoute sept des deux côtés, il reste trois ixe égale douze, donc ixe égale quatre, et la vérification est immédiate. Avec des fractions, on chasse les dénominateurs en multipliant tout par douze, le plus petit commun multiple : huit ixe plus trois égale dix, et ixe vaut sept huitièmes.",
+   "ecran": "ex_degre1",
+   "id": "p05",
+   "texte": "Fractions : multiplier par le PPCM chasse les dénominateurs."
+  },
+  {
+   "dit": "Application classique : deux trains partent l'un vers l'autre de deux villes distantes de cinq cents kilomètres, l'un à quatre-vingts kilomètres par heure, l'autre à cent vingt. En un temps té, ils parcourent ensemble quatre-vingts té plus cent vingt té kilomètres. L'équation donne deux cents té égale cinq cents, donc té égale deux heures et demie : c'est l'heure de la rencontre.",
+   "ecran": "trains",
+   "id": "p06",
+   "texte": "Rencontre des trains : t = 2,5 heures."
+  },
+  {
+   "dit": "Passons au second degré, la forme a ixe au carré plus bé ixe plus cé égale zéro. En complétant le carré une fois pour toutes sur la forme générale, on obtient la formule universelle : ixe égale moins bé, plus ou moins racine carrée du discriminant, le tout sur deux a. Le discriminant, delta égale bé au carré moins quatre a cé, est calculé avant tout le reste : il décide de tout.",
+   "ecran": "second",
+   "id": "p07",
+   "texte": "La formule : (−b ± √Δ) / 2a, Δ calculé d'abord."
+  },
+  {
+   "dit": "Trois cas, et trois seulement. Si le discriminant est strictement positif, la parabole coupe l'axe en deux points : deux racines réelles distinctes. S'il est nul, la parabole est tangente à l'axe : une racine double. S'il est négatif, la parabole ne touche jamais l'axe : aucune racine réelle, mais deux racines complexes conjuguées. Un seul nombre, et le paysage entier est connu avant tout calcul.",
+   "ecran": "discriminant",
+   "id": "p08",
+   "texte": "Δ > 0, Δ = 0, Δ < 0 : trois paysages."
+  },
+  {
+   "dit": "Exemple physique complet : la hauteur d'une balle suit moins cinq té au carré, plus vingt té, plus un virgule cinq. Annuler cette hauteur donne, après simplification, moins dix té au carré plus quarante té plus trois égale zéro. Le discriminant vaut mille sept cent vingt, positif : deux racines, environ moins zéro virgule zéro sept et quatre virgule zéro sept secondes. Le temps négatif est rejeté : le temps de vol est d'environ quatre secondes.",
+   "ecran": "balle",
+   "id": "p09",
+   "texte": "Temps de vol : environ 4,07 secondes."
+  },
+  {
+   "dit": "Quand les racines sont simples à deviner, la factorisation bat la formule. Pour ixe au carré moins cinq ixe plus six, on cherche deux nombres de somme cinq et de produit six : ce sont deux et trois, d'où la factorisation en ixe moins deux fois ixe moins trois. Ce n'est pas un hasard : pour tout trinôme, la somme des racines vaut moins bé sur a, et leur produit cé sur a. Ce sont les relations de Viète, un raccourci précieux et un moyen de contrôle.",
+   "ecran": "viete",
+   "id": "p10",
+   "texte": "Viète : somme −b/a, produit c/a."
+  },
+  {
+   "dit": "La complétion du carré, elle, montre la mécanique derrière la formule. Un parterre rectangulaire a une longueur qui dépasse la largeur de trois mètres, et une aire de dix mètres carrés. Si ixe est la largeur, ixe fois ixe plus trois égale dix. On ajoute trois demis au carré des deux côtés : le membre de gauche devient un carré parfait, et l'on obtient ixe égale deux, ou moins cinq. Seule la valeur positive a un sens : deux mètres sur cinq.",
+   "ecran": "jardin",
+   "id": "p11",
+   "texte": "Compléter le carré : largeur 2 m, longueur 5 m."
+  },
+  {
+   "dit": "Récapitulons cette première partie. Le premier degré donne une solution unique, moins bé sur a, par le principe de la balance. Le second degré se range entièrement derrière son discriminant : deux racines, une racine double, ou aucune racine réelle. Les relations de Viète relient les racines aux coefficients, et la complétion du carré explique d'où vient la formule.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "L'essentiel de la partie un."
+  },
+  {
+   "dit": "Au-delà du second degré, les formules générales deviennent très lourdes, et dès le degré cinq, nous verrons qu'elles n'existent plus. La stratégie gagnante est ailleurs : factoriser. Décomposer un polynôme en facteurs de degrés plus petits, jusqu'à retomber sur des équations que l'on sait résoudre. Toute cette partie est un apprentissage de ce geste : trouver un premier facteur, diviser, recommencer.",
+   "ecran": "facto_intro",
+   "id": "p13",
+   "texte": "Degrés supérieurs : factoriser pour faire baisser le degré."
+  },
+  {
+   "dit": "L'idée maîtresse tient en une phrase : si un nombre erre annule le polynôme, alors le polynôme se factorise par ixe moins erre. Résoudre l'équation revient alors à résoudre ixe égale erre, ou le quotient égale zéro, un problème de degré inférieur. Toute la difficulté se déplace donc sur une question : comment trouver ce premier nombre erre, cette racine évidente ?",
+   "ecran": "racine_evidente",
+   "id": "p14",
+   "texte": "P(r) = 0 ⟺ (x − r) est un facteur de P."
+  },
+  {
+   "dit": "Premier essai sur ixe au cube, moins quatre ixe au carré, plus ixe, plus six. On teste les diviseurs du terme constant, six : un, deux, trois, six et leurs opposés. Pour ixe égale deux, le calcul donne huit, moins seize, plus deux, plus six : zéro. La division donne le quotient ixe au carré moins deux ixe moins trois, dont le discriminant vaut seize : ses racines sont moins un et trois. Solutions finales : moins un, deux et trois.",
+   "ecran": "ex_cubique",
+   "id": "p15",
+   "texte": "Cubique résolue : S = {−1, 2, 3}."
+  },
+  {
+   "dit": "Pour ne pas tester au hasard, un théorème organise la recherche. Si un polynôme à coefficients entiers possède une racine rationnelle pé sur qu, écrite sous forme irréductible, alors pé divise le terme constant et qu divise le coefficient dominant. La liste des candidats est donc finie et courte : on la construit à partir des diviseurs, puis on teste chaque candidat, un par un.",
+   "ecran": "rationnelles",
+   "id": "p16",
+   "texte": "Candidats rationnels : p divise a₀, q divise aₙ."
+  },
+  {
+   "dit": "Application complète sur deux ixe au cube, moins trois ixe au carré, moins onze ixe, plus six. Les candidats sont les diviseurs de six, éventuellement divisés par deux : douze fractions à tester. Le candidat trois fonctionne : cinquante-quatre, moins vingt-sept, moins trente-trois, plus six, égale zéro. La division donne deux ixe au carré plus trois ixe moins deux, qui se factorise encore. Au final, trois racines : moins deux, un demi et trois.",
+   "ecran": "ex_rationnelles",
+   "id": "p17",
+   "texte": "Trois racines : −2, 1/2 et 3."
+  },
+  {
+   "dit": "Pour diviser rapidement par ixe moins erre, le schéma de Horner condense tous les calculs en un petit tableau : on écrit les coefficients, on descend le premier, puis on multiplie par erre et on ajoute, de proche en proche. La dernière valeur obtenue est le reste, c'est-à-dire la valeur du polynôme en erre : ici, pour erre égale un, le reste est nul, et les valeurs intermédiaires donnent directement les coefficients du quotient.",
+   "ecran": "horner",
+   "id": "p18",
+   "texte": "Horner : évaluer et diviser en un seul tableau."
+  },
+  {
+   "dit": "Certains polynômes de degré quatre se ramènent au second degré par un changement de variable : ce sont les équations bicarrées, qui ne contiennent que des puissances paires. Pour ixe puissance quatre moins cinq ixe au carré plus quatre, on pose grand ixe égale ixe au carré : l'équation devient grand ixe au carré moins cinq grand ixe plus quatre, de racines un et quatre. On revient ensuite à ixe : plus ou moins un, plus ou moins deux.",
+   "ecran": "bicaree",
+   "id": "p19",
+   "texte": "Bicarrée : quatre racines, ±1 et ±2."
+  },
+  {
+   "dit": "Dernier outil de factorisation : les identités remarquables de degré trois. La différence de deux cubes se factorise toujours, et il faut savoir la reconnaître sous des déguisements. Ixe puissance six moins soixante-quatre, c'est le cube de ixe au carré moins le cube de quatre : la factorisation donne ixe au carré moins quatre, fois un facteur de degré quatre. Le premier facteur donne encore les racines deux et moins deux.",
+   "ecran": "identites",
+   "id": "p20",
+   "texte": "x⁶ − 64 = (x² − 4)(x⁴ + 4x² + 16)."
+  },
+  {
+   "dit": "Attention toutefois : la liste des candidats rationnels peut ne contenir aucune racine. Pour deux ixe au cube moins trois ixe moins cinq, les candidats sont un, cinq, un demi et cinq demis, au signe près. Cinq demis donne soixante-quinze quarts, différent de zéro ; un donne moins six ; tous les autres échouent aussi. Ce polynôme n'a tout simplement pas de racine rationnelle : il faudra des méthodes numériques, comme la dichotomie, pour approcher sa racine réelle.",
+   "ecran": "contre_exemple",
+   "id": "p21",
+   "texte": "Aucune racine rationnelle : passer au numérique."
+  },
+  {
+   "dit": "Face à n'importe quelle équation polynomiale, la démarche est maintenant claire : ordonner le polynôme, tester les racines simples puis les candidates rationnelles, factoriser et diviser pour faire baisser le degré, résoudre ce qui reste par le discriminant ou par Viète, et basculer vers le numérique si aucune racine exacte n'existe. Cinq gestes, dans cet ordre, avant de déclarer un problème difficile.",
+   "ecran": "strategie",
+   "id": "p22",
+   "texte": "La méthode en cinq gestes."
+  },
+  {
+   "dit": "Récapitulons cette deuxième partie. Une racine évidente se cherche d'abord parmi les diviseurs du terme constant, et le théorème des racines rationnelles organise la liste complète des candidats. Le schéma de Horner divise vite et bien. Les bicarrées se ramènent au second degré, les différences de cubes se factorisent par identité, et l'absence de racine rationnelle n'est pas un échec : c'est un résultat, qui oriente vers le numérique.",
+   "ecran": "recap2",
+   "id": "p23",
+   "texte": "L'essentiel de la partie deux."
+  },
+  {
+   "dit": "Il reste un phénomène à comprendre : les racines qui se répètent. Un nombre erre est racine de multiplicité ème si le polynôme se factorise par ixe moins erre à la puissance ème, mais pas davantage. Multiplicité un : racine simple ; deux : racine double ; trois : racine triple. Le théorème fondamental de l'algèbre compte chaque racine autant de fois que sa multiplicité : un polynôme de degré ène a toujours ène racines complexes, à condition de les compter ainsi.",
+   "ecran": "multiples_def",
+   "id": "p24",
+   "texte": "Multiplicité : combien de fois la racine compte."
+  },
+  {
+   "dit": "Comment détecter une racine multiple sans factoriser ? Par le polynôme dérivé. Si erre est racine double ou plus, alors erre annule à la fois le polynôme et sa dérivée : c'est le critère pratique, qui se prouve en dérivant la factorisation. Exemple : ixe au cube moins trois ixe plus deux a pour dérivée trois ixe au carré moins trois. Les deux s'annulent en un : un est racine double, et la factorisation est ixe moins un au carré, fois ixe plus deux.",
+   "ecran": "detection",
+   "id": "p25",
+   "texte": "P(r) = 0 et P′(r) = 0 : racine multiple."
+  },
+  {
+   "dit": "Deux exemples de multiplicités élevées. Les coefficients un, moins quatre, six, moins quatre, un doivent vous alerter : c'est le développement du binôme, et le polynôme ixe puissance quatre moins quatre ixe au cube plus six ixe au carré moins quatre ixe plus un n'est autre que ixe moins un à la puissance quatre : un est racine quadruple. De même, ixe puissance quatre moins deux ixe au carré plus un est le carré de ixe au carré moins un : moins un et un sont racines doubles.",
+   "ecran": "puissance4",
+   "id": "p26",
+   "texte": "(x − 1)⁴ et (x − 1)²(x + 1)² : reconnaître les formes."
+  },
+  {
+   "dit": "La multiplicité se lit aussi sur la courbe, et c'est une image à retenir pour les examens. Une racine simple : la courbe traverse franchement l'axe des abscisses. Une racine double : la courbe est tangente à l'axe, elle le touche et repart du même côté, sans changer de signe. Une racine triple : la courbe traverse, mais en s'aplatissant, avec un point d'inflexion posé sur l'axe. La parité de la multiplicité décide du changement de signe.",
+   "ecran": "tangence",
+   "id": "p27",
+   "texte": "Traverser, tangent, inflexion : la parité décide."
+  },
+  {
+   "dit": "Application finale en physique : un ballon lancé à vingt mètres par seconde sous un angle de trente degrés décrit une parabole. Sa hauteur en fonction de la distance horizontale est environ zéro virgule cinq cent soixante-dix-sept ixe, moins zéro virgule zéro cent soixante-trois ixe au carré. Annuler la hauteur donne la portée : environ trente-cinq mètres. Le sommet de la parabole, à mi-parcours, donne la hauteur maximale : environ cinq mètres.",
+   "ecran": "projectile",
+   "id": "p28",
+   "texte": "Portée ≈ 35,4 m, hauteur maximale ≈ 5,1 m."
+  },
+  {
+   "dit": "Un dernier problème de géométrie, qui montre que modéliser vaut autant que résoudre. Un rectangle a une longueur supérieure de trois centimètres à sa largeur. On augmente chaque côté de deux centimètres, et l'aire augmente de trente-huit centimètres carrés. L'équation obtenue se simplifie de façon spectaculaire : les termes en ixe au carré disparaissent, et il reste quatre èle égale vingt-huit. La largeur vaut sept centimètres, la longueur dix.",
+   "ecran": "rectangle",
+   "id": "p29",
+   "texte": "Largeur 7 cm, longueur 10 cm."
+  },
+  {
+   "dit": "Le chemin inverse est tout aussi instructif : reconstruire un polynôme à partir de ses racines. On veut un polynôme de degré trois admettant deux comme racine double, moins un comme racine simple, et de coefficient dominant trois. La forme factorisée s'écrit immédiatement : trois fois ixe moins deux au carré, fois ixe plus un. Développée, elle donne trois ixe au cube, moins neuf ixe au carré, plus douze : on peut vérifier que sa valeur en un vaut bien six.",
+   "ecran": "reconstruction",
+   "id": "p30",
+   "texte": "Des racines au polynôme : 3(x − 2)²(x + 1)."
+  },
+  {
+   "dit": "Terminons par une limite célèbre de la discipline. Pour les degrés trois et quatre, des formules par radicaux existent, mais elles sont si lourdes qu'on leur préfère la factorisation. Pour le degré cinq et au-delà, Abel puis Galois ont démontré qu'aucune formule générale n'existe : ce n'est pas un manque d'ingéniosité, c'est un théorème. Les méthodes numériques, dichotomie et méthode de Newton, prennent alors le relais, avec une précision aussi grande qu'on le souhaite.",
+   "ecran": "limites",
+   "id": "p31",
+   "texte": "Degré ≥ 5 : le numérique prend le relais."
+  },
+  {
+   "dit": "Pour conclure ce cours, retenez l'enchaînement complet. Le premier degré se résout par la balance, le second par le discriminant et Viète. Les degrés supérieurs se factorisent, racine évidente après racine évidente, avec Horner pour diviser et le théorème des racines rationnelles pour chercher. Les racines multiples se détectent par la dérivée et se lisent sur la courbe. Et chaque solution se vérifie, puis s'interprète dans le contexte du problème.",
+   "ecran": "recap_final",
+   "id": "p32",
+   "texte": "Équations polynomiales : l'essentiel à retenir."
+  }
+ ],
+ "titre": "Équations polynomiales : du premier degré aux racines multiples"
+}
