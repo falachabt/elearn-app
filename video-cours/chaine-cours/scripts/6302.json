@@ -1,0 +1,487 @@
+{
+  "cours": 6302,
+  "ecrans": {
+    "classes": {
+      "kicker": "La classe et ses repères",
+      "tex": [
+        "[a\\,;b[ \\qquad \\text{amplitude} = b - a",
+        "c = \\tfrac{a + b}{2} \\qquad \\text{centre de classe}",
+        "N = \\sum_{i=1}^{k} n_i \\qquad f_i = \\tfrac{n_i}{N}"
+      ],
+      "titre": "Amplitude, centre, effectifs et fréquences",
+      "type": "etape"
+    },
+    "critique": {
+      "anim": {
+        "hauteur": 180,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "L'œil critique devant un graphique",
+      "texte": "Amplitudes, axes, découpage : trois questions avant toute conclusion.",
+      "type": "phrase"
+    },
+    "densite": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "La densité d'effectif",
+      "note": "Effectif par unité d'amplitude : la comparaison honnête.",
+      "tex": "d_i = \\frac{n_i}{a_i - a_{i-1}}",
+      "type": "formule"
+    },
+    "densite_ex": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Exemple · deux classes de salaires",
+      "tex": [
+        "d_1 = \\tfrac{150}{1000} = 0{,}15",
+        "d_2 = \\tfrac{80}{100} = 0{,}80",
+        "\\text{cinq fois plus dense}"
+      ],
+      "titre": "Large et peu dense, étroite et très dense",
+      "type": "etape"
+    },
+    "dossiers": {
+      "kicker": "Étude complète · les dossiers",
+      "tex": [
+        "d : 6,\\ 10,\\ 8,\\ 3,\\ 0{,}33",
+        "\\text{modale : } [5;10[ \\quad (d = 10)",
+        "ECC : 30,\\ 80,\\ 160,\\ 190,\\ 200",
+        "\\text{160 dossiers bouclés en moins de 20 min}"
+      ],
+      "titre": "200 dossiers : modale [5;10[, médiane [10;20[",
+      "type": "etape"
+    },
+    "foret": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Reconstruction · la forêt",
+      "tex": [
+        "d_1 = \\tfrac{10}{20} = 0{,}5 \\quad n_2 = 25",
+        "n_3 = 100 - 60 = 40 \\qquad d_3 = \\tfrac{40}{10} = 4",
+        "M_e \\approx 60 + \\tfrac{15}{40} \\times 10 = 63{,}75"
+      ],
+      "titre": "Remonter des densités aux effectifs, 100 arbres",
+      "type": "etape"
+    },
+    "formes": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "deux_distributions_fig"
+      },
+      "kicker": "Lire la forme d'une distribution",
+      "texte": "Cloche, queue à droite, deux bosses : la forme est un diagnostic.",
+      "type": "phrase"
+    },
+    "frequence": {
+      "anim": {
+        "hauteur": 160,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "La fréquence",
+      "note": "Somme des fréquences = 1 · cumuler donne les ECC.",
+      "tex": "f_i = \\frac{n_i}{N}",
+      "type": "formule"
+    },
+    "histo_principe": {
+      "anim": {
+        "hauteur": 200,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "L'histogramme · le principe des aires",
+      "note": "Aire du rectangle ∝ effectif : la hauteur est la densité.",
+      "tex": "h_i = \\frac{n_i}{a_i}",
+      "type": "formule"
+    },
+    "histo_tailles": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Histogramme · les tailles",
+      "tex": [
+        "d = \\tfrac{4}{5} = 0{,}8 \\qquad d = \\tfrac{10}{5} = 2",
+        "d = \\tfrac{18}{5} = 3{,}6 \\qquad d = \\tfrac{12}{5} = 2{,}4",
+        "d = \\tfrac{6}{5} = 1{,}2 \\qquad 5 \\times 3{,}6 = 18"
+      ],
+      "titre": "Densités des classes de 5 cm, effectifs 4, 10, 18, 12, 6",
+      "type": "etape"
+    },
+    "inegales": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Amplitudes inégales · le piège",
+      "tex": [
+        "d = \\tfrac{30}{1} = 30 \\qquad d = \\tfrac{45}{1} = 45",
+        "d = \\tfrac{50}{2} = 25 \\qquad d = \\tfrac{25}{3} \\approx 8{,}33",
+        "\\text{plus haut rectangle : } [1;2["
+      ],
+      "titre": "Durées de visionnage : les densités d'abord",
+      "type": "etape"
+    },
+    "interpolation": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Estimer la médiane",
+      "note": "Interpolation linéaire dans la classe médiane [170;175[.",
+      "tex": "M_e \\approx 170 + \\tfrac{11}{18} \\times 5 \\approx 173{,}1",
+      "type": "formule"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Introduction",
+      "texte": "Dix mille salaires, cinquante tailles : une liste ne dit rien, un tableau parle.",
+      "type": "phrase"
+    },
+    "mediane_classe": {
+      "kicker": "La classe médiane",
+      "tex": [
+        "N = 50 \\qquad \\tfrac{N}{2} = 25",
+        "ECC : 4,\\ 16,\\ 38,\\ 48,\\ 50",
+        "\\text{classe médiane} = [170;180["
+      ],
+      "titre": "Les cumuls désignent la classe qui coupe en deux",
+      "type": "etape"
+    },
+    "modale": {
+      "kicker": "La classe modale",
+      "tex": [
+        "\\text{classe modale : la densité la plus grande}",
+        "d_i = \\tfrac{n_i}{a_i} \\text{ maximale}"
+      ],
+      "titre": "La classe la plus concentrée de la population",
+      "type": "etape"
+    },
+    "particules": {
+      "kicker": "Synthèse · les particules fines",
+      "tex": [
+        "d : 1{,}2,\\ 2{,}8,\\ 1{,}8,\\ 0{,}64,\\ 0{,}18",
+        "\\text{modale et médiane : } [15;30[",
+        "\\tfrac{24}{120} = 20\\ \\% \\text{ au-dessus de } 50"
+      ],
+      "titre": "120 journées : densités, modale, médiane, seuil",
+      "type": "etape"
+    },
+    "pieges": {
+      "etapes": [
+        "Hauteurs comparées, amplitudes inégales",
+        "Axes tronqués ou échelles comprimées",
+        "Effectif confondu avec la fréquence",
+        "Classes choisies pour arranger le message"
+      ],
+      "kicker": "Les pièges à déjouer",
+      "type": "recap"
+    },
+    "polygone": {
+      "kicker": "Le polygone des effectifs",
+      "texte": "Relier les centres des classes : la silhouette de la distribution.",
+      "type": "phrase"
+    },
+    "polygone_points": {
+      "kicker": "Polygone · construction",
+      "tex": [
+        "(162{,}5\\,;4),\\ (167{,}5\\,;9),\\ (172{,}5\\,;15)",
+        "(177{,}5\\,;12),\\ (182{,}5\\,;7),\\ (187{,}5\\,;3)",
+        "\\text{relier, puis fermer à zéro aux extrémités}"
+      ],
+      "titre": "Les points (centre, effectif), reliés dans l'ordre",
+      "type": "etape"
+    },
+    "precip": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Étude complète · les précipitations",
+      "tex": [
+        "d = \\tfrac{40}{5} = 8 \\qquad d = \\tfrac{25}{5} = 5",
+        "d = \\tfrac{20}{10} = 2 \\qquad d = \\tfrac{10}{10} = 1",
+        "d = \\tfrac{5}{20} = 0{,}25 \\qquad \\text{modale : } [0;5["
+      ],
+      "titre": "100 jours de pluie, amplitudes 5, 5, 10, 10, 20 mm",
+      "type": "etape"
+    },
+    "precip_mediane": {
+      "kicker": "Précipitations · la médiane",
+      "tex": [
+        "ECC : 40,\\ 65,\\ 85,\\ 95,\\ 100",
+        "M_e \\approx 5 + \\tfrac{10}{25} \\times 5 = 7\\ \\text{mm}",
+        "\\text{queue à droite : averses rares et fortes}"
+      ],
+      "titre": "La 50e valeur tombe entre 5 et 10 mm",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Grouper : classes, amplitude, centre",
+        "Densité = effectif ÷ amplitude",
+        "Histogramme : l'aire vaut l'effectif",
+        "Modale : densité max · médiane : ECC",
+        "Interpréter la forme, vérifier les axes"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "regles": {
+      "kicker": "Les règles de construction",
+      "tex": [
+        "\\text{exhaustivité : chaque donnée, une classe}",
+        "\\text{disjonction : aucun chevauchement}",
+        "\\text{entre cinq et quinze classes en pratique}"
+      ],
+      "titre": "Trois gardes-fous pour un tableau honnête",
+      "type": "etape"
+    },
+    "sturges": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "histogramme_fig"
+      },
+      "kicker": "Combien de classes ?",
+      "note": "Pour n = 50 : k ≈ 6,6 → on retient 7 classes.",
+      "tex": "k = 1 + 3{,}3 \\log_{10}(n)",
+      "type": "formule"
+    },
+    "tableau_tailles": {
+      "kicker": "Premier tableau complet",
+      "tex": [
+        "[165;170[ : n = 8,\\ c = 167{,}5",
+        "[170;175[ : n = 22,\\ c = 172{,}5",
+        "[175;180[ : n = 16,\\ c = 177{,}5",
+        "[180;185[ : n = 4,\\ c = 182{,}5"
+      ],
+      "titre": "Tailles de 50 élèves, classes de 5 cm",
+      "type": "etape"
+    },
+    "titre": {
+      "anim": {
+        "nom": "distribution_bars_fig",
+        "hauteur": 240
+      },
+      "kicker": "Mathématique · Statistiques descriptives",
+      "sous": "Grouper les données, calculer les densités, dessiner et interpréter",
+      "titre": "Séries groupées en classes : histogramme, polygone et classes repères",
+      "type": "titre"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Grouper les données et calculer les densités"
+    },
+    {
+      "debut": "p10",
+      "pont": {
+        "dit": "Partie deux : dessiner la distribution. L'histogramme et son principe des aires, le piège des amplitudes inégales, le polygone des effectifs, puis les deux classes repères, modale et médiane, avec l'estimation de la médiane par interpolation.",
+        "texte": "Partie 2 : histogramme, polygone et classes repères."
+      },
+      "sous_titre": "Histogramme, polygone et classes repères"
+    },
+    {
+      "debut": "p19",
+      "pont": {
+        "dit": "Partie trois : interpréter comme à l'épreuve. Deux études complètes, précipitations et dossiers, un exercice de reconstruction en forêt, une synthèse sur les particules fines, et le regard critique qui protège de tous les pièges graphiques.",
+        "texte": "Partie 3 : études complètes et interprétation critique."
+      },
+      "sous_titre": "Études complètes et interprétation critique"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de statistiques descriptives consacré aux séries groupées en classes. Nous apprendrons à transformer des données brutes en un tableau lisible, à calculer des densités, puis à dessiner et interpréter les deux représentations reines du chapitre : l'histogramme et le polygone des effectifs, sans oublier les classes modale et médiane.",
+      "ecran": "titre",
+      "id": "p01",
+      "pause_apres": 0.7,
+      "texte": "Séries groupées : construire, dessiner, interpréter."
+    },
+    {
+      "dit": "Imaginez dix mille salaires à analyser, ou cinquante tailles d'élèves relevées une à une : une liste interminable ne dit rien. Le groupement en classes découpe l'étendue des valeurs en intervalles, compte les effectifs dans chacun, et rend la répartition enfin lisible. Le prix à payer est connu : chaque valeur individuelle se perd dans sa classe, au profit de la vue d'ensemble.",
+      "ecran": "intro",
+      "id": "p02",
+      "pause_apres": 0.6,
+      "texte": "Une liste ne dit rien : le groupement rend lisible."
+    },
+    {
+      "dit": "Une classe est un intervalle, fermé à gauche et ouvert à droite, qui accueille les valeurs qui lui appartiennent. Deux nombres la décrivent : son amplitude, la différence entre ses bornes, et son centre, leur moyenne, qui représentera la classe dans tous les calculs. Les classes doivent couvrir toutes les données, sans se chevaucher : chacune reçoit chaque valeur, et une seule fois.",
+      "ecran": "classes",
+      "id": "p03",
+      "pause_apres": 0.6,
+      "texte": "Classe [a ; b[ : amplitude b − a, centre (a + b)/2."
+    },
+    {
+      "dit": "Trois règles protègent la construction. L'exhaustivité : aucune donnée ne doit rester orpheline. La disjonction : deux classes voisines ne partagent aucune valeur, grâce au crochet ouvert à droite. Et le choix du nombre de classes : trop peu, on écrase l'information ; trop, on retombe dans le fouillis de départ.",
+      "ecran": "regles",
+      "id": "p04",
+      "pause_apres": 0.6,
+      "texte": "Exhaustivité, disjonction, nombre de classes."
+    },
+    {
+      "dit": "Combien de classes choisir ? La règle de Sturges donne un repère : un, plus trois virgule trois fois le logarithme décimal de l'effectif total. Pour cinquante élèves, le calcul donne environ six virgule six : on retient sept classes. En pratique, on travaille le plus souvent entre cinq et quinze classes.",
+      "ecran": "sturges",
+      "id": "p05",
+      "pause_apres": 0.6,
+      "texte": "Sturges : pour 50 élèves, environ 7 classes."
+    },
+    {
+      "dit": "Premier tableau complet : les tailles de cinquante élèves, en classes de cinq centimètres. La classe de cent soixante-dix à cent soixante-quinze centimètres concentre vingt-deux élèves, et le centre cent soixante-douze et demi la représente. Les effectifs, huit, vingt-deux, seize et quatre, se somment bien en cinquante : le tableau est cohérent.",
+      "ecran": "tableau_tailles",
+      "id": "p06",
+      "pause_apres": 0.6,
+      "texte": "Effectifs 8, 22, 16, 4 : total 50, tableau cohérent."
+    },
+    {
+      "dit": "L'effectif brut dépend de la taille de la population étudiée. Pour comparer, on passe en fréquences : l'effectif de la classe divisé par l'effectif total. La somme des fréquences vaut toujours un, et chaque fréquence se lit comme une part du tout. C'est aussi la base des effectifs cumulés croissants, qui compteront bientôt pour nous.",
+      "ecran": "frequence",
+      "id": "p07",
+      "pause_apres": 0.6,
+      "texte": "f = n/N : la part de chaque classe dans le tout."
+    },
+    {
+      "dit": "Voici le concept crucial du cours. Quand les classes n'ont pas la même largeur, comparer leurs effectifs bruts trompe l'œil. La densité d'effectif corrige cela : l'effectif divisé par l'amplitude. Exemple des salaires : cent cinquante employés étalés sur mille euros donnent une densité faible, quand quatre-vingts employés resserrés sur cent euros forment une classe bien plus dense.",
+      "ecran": "densite",
+      "id": "p08",
+      "pause_apres": 0.6,
+      "texte": "Densité = effectif ÷ amplitude : le concept crucial."
+    },
+    {
+      "dit": "Le calcul le montre sans appel. La large classe de salaires affiche cent cinquante divisé par mille, soit zéro virgule quinze. La classe étroite affiche quatre-vingts divisé par cent, soit zéro virgule quatre-vingts : plus de cinq fois plus dense, avec presque deux fois moins d'effectifs. Retenez le réflexe : amplitudes inégales, on ne compare que des densités.",
+      "ecran": "densite_ex",
+      "id": "p09",
+      "pause_apres": 0.6,
+      "texte": "0,15 contre 0,80 : la classe étroite est la plus dense."
+    },
+    {
+      "dit": "L'histogramme dessine ces classes par des rectangles accolés, sans aucun espace, car la variable est continue. Sa loi est unique et absolue : l'aire de chaque rectangle est proportionnelle à l'effectif de sa classe. La hauteur du rectangle est donc la densité, effectif divisé par amplitude. Quand toutes les amplitudes sont égales, la hauteur devient proportionnelle à l'effectif, et la lecture se simplifie.",
+      "ecran": "histo_principe",
+      "id": "p10",
+      "pause_apres": 0.6,
+      "texte": "Histogramme : l'aire du rectangle vaut l'effectif."
+    },
+    {
+      "dit": "Appliquons aux tailles, en classes égales de cinq centimètres. Les densités montent de zéro virgule huit à trois virgule six pour la classe centrale, puis redescendent : le rectangle de la classe de cent soixante-dix à cent soixante-quinze, base cinq et hauteur trois virgule six, a bien une aire de dix-huit, son effectif. La silhouette en cloche apparaît déjà.",
+      "ecran": "histo_tailles",
+      "id": "p11",
+      "pause_apres": 0.6,
+      "texte": "Densités 0,8 · 2 · 3,6 · 2,4 · 1,2 : la cloche apparaît."
+    },
+    {
+      "dit": "Passons aux amplitudes inégales, avec des durées de visionnage. Les densités valent trente, quarante-cinq, vingt-cinq, puis environ huit. La classe de deux à quatre heures a le plus gros effectif, cinquante, mais son rectangle, deux fois plus large, n'est haut que de vingt-cinq. Le rectangle le plus haut est celui de la classe d'une à deux heures : c'est elle la plus dense. Ne jugez jamais un histogramme à la seule hauteur sans regarder les largeurs.",
+      "ecran": "inegales",
+      "id": "p12",
+      "pause_apres": 0.6,
+      "texte": "Plus gros effectif ≠ plus haut rectangle : densités."
+    },
+    {
+      "dit": "Le polygone des effectifs relie par des segments les sommets des rectangles de l'histogramme, en passant par les centres des classes. Cette ligne brisée lisse la silhouette en escalier : la forme de la distribution, son sommet, son étalement et ses queues se lisent d'un seul coup d'œil, et plusieurs distributions peuvent se comparer sur un même graphique.",
+      "ecran": "polygone",
+      "id": "p13",
+      "pause_apres": 0.6,
+      "texte": "Le polygone : la signature graphique de la série."
+    },
+    {
+      "dit": "Construction, sur notre série de tailles en six classes. On place les points aux centres des classes, avec leurs effectifs : quatre, neuf, quinze, douze, sept et trois. On les relie dans l'ordre, puis on ferme la figure en la ramenant à zéro aux deux extrémités, aux centres de deux classes fictives voisines. Le sommet du polygone désigne déjà la classe la plus peuplée.",
+      "ecran": "polygone_points",
+      "id": "p14",
+      "pause_apres": 0.6,
+      "texte": "Points aux centres, reliés, fermés à zéro aux bouts."
+    },
+    {
+      "dit": "La forme du polygone est un diagnostic. Symétrique en cloche, la distribution ressemble à celle des tailles dans une population homogène. Étalée vers la droite, elle évoque les revenus ou les précipitations. Deux bosses distinctes signalent souvent le mélange de deux populations, qu'il faudrait étudier séparément. Avant tout calcul, laissez la forme vous parler.",
+      "ecran": "formes",
+      "id": "p15",
+      "pause_apres": 0.6,
+      "texte": "Cloche, queue à droite, deux bosses : lire la forme."
+    },
+    {
+      "dit": "La classe modale est la classe la plus concentrée : celle dont la densité est la plus grande, donc le rectangle le plus haut. À amplitudes égales, c'est simplement l'effectif maximal qui désigne le mode. À amplitudes inégales, comparer les effectifs bruts serait une faute : seule la densité départage les classes.",
+      "ecran": "modale",
+      "id": "p16",
+      "pause_apres": 0.6,
+      "texte": "Classe modale : la densité la plus grande."
+    },
+    {
+      "dit": "La classe médiane se repère par les cumuls. Pour nos tailles en classes de dix centimètres, l'effectif total vaut cinquante, sa moitié vingt-cinq. Les effectifs cumulés croissants valent quatre, seize, trente-huit, quarante-huit, cinquante. Le premier cumul qui atteint ou dépasse vingt-cinq tombe dans la classe de cent soixante-dix à cent quatre-vingts : c'est la classe médiane, celle qui coupe la population en deux moitiés.",
+      "ecran": "mediane_classe",
+      "id": "p17",
+      "pause_apres": 0.6,
+      "texte": "ECC : le premier cumul ≥ 25 donne la classe médiane."
+    },
+    {
+      "dit": "Mieux qu'une classe, on peut estimer la médiane elle-même, en supposant les valeurs uniformément réparties dans la classe médiane. Sur la série en classes de cinq centimètres, le cumul avant la classe médiane vaut quatorze, il manque onze élèves sur les dix-huit de la classe : la médiane vaut environ cent soixante-dix plus onze dix-huitièmes de cinq, soit cent soixante-treize virgule un centimètres.",
+      "ecran": "interpolation",
+      "id": "p18",
+      "pause_apres": 0.6,
+      "texte": "Médiane estimée ≈ 173,1 cm par interpolation."
+    },
+    {
+      "dit": "Étude complète, les précipitations relevées sur cent jours. Les amplitudes sont inégales, cinq, cinq, dix, dix et vingt millimètres : les densités sont obligatoires. Elles décroissent de huit à zéro virgule vingt-cinq. La classe de zéro à cinq millimètres, densité huit, est la classe modale : les jours presque secs dominent largement le climat étudié.",
+      "ecran": "precip",
+      "id": "p19",
+      "pause_apres": 0.6,
+      "texte": "Précipitations : densités de 8 à 0,25, modale [0 ; 5[."
+    },
+    {
+      "dit": "Les cumuls des précipitations valent quarante, soixante-cinq, quatre-vingt-cinq, quatre-vingt-quinze et cent. La cinquantième valeur tombe dans la classe de cinq à dix millimètres, où il faut le dixième jour sur vingt-cinq : la médiane estimée vaut cinq plus dix vingt-cinquièmes de cinq, soit sept millimètres. La distribution, très étalée vers la droite, raconte un climat de pluies faibles et fréquentes, et d'averses rares mais fortes.",
+      "ecran": "precip_mediane",
+      "id": "p20",
+      "pause_apres": 0.6,
+      "texte": "Médiane des pluies ≈ 7 mm, distribution étalée à droite."
+    },
+    {
+      "dit": "Deuxième étude, les temps de traitement de deux cents dossiers. Les densités valent six, dix, huit, trois et environ zéro virgule trente-trois. La classe modale est celle de cinq à dix minutes, la plus dense. Les cumuls, trente, quatre-vingts, cent soixante, cent quatre-vingt-dix, deux cents, placent la classe médiane entre dix et vingt minutes. Et le compte est net : cent soixante dossiers sur deux cents sont bouclés en moins de vingt minutes.",
+      "ecran": "dossiers",
+      "id": "p21",
+      "pause_apres": 0.6,
+      "texte": "Dossiers : modale [5 ; 10[, médiane [10 ; 20[."
+    },
+    {
+      "dit": "Exercice de reconstruction, une forêt de cent arbres mesurés en circonférence. Des densités et des aires, on remonte aux effectifs : dix, vingt-cinq, puis quarante pour la classe de soixante à soixante-dix centimètres, quinze et dix. Surprise du calcul : cette classe affiche une densité de quatre, la plus forte de toutes, c'est donc elle la classe modale, et aussi la classe médiane, avec une médiane estimée à soixante-trois virgule soixante-quinze centimètres.",
+      "ecran": "foret",
+      "id": "p22",
+      "pause_apres": 0.6,
+      "texte": "Forêt : densité 4 pour [60 ; 70[, médiane ≈ 63,75 cm."
+    },
+    {
+      "dit": "Dernière synthèse, les particules fines sur cent vingt journées. Les densités culminent à deux virgule huit pour la classe de quinze à trente microgrammes par mètre cube : c'est la classe modale, et les cumuls y atteignent exactement soixante, la moitié de l'effectif, ce qui en fait aussi la classe médiane. Vingt-quatre journées sur cent vingt, soit vingt pour cent, dépassent le seuil de cinquante microgrammes.",
+      "ecran": "particules",
+      "id": "p23",
+      "pause_apres": 0.6,
+      "texte": "Particules : modale et médiane [15 ; 30[, 20 % au-dessus du seuil."
+    },
+    {
+      "dit": "Un graphique peut aussi mentir sans un seul chiffre faux. Un axe tronqué qui ne part pas de zéro, une échelle comprimée, des classes choisies pour aplanir un pic ou en gonfler un autre : autant de manipulations silencieuses. Devant tout histogramme, posez trois questions : quelles sont les amplitudes, où commencent les axes, et que verrait-on avec un autre découpage ?",
+      "ecran": "critique",
+      "id": "p24",
+      "pause_apres": 0.6,
+      "texte": "Axes, échelles, classes : l'esprit critique d'abord."
+    },
+    {
+      "dit": "Retenons les pièges classiques du chapitre. Comparer des hauteurs quand les amplitudes diffèrent, oublier de vérifier les échelles des axes, confondre effectif et fréquence entre populations de tailles différentes, et choisir des classes qui arrangent le message : quatre fautes que votre œil doit désormais repérer avant même de calculer.",
+      "ecran": "pieges",
+      "id": "p25",
+      "pause_apres": 0.6,
+      "texte": "Quatre pièges à repérer d'un coup d'œil."
+    },
+    {
+      "dit": "Pour conclure : grouper en classes rend les données lisibles, la densité rend les comparaisons honnêtes, l'histogramme et le polygone donnent une forme à la distribution, et les classes modale et médiane fournissent ses deux repères. Vous savez construire, calculer et surtout interpréter : c'est exactement ce qu'attend l'épreuve.",
+      "ecran": "recap",
+      "id": "p26",
+      "pause_apres": 0.6,
+      "texte": "Séries groupées : l'essentiel à retenir."
+    }
+  ],
+  "titre": "Séries groupées en classes : histogramme, polygone et classes repères"
+}
