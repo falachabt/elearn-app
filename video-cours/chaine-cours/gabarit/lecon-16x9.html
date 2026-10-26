@@ -1779,6 +1779,49 @@ const FIG = {
       mot(452, 272, 'colonne 1', { t: 19, c: '#E8604C' }) +
       mot(542, 34, 'le coefficient aᵢⱼ : ligne i, colonne j', { t: 20 }));
   },
+  champ_pentes_fig(t) {
+    let corps = `<line x1="180" y1="250" x2="868" y2="250" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<polygon points="868,250 852,244 852,256" fill="currentColor"/>`;
+    corps += `<line x1="180" y1="250" x2="180" y2="28" stroke="currentColor" stroke-width="4"/>`;
+    corps += `<polygon points="180,28 174,44 186,44" fill="currentColor"/>`;
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 4; j++) {
+      const gx = 300 + i * 115, gy = 66 + j * 52;
+      const ux = (gx - 520) / 240, uy = (gy - 150) / 95;
+      const a = Math.atan(ux * uy * 1.6);
+      const dx = Math.round(17 * Math.cos(a)), dy = Math.round(17 * Math.sin(a));
+      corps += `<line x1="${gx - dx}" y1="${gy + dy}" x2="${gx + dx}" y2="${gy - dy}" stroke="currentColor" stroke-width="3" opacity=".55"/>`;
+    }
+    const courbe = (signe, coul) => {
+      let pts = '';
+      for (let k = 0; k <= 32; k++) {
+        const X = -1.55 + k * (3.1 / 32);
+        const Y = signe * (0.30 * Math.exp(0.55 * X * X) - 0.30);
+        pts += `${Math.round(520 + 150 * X)},${Math.round(150 - 95 * Y)} `;
+      }
+      return `<polyline points="${pts}" fill="none" stroke="${coul}" stroke-width="4" stroke-linejoin="round"/>`;
+    };
+    return svgBoite(
+      corps + courbe(1, '#E8604C') + courbe(-1, '#1A75FF') +
+      mot(876, 256, 'x', { t: 21, a: 'start' }) +
+      mot(168, 34, 'y', { t: 21, a: 'end' }) +
+      mot(520, 290, 'chaque segment donne la pente de la solution qui passe là', { t: 19 }));
+  },
+  phase_lv_fig(t) {
+    const ell = (rx, ry, coul) => `<ellipse cx="470" cy="140" rx="${rx}" ry="${ry}" fill="none" stroke="${coul}" stroke-width="4"/>`;
+    return svgBoite(
+      `<line x1="170" y1="252" x2="806" y2="252" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="806,252 790,246 790,258" fill="currentColor"/>` +
+      `<line x1="170" y1="252" x2="170" y2="26" stroke="currentColor" stroke-width="4"/>` +
+      `<polygon points="170,26 164,42 176,42" fill="currentColor"/>` +
+      ell(110, 54, '#10B981') + ell(190, 88, '#1A75FF') + ell(268, 122, '#E8604C') +
+      `<polygon points="470,18 452,26 470,34" fill="#E8604C"/>` +
+      `<polygon points="202,140 218,131 218,149" fill="#1A75FF"/>` +
+      `<circle cx="470" cy="140" r="6" fill="#B8860B"/>` +
+      mot(486, 132, 'équilibre', { t: 19, c: '#B8860B', a: 'start' }) +
+      mot(812, 258, 'proies x', { t: 20, a: 'start' }) +
+      mot(158, 32, 'prédateurs y', { t: 20, a: 'end' }) +
+      mot(500, 292, 'des orbites fermées : les populations oscillent', { t: 19 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
