@@ -1,0 +1,472 @@
+{
+  "cours": 6295,
+  "titre": "Droites et cercles dans le plan",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Géométrie analytique",
+      "titre": "Droites et cercles dans le plan",
+      "sous": "Trois formes pour une droite, deux pour un cercle, et une seule distance pour décider de leurs rencontres",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 240
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Le plan cartésien",
+      "texte": "Un point, deux nombres : la géométrie devient du calcul."
+    },
+    "cartesienne": {
+      "type": "formule",
+      "kicker": "La droite · forme cartésienne",
+      "tex": "ax + by + c = 0",
+      "note": "a et b non tous deux nuls · directeur u(−b ; a), normal n(a ; b) · b = 0 : verticale, a = 0 : horizontale"
+    },
+    "reduite": {
+      "type": "formule",
+      "kicker": "La droite · forme réduite",
+      "tex": "y = mx + p",
+      "note": "m : la pente, la montée pour un pas horizontal de un · p : l'ordonnée à l'origine · les verticales sont exclues",
+      "anim": {
+        "nom": "droites_affines_fig",
+        "hauteur": 200
+      }
+    },
+    "pente": {
+      "type": "etape",
+      "kicker": "Calculer une pente",
+      "titre": "La pente entre deux points A et B",
+      "tex": [
+        "m = \\frac{y_B - y_A}{x_B - x_A}",
+        "A(2\\,;\\,3),\\ B(5\\,;\\,7) \\Rightarrow m = \\frac{7-3}{5-2} = \\frac{4}{3}"
+      ]
+    },
+    "parametrique": {
+      "type": "etape",
+      "kicker": "La droite · forme paramétrique",
+      "titre": "Un point, un vecteur directeur, un paramètre t",
+      "tex": [
+        "x = x_A + t\\,u_x",
+        "y = y_A + t\\,u_y"
+      ]
+    },
+    "ex_droite": {
+      "type": "etape",
+      "kicker": "Exemple complet · une droite, trois formes",
+      "titre": "Par A(1 ; 2), de vecteur directeur u(3 ; −1)",
+      "tex": [
+        "x = 1 + 3t \\qquad y = 2 - t",
+        "t = 2 - y \\Rightarrow x = 7 - 3y",
+        "x + 3y - 7 = 0 \\qquad y = -\\tfrac{1}{3}x + \\tfrac{7}{3}"
+      ]
+    },
+    "construire": {
+      "type": "etape",
+      "kicker": "Construire l'équation d'une droite",
+      "titre": "À chaque donnée sa forme de départ",
+      "tex": [
+        "\\text{point + directeur} \\Rightarrow \\text{paramétrique}",
+        "\\text{normal : } a(x - x_A) + b(y - y_A) = 0",
+        "\\text{deux points : } \\vec{AB} \\text{ directeur, ou la pente}",
+        "\\text{point + pente : } y - y_A = m(x - x_A)"
+      ]
+    },
+    "choix": {
+      "type": "phrase",
+      "kicker": "Choisir la bonne forme",
+      "texte": "Cartésienne : tout dire · Réduite : voir la pente · Paramétrique : engendrer les points."
+    },
+    "paralleles": {
+      "type": "formule",
+      "kicker": "Parallélisme et perpendicularité",
+      "tex": "m \\times m' = -1",
+      "note": "Parallèles : même direction, même pente · Perpendiculaires : produit des pentes égal à −1, ou produit scalaire nul"
+    },
+    "hauteur": {
+      "type": "etape",
+      "kicker": "Application · la hauteur d'un triangle",
+      "titre": "La hauteur issue de A dans le triangle ABC",
+      "tex": [
+        "\\vec{BC}(1\\,;\\,-5) \\text{ : normal à la hauteur}",
+        "1(x-1) - 5(y-2) = 0",
+        "x - 5y + 9 = 0"
+      ],
+      "anim": {
+        "nom": "triangle_fig",
+        "hauteur": 130
+      }
+    },
+    "recap_droites": {
+      "type": "recap",
+      "kicker": "Les droites : l'essentiel",
+      "etapes": [
+        "Cartésienne : ax + by + c = 0, tout dire",
+        "Réduite : y = mx + p, pente lisible",
+        "Paramétrique : un point, un vecteur, t",
+        "Parallèle : même direction",
+        "Perpendiculaire : m·m′ = −1"
+      ]
+    },
+    "cercle_def": {
+      "type": "formule",
+      "kicker": "Le cercle · équation réduite",
+      "tex": "(x-a)^2 + (y-b)^2 = R^2",
+      "note": "Centre Ω(a ; b), rayon R : les points M à distance R de Ω · Pythagore : CM² = (x − a)² + (y − b)²",
+      "anim": {
+        "nom": "cercle_rayon_fig",
+        "hauteur": 190
+      }
+    },
+    "cercle_reduit": {
+      "type": "formule",
+      "kicker": "Cas particulier · centre à l'origine",
+      "tex": "x^2 + y^2 = R^2",
+      "note": "R = 1 : le cercle trigonométrique, x = cos θ et y = sin θ pour chaque angle θ",
+      "anim": {
+        "nom": "cercle_trigo_fig",
+        "hauteur": 200
+      }
+    },
+    "developpee": {
+      "type": "formule",
+      "kicker": "Le cercle · forme développée",
+      "tex": "x^2 + y^2 + mx + ny + p = 0",
+      "note": "Coefficients de x² et y² égaux, aucun terme en xy · centre (−m/2 ; −n/2)"
+    },
+    "completion": {
+      "type": "etape",
+      "kicker": "Reconnaître un cercle · compléter le carré",
+      "titre": "x² + y² − 4x + 6y − 3 = 0 : un cercle déguisé",
+      "tex": [
+        "x^2 - 4x = (x-2)^2 - 4",
+        "y^2 + 6y = (y+3)^2 - 9",
+        "(x-2)^2 + (y+3)^2 = 16",
+        "\\Omega(2\\,;\\,-3) \\qquad R = 4"
+      ]
+    },
+    "diametre": {
+      "type": "etape",
+      "kicker": "Le cercle de diamètre donné",
+      "titre": "Diamètre [AB], A(1 ; 2) et B(5 ; 6) : milieu et demi-longueur",
+      "tex": [
+        "C = \\left(\\tfrac{1+5}{2}\\,;\\,\\tfrac{2+6}{2}\\right) = (3\\,;\\,4) \\qquad R = 2\\sqrt{2}",
+        "(x-3)^2 + (y-4)^2 = 8",
+        "x^2 + y^2 - 6x - 8y + 17 = 0"
+      ]
+    },
+    "trois_points": {
+      "type": "etape",
+      "kicker": "Le cercle par trois points",
+      "titre": "Par (0 ; 0), (4 ; 0) et (0 ; 3) : un système, trois inconnues",
+      "tex": [
+        "A(0\\,;\\,0) \\Rightarrow p = 0",
+        "B(4\\,;\\,0) \\Rightarrow m = -4 \\quad C(0\\,;\\,3) \\Rightarrow n = -3",
+        "(x-2)^2 + \\left(y - \\tfrac{3}{2}\\right)^2 = \\tfrac{25}{4}",
+        "C\\left(2\\,;\\,\\tfrac{3}{2}\\right) \\qquad R = \\tfrac{5}{2}"
+      ]
+    },
+    "cas_cercle": {
+      "type": "formule",
+      "kicker": "Cercles tangents aux axes",
+      "tex": "(x-3)^2 + (y-3)^2 = 9",
+      "note": "Tangent à l'axe des abscisses : |b| = R · à l'axe des ordonnées : |a| = R · ici, centre (3 ; 3), rayon 3"
+    },
+    "distance": {
+      "type": "formule",
+      "kicker": "La distance d'un point à une droite",
+      "tex": "d(A, d) = \\frac{|a x_A + b y_A + c|}{\\sqrt{a^2 + b^2}}",
+      "note": "Exemple : C(2 ; −1) face à 3x − 4y + 5 = 0 : |6 + 4 + 5| / 5 = 3",
+      "anim": {
+        "nom": "distance_point_droite_fig",
+        "hauteur": 190
+      }
+    },
+    "positions": {
+      "type": "etape",
+      "kicker": "Positions d'une droite et d'un cercle",
+      "titre": "Comparer la distance au rayon : trois cas, et trois seulement",
+      "tex": [
+        "d(\\Omega, d) < R \\Rightarrow \\text{sécante : deux points}",
+        "d(\\Omega, d) = R \\Rightarrow \\text{tangente : un point}",
+        "d(\\Omega, d) > R \\Rightarrow \\text{extérieure : aucun point}"
+      ],
+      "anim": {
+        "nom": "positions_droite_cercle_fig",
+        "hauteur": 120
+      }
+    },
+    "secante_alg": {
+      "type": "etape",
+      "kicker": "La voie algébrique · substituer et discriminer",
+      "titre": "Cercle (1 ; 2), R = 5, droite y = 2x − 3",
+      "tex": [
+        "(x-1)^2 + (2x-5)^2 = 25",
+        "5x^2 - 22x + 1 = 0",
+        "\\Delta = 464 > 0 \\text{ : deux points, sécante}"
+      ]
+    },
+    "corde": {
+      "type": "formule",
+      "kicker": "La longueur d'une corde",
+      "tex": "AB = 2\\sqrt{R^2 - d^2}",
+      "note": "Le milieu de la corde est le projeté du centre · exemple : R = 5, d = √5, corde = 4√5",
+      "anim": {
+        "nom": "distance_point_droite_fig",
+        "hauteur": 150
+      }
+    },
+    "tangente": {
+      "type": "formule",
+      "kicker": "L'équation de la tangente en un point",
+      "tex": "\\begin{aligned} &(x_T - x_0)(x - x_0) \\\\ &+ (y_T - y_0)(y - y_0) = R^2 \\end{aligned}",
+      "note": "Au point de contact T, la tangente est perpendiculaire au rayon ΩT : le rayon joue le rôle du vecteur normal"
+    },
+    "tangentes_par": {
+      "type": "etape",
+      "kicker": "Problème type · tangentes parallèles à une droite",
+      "titre": "Tangentes à x² + y² = 10, parallèles à 2x + y − 1 = 0",
+      "tex": [
+        "2x + y + c = 0 \\qquad \\Omega(0\\,;\\,0),\\ R = \\sqrt{10}",
+        "\\tfrac{|c|}{\\sqrt{5}} = \\sqrt{10} \\Rightarrow |c| = 5\\sqrt{2}",
+        "2x + y + 5\\sqrt{2} = 0 \\ \\text{ou} \\ 2x + y - 5\\sqrt{2} = 0"
+      ]
+    },
+    "synthese": {
+      "type": "etape",
+      "kicker": "Synthèse · la canalisation et la zone protégée",
+      "titre": "Le tracé rectiligne traverse-t-il le cercle interdit ?",
+      "tex": [
+        "(AB) : y = 0{,}8x \\iff 0{,}8x - y = 0",
+        "C(4\\,;\\,3), \\ R = 3",
+        "d = \\tfrac{|3{,}2 - 3|}{\\sqrt{1{,}64}} \\approx 0{,}16",
+        "0{,}16 < 3 \\text{ : la droite traverse le cercle}"
+      ]
+    },
+    "recap": {
+      "type": "recap",
+      "kicker": "À retenir",
+      "etapes": [
+        "Droite : cartésienne, réduite, paramétrique",
+        "Cercle : (x − a)² + (y − b)² = R²",
+        "Compléter le carré pour lire centre et rayon",
+        "Distance point-droite : la clé des rencontres",
+        "d < R, d = R, d > R : deux, un, zéro point"
+      ]
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Droites et cercles : la géométrie devient calcul.",
+      "dit": "Bienvenue dans ce cours de géométrie analytique, consacré aux deux figures fondamentales du plan : la droite et le cercle. L'idée de Descartes est simple et révolutionnaire : chaque point devient un couple de nombres, chaque figure devient une équation, et chaque question de géométrie devient un calcul. Nous verrons les trois formes d'une droite, les deux formes d'un cercle, puis la rencontre des deux, décidée par une seule distance.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Deux axes, une origine : chaque point reçoit une adresse.",
+      "dit": "Tout commence par le repère cartésien : deux axes perpendiculaires, une origine, et chaque point du plan reçoit une adresse unique, son abscisse et son ordonnée. Dès lors, décrire une figure, c'est écrire la condition que doivent vérifier les coordonnées de ses points. C'est cette traduction, de la géométrie vers l'algèbre, que nous allons pratiquer sur la droite, puis sur le cercle.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p03",
+      "ecran": "cartesienne",
+      "texte": "ax + by + c = 0 : la forme qui dit toutes les droites.",
+      "dit": "La forme la plus générale d'une droite est l'équation cartésienne : a fois ixe, plus bé fois igrec, plus cé, égale zéro, avec a et bé non tous les deux nuls. Le couple a, bé donne un vecteur normal, perpendiculaire à la droite, et le couple moins bé, a donne un vecteur directeur, qui indique sa direction. Deux cas limites : si bé est nul, la droite est verticale ; si a est nul, elle est horizontale.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p04",
+      "ecran": "reduite",
+      "texte": "y = mx + p : la pente et le point de départ, d'un coup d'œil.",
+      "dit": "Quand la droite n'est pas verticale, on peut isoler igrec : c'est la forme réduite, igrec égale emme fois ixe plus pé. Le nombre emme est la pente : quand l'abscisse avance d'un pas, l'ordonnée monte de emme, ou descend si emme est négatif. Le nombre pé est l'ordonnée à l'origine, l'endroit où la droite coupe l'axe vertical. En économie, pé jouerait le rôle des coûts fixes, et emme celui du coût par unité produite.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p05",
+      "ecran": "pente",
+      "texte": "La pente : la montée divisée par l'avancée.",
+      "dit": "Entre deux points, la pente se calcule comme un rapport : la différence des ordonnées divisée par la différence des abscisses. Pour le point a, de coordonnées deux et trois, et le point bé, de coordonnées cinq et sept, la montée vaut quatre et l'avancée vaut trois : la pente vaut quatre tiers. C'est exactement le calcul d'un dénivelé divisé par une distance horizontale, comme pour la pente d'une route.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p06",
+      "ecran": "parametrique",
+      "texte": "Un point qui voyage le long de la droite.",
+      "dit": "Troisième langage : la forme paramétrique. On choisit un point de la droite et un vecteur directeur, puis on laisse un paramètre, noté té, parcourir tous les réels. À chaque valeur de té correspond un point : son abscisse est celle du point de départ, plus té fois la première composante du vecteur, et de même pour l'ordonnée. C'est le point de vue du mouvement : té joue le rôle du temps, et le point mobile décrit la droite à vitesse constante.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p07",
+      "ecran": "ex_droite",
+      "texte": "Une même droite, trois écritures qui se déduisent.",
+      "dit": "Exemple complet : la droite passe par le point a, de coordonnées un et deux, avec le vecteur directeur de composantes trois et moins un. Paramétriquement : ixe égale un plus trois té, igrec égale deux moins té. Pour té égal à zéro, on est en a ; pour té égal à un, on est au point de coordonnées quatre et un. Éliminons té : de la deuxième équation, té vaut deux moins igrec, et en reportant, ixe plus trois igrec moins sept égale zéro. La forme réduite donne une pente de moins un tiers.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p08",
+      "ecran": "construire",
+      "texte": "La donnée de départ choisit la forme de départ.",
+      "dit": "Face à un problème, tout est affaire de traduction. Un point et un vecteur directeur : la paramétrique vient d'abord, la cartésienne suit. Un point et un vecteur normal : la cartésienne est immédiate, car le produit scalaire du vecteur normal avec le vecteur qui joint le point donné au point courant est nul. Deux points : leur différence donne un vecteur directeur. Un point et une pente : la forme point-pente, igrec moins l'ordonnée du point égale emme fois ixe moins l'abscisse du point.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p09",
+      "ecran": "choix",
+      "texte": "Trois formes complémentaires, jamais rivales.",
+      "dit": "Ces trois formes ne sont pas rivales : elles se convertissent l'une dans l'autre. La cartésienne dit tout, y compris les verticales, et sert aux intersections. La réduite se trace d'un coup d'œil, mais ignore les verticales. La paramétrique engendre les points un à un et prépare la géométrie dans l'espace. Choisir la bonne forme selon la donnée de départ, c'est déjà résoudre la moitié du problème.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p10",
+      "ecran": "paralleles",
+      "texte": "Parallèles : même pente. Perpendiculaires : produit moins un.",
+      "dit": "Deux droites parallèles partagent la même direction : même vecteur directeur, et même pente quand elle existe. Pour les perpendiculaires, le produit des pentes vaut moins un, à condition qu'aucune des deux ne soit verticale. Exemple : la droite qui passe par le point de coordonnées un et trois, parallèlement à la droite d'équation deux ixe moins cinq igrec plus un égale zéro, garde les mêmes coefficients devant ixe et igrec : deux ixe moins cinq igrec plus treize égale zéro.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p11",
+      "ecran": "hauteur",
+      "texte": "Une hauteur : le côté opposé devient vecteur normal.",
+      "dit": "Application : dans le triangle a bé cé, avec a de coordonnées un et deux, bé quatre et six, cé cinq et un, cherchons la hauteur issue de a. Le vecteur bé cé, de composantes un et moins cinq, est perpendiculaire à cette hauteur : il en est un vecteur normal. L'équation s'écrit donc directement : ixe moins un, moins cinq fois igrec moins deux, égale zéro, soit ixe moins cinq igrec plus neuf égale zéro. Retenez le geste : une hauteur transforme le côté opposé en vecteur normal.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p12",
+      "ecran": "recap_droites",
+      "texte": "Les droites : trois formes, quatre constructions.",
+      "dit": "Récapitulons les droites. Trois formes complémentaires : cartésienne pour tout dire, réduite pour lire la pente, paramétrique pour décrire un mouvement. Pour construire : un point et une direction, un point et une normale, deux points, ou un point et une pente. Parallèles : même direction. Perpendiculaires : produit des pentes égal à moins un, ou produit scalaire nul. Place maintenant à la deuxième figure du cours : le cercle.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p13",
+      "ecran": "cercle_def",
+      "texte": "Le cercle : tous les points à la même distance du centre.",
+      "dit": "Un cercle est l'ensemble des points situés à une distance fixe, le rayon, d'un point fixe, le centre, noté oméga, de coordonnées a et bé. Pour un point courant de coordonnées ixe et igrec, le théorème de Pythagore donne le carré de la distance au centre : ixe moins a, le tout au carré, plus igrec moins bé, le tout au carré. Égaler cette quantité au carré du rayon donne l'équation réduite du cercle. Test rapide : avec le centre deux, moins un, et le rayon trois, le point cinq, moins un, le plus à droite du cercle, vérifie bien l'équation : neuf égale neuf.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p14",
+      "ecran": "cercle_reduit",
+      "texte": "Centre à l'origine : le cercle trigonométrique apparaît.",
+      "dit": "Si le centre est l'origine, l'équation devient ixe carré plus igrec carré égale le rayon au carré. Le cas du rayon un est le cercle trigonométrique : chaque point y correspond à un angle, son abscisse est le cosinus de l'angle, son ordonnée le sinus. C'est ce cercle qui relie la géométrie à la trigonométrie, et que vous retrouverez dans tout le cours d'analyse.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p15",
+      "ecran": "developpee",
+      "texte": "La forme développée : égaux en x² et y², jamais de terme en xy.",
+      "dit": "Développons l'équation réduite : les carrés donnent ixe carré plus igrec carré, moins deux a ixe, moins deux bé igrec, plus une constante. On obtient la forme développée : ixe carré plus igrec carré plus emme ixe plus enne igrec plus pé égale zéro. Ses signes distinctifs : les coefficients de ixe carré et de igrec carré sont égaux, et il n'y a aucun terme en ixe fois igrec. Le centre se lit alors en moins emme sur deux, moins enne sur deux.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p16",
+      "ecran": "completion",
+      "texte": "Compléter le carré : retrouver centre et rayon cachés.",
+      "dit": "Dans l'autre sens, pour reconnaître un cercle dans une forme développée, on complète les carrés. Exemple : ixe carré plus igrec carré moins quatre ixe plus six igrec moins trois égale zéro. Le bloc en ixe donne ixe moins deux au carré, moins quatre ; le bloc en igrec donne igrec plus trois au carré, moins neuf. En faisant passer les constantes à droite, il vient ixe moins deux au carré plus igrec plus trois au carré égale seize : un cercle de centre deux, moins trois, et de rayon quatre. Si le membre de droite était nul, ce serait un point ; négatif, l'ensemble serait vide.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p17",
+      "ecran": "diametre",
+      "texte": "Un diamètre connu : le centre est le milieu.",
+      "dit": "Si l'on connaît un diamètre, le centre est son milieu et le rayon sa demi-longueur. Pour le diamètre d'extrémités a, un et deux, et bé, cinq et six : le centre est le point trois, quatre, et le rayon vaut la moitié de la racine de trente-deux, soit deux racine de deux. L'équation réduite est ixe moins trois au carré plus igrec moins quatre au carré égale huit, et la forme développée, ixe carré plus igrec carré moins six ixe moins huit igrec plus dix-sept égale zéro.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p18",
+      "ecran": "trois_points",
+      "texte": "Trois points : un système, et le cercle est déterminé.",
+      "dit": "Trois points non alignés déterminent un unique cercle. On injecte leurs coordonnées dans la forme développée et on résout le système en emme, enne et pé. Pour l'origine, le point quatre, zéro et le point zéro, trois : l'origine donne pé égal à zéro, le deuxième point donne emme égal à moins quatre, le troisième donne enne égal à moins trois. En complétant les carrés, le centre est deux, trois demis, et le rayon cinq demis. Remarquez que l'angle à l'origine est droit : le segment qui joint les deux autres points est un diamètre.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p19",
+      "ecran": "cas_cercle",
+      "texte": "Tangent aux axes : la coordonnée du centre vaut le rayon.",
+      "dit": "Deux cas particuliers à reconnaître d'un coup d'œil. Un cercle tangent à l'axe des abscisses a l'ordonnée de son centre égale au rayon, au signe près ; tangent à l'axe des ordonnées, c'est l'abscisse du centre qui vaut le rayon. Ainsi, le cercle tangent aux deux axes dans le premier quadrant, de rayon trois, a pour centre trois, trois, et pour équation ixe moins trois au carré plus igrec moins trois au carré égale neuf.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p20",
+      "ecran": "distance",
+      "texte": "La distance point-droite : l'outil de toutes les rencontres.",
+      "dit": "Pour décider de la rencontre d'une droite et d'un cercle, il faut un outil : la distance d'un point à une droite. On évalue l'équation de la droite aux coordonnées du point, on prend la valeur absolue, et on divise par la norme du vecteur normal, racine de a carré plus bé carré. Exemple : le point de coordonnées deux et moins un, face à la droite trois ixe moins quatre igrec plus cinq égale zéro, donne six plus quatre plus cinq, soit quinze, divisé par cinq : la distance vaut trois.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p21",
+      "ecran": "positions",
+      "texte": "d contre R : plus petit, égal, plus grand.",
+      "dit": "Tout se joue alors dans une comparaison. Si la distance du centre à la droite est strictement plus petite que le rayon, la droite traverse le cercle en deux points : elle est sécante, et les deux points forment une corde. Si la distance égale le rayon, la droite touche le cercle en un seul point : elle est tangente. Si la distance dépasse le rayon, la droite passe à côté, sans aucun point commun. Trois cas, un seul nombre à calculer.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p22",
+      "ecran": "secante_alg",
+      "texte": "Le discriminant compte les points d'intersection.",
+      "dit": "On peut aussi trancher par l'algèbre pure : on injecte l'équation de la droite dans celle du cercle, et le discriminant du trinôme obtenu compte les solutions. Pour le cercle de centre un, deux et de rayon cinq, avec la droite igrec égale deux ixe moins trois, la substitution donne cinq ixe carré moins vingt-deux ixe plus un égale zéro, de discriminant quatre cent soixante-quatre, strictement positif : deux points d'intersection, la droite est sécante. Les deux méthodes, distance et discriminant, disent toujours la même chose ; la distance est souvent la plus rapide.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p23",
+      "ecran": "corde",
+      "texte": "La corde : deux fois la racine de R² moins d².",
+      "dit": "Quand la droite est sécante, quelle est la longueur de la corde ? Le milieu de la corde est le projeté orthogonal du centre sur la droite, et le théorème de Pythagore, dans le triangle rectangle ainsi formé, donne la demi-corde : racine du carré du rayon moins le carré de la distance. La corde entière vaut donc deux fois cette racine. Exemple du cours : rayon cinq, distance racine de cinq, la corde vaut deux racine de vingt, soit quatre racine de cinq.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p24",
+      "ecran": "tangente",
+      "texte": "La tangente est perpendiculaire au rayon du contact.",
+      "dit": "Dans le cas tangent, un fait géométrique commande tout : la tangente est perpendiculaire au rayon qui aboutit au point de contact. Son équation s'en déduit : le produit scalaire du vecteur qui joint le centre au point de contact avec le vecteur qui joint le point de contact au point courant est nul. C'est le même réflexe que pour écrire une droite par un point et un vecteur normal, le rayon jouant le rôle de la normale.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p25",
+      "ecran": "tangentes_par",
+      "texte": "Deux tangentes parallèles : une de chaque côté du cercle.",
+      "dit": "Problème type : les tangentes au cercle ixe carré plus igrec carré égale dix, parallèles à la droite deux ixe plus igrec moins un égale zéro. Une tangente parallèle garde la même direction : son équation est deux ixe plus igrec plus cé égale zéro. La condition de tangence dit que la distance du centre, l'origine, à cette droite égale le rayon, racine de dix : la valeur absolue de cé, divisée par racine de cinq, égale racine de dix, donc cé vaut plus ou moins cinq racine de deux. Il y a exactement deux tangentes, une de chaque côté du cercle.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p26",
+      "ecran": "synthese",
+      "texte": "Distance 0,16 contre rayon 3 : le tracé doit changer.",
+      "dit": "Problème de synthèse, en situation réelle : une canalisation doit relier deux villes, et une zone protégée circulaire, de centre quatre, trois et de rayon trois kilomètres, ne peut pas être traversée. La droite des deux villes a pour équation igrec égale zéro virgule huit ixe. La distance du centre de la zone à cette droite vaut environ zéro virgule seize kilomètre : très inférieure au rayon trois. Verdict : la droite traverse le cercle, et le tracé doit être modifié. Toute la méthode du cours tient dans ce calcul : une équation de droite, une distance, une comparaison.",
+      "pause_apres": 0.6
+    },
+    {
+      "id": "p27",
+      "ecran": "recap",
+      "texte": "Droites et cercles : chaque rencontre est un calcul.",
+      "dit": "Pour terminer, l'enchaînement complet : trois formes pour décrire une droite et passer de l'une à l'autre ; deux formes pour un cercle, reliées par la complétion du carré ; la distance d'un point à une droite comme juge de paix ; et la comparaison de cette distance au rayon, qui décide entre sécante, tangente et droite extérieure. Avec ces outils, droites et cercles du plan n'ont plus de secret : chaque figure est une équation, chaque rencontre est un calcul.",
+      "pause_apres": 0.6
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Les droites : trois formes et leurs constructions"
+    },
+    {
+      "debut": "p12",
+      "sous_titre": "Les cercles : équations, reconnaissance, constructions",
+      "pont": {
+        "texte": "Partie 2 : récapitulatif des droites, puis les cercles.",
+        "dit": "Partie deux : les cercles. Après un bref récapitulatif des droites, nous écrirons l'équation d'un cercle de deux façons, réduite et développée, nous apprendrons à passer de l'une à l'autre en complétant le carré, et à construire un cercle par son diamètre ou par trois points."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Droites et cercles : positions relatives et synthèse",
+      "pont": {
+        "texte": "Partie 3 : positions relatives, cordes et tangentes.",
+        "dit": "Partie trois : la rencontre des droites et des cercles. La distance du centre à la droite, comparée au rayon, décidera de tout : sécante, tangente ou droite extérieure. Nous en tirerons la longueur des cordes, l'équation des tangentes, et un problème de synthèse complet."
+      }
+    }
+  ]
+}
