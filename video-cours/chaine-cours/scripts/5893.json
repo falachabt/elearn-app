@@ -1,0 +1,519 @@
+{
+ "cours": 5893,
+ "ecrans": {
+  "aire_surface": {
+   "anim": {
+    "hauteur": 150,
+    "nom": "sphere_fig"
+   },
+   "kicker": "Aire d'une surface de révolution",
+   "note": "Chaque petit arc engendre une bande de rayon |y|.",
+   "tex": "A = 2\\pi \\int_a^b |y(t)|\\,\\sqrt{x'^2 + y'^2}\\, dt",
+   "type": "formule"
+  },
+  "astroide": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "astroide_fig"
+   },
+   "kicker": "Courbes classiques · astroïde et spirale",
+   "tex": [
+    "x = a\\cos^3 t,\\ y = a\\sin^3 t \\quad \\text{(astroïde)}",
+    "x^{2/3} + y^{2/3} = a^{2/3}",
+    "x = t\\cos t,\\ y = t\\sin t \\quad \\text{(spirale)}"
+   ],
+   "titre": "Des formes hors de portée des fonctions",
+   "type": "etape"
+  },
+  "cardioide": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "cardioide_fig"
+   },
+   "kicker": "Courbe classique · la cardioïde",
+   "note": "En polaires : un cœur, parcouru en un tour complet.",
+   "tex": "r = a(1 + \\cos t)",
+   "type": "formule"
+  },
+  "cercle_courbure": {
+   "kicker": "Exemple résolu · courbure du cercle",
+   "tex": [
+    "x' = -R\\sin t,\\ y' = R\\cos t",
+    "x'' = -R\\cos t,\\ y'' = -R\\sin t",
+    "\\kappa = \\tfrac{R^2}{R^3} = \\tfrac{1}{R} \\qquad \\rho = R"
+   ],
+   "titre": "Un cercle tourne partout pareil",
+   "type": "etape"
+  },
+  "cercle_longueur": {
+   "kicker": "Exemple résolu · circonférence",
+   "tex": [
+    "x' = -R\\sin t,\\ y' = R\\cos t",
+    "\\sqrt{x'^2 + y'^2} = R",
+    "L = \\int_0^{2\\pi} R\\, dt = 2\\pi R"
+   ],
+   "titre": "La vitesse de parcours est constante",
+   "type": "etape"
+  },
+  "courbure_def": {
+   "kicker": "La courbure · idée",
+   "note": "T : tangent unitaire ; s : abscisse curviligne le long de la courbe.",
+   "tex": "\\kappa = \\left\\| \\frac{d\\vec{T}}{ds} \\right\\|",
+   "type": "formule"
+  },
+  "courbure_formule": {
+   "kicker": "La courbure · formule pratique",
+   "note": "Dérivées premières et secondes : la formule des exercices.",
+   "tex": "\\kappa(t) = \\frac{|x'y'' - x''y'|}{(x'^2 + y'^2)^{3/2}}",
+   "type": "formule"
+  },
+  "cycloide_classique": {
+   "kicker": "Courbe classique · la cycloïde",
+   "tex": [
+    "x = r(t - \\sin t),\\ y = r(1 - \\cos t)",
+    "t = 0 : \\text{rebroussement} \\qquad t = \\pi : \\text{sommet horizontal}"
+   ],
+   "titre": "Le point d'un cercle qui roule sans glisser",
+   "type": "etape",
+   "anim": {
+    "nom": "cycloide_fig",
+    "hauteur": 150
+   }
+  },
+  "cycloide_longueur": {
+   "kicker": "Exemple résolu · arche de cycloïde",
+   "tex": [
+    "x' = r(1 - \\cos t),\\ y' = r\\sin t",
+    "\\sqrt{x'^2 + y'^2} = 2r\\,|\\sin(t/2)|",
+    "L = \\int_0^{2\\pi} 2r\\sin(t/2)\\, dt = 8r"
+   ],
+   "titre": "Une arche vaut quatre diamètres",
+   "type": "etape",
+   "anim": {
+    "nom": "cycloide_fig",
+    "hauteur": 95
+   }
+  },
+  "definition": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "polaire_fig"
+   },
+   "kicker": "La paramétrisation",
+   "note": "Deux fonctions d'un même paramètre t : temps, angle ou autre.",
+   "tex": "\\vec{r}(t) = (x(t),\\, y(t))",
+   "type": "formule"
+  },
+  "ellipse_classique": {
+   "kicker": "Courbe classique · l'ellipse",
+   "tex": [
+    "\\tfrac{x^2}{a^2} + \\tfrac{y^2}{b^2} = 1 \\qquad x = a\\cos t,\\ y = b\\sin t",
+    "a = 2,\\ b = 1,\\ t = \\tfrac{\\pi}{4} :\\ M = (\\sqrt{2},\\, \\tfrac{\\sqrt{2}}{2})",
+    "\\vec{r}\\,' = (-\\sqrt{2},\\, \\tfrac{\\sqrt{2}}{2}) \\qquad \\kappa \\approx 0{,}51"
+   ],
+   "titre": "Tangente et courbure en pi sur quatre",
+   "type": "etape"
+  },
+  "ex_tangente": {
+   "kicker": "Exemple résolu · tangente",
+   "tex": [
+    "x = t^2,\\ y = t^3 \\qquad t = 2",
+    "M = (4,\\, 8) \\qquad \\vec{r}\\,'(2) = (4,\\, 12)",
+    "(x,\\, y) = (4,\\, 8) + u\\,(4,\\, 12)"
+   ],
+   "titre": "La courbe en t au carré, t au cube, en t égal deux",
+   "type": "etape"
+  },
+  "exemples": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "polaire_fig"
+   },
+   "kicker": "Trois exemples fondateurs",
+   "tex": [
+    "x = \\cos t,\\ y = \\sin t \\quad \\text{(cercle)}",
+    "x = t,\\ y = t^2 \\quad \\text{(parabole)}",
+    "x = a\\cos t,\\ y = b\\sin t \\quad \\text{(ellipse)}"
+   ],
+   "titre": "Trois courbes, un même geste",
+   "type": "etape"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un cercle n'est pas un graphe : il faut un point qui bouge, piloté par un paramètre.",
+   "type": "phrase"
+  },
+  "longueur": {
+   "kicker": "La longueur d'arc",
+   "note": "Pythagore infinitésimal : on somme les petits segments.",
+   "tex": "L = \\int_a^b \\sqrt{x'(t)^2 + y'(t)^2}\\, dt",
+   "type": "formule"
+  },
+  "normale": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "La normale",
+   "note": "Quart de tour du vecteur tangent : produit scalaire nul.",
+   "tex": "\\vec{n}(t) = (-y'(t),\\, x'(t))",
+   "type": "formule"
+  },
+  "parabole_courbure": {
+   "kicker": "Exemple résolu · courbure de la parabole",
+   "tex": [
+    "x = t,\\ y = t^2 \\qquad x' = 1,\\ y' = 2t",
+    "x'' = 0,\\ y'' = 2",
+    "\\kappa(t) = \\tfrac{2}{(1 + 4t^2)^{3/2}}"
+   ],
+   "titre": "Forte au sommet, faible loin du sommet",
+   "type": "etape"
+  },
+  "paraboloide": {
+   "kicker": "Exemple résolu · un paraboloïde",
+   "tex": [
+    "x = t,\\ y = t^2 \\qquad 0 \\le t \\le 1",
+    "V = \\pi \\int_0^1 (t^2)^2 \\times 1\\, dt = \\pi \\int_0^1 t^4\\, dt",
+    "V = \\pi \\times \\tfrac{1}{5} = \\tfrac{\\pi}{5}"
+   ],
+   "titre": "La parabole tourne autour de l'axe des x",
+   "type": "etape"
+  },
+  "pente": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "derive_fig"
+   },
+   "kicker": "La pente de la tangente",
+   "note": "Rapport des deux dérivées, si x'(t) est non nul.",
+   "tex": "\\frac{dy}{dx} = \\frac{y'(t)}{x'(t)}",
+   "type": "formule"
+  },
+  "projectile": {
+   "kicker": "Application · le projectile",
+   "tex": [
+    "x = v_0\\cos\\theta \\cdot t",
+    "y = v_0\\sin\\theta \\cdot t - \\tfrac{1}{2} g t^2",
+    "\\text{portée} = \\tfrac{v_0^2 \\sin 2\\theta}{g} \\quad \\text{max en } \\theta = 45^\\circ"
+   ],
+   "titre": "Le temps comme paramètre, la portée au bout",
+   "type": "etape"
+  },
+  "rayon": {
+   "kicker": "Le rayon de courbure",
+   "note": "Rayon du cercle osculateur, celui qui épouse la courbe.",
+   "tex": "\\rho(t) = \\frac{1}{\\kappa(t)}",
+   "type": "formule"
+  },
+  "recap": {
+   "etapes": [
+    "Paramétrer : un paramètre t pilote x et y",
+    "Tangente r'(t), normale (-y', x')",
+    "Courbure κ, rayon de courbure ρ = 1/κ",
+    "Longueur d'arc : intégrale de la vitesse",
+    "Aire avec ds, volume avec |x'| dt"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "revolution": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "sphere_fig"
+   },
+   "kicker": "Les surfaces de révolution",
+   "texte": "Tourner une courbe autour d'un axe : la demi-circonférence engendre la sphère.",
+   "type": "phrase"
+  },
+  "singulier": {
+   "anim": {
+    "hauteur": 160,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Le point singulier",
+   "texte": "Vitesse nulle : rebroussement de la cycloïde, tangente limite verticale.",
+   "type": "phrase"
+  },
+  "sphere_mesures": {
+   "kicker": "Exemple résolu · la sphère",
+   "tex": [
+    "x = R\\cos t,\\ y = R\\sin t,\\quad ds = R\\, dt",
+    "A = 2\\pi \\int_0^{\\pi} R^2\\sin t\\, dt = 4\\pi R^2",
+    "V = \\pi \\int_0^{\\pi} R^2\\sin^2 t \\cdot R\\sin t\\, dt = \\tfrac{4}{3}\\pi R^3"
+   ],
+   "titre": "Aire et volume de la sphère de rayon R",
+   "type": "etape"
+  },
+  "synthese_ex": {
+   "kicker": "Exercice de synthèse",
+   "tex": [
+    "x = t^2,\\ y = t^3 \\qquad t = 1 :\\ M = (1,\\, 1)",
+    "\\vec{r}\\,'(1) = (2,\\, 3) \\qquad \\vec{r}''(1) = (2,\\, 6)",
+    "\\kappa = \\tfrac{|2 \\times 6 - 2 \\times 3|}{(4 + 9)^{3/2}} = \\tfrac{6}{13\\sqrt{13}} \\approx 0{,}13"
+   ],
+   "titre": "Tangente et courbure réunies, en t égal un",
+   "type": "etape"
+  },
+  "tangente_eq": {
+   "anim": {
+    "hauteur": 120,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Équation de la tangente",
+   "tex": [
+    "M(t_0) = (x(t_0),\\, y(t_0))",
+    "\\vec{r}\\,'(t_0) = (x'(t_0),\\, y'(t_0))",
+    "(x,\\, y) = M(t_0) + u\\,\\vec{r}\\,'(t_0),\\ u \\in \\mathbb{R}"
+   ],
+   "titre": "Un point, une direction, un paramètre",
+   "type": "etape"
+  },
+  "tangente_vec": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Le vecteur tangent",
+   "note": "Direction du mouvement ; sa norme est la vitesse de parcours.",
+   "tex": "\\vec{r}\\,'(t) = (x'(t),\\, y'(t))",
+   "type": "formule"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "tangente_courbe_fig"
+   },
+   "kicker": "Mathématique · Courbes paramétrées",
+   "sous": "Paramétrer, dériver, mesurer : de la cycloïde à la sphère et au tore",
+   "titre": "Courbes paramétrées : tangentes, courbure et volumes de révolution",
+   "type": "titre"
+  },
+  "tore": {
+   "kicker": "Le tore · aire contre volume",
+   "tex": [
+    "A_{\\text{tore}} = 4\\pi^2 R\\, r \\qquad \\text{(une aire)}",
+    "V_{\\text{tore}} = 2\\pi^2 R\\, r^2 \\qquad \\text{(Pappus)}"
+   ],
+   "titre": "Deux formules voisines, deux objets différents",
+   "type": "etape"
+  },
+  "volume_disques": {
+   "kicker": "Volume · méthode des disques",
+   "note": "Disques : aire πy², épaisseur |x'| dt, jamais ds.",
+   "tex": "V = \\pi \\int_a^b y(t)^2\\,|x'(t)|\\, dt",
+   "type": "formule"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Paramétrer et dériver : tangentes et normales"
+  },
+  {
+   "debut": "p11",
+   "pont": {
+    "dit": "Partie deux : courbure, longueur d'arc et surfaces de révolution. Après les tangentes, nous mesurons maintenant le virage de la courbe, la distance parcourue le long d'elle, puis ce qu'elle engendre quand elle tourne autour d'un axe.",
+    "texte": "Partie 2 : courbure, longueur d'arc et surfaces de révolution."
+   },
+   "sous_titre": "Courbure, longueur d'arc et surfaces de révolution"
+  },
+  {
+   "debut": "p22",
+   "pont": {
+    "dit": "Partie trois : volumes de révolution et courbes classiques. Nous précisons d'abord le choix de l'élément différentiel pour les volumes, avec le tore en exemple, puis nous retrouvons l'ellipse, la cycloïde et leurs cousines, avant un exercice de synthèse et le projectile.",
+    "texte": "Partie 3 : volumes de révolution et courbes classiques."
+   },
+   "sous_titre": "Volumes de révolution et courbes classiques"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux courbes paramétrées. Nous allons apprendre à décrire une courbe par un point qui bouge, à lire sa tangente et sa normale, à mesurer sa courbure et sa longueur, puis à calculer les aires et les volumes engendrés quand elle tourne autour d'un axe, jusqu'aux courbes classiques comme l'ellipse et la cycloïde.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Courbes paramétrées : le programme complet du cours."
+  },
+  {
+   "dit": "Une courbe n'est pas toujours le graphe d'une fonction. Un cercle, par exemple, ne peut pas s'écrire comme igrec fonction de ixe, car une même abscisse y correspond à deux points. La paramétrisation lève ce blocage : on suit un point mobile, dont l'abscisse et l'ordonnée sont deux fonctions d'un même paramètre, souvent le temps ou un angle.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Au-delà des graphes : un point mobile piloté par t."
+  },
+  {
+   "dit": "Formellement, une courbe paramétrée associe à chaque valeur du paramètre té, prise dans un intervalle, le point de coordonnées ixe de té et igrec de té. Pour le cercle unité, ixe de té vaut cosinus té et igrec de té vaut sinus té : quand té parcourt un tour complet, le point parcourt tout le cercle, et té n'est autre que l'angle polaire.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "r(t) = (x(t), y(t)) : le cercle par cosinus et sinus."
+  },
+  {
+   "dit": "Trois exemples à connaître par cœur. La parabole : ixe égale té, igrec égale té au carré. Le cercle : cosinus et sinus du même angle. L'ellipse : a fois cosinus té pour l'abscisse, bé fois sinus té pour l'ordonnée, où a et bé sont les demi-axes. Changer de paramétrisation ne change pas la courbe tracée, mais change la vitesse et le sens du parcours.",
+   "ecran": "exemples",
+   "id": "p04",
+   "texte": "Cercle, parabole, ellipse : trois paramétrisations types."
+  },
+  {
+   "dit": "Premier calcul fondamental : la pente de la tangente. Quand le point avance, ixe et igrec varient ensemble, et la pente s'obtient en divisant la dérivée de igrec par la dérivée de ixe, à condition que cette dernière ne soit pas nulle. C'est la dérivation en chaîne, et elle remplace la dérivée habituelle des fonctions d'une variable.",
+   "ecran": "pente",
+   "id": "p05",
+   "texte": "La pente : dy sur dx, rapport des deux dérivées."
+  },
+  {
+   "dit": "Le vecteur tangent résume tout : on dérive séparément l'abscisse et l'ordonnée, et le couple obtenu pointe dans la direction du mouvement, comme la vitesse instantanée d'une voiture sur sa trajectoire. Sa longueur mesure d'ailleurs la vitesse de parcours : plus le point avance vite sur la courbe, plus ce vecteur est long.",
+   "ecran": "tangente_vec",
+   "id": "p06",
+   "texte": "r'(t) : la direction instantanée du mouvement."
+  },
+  {
+   "dit": "Pour écrire la droite tangente, on part du point de contact, puis on avance le long du vecteur tangent avec un second paramètre, noté u. Chaque valeur de u donne un point de la droite. Si le vecteur dérivé est nul, cette construction s'effondre : on parle alors de point singulier, et il faut regarder les dérivées d'ordre supérieur.",
+   "ecran": "tangente_eq",
+   "id": "p07",
+   "texte": "Tangente : point de contact plus direction r'(t)."
+  },
+  {
+   "dit": "Exemple entièrement calculé, avec ixe égale té au carré et igrec égale té au cube, au point de paramètre deux. Le point de la courbe a pour coordonnées quatre et huit. Le vecteur tangent a pour coordonnées quatre et douze. La tangente est donc la droite qui passe par ce point et qui avance dans cette direction, et la normale lui est perpendiculaire.",
+   "ecran": "ex_tangente",
+   "id": "p08",
+   "texte": "En t égal deux : point (4, 8), direction (4, 12)."
+  },
+  {
+   "dit": "La normale est la droite perpendiculaire à la tangente au même point. Pour l'obtenir, on fait pivoter le vecteur tangent d'un quart de tour : on échange ses coordonnées et on change le signe de l'une d'elles. Tangente et normale forment alors le repère local de la courbe, celui qui servira pour le cercle osculateur et la courbure.",
+   "ecran": "normale",
+   "id": "p09",
+   "texte": "La normale : un quart de tour du vecteur tangent."
+  },
+  {
+   "dit": "Le cas délicat est celui du point singulier, quand les deux dérivées s'annulent en même temps. Sur la cycloïde, cela arrive au point de contact avec le sol : la vitesse s'annule, la courbe y forme un point de rebroussement, et sa tangente limite est verticale, perpendiculaire à la base. Au sommet de l'arche, au contraire, la tangente est horizontale.",
+   "ecran": "singulier",
+   "id": "p10",
+   "texte": "Point singulier : vitesse nulle, tangente à la limite."
+  },
+  {
+   "dit": "La courbure mesure à quel point une courbe tourne. Une droite ne tourne pas : sa courbure est nulle. Un petit cercle tourne vite : sa courbure est grande. Mathématiquement, on suit le vecteur tangent unitaire, de longueur un, et on mesure la vitesse à laquelle sa direction tourne quand on avance le long de la courbe, par rapport à l'abscisse curviligne.",
+   "ecran": "courbure_def",
+   "id": "p11",
+   "texte": "La courbure : la direction tourne, on la mesure."
+  },
+  {
+   "dit": "Calculer cette définition directement serait pénible. La formule pratique n'utilise que les dérivées premières et secondes des deux coordonnées : un déterminant au numérateur, la vitesse de parcours élevée à la puissance trois au dénominateur, le tout en valeur absolue. C'est la formule à appliquer dans tous les exercices du chapitre.",
+   "ecran": "courbure_formule",
+   "id": "p12",
+   "texte": "κ pratique : déterminant sur vitesse à la puissance trois."
+  },
+  {
+   "dit": "Vérifions sur le cercle de rayon grand erre. Les dérivées donnent un numérateur égal au carré du rayon, et un dénominateur égal au cube du rayon : la courbure vaut donc un sur le rayon, constante tout le long du cercle. Un grand cercle tourne lentement, un petit cercle tourne vite : la courbure est exactement l'inverse du rayon.",
+   "ecran": "cercle_courbure",
+   "id": "p13",
+   "texte": "Cercle : κ vaut un sur R, partout la même."
+  },
+  {
+   "dit": "Sur la parabole igrec égale ixe au carré, paramétrée par ixe égale té, la courbure dépend du point. Au sommet, elle vaut deux, et le rayon de courbure vaut un demi. Au point d'abscisse un, elle tombe à environ zéro virgule dix-huit : la parabole s'aplatit quand on s'éloigne du sommet, et son rayon de courbure grandit en conséquence.",
+   "ecran": "parabole_courbure",
+   "id": "p14",
+   "texte": "Parabole : κ vaut deux au sommet, puis décroît."
+  },
+  {
+   "dit": "Le rayon de courbure est l'inverse de la courbure. Il donne le rayon du cercle osculateur, le cercle qui épouse le mieux la courbe au point considéré et qui partage sa tangente. Retenez l'image : localement, toute courbe régulière ressemble à un morceau de cercle, et ce rayon dit lequel. Virage serré, petit rayon ; courbe douce, grand rayon.",
+   "ecran": "rayon",
+   "id": "p15",
+   "texte": "ρ = 1/κ : le rayon du cercle qui épouse la courbe."
+  },
+  {
+   "dit": "Passons à la longueur d'arc, la distance réellement parcourue le long de la courbe. On découpe la courbe en tout petits segments, on mesure chacun par le théorème de Pythagore, puis on somme : à la limite, on obtient l'intégrale de la racine carrée de la somme des carrés des dérivées. Cette racine est la vitesse de parcours, et son intégrale est la distance.",
+   "ecran": "longueur",
+   "id": "p16",
+   "texte": "Longueur d'arc : intégrer la vitesse de parcours."
+  },
+  {
+   "dit": "Pour le cercle de rayon grand erre, la vitesse de parcours est constante et égale au rayon, car les deux dérivées sont le rayon multiplié par sinus et cosinus. L'intégrale sur un tour complet donne donc le rayon multiplié par la longueur de l'intervalle, soit deux pi fois le rayon : on retrouve la circonférence connue depuis longtemps.",
+   "ecran": "cercle_longueur",
+   "id": "p17",
+   "texte": "Cercle : L égale deux pi fois R, comme attendu."
+  },
+  {
+   "dit": "Plus beau résultat : la longueur d'une arche de cycloïde. Pour la cycloïde de rayon petit erre, la vitesse de parcours se simplifie remarquablement en deux fois le rayon fois le sinus de la moitié de l'angle. Son intégrale sur un tour complet vaut huit fois le rayon. Une arche de cycloïde mesure donc exactement quatre diamètres du cercle qui la génère.",
+   "ecran": "cycloide_longueur",
+   "id": "p18",
+   "texte": "Arche de cycloïde : L égale huit fois le rayon."
+  },
+  {
+   "dit": "Faisons maintenant tourner une courbe autour de l'axe des abscisses : elle engendre une surface de révolution, comme la pièce du potier sur son tour. L'exemple parfait est la demi-circonférence de rayon grand erre, paramétrée par cosinus et sinus : sa rotation donne exactement la sphère de même rayon, que nous allons mesurer de deux façons.",
+   "ecran": "revolution",
+   "id": "p19",
+   "texte": "Révolution : la demi-circonférence engendre la sphère."
+  },
+  {
+   "dit": "Pour l'aire d'une surface de révolution, chaque petit morceau d'arc, en tournant, engendre une bande presque cylindrique dont le rayon est la distance à l'axe, c'est-à-dire la valeur absolue de l'ordonnée. L'aire de la bande vaut la circonférence de cette bande multipliée par la longueur de l'arc, et l'intégrale somme toutes les bandes.",
+   "ecran": "aire_surface",
+   "id": "p20",
+   "texte": "Aire de révolution : des bandes de rayon |y|."
+  },
+  {
+   "dit": "Appliquons à la sphère. Son élément d'arc vaut le rayon, et l'aire devient deux pi fois le carré du rayon, multiplié par l'intégrale de sinus sur un demi-tour, qui vaut deux : total, quatre pi fois le carré du rayon. Le même solide, découpé en disques, donne le volume : quatre tiers de pi fois le cube du rayon. Deux résultats à connaître par cœur.",
+   "ecran": "sphere_mesures",
+   "id": "p21",
+   "texte": "Sphère : aire quatre pi R carré, volume quatre tiers pi R cube."
+  },
+  {
+   "dit": "Pour un volume de révolution, la méthode des disques découpe le solide en tranches fines perpendiculaires à l'axe. Chaque tranche est un disque dont l'aire vaut pi fois le carré de l'ordonnée, et son épaisseur se mesure le long de l'axe : c'est la variation de l'abscisse, jamais la longueur de l'arc. Confondre les deux est l'erreur classique de ce chapitre.",
+   "ecran": "volume_disques",
+   "id": "p22",
+   "texte": "Volume : épaisseur le long de l'axe, jamais ds."
+  },
+  {
+   "dit": "Exemple net : la courbe ixe égale té, igrec égale té au carré, entre zéro et un, tourne autour de l'axe des abscisses. La méthode des disques donne pi fois l'intégrale de té à la puissance quatre, entre zéro et un. Cette intégrale vaut un cinquième : le volume du paraboloïde obtenu vaut donc pi sur cinq.",
+   "ecran": "paraboloide",
+   "id": "p23",
+   "texte": "Paraboloïde : V égale pi sur cinq."
+  },
+  {
+   "dit": "Le tore piège beaucoup d'élèves, car deux formules se ressemblent. L'intégrale avec deux pi, le rayon du parcours et l'élément d'arc donne une aire : celle du tore vaut quatre pi au carré fois grand erre fois petit erre. Le volume, lui, s'obtient par le théorème de Pappus : l'aire du disque générateur multipliée par le chemin de son centre, soit deux pi au carré fois grand erre fois le carré du petit erre.",
+   "ecran": "tore",
+   "id": "p24",
+   "texte": "Tore : aire en R fois r, volume en R fois r carré."
+  },
+  {
+   "dit": "Retour aux courbes classiques, avec l'ellipse de demi-axes deux et un, au point de paramètre pi sur quatre. Le point a pour abscisse racine de deux et pour ordonnée racine de deux sur deux. Le vecteur tangent s'en déduit aussitôt, et la formule de courbure donne environ zéro virgule cinquante et un, soit un rayon de courbure proche de deux.",
+   "ecran": "ellipse_classique",
+   "id": "p25",
+   "texte": "Ellipse deux et un : κ environ zéro virgule cinquante et un."
+  },
+  {
+   "dit": "La cycloïde est la trajectoire d'un point fixé sur un cercle qui roule sans glisser sur une droite. Son abscisse combine rotation et translation, son ordonnée monte puis redescend. Elle possède un point de rebroussement à chaque contact avec le sol, un sommet au milieu de chaque arche, et elle revient sans cesse dans les problèmes de mécanique.",
+   "ecran": "cycloide_classique",
+   "id": "p26",
+   "texte": "Cycloïde : rebroussements au sol, sommet horizontal."
+  },
+  {
+   "dit": "Autre classique, la cardioïde, dont le nom dit la forme : un cœur. En coordonnées polaires, son rayon vaut a fois un plus cosinus de l'angle. Comme l'ellipse, l'astroïde ou la spirale, elle montre la force de la paramétrisation : une seule équation simple, et une forme qu'aucune fonction ordinaire ne saurait décrire d'un seul tenant.",
+   "ecran": "cardioide",
+   "id": "p27",
+   "texte": "Cardioïde : r égale a fois un plus cosinus t."
+  },
+  {
+   "dit": "L'astroïde, elle, est une courbe en étoile à quatre pointes, décrite par les cubes de cosinus et de sinus. Son équation cartésienne fait intervenir des puissances deux tiers, impossibles à manier comme une fonction ordinaire. La même famille contient la spirale d'Archimède, où le rayon grandit proportionnellement à l'angle : la paramétrisation y est naturelle.",
+   "ecran": "astroide",
+   "id": "p28",
+   "texte": "Astroïde et spirale : la paramétrisation naturelle."
+  },
+  {
+   "dit": "Exercice de synthèse, qui combine tout : ixe égale té au carré, igrec égale té au cube, au point de paramètre un. Le point a pour coordonnées un et un, le vecteur tangent a pour coordonnées deux et trois, le vecteur dérivé second deux et six. La courbure vaut six divisé par treize racine de treize, environ zéro virgule treize : la courbe y est déjà assez douce.",
+   "ecran": "synthese_ex",
+   "id": "p29",
+   "texte": "Synthèse en t égal un : κ environ zéro virgule treize."
+  },
+  {
+   "dit": "Dernière application : le projectile. Son abscisse avance à vitesse constante, son ordonnée monte puis retombe sous l'effet de la gravité, et le temps joue le rôle du paramètre. En éliminant le temps, on retrouve une parabole, et la portée vaut le carré de la vitesse initiale fois le sinus du double de l'angle, divisé par la pesanteur, maximale à quarante-cinq degrés.",
+   "ecran": "projectile",
+   "id": "p30",
+   "texte": "Projectile : portée maximale à quarante-cinq degrés."
+  },
+  {
+   "dit": "Pour conclure, gardez la chaîne complète : paramétrer pour décrire, dériver pour obtenir tangente et normale, appliquer la formule de courbure pour mesurer le virage, intégrer la vitesse pour la longueur, puis choisir le bon élément différentiel pour les aires et les volumes de révolution. Avec ces réflexes, les courbes paramétrées deviennent un outil, pas un obstacle.",
+   "ecran": "recap",
+   "id": "p31",
+   "texte": "L'essentiel des courbes paramétrées."
+  }
+ ],
+ "titre": "Courbes paramétrées : tangentes, courbure et volumes de révolution"
+}

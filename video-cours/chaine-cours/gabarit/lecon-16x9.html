@@ -1869,6 +1869,31 @@ const FIG = {
       mot(668, 58, 'M', { t: 21, a: 'start' }) +
       mot(500, 292, "MF + MF′ = 2a : la somme des distances aux foyers est constante", { t: 19 }));
   },
+  cycloide_fig(t) {
+    const R = 62, sol = 252, x0 = 250;
+    let arche = '';
+    for (let k = 0; k <= 44; k++) {
+      const th = k * (2 * Math.PI / 44);
+      arche += `${Math.round(x0 + R * (th - Math.sin(th)))},${Math.round(sol - R * (1 - Math.cos(th)))} `;
+    }
+    return svgBoite(
+      `<line x1="120" y1="${sol}" x2="906" y2="${sol}" stroke="currentColor" stroke-width="4"/>` +
+      `<polyline points="${arche}" fill="none" stroke="#E8604C" stroke-width="5" stroke-linejoin="round"/>` +
+      `<circle cx="${x0}" cy="${sol - R}" r="${R}" fill="none" stroke="currentColor" stroke-width="3" opacity=".4"/>` +
+      `<circle cx="470" cy="${sol - R}" r="${R}" fill="currentColor" fill-opacity=".05" stroke="currentColor" stroke-width="4"/>` +
+      `<line x1="470" y1="${sol - R}" x2="470" y2="${sol}" stroke="currentColor" stroke-width="3"/>` +
+      `<line x1="470" y1="${sol - R}" x2="428" y2="148" stroke="#E8604C" stroke-width="3" stroke-dasharray="6 5"/>` +
+      `<line x1="216" y1="128" x2="216" y2="${sol}" stroke="currentColor" stroke-width="3" stroke-dasharray="7 6"/>` +
+      trait(416, 104, 540, 104, prog(t), { c: 'currentColor', w: 4 }) +
+      `<polygon points="554,104 536,95 536,113" fill="currentColor"/>` +
+      `<circle cx="470" cy="${sol - R}" r="5" fill="currentColor"/>` +
+      `<circle cx="428" cy="148" r="7" fill="#E8604C"/>` +
+      `<circle cx="${x0}" cy="${sol}" r="5" fill="#E8604C"/>` +
+      mot(482, 228, 'R', { t: 21, a: 'start' }) +
+      mot(442, 138, 'P', { t: 21, c: '#E8604C', a: 'start' }) +
+      mot(204, 196, '2R', { t: 21, a: 'end' }) +
+      mot(500, 292, "un point de la roue trace la cycloïde, une arche après l'autre", { t: 19 }));
+  },
   etoiles_barres_fig(t) {
     const items = ['S', 'S', 'B', 'S', 'B', 'B', 'B', 'S', 'S', 'S'];
     let corps = '';
