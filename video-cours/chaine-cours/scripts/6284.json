@@ -1,0 +1,448 @@
+{
+  "cours": 6284,
+  "ecrans": {
+    "addition": {
+      "kicker": "L'addition · fusion élément par élément",
+      "note": "Uniquement si A et B ont exactement les mêmes dimensions",
+      "tex": "(A + B)_{ij} = a_{ij} + b_{ij}",
+      "type": "formule"
+    },
+    "addition_ex": {
+      "kicker": "Exemple · addition position par position",
+      "tex": [
+        "A = \\begin{pmatrix} 1 & 3 \\\\ -2 & 0 \\end{pmatrix},\\quad B = \\begin{pmatrix} 4 & -1 \\\\ 5 & 2 \\end{pmatrix}",
+        "A + B = \\begin{pmatrix} 5 & 2 \\\\ 3 & 2 \\end{pmatrix}"
+      ],
+      "titre": "Chaque coefficient de la somme naît au même endroit",
+      "type": "etape"
+    },
+    "adjacence": {
+      "kicker": "Application · réseaux et chemins",
+      "texte": "M² compte les chemins de longueur 2 : de A vers C, 2 chemins (par B, par D).",
+      "type": "phrase",
+      "anim": {
+        "nom": "graphe_adjacence_fig",
+        "hauteur": 190
+      }
+    },
+    "combinaison": {
+      "kicker": "Exemple · une combinaison linéaire",
+      "tex": [
+        "A = \\begin{pmatrix} 1 & 2 \\\\ -1 & 0 \\end{pmatrix},\\quad B = \\begin{pmatrix} 0 & 1 \\\\ 3 & -2 \\end{pmatrix}",
+        "2A - 3B = \\begin{pmatrix} 2 & 1 \\\\ -11 & 6 \\end{pmatrix}"
+      ],
+      "titre": "Multiplier chaque matrice par son scalaire, puis additionner",
+      "type": "etape"
+    },
+    "compat": {
+      "kicker": "Le produit · la compatibilité d'abord",
+      "note": "Les dimensions intérieures coïncident, les extérieures donnent le résultat",
+      "tex": "(m \\times n) \\times (n \\times p) = (m \\times p)",
+      "type": "formule"
+    },
+    "definition": {
+      "kicker": "Qu'est-ce qu'une matrice ?",
+      "note": "m lignes, n colonnes · aᵢⱼ : ligne i, colonne j — toujours dans cet ordre",
+      "tex": "A = \\begin{pmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\end{pmatrix}",
+      "type": "formule"
+    },
+    "egalite": {
+      "kicker": "Égalité de deux matrices",
+      "tex": [
+        "\\begin{pmatrix} x + y & 2 \\\\ 4 & x - y \\end{pmatrix} = \\begin{pmatrix} 3 & 2 \\\\ 4 & 1 \\end{pmatrix}",
+        "x + y = 3, \\quad x - y = 1 \\Rightarrow x = 2, \\ y = 1"
+      ],
+      "titre": "Mêmes dimensions, coefficients égaux : un système déguisé",
+      "type": "etape"
+    },
+    "hill": {
+      "kicker": "Application · le chiffrement de Hill",
+      "tex": [
+        "K = \\begin{pmatrix} 3 & 3 \\\\ 2 & 5 \\end{pmatrix},\\quad P = \\begin{pmatrix} 0 \\\\ 11 \\end{pmatrix}",
+        "KP = \\begin{pmatrix} 33 \\\\ 55 \\end{pmatrix} \\equiv \\begin{pmatrix} 7 \\\\ 3 \\end{pmatrix} \\pmod{26} \\to \\text{HD}"
+      ],
+      "titre": "Coder « AL » avec une matrice clé, modulo 26",
+      "type": "etape"
+    },
+    "intro": {
+      "kicker": "Introduction · le monde au-delà des nombres",
+      "texte": "Sylvester, vers 1850 : la matrice, « mère » des déterminants. Des données en grille deviennent un objet de calcul.",
+      "type": "phrase"
+    },
+    "lecture": {
+      "anim": {
+        "hauteur": 220,
+        "nom": "matrice_fig"
+      },
+      "kicker": "Lire une matrice · l'exemple des notes",
+      "texte": "N : 3 lignes (étudiants) × 4 colonnes (matières) — n₂₃ = 11, la note de Bob en chimie.",
+      "type": "phrase"
+    },
+    "leontief": {
+      "kicker": "Application · le modèle de Leontief",
+      "tex": [
+        "x = Cx + d \\iff (I - C)\\,x = d",
+        "(I - C) = \\begin{pmatrix} 0{,}9 & -0{,}3 \\\\ -0{,}2 & 0{,}6 \\end{pmatrix}, \\ x = \\begin{pmatrix} 12{,}5 \\\\ 20{,}83 \\end{pmatrix}"
+      ],
+      "titre": "Énergie et acier : la production qui couvre la demande",
+      "type": "etape"
+    },
+    "mecanisme": {
+      "kicker": "Exemple détaillé · ligne contre colonne",
+      "tex": [
+        "c_{11} = 1 \\times 7 + 2 \\times 9 + 3 \\times 11 = 58",
+        "c_{12} = 1 \\times 8 + 2 \\times 10 + 3 \\times 12 = 64",
+        "c_{21} = 4 \\times 7 + 5 \\times 9 + 6 \\times 11 = 139",
+        "c_{22} = 4 \\times 8 + 5 \\times 10 + 6 \\times 12 = 154"
+      ],
+      "titre": "A (2×3) fois B (3×2) : le produit vaut 58, 64, 139, 154",
+      "type": "etape"
+    },
+    "pieges": {
+      "etapes": [
+        "(A + B)² = A² + AB + BA + B², jamais 2AB",
+        "AB = 0 n'implique ni A = 0, ni B = 0",
+        "Simplifier AB = AC en B = C : interdit",
+        "Dimensions intérieures égales, sinon rien",
+        "L'ordre des facteurs est sacré"
+      ],
+      "kicker": "Pièges courants · à ne plus commettre",
+      "type": "recap"
+    },
+    "produit_2x2": {
+      "kicker": "Exemple · le produit dans les deux sens",
+      "tex": [
+        "A = \\begin{pmatrix} 2 & -1 \\\\ 0 & 3 \\end{pmatrix},\\quad B = \\begin{pmatrix} 1 & 4 \\\\ -2 & 1 \\end{pmatrix}",
+        "AB = \\begin{pmatrix} 4 & 7 \\\\ -6 & 3 \\end{pmatrix},\\quad BA = \\begin{pmatrix} 2 & 11 \\\\ -4 & 5 \\end{pmatrix}"
+      ],
+      "titre": "AB et BA : deux résultats différents",
+      "type": "etape"
+    },
+    "produit_def": {
+      "kicker": "Le produit matriciel · définition",
+      "note": "La ligne i de A contre la colonne k de B : produits additionnés un à un",
+      "tex": "c_{ik} = \\sum_{j=1}^{n} a_{ij}\\, b_{jk}",
+      "type": "formule"
+    },
+    "proprietes_add": {
+      "kicker": "Propriétés · addition et scalaire",
+      "tex": [
+        "A + B = B + A",
+        "(A + B) + C = A + (B + C)",
+        "k(A + B) = kA + kB",
+        "(k + l)\\,A = kA + lA"
+      ],
+      "titre": "Les bonnes propriétés des nombres, conservées",
+      "type": "etape"
+    },
+    "proprietes_prod": {
+      "kicker": "Propriétés · le produit, ce qui survit",
+      "tex": [
+        "(AB)C = A(BC)",
+        "A(B + C) = AB + AC",
+        "(A + B)C = AC + BC",
+        "k(AB) = (kA)B,\\quad AI = IA = A"
+      ],
+      "titre": "Associatif, distributif, avec l'identité pour neutre",
+      "type": "etape"
+    },
+    "recap": {
+      "etapes": [
+        "Addition : mêmes dimensions exigées",
+        "Scalaire : chaque coefficient multiplié",
+        "Produit : lignes contre colonnes, ordre sacré",
+        "Identité I : le un du produit matriciel"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "recap1": {
+      "etapes": [
+        "Matrice m × n : aᵢⱼ, ligne i, colonne j",
+        "Égalité : dimensions et coefficients égaux",
+        "Addition : mêmes dimensions, par position",
+        "Scalaire : tout est multiplié, taille gardée"
+      ],
+      "kicker": "À retenir · la factorisation",
+      "type": "recap"
+    },
+    "ruptures": {
+      "kicker": "Les ruptures avec l'algèbre usuelle",
+      "tex": [
+        "AB = \\begin{pmatrix} 1 & 0 \\\\ 0 & 0 \\end{pmatrix},\\quad BA = \\begin{pmatrix} 0 & 0 \\\\ 0 & 1 \\end{pmatrix}",
+        "A^2 = \\begin{pmatrix} 0 & 0 \\\\ 0 & 0 \\end{pmatrix} \\quad \\text{avec } A \\neq O"
+      ],
+      "titre": "Non-commutativité et diviseurs de zéro",
+      "type": "etape"
+    },
+    "scalaire": {
+      "kicker": "La multiplication par un scalaire",
+      "note": "Chaque coefficient est multiplié · dimensions inchangées · 1,1 × N relève les notes de 10 %",
+      "tex": "(\\alpha A)_{ij} = \\alpha\\, a_{ij}",
+      "type": "formule"
+    },
+    "soustraction": {
+      "kicker": "La soustraction et l'opposée",
+      "tex": [
+        "A - B = \\begin{pmatrix} -3 & 4 \\\\ -7 & -2 \\end{pmatrix}",
+        "-A = \\begin{pmatrix} -1 & -3 \\\\ 2 & 0 \\end{pmatrix},\\quad A + (-A) = O"
+      ],
+      "titre": "Soustraire, c'est additionner l'opposée",
+      "type": "etape"
+    },
+    "systeme": {
+      "kicker": "Application · les systèmes d'équations",
+      "note": "Deux équations, deux inconnues : une seule écriture, AX = B",
+      "tex": "\\begin{pmatrix} 2 & 3 \\\\ 4 & -1 \\end{pmatrix} \\begin{pmatrix} x \\\\ y \\end{pmatrix} = \\begin{pmatrix} 8 \\\\ 6 \\end{pmatrix}",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 250,
+        "nom": "matrice_fig"
+      },
+      "kicker": "Mathématique · Algèbre linéaire",
+      "sous": "Définir, additionner, multiplier : les opérations sur les tableaux de nombres et leurs propriétés",
+      "titre": "Les matrices",
+      "type": "titre"
+    },
+    "transformations": {
+      "kicker": "Application · transformations du plan",
+      "tex": [
+        "R(\\theta) = \\begin{pmatrix} \\cos\\theta & -\\sin\\theta \\\\ \\sin\\theta & \\cos\\theta \\end{pmatrix}",
+        "S = \\begin{pmatrix} s_x & 0 \\\\ 0 & s_y \\end{pmatrix},\\quad P' = R\\,P \\text{ ou } S\\,P"
+      ],
+      "titre": "Rotation et homothétie : des produits matriciels",
+      "type": "etape"
+    },
+    "types": {
+      "kicker": "Vocabulaire · les types spéciaux",
+      "tex": [
+        "I_2 = \\begin{pmatrix} 1 & 0 \\\\ 0 & 1 \\end{pmatrix} \\qquad O = \\begin{pmatrix} 0 & 0 \\\\ 0 & 0 \\end{pmatrix}",
+        "Q = \\begin{pmatrix} 1 & 2 \\\\ 3 & 4 \\end{pmatrix} \\quad \\text{carrée, diagonale } 1 \\text{ et } 4"
+      ],
+      "titre": "Ligne, colonne, carrée, nulle et identité",
+      "type": "etape"
+    },
+    "ventes": {
+      "kicker": "Application · consolider des ventes",
+      "texte": "VA + VB = (20, 20, 25 ; 25, 12, 38) : les ventes des deux magasins, consolidées en un tableau.",
+      "type": "phrase"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définir les matrices et les additionner"
+    },
+    {
+      "debut": "p10",
+      "pont": {
+        "dit": "Partie deux : mettre à l'échelle, puis multiplier. Nous commençons par la multiplication par un scalaire et les combinaisons linéaires, avant d'attaquer l'opération reine : le produit matriciel, son contrôle de dimensions et son mécanisme ligne contre colonne.",
+        "texte": "Partie 2 : scalaire, combinaisons linéaires et produit matriciel."
+      },
+      "sous_titre": "Scalaire, combinaisons linéaires et produit matriciel"
+    },
+    {
+      "debut": "p19",
+      "pont": {
+        "dit": "Partie trois : les propriétés du produit et ses applications. Nous creuserons les ruptures avec l'algèbre des nombres, nous rangerons les propriétés qui survivent, puis nous verrons le produit travailler : systèmes d'équations, transformations du plan, économie de Leontief, chiffrement de Hill et chemins dans les réseaux.",
+        "texte": "Partie 3 : propriétés du produit et applications au réel."
+      },
+      "sous_titre": "Propriétés du produit et applications"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans le cours consacré aux matrices, ces tableaux de nombres qui organisent et transforment l'information. Nous construirons tout l'édifice : la définition et le vocabulaire, l'addition, la multiplication par un scalaire, puis le produit matriciel et ses propriétés, avant de voir les matrices travailler en économie, en cryptographie et en infographie.",
+      "ecran": "titre",
+      "id": "p01",
+      "pause_apres": 0.7,
+      "texte": "Les matrices : les opérations et leurs propriétés."
+    },
+    {
+      "dit": "Le mot matrice vient du latin et signifie source, mère : Sylvester, qui l'a popularisé vers mille huit cent cinquante, y voyait la mère des déterminants. L'idée est simple : au lieu de manipuler des nombres isolés, on range les données en lignes et en colonnes, et l'on calcule directement sur le tableau entier. Notes d'élèves, ventes de magasins, connexions d'un réseau : dès que l'information forme une grille, une matrice la capture.",
+      "ecran": "intro",
+      "id": "p02",
+      "pause_apres": 0.6,
+      "texte": "Un tableau de nombres devient un objet de calcul."
+    },
+    {
+      "dit": "Une matrice a de taille m par n est un tableau rectangulaire de m lignes et n colonnes. Chaque coefficient se repère par deux indices : a indice i j siège à l'intersection de la ligne i et de la colonne j. Le premier indice donne toujours la ligne, le second toujours la colonne : cette convention, ligne puis colonne, ne se négocie jamais.",
+      "ecran": "definition",
+      "id": "p03",
+      "pause_apres": 0.6,
+      "texte": "A : m × n — aᵢⱼ est à la ligne i, colonne j."
+    },
+    {
+      "dit": "Lire une matrice, c'est lire un tableau à double entrée. Dans la matrice des notes, trois lignes pour trois étudiants et quatre colonnes pour quatre matières, le coefficient ligne deux, colonne trois vaut onze : c'est la note de Bob en chimie. Retenez le réflexe : pour situer un coefficient, on énonce sa ligne, puis sa colonne, comme à la bataille navale.",
+      "ecran": "lecture",
+      "id": "p04",
+      "pause_apres": 0.6,
+      "texte": "n₂₃ = 11 : ligne 2, colonne 3."
+    },
+    {
+      "dit": "Quelques formes reviennent sans cesse. La matrice ligne n'a qu'une ligne, la matrice colonne qu'une colonne. La matrice carrée compte autant de lignes que de colonnes, et sa diagonale principale court du premier au dernier coefficient diagonal. La matrice nulle n'a que des zéros. La matrice identité, carrée, porte des un sur sa diagonale et des zéros partout ailleurs : ce sera le un du produit matriciel.",
+      "ecran": "types",
+      "id": "p05",
+      "pause_apres": 0.6,
+      "texte": "Identité : des 1 sur la diagonale, des 0 ailleurs."
+    },
+    {
+      "dit": "Deux matrices sont égales quand elles ont les mêmes dimensions et tous leurs coefficients homologues égaux. Cette définition transforme une égalité de matrices en un système : ici, ixe plus igrec vaut trois et ixe moins igrec vaut un, d'où ixe égale deux et igrec égale un. Égaler des matrices, c'est donc résoudre coefficient par coefficient.",
+      "ecran": "egalite",
+      "id": "p06",
+      "pause_apres": 0.6,
+      "texte": "Égaler : un système, coefficient par coefficient."
+    },
+    {
+      "dit": "L'addition exige d'abord des matrices de mêmes dimensions : impossible d'additionner des tableaux de formes différentes. Quand c'est possible, on additionne les coefficients qui occupent la même position, ligne par ligne, colonne par colonne. La somme a les mêmes dimensions que les deux termes, et chaque coefficient de la somme est la somme des deux coefficients correspondants.",
+      "ecran": "addition",
+      "id": "p07",
+      "pause_apres": 0.6,
+      "texte": "Addition : mêmes dimensions, position par position."
+    },
+    {
+      "dit": "Exemple : pour nos deux matrices deux par deux, on ajoute position par position : un plus quatre, cinq ; trois moins un, deux ; moins deux plus cinq, trois ; zéro plus deux, deux. La somme est donc la matrice cinq, deux, trois, deux. Ce geste, élément par élément, est celui qui fusionne par exemple les ventes de deux magasins en un tableau consolidé du groupe.",
+      "ecran": "addition_ex",
+      "id": "p08",
+      "pause_apres": 0.7,
+      "texte": "A + B = (5, 2 ; 3, 2), position par position."
+    },
+    {
+      "dit": "La soustraction suit la même règle, position par position, et l'opposée d'une matrice change le signe de chaque coefficient. Deux conséquences à graver : a plus son opposée donne la matrice nulle, l'élément neutre de l'addition ; et la soustraction n'est pas commutative, a moins b est l'opposé de b moins a. Retenez que soustraire, c'est additionner l'opposée.",
+      "ecran": "soustraction",
+      "id": "p09",
+      "pause_apres": 0.6,
+      "texte": "A + (−A) = O : la nulle, neutre de l'addition."
+    },
+    {
+      "dit": "Multiplier une matrice par un nombre, un scalaire, multiplie chaque coefficient par ce nombre, sans jamais changer les dimensions. Relever toutes les notes de dix pour cent, c'est multiplier la matrice des notes par un virgule un. Le scalaire moins un donne l'opposée, le scalaire zéro donne la matrice nulle, et le scalaire un ne change rien.",
+      "ecran": "scalaire",
+      "id": "p10",
+      "pause_apres": 0.6,
+      "texte": "αA : chaque coefficient multiplié par α."
+    },
+    {
+      "dit": "Addition et scalaire se combinent librement : c'est le calcul des combinaisons linéaires. Exemple complet : deux a moins trois b, pour les matrices a et b de l'écran. On multiplie d'abord chaque matrice par son scalaire, puis on additionne coefficient par coefficient : il vient deux et un sur la première ligne, moins onze et six sur la seconde. Aucune difficulté, à condition de ne jamais mélanger les positions.",
+      "ecran": "combinaison",
+      "id": "p11",
+      "pause_apres": 0.7,
+      "texte": "2A − 3B = (2, 1 ; −11, 6)."
+    },
+    {
+      "dit": "Ces deux opérations héritent des bonnes propriétés des nombres : l'addition est commutative et associative, la matrice nulle est son élément neutre, chaque matrice a une opposée, et les scalaires se distribuent sur les sommes : k fois a plus b égale k a plus k b. Muni de ces deux opérations, l'ensemble des matrices d'une taille donnée forme un espace vectoriel : c'est le fondement de toute l'algèbre linéaire.",
+      "ecran": "proprietes_add",
+      "id": "p12",
+      "pause_apres": 0.6,
+      "texte": "Addition + scalaire : un espace vectoriel."
+    },
+    {
+      "dit": "Concrètement, additionner sert à consolider : deux magasins enregistrent leurs ventes de trois produits sur deux jours, dans deux matrices de mêmes dimensions. Leur somme donne, d'un seul geste, les ventes totales du groupe : vingt, vingt et vingt-cinq le lundi ; vingt-cinq, douze et trente-huit le mardi. La différence, elle, comparerait les deux magasins produit par produit.",
+      "ecran": "ventes",
+      "id": "p13",
+      "pause_apres": 0.6,
+      "texte": "Additionner : consolider deux tableaux en un seul."
+    },
+    {
+      "dit": "Retenons ce premier bloc : une matrice se lit par ses indices, ligne puis colonne ; l'addition et la soustraction exigent des dimensions identiques et travaillent position par position ; le scalaire multiplie tout, sans changer la taille ; et ces opérations obéissent aux mêmes lois que les nombres. La table est dressée pour l'opération reine : le produit.",
+      "ecran": "recap1",
+      "id": "p14",
+      "pause_apres": 0.6,
+      "texte": "Addition et scalaire : l'essentiel du premier bloc."
+    },
+    {
+      "dit": "Le produit a fois b n'existe que si le nombre de colonnes de a égale le nombre de lignes de b : les dimensions intérieures doivent coïncider. Le résultat prend les dimensions extérieures : une matrice m par n multipliée par une matrice n par p donne une matrice m par p. Avant tout produit, ce contrôle des dimensions est le premier réflexe à acquérir.",
+      "ecran": "compat",
+      "id": "p15",
+      "pause_apres": 0.6,
+      "texte": "(m × n) × (n × p) = (m × p) : contrôle avant calcul."
+    },
+    {
+      "dit": "Le coefficient ligne i, colonne k du produit se calcule en affrontant la ligne i de a et la colonne k de b : on multiplie les coefficients un à un, dans l'ordre, et l'on additionne tous ces produits. C'est la somme, pour j allant de un à n, des a indice i j fois b indice j k. Le mot d'ordre à retenir toute sa vie : ligne contre colonne.",
+      "ecran": "produit_def",
+      "id": "p16",
+      "pause_apres": 0.6,
+      "texte": "cᵢₖ = Σ aᵢⱼ × bⱼₖ : ligne contre colonne."
+    },
+    {
+      "dit": "Sur l'exemple fil rouge, a compte deux lignes et trois colonnes, b trois lignes et deux colonnes : le produit est deux par deux. Premier coefficient : un fois sept, plus deux fois neuf, plus trois fois onze : cinquante-huit. On continue : soixante-quatre en haut à droite, cent trente-neuf en bas à gauche, cent cinquante-quatre en bas à droite. Quatre coefficients, quatre sommes de trois produits.",
+      "ecran": "mecanisme",
+      "id": "p17",
+      "pause_apres": 0.7,
+      "texte": "AB = (58, 64 ; 139, 154) : 4 coefficients, 12 produits."
+    },
+    {
+      "dit": "Même exercice en deux par deux, et dans les deux sens. Le produit a b donne quatre et sept sur la première ligne, moins six et trois sur la seconde. Le produit b a donne deux et onze, puis moins quatre et cinq. Les deux résultats diffèrent : première rencontre avec la non-commutativité, la marque de fabrique du produit matriciel.",
+      "ecran": "produit_2x2",
+      "id": "p18",
+      "pause_apres": 0.7,
+      "texte": "AB ≠ BA : le produit n'est pas commutatif."
+    },
+    {
+      "dit": "Creusons cette rupture avec les matrices a, de coefficients zéro, un, zéro, zéro, et b, de coefficients zéro, zéro, un, zéro. Le produit a fois b vaut la matrice un, zéro, zéro, zéro, tandis que b fois a vaut zéro, zéro, zéro, un. Plus troublant : a fois a donne la matrice nulle, alors que a n'est pas nulle. Chez les matrices, un produit peut donc être nul sans qu'aucun facteur le soit, et simplifier un produit par un facteur est interdit.",
+      "ecran": "ruptures",
+      "id": "p19",
+      "pause_apres": 0.6,
+      "texte": "A² = O avec A ≠ O : les diviseurs de zéro existent."
+    },
+    {
+      "dit": "Heureusement, le produit garde de bonnes propriétés : il est associatif, ce qui autorise à écrire a b c sans parenthèses et à définir les puissances d'une matrice carrée ; il se distribue sur l'addition, à gauche comme à droite ; il respecte les scalaires ; et la matrice identité joue le rôle du nombre un : a fois identité égale identité fois a égale a.",
+      "ecran": "proprietes_prod",
+      "id": "p20",
+      "pause_apres": 0.6,
+      "texte": "Associatif, distributif, identité neutre : ce qui survit."
+    },
+    {
+      "dit": "Le produit matriciel donne une écriture compacte aux systèmes d'équations : le système deux ixe plus trois igrec égale huit, quatre ixe moins igrec égale six, devient a ixe égale b : une matrice, un vecteur inconnu, un vecteur second membre. Circuits électriques, structures mécaniques, réseaux de distribution : la même forme universelle, et les mêmes algorithmes pour la résoudre.",
+      "ecran": "systeme",
+      "id": "p21",
+      "pause_apres": 0.6,
+      "texte": "Un système entier tient en trois lettres : AX = B."
+    },
+    {
+      "dit": "En infographie, chaque transformation du plan est un produit matriciel : la rotation d'angle thêta a pour matrice cosinus, moins sinus, sinus, cosinus ; l'homothétie multiplie les coordonnées par les facteurs d'échelle placés sur la diagonale. Composer des transformations, c'est multiplier leurs matrices, dans l'ordre d'application : encore une leçon de la non-commutativité.",
+      "ecran": "transformations",
+      "id": "p22",
+      "pause_apres": 0.6,
+      "texte": "Rotation, homothétie : composer, c'est multiplier."
+    },
+    {
+      "dit": "Le modèle de Leontief décrit une économie en deux secteurs, énergie et acier. La production totale ixe doit couvrir la consommation intermédiaire, c fois ixe, plus la demande finale d. L'équation ixe égale c ixe plus d se réarrange en identité moins c, fois ixe, égale d. Pour une demande de cinq et dix milliards d'euros, la résolution donne une production de douze virgule cinq milliards pour l'énergie et d'environ vingt virgule huit milliards pour l'acier : servir le consommateur exige de produire bien davantage en amont.",
+      "ecran": "leontief",
+      "id": "p23",
+      "pause_apres": 0.7,
+      "texte": "Leontief : d = (5, 10) → x = (12,5 ; 20,83)."
+    },
+    {
+      "dit": "Le chiffrement de Hill code un message par blocs de lettres converties en nombres, de a égale zéro à z égale vingt-cinq, puis multiplie chaque bloc par une matrice clé, le tout modulo vingt-six. Pour le bloc a l, le produit donne trente-trois et cinquante-cinq, qui deviennent sept et trois modulo vingt-six : le texte chiffré est h d. Déchiffrer utilisera la matrice inverse de la clé.",
+      "ecran": "hill",
+      "id": "p24",
+      "pause_apres": 0.6,
+      "texte": "Hill : « AL » devient « HD » par un produit matriciel."
+    },
+    {
+      "dit": "Dernier pont vers le réel : la matrice d'adjacence d'un réseau compte les chemins quand on l'élève au carré. Le coefficient ligne i, colonne j de m carré additionne, sur tous les intermédiaires k, les produits m i k fois m k j : il compte exactement les chemins de longueur deux de i vers j. Dans notre réseau de quatre nœuds, de a vers c, il y en a deux, par b et par d. C'est ce mécanisme de puissances de matrices qui fait tourner le classement des pages web.",
+      "ecran": "adjacence",
+      "id": "p25",
+      "pause_apres": 0.6,
+      "texte": "M² : les chemins de longueur 2, comptés par un produit."
+    },
+    {
+      "dit": "Avant de conclure, les pièges à ne plus jamais commettre : développer un carré de somme en oubliant que a b et b a diffèrent, conclure d'un produit nul qu'un facteur est nul, simplifier un produit par un facteur commun, ou multiplier des matrices aux dimensions incompatibles. L'ordre des facteurs et le contrôle des dimensions sont vos deux gardes du corps.",
+      "ecran": "pieges",
+      "id": "p26",
+      "pause_apres": 0.6,
+      "texte": "Cinq pièges, deux gardes du corps : ordre et dimensions."
+    },
+    {
+      "dit": "Pour finir, l'essentiel du cours : l'addition et le scalaire travaillent coefficient par coefficient, sous condition de dimensions pour l'addition ; le produit affronte lignes et colonnes, exige la coïncidence des dimensions intérieures, et n'est pas commutatif ; l'identité est son élément neutre. Avec ces trois opérations, vous tenez le langage de l'algèbre linéaire.",
+      "ecran": "recap",
+      "id": "p27",
+      "pause_apres": 0.5,
+      "texte": "Les matrices : à retenir."
+    }
+  ],
+  "titre": "Les matrices"
+}
