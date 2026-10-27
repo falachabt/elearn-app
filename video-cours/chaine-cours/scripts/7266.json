@@ -1,0 +1,339 @@
+{
+  "cours": 7266,
+  "ecrans": {
+    "calc_pct": {
+      "kicker": "Calculer un pourcentage",
+      "note": "Un quotient, transformé en part sur cent",
+      "tex": "\\text{pourcentage} = \\frac{\\text{partie}}{\\text{total}} \\times 100",
+      "type": "formule",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 215
+      }
+    },
+    "definition": {
+      "kicker": "Définition",
+      "note": "k : le coefficient de proportionnalité, le même partout",
+      "tex": "y = k \\times x",
+      "type": "formule"
+    },
+    "echelle": {
+      "kicker": "Échelle",
+      "note": "Les deux longueurs dans la même unité",
+      "tex": "\\text{échelle} = \\frac{\\text{longueur sur le plan}}{\\text{longueur réelle}}",
+      "type": "formule",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 230
+      }
+    },
+    "ex_cahiers": {
+      "kicker": "Exemple résolu · linéarité",
+      "tex": [
+        "2 \\ \\text{cahiers} : 3 \\ \\text{euros}",
+        "4 \\ \\text{cahiers} : 2 \\times 3 = 6 \\ \\text{euros}",
+        "6 \\ \\text{cahiers} : 6 + 3 = 9 \\ \\text{euros}"
+      ],
+      "titre": "Deux cahiers, trois euros : et pour quatre, six ?",
+      "type": "etape"
+    },
+    "ex_carte": {
+      "kicker": "Exemple résolu · carte",
+      "tex": [
+        "3 \\times 200\\,000 = 600\\,000 \\ \\text{cm}",
+        "600\\,000 \\ \\text{cm} = 6 \\ \\text{km}"
+      ],
+      "titre": "Trois centimètres sur la carte",
+      "type": "etape",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 215
+      }
+    },
+    "ex_echelle_inv": {
+      "kicker": "Exemple résolu · échelle inverse",
+      "tex": [
+        "4 \\ \\text{km} = 400\\,000 \\ \\text{cm}",
+        "\\tfrac{2}{400\\,000} = \\tfrac{1}{200\\,000}",
+        "\\text{échelle : } \\tfrac{1}{200\\,000}"
+      ],
+      "titre": "Quatre kilomètres dessinés en deux centimètres",
+      "type": "etape"
+    },
+    "ex_filles": {
+      "kicker": "Exemple résolu · pourcentage",
+      "tex": [
+        "\\tfrac{15}{25} \\times 100 = 60",
+        "\\text{filles : } 60 \\ \\%"
+      ],
+      "titre": "Quinze filles sur vingt-cinq élèves",
+      "type": "etape"
+    },
+    "ex_pommes": {
+      "kicker": "Exemple résolu · retour à l'unité",
+      "tex": [
+        "\\tfrac{10}{4} = 2{,}5 \\ \\text{euros pour un kg}",
+        "7 \\times 2{,}5 = 17{,}5",
+        "\\text{sept kg : } 17{,}5 \\ \\text{euros}"
+      ],
+      "titre": "Quatre kilos, dix euros : et pour sept ?",
+      "type": "etape"
+    },
+    "ex_solde": {
+      "kicker": "Exemple résolu · soldes",
+      "tex": [
+        "\\tfrac{25}{100} \\times 80 = 20 \\ \\text{euros}",
+        "80 - 20 = 60",
+        "\\text{prix final : } 60 \\ \\text{euros}"
+      ],
+      "titre": "Quatre-vingts euros, moins vingt-cinq pour cent",
+      "type": "etape"
+    },
+    "ex_stylos": {
+      "kicker": "Exemple résolu · coefficient",
+      "tex": [
+        "k = \\tfrac{6}{5} = 1{,}2 \\ \\text{euro par stylo}",
+        "8 \\times 1{,}2 = 9{,}6",
+        "\\text{huit stylos : } 9{,}6 \\ \\text{euros}"
+      ],
+      "titre": "Cinq stylos, six euros : et pour huit ?",
+      "type": "etape"
+    },
+    "ex_test": {
+      "kicker": "Exemple résolu · reconnaître",
+      "tex": [
+        "\\text{prix (euros)} \\quad 3 \\quad 7 \\quad 12",
+        "\\text{masse (kg)} \\quad 6 \\quad 14 \\quad 24",
+        "\\tfrac{6}{3} = \\tfrac{14}{7} = \\tfrac{24}{12} = 2"
+      ],
+      "titre": "Prix et masses : les quotients tranchent",
+      "type": "etape"
+    },
+    "intro": {
+      "kicker": "Introduction",
+      "texte": "Deux grandeurs qui grandissent ensemble, au même rythme.",
+      "type": "phrase",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 230
+      }
+    },
+    "methode1": {
+      "kicker": "Méthode 1 · le coefficient",
+      "texte": "Calculer le coefficient une fois, puis multiplier.",
+      "type": "phrase",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 215
+      }
+    },
+    "methode2": {
+      "kicker": "Méthode 2 · retour à l'unité",
+      "texte": "D'abord une unité, puis autant d'unités qu'on veut.",
+      "type": "phrase",
+      "anim": {
+        "nom": "quatrieme_proportionnelle_fig",
+        "hauteur": 215
+      }
+    },
+    "methode3": {
+      "kicker": "Méthode 3 · linéarité",
+      "texte": "Multiplier une colonne, ou additionner deux colonnes.",
+      "type": "phrase",
+      "anim": {
+        "nom": "quatrieme_proportionnelle_fig",
+        "hauteur": 215
+      }
+    },
+    "pieges": {
+      "kicker": "Deux pièges à éviter",
+      "texte": "Même unité pour l'échelle ; tous les quotients à vérifier.",
+      "type": "phrase"
+    },
+    "pourcentage": {
+      "kicker": "Pourcentages",
+      "note": "p pour cent de A : un coefficient p sur cent",
+      "tex": "\\frac{p}{100} \\times A",
+      "type": "formule",
+      "anim": {
+        "nom": "conversion",
+        "hauteur": 230
+      }
+    },
+    "recap": {
+      "etapes": [
+        "Un même coefficient pour toutes les valeurs",
+        "Reconnaître : quotients tous égaux",
+        "Trois méthodes : coefficient, unité, colonnes",
+        "Pourcentage : coefficient p / 100",
+        "Échelle : plan / réel, mêmes unités"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "reconnaitre": {
+      "kicker": "Reconnaître · les quotients",
+      "note": "Tous les quotients égaux : proportionnalité",
+      "tex": "\\frac{4}{100} = \\frac{8}{200} = \\frac{12}{300} = 0{,}04",
+      "type": "formule",
+      "anim": {
+        "nom": "graphique_proportionnalite_fig",
+        "hauteur": 230
+      }
+    },
+    "tableau": {
+      "kicker": "Le tableau de proportionnalité",
+      "tex": [
+        "\\text{farine (g)} \\quad 100 \\quad 200 \\quad 300",
+        "\\text{crêpes} \\quad 4 \\quad 8 \\quad 12",
+        "k = \\tfrac{4}{100} = 0{,}04"
+      ],
+      "titre": "Farine et crêpes",
+      "type": "etape",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 215
+      }
+    },
+    "titre": {
+      "kicker": "Mathématique · Proportionnalité",
+      "sous": "Un même coefficient, trois méthodes, et deux applications : pourcentages et échelles",
+      "titre": "Proportionnalité : reconnaître et résoudre",
+      "type": "titre",
+      "anim": {
+        "nom": "tableau_proportionnalite_fig",
+        "hauteur": 250
+      }
+    }
+  },
+  "matiere": "Mathématique",
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours consacré à la proportionnalité. Nous apprendrons à la reconnaître, puis à la résoudre par trois méthodes, avant deux applications : les pourcentages et les échelles.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Proportionnalité : reconnaître et résoudre."
+    },
+    {
+      "dit": "La proportionnalité décrit les situations où deux grandeurs grandissent ensemble, au même rythme : doubler l'une double l'autre, tripler l'une triple l'autre.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Deux grandeurs, un même rythme."
+    },
+    {
+      "dit": "Deux grandeurs sont proportionnelles lorsque les valeurs de l'une s'obtiennent en multipliant les valeurs de l'autre par un même nombre : le coefficient de proportionnalité.",
+      "ecran": "definition",
+      "id": "p03",
+      "texte": "Définition : un même nombre multiplie tout."
+    },
+    {
+      "dit": "Voici un tableau de proportionnalité : cent grammes de farine donnent quatre crêpes, deux cents grammes en donnent huit, trois cents grammes en donnent douze. Le coefficient vaut quatre divisé par cent, soit zéro virgule zéro quatre crêpe par gramme.",
+      "ecran": "tableau",
+      "id": "p04",
+      "texte": "Tableau : farine et crêpes, coefficient 0,04."
+    },
+    {
+      "dit": "Pour reconnaître une situation de proportionnalité, on calcule les quotients d'une ligne par l'autre. Si tous les quotients sont égaux, le tableau est de proportionnalité. Sinon, il ne l'est pas.",
+      "ecran": "reconnaitre",
+      "id": "p05",
+      "texte": "Reconnaître : comparer tous les quotients."
+    },
+    {
+      "dit": "Exemple résolu : prix de trois, sept et douze euros, masses de six, quatorze et vingt-quatre kilogrammes. Les quotients, six sur trois, quatorze sur sept et vingt-quatre sur douze, sont tous égaux à deux. Situation de proportionnalité, de coefficient deux.",
+      "ecran": "ex_test",
+      "id": "p06",
+      "texte": "Exemple : trois quotients égaux à deux."
+    },
+    {
+      "dit": "Première méthode pour résoudre : le coefficient de proportionnalité. On le calcule une fois, puis on multiplie chaque valeur par ce coefficient pour obtenir sa correspondante.",
+      "ecran": "methode1",
+      "id": "p07",
+      "texte": "Méthode 1 : le coefficient, puis multiplier."
+    },
+    {
+      "dit": "Exemple : cinq stylos coûtent six euros. Le coefficient vaut six divisé par cinq, soit un euro et vingt centimes par stylo. Pour huit stylos, huit fois un virgule deux : neuf euros et soixante centimes.",
+      "ecran": "ex_stylos",
+      "id": "p08",
+      "texte": "Exemple : huit stylos, 9,6 euros."
+    },
+    {
+      "dit": "Deuxième méthode : le retour à l'unité. On calcule d'abord la valeur pour une seule unité, un kilogramme, un objet, une heure, puis on multiplie par le nombre d'unités voulu.",
+      "ecran": "methode2",
+      "id": "p09",
+      "texte": "Méthode 2 : passer par l'unité."
+    },
+    {
+      "dit": "Exemple : quatre kilogrammes de pommes coûtent dix euros. Pour un kilogramme, dix divisé par quatre, soit deux euros et cinquante centimes. Pour sept kilogrammes, sept fois deux virgule cinq : dix-sept euros et cinquante centimes.",
+      "ecran": "ex_pommes",
+      "id": "p10",
+      "texte": "Exemple : sept kilos, 17,5 euros."
+    },
+    {
+      "dit": "Troisième méthode : la linéarité. On peut multiplier une colonne par un nombre, ou additionner deux colonnes, pour fabriquer la colonne cherchée à partir de colonnes connues.",
+      "ecran": "methode3",
+      "id": "p11",
+      "texte": "Méthode 3 : multiplier ou additionner les colonnes."
+    },
+    {
+      "dit": "Exemple : deux cahiers coûtent trois euros. Quatre cahiers, c'est le double : deux fois trois, six euros. Six cahiers, c'est quatre plus deux : six plus trois, neuf euros.",
+      "ecran": "ex_cahiers",
+      "id": "p12",
+      "texte": "Exemple : quatre cahiers 6 euros, six cahiers 9 euros."
+    },
+    {
+      "dit": "Un pourcentage est une proportionnalité particulière, de coefficient pé sur cent. Prendre pé pour cent d'une quantité, c'est multiplier cette quantité par pé, puis diviser par cent.",
+      "ecran": "pourcentage",
+      "id": "p13",
+      "texte": "Pourcentage : coefficient p / 100."
+    },
+    {
+      "dit": "Exemple : un article coûte quatre-vingts euros, soldé à moins vingt-cinq pour cent. La réduction vaut vingt-cinq centièmes de quatre-vingts, soit vingt euros. Le prix final est quatre-vingts moins vingt : soixante euros.",
+      "ecran": "ex_solde",
+      "id": "p14",
+      "texte": "Exemple : 80 euros soldés, prix final 60 euros."
+    },
+    {
+      "dit": "Dans l'autre sens, pour trouver un pourcentage, on divise la partie par le total, puis on multiplie par cent. C'est un quotient transformé en part sur cent.",
+      "ecran": "calc_pct",
+      "id": "p15",
+      "texte": "Calculer un pourcentage : partie sur total, fois cent."
+    },
+    {
+      "dit": "Exemple : dans une classe de vingt-cinq élèves, quinze sont des filles. Quinze divisé par vingt-cinq, multiplié par cent, donne soixante. Il y a donc soixante pour cent de filles dans la classe.",
+      "ecran": "ex_filles",
+      "id": "p16",
+      "texte": "Exemple : 60 % de filles dans la classe."
+    },
+    {
+      "dit": "Dernière application : l'échelle d'un plan ou d'une carte. C'est le coefficient entre la longueur sur le plan et la longueur réelle, à condition d'exprimer les deux dans la même unité.",
+      "ecran": "echelle",
+      "id": "p17",
+      "texte": "Échelle : longueur du plan sur longueur réelle."
+    },
+    {
+      "dit": "Exemple : sur une carte à l'échelle un sur deux cent mille, deux villes sont distantes de trois centimètres. La distance réelle vaut trois fois deux cent mille, soit six cent mille centimètres, c'est-à-dire six kilomètres.",
+      "ecran": "ex_carte",
+      "id": "p18",
+      "texte": "Exemple : 3 cm sur la carte, 6 km en réel."
+    },
+    {
+      "dit": "Exemple inverse : une route de quatre kilomètres est représentée par deux centimètres. Quatre kilomètres valent quatre cent mille centimètres. L'échelle vaut donc deux sur quatre cent mille, soit un sur deux cent mille.",
+      "ecran": "ex_echelle_inv",
+      "id": "p19",
+      "texte": "Exemple inverse : échelle 1 / 200 000."
+    },
+    {
+      "dit": "Deux pièges à éviter : pour une échelle, convertir les deux longueurs dans la même unité avant de diviser, et pour reconnaître une proportionnalité, vérifier tous les quotients, pas seulement le premier.",
+      "ecran": "pieges",
+      "id": "p20",
+      "texte": "Pièges : unités mélangées, quotient unique."
+    },
+    {
+      "dit": "Pour finir : deux grandeurs proportionnelles sont liées par un même coefficient. On reconnaît la situation aux quotients égaux. On résout par le coefficient, le retour à l'unité ou la linéarité. Pourcentages et échelles sont des cas particuliers.",
+      "ecran": "recap",
+      "id": "p21",
+      "texte": "Proportionnalité : l'essentiel à retenir."
+    }
+  ],
+  "titre": "Proportionnalité : reconnaître et résoudre"
+}
