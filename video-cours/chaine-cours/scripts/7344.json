@@ -1,0 +1,479 @@
+{
+ "cours": 7344,
+ "ecrans": {
+  "colineaires": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "colineaires_fig"
+   },
+   "kicker": "Colinéarité",
+   "note": "Coordonnées proportionnelles. Et trois points sont alignés si les vecteurs AB et AC sont colinéaires.",
+   "tex": "\\vec{v} = k\\,\\vec{u}",
+   "type": "formule"
+  },
+  "coplanaires": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "combinaison_lineaire_fig"
+   },
+   "kicker": "Coplanarité",
+   "tex": [
+    "\\vec{w} = \\alpha\\,\\vec{u} + \\beta\\,\\vec{v} \\text{ : coplanaires}",
+    "\\vec{u}(1, 0, 1), \\ \\vec{v}(0, 1, 1)",
+    "\\vec{w}(1, 1, 2) = \\vec{u} + \\vec{v}"
+   ],
+   "titre": "Un vecteur combinaison des deux autres",
+   "type": "etape"
+  },
+  "determinant": {
+   "kicker": "Coplanarité · le critère du déterminant",
+   "note": "Trois vecteurs sont coplanaires si et seulement si leur déterminant est nul.",
+   "tex": "\\begin{vmatrix} x & x' & x'' \\\\ y & y' & y'' \\\\ z & z' & z'' \\end{vmatrix} = 0",
+   "type": "formule"
+  },
+  "dist_plan": {
+   "anim": {
+    "hauteur": 170,
+    "nom": "plan_espace_fig"
+   },
+   "kicker": "Distance d'un point à un plan",
+   "note": "La distance est la longueur du segment perpendiculaire abaissé du point sur le plan.",
+   "tex": "d = \\frac{|ax_0 + by_0 + cz_0 + d|}{\\sqrt{a^2+b^2+c^2}}",
+   "type": "formule"
+  },
+  "droite_plan": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "pave_fig"
+   },
+   "kicker": "Droite perpendiculaire à un plan",
+   "tex": [
+    "(d) \\perp (a) \\qquad (d) \\perp (b)",
+    "(a) \\text{ et } (b) \\text{ sécantes dans } (P)",
+    "(d) \\perp \\text{ toute droite de } (P)"
+   ],
+   "titre": "Orthogonale à deux droites sécantes du plan",
+   "type": "etape"
+  },
+  "droites_ortho": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "droites_gauches_fig"
+   },
+   "kicker": "Orthogonalité de deux droites",
+   "texte": "Dans le cube ABCDEFGH, les arêtes [AB] et [CG] sont orthogonales, sans jamais se rencontrer.",
+   "type": "phrase"
+  },
+  "ex_AG": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "pave_fig"
+   },
+   "kicker": "Exemple complet · la grande diagonale du cube",
+   "tex": [
+    "\\overrightarrow{AG} = (1, 1, 1)",
+    "\\overrightarrow{BD} = (-1, 1, 0)",
+    "\\overrightarrow{AG} \\cdot \\overrightarrow{BD} = -1 + 1 + 0 = 0"
+   ],
+   "titre": "La diagonale AG contre la diagonale BD",
+   "type": "etape"
+  },
+  "ex_colineaires": {
+   "kicker": "Exemple · trois points alignés",
+   "tex": [
+    "A(1, 2, 3), \\ B(3, 0, 1), \\ C(5, -2, -1)",
+    "\\overrightarrow{AB} = (2, -2, -2)",
+    "\\overrightarrow{AC} = (4, -4, -4) = 2\\,\\overrightarrow{AB}"
+   ],
+   "titre": "Un coefficient de proportionnalité suffit",
+   "type": "etape"
+  },
+  "ex_dist": {
+   "kicker": "Exemple · distance de l'origine à un plan",
+   "tex": [
+    "d(O, \\mathcal{P}) = \\frac{|-3|}{\\sqrt{4 + 1 + 1}}",
+    "= \\frac{3}{\\sqrt{6}} = \\frac{\\sqrt{6}}{2}"
+   ],
+   "titre": "Appliquer la formule, puis simplifier",
+   "type": "etape"
+  },
+  "ex_normal": {
+   "kicker": "Exemple · équation d'un plan par sa normale",
+   "tex": [
+    "A(1, 2, 3) \\qquad \\vec{n}(2, -1, 1)",
+    "2(x-1) - (y-2) + (z-3) = 0",
+    "2x - y + z - 3 = 0"
+   ],
+   "titre": "On remplace le point et la normale",
+   "type": "etape"
+  },
+  "ex_ortho_vecteurs": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "orthogonalite_fig"
+   },
+   "kicker": "Exemple · deux vecteurs orthogonaux",
+   "tex": [
+    "\\vec{u}(1, 2, 2) \\qquad \\vec{v}(2, 1, -2)",
+    "\\vec{u} \\cdot \\vec{v} = 2 + 2 - 4 = 0",
+    "|\\vec{u}| = |\\vec{v}| = 3, \\quad \\vec{u} \\perp \\vec{v}"
+   ],
+   "titre": "Le produit scalaire s'annule",
+   "type": "etape"
+  },
+  "ex_scalaire_geo": {
+   "kicker": "Exemple · produit scalaire et angle",
+   "tex": [
+    "\\vec{u}(1, 2, -1) \\qquad \\vec{v}(2, 0, 3)",
+    "\\vec{u} \\cdot \\vec{v} = 2 + 0 - 3 = -1",
+    "\\cos\\theta = \\tfrac{-1}{\\sqrt{6}\\,\\sqrt{13}}"
+   ],
+   "titre": "Du produit scalaire au cosinus",
+   "type": "etape"
+  },
+  "ex_sphere_dist": {
+   "kicker": "Exemple · sphère et plan, la bonne conclusion",
+   "tex": [
+    "I(1,1,1),\\ R=1,\\ (ABC) : x+y+z=1",
+    "\\textstyle d(I, (ABC)) = \\frac{|1+1+1-1|}{\\sqrt{3}} = \\frac{2}{\\sqrt{3}} > R"
+   ],
+   "titre": "Comparer la distance au centre avec le rayon",
+   "type": "etape",
+   "anim": {
+    "nom": "sphere_geo_fig",
+    "hauteur": 100
+   }
+  },
+  "ex_vecteur": {
+   "kicker": "Exemple · un vecteur entre deux points",
+   "tex": [
+    "A(1, 0, 2) \\qquad B(3, -1, 4)",
+    "\\overrightarrow{AB} = (2, -1, 2)",
+    "|\\overrightarrow{AB}| = \\sqrt{4+1+4} = 3"
+   ],
+   "titre": "Soustraire les coordonnées, puis la norme",
+   "type": "etape"
+  },
+  "intro": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "pave_fig"
+   },
+   "kicker": "Introduction",
+   "texte": "Un cube suffit à tout montrer : des arêtes orthogonales sans se croiser, une diagonale perpendiculaire à une autre.",
+   "type": "phrase"
+  },
+  "methode": {
+   "etapes": [
+    "Identifier deux droites sécantes du plan",
+    "Deux produits scalaires dans un repère",
+    "Conclure par la caractérisation"
+   ],
+   "kicker": "Méthode · droite perpendiculaire à un plan",
+   "type": "recap"
+  },
+  "normal": {
+   "kicker": "Vecteur normal et équation de plan",
+   "note": "Le plan passe par le point A de coordonnées x zéro, y zéro, z zéro ; sa normale a pour coordonnées a, b, c.",
+   "tex": "a(x - x_0) + b(y - y_0) + c(z - z_0) = 0",
+   "type": "formule"
+  },
+  "plans_perp": {
+   "kicker": "Plans perpendiculaires",
+   "tex": [
+    "(P) \\perp (P') : (d) \\subset (P), \\ (d) \\perp (P')",
+    "\\Delta = (P) \\cap (P')",
+    "(d) \\subset (P), \\ (d) \\perp \\Delta \\Rightarrow (d) \\perp (P')"
+   ],
+   "titre": "L'un contient une droite perpendiculaire à l'autre",
+   "type": "etape",
+   "anim": {
+    "nom": "plans_perpendiculaires_fig",
+    "hauteur": 130
+   }
+  },
+  "proprietes": {
+   "kicker": "Propriétés fondamentales",
+   "tex": [
+    "(d) \\perp (P), \\ (d') \\perp (P) \\Rightarrow (d) \\parallel (d')",
+    "(d) \\perp (P), \\ (d) \\perp (P') \\Rightarrow (P) \\parallel (P')",
+    "\\text{même droite } \\perp \\text{ : plans parallèles}"
+   ],
+   "titre": "Perpendiculaires à un même objet : parallèles",
+   "type": "etape"
+  },
+  "recap1": {
+   "etapes": [
+    "Vecteur : direction, sens, norme, coordonnées",
+    "Colinéaires : coordonnées proportionnelles",
+    "Coplanaires : combinaison ou déterminant nul",
+    "Produit scalaire nul : orthogonalité"
+   ],
+   "kicker": "À retenir · vecteurs et produit scalaire",
+   "type": "recap"
+  },
+  "recap_final": {
+   "etapes": [
+    "Orthogonalité : un produit scalaire nul",
+    "Droite ⊥ plan : deux droites sécantes",
+    "Plan : un point et un vecteur normal",
+    "Distance au plan : la formule en valeur absolue",
+    "Sphère et plan : comparer distance et rayon"
+   ],
+   "kicker": "Ce qu'il faut retenir",
+   "type": "recap"
+  },
+  "scalaire": {
+   "anim": {
+    "hauteur": 180,
+    "nom": "vecteurs_angle_fig"
+   },
+   "kicker": "Produit scalaire · deux formes",
+   "note": "Forme analytique ci-dessus ; forme géométrique : produit des normes par le cosinus de l'angle.",
+   "tex": "\\vec{u} \\cdot \\vec{v} = xx' + yy' + zz'",
+   "type": "formule"
+  },
+  "scalaire_prop": {
+   "kicker": "Produit scalaire · propriétés",
+   "tex": [
+    "\\vec{u} \\cdot \\vec{v} = \\vec{v} \\cdot \\vec{u} \\text{ : symétrie}",
+    "(\\vec{u} + \\vec{v}) \\cdot \\vec{w} = \\vec{u} \\cdot \\vec{w} + \\vec{v} \\cdot \\vec{w}",
+    "\\vec{u} \\cdot \\vec{u} = |\\vec{u}|^2"
+   ],
+   "titre": "Symétrie, bilinéarité, norme au carré",
+   "type": "etape"
+  },
+  "sphere": {
+   "kicker": "Plan médiateur et sphère",
+   "note": "Le plan médiateur de [AB] : les points à égale distance de A et de B, perpendiculaire à (AB) en son milieu.",
+   "tex": "(x - x_\\Omega)^2 + (y - y_\\Omega)^2 + (z - z_\\Omega)^2 = R^2",
+   "type": "formule",
+   "anim": {
+    "nom": "sphere_geo_fig",
+    "hauteur": 180
+   }
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 240,
+    "nom": "pave_fig"
+   },
+   "kicker": "Mathématique · Géométrie de l'espace",
+   "sous": "Vecteurs, colinéarité, coplanarité, produit scalaire et droites perpendiculaires aux plans",
+   "titre": "Géométrie de l'espace : vecteurs, orthogonalité et plans",
+   "type": "titre"
+  },
+  "triangle": {
+   "kicker": "Exemple · un triangle est-il rectangle",
+   "tex": [
+    "A(1, 0, 0), \\ B(0, 1, 0), \\ C(0, 0, 1)",
+    "\\overrightarrow{AB}(-1, 1, 0), \\ \\overrightarrow{AC}(-1, 0, 1)",
+    "\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 1 \\neq 0"
+   ],
+   "titre": "On teste chaque sommet par un produit scalaire",
+   "type": "etape"
+  },
+  "vecteur": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "vecteurs"
+   },
+   "kicker": "Vecteurs de l'espace",
+   "tex": [
+    "\\vec{u} = x\\vec{i} + y\\vec{j} + z\\vec{k} = (x, y, z)",
+    "\\text{direction, sens, norme } |\\vec{u}|",
+    "|\\vec{u}| = \\sqrt{x^2 + y^2 + z^2}"
+   ],
+   "titre": "Direction, sens, norme : trois coordonnées",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Vecteurs, colinéarité et coplanarité"
+  },
+  {
+   "debut": "p09",
+   "pont": {
+    "dit": "Partie deux : le produit scalaire au service de l'orthogonalité. Nous allons détailler ses propriétés, tester des orthogonalités, distinguer les droites orthogonales des droites perpendiculaires, et caractériser une droite perpendiculaire à un plan.",
+    "texte": "Partie 2 : produit scalaire et orthogonalité."
+   },
+   "sous_titre": "Produit scalaire et orthogonalité"
+  },
+  {
+   "debut": "p19",
+   "pont": {
+    "dit": "Partie trois : le vecteur normal, les distances et la sphère. Nous allons écrire l'équation d'un plan à partir de sa normale, appliquer la méthode complète dans le cube, mesurer la distance d'un point à un plan, et conclure par la rencontre d'un plan et d'une sphère.",
+    "texte": "Partie 3 : vecteur normal, distances et sphère."
+   },
+   "sous_titre": "Vecteur normal, distances et sphère"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de géométrie de l'espace, consacré aux vecteurs et à l'orthogonalité. Nous allons d'abord revoir les vecteurs de l'espace, leur colinéarité et leur coplanarité, puis mettre le produit scalaire au service d'une question centrale : comment prouver que deux droites sont orthogonales, qu'une droite est perpendiculaire à un plan, et comment mesurer les distances qui en découlent.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Vecteurs, orthogonalité et plans : le produit scalaire décide."
+  },
+  {
+   "dit": "Le cube sera notre fil rouge. Dans un cube, certaines arêtes se croisent à angle droit, d'autres sont orthogonales sans jamais se rencontrer, et la grande diagonale réserve des surprises : elle est perpendiculaire à des diagonales de faces auxquelles on ne penserait pas. Tout cela se démontre par des calculs de vecteurs, et c'est exactement la méthode de ce cours.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Le cube : le terrain d'entraînement de l'orthogonalité."
+  },
+  {
+   "dit": "Un vecteur de l'espace est caractérisé par une direction, un sens et une norme. Dans un repère orthonormé, il se représente par un triplet de coordonnées : le vecteur u est la somme de ixe fois i, igrec fois j et zède fois k. Les opérations sont celles du plan : somme, multiplication par un nombre réel, relation de Chasles. Et la norme est la racine carrée de la somme des carrés des trois coordonnées.",
+   "ecran": "vecteur",
+   "id": "p03",
+   "texte": "Un vecteur : direction, sens, norme, trois coordonnées."
+  },
+  {
+   "dit": "Exemple : le point a a pour coordonnées un, zéro et deux ; le point b, trois, moins un et quatre. Le vecteur a b s'obtient en soustrayant les coordonnées : deux, moins un et deux. Sa norme vaut racine carrée de quatre plus un plus quatre, c'est-à-dire racine carrée de neuf, soit trois. La distance entre les deux points est donc de trois.",
+   "ecran": "ex_vecteur",
+   "id": "p04",
+   "texte": "AB = (2, −1, 2) et AB = 3."
+  },
+  {
+   "dit": "Deux vecteurs sont colinéaires s'il existe un nombre réel k tel que l'un soit le produit de l'autre par k. En coordonnées, cela signifie que les coordonnées sont proportionnelles. Application immédiate : trois points a, b et c sont alignés si et seulement si les vecteurs a b et a c sont colinéaires. Si k est positif, les vecteurs ont le même sens ; s'il est négatif, des sens opposés, mais la direction est la même.",
+   "ecran": "colineaires",
+   "id": "p05",
+   "texte": "Colinéaires : v = k·u, coordonnées proportionnelles."
+  },
+  {
+   "dit": "Exemple d'alignement : les points a, b et c ont pour coordonnées un deux trois, trois zéro un, et cinq moins deux moins un. Le vecteur a b a pour coordonnées deux, moins deux et moins deux ; le vecteur a c, quatre, moins quatre et moins quatre. C'est exactement le double du vecteur a b : les deux vecteurs sont colinéaires, et les trois points sont alignés.",
+   "ecran": "ex_colineaires",
+   "id": "p06",
+   "texte": "AC = 2·AB : A, B, C alignés."
+  },
+  {
+   "dit": "Trois vecteurs sont coplanaires si l'un d'eux s'exprime comme combinaison linéaire des deux autres, supposés non colinéaires : un multiple du premier plus un multiple du second. De même, quatre points sont coplanaires si les trois vecteurs construits depuis l'un d'eux sont coplanaires. Exemple simple : les vecteurs de coordonnées un zéro un, zéro un un, et un un deux sont coplanaires, car le troisième est exactement la somme des deux premiers.",
+   "ecran": "coplanaires",
+   "id": "p07",
+   "texte": "Coplanaires : w = α·u + β·v."
+  },
+  {
+   "dit": "Il existe un critère purement calculatoire pour la coplanarité : le déterminant des trois vecteurs. On range les coordonnées des trois vecteurs en colonnes dans un tableau trois par trois ; les trois vecteurs sont coplanaires si et seulement si ce déterminant est nul. En pratique, on choisit : chercher une combinaison linéaire évidente quand elle saute aux yeux, calculer le déterminant sinon.",
+   "ecran": "determinant",
+   "id": "p08",
+   "texte": "Coplanarité : déterminant nul."
+  },
+  {
+   "dit": "Le produit scalaire de deux vecteurs de l'espace se calcule par leurs coordonnées : ixe ixe prime plus igrec igrec prime plus zède zède prime. Il admet aussi la forme géométrique : le produit des normes par le cosinus de l'angle des deux vecteurs. C'est l'outil central du cours : un seul nombre, calculable de deux façons, qui va décider de toutes les orthogonalités.",
+   "ecran": "scalaire",
+   "id": "p09",
+   "texte": "u · v = xx′ + yy′ + zz′ = ‖u‖ ‖v‖ cos θ."
+  },
+  {
+   "dit": "Ses propriétés sont celles attendues : il est symétrique, échanger les deux vecteurs ne change rien ; il est bilinéaire, il se distribue sur les sommes ; et le produit d'un vecteur par lui-même vaut le carré de sa norme, un nombre positif ou nul, nul uniquement pour le vecteur nul. De la norme au produit scalaire, il n'y a qu'une racine carrée : la norme d'un vecteur est la racine de son produit par lui-même.",
+   "ecran": "scalaire_prop",
+   "id": "p10",
+   "texte": "Symétrie, bilinéarité, u · u = ‖u‖²."
+  },
+  {
+   "dit": "Le critère à retenir par cœur : deux vecteurs non nuls sont orthogonaux si et seulement si leur produit scalaire est nul. Exemple : les vecteurs de coordonnées un deux deux, et deux un moins deux. Leur produit scalaire vaut deux plus deux moins quatre, c'est-à-dire zéro : ils sont orthogonaux. Leurs normes valent trois et trois, racine carrée de neuf dans les deux cas.",
+   "ecran": "ex_ortho_vecteurs",
+   "id": "p11",
+   "texte": "u · v = 2 + 2 − 4 = 0 : orthogonaux."
+  },
+  {
+   "dit": "Récapitulons ce premier bloc. Un vecteur de l'espace se donne par trois coordonnées, et sa norme par une racine de somme de carrés. La colinéarité se lit sur la proportionnalité des coordonnées, et elle décide des alignements. La coplanarité se prouve par une combinaison linéaire ou par un déterminant nul. Et le produit scalaire, nul exactement quand les vecteurs sont orthogonaux, ouvre la partie géométrique du cours.",
+   "ecran": "recap1",
+   "id": "p12",
+   "texte": "Droites, plans, produit vectoriel : à retenir."
+  },
+  {
+   "dit": "Commençons par un piège de vocabulaire. Dans l'espace, deux droites sont orthogonales si leurs directions sont perpendiculaires, ce que l'on voit en menant des parallèles par un même point. Mais contrairement au plan, deux droites orthogonales ne sont pas forcément sécantes : elles peuvent ne jamais se rencontrer. Dans le cube, l'arête a b et l'arête c g sont orthogonales : l'arête c g est parallèle à l'arête b f, et a b est perpendiculaire à b f dans la face carrée a b f e.",
+   "ecran": "droites_ortho",
+   "id": "p13",
+   "texte": "Orthogonales ne veut pas dire sécantes."
+  },
+  {
+   "dit": "Une droite est perpendiculaire à un plan si elle est orthogonale à deux droites sécantes de ce plan : deux directions suffisent, à condition qu'elles se croisent. Elle est alors orthogonale à toute droite du plan. Dans le cube, la droite a e est orthogonale aux droites a b et a d, qui se croisent en a dans le plan a b c. Donc a e est perpendiculaire au plan a b c, et en particulier perpendiculaire à la diagonale a c de ce plan.",
+   "ecran": "droite_plan",
+   "id": "p14",
+   "texte": "Droite ⊥ plan : deux droites sécantes suffisent."
+  },
+  {
+   "dit": "Deux plans sont perpendiculaires si l'un d'eux contient une droite perpendiculaire à l'autre plan. Précision utile le jour de l'exercice : si les deux plans se coupent suivant une droite delta, alors toute droite du premier plan qui est perpendiculaire à delta est automatiquement perpendiculaire au second plan. C'est souvent par delta que passent les démonstrations.",
+   "ecran": "plans_perp",
+   "id": "p15",
+   "texte": "Plans ⊥ : passer par leur droite d'intersection Δ."
+  },
+  {
+   "dit": "Trois propriétés fondamentales structurent les raisonnements. Deux droites perpendiculaires à un même plan sont parallèles entre elles. Si une même droite est perpendiculaire à deux plans, ces deux plans sont parallèles. Et deux plans distincts ne peuvent pas être tous les deux perpendiculaires à la même droite en se coupant : s'ils se coupaient, ce serait en fait un seul et même plan.",
+   "ecran": "proprietes",
+   "id": "p16",
+   "texte": "Perpendiculaires au même objet : parallèles."
+  },
+  {
+   "dit": "Revenons au produit scalaire avec un exemple chiffré complet. Les vecteurs u et v ont pour coordonnées un deux moins un, et deux zéro trois. Leur produit scalaire vaut deux, plus zéro, moins trois, c'est-à-dire moins un. On en tire le cosinus de leur angle : moins un, divisé par le produit des normes, racine carrée de six fois racine carrée de treize. Un produit négatif signifie un angle obtus, supérieur à quatre-vingt-dix degrés.",
+   "ecran": "ex_scalaire_geo",
+   "id": "p17",
+   "texte": "u · v = −1 : cos θ = −1 / (√6 √13)."
+  },
+  {
+   "dit": "Exemple classique, et piégeux : les points a, b et c de coordonnées un zéro zéro, zéro un zéro, et zéro zéro un. Le triangle a b c est-il rectangle en a ? Les vecteurs a b et a c ont pour coordonnées moins un un zéro, et moins un zéro un. Leur produit scalaire vaut un, plus zéro, plus zéro, c'est-à-dire un : il n'est pas nul, le triangle n'est pas rectangle en a. En testant les deux autres sommets de la même façon, on trouve deux autres produits égaux à un : en réalité, les trois côtés valent racine carrée de deux, le triangle est équilatéral.",
+   "ecran": "triangle",
+   "id": "p18",
+   "texte": "AB · AC = 1 ≠ 0 : le triangle est équilatéral."
+  },
+  {
+   "dit": "Un vecteur normal à un plan est un vecteur orthogonal à tout vecteur de ce plan, donc à toutes ses directions. Si le plan passe par un point a et admet pour normale le vecteur de coordonnées a, b et c, son équation s'écrit : a fois ixe moins ixe zéro, plus b fois igrec moins igrec zéro, plus c fois zède moins zède zéro, le tout égal à zéro. C'est simplement le produit scalaire de la normale par le vecteur a m, déclaré nul.",
+   "ecran": "normal",
+   "id": "p19",
+   "texte": "Plan : un point, une normale, une équation."
+  },
+  {
+   "dit": "Exemple : le plan passant par le point a de coordonnées un, deux et trois, de vecteur normal de coordonnées deux, moins un et un. On remplace dans la forme générale : deux fois ixe moins un, moins igrec moins deux, plus zède moins trois, égal à zéro. En développant : deux ixe moins igrec plus zède moins trois égale zéro, et on lit la normale directement dans les coefficients de ixe, igrec et zède.",
+   "ecran": "ex_normal",
+   "id": "p20",
+   "texte": "2x − y + z − 3 = 0 : la normale se lit dans l'équation."
+  },
+  {
+   "dit": "La méthode pour montrer qu'une droite est perpendiculaire à un plan tient en trois temps. D'abord, identifier deux droites sécantes du plan, bien choisies. Ensuite, calculer deux produits scalaires, dans un repère orthonormé adapté à la figure, et vérifier qu'ils sont nuls. Enfin, conclure par la caractérisation : orthogonale à deux droites sécantes du plan, donc perpendiculaire au plan, donc orthogonale à toutes ses droites.",
+   "ecran": "methode",
+   "id": "p21",
+   "texte": "La méthode en trois temps."
+  },
+  {
+   "dit": "Exemple complet dans le cube d'arête un, muni du repère d'origine a et de vecteurs de base a b, a d et a e. Montrons que la grande diagonale a g est orthogonale à la diagonale b d de la face de base. Le vecteur a g a pour coordonnées un, un et un ; le vecteur b d, moins un, un et zéro. Leur produit scalaire vaut moins un, plus un, plus zéro, c'est-à-dire zéro. Les deux droites sont donc orthogonales, alors même qu'elles ne se croisent pas dans le cube.",
+   "ecran": "ex_AG",
+   "id": "p22",
+   "texte": "AG · BD = −1 + 1 + 0 = 0 : orthogonales."
+  },
+  {
+   "dit": "La distance d'un point à un plan se calcule par la formule affichée : on remplace les coordonnées du point dans le premier membre de l'équation du plan, on prend la valeur absolue, et on divise par la racine carrée de a carré plus b carré plus c carré, la norme de la normale. C'est exactement le même calcul que pour situer un point par rapport à un plan, et il reviendra pour la sphère.",
+   "ecran": "dist_plan",
+   "id": "p23",
+   "texte": "Distance point-plan : la formule à connaître."
+  },
+  {
+   "dit": "Exemple : la distance de l'origine au plan d'équation deux ixe moins igrec plus zède moins trois égale zéro. Le numérateur est la valeur absolue de moins trois, soit trois ; le dénominateur est racine carrée de quatre plus un plus un, soit racine carrée de six. La distance vaut donc trois sur racine carrée de six, que l'on rationalise en racine carrée de six sur deux.",
+   "ecran": "ex_dist",
+   "id": "p24",
+   "texte": "d = 3 / √6 = √6 / 2."
+  },
+  {
+   "dit": "Deux objets ferment le cours. Le plan médiateur d'un segment a b est l'ensemble des points à égale distance de a et de b : il est perpendiculaire à la droite a b et passe par le milieu du segment. Et la sphère de centre oméga et de rayon grand r a pour équation : ixe moins ixe oméga au carré, plus igrec moins igrec oméga au carré, plus zède moins zède oméga au carré, égale r au carré. Ces deux objets se rencontrent dans le dernier exemple.",
+   "ecran": "sphere",
+   "id": "p25",
+   "texte": "Plan médiateur et sphère : les deux derniers objets."
+  },
+  {
+   "dit": "Dernier exemple, qui combine tout : la sphère de centre le point i de coordonnées un, un et un, et de rayon un, et le plan a b c d'équation ixe plus igrec plus zède égale un. La distance du centre au plan vaut la valeur absolue de un plus un plus un moins un, divisée par racine carrée de trois, soit deux sur racine carrée de trois, environ un virgule quinze. Cette distance est supérieure au rayon un : le plan ne rencontre donc pas la sphère, ils sont disjoints. Retenez le réflexe : on ne conclut jamais avant d'avoir comparé la distance au rayon.",
+   "ecran": "ex_sphere_dist",
+   "id": "p26",
+   "texte": "d = 2/√3 > R : plan et sphère disjoints."
+  },
+  {
+   "dit": "Pour finir, retenez l'enchaînement complet. L'orthogonalité se teste par un produit scalaire nul, calculé en coordonnées. Une droite est perpendiculaire à un plan dès qu'elle est orthogonale à deux droites sécantes de ce plan. Un plan se donne par un point et un vecteur normal, qui fournit son équation et les distances. Et face à une sphère, on compare toujours la distance du centre au rayon avant de conclure.",
+   "ecran": "recap_final",
+   "id": "p27",
+   "texte": "L'enchaînement complet du cours."
+  }
+ ],
+ "titre": "Géométrie de l'espace : vecteurs, orthogonalité et plans"
+}
