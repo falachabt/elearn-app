@@ -1,0 +1,310 @@
+{
+ "cours": 6691,
+ "titre": "Les nombres décimaux relatifs : calculer et comparer",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Nombres relatifs",
+   "titre": "Les nombres décimaux relatifs : calculer et comparer",
+   "sous": "Opposé, additions, multiplications, puissances : toutes les règles des signes",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 240
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Positifs, négatifs, zéro : les nombres relatifs vivent des deux côtés de la droite graduée."
+  },
+  "oppose_def": {
+   "type": "formule",
+   "kicker": "L'opposé d'un nombre",
+   "tex": "a + (-a) = 0",
+   "note": "Même distance à zéro, signes contraires : leur somme vaut toujours zéro.",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 170
+   }
+  },
+  "oppose_ex": {
+   "type": "etape",
+   "kicker": "Exemple · l'opposé",
+   "titre": "Changer de signe, garder la distance",
+   "tex": [
+    "\\text{opposé de } -7{,}3 : \\quad 7{,}3",
+    "(-7{,}3) + 7{,}3 = 0"
+   ]
+  },
+  "distance": {
+   "type": "phrase",
+   "kicker": "La distance à zéro",
+   "texte": "La distance à zéro décide de tout : signe des sommes, ordre des négatifs.",
+   "anim": {
+    "nom": "droite_numerique_fig",
+    "hauteur": 190
+   }
+  },
+  "add_meme": {
+   "type": "etape",
+   "kicker": "Addition · même signe",
+   "titre": "On additionne les distances, signe gardé",
+   "tex": [
+    "\\text{même signe : distances additionnées}",
+    "\\text{le signe commun est conservé}"
+   ]
+  },
+  "add_contraires": {
+   "type": "etape",
+   "kicker": "Addition · signes contraires",
+   "titre": "On soustrait les distances",
+   "tex": [
+    "\\text{signes contraires : distances soustraites}",
+    "\\text{signe du plus grand en distance}"
+   ]
+  },
+  "soustraction": {
+   "type": "formule",
+   "kicker": "La soustraction",
+   "tex": "a - b = a + (-b)",
+   "note": "Soustraire un nombre, c'est additionner son opposé : une seule règle suffit."
+  },
+  "ex_soustraction": {
+   "type": "etape",
+   "kicker": "Exemple · une soustraction",
+   "titre": "Transformer, puis additionner",
+   "tex": [
+    "A = -5{,}2 - (-3{,}8)",
+    "A = -5{,}2 + 3{,}8",
+    "5{,}2 - 3{,}8 = 1{,}4 \\quad A = -1{,}4"
+   ]
+  },
+  "regle_signes": {
+   "type": "etape",
+   "kicker": "Multiplication et division",
+   "titre": "La règle des signes",
+   "tex": [
+    "(+)(+) = + \\qquad (-)(-) = +",
+    "(+)(-) = - \\qquad (-)(+) = -",
+    "\\text{même signe : résultat positif}",
+    "\\text{signes contraires : résultat négatif}"
+   ]
+  },
+  "ex_produit": {
+   "type": "etape",
+   "kicker": "Exemple · un produit",
+   "titre": "Deux négatifs donnent un positif",
+   "tex": [
+    "B = (-2{,}5) \\times (-4)",
+    "2{,}5 \\times 4 = 10 \\quad B = 10"
+   ]
+  },
+  "puissance_def": {
+   "type": "formule",
+   "kicker": "Les puissances",
+   "tex": "a^n = a \\times a \\times \\dots \\times a",
+   "note": "n facteurs égaux à a. Cas limites : a puissance un vaut a, a puissance zéro vaut un."
+  },
+  "puissance_signe": {
+   "type": "etape",
+   "kicker": "Puissances · le signe",
+   "titre": "La parité de l'exposant décide",
+   "tex": [
+    "\\text{base positive : puissance positive}",
+    "\\text{base négative, exposant pair : } +",
+    "\\text{base négative, exposant impair : } -"
+   ]
+  },
+  "ex_puissance": {
+   "type": "etape",
+   "kicker": "Exemple · une puissance",
+   "titre": "Exposant impair : résultat négatif",
+   "tex": [
+    "C = (-2)^3",
+    "2^3 = 2 \\times 2 \\times 2 = 8 \\quad C = -8"
+   ]
+  },
+  "comparaison": {
+   "type": "etape",
+   "kicker": "Comparer des relatifs",
+   "titre": "Trois réflexes pour ordonner",
+   "tex": [
+    "\\text{tout positif dépasse tout négatif}",
+    "\\text{deux négatifs : le plus proche de zéro}",
+    "\\text{deux positifs : le plus loin de zéro}"
+   ]
+  },
+  "ex_comparaison": {
+   "type": "etape",
+   "kicker": "Exemple · comparer deux négatifs",
+   "titre": "La plus petite distance l'emporte",
+   "tex": [
+    "-3{,}4 \\quad \\text{et} \\quad -3{,}04",
+    "3{,}4 > 3{,}04",
+    "-3{,}04 > -3{,}4"
+   ]
+  },
+  "priorites": {
+   "type": "etape",
+   "kicker": "Les priorités de calcul",
+   "titre": "Un ordre strict, sans parenthèses",
+   "tex": [
+    "\\text{d'abord les puissances}",
+    "\\text{puis multiplications et divisions}",
+    "\\text{enfin additions et soustractions}"
+   ]
+  },
+  "ex_final": {
+   "type": "etape",
+   "kicker": "Exemple · calcul complet",
+   "titre": "Puissance, produit, puis soustraction",
+   "tex": [
+    "D = (-3)^2 - 4 \\times (-2)",
+    "(-3)^2 = 9 \\qquad 4 \\times (-2) = -8",
+    "9 - (-8) = 9 + 8 = 17"
+   ]
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Opposé : a + (−a) = 0",
+    "Soustraire : ajouter l'opposé",
+    "Produit : la règle des signes",
+    "Puissance : la parité décide",
+    "Négatifs : le plus proche de zéro"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours consacré aux nombres décimaux relatifs. Nous allons apprendre à les additionner, les soustraire, les multiplier, les diviser, les élever à une puissance et les comparer, en maîtrisant à chaque fois la règle des signes.",
+   "texte": "Les nombres relatifs : calculer et comparer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un nombre relatif porte un signe, positif ou négatif, et une distance à zéro. Toute la difficulté du chapitre tient dans ces deux informations : pour calculer juste, il faut décider du signe du résultat et de sa distance à zéro, dans le bon ordre.",
+   "texte": "Deux informations : le signe et la distance à zéro.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Commençons par l'opposé. Deux nombres relatifs sont opposés lorsqu'ils ont la même distance à zéro mais des signes contraires. L'opposé de a se note moins a, et l'opposé de moins a est a lui-même. Conséquence immédiate : la somme de deux opposés vaut toujours zéro.",
+   "texte": "Opposés : même distance, signes contraires, somme nulle.",
+   "ecran": "oppose_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Exemple : l'opposé de moins sept virgule trois est sept virgule trois. On change le signe, on garde la distance à zéro. Vérification : moins sept virgule trois plus sept virgule trois égale zéro, comme attendu pour deux nombres opposés.",
+   "texte": "L'opposé de −7,3 est 7,3 : somme nulle.",
+   "ecran": "oppose_ex"
+  },
+  {
+   "id": "p05",
+   "dit": "Retenez bien la notion de distance à zéro : c'est elle qui pilote presque toutes les règles du cours. Pour additionner, on compare les distances ; pour comparer deux nombres négatifs, on regarde encore les distances. Gardez ce réflexe, il ne vous trompera jamais.",
+   "texte": "La distance à zéro pilote toutes les règles.",
+   "ecran": "distance"
+  },
+  {
+   "id": "p06",
+   "dit": "Première règle d'addition : deux nombres de même signe. On additionne leurs distances à zéro et on conserve le signe commun. Deux négatifs restent négatifs, deux positifs restent positifs : seul le signe ne change jamais dans ce cas.",
+   "texte": "Même signe : on additionne, on garde le signe.",
+   "ecran": "add_meme"
+  },
+  {
+   "id": "p07",
+   "dit": "Deuxième règle : deux nombres de signes contraires. Cette fois, on soustrait la plus petite distance à zéro de la plus grande, et le résultat prend le signe du nombre qui a la plus grande distance à zéro. C'est toujours le plus éloigné de zéro qui impose son signe.",
+   "texte": "Signes contraires : le plus éloigné impose son signe.",
+   "ecran": "add_contraires"
+  },
+  {
+   "id": "p08",
+   "dit": "La soustraction devient alors très simple : soustraire un nombre relatif revient à additionner son opposé. Autrement dit, a moins b égale a plus moins b. Une fois la soustraction transformée en addition, on applique les deux règles que nous venons de voir.",
+   "texte": "Soustraire, c'est additionner l'opposé.",
+   "ecran": "soustraction"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple complet : calculer grand A égale moins cinq virgule deux moins moins trois virgule huit. On transforme la soustraction : grand A égale moins cinq virgule deux plus trois virgule huit. Signes contraires : on soustrait les distances, cinq virgule deux moins trois virgule huit égale un virgule quatre, et le signe est celui de moins cinq virgule deux. Grand A vaut moins un virgule quatre.",
+   "texte": "A = −5,2 − (−3,8) = −1,4, pas à pas.",
+   "ecran": "ex_soustraction"
+  },
+  {
+   "id": "p10",
+   "dit": "Passons à la multiplication et à la division, qui partagent la même règle des signes. Le produit ou le quotient de deux nombres de même signe est positif ; celui de deux nombres de signes contraires est négatif. Apprenez ce tableau par cœur : moins par moins donne plus, c'est le point que les élèves oublient le plus souvent.",
+   "texte": "Même signe : positif. Signes contraires : négatif.",
+   "ecran": "regle_signes"
+  },
+  {
+   "id": "p11",
+   "dit": "Exemple : calculer grand B égale moins deux virgule cinq fois moins quatre. Les deux facteurs sont négatifs, donc le produit est positif. Deux virgule cinq fois quatre égale dix : grand B vaut dix. Le signe d'abord, le calcul de distance ensuite, toujours dans cet ordre.",
+   "texte": "B = (−2,5) × (−4) = 10.",
+   "ecran": "ex_produit"
+  },
+  {
+   "id": "p12",
+   "dit": "Une puissance répète une multiplication : a puissance n, c'est le produit de n facteurs tous égaux à a. Deux cas particuliers à connaître : a puissance un vaut a, et a puissance zéro vaut un, dès que a est différent de zéro.",
+   "texte": "a puissance n : n facteurs égaux à a.",
+   "ecran": "puissance_def"
+  },
+  {
+   "id": "p13",
+   "dit": "Le signe d'une puissance dépend de la base et de la parité de l'exposant. Une base positive donne toujours une puissance positive. Une base négative donne un résultat positif si l'exposant est pair, et négatif si l'exposant est impair. Pair ou impair : c'est la seule question à se poser.",
+   "texte": "Base négative : pair donne plus, impair donne moins.",
+   "ecran": "puissance_signe"
+  },
+  {
+   "id": "p14",
+   "dit": "Exemple : calculer grand C égale moins deux puissance trois. L'exposant trois est impair, donc le résultat est négatif. Deux puissance trois vaut deux fois deux fois deux, soit huit. Grand C vaut donc moins huit.",
+   "texte": "C = (−2)³ = −8 : exposant impair.",
+   "ecran": "ex_puissance"
+  },
+  {
+   "id": "p15",
+   "dit": "Pour comparer des nombres relatifs, trois réflexes suffisent. Tout nombre positif est supérieur à tout nombre négatif. Entre deux nombres positifs, le plus grand est celui qui a la plus grande distance à zéro. Entre deux nombres négatifs, c'est l'inverse : le plus grand est celui qui a la plus petite distance à zéro.",
+   "texte": "Comparer : positif, puis distance à zéro.",
+   "ecran": "comparaison"
+  },
+  {
+   "id": "p16",
+   "dit": "Exemple : comparer moins trois virgule quatre et moins trois virgule zéro quatre. Les deux nombres sont négatifs, on compare donc leurs distances : trois virgule quatre est plus grand que trois virgule zéro quatre. Le plus grand des deux nombres est celui qui a la plus petite distance : moins trois virgule zéro quatre est donc supérieur à moins trois virgule quatre.",
+   "texte": "−3,04 > −3,4 : le plus proche de zéro gagne.",
+   "ecran": "ex_comparaison"
+  },
+  {
+   "id": "p17",
+   "dit": "Dernier outil : les priorités de calcul. Dans une expression sans parenthèses, on calcule d'abord les puissances, puis les multiplications et les divisions, et enfin les additions et les soustractions. Respecter cet ordre, c'est éviter la plupart des erreurs de calcul en chaîne.",
+   "texte": "Priorités : puissances, produits, sommes.",
+   "ecran": "priorites"
+  },
+  {
+   "id": "p18",
+   "dit": "Application combinée : calculer grand D égale moins trois au carré moins quatre fois moins deux. Étape un, la puissance : moins trois au carré vaut neuf, car l'exposant est pair. Étape deux, la multiplication : quatre fois moins deux vaut moins huit. Étape trois, la soustraction : neuf moins moins huit égale neuf plus huit, soit dix-sept. Grand D vaut dix-sept.",
+   "texte": "D = (−3)² − 4 × (−2) = 17.",
+   "ecran": "ex_final"
+  },
+  {
+   "id": "p19",
+   "dit": "Pour finir, retenez l'essentiel. L'opposé de a est moins a, et leur somme vaut zéro. Soustraire revient à additionner l'opposé. Pour un produit ou un quotient, la règle des signes décide. Pour une puissance d'un nombre négatif, c'est la parité de l'exposant qui décide. Et pour comparer deux négatifs, le plus grand est le plus proche de zéro.",
+   "texte": "L'essentiel des nombres relatifs.",
+   "ecran": "recap"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Opposé, additions, soustractions et produits"
+  },
+  {
+   "debut": "p12",
+   "sous_titre": "Puissances, comparaison et calculs complets",
+   "pont": {
+    "texte": "Partie 2 : puissances, comparaison et priorités de calcul.",
+    "dit": "Partie deux : les puissances, la comparaison et les priorités de calcul. Après les quatre opérations, il reste à élever les nombres relatifs à une puissance, à les ordonner, puis à combiner toutes les règles dans un calcul complet."
+   }
+  }
+ ]
+}
