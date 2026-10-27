@@ -1,0 +1,552 @@
+{
+  "cours": 7308,
+  "ecrans": {
+    "composee_deriv": {
+      "kicker": "Composée et puissance",
+      "note": "On dérive l'extérieur, puis on multiplie par la dérivée de l'intérieur",
+      "tex": "\\begin{aligned} (u \\circ v)' &= v' \\cdot (u' \\circ v) \\\\ (u^n)' &= n \\cdot u' \\cdot u^{n-1} \\end{aligned}",
+      "type": "formule"
+    },
+    "continuite": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Continuité en un point",
+      "note": "Trois exigences : définie en a, limite finie, égalité",
+      "tex": "\\lim_{x \\to a} f(x) = f(a)",
+      "type": "formule"
+    },
+    "continuite_ops": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Continuité · opérations et usuelles",
+      "texte": "Polynômes, rationnelles, racine, sin, cos, exp, ln : continues sur leur domaine.",
+      "type": "phrase"
+    },
+    "def_limite": {
+      "kicker": "Limite finie en un point",
+      "tex": [
+        "\\forall \\varepsilon > 0,\\ \\exists \\delta > 0",
+        "|x-a| < \\delta \\Rightarrow |f(x)-\\ell| < \\varepsilon"
+      ],
+      "titre": "Aussi près que l'on veut, pourvu que x soit assez près",
+      "type": "etape"
+    },
+    "deriv_cont": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "derive_fig"
+      },
+      "kicker": "Dérivable, donc continue",
+      "texte": "Dérivable en a implique continue en a ; la réciproque est fausse.",
+      "type": "phrase"
+    },
+    "ex_abs": {
+      "kicker": "Exemple · la valeur absolue en zéro",
+      "tex": [
+        "\\lim_{x \\to 0^-} |x| = 0 \\qquad \\lim_{x \\to 0^+} |x| = 0",
+        "\\lim_{x \\to 0} |x| = 0 = f(0)"
+      ],
+      "titre": "Continue en zéro, mais pas dérivable en zéro",
+      "type": "etape"
+    },
+    "ex_carre": {
+      "anim": {
+        "hauteur": 100,
+        "nom": "tangente_courbe_fig"
+      },
+      "kicker": "Exemple résolu · le carré en trois",
+      "tex": [
+        "\\tfrac{(3+h)^2 - 9}{h} = 6 + h",
+        "f'(3) = 6",
+        "y = 6(x-3) + 9 = 6x - 9"
+      ],
+      "titre": "Le taux d'accroissement, pas à pas",
+      "type": "etape"
+    },
+    "ex_etude_deriv": {
+      "kicker": "Étude · la dérivée tranche",
+      "tex": [
+        "f'(x) = \\tfrac{(2x+1)(x+1) - (x^2+x-2)}{(x+1)^2}",
+        "f'(x) = \\tfrac{x^2 + 2x + 3}{(x+1)^2}",
+        "\\Delta = -8 < 0 \\Rightarrow f'(x) > 0"
+      ],
+      "titre": "Discriminant négatif : toujours strictement croissante",
+      "type": "etape"
+    },
+    "ex_etude_dom": {
+      "kicker": "Étude · domaine et forme réduite",
+      "tex": [
+        "D_f = \\mathbb{R} \\setminus \\{-1\\}",
+        "f(x) = x + \\tfrac{-2}{x+1}"
+      ],
+      "titre": "La division fait apparaître la droite cachée",
+      "type": "etape"
+    },
+    "ex_etude_lim": {
+      "anim": {
+        "hauteur": 100,
+        "nom": "branche_infinie_fig"
+      },
+      "kicker": "Étude · limites et asymptotes",
+      "tex": [
+        "\\lim_{x \\to -1^-} f(x) = +\\infty \\qquad \\lim_{x \\to -1^+} f(x) = -\\infty",
+        "\\lim_{x \\to \\pm\\infty} [f(x) - x] = 0",
+        "x = -1 \\text{ verticale} \\qquad y = x \\text{ oblique}"
+      ],
+      "titre": "Une verticale, une oblique",
+      "type": "etape"
+    },
+    "ex_etude_pos": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Étude · position par rapport à l'oblique",
+      "tex": [
+        "f(x) - x = \\tfrac{-2}{x+1}",
+        "x < -1 : \\text{au-dessus}",
+        "x > -1 : \\text{en dessous}"
+      ],
+      "titre": "Le signe de l'écart dit tout",
+      "type": "etape"
+    },
+    "ex_limite": {
+      "kicker": "Exemple résolu · lever un zéro sur zéro",
+      "tex": [
+        "f(x) = \\tfrac{x^2 - 1}{x - 1} = x + 1 \\quad (x \\neq 1)",
+        "\\lim_{x \\to 1} f(x) = 2"
+      ],
+      "titre": "Non définie en un, limite deux en un",
+      "type": "etape"
+    },
+    "ex_quotient": {
+      "kicker": "Exemple résolu · dériver un quotient",
+      "tex": [
+        "f'(x) = \\tfrac{2(x-3) - (2x+1)}{(x-3)^2}",
+        "f'(x) = \\tfrac{-7}{(x-3)^2}"
+      ],
+      "titre": "Numérateur deux iks plus un, dénominateur iks moins trois",
+      "type": "etape"
+    },
+    "ex_tvi": {
+      "kicker": "Exemple résolu · une racine unique",
+      "tex": [
+        "f(0) = -1 < 0 \\qquad f(1) = 1 > 0",
+        "\\exists c \\in ]0,1[,\\ f(c) = 0"
+      ],
+      "titre": "Iks cube plus iks moins un, sur zéro un",
+      "type": "etape"
+    },
+    "formes_indet": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "branche_infinie_fig"
+      },
+      "kicker": "Formes indéterminées",
+      "texte": "Quatre formes où le calcul direct ne conclut pas : il faut transformer.",
+      "type": "phrase"
+    },
+    "gauche_droite": {
+      "kicker": "Limites à gauche, à droite",
+      "tex": [
+        "\\lim_{x \\to a^-} f(x) \\qquad \\lim_{x \\to a^+} f(x)",
+        "\\ell^- = \\ell^+ \\Rightarrow \\lim_{x \\to a} f(x) \\text{ existe}"
+      ],
+      "titre": "La limite existe si les deux côtés s'accordent",
+      "type": "etape"
+    },
+    "gendarmes": {
+      "kicker": "Théorème des gendarmes · exemple",
+      "tex": [
+        "-\\tfrac{1}{x} \\leq \\tfrac{\\sin x}{x} \\leq \\tfrac{1}{x}",
+        "\\lim_{x \\to +\\infty} \\tfrac{\\sin x}{x} = 0"
+      ],
+      "titre": "Encadrer pour conclure, sinus iks sur iks",
+      "type": "etape"
+    },
+    "intro": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Introduction",
+      "texte": "Approcher sans atteindre, raccorder sans saut, puis mesurer une pente.",
+      "type": "phrase"
+    },
+    "lim_infinie": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Limite infinie · un sur iks en zéro",
+      "tex": [
+        "\\lim_{x \\to 0^+} \\tfrac{1}{x} = +\\infty",
+        "\\lim_{x \\to 0^-} \\tfrac{1}{x} = -\\infty"
+      ],
+      "titre": "Deux côtés, deux infinis opposés : pas de limite en zéro",
+      "type": "etape"
+    },
+    "methode": {
+      "kicker": "Méthode · étude complète",
+      "tex": [
+        "\\text{1. domaine } D_f \\text{ et restrictions}",
+        "\\text{2. limites aux bornes, asymptotes}",
+        "\\text{3. } f', \\text{ signe, tableau de variations}",
+        "\\text{4. points particuliers, tangentes, courbe}"
+      ],
+      "titre": "Le plan d'étude, toujours dans cet ordre",
+      "type": "etape"
+    },
+    "nb_derive": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "derive_fig"
+      },
+      "kicker": "Nombre dérivé en un point",
+      "note": "La limite du taux d'accroissement, quand elle est finie",
+      "tex": "f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h}",
+      "type": "formule"
+    },
+    "operations": {
+      "kicker": "Opérations sur les limites",
+      "tex": [
+        "\\lim (f + g) = \\ell + \\ell'",
+        "\\lim (f \\cdot g) = \\ell \\cdot \\ell'",
+        "\\lim \\tfrac{f}{g} = \\tfrac{\\ell}{\\ell'} \\quad (\\ell' \\neq 0)"
+      ],
+      "titre": "Somme, produit, quotient de limites finies",
+      "type": "etape"
+    },
+    "operations_deriv": {
+      "anim": {
+        "hauteur": 100,
+        "nom": "derive_fig"
+      },
+      "kicker": "Opérations sur les dérivées",
+      "tex": [
+        "(u + v)' = u' + v'",
+        "(uv)' = u'v + uv'",
+        "(\\tfrac{u}{v})' = \\tfrac{u'v - uv'}{v^2}"
+      ],
+      "titre": "Somme, produit, quotient",
+      "type": "etape"
+    },
+    "prolongement": {
+      "kicker": "Prolongement par continuité",
+      "tex": [
+        "\\lim_{x \\to 1} \\tfrac{x^2 - 1}{x - 1} = 2",
+        "\\tilde{f}(1) = 2 \\qquad \\tilde{f}(x) = x + 1"
+      ],
+      "titre": "Boucher le trou par la valeur de la limite",
+      "type": "etape"
+    },
+    "recap1": {
+      "etapes": [
+        "Limite : gauche et droite égales",
+        "Continuité : limite égale à f(a)",
+        "Prolongement : poser la valeur limite",
+        "TVI : toute valeur intermédiaire atteinte"
+      ],
+      "kicker": "Partie 1 : à retenir",
+      "type": "recap"
+    },
+    "recap_final": {
+      "etapes": [
+        "Limite : gauche et droite égales",
+        "Continuité : limite égale à f(a)",
+        "TVI : toute valeur intermédiaire atteinte",
+        "Dérivée : pente de la tangente",
+        "Signe de la dérivée : sens de variation"
+      ],
+      "kicker": "Ce qu'il faut retenir",
+      "type": "recap"
+    },
+    "tangente": {
+      "anim": {
+        "hauteur": 130,
+        "nom": "tangente_courbe_fig"
+      },
+      "kicker": "Équation de la tangente",
+      "note": "Le nombre dérivé est le coefficient directeur de la tangente",
+      "tex": "y = f'(a)(x - a) + f(a)",
+      "type": "formule"
+    },
+    "titre": {
+      "anim": {
+        "hauteur": 240,
+        "nom": "hyperbole_fig"
+      },
+      "kicker": "Mathématique · Analyse",
+      "sous": "Limites et asymptotes, continuité et valeurs intermédiaires, nombre dérivé et tangente, jusqu'à l'étude complète d'une fonction rationnelle",
+      "titre": "Limites, continuité et dérivation",
+      "type": "titre"
+    },
+    "tvi": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Théorème des valeurs intermédiaires",
+      "note": "Continue sur le segment : aucune valeur entre les deux bords n'est sautée",
+      "tex": "\\exists c \\in [a,b],\\ f(c) = k",
+      "type": "formule"
+    },
+    "usuelles": {
+      "kicker": "Dérivées des fonctions usuelles",
+      "tex": [
+        "(x^n)' = n x^{n-1}",
+        "(\\sqrt{x})' = \\tfrac{1}{2\\sqrt{x}}",
+        "(\\ln x)' = \\tfrac{1}{x} \\qquad (e^x)' = e^x",
+        "(\\sin x)' = \\cos x \\qquad (\\cos x)' = -\\sin x"
+      ],
+      "titre": "Le tableau à connaître par cœur",
+      "type": "etape"
+    },
+    "variations": {
+      "anim": {
+        "hauteur": 100,
+        "nom": "derive_fig"
+      },
+      "kicker": "Dérivée et sens de variation",
+      "tex": [
+        "f' \\geq 0 \\Rightarrow f \\text{ croissante}",
+        "f' \\leq 0 \\Rightarrow f \\text{ décroissante}",
+        "f' = 0 \\Rightarrow f \\text{ constante}"
+      ],
+      "titre": "Le signe de la dérivée commande la courbe",
+      "type": "etape"
+    },
+    "image_segment": {
+      "anim": {
+        "hauteur": 120,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Image d'un segment",
+      "note": "Minimum et maximum sont atteints, jamais seulement approchés",
+      "tex": "f([a,b]) = [m, M]",
+      "type": "formule"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Limites : définition, opérations, formes indéterminées, gendarmes"
+    },
+    {
+      "debut": "p10",
+      "sous_titre": "Continuité, prolongement, TVI et nombre dérivé",
+      "pont": {
+        "texte": "Partie 2 : continuité, prolongement, TVI et nombre dérivé.",
+        "dit": "Partie deux, la continuité et le nombre dérivé. Après les limites, on recolle la limite et la valeur au point, le théorème des valeurs intermédiaires garantit les racines, et la limite du taux d'accroissement définit la dérivée."
+      }
+    },
+    {
+      "debut": "p21",
+      "sous_titre": "Règles de dérivation et étude complète d'une fonction",
+      "pont": {
+        "texte": "Partie 3 : règles de dérivation et étude complète.",
+        "dit": "Partie trois, les règles de dérivation et l'étude complète. On rappelle le lien avec la continuité, puis le tableau des usuelles, les opérations, et l'étude complète d'une fonction rationnelle."
+      }
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux limites, à la continuité et à la dérivation. D'abord, ce qui se passe quand iks s'approche d'un point ou de l'infini, avec la continuité et le théorème des valeurs intermédiaires. Ensuite, le nombre dérivé et la tangente, jusqu'à l'étude complète d'une fonction.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Limites, continuité, dérivation : le parcours."
+    },
+    {
+      "dit": "Trois questions guident tout le cours. Que vaut la fonction quand iks s'approche d'un point sans l'atteindre. La courbe se raccorde-t-elle sans saut en ce point. Et enfin, à quelle vitesse la fonction monte-t-elle, c'est-à-dire quelle est sa pente locale.",
+      "ecran": "intro",
+      "id": "p02",
+      "texte": "Approcher, raccorder, mesurer la pente."
+    },
+    {
+      "dit": "Une fonction èf a pour limite èl en a quand on peut rendre èf de iks aussi proche de èl que l'on veut, à condition de prendre iks suffisamment proche de a. En langage précis : pour tout epsilon strictement positif, il existe un delta strictement positif tel que, dès que iks est à moins de delta de a, èf de iks est à moins de epsilon de èl.",
+      "ecran": "def_limite",
+      "id": "p03",
+      "texte": "Limite finie : ε donné, δ répond."
+    },
+    {
+      "dit": "On peut approcher a par la gauche, avec iks plus petit que a, ou par la droite, avec iks plus grand. La limite en a existe exactement quand les limites à gauche et à droite existent et sont égales. Si les deux côtés racontent deux histoires différentes, il n'y a pas de limite en a.",
+      "ecran": "gauche_droite",
+      "id": "p04",
+      "texte": "Gauche = droite, sinon pas de limite."
+    },
+    {
+      "dit": "Premier exemple. La fonction qui à iks associe iks au carré moins un, divisé par iks moins un, n'est pas définie en un. Pourtant, pour iks différent de un, le numérateur se factorise et la fraction se simplifie en iks plus un. Sa limite en un vaut donc deux : on approche le point sans jamais avoir besoin de la valeur au point.",
+      "ecran": "ex_limite",
+      "id": "p05",
+      "texte": "(x² − 1)/(x − 1) → 2 en 1, sans être définie en 1."
+    },
+    {
+      "dit": "Les limites peuvent aussi être infinies. La fonction inverse, un sur iks, tend vers plus l'infini quand iks tend vers zéro par la droite, et vers moins l'infini par la gauche. Deux infinis opposés : la limite en zéro n'existe pas, et la droite d'équation iks égale zéro est une asymptote verticale.",
+      "ecran": "lim_infinie",
+      "id": "p06",
+      "texte": "1/x en 0 : +∞ à droite, −∞ à gauche."
+    },
+    {
+      "dit": "Quand les limites sont finies, elles se combinent comme les nombres. La limite d'une somme est la somme des limites, celle d'un produit est le produit des limites, et celle d'un quotient est le quotient des limites, pourvu que la limite du dénominateur soit non nulle.",
+      "ecran": "operations",
+      "id": "p07",
+      "texte": "Somme, produit, quotient : limite par limite."
+    },
+    {
+      "dit": "Mais quatre formes résistent à tout calcul direct : plus l'infini moins l'infini, zéro fois l'infini, l'infini sur l'infini, et zéro sur zéro. Ce sont les formes indéterminées. Le mot d'ordre n'est pas d'abandonner, mais de transformer l'écriture, factoriser, simplifier, diviser, jusqu'à lever l'indétermination.",
+      "ecran": "formes_indet",
+      "id": "p08",
+      "texte": "Formes indéterminées : transformer, pas conclure."
+    },
+    {
+      "dit": "Un outil puissant pour conclure : le théorème de comparaison, dit des gendarmes. Si une fonction est coincée entre deux fonctions qui tendent vers la même limite, elle tend aussi vers cette limite. Exemple : sinus iks sur iks est encadré entre moins un sur iks et un sur iks, qui tendent vers zéro à l'infini, donc sinus iks sur iks tend vers zéro.",
+      "ecran": "gendarmes",
+      "id": "p09",
+      "texte": "Gendarmes : sin x / x → 0 en +∞."
+    },
+    {
+      "dit": "Passons à la continuité. Une fonction est continue en a quand sa limite en a existe et vaut exactement sa valeur au point a. La courbe passe par le point sans lever le crayon, sans trou et sans saut. Continue sur un intervalle signifie continue en chacun de ses points.",
+      "ecran": "continuite",
+      "id": "p10",
+      "texte": "Continue en a : limite = f(a)."
+    },
+    {
+      "dit": "Exemple de contrôle : la valeur absolue est continue en zéro. À gauche comme à droite, sa limite vaut zéro, et sa valeur en zéro vaut zéro. Limite et valeur coïncident, la continuité est prouvée. Retenez ce point, zéro, car il reviendra au moment de la dérivation.",
+      "ecran": "ex_abs",
+      "id": "p11",
+      "texte": "|x| en 0 : limite 0, valeur 0, continue."
+    },
+    {
+      "dit": "Quand la limite en a existe mais que la fonction n'est pas définie en a, ou y vaut autre chose, on peut boucher le trou : on pose la valeur en a égale à la limite. C'est le prolongement par continuité. Notre fonction du début devient ainsi iks plus un sur tout l'ensemble des réels, avec la valeur deux en un.",
+      "ecran": "prolongement",
+      "id": "p12",
+      "texte": "Prolongement : poser en a la valeur de la limite."
+    },
+    {
+      "dit": "Grande conséquence pratique : les fonctions usuelles sont continues sur leur domaine. Polynômes partout, fonctions rationnelles hors des zéros du dénominateur, racine carrée, sinus, cosinus, exponentielle et logarithme sur leurs domaines. Et somme, produit, quotient et composée de fonctions continues restent continues.",
+      "ecran": "continuite_ops",
+      "id": "p13",
+      "texte": "Usuelles continues sur leur domaine."
+    },
+    {
+      "dit": "Voici le théorème des valeurs intermédiaires. Si une fonction est continue sur un segment a bé, alors toute valeur comprise entre èf de a et èf de bé est effectivement prise par la fonction, au moins une fois, en un point cé du segment. En traversant sans saut, on ne peut sauter aucune valeur.",
+      "ecran": "tvi",
+      "id": "p14",
+      "texte": "TVI : aucune valeur intermédiaire sautée."
+    },
+    {
+      "dit": "Exemple d'application. La fonction iks cube plus iks moins un est continue sur le segment zéro un. Elle vaut moins un en zéro et un en un. Par le corollaire du théorème, l'équation èf de iks égale zéro admet au moins une solution entre zéro et un. Et comme la fonction est strictement croissante, somme de fonctions croissantes, cette solution est unique.",
+      "ecran": "ex_tvi",
+      "id": "p15",
+      "texte": "TVI : x³ + x − 1 = 0 a une racine unique sur ]0,1[."
+    },
+    {
+      "dit": "Dernier résultat de cette partie : l'image d'un segment par une fonction continue est un segment complet, de son minimum à son maximum, et ces deux bornes sont atteintes, jamais seulement approchées. Sur un segment fermé, une fonction continue ne s'échappe ni vers l'infini, ni hors de ses extrêmes.",
+      "ecran": "image_segment",
+      "id": "p16",
+      "texte": "Image d'un segment : [m, M], bornes atteintes."
+    },
+    {
+      "dit": "Retenons la première partie. Une limite se lit des deux côtés, et les formes indéterminées se lèvent en transformant. La continuité recolle la limite et la valeur au point. Et le théorème des valeurs intermédiaires garantit les valeurs prises, donc les racines des équations.",
+      "ecran": "recap1",
+      "id": "p17",
+      "texte": "Partie 1 : à retenir."
+    },
+    {
+      "dit": "Le nombre dérivé naît d'un taux d'accroissement. On compare la variation de la fonction, èf de a plus hache moins èf de a, à la variation de la variable, hache, puis on fait tendre hache vers zéro. Si cette limite est finie, la fonction est dérivable en a, et la limite est son nombre dérivé en a.",
+      "ecran": "nb_derive",
+      "id": "p18",
+      "texte": "Nombre dérivé : limite du taux d'accroissement."
+    },
+    {
+      "dit": "Géométriquement, ce nombre dérivé est le coefficient directeur, la pente, de la tangente à la courbe au point d'abscisse a. Et l'équation de cette tangente s'écrit : i grec égale èf prime de a, multiplié par iks moins a, plus èf de a. Tout le chapitre tient dans cette droite qui colle à la courbe.",
+      "ecran": "tangente",
+      "id": "p19",
+      "texte": "Tangente : y = f′(a)(x − a) + f(a)."
+    },
+    {
+      "dit": "Exemple fondateur : la fonction carré, en a égale trois. Le taux d'accroissement vaut trois plus hache au carré, moins neuf, le tout sur hache, soit six plus hache après simplification. Quand hache tend vers zéro, il tend vers six. Le nombre dérivé en trois vaut six, et la tangente s'écrit i grec égale six iks moins neuf.",
+      "ecran": "ex_carre",
+      "id": "p20",
+      "texte": "x² en 3 : f′(3) = 6, tangente y = 6x − 9."
+    },
+    {
+      "dit": "Lien essentiel entre les deux parties du cours : si une fonction est dérivable en a, alors elle est continue en a. La réciproque est fausse. Le contre-exemple est déjà connu : la valeur absolue est continue en zéro, mais pas dérivable en zéro, car ses pentes à gauche et à droite, moins un et un, ne s'accordent pas.",
+      "ecran": "deriv_cont",
+      "id": "p21",
+      "texte": "Dérivable ⇒ continue ; réciproque fausse : |x|."
+    },
+    {
+      "dit": "Le tableau des dérivées usuelles se mémorise. La puissance iks puissance èn se dérive en èn fois iks puissance èn moins un. La racine carrée donne un sur deux racines de iks, le logarithme donne un sur iks, l'exponentielle se dérive en elle-même, sinus donne cosinus, et cosinus donne moins sinus.",
+      "ecran": "usuelles",
+      "id": "p22",
+      "texte": "Usuelles : puissances, √, ln, exp, sin, cos."
+    },
+    {
+      "dit": "Les opérations se dérivent avec trois règles. La somme se dérive terme à terme. Le produit donne u prime vé, plus u vé prime. Le quotient donne u prime vé moins u vé prime, sur vé au carré. À cela s'ajoutent la composée et la puissance d'une fonction, à l'écran suivant.",
+      "ecran": "operations_deriv",
+      "id": "p23",
+      "texte": "Produit : u′v + uv′ ; quotient : sur v²."
+    },
+    {
+      "dit": "Pour une composée, on dérive la fonction extérieure évaluée en la fonction intérieure, puis on multiplie par la dérivée de l'intérieur. Pour la puissance d'une fonction, u puissance èn se dérive en èn fois u prime fois u puissance èn moins un. C'est la règle qui couvre la plupart des composées rencontrées en exercice.",
+      "ecran": "composee_deriv",
+      "id": "p24",
+      "texte": "Composée : dériver dehors, multiplier dedans."
+    },
+    {
+      "dit": "Exemple de quotient. La fonction qui à iks associe deux iks plus un, sur iks moins trois. Sa dérivée a pour numérateur deux fois iks moins trois, moins deux iks plus un, c'est-à-dire moins sept, constant. Et pour dénominateur iks moins trois au carré. La dérivée est donc toujours strictement négative.",
+      "ecran": "ex_quotient",
+      "id": "p25",
+      "texte": "Quotient : f′(x) = −7/(x − 3)²."
+    },
+    {
+      "dit": "À quoi sert le signe de la dérivée. Sur un intervalle, une dérivée positive ou nulle donne une fonction croissante, une dérivée négative ou nulle, une fonction décroissante, et une dérivée identiquement nulle, une fonction constante. Et quand la dérivée s'annule en changeant de signe, la fonction passe par un extremum local.",
+      "ecran": "variations",
+      "id": "p26",
+      "texte": "Signe de f′ = sens de variation de f."
+    },
+    {
+      "dit": "Voici la méthode d'étude complète, toujours dans le même ordre. D'abord le domaine et ses restrictions. Puis les limites aux bornes, qui livrent les asymptotes. Puis la dérivée, son signe et le tableau de variations. Enfin les points particuliers, les tangentes et la courbe.",
+      "ecran": "methode",
+      "id": "p27",
+      "texte": "Étude : domaine, limites, dérivée, courbe."
+    },
+    {
+      "dit": "Étude complète, l'exemple final. La fonction qui à iks associe iks au carré plus iks moins deux, sur iks plus un. Son domaine exclut la valeur moins un. La division fait apparaître une écriture précieuse : la fonction égale iks, moins deux sur iks plus un. Toute la fin de l'étude sortira de cette forme.",
+      "ecran": "ex_etude_dom",
+      "id": "p28",
+      "texte": "Étude : D = ℝ ∖ {−1}, f(x) = x − 2/(x + 1)."
+    },
+    {
+      "dit": "Les limites de cette fonction. En moins un, le numérateur tend vers moins deux pendant que le dénominateur tend vers zéro : plus l'infini à gauche de moins un, moins l'infini à droite. La droite iks égale moins un est asymptote verticale. À l'infini, la différence entre la fonction et iks tend vers zéro : la droite i grec égale iks est asymptote oblique.",
+      "ecran": "ex_etude_lim",
+      "id": "p29",
+      "texte": "Asymptotes : x = −1 verticale, y = x oblique."
+    },
+    {
+      "dit": "La dérivée, maintenant. Le calcul donne, au numérateur, iks au carré plus deux iks plus trois, et au dénominateur iks plus un au carré. Le discriminant du numérateur vaut moins huit, strictement négatif. Le numérateur garde un signe constant, positif, et la dérivée est strictement positive sur tout le domaine : la fonction est strictement croissante sur chacun de ses deux intervalles.",
+      "ecran": "ex_etude_deriv",
+      "id": "p30",
+      "texte": "Étude : Δ = −8, donc f′ > 0 partout."
+    },
+    {
+      "dit": "Dernière touche : la position par rapport à l'asymptote oblique. L'écart entre la fonction et iks vaut moins deux sur iks plus un. Pour iks plus petit que moins un, il est positif, la courbe est au-dessus. Pour iks plus grand que moins un, il est négatif, la courbe est en dessous. Deux branches croissantes, de part et d'autre de la verticale.",
+      "ecran": "ex_etude_pos",
+      "id": "p31",
+      "texte": "Position : dessus si x < −1, dessous si x > −1."
+    },
+    {
+      "dit": "Pour conclure le cours. Les limites décrivent les bords du domaine et donnent les asymptotes. La continuité recolle limite et valeur, et le théorème des valeurs intermédiaires garantit les racines. La dérivée mesure la pente, son signe commande les variations, et l'étude complète assemble tout cela en une seule démarche.",
+      "ecran": "recap_final",
+      "id": "p32",
+      "texte": "Limites, continuité, dérivation : à retenir."
+    }
+  ],
+  "titre": "Limites, continuité et dérivation"
+}
