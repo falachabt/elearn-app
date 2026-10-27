@@ -1,0 +1,414 @@
+{
+ "cours": 7240,
+ "titre": "Les fractions : interpréter, comparer et calculer",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Les fractions",
+   "titre": "Les fractions : interpréter, comparer et calculer",
+   "sous": "Un tout partagé en parts égales, puis les quatre opérations"
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition",
+   "tex": "\\frac{a}{b} \\quad (b \\neq 0)",
+   "note": "a : numérateur, parts prises ; b : dénominateur, parts égales du tout."
+  },
+  "partage": {
+   "type": "formule",
+   "kicker": "Deux interprétations · le partage",
+   "tex": "\\frac{3}{4}",
+   "note": "Trois parts prises dans un tout coupé en quatre parts égales."
+  },
+  "quotient": {
+   "type": "formule",
+   "kicker": "Deux interprétations · le quotient",
+   "tex": "\\frac{3}{4} = 3 \\div 4 = 0{,}75",
+   "note": "Une fraction est un quotient : a sur b, c'est a divisé par b."
+  },
+  "consequence": {
+   "type": "formule",
+   "kicker": "Conséquence utile",
+   "tex": "\\frac{a}{b} \\times b = a",
+   "note": "Par son dénominateur, une fraction redonne son numérateur."
+  },
+  "egales": {
+   "type": "formule",
+   "kicker": "Fractions égales",
+   "tex": "\\frac{a}{b} = \\frac{a \\times k}{b \\times k} \\quad (k \\neq 0)",
+   "note": "Les deux termes bougent ensemble : la valeur ne change pas."
+  },
+  "ex_egales": {
+   "type": "etape",
+   "kicker": "Fractions égales · exemple",
+   "titre": "Deux tiers valent huit douzièmes",
+   "tex": [
+    "\\frac{2}{3} = \\frac{2 \\times 4}{3 \\times 4}",
+    "= \\frac{8}{12}"
+   ]
+  },
+  "simplification": {
+   "type": "formule",
+   "kicker": "Simplification",
+   "tex": "\\frac{18}{24} = \\frac{18 \\div 6}{24 \\div 6} = \\frac{3}{4}",
+   "note": "Diviser les deux termes par un diviseur commun, ici six."
+  },
+  "irreductible": {
+   "type": "etape",
+   "kicker": "Fraction irréductible",
+   "titre": "Quand on ne peut plus simplifier",
+   "tex": [
+    "\\frac{3}{4} \\ \\text{irréductible}",
+    "\\text{PGCD}(3, 4) = 1"
+   ]
+  },
+  "comparer_meme": {
+   "type": "formule",
+   "kicker": "Comparer · même dénominateur",
+   "tex": "\\frac{a}{c} < \\frac{b}{c} \\iff a < b",
+   "note": "Parts de même taille : le plus grand numérateur gagne."
+  },
+  "comparer_diff": {
+   "type": "etape",
+   "kicker": "Comparer · dénominateurs différents",
+   "titre": "Mettre au même dénominateur, puis comparer",
+   "tex": [
+    "\\frac{2}{3} = \\frac{8}{12} \\qquad \\frac{3}{4} = \\frac{9}{12}",
+    "\\frac{2}{3} < \\frac{3}{4} \\quad \\text{car} \\quad 8 < 9"
+   ]
+  },
+  "comparer_un": {
+   "type": "etape",
+   "kicker": "Comparer · à un",
+   "titre": "Numérateur contre dénominateur",
+   "tex": [
+    "a < b \\Rightarrow \\frac{a}{b} < 1",
+    "a > b \\Rightarrow \\frac{a}{b} > 1"
+   ]
+  },
+  "addition_meme": {
+   "type": "etape",
+   "kicker": "Additionner · même dénominateur",
+   "titre": "Numérateurs qui bougent, dénominateur gardé",
+   "tex": [
+    "\\frac{a}{c} + \\frac{b}{c} = \\frac{a + b}{c} \\qquad \\frac{a}{c} - \\frac{b}{c} = \\frac{a - b}{c}",
+    "\\frac{2}{9} + \\frac{5}{9} = \\frac{7}{9}"
+   ]
+  },
+  "addition_diff": {
+   "type": "etape",
+   "kicker": "Additionner · dénominateurs différents",
+   "titre": "Dénominateur commun : six",
+   "tex": [
+    "\\tfrac{1}{2} = \\tfrac{3}{6} \\qquad \\tfrac{1}{3} = \\tfrac{2}{6}",
+    "\\tfrac{1}{2} + \\tfrac{1}{3} = \\tfrac{3}{6} + \\tfrac{2}{6}",
+    "= \\tfrac{5}{6}"
+   ]
+  },
+  "piege": {
+   "type": "formule",
+   "kicker": "Piège classique",
+   "tex": "\\frac{1}{2} + \\frac{1}{3} \\neq \\frac{2}{5}",
+   "note": "On n'additionne jamais les dénominateurs entre eux."
+  },
+  "croix": {
+   "type": "formule",
+   "kicker": "Vérifier une égalité · produit en croix",
+   "tex": "\\frac{2}{3} = \\frac{8}{12} \\quad \\text{car} \\quad 2 \\times 12 = 3 \\times 8 = 24"
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 · à retenir",
+   "etapes": [
+    "a/b : parts prises sur parts égales du tout",
+    "Fractions égales : multiplier les deux termes",
+    "Simplifier : diviser par un diviseur commun",
+    "Comparer : même dénominateur d'abord",
+    "Additionner : numérateurs, dénominateur gardé"
+   ]
+  },
+  "mult_regle": {
+   "type": "formule",
+   "kicker": "Multiplier deux fractions",
+   "tex": "\\frac{a}{b} \\times \\frac{c}{d} = \\frac{a \\times c}{b \\times d} \\quad (b \\neq 0, \\ d \\neq 0)",
+   "note": "Numérateurs entre eux, dénominateurs entre eux."
+  },
+  "mult_ex": {
+   "type": "formule",
+   "kicker": "Multiplier · exemple",
+   "tex": "\\frac{2}{3} \\times \\frac{5}{7} = \\frac{2 \\times 5}{3 \\times 7} = \\frac{10}{21}",
+   "note": "Dix et vingt et un sont premiers entre eux : irréductible."
+  },
+  "mult_simplifier": {
+   "type": "etape",
+   "kicker": "Multiplier · simplifier avant",
+   "titre": "Petits nombres, même résultat",
+   "tex": [
+    "\\frac{4}{9} \\times \\frac{3}{8} = \\frac{1}{3} \\times \\frac{1}{2}",
+    "= \\frac{1}{6}"
+   ]
+  },
+  "mult_entier": {
+   "type": "formule",
+   "kicker": "Multiplier par un entier",
+   "tex": "5 \\times \\frac{2}{7} = \\frac{5}{1} \\times \\frac{2}{7} = \\frac{10}{7}",
+   "note": "Un entier n s'écrit n sur un : la règle s'applique."
+  },
+  "inverse": {
+   "type": "etape",
+   "kicker": "Inverse d'une fraction",
+   "titre": "Échanger numérateur et dénominateur",
+   "tex": [
+    "\\text{inverse de } \\frac{a}{b} = \\frac{b}{a} \\quad (a \\neq 0, \\ b \\neq 0)",
+    "\\frac{3}{5} \\times \\frac{5}{3} = \\frac{15}{15} = 1"
+   ]
+  },
+  "division_regle": {
+   "type": "formule",
+   "kicker": "Diviser par une fraction",
+   "tex": "\\frac{a}{b} \\div \\frac{c}{d} = \\frac{a}{b} \\times \\frac{d}{c} \\quad (c \\neq 0)",
+   "note": "Diviser par une fraction : multiplier par son inverse."
+  },
+  "division_ex": {
+   "type": "formule",
+   "kicker": "Diviser · exemple",
+   "tex": "\\frac{3}{4} \\div \\frac{2}{5} = \\frac{3}{4} \\times \\frac{5}{2} = \\frac{15}{8}",
+   "note": "Seul le diviseur est inversé, jamais le dividende."
+  },
+  "division_entier": {
+   "type": "etape",
+   "kicker": "Diviser par un entier",
+   "titre": "L'inverse de trois est un tiers",
+   "tex": [
+    "\\frac{5}{6} \\div 3 = \\frac{5}{6} \\times \\frac{1}{3}",
+    "= \\frac{5}{18}"
+   ]
+  },
+  "jardinier": {
+   "type": "etape",
+   "kicker": "Problème · le jardinier",
+   "titre": "Combien de parcelles d'un huitième d'hectare",
+   "tex": [
+    "\\frac{3}{4} \\div \\frac{1}{8} = \\frac{3}{4} \\times \\frac{8}{1} = \\frac{24}{4}",
+    "= 6 \\ \\text{parcelles}"
+   ]
+  },
+  "fraction_quantite": {
+   "type": "formule",
+   "kicker": "Fraction d'une quantité",
+   "tex": "\\text{prendre } \\frac{1}{4} \\text{ de } \\frac{2}{3} = \\frac{1}{4} \\times \\frac{2}{3}",
+   "note": "« De » se traduit par une multiplication, jamais par une addition."
+  },
+  "livre": {
+   "type": "etape",
+   "kicker": "Problème · le livre",
+   "titre": "Un quart de deux tiers",
+   "tex": [
+    "\\frac{1}{4} \\times \\frac{2}{3} = \\frac{2}{12}",
+    "= \\frac{1}{6} \\ \\text{du livre}"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Addition, soustraction : dénominateur commun",
+    "Multiplier : numérateurs et dénominateurs",
+    "Diviser : multiplier par l'inverse",
+    "Zéro n'a pas d'inverse, jamais diviser par zéro",
+    "Vérifier : produit en croix, simplification"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours sur les fractions, ces nombres qui disent combien de parts égales d'un tout on prend, on garde ou on partage. Nous apprendrons à les interpréter et à les simplifier, puis à les comparer et à les additionner, avant de multiplier et de diviser, avec deux problèmes concrets pour finir.",
+   "texte": "Les fractions : interpréter, comparer et calculer.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Une fraction s'écrit avec deux entiers, l'un au-dessus de l'autre, séparés par un trait. Celui du haut est le numérateur, celui du bas est le dénominateur, et le dénominateur ne peut jamais être nul, car on ne divise jamais par zéro.",
+   "texte": "a sur b : numérateur, dénominateur, jamais zéro.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p03",
+   "dit": "Première interprétation, le partage. Trois quarts d'un gâteau, c'est trois parts prises dans un gâteau coupé en quatre parts égales. Le dénominateur dit en combien de parts égales le tout est découpé, le numérateur dit combien de parts on prend.",
+   "texte": "Partager un tout en parts égales.",
+   "ecran": "partage"
+  },
+  {
+   "id": "p04",
+   "dit": "Deuxième interprétation, le quotient. Trois quarts, c'est aussi trois divisé par quatre, soit zéro virgule soixante-quinze. Une fraction est donc le résultat d'une division, et c'est ce qui permet de la placer entre deux entiers.",
+   "texte": "Une fraction est une division.",
+   "ecran": "quotient"
+  },
+  {
+   "id": "p05",
+   "dit": "Conséquence utile à retenir. Une fraction multipliée par son dénominateur redonne son numérateur. Trois quarts multipliés par quatre redonnent trois, car les quatre parts reconstituent le tout.",
+   "texte": "Le dénominateur refait le tout.",
+   "ecran": "consequence"
+  },
+  {
+   "id": "p06",
+   "dit": "Deux fractions sont égales quand on passe de l'une à l'autre en multipliant, ou en divisant, le numérateur et le dénominateur par un même nombre non nul. Les deux termes bougent ensemble, la valeur ne change pas.",
+   "texte": "Deux termes, un même multiplicateur.",
+   "ecran": "egales"
+  },
+  {
+   "id": "p07",
+   "dit": "Exemple. Deux tiers valent huit douzièmes, car on multiplie le numérateur et le dénominateur par quatre. Deux fois quatre font huit, trois fois quatre font douze, et la part du tout reste la même.",
+   "texte": "Deux tiers, huit douzièmes : même valeur.",
+   "ecran": "ex_egales"
+  },
+  {
+   "id": "p08",
+   "dit": "Simplifier, c'est l'opération inverse. On divise le numérateur et le dénominateur par un même diviseur commun, pour obtenir une fraction égale avec des nombres plus petits. Dix-huit vingt-quatrièmes divisés par six donnent trois quarts.",
+   "texte": "Plus petits nombres, même fraction.",
+   "ecran": "simplification"
+  },
+  {
+   "id": "p09",
+   "dit": "Une fraction est irréductible quand on ne peut plus la simplifier, c'est-à-dire quand le plus grand commun diviseur de son numérateur et de son dénominateur vaut un. Trois quarts est irréductible, car trois et quatre n'ont aucun diviseur commun autre que un.",
+   "texte": "PGCD égal à un : fin de la simplification.",
+   "ecran": "irreductible"
+  },
+  {
+   "id": "p10",
+   "dit": "Pour comparer, commençons par le cas simple. Si les dénominateurs sont égaux, les parts ont la même taille, et la plus grande fraction est celle qui a le plus grand numérateur. Trois septièmes sont donc plus petits que cinq septièmes.",
+   "texte": "Même taille de parts : comparer les numérateurs.",
+   "ecran": "comparer_meme"
+  },
+  {
+   "id": "p11",
+   "dit": "Si les dénominateurs diffèrent, on met d'abord les fractions au même dénominateur, puis on compare les numérateurs. Deux tiers deviennent huit douzièmes, trois quarts deviennent neuf douzièmes, et comme huit est plus petit que neuf, deux tiers sont plus petits que trois quarts.",
+   "texte": "Douzièmes communs : huit contre neuf.",
+   "ecran": "comparer_diff"
+  },
+  {
+   "id": "p12",
+   "dit": "Un réflexe rapide, la comparaison à un. Si le numérateur est plus petit que le dénominateur, la fraction est plus petite que un. S'il est plus grand, elle est plus grande que un. Si les deux sont égaux, la fraction vaut un.",
+   "texte": "Plus petit, plus grand ou égal à un.",
+   "ecran": "comparer_un"
+  },
+  {
+   "id": "p13",
+   "dit": "Additionner et soustraire, premier cas. Quand les dénominateurs sont égaux, on additionne ou on soustrait les numérateurs, et on garde le dénominateur. Deux neuvièmes plus cinq neuvièmes font sept neuvièmes, car on compte des parts de même taille.",
+   "texte": "Parts égales : on compte les numérateurs.",
+   "ecran": "addition_meme"
+  },
+  {
+   "id": "p14",
+   "dit": "Deuxième cas, les dénominateurs diffèrent. On cherche un dénominateur commun, souvent le produit des dénominateurs ou leur plus petit commun multiple, on transforme chaque fraction, puis on calcule les numérateurs. Un demi plus un tiers, mis sur six, donnent cinq sixièmes.",
+   "texte": "Sixièmes communs : cinq sixièmes au total.",
+   "ecran": "addition_diff"
+  },
+  {
+   "id": "p15",
+   "dit": "Attention au piège classique. On n'additionne jamais les dénominateurs. Un demi plus un tiers ne font pas deux cinquièmes, car additionner les dénominateurs changerait la taille des parts. On met d'abord au même dénominateur, puis on additionne les numérateurs.",
+   "texte": "Le piège : additionner les dénominateurs.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p16",
+   "dit": "Pour vérifier une égalité, le produit en croix est redoutable. Deux tiers égalent huit douzièmes, car deux fois douze font vingt-quatre et trois fois huit font vingt-quatre. Quand les deux produits croisés sont égaux, l'égalité est vraie.",
+   "texte": "Vingt-quatre des deux côtés : égalité vraie.",
+   "ecran": "croix"
+  },
+  {
+   "id": "p17",
+   "dit": "Récapitulons cette première partie. Une fraction dit combien de parts égales on prend dans un tout. On peut la simplifier en divisant ses deux termes par un même diviseur, la comparer en mettant au même dénominateur, et l'additionner en gardant ce dénominateur.",
+   "texte": "Partie 1 : l'essentiel à retenir.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p18",
+   "dit": "Passons à la multiplication. Pour multiplier deux fractions, on multiplie les numérateurs entre eux et les dénominateurs entre eux. Les dénominateurs doivent être non nuls, comme toujours, sinon les fractions n'existeraient pas.",
+   "texte": "Numérateurs et dénominateurs se multiplient.",
+   "ecran": "mult_regle"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple. Deux tiers fois cinq septièmes donnent dix vingt et unièmes. On multiplie deux par cinq au numérateur, trois par sept au dénominateur, et dix et vingt et un n'ont aucun diviseur commun, le résultat est déjà irréductible.",
+   "texte": "Dix vingt et unièmes, sans simplification possible.",
+   "ecran": "mult_ex"
+  },
+  {
+   "id": "p20",
+   "dit": "Astuce de concours, simplifier avant de multiplier. Dans quatre neuvièmes fois trois huitièmes, on simplifie quatre et huit par quatre, puis trois et neuf par trois. Il reste un tiers fois un demi, soit un sixième, sans gros nombres à manipuler.",
+   "texte": "Simplifier d'abord, calculer ensuite.",
+   "ecran": "mult_simplifier"
+  },
+  {
+   "id": "p21",
+   "dit": "Multiplier par un entier suit la même règle, car un entier s'écrit sur un. Cinq fois deux septièmes, c'est cinq sur un fois deux septièmes, soit dix septièmes. L'entier devient simplement le numérateur d'une fraction.",
+   "texte": "L'entier passe au numérateur.",
+   "ecran": "mult_entier"
+  },
+  {
+   "id": "p22",
+   "dit": "L'inverse d'une fraction non nulle s'obtient en échangeant son numérateur et son dénominateur. L'inverse de trois cinquièmes est cinq tiers, et leur produit vaut un, car quinze quinzièmes font un tout. Le nombre zéro, lui, n'a pas d'inverse.",
+   "texte": "Échanger les termes : produit égal à un.",
+   "ecran": "inverse"
+  },
+  {
+   "id": "p23",
+   "dit": "Diviser par une fraction revient à multiplier par son inverse. C'est la règle centrale de cette partie, et elle exige que le diviseur soit non nul, comme tous les dénominateurs. On ne change jamais le premier terme, on inverse seulement le second.",
+   "texte": "Diviser, c'est multiplier par l'inverse.",
+   "ecran": "division_regle"
+  },
+  {
+   "id": "p24",
+   "dit": "Exemple. Trois quarts divisés par deux cinquièmes deviennent trois quarts fois cinq demis, soit quinze huitièmes. L'erreur fréquente consiste à inverser la première fraction au lieu de la seconde, ne la commettez pas.",
+   "texte": "Quinze huitièmes, en inversant le second terme.",
+   "ecran": "division_ex"
+  },
+  {
+   "id": "p25",
+   "dit": "Diviser par un entier suit la même règle. Cinq sixièmes divisés par trois, c'est cinq sixièmes fois un tiers, car l'inverse de trois est un tiers. Le résultat est cinq dix-huitièmes.",
+   "texte": "Un tiers de cinq sixièmes.",
+   "ecran": "division_entier"
+  },
+  {
+   "id": "p26",
+   "dit": "Premier problème concret. Un jardinier dispose de trois quarts d'hectare et veut des parcelles égales d'un huitième d'hectare. Combien de fois un huitième entre-t-il dans trois quarts ? Trois quarts divisés par un huitième donnent six parcelles, car trois quarts fois huit font vingt-quatre quarts, soit six.",
+   "texte": "Trois quarts partagés : six parcelles.",
+   "ecran": "jardinier"
+  },
+  {
+   "id": "p27",
+   "dit": "Prendre une fraction d'une quantité, c'est multiplier. Un quart de deux tiers ne s'additionne pas, il se multiplie, et c'est cette règle qui résout le problème du livre qui suit.",
+   "texte": "« De » veut dire « fois » : on multiplie.",
+   "ecran": "fraction_quantite"
+  },
+  {
+   "id": "p28",
+   "dit": "Deuxième problème, une fraction de fraction. Un livre compte deux tiers de pages illustrées, et parmi celles-ci, un quart est en couleur. Un quart de deux tiers, c'est un quart fois deux tiers, soit deux douzièmes, donc un sixième du livre entier est en couleur.",
+   "texte": "Pages couleur : un sixième du livre.",
+   "ecran": "livre"
+  },
+  {
+   "id": "p29",
+   "dit": "Pour finir, retenez l'enchaînement complet. Addition et soustraction exigent un dénominateur commun, multiplication multiplie les deux termes, division multiplie par l'inverse. Simplifiez avant de calculer, vérifiez par le produit en croix, et ne divisez jamais par zéro.",
+   "texte": "Les fractions : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Interpréter, simplifier, comparer et additionner"
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Multiplier, inverser et diviser",
+   "pont": {
+    "dit": "Partie deux : multiplier et diviser les fractions. Nous multiplierons d'abord, en simplifiant avant de calculer, puis nous inverserons pour diviser, et nous terminerons par deux problèmes concrets, le jardinier et le livre.",
+    "texte": "Partie 2 : multiplication, inverse et division."
+   }
+  }
+ ]
+}
