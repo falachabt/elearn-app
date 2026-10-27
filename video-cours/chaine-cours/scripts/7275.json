@@ -1,0 +1,323 @@
+{
+ "cours": 7275,
+ "ecrans": {
+  "centre_def": {
+   "kicker": "Reconnaître un centre de symétrie",
+   "texte": "Une figure admet O pour centre de symétrie si elle est globalement invariante : le symétrique de chacun de ses points appartient encore à la figure.",
+   "type": "phrase"
+  },
+  "centres_connus": {
+   "kicker": "Centres de symétrie à connaître",
+   "tex": [
+    "\\text{segment : son milieu}",
+    "\\text{cercle : son centre}",
+    "\\text{parallélogramme :}",
+    "\\text{intersection des diagonales}",
+    "\\text{rectangle, losange, carré : même point}"
+   ],
+   "titre": "Quatre figures à retenir",
+   "type": "etape"
+  },
+  "cercle": {
+   "kicker": "Symétrique d'un cercle",
+   "note": "C' est le symétrique du centre C : seul le centre se déplace, le rayon ne change pas.",
+   "tex": "C \\text{ de rayon } r \\longrightarrow C' \\text{ de rayon } r",
+   "type": "formule"
+  },
+  "consequences": {
+   "kicker": "Conséquences immédiates",
+   "tex": [
+    "A = O \\implies A' = A",
+    "A,\\ O,\\ A' \\text{ alignés}",
+    "OA = OA'"
+   ],
+   "titre": "Ce que la définition donne tout de suite",
+   "type": "etape"
+  },
+  "construction": {
+   "kicker": "Construire le symétrique d'un point",
+   "texte": "Prolonger la demi-droite qui passe par le centre, puis reporter la même longueur de l'autre côté du centre.",
+   "type": "phrase"
+  },
+  "definition": {
+   "kicker": "Définition de la symétrie centrale",
+   "note": "A' est l'image de A par la symétrie centrale de centre O.",
+   "tex": "O \\text{ est le milieu de } [AA']",
+   "type": "formule",
+   "anim": {
+    "nom": "symetrie_centrale_fig",
+    "hauteur": 190
+   }
+  },
+  "droite": {
+   "kicker": "Symétrique d'une droite",
+   "texte": "Le symétrique d'une droite est une droite parallèle à la droite de départ : deux points de la droite suffisent pour la construire.",
+   "type": "phrase"
+  },
+  "ex_parallelogramme": {
+   "kicker": "Exemple résolu · le parallélogramme",
+   "tex": [
+    "O \\text{ milieu de } [AC] \\text{ et de } [BD]",
+    "C \\text{ : symétrique de } A",
+    "D \\text{ : symétrique de } B",
+    "[AB] \\longrightarrow [CD]"
+   ],
+   "titre": "Le parallélogramme ABCD, de centre O",
+   "type": "etape"
+  },
+  "ex_point": {
+   "kicker": "Exemple résolu · construire A'",
+   "tex": [
+    "\\text{on trace la demi-droite } [AO)",
+    "OA' = OA = 3\\ \\text{cm}",
+    "O \\text{ milieu de } [AA'] \\text{ : vérifié}"
+   ],
+   "titre": "OA vaut trois centimètres : placer A'",
+   "type": "etape",
+   "anim": {
+    "nom": "symetrie_point_fig",
+    "hauteur": 130
+   }
+  },
+  "ex_triangle": {
+   "kicker": "Exemple résolu · le triangle image",
+   "tex": [
+    "O \\text{ milieu de } [AA'],\\ [BB'],\\ [CC']",
+    "A'B' = AB, \\quad B'C' = BC",
+    "\\text{on relie } A',\\ B',\\ C' \\text{ dans le même ordre}"
+   ],
+   "titre": "Le triangle A'B'C', image du triangle ABC",
+   "type": "etape",
+   "anim": {
+    "nom": "symetrie_centrale_fig",
+    "hauteur": 130
+   }
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Tournez la feuille d'un demi-tour autour d'un point : chaque point se retrouve de l'autre côté, à la même distance.",
+   "type": "phrase"
+  },
+  "methode": {
+   "kicker": "Méthode générale",
+   "texte": "Construire le symétrique de chaque point caractéristique, sommets, extrémités ou centre, puis relier les images dans le même ordre.",
+   "type": "phrase"
+  },
+  "orientation": {
+   "kicker": "Le point délicat : l'orientation",
+   "texte": "La symétrie centrale conserve l'orientation : c'est un demi-tour dans le plan, pas un miroir. Le miroir, c'est la symétrie axiale.",
+   "type": "phrase"
+  },
+  "parallelogramme_fin": {
+   "kicker": "Exemple résolu · la conclusion",
+   "texte": "Chaque sommet a son symétrique parmi les sommets, chaque côté a son image parmi les côtés : le parallélogramme est invariant, O est bien son centre de symétrie.",
+   "type": "phrase"
+  },
+  "pieges": {
+   "kicker": "Les erreurs à éviter",
+   "texte": "Deux erreurs fréquentes : placer l'image du même côté que le point de départ, et oublier que le point, le centre et l'image sont toujours alignés.",
+   "type": "phrase"
+  },
+  "proprietes": {
+   "kicker": "Propriétés de la symétrie centrale",
+   "tex": [
+    "A'B' = AB",
+    "\\widehat{A'B'C'} = \\widehat{ABC}"
+   ],
+   "titre": "Longueurs et angles sont conservés",
+   "type": "etape"
+  },
+  "proprietes_suite": {
+   "kicker": "Propriétés · la suite",
+   "texte": "Alignement, milieux et aires sont aussi conservés : des points alignés restent alignés, le milieu d'un segment devient le milieu du segment image, et les aires sont égales.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "O milieu de [AA'] : la définition",
+    "Construire : prolonger, reporter OA",
+    "Segment, droite, cercle : images connues",
+    "Longueurs, angles, aires conservés",
+    "Centre de symétrie : figure invariante"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "reconnaissance": {
+   "kicker": "La méthode pour reconnaître",
+   "texte": "Pour tester une figure : choisissez un point, construisez son symétrique par rapport au centre pressenti, et vérifiez qu'il appartient encore à la figure.",
+   "type": "phrase"
+  },
+  "segment": {
+   "kicker": "Symétrique d'un segment",
+   "note": "On symétrise les deux extrémités, puis on relie : la longueur est conservée.",
+   "tex": "[AB] \\longrightarrow [A'B'], \\qquad A'B' = AB",
+   "type": "formule"
+  },
+  "titre": {
+   "kicker": "Mathématique · Symétrie centrale",
+   "sous": "Définir, construire les images point par point, et reconnaître un centre de symétrie",
+   "titre": "La symétrie centrale : le demi-tour autour d'un point",
+   "type": "titre",
+   "anim": {
+    "nom": "symetrie_centrale_fig",
+    "hauteur": 240
+   }
+  },
+  "triangle_bilan": {
+   "kicker": "Exemple résolu · le bilan",
+   "texte": "Le triangle image a exactement les mêmes dimensions que le triangle de départ : c'est le même triangle, après un demi-tour autour de O.",
+   "type": "phrase"
+  }
+ },
+ "matiere": "Mathématique",
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à la symétrie centrale. Un point fixe, un demi-tour autour de ce point, et chaque figure obtient une image qui lui est superposable. Nous allons définir cette transformation, apprendre à construire les images point par point, puis reconnaître les figures qui possèdent un centre de symétrie.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "La symétrie centrale : un demi-tour autour d'un point."
+  },
+  {
+   "dit": "Imaginez une feuille que l'on fait tourner d'un demi-tour autour d'un point fixe. Chaque point se retrouve de l'autre côté du centre, à la même distance. C'est la symétrie centrale : ni un pliage, ni un miroir, mais un demi-tour que nous allons construire pas à pas.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Un demi-tour autour du centre, rien d'autre."
+  },
+  {
+   "dit": "Voici la définition, et elle tient en une phrase : deux points a et a prime sont symétriques par rapport à un point o si o est le milieu du segment qui les joint. On dit alors que a prime est l'image de a par la symétrie centrale de centre o, et o est le centre de symétrie.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Définition : O est le milieu de [AA']."
+  },
+  {
+   "dit": "Deux conséquences tombent immédiatement. Si le point a est confondu avec le centre o, alors son image est lui-même : le centre est son propre symétrique. Et dans tous les cas, le point a, le centre o et l'image a prime sont alignés, avec des distances égales de chaque côté du centre.",
+   "ecran": "consequences",
+   "id": "p04",
+   "texte": "Le centre est son propre symétrique ; A, O, A' alignés."
+  },
+  {
+   "dit": "Pour construire l'image d'un point, le geste est toujours le même : on trace la demi-droite qui part du point et passe par le centre, on la prolonge de l'autre côté, puis on reporte exactement la même longueur. L'image se trouve au bout de ce report.",
+   "ecran": "construction",
+   "id": "p05",
+   "texte": "Prolonger, puis reporter la même longueur."
+  },
+  {
+   "dit": "Exemple résolu : le point o et le point a sont donnés, avec une distance o a de trois centimètres. On trace la demi-droite d'origine a passant par o, on reporte trois centimètres de l'autre côté de o, et on place a prime. On vérifie pour finir : la distance o a prime vaut bien trois centimètres, et o appartient au segment a a prime.",
+   "ecran": "ex_point",
+   "id": "p06",
+   "texte": "OA = 3 cm : A' se place à 3 cm de l'autre côté de O."
+  },
+  {
+   "dit": "Passons aux figures. Le symétrique d'un segment est un segment : celui qui joint les images de ses deux extrémités. Les deux segments ont exactement la même longueur. Retenez ce réflexe : pour un segment, seuls les deux bouts comptent, tout le reste suit.",
+   "ecran": "segment",
+   "id": "p07",
+   "texte": "Segment → segment, même longueur : A'B' = AB."
+  },
+  {
+   "dit": "Le symétrique d'une droite est une droite parallèle à la droite de départ. Pour la construire, il suffit donc de prendre deux points de la droite, de construire leurs symétriques, et de tracer la droite qui les joint : elle sera parallèle à la première.",
+   "ecran": "droite",
+   "id": "p08",
+   "texte": "Une droite a pour image une droite parallèle."
+  },
+  {
+   "dit": "Le symétrique d'un cercle est un cercle de même rayon, dont le centre est le symétrique du centre de départ. Autrement dit, le cercle entier se déplace, mais il ne se déforme pas : seul son centre change de place, le rayon reste le même.",
+   "ecran": "cercle",
+   "id": "p09",
+   "texte": "Cercle → cercle de même rayon, centre image C'."
+  },
+  {
+   "dit": "La méthode générale tient maintenant en une phrase : pour construire le symétrique d'une figure, on construit le symétrique de chaque point caractéristique, c'est-à-dire les sommets, les extrémités ou le centre, puis on relie ces images dans le même ordre que les points de départ.",
+   "ecran": "methode",
+   "id": "p10",
+   "texte": "Points caractéristiques d'abord, on relie ensuite."
+  },
+  {
+   "dit": "Exemple complet : un triangle a bé cé et un point o. On place a prime tel que o soit le milieu du segment a a prime, puis b prime tel que o soit le milieu de b b prime, puis cé prime de la même façon. Il ne reste qu'à relier a prime, b prime et cé prime : le triangle image est construit.",
+   "ecran": "ex_triangle",
+   "id": "p11",
+   "texte": "Triangle ABC → A'B'C' : trois milieux à imposer."
+  },
+  {
+   "dit": "Regardez le résultat : le triangle image a exactement les mêmes dimensions que le triangle de départ, côté par côté. Il a simplement fait un demi-tour autour du centre o. On peut le faire coïncider avec le premier par une rotation dans le plan, sans jamais le retourner comme un miroir.",
+   "ecran": "triangle_bilan",
+   "id": "p12",
+   "texte": "Mêmes dimensions : un demi-tour, pas un miroir."
+  },
+  {
+   "dit": "Ces observations deviennent des propriétés officielles. La symétrie centrale conserve les longueurs : deux points et leurs images sont à la même distance. Elle conserve aussi les angles : un angle et son image ont exactement la même mesure.",
+   "ecran": "proprietes",
+   "id": "p13",
+   "texte": "Longueurs et angles : conservés."
+  },
+  {
+   "dit": "La liste continue : l'alignement est conservé, des points alignés ont des images alignées. Les milieux sont conservés : le milieu d'un segment a pour image le milieu du segment image. Et les aires sont conservées : une figure et son image ont exactement la même aire.",
+   "ecran": "proprietes_suite",
+   "id": "p14",
+   "texte": "Alignement, milieux, aires : conservés aussi."
+  },
+  {
+   "dit": "Un point délicat, souvent mal compris : la symétrie centrale conserve l'orientation de la figure. Parcourez un triangle dans un sens, son image se parcourt dans le même sens de rotation. C'est la symétrie axiale, le miroir, qui inverse l'orientation, pas le demi-tour autour d'un point.",
+   "ecran": "orientation",
+   "id": "p15",
+   "texte": "Orientation conservée : le miroir, c'est l'axiale."
+  },
+  {
+   "dit": "Dernière notion : reconnaître quand une figure possède un centre de symétrie. Une figure admet le point o pour centre de symétrie si elle est globalement invariante par la symétrie centrale de centre o : chaque point de la figure a son symétrique qui appartient aussi à la figure.",
+   "ecran": "centre_def",
+   "id": "p16",
+   "texte": "Centre de symétrie : la figure est invariante."
+  },
+  {
+   "dit": "Quatre cas sont à connaître par cœur. Le segment : son milieu est un centre de symétrie. Le cercle : son centre. Le parallélogramme : le point d'intersection de ses diagonales. Et le rectangle, le losange et le carré héritent du même point, car ce sont des parallélogrammes particuliers.",
+   "ecran": "centres_connus",
+   "id": "p17",
+   "texte": "Segment, cercle, parallélogramme : leurs centres."
+  },
+  {
+   "dit": "Vérifions le cas du parallélogramme a bé cé dé, dont les diagonales se coupent en o. Dans un parallélogramme, les diagonales se coupent en leur milieu : o est donc le milieu des deux diagonales. Par conséquent, cé est le symétrique de a par rapport à o, et dé est le symétrique de bé.",
+   "ecran": "ex_parallelogramme",
+   "id": "p18",
+   "texte": "Parallélogramme : O, milieu des deux diagonales."
+  },
+  {
+   "dit": "La vérification se termine : le symétrique du côté a bé est le côté cé dé, qui appartient bien au parallélogramme. Chaque sommet retrouve son symétrique parmi les sommets, chaque côté parmi les côtés. Conclusion : le parallélogramme est invariant par la symétrie de centre o.",
+   "ecran": "parallelogramme_fin",
+   "id": "p19",
+   "texte": "Le côté [AB] a pour image le côté [CD] : invariant."
+  },
+  {
+   "dit": "Pour reconnaître un centre de symétrie sur une figure quelconque, appliquez la définition à l'envers : prenez un point caractéristique, par exemple un sommet, construisez son symétrique par rapport au centre pressenti, et vérifiez qu'il tombe bien sur un autre point de la figure.",
+   "ecran": "reconnaissance",
+   "id": "p20",
+   "texte": "Tester : le symétrique retombe-t-il sur la figure ?"
+  },
+  {
+   "dit": "Deux erreurs reviennent sans cesse dans les copies. La première : placer l'image du même côté du centre que le point de départ, alors qu'elle est toujours de l'autre côté. La seconde : oublier l'alignement, alors que le point, le centre et l'image sont toujours sur la même droite.",
+   "ecran": "pieges",
+   "id": "p21",
+   "texte": "L'image est toujours de l'autre côté du centre."
+  },
+  {
+   "dit": "Pour finir, retenez l'essentiel : deux points sont symétriques par rapport à o si o est le milieu du segment qui les joint. On construit les images en prolongeant et en reportant la même longueur, point caractéristique par point caractéristique. La symétrie centrale conserve longueurs, angles, alignement, milieux et aires, et une figure possède un centre de symétrie quand elle est invariante par ce demi-tour.",
+   "ecran": "recap",
+   "id": "p22",
+   "texte": "La symétrie centrale : à retenir."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir et construire les images"
+  },
+  {
+   "debut": "p13",
+   "sous_titre": "Propriétés et centres de symétrie",
+   "pont": {
+    "texte": "Partie 2 : propriétés conservées et centres de symétrie.",
+    "dit": "Partie deux : les propriétés de la symétrie centrale, puis les figures qui possèdent un centre de symétrie. Nous verrons ce qui est conservé, le point délicat de l'orientation, et nous terminerons par le parallélogramme, l'exemple à connaître par cœur."
+   }
+  }
+ ],
+ "titre": "La symétrie centrale : le demi-tour autour d'un point"
+}
