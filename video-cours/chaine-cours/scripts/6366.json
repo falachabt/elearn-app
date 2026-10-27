@@ -1,0 +1,299 @@
+{
+ "cours": 6366,
+ "ecrans": {
+  "anticorps": {
+   "kicker": "Les anticorps, trois effets",
+   "tex": [
+    "\\text{neutralisation du pathogène}",
+    "\\text{opsonisation : marquage}",
+    "\\text{activation du complément}",
+    "\\text{anticorps} = \\text{immunoglobuline}"
+   ],
+   "titre": "Une molécule en Y, trois façons d'agir",
+   "type": "etape"
+  },
+  "barrieres": {
+   "anim": {
+    "hauteur": 200,
+    "nom": "microscope_fig"
+   },
+   "kicker": "Les barrières",
+   "texte": "Peau, muqueuses, larmes : la forteresse d'abord.",
+   "type": "phrase"
+  },
+  "comparaison": {
+   "kicker": "Innée contre adaptative",
+   "tex": [
+    "\\text{innée : immédiate, quelques heures}",
+    "\\text{adaptative : quatre à sept jours}",
+    "\\text{innée : large, sans mémoire}",
+    "\\text{adaptative : précise, avec mémoire}"
+   ],
+   "titre": "Deux vitesses, deux précisions",
+   "type": "etape"
+  },
+  "cooperation": {
+   "kicker": "Innée et adaptative coopèrent",
+   "tex": [
+    "\\text{anticorps} + \\text{pathogène} \\rightarrow \\text{opsonisation}",
+    "\\text{phagocytose : récepteur Fc}",
+    "\\text{interféron gamma} \\rightarrow \\text{macrophage activé}",
+    "\\text{la mémoire accélère la prochaine fois}"
+   ],
+   "titre": "L'adaptative rend l'innée plus forte",
+   "type": "etape"
+  },
+  "lymphocytes": {
+   "kicker": "Deux familles de lymphocytes",
+   "tex": [
+    "\\text{B : moelle osseuse, anticorps}",
+    "\\text{T auxiliaires : thymus, chefs d'orchestre}",
+    "\\text{T tueurs : thymus, destruction ciblée}",
+    "\\text{T régulateurs : freiner pour tolérer}"
+   ],
+   "titre": "B fabrique, T organise et tue",
+   "type": "etape"
+  },
+  "memoire": {
+   "kicker": "La réponse secondaire",
+   "note": "Amplitude plus grande, cinétique plus rapide.",
+   "tex": "A_s > A_p \\quad \\text{et} \\quad k_s > k_p",
+   "type": "formule"
+  },
+  "pathogenes": {
+   "kicker": "Des ennemis de toutes tailles",
+   "tex": [
+    "\\text{prion : } 10\\text{--}20\\ \\text{nm}",
+    "\\text{virus : } 20\\text{--}300\\ \\text{nm}",
+    "\\text{bactérie : } 0{,}5\\text{--}5\\ \\mu\\text{m}",
+    "\\text{champignon, parasite : bien plus grands}"
+   ],
+   "titre": "Protéine folle, virus, bactérie, parasite",
+   "type": "etape"
+  },
+  "phagocytose": {
+   "kicker": "La phagocytose en quatre actes",
+   "tex": [
+    "\\text{adhésion et ingestion}",
+    "\\text{phagosome}",
+    "\\text{fusion avec le lysosome}",
+    "\\text{digestion dans le phagolysosome}"
+   ],
+   "titre": "Manger l'ennemi, puis le digérer",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Innée : barrières, phagocytes, complément",
+    "Adaptative : lymphocytes B et T, anticorps",
+    "Mémoire : seconde réponse plus vite, plus fort",
+    "Vaccin : imiter l'infection sans la maladie",
+    "Une seule défense, deux vitesses associées"
+   ],
+   "kicker": "Récapitulatif",
+   "type": "recap"
+  },
+  "secondaire": {
+   "kicker": "Primaire contre secondaire",
+   "tex": [
+    "\\text{primaire : cinq à sept jours}",
+    "\\text{secondaire : deux à trois jours}",
+    "\\text{anticorps de plus haute affinité}",
+    "\\text{mémoire parfois pour toute la vie}"
+   ],
+   "titre": "La seconde fois, tout va plus vite",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "microscope_fig"
+   },
+   "kicker": "Biologie · L'immunologie",
+   "sous": "Barrières, phagocytes, lymphocytes, mémoire, vaccination",
+   "titre": "Immunité innée et adaptative : deux lignes de défense, une seule armée",
+   "type": "titre"
+  },
+  "vaccins": {
+   "kicker": "Quatre stratégies vaccinales",
+   "tex": [
+    "\\text{vivant atténué : rougeole, fièvre jaune}",
+    "\\text{inactivé : polio, hépatite A}",
+    "\\text{sous-unitaire : hépatite B}",
+    "\\text{ARN messager : Covid}"
+   ],
+   "titre": "Imiter l'ennemi sans subir la maladie",
+   "type": "etape"
+  }
+ },
+ "matiere": "Biologie",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Barrières, phagocytes et les deux piliers"
+  },
+  {
+   "debut": "p10",
+   "sous_titre": "Lymphocytes, tolérance et coopération",
+   "pont": {
+    "dit": "Partie deux : les lymphocytes, leurs récepteurs uniques et leur éducation dans le thymus, puis la coopération qui rend l'innée plus forte.",
+    "texte": "Partie 2 : lymphocytes, sélection, coopération."
+   }
+  },
+  {
+   "debut": "p18",
+   "sous_titre": "Mémoire, vaccins et immunité collective",
+   "pont": {
+    "dit": "Partie trois : la mémoire immunologique, ses lois chiffrées, et les vaccins qui l'exploitent, jusqu'à l'immunité collective.",
+    "texte": "Partie 3 : mémoire, vaccins, immunité collective."
+   }
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré à l'immunologie, la science de nos défenses, innée et adaptative. Imaginez votre organisme comme un royaume en état de siège permanent, attaqué par des virus, des bactéries, des champignons et des parasites, sans oublier ses propres cellules devenues anormales. Deux lignes de défense le protègent : une garde rapide et générale, et des unités d'élite précises, dotées de mémoire. Nous verrons d'abord la forteresse et ses soldats, puis les unités d'élite, et enfin la mémoire et les vaccins.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Un royaume assiégé, deux lignes de défense."
+  },
+  {
+   "dit": "Commençons par mesurer les ennemis, car leurs tailles disent déjà leurs stratégies. Un prion, simple protéine mal repliée, mesure une dizaine de nanomètres. Un virus, entité acellulaire et parasite intracellulaire obligatoire, de vingt à trois cents nanomètres. Une bactérie, cellule autonome, de un demi à cinq micromètres. Un champignon ou un parasite, organismes complexes, de quelques micromètres à plusieurs mètres pour un ver solitaire. Face à une telle diversité, une seule défense ne suffirait pas.",
+   "ecran": "pathogenes",
+   "id": "p02",
+   "texte": "Prion, virus, bactérie, parasite : toutes les tailles."
+  },
+  {
+   "dit": "La première ligne est la forteresse : les barrières physiques et chimiques. La peau, armure stratifiée, bloque l'entrée. Les muqueuses, frontières intelligentes, piègent et expulsent. Les larmes et la salive apportent le lysozyme, qui brise les parois bactériennes. Des peptides antimicrobiens percent les membranes microbiennes. Et le système du complément, cascade de protéines du sang, perce les pathogènes et appelle les phagocytes. Une brûlure au troisième degré, qui détruit peau et derme, est d'ailleurs une urgence vitale précisément parce que cette forteresse a disparu.",
+   "ecran": "barrieres",
+   "id": "p03",
+   "texte": "Peau, muqueuses, lysozyme, complément : la forteresse."
+  },
+  {
+   "dit": "Quand un intrus franchit la forteresse, la garde rapide entre en jeu : les phagocytes. Le macrophage, présent partout dans les tissus, mange l'ennemi en quatre actes. D'abord l'adhésion et l'ingestion : il étend ses pseudopodes et englobe la particule dans une vésicule, le phagosome. Puis le phagosome fusionne avec un lysosome, riche en enzymes et en dérivés réactifs de l'oxygène et de l'azote. Le phagolysosome ainsi formé acidifie et digère le pathogène. C'est un repas cellulaire complet.",
+   "ecran": "phagocytose",
+   "id": "p04",
+   "texte": "Phagocytose : englober, fusionner, digérer."
+  },
+  {
+   "dit": "Le macrophage ne se contente pas de manger. Activé de façon classique, il devient un guerrier pro-inflammatoire qui sécrète des cytokines, comme le facteur de nécrose tumorale et des interleukines, et produit des molécules bactéricides. Activé autrement, il devient un réparateur anti-inflammatoire, qui résout l'inflammation et reconstruit les tissus. Manger, alerter, réparer : un seul soldat, trois métiers.",
+   "ecran": "phagocytose",
+   "id": "p05",
+   "texte": "Macrophage : guerrier ou réparateur, selon l'activation."
+  },
+  {
+   "dit": "D'autres soldats complètent la garde. Les cellules dendritiques, éclaireurs stratégiques, capturent les antigènes et vont les présenter aux lymphocytes : elles sont le pont vers l'immunité adaptative. Les neutrophiles, troupes de choc à courte durée de vie, quelques jours seulement, phagocytent intensément, libèrent leurs granules et des filets d'ADN, et leur mort forme le pus. Les cellules tueuses naturelles, enfin, surveillent les cellules altérées, infectées ou cancéreuses, et les éliminent sans ordre préalable.",
+   "ecran": "barrieres",
+   "id": "p06",
+   "texte": "Dendritiques, neutrophiles, tueuses naturelles : la garde."
+  },
+  {
+   "dit": "L'ensemble se coordonne par un langage chimique, les cytokines, qui dilatent les vaisseaux voisins et y affichent des molécules d'adhésion pour attirer les défenseurs. C'est l'inflammation, visible de l'extérieur : rougeur, chaleur, douleur, gonflement. Plantez-vous une écharde, et vous voyez cette garde à l'œuvre : les neutrophiles affluent, phagocytent les bactéries introduites, et l'inflammation localise l'infection.",
+   "ecran": "barrieres",
+   "id": "p07",
+   "texte": "Inflammation : rougeur, chaleur, douleur, gonflement."
+  },
+  {
+   "dit": "Retenons le portrait de cette immunité innée : immédiate, en quelques heures, large, car elle reconnaît des motifs généraux partagés par les microbes, et sans mémoire, car sa réponse est identique à chaque exposition. Elle est présente dès la naissance, codée par des gènes identiques chez tous les individus. C'est la forteresse et la garde, indispensables, mais incapables de viser un ennemi précis ni de s'en souvenir.",
+   "ecran": "comparaison",
+   "id": "p08",
+   "texte": "Innée : immédiate, large, sans mémoire."
+  },
+  {
+   "dit": "L'immunité adaptative, elle, est lente à démarrer, quatre à sept jours, mais d'une précision extrême : elle reconnaît des fragments antigéniques précis, les épitopes, grâce à des récepteurs uniques portés par chaque lymphocyte. Et surtout, elle mémorise : lors d'une réexposition, la réponse est amplifiée et plus rapide. C'est cette mémoire qui rend possible la vaccination, et qui distingue fondamentalement les deux piliers.",
+   "ecran": "comparaison",
+   "id": "p09",
+   "texte": "Adaptative : lente, précise, avec mémoire."
+  },
+  {
+   "dit": "Les lymphocytes naissent dans la moelle osseuse, et les lymphocytes T achèvent leur éducation dans le thymus. Chaque lymphocyte porte un récepteur unique, une immunoglobuline de membrane pour le lymphocyte B, un récepteur T pour le lymphocyte T, généré par réarrangement des gènes au cours de la vie de l'individu. La diversité ainsi créée permet de reconnaître pratiquement n'importe quel antigène, y compris des molécules jamais rencontrées dans l'histoire de l'espèce.",
+   "ecran": "lymphocytes",
+   "id": "p10",
+   "texte": "Un récepteur unique par lymphocyte, par réarrangement."
+  },
+  {
+   "dit": "Le thymus est aussi une école sévère. La sélection positive ne garde que les lymphocytes T capables de reconnaître les molécules de présentation du soi. La sélection négative élimine ceux qui réagissent trop fort contre le soi. Ce double tri installe la tolérance : un système capable d'attaquer l'étranger sans attaquer l'organisme lui-même. Quand ce tri échoue, ce sont les maladies auto-immunes, et quand la production échoue, les immunodéficiences.",
+   "ecran": "lymphocytes",
+   "id": "p11",
+   "texte": "Sélection positive, sélection négative : tolérer le soi."
+  },
+  {
+   "dit": "Récapitulons le contraste entre les deux piliers : une forteresse de barrières, une garde de phagocytes sans mémoire, et des lymphocytes d'élite qui apprennent et se souviennent. C'est sur ces unités d'élite que nous allons maintenant entrer dans le détail.",
+   "ecran": "comparaison",
+   "id": "p12",
+   "texte": "Bilan : forteresse, garde, unités d'élite."
+  },
+  {
+   "dit": "Pour entrer dans le détail, retenez une méthode simple : pour chaque lymphocyte, associez son lieu de maturation, son récepteur, et la forme d'antigène qu'il reconnaît. C'est cette grammaire qui rend tout le reste lisible.",
+   "ecran": "lymphocytes",
+   "id": "p13",
+   "texte": "Retenez les couples : lieu, récepteur, antigène reconnu."
+  },
+  {
+   "dit": "Les lymphocytes B sont les usines à anticorps. Ils mûrissent dans la moelle osseuse, reconnaissent l'antigène natif, en trois dimensions, grâce à leur immunoglobuline de membrane, et, une fois activés, se transforment en plasmocytes qui sécrètent des anticorps en masse. Un anticorps agit de trois façons : il neutralise directement le pathogène, il le marque pour les phagocytes, c'est l'opsonisation, et il active le système du complément.",
+   "ecran": "anticorps",
+   "id": "p14",
+   "texte": "Lymphocyte B : usine à anticorps, trois effets."
+  },
+  {
+   "dit": "Les lymphocytes T, eux, ne voient jamais l'antigène seul : ils le voient découpé en peptides et présenté par les molécules du complexe majeur d'histocompatibilité. Les T auxiliaires, chefs d'orchestre, reconnaissent les peptides présentés par la classe deux sur les cellules présentatrices, et sécrètent les cytokines qui activent macrophages, lymphocytes B et lymphocytes tueurs. Les T tueurs reconnaissent les peptides de classe un, présents sur toutes les cellules nucléées, et détruisent la cellule infectée ou cancéreuse en lui injectant perforines et granzymes, qui déclenchent son suicide programmé.",
+   "ecran": "lymphocytes",
+   "id": "p15",
+   "texte": "T auxiliaires : organiser. T tueurs : détruire la cellule."
+  },
+  {
+   "dit": "Un troisième type, les T régulateurs, freine l'ensemble. Ils suppriment l'activation des lymphocytes effecteurs et empêchent les réactions excessives : sans eux, le système s'emballerait contre le soi ou contre des cibles inoffensives. L'immunité adaptative est donc aussi un système de freins, pas seulement d'accélérateurs.",
+   "ecran": "lymphocytes",
+   "id": "p16",
+   "texte": "T régulateurs : les freins qui empêchent l'emballement."
+  },
+  {
+   "dit": "Voici le cœur de la coopération entre les deux piliers. Un pathogène libre est reconnu lentement par les récepteurs de l'inné, et phagocyté modérément. Le même pathogène, recouvert d'anticorps, se lie fortement au récepteur des macrophages, et la phagocytose devient explosive : c'est l'opsonisation. Dans l'autre sens, l'interféron gamma des lymphocytes T active puissamment les macrophages. L'adaptative ne remplace pas l'innée, elle la rend plus forte, et l'innée, par les cellules présentatrices, rend l'adaptative possible.",
+   "ecran": "cooperation",
+   "id": "p17",
+   "texte": "Opsonisé : phagocytose explosive. Activé : macrophage renforcé."
+  },
+  {
+   "dit": "Venons-en à la mémoire, la propriété la plus remarquable de l'adaptative. Après une première rencontre, des lymphocytes B et T mémoire persistent, parfois des décennies, voire toute la vie, comme pour la rougeole ou la variole. Ils siègent dans la moelle, les ganglions, la rate et les tissus, en surveillance constante, prêts à se réactiver.",
+   "ecran": "secondaire",
+   "id": "p18",
+   "texte": "Cellules mémoire : des décennies de surveillance."
+  },
+  {
+   "dit": "Les lois de la réponse secondaire se chiffrent pas à pas. La latence tombe de cinq à sept jours à deux à trois jours. L'amplitude augmente : plus d'anticorps, plus vite. L'affinité s'améliore, grâce à la maturation dans les centres germinatifs des ganglions, où les lymphocytes B affinent leurs anticorps avec l'aide des T folliculaires. Résultat : la seconde rencontre élimine souvent le pathogène avant même l'apparition des symptômes.",
+   "ecran": "secondaire",
+   "id": "p19",
+   "texte": "Secondaire : 2-3 jours, plus fort, plus affine."
+  },
+  {
+   "dit": "On peut résumer ces lois par deux inégalités : l'amplitude secondaire dépasse l'amplitude primaire, et la cinétique secondaire est plus rapide que la cinétique primaire. Retenez-les comme des lois, pas comme des images : elles expliquent pourquoi une seconde infection est souvent silencieuse, et pourquoi les rappels vaccinaux fonctionnent.",
+   "ecran": "memoire",
+   "id": "p20",
+   "texte": "Amplitude et vitesse secondaires supérieures."
+  },
+  {
+   "dit": "La vaccination est l'art d'imiter la nature sans subir la maladie : présenter un antigène pour créer des cellules mémoire, sans infection réelle. Quatre stratégies existent. Le vivant atténué, pathogène affaibli mais réplicatif, comme pour la rougeole ou la fièvre jaune, donne une immunité forte et durable. L'inactivé, pathogène tué, comme pour la polio ou l'hépatite A, est sûr mais demande des rappels. Le sous-unitaire, antigènes purifiés, comme pour l'hépatite B ou le papillomavirus, est très sûr mais parfois peu immunogène, d'où les adjuvants. L'ARN messager, comme pour la Covid, fait produire l'antigène par les cellules du receveur, pour un développement très rapide.",
+   "ecran": "vaccins",
+   "id": "p21",
+   "texte": "Quatre vaccins : atténué, inactivé, sous-unitaire, ARNm."
+  },
+  {
+   "dit": "Les adjuvants méritent un mot, car ils montrent la coopération en action : en stimulant les récepteurs de l'inné au point d'injection, ils déclenchent l'inflammation et la maturation des cellules présentatrices, sans lesquelles la réponse adaptative resterait faible. Un bon vaccin est donc un vaccin qui parle d'abord à l'inné pour instruire l'adaptative. Et les rappels, en restimulant les cellules mémoire, favorisent une maturation d'affinité supplémentaire.",
+   "ecran": "vaccins",
+   "id": "p22",
+   "texte": "Adjuvant : parler à l'inné pour instruire l'adaptative."
+  },
+  {
+   "dit": "À l'échelle d'une population, la mémoire individuelle devient immunité collective : quand assez d'individus sont protégés, la circulation du pathogène ralentit et protège même les non vaccinés. C'est un bien commun fragile, menacé par les pathogènes qui échappent à la mémoire, par la baisse de l'immunité avec le temps, et par les inégalités d'accès aux vaccins. La mémoire immunologique est donc aussi un enjeu de santé publique.",
+   "ecran": "vaccins",
+   "id": "p23",
+   "texte": "Immunité collective : la mémoire devient bien commun."
+  },
+  {
+   "dit": "Récapitulons. L'innée défend d'abord : barrières, phagocytes, complément, sans mémoire. L'adaptative apprend ensuite : lymphocytes B qui fabriquent les anticorps, lymphocytes T qui organisent et tuent, avec sélection et tolérance. La mémoire rend la seconde réponse plus rapide, plus forte et plus affine. Le vaccin imite l'infection pour créer cette mémoire sans la maladie. Et les deux piliers ne s'opposent pas : l'innée présente, l'adaptative renforce, la mémoire dure. Une seule armée, deux vitesses, un seul objectif : distinguer le soi du non-soi sans jamais se tromper de cible.",
+   "ecran": "recap",
+   "id": "p24",
+   "texte": "Une seule armée, deux vitesses, un seul objectif."
+  }
+ ],
+ "titre": "Immunité innée et adaptative : deux lignes de défense, une seule armée"
+}
