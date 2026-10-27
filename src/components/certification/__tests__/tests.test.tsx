@@ -486,11 +486,11 @@ describe('bilan réduit', () => {
 
 describe('bilan des tests composés (définitions)', () => {
   /** Un état de test composé déjà terminé : la fin est celle que le serveur renvoie pour le type (voir cert_attempt_finish). */
-  async function semerDef(kind: 'reading' | 'full' | 'mixed', fin: Pick<FinTentative, 'kind' | 'estimated' | 'score' | 'score_min' | 'score_max'>, meilleurAvant: number | null = null): Promise<void> {
+  async function semerDef(kind: 'reading' | 'full' | 'mixed' | 'mini', fin: Pick<FinTentative, 'kind' | 'estimated' | 'score' | 'score_min' | 'score_max'>, meilleurAvant: number | null = null, perPart?: FinTentative['per_part']): Promise<void> {
     const e = await semer({ partie: null, reponses: 0 });
     const finComplete: FinTentative = {
       status: 'finished', attempt_id: e.tentative.attempt_id, replay: false, results: [],
-      per_part: { '5': { answered: 30, correct: 18 }, '6': { answered: 16, correct: 10 }, '7': { answered: 54, correct: 32 } },
+      per_part: perPart ?? { '5': { answered: 30, correct: 18 }, '6': { answered: 16, correct: 10 }, '7': { answered: 54, correct: 32 } },
       ...fin,
     };
     await ecrireMini({ ...e, termine: true, definition: { id: 'def-1', kind, meilleurAvant }, fin: finComplete });
@@ -529,6 +529,68 @@ describe('bilan des tests composés (définitions)', () => {
     expect(screen.queryByText('560')).toBeNull();
     expect(await screen.findByText(t.tests.bilanDef.surMax.replace('{{max}}', '990'))).toBeTruthy();
   });
+
+  it('demi-test lecture : le détail par partie s’affiche sous le score, avec l’accès à la correction', async () => {
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null });
+    await monter(<BilanMini />);
+    expect(await screen.findByText(t.bilanMini.detailParties)).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.partieCourte.replace('{{n}}', '5'))).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.partieCourte.replace('{{n}}', '6'))).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.partieCourte.replace('{{n}}', '7'))).toBeTruthy();
+    expect(screen.getByText('18 sur 30')).toBeTruthy();
+    expect(screen.getByText('10 sur 16')).toBeTruthy();
+    expect(screen.getByText('32 sur 54')).toBeTruthy();
+    // Aucune pastille d'état de maîtrise : elle reste propre au diagnostic.
+    expect(screen.queryByText(t.resultat.maitrise)).toBeNull();
+    expect(screen.getByText(t.bilanMini.revoir)).toBeTruthy();
+  });
+
+  it('la revue s’ouvre depuis le bilan sans effacer l’état, et reste consultable', async () => {
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null });
+    await monter(<BilanMini />);
+    await fireEvent.press(await screen.findByText(t.bilanMini.revoir));
+    expect(router.push).toHaveBeenCalledWith('/certification/mini-revue');
+    expect(await lireMini()).not.toBeNull();
+    await monter(<MiniRevue />);
+    expect(await screen.findByText(t.revue.sansReponse)).toBeTruthy();
+    expect(await lireMini()).not.toBeNull();
+  });
+
+  it('« Voir ma note et mes tentatives » est une sortie définitive : l’état est effacé', async () => {
+    await semerDef('reading', { kind: 'half_reading', estimated: true, score: 300, score_min: null, score_max: null });
+    await monter(<BilanMini />);
+    await fireEvent.press(await screen.findByText(t.tests.detail.voirNote));
+    await waitFor(() => expect(router.replace).toHaveBeenCalledWith('/certification/tentatives'));
+    expect(await lireMini()).toBeNull();
+  });
+
+  it('test complet : le détail montre les sept parties', async () => {
+    const perPart = {
+      '1': { answered: 6, correct: 5 }, '2': { answered: 25, correct: 19 }, '3': { answered: 39, correct: 28 },
+      '4': { answered: 30, correct: 22 }, '5': { answered: 30, correct: 21 }, '6': { answered: 16, correct: 10 },
+      '7': { answered: 54, correct: 37 },
+    };
+    await semerDef('full', { kind: 'full', estimated: true, score: 745, score_min: null, score_max: null }, null, perPart);
+    await monter(<BilanMini />);
+    expect(await screen.findByText(t.bilanMini.detailParties)).toBeTruthy();
+    for (const n of ['1', '2', '3', '4', '5', '6', '7']) {
+      expect(screen.getByText(t.bilanMini.partieCourte.replace('{{n}}', n))).toBeTruthy();
+    }
+    expect(screen.getByText('5 sur 6')).toBeTruthy();
+    expect(screen.getByText('37 sur 54')).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.revoir)).toBeTruthy();
+  });
+
+  it('mini-test par partie depuis les listes : le compte « c sur n », son détail à une ligne, pas « Pas encore de score »', async () => {
+    await semerDef('mini', { kind: 'mini', estimated: false, score: null, score_min: null, score_max: null }, null, { '5': { answered: 3, correct: 2 } });
+    await monter(<BilanMini />);
+    expect(await screen.findByText(t.bilanMini.sansEstimation)).toBeTruthy();
+    expect(screen.getAllByText('2 sur 3').length).toBeGreaterThan(0);
+    expect(screen.queryByText(t.tests.listes.pasDeScore)).toBeNull();
+    expect(screen.getByText(t.bilanMini.detailParties)).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.partieCourte.replace('{{n}}', '5'))).toBeTruthy();
+    expect(screen.getByText(t.bilanMini.revoir)).toBeTruthy();
+  });
 });
 
 describe('T4 · historique et T7 · détail', () => {
@@ -538,6 +600,8 @@ describe('T4 · historique et T7 · détail', () => {
     LIGNE({ id: 'c', status: 'abandoned', perPart: null, finishedAt: null }),
     LIGNE({ id: 'd', kind: 'diagnostic', part: null, length: 20, scoreMin: 600, scoreMax: 700 }),
     LIGNE({ id: 'e', kind: 'diagnostic', part: null, length: 21, score: 745, scoreMin: 720, scoreMax: 770 }),
+    LIGNE({ id: 'f', kind: 'half_reading', part: null, length: 100, score: 385 }),
+    LIGNE({ id: 'g', kind: 'full', part: null, length: 200, score: 745 }),
   ];
 
   it('liste chaque test avec son résultat, du plus récent au plus ancien, et la mention d’estimation', async () => {
@@ -548,6 +612,9 @@ describe('T4 · historique et T7 · détail', () => {
     expect(screen.getByText(`${t.historique.miniPartie.replace('{{n}}', '5')} · ${t.historique.abandonne}`)).toBeTruthy();
     expect(screen.getByText(`${t.historique.diagnostic} · estimation 600 à 700`)).toBeTruthy();
     expect(screen.getByText(`${t.historique.diagnostic} · ${t.historique.scoreExact.replace('{{score}}', '745')}`)).toBeTruthy();
+    // Le libellé suit l'échelle du type : score de section « sur 495 » pour un demi-test, total « sur 990 » pour un complet.
+    expect(screen.getByText(`${t.historique.demi} · ${t.historique.scoreExactSection.replace('{{score}}', '385')}`)).toBeTruthy();
+    expect(screen.getByText(`${t.historique.complet} · ${t.historique.scoreExact.replace('{{score}}', '745')}`)).toBeTruthy();
     expect(screen.queryByText('720 à 770', { exact: false })).toBeNull();
     expect(screen.getByText(t.historique.mention)).toBeTruthy();
     expect(screen.getByText('650 à 730 sur 990')).toBeTruthy();
@@ -588,6 +655,14 @@ describe('T4 · historique et T7 · détail', () => {
     await monter(<DetailTentative />);
     expect(await screen.findByText('745 sur 990')).toBeTruthy();
     expect(screen.queryByText('720 à 770', { exact: false })).toBeNull();
+  });
+
+  it('détail d’un demi-test : le score de section s’affiche « sur 495 », jamais « sur 990 »', async () => {
+    installer({ tentatives: liste });
+    mockParams = { id: 'f' };
+    await monter(<DetailTentative />);
+    expect(await screen.findByText('385 sur 495')).toBeTruthy();
+    expect(screen.queryByText('385 sur 990')).toBeNull();
   });
 
   it('détail d’un test abandonné : pas de bilan', async () => {

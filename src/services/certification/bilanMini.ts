@@ -36,6 +36,21 @@ export function scoresSections(perPart: Record<string, { answered: number; corre
   return { listening: section(1, 4), reading: section(5, 7) };
 }
 
+/** Une ligne du bloc « Détail par partie » du bilan : la partie et ses bonnes réponses sur les répondues. */
+export type LigneDetailPartie = { partie: number; correct: number; answered: number };
+
+/**
+ * Détail par partie d'une fin de test (`per_part` du serveur), trié par numéro de partie croissant. Seules les
+ * parties du test sont présentes dans `per_part` : un demi-test ne donne que ses parties, un mini par partie la
+ * sienne, un complet ou un mixte les sept.
+ */
+export function detailParPartie(perPart: Record<string, { answered: number; correct: number }>): LigneDetailPartie[] {
+  return Object.entries(perPart)
+    .map(([partie, p]) => ({ partie: Number(partie), correct: p.correct, answered: p.answered }))
+    .filter((l) => Number.isInteger(l.partie) && l.partie >= 1 && l.partie <= 7)
+    .sort((a, b) => a.partie - b.partie);
+}
+
 /** Statut d'une question d'un test terminé : juste, faux, ou sans réponse (passée ou absente des résultats). */
 export type StatutQuestion = 'juste' | 'faux' | 'sans';
 

@@ -125,14 +125,26 @@ export function BilanMini() {
         entete={<EnteteToeic titre={t('certification.bilanMini.entete')} />}
         pied={
           <View style={styles.groupe}>
-            <Bouton libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} />
+            {/* La revue se pousse par-dessus le bilan, comme dans la branche simple : l'état local (questions,
+                réponses, résultats) reste en place pour les allers-retours bilan ↔ revue. Il n'est effacé que
+                par les sorties définitives ci-dessous (sortir, ou un nouveau test lancé qui écrase l'état). */}
+            <Bouton libelle={t('certification.bilanMini.revoir')} onPress={() => router.push('/certification/mini-revue' as never)} retour />
+            <Bouton variante="secondaire" libelle={t('certification.tests.detail.refaire')} onPress={() => void refaire()} />
             <Bouton variante="secondaire" libelle={t('certification.tests.detail.voirNote')} onPress={() => void sortir('/certification/tentatives')} />
             <Bouton variante="secondaire" libelle={t('certification.tests.detail.autre')} onPress={() => void autre()} />
             <Bouton variante="texte" libelle={t('certification.tests.bilanDef.retour')} onPress={() => void sortir('/tests')} />
           </View>
         }
       >
-        <BilanDefinition score={scoreTentative} meilleurAvant={def.meilleurAvant} max={maxDef} />
+        <BilanDefinition score={scoreTentative} meilleurAvant={def.meilleurAvant} max={maxDef} perPart={fin.per_part} compte={def.kind === 'mini' ? { bonnes, total } : undefined} />
+        {def.kind === 'mini' ? (
+          <>
+            {/* Variante mini-test par partie (écran 5 de la maquette « Fin de test ») : la grille des questions
+                suit le bloc de détail, comme dans le bilan simple. */}
+            <GrilleQuestions statuts={statuts} />
+            <Text style={[typo.legende, { color: theme.texte.secondaire }]}>{t('certification.bilanMini.sansReponseFausse')}</Text>
+          </>
+        ) : null}
       </Ecran>
     );
   }

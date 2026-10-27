@@ -25,11 +25,17 @@ export function titreTentative(t: Traduire, x: Pick<TentativeListee, 'kind' | 'p
 
 const jourCourt = (iso: string) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 
-/** Résultat d'une ligne : « 8 sur 10 », « 745 sur 990 » (score exact), « estimation 650 à 730 » (repli sans score exact), ou l'état d'un test abandonné. */
+/** Résultat d'une ligne : « 8 sur 10 », « 745 sur 990 » (score exact, échelle totale), « 385 sur 495 » (score exact de section, demi-tests), « estimation 650 à 730 » (repli sans score exact), ou l'état d'un test abandonné. */
 export function resultatTentative(t: Traduire, x: TentativeListee): string {
   if (x.status === 'abandoned' || x.status === 'refunded') return x.refunded ? t('certification.historique.rembourse') : t('certification.historique.abandonne');
   // Score exact quand la tentative en porte un (diagnostic depuis #129, demi-tests et tests complets) : un chiffre net, jamais la fourchette (§5.R).
-  if (x.score !== null && x.score !== undefined) return t('certification.historique.scoreExact', { score: x.score });
+  // Le libellé suit l'échelle du type (parcours « Fin de test », #128) : les demi-tests portent un score de section
+  // sur 495 ; diagnostic, test complet et mini (mixte) portent un total sur 990.
+  if (x.score !== null && x.score !== undefined) {
+    return x.kind === 'half_listening' || x.kind === 'half_reading'
+      ? t('certification.historique.scoreExactSection', { score: x.score })
+      : t('certification.historique.scoreExact', { score: x.score });
+  }
   if (x.scoreMin !== null && x.scoreMax !== null) return t('certification.historique.estimation', { min: x.scoreMin, max: x.scoreMax });
   return t('certification.historique.resultat', { c: bonnesReponses(x), n: x.length });
 }
