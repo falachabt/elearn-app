@@ -1,0 +1,333 @@
+{
+ "cours": 6731,
+ "ecrans": {
+  "affine": {
+   "kicker": "Les applications affines",
+   "note": "a : pente ; b : ordonnée à l'origine. Si b = 0 : retour au linéaire.",
+   "tex": "f : x \\mapsto ax + b",
+   "type": "formule"
+  },
+  "bijection": {
+   "kicker": "La bijection",
+   "note": "Si a ≠ 0 : chaque image possède un unique antécédent.",
+   "tex": "x = \\frac{y}{a}",
+   "type": "formule"
+  },
+  "calculs": {
+   "kicker": "Images et antécédents",
+   "tex": [
+    "f(x_0) = a x_0 + b",
+    "a x + b = y_0 \\quad \\Rightarrow \\quad x = \\frac{y_0 - b}{a}"
+   ],
+   "titre": "Calculer dans un sens, résoudre dans l'autre",
+   "type": "etape"
+  },
+  "droite_affine": {
+   "anim": {
+    "hauteur": 140,
+    "nom": "droites_affines_fig"
+   },
+   "kicker": "La représentation graphique",
+   "tex": [
+    "\\text{la représentation graphique est une droite}",
+    "\\text{elle passe par le point } (0\\,;\\,b)",
+    "\\text{quand x augmente de un, y augmente de a}"
+   ],
+   "titre": "Une droite, deux points à connaître",
+   "type": "etape"
+  },
+  "ex_calculs": {
+   "kicker": "Exemple · avec f(x) = 2x − 1",
+   "tex": [
+    "f(4) = 2 \\times 4 - 1 = 7",
+    "2x - 1 = 7 \\quad \\Rightarrow \\quad x = 4",
+    "4 \\mapsto 7 \\qquad 7 \\text{ a pour antécédent } 4"
+   ],
+   "titre": "Le même nombre, deux rôles",
+   "type": "etape"
+  },
+  "ex_g": {
+   "kicker": "Exemple · tracer g",
+   "tex": [
+    "g(x) = \\tfrac{1}{2}\\,x + 1",
+    "x = 0 : \\quad g(0) = 1 \\quad \\Rightarrow \\quad (0\\,;\\,1)",
+    "x = 2 : \\quad g(2) = 2 \\quad \\Rightarrow \\quad (2\\,;\\,2)"
+   ],
+   "titre": "Tracer g(x) = (1/2)x + 1 par deux points",
+   "type": "etape"
+  },
+  "ex_lineaire": {
+   "kicker": "Exemple · avec f(x) = 2x",
+   "tex": [
+    "f(3) = 2 \\times 3 = 6",
+    "2x = 10 \\quad \\Rightarrow \\quad x = 5",
+    "f(3) = 6 \\qquad f(5) = 10"
+   ],
+   "titre": "Une image, un antécédent",
+   "type": "etape"
+  },
+  "ex_variation": {
+   "kicker": "Exemple · lire le signe de a",
+   "note": "a vaut −3, un nombre négatif : la fonction décroît partout.",
+   "tex": "f(x) = -3x + 5",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Derrière chaque situation de proportionnalité se cache une droite : ce cours apprend à la calculer, la lire et la tracer.",
+   "type": "phrase"
+  },
+  "lecture": {
+   "anim": {
+    "hauteur": 220,
+    "nom": "lecture_graphique_fig"
+   },
+   "kicker": "Interprétation graphique",
+   "texte": "Montante ou descendante, la droite se lit : son inclinaison donne le signe de a, deux points donnent sa valeur.",
+   "type": "phrase"
+  },
+  "lineaire": {
+   "anim": {
+    "hauteur": 190,
+    "nom": "fleche_fonction"
+   },
+   "kicker": "Les applications linéaires",
+   "note": "a : coefficient directeur, un réel fixé. Doubler un nombre, c'est du linéaire.",
+   "tex": "f : x \\mapsto ax",
+   "type": "formule"
+  },
+  "linearite": {
+   "kicker": "Les propriétés de linéarité",
+   "tex": [
+    "f(x_1 + x_2) = f(x_1) + f(x_2)",
+    "f(k \\cdot x) = k \\cdot f(x)"
+   ],
+   "titre": "La proportionnalité, en deux formules",
+   "type": "etape"
+  },
+  "medicament": {
+   "kicker": "Exemple · le médicament qui s'élimine",
+   "tex": [
+    "Q(t) = 200 - 200 \\times 0{,}15 \\times t",
+    "Q(t) = 200 - 30\\,t \\qquad a = -30 < 0",
+    "200 - 30\\,t = 50 \\quad \\Rightarrow \\quad t = 5"
+   ],
+   "titre": "Une baisse régulière, modélisée en affine",
+   "type": "etape"
+  },
+  "methode": {
+   "etapes": [
+    "Identifier la variable x",
+    "Traduire par une application affine",
+    "Calculer image ou antécédent selon la question",
+    "Conclure dans le contexte du problème"
+   ],
+   "kicker": "Problèmes · la démarche type",
+   "type": "recap"
+  },
+  "morceaux": {
+   "kicker": "Les applications affines par intervalles",
+   "tex": [
+    "\\text{sur chaque intervalle,}",
+    "\\text{une expression affine}",
+    "\\text{le graphique : des morceaux}",
+    "\\text{de droites raccordés}"
+   ],
+   "titre": "Une expression différente selon l'intervalle",
+   "type": "etape"
+  },
+  "recap": {
+   "etapes": [
+    "Linéaire : f(x) = ax, droite par l'origine",
+    "Affine : f(x) = ax + b, b lu en (0 ; b)",
+    "Signe de a : croissante, décroissante, constante",
+    "Image : calculer ; antécédent : résoudre",
+    "Par morceaux : une expression par intervalle"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "droites_affines_fig"
+   },
+   "kicker": "Mathématique · Fonctions linéaires et affines",
+   "sous": "Images, antécédents, sens de variation : tout tient dans deux lettres, a et b",
+   "titre": "Applications linéaires et affines : la droite comme fonction",
+   "type": "titre"
+  },
+  "transport": {
+   "kicker": "Exemple · le tarif de livraison",
+   "tex": [
+    "0 \\leq x \\leq 10 : \\quad f(x) = 2x",
+    "x > 10 : \\quad f(x) = 20 + 1{,}5\\,(x - 10)",
+    "20 + 1{,}5\\,(x - 10) = 1{,}5\\,x + 5",
+    "a = 2 > 0 \\qquad a = 1{,}5 > 0"
+   ],
+   "titre": "Deux expressions, un seul tarif",
+   "type": "etape"
+  },
+  "variations": {
+   "kicker": "Le sens de variation",
+   "tex": [
+    "\\text{a positif : f est strictement croissante}",
+    "\\text{a négatif : f est strictement décroissante}",
+    "\\text{a nul : f est constante, égale à b}"
+   ],
+   "titre": "Le signe de a commande tout",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Linéaires, puis affines : définitions et calculs"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : voir la droite, puis l'utiliser. Nous lirons la pente et l'ordonnée à l'origine sur le graphique, nous découvrirons les applications définies par morceaux, et nous terminerons par un problème complet de modélisation, celui d'un médicament qui s'élimine au fil des heures.",
+    "texte": "Partie 2 : graphique, morceaux et modélisation."
+   },
+   "sous_titre": "Droites, fonctions par morceaux et problèmes"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours de mathématiques consacré aux applications linéaires et aux applications affines. Deux formes très simples, eff de ixe égale a ixe, puis eff de ixe égale a ixe plus b, et pourtant un programme complet : calculer des images et des antécédents, prévoir le sens de variation, tracer la droite associée et modéliser des situations concrètes.",
+   "ecran": "titre",
+   "id": "p01",
+   "pause_apres": 0.7,
+   "texte": "Linéaires et affines : deux lettres, a et b, commandent tout."
+  },
+  {
+   "dit": "Le fil conducteur est la proportionnalité. Quand une grandeur est proportionnelle à une autre, la fonction qui les relie est linéaire : sa droite passe par l'origine. Ajoutez une valeur de départ fixe, un forfait, un capital initial, et la fonction devient affine. Tout ce cours consiste à reconnaître ces deux formes et à exploiter leur graphique, une simple droite.",
+   "ecran": "intro",
+   "id": "p02",
+   "pause_apres": 0.6,
+   "texte": "Proportionnalité d'abord, valeur de départ ensuite."
+  },
+  {
+   "dit": "Une application linéaire est une fonction de la forme eff de ixe égale a ixe, où a est un nombre réel fixé, appelé coefficient directeur. Chaque nombre ixe est envoyé sur son produit par a : doubler, tripler, prendre la moitié, tout cela relève du même modèle. Retenez l'image mentale : multiplier par une constante, sans rien ajouter.",
+   "ecran": "lineaire",
+   "id": "p03",
+   "pause_apres": 0.6,
+   "texte": "f(x) = ax : multiplier, sans rien ajouter."
+  },
+  {
+   "dit": "Premier exemple : eff de ixe égale deux ixe. L'image de trois se calcule directement : deux fois trois, soit six. L'antécédent de dix demande le geste inverse : on cherche le nombre dont le double vaut dix, on résout deux ixe égale dix, et l'on trouve cinq. Image et antécédent sont les deux questions de base de tout le chapitre.",
+   "ecran": "ex_lineaire",
+   "id": "p04",
+   "pause_apres": 0.6,
+   "texte": "f(x) = 2x : image de 3, six ; antécédent de 10, cinq."
+  },
+  {
+   "dit": "Deux propriétés définissent la linéarité. L'image d'une somme est la somme des images : eff de ixe un plus ixe deux égale eff de ixe un plus eff de ixe deux. Et multiplier l'entrée par un facteur k multiplie la sortie par le même facteur. Ce sont exactement les propriétés de la proportionnalité : les images restent proportionnelles aux antécédents.",
+   "ecran": "linearite",
+   "id": "p05",
+   "pause_apres": 0.6,
+   "texte": "Somme et facteur : la proportionnalité en formules."
+  },
+  {
+   "dit": "Quand le coefficient a est différent de zéro, l'application linéaire est une bijection de l'ensemble des réels vers lui-même : chaque valeur d'arrivée possède exactement un antécédent, obtenu en divisant par a. Aucune image n'est orpheline, aucune n'a deux antécédents. Ce va-et-vient parfait rend les calculs d'antécédents toujours possibles.",
+   "ecran": "bijection",
+   "id": "p06",
+   "pause_apres": 0.6,
+   "texte": "a non nul : un antécédent unique pour chaque image."
+  },
+  {
+   "dit": "Une application affine généralise la précédente d'un cran : eff de ixe égale a ixe plus b, où a et b sont deux réels fixés. Le coefficient a garde son rôle de pente, et b est l'ordonnée à l'origine, la valeur prise en zéro. Cas particulier à retenir : si b vaut zéro, l'application affine retombe exactement sur une application linéaire.",
+   "ecran": "affine",
+   "id": "p07",
+   "pause_apres": 0.6,
+   "texte": "f(x) = ax + b : la pente a, le départ b."
+  },
+  {
+   "dit": "Le sens de variation d'une application affine dépend d'un seul signe, celui de a. Si a est strictement positif, la fonction est strictement croissante sur l'ensemble des réels. Si a est strictement négatif, elle est strictement décroissante. Et si a est nul, il ne reste que b : la fonction est constante. Un coup d'œil au coefficient, et le comportement est connu.",
+   "ecran": "variations",
+   "id": "p08",
+   "pause_apres": 0.6,
+   "texte": "Signe de a : croissante, décroissante ou constante."
+  },
+  {
+   "dit": "Exemple immédiat : eff de ixe égale moins trois ixe plus cinq. Le coefficient directeur vaut moins trois, un nombre négatif. Conclusion sans aucun calcul supplémentaire : cette fonction est strictement décroissante sur l'ensemble des réels. Quand ixe avance, les valeurs descendent, trois par trois.",
+   "ecran": "ex_variation",
+   "id": "p09",
+   "pause_apres": 0.6,
+   "texte": "a vaut moins trois : strictement décroissante."
+  },
+  {
+   "dit": "Deux calculs structurent le travail sur les affines. L'image d'un nombre ixe zéro s'obtient en calculant a fois ixe zéro plus b : c'est une simple évaluation. L'antécédent d'une valeur igrec zéro demande de résoudre l'équation a ixe plus b égale igrec zéro, ce qui donne ixe égale igrec zéro moins b, le tout divisé par a, lorsque a est différent de zéro.",
+   "ecran": "calculs",
+   "id": "p10",
+   "pause_apres": 0.6,
+   "texte": "Image : évaluer. Antécédent : résoudre."
+  },
+  {
+   "dit": "Application : eff de ixe égale deux ixe moins un. L'image de quatre vaut deux fois quatre moins un, c'est-à-dire sept. Et l'antécédent de sept ? On résout deux ixe moins un égale sept, et l'on retrouve quatre. Les deux questions se répondent donc l'une par l'autre : quatre a pour image sept, et sept a pour unique antécédent quatre.",
+   "ecran": "ex_calculs",
+   "id": "p11",
+   "pause_apres": 0.7,
+   "texte": "f(x) = 2x − 1 : quatre a pour image sept, et retour."
+  },
+  {
+   "dit": "Graphiquement, la représentation d'une application affine est une droite. Elle coupe l'axe des ordonnées au point de coordonnées zéro, b : c'est la lecture directe de l'ordonnée à l'origine. Le coefficient a mesure la pente : quand ixe augmente de un, igrec augmente de a, ni plus ni moins. Pour tracer la droite, deux points suffisent, par exemple celui d'abscisse zéro et un second point calculé librement.",
+   "ecran": "droite_affine",
+   "id": "p12",
+   "pause_apres": 0.6,
+   "texte": "Une droite : le point en b et la pente a pour la tracer."
+  },
+  {
+   "dit": "Exemple de tracé : gé de ixe égale un demi de ixe, plus un. Premier point, pour ixe égale zéro, gé vaut un : le point de coordonnées zéro, un, sur l'axe des ordonnées. Deuxième point, pour ixe égale deux, gé vaut un demi fois deux plus un, c'est-à-dire deux : le point de coordonnées deux, deux. On joint ces deux points, et la droite est tracée.",
+   "ecran": "ex_g",
+   "id": "p13",
+   "pause_apres": 0.6,
+   "texte": "g(x) = x/2 + 1 : par les points (0 ; 1) et (2 ; 2)."
+  },
+  {
+   "dit": "Le graphique se lit aussi dans l'autre sens. Une droite qui monte vers la droite signale un coefficient a positif ; une droite qui descend, un coefficient négatif. Mieux : entre deux points de la droite, le rapport de la variation des ordonnées à la variation des abscisses redonne exactement a. Et le sens de variation lu de gauche à droite n'est que la traduction visuelle du signe de a.",
+   "ecran": "lecture",
+   "id": "p14",
+   "pause_apres": 0.6,
+   "texte": "Lire a sur la droite : variation de y sur variation de x."
+  },
+  {
+   "dit": "Certaines fonctions changent de formule selon l'intervalle : ce sont les applications affines par intervalles, ou par morceaux. Sur chaque morceau de son domaine, la fonction suit sa propre expression affine, avec sa propre pente. Pour étudier une telle fonction, on travaille intervalle par intervalle, puis on recolle les conclusions.",
+   "ecran": "morceaux",
+   "id": "p15",
+   "pause_apres": 0.6,
+   "texte": "Par morceaux : une expression affine par intervalle."
+  },
+  {
+   "dit": "L'exemple du transporteur : le prix d'une livraison dépend de la distance. Jusqu'à dix kilomètres, le tarif est de deux euros par kilomètre : eff de ixe égale deux ixe, un modèle linéaire. Au-delà, la facture repart de vingt euros, puis ajoute un euro cinquante par kilomètre supplémentaire : eff de ixe égale vingt plus un virgule cinq fois ixe moins dix, ce qui se réécrit un virgule cinq ixe plus cinq. Les deux pentes sont positives : le prix croît sur chaque intervalle.",
+   "ecran": "transport",
+   "id": "p16",
+   "pause_apres": 0.6,
+   "texte": "Livraison : deux euros par km, puis un cinquante au-delà de dix."
+  },
+  {
+   "dit": "Face à un problème concret, la démarche est toujours la même, en trois temps. D'abord identifier la variable, une quantité, une distance, un temps. Ensuite traduire la situation par une application linéaire ou affine, en repérant la valeur de départ et le taux de variation. Enfin utiliser les outils du chapitre, image, antécédent, sens de variation, pour répondre à la question posée.",
+   "ecran": "methode",
+   "id": "p17",
+   "pause_apres": 0.6,
+   "texte": "Modéliser : variable, fonction, outil, réponse."
+  },
+  {
+   "dit": "Dernier exemple, celui du médicament. La quantité initiale dans le sang est de deux cents milligrammes, et la leçon la modélise par une baisse régulière de quinze pour cent de cette quantité initiale chaque heure, soit trente milligrammes par heure. La quantité restante après t heures est donc Q de t égale deux cents moins trente t : une application affine de coefficient moins trente, décroissante. Pour savoir quand il restera cinquante milligrammes, on résout deux cents moins trente t égale cinquante : on trouve t égale cinq heures.",
+   "ecran": "medicament",
+   "id": "p18",
+   "pause_apres": 0.7,
+   "texte": "Q(t) = 200 − 30t : cinquante mg au bout de cinq heures."
+  },
+  {
+   "dit": "Pour conclure, gardez la carte complète du chapitre. Linéaire : eff de ixe égale a ixe, une droite par l'origine, la proportionnalité pure. Affine : eff de ixe égale a ixe plus b, une droite décalée de b. Le signe de a décide du sens de variation, l'image se calcule, l'antécédent se résout, et les fonctions par morceaux assemblent plusieurs expressions affines sur leurs intervalles.",
+   "ecran": "recap",
+   "id": "p19",
+   "pause_apres": 0.5,
+   "texte": "À retenir : deux formes, une droite, le signe de a."
+  }
+ ],
+ "titre": "Applications linéaires et affines : la droite comme fonction"
+}
