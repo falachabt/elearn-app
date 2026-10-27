@@ -1,0 +1,279 @@
+{
+ "cours": 6702,
+ "titre": "Repérage sur une droite : abscisses, distances et rangement des nombres",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Repérage",
+   "titre": "Repérage sur une droite : abscisses et distances",
+   "sous": "Droite graduée, distance à zéro, distance entre deux points et rangement des nombres"
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un seul nombre suffit pour situer un point sur une droite."
+  },
+  "droite_def": {
+   "type": "phrase",
+   "kicker": "La droite graduée",
+   "texte": "Droite graduée : une origine O et une unité de longueur."
+  },
+  "abscisse_def": {
+   "type": "formule",
+   "kicker": "L'abscisse d'un point",
+   "tex": "M \\longmapsto x_M",
+   "note": "À chaque point M, un nombre unique : son abscisse, notée x indice M."
+  },
+  "placer_regle": {
+   "type": "phrase",
+   "kicker": "Placer un point",
+   "texte": "Abscisse positive : à droite · négative : à gauche."
+  },
+  "placer_ex": {
+   "type": "etape",
+   "kicker": "Exemple · placer deux points",
+   "titre": "Unité : un centimètre",
+   "tex": [
+    "A(3) : \\text{ 3 cm vers la droite}",
+    "B(-2) : \\text{ 2 cm vers la gauche}"
+   ]
+  },
+  "dist_zero_def": {
+   "type": "formule",
+   "kicker": "Distance à zéro",
+   "tex": "|a| = \\text{distance de } O \\text{ au point d'abscisse } a",
+   "note": "Toujours positive ou nulle : c'est la valeur absolue de a."
+  },
+  "dist_zero_regles": {
+   "type": "etape",
+   "kicker": "Distance à zéro · les deux cas",
+   "titre": "Selon le signe du nombre",
+   "tex": [
+    "a \\geq 0 \\Rightarrow |a| = a",
+    "a \\leq 0 \\Rightarrow |a| = -a",
+    "|a| = |-a|"
+   ]
+  },
+  "dist_zero_ex": {
+   "type": "etape",
+   "kicker": "Exemple · distances à zéro",
+   "titre": "Un négatif et un positif",
+   "tex": [
+    "|-7| = 7",
+    "|4| = 4",
+    "|5| = 5 \\qquad |-3| = 3"
+   ]
+  },
+  "dist_zero_piege": {
+   "type": "phrase",
+   "kicker": "Le piège à éviter",
+   "texte": "Un nombre négatif a une distance à zéro positive."
+  },
+  "dist_def": {
+   "type": "phrase",
+   "kicker": "Distance entre deux points",
+   "texte": "La distance AB est la longueur du segment AB."
+  },
+  "dist_formule": {
+   "type": "formule",
+   "kicker": "La formule de la distance",
+   "tex": "AB = |x_B - x_A|",
+   "note": "La plus grande abscisse moins la plus petite : jamais de distance négative."
+  },
+  "dist_ex": {
+   "type": "etape",
+   "kicker": "Exemple · distance entre deux points",
+   "titre": "Entre moins cinq et trois",
+   "tex": [
+    "AB = 3 - (-5) = 3 + 5",
+    "AB = 8",
+    "|3 - (-5)| = |8| = 8"
+   ]
+  },
+  "dist_cas": {
+   "type": "phrase",
+   "kicker": "Cas particulier",
+   "texte": "Deux points confondus : une distance nulle, AB = 0."
+  },
+  "ranger_regle": {
+   "type": "phrase",
+   "kicker": "Comparer sur la droite",
+   "texte": "Plus à gauche : plus petit · plus à droite : plus grand."
+  },
+  "ranger_neg": {
+   "type": "etape",
+   "kicker": "Comparer deux négatifs",
+   "titre": "La plus petite distance à zéro gagne",
+   "tex": [
+    "|-2| = 2 \\qquad |-5| = 5",
+    "2 < 5 \\Rightarrow -2 > -5"
+   ]
+  },
+  "ranger_ex": {
+   "type": "etape",
+   "kicker": "Exemple · rangement complet",
+   "titre": "De gauche à droite sur la droite",
+   "tex": [
+    "-3{,}5 < -0{,}5 < 0",
+    "0 < 2 < 4"
+   ]
+  },
+  "ranger_methode": {
+   "type": "phrase",
+   "kicker": "La méthode pour ranger",
+   "texte": "Tracer la droite, placer les nombres, lire de gauche à droite."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "Récapitulatif",
+   "etapes": [
+    "Abscisse : le nombre du point sur la droite",
+    "Distance à zéro : toujours positive",
+    "Distance AB : grande abscisse moins petite",
+    "Ranger : lire la droite de gauche à droite"
+   ]
+  },
+  "cloture": {
+   "type": "phrase",
+   "kicker": "Pour finir",
+   "texte": "Abscisse, distance à zéro, distance, rangement : la droite est à toi."
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de repérage sur une droite. Sur une droite graduée, chaque point reçoit un nombre unique, son abscisse, et ce nombre permet de tout faire : placer le point, mesurer sa distance à zéro, mesurer la distance qui le sépare d'un autre point, et ranger plusieurs nombres du plus petit au plus grand. Nous suivrons cet ordre : d'abord la droite et l'abscisse, puis la distance à zéro, puis la distance entre deux points, et enfin le rangement.",
+   "texte": "Un nombre par point : placer, mesurer, ranger.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Commençons par l'idée de départ. Une droite toute simple ne dit pas où se trouve un point. Pour le repérer, il faut transformer la droite en instrument de mesure : c'est le rôle de la droite graduée, que nous définissons maintenant.",
+   "texte": "D'une droite quelconque à un instrument de mesure.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Une droite graduée est une droite sur laquelle on a choisi deux choses : une origine, notée O, qui est le point d'abscisse zéro, et une unité de longueur, par exemple un centimètre, qui permet de mesurer les distances le long de la droite. Sans origine, aucun point de départ ; sans unité, aucune mesure possible.",
+   "texte": "Origine O, abscisse zéro, et une unité de longueur.",
+   "ecran": "droite_def"
+  },
+  {
+   "id": "p04",
+   "dit": "Le repérage d'un point M sur une droite graduée consiste à lui associer un nombre unique, appelé son abscisse et noté x indice M. Unique est le mot important : deux points différents n'ont jamais la même abscisse, et chaque nombre de la droite désigne exactement un point.",
+   "texte": "À chaque point M, un nombre unique : x indice M.",
+   "ecran": "abscisse_def"
+  },
+  {
+   "id": "p05",
+   "dit": "Pour placer un point dont on connaît l'abscisse, on part toujours de l'origine. Si l'abscisse est positive, on se déplace vers la droite ; si elle est négative, on se déplace vers la gauche. Le signe donne le sens, la distance à zéro donne le nombre de pas.",
+   "texte": "Le signe donne le sens, au départ de l'origine.",
+   "ecran": "placer_regle"
+  },
+  {
+   "id": "p06",
+   "dit": "Premier exemple résolu : sur une droite graduée d'unité un centimètre, plaçons le point A d'abscisse trois et le point B d'abscisse moins deux. Pour A, on part de l'origine et on avance de trois centimètres vers la droite. Pour B, on part de l'origine et on recule de deux centimètres vers la gauche.",
+   "texte": "A : trois pas à droite · B : deux pas à gauche.",
+   "ecran": "placer_ex"
+  },
+  {
+   "id": "p07",
+   "dit": "Passons à la distance à zéro. La distance à zéro d'un nombre a est la distance entre l'origine et le point d'abscisse a. Elle est toujours positive ou nulle, et on la note avec deux barres verticales autour du nombre : on la lit valeur absolue de a.",
+   "texte": "La distance à zéro de a se note valeur absolue de a.",
+   "ecran": "dist_zero_def"
+  },
+  {
+   "id": "p08",
+   "dit": "Deux cas seulement. Si a est positif ou nul, sa distance à zéro est le nombre lui-même. Si a est négatif ou nul, sa distance à zéro est son opposé. Et dans tous les cas, un nombre et son opposé ont exactement la même distance à zéro, puisqu'ils sont placés symétriquement par rapport à l'origine.",
+   "texte": "Positif : le nombre · négatif : son opposé.",
+   "ecran": "dist_zero_regles"
+  },
+  {
+   "id": "p09",
+   "dit": "Exemple : la distance à zéro de moins sept vaut sept, car moins sept est négatif et son opposé est sept. La distance à zéro de quatre vaut quatre, car quatre est positif. De la même façon, la valeur absolue de cinq vaut cinq, et celle de moins trois vaut trois.",
+   "texte": "Moins sept donne sept · quatre donne quatre.",
+   "ecran": "dist_zero_ex"
+  },
+  {
+   "id": "p10",
+   "dit": "Retiens le piège classique : la distance à zéro ne doit jamais être confondue avec le nombre lui-même. Un nombre négatif reste négatif, mais sa distance à zéro, elle, est toujours positive, parce qu'une distance ne peut pas être négative.",
+   "texte": "Une distance n'est jamais négative.",
+   "ecran": "dist_zero_piege"
+  },
+  {
+   "id": "p11",
+   "dit": "Troisième notion : la distance entre deux points. Sur une droite graduée, la distance entre les points A et B est tout simplement la longueur du segment A B. Comme toute longueur, elle est toujours positive ou nulle.",
+   "texte": "La distance AB est la longueur du segment AB.",
+   "ecran": "dist_def"
+  },
+  {
+   "id": "p12",
+   "dit": "Voici la propriété fondamentale : pour calculer la distance entre deux points d'abscisses connues, on effectue la différence entre la plus grande et la plus petite abscisse. Cela s'écrit avec une valeur absolue : la distance A B égale la valeur absolue de x indice B moins x indice A. La valeur absolue garantit un résultat positif, quel que soit l'ordre des deux points.",
+   "texte": "Grande abscisse moins petite abscisse.",
+   "ecran": "dist_formule"
+  },
+  {
+   "id": "p13",
+   "dit": "Exemple complet : calculons la distance entre le point A d'abscisse moins cinq et le point B d'abscisse trois. La plus grande abscisse est trois, la plus petite est moins cinq. La distance vaut donc trois moins moins cinq, c'est-à-dire trois plus cinq, donc huit. Vérification par la formule : la valeur absolue de trois moins moins cinq vaut la valeur absolue de huit, donc huit. La distance entre A et B est de huit unités.",
+   "texte": "De moins cinq à trois : une distance de huit.",
+   "ecran": "dist_ex"
+  },
+  {
+   "id": "p14",
+   "dit": "Un cas particulier pour finir cette partie : si les deux points ont la même abscisse, ils sont confondus, au même endroit de la droite, et leur distance est nulle. C'est le seul cas où une distance vaut zéro.",
+   "texte": "Même abscisse : points confondus, distance nulle.",
+   "ecran": "dist_cas"
+  },
+  {
+   "id": "p15",
+   "dit": "Dernière notion : ranger des nombres grâce à la droite. Sur une droite graduée orientée de gauche vers la droite, un nombre est plus petit qu'un autre s'il est situé plus à gauche, et plus grand s'il est situé plus à droite. Conséquence immédiate : tout nombre négatif est inférieur à tout nombre positif.",
+   "texte": "À gauche : plus petit · à droite : plus grand.",
+   "ecran": "ranger_regle"
+  },
+  {
+   "id": "p16",
+   "dit": "Attention au cas des deux nombres négatifs : le plus grand des deux est celui qui a la plus petite distance à zéro, car il est le plus proche de l'origine, donc le plus à droite. Exemple : moins deux est plus grand que moins cinq, car la distance à zéro de moins deux vaut deux, celle de moins cinq vaut cinq, et deux est inférieur à cinq. Pour deux nombres positifs, c'est l'inverse : le plus grand est celui qui a la plus grande distance à zéro.",
+   "texte": "Entre négatifs, la petite distance à zéro gagne.",
+   "ecran": "ranger_neg"
+  },
+  {
+   "id": "p17",
+   "dit": "Exemple complet de rangement : rangeons dans l'ordre croissant les nombres moins trois virgule cinq, deux, moins zéro virgule cinq, zéro et quatre. On les place mentalement sur la droite : les négatifs à gauche de zéro, les positifs à droite. De gauche à droite, on lit moins trois virgule cinq, puis moins zéro virgule cinq, puis zéro, puis deux, puis quatre. C'est exactement l'ordre croissant cherché.",
+   "texte": "Ordre croissant : de gauche à droite.",
+   "ecran": "ranger_ex"
+  },
+  {
+   "id": "p18",
+   "dit": "La méthode générale pour ranger est donc très visuelle : aide-toi toujours d'une droite graduée, même tracée à main levée, pour voir l'ordre des nombres, puis écris la liste avec le symbole inférieur pour l'ordre croissant, ou le symbole supérieur pour l'ordre décroissant.",
+   "texte": "Un croquis de droite suffit pour ne pas se tromper.",
+   "ecran": "ranger_methode"
+  },
+  {
+   "id": "p19",
+   "dit": "Récapitulons. L'abscisse est le nombre associé à un point sur une droite graduée. La distance à zéro, ou valeur absolue, est toujours positive ou nulle. La distance entre deux points se calcule par la plus grande abscisse moins la plus petite. Et ranger des nombres, c'est les lire de gauche à droite sur la droite.",
+   "texte": "Quatre idées : abscisse, valeur absolue, distance, ordre.",
+   "ecran": "recap"
+  },
+  {
+   "id": "p20",
+   "dit": "Tu sais maintenant repérer un point sur une droite, placer un point d'abscisse donnée, calculer une distance à zéro et une distance entre deux points, et ranger des nombres relatifs. Dans le cours suivant, nous passerons à deux dimensions : un point du plan demandera deux nombres, un couple de coordonnées.",
+   "texte": "Prochaine étape : repérer un point dans le plan.",
+   "ecran": "cloture"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La droite graduée, l'abscisse et la distance à zéro"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "Distance entre deux points et rangement des nombres",
+   "pont": {
+    "texte": "Partie 2 : distance entre deux points et rangement.",
+    "dit": "Partie deux : la distance entre deux points et le rangement des nombres. Nous mesurerons d'abord l'écart entre deux points d'abscisses connues, avec la formule de la valeur absolue, puis nous utiliserons la droite pour comparer et ranger des nombres relatifs, négatifs compris."
+   }
+  }
+ ]
+}
