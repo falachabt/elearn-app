@@ -1,0 +1,429 @@
+{
+  "cours": 7302,
+  "titre": "Maîtriser les fonctions rationnelles",
+  "matiere": "Mathématique",
+  "ecrans": {
+    "titre": {
+      "type": "titre",
+      "kicker": "Mathématique · Fonctions rationnelles",
+      "titre": "Maîtriser les fonctions rationnelles",
+      "sous": "Quotient de polynômes : asymptotes, dérivée au signe constant, hyperbole, signe et inéquations",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 250
+      }
+    },
+    "intro": {
+      "type": "phrase",
+      "kicker": "Introduction",
+      "texte": "Un quotient, une hyperbole, une méthode complète d'étude.",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 160
+      }
+    },
+    "definition": {
+      "type": "formule",
+      "kicker": "Définition",
+      "tex": "f(x) = \\frac{P(x)}{Q(x)}",
+      "note": "P et Q : deux polynômes ; domaine : R privé des zéros de Q"
+    },
+    "forme": {
+      "type": "formule",
+      "kicker": "La forme au programme",
+      "tex": "f(x) = \\frac{ax + b}{cx + d} \\qquad (c \\neq 0)",
+      "note": "Sa courbe est une hyperbole",
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 170
+      }
+    },
+    "domaine": {
+      "type": "formule",
+      "kicker": "Domaine de définition",
+      "tex": "Q(x) = 0 \\quad : \\quad \\text{valeurs interdites}",
+      "note": "Tout le reste de l'étude se fait intervalle par intervalle"
+    },
+    "asymptotes_def": {
+      "type": "etape",
+      "kicker": "Limites et asymptotes",
+      "titre": "Trois droites que la courbe approche",
+      "tex": [
+        "\\lim_{x \\to x_0} f(x) = \\pm\\infty : x = x_0 \\text{ verticale}",
+        "\\lim_{x \\to \\pm\\infty} f(x) = \\ell : y = \\ell \\text{ horizontale}",
+        "f(x) - (ax + b) \\to 0 : y = ax + b \\text{ oblique}"
+      ],
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 130
+      }
+    },
+    "ex_limites": {
+      "type": "etape",
+      "kicker": "Exemple résolu · limites",
+      "titre": "Deux x plus un, sur x moins trois",
+      "tex": [
+        "\\lim_{x \\to \\pm\\infty} \\tfrac{2x+1}{x-3} = 2",
+        "\\lim_{x \\to 3^+} \\tfrac{2x+1}{x-3} = +\\infty",
+        "\\lim_{x \\to 3^-} \\tfrac{2x+1}{x-3} = -\\infty"
+      ]
+    },
+    "derivee_formules": {
+      "type": "etape",
+      "kicker": "Dérivée · les formules",
+      "titre": "Inverse, quotient, puis la forme du cours",
+      "tex": [
+        "\\left(\\tfrac{1}{u}\\right)' = -\\tfrac{u'}{u^2}",
+        "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2}",
+        "f'(x) = \\tfrac{ad - bc}{(cx + d)^2}"
+      ]
+    },
+    "signe_derivee": {
+      "type": "phrase",
+      "kicker": "Le signe de la dérivée",
+      "texte": "Dénominateur au carré : le signe est celui de ad − bc.",
+      "anim": {
+        "nom": "derive_fig",
+        "hauteur": 150
+      }
+    },
+    "ex_derivee": {
+      "type": "etape",
+      "kicker": "Exemple résolu · dérivée",
+      "titre": "Le numérateur de la dérivée vaut moins sept",
+      "tex": [
+        "f'(x) = \\tfrac{2 \\times (-3) - 1 \\times 1}{(x-3)^2}",
+        "f'(x) = \\tfrac{-7}{(x-3)^2} < 0"
+      ]
+    },
+    "variations": {
+      "type": "etape",
+      "kicker": "Tableau de variations",
+      "titre": "Décroissante sur chaque intervalle du domaine",
+      "tex": [
+        "]-\\infty,\\,3[ : 2 \\searrow -\\infty",
+        "]3,\\,+\\infty[ : +\\infty \\searrow 2"
+      ]
+    },
+    "methode_trace": {
+      "type": "etape",
+      "kicker": "Méthode de tracé",
+      "titre": "Cinq gestes, dans l'ordre",
+      "tex": [
+        "\\text{1. domaine, 2. limites et asymptotes}",
+        "\\text{3. dérivée et tableau de variations}",
+        "\\text{4. points remarquables}",
+        "\\text{5. pointillés, puis la courbe}"
+      ]
+    },
+    "points": {
+      "type": "etape",
+      "kicker": "Points particuliers",
+      "titre": "Deux coupures d'axes et un centre",
+      "tex": [
+        "f(0) = \\tfrac{b}{d} \\quad ; \\quad f(x) = 0 \\iff x = -\\tfrac{b}{a}",
+        "\\text{centre} : \\left(-\\tfrac{d}{c},\\,\\tfrac{a}{c}\\right)",
+        "\\text{exemple} : f(0) = -\\tfrac{1}{3},\\ x = -\\tfrac{1}{2}",
+        "\\text{centre } (3,\\,2)"
+      ]
+    },
+    "ex_complet": {
+      "type": "etape",
+      "kicker": "Exemple complet · synthèse",
+      "titre": "L'hyperbole de deux x plus un sur x moins trois",
+      "tex": [
+        "D_f = \\mathbb{R} \\setminus \\{3\\}",
+        "x = 3 \\text{ verticale},\\quad y = 2 \\text{ horizontale}",
+        "f'(x) = \\tfrac{-7}{(x-3)^2} < 0"
+      ]
+    },
+    "recap1": {
+      "type": "recap",
+      "kicker": "Partie 1 : à retenir",
+      "etapes": [
+        "Rationnelle : un quotient de polynômes",
+        "Verticale là où Q s'annule, horizontale en l'infini",
+        "Dérivée : signe constant, celui de ad − bc",
+        "Tracé : asymptotes, variations, points"
+      ],
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 100
+      }
+    },
+    "oblique_condition": {
+      "type": "phrase",
+      "kicker": "Quand l'horizontale disparaît",
+      "texte": "Degré du haut = degré du bas + 1 : asymptote oblique.",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 150
+      }
+    },
+    "division": {
+      "type": "formule",
+      "kicker": "La division euclidienne",
+      "tex": "f(x) = ax + b + \\frac{r}{Q(x)}",
+      "note": "P = Q × (ax + b) + r ; le reste divisé par Q tend vers zéro"
+    },
+    "ex_division": {
+      "type": "etape",
+      "kicker": "Exemple résolu · division",
+      "titre": "Carré moins x moins un, par x moins deux",
+      "tex": [
+        "x^2 - x - 1 = (x - 2)(x + 1) + 1",
+        "f(x) = x + 1 + \\tfrac{1}{x-2}",
+        "y = x + 1 \\text{ oblique},\\quad x = 2 \\text{ verticale}"
+      ]
+    },
+    "position": {
+      "type": "formule",
+      "kicker": "Position par rapport à l'asymptote",
+      "tex": "f(x) - (ax + b) = \\frac{r}{Q(x)}",
+      "note": "Positif : courbe au-dessus ; négatif : courbe en dessous"
+    },
+    "ex_position": {
+      "type": "etape",
+      "kicker": "Exemple · position",
+      "titre": "Le signe de l'inverse de x moins deux",
+      "tex": [
+        "x > 2 : \\tfrac{1}{x-2} > 0 \\text{, courbe au-dessus}",
+        "x < 2 : \\tfrac{1}{x-2} < 0 \\text{, courbe en dessous}"
+      ]
+    },
+    "pas_confondre": {
+      "type": "phrase",
+      "kicker": "Ne pas confondre",
+      "texte": "Oblique : approchée à l'infini. Tangente : contact local.",
+      "anim": {
+        "nom": "branche_infinie_fig",
+        "hauteur": 140
+      }
+    },
+    "signe_methode": {
+      "type": "etape",
+      "kicker": "Signe · la méthode",
+      "titre": "Numérateur et dénominateur, séparément",
+      "tex": [
+        "\\text{1. factoriser } N(x) \\text{ et } D(x)",
+        "\\text{2. zéros de } N,\\ \\text{zéros interdits de } D",
+        "\\text{3. tableau de signes, ordre croissant}",
+        "\\text{4. combiner comme un produit}"
+      ]
+    },
+    "ex_signe": {
+      "type": "etape",
+      "kicker": "Exemple résolu · tableau de signes",
+      "titre": "Deux x moins quatre, sur x plus un",
+      "tex": [
+        "2x - 4 : -\\quad -\\quad +",
+        "x + 1 : -\\quad +\\quad +",
+        "f(x) : +\\quad -\\quad +"
+      ]
+    },
+    "inequation_methode": {
+      "type": "phrase",
+      "kicker": "Inéquations rationnelles",
+      "texte": "Jamais multiplier par D(x) sans connaître son signe.",
+      "anim": {
+        "nom": "fleche_fonction",
+        "hauteur": 150
+      }
+    },
+    "ex_inequation": {
+      "type": "etape",
+      "kicker": "Exemple résolu · inéquation",
+      "titre": "Le quotient positif ou nul",
+      "tex": [
+        "\\tfrac{2x-4}{x+1} \\geq 0",
+        "S = ]-\\infty,\\,-1[ \\,\\cup\\, [2,\\,+\\infty["
+      ]
+    },
+    "recap_final": {
+      "type": "recap",
+      "kicker": "Ce qu'il faut retenir",
+      "etapes": [
+        "Oblique : division euclidienne de P par Q",
+        "Position : le signe de l'écart à l'asymptote",
+        "Signe : tableau de N et D combinés",
+        "Inéquation : lire le tableau, sans multiplier"
+      ],
+      "anim": {
+        "nom": "hyperbole_fig",
+        "hauteur": 100
+      }
+    }
+  },
+  "phrases": [
+    {
+      "id": "p01",
+      "ecran": "titre",
+      "texte": "Fonctions rationnelles : asymptotes, dérivée, signe.",
+      "dit": "Bienvenue dans ce cours consacré aux fonctions rationnelles, quotients de deux polynômes. Asymptotes, dérivée au signe constant et hyperbole, puis asymptote oblique, signe et inéquations."
+    },
+    {
+      "id": "p02",
+      "ecran": "intro",
+      "texte": "Un quotient, une hyperbole, une méthode complète.",
+      "dit": "Une fonction rationnelle se reconnaît d'un coup d'œil : une fraction dont le haut et le bas sont des polynômes. Toute son étude tient en une méthode stable : domaine, limites, dérivée, tracé. Apprise une fois, elle sert pour toutes."
+    },
+    {
+      "id": "p03",
+      "ecran": "definition",
+      "texte": "Rationnelle : f(x) = P(x) / Q(x).",
+      "dit": "Une fonction rationnelle est le quotient de deux polynômes. Son domaine est l'ensemble des réels privé des valeurs qui annulent le dénominateur : là, le calcul est impossible, et c'est là aussi que la courbe se brisera en deux branches."
+    },
+    {
+      "id": "p04",
+      "ecran": "forme",
+      "texte": "La forme (ax + b)/(cx + d), courbe : une hyperbole.",
+      "dit": "Nous étudions surtout la forme où numérateur et dénominateur sont du premier degré, coefficient de x au dénominateur non nul. Sa courbe est une hyperbole : deux branches séparées par leurs asymptotes, symétriques par rapport à un centre."
+    },
+    {
+      "id": "p05",
+      "ecran": "domaine",
+      "texte": "Valeurs interdites : les zéros du dénominateur.",
+      "dit": "Premier geste, toujours : chercher les zéros du dénominateur. Ce sont les valeurs interdites, exclues du domaine. Toute la suite, limites, variations et tracé, se conduit séparément sur chaque intervalle que ces valeurs découpent."
+    },
+    {
+      "id": "p06",
+      "ecran": "asymptotes_def",
+      "texte": "Verticale, horizontale, oblique : les trois cas.",
+      "dit": "Les limites dessinent les asymptotes. Limite infinie en un point : verticale, souvent là où le dénominateur s'annule seul. Limite finie en l'infini : horizontale. Écart vers zéro avec une droite oblique : asymptote oblique, construite en deuxième partie."
+    },
+    {
+      "id": "p07",
+      "ecran": "ex_limites",
+      "texte": "Exemple : horizontale y = 2, verticale x = 3.",
+      "dit": "Exemple résolu, notre fonction fil rouge : deux x plus un sur x moins trois. En l'infini, le quotient des coefficients dominants donne la limite deux : asymptote horizontale d'ordonnée deux. En trois, par la droite la limite est plus l'infini, par la gauche moins l'infini : asymptote verticale en trois."
+    },
+    {
+      "id": "p08",
+      "ecran": "derivee_formules",
+      "texte": "Dérivée : (ad − bc) / (cx + d)².",
+      "dit": "Pour dériver, deux formules générales : l'inverse et le quotient. Appliquées à notre forme, elles donnent un résultat remarquablement simple : le numérateur de la dérivée est constant, c'est le produit en croix des coefficients, et le dénominateur est le carré du dénominateur de départ."
+    },
+    {
+      "id": "p09",
+      "ecran": "signe_derivee",
+      "texte": "Le signe de f′ ne dépend que de ad − bc.",
+      "dit": "Conséquence capitale : le dénominateur de la dérivée est un carré, donc positif. Le signe de la dérivée ne dépend que de la constante du numérateur, le produit en croix. Il est donc le même sur chaque intervalle du domaine : la fonction est monotone sur chacun d'eux."
+    },
+    {
+      "id": "p10",
+      "ecran": "ex_derivee",
+      "texte": "Exemple : f′(x) = −7/(x − 3)², toujours négative.",
+      "dit": "Exemple résolu. Pour deux x plus un sur x moins trois, le produit en croix vaut deux fois moins trois, moins un fois un, c'est-à-dire moins sept. La dérivée est moins sept sur le carré de x moins trois : strictement négative partout où elle existe."
+    },
+    {
+      "id": "p11",
+      "ecran": "variations",
+      "texte": "Décroissante de 2 vers −∞, puis de +∞ vers 2.",
+      "dit": "Le tableau de variations suit. Sur l'intervalle avant trois, la fonction décroît de la valeur deux vers moins l'infini. Sur l'intervalle après trois, elle décroît de plus l'infini vers la valeur deux. Deux branches qui descendent, chacune prisonnière de ses asymptotes."
+    },
+    {
+      "id": "p12",
+      "ecran": "methode_trace",
+      "texte": "Domaine, limites, dérivée, points, tracé.",
+      "dit": "Le tracé tient en cinq gestes. Domaine. Limites aux bornes et asymptotes. Dérivée et tableau de variations. Points remarquables. Puis asymptotes en pointillés, et la courbe qui s'en approche."
+    },
+    {
+      "id": "p13",
+      "ecran": "points",
+      "texte": "f(0) = −1/3, zéro en −1/2, centre (3 ; 2).",
+      "dit": "Les points remarquables se lisent sur la forme générale. Coupure de l'axe des ordonnées : l'image de zéro. Coupure de l'axe des abscisses : le zéro du numérateur. Centre de symétrie : le croisement des asymptotes. Ici : moins un tiers, moins un demi, centre trois et deux."
+    },
+    {
+      "id": "p14",
+      "ecran": "ex_complet",
+      "texte": "Synthèse : l'hyperbole complète de l'exemple.",
+      "dit": "Synthèse de l'exemple complet. Domaine : tous les réels sauf trois. Asymptotes : la verticale en trois et l'horizontale d'ordonnée deux. Dérivée toujours négative : décroissante sur chaque intervalle. L'hyperbole passe par les deux points des axes et tourne autour de son centre de symétrie."
+    },
+    {
+      "id": "p15",
+      "ecran": "recap1",
+      "texte": "Partie 1 : quotient, asymptotes, dérivée, tracé.",
+      "dit": "Retenons la première partie. Une rationnelle est un quotient de polynômes. Verticale là où le dénominateur s'annule, horizontale donnée par la limite en l'infini. Dérivée au signe constant, celui du produit en croix. Et un tracé qui combine asymptotes, variations et points remarquables."
+    },
+    {
+      "id": "p16",
+      "ecran": "oblique_condition",
+      "texte": "Degrés différant de 1 : pas d'horizontale, une oblique.",
+      "dit": "Quand le degré du numérateur dépasse d'une unité celui du dénominateur, il n'y a plus d'asymptote horizontale : la courbe part en l'infini le long d'une droite oblique. Cette droite ne se devine pas, elle se calcule, par une division."
+    },
+    {
+      "id": "p17",
+      "ecran": "division",
+      "texte": "Division euclidienne : f(x) = ax + b + r/Q(x).",
+      "dit": "La division euclidienne du numérateur par le dénominateur donne : numérateur égal dénominateur fois un polynôme du premier degré, plus un reste constant. La fonction devient une droite plus un reste divisé par le dénominateur, terme qui tend vers zéro en l'infini : la droite est l'asymptote oblique."
+    },
+    {
+      "id": "p18",
+      "ecran": "ex_division",
+      "texte": "Exemple : oblique y = x + 1, verticale x = 2.",
+      "dit": "Exemple résolu. Carré moins x moins un, divisé par x moins deux. La division donne : le produit de x moins deux par x plus un, plus le reste un. La fonction vaut donc x plus un, plus l'inverse de x moins deux. Asymptote oblique : la droite d'équation y égal x plus un. Asymptote verticale : la droite en deux."
+    },
+    {
+      "id": "p19",
+      "ecran": "position",
+      "texte": "Position : le signe de f(x) − (ax + b).",
+      "dit": "Où passe la courbe par rapport à son asymptote ? L'écart entre la fonction et la droite est exactement le reste divisé par le dénominateur. Si cet écart est positif, la courbe est au-dessus de l'asymptote. S'il est négatif, elle est en dessous. Tout se joue donc sur un signe."
+    },
+    {
+      "id": "p20",
+      "ecran": "ex_position",
+      "texte": "Au-dessus après 2, en dessous avant 2.",
+      "dit": "Exemple, suite du précédent. L'écart est l'inverse de x moins deux. Pour x plus grand que deux, il est positif : la courbe est au-dessus de son asymptote. Pour x plus petit que deux, il est négatif : la courbe est en dessous. L'asymptote verticale en deux sépare aussi les deux positions."
+    },
+    {
+      "id": "p21",
+      "ecran": "pas_confondre",
+      "texte": "Oblique et tangente : deux rôles différents.",
+      "dit": "Attention à ne pas confondre asymptote oblique et tangente. La tangente touche la courbe en un point et décrit son comportement local. L'asymptote oblique ne touche pas forcément la courbe : elle la guide à l'infini, la courbe s'en rapproche indéfiniment sans jamais nécessairement l'atteindre."
+    },
+    {
+      "id": "p22",
+      "ecran": "signe_methode",
+      "texte": "Signe : factoriser, zéroter, tabuler, combiner.",
+      "dit": "Le signe d'une rationnelle s'étudie séparément au numérateur et au dénominateur, puis se combine comme un produit. Factoriser les deux, repérer leurs zéros, ceux du dénominateur interdits, construire le tableau dans l'ordre croissant, combiner ligne par ligne."
+    },
+    {
+      "id": "p23",
+      "ecran": "ex_signe",
+      "texte": "Exemple : signe +, −, + pour (2x − 4)/(x + 1).",
+      "dit": "Exemple résolu. Deux x moins quatre sur x plus un, hors de moins un. Numérateur nul en deux, dénominateur en moins un. Tableau : positif avant moins un, deux signes moins combinés, négatif entre moins un et deux, positif après deux. Ce tableau résout l'inéquation."
+    },
+    {
+      "id": "p24",
+      "ecran": "inequation_methode",
+      "texte": "Le piège : multiplier par D(x) de signe inconnu.",
+      "dit": "Pour résoudre une inéquation rationnelle, un piège classique : passer le dénominateur de l'autre côté en multipliant. Sans connaître son signe, on risque d'inverser l'inégalité à tort. La règle sûre : ramener l'inéquation à un quotient comparé à zéro, puis lire le tableau de signes."
+    },
+    {
+      "id": "p25",
+      "ecran": "ex_inequation",
+      "texte": "Solution : ]−∞ ; −1[ ∪ [2 ; +∞[.",
+      "dit": "Exemple résolu. Le quotient deux x moins quatre sur x plus un, positif ou nul. D'après le tableau, c'est vrai avant moins un, valeur interdite donc exclue, et à partir de deux, valeur où le quotient s'annule donc incluse. Solution : de moins l'infini à moins un, ouvert, réuni de deux fermé à plus l'infini."
+    },
+    {
+      "id": "p26",
+      "ecran": "recap_final",
+      "texte": "Oblique, position, signe, inéquation : à retenir.",
+      "dit": "Pour conclure. L'asymptote oblique naît d'une division euclidienne quand les degrés diffèrent d'une unité. La position se lit dans le signe de l'écart. Le signe d'une rationnelle vient d'un tableau qui combine numérateur et dénominateur. Et une inéquation se lit dans ce tableau, sans jamais multiplier au hasard."
+    }
+  ],
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "La forme homographique : asymptotes, dérivée et hyperbole"
+    },
+    {
+      "debut": "p16",
+      "sous_titre": "Asymptote oblique, signe et inéquations rationnelles",
+      "pont": {
+        "texte": "Partie 2 : asymptote oblique, signe et inéquations.",
+        "dit": "Partie deux : l'asymptote oblique obtenue par division euclidienne, la position de la courbe, puis le signe d'une rationnelle et ses inéquations."
+      }
+    }
+  ]
+}
