@@ -1,0 +1,341 @@
+{
+ "cours": 7329,
+ "titre": "Compter, puis développer : le binôme de Newton",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Dénombrement et binôme de Newton",
+   "titre": "Compter, puis développer : le binôme de Newton",
+   "sous": "Arrangements, combinaisons et la formule qui développe toutes les puissances d'une somme",
+   "anim": {
+    "nom": "pascal_fig",
+    "hauteur": 250
+   }
+  },
+  "intro": {
+   "type": "phrase",
+   "kicker": "Introduction",
+   "texte": "Un seul fil rouge : les coefficients qui comptent les choix sont aussi ceux qui développent (a + b) puissance n."
+  },
+  "multiplicatif": {
+   "type": "formule",
+   "kicker": "Le principe multiplicatif",
+   "tex": "N = n_1 \\times n_2 \\times \\cdots \\times n_k",
+   "note": "k étapes successives : on multiplie les nombres de possibilités de chaque étape"
+  },
+  "arbre_choix": {
+   "type": "phrase",
+   "kicker": "L'arbre des choix",
+   "texte": "Trois chemises, deux pantalons, deux chaussures : l'arbre donne douze tenues.",
+   "anim": {
+    "nom": "arbre_choix_fig",
+    "hauteur": 220
+   }
+  },
+  "ex_menu": {
+   "type": "etape",
+   "kicker": "Exemple · le menu complet",
+   "titre": "Trois entrées, quatre plats, deux desserts",
+   "tex": [
+    "3 \\times 4 \\times 2 = 24 \\quad \\text{menus}"
+   ]
+  },
+  "factorielle": {
+   "type": "formule",
+   "kicker": "Factorielle",
+   "tex": "n! = 1 \\times 2 \\times \\cdots \\times n",
+   "note": "Produit de tous les entiers de 1 à n · Convention : 0! = 1"
+  },
+  "arrangement": {
+   "type": "formule",
+   "kicker": "Arrangements",
+   "tex": "A_n^p = \\frac{n!}{(n-p)!} = n(n-1)\\cdots(n-p+1)",
+   "note": "Liste ordonnée de p éléments distincts parmi n : l'ordre compte"
+  },
+  "ex_podium": {
+   "type": "etape",
+   "kicker": "Exemple · le podium",
+   "titre": "Premier, deuxième, troisième parmi huit coureurs",
+   "tex": [
+    "A_8^3 = 8 \\times 7 \\times 6 = 336"
+   ]
+  },
+  "permutation": {
+   "type": "formule",
+   "kicker": "Cas particulier : les permutations",
+   "tex": "A_n^n = n!",
+   "note": "Une permutation est un arrangement complet : tous les éléments, ordonnés"
+  },
+  "combinaison": {
+   "type": "formule",
+   "kicker": "Combinaisons",
+   "tex": "\\binom{n}{p} = \\frac{n!}{p!\\,(n-p)!} = \\frac{A_n^p}{p!}",
+   "note": "Sous-ensemble non ordonné de p éléments · Se lit : p parmi n"
+  },
+  "proprietes": {
+   "type": "etape",
+   "kicker": "Propriétés des combinaisons",
+   "titre": "Symétrie et relation de Pascal",
+   "tex": [
+    "\\binom{n}{0} = \\binom{n}{n} = 1 \\qquad \\binom{n}{p} = \\binom{n}{n-p}",
+    "\\binom{n}{1} = n \\quad \\binom{n}{p} = \\binom{n-1}{p-1} + \\binom{n-1}{p}"
+   ]
+  },
+  "ex_delegues": {
+   "type": "etape",
+   "kicker": "Exemple · trois délégués parmi dix",
+   "titre": "Sans ordre : diviser par les ordres possibles",
+   "tex": [
+    "\\binom{10}{3} = \\frac{10 \\times 9 \\times 8}{3 \\times 2 \\times 1} = 120"
+   ]
+  },
+  "tableau": {
+   "type": "recap",
+   "kicker": "Tableau récapitulatif",
+   "etapes": [
+    "Arrangement : ordre oui, A de p parmi n",
+    "Permutation : ordre oui, factorielle n",
+    "Combinaison : ordre non, p parmi n",
+    "Simplifier : pas de factorielles pleines"
+   ]
+  },
+  "binome": {
+   "type": "formule",
+   "kicker": "Le binôme de Newton",
+   "tex": "(a+b)^n = \\sum_{p=0}^{n} \\binom{n}{p} a^{n-p} b^p",
+   "note": "Pour tous réels a et b, et tout entier n au moins égal à 1"
+  },
+  "binome_explicite": {
+   "type": "etape",
+   "kicker": "Le binôme, terme à terme",
+   "titre": "Les puissances de a descendent, celles de b montent",
+   "tex": [
+    "\\binom{n}{0} a^n + \\binom{n}{1} a^{n-1} b + \\cdots",
+    "+ \\binom{n}{n-1} a b^{n-1} + \\binom{n}{n} b^n",
+    "\\text{chaque terme : exposants de somme } n"
+   ]
+  },
+  "cas_particuliers": {
+   "type": "etape",
+   "kicker": "Cas particuliers à connaître",
+   "titre": "Les identités remarquables sont des binômes",
+   "tex": [
+    "(a+b)^2 = a^2 + 2ab + b^2",
+    "(a+b)^3 = a^3 + 3a^2 b + 3ab^2 + b^3"
+   ]
+  },
+  "pascal": {
+   "type": "etape",
+   "kicker": "Le triangle de Pascal",
+   "titre": "Chaque nombre : la somme des deux au-dessus",
+   "tex": [
+    "1 \\qquad 1",
+    "1 \\qquad 2 \\qquad 1",
+    "1 \\qquad 3 \\qquad 3 \\qquad 1",
+    "1 \\qquad 4 \\qquad 6 \\qquad 4 \\qquad 1"
+   ]
+  },
+  "terme_general": {
+   "type": "formule",
+   "kicker": "Le terme général",
+   "tex": "T_p = \\binom{n}{p} a^{n-p} b^p",
+   "note": "Pour un terme visé, inutile de tout développer : le terme général seul suffit"
+  },
+  "ex_binome_1": {
+   "type": "etape",
+   "kicker": "Exemple · développer, étape un",
+   "titre": "Appliquer la formule avec a égal à x et b égal à deux",
+   "tex": [
+    "\\binom{4}{0} x^4 + \\binom{4}{1} x^3 \\cdot 2 + \\binom{4}{2} x^2 \\cdot 2^2",
+    "+ \\binom{4}{3} x \\cdot 2^3 + \\binom{4}{4} 2^4"
+   ]
+  },
+  "ex_binome_2": {
+   "type": "etape",
+   "kicker": "Exemple · développer, étape deux",
+   "titre": "Calculer chaque coefficient, puis simplifier",
+   "tex": [
+    "= x^4 + 8x^3 + 24x^2 + 32x + 16",
+    "1, \\; 4, \\; 6, \\; 4, \\; 1 \\quad \\text{(ligne de Pascal)}"
+   ]
+  },
+  "methode_binome": {
+   "type": "recap",
+   "kicker": "La méthode du développement",
+   "etapes": [
+    "Écrire la somme avec les binomiaux",
+    "Remplacer a et b, garder les puissances",
+    "Calculer chaque coefficient à part",
+    "Simplifier, ordonner les puissances"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Ordre oui : arrangement, non : combinaison",
+    "Le binôme : une somme de n plus un termes",
+    "Coefficients : la ligne de Pascal",
+    "a décroît, b croît, exposants de somme n",
+    "Un terme visé : le terme général seul"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours de dénombrement et de binôme de Newton. Nous commencerons par compter : le principe multiplicatif, les arrangements, les permutations et les combinaisons. Puis nous découvrirons que les coefficients qui comptent les choix servent aussi à développer n'importe quelle puissance d'une somme : c'est la formule du binôme de Newton, l'aboutissement du chapitre.",
+   "texte": "Dénombrement et binôme de Newton.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Le fil rouge du cours tient en une remarque : choisir pé éléments parmi ène et développer a plus b puissance ène sont deux visages du même comptage. Les nombres qui apparaîtront dans la première partie, les coefficients binomiaux, deviendront les coefficients du développement dans la seconde. Apprenez à les calculer vite et juste : tout le reste suit.",
+   "texte": "Compter des choix, développer des puissances : mêmes coefficients.",
+   "ecran": "intro"
+  },
+  {
+   "id": "p03",
+   "dit": "Tout commence par le principe multiplicatif. Si une situation se décompose en étapes successives, la première offrant ène un possibilités, la deuxième ène deux, et ainsi de suite jusqu'à l'étape ka, alors le nombre total de résultats est le produit de tous ces nombres. Des étapes, donc un produit : c'est le moteur de tout le dénombrement.",
+   "texte": "Principe multiplicatif : des étapes, un produit.",
+   "ecran": "multiplicatif"
+  },
+  {
+   "id": "p04",
+   "dit": "L'arbre des choix rend ce principe visible. Trois chemises, puis deux pantalons pour chaque chemise, puis deux paires de chaussures pour chaque tenue : l'arbre se ramifie à chaque étape, et ses feuilles comptent les résultats. Trois fois deux fois deux : douze tenues différentes. Chaque fois que vous hésitez, dessinez l'arbre : le produit se lit sur ses branches.",
+   "texte": "L'arbre des choix : 3 × 2 × 2 = 12 tenues.",
+   "ecran": "arbre_choix"
+  },
+  {
+   "id": "p05",
+   "dit": "Exemple de la leçon : un menu comporte trois entrées, quatre plats et deux desserts. Trois étapes indépendantes : trois fois quatre fois deux, vingt-quatre menus possibles. Remarquez qu'on n'énumère rien : le principe multiplicatif compte sans lister, et c'est exactement ce qu'il faudra faire dès que les nombres grandissent.",
+   "texte": "Le menu : 3 × 4 × 2 = 24 menus.",
+   "ecran": "ex_menu"
+  },
+  {
+   "id": "p06",
+   "dit": "Un produit revient sans cesse : celui de tous les entiers de un à ène. On le note ène factorielle : un fois deux fois, et ainsi de suite, jusqu'à ène. Par convention, zéro factorielle vaut un. La factorielle grandit très vite, et elle est la brique de base des deux formules qui suivent : arrangements et combinaisons s'écrivent toutes avec des factorielles.",
+   "texte": "Factorielle : le produit de 1 à n.",
+   "ecran": "factorielle"
+  },
+  {
+   "id": "p07",
+   "dit": "Premier outil : l'arrangement. Un arrangement de pé éléments parmi ène est une liste ordonnée de pé éléments distincts : l'ordre compte, et chaque élément n'apparaît qu'une fois. Leur nombre, noté a de ène puissance pé, vaut ène factorielle divisé par ène moins pé factorielle, c'est-à-dire le produit de pé facteurs décroissants en partant de ène : ène, ène moins un, et ainsi de suite.",
+   "texte": "Arrangement : liste ordonnée, sans répétition.",
+   "ecran": "arrangement"
+  },
+  {
+   "id": "p08",
+   "dit": "Exemple : combien de podiums différents, premier, deuxième, troisième, peut-on former avec huit coureurs ? Un podium est une liste ordonnée de trois coureurs distincts : un arrangement. Huit fois sept fois six : trois cent trente-six podiums. Si l'ordre n'avait pas compté, par exemple pour une qualification collective, ce serait un autre nombre, plus petit.",
+   "texte": "Le podium : 8 × 7 × 6 = 336.",
+   "ecran": "ex_podium"
+  },
+  {
+   "id": "p09",
+   "dit": "Cas particulier immédiat : si l'on prend tous les éléments, pé égale ène, l'arrangement devient une permutation, un rangement complet des ène éléments. La formule se simplifie : a de ène puissance ène vaut ène factorielle. Ranger quatre livres sur une étagère, quatre factorielle, vingt-quatre rangements : vous connaissez déjà ce calcul.",
+   "texte": "Permutation : l'arrangement de tous les éléments.",
+   "ecran": "permutation"
+  },
+  {
+   "id": "p10",
+   "dit": "Deuxième outil : la combinaison. Une combinaison de pé éléments parmi ène est un sous-ensemble de pé éléments, sans ordre. Son nombre, le coefficient binomial pé parmi ène, vaut ène factorielle divisé par pé factorielle fois ène moins pé factorielle. Autre lecture : c'est le nombre d'arrangements divisé par pé factorielle, car chaque sous-ensemble peut être ordonné de pé factorielle façons, et l'on ne veut le compter qu'une fois.",
+   "texte": "Combinaison : p parmi n, sans ordre.",
+   "ecran": "combinaison"
+  },
+  {
+   "id": "p11",
+   "dit": "Trois propriétés structurent ces coefficients. Aux bords : zéro parmi ène et ène parmi ène valent un, un parmi ène vaut ène. La symétrie : pé parmi ène égale ène moins pé parmi ène, car choisir les élus, c'est choisir les laissés. Et la relation de Pascal : pé parmi ène est la somme de pé moins un parmi ène moins un et de pé parmi ène moins un. C'est elle qui construira le triangle de la seconde partie.",
+   "texte": "Symétrie et Pascal : la structure des binomiaux.",
+   "ecran": "proprietes"
+  },
+  {
+   "id": "p12",
+   "dit": "Exemple : le nombre de façons de choisir trois délégués parmi dix élèves. Aucun rôle ne distingue les délégués : c'est une combinaison. Trois parmi dix vaut dix factorielle divisé par trois factorielle fois sept factorielle. On simplifie avant de calculer : dix fois neuf fois huit, divisé par trois fois deux fois un, cent vingt groupes. Ne calculez jamais les factorielles complètes : simplifiez d'abord.",
+   "texte": "Trois délégués parmi dix : 120.",
+   "ecran": "ex_delegues"
+  },
+  {
+   "id": "p13",
+   "dit": "Récapitulons avec le tableau de la leçon. L'ordre compte et on prend une partie des éléments : arrangement. L'ordre compte et on prend tout : permutation, factorielle. L'ordre ne compte pas : combinaison. Et le réflexe de calcul qui fait gagner du temps : écrire le coefficient comme un quotient de produits courts, jamais comme des factorielles complètes.",
+   "texte": "Le tableau : trois outils, un réflexe de calcul.",
+   "ecran": "tableau"
+  },
+  {
+   "id": "p14",
+   "dit": "Voici la formule du binôme de Newton. Pour tous réels a et b, et tout entier ène au moins égal à un, a plus b puissance ène est la somme, pour pé allant de zéro à ène, des coefficients pé parmi ène fois a puissance ène moins pé fois b puissance pé. Les coefficients du développement sont exactement les coefficients binomiaux de la première partie : compter des choix et développer une puissance, même nombres.",
+   "texte": "(a + b) puissance n : la formule du binôme.",
+   "ecran": "binome"
+  },
+  {
+   "id": "p15",
+   "dit": "Lisons la formule terme à terme. Elle commence par a puissance ène, coefficient un. Puis le coefficient un parmi ène multiplie a puissance ène moins un fois b. Et elle se termine par b puissance ène, coefficient un. D'un terme au suivant, l'exposant de a descend d'un cran et celui de b monte d'un cran : dans chaque terme, la somme des deux exposants vaut toujours ène. Le développement compte ène plus un termes.",
+   "texte": "a descend, b monte, somme des exposants : n.",
+   "ecran": "binome_explicite"
+  },
+  {
+   "id": "p16",
+   "dit": "Les cas particuliers sont de vieilles connaissances. Pour ène égale deux : a carré plus deux a b plus b carré. Pour ène égale trois : a cube plus trois a carré b plus trois a b carré plus b cube. Ce sont les identités remarquables, et leurs coefficients, un, deux, un puis un, trois, trois, un, sont les lignes du triangle de Pascal. La formule du binôme les généralise à toutes les puissances.",
+   "texte": "Les identités remarquables sont des binômes.",
+   "ecran": "cas_particuliers"
+  },
+  {
+   "id": "p17",
+   "dit": "Construisons le triangle de Pascal. Chaque ligne commence et finit par un. Chaque autre nombre est la somme des deux nombres situés au-dessus de lui : c'est la relation de Pascal en action. Ligne par ligne, on obtient un, un ; puis un, deux, un ; puis un, trois, trois, un ; puis un, quatre, six, quatre, un. La ligne d'indice ène donne tous les coefficients du développement de puissance ène, dans l'ordre.",
+   "texte": "Triangle de Pascal : chaque nombre, somme des deux du dessus.",
+   "ecran": "pascal"
+  },
+  {
+   "id": "p18",
+   "dit": "Pour viser un terme précis sans tout développer, retenez le terme général : le terme associé à l'indice pé est le coefficient pé parmi ène, fois a puissance ène moins pé, fois b puissance pé. Une question du type quel est le coefficient de telle puissance devient alors un calcul unique : choisir le bon pé, celui qui donne l'exposant demandé, puis appliquer le terme général.",
+   "texte": "Le terme général : viser sans tout développer.",
+   "ecran": "terme_general"
+  },
+  {
+   "id": "p19",
+   "dit": "Exemple complet : développer x plus deux, le tout à la puissance quatre. On applique la formule avec a égale x et b égale deux. Les coefficients sont ceux de la ligne quatre : un, quatre, six, quatre, un. On écrit chaque terme : x puissance quatre, puis quatre fois x cube fois deux, puis six fois x carré fois deux au carré, puis quatre fois x fois deux au cube, puis deux à la puissance quatre.",
+   "texte": "Développer (x + 2) puissance 4 : poser la somme.",
+   "ecran": "ex_binome_1"
+  },
+  {
+   "id": "p20",
+   "dit": "Il ne reste qu'à calculer chaque terme. Quatre fois deux donne huit : huit x cube. Six fois quatre donne vingt-quatre : vingt-quatre x carré. Quatre fois huit donne trente-deux : trente-deux x. Et deux à la puissance quatre vaut seize. Le développement final : x puissance quatre plus huit x cube plus vingt-quatre x carré plus trente-deux x plus seize. Vérifiez toujours la ligne de coefficients : un, quatre, six, quatre, un, symétrique, comme le triangle l'exige.",
+   "texte": "Résultat : x⁴ + 8x³ + 24x² + 32x + 16.",
+   "ecran": "ex_binome_2"
+  },
+  {
+   "id": "p21",
+   "dit": "La méthode du développement tient en quatre gestes. Écrire la somme avec les coefficients binomiaux et les puissances décroissantes de a, croissantes de b. Remplacer a et b par leurs valeurs, sans toucher aux exposants. Calculer chaque coefficient séparément, en simplifiant les factorielles. Enfin, simplifier chaque terme et ordonner le résultat par puissances décroissantes. Cette discipline évite l'erreur classique : oublier la puissance de b dans le coefficient.",
+   "texte": "La méthode : poser, remplacer, calculer, ordonner.",
+   "ecran": "methode_binome"
+  },
+  {
+   "id": "p22",
+   "dit": "Pour finir, retenez l'essentiel. L'ordre compte : arrangement ; il ne compte pas : combinaison ; on prend tout : permutation. Le binôme de Newton développe a plus b puissance ène en une somme de ène plus un termes, dont les coefficients forment la ligne de Pascal d'indice ène. Dans chaque terme, a décroît, b croît, et la somme des exposants vaut ène. Et pour un terme visé, le terme général suffit.",
+   "texte": "Binôme de Newton : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Dénombrer : principe multiplicatif et arrangements"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Combinaisons et la formule du binôme de Newton",
+   "pont": {
+    "texte": "Partie 2 : permutations, combinaisons, puis la formule du binôme.",
+    "dit": "Partie deux : achever les outils du dénombrement, puis franchir le pas. Après les permutations et les combinaisons, nous énoncerons la formule du binôme de Newton et nous la lirons terme à terme : les coefficients qui comptent les choix deviennent les coefficients du développement."
+   }
+  },
+  {
+   "debut": "p16",
+   "sous_titre": "Triangle de Pascal et développement complet",
+   "pont": {
+    "texte": "Partie 3 : cas particuliers, triangle de Pascal, développement complet.",
+    "dit": "Partie trois : pratiquer le binôme. Nous retrouverons les identités remarquables comme cas particuliers, nous construirons le triangle de Pascal, puis nous développerons entièrement une puissance quatre avec la méthode en quatre gestes."
+   }
+  }
+ ]
+}
