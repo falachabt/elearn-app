@@ -1,0 +1,381 @@
+{
+ "cours": 7225,
+ "titre": "Les nombres relatifs",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Les nombres relatifs",
+   "titre": "Les nombres relatifs",
+   "sous": "Signe, ordre et quatre opérations : comparer, additionner, soustraire, multiplier, diviser"
+  },
+  "definition": {
+   "type": "formule",
+   "kicker": "Définition · Un nombre décimal relatif",
+   "tex": "+\\,3{,}5 \\qquad -\\,2{,}7 \\qquad -\\,3 = -\\,3{,}0",
+   "note": "Exemples : +7 ; -0,4 ; 12,25 ; -150."
+  },
+  "distance": {
+   "type": "formule",
+   "kicker": "La distance à zéro",
+   "tex": "|+\\,3{,}5| = 3{,}5 \\qquad |-\\,2{,}7| = 2{,}7",
+   "note": "La distance à zéro oublie le signe : c'est la valeur absolue."
+  },
+  "droite": {
+   "type": "formule",
+   "kicker": "La droite graduée",
+   "tex": "A(-\\,2{,}5)",
+   "note": "Unité : 1 cm. A est à 2,5 cm à gauche de l'origine O."
+  },
+  "compar_droite": {
+   "type": "formule",
+   "kicker": "Comparer sur la droite graduée",
+   "tex": "-\\,5 < -\\,2 < 0 < 3",
+   "note": "À gauche, c'est plus petit : la droite range les nombres."
+  },
+  "oppose": {
+   "type": "formule",
+   "kicker": "L'opposé d'un nombre",
+   "tex": "a + (-a) = 0",
+   "note": "Opposés : +5 et -5 ; -3,2 et +3,2 ; 0 est son propre opposé."
+  },
+  "compar_regles": {
+   "type": "etape",
+   "kicker": "Comparer et ranger",
+   "titre": "Comparer : le signe d'abord, la distance ensuite",
+   "tex": [
+    "2{,}5 > 0 > -\\,4",
+    "3 > 2 \\qquad -\\,2 > -\\,5",
+    "-\\,4 < -\\,1{,}3 < 0 < 2{,}5"
+   ]
+  },
+  "add_meme": {
+   "type": "etape",
+   "kicker": "Addition · Même signe",
+   "titre": "Même signe : on additionne les distances",
+   "tex": [
+    "(-\\,3) + (-\\,5) = -\\,8",
+    "(+a) + (+b) = +(a+b)"
+   ]
+  },
+  "add_contraire": {
+   "type": "etape",
+   "kicker": "Addition · Signes contraires",
+   "titre": "Signes contraires : on soustrait les distances",
+   "tex": [
+    "(-\\,7) + 4 = -\\,3",
+    "7 - 4 = 3 \\qquad \\text{signe de } -\\,7"
+   ]
+  },
+  "prop_add": {
+   "type": "etape",
+   "kicker": "Propriétés de l'addition",
+   "tex": [
+    "a + 0 = a \\qquad a + b = b + a",
+    "(a+b) + c = a + (b+c)"
+   ],
+   "note": "Commutativité et associativité : l'ordre ne change rien."
+  },
+  "soustraction": {
+   "type": "formule",
+   "kicker": "Soustraction de décimaux relatifs",
+   "tex": "a - b = a + (-b)",
+   "note": "Exemples : 5 - (-3) = 8 ; (-2) - 6 = -8."
+  },
+  "exemple1": {
+   "type": "etape",
+   "kicker": "Exemple récapitulatif",
+   "titre": "Transformer, puis additionner",
+   "tex": [
+    "A = (-\\,6) + 2 - (-\\,4)",
+    "A = (-\\,6) + 2 + 4",
+    "A = -\\,6 + 6 = 0"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Un relatif : signe + décimale finie",
+    "Droite : positifs à droite, négatifs à gauche",
+    "Opposés : même distance, signes contraires",
+    "Calculs : distances à zéro, puis signe"
+   ]
+  },
+  "mult_regle": {
+   "type": "etape",
+   "kicker": "Multiplier deux nombres relatifs",
+   "titre": "Multiplier : distances, puis règle des signes",
+   "tex": [
+    "(+3) \\times (+4) = +12",
+    "(-\\,3) \\times (-\\,4) = +12",
+    "(+3) \\times (-\\,4) = -\\,12"
+   ]
+  },
+  "ex_mult": {
+   "type": "etape",
+   "kicker": "Exemple · Multiplication",
+   "titre": "Exemple : deux négatifs donnent un positif",
+   "tex": [
+    "2{,}5 \\times 6 = 15",
+    "(-\\,2{,}5) \\times (-\\,6) = +15"
+   ]
+  },
+  "piege": {
+   "type": "etape",
+   "kicker": "Attention · Ne pas confondre",
+   "tex": [
+    "(-\\,3) + (-\\,4) = -\\,7",
+    "(-\\,3) \\times (-\\,4) = +12"
+   ],
+   "note": "Addition ou multiplication : le signe ne se décide pas pareil."
+  },
+  "plusieurs": {
+   "type": "etape",
+   "kicker": "Produit de plusieurs facteurs",
+   "titre": "Plusieurs facteurs : compter les facteurs négatifs",
+   "tex": [
+    "(-\\,2) \\times (-\\,5) \\times (-\\,3) = -\\,30",
+    "(-\\,2) \\times (-\\,5) \\times 3 = +30"
+   ]
+  },
+  "cas_part": {
+   "type": "etape",
+   "kicker": "Cas particuliers utiles",
+   "titre": "Zéro, un, moins un : trois réflexes",
+   "tex": [
+    "a \\times 0 = 0",
+    "a \\times 1 = a",
+    "a \\times (-\\,1) = -a"
+   ]
+  },
+  "division": {
+   "type": "etape",
+   "kicker": "Diviser deux nombres relatifs",
+   "titre": "Diviser : la même règle des signes",
+   "tex": [
+    "(+12) \\div (+4) = +3",
+    "(-\\,12) \\div (-\\,4) = +3",
+    "(+12) \\div (-\\,4) = -\\,3"
+   ]
+  },
+  "ex_div": {
+   "type": "formule",
+   "kicker": "Exemple · Division",
+   "tex": "(-\\,18) \\div (+3) = -\\,6",
+   "note": "Signes contraires : quotient négatif. Diviser par zéro est impossible."
+  },
+  "priorites": {
+   "type": "etape",
+   "kicker": "Priorités opératoires",
+   "titre": "Priorités : dans cet ordre, de gauche à droite",
+   "tex": [
+    "\\text{parenthèses}",
+    "\\text{multiplications, divisions}",
+    "\\text{additions, soustractions}"
+   ]
+  },
+  "ex_prior": {
+   "type": "etape",
+   "kicker": "Exemple · Priorités opératoires",
+   "titre": "Exemple : d'abord les produits et le quotient",
+   "tex": [
+    "A = (-\\,4) \\times 3 + (-\\,15) \\div (-\\,5)",
+    "A = -\\,12 + 3",
+    "A = -\\,9"
+   ]
+  },
+  "methode": {
+   "type": "phrase",
+   "kicker": "Méthode · Ne plus se tromper de signe",
+   "texte": "Deux temps : d'abord le signe, ensuite la valeur."
+  },
+  "ex_final": {
+   "type": "etape",
+   "kicker": "Exemple de synthèse",
+   "titre": "Tout ensemble : produits, quotient, différence",
+   "tex": [
+    "B = (-\\,2) \\times 3 - (-\\,10) \\div (-\\,5)",
+    "B = -\\,6 - 2",
+    "B = -\\,8"
+   ]
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Relatif : signe et partie décimale finie",
+    "Droite : à gauche, c'est plus petit",
+    "Opposés : même distance, signes contraires",
+    "Signes : compter les facteurs négatifs",
+    "Priorités : parenthèses, produits, sommes"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours sur les nombres relatifs. Nous allons apprendre à les reconnaître, à les placer sur une droite graduée, à les comparer, puis à les additionner, les soustraire, les multiplier et les diviser, sans jamais nous tromper de signe.",
+   "texte": "Nombres relatifs : signe, ordre et quatre opérations.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Un nombre décimal relatif est un nombre qui s'écrit avec un signe, plus ou moins, suivi d'une partie décimale finie, c'est-à-dire qui s'arrête. Plus trois virgule cinq est positif, moins deux virgule sept est négatif, et tout entier est aussi un décimal relatif, puisque moins trois peut s'écrire moins trois virgule zéro.",
+   "texte": "Signe + décimale finie : c'est un relatif.",
+   "ecran": "definition"
+  },
+  {
+   "id": "p03",
+   "dit": "Pour calculer avec des relatifs, un seul outil compte : la distance à zéro, qu'on appelle aussi valeur absolue. Elle oublie le signe et ne garde que l'écart à zéro. La distance de plus trois virgule cinq vaut trois virgule cinq, et celle de moins deux virgule sept vaut deux virgule sept.",
+   "texte": "Distance à zéro : le signe s'oublie.",
+   "ecran": "distance"
+  },
+  {
+   "id": "p04",
+   "dit": "Chaque nombre relatif a sa place sur une droite graduée, autour d'une origine qui représente zéro. Les positifs se placent à droite de l'origine, les négatifs à gauche. Sur une droite dont l'unité mesure un centimètre, un point d'abscisse moins deux virgule cinq se place à deux virgule cinq centimètres à gauche de l'origine.",
+   "texte": "Droite graduée : chaque nombre a sa place.",
+   "ecran": "droite"
+  },
+  {
+   "id": "p05",
+   "dit": "Cette droite range les nombres toute seule : un nombre situé à gauche d'un autre est toujours plus petit que lui. Moins cinq est donc plus petit que moins deux, qui est plus petit que zéro, qui est plus petit que trois. Retenez l'image : aller vers la gauche, c'est diminuer.",
+   "texte": "À gauche = plus petit.",
+   "ecran": "compar_droite"
+  },
+  {
+   "id": "p06",
+   "dit": "Deux nombres sont opposés quand ils ont la même distance à zéro mais des signes contraires. L'opposé de plus cinq est moins cinq, l'opposé de moins trois virgule deux est plus trois virgule deux, et zéro est son propre opposé. Surtout, un nombre ajouté à son opposé donne toujours zéro.",
+   "texte": "Opposés : même distance, signes contraires.",
+   "ecran": "oppose"
+  },
+  {
+   "id": "p07",
+   "dit": "Trois règles pour comparer. Tout positif dépasse tout négatif. Entre deux positifs, le plus grand a la plus grande distance à zéro. Entre deux négatifs, c'est l'inverse : le plus grand a la plus petite distance. Exemple dans l'ordre croissant : moins quatre, moins un virgule trois, zéro, deux virgule cinq.",
+   "texte": "Comparer : signe d'abord, distance ensuite.",
+   "ecran": "compar_regles"
+  },
+  {
+   "id": "p08",
+   "dit": "Pour additionner deux nombres de même signe, on additionne leurs distances à zéro et on garde le signe commun. Moins trois plus moins cinq donne moins huit, car trois plus cinq font huit, avec le signe moins. Le signe ne se devine pas : il se conserve.",
+   "texte": "Même signe : distances additionnées, signe gardé.",
+   "ecran": "add_meme"
+  },
+  {
+   "id": "p09",
+   "dit": "Pour additionner deux nombres de signes contraires, on soustrait leurs distances, la plus grande moins la plus petite, et on garde le signe de celui qui a la plus grande distance. Moins sept plus quatre donne moins trois, car sept moins quatre font trois, et le signe reste celui de moins sept.",
+   "texte": "Signes contraires : on soustrait les distances.",
+   "ecran": "add_contraire"
+  },
+  {
+   "id": "p10",
+   "dit": "Trois propriétés rendent l'addition confortable. Ajouter zéro ne change rien. L'ordre des termes ne change rien : c'est la commutativité. Et l'on peut regrouper les termes comme on veut : c'est l'associativité. Elles servent à regrouper les opposés pour simplifier un calcul.",
+   "texte": "Addition : ordre et regroupement libres.",
+   "ecran": "prop_add"
+  },
+  {
+   "id": "p11",
+   "dit": "Soustraire un nombre revient à ajouter son opposé : c'est la règle qui transforme toute soustraction en addition. Cinq moins moins trois devient cinq plus trois, soit huit. Moins deux moins six devient moins deux plus moins six, soit moins huit. Une fois transformée, on applique les règles de l'addition.",
+   "texte": "Soustraire = ajouter l'opposé.",
+   "ecran": "soustraction"
+  },
+  {
+   "id": "p12",
+   "dit": "Mettons tout ensemble. Calculons moins six plus deux moins moins quatre. D'abord, la soustraction devient une addition : moins six plus deux plus quatre. Ensuite, deux plus quatre font six, et moins six plus six font zéro. Le résultat est zéro.",
+   "texte": "De la soustraction à l'addition : résultat zéro.",
+   "ecran": "exemple1"
+  },
+  {
+   "id": "p13",
+   "dit": "Retenons cette première partie. Un relatif, c'est un signe et une partie décimale finie. Sur la droite graduée, les positifs sont à droite et les négatifs à gauche. Les opposés partagent la même distance à zéro. Et tous les calculs passent par les distances, avant de choisir le signe.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p14",
+   "dit": "Pour multiplier deux relatifs, on multiplie leurs distances à zéro, puis on décide du signe. Signes identiques, le produit est positif : plus fois plus, ou moins fois moins, donnent plus. Signes contraires, le produit est négatif : plus fois moins, ou moins fois plus, donnent moins.",
+   "texte": "Multiplier : distances, puis règle des signes.",
+   "ecran": "mult_regle"
+  },
+  {
+   "id": "p15",
+   "dit": "Exemple. Calculons moins deux virgule cinq fois moins six. On multiplie les distances : deux virgule cinq fois six font quinze. Les deux facteurs sont négatifs, donc le produit est positif : le résultat est plus quinze.",
+   "texte": "Deux négatifs : produit positif, +15.",
+   "ecran": "ex_mult"
+  },
+  {
+   "id": "p16",
+   "dit": "Attention à ne pas confondre addition et multiplication. Avec les mêmes facteurs, moins trois et moins quatre, l'addition donne moins sept, car on garde le signe commun. La multiplication donne plus douze, car deux signes identiques donnent un produit positif. L'opération change tout.",
+   "texte": "Même facteurs, signe différent selon l'opération.",
+   "ecran": "piege"
+  },
+  {
+   "id": "p17",
+   "dit": "Pour un produit de plusieurs facteurs, on compte les facteurs négatifs. Un nombre pair de facteurs négatifs donne un produit positif, un nombre impair donne un produit négatif. Trois facteurs négatifs donnent donc moins trente, tandis que le même produit avec un seul facteur positif à la place du troisième négatif donne plus trente.",
+   "texte": "Pair = positif, impair = négatif.",
+   "ecran": "plusieurs"
+  },
+  {
+   "id": "p18",
+   "dit": "Trois cas particuliers à connaître par cœur. Multiplier par zéro donne toujours zéro. Multiplier par un ne change rien. Multiplier par moins un revient à prendre l'opposé : c'est un raccourci utile pour changer un signe d'un coup.",
+   "texte": "×0, ×1, ×(−1) : trois réflexes.",
+   "ecran": "cas_part"
+  },
+  {
+   "id": "p19",
+   "dit": "La division suit exactement la même règle des signes que la multiplication : on divise les distances à zéro, puis on choisit le signe. Signes identiques, le quotient est positif. Signes contraires, le quotient est négatif. Retenez bien : les deux opérations partagent une seule règle.",
+   "texte": "Division : la même règle que la multiplication.",
+   "ecran": "division"
+  },
+  {
+   "id": "p20",
+   "dit": "Exemple. Calculons moins dix-huit divisé par plus trois. On divise les distances : dix-huit divisé par trois font six. Les signes sont contraires, donc le quotient est négatif : moins six. Et attention : diviser par zéro est toujours impossible, même avec des relatifs.",
+   "texte": "−18 ÷ (+3) = −6 ; jamais ÷ 0.",
+   "ecran": "ex_div"
+  },
+  {
+   "id": "p21",
+   "dit": "Quand une expression mélange les opérations, l'ordre est toujours le même. D'abord les parenthèses, puis les multiplications et les divisions, de gauche à droite, enfin les additions et les soustractions. Cet ordre ne se négocie pas : il décide du résultat.",
+   "texte": "Parenthèses, × ÷, puis + −.",
+   "ecran": "priorites"
+  },
+  {
+   "id": "p22",
+   "dit": "Exemple. Calculons moins quatre fois trois plus moins quinze divisé par moins cinq. On commence par la multiplication et la division : moins quatre fois trois font moins douze, et moins quinze divisé par moins cinq font plus trois. Il reste moins douze plus trois, soit moins neuf.",
+   "texte": "−12 + 3 = −9 : l'ordre décide.",
+   "ecran": "ex_prior"
+  },
+  {
+   "id": "p23",
+   "dit": "Pour ne jamais vous tromper de signe, séparez les deux temps du calcul. D'abord le signe, en comptant les facteurs négatifs. Ensuite seulement la valeur, en travaillant avec des distances à zéro, donc avec des nombres positifs. Deux temps séparés, deux fois moins d'erreurs.",
+   "texte": "Méthode : le signe, puis la valeur.",
+   "ecran": "methode"
+  },
+  {
+   "id": "p24",
+   "dit": "Dernier exemple, qui mélange tout. Moins deux fois trois moins moins dix divisé par moins cinq. La multiplication donne moins six, le quotient de moins dix par moins cinq donne plus deux. Il reste moins six moins deux, soit moins huit.",
+   "texte": "Synthèse : −6 − 2 = −8.",
+   "ecran": "ex_final"
+  },
+  {
+   "id": "p25",
+   "dit": "Pour finir, retenez l'essentiel. Un relatif, c'est un signe et une partie décimale finie. Sur la droite, aller à gauche, c'est diminuer. Les opposés partagent la même distance à zéro. Le signe d'un produit se décide en comptant les négatifs. Et les priorités ordonnent chaque calcul.",
+   "texte": "Nombres relatifs : à retenir.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définitions, droite graduée et additions"
+  },
+  {
+   "debut": "p14",
+   "sous_titre": "Multiplications, divisions et priorités",
+   "pont": {
+    "dit": "Partie deux : multiplier et diviser. La règle des signes est la même pour les deux opérations, puis nous appliquerons les priorités.",
+    "texte": "Partie 2 : multiplier, diviser, puis priorités."
+   }
+  }
+ ]
+}
