@@ -1,0 +1,364 @@
+{
+ "cours": 7276,
+ "titre": "Les fonctions : définir, comparer, faire varier",
+ "matiere": "Mathématique",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Mathématique · Les fonctions",
+   "titre": "Les fonctions : définir, comparer, faire varier",
+   "sous": "Image et antécédents, ensemble de définition, parité, comparaison et variations",
+   "anim": {
+    "nom": "fleche_fonction",
+    "hauteur": 250
+   }
+  },
+  "definition": {
+   "type": "etape",
+   "kicker": "Qu'est-ce qu'une fonction ?",
+   "titre": "Un procédé, une image unique par antécédent de départ",
+   "tex": [
+    "f : x \\mapsto f(x)",
+    "\\text{à chaque } x \\in D_f, \\text{ un seul nombre } f(x)"
+   ],
+   "anim": {
+    "nom": "test_verticale_fig",
+    "hauteur": 150
+   }
+  },
+  "image_antecedent": {
+   "type": "etape",
+   "kicker": "Image et antécédents",
+   "titre": "L'image de 3, puis les antécédents de 3",
+   "tex": [
+    "f(x) = x^2 - 1 \\qquad f(3) = 9 - 1 = 8",
+    "x^2 - 1 = 3 \\iff x^2 = 4",
+    "\\text{antécédents de } 3 : x = 2 \\text{ ou } x = -2"
+   ]
+  },
+  "piege": {
+   "type": "phrase",
+   "kicker": "Le piège de notation",
+   "texte": "f est le procédé, f(x) est un nombre : f(x) ne veut pas dire « f multiplié par x », c'est un tout indissociable."
+  },
+  "operations": {
+   "type": "etape",
+   "kicker": "Opérations sur les fonctions",
+   "titre": "Somme, produit, quotient : point par point",
+   "tex": [
+    "(f+g)(x) = f(x) + g(x)",
+    "(f \\times g)(x) = f(x) \\times g(x)",
+    "(f/g)(x) = \\tfrac{f(x)}{g(x)}, \\quad g(x) \\neq 0"
+   ]
+  },
+  "ex_operations": {
+   "type": "etape",
+   "kicker": "Exemple · produit et quotient",
+   "titre": "f(x) = x + 1 et g(x) = x − 2",
+   "tex": [
+    "f(x) = x + 1 \\qquad g(x) = x - 2",
+    "(f \\times g)(x) = (x+1)(x-2)",
+    "= x^2 - x - 2",
+    "(f/g) \\text{ déf. si } x \\neq 2"
+   ]
+  },
+  "domaine": {
+   "type": "etape",
+   "kicker": "Ensemble de définition",
+   "titre": "Quatre réflexes pour trouver D_f",
+   "tex": [
+    "\\text{polynôme : } D_f = \\mathbb{R}",
+    "\\text{rationnelle : exclure les zéros de } Q(x)",
+    "\\sqrt{u(x)} : \\ u(x) \\geq 0",
+    "\\tfrac{1}{u(x)} : \\ u(x) \\neq 0"
+   ]
+  },
+  "ex_domaine": {
+   "type": "etape",
+   "kicker": "Exemple résolu · le domaine",
+   "titre": "Racine au numérateur, dénominateur à exclure",
+   "tex": [
+    "f(x) = \\tfrac{\\sqrt{x+2}}{x-3}",
+    "x + 2 \\geq 0 \\ \\text{et} \\ x - 3 \\neq 0",
+    "D_f = [-2;\\,3[ \\ \\cup \\ ]3;\\,+\\infty["
+   ]
+  },
+  "references1": {
+   "type": "etape",
+   "kicker": "Fonctions de référence · 1",
+   "titre": "Affine, carré, cube",
+   "tex": [
+    "f(x) = ax + b : \\mathbb{R}, \\text{ croissante si } a > 0",
+    "f(x) = x^2 : \\mathbb{R}, \\text{ décr. puis croiss.}",
+    "f(x) = x^3 : \\mathbb{R}, \\text{ croissante}"
+   ]
+  },
+  "references2": {
+   "type": "etape",
+   "kicker": "Fonctions de référence · 2",
+   "titre": "Racine, inverse, valeur absolue",
+   "tex": [
+    "f(x) = \\sqrt{x} : [0;+\\infty[, \\text{ croissante}",
+    "f(x) = \\tfrac{1}{x} : \\mathbb{R}^*, \\text{ décr. / branche}",
+    "f(x) = |x| : \\mathbb{R}, \\text{ décr. puis croiss.}"
+   ]
+  },
+  "comparer": {
+   "type": "formule",
+   "kicker": "Comparer deux fonctions",
+   "tex": "f \\leq g \\iff f(x)-g(x) \\leq 0,\\ \\forall x\\in I",
+   "note": "Graphiquement : la courbe de f est en dessous de celle de g sur I."
+  },
+  "ex_comparer": {
+   "type": "etape",
+   "kicker": "Exemple résolu · comparer",
+   "titre": "x² contre x, entre 0 et 1",
+   "tex": [
+    "f(x) - g(x) = x^2 - x = x(x-1)",
+    "\\text{sur } [0;1] : x \\geq 0, \\ x - 1 \\leq 0",
+    "\\text{donc } x(x-1) \\leq 0 \\ \\text{et} \\ f \\leq g"
+   ]
+  },
+  "bornee": {
+   "type": "formule",
+   "kicker": "Majorée, minorée, bornée",
+   "tex": "m \\leq f(x) \\leq M",
+   "note": "f majorée par M, minorée par m sur I : alors f est bornée sur I."
+  },
+  "parite": {
+   "type": "etape",
+   "kicker": "Parité d'une fonction",
+   "titre": "Condition : D_f centré en 0",
+   "tex": [
+    "f(-x) = f(x) : \\text{paire}",
+    "f(-x) = -f(x) : \\text{impaire}"
+   ]
+  },
+  "ex_parite": {
+   "type": "etape",
+   "kicker": "Exemple · tester la parité",
+   "titre": "Remplacer x par −x et comparer",
+   "tex": [
+    "f(x) = x^2 - 4 : f(-x) = x^2 - 4 = f(x)",
+    "g(x) = x^3 : g(-x) = -x^3 = -g(x)"
+   ]
+  },
+  "periodicite": {
+   "type": "formule",
+   "kicker": "Périodicité",
+   "tex": "f(x + T) = f(x)",
+   "note": "Exemple : sin, de période 2π — étude sur [0 ; 2π], puis le motif se répète."
+  },
+  "variations_def": {
+   "type": "etape",
+   "kicker": "Sens de variation",
+   "titre": "L'ordre des images quand x grandit",
+   "tex": [
+    "a < b \\Rightarrow f(a) \\leq f(b) : \\text{croissante}",
+    "a < b \\Rightarrow f(a) \\geq f(b) : \\text{décroissante}",
+    "f(a) = f(b) : \\text{constante}"
+   ]
+  },
+  "ex_variations": {
+   "type": "etape",
+   "kicker": "Exemple résolu · les variations de x²",
+   "titre": "Factoriser la différence des images",
+   "tex": [
+    "f(b) - f(a) = (b - a)(b + a)",
+    "[0;+\\infty[ : f(b)-f(a) > 0, \\ f \\text{ croiss.}",
+    "]-\\infty;0] : f \\text{ décr.}, \\ f(0) = 0 \\text{ min}"
+   ]
+  },
+  "courbe": {
+   "type": "phrase",
+   "kicker": "Représentation graphique",
+   "texte": "La courbe représentative : tous les points M(x ; y) avec y = f(x) et x dans D_f. On lit f(x₀) en montant de x₀ à la courbe, puis en traversant vers l'axe des ordonnées.",
+   "anim": {
+    "nom": "lecture_graphique_fig",
+    "hauteur": 180
+   }
+  },
+  "methode": {
+   "type": "recap",
+   "kicker": "Méthode · tracer une courbe",
+   "etapes": [
+    "Déterminer D_f",
+    "Parité et périodicité : réduire l'étude",
+    "Dresser le tableau de variations",
+    "Placer des points, tracer la courbe"
+   ]
+  },
+  "ex_courbe": {
+   "type": "phrase",
+   "kicker": "Exemple · tracer x²",
+   "texte": "Pour x² : fonction paire, minimum en (0 ; 0), points (1 ; 1) et (2 ; 4), puis symétrie par rapport à Oy — une parabole de sommet O."
+  },
+  "recap": {
+   "type": "recap",
+   "kicker": "À retenir",
+   "etapes": [
+    "Image unique, antécédents multiples",
+    "D_f : dénominateur ≠ 0, racine ≥ 0",
+    "Comparer : signe de f(x) − g(x)",
+    "Paire : Oy ; impaire : O ; période T",
+    "Variations, tableau, puis la courbe"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "ecran": "titre",
+   "dit": "Bienvenue dans ce cours consacré aux fonctions, l'outil central des mathématiques. Une fonction transforme des nombres en d'autres nombres, et tout le cours consiste à apprendre à la définir proprement, à comparer deux fonctions entre elles, et à décrire comment elle varie. Nous commencerons par la définition, l'image et les antécédents, puis l'ensemble de définition et les fonctions de référence. Nous verrons ensuite comment comparer, reconnaître une parité ou une périodicité, étudier les variations et, finalement, tracer la courbe.",
+   "texte": "Les fonctions : définir, comparer, faire varier."
+  },
+  {
+   "id": "p02",
+   "ecran": "definition",
+   "dit": "Une fonction, notée f, est un procédé qui, à chaque nombre réel ixe d'un ensemble appelé ensemble de définition, associe un seul nombre réel, noté f de ixe. Un seul : c'est le point non négociable. Graphiquement, cela se traduit par le test de la droite verticale : une droite verticale ne peut rencontrer la courbe qu'en un point au plus, sinon une même abscisse aurait deux images, ce qui est impossible pour une fonction.",
+   "texte": "Une fonction : à chaque x, une seule image f(x)."
+  },
+  {
+   "id": "p03",
+   "ecran": "image_antecedent",
+   "dit": "Le nombre f de ixe est appelé l'image de ixe par f. Dans l'autre sens, si f de ixe égale igrec, on dit que ixe est un antécédent de igrec. L'asymétrie est essentielle : une image est unique, mais un nombre peut avoir plusieurs antécédents, ou aucun. Exemple : pour f de ixe égale ixe au carré moins un, l'image de trois vaut neuf moins un, donc huit. Et les antécédents de trois s'obtiennent en résolvant ixe au carré moins un égale trois, soit ixe au carré égale quatre : trois a deux antécédents, deux et moins deux.",
+   "texte": "Image unique ; 3 a deux antécédents : 2 et −2."
+  },
+  {
+   "id": "p04",
+   "ecran": "piege",
+   "dit": "Un piège de vocabulaire à désamorcer tout de suite : f, sans parenthèses, désigne la fonction, le procédé lui-même, tandis que f de ixe désigne un nombre, l'image de ixe. Et f de ixe ne signifie surtout pas f multiplié par ixe : l'écriture forme un tout indissociable, comme un nom qu'on ne coupe pas en deux.",
+   "texte": "f : le procédé. f(x) : un nombre."
+  },
+  {
+   "id": "p05",
+   "ecran": "operations",
+   "dit": "À partir de deux fonctions f et g, on fabrique de nouvelles fonctions : leur somme, leur produit et leur quotient, calculés point par point, image par image. Ces nouvelles fonctions vivent sur l'intersection des deux ensembles de définition, et pour le quotient, on exclut en plus toutes les valeurs où g s'annule, car diviser par zéro est impossible.",
+   "texte": "Somme, produit, quotient : point par point."
+  },
+  {
+   "id": "p06",
+   "ecran": "ex_operations",
+   "dit": "Exemple : f de ixe égale ixe plus un, et g de ixe égale ixe moins deux. Leur produit donne, en développant ixe plus un, facteur de ixe moins deux, le résultat ixe au carré moins ixe moins deux. Leur quotient, lui, n'existe que si le dénominateur ne s'annule pas : il est défini pour ixe différent de deux, la valeur qui annule g.",
+   "texte": "(x+1)(x−2) = x² − x − 2 ; quotient pour x ≠ 2."
+  },
+  {
+   "id": "p07",
+   "ecran": "domaine",
+   "dit": "L'ensemble de définition, noté D f, est l'ensemble des réels pour lesquels f de ixe existe, c'est-à-dire se calcule. Quatre réflexes couvrent presque tous les cas. Un polynôme est défini partout, sur l'ensemble des réels. Une fonction rationnelle exclut les valeurs qui annulent son dénominateur. Une racine carrée impose que l'expression sous la racine soit positive ou nulle. Et dès qu'un dénominateur apparaît, il doit rester différent de zéro.",
+   "texte": "D_f : là où f(x) se calcule vraiment."
+  },
+  {
+   "id": "p08",
+   "ecran": "ex_domaine",
+   "dit": "Exemple complet : f de ixe égale racine de ixe plus deux, le tout divisé par ixe moins trois. Deux conditions se cumulent : sous la racine, ixe plus deux doit être positif ou nul, donc ixe supérieur ou égal à moins deux ; et le dénominateur ixe moins trois doit être non nul, donc ixe différent de trois. Conclusion : l'ensemble de définition est l'intervalle fermé en moins deux et ouvert en trois, réuni avec l'intervalle ouvert en trois et qui va jusqu'à plus l'infini.",
+   "texte": "D_f = [−2 ; 3[ ∪ ]3 ; +∞[ : deux conditions."
+  },
+  {
+   "id": "p09",
+   "ecran": "references1",
+   "dit": "Certaines fonctions reviennent sans cesse : ce sont les fonctions de référence, nos modèles de comparaison. La fonction affine, a ixe plus b, est définie partout et monte si a est positif, descend si a est négatif. La fonction carré, définie partout, descend jusqu'à zéro puis remonte : c'est la parabole. La fonction cube, elle, monte sur tout l'ensemble des réels.",
+   "texte": "Affine, carré, cube : les premiers modèles."
+  },
+  {
+   "id": "p10",
+   "ecran": "references2",
+   "dit": "Trois autres modèles à connaître par cœur. La racine carrée n'existe que pour ixe positif ou nul, et elle y est croissante. La fonction inverse, un sur ixe, exclut zéro et décroît sur chacune de ses deux branches, sans jamais traverser l'axe des abscisses. La valeur absolue, enfin, descend jusqu'à zéro puis remonte, en formant un vé caractéristique. Retenir l'allure de ces courbes permet d'anticiper le comportement de fonctions plus compliquées qui leur ressemblent.",
+   "texte": "Racine, inverse, valeur absolue : à connaître."
+  },
+  {
+   "id": "p11",
+   "ecran": "comparer",
+   "dit": "Comparer deux fonctions sur un intervalle, c'est décider laquelle est au-dessus de l'autre. On dit que f est inférieure ou égale à g sur l'intervalle si, pour tout ixe de l'intervalle, f de ixe est inférieure ou égale à g de ixe. Graphiquement, la courbe de f reste alors en dessous de celle de g. La méthode universelle : étudier le signe de la différence, f de ixe moins g de ixe. Négative ou nulle, f est en dessous ; positive ou nulle, f est au-dessus ; et si le signe change, on découpe l'intervalle.",
+   "texte": "Comparer : le signe de f(x) − g(x) décide."
+  },
+  {
+   "id": "p12",
+   "ecran": "ex_comparer",
+   "dit": "Application : comparer la fonction carré et la fonction identité, g de ixe égale ixe, sur l'intervalle de zéro à un. La différence vaut ixe au carré moins ixe, que l'on factorise en ixe, facteur de ixe moins un. Sur cet intervalle, ixe est positif et ixe moins un est négatif : leur produit est donc négatif ou nul. Conclusion : la fonction carré est en dessous de la fonction identité entre zéro et un, la parabole passe sous la droite d'équation igrec égale ixe.",
+   "texte": "Sur [0 ; 1] : x² ≤ x, parabole sous la droite."
+  },
+  {
+   "id": "p13",
+   "ecran": "bornee",
+   "dit": "Vocabulaire voisin : une fonction est majorée sur un intervalle s'il existe un plafond, un réel grand M, que ses images ne dépassent jamais ; elle est minorée s'il existe un plancher, un réel petit m, sous lequel ses images ne descendent jamais. À la fois majorée et minorée, elle est dite bornée : toutes ses images tiennent entre deux bornes.",
+   "texte": "Majorée, minorée, bornée : images encadrées."
+  },
+  {
+   "id": "p14",
+   "ecran": "parite",
+   "dit": "Pour repérer une symétrie, on étudie la parité. Condition préalable : l'ensemble de définition doit être centré en zéro, c'est-à-dire que si ixe y appartient, son opposé aussi. La fonction est paire si f de moins ixe égale f de ixe pour tout ixe : sa courbe est alors symétrique par rapport à l'axe des ordonnées, et l'étude se restreint aux ixe positifs. Elle est impaire si f de moins ixe égale moins f de ixe : la courbe est symétrique par rapport à l'origine du repère.",
+   "texte": "Paire : symétrie Oy. Impaire : symétrie O."
+  },
+  {
+   "id": "p15",
+   "ecran": "ex_parite",
+   "dit": "Deux vérifications express. Pour f de ixe égale ixe au carré moins quatre, remplacer ixe par moins ixe ne change rien, car le carré efface le signe : f de moins ixe égale f de ixe, la fonction est paire, comme toutes les fonctions en ixe au carré. Pour g de ixe égale ixe au cube, le cube conserve le signe : g de moins ixe égale moins g de ixe, la fonction est impaire.",
+   "texte": "x² − 4 est paire ; x³ est impaire."
+  },
+  {
+   "id": "p16",
+   "ecran": "periodicite",
+   "dit": "Une fonction est périodique de période grand T, strictement positive, si décaler l'abscisse de T ne change pas l'image : f de ixe plus T égale f de ixe, pour tout ixe. La conséquence pratique est précieuse : on restreint l'étude à un intervalle de longueur T, puis la courbe entière se reconstruit par translations successives du même motif. L'exemple de référence est la fonction sinus, de période deux pi : étudiée entre zéro et deux pi, elle se répète ensuite indéfiniment.",
+   "texte": "Périodique : un motif répété, sin de période 2π."
+  },
+  {
+   "id": "p17",
+   "ecran": "variations_def",
+   "dit": "Décrivons maintenant comment une fonction varie sur un intervalle. Elle est croissante si l'ordre est conservé : quand les abscisses grandissent, les images grandissent aussi, a strictement inférieur à b entraîne f de a inférieure ou égale à f de b. Elle est décroissante si l'ordre est renversé : les images diminuent quand les abscisses augmentent. Et si toutes les images sont égales, la fonction est constante. Un tableau de variations résume tout cela : les intervalles de monotonie et les extremums, maximums et minimums.",
+   "texte": "Croissante : ordre conservé. Décroissante : renversé."
+  },
+  {
+   "id": "p18",
+   "ecran": "ex_variations",
+   "dit": "Démonstration modèle, avec la fonction carré. La différence des images, f de b moins f de a, se factorise en b moins a, facteur de b plus a. Si a et b sont positifs avec a inférieur à b, les deux facteurs sont positifs : la différence est positive, la fonction carré est croissante sur les positifs. Si a et b sont négatifs, b plus a est négatif : la différence devient négative, la fonction est décroissante sur les négatifs. Le minimum global vaut donc f de zéro, c'est-à-dire zéro.",
+   "texte": "x² : décroissante avant 0, croissante après."
+  },
+  {
+   "id": "p19",
+   "ecran": "courbe",
+   "dit": "Tout se rassemble dans la courbe représentative : dans un repère, c'est l'ensemble des points M de coordonnées ixe et igrec tels que igrec égale f de ixe, pour ixe dans l'ensemble de définition. Sur cette courbe, chaque lecture est un voyage en deux temps : pour lire l'image d'une abscisse, on monte verticalement de l'abscisse jusqu'à la courbe, puis on traverse horizontalement jusqu'à l'axe des ordonnées. Et dans l'autre sens, partir d'une ordonnée et traverser jusqu'à la courbe donne les antécédents.",
+   "texte": "Lire f(x₀) : monter à la courbe, traverser vers Oy."
+  },
+  {
+   "id": "p20",
+   "ecran": "methode",
+   "dit": "La méthode de construction d'une courbe tient en quatre temps. D'abord, déterminer l'ensemble de définition : pas de courbe hors de lui. Ensuite, tester parité et périodicité pour réduire le domaine d'étude. Puis dresser le tableau de variations, qui donne l'allure générale. Enfin, placer quelques points calculés et tracer la courbe, en complétant par la symétrie éventuelle.",
+   "texte": "Tracer : D_f, symétries, variations, points."
+  },
+  {
+   "id": "p21",
+   "ecran": "ex_courbe",
+   "dit": "Dernier exemple filé : tracer la fonction carré. Son ensemble de définition est l'ensemble des réels, elle est paire, donc on étudie seulement les ixe positifs. Elle décroît puis croît, avec un minimum au point de coordonnées zéro, zéro. On place les points zéro, zéro ; un, un ; et deux, quatre, puis on complète l'autre moitié par symétrie par rapport à l'axe des ordonnées : on obtient la parabole de sommet l'origine.",
+   "texte": "x² : une parabole de sommet O, par symétrie."
+  },
+  {
+   "id": "p22",
+   "ecran": "recap",
+   "dit": "Récapitulons l'ensemble du cours. Une fonction associe à chaque ixe une image unique, mais un nombre peut avoir plusieurs antécédents. L'ensemble de définition se trouve en traquant les dénominateurs non nuls et les expressions positives sous les racines. Comparer deux fonctions revient à étudier le signe de leur différence. Parité et périodicité réduisent l'étude grâce aux symétries et aux motifs répétés. Et les variations, résumées dans un tableau, permettent enfin de tracer la courbe.",
+   "texte": "L'essentiel du cours en cinq points."
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Définir une fonction : image, opérations, ensemble de définition"
+  },
+  {
+   "debut": "p09",
+   "sous_titre": "Fonctions de référence, comparaison et symétries",
+   "pont": {
+    "texte": "Partie 2 : références, comparaison, symétries.",
+    "dit": "Partie deux : les fonctions modèles et la comparaison. Nous découvrirons les fonctions de référence, dont les allures servent partout, puis nous apprendrons à comparer deux fonctions, à les borner, et à reconnaître les symétries de parité et les motifs de périodicité."
+   }
+  },
+  {
+   "debut": "p17",
+   "sous_titre": "Variations et représentation graphique",
+   "pont": {
+    "texte": "Partie 3 : variations et courbe représentative.",
+    "dit": "Partie trois : faire varier et représenter. Nous définirons la croissance et la décroissance, nous démontrerons les variations de la fonction carré, et nous assemblerons tout dans le tracé de la courbe représentative."
+   }
+  }
+ ]
+}
