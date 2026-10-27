@@ -1,0 +1,315 @@
+{
+ "cours": 7279,
+ "ecrans": {
+  "choix": {
+   "kicker": "Choisir sa méthode",
+   "texte": "Coefficient égal à un : substitution facile. Coefficients opposés : la combinaison élimine d'un coup.",
+   "type": "phrase"
+  },
+  "comb_ex": {
+   "kicker": "Exemple · la combinaison en action",
+   "tex": [
+    "\\begin{cases} 3x + 2y = 12 \\\\ 5x - 2y = 4 \\end{cases}",
+    "3x + 2y + 5x - 2y = 12 + 4",
+    "8x = 16 \\qquad x = 2"
+   ],
+   "titre": "Les termes en y s'annulent : il reste une équation en x",
+   "type": "etape"
+  },
+  "comb_fin": {
+   "kicker": "Exemple · la combinaison, la fin",
+   "tex": [
+    "3 \\times 2 + 2y = 12",
+    "2y = 6 \\qquad y = 3",
+    "S = \\{(2,\\,3)\\}"
+   ],
+   "titre": "On reporte x dans une équation de départ",
+   "type": "etape"
+  },
+  "comb_principe": {
+   "kicker": "La méthode par combinaison",
+   "tex": [
+    "\\text{multiplier pour aligner}",
+    "\\text{additionner : éliminer}",
+    "\\text{résoudre, puis reporter}"
+   ],
+   "titre": "Éliminer une inconnue par addition",
+   "type": "etape"
+  },
+  "definition": {
+   "kicker": "Définition",
+   "note": "Résoudre : trouver tous les couples qui vérifient les deux équations en même temps.",
+   "tex": "\\begin{cases} ax + by = c \\\\ a'x + b'y = c' \\end{cases}",
+   "type": "formule"
+  },
+  "graphique": {
+   "kicker": "L'interprétation graphique",
+   "texte": "Chaque équation est une droite : les solutions du système sont les points communs aux deux droites.",
+   "type": "phrase"
+  },
+  "ineq_def": {
+   "kicker": "Systèmes d'inéquations · définition",
+   "note": "Résoudre : déterminer la région du plan dont les points vérifient toutes les inéquations.",
+   "tex": "ax + by \\le c \\quad (\\text{ou } <,\\ >,\\ \\ge)",
+   "type": "formule"
+  },
+  "ineq_detail": {
+   "kicker": "Exemple d'inéquations · les trois demi-plans",
+   "tex": [
+    "x + y \\le 4 : \\text{ sous la droite } y = -x + 4",
+    "x \\ge 0 : \\text{ à droite de l'axe des ordonnées}",
+    "y \\ge 0 : \\text{ au-dessus de l'axe des abscisses}"
+   ],
+   "titre": "L'origine passe le premier test : zéro est sous quatre",
+   "type": "etape"
+  },
+  "ineq_enonce": {
+   "kicker": "Exemple d'inéquations · l'énoncé",
+   "note": "Trois conditions larges : toutes les frontières seront comprises.",
+   "tex": "\\begin{cases} x + y \\le 4 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases}",
+   "type": "formule"
+  },
+  "ineq_methode": {
+   "kicker": "Résolution graphique des inéquations",
+   "tex": [
+    "\\text{tracer les droites frontières}",
+    "\\text{tester l'origine}",
+    "\\text{croiser les demi-plans}"
+   ],
+   "titre": "Une frontière, un test, par inéquation",
+   "type": "etape"
+  },
+  "ineq_triangle": {
+   "kicker": "Exemple d'inéquations · la région solution",
+   "note": "Chaque point du triangle, frontières comprises, vérifie les trois inéquations.",
+   "tex": "(0,\\,0), \\quad (4,\\,0), \\quad (0,\\,4)",
+   "type": "formule"
+  },
+  "intro": {
+   "kicker": "Introduction",
+   "texte": "Un système pose deux conditions en même temps : avec des égalités, la réponse est un point ; avec des inégalités, une région.",
+   "type": "phrase"
+  },
+  "recap": {
+   "etapes": [
+    "Équations : substitution ou combinaison",
+    "Un système d'équations vise un couple",
+    "Graphique : sécantes, parallèles, confondues",
+    "Inéquations : croiser les demi-plans",
+    "La solution d'inéquations est une région"
+   ],
+   "kicker": "À retenir",
+   "type": "recap"
+  },
+  "subst_ex_debut": {
+   "kicker": "Exemple · la substitution en action",
+   "tex": [
+    "\\begin{cases} x + y = 7 \\\\ 2x - y = 2 \\end{cases}",
+    "y = 7 - x"
+   ],
+   "titre": "De la première équation, on tire y en fonction de x",
+   "type": "etape"
+  },
+  "subst_ex_fin": {
+   "kicker": "Exemple · la substitution, la fin",
+   "tex": [
+    "2x - (7 - x) = 2",
+    "3x = 9 \\qquad x = 3",
+    "y = 7 - 3 = 4 \\qquad S = \\{(3,\\,4)\\}"
+   ],
+   "titre": "On remplace dans la seconde équation",
+   "type": "etape"
+  },
+  "subst_principe": {
+   "kicker": "La méthode par substitution",
+   "tex": [
+    "\\text{exprimer une inconnue}",
+    "\\text{remplacer dans la seconde}",
+    "\\text{résoudre, puis reporter}"
+   ],
+   "titre": "Exprime, remplace, résous",
+   "type": "etape"
+  },
+  "synthese": {
+   "kicker": "La synthèse",
+   "tex": [
+    "\\text{équations : un couple}",
+    "\\text{inéquations : une région}"
+   ],
+   "titre": "Deux systèmes, deux natures de solutions",
+   "type": "etape"
+  },
+  "titre": {
+   "anim": {
+    "hauteur": 250,
+    "nom": "droites_trois_cas_fig"
+   },
+   "kicker": "Mathématique · Les systèmes",
+   "sous": "Deux équations : substitution, combinaison et lecture graphique — puis les inéquations et leurs régions",
+   "titre": "Systèmes d'équations et d'inéquations : un point, ou toute une région",
+   "type": "titre"
+  },
+  "trois_cas": {
+   "anim": {
+    "hauteur": 130,
+    "nom": "droites_trois_cas_fig"
+   },
+   "kicker": "Les trois cas possibles",
+   "tex": [
+    "\\text{sécantes : une solution unique}",
+    "\\text{parallèles distinctes : aucune solution}",
+    "\\text{confondues : une infinité de solutions}"
+   ],
+   "titre": "Deux droites : trois façons de se rencontrer",
+   "type": "etape"
+  },
+  "verification": {
+   "kicker": "Le réflexe de vérification",
+   "tex": [
+    "3 + 4 = 7",
+    "2 \\times 3 - 4 = 2",
+    "\\text{les deux égalités de départ sont vérifiées}"
+   ],
+   "titre": "Le couple trouvé doit passer les deux équations",
+   "type": "etape"
+  }
+ },
+ "matiere": "Mathématique",
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "Systèmes d'équations : substitution et combinaison"
+  },
+  {
+   "debut": "p12",
+   "pont": {
+    "dit": "Partie deux : voir les systèmes. Nous lirons graphiquement un système d'équations, avec les trois positions possibles de deux droites, puis nous passerons aux systèmes d'inéquations, dont la solution n'est plus un point mais toute une région du plan, avec un exemple complet.",
+    "texte": "Partie 2 : lecture graphique, puis les systèmes d'inéquations."
+   },
+   "sous_titre": "Lecture graphique et systèmes d'inéquations"
+  }
+ ],
+ "phrases": [
+  {
+   "dit": "Bienvenue dans ce cours consacré aux systèmes d'équations et d'inéquations linéaires à deux inconnues. Deux méthodes de calcul, la substitution et la combinaison, donneront le couple solution ; la lecture graphique expliquera les trois cas possibles ; et les systèmes d'inéquations feront passer la réponse d'un point à toute une région du plan.",
+   "ecran": "titre",
+   "id": "p01",
+   "texte": "Systèmes : un point, ou toute une région."
+  },
+  {
+   "dit": "Un système pose plusieurs conditions sur les mêmes inconnues, à satisfaire en même temps. Avec des équations, on cherche les couples précis qui conviennent : le plus souvent, un seul. Avec des inéquations, on cherche tous les points d'une région. Tout ce cours joue sur ce contraste.",
+   "ecran": "intro",
+   "id": "p02",
+   "texte": "Des conditions simultanées : un point, ou une région."
+  },
+  {
+   "dit": "Définition : un système de deux équations linéaires à deux inconnues, ixe et igrec, aligne deux égalités de la forme a ixe plus bé igrec égale cé. Résoudre ce système, c'est trouver tous les couples qui vérifient simultanément les deux équations, pas l'une ou l'autre, mais bien les deux ensemble.",
+   "ecran": "definition",
+   "id": "p03",
+   "texte": "Deux égalités, à vérifier simultanément."
+  },
+  {
+   "dit": "Première méthode : la substitution. On exprime une inconnue en fonction de l'autre dans une équation, puis on remplace cette expression dans la seconde équation. Il ne reste alors qu'une équation à une seule inconnue, que l'on sait résoudre ; on revient ensuite chercher l'autre inconnue.",
+   "ecran": "subst_principe",
+   "id": "p04",
+   "texte": "Substitution : exprimer, remplacer, résoudre."
+  },
+  {
+   "dit": "Exemple : ixe plus igrec égale sept, et deux ixe moins igrec égale deux. De la première équation, on tire igrec égale sept moins ixe. Cette expression de igrec va maintenant remplacer igrec partout dans la seconde équation.",
+   "ecran": "subst_ex_debut",
+   "id": "p05",
+   "texte": "Exemple : y = 7 − x, tiré de la première équation."
+  },
+  {
+   "dit": "On remplace : deux ixe, moins la parenthèse sept moins ixe, égale deux. La parenthèse se développe et les ixe se regroupent : trois ixe égale neuf, donc ixe égale trois. On revient à l'expression de igrec : sept moins trois égale quatre. La solution est le couple trois et quatre.",
+   "ecran": "subst_ex_fin",
+   "id": "p06",
+   "texte": "Substitution : x = 3, puis y = 4."
+  },
+  {
+   "dit": "Avant de conclure, le réflexe de vérification : trois plus quatre égale sept, la première équation est satisfaite ; deux fois trois moins quatre égale deux, la seconde aussi. Un couple qui ne passe pas les deux équations n'est pas solution du système, même s'il en satisfait une parfaitement.",
+   "ecran": "verification",
+   "id": "p07",
+   "texte": "Vérifier le couple dans les deux équations."
+  },
+  {
+   "dit": "Deuxième méthode : la combinaison. On multiplie les équations par des nombres bien choisis, de façon que l'addition membre à membre élimine une inconnue. Parfois, aucun coefficient à ajuster : les termes sont déjà opposés, et l'élimination est immédiate, comme dans l'exemple qui suit.",
+   "ecran": "comb_principe",
+   "id": "p08",
+   "texte": "Combinaison : éliminer une inconnue par addition."
+  },
+  {
+   "dit": "Exemple : trois ixe plus deux igrec égale douze, et cinq ixe moins deux igrec égale quatre. Les termes en igrec sont déjà opposés, plus deux igrec et moins deux igrec. En additionnant membre à membre, ils s'annulent : huit ixe égale seize, donc ixe égale deux.",
+   "ecran": "comb_ex",
+   "id": "p09",
+   "texte": "Combinaison : 8x = 16, donc x = 2."
+  },
+  {
+   "dit": "Il reste à trouver igrec : on reporte ixe égale deux dans la première équation. Trois fois deux, plus deux igrec, égale douze : deux igrec égale six, donc igrec égale trois. La solution de ce système est le couple deux et trois.",
+   "ecran": "comb_fin",
+   "id": "p10",
+   "texte": "Combinaison : y = 3, solution (2, 3)."
+  },
+  {
+   "dit": "Comment choisir entre les deux méthodes ? Si une inconnue a un coefficient égal à un, la substitution est immédiate, sans fraction. Si les coefficients d'une inconnue sont déjà opposés, ou faciles à rendre opposés, la combinaison est plus rapide. Les deux routes mènent au même couple : choisis la plus courte.",
+   "ecran": "choix",
+   "id": "p11",
+   "texte": "Choisir la route la plus courte vers le couple."
+  },
+  {
+   "dit": "Lisons maintenant ces systèmes graphiquement. Chaque équation linéaire représente une droite dans le plan. Un couple est solution du système exactement lorsque le point correspondant est sur les deux droites à la fois : les solutions sont les points d'intersection des deux droites.",
+   "ecran": "graphique",
+   "id": "p12",
+   "texte": "Graphique : la solution est l'intersection."
+  },
+  {
+   "dit": "Deux droites du plan ne peuvent se rencontrer que de trois façons. Si elles sont sécantes, elles se coupent en un point : le système a une solution unique. Si elles sont parallèles et distinctes, elles ne se rencontrent jamais : aucune solution. Si elles sont confondues, tous leurs points sont communs : une infinité de solutions.",
+   "ecran": "trois_cas",
+   "id": "p13",
+   "texte": "Sécantes, parallèles, confondues : trois cas."
+  },
+  {
+   "dit": "Changeons les égalités en inégalités. Un système d'inéquations linéaires est un ensemble d'inéquations du type a ixe plus bé igrec inférieur ou égal à cé, avec des signes larges ou stricts, toutes à satisfaire simultanément. Le résoudre revient à déterminer la région du plan dont les points vérifient toutes les inéquations.",
+   "ecran": "ineq_def",
+   "id": "p14",
+   "texte": "Inéquations : toutes les inégalités en même temps."
+  },
+  {
+   "dit": "La résolution est graphique, en trois gestes répétés pour chaque inéquation : tracer la droite frontière, en trait plein si l'inégalité est large, en pointillés si elle est stricte ; déterminer le demi-plan solution en testant un point simple, souvent l'origine ; puis hachurer l'intersection des demi-plans, qui est l'ensemble des solutions.",
+   "ecran": "ineq_methode",
+   "id": "p15",
+   "texte": "Frontière, test, intersection des demi-plans."
+  },
+  {
+   "dit": "Exemple complet : ixe plus igrec inférieur ou égal à quatre, avec ixe positif ou nul et igrec positif ou nul. Les trois inégalités sont larges : toutes les frontières feront partie de la solution, et seront tracées en trait plein.",
+   "ecran": "ineq_enonce",
+   "id": "p16",
+   "texte": "Exemple : x + y ≤ 4, x ≥ 0, y ≥ 0."
+  },
+  {
+   "dit": "Première condition : le demi-plan situé sous la droite d'équation igrec égale moins ixe plus quatre ; le test à l'origine le confirme, car zéro est bien inférieur ou égal à quatre. Deuxième condition : à droite de l'axe des ordonnées. Troisième condition : au-dessus de l'axe des abscisses.",
+   "ecran": "ineq_detail",
+   "id": "p17",
+   "texte": "Trois demi-plans, dont celui sous y = −x + 4."
+  },
+  {
+   "dit": "L'intersection de ces trois demi-plans est un triangle, de sommets l'origine, le point de coordonnées quatre et zéro, et le point de coordonnées zéro et quatre. Chaque point de ce triangle, frontières comprises, est solution du système, et aucun point extérieur ne l'est.",
+   "ecran": "ineq_triangle",
+   "id": "p18",
+   "texte": "La région solution : un triangle (0, 0), (4, 0), (0, 4)."
+  },
+  {
+   "dit": "La synthèse tient en deux lignes. Un système d'équations se résout par le calcul, substitution ou combinaison, et sa solution est un couple, ou parfois aucun, ou parfois une infinité. Un système d'inéquations se résout graphiquement, en croisant les demi-plans, et sa solution est une région du plan.",
+   "ecran": "synthese",
+   "id": "p19",
+   "texte": "Équations : un couple. Inéquations : une région."
+  },
+  {
+   "dit": "Pour finir, retenez la double image de ce cours : deux droites qui se coupent donnent le couple solution d'un système d'équations, trouvé par substitution ou par combinaison ; et des demi-plans qui se croisent donnent la région solution d'un système d'inéquations. Dans les deux cas, un point est solution seulement s'il satisfait toutes les conditions en même temps.",
+   "ecran": "recap",
+   "id": "p20",
+   "texte": "Un point solution satisfait toutes les conditions."
+  }
+ ],
+ "titre": "Systèmes d'équations et d'inéquations : un point, ou toute une région"
+}
