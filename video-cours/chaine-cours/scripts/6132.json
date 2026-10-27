@@ -1,0 +1,449 @@
+{
+ "cours": 6132,
+ "titre": "Glycémie et pression artérielle : réguler, nourrir, prévenir",
+ "matiere": "Biologie",
+ "ecrans": {
+  "titre": {
+   "type": "titre",
+   "kicker": "Biologie · Glycémie et pression artérielle",
+   "titre": "Glycémie et pression artérielle : réguler, nourrir, prévenir",
+   "sous": "Deux équilibres, une même exigence : la régulation",
+   "anim": {
+    "nom": "courbe_concentration_fig",
+    "hauteur": 250
+   }
+  },
+  "deux_equilibres": {
+   "type": "phrase",
+   "kicker": "Deux instruments de l'orchestre du corps",
+   "texte": "Glycémie et pression : si l'un joue faux, tout se dérègle.",
+   "anim": {
+    "nom": "courbe_concentration_fig",
+    "hauteur": 120
+   }
+  },
+  "insuline": {
+   "type": "etape",
+   "kicker": "L'insuline",
+   "titre": "La clé qui ouvre les portes au glucose",
+   "tex": [
+    "\\text{cellules bêta du pancréas}",
+    "\\text{le glucose entre dans les cellules}",
+    "\\text{stockage : glycogène, triglycérides}"
+   ]
+  },
+  "glucagon": {
+   "type": "etape",
+   "kicker": "Le glucagon",
+   "titre": "L'hormone qui mobilise les réserves",
+   "tex": [
+    "\\text{cellules alpha du pancréas}",
+    "\\text{la glycémie remonte quand elle baisse}",
+    "\\text{glycogénolyse, néoglucogenèse}"
+   ]
+  },
+  "autres_hormones": {
+   "type": "etape",
+   "kicker": "Les autres acteurs",
+   "titre": "Cortisol, adrénaline, incrétines",
+   "tex": [
+    "\\text{cortisol : le stress fait monter la glycémie}",
+    "\\text{adrénaline : l'effort mobilise le glucose}",
+    "\\text{incrétines : après le repas, plus d'insuline}",
+    "\\text{amylin : vidange gastrique ralentie}"
+   ]
+  },
+  "desequilibres": {
+   "type": "etape",
+   "kicker": "Hyperglycémie, hypoglycémie",
+   "titre": "Trop ou trop peu de glucose",
+   "tex": [
+    "\\text{hyperglycémie : trop de glucose}",
+    "\\text{hypoglycémie : trop peu de glucose}",
+    "\\text{réponse : des glucides rapides, vite}"
+   ]
+  },
+  "glucides_fibres": {
+   "type": "etape",
+   "kicker": "Glucides et fibres",
+   "titre": "Le carburant et son frein naturel",
+   "tex": [
+    "\\text{glucides complexes : une montée lente}",
+    "\\text{fibres solubles : l'absorption ralentit}",
+    "\\text{fibres insolubles : volume et sensibilité}"
+   ]
+  },
+  "ig": {
+   "type": "formule",
+   "kicker": "L'index glycémique",
+   "tex": "IG = \\tfrac{\\text{aire de l'aliment}}{\\text{aire du glucose}} \\times 100",
+   "note": "Mesuré contre le glucose ou le pain blanc."
+  },
+  "exemple_ig": {
+   "type": "etape",
+   "kicker": "Exemple chiffré : index et charge",
+   "titre": "Lire un tableau, choisir son repas",
+   "tex": [
+    "\\text{pain blanc : IG 75, charge 10}",
+    "\\text{riz blanc : IG 73, charge 28}",
+    "\\text{lentilles : IG 30, charge 7}",
+    "\\text{pomme : IG 38, charge 6}"
+   ]
+  },
+  "recap1": {
+   "type": "recap",
+   "kicker": "Partie 1 : l'essentiel",
+   "etapes": [
+    "Insuline : entrée et stockage du glucose",
+    "Glucagon : mobilisation des réserves",
+    "Cortisol, adrénaline, incrétines, amylin",
+    "Fibres : le frein naturel de la glycémie",
+    "IG : vitesse de montée, charge : portion"
+   ]
+  },
+  "pa_def": {
+   "type": "etape",
+   "kicker": "La pression artérielle",
+   "titre": "La force du sang sur les parois",
+   "tex": [
+    "\\text{systolique : le cœur se contracte}",
+    "\\text{diastolique : le cœur se relâche}",
+    "\\text{unité : le millimètre de mercure}",
+    "\\text{optimale : en dessous de 120 sur 80}"
+   ]
+  },
+  "acteurs_pa": {
+   "type": "etape",
+   "kicker": "Les acteurs de la pression",
+   "titre": "Cœur, vaisseaux, reins, système nerveux",
+   "tex": [
+    "\\text{cœur : le débit cardiaque}",
+    "\\text{vaisseaux : le diamètre, la résistance}",
+    "\\text{reins : le volume sanguin}",
+    "\\text{système nerveux autonome : le réglage}"
+   ]
+  },
+  "sna": {
+   "type": "etape",
+   "kicker": "Sympathique et parasympathique",
+   "titre": "Accélérer ou ralentir le jeu",
+   "tex": [
+    "\\text{sympathique : cela monte}",
+    "\\text{parasympathique : repos, cela descend}",
+    "\\text{noradrénaline contre nerf vague}"
+   ]
+  },
+  "barorecepteurs": {
+   "type": "etape",
+   "kicker": "Les barorécepteurs",
+   "titre": "Les sentinelles de la pression",
+   "tex": [
+    "\\text{aorte et carotides : ils s'étirent}",
+    "\\text{pression haute : freiner, dilater}",
+    "\\text{pression basse : accélérer, resserrer}"
+   ]
+  },
+  "sraa": {
+   "type": "etape",
+   "kicker": "La cascade SRAA",
+   "titre": "Rénine, angiotensine, aldostérone",
+   "tex": [
+    "\\text{rénine : les reins déclenchent}",
+    "\\text{angiotensine I, puis II par l'ECA}",
+    "\\text{angiotensine II : vasoconstriction}",
+    "\\text{aldostérone : sodium et eau retenus}"
+   ]
+  },
+  "sraa_medocs": {
+   "type": "etape",
+   "kicker": "Quand le SRAA s'emballe",
+   "titre": "Bloquer la cascade, baisser la pression",
+   "tex": [
+    "\\text{inhibiteurs de l'ECA}",
+    "\\text{antagonistes : les récepteurs bloqués}",
+    "\\text{cas : 150 sur 95, SRAA suspecté}"
+   ]
+  },
+  "sodium_potassium": {
+   "type": "etape",
+   "kicker": "Sodium et potassium",
+   "titre": "L'ennemi et son contre-pouvoir",
+   "tex": [
+    "\\text{sodium : moins de 2 g par jour}",
+    "\\text{soit environ 5 g de sel}",
+    "\\text{potassium : 3,5 à 4,7 g par jour}",
+    "\\text{fruits, légumes, légumineuses}"
+   ]
+  },
+  "autres_nutriments": {
+   "type": "etape",
+   "kicker": "Les autres nutriments",
+   "titre": "Magnésium, calcium, oméga-3, nitrates",
+   "tex": [
+    "\\text{magnésium : les vaisseaux se détendent}",
+    "\\text{calcium : un rôle plus complexe}",
+    "\\text{oméga-3 : poissons gras}",
+    "\\text{nitrates : l'oxyde nitrique dilate}"
+   ]
+  },
+  "dash": {
+   "type": "etape",
+   "kicker": "Le régime DASH",
+   "titre": "Un modèle alimentaire éprouvé",
+   "tex": [
+    "\\text{fruits : 4 à 5 portions par jour}",
+    "\\text{légumes : 4 à 5 portions par jour}",
+    "\\text{produits laitiers : 2 à 3 portions}",
+    "\\text{céréales complètes : 6 à 8 portions}"
+   ]
+  },
+  "recap2": {
+   "type": "recap",
+   "kicker": "Partie 2 : l'essentiel",
+   "etapes": [
+    "Pression : systolique, diastolique, mmHg",
+    "SNA : sympathique contre parasympathique",
+    "Barorécepteurs : aorte, carotides",
+    "SRAA : rénine, angiotensine, aldostérone",
+    "Sodium bas, potassium haut, régime DASH"
+   ]
+  },
+  "diabete_types": {
+   "type": "etape",
+   "kicker": "Diabète de type 1 et de type 2",
+   "titre": "Manque d'insuline ou résistance",
+   "tex": [
+    "\\text{type 1 : un manque d'insuline}",
+    "\\text{type 2 : une résistance à l'insuline}",
+    "\\text{cas : glycémie à jeun 140, HbA1c 7,5}"
+   ]
+  },
+  "hypertension_cas": {
+   "type": "etape",
+   "kicker": "Hypertension et cas cliniques",
+   "titre": "Lire un bilan, proposer une prise en charge",
+   "tex": [
+    "\\text{58 ans, surpoids, soif fréquente}",
+    "\\text{72 ans, vertiges en se levant}",
+    "\\text{chaque patient : un cas unique}"
+   ]
+  },
+  "strategies": {
+   "type": "etape",
+   "kicker": "Les stratégies nutritionnelles",
+   "titre": "Rythme, protéines, lipides, fibres",
+   "tex": [
+    "\\text{répartir les glucides sur la journée}",
+    "\\text{protéines et lipides : des pics atténués}",
+    "\\text{fibres : 30 g par jour, un objectif}"
+   ]
+  },
+  "facteurs": {
+   "type": "etape",
+   "kicker": "Les facteurs qui font varier la pression",
+   "titre": "Âge, poids, stress, alcool, tabac",
+   "tex": [
+    "\\text{âge : les artères se rigidifient}",
+    "\\text{poids : l'obésité, un risque majeur}",
+    "\\text{stress, alcool, tabac : cela monte}",
+    "\\text{activité physique : cela descend}"
+   ]
+  },
+  "synthese": {
+   "type": "phrase",
+   "kicker": "Devenir chef d'orchestre de sa santé",
+   "texte": "Alimentation, activité, sommeil, stress : l'équilibre se joue partout."
+  },
+  "recap_final": {
+   "type": "recap",
+   "kicker": "Ce qu'il faut retenir",
+   "etapes": [
+    "Glycémie : insuline contre glucagon",
+    "Pression : cœur, vaisseaux, reins, nerfs",
+    "SRAA et barorécepteurs : deux régulations",
+    "Sodium bas, potassium haut, DASH",
+    "Cas cliniques : analyser, personnaliser"
+   ]
+  }
+ },
+ "phrases": [
+  {
+   "id": "p01",
+   "dit": "Bienvenue dans ce cours sur la santé nutritionnelle, consacré à deux équilibres vitaux : la glycémie et la pression artérielle. Imaginez votre corps comme un orchestre : chaque organe joue sa partition, et la glycémie comme la pression sont deux instruments majeurs. Si l'un joue faux, c'est toute la symphonie qui en pâtit. Nous verrons d'abord la régulation de la glycémie, puis celle de la pression artérielle, puis les stratégies nutritionnelles et les cas cliniques qui les mettent à l'épreuve.",
+   "texte": "Glycémie et pression : deux équilibres à tenir.",
+   "ecran": "titre"
+  },
+  {
+   "id": "p02",
+   "dit": "Commençons par les définitions. La glycémie, c'est le taux de glucose dans le sang, le carburant principal de l'organisme, qui alimente les muscles, le cerveau et toutes les cellules. La pression artérielle, c'est la force exercée par le sang sur les parois des artères, mesurée par deux chiffres que nous détaillerons. Ces deux paramètres ne sont pas isolés : ils sont liés, influencés par l'alimentation, l'activité physique, le stress et le sommeil, et c'est cette vision d'ensemble qui guidera tout le cours.",
+   "texte": "Glycémie : le carburant. Pression : la force.",
+   "ecran": "deux_equilibres"
+  },
+  {
+   "id": "p03",
+   "dit": "L'insuline est l'hormone centrale de la baisse de la glycémie. Produite par les cellules bêta du pancréas, elle est souvent décrite comme anabolisante : elle permet au glucose de pénétrer dans les cellules, où il est utilisé comme énergie ou stocké sous forme de glycogène, dans le foie et les muscles, ou de triglycérides, dans le tissu adipeux. Sa sécrétion augmente après un repas, quand le glucose sanguin monte, et elle est potentialisée par les hormones intestinales dont nous parlerons.",
+   "texte": "Insuline : faire entrer et stocker le glucose.",
+   "ecran": "insuline"
+  },
+  {
+   "id": "p04",
+   "dit": "Le glucagon est le contrepoids de l'insuline. Produit par les cellules alpha du pancréas, c'est une hormone catabolique : son rôle principal est d'augmenter la glycémie quand elle est trop basse. Il mobilise les réserves en stimulant la dégradation du glycogène et la fabrication de glucose nouveau à partir de précurseurs non glucidiques. Insuline et glucagon forment ainsi un couple antagoniste, dont l'équilibre maintient la glycémie dans une fourchette étroite.",
+   "texte": "Glucagon : mobiliser les réserves quand ça baisse.",
+   "ecran": "glucagon"
+  },
+  {
+   "id": "p05",
+   "dit": "D'autres hormones jouent aussi, parfois en coulisses. Le cortisol, sécrété par les glandes surrénales en réponse au stress, augmente la glycémie en stimulant la fabrication de glucose et en freinant sa captation par les tissus. L'adrénaline, en réponse au stress ou à l'exercice, stimule la dégradation du glycogène et la fabrication de glucose. L'hormone de croissance a des effets complexes, à court terme plutôt hyperglycémiants. Les incrétines intestinales potentialisent la sécrétion d'insuline et freinent celle du glucagon après un repas. Et l'amylin, co-sécrétée avec l'insuline, ralentit la vidange gastrique et augmente la satiété.",
+   "texte": "Cortisol, adrénaline, incrétines : l'orchestre complet.",
+   "ecran": "autres_hormones"
+  },
+  {
+   "id": "p06",
+   "dit": "Quand la danse se déstructure, deux déséquilibres apparaissent. L'hyperglycémie, un excès de glucose, souvent causé par un manque d'insuline, comme dans le diabète de type un, ou par une résistance à l'insuline, comme dans le diabète de type deux, ou par une production excessive de glucose par le foie. L'hypoglycémie, un glucose trop bas, causée par une dose excessive d'insuline, un jeûne prolongé ou un exercice intense. Le cas du marathonien est parlant : tremblements, sueurs froides, vision trouble et confusion après un effort long, des réserves épuisées, et une réponse immédiate, des glucides rapidement absorbables.",
+   "texte": "Trop ou trop peu : deux déséquilibres, deux urgences.",
+   "ecran": "desequilibres"
+  },
+  {
+   "id": "p07",
+   "dit": "Côté alimentation, les glucides sont la principale source d'énergie, mais tous ne se valent pas. Les glucides complexes, associés à des fibres, favorisent une glycémie stable et une concentration optimale, tandis qu'un excès de sucres simples donne des pics suivis de chutes brutales. Les fibres, des glucides non digestibles des fruits, des légumes, des céréales complètes et des légumineuses, sont les alliées de la glycémie : les fibres solubles ralentissent l'absorption du glucose, les fibres insolubles augmentent le volume et améliorent la sensibilité à l'insuline.",
+   "texte": "Glucides complexes et fibres : la stabilité.",
+   "ecran": "glucides_fibres"
+  },
+  {
+   "id": "p08",
+   "dit": "L'index glycémique mesure la vitesse à laquelle un aliment contenant des glucides élève la glycémie, par rapport à un aliment de référence, généralement le glucose pur ou le pain blanc. Sa formule compare l'aire sous la courbe glycémique de l'aliment testé à celle du glucose, multipliée par cent. Un index élevé indique une absorption rapide, un index bas une absorption lente. Mais l'index ne dit pas tout : il faut aussi la charge glycémique, qui tient compte de la quantité de glucides dans une portion. La pastèque, par exemple, a un index élevé mais une charge faible, car elle contient peu de glucides par portion.",
+   "texte": "Index : la vitesse. Charge : la portion.",
+   "ecran": "ig"
+  },
+  {
+   "id": "p09",
+   "dit": "Lisons le tableau de la leçon. Le pain blanc affiche un index de soixante-quinze et une charge de dix par portion. Le riz blanc, un index de soixante-treize et une charge de vingt-huit. La patate douce, un index de soixante-dix et une charge de onze. La banane mûre, un index de soixante-deux et une charge de seize. L'avoine, un index de cinquante-cinq et une charge de douze. Les lentilles, un index de trente et une charge de sept. La pomme, un index de trente-huit et une charge de six. Le brocoli, un index de quinze et une charge de un. Moralité : privilégier les index bas et les charges basses, et utiliser l'index avec discernement, sans oublier la qualité globale de l'aliment.",
+   "texte": "Pain blanc 75, lentilles 30 : le tableau parle.",
+   "ecran": "exemple_ig"
+  },
+  {
+   "id": "p10",
+   "dit": "Récapitulons cette première partie. L'insuline fait entrer et stocker le glucose, le glucagon mobilise les réserves quand la glycémie baisse. Le cortisol, l'adrénaline, les incrétines et l'amylin modulent cet équilibre. Les glucides complexes et les fibres stabilisent la glycémie, là où les sucres simples créent des pics et des chutes. L'index glycémique mesure la vitesse de montée, la charge glycémique tient compte de la portion, et le tableau des aliments permet de choisir en connaissance de cause.",
+   "texte": "L'essentiel de la partie 1.",
+   "ecran": "recap1"
+  },
+  {
+   "id": "p11",
+   "dit": "Partie deux : la pression artérielle. C'est la force exercée par le sang sur les parois des artères, exprimée par deux chiffres en millimètres de mercure. La pression systolique, la maximale, lors de la contraction du cœur. La pression diastolique, la minimale, lors de son relâchement. La mesure la plus courante utilise un tensiomètre, par méthode auscultatoire avec un brassard et un stéthoscope, ou par méthode oscillométrique. Les valeurs de référence varient selon les sociétés savantes, mais une pression optimale se situe en dessous de cent vingt sur quatre-vingts.",
+   "texte": "Systolique, diastolique : deux chiffres, un équilibre.",
+   "ecran": "pa_def"
+  },
+  {
+   "id": "p12",
+   "dit": "Quatre acteurs régulent la pression. Le cœur, par son débit. Les vaisseaux, par leur diamètre et leur résistance : resserrés, ils font monter la pression ; dilatés, ils la font baisser. Les reins, par le volume sanguin : retenir du sodium et de l'eau fait monter le volume, donc la pression. Et le système nerveux autonome, qui ajuste en permanence le rythme cardiaque et la constriction des vaisseaux. La pression n'est donc pas un chiffre isolé : c'est le résultat d'un réseau d'interactions entre organes.",
+   "texte": "Cœur, vaisseaux, reins, nerfs : quatre acteurs.",
+   "ecran": "acteurs_pa"
+  },
+  {
+   "id": "p13",
+   "dit": "Le système nerveux autonome se divise en deux branches antagonistes. Le système sympathique, le système du combat ou de la fuite, augmente la fréquence cardiaque, contracte les vaisseaux et libère de l'adrénaline et de la noradrénaline : la pression monte. Le système parasympathique, le système du repos et de la digestion, ralentit le cœur par le nerf vague et dilate les vaisseaux : la pression descend. Face à un examen stressant, le sympathique s'active et la pression monte temporairement ; après un repas copieux, le parasympathique domine et la pression diminue légèrement.",
+   "texte": "Sympathique : monter. Parasympathique : descendre.",
+   "ecran": "sna"
+  },
+  {
+   "id": "p14",
+   "dit": "Le système nerveux autonome ne travaille pas à l'aveugle : il écoute des capteurs, les barorécepteurs, situés dans les parois de l'aorte et des carotides. Quand la pression est élevée, ils s'étirent et envoient des signaux au cerveau, qui active le parasympathique et freine le sympathique : le cœur ralentit, les vaisseaux se dilatent, la pression baisse. Quand la pression est basse, ils sont moins étirés, et le cerveau fait l'inverse : le sympathique s'active, le cœur accélère, les vaisseaux se resserrent, la pression remonte. C'est un réflexe en boucle, seconde après seconde.",
+   "texte": "Barorécepteurs : les sentinelles qui ajustent.",
+   "ecran": "barorecepteurs"
+  },
+  {
+   "id": "p15",
+   "dit": "À long terme, un système hormonal prend le relais : le système rénine-angiotensine-aldostérone. Une baisse de pression, une baisse de sodium ou une stimulation sympathique déclenche la libération de rénine par les reins. La rénine coupe l'angiotensinogène du foie en angiotensine un, inactive. L'enzyme de conversion, surtout dans les poumons, transforme l'angiotensine un en angiotensine deux, active. L'angiotensine deux resserre les vaisseaux et stimule la libération d'aldostérone par les surrénales, qui fait retenir sodium et eau par les reins : le volume sanguin monte, et la pression avec lui.",
+   "texte": "Rénine, angiotensine, aldostérone : la cascade.",
+   "ecran": "sraa"
+  },
+  {
+   "id": "p16",
+   "dit": "Quand ce système s'emballe, il contribue à l'hypertension, et c'est une cible majeure des médicaments. Les inhibiteurs de l'enzyme de conversion bloquent la formation d'angiotensine deux. Les antagonistes des récepteurs de l'angiotensine deux empêchent l'hormone d'agir. Les inhibiteurs de la rénine bloquent le déclenchement même de la cascade. Le cas de la leçon est parlant : un homme de cinquante-cinq ans à cent cinquante sur quatre-vingt-quinze, avec une activation excessive du système suspectée, des taux élevés de rénine et d'angiotensine deux, et un traitement qui bloque la cascade pour faire baisser la pression.",
+   "texte": "Bloquer la cascade : inhibiteurs et antagonistes.",
+   "ecran": "sraa_medocs"
+  },
+  {
+   "id": "p17",
+   "dit": "L'alimentation module directement cette régulation, à commencer par le sodium et le potassium. Le sodium, surtout sous forme de sel de table, est indispensable à l'équilibre hydrique, à la transmission nerveuse et à la contraction musculaire, mais notre consommation dépasse largement nos besoins : l'excès retient l'eau, augmente le volume sanguin et la pression. L'Organisation mondiale de la santé recommande moins de deux grammes de sodium par jour, soit environ cinq grammes de sel. Le potassium, lui, contrebalance le sodium : il favorise la relaxation des vaisseaux et stimule l'excrétion du sodium par les reins, avec un apport recommandé d'environ trois grammes et demi à quatre grammes et sept par jour.",
+   "texte": "Sodium : moins de 2 g. Potassium : le contre-pouvoir.",
+   "ecran": "sodium_potassium"
+  },
+  {
+   "id": "p18",
+   "dit": "D'autres nutriments comptent. Le magnésium participe à la relaxation des vaisseaux, dans les légumes verts, les noix, les graines et les céréales complètes. Le calcium joue un rôle plus complexe, notamment chez les personnes hypertendues, dans les produits laitiers, les légumes verts et les amandes. Les fibres améliorent la santé cardiovasculaire globale. Les acides gras oméga-trois, des poissons gras et des graines de lin, ont des propriétés anti-inflammatoires. Et les nitrates des légumes verts à feuilles et de la betterave se convertissent en oxyde nitrique, un puissant vasodilatateur.",
+   "texte": "Magnésium, calcium, oméga-3, nitrates.",
+   "ecran": "autres_nutriments"
+  },
+  {
+   "id": "p19",
+   "dit": "Le modèle alimentaire éprouvé, c'est le régime contre l'hypertension, riche en fruits, en légumes, en produits laitiers faibles en matières grasses, en céréales complètes, en volaille, en poisson et en noix, et pauvre en viande rouge, en sucreries et en boissons sucrées. Ses repères quotidiens : quatre à cinq portions de fruits, quatre à cinq portions de légumes, deux à trois portions de produits laitiers, six à huit portions de céréales complètes, et au plus six portions de viande maigre, de volaille ou de poisson, avec des noix, des graines et des légumineuses plusieurs fois par semaine.",
+   "texte": "Le régime DASH : fruits, légumes, peu de sel.",
+   "ecran": "dash"
+  },
+  {
+   "id": "p20",
+   "dit": "Récapitulons cette deuxième partie. La pression se lit en deux chiffres, systolique et diastolique, en millimètres de mercure, avec une valeur optimale en dessous de cent vingt sur quatre-vingts. Le système nerveux autonome, sympathique contre parasympathique, ajuste la pression en boucle grâce aux barorécepteurs de l'aorte et des carotides. Le système rénine-angiotensine-aldostérone régule le volume à long terme et se bloque par des médicaments ciblés. Et l'alimentation pèse lourd : sodium bas, potassium haut, modèle DASH.",
+   "texte": "L'essentiel de la partie 2.",
+   "ecran": "recap2"
+  },
+  {
+   "id": "p21",
+   "dit": "Partie trois : les déséquilibres et les cas cliniques. Distinguons d'abord les deux diabètes. Le diabète de type un, un manque d'insuline. Le diabète de type deux, une résistance à l'insuline, souvent liée au surpoids et aux antécédents familiaux, avec fatigue, soif excessive et mictions fréquentes. Le cas de la leçon de préparation aux concours est net : un patient de cinquante-cinq ans, en surpoids, avec une glycémie à jeun de cent quarante milligrammes par décilitre et une hémoglobine glyquée de sept virgule cinq pour cent, soit un diabète de type deux à prendre en charge par la nutrition et le mode de vie.",
+   "texte": "Type 1 : manque. Type 2 : résistance.",
+   "ecran": "diabete_types"
+  },
+  {
+   "id": "p22",
+   "dit": "Côté pression, les cas cliniques enseignent la personnalisation. Madame Dubois, cinquante-huit ans, diabète de type deux récent, indice de masse corporelle de vingt-huit, fatigue, soif et mictions fréquentes : une intervention nutritionnelle ciblée. Monsieur Martin, soixante-douze ans, vertiges en se levant rapidement sous traitement antihypertenseur : une hypotension orthostatique, où le système sympathique ne resserre pas assez vite les vaisseaux. Le jeune marathonien, faiblesse et confusion deux heures après le début de l'effort : une hypoglycémie d'effort. Trois patients, trois lectures, trois prises en charge différentes.",
+   "texte": "Trois cas, trois prises en charge.",
+   "ecran": "hypertension_cas"
+  },
+  {
+   "id": "p23",
+   "dit": "Les stratégies nutritionnelles, maintenant. Répartir les glucides sur plusieurs petits repas plutôt qu'en une seule grande quantité stabilise la glycémie. Ajouter des protéines et des lipides sains à un repas ralentit la digestion et atténue les pics de glycémie : un petit-déjeuner riche en protéines améliore le contrôle glycémique de la journée. Augmenter les fibres, avec un objectif de trente grammes par jour, freine l'absorption du glucose. Et fixer des objectifs mesurables, comme réduire le sodium de cinq cents milligrammes par jour en un mois, rend le changement tenable.",
+   "texte": "Répartir, ajouter des protéines, viser 30 g de fibres.",
+   "ecran": "strategies"
+  },
+  {
+   "id": "p24",
+   "dit": "N'oublions pas les autres facteurs qui font varier la pression. L'âge : les artères se rigidifient et la fonction rénale diminue. Le sexe et l'origine ethnique modulent le risque. Le poids : l'obésité est un facteur majeur d'hypertension. L'activité physique régulière abaisse la pression, le stress chronique la fait monter, tout comme une alimentation riche en sodium et pauvre en potassium, une consommation excessive d'alcool, le tabagisme, et parfois la grossesse, surtout au troisième trimestre. La pression est donc un baromètre de santé globale, pas un chiffre isolé.",
+   "texte": "Âge, poids, stress, alcool, tabac : tout pèse.",
+   "ecran": "facteurs"
+  },
+  {
+   "id": "p25",
+   "dit": "La conclusion du cours est une invitation : devenir chef d'orchestre de sa propre santé. La glycémie et la pression ne se gèrent pas par un aliment miracle, mais par une approche globale et cohérente : une alimentation variée et équilibrée, une activité physique régulière, un sommeil suffisant, une gestion du stress, et un suivi régulier de ses chiffres. Les changements durables demandent de la cohérence et de la patience, pas de la perfection : un faux pas occasionnel ne défait pas une trajectoire, à condition de revenir vite sur la bonne voie.",
+   "texte": "Cohérence et patience, pas de perfection.",
+   "ecran": "synthese"
+  },
+  {
+   "id": "p26",
+   "dit": "Pour conclure : la glycémie se tient par l'équilibre entre l'insuline qui fait entrer le glucose et le glucagon qui mobilise les réserves, modulé par le cortisol, l'adrénaline et les incrétines. La pression se tient par le cœur, les vaisseaux, les reins et le système nerveux, avec les barorécepteurs en boucle courte et le système rénine-angiotensine-aldostérone en boucle longue. L'alimentation, sodium bas, potassium haut, fibres et modèle DASH, est un levier puissant. Et les cas cliniques rappellent l'essentiel : analyser, puis personnaliser.",
+   "texte": "Analyser, personnaliser, tenir l'équilibre.",
+   "ecran": "recap_final"
+  }
+ ],
+ "parties": [
+  {
+   "debut": "p01",
+   "sous_titre": "La glycémie : hormones et alimentation"
+  },
+  {
+   "debut": "p11",
+   "sous_titre": "La pression artérielle : nerfs, hormones, nutriments",
+   "pont": {
+    "dit": "Partie deux : la pression artérielle. Nous verrons ses acteurs et ses deux régulations, nerveuse et hormonale, puis le sodium, le potassium et le régime qui fait baisser la pression.",
+    "texte": "Partie 2 : pression, SRAA, sodium, DASH."
+   }
+  },
+  {
+   "debut": "p21",
+   "sous_titre": "Déséquilibres, cas cliniques et stratégies",
+   "pont": {
+    "dit": "Partie trois : les déséquilibres et les cas cliniques, puis les stratégies nutritionnelles concrètes et les facteurs qui font varier la pression.",
+    "texte": "Partie 3 : diabètes, cas cliniques, stratégies."
+   }
+  }
+ ]
+}
