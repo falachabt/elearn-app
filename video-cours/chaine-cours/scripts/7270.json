@@ -1,0 +1,336 @@
+{
+  "cours": 7270,
+  "ecrans": {
+    "arith_def": {
+      "kicker": "Suites arithmétiques · définition",
+      "note": "r : la raison, constante à chaque pas",
+      "tex": "u_{n+1} = u_n + r",
+      "type": "formule",
+      "anim": {
+        "nom": "suite_points_fig",
+        "hauteur": 215
+      }
+    },
+    "arith_somme": {
+      "kicker": "Suites arithmétiques · somme",
+      "note": "N : nombre de termes de la somme",
+      "tex": "S = \\frac{N(u_p + u_n)}{2}",
+      "type": "formule"
+    },
+    "arith_terme": {
+      "kicker": "Suites arithmétiques · terme général",
+      "note": "On ajoute la raison autant de fois qu'il y a de pas",
+      "tex": "u_n = u_0 + nr \\qquad u_n = u_p + (n-p)r",
+      "type": "formule"
+    },
+    "conv_resultats": {
+      "kicker": "Convergence · résultats à connaître",
+      "tex": [
+        "|q| < 1 : q^n \\to 0",
+        "q > 1 : q^n \\to +\\infty",
+        "\\text{croissante et majorée : elle converge}",
+        "\\text{décroissante et minorée : elle converge}"
+      ],
+      "titre": "Raison géométrique et monotonie bornée",
+      "type": "etape"
+    },
+    "convergence": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "exponentielle_fig"
+      },
+      "kicker": "Convergence · idée",
+      "texte": "Les termes se rapprochent indéfiniment d'une valeur limite.",
+      "type": "phrase"
+    },
+    "def": {
+      "anim": {
+        "hauteur": 170,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Définition · la suite",
+      "texte": "À chaque entier n, un réel u_n : le terme d'indice n.",
+      "type": "phrase"
+    },
+    "ex_arith": {
+      "kicker": "Exemple résolu · arithmétique",
+      "tex": [
+        "u_{10} = 4 + 10 \\times 3 = 34",
+        "\\text{de } u_0 \\text{ à } u_{10} : 11 \\text{ termes}",
+        "S = \\tfrac{11 \\times (4 + 34)}{2} = 209"
+      ],
+      "titre": "Premier terme quatre, raison trois",
+      "type": "etape"
+    },
+    "ex_conv": {
+      "kicker": "Exemple résolu · une limite",
+      "tex": [
+        "u_n = 3 + \\left(\\tfrac{1}{2}\\right)^n",
+        "\\left(\\tfrac{1}{2}\\right)^n \\to 0",
+        "u_n \\to 3"
+      ],
+      "titre": "Trois, plus un demi à la puissance n",
+      "type": "etape"
+    },
+    "ex_geom": {
+      "kicker": "Exemple résolu · géométrique",
+      "tex": [
+        "u_6 = 5 \\times 2^6 = 320",
+        "\\text{de } u_0 \\text{ à } u_6 : 7 \\text{ termes}",
+        "S = 5 \\times \\tfrac{1 - 2^7}{1 - 2} = 635"
+      ],
+      "titre": "Premier terme cinq, raison deux",
+      "type": "etape"
+    },
+    "ex_recurrence": {
+      "kicker": "Exemple résolu · par récurrence",
+      "tex": [
+        "u_0 = 3 \\qquad u_{n+1} = 2u_n - 1",
+        "u_1 = 2 \\times 3 - 1 = 5",
+        "u_2 = 2 \\times 5 - 1 = 9 \\qquad u_3 = 2 \\times 9 - 1 = 17"
+      ],
+      "titre": "Le double du précédent, moins un",
+      "type": "etape"
+    },
+    "ex_variation": {
+      "kicker": "Exemple résolu · sens de variation",
+      "tex": [
+        "u_n = \\tfrac{n}{n+1}",
+        "u_{n+1} - u_n = \\tfrac{n+1}{n+2} - \\tfrac{n}{n+1}",
+        "= \\tfrac{1}{(n+1)(n+2)} > 0"
+      ],
+      "titre": "Le quotient de n par n plus un",
+      "type": "etape"
+    },
+    "geom_def": {
+      "kicker": "Suites géométriques · définition",
+      "note": "q : la raison, différente de zéro",
+      "tex": "u_{n+1} = q \\, u_n",
+      "type": "formule",
+      "anim": {
+        "nom": "exponentielle_fig",
+        "hauteur": 215
+      }
+    },
+    "geom_somme": {
+      "kicker": "Suites géométriques · somme",
+      "note": "Raison différente de un ; N : nombre de termes",
+      "tex": "S = u_p \\frac{1 - q^{N}}{1 - q}",
+      "type": "formule"
+    },
+    "geom_terme": {
+      "kicker": "Suites géométriques · terme général",
+      "note": "L'exposant compte les pas parcourus depuis le premier terme",
+      "tex": "u_n = u_0 \\, q^{n} \\qquad u_n = u_p \\, q^{n-p}",
+      "type": "formule"
+    },
+    "lim_formule": {
+      "kicker": "Convergence · notation",
+      "note": "La valeur limite se note par la lettre l",
+      "tex": "\\lim_{n \\to +\\infty} u_n = \\ell",
+      "type": "formule"
+    },
+    "modes": {
+      "kicker": "Deux modes de génération",
+      "tex": [
+        "u_n = f(n) \\quad \\text{: formule explicite}",
+        "u_{n+1} = f(u_n) \\quad \\text{: relation de récurrence}"
+      ],
+      "titre": "Calculer directement, ou de proche en proche",
+      "type": "etape"
+    },
+    "nature": {
+      "anim": {
+        "hauteur": 140,
+        "nom": "fleche_fonction"
+      },
+      "kicker": "Synthèse · reconnaître la nature",
+      "texte": "Différence constante : arithmétique. Quotient constant : géométrique.",
+      "type": "phrase"
+    },
+    "recap": {
+      "etapes": [
+        "Arithmétique : + r, uₙ = u₀ + nr",
+        "Géométrique : × q, uₙ = u₀qⁿ",
+        "Sommes : compter les termes d'abord",
+        "Variation : signe de uₙ₊₁ − uₙ",
+        "Limite : |q| < 1, monotone bornée"
+      ],
+      "kicker": "À retenir",
+      "type": "recap"
+    },
+    "regles": {
+      "anim": {
+        "hauteur": 150,
+        "nom": "exponentielle_fig"
+      },
+      "kicker": "Sens de variation · règles utiles",
+      "texte": "Arithmétique : le signe de r. Géométrique positive : q comparé à 1.",
+      "type": "phrase"
+    },
+    "titre": {
+      "anim": {
+        "nom": "suite_points_fig",
+        "hauteur": 250
+      },
+      "kicker": "Mathématique · Suites",
+      "sous": "Définir, reconnaître, sommer, étudier le sens de variation et la limite",
+      "titre": "Suites numériques : arithmétiques, géométriques, variations et limites",
+      "type": "titre"
+    },
+    "variation": {
+      "kicker": "Sens de variation · le critère",
+      "tex": [
+        "u_{n+1} - u_n \\geq 0 : \\text{ croissante}",
+        "u_{n+1} - u_n \\leq 0 : \\text{ décroissante}",
+        "u_{n+1} - u_n = 0 : \\text{ constante}"
+      ],
+      "titre": "Le signe de la différence décide",
+      "type": "etape"
+    }
+  },
+  "matiere": "Mathématique",
+  "parties": [
+    {
+      "debut": "p01",
+      "sous_titre": "Définitions, suites arithmétiques et géométriques"
+    },
+    {
+      "debut": "p13",
+      "pont": {
+        "dit": "Partie deux : sens de variation et convergence. Après avoir défini, reconnu et sommé les suites arithmétiques et géométriques, voici comment étudier leur comportement quand l'indice grandit, et vers quelle limite elles se dirigent.",
+        "texte": "Partie 2 : sens de variation et convergence."
+      },
+      "sous_titre": "Sens de variation et convergence"
+    }
+  ],
+  "phrases": [
+    {
+      "dit": "Bienvenue dans ce cours de mathématiques consacré aux suites numériques : des listes de nombres rangés par un indice, que l'on apprend à définir, à reconnaître, à sommer, puis à étudier, sens de variation et limite compris.",
+      "ecran": "titre",
+      "id": "p01",
+      "texte": "Suites numériques : définir, sommer, étudier."
+    },
+    {
+      "dit": "Une suite numérique est une fonction qui, à chaque entier naturel n, associe un nombre réel, le terme d'indice n, noté u indice n. La suite entière se note entre parenthèses, et son premier terme est le terme d'indice zéro, ou d'indice un selon l'énoncé.",
+      "ecran": "def",
+      "id": "p02",
+      "texte": "Une suite : une fonction de ℕ dans ℝ."
+    },
+    {
+      "dit": "Une suite se définit de deux façons. Par une formule explicite : le terme d'indice n se calcule directement à partir de n. Ou par une relation de récurrence : chaque terme se calcule à partir du précédent, à condition de connaître le premier terme.",
+      "ecran": "modes",
+      "id": "p03",
+      "texte": "Explicite : direct. Récurrence : de proche en proche."
+    },
+    {
+      "dit": "Exemple : une suite commence au terme d'indice zéro, égal à trois, et chaque terme vaut le double du précédent, moins un. Le terme d'indice un vaut deux fois trois moins un, cinq. Celui d'indice deux, deux fois cinq moins un, neuf. Celui d'indice trois, deux fois neuf moins un, dix-sept.",
+      "ecran": "ex_recurrence",
+      "id": "p04",
+      "texte": "Récurrence : u₁=5, u₂=9, u₃=17."
+    },
+    {
+      "dit": "Une suite est arithmétique quand on passe d'un terme au suivant en ajoutant toujours le même nombre, appelé raison. Ajouter la raison, encore et toujours : c'est la signature des suites arithmétiques.",
+      "ecran": "arith_def",
+      "id": "p05",
+      "texte": "Arithmétique : on ajoute la raison r."
+    },
+    {
+      "dit": "Le terme général s'obtient en ajoutant la raison une fois par pas parcouru : le terme d'indice n vaut le premier terme, plus n fois la raison. Plus généralement, pour partir d'un terme d'indice p, on ajoute la raison autant de fois qu'il y a de pas entre p et n.",
+      "ecran": "arith_terme",
+      "id": "p06",
+      "texte": "Terme général : uₙ = u₀ + nr."
+    },
+    {
+      "dit": "La somme de termes consécutifs d'une suite arithmétique vaut le nombre de termes, multiplié par la moyenne du premier et du dernier terme de la somme. Retenez la forme : nombre de termes fois premier plus dernier, le tout divisé par deux.",
+      "ecran": "arith_somme",
+      "id": "p07",
+      "texte": "Somme arithmétique : N × (premier + dernier) / 2."
+    },
+    {
+      "dit": "Exemple : premier terme quatre, raison trois. Le terme d'indice dix vaut quatre plus dix fois trois, trente-quatre. La somme des termes, du premier au terme d'indice dix, compte onze termes : onze fois la somme de quatre et trente-quatre, divisée par deux, soit deux cent neuf.",
+      "ecran": "ex_arith",
+      "id": "p08",
+      "texte": "Arithmétique : u₁₀=34, somme=209."
+    },
+    {
+      "dit": "Une suite est géométrique quand on passe d'un terme au suivant en multipliant toujours par le même nombre, la raison, différente de zéro. Multiplier par la raison à chaque pas : c'est la signature des suites géométriques.",
+      "ecran": "geom_def",
+      "id": "p09",
+      "texte": "Géométrique : on multiplie par la raison q."
+    },
+    {
+      "dit": "Le terme général multiplie le premier terme par la raison élevée au nombre de pas : le terme d'indice n vaut le premier terme fois la raison à la puissance n. En partant d'un indice p, l'exposant devient le nombre de pas entre p et n.",
+      "ecran": "geom_terme",
+      "id": "p10",
+      "texte": "Terme général : uₙ = u₀ × qⁿ."
+    },
+    {
+      "dit": "La somme de termes consécutifs d'une suite géométrique, quand la raison est différente de un, vaut le premier terme de la somme, multiplié par un moins la raison à la puissance du nombre de termes, le tout divisé par un moins la raison.",
+      "ecran": "geom_somme",
+      "id": "p11",
+      "texte": "Somme géométrique : premier × (1−qᴺ)/(1−q)."
+    },
+    {
+      "dit": "Exemple : premier terme cinq, raison deux. Le terme d'indice six vaut cinq fois deux à la puissance six, trois cent vingt. La somme des sept premiers termes vaut cinq fois un moins deux à la puissance sept, divisé par un moins deux, soit six cent trente-cinq.",
+      "ecran": "ex_geom",
+      "id": "p12",
+      "texte": "Géométrique : u₆=320, somme=635."
+    },
+    {
+      "dit": "Pour étudier le sens de variation, on calcule la différence entre deux termes consécutifs. Toujours positive ou nulle : la suite est croissante. Toujours négative ou nulle : elle est décroissante. Toujours nulle : elle est constante. Pour une suite à termes strictement positifs, on peut aussi comparer le quotient de deux termes consécutifs au nombre un.",
+      "ecran": "variation",
+      "id": "p13",
+      "texte": "Variation : le signe de uₙ₊₁ − uₙ décide."
+    },
+    {
+      "dit": "Deux raccourcis à connaître. Une suite arithmétique est croissante quand sa raison est positive, décroissante quand elle est négative. Une suite géométrique de premier terme positif est croissante quand sa raison dépasse un, décroissante quand sa raison est entre zéro et un.",
+      "ecran": "regles",
+      "id": "p14",
+      "texte": "Règles : r pour l'arithmétique, q pour la géométrique."
+    },
+    {
+      "dit": "Exemple : la suite dont le terme d'indice n est le quotient de n par n plus un. La différence de deux termes consécutifs se simplifie en un sur le produit de n plus un par n plus deux. Cette différence est strictement positive : la suite est croissante.",
+      "ecran": "ex_variation",
+      "id": "p15",
+      "texte": "Exemple : différence > 0, suite croissante."
+    },
+    {
+      "dit": "Une suite converge vers un réel quand ses termes s'en rapprochent indéfiniment, au fur et à mesure que l'indice grandit. Si elle n'admet pas de limite finie, elle diverge : vers plus l'infini, vers moins l'infini, ou sans limite du tout.",
+      "ecran": "convergence",
+      "id": "p16",
+      "texte": "Convergence : les termes approchent une limite."
+    },
+    {
+      "dit": "On note cette convergence par une limite : la limite de u indice n, quand n tend vers plus l'infini, égale la valeur limite. C'est cette notation que l'on écrit dans les copies.",
+      "ecran": "lim_formule",
+      "id": "p17",
+      "texte": "Notation : lim uₙ = ℓ quand n → +∞."
+    },
+    {
+      "dit": "Deux résultats à connaître. Pour une suite géométrique, si la valeur absolue de la raison est inférieure à un, ses puissances tendent vers zéro ; si la raison dépasse un, elles divergent vers plus l'infini. Et de façon générale, toute suite croissante et majorée converge, toute suite décroissante et minorée converge.",
+      "ecran": "conv_resultats",
+      "id": "p18",
+      "texte": "Géométrique : |q|<1 → 0. Monotone bornée → converge."
+    },
+    {
+      "dit": "Exemple : le terme d'indice n vaut trois, plus un demi élevé à la puissance n. Comme un demi est inférieur à un en valeur absolue, un demi à la puissance n tend vers zéro. La suite converge donc vers trois.",
+      "ecran": "ex_conv",
+      "id": "p19",
+      "texte": "Exemple : uₙ → 3."
+    },
+    {
+      "dit": "En synthèse, pour déterminer la nature d'une suite, deux tests. Si la différence de deux termes consécutifs est constante, la suite est arithmétique, et cette constante est sa raison. Si le quotient de deux termes consécutifs est constant, la suite est géométrique, et cette constante est sa raison.",
+      "ecran": "nature",
+      "id": "p20",
+      "texte": "Nature : différence ou quotient constant."
+    },
+    {
+      "dit": "Pour finir, retenez l'essentiel. Arithmétique, on ajoute la raison ; géométrique, on multiplie par la raison. Les sommes exigent de compter les termes. Le sens de variation se lit sur le signe de la différence. Et la convergence se décide souvent sur la raison ou sur la monotonie bornée.",
+      "ecran": "recap",
+      "id": "p21",
+      "texte": "Suites : à retenir."
+    }
+  ],
+  "titre": "Suites numériques : arithmétiques, géométriques, variations et limites"
+}
